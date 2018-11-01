@@ -1,20 +1,34 @@
+/turf
+	var/_initialized_transparency = FALSE
+	var/isTransparent = FALSE
+
+/turf/simulated/open
+	isTransparent = TRUE
+	var/obj/effect/overlay/turfBelowEffectOverlay
+
+/turf/space
+	isTransparent = TRUE
+	var/obj/effect/overlay/turfBelowEffectOverlay
+
 /turf/proc/getDarknessOverlay()
-	var/static/image/over_OS_darkness
-	if (over_OS_darkness)
-		return over_OS_darkness
+	var/static/image/I
+	if (I)
+		return I
 
-	over_OS_darkness = image('icons/turf/floors.dmi', "black_open")
-	over_OS_darkness.plane = OVER_OPENSPACE_PLANE
-	over_OS_darkness.layer = MOB_LAYER
+	I = image('icons/turf/space.dmi', "white")
+	I.plane = OPENSPACE_PLANE
+	I.layer = ABOVE_LIGHTING_LAYER
+	I.blend_mode = BLEND_MULTIPLY
+	I.color = rgb(0,0,0,96)
 
-	return over_OS_darkness
+	return I
 
-/turf/proc/assumeVisualContentsFromTurf(var/turf/T) //tries to imitate the target turf in visual appearance
-	icon = T.icon
-	icon_state = T.icon_state
-	dir = T.dir
-	color = T.color
-	overlays += T.overlays
+/proc/makeAtomMimicTurf(var/atom/A, var/turf/T) //tries to imitate the target turf in visual appearance
+	A.icon = T.icon
+	A.icon_state = T.icon_state
+	A.dir = T.dir
+	A.color = T.color
+	A.overlays += T.overlays
 
 	var/image/I
 	for (var/obj/O in T)
@@ -22,7 +36,6 @@
 			I = new(O, dir = O.dir, layer = O.layer)
 			I.color = O.color
 			I.alpha = O.alpha
-			I.blend_mode = O.blend_mode
 			I.overlays = O.overlays
 			I.underlays = O.underlays
 			I.pixel_x = O.pixel_x
@@ -31,66 +44,101 @@
 			I.pixel_z = O.pixel_z
 			I.transform = O.transform
 
-			I.plane = plane
-			overlays += I
+			I.plane = A.plane
+			A.overlays += I
 
-/turf/simulated/open/update_icon(var/updateAboveTurf = TRUE)
+/turf/simulated/open/update_icon(var/roundstart_update = FALSE)
 	if (SSticker.current_state != GAME_STATE_PLAYING)
 		return
 
+	if (roundstart_update)
+		if (_initialized_transparency)
+			return
+		var/turf/testBelow = GetBelow(src)
+		if (testBelow && testBelow.isTransparent && !testBelow._initialized_transparency)
+			return //turf below will update this one
+
 	overlays.Cut()
+	QDEL_NULL(turfBelowEffectOverlay)
 	var/turf/below = GetBelow(src)
 	if (below)
-		if (below.is_space())
+		turfBelowEffectOverlay = new
+		var/obj/effect/overlay/E = turfBelowEffectOverlay
+		E.loc = src
+		E.plane = OPENSPACE_PLANE
+		E.layer = layer + 0.01
+
+		makeAtomMimicTurf(E,below)
+
+		if (below.is_hole)
 			plane = PLANE_SPACE
+			E.icon = null
+			E.icon_state = null
 		else
 			plane = OPENSPACE_PLANE
+			icon = null
+			icon_state = null
 
-		assumeVisualContentsFromTurf(below)
-
-		overlays += getDarknessOverlay()
+		E.overlays += getDarknessOverlay()
 
 		updateFallability()
 	else
 		ChangeTurf(/turf/space)
 
-	if (updateAboveTurf)
-		update_openspace()
+	_initialized_transparency = TRUE
+	update_openspace() //propagate update upwards
 
-/turf/space/update_icon(var/updateAboveTurf = TRUE)
+/turf/space/update_icon(var/roundstart_update = FALSE)
 	if (SSticker.current_state < GAME_STATE_PLAYING)
 		return
 
+	if (roundstart_update)
+		if (_initialized_transparency)
+			return
+		var/turf/testBelow = GetBelow(src)
+		if (testBelow && testBelow.isTransparent && !testBelow._initialized_transparency)
+			return //turf below will update this one
+
 	overlays.Cut()
+	QDEL_NULL(turfBelowEffectOverlay)
 	var/turf/below = GetBelow(src)
 	if (below)
-		if (below.is_space())
+		turfBelowEffectOverlay = new
+		var/obj/effect/overlay/E = turfBelowEffectOverlay
+		E.loc = src
+		E.plane = OPENSPACE_PLANE
+		E.layer = layer + 0.01
+
+		makeAtomMimicTurf(E,below)
+
+		if (below.is_hole)
 			plane = PLANE_SPACE
+			E.icon = null
+			E.icon_state = null
 		else
 			plane = OPENSPACE_PLANE
-			overlays += getDarknessOverlay()
+			icon = null
+			icon_state = null
 
-		assumeVisualContentsFromTurf(below)
+		E.overlays += getDarknessOverlay()
 	else
 		icon = initial(icon)
 		plane = initial(plane)
-		if (!istype(src, /turf/space/transit))
+		if(!istype(src, /turf/space/transit))
 			icon_state = "white"
 
-	if (updateAboveTurf)
-		update_openspace()
+	_initialized_transparency = TRUE
+	update_openspace()
 
 /hook/roundstart/proc/init_openspace()
-	var/turf/T
-	for (var/elem in turfs)
-		if (istype(elem, /turf/simulated/open) || istype(elem, /turf/space))
-			T = elem
-			T.update_icon(FALSE)
+	for (var/turf/T in turfs)
+		if (T.isTransparent)
+			T.update_icon(TRUE)
 	return TRUE
 
 /atom/proc/update_openspace()
 	var/turf/T = GetAbove(src)
-	if (istype(T, /turf/simulated/open) || istype(T, /turf/space))
+	if (T && T.isTransparent)
 		T.update_icon()
 
 /turf/Entered(atom/movable/Obj, atom/OldLoc)
