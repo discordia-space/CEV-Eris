@@ -409,7 +409,7 @@
 			return
 		chassis.use_power(energy_drain)
 		set_ready_state(0)
-		new /obj/effect/portal/wormhole(get_turf(target), target_turf, rand(150, 300))
+		new /obj/effect/portal/wormhole(get_turf(target), rand(150, 300), target_turf)
 		do_after_cooldown()
 
 /obj/item/mecha_parts/mecha_equipment/gravcatapult

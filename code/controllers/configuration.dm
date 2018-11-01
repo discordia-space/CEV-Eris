@@ -168,6 +168,7 @@ var/list/storyteller_cache = list()
 		EVENT_LEVEL_MUNDANE = null,
 		EVENT_LEVEL_MODERATE = null,
 		EVENT_LEVEL_MAJOR = list("lower" = 48000, "upper" = 60000),
+		EVENT_LEVEL_ROLESET = null,
 		EVENT_LEVEL_ECONOMY = list("lower" = 16000, "upper" = 20000),
 	)
 	// The lowest delay until next event
@@ -176,6 +177,7 @@ var/list/storyteller_cache = list()
 		EVENT_LEVEL_MUNDANE = 6000,
 		EVENT_LEVEL_MODERATE = 18000,
 		EVENT_LEVEL_MAJOR = 30000,
+		EVENT_LEVEL_ROLESET = null,
 		EVENT_LEVEL_ECONOMY = 18000
 	)
 	// The upper delay until next event
@@ -184,6 +186,7 @@ var/list/storyteller_cache = list()
 		EVENT_LEVEL_MUNDANE = 9000,
 		EVENT_LEVEL_MODERATE = 27000,
 		EVENT_LEVEL_MAJOR = 42000,
+		EVENT_LEVEL_ROLESET = null,
 		EVENT_LEVEL_ECONOMY = 18000
 	)
 
@@ -207,6 +210,8 @@ var/list/storyteller_cache = list()
 	var/ghosts_can_possess_animals = 0
 
 /datum/configuration/New()
+	fill_storyevents_list()
+
 	var/list/L = typesof(/datum/storyteller)-/datum/storyteller
 	for (var/T in L)
 		// I wish I didn't have to instance the game modes in order to look up
@@ -745,6 +750,8 @@ var/list/storyteller_cache = list()
 		if(S)
 			runnable_storytellers |= S
 	return runnable_storytellers
+
+
 
 /datum/configuration/proc/post_load()
 	//apply a default value to config.python_path, if needed

@@ -4,7 +4,6 @@
 
 /obj/effect/spawner/maintshroom/Initialize()
 	..()
-
 	new /obj/effect/plant(get_turf(src), new /datum/seed/mushroom/maintshroom)
 
 	return INITIALIZE_HINT_QDEL

@@ -3,11 +3,11 @@
 	//set src in oview(1)
 	switch(severity)
 		if(1.0)
-			take_damage(rand(350, 600), BLAST) //Breaks through 3 - 4 layers
+			take_damage(rand(300, 600), BLAST) //Breaks through 3 - 4 layers
 		if(2.0)
-			take_damage(rand(125, 450), BLAST) //Breaks through 2 - 3 layers
+			take_damage(rand(115, 430), BLAST) //Breaks through 2 - 3 layers
 		if(3.0)
-			take_damage(rand(30, 150), BLAST) //Breaks 1-2 layers
+			take_damage(rand(20, 120), BLAST) //Breaks 1-2 layers
 
 
 

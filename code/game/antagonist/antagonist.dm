@@ -29,7 +29,7 @@
 	var/bantype               // Ban to check when spawning this antag.
 	var/list/uplinks = list()
 	var/only_human = TRUE
-
+	var/allow_neotheology = TRUE //If false, followers of neotheology cannot become this antag
 
 /datum/antagonist/New()
 	..()

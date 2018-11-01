@@ -10,12 +10,15 @@
 	//Keeping this on the default plane, GAME_PLANE, will make area overlays fail to render on FLOOR_PLANE.
 	plane = BLACKNESS_PLANE
 	layer = AREA_LAYER
+	var/ship_area = FALSE
 
 /area/New()
 	icon_state = ""
 	layer = AREA_LAYER
 	uid = ++global_uid
 	all_areas += src
+	if (ship_area)
+		ship_areas[src] = TRUE //Adds ourselves to the list of all ship areas
 
 	if(!requires_power)
 		power_light = 0
@@ -319,3 +322,9 @@ var/list/mob/living/forced_ambiance_list = new
 	if(A && A.has_gravity())
 		return 1
 	return 0
+
+
+/area/proc/set_ship_area()
+	if (!ship_area)
+		ship_area = TRUE
+		ship_areas[src] = TRUE

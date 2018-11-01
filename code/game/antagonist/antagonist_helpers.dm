@@ -11,6 +11,8 @@
 		return FALSE
 	if(only_human && !ishuman(player.current))
 		return FALSE
+	if(!allow_neotheology && is_neotheology_disciple(player.current))
+		return FALSE
 
 	return TRUE
 
