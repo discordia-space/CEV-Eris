@@ -46,7 +46,8 @@ SUBSYSTEM_DEF(atoms)
 			if(!A.initialized)
 				InitAtom(A, mapload_arg)
 				++count
-				CHECK_TICK
+				if (!(count%1000))
+					CHECK_TICK
 
 	report_progress("Initialized [count] atom\s")
 
