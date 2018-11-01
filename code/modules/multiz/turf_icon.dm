@@ -17,7 +17,7 @@
 	I.plane = OPENSPACE_PLANE
 	I.layer = ABOVE_LIGHTING_LAYER
 	I.blend_mode = BLEND_MULTIPLY
-	I.color = rgb(0,0,0,128)
+	I.color = rgb(0,0,0,100)
 
 	return I
 
