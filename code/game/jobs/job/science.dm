@@ -3,7 +3,7 @@
 	flag = MEO
 	head_position = 1
 	department = "Science"
-	department_flag = SCIENCE
+	department_flag = SCIENCE | COMMAND
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1

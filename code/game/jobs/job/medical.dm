@@ -3,7 +3,7 @@
 	flag = MBO
 	head_position = 1
 	department = "Medical"
-	department_flag = MEDICAL
+	department_flag = MEDICAL | COMMAND
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1

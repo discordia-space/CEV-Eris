@@ -3,7 +3,7 @@
 	flag = IHC
 	head_position = 1
 	department = "Ironhammer"
-	department_flag = IRONHAMMER
+	department_flag = IRONHAMMER | COMMAND
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1

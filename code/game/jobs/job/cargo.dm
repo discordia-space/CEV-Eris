@@ -4,7 +4,7 @@
 	flag = MERCHANT
 	department = "Cargo"
 	head_position = 1
-	department_flag = GUILD
+	department_flag = GUILD | COMMAND
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
