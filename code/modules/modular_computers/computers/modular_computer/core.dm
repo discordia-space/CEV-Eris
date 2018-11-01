@@ -160,6 +160,11 @@
 	for(var/datum/computer_file/program/P in idle_threads)
 		P.kill_program(1)
 		idle_threads.Remove(P)
+
+	//Turn on all non-disabled hardware
+	for (var/obj/item/weapon/computer_hardware/H in src)
+		if (H.enabled)
+			H.disabled()
 	if(loud)
 		visible_message("\The [src] shuts down.", range = TRUE)
 	enabled = FALSE
@@ -168,6 +173,11 @@
 /obj/item/modular_computer/proc/enable_computer(var/mob/user = null)
 	enabled = TRUE
 	update_icon()
+
+	//Turn on all non-disabled hardware
+	for (var/obj/item/weapon/computer_hardware/H in src)
+		if (H.enabled)
+			H.enabled()
 
 	// Autorun feature
 	var/datum/computer_file/data/autorun = hard_drive ? hard_drive.find_file_by_name("autorun") : null
