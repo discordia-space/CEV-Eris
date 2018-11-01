@@ -1,6 +1,7 @@
 /obj/item/weapon/computer_hardware/scanner/paper
 	name = "paper scanner module"
 	desc = "A paper scanning module. It can scan writing and save it to a file."
+	active_power_usage = 400 //Its just a sheet of paper, much cheaper than other scans
 
 /obj/item/weapon/computer_hardware/scanner/paper/can_use_scanner(mob/user, obj/item/weapon/paper/target, proximity = TRUE)
 	if(!..())
@@ -16,6 +17,8 @@
 		return
 	var/data = html2pencode(target.info)
 	if(!data)
+		return
+	if (!scan_power_use())
 		return
 	to_chat(user, "You scan \the [target] with [src].")
 	driver.data_buffer = data
