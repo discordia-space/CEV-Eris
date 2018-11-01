@@ -47,8 +47,6 @@ var/global/list/map_sectors = list()
 			I.pixel_x = 5*i + 2
 		overlays += I
 
-//list used to track which zlevels are being 'moved' by the proc below
-var/list/moving_levels = list()
 //Proc to 'move' stars in spess
 //yes it looks ugly, but it should only fire when state actually change.
 //null direction stops movement
@@ -64,8 +62,12 @@ proc/toggle_move_stars(zlevel, direction)
 	if(!direction)
 		gen_dir = null
 
-	if (moving_levels["zlevel"] != gen_dir)
-		moving_levels["zlevel"] = gen_dir
+	var/static/list/moving_levels  //list used to track which zlevels are being 'moved'
+	moving_levels = moving_levels || new
+
+	var/zlevel_index = "zlevel_[zlevel]"
+	if (moving_levels[zlevel_index] != gen_dir)
+		moving_levels[zlevel_index] = gen_dir
 		for(var/x = 1 to world.maxx)
 			for(var/y = 1 to world.maxy)
 				var/turf/space/T = locate(x,y,zlevel)
