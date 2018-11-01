@@ -2,7 +2,7 @@
 /obj/item/weapon/computer_hardware/gps_sensor
 	name = "gps sensor"
 	desc = "GPS sensors are receivers with antenna that use a ship navigation system."
-	power_usage = 10 //W
+	power_usage = 5 //W
 	critical = 0
 	icon_state = "gps_basic"
 	hardware_size = 1
