@@ -9,6 +9,7 @@
 	battery_module.charge_to_full()
 	gps_sensor	= new /obj/item/weapon/computer_hardware/gps_sensor(src)
 	tesla_link = new /obj/item/weapon/computer_hardware/tesla_link(src)
+	led = new /obj/item/weapon/computer_hardware/led(src)
 
 /obj/item/modular_computer/pda/install_default_programs()
 	..()
