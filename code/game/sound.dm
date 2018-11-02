@@ -439,7 +439,6 @@ var/const/FALLOFF_SOUNDS = 0.5
 		return
 
 	//Actually play the sound
-	world << "Repeated sound about to play [soundin] from [playfrom]"
 	playsound(playfrom, soundin, vol, vary, extrarange, falloff, is_global, use_pressure)
 
 	//Setup the next sound

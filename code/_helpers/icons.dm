@@ -973,3 +973,13 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 	GLOB.average_icon_color["[icon]:[icon_state]:[image_dir]"] = rgb(average_rgb[1],average_rgb[2],average_rgb[3])
 	return GLOB.average_icon_color["[icon]:[icon_state]:[image_dir]"]
 
+
+//Gets the total pixel offsets of the hierarchy above us
+/atom/proc/get_total_pixel_offset()
+	var/list/offsets = list("x" = 0, "y" = 0, "z" = 0)
+	var/atom/A = src
+	while (istype(A, /atom/movable))
+		offsets["x"] += A.pixel_x
+		offsets["y"] += A.pixel_y
+		A = A.loc
+	return offsets	

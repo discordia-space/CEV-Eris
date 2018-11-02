@@ -61,6 +61,7 @@
 	return tally
 
 /mob/living/carbon/human/Allow_Spacemove(var/check_drift = 0)
+	world << "[src] spacemove, Driftcheck [check_drift]"
 	//Can we act?
 	if(restrained())	return 0
 
@@ -68,9 +69,15 @@
 	var/obj/item/weapon/tank/jetpack/thrust = GetJetpack(src)
 
 	if(thrust)
-		if(((!check_drift) || (check_drift && thrust.stabilization_on)) && (!lying) && (thrust.allow_thrust(JETPACK_MOVE_COST, src)))
+		//The cost for stabilization is paid later
+		if (check_drift)
+			if (thrust.stabilization_on)
+				inertia_dir = 0
+				return TRUE
+			return FALSE
+		else if(thrust.allow_thrust(JETPACK_MOVE_COST, src))
 			inertia_dir = 0
-			return 1
+			return TRUE
 
 	//If no working jetpack then use the other checks
 	. = ..()

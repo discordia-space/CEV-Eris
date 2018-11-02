@@ -9,15 +9,32 @@
 	item_state = "jetpack"
 	force = WEAPON_FORCE_PAINFULL
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
-	var/datum/effect/effect/system/trail/trail
+	var/datum/effect/effect/system/trail/jet/trail
 	var/on = 0.0
 	var/stabilization_on = 0
 	var/volume_rate = 500              //Needed for borg jetpack transfer
 	action_button_name = "Toggle Jetpack"
 
+
+	//Vars used for stabilisation visual effects
+	var/stabilize_delay = 6
+	var/lastmove_tolerance = 5
+
+	var/stabilize_done = FALSE
+	//This is set false when a stabilisation check is queued, and set true when it resolves
+	//Used to prevent multiple scheduled checks in a row from resolving, and causing the effect+cost to happen many times
+
+
+	//Used for ztravelling effects
+	var/doing_zmove = FALSE //used for visual effects when travelling between zlevels with a jetpack
+
+
+	//Used for normal jet thrust effects
+	var/thrust_fx_done = FALSE
+
 /obj/item/weapon/tank/jetpack/New()
 	..()
-	src.trail = new /datum/effect/effect/system/trail/steam_trail_follow()//new /datum/effect/effect/system/ion_trail_follow()
+	src.trail = new /datum/effect/effect/system/trail/jet()
 	src.trail.set_up(src)
 
 /obj/item/weapon/tank/jetpack/Destroy()
@@ -33,7 +50,20 @@
 /obj/item/weapon/tank/jetpack/verb/toggle_rockets()
 	set name = "Toggle Jetpack Stabilization"
 	set category = "Object"
-	src.stabilization_on = !( src.stabilization_on )
+
+	world << "Toggling stabilisation, current state is [stabilization_on]"
+	//Turning off stabilisation always works
+	if (stabilization_on == TRUE)
+		stabilization_on = FALSE
+
+	//Turning it on requires you to have enough gas to do so, and it will immediately stabilise you
+	else if (stabilize(usr, usr.l_move_time, TRUE))
+		stabilization_on = TRUE
+
+	else
+		usr << "The [src] doesnt have enough gas to enable the stabiliser."
+		return
+
 	usr << "You toggle the stabilization [stabilization_on? "on":"off"]."
 
 /obj/item/weapon/tank/jetpack/verb/toggle()
@@ -55,21 +85,89 @@
 
 	usr << "You toggle the thrusters [on? "on":"off"]."
 
-/obj/item/weapon/tank/jetpack/proc/allow_thrust(num, mob/living/user as mob)
-	if(!(src.on))
+/obj/item/weapon/tank/jetpack/proc/allow_thrust(num, mob/living/user as mob, var/stabilization_check = FALSE)
+	world << "Jetpack allowthrust [num], [user]"
+	if(!(src.on) || !user) //Someone has to be wearing it
 		return 0
 	if((num < 0.005 || src.air_contents.total_moles < num))
 		src.trail.stop()
 		return 0
 
+	//Setup a stabilize check, but only if this isn't already from one
+	if (!stabilization_check)
+		stabilize_done = FALSE
+		addtimer(CALLBACK(src, .proc/stabilize, user, world.time), stabilize_delay)
+
 	var/datum/gas_mixture/G = src.air_contents.remove(num)
+
+	//We've used some thrust. This will allow our trail to make a particle effect
+	thrust_fx_done = FALSE
 
 	var/allgases = G.gas["carbon_dioxide"] + G.gas["nitrogen"] + G.gas["oxygen"] + G.gas["plasma"]
 	if(allgases >= 0.005)
 		return 1
 
+	//If we've run out of gas, turn off stabilisation
+	stabilization_on = FALSE
 	qdel(G)
 	return
+
+/*
+	This stabilize proc serves two functions:
+	1. When the user is trying to enable jetpack stabilisation, it ensures that they can.
+	Including checking that they have enough thrust
+
+	2. Every time the user does a normal move with the jetpack, it will run a short while after.
+	If the user has stopped moving, then it will do a stabilising visual effect and deduct the cost
+		This replaces an allow thrust call in human movement, meaning that stabilisation costs are only
+		paid once, when you attempt to stop moving. And not with every step as previous
+
+		stabilisation_on is still checked in human movement and used to prevent inertia. It will take
+		some proper refactoring of the movement system to fix that
+
+*/
+/obj/item/weapon/tank/jetpack/proc/stabilize(var/mob/living/user, var/schedule_time, var/enable_stabilize = FALSE)
+	world << "Stabilize running [user], [last_move], [enable_stabilize]"
+	//First up, lets check we still have the user and they're still wearing this jetpack
+	if (!user || loc != user)
+		world << "No user"
+		return FALSE
+
+	//If this is true then this stabilisation is already resolved and paid for.
+	if (stabilize_done)
+		world << "Stabilize already done"
+		return FALSE
+
+	//If we're not currently trying to turn stabilisation on, then we do some additional checks
+	if (!enable_stabilize)
+
+		//In that case it needs to be already turned on
+		if (!stabilization_on)
+			world << "Stabilization disabled"
+			return FALSE
+
+		//Now lets check if they've stopped moving
+		//If too much time passed between the last move, and the time this check was scheduled
+		//Then the user must have moved again shortly after the schedule, they never really stopped
+		//In this case, another check will already be scheduled and maybe THAT one will resolve correctly
+		//But this one is done, return false
+		if (abs(user.l_move_time - schedule_time) > lastmove_tolerance)
+			world << "[user.l_move_time] Too long after [schedule_time]"
+			return FALSE
+
+	//Ok now lets be sure we have enough gas to do stabilisation
+	if (!allow_thrust(JETPACK_MOVE_COST, user, stabilization_check = TRUE))
+		world << "Not enough thrust"
+		return FALSE
+
+	//Great, everything works fine, the user is now stable
+	user.inertia_dir = 0
+
+	//Lets do a little visual effect, a burst of thrust which opposes the user's last movement
+	trail.do_effect(get_step(user, user.last_move), user.last_move)
+	stabilize_done = TRUE
+	return TRUE
+
 
 
 //A check only version of the above, does not alter any values

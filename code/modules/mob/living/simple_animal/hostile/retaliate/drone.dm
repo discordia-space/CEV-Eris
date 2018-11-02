@@ -22,7 +22,7 @@
 	projectiletype = /obj/item/projectile/beam/drone
 	projectilesound = 'sound/weapons/laser3.ogg'
 	destroy_surroundings = 0
-	var/datum/effect/effect/system/trail/ion_trail_follow/trail
+	var/datum/effect/effect/system/trail/ion/trail
 
 	//the drone randomly switches between these states because it's malfunctioning
 	var/hostile_drone = 0
@@ -53,7 +53,7 @@
 	if(prob(5))
 		projectiletype = /obj/item/projectile/beam/pulse/drone
 		projectilesound = 'sound/weapons/pulse2.ogg'
-	trail = new
+	trail = new /datum/effect/effect/system/trail/ion(src)
 	trail.set_up(src)
 	trail.start()
 

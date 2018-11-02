@@ -1143,7 +1143,7 @@
 	equip_cooldown = 5
 	energy_drain = 50
 	var/wait = 0
-	var/datum/effect/effect/system/trail/ion_trail_follow/trail
+	var/datum/effect/effect/system/trail/ion/trail
 
 
 	can_attach(obj/mecha/M as obj)
@@ -1153,7 +1153,7 @@
 	attach(obj/mecha/M as obj)
 		..()
 		if(!trail)
-			trail = new /datum/effect/effect/system/trail/ion_trail_follow()
+			trail = new /datum/effect/effect/system/trail/ion()
 		trail.set_up(chassis)
 		return
 

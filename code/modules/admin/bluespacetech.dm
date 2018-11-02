@@ -379,11 +379,11 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 
 //These verbs are temporary, in future they should be available to all mobs with appropriate checks
 /mob/living/carbon/human/bst/verb/moveup()
-	set name = "Move Upwards"
+	set name = "Phase Upwards"
 	set category = "BST"
 	zMove(UP)
 
 /mob/living/carbon/human/bst/verb/movedown()
-	set name = "Move Downwards"
+	set name = "Phase Downwards"
 	set category = "BST"
 	zMove(DOWN)

@@ -683,6 +683,7 @@
 #include "code\game\objects\effects\spiders.dm"
 #include "code\game\objects\effects\step_triggers.dm"
 #include "code\game\objects\effects\temporary_visual.dm"
+#include "code\game\objects\effects\trails.dm"
 #include "code\game\objects\effects\chem\chemsmoke.dm"
 #include "code\game\objects\effects\chem\foam.dm"
 #include "code\game\objects\effects\chem\water.dm"

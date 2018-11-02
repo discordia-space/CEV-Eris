@@ -15,15 +15,23 @@ M.alpha = prev_alpha;\
 M.layer = prev_layer;\
 M.plane = prev_plane;\
 if (travelsound)\
-{travelsound.stop();}
+{travelsound.stop();}\
+if (thrust)\
+{thrust.doing_zmove = FALSE;\
+world << "Thrust zmove SET TO [thrust.doing_zmove]";}
 
 
+
+/*
+	Jetpack animation
+	does a visual effect of thrust as it moves the mob
+*/
 #define JETPACK_ANIMATION \
+travelsound = new /datum/repeating_sound(25,time,0.25, M, "sound/effects/smoke.ogg", 80, 1);\
 if (direction == DOWN)\
 {\
 	M.visible_message(SPAN_NOTICE("[M] starts a controlled descent with the [thrust]"), SPAN_NOTICE("You start a controlled descent with the [thrust]"));\
 	M.pixel_y += 8;\
-	travelsound = new /datum/repeating_sound(25,time,0.25, M, "sound/effects/smoke.ogg", 80, 1);\
 	var/matrix/mat = matrix();\
 	mat.Scale(0.9);\
 	M.plane = FLOOR_PLANE;\
@@ -34,7 +42,18 @@ else\
 {\
 	M.visible_message(SPAN_NOTICE("[M] starts ascending with the [thrust]"), SPAN_NOTICE("You start ascending with the [thrust]"));\
 	animate(M, alpha = 0, pixel_y = 64*dirmult, time = time, easing = SINE_EASING);\
+}\
+thrust.doing_zmove = TRUE;\
+spawn()\
+{\
+	while (thrust && thrust.doing_zmove)\
+	{\
+		world << "Thrust zmove is [thrust.doing_zmove]";\
+		thrust.trail.do_effect(M.loc, SOUTH);\
+		sleep(4);\
+	}\
 }
+
 
 #define CLIMB_ANIMATION \
 M.face_atom(W);\
@@ -54,6 +73,8 @@ else\
 	M.visible_message(SPAN_NOTICE("[M] starts climbing up the [W]"), SPAN_NOTICE("You start climbing up the [W]"));\
 	animate(M, alpha = 0, pixel_y = 64*dirmult, time = time, easing = LINEAR_EASING);\
 }
+
+
 
 #define MAG_CLIMB_ANIMATION \
 M.face_atom(W);\
@@ -124,7 +145,7 @@ var/list/z_movement_methods = list(
 	var/prev_layer = M.layer
 	var/prev_plane = M.plane
 	var/datum/repeating_sound/travelsound
-
+	var/obj/item/weapon/tank/jetpack/thrust
 
 	var/time = 30 //The time it takes to transition.
 	//When going against gravity it takes longer
@@ -154,7 +175,7 @@ var/list/z_movement_methods = list(
 
 
 			var/cost = JETPACK_MOVE_COST*5
-			var/obj/item/weapon/tank/jetpack/thrust = GetJetpack(M)
+			thrust = GetJetpack(M)
 			if (!istype(thrust))
 				return FALSE
 
@@ -181,7 +202,7 @@ var/list/z_movement_methods = list(
 		if (Z_MOVE_JETPACK_GRAVITY)
 			time = 50
 			world << "Testing jetpack grav"
-			var/obj/item/weapon/tank/jetpack/thrust = GetJetpack(M)
+			thrust = GetJetpack(M)
 			if (!istype(thrust))
 				return FALSE
 			world << "Got jetpack"
@@ -324,7 +345,7 @@ var/list/z_movement_methods = list(
  * Verb for the mob to move down a z-level if possible.
  */
 /mob/verb/down()
-	set name = "Move Down"
+	set name = "Move Downwards"
 	set category = "IC"
 
 	if(zMove(DOWN))

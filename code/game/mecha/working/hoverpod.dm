@@ -12,12 +12,12 @@
 	wreckage = /obj/effect/decal/mecha_wreckage/hoverpod
 	cargo_capacity = 5
 	max_equip = 3
-	var/datum/effect/effect/system/trail/ion_trail_follow/trail
+	var/datum/effect/effect/system/trail/ion/trail
 	var/stabilization_enabled = 1
 
 /obj/mecha/working/hoverpod/New()
 	..()
-	trail = new /datum/effect/effect/system/trail/ion_trail_follow()
+	trail = new /datum/effect/effect/system/trail/ion()
 	trail.set_up(src)
 	trail.start()
 
@@ -47,8 +47,7 @@
 	if (!has_charge(step_energy_drain))
 		trail.stop()
 	else
-		if (!trail.on)
-			trail.start()
+		trail.start()
 		if (stabilization_enabled)
 			return 1
 

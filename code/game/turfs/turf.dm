@@ -170,6 +170,7 @@ var/const/enterloopsanity = 100
 	return 0
 
 /turf/proc/inertial_drift(atom/movable/A as mob|obj)
+	world << "Calling inertial drift"
 	if(!(A.last_move))	return
 	if((istype(A, /mob/) && src.x > 2 && src.x < (world.maxx - 1) && src.y > 2 && src.y < (world.maxy-1)))
 		var/mob/M = A
