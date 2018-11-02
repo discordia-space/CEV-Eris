@@ -16,7 +16,7 @@
 	var/_screenBottomLeftX = 1 //in tiles
 	var/_screenBottomLeftY = 1
 
-	var/_scaleWidth = 1 //mutliplier of iconWidth
+	var/_scaleWidth = 1 //mutliplier of width
 	var/_scaleHeight = 1
 
 	var/_relativePositionX = 0 //in pixels, relative to parent
@@ -28,11 +28,52 @@
 	var/_iconWidth = 0 //in pixels
 	var/_iconHeight = 0
 
+	var/_width = 0 //in pixels
+	var/_height = 0
+
 	var/_currentAlignmentVertical = 0 //alignment within parent element
 	var/_currentAlignmentHorizontal = 0
 
 	var/_alignmentOffsetX = 0 //in pixels
 	var/_alignmentOffsetY = 0
+
+	var/_hideParentOnClick = FALSE
+	var/_deleteOnHide = FALSE
+	var/_hideParentOnHide = FALSE
+	var/_passClickToParent = FALSE
+
+	var/proc/_clickProc //called when element is clicked
+	var/list/_data //internal storage that can be utilized by _clickProc
+
+/HUD_element/proc/setClickProc(var/proc/P)
+	_clickProc = P
+
+/HUD_element/proc/getClickProc()
+	return _clickProc
+
+/HUD_element/proc/setHideParentOnClick(var/value)
+	_hideParentOnClick = value
+
+/HUD_element/proc/getHideParentOnClick()
+	return _hideParentOnClick
+
+/HUD_element/proc/setDeleteOnHide(var/value)
+	_deleteOnHide = value
+
+/HUD_element/proc/getDeleteOnHide()
+	return _deleteOnHide
+
+/HUD_element/proc/setHideParentOnHide(var/value)
+	_hideParentOnHide = value
+
+/HUD_element/proc/getHideParentOnHide()
+	return _hideParentOnHide
+
+/HUD_element/proc/setPassClickToParent(var/value)
+	_passClickToParent = value
+
+/HUD_element/proc/getPassClickToParent()
+	return _passClickToParent
 
 /HUD_element/New(var/identifier)
 	_elements = new
@@ -42,10 +83,16 @@
 /HUD_element/Destroy()
 	hide()
 
+	if (_data)
+		_data.Cut()
+
+	vis_contents.Cut()
+
 	var/list/HUD_element/elements = getElements()
 	for(var/HUD_element/E in elements)
-		qdel(E)
-	elements.Cut()
+		elements -= E
+		if (!QDELETED(E))
+			qdel(E)
 
 	var/HUD_element/parent = getParent()
 	if (parent)
@@ -62,10 +109,11 @@
 
 /HUD_element/proc/updateIconInformation()
 	if (!icon)
-		if (_iconWidth || _iconHeight)
-			_iconWidth = 0
-			_iconHeight = 0
-			_updatePosition()
+		_iconWidth = 0
+		_iconHeight = 0
+
+		_updatePosition()
+
 		return src
 
 	var/icon/I = new(fcopy_rsc(icon),icon_state,dir)
@@ -81,7 +129,7 @@
 
 	return src
 
-/HUD_element/proc/resize(width,height) //in pixels
+/HUD_element/proc/scaleToSize(var/width,var/height) //in pixels
 	var/matrix/M = matrix()
 	if (width != null)
 		_scaleWidth = width/_iconWidth
@@ -125,21 +173,37 @@
 		if (y2 > result_y2)
 			result_y2 = y2
 
-	var/list/bounds = new(result_x1,result_y1,result_x2,result_y2)
+	var/list/bounds = new(result_x1, result_y1, result_x2, result_y2)
 
 	return bounds
 
+/HUD_element/proc/setDimensions(var/width, var/height)
+	_width = width
+	_height = height
+
+	_updatePosition()
+
+/HUD_element/proc/setWidth(var/width)
+	_width = width
+
+	_updatePosition()
+
+/HUD_element/proc/setHeight(var/height)
+	_height = height
+
+	_updatePosition()
+
 /HUD_element/proc/getWidth()
-	return getIconWidth()
+	return max(getIconWidth(), _width)*_scaleWidth
 
 /HUD_element/proc/getHeight()
-	return getIconHeight()
+	return max(getIconHeight(), _height)*_scaleHeight
 
 /HUD_element/proc/getIconWidth()
-	return _iconWidth*_scaleWidth
+	return _iconWidth
 
 /HUD_element/proc/getIconHeight()
-	return _iconHeight*_scaleHeight
+	return _iconHeight
 
 /HUD_element/proc/setIcon(var/icon/I)
 	icon = I
@@ -321,6 +385,8 @@
 /HUD_element/proc/hide()
 	var/client/observer = getObserver()
 	if (!observer)
+		if (QDELETED(src))
+			return
 		return src
 
 	var/identifier = getIdentifier()
@@ -335,11 +401,23 @@
 				return
 
 	observer.screen -= src
+
 	_setObserver()
 
 	var/list/HUD_element/elements = getElements()
 	for(var/HUD_element/E in elements)
 		E.hide()
+
+	if (_hideParentOnHide)
+		var/HUD_element/parent = getParent()
+		if (parent)
+			parent = parent.hide()
+			if (!parent) //parent deleted
+				return
+
+	if (_deleteOnHide && !QDELETED(src))
+		qdel(src)
+		return
 
 	return src
 
@@ -392,3 +470,29 @@
 		var/list/HUD_element/elements = getElements()
 		for(var/HUD_element/E in elements)
 			E.setName(new_name, TRUE)
+
+/HUD_element/Click(location,control,params)
+	if (_clickProc)
+		call(_clickProc)(src, usr, location, control, params)
+
+	if (_passClickToParent)
+		var/HUD_element/parent = getParent()
+		if (parent)
+			parent = parent.Click(location, control, params)
+			if (!parent) //parent deleted
+				return
+
+	if (_hideParentOnClick)
+		var/HUD_element/parent = getParent()
+		if (parent)
+			parent = parent.hide()
+			if (!parent) //parent deleted
+				return
+
+/HUD_element/proc/getData(var/indexString)
+	if (_data)
+		return _data[indexString]
+
+/HUD_element/proc/setData(var/indexString, var/value)
+	_data = _data || new
+	_data[indexString] = value

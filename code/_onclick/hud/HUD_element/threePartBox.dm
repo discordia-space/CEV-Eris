@@ -12,11 +12,15 @@
 /HUD_element/threePartBox/New(var/icon/startIcon, var/icon/middleIcon, var/icon/endIcon)
 	..()
 	_start_element = add().setIcon(startIcon || _start_icon)
-	_middle_element = add().setIcon(middleIcon || _middle_icon)
+	_middle_element = _start_element.add().setIcon(middleIcon || _middle_icon)
 	_end_element = _middle_element.add().setIcon(endIcon || _end_icon)
 
-	_middle_element.setPosition(_start_element.getIconWidth(),0)
-	_end_element.setPosition(_middle_element.getIconWidth(),0)
+	_start_element.setPassClickToParent(TRUE)
+	_middle_element.setPassClickToParent(TRUE)
+	_end_element.setPassClickToParent(TRUE)
+
+	_middle_element.setAlignment(5,3) //east of parent, center
+	_end_element.setAlignment(5,3) //east of parent, center
 
 /HUD_element/threePartBox/Destroy()
 	_start_element = null
@@ -25,16 +29,14 @@
 	. = ..()
 
 /HUD_element/threePartBox/proc/getMinWidth()
-	return max(_minTotalWidth, _start_element.getIconWidth() + _end_element.getIconWidth())
+	return max(_minTotalWidth, _start_element.getWidth() + _end_element.getWidth())
 
-/HUD_element/threePartBox/resize(var/width, var/height)
-	width = max(0, width - (_start_element.getIconWidth() + _end_element.getIconWidth()))
+/HUD_element/threePartBox/scaleToSize(var/width, var/height)
+	width = max(0, width - (_start_element.getWidth() + _end_element.getWidth()))
 
-	_middle_element.resize(width,height)
-	_end_element.setPosition(_middle_element.getIconWidth(),0)
-
-	_start_element.resize(null,height)
-	_end_element.resize(null,height)
+	_middle_element.scaleToSize(width,height)
+	_start_element.scaleToSize(null,height)
+	_end_element.scaleToSize(null,height)
 
 	return src
 
@@ -42,7 +44,7 @@
 	return _start_element.getWidth() + _middle_element.getWidth() + _end_element.getWidth()
 
 /HUD_element/threePartBox/getHeight()
-	return max(_start_element.getHeight(),_middle_element.getHeight(),_end_element.getHeight())
+	return max(_start_element.getHeight(), _middle_element.getHeight(), _end_element.getHeight())
 
 /HUD_element/threePartBox/setName(var/new_name, var/nameAllElements = FALSE)
 	_start_element.setName(new_name, nameAllElements)

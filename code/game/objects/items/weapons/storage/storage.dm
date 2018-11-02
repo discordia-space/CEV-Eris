@@ -46,23 +46,38 @@
 	_middle_icon = icon("icons/HUD/stored_middle.png")
 	_end_icon = icon("icons/HUD/stored_end.png")
 
+/obj/item/weapon/storage/proc/storageBackgroundClick(var/HUD_element/sourceElement, var/mob/clientMob, location, control, params)
+	var/atom/A = sourceElement.getData("item")
+	if(A)
+		var/obj/item/I = clientMob.get_active_hand()
+		if(I)
+			clientMob.ClickOn(A)
+
+/obj/item/weapon/storage/proc/itemBackgroundClick(var/HUD_element/sourceElement, var/mob/clientMob, location, control, params)
+	var/atom/A = sourceElement.getData("item")
+	if(A)
+		clientMob.ClickOn(A)
+
 /obj/item/weapon/storage/proc/generateHUD(var/datum/hud/data)
 	var/HUD_element/main = new("storage")
+	main.setDeleteOnHide(TRUE)
 
 	var/baseline_max_storage_space = 16 //should be equal to default backpack capacity
-	var/minBackgroundWidth = min( round( 224 * max_storage_space/baseline_max_storage_space ,1) ,284) //in pixels
+	var/minBackgroundWidth = min( round( 224 * max_storage_space/baseline_max_storage_space ,1) ,260) //in pixels
 
 	var/paddingSides = 2 //in pixels
 	var/paddingBetweenSlots = 1 //in pixels
 
 	var/totalStorageCost = 0
 
-	main.setPosition(data.ConteinerData["Xspace"]*32,100)
-
 	if(storage_slots == null)
 		//main.setPosition(data.ConteinerData["Xspace"]*32,data.ConteinerData["Yspace"]*32)
 		var/HUD_element/threePartBox/storageBackground = main.add(new/HUD_element/threePartBox/storageBackground())
 		storageBackground.setName("HUD Storage Background")
+		storageBackground.setHideParentOnHide(TRUE)
+
+		storageBackground.setClickProc(.storageBackgroundClick)
+		storageBackground.setData("item", src)
 
 		var/totalWidth = 0 + paddingSides //in pixels
 
@@ -73,16 +88,22 @@
 			var/HUD_element/threePartBox/itemBackground = storageBackground.add(new/HUD_element/threePartBox/storedItemBackground())
 
 			var/itemBackgroundWidth = round(minBackgroundWidth * itemStorageCost/max_storage_space)
-			itemBackground.resize(itemBackgroundWidth)
+			itemBackground.scaleToSize(itemBackgroundWidth)
 			itemBackground.setAlignment(0,3) //vertical center
 			itemBackground.setPosition(totalWidth,0)
 
-			var/HUD_element/itemIcon = itemBackground.add(new/HUD_element())
-			itemIcon.mimicAtomIcon(O)
-			itemIcon.setAlignment(3,3) //center
-			//itemIcon.resize(itemBackground.getWidth(),storageBackground.getHeight())
+			itemBackground.setClickProc(.itemBackgroundClick)
+			itemBackground.setData("item", O)
 
-			itemIcon.mouse_opacity = 0
+			var/HUD_element/itemIcon = itemBackground.add(new/HUD_element())
+			itemIcon.setDimensions(32,32) //todo: should be width/height of real object icon
+			itemIcon.setAlignment(3,3) //center
+
+			O.pixel_x = 0 //no pixel offsets inside storage
+			O.pixel_y = 0
+			O.pixel_w = 0
+			O.pixel_z = 0
+			itemIcon.vis_contents += O //this draws the actual item, see byond ref for vis_contents var
 
 			totalWidth += itemBackground.getWidth() + paddingBetweenSlots
 
@@ -95,7 +116,12 @@
 		if (remainingStorage)
 			remainingStorage += 2 //in pixels, creates a small area where items can be put
 
-		storageBackground.resize(max(totalWidth + remainingStorage, minBackgroundWidth) + paddingSides)
+		storageBackground.scaleToSize(max(totalWidth + remainingStorage, minBackgroundWidth) + paddingSides)
+
+		var/HUD_element/closeButton = storageBackground.add(new/HUD_element())
+		closeButton.setIcon(icon("icons/mob/screen1.dmi","x"))
+		closeButton.setAlignment(5,3) //east of parent, center
+		closeButton.setHideParentOnClick(TRUE)
 	else
 		var/HUD_element/threePartBox/storageBackground = main.add(new/HUD_element/threePartBox/storageBackground())
 		storageBackground.setName("HUD Storage Background")
@@ -105,14 +131,14 @@
 		var/itemCount = 0
 		var/rowCount = 1
 		for(var/obj/item/O in contents)
-
 			itemCount++
-			if (itemCount > maxColumnCount)
+			if (itemCount >= maxColumnCount)
 				itemCount = 0
 				rowCount++
 
 		//src.closer.screen_loc = "[Xcord]:[storage_width+19],[Ycord]:16"
 
+	main.setPosition(data.ConteinerData["Xspace"]*32,100)
 	return main
 
 /obj/item/weapon/storage/proc/UI_newStoredItemBackground(var/obj/master, var/obj/screen/storage/UI_parent, var/matrix/M_start, var/matrix/M_continue, var/matrix/M_end)
