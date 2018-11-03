@@ -1,4 +1,5 @@
 //todo: display_contents_with_number
+//todo: get rid of s_active
 
 /obj/item/weapon/storage
 	name = "storage"
@@ -43,6 +44,11 @@
 	if(A)
 		clientMob.ClickOn(A)
 
+/obj/item/weapon/storage/proc/closeButtonClick(var/HUD_element/sourceElement, var/mob/clientMob, location, control, params)
+	var/obj/item/weapon/storage/S = sourceElement.getData("item")
+	if(S)
+		S.close(clientMob)
+
 /obj/item/weapon/storage/proc/setupItemBackground(var/HUD_element/itemBackground, var/atom/item)
 	itemBackground.setClickProc(.itemBackgroundClick)
 	itemBackground.setData("item", item)
@@ -64,6 +70,13 @@
 /obj/item/weapon/storage/proc/generateHUD(var/datum/hud/data)
 	var/HUD_element/main = new("storage")
 	main.setDeleteOnHide(TRUE)
+
+	var/HUD_element/closeButton = new
+	closeButton.setName("HUD Storage Close Button")
+	closeButton.setIcon(icon("icons/mob/screen1.dmi","x"))
+	closeButton.setHideParentOnClick(TRUE)
+	closeButton.setClickProc(.closeButtonClick)
+	closeButton.setData("item", src)
 
 	//storage space based items
 	if(storage_slots == null)
@@ -110,10 +123,8 @@
 
 		storageBackground.scaleToSize(max(totalWidth + remainingStorage, minBackgroundWidth) + paddingSides)
 
-		var/HUD_element/closeButton = storageBackground.add(new/HUD_element())
-		closeButton.setIcon(icon("icons/mob/screen1.dmi","x"))
+		storageBackground.add(closeButton)
 		closeButton.setAlignment(5,3) //east of parent, center
-		closeButton.setHideParentOnClick(TRUE)
 
 	//slot storage based items
 	else
@@ -142,9 +153,7 @@
 
 			if (!(currentSlot%maxColumnCount))
 				if (!totalHeight)
-					var/HUD_element/closeButton = main.add(new/HUD_element())
-					closeButton.setIcon(icon("icons/mob/screen1.dmi","x"))
-					closeButton.setHideParentOnClick(TRUE)
+					main.add(closeButton)
 					closeButton.setPosition(totalWidth, 0)
 
 				totalWidth = 0 //reset width
@@ -179,7 +188,10 @@
 	if (!user.client)
 		return
 
-	if(user.s_active != src)
+	if(user.s_active != src) //opening a new storage item
+		if (user.s_active) //user already had a storage item open
+			user.s_active.close(user)
+
 		for(var/obj/item/I in src)
 			if(I.on_found(user)) //trigger mousetraps etc.
 				return
@@ -302,7 +314,7 @@
 				else if (W && W.w_class >= ITEM_SIZE_NORMAL) //Otherwise they can only see large or normal items from a distance...
 					M.show_message(SPAN_NOTICE("\The [usr] puts [W] into [src]."))
 
-		refresh_all()
+	refresh_all()
 
 	update_icon()
 	return 1
@@ -386,8 +398,8 @@
 			H.r_store = null
 			return*/
 
-	if (src.loc == user)
-		src.open(user)
+	if (loc == user)
+		open(user)
 	else
 		close_all()
 		..()
