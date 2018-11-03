@@ -46,6 +46,9 @@
 	_middle_icon = icon("icons/HUD/stored_middle.png")
 	_end_icon = icon("icons/HUD/stored_end.png")
 
+/HUD_element/slottedItemBackground
+	icon = 'icons/HUD/block.png'
+
 /obj/item/weapon/storage/proc/storageBackgroundClick(var/HUD_element/sourceElement, var/mob/clientMob, location, control, params)
 	var/atom/A = sourceElement.getData("item")
 	if(A)
@@ -58,59 +61,65 @@
 	if(A)
 		clientMob.ClickOn(A)
 
+/obj/item/weapon/storage/proc/setupItemBackground(var/HUD_element/itemBackground, var/atom/item)
+	itemBackground.setClickProc(.itemBackgroundClick)
+	itemBackground.setData("item", item)
+
+	var/HUD_element/itemIcon = itemBackground.add(new/HUD_element())
+	itemIcon.setDimensions(32,32) //todo: should be width/height of real object icon
+	itemIcon.setAlignment(3,3) //center
+
+	item.pixel_x = 0 //no pixel offsets inside storage
+	item.pixel_y = 0
+	item.pixel_w = 0
+	item.pixel_z = 0
+	itemIcon.vis_contents += item //this draws the actual item, see byond ref for vis_contents var
+	itemBackground.setName(item.name, TRUE)
+
 /obj/item/weapon/storage/proc/generateHUD(var/datum/hud/data)
 	var/HUD_element/main = new("storage")
 	main.setDeleteOnHide(TRUE)
 
-	var/baseline_max_storage_space = 16 //should be equal to default backpack capacity
-	var/minBackgroundWidth = min( round( 224 * max_storage_space/baseline_max_storage_space ,1) ,260) //in pixels
-
-	var/paddingSides = 2 //in pixels
-	var/paddingBetweenSlots = 1 //in pixels
-
-	var/totalStorageCost = 0
-
+	//storage space based items
 	if(storage_slots == null)
 		//main.setPosition(data.ConteinerData["Xspace"]*32,data.ConteinerData["Yspace"]*32)
-		var/HUD_element/threePartBox/storageBackground = main.add(new/HUD_element/threePartBox/storageBackground())
+
+		var/baseline_max_storage_space = 16 //should be equal to default backpack capacity
+		var/minBackgroundWidth = min( round( 224 * max_storage_space/baseline_max_storage_space ,1) ,260) //in pixels
+
+		var/HUD_element/threePartBox/storageBackground/storageBackground = new()
+		main.add(storageBackground)
+
 		storageBackground.setName("HUD Storage Background")
 		storageBackground.setHideParentOnHide(TRUE)
 
 		storageBackground.setClickProc(.storageBackgroundClick)
 		storageBackground.setData("item", src)
 
-		var/totalWidth = 0 + paddingSides //in pixels
+		var/paddingSides = 2 //in pixels
+		var/spacingBetweenSlots = 1 //in pixels
 
-		for(var/obj/item/O in contents)
-			var/itemStorageCost = O.get_storage_cost()
+		var/totalWidth = 0 + paddingSides //in pixels
+		var/totalStorageCost = 0
+
+		for(var/obj/item/I in contents)
+			var/itemStorageCost = I.get_storage_cost()
 			totalStorageCost += itemStorageCost
 
-			var/HUD_element/threePartBox/itemBackground = storageBackground.add(new/HUD_element/threePartBox/storedItemBackground())
+			var/HUD_element/threePartBox/storedItemBackground/itemBackground = new()
+			storageBackground.add(itemBackground)
 
 			var/itemBackgroundWidth = round(minBackgroundWidth * itemStorageCost/max_storage_space)
+			itemBackground.setPosition(totalWidth,0)
 			itemBackground.scaleToSize(itemBackgroundWidth)
 			itemBackground.setAlignment(0,3) //vertical center
-			itemBackground.setPosition(totalWidth,0)
 
-			itemBackground.setClickProc(.itemBackgroundClick)
-			itemBackground.setData("item", O)
+			setupItemBackground(itemBackground,I)
 
-			var/HUD_element/itemIcon = itemBackground.add(new/HUD_element())
-			itemIcon.setDimensions(32,32) //todo: should be width/height of real object icon
-			itemIcon.setAlignment(3,3) //center
-
-			O.pixel_x = 0 //no pixel offsets inside storage
-			O.pixel_y = 0
-			O.pixel_w = 0
-			O.pixel_z = 0
-			itemIcon.vis_contents += O //this draws the actual item, see byond ref for vis_contents var
-
-			totalWidth += itemBackground.getWidth() + paddingBetweenSlots
-
-			itemBackground.setName(O.name, TRUE)
+			totalWidth += itemBackground.getWidth() + spacingBetweenSlots
 
 		if (contents.len)
-			totalWidth -= paddingBetweenSlots
+			totalWidth -= spacingBetweenSlots
 
 		var/remainingStorage = max_storage_space - totalStorageCost
 		if (remainingStorage)
@@ -122,19 +131,35 @@
 		closeButton.setIcon(icon("icons/mob/screen1.dmi","x"))
 		closeButton.setAlignment(5,3) //east of parent, center
 		closeButton.setHideParentOnClick(TRUE)
+
+	//slot storage based items
 	else
-		var/HUD_element/threePartBox/storageBackground = main.add(new/HUD_element/threePartBox/storageBackground())
-		storageBackground.setName("HUD Storage Background")
-
 		var/maxColumnCount = data.ConteinerData["ColCount"]
+		var/spacingBetweenSlots = 0 //in pixels
 
-		var/itemCount = 0
-		var/rowCount = 1
-		for(var/obj/item/O in contents)
-			itemCount++
-			if (itemCount >= maxColumnCount)
-				itemCount = 0
-				rowCount++
+		var/totalWidth = 0 //in pixels
+		var/totalHeight = 0
+
+		var/currentSlot
+		var/currentItemNumber = 1
+		var/slotsToDisplay = storage_slots
+		for (currentSlot = 1, currentSlot <= slotsToDisplay, currentSlot++)
+			var/HUD_element/slottedItemBackground/itemBackground = new()
+			main.add(itemBackground)
+			itemBackground.setPosition(totalWidth, totalHeight)
+
+			if (currentItemNumber <= contents.len)
+				setupItemBackground(itemBackground, contents[currentItemNumber])
+				currentItemNumber++
+			else
+				itemBackground.setClickProc(.storageBackgroundClick)
+				itemBackground.setData("item", src)
+
+			totalWidth += itemBackground.getWidth() + spacingBetweenSlots
+
+			if (!(currentSlot%maxColumnCount))
+				totalWidth = 0 //reset width
+				totalHeight = (currentSlot/maxColumnCount) * (itemBackground.getHeight() + spacingBetweenSlots)
 
 		//src.closer.screen_loc = "[Xcord]:[storage_width+19],[Ycord]:16"
 
