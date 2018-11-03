@@ -38,6 +38,7 @@ particle whenever the target moves
 		var/list/offsets = holder.get_total_pixel_offset()
 		E.pixel_x = offsets["x"]
 		E.pixel_y = offsets["y"]
+		world << "Ofsets set to
 
 /datum/effect/effect/system/trail/proc/stop()
 	moved_event.register(holder, src, /datum/effect/effect/system/trail/proc/holder_moved)

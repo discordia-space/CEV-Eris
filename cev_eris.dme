@@ -1819,6 +1819,8 @@
 #include "code\modules\multiz\structures.dm"
 #include "code\modules\multiz\turf.dm"
 #include "code\modules\multiz\turf_icon.dm"
+#include "code\modules\multiz\ztravel\jetpack.dm"
+#include "code\modules\multiz\ztravel\zmethod.dm"
 #include "code\modules\nano\_JSON.dm"
 #include "code\modules\nano\JSON Reader.dm"
 #include "code\modules\nano\JSON Writer.dm"
