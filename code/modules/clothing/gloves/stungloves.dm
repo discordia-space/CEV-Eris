@@ -9,14 +9,12 @@
 	var/status = FALSE		//whether the thing is on or not
 	var/hitcost = 100
 	var/obj/item/weapon/cell/cell = null
-	var/suitable_cell = /obj/item/weapon/cell/medium/high
+	var/suitable_cell = /obj/item/weapon/cell/medium
 
 /obj/item/clothing/gloves/stungloves/New()
 	..()
-	if(!cell && suitable_cell)
-		cell = new suitable_cell(src)
+	cell = new /obj/item/weapon/cell/medium/high(src)
 	update_icon()
-	return
 
 /obj/item/clothing/gloves/stungloves/proc/deductcharge(var/power_drain)
 	if(cell)

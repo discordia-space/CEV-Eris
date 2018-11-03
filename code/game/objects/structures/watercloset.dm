@@ -208,11 +208,11 @@
 			spawn(50)
 				if(src && on)
 					ismist = 1
-					mymist = PoolOrNew(/obj/effect/mist,loc)
+					mymist = new(loc)
 		else
-			mymist = PoolOrNew(/obj/effect/mist,loc)
+			mymist = new(loc)
 	else if(ismist)
-		mymist = PoolOrNew(/obj/effect/mist,loc)
+		mymist = new(loc)
 		spawn(250)
 			if(src && !on)
 				qdel(mymist)
@@ -297,6 +297,7 @@
 				if(H.belt.clean_blood())
 					H.update_inv_belt(0)
 			H.clean_blood(washshoes)
+			H.update_icons()
 		else
 			if(M.wear_mask)						//if the mob is not human, it cleans the mask without asking for bitflags
 				if(M.wear_mask.clean_blood())

@@ -19,7 +19,7 @@
 	var/datum/radio_frequency/radio_connection
 
 	var/scrubbing = 1 //0 = siphoning, 1 = scrubbing
-	var/list/scrubbing_gas = list("carbon_dioxide")
+	var/list/scrubbing_gas = list("carbon_dioxide","sleeping_agent","plasma")
 
 	var/panic = 0 //is this scrubber panicked?
 

@@ -135,9 +135,11 @@
 
 
 /obj/machinery/vending/Initialize()
+	..()
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/vending/LateInitialize()
+	..()
 	if(src.product_slogans)
 		src.slogan_list += splittext(src.product_slogans, ";")
 
@@ -405,10 +407,7 @@
 		// Okay to move the money at this point
 
 		// create entry in the purchaser's account log
-		var/datum/transaction/T = PoolOrNew(/datum/transaction, list(
-			-currently_vending.price, "[vendor_account.owner_name] (via [src.name])",
-			"Purchase of [currently_vending.product_name]", name
-		))
+		var/datum/transaction/T = new(-currently_vending.price, "[vendor_account.owner_name] (via [src.name])", "Purchase of [currently_vending.product_name]", name)
 		T.apply_to(customer_account)
 
 		// Give the vendor the money. We use the account owner name, which means
@@ -423,10 +422,7 @@
  *  Called after the money has already been taken from the customer.
  */
 /obj/machinery/vending/proc/credit_purchase(var/target as text)
-	var/datum/transaction/T = PoolOrNew(/datum/transaction, list(
-		currently_vending.price, target,
-		"Purchase of [currently_vending.product_name]", src.name
-	))
+	var/datum/transaction/T = new(currently_vending.price, target, "Purchase of [currently_vending.product_name]", name)
 	T.apply_to(vendor_account)
 
 /obj/machinery/vending/attack_ai(mob/user as mob)
@@ -956,9 +952,11 @@
 	icon_state = "tool"
 	icon_deny = "tool-deny"
 	products = list(/obj/item/stack/cable_coil/random = 10,/obj/item/weapon/tool/crowbar = 5,/obj/item/weapon/tool/weldingtool = 5,/obj/item/weapon/tool/wirecutters = 5,
-					/obj/item/weapon/tool/wrench = 5,/obj/item/device/scanner/analyzer = 5,/obj/item/device/t_scanner = 5, /obj/item/weapon/tool/screwdriver = 5, /obj/item/clothing/gloves/insulated/cheap  = 2, /obj/item/clothing/gloves/insulated = 1)
+					/obj/item/weapon/tool/wrench = 5,/obj/item/device/scanner/analyzer = 5,/obj/item/device/t_scanner = 5, /obj/item/weapon/tool/screwdriver = 5, /obj/item/clothing/gloves/insulated/cheap  = 2, /obj/item/clothing/gloves/insulated = 1,
+					/obj/item/weapon/storage/pouch/engineering_tools = 2, /obj/item/weapon/storage/pouch/engineering_supply = 2)
 	prices = list(/obj/item/stack/cable_coil/random = 100,/obj/item/weapon/tool/crowbar = 30,/obj/item/weapon/tool/weldingtool = 30,/obj/item/weapon/tool/wirecutters = 30,
-					/obj/item/weapon/tool/wrench = 30,/obj/item/device/scanner/analyzer = 50,/obj/item/device/t_scanner = 50, /obj/item/weapon/tool/screwdriver = 30, /obj/item/clothing/gloves/insulated/cheap  = 80, /obj/item/clothing/gloves/insulated = 600)
+					/obj/item/weapon/tool/wrench = 30,/obj/item/device/scanner/analyzer = 50,/obj/item/device/t_scanner = 50, /obj/item/weapon/tool/screwdriver = 30, /obj/item/clothing/gloves/insulated/cheap  = 80, /obj/item/clothing/gloves/insulated = 600,
+					/obj/item/weapon/storage/pouch/engineering_tools = 300, /obj/item/weapon/storage/pouch/engineering_supply = 600)
 
 /obj/machinery/vending/engivend
 	name = "Engi-Vend"

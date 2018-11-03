@@ -287,3 +287,11 @@ Proc for attack log creation, because really why not
 		if(C.body_parts_covered & bodyparts[bodypart])
 			return TRUE
 	return FALSE
+
+
+/proc/is_neotheology_disciple(var/mob/M)
+	var/obj/item/weapon/implant/core_implant/cruciform/C = M.get_cruciform()
+	if (C && C.active)
+		return TRUE
+
+	return FALSE

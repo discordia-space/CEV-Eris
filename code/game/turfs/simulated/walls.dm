@@ -316,13 +316,7 @@
 		else
 	return
 
-// Wall-rot effect, a nasty fungus that destroys walls.
-/turf/simulated/wall/proc/rot()
-	if(locate(/obj/effect/overlay/wallrot) in src)
-		return
-	var/number_rots = rand(2,3)
-	for(var/i=0, i<number_rots, i++)
-		new/obj/effect/overlay/wallrot(src)
+
 
 /turf/simulated/wall/proc/can_melt()
 	if(material.flags & MATERIAL_UNMELTABLE)

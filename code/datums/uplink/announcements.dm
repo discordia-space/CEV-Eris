@@ -92,6 +92,5 @@
 	item_cost = 6
 
 /datum/uplink_item/abstract/announcements/fake_radiation/get_goods(var/obj/item/device/uplink/U, var/loc)
-	var/datum/event_meta/EM = new(EVENT_LEVEL_MUNDANE, "Fake Radiation Storm", add_to_queue = 0)
-	new/datum/event/radiation_storm/syndicate(EM)
+	new/datum/event/radiation_storm/syndicate(null, EVENT_LEVEL_MODERATE)
 	return 1

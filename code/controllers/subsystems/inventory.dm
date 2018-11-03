@@ -16,7 +16,7 @@ SUBSYSTEM_DEF(inventory)
 		slots[S.id] = S
 
 /datum/controller/subsystem/inventory/proc/get_slot_datum(slot)
-	return slots.len > slot ? slots[slot] : null
+	return slots.len >= slot ? slots[slot] : null
 
 /datum/controller/subsystem/inventory/proc/update_mob(mob/living/target, slot, redraw)
 	var/datum/inventory_slot/IS = get_slot_datum(slot)

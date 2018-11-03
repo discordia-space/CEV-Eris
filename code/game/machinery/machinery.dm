@@ -51,7 +51,7 @@ Class Procs:
 
    Destroy()                     'game/machinery/machine.dm'
 
-   auto_use_power()            'game/machinery/machine.dm'
+   auto_use_power()            'modules/power/power.dm'
       This proc determines how power mode power is deducted by the machine.
       'auto_use_power()' is called by the 'SSmachines' subsystem every
       SSmachines tick.
@@ -146,7 +146,7 @@ Class Procs:
 	if(use_power && !stat)
 		use_power(7500/severity)
 
-		PoolOrNew(/obj/effect/overlay/pulse, src.loc)
+		new /obj/effect/overlay/pulse(loc)
 	..()
 
 /obj/machinery/ex_act(severity)
@@ -164,19 +164,6 @@ Class Procs:
 				return
 		else
 	return
-
-//sets the use_power var and then forces an area power update
-/obj/machinery/proc/update_use_power(var/new_use_power)
-	use_power = new_use_power
-
-/obj/machinery/proc/auto_use_power()
-	if(!powered(power_channel))
-		return 0
-	if(src.use_power == 1)
-		use_power(idle_power_usage,power_channel, 1)
-	else if(src.use_power >= 2)
-		use_power(active_power_usage,power_channel, 1)
-	return 1
 
 /proc/is_operable(var/obj/machinery/M, var/mob/user)
 	return istype(M) && M.operable()
@@ -243,7 +230,7 @@ Class Procs:
 		return
 
 	if(ispath(circuit))
-		circuit = PoolOrNew(circuit, null)
+		circuit = new circuit
 
 	component_parts = list()
 	if(circuit)
@@ -251,10 +238,10 @@ Class Procs:
 
 	for(var/item in circuit.req_components)
 		if(item == /obj/item/stack/cable_coil)
-			component_parts += PoolOrNew(item, list(null, circuit.req_components[item]))
+			component_parts += new item(null, circuit.req_components[item])
 		else
 			for(var/j = 1 to circuit.req_components[item])
-				component_parts += PoolOrNew(item, null)
+				component_parts += new item
 
 	RefreshParts()
 
@@ -357,9 +344,9 @@ Class Procs:
 
 /obj/machinery/proc/create_frame(var/type)
 	if(type == FRAME_DEFAULT)
-		return PoolOrNew(/obj/machinery/constructable_frame/machine_frame, loc)
+		return new /obj/machinery/constructable_frame/machine_frame(loc)
 	if(type == FRAME_VERTICAL)
-		return PoolOrNew(/obj/machinery/constructable_frame/machine_frame/vertical, loc)
+		return new /obj/machinery/constructable_frame/machine_frame/vertical(loc)
 
 
 /obj/machinery/proc/dismantle()

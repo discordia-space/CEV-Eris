@@ -1299,13 +1299,15 @@
 		if(node2)
 			universal_underlays(node2)
 		else
-			var/node1_dir = get_dir(node1, src)
-			universal_underlays(, node1_dir)
+			var/node2_dir = turn(get_dir(src, node1), -180)
+			universal_underlays(, node2_dir)
 	else if (node2)
 		universal_underlays(node2)
+		var/node1_dir = turn(get_dir(src, node2), -180)
+		universal_underlays(, node1_dir)
 	else
 		universal_underlays(, dir)
-		universal_underlays(dir, -180)
+		universal_underlays(, turn(dir, -180))
 
 /obj/machinery/atmospherics/pipe/simple/visible/universal/update_underlays()
 	..()

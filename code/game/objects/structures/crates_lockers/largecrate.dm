@@ -11,7 +11,7 @@
 
 /obj/structure/largecrate/attackby(obj/item/I, mob/user)
 	if(QUALITY_PRYING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_PRYING, FAILCHANCE_EASY, required_stat = STAT_ROB))
+		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_EASY, required_stat = STAT_ROB))
 			new /obj/item/stack/material/wood(src)
 			var/turf/T = get_turf(src)
 			for(var/atom/movable/AM in contents)

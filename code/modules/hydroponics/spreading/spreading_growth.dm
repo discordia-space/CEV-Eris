@@ -8,25 +8,69 @@
 			cardinal_neighbors |= T
 	return cardinal_neighbors
 
-/obj/effect/plant/proc/update_neighbors()
+/obj/effect/plant/proc/update_neighbors(var/debug = FALSE)
 	// Update our list of valid neighboring turfs.
 	neighbors = list()
-	for(var/turf/simulated/floor in get_cardinal_neighbors())
+	var/list/tocheck = get_cardinal_neighbors()
+	for(var/turf/simulated/floor in tocheck)
+		var/turf/zdest = get_connecting_turf(floor, loc)//Handling zlevels
 		if(get_dist(parent, floor) > spread_distance)
 			continue
-		if((locate(/obj/effect/plant) in floor.contents) || (locate(/obj/effect/dead_plant) in floor.contents) )
+
+		//We check zdest, not floor, for existing plants
+		if((locate(/obj/effect/plant) in zdest.contents) || (locate(/obj/effect/dead_plant) in zdest.contents) )
+
 			continue
 		if(floor.density)
 			if(!isnull(seed.chems["pacid"]))
 				spawn(rand(5,25)) floor.ex_act(3)
 			continue
-		if(!Adjacent(floor) || !floor.Enter(src))
+		if(!Adjacent(floor))
 			continue
+
+		//Space vines can grow through airlocks by forcing their way into tiny gaps
+		if (!floor.Enter(src))
+
+			//If these two are not the same then we're attempting to enter a portal or stairs
+			//We will allow it
+			if (zdest == floor)
+				var/obj/machinery/door/found_door = null
+				for (var/obj/machinery/door/D in floor)
+					if (!D || !istype(D) || !D.density)
+						continue
+
+					found_door = D
+
+				if (!found_door)
+					continue
+
+
+				//We have to make sure that nothing ELSE aside from the door is blocking us
+				var/blocked = FALSE
+				for (var/obj/O in floor)
+					if (O == found_door)
+						continue
+
+					if (!O.CanPass(src, floor))
+						blocked = TRUE
+						break
+
+				if (blocked)
+					continue
+
 		neighbors |= floor
 	// Update all of our friends.
 	var/turf/T = get_turf(src)
 	for(var/obj/effect/plant/neighbor in range(1,src))
 		neighbor.neighbors -= T
+
+
+//This silly special case override is needed to make vines work with portals.
+//Code is copied from /atoms_movable.dm, but a spawn call is removed, making it completely synchronous
+/obj/effect/plant/Bump(var/atom/A, yes)
+	if (A && yes)
+		A.last_bumped = world.time
+		A.Bumped(src)
 
 /obj/effect/plant/Process()
 
@@ -45,7 +89,12 @@
 	if(istype(T))
 		health -= seed.handle_environment(T,T.return_air(),null,1)
 	if(health < max_health)
-		health += rand(3,5)
+		//Plants can grow through closed airlocks, but more slowly, since they have to force metal to make space
+		var/obj/machinery/door/D = (locate(/obj/machinery/door) in loc)
+		if (D)
+			health += rand(0,2)
+		else
+			health += rand(3,5)
 		refresh_icon()
 		if(health > max_health)
 			health = max_health
@@ -87,14 +136,13 @@
 				var/turf/target_turf = pick(neighbors)
 				var/obj/effect/plant/child = new(get_turf(src),seed,parent)
 				spawn(1) // This should do a little bit of animation.
-					child.loc = target_turf
-					child.update_icon()
+					child.handle_move(loc, target_turf)
 				// Update neighboring squares.
 				for(var/obj/effect/plant/neighbor in range(1,target_turf))
 					neighbor.neighbors -= target_turf
 
 	// We shouldn't have spawned if the controller doesn't exist.
-	check_health()
+	check_health(FALSE)//Dont want to update the icon every process
 	if(neighbors.len || health != max_health)
 		plant_controller.add_plant(src)
 
@@ -114,6 +162,56 @@
 		chem_regen_cooldown = TRUE
 		spawn(600)
 			chem_regen_cooldown = FALSE
+
+
+//Once created, the new vine moves to destination turf
+/obj/effect/plant/proc/handle_move(var/turf/origin, var/turf/destination)
+	//First of all lets ensure we still exist.
+	//We may have been deleted by another vine doing postmove cleanup
+	if (QDELETED(src))
+		return
+
+	//And lets make sure we haven't already moved
+	if (loc != origin)
+		return
+
+	//We un-anchor ourselves, so that we're exposed to effects like gravity and teleporting
+	anchored = FALSE
+
+	//Now we will attempt a normal movement, obeying all the normal rules
+	//This allows us to bump into portals and get teleported
+	Move(destination)
+
+	/*Now we check if we went anywhere. We don't care about the return value of move, we do our own check
+	In the case of a portal, or falling through an openspace, or moving along stairs, Move may return false
+	but we've still gone somewhere. We will only consider it a failure if we're still where we started
+	*/
+	if (loc == origin)
+		//That failed, okay this time we're not asking
+		forceMove(destination)
+		//forceMove won't work properly with portals, so we only do it as a backup option
+
+
+	//Ok now we should definitely be somewhere
+	if (loc == origin)
+		//Welp, we give up.
+		//This shouldn't be possible, but if it somehow happens then this vine is toast
+		qdel(src)
+		return
+
+	//Ok we got somewhere, hooray
+	//Now we settle down
+	anchored = TRUE
+
+	//And do this
+	handle_postmove()
+
+//Now we clean up our arrival tile
+/obj/effect/plant/proc/handle_postmove()
+	for (var/obj/effect/plant/Bl in loc)
+		if (Bl != src)
+			qdel(Bl) //Lets make sure we don't get doubleblobs
+
 
 /obj/effect/plant/proc/die_off()
 	// Kill off our plant.
