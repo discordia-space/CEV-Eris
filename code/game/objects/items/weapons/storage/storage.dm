@@ -1,5 +1,6 @@
 //todo: display_contents_with_number
 //todo: get rid of s_active
+//todo: close hud when storage item is thrown
 
 /obj/item/weapon/storage
 	name = "storage"
@@ -20,14 +21,14 @@
 	var/use_sound = "rustle" //sound played when used. null for no sound.
 
 /HUD_element/threePartBox/storageBackground
-	_start_icon = icon("icons/HUD/storage_start.png")
-	_middle_icon = icon("icons/HUD/storage_middle.png")
-	_end_icon = icon("icons/HUD/storage_end.png")
+	start_icon = icon("icons/HUD/storage_start.png")
+	middle_icon = icon("icons/HUD/storage_middle.png")
+	end_icon = icon("icons/HUD/storage_end.png")
 
 /HUD_element/threePartBox/storedItemBackground
-	_start_icon = icon("icons/HUD/stored_start.png")
-	_middle_icon = icon("icons/HUD/stored_middle.png")
-	_end_icon = icon("icons/HUD/stored_end.png")
+	start_icon = icon("icons/HUD/stored_start.png")
+	middle_icon = icon("icons/HUD/stored_middle.png")
+	end_icon = icon("icons/HUD/stored_end.png")
 
 /HUD_element/slottedItemBackground
 	icon = 'icons/HUD/block.png'
@@ -159,7 +160,7 @@
 				totalWidth = 0 //reset width
 				totalHeight = (currentSlot/maxColumnCount) * (itemBackground.getHeight() + spacingBetweenSlots)
 
-	main.setPosition(data.StorageData["Xspace"]*32,data.StorageData["Yspace"]*32)
+	main.setPosition(data.StorageData["Xspace"],data.StorageData["Yspace"])
 	return main
 
 /obj/item/weapon/storage/Destroy()
