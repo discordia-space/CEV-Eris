@@ -55,9 +55,7 @@
 		src.open(user)
 		return 0
 
-	for(var/mob/M in range(1, master_item.loc))
-		if (M.s_active == src)
-			src.close(M)
+	close_all()
 	return 1
 
 /obj/item/weapon/storage/internal/Adjacent(var/atom/neighbor)

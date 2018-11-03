@@ -355,8 +355,7 @@
 	if(contents.len >= 1)
 		user << SPAN_NOTICE("They wont fit in as there is already stuff inside.")
 		return
-	if(user.s_active)
-		user.s_active.close(user)
+	close_all()
 	if(T.use(10))
 		var/obj/item/weapon/toolbox_tiles/B = new /obj/item/weapon/toolbox_tiles
 		user.put_in_hands(B)
