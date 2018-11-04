@@ -16,6 +16,18 @@
 	. = ..()
 	scan()
 
+/obj/item/device/ano_scanner/afterattack(var/atom/target, mob/user as mob)
+	if (istype(target, /obj/effect/portal))
+		var/obj/effect/portal/P = target
+		if (P.failchance)
+			user << SPAN_NOTICE("This aperture has approximately [100-P.failchance]% stability.")
+		else
+			user << SPAN_NOTICE("This aperture appears to be stable and safe.")
+
+		var/time_existed = world.time - P.birthtime
+		var/time_remaining = P.lifetime - time_existed
+		user << SPAN_NOTICE("It should remain open for approximately another [time2text(time_remaining, "hh hours and mm minutes")]")
+
 /obj/item/device/ano_scanner/attack_self(var/mob/user as mob)
 	return src.interact(user)
 

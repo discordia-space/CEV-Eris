@@ -95,6 +95,10 @@
 		update_explosion_resistance()
 		gen.damaged_segments -= src
 
+		//When we regenerate, affect any mobs that happen to be standing in our spot
+		for (var/mob/living/L in loc)
+			L.shield_impact(src)
+
 
 /obj/effect/shield/proc/diffuse(var/duration)
 	// The shield is trying to counter diffusers. Cause lasting stress on the shield.
@@ -147,18 +151,18 @@
 	var/list/field_segments = gen.field_segments
 	switch(gen.take_damage(damage, damtype, hitby))
 		if(SHIELD_ABSORBED)
-			shield_impact_sound(get_turf(src), 50, 50)
+			shield_impact_sound(get_turf(src), damage*0.5, damage*1.5)
 			return
 		if(SHIELD_BREACHED_MINOR)
-			shield_impact_sound(get_turf(src), 80, 70)
+			shield_impact_sound(get_turf(src), 25, 50)
 			fail_adjacent_segments(rand(1, 3), hitby)
 			return
 		if(SHIELD_BREACHED_MAJOR)
-			shield_impact_sound(get_turf(src), 100, 80)
+			shield_impact_sound(get_turf(src), 60, 60)
 			fail_adjacent_segments(rand(2, 5), hitby)
 			return
 		if(SHIELD_BREACHED_CRITICAL)
-			shield_impact_sound(get_turf(src), 150, 90)
+			shield_impact_sound(get_turf(src), 90, 70)
 			fail_adjacent_segments(rand(4, 8), hitby)
 			return
 		if(SHIELD_BREACHED_FAILURE)
@@ -249,6 +253,7 @@
 /obj/effect/shield/proc/overcharge_shock(var/mob/living/M)
 	M.adjustFireLoss(rand(20, 40))
 	M.Weaken(5)
+	M.updatehealth()
 	to_chat(M, "<span class='danger'>As you come into contact with \the [src] a surge of energy paralyses you!</span>")
 	take_damage(10, SHIELD_DAMTYPE_EM, src)
 

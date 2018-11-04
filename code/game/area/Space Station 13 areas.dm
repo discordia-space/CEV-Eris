@@ -992,6 +992,7 @@ area/space/atmosalert()
 /area/crew_quarters/sleep/cryo
 	name = "\improper Cryogenic Storage"
 	icon_state = "Sleep"
+	flags = AREA_FLAG_CRITICAL
 
 /area/crew_quarters/sleep_male
 	name = "\improper Male Dorm"
@@ -1140,6 +1141,7 @@ area/space/atmosalert()
 /area/engineering/gravity_generator
 	name = "Gravity Generator Room"
 	icon_state = "blue"
+	flags = AREA_FLAG_CRITICAL
 
 /area/engineering/shield_generator
 	name = "Shield Generator Room"
@@ -1174,18 +1176,22 @@ area/space/atmosalert()
 	name = "\improper Engine Room"
 	icon_state = "engine"
 	sound_env = LARGE_ENCLOSED
+	flags = AREA_FLAG_CRITICAL
 
 /area/engineering/engine_airlock
 	name = "\improper Engine Room Airlock"
 	icon_state = "engine"
 
+
 /area/engineering/engine_monitoring
 	name = "\improper Engine Monitoring Room"
 	icon_state = "engine_monitoring"
+	flags = AREA_FLAG_CRITICAL
 
 /area/engineering/engine_waste
 	name = "\improper Engine Waste Handling"
 	icon_state = "engine_waste"
+	flags = AREA_FLAG_CRITICAL
 
 /area/engineering/engineering_monitoring
 	name = "\improper Engineering Monitoring Room"
@@ -1682,6 +1688,9 @@ area/space/atmosalert()
 	icon_state = "storage"
 
 //Eris
+/area/eris
+	ship_area = TRUE
+
 
 /area/eris/bridgebar
 	name = "V.I.P. Bar"
@@ -2302,6 +2311,7 @@ area/space/atmosalert()
 	name = "\improper AI Upload Chamber"
 	icon_state = "ai_upload"
 	ambience = list('sound/ambience/ambimalf.ogg')
+	flags = AREA_FLAG_CRITICAL
 
 /area/turret_protected/ai_upload_foyer
 	name = "AI Upload Access"
@@ -2313,11 +2323,13 @@ area/space/atmosalert()
 	name = "Messaging Server Room"
 	icon_state = "ai_server"
 	sound_env = SMALL_ENCLOSED
+	flags = AREA_FLAG_CRITICAL
 
 /area/turret_protected/ai
 	name = "\improper AI Chamber"
 	icon_state = "ai_chamber"
 	ambience = list('sound/ambience/ambimalf.ogg')
+	flags = AREA_FLAG_CRITICAL
 
 /area/turret_protected/ai_cyborg_station
 	name = "\improper Cyborg Station"
@@ -2391,6 +2403,7 @@ area/space/atmosalert()
 // Telecommunications Satellite
 /area/tcommsat/
 	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
+	flags = AREA_FLAG_CRITICAL
 
 /area/tcommsat/entrance
 	name = "\improper Telecoms Teleporter"
@@ -2597,51 +2610,6 @@ var/list/centcom_areas = list (
 	/area/shuttle/administration/centcom,
 	/area/shuttle/specops/centcom,
 )
-
-//SPACE STATION 13
-var/list/the_station_areas = list (
-	/area/shuttle/arrival,
-	/area/shuttle/escape/station,
-	/area/shuttle/escape_pod1/station,
-	/area/shuttle/escape_pod2/station,
-	/area/shuttle/escape_pod3/station,
-	/area/shuttle/escape_pod5/station,
-	/area/shuttle/mining/station,
-	/area/shuttle/transport1/station,
-	// /area/shuttle/transport2/station,
-	/area/shuttle/prison/station,
-	/area/shuttle/administration/station,
-	/area/shuttle/specops/station,
-	/area/maintenance,
-	/area/hallway,
-	/area/bridge,
-	/area/crew_quarters,
-	/area/holodeck,
-	/area/mint,
-	/area/library,
-	/area/chapel,
-	/area/lawoffice,
-	/area/engineering,
-	/area/solar,
-	/area/assembly,
-	/area/teleporter,
-	/area/medical,
-	/area/security,
-	/area/quartermaster,
-	/area/janitor,
-	/area/hydroponics,
-	/area/rnd,
-	/area/storage,
-	/area/construction,
-	/area/ai_monitored/storage/eva, //do not try to simplify to "/area/ai_monitored" --rastaf0,
-	/area/ai_monitored/storage/secure,
-	/area/ai_monitored/storage/emergency,
-	/area/turret_protected/ai_upload, //do not try to simplify to "/area/turret_protected" --rastaf0,
-	/area/turret_protected/ai_upload_foyer,
-	/area/turret_protected/ai,
-)
-
-
 
 
 /area/beach

@@ -13,6 +13,7 @@
 	)
 
 	survive_objective = /datum/objective/escape
+	allow_neotheology = FALSE
 
 /datum/antagonist/changeling/get_special_objective_text()
 	if(owner && owner.changeling)
