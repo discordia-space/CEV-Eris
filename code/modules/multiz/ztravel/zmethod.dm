@@ -17,6 +17,10 @@
 	//The mob who is attempting to travel
 	var/mob/M
 
+	//A thing that we use to aid our travels.
+	//in the case of climbing, this would be the wall we climb up
+	var/atom/subject
+
 	//The direction we're attempting to travel. This must be UP or DOWN
 	var/direction = UP
 
@@ -118,8 +122,10 @@
 
 
 
-
-
+/datum/vertical_travel_method/proc/finish()
+	animating = FALSE
+	M.forceMove(destination)
+	announce_end()
 
 
 /datum/vertical_travel_method/proc/get_destination()
@@ -131,13 +137,17 @@
 	Animation and Messages
 ******************************/
 /datum/vertical_travel_method/proc/announce_start()
-	var/visible = replacetext(animation_verb_visible, "%m", [M.name])
-	visible = replacetext(visible, "%d", dir2text(direction))
+	var/visible = format_message(animation_verb_visible)
 
-	var/personal = replacetext(animation_verb_personal, "%m", [M.name])
-	personal = replacetext(personal, "%d", dir2text(direction))
+	var/personal = format_message(animation_verb_personal)
 
 	M.visible_message(SPAN_NOTICE(visible), SPAN_NOTICE(personal))
+
+/datum/vertical_travel_method/proc/format_message(var/string)
+	string = replacetext(string, "%m", M.name)
+	string = replacetext(string, "%d", dir2text(direction))
+	string = replacetext(string, "%s", subject.name)
+	return string
 
 
 /datum/vertical_travel_method/proc/start_animation()
