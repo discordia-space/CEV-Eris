@@ -10,7 +10,7 @@
 
 
 	// Lock or unlock the access panel.
-	if(I.GetID())
+	if(I.GetIdCard())
 		if(subverted)
 			locked = 0
 			user << SPAN_DANGER("It looks like the locking system has been shorted out.")

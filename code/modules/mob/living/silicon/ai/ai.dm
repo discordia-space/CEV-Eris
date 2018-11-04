@@ -178,6 +178,15 @@ var/list/ai_verbs_default = list(
 	add_language(LANGUAGE_ROBOT, 1)
 	add_language(LANGUAGE_COMMON, 1)
 
+	//Stats
+	//The AI gets 100 in all three knowledge stats.
+		//These are only ever used to operate machinery and software
+	//It doesnt get any physical stats, like robustness, since its a disembodied mind
+	stats = new /datum/stat_holder
+	stats.changeStat(STAT_BIO, 100)
+	stats.changeStat(STAT_MEC, 100)
+	stats.changeStat(STAT_COG, 100)
+
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.
 			empty_playable_ai_cores += new/obj/structure/AIcore/deactivated(loc)//New empty terminal.
@@ -771,3 +780,8 @@ var/list/ai_verbs_default = list(
 
 #undef AI_CHECK_WIRELESS
 #undef AI_CHECK_RADIO
+
+// Handles all necessary power checks: Area power, inteliCard and Malf AI APU power and manual override.
+//just a plug for now untill baymed arrives
+/mob/living/silicon/ai/proc/has_power(var/respect_override = 1)
+	return 1

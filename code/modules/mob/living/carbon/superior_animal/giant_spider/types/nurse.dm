@@ -62,6 +62,7 @@
 						if(busy == SPINNING_WEB)
 							if(!(locate(/obj/effect/spider/stickyweb) in get_turf(src)))
 								new /obj/effect/spider/stickyweb(src.loc)
+								update_openspace()
 							busy = 0
 							stop_automated_movement = 0
 				else
@@ -75,6 +76,7 @@
 								if(!(locate(/obj/effect/spider/eggcluster) in get_turf(src)))
 									new /obj/effect/spider/eggcluster(loc, src)
 									fed--
+									update_openspace()
 								busy = 0
 								stop_automated_movement = 0
 					else
@@ -116,7 +118,7 @@
 										continue
 
 									C = C || new(targetTurf)
-									O.loc = C
+									O.forceMove(C)
 
 								for(var/mob/living/M in targetTurf)
 									if((M.stat == CONSCIOUS) || istype(M, /mob/living/carbon/superior_animal/giant_spider))
@@ -131,11 +133,12 @@
 											fed++
 
 									C = C || new(targetTurf)
-									M.loc = C
+									M.forceMove(C)
 									break
 
 								if(C && (large_cocoon || C.is_large_cocoon))
 									C.becomeLarge()
+								C.update_openspace()
 								cocoon_target = null
 
 							busy = 0

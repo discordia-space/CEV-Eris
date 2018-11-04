@@ -698,7 +698,7 @@
 		else
 			user << "Unable to locate a radio."
 
-	else if (istype(I, /obj/item/weapon/card/id)||istype(I, /obj/item/device/pda)||istype(I, /obj/item/weapon/card/robot))			// trying to unlock the interface with an ID card
+	else if (istype(I, /obj/item/weapon/card/id)||istype(I, /obj/item/modular_computer)||istype(I, /obj/item/weapon/card/robot))			// trying to unlock the interface with an ID card
 		if(emagged)//still allow them to open the cover
 			user << "The interface seems slightly damaged"
 		if(opened)

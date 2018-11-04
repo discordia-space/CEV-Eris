@@ -158,7 +158,7 @@ for reference:
 	icon_state = "barrier[locked]"
 
 /obj/machinery/deployable/barrier/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.GetID())
+	if(W.GetIdCard())
 		if(allowed(user))
 			if	(emagged < 2.0)
 				locked = !locked

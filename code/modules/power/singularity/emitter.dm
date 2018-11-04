@@ -195,7 +195,7 @@
 		if(ABORT_CHECK)
 			return
 
-	if(istype(I, /obj/item/weapon/card/id) || istype(I, /obj/item/device/pda))
+	if(istype(I, /obj/item/weapon/card/id) || istype(I, /obj/item/modular_computer))
 		if(emagged)
 			user << SPAN_WARNING("The lock seems to be broken.")
 			return

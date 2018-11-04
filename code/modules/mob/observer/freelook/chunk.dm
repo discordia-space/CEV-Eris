@@ -15,6 +15,7 @@
 	var/list/obscured = list()
 	var/list/turfs = list()
 	var/list/seenby = list()
+	var/dirty = FALSE
 	var/visible = 0
 	var/changed = 0
 	var/updating = 0

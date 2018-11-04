@@ -19,7 +19,7 @@ SUBSYSTEM_DEF(vote)
 		interface_client(C)
 
 /datum/controller/subsystem/vote/proc/interface_client(client/C)
-	C << browse(interface(C),"window=vote;can_close=0;can_resize=0;can_minimize=0")
+	C << browse(interface(C),"window=vote;size=400x750;can_close=0;can_resize=0;can_minimize=0")
 
 /datum/controller/subsystem/vote/fire()
 	if(active_vote)
@@ -350,10 +350,15 @@ SUBSYSTEM_DEF(vote)
 
 
 
+
+
+/*********************
+	Storyteller
+**********************/
 /datum/poll/storyteller
 	name = "Storyteller"
 	question = "Choose storyteller"
-	time = 60
+	time = 120
 	choice_types = list()
 
 	only_admin = TRUE
@@ -364,14 +369,28 @@ SUBSYSTEM_DEF(vote)
 
 	see_votes = TRUE
 
+//We will sort the storyteller choices carefully. Guide is always first, all the rest are in a random order
 /datum/poll/storyteller/init_choices()
+	master_storyteller = null
+	var/datum/vote_choice/storyteller/base = null
 	for(var/ch in storyteller_cache)
 		var/datum/vote_choice/storyteller/CS = new
 		var/datum/storyteller/S = storyteller_cache[ch]
 		CS.text = S.name
 		CS.desc = S.description
 		CS.new_storyteller = ch
-		choices.Add(CS)
+
+		//The base storyteller, Guide, is put aside for a moment
+		if (S.config_tag == STORYTELLER_BASE)
+			base = CS
+			continue
+		//Storytellers are inserted at a random spot so they will be randomly sorted
+		var/index = rand(1, max(choices.len, 1))
+		choices.Insert(index, CS)
+
+	//After everything else is in, the guide is inserted at the top,
+	//so it will always be the first option in the poll
+	choices.Insert(1, base)
 
 /datum/poll/storyteller/Process()
 	if(SSticker.current_state != GAME_STATE_PREGAME)
@@ -386,18 +405,28 @@ SUBSYSTEM_DEF(vote)
 	round_progressing = FALSE
 	world << "<b>Game start has been delayed.</b>"
 
+//If one wins, on_end is called after on_win, so the new storyteller will be set in master_storyteller
 /datum/poll/storyteller/on_end()
+	//This happens if the vote was skipped with force start
+	if (!master_storyteller)
+		master_storyteller = STORYTELLER_BASE
+		world.save_storyteller(master_storyteller)
+
 	SSticker.story_vote_ended = TRUE
 	round_progressing = TRUE
-	world << "<b>The game will start soon.</b>"
+	set_storyteller(config.pick_storyteller(master_storyteller), announce = FALSE) //This does the actual work //Even if master storyteller is null, this will pick the default
+	world << "<b>The game will start in [SSticker.pregame_timeleft] seconds.</b>"
 
 /datum/vote_choice/storyteller
 	text = "You shouldn't see this."
 	var/new_storyteller = STORYTELLER_BASE
 
+//on_end will be called after this, so that's where we actually call set_storyteller
 /datum/vote_choice/storyteller/on_win()
 	master_storyteller = new_storyteller
 	world.save_storyteller(master_storyteller)
+
+
 
 
 

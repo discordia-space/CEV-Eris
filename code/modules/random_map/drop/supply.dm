@@ -10,17 +10,24 @@
 // Drop type is a string representing a mode rather than an atom or path.
 // supplied_drop_types is a list of types to spawn in the pod.
 /datum/random_map/droppod/supply/get_spawned_drop(var/turf/T)
+	var/list/floor_tiles = list(T)
+	floor_tiles.Add(cardinal_turfs(T))
 
+	var/obj/structure/largecrate/C = locate(/obj/structure/largecrate) in T
+	if (!C)
+		C = new(T)
 	if(!drop_type) drop_type = pick(supply_drop_random_loot_types())
 
 	if(drop_type == "custom")
 		if(supplied_drop_types.len)
-			var/obj/structure/largecrate/C = locate() in T
 			for(var/drop_type in supplied_drop_types)
-				var/atom/movable/A = new drop_type(T)
-				if(!ismob(A))
-					if(!C) C = new(T)
-					C.contents |= A
+				var/atom/movable/A
+				if(!ispath(drop_type, /mob))
+					A = new drop_type(C) //Objects spawn inside the crate
+				else
+					A = new drop_type(T) //Mobs spawn outside of it, they're guarding it
+					var/mob/living/L = A
+					L.faction = "DropPod/ref[src]" //Make the mobs not murder each other
 			return
 		else
 			drop_type = pick(supply_drop_random_loot_types())

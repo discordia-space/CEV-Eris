@@ -4,6 +4,7 @@ SUBSYSTEM_DEF(ticker)
 	priority = SS_PRIORITY_TICKER
 	flags = SS_KEEP_TIMING
 	runlevels = RUNLEVEL_LOBBY | RUNLEVEL_SETUP | RUNLEVEL_GAME
+	wait = 1 SECONDS //Tick every second
 
 	var/const/restart_timeout = 600
 	var/current_state = GAME_STATE_STARTUP
@@ -14,7 +15,7 @@ SUBSYSTEM_DEF(ticker)
 	var/first_start_trying = TRUE
 	var/story_vote_ended = FALSE
 
-	var/datum/storyteller/storyteller = null
+
 	var/event_time = null
 	var/event = 0
 
@@ -93,10 +94,6 @@ SUBSYSTEM_DEF(ticker)
 			if(start_immediately)
 				pregame_timeleft = 0
 
-			//countdown
-			if(pregame_timeleft < 0)
-				return
-
 			if(round_progressing)
 				pregame_timeleft--
 
@@ -156,23 +153,24 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/setup()
 	//Create and announce mode
 
-	src.storyteller = config.pick_storyteller(master_storyteller)
+	if(!storyteller)
+		set_storyteller(announce = FALSE)
 
-	if(!src.storyteller)
+	if(!storyteller)
 		world << "<span class='danger'>Serious error storyteller system!</span> Reverting to pre-game lobby."
 		return FALSE
 
 	SSjob.ResetOccupations()
 	SSjob.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
 
-	if(!src.storyteller.can_start(TRUE))
+	if(!storyteller.can_start(TRUE))
 		world << "<B>Unable to start game.</B> Reverting to pre-game lobby."
 		storyteller = null
 		story_vote_ended = FALSE
 		SSjob.ResetOccupations()
 		return FALSE
 
-	src.storyteller.announce()
+	storyteller.announce()
 
 	setup_economy()
 	newscaster_announcements = pick(newscaster_standard_feeds)
@@ -181,6 +179,10 @@ SUBSYSTEM_DEF(ticker)
 	create_characters() //Create player characters and transfer them
 	collect_minds()
 	equip_characters()
+	for(var/mob/living/carbon/human/H in player_list)
+		if(!H.mind || player_is_antag(H.mind, only_offstation_roles = 1) || !SSjob.ShouldCreateRecords(H.mind.assigned_role))
+			continue
+		CreateModularRecord(H)
 	data_core.manifest()
 
 	callHook("roundstart")
@@ -315,7 +317,7 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/collect_minds()
 	for(var/mob/living/player in player_list)
 		if(player.mind)
-			SSticker.minds.Add(player.mind)
+			SSticker.minds |= player.mind
 
 
 /datum/controller/subsystem/ticker/proc/equip_characters()
