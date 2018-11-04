@@ -75,7 +75,7 @@
 /obj/effect/plant/Process()
 
 	// Something is very wrong, kill ourselves.
-	if(!seed)
+	if(!seed || !loc)
 		die_off()
 		return 0
 
