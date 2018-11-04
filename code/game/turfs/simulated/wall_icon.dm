@@ -47,9 +47,6 @@
 	if(!material)
 		return
 
-	if(!damage_overlays[1]) //list hasn't been populated
-		generate_overlays()
-
 	overlays.Cut()
 	var/image/I
 
@@ -92,16 +89,6 @@
 
 		overlays += damage_overlays[overlay]
 	return
-
-/turf/simulated/wall/proc/generate_overlays()
-	var/alpha_inc = 256 / damage_overlays.len
-
-	for(var/i = 1; i <= damage_overlays.len; i++)
-		var/image/img = image(icon = 'icons/turf/walls.dmi', icon_state = "overlay_damage")
-		img.blend_mode = BLEND_MULTIPLY
-		img.alpha = (i * alpha_inc) - 1
-		damage_overlays[i] = img
-
 
 /turf/simulated/wall/proc/update_connections(propagate = 0)
 	if(!material)
