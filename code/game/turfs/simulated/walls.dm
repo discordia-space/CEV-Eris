@@ -21,6 +21,7 @@
 	var/construction_stage
 	var/hitsound = 'sound/weapons/Genhit.ogg'
 	var/list/wall_connections = list("0", "0", "0", "0")
+	var/static/list/damage_overlays
 
 // Walls always hide the stuff below them.
 /turf/simulated/wall/levelupdate()
@@ -28,6 +29,18 @@
 		O.hide(1)
 
 /turf/simulated/wall/New(var/newloc, var/materialtype, var/rmaterialtype)
+	if (!damage_overlays)
+		damage_overlays = new
+
+		var/overlayCount = 16
+		var/alpha_inc = 256 / overlayCount
+
+		for(var/i = 1; i <= overlayCount; i++)
+			var/image/img = image(icon = 'icons/turf/walls.dmi', icon_state = "overlay_damage")
+			img.blend_mode = BLEND_MULTIPLY
+			img.alpha = (i * alpha_inc) - 1
+			damage_overlays.Add(img)
+
 	..(newloc)
 	icon_state = "blank"
 	if(!materialtype)
