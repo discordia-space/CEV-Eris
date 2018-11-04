@@ -81,28 +81,10 @@
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.9
 	species_restricted = list("exclude")
-	var/equip_delay = 10 SECONDS
+	equip_delay = 12 SECONDS
 	var/list/supporting_limbs //If not-null, automatically splints breaks. Checked when removing the suit.
 
-//Delayed equipping of suits
-/obj/item/clothing/suit/space/pre_equip(var/mob/user, var/slot)
-	if (slot == slot_wear_suit)
-		if(equip_delay > 0)
-			user.visible_message(
-				SPAN_NOTICE("[user] starts putting on \the [src]..."),
-				SPAN_NOTICE("You start putting on \the [src]...")
-			)
-			if(!do_after(user,equip_delay,src))
-				return TRUE //A nonzero return value will cause the equipping operation to fail
-	//Delayed unequipping too
-	else if (is_worn())
-		if(equip_delay > 0)
-			user.visible_message(
-				SPAN_NOTICE("[user] starts taking off \the [src]..."),
-				SPAN_NOTICE("You start taking off \the [src]...")
-			)
-			if(!do_after(user,equip_delay,src))
-				return TRUE //A nonzero return value will cause the equipping operation to fail
+
 
 /obj/item/clothing/suit/space/equipped(mob/M)
 	check_limb_support()
