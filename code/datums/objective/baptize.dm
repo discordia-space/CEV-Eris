@@ -12,7 +12,7 @@
 
 /datum/objective/baptize/update_completion()
 	if(!completed || target && target.current)
-		if(target.current in christians)
+		if(target.current in disciples)
 			completed = TRUE
 
 /datum/objective/baptize/get_targets_list()

@@ -115,7 +115,7 @@
 
 /datum/ritual/group/cruciform/crusade
 	name = "Crusade"
-	desc = "Reveal crusade litanies to cyberchristians. Depends on participants amount."
+	desc = "Reveal crusade litanies to disciples. Depends on participants amount."
 	phrase = "Locutus est Dominus ad Mosen dicens."
 	phrases = list(
 		"Locutus est Dominus ad Mosen dicens.",
