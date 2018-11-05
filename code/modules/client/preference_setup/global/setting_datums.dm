@@ -90,8 +90,10 @@ var/list/_client_preferences_by_type
 	disabled_description = "Disabled"
 
 /datum/client_preference/ambient_occlusion/toggled(var/mob/preference_mob, var/enabled)
-	var/obj/screen/plane_master/game_world/PM = locate() in preference_mob.client.screen
-	PM.backdrop(preference_mob)
+	//This throws runtimes if called from the lobby
+	if (!istype(preference_mob, /mob/new_player))
+		var/obj/screen/plane_master/game_world/PM = locate() in preference_mob.client.screen
+		PM.backdrop(preference_mob)
 
 /datum/client_preference/ghost_ears
 	description ="Ghost ears"
