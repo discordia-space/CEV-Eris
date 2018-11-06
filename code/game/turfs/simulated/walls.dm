@@ -29,7 +29,6 @@
 		O.hide(1)
 
 /turf/simulated/wall/New(var/newloc, var/materialtype, var/rmaterialtype)
-	density = TRUE //If you want it to be a fake wall, set this later
 	if (!damage_overlays)
 		damage_overlays = new
 
@@ -42,7 +41,7 @@
 			img.alpha = (i * alpha_inc) - 1
 			damage_overlays.Add(img)
 
-	..(newloc)
+
 	icon_state = "blank"
 	if(!materialtype)
 		materialtype = MATERIAL_STEEL
@@ -50,6 +49,7 @@
 	if(!isnull(rmaterialtype))
 		reinf_material = get_material_by_name(rmaterialtype)
 	update_material(FALSE) //We call update material with update set to false, so it won't update connections or icon yet
+	..(newloc)
 
 
 /turf/simulated/wall/Initialize(var/mapload)
