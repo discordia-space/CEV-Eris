@@ -153,8 +153,9 @@
 	if((instant_finish_tier < get_tool_quality(required_quality)) || time_to_finish < 0)
 		time_to_finish = 0
 
+	var/obj/item/weapon/tool/T
 	if(istype(src, /obj/item/weapon/tool))
-		var/obj/item/weapon/tool/T = src
+		T = src
 		if(!T.check_tool_effects(user, time_to_finish))
 			return TOOL_USE_CANCEL
 
@@ -185,7 +186,8 @@
 			user << SPAN_WARNING("You need to stand still to finish the task properly!")
 			target.used_now = FALSE
 			time_spent = world.time - start_time //We failed, spent only part of the time working
-			consume_resources(time_spent, user)
+			if (T)
+				T.consume_resources(time_spent, user)
 			if (toolsound)
 				//We abort the repeating sound.
 				//Stop function will delete itself too
@@ -197,7 +199,8 @@
 
 	//If we get here the operation finished correctly, we spent the full time working
 	time_spent = time_to_finish
-	consume_resources(time_spent, user)
+	if (T)
+		T.consume_resources(time_spent, user)
 
 	//Safe cleanup
 	if (toolsound)
@@ -361,9 +364,9 @@
 	Resource Consumption
 **********************/
 /obj/item/weapon/tool/proc/consume_resources(var/timespent, var/user)
-	//We will always use a minimum of 1 second worth of resources
-	if (timespent < 10)
-		timespent = 10
+	//We will always use a minimum of 0.5 second worth of resources
+	if (timespent < 5)
+		timespent = 5
 
 	if(use_power_cost)
 		if (!cell.checked_use(use_power_cost*timespent))

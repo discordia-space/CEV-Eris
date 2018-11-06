@@ -20,7 +20,7 @@
 #define QUALITY_EXCAVATION				"excavation"
 #define QUALITY_CUTTING					"cutting"
 #define QUALITY_LASER_CUTTING			"laser cutting"	//laser scalpels and e-swords - bloodless cutting
-#define QUALITY_ADHERING				"adhering"
+#define QUALITY_ADHESIVE				"adhesive"
 #define QUALITY_SEALING					"sealing"
 
 //Time for a work for tool system calculated in that way: basic time - tool level - stat check..

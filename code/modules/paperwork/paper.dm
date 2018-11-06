@@ -390,9 +390,8 @@
 /obj/item/weapon/paper/attackby(obj/item/weapon/P as obj, mob/user as mob)
 	..()
 
-	if(istype(P, /obj/item/weapon/tool/tape_roll))
-		var/obj/item/weapon/tape_roll/tape = P
-		tape.stick(src, user)
+	if(P.has_quality(QUALITY_ADHESIVE))
+		P:stick(src, user) //I know using colon is a hack, but this should be safe as long as future adhesive items are made right
 		return
 
 	if(istype(P, /obj/item/weapon/paper) || istype(P, /obj/item/weapon/photo))

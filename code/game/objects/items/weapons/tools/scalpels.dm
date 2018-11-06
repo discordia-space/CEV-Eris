@@ -31,5 +31,5 @@
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 4)
 	tool_qualities = list(QUALITY_CUTTING = 50, QUALITY_WIRE_CUTTING = 20, QUALITY_LASER_CUTTING = 40)
 
-	use_power_cost = 1
+	use_power_cost = 0.2
 	suitable_cell = /obj/item/weapon/cell/small

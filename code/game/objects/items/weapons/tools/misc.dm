@@ -6,7 +6,7 @@
 	worksound = WORKSOUND_DRIVER_TOOL
 	switched_on_qualities = list(QUALITY_SCREW_DRIVING = 50, QUALITY_BOLT_TURNING = 50, QUALITY_DRILLING = 20, QUALITY_WELDING = 30, QUALITY_CAUTERIZING = 10)
 
-	use_fuel_cost = 1
+	use_fuel_cost = 0.2
 	max_fuel = 50
 
 	toggleable = TRUE

@@ -27,6 +27,7 @@
 				/obj/item/weapon/tool/pickaxe/drill = 2,
 				/obj/item/weapon/tool/pickaxe/diamonddrill = 1,
 				/obj/item/weapon/tool/pickaxe/excavation = 2,
+				/obj/item/weapon/tool/tape_roll = 10,
 				/obj/item/weapon/storage/belt/utility = 5,
 				/obj/item/weapon/storage/belt/utility/full = 5,
 				/obj/item/clothing/gloves/insulated/cheap = 5,

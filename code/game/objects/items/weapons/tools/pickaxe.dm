@@ -25,7 +25,7 @@
 	origin_tech = list(TECH_MATERIAL = 3, TECH_POWER = 2, TECH_ENGINEERING = 2)
 	desc = "Cracks rocks with blasts, perfect for killing cave lizards."
 
-	use_power_cost = 5
+	use_power_cost = 1
 	suitable_cell = /obj/item/weapon/cell/medium
 
 /obj/item/weapon/tool/pickaxe/drill
@@ -37,7 +37,7 @@
 	origin_tech = list(TECH_MATERIAL = 2, TECH_POWER = 3, TECH_ENGINEERING = 2)
 	desc = "Yours is the drill that will pierce through the rock walls."
 
-	use_fuel_cost = 2
+	use_fuel_cost = 0.4
 	max_fuel = 100
 
 /obj/item/weapon/tool/pickaxe/diamonddrill
@@ -50,7 +50,7 @@
 	origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 4, TECH_ENGINEERING = 5)
 	desc = "Yours is the drill that will pierce the heavens!"
 
-	use_fuel_cost = 3
+	use_fuel_cost = 0.4
 	max_fuel = 120
 
 /obj/item/weapon/tool/pickaxe/excavation
