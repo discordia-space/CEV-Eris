@@ -150,6 +150,7 @@
 	E.startWhen = 0
 	E.endWhen = INFINITY
 	victims[victim] = E
+	E.Initialize()
 
 /datum/overmap_event/proc/leave(victim)
 	if(victims && victims[victim])
