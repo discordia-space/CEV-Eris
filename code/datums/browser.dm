@@ -178,3 +178,9 @@
 		//world << "[src] was [src.mob.machine], setting to null"
 		src.mob.unset_machine()
 	return
+
+/datum/browser/proc/update(var/force_open = 0, var/use_onclose = 1)
+	if(force_open)
+		open(use_onclose)
+	else
+		send_output(user, get_content(), "[window_id].browser")

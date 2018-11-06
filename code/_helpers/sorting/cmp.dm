@@ -39,3 +39,6 @@
 		. = B.failures - A.failures
 	if (!.)
 		. = B.qdels - A.qdels
+
+/proc/cmp_crew_sensor_modifier(var/crew_sensor_modifier/a, var/crew_sensor_modifier/b)
+	return b.priority - a.priority

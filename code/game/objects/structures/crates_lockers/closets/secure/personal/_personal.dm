@@ -24,7 +24,7 @@
 			playsound(src.loc, "sparks", 50, 1)
 		return
 
-	var/obj/item/weapon/card/id/I = W.GetID()
+	var/obj/item/weapon/card/id/I = W.GetIdCard()
 	if(istype(I))
 		if(!src.registered_name && has_access(access_occupy, list(), I.GetAccess()))
 			src.registered_name = I.registered_name

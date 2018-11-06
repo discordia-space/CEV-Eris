@@ -16,7 +16,6 @@
 	desc = "Does card things."
 	icon = 'icons/obj/card.dmi'
 	w_class = ITEM_SIZE_TINY
-	var/associated_account_number = 0
 
 	var/list/files = list(  )
 
@@ -95,9 +94,12 @@ var/const/NO_EMAG_ACT = -50
 	desc = "A card used to provide ID and determine access across the station."
 	icon_state = "id"
 	item_state = "card-id"
+	slot_flags = SLOT_ID
+
 	var/access = list()
 	var/registered_name = "Unknown" // The name registered_name on the card
-	slot_flags = SLOT_ID
+	var/list/associated_email_login = list("login" = "", "password" = "")
+	var/associated_account_number = 0
 
 	var/age = "\[UNSET\]"
 	var/blood_type = "\[UNSET\]"
@@ -111,6 +113,9 @@ var/const/NO_EMAG_ACT = -50
 	var/assignment = null	//can be alt title or the actual job
 	var/rank = null			//actual job
 	var/dorm = 0			// determines if this ID has claimed a dorm already
+
+	var/formal_name_prefix
+	var/formal_name_suffix
 
 /obj/item/weapon/card/id/examine(mob/user)
 	set src in oview(1)
@@ -180,9 +185,9 @@ var/const/NO_EMAG_ACT = -50
 /obj/item/weapon/card/id/GetAccess()
 	return access
 
-/obj/item/weapon/card/id/GetID()
+/obj/item/weapon/card/id/GetIdCard()
 	return src
-
+	
 /obj/item/weapon/card/id/verb/read()
 	set name = "Read ID Card"
 	set category = "Object"
