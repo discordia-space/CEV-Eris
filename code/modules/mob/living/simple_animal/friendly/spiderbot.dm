@@ -102,7 +102,7 @@
 			user << SPAN_WARNING("\The [src] is undamaged!")
 		return
 
-	else if(istype(O, /obj/item/weapon/card/id)||istype(O, /obj/item/device/pda))
+	else if(istype(O, /obj/item/weapon/card/id)||istype(O, /obj/item/modular_computer/pda))
 		if (!mmi)
 			user << SPAN_DANGER("There's no reason to swipe your ID - \the [src] has no brain to remove.")
 			return 0
@@ -112,8 +112,7 @@
 		if(istype(O, /obj/item/weapon/card/id))
 			id_card = O
 		else
-			var/obj/item/device/pda/pda = O
-			id_card = pda.id
+			id_card = O.GetIdCard()
 
 		if(access_robotics in id_card.access)
 			user << SPAN_NOTICE("You swipe your access card and pop the brain out of \the [src].")

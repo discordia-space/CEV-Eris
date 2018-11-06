@@ -89,6 +89,7 @@
 /obj/machinery/power/supermatter/New()
 	. = ..()
 	radio = new /obj/item/device/radio{channels=list("Engineering")}(src)
+	assign_uid()
 
 
 /obj/machinery/power/supermatter/Destroy()
@@ -417,3 +418,39 @@
 
 /obj/machinery/power/supermatter/shard/announce_warning() //Shards don't get announcements
 	return
+
+/obj/machinery/power/supermatter/proc/get_status()
+	var/turf/T = get_turf(src)
+	if(!T)
+		return SUPERMATTER_ERROR
+	var/datum/gas_mixture/air = T.return_air()
+	if(!air)
+		return SUPERMATTER_ERROR
+
+	if(grav_pulling || exploded)
+		return SUPERMATTER_DELAMINATING
+
+	if(get_integrity() < 25)
+		return SUPERMATTER_EMERGENCY
+
+	if(get_integrity() < 50)
+		return SUPERMATTER_DANGER
+
+	if((get_integrity() < 100) || (air.temperature > CRITICAL_TEMPERATURE))
+		return SUPERMATTER_WARNING
+
+	if(air.temperature > (CRITICAL_TEMPERATURE * 0.8))
+		return SUPERMATTER_NOTIFY
+
+	if(power > 5)
+		return SUPERMATTER_NORMAL
+	return SUPERMATTER_INACTIVE
+
+/obj/machinery/power/supermatter/proc/get_epr()
+	var/turf/T = get_turf(src)
+	if(!istype(T))
+		return
+	var/datum/gas_mixture/air = T.return_air()
+	if(!air)
+		return 0
+	return round((air.total_moles / air.group_multiplier) / 23.1, 0.01)

@@ -101,7 +101,6 @@
 			new/obj/item/weapon/storage/backpack/clown(src)
 			new/obj/item/clothing/under/rank/clown(src)
 			new/obj/item/clothing/shoes/clown_shoes(src)
-			new/obj/item/device/pda/clown(src)
 			new/obj/item/clothing/mask/gas/clown_hat(src)
 			new/obj/item/weapon/bikehorn(src)
 			//new/obj/item/weapon/stamp/clown(src) I'd add it, but only clowns can use it

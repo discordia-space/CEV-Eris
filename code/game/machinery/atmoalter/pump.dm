@@ -140,7 +140,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "portpump.tmpl", "Portable Pump", 480, 410, state = physical_state)
+		ui = new(user, src, ui_key, "portpump.tmpl", "Portable Pump", 480, 410, state =GLOB.physical_state)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

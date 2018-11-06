@@ -409,8 +409,8 @@ var/list/holder_mob_icon_cache = list()
 				preposition = "on"
 				action3 = "wears"
 				newlocation = "feet"
-	else if (istype(loc,/obj/item/device/pda))
-		var/obj/item/device/pda/S = loc
+	else if (istype(loc,/obj/item/modular_computer/pda))
+		var/obj/item/modular_computer/pda/S = loc
 		newlocation = S.name
 		if (justmoved)
 			preposition = "into"
@@ -572,7 +572,12 @@ var/list/holder_mob_icon_cache = list()
 	icon_state_dead = "mouse_brown_dead"
 
 
-
+/obj/item/weapon/holder/GetIdCard()
+	for(var/mob/M in contents)
+		var/obj/item/I = M.GetIdCard()
+		if(I)
+			return I
+	return null
 
 /*
 //Lizards

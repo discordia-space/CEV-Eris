@@ -32,8 +32,8 @@
 
 		for(var/event_turf in event_turfs)
 			events_by_turf[event_turf] = overmap_event
-			entered_event.register(event_turf, src, /decl/overmap_event_handler/proc/on_turf_entered)
-			exited_event.register(event_turf, src, /decl/overmap_event_handler/proc/on_turf_exited)
+			GLOB.entered_event.register(event_turf, src, /decl/overmap_event_handler/proc/on_turf_entered)
+			GLOB.exited_event.register(event_turf, src, /decl/overmap_event_handler/proc/on_turf_exited)
 
 			var/obj/effect/overmap_event/event = new(event_turf)
 //			world << "Created new event in [event.loc.x], [event.loc.y]"

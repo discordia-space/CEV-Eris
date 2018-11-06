@@ -276,7 +276,6 @@ its easier to just keep the beam vertical.
 		var/atom/A = i
 		A.container_dir_changed(new_dir)
 	dir = new_dir
-	dir_set_event.raise_event(src, old_dir, new_dir)
 	return TRUE
 
 /atom/proc/container_dir_changed(new_dir)
@@ -607,6 +606,9 @@ its easier to just keep the beam vertical.
 		//An item is delivered on the cargo shuttle
 		//An item is purchased or dispensed from a vendor (Those things contain premade items and just release them)
 
+/atom/proc/get_cell()
+	return
+
 /atom/proc/get_coords()
 	var/turf/T = get_turf(src)
 	if (T)
@@ -615,4 +617,3 @@ its easier to just keep the beam vertical.
 		C.y_pos = T.y
 		C.z_pos = T.z
 		return C
-	

@@ -3,7 +3,7 @@
 	title = "Cyberchristian Preacher"
 	flag = CHAPLAIN
 	department = "Civilian"
-	department_flag = CIVILIAN
+	department_flag = CHURCH
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
@@ -17,11 +17,14 @@
 		STAT_TGH = 10,
 	)
 
+	software_on_spawn = list(/datum/computer_file/program/records,
+							 /datum/computer_file/program/reports)
+
 	uniform = /obj/item/clothing/under/rank/chaplain
 	suit = /obj/item/clothing/suit/chaplain_hoodie
 	shoes = /obj/item/clothing/shoes/reinforced
 	gloves = /obj/item/clothing/gloves/thick
-	pda = /obj/item/device/pda/chaplain
+	pda = /obj/item/modular_computer/pda
 
 /obj/landmark/join/start/chaplain
 	name = "Cyberchristian Preacher"
