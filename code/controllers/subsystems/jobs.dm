@@ -87,7 +87,7 @@ SUBSYSTEM_DEF(job)
 		if(flag && !(flag in player.client.prefs.be_special_role))
 			Debug("FOC flag failed, Player: [player], Flag: [flag], ")
 			continue
-		if(player.client.prefs.GetJobDepartment(job, level) & job.flag)
+		if(player.client.prefs.CorrectLevel(job,level))
 			Debug("FOC pass, Player: [player], Level:[level]")
 			candidates += player
 	return candidates
@@ -258,7 +258,7 @@ SUBSYSTEM_DEF(job)
 					continue
 
 				// If the player wants that job on this level, then try give it to him.
-				if(player.client.prefs.GetJobDepartment(job, level) & job.flag)
+				if(player.client.prefs.CorrectLevel(job,level))
 
 					// If the job isn't filled
 					if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
@@ -547,11 +547,11 @@ SUBSYSTEM_DEF(job)
 			if(jobban_isbanned(player, job.title))
 				level5++
 				continue
-			if(player.client.prefs.GetJobDepartment(job, 1) & job.flag)
+			if(player.client.prefs.CorrectLevel(job,1))
 				level1++
-			else if(player.client.prefs.GetJobDepartment(job, 2) & job.flag)
+			else if(player.client.prefs.CorrectLevel(job,2))
 				level2++
-			else if(player.client.prefs.GetJobDepartment(job, 3) & job.flag)
+			else if(player.client.prefs.CorrectLevel(job,3))
 				level3++
 			else level4++ //not selected
 
