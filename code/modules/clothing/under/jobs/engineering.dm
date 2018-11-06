@@ -8,7 +8,7 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 10)
 
 /obj/item/clothing/under/rank/engineer
-	desc = "It's an blue-green jumpsuit worn by engineers. It has minor radiation shielding."
+	desc = "It's an yellow jumpsuit worn by engineers. It has minor radiation shielding."
 	name = "technomancer's jumpsuit"
 	icon_state = "engine"
 	item_state = "engi_suit"
