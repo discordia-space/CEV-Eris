@@ -26,19 +26,21 @@
 
 /datum/craft_recipe/machinery/modularconsole
 	name = "modular console frame"
-	result = /obj/machinery/modular_computer/console/buildable
+	result = /obj/item/modular_computer/console
 	time = 200
 	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
 	steps = list(
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 4, MATERIAL_GLASS),
 	)
 
 /datum/craft_recipe/machinery/modularlaptop
 	name = "modular laptop frame"
-	result = /obj/machinery/modular_computer/laptop/buildable
+	result = /obj/item/modular_computer/laptop
 	time = 200
 	steps = list(
-		list(CRAFT_MATERIAL, 7, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 8, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 4, MATERIAL_GLASS),
 	)
 
 /datum/craft_recipe/machinery/modulartablet
@@ -47,6 +49,25 @@
 	time = 200
 	steps = list(
 		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 2, MATERIAL_GLASS),
+	)
+
+/datum/craft_recipe/machinery/modularpda
+	name = "modular pda frame"
+	result = /obj/item/modular_computer/pda
+	time = 200
+	steps = list(
+		list(CRAFT_MATERIAL, 3, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 1, MATERIAL_GLASS),
+	)
+
+/datum/craft_recipe/machinery/modulartelescreen
+	name = "modular telescreen frame"
+	result = /obj/item/modular_computer/telescreen
+	time = 200
+	steps = list(
+		list(CRAFT_MATERIAL, 8, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 6, MATERIAL_GLASS),
 	)
 
 /datum/craft_recipe/machinery/turret_frame
