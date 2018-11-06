@@ -6,7 +6,7 @@
 
 //The logic for how connections work is mostly found in tables.dm, in the dirs_to_corner_states proc
 
-/turf/simulated/wall/proc/update_material()
+/turf/simulated/wall/proc/update_material(var/update = TRUE)
 
 	if(!material)
 		return
@@ -19,6 +19,7 @@
 		material = get_material_by_name(MATERIAL_STEEL)
 	if(material)
 		explosion_resistance = material.explosion_resistance
+		hitsound = material.hitsound
 	if(reinf_material && reinf_material.explosion_resistance > explosion_resistance)
 		explosion_resistance = reinf_material.explosion_resistance
 
@@ -34,8 +35,10 @@
 	else if(material.opacity < 0.5 && opacity)
 		set_light(0)
 
-	update_connections(1)
-	update_icon()
+	//Update will be false at roundstart
+	if (update)
+		update_connections(1)
+		update_icon()
 
 
 /turf/simulated/wall/proc/set_material(var/material/newmaterial, var/material/newrmaterial)
