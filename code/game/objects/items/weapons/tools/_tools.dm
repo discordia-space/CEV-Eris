@@ -17,6 +17,14 @@
 	var/passive_fuel_cost = 0.03 //Fuel consumed per process tick while active
 	var/max_fuel = 0
 
+	//Third type of resource, stock. A tool that uses physical objects (or itself) in order to work
+	//Currently used for tape roll
+	var/use_stock_cost = 0
+	var/stock = 0
+	var/max_stock = 0
+	var/allow_decimal_stock = TRUE
+	var/delete_when_empty = TRUE
+
 	var/toggleable = FALSE	//Determinze if it can be switched ON or OFF, for example, if you need a tool that will consume power/fuel upon turning it ON only. Such as welder.
 	var/switched_on = FALSE	//Curent status of tool. Dont edit this in subtypes vars, its for procs only.
 	var/switched_on_qualities = null	//This var will REPLACE tool_qualities when tool will be toggled on.
@@ -24,48 +32,10 @@
 	var/create_hot_spot = FALSE	//Set this TRUE to ignite plasma on turf with tool upon activation
 	var/glow_color = null	//Set color of glow upon activation, or leave it null if you dont want any light
 
-//Cell reload
-/obj/item/weapon/tool/MouseDrop(over_object)
-	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
-		cell = null
-		update_icon()
-	else
-		..()
 
-/obj/item/weapon/tool/attackby(obj/item/C, mob/living/user)
-	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
-		src.cell = C
-		update_icon()
-
-//Turning it on/off
-/obj/item/weapon/tool/attack_self(mob/user)
-	if(toggleable)
-		if (switched_on)
-			turn_off(user)
-		else
-			turn_on(user)
-
-
-	..()
-	return
-
-/obj/item/weapon/tool/proc/turn_on(mob/user)
-	switched_on = TRUE
-	tool_qualities = switched_on_qualities
-	if(glow_color)
-		set_light(l_range = 1.7, l_power = 1.3, l_color = glow_color)
-	update_icon()
-	update_wear_icon()
-
-/obj/item/weapon/tool/proc/turn_off(mob/user)
-	switched_on = FALSE
-	STOP_PROCESSING(SSobj, src)
-	tool_qualities = switched_off_qualities
-	if(glow_color)
-		set_light(l_range = 0, l_power = 0, l_color = glow_color)
-	update_icon()
-	update_wear_icon()
-
+/******************************
+	/* Core Procs */
+*******************************/
 //Fuel and cell spawn
 /obj/item/weapon/tool/New()
 	..()
@@ -77,6 +47,9 @@
 		reagents = R
 		R.my_atom = src
 		R.add_reagent("fuel", max_fuel)
+
+	if (use_stock_cost)
+		stock = max_stock
 
 	update_icon()
 	return
@@ -103,17 +76,327 @@
 			if(!consume_fuel(passive_fuel_cost))
 				turn_off()
 
-//Power and fuel drain, sparks spawn
-/obj/item/weapon/tool/proc/check_tool_effects(mob/living/user)
+
+//Cell reload
+/obj/item/weapon/tool/MouseDrop(over_object)
+	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
+		cell = null
+		update_icon()
+	else
+		..()
+
+/obj/item/weapon/tool/attackby(obj/item/C, mob/living/user)
+	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
+		src.cell = C
+		update_icon()
+
+//Turning it on/off
+/obj/item/weapon/tool/attack_self(mob/user)
+	if(toggleable)
+		if (switched_on)
+			turn_off(user)
+		else
+			turn_on(user)
+	..()
+	return
+
+
+
+
+/******************************
+	/* Tool Usage */
+*******************************/
+
+//Simple form ideal for basic use. That proc will return TRUE only when everything was done right, and FALSE if something went wrong, ot user was unlucky.
+//Editionaly, handle_failure proc will be called for a critical failure roll.
+/obj/item/proc/use_tool(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, required_stat = null, instant_finish_tier = 110, forced_sound = null, var/sound_repeat = 2.5)
+	var/result = use_tool_extended(user, target, base_time, required_quality, fail_chance, required_stat, instant_finish_tier, forced_sound)
+	switch(result)
+		if(TOOL_USE_CANCEL)
+			return FALSE
+		if(TOOL_USE_FAIL)
+			handle_failure(user, target, required_stat = required_stat, required_quality = required_quality)	//We call it here because extended proc mean to be used only when you need to handle tool fail by yourself
+			return FALSE
+		if(TOOL_USE_SUCCESS)
+			return TRUE
+
+//Use this proc if you want to handle all types of failure yourself. It used in surgery, for example, to deal damage to patient.
+/obj/item/proc/use_tool_extended(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, required_stat = null, instant_finish_tier = 110, forced_sound = null, var/sound_repeat = 2.5 SECONDS)
+	if (is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
+		if (isliving(target))
+			var/mob/living/L = target
+			L.IgniteMob()
+
+	if(target.used_now)
+		user << SPAN_WARNING("[target.name] is used by someone. Wait for them to finish.")
+		return TOOL_USE_CANCEL
+
+
+
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.shock_stage >= 30)
+			user << SPAN_WARNING("Pain distracts you from your task.")
+			fail_chance += round(H.shock_stage/120 * 40)
+			base_time += round(H.shock_stage/120 * 40)
+
+
+	//Start time and time spent are used to calculate resource use
+	var/start_time = world.time
+	var/time_spent = 0
+
+	//Precalculate worktime here
+	var/time_to_finish = 0
+	if (base_time)
+		time_to_finish = base_time - get_tool_quality(required_quality) - user.stats.getStat(required_stat)
+
+	if((instant_finish_tier < get_tool_quality(required_quality)) || time_to_finish < 0)
+		time_to_finish = 0
+
+	if(istype(src, /obj/item/weapon/tool))
+		var/obj/item/weapon/tool/T = src
+		if(!T.check_tool_effects(user, time_to_finish))
+			return TOOL_USE_CANCEL
+
+
+	//Repeating sound code!
+	//A datum/repeating_sound is a little object we can use to make a sound repeat a few times
+	var/datum/repeating_sound/toolsound = null
+	if(forced_sound != NO_WORKSOUND)
+
+		var/soundfile
+		if(forced_sound)
+			soundfile = forced_sound
+		else
+			soundfile = worksound
+
+		if (sound_repeat && time_to_finish)
+			//It will repeat roughly every 2.5 seconds until our tool finishes
+			toolsound = new/datum/repeating_sound(sound_repeat,time_to_finish,0.15, src, soundfile, 80, 1)
+		else
+			playsound(src.loc, soundfile, 100, 1)
+
+	//The we handle the doafter for the tool usage
+	if(time_to_finish)
+		target.used_now = TRUE
+
+		if(!do_after(user, time_to_finish, user))
+			//If the doafter fails
+			user << SPAN_WARNING("You need to stand still to finish the task properly!")
+			target.used_now = FALSE
+			time_spent = world.time - start_time //We failed, spent only part of the time working
+			consume_resources(time_spent, user)
+			if (toolsound)
+				//We abort the repeating sound.
+				//Stop function will delete itself too
+				toolsound.stop()
+				toolsound = null
+			return TOOL_USE_CANCEL
+		else
+			target.used_now = FALSE
+
+	//If we get here the operation finished correctly, we spent the full time working
+	time_spent = time_to_finish
+	consume_resources(time_spent, user)
+
+	//Safe cleanup
+	if (toolsound)
+		toolsound.stop()
+		toolsound = null
+
+	var/stat_modifer = 0
+	if(required_stat)
+		stat_modifer = user.stats.getStat(required_stat)
+	fail_chance = fail_chance - get_tool_quality(required_quality) - stat_modifer
+	if(prob(fail_chance))
+		user << SPAN_WARNING("You failed to finish your task with [src.name]! There was a [fail_chance]% chance to screw this up.")
+		return TOOL_USE_FAIL
+
+	return TOOL_USE_SUCCESS
+
+
+
+
+/******************************
+	/* Tool Failure */
+*******************************/
+
+//Critical failure rolls. If you use use_tool_extended, you might want to call that proc as well.
+/obj/item/proc/handle_failure(var/mob/living/user, var/atom/target, required_stat = null, required_quality)
+
+	var/crit_fail_chance = 25
+	if(required_stat)
+		crit_fail_chance = crit_fail_chance - user.stats.getStat(required_stat)
+	else
+		crit_fail_chance = 10
+
+	if(prob(crit_fail_chance))
+		var/fail_type = rand(0, 100)
+
+		switch(fail_type)
+
+			if(0 to 29)
+				if(ishuman(user))
+					user << SPAN_DANGER("You drop [src] on the floor.")
+					user.drop_from_inventory(src)
+					return
+
+			if(30 to 49)
+				if(ishuman(user))
+					var/mob/living/carbon/human/H = user
+					user << SPAN_DANGER("Your hand slips while working with [src]!")
+					attack(H, H, H.get_holding_hand(src))
+					return
+
+			if(50 to 79)
+				if(ishuman(user))
+					var/mob/living/carbon/human/H = user
+					var/throw_target = pick(trange(6, user))
+					user << SPAN_DANGER("Your [src] flies away!")
+					H.unEquip(src)
+					src.throw_at(throw_target, src.throw_range, src.throw_speed, H)
+					return
+
+			if(70 to 84)
+				if(ishuman(user))
+					var/mob/living/carbon/human/H = user
+					user << SPAN_DANGER("You accidentally stuck [src] in your hand!")
+					H.get_organ(H.get_holding_hand(src)).embed(src)
+					return
+
+			if(85 to 94)
+				if(ishuman(user))
+					user << SPAN_DANGER("Your [src] broke beyond repair!")
+					new /obj/item/weapon/material/shard/shrapnel(user.loc)
+					qdel(src)
+					return
+
+			if(95 to 100)
+				if(ishuman(user))
+					if(istype(src, /obj/item/weapon/tool))
+						var/obj/item/weapon/tool/T = src
+						if(T.use_fuel_cost)
+							user << SPAN_DANGER("You ignite the fuel of the [src]!")
+							var/fuel = T.get_fuel()
+							T.consume_fuel(fuel)
+							user.adjust_fire_stacks(fuel/10)
+							user.IgniteMob()
+							T.update_icon()
+							return
+						if(T.use_power_cost && T.cell)
+							user << SPAN_DANGER("You overload the cell in the [src]!")
+							if (T.cell.charge >= 400)
+								explosion(src.loc,-1,0,2)
+							else
+								explosion(src.loc,-1,0,1)
+							qdel(T.cell)
+							T.cell = null
+							T.update_icon()
+							return
+
+
+
+
+
+/******************************
+	/* Data and Checking */
+*******************************/
+/obj/item/proc/has_quality(quality_id)
+	return quality_id in tool_qualities
+
+/obj/item/proc/get_tool_quality(quality_id)
+	if (tool_qualities && tool_qualities.len)
+		return tool_qualities[quality_id]
+	return null
+
+//We are cheking if our item got required qualities. If we require several qualities, and item posses more than one of those, we ask user to choose how that item should be used
+/obj/item/proc/get_tool_type(var/mob/living/user, var/list/required_qualities)
+	var/start_loc = user.loc
+	var/list/L = required_qualities & tool_qualities
+
+	if(!L.len)
+		return FALSE
+
+	var/return_quality = L[1]
+	if(L.len > 1)
+		return_quality = input(user,"What quality you using?", "Tool options", ABORT_CHECK) in L
+	if(user.loc != start_loc)
+		user << SPAN_WARNING("You need to stand still!")
+		return ABORT_CHECK
+	else
+		return return_quality
+
+
+
+
+
+
+
+
+/obj/item/weapon/tool/proc/turn_on(mob/user)
+	switched_on = TRUE
+	tool_qualities = switched_on_qualities
+	if(glow_color)
+		set_light(l_range = 1.7, l_power = 1.3, l_color = glow_color)
+	update_icon()
+	update_wear_icon()
+
+/obj/item/weapon/tool/proc/turn_off(mob/user)
+	switched_on = FALSE
+	STOP_PROCESSING(SSobj, src)
+	tool_qualities = switched_off_qualities
+	if(glow_color)
+		set_light(l_range = 0, l_power = 0, l_color = glow_color)
+	update_icon()
+	update_wear_icon()
+
+
+
+
+
+
+
+
+/*********************
+	Resource Consumption
+**********************/
+/obj/item/weapon/tool/proc/consume_resources(var/timespent, var/user)
+	//We will always use a minimum of 1 second worth of resources
+	if (timespent < 10)
+		timespent = 10
 
 	if(use_power_cost)
-		if(!cell || !cell.checked_use(use_power_cost))
+		if (!cell.checked_use(use_power_cost*timespent))
 			user << SPAN_WARNING("[src] battery is dead or missing.")
 			return FALSE
 
 	if(use_fuel_cost)
-		if(!consume_fuel(use_fuel_cost))
+		if(!consume_fuel(use_fuel_cost*timespent))
 			user << SPAN_NOTICE("You need more welding fuel to complete this task.")
+			return FALSE
+
+	if(use_stock_cost)
+		var/scost = use_stock_cost * timespent
+		if (!allow_decimal_stock)
+			scost = round(scost, 1)
+		consume_stock(scost)
+
+//Power and fuel drain, sparks spawn
+/obj/item/weapon/tool/proc/check_tool_effects(mob/living/user, var/time)
+
+	if(use_power_cost)
+		if(!cell || !cell.check_charge(use_power_cost*time))
+			user << SPAN_WARNING("[src] battery is dead or missing.")
+			return FALSE
+
+	if(use_fuel_cost)
+		if(get_fuel() < (use_fuel_cost*time))
+			user << SPAN_NOTICE("You need more welding fuel to complete this task.")
+			return FALSE
+
+	if (use_stock_cost)
+		if(stock < (use_stock_cost*time))
+			user << SPAN_NOTICE("There is not enough left in [src] to complete this task.")
 			return FALSE
 
 	if(eye_hazard)
@@ -136,6 +419,17 @@
 		reagents.remove_reagent("fuel", volume)
 		return TRUE
 	return FALSE
+
+
+/obj/item/weapon/tool/proc/consume_stock(var/number)
+	if (stock >= number)
+		stock -= number
+	else
+		stock = 0
+
+	if (delete_when_empty && stock <= 0)
+		qdel(src)
+
 
 /obj/item/weapon/tool/examine(mob/user)
 	if(!..(user,2))

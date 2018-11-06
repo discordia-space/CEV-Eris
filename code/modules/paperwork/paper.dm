@@ -390,7 +390,7 @@
 /obj/item/weapon/paper/attackby(obj/item/weapon/P as obj, mob/user as mob)
 	..()
 
-	if(istype(P, /obj/item/weapon/tape_roll))
+	if(istype(P, /obj/item/weapon/tool/tape_roll))
 		var/obj/item/weapon/tape_roll/tape = P
 		tape.stick(src, user)
 		return
