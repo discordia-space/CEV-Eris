@@ -48,8 +48,19 @@ SUBSYSTEM_DEF(mapping)
 	A.contents.Add(turfs)
 
 	maps_data.sealed_levels |= maps_data.overmap_z
-	overmap_event_handler.create_events(maps_data.overmap_z, maps_data.overmap_size, maps_data.overmap_event_areas)
 	testing("Overmap build complete.")
 
 /datum/controller/subsystem/mapping/Recover()
 	flags |= SS_NO_INIT
+
+/hook/roundstart/proc/init_overmap_events()
+	if (config.use_overmap)
+		if (maps_data.overmap_z)
+			testing("Creating overmap events...")
+			var/t1 = world.tick_usage
+			overmap_event_handler.create_events(maps_data.overmap_z, maps_data.overmap_size, maps_data.overmap_event_areas)
+			testing("Overmap events created in [(world.tick_usage-t1)*0.01*world.tick_lag] seconds")
+		else
+			testing("Overmap failed to create events.")
+			return FALSE
+	return TRUE
