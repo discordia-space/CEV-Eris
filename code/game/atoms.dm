@@ -276,7 +276,6 @@ its easier to just keep the beam vertical.
 		var/atom/A = i
 		A.container_dir_changed(new_dir)
 	dir = new_dir
-	dir_set_event.raise_event(src, old_dir, new_dir)
 	return TRUE
 
 /atom/proc/container_dir_changed(new_dir)
@@ -607,23 +606,14 @@ its easier to just keep the beam vertical.
 		//An item is delivered on the cargo shuttle
 		//An item is purchased or dispensed from a vendor (Those things contain premade items and just release them)
 
+/atom/proc/get_cell()
+	return
+
 /atom/proc/get_coords()
-	var/datum/coords/C = new
-	var/atom/A = src
-	if ((x + y + z) != 0)
-		C.x_pos = x
-		C.y_pos = y
-		C.z_pos = z
+	var/turf/T = get_turf(src)
+	if (T)
+		var/datum/coords/C = new
+		C.x_pos = T.x
+		C.y_pos = T.y
+		C.z_pos = T.z
 		return C
-	else
-		while (A.loc && istype(A.loc,/atom))
-			A = A.loc
-			if ((A.x + A.y + A.z) != 0)
-				C.x_pos = A.x
-				C.y_pos = A.y
-				C.z_pos = A.z
-				return C
-	log_debug("Debug: Could not find coordinates of atom - [A.name]")
-	qdel(C)
-	return null
-	

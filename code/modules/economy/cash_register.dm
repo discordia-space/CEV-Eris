@@ -176,7 +176,7 @@
 
 /obj/machinery/cash_register/attackby(obj/O as obj, user as mob)
 	// Check for a method of paying (ID, PDA, e-wallet, cash, ect.)
-	var/obj/item/weapon/card/id/I = O.GetID()
+	var/obj/item/weapon/card/id/I = O.GetIdCard()
 	if(I)
 		scan_card(I, O)
 	else if (istype(O, /obj/item/weapon/spacecash/ewallet))

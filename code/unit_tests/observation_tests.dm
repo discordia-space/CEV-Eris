@@ -1,5 +1,5 @@
 /proc/is_listening_to_movement(var/atom/movable/listening_to, var/listener)
-	return moved_event.is_listening(listening_to, listener)
+	return GLOB.moved_event.is_listening(listening_to, listener)
 
 /datum/unit_test/observation
 	name = "OBSERVATION template"
@@ -16,7 +16,7 @@
 	sanity_check_events("Post-Test")
 
 /datum/unit_test/observation/proc/sanity_check_events(var/phase)
-	for(var/entry in all_observable_events.events)
+	for(var/entry in GLOB.all_observable_events)
 		var/decl/observ/event = entry
 		if(null in event.global_listeners)
 			fail("[phase]: [event] - The global listeners list contains a null entry.")
@@ -59,7 +59,7 @@
 	var/turf/target = locate(20,21,1)
 	var/mob/living/carbon/human/H = new(start)
 
-	moved_event.register_global(src, /datum/unit_test/observation/proc/receive_move)
+	GLOB.moved_event.register_global(src, /datum/unit_test/observation/proc/receive_move)
 	H.forceMove(target)
 
 	if(received_moves.len != 1)
@@ -73,7 +73,7 @@
 	else
 		pass("Received the expected move event.")
 
-	moved_event.unregister_global(src)
+	GLOB.moved_event.unregister_global(src)
 	qdel(H)
 	return 1
 
@@ -201,7 +201,7 @@
 
 	mech.occupant = holding_mob
 
-	moved_event.register(held_item, src, /datum/unit_test/observation/proc/receive_move)
+	GLOB.moved_event.register(held_item, src, /datum/unit_test/observation/proc/receive_move)
 	holding_mob.drop_from_inventory(held_item)
 
 	if(received_moves.len != 1)
@@ -217,7 +217,7 @@
 	else
 		pass("One one moved event with expected arguments raised.")
 
-	moved_event.unregister(held_item, src)
+	GLOB.moved_event.unregister(held_item, src)
 	qdel(mech)
 	qdel(held_item)
 	qdel(held_mob)
@@ -280,10 +280,10 @@
 	var/turf/T = locate(20,20,1)
 	var/mob/M = new(T)
 
-	moved_event.register_global(M, /datum/unit_test/observation/proc/receive_move)
+	GLOB.moved_event.register_global(M, /datum/unit_test/observation/proc/receive_move)
 	qdel(M)
 
-	if(null in moved_event.global_listeners)
+	if(null in GLOB.moved_event.global_listeners)
 		fail("The global listener list contains a null entry.")
 	else
 		pass("The global listener list does not contain a null entry.")
@@ -302,10 +302,10 @@
 	listener.real_name = "Event Listener"
 	listener.name = "Event Listener"
 
-	moved_event.register(event_source, listener, /atom/movable/proc/recursive_move)
+	GLOB.moved_event.register(event_source, listener, /atom/movable/proc/recursive_move)
 	qdel(event_source)
 
-	if(null in moved_event.event_sources)
+	if(null in GLOB.moved_event.event_sources)
 		fail("The event source list contains a null entry.")
 	else
 		pass("The event source list does not contain a null entry.")
@@ -325,10 +325,10 @@
 	listener.real_name = "Event Listener"
 	listener.name = "Event Listener"
 
-	moved_event.register(event_source, listener, /atom/movable/proc/recursive_move)
+	GLOB.moved_event.register(event_source, listener, /atom/movable/proc/recursive_move)
 	qdel(listener)
 
-	var/listeners = moved_event.event_sources[event_source]
+	var/listeners = GLOB.moved_event.event_sources[event_source]
 	if(listeners && (null in listeners))
 		fail("The event source listener list contains a null entry.")
 	else
@@ -346,5 +346,5 @@
 	listener.real_name = "Event Listener"
 	listener.name = "Event Listener"
 
-	moved_event.register(event_source, listener, /atom/movable/proc/recursive_move)
+	GLOB.moved_event.register(event_source, listener, /atom/movable/proc/recursive_move)
 	qdel(listener)

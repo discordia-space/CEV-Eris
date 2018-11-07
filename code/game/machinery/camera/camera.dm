@@ -34,6 +34,7 @@
 	var/on_open_network = 0
 
 	var/affected_by_emp_until = 0
+	var/last_shown_time = 0
 
 /obj/machinery/camera/New()
 	..()
@@ -88,7 +89,6 @@
 			stat |= EMPED
 			set_light(0)
 			triggerCameraAlarm()
-			kick_viewers()
 			update_icon()
 			update_coverage()
 			START_PROCESSING(SSmachines, src)
@@ -182,33 +182,39 @@
 		interact(user)
 
 	// OTHER
-	else if (can_use() && (istype(I, /obj/item/weapon/paper) || istype(I, /obj/item/device/pda)) && isliving(user))
+	else if (can_use() && isliving(user))
 		var/mob/living/U = user
-		var/obj/item/weapon/paper/X = null
-		var/obj/item/device/pda/P = null
+		var/list/mob/viewers = list()
+		if(last_shown_time < world.time)
+			U << "You hold \a [I.name] up to the camera ..."
+			for(var/mob/O in living_mob_list)
+				if(!O.client) 
+					continue
+				if (istype(O, /mob/living/silicon/ai))
+					viewers += O
+				else if (istype(O.machine, /obj/item/modular_computer))
+					var/obj/item/modular_computer/S = O.machine
+					if (S.active_program && S.active_program.NM && istype(S.active_program.NM, /datum/nano_module/camera_monitor))
+						var/datum/nano_module/camera_monitor/CM = S.active_program.NM
+						if (CM.current_camera == src)
+							viewers += O
+			for(var/mob/O in viewers)
+				if(!O.client) 
+					continue
+				if(istype(O, /mob/living/silicon/ai))
+					if(U.name == "Unknown")
+						O << "<b>[U]</b> holds \a [I.name] up to one of your cameras ..."
+					else 
+						O << "<b><a href='byond://?src=\ref[O];track2=\ref[O];track=\ref[U];trackname=[U.name]'>[U]</a></b> holds \a [I.name] up to one of your cameras ..."
+				else
+					O << "<b>[U]</b> holds \a [I.name] up to the camera ..."
 
-		var/itemname = ""
-		var/info = ""
-		if(istype(I, /obj/item/weapon/paper))
-			X = I
-			itemname = X.name
-			info = X.info
-		else
-			P = I
-			itemname = P.name
-			info = P.notehtml
-		U << "You hold \a [itemname] up to the camera ..."
-		for(var/mob/living/silicon/ai/O in living_mob_list)
-			if(!O.client) continue
-			if(U.name == "Unknown") O << "<b>[U]</b> holds \a [itemname] up to one of your cameras ..."
-			else O << "<b><a href='byond://?src=\ref[O];track2=\ref[O];track=\ref[U];trackname=[U.name]'>[U]</a></b> holds \a [itemname] up to one of your cameras ..."
-			O << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
-		for(var/mob/O in player_list)
-			if (istype(O.machine, /obj/machinery/computer/security))
-				var/obj/machinery/computer/security/S = O.machine
-				if (S.current_camera == src)
-					O << "[U] holds \a [itemname] up to one of the cameras ..."
-					O << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
+				if(istype(I, /obj/item/weapon/paper))
+					var/obj/item/weapon/paper/X = I
+					O << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", X.name, X.info), text("window=[]", X.name))
+				else
+					I.examine(O)
+			last_shown_time = world.time + 2 SECONDS
 
 	else if (istype(I, /obj/item/weapon/camera_bug))
 		if (!src.can_use())
@@ -239,26 +245,25 @@
 		user = null
 
 	if(choice != 1)
-		//legacy support, if choice is != 1 then just kick viewers without changing status
-		kick_viewers()
-	else
-		set_status(!src.status)
-		if (!(src.status))
-			if(user)
-				visible_message(SPAN_NOTICE(" [user] has deactivated [src]!"))
-			else
-				visible_message(SPAN_NOTICE(" [src] clicks and shuts down. "))
-			playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
-			icon_state = "[initial(icon_state)]1"
-			add_hiddenprint(user)
+		return
+
+	set_status(!src.status)
+	if (!(src.status))
+		if(user)
+			visible_message(SPAN_NOTICE(" [user] has deactivated [src]!"))
 		else
-			if(user)
-				visible_message(SPAN_NOTICE(" [user] has reactivated [src]!"))
-			else
-				visible_message(SPAN_NOTICE(" [src] clicks and reactivates itself. "))
-			playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
-			icon_state = initial(icon_state)
-			add_hiddenprint(user)
+			visible_message(SPAN_NOTICE(" [src] clicks and shuts down. "))
+		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
+		icon_state = "[initial(icon_state)]1"
+		add_hiddenprint(user)
+	else
+		if(user)
+			visible_message(SPAN_NOTICE(" [user] has reactivated [src]!"))
+		else
+			visible_message(SPAN_NOTICE(" [src] clicks and reactivates itself. "))
+		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
+		icon_state = initial(icon_state)
+		add_hiddenprint(user)
 
 /obj/machinery/camera/proc/take_damage(var/force, var/message)
 	//prob(25) gives an average of 3-4 hits
@@ -270,7 +275,6 @@
 	stat |= BROKEN
 	wires.RandomCutAll()
 
-	kick_viewers()
 	triggerCameraAlarm()
 	update_icon()
 	update_coverage()
@@ -285,25 +289,11 @@
 	if (status != newstatus)
 		status = newstatus
 		update_coverage()
-		// now disconnect anyone using the camera
-		//Apparently, this will disconnect anyone even if the camera was re-activated.
-		//I guess that doesn't matter since they couldn't use it anyway?
-		kick_viewers()
 
 /obj/machinery/camera/check_eye(mob/user)
 	if(!can_use()) return -1
 	if(isXRay()) return SEE_TURFS|SEE_MOBS|SEE_OBJS
 	return 0
-
-//This might be redundant, because of check_eye()
-/obj/machinery/camera/proc/kick_viewers()
-	for(var/mob/O in player_list)
-		if (istype(O.machine, /obj/machinery/computer/security))
-			var/obj/machinery/computer/security/S = O.machine
-			if (S.current_camera == src)
-				O.unset_machine()
-				O.reset_view(null)
-				O << "The screen bursts into static."
 
 /obj/machinery/camera/update_icon()
 	if (!status || (stat & BROKEN))

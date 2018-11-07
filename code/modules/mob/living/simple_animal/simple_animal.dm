@@ -84,8 +84,11 @@
 		src.client.screen = null
 	..()
 
+
 /mob/living/simple_animal/updatehealth()
-	return
+	..()
+	if (health <= 0)
+		death()
 
 /mob/living/simple_animal/Life()
 	..()

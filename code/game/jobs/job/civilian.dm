@@ -3,7 +3,7 @@
 	title = "Bartender"
 	flag = BARTENDER
 	department = "Civilian"
-	department_flag = CIVILIAN
+	department_flag = SERVICE
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
@@ -17,7 +17,7 @@
 	)
 
 	uniform = /obj/item/clothing/under/rank/bartender
-	pda = /obj/item/device/pda/bar
+	pda = /obj/item/modular_computer/pda
 	ear = /obj/item/device/radio/headset/headset_service
 
 	equip(var/mob/living/carbon/human/H)
@@ -53,7 +53,7 @@
 	title = "Chef"
 	flag = CHEF
 	department = "Civilian"
-	department_flag = CIVILIAN
+	department_flag = SERVICE
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
@@ -65,7 +65,7 @@
 
 	uniform = /obj/item/clothing/under/rank/chef
 	shoes = /obj/item/clothing/shoes/black
-	pda = /obj/item/device/pda/chef
+	pda = /obj/item/modular_computer/pda
 	hat = /obj/item/clothing/head/chefhat
 	suit = /obj/item/clothing/suit/chef
 	ear = /obj/item/device/radio/headset/headset_service
@@ -81,7 +81,7 @@
 	title = "Gardener"
 	flag = BOTANIST
 	department = "Civilian"
-	department_flag = CIVILIAN
+	department_flag = SERVICE
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 1
@@ -93,10 +93,12 @@
 
 	stat_modifers = list(
 		STAT_BIO = 10,
+		STAT_TGH = 10,
+		STAT_ROB = 20,
 	)
 
 	uniform = /obj/item/clothing/under/rank/hydroponics
-	pda = /obj/item/device/pda/botanist
+	pda = /obj/item/modular_computer/pda
 	suit = /obj/item/clothing/suit/apron
 	gloves = /obj/item/clothing/gloves/botanic_leather
 	ear = /obj/item/device/radio/headset/headset_service
@@ -114,7 +116,7 @@
 	title = "Actor"
 	flag = ACTOR
 	department = "Civilian"
-	department_flag = CIVILIAN
+	department_flag = SERVICE
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
@@ -130,7 +132,7 @@
 
 	uniform = /obj/item/clothing/under/rank/clown
 	shoes = /obj/item/clothing/shoes/clown_shoes
-	pda = /obj/item/device/pda/clown
+	pda = /obj/item/modular_computer/pda
 	mask = /obj/item/clothing/mask/gas/clown_hat
 	ear = /obj/item/device/radio/headset/headset_service
 
@@ -164,7 +166,7 @@
 	title = "Janitor"
 	flag = JANITOR
 	department = "Civilian"
-	department_flag = CIVILIAN
+	department_flag = SERVICE
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
@@ -177,8 +179,11 @@
 		STAT_ROB = 10,
 	)
 
+	software_on_spawn = list(
+							 /datum/computer_file/program/camera_monitor)
+
 	uniform = /obj/item/clothing/under/rank/janitor
-	pda = /obj/item/device/pda/janitor
+	pda = /obj/item/modular_computer/pda
 	ear = /obj/item/device/radio/headset/headset_service
 
 /obj/landmark/join/start/janitor

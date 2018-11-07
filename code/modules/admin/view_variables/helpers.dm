@@ -90,3 +90,7 @@
 		<option value='?_src_=vars;explode=\ref[src]'>Trigger explosion</option>
 		<option value='?_src_=vars;emp=\ref[src]'>Trigger EM pulse</option>
 		"}
+
+// The following vars cannot be viewed by anyone
+/datum/proc/VV_hidden()
+	return list()

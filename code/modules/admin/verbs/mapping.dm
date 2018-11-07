@@ -141,7 +141,7 @@ var/list/debug_verbs = list (
 	,/datum/admins/proc/show_traitor_panel
 	,/client/proc/print_jobban_old
 	,/client/proc/print_jobban_old_filter
-	,/client/proc/forceEvent
+	//,/client/proc/forceEvent //Todo: Replace
 	,/client/proc/break_all_air_groups
 	,/client/proc/regroup_all_air_groups
 	,/client/proc/kill_pipe_processing
