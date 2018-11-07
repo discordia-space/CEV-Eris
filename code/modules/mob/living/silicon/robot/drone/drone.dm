@@ -186,7 +186,7 @@ var/list/mob_hat_cache = list()
 		user << SPAN_DANGER("\The [src] is not compatible with \the [W].")
 		return
 
-	else if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
+	else if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/modular_computer))
 
 		if(stat == 2)
 

@@ -21,7 +21,6 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 
 	report_progress("[global_vars] global variables")
 	report_progress("[global_procs] global init procs")
-
 	try
 		if(global_vars == global_procs)
 			Initialize()
@@ -52,8 +51,8 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 
 	stat("Globals:", statclick.update("Edit"))
 
-///datum/controller/global_vars/VV_hidden()//Part of bay var viewer improvements
-	//return ..() + gvars_datum_protected_varlist
+/datum/controller/global_vars/VV_hidden()//Part of bay var viewer improvements
+	return ..() + gvars_datum_protected_varlist
 
 /datum/controller/global_vars/Initialize()
 	gvars_datum_init_order = list()
@@ -65,7 +64,3 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 		call(src, I)()
 		if(world.time - start_tick)
 			warning("[I] slept during initialization!")
-
-/datum/controller/global_vars/proc/DoNothing()
-	return
-	//This is just here to make it compile

@@ -5,7 +5,7 @@
 	icon_state = "generic"
 	layer = CLOSED_TURF_LAYER
 	opacity = 1
-	density = 1
+	density = TRUE
 	blocks_air = 1
 	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
 	heat_capacity = 312500 //a little over 5 cm thick , 312500 for 1 m by 2.5 m by 0.25 m plasteel wall
@@ -41,19 +41,40 @@
 			img.alpha = (i * alpha_inc) - 1
 			damage_overlays.Add(img)
 
-	..(newloc)
+
 	icon_state = "blank"
 	if(!materialtype)
 		materialtype = MATERIAL_STEEL
 	material = get_material_by_name(materialtype)
 	if(!isnull(rmaterialtype))
 		reinf_material = get_material_by_name(rmaterialtype)
-	update_material()
-	hitsound = material.hitsound
+	update_material(FALSE) //We call update material with update set to false, so it won't update connections or icon yet
+	..(newloc)
 
-/turf/simulated/wall/Initialize()
-	START_PROCESSING(SSturf, src) //Used for radiation.
-	. = ..()
+
+/turf/simulated/wall/Initialize(var/mapload)
+	..()
+
+	if (mapload)
+		//We defer icon updates to late initialize at roundstart
+		return INITIALIZE_HINT_LATELOAD
+
+	else
+		//If we get here, this wall was built during the round
+		//We'll update its connections and icons as normal
+		update_connections(TRUE)
+		update_icon()
+
+
+/turf/simulated/wall/LateInitialize()
+	//If we get here, this wall was mapped in at roundstart
+	update_connections(FALSE)
+	/*We set propagate to false when updating connections at roundstart
+	This ensures that each wall will only update itself, once.
+	*/
+
+	update_icon()
+
 
 /turf/simulated/wall/Destroy()
 	STOP_PROCESSING(SSturf, src)
