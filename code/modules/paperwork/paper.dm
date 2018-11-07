@@ -387,12 +387,13 @@
 		update_icon()
 
 
+
+
 /obj/item/weapon/paper/attackby(obj/item/weapon/P as obj, mob/user as mob)
 	..()
 
 	if(P.has_quality(QUALITY_ADHESIVE))
-		P:stick(src, user) //I know using colon is a hack, but this should be safe as long as future adhesive items are made right
-		return
+		return //The tool's afterattack will handle this
 
 	if(istype(P, /obj/item/weapon/paper) || istype(P, /obj/item/weapon/photo))
 		if (istype(P, /obj/item/weapon/paper/carbon))

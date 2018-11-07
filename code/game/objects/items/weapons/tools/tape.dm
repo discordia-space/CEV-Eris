@@ -84,7 +84,8 @@
 
 		else if(user.targeted_organ == BP_R_ARM || user.targeted_organ == BP_L_ARM)
 			var/obj/item/weapon/handcuffs/cable/tape/T = new(user)
-			consume_stock(user, 100) //Uses up tape whether or not you succeed
+			//Uses up tape whether or not you succeed
+			consume_resources(100, user)
 			if(!T.place_handcuffs(H, user))
 				user.unEquip(T)
 				qdel(T)
@@ -92,14 +93,21 @@
 			return ..()
 		return 1
 
-/obj/item/weapon/tool/tape_roll/proc/stick(var/obj/item/weapon/W, mob/user)
-	if(!istype(W, /obj/item/weapon/paper))
+/obj/item/weapon/tool/tape_roll/stick(var/obj/item/target, var/mob/user)
+	if (!istype(target) || target.anchored)
 		return
-	consume_stock(user, 10)
-	user.drop_from_inventory(W)
+
+	if (target.w_class > ITEM_SIZE_SMALL)
+		user << SPAN_WARNING("The [target] is too big to stick with tape!")
+		return
+
+	consume_resources(10, user)
+	user.drop_from_inventory(target)
 	var/obj/item/weapon/ducttape/tape = new(get_turf(src))
-	tape.attach(W)
+	tape.attach(target)
 	user.put_in_hands(tape)
+	return TRUE
+
 
 /obj/item/weapon/ducttape
 	name = "tape"
@@ -122,9 +130,18 @@
 /obj/item/weapon/ducttape/proc/attach(var/obj/item/weapon/W)
 	stuck = W
 	W.forceMove(src)
-	icon_state = W.icon_state + "_taped"
+	if (istype(W, /obj/item/weapon/paper))
+		icon_state = W.icon_state + "_taped"
+		overlays = W.overlays
+	else
+		var/mutable_appearance/MA = new(W)
+		MA.layer = layer
+		MA.plane = plane
+		MA.pixel_x = 0
+		MA.pixel_y = 0
+		underlays += MA
 	name = W.name + " (taped)"
-	overlays = W.overlays
+
 
 /obj/item/weapon/ducttape/attack_self(mob/user)
 	if(!stuck)

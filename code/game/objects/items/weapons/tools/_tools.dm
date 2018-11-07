@@ -141,12 +141,14 @@
 	var/time_spent = 0
 
 	//Precalculate worktime here
+	world << "Doing tool op basetime [base_time]. Subtracting quality [get_tool_quality(required_quality)] subtracting stat[user.stats.getStat(required_stat)]"
 	var/time_to_finish = 0
 	if (base_time)
 		time_to_finish = base_time - get_tool_quality(required_quality) - user.stats.getStat(required_stat)
 
 	if((instant_finish_tier < get_tool_quality(required_quality)) || time_to_finish < 0)
 		time_to_finish = 0
+	world << "total time will be [time_to_finish]"
 
 	var/obj/item/weapon/tool/T
 	if(istype(src, /obj/item/weapon/tool))
@@ -472,7 +474,12 @@
 				L.IgniteMob()
 			if (istype(location, /turf))
 				location.hotspot_expose(700, 50, 1)
-	return
+
+	if (has_quality(QUALITY_ADHESIVE) && proximity)
+		if (stick(O, user))
+			return
+
+	return ..()
 
 //Decides whether or not to damage a player's eyes based on what they're wearing as protection
 //Note: This should probably be moved to mob
@@ -562,6 +569,14 @@
 			ratio = get_fuel() / max_fuel
 			ratio = max(round(ratio, 0.25) * 100, 25)
 			overlays += "[icon_state]-[ratio]"
+
+/***************************
+	Misc/utility procs
+****************************/
+
+//Used by adhesive tools to stick an item to stuff
+/obj/item/weapon/tool/proc/stick(var/obj/item/target, var/mob/user)
+	return
 
 
 /obj/item/weapon/tool/admin_debug
