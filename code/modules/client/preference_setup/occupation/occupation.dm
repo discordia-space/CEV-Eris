@@ -80,6 +80,9 @@
 		if(jobban_isbanned(user, rank))
 			. += "<del>[rank]</del></td><td><b> \[BANNED]</b></td></tr>"
 			continue
+		if(("Assistant" in pref.job_low) && (rank != "Assistant"))
+			. += "<font color=orange>[rank]</font></td><td></td></tr>"
+			continue
 		if((rank in command_positions) || (rank == "AI"))//Bold head jobs
 			. += "<b>[rank]</b>"
 		else
@@ -87,21 +90,37 @@
 
 		. += "</td><td width='40%'>"
 
-		//. += "<a href='?src=\ref[src];set_job=[rank]'>"
-
 		if(rank == "Assistant")//Assistant is special
 			if("Assistant" in pref.job_low)
+				. += "<a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_NEVER]'>"
 				. += " <font color=55cc55>\[Yes]</font>"
 			else
+				. += "<a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_LOW]'>"
 				. += " <font color=black>\[No]</font>"
 			. += "</a></td></tr>"
 			continue
-		else
-			. += " <a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_HIGH]'>[current_level == JOB_LEVEL_HIGH ? "<font color=55cc55>" : ""]\[High][current_level == JOB_LEVEL_HIGH ? "</font>" : ""]</a>"
-			. += " <a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_MEDIUM]'>[current_level == JOB_LEVEL_MEDIUM ? "<font color=eecc22>" : ""]\[Medium][current_level == JOB_LEVEL_MEDIUM ? "</font>" : ""]</a>"
-			. += " <a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_LOW]'>[current_level == JOB_LEVEL_LOW ? "<font color=cc5555>" : ""]\[Low][current_level == JOB_LEVEL_LOW ? "</font>" : ""]</a>"
-			. += " <a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_NEVER]'>[current_level == JOB_LEVEL_NEVER ? "<font color=black>" : ""]\[NEVER][current_level == JOB_LEVEL_NEVER ? "</font>" : ""]</a>"
 
+		var/nextJobLevel = current_level
+		var/jobButtonColor = "black"
+		var/jobButtonText = "bug"
+		switch (current_level)
+			if (JOB_LEVEL_HIGH)
+				nextJobLevel = JOB_LEVEL_NEVER
+				jobButtonColor = "55cc55"
+				jobButtonText = "High"
+			if (JOB_LEVEL_MEDIUM)
+				nextJobLevel = JOB_LEVEL_HIGH
+				jobButtonColor = "eecc22"
+				jobButtonText = "Medium"
+			if (JOB_LEVEL_LOW)
+				nextJobLevel = JOB_LEVEL_MEDIUM
+				jobButtonColor = "cc5555"
+				jobButtonText = "Low"
+			if (JOB_LEVEL_NEVER)
+				nextJobLevel = JOB_LEVEL_LOW
+				jobButtonColor = "black"
+				jobButtonText = "NEVER"
+		. += " <a href='?src=\ref[src];set_job=[rank];set_level=[nextJobLevel]'> <font color=[jobButtonColor]>[jobButtonText]</font>"
 
 		. += "</a></td></tr>"
 
