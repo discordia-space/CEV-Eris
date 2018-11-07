@@ -234,7 +234,7 @@
 							open(1)
 					else
 						spawn()
-							close()
+							close(1)
 					return
 				return
 			return
@@ -289,9 +289,16 @@
 		if(changed)
 			update_icon()
 
-/obj/machinery/door/firedoor/close()
+/obj/machinery/door/firedoor/close(var/forced = 0)
 	if (blocked) //welded
 		return
+
+	if(!forced)
+		if(stat & (BROKEN|NOPOWER))
+			return //needs power to open unless it was forced
+		else
+			use_power(360)
+
 	return ..()
 
 /obj/machinery/door/firedoor/open(var/forced = 0)
