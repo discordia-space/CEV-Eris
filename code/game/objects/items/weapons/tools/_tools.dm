@@ -56,20 +56,15 @@
 
 //For killing processes like hot spots
 /obj/item/weapon/tool/Destroy()
-	if (src in SSobj.processing)
-		STOP_PROCESSING(SSobj, src)
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 //Ignite plasma around, if we need it
 /obj/item/weapon/tool/Process()
 	if(switched_on)
 		if(create_hot_spot)
-			var/turf/location = src.loc
-			if(istype(location, /mob/))
-				var/mob/M = location
-				if(M.l_hand == src || M.r_hand == src)
-					location = get_turf(M)
-			if (istype(location, /turf))
+			var/turf/location = get_turf(src)
+			if (location)
 				location.hotspot_expose(700, 5)
 
 		if (passive_fuel_cost)
@@ -109,7 +104,7 @@
 
 //Simple form ideal for basic use. That proc will return TRUE only when everything was done right, and FALSE if something went wrong, ot user was unlucky.
 //Editionaly, handle_failure proc will be called for a critical failure roll.
-/obj/item/proc/use_tool(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, required_stat = null, instant_finish_tier = 110, forced_sound = null, var/sound_repeat = 2.5)
+/obj/item/proc/use_tool(var/mob/living/user, var/atom/target, var/base_time, var/required_quality, var/fail_chance, var/required_stat, var/instant_finish_tier = 110, forced_sound = null, var/sound_repeat = 2.5)
 	var/result = use_tool_extended(user, target, base_time, required_quality, fail_chance, required_stat, instant_finish_tier, forced_sound)
 	switch(result)
 		if(TOOL_USE_CANCEL)
@@ -210,6 +205,8 @@
 	if(required_stat)
 		stat_modifer = user.stats.getStat(required_stat)
 	fail_chance = fail_chance - get_tool_quality(required_quality) - stat_modifer
+	if (fail_chance < 0)
+		fail_chance = 0
 	if(prob(fail_chance))
 		user << SPAN_WARNING("You failed to finish your task with [src.name]! There was a [fail_chance]% chance to screw this up.")
 		return TOOL_USE_FAIL
@@ -224,13 +221,15 @@
 *******************************/
 
 //Critical failure rolls. If you use use_tool_extended, you might want to call that proc as well.
-/obj/item/proc/handle_failure(var/mob/living/user, var/atom/target, required_stat = null, required_quality)
+/obj/item/proc/handle_failure(var/mob/living/user, var/atom/target, var/required_stat, required_quality)
 
 	var/crit_fail_chance = 25
 	if(required_stat)
 		crit_fail_chance = crit_fail_chance - user.stats.getStat(required_stat)
 	else
 		crit_fail_chance = 10
+	if (crit_fail_chance < 0)
+		crit_fail_chance = 0
 
 	if(prob(crit_fail_chance))
 		var/fail_type = rand(0, 100)
