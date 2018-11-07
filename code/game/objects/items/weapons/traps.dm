@@ -1,5 +1,5 @@
 /obj/item/weapon/beartrap
-	name = "mechanical trap"
+	name = "bear trap"
 	throw_speed = 2
 	throw_range = 1
 	gender = PLURAL
