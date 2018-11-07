@@ -3,12 +3,13 @@
 	desc = "One of those famous Aster's holoplants! Add to your Space a bit of the comfort from old Earth, by buying this blue buddy. A nuclear battery and a rugged case guarantee that your flower will survive journey to another galaxy, and variety of plant types won't let you to get bored along the way!"
 	icon = 'icons/obj/cyberplants.dmi'
 	icon_state = "holopot"
-	light_color = rgb(60, 148, 197)
+	light_color
 	var/brightness_on = 4
 	var/emaged = FALSE
 	var/interference = FALSE
 	var/icon/plant = null
-	var/plant_color = rgb(60, 148, 197)
+	var/plant_color
+	var/hologram_opacity = 0.85
 	var/global/list/possible_plants = list(
 		"plant-1",
 		"plant-10",
@@ -21,7 +22,6 @@
 		rgb(60, 148, 197),
 		COLOR_NAVY_BLUE,
 		COLOR_GREEN,
-		COLOR_DARK_GRAY,
 		COLOR_MAROON,
 		COLOR_PURPLE,
 		COLOR_VIOLET,
@@ -39,7 +39,6 @@
 		COLOR_PINK,
 		COLOR_ORANGE,
 		COLOR_YELLOW,
-		COLOR_BROWN,
 		COLOR_SUN,
 		COLOR_BLUE_LIGHT,
 		COLOR_RED_LIGHT,
@@ -49,7 +48,6 @@
 		COLOR_WHITE,
 		COLOR_NT_RED,
 		COLOR_BOTTLE_GREEN,
-		COLOR_GUNMETAL,
 		COLOR_CHESTNUT,
 		COLOR_BEASTY_BROWN,
 		COLOR_WHEAT,
@@ -58,17 +56,15 @@
 		COLOR_PAKISTAN_GREEN,
 		COLOR_HULL,
 		COLOR_AMBER,
-		COLOR_COMMAND_BLUE,
 		COLOR_SKY_BLUE,
 		COLOR_CIVIE_GREEN,
-		COLOR_TITANIUM,
 		COLOR_DARK_GUNMETAL,
 	)
 
-/obj/structure/cyberplant/New()
+/obj/structure/cyberplant/Initialize()
 	..()
 	change_plant(plant)
-	change_color()
+	change_color(plant_color)
 
 	update_icon()
 
@@ -80,6 +76,7 @@
 	if (!plant)
 		return
 
+	plant.ChangeOpacity(hologram_opacity)
 	overlays += plant
 
 /obj/structure/cyberplant/proc/change_plant(var/state)
@@ -93,11 +90,15 @@
 		color = pick(possible_colors)
 
 	light_color = color
+	plant_color = color
 	plant.ColorTone(color)
 
 /obj/structure/cyberplant/attack_hand(var/mob/user)
 	if(!interference)
-		change_plant()
+		if (prob(1))
+			change_plant("emaged")
+		else
+			change_plant()
 		update_icon()
 
 /obj/structure/cyberplant/proc/prepare_icon(var/state)
@@ -105,7 +106,7 @@
 		state = pick(possible_plants)
 
 	var/plant_icon = icon(icon, state)
-	return getHologramIcon(plant_icon, 0)
+	return getHologramIcon(plant_icon, 0, hologram_opacity)
 
 /obj/structure/cyberplant/emag_act()
 	if(emaged)
