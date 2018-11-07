@@ -6,7 +6,7 @@
 	return pickweight(list(
 		/obj/random/rare = 1, //A diamond in the rough
 		/obj/item/weapon/material/shard = 5,
-		/obj/item/weapon/material/shard/shrapnel = 5,
+		/obj/item/weapon/material/shard/shrapnel = 8,
 		/obj/item/stack/material/cardboard = 3,
 		/obj/item/weapon/storage/box/lights/mixed = 3,
 		/obj/item/weapon/storage/box/matches = 4,
@@ -58,7 +58,7 @@
 		/obj/effect/decal/cleanable/spiderling_remains = 1,
 		/obj/effect/decal/cleanable/vomit = 1,
 		/obj/effect/decal/cleanable/blood/splatter = 1,
-		/obj/effect/spider/stickyweb = 2 //These are useful for tape crafting
+		/obj/effect/spider/stickyweb = 6 //These are useful for tape crafting
 	))
 
 /obj/random/junk/low_chance

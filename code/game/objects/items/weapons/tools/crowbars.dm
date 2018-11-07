@@ -12,6 +12,14 @@
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
 	tool_qualities = list(QUALITY_PRYING = 25, QUALITY_DIGGING = 10)
 
+/obj/item/weapon/tool/crowbar/improvised
+	name = "rebar"
+	desc = "A pair of metal rods laboriously twisted into a useful shape"
+	icon_state = "impro_crowbar"
+	item_state = "crowbar"
+	tool_qualities = list(QUALITY_PRYING = 10)
+	degradation = 15 //This one breaks REALLY fast
+
 /obj/item/weapon/tool/crowbar/pneumatic
 	name = "pneumatic crowbar"
 	desc = "When you realy need to crack open something."
