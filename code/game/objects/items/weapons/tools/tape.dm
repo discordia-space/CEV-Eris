@@ -1,11 +1,35 @@
-/obj/item/weapon/tape_roll
-	name = "tape roll"
-	desc = "A roll of sticky tape. Possibly for taping ducks... or was that ducts?"
-	icon = 'icons/obj/bureaucracy.dmi'
+/obj/item/weapon/tool/tape_roll
+	name = "duct tape"
+	desc = "The technomancer's eternal friend. Fixes just about anything, for a while at least."
+	icon = 'icons/obj/tools.dmi'
 	icon_state = "taperoll"
-	w_class = ITEM_SIZE_TINY
+	w_class = ITEM_SIZE_SMALL
+	tool_qualities = list(QUALITY_ADHESIVE = 30, QUALITY_SEALING = 30)
+	matter = list(MATERIAL_PLASTIC = 3)
+	worksound = WORKSOUND_TAPE
+	use_stock_cost = 0.15
+	max_stock = 100
+	flags = NOBLUDGEON //Its not a weapon
 
-/obj/item/weapon/tape_roll/attack(var/mob/living/carbon/human/H, var/mob/user)
+/obj/item/weapon/tool/tape_roll/web
+	name = "web tape"
+	desc = "A strip of fabric covered in an all-natural adhesive. Holds things together with the power of thoughts and prayers."
+	icon_state = "webtape"
+	tool_qualities = list(QUALITY_ADHESIVE = 15, QUALITY_SEALING = 15)
+	use_stock_cost = 0.17
+	max_stock = 30
+	alpha = 150
+
+/obj/item/weapon/tool/tape_roll/fiber
+	name = "fiber tape"
+	desc = "A roll of flexible adhesive polymer mesh, which sets as strong as welded steel."
+	icon_state = "fiber_tape"
+	tool_qualities = list(QUALITY_ADHESIVE = 50, QUALITY_SEALING = 50)
+	matter = list(MATERIAL_PLASTIC = 20)
+	use_stock_cost = 0.10
+	max_stock = 100
+
+/obj/item/weapon/tool/tape_roll/attack(var/mob/living/carbon/human/H, var/mob/user)
 	if(istype(H))
 		if(user.targeted_organ == O_EYES)
 
@@ -23,7 +47,7 @@
 				return
 			user.visible_message(SPAN_DANGER("\The [user] begins taping over \the [H]'s eyes!"))
 
-			if(!do_after(user, 30, process=0))
+			if(!use_tool(user, H, 70, QUALITY_ADHESIVE))
 				return
 
 			// Repeat failure checks.
@@ -48,7 +72,7 @@
 				return
 			user.visible_message(SPAN_DANGER("\The [user] begins taping up \the [H]'s mouth!"))
 
-			if(!do_after(user, 30, process=0))
+			if(!use_tool(user, H, 70, QUALITY_ADHESIVE))
 				return
 
 			// Repeat failure checks.
@@ -60,6 +84,8 @@
 
 		else if(user.targeted_organ == BP_R_ARM || user.targeted_organ == BP_L_ARM)
 			var/obj/item/weapon/handcuffs/cable/tape/T = new(user)
+			//Uses up tape whether or not you succeed
+			consume_resources(100, user)
 			if(!T.place_handcuffs(H, user))
 				user.unEquip(T)
 				qdel(T)
@@ -67,13 +93,21 @@
 			return ..()
 		return 1
 
-/obj/item/weapon/tape_roll/proc/stick(var/obj/item/weapon/W, mob/user)
-	if(!istype(W, /obj/item/weapon/paper))
+/obj/item/weapon/tool/tape_roll/stick(var/obj/item/target, var/mob/user)
+	if (!istype(target) || target.anchored)
 		return
-	user.drop_from_inventory(W)
+
+	if (target.w_class > ITEM_SIZE_SMALL)
+		user << SPAN_WARNING("The [target] is too big to stick with tape!")
+		return
+
+	consume_resources(10, user)
+	user.drop_from_inventory(target)
 	var/obj/item/weapon/ducttape/tape = new(get_turf(src))
-	tape.attach(W)
+	tape.attach(target)
 	user.put_in_hands(tape)
+	return TRUE
+
 
 /obj/item/weapon/ducttape
 	name = "tape"
@@ -96,9 +130,18 @@
 /obj/item/weapon/ducttape/proc/attach(var/obj/item/weapon/W)
 	stuck = W
 	W.forceMove(src)
-	icon_state = W.icon_state + "_taped"
+	if (istype(W, /obj/item/weapon/paper))
+		icon_state = W.icon_state + "_taped"
+		overlays = W.overlays
+	else
+		var/mutable_appearance/MA = new(W)
+		MA.layer = layer
+		MA.plane = plane
+		MA.pixel_x = 0
+		MA.pixel_y = 0
+		underlays += MA
 	name = W.name + " (taped)"
-	overlays = W.overlays
+
 
 /obj/item/weapon/ducttape/attack_self(mob/user)
 	if(!stuck)

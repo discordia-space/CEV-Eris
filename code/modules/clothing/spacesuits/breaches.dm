@@ -178,6 +178,20 @@ var/global/list/breach_burn_descriptors = list(
 //Handles repairs (and also upgrades).
 
 /obj/item/clothing/suit/space/attackby(obj/item/I, mob/user)
+
+	//Using duct tape, you can repair both types of breaches while still wearing the suit!
+	if(I.has_quality(QUALITY_SEALING))
+		if(!damage && !burn_damage)
+			user << "There is no surface damage on \the [src] to repair."
+			return
+
+		user.visible_message("[user] starts repairing breaches on their [src] with the [I]", "You start repairing breaches on the [src] with the [I]")
+		if (I.use_tool(user, src, 60 + (damage*10), QUALITY_SEALING, 0, STAT_MEC))
+			user << "There we go, that should hold nicely!"
+			repair_breaches(BURN, burn_damage, user)
+			repair_breaches(BRUTE, damage, user)
+		return
+
 	if(istype(I,/obj/item/stack/material))
 		var/repair_power = 0
 		switch(I.get_material_name())
@@ -193,7 +207,7 @@ var/global/list/breach_burn_descriptors = list(
 			user << SPAN_WARNING("How do you intend to patch a hardsuit while someone is wearing it?")
 			return
 
-		if(!damage || !burn_damage)
+		if(!brute_damage && !burn_damage)
 			user << "There is no surface damage on \the [src] to repair."
 			return
 
@@ -209,7 +223,7 @@ var/global/list/breach_burn_descriptors = list(
 			user << SPAN_WARNING("How do you intend to patch a hardsuit while someone is wearing it?")
 			return
 
-		if (!damage || ! brute_damage)
+		if (!damage && ! brute_damage)
 			user << SPAN_WARNING("There is no structural damage on \the [src] to repair.")
 			return
 
