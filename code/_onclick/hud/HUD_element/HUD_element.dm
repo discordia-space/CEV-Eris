@@ -66,7 +66,6 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 	var/list/HUD_element/elements = getElements()
 	for(var/HUD_element/E in elements)
 		elements -= E
-		if (!QDELETED(E))
 			qdel(E)
 
 	var/HUD_element/parent = getParent()
