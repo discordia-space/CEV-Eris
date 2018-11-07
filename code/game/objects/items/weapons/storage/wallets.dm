@@ -63,11 +63,11 @@
 	icon_state = "wallet"
 
 
-/obj/item/weapon/storage/wallet/GetID()
+/obj/item/weapon/storage/wallet/GetIdCard()
 	return front_id
 
 /obj/item/weapon/storage/wallet/GetAccess()
-	var/obj/item/I = GetID()
+	var/obj/item/I = GetIdCard()
 	if(I)
 		return I.GetAccess()
 	else

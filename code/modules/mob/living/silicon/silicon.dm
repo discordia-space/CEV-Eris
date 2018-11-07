@@ -6,6 +6,8 @@
 	var/lawchannel = MAIN_CHANNEL // Default channel on which to state laws
 	var/list/stating_laws = list()// Channels laws are currently being stated on
 	var/obj/item/device/radio/common_radio
+	//plug before baymed arrives
+	var/obj/item/device/radio/silicon_radio
 
 	var/list/hud_list[10]
 	var/list/speech_synthesizer_langs = list()	//which languages can be vocalized by the speech synthesizer
@@ -49,7 +51,7 @@
 	idcard = new idcard_type(src)
 	set_id_info(idcard)
 
-/mob/living/silicon/proc/SetName(pickedName as text)
+/mob/living/silicon/SetName(pickedName as text)
 	real_name = pickedName
 	name = real_name
 

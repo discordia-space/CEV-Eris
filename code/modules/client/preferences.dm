@@ -64,23 +64,6 @@ var/list/preferences_datums = list()
 	var/icon/preview_icon_front = null
 	var/icon/preview_icon_side = null*/
 
-	var/high_job_title = ""
-
-		//Jobs, uses bitflags
-	var/job_civilian_high = 0
-	var/job_civilian_med = 0
-	var/job_civilian_low = 0
-
-	var/job_medsci_high = 0
-	var/job_medsci_med = 0
-	var/job_medsci_low = 0
-
-	var/job_engsec_high = 0
-	var/job_engsec_med = 0
-	var/job_engsec_low = 0
-
-	//Keeps track of preferrence for not getting any wanted jobs
-	var/alternate_option = 0
 
 	// maps each organ to either null(intact), "cyborg" or "amputated"
 	// will probably not be able to do this for head and torso ;)

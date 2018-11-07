@@ -351,7 +351,7 @@
 		var/criminal = "None"
 
 		if(wear_id)
-			var/obj/item/weapon/card/id/I = wear_id.GetID()
+			var/obj/item/weapon/card/id/I = wear_id.GetIdCard()
 			if(I)
 				perpname = I.registered_name
 			else
@@ -374,11 +374,9 @@
 		var/medical = "None"
 
 		if(wear_id)
-			if(istype(wear_id,/obj/item/weapon/card/id))
-				perpname = wear_id:registered_name
-			else if(istype(wear_id,/obj/item/device/pda))
-				var/obj/item/device/pda/tempPda = wear_id
-				perpname = tempPda.owner
+			var/obj/item/weapon/card/id/id_card = wear_id.GetIdCard()
+			if(id_card)
+				perpname = id_card.registered_name
 		else
 			perpname = src.name
 
