@@ -141,14 +141,12 @@
 	var/time_spent = 0
 
 	//Precalculate worktime here
-	world << "Doing tool op basetime [base_time]. Subtracting quality [get_tool_quality(required_quality)] subtracting stat[user.stats.getStat(required_stat)]"
 	var/time_to_finish = 0
 	if (base_time)
 		time_to_finish = base_time - get_tool_quality(required_quality) - user.stats.getStat(required_stat)
 
 	if((instant_finish_tier < get_tool_quality(required_quality)) || time_to_finish < 0)
 		time_to_finish = 0
-	world << "total time will be [time_to_finish]"
 
 	var/obj/item/weapon/tool/T
 	if(istype(src, /obj/item/weapon/tool))

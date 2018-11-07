@@ -47,7 +47,7 @@
 				return
 			user.visible_message(SPAN_DANGER("\The [user] begins taping over \the [H]'s eyes!"))
 
-			if(!use_tool(user, H, 60, QUALITY_ADHESIVE))
+			if(!use_tool(user, H, 70, QUALITY_ADHESIVE))
 				return
 
 			// Repeat failure checks.
@@ -72,7 +72,7 @@
 				return
 			user.visible_message(SPAN_DANGER("\The [user] begins taping up \the [H]'s mouth!"))
 
-			if(!use_tool(user, H, 60, QUALITY_ADHESIVE))
+			if(!use_tool(user, H, 70, QUALITY_ADHESIVE))
 				return
 
 			// Repeat failure checks.
