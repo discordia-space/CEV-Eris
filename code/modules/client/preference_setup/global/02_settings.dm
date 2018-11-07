@@ -1,6 +1,7 @@
 /datum/preferences
 	var/preferences_enabled = list()
 	var/preferences_disabled = list()
+	var/list/preference_values
 
 /datum/category_item/player_setup_item/player_global/settings
 	name = "Settings"
@@ -124,3 +125,23 @@
 		return FALSE
 
 	return client.set_preference(preference, set_preference)
+
+/client/proc/get_preference_value(var/preference)
+	if(prefs)
+		var/datum/client_preference/cp = get_client_preference(preference)
+		if(cp)
+			return prefs.preference_values[cp.key]
+		else
+			return null
+//	else
+//		log_error("Client is lacking preferences: [log_info_line(src)]")
+
+/mob/proc/get_preference_value(var/preference)
+	if(!client)
+		var/datum/client_preference/cp = get_client_preference(preference)
+		if(cp)
+			return cp.default_value
+		else
+			return null
+
+	return client.get_preference_value(preference)

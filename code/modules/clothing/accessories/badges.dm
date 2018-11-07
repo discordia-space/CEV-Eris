@@ -68,22 +68,16 @@
 		return 1
 
 /obj/item/clothing/accessory/badge/holo/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(istype(O, /obj/item/weapon/card/id) || istype(O, /obj/item/device/pda))
-
-		var/obj/item/weapon/card/id/id_card = null
-
-		if(istype(O, /obj/item/weapon/card/id))
-			id_card = O
-		else
-			var/obj/item/device/pda/pda = O
-			id_card = pda.id
-
-		if(access_security in id_card.access || emagged)
-			user << "You imprint your ID details onto the badge."
-			set_name(user.real_name)
-		else
-			user << "[src] rejects your insufficient access rights."
+	var/obj/item/weapon/card/id/id_card = O.GetIdCard()
+	if(!id_card)
 		return
+
+	if(access_security in id_card.access || emagged)
+		user << "You imprint your ID details onto the badge."
+		set_name(user.real_name)
+	else
+		user << "[src] rejects your insufficient access rights."
+	return
 	..()
 
 /obj/item/weapon/storage/box/holobadge

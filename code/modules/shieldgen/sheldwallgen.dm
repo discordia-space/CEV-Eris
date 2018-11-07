@@ -223,7 +223,7 @@
 				src.anchored = 0
 				return
 
-	if(istype(I, /obj/item/weapon/card/id) || istype(I, /obj/item/device/pda))
+	if(istype(I, /obj/item/weapon/card/id) || istype(I, /obj/item/modular_computer))
 		if (src.allowed(user))
 			src.locked = !src.locked
 			user << "Controls are now [src.locked ? "locked." : "unlocked."]"
