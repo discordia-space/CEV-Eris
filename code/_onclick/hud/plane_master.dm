@@ -53,3 +53,7 @@
 	name = "parallax whitifier plane master"
 	plane = PLANE_SPACE
 
+/obj/screen/plane_master/open_space_plane
+	name = "open space shadow plane"
+	plane = OPENSPACE_PLANE
+
