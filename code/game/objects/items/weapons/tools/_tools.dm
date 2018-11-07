@@ -158,7 +158,6 @@
 		T = src
 		if(!T.check_tool_effects(user, time_to_finish))
 			return TOOL_USE_CANCEL
-	world << "About to do tool use for time [time_to_finish]"
 
 	//Repeating sound code!
 	//A datum/repeating_sound is a little object we can use to make a sound repeat a few times
