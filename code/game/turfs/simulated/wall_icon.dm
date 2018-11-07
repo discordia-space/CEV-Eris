@@ -35,6 +35,11 @@
 	else if(material.opacity < 0.5 && opacity)
 		set_light(0)
 
+	//IF we have a radioactive material on our walls then we need to process
+	var/total_radiation = material.radioactivity + (reinf_material ? reinf_material.radioactivity / 2 : 0)
+	if(total_radiation)
+		START_PROCESSING(SSturf, src) //Used for radiation.
+
 	//Update will be false at roundstart
 	if (update)
 		update_connections(1)
