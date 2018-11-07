@@ -3,12 +3,12 @@
 	desc = "One of those famous Aster's holoplants! Add to your Space a bit of the comfort from old Earth, by buying this blue buddy. A nuclear battery and a rugged case guarantee that your flower will survive journey to another galaxy, and variety of plant types won't let you to get bored along the way!"
 	icon = 'icons/obj/cyberplants.dmi'
 	icon_state = "holopot"
-	light_color
 	var/brightness_on = 4
 	var/emaged = FALSE
 	var/interference = FALSE
 	var/icon/plant = null
 	var/plant_color
+	var/glow_color
 	var/hologram_opacity = 0.85
 	var/global/list/possible_plants = list(
 		"plant-1",
@@ -89,9 +89,11 @@
 	if(!color)
 		color = pick(possible_colors)
 
-	light_color = color
+	glow_color = color
 	plant_color = color
 	plant.ColorTone(color)
+
+	set_light(l_color=color)
 
 /obj/structure/cyberplant/attack_hand(var/mob/user)
 	if(!interference)
