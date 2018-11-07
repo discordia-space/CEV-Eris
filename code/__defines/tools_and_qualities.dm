@@ -60,3 +60,4 @@
 #define WORKSOUND_PICKAXE				'sound/items/pickaxe.ogg'
 #define WORKSOUND_HARD_SLASH			'sound/weapons/bladeslice.ogg'
 #define WORKSOUND_CHAINSAW				'sound/items/chainsaw.ogg'
+#define WORKSOUND_TAPE					'sound/items/duct_tape.ogg'

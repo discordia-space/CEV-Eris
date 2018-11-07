@@ -16,7 +16,7 @@
 	sparks_on_use = TRUE
 	eye_hazard = TRUE
 
-	use_fuel_cost = 0.4
+	use_fuel_cost = 0.1
 	max_fuel = 25
 
 	toggleable = TRUE

@@ -245,6 +245,7 @@
 #include "code\datums\craft\recipes\furniture.dm"
 #include "code\datums\craft\recipes\machinery.dm"
 #include "code\datums\craft\recipes\misc.dm"
+#include "code\datums\craft\recipes\tools.dm"
 #include "code\datums\craft\recipes\weapon.dm"
 #include "code\datums\extensions\extensions.dm"
 #include "code\datums\extensions\fake_data.dm"

@@ -158,7 +158,7 @@
 		T = src
 		if(!T.check_tool_effects(user, time_to_finish))
 			return TOOL_USE_CANCEL
-
+	world << "About to do tool use for time [time_to_finish]"
 
 	//Repeating sound code!
 	//A datum/repeating_sound is a little object we can use to make a sound repeat a few times
@@ -173,9 +173,9 @@
 
 		if (sound_repeat && time_to_finish)
 			//It will repeat roughly every 2.5 seconds until our tool finishes
-			toolsound = new/datum/repeating_sound(sound_repeat,time_to_finish,0.15, src, soundfile, 80, 1)
+			toolsound = new/datum/repeating_sound(sound_repeat,time_to_finish,0.15, src, soundfile, 70, 1)
 		else
-			playsound(src.loc, soundfile, 100, 1)
+			playsound(src.loc, soundfile, 70, 1)
 
 	//The we handle the doafter for the tool usage
 	if(time_to_finish)
@@ -446,6 +446,9 @@
 
 	if(use_fuel_cost)
 		user << text("\icon[] [] contains []/[] units of fuel!", src, src.name, get_fuel(),src.max_fuel )
+
+	if (use_stock_cost)
+		user << SPAN_NOTICE("it has [stock] / [max_stock] units remaining.")
 
 
 //Recharge the fuel at fueltank, also explode if switched on

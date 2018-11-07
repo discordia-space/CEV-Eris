@@ -25,7 +25,7 @@
 	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTIC = 2)
 	tool_qualities = list(QUALITY_SAWING = 40, QUALITY_CUTTING = 10, QUALITY_WIRE_CUTTING = 30)
 
-	use_power_cost = 0.2
+	use_power_cost = 0.1
 	suitable_cell = /obj/item/weapon/cell/small
 
 /obj/item/weapon/tool/saw/advanced_circular
@@ -38,7 +38,7 @@
 	matter = list(MATERIAL_STEEL = 6, MATERIAL_PLASTIC = 2)
 	tool_qualities = list(QUALITY_SAWING = 50, QUALITY_CUTTING = 10, QUALITY_WIRE_CUTTING = 40)
 
-	use_power_cost = 0.3
+	use_power_cost = 0.15
 	suitable_cell = /obj/item/weapon/cell/small
 
 /obj/item/weapon/tool/saw/chain
@@ -51,5 +51,5 @@
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 3)
 	tool_qualities = list(QUALITY_SAWING = 50, QUALITY_CUTTING = 10, QUALITY_WIRE_CUTTING = 20)
 
-	use_fuel_cost = 0.2
+	use_fuel_cost = 0.1
 	max_fuel = 80

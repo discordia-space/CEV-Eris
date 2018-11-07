@@ -12,5 +12,5 @@
 	attack_verb = list("drilled")
 	tool_qualities = list(QUALITY_DRILLING = 30)
 
-	use_power_cost = 0.4
+	use_power_cost = 0.2
 	suitable_cell = /obj/item/weapon/cell/small
