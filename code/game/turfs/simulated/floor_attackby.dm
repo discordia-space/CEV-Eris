@@ -91,10 +91,19 @@
 			usable_qualities.Add(QUALITY_SHOVELING)
 		if(is_damaged() || flooring.flags & TURF_REMOVE_WELDER)
 			usable_qualities.Add(QUALITY_WELDING)
-
+		if(is_damaged())
+			usable_qualities.Add(QUALITY_SEALING)
 		var/tool_type = I.get_tool_type(user, usable_qualities)
 		switch(tool_type)
-
+			if(QUALITY_SEALING)
+				user.visible_message("[user] starts sealing up cracks in [src] with the [I]", "You start sealing up cracks in [src] with the [I]")
+				if (I.use_tool(user, src, 50 + ((maxHealth - health)*2), QUALITY_SEALING, FAILCHANCE_NORMAL, STAT_MEC))
+					user << SPAN_NOTICE("The [src] looks pretty solid now!")
+					health = maxHealth
+					broken = FALSE
+					burnt = FALSE
+					update_icon()
+				return
 			if(QUALITY_PRYING)
 				if(is_damaged())
 					if(I.use_tool(user, src, flooring.removal_time, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
