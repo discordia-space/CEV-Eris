@@ -160,7 +160,7 @@
 	if(buckled_mob)
 		var/mob/living/occupant = buckled_mob
 		occupant.buckled = null
-		occupant.Move(src.loc, glide_size_override=glide_size_override)
+		occupant.Move(src.loc, glide_size_override=glide_size)
 		occupant.buckled = src
 		if (occupant && (src.loc != occupant.loc))
 			if (propelled)

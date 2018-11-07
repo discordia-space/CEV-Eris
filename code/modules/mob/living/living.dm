@@ -120,10 +120,10 @@ default behaviour is:
 						for(var/obj/structure/window/win in get_step(AM,t))
 							now_pushing = FALSE
 							return
-					step(AM, t)
+					step_glide(AM, t, glide_size)
 					if(ishuman(AM) && AM:grabbed_by)
 						for(var/obj/item/weapon/grab/G in AM:grabbed_by)
-							step(G:assailant, get_dir(G:assailant, AM))
+							step_glide(G:assailant, get_dir(G:assailant, AM), glide_size)
 							G.adjust_position()
 				now_pushing = FALSE
 			return

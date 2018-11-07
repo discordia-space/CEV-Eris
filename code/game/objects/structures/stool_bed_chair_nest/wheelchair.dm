@@ -61,13 +61,13 @@
 	//--1---Move occupant---1--//
 	if(buckled_mob)
 		buckled_mob.buckled = null
-		step(buckled_mob, direction)
+		step_glide(buckled_mob, direction, glide_size)
 		buckled_mob.buckled = src
 	//--2----Move driver----2--//
 	if(pulling)
 		T = pulling.loc
 		if(get_dist(src, pulling) >= 1)
-			step(pulling, get_dir(pulling.loc, src.loc))
+			step_glide(pulling, get_dir(pulling.loc, src.loc), glide_size)
 	//--3--Move wheelchair--3--//
 	step(src, direction)
 	if(buckled_mob) // Make sure it stays beneath the occupant
@@ -92,7 +92,7 @@
 		var/mob/living/occupant = buckled_mob
 		if(!driving)
 			occupant.buckled = null
-			occupant.Move(src.loc, glide_size_override=glide_size_override)
+			occupant.Move(src.loc, glide_size_override=glide_size)
 			occupant.buckled = src
 			if (occupant && (src.loc != occupant.loc))
 				if (propelled)
@@ -107,7 +107,7 @@
 				pulling = null
 		else
 			if (occupant && (src.loc != occupant.loc))
-				src.forceMove(occupant.loc, glide_size_override=glide_size_override) // Failsafe to make sure the wheelchair stays beneath the occupant after driving
+				src.forceMove(occupant.loc, glide_size_override=glide_size) // Failsafe to make sure the wheelchair stays beneath the occupant after driving
 
 /obj/structure/bed/chair/wheelchair/attack_hand(mob/living/user as mob)
 	if (pulling)

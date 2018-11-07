@@ -162,7 +162,7 @@
 	return 0
 
 /mob/proc/movement_delay()
-	return 0
+	return MOVE_DELAY_BASE
 
 /mob/proc/Life()
 //	if(organStructure)

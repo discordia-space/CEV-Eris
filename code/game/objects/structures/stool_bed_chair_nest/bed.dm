@@ -260,7 +260,7 @@
 	. = ..()
 	if(buckled_mob)
 		if(buckled_mob.buckled == src)
-			buckled_mob.forceMove(loc, glide_size_override=glide_size_override)
+			buckled_mob.forceMove(loc, glide_size_override=glide_size)
 		else
 			buckled_mob = null
 

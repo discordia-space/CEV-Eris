@@ -1,3 +1,5 @@
+#define MOVE_DELAY_BASE 1.1
+
 //Glidesize
 #define FRACTIONAL_GLIDESIZES 1
 #ifdef FRACTIONAL_GLIDESIZES

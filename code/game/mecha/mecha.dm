@@ -403,11 +403,16 @@
 	if(!has_charge(step_energy_drain))
 		return 0
 	var/move_result = 0
+	// TODO: Glide size handling in here is fucked,
+	// because the timing system uses sleep instead of world.time comparisons/delay controllers
+	// At least that's my theory I can't be bothered to investigate fully.
 	if(hasInternalDamage(MECHA_INT_CONTROL_LOST))
+		set_glide_size(DELAY2GLIDESIZE(step_in))
 		move_result = mechsteprand()
 	else if(src.dir!=direction)
 		move_result = mechturn(direction)
 	else
+		set_glide_size(DELAY2GLIDESIZE(step_in))
 		move_result = mechstep(direction)
 	if(move_result)
 		can_move = 0
