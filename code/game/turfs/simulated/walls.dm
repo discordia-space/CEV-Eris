@@ -53,7 +53,6 @@
 
 
 /turf/simulated/wall/Initialize(var/mapload)
-	START_PROCESSING(SSturf, src) //Used for radiation.
 	..()
 
 	if (mapload)
