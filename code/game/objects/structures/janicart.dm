@@ -218,7 +218,7 @@
 	. = ..()
 	if(buckled_mob)
 		if(buckled_mob.buckled == src)
-			buckled_mob.loc = loc
+			buckled_mob.forceMove(glide_size_override=glide_size_override)
 
 
 /obj/structure/bed/chair/janicart/post_buckle_mob(mob/living/M)

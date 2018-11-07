@@ -236,11 +236,8 @@
 		
 
 		if(istype(mob.buckled, /obj/vehicle))
-			// FIXME: This is broken. What the fuck is this code.
-			// There's no delay being set.
 			//manually set move_delay for vehicles so we don't inherit any mob movement penalties
 			//specific vehicle move delays are set in code\modules\vehicles\vehicle.dm
-			move_delayer.setDelay(1)
 			//drunk driving
 			if(mob.confused)
 				Dir = pick(cardinal)

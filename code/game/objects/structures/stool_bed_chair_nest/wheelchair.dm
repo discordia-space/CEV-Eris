@@ -92,7 +92,7 @@
 		var/mob/living/occupant = buckled_mob
 		if(!driving)
 			occupant.buckled = null
-			occupant.Move(src.loc)
+			occupant.Move(src.loc, glide_size_override=glide_size_override)
 			occupant.buckled = src
 			if (occupant && (src.loc != occupant.loc))
 				if (propelled)
@@ -107,7 +107,7 @@
 				pulling = null
 		else
 			if (occupant && (src.loc != occupant.loc))
-				src.forceMove(occupant.loc) // Failsafe to make sure the wheelchair stays beneath the occupant after driving
+				src.forceMove(occupant.loc, glide_size_override=glide_size_override) // Failsafe to make sure the wheelchair stays beneath the occupant after driving
 
 /obj/structure/bed/chair/wheelchair/attack_hand(mob/living/user as mob)
 	if (pulling)

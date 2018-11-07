@@ -34,7 +34,6 @@
 	var/ai_interface_path = "hardsuit.tmpl"
 	var/interface_title = "Hardsuit Controller"
 	var/datum/delay_controller/wearer_move_delayer = new
-	var/wearer_move_delay //Used for AI moving.
 	var/ai_controlled_move_delay = 10
 
 	// Keeps track of what this rig should spawn with.
@@ -835,7 +834,7 @@
 /obj/item/weapon/rig/proc/forced_move(var/direction, var/mob/user)
 
 	// Why is all this shit in client/Move()? Who knows?
-	if (wearer_move_delay.isBlocked())
+	if (wearer_move_delayer.isBlocked())
 		return
 
 	if(!wearer || !wearer.loc || !ai_can_move_suit(user, check_user_module = 1))

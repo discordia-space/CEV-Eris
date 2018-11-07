@@ -54,7 +54,7 @@
 			food = locate(/obj/effect/plant) in oview(5,loc)
 			if(food)
 				var/step = get_step_to(src, food, 0)
-				Move(step)
+				Move(step, glide_size_override=DELAY2GLIDESIZE(0.5 SECONDS))
 
 /mob/living/simple_animal/hostile/retaliate/goat/Retaliate()
 	..()

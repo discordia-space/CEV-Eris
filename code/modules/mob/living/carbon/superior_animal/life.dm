@@ -49,7 +49,7 @@
 				if(!(stop_automated_movement_when_pulled && pulledby))
 					var/moving_to = pick(cardinal)
 					set_dir(moving_to)
-					Move(get_step(src,moving_to))
+					step_glide(src, moving_to, DELAY2GLIDESIZE(0.5 SECONDS))
 					turns_since_move = 0
 
 	//Speaking

@@ -44,7 +44,7 @@
 	. = ..()
 	check_shadow()
 
-/mob/living/forceMove()
+/mob/living/forceMove(atom/destination, var/special_event, glide_size_override=0)
 	. = ..()
 	check_shadow()
 
