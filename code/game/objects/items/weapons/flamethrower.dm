@@ -13,13 +13,16 @@
 	origin_tech = list(TECH_COMBAT = 1, TECH_PLASMA = 1)
 	matter = list(MATERIAL_STEEL = 6)
 	var/status = 0
-	var/throw_amount = 100
+	var/throw_amount = 50
 	var/lit = 0	//on or off
 	var/operating = 0//cooldown
 	var/turf/previousturf = null
 	var/obj/item/weapon/tool/weldingtool/weldtool = null
 	var/obj/item/device/assembly/igniter/igniter = null
 	var/obj/item/weapon/tank/plasma/ptank = null
+
+	var/flamerange = 2
+	var/gas_mult = 2.5
 
 
 /obj/item/weapon/flamethrower/Destroy()
@@ -61,9 +64,8 @@
 	return
 
 /obj/item/weapon/flamethrower/afterattack(atom/target, mob/user, proximity)
-	if(!proximity) return
-	// Make sure our user is still holding us
-	if(user && user.get_active_hand() == src)
+	if (get_dist(target, user) <= flamerange)
+		// Make sure our user is still holding us
 		var/turf/target_turf = get_turf(target)
 		if(target_turf)
 			var/turflist = getline(user, target_turf)
@@ -145,7 +147,6 @@
 
 //Called from turf.dm turf/dblclick
 /obj/item/weapon/flamethrower/proc/flame_turf(var/list/turflist)
-	world << "Calling flame_turf on [turflist.len] turfs"
 	if(!lit || operating)	return
 	operating = 1
 	for(var/turf/T in turflist)
@@ -167,12 +168,12 @@
 
 
 /obj/item/weapon/flamethrower/proc/ignite_turf(turf/target)
-	world << "Igniting turf [target.x] [target.y]"
 	//TODO: DEFERRED Consider checking to make sure tank pressure is high enough before doing this...
 	//Transfer 5% of current tank air contents to turf
 	var/datum/gas_mixture/air_transfer = ptank.air_contents.remove_ratio(0.02*(throw_amount/100))
-	//air_transfer.toxins = air_transfer.toxins * 5 // This is me not comprehending the air system. I realize this is retarded and I could probably make it work without fucking it up like this, but there you have it. -- TLE
+	air_transfer.multiply(gas_mult)
 	new/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel(target,air_transfer.gas["plasma"],get_dir(loc,target))
+
 	air_transfer.gas["plasma"] = 0
 	target.assume_air(air_transfer)
 	//Burn it based on transfered gas
