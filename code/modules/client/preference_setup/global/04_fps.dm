@@ -39,4 +39,4 @@
 
 /datum/category_item/player_setup_item/player_global/fps/proc/set_fps(var/FPS = 60)
 	pref.fps = FPS
-	pref.client.fps = pref.fps
+	//pref.client.fps = pref.fps

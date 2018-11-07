@@ -39,10 +39,11 @@
 	sleep(10)
 	qdel(src)
 
-/obj/effect/effect/water/Move(turf/newloc)
-	if(newloc.density)
+/obj/effect/effect/water/Move(var/atom/NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+	if(NewLoc.density)
 		return 0
-	. = ..()
+
+	return ..()
 
 /obj/effect/effect/water/Bump(atom/A)
 	if(reagents)

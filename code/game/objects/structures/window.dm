@@ -417,10 +417,10 @@
 	loc = location
 	. = ..()
 
-/obj/structure/window/Move()
+/obj/structure/window/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	var/ini_dir = dir
 	update_nearby_tiles(need_rebuild=1)
-	..()
+	. = ..()
 	set_dir(ini_dir)
 	update_nearby_tiles(need_rebuild=1)
 	mount_check()

@@ -61,8 +61,8 @@
 	if(stat == CONSCIOUS)
 		visible_message(SPAN_WARNING("[src] gets an evil-looking gleam in their eye."))
 
-/mob/living/simple_animal/hostile/retaliate/goat/Move()
-	..()
+/mob/living/simple_animal/hostile/retaliate/goat/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+	. = ..()
 	if(!stat)
 		for(var/obj/effect/plant/SV in loc)
 			SV.die_off(1)

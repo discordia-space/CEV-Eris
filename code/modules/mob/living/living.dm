@@ -468,7 +468,7 @@ default behaviour is:
 
 	return
 
-/mob/living/Move(a, b, flag)
+/mob/living/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	if (buckled)
 		return
 
@@ -546,7 +546,7 @@ default behaviour is:
 													H.vessel.remove_reagent("blood", 1)
 
 
-						step(pulling, get_dir(pulling.loc, T))
+						step_glide(pulling, get_dir(pulling.loc, T), glide_size)
 						if(t)
 							M.start_pulling(t)
 				else
@@ -557,7 +557,7 @@ default behaviour is:
 								for(var/obj/structure/window/win in get_step(pulling,get_dir(pulling.loc, T)))
 									stop_pulling()
 					if (pulling)
-						step(pulling, get_dir(pulling.loc, T))
+						step_glide(pulling, get_dir(pulling.loc, T), glide_size)
 	else
 		stop_pulling()
 		. = ..()

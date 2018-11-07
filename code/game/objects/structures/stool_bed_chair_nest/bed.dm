@@ -256,8 +256,8 @@
 	held = null
 
 
-/obj/structure/bed/roller/Move()
-	..()
+/obj/structure/bed/roller/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+	. = ..()
 	if(buckled_mob)
 		if(buckled_mob.buckled == src)
 			buckled_mob.loc = src.loc
