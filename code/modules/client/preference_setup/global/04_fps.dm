@@ -19,8 +19,10 @@
 		set_fps( max(min(pref.fps, 60), 1) )
 
 /datum/category_item/player_setup_item/player_global/fps/content(var/mob/user)
+	/*
 	. += "<b>FPS</b><br>"
 	. += " <a href='?src=\ref[src];change_fps=1'>[pref.client.fps]</a> <a href='?src=\ref[src];reset_fps=1'>Reset</a><br>"
+	*/
 
 /datum/category_item/player_setup_item/player_global/fps/OnTopic(var/href, var/list/href_list, var/mob/user)
 	if(href_list["change_fps"])
