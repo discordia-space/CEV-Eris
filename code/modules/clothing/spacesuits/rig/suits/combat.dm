@@ -39,6 +39,7 @@
 	desc = "Standard operative suit issued to Ironhammer mercenaries. Provides balanced overall protection against various threats and widely used on planets surface, space stations or in open space."
 	corporation = /datum/corporation/ironhammer
 	icon_state = "ihs_rig"
+	helm_type = /obj/item/clothing/head/helmet/space/rig/ihs_combat
 	suit_type = "ironhammer hardsuit"
 	armor = list(melee = 60, bullet = 55, laser = 55, energy = 55, bomb = 45, bio = 100, rad = 40)
 	slowdown = 1

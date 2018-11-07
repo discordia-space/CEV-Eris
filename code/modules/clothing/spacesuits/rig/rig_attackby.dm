@@ -126,6 +126,11 @@
 				if(!air_supply)
 					user << "There is not tank to remove."
 					return
+
+				if (is_worn())
+					user << "You can't remove an installed tank while the hardsuit is being worn."
+					return 1
+
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					if(user.l_hand && user.r_hand)
 						air_supply.forceMove(get_turf(user))

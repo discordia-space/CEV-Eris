@@ -63,7 +63,7 @@
 
 /obj/item/proc/is_worn()
 	if (ismob(loc))
-		return !(equip_slot in list(slot_none, slot_l_hand, slot_r_hand,slot_robot_equip_1,slot_robot_equip_2,slot_robot_equip_3))
+		return !(equip_slot in unworn_slots)
 
 
 /obj/item/proc/is_held()
