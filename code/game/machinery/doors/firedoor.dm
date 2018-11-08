@@ -295,7 +295,7 @@
 
 	if(!forced)
 		if(stat & (BROKEN|NOPOWER))
-			return //needs power to open unless it was forced
+			return //needs power to close unless it was forced
 		else
 			use_power(360)
 
