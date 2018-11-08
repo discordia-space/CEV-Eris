@@ -129,13 +129,13 @@
 
 	if(mob.control_object)	Move_object(Dir)
 
-	if(mob.incorporeal_move && isobserver(mob))
-		Process_Incorpmove(Dir)
-		return
-
 	if(moving)	return 0
 
 	if (isMovementBlocked())
+		return
+
+	if(mob.incorporeal_move && isobserver(mob))
+		Process_Incorpmove(Dir)
 		return
 
 	if(locate(/obj/effect/stop/, mob.loc))
@@ -345,9 +345,17 @@
 				mob << SPAN_WARNING("You cannot get past holy grounds while you are in this plane of existence!")
 				return
 			else
-				mob.forceMove(get_step(mob, direct))
+				var/delay = 0.5;
+				// NOTE HERE: even when we're moving diagonally we pass glide size as if it's a cardinal movement.
+				// This is because LONG_GLIDE is set. It'll handle adjustment for diagonals itself.
+				var/new_glide_size = DELAY2GLIDESIZE(delay)
+				if (direct in cornerdirs)
+					delay *= sqrt(2)
+				move_delayer.setDelayMin(delay)
+				mob.forceMove(get_step(mob, direct), glide_size_override=new_glide_size)
 				mob.dir = direct
 		if(2)
+			var/delay = MOVE_DELAY_BASE+1
 			if(prob(50))
 				var/locx
 				var/locy
@@ -374,7 +382,9 @@
 							return
 					else
 						return
-				mob.forceMove(locate(locx,locy,mobloc.z))
+				
+				move_delayer.setDelayMin(delay)
+				mob.forceMove(locate(locx,locy,mobloc.z), glide_size_override=DELAY2GLIDESIZE(delay))
 				spawn(0)
 					var/limit = 2//For only two trailing shadows.
 					for(var/turf/T in getline(mobloc, mob.loc))
@@ -385,7 +395,8 @@
 			else
 				spawn(0)
 					anim(mobloc,mob,'icons/mob/mob.dmi',,"shadow",,mob.dir)
-				mob.forceMove(get_step(mob, direct))
+				move_delayer.setDelayMin(delay)
+				mob.forceMove(get_step(mob, direct), glide_size_override=DELAY2GLIDESIZE(delay))
 			mob.dir = direct
 	// Crossed is always a bit iffy
 	for(var/obj/S in mob.loc)
