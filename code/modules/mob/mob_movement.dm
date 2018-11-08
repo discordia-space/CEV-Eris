@@ -20,21 +20,6 @@
 /client/proc/isMovementBlocked()
 	return move_delayer.isBlocked()
 
-/client/North()
-	..()
-
-
-/client/South()
-	..()
-
-
-/client/West()
-	..()
-
-
-/client/East()
-	..()
-
 
 /client/proc/client_dir(input, direction=-1)
 	return turn(input, direction*dir2angle(dir))
