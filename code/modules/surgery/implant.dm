@@ -231,6 +231,6 @@
 				user.visible_message("\red You scrape something inside [target]'s [affected.name]." )
 				var/obj/item/weapon/implant/imp = affected.implants[1]
 				spawn(25)
-					if (!istype(imp) || QDELETED(imp))
+					if (QDELETED(imp))
 						return
 					imp.malfunction(1)

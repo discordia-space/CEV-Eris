@@ -190,7 +190,7 @@
 
 
 /obj/effect/blob/proc/regen()
-	if (core && !(QDELETED(core)))
+	if (!(QDELETED(core)))
 		health = min(health + 2, maxHealth)
 	else
 		core = null
@@ -204,7 +204,7 @@
 	However, the farther away each segment is from the core, the longer it must rest between expansions
 */
 /obj/effect/blob/proc/set_expand_time()
-	if (core && !(QDELETED(core)))
+	if (!(QDELETED(core)))
 		next_expansion = world.time + ((1 SECONDS) * (dist_time_scaling ** coredist))
 	else
 		//If the core is gone, no more expansion
@@ -224,7 +224,7 @@
 
 	if (blob_neighbors.len == 4) //We must have a full list of blobneighbors
 		if (health >= maxHealth) //We must be at full health
-			if (core && !(QDELETED(core)))//We must have a living core
+			if (!(QDELETED(core)))//We must have a living core
 				if (!attackable_mobs_in_turf())
 					STOP_PROCESSING(SSobj, src)
 					active = FALSE
