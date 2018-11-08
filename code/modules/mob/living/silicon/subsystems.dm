@@ -2,7 +2,8 @@
 	var/list/silicon_subsystems_by_name = list()
 	var/list/silicon_subsystems = list(
 		/datum/nano_module/alarm_monitor/all,
-		/datum/nano_module/law_manager
+		/datum/nano_module/law_manager,
+		/datum/nano_module/email_client
 	)
 
 /mob/living/silicon/ai/New()
@@ -15,7 +16,8 @@
 
 /mob/living/silicon/robot/syndicate
 	silicon_subsystems = list(
-		/datum/nano_module/law_manager
+		/datum/nano_module/law_manager,
+		/datum/nano_module/email_client
 	)
 
 /mob/living/silicon/Destroy()
@@ -54,11 +56,11 @@
 	qdel(SSS)
 	return TRUE
 
-/mob/living/silicon/proc/open_subsystem(var/subsystem_type)
+/mob/living/silicon/proc/open_subsystem(var/subsystem_type, var/mob/given = src)
 	var/stat_silicon_subsystem/SSS = silicon_subsystems[subsystem_type]
 	if(!istype(SSS))
 		return FALSE
-	SSS.Click()
+	SSS.Click(given)
 	return TRUE
 
 /mob/living/silicon/verb/activate_subsystem(var/datum/silicon_subsystem_name in silicon_subsystems_by_name)
@@ -82,6 +84,14 @@
 		var/stat_silicon_subsystem/SSS = silicon_subsystems[subsystem_type]
 		stat(SSS)
 
+/mob/living/silicon/proc/get_subsystem_from_path(subsystem_type)
+	var/stat_silicon_subsystem/SSS = silicon_subsystems[subsystem_type]
+	if(!istype(SSS))
+		return 0
+	if(!istype(SSS.subsystem, subsystem_type))
+		return 0
+	return SSS.subsystem
+
 /stat_silicon_subsystem
 	parent_type = /atom/movable
 	simulated = 0
@@ -101,6 +111,8 @@
 	subsystem = null
 	. = ..()
 
-/stat_silicon_subsystem/Click()
-	subsystem.ui_interact(usr, state = ui_state)
-	return TRUE
+/stat_silicon_subsystem/Click(var/mob/given = usr)
+	if (istype(given))
+		subsystem.ui_interact(given, state = ui_state)
+	else
+		subsystem.ui_interact(usr, state = ui_state)

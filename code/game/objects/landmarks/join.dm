@@ -35,7 +35,7 @@
 	icon_state = "synth-cyan"
 	join_tag = "Cyborg Storage"
 	message = "has been activated from storage"
-	restrict_job = list("Cyborg")
+	restrict_job = list("Robot")
 
 /obj/landmark/join/observer
 	name = "observer-spawn"
