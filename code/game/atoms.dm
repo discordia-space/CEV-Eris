@@ -617,3 +617,6 @@ its easier to just keep the beam vertical.
 		C.y_pos = T.y
 		C.z_pos = T.z
 		return C
+
+/atom/proc/change_area(var/area/old_area, var/area/new_area)
+	return
