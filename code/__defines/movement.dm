@@ -3,7 +3,7 @@
 //Glidesize
 #define FRACTIONAL_GLIDESIZES 1
 #ifdef FRACTIONAL_GLIDESIZES
-#define DELAY2GLIDESIZE(delay) (WORLD_ICON_SIZE / max(Ceiling(delay / world.tick_lag), 1))
+#define DELAY2GLIDESIZE(delay) (world.icon_size / max(Ceiling(delay / world.tick_lag), 1))
 #else
-#define DELAY2GLIDESIZE(delay) (Ceiling(WORLD_ICON_SIZE / max(Ceiling(delay / world.tick_lag), 1)))
+#define DELAY2GLIDESIZE(delay) (Ceiling(world.icon_size / max(Ceiling(delay / world.tick_lag), 1)))
 #endif 

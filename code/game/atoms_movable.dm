@@ -300,7 +300,7 @@
 	return text2num(pickweight(candidates))
 
 
-/atom/movable/proc/set_glide_size(glide_size_override = 0, var/min = 0.9, var/max = WORLD_ICON_SIZE/2)
+/atom/movable/proc/set_glide_size(glide_size_override = 0, var/min = 0.9, var/max = world.icon_size/2)
 	if (!glide_size_override || glide_size_override > max)
 		glide_size = 0
 	else
@@ -316,31 +316,36 @@
 	if (glide_size_override > 0)
 		set_glide_size(glide_size_override)
 	
+	// To prevent issues, diagonal movements are broken up into two cardinal movements.
+
+	// Is this a diagonal movement?
 	if (Dir & (Dir - 1))
-		if (Dir & 1)
-			if (Dir & 4)
+		if (Dir & NORTH)
+			if (Dir & EAST)
+				// Pretty simple really, try to move north -> east, else try east -> north
+				// Pretty much exactly the same for all the other cases here.
 				if (step(src, NORTH))
 					step(src, EAST)
 				else
 					if (step(src, EAST))
 						step(src, NORTH)
 			else
-				if (Dir & 8)
+				if (Dir & WEST)
 					if (step(src, NORTH))
 						step(src, WEST)
 					else
 						if (step(src, WEST))
 							step(src, NORTH)
 		else
-			if (Dir & 2)
-				if (Dir & 4)
+			if (Dir & SOUTH)
+				if (Dir & EAST)
 					if (step(src, SOUTH))
 						step(src, EAST)
 					else
 						if (step(src, EAST))
 							step(src, SOUTH)
 				else
-					if (Dir & 8)
+					if (Dir & WEST)
 						if (step(src, SOUTH))
 							step(src, WEST)
 						else

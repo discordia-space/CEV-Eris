@@ -73,14 +73,10 @@
 		for(var/atom/movable/A in affecting)
 			if(!A.anchored)
 				if(A.loc == src.loc) // prevents the object from being affected if it's not currently here.
-					if (debug_wait)
-						world << "[wait], [world.time], [DELAY2GLIDESIZE(wait)]"
 					step_glide(A, movedir, DELAY2GLIDESIZE(wait))
 					items_moved++
 			if(items_moved >= 10)
 				break
-
-/obj/machinery/conveyor/var/debug_wait = FALSE
 
 // attack with item, place item on conveyor
 /obj/machinery/conveyor/attackby(var/obj/item/I, mob/user)
