@@ -123,25 +123,25 @@
 	if(!interference)
 		interference = TRUE
 		spawn(0)
-			if (!src || QDELETED(src))
+			if (QDELETED(src))
 				return
 
 			overlays.Cut()
 			set_light(0, 0)
 			sleep(3)
-			if (!src || QDELETED(src))
+			if (QDELETED(src))
 				return
 
 			overlays += plant
 			set_light(brightness_on, brightness_on/2)
 			sleep(3)
-			if (!src || QDELETED(src))
+			if (QDELETED(src))
 				return
 
 			overlays -= plant
 			set_light(0, 0)
 			sleep(3)
-			if (!src || QDELETED(src))
+			if (QDELETED(src))
 				return
 
 			change_color()
