@@ -62,12 +62,27 @@ This saves us from having to call add_fingerprint() any time something is put in
 	var/obj/item/organ/external/O = organs_by_name[name]
 	return (O && !O.is_stump() && (!check_usablility || O.is_usable()))
 
-/mob/living/carbon/human/u_equip(obj/item/W as obj)
+/mob/living/carbon/human/u_equip(obj/item/Item)
+	if(src.client)
+		src.client.screen -= Item
+	Item.layer = initial(Item.layer)
+	Item.plane = initial(Item.plane)
+	Item.screen_loc = null
+
+	legacy_u_equip(Item)
+
+	Item.update_wear_icon(TRUE)
+
+	if(Item.action_button_name)
+		update_action_buttons()
+
+
+
+/mob/living/carbon/human/proc/legacy_u_equip(obj/item/W)
 	if (W == wear_suit)
 		if(s_store)
 			drop_from_inventory(s_store)
 		wear_suit = null
-		update_inv_wear_suit()
 	else if (W == w_uniform)
 		if (r_store)
 			drop_from_inventory(r_store)
@@ -78,13 +93,10 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if (belt)
 			drop_from_inventory(belt)
 		w_uniform = null
-		update_inv_w_uniform()
 	else if (W == gloves)
 		gloves = null
-		update_inv_gloves()
 	else if (W == glasses)
 		glasses = null
-		update_inv_glasses()
 	else if (W == head)
 		head = null
 		if(istype(W, /obj/item))
@@ -93,19 +105,14 @@ This saves us from having to call add_fingerprint() any time something is put in
 				update_hair(0)	//rebuild hair
 				update_inv_ears(0)
 				update_inv_wear_mask(0)
-		update_inv_head()
 	else if (W == l_ear)
 		l_ear = null
-		update_inv_ears()
 	else if (W == r_ear)
 		r_ear = null
-		update_inv_ears()
 	else if (W == shoes)
 		shoes = null
-		update_inv_shoes()
 	else if (W == belt)
 		belt = null
-		update_inv_belt()
 	else if (W == wear_mask)
 		wear_mask = null
 		if(istype(W, /obj/item))
@@ -119,41 +126,27 @@ This saves us from having to call add_fingerprint() any time something is put in
 /*			if(internals)
 				internals.icon_state = "internal0"*/
 			internal = null
-		update_inv_wear_mask()
 	else if (W == wear_id)
 		wear_id = null
-		update_inv_wear_id()
 	else if (W == r_store)
 		r_store = null
-		update_inv_pockets()
 	else if (W == l_store)
 		l_store = null
-		update_inv_pockets()
 	else if (W == s_store)
 		s_store = null
-		update_inv_s_store()
 	else if (W == back)
 		back = null
-		update_inv_back()
 	else if (W == handcuffed)
 		handcuffed = null
 		if(buckled && buckled.buckle_require_restraints)
 			buckled.unbuckle_mob()
-		update_inv_handcuffed()
 	else if (W == legcuffed)
 		legcuffed = null
-		update_inv_legcuffed()
 	else if (W == r_hand)
 		r_hand = null
-		update_inv_r_hand()
 	else if (W == l_hand)
 		l_hand = null
-		update_inv_l_hand()
-	else
-		return 0
 
-	update_action_buttons()
-	return 1
 
 /mob/living/carbon/human/proc/get_active_hand_organ()
 	if(hand)
@@ -169,32 +162,31 @@ This saves us from having to call add_fingerprint() any time something is put in
 			return BP_R_ARM
 
 
-/mob/living/carbon/human/equip_to_slot(obj/item/W, slot, redraw_mob = 1)
+/mob/living/carbon/human/equip_to_slot(obj/item/Item, slot, redraw_mob = 1)
 	switch(slot)
 		if(slot_in_backpack)
-			if(src.get_active_hand() == W)
-				src.remove_from_mob(W)
-			W.forceMove(src.back)
+			Item.forceMove(src.back)
 
 		if(slot_accessory_buffer)
 			var/obj/item/clothing/under/uniform = src.w_uniform
-			uniform.attackby(W,src)
+			uniform.attackby(Item,src)
 
 		else
-			legacy_equip_to_slot(W, slot, redraw_mob)
+			legacy_equip_to_slot(Item, slot, redraw_mob)
 
-			W.forceMove(src)
-			W.equipped(src, slot)
-			W.update_wear_icon(redraw_mob)
-			W.screen_loc = find_inv_position(slot)
-			W.layer = ABOVE_HUD_LAYER
-			W.plane = ABOVE_HUD_PLANE
+			Item.forceMove(src)
+			Item.equipped(src, slot)
+			Item.screen_loc = find_inv_position(slot)
+			Item.layer = ABOVE_HUD_LAYER
+			Item.plane = ABOVE_HUD_PLANE
 
 			// That's really reqed. At least for now
 			if(client)
-				client.screen |= W
+				client.screen |= Item
 
-			if(W.action_button_name)
+			Item.update_wear_icon(redraw_mob)
+
+			if(Item.action_button_name)
 				update_action_buttons()
 
 
@@ -257,10 +249,8 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_s_store)
 			src.s_store = W
 		else
-			src << SPAN_DANGER("You are trying to eqip this item to an unsupported inventory slot. If possible, please write a ticket with steps to reproduce. Slot was: [slot]")
-			return
-
-	return 1
+			src << SPAN_DANGER("You are trying to eqip this item to an unsupported inventory slot.\
+				If possible, please write a ticket with steps to reproduce. Slot was: [slot]")
 
 //Checks if a given slot can be accessed at this time, either to equip or unequip I
 /mob/living/carbon/human/slot_is_accessible(var/slot, var/obj/item/I, mob/user=null)

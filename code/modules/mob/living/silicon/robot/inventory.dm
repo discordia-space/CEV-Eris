@@ -290,9 +290,14 @@
 		return ..(W)
 
 
-/mob/living/silicon/robot/canUnEquip(obj/item/I) //Force overrides NODROP for things like wizarditis and admin undress.
-	if(!I || !I.loc)
-		return TRUE
-	if (istype(I.loc, /obj/item/weapon/gripper)) //Robots are allowed to drop the things in their gripper
-		return TRUE
-	return ..(I) //This will be false for things directly equipped
+/mob/living/silicon/robot/can_unequip(obj/item/I)
+	//Robots are allowed to drop the things in their gripper
+	if(I && istype(module_active, /obj/item/weapon/gripper))
+		var/obj/item/weapon/gripper/G = module_active
+		return I == G || G.wrapped == I
+
+/mob/living/silicon/robot/drop_from_inventory(obj/item/I, var/atom/Target)
+	if(istype(I.loc, /obj/item/weapon/gripper))
+		var/obj/item/weapon/gripper/G = I.loc
+		return G.drop(Target)
+	CRASH("Try to drop_from_inventory robot module")

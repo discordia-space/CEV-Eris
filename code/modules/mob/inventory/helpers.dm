@@ -28,4 +28,28 @@
 	var/datum/inventory_slot/S = SSinventory.get_slot_datum(slot)
 	if(S && !S.can_equip(Item, src, disable_warning))
 		return FALSE
+
 	return slot_is_accessible(slot, Item, disable_warning? null : src) && ..()
+
+
+
+/proc/mob_can_unequip(mob/living/Mob, obj/item/Item, disable_warning)
+	if(!istype(Mob) || !istype(Item))
+		return FALSE
+
+	var/slot = Mob.get_inventory_slot(Item)
+	if(!slot)
+		return FALSE
+
+	return Mob.can_unequip(Item, slot, disable_warning) && Item.can_be_unequipped(src, slot, disable_warning)
+
+
+/mob/proc/can_unequip(obj/item/Item, slot, disable_warning = FALSE)
+	return slot_is_accessible(slot, Item, disable_warning? null : src)
+
+
+
+
+/mob/proc/get_inventory_slot(obj/item/Item)
+	return Item && Item.get_holding_mob() == src && Item.get_equip_slot()
+

@@ -205,10 +205,6 @@
 
 	updatehealth()
 
-
-/mob/living/carbon/slime/u_equip(obj/item/W as obj)
-	return
-
 /mob/living/carbon/slime/attack_ui(slot)
 	return
 

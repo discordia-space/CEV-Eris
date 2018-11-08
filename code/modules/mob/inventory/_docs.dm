@@ -21,7 +21,7 @@ This is a SAFE proc. Use this instead of equip_to_slot()!
 Set disable_warning to disable the 'you are unable to equip that' warning.
 Unset redraw_mob to prevent the mob from being redrawn at the end.
 It calls:
-	- Mob.can_equip(Item, slot, disable_warning) and Item.can_be_equiped(mob, slot, disable_warning)
+	- mob_can_equip(Mob, Item, slot, disable_warning)
 	- If Item already equipped on someone other_mob.unEquip(Item) will be called.
 	- Item.pre_equip(src, slot)
 	- if Item.pre_equip(..) take some time Mob.can_equip(...) and Item.can_be_equiped(...) will be called again .
@@ -57,6 +57,53 @@ Ovverided for human proc check "slot_back" first.
 
 
 
+
+// UNEQUIP //
+
+/mob/proc/u_equip(obj/item/Item)
+/*
+This is an UNSAFE proc.
+Inequip analogue for equip_to_slot(...)
+
+It merely handles the actual job of equipping. Drop vars, update icons. Also calls Item.dropped(mob, slot).
+Does nothing else.
+
+DO NOT CALL THIS PROC DIRECTLY. It is meant to be called only by other inventory procs.
+It's probably okay to use it if you are transferring the item between slots on the same mob,
+but chances are you're safer calling remove_from_mob() or drop_from_inventory() anyways.
+
+It calls:
+	- Item.dropped(Mob, slot)
+*/
+
+
+/mob/proc/drop_from_inventory(obj/item/Item, atom/Target, drop_flag)
+/*
+This is a SAFE proc. You can use this instead of u_equip()!
+Remove an Item from a mob and forceMove it into Target atom
+Remove from mob means:
+	- remove from mob client screen (if client exist)
+	- remove from mobs contents (Item.forceMove(...)) / inventory (mob.u_equip(...))
+
+If no Target is specify item will be moved to mob.loc and forceMoved with MOVED_DROP flag.
+Check /atom/movable/proc/forceMove(...) for more info about flags.
+
+It calls:
+	- Mob.u_equip(Item)
+	- Item.forceMove(Target)
+*/
+
+
+/mob/proc/unEquip(obj/item/Item, atom/Target)
+/*
+This differs from drop_from_inventory(...) in that it checks if the item can be unequipped first.
+
+It calls:
+	- mob_can_unequip(Mob, Item, disable_warning)
+	- drop_from_inventory(Item, Target)
+*/
+
+
 // HELPERS //
 
 
@@ -86,7 +133,7 @@ Don't confuse with Item.can_be_equipped(Mob, slot, disable_warning)
 */
 
 
-/proc/mob_can_equip(mob/living/L, obj/item/Item, slot, disable_warning = FALSE)
+/proc/mob_can_equip(mob/living/Mob, obj/item/Item, slot, disable_warning)
 /*
 Now we have two separated procs: Mob.can_equip(Item...) and Item.can_be_equipped(Mob...)
 That proc is simple way to call them both if you wanna check "Can that mob equip this item in some slot"
@@ -95,6 +142,34 @@ It calls:
 	- Item.can_be_equipped(Mob, slot, disable_warning)
 */
 
+
+/mob/proc/can_unequip(obj/item/Item, slot, disable_warning = FALSE)
+/*
+Return TRUE if Mob can unequip Item
+Don't confuse with Item.can_be_unequipped(Mob, slot, disable_warning)
+*/
+
+
+/proc/mob_can_unequip(mob/living/Mob, obj/item/Item, disable_warning)
+/*
+Unequip analogue for /proc/mob_can_equip(Mob, Item, slot, diable_warning), without slot argument
+Slot value will be found automaticly
+If no slot found, proc return FALSE unequipped items can't be uneqip
+
+It calls:
+	- Mob.get_inventory_slot(Item)
+	- Mob.can_unequip(Item, slot, disable_warning)
+	- Item.can_be_unequipped(Mob, slot, disable_warning)
+*/
+
+
+/mob/proc/get_inventory_slot(obj/item/Item)
+/*
+If Item is exist returns id of slot what occupied with Item
+It calls:
+	- Item.get_holding_mob()
+	- Item.get_equip_slot()
+*/
 
 
 // ITEMS //
