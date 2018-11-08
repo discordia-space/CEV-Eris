@@ -136,7 +136,8 @@
 				/obj/random/voidsuit/damaged = 0.5,
 				/obj/item/weapon/storage/pouch/small_generic = 6,
 				/obj/item/weapon/storage/pouch/medium_generic = 4,
-				/obj/random/pouch = 3))
+				/obj/random/pouch = 3,
+				/obj/random/junk = 3))
 
 /obj/random/lowkeyrandom/low_chance
 	name = "low chance random stuff"

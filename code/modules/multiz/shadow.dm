@@ -51,13 +51,13 @@
 /mob/living/proc/check_shadow()
 	var/mob/M = src
 	if(isturf(M.loc))
-		var/turf/simulated/open/OS = GetAbove(src)
-		while(OS && istype(OS))
+		var/turf/T = GetAbove(src)
+		while(T && T.isTransparent)
 			if(!M.shadow)
 				M.shadow = new(M)
-			M.shadow.forceMove(OS)
+			M.shadow.forceMove(T)
 			M = M.shadow
-			OS = GetAbove(M)
+			T = GetAbove(M)
 
 	if(M.shadow)
 		qdel(M.shadow)

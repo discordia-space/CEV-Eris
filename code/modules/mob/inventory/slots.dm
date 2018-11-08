@@ -234,7 +234,7 @@
 		if(!disable_warning)
 			owner << SPAN_WARNING("You can't attach anything to that [wear_suit].")
 		return FALSE
-	if( !is_type_in_list(I, wear_suit.allowed + list(/obj/item/device/pda, /obj/item/weapon/pen)) )
+	if( !is_type_in_list(I, wear_suit.allowed + list(/obj/item/modular_computer/pda, /obj/item/weapon/pen)) )
 		if(!disable_warning)
 			owner << SPAN_WARNING("You can't attach [I] to that [wear_suit].")
 		return FALSE
