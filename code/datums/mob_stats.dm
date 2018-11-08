@@ -16,7 +16,7 @@
 
 /datum/stat_holder/proc/getStat(statName, Pure = null)
 	var/datum/stat/S = stat_list[statName]
-	return S ? S.getValue(Pure) : -101
+	return S ? S.getValue(Pure) : 0
 
 
 

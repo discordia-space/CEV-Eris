@@ -387,13 +387,13 @@
 		update_icon()
 
 
+
+
 /obj/item/weapon/paper/attackby(obj/item/weapon/P as obj, mob/user as mob)
 	..()
 
-	if(istype(P, /obj/item/weapon/tape_roll))
-		var/obj/item/weapon/tape_roll/tape = P
-		tape.stick(src, user)
-		return
+	if(P.has_quality(QUALITY_ADHESIVE))
+		return //The tool's afterattack will handle this
 
 	if(istype(P, /obj/item/weapon/paper) || istype(P, /obj/item/weapon/photo))
 		if (istype(P, /obj/item/weapon/paper/carbon))

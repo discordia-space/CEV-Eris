@@ -10846,7 +10846,7 @@
 "eaD" = (/obj/structure/table/reinforced,/obj/item/weapon/storage/box/syringes{pixel_x = 3; pixel_y = 3},/turf/simulated/floor/tiled/old_tile/yellow,/area/rnd/docking)
 "eaE" = (/obj/structure/table/reinforced,/obj/item/weapon/storage/toolbox/electrical,/turf/simulated/floor/tiled/old_tile/yellow,/area/rnd/docking)
 "eaF" = (/obj/structure/table/reinforced,/obj/random/tool,/obj/machinery/light/small,/turf/simulated/floor/tiled/old_tile/yellow,/area/rnd/docking)
-"eaG" = (/obj/structure/table/reinforced,/obj/item/weapon/tape_roll,/obj/item/weapon/tape_roll,/obj/item/weapon/tape_roll,/turf/simulated/floor/tiled/old_tile/yellow,/area/rnd/docking)
+"eaG" = (/obj/structure/table/reinforced,/obj/item/weapon/tool/tape_roll,/obj/item/weapon/tool/tape_roll,/obj/item/weapon/tool/tape_roll,/turf/simulated/floor/tiled/old_tile/yellow,/area/rnd/docking)
 "eaH" = (/obj/structure/table/reinforced,/obj/item/weapon/storage/box/monkeycubes,/obj/item/weapon/storage/box/monkeycubes,/turf/simulated/floor/tiled/old_tile/yellow,/area/rnd/docking)
 "eaI" = (/obj/structure/table/reinforced,/obj/item/weapon/reagent_containers/glass/beaker/large,/obj/item/weapon/reagent_containers/glass/beaker/large,/obj/machinery/light/small,/turf/simulated/floor/tiled/old_tile/yellow,/area/rnd/docking)
 "eaJ" = (/obj/structure/table/reinforced,/obj/item/stack/cable_coil,/obj/item/stack/cable_coil,/obj/machinery/atmospherics/unary/vent_pump/on{dir = 1},/turf/simulated/floor/tiled/old_tile/yellow,/area/rnd/docking)
