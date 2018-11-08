@@ -485,25 +485,24 @@
 		if(!seed)
 
 			var/obj/item/seeds/S = I
-			user.remove_from_mob(I)
+			if(user.unEquip(I, src))
+				if(!S.seed)
+					user << "The packet seems to be empty. You throw it away."
+					qdel(I)
+					return
 
-			if(!S.seed)
-				user << "The packet seems to be empty. You throw it away."
+				user << "You plant the [S.seed.seed_name] [S.seed.seed_noun]."
+				lastproduce = 0
+				seed = S.seed //Grab the seed datum.
+				dead = 0
+				age = 1
+				//Snowflakey, maybe move this to the seed datum
+				health = (istype(S, /obj/item/seeds/cutting) ? round(seed.get_trait(TRAIT_ENDURANCE)/rand(2,5)) : seed.get_trait(TRAIT_ENDURANCE))
+				lastcycle = world.time
+
 				qdel(I)
-				return
 
-			user << "You plant the [S.seed.seed_name] [S.seed.seed_noun]."
-			lastproduce = 0
-			seed = S.seed //Grab the seed datum.
-			dead = 0
-			age = 1
-			//Snowflakey, maybe move this to the seed datum
-			health = (istype(S, /obj/item/seeds/cutting) ? round(seed.get_trait(TRAIT_ENDURANCE)/rand(2,5)) : seed.get_trait(TRAIT_ENDURANCE))
-			lastcycle = world.time
-
-			qdel(I)
-
-			check_health()
+				check_health()
 
 		else
 			user << SPAN_DANGER("\The [src] already has seeds in it!")
@@ -519,16 +518,15 @@
 			S.handle_item_insertion(G, 1)
 
 	else if ( istype(I, /obj/item/weapon/plantspray) )
-
-		var/obj/item/weapon/plantspray/spray = I
-		user.remove_from_mob(I)
-		toxins += spray.toxicity
-		pestlevel -= spray.pest_kill_str
-		weedlevel -= spray.weed_kill_str
-		user << "You spray [src] with [I]."
-		playsound(loc, 'sound/effects/spray3.ogg', 50, 1, -6)
-		qdel(I)
-		check_health()
+		if(user.unEquip(I, src))
+			var/obj/item/weapon/plantspray/spray = I
+			toxins += spray.toxicity
+			pestlevel -= spray.pest_kill_str
+			weedlevel -= spray.weed_kill_str
+			user << "You spray [src] with [I]."
+			playsound(loc, 'sound/effects/spray3.ogg', 50, 1, -6)
+			qdel(I)
+			check_health()
 
 	else if(I.force && seed)
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)

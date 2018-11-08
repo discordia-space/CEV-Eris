@@ -503,6 +503,7 @@
 /obj/machinery/suit_storage_unit/proc/load(obj/item/I, mob/user, slot)
 	if(!isopen)
 		return
+
 	var/check = FALSE
 	switch(slot)
 		if(SLOT_MASK)

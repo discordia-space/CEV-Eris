@@ -139,15 +139,19 @@
 			user << "\red Once bolted and linked to a shielding unit it the [src.name] is unable to be moved!"
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 			if(!anchored)
-				user.visible_message("[user.name] secures the [src.name] to the floor.", \
-					"You secure the anchor bolts to the floor.", \
-					"You hear a ratchet")
+				user.visible_message(
+					"[user.name] secures the [src.name] to the floor.",
+					"You secure the anchor bolts to the floor.",
+					"You hear a ratchet"
+				)
 				src.anchored = 1
 				connect_to_network()
 			else if(!linked_shielding.len > 0)
-				user.visible_message("[user.name] unsecures the [src.name].", \
-					"You remove the anchor bolts.", \
-					"You hear a ratchet")
+				user.visible_message(
+					"[user.name] unsecures the [src.name].",
+					"You remove the anchor bolts.",
+					"You hear a ratchet"
+				)
 				src.anchored = 0
 				disconnect_from_network()
 			return
@@ -157,12 +161,13 @@
 			user << "\red There is already a [fueljar] inside!"
 			return
 		fueljar = I
-		user.remove_from_mob(I)
-		I.loc = src
+		user.drop_from_inventory(I, src)
 		user.update_icons()
-		user.visible_message("[user.name] loads an [I.name] into the [src.name].", \
-				"You load an [I.name].", \
-				"You hear a thunk.")
+		user.visible_message(
+			"[user.name] loads an [I.name] into the [src.name].",
+			"You load an [I.name].",
+			"You hear a thunk."
+		)
 		return
 
 	if(I.force >= 20)

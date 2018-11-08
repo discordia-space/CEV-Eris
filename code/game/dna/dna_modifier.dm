@@ -119,10 +119,9 @@
 		if(beaker)
 			user << SPAN_WARNING("A beaker is already loaded into the machine.")
 			return
-		beaker = item
-		user.drop_from_inventory(item)
-		item.forceMove(src)
-		user.visible_message("\The [user] adds \a [item] to \the [src]!", "You add \a [item] to \the [src]!")
+		if(user.unEquip(item, src))
+			beaker = item
+			user.visible_message("\The [user] adds \a [item] to \the [src]!", "You add \a [item] to \the [src]!")
 		return
 
 /obj/machinery/dna_scannernew/proc/put_in(var/mob/M)

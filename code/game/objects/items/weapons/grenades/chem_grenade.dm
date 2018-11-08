@@ -52,6 +52,8 @@
 		user << SPAN_WARNING("This grenade is sealed and can't be modified.")
 		return
 	if(istype(W,/obj/item/device/assembly_holder) && (!stage || stage==1) && path != 2)
+		if(!user.unEquip(W, src))
+			return
 		var/obj/item/device/assembly_holder/det = W
 		if(istype(det.left_assembly,det.right_assembly.type) || (!is_igniter(det.left_assembly) && !is_igniter(det.right_assembly)))
 			user << SPAN_WARNING("Assembly must contain one igniter.")
@@ -62,8 +64,6 @@
 		path = 1
 		user << SPAN_NOTICE("You add [W] to the metal casing.")
 		playsound(src.loc, 'sound/items/Screwdriver2.ogg', 25, -3)
-		user.remove_from_mob(det)
-		det.loc = src
 		detonator = det
 		if(is_timer(detonator.left_assembly))
 			var/obj/item/device/assembly/timer/T = detonator.left_assembly

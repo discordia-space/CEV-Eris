@@ -49,7 +49,7 @@
 		//	overlays += "tank_hydro"
 		else
 			overlays += "tank_other"
-			
+
 	if(beaker)
 		overlays += "beaker"
 		if(attached)
@@ -81,7 +81,7 @@
 	if(tank)
 		qdel(tank)
 	if(breather)
-		breather.remove_from_mob(contained)
+		breather.drop_from_inventory(contained)
 		src.visible_message("<span class='notice'>The mask rapidly retracts just before /the [src] is destroyed!</span>")
 	qdel(contained)
 	contained = null
@@ -124,9 +124,8 @@
 						return
 					if(tank)
 						tank.forceMove(src)
-					if (breather.wear_mask == contained)
-						breather.remove_from_mob(contained)
-						contained.forceMove(src)
+					if(breather.get_equipped_item(slot_wear_mask) == contained)
+						breather.drop_from_inventory(contained, src)
 					else
 						qdel(contained)
 						contained = new mask_type(src)
@@ -165,7 +164,7 @@
 					attached = target
 					START_PROCESSING(SSobj,src)
 				update_icon()
-		
+
 
 /obj/structure/medical_stand/attack_hand(mob/user as mob)
 	var/list/available_options = list()
@@ -186,15 +185,21 @@
 				to_chat(user, "<span class='warning'>There is no tank in \the [src]!</span>")
 				return
 			else if (tank && is_loosen)
-				user.visible_message("<span class='notice'>\The [user] removes \the [tank] from \the [src].</span>", "<span class='warning'>You remove \the [tank] from \the [src].</span>")
+				user.visible_message(
+					"<span class='notice'>\The [user] removes \the [tank] from \the [src].</span>",
+					"<span class='warning'>You remove \the [tank] from \the [src].</span>"
+				)
 				user.put_in_hands(tank)
 				tank = null
 				update_icon()
 				return
 			else if (!is_loosen)
-				user.visible_message("<span class='notice'>\The [user] tries to removes \the [tank] from \the [src] but it won't budge.</span>", "<span class='warning'>You try to removes \the [tank] from \the [src] but it won't budge.</span>")
+				user.visible_message(
+					"<span class='notice'>\The [user] tries to removes \the [tank] from \the [src] but it won't budge.</span>",
+					"<span class='warning'>You try to removes \the [tank] from \the [src] but it won't budge.</span>"
+				)
 				return
-		if ("Toggle valve")	
+		if ("Toggle valve")
 			if (!tank)
 				to_chat(user, "<span class='warning'>There is no tank in \the [src]!</span>")
 				return
@@ -215,7 +220,7 @@
 						breather.internal = tank
 						if(internalsHud)
 							internalsHud.icon_state = "internal1"
-					valve_opened = TRUE	
+					valve_opened = TRUE
 					playsound(get_turf(src), 'sound/effects/internals.ogg', 100, 1)
 					update_icon()
 					START_PROCESSING(SSobj,src)
@@ -308,7 +313,10 @@
 				is_loosen = FALSE
 				if (valve_opened)
 					START_PROCESSING(SSobj,src)
-			user.visible_message("<span class='notice'>\The [user] [is_loosen == TRUE ? "loosen" : "tighten"] \the nut holding [tank] in place.</span>", "<span class='notice'>You [is_loosen == TRUE ? "loosen" : "tighten"] \the nut holding [tank] in place.</span>")
+			user.visible_message(
+				"<span class='notice'>\The [user] [is_loosen == TRUE ? "loosen" : "tighten"] \the nut holding [tank] in place.</span>",
+				"<span class='notice'>You [is_loosen == TRUE ? "loosen" : "tighten"] \the nut holding [tank] in place.</span>"
+			)
 			return
 		else
 			to_chat(user, "<span class='warning'>There is no tank in \the [src].</span>")
@@ -322,7 +330,10 @@
 			user.drop_item()
 			W.forceMove(src)
 			tank = W
-			user.visible_message("<span class='notice'>\The [user] attaches \the [tank] to \the [src].</span>", "<span class='notice'>You attach \the [tank] to \the [src].</span>")
+			user.visible_message(
+				"<span class='notice'>\The [user] attaches \the [tank] to \the [src].</span>",
+				"<span class='notice'>You attach \the [tank] to \the [src].</span>"
+			)
 			src.add_fingerprint(user)
 			update_icon()
 
@@ -341,7 +352,7 @@
 /obj/structure/medical_stand/examine(var/mob/user)
 	. = ..()
 
-	if (get_dist(src, user) > 2) 
+	if (get_dist(src, user) > 2)
 		return
 
 	if(beaker)
@@ -370,9 +381,8 @@
 		if(!can_apply_to_target(breather))
 			if(tank)
 				tank.forceMove(src)
-			if (breather.wear_mask == contained)
-				breather.remove_from_mob(contained)
-				contained.forceMove(src)
+			if(breather.get_equipped_item(slot_wear_mask) == contained)
+				breather.drop_from_inventory(contained, src)
 			else
 				qdel(contained)
 				contained = new mask_type (src)
@@ -410,13 +420,13 @@
 		else // Take blood
 			var/amount = beaker.reagents.maximum_volume - beaker.reagents.total_volume
 			amount = min(amount, 4)
-			
+
 			if(amount == 0) // If the beaker is full, ping
 				if(prob(5)) visible_message("\The [src] pings.")
 				return
 
 			var/mob/living/carbon/human/H = attached
-			if(!istype(H)) 
+			if(!istype(H))
 				return
 			if(!H.dna)
 				return

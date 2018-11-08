@@ -107,8 +107,7 @@
 		if ((!F.status)||(F.ptank))	return
 		src.master = F
 		F.ptank = src
-		user.remove_from_mob(src)
-		src.loc = F
+		user.drop_from_inventory(src, F)
 	return
 
 /*

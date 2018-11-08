@@ -569,7 +569,7 @@
 	icon_state = "juicer"+num2text(!isnull(beaker))
 	return
 
-/obj/machinery/reagentgrinder/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/reagentgrinder/attackby(var/obj/item/O, var/mob/user)
 
 	if (istype(O,/obj/item/weapon/reagent_containers/glass) || \
 		istype(O,/obj/item/weapon/reagent_containers/food/drinks/drinkingglass) || \
@@ -578,11 +578,10 @@
 		if (beaker)
 			return 1
 		else
-			src.beaker =  O
-			user.drop_item()
-			O.loc = src
-			update_icon()
-			src.updateUsrDialog()
+			if(user.unEquip(O, src))
+				src.beaker =  O
+				src.update_icon()
+				src.updateUsrDialog()
 			return 0
 
 	//Useability tweak for borgs
@@ -625,10 +624,9 @@
 		user << "\The [O] is not suitable for blending."
 		return 1
 
-	user.remove_from_mob(O)
-	O.loc = src
-	holdingitems += O
-	src.updateUsrDialog()
+	if(user.unEquip(O, src))
+		holdingitems += O
+		src.updateUsrDialog()
 	return 0
 
 /obj/machinery/reagentgrinder/attack_ai(mob/user as mob)

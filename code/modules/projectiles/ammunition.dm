@@ -175,9 +175,8 @@
 			inserted_casing.update_icon()
 			stored_ammo.Insert(1, inserted_casing)
 		else
-			user.remove_from_mob(C)
-			C.loc = src
-			stored_ammo.Insert(1, C) //add to the head of the list
+			if(user.unEquip(C, src))
+				stored_ammo.Insert(1, C) //add to the head of the list
 		update_icon()
 	else if(istype(W, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/other = W

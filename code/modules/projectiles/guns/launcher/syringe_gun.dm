@@ -20,13 +20,15 @@
 
 /obj/item/weapon/syringe_cartridge/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/reagent_containers/syringe))
-		syringe = I
-		user << SPAN_NOTICE("You carefully insert [syringe] into [src].")
-		user.remove_from_mob(syringe)
-		syringe.loc = src
-		sharp = 1
-		name = "syringe dart"
-		update_icon()
+		if(syringe)
+			user << SPAN_WARNING("Syringe already loaded")
+			return
+		if(user.unEquip(I, src))
+			syringe = I
+			user << SPAN_NOTICE("You carefully insert [syringe] into [src].")
+			sharp = 1
+			name = "syringe dart"
+			update_icon()
 
 /obj/item/weapon/syringe_cartridge/attack_self(mob/user)
 	if(syringe)
@@ -100,11 +102,17 @@
 
 /obj/item/weapon/gun/launcher/syringe/attack_self(mob/living/user as mob)
 	if(next)
-		user.visible_message("[user] unlatches and carefully relaxes the bolt on [src].", SPAN_WARNING("You unlatch and carefully relax the bolt on [src], unloading the spring."))
+		user.visible_message(
+			"[user] unlatches and carefully relaxes the bolt on [src].",
+			SPAN_WARNING("You unlatch and carefully relax the bolt on [src], unloading the spring.")
+		)
 		next = null
 	else if(darts.len)
 		playsound(src.loc, 'sound/weapons/flipblade.ogg', 50, 1)
-		user.visible_message("[user] draws back the bolt on [src], clicking it into place.", SPAN_WARNING("You draw back the bolt on the [src], loading the spring!"))
+		user.visible_message(
+			"[user] draws back the bolt on [src], clicking it into place.",
+			SPAN_WARNING("You draw back the bolt on the [src], loading the spring!")
+		)
 		next = darts[1]
 	add_fingerprint(user)
 
@@ -129,10 +137,12 @@
 		if(darts.len >= max_darts)
 			user << SPAN_WARNING("[src] is full!")
 			return
-		user.remove_from_mob(C)
-		C.loc = src
-		darts += C //add to the end
-		user.visible_message("[user] inserts \a [C] into [src].", SPAN_NOTICE("You insert \a [C] into [src]."))
+		if(user.unEquip(C, src))
+			darts += C //add to the end
+			user.visible_message(
+				"[user] inserts \a [C] into [src].",
+				SPAN_NOTICE("You insert \a [C] into [src].")
+			)
 	else
 		..()
 

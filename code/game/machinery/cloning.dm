@@ -197,7 +197,6 @@
 //Let's unlock this early I guess.  Might be too early, needs tweaking.
 /obj/machinery/clonepod/attackby(var/obj/item/I, mob/user as mob)
 	if(isnull(occupant))
-
 		if(default_deconstruction(I, user))
 			return
 

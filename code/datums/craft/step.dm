@@ -231,8 +231,7 @@
 		return I
 
 	//The item is on the user
-	if (user.canUnEquip(I))
-		//We test if they can remove it, this will return false for robot objects
+	if (mob_can_unequip(user, I))
 		return I
 
 

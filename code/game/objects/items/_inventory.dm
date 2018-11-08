@@ -41,19 +41,12 @@
 		zoom()
 
 
-/obj/item/proc/can_be_equipped(mob/Mob, slot, disable_warning = FALSE)
+/obj/item/proc/can_be_equipped(mob/living/Mob, slot, disable_warning = FALSE)
 	return TRUE
 
 
-/obj/item/proc/mob_can_unequip(mob/M, slot, disable_warning = 0)
-	if(!slot) return 0
-	if(!M) return 0
-
-	if(!canremove)
-		return 0
-	if(!M.slot_is_accessible(slot, src, disable_warning? null : M))
-		return 0
-	return 1
+/obj/item/proc/can_be_unequipped(mob/living/Mob, slot, disable_warning = FALSE)
+	return canremove
 
 
 /obj/item/proc/is_equipped()

@@ -274,12 +274,14 @@
 			user << SPAN_NOTICE("\The [src] is full.")
 			return 1
 		else
-			user.remove_from_mob(O)
-			O.forceMove(src)
-			update_contents()
-			user.visible_message(SPAN_NOTICE("[user] has added \the [O] to \the [src]."), SPAN_NOTICE("You add \the [O] to \the [src]."))
-			update_icon()
-			SSnano.update_uis(src)
+			if(user.unEquip(O, src))
+				update_contents()
+				user.visible_message(
+					SPAN_NOTICE("[user] has added \the [O] to \the [src]."),
+					SPAN_NOTICE("You add \the [O] to \the [src].")
+				)
+				update_icon()
+				SSnano.update_uis(src)
 
 	else if(istype(O, /obj/item/weapon/storage/bag))
 		var/obj/item/weapon/storage/bag/P = O

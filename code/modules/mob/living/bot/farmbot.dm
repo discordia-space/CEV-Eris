@@ -341,41 +341,41 @@
 /obj/item/weapon/farmbot_arm_assembly/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 	if((istype(W, /obj/item/device/scanner/analyzer/plant_analyzer)) && (build_step == 0))
-		build_step++
-		user << "You add the plant analyzer to [src]."
-		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
-		name = "farmbot assembly"
-		user.remove_from_mob(W)
-		qdel(W)
+		if(user.unEquip(W))
+			build_step++
+			user << "You add the plant analyzer to [src]."
+			playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
+			name = "farmbot assembly"
+			qdel(W)
 
 	else if((istype(W, /obj/item/weapon/reagent_containers/glass/bucket)) && (build_step == 1))
-		build_step++
-		user << "You add a bucket to [src]."
-		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
-		name = "farmbot assembly with bucket"
-		user.remove_from_mob(W)
-		qdel(W)
+		if(user.unEquip(W))
+			build_step++
+			user << "You add a bucket to [src]."
+			playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
+			name = "farmbot assembly with bucket"
+			qdel(W)
 
 	else if((istype(W, /obj/item/weapon/material/minihoe)) && (build_step == 2))
-		build_step++
-		user << "You add a minihoe to [src]."
-		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
-		name = "farmbot assembly with bucket and minihoe"
-		user.remove_from_mob(W)
-		qdel(W)
+		if(user.unEquip(W))
+			build_step++
+			user << "You add a minihoe to [src]."
+			playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
+			name = "farmbot assembly with bucket and minihoe"
+			qdel(W)
 
 	else if((is_proximity_sensor(W)) && (build_step == 3))
-		build_step++
-		user << "You complete the Farmbot! Beep boop."
-		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
-		var/mob/living/bot/farmbot/S = new /mob/living/bot/farmbot(get_turf(src))
-		for(var/obj/structure/reagent_dispensers/watertank/wTank in contents)
-			wTank.loc = S
-			S.tank = wTank
-		S.name = created_name
-		user.remove_from_mob(W)
-		qdel(W)
-		qdel(src)
+		if(user.unEquip(W))
+			build_step++
+			user << "You complete the Farmbot! Beep boop."
+			playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
+			var/mob/living/bot/farmbot/S = new /mob/living/bot/farmbot(get_turf(src))
+			for(var/obj/structure/reagent_dispensers/watertank/wTank in contents)
+				wTank.loc = S
+				S.tank = wTank
+			S.name = created_name
+			qdel(W)
+			qdel(src)
 
 	else if(istype(W, /obj/item/weapon/pen))
 		var/t = input(user, "Enter new robot name", name, created_name) as text

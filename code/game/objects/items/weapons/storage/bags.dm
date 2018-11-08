@@ -170,15 +170,13 @@
 				break
 
 		if(!inserted || !S.amount)
-			usr.remove_from_mob(S)
-			usr.update_icons()	//update our overlays
-			if (usr.client && usr.s_active != src)
-				usr.client.screen -= S
-			S.dropped(usr)
 			if(!S.amount)
 				qdel(S)
+			else if(S.is_equipped())
+				var/mob/living/L = S.loc
+				L.drop_from_inventory(S, src)
 			else
-				S.loc = src
+				S.forceMove(src)
 
 		orient2hud(usr)
 		if(usr.s_active)

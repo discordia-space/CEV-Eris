@@ -137,28 +137,26 @@
 			if(istype(I, /obj/item/weapon/circuitboard))
 				var/obj/item/weapon/circuitboard/B = I
 				if(B.board_type == "machine" && frame_type == B.frame_type)
-					playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-					user << SPAN_NOTICE("You add the circuit board to the frame.")
-					circuit = I
-					user.drop_from_inventory(I)
-					I.forceMove(src)
-					icon_state = "[base_state]_2"
-					state = STATE_CIRCUIT
-					components = list()
-					req_components = circuit.req_components.Copy()
-					for(var/A in circuit.req_components)
-						req_components[A] = circuit.req_components[A]
-					req_component_names = circuit.req_components.Copy()
-					for(var/A in req_components)
-						var/obj/ct = new A // have to quickly instantiate it get name
-						req_component_names[A] = ct.name
-					update_desc()
-					user << desc
+					if(user.unEquip(I, src))
+						playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+						user << SPAN_NOTICE("You add the circuit board to the frame.")
+						circuit = I
+						icon_state = "[base_state]_2"
+						state = STATE_CIRCUIT
+						components = list()
+						req_components = circuit.req_components.Copy()
+						for(var/A in circuit.req_components)
+							req_components[A] = circuit.req_components[A]
+						req_component_names = circuit.req_components.Copy()
+						for(var/A in req_components)
+							var/obj/ct = new A // have to quickly instantiate it get name
+							req_component_names[A] = ct.name
+						update_desc()
+						user << desc
 				else
 					user << SPAN_WARNING("This frame does not accept circuit boards of this type!")
 
 		if(STATE_CIRCUIT)
-
 			if(istype(I, /obj/item))
 				for(var/CM in req_components)
 					if(istype(I, CM) && (req_components[CM] > 0))
@@ -177,8 +175,7 @@
 								req_components[CM] -= camt
 								update_desc()
 								break
-						if(user.drop_from_inventory(I))
-							I.forceMove(src)
+						if(user.unEquip(I, src))
 							components += I
 							req_components[CM]--
 							update_desc()

@@ -29,15 +29,15 @@
 		return
 
 	if(istype(I,/obj/item/weapon/implant) || istype(I,/obj/item/robot_parts) || istype(I,/obj/item/prosthesis))
-		user.remove_from_mob(I)
-		qdel(I)
+		if(user.unEquip(I))
+			qdel(I)
 
-		working = TRUE
-		start_time = world.time
+			working = TRUE
+			start_time = world.time
 
-		flick(image(icon, "closing"), src)
+			flick(image(icon, "closing"), src)
 
-		update_icon()
+			update_icon()
 
 
 /obj/machinery/complant_maker/Process()

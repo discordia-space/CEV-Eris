@@ -879,18 +879,16 @@
 	else if(istype(I, /obj/item/weapon/cell/large))
 		if(state==4)
 			if(!src.cell)
-				user << "You install the powercell"
-				user.drop_item()
-				I.forceMove(src)
-				src.cell = I
-				src.log_message("Powercell installed")
+				if(user.unEquip(I, src))
+					user << "You install the powercell"
+					src.cell = I
+					src.log_message("Powercell installed")
 			else
 				user << "There's already a powercell installed."
 		return
 
 	else if(istype(I, /obj/item/mecha_parts/mecha_tracking))
-		user.drop_from_inventory(I)
-		I.forceMove(src)
+		user.drop_from_inventory(I, src)
 		user.visible_message("[user] attaches [I] to [src].", "You attach [I] to [src]")
 		return
 

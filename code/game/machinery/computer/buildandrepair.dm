@@ -131,12 +131,11 @@
 			if(istype(I, /obj/item/weapon/circuitboard) && !circuit)
 				var/obj/item/weapon/circuitboard/B = I
 				if(B.board_type == "computer")
-					playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-					user << SPAN_NOTICE("You place the circuit board inside the frame.")
-					src.icon_state = "1"
-					src.circuit = I
-					user.drop_from_inventory(I)
-					I.forceMove(src)
+					if(user.unEquip(I, src))
+						playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+						user << SPAN_NOTICE("You place the circuit board inside the frame.")
+						src.icon_state = "1"
+						src.circuit = I
 				else
 					user << SPAN_WARNING("This frame does not accept circuit boards of this type!")
 		if(2)

@@ -579,7 +579,11 @@
 
 			held_item = I
 			I.loc = src
-			visible_message("[src] grabs the [held_item]!", "\blue You grab the [held_item]!", "You hear the sounds of wings flapping furiously.")
+			visible_message(
+				"[src] grabs the [held_item]!",
+				"\blue You grab the [held_item]!",
+				"You hear the sounds of wings flapping furiously."
+			)
 			return held_item
 
 	src << "\red There is nothing of interest to take."
@@ -597,28 +601,24 @@
 		src << "\red You are already holding the [held_item]"
 		return 1
 
-	var/obj/item/stolen_item = null
-
 	for(var/mob/living/carbon/C in view(1,src))
-		if(C.l_hand && C.l_hand.w_class <= ITEM_SIZE_SMALL)
-			stolen_item = C.l_hand
+		if(held_item)
+			break
+		for(var/obj/item/I in C.get_all_hands())
+			if(I.w_class <= ITEM_SIZE_SMALL)
+				if(C.unEquip(I, src))
+					held_item = I
+					visible_message(
+						"[src] grabs the [held_item] out of [C]'s hand!",
+						SPAN_NOTICE("You snag the [held_item] out of [C]'s hand!"),
+						"You hear the sounds of wings flapping furiously."
+					)
+					break
 
-		if(C.r_hand && C.r_hand.w_class <= ITEM_SIZE_SMALL)
-			stolen_item = C.r_hand
-
-		if(stolen_item)
-			C.remove_from_mob(stolen_item)
-			held_item = stolen_item
-			stolen_item.loc = src
-			visible_message(
-				"[src] grabs the [held_item] out of [C]'s hand!",
-				SPAN_NOTICE("You snag the [held_item] out of [C]'s hand!"),
-				"You hear the sounds of wings flapping furiously."
-			)
-			return held_item
-
-	src << "\red There is nothing of interest to take."
-	return 0
+	if(held_item)
+		return held_item
+	else
+		src << SPAN_WARNING("There is nothing of interest to take.")
 
 /mob/living/simple_animal/parrot/verb/drop_held_item_player()
 	set name = "Drop held item"

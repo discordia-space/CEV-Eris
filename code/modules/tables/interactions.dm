@@ -120,7 +120,6 @@
 	if(!istype(W))
 		return
 
-
 	if(istype(W, /obj/item/weapon/melee/energy/blade))
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 		spark_system.set_up(5, 0, src.loc)
@@ -137,4 +136,5 @@
 
 	if (user.unEquip(W, loc))
 		set_pixel_click_offset(W, params)
+
 /obj/structure/table/attack_tk() // no telehulk sorry

@@ -48,24 +48,6 @@
 	W.dropped()
 	return FALSE
 
-// Removes an item from inventory and places it in the target atom.
-// If canremove or other conditions need to be checked then use unEquip instead.
-/mob/proc/drop_from_inventory(var/obj/item/W, var/atom/Target = null, drop_flag = null)
-	if(W)
-		if(!Target)
-			Target = loc
-
-		remove_from_mob(W)
-		if(!(W && W.loc))
-			return TRUE // self destroying objects (tk, grabs)
-
-		if(W.loc != Target)
-			W.do_putdown_animation(Target, src)
-			W.forceMove(Target, drop_flag)
-		update_icons()
-		return TRUE
-	return FALSE
-
 //Drops the item in our left hand
 /mob/proc/drop_l_hand(var/atom/Target)
 	return unEquip(l_hand, Target)
@@ -79,69 +61,10 @@
 	var/obj/item/I = get_active_hand()
 	unEquip(I, Target, MOVED_DROP)
 
-/*
-	Removes the object from any slots the mob might have, calling the appropriate icon update proc.
-	Does nothing else.
-
-	DO NOT CALL THIS PROC DIRECTLY. It is meant to be called only by other inventory procs.
-	It's probably okay to use it if you are transferring the item between slots on the same mob,
-	but chances are you're safer calling remove_from_mob() or drop_from_inventory() anyways.
-
-	As far as I can tell the proc exists so that mobs with different inventory slots can override
-	the search through all the slots, without having to duplicate the rest of the item dropping.
-*/
-/mob/proc/u_equip(obj/W as obj)
-	if (W == r_hand)
-		r_hand = null
-		update_inv_r_hand(0)
-	else if (W == l_hand)
-		l_hand = null
-		update_inv_l_hand(0)
-	else if (W == back)
-		back = null
-		update_inv_back(0)
-	else if (W == wear_mask)
-		wear_mask = null
-		update_inv_wear_mask(0)
-	return
-
 /mob/proc/isEquipped(obj/item/I)
 	if(!I)
 		return FALSE
 	return get_inventory_slot(I) != 0
-
-/mob/proc/canUnEquip(obj/item/I)
-	if(!I) //If there's nothing to drop, the drop is automatically successful.
-		return TRUE
-	var/slot = get_inventory_slot(I)
-	return slot && I.mob_can_unequip(src, slot)
-
-/mob/proc/get_inventory_slot(obj/item/I)
-	var/slot = slot_none
-	if (I.get_holding_mob() == src)
-		slot = I.get_equip_slot()
-	return slot
-
-
-//This differs from remove_from_mob() in that it checks if the item can be unequipped first.
-/mob/proc/unEquip(obj/item/I, var/atom/Target = null, force = 0) //Force overrides NODROP for things like wizarditis and admin undress.
-	if(!canUnEquip(I))
-		return
-	return drop_from_inventory(I,Target)
-
-//Attemps to remove an object on a mob.
-/mob/proc/remove_from_mob(var/obj/O)
-	src.u_equip(O)
-	if (src.client)
-		src.client.screen -= O
-	O.layer = initial(O.layer)
-	O.plane = initial(O.plane)
-	O.screen_loc = null
-	if(istype(O, /obj/item))
-		var/obj/item/I = O
-		I.forceMove(src.loc, MOVED_DROP)
-		I.dropped(src)
-	return TRUE
 
 //This function is an unsafe proc used to prepare an item for being moved to a slot, or from a mob to a container
 //It should be equipped to a new slot or forcemoved somewhere immediately after this is called

@@ -25,14 +25,12 @@
 			return // get rid of that pinned target first!
 
 		if(istype(W, /obj/item/target))
-			density = 0
-			W.density = 1
-			user.remove_from_mob(W)
-			W.loc = loc
-			W.layer = 3.1
-			pinned_target = W
-			user << "You slide the target into the stake."
-		return
+			if(user.unEquip(W, loc))
+				density = FALSE
+				W.density = TRUE
+				W.layer = ABOVE_OBJ_LAYER
+				pinned_target = W
+				user << "You slide the target into the stake."
 
 	attack_hand(mob/user as mob)
 		// taking pinned targets off!

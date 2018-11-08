@@ -41,7 +41,7 @@
 		var/obj/item/weapon/stock_parts/S = used_atom
 		if(S.rating < step["rating"])
 			return 0
-		usr.drop_from_inventory(S, holder)
+		user.drop_from_inventory(S, holder)
 
 	return 1
 

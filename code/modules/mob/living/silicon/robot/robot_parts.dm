@@ -116,16 +116,16 @@
 			var/obj/item/weapon/secbot_assembly/ed209_assembly/B = new(loc)
 			B.forceMove(get_turf(src))
 			user << SPAN_NOTICE("You armed the robot frame.")
-			if (user.get_inactive_hand() == src)
-				user.remove_from_mob(src)
-				user.put_in_inactive_hand(B)
+			if(src.is_equipped())
+				var/mob/living/L = loc
+				L.drop_from_inventory(src)
+				L.put_in_inactive_hand(B)
 			qdel(src)
 		else
 			user << SPAN_WARNING("You need one sheet of metal to arm the robot frame.")
 
 	if(W.has_quality(QUALITY_BOLT_TURNING))
-		var/part = input("Select part for detach", "Detach") \
-			as null|anything in parts
+		var/part = input("Select part for detach", "Detach") as null|anything in parts
 		var/obj/item/robot_parts/selected = part ? parts[part] : null
 		if(!Adjacent(user) || !selected) return
 

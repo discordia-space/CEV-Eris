@@ -39,9 +39,6 @@ obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 			else
 				user << "<span class='danger'>Your gripper cannot hold \the [charging].</span>"
 
-	if(!user.canUnEquip(G))
-		return
-
 	var/allowed = 0
 	for (var/allowed_type in allowed_devices)
 		if (istype(G, allowed_type))
@@ -91,10 +88,9 @@ obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 			//If trying to charge a really small cell, we won't waste more power than it can intake
 
 
-		user.unEquip(G)
-		G.forceMove(src)
-		charging = G
-		update_icon()
+		if(user.unEquip(G, src))
+			charging = G
+			update_icon()
 
 
 

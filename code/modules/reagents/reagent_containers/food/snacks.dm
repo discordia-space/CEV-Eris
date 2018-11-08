@@ -160,14 +160,9 @@
 		var/hide_item = !has_edge(W) || !can_slice_here
 
 		if (hide_item)
-			if (W.w_class >= src.w_class || is_robot_module(W))
-				return
-
-			user << SPAN_WARNING("You slip \the [W] inside \the [src].")
-			user.remove_from_mob(W)
-			W.dropped(user)
-			add_fingerprint(user)
-			contents += W
+			if (W.w_class < src.w_class && user.unEquip(W, src))
+				user << SPAN_WARNING("You slip \the [W] inside \the [src].")
+				add_fingerprint(user)
 			return
 
 		if (has_edge(W))

@@ -75,9 +75,8 @@ var/global/list/stool_cache = list() //haha stool
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		user.do_attack_animation(M)
 
-		user.remove_from_mob(src)
-		dismantle()
-		qdel(src)
+		dismantle() //src is qdeled here.
+
 		var/mob/living/T = M
 		T.Weaken(10)
 		T.apply_damage(20)
