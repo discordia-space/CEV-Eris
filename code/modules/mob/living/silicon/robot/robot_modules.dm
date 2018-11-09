@@ -19,6 +19,7 @@ var/global/list/robot_modules = list(
 	w_class = 100.0
 	item_state = "electronic"
 	flags = CONDUCT
+	var/hide_on_manifest = FALSE
 	var/channels = list()
 	var/networks = list()
 	var/languages = list(							//Any listed language will be understandable. Any set to 1 will be speakable
@@ -817,7 +818,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/form_printer(src)
 	src.modules += new /obj/item/weapon/gripper/paperwork(src)
 	src.modules += new /obj/item/weapon/hand_labeler(src)
-	src.modules += new /obj/item/weapon/tape_roll(src) //allows it to place flyers
+	src.modules += new /obj/item/weapon/tool/tape_roll(src) //allows it to place flyers
 	src.modules += new /obj/item/weapon/stamp/denied(src) //why was this even a emagged item before smh
 
 	var/obj/item/weapon/rsf/M = new /obj/item/weapon/rsf(src)
@@ -956,6 +957,7 @@ var/global/list/robot_modules = list(
 //Syndicate borg is intended for summoning by traitors. Not currently implemented
 /obj/item/weapon/robot_module/syndicate
 	name = "syndicate robot module"
+	hide_on_manifest = TRUE
 	languages = list(
 					LANGUAGE_SOL_COMMON = 1,
 					LANGUAGE_TRADEBAND = 1,
@@ -993,6 +995,7 @@ var/global/list/robot_modules = list(
 //Not currently implemented, needs discussion
 /obj/item/weapon/robot_module/combat
 	name = "combat robot module"
+	hide_on_manifest = TRUE
 	channels = list("Security" = 1)
 	networks = list(NETWORK_SECURITY)
 	subsystems = list(/datum/nano_module/crew_monitor)
@@ -1013,6 +1016,7 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/drone
 	name = "drone module"
+	hide_on_manifest = TRUE
 	no_slip = 1
 	networks = list(NETWORK_ENGINEERING)
 	stat_modifers = list(

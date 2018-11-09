@@ -132,7 +132,7 @@
 
 	if(mind)		//TODO
 		mind.transfer_to(O)
-		if(O.mind.assigned_role == "Cyborg")
+		if(O.mind.assigned_role == "Robot")
 			O.mind.original = O
 		else if(mind && mind.antagonist.len)
 			O.mind.store_memory("In case you look at this after being borged, the objectives are only here until I find a way to make them not show up for you, as I can't simply delete them without screwing up round-end reporting. --NeoFite")
@@ -140,8 +140,8 @@
 		O.key = key
 
 	O.loc = loc
-	O.job = "Cyborg"
-	if(O.mind.assigned_role == "Cyborg")
+	O.job = "Robot"
+	if(O.mind.assigned_role == "Robot")
 		O.mmi = new /obj/item/device/mmi(O)
 		O.mmi.transfer_identity(src)
 

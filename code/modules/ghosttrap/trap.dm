@@ -22,7 +22,7 @@ var/list/ghost_traps
 /datum/ghosttrap
 	var/object = "positronic brain"
 	var/minutes_since_death = 0     // If non-zero the ghost must have been dead for this many minutes to be allowed to spawn
-	var/list/ban_checks = list("AI","Cyborg")
+	var/list/ban_checks = list("AI","Robot")
 	var/pref_check = BE_SYNTH
 	var/ghost_trap_message = "They are occupying a positronic brain now."
 	var/ghost_trap_role = "Positronic Brain"
@@ -51,7 +51,7 @@ var/list/ghost_traps
 /datum/ghosttrap/proc/request_player(var/mob/target, var/request_string, var/request_timeout)
 	if(request_timeout)
 		request_timeouts[target] = world.time + request_timeout
-		destroyed_event.register(target, src, /datum/ghosttrap/proc/target_destroyed)
+		GLOB.destroyed_event.register(target, src, /datum/ghosttrap/proc/target_destroyed)
 	else
 		request_timeouts -= target
 

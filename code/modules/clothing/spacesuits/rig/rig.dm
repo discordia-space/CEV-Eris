@@ -1,6 +1,6 @@
 #define ONLY_DEPLOY 1
 #define ONLY_RETRACT 2
-#define SEAL_DELAY 30
+#define SEAL_DELAY 25
 
 
 #define RIG_SECURITY 1
@@ -21,6 +21,7 @@
 	req_one_access = list()
 	req_access = list()
 	w_class = ITEM_SIZE_LARGE
+	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS
 
 	// These values are passed on to all component pieces.
 	armor = list(melee = 40, bullet = 35, laser = 35,energy = 35, bomb = 35, bio = 100, rad = 40)
@@ -38,7 +39,7 @@
 
 	// Keeps track of what this rig should spawn with.
 	var/suit_type = "hardsuit"
-	var/list/initial_modules
+	var/list/initial_modules = list()
 	var/chest_type = /obj/item/clothing/suit/space/rig
 	var/helm_type =  /obj/item/clothing/head/helmet/space/rig
 	var/boot_type =  /obj/item/clothing/shoes/magboots/rig
@@ -61,6 +62,7 @@
 	var/list/installed_modules = list()                       // Power consumption/use bookkeeping.
 
 	// Rig status vars.
+	var/active = FALSE
 	var/open = 0                                              // Access panel status.
 	var/locked = 1 // Lock status. 0 = unlocked, 1 = locked with ID, -1 = broken lock, permanantly unlocked
 	var/subverted = 0
@@ -89,6 +91,25 @@
 	var/datum/wires/rig/wires
 	var/datum/effect/effect/system/spark_spread/spark_system
 
+
+	//Stuff rigs can store
+	allowed = list(
+	/obj/item/weapon/storage/pouch/,
+	/obj/item/weapon/gun,
+	/obj/item/weapon/melee/baton,
+	/obj/item/weapon/melee/energy/sword,
+	/obj/item/ammo_magazine,
+	/obj/item/ammo_casing,
+	/obj/item/weapon/melee/baton,
+	/obj/item/weapon/handcuffs,
+	/obj/item/weapon/tank,
+	/obj/item/device/suit_cooling_unit,
+	/obj/item/weapon/cell,
+	/obj/item/weapon/handcuffs)
+
+	var/list/extra_allowed = list()
+
+
 /obj/item/weapon/rig/proc/getCurrentGlasses()
 	if(wearer && visor && visor && visor.vision && visor.vision.glasses && (!helmet || (wearer.head && helmet == wearer.head)))
 		return visor.vision.glasses
@@ -112,6 +133,10 @@
 	item_state = icon_state
 	wires = new(src)
 
+	//Add on any extra items allowed into suit storage
+	if (extra_allowed.len)
+		allowed |= extra_allowed
+
 	if((!req_access || !req_access.len) && (!req_one_access || !req_one_access.len))
 		locked = 0
 
@@ -124,8 +149,7 @@
 	if(initial_modules && initial_modules.len)
 		for(var/path in initial_modules)
 			var/obj/item/rig_module/module = new path(src)
-			installed_modules += module
-			module.installed(src)
+			install(module)
 
 	// Create and initialize our various segments.
 	if(cell_type)
@@ -143,6 +167,7 @@
 		verbs |= /obj/item/weapon/rig/proc/toggle_boots
 	if(chest_type)
 		chest = new chest_type(src)
+		chest.equip_delay = 0
 		if(allowed)
 			chest.allowed = allowed
 		chest.slowdown = offline_slowdown
@@ -167,12 +192,12 @@
 
 /obj/item/weapon/rig/Destroy()
 	for(var/obj/item/piece in list(gloves,boots,helmet,chest))
-		qdel(piece)
+		QDEL_NULL(piece)
+	for(var/a in installed_modules)
+		uninstall(a)
 	STOP_PROCESSING(SSobj, src)
-	qdel(wires)
-	wires = null
-	qdel(spark_system)
-	spark_system = null
+	QDEL_NULL(wires)
+	QDEL_NULL(spark_system)
 	return ..()
 
 /obj/item/weapon/rig/proc/suit_is_deployed()
@@ -191,6 +216,7 @@
 /obj/item/weapon/rig/proc/reset()
 	offline = 2
 	canremove = 1
+	active = FALSE
 	for(var/obj/item/piece in list(helmet,boots,gloves,chest))
 		if(!piece) continue
 		piece.icon_state = "[initial(icon_state)]"
@@ -210,15 +236,20 @@
 	if(!check_power_cost(wearer))
 		return 0
 
-	deploy(wearer,instant)
 
-	var/seal_target = !canremove
+
+	var/seal_target = !active
+
+	//Only force deploy when we're turning it on, not when removing it
+	if (seal_target)
+		deploy(wearer,instant)
+
 	var/failed_to_seal
 
 	canremove = 0 // No removing the suit while unsealing.
 	sealing = 1
 
-	if(!seal_target && !suit_is_deployed())
+	if(seal_target && !suit_is_deployed())
 		wearer.visible_message(SPAN_DANGER("[wearer]'s suit flashes an error light."),SPAN_DANGER("Your suit flashes an error light. It can't function properly without being fully deployed."))
 		failed_to_seal = 1
 
@@ -253,25 +284,25 @@
 					if(seal_delay && !instant && !do_after(wearer,seal_delay,src,needhand=0))
 						failed_to_seal = 1
 
-					piece.icon_state = "[initial(icon_state)][!seal_target ? "_sealed" : ""]"
+					piece.icon_state = "[initial(icon_state)][seal_target ? "_sealed" : ""]"
 					switch(msg_type)
 						if("boots")
-							wearer << "<font color='blue'>\The [piece] [!seal_target ? "seal around your feet" : "relax their grip on your legs"].</font>"
+							wearer << "<font color='blue'>\The [piece] [seal_target ? "seal around your feet" : "relax their grip on your legs"].</font>"
 							wearer.update_inv_shoes()
 						if("gloves")
-							wearer << "<font color='blue'>\The [piece] [!seal_target ? "tighten around your fingers and wrists" : "become loose around your fingers"].</font>"
+							wearer << "<font color='blue'>\The [piece] [seal_target ? "tighten around your fingers and wrists" : "become loose around your fingers"].</font>"
 							wearer.update_inv_gloves()
 						if("chest")
-							wearer << "<font color='blue'>\The [piece] [!seal_target ? "cinches tight again your chest" : "releases your chest"].</font>"
+							wearer << "<font color='blue'>\The [piece] [seal_target ? "cinches tight again your chest" : "releases your chest"].</font>"
 							wearer.update_inv_wear_suit()
 						if("helmet")
-							wearer << "<font color='blue'>\The [piece] hisses [!seal_target ? "closed" : "open"].</font>"
+							wearer << "<font color='blue'>\The [piece] hisses [seal_target ? "closed" : "open"].</font>"
 							wearer.update_inv_head()
 							if(helmet)
 								helmet.update_light(wearer)
 
 					//sealed pieces become airtight, protecting against diseases
-					if (!seal_target)
+					if (seal_target)
 						piece.armor["bio"] = 100
 					else
 						piece.armor["bio"] = src.armor["bio"]
@@ -279,7 +310,7 @@
 				else
 					failed_to_seal = 1
 
-		if((wearer && !(istype(wearer) && wearer.back == src)) || (!seal_target && !suit_is_deployed()))
+		if((wearer && !(istype(wearer) && wearer.back == src)) || (seal_target && !suit_is_deployed()))
 			failed_to_seal = 1
 
 	sealing = null
@@ -287,19 +318,21 @@
 	if(failed_to_seal)
 		for(var/obj/item/piece in list(helmet,boots,gloves,chest))
 			if(!piece) continue
-			piece.icon_state = "[initial(icon_state)][!seal_target ? "" : "_sealed"]"
-		canremove = !seal_target
+			piece.icon_state = "[initial(icon_state)][seal_target ? "" : "_sealed"]"
+		canremove = !active
+
 		if(airtight)
 			update_component_sealed()
 		update_icon(1)
 		return 0
 
 	// Success!
-	canremove = seal_target
-	wearer << "<font color='blue'><b>Your entire suit [canremove ? "loosens as the components relax" : "tightens around you as the components lock into place"].</b></font>"
+	active = seal_target
+	canremove = !active
+	wearer << "<font color='blue'><b>Your entire suit [active ? "tightens around you as the components lock into place" : "loosens as the components relax"].</b></font>"
 
 	if(wearer != initiator)
-		initiator << "<font color='blue'>Suit adjustment complete. Suit is now [canremove ? "unsealed" : "sealed"].</font>"
+		initiator << "<font color='blue'>Suit adjustment complete. Suit is now [active ? "unsealed" : "sealed"].</font>"
 
 	if(canremove)
 		for(var/obj/item/rig_module/module in installed_modules)
@@ -406,7 +439,7 @@
 	cell.use(cost*10)
 	return 1
 
-/obj/item/weapon/rig/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/nano_state = inventory_state)
+/obj/item/weapon/rig/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/nano_state =GLOB.inventory_state)
 	if(!user)
 		return
 
@@ -418,7 +451,7 @@
 	if(src.loc != user)
 		data["ai"] = 1
 
-	data["seals"] =     "[src.canremove]"
+	data["active"] =     "[active]"
 	data["sealing"] =   "[src.sealing]"
 	data["helmet"] =    (helmet ? "[helmet.name]" : "None.")
 	data["gauntlets"] = (gloves ? "[gloves.name]" : "None.")
@@ -570,11 +603,25 @@
 
 //Delayed equipping of rigs
 /obj/item/weapon/rig/pre_equip(var/mob/user, var/slot)
+	if (active)
+		//Can't take it off while it's engaged
+		return TRUE
+
 	if (slot == rig_wear_slot)
 		if(seal_delay > 0)
 			user.visible_message(
 				SPAN_NOTICE("[user] starts putting on \the [src]..."),
 				SPAN_NOTICE("You start putting on \the [src]...")
+			)
+			if(!do_after(user,seal_delay,src))
+				return TRUE //A nonzero return value will cause the equipping operation to fail
+	//Delayed unequipping too
+	else if (is_worn())
+		retract()
+		if(seal_delay > 0)
+			user.visible_message(
+				SPAN_NOTICE("[user] starts taking off \the [src]..."),
+				SPAN_NOTICE("You start taking off \the [src]...")
 			)
 			if(!do_after(user,seal_delay,src))
 				return TRUE //A nonzero return value will cause the equipping operation to fail
@@ -604,7 +651,7 @@
 
 	var/obj/item/check_slot
 	var/equip_to
-	var/obj/item/use_obj
+	var/obj/item/clothing/use_obj
 
 	if(!wearer)
 		return
@@ -629,6 +676,9 @@
 
 	if(use_obj)
 		if(check_slot == use_obj && deploy_mode != ONLY_DEPLOY)
+			if (active && !(use_obj.retract_while_active))
+				wearer << SPAN_DANGER("The [use_obj] is locked in place while [src] is active. You must deactivate it first!")
+				return
 
 			var/mob/living/carbon/human/holder
 

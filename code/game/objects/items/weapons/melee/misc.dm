@@ -63,7 +63,7 @@
 				user << SPAN_NOTICE("You carefully cut cables from [src].")
 				break_apart(user)
 
-		if(istype(C, /obj/item/weapon/tape_roll))
+		if(istype(C, /obj/item/weapon/tool/tape_roll))
 			user << SPAN_NOTICE("You begins to tie [src] with [C]...")
 			if(do_after(user, 50))
 				if(!reinforced)

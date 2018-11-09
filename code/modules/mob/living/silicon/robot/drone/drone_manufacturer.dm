@@ -101,7 +101,7 @@
 		user << SPAN_DANGER("That verb is not currently permitted.")
 		return
 
-	if(jobban_isbanned(user,"Cyborg"))
+	if(jobban_isbanned(user,"Robot"))
 		user << SPAN_DANGER("You are banned from playing synthetics and cannot spawn as a drone.")
 		return
 

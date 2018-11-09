@@ -313,9 +313,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	else
 		return ..()
 
-/obj/item/device/pda/GetID()
-	return id
-
 /obj/item/device/pda/MouseDrop(obj/over_object, src_location, over_location)
 	if((!istype(over_object, /obj/screen)) && can_use())
 		return attack_self(usr)
@@ -509,7 +506,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
 	        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "pda.tmpl", title, 520, 400, state = inventory_state)
+		ui = new(user, src, ui_key, "pda.tmpl", title, 520, 400, state =GLOB.inventory_state)
 		// when the ui is first opened this is the data it will use
 
 		ui.set_initial_data(data)
@@ -975,14 +972,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			P.conversations.Add("\ref[src]")
 
 
-		if (prob(15)) //Give the AI a chance of intercepting the message
-			var/who = src.owner
-			if(prob(50))
-				who = P.owner
-			for(var/mob/living/silicon/ai/ai in SSmobs.mob_list)
-				// Allows other AIs to intercept the message but the AI won't intercept their own message.
-				if(ai.aiPDA != P && ai.aiPDA != src)
-					ai.show_message("<i>Intercepted message from <b>[who]</b>: [t]</i>")
 
 		P.new_message_from_pda(src, t)
 		SSnano.update_user_uis(U, src) // Update the sending user's PDA UI so that they can see the new message

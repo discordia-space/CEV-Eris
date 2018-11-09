@@ -203,7 +203,7 @@
 		if(default_part_replacement(I, user))
 			return
 
-	if(I.GetID())
+	if(I.GetIdCard())
 		if(!check_access(I))
 			user << SPAN_WARNING("Access Denied.")
 			return

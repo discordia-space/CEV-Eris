@@ -126,15 +126,13 @@
 	if (authorized.len >= req_authorizations)
 		return 0 //don't need any more
 
-	if (!istype(ident, /obj/item/weapon/card/id) && !istype(ident, /obj/item/device/pda))
+	if (!istype(ident, /obj/item/weapon/card/id) && !istype(ident, /obj/item/modular_computer/pda))
 		return
 
 	var/obj/item/weapon/card/id/ID
 
-	if (istype(ident, /obj/item/device/pda))
-		var/obj/item/device/pda/pda = ident
-		if(!pda.id) return
-		ID = pda.id
+	if (istype(ident, /obj/item/modular_computer/pda))
+		ID = ident.GetIdCard()
 	else
 		ID = ident
 

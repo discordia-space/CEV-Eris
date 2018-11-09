@@ -1044,12 +1044,6 @@ CIRCUITS BELOW
 	build_path = /obj/item/weapon/circuitboard/arcade/orion_trail
 	sort_string = "MABAA"
 
-/datum/design/circuit/seccamera
-	name = "security camera monitor"
-	id = "seccamera"
-	build_path = /obj/item/weapon/circuitboard/security
-	sort_string = "DAAAA"
-
 /datum/design/circuit/secdata
 	name = "security records console"
 	id = "sec_data"
@@ -1093,13 +1087,6 @@ CIRCUITS BELOW
 	req_tech = list(TECH_DATA = 3, TECH_BIO = 3)
 	build_path = /obj/item/weapon/circuitboard/clonescanner
 	sort_string = "FAGAG"
-
-/datum/design/circuit/crewconsole
-	name = "crew monitoring console"
-	id = "crewconsole"
-	req_tech = list(TECH_DATA = 3, TECH_MAGNET = 2, TECH_BIO = 2)
-	build_path = /obj/item/weapon/circuitboard/crew
-	sort_string = "FAGAI"
 
 /datum/design/circuit/teleconsole
 	name = "teleporter control console"
@@ -1245,13 +1232,6 @@ CIRCUITS BELOW
 	id = "air_management"
 	build_path = /obj/item/weapon/circuitboard/air_management
 	sort_string = "JAAAB"
-
-/datum/design/circuit/rcon_console
-	name = "RCON remote control console"
-	id = "rcon_console"
-	req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 3, TECH_POWER = 5)
-	build_path = /obj/item/weapon/circuitboard/rcon_console
-	sort_string = "JAAAC"
 
 /datum/design/circuit/dronecontrol
 	name = "drone control console"

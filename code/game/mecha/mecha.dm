@@ -849,16 +849,10 @@
 			else
 				user << "You were unable to attach [I] to [src]"
 		return
-
-	if(istype(I, /obj/item/weapon/card/id)||istype(I, /obj/item/device/pda))
+	var/obj/item/weapon/card/id/id_card = I.GetIdCard()
+	if(id_card)
 		if(add_req_access || maint_access)
 			if(internals_access_allowed(usr))
-				var/obj/item/weapon/card/id/id_card
-				if(istype(I, /obj/item/weapon/card/id))
-					id_card = I
-				else
-					var/obj/item/device/pda/pda = I
-					id_card = pda.id
 				output_maintenance_dialog(id_card, user)
 				return
 			else
@@ -1299,7 +1293,7 @@
 		return 1
 	if(!access_list.len) //no requirements
 		return 1
-	if(istype(I, /obj/item/device/pda))
+	if(istype(I, /obj/item/modular_computer))
 		var/obj/item/device/pda/pda = I
 		I = pda.id
 	if(!istype(I) || !I.access) //not ID or no access

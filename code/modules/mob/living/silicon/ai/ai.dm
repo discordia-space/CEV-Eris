@@ -58,7 +58,6 @@ var/list/ai_verbs_default = list(
 	var/viewalerts = 0
 	var/icon/holo_icon//Default is assigned when AI is created.
 	var/obj/mecha/controlled_mech //For controlled_mech a mech, to determine whether to relaymove or use the AI eye.
-	var/obj/item/device/pda/ai/aiPDA = null
 	var/obj/item/weapon/tool/multitool/aiMulti = null
 	var/obj/item/device/radio/headset/heads/ai_integrated/aiRadio = null
 	var/camera_light_on = 0	//Defines if the AI toggled the light on the camera it's looking through.
@@ -148,7 +147,6 @@ var/list/ai_verbs_default = list(
 				possibleNames -= pickedName
 				pickedName = null
 
-	aiPDA = new/obj/item/device/pda/ai(src)
 	SetName(pickedName)
 	anchored = 1
 	canmove = 0
@@ -177,6 +175,15 @@ var/list/ai_verbs_default = list(
 	//Languages
 	add_language(LANGUAGE_ROBOT, 1)
 	add_language(LANGUAGE_COMMON, 1)
+
+	//Stats
+	//The AI gets 100 in all three knowledge stats.
+		//These are only ever used to operate machinery and software
+	//It doesnt get any physical stats, like robustness, since its a disembodied mind
+	stats = new /datum/stat_holder
+	stats.changeStat(STAT_BIO, 100)
+	stats.changeStat(STAT_MEC, 100)
+	stats.changeStat(STAT_COG, 100)
 
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.
@@ -230,10 +237,8 @@ var/list/ai_verbs_default = list(
 	setup_icon()
 
 /mob/living/silicon/ai/Destroy()
-	qdel(aiPDA)
 	qdel(aiMulti)
 	qdel(aiRadio)
-	aiPDA = null
 	aiMulti = null
 	aiRadio = null
 
@@ -287,13 +292,6 @@ var/list/ai_verbs_default = list(
 	announcement.announcer = pickedName
 	if(eyeobj)
 		eyeobj.name = "[pickedName] (AI Eye)"
-
-	// Set ai pda name
-	if(aiPDA)
-		aiPDA.ownjob = "AI"
-		aiPDA.owner = pickedName
-		aiPDA.name = pickedName + " (" + aiPDA.ownjob + ")"
-
 /*
 	The AI Power supply is a dummy object used for powering the AI since only machinery should be using power.
 	The alternative was to rewrite a bunch of AI code instead here we are.
@@ -771,3 +769,8 @@ var/list/ai_verbs_default = list(
 
 #undef AI_CHECK_WIRELESS
 #undef AI_CHECK_RADIO
+
+// Handles all necessary power checks: Area power, inteliCard and Malf AI APU power and manual override.
+//just a plug for now untill baymed arrives
+/mob/living/silicon/ai/proc/has_power(var/respect_override = 1)
+	return 1
