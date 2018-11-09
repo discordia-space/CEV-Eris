@@ -269,9 +269,10 @@
 			failtypes["drop"] = 2
 			failtypes["throw"] = 1
 
-			if (T && T.unreliability)
-				failtypes["damage"] = 2
-				failtypes["break"] = T.unreliability*0.1 //Makeshift tools are more likely to break
+			if (T && T.degradation)
+				failtypes["damage"] = 2.5
+				if (T.unreliability >= 3)
+					failtypes["break"] = T.unreliability*0.1 //Makeshift tools are more likely to break
 			else
 				failtypes["break"] = 0.5
 		if (sharp)
