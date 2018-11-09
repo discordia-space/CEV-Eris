@@ -53,10 +53,6 @@
 	name = "teleporter control console"
 	path = /obj/item/weapon/circuitboard/teleporter
 
-/datum/autolathe/recipe/circuit/crew
-	name = "crew monitoring console"
-	path = /obj/item/weapon/circuitboard/crew
-
 /datum/autolathe/recipe/circuit/operating
 	name = "patient monitoring console"
 	path = /obj/item/weapon/circuitboard/operating

@@ -4,7 +4,7 @@
 	role_text_plural = "Scientists"
 	bantype = "Crew-sided"
 	role_type = "crew-sided"
-	restricted_jobs = list("AI", "Cyborg")
+	restricted_jobs = list("AI", "Robot")
 	protected_jobs = list(JOBS_COMMAND)
 
 	survive_objective = /datum/objective/escape

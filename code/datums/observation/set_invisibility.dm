@@ -9,7 +9,6 @@
 //			/new_invisibility: invisibility after the change
 
 GLOBAL_DATUM_INIT(invisibility_set_event, /decl/observ/invisibility_set, new)
-var/decl/observ/invisibility_set/invisibility_set_event = new()
 
 /decl/observ/invisibility_set
 	name = "Invisibility Set"
@@ -23,4 +22,5 @@ var/decl/observ/invisibility_set/invisibility_set_event = new()
 	var/old_invisibility = invisibility
 	if(old_invisibility != new_invisibility)
 		invisibility = new_invisibility
-		invisibility_set_event.raise_event(src, old_invisibility, new_invisibility)
+		GLOB.invisibility_set_event.raise_event(src, old_invisibility, new_invisibility)
+

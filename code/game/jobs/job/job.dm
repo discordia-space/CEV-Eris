@@ -3,6 +3,7 @@
 	//The name of the job
 	var/title = "NOPE"
 	var/list/access = list()              // Useful for servers which either have fewer players, so each person needs to fill more than one role, or servers which like to give more access, so players can't hide forever in their super secure departments (I'm looking at you, chemistry!)
+	var/list/software_on_spawn = list()   // Defines the software files that spawn on tablets and labtops
 	var/flag = 0 	                      // Bitflags for the job
 	var/department_flag = 0
 	var/faction = "None"	              // Players will be allowed to spawn in as jobs that are set to "Station"
@@ -17,6 +18,7 @@
 	var/head_position = 0                 // Is this position Command?
 	var/minimum_character_age = 0
 	var/ideal_character_age = 30
+	var/create_record = 1                 // Do we announce/make records for people who spawn on this job?
 	var/list/also_known_languages = list()// additional chance based languages to all jobs.
 
 	var/account_allowed = 1				  // Does this job type come with a station account?
@@ -26,7 +28,7 @@
 //job equipment
 	var/uniform = /obj/item/clothing/under/color/grey
 	var/shoes = /obj/item/clothing/shoes/black
-	var/pda = /obj/item/device/pda
+	var/pda = /obj/item/modular_computer/pda
 	var/hat = null
 	var/suit = null
 	var/gloves = null

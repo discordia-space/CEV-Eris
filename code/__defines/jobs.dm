@@ -7,4 +7,4 @@
 #define JOBS_CARGO "Guild Merchant","Guild Technician","Guild Miner"
 #define JOBS_CIVILIAN "Bartender","Gardener","Chef","Janitor","Assistant"
 #define JOBS_CHURCH	"Neotheology Preacher"
-#define JOBS_NONHUMAN "AI","Cyborg","pAI"
+#define JOBS_NONHUMAN "AI","Robot","pAI"

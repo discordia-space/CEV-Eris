@@ -216,24 +216,6 @@ note dizziness decrements automatically in the mob's Life() proc.
 	// And animate the attack!
 	animate(I, alpha = 175, pixel_x = 0, pixel_y = 0, pixel_z = 0, time = 3)
 
-
-
-
-/atom/proc/SpinAnimation(speed = 10, loops = -1)
-	var/matrix/m120 = matrix(transform)
-	m120.Turn(120)
-	var/matrix/m240 = matrix(transform)
-	m240.Turn(240)
-	var/matrix/m360 = matrix(transform)
-	speed /= 3      //Gives us 3 equal time segments for our three turns.
-	                //Why not one turn? Because byond will see that the start and finish are the same place and do nothing
-	                //Why not two turns? Because byond will do a flip instead of a turn
-	animate(src, transform = m120, time = speed, loops)
-	animate(transform = m240, time = speed)
-	animate(transform = m360, time = speed)
-
-
-
 //Shakes the mob's camera
 //Strength is not recommended to set higher than 4, and even then its a bit wierd
 /proc/shake_camera(mob/M, duration, strength=1, var/taper = 0.25)
@@ -296,11 +278,11 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 /atom/movable/proc/do_pickup_animation(atom/target, atom/old_loc)
 	set waitfor = FALSE
-	if (!istype(src) || QDELETED(src))
+	if (QDELETED(src))
 		return
-	if (!istype(target) || QDELETED(target))
+	if (QDELETED(target))
 		return
-	if (!istype(old_loc) || QDELETED(old_loc))
+	if (QDELETED(old_loc))
 		return
 
 	var/turf/old_turf = get_turf(old_loc)
@@ -333,16 +315,16 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 /atom/movable/proc/do_putdown_animation(atom/target, mob/user)
 	spawn()
-		if (!istype(src) || QDELETED(src))
+		if (QDELETED(src))
 			return
-		if (!istype(target) || QDELETED(target))
+		if (QDELETED(target))
 			return
-		if (!istype(user) || QDELETED(user))
+		if (QDELETED(user))
 			return
 		var/old_invisibility = invisibility // I don't know, it may be used.
 		invisibility = 100
 		var/turf/old_turf = get_turf(user)
-		if (!istype(old_turf) || QDELETED(old_turf))
+		if (QDELETED(old_turf))
 			return
 		var/image/I = image(icon = src, loc = old_turf, layer = layer + 0.1)
 		I.plane = GAME_PLANE
@@ -364,7 +346,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 		animate(I, pixel_x = to_x, pixel_y = to_y, time = 3, transform = matrix(), easing = CUBIC_EASING)
 		sleep(3)
-		if (!istype(src) || QDELETED(src))
+		if (QDELETED(src))
 			return
 		invisibility = old_invisibility
 		pixel_x = old_x
@@ -388,6 +370,6 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 	animate(I, pixel_x = to_x, pixel_y = to_y, time = 3, easing = CUBIC_EASING)
 	sleep(3)
-	if (!istype(src) || QDELETED(src))
+	if (QDELETED(src))
 		return
 	invisibility = old_invisibility

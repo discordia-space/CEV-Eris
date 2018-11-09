@@ -5,6 +5,7 @@
 	return pickweight(list(
 	/obj/item/weapon/storage/pouch/small_generic = 10,
 	/obj/item/weapon/storage/pouch/medium_generic = 5,
+	/obj/item/weapon/storage/pouch/large_generic = 1,
 	/obj/item/weapon/storage/pouch/medical_supply = 3,
 	/obj/item/weapon/storage/pouch/engineering_supply = 3,
 	/obj/item/weapon/storage/pouch/engineering_tools = 5,

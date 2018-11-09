@@ -41,3 +41,6 @@ var/z_levels = 0 // Each bit represents a connection between adjacent levels.  S
 		. = GetBelow(ref)
 	else
 		. = get_step(ref, dir)
+
+/proc/AreConnectedZLevels(var/zA, var/zB)
+	return zA == zB || (zB in GetConnectedZlevels(zA))

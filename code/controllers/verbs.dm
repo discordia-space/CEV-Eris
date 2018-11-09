@@ -45,7 +45,7 @@ ADMIN_VERB_ADD(/client/proc/debug_controller, R_DEBUG, null)
 			debug_variables(plant_controller)
 
 		if("Observation")
-			debug_variables(all_observable_events)
+			debug_variables(GLOB.all_observable_events)
 
 	message_admins("Admin [key_name_admin(usr)] is debugging the [controller] controller.")
 	return

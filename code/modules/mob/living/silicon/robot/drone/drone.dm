@@ -69,7 +69,7 @@ var/list/mob_hat_cache = list()
 	if(too_many_active_drones())
 		src << SPAN_DANGER("The maximum number of active drones has been reached..")
 		return 0
-	if(jobban_isbanned(possessor,"Cyborg"))
+	if(jobban_isbanned(possessor,"Robot"))
 		usr << SPAN_DANGER("You are banned from playing synthetics and cannot spawn as a drone.")
 		return 0
 	if(!possessor.MayRespawn(1,DRONE_SPAWN_DELAY))
@@ -186,7 +186,7 @@ var/list/mob_hat_cache = list()
 		user << SPAN_DANGER("\The [src] is not compatible with \the [W].")
 		return
 
-	else if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
+	else if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/modular_computer))
 
 		if(stat == 2)
 

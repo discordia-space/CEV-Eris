@@ -55,7 +55,7 @@
 
 /obj/item/integrated_circuit/input/numberpad/ask_for_input(mob/user)
 	var/new_input = input(user, "Enter a number, please.","Number pad") as null|num
-	if(isnum(new_input) && CanInteract(user, physical_state))
+	if(isnum(new_input) && CanInteract(user,GLOB.physical_state))
 		set_pin_data(IC_OUTPUT, 1, new_input)
 		push_data()
 		activate_pin(1)
@@ -74,7 +74,7 @@
 
 /obj/item/integrated_circuit/input/textpad/ask_for_input(mob/user)
 	var/new_input = input(user, "Enter some words, please.","Number pad") as null|text
-	if(istext(new_input) && CanInteract(user, physical_state))
+	if(istext(new_input) && CanInteract(user,GLOB.physical_state))
 		set_pin_data(IC_OUTPUT, 1, new_input)
 		push_data()
 		activate_pin(1)
