@@ -8,7 +8,7 @@
 	result = /obj/item/weapon/tool/tape_roll/web
 	steps = list(
 		list(/obj/item/stack/medical/bruise_pack/handmade, 3, "time" = 50),
-		list(/obj/effect/spider/stickyweb, 1, time = 30)
+		list(/obj/effect/spider/stickyweb, 1, "time" = 30)
 	)
 
 //A shard of glass wrapped in tape makes a crude sort of knife
@@ -16,7 +16,7 @@
 	name = "shiv"
 	result = /obj/item/weapon/tool/shiv
 	steps = list(
-		list(/obj/item/weapon/material/shard, 1, time = 30),
+		list(/obj/item/weapon/material/shard, 1, "time" = 30),
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
 
@@ -78,8 +78,8 @@
 	result = /obj/item/weapon/tool/saw/improvised
 	steps = list(
 		list(/obj/item/stack/rods, 1, 30),
-		list(/obj/item/weapon/material/shard/shrapnel, 1, time = 30),
-		list(/obj/item/weapon/material/shard/shrapnel, 1, time = 30),
+		list(/obj/item/weapon/material/shard/shrapnel, 1, "time" = 30),
+		list(/obj/item/weapon/material/shard/shrapnel, 1, "time" = 30),
 		list(QUALITY_ADHESIVE, 15, 150)
 	)
 
