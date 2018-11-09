@@ -1,5 +1,3 @@
-var/list/opposite_dirs = list(SOUTH,NORTH,null,WEST,null,null,null,EAST)
-
 /client
 	var/tmp
 		mloop = 0
@@ -24,7 +22,7 @@ var/list/opposite_dirs = list(SOUTH,NORTH,null,WEST,null,null,null,EAST)
 	if(!move_dir)
 		. = 1
 	//get the opposite direction
-	var/opposite = opposite_dirs[Dir]
+	var/opposite = reverse_dir[Dir]
 	if(State)
 		//turn on the bitflags
 		move_dir |= Dir
