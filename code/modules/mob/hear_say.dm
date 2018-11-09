@@ -108,7 +108,7 @@
 	else if(isAI(speaker))
 		jobname = "AI"
 	else if(isrobot(speaker))
-		jobname = "Cyborg"
+		jobname = "Robot"
 	else if(istype(speaker, /mob/living/silicon/pai))
 		jobname = "Personal AI"
 	else

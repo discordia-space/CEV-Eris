@@ -190,7 +190,7 @@
 			user << SPAN_WARNING("Sticking a dead [W] into the frame would sort of defeat the purpose.")
 			return
 
-		if(jobban_isbanned(M.brainmob, "Cyborg"))
+		if(jobban_isbanned(M.brainmob, "Robot"))
 			user << SPAN_WARNING("This [W] does not seem to fit.")
 			return
 
@@ -213,7 +213,7 @@
 				as I can't simply delete them without screwing up round-end reporting. --NeoFite
 			"})
 
-		O.job = "Cyborg"
+		O.job = "Robot"
 		var/obj/item/robot_parts/chest/chest = parts["chest"]
 		O.cell = chest.cell
 		O.cell.forceMove(O)

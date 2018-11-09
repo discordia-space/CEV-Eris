@@ -29,6 +29,8 @@
 	var/obj/item/weapon/card/id/idcard
 	var/idcard_type = /obj/item/weapon/card/id/synthetic
 
+	var/email_ringtone = TRUE
+
 	#define SEC_HUD 1 //Security HUD mode
 	#define MED_HUD 2 //Medical HUD mode
 
@@ -54,6 +56,7 @@
 /mob/living/silicon/SetName(pickedName as text)
 	real_name = pickedName
 	name = real_name
+	create_or_rename_email(pickedName, "root.rt")
 
 /mob/living/silicon/proc/show_laws()
 	return
