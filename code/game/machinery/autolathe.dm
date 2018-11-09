@@ -327,19 +327,16 @@
 	if(!istype(user))
 		return
 
-	var/obj/item/eating = user.get_active_hand()
+	var/obj/item/weapon/reagent_containers/glass/eating = user.get_active_hand()
 
-	if(!istype(eating))
-		return
-
-	if(istype(eating,/obj/item/weapon/reagent_containers/glass))
+	if(istype(eating))
 		if(container)
 			user << SPAN_NOTICE("There's already \a [container] inside the autolathe.")
 			return
-		user.unEquip(eating, src)
-		container = eating
-		user << SPAN_NOTICE("You put \the [eating] into the autolathe.")
-		SSnano.update_uis(src)
+		if(user.unEquip(eating, src))
+			container = eating
+			user << SPAN_NOTICE("You put \the [eating] into the autolathe.")
+			SSnano.update_uis(src)
 
 /obj/machinery/autolathe/proc/eat(var/mob/living/user)
 	if(!istype(user) || stat)
