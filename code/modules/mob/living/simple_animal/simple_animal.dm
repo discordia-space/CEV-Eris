@@ -256,18 +256,11 @@
 
 /mob/living/simple_animal/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
 
-	visible_message(SPAN_DANGER("\The [src] has been attacked with \the [O] by [user]."))
-
-	if(O.force <= resistance)
+	if(effective_force <= resistance)
 		user << SPAN_DANGER("This weapon is ineffective, it does no damage.")
 		return 2
-
-	var/damage = O.force
-	if (O.damtype == HALLOSS)
-		damage = 0
-	adjustBruteLoss(damage)
-
-	return 0
+	effective_force -= resistance
+	.=..(O, user, effective_force, hit_zone)
 
 /mob/living/simple_animal/movement_delay()
 	var/tally = MOVE_DELAY_BASE //Incase I need to add stuff other than "speed" later
@@ -308,8 +301,7 @@
 		if(3.0)
 			adjustBruteLoss(30)
 
-/mob/living/simple_animal/adjustBruteLoss(damage)
-	health = Clamp(health - damage, 0, maxHealth)
+
 
 /mob/living/simple_animal/proc/SA_attackable(target_mob)
 	if (isliving(target_mob))
