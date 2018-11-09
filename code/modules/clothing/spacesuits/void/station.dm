@@ -18,9 +18,10 @@
 	item_state = "eng_voidsuit"
 	slowdown = 1
 	armor = list(melee = 40, bullet = 35, laser = 35,energy = 5, bomb = 35, bio = 100, rad = 90)
-	allowed = list(
-		/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,
-		/obj/item/weapon/storage/bag/ore,/obj/item/device/t_scanner,/obj/item/weapon/tool/pickaxe,
+	extra_allowed = list(
+		/obj/item/weapon/storage/toolbox,
+		/obj/item/weapon/storage/briefcase/inflatable,
+		/obj/item/device/t_scanner,
 		/obj/item/weapon/rcd
 	)
 
@@ -61,9 +62,11 @@
 	name = "medical voidsuit"
 	desc = "A special suit that protects against hazardous, low pressure environments. Has minor radiation shielding."
 	item_state = "medical_voidsuit"
-	allowed = list(
-		/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,
-		/obj/item/weapon/storage/firstaid,/obj/item/device/scanner/healthanalyzer,/obj/item/stack/medical
+	extra_allowed = list(
+		/obj/item/weapon/storage/firstaid,
+		/obj/item/device/scanner/healthanalyzer,
+		/obj/item/stack/medical,
+		/obj/item/roller
 	)
 	armor = list(melee = 40, bullet = 35, laser = 35,energy = 5, bomb = 35, bio = 100, rad = 60)
 
@@ -87,10 +90,7 @@
 	desc = "A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor."
 	item_state = "sec_voidsuit"
 	armor = list(melee = 50, bullet = 45, laser = 45,energy = 35, bomb = 35, bio = 100, rad = 60)
-	allowed = list(
-		/obj/item/weapon/gun,/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,
-		/obj/item/device/suit_cooling_unit,/obj/item/weapon/melee/baton
-	)
+
 	siemens_coefficient = 0.7
 
 //Atmospherics Rig (BS12)

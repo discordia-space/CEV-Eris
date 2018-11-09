@@ -6,7 +6,7 @@
 	item_state = "pouch"
 
 	w_class = ITEM_SIZE_SMALL
-
+	slot_flags = SLOT_BELT //Pouches can be worn on belt
 	storage_slots = 1
 	max_w_class = ITEM_SIZE_SMALL
 	max_storage_space = base_storage_capacity(ITEM_SIZE_NORMAL)
@@ -39,7 +39,7 @@
 	desc = "Can hold anything in it, but only about once."
 	icon_state = "small_generic"
 	item_state = "small_generic"
-
+	storage_slots = null //Uses generic capacity
 	max_storage_space = ITEM_SIZE_TINY * 3
 	max_w_class = ITEM_SIZE_SMALL
 
@@ -48,9 +48,20 @@
 	desc = "Can hold anything in it, but only about twice."
 	icon_state = "medium_generic"
 	item_state = "medium_generic"
-
+	storage_slots = null //Uses generic capacity
 	max_storage_space = ITEM_SIZE_TINY * 5
-	max_w_class = ITEM_SIZE_SMALL
+	max_w_class = ITEM_SIZE_NORMAL
+
+/obj/item/weapon/storage/pouch/large_generic
+	name = "large generic pouch"
+	desc = "A mini satchel. Can hold a fair bit, but it won't fit in your pocket"
+	icon_state = "large_generic"
+	item_state = "large_generic"
+	w_class = ITEM_SIZE_NORMAL
+	slot_flags = SLOT_BELT | SLOT_DENYPOCKET
+	storage_slots = null //Uses generic capacity
+	max_storage_space = ITEM_SIZE_TINY * 10
+	max_w_class = ITEM_SIZE_NORMAL
 
 /obj/item/weapon/storage/pouch/medical_supply
 	name = "medical supply pouch"
@@ -59,7 +70,7 @@
 	item_state = "medical_supply"
 
 	storage_slots = 3
-	max_w_class = ITEM_SIZE_SMALL
+	max_w_class = ITEM_SIZE_NORMAL
 
 	can_hold = list(
 		/obj/item/device/scanner/healthanalyzer,
@@ -80,7 +91,7 @@
 
 /obj/item/weapon/storage/pouch/engineering_tools
 	name = "engineering tools pouch"
-	desc = "Can hold engineering tools. But only about three pieces of them."
+	desc = "Can hold small engineering tools. But only about three pieces of them."
 	icon_state = "engineering_tool"
 	item_state = "engineering_tool"
 
@@ -153,7 +164,6 @@
 		/obj/item/device/lighting/glowstick,
 		/obj/item/weapon/reagent_containers/syringe,
 		/obj/item/weapon/reagent_containers/glass/beaker/vial,
-		/obj/item/weapon/pen/crayon,
 		/obj/item/weapon/reagent_containers/hypospray,
 		/obj/item/weapon/pen,
 		/obj/item/weapon/storage/box/pillbottles
@@ -201,13 +211,13 @@
 		overlays += image('icons/inventory/pockets/icon.dmi', "pistol_layer")
 
 /obj/item/weapon/storage/pouch/baton_holster
-	name = "baton holster"
-	desc = "Can hold a baton in."
+	name = "baton sheath"
+	desc = "Can hold a baton, or indeed most weapon shafts."
 	icon_state = "baton_holster"
 	item_state = "baton_holster"
 
 	storage_slots = 1
-	max_w_class = ITEM_SIZE_NORMAL
+	max_w_class = ITEM_SIZE_LARGE
 
 	can_hold = list(
 		/obj/item/weapon/melee,
