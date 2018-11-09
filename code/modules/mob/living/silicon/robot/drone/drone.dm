@@ -69,7 +69,7 @@ var/list/mob_hat_cache = list()
 	if(too_many_active_drones())
 		src << SPAN_DANGER("The maximum number of active drones has been reached..")
 		return 0
-	if(jobban_isbanned(possessor,"Cyborg"))
+	if(jobban_isbanned(possessor,"Robot"))
 		usr << SPAN_DANGER("You are banned from playing synthetics and cannot spawn as a drone.")
 		return 0
 	if(!possessor.MayRespawn(1,DRONE_SPAWN_DELAY))

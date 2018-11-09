@@ -12,6 +12,13 @@
 	attack_verb = list("stabbed")
 	tool_qualities = list(QUALITY_SCREW_DRIVING = 30, QUALITY_BONE_SETTING = 10)
 
+/obj/item/weapon/tool/screwdriver/improvised
+	name = "screwpusher"
+	desc = "A little metal rod wrapped in tape, barely qualifies as a tool."
+	icon_state = "impro_screwdriver"
+	tool_qualities = list(QUALITY_SCREW_DRIVING = 15)
+	degradation = 8
+
 /obj/item/weapon/tool/screwdriver/electric
 	name = "electric screwdriver"
 	desc = "Screwdriver powered by S class cell."

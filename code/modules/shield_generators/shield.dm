@@ -39,13 +39,19 @@
 	else
 		icon_state = "shield_normal"
 
+/*
+This is a bad way to solve this "problem".
+I'm commenting it out because that incorrect qdeled param is gonna cause fun problems.
+If shield sections actually start moving then, well... solve it at the mover-side.
+Like for example singulo act and whatever.
+
 // Prevents shuttles, singularities and pretty much everything else from moving the field segments away.
 // The only thing that is allowed to move us is the Destroy() proc.
 /obj/effect/shield/forceMove(var/newloc, var/qdeled = 0)
 	if(qdeled)
 		return ..()
 	return 0
-
+*/
 
 /obj/effect/shield/New()
 	..()
@@ -53,6 +59,7 @@
 
 
 /obj/effect/shield/Destroy()
+	update_nearby_tiles()
 	. = ..()
 	if(gen)
 		if(src in gen.field_segments)
@@ -60,8 +67,7 @@
 		if(src in gen.damaged_segments)
 			gen.damaged_segments -= src
 		gen = null
-	update_nearby_tiles()
-	forceMove(null, 1)
+	
 
 
 // Temporarily collapses this shield segment.

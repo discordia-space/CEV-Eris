@@ -25,6 +25,11 @@
 	var/allow_decimal_stock = TRUE
 	var/delete_when_empty = TRUE
 
+
+	//Variables used for makeshift tools
+	var/degradation = 0.3 //If nonzero, the unreliability of the tool increases by 0..this after each tool operation
+	var/unreliability = 0 //This is added to the failure rate of operations with this tool
+
 	var/toggleable = FALSE	//Determinze if it can be switched ON or OFF, for example, if you need a tool that will consume power/fuel upon turning it ON only. Such as welder.
 	var/switched_on = FALSE	//Curent status of tool. Dont edit this in subtypes vars, its for procs only.
 	var/switched_on_qualities = null	//This var will REPLACE tool_qualities when tool will be toggled on.
@@ -53,6 +58,14 @@
 
 	update_icon()
 	return
+
+//Fuel and cell spawn
+/obj/item/weapon/tool/Created()
+	QDEL_NULL(cell)
+	if(use_fuel_cost)
+		consume_fuel(get_fuel())
+
+
 
 //For killing processes like hot spots
 /obj/item/weapon/tool/Destroy()
@@ -205,6 +218,11 @@
 	if(required_stat)
 		stat_modifer = user.stats.getStat(required_stat)
 	fail_chance = fail_chance - get_tool_quality(required_quality) - stat_modifer
+
+	//Unreliability increases failure rates
+	if (T)
+		fail_chance += T.unreliability
+
 	if (fail_chance < 0)
 		fail_chance = 0
 	if(prob(fail_chance))
@@ -222,78 +240,139 @@
 
 //Critical failure rolls. If you use use_tool_extended, you might want to call that proc as well.
 /obj/item/proc/handle_failure(var/mob/living/user, var/atom/target, var/required_stat, required_quality)
+	var/obj/item/weapon/tool/T
+	if(istype(src, /obj/item/weapon/tool))
+		T = src
 
 	var/crit_fail_chance = 25
+	if (T)
+		crit_fail_chance = max(crit_fail_chance, T.unreliability * 0.5) //At high unreliability, critical failures are more common
 	if(required_stat)
 		crit_fail_chance = crit_fail_chance - user.stats.getStat(required_stat)
-	else
-		crit_fail_chance = 10
-	if (crit_fail_chance < 0)
-		crit_fail_chance = 0
+
+
+
+
+	if (crit_fail_chance <= 0)
+		return
+
+	//This list initially contains the fail types that are always valid, even for robots
+	var/list/failtypes = list("slip" = 2, "swing" = 1)
+
+	if(T && T.use_fuel_cost)
+		//Robots can do this one too
+		failtypes["burn"] = 0.5
+
+	if(ishuman(user))
+		if (canremove)
+
+			failtypes["drop"] = 2
+			failtypes["throw"] = 1
+
+			if (T && T.degradation)
+				failtypes["damage"] = 2.5
+				if (T.unreliability >= 3)
+					failtypes["break"] = T.unreliability*0.1 //Makeshift tools are more likely to break
+			else
+				failtypes["break"] = 0.5
+		if (sharp)
+			failtypes["stab"] = 2
+
+		//This one is limited to humans only since robots often can't remove/replace their device cells
+		if (locate(/obj/item/weapon/cell) in contents)
+			failtypes["overload"] = 0.5
+
+
 
 	if(prob(crit_fail_chance))
-		var/fail_type = rand(0, 100)
+		var/fail_type = pickweight(failtypes)
 
 		switch(fail_type)
+			//Drop the tool on the floor
+			if("damage")
+				user << SPAN_DANGER("Your hand slips and you damage [src] a bit.")
+				T.unreliability += 10
+				return
 
-			if(0 to 29)
-				if(ishuman(user))
-					user << SPAN_DANGER("You drop [src] on the floor.")
-					user.drop_from_inventory(src)
+			//Drop the tool on the floor
+			if("drop")
+				user << SPAN_DANGER("You drop [src] on the floor.")
+				user.drop_from_inventory(src)
+				return
+
+			//Hit yourself
+			if("slip")
+				var/mob/living/carbon/human/H = user
+				user << SPAN_DANGER("Your hand slips while working with [src]!")
+				attack(H, H, H.get_holding_hand(src))
+				return
+
+			//Hit a random atom around you
+			if("swing")
+				var/list/targets = list()
+				for (var/atom/movable/AM in orange(user, 1))
+					targets.Add(AM)
+				if (!targets.len)
 					return
 
-			if(30 to 49)
-				if(ishuman(user))
-					var/mob/living/carbon/human/H = user
-					user << SPAN_DANGER("Your hand slips while working with [src]!")
-					attack(H, H, H.get_holding_hand(src))
-					return
+				var/newtarget = pick(targets)
+				var/mob/living/carbon/human/H = user
 
-			if(50 to 79)
-				if(ishuman(user))
-					var/mob/living/carbon/human/H = user
-					var/throw_target = pick(trange(6, user))
-					user << SPAN_DANGER("Your [src] flies away!")
-					H.unEquip(src)
-					src.throw_at(throw_target, src.throw_range, src.throw_speed, H)
-					return
+				user << SPAN_DANGER("Your hand slips and you hit [target] with [src]!")
+				spawn()
+					H.ClickOn(newtarget)
+				return
 
-			if(70 to 84)
-				if(ishuman(user))
-					var/mob/living/carbon/human/H = user
-					user << SPAN_DANGER("You accidentally stuck [src] in your hand!")
-					H.get_organ(H.get_holding_hand(src)).embed(src)
-					return
+			//Throw the tool in a random direction
+			if("throw")
+				var/mob/living/carbon/human/H = user
+				var/throw_target = pick(trange(6, user))
+				user << SPAN_DANGER("Your [src] flies away!")
+				H.unEquip(src)
+				src.throw_at(throw_target, src.throw_range, src.throw_speed, H)
+				return
 
-			if(85 to 94)
-				if(ishuman(user))
-					user << SPAN_DANGER("Your [src] broke beyond repair!")
-					new /obj/item/weapon/material/shard/shrapnel(user.loc)
-					qdel(src)
-					return
+			//Stab yourself in the hand so hard your tool embeds
+			if("stab")
+				var/mob/living/carbon/human/H = user
+				user << SPAN_DANGER("You accidentally stuck [src] in your hand!")
+				H.get_organ(H.get_holding_hand(src)).embed(src)
+				return
 
-			if(95 to 100)
-				if(ishuman(user))
-					if(istype(src, /obj/item/weapon/tool))
-						var/obj/item/weapon/tool/T = src
-						if(T.use_fuel_cost)
-							user << SPAN_DANGER("You ignite the fuel of the [src]!")
-							var/fuel = T.get_fuel()
-							T.consume_fuel(fuel)
-							user.adjust_fire_stacks(fuel/10)
-							user.IgniteMob()
-							T.update_icon()
-							return
-						if(T.use_power_cost && T.cell)
-							user << SPAN_DANGER("You overload the cell in the [src]!")
-							if (T.cell.charge >= 400)
-								explosion(src.loc,-1,0,2)
-							else
-								explosion(src.loc,-1,0,1)
-							qdel(T.cell)
-							T.cell = null
-							T.update_icon()
-							return
+			//The tool completely breaks, permanantly gone
+			if("break")
+				user << SPAN_DANGER("Your [src] broke beyond repair!")
+				new /obj/item/weapon/material/shard/shrapnel(user.loc)
+				qdel(src)
+				return
+
+			//The fuel in the tool ignites and sets you aflame
+			if("burn")
+				user << SPAN_DANGER("You ignite the fuel of the [src]!")
+				var/fuel = T.get_fuel()
+				T.consume_fuel(fuel)
+				user.adjust_fire_stacks(fuel/10)
+				user.IgniteMob()
+				T.update_icon()
+				return
+
+			//The cell explodes
+			//This can happen even with non-tools which contain a cell
+			if("overload")
+				var/obj/item/weapon/cell/C
+				if(T)
+					C = T.cell
+				else
+					C = locate(/obj/item/weapon/cell) in contents
+
+
+				user << SPAN_DANGER("You overload the cell in the [src]!")
+				C.explode()
+				if (T)
+					T.cell = null
+
+				update_icon()
+				return
 
 
 
@@ -382,6 +461,10 @@
 			scost = round(scost, 1)
 		consume_stock(scost)
 
+	//Makeshift tools get worse with each use
+	if (degradation)
+		unreliability += rand_between(0, degradation)
+
 //Power and fuel drain, sparks spawn
 /obj/item/weapon/tool/proc/check_tool_effects(mob/living/user, var/time)
 
@@ -448,6 +531,20 @@
 	if (use_stock_cost)
 		user << SPAN_NOTICE("it has [stock] / [max_stock] units remaining.")
 
+	if (unreliability)
+		if (unreliability < 2)
+			return
+		else if (unreliability < 5)
+			user << SPAN_WARNING("It shows very minor signs of stress and wear.")
+		else if (unreliability < 10)
+			user << SPAN_WARNING("It looks a bit cracked and worn.")
+		else if (unreliability < 25)
+			user << SPAN_WARNING("Whatever use this tool once had is fading fast.")
+		else if (unreliability < 40)
+			user << SPAN_WARNING("Attempting to use this thing as a tool is probably not going to work out well.")
+		else
+			user << SPAN_DANGER("It's falling apart. This is one slip away from just being a pile of assorted trash.")
+
 
 //Recharge the fuel at fueltank, also explode if switched on
 /obj/item/weapon/tool/afterattack(obj/O, mob/user, proximity)
@@ -474,6 +571,17 @@
 				location.hotspot_expose(700, 50, 1)
 
 	if (has_quality(QUALITY_ADHESIVE) && proximity)
+		//Tape can be used to repair other tools
+		if (istype(O, /obj/item/weapon/tool))
+			var/obj/item/weapon/tool/T = O
+			if (T.unreliability)
+				user.visible_message(SPAN_NOTICE("[user] begins repairing \the [O] with the [src]!"))
+				//Toolception!
+				if(use_tool(user, T, 60 + (T.unreliability*10), QUALITY_ADHESIVE, T.unreliability, STAT_MEC))
+					//Repairs are imperfect, it'll never go back to being intact
+					T.unreliability *= 0.25
+				return
+
 		if (stick(O, user))
 			return
 

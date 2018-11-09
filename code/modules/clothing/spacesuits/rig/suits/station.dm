@@ -39,9 +39,10 @@
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/industrial
 
-	allowed = list(
-		/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,/obj/item/device/t_scanner,
-		/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/bag/ore,/obj/item/weapon/tool/pickaxe,
+	extra_allowed = list(
+		/obj/item/device/t_scanner,
+		/obj/item/weapon/storage/bag/ore,
+		/obj/item/weapon/tool/pickaxe,
 		/obj/item/weapon/rcd
 	)
 
@@ -77,10 +78,11 @@
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/eva
 
-	allowed = list(
-		/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,
-		/obj/item/weapon/storage/toolbox,/obj/item/weapon/storage/briefcase/inflatable,
-		/obj/item/device/t_scanner,/obj/item/weapon/rcd
+	extra_allowed = list(
+		/obj/item/weapon/storage/toolbox,
+		/obj/item/weapon/storage/briefcase/inflatable,
+		/obj/item/device/t_scanner,
+		/obj/item/weapon/rcd
 	)
 
 	req_access = list()
@@ -118,9 +120,10 @@ Advanced Voidsuit: Technomancer Exultant
 	glove_type = /obj/item/clothing/gloves/rig/ce
 	boot_type = /obj/item/clothing/shoes/magboots/rig/ce
 
-	allowed = list(
-		/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,
-		/obj/item/weapon/storage/bag/ore,/obj/item/device/t_scanner,/obj/item/weapon/tool/pickaxe,
+	extra_allowed = list(
+		/obj/item/weapon/storage/toolbox,
+		/obj/item/weapon/storage/briefcase/inflatable,
+		/obj/item/device/t_scanner,
 		/obj/item/weapon/rcd
 	)
 
@@ -159,12 +162,17 @@ Advanced Voidsuit: Technomancer Exultant
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/hazmat
 
-	allowed = list(
-		/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,
-		/obj/item/stack/flag,/obj/item/weapon/tool,
-		/obj/item/device/scanner/healthanalyzer,/obj/item/device/measuring_tape,/obj/item/device/ano_scanner,
-		/obj/item/device/depth_scanner,/obj/item/device/core_sampler,/obj/item/device/gps,
-		/obj/item/device/beacon_locator,/obj/item/device/radio/beacon,
+	extra_allowed = list(
+		/obj/item/stack/flag,
+		/obj/item/weapon/tool,
+		/obj/item/device/scanner/healthanalyzer,
+		/obj/item/device/measuring_tape,
+		/obj/item/device/ano_scanner,
+		/obj/item/device/depth_scanner,
+		/obj/item/device/core_sampler,
+		/obj/item/device/gps,
+		/obj/item/device/beacon_locator,
+		/obj/item/device/radio/beacon,
 		/obj/item/weapon/storage/bag/fossils
 	)
 
@@ -198,9 +206,10 @@ Advanced Voidsuit: Technomancer Exultant
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/medical
 
-	allowed = list(
-		/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,
-		/obj/item/weapon/storage/firstaid,/obj/item/device/scanner/healthanalyzer,/obj/item/stack/medical,
+	extra_allowed = list(
+		/obj/item/weapon/storage/firstaid,
+		/obj/item/device/scanner/healthanalyzer,
+		/obj/item/stack/medical,
 		/obj/item/roller
 	)
 
@@ -231,11 +240,6 @@ Advanced Voidsuit: Technomancer Exultant
 	offline_vision_restriction = 1
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/hazard
-
-	allowed = list(
-		/obj/item/weapon/gun,/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,
-		/obj/item/device/suit_cooling_unit,/obj/item/weapon/melee/baton
-	)
 
 	req_access = list()
 	req_one_access = list()
