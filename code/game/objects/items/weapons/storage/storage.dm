@@ -318,14 +318,16 @@
 			usr << SPAN_NOTICE("[W] is too long for this [src].")
 		return 0
 
-	var/total_storage_space = W.get_storage_cost()
-	for(var/obj/item/I in contents)
-		total_storage_space += I.get_storage_cost() //Adds up the combined w_classes which will be in the storage item if the item is added to it.
+	//Slot based storage overrides space-based storage
+	if(storage_slots == null)
+		var/total_storage_space = W.get_storage_cost()
+		for(var/obj/item/I in contents)
+			total_storage_space += I.get_storage_cost() //Adds up the combined w_classes which will be in the storage item if the item is added to it.
 
-	if(total_storage_space > max_storage_space)
-		if(!stop_messages)
-			usr << SPAN_NOTICE("[src] is too full, make some space.")
-		return 0
+		if(total_storage_space > max_storage_space)
+			if(!stop_messages)
+				usr << SPAN_NOTICE("[src] is too full, make some space.")
+			return 0
 
 	if(W.w_class >= src.w_class && (istype(W, /obj/item/weapon/storage)))
 		if(!stop_messages)

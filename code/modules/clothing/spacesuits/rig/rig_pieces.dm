@@ -14,7 +14,7 @@
 /obj/item/clothing/gloves/rig
 	name = "gauntlets"
 	item_flags = THICKMATERIAL
-	body_parts_covered = ARMS 
+	body_parts_covered = ARMS
 	heat_protection =    ARMS
 	cold_protection =    ARMS
 	species_restricted = null
@@ -47,6 +47,7 @@
 	resilience = 0.2
 	can_breach = 1
 	supporting_limbs = list()
+	retract_while_active = FALSE
 
 //TODO: move this to modules
 /obj/item/clothing/head/helmet/space/rig/proc/prevent_track()

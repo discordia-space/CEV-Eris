@@ -651,7 +651,7 @@
 
 	var/obj/item/check_slot
 	var/equip_to
-	var/obj/item/use_obj
+	var/obj/item/clothing/use_obj
 
 	if(!wearer)
 		return
@@ -670,15 +670,15 @@
 			use_obj = boots
 			check_slot = wearer.shoes
 		if("chest")
-			if (active)
-				initiator << SPAN_DANGER("You can't retract the chest while the [src] is active. Disable it first")
-				return
 			equip_to = slot_wear_suit
 			use_obj = chest
 			check_slot = wearer.wear_suit
 
 	if(use_obj)
 		if(check_slot == use_obj && deploy_mode != ONLY_DEPLOY)
+			if (active && !(use_obj.retract_while_active))
+				wearer << SPAN_DANGER("The [use_obj] is locked in place while [src] is active. You must deactivate it first!")
+				return
 
 			var/mob/living/carbon/human/holder
 

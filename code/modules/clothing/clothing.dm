@@ -13,6 +13,9 @@
 	var/list/restricted_accessory_slots
 	var/equip_delay = 0 //If set to a nonzero value, the item will require that much time to wear and remove
 
+	//Used for hardsuits. If false, this piece cannot be retracted while the core module is engaged
+	var/retract_while_active = TRUE
+
 /obj/item/clothing/Destroy()
 	for(var/obj/item/clothing/accessory/A in accessories)
 		qdel(A)
