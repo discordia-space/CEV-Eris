@@ -91,8 +91,11 @@
 			return
 
 // Preset types - left here for the code that uses them
+/obj/item/weapon/material/shard/shrapnel
+	name = "shrapnel" //Needed for crafting
+
 /obj/item/weapon/material/shard/shrapnel/New(loc)
-	name = "shrapnel"
+
 	..(loc, MATERIAL_STEEL)
 
 /obj/item/weapon/material/shard/plasma/New(loc)

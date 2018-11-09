@@ -27,7 +27,7 @@
 
 
 	//Variables used for makeshift tools
-	var/degradation = 0 //If nonzero, the unreliability of the tool increases by 0..this after each tool operation
+	var/degradation = 0.3 //If nonzero, the unreliability of the tool increases by 0..this after each tool operation
 	var/unreliability = 0 //This is added to the failure rate of operations with this tool
 
 	var/toggleable = FALSE	//Determinze if it can be switched ON or OFF, for example, if you need a tool that will consume power/fuel upon turning it ON only. Such as welder.
@@ -523,7 +523,11 @@
 		user << SPAN_NOTICE("it has [stock] / [max_stock] units remaining.")
 
 	if (unreliability)
-		if (unreliability < 10)
+		if (unreliability < 2)
+			return
+		else if (unreliability < 5)
+			user << SPAN_WARNING("It shows very minor signs of stress and wear.")
+		else if (unreliability < 10)
 			user << SPAN_WARNING("It looks a bit cracked and worn.")
 		else if (unreliability < 25)
 			user << SPAN_WARNING("Whatever use this tool once had is fading fast.")
