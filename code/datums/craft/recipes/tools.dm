@@ -29,7 +29,7 @@
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
 
-//A shard of glass wrapped in tape makes a crude sort of knife
+//Rods bent into wierd shapes and held together with a screw
 /datum/craft_recipe/tool/wiremanglers
 	name = "wiremanglers"
 	result = /obj/item/weapon/tool/wirecutters/improvised
