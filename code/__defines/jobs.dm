@@ -6,4 +6,4 @@
 #define JOBS_SCIENCE "Moebius Expedition Overseer","Moebius Scientist","Moebius Roboticist"
 #define JOBS_CARGO "Guild Merchant","Guild Technician","Guild Miner"
 #define JOBS_CIVILIAN "First Officer","Bartender","Gardener","Chef","Janitor","Cyberchristian Preacher","Assistant"
-#define JOBS_NONHUMAN "AI","Cyborg","pAI"
+#define JOBS_NONHUMAN "AI","Robot","pAI"
