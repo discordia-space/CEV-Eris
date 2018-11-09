@@ -146,10 +146,7 @@
 
 	START_PROCESSING(SSobj, src)
 
-	if(initial_modules && initial_modules.len)
-		for(var/path in initial_modules)
-			var/obj/item/rig_module/module = new path(src)
-			install(module)
+
 
 	// Create and initialize our various segments.
 	if(cell_type)
@@ -172,6 +169,11 @@
 			chest.allowed = allowed
 		chest.slowdown = offline_slowdown
 		verbs |= /obj/item/weapon/rig/proc/toggle_chest
+
+	if(initial_modules && initial_modules.len)
+		for(var/path in initial_modules)
+			var/obj/item/rig_module/module = new path(src)
+			install(module)
 
 	for(var/obj/item/piece in list(gloves,helmet,boots,chest))
 		if(!istype(piece))
