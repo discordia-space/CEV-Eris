@@ -99,7 +99,7 @@
 			overlays.Add(icon_state_screensaver)
 		set_light(0)
 		return
-	set_light(0.2, 0.1, light_strength)
+	set_light(2, light_strength, screen_color)
 	if(active_program)
 		overlays.Add(active_program.program_icon_state ? active_program.program_icon_state : icon_state_menu)
 		if(active_program.program_key_state)
