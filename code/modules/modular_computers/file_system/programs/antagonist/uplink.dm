@@ -17,6 +17,9 @@
 	
 
 /datum/nano_module/program/uplink/Topic(href, href_list)
+	if(..())
+		return 1
+
 	if(href_list["login"])
 		log_in()
 		return 1
@@ -40,7 +43,7 @@
 		SSnano.close_user_uis(usr, src)
 		computer.hidden_uplink.trigger(usr)
 		return 1
-
+	return 1
 
 /datum/nano_module/program/uplink/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = GLOB.default_state)
 	var/list/data = host.initial_data()
