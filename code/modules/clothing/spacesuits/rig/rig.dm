@@ -34,7 +34,7 @@
 	var/interface_path = "hardsuit.tmpl"
 	var/ai_interface_path = "hardsuit.tmpl"
 	var/interface_title = "Hardsuit Controller"
-	var/wearer_move_delay //Used for AI moving.
+	var/datum/delay_controller/wearer_move_delayer = new
 	var/ai_controlled_move_delay = 10
 
 	// Keeps track of what this rig should spawn with.
@@ -146,10 +146,7 @@
 
 	START_PROCESSING(SSobj, src)
 
-	if(initial_modules && initial_modules.len)
-		for(var/path in initial_modules)
-			var/obj/item/rig_module/module = new path(src)
-			install(module)
+
 
 	// Create and initialize our various segments.
 	if(cell_type)
@@ -172,6 +169,11 @@
 			chest.allowed = allowed
 		chest.slowdown = offline_slowdown
 		verbs |= /obj/item/weapon/rig/proc/toggle_chest
+
+	if(initial_modules && initial_modules.len)
+		for(var/path in initial_modules)
+			var/obj/item/rig_module/module = new path(src)
+			install(module)
 
 	for(var/obj/item/piece in list(gloves,helmet,boots,chest))
 		if(!istype(piece))
@@ -884,7 +886,7 @@
 /obj/item/weapon/rig/proc/forced_move(var/direction, var/mob/user)
 
 	// Why is all this shit in client/Move()? Who knows?
-	if(world.time < wearer_move_delay)
+	if (wearer_move_delayer.isBlocked())
 		return
 
 	if(!wearer || !wearer.loc || !ai_can_move_suit(user, check_user_module = 1))
@@ -928,19 +930,14 @@
 		src << "<span class='notice'>Your host is pinned to a wall by [wearer.pinned[1]]</span>!"
 		return 0
 
-	// AIs are a bit slower than regular and ignore move intent.
-	wearer_move_delay = world.time + ai_controlled_move_delay
-
-	var/tickcomp = 0
-	if(config.Tickcomp)
-		tickcomp = ((1/(world.tick_lag))*1.3) - 1.3
-		wearer_move_delay += tickcomp
-
 	if(istype(wearer.buckled, /obj/vehicle))
-		//manually set move_delay for vehicles so we don't inherit any mob movement penalties
-		//specific vehicle move delays are set in code\modules\vehicles\vehicle.dm
-		wearer_move_delay = world.time + tickcomp
+		// manually set move_delay for vehicles so we don't inherit any mob movement penalties
+		// specific vehicle move delays are set in code\modules\vehicles\vehicle.dm
+		wearer_move_delayer.setDelayMin(1)
 		return wearer.buckled.relaymove(wearer, direction)
+
+	var/delay = ai_controlled_move_delay
+	wearer_move_delayer.setDelayMin(delay)
 
 	if(istype(wearer.machine, /obj/machinery))
 		if(wearer.machine.relaymove(wearer, direction))
@@ -957,11 +954,11 @@
 				var/obj/item/organ/external/r_hand = wearer.get_organ(BP_R_ARM)
 				if((!l_hand || (l_hand.status & ORGAN_DESTROYED)) && (!r_hand || (r_hand.status & ORGAN_DESTROYED)))
 					return // No hands to drive your chair? Tough luck!
-			wearer_move_delay += 2
+			wearer_move_delayer.addDelay(2)
 			return wearer.buckled.relaymove(wearer,direction)
 
 	cell.use(200) //Arbitrary, TODO
-	wearer.Move(get_step(get_turf(wearer),direction),direction)
+	step_glide(wearer, direction, DELAY2GLIDESIZE(delay))
 
 // This returns the rig if you are contained inside one, but not if you are wearing it
 /atom/proc/get_rig()

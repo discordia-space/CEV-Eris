@@ -14,9 +14,9 @@
 	cable.amount = 100
 	..()
 
-/obj/machinery/cablelayer/Move(new_turf,M_Dir)
-	..()
-	layCable(new_turf,M_Dir)
+/obj/machinery/cablelayer/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+	. = ..()
+	layCable(NewLoc, Dir)
 
 /obj/machinery/cablelayer/attack_hand(mob/user as mob)
 	if(!cable&&!on)

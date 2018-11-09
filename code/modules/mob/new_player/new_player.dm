@@ -398,7 +398,7 @@
 	dat += data_core.get_manifest(OOC = 1)
 	src << browse(dat, "window=manifest;size=370x420;can_close=1")
 
-/mob/new_player/Move()
+/mob/new_player/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	return 0
 
 /mob/new_player/proc/close_spawn_windows()

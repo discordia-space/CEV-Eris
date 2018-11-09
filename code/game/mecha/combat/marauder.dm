@@ -105,10 +105,12 @@
 	var/tmp_step_energy_drain = step_energy_drain
 	var/move_result = 0
 	if(internal_damage&MECHA_INT_CONTROL_LOST)
+		set_glide_size(DELAY2GLIDESIZE(step_in))
 		move_result = mechsteprand()
 	else if(src.dir!=direction)
 		move_result = mechturn(direction)
 	else
+		set_glide_size(DELAY2GLIDESIZE(step_in))
 		move_result	= mechstep(direction)
 	if(move_result)
 		if(istype(src.loc, /turf/space))

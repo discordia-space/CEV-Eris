@@ -100,11 +100,11 @@
 			previous.Detach()
 		. = ..()
 
-	Move()
+	Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 		var/attachementNextPosition = loc
 		if(..())
 			if(previous)
-				previous.Move(attachementNextPosition)
+				previous.Move(attachementNextPosition, glide_size_override=glide_size_override)
 			update_icon()
 
 	Bump(atom/obstacle)

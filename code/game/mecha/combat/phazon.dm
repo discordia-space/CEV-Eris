@@ -35,9 +35,10 @@
 			if(can_move)
 				can_move = 0
 				flick("phazon-phase", src)
-				src.loc = get_step(src,src.dir)
+				var/delay = step_in*3
+				src.forceMove(get_step(src,src.dir), glide_size_override=DELAY2GLIDESIZE(delay))
 				src.use_power(phasing_energy_drain)
-				sleep(step_in*3)
+				sleep(delay)
 				can_move = 1
 	else
 		. = ..()

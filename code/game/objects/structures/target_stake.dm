@@ -9,11 +9,11 @@
 	flags = CONDUCT
 	var/obj/item/target/pinned_target // the current pinned target
 
-	Move()
+	Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 		..()
 		// Move the pinned target along with the stake
 		if(pinned_target in view(3, src))
-			pinned_target.loc = loc
+			pinned_target.forceMove(loc, glide_size_override=glide_size_override)
 
 		else // Sanity check: if the pinned target can't be found in immediate view
 			pinned_target = null

@@ -80,6 +80,7 @@
 	if(!target_mob)
 		return
 	if(target_mob in ListTargets(10))
+		set_glide_size(DELAY2GLIDESIZE(move_to_delay))
 		walk_to(src,target_mob,1,move_to_delay)
 
 /mob/living/simple_animal/hostile/commanded/proc/commanded_stop() //basically a proc that runs whenever we are asked to stay put. Probably going to remain unused.

@@ -23,9 +23,9 @@
 
 	var/datum/visualnet/visualnet
 
-/mob/observer/eye/Move(n, direct)
+/mob/observer/eye/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	if(owner == src)
-		return EyeMove(n, direct)
+		return EyeMove(NewLoc, Dir)
 	return 0
 
 /mob/observer/eye/examinate()
