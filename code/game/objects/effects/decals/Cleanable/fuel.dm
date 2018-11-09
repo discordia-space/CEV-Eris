@@ -6,11 +6,11 @@
 	anchored = 1
 	var/amount = 1
 
-/obj/effect/decal/cleanable/liquid_fuel/New(turf/newLoc,amt=1,nologs=0)
+/obj/effect/decal/cleanable/liquid_fuel/New(turf/newLoc,_amount=1,nologs=0)
 	if(usr && usr.client && !nologs)
 		message_admins("Liquid fuel has spilled in [newLoc.loc.name] ([newLoc.x],[newLoc.y],[newLoc.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[newLoc.x];Y=[newLoc.y];Z=[newLoc.z]'>JMP</a>)")
 		log_game("Liquid fuel has spilled in [newLoc.loc.name] ([newLoc.x],[newLoc.y],[newLoc.z])")
-	src.amount = amt
+	amount = _amount
 
 	var/has_spread = 0
 	//Be absorbed by any other liquid fuel in the tile.
@@ -51,10 +51,11 @@
 	icon_state = "mustard"
 	anchored = 0
 	var/turf/origin
-	New(newLoc, amt = 1, d = 0, var/turf/_origin)
-		origin = _origin
-		set_dir(d) //Setting this direction means you won't get torched by your own flamethrower.
-		. = ..()
+
+/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel/New(newLoc, _amount = 1, d = 0, var/turf/_origin)
+	origin = _origin
+	set_dir(d) //Setting this direction means you won't get torched by your own flamethrower.
+	. = ..()
 
 /obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel/Spread()
 	//The spread for flamethrower fuel is much more precise, to create a wide fire pattern.
