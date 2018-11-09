@@ -72,7 +72,7 @@
 			user << SPAN_WARNING("[O] is dead. Sticking it into the frame would sort of defeat the purpose.")
 			return
 
-		if(jobban_isbanned(B.brainmob, "Cyborg"))
+		if(jobban_isbanned(B.brainmob, "Robot"))
 			user << SPAN_WARNING("\The [O] does not seem to fit.")
 			return
 

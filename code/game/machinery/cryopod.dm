@@ -530,7 +530,7 @@
 
 	else
 		icon_state = base_icon_state
-		if(occupant && !QDELETED(occupant))
+		if(!QDELETED(occupant))
 			occupant.forceMove(get_turf(src))
 			occupant.reset_view(null)
 			if(ishuman(occupant) && applies_stasis)
