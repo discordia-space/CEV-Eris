@@ -9,6 +9,7 @@
 	worksound = WORKSOUND_TAPE
 	use_stock_cost = 0.15
 	max_stock = 100
+	degradation = 0 //its consumable anyway
 	flags = NOBLUDGEON //Its not a weapon
 
 /obj/item/weapon/tool/tape_roll/web
