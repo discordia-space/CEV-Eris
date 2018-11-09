@@ -270,7 +270,7 @@
 		character.buckled.loc = character.loc
 		character.buckled.set_dir(character.dir)
 	if(SSjob.ShouldCreateRecords(job.title))
-		if(character.mind.assigned_role != "Cyborg")
+		if(character.mind.assigned_role != "Robot")
 			CreateModularRecord(character)
 			data_core.manifest_inject(character)
 			matchmaker.do_matchmaking()

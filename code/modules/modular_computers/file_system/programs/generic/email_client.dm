@@ -12,6 +12,8 @@
 	var/stored_password = ""
 	usage_flags = PROGRAM_ALL
 
+	var/ringtone = TRUE
+
 	nanomodule_path = /datum/nano_module/email_client
 
 // Persistency. Unless you log out, or unless your password changes, this will pre-fill the login data when restarting the program
@@ -38,10 +40,6 @@
 		NME.error = ""
 		NME.check_for_new_messages(1)
 
-/datum/computer_file/program/email_client/proc/new_mail_notify()
-	computer.visible_message("\The [computer] beeps softly, indicating a new email has been received.", 1)
-	playsound(computer, 'sound/machines/twobeep.ogg', 50, 1)
-
 /datum/computer_file/program/email_client/process_tick()
 	..()
 	var/datum/nano_module/email_client/NME = NM
@@ -52,7 +50,7 @@
 	var/check_count = NME.check_for_new_messages()
 	if(check_count)
 		if(check_count == 2)
-			new_mail_notify()
+			NME.new_mail_notify()
 		ui_header = "ntnrc_new.gif"
 	else
 		ui_header = "ntnrc_idle.gif"
@@ -81,9 +79,12 @@
 	var/datum/computer_file/data/email_account/current_account = null
 	var/datum/computer_file/data/email_message/current_message = null
 
+
 /datum/nano_module/email_client/proc/mail_received(var/datum/computer_file/data/email_message/received_message)
 	var/mob/living/L = get(host, /mob/living)
 	if(L)
+		if(issilicon(host))
+			new_mail_notify()
 		var/list/msg = list()
 		msg += "*--*\n"
 		msg += "<span class='notice'>New mail received from [received_message.source]:</span>\n"
@@ -102,7 +103,7 @@
 	var/list/id_login
 
 	if(istype(host, /obj/item/modular_computer))
-		var/obj/item/modular_computer/computer = host
+		var/obj/item/modular_computer/computer = nano_host()
 		var/obj/item/weapon/card/id/id = computer.GetIdCard()
 		if(!id && ismob(computer.loc))
 			var/mob/M = computer.loc
@@ -142,6 +143,18 @@
 	else
 		error = "Invalid Password"
 		return 0
+
+/datum/nano_module/email_client/proc/new_mail_notify()
+	if(issilicon(host))
+		var/mob/living/silicon/S = host
+		if(S.email_ringtone)
+			playsound(S, 'sound/machines/twobeep.ogg', 50, 1)
+	else if (istype(host,/obj/item/modular_computer))
+		var/obj/item/modular_computer/computer = nano_host()
+		var/datum/computer_file/program/email_client/PRG = computer.active_program
+		if (istype(PRG) && PRG.ringtone)
+			computer.visible_message("\The [host] beeps softly, indicating a new email has been received.", 1)
+			playsound(computer, 'sound/machines/twobeep.ogg', 50, 1)
 
 // Returns 0 if no new messages were received, 1 if there is an unread message but notification has already been sent.
 // and 2 if there is a new message that appeared in this tick (and therefore notification should be sent by the program).
@@ -185,7 +198,6 @@
 		else if(current_account.suspended)
 			log_out()
 			error = "This account has been suspended. Please contact the system administrator for assistance."
-
 	if(error)
 		data["error"] = error
 	else if(downloading)
@@ -197,6 +209,16 @@
 
 	else if(istype(current_account))
 		data["current_account"] = current_account.login
+
+		if(issilicon(host))
+			var/mob/living/silicon/S = host
+			data["ringtone"] = S.email_ringtone
+		else if (istype(host,/obj/item/modular_computer))
+			var/obj/item/modular_computer/computer = nano_host()
+			var/datum/computer_file/program/email_client/PRG = computer.active_program
+			if (istype(PRG))
+				data["ringtone"] = PRG.ringtone
+
 		if(addressbook)
 			var/list/all_accounts = list()
 			for(var/datum/computer_file/data/email_account/account in ntnet_global.email_accounts)
@@ -324,6 +346,17 @@
 
 	if(href_list["logout"])
 		log_out()
+		return 1
+
+	if(href_list["ringtone_toggle"])
+		if(issilicon(host))
+			var/mob/living/silicon/S = host
+			S.email_ringtone = !S.email_ringtone
+		else if (istype(host,/obj/item/modular_computer))
+			var/obj/item/modular_computer/computer = nano_host()
+			var/datum/computer_file/program/email_client/PRG = computer.active_program
+			if (istype(PRG))
+				PRG.ringtone = !PRG.ringtone
 		return 1
 
 	if(href_list["reset"])

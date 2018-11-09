@@ -220,13 +220,15 @@ var/global/datum/ntnet/ntnet_global = new()
 	if(user.mind)
 		user.mind.initial_email_login["login"] = new_login
 		user.mind.store_memory("Your email account address has been changed to [new_login].")
-	// TODO: enable after baymed
-	/*if(issilicon(user))
+
+	if(issilicon(user))
 		var/mob/living/silicon/S = user
 		var/datum/nano_module/email_client/my_client = S.get_subsystem_from_path(/datum/nano_module/email_client)
 		if(my_client)
 			my_client.stored_login = new_login
-	*/
+			my_client.stored_password = account.password
+			my_client.log_in()
+	
 //Used for initial email generation.
 /datum/ntnet/proc/create_email(mob/user, desired_name, domain)
 	desired_name = sanitize_for_email(desired_name)
@@ -248,14 +250,14 @@ var/global/datum/ntnet/ntnet_global = new()
 			user.mind.initial_email_login["login"] = EA.login
 			user.mind.initial_email_login["password"] = EA.password
 			user.mind.store_memory("Your email account address is [EA.login] and the password is [EA.password].")
-		// TODO: enable after baymed
-		/*
+
 		if(issilicon(user))
 			var/mob/living/silicon/S = user
 			var/datum/nano_module/email_client/my_client = S.get_subsystem_from_path(/datum/nano_module/email_client)
 			if(my_client)
 				my_client.stored_login = EA.login
-				my_client.stored_password = EA.password*/
+				my_client.stored_password = EA.password
+				my_client.log_in()
 
 /mob/proc/create_or_rename_email(newname, domain)
 	if(!mind)

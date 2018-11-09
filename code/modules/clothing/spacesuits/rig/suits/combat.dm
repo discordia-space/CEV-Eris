@@ -12,10 +12,7 @@
 	offline_vision_restriction = 1
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/combat
-	allowed = list(
-		/obj/item/weapon/gun,/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,
-		/obj/item/device/suit_cooling_unit,/obj/item/weapon/melee/baton
-	)
+
 
 
 /obj/item/weapon/rig/combat/equipped
@@ -42,17 +39,13 @@
 	desc = "Standard operative suit issued to Ironhammer mercenaries. Provides balanced overall protection against various threats and widely used on planets surface, space stations or in open space."
 	corporation = /datum/corporation/ironhammer
 	icon_state = "ihs_rig"
+	helm_type = /obj/item/clothing/head/helmet/space/rig/ihs_combat
 	suit_type = "ironhammer hardsuit"
 	armor = list(melee = 60, bullet = 55, laser = 55, energy = 55, bomb = 45, bio = 100, rad = 40)
 	slowdown = 1
 	offline_slowdown = 3
 	offline_vision_restriction = 0
 
-	helm_type = /obj/item/clothing/head/helmet/space/rig/ihs_combat
-	allowed = list(
-		/obj/item/weapon/gun,/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,
-		/obj/item/device/suit_cooling_unit,/obj/item/weapon/melee/baton
-	)
 
 
 /obj/item/weapon/rig/ihs_combat/equipped

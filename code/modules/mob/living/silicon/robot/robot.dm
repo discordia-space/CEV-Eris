@@ -62,8 +62,6 @@
 
 	var/obj/item/device/mmi/mmi = null
 
-	var/obj/item/device/pda/ai/rbPDA = null
-
 	var/obj/item/weapon/stock_parts/matter_bin/storage = null
 
 	var/opened = 0
@@ -214,12 +212,6 @@
 		return amount
 	return 0
 
-// setup the PDA and its name
-/mob/living/silicon/robot/proc/setup_PDA()
-	if (!rbPDA)
-		rbPDA = new/obj/item/device/pda/ai(src)
-	rbPDA.set_name_and_job(custom_name,"[modtype] [braintype]")
-
 //If there's an MMI in the robot, have it ejected when the mob goes away. --NEO
 //Improved /N
 /mob/living/silicon/robot/Destroy()
@@ -323,11 +315,9 @@
 	else
 		changed_name = "[modtype] [braintype]-[num2text(ident)]"
 
+	create_or_rename_email(changed_name, "root.rt")
 	real_name = changed_name
 	name = real_name
-
-	// if we've changed our name, we also need to update the display name for our PDA
-	setup_PDA()
 
 	//We also need to update name of internal camera.
 	if (camera)
