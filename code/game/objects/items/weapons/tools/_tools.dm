@@ -265,10 +265,12 @@
 
 	if(ishuman(user))
 		if (canremove)
+
 			failtypes["drop"] = 2
 			failtypes["throw"] = 1
 
 			if (T && T.unreliability)
+				failtypes["damage"] = 2
 				failtypes["break"] = T.unreliability*0.1 //Makeshift tools are more likely to break
 			else
 				failtypes["break"] = 0.5
@@ -285,6 +287,12 @@
 		var/fail_type = pickweight(failtypes)
 
 		switch(fail_type)
+			//Drop the tool on the floor
+			if("damage")
+				user << SPAN_DANGER("Your hand slips and you damage [src] a bit.")
+				T.unreliability += 10
+				return
+
 			//Drop the tool on the floor
 			if("drop")
 				user << SPAN_DANGER("You drop [src] on the floor.")
