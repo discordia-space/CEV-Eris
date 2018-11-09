@@ -19,6 +19,9 @@
 	density = 1
 	var/obj/structure/m_tray/connected = null
 	anchored = 1.0
+	var/mob/living/occupant
+	var/max_capacity = 150
+	var/current_storage = 0
 
 /obj/structure/morgue/Destroy()
 	if(connected)
@@ -92,37 +95,17 @@
 
 /obj/structure/morgue/proc/close(var/mob/living/user)
 	//We only allow one mob or bodybag containing a mob, per morgue drawer
-	var/mob/living/occupant = null
+	occupant = null
 
-	for(var/atom/movable/A as mob|obj in src.connected.loc)
-		if (ismob(A))
-			if (!isliving(A))
-				//Don't eat ghosts and AI eyes please
-				continue
-			if (occupant)
-				//Only one mob per drawer
-				continue
-			occupant = A
-			A.forceMove(src)
-
-		else if (istype(A, /obj/structure/closet))
-			//Closet includes coffins and deployed bodybags
-			if (occupant)
-				//One of these is allowed in if it contains a mob and we dont already have a mob
-				continue
-			//Try to find a mob inside it
-			var/mob/M = locate(/mob/living) in A.contents
-			if (istype(M))
-				//There's a mob in it, we'll accept it
-				occupant = M
-				A.forceMove(src)
+	for(var/atom/movable/A in src.connected.loc)
+		if (!store_atom(A))
+			break //Terminate early if we fail to store anything
 
 
-		else if (!( A.anchored ))
-			//Allowing it to suck up any non anchored atom is definitely open to exploits,
-			//But fixing that is beyond my scope for now.
-			//TODO: Add maximum size and maximum total volume to these
-			A.forceMove(src)
+
+
+
+
 	playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 	qdel(src.connected)
 	src.connected = null
@@ -140,6 +123,50 @@
 		//Going safely to cryo will allow the patient to respawn more quickly
 		M.set_respawn_bonus("CORPSE_HANDLING", 8 MINUTES)
 
+
+/obj/structure/morgue/proc/store_atom(var/atom/AM)
+	var/newcap = 1 //sanity value
+	var/mob/living/foundmob
+	if (isitem(AM))
+		newcap = AM.get_storage_cost()
+	if (isobj(AM))
+		newcap = AM.W_class()
+	else if (ismob(AM))
+		if (!isliving(AM))
+			//Don't eat ghosts and AI eyes please
+			return
+		if (occupant)
+			//Only one mob per drawer
+			return
+		foundmob = AM
+		newcap = foundmob.mob_size
+
+	else if (istype(AM, /obj/structure/closet))
+		//Closet includes coffins and deployed bodybags
+		if (occupant)
+			//One of these is allowed in if it contains a mob and we dont already have a mob
+			continue
+		//Try to find a mob inside it
+		foundmob = locate(/mob/living) in A.contents
+		if (foundmob)
+			newcap = 80 //These will take up most of the space
+		else
+			return
+
+	if (AM.anchored)
+		return
+		//Allowing it to suck up any non anchored atom is definitely open to exploits,
+		//But fixing that is beyond my scope for now.
+
+	//Make sure we have space to fit it
+	if ((current_storage + newcap) > max_capacity)
+		return
+
+	//Ok once we get here, we've confirmed that we can store the thing
+	if (foundmob)
+		occupant = foundmob
+	current_storage += newcap
+	AM.forceMove(src)
 
 /obj/structure/morgue/attackby(P as obj, mob/user as mob)
 	if (istype(P, /obj/item/weapon/pen))
