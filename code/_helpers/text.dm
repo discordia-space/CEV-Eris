@@ -364,7 +364,7 @@ proc/TextPreview(var/string, var/len=40)
 /proc/strip_improper(var/text)
 	return replacetext(replacetext(text, "\proper", ""), "\improper", "")
 
-	
+
 #define gender2text(gender) capitalize(gender)
 
 
@@ -483,7 +483,7 @@ proc/TextPreview(var/string, var/len=40)
 //Generates a clickable link which will jump the camera/ghost to the target atom
 //Useful for admin procs
 /proc/jumplink(var/atom/target)
-	if (!istype(target) || QDELETED(target))
+	if (QDELETED(target))
 		return ""
 	var/turf/T = get_turf(target)
 	var/area/A = get_area(target)
