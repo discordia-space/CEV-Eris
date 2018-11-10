@@ -23,7 +23,7 @@
 	role_id = ROLE_INQUISITOR
 	weight = 0.2
 	req_crew = 7
-	cost = -30 //This is an antitag, it has a negative cost to allow more antags to exist
+	event_pools = list(EVENT_LEVEL_ROLESET = -30) //This is an antitag, it has a negative cost to allow more antags to exist
 
 /datum/storyevent/roleset/inquisitor/get_special_weight(var/new_weight)
 	var/c_count = 0
@@ -49,7 +49,7 @@
 	role_id = ROLE_MARSHAL
 	weight = 0.2
 	req_crew = 20
-	cost = -30 //This is an antitag, it has a negative cost to allow more antags to exist
+	event_pools = list(EVENT_LEVEL_ROLESET = -30) //This is an antitag, it has a negative cost to allow more antags to exist
 
 /datum/storyevent/roleset/marshal/get_special_weight(var/new_weight)
 	var/a_count = 0
