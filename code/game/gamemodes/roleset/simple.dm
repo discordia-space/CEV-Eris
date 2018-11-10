@@ -4,7 +4,6 @@
 	role_id = ROLE_BORER
 	weight = 0.4
 
-	req_crew = 15
 
 	base_quantity = 2
 	scaling_threshold = 15
@@ -22,7 +21,7 @@
 	name = "inquisitor"
 	role_id = ROLE_INQUISITOR
 	weight = 0.2
-	req_crew = 7
+	req_crew = 10
 	event_pools = list(EVENT_LEVEL_ROLESET = -30) //This is an antitag, it has a negative cost to allow more antags to exist
 
 /datum/storyevent/roleset/inquisitor/get_special_weight(var/new_weight)
@@ -48,7 +47,7 @@
 	name = "marshal"
 	role_id = ROLE_MARSHAL
 	weight = 0.2
-	req_crew = 20
+	req_crew = 10
 	event_pools = list(EVENT_LEVEL_ROLESET = -30) //This is an antitag, it has a negative cost to allow more antags to exist
 
 /datum/storyevent/roleset/marshal/get_special_weight(var/new_weight)
@@ -65,6 +64,5 @@
 	name = "changeling"
 	role_id = ROLE_CHANGELING
 
-	req_crew = 7
 	base_quantity = 2
 	scaling_threshold = 15
