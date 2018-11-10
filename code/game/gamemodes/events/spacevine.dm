@@ -17,7 +17,7 @@
 /var/global/spacevines_spawned = 0
 
 /datum/event/spacevine
-	announceWhen	= 60
+	announceWhen	= 100
 
 /datum/event/spacevine/start()
 

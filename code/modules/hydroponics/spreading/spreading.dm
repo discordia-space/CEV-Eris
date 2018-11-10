@@ -239,7 +239,7 @@
 		update_icon()
 
 /obj/effect/plant/proc/is_mature()
-	return (health >= (max_health/3) && world.time > mature_time)
+	return (health >= (max_health*0.8) && world.time > mature_time)
 
 
 /obj/effect/plant/examine()

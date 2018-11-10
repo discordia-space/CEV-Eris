@@ -94,7 +94,7 @@
 		if (D)
 			health += rand(0,1.5)
 		else
-			health += rand(2,3.5)
+			health += rand(2.5,4)
 		refresh_icon()
 		if(health > max_health)
 			health = max_health
@@ -215,12 +215,15 @@
 
 /obj/effect/plant/proc/die_off()
 	// Kill off our plant.
-	if(plant) plant.die()
+	if(plant)
+		plant.die()
 
 	//Nearby plants suffer a bit too, so they won't immediately grow back
-	for (var/obj/effect/plant/P in orange(1, src))
-		P.health -= (P.max_health * 0.3)
-		P.check_health()
+	spawn(2)
+		if (!QDELETED(src))
+			for (var/obj/effect/plant/P in orange(1, src))
+				P.health -= (P.max_health * 0.5)
+				P.check_health()
 
 	// This turf is clear now, let our buddies know.
 	for(var/turf/simulated/check_turf in get_cardinal_neighbors())
@@ -229,6 +232,8 @@
 		for(var/obj/effect/plant/neighbor in check_turf.contents)
 			neighbor.neighbors |= check_turf
 			plant_controller.add_plant(neighbor)
-	spawn(1) if(src) qdel(src)
+
+	spawn(1)
+		qdel(src)
 
 #undef NEIGHBOR_REFRESH_TIME
