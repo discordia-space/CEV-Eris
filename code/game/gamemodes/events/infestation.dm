@@ -48,13 +48,13 @@
 		INFESTATION_YITHIAN = 6,
 		INFESTATION_TINDALOS = 6,
 		INFESTATION_DIYAAB = 6,
-		INFESTATION_SPACE_BATS = 8
+		INFESTATION_SPACE_BATS = 6
 	)
 
 	var/possible_mobs_moderate = list(
-		INFESTATION_SPACE_BATS = 14,
-		INFESTATION_SAMAK = 12,
-		INFESTATION_SHANTAK = 12,
+		INFESTATION_SPACE_BATS = 10,
+		INFESTATION_SAMAK = 8,
+		INFESTATION_SHANTAK = 10,
 		INFESTATION_SPIDERS = 10,//This is a combination of spiderlings and adult spiders
 		INFESTATION_ROACHES = 10
 	)
@@ -62,7 +62,7 @@
 	var/possible_mobs_major = list(
 		INFESTATION_SPIDERS = 10,
 		INFESTATION_HIVEBOTS = 8,
-		INFESTATION_SLIMES = 6
+		INFESTATION_SLIMES = 5
 	)
 
 /datum/event/infestation/setup()
