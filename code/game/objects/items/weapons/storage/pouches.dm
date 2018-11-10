@@ -95,7 +95,7 @@
 	icon_state = "engineering_tool"
 	item_state = "engineering_tool"
 
-	storage_slots = 2
+	storage_slots = 3
 	max_w_class = ITEM_SIZE_SMALL
 
 	can_hold = list(
