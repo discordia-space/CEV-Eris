@@ -223,7 +223,13 @@
 		src.togglelock(user)
 
 /obj/structure/closet/proc/CanToggleLock(var/mob/user, var/obj/item/weapon/card/id/id_card)
-	return allowed(user) || (istype(id_card) && check_access_list(id_card.GetAccess()))
+	if (istype(user))
+		id_card = id_card || user.GetIdCard()
+
+	if (istype(id_card))
+		return check_access_list(id_card.GetAccess())
+
+	return allowed(user)
 
 /obj/structure/closet/proc/set_locked(var/newlocked, mob/user = null)
 	var/ctype = istype(src,/obj/structure/closet/crate) ? "crate" : "closet"
