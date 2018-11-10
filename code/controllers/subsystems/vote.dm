@@ -198,9 +198,15 @@ SUBSYSTEM_DEF(vote)
 	var/list/choices = list()
 	var/initiator = null	//Initiator's key
 
+
+	var/cooldown = 30 MINUTES //After this vote is called, how long must pass before it can be called again
+
+	var/last_vote = 0	//When was the last time this vote was called
+	var/next_vote = 0	//When will we next be allowed to call it again?
+
 /datum/poll/proc/init_choices()
 	for(var/ch in choice_types)
-		choices.Add(new ch)
+		choices.Add(new ch(src))
 
 /datum/poll/proc/start()
 	init_choices()
@@ -218,12 +224,20 @@ SUBSYSTEM_DEF(vote)
 	return TRUE
 
 /datum/poll/proc/can_start()
-	return TRUE
+	if (world.time >= next_vote)
+		return TRUE
+
+	return FALSE
 
 /datum/poll/proc/on_start()
 	return
 
 /datum/poll/proc/on_end()
+	last_vote = world.time
+
+	//If this is false, the poll may have already set a custom next vote time
+	if (next_vote <= last_vote)
+		next_vote = last_vote + cooldown
 	return
 
 /datum/poll/proc/reset()
@@ -305,6 +319,10 @@ SUBSYSTEM_DEF(vote)
 	var/text = "Vladimir Putin"
 	var/desc = null
 	var/list/voters = list()	//list of ckeys of voters
+	var/datum/poll/poll //The poll we're assigned to
+
+/datum/vote_choice/New(var/datum/poll/_poll)
+	poll = _poll
 
 /datum/vote_choice/proc/on_win()
 	return
@@ -361,13 +379,15 @@ SUBSYSTEM_DEF(vote)
 	time = 120
 	choice_types = list()
 
-	only_admin = TRUE
+	only_admin = FALSE
 
 	multiple_votes = FALSE
 	can_revote = TRUE
 	can_unvote = TRUE
-
+	cooldown = 60 MINUTES //Debug only
 	see_votes = TRUE
+
+	var/pregame = FALSE
 
 //We will sort the storyteller choices carefully. Guide is always first, all the rest are in a random order
 /datum/poll/storyteller/init_choices()
@@ -393,29 +413,35 @@ SUBSYSTEM_DEF(vote)
 	choices.Insert(1, base)
 
 /datum/poll/storyteller/Process()
-	if(SSticker.current_state != GAME_STATE_PREGAME)
+	if(pregame && SSticker.current_state != GAME_STATE_PREGAME)
 		SSvote.stop_vote()
 		world << "<b>Voting aborted due to game start.</b>"
 	return
 
-/datum/poll/storyteller/can_start()
-	return SSticker.current_state == GAME_STATE_PREGAME
+
 
 /datum/poll/storyteller/on_start()
-	round_progressing = FALSE
-	world << "<b>Game start has been delayed.</b>"
+	if (SSticker.current_state == GAME_STATE_PREGAME)
+		pregame = TRUE
+		round_progressing = FALSE
+		world << "<b>Game start has been delayed.</b>"
 
 //If one wins, on_end is called after on_win, so the new storyteller will be set in master_storyteller
 /datum/poll/storyteller/on_end()
+	..()
 	//This happens if the vote was skipped with force start
 	if (!master_storyteller)
 		master_storyteller = STORYTELLER_BASE
 		world.save_storyteller(master_storyteller)
 
 	SSticker.story_vote_ended = TRUE
-	round_progressing = TRUE
-	set_storyteller(config.pick_storyteller(master_storyteller), announce = FALSE) //This does the actual work //Even if master storyteller is null, this will pick the default
-	world << "<b>The game will start in [SSticker.pregame_timeleft] seconds.</b>"
+
+
+	set_storyteller(config.pick_storyteller(master_storyteller), announce = !(pregame)) //This does the actual work //Even if master storyteller is null, this will pick the default
+	if (pregame)
+		round_progressing = TRUE
+		world << "<b>The game will start in [SSticker.pregame_timeleft] seconds.</b>"
+	pregame = FALSE
 
 /datum/vote_choice/storyteller
 	text = "You shouldn't see this."
@@ -423,6 +449,8 @@ SUBSYSTEM_DEF(vote)
 
 //on_end will be called after this, so that's where we actually call set_storyteller
 /datum/vote_choice/storyteller/on_win()
+	if (master_storyteller == new_storyteller)
+		poll.next_vote = world.time + (poll.cooldown * 0.5) //If the storyteller didn't actually change, the cooldown is half as long
 	master_storyteller = new_storyteller
 	world.save_storyteller(master_storyteller)
 

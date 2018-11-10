@@ -20,7 +20,7 @@
 	if(module_active && istype(module_active,/obj/item/borg/combat/mobility))
 		tally-=1
 
-	return tally+config.robot_delay
+	return tally
 
 // NEW: Use power while moving.
 /mob/living/silicon/robot/SelfMove(turf/n, direct)
