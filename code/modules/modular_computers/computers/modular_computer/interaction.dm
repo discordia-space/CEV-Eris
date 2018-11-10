@@ -9,6 +9,9 @@
 	if(stores_pen && istype(stored_pen))
 		verbs |= /obj/item/modular_computer/verb/remove_pen
 
+	verbs |= /obj/item/verb/verb_pickup
+	verbs |= /obj/item/verb/move_to_top
+
 	verbs |= /obj/item/modular_computer/verb/emergency_shutdown
 
 /obj/item/modular_computer/proc/can_interact(var/mob/user)
@@ -262,7 +265,7 @@
 
 	if(enabled && .)
 		to_chat(user, "The time [stationtime2text()] is displayed in the corner of the screen.")
-		
+
 	if(card_slot && card_slot.stored_card)
 		to_chat(user, "The [card_slot.stored_card] is inserted into it.")
 
