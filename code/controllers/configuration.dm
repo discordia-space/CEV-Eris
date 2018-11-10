@@ -43,9 +43,8 @@ var/list/storyteller_cache = list()
 	var/protect_roles_from_antagonist = 0// If security and such can be traitor/cult/other
 	var/allow_Metadata = 0				// Metadata is supported.
 	var/popup_admin_pm = 0				//adminPMs to non-admins show in a pop-up 'reply' window when set to 1.
-	var/fps = 30
 	var/tick_limit_mc_init = TICK_LIMIT_MC_INIT_DEFAULT	//SSinitialization throttling
-	var/Ticklag = 0.3
+	var/Ticklag = 0.33
 	var/socket_talk	= 0					// use socket_talk to communicate with other processes
 	var/list/resource_urls = null
 	var/antag_hud_allowed = 0			// Ghosts can turn on Antagovision to see a HUD of who is the bad guys this round.
@@ -119,20 +118,6 @@ var/list/storyteller_cache = list()
 	var/welder_vision = 1
 	var/generate_asteroid = 0
 	var/no_click_cooldown = 0
-
-	//Used for modifying movement speed for mobs.
-	//Unversal modifiers
-	var/run_speed = 0
-	var/walk_speed = 0
-
-	//Mob specific modifiers. NOTE: These will affect different mob types in different ways
-	var/human_delay = 0
-	var/robot_delay = 0
-	var/monkey_delay = 0
-	var/alien_delay = 0
-	var/slime_delay = 0
-	var/animal_delay = 0
-
 
 	var/admin_legacy_system = 0	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system. Config option in config.txt
 	var/ban_legacy_system = 0	//Defines whether the server uses the legacy banning system with the files in /data or the SQL system. Config option in config.txt
@@ -504,9 +489,6 @@ var/list/storyteller_cache = list()
 				if("ticklag")
 					Ticklag = text2num(value)
 
-				if("fps")
-					fps = text2num(value)
-
 				if("tick_limit_mc_init")
 					tick_limit_mc_init = text2num(value)
 
@@ -667,24 +649,6 @@ var/list/storyteller_cache = list()
 					config.bones_can_break = value
 				if("limbs_can_break")
 					config.limbs_can_break = value
-
-				if("run_speed")
-					config.run_speed = value
-				if("walk_speed")
-					config.walk_speed = value
-
-				if("human_delay")
-					config.human_delay = value
-				if("robot_delay")
-					config.robot_delay = value
-				if("monkey_delay")
-					config.monkey_delay = value
-				if("alien_delay")
-					config.alien_delay = value
-				if("slime_delay")
-					config.slime_delay = value
-				if("animal_delay")
-					config.animal_delay = value
 
 
 				if("use_loyalty_implants")

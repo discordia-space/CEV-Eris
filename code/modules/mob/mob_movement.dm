@@ -235,9 +235,9 @@
 			if("run")
 				if(mob.drowsyness > 0)
 					delay += 6
-				delay += 1+config.run_speed
+				delay += 1
 			if("walk")
-				delay += 7+config.walk_speed
+				delay += 7
 		delay += mob.movement_delay()
 
 		if(istype(mob.machine, /obj/machinery))
