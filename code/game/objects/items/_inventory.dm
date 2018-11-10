@@ -63,7 +63,7 @@
 
 /obj/item/proc/is_worn()
 	//If equip_slot is zero then it has never been equipped
-	if (!equip_slot)
+	if (equip_slot == slot_none)
 		return FALSE
 
 	if (ismob(loc))
@@ -72,7 +72,7 @@
 
 /obj/item/proc/is_held()
 	//If equip_slot is zero then it has never been equipped
-	if (!equip_slot)
+	if (equip_slot == slot_none)
 		return FALSE
 
 	if (ismob(loc))
