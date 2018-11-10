@@ -24,16 +24,20 @@
 		var/turf/T = get_turf(src)
 		if(T && reagents)
 			reagents.touch_turf(T)
-			var/mob/M
-			for(var/atom/A in T)
-				if(!ismob(A) && A.simulated) // Mobs are handled differently
+			var/list/mob/affected_mobs = new
+			for (var/atom/A in T)
+				if (ismob(A))
+					affected_mobs |= A
+				else if (A.simulated)
 					reagents.touch(A)
-				else if(ismob(A) && !M)
-					M = A
-			if(M)
-				reagents.splash(M, reagents.total_volume)
+
+			for (var/mob/M in affected_mobs)
+				reagents.splash(M, reagents.total_volume/affected_mobs.len, min_spill=0, max_spill=0)
+
+			if (affected_mobs.len)
 				break
-			if(T == get_turf(target))
+
+			if (T == get_turf(target))
 				break
 		sleep(delay)
 	sleep(10)
