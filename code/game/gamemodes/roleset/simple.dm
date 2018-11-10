@@ -2,7 +2,7 @@
 	id = "borer"
 	name = "cortical borers"
 	role_id = ROLE_BORER
-	weight = 0.5
+	weight = 0.4
 
 	req_crew = 15
 
@@ -14,7 +14,7 @@
 	id = "traitor"
 	name = "traitor"
 	role_id = ROLE_TRAITOR
-	weight = 1
+	weight = 1.2
 	scaling_threshold = 10
 
 /datum/storyevent/roleset/inquisitor
@@ -23,6 +23,7 @@
 	role_id = ROLE_INQUISITOR
 	weight = 0.2
 	req_crew = 7
+	cost = -30 //This is an antitag, it has a negative cost to allow more antags to exist
 
 /datum/storyevent/roleset/inquisitor/get_special_weight(var/new_weight)
 	var/c_count = 0
@@ -46,7 +47,9 @@
 	id = "marshal"
 	name = "marshal"
 	role_id = ROLE_MARSHAL
+	weight = 0.2
 	req_crew = 20
+	cost = -30 //This is an antitag, it has a negative cost to allow more antags to exist
 
 /datum/storyevent/roleset/marshal/get_special_weight(var/new_weight)
 	var/a_count = 0
@@ -54,10 +57,8 @@
 		if(A.owner && A.is_active() && !A.is_dead())
 			a_count++
 
-	var/maxc = (a_count > 3) ? a_count : 3
-	new_weight *= weight_mult(weight,maxc,0,maxc)
+	return new_weight * max(a_count, 1)
 
-	return new_weight
 
 /datum/storyevent/roleset/changeling
 	id = "changeling"
