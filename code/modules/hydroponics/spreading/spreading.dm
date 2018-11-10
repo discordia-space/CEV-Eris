@@ -30,7 +30,7 @@
 	mouse_opacity = 2
 
 	var/health = 10
-	var/max_health = 100
+	var/max_health = 60
 	var/growth_threshold = 0
 	var/growth_type = 0
 	var/max_growth = 0
