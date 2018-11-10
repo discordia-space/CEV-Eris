@@ -29,8 +29,9 @@
 
 
 //Delayed equipping
-/obj/item/clothing/pre_equip(var/mob/user, var/slot)
-	if (equip_delay > 0)
+/obj/item/clothing/pre_equip(var/mob/user, var/slot, var/pre_equip_delay)
+	. = ..()
+	if (pre_equip_delay && (equip_delay > 0))
 		//If its currently worn, we must be taking it off
 		if (is_worn())
 			user.visible_message(

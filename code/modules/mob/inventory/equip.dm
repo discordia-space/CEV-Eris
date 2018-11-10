@@ -1,14 +1,14 @@
 /mob/proc/equip_to_slot(obj/item/Item, slot, redraw_mob = TRUE)
 
 
-/mob/proc/equip_to_slot_if_possible(obj/item/Item, slot, disable_warning, redraw_mob = TRUE)
+/mob/proc/equip_to_slot_if_possible(obj/item/Item, slot, disable_warning, redraw_mob = TRUE, var/pre_equip_delay = TRUE)
 	if(!mob_can_equip(src, Item, slot, disable_warning))
 		return FALSE
 
 	var/world_time = world.timeofday
 
 	//Pre-equip intercepts here to let the item know it's about to be equipped
-	if(Item.pre_equip(src, slot))
+	if(Item.pre_equip(src, slot, pre_equip_delay))
 		return FALSE
 
 	//Pre-equip can take time
@@ -30,7 +30,7 @@
 
 
 /mob/proc/equip_to_slot_or_del(obj/item/Item, slot)
-	. = equip_to_slot_if_possible(Item, slot, disable_warning = TRUE, redraw_mob = FALSE)
+	. = equip_to_slot_if_possible(Item, slot, disable_warning = TRUE, redraw_mob = FALSE, pre_equip_delay = FALSE)
 	if(!.)
 		qdel(Item)
 
