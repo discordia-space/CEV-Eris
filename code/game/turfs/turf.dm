@@ -38,6 +38,11 @@
 
 /turf/Initialize()
 	turfs += src
+	var/area/A = loc
+	if (!A.ship_area)
+		if (z in maps_data.station_levels)
+			A.set_ship_area()
+
 	. = ..()
 
 /turf/Destroy()
@@ -172,10 +177,10 @@ var/const/enterloopsanity = 100
 		spawn(5)
 			if((M && !(M.anchored) && !(M.pulledby) && (M.loc == src)))
 				if(M.inertia_dir)
-					step(M, M.inertia_dir)
+					step_glide(M, M.inertia_dir, DELAY2GLIDESIZE(5))
 					return
 				M.inertia_dir = M.last_move
-				step(M, M.inertia_dir)
+				step(M, M.inertia_dir, DELAY2GLIDESIZE(5))
 	return
 
 /turf/proc/levelupdate()

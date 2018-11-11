@@ -8,7 +8,7 @@
  **/
 
 //This is the ABSOLUTE ONLY THING that should init globally like this
-var/global/datum/controller/master/Master = new
+GLOBAL_REAL(Master, /datum/controller/master) = new
 
 //THIS IS THE INIT ORDER
 //Master -> SSPreInit -> GLOB -> world -> config -> SSInit -> Failsafe
@@ -74,10 +74,10 @@ var/global/datum/controller/master/Master = new
 			for(var/I in subsytem_types)
 				_subsystems += new I
 		Master = src
-/*
+
 	if(!GLOB)
 		new /datum/controller/global_vars
-*/
+
 /datum/controller/master/Destroy()
 	..()
 	// Tell qdel() to Del() this object.
@@ -196,7 +196,7 @@ var/global/datum/controller/master/Master = new
 #else
 	world.sleep_offline = TRUE
 #endif
-	world.fps = config.fps
+	world.tick_lag = config.Ticklag
 	var/initialized_tod = REALTIMEOFDAY
 	sleep(1)
 	initializations_finished_with_no_players_logged_in = initialized_tod < REALTIMEOFDAY - 10

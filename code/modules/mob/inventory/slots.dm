@@ -195,6 +195,7 @@
 
 /datum/inventory_slot/store
 	req_item_in_slot = slot_w_uniform
+	req_slot_flags = SLOT_POCKET
 	max_w_class = ITEM_SIZE_SMALL
 	update_proc = /mob/proc/update_inv_pockets
 
@@ -203,6 +204,8 @@
 		if(!disable_warning)
 			owner << SPAN_WARNING("[I] can't be holded by your [name].")
 		return FALSE
+	if(istype(I, /obj/item/weapon/storage/pouch)) // Pouches are basically equipped over the suit, they just take up pockets.
+		return TRUE
 	else
 		return ..()
 
@@ -231,7 +234,7 @@
 		if(!disable_warning)
 			owner << SPAN_WARNING("You can't attach anything to that [wear_suit].")
 		return FALSE
-	if( !is_type_in_list(I, wear_suit.allowed + list(/obj/item/device/pda, /obj/item/weapon/pen)) )
+	if( !is_type_in_list(I, wear_suit.allowed + list(/obj/item/modular_computer/pda, /obj/item/weapon/pen)) )
 		if(!disable_warning)
 			owner << SPAN_WARNING("You can't attach [I] to that [wear_suit].")
 		return FALSE

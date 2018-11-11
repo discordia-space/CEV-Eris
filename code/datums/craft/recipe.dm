@@ -5,7 +5,7 @@
 	var/result
 
 	var/list/steps
-	var/flags = CRAFT_ONE_PER_TURF
+	var/flags
 	var/time = 30 //Used when no specific time is set
 
 /datum/craft_recipe/New()
@@ -21,6 +21,7 @@
 
 /datum/craft_recipe/proc/spawn_result(obj/item/craft/C, mob/living/user)
 	var/atom/movable/M = new result(get_turf(C))
+	M.Created()
 	var/slot = user.get_inventory_slot(C)
 	qdel(C)
 	if(! (flags & CRAFT_ON_FLOOR) && (slot in list(slot_r_hand, slot_l_hand)))
@@ -38,22 +39,25 @@
 	return jointext(., "<br>")
 
 
-/datum/craft_recipe/proc/can_build(obj/item/I, mob/living/user)
+/datum/craft_recipe/proc/can_build(mob/living/user, var/turf/T)
 	if(flags & (CRAFT_ONE_PER_TURF|CRAFT_ON_FLOOR))
-		if(locate(result) in get_turf(I))
+		if(!T || (locate(result) in T))
 			user << SPAN_WARNING("You can't create more [name] here!")
 			return FALSE
 	return TRUE
 
 
 /datum/craft_recipe/proc/try_step(step, I, user, obj/item/craft/target)
-	if(!can_build(I, user))
+	if(!can_build(user, get_turf(target)))
 		return FALSE
 	var/datum/craft_step/CS = steps[step]
-	return CS.apply(I, user, target)
+	return CS.apply(I, user, target, src)
 
 
 /datum/craft_recipe/proc/try_build(mob/living/user)
+	if(!can_build(user, get_turf(user)))
+		return
+
 	var/datum/craft_step/CS = steps[1]
 	var/obj/item/I = CS.find_item(user)
 
@@ -62,11 +66,11 @@
 		return
 
 	//Robots can craft things on the floor
-	if(ishuman(user) && !I.is_held() && !user.put_in_hands(I))
+	if(ishuman(user) && !I.is_held())
 		user << SPAN_WARNING("You should hold [I] in hands for doing that!")
 		return
 
-	if(!CS.apply(I, user))
+	if(!CS.apply(I, user, null, src))
 		return
 
 	var/obj/item/CR

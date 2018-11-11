@@ -1,124 +1,68 @@
 /datum/storyevent/roleset/borer
 	id = "borer"
+	name = "cortical borers"
 	role_id = ROLE_BORER
+	weight = 0.4
 
-	min_cost = 10
-	max_cost = 18
 
-	req_crew = 15
-	req_heads = -1
-	req_sec = 2
-	req_eng = -1
-	req_med = 4
-	req_sci = -1
-	req_stage = -1
+	base_quantity = 2
+	scaling_threshold = 15
 
-	spawn_times_max = 1
 
 /datum/storyevent/roleset/traitor
 	id = "traitor"
+	name = "traitor"
 	role_id = ROLE_TRAITOR
-	multispawn = TRUE
-
-	min_cost = 5
-	max_cost = 10
-
-	req_crew = 7
-	req_heads = -1
-	req_sec = 3
-	req_eng = -1
-	req_med = 1
-	req_sci = -1
-	req_stage = -1
-
-	spawn_times_max = 7
+	weight = 1.2
+	scaling_threshold = 10
 
 /datum/storyevent/roleset/inquisitor
 	id = "inquisitor"
+	name = "inquisitor"
 	role_id = ROLE_INQUISITOR
-	multispawn = TRUE
+	weight = 0.2
+	req_crew = 10
+	event_pools = list(EVENT_LEVEL_ROLESET = -30) //This is an antitag, it has a negative cost to allow more antags to exist
 
-	min_cost = 5
-	max_cost = 10
-
-	req_crew = 7
-	req_heads = -1
-	req_sec = 3
-	req_eng = -1
-	req_med = -1
-	req_sci = -1
-
-	spawn_times_max = 3
-
-/datum/storyevent/roleset/inquisitor/get_special_weight(var/weight)
+/datum/storyevent/roleset/inquisitor/get_special_weight(var/new_weight)
 	var/c_count = 0
 	for(var/mob/M in christians)
 		if(M.client &&  M.stat != DEAD && ishuman(M))
 			c_count++
 
 	var/maxc = (c_count > 7) ? c_count : 7
-	weight *= weight_mult(weight,maxc,0,maxc)
+	new_weight *= weight_mult(weight,maxc,0,maxc)
 
-	return weight
+	return new_weight
 
 /datum/storyevent/roleset/malf
 	id = "malf"
+	name = "malfunctioning AI"
 	role_id = ROLE_MALFUNCTION
-
-	min_cost = 15
-	max_cost = 30
-
 	req_crew = 15
-	req_heads = 2
-	req_sec = 3
-	req_eng = 5
-	req_med = -1
-	req_sci = -1
 
-	spawn_times_max = 1
 
 /datum/storyevent/roleset/marshal
 	id = "marshal"
+	name = "marshal"
 	role_id = ROLE_MARSHAL
-	multispawn = TRUE
+	weight = 0.2
+	req_crew = 10
+	event_pools = list(EVENT_LEVEL_ROLESET = -30) //This is an antitag, it has a negative cost to allow more antags to exist
 
-	min_cost = 5
-	max_cost = 10
-
-	req_crew = 7
-	req_heads = -1
-	req_sec = 6
-	req_eng = -1
-	req_med = -1
-	req_sci = -1
-
-	spawn_times_max = 4
-
-/datum/storyevent/roleset/marshal/get_special_weight(var/weight)
+/datum/storyevent/roleset/marshal/get_special_weight(var/new_weight)
 	var/a_count = 0
 	for(var/datum/antagonist/A in current_antags)
 		if(A.owner && A.is_active() && !A.is_dead())
 			a_count++
 
-	var/maxc = (a_count > 3) ? a_count : 3
-	weight *= weight_mult(weight,maxc,0,maxc)
+	return new_weight * max(a_count, 1)
 
-	return weight
 
 /datum/storyevent/roleset/changeling
 	id = "changeling"
+	name = "changeling"
 	role_id = ROLE_CHANGELING
-	multispawn = TRUE
 
-	min_cost = 6
-	max_cost = 10
-
-	req_crew = 7
-	req_heads = -1
-	req_sec = 4
-	req_eng = -1
-	req_med = 2
-	req_sci = -1
-	req_stage = -1
-
-	spawn_times_max = 4
+	base_quantity = 2
+	scaling_threshold = 15

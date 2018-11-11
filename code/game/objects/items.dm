@@ -4,6 +4,7 @@
 	w_class = ITEM_SIZE_NORMAL
 
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
+	var/randpixel = 6
 	var/abstract = 0
 	var/r_speed = 1.0
 	var/health = null
@@ -18,7 +19,7 @@
 	var/obj/item/master = null
 	var/list/origin_tech = null	//Used by R&D to determine what research bonuses it grants.
 	var/list/attack_verb = list() //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
-	var/force = 0
+
 
 	var/heat_protection = 0 //flags which determine which body parts are protected from heat. Use the HEAD, UPPER_TORSO, LOWER_TORSO, etc. flags. See setup.dm
 	var/cold_protection = 0 //flags which determine which body parts are protected from cold. Use the HEAD, UPPER_TORSO, LOWER_TORSO, etc. flags. See setup.dm
@@ -58,10 +59,19 @@
 	// Only slot_l_hand/slot_r_hand are implemented at the moment. Others to be implemented as needed.
 	var/list/item_icons = list()
 
+
+	//Damage vars
+	var/force = 0	//How much damage the weapon deals
+
+	var/structure_damage_factor = STRUCTURE_DAMAGE_NORMAL	//Multiplier applied to the damage when attacking structures and machinery
+	//Does not affect damage dealt to mobs
+
 /obj/item/Destroy()
+	qdel(hidden_uplink)
+	hidden_uplink = null
 	if(ismob(loc))
 		var/mob/m = loc
-		m.drop_from_inventory(src)
+		m.u_equip(src)
 		src.loc = null
 	return ..()
 
@@ -124,7 +134,7 @@
 	src.throwing = 0
 
 	if(user.put_in_active_hand(src) && old_loc )
-		if (user != old_loc.get_holding_mob())
+		if ((user != old_loc) && (user != old_loc.get_holding_mob()))
 			do_pickup_animation(user,old_loc)
 
 /obj/item/attack_ai(mob/user as mob)
@@ -421,155 +431,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 /obj/item/proc/pwr_drain()
 	return 0 // Process Kill
-
-/* QUALITY AND TOOL SYSTEM */
-
-/obj/item/proc/has_quality(quality_id)
-	return quality_id in tool_qualities
-
-/obj/item/proc/get_tool_quality(quality_id)
-	if (tool_qualities && tool_qualities.len)
-		return tool_qualities[quality_id]
-	return null
-
-//We are cheking if our item got required qualities. If we require several qualities, and item posses more than one of those, we ask user to choose how that item should be used
-/obj/item/proc/get_tool_type(var/mob/living/user, var/list/required_qualities)
-	var/start_loc = user.loc
-	var/list/L = required_qualities & tool_qualities
-
-	if(!L.len)
-		return FALSE
-
-	var/return_quality = L[1]
-	if(L.len > 1)
-		return_quality = input(user,"What quality you using?", "Tool options", ABORT_CHECK) in L
-	if(user.loc != start_loc)
-		user << SPAN_WARNING("You need to stand still!")
-		return ABORT_CHECK
-	else
-		return return_quality
-
-//Simple form ideal for basic use. That proc will return TRUE only when everything was done right, and FALSE if something went wrong, ot user was unlucky.
-//Editionaly, handle_failure proc will be called for a critical failure roll.
-/obj/item/proc/use_tool(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, required_stat = null, instant_finish_tier = 110, forced_sound = null)
-	var/result = use_tool_extended(user, target, base_time, required_quality, fail_chance, required_stat, instant_finish_tier, forced_sound)
-	switch(result)
-		if(TOOL_USE_CANCEL)
-			return FALSE
-		if(TOOL_USE_FAIL)
-			handle_failure(user, target, required_stat = required_stat, required_quality = required_quality)	//We call it here because extended proc mean to be used only when you need to handle tool fail by yourself
-			return FALSE
-		if(TOOL_USE_SUCCESS)
-			return TRUE
-
-//Use this proc if you want to handle all types of failure yourself. It used in surgery, for example, to deal damage to patient.
-/obj/item/proc/use_tool_extended(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, required_stat = null, instant_finish_tier = 110, forced_sound = null)
-	if(target.used_now)
-		user << SPAN_WARNING("[target.name] is used by someone. Wait for them to finish.")
-		return TOOL_USE_CANCEL
-
-	if(istype(src, /obj/item/weapon/tool))
-		var/obj/item/weapon/tool/T = src
-		if(!T.check_tool_effects(user))
-			return TOOL_USE_CANCEL
-
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(H.shock_stage >= 30)
-			user << SPAN_WARNING("Pain distracts you from your task.")
-			fail_chance += round(H.shock_stage/120 * 40)
-			base_time += round(H.shock_stage/120 * 40)
-
-	if(forced_sound != NO_WORKSOUND)
-		if(forced_sound)
-			playsound(src.loc, forced_sound, 100, 1)
-		else
-			playsound(src.loc, src.worksound, 100, 1)
-
-	if(base_time && (instant_finish_tier >= get_tool_quality(required_quality)))
-		target.used_now = TRUE
-		var/time_to_finish = base_time - get_tool_quality(required_quality) - user.stats.getStat(required_stat)
-		if(!do_after(user, time_to_finish, user))
-			user << SPAN_WARNING("You need to stand still to finish the task properly!")
-			target.used_now = FALSE
-			return TOOL_USE_CANCEL
-		else
-			target.used_now = FALSE
-
-	var/stat_modifer = 0
-	if(required_stat)
-		stat_modifer = user.stats.getStat(required_stat)
-	fail_chance = fail_chance - get_tool_quality(required_quality) - stat_modifer
-	if(prob(fail_chance))
-		user << SPAN_WARNING("You failed to finish your task with [src.name]! There was a [fail_chance]% chance to screw this up.")
-		return TOOL_USE_FAIL
-
-	return TOOL_USE_SUCCESS
-
-//Critical failture rolls. If you use use_tool_extended, you might want to call that proc as well.
-/obj/item/proc/handle_failure(var/mob/living/user, var/atom/target, required_stat = null, required_quality)
-
-	var/crit_fail_chance = 25
-	if(required_stat)
-		crit_fail_chance = crit_fail_chance - user.stats.getStat(required_stat)
-	else
-		crit_fail_chance = 10
-
-	if(prob(crit_fail_chance))
-		var/fail_type = rand(0, 100)
-
-		switch(fail_type)
-
-			if(0 to 29)
-				if(ishuman(user))
-					user << SPAN_DANGER("You drop [src] on the floor.")
-					user.drop_from_inventory(src)
-					return
-
-			if(30 to 49)
-				if(ishuman(user))
-					var/mob/living/carbon/human/H = user
-					user << SPAN_DANGER("Your hand slips while working with [src]!")
-					attack(H, H, H.get_holding_hand(src))
-					return
-
-			if(50 to 79)
-				if(ishuman(user))
-					var/mob/living/carbon/human/H = user
-					var/throw_target = pick(trange(6, user))
-					user << SPAN_DANGER("Your [src] flies away!")
-					H.unEquip(src)
-					src.throw_at(throw_target, src.throw_range, src.throw_speed, H)
-					return
-
-			if(70 to 84)
-				if(ishuman(user))
-					var/mob/living/carbon/human/H = user
-					user << SPAN_DANGER("You accidentally stuck [src] in your hand!")
-					H.get_organ(H.get_holding_hand(src)).embed(src)
-					return
-
-			if(85 to 93)
-				if(ishuman(user))
-					user << SPAN_DANGER("Your [src] broke beyond repair!")
-					new /obj/item/weapon/material/shard/shrapnel(user.loc)
-					qdel(src)
-					return
-
-			if(94 to 100)
-				if(ishuman(user))
-					if(istype(src, /obj/item/weapon/tool))
-						var/obj/item/weapon/tool/T = src
-						if(T.use_fuel_cost)
-							user << SPAN_DANGER("You ignite the fuel of the [src]!")
-							explosion(src.loc,-1,1,2)
-							qdel(src)
-							return
-						if(T.use_power_cost)
-							user << SPAN_DANGER("You overload the cell in the [src]!")
-							explosion(src.loc,-1,1,2)
-							qdel(src)
-							return
 
 
 /obj/item/device

@@ -96,7 +96,7 @@ var/list/christians = list()
 				continue
 			wearer.visible_message(SPAN_DANGER("[R.name] rips through [wearer]'s [R.part]."),\
 			SPAN_DANGER("[R.name] rips through your [R.part]."))
-			R.part.take_damage(rand(40)+20)
+			R.part.take_damage(rand(20,40))
 			R.uninstall()
 			R.malfunction = MALFUNCTION_PERMANENT
 	if(ishuman(wearer))

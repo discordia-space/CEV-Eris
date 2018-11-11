@@ -6,6 +6,8 @@
 	var/lawchannel = MAIN_CHANNEL // Default channel on which to state laws
 	var/list/stating_laws = list()// Channels laws are currently being stated on
 	var/obj/item/device/radio/common_radio
+	//plug before baymed arrives
+	var/obj/item/device/radio/silicon_radio
 
 	var/list/hud_list[10]
 	var/list/speech_synthesizer_langs = list()	//which languages can be vocalized by the speech synthesizer
@@ -26,6 +28,8 @@
 	var/list/access_rights
 	var/obj/item/weapon/card/id/idcard
 	var/idcard_type = /obj/item/weapon/card/id/synthetic
+
+	var/email_ringtone = TRUE
 
 	#define SEC_HUD 1 //Security HUD mode
 	#define MED_HUD 2 //Medical HUD mode
@@ -49,9 +53,10 @@
 	idcard = new idcard_type(src)
 	set_id_info(idcard)
 
-/mob/living/silicon/proc/SetName(pickedName as text)
+/mob/living/silicon/SetName(pickedName as text)
 	real_name = pickedName
 	name = real_name
+	create_or_rename_email(pickedName, "root.rt")
 
 /mob/living/silicon/proc/show_laws()
 	return
@@ -103,6 +108,8 @@
 	return 1
 
 /mob/living/silicon/bullet_act(var/obj/item/projectile/Proj)
+	if (Proj.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
+		IgniteMob()
 
 	if(!Proj.nodamage)
 		switch(Proj.damage_type)

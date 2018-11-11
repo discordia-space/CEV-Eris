@@ -11,11 +11,44 @@
 	var/list/accessories = list()
 	var/list/valid_accessory_slots
 	var/list/restricted_accessory_slots
+	var/equip_delay = 0 //If set to a nonzero value, the item will require that much time to wear and remove
+
+	//Used for hardsuits. If false, this piece cannot be retracted while the core module is engaged
+	var/retract_while_active = TRUE
+
+/obj/item/clothing/Destroy()
+	for(var/obj/item/clothing/accessory/A in accessories)
+		qdel(A)
+	accessories = null
+	return ..()
 
 // Aurora forensics port.
 /obj/item/clothing/clean_blood()
 	. = ..()
 	gunshot_residue = null
+
+
+//Delayed equipping
+/obj/item/clothing/pre_equip(var/mob/user, var/slot)
+	if (equip_delay > 0)
+		//If its currently worn, we must be taking it off
+		if (is_worn())
+			user.visible_message(
+				SPAN_NOTICE("[user] starts taking off \the [src]..."),
+				SPAN_NOTICE("You start taking off \the [src]...")
+			)
+			if(!do_after(user,equip_delay,src))
+				return TRUE //A nonzero return value will cause the equipping operation to fail
+
+		else if (is_held() && !(slot in unworn_slots))
+			user.visible_message(
+				SPAN_NOTICE("[user] starts putting on \the [src]..."),
+				SPAN_NOTICE("You start putting on \the [src]...")
+			)
+			if(!do_after(user,equip_delay,src))
+				return TRUE //A nonzero return value will cause the equipping operation to fail
+
+
 
 ///////////////////////////////////////////////////////////////////////
 // Ears: headsets, earmuffs and tiny objects
@@ -335,13 +368,17 @@ BLIND     // can't see anything
 	if(usr.stat || usr.restrained() || usr.incapacitated())
 		return
 
+	if(!holding)
+		usr << SPAN_WARNING("\The [src] has no knife.")
+		return
+
 	holding.forceMove(get_turf(usr))
 
 	if(usr.put_in_hands(holding))
 		usr.visible_message(SPAN_DANGER("\The [usr] pulls a knife out of their boot!"))
 		holding = null
 	else
-		usr << SPAN_WARNING("Your need an empty, unbroken hand to do that.")
+		usr << SPAN_WARNING("You need an empty, unbroken hand to do that.")
 		holding.forceMove(src)
 
 	if(!holding)
@@ -351,25 +388,36 @@ BLIND     // can't see anything
 	return
 
 /obj/item/clothing/shoes/AltClick()
-	if(src in usr)
+	if((src in usr) && holding)
+		draw_knife()
+	else
+		..()
+
+/obj/item/clothing/shoes/attack_hand()
+	if((src in usr) && holding)
 		draw_knife()
 	else
 		..()
 
 /obj/item/clothing/shoes/attackby(var/obj/item/I, var/mob/user)
-	if(can_hold_knife && istype(I, /obj/item/weapon/material/shard) || \
-	 istype(I, /obj/item/weapon/material/butterfly) || \
-	 istype(I, /obj/item/weapon/material/kitchen/utensil) || \
-	 istype(I, /obj/item/weapon/material/hatchet/tacknife))
+	var/global/knifes
+	if(!knifes)
+		knifes = list(
+			/obj/item/weapon/material/knife,
+			/obj/item/weapon/material/shard,
+			/obj/item/weapon/material/butterfly,
+			/obj/item/weapon/material/kitchen/utensil,
+			/obj/item/weapon/material/hatchet/tacknife,
+		)
+	if(can_hold_knife && is_type_in_list(I, knifes))
 		if(holding)
 			user << SPAN_WARNING("\The [src] is already holding \a [holding].")
 			return
-		user.unEquip(I)
-		I.forceMove(src)
-		holding = I
-		user.visible_message(SPAN_NOTICE("\The [user] shoves \the [I] into \the [src]."))
-		verbs |= /obj/item/clothing/shoes/proc/draw_knife
-		update_icon()
+		if(user.unEquip(I, src))
+			holding = I
+			user.visible_message(SPAN_NOTICE("\The [user] shoves \the [I] into \the [src]."))
+			verbs |= /obj/item/clothing/shoes/proc/draw_knife
+			update_icon()
 	else
 		return ..()
 
@@ -395,7 +443,12 @@ BLIND     // can't see anything
 	var/blood_overlay_type = "suit"
 	siemens_coefficient = 0.9
 	w_class = ITEM_SIZE_NORMAL
+	var/list/extra_allowed = list()
+	equip_delay = 2 SECONDS
 
+/obj/item/clothing/suit/New()
+	allowed |= extra_allowed
+	.=..()
 ///////////////////////////////////////////////////////////////////////
 //Under clothing
 /obj/item/clothing/under
@@ -418,6 +471,7 @@ BLIND     // can't see anything
 		3 = Report location
 		*/
 	var/displays_id = 1
+	equip_delay = 2 SECONDS
 
 	//convenience var for defining the icon state for the overlay used when the clothing is worn.
 

@@ -143,6 +143,8 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 
 	var/obj/item/stack/material/stack = I
 	var/amount = round(input("How many sheets do you want to add?") as num)
+	if(!Adjacent(user))
+		return
 	if(!I)
 		return
 	if(amount <= 0)//No negative numbers

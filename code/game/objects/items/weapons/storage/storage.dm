@@ -1,9 +1,6 @@
-// To clarify:
-// For use_to_pickup and allow_quick_gather functionality,
-// see item/attackby() (/game/objects/items.dm)
-// Do not remove this functionality without good reason, cough reagent_containers cough.
-// -Sayu
-
+//todo: display_contents_with_number
+//todo: get rid of s_active
+//todo: close hud when storage item is thrown
 
 /obj/item/weapon/storage
 	name = "storage"
@@ -16,31 +13,158 @@
 	var/max_w_class = ITEM_SIZE_NORMAL //Max size of objects that this object can store (in effect only if can_hold isn't set)
 	var/max_storage_space = 8 //The sum of the storage costs of all the items in this storage item.
 	var/storage_slots = null //The number of storage slots in this container.
-	var/obj/screen/storage/boxes = null
-	var/obj/screen/storage/storage_start = null //storage UI
-	var/obj/screen/storage/storage_continue = null
-	var/obj/screen/storage/storage_end = null
-	var/obj/screen/storage/stored_start = null
-	var/obj/screen/storage/stored_continue = null
-	var/obj/screen/storage/stored_end = null
-	var/obj/screen/close/closer = null
-	var/use_to_pickup	//Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
-	var/display_contents_with_number	//Set this to make the storage item group contents of the same type and display them as a number.
-	var/allow_quick_empty	//Set this variable to allow the object to have the 'empty' verb, which dumps all the contents on the floor.
-	var/allow_quick_gather	//Set this variable to allow the object to have the 'toggle mode' verb, which quickly collects all items from a tile.
-	var/collection_mode = 1;  //0 = pick one at a time, 1 = pick all on tile
-	var/use_sound = "rustle"	//sound played when used. null for no sound.
+	var/use_to_pickup //Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
+	var/display_contents_with_number //Set this to make the storage item group contents of the same type and display them as a number.
+	var/allow_quick_empty //Set this variable to allow the object to have the 'empty' verb, which dumps all the contents on the floor.
+	var/allow_quick_gather //Set this variable to allow the object to have the 'toggle mode' verb, which quickly collects all items from a tile.
+	var/collection_mode = 1 //0 = pick one at a time, 1 = pick all on tile
+	var/use_sound = "rustle" //sound played when used. null for no sound.
+
+/HUD_element/threePartBox/storageBackground
+	start_icon = icon("icons/HUD/storage_start.png")
+	middle_icon = icon("icons/HUD/storage_middle.png")
+	end_icon = icon("icons/HUD/storage_end.png")
+
+/HUD_element/threePartBox/storedItemBackground
+	start_icon = icon("icons/HUD/stored_start.png")
+	middle_icon = icon("icons/HUD/stored_middle.png")
+	end_icon = icon("icons/HUD/stored_end.png")
+
+/HUD_element/slottedItemBackground
+	icon = 'icons/HUD/block.png'
+
+/obj/item/weapon/storage/proc/storageBackgroundClick(var/HUD_element/sourceElement, var/mob/clientMob, location, control, params)
+	var/atom/A = sourceElement.getData("item")
+	if(A)
+		var/obj/item/I = clientMob.get_active_hand()
+		if(I)
+			clientMob.ClickOn(A)
+
+/obj/item/weapon/storage/proc/itemBackgroundClick(var/HUD_element/sourceElement, var/mob/clientMob, location, control, params)
+	var/atom/A = sourceElement.getData("item")
+	if(A)
+		clientMob.ClickOn(A)
+
+/obj/item/weapon/storage/proc/closeButtonClick(var/HUD_element/sourceElement, var/mob/clientMob, location, control, params)
+	var/obj/item/weapon/storage/S = sourceElement.getData("item")
+	if(S)
+		S.close(clientMob)
+
+/obj/item/weapon/storage/proc/setupItemBackground(var/HUD_element/itemBackground, var/atom/item)
+	itemBackground.setClickProc(.itemBackgroundClick)
+	itemBackground.setData("item", item)
+
+	var/HUD_element/itemIcon = itemBackground.add(new/HUD_element())
+	itemIcon.setDimensions(32,32) //todo: should be width/height of real object icon
+	itemIcon.setAlignment(3,3) //center
+
+	item.pixel_x = 0 //no pixel offsets inside storage
+	item.pixel_y = 0
+	item.pixel_w = 0
+	item.pixel_z = 0
+	item.layer = ABOVE_HUD_LAYER
+	item.plane = ABOVE_HUD_PLANE
+
+	itemIcon.vis_contents += item //this draws the actual item, see byond ref for vis_contents var
+	itemBackground.setName(item.name, TRUE)
+
+/obj/item/weapon/storage/proc/generateHUD(var/datum/hud/data)
+	var/HUD_element/main = new("storage")
+	main.setDeleteOnHide(TRUE)
+
+	var/HUD_element/closeButton = new
+	closeButton.setName("HUD Storage Close Button")
+	closeButton.setIcon(icon("icons/mob/screen1.dmi","x"))
+	closeButton.setHideParentOnClick(TRUE)
+	closeButton.setClickProc(.closeButtonClick)
+	closeButton.setData("item", src)
+
+	//storage space based items
+	if(storage_slots == null)
+		var/baseline_max_storage_space = 16 //should be equal to default backpack capacity
+		var/minBackgroundWidth = min( round( 224 * max_storage_space/baseline_max_storage_space ,1) ,260) //in pixels
+
+		var/HUD_element/threePartBox/storageBackground/storageBackground = new()
+		main.add(storageBackground)
+
+		storageBackground.setName("HUD Storage Background")
+		storageBackground.setHideParentOnHide(TRUE)
+
+		storageBackground.setClickProc(.storageBackgroundClick)
+		storageBackground.setData("item", src)
+
+		var/paddingSides = 2 //in pixels
+		var/spacingBetweenSlots = 1 //in pixels
+
+		var/totalWidth = 0 + paddingSides //in pixels
+		var/totalStorageCost = 0
+
+		for(var/obj/item/I in contents)
+			var/itemStorageCost = I.get_storage_cost()
+			totalStorageCost += itemStorageCost
+
+			var/HUD_element/threePartBox/storedItemBackground/itemBackground = new()
+			storageBackground.add(itemBackground)
+
+			var/itemBackgroundWidth = round(minBackgroundWidth * itemStorageCost/max_storage_space)
+			itemBackground.setPosition(totalWidth,0)
+			itemBackground.scaleToSize(itemBackgroundWidth)
+			itemBackground.setAlignment(0,3) //vertical center
+
+			setupItemBackground(itemBackground,I)
+
+			totalWidth += itemBackground.getWidth() + spacingBetweenSlots
+
+		if (contents.len)
+			totalWidth -= spacingBetweenSlots
+
+		var/remainingStorage = max_storage_space - totalStorageCost
+		if (remainingStorage)
+			remainingStorage += 2 //in pixels, creates a small area where items can be put
+
+		storageBackground.scaleToSize(max(totalWidth + remainingStorage, minBackgroundWidth) + paddingSides)
+
+		storageBackground.add(closeButton)
+		closeButton.setAlignment(5,3) //east of parent, center
+
+	//slot storage based items
+	else
+		var/maxColumnCount = data.StorageData["ColCount"]
+		var/spacingBetweenSlots = 0 //in pixels
+
+		var/totalWidth = 0 //in pixels
+		var/totalHeight = 0
+
+		var/currentSlot
+		var/currentItemNumber = 1
+		var/slotsToDisplay = storage_slots
+		for (currentSlot = 1, currentSlot <= slotsToDisplay, currentSlot++)
+			var/HUD_element/slottedItemBackground/itemBackground = new()
+			main.add(itemBackground)
+			itemBackground.setPosition(totalWidth, totalHeight)
+
+			if (currentItemNumber <= contents.len)
+				setupItemBackground(itemBackground, contents[currentItemNumber])
+				currentItemNumber++
+			else
+				itemBackground.setClickProc(.storageBackgroundClick)
+				itemBackground.setData("item", src)
+
+			totalWidth += itemBackground.getWidth() + spacingBetweenSlots
+
+			if (!(currentSlot%maxColumnCount))
+				if (!totalHeight)
+					main.add(closeButton)
+					closeButton.setPosition(totalWidth, 0)
+
+				totalWidth = 0 //reset width
+				totalHeight = (currentSlot/maxColumnCount) * (itemBackground.getHeight() + spacingBetweenSlots)
+
+	main.setPosition(data.StorageData["Xspace"],data.StorageData["Yspace"])
+	return main
 
 /obj/item/weapon/storage/Destroy()
 	close_all()
-	qdel(boxes)
-	qdel(src.storage_start)
-	qdel(src.storage_continue)
-	qdel(src.storage_end)
-	qdel(src.stored_start)
-	qdel(src.stored_continue)
-	qdel(src.stored_end)
-	qdel(closer)
 	. = ..()
 
 /obj/item/weapon/storage/MouseDrop(obj/over_object)
@@ -48,10 +172,8 @@
 		return src.open(usr)
 	return ..()
 
-
 /obj/item/weapon/storage/proc/return_inv()
-
-	var/list/L = list(  )
+	var/list/L = list()
 
 	L += src.contents
 
@@ -63,221 +185,53 @@
 			L += G.gift:return_inv()
 	return L
 
-/obj/item/weapon/storage/proc/show_to(mob/user as mob)
-	if(user.s_active != src)
-		for(var/obj/item/I in src)
-			if(I.on_found(user))
-				return
-	if(user.s_active)
-		user.s_active.hide_from(user)
-	user.client.screen -= src.boxes
-	user.client.screen -= src.storage_start
-	user.client.screen -= src.storage_continue
-	user.client.screen -= src.storage_end
-	user.client.screen -= src.closer
-	user.client.screen -= src.contents
-	user.client.screen += src.closer
-	user.client.screen += src.contents
-	if(storage_slots)
-		user.client.screen += src.boxes
-	else
-		user.client.screen += src.storage_start
-		user.client.screen += src.storage_continue
-		user.client.screen += src.storage_end
-	user.s_active = src
-	is_seeing |= user
-	return
+/obj/item/weapon/storage/proc/show_to(var/mob/user)
+	if (!user.client)
+		return
 
-/obj/item/weapon/storage/proc/hide_from(mob/user as mob)
+	if(user.s_active != src) //opening a new storage item
+		if (user.s_active) //user already had a storage item open
+			user.s_active.close(user)
+
+		for(var/obj/item/I in src)
+			if(I.on_found(user)) //trigger mousetraps etc.
+				return
+
+	var/datum/hud/data = global.HUDdatums[user.defaultHUD]
+	if (data)
+		generateHUD(data).show(user.client)
+		is_seeing |= user
+		user.s_active = src
+
+/obj/item/weapon/storage/proc/hide_from(var/mob/user)
+	is_seeing -= user
+	if (user.s_active == src)
+		user.s_active = null
 
 	if(!user.client)
 		return
-	user.client.screen -= src.boxes
-	user.client.screen -= src.storage_start
-	user.client.screen -= src.storage_continue
-	user.client.screen -= src.storage_end
-	user.client.screen -= src.closer
-	user.client.screen -= src.contents
-	if(user.s_active == src)
-		user.s_active = null
-	is_seeing -= user
 
-/obj/item/weapon/storage/proc/open(mob/user as mob)
+	user.client.hide_HUD_element("storage")
+
+/obj/item/weapon/storage/proc/open(var/mob/user)
 	if (src.use_sound)
 		playsound(src.loc, src.use_sound, 50, 1, -5)
 
-	orient2hud(user)
-	if (user.s_active)
-		user.s_active.close(user)
 	show_to(user)
 
-/obj/item/weapon/storage/proc/close(mob/user as mob)
-	src.hide_from(user)
-	user.s_active = null
-	return
+/obj/item/weapon/storage/proc/close(var/mob/user)
+	hide_from(user)
 
 /obj/item/weapon/storage/proc/close_all()
-	for(var/mob/M in can_see_contents())
+	for (var/mob/M in is_seeing)
 		close(M)
-		. = 1
 
-/obj/item/weapon/storage/proc/can_see_contents()
-	var/list/cansee = list()
-	for(var/mob/M in is_seeing)
-		if(M.s_active == src && M.client)
-			cansee |= M
-		else
-			is_seeing -= M
-	return cansee
-
-//This proc draws out the inventory and places the items on it. tx and ty are the upper left tile and mx, my are the bottm right.
-//The numbers are calculated from the bottom-left The bottom-left slot being 1,1.
-/obj/item/weapon/storage/proc/orient_objs(tx, ty, mx, my)
-	var/cx = tx
-	var/cy = ty
-	src.boxes.screen_loc = "[tx]:,[ty] to [mx],[my]"
-	for(var/obj/O in src.contents)
-		O.screen_loc = "[cx],[cy]"
-		O.layer = ABOVE_HUD_LAYER
-		O.plane = ABOVE_HUD_PLANE
-		cx++
-		if (cx > mx)
-			cx = tx
-			cy--
-	src.closer.screen_loc = "[mx+1],[my]"
-	return
-
-//This proc draws out the inventory and places the items on it. It uses the standard position.
-/obj/item/weapon/storage/proc/slot_orient_objs(var/rows, var/cols, var/list/obj/item/display_contents, Xcord=4, Ycord=2)
-	var/cx = Xcord
-	var/cy = Ycord+rows
-	src.boxes.screen_loc = "[Xcord]:16,2:16 to [Xcord+cols]:16,[Ycord+rows]:16"
-
-	if(display_contents_with_number)
-		for(var/datum/numbered_display/ND in display_contents)
-			ND.sample_object.screen_loc = "[cx]:16,[cy]:16"
-			ND.sample_object.maptext = "<font color='white'>[(ND.number > 1)? "[ND.number]" : ""]</font>"
-			ND.sample_object.layer = ABOVE_HUD_LAYER
-			ND.sample_object.plane = ABOVE_HUD_PLANE
-			cx++
-			if (cx > (Xcord+cols))
-				cx = Xcord
-				cy--
-	else
-		for(var/obj/O in contents)
-			O.screen_loc = "[cx]:16,[cy]:16"
-			O.maptext = ""
-			O.layer = ABOVE_HUD_LAYER
-			O.plane = ABOVE_HUD_PLANE
-			cx++
-			if (cx > (Xcord+cols))
-				cx = Xcord
-				cy--
-	src.closer.screen_loc = "[Xcord+cols+1]:16,[Ycord]:16"
-	return
-
-/obj/item/weapon/storage/proc/space_orient_objs(var/list/obj/item/display_contents,var/Xcord = 5,var/Ycord = 2)
-
-	var/baseline_max_storage_space = 16 //should be equal to default backpack capacity
-	var/storage_cap_width = 2 //length of sprite for start and end of the box representing total storage space
-	var/stored_cap_width = 4 //length of sprite for start and end of the box representing the stored item
-	var/storage_width = min( round( 224 * max_storage_space/baseline_max_storage_space ,1) ,284) //length of sprite for the box representing total storage space
-
-	storage_start.overlays.Cut()
-
-	var/matrix/M = matrix()
-	M.Scale((storage_width-storage_cap_width*2+3)/32,1)
-	src.storage_continue.transform = M
-
-	src.storage_start.screen_loc = "[Xcord]:16,[Ycord]:16"
-	src.storage_continue.screen_loc = "[Xcord]:[storage_cap_width+(storage_width-storage_cap_width*2)/2+2],[Ycord]:16"
-	src.storage_end.screen_loc = "[Xcord]:[19+storage_width-storage_cap_width],[Ycord]:16"
-
-	var/startpoint = 0
-	var/endpoint = 1
-
-	for(var/obj/item/O in contents)
-		startpoint = endpoint + 1
-		endpoint += storage_width * O.get_storage_cost()/max_storage_space
-
-		var/matrix/M_start = matrix()
-		var/matrix/M_continue = matrix()
-		var/matrix/M_end = matrix()
-		M_start.Translate(startpoint,0)
-		M_continue.Scale((endpoint-startpoint-stored_cap_width*2)/32,1)
-		M_continue.Translate(startpoint+stored_cap_width+(endpoint-startpoint-stored_cap_width*2)/2 - 16,0)
-		M_end.Translate(endpoint-stored_cap_width,0)
-		src.stored_start.transform = M_start
-		src.stored_continue.transform = M_continue
-		src.stored_end.transform = M_end
-		storage_start.overlays += src.stored_start
-		storage_start.overlays += src.stored_continue
-		storage_start.overlays += src.stored_end
-
-		O.screen_loc = "[Xcord]:[round((startpoint+endpoint)/2)+2],[Ycord]:16"
-		O.maptext = ""
-		O.layer = ABOVE_HUD_LAYER
-		O.plane = ABOVE_HUD_PLANE
-
-	src.closer.screen_loc = "[Xcord]:[storage_width+19],[Ycord]:16"
-	return
-
-/datum/numbered_display
-	var/obj/item/sample_object
-	var/number
-
-	New(obj/item/sample as obj)
-		if(!istype(sample))
-			qdel(src)
-		sample_object = sample
-		number = 1
-
-//This proc determins the size of the inventory to be displayed. Please touch it only if you know what you're doing.
-/obj/item/weapon/storage/proc/orient2hud(mob/user as mob)
-
-	var/adjusted_contents = contents.len
-
-	var/Xcor = 5
-	var/Ycor = 2
-	var/ColCountDatum = 7
-	var/Xslot = 6
-	var/Yslot = 2
-
-	if(user)
-		var/datum/hud/HUDdatum = global.HUDdatums[user.defaultHUD]
-		if (!istype(HUDdatum) || !HUDdatum.ConteinerData || !HUDdatum.ConteinerData.len)
-			return //Something went wrong
-		Xcor = HUDdatum.ConteinerData["Xspace"]
-		Ycor = HUDdatum.ConteinerData["Yspace"]
-		ColCountDatum = HUDdatum.ConteinerData["ColCount"]
-		Xslot = HUDdatum.ConteinerData["Xslot"]
-		Yslot = HUDdatum.ConteinerData["Yslot"]
-
-	//Numbered contents display
-	var/list/datum/numbered_display/numbered_contents
-	if(display_contents_with_number)
-		numbered_contents = list()
-		adjusted_contents = 0
-		for(var/obj/item/I in contents)
-			var/found = 0
-			for(var/datum/numbered_display/ND in numbered_contents)
-				if(ND.sample_object.type == I.type)
-					ND.number++
-					found = 1
-					break
-			if(!found)
-				adjusted_contents++
-				numbered_contents.Add( new/datum/numbered_display(I) )
-
-	if(storage_slots == null)
-		src.space_orient_objs(numbered_contents,Xcor,Ycor)
-	else
-		var/row_num = 0
-		var/col_count = min(ColCountDatum,storage_slots) -1
-		if (adjusted_contents > ColCountDatum)
-			row_num = round((adjusted_contents-1) / ColCountDatum) // ColCountDatum is the maximum allowed width.
-		src.slot_orient_objs(row_num, col_count, numbered_contents,Xslot,Yslot)
-	return
+/obj/item/weapon/storage/proc/refresh_all()
+	for (var/mob/M in is_seeing)
+		if (M.client)
+			var/datum/hud/data = global.HUDdatums[M.defaultHUD]
+			if (data)
+				generateHUD(data).show(M.client)
 
 //This proc return 1 if the item can be picked up and 0 if it can't.
 //Set the stop_messages to stop it from printing messages
@@ -318,14 +272,16 @@
 			usr << SPAN_NOTICE("[W] is too long for this [src].")
 		return 0
 
-	var/total_storage_space = W.get_storage_cost()
-	for(var/obj/item/I in contents)
-		total_storage_space += I.get_storage_cost() //Adds up the combined w_classes which will be in the storage item if the item is added to it.
+	//Slot based storage overrides space-based storage
+	if(storage_slots == null)
+		var/total_storage_space = W.get_storage_cost()
+		for(var/obj/item/I in contents)
+			total_storage_space += I.get_storage_cost() //Adds up the combined w_classes which will be in the storage item if the item is added to it.
 
-	if(total_storage_space > max_storage_space)
-		if(!stop_messages)
-			usr << SPAN_NOTICE("[src] is too full, make some space.")
-		return 0
+		if(total_storage_space > max_storage_space)
+			if(!stop_messages)
+				usr << SPAN_NOTICE("[src] is too full, make some space.")
+			return 0
 
 	if(W.w_class >= src.w_class && (istype(W, /obj/item/weapon/storage)))
 		if(!stop_messages)
@@ -338,20 +294,22 @@
 //The stop_warning parameter will stop the insertion message from being displayed. It is intended for cases where you are inserting multiple items at once,
 //such as when picking up all the items on a tile with one click.
 /obj/item/weapon/storage/proc/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
-	if(!istype(W)) return 0
-	if(usr)
+	if (!istype(W)) return 0
+	if (usr)
 		usr.prepare_for_slotmove(W)
-		usr.update_icons()	//update our overlays
+		usr.update_icons() //update our overlays
+
 	W.loc = src
 	W.on_enter_storage(src)
+
 	if(usr)
-		if (usr.client && usr.s_active != src)
+		if (usr.client)
 			usr.client.screen -= W
 		W.dropped(usr)
 		add_fingerprint(usr)
 
-		if(!prevent_warning)
-			for(var/mob/M in viewers(usr, null))
+		if (!prevent_warning)
+			for (var/mob/M in viewers(usr, null))
 				if (M == usr)
 					usr << SPAN_NOTICE("You put \the [W] into [src].")
 				else if (M in range(1)) //If someone is standing close enough, they can tell what it is...
@@ -359,41 +317,35 @@
 				else if (W && W.w_class >= ITEM_SIZE_NORMAL) //Otherwise they can only see large or normal items from a distance...
 					M.show_message(SPAN_NOTICE("\The [usr] puts [W] into [src]."))
 
-		src.orient2hud(usr)
-		if(usr.s_active)
-			usr.s_active.show_to(usr)
+	refresh_all()
+
 	update_icon()
 	return 1
 
 //Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
 /obj/item/weapon/storage/proc/remove_from_storage(obj/item/W as obj, atom/new_location)
-	if(!istype(W)) return 0
+	if (!istype(W))
+		return
 
-	if(istype(src, /obj/item/weapon/storage/fancy))
+	if (istype(src, /obj/item/weapon/storage/fancy)) //todo: why
 		var/obj/item/weapon/storage/fancy/F = src
 		F.update_icon(1)
 
-	for(var/mob/M in range(1, src.loc))
-		if (M.s_active == src)
-			if (M.client)
-				M.client.screen -= W
-
 	W.layer = initial(W.layer)
 	W.plane = initial(W.plane)
-	if(new_location)
+
+	if (new_location)
 		W.loc = new_location
 	else
 		W.loc = get_turf(src)
 
-	if(usr)
-		src.orient2hud(usr)
-		if(usr.s_active)
-			usr.s_active.show_to(usr)
-	if(W.maptext)
+	refresh_all()
+
+	if (W.maptext)
 		W.maptext = ""
+
 	W.on_exit_storage(src)
 	update_icon()
-	return 1
 
 //This proc is called when you want to place an item into the storage item.
 /obj/item/weapon/storage/attackby(obj/item/W as obj, mob/user as mob)
@@ -423,9 +375,9 @@
 			if(prob(85))
 				user << SPAN_WARNING("The tray won't fit in [src].")
 				return
-			else
+			else //todo: proper drop handling
 				W.loc = user.loc
-				if ((user.client && user.s_active != src))
+				if (user.client)
 					user.client.screen -= W
 				W.dropped(user)
 				user << SPAN_WARNING("God damnit!")
@@ -437,7 +389,8 @@
 	return
 
 /obj/item/weapon/storage/attack_hand(mob/user as mob)
-	if(ishuman(user))
+	// v Why does that exist? ~Luduk
+	/*if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.l_store == src && !H.get_active_hand())	//Prevents opening if it's in a pocket.
 			H.put_in_hands(src)
@@ -446,15 +399,14 @@
 		if(H.r_store == src && !H.get_active_hand())
 			H.put_in_hands(src)
 			H.r_store = null
-			return
+			return*/
 
-	if (src.loc == user)
-		src.open(user)
+	if (loc == user)
+		open(user)
 	else
+		close_all()
 		..()
-		for(var/mob/M in range(1))
-			if (M.s_active == src)
-				src.close(M)
+
 	src.add_fingerprint(user)
 	return
 
@@ -525,58 +477,6 @@
 		for(var/obj/item/I in contents)
 			total_storage_space += I.get_storage_cost()
 		max_storage_space = max(total_storage_space,max_storage_space) //prevents spawned containers from being too small for their contents
-
-	src.boxes = new /obj/screen/storage(  )
-	src.boxes.name = "storage"
-	src.boxes.master = src
-	src.boxes.icon_state = "block"
-	src.boxes.screen_loc = "7,7 to 10,8"
-	src.boxes.layer = HUD_LAYER
-	src.boxes.plane = HUD_PLANE
-
-	src.storage_start = new /obj/screen/storage(  )
-	src.storage_start.name = "storage"
-	src.storage_start.master = src
-	src.storage_start.icon_state = "storage_start"
-	src.storage_start.screen_loc = "7,7 to 10,8"
-	src.storage_start.layer = HUD_LAYER
-	src.storage_start.plane = HUD_PLANE
-
-	src.storage_continue = new /obj/screen/storage(  )
-	src.storage_continue.name = "storage"
-	src.storage_continue.master = src
-	src.storage_continue.icon_state = "storage_continue"
-	src.storage_continue.screen_loc = "7,7 to 10,8"
-	src.storage_continue.layer = HUD_LAYER
-	src.storage_continue.plane = HUD_PLANE
-
-	src.storage_end = new /obj/screen/storage(  )
-	src.storage_end.name = "storage"
-	src.storage_end.master = src
-	src.storage_end.icon_state = "storage_end"
-	src.storage_end.screen_loc = "7,7 to 10,8"
-	src.storage_end.layer = HUD_LAYER
-	src.storage_end.plane = HUD_PLANE
-
-	src.stored_start = new /obj //we just need these to hold the icon
-	src.stored_start.icon_state = "stored_start"
-	src.stored_start.layer = HUD_LAYER
-	src.stored_start.plane = HUD_PLANE
-	src.stored_continue = new /obj
-	src.stored_continue.icon_state = "stored_continue"
-	src.stored_continue.layer = HUD_LAYER
-	src.stored_continue.plane = HUD_PLANE
-	src.stored_end = new /obj
-	src.stored_end.icon_state = "stored_end"
-	src.stored_end.layer = HUD_LAYER
-	src.stored_end.plane = HUD_PLANE
-
-	src.closer = new /obj/screen/close(  )
-	src.closer.master = src
-	src.closer.icon_state = "x"
-	src.closer.layer = HUD_LAYER
-	src.closer.plane = HUD_PLANE
-	orient2hud()
 
 /obj/item/weapon/storage/emp_act(severity)
 	if(!isliving(loc))

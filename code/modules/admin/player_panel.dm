@@ -245,7 +245,7 @@
 					else if(ispAI(M))
 						M_job = "pAI"
 					else if(isrobot(M))
-						M_job = "Cyborg"
+						M_job = "Robot"
 					else
 						M_job = "Silicon-based"
 
@@ -320,8 +320,8 @@
 
 
 /datum/admins/proc/storyteller_panel()
-	if(SSticker.storyteller)
-		SSticker.storyteller.storyteller_panel()
+	if(get_storyteller())
+		get_storyteller().storyteller_panel()
 	else
 		usr << SPAN_WARNING("There is no storyteller.")
 

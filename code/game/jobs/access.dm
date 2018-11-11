@@ -8,16 +8,23 @@
 	//check if it doesn't require any access at all
 	if(src.check_access(null))
 		return 1
+	if(!istype(M))
+		return 0
+	return check_access_list(M.GetAccess())
 
-	var/id = M.GetIdCard()
-	if(id)
-		return check_access(id)
-	return 0
+/atom/movable/proc/GetAccess()
+	var/obj/item/weapon/card/id/id = GetIdCard()
+	return id ? id.GetAccess() : list()
 
-/obj/item/proc/GetAccess()
-	return list()
+/proc/get_access_by_id(id)
+	var/list/AS = priv_all_access_datums_id || get_all_access_datums_by_id()
+	return AS[num2text(id)]
 
-/obj/proc/GetID()
+/proc/get_access_region_by_id(id)
+	var/datum/access/AD = get_access_by_id(id)
+	return AD.region
+
+/atom/movable/proc/GetIdCard()
 	return null
 
 /obj/proc/check_access(obj/item/I)
@@ -188,10 +195,8 @@
 		"BlackOps Commander",
 		"Supreme Commander")
 
-/mob/proc/GetIdCard()
+/mob/GetIdCard()
 	return null
-
-
 
 var/obj/item/weapon/card/id/all_access/ghost_all_access
 /mob/observer/ghost/GetIdCard()
@@ -205,14 +210,19 @@ var/obj/item/weapon/card/id/all_access/ghost_all_access
 /mob/living/bot/GetIdCard()
 	return botcard
 
+#define HUMAN_ID_CARDS list(get_active_hand(), wear_id, get_inactive_hand())
 /mob/living/carbon/human/GetIdCard()
-	var/obj/item/I = get_active_hand()
-	if(I)
-		var/id = I.GetID()
+	for(var/obj/item/I in HUMAN_ID_CARDS)
+		var/obj/item/weapon/card/id = I.GetIdCard()
 		if(id)
 			return id
-	if(wear_id)
-		return wear_id.GetID()
+
+/mob/living/carbon/human/GetAccess()
+	. = list()
+	for(var/obj/item/I in HUMAN_ID_CARDS)
+		. |= I.GetAccess()
+
+#undef HUMAN_ID_CARDS
 
 /mob/living/silicon/GetIdCard()
 	return idcard
@@ -227,7 +237,7 @@ proc/get_all_job_icons() //For all existing HUD icons
 	return joblist + list("Prisoner")
 
 /obj/proc/GetJobName() //Used in secHUD icon generation
-	var/obj/item/weapon/card/id/I = GetID()
+	var/obj/item/weapon/card/id/I = GetIdCard()
 
 	if(I)
 		var/job_icons = get_all_job_icons()
@@ -245,3 +255,11 @@ proc/get_all_job_icons() //For all existing HUD icons
 		return
 
 	return "Unknown" //Return unknown if none of the above apply
+
+//Checks if the access (constant or list) is contained in one of the entries of access_patterns, a list of lists.
+/proc/has_access_pattern(list/access_patterns, access)
+	if(!islist(access))
+		access = list(access)
+	for(var/access_pattern in access_patterns)
+		if(has_access(access_pattern, list(), access))
+			return 1

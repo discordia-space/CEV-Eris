@@ -40,24 +40,24 @@
 	if(shadow)
 		shadow.sync_icon(src)
 
-/mob/living/Move()
+/mob/living/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	. = ..()
 	check_shadow()
 
-/mob/living/forceMove()
+/mob/living/forceMove(atom/destination, var/special_event, glide_size_override=0)
 	. = ..()
 	check_shadow()
 
 /mob/living/proc/check_shadow()
 	var/mob/M = src
 	if(isturf(M.loc))
-		var/turf/simulated/open/OS = GetAbove(src)
-		while(OS && istype(OS))
+		var/turf/T = GetAbove(src)
+		while(T && T.isTransparent)
 			if(!M.shadow)
 				M.shadow = new(M)
-			M.shadow.forceMove(OS)
+			M.shadow.forceMove(T)
 			M = M.shadow
-			OS = GetAbove(M)
+			T = GetAbove(M)
 
 	if(M.shadow)
 		qdel(M.shadow)

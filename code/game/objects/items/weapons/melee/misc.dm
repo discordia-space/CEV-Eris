@@ -24,7 +24,7 @@
 	attack_verb = list("robusted", "slammed")
 	var/reinforced = FALSE
 	var/obj/item/weapon/storage/toolbox/toolbox = null
-
+	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
 	New()
 		..()
 		if(!toolbox)
@@ -63,7 +63,7 @@
 				user << SPAN_NOTICE("You carefully cut cables from [src].")
 				break_apart(user)
 
-		if(istype(C, /obj/item/weapon/tape_roll))
+		if(istype(C, /obj/item/weapon/tool/tape_roll))
 			user << SPAN_NOTICE("You begins to tie [src] with [C]...")
 			if(do_after(user, 50))
 				if(!reinforced)
@@ -109,3 +109,4 @@
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 2)
 	attack_verb = list("beaten", "slammed", "smacked", "struck", "battered")
+	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY

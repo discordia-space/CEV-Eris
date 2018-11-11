@@ -27,6 +27,7 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 	var/window_y = 470
 
 	var/list/descriptions // Descriptions of wires (datum/wire_description) for use with examining.
+	var/list/wire_log = list() // A log for admin use of what happened to these wires.
 
 /datum/wires/New(var/atom/holder)
 	..()
@@ -82,12 +83,13 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 		//return
 	return wd.description
 
-
-
 /datum/wires/proc/get_description(index)
 	for(var/datum/wire_description/desc in descriptions)
 		if(desc.index == index)
 			return desc
+
+/datum/wires/proc/add_log_entry(mob/user, message)
+	wire_log += "\[[time_stamp()]\] [user.name] ([user.ckey]) [message]"
 
 /datum/wires/proc/Interact(var/mob/living/user)
 
@@ -146,6 +148,7 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 				if(tool_type)
 					if(I.use_tool(L, holder, WORKTIME_INSTANT, tool_type, FAILCHANCE_ZERO))
 						var/colour = href_list["cut"]
+						add_log_entry(L, "has [IsColourCut(colour) ? "mended" : "cut"] the <font color='[colour]'>[capitalize(colour)]</font> wire")
 						CutWireColour(colour)
 				else
 					L << "<span class='error'>You need something that can cut!</span>"
@@ -154,6 +157,7 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 				if(I.get_tool_type(usr, list(QUALITY_PULSING)))
 					if(I.use_tool(L, holder, WORKTIME_INSTANT, QUALITY_PULSING, FAILCHANCE_ZERO))
 						var/colour = href_list["pulse"]
+						add_log_entry(L, "has pulsed the <font color='[colour]'>[capitalize(colour)]</font> wire")
 						PulseColour(colour)
 				else
 					L << "<span class='error'>You need a multitool!</span>"
@@ -163,6 +167,7 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 				// Detach
 				if(IsAttached(colour))
 					var/obj/item/O = Detach(colour)
+					add_log_entry(L, "has detched [O] from the <font color='[colour]'>[capitalize(colour)]</font> wire")
 					if(O)
 						L.put_in_hands(O)
 
@@ -170,6 +175,7 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 				else
 					if(istype(I, /obj/item/device/assembly/signaler))
 						L.drop_item()
+						add_log_entry(L, "has attached [I] to the <font color='[colour]'>[capitalize(colour)]</font> wire")
 						Attach(colour, I)
 					else
 						L << "<span class='error'>You need a remote signaller!</span>"

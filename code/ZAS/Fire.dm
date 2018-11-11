@@ -7,6 +7,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 */
 
 //#define FIREDBG
+#define MINIMUM_FUEL_VOLUME 0.0005 //Used to prevent leaving patches with astronomically tiny amounts of fuel
 
 /turf/var/obj/fire/fire = null
 
@@ -78,7 +79,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 			continue
 
 		fuel.amount -= fuel_to_remove
-		if(fuel.amount <= 0)
+		if(fuel.amount <= MINIMUM_FUEL_VOLUME)
 			fuel_objs -= fuel
 			if(remove_fire)
 				var/turf/T = fuel.loc
@@ -195,6 +196,12 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 
 	firelevel = fl
 	SSair.active_hotspots.Add(src)
+
+	//When a fire is created, immediately call fire_act on things in the tile.
+	//This is needed for flamethrowers
+	for (var/a in loc)
+		var/atom/A = a
+		A.fire_act()
 
 /obj/fire/proc/fire_color(var/env_temperature)
 	var/temperature = max(4000*sqrt(firelevel/vsc.fire_firelevel_multiplier), env_temperature)

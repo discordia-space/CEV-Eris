@@ -14,16 +14,17 @@
 	if (usr.a_intent == I_HURT && user.Adjacent(src))
 		if(!(I.flags & NOBLUDGEON))
 			user.do_attack_animation(src)
-			var/volume = (I.force - flooring.resistance)*3.5
+			var/calc_damage = (I.force*I.structure_damage_factor) - flooring.resistance
+			var/volume = (calc_damage)*3.5
 			volume = min(volume, 15)
 			if (flooring.hit_sound)
 				playsound(src, flooring.hit_sound, volume, 1, -1)
 			else if (I.hitsound)
 				playsound(src, I.hitsound, volume, 1, -1)
 
-			if (I.force && I.force > flooring.resistance)
+			if (calc_damage > 0)
 				visible_message(SPAN_DANGER("[src] has been hit by [user] with [I]."))
-				take_damage(I.force, I.damtype)
+				take_damage(I.force*I.structure_damage_factor, I.damtype)
 			else
 				visible_message(SPAN_DANGER("[user] ineffectually hits [src] with [I]"))
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.75) //This longer cooldown helps promote skill in melee combat by punishing misclicks a bit
@@ -90,10 +91,19 @@
 			usable_qualities.Add(QUALITY_SHOVELING)
 		if(is_damaged() || flooring.flags & TURF_REMOVE_WELDER)
 			usable_qualities.Add(QUALITY_WELDING)
-
+		if(is_damaged())
+			usable_qualities.Add(QUALITY_SEALING)
 		var/tool_type = I.get_tool_type(user, usable_qualities)
 		switch(tool_type)
-
+			if(QUALITY_SEALING)
+				user.visible_message("[user] starts sealing up cracks in [src] with the [I]", "You start sealing up cracks in [src] with the [I]")
+				if (I.use_tool(user, src, 50 + ((maxHealth - health)*2), QUALITY_SEALING, FAILCHANCE_NORMAL, STAT_MEC))
+					user << SPAN_NOTICE("The [src] looks pretty solid now!")
+					health = maxHealth
+					broken = FALSE
+					burnt = FALSE
+					update_icon()
+				return
 			if(QUALITY_PRYING)
 				if(is_damaged())
 					if(I.use_tool(user, src, flooring.removal_time, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))

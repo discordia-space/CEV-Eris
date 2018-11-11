@@ -1,7 +1,7 @@
 //////Kitchen Spike
 
 /obj/structure/kitchenspike
-	name = "a meat spike"
+	name = "meat spike"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "spike"
 	desc = "A spike for collecting meat from animals."
@@ -56,3 +56,20 @@
 		user << "You remove the last piece of meat from \the [victim_name]!"
 		icon_state = "spike"
 		occupied = 0
+
+/obj/structure/kitchenspike/attackby(obj/item/I, mob/user)
+	var/list/usable_qualities = list(QUALITY_BOLT_TURNING)
+	var/tool_type = I.get_tool_type(user, usable_qualities)
+
+	if (tool_type == QUALITY_BOLT_TURNING)
+		if (!occupied)
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+				user.visible_message(SPAN_NOTICE("\The [user] dismantles \the [src]."),SPAN_NOTICE("You dismantle \the [src]."))
+				new /obj/item/stack/rods(src.loc, 3)
+				qdel(src)
+			return
+		else
+			user << SPAN_DANGER("The spike has something on it, finish collecting its meat first!")
+			return
+
+	return ..()

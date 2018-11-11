@@ -51,7 +51,7 @@ Class Procs:
 
    Destroy()                     'game/machinery/machine.dm'
 
-   auto_use_power()            'game/machinery/machine.dm'
+   auto_use_power()            'modules/power/power.dm'
       This proc determines how power mode power is deducted by the machine.
       'auto_use_power()' is called by the 'SSmachines' subsystem every
       SSmachines tick.
@@ -164,19 +164,6 @@ Class Procs:
 				return
 		else
 	return
-
-//sets the use_power var and then forces an area power update
-/obj/machinery/proc/update_use_power(var/new_use_power)
-	use_power = new_use_power
-
-/obj/machinery/proc/auto_use_power()
-	if(!powered(power_channel))
-		return 0
-	if(src.use_power == 1)
-		use_power(idle_power_usage,power_channel, 1)
-	else if(src.use_power >= 2)
-		use_power(active_power_usage,power_channel, 1)
-	return 1
 
 /proc/is_operable(var/obj/machinery/M, var/mob/user)
 	return istype(M) && M.operable()
@@ -371,7 +358,14 @@ Class Procs:
 	for(var/obj/I in component_parts)
 		I.forceMove(loc)
 		component_parts -= I
-	circuit.forceMove(loc)
-	circuit.deconstruct(src)
+	if(circuit)
+		circuit.forceMove(loc)
+		circuit.deconstruct(src)
 	qdel(src)
 	return 1
+
+/datum/proc/remove_visual(mob/M)
+	return
+
+/datum/proc/apply_visual(mob/M)
+	return

@@ -21,7 +21,7 @@
 
 //The coffin processes when there's a mob inside
 /obj/structure/closet/coffin/Process()
-	if (!occupant || QDELETED(occupant) || occupant.loc != src)
+	if (QDELETED(occupant) || occupant.loc != src)
 		return PROCESS_KILL
 
 	var/turf/T = get_turf(src)

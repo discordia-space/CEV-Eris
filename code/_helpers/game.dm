@@ -545,4 +545,3 @@ datum/projectile_data
 		P = preferences_datums[target.mind.key]
 
 	return P
-

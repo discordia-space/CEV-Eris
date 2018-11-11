@@ -214,11 +214,11 @@
 		user << SPAN_NOTICE("You'll need the keys in one of your hands to drive this [callme].")
 
 
-/obj/structure/bed/chair/janicart/Move()
-	..()
+/obj/structure/bed/chair/janicart/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+	. = ..()
 	if(buckled_mob)
 		if(buckled_mob.buckled == src)
-			buckled_mob.loc = loc
+			buckled_mob.forceMove(glide_size_override=glide_size_override)
 
 
 /obj/structure/bed/chair/janicart/post_buckle_mob(mob/living/M)

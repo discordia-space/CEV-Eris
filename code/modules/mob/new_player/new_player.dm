@@ -239,6 +239,7 @@
 
 	SSjob.AssignRole(src, rank, 1)
 
+	var/datum/job/job = src.mind.assigned_job
 	var/mob/living/character = create_character()	//creates the human and transfers vars and mind
 	character = SSjob.EquipRank(character, rank, 1)					//equips the human
 	equip_custom_items(character)
@@ -247,7 +248,7 @@
 	if(character.mind.assigned_role == "AI")
 
 		character = character.AIize(move=0) // AIize the character, but don't move them yet
-
+		SSticker.minds += character.mind
 			// IsJobAvailable for AI checks that there is an empty core available in this list
 		var/obj/structure/AIcore/deactivated/C = empty_playable_ai_cores[1]
 		empty_playable_ai_cores -= C
@@ -268,17 +269,21 @@
 	if(character.buckled && istype(character.buckled, /obj/structure/bed/chair/wheelchair))
 		character.buckled.loc = character.loc
 		character.buckled.set_dir(character.dir)
+	if(SSjob.ShouldCreateRecords(job.title))
+		if(character.mind.assigned_role != "Robot")
+			CreateModularRecord(character)
+			data_core.manifest_inject(character)
+			matchmaker.do_matchmaking()
+			SSticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 
-	if(character.mind.assigned_role != "Cyborg")
-		data_core.manifest_inject(character)
-		matchmaker.do_matchmaking()
-		SSticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
+			//Grab some data from the character prefs for use in random news procs.
 
-		//Grab some data from the character prefs for use in random news procs.
+			AnnounceArrival(character, rank, join_message)
+		else
+			AnnounceCyborg(character, rank, join_message)
 
-		AnnounceArrival(character, rank, join_message)
-	else
-		AnnounceCyborg(character, rank, join_message)
+	//Add their mind to the global list
+	SSticker.minds += character.mind
 
 	qdel(src)
 
@@ -393,7 +398,7 @@
 	dat += data_core.get_manifest(OOC = 1)
 	src << browse(dat, "window=manifest;size=370x420;can_close=1")
 
-/mob/new_player/Move()
+/mob/new_player/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	return 0
 
 /mob/new_player/proc/close_spawn_windows()

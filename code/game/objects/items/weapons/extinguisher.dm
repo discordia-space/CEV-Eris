@@ -15,11 +15,12 @@
 	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
 
 	var/spray_particles = 3
-	var/spray_amount = 10	//units of liquid per particle
+	var/spray_amount = 9	//units of liquid per particle
 	var/max_water = 300
 	var/last_use = 1.0
 	var/safety = 1
 	var/sprite_name = "fire_extinguisher"
+	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
 
 /obj/item/weapon/extinguisher/mini
 	name = "fire extinguisher"

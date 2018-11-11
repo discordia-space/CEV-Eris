@@ -40,6 +40,7 @@
 /obj/item/weapon/disk/autolathe_disk/basic/New()
 	recipes = list(
 		/datum/autolathe/recipe/misc/flashlight,
+		/datum/autolathe/recipe/tool/ducttape,
 		/datum/autolathe/recipe/misc/extinguisher,
 		/datum/autolathe/recipe/misc/radio_headset,
 		/datum/autolathe/recipe/misc/radio_bounced,
@@ -98,6 +99,7 @@
 	recipes = list(
 		/datum/autolathe/recipe/tool/hatchet,
 		/datum/autolathe/recipe/tool/minihoe,
+		/datum/autolathe/recipe/tool/ducttape,
 		/datum/autolathe/recipe/tool/knife,
 		/datum/autolathe/recipe/misc/heavyflashlight,
 		/datum/autolathe/recipe/tool/crowbar,
@@ -182,7 +184,6 @@
 		/datum/autolathe/recipe/circuit/med_data,
 		/datum/autolathe/recipe/circuit/secure_data,
 		/datum/autolathe/recipe/circuit/teleporter,
-		/datum/autolathe/recipe/circuit/crew,
 		/datum/autolathe/recipe/circuit/operating,
 		/datum/autolathe/recipe/circuit/helm,
 		/datum/autolathe/recipe/circuit/nav,
