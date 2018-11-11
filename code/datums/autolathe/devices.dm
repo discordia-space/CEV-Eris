@@ -65,3 +65,7 @@
 /datum/autolathe/recipe/device/excelsiormine
 	name = "excelsior mine"
 	path = /obj/item/weapon/mine
+
+/datum/autolathe/recipe/device/flamethrower
+	name = "flamethrower"
+	path = /obj/item/weapon/flamethrower

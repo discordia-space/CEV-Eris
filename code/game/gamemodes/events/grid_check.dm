@@ -44,7 +44,7 @@ So sometimes this event can result in people finding new and interesting things
 
 
 	for(var/obj/machinery/power/apc/C in SSmachines.machinery)
-		if(!C.is_critical && (!affected_z_levels || (C.z in affected_z_levels)))
+		if(is_valid_apc(C) && (!affected_z_levels || (C.z in affected_z_levels)))
 			C.energy_fail(rand(30 * severity*severity,100 * severity*severity))
 
 /proc/power_restore(var/announce = 1)
