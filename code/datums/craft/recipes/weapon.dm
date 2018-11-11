@@ -115,7 +115,7 @@
 
 /datum/craft_recipe/weapon/flamethrower
 	name = "flamethrower"
-	result = /obj/item/weapon/flamethrower/no_tank
+	result = /obj/item/weapon/flamethrower
 	steps = list(
 		list(/obj/item/weapon/tool/weldingtool, 1, "time" = 60),
 		list(QUALITY_SCREW_DRIVING, 10, 70),
