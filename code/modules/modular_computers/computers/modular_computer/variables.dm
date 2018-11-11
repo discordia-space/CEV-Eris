@@ -18,7 +18,6 @@
 	var/base_idle_power_usage = 5							// Power usage when the computer is idle and screen is off (currently only applies to laptops)
 	var/bsod = FALSE										// Error screen displayed
 	var/ambience_last_played								// Last time sound was played
-	var/screen_color = "#FFFFFF"
 
 	// Modular computers can run on various devices. Each DEVICE (Laptop, Console, Tablet,..)
 	// must have it's own DMI file. Icon states must be called exactly the same in all files, but may look differently
@@ -32,7 +31,8 @@
 	var/icon_state_screensaver = "standby"
 	var/max_hardware_size = 0								// Maximal hardware size. Currently, tablets have 1, laptops 2 and consoles 3. Limits what hardware types can be installed.
 	var/steel_sheet_cost = 5								// Amount of steel sheets refunded when disassembling an empty frame of this computer.
-	var/light_strength = 0									// Intensity of light this computer emits. Comparable to numbers light fixtures use.
+	var/screen_light_strength = 0							// Intensity of light this computer emits. Comparable to numbers light fixtures use.
+	var/screen_light_range = 2								// Intensity of light this computer emits. Comparable to numbers light fixtures use.
 	var/list/idle_threads = list()							// Idle programs on background. They still receive process calls but can't be interacted with.
 
 	// Damage of the chassis. If the chassis takes too much damage it will break apart.

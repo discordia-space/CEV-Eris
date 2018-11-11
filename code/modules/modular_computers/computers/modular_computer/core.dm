@@ -91,21 +91,26 @@
 
 /obj/item/modular_computer/update_icon()
 	overlays.Cut()
-	if(bsod)
-		overlays.Add("bsod")
-		return
-	if(!enabled)
-		if(icon_state_screensaver)
-			overlays.Add(icon_state_screensaver)
-		set_light(0)
-		return
-	set_light(2, light_strength, screen_color)
-	if(active_program)
-		overlays.Add(active_program.program_icon_state ? active_program.program_icon_state : icon_state_menu)
-		if(active_program.program_key_state)
-			overlays.Add(active_program.program_key_state)
+	if (screen_on)
+		if(bsod)
+			overlays.Add("bsod")
+			set_light(screen_light_range, screen_light_strength, get_average_color(icon,"bsod"))
+			return
+		if(!enabled)
+			if(icon_state_screensaver)
+				overlays.Add(icon_state_screensaver)
+			set_light(0)
+			return
+		if(active_program)
+			overlays.Add(active_program.program_icon_state ? active_program.program_icon_state : icon_state_menu)
+			set_light(screen_light_range, screen_light_strength, get_average_color(icon,active_program.program_icon_state ? active_program.program_icon_state : icon_state_menu))
+			if(active_program.program_key_state)
+				overlays.Add(active_program.program_key_state)
+		else
+			overlays.Add(icon_state_menu)
+			set_light(screen_light_range, screen_light_strength, get_average_color(icon,icon_state_menu))
 	else
-		overlays.Add(icon_state_menu)
+		set_light(0)
 
 /obj/item/modular_computer/proc/turn_on(var/mob/user)
 	if(bsod)
