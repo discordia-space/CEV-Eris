@@ -320,14 +320,18 @@ The actual fire event proc is located in storyteller_meta*/
 	event_pool_major.Cut()
 	event_pool_roleset.Cut()
 	for (var/datum/storyevent/a in storyevents)
-		if (!a.enabled)
-			continue
 
-		var/new_weight = calculate_event_weight(a)
-		//Reduce the weight based on number of ocurrences.
-		//This is mostly for the sake of midround handovers
-		if (a.ocurrences >= 1)
-			new_weight *= repetition_multiplier ** a.ocurrences
+
+		var/new_weight
+
+		if (!a.enabled)
+			new_weight = 0
+		else
+			new_weight = calculate_event_weight(a)
+			//Reduce the weight based on number of ocurrences.
+			//This is mostly for the sake of midround handovers
+			if (a.ocurrences >= 1)
+				new_weight *= repetition_multiplier ** a.ocurrences
 
 		//We setup the event pools as an associative list in preparation for a pickweight call
 		if (EVENT_LEVEL_MUNDANE in a.event_pools)

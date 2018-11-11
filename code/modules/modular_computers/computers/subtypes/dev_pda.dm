@@ -1,5 +1,5 @@
 /obj/item/modular_computer/pda
-	name = "\improper PDA"
+	name = "PDA"
 	desc = "A very compact computer, designed to keep its user always connected."
 	icon = 'icons/obj/modular_pda.dmi'
 	icon_state = "pda"

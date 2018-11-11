@@ -242,6 +242,7 @@
 			if(href_list["ev_toggle"])
 				evt.enabled = !evt.enabled
 				message_admins("Event \"[evt.id]\" was [evt.enabled?"allowed":"restricted"] to spawn by [key_name(usr)]")
+				build_event_pools()
 			if(href_list["ev_spawn"])
 				if (!evt.can_trigger())
 					var/answer = alert(usr, "\"[evt.id]\" is not allowed to trigger. Would you like to force it anyway?.", "Force Event? ", "yes", "no")
