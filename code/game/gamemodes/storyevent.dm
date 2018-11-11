@@ -67,6 +67,9 @@
 //Check if we can trigger
 /datum/storyevent/proc/can_trigger(var/severity)
 	.=TRUE
+	if (!enabled)
+		return FALSE
+
 	if(processing && is_processing())
 		return FALSE
 
