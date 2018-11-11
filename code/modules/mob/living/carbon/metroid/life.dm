@@ -99,7 +99,7 @@
 	if (halloss)
 		halloss = 0
 
-	if(prob(30))
+	if(prob(25))
 		adjustOxyLoss(-1)
 		adjustToxLoss(-1)
 		adjustFireLoss(-1)
