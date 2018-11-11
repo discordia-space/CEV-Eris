@@ -103,8 +103,8 @@
 		grenade.primed(scanning)
 
 
-/obj/item/device/assembly/prox_sensor/Move()
-	..()
+/obj/item/device/assembly/prox_sensor/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+	. = ..()
 	sense()
 
 

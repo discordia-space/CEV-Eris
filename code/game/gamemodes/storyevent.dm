@@ -141,7 +141,7 @@
 	if(req < 0)
 		return 1
 	if(val < min || val > max)
-		return 0
+		return 1
 	var/mod = (min+max/2)**2
 	return max(mod-(abs(val-req)**2),0)/mod
 

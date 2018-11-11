@@ -82,8 +82,8 @@
 	return ..()
 
 //Pixel offsetting as they scamper around
-/mob/living/simple_animal/mouse/Move()
-	if(..())
+/mob/living/simple_animal/mouse/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+	if((. = ..()))
 		if (prob(50))
 			var/new_pixelx = pixel_x
 			new_pixelx += rand(-2,2)

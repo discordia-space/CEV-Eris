@@ -73,6 +73,8 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 	Item.update_wear_icon(TRUE)
 
+	Item.dropped(src)
+
 	if(Item.action_button_name)
 		update_action_buttons()
 

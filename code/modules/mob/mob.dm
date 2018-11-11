@@ -162,7 +162,7 @@
 	return 0
 
 /mob/proc/movement_delay()
-	return 0
+	return MOVE_DELAY_BASE
 
 /mob/proc/Life()
 //	if(organStructure)
@@ -777,12 +777,12 @@
 
 
 /mob/facedir(var/ndir)
-	if(!canface() || client.moving || world.time < client.move_delay)
+	if(!canface() || client.moving || client.isMovementBlocked())
 		return 0
 	set_dir(ndir)
 	if(buckled && buckled.buckle_movable)
 		buckled.set_dir(ndir)
-	client.move_delay += movement_delay()
+	setMoveCooldown(movement_delay())
 	return 1
 
 
