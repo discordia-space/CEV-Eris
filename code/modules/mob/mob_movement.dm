@@ -277,6 +277,7 @@
 
 		move_delayer.setDelay(delay)
 		// Since we're moving OUT OF OUR OWN VOLITION AND BY OURSELVES we can update our glide_size here!
+		var/glide_size = DELAY2GLIDESIZE(delay)
 		mob.set_glide_size(DELAY2GLIDESIZE(delay))
 
 		//We are now going to move
@@ -298,7 +299,7 @@
 								else
 									diag = null
 								if ((get_dist(mob, M) > 1 || diag))
-									step(M, get_dir(M.loc, T))
+									step_glide(M, get_dir(M.loc, T), glide_size)
 				else
 					for(var/mob/M in L)
 						M.other_mobs = 1
@@ -306,7 +307,7 @@
 							M.animate_movement = 3
 					for(var/mob/M in L)
 						spawn( 0 )
-							step(M, Dir)
+							step_glide(M, Dir, glide_size)
 							return
 						spawn( 1 )
 							M.other_mobs = null

@@ -358,7 +358,7 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/proc/ai_roster()
 	set category = "Silicon Commands"
 	set name = "Show Crew Manifest"
-	show_station_manifest()
+	show_manifest(src)
 
 /mob/living/silicon/ai/var/message_cooldown = 0
 /mob/living/silicon/ai/proc/ai_announcement()

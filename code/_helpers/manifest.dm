@@ -1,4 +1,17 @@
 // Generates a simple HTML crew manifest for use in various places
+
+//Intended for open manifest in separate window
+/proc/show_manifest(var/mob/user, var/datum/src_object = user, nano_state = GLOB.default_state)
+	var/list/data = list()
+	data["crew_manifest"] = html_crew_manifest(TRUE)
+
+	var/datum/nanoui/ui = SSnano.try_update_ui(user, src_object, "manifest", null, data, TRUE)
+	if (!ui)
+		ui = new(user, src_object, "manifest", "crew_manifest.tmpl", "Crew Manifest", 450, 600, state = nano_state)
+		ui.auto_update_layout = 1
+		ui.set_initial_data(data)
+		ui.open()
+
 /proc/html_crew_manifest(var/monochrome, var/OOC)
 	var/list/dept_data = list(
 
@@ -23,7 +36,6 @@
 			bot = department["names"]
 
 	var/list/isactive = new()
-	var/list/mil_ranks = list() // HTML to prepend to name
 	var/dat = {"
 	<head><style>
 		.manifest {border-collapse:collapse;width:100%;}
@@ -78,7 +90,7 @@
 		if(names.len > 0)
 			dat += "<tr><th colspan=3>[department["header"]]</th></tr>"
 			for(var/name in names)
-				dat += "<tr class='candystripe'><td>[mil_ranks[name]][name]</td><td>[names[name]]</td><td>[isactive[name]]</td></tr>"
+				dat += "<tr class='candystripe'><td>[name]</td><td>[names[name]]</td><td>[isactive[name]]</td></tr>"
 
 	dat += "</table>"
 	dat = replacetext(dat, "\n", "") // so it can be placed on paper correctly
