@@ -25,3 +25,11 @@
 /datum/autolathe/recipe/container/syringegun_ammo
 	name = "syringe gun cartridge"
 	path = /obj/item/weapon/syringe_cartridge
+
+/datum/autolathe/recipe/container/spray
+	name = "spray bottle"
+	path = /obj/item/weapon/reagent_containers/spray
+
+/datum/autolathe/recipe/container/pill_bottle
+	name = "pill bottle"
+	path = /obj/item/weapon/storage/pill_bottle
