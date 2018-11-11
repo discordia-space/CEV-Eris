@@ -8,7 +8,7 @@
 /obj/item/craft/New(loc, new_recipe)
 	..(loc)
 	recipe = new_recipe
-	src.name = "Crafting [recipe.name]"
+	src.name = "crafting [recipe.name]"
 	src.icon_state = recipe.icon_state
 	update()
 
