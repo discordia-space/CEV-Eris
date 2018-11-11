@@ -7,36 +7,34 @@
 //
 //	query				:	select_query | delete_query | update_query | call_query | explain
 //	explain				:	'EXPLAIN' query
+//	select_query		:	'SELECT' object_selectors
+//	delete_query		:	'DELETE' object_selectors
+//	update_query		:	'UPDATE' object_selectors 'SET' assignments
+//	call_query			:	'CALL' variable 'ON' object_selectors // Note here: 'variable' does function calls. This simplifies parsing.
 //
-//	select_query		:	'SELECT' select_list [('FROM' | 'IN') from_list] ['WHERE' bool_expression]
-//	delete_query		:	'DELETE' select_list [('FROM' | 'IN') from_list] ['WHERE' bool_expression]
-//	update_query		:	'UPDATE' select_list [('FROM' | 'IN') from_list] 'SET' assignments ['WHERE' bool_expression]
-//	call_query			:	'CALL' call_function ['ON' select_list [('FROM' | 'IN') from_list] ['WHERE' bool_expression]]
+//	select_item			:	'*' | object_type
 //
-//	select_list			:	select_item [',' select_list]
-//	select_item			:	'*' | select_function | object_type
-//	select_function		:	count_function
-//	count_function		:	'COUNT' '(' '*' ')' | 'COUNT' '(' object_types ')'
+//  object_selectors    :   select_item [('FROM' | 'IN') from_item] [modifier_list]
+//  modifier_list       :   ('WHERE' bool_expression | 'MAP' expression) [modifier_list]
+// 
+//	from_item			:	'world' | expression
 //
-//	from_list			:	from_item [',' from_list]
-//	from_item			:	'world' | object_type
-//
-//	call_function		:	<function name> ['(' [arguments] ')']
+//	call_function		:	<function name> '(' [arguments] ')'
 //	arguments			:	expression [',' arguments]
 //
-//	object_type			:	<type path> | string
+//	object_type			:	<type path>
 //
-//	assignments			:	assignment, [',' assignments]
+//	assignments			:	assignment [',' assignments]
 //	assignment			:	<variable name> '=' expression
 //	variable			:	<variable name> | <variable name> '.' variable | '[' <hex number> ']' | '[' <hex number> ']' '.' variable
-//
+//  
 //	bool_expression		:	expression comparitor expression  [bool_operator bool_expression]
 //	expression			:	( unary_expression | '(' expression ')' | value ) [binary_operator expression]
 //	unary_expression	:	unary_operator ( unary_expression | value | '(' expression ')' )
 //	comparitor			:	'=' | '==' | '!=' | '<>' | '<' | '<=' | '>' | '>='
-//	value				:	variable | string | number | 'null'
+//	value				:	variable | string | number | 'null' | object_type
 //	unary_operator		:	'!' | '-' | '~'
-//	binary_operator		:	comparitor | '+' | '-' | '/' | '*' | '&' | '|' | '^'
+//	binary_operator		:	comparitor | '+' | '-' | '/' | '*' | '&' | '|' | '^' | '%'
 //	bool_operator		:	'AND' | '&&' | 'OR' | '||'
 //
 //	string				:	''' <some text> ''' | '"' <some text > '"'
@@ -51,10 +49,9 @@
 	var/list/query
 	var/list/tree
 
-	var/list/select_functions = list("count")
 	var/list/boolean_operators = list("and", "or", "&&", "||")
 	var/list/unary_operators = list("!", "-", "~")
-	var/list/binary_operators = list("+", "-", "/", "*", "&", "|", "^")
+	var/list/binary_operators = list("+", "-", "/", "*", "&", "|", "^", "%")
 	var/list/comparitors = list("=", "==", "!=", "<>", "<", "<=", ">", ">=")
 
 
@@ -118,38 +115,30 @@
 			query(i + 1, node["explain"])
 
 
-//	select_query:	'SELECT' select_list [('FROM' | 'IN') from_list] ['WHERE' bool_expression]
+//	select_query:	'SELECT' object_selectors
 /datum/SDQL_parser/proc/select_query(i, list/node)
 	var/list/select = list()
-	i = select_list(i + 1, select)
+	i = object_selectors(i + 1, select)
 
-	node += "select"
 	node["select"] = select
-
-	selectors(i, node)
-
 	return i
 
 
-//delete_query:	'DELETE' select_list [('FROM' | 'IN') from_list] ['WHERE' bool_expression]
+//delete_query:	'DELETE' object_selectors
 /datum/SDQL_parser/proc/delete_query(i, list/node)
 	var/list/select = list()
-	i = select_list(i + 1, select)
+	i = object_selectors(i + 1, select)
 
-	node += "delete"
 	node["delete"] = select
-
-	selectors(i, node)
 
 	return i
 
 
-//update_query:	'UPDATE' select_list [('FROM' | 'IN') from_list] 'SET' assignments ['WHERE' bool_expression]
+//update_query:	'UPDATE' object_selectors 'SET' assignments
 /datum/SDQL_parser/proc/update_query(i, list/node)
 	var/list/select = list()
-	i = select_list(i + 1, select)
+	i = object_selectors(i + 1, select)
 
-	node += "update"
 	node["update"] = select
 
 	if(tokenl(i) != "set")
@@ -158,36 +147,65 @@
 	var/list/set_assignments = list()
 	i = assignments(i + 1, set_assignments)
 
-	node += "set"
 	node["set"] = set_assignments
-
-	selectors(i, node)
 
 	return i
 
 
-//call_query:	'CALL' call_function ['ON' select_list [('FROM' | 'IN') from_list] ['WHERE' bool_expression]]
+//call_query:	'CALL' call_function ['ON' object_selectors]
 /datum/SDQL_parser/proc/call_query(i, list/node)
 	var/list/func = list()
 	i = variable(i + 1, func) // Yes technically does anything variable() matches but I don't care, if admins fuck up this badly then they shouldn't be allowed near SDQL.
 
-	node += "call"
 	node["call"] = func
 
 	if(tokenl(i) != "on")
-		return i
+		return parse_error("You need to specify what to call ON.")
 
 	var/list/select = list()
-	i = select_list(i + 1, select)
+	i = object_selectors(i + 1, select)
 
-	node += "on"
 	node["on"] = select
-
-	selectors(i, node)
 
 	return i
 
-//select_list:	select_item [',' select_list]
+// object_selectors: select_item [('FROM' | 'IN') from_item] [modifier_list]
+/datum/SDQL_parser/proc/object_selectors(i, list/node)
+	i = select_item(i, node)
+
+	if (tokenl(i) == "from" || tokenl(i) == "in")
+		i++
+		var/list/from = list()
+		i = from_item(i, from)
+		node[++node.len] = from
+
+	else
+		node[++node.len] = list("world")
+
+	i = modifier_list(i, node)
+	return i
+
+// modifier_list: ('WHERE' bool_expression | 'MAP' expression) [modifier_list]
+/datum/SDQL_parser/proc/modifier_list(i, list/node)
+	while (TRUE)
+		if (tokenl(i) == "where")
+			i++
+			node += "where"
+			var/list/expr = list()
+			i = bool_expression(i, expr)
+			node[++node.len] = expr
+
+		else if (tokenl(i) == "map")
+			i++
+			node += "map"
+			var/list/expr = list()
+			i = expression(i, expr)
+			node[++node.len] = expr
+	
+		else
+			return i
+
+//select_list:select_item [',' select_list]
 /datum/SDQL_parser/proc/select_list(i, list/node)
 	i = select_item(i, node)
 
@@ -208,16 +226,15 @@
 
 //select_item:	'*' | select_function | object_type
 /datum/SDQL_parser/proc/select_item(i, list/node)
-
-	if(token(i) == "*")
+	if (token(i) == "*")
 		node += "*"
 		i++
 
-	else if(tokenl(i) in select_functions)
-		i = select_function(i, node)
+	else if (copytext(token(i), 1, 2) == "/")
+		i = object_type(i, node)
 
 	else
-		i = object_type(i, node)
+		i = parse_error("Expected '*' or type path for select item")
 
 	return i
 
@@ -247,7 +264,7 @@
 
 	return i
 
-//from_item:	'world' | object_type
+//from_item:	'world' | expression
 /datum/SDQL_parser/proc/from_item(i, list/node)
 	if(token(i) == "world")
 		node += "world"
@@ -331,14 +348,17 @@
 	return i
 
 
-//object_type:	<type path> | string
+//object_type:	<type path>
 /datum/SDQL_parser/proc/object_type(i, list/node)
 
-	if(copytext(token(i), 1, 2) == "/")
-		node += token(i)
+	if (copytext(token(i), 1, 2) != "/")
+		return parse_error("Expected type, but it didn't begin with /")
+	
+	var/path = text2path(token(i))
+	if (path == null)
+		return parse_error("Nonexistant type path: [token(i)]")
 
-	else
-		i = string(i, node)
+	node += path
 
 	return i + 1
 
@@ -422,6 +442,19 @@
 			temp_expression_list = list()
 			i = expression(i, temp_expression_list)
 
+			// Ok, what the fuck BYOND?
+			// Not having these lines here causes the parser to die
+			// on an error saying that list/token() doesn't exist as a proc.
+			// These lines prevent that.
+			// I assume the compiler/VM is shitting itself and swapping out some variables internally?
+			// While throwing in debug logging it disappeared
+			// And these 3 lines prevent it from happening while being quiet.
+			// So.. it works.
+			// Don't touch it.
+			var/whatthefuck = i
+			whatthefuck = src.type
+			whatthefuck = whatthefuck
+
 		while(token(i) && token(i) != "]")
 
 		if (temp_expression_list)
@@ -459,14 +492,6 @@
 	else
 		parse_error("Expected a function but found nothing")
 	return i + 1
-
-
-//select_function:	count_function
-/datum/SDQL_parser/proc/select_function(i, list/node)
-
-	parse_error("Sorry, function calls aren't available yet")
-
-	return i
 
 
 //expression:	( unary_expression | '(' expression ')' | value ) [binary_operator expression]
@@ -544,7 +569,7 @@
 	return i
 
 
-//binary_operator:	comparitor | '+' | '-' | '/' | '*' | '&' | '|' | '^'
+//binary_operator:	comparitor | '+' | '-' | '/' | '*' | '&' | '|' | '^' | '%'
 /datum/SDQL_parser/proc/binary_operator(i, list/node)
 
 	if(token(i) in (binary_operators + comparitors))
@@ -556,7 +581,7 @@
 	return i + 1
 
 
-//value:	variable | string | number | 'null'
+//value:	variable | string | number | 'null' | object_type
 /datum/SDQL_parser/proc/value(i, list/node)
 	if(token(i) == "null")
 		node += "null"
@@ -575,12 +600,9 @@
 
 	else if(copytext(token(i), 1, 2) == "\[") // Start a list.
 		i = array(i, node)
+	else if(copytext(token(i), 1, 2) == "/")
+		i = object_type(i, node)
 	else
 		i = variable(i, node)
 
 	return i
-
-
-
-
-/*EXPLAIN SELECT * WHERE 42 = 6 * 9 OR val = - 5 == 7*/
