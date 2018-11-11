@@ -29,15 +29,16 @@
 	var/old_lighting_overlay = lighting_overlay
 	var/list/old_lighting_corners = corners
 
-
-	if(connections) connections.erase_all()
+	if(connections)
+		connections.erase_all()
 
 	if(istype(src,/turf/simulated))
 		//Yeah, we're just going to rebuild the whole thing.
 		//Despite this being called a bunch during explosions,
 		//the zone will only really do heavy lifting once.
 		var/turf/simulated/S = src
-		if(S.zone) S.zone.rebuild()
+		if(S.zone)
+			S.zone.rebuild()
 
 	if(ispath(N, /turf/simulated/floor))
 		var/turf/simulated/W = new N( locate(src.x, src.y, src.z) )
@@ -71,8 +72,13 @@
 		T.levelupdate()
 		. =  T
 
-	for(var/turf/space/SP in trange(1, src))
-		SP.update_starlight()
+	for(var/turf/neighbour in trange(1, src))
+		if (istype(neighbour, /turf/space))
+			var/turf/space/SP = neighbour
+			SP.update_starlight()
+
+		if (istype(neighbour, /turf/simulated/))
+			neighbour.update_icon()
 
 	if (SSlighting && SSlighting.initialized)
 		lighting_overlay = old_lighting_overlay

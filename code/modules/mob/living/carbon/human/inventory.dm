@@ -63,6 +63,13 @@ This saves us from having to call add_fingerprint() any time something is put in
 	return (O && !O.is_stump() && (!check_usablility || O.is_usable()))
 
 /mob/living/carbon/human/u_equip(obj/item/W as obj)
+	if(src.client)
+		src.client.screen -= W
+	W.layer = initial(W.layer)
+	W.plane = initial(W.plane)
+	W.screen_loc = null
+
+
 	if (W == wear_suit)
 		if(s_store)
 			drop_from_inventory(s_store)
@@ -152,7 +159,9 @@ This saves us from having to call add_fingerprint() any time something is put in
 	else
 		return 0
 
-	update_action_buttons()
+	W.update_wear_icon(TRUE)
+	if(W.action_button_name)
+		update_action_buttons()
 	return 1
 
 /mob/living/carbon/human/proc/get_active_hand_organ()

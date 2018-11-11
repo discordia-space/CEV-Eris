@@ -28,7 +28,7 @@
 	level_seven_announcement()
 
 /datum/event/blob/start()
-	var/area/A = random_ship_area(TRUE)
+	var/area/A = random_ship_area(filter_players = TRUE, filter_critical = TRUE)
 	var/turf/T = A.random_space()
 	if(!T)
 		log_and_message_admins("Blob failed to find a viable turf.")

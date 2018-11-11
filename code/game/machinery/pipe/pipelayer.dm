@@ -19,15 +19,15 @@
 	W = new(src)
 	..()
 
-/obj/machinery/pipelayer/Move(new_turf,M_Dir)
-	..()
+/obj/machinery/pipelayer/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+	. = ..()
 
 	if(on && a_dis)
 		dismantleFloor(old_turf)
-	layPipe(old_turf,M_Dir,old_dir)
+	layPipe(old_turf,Dir,old_dir)
 
-	old_turf = new_turf
-	old_dir = turn(M_Dir,180)
+	old_turf = NewLoc
+	old_dir = turn(Dir,180)
 
 /obj/machinery/pipelayer/attack_hand(mob/user as mob)
 	if(!metal&&!on)

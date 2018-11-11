@@ -60,8 +60,6 @@ SUBSYSTEM_DEF(ticker)
 		'sound/music/paradise_cracked_title03.ogg'))
 
 /datum/controller/subsystem/ticker/Initialize(start_timeofday)
-	world.tick_lag = config.Ticklag
-
 	if(!syndicate_code_phrase)
 		syndicate_code_phrase = generate_code_phrase()
 	if(!syndicate_code_response)
