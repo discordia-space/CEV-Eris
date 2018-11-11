@@ -183,8 +183,8 @@
 	department = "Ironhammer"
 	department_flag = IRONHAMMER
 	faction = "CEV Eris"
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#ffeeee"
 	economic_modifier = 5
