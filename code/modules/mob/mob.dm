@@ -187,6 +187,9 @@
 	if ((incapacitation_flags & INCAPACITATION_DISABLED) && (stat || paralysis || stunned || weakened || resting || sleeping || (status_flags & FAKEDEATH)))
 		return 1
 
+	if((incapacitation_flags & INCAPACITATION_UNCONSCIOUS) && (stat || paralysis || sleeping || (status_flags & FAKEDEATH)))
+		return 1
+
 	if((incapacitation_flags & INCAPACITATION_RESTRAINED) && restrained())
 		return 1
 
