@@ -97,7 +97,7 @@
 	req_type = /obj/item
 
 /datum/inventory_slot/hand/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
-	if(owner.lying)
+	if(owner.lying && I.canremove)
 		if(!disable_warning)
 			owner << SPAN_WARNING("You can't hold items while lying")
 		return FALSE
