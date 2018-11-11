@@ -114,6 +114,7 @@
 	card_slot.stored_card = null
 	update_uis()
 	update_verbs()
+	update_label()
 
 /obj/item/modular_computer/proc/proc_eject_usb(mob/user)
 	if(!user)
@@ -175,7 +176,9 @@
 
 		if(!user.unEquip(I, src))
 			return
+
 		card_slot.stored_card = I
+		update_label()
 		update_uis()
 		update_verbs()
 		playsound(loc, 'sound/machines/id_swipe.ogg', 100, 1)
