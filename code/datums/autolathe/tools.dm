@@ -141,3 +141,7 @@
 /datum/autolathe/recipe/tool/rcd_ammo
 	name = "matter cartridge"
 	path = /obj/item/weapon/rcd_ammo
+
+/datum/autolathe/recipe/tool/pneumatic_crowbar
+	name = "pneumatic crowbar"
+	path = /obj/item/weapon/tool/crowbar/pneumatic
