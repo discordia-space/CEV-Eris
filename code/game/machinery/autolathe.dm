@@ -339,7 +339,10 @@
 			SSnano.update_uis(src)
 
 /obj/machinery/autolathe/proc/eat(var/mob/living/user)
-	if(!istype(user) || stat)
+	if(!istype(user))
+		return
+
+	if(stat)
 		return
 
 	var/obj/item/eating = user.get_active_hand()
