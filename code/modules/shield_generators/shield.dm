@@ -1,3 +1,8 @@
+/turf/proc/getEffectShield()
+	for (var/obj/effect/shield/S in contents)
+		if (!S.isInactive())
+			return S
+
 /obj/effect/shield_impact
 	name = "shield impact"
 	icon = 'icons/obj/machines/shielding.dmi'
@@ -6,7 +11,6 @@
 	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
 	density = 0
-
 
 /obj/effect/shield_impact/New()
 	spawn(2 SECONDS)
@@ -26,7 +30,15 @@
 	var/obj/machinery/power/shield_generator/gen = null
 	var/disabled_for = 0
 	var/diffused_for = 0
+	var/floorOnly = FALSE
+	var/ignoreExAct = FALSE
+	alpha = 128
 
+/obj/effect/shield/floor
+	alpha = 32
+	floorOnly= TRUE
+	mouse_opacity = 0
+	ignoreExAct = TRUE
 
 /obj/effect/shield/update_icon()
 	if(gen && gen.check_flag(MODEFLAG_PHOTONIC) && !disabled_for && !diffused_for)
@@ -56,6 +68,7 @@ Like for example singulo act and whatever.
 /obj/effect/shield/New()
 	..()
 	update_nearby_tiles()
+	update_openspace()
 
 
 /obj/effect/shield/Destroy()
@@ -67,7 +80,7 @@ Like for example singulo act and whatever.
 		if(src in gen.damaged_segments)
 			gen.damaged_segments -= src
 		gen = null
-	
+
 
 
 // Temporarily collapses this shield segment.
@@ -176,27 +189,39 @@ Like for example singulo act and whatever.
 			fail_adjacent_segments(rand(8, 16), hitby)
 			for(var/obj/effect/shield/S in field_segments)
 				S.fail(1)
+				CHECK_TICK
 			return
 
+/obj/effect/shield/proc/isInactive()
+	if(!gen)
+		qdel(src)
+		return TRUE
+
+	if(disabled_for || diffused_for)
+		return TRUE
 
 // As we have various shield modes, this handles whether specific things can pass or not.
 /obj/effect/shield/CanPass(var/atom/movable/mover, var/turf/target, var/height=0, var/air_group=0)
 	// Somehow we don't have a generator. This shouldn't happen. Delete the shield.
-	if(!gen)
-		qdel(src)
-		return 1
-
-	if(disabled_for || diffused_for)
-		return 1
+	if (isInactive())
+		return TRUE
 
 	// Atmosphere containment.
 	if(air_group)
 		return !gen.check_flag(MODEFLAG_ATMOSPHERIC)
 
 	if(mover)
+		if (floorOnly)
+			return TRUE
 		return mover.can_pass_shield(gen)
-	return 1
+	return TRUE
 
+/obj/effect/shield/proc/CanActThrough(var/atom/movable/actor)
+	if (isInactive())
+		return TRUE
+	if(actor)
+		return actor.can_pass_shield(gen)
+	return TRUE
 
 /obj/effect/shield/c_airblock(turf/other)
 	return gen.check_flag(MODEFLAG_ATMOSPHERIC) ? BLOCKED : 0
@@ -204,19 +229,19 @@ Like for example singulo act and whatever.
 
 // EMP. It may seem weak but keep in mind that multiple shield segments are likely to be affected.
 /obj/effect/shield/emp_act(var/severity)
-	if(!disabled_for)
+	if (!isInactive())
 		take_damage(rand(30,60) / severity, SHIELD_DAMTYPE_EM, src)
 
 
 // Explosions
 /obj/effect/shield/ex_act(var/severity)
-	if(!disabled_for)
-		take_damage(rand(10,15) / severity, SHIELD_DAMTYPE_PHYSICAL, src)
-
+	if (!ignoreExAct)
+		if (!isInactive())
+			take_damage(rand(10,15) / severity, SHIELD_DAMTYPE_PHYSICAL, src)
 
 // Fire
 /obj/effect/shield/fire_act()
-	if(!disabled_for)
+	if (!isInactive())
 		take_damage(rand(5,10), SHIELD_DAMTYPE_HEAT, src)
 
 
