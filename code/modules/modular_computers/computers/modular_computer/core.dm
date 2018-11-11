@@ -236,6 +236,16 @@
 		update_icon()
 	return TRUE
 
+
+/obj/item/modular_computer/proc/update_label()
+	if (card_slot)
+		var/obj/item/weapon/card/id/I = card_slot.stored_card
+		if (istype(I))
+			SetName("[initial(name)]-[I.registered_name] ([I.assignment])")
+			return
+
+	SetName(initial(name))
+
 /obj/item/modular_computer/proc/update_uis()
 	if(active_program) //Should we update program ui or computer ui?
 		SSnano.update_uis(active_program)
