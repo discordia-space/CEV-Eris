@@ -349,11 +349,11 @@
 		updateicon()
 
 // this verb lets cyborgs see the stations manifest
-/mob/living/silicon/robot/verb/cmd_station_manifest()
+/mob/living/silicon/robot/verb/open_manifest()
 	set category = "Silicon Commands"
 	set name = "Show Crew Manifest"
-	show_station_manifest()
-
+	show_manifest(src)
+	
 /mob/living/silicon/robot/proc/self_diagnosis()
 	if(!is_component_functioning("diagnosis unit"))
 		return null
