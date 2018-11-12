@@ -22,7 +22,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_NORMAL
 	tool_qualities = list(QUALITY_WIRE_CUTTING = 20, QUALITY_RETRACTING = 10, QUALITY_BONE_SETTING = 10)
-	degradation = 3
+	degradation = 2.5
 
 /obj/item/weapon/tool/wirecutters/armature
 	name = "armature cutter"
@@ -31,6 +31,7 @@
 	force = WEAPON_FORCE_NORMAL
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 1)
 	tool_qualities = list(QUALITY_WIRE_CUTTING = 40, QUALITY_CUTTING = 30)
+	degradation = 0.12
 
 /obj/item/weapon/tool/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)
 	if(istype(C) && user.a_intent == I_HELP && (C.handcuffed) && (istype(C.handcuffed, /obj/item/weapon/handcuffs/cable)))

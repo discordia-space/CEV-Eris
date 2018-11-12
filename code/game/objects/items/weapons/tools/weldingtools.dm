@@ -34,7 +34,7 @@
 	force_ignited = WEAPON_FORCE_PAINFULL * 0.8
 	max_fuel = 15
 	switched_on_qualities = list(QUALITY_WELDING = 15, QUALITY_CAUTERIZING = 10, QUALITY_WIRE_CUTTING = 10)
-	degradation = 4
+	degradation = 3
 
 //The improvised welding tool is created with a full tank of fuel.
 //It's implied that it's burning the oxygen in the emergency tank that was used to create it
@@ -73,6 +73,7 @@
 	max_fuel = 40
 	force_ignited = WEAPON_FORCE_PAINFULL*1.15 //Slightly more powerful, not much more so
 	heat = 3773
+	degradation = 0.12
 
 /obj/item/weapon/tool/weldingtool/is_hot()
 	if (damtype == BURN)

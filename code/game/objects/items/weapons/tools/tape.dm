@@ -101,7 +101,8 @@
 	if (target.w_class > ITEM_SIZE_SMALL)
 		user << SPAN_WARNING("The [target] is too big to stick with tape!")
 		return
-
+	if (istype(target.loc, /obj))
+		return
 	consume_resources(10, user)
 	user.drop_from_inventory(target)
 	var/obj/item/weapon/ducttape/tape = new(get_turf(src))
