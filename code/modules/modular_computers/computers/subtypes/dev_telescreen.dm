@@ -11,7 +11,7 @@
 	base_active_power_usage = 300
 	max_hardware_size = 2
 	steel_sheet_cost = 10
-	screen_light_strength = 2.8
+	screen_light_strength = 2.7
 	screen_light_range = 2.5
 	max_damage = 300
 	broken_damage = 150
