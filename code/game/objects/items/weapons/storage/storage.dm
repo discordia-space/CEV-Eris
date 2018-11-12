@@ -129,7 +129,7 @@
 
 	//slot storage based items
 	else
-		var/maxColumnCount = data.StorageData["ColCount"]
+		var/maxColumnCount = min(data.StorageData["ColCount"], storage_slots)
 		var/spacingBetweenSlots = 0 //in pixels
 
 		var/totalWidth = 0 //in pixels
