@@ -5,12 +5,6 @@ SUBSYSTEM_DEF(inactivity)
 	var/tmp/list/client_list
 	var/number_kicked = 0
 
-/datum/controller/subsystem/inactivity/Initialize(start_timeofday)
-	if(!config.kick_inactive)
-		can_fire = FALSE    // with SS_NO_FIRE below, this only acts purely as visual state, which shows OFFLINE for SS in MC status bar.
-		flags |= SS_NO_FIRE // removes SS from fire queue
-	return ..()
-
 /datum/controller/subsystem/inactivity/fire(resumed = FALSE)
 	if (!resumed)
 		client_list = clients.Copy()
@@ -23,6 +17,9 @@ SUBSYSTEM_DEF(inactivity)
 			C << SPAN_WARNING("You have been inactive for more than [config.kick_inactive] minute\s and have been disconnected.")
 			del(C) // Don't qdel, cannot override finalize_qdel behaviour for clients.
 			number_kicked++
+		else if (C.mob && C.mob.mind && C.mob.stat != DEAD)
+			C.mob.mind.last_activity = world.time - C.inactivity
+
 		if (MC_TICK_CHECK)
 			return
 
