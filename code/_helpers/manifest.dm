@@ -53,15 +53,24 @@
 		var/name = CR.get_name()
 		var/rank = CR.get_job()
 
-		if(OOC)
-			var/active = 0
-			for(var/mob/M in player_list)
-				if(M.real_name == name && M.client && M.client.inactivity <= 10 * 60 * 10)
-					active = 1
-					break
-			isactive[name] = active ? "Active" : "Inactive"
-		else
-			isactive[name] = CR.get_status()
+		var/matched = FALSE
+		var/skip = FALSE
+		//Minds should never be deleted, so our crew record must be in here somewhere
+		for(var/datum/mind/M in SSticker.minds)
+			if(M.name == name)
+				matched = TRUE
+				var/temp = M.manifest_status(CR)
+				if (temp)
+					isactive[name] = temp
+				else
+					skip = TRUE
+				break
+
+		if (skip)
+			continue
+
+		if (!matched)
+			isactive[name] = "Unknown"
 
 		var/datum/job/job = SSjob.occupations_by_name[rank]
 		var/found_place = 0
