@@ -11,7 +11,7 @@
 	health = 40
 	melee_damage_lower = 5
 	melee_damage_upper = 10
-	poison_per_bite = 10
+	poison_per_bite = 2
 	var/atom/cocoon_target
 	poison_type = "stoxin"
 	var/fed = 0
