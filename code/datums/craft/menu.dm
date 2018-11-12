@@ -54,7 +54,7 @@
 	var/list/items = list()
 	for(var/datum/craft_recipe/recipe in SScraft.categories[curr_category])
 		items += list(list(
-			"name" = recipe.name,
+			"name" = capitalize(recipe.name),
 			"ref" = "\ref[recipe]"
 		))
 	data["items"] = items

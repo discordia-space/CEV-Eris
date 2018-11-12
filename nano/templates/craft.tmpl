@@ -21,6 +21,7 @@
 	{{if data.cur_item}}
 		<h2>{{:data.cur_item.name}}</h2>
 		{{:data.cur_item.desc}}
+		</br>
 		{{:helper.link("Build", null, {'build' : data.cur_item.ref})}}
 		{{if data.is_admin}}
 			{{:helper.link("View variables", null, {'view_vars' : data.cur_item.ref})}}

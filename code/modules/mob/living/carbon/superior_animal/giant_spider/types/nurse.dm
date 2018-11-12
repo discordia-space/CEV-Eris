@@ -11,7 +11,7 @@
 	health = 40
 	melee_damage_lower = 5
 	melee_damage_upper = 10
-	poison_per_bite = 10
+	poison_per_bite = 2
 	var/atom/cocoon_target
 	poison_type = "stoxin"
 	var/fed = 0
@@ -49,6 +49,7 @@
 				cocoon_target = safepick(nearestObjectsInList(cocoonTargets,src,1))
 				if (cocoon_target)
 					busy = MOVING_TO_TARGET
+					set_glide_size(DELAY2GLIDESIZE(move_to_delay))
 					walk_to(src, cocoon_target, 1, move_to_delay)
 					GiveUp(cocoon_target) //give up if we can't reach target
 					return
@@ -92,6 +93,7 @@
 						if (cocoon_target)
 							busy = MOVING_TO_TARGET
 							stop_automated_movement = 1
+							set_glide_size(DELAY2GLIDESIZE(move_to_delay))
 							walk_to(src, cocoon_target, 1, move_to_delay)
 							GiveUp(cocoon_target) //give up if we can't reach target
 

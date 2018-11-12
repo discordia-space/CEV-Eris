@@ -177,8 +177,9 @@ obj/item/check_airflow_movable(n)
 		if(!istype(loc, /turf))
 			return
 		step_towards(src, src.airflow_dest)
-		if(ismob(src) && src:client)
-			src:client:move_delay = world.time + vsc.airflow_mob_slowdown
+		if(ismob(src))
+			var/mob/m = src
+			m.setMoveCooldown(vsc.airflow_mob_slowdown)
 	airflow_dest = null
 	airflow_speed = 0
 	airflow_time = 0

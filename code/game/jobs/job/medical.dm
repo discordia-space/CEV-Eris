@@ -61,7 +61,7 @@
 	department_flag = MEDICAL
 	faction = "CEV Eris"
 	total_positions = 5
-	spawn_positions = 3
+	spawn_positions = 5
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#ffeef0"
 	economic_modifier = 7
@@ -186,8 +186,8 @@
 	department = "Medical"
 	department_flag = MEDICAL
 	faction = "CEV Eris"
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 3
+	spawn_positions = 3
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#ffeef0"
 	economic_modifier = 4

@@ -60,6 +60,8 @@
 		new /obj/item/weapon/tool/crowbar(src)
 		new /obj/item/stack/cable_coil(src,30,color)
 		new /obj/item/stack/cable_coil(src,30,color)
+		if (prob(60))
+			new /obj/item/weapon/tool/tape_roll(src)
 		if(prob(5))
 			new /obj/item/clothing/gloves/insulated(src)
 		else

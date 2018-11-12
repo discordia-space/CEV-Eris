@@ -1,17 +1,17 @@
 /mob/living/carbon/human/movement_delay()
-
-	var/tally = 0
+	// Humans specifically are 1 delay unit SLOWER because shoes make them 1 delay unit FASTER.
+	var/tally = MOVE_DELAY_BASE+1
 
 	if(species.slowdown)
-		tally = species.slowdown
+		tally += species.slowdown
 
-	if (istype(loc, /turf/space)) return -1 // It's hard to be slowed down in space by... anything
+	if (istype(loc, /turf/space)) return 0 // It's hard to be slowed down in space by... anything
 
 	if(embedded_flag)
 		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
 
 	if(CE_SPEEDBOOST in chem_effects)
-		return -1
+		return 0
 
 	var/health_deficiency = (maxHealth - health)
 	if(health_deficiency >= 40) tally += (health_deficiency / 25)
@@ -58,7 +58,7 @@
 	if(mRun in mutations)
 		tally = 0
 
-	return (tally+config.human_delay)
+	return tally
 
 /mob/living/carbon/human/Process_Spacemove(var/check_drift = 0)
 	//Can we act?

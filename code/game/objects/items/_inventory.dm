@@ -62,13 +62,21 @@
 
 
 /obj/item/proc/is_worn()
+	//If equip_slot is zero then it has never been equipped
+	if (equip_slot == slot_none)
+		return FALSE
+
 	if (ismob(loc))
-		return !(equip_slot in list(slot_none, slot_l_hand, slot_r_hand))
+		return !(equip_slot in unworn_slots)
 
 
 /obj/item/proc/is_held()
+	//If equip_slot is zero then it has never been equipped
+	if (equip_slot == slot_none)
+		return FALSE
+
 	if (ismob(loc))
-		return equip_slot in list(slot_l_hand, slot_r_hand)
+		return equip_slot in list(slot_l_hand, slot_r_hand,slot_robot_equip_1,slot_robot_equip_2,slot_robot_equip_3)
 
 
 /obj/item/proc/get_equip_slot()

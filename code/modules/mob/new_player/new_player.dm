@@ -161,7 +161,7 @@
 		LateChoices()
 
 	if(href_list["manifest"])
-		ViewManifest()
+		show_manifest(src, nano_state = GLOB.interactive_state)
 
 	if(href_list["SelectedJob"])
 
@@ -270,7 +270,7 @@
 		character.buckled.loc = character.loc
 		character.buckled.set_dir(character.dir)
 	if(SSjob.ShouldCreateRecords(job.title))
-		if(character.mind.assigned_role != "Cyborg")
+		if(character.mind.assigned_role != "Robot")
 			CreateModularRecord(character)
 			data_core.manifest_inject(character)
 			matchmaker.do_matchmaking()
@@ -392,13 +392,7 @@
 
 	return new_character
 
-/mob/new_player/proc/ViewManifest()
-	var/dat = "<html><body>"
-	dat += "<h4>Show Crew Manifest</h4>"
-	dat += data_core.get_manifest(OOC = 1)
-	src << browse(dat, "window=manifest;size=370x420;can_close=1")
-
-/mob/new_player/Move()
+/mob/new_player/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	return 0
 
 /mob/new_player/proc/close_spawn_windows()

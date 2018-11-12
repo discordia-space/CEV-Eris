@@ -268,7 +268,7 @@
 	z_original = z
 
 
-/obj/effect/meteor/Move()
+/obj/effect/meteor/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	. = ..() //process movement...
 	move_count++
 	if(loc == dest)

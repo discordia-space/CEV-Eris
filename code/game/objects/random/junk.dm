@@ -6,7 +6,7 @@
 	return pickweight(list(
 		/obj/random/rare = 1, //A diamond in the rough
 		/obj/item/weapon/material/shard = 5,
-		/obj/item/weapon/material/shard/shrapnel = 5,
+		/obj/item/weapon/material/shard/shrapnel = 8,
 		/obj/item/stack/material/cardboard = 3,
 		/obj/item/weapon/storage/box/lights/mixed = 3,
 		/obj/item/weapon/storage/box/matches = 4,
@@ -16,6 +16,8 @@
 		/obj/item/weapon/folder/yellow = 2,
 		/obj/item/weapon/folder/white = 2,
 		/obj/item/weapon/circuitboard/broken = 5,
+		/obj/random/tool = 2,
+		/obj/item/weapon/tool/tape_roll = 3,
 		/obj/item/trash/candle = 1,
 		/obj/item/trash/candy = 1,
 		/obj/item/trash/cheesie = 1,
@@ -48,9 +50,9 @@
 		/obj/item/weapon/reagent_containers/blood/empty = 1,
 		/obj/item/weapon/reagent_containers/dropper = 1,
 		/obj/item/stack/rods = 4,
-		/obj/item/weapon/paper = 4,
-		/obj/item/remains/robot = 5,
-		/obj/item/weapon/cigbutt = 4,
+		/obj/item/weapon/paper = 3,
+		/obj/item/remains/robot = 1,
+		/obj/item/weapon/cigbutt = 3,
 		/obj/effect/decal/cleanable/blood/gibs/robot = 1,
 		/obj/effect/decal/cleanable/blood/oil = 1,
 		/obj/effect/decal/cleanable/blood/oil/streak = 1,
@@ -58,7 +60,8 @@
 		/obj/effect/decal/cleanable/spiderling_remains = 1,
 		/obj/effect/decal/cleanable/vomit = 1,
 		/obj/effect/decal/cleanable/blood/splatter = 1,
-		/obj/effect/spider/stickyweb = 2 //These are useful for tape crafting
+		/obj/effect/spider/stickyweb = 10, //These are useful for tape crafting
+		/obj/random/pouch = 1
 	))
 
 /obj/random/junk/low_chance

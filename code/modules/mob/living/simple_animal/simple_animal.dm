@@ -115,7 +115,7 @@
 					var/moving_to = 0 // otherwise it always picks 4, fuck if I know.   Did I mention fuck BYOND
 					moving_to = pick(cardinal)
 					set_dir(moving_to)			//How about we turn them the direction they are moving, yay.
-					Move(get_step(src,moving_to))
+					step_glide(src, moving_to, DELAY2GLIDESIZE(0.5 SECONDS))
 					turns_since_move = 0
 
 	//Speaking
@@ -256,29 +256,22 @@
 
 /mob/living/simple_animal/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
 
-	visible_message(SPAN_DANGER("\The [src] has been attacked with \the [O] by [user]."))
-
-	if(O.force <= resistance)
+	if(effective_force <= resistance)
 		user << SPAN_DANGER("This weapon is ineffective, it does no damage.")
 		return 2
-
-	var/damage = O.force
-	if (O.damtype == HALLOSS)
-		damage = 0
-	adjustBruteLoss(damage)
-
-	return 0
+	effective_force -= resistance
+	.=..(O, user, effective_force, hit_zone)
 
 /mob/living/simple_animal/movement_delay()
-	var/tally = 0 //Incase I need to add stuff other than "speed" later
+	var/tally = MOVE_DELAY_BASE //Incase I need to add stuff other than "speed" later
 
-	tally = speed
+	tally += speed
 	if(purge)//Purged creatures will move more slowly. The more time before their purge stops, the slower they'll move.
 		if(tally <= 0)
 			tally = 1
 		tally *= purge
 
-	return tally+config.animal_delay
+	return tally
 
 /mob/living/simple_animal/Stat()
 	..()
@@ -308,8 +301,7 @@
 		if(3.0)
 			adjustBruteLoss(30)
 
-/mob/living/simple_animal/adjustBruteLoss(damage)
-	health = Clamp(health - damage, 0, maxHealth)
+
 
 /mob/living/simple_animal/proc/SA_attackable(target_mob)
 	if (isliving(target_mob))

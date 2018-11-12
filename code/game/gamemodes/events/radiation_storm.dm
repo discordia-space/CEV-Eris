@@ -58,17 +58,16 @@
 		if(A.flags & AREA_FLAG_RAD_SHIELDED)
 			continue
 
-
 		if(istype(C,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = C
-			H.apply_effect((rand(15,30)),IRRADIATE,blocked = H.getarmor(null, "rad"))
+			H.apply_effect((rand(15,30)),IRRADIATE)
 			if(prob(4))
-				H.apply_effect((rand(20,60)),IRRADIATE,blocked = H.getarmor(null, "rad"))
-				if (prob(75))
-					randmutb(H) // Applies bad mutation
-					domutcheck(H,null,MUTCHK_FORCED)
-				else
-					randmutg(H) // Applies good mutation
+				H.apply_effect((rand(20,60)),IRRADIATE)
+				if (prob(max(0, 100 - H.getarmor(null, "rad"))))
+					if (prob(75))
+						randmutb(H) // Applies bad mutation
+					else
+						randmutg(H) // Applies good mutation
 					domutcheck(H,null,MUTCHK_FORCED)
 
 /datum/event/radiation_storm/end()

@@ -17,7 +17,7 @@
 	I.plane = OPENSPACE_PLANE
 	I.layer = ABOVE_LIGHTING_LAYER
 	I.blend_mode = BLEND_MULTIPLY
-	I.color = rgb(0,0,0,100)
+	I.color = rgb(0,0,0,110)
 
 	return I
 
@@ -32,6 +32,8 @@
 	I.pixel_w = A.pixel_w
 	I.pixel_z = A.pixel_z
 	I.transform = A.transform
+	if (!I.icon) //thanks byond
+		I.icon_state = null
 
 	return I
 
@@ -49,7 +51,7 @@
 			I.plane = mimic_plane
 			overlays += I
 
-/turf/simulated/open/update_icon(var/roundstart_update = FALSE)
+/turf/simulated/open/update_icon(var/update_neighbors, var/roundstart_update = FALSE)
 	if (SSticker.current_state != GAME_STATE_PLAYING)
 		return
 
@@ -62,27 +64,28 @@
 
 	overlays.Cut()
 	var/turf/below = GetBelow(src)
-	if (below)
-		if (below.is_hole)
-			plane = PLANE_SPACE
-
-			overlays += below.overlays
-			mimicTurf(below, OPENSPACE_PLANE, TRUE)
-		else
-			plane = OPENSPACE_PLANE
-
-			mimicTurf(below, OPENSPACE_PLANE)
-
-		overlays += getDarknessOverlay()
-
-		updateFallability()
-	else
+	if (!below || istype(below, /turf/space))
 		ChangeTurf(/turf/space)
+		return
+
+	if (below.is_hole)
+		plane = PLANE_SPACE
+
+		overlays += below.overlays
+		mimicTurf(below, OPENSPACE_PLANE, TRUE)
+	else
+		plane = OPENSPACE_PLANE
+
+		mimicTurf(below, OPENSPACE_PLANE)
+
+	overlays += getDarknessOverlay()
+
+	updateFallability()
 
 	_initialized_transparency = TRUE
 	update_openspace() //propagate update upwards
 
-/turf/space/update_icon(var/roundstart_update = FALSE)
+/turf/space/update_icon(var/update_neighbors, var/roundstart_update = FALSE)
 	if (SSticker.current_state < GAME_STATE_PLAYING)
 		return
 
@@ -95,6 +98,10 @@
 
 	overlays.Cut()
 	var/turf/below = GetBelow(src)
+	if (istype(below, /turf/simulated/open))
+		ChangeTurf(/turf/simulated/open)
+		return
+
 	if (below)
 		if (below.is_hole)
 			plane = PLANE_SPACE
@@ -114,7 +121,7 @@
 /hook/roundstart/proc/init_openspace()
 	for (var/turf/T in turfs)
 		if (T.isTransparent)
-			T.update_icon(TRUE)
+			T.update_icon(roundstart_update=TRUE)
 	return TRUE
 
 /atom/proc/update_openspace()

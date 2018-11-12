@@ -99,7 +99,7 @@
 			overlays.Add(icon_state_screensaver)
 		set_light(0)
 		return
-	set_light(0.2, 0.1, light_strength)
+	set_light(2, 1, light_strength)
 	if(active_program)
 		overlays.Add(active_program.program_icon_state ? active_program.program_icon_state : icon_state_menu)
 		if(active_program.program_key_state)
@@ -235,6 +235,15 @@
 		active_program = P
 		update_icon()
 	return TRUE
+
+
+/obj/item/modular_computer/proc/update_label()
+	var/obj/item/weapon/card/id/I = GetIdCard()
+	if (istype(I))
+		SetName("[initial(name)]-[I.registered_name] ([I.assignment])")
+		return
+
+	SetName(initial(name))
 
 /obj/item/modular_computer/proc/update_uis()
 	if(active_program) //Should we update program ui or computer ui?

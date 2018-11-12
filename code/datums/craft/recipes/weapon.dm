@@ -112,3 +112,12 @@
 		list(/obj/item/device/assembly/igniter, 1),
 		list(/obj/item/stack/cable_coil, 2, "time" = 10)
 	)
+
+/datum/craft_recipe/weapon/flamethrower
+	name = "flamethrower"
+	result = /obj/item/weapon/flamethrower
+	steps = list(
+		list(/obj/item/weapon/tool/weldingtool, 1, "time" = 60),
+		list(QUALITY_SCREW_DRIVING, 10, 70),
+		list(/obj/item/device/assembly/igniter, 1),
+	)

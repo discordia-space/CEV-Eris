@@ -14,7 +14,7 @@
 		<a href='?_src_=vars;datumedit=\ref[src];varnameedit=dir'>[dir2text(dir)]</a>
 		<a href='?_src_=vars;rotatedatum=\ref[src];rotatedir=right'>>></a>
 		</font>
-		"}
+	"}
 
 /mob/living/get_view_variables_header()
 	return {"
@@ -29,7 +29,7 @@
 		CLONE:<a href='?_src_=vars;mobToDamage=\ref[src];adjustDamage=clone'>[getCloneLoss()]</a>
 		BRAIN:<a href='?_src_=vars;mobToDamage=\ref[src];adjustDamage=brain'>[getBrainLoss()]</a>
 		</font>
-		"}
+	"}
 
 // Same for these as for get_view_variables_header() above
 /client/proc/get_view_variables_options()
@@ -64,9 +64,7 @@
 		<option value='?_src_=vars;remverb=\ref[src]'>Remove Verb</option>
 		<option>---</option>
 		<option value='?_src_=vars;gib=\ref[src]'>Gib</option>
-		<option value='?_src_=vars;explode=\ref[src]'>Trigger explosion</option>
-		<option value='?_src_=vars;emp=\ref[src]'>Trigger EM pulse</option>
-		"}
+	"}
 
 /mob/living/carbon/human/get_view_variables_options()
 	return ..() + {"
@@ -76,20 +74,23 @@
 		<option value='?_src_=vars;makemonkey=\ref[src]'>Make monkey</option>
 		<option value='?_src_=vars;makealien=\ref[src]'>Make alien</option>
 		<option value='?_src_=vars;makeslime=\ref[src]'>Make slime</option>
-		"}
-
-/obj/get_view_variables_options()
-	return ..() + {"
-		<option value='?_src_=vars;delall=\ref[src]'>Delete all of type</option>
-		<option value='?_src_=vars;explode=\ref[src]'>Trigger explosion</option>
-		<option value='?_src_=vars;emp=\ref[src]'>Trigger EM pulse</option>
-		"}
+	"}
 
 /turf/get_view_variables_options()
 	return ..() + {"
+		<option value='?_src_=vars;teleport_to=\ref[src]'>Teleport to</option>
 		<option value='?_src_=vars;explode=\ref[src]'>Trigger explosion</option>
 		<option value='?_src_=vars;emp=\ref[src]'>Trigger EM pulse</option>
-		"}
+	"}
+
+/atom/movable/get_view_variables_options()
+	return ..() + {"
+		<option value='?_src_=vars;teleport_here=\ref[src]'>Teleport here</option>
+		<option value='?_src_=vars;teleport_to=\ref[src]'>Teleport to</option>
+		<option value='?_src_=vars;delall=\ref[src]'>Delete all of type</option>
+		<option value='?_src_=vars;explode=\ref[src]'>Trigger explosion</option>
+		<option value='?_src_=vars;emp=\ref[src]'>Trigger EM pulse</option>
+	"}
 
 // The following vars cannot be viewed by anyone
 /datum/proc/VV_hidden()
