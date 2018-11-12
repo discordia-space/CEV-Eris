@@ -52,6 +52,7 @@
 	light_power_on = 0.2
 	density = 0
 	CheckFaceFlag = 0
+	circuit = /obj/item/weapon/circuitboard/guestpass
 	var/obj/item/weapon/card/id/giver
 	var/list/accesses = list()
 	var/giv_name = "NOT SPECIFIED"
