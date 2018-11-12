@@ -370,7 +370,7 @@
 
 	for(var/obj/O in eating.GetAllContents(includeSelf = TRUE))
 		var/list/_matter = O.get_matter()
-		if(_matter && _matter)
+		if(_matter)
 			for(var/material in _matter)
 				if(!(material in stored_material))
 					stored_material[material] = 0
