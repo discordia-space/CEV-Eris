@@ -229,7 +229,7 @@
 		var/obj/item/weapon/storage/S = O.loc
 		S.remove_from_storage(O, src)
 	else
-		O.loc = src
+		O.forceMove(src)
 
 	var/newID = 0
 	for (var/datum/seed_pile/N in piles)
