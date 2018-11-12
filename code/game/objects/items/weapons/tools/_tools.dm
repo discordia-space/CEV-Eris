@@ -34,7 +34,7 @@
 	var/switched_on = FALSE	//Curent status of tool. Dont edit this in subtypes vars, its for procs only.
 	var/switched_on_qualities = null	//This var will REPLACE tool_qualities when tool will be toggled on.
 	var/switched_off_qualities = null	//This var will REPLACE tool_qualities when tool will be toggled off. So its possible for tool to have diferent qualities both for ON and OFF state.
-	var/create_hot_spot = FALSE	//Set this TRUE to ignite plasma on turf with tool upon activation
+	var/create_hot_spot = FALSE	 //Set this TRUE to ignite plasma on turf with tool upon activation
 	var/glow_color = null	//Set color of glow upon activation, or leave it null if you dont want any light
 
 
