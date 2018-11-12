@@ -1216,6 +1216,8 @@ var/list/FLOORITEMS = list(
 	. = view(range, dview_mob)
 	dview_mob.loc = null
 
+/var/mob/dview/dview_mob = new
+
 /mob/dview
 	invisibility = 101
 	density = 0

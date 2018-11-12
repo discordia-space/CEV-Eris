@@ -1,4 +1,4 @@
-/mob/living/silicon/ai/Login()	//ThisIsDumb(TM) TODO: tidy this up ¬_¬ ~Carn
+/mob/living/silicon/ai/Login()	//ThisIsDumb(TM) TODO: tidy this up Â¬_Â¬ ~Carn
 	..()
 	regenerate_icons()
 /*	flash = new /obj/screen()
@@ -20,4 +20,5 @@
 			O.mode = 1
 			O.emotion = "Neutral"
 	src.view_core()
-	return
+	
+	client.CAN_MOVE_DIAGONALLY = TRUE

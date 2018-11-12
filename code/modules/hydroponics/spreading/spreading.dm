@@ -27,10 +27,10 @@
 	icon_state = "bush4-1"
 	layer = 3
 	pass_flags = PASSTABLE
-	mouse_opacity = 2
+	mouse_opacity = 1
 
 	var/health = 10
-	var/max_health = 100
+	var/max_health = 60
 	var/growth_threshold = 0
 	var/growth_type = 0
 	var/max_growth = 0
@@ -239,7 +239,7 @@
 		update_icon()
 
 /obj/effect/plant/proc/is_mature()
-	return (health >= (max_health/3) && world.time > mature_time)
+	return (health >= (max_health*0.8) && world.time > mature_time)
 
 
 /obj/effect/plant/examine()

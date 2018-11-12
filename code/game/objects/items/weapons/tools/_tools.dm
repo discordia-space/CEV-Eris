@@ -27,14 +27,14 @@
 
 
 	//Variables used for makeshift tools
-	var/degradation = 0.3 //If nonzero, the unreliability of the tool increases by 0..this after each tool operation
+	var/degradation = 0.15 //If nonzero, the unreliability of the tool increases by 0..this after each tool operation
 	var/unreliability = 0 //This is added to the failure rate of operations with this tool
 
 	var/toggleable = FALSE	//Determinze if it can be switched ON or OFF, for example, if you need a tool that will consume power/fuel upon turning it ON only. Such as welder.
 	var/switched_on = FALSE	//Curent status of tool. Dont edit this in subtypes vars, its for procs only.
 	var/switched_on_qualities = null	//This var will REPLACE tool_qualities when tool will be toggled on.
 	var/switched_off_qualities = null	//This var will REPLACE tool_qualities when tool will be toggled off. So its possible for tool to have diferent qualities both for ON and OFF state.
-	var/create_hot_spot = FALSE	//Set this TRUE to ignite plasma on turf with tool upon activation
+	var/create_hot_spot = FALSE	 //Set this TRUE to ignite plasma on turf with tool upon activation
 	var/glow_color = null	//Set color of glow upon activation, or leave it null if you dont want any light
 
 
@@ -108,8 +108,21 @@
 	..()
 	return
 
+//Damaged tools are worth less matter for recycling
+/obj/item/weapon/tool/get_matter()
+	if (!matter || !matter.len || !degradation)
+		return ..()
 
+	//If it's this broken, you get nothing
+	if (unreliability >= 50)
+		return null
 
+	var/list/tm = matter.Copy()
+	//Every point of damage reduces matter by 2% of total
+	for (var/mat in tm)
+		tm[mat] *= 1 - (unreliability * 0.02)
+
+	return tm
 
 /******************************
 	/* Tool Usage */
@@ -247,6 +260,8 @@
 	var/crit_fail_chance = 25
 	if (T)
 		crit_fail_chance = max(crit_fail_chance, T.unreliability * 0.5) //At high unreliability, critical failures are more common
+		if (T.degradation)
+			T.unreliability += 7.5*T.degradation //Failing incurs 15 uses worth of damage
 	if(required_stat)
 		crit_fail_chance = crit_fail_chance - user.stats.getStat(required_stat)
 
@@ -272,7 +287,7 @@
 			if (T && T.degradation)
 				failtypes["damage"] = 2.5
 				if (T.unreliability >= 3)
-					failtypes["break"] = T.unreliability*0.1 //Makeshift tools are more likely to break
+					failtypes["break"] = T.unreliability*0.1 //Damaged tools are more likely to break
 			else
 				failtypes["break"] = 0.5
 		if (sharp)
@@ -534,9 +549,11 @@
 	if (unreliability)
 		if (unreliability < 2)
 			return
-		else if (unreliability < 5)
-			user << SPAN_WARNING("It shows very minor signs of stress and wear.")
-		else if (unreliability < 10)
+		else if (unreliability < 4)
+			user << "It has a few light scratches."
+		else if (unreliability < 8)
+			user << SPAN_NOTICE("It shows minor signs of stress and wear.")
+		else if (unreliability < 12)
 			user << SPAN_WARNING("It looks a bit cracked and worn.")
 		else if (unreliability < 25)
 			user << SPAN_WARNING("Whatever use this tool once had is fading fast.")

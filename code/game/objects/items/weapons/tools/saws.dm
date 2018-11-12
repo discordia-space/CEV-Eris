@@ -33,7 +33,7 @@
 	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTIC = 2)
 	tool_qualities = list(QUALITY_SAWING = 40, QUALITY_CUTTING = 30, QUALITY_WIRE_CUTTING = 30)
 
-	use_power_cost = 0.1
+	use_power_cost = 0.12
 	suitable_cell = /obj/item/weapon/cell/small
 
 /obj/item/weapon/tool/saw/advanced_circular
@@ -45,8 +45,8 @@
 	force = WEAPON_FORCE_ROBUST
 	matter = list(MATERIAL_STEEL = 6, MATERIAL_PLASTIC = 2)
 	tool_qualities = list(QUALITY_SAWING = 50, QUALITY_CUTTING = 40, QUALITY_WIRE_CUTTING = 40)
-
-	use_power_cost = 0.15
+	degradation = 0.12
+	use_power_cost = 0.18
 	suitable_cell = /obj/item/weapon/cell/small
 
 /obj/item/weapon/tool/saw/chain
