@@ -10,6 +10,9 @@
 
 /obj/structure/catwalk/New()
 	..()
+	if (istype(loc, /turf/simulated/open))
+		var/turf/simulated/open/T = loc
+		T.updateFallability()
 	spawn(4)
 		if(src)
 			for(var/obj/structure/catwalk/C in get_turf(src))
