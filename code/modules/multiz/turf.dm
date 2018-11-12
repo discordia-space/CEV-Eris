@@ -11,7 +11,8 @@ see multiz/movement.dm for some info.
 			return !density
 
 /turf/simulated/open/CanZPass(atom/A, direction)
-	if(locate(/obj/structure/catwalk, src))
+	var/obj/effect/shield/turf_shield = getEffectShield()
+	if(locate(/obj/structure/catwalk, src) || (turf_shield && turf_shield.CanPass(A)))
 		if(z == A.z)
 			if(direction == DOWN)
 				return 0
@@ -20,7 +21,8 @@ see multiz/movement.dm for some info.
 	return 1
 
 /turf/space/CanZPass(atom/A, direction)
-	if(locate(/obj/structure/catwalk, src))
+	var/obj/effect/shield/turf_shield = getEffectShield()
+	if(locate(/obj/structure/catwalk, src) || (turf_shield && turf_shield.CanPass(A)))
 		if(z == A.z)
 			if(direction == DOWN)
 				return 0
@@ -94,6 +96,10 @@ see multiz/movement.dm for some info.
 
 	// No gravit, No fall.
 	if(!has_gravity(src))
+		return
+
+	var/obj/effect/shield/turf_shield = getEffectShield()
+	if (turf_shield && !turf_shield.CanPass(mover))
 		return
 
 	// See if something prevents us from falling.

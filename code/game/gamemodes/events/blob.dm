@@ -68,9 +68,10 @@
 	anchored = 1
 	mouse_opacity = 2
 
-	var/maxHealth = 30
+	var/maxHealth = 25
 	var/health = 1
-	var/brute_resist = 1.3
+	var/health_regen = 1.8
+	var/brute_resist = 1.25
 	var/fire_resist = 0.75
 	var/expandType = /obj/effect/blob
 
@@ -191,7 +192,7 @@
 
 /obj/effect/blob/proc/regen()
 	if (!(QDELETED(core)))
-		health = min(health + 2, maxHealth)
+		health = min(health + health_regen, maxHealth)
 	else
 		core = null
 		//When the core is gone, the blob starts dying
@@ -371,7 +372,7 @@
 
 	//We'll occasionally spawn shield tiles instead of normal blobs
 	var/obj/effect/blob/child
-	if (prob(5))
+	if (prob(6))
 		child = new /obj/effect/blob/shield(loc, src)
 	else
 		child = new expandType(loc, src)
@@ -548,6 +549,7 @@
 	desc = "Some blob creature thingy"
 	maxHealth = 180
 	health = 180
+	health_regen = 2
 	brute_resist = 2
 	fire_resist = 1
 	density = TRUE

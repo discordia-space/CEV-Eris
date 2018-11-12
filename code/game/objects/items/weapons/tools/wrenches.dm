@@ -15,7 +15,7 @@
 	name = "sheet spanner"
 	desc = "A flat bit of metal with some usefully shaped holes cut into it."
 	icon_state = "impro_wrench"
-	degradation = 5
+	degradation = 4
 	force = WEAPON_FORCE_HARMLESS
 	tool_qualities = list(QUALITY_BOLT_TURNING = 15)
 	matter = list(MATERIAL_STEEL = 1)
@@ -28,3 +28,4 @@
 	matter = list(MATERIAL_STEEL = 4)
 	force = WEAPON_FORCE_NORMAL
 	throwforce = WEAPON_FORCE_NORMAL
+	degradation = 0.12

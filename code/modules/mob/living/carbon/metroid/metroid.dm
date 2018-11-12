@@ -7,8 +7,8 @@
 	speak_emote = list("chirps")
 
 	layer = 5
-	maxHealth = 150
-	health = 150
+	maxHealth = 120
+	health = 120
 	gender = NEUTER
 
 	update_icon = 0

@@ -9,7 +9,8 @@
 	base_idle_power_usage = 25
 	base_active_power_usage = 200
 	max_hardware_size = 2
-	light_strength = 3
+	screen_light_strength = 3.8
+	screen_light_range = 1.7
 	max_damage = 200
 	broken_damage = 100
 	screen_on = FALSE
@@ -29,9 +30,9 @@
 	update_icon()
 
 /obj/item/modular_computer/laptop/update_icon()
+	..()
 	if(anchored)
 		icon_state = initial(icon_state)
-		..()
 	else
 		overlays.Cut()
 		icon_state = icon_state_closed

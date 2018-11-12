@@ -160,3 +160,13 @@
 	name = T_BOARD("prison shuttle control console")
 	build_path = /obj/machinery/computer/prison_shuttle
 	origin_tech = list(TECH_DATA = 2)
+
+/obj/item/weapon/circuitboard/engines
+	name = T_BOARD("engine control console")
+	build_path = /obj/machinery/computer/engines
+	origin_tech = list(TECH_DATA = 2)
+
+/obj/item/weapon/circuitboard/guestpass
+	name = T_BOARD("guest pass console")
+	build_path = /obj/machinery/computer/guestpass
+	origin_tech = list(TECH_DATA = 2)

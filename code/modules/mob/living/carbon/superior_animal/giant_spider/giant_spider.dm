@@ -7,8 +7,8 @@
 
 	mob_size = MOB_MEDIUM
 
-	maxHealth = 200
-	health = 200
+	maxHealth = 170
+	health = 170
 
 	attack_sound = 'sound/weapons/spiderlunge.ogg'
 	speak_emote = list("chitters")
@@ -21,8 +21,8 @@
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/xenomeat
 	stop_automated_movement_when_pulled = 0
 
-	melee_damage_lower = 15
-	melee_damage_upper = 20
+	melee_damage_lower = 14
+	melee_damage_upper = 19
 
 	min_breath_required_type = 3
 	min_air_pressure = 15 //below this, brute damage is dealt

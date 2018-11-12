@@ -2,6 +2,7 @@
 	name = "random tool"
 	icon_state = "tool-grey"
 	spawn_nothing_percentage = 15
+	has_postspawn = TRUE
 
 /obj/random/tool/item_to_spawn()
 	return pickweight(list(/obj/random/rare = 1,
@@ -58,6 +59,14 @@
 				/obj/random/voidsuit = 0.5,
 				/obj/random/pouch = 3))
 
+
+//Randomly spawned tools will often be in imperfect condition
+/obj/random/tool/post_spawn(var/list/spawns)
+	for (var/obj/item/weapon/tool/T in spawns)
+		if (T.degradation && prob(40))
+			T.unreliability += T.degradation * 25 //50 uses worth of damage, this is fairly mild
+			if (prob(30))
+				T.unreliability += T.degradation * 25 //Roughly 13% chance to be moderately damaged
 
 /obj/random/tool/low_chance
 	name = "low chance random tool"
