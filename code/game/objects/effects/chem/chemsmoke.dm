@@ -38,7 +38,7 @@
 	walk(src, 0)
 	return ..()
 
-/obj/effect/effect/smoke/chem/Move()
+/obj/effect/effect/smoke/chem/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	var/list/oldlocs = view(1, src)
 	. = ..()
 	if(.)
@@ -158,8 +158,10 @@
 		for(var/turf/T in targetTurfs)
 			chemholder.reagents.touch_turf(T)
 			for(var/atom/A in T.contents)
-				if(istype(A, /obj/effect/effect/smoke/chem) || ismob(A))
+				if(istype(A, /obj/effect/effect/smoke/chem))
 					continue
+				else if (ismob(A))
+					chemholder.reagents.touch_mob(A)
 				else if(isobj(A) && !A.simulated)
 					chemholder.reagents.touch_obj(A)
 
@@ -216,7 +218,7 @@
 	if(passed_smoke)
 		smoke = passed_smoke
 	else
-		smoke = PoolOrNew(/obj/effect/effect/smoke/chem, list(location, smoke_duration + rand(0, 20), T, I))
+		smoke = new(location, smoke_duration + rand(0, 20), T, I)
 
 	if(chemholder.reagents.reagent_list.len)
 		chemholder.reagents.trans_to_obj(smoke, chemholder.reagents.total_volume / dist, copy = 1) //copy reagents to the smoke so mob/breathe() can handle inhaling the reagents
@@ -227,7 +229,7 @@
 
 
 /datum/effect/effect/system/smoke_spread/chem/spores/spawnSmoke(var/turf/T, var/smoke_duration, var/icon/I, var/dist = 1)
-	var/obj/effect/effect/smoke/chem/spores = PoolOrNew(/obj/effect/effect/smoke/chem, location)
+	var/obj/effect/effect/smoke/chem/spores = new(location)
 	spores.name = "cloud of [seed.seed_name] [seed.seed_noun]"
 	..(T, I, smoke_duration, dist, spores)
 

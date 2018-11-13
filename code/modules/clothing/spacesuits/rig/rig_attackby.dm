@@ -7,15 +7,17 @@
 		if(shock(user)) //Handles removing charge from the cell, as well. No need to do that here.
 			return
 
-	// Pass repair items on to the chestpiece.
-	if(chest && (istype(I,/obj/item/stack/material) || QUALITY_WELDING in I.tool_qualities))
-		return chest.attackby(I,user)
+
 
 	// Lock or unlock the access panel.
-	if(I.GetID())
+	if(I.GetIdCard())
 		if(subverted)
 			locked = 0
 			user << SPAN_DANGER("It looks like the locking system has been shorted out.")
+			return
+
+		if(locked == -1)
+			user << SPAN_DANGER("The lock clicks uselessly.")
 			return
 
 		if((!req_access || !req_access.len) && (!req_one_access || !req_one_access.len))
@@ -31,17 +33,14 @@
 		user << "You [locked ? "lock" : "unlock"] \the [src] access panel."
 		return
 
-	var/list/usable_qualities = list()
-	if(open)
-		usable_qualities.Add(QUALITY_WIRE_CUTTING, QUALITY_PULSING, QUALITY_CUTTING, QUALITY_BOLT_TURNING, QUALITY_SCREW_DRIVING)
-	if(!open && locked)
-		usable_qualities.Add(QUALITY_PRYING)
-
-
+	var/list/usable_qualities = list(QUALITY_PRYING, QUALITY_WELDING,QUALITY_WIRE_CUTTING, QUALITY_PULSING, QUALITY_CUTTING, QUALITY_BOLT_TURNING, QUALITY_SCREW_DRIVING)
 	var/tool_type = I.get_tool_type(user, usable_qualities)
 	switch(tool_type)
-
 		if(QUALITY_SCREW_DRIVING)
+			if (is_worn())
+				user << "You can't remove an installed device while the hardsuit is being worn."
+				return 1
+
 			if(open)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					var/list/current_mounts = list()
@@ -52,16 +51,9 @@
 					if(!to_remove)
 						return
 
-					if(ishuman(src.loc) && to_remove != "cell")
-						var/mob/living/carbon/human/H = src.loc
-						if(H.back == src)
-							user << "You can't remove an installed device while the hardsuit is being worn."
-							return
 
 					switch(to_remove)
-
 						if("cell")
-
 							if(cell)
 								user << "You detatch \the [cell] from \the [src]'s battery mount."
 								for(var/obj/item/rig_module/module in installed_modules)
@@ -75,7 +67,6 @@
 								user << "There is nothing loaded in that mount."
 
 						if("system module")
-
 							var/list/possible_removals = list()
 							for(var/obj/item/rig_module/module in installed_modules)
 								if(module.permanent)
@@ -90,46 +81,56 @@
 							if(!removal_choice)
 								return
 
-							var/obj/item/rig_module/removed = possible_removals[removal_choice]
-							user << "You detatch \the [removed] from \the [src]."
-							removed.forceMove(get_turf(src))
-							removed.removed()
-							installed_modules -= removed
-							update_icon()
-							return
+							uninstall(possible_removals[removal_choice], user)
+							return TRUE
+			else
+				user << "\The [src] access panel is closed."
 				return
 
 		if(QUALITY_WIRE_CUTTING)
 			if(open)
 				wires.Interact(user)
 				return
-			return
+			else
+				user << "\The [src] access panel is closed."
+				return
 
 		if(QUALITY_PULSING)
 			if(open)
 				wires.Interact(user)
 				return
-			return
+			else
+				user << "\The [src] access panel is closed."
+				return
 
 		if(QUALITY_CUTTING)
 			if(open)
 				wires.Interact(user)
 				return
-			return
+			else
+				user << "\The [src] access panel is closed."
+				return
 
 		if(QUALITY_PRYING)
-			if(!open && locked)
+			if(locked != 1)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					open = !open
 					user << SPAN_NOTICE("You [open ? "open" : "close"] the access panel.")
 					return
-			return
+			else
+				user << SPAN_DANGER("\The [src] access panel is locked.")
+				return
 
 		if(QUALITY_BOLT_TURNING)
 			if(open)
 				if(!air_supply)
 					user << "There is not tank to remove."
 					return
+
+				if (is_worn())
+					user << "You can't remove an installed tank while the hardsuit is being worn."
+					return 1
+
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					if(user.l_hand && user.r_hand)
 						air_supply.forceMove(get_turf(user))
@@ -138,20 +139,40 @@
 					user << "You detach and remove \the [air_supply]."
 					air_supply = null
 					return
+			else
+				user << "\The [src] access panel is closed."
 				return
+
+		if(QUALITY_WELDING)
+			//Cutting through the cover lock. This allows access to the wires inside so you can disable access requirements
+			//Ridiculously difficult to do, hijacking a rig will take a long time if you don't have good mechanical training
+			if(locked == 1)
+				user << SPAN_NOTICE("You start cutting through the access panel's cover lock. This is a delicate task.")
+				if(I.use_tool(user, src, WORKTIME_EXTREMELY_LONG, tool_type, FAILCHANCE_VERY_HARD, required_stat = STAT_MEC))
+					locked = -1 //Broken, it can never be locked again
+					user << SPAN_NOTICE("Success! The tension in the panel loosens with a dull click")
+					playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
+				return
+			else
+				user << "\The [src] access panel is not locked, there's no need to cut it."
+				//No return here, incase they're trying to repair
 
 		if(ABORT_CHECK)
 			return
 
+	// Pass repair items on to the chestpiece.
+	if(chest && (istype(I,/obj/item/stack/material) || QUALITY_WELDING in I.tool_qualities))
+		return chest.attackby(I,user)
+
 	if(open)
 		// Air tank.
 		if(istype(I,/obj/item/weapon/tank)) //Todo, some kind of check for suits without integrated air supplies.
-
 			if(air_supply)
 				user << "\The [src] already has a tank installed."
 				return
 
-			if(!user.unEquip(I)) return
+			if(!user.unEquip(I))
+				return
 			air_supply = I
 			I.forceMove(src)
 			user << "You slot [I] into [src] and tighten the connecting valve."
@@ -159,37 +180,12 @@
 
 		// Check if this is a hardsuit upgrade or a modification.
 		else if(istype(I,/obj/item/rig_module))
-
-			if(ishuman(src.loc))
-				var/mob/living/carbon/human/H = src.loc
-				if(H.back == src)
-					user << SPAN_DANGER("You can't install a hardsuit module while the suit is being worn.")
-					return 1
-
-			if(!installed_modules) installed_modules = list()
-			if(installed_modules.len)
-				for(var/obj/item/rig_module/installed_mod in installed_modules)
-					if(!installed_mod.redundant && istype(installed_mod,I))
-						user << "The hardsuit already has a module of that class installed."
-						return 1
-
-			var/obj/item/rig_module/mod = I
-			user << "You begin installing \the [mod] into \the [src]."
-			if(!do_after(user,40,src))
-				return
-			if(!user || !I)
-				return
-			if(!user.unEquip(mod)) return
-			user << "You install \the [mod] into \the [src]."
-			installed_modules |= mod
-			mod.forceMove(src)
-			mod.installed(src)
-			update_icon()
-			return 1
-
+			if (can_install(I, user, TRUE))
+				install(I, user)
+			return TRUE
 		else if(!cell && istype(I,/obj/item/weapon/cell/large))
-
-			if(!user.unEquip(I)) return
+			if(!user.unEquip(I))
+				return
 			user << "You jack \the [I] into \the [src]'s battery mount."
 			I.forceMove(src)
 			src.cell = I
@@ -216,7 +212,8 @@
 	if(!subverted)
 		req_access.Cut()
 		req_one_access.Cut()
-		locked = 0
+		if (locked != -1)
+			locked = 0
 		subverted = 1
 		user << SPAN_DANGER("You short out the access protocol for the suit.")
 		return 1

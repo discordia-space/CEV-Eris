@@ -219,6 +219,9 @@ var/list/holder_mob_icon_cache = list()
 
 	spawn(2)
 		var/obj/item/weapon/holder/H = new holder_type(loc)
+
+		var/old_loc = src.loc
+
 		src.forceMove(H)
 
 		H.contained = src
@@ -229,12 +232,14 @@ var/list/holder_mob_icon_cache = list()
 
 		var/success = 0
 		if (src == user)
-			success = grabber.put_in_any_hand_if_possible(H, 0,1,1)
+			success = grabber.put_in_hands(H)
 		else
 			H.attack_hand(grabber)//We put this last to prevent some race conditions
 			if (H.loc == grabber)
 				success = 1
 		if (success)
+			if (isturf(old_loc))
+				src.do_pickup_animation(grabber,old_loc)
 			if (user == src)
 				grabber << "<span class='notice'>[src.name] climbs up onto you.</span>"
 				src << "<span class='notice'>You climb up onto [grabber].</span>"
@@ -282,16 +287,8 @@ var/list/holder_mob_icon_cache = list()
 	name = M.name
 	desc = M.desc
 	overlays |= M.overlays
-	var/mob/living/carbon/human/H = loc
-	last_holder = H
-
-	if(istype(H))
-		if(H.l_hand == src)
-			H.update_inv_l_hand()
-		else if(H.r_hand == src)
-			H.update_inv_r_hand()
-		else
-			H.regenerate_icons()
+	last_holder = loc
+	update_wear_icon()
 
 
 
@@ -412,8 +409,8 @@ var/list/holder_mob_icon_cache = list()
 				preposition = "on"
 				action3 = "wears"
 				newlocation = "feet"
-	else if (istype(loc,/obj/item/device/pda))
-		var/obj/item/device/pda/S = loc
+	else if (istype(loc,/obj/item/modular_computer/pda))
+		var/obj/item/modular_computer/pda/S = loc
 		newlocation = S.name
 		if (justmoved)
 			preposition = "into"
@@ -575,7 +572,12 @@ var/list/holder_mob_icon_cache = list()
 	icon_state_dead = "mouse_brown_dead"
 
 
-
+/obj/item/weapon/holder/GetIdCard()
+	for(var/mob/M in contents)
+		var/obj/item/I = M.GetIdCard()
+		if(I)
+			return I
+	return null
 
 /*
 //Lizards
@@ -765,14 +767,7 @@ var/list/holder_mob_icon_cache = list()
 		name = M.name
 		desc = M.desc
 		copy_overlays(M)
-		var/mob/living/carbon/human/H = loc
-		if(istype(H))
-			if(H.l_hand == src)
-				H.update_inv_l_hand()
-			else if(H.r_hand == src)
-				H.update_inv_r_hand()
-			else
-				H.regenerate_icons()
+		update_wear_icon()
 
 		..()
 */

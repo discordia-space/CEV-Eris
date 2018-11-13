@@ -13,7 +13,7 @@
 		slot_r_hand_str = "s_helmet",
 		)
 	permeability_coefficient = 0.01
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 100, rad = 50)
+	armor = list(melee = 15, bullet = 15, laser = 15,energy = 0, bomb = 0, bio = 100, rad = 50)
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES|EARS
 	cold_protection = HEAD
@@ -68,18 +68,23 @@
 	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	allowed = list(
-		/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank/emergency_oxygen,
-		/obj/item/device/suit_cooling_unit, /obj/item/weapon/tank/oxygen
+		/obj/item/weapon/storage/pouch/,
+		/obj/item/device/lighting/toggleable/flashlight,
+		/obj/item/weapon/tank/emergency_oxygen,
+		/obj/item/device/suit_cooling_unit,
+		/obj/item/weapon/tank/oxygen
 	)
 	slowdown = 3
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 100, rad = 50)
+	armor = list(melee = 15, bullet = 15, laser = 15,energy = 0, bomb = 0, bio = 100, rad = 50)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.9
 	species_restricted = list("exclude")
-
+	equip_delay = 12 SECONDS
 	var/list/supporting_limbs //If not-null, automatically splints breaks. Checked when removing the suit.
+
+
 
 /obj/item/clothing/suit/space/equipped(mob/M)
 	check_limb_support()

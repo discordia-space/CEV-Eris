@@ -29,7 +29,7 @@ log transactions
 	var/ticks_left_locked_down = 0
 	var/ticks_left_timeout = 0
 	var/machine_id = ""
-	var/obj/item/weapon/card/held_card
+	var/obj/item/weapon/card/id/held_card
 	var/editing_security_level = 0
 	var/view_screen = NO_SCREEN
 	var/datum/effect/effect/system/spark_spread/spark_system
@@ -124,7 +124,7 @@ log transactions
 			playsound(loc, pick('sound/items/polaroid1.ogg','sound/items/polaroid2.ogg'), 50, 1)
 
 			//create a transaction log entry
-			var/datum/transaction/T = PoolOrNew(/datum/transaction, list(cash.worth, authenticated_account.owner_name, "Credit deposit", machine_id))
+			var/datum/transaction/T = new(cash.worth, authenticated_account.owner_name, "Credit deposit", machine_id)
 			T.apply_to(authenticated_account)
 
 			user << "<span class='info'>You insert [I] into [src].</span>"
@@ -288,7 +288,7 @@ log transactions
 								var/datum/money_account/failed_account = get_account(tried_account_num)
 								if(failed_account)
 									//Just crazy
-									var/datum/transaction/T = PoolOrNew(/datum/transaction, list(0, failed_account.owner_name, "Unauthorised login attempt", machine_id))
+									var/datum/transaction/T = new(0, failed_account.owner_name, "Unauthorised login attempt", machine_id)
 									T.apply_to(failed_account)
 							else
 								usr << "\red \icon[src] Incorrect pin/account combination entered, [max_pin_attempts - number_incorrect_tries] attempts remaining."
@@ -303,7 +303,7 @@ log transactions
 						view_screen = NO_SCREEN
 
 						//create a transaction log entry
-						var/datum/transaction/T = PoolOrNew(/datum/transaction, list(0, authenticated_account.owner_name, "Remote terminal access", machine_id))
+						var/datum/transaction/T = new(0, authenticated_account.owner_name, "Remote terminal access", machine_id)
 						T.apply_to(authenticated_account)
 
 						usr << "\blue \icon[src] Access granted. Welcome user '[authenticated_account.owner_name].'"
@@ -321,7 +321,7 @@ log transactions
 
 						//remove the money
 						//create an entry in the account transaction log
-						var/datum/transaction/T = PoolOrNew(/datum/transaction, list(-amount, authenticated_account.owner_name, "Credit withdrawal", machine_id))
+						var/datum/transaction/T = new(-amount, authenticated_account.owner_name, "Credit withdrawal", machine_id)
 						if(T.apply_to(authenticated_account))
 							//	spawn_money(amount,src.loc)
 							spawn_ewallet(amount,src.loc,usr)
@@ -337,7 +337,7 @@ log transactions
 						playsound(src, 'sound/machines/chime.ogg', 50, 1)
 
 						//create an entry in the account transaction log
-						var/datum/transaction/T = PoolOrNew(/datum/transaction, list(-amount, authenticated_account.owner_name, "Credit withdrawal", machine_id))
+						var/datum/transaction/T = new(-amount, authenticated_account.owner_name, "Credit withdrawal", machine_id)
 						if(T.apply_to(authenticated_account))
 							//remove the money
 							spawn_money(amount,src.loc,usr)
@@ -431,16 +431,15 @@ log transactions
 			var/obj/item/weapon/card/id/I
 			if(istype(human_user.wear_id, /obj/item/weapon/card/id) )
 				I = human_user.wear_id
-			else if(istype(human_user.wear_id, /obj/item/device/pda) )
-				var/obj/item/device/pda/P = human_user.wear_id
-				I = P.id
+			else if(istype(human_user.wear_id, /obj/item/modular_computer/pda) )
+				I = I.GetIdCard()
 			if(I)
 				authenticated_account = attempt_account_access(I.associated_account_number)
 				if(authenticated_account)
 					human_user << "\blue \icon[src] Access granted. Welcome user '[authenticated_account.owner_name].'"
 
 					//create a transaction log entry
-					var/datum/transaction/T = PoolOrNew(/datum/transaction, list(0, authenticated_account.owner_name, "Remote terminal access", machine_id))
+					var/datum/transaction/T = new(0, authenticated_account.owner_name, "Remote terminal access", machine_id)
 					T.apply_to(authenticated_account)
 
 					view_screen = NO_SCREEN

@@ -20,7 +20,7 @@
 	var/working = 0
 	var/mode = 1
 	var/list/modes = list("Floor & Walls","Airlock","Deconstruct")
-	var/canRwall = 0
+	var/canRwall = 1
 	var/disabled = 0
 
 /obj/item/weapon/rcd/attack()
@@ -74,10 +74,11 @@
 		return 0
 	return alter_turf(A,user,(mode == 3))
 
-/obj/item/weapon/rcd/proc/useResource(var/amount, var/mob/user)
+/obj/item/weapon/rcd/proc/useResource(var/amount, var/mob/user, var/checkOnly)
 	if(stored_matter < amount)
 		return 0
-	stored_matter -= amount
+	if (!checkOnly)
+		stored_matter -= amount
 	return 1
 
 /obj/item/weapon/rcd/proc/alter_turf(var/turf/T,var/mob/user,var/deconstruct)
@@ -106,8 +107,8 @@
 		build_turf =  /turf/simulated/floor/airless
 	else if(deconstruct && istype(T,/turf/simulated/wall))
 		var/turf/simulated/wall/W = T
-		build_delay = deconstruct ? 50 : 40
-		build_cost =  5
+		build_delay = deconstruct ? (W.reinf_material) ? 150 : 50 : 40
+		build_cost =  (W.reinf_material) ? 10 : 5
 		build_type =  (!canRwall && W.reinf_material) ? null : "wall"
 		build_turf =  /turf/simulated/floor
 	else if(istype(T,/turf/simulated/floor))
@@ -122,7 +123,7 @@
 		working = 0
 		return 0
 
-	if(!useResource(build_cost, user))
+	if(!useResource(build_cost, user, 1))
 		user << "Insufficient resources."
 		return 0
 
@@ -137,6 +138,10 @@
 
 	working = 0
 	if(build_delay && !can_use(user,T))
+		return 0
+
+	if(!useResource(build_cost, user))
+		user << "Insufficient resources."
 		return 0
 
 	if(build_turf)
@@ -162,13 +167,14 @@
 /obj/item/weapon/rcd/borg
 	canRwall = 1
 
-/obj/item/weapon/rcd/borg/useResource(var/amount, var/mob/user)
+/obj/item/weapon/rcd/borg/useResource(var/amount, var/mob/user, var/checkOnly)
 	if(isrobot(user))
 		var/mob/living/silicon/robot/R = user
 		if(R.cell)
 			var/cost = amount*30
 			if(R.cell.charge >= cost)
-				R.cell.use(cost)
+				if (!checkOnly)
+					R.cell.use(cost)
 				return 1
 	return 0
 
@@ -179,13 +185,14 @@
 	return (user.Adjacent(T) && !user.stat)
 
 
-/obj/item/weapon/rcd/mounted/useResource(var/amount, var/mob/user)
+/obj/item/weapon/rcd/mounted/useResource(var/amount, var/mob/user, var/checkOnly)
 	var/cost = amount*130 //so that a rig with default powercell can build ~2.5x the stuff a fully-loaded RCD can.
 	if(istype(loc,/obj/item/rig_module))
 		var/obj/item/rig_module/module = loc
 		if(module.holder && module.holder.cell)
 			if(module.holder.cell.charge >= cost)
-				module.holder.cell.use(cost)
+				if (!checkOnly)
+					module.holder.cell.use(cost)
 				return 1
 	return 0
 

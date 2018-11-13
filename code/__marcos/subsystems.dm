@@ -4,17 +4,19 @@ Moved it here from machines subsystem, if to leave there, the macros won't be ac
 
 #define START_PROCESSING_IN_LIST(Datum, List) \
 if (Datum.is_processing) {\
-	if(Datum.is_processing != #Processor)\
+	if(Datum.is_processing != "SSmachines.[#List]")\
 	{\
-		crash_with("Failed to start processing. [log_info_line(Datum)] is already being processed by [Datum.is_processing] but queue attempt occured on [#Processor]."); \
+		crash_with("Failed to start processing. [log_info_line(Datum)] is already being processed by [Datum.is_processing] but queue attempt occured on SSmachines.[#List]."); \
 	}\
 } else {\
 	Datum.is_processing = "SSmachines.[#List]";\
 	SSmachines.List += Datum;\
 }
 
+//stopProcessingWrapper catches removal from processing list before it happens to adjust last position in memory during resumes
 #define STOP_PROCESSING_IN_LIST(Datum, List) \
 if(Datum.is_processing) {\
+	SSmachines.stopProcessingWrapper(Datum, SSmachines.List);\
 	if(SSmachines.List.Remove(Datum)) {\
 		Datum.is_processing = null;\
 	} else {\

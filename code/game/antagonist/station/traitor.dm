@@ -14,7 +14,7 @@
 
 
 /datum/antagonist/traitor/get_extra_panel_options()
-	if(owner.current)
+	if(owner && owner.current)
 		return "<a href='?src=\ref[owner];common=crystals'>\[set crystals\]</a><a href='?src=\ref[src];spawn_uplink=\ref[owner.current]'>\[spawn uplink\]</a>"
 
 /datum/antagonist/traitor/Topic(href, href_list)

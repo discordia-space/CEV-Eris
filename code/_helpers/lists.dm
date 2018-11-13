@@ -110,7 +110,11 @@ proc/listclearnulls(list/list)
 		result = first ^ second
 	return result
 
-//Pretends to pick an element based on its weight but really just seems to pick a random element.
+//Picks an element based on its weight
+//Must be given an associative list in the format
+/*
+	list(item = weight, item = weight) ..etc
+*/
 /proc/pickweight(list/L)
 	var/total = 0
 	var/item
@@ -119,13 +123,71 @@ proc/listclearnulls(list/list)
 			L[item] = 1
 		total += L[item]
 
-	total = rand(1, total)
+	total = rand()* total
+
 	for (item in L)
-		total -=L [item]
+		total -= L[item]
 		if (total <= 0)
 			return item
 
 	return null
+
+
+//Picks a number of elements from a list based on weight.
+//This is highly optimised and good for things like grabbing 200 items from a list of 40,000
+//Much more efficient than many pickweight calls
+/proc/pickweight_mult(list/L, var/quantity)
+	//First we total the list as normal
+	var/total = 0
+	var/item
+	for (item in L)
+		if (!L[item])
+			L[item] = 1
+		total += L[item]
+
+	//Next we will make a list of randomly generated numbers, called Requests
+	//It is critical that this list be sorted in ascending order, so we will build it in that order
+	//First one is free, so we start counting at 2
+	var/list/requests = list(rand()* total)
+	for (var/i = 2; i <= quantity; i++)
+		//Each time we generate the next request
+		var/newreq = rand()* total
+		//We will loop through all existing requests
+		for (var/j = 1; j <= requests.len; j++)
+			//We keep going through the list until we find an element which is bigger than the one we want to add
+			if (requests[j] > newreq)
+				//And then we insert the newqreq at that point, pushing everything else forward
+				requests.Insert(j, newreq)
+				break
+
+
+
+	//Now when we get here, we have a list of random numbers sorted in ascending order.
+	//The length of that list is equal to Quantity passed into this function
+	//Next we make a list to store results
+	var/list/results = list()
+
+	//Zero the total, we'll reuse it
+	total = 0
+
+	//Now we will iterate forward through the items list, adding each weight to the total
+	for (item in L)
+		total += L[item]
+
+		//After each item we do a while loop
+		while (requests.len && total >= requests[1])
+			//If the total is higher than the value of the first request
+			results += item //We add this item to the results list
+			requests.Cut(1,2) //And we cut off the top of the requests list
+
+			//This while loop will repeat until the next request is higher than the total.
+			//The current item might be added to the results list many times, in this process
+
+	//By the time we get here:
+		//Requests will be empty
+		//Results will have a length of quality
+	return results
+
 
 //Pick a random element from the list and remove it from the list.
 /proc/pick_n_take(list/listfrom)
@@ -360,6 +422,34 @@ proc/listclearnulls(list/list)
 	if(Li <= L.len)
 		return (result + L.Copy(Li, 0))
 	return (result + R.Copy(Ri, 0))
+
+//returns an unsorted list of nearest map objects from a given list to sourceLocation using get_dist, acceptableDistance sets tolerance for distance
+//result is intended to be used with pick()
+/proc/nearestObjectsInList(var/list/L, var/sourceLocation, var/acceptableDistance = 0)
+	if (L.len == 1)
+		return L.Copy()
+
+	var/list/nearestObjects = new
+	var/shortestDistance = INFINITY
+	for (var/object in L)
+		var/distance = get_dist(sourceLocation,object)
+
+		if (distance <= acceptableDistance)
+			if (shortestDistance > acceptableDistance)
+				shortestDistance = acceptableDistance
+				nearestObjects.Cut()
+			nearestObjects += object
+
+		else if (shortestDistance > acceptableDistance)
+			if (distance < shortestDistance)
+				shortestDistance = distance
+				nearestObjects.Cut()
+				nearestObjects += object
+
+			else if (distance == shortestDistance)
+				nearestObjects += object
+
+	return nearestObjects
 
 // Macros to test for bits in a bitfield. Note, that this is for use with indexes, not bit-masks!
 #define BITTEST(bitfield, index)  ((bitfield)  &   (1 << (index)))
@@ -755,3 +845,54 @@ proc/dd_sortedTextList(list/incoming)
 #define LAZYACCESS(L, I) (L ? (isnum(I) ? (I > 0 && I <= L.len ? L[I] : null) : L[I]) : null)
 #define LAZYLEN(L) length(L)
 #define LAZYCLEARLIST(L) if(L) L.Cut()
+
+/*
+Two lists may be different (A!=B) even if they have the same elements.
+This actually tests if they have the same entries and values.
+*/
+/proc/same_entries(var/list/first, var/list/second)
+	if(!islist(first) || !islist(second))
+		return 0
+	if(length(first) != length(second))
+		return 0
+	for(var/entry in first)
+		if(!(entry in second) || (first[entry] != second[entry]))
+			return 0
+	return 1
+	
+/*
+Checks if a list has the same entries and values as an element of big.
+*/
+/proc/in_as_list(var/list/little, var/list/big)
+	if(!islist(big))
+		return 0
+	for(var/element in big)
+		if(same_entries(little, element))
+			return 1
+	return 0
+
+// Return the index using dichotomic search
+/proc/FindElementIndex(atom/A, list/L, cmp)
+	var/i = 1
+	var/j = L.len
+	var/mid
+
+	while(i < j)
+		mid = round((i+j)/2)
+
+		if(call(cmp)(L[mid],A) < 0)
+			i = mid + 1
+		else
+			j = mid
+
+	if(i == 1 || i ==  L.len) // Edge cases
+		return (call(cmp)(L[i],A) > 0) ? i : i+1
+	else
+		return i
+
+//Checks if list is associative (example '["temperature"] = 90')
+/proc/is_associative(list/L)
+	for(var/key in L)
+		// if the key is a list that means it's actually an array of lists (stupid Byond...)
+		if(isnum(key) && isnull(L[key]) && istype(key, /list))
+			return FALSE

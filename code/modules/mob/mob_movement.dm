@@ -12,22 +12,13 @@
 
 /mob/proc/setMoveCooldown(var/timeout)
 	if(client)
-		client.move_delay = max(world.time + timeout, client.move_delay)
+		client.setMoveCooldown(timeout)
 
-/client/North()
-	..()
+/client/proc/setMoveCooldown(var/timeout)
+	return move_delayer.setDelayMin(timeout)
 
-
-/client/South()
-	..()
-
-
-/client/West()
-	..()
-
-
-/client/East()
-	..()
+/client/proc/isMovementBlocked()
+	return move_delayer.isBlocked()
 
 
 /client/proc/client_dir(input, direction=-1)
@@ -121,54 +112,6 @@
 	*/
 	return
 
-//This proc should never be overridden elsewhere at /atom/movable to keep directions sane.
-/atom/movable/Move(newloc, direct)
-	if (direct & (direct - 1))
-		if (direct & 1)
-			if (direct & 4)
-				if (step(src, NORTH))
-					step(src, EAST)
-				else
-					if (step(src, EAST))
-						step(src, NORTH)
-			else
-				if (direct & 8)
-					if (step(src, NORTH))
-						step(src, WEST)
-					else
-						if (step(src, WEST))
-							step(src, NORTH)
-		else
-			if (direct & 2)
-				if (direct & 4)
-					if (step(src, SOUTH))
-						step(src, EAST)
-					else
-						if (step(src, EAST))
-							step(src, SOUTH)
-				else
-					if (direct & 8)
-						if (step(src, SOUTH))
-							step(src, WEST)
-						else
-							if (step(src, WEST))
-								step(src, SOUTH)
-	else
-		var/atom/A = src.loc
-
-		var/olddir = dir //we can't override this without sacrificing the rest of movable/New()
-		. = ..()
-		if(direct != olddir)
-			dir = olddir
-			set_dir(direct)
-
-		src.move_speed = world.time - src.l_move_time
-		src.l_move_time = world.time
-		src.m_flag = 1
-		if ((A != src.loc && A && A.z == src.z))
-			src.last_move = get_dir(A, src.loc)
-	return
-
 /client/proc/Move_object(direct)
 	if(mob && mob.control_object)
 		if(mob.control_object.density)
@@ -180,28 +123,20 @@
 	return
 
 
-/client/Move(n, direct)
+/client/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	if(!mob)
 		return // Moved here to avoid nullrefs below
 
-	if(mob.control_object)	Move_object(direct)
-
-	if(mob.incorporeal_move && isobserver(mob))
-		Process_Incorpmove(direct)
-		return
+	if(mob.control_object)	Move_object(Dir)
 
 	if(moving)	return 0
 
-	if(world.time < move_delay)	return
+	if (isMovementBlocked())
+		return
 
-	//This compensates for the inaccuracy of move ticks
-	//Whenever world.time overshoots the movedelay, due to it only ticking once per decisecond
-	//The overshoot value is subtracted from our next delay, farther down where move delay is set.
-	//This doesn't entirely remove the problem, but it keeps travel times accurate to within 0.1 seconds
-	//Over an infinite distance, and prevents the inaccuracy from compounding. Thus making it basically a non-issue
-	var/leftover = world.time - move_delay
-	if (leftover > 1)
-		leftover = 0
+	if(mob.incorporeal_move && isobserver(mob))
+		Process_Incorpmove(Dir)
+		return
 
 	if(locate(/obj/effect/stop/, mob.loc))
 		for(var/obj/effect/stop/S in mob.loc)
@@ -215,18 +150,18 @@
 	if(isAI(mob))
 		var/mob/living/silicon/ai/AI = mob
 		if(AI.controlled_mech)
-			return AI.controlled_mech.relaymove(mob, direct)
+			return AI.controlled_mech.relaymove(mob, Dir)
 
 	// handle possible Eye movement
 	if(mob.eyeobj)
-		return mob.EyeMove(n,direct)
+		return mob.EyeMove(NewLoc, Dir)
 
 	if(mob.transforming)	return//This is sota the goto stop mobs from moving var
 
 	if(isliving(mob))
 		var/mob/living/L = mob
 		if(L.incorporeal_move)//Move though walls
-			Process_Incorpmove(direct)
+			Process_Incorpmove(Dir)
 			return
 		if(mob.client)
 			if(mob.client.view != world.view) // If mob moves while zoomed in with device, unzoom them.
@@ -260,7 +195,7 @@
 
 	if(isobj(mob.loc) || ismob(mob.loc))//Inside an object, tell it we moved
 		var/atom/O = mob.loc
-		return O.relaymove(mob, direct)
+		return O.relaymove(mob, Dir)
 
 
 	if(isturf(mob.loc))
@@ -283,75 +218,72 @@
 			src << "\blue You're pinned to a wall by [mob.pinned[1]]!"
 			return 0
 
-		move_delay = 0 //Here we do NOT add world.time yet. So that we can modify the delay with multipliers
-		//We will add world.time whenever it leaves this functiopn or reaches a certain point
-
-		switch(mob.m_intent)
-			if("run")
-				if(mob.drowsyness > 0)
-					move_delay += 6
-				move_delay += 1+config.run_speed
-			if("walk")
-				move_delay += 7+config.walk_speed
-		move_delay += mob.movement_delay()
-
-		var/tickcomp = 0 //moved this out here so we can use it for vehicles
-		if(config.Tickcomp)
-			// move_delay -= 1.3 //~added to the tickcomp calculation below
-			tickcomp = ((1/(world.tick_lag))*1.3) - 1.3
-			move_delay = move_delay + tickcomp
+		
 
 		if(istype(mob.buckled, /obj/vehicle))
 			//manually set move_delay for vehicles so we don't inherit any mob movement penalties
 			//specific vehicle move delays are set in code\modules\vehicles\vehicle.dm
-			move_delay = world.time + tickcomp
 			//drunk driving
 			if(mob.confused)
-				direct = pick(cardinal)
+				Dir = pick(cardinal)
 
-			move_delay += world.time - leftover
-			return mob.buckled.relaymove(mob,direct)
+			return mob.buckled.relaymove(mob,Dir)
+
+		var/delay = 0
+
+		switch(mob.m_intent)
+			if("run")
+				if(mob.drowsyness > 0)
+					delay += 6
+				delay += 1
+			if("walk")
+				delay += 7
+		delay += mob.movement_delay()
 
 		if(istype(mob.machine, /obj/machinery))
-			if(mob.machine.relaymove(mob,direct))
-				move_delay += world.time - leftover
+			if(mob.machine.relaymove(mob,Dir))
+				move_delayer.setDelay(delay)
 				return
 
 		if(mob.pulledby || mob.buckled) // Wheelchair driving!
 			if(istype(mob.loc, /turf/space))
-				move_delay += world.time - leftover
+				move_delayer.setDelay(delay)
 				return // No wheelchair driving in space
 			if(istype(mob.pulledby, /obj/structure/bed/chair/wheelchair))
-				move_delay += world.time - leftover
-				return mob.pulledby.relaymove(mob, direct)
+				move_delayer.setDelay(delay)
+				return mob.pulledby.relaymove(mob, Dir)
 			else if(istype(mob.buckled, /obj/structure/bed/chair/wheelchair))
 				if(ishuman(mob))
 					var/mob/living/carbon/human/driver = mob
 					var/obj/item/organ/external/l_hand = driver.get_organ(BP_L_ARM)
 					var/obj/item/organ/external/r_hand = driver.get_organ(BP_R_ARM)
 					if((!l_hand || l_hand.is_stump()) && (!r_hand || r_hand.is_stump()))
-						move_delay += world.time - leftover
+						move_delayer.setDelay(delay)
 						return // No hands to drive your chair? Tough luck!
 				//drunk wheelchair driving
 				if(mob.confused)
-					direct = pick(cardinal)
-				move_delay += 2
-				move_delay += world.time - leftover
-				return mob.buckled.relaymove(mob,direct)
+					Dir = pick(cardinal)
+				delay += 2
+				move_delayer.setDelay(delay)
+				return mob.buckled.relaymove(mob,Dir)
 
 
 		//Here we apply speed factor only if the mob is moving under its own power
 		if (mob.speed_factor && mob.speed_factor != 1.0)
-			move_delay /= mob.speed_factor
+			delay /= mob.speed_factor
 
-		//Latest possible point to factor in world.time
-		move_delay += world.time - leftover
+		if (locate(/obj/item/weapon/grab, mob))
+			delay = max(7, delay)
+
+		move_delayer.setDelay(delay)
+		// Since we're moving OUT OF OUR OWN VOLITION AND BY OURSELVES we can update our glide_size here!
+		var/glide_size = DELAY2GLIDESIZE(delay)
+		mob.set_glide_size(DELAY2GLIDESIZE(delay))
 
 		//We are now going to move
 		moving = 1
 		//Something with pulling things
 		if(locate(/obj/item/weapon/grab, mob))
-			move_delay = max(move_delay, world.time + 7)
 			var/list/L = mob.ret_grab()
 			if(istype(L, /list))
 				if(L.len == 2)
@@ -367,7 +299,7 @@
 								else
 									diag = null
 								if ((get_dist(mob, M) > 1 || diag))
-									step(M, get_dir(M.loc, T))
+									step_glide(M, get_dir(M.loc, T), glide_size)
 				else
 					for(var/mob/M in L)
 						M.other_mobs = 1
@@ -375,30 +307,27 @@
 							M.animate_movement = 3
 					for(var/mob/M in L)
 						spawn( 0 )
-							step(M, direct)
+							step_glide(M, Dir, glide_size)
 							return
 						spawn( 1 )
 							M.other_mobs = null
 							M.animate_movement = 2
 							return
 
-		else if(mob.confused)
-			step(mob, pick(cardinal))
 		else
-			. = mob.SelfMove(n, direct)
+			if(mob.confused)
+				step(mob, pick(cardinal))
+			else
+				. = mob.SelfMove(NewLoc, Dir)
 
 		for (var/obj/item/weapon/grab/G in mob)
 			if (G.state == GRAB_NECK)
-				mob.set_dir(reverse_dir[direct])
+				mob.set_dir(reverse_dir[Dir])
 			G.adjust_position()
 		for (var/obj/item/weapon/grab/G in mob.grabbed_by)
 			G.adjust_position()
 
 		moving = 0
-
-		return .
-
-	return
 
 /mob/proc/SelfMove(turf/n, direct)
 	return Move(n, direct)
@@ -417,9 +346,17 @@
 				mob << SPAN_WARNING("You cannot get past holy grounds while you are in this plane of existence!")
 				return
 			else
-				mob.forceMove(get_step(mob, direct))
+				var/delay = 0.5;
+				// NOTE HERE: even when we're moving diagonally we pass glide size as if it's a cardinal movement.
+				// This is because LONG_GLIDE is set. It'll handle adjustment for diagonals itself.
+				var/new_glide_size = DELAY2GLIDESIZE(delay)
+				if (direct in cornerdirs)
+					delay *= sqrt(2)
+				move_delayer.setDelayMin(delay)
+				mob.forceMove(get_step(mob, direct), glide_size_override=new_glide_size)
 				mob.dir = direct
 		if(2)
+			var/delay = MOVE_DELAY_BASE+1
 			if(prob(50))
 				var/locx
 				var/locy
@@ -446,7 +383,9 @@
 							return
 					else
 						return
-				mob.forceMove(locate(locx,locy,mobloc.z))
+				
+				move_delayer.setDelayMin(delay)
+				mob.forceMove(locate(locx,locy,mobloc.z), glide_size_override=DELAY2GLIDESIZE(delay))
 				spawn(0)
 					var/limit = 2//For only two trailing shadows.
 					for(var/turf/T in getline(mobloc, mob.loc))
@@ -457,7 +396,8 @@
 			else
 				spawn(0)
 					anim(mobloc,mob,'icons/mob/mob.dmi',,"shadow",,mob.dir)
-				mob.forceMove(get_step(mob, direct))
+				move_delayer.setDelayMin(delay)
+				mob.forceMove(get_step(mob, direct), glide_size_override=DELAY2GLIDESIZE(delay))
 			mob.dir = direct
 	// Crossed is always a bit iffy
 	for(var/obj/S in mob.loc)

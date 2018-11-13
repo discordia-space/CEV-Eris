@@ -243,21 +243,18 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_tog_aliens, R_DEBUG, FALSE)
 
 	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if (H.wear_id)
-			var/obj/item/weapon/card/id/id = H.wear_id
-			if(istype(H.wear_id, /obj/item/device/pda))
-				var/obj/item/device/pda/pda = H.wear_id
-				id = pda.id
+		var/obj/item/weapon/card/id/id = H.GetIdCard()
+		if(id)
 			id.icon_state = "gold"
 			id.access = get_all_accesses()
 		else
-			var/obj/item/weapon/card/id/id = new/obj/item/weapon/card/id(M);
-			id.icon_state = "gold"
-			id.access = get_all_accesses()
-			id.registered_name = H.real_name
-			id.assignment = "Captain"
-			id.name = "[id.registered_name]'s ID Card ([id.assignment])"
-			H.equip_to_slot_or_del(id, slot_wear_id)
+			var/obj/item/weapon/card/id/new_id = new/obj/item/weapon/card/id(M);
+			new_id.icon_state = "gold"
+			new_id.access = get_all_accesses()
+			new_id.registered_name = H.real_name
+			new_id.assignment = "Captain"
+			new_id.name = "[new_id.registered_name]'s ID Card ([new_id.assignment])"
+			H.equip_to_slot_or_del(new_id, slot_wear_id)
 			H.update_inv_wear_id()
 	else
 		alert("Invalid mob")
@@ -391,7 +388,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 		"strip",
 		"job",
 		"standard space gear",
-		"tournament standard red",
+		"tournament standard grey",
 		"tournament standard green",
 		"tournament gangster",
 		"tournament chef",
@@ -401,26 +398,14 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 		"soviet admiral",
 		"tunnel clown",
 		"masked killer",
-		"assassin",
-		"death commando",
-		"syndicate commando",
-		"special ops officer",
-		"blue wizard",
-		"red wizard",
-		"marisa wizard",
-		"nanotrasen representative",
-		"nanotrasen officer",
-		"nanotrasen captain"
+		"special ops officer"
 		)
 	var/dresscode = input("Select dress for [M]", "Robust quick dress shop") as null|anything in dresspacks
 	if (isnull(dresscode))
 		return
 
-	for (var/obj/item/I in M)
-		if (istype(I, /obj/item/weapon/implant))
-			continue
-		M.drop_from_inventory(I)
-		if(I.loc != M)
+	for (var/obj/item/I in M.get_equipped_items(TRUE))
+		if (M.unEquip(I))
 			qdel(I)
 	switch(dresscode)
 		if ("strip")
@@ -586,10 +571,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 			sec_briefcase.contents += new /obj/item/weapon/plastique
 			M.equip_to_slot_or_del(sec_briefcase, slot_l_hand)
 
-			var/obj/item/device/pda/heads/pda = new(M)
-			pda.owner = M.real_name
-			pda.ownjob = "Reaper"
-			pda.name = "PDA-[M.real_name] ([pda.ownjob])"
+			var/obj/item/modular_computer/pda/pda = new(M)
 
 			M.equip_to_slot_or_del(pda, slot_belt)
 
@@ -612,10 +594,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/color/white(M), slot_gloves)
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/hop(M), slot_l_ear)
 
-			var/obj/item/device/pda/heads/pda = new(M)
-			pda.owner = M.real_name
-			pda.ownjob = "NanoTrasen Navy Representative"
-			pda.name = "PDA-[M.real_name] ([pda.ownjob])"
+			var/obj/item/modular_computer/pda/pda = new(M)
 
 			M.equip_to_slot_or_del(pda, slot_r_store)
 			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(M), slot_l_store)
@@ -637,10 +616,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/color/white(M), slot_gloves)
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/captain(M), slot_l_ear)
 
-			var/obj/item/device/pda/heads/pda = new(M)
-			pda.owner = M.real_name
-			pda.ownjob = "NanoTrasen Navy Officer"
-			pda.name = "PDA-[M.real_name] ([pda.ownjob])"
+			var/obj/item/modular_computer/pda/pda = new(M)
 
 			M.equip_to_slot_or_del(pda, slot_r_store)
 			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(M), slot_l_store)
@@ -661,10 +637,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/color/white(M), slot_gloves)
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/captain(M), slot_l_ear)
 
-			var/obj/item/device/pda/heads/pda = new(M)
-			pda.owner = M.real_name
-			pda.ownjob = "NanoTrasen Navy Captain"
-			pda.name = "PDA-[M.real_name] ([pda.ownjob])"
+			var/obj/item/modular_computer/pda/pda = new(M)
 
 			M.equip_to_slot_or_del(pda, slot_r_store)
 			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(M), slot_l_store)

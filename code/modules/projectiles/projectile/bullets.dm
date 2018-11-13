@@ -114,7 +114,7 @@
 	var/distance = get_dist(loc, starting)
 	return ..() * get_pellets(distance)
 
-/obj/item/projectile/bullet/pellet/Move()
+/obj/item/projectile/bullet/pellet/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	. = ..()
 
 	//If this is a shrapnel explosion, allow mobs that are prone to get hit, too

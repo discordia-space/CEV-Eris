@@ -172,6 +172,13 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 
 //DEFINITIONS FOR ASSET DATUMS START HERE.
 
+/datum/asset/simple/tgui
+	assets = list(
+		"tgui.css"	= 'tgui/assets/tgui.css',
+		"tgui.js"	= 'tgui/assets/tgui.js'
+	)
+
+
 /datum/asset/simple/pda
 	assets = list(
 		"pda_atmos.png"			= 'icons/pda_icons/pda_atmos.png',
@@ -208,10 +215,12 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 		"nano/css/",
 		"nano/images/",
 		"nano/images/status_icons/",
+		"nano/images/modular_computers/",
 		"nano/js/"
 	)
 	var/list/uncommon_dirs = list(
-		"nano/templates/"
+		"nano/templates/",
+		"news_articles/images/"
 	)
 
 /datum/asset/nanoui/register()
@@ -229,6 +238,18 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 			if(copytext(filename, length(filename)) != "/") // Ignore directories.
 				if(fexists(path + filename))
 					register_asset(filename, fcopy_rsc(path + filename))
+
+	var/list/mapnames = list()
+	for(var/z in maps_data.station_levels)
+		mapnames += map_image_file_name(z)
+
+	var/list/filenames = flist(MAP_IMAGE_PATH)
+	for(var/filename in filenames)
+		if(copytext(filename, length(filename)) != "/") // Ignore directories.
+			var/file_path = MAP_IMAGE_PATH + filename
+			if((filename in mapnames) && fexists(file_path))
+				common[filename] = fcopy_rsc(file_path)
+				register_asset(filename, common[filename])
 
 /datum/asset/nanoui/send(client, uncommon)
 	if(!islist(uncommon))
@@ -249,7 +270,7 @@ var/decl/asset_cache/asset_cache = new()
 	..()
 	cache = new
 
-/hook/roundstart/proc/send_assets()
+/proc/send_assets()
 	for(var/type in typesof(/datum/asset) - list(/datum/asset, /datum/asset/simple))
 		var/datum/asset/A = new type()
 		A.register()

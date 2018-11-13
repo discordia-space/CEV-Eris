@@ -23,7 +23,7 @@
 		usr << "Your module is not installed in a hardsuit."
 		return
 
-	module.holder.ui_interact(usr, nano_state = contained_state)
+	module.holder.ui_interact(usr, nano_state = GLOB.contained_state)
 
 /obj/item/rig_module/ai_container
 
@@ -145,7 +145,7 @@
 	if(!target)
 		if(ai_card)
 			if(istype(ai_card,/obj/item/device/aicard))
-				ai_card.ui_interact(H, state = deep_inventory_state)
+				ai_card.ui_interact(H, state =GLOB.deep_inventory_state)
 			else
 				eject_ai(H)
 		update_verb_holder()
@@ -156,7 +156,7 @@
 
 	return 0
 
-/obj/item/rig_module/ai_container/removed()
+/obj/item/rig_module/ai_container/uninstalled()
 	eject_ai()
 	..()
 

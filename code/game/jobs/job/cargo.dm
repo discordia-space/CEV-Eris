@@ -4,7 +4,7 @@
 	flag = MERCHANT
 	department = "Cargo"
 	head_position = 1
-	department_flag = CIVILIAN
+	department_flag = GUILD | COMMAND
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
@@ -20,10 +20,16 @@
 	idtype = /obj/item/weapon/card/id/car
 	ideal_character_age = 40
 
+	software_on_spawn = list(///datum/computer_file/program/supply,
+							 ///datum/computer_file/program/deck_management,
+							 /datum/computer_file/program/scanner,
+							 /datum/computer_file/program/wordprocessor,
+							 /datum/computer_file/program/reports)
+
 	uniform = /obj/item/clothing/under/rank/cargotech
 	suit = /obj/item/clothing/suit/storage/qm_coat
 	shoes = /obj/item/clothing/shoes/color/brown
-	pda = /obj/item/device/pda/quartermaster
+	pda = /obj/item/modular_computer/pda/cargo
 	gloves = /obj/item/clothing/gloves/thick
 	ear = /obj/item/device/radio/headset/heads/merchant
 	hand = /obj/item/weapon/clipboard
@@ -40,10 +46,10 @@
 	title = "Guild Technician"
 	flag = GUILDTECH
 	department = "Cargo"
-	department_flag = CIVILIAN
+	department_flag = GUILD
 	faction = "CEV Eris"
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 3
+	spawn_positions = 3
 	supervisors = "the Guild Merchant"
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
@@ -58,9 +64,15 @@
 		STAT_TGH = 10,
 	)
 
+	software_on_spawn = list(///datum/computer_file/program/supply,
+							 ///datum/computer_file/program/deck_management,
+							 /datum/computer_file/program/scanner,
+							 /datum/computer_file/program/wordprocessor,
+							 /datum/computer_file/program/reports)
+
 	uniform = /obj/item/clothing/under/rank/cargotech
 	suit = /obj/item/clothing/suit/storage/cargo_jacket
-	pda = /obj/item/device/pda/cargo
+	pda = /obj/item/modular_computer/pda/cargo
 	ear = /obj/item/device/radio/headset/headset_cargo
 
 /obj/landmark/join/start/cargo_tech
@@ -72,10 +84,10 @@
 	title = "Guild Miner"
 	flag = MINER
 	department = "Cargo"
-	department_flag = CIVILIAN
+	department_flag = GUILD
 	faction = "CEV Eris"
-	total_positions = 3
-	spawn_positions = 3
+	total_positions = 4
+	spawn_positions = 4
 	supervisors = "the Guild Merchant"
 	selection_color = "#dddddd"
 	economic_modifier = 5
@@ -91,8 +103,13 @@
 		STAT_TGH = 20,
 	)
 
+	software_on_spawn = list(///datum/computer_file/program/supply,
+							 ///datum/computer_file/program/deck_management,
+							 /datum/computer_file/program/wordprocessor,
+							 /datum/computer_file/program/reports)
+
 	uniform = /obj/item/clothing/under/rank/miner
-	pda = /obj/item/device/pda/shaftminer
+	pda = /obj/item/modular_computer/pda/science
 	ear = /obj/item/device/radio/headset/headset_cargo
 	survival_gear = /obj/item/weapon/storage/box/engineer
 

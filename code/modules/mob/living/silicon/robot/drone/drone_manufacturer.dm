@@ -79,7 +79,7 @@
 
 	time_last_drone = world.time
 	if(player.mob && player.mob.mind) player.mob.mind.reset()
-	var/mob/living/silicon/robot/drone/new_drone = PoolOrNew(drone_type, get_turf(src))
+	var/mob/living/silicon/robot/drone/new_drone = new drone_type(get_turf(src))
 	new_drone.transfer_personality(player)
 	new_drone.master_fabricator = src
 
@@ -101,7 +101,7 @@
 		user << SPAN_DANGER("That verb is not currently permitted.")
 		return
 
-	if(jobban_isbanned(user,"Cyborg"))
+	if(jobban_isbanned(user,"Robot"))
 		user << SPAN_DANGER("You are banned from playing synthetics and cannot spawn as a drone.")
 		return
 

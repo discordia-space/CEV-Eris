@@ -216,24 +216,6 @@ note dizziness decrements automatically in the mob's Life() proc.
 	// And animate the attack!
 	animate(I, alpha = 175, pixel_x = 0, pixel_y = 0, pixel_z = 0, time = 3)
 
-
-
-
-/atom/proc/SpinAnimation(speed = 10, loops = -1)
-	var/matrix/m120 = matrix(transform)
-	m120.Turn(120)
-	var/matrix/m240 = matrix(transform)
-	m240.Turn(240)
-	var/matrix/m360 = matrix(transform)
-	speed /= 3      //Gives us 3 equal time segments for our three turns.
-	                //Why not one turn? Because byond will see that the start and finish are the same place and do nothing
-	                //Why not two turns? Because byond will do a flip instead of a turn
-	animate(src, transform = m120, time = speed, loops)
-	animate(transform = m240, time = speed)
-	animate(transform = m360, time = speed)
-
-
-
 //Shakes the mob's camera
 //Strength is not recommended to set higher than 4, and even then its a bit wierd
 /proc/shake_camera(mob/M, duration, strength=1, var/taper = 0.25)
@@ -294,13 +276,26 @@ note dizziness decrements automatically in the mob's Life() proc.
 			spintime -= speed
 	return
 
-/atom/movable/proc/do_pickup_animation(atom/target)
+/atom/movable/proc/do_pickup_animation(atom/target, atom/old_loc)
 	set waitfor = FALSE
+	if (QDELETED(src))
+		return
+	if (QDELETED(target))
+		return
+	if (QDELETED(old_loc))
+		return
 
-	var/turf/old_loc = get_turf(src)
-	var/image/I = image(icon = src, loc = src.loc, layer = layer + 0.1)
+	var/turf/old_turf = get_turf(old_loc)
+	var/image/I = image(icon = src, loc = old_turf)
 	I.plane = GAME_PLANE
+	I.layer = ABOVE_MOB_LAYER
 	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	if (istype(target,/mob))
+		I.dir = target.dir
+
+	if (istype(old_loc,/obj/item/weapon/storage))
+		I.pixel_x += old_loc.pixel_x
+		I.pixel_y += old_loc.pixel_y
 
 	flick_overlay(I, clients, 7)
 
@@ -312,26 +307,38 @@ note dizziness decrements automatically in the mob's Life() proc.
 	animate(I, transform = matrix(), time = 1)
 	sleep(1)
 
-	var/to_x = (target.x - old_loc.x) * 32
-	var/to_y = (target.y - old_loc.y) * 32
+	var/to_x = (target.x - old_turf.x) * 32
+	var/to_y = (target.y - old_turf.y) * 32
 
 	animate(I, pixel_x = to_x, pixel_y = to_y, time = 3, transform = matrix() * 0, easing = CUBIC_EASING)
 	sleep(3)
 
 /atom/movable/proc/do_putdown_animation(atom/target, mob/user)
 	spawn()
+		if (QDELETED(src))
+			return
+		if (QDELETED(target))
+			return
+		if (QDELETED(user))
+			return
 		var/old_invisibility = invisibility // I don't know, it may be used.
 		invisibility = 100
-		var/turf/old_loc = get_turf(user)
-		var/image/I = image(icon = src, loc = old_loc, layer = layer + 0.1)
+		var/turf/old_turf = get_turf(user)
+		if (QDELETED(old_turf))
+			return
+		var/image/I = image(icon = src, loc = old_turf, layer = layer + 0.1)
 		I.plane = GAME_PLANE
+		I.layer = ABOVE_MOB_LAYER
 		I.transform = matrix() * 0
 		I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
-
+		I.pixel_x = 0
+		I.pixel_y = 0
+		if (istype(target,/mob))
+			I.dir = target.dir
 		flick_overlay(I, clients, 4)
 
-		var/to_x = (target.x - old_loc.x) * 32 + pixel_x
-		var/to_y = (target.y - old_loc.y) * 32 + pixel_y
+		var/to_x = (target.x - old_turf.x) * 32 + pixel_x
+		var/to_y = (target.y - old_turf.y) * 32 + pixel_y
 		var/old_x = pixel_x
 		var/old_y = pixel_y
 		pixel_x = 0
@@ -339,6 +346,8 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 		animate(I, pixel_x = to_x, pixel_y = to_y, time = 3, transform = matrix(), easing = CUBIC_EASING)
 		sleep(3)
+		if (QDELETED(src))
+			return
 		invisibility = old_invisibility
 		pixel_x = old_x
 		pixel_y = old_y
@@ -348,16 +357,19 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 	var/old_invisibility = invisibility // I don't know, it may be used.
 	invisibility = 100
-	var/turf/old_loc = get_turf(src)
+	var/turf/old_turf = get_turf(src)
 	var/image/I = image(icon = src, loc = src.loc, layer = layer + 0.1)
 	I.plane = GAME_PLANE
+	I.layer = ABOVE_MOB_LAYER
 	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 
 	flick_overlay(I, clients, 4)
 
-	var/to_x = (target.x - old_loc.x) * 32 + pixel_x
-	var/to_y = (target.y - old_loc.y) * 32 + pixel_y
+	var/to_x = (target.x - old_turf.x) * 32 + pixel_x
+	var/to_y = (target.y - old_turf.y) * 32 + pixel_y
 
 	animate(I, pixel_x = to_x, pixel_y = to_y, time = 3, easing = CUBIC_EASING)
 	sleep(3)
+	if (QDELETED(src))
+		return
 	invisibility = old_invisibility

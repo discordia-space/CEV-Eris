@@ -162,7 +162,7 @@
 	return 0
 
 /mob/proc/movement_delay()
-	return 0
+	return MOVE_DELAY_BASE
 
 /mob/proc/Life()
 //	if(organStructure)
@@ -184,7 +184,10 @@
 	return incapacitated(INCAPACITATION_DISABLED)
 
 /mob/proc/incapacitated(var/incapacitation_flags = INCAPACITATION_DEFAULT)
-	if ((incapacitation_flags & INCAPACITATION_DISABLED) && (stat || paralysis || stunned || weakened || resting || sleeping || (status_flags & FAKEDEATH)))
+	if ((incapacitation_flags & INCAPACITATION_STUNNED) && (stunned || weakened || resting))
+		return 1
+
+	if((incapacitation_flags & INCAPACITATION_UNCONSCIOUS) && (stat || paralysis || sleeping || (status_flags & FAKEDEATH)))
 		return 1
 
 	if((incapacitation_flags & INCAPACITATION_RESTRAINED) && restrained())
@@ -254,9 +257,9 @@
 
 	var/obj/P = new /obj/effect/decal/point(tile)
 	P.invisibility = invisibility
-	spawn (20)
-		if(P)
-			qdel(P)	// qdel
+	P.pixel_x = A.pixel_x
+	P.pixel_y = A.pixel_y
+	QDEL_IN(P, 2 SECONDS)
 
 	face_atom(A)
 	return 1
@@ -301,19 +304,9 @@
 	set category = "Object"
 	set src = usr
 
-	if(istype(loc,/obj/mecha)) return
-
-	if(hand)
-		var/obj/item/W = l_hand
-		if (W)
-			W.attack_self(src)
-			update_inv_l_hand()
-	else
-		var/obj/item/W = r_hand
-		if (W)
-			W.attack_self(src)
-			update_inv_r_hand()
-	return
+	var/obj/item/W = get_active_hand()
+	if (W)
+		W.attack_self(src)
 
 /*
 /mob/verb/dump_source()
@@ -629,7 +622,7 @@
 	return stat == DEAD
 
 /mob/proc/is_mechanical()
-	if(mind && (mind.assigned_role == "Cyborg" || mind.assigned_role == "AI"))
+	if(mind && (mind.assigned_role == "Robot" || mind.assigned_role == "AI"))
 		return 1
 	return issilicon(src)
 
@@ -787,12 +780,12 @@
 
 
 /mob/facedir(var/ndir)
-	if(!canface() || client.moving || world.time < client.move_delay)
+	if(!canface() || client.moving || client.isMovementBlocked())
 		return 0
 	set_dir(ndir)
 	if(buckled && buckled.buckle_movable)
 		buckled.set_dir(ndir)
-	client.move_delay += movement_delay()
+	setMoveCooldown(movement_delay())
 	return 1
 
 
@@ -1156,12 +1149,8 @@ mob/proc/yank_out_object()
 	return
 
 /mob/proc/check_CH(CH_name as text, var/CH_type, var/second_arg = null)
-	var/list/exarglist = list()
-
-	isnull(second_arg) ? exarglist.Add(src.client) : exarglist.Add(src.client,second_arg)
-
 	if(!src.client.CH || !istype(src.client.CH, CH_type))//(src.client.CH.handler_name != CH_name))
-		src.client.CH = PoolOrNew(CH_type,exarglist)
+		src.client.CH = new CH_type(client, second_arg)
 		src << SPAN_WARNING("You prepare [CH_name].")
 	else
 		kill_CH()

@@ -640,7 +640,7 @@
 	else if(href_list["c_mode"])
 		if(!check_rights(R_ADMIN))	return
 
-		if(SSticker.storyteller)
+		if(get_storyteller())
 			return alert(usr, "The game has already started.", null, null, null, null)
 		var/dat = {"<B>What storyteller do you wish to install?</B><HR>"}
 		for(var/mode in config.storytellers)
@@ -651,12 +651,12 @@
 	else if(href_list["c_mode2"])
 		if(!check_rights(R_ADMIN|R_SERVER))	return
 
-		if (SSticker.storyteller)
-			return alert(usr, "The game has already started.", null, null, null, null)
+		//if (get_storyteller())
+			//return alert(usr, "The game has already started.", null, null, null, null)
 		master_storyteller = href_list["c_mode2"]
+		set_storyteller(master_storyteller) //This does the actual work
 		log_admin("[key_name(usr)] set the storyteller to [master_storyteller].")
 		message_admins("\blue [key_name_admin(usr)] set the storyteller to [master_storyteller].", 1)
-		world << "\blue <b>The storyteller is now: [master_storyteller]</b>"
 		Game() // updates the main game menu
 		world.save_storyteller(master_storyteller)
 		.(href, list("c_mode"=1))
@@ -870,17 +870,11 @@
 			usr << "This can only be used on instances of type /mob/living/carbon/human"
 			return
 
-		H.equip_to_slot_or_del( new /obj/item/weapon/reagent_containers/food/snacks/cookie(H), slot_l_hand )
-		if(!(istype(H.l_hand,/obj/item/weapon/reagent_containers/food/snacks/cookie)))
-			H.equip_to_slot_or_del( new /obj/item/weapon/reagent_containers/food/snacks/cookie(H), slot_r_hand )
-			if(!(istype(H.r_hand,/obj/item/weapon/reagent_containers/food/snacks/cookie)))
+		if(!H.equip_to_slot_or_del( new /obj/item/weapon/reagent_containers/food/snacks/cookie(H), slot_l_hand ))
+			if(!H.equip_to_slot_or_del( new /obj/item/weapon/reagent_containers/food/snacks/cookie(H), slot_r_hand ))
 				log_admin("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
 				message_admins("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
 				return
-			else
-				H.update_inv_r_hand()//To ensure the icon appears in the HUD
-		else
-			H.update_inv_l_hand()
 		log_admin("[key_name(H)] got their cookie, spawned by [key_name(src.owner)]")
 		message_admins("[key_name(H)] got their cookie, spawned by [key_name(src.owner)]")
 
@@ -1075,7 +1069,7 @@
 	else if(href_list["traitor"])
 		if(!check_rights(R_ADMIN|R_MOD))	return
 
-		if(!SSticker.storyteller)
+		if(!storyteller)
 			alert("The game hasn't started yet!")
 			return
 

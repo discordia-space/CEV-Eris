@@ -48,7 +48,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	else
 		bst.equip_to_slot_or_del(new /obj/item/weapon/storage/box/ids(bst.back), slot_in_backpack)
 		bst.equip_to_slot_or_del(new /obj/item/device/t_scanner(bst.back), slot_in_backpack)
-		bst.equip_to_slot_or_del(new /obj/item/device/pda/captain/bst(bst.back), slot_in_backpack)
+		bst.equip_to_slot_or_del(new /obj/item/modular_computer/pda/captain(bst.back), slot_in_backpack)
 
 		var/obj/item/weapon/storage/box/pills = new /obj/item/weapon/storage/box(null, TRUE)
 		pills.name = "adminordrazine"
@@ -192,6 +192,15 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 
 	status_flags ^= GODMODE
 	src << span("notice", "God mode is now [status_flags & GODMODE ? "enabled" : "disabled"]")
+
+/mob/living/carbon/human/bst/verb/allow_unequip()
+	set name = "Allow Unequip"
+	set desc = "Allows you to unequip your unique items. Don't let them fall into the wrong hands."
+	set category = "BST"
+
+	for (var/obj/item/I in src)
+		I.canremove = TRUE
+	src << SPAN_NOTICE("You can now remove your equipment")
 
 //Equipment. All should have canremove set to 0
 //All items with a /bst need the attack_hand() proc overrided to stop people getting overpowered items.
@@ -345,20 +354,6 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 		access = get_all_accesses()+get_all_centcom_access()+get_all_syndicate_access()
 
 /obj/item/weapon/card/id/bst/attack_hand()
-	if(!usr)
-		return
-	if(!istype(usr, /mob/living/carbon/human/bst))
-		usr << span("alert", "Your hand seems to go right through the [src]. It's like it doesn't exist.")
-		return
-	else
-		..()
-
-/obj/item/device/pda/captain/bst
-	hidden = 1
-	message_silent = 1
-//	ttone = "DO SOMETHING HERE"
-
-/obj/item/device/pda/captain/bst/attack_hand()
 	if(!usr)
 		return
 	if(!istype(usr, /mob/living/carbon/human/bst))

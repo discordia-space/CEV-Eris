@@ -6,6 +6,7 @@
 	climbable = TRUE
 	dense_when_open = TRUE
 	var/rigged = FALSE
+	dismantle_material = /obj/item/stack/material/plasteel
 
 
 /obj/structure/closet/crate/open()
@@ -131,6 +132,7 @@
 	name = "plastic crate"
 	desc = "A rectangular plastic crate."
 	icon_state = "plasticcrate"
+	dismantle_material = /obj/item/stack/material/plastic
 
 /obj/structure/closet/crate/internals
 	name = "internals crate"

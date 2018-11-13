@@ -12,8 +12,10 @@
 	var/damtype = "brute"
 	var/armor_penetration = 0
 	var/corporation = null
+	var/heat = 0
 
-
+/obj/proc/is_hot()
+	return heat
 
 /obj/get_fall_damage()
 	return w_class * 2
@@ -36,7 +38,7 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/Topic(href, href_list, var/datum/topic_state/state = default_state)
+/obj/Topic(href, href_list, var/datum/topic_state/state = GLOB.default_state)
 	if(..())
 		return 1
 
@@ -214,3 +216,9 @@
 	playsound(src.loc, 'sound/weapons/guns/interact/pistol_magout.ogg', 75, 1)
 	M << SPAN_NOTICE("You insert [I] into [src].")
 	return TRUE
+
+
+//Returns the list of matter in this object
+//You can override it to customise exactly what is returned.
+/obj/proc/get_matter()
+	return matter

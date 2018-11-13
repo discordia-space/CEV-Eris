@@ -18,6 +18,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	var/list/purchase_log = new
 	var/datum/mind/uplink_owner = null
 	var/used_TC = 0
+	var/pda_login
 
 /obj/item/device/uplink/nano_host()
 	return loc
@@ -75,8 +76,8 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 // Checks to see if the value meets the target. Like a frequency being a traitor_frequency, in order to unlock a headset.
 // If true, it accesses trigger() and returns 1. If it fails, it returns false. Use this to see if you need to close the
 // current item's menu.
-/obj/item/device/uplink/hidden/proc/check_trigger(mob/user as mob, var/value, var/target)
-	if(value == target)
+/obj/item/device/uplink/hidden/proc/check_trigger(mob/user as mob, var/value)
+	if(value == pda_login)
 		trigger(user)
 		return 1
 	return 0
@@ -96,7 +97,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)	// No auto-refresh
-		ui = new(user, src, ui_key, "uplink.tmpl", title, 450, 600, state = inventory_state)
+		ui = new(user, src, ui_key, "uplink.tmpl", title, 450, 600, state =GLOB.inventory_state)
 		ui.set_initial_data(data)
 		ui.open()
 

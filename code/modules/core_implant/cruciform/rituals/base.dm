@@ -68,7 +68,7 @@
 	if(prob(20)) //Aditional fail chance that hidded from user
 		H << SPAN_NOTICE("There is nothing there. You feel safe.")
 		return TRUE
-	for (var/mob/living/superior_animal/S in range(14, H))
+	for (var/mob/living/carbon/superior_animal/S in range(14, H))
 		if (S.stat != DEAD)
 			H << SPAN_WARNING("Adversaries are near. You can feel something nasty and hostile.")
 			was_triggired = TRUE

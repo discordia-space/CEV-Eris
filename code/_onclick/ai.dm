@@ -123,8 +123,8 @@
 /atom/proc/AICtrlShiftClick()
 	return
 
-/atom/proc/AIShiftClick()
-	return
+/atom/proc/AIShiftClick(var/mob/user)
+	user.examinate(src)
 
 /obj/machinery/door/airlock/AIShiftClick()  // Opens and closes doors!
 	if(density)

@@ -11,11 +11,14 @@ var/global/list/human_mob_list = list()				//List of all human mobs and sub-type
 var/global/list/silicon_mob_list = list()			//List of all silicon mobs, including clientless
 var/global/list/living_mob_list = list()			//List of all alive mobs, including clientless. Excludes /mob/new_player
 var/global/list/dead_mob_list = list()				//List of all dead mobs, including clientless. Excludes /mob/new_player
+var/global/list/current_antags = list()
+var/global/list/current_factions = list()
 
 var/global/list/cable_list = list()					//Index for all cables, so that powernets don't have to look through the entire world all the time
 var/global/list/chemical_reactions_list				//list of all /datum/chemical_reaction datums. Used during chemical reactions
 var/global/list/chemical_reagents_list				//list of all /datum/reagent datums indexed by reagent id. Used by chemistry stuff
 var/global/list/landmarks_list = list()				//list of all landmarks created
+var/global/list/shuttle_landmarks_list = list()		//list of all /obj/effect/shuttle_landmark.
 var/global/list/surgery_steps = list()				//list of all surgery steps  |BS12
 var/global/list/mechas_list = list()				//list of all mechs. Used by hostile mobs target tracking.
 var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
@@ -72,7 +75,7 @@ var/global/list/organ_tag_to_name = list(
 	head  = "Head", r_arm = "Right arm",
 	chest = "Body", r_leg = "Right Leg",
 	eyes  = "Eyes", l_arm = "Left arm",
-	groin = "Groin",l_leg = "Left Leg", 
+	groin = "Groin",l_leg = "Left Leg",
 	chest2= "Back", heart = "Heart",
 	lungs  = "Lungs", liver = "Liver"
 	)
@@ -111,6 +114,10 @@ var/global/list/string_slot_flags = list(
 	"uniform" = SLOT_ACCESSORY_BUFFER,
 	"holster" = SLOT_HOLSTER
 )
+
+//A list of slots where an item doesn't count as "worn" if it's in one of them
+var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_r_store, slot_l_store,slot_robot_equip_1,slot_robot_equip_2,slot_robot_equip_3)
+
 
 //////////////////////////
 /////Initial Building/////
@@ -230,3 +237,7 @@ var/global/list/admin_permissions = list(
 	"admin" = 0x40,
 	"host" = 0x80
 	)
+
+
+var/global/list/severity_to_string = list("[EVENT_LEVEL_MUNDANE]" = "Mundane", "[EVENT_LEVEL_MODERATE]" = "Moderate", "[EVENT_LEVEL_MAJOR]" = "Major", "[EVENT_LEVEL_ROLESET]" = "Roleset","[EVENT_LEVEL_ECONOMY]" = "Economy")
+

@@ -48,7 +48,7 @@
 	..()
 	//spawn the cell you want in each vehicle
 
-/obj/vehicle/Move()
+/obj/vehicle/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	if(world.time > l_move_time + move_delay)
 		var/old_loc = get_turf(src)
 		if(on && powered && cell.charge < charge_use)
@@ -56,9 +56,9 @@
 
 		var/init_anc = anchored
 		anchored = 0
-		if(!..())
+		if(!(. = ..()))
 			anchored = init_anc
-			return 0
+			return
 
 		set_dir(get_dir(old_loc, loc))
 		anchored = init_anc
@@ -69,7 +69,7 @@
 		//Dummy loads do not have to be moved as they are just an overlay
 		//See load_object() proc in cargo_trains.dm for an example
 		if(load && !istype(load, /datum/vehicle_dummy_load))
-			load.forceMove(loc)
+			load.forceMove(loc, glide_size_override=DELAY2GLIDESIZE(move_delay))
 			load.set_dir(dir)
 
 		return 1
@@ -167,7 +167,7 @@
 	var/was_on = on
 	stat |= EMPED
 
-	PoolOrNew(/obj/effect/overlay/pulse, src.loc)
+	new /obj/effect/overlay/pulse(loc)
 
 	if(on)
 		turn_off()
@@ -213,8 +213,9 @@
 	src.visible_message(SPAN_DANGER("\The [src] blows apart!"))
 	var/turf/Tsec = get_turf(src)
 
-	PoolOrNew(/obj/item/stack/rods, Tsec)
-	PoolOrNew(/obj/item/stack/rods, Tsec)
+	for (var/i in 1 to 2)
+		new /obj/item/stack/rods(Tsec)
+
 	new /obj/item/stack/cable_coil/cut(Tsec)
 
 	if(cell)

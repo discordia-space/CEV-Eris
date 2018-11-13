@@ -59,10 +59,10 @@ meteor_act
 
 				drop_from_inventory(c_hand)
 				if (affected.robotic >= ORGAN_ROBOT)
-					emote("me", 1, "drops what they were holding, their [affected.name] malfunctioning!")
+					emote("pain", 1, "drops what they were holding, their [affected.name] malfunctioning!")
 				else
 					var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
-					emote("me", 1, "[(species && species.flags & NO_PAIN) ? "" : emote_scream ]drops what they were holding in their [affected.name]!")
+					emote("pain", 1, "[(species && species.flags & NO_PAIN) ? "" : emote_scream ]drops what they were holding in their [affected.name]!")
 
 	..(stun_amount, agony_amount, def_zone)
 
@@ -289,6 +289,9 @@ meteor_act
 
 		var/obj/item/organ/external/affecting = get_organ(zone)
 		var/hit_area = affecting.name
+
+		if (O.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
+			IgniteMob()
 
 		src.visible_message("\red [src] has been hit in the [hit_area] by [O].")
 		var/armor = run_armor_check(affecting, "melee", O.armor_penetration, "Your armor has protected your [hit_area].", "Your armor has softened hit to your [hit_area].") //I guess "melee" is the best fit here

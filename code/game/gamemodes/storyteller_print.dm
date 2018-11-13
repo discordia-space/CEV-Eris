@@ -55,6 +55,9 @@
 	else
 		text += "There were <b>no survivors</b> (<b>[ghosts] ghosts</b>)."
 	world << text
+
+
+
 /datum/storyteller/proc/storyteller_panel()
 	var/data = "<center><font size='3'><b>STORYTELLER PANEL</b></font></center>"
 
@@ -62,8 +65,6 @@
 	data += "<table><tr><td>"
 	data += "[src.name] ([src.config_tag])"
 	data += "<br>Round duration: <b>[round(world.time / 36000)]:[add_zero(world.time / 600 % 60, 2)]:[world.time / 100 % 6][world.time / 100 % 10]</b>"
-	data += "<br>Time to next event: <b><a href='?src=\ref[src];edit_timer=1'>[(event_spawn_timer-world.time)/10]</a></b> s"
-	data += "<br>Last spawn stage: <b>[event_spawn_stage]</b>"
 	data += "<br>Debug mode: <b><a href='?src=\ref[src];toggle_debug=1'>\[[debug_mode?"ON":"OFF"]\]</a></b>"
 	data += "<br>One role per player: <b><a href='?src=\ref[src];toggle_orpp=1'>\[[one_role_per_player?"YES":"NO"]\]</a></b>"
 	data += "</td><td style=\"padding-left: 40px\">"
@@ -87,6 +88,14 @@
 	if(debug_mode)
 		data += "<a href='?src=\ref[src];edit_crew=1'>\[EDIT\]</a>"
 
+	data += "</td><td style=\"padding-left: 40px\">"
+
+	data += "<b>Event Pool Points:</b>"
+	data += "<br>Mundane: [round(points[EVENT_LEVEL_MUNDANE], 0.1)] / [POOL_THRESHOLD_MUNDANE]   <a href='?src=\ref[src];modify_points=[EVENT_LEVEL_MUNDANE]'>\[ADD\]</a>"
+	data += "<br>Moderate: [round(points[EVENT_LEVEL_MODERATE], 0.1)] / [POOL_THRESHOLD_MODERATE]   <a href='?src=\ref[src];modify_points=[EVENT_LEVEL_MODERATE]'>\[ADD\]</a>"
+	data += "<br>Major: [round(points[EVENT_LEVEL_MAJOR], 0.1)] / [POOL_THRESHOLD_MAJOR]   <a href='?src=\ref[src];modify_points=[EVENT_LEVEL_MAJOR]'>\[ADD\]</a>"
+	data += "<br>Roleset: [round(points[EVENT_LEVEL_ROLESET], 0.1)] / [POOL_THRESHOLD_ROLESET]   <a href='?src=\ref[src];modify_points=[EVENT_LEVEL_ROLESET]'>\[ADD\]</a>"
+
 	data += "</td></tr></table>"
 	data += "<hr>"
 	data += "<b>Settings:</b>"
@@ -106,32 +115,47 @@
 
 	data += "<hr><b>Current antags:</b><div style=\"border:1px solid black;\"><ul>"
 
-	for(var/datum/antagonist/A in current_antags)
-		var/act = "<font color=red>DEAD</font>"
-		if(!A.is_dead())
-			if(!A.is_active())
-				act = "<font color=silver>AFK</font>"
-			else
-				act = "OK"
+	if (current_antags.len)
+		for(var/datum/antagonist/A in current_antags)
+			var/act = "<font color=red>DEAD</font>"
+			if(!A.is_dead())
+				if(!A.is_active())
+					act = "<font color=silver>AFK</font>"
+				else
+					act = "OK"
 
-		data += "<li>[A.role_text] - [A.owner?(A.owner.name):"no owner"] ([act])<a href='?src=\ref[A];panel=1'>\[EDIT\]</a></li>"
+
+
+			data += "<li>[A.role_text] - [A.owner?(A.owner.name):"no owner"] ([act])<a href='?src=\ref[A];panel=1'>\[EDIT\]</a></li>"
+	else
+		data += "<b>There are no antagonists</b>"
 
 	data += "</ul></div><hr>"
 	data += "<br>Calculate weight: <b><a href='?src=\ref[src];toggle_weight_calc=1'>[calculate_weights?"\[AUTO\]":"\[MANUAL\]"]</a></b>"
-	data += "<br><b>Events: <a href='?src=\ref[src];update_weights=1'>\[UPDATE WEIGHTS\]</a></b><div style=\"border:1px solid black;\"><ul>"
+	data += "<br><b>Events: <a href='?src=\ref[src];update_weights=1'>\[UPDATE WEIGHTS\]</a></b><div style=\"border:1px solid black;\">"
 
-	for(var/datum/storyevent/S in storyevents)
-		data += "<li>[S.id] - weight: [S.weight_cache] <a href='?src=\ref[src];event=[S.id];ev_calc_weight=1'>\[UPD\]</a>"
-		if(!calculate_weights)
-			data += "<a href='?src=\ref[src];event=[S.id];ev_set_weight=1'>\[SET\]</a>  "
-		data += "<a href='?src=\ref[src];event=[S.id];ev_toggle=1'>\[[S.spawnable?"ALLOWED":"FORBIDDEN"]\]</a>"
-		data += "<a href='?src=\ref[src];event=[S.id];ev_debug=1'>\[VV\]</a>"
-		data += "<b><a href='?src=\ref[src];event=[S.id];ev_spawn=1'>\[FORCE\]</a></b></li>"
-		data += "</li>"
 
-	data += "</ul></div>"
+	//This complex block will print out all the events with various info
+	var/severity = EVENT_LEVEL_MUNDANE
+	for(var/list/L in list(event_pool_mundane, event_pool_moderate, event_pool_major, event_pool_roleset))
+		data += "|[severity_to_string[severity]] events:"
+		data += "|Points: [points[severity]]"
+		data += "<ul>"
+		for (var/datum/storyevent/S in L)
+			data += "<li>[S.id] - weight: [L[S]] <a href='?src=\ref[src];event=[S.id];ev_calc_weight=1'>\[UPD\]</a>"
+			if(!calculate_weights)
+				data += "<a href='?src=\ref[src];event=[S.id];ev_set_weight=1'>\[SET\]</a>  "
+			data += "<a href='?src=\ref[src];event=[S.id];ev_toggle=1'>\[[S.enabled?"ALLOWED":"FORBIDDEN"]\]</a>"
+			data += "<a href='?src=\ref[src];event=[S.id];ev_debug=1'>\[VV\]</a>"
+			data += "<b><a href='?src=\ref[src];event=[S.id];ev_spawn=1;severity=[severity]'>\[FORCE\]</a></b></li>"
+			data += "</li>"
+		data += "</ul>"
+		data += "-------------------------<BR>"
+		severity = get_next_severity(severity)
 
-	usr << browse(data,"window=story")
+	data += "</div>"
+
+	usr << browse(data,"window=story;size=600x600")
 
 /datum/storyteller/proc/storyteller_panel_extra()
 	return ""
@@ -206,6 +230,7 @@
 	topic_extra(href,href_list)
 
 	if(href_list["event"])
+
 		var/datum/storyevent/evt = null
 		for(var/datum/storyevent/S in storyevents)
 			if(S.id == href_list["event"])
@@ -215,10 +240,16 @@
 			if(href_list["ev_calc_weight"])
 				update_event_weight(evt)
 			if(href_list["ev_toggle"])
-				evt.spawnable = !evt.spawnable
-				message_admins("Event \"[evt.id]\" was [evt.spawnable?"allowed":"restricted"] to spawn by [key_name(usr)]")
+				evt.enabled = !evt.enabled
+				message_admins("Event \"[evt.id]\" was [evt.enabled?"allowed":"restricted"] to spawn by [key_name(usr)]")
+				build_event_pools()
 			if(href_list["ev_spawn"])
-				var/result = evt.create()
+				if (!evt.can_trigger())
+					var/answer = alert(usr, "\"[evt.id]\" is not allowed to trigger. Would you like to force it anyway?.", "Force Event? ", "yes", "no")
+					if (answer == "no")
+						return
+
+				var/result = evt.create(href_list["severity"])
 				if (result)
 					message_admins("Event \"[evt.id]\" was successfully force spawned by [key_name(usr)]")
 				else
@@ -228,7 +259,10 @@
 			if(href_list["ev_set_weight"])
 				evt.weight_cache = input("Enter new weight.","Weight",evt.weight_cache) as num
 
-
+	if(href_list["modify_points"])
+		var/pooltype = href_list["modify_points"]
+		var/add_points = input("Pool [pooltype] currently has [round(points[pooltype], 0.01)]. How many do you wish to add? Enter a negative value to subtract points","Altering Points",eng) as num
+		modify_points(add_points, pooltype)
 	storyteller_panel()
 
 /datum/storyteller/proc/topic_extra(href,href_list)

@@ -88,7 +88,7 @@
 	if(!restrict_safety)
 		verbs += /obj/item/weapon/gun/proc/toggle_safety//addint it to all guns
 
-/obj/item/weapon/gun/update_held_icon()
+/obj/item/weapon/gun/update_wear_icon()
 	if(requires_two_hands)
 		var/mob/living/M = loc
 		if(istype(M))
@@ -190,7 +190,6 @@
 
 	var/shoot_time = (burst - 1)* burst_delay
 	user.setClickCooldown(shoot_time) //no clicking on things while shooting
-	user.setMoveCooldown(shoot_time) //no moving while shooting either
 	next_fire_time = world.time + shoot_time
 
 	var/held_disp_mod = 0

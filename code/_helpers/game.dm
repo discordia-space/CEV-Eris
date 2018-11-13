@@ -9,6 +9,10 @@
 	src:Topic(href, href_list)
 	return null
 
+/proc/get_z(O)
+	var/turf/loc = get_turf(O)
+	return loc ? loc.z : 0
+
 /proc/get_area(O)
 	var/turf/loc = get_turf(O)
 	if(loc)
@@ -541,4 +545,3 @@ datum/projectile_data
 		P = preferences_datums[target.mind.key]
 
 	return P
-

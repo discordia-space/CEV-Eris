@@ -25,12 +25,12 @@
 /mob
 	var/obj/parallax/parallax
 
-/mob/Move()
+/mob/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	. = ..()
 	if(. && parallax)
 		parallax.update()
 
-/mob/forceMove()
+/mob/forceMove(atom/destination, var/special_event, glide_size_override=0)
 	. = ..()
 	if(. && parallax)
 		parallax.update()

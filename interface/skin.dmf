@@ -1,5 +1,53 @@
 macro "borghotkeymode"
 	elem 
+		name = "WEST"
+		command = "MoveKey 8 1"
+	elem 
+		name = "WEST+UP"
+		command = "MoveKey 8 0"
+	elem 
+		name = "NORTH"
+		command = "MoveKey 1 1"
+	elem 
+		name = "NORTH+UP"
+		command = "MoveKey 1 0"
+	elem 
+		name = "EAST"
+		command = "MoveKey 4 1"
+	elem 
+		name = "EAST+UP"
+		command = "MoveKey 4 0"
+	elem 
+		name = "SOUTH"
+		command = "MoveKey 2 1"
+	elem 
+		name = "SOUTH+UP"
+		command = "MoveKey 2 0"
+	elem 
+		name = "A"
+		command = "MoveKey 8 1"
+	elem 
+		name = "A+UP"
+		command = "MoveKey 8 0"
+	elem 
+		name = "W"
+		command = "MoveKey 1 1"
+	elem 
+		name = "W+UP"
+		command = "MoveKey 1 0"
+	elem 
+		name = "D"
+		command = "MoveKey 4 1"
+	elem 
+		name = "D+UP"
+		command = "MoveKey 4 0"
+	elem 
+		name = "S"
+		command = "MoveKey 2 1"
+	elem 
+		name = "S+UP"
+		command = "MoveKey 2 0"
+	elem 
 		name = "TAB"
 		command = ".winset \"mainwindow.macro=borgmacro hotkey_toggle.is-checked=false input.focus=true input.background-color=#D3B5B5\""
 		is-disabled = false
@@ -32,20 +80,12 @@ macro "borghotkeymode"
 		command = "westface"
 		is-disabled = false
 	elem 
-		name = "WEST+REP"
-		command = ".moveleft"
-		is-disabled = false
-	elem 
 		name = "ALT+NORTH"
 		command = "northfaceperm"
 		is-disabled = false
 	elem 
 		name = "CTRL+NORTH"
 		command = "northface"
-		is-disabled = false
-	elem 
-		name = "NORTH+REP"
-		command = ".moveup"
 		is-disabled = false
 	elem 
 		name = "ALT+EAST"
@@ -56,20 +96,12 @@ macro "borghotkeymode"
 		command = "eastface"
 		is-disabled = false
 	elem 
-		name = "EAST+REP"
-		command = ".moveright"
-		is-disabled = false
-	elem 
 		name = "ALT+SOUTH"
 		command = "southfaceperm"
 		is-disabled = false
 	elem 
 		name = "CTRL+SOUTH"
 		command = "southface"
-		is-disabled = false
-	elem 
-		name = "SOUTH+REP"
-		command = ".movedown"
 		is-disabled = false
 	elem 
 		name = "INSERT"
@@ -116,22 +148,6 @@ macro "borghotkeymode"
 		command = "me-verb"
 		is-disabled = false
 	elem 
-		name = "A+REP"
-		command = ".moveleft"
-		is-disabled = false
-	elem 
-		name = "CTRL+A+REP"
-		command = ".moveleft"
-		is-disabled = false
-	elem 
-		name = "D+REP"
-		command = ".moveright"
-		is-disabled = false
-	elem 
-		name = "CTRL+D+REP"
-		command = ".moveright"
-		is-disabled = false
-	elem 
 		name = "F"
 		command = "a-intent left"
 		is-disabled = false
@@ -171,25 +187,9 @@ macro "borghotkeymode"
 		name = "CTRL+R"
 		command = ".southwest"
 		is-disabled = false
-	elem "s_key"
-		name = "S+REP"
-		command = ".movedown"
-		is-disabled = false
-	elem 
-		name = "CTRL+S+REP"
-		command = ".movedown"
-		is-disabled = false
 	elem 
 		name = "T"
 		command = "say-verb"
-		is-disabled = false
-	elem "w_key"
-		name = "W+REP"
-		command = ".moveup"
-		is-disabled = false
-	elem 
-		name = "CTRL+W+REP"
-		command = ".moveup"
 		is-disabled = false
 	elem 
 		name = "X"
@@ -266,6 +266,54 @@ macro "borghotkeymode"
 
 macro "macro"
 	elem 
+		name = "WEST"
+		command = "MoveKey 8 1"
+	elem 
+		name = "WEST+UP"
+		command = "MoveKey 8 0"
+	elem 
+		name = "CTRL+A"
+		command = "MoveKey 8 1"
+	elem 
+		name = "CTRL+A+UP"
+		command = "MoveKey 8 0"
+	elem 
+		name = "NORTH"
+		command = "MoveKey 1 1"
+	elem 
+		name = "NORTH+UP"
+		command = "MoveKey 1 0"
+	elem 
+		name = "CTRL+W"
+		command = "MoveKey 1 1"
+	elem 
+		name = "CTRL+W+UP"
+		command = "MoveKey 1 0"
+	elem 
+		name = "EAST"
+		command = "MoveKey 4 1"
+	elem 
+		name = "EAST+UP"
+		command = "MoveKey 4 0"
+	elem 
+		name = "CTRL+D"
+		command = "MoveKey 4 1"
+	elem 
+		name = "CTRL+D+UP"
+		command = "MoveKey 4 0"
+	elem 
+		name = "SOUTH"
+		command = "MoveKey 2 1"
+	elem 
+		name = "SOUTH+UP"
+		command = "MoveKey 2 0"
+	elem 
+		name = "CTRL+S"
+		command = "MoveKey 2 1"
+	elem 
+		name = "CTRL+S+UP"
+		command = "MoveKey 2 0"
+	elem 
 		name = "TAB"
 		command = ".winset \"mainwindow.macro=hotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true\""
 		is-disabled = false
@@ -298,20 +346,12 @@ macro "macro"
 		command = "westface"
 		is-disabled = false
 	elem 
-		name = "WEST+REP"
-		command = ".moveleft"
-		is-disabled = false
-	elem 
 		name = "ALT+NORTH"
 		command = "northfaceperm"
 		is-disabled = false
 	elem 
 		name = "CTRL+NORTH"
 		command = "northface"
-		is-disabled = false
-	elem 
-		name = "NORTH+REP"
-		command = ".moveup"
 		is-disabled = false
 	elem 
 		name = "ALT+EAST"
@@ -322,20 +362,12 @@ macro "macro"
 		command = "eastface"
 		is-disabled = false
 	elem 
-		name = "EAST+REP"
-		command = ".moveright"
-		is-disabled = false
-	elem 
 		name = "ALT+SOUTH"
 		command = "southfaceperm"
 		is-disabled = false
 	elem 
 		name = "CTRL+SOUTH"
 		command = "southface"
-		is-disabled = false
-	elem 
-		name = "SOUTH+REP"
-		command = ".movedown"
 		is-disabled = false
 	elem 
 		name = "INSERT"
@@ -362,14 +394,6 @@ macro "macro"
 		command = "a-intent harm"
 		is-disabled = false
 	elem 
-		name = "CTRL+A+REP"
-		command = ".moveleft"
-		is-disabled = false
-	elem 
-		name = "CTRL+D+REP"
-		command = ".moveright"
-		is-disabled = false
-	elem 
 		name = "CTRL+E"
 		command = "quick-equip"
 		is-disabled = false
@@ -392,14 +416,6 @@ macro "macro"
 	elem 
 		name = "CTRL+R"
 		command = ".southwest"
-		is-disabled = false
-	elem 
-		name = "CTRL+S+REP"
-		command = ".movedown"
-		is-disabled = false
-	elem 
-		name = "CTRL+W+REP"
-		command = ".moveup"
 		is-disabled = false
 	elem 
 		name = "CTRL+X"
@@ -464,6 +480,54 @@ macro "macro"
 
 macro "hotkeymode"
 	elem 
+		name = "WEST"
+		command = "MoveKey 8 1"
+	elem 
+		name = "WEST+UP"
+		command = "MoveKey 8 0"
+	elem 
+		name = "NORTH"
+		command = "MoveKey 1 1"
+	elem 
+		name = "NORTH+UP"
+		command = "MoveKey 1 0"
+	elem 
+		name = "EAST"
+		command = "MoveKey 4 1"
+	elem 
+		name = "EAST+UP"
+		command = "MoveKey 4 0"
+	elem 
+		name = "SOUTH"
+		command = "MoveKey 2 1"
+	elem 
+		name = "SOUTH+UP"
+		command = "MoveKey 2 0"
+	elem 
+		name = "A"
+		command = "MoveKey 8 1"
+	elem 
+		name = "A+UP"
+		command = "MoveKey 8 0"
+	elem 
+		name = "W"
+		command = "MoveKey 1 1"
+	elem 
+		name = "W+UP"
+		command = "MoveKey 1 0"
+	elem 
+		name = "D"
+		command = "MoveKey 4 1"
+	elem 
+		name = "D+UP"
+		command = "MoveKey 4 0"
+	elem 
+		name = "S"
+		command = "MoveKey 2 1"
+	elem 
+		name = "S+UP"
+		command = "MoveKey 2 0"
+	elem 
 		name = "TAB"
 		command = ".winset \"mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true\""
 		is-disabled = false
@@ -496,20 +560,12 @@ macro "hotkeymode"
 		command = "westface"
 		is-disabled = false
 	elem 
-		name = "WEST+REP"
-		command = ".moveleft"
-		is-disabled = false
-	elem 
 		name = "ALT+NORTH"
 		command = "northfaceperm"
 		is-disabled = false
 	elem 
 		name = "CTRL+NORTH"
 		command = "northface"
-		is-disabled = false
-	elem 
-		name = "NORTH+REP"
-		command = ".moveup"
 		is-disabled = false
 	elem 
 		name = "ALT+EAST"
@@ -520,20 +576,12 @@ macro "hotkeymode"
 		command = "eastface"
 		is-disabled = false
 	elem 
-		name = "EAST+REP"
-		command = ".moveright"
-		is-disabled = false
-	elem 
 		name = "ALT+SOUTH"
 		command = "southfaceperm"
 		is-disabled = false
 	elem 
 		name = "CTRL+SOUTH"
 		command = "southface"
-		is-disabled = false
-	elem 
-		name = "SOUTH+REP"
-		command = ".movedown"
 		is-disabled = false
 	elem 
 		name = "INSERT"
@@ -578,22 +626,6 @@ macro "hotkeymode"
 	elem 
 		name = "5"
 		command = "me-verb"
-		is-disabled = false
-	elem 
-		name = "A+REP"
-		command = ".moveleft"
-		is-disabled = false
-	elem 
-		name = "CTRL+A+REP"
-		command = ".moveleft"
-		is-disabled = false
-	elem 
-		name = "D+REP"
-		command = ".moveright"
-		is-disabled = false
-	elem 
-		name = "CTRL+D+REP"
-		command = ".moveright"
 		is-disabled = false
 	elem 
 		name = "E"
@@ -651,25 +683,9 @@ macro "hotkeymode"
 		name = "CTRL+R"
 		command = ".southwest"
 		is-disabled = false
-	elem "s_key"
-		name = "S+REP"
-		command = ".movedown"
-		is-disabled = false
-	elem 
-		name = "CTRL+S+REP"
-		command = ".movedown"
-		is-disabled = false
 	elem 
 		name = "T"
 		command = "say-verb"
-		is-disabled = false
-	elem "w_key"
-		name = "W+REP"
-		command = ".moveup"
-		is-disabled = false
-	elem 
-		name = "CTRL+W+REP"
-		command = ".moveup"
 		is-disabled = false
 	elem 
 		name = "X"
@@ -754,6 +770,54 @@ macro "hotkeymode"
 
 macro "borgmacro"
 	elem 
+		name = "WEST"
+		command = "MoveKey 8 1"
+	elem 
+		name = "WEST+UP"
+		command = "MoveKey 8 0"
+	elem 
+		name = "CTRL+A"
+		command = "MoveKey 8 1"
+	elem 
+		name = "CTRL+A+UP"
+		command = "MoveKey 8 0"
+	elem 
+		name = "NORTH"
+		command = "MoveKey 1 1"
+	elem 
+		name = "NORTH+UP"
+		command = "MoveKey 1 0"
+	elem 
+		name = "CTRL+W"
+		command = "MoveKey 1 1"
+	elem 
+		name = "CTRL+W+UP"
+		command = "MoveKey 1 0"
+	elem 
+		name = "EAST"
+		command = "MoveKey 4 1"
+	elem 
+		name = "EAST+UP"
+		command = "MoveKey 4 0"
+	elem 
+		name = "CTRL+D"
+		command = "MoveKey 4 1"
+	elem 
+		name = "CTRL+D+UP"
+		command = "MoveKey 4 0"
+	elem 
+		name = "SOUTH"
+		command = "MoveKey 2 1"
+	elem 
+		name = "SOUTH+UP"
+		command = "MoveKey 2 0"
+	elem 
+		name = "CTRL+S"
+		command = "MoveKey 2 1"
+	elem 
+		name = "CTRL+S+UP"
+		command = "MoveKey 2 0"
+	elem 
 		name = "TAB"
 		command = ".winset \"mainwindow.macro=borghotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true input.background-color=#F0F0F0\""
 		is-disabled = false
@@ -786,20 +850,12 @@ macro "borgmacro"
 		command = "westface"
 		is-disabled = false
 	elem 
-		name = "WEST+REP"
-		command = ".moveleft"
-		is-disabled = false
-	elem 
 		name = "ALT+NORTH"
 		command = "northfaceperm"
 		is-disabled = false
 	elem 
 		name = "CTRL+NORTH"
 		command = "northface"
-		is-disabled = false
-	elem 
-		name = "NORTH+REP"
-		command = ".moveup"
 		is-disabled = false
 	elem 
 		name = "ALT+EAST"
@@ -810,20 +866,12 @@ macro "borgmacro"
 		command = "eastface"
 		is-disabled = false
 	elem 
-		name = "EAST+REP"
-		command = ".moveright"
-		is-disabled = false
-	elem 
 		name = "ALT+SOUTH"
 		command = "southfaceperm"
 		is-disabled = false
 	elem 
 		name = "CTRL+SOUTH"
 		command = "southface"
-		is-disabled = false
-	elem 
-		name = "SOUTH+REP"
-		command = ".movedown"
 		is-disabled = false
 	elem 
 		name = "INSERT"
@@ -850,14 +898,6 @@ macro "borgmacro"
 		command = "a-intent left"
 		is-disabled = false
 	elem 
-		name = "CTRL+A+REP"
-		command = ".moveleft"
-		is-disabled = false
-	elem 
-		name = "CTRL+D+REP"
-		command = ".moveright"
-		is-disabled = false
-	elem 
 		name = "CTRL+F"
 		command = "a-intent left"
 		is-disabled = false
@@ -872,14 +912,6 @@ macro "borgmacro"
 	elem 
 		name = "CTRL+R"
 		command = ".southwest"
-		is-disabled = false
-	elem 
-		name = "CTRL+S+REP"
-		command = ".movedown"
-		is-disabled = false
-	elem 
-		name = "CTRL+W+REP"
-		command = ".moveup"
 		is-disabled = false
 	elem 
 		name = "CTRL+X"
@@ -1001,66 +1033,88 @@ menu "menu"
 	elem 
 		name = "&Icons"
 		command = ""
-		category = ""
-		is-checked = false
-		can-check = false
-		group = ""
-		is-disabled = false
+		saved-params = "is-checked"
+	elem 
+		name = "&Size"
+		command = ""
+		category = "&Icons"
 		saved-params = "is-checked"
 	elem "stretch"
 		name = "&Stretch to fit"
 		command = ".winset \"mapwindow.map.icon-size=0\""
-		category = "&Icons"
+		category = "&Size"
 		is-checked = true
 		can-check = true
 		group = "size"
-		is-disabled = false
+		saved-params = "is-checked"
+	elem "icon128"
+		name = "&128x128"
+		command = ".winset \"mapwindow.map.icon-size=128\""
+		category = "&Size"
+		can-check = true
+		group = "size"
+		saved-params = "is-checked"
+	elem "icon96"
+		name = "&96x96"
+		command = ".winset \"mapwindow.map.icon-size=96\""
+		category = "&Size"
+		can-check = true
+		group = "size"
 		saved-params = "is-checked"
 	elem "icon64"
 		name = "&64x64"
 		command = ".winset \"mapwindow.map.icon-size=64\""
-		category = "&Icons"
-		is-checked = false
+		category = "&Size"
 		can-check = true
 		group = "size"
-		is-disabled = false
 		saved-params = "is-checked"
 	elem "icon48"
 		name = "&48x48"
 		command = ".winset \"mapwindow.map.icon-size=48\""
-		category = "&Icons"
-		is-checked = false
+		category = "&Size"
 		can-check = true
 		group = "size"
-		is-disabled = false
 		saved-params = "is-checked"
 	elem "icon32"
 		name = "&32x32"
 		command = ".winset \"mapwindow.map.icon-size=32\""
-		category = "&Icons"
-		is-checked = false
+		category = "&Size"
 		can-check = true
 		group = "size"
-		is-disabled = false
 		saved-params = "is-checked"
 	elem 
-		name = ""
+		name = "&Scaling"
 		command = ""
 		category = "&Icons"
-		is-checked = false
-		can-check = false
-		group = ""
-		is-disabled = false
+		saved-params = "is-checked"
+	elem "NN"
+		name = "&Nearest Neighbor"
+		command = ".winset \"mapwindow.map.zoom-mode=distort\""
+		category = "&Scaling"
+		can-check = true
+		group = "scale"
+		saved-params = "is-checked"
+	elem "PS"
+		name = "&Point Sampling"
+		command = ".winset \"mapwindow.map.zoom-mode=normal\""
+		category = "&Scaling"
+		can-check = true
+		group = "scale"
+		saved-params = "is-checked"
+	elem "BL"
+		name = "&Bilinear"
+		command = ".winset \"mapwindow.map.zoom-mode=blur\""
+		category = "&Scaling"
+		can-check = true
+		group = "scale"
 		saved-params = "is-checked"
 	elem "textmode"
 		name = "&Text"
 		command = ".winset \"menu.textmode.is-checked=true?mapwindow.map.text-mode=true:mapwindow.map.text-mode=false\""
 		category = "&Icons"
-		is-checked = false
 		can-check = true
 		group = ""
-		is-disabled = false
-		saved-params = "is-checked"
+saved-params = "is-checked"
 	elem 
 		name = "&Help"
 		command = ""

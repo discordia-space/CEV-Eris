@@ -33,10 +33,16 @@ var/list/christians = list()
 /obj/item/weapon/implant/core_implant/cruciform/activate()
 	if(!wearer || active)
 		return
+
+	if(wearer.mind && wearer.mind.changeling)
+		playsound(wearer.loc, 'sound/hallucinations/wail.ogg', 55, 1)
+		wearer.gib()
+		return
 	..()
 	add_module(new CRUCIFORM_COMMON)
 	update_data()
 	christians |= wearer
+
 
 /obj/item/weapon/implant/core_implant/cruciform/deactivate()
 	if(!active || !wearer)
@@ -90,7 +96,7 @@ var/list/christians = list()
 				continue
 			wearer.visible_message(SPAN_DANGER("[R.name] rips through [wearer]'s [R.part]."),\
 			SPAN_DANGER("[R.name] rips through your [R.part]."))
-			R.part.take_damage(rand(40)+20)
+			R.part.take_damage(rand(20,40))
 			R.uninstall()
 			R.malfunction = MALFUNCTION_PERMANENT
 	if(ishuman(wearer))

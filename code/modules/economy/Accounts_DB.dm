@@ -23,7 +23,7 @@
 			return 1
 
 	proc/create_transation(target, reason, amount)
-		return PoolOrNew(/datum/transaction, list(amount, target, reason, machine_id))
+		return new /datum/transaction(amount, target, reason, machine_id)
 
 	proc/accounting_letterhead(report_name)
 		return {"

@@ -11,7 +11,8 @@ see multiz/movement.dm for some info.
 			return !density
 
 /turf/simulated/open/CanZPass(atom/A, direction)
-	if(locate(/obj/structure/catwalk, src))
+	var/obj/effect/shield/turf_shield = getEffectShield()
+	if(locate(/obj/structure/catwalk, src) || (turf_shield && turf_shield.CanPass(A)))
 		if(z == A.z)
 			if(direction == DOWN)
 				return 0
@@ -20,7 +21,8 @@ see multiz/movement.dm for some info.
 	return 1
 
 /turf/space/CanZPass(atom/A, direction)
-	if(locate(/obj/structure/catwalk, src))
+	var/obj/effect/shield/turf_shield = getEffectShield()
+	if(locate(/obj/structure/catwalk, src) || (turf_shield && turf_shield.CanPass(A)))
 		if(z == A.z)
 			if(direction == DOWN)
 				return 0
@@ -96,6 +98,10 @@ see multiz/movement.dm for some info.
 	if(!has_gravity(src))
 		return
 
+	var/obj/effect/shield/turf_shield = getEffectShield()
+	if (turf_shield && !turf_shield.CanPass(mover))
+		return
+
 	// See if something prevents us from falling.
 	var/soft = FALSE
 	for(var/atom/A in below)
@@ -169,8 +175,16 @@ see multiz/movement.dm for some info.
 			ReplaceWithLattice()
 		return
 
-	if (istype(C, /obj/item/stack/material/steel))
+	if (istype(C, /obj/item/stack/material))
+		var/obj/item/stack/material/M = C
+
+		var/material/mat = M.get_material()
+		if (!mat.name == MATERIAL_STEEL)
+
+			return
+
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
+
 		if(L)
 			var/obj/item/stack/tile/floor/S = C
 			if (S.get_amount() < 4)

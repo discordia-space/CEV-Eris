@@ -16,7 +16,8 @@
 	onInstall(E)
 
 /obj/item/organ_module/active/proc/can_activate(var/mob/living/carbon/human/H, var/obj/item/organ/external/E)
-	if(H.incapacitated())
+	//As long as you're awake you can toggle your own body
+	if(H.incapacitated(INCAPACITATION_UNCONSCIOUS))
 		H << SPAN_WARNING("You can't do that now!")
 		return
 /*

@@ -10,12 +10,15 @@
 	//Keeping this on the default plane, GAME_PLANE, will make area overlays fail to render on FLOOR_PLANE.
 	plane = BLACKNESS_PLANE
 	layer = AREA_LAYER
+	var/ship_area = FALSE
 
 /area/New()
 	icon_state = ""
 	layer = AREA_LAYER
 	uid = ++global_uid
 	all_areas += src
+	if (ship_area)
+		ship_areas[src] = TRUE //Adds ourselves to the list of all ship areas
 
 	if(!requires_power)
 		power_light = 0
@@ -72,24 +75,16 @@
 /area/proc/air_doors_close()
 	if(!air_doors_activated)
 		air_doors_activated = 1
-		for(var/obj/machinery/door/firedoor/E in all_doors)
-			if(!E.blocked)
-				if(E.operating)
-					E.nextstate = FIREDOOR_CLOSED
-				else if(!E.density)
-					spawn(0)
-						E.close()
+		for(var/obj/machinery/door/firedoor/D in all_doors)
+			spawn()
+				D.close()
 
 /area/proc/air_doors_open()
 	if(air_doors_activated)
 		air_doors_activated = 0
-		for(var/obj/machinery/door/firedoor/E in all_doors)
-			if(!E.blocked)
-				if(E.operating)
-					E.nextstate = FIREDOOR_OPEN
-				else if(E.density)
-					spawn(0)
-						E.open()
+		for(var/obj/machinery/door/firedoor/D in all_doors)
+			spawn()
+				D.open()
 
 
 /area/proc/fire_alert()
@@ -98,12 +93,8 @@
 		updateicon()
 		mouse_opacity = 0
 		for(var/obj/machinery/door/firedoor/D in all_doors)
-			if(!D.blocked)
-				if(D.operating)
-					D.nextstate = FIREDOOR_CLOSED
-				else if(!D.density)
-					spawn()
-						D.close()
+			spawn()
+				D.close()
 
 /area/proc/fire_reset()
 	if (fire)
@@ -111,12 +102,8 @@
 		updateicon()
 		mouse_opacity = 0
 		for(var/obj/machinery/door/firedoor/D in all_doors)
-			if(!D.blocked)
-				if(D.operating)
-					D.nextstate = FIREDOOR_OPEN
-				else if(D.density)
-					spawn(0)
-					D.open()
+			spawn()
+				D.open()
 
 /area/proc/readyalert()
 	if(!eject)
@@ -143,12 +130,7 @@
 		mouse_opacity = 0
 		updateicon()
 		for(var/obj/machinery/door/firedoor/D in src)
-			if(!D.blocked)
-				if(D.operating)
-					D.nextstate = FIREDOOR_OPEN
-				else if(D.density)
-					spawn(0)
-					D.open()
+			D.open()
 	return
 
 /area/proc/updateicon()
@@ -340,3 +322,9 @@ var/list/mob/living/forced_ambiance_list = new
 	if(A && A.has_gravity())
 		return 1
 	return 0
+
+
+/area/proc/set_ship_area()
+	if (!ship_area)
+		ship_area = TRUE
+		ship_areas[src] = TRUE

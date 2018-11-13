@@ -314,22 +314,22 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	stop_following()
 	following = target
-	moved_event.register(following, src, /atom/movable/proc/move_to_destination)
-	dir_set_event.register(following, src, /atom/proc/recursive_dir_set)
-	destroyed_event.register(following, src, /mob/observer/ghost/proc/stop_following)
+	GLOB.moved_event.register(following, src, /atom/movable/proc/move_to_turf)
+	GLOB.dir_set_event.register(following, src, /atom/proc/recursive_dir_set)
+	GLOB.destroyed_event.register(following, src, /mob/observer/ghost/proc/stop_following)
 
 	src << "<span class='notice'>Now following \the [following]</span>"
-	move_to_destination(following, following.loc, following.loc)
+	move_to_turf(following, following.loc, following.loc)
 
 /mob/observer/ghost/proc/stop_following()
 	if(following)
 		src << "<span class='notice'>No longer following \the [following]</span>"
-		moved_event.unregister(following, src)
-		dir_set_event.unregister(following, src)
-		destroyed_event.unregister(following, src)
+		GLOB.moved_event.unregister(following, src)
+		GLOB.dir_set_event.unregister(following, src)
+		GLOB.destroyed_event.unregister(following, src)
 		following = null
 
-/mob/observer/ghost/move_to_destination(var/atom/movable/am, var/old_loc, var/new_loc)
+/mob/observer/ghost/move_to_turf(var/atom/movable/am, var/old_loc, var/new_loc)
 	var/turf/T = get_turf(new_loc)
 	if(check_holy(T))
 		usr << "<span class='warning'>You cannot follow something standing on holy grounds!</span>"
@@ -546,12 +546,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/observer/ghost/verb/view_manfiest()
 	set name = "Show Crew Manifest"
 	set category = "Ghost"
-
-	var/dat
-	dat += "<h4>Crew Manifest</h4>"
-	dat += data_core.get_manifest()
-
-	src << browse(dat, "window=manifest;size=370x420;can_close=1")
+	show_manifest(src)
 
 //This is called when a ghost is drag clicked to something.
 /mob/observer/ghost/MouseDrop(atom/over)

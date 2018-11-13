@@ -3,11 +3,7 @@
 	holder_type = /obj/item/weapon/rig
 	wire_count = 5
 
-#define RIG_SECURITY 1
-#define RIG_AI_OVERRIDE 2
-#define RIG_SYSTEM_CONTROL 4
-#define RIG_INTERFACE_LOCK 8
-#define RIG_INTERFACE_SHOCK 16
+//The defines for the wires are moved to rig.dm, as they are used there
 /*
  * Rig security can be snipped to disable ID access checks on rig.
  * Rig AI override can be pulsed to toggle whether or not the AI can take control of the suit.
@@ -55,3 +51,9 @@
 	if(rig.open)
 		return 1
 	return 0
+
+#undef RIG_SECURITY
+#undef RIG_AI_OVERRIDE
+#undef RIG_SYSTEM_CONTROL
+#undef RIG_INTERFACE_LOCK
+#undef RIG_INTERFACE_SHOCK

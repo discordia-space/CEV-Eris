@@ -6,7 +6,6 @@
 	meat_amount = 10
 	turns_per_move = 2
 	move_to_delay = 2
-	attack_same = 1
 	speed = 0
 	mob_size = MOB_LARGE
 
@@ -19,4 +18,4 @@
 	melee_damage_lower = 20
 	melee_damage_upper = 25
 
-	break_stuff_probability = 25
+	break_stuff_probability = 100

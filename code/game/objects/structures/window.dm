@@ -115,7 +115,8 @@
 	if(is_full_window())
 		var/index = null
 		index = 0
-		if(reinf) PoolOrNew(/obj/item/stack/rods, loc)
+		if(reinf)
+			new /obj/item/stack/rods(loc)
 		while(index < rand(4,6))
 			var/obj/item/weapon/material/shard/S = new shardtype(loc)
 			if (explode && nearby.len > 0)
@@ -125,7 +126,8 @@
 			index++
 	else
 		new shardtype(loc) //todo pooling?
-		if(reinf) PoolOrNew(/obj/item/stack/rods, loc)
+		if(reinf)
+			new /obj/item/stack/rods(loc)
 	qdel(src)
 	return
 
@@ -239,7 +241,6 @@
 	return 1
 
 /obj/structure/window/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
-	world << "Smashing [target] against [src]"
 	target.do_attack_animation(src, FALSE) //This is to visually create the appearance of the victim being bashed against the window
 	//So we pass false on the use_item flag so it doesn't look like they hit the window with something
 	switch(state)
@@ -276,12 +277,18 @@
 		usable_qualities.Add(QUALITY_SCREW_DRIVING)
 	if(reinf && state >= 1)
 		usable_qualities.Add(QUALITY_PRYING)
+	if (health < maxhealth)
+		usable_qualities.Add(QUALITY_SEALING)
 
 	//If you set intent to harm, you can hit the window with tools to break it. Set to any other intent to use tools on it
 	if (usr.a_intent != I_HURT)
 		var/tool_type = I.get_tool_type(user, usable_qualities)
 		switch(tool_type)
-
+			if(QUALITY_SEALING)
+				user.visible_message("[user] starts sealing up cracks in [src] with the [I]", "You start sealing up cracks in [src] with the [I]")
+				if (I.use_tool(user, src, 60 + ((maxhealth - health)*3), QUALITY_SEALING, FAILCHANCE_NORMAL, STAT_MEC))
+					user << SPAN_NOTICE("The [src] looks pretty solid now!")
+					health = maxhealth
 			if(QUALITY_BOLT_TURNING)
 				if(!anchored && (!state || !reinf))
 					if(!glasstype)
@@ -289,11 +296,10 @@
 						return
 					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						visible_message(SPAN_NOTICE("[user] dismantles \the [src]."))
-						if(dir == SOUTHWEST)
-							var/obj/item/stack/material/mats = new glasstype(loc)
-							mats.amount = is_fulltile() ? 4 : 2
+						if(is_fulltile())
+							new glasstype(loc, 6)
 						else
-							new glasstype(loc)
+							new glasstype(loc, 1)
 						qdel(src)
 						return
 				return 1 //No whacking the window with tools unless harm intent
@@ -335,7 +341,7 @@
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		if(I.damtype == BRUTE || I.damtype == BURN)
 			user.do_attack_animation(src)
-			hit(I.force)
+			hit(I.force*I.structure_damage_factor)
 			if(health <= 7)
 				set_anchored(FALSE)
 				step(src, get_dir(user, src))
@@ -417,10 +423,10 @@
 	loc = location
 	. = ..()
 
-/obj/structure/window/Move()
+/obj/structure/window/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	var/ini_dir = dir
 	update_nearby_tiles(need_rebuild=1)
-	..()
+	. = ..()
 	set_dir(ini_dir)
 	update_nearby_tiles(need_rebuild=1)
 	mount_check()
@@ -539,7 +545,6 @@
 	desc = "It looks rather strong. Might take a few good hits to shatter it."
 	icon_state = "rwindow"
 	basestate = "rwindow"
-	maxhealth = 600
 	reinf = 1
 	maximal_heat = T0C + 750
 	damage_per_fire_tick = 2.0

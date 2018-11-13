@@ -1,8 +1,9 @@
 /datum/craft_recipe/airlock
 	category = "Airlocks"
 	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
+	time = 150
 	steps = list(
-		list(/obj/item/stack/material/steel, 10),
+		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
 	)
 
 /datum/craft_recipe/airlock/standard
@@ -69,6 +70,6 @@
 	name = "multi-tile airlock assembly"
 	result = /obj/structure/door_assembly/multi_tile
 	steps = list(
-		list(/obj/item/stack/material/steel, 20),
+		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
 	)
 

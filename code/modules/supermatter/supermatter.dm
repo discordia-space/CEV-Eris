@@ -89,6 +89,7 @@
 /obj/machinery/power/supermatter/New()
 	. = ..()
 	radio = new /obj/item/device/radio{channels=list("Engineering")}(src)
+	assign_uid()
 
 
 /obj/machinery/power/supermatter/Destroy()
@@ -253,9 +254,10 @@
 
 		env.merge(removed)
 
-	for(var/mob/living/carbon/human/l in view(src, min(7, round(sqrt(power/6))))) // If they can see it without mesons on.  Bad on them.
-		if(!istype(l.glasses, /obj/item/clothing/glasses/meson))
-			l.hallucination = max(0, min(200, l.hallucination + power * config_hallucination_power * sqrt( 1 / max(1,get_dist(l, src)) ) ) )
+	for(var/mob/living/carbon/human/H in view(src, min(7, round(sqrt(power/6))))) // If they can see it without mesons on.  Bad on them.
+		if(!istype(H.glasses, /obj/item/clothing/glasses/meson))
+			if (!(istype(H.wearing_rig, /obj/item/weapon/rig) && istype(H.wearing_rig.getCurrentGlasses(), /obj/item/clothing/glasses/meson)))
+				H.hallucination = max(0, min(200, H.hallucination + power * config_hallucination_power * sqrt( 1 / max(1,get_dist(H, src)) ) ) )
 
 	//adjusted range so that a power of 170 (pretty high) results in 9 tiles, roughly the distance from the core to the engine monitoring room.
 	//note that the rads given at the maximum range is a constant 0.2 - as power increases the maximum range merely increases.
@@ -337,6 +339,21 @@
 */
 
 /obj/machinery/power/supermatter/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
+
+	/*
+		Repairing the supermatter with duct tape, for meme value
+		If you can get this close to a damaged crystal its probably too late for it anyway,
+		this is unlikely to do anything but prolong the inevitable
+	*/
+	if (W.has_quality(QUALITY_SEALING) && damage > 0)
+		user.visible_message("[user] starts sealing up cracks in [src] with the [W]", "You start sealing up cracks in [src] with the [W]")
+		if (W.use_tool(user, src, 140, QUALITY_SEALING, FAILCHANCE_VERY_HARD, STAT_MEC))
+			user << SPAN_NOTICE("Your insane actions are somehow paying off.")
+			user.apply_effect(100, IRRADIATE)
+			damage = 0
+			return
+		//If you fail the above, your tape will be eaten by the code below
+
 	user.visible_message(
 		"<span class=\"warning\">\The [user] touches \a [W] to \the [src] as a silence fills the room...</span>",\
 		"<span class=\"danger\">You touch \the [W] to \the [src] when everything suddenly goes silent.\"</span>\n<span class=\"notice\">\The [W] flashes into dust as you flinch away from \the [src].</span>",\
@@ -416,3 +433,39 @@
 
 /obj/machinery/power/supermatter/shard/announce_warning() //Shards don't get announcements
 	return
+
+/obj/machinery/power/supermatter/proc/get_status()
+	var/turf/T = get_turf(src)
+	if(!T)
+		return SUPERMATTER_ERROR
+	var/datum/gas_mixture/air = T.return_air()
+	if(!air)
+		return SUPERMATTER_ERROR
+
+	if(grav_pulling || exploded)
+		return SUPERMATTER_DELAMINATING
+
+	if(get_integrity() < 25)
+		return SUPERMATTER_EMERGENCY
+
+	if(get_integrity() < 50)
+		return SUPERMATTER_DANGER
+
+	if((get_integrity() < 100) || (air.temperature > CRITICAL_TEMPERATURE))
+		return SUPERMATTER_WARNING
+
+	if(air.temperature > (CRITICAL_TEMPERATURE * 0.8))
+		return SUPERMATTER_NOTIFY
+
+	if(power > 5)
+		return SUPERMATTER_NORMAL
+	return SUPERMATTER_INACTIVE
+
+/obj/machinery/power/supermatter/proc/get_epr()
+	var/turf/T = get_turf(src)
+	if(!istype(T))
+		return
+	var/datum/gas_mixture/air = T.return_air()
+	if(!air)
+		return 0
+	return round((air.total_moles / air.group_multiplier) / 23.1, 0.01)

@@ -1,25 +1,7 @@
 #define DEFAULT_SEED "glowshroom"
 #define VINE_GROWTH_STAGES 5
 
-/proc/spacevine_infestation(var/potency_min=70, var/potency_max=100, var/maturation_min=5, var/maturation_max=15)
-	spawn() //to stop the secrets panel hanging
-		var/turf/T = pick_area_turf(/area/hallway, list(/proc/is_station_turf, /proc/not_turf_contains_dense_objects))
-		if(T)
-			var/datum/seed/seed = plant_controller.create_random_seed(1)
-			seed.set_trait(TRAIT_SPREAD,2)             // So it will function properly as vines.
-			seed.set_trait(TRAIT_POTENCY,rand(potency_min, potency_max)) // 70-100 potency will help guarantee a wide spread and powerful effects.
-			seed.set_trait(TRAIT_MATURATION,rand(maturation_min, maturation_max))
 
-			//make vine zero start off fully matured
-			var/obj/effect/plant/vine = new(T,seed)
-			vine.health = vine.max_health
-			vine.mature_time = 0
-			vine.layer = SPACEVINE_LAYER
-			vine.Process()
-
-			log_and_message_admins("Spacevines spawned at \the [get_area(T)]", location = T)
-			return
-		log_and_message_admins(SPAN_NOTICE("Event: Spacevines failed to find a viable turf."))
 
 /obj/effect/dead_plant
 	anchored = 1
@@ -45,10 +27,10 @@
 	icon_state = "bush4-1"
 	layer = 3
 	pass_flags = PASSTABLE
-	mouse_opacity = 2
+	mouse_opacity = 1
 
 	var/health = 10
-	var/max_health = 100
+	var/max_health = 60
 	var/growth_threshold = 0
 	var/growth_type = 0
 	var/max_growth = 0
@@ -101,6 +83,7 @@
 	name = seed.display_name
 	max_health = round(seed.get_trait(TRAIT_ENDURANCE)/2)
 	if(seed.get_trait(TRAIT_SPREAD)==2)
+		layer = LOW_OBJ_LAYER
 		max_growth = VINE_GROWTH_STAGES
 		growth_threshold = max_health/VINE_GROWTH_STAGES
 		icon = 'icons/obj/hydroponics_vines.dmi'
@@ -115,6 +98,15 @@
 				growth_type = 3 // Biomass
 			else
 				growth_type = 4 // Mold
+
+		if (growth_type != 4)
+			//Random rotation for vines
+			//Disabled for mold because it looks bad
+			//0 is in here several times to weight it a bit more towards normal
+			var/rot = pick(list(0,0,0, 90, 180, -90))
+			var/matrix/M = matrix()
+			M.Turn(rot)
+			transform = M
 	else
 		max_growth = seed.growth_stages
 		growth_threshold = max_health/seed.growth_stages
@@ -124,7 +116,7 @@
 
 	mature_time = world.time + seed.get_trait(TRAIT_MATURATION) + 15 //prevent vines from maturing until at least a few seconds after they've been created.
 	spread_chance = seed.get_trait(TRAIT_POTENCY)
-	spread_distance = ((growth_type>0) ? round(spread_chance*0.6) : round(spread_chance*0.3))
+	spread_distance = ((growth_type>0) ? round(spread_chance*1.2) : round(spread_chance*0.6))
 	update_icon()
 
 	if(seed.get_trait(TRAIT_CHEMS) > 0)
@@ -238,62 +230,17 @@
 	floor = 1
 	return 1
 
-/obj/effect/plant/attackby(var/obj/item/weapon/W, var/mob/user)
 
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	plant_controller.add_plant(src)
 
-	if(istype(W, /obj/item/weapon/tool/wirecutters) || istype(W, /obj/item/weapon/tool/scalpel))
-		if(sampled)
-			user << SPAN_WARNING("\The [src] has already been sampled recently.")
-			return
-		if(!is_mature())
-			user << SPAN_WARNING("\The [src] is not mature enough to yield a sample yet.")
-			return
-		if(!seed)
-			user << SPAN_WARNING("There is nothing to take a sample from.")
-			return
-		if(sampled)
-			user << SPAN_DANGER("You cannot take another sample from \the [src].")
-			return
-		if(prob(70))
-			sampled = 1
-		seed.harvest(user,0,1)
-		health -= (rand(3,5)*5)
-		sampled = 1
-	else
-		..()
-		if(W.force)
-			health -= W.force
-	check_health()
-
-/obj/effect/plant/ex_act(severity)
-	switch(severity)
-		if(1.0)
-			die_off()
-			return
-		if(2.0)
-			if (prob(50))
-				die_off()
-				return
-		if(3.0)
-			if (prob(5))
-				die_off()
-				return
-		else
-	return
-
-/obj/effect/plant/proc/check_health()
+/obj/effect/plant/proc/check_health(var/iconupdate = TRUE)
 	if(health <= 0)
 		die_off()
+	else
+		update_icon()
 
 /obj/effect/plant/proc/is_mature()
-	return (health >= (max_health/3) && world.time > mature_time)
+	return (health >= (max_health*0.8) && world.time > mature_time)
 
-/obj/effect/plant/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I, /obj/item/weapon/reagent_containers/syringe))
-		return
-	. = ..()
 
 /obj/effect/plant/examine()
 	. = ..()

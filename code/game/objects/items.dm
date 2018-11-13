@@ -4,6 +4,7 @@
 	w_class = ITEM_SIZE_NORMAL
 
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
+	var/randpixel = 6
 	var/abstract = 0
 	var/r_speed = 1.0
 	var/health = null
@@ -12,14 +13,13 @@
 	var/hitsound = null
 	var/worksound = null
 	var/storage_cost = null
-	var/slot_flags = 0		//This is used to determine on which slots an item can fit.
 	var/no_attack_log = 0			//If it's an item we don't want to log attack_logs with, set this to 1
 	pass_flags = PASSTABLE
 //	causeerrorheresoifixthis
 	var/obj/item/master = null
 	var/list/origin_tech = null	//Used by R&D to determine what research bonuses it grants.
 	var/list/attack_verb = list() //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
-	var/force = 0
+
 
 	var/heat_protection = 0 //flags which determine which body parts are protected from heat. Use the HEAD, UPPER_TORSO, LOWER_TORSO, etc. flags. See setup.dm
 	var/cold_protection = 0 //flags which determine which body parts are protected from cold. Use the HEAD, UPPER_TORSO, LOWER_TORSO, etc. flags. See setup.dm
@@ -35,8 +35,6 @@
 	var/flags_inv = 0
 	var/body_parts_covered = 0 //see setup.dm for appropriate bit flags
 
-	var/item_flags = 0 //Miscellaneous flags pertaining to equippable objects.
-
 	var/list/tool_qualities = null// List of item qualities for tools system. See qualities.dm.
 
 	//var/heat_transfer_coefficient = 1 //0 prevents all transfers, 1 is invisible
@@ -44,7 +42,6 @@
 	var/permeability_coefficient = 1 // for chemicals/diseases
 	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
 	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
-	var/canremove = 1 //Mostly for Ninja code at this point but basically will not allow the item to be removed if set to 0. /N
 	var/list/armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	var/list/allowed = null //suit storage stuff.
 	var/obj/item/device/uplink/hidden/hidden_uplink = null // All items can have an uplink hidden inside, just remember to add the triggers.
@@ -62,33 +59,24 @@
 	// Only slot_l_hand/slot_r_hand are implemented at the moment. Others to be implemented as needed.
 	var/list/item_icons = list()
 
-	var/equip_slot = 0 //The slot that this item was most recently equipped to.
-	//Note that this is, by design, not zeroed out when the item is removed from a mob
-		//In that case, it holds the number of the slot it was last in, which is potentially useful info
-	//For an accurate reading of the current slot, use item/get_equip_slot() which will return zero if not currently on a mob
 
-/obj/item/get_fall_damage()
-	return w_class * 2
+	//Damage vars
+	var/force = 0	//How much damage the weapon deals
 
-
+	var/structure_damage_factor = STRUCTURE_DAMAGE_NORMAL	//Multiplier applied to the damage when attacking structures and machinery
+	//Does not affect damage dealt to mobs
 
 /obj/item/Destroy()
+	qdel(hidden_uplink)
+	hidden_uplink = null
 	if(ismob(loc))
 		var/mob/m = loc
-		m.drop_from_inventory(src)
-		m.update_inv_r_hand()
-		m.update_inv_l_hand()
+		m.u_equip(src)
 		src.loc = null
 	return ..()
 
-//Checks if the item is being held by a mob, and if so, updates the held icons
-/obj/item/proc/update_held_icon()
-	if(ismob(src.loc))
-		var/mob/M = src.loc
-		if(M.l_hand == src)
-			M.update_inv_l_hand()
-		else if(M.r_hand == src)
-			M.update_inv_r_hand()
+/obj/item/get_fall_damage()
+	return w_class * 2
 
 /obj/item/ex_act(severity)
 	switch(severity)
@@ -103,8 +91,6 @@
 			if (prob(5))
 				qdel(src)
 				return
-		else
-	return
 
 /obj/item/verb/move_to_top()
 	set name = "Move To Top"
@@ -141,22 +127,15 @@
 	return ..(user, distance, "", message)
 
 /obj/item/attack_hand(mob/user as mob)
-	if (!user || !user.can_pickup(src))
-		return
+	var/atom/old_loc = src.loc
 
 	src.pickup(user)
-	if (istype(src.loc, /obj/item/weapon/storage))
-		var/obj/item/weapon/storage/S = src.loc
-		S.remove_from_storage(src)
 
 	src.throwing = 0
-	if (src.loc == user)
-		if(!user.prepare_for_slotmove(src))
-			return
-	else
-		if(isliving(src.loc))
-			return
-	user.put_in_active_hand(src)
+
+	if(user.put_in_active_hand(src) && old_loc )
+		if ((user != old_loc) && (user != old_loc.get_holding_mob()))
+			do_pickup_animation(user,old_loc)
 
 /obj/item/attack_ai(mob/user as mob)
 	if (istype(src.loc, /obj/item/weapon/robot_module))
@@ -167,18 +146,11 @@
 		R.activate_module(src)
 //		R.hud_used.update_robot_modules_display()
 
-/obj/item/proc/talk_into(mob/M as mob, text)
+/obj/item/proc/talk_into(mob/M, text)
 	return
 
 /obj/item/proc/moved(mob/user as mob, old_loc as turf)
 	return
-
-//Called whenever an item is dropped on the floor, thrown, or placed into a container.
-//It is called after loc is set, so if placed in a container its loc will be that container.
-/obj/item/proc/dropped(mob/user as mob)
-	..()
-	if(zoom) zoom() //binoculars, scope, etc
-
 
 // Called whenever an object is moved out of a mob's equip slot. Possibly into another slot, possibly to elsewhere
 // Linker proc: mob/proc/prepare_for_slotmove, which is referenced in proc/handle_item_insertion and obj/item/attack_hand.
@@ -203,160 +175,12 @@
 // called when "found" in pockets and storage items. Returns 1 if the search should end.
 /obj/item/proc/on_found(mob/finder as mob)
 	return
-
-
-//Called just before an item is placed in an equipment slot.
-//Use this to do any necessary preparations for equipping
-//Immediately after this, the equipping will be handled and then equipped will be called.
-//Returning a non-zero value will silently abort the equip operation
-/obj/item/proc/pre_equip(var/mob/user, var/slot)
-	return 0
-
-
-// called after an item is placed in an equipment slot
-// user is mob that equipped it
-// slot uses the slot_X defines found in items_clothing.dm
-// for items that can be placed in multiple slots
-// note this isn't called during the initial dressing of a player
-/obj/item/proc/equipped(var/mob/user, var/slot)
-	if(!istype(user))
-		equip_slot = slot_none
-		return
-
-	equip_slot = slot
-	layer = 20
-	if(user.client)	user.client.screen |= src
-	if(user.pulling == src) user.stop_pulling()
-	if(user.l_hand)
-		user.l_hand.update_held_icon()
-	if(user.r_hand)
-		user.r_hand.update_held_icon()
-
-//Defines which slots correspond to which slot flags
-var/list/global/slot_flags_enumeration = list(
-	"[slot_wear_mask]" = SLOT_MASK,
-	"[slot_back]" = SLOT_BACK,
-	"[slot_wear_suit]" = SLOT_OCLOTHING,
-	"[slot_gloves]" = SLOT_GLOVES,
-	"[slot_shoes]" = SLOT_FEET,
-	"[slot_belt]" = SLOT_BELT,
-	"[slot_glasses]" = SLOT_EYES,
-	"[slot_head]" = SLOT_HEAD,
-	"[slot_l_ear]" = SLOT_EARS|SLOT_TWOEARS,
-	"[slot_r_ear]" = SLOT_EARS|SLOT_TWOEARS,
-	"[slot_w_uniform]" = SLOT_ICLOTHING,
-	"[slot_wear_id]" = SLOT_ID,
-	"[slot_accessory_buffer]" = SLOT_ACCESSORY_BUFFER,
-	)
-
-//the mob M is attempting to equip this item into the slot passed through as 'slot'. Return 1 if it can do this and 0 if it can't.
-//If you are making custom procs but would like to retain partial or complete functionality of this one, include a 'return ..()' to where you want this to happen.
-//Set disable_warning to 1 if you wish it to not give you outputs.
-//Should probably move the bulk of this into mob code some time, as most of it is related to the definition of slots and not item-specific
-/obj/item/proc/mob_can_equip(M as mob, slot, disable_warning = 0)
-	if(!slot) return 0
-	if(!M) return 0
-
-	if(!ishuman(M)) return 0
-
-	var/mob/living/carbon/human/H = M
-	var/list/mob_equip = list()
-	if(H.species.hud && H.species.hud.equip_slots)
-		mob_equip = H.species.hud.equip_slots
-
-	if(H.species && !(slot in mob_equip))
-		return 0
-
-	//First check if the item can be equipped to the desired slot.
-	if("[slot]" in slot_flags_enumeration)
-		var/req_flags = slot_flags_enumeration["[slot]"]
-		if(!(req_flags & slot_flags))
-			return 0
-
-	//Next check that the slot is free
-	if(H.get_equipped_item(slot))
-		return 0
-
-	//Next check if the slot is accessible.
-	var/mob/_user = disable_warning? null : H
-	if(!H.slot_is_accessible(slot, src, _user))
-		return 0
-
-	//Lastly, check special rules for the desired slot.
-	switch(slot)
-		if(slot_l_ear, slot_r_ear)
-			var/slot_other_ear = (slot == slot_l_ear)? slot_r_ear : slot_l_ear
-			if( (w_class > ITEM_SIZE_TINY) && !(slot_flags & SLOT_EARS) )
-				return 0
-			if( (slot_flags & SLOT_TWOEARS) && H.get_equipped_item(slot_other_ear) )
-				return 0
-		if(slot_wear_id)
-			if(!H.w_uniform && (slot_w_uniform in mob_equip))
-				if(!disable_warning)
-					H << SPAN_WARNING("You need a jumpsuit before you can attach this [name].")
-				return 0
-		if(slot_l_store, slot_r_store)
-			if(!H.w_uniform && (slot_w_uniform in mob_equip))
-				if(!disable_warning)
-					H << SPAN_WARNING("You need a jumpsuit before you can attach this [name].")
-				return 0
-			if(slot_flags & SLOT_DENYPOCKET)
-				return 0
-			if( w_class > ITEM_SIZE_SMALL && !(slot_flags & SLOT_POCKET) )
-				return 0
-		if(slot_s_store)
-			if(!H.wear_suit && (slot_wear_suit in mob_equip))
-				if(!disable_warning)
-					H << SPAN_WARNING("You need a suit before you can attach this [name].")
-				return 0
-			if(!H.wear_suit.allowed)
-				if(!disable_warning)
-					usr << SPAN_WARNING("You somehow have a suit with no defined allowed items for suit storage, stop that.")
-				return 0
-			if( !(istype(src, /obj/item/device/pda) || istype(src, /obj/item/weapon/pen) || is_type_in_list(src, H.wear_suit.allowed)) )
-				return 0
-		if(slot_handcuffed)
-			if(!istype(src, /obj/item/weapon/handcuffs))
-				return 0
-		if(slot_legcuffed)
-			if(!istype(src, /obj/item/weapon/legcuffs))
-				return 0
-		if(slot_in_backpack) //used entirely for equipping spawned mobs or at round start
-			var/allow = 0
-			if(H.back && istype(H.back, /obj/item/weapon/storage/backpack))
-				var/obj/item/weapon/storage/backpack/B = H.back
-				if(B.can_be_inserted(src,1))
-					allow = 1
-			if(!allow)
-				return 0
-		if(slot_accessory_buffer)
-			if(!H.w_uniform && (slot_w_uniform in mob_equip))
-				if(!disable_warning)
-					H << SPAN_WARNING("You need a jumpsuit before you can attach this [name].")
-				return 0
-			var/obj/item/clothing/under/uniform = H.w_uniform
-			if(uniform.accessories.len && !uniform.can_attach_accessory(src))
-				if (!disable_warning)
-					H << SPAN_WARNING("You already have an accessory of this type attached to your [uniform].")
-				return 0
-	return 1
-
-/obj/item/proc/mob_can_unequip(mob/M, slot, disable_warning = 0)
-	if(!slot) return 0
-	if(!M) return 0
-
-	if(!canremove)
-		return 0
-	if(!M.slot_is_accessible(slot, src, disable_warning? null : M))
-		return 0
-	return 1
-
 /obj/item/verb/verb_pickup()
 	set src in oview(1)
 	set category = "Object"
 	set name = "Pick up"
 
-	if(!(usr)) //BS12 EDIT
+	if(!usr) //BS12 EDIT
 		return
 	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr))
 		return
@@ -380,7 +204,6 @@ var/list/global/slot_flags_enumeration = list(
 		return
 	//All checks are done, time to pick it up!
 	usr.UnarmedAttack(src)
-	return
 
 
 //This proc is executed when someone clicks the on-screen UI button. To make the UI button show, set the 'icon_action_button' to the icon_state of the image of the button in screen1_action.dmi
@@ -454,11 +277,11 @@ var/list/global/slot_flags_enumeration = list(
 
 		eyes.damage += rand(3,4)
 		if(eyes.damage >= eyes.min_bruised_damage)
-			if(M.stat != 2)
-				if(eyes.robotic <= 1) //robot eyes bleeding might be a bit silly
+			if(M.stat != DEAD)
+				if(eyes.robotic <= ORGAN_ASSISTED) //robot eyes bleeding might be a bit silly
 					M << SPAN_DANGER("Your eyes start to bleed profusely!")
 			if(prob(50))
-				if(M.stat != 2)
+				if(M.stat != DEAD)
 					M << SPAN_WARNING("You drop what you're holding and clutch at your eyes!")
 					M.drop_item()
 				M.eye_blurry += 10
@@ -609,188 +432,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/pwr_drain()
 	return 0 // Process Kill
 
-/* QUALITY AND TOOL SYSTEM */
-
-/obj/item/proc/has_quality(quality_id)
-	return quality_id in tool_qualities
-
-/obj/item/proc/get_tool_quality(quality_id)
-	return tool_qualities[quality_id]
-
-//We are cheking if our item got required qualities. If we require several qualities, and item posses more than one of those, we ask user to choose how that item should be used
-/obj/item/proc/get_tool_type(var/mob/living/user, var/list/required_qualities)
-	var/start_loc = user.loc
-	var/list/L = required_qualities & tool_qualities
-
-	if(!L.len)
-		return FALSE
-
-	var/return_quality = L[1]
-	if(L.len > 1)
-		return_quality = input(user,"What quality you using?", "Tool options", ABORT_CHECK) in L
-	if(user.loc != start_loc)
-		user << SPAN_WARNING("You need to stand still!")
-		return ABORT_CHECK
-	else
-		return return_quality
-
-//Simple form ideal for basic use. That proc will return TRUE only when everything was done right, and FALSE if something went wrong, ot user was unlucky.
-//Editionaly, handle_failure proc will be called for a critical failure roll.
-/obj/item/proc/use_tool(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, required_stat = null, instant_finish_tier = 110, forced_sound = null)
-	var/result = use_tool_extended(user, target, base_time, required_quality, fail_chance, required_stat, instant_finish_tier, forced_sound)
-	switch(result)
-		if(TOOL_USE_CANCEL)
-			return FALSE
-		if(TOOL_USE_FAIL)
-			handle_failure(user, target, required_stat = required_stat, required_quality = required_quality)	//We call it here because extended proc mean to be used only when you need to handle tool fail by yourself
-			return FALSE
-		if(TOOL_USE_SUCCESS)
-			return TRUE
-
-//Use this proc if you want to handle all types of failure yourself. It used in surgery, for example, to deal damage to patient.
-/obj/item/proc/use_tool_extended(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, required_stat = null, instant_finish_tier = 110, forced_sound = null)
-	if(target.used_now)
-		user << SPAN_WARNING("[target.name] is used by someone. Wait for them to finish.")
-		return TOOL_USE_CANCEL
-
-	if(istype(src, /obj/item/weapon/tool))
-		var/obj/item/weapon/tool/T = src
-		if(!T.check_tool_effects(user))
-			return TOOL_USE_CANCEL
-
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(H.shock_stage >= 30)
-			user << SPAN_WARNING("Pain distracts you from your task.")
-			fail_chance += round(H.shock_stage/120 * 40)
-			base_time += round(H.shock_stage/120 * 40)
-
-	if(forced_sound != NO_WORKSOUND)
-		if(forced_sound)
-			playsound(src.loc, forced_sound, 100, 1)
-		else
-			playsound(src.loc, src.worksound, 100, 1)
-
-	if(base_time && (instant_finish_tier >= get_tool_quality(required_quality)))
-		target.used_now = TRUE
-		var/time_to_finish = base_time - get_tool_quality(required_quality) - user.stats.getStat(required_stat)
-		if(!do_after(user, time_to_finish, user))
-			user << SPAN_WARNING("You need to stand still to finish the task properly!")
-			target.used_now = FALSE
-			return TOOL_USE_CANCEL
-		else
-			target.used_now = FALSE
-
-	var/stat_modifer = 0
-	if(required_stat)
-		stat_modifer = user.stats.getStat(required_stat)
-	fail_chance = fail_chance - get_tool_quality(required_quality) - stat_modifer
-	if(prob(fail_chance))
-		user << SPAN_WARNING("You failed to finish your task with [src.name]! There was a [fail_chance]% chance to screw this up.")
-		return TOOL_USE_FAIL
-
-	return TOOL_USE_SUCCESS
-
-//Critical failture rolls. If you use use_tool_extended, you might want to call that proc as well.
-/obj/item/proc/handle_failure(var/mob/living/user, var/atom/target, required_stat = null, required_quality)
-
-	var/crit_fail_chance = 25
-	if(required_stat)
-		crit_fail_chance = crit_fail_chance - user.stats.getStat(required_stat)
-	else
-		crit_fail_chance = 10
-
-	if(prob(crit_fail_chance))
-		var/fail_type = rand(0, 100)
-
-		switch(fail_type)
-
-			if(0 to 29)
-				if(ishuman(user))
-					var/mob/living/carbon/human/H = user
-					user << SPAN_DANGER("You drop [src] on the floor.")
-					H.drop_item()
-					return
-
-			if(30 to 49)
-				if(ishuman(user))
-					var/mob/living/carbon/human/H = user
-					user << SPAN_DANGER("Your hand slips while working with [src]!")
-					attack(H, H, H.get_holding_hand(src))
-					return
-
-			if(50 to 79)
-				if(ishuman(user))
-					var/mob/living/carbon/human/H = user
-					var/throw_target = pick(trange(6, user))
-					user << SPAN_DANGER("Your [src] flies away!")
-					H.unEquip(src)
-					src.throw_at(throw_target, src.throw_range, src.throw_speed, H)
-					return
-
-			if(70 to 84)
-				if(ishuman(user))
-					var/mob/living/carbon/human/H = user
-					user << SPAN_DANGER("You accidentally stuck [src] in your hand!")
-					H.get_organ(H.get_holding_hand(src)).embed(src)
-					return
-
-			if(85 to 93)
-				if(ishuman(user))
-					user << SPAN_DANGER("Your [src] broke beyond repair!")
-					new /obj/item/weapon/material/shard/shrapnel(user.loc)
-					qdel(src)
-					return
-
-			if(94 to 100)
-				if(ishuman(user))
-					if(istype(src, /obj/item/weapon/tool))
-						var/obj/item/weapon/tool/T = src
-						if(T.use_fuel_cost)
-							user << SPAN_DANGER("You ignite the fuel of the [src]!")
-							explosion(src.loc,-1,1,2)
-							qdel(src)
-							return
-						if(T.use_power_cost)
-							user << SPAN_DANGER("You overload the cell in the [src]!")
-							explosion(src.loc,-1,1,2)
-							qdel(src)
-							return
-
 
 /obj/item/device
 	icon = 'icons/obj/device.dmi'
-
-//Returns true if the object is equipped to a mob, in any slot
-/obj/item/proc/is_equipped()
-	if (istype(loc, /mob))
-		if (equip_slot != slot_none)
-			return TRUE
-	return FALSE
-
-
-//Returns true if the object is worn on a mob's body.
-//Returns false if held in their hands, or if not on a mob at all
-/obj/item/proc/is_worn()
-	if (istype(loc, /mob))
-		if (equip_slot != slot_none && equip_slot != slot_l_hand && equip_slot != slot_r_hand)
-			return TRUE
-	return FALSE
-
-
-//Returns true if the object is held in a mob's hands
-//Returns false if worn on their body, or if not on a mob at all
-/obj/item/proc/is_held()
-	if (istype(loc, /mob))
-		if (equip_slot == slot_l_hand || equip_slot == slot_r_hand)
-			return TRUE
-	return FALSE
-
-//if any species is added with more than 2 arms, these will need updating
-
-//This is the correct way to get an object's equip slot. Will return zero if the object is not currently equipped to anyone
-/obj/item/proc/get_equip_slot()
-	if (istype(loc, /mob))
-		return equip_slot
-	else
-		return slot_none

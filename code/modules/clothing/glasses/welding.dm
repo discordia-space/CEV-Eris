@@ -34,7 +34,7 @@
 			flash_protection = FLASH_PROTECTION_NONE
 			tint = TINT_NONE
 			usr << "You push \the [src] up out of your face."
-		update_clothing_icon()
+		update_wear_icon()
 		usr.update_action_buttons()
 
 /obj/item/clothing/glasses/welding/superior

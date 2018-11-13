@@ -250,13 +250,9 @@
 		playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
 		user << SPAN_NOTICE("[src] can now be concealed.")
 
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		H.update_inv_l_hand()
-		H.update_inv_r_hand()
+	update_wear_icon()
 
 	add_fingerprint(user)
-	return
 
 //BASKETBALL OBJECTS
 

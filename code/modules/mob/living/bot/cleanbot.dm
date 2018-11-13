@@ -27,6 +27,7 @@
 	var/list/target_types = list()
 
 	var/maximum_search_range = 7
+	var/give_up_cooldown = 0
 
 /mob/living/bot/cleanbot/New()
 	..()
@@ -46,7 +47,6 @@
 //		spawn(0)
 		path = AStar(loc, target.loc, /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, 0, 30, id = botcard)
 		if(!path)
-			visible_message("[src] can't reach the target and is giving up.")
 			target = null
 			path = list()
 		return
@@ -89,6 +89,7 @@
 		return
 
 	var/found_spot
+	var/target_in_view = FALSE
 	search_loop:
 		for(var/i=0, i <= maximum_search_range, i++)
 			for(var/obj/effect/decal/cleanable/D in view(i, src))
@@ -102,8 +103,13 @@
 						if (found_spot)
 							break search_loop
 						else
+							target_in_view = TRUE
 							target = null
 							continue // no need to check the other types
+
+	if(!found_spot && target_in_view && world.time > give_up_cooldown)
+		visible_message("[src] can't reach the target and is giving up.")
+		give_up_cooldown = world.time + 300
 
 
 	if(!found_spot && !target) // No targets in range
