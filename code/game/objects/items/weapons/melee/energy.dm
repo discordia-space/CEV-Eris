@@ -56,7 +56,7 @@
  */
 /obj/item/weapon/melee/energy/axe
 	name = "energy axe"
-	desc = "An energised battle axe."
+	desc = "A battle axe with some kind of red energy crystal. Pretty sharp."
 	icon_state = "axe0"
 	//active_force = 150 //holy...
 	active_force = 60
@@ -78,12 +78,12 @@
 /obj/item/weapon/melee/energy/axe/activate(mob/living/user)
 	icon_state = "axe1"
 	..()
-	user << SPAN_NOTICE("\The [src] is now energised.")
+	user << SPAN_NOTICE("\The [src] is now energized.")
 
 /obj/item/weapon/melee/energy/axe/deactivate(mob/living/user)
 	icon_state = initial(icon_state)
 	..()
-	user << SPAN_NOTICE("\The [src] is de-energised. It's just a regular axe now.")
+	user << SPAN_NOTICE("\The [src] is de-energized. It's just a regular axe now.")
 
 /*
  * Energy Sword
@@ -91,7 +91,7 @@
 /obj/item/weapon/melee/energy/sword
 	color
 	name = "energy sword"
-	desc = "May the force be within you."
+	desc = "May the Force be with you."
 	icon_state = "sword0"
 	active_force = WEAPON_FORCE_ROBUST
 	active_throwforce = WEAPON_FORCE_ROBUST
@@ -128,7 +128,7 @@
 
 /obj/item/weapon/melee/energy/sword/activate(mob/living/user)
 	if(!active)
-		user << SPAN_NOTICE("\The [src] is now energised.")
+		user << SPAN_NOTICE("\The [src] is now energized.")
 	icon_state = "sword[blade_color]"
 	..()
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")

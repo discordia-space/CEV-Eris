@@ -19,7 +19,7 @@
 	var/dust_remains = /obj/effect/decal/cleanable/ash //what remains if mob turns to dust
 
 	var/overkill_gib = 17 //0 to disable, gib when at maxhealth*2 brute loss and hit with at least overkill_gib brute damage
-	var/overkill_dust = 30 //0 to disable, dust when at maxhealth*2 fire loss and hit with at least overkill_dust fire damage, or from 2*max_bodytemperature
+	var/overkill_dust = 20 //0 to disable, dust when at maxhealth*2 fire loss and hit with at least overkill_dust fire damage, or from 2*max_bodytemperature
 
 	var/emote_see = list() //chat emotes
 	var/speak_chance = 2 //percentage chance of speaking a line from 'emote_see'
