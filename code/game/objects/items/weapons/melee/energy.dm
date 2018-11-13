@@ -128,7 +128,7 @@
 
 /obj/item/weapon/melee/energy/sword/activate(mob/living/user)
 	if(!active)
-	user << SPAN_NOTICE("\The [src] is now energized.")
+		user << SPAN_NOTICE("\The [src] is now energized.")
 	icon_state = "sword[blade_color]"
 	..()
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
