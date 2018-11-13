@@ -24,7 +24,7 @@
 	var/max_capacity = 150
 	var/current_storage = 0
 	var/next_toggle = 0 //World time we're allowed to next open/close this drawer, used to prevent spam
-
+	layer = ABOVE_MOB_LAYER
 
 /obj/structure/morgue/Destroy()
 	if(connected)
@@ -81,7 +81,7 @@
 /obj/structure/morgue/proc/toggle(var/mob/living/user)
 	if(world.time < next_toggle)
 		return
-	next_toggle = world.time + 10 //Limit toggling to once per second to prevent issues
+	next_toggle = world.time + 15 //Throttle toggling to reduce lag and potential exploits
 	playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 	if (connected)
 		close(user)
@@ -92,30 +92,49 @@
 
 
 /obj/structure/morgue/proc/open()
+	if (!anchored)
+		//No opening while unanchored
+		return
+
 	var/turf/T = get_step(src, dir)
 	if (!(turf_clear(T)))
 		return
+
 	open = TRUE
 	connected = new /obj/structure/m_tray( loc )
-	connected.forceMove(T, DELAY2GLIDESIZE(5))
 	connected.connected = src
 	connected.set_dir(dir)
-	sleep(5)
 	for(var/atom/movable/A as mob|obj in src)
-		A.forceMove(T)
+		if (!A.anchored)
+			A.forceMove(loc)
+
+	sleep(1)//Things need to exist for some time, in order to animate correctly
+
+	var/glidesize = DELAY2GLIDESIZE(5)
+	connected.forceMove(T, glidesize)
+	for(var/atom/movable/A in loc)
+		if (!A.anchored)
+			A.forceMove(T,glidesize)
+
+
+
 	current_storage = 0
 
 /obj/structure/morgue/proc/close(var/mob/living/user)
 	//We only allow one mob or bodybag containing a mob, per morgue drawer
 	occupant = null
-
+	var/glidesize = DELAY2GLIDESIZE(5)
 	for(var/atom/movable/A in connected.loc)
+		if (!A.anchored)
+			A.forceMove(loc,glidesize)
+
+	connected.forceMove(loc,glidesize)
+	QDEL_IN(connected, 5)
+	sleep(5)//Give them time to slide in before storing
+	for(var/atom/movable/A in loc)
 		store_atom(A)
 
-	playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
-	connected.forceMove(loc,DELAY2GLIDESIZE(5))
 
-	QDEL_IN(connected, 5)
 	connected = null
 	open = FALSE
 
@@ -135,8 +154,14 @@
 
 
 /obj/structure/morgue/proc/store_atom(var/atom/movable/AM)
+	if (AM.anchored)
+		return
+		//Allowing it to suck up any non anchored object is probably open to exploits,
+		//But fixing that is beyond my scope for now.
+
 	var/newcap
 	var/mob/living/foundmob
+
 	if (ismob(AM))
 		if (!isliving(AM))
 			//Don't eat ghosts and AI eyes please
@@ -148,12 +173,6 @@
 		newcap = foundmob.mob_size
 	else
 		//Not a mob, must be an object
-
-		if (AM.anchored)
-			return
-			//Allowing it to suck up any non anchored object is probably open to exploits,
-			//But fixing that is beyond my scope for now.
-
 
 		if (isitem(AM))
 			var/obj/item/I = AM
