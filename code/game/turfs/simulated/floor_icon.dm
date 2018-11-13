@@ -65,20 +65,20 @@ var/list/flooring_cache = list()
 					//Quick way to check if we're smoothed with both north and east
 					if((has_smooth & NORTHEAST) == NORTHEAST)
 						//If we are, then check the diagonal tile
-						if (!test_link(get_step(src, NORTHEAST), debug))
+						if (!test_link(get_step(src, NORTHEAST)))
 							//If we smooth with north and east, but don't smooth with the northeast diagonal, then we have an inner corner!
 							overlays |= get_flooring_overlay("[flooring.icon_base]-corner-[NORTHEAST]", "[flooring.icon_base]_corners", NORTHEAST)
 
 					if((has_smooth & NORTHWEST) == NORTHWEST)
-						if (!test_link(get_step(src, NORTHWEST), debug))
+						if (!test_link(get_step(src, NORTHWEST)))
 							overlays |= get_flooring_overlay("[flooring.icon_base]-corner-[NORTHWEST]", "[flooring.icon_base]_corners", NORTHWEST)
 
 					if((has_smooth & SOUTHEAST) == SOUTHEAST)
-						if (!test_link(get_step(src, SOUTHEAST), debug))
+						if (!test_link(get_step(src, SOUTHEAST)))
 							overlays |= get_flooring_overlay("[flooring.icon_base]-corner-[SOUTHEAST]", "[flooring.icon_base]_corners", SOUTHEAST)
 
 					if((has_smooth & SOUTHWEST) == SOUTHWEST)
-						if (!test_link(get_step(src, SOUTHWEST), debug))
+						if (!test_link(get_step(src, SOUTHWEST)))
 							overlays |= get_flooring_overlay("[flooring.icon_base]-corner-[SOUTHWEST]", "[flooring.icon_base]_corners", SOUTHWEST)
 
 
@@ -133,7 +133,7 @@ var/list/flooring_cache = list()
 	update_openspace()
 
 //Tests whether this floor/ing will smooth with the specified turf
-/turf/simulated/floor/proc/test_link(var/turf/T, var/debug = FALSE)
+/turf/simulated/floor/proc/test_link(var/turf/T)
 	//is_wall is true for wall turfs and for floors containing a low wall
 	var/is_linked = FALSE
 	if(T.is_wall)
