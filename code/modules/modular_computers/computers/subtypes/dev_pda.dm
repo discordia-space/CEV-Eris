@@ -6,7 +6,8 @@
 	hardware_flag = PROGRAM_PDA
 	max_hardware_size = 1
 	w_class = ITEM_SIZE_SMALL
-	light_strength = 2
+	screen_light_strength = 1.1
+	screen_light_range = 2
 	slot_flags = SLOT_ID | SLOT_BELT
 	stores_pen = TRUE
 	stored_pen = /obj/item/weapon/pen

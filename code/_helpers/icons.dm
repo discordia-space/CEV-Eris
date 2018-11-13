@@ -943,3 +943,33 @@ proc/set_pixel_click_offset(var/atom/A, var/params, var/animate = FALSE)
 		A.pixel_x = Clamp(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
 		A.pixel_y = Clamp(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
 
+//Calculate average color of an icon and store it in global list for future use
+proc/get_average_color(var/icon, var/icon_state, var/image_dir)
+	var/icon/I = icon(icon, icon_state, image_dir)
+	if (!istype(I))
+		return
+	if (!I.Width() || !I.Height())
+		error("proc/get_average_color: Image has wrong dimensions")
+		return
+
+	if(GLOB.average_icon_color["[icon]:[icon_state]:[image_dir]"])
+		return GLOB.average_icon_color["[icon]:[icon_state]:[image_dir]"]
+
+	var/list/average_rgb = list(0,0,0)
+	var/pixel_count = 0
+	for (var/x = 1, x <= I.Width(), x++)
+		for (var/y = 1, y <= I.Height(), y++)
+			if (!I.GetPixel(x, y, dir = image_dir))
+				continue
+			pixel_count++
+			var/list/rgb = ReadRGB(I.GetPixel(x, y, dir = image_dir))
+			average_rgb[1] += rgb[1]
+			average_rgb[2] += rgb[2]
+			average_rgb[3] += rgb[3]
+	average_rgb[1] = round(average_rgb[1] / pixel_count)
+	average_rgb[2] = round(average_rgb[2] / pixel_count)
+	average_rgb[3] = round(average_rgb[3] / pixel_count)
+
+	GLOB.average_icon_color["[icon]:[icon_state]:[image_dir]"] = rgb(average_rgb[1],average_rgb[2],average_rgb[3])
+	return GLOB.average_icon_color["[icon]:[icon_state]:[image_dir]"]
+

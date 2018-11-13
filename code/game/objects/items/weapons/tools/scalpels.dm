@@ -22,6 +22,7 @@
 	icon_state = "scalpel_t4"
 	matter = list(MATERIAL_STEEL = 5)
 	tool_qualities = list(QUALITY_CUTTING = 40, QUALITY_WIRE_CUTTING = 10)
+	degradation = 0.12
 
 /obj/item/weapon/tool/scalpel/laser
 	name = "laser scalpel"
@@ -31,8 +32,8 @@
 	force = WEAPON_FORCE_DANGEROUS
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 4)
 	tool_qualities = list(QUALITY_CUTTING = 50, QUALITY_WIRE_CUTTING = 20, QUALITY_LASER_CUTTING = 40)
-
-	use_power_cost = 0.1
+	degradation = 0.11
+	use_power_cost = 0.12
 	suitable_cell = /obj/item/weapon/cell/small
 
 
@@ -50,4 +51,4 @@
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
 	tool_qualities = list(QUALITY_CUTTING = 15, QUALITY_WIRE_CUTTING = 5, QUALITY_DRILLING = 10)
-	degradation = 6 //Gets worse with use
+	degradation = 4 //Gets worse with use
