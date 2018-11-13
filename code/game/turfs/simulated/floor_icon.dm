@@ -2,12 +2,8 @@ var/list/flooring_cache = list()
 
 /turf/var/icon_updates_count = 0
 
-/turf/simulated/floor/verb/debug_update()
-	set src in view()
-	set name = "Debugupdate"
-	update_icon(TRUE, TRUE)
 
-/turf/simulated/floor/update_icon(var/update_neighbors, var/debug = FALSE)
+/turf/simulated/floor/update_icon(var/update_neighbors)
 	icon_updates_count++
 	var/has_smooth = 0 //This is just the has_border bitfield inverted for easier logic
 	if(lava) //Wtf why
