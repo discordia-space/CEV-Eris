@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/energy/laser
 	name = "NT LG \"Lightfall\""
-	desc = "NeoTheology brand laser carbine. Deadly and radiant, like ire of God it should represent."
+	desc = "\"NeoTheology\" brand laser carbine. Deadly and radiant, like the ire of God it represents."
 	icon_state = "laser"
 	item_state = "laser"
 	fire_sound = 'sound/weapons/Laser.ogg'
@@ -17,7 +17,7 @@
 
 /obj/item/weapon/gun/energy/laser/practice
 	name = "NT LG \"Lightfall\" - P"
-	desc = "A modified version of the NeoTheology brand laser carbine, this one fires less concentrated energy bolts designed for target practice."
+	desc = "A modified version of \"NeoTheology\" brand laser carbine, this one fires less concentrated energy bolts, designed for target practice."
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 2)
 	projectile_type = /obj/item/projectile/beam/practice
 
@@ -25,7 +25,7 @@ obj/item/weapon/gun/energy/retro
 	name = "Alliance LG \"Cog\""
 	icon_state = "retro"
 	item_state = "retro"
-	desc = "Alliance cheap laser gun. In our deep past - this was main weapon of low-rank police force across all Milky Way, bilions copys of this gun was made. They still can be found almoust everywhere."
+	desc = "Alliance cheap laser gun. In the distant past - this was the main weapon of low-rank police forces across all the Milky Way, billions of copies of this gun were made. They are ubiquitous."
 	fire_sound = 'sound/weapons/Laser.ogg'
 	slot_flags = SLOT_BELT
 	w_class = ITEM_SIZE_NORMAL
@@ -36,7 +36,7 @@ obj/item/weapon/gun/energy/retro
 	name = "NT LG \"Destiny\""
 	icon_state = "caplaser"
 	item_state = "caplaser"
-	desc = "This weapon is old, yet still robust and reliable. Its marked with old Nanotrasen brand, like a last reminder of what this corporation was, before church take control of everything."
+	desc = "This weapon is old, yet still robust and reliable. It's marked with old Nanotrasen brand, a distant reminder of what this corporation was, before the Church took control of everything."
 	force = WEAPON_FORCE_PAINFULL
 	fire_sound = 'sound/weapons/Laser.ogg'
 	slot_flags = SLOT_BELT

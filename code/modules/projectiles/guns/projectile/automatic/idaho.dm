@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/automatic/idaho
 	name = "FS SMG 9x19 \"Idaho\""
-	desc = "The Idaho is a cheap self-defense weapon, mass-produced by Frozen Star for paramilitary and private use. Uses 9mm rounds."
+	desc = "The Idaho is a cheap self-defence weapon, mass-produced by \"Frozen Star\" for paramilitary and private use. Uses 9mm rounds."
 	icon_state = "saber"
 	item_state = "saber"
 	w_class = ITEM_SIZE_NORMAL
