@@ -70,13 +70,12 @@
 //No network connection. Robots can physically open it, but not remotely
 //AI can't open it at all, anything inside a morgue drawer is hidden from the AI
 /obj/structure/morgue/attack_ai(var/mob/living/user)
-	if (user in range(1, src))
+	if(Adjacent(user))
 		toggle(user)
 
-/obj/structure/morgue/attack_hand(mob/user as mob)
+/obj/structure/morgue/attack_hand(var/mob/living/user)
 	toggle(user)
 	add_fingerprint(user)
-	return
 
 /obj/structure/morgue/proc/toggle(var/mob/living/user)
 	if(world.time < next_toggle)
@@ -104,17 +103,16 @@
 	connected = new /obj/structure/m_tray( loc )
 	connected.connected = src
 	connected.set_dir(dir)
-	for(var/atom/movable/A as mob|obj in src)
-		if (!A.anchored)
-			A.forceMove(loc)
+	for(var/atom/movable/A in src)
+		A.forceMove(loc)
 
 	sleep(1)//Things need to exist for some time, in order to animate correctly
 
 	var/glidesize = DELAY2GLIDESIZE(5)
-	connected.forceMove(T, glidesize)
+	connected.forceMove(T, glide_size_override=glidesize)
 	for(var/atom/movable/A in loc)
 		if (!A.anchored)
-			A.forceMove(T,glidesize)
+			A.forceMove(T,glide_size_override=glidesize)
 
 
 
@@ -126,9 +124,9 @@
 	var/glidesize = DELAY2GLIDESIZE(5)
 	for(var/atom/movable/A in connected.loc)
 		if (!A.anchored)
-			A.forceMove(loc,glidesize)
+			A.forceMove(loc,glide_size_override=glidesize)
 
-	connected.forceMove(loc,glidesize)
+	connected.forceMove(loc,glide_size_override=glidesize)
 	QDEL_IN(connected, 5)
 	sleep(5)//Give them time to slide in before storing
 	for(var/atom/movable/A in loc)
