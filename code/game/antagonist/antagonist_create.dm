@@ -35,11 +35,7 @@
 	if(doequip)
 		equip()
 
-	//if(announce) //why this one is commented? It prevents ai from to be a malf
-	//	greet()
-
-	//i'm not sure, so i make here a special check for ai
-	if(istype(src, /datum/antagonist/rogue_ai) && announce)
+	if(announce) //why this one is commented? It prevents ai from to be a malf
 		greet()
 
 	return TRUE
@@ -47,7 +43,7 @@
 /datum/antagonist/proc/special_init()
 
 
-/datum/antagonist/proc/create_from_ghost(var/mob/observer/ghost)
+/datum/antagonist/proc/create_from_ghost(var/mob/observer/ghost, var/datum/faction/new_faction, var/doequip = TRUE, var/announce = TRUE, var/update = TRUE)
 	if(!istype(ghost))
 		log_debug("ANTAGONIST Wrong target passed to create_from_ghost of [id]! Ghost: [ghost == null?"NULL":ghost] \ref[ghost]")
 		return FALSE
@@ -69,7 +65,7 @@
 		qdel(M)
 		return FALSE
 
-	return create_antagonist(M.mind)
+	return create_antagonist(M.mind, new_faction, doequip, announce, update)
 
 /datum/antagonist/proc/create_faction()
 	if(!faction && faction_id)
@@ -96,9 +92,12 @@
 		faction.remove_member(src)
 		faction = null
 
+	current_antags.Remove(src)
+	if (!owner)
+		return //This can happen with some spamclicking
 	if(owner.current)
 		BITSET(owner.current.hud_updateflag, SPECIALROLE_HUD)
-	current_antags.Remove(src)
+
 	owner.antagonist.Remove(src)
 	owner = null
 	return TRUE

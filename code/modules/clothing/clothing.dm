@@ -11,6 +11,10 @@
 	var/list/accessories = list()
 	var/list/valid_accessory_slots
 	var/list/restricted_accessory_slots
+	var/equip_delay = 0 //If set to a nonzero value, the item will require that much time to wear and remove
+
+	//Used for hardsuits. If false, this piece cannot be retracted while the core module is engaged
+	var/retract_while_active = TRUE
 
 /obj/item/clothing/Destroy()
 	for(var/obj/item/clothing/accessory/A in accessories)
@@ -22,6 +26,29 @@
 /obj/item/clothing/clean_blood()
 	. = ..()
 	gunshot_residue = null
+
+
+//Delayed equipping
+/obj/item/clothing/pre_equip(var/mob/user, var/slot)
+	if (equip_delay > 0)
+		//If its currently worn, we must be taking it off
+		if (is_worn())
+			user.visible_message(
+				SPAN_NOTICE("[user] starts taking off \the [src]..."),
+				SPAN_NOTICE("You start taking off \the [src]...")
+			)
+			if(!do_after(user,equip_delay,src))
+				return TRUE //A nonzero return value will cause the equipping operation to fail
+
+		else if (is_held() && !(slot in unworn_slots))
+			user.visible_message(
+				SPAN_NOTICE("[user] starts putting on \the [src]..."),
+				SPAN_NOTICE("You start putting on \the [src]...")
+			)
+			if(!do_after(user,equip_delay,src))
+				return TRUE //A nonzero return value will cause the equipping operation to fail
+
+
 
 ///////////////////////////////////////////////////////////////////////
 // Ears: headsets, earmuffs and tiny objects
@@ -416,7 +443,12 @@ BLIND     // can't see anything
 	var/blood_overlay_type = "suit"
 	siemens_coefficient = 0.9
 	w_class = ITEM_SIZE_NORMAL
+	var/list/extra_allowed = list()
+	equip_delay = 2 SECONDS
 
+/obj/item/clothing/suit/New()
+	allowed |= extra_allowed
+	.=..()
 ///////////////////////////////////////////////////////////////////////
 //Under clothing
 /obj/item/clothing/under
@@ -439,6 +471,7 @@ BLIND     // can't see anything
 		3 = Report location
 		*/
 	var/displays_id = 1
+	equip_delay = 2 SECONDS
 
 	//convenience var for defining the icon state for the overlay used when the clothing is worn.
 

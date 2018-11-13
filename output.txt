@@ -1,6 +1,19 @@
 DM compiler version 512.1454
 loading cev_eris.dme
 loading interface\skin.dmf
+code\modules\modular_computers\file_system\manifest.dm:4:error: COM: undefined var
+code\modules\modular_computers\file_system\manifest.dm:5:error: SPT: undefined var
+code\modules\modular_computers\file_system\manifest.dm:6:error: SCI: undefined var
+code\modules\modular_computers\file_system\manifest.dm:7:error: SEC: undefined var
+code\modules\modular_computers\file_system\manifest.dm:8:error: MED: undefined var
+code\modules\modular_computers\file_system\manifest.dm:9:error: ENG: undefined var
+code\modules\modular_computers\file_system\manifest.dm:10:error: SUP: undefined var
+code\modules\modular_computers\file_system\manifest.dm:11:error: SRV: undefined var
+code\modules\modular_computers\file_system\manifest.dm:12:error: CIV: undefined var
+code\modules\modular_computers\file_system\manifest.dm:13:error: MSC: undefined var
+code\modules\modular_computers\file_system\manifest.dm:19:error: MSC: undefined var
+code\datums\mind.dm:281:error: special_role: undefined var
+code\modules\client\preference_setup\matchmaking\matchmaking.dm:72:error: M.special_role: undefined var
 code\modules\organs\body_modifications.dm:59:error: P.get_modification: undefined proc
 code\modules\organs\body_modifications.dm:119:error: P.religion: undefined var
 code\modules\clothing\underwear\base.dm:39:error: H.get_covering_equipped_items: undefined proc
@@ -55,25 +68,31 @@ code\modules\mob\living\carbon\human\human_species.dm:14:error: GLOB.human_mob_l
 code\modules\mob\living\silicon\say.dm:93:error: M.is_preference_enabled: undefined proc
 code\modules\mob\living\silicon\robot\drone\drone_say.dm:37:error: M.is_preference_enabled: undefined proc
 code\modules\mob\living\simple_animal\borer\say.dm:41:error: M.is_preference_enabled: undefined proc
+code\datums\mind.dm:296:error: returnmind.special_role: undefined var
 code\modules\mob\living\say.dm:220:error: M.is_preference_enabled: undefined proc
 code\modules\mob\living\simple_animal\borer\borer_captive.dm:31:error: M.is_preference_enabled: undefined proc
-code\modules\mob\new_player\new_player.dm:354:error: client.prefs.randomize_appearance_for: undefined proc
-code\modules\mob\new_player\new_player.dm:405:error: has_admin_rights: duplicate definition
-code\modules\mob\mob.dm:1167:error: has_admin_rights: previous definition
+code\modules\mob\new_player\new_player.dm:357:error: client.prefs.randomize_appearance_for: undefined proc
+code\modules\mob\new_player\new_player.dm:402:error: has_admin_rights: duplicate definition
+code\modules\mob\mob.dm:1170:error: has_admin_rights: previous definition
 code\_helpers\game.dm:214:error: M.is_preference_enabled: undefined proc
 code\modules\client\preferences_spawnpoints.dm:11:error: GLOB.using_map.allowed_spawns: undefined var
 code\modules\client\preferences_spawnpoints.dm:59:error: SP.getFreeTurfs: undefined proc
-code\controllers\subsystems\jobs.dm:90:error: player.client.prefs.GetJobDepartment: undefined proc
-code\controllers\subsystems\jobs.dm:261:error: player.client.prefs.GetJobDepartment: undefined proc
+code\modules\modular_computers\file_system\manifest.dm:2:error: html_crew_manifest: duplicate definition
+code\_helpers\manifest.dm:15:error: html_crew_manifest: previous definition
+code\modules\modular_computers\file_system\manifest.dm:87:error: silicon_nano_crew_manifest: duplicate definition
+code\_helpers\manifest.dm:109:error: silicon_nano_crew_manifest: previous definition
+code\modules\modular_computers\file_system\manifest.dm:106:error: filtered_nano_crew_manifest: duplicate definition
+code\_helpers\manifest.dm:128:error: filtered_nano_crew_manifest: previous definition
+code\modules\modular_computers\file_system\manifest.dm:116:error: nano_crew_manifest: duplicate definition
+code\_helpers\manifest.dm:138:error: nano_crew_manifest: previous definition
+code\modules\modular_computers\file_system\manifest.dm:128:error: flat_nano_crew_manifest: duplicate definition
+code\_helpers\manifest.dm:150:error: flat_nano_crew_manifest: previous definition
 code\controllers\subsystems\jobs.dm:307:error: H.client.prefs.gear: undefined var
 code\controllers\subsystems\jobs.dm:307:error: H.client.prefs.gear.len: undefined var
 code\controllers\subsystems\jobs.dm:308:error: H.client.prefs.gear: undefined var
 code\controllers\subsystems\jobs.dm:329:error: H.client.prefs.gear: undefined var
 code\controllers\subsystems\jobs.dm:353:error: H.client.prefs.gear: undefined var
 code\controllers\subsystems\jobs.dm:422:error: H.client.prefs.gear: undefined var
-code\controllers\subsystems\jobs.dm:550:error: player.client.prefs.GetJobDepartment: undefined proc
-code\controllers\subsystems\jobs.dm:552:error: player.client.prefs.GetJobDepartment: undefined proc
-code\controllers\subsystems\jobs.dm:554:error: player.client.prefs.GetJobDepartment: undefined proc
 code\controllers\subsystems\jobs.dm:579:error: spawnpos.getFreeTurfs: undefined proc
 code\controllers\subsystems\jobs.dm:585:error: returnspawnpos.message: undefined var
 code\modules\client\preference_setup\general\02_body.dm:687:error: mob_species.get_hair_styles: undefined proc
@@ -218,5 +237,5 @@ code\modules\client\preference_setup\general\02_body.dm:351:warning: current_spe
 code\modules\client\preference_setup\general\02_body.dm:518:warning: limb: variable defined but not used
 code\modules\client\preference_setup\general\02_body.dm:519:warning: second_limb: variable defined but not used
 code\modules\client\preference_setup\general\02_body.dm:520:warning: third_limb: variable defined but not used
-cev_eris.dmb - 100 errors, 17 warnings (11/13/18 9:30 am) (max count reached)
-Total time: 0:24
+cev_eris.dmb - 100 errors, 17 warnings (11/13/18 10:02 am) (max count reached)
+Total time: 0:28

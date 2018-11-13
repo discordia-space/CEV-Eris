@@ -62,31 +62,33 @@
 
 // returns true if the area has power on given channel (or doesn't require power).
 // defaults to power_channel
-/obj/machinery/proc/powered(var/chan = -1) // defaults to power_channel
-
-	if(!src.loc)
-		return 0
-
+/obj/machinery/proc/powered(var/chan = power_channel) // defaults to power_channel
 	//Don't do this. It allows machines that set use_power to 0 when off (many machines) to
 	//be turned on again and used after a power failure because they never gain the NOPOWER flag.
 	//if(!use_power)
 	//	return 1
 
-	var/area/A = src.loc.loc		// make sure it's in an area
-	if(!A || !isarea(A))
-		return 0					// if not, then not powered
-	if(chan == -1)
-		chan = power_channel
-	return A.powered(chan)			// return power status of the area
+	var/area/A = get_area(src)
+	if(A)
+		return A.powered(chan)			// return power status of the area
+	return 0
 
 // increment the power usage stats for an area
-/obj/machinery/proc/use_power(var/amount, var/chan = -1) // defaults to power_channel
+/obj/machinery/proc/use_power(var/amount, var/chan = power_channel) // defaults to power_channel
 	var/area/A = get_area(src)		// make sure it's in an area
-	if(!A || !isarea(A))
-		return
-	if(chan == -1)
-		chan = power_channel
-	A.use_power(amount, chan)
+	if(A && A.powered(chan))
+		A.use_power(amount, chan)
+
+//sets the use_power var and then forces an area power update
+/obj/machinery/proc/update_use_power(var/new_use_power)
+	use_power = new_use_power
+
+/obj/machinery/proc/auto_use_power()
+	switch (use_power)
+		if (1)
+			use_power(idle_power_usage)
+		if (2)
+			use_power(active_power_usage)
 
 /obj/machinery/proc/power_change()		// called whenever the power settings of the containing area change
 										// by default, check equipment channel & set flag

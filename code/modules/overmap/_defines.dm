@@ -47,12 +47,9 @@ var/global/list/map_sectors = list()
 			I.pixel_x = 5*i + 2
 		overlays += I
 
-//list used to track which zlevels are being 'moved' by the proc below
-var/list/moving_levels = list()
 //Proc to 'move' stars in spess
-//yes it looks ugly, but it should only fire when state actually change.
 //null direction stops movement
-proc/toggle_move_stars(zlevel, direction)
+/proc/toggle_move_stars(zlevel, direction)
 	if(!zlevel)
 		return
 
@@ -64,16 +61,22 @@ proc/toggle_move_stars(zlevel, direction)
 	if(!direction)
 		gen_dir = null
 
-	if (moving_levels["zlevel"] != gen_dir)
-		moving_levels["zlevel"] = gen_dir
-		for(var/x = 1 to world.maxx)
-			for(var/y = 1 to world.maxy)
-				var/turf/space/T = locate(x,y,zlevel)
-				if (istype(T))
-					if(!gen_dir)
-						T.icon_state = "white"
-					else
-						T.icon_state = "speedspace_[gen_dir]_[rand(1,15)]"
-						for(var/atom/movable/AM in T)
-							if (!AM.anchored)
-								AM.throw_at(get_step(T,reverse_direction(direction)), 5, 1)
+	var/static/list/moving_levels
+	moving_levels = moving_levels || new
+
+	if (moving_levels["[zlevel]"] != gen_dir)
+		moving_levels["[zlevel]"] = gen_dir
+
+		var/list/spaceturfs = block(locate(1, 1, zlevel), locate(world.maxx, world.maxy, zlevel))
+		if(!gen_dir)
+			for(var/turf/space/T in spaceturfs)
+				T.icon_state = "white"
+				CHECK_TICK
+		else
+			for(var/turf/space/T in spaceturfs)
+				T.icon_state = "speedspace_[gen_dir]_[rand(1,15)]"
+				for(var/atom/movable/AM in T)
+					if (AM.simulated && !AM.anchored)
+						AM.throw_at(get_step(T,reverse_direction(direction)), 5, 1)
+						CHECK_TICK
+				CHECK_TICK

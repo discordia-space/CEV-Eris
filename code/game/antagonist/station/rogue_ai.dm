@@ -17,6 +17,15 @@
 		R.lawupdate = TRUE
 		R.sync()
 
+	var/mob/living/silicon/ai/malf = owner.current
+	if(!istype(malf))
+		error("Non-AI mob designated malf AI! Report this.")
+		testing("##ERROR: Non-AI mob designated malf AI! Report this.")
+		return
+
+	malf.setup_for_malf()
+	malf.laws = new /datum/ai_laws/nanotrasen/malfunction
+
 	return TRUE
 
 // Ensures proper reset of all malfunction related things.
@@ -34,22 +43,12 @@
 
 // Malf setup things have to be here, since game tends to break when it's moved somewhere else. Don't blame me, i didn't design this system.
 /datum/antagonist/rogue_ai/greet()
-
-	// Initializes the AI's malfunction stuff.
 	spawn(0)
 		if(!..())
 			return
 
+
 		var/mob/living/silicon/ai/malf = owner.current
-		if(!istype(malf))
-			error("Non-AI mob designated malf AI! Report this.")
-			testing("##ERROR: Non-AI mob designated malf AI! Report this.")
-			return
-
-		malf.setup_for_malf()
-		malf.laws = new /datum/ai_laws/nanotrasen/malfunction
-
-
 		malf << SPAN_NOTICE("<B>SYSTEM ERROR:</B> Memory index 0x00001ca89b corrupted.")
 		sleep(10)
 		malf << "<B>running MEMCHCK</B>"

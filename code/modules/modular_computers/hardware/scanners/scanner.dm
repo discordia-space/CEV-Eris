@@ -3,7 +3,8 @@
 /obj/item/weapon/computer_hardware/scanner
 	name = "scanner module"
 	desc = "A generic scanner module. This one doesn't seem to do anything."
-	power_usage = 50
+	power_usage = 5
+	var/active_power_usage = 4000
 	icon_state = "printer"
 	hardware_size = 1
 	critical = 0
@@ -46,6 +47,8 @@
 		driver = null
 
 /obj/item/weapon/computer_hardware/scanner/proc/run_scan(mob/user, datum/computer_file/program/scanner/program) //For scans done from the software.
+	if (!scan_power_use())
+		return FALSE
 
 /obj/item/weapon/computer_hardware/scanner/proc/do_on_afterattack(mob/user, atom/target, proximity)
 
@@ -61,3 +64,14 @@
 	if(!proximity)
 		return 0
 	return 1
+
+/obj/item/weapon/computer_hardware/scanner/proc/scan_power_use()
+	if (!holder2)
+		return FALSE
+	if(holder2.apc_power(active_power_usage))
+		return TRUE
+	else if(holder2.battery_power(active_power_usage))
+		return TRUE
+	else
+		holder2.power_failure()
+		return FALSE

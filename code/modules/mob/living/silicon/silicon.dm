@@ -29,6 +29,8 @@
 	var/obj/item/weapon/card/id/idcard
 	var/idcard_type = /obj/item/weapon/card/id/synthetic
 
+	var/email_ringtone = TRUE
+
 	#define SEC_HUD 1 //Security HUD mode
 	#define MED_HUD 2 //Medical HUD mode
 
@@ -54,6 +56,7 @@
 /mob/living/silicon/SetName(pickedName as text)
 	real_name = pickedName
 	name = real_name
+	create_or_rename_email(pickedName, "root.rt")
 
 /mob/living/silicon/proc/show_laws()
 	return
@@ -177,22 +180,11 @@
 		show_malf_ai()
 	. = ..()
 
-// this function displays the stations manifest in a separate window
-/mob/living/silicon/proc/show_station_manifest()
-	var/dat
-	dat += "<h4>Crew Manifest</h4>"
-	if(data_core)
-		dat += data_core.get_manifest(1) // make it monochrome
-	dat += "<br>"
-	src << browse(dat, "window=airoster")
-	onclose(src, "airoster")
-
 //can't inject synths
 /mob/living/silicon/can_inject(var/mob/user, var/error_msg)
 	if(error_msg)
 		user << "<span class='alert'>The armoured plating is too tough.</span>"
 	return 0
-
 
 //Silicon mob language procs
 

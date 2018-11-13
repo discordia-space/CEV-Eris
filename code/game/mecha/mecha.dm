@@ -371,11 +371,10 @@
 ////////  Movement procs  ////////
 //////////////////////////////////
 
-/obj/mecha/Move()
+/obj/mecha/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	. = ..()
 	if(.)
 		events.fireEvent("onMove",get_turf(src))
-	return
 
 /obj/mecha/relaymove(mob/user,direction)
 	if(user != src.occupant) //While not "realistic", this piece is player friendly.
@@ -404,11 +403,16 @@
 	if(!has_charge(step_energy_drain))
 		return 0
 	var/move_result = 0
+	// TODO: Glide size handling in here is fucked,
+	// because the timing system uses sleep instead of world.time comparisons/delay controllers
+	// At least that's my theory I can't be bothered to investigate fully.
 	if(hasInternalDamage(MECHA_INT_CONTROL_LOST))
+		set_glide_size(DELAY2GLIDESIZE(step_in))
 		move_result = mechsteprand()
 	else if(src.dir!=direction)
 		move_result = mechturn(direction)
 	else
+		set_glide_size(DELAY2GLIDESIZE(step_in))
 		move_result = mechstep(direction)
 	if(move_result)
 		can_move = 0
@@ -1864,6 +1868,10 @@
 	if(MOVED_DROP == special_event)
 		dropped_items |= AM
 		return ..(AM, old_loc, 0)
+	return ..()
+
+/obj/mecha/Exited(var/atom/movable/AM, var/atom/old_loc, var/special_event)
+	dropped_items -= AM
 	return ..()
 
 //////////////////////////////////////////

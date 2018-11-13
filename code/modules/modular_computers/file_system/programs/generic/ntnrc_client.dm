@@ -131,7 +131,7 @@
 			else if (computer.hard_drive.used_capacity + logfile.size == computer.hard_drive.max_capacity)	// In 99.9% cases this will mean our HDD is full
 				computer.visible_message("\The [computer] shows an \"I/O Error - Hard drive may be full. Please free some space and try again. Required space: [logfile.size]GQ\" warning.")
 			else
-				computer.visible_message("\The [computer] shows an \"I/O Error - Unable to store log. Invalid name")	
+				computer.visible_message("\The [computer] shows an \"I/O Error - Unable to store log. Invalid name")
 	if(href_list["PRG_renamechannel"])
 		. = 1
 		if(!operator_mode || !channel)
@@ -217,7 +217,7 @@
 		var/list/clients[0]
 		for(var/datum/computer_file/program/chatclient/cl in C.channel.clients)
 			clients.Add(list(list(
-				"name" = cl.username
+				"name" = cyrillic_to_unicode(cl.username)
 			)))
 		data["clients"] = clients
 		C.operator_mode = (C.channel.operator == C) ? 1 : 0
@@ -229,7 +229,7 @@
 		for(var/datum/ntnet_conversation/conv in ntnet_global.chat_channels)
 			if(conv && conv.title && (conv.source_z in connected_zs))
 				all_channels.Add(list(list(
-					"chan" = conv.title,
+					"chan" = cyrillic_to_unicode(conv.title),
 					"id" = conv.id
 				)))
 		data["all_channels"] = all_channels

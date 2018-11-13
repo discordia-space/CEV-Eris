@@ -5,7 +5,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	flag = CAPTAIN
 	department = "Command"
 	head_position = 1
-	department_flag = ENGSEC
+	department_flag = COMMAND
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
@@ -67,7 +67,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	flag = FIRSTOFFICER
 	department = "Civilian"
 	head_position = 1
-	department_flag = CIVILIAN
+	department_flag = COMMAND
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1

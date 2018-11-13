@@ -69,9 +69,11 @@
 			if(get_dist(src, target_mob) <= 6)
 				OpenFire(target_mob)
 			else
+				set_glide_size(DELAY2GLIDESIZE(move_to_delay))
 				walk_to(src, target_mob, 1, move_to_delay)
 		else
 			stance = HOSTILE_STANCE_ATTACKING
+			set_glide_size(DELAY2GLIDESIZE(move_to_delay))
 			walk_to(src, target_mob, 1, move_to_delay)
 
 /mob/living/simple_animal/hostile/proc/AttackTarget()
@@ -190,7 +192,7 @@
 	if(prob(break_stuff_probability))
 		for(var/dir in cardinal) // North, South, East, West
 			for(var/obj/structure/window/obstacle in get_step(src, dir))
-				if(obstacle.dir == reverse_dir[dir]) // So that windows get smashed in the right order
+				if((obstacle.dir == reverse_dir[dir]) || obstacle.is_fulltile()) // So that windows get smashed in the right order
 					obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
 					return
 			var/obj/structure/obstacle = locate(/obj/structure, get_step(src, dir))

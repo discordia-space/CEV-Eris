@@ -234,7 +234,7 @@
 							open(1)
 					else
 						spawn()
-							close()
+							close(1)
 					return
 				return
 			return
@@ -289,9 +289,16 @@
 		if(changed)
 			update_icon()
 
-/obj/machinery/door/firedoor/close()
+/obj/machinery/door/firedoor/close(var/forced = 0)
 	if (blocked) //welded
 		return
+
+	if(!forced)
+		if(stat & (BROKEN|NOPOWER))
+			return //needs power to close unless it was forced
+		else
+			use_power(360)
+
 	return ..()
 
 /obj/machinery/door/firedoor/open(var/forced = 0)
@@ -308,7 +315,7 @@
 			return //needs power to open unless it was forced
 		else
 			use_power(360)
-	else
+	else if (usr)
 		log_admin("[usr]([usr.ckey]) has forced open an emergency shutter.")
 		message_admins("[usr]([usr.ckey]) has forced open an emergency shutter.")
 

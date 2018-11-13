@@ -43,6 +43,8 @@
 	var/store_items = 1
 	var/store_mobs = 1
 
+	var/dismantle_material = /obj/item/stack/material/steel
+
 /obj/structure/closet/can_prevent_fall()
 	return TRUE
 
@@ -221,7 +223,13 @@
 		src.togglelock(user)
 
 /obj/structure/closet/proc/CanToggleLock(var/mob/user, var/obj/item/weapon/card/id/id_card)
-	return allowed(user) || (istype(id_card) && check_access_list(id_card.GetAccess()))
+	if (istype(user))
+		id_card = id_card || user.GetIdCard()
+
+	if (istype(id_card))
+		return check_access_list(id_card.GetAccess())
+
+	return allowed(user)
 
 /obj/structure/closet/proc/set_locked(var/newlocked, mob/user = null)
 	var/ctype = istype(src,/obj/structure/closet/crate) ? "crate" : "closet"
@@ -334,7 +342,7 @@
 			return 0
 		if(QUALITY_WELDING in I.tool_qualities)
 			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-				new /obj/item/stack/material/steel(src.loc)
+				new dismantle_material(src.loc, 10)
 				src.visible_message(
 					SPAN_NOTICE("\The [src] has been cut apart by [user] with \the [I]."),
 					"You hear welding."

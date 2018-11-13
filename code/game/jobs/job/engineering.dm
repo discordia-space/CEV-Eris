@@ -3,7 +3,7 @@
 	flag = EXULTANT
 	head_position = 1
 	department = "Engineering"
-	department_flag = ENGSEC
+	department_flag = ENGINEERING | COMMAND
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
@@ -71,7 +71,7 @@
 	title = "Technomancer"
 	flag = TECHNOMANCER
 	department = "Engineering"
-	department_flag = ENGSEC
+	department_flag = ENGINEERING
 	faction = "CEV Eris"
 	total_positions = 5
 	spawn_positions = 5

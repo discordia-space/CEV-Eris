@@ -29,15 +29,16 @@
 	var/old_lighting_overlay = lighting_overlay
 	var/list/old_lighting_corners = corners
 
-
-	if(connections) connections.erase_all()
+	if(connections)
+		connections.erase_all()
 
 	if(istype(src,/turf/simulated))
 		//Yeah, we're just going to rebuild the whole thing.
 		//Despite this being called a bunch during explosions,
 		//the zone will only really do heavy lifting once.
 		var/turf/simulated/S = src
-		if(S.zone) S.zone.rebuild()
+		if(S.zone)
+			S.zone.rebuild()
 
 	if(ispath(N, /turf/simulated/floor))
 		var/turf/simulated/W = new N( locate(src.x, src.y, src.z) )
@@ -71,36 +72,27 @@
 		T.levelupdate()
 		. =  T
 
-	for(var/turf/space/SP in trange(1, src))
-		SP.update_starlight()
+	for(var/turf/neighbour in trange(1, src))
+		if (istype(neighbour, /turf/space))
+			var/turf/space/SP = neighbour
+			SP.update_starlight()
 
-	lighting_overlay = old_lighting_overlay
-	affecting_lights = old_affecting_lights
-	corners = old_lighting_corners
+		if (istype(neighbour, /turf/simulated/))
+			neighbour.update_icon()
 
-	for(var/atom/A in contents)
-		if(A.light)
-			A.light.force_update = 1
+	if (SSlighting && SSlighting.initialized)
+		lighting_overlay = old_lighting_overlay
+		affecting_lights = old_affecting_lights
+		corners = old_lighting_corners
 
-	for(var/i = 1 to 4)//Generate more light corners when needed. If removed - pitch black shuttles will come for your soul!
-		if(corners[i]) // Already have a corner on this direction.
-			continue
-		corners[i] = new/datum/lighting_corner(src, LIGHTING_CORNER_DIAGONAL[i])
+		if((old_opacity != opacity) || (dynamic_lighting != old_dynamic_lighting) || force_lighting_update)
+			reconsider_lights()
 
-	if(force_lighting_update)
-		if(old_lighting_overlay)
-			var/atom/movable/lighting_overlay/old_overlay = old_lighting_overlay
-			old_overlay.Destroy() // This is fastest way to fix double overlays for mine turfs.. Deleting overlay.
-			lighting_build_overlay() // Rebuild overlay!
-
-	if((old_opacity != opacity) || (dynamic_lighting != old_dynamic_lighting) || force_lighting_update)
-		reconsider_lights() //  Without this turf will be pitch black at lighting_build_overlay(). Updating affecting lights.
-
-	if(dynamic_lighting != old_dynamic_lighting)
-		if(dynamic_lighting)
-			lighting_build_overlay()
-		else
-			lighting_clear_overlay()
+		if(dynamic_lighting != old_dynamic_lighting)
+			if(dynamic_lighting)
+				lighting_build_overlay()
+			else
+				lighting_clear_overlay()
 
 	T.update_openspace()
 

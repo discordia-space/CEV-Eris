@@ -349,6 +349,10 @@
 	transform = turn(transform, -(trajectory.return_angle() + 90)) //no idea why 90 needs to be added, but it works
 
 /obj/item/projectile/proc/muzzle_effect(var/matrix/T)
+	//This can happen when firing inside a wall, safety check
+	if (!location)
+		return
+
 	if(silenced)
 		return
 
@@ -362,6 +366,11 @@
 			M.activate()
 
 /obj/item/projectile/proc/tracer_effect(var/matrix/M)
+
+	//This can happen when firing inside a wall, safety check
+	if (!location)
+		return
+
 	if(ispath(tracer_type))
 		var/obj/effect/projectile/P = new tracer_type(location.loc)
 
@@ -375,6 +384,10 @@
 				P.activate()
 
 /obj/item/projectile/proc/impact_effect(var/matrix/M)
+	//This can happen when firing inside a wall, safety check
+	if (!location)
+		return
+
 	if(ispath(tracer_type))
 		var/obj/effect/projectile/P = new impact_type(location.loc)
 

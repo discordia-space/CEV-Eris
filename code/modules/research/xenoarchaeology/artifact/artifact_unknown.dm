@@ -315,8 +315,8 @@
 				secondary_effect.ToggleActivate(0)
 	return
 
-/obj/machinery/artifact/Move()
-	..()
+/obj/machinery/artifact/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+	. = ..()
 	if(my_effect)
 		my_effect.UpdateMove()
 	if(secondary_effect)

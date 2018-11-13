@@ -1,7 +1,7 @@
 /atom
 	layer = TURF_LAYER
 	plane = GAME_PLANE
-	appearance_flags = TILE_BOUND|PIXEL_SCALE
+	appearance_flags = TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
 	var/level = 2
 	var/flags = 0
 	var/list/fingerprints
@@ -610,22 +610,13 @@ its easier to just keep the beam vertical.
 	return
 
 /atom/proc/get_coords()
-	var/datum/coords/C = new
-	var/atom/A = src
-	if ((x + y + z) != 0)
-		C.x_pos = x
-		C.y_pos = y
-		C.z_pos = z
+	var/turf/T = get_turf(src)
+	if (T)
+		var/datum/coords/C = new
+		C.x_pos = T.x
+		C.y_pos = T.y
+		C.z_pos = T.z
 		return C
-	else
-		while (A.loc && istype(A.loc,/atom))
-			A = A.loc
-			if ((A.x + A.y + A.z) != 0)
-				C.x_pos = A.x
-				C.y_pos = A.y
-				C.z_pos = A.z
-				return C
-	log_debug("Debug: Could not find coordinates of atom - [A.name]")
-	qdel(C)
-	return null
-	
+
+/atom/proc/change_area(var/area/old_area, var/area/new_area)
+	return

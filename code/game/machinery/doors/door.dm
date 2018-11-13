@@ -184,7 +184,14 @@
 /obj/machinery/door/hitby(AM as mob|obj, var/speed=5)
 
 	..()
-	take_damage(null, AM, thrown = TRUE)
+	var/damage = 5
+	if (istype(AM, /obj/item))
+		var/obj/item/O = AM
+		damage = O.throwforce
+	else if (istype(AM, /mob/living))
+		var/mob/living/M = AM
+		damage = M.mob_size
+	take_damage(damage)
 	return
 
 /obj/machinery/door/attack_ai(mob/user as mob)
@@ -479,7 +486,7 @@
 		else
 			source.thermal_conductivity = initial(source.thermal_conductivity)
 
-/obj/machinery/door/Move(new_loc, new_dir)
+/obj/machinery/door/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	//update_nearby_tiles()
 	. = ..()
 	if(width > 1)

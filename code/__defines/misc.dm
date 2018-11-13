@@ -65,11 +65,6 @@
 #define MAX_DESC_LEN          128
 #define MAX_TEXTFILE_LENGTH 128000		// 512GQ file
 
-// Event defines.
-#define EVENT_LEVEL_MUNDANE  1
-#define EVENT_LEVEL_MODERATE 2
-#define EVENT_LEVEL_MAJOR    3
-#define EVENT_LEVEL_ECONOMY  4
 
 // Cargo-related stuff.
 #define MANIFEST_ERROR_CHANCE		5
@@ -87,6 +82,7 @@
 #define AREA_FLAG_RAD_SHIELDED 1 // shielded from radiation, clearly
 #define AREA_FLAG_EXTERNAL     2 // External as in exposed to space, not outside in a nice, green, forest
 #define AREA_FLAG_ION_SHIELDED 4 // shielded from ionospheric anomalies as an FBP / IPC
+#define AREA_FLAG_CRITICAL		8 //Area should not be targeted by very destructive events
 
 // Convoluted setup so defines can be supplied by Bay12 main server compile script.
 // Should still work fine for people jamming the icons into their repo.

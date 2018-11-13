@@ -1,14 +1,16 @@
 GLOBAL_LIST_EMPTY(gps_trackers)
 /datum/gps_data
 	var/serialNumber
-	var/atom/holder 
+	var/atom/holder
 
 /datum/gps_data/New(var/source)
+	.=..()
 	holder = source
 	serialNumber = random_id("gps_id",10000,99999)
 	GLOB.gps_trackers += src
-	 
+
 /datum/gps_data/Destroy()
+	.=..()
 	GLOB.gps_trackers -= src
 
 /datum/gps_data/proc/get_coords()

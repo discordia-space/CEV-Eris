@@ -352,8 +352,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			if(isAI(src))
 				var/mob/living/silicon/ai/A = src
 				oldname = null//don't bother with the records update crap
-				//world << "<b>[newname] is the AI!</b>"
-				//world << sound('sound/AI/newAI.ogg')
+
 				// Set eyeobj name
 				A.SetName(newname)
 
@@ -1216,6 +1215,8 @@ var/list/FLOORITEMS = list(
 	dview_mob.see_invisible = invis_flags
 	. = view(range, dview_mob)
 	dview_mob.loc = null
+
+/var/mob/dview/dview_mob = new
 
 /mob/dview
 	invisibility = 101

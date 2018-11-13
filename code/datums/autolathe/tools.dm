@@ -34,6 +34,10 @@
 	name = "wirecutters"
 	path = /obj/item/weapon/tool/wirecutters
 
+/datum/autolathe/recipe/tool/ducttape
+	name = "roll of duct tape"
+	path = /obj/item/weapon/tool/tape_roll
+
 /datum/autolathe/recipe/tool/armature_cutter
 	name = "armature cutter"
 	path = /obj/item/weapon/tool/wirecutters/armature
@@ -137,3 +141,7 @@
 /datum/autolathe/recipe/tool/rcd_ammo
 	name = "matter cartridge"
 	path = /obj/item/weapon/rcd_ammo
+
+/datum/autolathe/recipe/tool/pneumatic_crowbar
+	name = "pneumatic crowbar"
+	path = /obj/item/weapon/tool/crowbar/pneumatic

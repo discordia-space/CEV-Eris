@@ -144,11 +144,13 @@
 		admin_notice("<span class='danger'>Multiple attempts to trigger the same event by [victim] detected.</span>")
 		return
 	LAZYADD(victims, victim)
-	var/datum/event_meta/EM = new(difficulty, "Overmap event - [name]", event, add_to_queue = FALSE, is_one_shot = TRUE)
-	var/datum/event/E = new event(EM)
+	//var/datum/event_meta/EM = new(difficulty, "Overmap event - [name]", event, add_to_queue = FALSE, is_one_shot = TRUE)
+	var/datum/event/E = new event(null, difficulty)
+	E.name = "Overmap event - [E.name]"
 	E.startWhen = 0
 	E.endWhen = INFINITY
 	victims[victim] = E
+	E.Initialize()
 
 /datum/overmap_event/proc/leave(victim)
 	if(victims && victims[victim])

@@ -19,11 +19,7 @@
 				/obj/random/voidsuit/damaged = 3,
 				/obj/item/device/scanner/analyzer = 2,
 				/obj/item/device/scanner/healthanalyzer = 2,
-				/obj/item/weapon/tool/screwdriver = 5,
-				/obj/item/weapon/tool/wirecutters = 5,
-				/obj/item/weapon/tool/weldingtool = 5,
-				/obj/item/weapon/tool/crowbar = 5,
-				/obj/item/weapon/tool/wrench = 5,
+				/obj/random/tool = 10,
 				/obj/item/weapon/storage/belt/utility/full = 6,
 				/obj/item/weapon/storage/belt/medical = 6,
 				/obj/item/weapon/storage/belt/security = 6,
@@ -136,7 +132,8 @@
 				/obj/random/voidsuit/damaged = 0.5,
 				/obj/item/weapon/storage/pouch/small_generic = 6,
 				/obj/item/weapon/storage/pouch/medium_generic = 4,
-				/obj/random/pouch = 3))
+				/obj/random/pouch = 3,
+				/obj/random/junk = 10))
 
 /obj/random/lowkeyrandom/low_chance
 	name = "low chance random stuff"

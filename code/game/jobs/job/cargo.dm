@@ -4,7 +4,7 @@
 	flag = MERCHANT
 	department = "Cargo"
 	head_position = 1
-	department_flag = CIVILIAN
+	department_flag = GUILD | COMMAND
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
@@ -46,10 +46,10 @@
 	title = "Guild Technician"
 	flag = GUILDTECH
 	department = "Cargo"
-	department_flag = CIVILIAN
+	department_flag = GUILD
 	faction = "CEV Eris"
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 3
+	spawn_positions = 3
 	supervisors = "the Guild Merchant"
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
@@ -84,10 +84,10 @@
 	title = "Guild Miner"
 	flag = MINER
 	department = "Cargo"
-	department_flag = CIVILIAN
+	department_flag = GUILD
 	faction = "CEV Eris"
-	total_positions = 3
-	spawn_positions = 3
+	total_positions = 4
+	spawn_positions = 4
 	supervisors = "the Guild Merchant"
 	selection_color = "#dddddd"
 	economic_modifier = 5

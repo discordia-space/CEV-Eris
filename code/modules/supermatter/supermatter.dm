@@ -339,6 +339,21 @@
 */
 
 /obj/machinery/power/supermatter/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
+
+	/*
+		Repairing the supermatter with duct tape, for meme value
+		If you can get this close to a damaged crystal its probably too late for it anyway,
+		this is unlikely to do anything but prolong the inevitable
+	*/
+	if (W.has_quality(QUALITY_SEALING) && damage > 0)
+		user.visible_message("[user] starts sealing up cracks in [src] with the [W]", "You start sealing up cracks in [src] with the [W]")
+		if (W.use_tool(user, src, 140, QUALITY_SEALING, FAILCHANCE_VERY_HARD, STAT_MEC))
+			user << SPAN_NOTICE("Your insane actions are somehow paying off.")
+			user.apply_effect(100, IRRADIATE)
+			damage = 0
+			return
+		//If you fail the above, your tape will be eaten by the code below
+
 	user.visible_message(
 		"<span class=\"warning\">\The [user] touches \a [W] to \the [src] as a silence fills the room...</span>",\
 		"<span class=\"danger\">You touch \the [W] to \the [src] when everything suddenly goes silent.\"</span>\n<span class=\"notice\">\The [W] flashes into dust as you flinch away from \the [src].</span>",\

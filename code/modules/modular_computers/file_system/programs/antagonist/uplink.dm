@@ -8,30 +8,74 @@
 	available_on_ntnet = 0
 	usage_flags = PROGRAM_PDA
 	nanomodule_path = /datum/nano_module/program/uplink
-
-	var/password
-	var/authenticated = 0
-
-/datum/computer_file/program/uplink/New(var/password)
-	src.password = password
+	var/authenticated = FALSE
 
 /datum/nano_module/program/uplink
 	name = "TaxQuickly 2559"
+	var/error = FALSE
+	var/stored_login = ""
+	
 
-/datum/nano_module/program/uplink/ui_interact(var/mob/user)
-	var/datum/computer_file/program/uplink/prog = program
+/datum/nano_module/program/uplink/Topic(href, href_list)
+	if(..())
+		return 1
+
+	if(href_list["login"])
+		log_in()
+		return 1
+
+	if(href_list["logout"])
+		log_out()
+		return 1
+
+	if(href_list["back"])
+		error = FALSE
+		return 1
+
+	if(href_list["edit_login"])
+		var/newlogin = sanitize(input_utf8(usr,"Enter login", "Login", stored_login, type = "text"), 100)
+		if(newlogin)
+			stored_login = newlogin
+		return 1
+
+	if(href_list["resume"])
+		var/obj/item/modular_computer/computer = host
+		SSnano.close_user_uis(usr, src)
+		computer.hidden_uplink.trigger(usr)
+		return 1
+	return 1
+
+/datum/nano_module/program/uplink/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = GLOB.default_state)
+	var/list/data = host.initial_data()
+	var/datum/computer_file/program/uplink/PRG = program
+	data["error"] = error
+	data["stored_login"] = cyrillic_to_unicode(stored_login)
+	data["authenticated"] = PRG.authenticated
+
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if (!ui)
+		ui = new(user, src, ui_key, "taxquickly.tmpl", "TaxQuickly 2559", 450, 600, state = state)
+		if(host.update_layout())
+			ui.auto_update_layout = TRUE
+		ui.set_initial_data(data)
+		ui.open()
+		ui.set_auto_update(TRUE)
+
+/datum/nano_module/program/uplink/proc/log_in()
 	var/obj/item/modular_computer/computer = host
-	if(istype(computer) && istype(prog))
-		if(computer.hidden_uplink && prog.password)
-			if(prog.authenticated)
-				if(alert(user, "Resume or close and secure?", name, "Resume", "Close") == "Resume")
-					computer.hidden_uplink.trigger(user)
-					return
-			else if(computer.hidden_uplink.check_trigger(user, input(user, "Please enter your unique tax ID:", "Authentication"), prog.password))
-				prog.authenticated = 1
-				return
+	var/datum/computer_file/program/uplink/PRG = program
+	if(computer.hidden_uplink)
+		if (computer.hidden_uplink.check_trigger(usr,stored_login))
+			PRG.authenticated = TRUE
+			error = FALSE
+			SSnano.close_user_uis(usr, src)
+			computer.hidden_uplink.trigger(usr)
 		else
-			to_chat(user, "<span class='warning'>[computer] displays an \"ID not found\" error.</span>")
+			error = TRUE
+	else
+		error = TRUE
 
-	prog.authenticated = 0
-	computer.kill_program()
+/datum/nano_module/program/uplink/proc/log_out()
+	stored_login = ""
+	var/datum/computer_file/program/uplink/PRG = program
+	PRG.authenticated = FALSE

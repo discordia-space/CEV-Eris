@@ -108,6 +108,9 @@ var/global/list/robot_modules = list(
 		I.plane = ABOVE_HUD_PLANE
 		I.layer = ABOVE_HUD_LAYER
 
+	for (var/obj/item/weapon/tool/T in modules)
+		T.degradation = 0 //We don't want robot tools breaking
+
 
 /obj/item/weapon/robot_module/proc/Reset(var/mob/living/silicon/robot/R)
 	remove_camera_networks(R)
@@ -818,7 +821,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/form_printer(src)
 	src.modules += new /obj/item/weapon/gripper/paperwork(src)
 	src.modules += new /obj/item/weapon/hand_labeler(src)
-	src.modules += new /obj/item/weapon/tape_roll(src) //allows it to place flyers
+	src.modules += new /obj/item/weapon/tool/tape_roll(src) //allows it to place flyers
 	src.modules += new /obj/item/weapon/stamp/denied(src) //why was this even a emagged item before smh
 
 	var/obj/item/weapon/rsf/M = new /obj/item/weapon/rsf(src)

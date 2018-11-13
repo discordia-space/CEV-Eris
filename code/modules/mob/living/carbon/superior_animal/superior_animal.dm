@@ -95,6 +95,7 @@
 		visible_message("<span class='name'>[src]</span> [message]")
 
 /mob/living/carbon/superior_animal/update_icons()
+	. = ..()
 	transform = null
 	if (stat == DEAD)
 		icon_state = icon_dead
@@ -112,7 +113,9 @@
 		icon_state = icon_living
 
 /mob/living/carbon/superior_animal/regenerate_icons()
+	. = ..()
 	update_icons()
 
 /mob/living/carbon/superior_animal/updateicon()
+	. = ..()
 	update_icons()

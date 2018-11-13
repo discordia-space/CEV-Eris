@@ -49,6 +49,7 @@
 	to_chat(user, "Hardware Integrity Test... (Corruption: [damage]/[max_damage]) [damage > damage_failure ? "FAIL" : damage > damage_malfunction ? "WARN" : "PASS"]")
 
 /obj/item/weapon/computer_hardware/New(var/obj/L)
+	.=..()
 	w_class = hardware_size
 	if(istype(L, /obj/item/modular_computer))
 		holder2 = L
@@ -87,3 +88,8 @@
 	damage += round(amount) 					// We want nice rounded numbers here.
 	damage = between(0, damage, max_damage)		// Clamp the value.
 
+//Called when the component is installed or turned on
+/obj/item/weapon/computer_hardware/proc/enabled()
+
+//Called when the component is uninstalled or turned off
+/obj/item/weapon/computer_hardware/proc/disabled()

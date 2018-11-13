@@ -3,10 +3,10 @@
 	title = "Bartender"
 	flag = BARTENDER
 	department = "Civilian"
-	department_flag = CIVILIAN
+	department_flag = SERVICE
 	faction = "CEV Eris"
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 25)
@@ -53,10 +53,10 @@
 	title = "Chef"
 	flag = CHEF
 	department = "Civilian"
-	department_flag = CIVILIAN
+	department_flag = SERVICE
 	faction = "CEV Eris"
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 3
+	spawn_positions = 3
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
@@ -81,10 +81,10 @@
 	title = "Gardener"
 	flag = BOTANIST
 	department = "Civilian"
-	department_flag = CIVILIAN
+	department_flag = SERVICE
 	faction = "CEV Eris"
-	total_positions = 2
-	spawn_positions = 1
+	total_positions = 3
+	spawn_positions = 3
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
@@ -93,6 +93,8 @@
 
 	stat_modifers = list(
 		STAT_BIO = 10,
+		STAT_TGH = 10,
+		STAT_ROB = 20,
 	)
 
 	uniform = /obj/item/clothing/under/rank/hydroponics
@@ -114,7 +116,7 @@
 	title = "Actor"
 	flag = ACTOR
 	department = "Civilian"
-	department_flag = CIVILIAN
+	department_flag = SERVICE
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
@@ -164,10 +166,10 @@
 	title = "Janitor"
 	flag = JANITOR
 	department = "Civilian"
-	department_flag = CIVILIAN
+	department_flag = SERVICE
 	faction = "CEV Eris"
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 3
+	spawn_positions = 3
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15)

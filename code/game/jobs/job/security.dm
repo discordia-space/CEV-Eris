@@ -2,8 +2,8 @@
 	title = "Ironhammer Commander"
 	flag = IHC
 	head_position = 1
-	department = "Security"
-	department_flag = ENGSEC
+	department = "Ironhammer"
+	department_flag = IRONHAMMER | COMMAND
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
@@ -66,8 +66,8 @@
 /datum/job/gunserg
 	title = "Ironhammer Gunnery Sergeant"
 	flag = GUNSERG
-	department = "Security"
-	department_flag = ENGSEC
+	department = "Ironhammer"
+	department_flag = IRONHAMMER
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
@@ -125,8 +125,8 @@
 /datum/job/inspector
 	title = "Ironhammer Inspector"
 	flag = INSPECTOR
-	department = "Security"
-	department_flag = ENGSEC
+	department = "Ironhammer"
+	department_flag = IRONHAMMER
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
@@ -180,11 +180,11 @@
 /datum/job/medspec
 	title = "Ironhammer Medical Specialist"
 	flag = MEDSPEC
-	department = "Security"
-	department_flag = ENGSEC
+	department = "Ironhammer"
+	department_flag = IRONHAMMER
 	faction = "CEV Eris"
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#ffeeee"
 	economic_modifier = 5
@@ -226,8 +226,8 @@
 /datum/job/ihoper
 	title = "Ironhammer Operative"
 	flag = IHOPER
-	department = "Security"
-	department_flag = ENGSEC
+	department = "Ironhammer"
+	department_flag = IRONHAMMER
 	faction = "CEV Eris"
 	total_positions = 6
 	spawn_positions = 6

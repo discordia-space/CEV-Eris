@@ -63,6 +63,14 @@
 
 	var/list/initial_email_login = list("login" = "", "password" = "")
 
+
+	var/last_activity = 0
+	/*
+		The world time when this mind was last in a mob, controlled by a client which did something.
+		Only updated once per minute, set by the inactivity subsystem
+		If this is 0, the mind has never had a cliented mob
+	*/
+
 /datum/mind/New(var/key)
 	src.key = key
 	..()
@@ -88,6 +96,7 @@
 
 	if(active)
 		new_character.key = key		//now transfer the key to link the client to our new body
+		last_activity = world.time
 
 /datum/mind/proc/store_memory(new_text)
 	memory += "[new_text]<BR>"
@@ -319,7 +328,7 @@
 //BORG
 /mob/living/silicon/robot/mind_initialize()
 	..()
-	mind.assigned_role = "Cyborg"
+	mind.assigned_role = "Robot"
 
 //PAI
 /mob/living/silicon/pai/mind_initialize()
@@ -335,3 +344,25 @@
 	..()
 	mind.assigned_role = "Corgi"
 
+
+
+/datum/mind/proc/manifest_status(var/datum/computer_file/report/crew_record/CR)
+	var/inactive_time = world.time - last_activity
+	if (inactive_time >= 60 MINUTES)
+		return null //The server hasn't seen us alive in an hour.
+		//We will not show on the manifest at all
+
+	//Ok we're definitely going to show on the manifest, lets see if any status is set for us in the records
+	var/status = CR.get_status()
+	.=status //We'll return the status as a fallback
+
+	//If the records have a specific status set, we'll return that
+	//Active is the default state, it means nothing else has specifically been set.
+	if (status != "Active")
+		return
+
+
+	//Ok the records say active, that means nothing.
+	//In that case we'll show as inactive if the mob has been inactive longer than 15 minutes
+	if (inactive_time >= 15 MINUTES)
+		return "Inactive"

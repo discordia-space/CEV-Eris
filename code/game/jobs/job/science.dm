@@ -3,7 +3,7 @@
 	flag = MEO
 	head_position = 1
 	department = "Science"
-	department_flag = MEDSCI
+	department_flag = SCIENCE | COMMAND
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
@@ -58,10 +58,10 @@
 	title = "Moebius Scientist"
 	flag = SCIENTIST
 	department = "Science"
-	department_flag = MEDSCI
+	department_flag = SCIENCE
 	faction = "CEV Eris"
 	total_positions = 5
-	spawn_positions = 3
+	spawn_positions = 5
 	supervisors = "the Moebius Expedition Overseer"
 	selection_color = "#ffeeff"
 	economic_modifier = 7
@@ -100,10 +100,10 @@
 	title = "Moebius Roboticist"
 	flag = ROBOTICIST
 	department = "Science"
-	department_flag = MEDSCI
+	department_flag = SCIENCE
 	faction = "CEV Eris"
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 3
+	spawn_positions = 3
 	supervisors = "the Moebius Expedition Overseer"
 	selection_color = "#ffeeff"
 	economic_modifier = 5

@@ -12,13 +12,15 @@
 	apc_powered = FALSE
 	if(!battery_module || !battery_module.check_functionality() || battery_module.battery.charge <= 0)
 		return FALSE
-	if(battery_module.battery.use(power_usage * CELLRATE) || ((power_usage == 0) && battery_module.battery.charge))
+	/*TODO: Unfuck this CELLRATE. Eris has 10x bay's cellrate for no goddamn reason and some of our stuff
+	 is already balanced around it. Too large a scope to fix now*/
+	if(battery_module.battery.use(power_usage * CELLRATE * 0.1) || ((power_usage == 0) && battery_module.battery.charge))
 		return TRUE
 	return FALSE
 
 // Tries to use power from APC, if present.
 /obj/item/modular_computer/proc/apc_power(var/power_usage = 0)
-	apc_powered = TRUE
+
 	// Tesla link was originally limited to machinery only, but this probably works too, and the benefit of being able to power all devices from an APC outweights
 	// the possible minor performance loss.
 	if(!tesla_link || !tesla_link.check_functionality())
@@ -30,8 +32,11 @@
 	// At this point, we know that APC can power us for this tick. Check if we also need to charge our battery, and then actually use the power.
 	if(battery_module && (battery_module.battery.charge < battery_module.battery.maxcharge) && (power_usage > 0))
 		power_usage += tesla_link.passive_charging_rate
-		battery_module.battery.give(tesla_link.passive_charging_rate * CELLRATE)
 
+		/*TODO: Unfuck this CELLRATE. Eris has 10x bay's cellrate for no goddamn reason and some of our stuff
+	 is already balanced around it. Too large a scope to fix now*/
+		battery_module.battery.give(tesla_link.passive_charging_rate * CELLRATE * 0.1)
+	apc_powered = TRUE
 	A.use_power(power_usage, EQUIP)
 	return TRUE
 

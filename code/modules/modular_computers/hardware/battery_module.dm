@@ -69,8 +69,13 @@
 /obj/item/weapon/computer_hardware/battery_module/New()
 	battery = new/obj/item/weapon/cell(src)
 	battery.maxcharge = battery_rating
-	battery.charge = 0
+	charge_to_full()
 	..()
+
+/obj/item/weapon/computer_hardware/battery_module/Created()
+	..()
+	if (battery)
+		battery.charge = 0
 
 /obj/item/weapon/computer_hardware/battery_module/Destroy()
 	QDEL_NULL(battery)
@@ -88,4 +93,4 @@
 /obj/item/weapon/computer_hardware/battery_module/check_functionality()
 	if(!battery)
 		return FALSE
-	..()
+	.=..()

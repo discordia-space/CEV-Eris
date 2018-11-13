@@ -81,8 +81,8 @@
 
 /datum/craft_step/proc/announce_action(var/msg, mob/living/user, obj/item/tool, atom/target)
 	msg = replacetext(msg,"%USER%","[user]")
-	msg = replacetext(msg,"%ITEM%","[tool]")
-	msg = replacetext(msg,"%TARGET%","[target]")
+	msg = replacetext(msg,"%ITEM%","\improper [tool]")
+	msg = replacetext(msg,"%TARGET%","\improper [target]")
 	user.visible_message(
 		msg
 	)
@@ -101,6 +101,14 @@
 		if (!is_valid_to_consume(I, user))
 			user << "That item can't be used for crafting!"
 			return
+
+		if(req_amount && istype(I, /obj/item/stack))
+			var/obj/item/stack/S = I
+			if(S.get_amount() < req_amount)
+				user << "Not enough items in [I]"
+				return
+
+
 		if(target)
 			announce_action(start_msg, user, I, target)
 		if(!do_after(user, time, target || user))

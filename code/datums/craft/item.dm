@@ -8,7 +8,7 @@
 /obj/item/craft/New(loc, new_recipe)
 	..(loc)
 	recipe = new_recipe
-	src.name = "Crafting [recipe.name]"
+	src.name = "crafting [recipe.name]"
 	src.icon_state = recipe.icon_state
 	update()
 
@@ -27,9 +27,12 @@
 			recipe.spawn_result(src, user)
 		else
 			update()
+		return TRUE //Returning true here will prevent afterattack effects for ingredients and tools used on us
+
+	return FALSE
 
 /obj/item/craft/attackby(obj/item/I, mob/living/user)
-	continue_crafting(I, user)
+	return continue_crafting(I, user)
 
 /obj/item/craft/MouseDrop_T(atom/A, mob/user, src_location, over_location, src_control, over_control, params)
-	continue_crafting(A, user)
+	return continue_crafting(A, user)

@@ -11,6 +11,12 @@
 			return
 		found = 1
 		portable_drive = H
+	else if(istype(H, /obj/item/weapon/computer_hardware/led))
+		if(led)
+			to_chat(user, "This computer's LED slot is already occupied by \the [led].")
+			return
+		found = 1
+		led = H
 	else if(istype(H, /obj/item/weapon/computer_hardware/hard_drive))
 		if(hard_drive)
 			to_chat(user, "This computer's hard drive slot is already occupied by \the [hard_drive].")
@@ -75,10 +81,12 @@
 	if(found && user.unEquip(H, src))
 		to_chat(user, "You install \the [H] into \the [src]")
 		H.holder2 = src
+		if (H.enabled)
+			H.enabled()
 		update_verbs()
 
 // Uninstalls component. Found and Critical vars may be passed by parent types, if they have additional hardware.
-/obj/item/modular_computer/proc/uninstall_component(var/mob/living/user, var/obj/item/weapon/computer_hardware/H, var/found = 0, var/critical = 0)
+/obj/item/modular_computer/proc/uninstall_component(var/mob/living/user, var/obj/item/weapon/computer_hardware/H, var/found = 0, var/critical = 0, var/delete = FALSE)
 	if(portable_drive == H)
 		portable_drive = null
 		found = 1
@@ -115,11 +123,23 @@
 	if(gps_sensor == H)
 		gps_sensor = null
 		found = 1
+	if(led == H)
+		led = null
+		found = 1
+
+	//Delete var means this computer is being deleted. Skip extra processing and messages below. Delete the component and return
+	if (delete)
+		H.holder2 = null
+		qdel(H)
+		return
+
 	if(found)
 		if(user)
 			to_chat(user, "You remove \the [H] from \the [src].")
 		H.forceMove(get_turf(src))
 		H.holder2 = null
+		if (H.enabled)
+			H.disabled()
 		update_verbs()
 	if(critical && enabled)
 		if(user)
@@ -151,7 +171,9 @@
 	if(scanner && (scanner.name == name))
 		return scanner
 	if(gps_sensor && (gps_sensor.name == name))
-		return gps_sensor	
+		return gps_sensor
+	if(led && (led.name == name))
+		return led
 	return null
 
 // Returns list of all components
@@ -178,5 +200,7 @@
 	if(scanner)
 		all_components.Add(scanner)
 	if(gps_sensor)
-		all_components.Add(gps_sensor)	
+		all_components.Add(gps_sensor)
+	if(led)
+		all_components.Add(led)
 	return all_components
