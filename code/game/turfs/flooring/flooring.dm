@@ -131,7 +131,7 @@ var/list/flooring_types
 	icon = 'icons/turf/flooring/plating.dmi'
 	icon_base = "plating"
 	build_type = MATERIAL_STEEL
-	flags = TURF_REMOVE_WELDER | TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS | TURF_CAN_BURN | TURF_CAN_BREAK //Doesnt have corners?
+	flags = TURF_REMOVE_WELDER | TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS | TURF_CAN_BURN | TURF_CAN_BREAK
 	can_paint = 1
 	plating_type = /decl/flooring/reinforced/plating/under
 	is_plating = TRUE
@@ -139,7 +139,6 @@ var/list/flooring_types
 	space_smooth = FALSE
 	removal_time = 150
 	health = 100
-	has_base_range = 4
 
 
 //Normal plating allows anything, except other types of plating
