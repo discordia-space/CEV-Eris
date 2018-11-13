@@ -497,8 +497,7 @@
 			absorbed_damage = min(health * fire_resist, Proj.damage)
 			taken_damage= (Proj.damage / fire_resist)
 
-	spawn()
-		take_damage(taken_damage)
+	take_damage(taken_damage)
 	Proj.damage -= absorbed_damage
 	if (Proj.damage <= 0)
 		return 0
