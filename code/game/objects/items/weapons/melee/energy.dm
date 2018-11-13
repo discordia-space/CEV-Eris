@@ -168,7 +168,7 @@
 //Can't be activated or deactivated, so no reason to be a subtype of energy
 /obj/item/weapon/melee/energy/blade
 	name = "energy blade"
-	desc = "A concentrated beam of energy which has a shape of a blade. Very stylish... and lethal."
+	desc = "A concentrated beam of energy in the shape of a blade. Very stylish... and lethal."
 	icon_state = "blade"
 	force = WEAPON_FORCE_LETHAL //Normal attacks deal very high damage - about the same as wielded fire axe
 	armor_penetration = 100
