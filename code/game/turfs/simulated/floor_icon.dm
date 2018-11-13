@@ -2,8 +2,12 @@ var/list/flooring_cache = list()
 
 /turf/var/icon_updates_count = 0
 
+/turf/simulated/floor/verb/debug_update()
+	set src in view()
+	set name = "Debugupdate"
+	update_icon(TRUE, TRUE)
 
-/turf/simulated/floor/update_icon(var/update_neighbors)
+/turf/simulated/floor/update_icon(var/update_neighbors, var/debug = FALSE)
 	icon_updates_count++
 	var/has_smooth = 0 //This is just the has_border bitfield inverted for easier logic
 	if(lava) //Wtf why
@@ -65,20 +69,20 @@ var/list/flooring_cache = list()
 					//Quick way to check if we're smoothed with both north and east
 					if((has_smooth & NORTHEAST) == NORTHEAST)
 						//If we are, then check the diagonal tile
-						if (!test_link(get_step(src, NORTHEAST)))
+						if (!test_link(get_step(src, NORTHEAST), debug))
 							//If we smooth with north and east, but don't smooth with the northeast diagonal, then we have an inner corner!
 							overlays |= get_flooring_overlay("[flooring.icon_base]-corner-[NORTHEAST]", "[flooring.icon_base]_corners", NORTHEAST)
 
 					if((has_smooth & NORTHWEST) == NORTHWEST)
-						if (!test_link(get_step(src, NORTHWEST)))
+						if (!test_link(get_step(src, NORTHWEST), debug))
 							overlays |= get_flooring_overlay("[flooring.icon_base]-corner-[NORTHWEST]", "[flooring.icon_base]_corners", NORTHWEST)
 
 					if((has_smooth & SOUTHEAST) == SOUTHEAST)
-						if (!test_link(get_step(src, SOUTHEAST)))
+						if (!test_link(get_step(src, SOUTHEAST), debug))
 							overlays |= get_flooring_overlay("[flooring.icon_base]-corner-[SOUTHEAST]", "[flooring.icon_base]_corners", SOUTHEAST)
 
 					if((has_smooth & SOUTHWEST) == SOUTHWEST)
-						if (!test_link(get_step(src, SOUTHWEST)))
+						if (!test_link(get_step(src, SOUTHWEST), debug))
 							overlays |= get_flooring_overlay("[flooring.icon_base]-corner-[SOUTHWEST]", "[flooring.icon_base]_corners", SOUTHWEST)
 
 
@@ -133,7 +137,7 @@ var/list/flooring_cache = list()
 	update_openspace()
 
 //Tests whether this floor/ing will smooth with the specified turf
-/turf/simulated/floor/proc/test_link(var/turf/T)
+/turf/simulated/floor/proc/test_link(var/turf/T, var/debug = FALSE)
 	//is_wall is true for wall turfs and for floors containing a low wall
 	var/is_linked = FALSE
 	if(T.is_wall)
