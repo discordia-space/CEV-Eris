@@ -9,6 +9,7 @@ var/list/flooring_cache = list()
 
 /turf/simulated/floor/update_icon(var/update_neighbors, var/debug = FALSE)
 	icon_updates_count++
+	var/has_smooth = 0 //This is just the has_border bitfield inverted for easier logic
 	if(lava) //Wtf why
 		return
 
@@ -40,24 +41,10 @@ var/list/flooring_cache = list()
 				for(var/step_dir in cardinal)
 					if (debug) world << "Checking dir [dir2text(step_dir)]"
 					var/turf/simulated/floor/T = get_step(src, step_dir)
-					var/is_linked = FALSE
 
-					//is_wall is true for wall turfs and for floors containing a low wall
-					if(T.is_wall)
-						if(flooring.wall_smooth)
-							if (debug) world << "Linked to wall at [T]"
-							is_linked = TRUE
+					var/is_linked = test_link(T)
 
-					//If is_hole is true, then it's space or openspace
-					else if(T.is_hole)
-						if(flooring.space_smooth)
-							if (debug) world << "Linked to space at [T]"
-							is_linked = TRUE
 
-					//If we get here then its a normal floor
-					else if (istype(T) && (flooring.floor_smooth || T.flooring.name == flooring.name))
-						if (debug) world << "Linked to floor at [T]"
-						is_linked = TRUE
 
 
 					//Alright we've figured out whether or not we smooth with this turf
@@ -73,51 +60,51 @@ var/list/flooring_cache = list()
 						else
 							overlays |= get_flooring_overlay("[flooring.icon_base]-edge-[step_dir]", "[flooring.icon_base]_edges", step_dir)
 
+				//By doing &15 we only take the first four bits, which represent NORTH, SOUTH, EAST, WEST
+				has_smooth = ~(has_border & 15)
 
-			//Next up, corners
-			if (has_border)
 
-				/*
-					Support for combined right-angle edges.
-					Commented out for now since i can't find any turf that actually uses these.
-					But it may be more efficient for render performance/video memory to use it in future
-				*/
-				/*
-				if (!(flooring.flags & TURF_EDGES_EXTERNAL))
-					if((has_border & NORTH) && (has_border & EAST))
-						overlays |= get_flooring_overlay("[flooring.icon_base]-edge-[NORTHEAST]", "[flooring.icon_base]_edges", NORTHEAST)
-					if((has_border & NORTH) && (has_border & WEST))
-						overlays |= get_flooring_overlay("[flooring.icon_base]-edge-[NORTHWEST]", "[flooring.icon_base]_edges", NORTHWEST)
-					if((has_border & SOUTH) && (has_border & EAST))
-						overlays |= get_flooring_overlay("[flooring.icon_base]-edge-[SOUTHEAST]", "[flooring.icon_base]_edges", SOUTHEAST)
-					if((has_border & SOUTH) && (has_border & WEST))
-						overlays |= get_flooring_overlay("[flooring.icon_base]-edge-[SOUTHWEST]", "[flooring.icon_base]_edges", SOUTHWEST)
-				*/
-				if(flooring.flags & TURF_HAS_CORNERS)
+			//We can only have inner corners if we're smoothed with something
+			if (has_smooth)
+				if(flooring.flags & TURF_HAS_INNER_CORNERS)
 					if (debug) world << "Handling corners"
-					// As above re: concise numerical way to do this.
-					if((has_border & NORTH))
-						if((has_border & EAST))
-							//var/turf/simulated/floor/T = get_step(src, NORTHEAST)
-							//if(!istype(T) || !T.flooring || T.flooring.name != flooring.name)
-							if (debug) world << "Added corner [dir2text(NORTHEAST)]"
+
+					//Quick way to check if we're smoothed with both north and east
+					if((has_smooth & NORTHEAST) == NORTHEAST)
+						//If we are, then check the diagonal tile
+						if (!test_link(get_step(src, NORTHEAST), debug))
+							//If we smooth with north and east, but don't smooth with the northeast diagonal, then we have an inner corner!
+							if (debug) world << "Added inner corner [dir2text(NORTHEAST)]"
 							overlays |= get_flooring_overlay("[flooring.icon_base]-corner-[NORTHEAST]", "[flooring.icon_base]_corners", NORTHEAST)
-						if((has_border & WEST))
-							//var/turf/simulated/floor/T = get_step(src, NORTHWEST)
-							//if(!istype(T) || !T.flooring || T.flooring.name != flooring.name)
-							if (debug) world << "Added corner [dir2text(NORTHWEST)]"
+
+					if((has_smooth & NORTHWEST) == NORTHWEST)
+						if (!test_link(get_step(src, NORTHWEST), debug))
+							if (debug) world << "Added inner corner [dir2text(NORTHWEST)]"
 							overlays |= get_flooring_overlay("[flooring.icon_base]-corner-[NORTHWEST]", "[flooring.icon_base]_corners", NORTHWEST)
-					if((has_border & SOUTH))
-						if((has_border & EAST))
-							//var/turf/simulated/floor/T = get_step(src, SOUTHEAST)
-							//if(!istype(T) || !T.flooring || T.flooring.name != flooring.name)
-							if (debug) world << "Added corner [dir2text(SOUTHEAST)]"
+
+					if((has_smooth & SOUTHEAST) == SOUTHEAST)
+						if (!test_link(get_step(src, SOUTHEAST), debug))
+							if (debug) world << "Added inner corner [dir2text(SOUTHEAST)]"
 							overlays |= get_flooring_overlay("[flooring.icon_base]-corner-[SOUTHEAST]", "[flooring.icon_base]_corners", SOUTHEAST)
-						if((has_border & WEST))
-							//var/turf/simulated/floor/T = get_step(src, SOUTHWEST)
-							//if(!istype(T) || !T.flooring || T.flooring.name != flooring.name)
-							if (debug) world << "Added corner [dir2text(SOUTHWEST)]"
+
+					if((has_smooth & SOUTHWEST) == SOUTHWEST)
+						if (!test_link(get_step(src, SOUTHWEST), debug))
+							if (debug) world << "Added inner corner [dir2text(SOUTHWEST)]"
 							overlays |= get_flooring_overlay("[flooring.icon_base]-corner-[SOUTHWEST]", "[flooring.icon_base]_corners", SOUTHWEST)
+
+
+
+			//Next up, outer corners
+			if (has_border)
+				if(flooring.flags & TURF_HAS_CORNERS)
+					if((has_border & NORTHEAST) == NORTHEAST)
+						overlays |= get_flooring_overlay("[flooring.icon_base]-edge-[NORTHEAST]", "[flooring.icon_base]_edges", NORTHEAST)
+					if((has_border & NORTHWEST) == NORTHWEST)
+						overlays |= get_flooring_overlay("[flooring.icon_base]-edge-[NORTHWEST]", "[flooring.icon_base]_edges", NORTHWEST)
+					if((has_border & SOUTHEAST) == SOUTHEAST)
+						overlays |= get_flooring_overlay("[flooring.icon_base]-edge-[SOUTHEAST]", "[flooring.icon_base]_edges", SOUTHEAST)
+					if((has_border & SOUTHWEST) == SOUTHWEST)
+						overlays |= get_flooring_overlay("[flooring.icon_base]-edge-[SOUTHWEST]", "[flooring.icon_base]_edges", SOUTHWEST)
 
 
 			//Now lets handle those fancy floors which have many centre icons
@@ -155,6 +142,31 @@ var/list/flooring_cache = list()
 				continue
 			F.update_icon()
 	update_openspace()
+
+//Tests whether this floor/ing will smooth with the specified turf
+/turf/simulated/floor/proc/test_link(var/turf/T, var/debug = FALSE)
+	//is_wall is true for wall turfs and for floors containing a low wall
+	var/is_linked = FALSE
+	if(T.is_wall)
+		if(flooring.wall_smooth)
+			if (debug) world << "Linked to wall at [T]"
+			is_linked = TRUE
+
+	//If is_hole is true, then it's space or openspace
+	else if(T.is_hole)
+		if(flooring.space_smooth)
+			if (debug) world << "Linked to space at [T]"
+			is_linked = TRUE
+
+	//If we get here then its a normal floor
+	else if (istype(T, /turf/simulated/floor))
+		var/turf/simulated/floor/t = T
+		if (flooring.floor_smooth || t.flooring.name == flooring.name)
+			if (debug) world << "Linked to floor at [T]"
+			is_linked = TRUE
+
+	return is_linked
+
 
 /turf/simulated/floor/proc/get_damage_overlay(var/cache_key, var/icon_base	)
 	if(!flooring_cache[cache_key])

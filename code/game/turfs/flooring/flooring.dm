@@ -131,7 +131,7 @@ var/list/flooring_types
 	icon = 'icons/turf/flooring/plating.dmi'
 	icon_base = "plating"
 	build_type = MATERIAL_STEEL
-	flags = TURF_REMOVE_WELDER | TURF_HAS_CORNERS | TURF_CAN_BURN | TURF_CAN_BREAK //Doesnt have corners?
+	flags = TURF_REMOVE_WELDER | TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS | TURF_CAN_BURN | TURF_CAN_BREAK //Doesnt have corners?
 	can_paint = 1
 	plating_type = /decl/flooring/reinforced/plating/under
 	is_plating = TRUE
@@ -235,7 +235,7 @@ var/list/flooring_types
 	descriptor = "outer hull"
 	icon = 'icons/turf/flooring/hull.dmi'
 	icon_base = "hullcenter"
-	flags = TURF_HAS_CORNERS | TURF_REMOVE_WELDER | TURF_CAN_BURN | TURF_CAN_BREAK
+	flags = TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS | TURF_REMOVE_WELDER | TURF_CAN_BURN | TURF_CAN_BREAK
 	build_type = MATERIAL_PLASTEEL
 	has_base_range = 35
 	//try_update_icon = 0
@@ -270,7 +270,7 @@ var/list/flooring_types
 	footstep_sound = "carpet"
 	build_type = /obj/item/stack/tile/carpet
 	damage_temperature = T0C+200
-	flags = TURF_HAS_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BURN | TURF_HIDES_THINGS
+	flags = TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BURN | TURF_HIDES_THINGS
 	floor_smooth = SMOOTH_NONE
 	wall_smooth = SMOOTH_NONE
 
@@ -435,7 +435,7 @@ var/list/flooring_types
 	icon = 'icons/turf/flooring/circuit.dmi'
 	icon_base = "bcircuit"
 	build_type = null
-	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK | TURF_HAS_CORNERS |TURF_HIDES_THINGS
+	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK | TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS |TURF_HIDES_THINGS
 	floor_smooth = SMOOTH_NONE
 	can_paint = 1
 
