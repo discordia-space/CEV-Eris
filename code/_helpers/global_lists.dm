@@ -44,6 +44,11 @@ var/global/list/poster_designs = list()
 // Uplinks
 var/list/obj/item/device/uplink/world_uplinks = list()
 
+
+//Neotheology
+var/global/list/all_rituals = list() //List of all rituals
+var/list/global_ritual_cooldowns = list() // internal lists. Use ritual's cooldown_category
+
 //Preferences stuff
 	//Bodybuilds
 var/global/list/male_body_builds = list()
@@ -124,6 +129,7 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 //////////////////////////
 
 /proc/makeDatumRefLists()
+
 	var/list/paths
 
 	//Bodybuilds
@@ -214,19 +220,19 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 		var/datum/hud/C = new T
 		global.HUDdatums[C.name] = C
 
+	//Rituals
+	paths = typesof(/datum/ritual)
+	for(var/T in paths)
+		var/datum/ritual/R = new T
+
+		//Rituals which are just categories for subclasses will have a null phrase
+		if (R.phrase)
+			all_rituals[R.name] = R
+
+
 	return 1
 
-/* // Uncomment to debug chemical reaction list.
-/client/verb/debug_chemical_list()
 
-	for (var/reaction in chemical_reactions_list)
-		. += "chemical_reactions_list\[\"[reaction]\"\] = \"[chemical_reactions_list[reaction]]\"\n"
-		if(islist(chemical_reactions_list[reaction]))
-			var/list/L = chemical_reactions_list[reaction]
-			for(var/t in L)
-				. += "    has: [t]\n"
-	world << .
-*/
 var/global/list/admin_permissions = list(
 	"fun" = 0x1,
 	"server" = 0x2,

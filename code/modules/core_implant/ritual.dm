@@ -1,4 +1,3 @@
-var/list/global_ritual_cooldowns = list() // internal lists. Use ritual's cooldown_category
 /mob/living/carbon/human/var/list/personal_ritual_cooldowns = list()
 
 

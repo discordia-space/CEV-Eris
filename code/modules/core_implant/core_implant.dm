@@ -13,7 +13,8 @@
 	var/max_power = 0
 	var/power_regen = 0.5
 	var/success_modifier = 1
-	var/list/rituals = list()
+	var/list/known_rituals = list() //A list of names of rituals which are recorded in this cruciform
+	//These are used to retrieve the actual ritual datums from the global all_rituals list
 
 	var/list/modules = list()
 	var/list/upgrades = list()
@@ -55,18 +56,17 @@
 	STOP_PROCESSING(SSobj, src)
 
 /obj/item/weapon/implant/core_implant/proc/update_rituals()
-	rituals = list()
+	known_rituals = list()
 	for(var/datum/core_module/rituals/M in modules)
 		if(istype(src,M.implant_type))
-			for(var/R in M.rituals)
-				if(!(R in rituals))
-					rituals.Add(R)
+			for(var/R in M.module_rituals)
+				known_rituals |= R
 
 /obj/item/weapon/implant/core_implant/proc/add_ritual_verbs()
 	if(!wearer || !active)
 		return
 
-	for(var/r in rituals)
+	for(var/r in known_rituals)
 		if(ispath(r,/datum/ritual/mind))
 			var/datum/ritual/mind/m = r
 			wearer.verbs |= initial(m.activator_verb)
@@ -75,7 +75,7 @@
 	if(!wearer || !active)
 		return
 
-	for(var/r in rituals)
+	for(var/r in known_rituals)
 		if(ispath(r,/datum/ritual/mind))
 			var/datum/ritual/mind/m = r
 			wearer.verbs.Remove(initial(m.activator_verb))
@@ -109,8 +109,8 @@
 	if(wearer != H)
 		return
 
-	for(var/RT in rituals)
-		var/datum/ritual/R = new RT
+	for(var/RT in known_rituals)
+		var/datum/ritual/R = all_rituals[RT]
 		if(R.compare(message))
 			if(R.power > src.power)
 				H << SPAN_DANGER("Not enough energy for the [R.name].")
@@ -157,8 +157,8 @@
 			if(EM.type == CM.type)
 				return FALSE
 
-	CM.set_up()
 	CM.implant = src
+	CM.set_up()
 	CM.install_time = world.time
 	CM.preinstall()
 	modules.Add(CM)
@@ -186,4 +186,4 @@
 			CM.uninstall()
 
 /obj/item/weapon/implant/core_implant/proc/get_rituals()
-	return rituals
+	return known_rituals
