@@ -106,8 +106,8 @@
 		new_player_panel_proc()
 
 	if(href_list["observe"])
-
-		if(alert(src,"Are you sure you wish to observe? You will have to wait 30 minutes before being able join the crew! But you can play as a mouse or drone immediately.","Player Setup","Yes","No") == "Yes")
+		//previous alert: alert(src,"Are you sure you wish to observe? You will have to wait 30 minutes before being able join the crew! But you can play as a mouse or drone immediately.","Player Setup","Yes","No")
+		if(alert(src,"Are you sure you wish to observe? As an observer, you may respawn at any time.","Player Setup","Yes","No") == "Yes")
 			if(!client)	return 1
 			var/mob/observer/ghost/observer = new()
 
