@@ -620,3 +620,18 @@ its easier to just keep the beam vertical.
 
 /atom/proc/change_area(var/area/old_area, var/area/new_area)
 	return
+
+//Refactors the forceMove() drop https://github.com/Baystation12/Baystation12/pull/13073
+/atom/movable/proc/dropInto(var/atom/destination)
+	while(istype(destination))
+		var/atom/drop_destination = destination.onDropInto(src)
+		if(!istype(drop_destination) || drop_destination == destination)
+			return forceMove(destination)
+		destination = drop_destination
+	return forceMove(null)
+
+/atom/proc/onDropInto(var/atom/movable/AM)
+	return // If onDropInto returns null, then dropInto will forceMove AM into us.
+
+/atom/movable/onDropInto(var/atom/movable/AM)
+	return loc // If onDropInto returns something, then dropInto will attempt to drop AM there.

@@ -45,7 +45,7 @@
 			ooc_style = "admin"
 
 	for(var/client/target in clients)
-		if(target.is_preference_enabled(/datum/client_preference/show_ooc))
+		if(target.get_preference_value(/datum/client_preference/show_ooc) == GLOB.PREF_SHOW)
 			var/display_name = src.key
 			if(holder)
 				if(holder.fakekey)
@@ -130,7 +130,7 @@
 				listening_obj |= O
 
 		for(var/mob/M in player_list)
-			if(!M.is_preference_enabled(/datum/client_preference/show_looc))
+			if(M.get_preference_value(/datum/client_preference/show_ooc) == GLOB.PREF_HIDE)
 				continue
 			if(isAI(M))
 				var/mob/living/silicon/ai/A = M

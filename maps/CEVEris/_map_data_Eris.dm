@@ -95,6 +95,23 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	var/list/names = new
 	var/security_state = /decl/security_state/default // The default security state system to use.
 
+	var/list/loadout_blacklist	//list of types of loadout items that will not be pickable
+
+
+	var/allowed_spawns = list("Cryogenic Storage", "Cyborg Storage")
+	var/default_spawn = "Cryogenic Storage"
+	var/allowed_jobs = list(/datum/job/captain, /datum/job/rd, /datum/job/hop, /datum/job/cmo, /datum/job/chief_engineer, /datum/job/ihc,
+						/datum/job/gunserg, /datum/job/inspector, /datum/job/medspec, /datum/job/ihoper,
+						/datum/job/doctor, /datum/job/chemist, /datum/job/paramedic, /datum/job/psychiatrist,
+						/datum/job/technomancer,
+						/datum/job/cargo_tech, /datum/job/mining, /datum/job/merchant,
+						/datum/job/janitor, /datum/job/chef, /datum/job/bartender, /datum/job/hydro, /datum/job/actor,
+						/datum/job/chaplain,
+						/datum/job/scientist, /datum/job/roboticist,
+						/datum/job/ai, /datum/job/cyborg,
+						/datum/job/assistant
+
+						)
 
 	var/overmap_z
 	var/overmap_size = 50
@@ -122,6 +139,21 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 		ACCESS_REGION_GENERAL = list(access_change_ids),
 		ACCESS_REGION_SUPPLY = list(access_change_ids)
 	)
+
+/datum/maps_data/proc/character_save_path(var/slot)
+	return "/[path]/character[slot]"
+
+/datum/maps_data/proc/character_load_path(var/savefile/S, var/slot)
+	var/original_cd = S.cd
+	S.cd = "/"
+	. = private_use_legacy_saves(S, slot) ? "/character[slot]" : "/[path]/character[slot]"
+	S.cd = original_cd // Attempting to make this call as side-effect free as possible
+
+/datum/maps_data/proc/private_use_legacy_saves(var/savefile/S, var/slot)
+	if(!S.dir.Find(path)) // If we cannot find the map path folder, load the legacy save
+		return TRUE
+	S.cd = "/[path]" // Finally, if we cannot find the character slot in the map path folder, load the legacy save
+	return !S.dir.Find("character[slot]")
 
 
 /datum/maps_data/proc/registrate(var/obj/map_data/MD)

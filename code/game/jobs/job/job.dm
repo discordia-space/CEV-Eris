@@ -163,7 +163,16 @@
 	for(var/obj/item/item in target.contents)
 		apply_fingerprints_to_item(target, item)
 	return 1
+/*
+//If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns 1
+/datum/job/proc/player_old_enough(client/C)
+	return (available_in_days(C) == 0) //Available in 0 days = available right now = player is old enough to play.
 
+/datum/job/proc/available_in_days(client/C)
+	if(C && config.use_age_restriction_for_jobs && isnull(C.holder) && isnum(C.player_age) && isnum(minimal_player_age))
+		return max(0, minimal_player_age - C.player_age)
+	return 0
+*/
 /datum/job/proc/apply_fingerprints_to_item(var/mob/living/carbon/human/holder, var/obj/item/item)
 	item.add_fingerprint(holder,1)
 	if(item.contents.len)
@@ -172,3 +181,30 @@
 
 /datum/job/proc/is_position_available()
 	return (current_positions < total_positions) || (total_positions == -1)
+
+/datum/job/proc/is_restricted(var/datum/preferences/prefs, var/feedback)
+
+	if(minimum_character_age && (prefs.age < minimum_character_age))
+		to_chat(feedback, "<span class='boldannounce'>Not old enough. Minimum character age is [minimum_character_age].</span>")
+		return TRUE
+
+	return FALSE
+
+/datum/job/proc/get_job_icon()
+	if(!SSjob.job_icons[title])
+		var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin("#job_icon")
+		dress_mannequin(mannequin)
+		mannequin.dir = SOUTH
+		var/icon/preview_icon = getFlatIcon(mannequin)
+
+		preview_icon.Scale(preview_icon.Width() * 2, preview_icon.Height() * 2) // Scaling here to prevent blurring in the browser.
+		SSjob.job_icons[title] = preview_icon
+
+	return SSjob.job_icons[title]
+
+/datum/job/proc/get_description_blurb()
+	return ""
+
+/datum/job/proc/dress_mannequin(var/mob/living/carbon/human/dummy/mannequin/mannequin)
+	mannequin.delete_inventory(TRUE)
+	equip_preview(mannequin, additional_skips = OUTFIT_ADJUSTMENT_SKIP_BACKPACK)

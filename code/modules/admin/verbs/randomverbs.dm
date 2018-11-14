@@ -350,7 +350,7 @@ ADMIN_VERB_ADD(/client/proc/respawn_character, R_FUN, FALSE)
 	else
 		new_character.gender = pick(MALE,FEMALE)
 		var/datum/preferences/A = new()
-		A.randomize_appearance_for(new_character)
+		A.randomize_appearance_and_body_for(new_character)
 		new_character.real_name = G_found.real_name
 
 	if(!new_character.real_name)
@@ -394,7 +394,7 @@ ADMIN_VERB_ADD(/client/proc/respawn_character, R_FUN, FALSE)
 
 	//Now for special roles and equipment.
 	SSjob.EquipRank(new_character, new_character.mind.assigned_role, 1)
-	SSjob.LateSpawn(new_character.client, new_character.mind.assigned_role)
+	//SSjob.LateSpawn(new_character.client, new_character.mind.assigned_role)
 
 	//Announces the character on all the systems, based on the record.
 	if(!issilicon(new_character))//If they are not a cyborg/AI.

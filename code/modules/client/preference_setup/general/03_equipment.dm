@@ -179,10 +179,8 @@
 			/decl/backpack_outfit/nothing,
 			/decl/backpack_outfit/backpack,
 			/decl/backpack_outfit/satchel,
-			/decl/backpack_outfit/messenger_bag,
 			/decl/backpack_outfit/satchel,
 			/decl/backpack_outfit/satchel,
-			/decl/backpack_outfit/pocketbook
 		)
 
 		var/old_index

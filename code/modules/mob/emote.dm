@@ -69,7 +69,7 @@
 			else if (istype(M, /mob/living) && !(type == 2 && (sdisabilities & DEAF || ear_deaf)))
 				messagemobs += M
 		else if(src.client)
-			if  (M.stat == DEAD && (M.is_preference_enabled(/datum/client_preference/ghost_ears)))
+			if  (M.stat == DEAD && (M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH))
 				messagemobs += M
 				continue
 

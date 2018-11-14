@@ -41,9 +41,15 @@ var/global/list/antag_bantypes = list()
 var/global/list/faction_types = list()
 
 // Global procs.
-/proc/get_antag_data(var/a_id)
-	if(antag_types[a_id])
-		return antag_types[a_id]
+/proc/get_antag_data(var/antag_type)
+	if(GLOB.all_antag_types[antag_type])
+		return GLOB.all_antag_types[antag_type]
+	else
+		var/list/all_antag_types = GLOB.all_antag_types
+		for(var/cur_antag_type in all_antag_types)
+			var/datum/antagonist/antag = all_antag_types[cur_antag_type]
+			if(antag && antag.is_type(antag_type))
+				return antag
 
 /proc/clear_antagonist(var/datum/mind/player)
 	for(var/datum/antagonist/A in player.antagonist)

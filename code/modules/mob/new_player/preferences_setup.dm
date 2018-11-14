@@ -11,13 +11,17 @@
 		f_style = random_facial_hair_style(gender, species)
 		if(current_species)
 			if(current_species.appearance_flags & HAS_A_SKIN_TONE)
-				s_tone = current_species.get_random_skin_tone() || s_tone
+				//s_tone = current_species.get_random_skin_tone() || s_tone
+				s_tone = 50//current_species.get_random_skin_tone() || s_tone
 			if(current_species.appearance_flags & HAS_EYE_COLOR)
-				ASSIGN_LIST_TO_COLORS(current_species.get_random_eye_color(), r_eyes, g_eyes, b_eyes)
+				//ASSIGN_LIST_TO_COLORS(current_species.get_random_eye_color(), r_eyes, g_eyes, b_eyes)
+				ASSIGN_LIST_TO_COLORS(ReadRGB("#000000"), r_eyes, g_eyes, b_eyes)
 			if(current_species.appearance_flags & HAS_SKIN_COLOR)
-				ASSIGN_LIST_TO_COLORS(current_species.get_random_skin_color(), r_skin, g_skin, b_skin)
+				//ASSIGN_LIST_TO_COLORS(current_species.get_random_skin_color(), r_skin, g_skin, b_skin)
+				ASSIGN_LIST_TO_COLORS(ReadRGB("#8d5524"), r_skin, g_skin, b_skin)
 			if(current_species.appearance_flags & HAS_HAIR_COLOR)
-				var/hair_colors = current_species.get_random_hair_color()
+				//var/hair_colors = current_species.get_random_hair_color()
+				var/hair_colors = ReadRGB("#000000")
 				if(hair_colors)
 					ASSIGN_LIST_TO_COLORS(hair_colors, r_hair, g_hair, b_hair)
 
@@ -26,7 +30,8 @@
 						g_facial = g_hair
 						b_facial = b_hair
 					else
-						ASSIGN_LIST_TO_COLORS(current_species.get_random_facial_hair_color(), r_facial, g_facial, b_facial)
+						//ASSIGN_LIST_TO_COLORS(current_species.get_random_facial_hair_color(), r_facial, g_facial, b_facial)
+						ASSIGN_LIST_TO_COLORS(ReadRGB("#000000"), r_facial, g_facial, b_facial)
 
 		if(current_species.appearance_flags & HAS_UNDERWEAR)
 			all_underwear.Cut()
@@ -85,9 +90,13 @@
 				if(!permitted)
 					continue
 
+				if(G.slot && G.slot != slot_accessory_buffer && !(G.slot in loadout_taken_slots) && G.spawn_on_mob(mannequin, gear_list[gear_slot][G.display_name]))
+					loadout_taken_slots.Add(G.slot)
+					update_icon = TRUE
+
 	if(update_icon)
 		mannequin.update_icons()
-
+/*
 /datum/preferences/proc/update_preview_icon()
 	var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin(client_ckey)
 	mannequin.delete_inventory(TRUE)
@@ -109,3 +118,4 @@
 	preview_icon.Blend(stamp, ICON_OVERLAY, 49, 1)
 
 	preview_icon.Scale(preview_icon.Width() * 2, preview_icon.Height() * 2) // Scaling here to prevent blurring in the browser.
+*/

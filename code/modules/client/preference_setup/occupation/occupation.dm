@@ -50,7 +50,7 @@
 /datum/category_item/player_setup_item/occupation/sanitize_character()
 	if(!istype(pref.job_medium)) 		pref.job_medium = list()
 	if(!istype(pref.job_low))    		pref.job_low = list()
-	if(!istype(pref.skills_saved))		pref.skills_saved = list()
+	//if(!istype(pref.skills_saved))		pref.skills_saved = list()
 
 	pref.alternate_option	= sanitize_integer(pref.alternate_option, 0, 2, initial(pref.alternate_option))
 	pref.job_high	        = sanitize(pref.job_high, null)
@@ -66,9 +66,9 @@
 	// so we prune here to make sure we don't spawn as a PFC captain
 	//prune_occupation_prefs()
 
-	pref.skills_allocated = pref.sanitize_skills(pref.skills_allocated)		//this proc also automatically computes and updates points_by_job
+	//pref.skills_allocated = pref.sanitize_skills(pref.skills_allocated)		//this proc also automatically computes and updates points_by_job
 
-	var/jobs_by_type = decls_repository.get_decls(GLOB.using_map.allowed_jobs)
+	var/jobs_by_type = decls_repository.get_decls(maps_data.allowed_jobs)
 	for(var/job_type in jobs_by_type)
 		var/datum/job/job = jobs_by_type[job_type]
 		var/alt_title = pref.player_alt_titles[job.title]
@@ -83,7 +83,12 @@
 	. += "<style>.Points,a.Points{background: #cc5555;}</style>"
 	. += "<style>a.Points:hover{background: #55cc55;}</style>"
 	. += "<tt><center>"
-	. += "<b>Choose occupation chances. <font size=3>Click on the occupation to select skills.</font><br>Unavailable occupations are crossed out.</b>"
+	//. += "<b>Choose occupation chances. <font size=3>Click on the occupation to select skills.</font><br>Unavailable occupations are crossed out.</b>"
+	. += "<b>Choose occupation chances.<br>Unavailable occupations are crossed out.</b>"
+
+	. += "<br>"
+	. += "<table width='100%' cellpadding='1' cellspacing='0'><tr><td width='20%'>" // Table within a table for alignment, also allows you to easily add more columns.
+	. += "<table width='100%' cellpadding='1' cellspacing='0'>"
 
 	var/index = -1
 	if(splitLimit)
@@ -92,7 +97,7 @@
 	//The job before the current job. I only use this to get the previous jobs color when I'm filling in blank rows.
 	var/datum/job/lastJob
 	for(var/datum/job/job in SSjob.occupations)
-		var/unspent = pref.points_by_job[job]
+		//var/unspent = pref.points_by_job[job]
 		var/current_level = JOB_LEVEL_NEVER
 		if(pref.job_high == job.title)
 			current_level = JOB_LEVEL_HIGH
@@ -120,9 +125,9 @@
 			bad_message = "<b> \[UNAVAILABLE]</b>"
 		else if(jobban_isbanned(user, rank))
 			bad_message = "<b> \[BANNED]</b>"
-		else if(!job.player_old_enough(user.client))
+		/*else if(!job.player_old_enough(user.client))
 			var/available_in_days = job.available_in_days(user.client)
-			bad_message = "\[IN [(available_in_days)] DAYS]"
+			bad_message = "\[IN [(available_in_days)] DAYS]"*/
 		else if(job.minimum_character_age && user.client && (user.client.prefs.age < job.minimum_character_age))
 			bad_message = "\[MINIMUM CHARACTER AGE: [job.minimum_character_age]]"
 		if(("Assistant" in pref.job_low) && (rank != "Assistant"))
@@ -132,8 +137,8 @@
 			. += "<a href='?src=\ref[src];set_skills=[rank]'><del>[rank]</del></a></td><td>[bad_message]</td></tr>"
 			continue
 
-		. += (unspent && (current_level != JOB_LEVEL_NEVER) ? "<a class='Points' href='?src=\ref[src];set_skills=[rank]'>" : "<a href='?src=\ref[src];set_skills=[rank]'>")
-		if((rank in GLOB.command_positions) || (rank == "AI"))//Bold head jobs
+		//. += (unspent && (current_level != JOB_LEVEL_NEVER) ? "<a class='Points' href='?src=\ref[src];set_skills=[rank]'>" : "<a href='?src=\ref[src];set_skills=[rank]'>")
+		if((rank in command_positions) || (rank == "AI"))//Bold head jobs
 			. += "<b>[rank]</b>"
 		else
 			. += "[rank]"
@@ -250,8 +255,8 @@
 		if(config.wikiurl)
 			dat += "<a href='?src=\ref[src];job_wiki=[rank]'>Open wiki page in browser</a>"
 		var/description = job.get_description_blurb()
-		if(job.required_education)
-			description = "[description ? "[description]\n\n" : ""]"
+		/*if(job.required_education)
+			description = "[description ? "[description]\n\n" : ""]"*/
 		if(description)
 			dat += html_encode(description)
 		var/datum/browser/popup = new(user, "Job Info", "[capitalize(rank)]", 430, 520, src)
@@ -336,7 +341,7 @@
  */
 /datum/category_item/player_setup_item/proc/prune_job_prefs()
 	var/allowed_titles = list()
-	var/jobs_by_type = decls_repository.get_decls(GLOB.using_map.allowed_jobs)
+	var/jobs_by_type = decls_repository.get_decls(maps_data.allowed_jobs)
 	for(var/job_type in jobs_by_type)
 		var/datum/job/job = jobs_by_type[job_type]
 		allowed_titles += job.title

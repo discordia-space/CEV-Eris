@@ -238,3 +238,7 @@
 
 /proc/atomtype2nameassoclist(var/atom_type)
 	return atomtypes2nameassoclist(typesof(atom_type))
+
+//Splits the text of a file at seperator and returns them in a list.
+/world/proc/file2list(filename, seperator="\n")
+	return splittext(file2text(filename), seperator)

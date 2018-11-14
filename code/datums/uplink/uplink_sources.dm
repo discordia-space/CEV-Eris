@@ -73,12 +73,12 @@ GLOBAL_LIST_INIT(default_uplink_source_priority, list(
 		return SETUP_FAILED
 
 	var/obj/item/weapon/implant/uplink/U = new(H, IMPLANT_TELECRYSTAL_AMOUNT(amount))
-	U.imp_in = H
+	U.wearer = H
 	U.implanted = TRUE
 	U.part = head
 	head.implants += U
 
-	U.implanted(H) // This proc handles the installation feedback
+	U.on_install(H) // This proc handles the installation feedback
 
 /decl/uplink_source/unit
 	name = "Uplink Unit"

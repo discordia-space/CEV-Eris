@@ -221,7 +221,7 @@
 	if(jobban_isbanned(src,rank))	return 0
 	return 1
 
-/mob/new_player/proc/AttemptLateSpawn(rank,var/spawning_at)
+/mob/new_player/proc/AttemptLateSpawn(rank, var/spawning_at)
 	if(src != usr)
 		return 0
 	if(SSticker.current_state != GAME_STATE_PLAYING)
@@ -239,11 +239,10 @@
 
 	SSjob.AssignRole(src, rank, 1)
 
+
 	var/datum/job/job = src.mind.assigned_job
 	var/mob/living/character = create_character()	//creates the human and transfers vars and mind
-	character = SSjob.EquipRank(character, rank, 1)					//equips the human
-	equip_custom_items(character)
-
+	
 	// AIs don't need a spawnpoint, they must spawn at an empty core
 	if(character.mind.assigned_role == "AI")
 
@@ -253,22 +252,31 @@
 		var/obj/structure/AIcore/deactivated/C = empty_playable_ai_cores[1]
 		empty_playable_ai_cores -= C
 
-		character.loc = C.loc
+		character.forceMove(C.loc)
 
 		AnnounceCyborg(character, rank, "has been downloaded to the empty core in \the [character.loc.loc]")
 
 		qdel(C)
 		qdel(src)
 		return
+		
+	var/datum/spawnpoint/spawnpoint = SSjob.get_spawnpoint_for(client, job.title)
+	var/turf/spawn_turf = pick(spawnpoint.turfs)
 
-	//Find our spawning point.
-	var/join_message = SSjob.LateSpawn(character.client, rank)
+	if(!SSjob.CheckUnsafeSpawn(src, spawn_turf))
+		return
+	
+	character = SSjob.EquipRank(character, rank, 1)					//equips the human
+	equip_custom_items(character)
+
+	character.forceMove(spawn_turf)
 
 	character.lastarea = get_area(loc)
 	// Moving wheelchair if they have one
 	if(character.buckled && istype(character.buckled, /obj/structure/bed/chair/wheelchair))
 		character.buckled.loc = character.loc
 		character.buckled.set_dir(character.dir)
+
 	if(SSjob.ShouldCreateRecords(job.title))
 		if(character.mind.assigned_role != "Robot")
 			CreateModularRecord(character)
@@ -278,9 +286,9 @@
 
 			//Grab some data from the character prefs for use in random news procs.
 
-			AnnounceArrival(character, rank, join_message)
+			AnnounceArrival(character, rank, spawnpoint.msg)
 		else
-			AnnounceCyborg(character, rank, join_message)
+			AnnounceCyborg(character, rank, spawnpoint.msg)
 
 	//Add their mind to the global list
 	SSticker.minds += character.mind
@@ -354,7 +362,7 @@
 	if(SSticker.random_players)
 		new_character.gender = pick(MALE, FEMALE)
 		client.prefs.real_name = random_name(new_character.gender)
-		client.prefs.randomize_appearance_for(new_character)
+		client.prefs.randomize_appearance_and_body_for(new_character)
 	else
 		client.prefs.copy_to(new_character)
 
@@ -398,9 +406,6 @@
 /mob/new_player/proc/close_spawn_windows()
 	src << browse(null, "window=latechoices") //closes late choices window
 	panel.close()
-
-/mob/new_player/proc/has_admin_rights()
-	return check_rights(R_ADMIN, 0, src)
 
 /mob/new_player/proc/is_species_whitelisted(datum/species/S)
 	if(!S) return 1

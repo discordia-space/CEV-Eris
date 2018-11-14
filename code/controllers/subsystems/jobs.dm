@@ -11,6 +11,7 @@ SUBSYSTEM_DEF(job)
 	var/list/occupations_by_name = list()	//Dict of all jobs, keys are titles
 	var/list/unassigned = list()			//Players who need jobs
 	var/list/job_debug = list()				//Debug info
+	var/list/job_icons = list()				//Cache of icons for job info window
 
 /datum/controller/subsystem/job/Initialize(start_timeofday)
 	if(!occupations.len)
@@ -297,45 +298,14 @@ SUBSYSTEM_DEF(job)
 		return null
 
 	var/datum/job/job = GetJob(rank)
-	var/list/spawn_in_storage = list()
+	//var/list/spawn_in_storage = list()
 
 	if(job)
 
 		//Equip custom gear loadout.
-		var/list/custom_equip_slots = list() //If more than one item takes the same slot, all after the first one spawn in storage.
-		var/list/custom_equip_leftovers = list()
-		if(H.client.prefs.gear && H.client.prefs.gear.len && job.title != "Robot" && job.title != "AI")
-			for(var/thing in H.client.prefs.gear)
-				var/datum/gear/G = gear_datums[thing]
-				if(G)
-					var/permitted
-					if(G.allowed_roles)
-						for(var/job_name in G.allowed_roles)
-							if(job.title == job_name)
-								permitted = 1
-					else
-						permitted = 1
+		//var/list/custom_equip_slots = list() //If more than one item takes the same slot, all after the first one spawn in storage.
+		//var/list/custom_equip_leftovers = list()
 
-					if(G.whitelisted && !is_alien_whitelisted(H, G.whitelisted))
-						permitted = 0
-
-					if(!permitted)
-						H << SPAN_WARNING("Your current job or whitelist status does not permit you to spawn with [thing]!")
-						continue
-
-					if(G.slot && !(G.slot in custom_equip_slots))
-						// This is a miserable way to fix the loadout overwrite bug, but the alternative requires
-						// adding an arg to a bunch of different procs. Will look into it after this merge. ~ Z
-						var/metadata = H.client.prefs.gear[G.display_name]
-						if(G.slot == slot_wear_mask || G.slot == slot_wear_suit || G.slot == slot_head)
-							custom_equip_leftovers += thing
-						else if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
-							H << SPAN_NOTICE("Equipping you with \the [thing]!")
-							custom_equip_slots.Add(G.slot)
-						else
-							custom_equip_leftovers.Add(thing)
-					else
-						spawn_in_storage += thing
 		//Equip job items and language stuff
 		job.equip(H)
 		job.add_stats(H)
@@ -345,7 +315,7 @@ SUBSYSTEM_DEF(job)
 		job.apply_fingerprints(H)
 
 		//If some custom items could not be equipped before, try again now.
-		for(var/thing in custom_equip_leftovers)
+		/*for(var/thing in custom_equip_leftovers)
 			var/datum/gear/G = gear_datums[thing]
 			if(G.slot in custom_equip_slots)
 				spawn_in_storage += thing
@@ -355,7 +325,7 @@ SUBSYSTEM_DEF(job)
 					H << SPAN_NOTICE("Equipping you with \the [thing]!")
 					custom_equip_slots.Add(G.slot)
 				else
-					spawn_in_storage += thing
+					spawn_in_storage += thing*/
 		// EMAIL GENERATION
 		if(rank != "Robot" && rank != "AI")		//These guys get their emails later.
 			var/domain
@@ -370,11 +340,13 @@ SUBSYSTEM_DEF(job)
 	H.job = rank
 
 	if(!joined_late)
-		var/turf/S = pickSpawnLocation(job.type)
-		if(istype(S))
-			H.forceMove(S)
+		var/obj/S = get_roundstart_spawnpoint(rank)
+
+		if(istype(S, /obj/landmark/join/start) && istype(S.loc, /turf))
+			H.forceMove(S.loc)
 		else
-			LateSpawn(H.client, rank)
+			var/datum/spawnpoint/spawnpoint = get_spawnpoint_for(H.client, rank)
+			H.forceMove(pick(spawnpoint.turfs))
 
 		// Moving wheelchair if they have one
 		if(H.buckled && istype(H.buckled, /obj/structure/bed/chair/wheelchair))
@@ -409,7 +381,7 @@ SUBSYSTEM_DEF(job)
 				captain_announcement.Announce("All hands, Captain [H.real_name] on deck!", new_sound=announce_sound)
 
 		//Deferred item spawning.
-		if(spawn_in_storage && spawn_in_storage.len)
+/*		if(spawn_in_storage && spawn_in_storage.len)
 			var/obj/item/weapon/storage/B
 			for(var/obj/item/weapon/storage/S in H.contents)
 				B = S
@@ -423,7 +395,7 @@ SUBSYSTEM_DEF(job)
 					G.spawn_item(B, metadata)
 			else
 				H << SPAN_DANGER("Failed to locate a storage object on your mob, either you spawned with no arms and no backpack or this is a bug.")
-
+*/
 	if(istype(H)) //give humans wheelchairs, if they need them.
 		var/obj/item/organ/external/l_leg = H.get_organ(BP_L_LEG)
 		var/obj/item/organ/external/r_leg = H.get_organ(BP_R_LEG)
@@ -558,41 +530,83 @@ SUBSYSTEM_DEF(job)
 		tmp_str += "HIGH=[level1]|MEDIUM=[level2]|LOW=[level3]|NEVER=[level4]|BANNED=[level5]|YOUNG=[level6]|-"
 
 
-/datum/controller/subsystem/job/proc/LateSpawn(client/C, rank, return_location = FALSE)
-	//spawn at one of the latespawn locations
-	var/datum/spawnpoint/spawnpos
+/**
+ *  Return appropriate /datum/spawnpoint for given client and rank
+ *
+ *  Spawnpoint will be the one set in preferences for the client, unless the
+ *  preference is not set, or the preference is not appropriate for the rank, in
+ *  which case a fallback will be selected.
+ */
+/datum/controller/subsystem/job/proc/get_spawnpoint_for(var/client/C, var/rank)
 
 	if(!C)
-		CRASH("Null client passed to LateSpawn() proc!")
+		CRASH("Null client passed to get_spawnpoint_for() proc!")
 
 	var/mob/H = C.mob
-	if(C.prefs.spawnpoint)
-		spawnpos = getSpawnPoint(C.prefs.spawnpoint, FALSE)
-	if(!spawnpos || !spawnpos.check_job_spawning(rank))
-		for(var/name in GLOB.spawnpoints_late)
-			var/datum/spawnpoint/SP = GLOB.spawnpoints_late[name]
-			if(SP.check_job_spawning(rank))
-				spawnpos = SP
+	var/spawnpoint = C.prefs.spawnpoint
+	var/datum/spawnpoint/spawnpos
+
+	if(spawnpoint == DEFAULT_SPAWNPOINT_ID)
+		spawnpoint = maps_data.default_spawn
+
+	if(spawnpoint)
+		if(!(spawnpoint in maps_data.allowed_spawns))
+			if(H)
+				to_chat(H, "<span class='warning'>Your chosen spawnpoint ([C.prefs.spawnpoint]) is unavailable for the current map. Spawning you at one of the enabled spawn points instead. To resolve this error head to your character's setup and choose a different spawn point.</span>")
+			spawnpos = null
+		else
+			spawnpos = spawntypes()[spawnpoint]
+
+	if(spawnpos && !spawnpos.check_job_spawning(rank))
+		if(H)
+			to_chat(H, "<span class='warning'>Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job ([rank]). Spawning you at another spawn point instead.</span>")
+		spawnpos = null
+
+	if(!spawnpos)
+		// Step through all spawnpoints and pick first appropriate for job
+		for(var/spawntype in maps_data.allowed_spawns)
+			var/datum/spawnpoint/candidate = spawntypes()[spawntype]
+			if(candidate.check_job_spawning(rank))
+				spawnpos = candidate
 				break
 
-	if(spawnpos && istype(spawnpos))
-		var/list/latejoin = safepick(spawnpos.getFreeTurfs())
-		if(return_location)
-			return latejoin
-		else
-			if(H)
-				H.forceMove(latejoin)
-			return spawnpos.message
-	else
-		if(return_location)
-			return pickSpawnLocation()
-		else
-			if(H)
-				H.forceMove(pickSpawnLocation())
-			return "has arrived on the station"
+	if(!spawnpos)
+		// Pick at random from all the (wrong) spawnpoints, just so we have one
+		warning("Could not find an appropriate spawnpoint for job [rank].")
+		spawnpos = spawntypes()[pick(maps_data.allowed_spawns)]
+
+	return spawnpos
 
 /datum/controller/subsystem/job/proc/ShouldCreateRecords(var/title)
 	if(!title) return 0
 	var/datum/job/job = GetJob(title)
 	if(!job) return 0
 	return job.create_record
+
+/datum/controller/subsystem/job/proc/CheckUnsafeSpawn(var/mob/living/spawner, var/turf/spawn_turf)
+	//var/radlevel = SSradiation.get_rads_at_turf(spawn_turf)
+	var/airstatus = IsTurfAtmosUnsafe(spawn_turf)
+	//if(airstatus || radlevel > 0)
+	if(airstatus)
+		/*var/reply = alert(spawner, "Warning. Your selected spawn location seems to have unfavorable conditions. \
+		You may die shortly after spawning. \
+		Spawn anyway? More information: [airstatus] Radiation: [radlevel] Bq", "Atmosphere warning", "Abort", "Spawn anyway")
+		*/
+		var/reply = alert(spawner, "Warning. Your selected spawn location seems to have unfavorable conditions. \
+		You may die shortly after spawning. \
+		Spawn anyway? More information: [airstatus]", "Atmosphere warning", "Abort", "Spawn anyway")
+		if(reply == "Abort")
+			return FALSE
+		else
+			// Let the staff know, in case the person complains about dying due to this later. They've been warned.
+			log_and_message_admins("User [spawner] spawned at spawn point with dangerous atmosphere.")
+	return TRUE
+
+/datum/controller/subsystem/job/proc/get_roundstart_spawnpoint(var/rank)
+	var/list/loc_list = list()
+	for(var/obj/landmark/join/start/sloc in landmarks_list)
+		if(sloc.name != rank)	continue
+		if(locate(/mob/living) in sloc.loc)	continue
+		loc_list += sloc
+	if(loc_list.len)
+		return pick(loc_list)

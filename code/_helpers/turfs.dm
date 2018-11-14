@@ -206,3 +206,11 @@
 	if (SA && SA.target)
 		return get_turf(SA.target)
 	return T
+
+/proc/IsTurfAtmosUnsafe(var/turf/T)
+	if(istype(T, /turf/space)) // Space tiles
+		return "Spawn location is open to space."
+	var/datum/gas_mixture/air = T.return_air()
+	if(!air)
+		return "Spawn location lacks atmosphere."
+	return get_atmosphere_issues(air, 1)

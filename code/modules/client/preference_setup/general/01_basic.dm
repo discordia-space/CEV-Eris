@@ -6,6 +6,10 @@ datum/preferences
 	var/real_name						//our character's name
 	var/be_random_name = 0				//whether we are a random name every round
 
+	//Some faction information.
+	var/religion = "None"               //Religious association.
+
+
 /datum/category_item/player_setup_item/physical/basic
 	name = "Basic"
 	sort_order = 1
@@ -53,6 +57,7 @@ datum/preferences
 	. += "<b>Gender:</b> <a href='?src=\ref[src];gender=1'><b>[gender2text(pref.gender)]</b></a><br>"
 	. += "<b>Age:</b> <a href='?src=\ref[src];age=1'>[pref.age]</a><br>"
 	. += "<b>Spawn Point</b>: <a href='?src=\ref[src];spawnpoint=1'>[pref.spawnpoint]</a>"
+	. += "<b>Religion:</b> <a href='?src=\ref[src];religion=1'>[pref.religion]</a><br>"
 	if(config.allow_Metadata)
 		. += "<br><b>OOC Notes:</b> <a href='?src=\ref[src];metadata=1'> Edit </a>"
 	. = jointext(.,null)
@@ -90,15 +95,13 @@ datum/preferences
 		S = all_species[pref.species]
 		if(new_gender && CanUseTopic(user) && (new_gender in S.genders))
 			pref.gender = new_gender
-			if(!(pref.f_style in S.get_facial_hair_styles(pref.gender)))
-				ResetFacialHair()
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["age"])
 		var/new_age = input(user, "Choose your character's age:\n([S.min_age]-[S.max_age])", CHARACTER_PREFERENCE_INPUT_TITLE, pref.age) as num|null
 		if(new_age && CanUseTopic(user))
 			pref.age = max(min(round(text2num(new_age)), S.max_age), S.min_age)
-			pref.skills_allocated = pref.sanitize_skills(pref.skills_allocated)		// The age may invalidate skill loadouts
+			//pref.skills_allocated = pref.sanitize_skills(pref.skills_allocated)		// The age may invalidate skill loadouts
 			return TOPIC_REFRESH
 
 	else if(href_list["spawnpoint"])
@@ -115,5 +118,10 @@ datum/preferences
 		if(new_metadata && CanUseTopic(user))
 			pref.metadata = new_metadata
 			return TOPIC_REFRESH
+
+	else if(href_list["religion"])
+		pref.religion = input("Religion") in list("None", "Christianity")
+		pref.req_update_icon = 1
+		return TOPIC_REFRESH
 
 	return ..()

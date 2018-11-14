@@ -43,6 +43,8 @@
 	var/hair_col
 	var/tattoo
 	var/tattoo_color = "#000000"
+	var/list/markings = list()         // Markings (body_markings) to apply to the icon
+
 
 
 	// Wound and structural data.

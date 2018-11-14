@@ -74,33 +74,6 @@ var/list/outfits_decls_by_type_
 		J.toggle()
 		J.toggle_valve()
 
-// A proc for non-human species, specially Unathi, since they e.g.
-// can't normally wear gloves as humans. Correct this issue by trying again, but
-// apply some changes to the said item.
-//
-// Currently checks for gloves
-//
-// If you want to add more items that has species restriction, consider follow-
-// ing the same format as the gloves shown in the code below. Thanks.
-/decl/hierarchy/outfit/proc/check_and_try_equip_xeno(mob/living/carbon/human/H)
-	var/datum/species/S = H.species
-	if (!S || istype(S, /datum/species/human)) // null failcheck & get out here you damn humans
-		return
-
-	// Gloves
-	if (gloves && !H.get_equipped_item(slot_gloves)) // does mob not have gloves, despite the outfit has one specified?
-		var/obj/item/clothing/gloves/G = new gloves(H) // we've no use of a null object, instantize one
-		if (S.get_bodytype(H) in G.species_restricted) // what was the problem?
-			if ("exclude" in G.species_restricted) // are they excluded?
-				//G.cut_fingertops()
-				// I could optimize this bit when we are trying to apply the gloves to e.g. Vox, a species still restricted despite G.cut_fingertops(). But who cares if this is codebase is like a plate of spaghetti twice over the brim, right? RIGHT?
-				H.equip_to_slot_or_del(G,slot_gloves) // try again
-		else
-			qdel(G)
-	// end Gloves
-
-// end of check_and_try_equip_xeno
-
 /decl/hierarchy/outfit/proc/equip(mob/living/carbon/human/H, var/rank, var/assignment, var/equip_adjustments)
 	equip_base(H, equip_adjustments)
 
@@ -184,10 +157,6 @@ var/list/outfits_decls_by_type_
 					H.equip_to_appropriate_slot(backpack)
 			else
 				H.equip_to_slot_or_del(backpack, slot_back)
-
-	if(H.species && !(OUTFIT_ADJUSTMENT_SKIP_SURVIVAL_GEAR & equip_adjustments))
-		H.species.equip_survival_gear(H, flags&OUTFIT_EXTENDED_SURVIVAL)
-	check_and_try_equip_xeno(H)
 
 /decl/hierarchy/outfit/proc/equip_id(var/mob/living/carbon/human/H, var/rank, var/assignment, var/equip_adjustments)
 	if(!id_slot || !id_type)

@@ -11,7 +11,7 @@
 /mob/living/carbon/human/dummy/mannequin/Initialize()
 	. = ..()
 	STOP_PROCESSING(SSmobs, src)
-	GLOB.human_mob_list -= src
+	human_mob_list -= src
 	delete_inventory()
 
 /mob/living/carbon/human/dummy/mannequin/fully_replace_character_name(new_name)

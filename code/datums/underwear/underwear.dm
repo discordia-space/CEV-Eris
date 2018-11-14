@@ -30,7 +30,7 @@ datum/category_group/underwear/dd_SortValue()
 
 /datum/category_group/underwear/undershirt
 	name = "Undershirt"
-	sort_order = 4		// Undershirts currently have the highest sort order because they may cover both underwear and socks.
+	sort_order = 4 // Undershirts currently have the highest sort order because they may cover both underwear and socks.
 	category_item_type = /datum/category_item/underwear/undershirt
 
 /*******************
@@ -39,8 +39,18 @@ datum/category_group/underwear/dd_SortValue()
 /datum/category_item/underwear
 	var/always_last = FALSE          // Should this entry be sorte last?
 	var/is_default = FALSE           // Should this entry be considered the default for its type?
-	var/icon = 'icons/inventory/underwear/mob.dmi' // Which icon to get the underwear from
-	var/icon_state                   // And the particular item state
+	var/icon = 'icons/mob/human.dmi' // Which icon to get the underwear from.
+	var/icon_state                   // And the particular item state.
+	var/list/tweaks = list()         // Underwear customizations.
+	var/has_color = FALSE
+
+	var/underwear_name               // The name of the resulting underwear
+	var/underwear_gender = NEUTER    // Singular or plural form?
+	var/underwear_type               // The kind of underwear item this datum will create.
+
+/datum/category_item/underwear/New()
+	if(has_color)
+		tweaks += gear_tweak_free_color_choice()
 
 /datum/category_item/underwear/dd_SortValue()
 	if(always_last)
@@ -49,3 +59,17 @@ datum/category_group/underwear/dd_SortValue()
 
 /datum/category_item/underwear/proc/is_default(var/gender)
 	return is_default
+
+/datum/category_item/underwear/proc/create_underwear(var/list/metadata)
+	if(!underwear_type)
+		return
+
+	var/obj/item/underwear/UW = new underwear_type()
+	UW.SetName(underwear_name)
+	UW.gender = underwear_gender
+	UW.icon = icon
+	UW.icon_state = icon_state
+
+	for(var/datum/gear_tweak/gt in tweaks)
+		gt.tweak_item(UW, metadata && metadata["[gt]"] ? metadata["[gt]"] : gt.get_default())
+	return UW

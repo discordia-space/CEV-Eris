@@ -68,8 +68,12 @@ var/list/storyteller_cache = list()
 	var/load_jobs_from_txt = 0
 	var/ToRban = 0
 	var/automute_on = 0					//enables automuting/spam prevention
+	var/use_cortical_stacks = 0			//enables neural lace
 
 	var/character_slots = 10				// The number of available character slots
+	var/loadout_slots = 3					// The number of loadout slots per character
+
+	var/max_gear_cost = 10 // Used in chargen for accessory loadout limit. 0 disables loadout, negative allows infinite points.
 
 	var/max_maint_drones = 5				//This many drones can spawn,
 	var/allow_drone_spawn = 1				//assuming the admin allow them to.
@@ -546,6 +550,11 @@ var/list/storyteller_cache = list()
 				if("use_lib_nudge")
 					config.use_lib_nudge = 1
 
+				if("max_gear_cost")
+					max_gear_cost = text2num(value)
+					if(max_gear_cost < 0)
+						max_gear_cost = INFINITY
+
 				if("character_slots")
 					config.character_slots = text2num(value)
 
@@ -607,6 +616,12 @@ var/list/storyteller_cache = list()
 					config.ert_species = splittext(value, ";")
 					if(!config.ert_species.len)
 						config.ert_species += "Human"
+
+				if("use_cortical_stacks")
+					config.use_cortical_stacks = 1
+
+				if("loadout_slots")
+					config.loadout_slots = text2num(value)
 
 				if("law_zero")
 					law_zero = value

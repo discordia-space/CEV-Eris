@@ -1,29 +1,26 @@
 /obj/item/weapon/implant/uplink
 	name = "uplink"
 	desc = "Summon things."
-	var/activation_emote = "chuckle"
-	is_legal = FALSE
-	origin_tech = list(TECH_MATERIAL=4, TECH_MAGNET=4, TECH_DATA=4, TECH_BIO=4, TECH_ILLEGAL=5, TECH_BLUESPACE=5)
+	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 2, TECH_ILLEGAL = 3)
+	var/activation_emote
 
-/obj/item/weapon/implant/uplink/New()
-	activation_emote = pick("blink", "blink_r", "eyebrow", "chuckle", "twitch_s", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
-	hidden_uplink = new(src)
-	hidden_uplink.uses = round((DEFAULT_TELECRYSTAL_AMOUNT / 2) * 0.8)
+/obj/item/weapon/implant/uplink/New(var/loc, var/amount)
+	amount = amount || IMPLANT_TELECRYSTAL_AMOUNT(DEFAULT_TELECRYSTAL_AMOUNT)
+	hidden_uplink = new(src, telecrystals = amount)
 	..()
 
-/obj/item/weapon/implant/uplink/on_install(mob/living/carbon/human/H)
-	activation_emote = input("Choose activation emote:") in list("blink", "blink_r", "eyebrow", "chuckle", "twitch_s", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
-	H.mind.store_memory("Uplink implant can be activated by using the [activation_emote] emote, <B>say *[activation_emote]</B> to attempt to activate.", 0, 0)
-	H << "The implanted uplink implant can be activated by using the [activation_emote] emote, <B>say *[activation_emote]</B> to attempt to activate."
-	hidden_uplink.uplink_owner = H.mind
-
+/obj/item/weapon/implant/uplink/on_install(mob/source)
+	var/emote_options = list("blink", "blink_r", "eyebrow", "chuckle", "twitch_v", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
+	activation_emote = source.client ? (input(source, "Choose activation emote:", "Uplink Implant Setup") in emote_options) : emote_options[1]
+	source.mind.store_memory("Uplink implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.", 0, 0)
+	to_chat(source, "The implanted uplink implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.")
+	hidden_uplink.uplink_owner = source.mind
+	return TRUE
 
 /obj/item/weapon/implant/uplink/trigger(emote, mob/source as mob)
 	if(hidden_uplink && usr == source) // Let's not have another people activate our uplink
 		hidden_uplink.check_trigger(source, emote, activation_emote)
-	return
-
 
 /obj/item/weapon/implanter/uplink
-	name = "implanter (uplink)"
+	name = "implanter (U)"
 	implant = /obj/item/weapon/implant/uplink

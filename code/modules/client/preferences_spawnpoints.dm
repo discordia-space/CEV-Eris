@@ -1,6 +1,4 @@
 GLOBAL_VAR(spawntypes)
-GLOBAL_LIST_EMPTY(spawnpoints)
-GLOBAL_LIST_EMPTY(spawnpoints_late)
 
 /proc/spawntypes()
 	if(!GLOB.spawntypes)
@@ -8,7 +6,7 @@ GLOBAL_LIST_EMPTY(spawnpoints_late)
 		for(var/type in typesof(/datum/spawnpoint)-/datum/spawnpoint)
 			var/datum/spawnpoint/S = type
 			var/display_name = initial(S.display_name)
-			if((display_name in GLOB.using_map.allowed_spawns) || initial(S.always_visible))
+			if((display_name in maps_data.allowed_spawns) || initial(S.always_visible))
 				GLOB.spawntypes[display_name] = new S
 	return GLOB.spawntypes
 
@@ -41,20 +39,34 @@ GLOBAL_LIST_EMPTY(spawnpoints_late)
 
 /datum/spawnpoint/default
 	display_name = DEFAULT_SPAWNPOINT_ID
-	msg = "has arrived on the station"
+	msg = "has completed cryogenic revival"
 	always_visible = TRUE
 
-/proc/getSpawnPoint(name, safety = TRUE)
+/datum/spawnpoint/cryo
+	display_name = "Cryogenic Storage"
+	msg = "has completed cryogenic revival"
+	disallow_job = list("Robot")
+
+/datum/spawnpoint/cryo/New()
+	..()
+	turfs = GLOB.latejoin_cryo
+
+/datum/spawnpoint/cyborg
+	display_name = "Cyborg Storage"
+	msg = "has been activated from storage"
+	restrict_job = list("Robot")
+
+/datum/spawnpoint/cyborg/New()
+	..()
+	turfs = GLOB.latejoin_cyborg
+
+/proc/getSpawnPoint(name)
 	ASSERT(name)
-	if(!GLOB.spawnpoints[name])
-		if(safety)
-			new /datum/spawnpoint (name)
-		else
-			return null
-	return GLOB.spawnpoints[name]
+	var/datum/spawnpoint/SP = spawntypes()[name]
+	return SP
 
 /proc/getSpawnLocations(name = "Cryogenic Storage", free_only = TRUE)
-	var/datum/spawnpoint/SP = getSpawnPoint(name)
+	var/datum/spawnpoint/SP = spawntypes()[name]
 	if(free_only)
 		return SP.getFreeTurfs()
 	else
@@ -63,3 +75,10 @@ GLOBAL_LIST_EMPTY(spawnpoints_late)
 /proc/pickSpawnLocation(name, free_only = TRUE)
 	var/list/locations = getSpawnLocations(name, free_only)
 	return safepick(locations)
+
+/datum/spawnpoint/proc/getFreeTurfs()
+	. = list()
+	for(var/turf/T in turfs)
+		if(locate(/mob/living) in T)
+			continue
+		. += T

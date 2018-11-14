@@ -17,27 +17,9 @@
 	path = /obj/item/weapon/storage/backpack
 	is_default = TRUE
 
-/decl/backpack_outfit/rucksack
-	name = "Rucksack"
-	path = /obj/item/weapon/storage/backpack/rucksack
-	flags = BACKPACK_HAS_TYPE_SELECTION
-
 /decl/backpack_outfit/satchel
 	name = "Satchel"
 	path = /obj/item/weapon/storage/backpack/satchel
-
-/decl/backpack_outfit/satchel/New()
-	..()
-	tweaks += new/datum/backpack_tweak/selection/specified_types_as_list(typesof(/obj/item/weapon/storage/backpack/satchel/leather) + /obj/item/weapon/storage/backpack/satchel/grey)
-
-/decl/backpack_outfit/messenger_bag
-	name = "Messenger bag"
-	path = /obj/item/weapon/storage/backpack/messenger
-
-/decl/backpack_outfit/pocketbook
-	name = "Pocketbook"
-	path = /obj/item/weapon/storage/backpack/satchel/pocketbook
-	flags = BACKPACK_HAS_TYPE_SELECTION
 
 /* Code */
 /decl/backpack_outfit

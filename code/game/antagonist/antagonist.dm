@@ -1,3 +1,4 @@
+GLOBAL_LIST_EMPTY(all_antag_types)
 /datum/antagonist
 
 	// Base vars
@@ -47,6 +48,10 @@
 		restricted_jobs |= protected_jobs
 	if(selectable && !role_type)
 		role_type = role_text
+
+	if(!GLOB.all_antag_types[id])
+		GLOB.all_antag_types[id] = src
+
 	/*if(antaghud_indicator)
 		if(!hud_icon_reference)
 			hud_icon_reference = list()

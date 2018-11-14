@@ -1,159 +1,41 @@
 DM compiler version 512.1454
 loading cev_eris.dme
 loading interface\skin.dmf
-code\modules\modular_computers\file_system\manifest.dm:4:error: COM: undefined var
-code\modules\modular_computers\file_system\manifest.dm:5:error: SPT: undefined var
-code\modules\modular_computers\file_system\manifest.dm:6:error: SCI: undefined var
-code\modules\modular_computers\file_system\manifest.dm:7:error: SEC: undefined var
-code\modules\modular_computers\file_system\manifest.dm:8:error: MED: undefined var
-code\modules\modular_computers\file_system\manifest.dm:9:error: ENG: undefined var
-code\modules\modular_computers\file_system\manifest.dm:10:error: SUP: undefined var
-code\modules\modular_computers\file_system\manifest.dm:11:error: SRV: undefined var
-code\modules\modular_computers\file_system\manifest.dm:12:error: CIV: undefined var
-code\modules\modular_computers\file_system\manifest.dm:13:error: MSC: undefined var
-code\modules\modular_computers\file_system\manifest.dm:19:error: MSC: undefined var
-code\datums\mind.dm:281:error: special_role: undefined var
-code\modules\client\preference_setup\matchmaking\matchmaking.dm:72:error: M.special_role: undefined var
 code\modules\organs\body_modifications.dm:59:error: P.get_modification: undefined proc
 code\modules\organs\body_modifications.dm:119:error: P.religion: undefined var
-code\modules\clothing\underwear\base.dm:39:error: H.get_covering_equipped_items: undefined proc
-code\modules\clothing\underwear\base.dm:97:error: dropInto: undefined proc
-code\game\objects\structures\under_wardrobe.dm:18:error: H.all_underwear: undefined var
-code\game\objects\structures\under_wardrobe.dm:41:error: H.all_underwear: undefined var
-code\game\objects\structures\under_wardrobe.dm:42:error: H.all_underwear: undefined var
-code\game\objects\structures\under_wardrobe.dm:48:error: H.all_underwear: undefined var
-code\game\objects\structures\under_wardrobe.dm:50:error: H.all_underwear: undefined var
-code\datums\outfits\outfit.dm:189:error: H.species.equip_survival_gear: undefined proc
-code\datums\outfits\equipment\backpacks.dm:22:error: /obj/item/weapon/storage/backpack/rucksack: undefined type path
-code\datums\outfits\equipment\backpacks.dm:31:error: /obj/item/weapon/storage/backpack/satchel/leather: undefined type path
-code\datums\outfits\equipment\backpacks.dm:31:error: /obj/item/weapon/storage/backpack/satchel/grey: undefined type path
-code\datums\outfits\equipment\backpacks.dm:35:error: /obj/item/weapon/storage/backpack/messenger: undefined type path
-code\datums\outfits\equipment\backpacks.dm:39:error: /obj/item/weapon/storage/backpack/satchel/pocketbook: undefined type path
-code\datums\uplink\uplink_sources.dm:114:error: AM.dropInto: undefined proc
-code\datums\uplink\uplink_sources.dm:26:error: GLOB.greek_letters: undefined var
-code\datums\uplink\uplink_sources.dm:75:error: IMPLANT_TELECRYSTAL_AMOUNT: undefined proc
-code\datums\uplink\uplink_sources.dm:76:error: U.imp_in: undefined var
-code\datums\uplink\uplink_sources.dm:81:error: U.implanted: undefined proc
-code\game\sound.dm:339:error: GLOB.using_map.lobby_track.play_to: undefined var
-code\modules\admin\bluespacetech.dm:46:error: bst.backbag: undefined var
-code\modules\admin\verbs\playsound.dm:21:error: M.is_preference_enabled: undefined proc
-code\modules\admin\verbs\randomverbs.dm:233:error: P.time_of_death: undefined var
-code\modules\admin\verbs\randomverbs.dm:234:error: P.time_of_death: undefined var
-code\modules\admin\verbs\randomverbs.dm:353:error: A.randomize_appearance_for: undefined proc
-code\game\verbs\ooc.dm:48:error: target.is_preference_enabled: undefined proc
-code\game\verbs\ooc.dm:133:error: M.is_preference_enabled: undefined proc
-code\modules\mob\death.dm:123:error: P.time_of_death: undefined var
-code\modules\mob\death.dm:129:error: P.time_of_death: undefined var
-code\modules\mob\death.dm:142:error: P.crew_respawn_bonuses: undefined var
-code\modules\mob\death.dm:147:error: P.crew_respawn_bonuses: undefined var
-code\modules\mob\death.dm:148:error: P.crew_respawn_bonuses: undefined var
-code\modules\mob\death.dm:155:error: P.crew_respawn_bonuses: undefined var
-code\modules\mob\death.dm:163:error: P.crew_respawn_bonuses.Cut: undefined var
-code\modules\mob\emote.dm:72:error: M.is_preference_enabled: undefined proc
-code\modules\mob\inventory\equip.dm:32:error: equip_to_slot_or_del: duplicate definition
-code\modules\mob\inventory.dm:185:error: equip_to_slot_or_del: previous definition
-code\modules\mob\language\language.dm:162:error: client.prefs.language_prefixes: undefined var
-code\modules\mob\language\language.dm:162:error: client.prefs.language_prefixes.len: undefined var
-code\modules\mob\language\language.dm:163:error: client.prefs.language_prefixes: undefined var
-code\modules\mob\language\language.dm:168:error: client.prefs.language_prefixes: undefined var
-code\modules\mob\language\language.dm:168:error: client.prefs.language_prefixes.len: undefined var
-code\modules\mob\language\language.dm:169:error: client.prefs.language_prefixes: undefined var
 code\modules\mob\living\carbon\human\human.dm:1171:error: Pref.get_modification: undefined proc
 code\modules\mob\living\carbon\human\human.dm:1173:error: Pref.get_modification: undefined proc
 code\modules\mob\living\carbon\human\human.dm:1177:error: Pref.modifications_colors: undefined var
 code\modules\mob\living\carbon\human\human.dm:1182:error: Pref.get_modification: undefined proc
 code\modules\mob\living\carbon\human\human.dm:1184:error: Pref.modifications_colors: undefined var
-code\modules\mob\living\carbon\human\whisper.dm:119:error: M.is_preference_enabled: undefined proc
-code\modules\mob\living\carbon\human\human_species.dm:14:error: GLOB.human_mob_list: undefined var
-code\modules\mob\living\silicon\say.dm:93:error: M.is_preference_enabled: undefined proc
-code\modules\mob\living\silicon\robot\drone\drone_say.dm:37:error: M.is_preference_enabled: undefined proc
-code\modules\mob\living\simple_animal\borer\say.dm:41:error: M.is_preference_enabled: undefined proc
-code\datums\mind.dm:296:error: returnmind.special_role: undefined var
-code\modules\mob\living\say.dm:220:error: M.is_preference_enabled: undefined proc
-code\modules\mob\living\simple_animal\borer\borer_captive.dm:31:error: M.is_preference_enabled: undefined proc
-code\modules\mob\new_player\new_player.dm:357:error: client.prefs.randomize_appearance_for: undefined proc
-code\modules\mob\new_player\new_player.dm:402:error: has_admin_rights: duplicate definition
-code\modules\mob\mob.dm:1170:error: has_admin_rights: previous definition
-code\_helpers\game.dm:214:error: M.is_preference_enabled: undefined proc
-code\modules\client\preferences_spawnpoints.dm:11:error: GLOB.using_map.allowed_spawns: undefined var
-code\modules\client\preferences_spawnpoints.dm:59:error: SP.getFreeTurfs: undefined proc
-code\modules\modular_computers\file_system\manifest.dm:2:error: html_crew_manifest: duplicate definition
-code\_helpers\manifest.dm:15:error: html_crew_manifest: previous definition
-code\modules\modular_computers\file_system\manifest.dm:87:error: silicon_nano_crew_manifest: duplicate definition
-code\_helpers\manifest.dm:109:error: silicon_nano_crew_manifest: previous definition
-code\modules\modular_computers\file_system\manifest.dm:106:error: filtered_nano_crew_manifest: duplicate definition
-code\_helpers\manifest.dm:128:error: filtered_nano_crew_manifest: previous definition
-code\modules\modular_computers\file_system\manifest.dm:116:error: nano_crew_manifest: duplicate definition
-code\_helpers\manifest.dm:138:error: nano_crew_manifest: previous definition
-code\modules\modular_computers\file_system\manifest.dm:128:error: flat_nano_crew_manifest: duplicate definition
-code\_helpers\manifest.dm:150:error: flat_nano_crew_manifest: previous definition
-code\controllers\subsystems\jobs.dm:307:error: H.client.prefs.gear: undefined var
-code\controllers\subsystems\jobs.dm:307:error: H.client.prefs.gear.len: undefined var
-code\controllers\subsystems\jobs.dm:308:error: H.client.prefs.gear: undefined var
-code\controllers\subsystems\jobs.dm:329:error: H.client.prefs.gear: undefined var
-code\controllers\subsystems\jobs.dm:353:error: H.client.prefs.gear: undefined var
-code\controllers\subsystems\jobs.dm:422:error: H.client.prefs.gear: undefined var
-code\controllers\subsystems\jobs.dm:579:error: spawnpos.getFreeTurfs: undefined proc
-code\controllers\subsystems\jobs.dm:585:error: returnspawnpos.message: undefined var
-code\modules\client\preference_setup\general\02_body.dm:687:error: mob_species.get_hair_styles: undefined proc
-code\modules\client\preference_setup\general\02_body.dm:693:error: GLOB.hair_styles_list: undefined var
-code\modules\client\preference_setup\general\02_body.dm:686:warning: mob_species: variable defined but not used
-code\modules\client\preference_setup\general\02_body.dm:697:error: mob_species.get_facial_hair_styles: undefined proc
-code\modules\client\preference_setup\general\02_body.dm:703:error: GLOB.facial_hair_styles_list: undefined var
-code\modules\client\preference_setup\general\02_body.dm:696:warning: mob_species: variable defined but not used
-code\modules\client\preference_setup\occupation\occupation.dm:339:error: GLOB.using_map.allowed_jobs: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:345:error: job.is_restricted: undefined proc
-code\modules\client\preference_setup\occupation\occupation.dm:349:error: job.is_restricted: undefined proc
-code\modules\client\preference_setup\occupation\occupation.dm:353:error: job.is_restricted: undefined proc
-code\modules\client\preference_setup\antagonism\01_candidacy.dm:37:error: GLOB.all_antag_types_: undefined var
-code\modules\client\preference_setup\antagonism\01_candidacy.dm:119:error: GLOB.all_antag_types_: undefined var
-code\modules\client\preference_setup\general\01_basic.dm:93:error: S.get_facial_hair_styles: undefined proc
-code\modules\client\preference_setup\general\01_basic.dm:101:error: pref.skills_allocated: undefined var
-code\modules\client\preference_setup\general\01_basic.dm:101:error: pref.skills_allocated: undefined var
-code\modules\client\preference_setup\general\01_basic.dm:101:error: pref.sanitize_skills: undefined proc
-code\modules\client\preference_setup\general\02_body.dm:107:error: GLOB.hair_styles_list: undefined var
-code\modules\client\preference_setup\general\02_body.dm:108:error: GLOB.facial_hair_styles_list: undefined var
-code\modules\client\preference_setup\general\02_body.dm:122:error: mob_species.max_skin_tone: undefined proc
-code\modules\client\preference_setup\general\02_body.dm:125:error: mob_species.base_skin_colours: undefined var
-code\modules\client\preference_setup\general\02_body.dm:125:error: mob_species.base_skin_colours: undefined var
-code\modules\client\preference_setup\general\02_body.dm:134:error: GLOB.body_marking_styles_list: undefined var
-code\modules\client\preference_setup\general\02_body.dm:141:error: mob_species.descriptors: undefined var
-code\modules\client\preference_setup\general\02_body.dm:142:error: mob_species.descriptors: undefined var
-code\modules\client\preference_setup\general\02_body.dm:143:error: mob_species.descriptors: undefined var
-code\modules\client\preference_setup\general\02_body.dm:144:error: descriptor: undefined type: descriptor
-code\modules\client\preference_setup\general\02_body.dm:146:error: descriptor.default_value: undefined type: descriptor.default_value
-code\modules\client\preference_setup\general\02_body.dm:148:error: descriptor.standalone_value_descriptors: undefined type: descriptor.standalone_value_descriptors
-code\modules\client\preference_setup\general\02_body.dm:148:error: descriptor.standalone_value_descriptors: undefined type: descriptor.standalone_value_descriptors
-code\modules\client\preference_setup\general\02_body.dm:163:error: mob_species.get_description: undefined proc
-code\modules\client\preference_setup\general\02_body.dm:168:error: config.use_cortical_stacks: undefined var
-code\modules\client\preference_setup\general\02_body.dm:182:error: mob_species.max_skin_tone: undefined proc
-code\modules\client\preference_setup\general\02_body.dm:277:error: mob_species.descriptors: undefined var
-code\modules\client\preference_setup\general\02_body.dm:278:error: descriptor.chargen_label: undefined type: descriptor.chargen_label
-code\modules\client\preference_setup\general\02_body.dm:278:error: descriptor.get_standalone_value_descriptor: undefined type: descriptor.get_standalone_value_descriptor
-code\modules\client\preference_setup\general\02_body.dm:329:error: mob_species.descriptors: undefined var
-code\modules\client\preference_setup\general\02_body.dm:332:error: mob_species.descriptors: undefined var
-code\modules\client\preference_setup\general\02_body.dm:333:error: descriptor.chargen_value_descriptors: undefined type: descriptor.chargen_value_descriptors
+code\modules\client\preference_setup\general\02_body.dm:168:error: mob_species.get_description: undefined proc
+code\modules\client\preference_setup\general\02_body.dm:173:error: config.use_cortical_stacks: undefined var
+code\modules\client\preference_setup\general\02_body.dm:187:error: mob_species.max_skin_tone: undefined proc
+code\modules\client\preference_setup\general\02_body.dm:282:error: mob_species.descriptors: undefined var
+code\modules\client\preference_setup\general\02_body.dm:283:error: descriptor.chargen_label: undefined type: descriptor.chargen_label
+code\modules\client\preference_setup\general\02_body.dm:283:error: descriptor.get_standalone_value_descriptor: undefined type: ÿÿscriptor.descriptor
 code\modules\client\preference_setup\general\02_body.dm:334:error: mob_species.descriptors: undefined var
-code\modules\client\preference_setup\general\02_body.dm:335:error: descriptor.chargen_value_descriptors: undefined type: descriptor.chargen_value_descriptors
-code\modules\client\preference_setup\general\02_body.dm:352:error: current_species.get_description: undefined proc
-code\modules\client\preference_setup\general\02_body.dm:359:error: config.usealienwhitelist: undefined var
-code\modules\client\preference_setup\general\02_body.dm:391:error: pref.skills_allocated: undefined var
-code\modules\client\preference_setup\general\02_body.dm:391:error: pref.skills_allocated: undefined var
-code\modules\client\preference_setup\general\02_body.dm:391:error: pref.sanitize_skills: undefined proc
-code\modules\client\preference_setup\general\02_body.dm:393:error: pref.cultural_info: undefined var
-code\modules\client\preference_setup\general\02_body.dm:393:error: mob_species.default_cultural_info.Copy: undefined var
-code\modules\client\preference_setup\general\02_body.dm:408:error: mob_species.get_hair_styles: undefined proc
-code\modules\client\preference_setup\general\02_body.dm:412:error: mob_species.get_hair_styles: undefined proc
-code\modules\client\preference_setup\general\02_body.dm:439:error: mob_species.base_skin_colours: undefined var
-code\modules\client\preference_setup\general\02_body.dm:447:error: mob_species.max_skin_tone: undefined proc
-code\modules\client\preference_setup\general\02_body.dm:450:error: mob_species.max_skin_tone: undefined proc
-code\modules\client\preference_setup\general\02_body.dm:464:error: mob_species.get_facial_hair_styles: undefined proc
+code\modules\client\preference_setup\general\02_body.dm:337:error: mob_species.descriptors: undefined var
+code\modules\client\preference_setup\general\02_body.dm:338:error: descriptor.chargen_value_descriptors: undefined type: descriptor.chargen_value_descriptors
+code\modules\client\preference_setup\general\02_body.dm:339:error: mob_species.descriptors: undefined var
+code\modules\client\preference_setup\general\02_body.dm:340:error: descriptor.chargen_value_descriptors: undefined type: descriptor.chargen_value_descriptors
+code\modules\client\preference_setup\general\02_body.dm:357:error: current_species.get_description: undefined proc
+code\modules\client\preference_setup\general\02_body.dm:364:error: config.usealienwhitelist: undefined var
+code\modules\client\preference_setup\general\02_body.dm:396:error: pref.skills_allocated: undefined var
+code\modules\client\preference_setup\general\02_body.dm:396:error: pref.skills_allocated: undefined var
+code\modules\client\preference_setup\general\02_body.dm:396:error: pref.sanitize_skills: undefined proc
+code\modules\client\preference_setup\general\02_body.dm:398:error: pref.cultural_info: undefined var
+code\modules\client\preference_setup\general\02_body.dm:398:error: mob_species.default_cultural_info.Copy: undefined var
+code\modules\client\preference_setup\general\02_body.dm:413:error: mob_species.get_hair_styles: undefined proc
+code\modules\client\preference_setup\general\02_body.dm:417:error: mob_species.get_hair_styles: undefined proc
+code\modules\client\preference_setup\general\02_body.dm:444:error: mob_species.base_skin_colours: undefined var
+code\modules\client\preference_setup\general\02_body.dm:452:error: mob_species.max_skin_tone: undefined proc
+code\modules\client\preference_setup\general\02_body.dm:455:error: mob_species.max_skin_tone: undefined proc
 code\modules\client\preference_setup\general\02_body.dm:469:error: mob_species.get_facial_hair_styles: undefined proc
-code\modules\client\preference_setup\general\02_body.dm:474:error: GLOB.body_marking_styles_list.Copy: undefined var
+code\modules\client\preference_setup\general\02_body.dm:474:error: mob_species.get_facial_hair_styles: undefined proc
 code\modules\client\preference_setup\general\03_equipment.dm:43:error: GLOB.underwear.categories: undefined var
 code\modules\client\preference_setup\general\03_equipment.dm:53:error: GLOB.underwear.categories_by_name: undefined var
 code\modules\client\preference_setup\general\03_equipment.dm:88:error: GLOB.underwear.categories: undefined var
-code\modules\client\preference_setup\general\03_equipment.dm:94:error: UWI.tweaks: undefined var
 code\modules\client\preference_setup\general\03_equipment.dm:138:error: GLOB.underwear.categories_by_name: undefined var
 code\modules\client\preference_setup\general\04_flavor.dm:22:error: GLOB.robot_module_types: undefined var
 code\modules\client\preference_setup\general\04_flavor.dm:37:error: GLOB.robot_module_types: undefined var
@@ -185,21 +67,15 @@ code\modules\client\preference_setup\occupation\occupation.dm:253:error: job.req
 code\game\antagonist\antagonist_equip.dm:64:error: traitor_mob.client.prefs.uplinklocation: undefined var
 code\game\antagonist\antagonist_equip.dm:71:error: traitor_mob.client.prefs.uplinklocation: undefined var
 code\game\antagonist\antagonist_equip.dm:78:error: traitor_mob.client.prefs.uplinklocation: undefined var
-code\modules\client\preferences.dm:34:error: SScharacter_setup.initialized: undefined var
-code\modules\client\preferences.dm:64:error: SScharacter_setup.initialized: undefined var
-code\modules\client\preferences.dm:152:error: GLOB.last_names: undefined var
-code\modules\client\preferences.dm:154:error: GLOB.last_names: undefined var
-code\modules\client\preferences.dm:180:error: GLOB.underwear.categories_by_name: undefined var
-code\modules\client\preferences.dm:185:error: UWD.create_underwear: undefined proc
-code\modules\client\preferences.dm:195:error: O.markings.Cut: undefined var
-code\modules\client\preferences.dm:198:error: GLOB.body_marking_styles_list: undefined var
-code\modules\client\preferences.dm:201:error: mark_datum.body_parts: undefined type: mark_datum.body_parts
-code\modules\client\preferences.dm:204:error: O.markings: undefined var
-code\modules\client\preferences.dm:204:error: mark_datum: undefined type: mark_datum
-code\modules\client\preferences.dm:183:warning: UWD: variable defined but not used
-code\modules\client\preferences.dm:194:warning: O: variable defined but not used
-code\modules\client\preferences.dm:198:warning: mark_datum: variable defined but not used
-code\modules\client\preferences.dm:252:error: GLOB.using_map.character_load_path: undefined var
+code\modules\client\preferences.dm:42:error: SScharacter_setup.initialized: undefined var
+code\modules\client\preferences.dm:72:error: SScharacter_setup.initialized: undefined var
+code\modules\client\preferences.dm:160:error: GLOB.last_names: undefined var
+code\modules\client\preferences.dm:162:error: GLOB.last_names: undefined var
+code\modules\client\preferences.dm:188:error: GLOB.underwear.categories_by_name: undefined var
+code\modules\client\preferences.dm:203:error: O.markings.Cut: undefined var
+code\modules\client\preferences.dm:212:error: O.markings: undefined var
+code\modules\client\preferences.dm:202:warning: O: variable defined but not used
+code\modules\client\preferences.dm:260:error: GLOB.using_map.character_load_path: undefined var
 code\modules\client\preferences_savefile.dm:49:error: GLOB.using_map.character_load_path: undefined var
 code\modules\client\preferences_savefile.dm:53:error: GLOB.using_map.character_load_path: undefined var
 code\modules\client\preferences_savefile.dm:63:error: GLOB.using_map.character_save_path: undefined var
@@ -226,16 +102,21 @@ code\modules\client\preference_setup\global\preferences.dm:106:error: GLOB.ambie
 code\modules\client\preference_setup\matchmaking\matchmaking.dm:122:error: GLOB.player_list: undefined var
 code\modules\client\preference_setup\loadout\loadout.dm:26:error: GLOB.using_map.loadout_blacklist: undefined var
 code\modules\client\preference_setup\loadout\loadout.dm:26:error: GLOB.using_map.loadout_blacklist: undefined var
-code\modules\admin\verbs\randomverbs.dm:223:warning: P: variable defined but not used
-code\modules\admin\verbs\randomverbs.dm:352:warning: A: variable defined but not used
-code\modules\client\preference_setup\general\02_body.dm:143:warning: descriptor: variable defined but not used
-code\modules\client\preference_setup\general\02_body.dm:191:warning: status: variable defined but not used
-code\modules\client\preference_setup\general\02_body.dm:192:warning: organ_name: variable defined but not used
-code\modules\client\preference_setup\general\02_body.dm:277:warning: descriptor: variable defined but not used
-code\modules\client\preference_setup\general\02_body.dm:332:warning: descriptor: variable defined but not used
-code\modules\client\preference_setup\general\02_body.dm:351:warning: current_species: variable defined but not used
-code\modules\client\preference_setup\general\02_body.dm:518:warning: limb: variable defined but not used
-code\modules\client\preference_setup\general\02_body.dm:519:warning: second_limb: variable defined but not used
-code\modules\client\preference_setup\general\02_body.dm:520:warning: third_limb: variable defined but not used
-cev_eris.dmb - 100 errors, 17 warnings (11/13/18 10:02 am) (max count reached)
-Total time: 0:28
+code\game\objects\structures\under_wardrobe.dm:53:error: GLOB.underwear.categories: undefined var
+code\game\objects\structures\under_wardrobe.dm:55:error: GLOB.underwear.categories: undefined var
+code\game\objects\structures\under_wardrobe.dm:77:error: GLOB.underwear.categories_by_name: undefined var
+code\game\objects\structures\under_wardrobe.dm:101:error: GLOB.underwear.categories: undefined var
+code\controllers\subsystems\jobs.dm:305:warning: custom_equip_slots: variable defined but not used
+code\controllers\subsystems\jobs.dm:306:warning: custom_equip_leftovers: variable defined but not used
+code\controllers\subsystems\jobs.dm:382:warning: B: variable defined but not used
+code\modules\client\preference_setup\general\02_body.dm:139:warning: last_descriptors: variable defined but not used
+code\modules\client\preference_setup\general\02_body.dm:196:warning: status: variable defined but not used
+code\modules\client\preference_setup\general\02_body.dm:197:warning: organ_name: variable defined but not used
+code\modules\client\preference_setup\general\02_body.dm:282:warning: descriptor: variable defined but not used
+code\modules\client\preference_setup\general\02_body.dm:337:warning: descriptor: variable defined but not used
+code\modules\client\preference_setup\general\02_body.dm:356:warning: current_species: variable defined but not used
+code\modules\client\preference_setup\general\02_body.dm:523:warning: limb: variable defined but not used
+code\modules\client\preference_setup\general\02_body.dm:524:warning: second_limb: variable defined but not used
+code\modules\client\preference_setup\general\02_body.dm:525:warning: third_limb: variable defined but not used
+cev_eris.dmb - 100 errors, 14 warnings (11/18/18 1:41 pm) (max count reached)
+Total time: 0:27

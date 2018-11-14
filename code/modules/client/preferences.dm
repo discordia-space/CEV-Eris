@@ -15,8 +15,13 @@ datum/preferences
 	//game-preferences
 	var/lastchangelog = ""				//Saved changlog filesize to detect if there was a change
 
-		//Mob preview
-	var/icon/preview_icon = null
+	var/list/time_of_death = list()//This is a list of last times of death for various things with different respawn timers
+
+	var/list/crew_respawn_bonuses = list()
+	//This is a list of bonuses that are subtracted from your crew respawn time
+	//This is used to make certain ingame actions allow a dead player to respawn faster
+	//It uses an associative list to prevent exploits, so the same bonus cannot be gained repeatedly.
+	//It will just overwrite the value
 
 	var/client/client = null
 	var/client_ckey = null
@@ -168,6 +173,7 @@ datum/preferences
 	character.facial_color = rgb(r_facial, g_facial, b_facial)
 	character.skin_color = rgb(r_skin, g_skin, b_skin)
 
+	character.religion = religion
 	character.s_tone = s_tone
 
 	character.h_style = h_style
@@ -249,7 +255,7 @@ datum/preferences
 		dat += "<b>Select a character slot to load</b><hr>"
 		var/name
 		for(var/i=1, i<= config.character_slots, i++)
-			S.cd = GLOB.using_map.character_load_path(S, i)
+			S.cd = maps_data.character_load_path(S, i)
 			S["real_name"] >> name
 			if(!name)	name = "Character[i]"
 			if(i==default_slot)

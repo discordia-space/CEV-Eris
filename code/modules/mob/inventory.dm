@@ -181,10 +181,6 @@
 		drop_from_inventory(entry)
 		qdel(entry)
 
-//This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds starts and when events happen and such.
-/mob/proc/equip_to_slot_or_del(obj/item/W as obj, slot)
-	return equip_to_slot_if_possible(W, slot, 1, 1, 0)
-
 /mob/proc/equip_to_slot_or_store_or_drop(obj/item/W as obj, slot)
 	var/store = equip_to_slot_if_possible(W, slot, 0, 1, 0)
 	if(!store)
@@ -196,3 +192,11 @@
 	if(!stored && newitem)
 		newitem.forceMove(loc)
 	return stored
+
+// Returns all items which covers any given body part
+/mob/proc/get_covering_equipped_items(var/body_parts)
+	. = list()
+	for(var/entry in get_equipped_items())
+		var/obj/item/I = entry
+		if(I.body_parts_covered & body_parts)
+			. += I
