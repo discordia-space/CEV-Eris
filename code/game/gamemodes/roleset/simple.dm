@@ -50,6 +50,19 @@
 	req_crew = 10
 	event_pools = list(EVENT_LEVEL_ROLESET = -30) //This is an antitag, it has a negative cost to allow more antags to exist
 
+/datum/storyevent/roleset/marshal/can_trigger(var/severity, var/report)
+	var/a_count = 0
+	for(var/datum/antagonist/A in current_antags)
+		if(A.owner && A.is_active() && !A.is_dead())
+			a_count++
+			break
+
+	if (a_count == 0)
+		if (report) report << SPAN_NOTICE("Failure: No antags which can serve as target")
+		return FALSE //Can't spawn without at least one antag
+
+	return ..()
+
 /datum/storyevent/roleset/marshal/get_special_weight(var/new_weight)
 	var/a_count = 0
 	for(var/datum/antagonist/A in current_antags)
