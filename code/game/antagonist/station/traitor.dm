@@ -4,7 +4,7 @@
 	protected_jobs = list(JOBS_SECURITY, JOBS_COMMAND)
 
 	possible_objectives = list(
-		/datum/objective/assasinate = 30,
+		/datum/objective/assassinate = 30,
 		/datum/objective/brig = 15,
 		/datum/objective/harm = 15,
 		/datum/objective/steal = 30,
@@ -57,8 +57,8 @@
 	only_human = FALSE
 
 	possible_objectives = list(
-	/datum/objective/assasinate = 100,
-	/datum/objective/assasinate = 90,
+	/datum/objective/assassinate = 100,
+	/datum/objective/assassinate = 90,
 	/datum/objective/block = 15)
 
 	survive_objective = /datum/objective/survive
