@@ -31,7 +31,7 @@
 		var/list/cdata = list()
 
 		for(var/RT in CI.known_rituals)
-			var/datum/ritual/R = all_rituals[RT]
+			var/datum/ritual/R = GLOB.all_rituals[RT]
 
 			if(!(R.category in cdata))
 				cdata.Add(R.category)
@@ -116,12 +116,12 @@
 		for(var/RT in CI.known_rituals)
 
 			if("[RT]" == href_list["say"])
-				var/datum/ritual/R = all_rituals[RT]
+				var/datum/ritual/R = GLOB.all_rituals[RT]
 				incantation = R.get_say_phrase()
 				break
 			if("[RT]" == href_list["say_group"])
 				var/ind = text2num(href_list["say_id"])
-				var/datum/ritual/group/R = all_rituals[RT]
+				var/datum/ritual/group/R = GLOB.all_rituals[RT]
 				incantation = R.get_group_say_phrase(ind)
 				break
 		if (incantation != "")

@@ -46,8 +46,8 @@ var/list/obj/item/device/uplink/world_uplinks = list()
 
 
 //Neotheology
-var/global/list/all_rituals = list() //List of all rituals
-var/list/global_ritual_cooldowns = list() // internal lists. Use ritual's cooldown_category
+GLOBAL_LIST_EMPTY(all_rituals)//List of all rituals
+GLOBAL_LIST_EMPTY(global_ritual_cooldowns) // internal lists. Use ritual's cooldown_category
 
 //Preferences stuff
 	//Bodybuilds
@@ -227,7 +227,7 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 
 		//Rituals which are just categories for subclasses will have a null phrase
 		if (R.phrase)
-			all_rituals[R.name] = R
+			GLOB.all_rituals[R.name] = R
 
 
 	return 1

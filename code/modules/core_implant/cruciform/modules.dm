@@ -102,8 +102,8 @@
 
 /datum/core_module/rituals/cruciform/set_up()
 	for (var/grouptype in ritual_types)
-		for (var/rn in all_rituals)
-			var/datum/ritual/R = all_rituals[rn]
+		for (var/rn in GLOB.all_rituals)
+			var/datum/ritual/R = GLOB.all_rituals[rn]
 			if (istype(R, grouptype))
 				module_rituals |= R.name
 

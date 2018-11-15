@@ -110,7 +110,7 @@
 		return
 
 	for(var/RT in known_rituals)
-		var/datum/ritual/R = all_rituals[RT]
+		var/datum/ritual/R = GLOB.all_rituals[RT]
 		if(R.compare(message))
 			if(R.power > src.power)
 				H << SPAN_DANGER("Not enough energy for the [R.name].")
