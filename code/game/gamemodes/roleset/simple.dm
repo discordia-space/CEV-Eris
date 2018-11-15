@@ -56,6 +56,9 @@
 		if(A.owner && A.is_active() && !A.is_dead())
 			a_count++
 
+	if (a_count == 0)
+		return 0 //Can't spawn without at least one antag
+
 	return new_weight * max(a_count, 1)
 
 
