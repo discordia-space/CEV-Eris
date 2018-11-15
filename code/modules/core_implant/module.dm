@@ -46,7 +46,7 @@
 
 /datum/core_module/rituals
 	unique = TRUE
-	var/list/rituals = list()
+	var/list/module_rituals = list()
 	implant_type = /obj/item/weapon/implant/core_implant
 
 /datum/core_module/rituals/install()
