@@ -37,7 +37,8 @@ var/list/flooring_cache = list()
 				for(var/step_dir in cardinal)
 					var/turf/simulated/floor/T = get_step(src, step_dir)
 
-					var/is_linked = test_link(T)
+					//Test link is a flooring proc but its defined farther down in this file
+					var/is_linked = flooring.test_link(src, T)
 
 
 
@@ -65,20 +66,20 @@ var/list/flooring_cache = list()
 					//Quick way to check if we're smoothed with both north and east
 					if((has_smooth & NORTHEAST) == NORTHEAST)
 						//If we are, then check the diagonal tile
-						if (!test_link(get_step(src, NORTHEAST)))
+						if (!flooring.test_link(src, get_step(src, NORTHEAST)))
 							//If we smooth with north and east, but don't smooth with the northeast diagonal, then we have an inner corner!
 							overlays |= get_flooring_overlay("[flooring.icon_base]-corner-[NORTHEAST]", "[flooring.icon_base]_corners", NORTHEAST)
 
 					if((has_smooth & NORTHWEST) == NORTHWEST)
-						if (!test_link(get_step(src, NORTHWEST)))
+						if (!!flooring.test_link(src, get_step(src, NORTHWEST)))
 							overlays |= get_flooring_overlay("[flooring.icon_base]-corner-[NORTHWEST]", "[flooring.icon_base]_corners", NORTHWEST)
 
 					if((has_smooth & SOUTHEAST) == SOUTHEAST)
-						if (!test_link(get_step(src, SOUTHEAST)))
+						if (!!flooring.test_link(src, get_step(src, SOUTHEAST)))
 							overlays |= get_flooring_overlay("[flooring.icon_base]-corner-[SOUTHEAST]", "[flooring.icon_base]_corners", SOUTHEAST)
 
 					if((has_smooth & SOUTHWEST) == SOUTHWEST)
-						if (!test_link(get_step(src, SOUTHWEST)))
+						if (!!flooring.test_link(src, get_step(src, SOUTHWEST)))
 							overlays |= get_flooring_overlay("[flooring.icon_base]-corner-[SOUTHWEST]", "[flooring.icon_base]_corners", SOUTHWEST)
 
 
@@ -132,8 +133,10 @@ var/list/flooring_cache = list()
 			F.update_icon()
 	update_openspace()
 
-//Tests whether this floor/ing will smooth with the specified turf
-/turf/simulated/floor/proc/test_link(var/turf/T)
+
+//Tests whether this flooring will smooth with the specified turf
+//You can override this if you want a flooring to have super special snowflake smoothing behaviour
+/decl/flooring/proc/test_link(var/turf/origin, var/turf/T)
 	//is_wall is true for wall turfs and for floors containing a low wall
 	var/is_linked = FALSE
 	if(T.is_wall)
@@ -148,9 +151,24 @@ var/list/flooring_cache = list()
 	//If we get here then its a normal floor
 	else if (istype(T, /turf/simulated/floor))
 		var/turf/simulated/floor/t = T
-		if (flooring.floor_smooth || t.flooring.name == flooring.name)
+		if (t.flooring.name == flooring.name || flooring.floor_smooth == SMOOTH_ALL)
 			is_linked = TRUE
+		else if (flooring.floor_smooth != SMOOTH_NONE)
 
+			//If we get here it must be using a whitelist or blacklist
+			if (flooring.floor_smooth == SMOOTH_WHITELIST)
+				for (var/v in flooring.flooring_whitelist)
+					if (istype(t.flooring, v))
+						//Found a match on the list
+						is_linked = TRUE
+						break
+			else if(flooring.floor_smooth == SMOOTH_BLACKLIST)
+				is_linked = TRUE //Default to true for the blacklist, then make it false if a match comes up
+				for (var/v in flooring.flooring_whitelist)
+					if (istype(t.flooring, v))
+						//Found a match on the list
+						is_linked = TRUE
+						break
 	return is_linked
 
 

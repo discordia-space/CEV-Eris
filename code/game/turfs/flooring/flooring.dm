@@ -55,16 +55,48 @@ var/list/flooring_types
 	var/removal_time = WORKTIME_FAST * 0.75
 
 	//Flooring Icon vars
-	var/smooth_nothing = FALSE //Optimisation
+	var/smooth_nothing = FALSE //True/false only, optimisation
+	//If true, all smoothing logic is entirely skipped
+
+	//The rest of these x_smooth vars use one of the following options
+	//SMOOTH_NONE: Ignore all of type
+	//SMOOTH_ALL: Smooth with all of type
+	//SMOOTH_WHITELIST: Ignore all except types on this list
+	//SMOOTH_BLACKLIST: Smooth with all except types on this list
+	//SMOOTH_GREYLIST: Objects only: Use both lists
 
 	//How we smooth with other flooring
 	var/floor_smooth = SMOOTH_ALL
+	var/list/flooring_whitelist = list() //Smooth with nothing except the contents of this list
+	var/list/flooring_blacklist = list() //Smooth with nothing except the contents of this list
 
 	//How we smooth with walls
 	var/wall_smooth = SMOOTH_NONE
+	//There are no lists for walls at this time
 
 	//How we smooth with space and openspace tiles
 	var/space_smooth = SMOOTH_ALL
+	//There are no lists for spaces
+
+
+	/*
+	How we smooth with movable atoms
+	These are checked after the above turf based smoothing has been handled
+	SMOOTH_ALL or SMOOTH_NONE are treated the same here. Both of those will just ignore atoms
+	Using the white/blacklists will override what the turfs concluded, to force or deny smoothing
+
+	Movable atom lists are much more complex, to account for many possibilities
+	Each entry in a list, is itself a list consisting of three items:
+		Type: The typepath to allow/deny. This will be checked against istype, so all subtypes are included
+		Priority: Used when items in two opposite lists conflict. The one with the highest priority wins out.
+		Vars: An associative list of variables (varnames in text) and desired values
+			Code will look for the desired vars on the target item and only call it a match if all desired values match
+			This can be used, for example, to check that objects are dense and anchored
+			there are no safety checks on this, it will probably throw runtimes if you make typos
+	*/
+	var/smooth_movable_atom = SMOOTH_NONE
+	var/list/movable_atom_whitelist = list()
+	var/list/movable_atom_blacklist = list()
 
 
 //Flooring Procs
