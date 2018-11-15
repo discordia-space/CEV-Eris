@@ -175,7 +175,7 @@
 		time_to_finish = 0
 
 	var/obj/item/weapon/tool/T
-	if(istype(src, /obj/item/weapon/tool))
+	if(istool(src))
 		T = src
 		if(!T.check_tool_effects(user, time_to_finish))
 			return TOOL_USE_CANCEL
@@ -589,7 +589,7 @@
 
 	if (has_quality(QUALITY_ADHESIVE) && proximity)
 		//Tape can be used to repair other tools
-		if (istype(O, /obj/item/weapon/tool))
+		if (istool(O))
 			var/obj/item/weapon/tool/T = O
 			if (T.unreliability)
 				user.visible_message(SPAN_NOTICE("[user] begins repairing \the [O] with the [src]!"))
