@@ -9,7 +9,7 @@
 	if(target)
 		return "(target was [target.name])"
 
-/datum/objective/assassinate/marshal/marshal/update_explanation()
+/datum/objective/assassinate/marshal/update_explanation()
 	var/target_role = ""
 	if(target && target.antagonist.len)
 		for(var/datum/antagonist/A in target.antagonist)
