@@ -15,6 +15,12 @@
 	default_material = MATERIAL_GLASS
 	unbreakable = 1 //It's already broken.
 	drops_debris = 0
+	var/amount = 0
+
+/obj/item/weapon/material/shard/New(var/newloc, var/material_key, var/_amount)
+	if (_amount)
+		amount = max(round(_amount, 0.01), 0.01) //We won't ever need to physically represent less than 1% of a material unit
+	.=..()
 
 /obj/item/weapon/material/shard/set_material(var/new_material)
 	..(new_material)
@@ -24,7 +30,17 @@
 	icon_state = "[material.shard_icon][pick("large", "medium", "small")]"
 	pixel_x = rand(-8, 8)
 	pixel_y = rand(-8, 8)
+
+	//Shards must be made of some matter
+	if (!amount)
+		amount = rand_between(0.25, 1)
+
+	//Overwrite whatever was populated before. A shard contains <1 unit of a single material
+	matter = list(material.name = amount)
+
 	update_icon()
+
+
 
 	if(material.shard_type)
 		name = "[material.display_name] [material.shard_type]"
@@ -45,6 +61,19 @@
 	else
 		color = "#ffffff"
 		alpha = 255
+
+
+	//variable rotation based on randomness
+	var/rot = rand(0, 360)
+	var/matrix/M = matrix()
+	M.Turn(rot)
+
+	//Variable icon size based on material quantity
+	//Shards will scale from 0.6 to 1.25 scale, in the range of 0..1 amount
+	if (amount < 1)
+		M.Scale(((1.25 - 0.6)*amount)+0.6)
+
+	transform = M
 
 /obj/item/weapon/material/shard/attackby(obj/item/I, mob/user)
 	if(QUALITY_WELDING in I.tool_qualities)

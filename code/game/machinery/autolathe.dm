@@ -1,5 +1,5 @@
 // makes sure that discounted prices from upgraded lathe no less than 1 unit.
-#define SANITIZE_LATHE_COST(n) max(1, n) // helps to fix prices where "* mat_efficiency" is used.
+
 
 #define ERR_OK 0
 #define ERR_NOTFOUND 1
@@ -92,7 +92,7 @@
 
 			var/text = ""
 			for(var/m in R.resources)
-				text += "[m]: [SANITIZE_LATHE_COST(round(R.resources[m] * mat_efficiency))]<br>"
+				text += "[m]: [round(R.resources[m] * mat_efficiency, 0.01)]<br>"
 			LE["resources"] = text == "" ? "None" : text
 
 			text = ""
@@ -142,7 +142,7 @@
 
 		var/list/RS = list()
 		for(var/mat in R.resources)
-			RS.Add(list(list("name" = mat, "req" = SANITIZE_LATHE_COST(round(R.resources[mat] * mat_efficiency)))))
+			RS.Add(list(list("name" = mat, "req" = (round(R.resources[mat] * mat_efficiency, 0.01)))))
 
 		data["req_materials"] = RS
 
@@ -494,7 +494,7 @@
 			if(!(rmat in stored_material))
 				return ERR_NOMATERIAL
 
-			if(stored_material[rmat] < SANITIZE_LATHE_COST(round(R.resources[rmat] * mat_efficiency)))
+			if(stored_material[rmat] < (round(R.resources[rmat] * mat_efficiency, 0.01)))
 				return ERR_NOMATERIAL
 
 		if(R.reagents.len)
@@ -578,7 +578,7 @@
 		return FALSE
 
 	for(var/material in R.resources)
-		stored_material[material] = max(0, stored_material[material] - SANITIZE_LATHE_COST(round(R.resources[material] * mat_efficiency)))
+		stored_material[material] = max(0, stored_material[material] - (round(R.resources[material] * mat_efficiency, 0.01)))
 
 	for(var/reagent in R.reagents)
 		container.reagents.remove_reagent(reagent, R.reagents[reagent])
@@ -615,11 +615,13 @@
 	queue = Q
 
 
+//Autolathes can eject decimal quantities of material as a shard
 /obj/machinery/autolathe/proc/eject(var/material, var/amount)
 	if(!(material in stored_material))
 		return
 
-	amount = round(amount) //The autolathe can contain less than a full sheet, but only ejects whole sheets
+	var/whole_amount = round(amount)
+	var/remainder = amount - whole_amount
 	if (!amount)
 		return
 
@@ -628,13 +630,19 @@
 	if(!M.stack_type)
 		return
 
-	var/eject = stored_material[material]
-	eject = amount == -1 ? eject : min(eject, amount)
-	if(eject < 1)
-		return
-	var/obj/item/stack/material/S = new M.stack_type(loc)
-	S.amount = eject
-	stored_material[material] -= eject
+	if (whole_amount)
+		var/eject = stored_material[material]
+		eject = amount == -1 ? eject : min(eject, whole_amount)
+		//We eject a number of sheets equal to the whole amount
+		var/obj/item/stack/material/S = new M.stack_type(loc)
+		S.amount = whole_amount
+
+	//And if there's any remainder, we eject that as a shard
+	if (remainder)
+		new /obj/item/weapon/material/shard(loc, material, _amount = remainder)
+
+	//The stored material gets the amount (whole+remainder) subtracted
+	stored_material[material] -= amount
 
 //Updates overall lathe storage size.
 /obj/machinery/autolathe/RefreshParts()
@@ -742,4 +750,3 @@
 #undef ERR_NOREAGENT
 #undef ERR_NOLICENSE
 
-#undef SANITIZE_LATHE_COST
