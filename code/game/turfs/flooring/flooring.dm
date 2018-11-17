@@ -93,6 +93,18 @@ var/list/flooring_types
 			Code will look for the desired vars on the target item and only call it a match if all desired values match
 			This can be used, for example, to check that objects are dense and anchored
 			there are no safety checks on this, it will probably throw runtimes if you make typos
+
+	Common example:
+	Don't smooth with dense anchored objects except airlocks
+
+	smooth_movable_atom = SMOOTH_GREYLIST
+	movable_atom_blacklist = list(
+		list(/obj, list("density" = TRUE, "anchored" = TRUE), 1)
+		)
+	movable_atom_whitelist = list(
+	list(/obj/machinery/door/airlock, list(), 2)
+	)
+
 	*/
 	var/smooth_movable_atom = SMOOTH_NONE
 	var/list/movable_atom_whitelist = list()
@@ -162,7 +174,7 @@ var/list/flooring_types
 	descriptor = "plating"
 	icon = 'icons/turf/flooring/plating.dmi'
 	icon_base = "plating"
-	build_type = MATERIAL_STEEL
+	build_type = /obj/item/stack/material/steel
 	flags = TURF_REMOVE_WELDER | TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS | TURF_CAN_BURN | TURF_CAN_BREAK
 	can_paint = 1
 	plating_type = /decl/flooring/reinforced/plating/under
@@ -173,10 +185,11 @@ var/list/flooring_types
 	health = 100
 	floor_smooth = SMOOTH_BLACKLIST
 	flooring_blacklist = list(/decl/flooring/reinforced/plating/under,/decl/flooring/reinforced/plating/hull) //Smooth with everything except the contents of this list
-	smooth_movable_atom = SMOOTH_BLACKLIST
+	smooth_movable_atom = SMOOTH_GREYLIST
 	movable_atom_blacklist = list(
 		list(/obj, list("density" = TRUE, "anchored" = TRUE), 1)
 		)
+	movable_atom_whitelist = list(list(/obj/machinery/door/airlock, list(), 2))
 
 //Normal plating allows anything, except other types of plating
 /decl/flooring/reinforced/plating/can_build_floor(var/decl/flooring/newfloor)
