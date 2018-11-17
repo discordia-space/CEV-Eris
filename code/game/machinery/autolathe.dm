@@ -620,8 +620,7 @@
 	if(!(material in stored_material))
 		return
 
-	var/whole_amount = round(amount)
-	var/remainder = amount - whole_amount
+
 	if (!amount)
 		return
 
@@ -630,12 +629,15 @@
 	if(!M.stack_type)
 		return
 
+	var/whole_amount = round(amount)
+	var/remainder = amount - whole_amount
+
 	if (whole_amount)
 		var/eject = stored_material[material]
 		eject = amount == -1 ? eject : min(eject, whole_amount)
 		//We eject a number of sheets equal to the whole amount
-		var/obj/item/stack/material/S = new M.stack_type(loc)
-		S.amount = whole_amount
+		//var/obj/item/stack/material/S =
+		new M.stack_type(loc, whole_amount)
 
 	//And if there's any remainder, we eject that as a shard
 	if (remainder)

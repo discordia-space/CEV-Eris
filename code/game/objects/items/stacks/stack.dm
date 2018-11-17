@@ -349,6 +349,8 @@
 	set src in view()
 	set name = "Split"
 
+	if (!usr.IsAdvancedToolUser())
+		return
 
 	if (!Adjacent(usr))
 		usr << SPAN_WARNING("You need to be in arm's reach for that!")
@@ -358,12 +360,15 @@
 	"This stack contains [amount]/[max_amount]. How many would you like to split off into a new stack?\n\
 	The new stack will be put into your hands if possible", "Split Stack", round(amount * 0.5)) as num
 
+	if (!isnum(quantity) || quantity < 1)
+		return
+
 	var/obj/item/stack/S = split(round(quantity, 1))
 	if (istype(S))
 		//Try to put the new stack into the user's hands
 		if (!(usr.put_in_hands(S)))
 			//If that fails, leave it beside the original stack
-			S.forceMove(loc)
+			S.forceMove(get_turf(src))
 
 
 /*
