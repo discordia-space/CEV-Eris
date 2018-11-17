@@ -2,13 +2,15 @@ var/list/flooring_cache = list()
 
 /turf/var/icon_updates_count = 0
 
+/*
 /turf/verb/debugupdate()
 	set src in view()
 	set name = "debugupdate"
 
 	update_icon(TRUE, TRUE)
+*/
 
-/turf/simulated/floor/update_icon(var/update_neighbors, var/debug)
+/turf/simulated/floor/update_icon(var/update_neighbors)
 	icon_updates_count++
 	var/has_smooth = 0 //This is just the has_border bitfield inverted for easier logic
 	if(lava) //Wtf why
@@ -43,7 +45,7 @@ var/list/flooring_cache = list()
 					var/turf/simulated/floor/T = get_step(src, step_dir)
 
 					//Test link is a flooring proc but its defined farther down in this file
-					var/is_linked = flooring.test_link(src, T, debug)
+					var/is_linked = flooring.test_link(src, T)
 
 
 
@@ -71,20 +73,20 @@ var/list/flooring_cache = list()
 					//Quick way to check if we're smoothed with both north and east
 					if((has_smooth & NORTHEAST) == NORTHEAST)
 						//If we are, then check the diagonal tile
-						if (!flooring.test_link(src, get_step(src, NORTHEAST), debug))
+						if (!flooring.test_link(src, get_step(src, NORTHEAST)))
 							//If we smooth with north and east, but don't smooth with the northeast diagonal, then we have an inner corner!
 							overlays |= get_flooring_overlay("[flooring.icon_base]-corner-[NORTHEAST]", "[flooring.icon_base]_corners", NORTHEAST)
 
 					if((has_smooth & NORTHWEST) == NORTHWEST)
-						if (!flooring.test_link(src, get_step(src, NORTHWEST), debug))
+						if (!flooring.test_link(src, get_step(src, NORTHWEST)))
 							overlays |= get_flooring_overlay("[flooring.icon_base]-corner-[NORTHWEST]", "[flooring.icon_base]_corners", NORTHWEST)
 
 					if((has_smooth & SOUTHEAST) == SOUTHEAST)
-						if (!flooring.test_link(src, get_step(src, SOUTHEAST), debug))
+						if (!flooring.test_link(src, get_step(src, SOUTHEAST)))
 							overlays |= get_flooring_overlay("[flooring.icon_base]-corner-[SOUTHEAST]", "[flooring.icon_base]_corners", SOUTHEAST)
 
 					if((has_smooth & SOUTHWEST) == SOUTHWEST)
-						if (!flooring.test_link(src, get_step(src, SOUTHWEST), debug))
+						if (!flooring.test_link(src, get_step(src, SOUTHWEST)))
 							overlays |= get_flooring_overlay("[flooring.icon_base]-corner-[SOUTHWEST]", "[flooring.icon_base]_corners", SOUTHWEST)
 
 
@@ -141,70 +143,65 @@ var/list/flooring_cache = list()
 
 //Tests whether this flooring will smooth with the specified turf
 //You can override this if you want a flooring to have super special snowflake smoothing behaviour
-/decl/flooring/proc/test_link(var/turf/origin, var/turf/T, var/debug = FALSE)
-	if (debug)
-		if(origin == T)
-			world << "Doing a countercheck"
-		else
-			world << "Attempting link with [dir2text(get_dir(origin, T))] [T]	"
+/decl/flooring/proc/test_link(var/turf/origin, var/turf/T, var/countercheck = FALSE)
 
-	//is_wall is true for wall turfs and for floors containing a low wall
 	var/is_linked = FALSE
-	if(T.is_wall)
-		if(wall_smooth)
-			is_linked = TRUE
+	if (!countercheck)
+		//is_wall is true for wall turfs and for floors containing a low wall
 
-
-	//If is_hole is true, then it's space or openspace
-	else if(T.is_hole)
-		if(space_smooth)
-			is_linked = TRUE
-
-
-	//If we get here then its a normal floor
-	else if (istype(T, /turf/simulated/floor))
-		var/turf/simulated/floor/t = T
-		//If the floor is the same as us,then we're linked,
-		if (t.flooring.name == name)
-			/*
-				But there's a caveat. To make atom black/whitelists work correctly, we also need to check that
-				they smooth with us. Ill call this counterchecking for simplicity
-
-				To prevent an infinite recursion loop here, we'll use origin to mean the turf that started this operation, ie us
-			*/
-			if (debug) world << "Flooring Matches, will we do countercheck?"
-			if (smooth_movable_atom != SMOOTH_NONE && origin != T)
-				if (debug) world << "Doing countercheck"
-				//If origin == T then this is a countercheck
-
-				//We do the countercheck, passing ourselves (origin) as both origin and T.
-				is_linked = test_link(origin, origin, debug)
-
-			else
-				//If atom lists aren't involved then we're done with floor checking
+		if(T.is_wall)
+			if(wall_smooth)
 				is_linked = TRUE
 
-		if (floor_smooth == SMOOTH_ALL)
-			is_linked = TRUE
 
-		else if (floor_smooth != SMOOTH_NONE)
+		//If is_hole is true, then it's space or openspace
+		else if(T.is_hole)
+			if(space_smooth)
+				is_linked = TRUE
+
+
+		//If we get here then its a normal floor
+		else if (istype(T, /turf/simulated/floor))
+			var/turf/simulated/floor/t = T
+			//If the floor is the same as us,then we're linked,
+			if (t.flooring.name == name)
+				/*
+					But there's a caveat. To make atom black/whitelists work correctly, we also need to check that
+					they smooth with us. Ill call this counterchecking for simplicity.
+					This is needed to make both turfs have the correct borders
+
+					To prevent infinite loops we have a countercheck var, which we'll set true
+				*/
+				if (smooth_movable_atom != SMOOTH_NONE)
+					//We do the countercheck, passing countercheck as true
+					is_linked = test_link(T, origin, countercheck = TRUE)
+
+
+			else if (floor_smooth == SMOOTH_ALL)
+				is_linked = TRUE
+
+			else if (floor_smooth != SMOOTH_NONE)
 
 
 
-			//If we get here it must be using a whitelist or blacklist
-			if (floor_smooth == SMOOTH_WHITELIST)
-				for (var/v in flooring_whitelist)
-					if (istype(t.flooring, v))
-						//Found a match on the list
-						is_linked = TRUE
-						break
-			else if(floor_smooth == SMOOTH_BLACKLIST)
-				is_linked = TRUE //Default to true for the blacklist, then make it false if a match comes up
-				for (var/v in flooring_whitelist)
-					if (istype(t.flooring, v))
-						//Found a match on the list
-						is_linked = FALSE
-						break
+				//If we get here it must be using a whitelist or blacklist
+				if (floor_smooth == SMOOTH_WHITELIST)
+					for (var/v in flooring_whitelist)
+						if (istype(t.flooring, v))
+							//Found a match on the list
+							is_linked = TRUE
+							break
+				else if(floor_smooth == SMOOTH_BLACKLIST)
+					is_linked = TRUE //Default to true for the blacklist, then make it false if a match comes up
+					for (var/v in flooring_whitelist)
+						if (istype(t.flooring, v))
+							//Found a match on the list
+							is_linked = FALSE
+							break
+	else
+		//If this is a countercheck, we skip all of the above, start off with true, and go straight to the atom lists
+		is_linked = TRUE
+
 
 
 	//Alright now we have a preliminary answer about smoothing, however that answer may change with the following
@@ -227,10 +224,16 @@ var/list/flooring_cache = list()
 
 					if (istype(a, d_type))
 						//It's the right type, so we're sure it will have the vars we want.
-						//From here on out, we do dangerous stuff that may runtime if the coder screwed up
 
 						var/atom/movable/AM = a
 						//Typecast it to a movable atom
+						//Lets make sure its in the way before we consider it
+						if (!AM.is_between_turfs(origin, T))
+							continue
+
+						//From here on out, we do dangerous stuff that may runtime if the coder screwed up
+
+
 						var/match = TRUE
 						for (var/d_var in d_vars)
 							//For each variable we want to check
@@ -265,10 +268,15 @@ var/list/flooring_cache = list()
 
 						if (istype(a, d_type))
 							//It's the right type, so we're sure it will have the vars we want.
-							//From here on out, we do dangerous stuff that may runtime if the coder screwed up
 
 							var/atom/movable/AM = a
 							//Typecast it to a movable atom
+							//Lets make sure its in the way before we consider it
+							if (!AM.is_between_turfs(origin, T))
+								continue
+
+							//From here on out, we do dangerous stuff that may runtime if the coder screwed up
+
 							var/match = TRUE
 							for (var/d_var in d_vars)
 								//For each variable we want to check
@@ -286,8 +294,6 @@ var/list/flooring_cache = list()
 								//And this is a blacklist, so this match forces is_linked to false
 								is_linked = FALSE
 
-	if (debug && is_linked && origin != T)
-		world << "Linking with [dir2text(get_dir(origin, T))] [T]	"
 	return is_linked
 
 
