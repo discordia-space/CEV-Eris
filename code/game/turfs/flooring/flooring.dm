@@ -171,7 +171,12 @@ var/list/flooring_types
 	space_smooth = FALSE
 	removal_time = 150
 	health = 100
-
+	floor_smooth = SMOOTH_BLACKLIST
+	flooring_blacklist = list(/decl/flooring/reinforced/plating/under,/decl/flooring/reinforced/plating/hull) //Smooth with everything except the contents of this list
+	smooth_movable_atom = SMOOTH_BLACKLIST
+	movable_atom_blacklist = list(
+		list(/obj, list("density" = TRUE, "anchored" = TRUE), 1)
+		)
 
 //Normal plating allows anything, except other types of plating
 /decl/flooring/reinforced/plating/can_build_floor(var/decl/flooring/newfloor)
