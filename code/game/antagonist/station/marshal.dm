@@ -8,7 +8,6 @@
 
 	possible_objectives = list(
 	/datum/objective/assassinate/marshal = 100,
-	/datum/objective/assassinate/marshal = 15,
 	)
 
 	survive_objective = /datum/objective/escape

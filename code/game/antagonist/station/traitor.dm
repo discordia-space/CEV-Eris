@@ -58,7 +58,6 @@
 
 	possible_objectives = list(
 	/datum/objective/assassinate = 100,
-	/datum/objective/assassinate = 90,
 	/datum/objective/block = 15)
 
 	survive_objective = /datum/objective/survive
