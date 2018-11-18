@@ -921,6 +921,7 @@
 #include "code\game\objects\items\weapons\tools\shovel.dm"
 #include "code\game\objects\items\weapons\tools\surgicaldrills.dm"
 #include "code\game\objects\items\weapons\tools\tape.dm"
+#include "code\game\objects\items\weapons\tools\upgrades.dm"
 #include "code\game\objects\items\weapons\tools\weldingtools.dm"
 #include "code\game\objects\items\weapons\tools\wirecutters.dm"
 #include "code\game\objects\items\weapons\tools\wrenches.dm"

@@ -26,9 +26,10 @@
 	var/delete_when_empty = TRUE
 
 
-	//Variables used for makeshift tools
+	//Variables used for tool degradation
 	var/degradation = 0.15 //If nonzero, the unreliability of the tool increases by 0..this after each tool operation
 	var/unreliability = 0 //This is added to the failure rate of operations with this tool
+	var/repair_frequency = 0 //How many times this tool has been repaired
 
 	var/toggleable = FALSE	//Determinze if it can be switched ON or OFF, for example, if you need a tool that will consume power/fuel upon turning it ON only. Such as welder.
 	var/switched_on = FALSE	//Curent status of tool. Dont edit this in subtypes vars, its for procs only.
@@ -36,7 +37,13 @@
 	var/switched_off_qualities = null	//This var will REPLACE tool_qualities when tool will be toggled off. So its possible for tool to have diferent qualities both for ON and OFF state.
 	var/create_hot_spot = FALSE	 //Set this TRUE to ignite plasma on turf with tool upon activation
 	var/glow_color = null	//Set color of glow upon activation, or leave it null if you dont want any light
+	var/last_tooluse = 0 //When the tool was last used for a tool operation. This is set both at the start of an operation, and after the doafter call
 
+	//Vars for tool upgrades
+	var/list/upgrades = list()
+	var/max_upgrades = 2
+	var/precision = 0	//Subtracted from failure rates
+	var/workspeed = 1	//Worktimes are divided by this
 
 /******************************
 	/* Core Procs */
@@ -143,6 +150,12 @@
 
 //Use this proc if you want to handle all types of failure yourself. It used in surgery, for example, to deal damage to patient.
 /obj/item/proc/use_tool_extended(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, required_stat = null, instant_finish_tier = 110, forced_sound = null, var/sound_repeat = 2.5 SECONDS)
+
+	var/obj/item/weapon/tool/T
+	if(istool(src))
+		T.last_tooluse = world.time
+		T = src
+
 	if (is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		if (isliving(target))
 			var/mob/living/L = target
@@ -171,12 +184,14 @@
 	if (base_time)
 		time_to_finish = base_time - get_tool_quality(required_quality) - user.stats.getStat(required_stat)
 
+		//Workspeed var, can be improved by upgrades
+		if (T && T.workspeed > 0)
+			time_to_finish /= T.workspeed
+
 	if((instant_finish_tier < get_tool_quality(required_quality)) || time_to_finish < 0)
 		time_to_finish = 0
 
-	var/obj/item/weapon/tool/T
-	if(istool(src))
-		T = src
+	if (T)
 		if(!T.check_tool_effects(user, time_to_finish))
 			return TOOL_USE_CANCEL
 
@@ -208,6 +223,7 @@
 			time_spent = world.time - start_time //We failed, spent only part of the time working
 			if (T)
 				T.consume_resources(time_spent, user)
+				T.last_tooluse = world.time
 			if (toolsound)
 				//We abort the repeating sound.
 				//Stop function will delete itself too
@@ -215,6 +231,8 @@
 				toolsound = null
 			return TOOL_USE_CANCEL
 		else
+			if (T)
+				T.last_tooluse = world.time
 			target.used_now = FALSE
 
 	//If we get here the operation finished correctly, we spent the full time working
@@ -232,9 +250,10 @@
 		stat_modifer = user.stats.getStat(required_stat)
 	fail_chance = fail_chance - get_tool_quality(required_quality) - stat_modifer
 
-	//Unreliability increases failure rates
+	//Unreliability increases failure rates, and precision reduces it
 	if (T)
 		fail_chance += T.unreliability
+		fail_chance -= T.precision
 
 	if (fail_chance < 0)
 		fail_chance = 0
@@ -530,6 +549,20 @@
 		qdel(src)
 
 
+/***************************
+	Tool Upgrades
+****************************/
+/obj/item/weapon/tool/proc/refresh_upgrades()
+//First of all, lets reset any var that could possibly be altered by an upgrade
+	degradation = initial(degradation) * 1.05 ** repair_frequency //Degradation gets slightly worse each time the tool is repaired
+	workspeed = initial(workspeed)
+	precision = initial(precision)
+	suitable_cell = initial(suitable_cell)
+
+	//Now lets have each upgrade reapply its modifications
+	for (var/obj/item/weapon/tool_upgrade/T in upgrades)
+		T.apply_values()
+
 /obj/item/weapon/tool/examine(mob/user)
 	if(!..(user,2))
 		return
@@ -596,13 +629,27 @@
 				//Toolception!
 				if(use_tool(user, T, 60 + (T.unreliability*10), QUALITY_ADHESIVE, T.unreliability, STAT_MEC))
 					//Repairs are imperfect, it'll never go back to being intact
-					T.unreliability *= 0.25
+					T.unreliability *= 0.1
+					repair_frequency++
+					refresh_upgrades()
 				return
 
 		if (stick(O, user))
 			return
+	//Triggers degradation and resource use upon attacks
+	if (!(flags & NOBLUDGEON) && (world.time - last_tooluse) > 2)
+		consume_resources(5,user)
 
 	return ..()
+
+//Triggers degradation and resource use upon attacks
+/obj/item/weapon/tool/resolve_attackby(atom/A, mob/user, params)
+	.=..()
+	//If the parent return value is true, then there won't be an attackby
+	//If there will be an attackby, we'll handle it there
+	//Checking the last tooluse time prevents consuming twice for a tool action
+	if (. && loc == user && (!(flags & NOBLUDGEON)) && (world.time - last_tooluse) > 2)
+		consume_resources(5,user)
 
 //Decides whether or not to damage a player's eyes based on what they're wearing as protection
 //Note: This should probably be moved to mob
