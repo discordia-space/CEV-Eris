@@ -558,6 +558,7 @@
 	workspeed = initial(workspeed)
 	precision = initial(precision)
 	suitable_cell = initial(suitable_cell)
+	max_fuel = initial(max_fuel)
 
 	//Now lets have each upgrade reapply its modifications
 	for (var/obj/item/weapon/tool_upgrade/T in upgrades)
