@@ -29,7 +29,7 @@
 	lightsout(TRUE, lightsoutAmount, lightsoutRange)
 
 
-/proc/lightsout(isEvent = 0, lightsoutAmount = 1,lightsoutRange = 25) //leave lightsoutAmount as 0 to break ALL lights
+/proc/lightsout(isEvent = 0, lightsoutAmount = 1,lightsoutRange = 24) //leave lightsoutAmount as 0 to break ALL lights
 	if(!isEvent)
 		command_announcement.Announce("An Electrical storm has been detected in your area, please repair potential electronic overloads.","Electrical Storm Alert")
 
@@ -58,7 +58,8 @@
 		for(var/epicentre in epicentreList)
 			log_and_message_admins("Electrical overload triggered at [jumplink(epicentre)],")
 			for(var/obj/machinery/power/apc/apc in range(epicentre,lightsoutRange))
-				apc.overload_lighting()
+				if (prob(75))
+					apc.overload_lighting()
 
 	else
 		for(var/obj/machinery/power/apc/apc in SSmachines.machinery)
