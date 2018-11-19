@@ -738,6 +738,8 @@
 	//Triggers degradation and resource use upon attacks
 	if (!(flags & NOBLUDGEON) && (world.time - last_tooluse) > 2)
 		consume_resources(5,user)
+		if (prob(unreliability))
+			handle_failure(user, O)
 
 	return ..()
 
@@ -749,6 +751,8 @@
 	//Checking the last tooluse time prevents consuming twice for a tool action
 	if (. && loc == user && (!(flags & NOBLUDGEON)) && (world.time - last_tooluse) > 2)
 		consume_resources(5,user)
+		if (prob(unreliability))
+			handle_failure(user, A)
 
 //Decides whether or not to damage a player's eyes based on what they're wearing as protection
 //Note: This should probably be moved to mob
