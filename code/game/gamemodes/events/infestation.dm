@@ -6,13 +6,13 @@
 	id = "infestation"
 	name = "infestation"
 
-	weight = 2
+	weight = 1.8
 	//Since it's a large pool of content, infestation has twice the weight of other events
 
 	event_type = /datum/event/infestation
-	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE,
-	EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE,
-	EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR)
+	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE*1.2,
+	EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE*1.2,
+	EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR*1.2)
 	tags = list(TAG_COMBAT, TAG_DESTRUCTIVE, TAG_NEGATIVE)
 //============================================
 
@@ -52,11 +52,11 @@
 	)
 
 	var/possible_mobs_moderate = list(
-		INFESTATION_SPACE_BATS = 14,
-		INFESTATION_SAMAK = 12,
-		INFESTATION_SHANTAK = 12,
-		INFESTATION_SPIDERS = 10,//This is a combination of spiderlings and adult spiders
-		INFESTATION_ROACHES = 10
+		INFESTATION_SPACE_BATS = 12,
+		INFESTATION_SAMAK = 7,
+		INFESTATION_SHANTAK = 10,
+		INFESTATION_SPIDERS = 8,//This is a combination of spiderlings and adult spiders
+		INFESTATION_ROACHES = 8
 	)
 
 	var/possible_mobs_major = list(
