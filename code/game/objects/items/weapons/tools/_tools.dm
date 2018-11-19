@@ -481,14 +481,10 @@
 //A special version of the above that also checks the switched on list
 //As a result, it checks what qualities the tool is ever capable of having, not just those it has right now
 /obj/item/weapon/tool/proc/ever_has_quality(quality_id)
-	world << "Checking [src] ever has quality [quality_id]"
 	.=has_quality(quality_id)
 	if (!.)
 		if (quality_id in switched_on_qualities)
-			world << "Has it when switched on"
 			return TRUE
-	else
-		world << "Has it currently"
 
 /obj/item/proc/get_tool_quality(quality_id)
 	if (tool_qualities && tool_qualities.len)
