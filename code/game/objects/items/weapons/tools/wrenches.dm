@@ -29,3 +29,4 @@
 	force = WEAPON_FORCE_NORMAL
 	throwforce = WEAPON_FORCE_NORMAL
 	degradation = 0.12
+	max_upgrades = 4

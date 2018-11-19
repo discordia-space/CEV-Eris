@@ -29,5 +29,6 @@
 	matter = list(MATERIAL_STEEL = 6, MATERIAL_PLASTIC = 2)
 	tool_qualities = list(QUALITY_PRYING = 40, QUALITY_DIGGING = 15)
 	degradation = 0.12
-	use_power_cost = 0.6
+	use_power_cost = 0.8
+	max_upgrades = 4
 	suitable_cell = /obj/item/weapon/cell/medium

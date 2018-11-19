@@ -6,30 +6,30 @@
 
 /obj/random/tool/item_to_spawn()
 	return pickweight(list(/obj/random/rare = 1,
-				/obj/item/weapon/tool/screwdriver = 10,
-				/obj/item/weapon/tool/screwdriver/electric = 3,
+				/obj/item/weapon/tool/screwdriver = 8,
+				/obj/item/weapon/tool/screwdriver/electric = 2,
 				/obj/item/weapon/tool/screwdriver/combi_driver = 1,
-				/obj/item/weapon/tool/wirecutters = 10,
-				/obj/item/weapon/tool/wirecutters/armature = 3,
-				/obj/item/weapon/tool/weldingtool = 10,
-				/obj/item/weapon/tool/weldingtool/advanced = 3,
+				/obj/item/weapon/tool/wirecutters = 8,
+				/obj/item/weapon/tool/wirecutters/armature = 2,
+				/obj/item/weapon/tool/weldingtool = 8,
+				/obj/item/weapon/tool/weldingtool/advanced = 2,
 				/obj/item/weapon/tool/omnitool = 0.5,
-				/obj/item/weapon/tool/crowbar = 15,
-				/obj/item/weapon/tool/crowbar/pneumatic = 3,
-				/obj/item/weapon/tool/wrench = 10,
-				/obj/item/weapon/tool/wrench/big_wrench = 3,
-				/obj/item/weapon/tool/saw = 10,
-				/obj/item/weapon/tool/saw/circular = 3,
+				/obj/item/weapon/tool/crowbar = 12,
+				/obj/item/weapon/tool/crowbar/pneumatic = 2,
+				/obj/item/weapon/tool/wrench = 8,
+				/obj/item/weapon/tool/wrench/big_wrench = 2,
+				/obj/item/weapon/tool/saw = 8,
+				/obj/item/weapon/tool/saw/circular = 2,
 				/obj/item/weapon/tool/saw/advanced_circular = 1,
 				/obj/item/weapon/tool/saw/chain = 0.5,
 				/obj/item/weapon/tool/shovel = 5,
 				/obj/item/weapon/tool/shovel/spade = 2.5,
-				/obj/item/weapon/tool/pickaxe = 3,
+				/obj/item/weapon/tool/pickaxe = 2,
 				/obj/item/weapon/tool/pickaxe/jackhammer = 1,
 				/obj/item/weapon/tool/pickaxe/drill = 1,
 				/obj/item/weapon/tool/pickaxe/diamonddrill = 0.5,
 				/obj/item/weapon/tool/pickaxe/excavation = 1,
-				/obj/item/weapon/tool/tape_roll = 14,
+				/obj/item/weapon/tool/tape_roll = 12,
 				/obj/item/weapon/tool/tape_roll/fiber = 2,
 				/obj/item/weapon/storage/belt/utility = 5,
 				/obj/item/weapon/storage/belt/utility/full = 1,
@@ -57,7 +57,8 @@
 				/obj/item/device/lighting/toggleable/flashlight = 10,
 				/obj/random/voidsuit/damaged = 2,
 				/obj/random/voidsuit = 0.5,
-				/obj/random/pouch = 3))
+				/obj/random/pouch = 5,
+				/obj/random/tool_upgrade = 20))
 
 
 //Randomly spawned tools will often be in imperfect condition
@@ -103,3 +104,45 @@
 	name = "low chance random toolbox"
 	icon_state = "box-green-low"
 	spawn_nothing_percentage = 60
+
+
+
+//Random tool upgrades
+/obj/random/tool_upgrade
+	name = "random tool upgrade"
+/obj/random/tool_upgrade/item_to_spawn()
+	return pickweight(list(
+	/obj/item/weapon/tool_upgrade/reinforcement/stick = 1,
+	/obj/item/weapon/tool_upgrade/reinforcement/heatsink = 1,
+	/obj/item/weapon/tool_upgrade/reinforcement/plating = 1.5,
+	/obj/item/weapon/tool_upgrade/reinforcement/guard = 0.75,
+	/obj/item/weapon/tool_upgrade/productivity/ergonomic_grip = 1,
+	/obj/item/weapon/tool_upgrade/productivity/ratchet = 1,
+	/obj/item/weapon/tool_upgrade/productivity/red_paint = 0.75,
+	/obj/item/weapon/tool_upgrade/productivity/whetstone = 0.5,
+	/obj/item/weapon/tool_upgrade/productivity/diamond_blade = 0.25,
+	/obj/item/weapon/tool_upgrade/productivity/oxyjet = 0.75,
+	/obj/item/weapon/tool_upgrade/productivity/motor = 0.5,
+	/obj/item/weapon/tool_upgrade/refinement/laserguide = 1,
+	/obj/item/weapon/tool_upgrade/refinement/stabilized_grip = 1,
+	/obj/item/weapon/tool_upgrade/refinement/magbit = 0.75,
+	/obj/item/weapon/tool_upgrade/refinement/ported_barrel = 0.5,
+	/obj/item/weapon/tool_upgrade/augment/cell_mount = 0.5,
+	/obj/item/weapon/tool_upgrade/augment/fuel_tank = 1,
+	/obj/item/weapon/tool_upgrade/augment/expansion = 0.25,
+	/obj/item/weapon/tool_upgrade/augment/spikes = 1,
+	/obj/item/weapon/tool_upgrade/augment/dampener = 0.5))
+
+
+//A fancier subset of the most desireable upgrades
+/obj/random/tool_upgrade/rare/item_to_spawn()
+	return pickweight(list(
+	/obj/item/weapon/tool_upgrade/reinforcement/guard = 1,
+	/obj/item/weapon/tool_upgrade/productivity/ergonomic_grip = 1,
+	/obj/item/weapon/tool_upgrade/productivity/red_paint = 1,
+	/obj/item/weapon/tool_upgrade/productivity/diamond_blade = 1,
+	/obj/item/weapon/tool_upgrade/productivity/motor = 1,
+	/obj/item/weapon/tool_upgrade/refinement/laserguide = 1,
+	/obj/item/weapon/tool_upgrade/refinement/stabilized_grip = 1,
+	/obj/item/weapon/tool_upgrade/augment/expansion = 1,
+	/obj/item/weapon/tool_upgrade/augment/dampener = 0.5))

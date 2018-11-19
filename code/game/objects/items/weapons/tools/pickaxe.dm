@@ -49,6 +49,7 @@
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 2, MATERIAL_DIAMOND = 1)
 	origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 4, TECH_ENGINEERING = 5)
 	desc = "Yours is the drill that will pierce the heavens!"
+	max_upgrades = 4
 	degradation = 0.01
 	use_fuel_cost = 0.2
 	max_fuel = 120

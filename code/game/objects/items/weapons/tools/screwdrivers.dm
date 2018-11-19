@@ -41,6 +41,7 @@
 	degradation = 0.11
 	use_power_cost = 0.24
 	suitable_cell = /obj/item/weapon/cell/small
+	max_upgrades = 4
 
 /obj/item/weapon/tool/screwdriver/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M) || user.a_intent == "help")

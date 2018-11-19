@@ -34,6 +34,7 @@
 	var/toggleable = FALSE	//Determinze if it can be switched ON or OFF, for example, if you need a tool that will consume power/fuel upon turning it ON only. Such as welder.
 	var/switched_on = FALSE	//Curent status of tool. Dont edit this in subtypes vars, its for procs only.
 	var/switched_on_qualities = null	//This var will REPLACE tool_qualities when tool will be toggled on.
+	var/switched_on_force = null
 	var/switched_off_qualities = null	//This var will REPLACE tool_qualities when tool will be toggled off. So its possible for tool to have diferent qualities both for ON and OFF state.
 	var/create_hot_spot = FALSE	 //Set this TRUE to ignite plasma on turf with tool upon activation
 	var/glow_color = null	//Set color of glow upon activation, or leave it null if you dont want any light
@@ -41,9 +42,12 @@
 
 	//Vars for tool upgrades
 	var/list/upgrades = list()
-	var/max_upgrades = 2
+	var/max_upgrades = 3
 	var/precision = 0	//Subtracted from failure rates
 	var/workspeed = 1	//Worktimes are divided by this
+	var/extra_bulk = 0 	//Extra physicial volume added by certain mods
+	var/silenced = FALSE //If true the tool makes far less noise when used
+	var/list/prefixes = list()
 
 /******************************
 	/* Core Procs */
@@ -104,6 +108,46 @@
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
 		src.cell = C
 		update_icon()
+		return
+
+	//Removing upgrades from a tool. Very difficult, but passing the check only gets you the perfect result
+	//You can also get a lesser success (remove the upgrade but break it in the process) if you fail
+	//Using a laser guided stabilised screwdriver is recommended. Precision mods will make this easier
+	if (upgrades.len && C.has_quality(QUALITY_SCREW_DRIVING))
+		var/list/possibles = upgrades.Copy()
+		possibles += "Cancel"
+		var/obj/item/weapon/tool_upgrade/toremove = input("Which upgrade would you like to try to remove? The upgrade will probably be destroyed in the process","Removing Upgrades") in possibles
+		if (toremove == "Cancel")
+			return
+
+		if (C.use_tool(user = user, target =  src, base_time = WORKTIME_SLOW, required_quality = QUALITY_SCREW_DRIVING, fail_chance = FAILCHANCE_CHALLENGING, required_stat = STAT_MEC))
+			//If you pass the check, then you manage to remove the upgrade intact
+			user << SPAN_NOTICE("You successfully remove the [toremove] intact.")
+			upgrades -= toremove
+			toremove.forceMove(get_turf(src))
+			toremove.holder = null
+			refresh_upgrades()
+			return 1
+		else
+			//You failed the check, lets see what happens
+			if (prob(50))
+				//50% chance to break the upgrade and remove it
+				user << SPAN_DANGER("You successfully remove the [toremove], but destroy it in the process.")
+				upgrades -= toremove
+				toremove.forceMove(get_turf(src))
+				toremove.holder = null
+				spawn(1)
+					QDEL_NULL(toremove)
+				refresh_upgrades()
+				return 1
+			else
+				//otherwise, damage the host tool a bit, and give you another try
+				user << SPAN_DANGER("You only managed to damage the [src], but you can retry.")
+				unreliability += 10*degradation
+				refresh_upgrades()
+				return 1
+	.=..()
+
 
 //Turning it on/off
 /obj/item/weapon/tool/attack_self(mob/user)
@@ -131,6 +175,9 @@
 
 	return tm
 
+/obj/item/weapon/tool/get_storage_cost()
+	return (..() + extra_bulk)
+
 /******************************
 	/* Tool Usage */
 *******************************/
@@ -153,8 +200,9 @@
 
 	var/obj/item/weapon/tool/T
 	if(istool(src))
-		T.last_tooluse = world.time
+
 		T = src
+		T.last_tooluse = world.time
 
 	if (is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		if (isliving(target))
@@ -199,6 +247,12 @@
 	//A datum/repeating_sound is a little object we can use to make a sound repeat a few times
 	var/datum/repeating_sound/toolsound = null
 	if(forced_sound != NO_WORKSOUND)
+		var/volume = 70
+		var/extrarange = 0
+
+		if (T && T.silenced)
+			volume = 3
+			extrarange = -6
 
 		var/soundfile
 		if(forced_sound)
@@ -208,9 +262,9 @@
 
 		if (sound_repeat && time_to_finish)
 			//It will repeat roughly every 2.5 seconds until our tool finishes
-			toolsound = new/datum/repeating_sound(sound_repeat,time_to_finish,0.15, src, soundfile, 70, 1)
+			toolsound = new/datum/repeating_sound(sound_repeat,time_to_finish,0.15, src, soundfile, volume, 1, extrarange)
 		else
-			playsound(src.loc, soundfile, 70, 1)
+			playsound(src.loc, soundfile, volume, 1, extrarange)
 
 	//The we handle the doafter for the tool usage
 	if(time_to_finish)
@@ -377,6 +431,12 @@
 			if("break")
 				user << SPAN_DANGER("Your [src] broke beyond repair!")
 				new /obj/item/weapon/material/shard/shrapnel(user.loc)
+
+				//To encourage using makeshift tools, upgrades are preserved if the tool breaks
+				if (T)
+					for (var/obj/item/weapon/tool_upgrade/A in T.upgrades)
+						A.forceMove(get_turf(src))
+						A.holder = null
 				qdel(src)
 				return
 
@@ -418,6 +478,18 @@
 /obj/item/proc/has_quality(quality_id)
 	return quality_id in tool_qualities
 
+//A special version of the above that also checks the switched on list
+//As a result, it checks what qualities the tool is ever capable of having, not just those it has right now
+/obj/item/weapon/tool/proc/ever_has_quality(quality_id)
+	world << "Checking [src] ever has quality [quality_id]"
+	.=has_quality(quality_id)
+	if (!.)
+		if (quality_id in switched_on_qualities)
+			world << "Has it when switched on"
+			return TRUE
+	else
+		world << "Has it currently"
+
 /obj/item/proc/get_tool_quality(quality_id)
 	if (tool_qualities && tool_qualities.len)
 		return tool_qualities[quality_id]
@@ -450,6 +522,8 @@
 /obj/item/weapon/tool/proc/turn_on(mob/user)
 	switched_on = TRUE
 	tool_qualities = switched_on_qualities
+	if (!isnull(switched_on_force))
+		force = switched_on_force
 	if(glow_color)
 		set_light(l_range = 1.7, l_power = 1.3, l_color = glow_color)
 	update_icon()
@@ -459,6 +533,7 @@
 	switched_on = FALSE
 	STOP_PROCESSING(SSobj, src)
 	tool_qualities = switched_off_qualities
+	force = initial(force)
 	if(glow_color)
 		set_light(l_range = 0, l_power = 0, l_color = glow_color)
 	update_icon()
@@ -520,7 +595,7 @@
 	if(eye_hazard)
 		eyecheck(user)
 
-	if(sparks_on_use)
+	if(sparks_on_use && !silenced)
 		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 		sparks.set_up(3, 0, get_turf(src))
 		sparks.start()
@@ -559,10 +634,25 @@
 	precision = initial(precision)
 	suitable_cell = initial(suitable_cell)
 	max_fuel = initial(max_fuel)
+	use_fuel_cost = initial(use_fuel_cost)
+	use_power_cost = initial(use_power_cost)
+	force = initial(force)
+	switched_on_force = initial(switched_on_force)
+	extra_bulk = initial(extra_bulk)
+	silenced = initial(silenced)
+	name = initial(name)
+	max_upgrades = initial(max_upgrades)
+	color = initial(color)
+	sharp = initial(sharp)
+	prefixes = list()
 
 	//Now lets have each upgrade reapply its modifications
 	for (var/obj/item/weapon/tool_upgrade/T in upgrades)
 		T.apply_values()
+
+	for (var/prefix in prefixes)
+		name = "[prefix] [name]"
+
 
 /obj/item/weapon/tool/examine(mob/user)
 	if(!..(user,2))
@@ -579,6 +669,18 @@
 
 	if (use_stock_cost)
 		user << SPAN_NOTICE("it has [stock] / [max_stock] units remaining.")
+
+	//Display a bunch of stats but only if they're nondefault values
+	if (precision != 0)
+		user << "Precision: [SPAN_NOTICE("[precision]")]"
+
+	if (workspeed != 1)
+		user << "Work Speed: [SPAN_NOTICE("[workspeed*100]%")]"
+
+	if (upgrades.len)
+		user << "It has the following upgrades installed:"
+		for (var/obj/item/weapon/tool_upgrade/TU in upgrades)
+			user << SPAN_NOTICE(TU.name)
 
 	if (unreliability)
 		if (unreliability < 2)
