@@ -84,7 +84,7 @@
 	required_qualities = list(QUALITY_BOLT_TURNING,QUALITY_PRYING, QUALITY_SAWING,QUALITY_SHOVELING,QUALITY_DIGGING,QUALITY_EXCAVATION)
 	prefix = "braced"
 	degradation_mult = 0.65
-
+	force_mod = 1
 
 
 //Heatsink can be attached to any tool that uses fuel or power
@@ -95,6 +95,7 @@
 	prefix = "heatsunk"
 	degradation_mult = 0.65
 
+
 /obj/item/weapon/tool_upgrade/reinforcement/heatsink/can_apply(var/obj/item/weapon/tool/T, var/mob/user)
 	.=..()
 	if (.)
@@ -103,11 +104,12 @@
 		return FALSE
 
 /obj/item/weapon/tool_upgrade/reinforcement/plating
-	name = "metal plating"
+	name = "reinforced plating"
 	desc = "A sturdy bit of metal that can be bolted onto any tool to protect it. Tough, but bulky"
 	icon_state = "plate"
 	prefix = "reinforced"
 	degradation_mult = 0.55
+	force_mod = 1
 	precision = -5
 	bulk_mod = 1
 
@@ -171,6 +173,7 @@
 	prefix = "diamond-edged"
 	workspeed = 0.25
 	degradation_mult = 0.85
+	force_mult = 1.10
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_DIAMOND = 1)
 
 
@@ -218,7 +221,8 @@
 	desc = "A small visible laser which can be strapped onto any tool, giving an accurate representation of its target. Helps improve precision"
 	icon_state = "laser_guide"
 	prefix = "laser-guided"
-	precision = 5
+	precision = 10
+	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_URANIUM = 1)
 
 
 //Fits onto generally small tools that require precision, especially surgical tools
@@ -348,7 +352,7 @@
 /obj/item/weapon/tool_upgrade/augment/dampener/apply_values()
 	if (..())
 		holder.silenced = TRUE
-
+		holder.color = "#AAAAAA"
 
 
 /******************************
