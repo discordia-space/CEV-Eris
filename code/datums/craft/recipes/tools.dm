@@ -146,7 +146,7 @@
 	steps = list(
 		list(/obj/item/frame/apc, 2, "time" = 30),
 		list(QUALITY_SCREW_DRIVING, 10, "time" = 40),
-		list(/obj/item/stack/cable_coil, "time" = 30, "time" = 10),
+		list(/obj/item/stack/cable_coil, 30, "time" = 10),
 		list(QUALITY_WIRE_CUTTING, 10, "time" = 60),
 		list(/obj/item/stack/cable_coil, 30, "time" = 10),
 		list(/obj/item/weapon/cell/large, 1),
