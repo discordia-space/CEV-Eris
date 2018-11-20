@@ -29,7 +29,7 @@
 	pass_flags = PASSTABLE
 	mouse_opacity = 1
 
-	var/health = 10
+	var/health = 5
 	var/max_health = 60
 	var/growth_threshold = 0
 	var/growth_type = 0

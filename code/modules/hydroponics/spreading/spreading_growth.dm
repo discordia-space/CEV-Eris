@@ -92,9 +92,9 @@
 		//Plants can grow through closed airlocks, but more slowly, since they have to force metal to make space
 		var/obj/machinery/door/D = (locate(/obj/machinery/door) in loc)
 		if (D)
-			health += rand(0,1.5)
+			health += rand_between(0,1.2)
 		else
-			health += rand(2.5,4)
+			health += rand_between(2,3.5)
 		refresh_icon()
 		if(health > max_health)
 			health = max_health
