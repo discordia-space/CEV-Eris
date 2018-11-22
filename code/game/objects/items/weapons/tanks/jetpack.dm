@@ -85,6 +85,9 @@
 
 	usr << "You toggle the thrusters [on? "on":"off"]."
 
+
+//Attempts to use up gas and returns true if it can
+//Stabilization check is a somewhat hacky mechanic to handle an extra burst of gas for stabilizing, read below
 /obj/item/weapon/tank/jetpack/proc/allow_thrust(num, mob/living/user as mob, var/stabilization_check = FALSE)
 	world << "Jetpack allowthrust [num], [user]"
 	if(!(src.on) || !user) //Someone has to be wearing it
@@ -105,12 +108,12 @@
 
 	var/allgases = G.gas["carbon_dioxide"] + G.gas["nitrogen"] + G.gas["oxygen"] + G.gas["plasma"]
 	if(allgases >= 0.005)
-		return 1
+		return TRUE
 
 	//If we've run out of gas, turn off stabilisation
 	stabilization_on = FALSE
 	qdel(G)
-	return
+	return TRUE
 
 /*
 	This stabilize proc serves two functions:

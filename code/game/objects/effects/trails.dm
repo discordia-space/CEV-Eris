@@ -23,7 +23,7 @@ particle whenever the target moves
 
 	//Moved event is a global datum of type /decl/observ/moved
 	//It will fire a proc whenever the holder atom moves from one turf to another
-	moved_event.register(holder, src, /datum/effect/effect/system/trail/proc/holder_moved)
+	GLOB.moved_event.register(holder, src, /datum/effect/effect/system/trail/proc/holder_moved)
 
 	active = TRUE
 
@@ -34,14 +34,10 @@ particle whenever the target moves
 /datum/effect/effect/system/trail/proc/do_effect(var/turf/eloc, var/newdir)
 	var/obj/effect/effect/E = new trail_effect(eloc)
 	E.set_dir(newdir)
-	if (copy_pixel_offsets)
-		var/list/offsets = holder.get_total_pixel_offset()
-		E.pixel_x = offsets["x"]
-		E.pixel_y = offsets["y"]
-		world << "Ofsets set to
+	return E
 
 /datum/effect/effect/system/trail/proc/stop()
-	moved_event.register(holder, src, /datum/effect/effect/system/trail/proc/holder_moved)
+	GLOB.moved_event.register(holder, src, /datum/effect/effect/system/trail/proc/holder_moved)
 	active = FALSE
 
 /////////////////////////////////////////////
