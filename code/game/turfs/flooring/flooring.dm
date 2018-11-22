@@ -296,7 +296,7 @@ var/list/flooring_types
 	footstep_sound = "hull"
 	wall_smooth = SMOOTH_ALL
 	space_smooth = SMOOTH_NONE
-
+	smooth_movable_atom = SMOOTH_NONE
 
 //Hull can upgrade to underplating
 /decl/flooring/reinforced/plating/hull/can_build_floor(var/decl/flooring/newfloor)

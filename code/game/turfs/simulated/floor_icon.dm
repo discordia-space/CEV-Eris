@@ -141,17 +141,21 @@ var/list/flooring_cache = list()
 /decl/flooring/proc/test_link(var/turf/origin, var/turf/T, var/countercheck = FALSE)
 
 	var/is_linked = FALSE
-	if (!countercheck)
+	if (countercheck)
+		//If this is a countercheck, we skip all of the above, start off with true, and go straight to the atom lists
+		is_linked = TRUE
+	else
+
 		//is_wall is true for wall turfs and for floors containing a low wall
 
 		if(T.is_wall)
-			if(wall_smooth)
+			if(wall_smooth == SMOOTH_ALL)
 				is_linked = TRUE
 
 
 		//If is_hole is true, then it's space or openspace
 		else if(T.is_hole)
-			if(space_smooth)
+			if(space_smooth == SMOOTH_ALL)
 				is_linked = TRUE
 
 
@@ -196,9 +200,7 @@ var/list/flooring_cache = list()
 							//Found a match on the list
 							is_linked = FALSE
 							break
-	else
-		//If this is a countercheck, we skip all of the above, start off with true, and go straight to the atom lists
-		is_linked = TRUE
+
 
 
 
