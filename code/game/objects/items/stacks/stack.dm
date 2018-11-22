@@ -346,8 +346,9 @@
 
 //Verb to split stacks
 /obj/item/stack/verb/split_verb()
-	set src in view()
+	set src in view(1)
 	set name = "Split"
+	set category = "Object"
 
 	if (!usr.IsAdvancedToolUser())
 		return
