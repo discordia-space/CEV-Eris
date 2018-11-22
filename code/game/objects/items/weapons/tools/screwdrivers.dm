@@ -17,7 +17,7 @@
 	desc = "A little metal rod wrapped in tape, barely qualifies as a tool."
 	icon_state = "impro_screwdriver"
 	tool_qualities = list(QUALITY_SCREW_DRIVING = 15)
-	degradation = 6
+	degradation = 2
 
 /obj/item/weapon/tool/screwdriver/electric
 	name = "electric screwdriver"
@@ -26,7 +26,7 @@
 	worksound = WORKSOUND_DRIVER_TOOL
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1)
 	tool_qualities = list(QUALITY_SCREW_DRIVING = 40, QUALITY_DRILLING = 10, QUALITY_BONE_SETTING = 10)
-	degradation = 0.12
+	degradation = 0.07
 	use_power_cost = 0.18
 	suitable_cell = /obj/item/weapon/cell/small
 
@@ -38,7 +38,7 @@
 	worksound = WORKSOUND_DRIVER_TOOL
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 2)
 	tool_qualities = list(QUALITY_SCREW_DRIVING = 50, QUALITY_BOLT_TURNING = 50, QUALITY_DRILLING = 20)
-	degradation = 0.11
+	degradation = 0.07
 	use_power_cost = 0.24
 	suitable_cell = /obj/item/weapon/cell/small
 	max_upgrades = 4

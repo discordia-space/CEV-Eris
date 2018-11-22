@@ -21,7 +21,7 @@
 	icon_state = "impro_saw"
 	force = WEAPON_FORCE_PAINFULL
 	tool_qualities = list(QUALITY_SAWING = 15, QUALITY_CUTTING = 10, QUALITY_WIRE_CUTTING = 10)
-	degradation = 3
+	degradation = 0.7
 
 /obj/item/weapon/tool/saw/circular
 	name = "circular saw"
@@ -45,7 +45,7 @@
 	force = WEAPON_FORCE_ROBUST
 	matter = list(MATERIAL_STEEL = 6, MATERIAL_PLASTIC = 2)
 	tool_qualities = list(QUALITY_SAWING = 50, QUALITY_CUTTING = 40, QUALITY_WIRE_CUTTING = 40)
-	degradation = 0.12
+	degradation = 0.07
 	use_power_cost = 0.22
 	suitable_cell = /obj/item/weapon/cell/small
 	max_upgrades = 4

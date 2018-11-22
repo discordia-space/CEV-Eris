@@ -27,7 +27,7 @@
 
 
 	//Variables used for tool degradation
-	var/degradation = 0.13 //If nonzero, the unreliability of the tool increases by 0..this after each tool operation
+	var/degradation = 0.08 //If nonzero, the unreliability of the tool increases by 0..this after each tool operation
 	var/unreliability = 0 //This is added to the failure rate of operations with this tool
 	var/repair_frequency = 0 //How many times this tool has been repaired
 
