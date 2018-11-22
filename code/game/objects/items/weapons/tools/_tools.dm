@@ -334,7 +334,7 @@
 	if (T)
 		crit_fail_chance = max(crit_fail_chance, T.unreliability * 0.5) //At high unreliability, critical failures are more common
 		if (T.degradation)
-			T.unreliability += 7.5*T.degradation //Failing incurs 15 uses worth of damage
+			T.unreliability += 15*T.degradation //Failing incurs 30 uses worth of damage
 	if(required_stat)
 		crit_fail_chance = crit_fail_chance - user.stats.getStat(required_stat)
 
@@ -364,7 +364,7 @@
 			else
 				failtypes["break"] = 0.5
 		if (sharp)
-			failtypes["stab"] = 2
+			failtypes["stab"] = 1
 
 		//This one is limited to humans only since robots often can't remove/replace their device cells
 		if (locate(/obj/item/weapon/cell) in contents)
@@ -379,7 +379,7 @@
 			//Drop the tool on the floor
 			if("damage")
 				user << SPAN_DANGER("Your hand slips and you damage [src] a bit.")
-				T.unreliability += 10
+				T.unreliability += 5
 				return
 
 			//Drop the tool on the floor

@@ -58,7 +58,7 @@
 				/obj/random/voidsuit/damaged = 2,
 				/obj/random/voidsuit = 0.5,
 				/obj/random/pouch = 5,
-				/obj/random/tool_upgrade = 20))
+				/obj/random/tool_upgrade = 25))
 
 
 //Randomly spawned tools will often be in imperfect condition
@@ -122,12 +122,12 @@
 	/obj/item/weapon/tool_upgrade/productivity/whetstone = 0.5,
 	/obj/item/weapon/tool_upgrade/productivity/diamond_blade = 0.25,
 	/obj/item/weapon/tool_upgrade/productivity/oxyjet = 0.75,
-	/obj/item/weapon/tool_upgrade/productivity/motor = 0.5,
+	/obj/item/weapon/tool_upgrade/productivity/motor = 0.75,
 	/obj/item/weapon/tool_upgrade/refinement/laserguide = 1,
 	/obj/item/weapon/tool_upgrade/refinement/stabilized_grip = 1,
 	/obj/item/weapon/tool_upgrade/refinement/magbit = 0.75,
 	/obj/item/weapon/tool_upgrade/refinement/ported_barrel = 0.5,
-	/obj/item/weapon/tool_upgrade/augment/cell_mount = 0.5,
+	/obj/item/weapon/tool_upgrade/augment/cell_mount = 0.75,
 	/obj/item/weapon/tool_upgrade/augment/fuel_tank = 1,
 	/obj/item/weapon/tool_upgrade/augment/expansion = 0.25,
 	/obj/item/weapon/tool_upgrade/augment/spikes = 1,

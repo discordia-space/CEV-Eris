@@ -53,6 +53,9 @@
 	precision = 5
 
 
+
+
+
 // 	 PRODUCTIVITY: INCREASES WORKSPEED
 //------------------------------------------------
 /obj/item/weapon/tool_upgrade/productivity/ergonomic_grip
@@ -104,6 +107,14 @@
 	degradation_mult = 0.85
 	force_mult = 1.10
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_DIAMOND = 1)
+
+/obj/item/weapon/tool_upgrade/productivity/diamond_blade/can_apply(var/obj/item/weapon/tool/T, var/mob/user)
+	.=..()
+	if (.)
+		if (T.ever_has_quality(QUALITY_WELDING) || T.ever_has_quality(QUALITY_LASER_CUTTING))
+			user << SPAN_WARNING("This tool doesn't use a physical edge!")
+			return FALSE
+
 
 
 /obj/item/weapon/tool_upgrade/productivity/oxyjet
