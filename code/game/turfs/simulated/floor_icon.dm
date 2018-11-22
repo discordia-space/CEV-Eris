@@ -45,7 +45,7 @@ var/list/flooring_cache = list()
 					var/turf/simulated/floor/T = get_step(src, step_dir)
 
 					//Test link is a flooring proc but its defined farther down in this file
-					var/is_linked = flooring.test_link(src, T)
+					var/is_linked = flooring.test_link(src, T, FALSE)
 
 
 
@@ -55,12 +55,7 @@ var/list/flooring_cache = list()
 						has_border |= step_dir
 
 						//Now, if we don't, then lets add a border
-						if ((flooring.flags & TURF_EDGES_EXTERNAL))
-							var/odir = turn(step_dir, 180)
-							var/image/I = get_flooring_overlay("[flooring.icon_base]-ext-edge-[odir]", "[flooring.icon_base]_edges", odir, TRUE)
-							overlays |= I
-						else
-							overlays |= get_flooring_overlay("[flooring.icon_base]-edge-[step_dir]", "[flooring.icon_base]_edges", step_dir)
+						overlays |= get_flooring_overlay("[flooring.icon_base]-edge-[step_dir]", "[flooring.icon_base]_edges", step_dir, (flooring.flags & TURF_EDGES_EXTERNAL))
 
 				//By doing &15 we only take the first four bits, which represent NORTH, SOUTH, EAST, WEST
 				has_smooth = ~(has_border & 15)
@@ -95,13 +90,13 @@ var/list/flooring_cache = list()
 			if (has_border)
 				if(flooring.flags & TURF_HAS_CORNERS)
 					if((has_border & NORTHEAST) == NORTHEAST)
-						overlays |= get_flooring_overlay("[flooring.icon_base]-edge-[NORTHEAST]", "[flooring.icon_base]_edges", NORTHEAST)
+						overlays |= get_flooring_overlay("[flooring.icon_base]-edge-[NORTHEAST]", "[flooring.icon_base]_edges", NORTHEAST,(flooring.flags & TURF_EDGES_EXTERNAL))
 					if((has_border & NORTHWEST) == NORTHWEST)
-						overlays |= get_flooring_overlay("[flooring.icon_base]-edge-[NORTHWEST]", "[flooring.icon_base]_edges", NORTHWEST)
+						overlays |= get_flooring_overlay("[flooring.icon_base]-edge-[NORTHWEST]", "[flooring.icon_base]_edges", NORTHWEST,(flooring.flags & TURF_EDGES_EXTERNAL))
 					if((has_border & SOUTHEAST) == SOUTHEAST)
-						overlays |= get_flooring_overlay("[flooring.icon_base]-edge-[SOUTHEAST]", "[flooring.icon_base]_edges", SOUTHEAST)
+						overlays |= get_flooring_overlay("[flooring.icon_base]-edge-[SOUTHEAST]", "[flooring.icon_base]_edges", SOUTHEAST,(flooring.flags & TURF_EDGES_EXTERNAL))
 					if((has_border & SOUTHWEST) == SOUTHWEST)
-						overlays |= get_flooring_overlay("[flooring.icon_base]-edge-[SOUTHWEST]", "[flooring.icon_base]_edges", SOUTHWEST)
+						overlays |= get_flooring_overlay("[flooring.icon_base]-edge-[SOUTHWEST]", "[flooring.icon_base]_edges", SOUTHWEST,(flooring.flags & TURF_EDGES_EXTERNAL))
 
 
 			//Now lets handle those fancy floors which have many centre icons
@@ -165,6 +160,7 @@ var/list/flooring_cache = list()
 			var/turf/simulated/floor/t = T
 			//If the floor is the same as us,then we're linked,
 			if (t.flooring.name == name)
+				is_linked = TRUE
 				/*
 					But there's a caveat. To make atom black/whitelists work correctly, we also need to check that
 					they smooth with us. Ill call this counterchecking for simplicity.
@@ -172,9 +168,11 @@ var/list/flooring_cache = list()
 
 					To prevent infinite loops we have a countercheck var, which we'll set true
 				*/
+
 				if (smooth_movable_atom != SMOOTH_NONE)
 					//We do the countercheck, passing countercheck as true
 					is_linked = test_link(T, origin, countercheck = TRUE)
+
 
 
 			else if (floor_smooth == SMOOTH_ALL)
@@ -324,14 +322,14 @@ var/list/flooring_cache = list()
 		//External overlays will be offsetted out of this tile
 		if (external)
 			if (icon_dir & NORTH)
-				I.pixel_y = -32
-			else if (icon_dir & SOUTH)
 				I.pixel_y = 32
+			else if (icon_dir & SOUTH)
+				I.pixel_y = -32
 
 			if (icon_dir & WEST)
-				I.pixel_x = 32
-			else if (icon_dir & EAST)
 				I.pixel_x = -32
+			else if (icon_dir & EAST)
+				I.pixel_x = 32
 
 		flooring_cache[cache_key] = I
 	return flooring_cache[cache_key]
