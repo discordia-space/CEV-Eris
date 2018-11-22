@@ -21,6 +21,18 @@
 	if (_amount)
 		amount = max(round(_amount, 0.01), 0.01) //We won't ever need to physically represent less than 1% of a material unit
 	.=..()
+	//Material will be set during the parent callstack
+	if (!material)
+		qdel(src)
+		return
+
+
+	//Shards must be made of some matter
+	if (!amount)
+		amount = rand_between(0.25, 1)
+
+	//Overwrite whatever was populated before. A shard contains <1 unit of a single material
+	matter = list(material.name = amount)
 
 /obj/item/weapon/material/shard/set_material(var/new_material)
 	..(new_material)
@@ -31,12 +43,9 @@
 	pixel_x = rand(-8, 8)
 	pixel_y = rand(-8, 8)
 
-	//Shards must be made of some matter
-	if (!amount)
-		amount = rand_between(0.25, 1)
 
-	//Overwrite whatever was populated before. A shard contains <1 unit of a single material
-	matter = list(material.name = amount)
+
+
 
 	update_icon()
 

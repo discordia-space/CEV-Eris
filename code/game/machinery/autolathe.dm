@@ -1,4 +1,5 @@
-// makes sure that discounted prices from upgraded lathe no less than 1 unit.
+
+#define SANITIZE_LATHE_COST(n) round(n * mat_efficiency, 0.01)
 
 
 #define ERR_OK 0
@@ -92,7 +93,7 @@
 
 			var/text = ""
 			for(var/m in R.resources)
-				text += "[m]: [round(R.resources[m] * mat_efficiency, 0.01)]<br>"
+				text += "[m]: [SANITIZE_LATHE_COST(R.resources[m])]<br>"
 			LE["resources"] = text == "" ? "None" : text
 
 			text = ""
@@ -142,7 +143,7 @@
 
 		var/list/RS = list()
 		for(var/mat in R.resources)
-			RS.Add(list(list("name" = mat, "req" = (round(R.resources[mat] * mat_efficiency, 0.01)))))
+			RS.Add(list(list("name" = mat, "req" = SANITIZE_LATHE_COST(R.resources[mat]))))
 
 		data["req_materials"] = RS
 
@@ -494,7 +495,7 @@
 			if(!(rmat in stored_material))
 				return ERR_NOMATERIAL
 
-			if(stored_material[rmat] < (round(R.resources[rmat] * mat_efficiency, 0.01)))
+			if(stored_material[rmat] < SANITIZE_LATHE_COST(R.resources[rmat]))
 				return ERR_NOMATERIAL
 
 		if(R.reagents.len)
@@ -578,7 +579,7 @@
 		return FALSE
 
 	for(var/material in R.resources)
-		stored_material[material] = max(0, stored_material[material] - (round(R.resources[material] * mat_efficiency, 0.01)))
+		stored_material[material] = max(0, stored_material[material] - SANITIZE_LATHE_COST(R.resources[material]))
 
 	for(var/reagent in R.reagents)
 		container.reagents.remove_reagent(reagent, R.reagents[reagent])
