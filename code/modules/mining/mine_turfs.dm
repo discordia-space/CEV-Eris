@@ -407,7 +407,7 @@
 	base_icon = 'icons/turf/flooring/asteroid.dmi'
 	base_icon_state = "asteroid"
 
-	initial_flooring = null
+	initial_flooring = /decl/flooring/asteroid
 	oxygen = 0
 	nitrogen = 0
 	temperature = TCMB
