@@ -8,7 +8,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Captain"
-	selection_color = "#ffdddd"
+	selection_color = "#97b0be"
 	idtype = /obj/item/weapon/card/id/hos
 	req_admin_notify = 1
 	economic_modifier = 10
@@ -72,7 +72,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Ironhammer Commander"
-	selection_color = "#ffeeee"
+	selection_color = "#a7bbc6"
 	economic_modifier = 5
 	also_known_languages = list(LANGUAGE_CYRILLIC = 5)
 	access = list(
@@ -131,7 +131,7 @@
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the Ironhammer Commander"
-	selection_color = "#ffeeee"
+	selection_color = "#a7bbc6"
 	economic_modifier = 5
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
 	access = list(
@@ -186,7 +186,7 @@
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the Ironhammer Commander"
-	selection_color = "#ffeeee"
+	selection_color = "#a7bbc6"
 	economic_modifier = 5
 	also_known_languages = list(LANGUAGE_CYRILLIC = 5)
 	access = list(
@@ -232,7 +232,7 @@
 	total_positions = 6
 	spawn_positions = 6
 	supervisors = "the Ironhammer Commander"
-	selection_color = "#ffeeee"
+	selection_color = "#a7bbc6"
 	economic_modifier = 4
 	also_known_languages = list(LANGUAGE_CYRILLIC = 5)
 	access = list(

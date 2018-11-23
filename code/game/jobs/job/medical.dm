@@ -8,7 +8,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Moebius Expedition Overseer"
-	selection_color = "#ffddf0"
+	selection_color = "#94a87f"
 	idtype = /obj/item/weapon/card/id/cmo
 	req_admin_notify = 1
 	economic_modifier = 10
@@ -63,7 +63,7 @@
 	total_positions = 5
 	spawn_positions = 5
 	supervisors = "the Moebius Biolab Officer"
-	selection_color = "#ffeef0"
+	selection_color = "#a8b69a"
 	economic_modifier = 7
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 	access = list(
@@ -108,7 +108,7 @@
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the Moebius Biolab Officer"
-	selection_color = "#ffeef0"
+	selection_color = "#a8b69a"
 	economic_modifier = 5
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 	access = list(
@@ -151,7 +151,7 @@
 	spawn_positions = 1
 	economic_modifier = 5
 	supervisors = "the Moebius Biolab Officer"
-	selection_color = "#ffeef0"
+	selection_color = "#a8b69a"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 	access = list(
 		access_moebius, access_medical_equip, access_morgue, access_psychiatrist
@@ -189,7 +189,7 @@
 	total_positions = 3
 	spawn_positions = 3
 	supervisors = "the Moebius Biolab Officer"
-	selection_color = "#ffeef0"
+	selection_color = "#a8b69a"
 	economic_modifier = 4
 	also_known_languages = list(LANGUAGE_CYRILLIC = 20)
 	access = list(

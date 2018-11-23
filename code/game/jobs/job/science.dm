@@ -8,7 +8,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "Moebius Corporation"
-	selection_color = "#ffddff"
+	selection_color = "#b39aaf"
 	idtype = /obj/item/weapon/card/id/rd
 	req_admin_notify = 1
 	economic_modifier = 15
@@ -63,7 +63,7 @@
 	total_positions = 5
 	spawn_positions = 5
 	supervisors = "the Moebius Expedition Overseer"
-	selection_color = "#ffeeff"
+	selection_color = "#bdb1bb"
 	economic_modifier = 7
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 	access = list(
@@ -105,7 +105,7 @@
 	total_positions = 3
 	spawn_positions = 3
 	supervisors = "the Moebius Expedition Overseer"
-	selection_color = "#ffeeff"
+	selection_color = "#bdb1bb"
 	economic_modifier = 5
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 	access = list(

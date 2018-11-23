@@ -8,7 +8,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Captain"
-	selection_color = "#ffeeaa"
+	selection_color = "#c7b97b"
 	idtype = /obj/item/weapon/card/id/ce
 	req_admin_notify = 1
 	economic_modifier = 10
@@ -76,7 +76,7 @@
 	total_positions = 5
 	spawn_positions = 5
 	supervisors = "the Technomancer Exultant"
-	selection_color = "#fff5cc"
+	selection_color = "#d5c88f"
 	economic_modifier = 5
 	also_known_languages = list(LANGUAGE_CYRILLIC = 100)
 	access = list(

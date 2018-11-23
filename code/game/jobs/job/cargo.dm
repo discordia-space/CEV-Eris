@@ -9,7 +9,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "your greed"
-	selection_color = "#dddddd"
+	selection_color = "#b3a68c"
 	economic_modifier = 20
 	also_known_languages = list(LANGUAGE_CYRILLIC = 25)
 	access = list(
@@ -51,7 +51,7 @@
 	total_positions = 3
 	spawn_positions = 3
 	supervisors = "the Guild Merchant"
-	selection_color = "#dddddd"
+	selection_color = "#c3b9a6"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
 	access = list(
 		access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_mining,
@@ -89,7 +89,7 @@
 	total_positions = 4
 	spawn_positions = 4
 	supervisors = "the Guild Merchant"
-	selection_color = "#dddddd"
+	selection_color = "#c3b9a6"
 	economic_modifier = 5
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
 	access = list(

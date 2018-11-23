@@ -22,7 +22,7 @@ datum/preferences/proc/update_preview_icon()
 	mannequin.delete_inventory(TRUE)
 	dress_preview_mob(mannequin)
 
-	preview_icon = icon('icons/effects/128x48.dmi', bgstate)
+	preview_icon = icon('icons/effects/128x96.dmi', bgstate)
 	preview_icon.Scale(48+32, 16+32)
 
 	preview_east = getFlatIcon(mannequin, EAST, always_use_defdir = 1)

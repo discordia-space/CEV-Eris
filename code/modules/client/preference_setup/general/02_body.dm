@@ -1,38 +1,9 @@
-var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-")
+
 
 /datum/preferences
-	var/species = SPECIES_HUMAN
-	var/b_type = "A+"					//blood type (not-chooseable)
-	var/h_style = "Bald"				//Hair type
-	var/r_hair = 0						//Hair color
-	var/g_hair = 0						//Hair color
-	var/b_hair = 0						//Hair color
-	var/f_style = "Shaved"				//Face hair type
-	var/r_facial = 0					//Face hair color
-	var/g_facial = 0					//Face hair color
-	var/b_facial = 0					//Face hair color
-	var/s_tone = 0						//Skin tone
-	var/r_skin = 0						//Skin color
-	var/g_skin = 0						//Skin color
-	var/b_skin = 0						//Skin color
-	var/r_eyes = 0						//Eye color
-	var/g_eyes = 0						//Eye color
-	var/b_eyes = 0						//Eye color
-	var/s_base = ""						//Base skin colour
-	var/list/body_markings = list()
-	var/list/body_descriptors = list()
+	
 
-	// maps each organ to either null(intact), "cyborg" or "amputated"
-	// will probably not be able to do this for head and torso ;)
-	var/list/organ_data
-	var/list/rlimb_data
-	var/disabilities = 0
-
-	var/has_cortical_stack = FALSE
-	var/equip_preview_mob = EQUIP_PREVIEW_ALL
-
-	var/icon/bgstate = "000"
-	var/list/bgstate_options = list("000", "FFF", MATERIAL_STEEL, "white")
+	
 
 /datum/category_item/player_setup_item/physical/body
 	name = "Body"
@@ -326,9 +297,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 /datum/category_item/player_setup_item/physical/body/OnTopic(var/href,var/list/href_list, var/mob/user)
 
 	var/datum/species/mob_species = all_species[pref.species]
-	if(href_list["toggle_species_verbose"])
-		hide_species = !hide_species
-		return TOPIC_REFRESH
 
 	else if(href_list["random"])
 		pref.randomize_appearance_and_body_for()

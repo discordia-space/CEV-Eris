@@ -81,7 +81,8 @@
 
 	. = list()
 	. += "<style>.Points,a.Points{background: #cc5555;}</style>"
-	. += "<style>a.Points:hover{background: #55cc55;}</style>"
+	//. += "<style>a.Points:hover{background: #55cc55;}</style>"
+
 	. += "<tt><center>"
 	//. += "<b>Choose occupation chances. <font size=3>Click on the occupation to select skills.</font><br>Unavailable occupations are crossed out.</b>"
 	. += "<b>Choose occupation chances.<br>Unavailable occupations are crossed out.</b>"
@@ -138,6 +139,7 @@
 			continue
 
 		//. += (unspent && (current_level != JOB_LEVEL_NEVER) ? "<a class='Points' href='?src=\ref[src];set_skills=[rank]'>" : "<a href='?src=\ref[src];set_skills=[rank]'>")
+		. += (current_level != JOB_LEVEL_NEVER ? "<a class='Points' href='?src=\ref[src];set_skills=[rank]'>" : "<a href='?src=\ref[src];set_skills=[rank]'>")
 		if((rank in command_positions) || (rank == "AI"))//Bold head jobs
 			. += "<b>[rank]</b>"
 		else
@@ -147,10 +149,10 @@
 
 		if(rank == "Assistant")//Assistant is special
 			. += "<a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_LOW]'>"
-			. += " [rank in pref.job_low ? "<font color=55cc55>" : ""]\[Yes][rank in pref.job_low ? "</font>" : ""]"
+			. += "[rank in pref.job_low ? "<font color=55cc55>" : ""]\[Yes\][rank in pref.job_low ? "</font>" : ""]"
 			. += "</a>"
 			. += "<a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_NEVER]'>"
-			. += " [!(rank in pref.job_low) ? "<font color=black>" : ""]\[No][!(rank in pref.job_low) ? "</font>" : ""]"
+			. += " [!(rank in pref.job_low) ? "<font color=black>" : ""]\[No\][!(rank in pref.job_low) ? "</font>" : ""]"
 			. += "</a>"
 		else
 			. += " <a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_HIGH]'>[current_level == JOB_LEVEL_HIGH ? "<font color=55cc55>" : ""]\[High][current_level == JOB_LEVEL_HIGH ? "</font>" : ""]</a>"
@@ -256,7 +258,7 @@
 			dat += "<a href='?src=\ref[src];job_wiki=[rank]'>Open wiki page in browser</a>"
 		var/description = job.get_description_blurb()
 		/*if(job.required_education)
-			description = "[description ? "[description]\n\n" : ""]"*/
+		description = "[description ? "[description]\n\n" : ""]"*/
 		if(description)
 			dat += html_encode(description)
 		var/datum/browser/popup = new(user, "Job Info", "[capitalize(rank)]", 430, 520, src)

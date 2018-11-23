@@ -4,15 +4,15 @@
 var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
 
 /datum/category_group/player_setup_category/physical_preferences
-	name = "Physical"
+	name = "General"
 	sort_order = 1
 	category_item_type = /datum/category_item/player_setup_item/physical
 
 /datum/category_group/player_setup_category/augmentation
-	name = "Augmentation"
+	name = "Physical"
 	sort_order = 2
 	category_item_type = /datum/category_item/player_setup_item/augmentation
-
+/*
 /datum/category_group/player_setup_category/background_preferences
 	name = "Background"
 	sort_order = 3
@@ -22,7 +22,7 @@ var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
 	. = ""
 	for(var/datum/category_item/player_setup_item/PI in items)
 		. += "[PI.content(user)]<br>"
-
+*/
 /datum/category_group/player_setup_category/occupation_preferences
 	name = "Occupation"
 	sort_order = 4
