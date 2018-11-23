@@ -68,7 +68,7 @@ var/list/flooring_types
 	//How we smooth with other flooring
 	var/floor_smooth = SMOOTH_ALL
 	var/list/flooring_whitelist = list() //Smooth with nothing except the contents of this list
-	var/list/flooring_blacklist = list() //Smooth with nothing except the contents of this list
+	var/list/flooring_blacklist = list() //Smooth with everything except the contents of this list
 
 	//How we smooth with walls
 	var/wall_smooth = SMOOTH_NONE

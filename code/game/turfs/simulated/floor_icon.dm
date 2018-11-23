@@ -254,45 +254,44 @@ var/list/flooring_cache = list()
 
 		if (smooth_movable_atom == SMOOTH_BLACKLIST || smooth_movable_atom == SMOOTH_GREYLIST)
 			//All of this blacklist code is copypasted from above, with only minor name changes
-			if (smooth_movable_atom == SMOOTH_BLACKLIST || smooth_movable_atom == SMOOTH_GREYLIST)
-				for (var/list/v in movable_atom_blacklist)
-					var/d_type = v[1]
-					var/list/d_vars = v[2]
-					var/d_priority = v[3]
-					//Priority is the quickest thing to check first
-					if (d_priority <= best_priority)
-						continue
+			for (var/list/v in movable_atom_blacklist)
+				var/d_type = v[1]
+				var/list/d_vars = v[2]
+				var/d_priority = v[3]
+				//Priority is the quickest thing to check first
+				if (d_priority <= best_priority)
+					continue
 
-					//Ok, now we start testing all the atoms in the target turf
-					for (var/a in T) //No implicit typecasting here, faster
+				//Ok, now we start testing all the atoms in the target turf
+				for (var/a in T) //No implicit typecasting here, faster
 
-						if (istype(a, d_type))
-							//It's the right type, so we're sure it will have the vars we want.
+					if (istype(a, d_type))
+						//It's the right type, so we're sure it will have the vars we want.
 
-							var/atom/movable/AM = a
-							//Typecast it to a movable atom
-							//Lets make sure its in the way before we consider it
-							if (!AM.is_between_turfs(origin, T))
-								continue
+						var/atom/movable/AM = a
+						//Typecast it to a movable atom
+						//Lets make sure its in the way before we consider it
+						if (!AM.is_between_turfs(origin, T))
+							continue
 
-							//From here on out, we do dangerous stuff that may runtime if the coder screwed up
+						//From here on out, we do dangerous stuff that may runtime if the coder screwed up
 
-							var/match = TRUE
-							for (var/d_var in d_vars)
-								//For each variable we want to check
-								if (AM.vars[d_var] != d_vars[d_var])
-									//We get a var of the same name from the atom's vars list.
-									//And check if it equals our desired value
-									match = FALSE
-									break //If any var doesn't match the desired value, then this atom is not a match, move on
+						var/match = TRUE
+						for (var/d_var in d_vars)
+							//For each variable we want to check
+							if (AM.vars[d_var] != d_vars[d_var])
+								//We get a var of the same name from the atom's vars list.
+								//And check if it equals our desired value
+								match = FALSE
+								break //If any var doesn't match the desired value, then this atom is not a match, move on
 
 
-							if (match)
-								//If we've successfully found an atom which matches a list entry
-								best_priority = d_priority //This one is king until a higher priority overrides it
+						if (match)
+							//If we've successfully found an atom which matches a list entry
+							best_priority = d_priority //This one is king until a higher priority overrides it
 
-								//And this is a blacklist, so this match forces is_linked to false
-								is_linked = FALSE
+							//And this is a blacklist, so this match forces is_linked to false
+							is_linked = FALSE
 
 	return is_linked
 
