@@ -9,7 +9,6 @@ datum/preferences
 	//Some faction information.
 	var/religion = "None"               //Religious association.
 
-
 /datum/category_item/player_setup_item/physical/basic
 	name = "Basic"
 	sort_order = 1
@@ -49,8 +48,6 @@ datum/preferences
 	*/
 /datum/category_item/player_setup_item/physical/basic/content()
 	. = list()
-	if(!pref.preview_icon)
-		pref.update_preview_icon()
 	. += "<b>Name:</b> "
 	. += "<a href='?src=\ref[src];rename=1'><b>[pref.real_name]</b></a><br>"
 	. += "<a href='?src=\ref[src];random_name=1'>Randomize Name</A><br>"
@@ -61,7 +58,6 @@ datum/preferences
 	. += "<b>Spawn Point</b>: <a href='?src=\ref[src];spawnpoint=1'>[pref.spawnpoint]</a>"
 	. += "<b>Religion:</b> <a href='?src=\ref[src];religion=1'>[pref.religion]</a><br>"
 
-	. += "<div class='statusDisplay' style='height: 100px; overflow: auto;'><center><img src=previewicon.png width=[pref.preview_icon.Width()] height=[pref.preview_icon.Height()]></center></div>"
 	if(config.allow_Metadata)
 		. += "<br><b>OOC Notes:</b> <a href='?src=\ref[src];metadata=1'> Edit </a>"
 	. = jointext(.,null)

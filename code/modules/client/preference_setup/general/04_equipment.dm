@@ -7,7 +7,7 @@
 
 /datum/category_item/player_setup_item/physical/equipment
 	name = "Clothing"
-	sort_order = 3
+	sort_order = 4
 
 	var/static/list/backpacks_by_name
 
@@ -84,6 +84,7 @@
 
 /datum/category_item/player_setup_item/physical/equipment/content()
 	. = list()
+	. += "<div style='clear: both;'"
 	. += "<b>Equipment:</b><br>"
 	for(var/datum/category_group/underwear/UWC in GLOB.underwear.categories)
 		var/item_name = (pref.all_underwear && pref.all_underwear[UWC.name]) ? pref.all_underwear[UWC.name] : "None"
@@ -99,6 +100,7 @@
 	for(var/datum/backpack_tweak/bt in pref.backpack.tweaks)
 		. += " <a href='?src=\ref[src];backpack=[pref.backpack.name];tweak=\ref[bt]'>[bt.get_ui_content(get_backpack_metadata(pref.backpack, bt))]</a>"
 	. += "<br>"
+	. += "</div>"
 	return jointext(.,null)
 
 /datum/category_item/player_setup_item/physical/equipment/proc/get_underwear_metadata(var/underwear_category, var/datum/gear_tweak/gt)

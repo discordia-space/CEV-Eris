@@ -1,9 +1,38 @@
-
+var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-")
 
 /datum/preferences
-	
+	var/species = SPECIES_HUMAN
+	var/b_type = "A+"					//blood type (not-chooseable)
+	var/h_style = "Bald"				//Hair type
+	var/r_hair = 0						//Hair color
+	var/g_hair = 0						//Hair color
+	var/b_hair = 0						//Hair color
+	var/f_style = "Shaved"				//Face hair type
+	var/r_facial = 0					//Face hair color
+	var/g_facial = 0					//Face hair color
+	var/b_facial = 0					//Face hair color
+	var/s_tone = 0						//Skin tone
+	var/r_skin = 0						//Skin color
+	var/g_skin = 0						//Skin color
+	var/b_skin = 0						//Skin color
+	var/r_eyes = 0						//Eye color
+	var/g_eyes = 0						//Eye color
+	var/b_eyes = 0						//Eye color
+	var/s_base = ""						//Base skin colour
+	var/list/body_markings = list()
+	var/list/body_descriptors = list()
 
-	
+	// maps each organ to either null(intact), "cyborg" or "amputated"
+	// will probably not be able to do this for head and torso ;)
+	var/list/organ_data
+	var/list/rlimb_data
+	var/disabilities = 0
+
+	var/has_cortical_stack = FALSE
+	var/equip_preview_mob = EQUIP_PREVIEW_ALL
+
+	var/icon/bgstate = "black"
+	var/list/bgstate_options = list("steel", "dark_steel", "white_tiles", "black_tiles", "wood", "carpet", "white", "black")
 
 /datum/category_item/player_setup_item/physical/body
 	name = "Body"
@@ -124,10 +153,9 @@
 					pref.body_descriptors[entry] = Clamp(last_descriptors[entry], 1, LAZYLEN(descriptor.standalone_value_descriptors))
 	*/
 	if(!pref.bgstate || !(pref.bgstate in pref.bgstate_options))
-		pref.bgstate = "000"
+		pref.bgstate = "black"
 
 /datum/category_item/player_setup_item/physical/body/content(var/mob/user)
-	. = list()
 	if(!pref.preview_icon)
 		pref.update_preview_icon()
 	user << browse_rsc(pref.preview_icon, "previewicon.png")
@@ -258,7 +286,6 @@
 			. += "<tr><td><b>[capitalize(descriptor.chargen_label)]:</b></td><td>[descriptor.get_standalone_value_descriptor(pref.body_descriptors[entry])]</td><td><a href='?src=\ref[src];change_descriptor=[entry]'>Change</a><br/></td></tr>"
 		. += "</table><br>"
 	*/
-	. += "</td><td><b>Preview</b><br>"
 	. += "<div class='statusDisplay'><center><img src=previewicon.png width=[pref.preview_icon.Width()] height=[pref.preview_icon.Height()]></center></div>"
 	. += "<br><a href='?src=\ref[src];cycle_bg=1'>Cycle background</a>"
 	. += "<br><a href='?src=\ref[src];toggle_preview_value=[EQUIP_PREVIEW_LOADOUT]'>[pref.equip_preview_mob & EQUIP_PREVIEW_LOADOUT ? "Hide loadout" : "Show loadout"]</a>"
@@ -289,7 +316,6 @@
 		. += "<font face='fixedsys' size='3' color='[pref.body_markings[M]]'><table style='display:inline;' bgcolor='[pref.body_markings[M]]'><tr><td>__</td></tr></table></font>"
 		. += "<br>"
 
-	. = jointext(.,null)
 
 /datum/category_item/player_setup_item/physical/body/proc/has_flag(var/datum/species/mob_species, var/flag)
 	return mob_species && (mob_species.appearance_flags & flag)
@@ -297,6 +323,9 @@
 /datum/category_item/player_setup_item/physical/body/OnTopic(var/href,var/list/href_list, var/mob/user)
 
 	var/datum/species/mob_species = all_species[pref.species]
+	if(href_list["toggle_species_verbose"])
+		hide_species = !hide_species
+		return TOPIC_REFRESH
 
 	else if(href_list["random"])
 		pref.randomize_appearance_and_body_for()

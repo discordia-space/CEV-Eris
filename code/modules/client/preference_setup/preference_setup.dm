@@ -9,7 +9,7 @@ var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
 	category_item_type = /datum/category_item/player_setup_item/physical
 
 /datum/category_group/player_setup_category/augmentation
-	name = "Physical"
+	name = "Augmentation"
 	sort_order = 2
 	category_item_type = /datum/category_item/player_setup_item/augmentation
 /*
