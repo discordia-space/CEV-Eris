@@ -55,16 +55,60 @@ var/list/flooring_types
 	var/removal_time = WORKTIME_FAST * 0.75
 
 	//Flooring Icon vars
-	var/smooth_nothing = FALSE //Optimisation
+	var/smooth_nothing = FALSE //True/false only, optimisation
+	//If true, all smoothing logic is entirely skipped
+
+	//The rest of these x_smooth vars use one of the following options
+	//SMOOTH_NONE: Ignore all of type
+	//SMOOTH_ALL: Smooth with all of type
+	//SMOOTH_WHITELIST: Ignore all except types on this list
+	//SMOOTH_BLACKLIST: Smooth with all except types on this list
+	//SMOOTH_GREYLIST: Objects only: Use both lists
 
 	//How we smooth with other flooring
 	var/floor_smooth = SMOOTH_ALL
+	var/list/flooring_whitelist = list() //Smooth with nothing except the contents of this list
+	var/list/flooring_blacklist = list() //Smooth with everything except the contents of this list
 
 	//How we smooth with walls
 	var/wall_smooth = SMOOTH_NONE
+	//There are no lists for walls at this time
 
 	//How we smooth with space and openspace tiles
 	var/space_smooth = SMOOTH_ALL
+	//There are no lists for spaces
+
+
+	/*
+	How we smooth with movable atoms
+	These are checked after the above turf based smoothing has been handled
+	SMOOTH_ALL or SMOOTH_NONE are treated the same here. Both of those will just ignore atoms
+	Using the white/blacklists will override what the turfs concluded, to force or deny smoothing
+
+	Movable atom lists are much more complex, to account for many possibilities
+	Each entry in a list, is itself a list consisting of three items:
+		Type: The typepath to allow/deny. This will be checked against istype, so all subtypes are included
+		Priority: Used when items in two opposite lists conflict. The one with the highest priority wins out.
+		Vars: An associative list of variables (varnames in text) and desired values
+			Code will look for the desired vars on the target item and only call it a match if all desired values match
+			This can be used, for example, to check that objects are dense and anchored
+			there are no safety checks on this, it will probably throw runtimes if you make typos
+
+	Common example:
+	Don't smooth with dense anchored objects except airlocks
+
+	smooth_movable_atom = SMOOTH_GREYLIST
+	movable_atom_blacklist = list(
+		list(/obj, list("density" = TRUE, "anchored" = TRUE), 1)
+		)
+	movable_atom_whitelist = list(
+	list(/obj/machinery/door/airlock, list(), 2)
+	)
+
+	*/
+	var/smooth_movable_atom = SMOOTH_NONE
+	var/list/movable_atom_whitelist = list()
+	var/list/movable_atom_blacklist = list()
 
 
 //Flooring Procs
@@ -93,7 +137,7 @@ var/list/flooring_types
 	icon_base = "grass"
 	has_base_range = 3
 	damage_temperature = T0C+80
-	flags = TURF_REMOVE_SHOVEL | TURF_EDGES_EXTERNAL
+	flags = TURF_REMOVE_SHOVEL | TURF_EDGES_EXTERNAL | TURF_HAS_CORNERS
 	build_type = /obj/item/stack/tile/grass
 	plating_type = /decl/flooring/dirt
 	footstep_sound = "grass"
@@ -130,7 +174,7 @@ var/list/flooring_types
 	descriptor = "plating"
 	icon = 'icons/turf/flooring/plating.dmi'
 	icon_base = "plating"
-	build_type = MATERIAL_STEEL
+	build_type = /obj/item/stack/material/steel
 	flags = TURF_REMOVE_WELDER | TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS | TURF_CAN_BURN | TURF_CAN_BREAK
 	can_paint = 1
 	plating_type = /decl/flooring/reinforced/plating/under
@@ -139,7 +183,13 @@ var/list/flooring_types
 	space_smooth = FALSE
 	removal_time = 150
 	health = 100
-
+	floor_smooth = SMOOTH_BLACKLIST
+	flooring_blacklist = list(/decl/flooring/reinforced/plating/under,/decl/flooring/reinforced/plating/hull) //Smooth with everything except the contents of this list
+	smooth_movable_atom = SMOOTH_GREYLIST
+	movable_atom_blacklist = list(
+		list(/obj, list("density" = TRUE, "anchored" = TRUE), 1)
+		)
+	movable_atom_whitelist = list(list(/obj/machinery/door/airlock, list(), 2))
 
 //Normal plating allows anything, except other types of plating
 /decl/flooring/reinforced/plating/can_build_floor(var/decl/flooring/newfloor)
@@ -246,7 +296,7 @@ var/list/flooring_types
 	footstep_sound = "hull"
 	wall_smooth = SMOOTH_ALL
 	space_smooth = SMOOTH_NONE
-
+	smooth_movable_atom = SMOOTH_NONE
 
 //Hull can upgrade to underplating
 /decl/flooring/reinforced/plating/hull/can_build_floor(var/decl/flooring/newfloor)
