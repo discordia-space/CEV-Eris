@@ -87,7 +87,7 @@
 
 /datum/language/serbian
 	name = LANGUAGE_SERBIAN
-	desc = "Language popular among Serbian mercenaries, pirates and habitants of New Rebia planet."
+	desc = "Language popular among Serbian mercenaries, pirates and habitants of Predstraza planet."
 	colour = "serbian"
 	key = "x"
 	flags = RESTRICTED
