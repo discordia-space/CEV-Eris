@@ -19,8 +19,8 @@ datum/preferences/proc/update_preview_icon()
 	qdel(preview_west)
 
 	var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin(client_ckey)
-	mannequin.delete_inventory(TRUE)
-	dress_preview_mob(mannequin)
+	//mannequin.delete_inventory(TRUE)
+	//dress_preview_mob(mannequin)
 
 	preview_icon = icon('icons/effects/96x64.dmi', bgstate)
 	//preview_icon.Scale(48+32, 16+32)
@@ -29,17 +29,17 @@ datum/preferences/proc/update_preview_icon()
 
 	mannequin.dir = WEST
 	var/icon/stamp = getFlatIcon(mannequin, WEST, always_use_defdir = 1)
-	preview_icon.Blend(stamp, ICON_OVERLAY, preview_icon.Width()/100 * 5, preview_icon.Height()/100 * 27)
+	preview_icon.Blend(stamp, ICON_OVERLAY, preview_icon.Width()/100 * 3, preview_icon.Height()/100 * 29)
 	preview_west = stamp
 
 	mannequin.dir = NORTH
 	stamp = getFlatIcon(mannequin, NORTH, always_use_defdir = 1)
-	preview_icon.Blend(stamp, ICON_OVERLAY,preview_icon.Width()/100 * 37, preview_icon.Height()/100 * 50)
+	preview_icon.Blend(stamp, ICON_OVERLAY,preview_icon.Width()/100 * 35, preview_icon.Height()/100 * 53)
 	preview_north = stamp
 
 	mannequin.dir = SOUTH
 	stamp = getFlatIcon(mannequin, SOUTH, always_use_defdir = 1)
-	preview_icon.Blend(stamp, ICON_OVERLAY, preview_icon.Width()/100 * 67,preview_icon.Height()/100 * 6)
+	preview_icon.Blend(stamp, ICON_OVERLAY, preview_icon.Width()/100 * 68,preview_icon.Height()/100 * 5)
 	preview_south = stamp
 
 	preview_icon.Scale(preview_icon.Width() * 2, preview_icon.Height() * 2) // Scaling here to prevent blurring in the browser.

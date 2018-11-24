@@ -294,6 +294,7 @@ SUBSYSTEM_DEF(job)
 
 
 /datum/controller/subsystem/job/proc/EquipRank(mob/living/carbon/human/H, rank, joined_late = FALSE)
+	to_world("equip rank")
 	if(!H)
 		return null
 
@@ -340,6 +341,7 @@ SUBSYSTEM_DEF(job)
 	H.job = rank
 
 	if(!joined_late)
+		to_world("equip rank not late")
 		var/obj/S = get_roundstart_spawnpoint(rank)
 
 		if(istype(S, /obj/landmark/join/start) && istype(S.loc, /turf))

@@ -128,8 +128,9 @@
 	out += "Special roles:<br><table>"
 
 	out += "<b>Make_antagonist: </b>"
-	for(var/antag in antag_types)
-		var/antag_name = selectable_antag_types[antag] ? selectable_antag_types[antag] : "<font color='red'>[antag]</font>"
+	for(var/A in GLOB.all_antag_selectable_types)
+		var/datum/antagonist/antag = GLOB.all_antag_selectable_types[A]
+		var/antag_name = (antag in GLOB.all_antag_selectable_types) ? antag : "<font color='red'>[antag]</font>"
 		out += "<a href='?src=\ref[src];add_antagonist=[antag]'>[antag_name]</a>  "
 	out += "<br>"
 
@@ -145,7 +146,7 @@
 		return
 
 	if(href_list["add_antagonist"])
-		var/t = antag_types[href_list["add_antagonist"]]
+		var/t = GLOB.all_antag_types[href_list["add_antagonist"]]
 		var/datum/antagonist/antag = new t
 		if(antag)
 			var/ok = FALSE

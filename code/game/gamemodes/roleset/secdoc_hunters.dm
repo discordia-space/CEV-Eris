@@ -28,8 +28,8 @@
 
 	var/datum/mind/sci = pick(scientists)
 
-	var/datum/antagonist/H = get_antag_instance(ROLE_TRAITOR)
-	var/datum/antagonist/S = get_antag_instance(ROLE_SECDOC_DEFENDER)
+	var/datum/antagonist/H = create_antag_instance(ROLE_TRAITOR)
+	var/datum/antagonist/S = create_antag_instance(ROLE_SECDOC_DEFENDER)
 
 	H.create_antagonist(hunter, announce = FALSE)
 	S.create_antagonist(sci, announce = FALSE)

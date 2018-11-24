@@ -147,7 +147,7 @@ datum/preferences
 	player_setup.sanitize_setup()
 	character.set_species(species)
 
-	if(be_random_name)
+	/*if(be_random_name)
 		real_name = random_name(gender,species)
 
 	if(config.humans_need_surnames)
@@ -163,11 +163,12 @@ datum/preferences
 	character.gender = gender
 	character.age = age
 	character.b_type = b_type
-
+	
 	character.h_style = h_style
 	character.f_style = f_style
 
 	//TODO: replace with hex colors
+
 	character.eyes_color = rgb(r_eyes, g_eyes, b_eyes)
 	character.hair_color = rgb(r_hair, g_hair, b_hair)
 	character.facial_color = rgb(r_facial, g_facial, b_facial)
@@ -175,9 +176,6 @@ datum/preferences
 
 	character.religion = religion
 	character.s_tone = s_tone
-
-	character.h_style = h_style
-	character.f_style = f_style
 
 	QDEL_NULL_LIST(character.worn_underwear)
 	character.worn_underwear = list()
@@ -195,11 +193,11 @@ datum/preferences
 			all_underwear -= underwear_category_name
 
 	character.backpack_setup = new(backpack, backpack_metadata["[backpack]"])
-
+	
 	for(var/N in character.organs_by_name)
 		var/obj/item/organ/external/O = character.organs_by_name[N]
 		O.markings.Cut()
-
+	
 	for(var/M in body_markings)
 		var/datum/sprite_accessory/marking/mark_datum = GLOB.body_marking_styles_list[M]
 		var/mark_color = "[body_markings[M]]"
@@ -208,14 +206,17 @@ datum/preferences
 			var/obj/item/organ/external/O = character.organs_by_name[BP]
 			if(O)
 				O.markings[M] = list("color" = mark_color, "datum" = mark_datum)
-
 	character.force_update_limbs()
 	character.update_mutations(0)
-	character.update_body(0)
-	character.update_underwear(0)
-	character.update_hair(0)
-	character.update_icons()
+	
+	
+	character.update_body(0)*/
+	//character.update_underwear(0)
+	
+	//character.update_hair(0)
 
+	//character.update_icons()
+	
 	if(is_preview_copy)
 		return
 
@@ -236,11 +237,11 @@ datum/preferences
 	character.sec_record = sec_record
 	character.gen_record = gen_record
 	character.exploit_record = exploit_record
-
+	/*
 	if(LAZYLEN(character.descriptors))
 		for(var/entry in body_descriptors)
 			character.descriptors[entry] = body_descriptors[entry]
-
+	*/
 	if(!character.isSynthetic())
 		character.nutrition = rand(140,360)
 

@@ -45,7 +45,7 @@
 	if(!rev)
 		return FALSE
 
-	var/datum/antagonist/R = get_antag_instance(ROLE_EXCELSIOR_REV)
+	var/datum/antagonist/R = create_antag_instance(ROLE_EXCELSIOR_REV)
 
 	var/datum/faction/revolutionary/excelsior/E = new
 	E.create_objectives()

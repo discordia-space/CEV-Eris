@@ -24,10 +24,7 @@
 	return L.len
 
 /datum/storyevent/roleset/proc/candidates_list(var/antag, var/oneantag = TRUE)
-	var/datum/antagonist/temp
-	if(ispath(antag_types[antag]))
-		var/t = antag_types[antag]
-		temp = new t
+	var/datum/antagonist/temp = GLOB.all_antag_types[antag]
 	if(!istype(temp))
 		return list()
 	var/list/candidates = list()
@@ -44,19 +41,12 @@
 			continue
 		if(player_is_antag_id(candidate,antag))
 			continue
-
 		candidates.Add(candidate)
-
-	qdel(temp)
 	return shuffle(candidates)
 
 /datum/storyevent/roleset/proc/ghost_candidates_list(var/antag, var/act_test = TRUE)
 
-	var/datum/antagonist/temp
-
-	if(ispath(antag_types[antag]))
-		var/t = antag_types[antag]
-		temp = new t
+	var/datum/antagonist/temp = GLOB.all_antag_types[antag]
 	if(!istype(temp))
 		return list()
 
@@ -89,7 +79,6 @@
 			sleep(20 SECONDS)
 			agree_time_out = TRUE
 
-	qdel(temp)
 	return shuffle(candidates)
 
 
@@ -101,13 +90,13 @@
 		//Something is completely wrong, abort!
 		cancel(severity, 0.0)
 
-	var/antag = antag_types[role_id]
+	var/datum/antagonist/antag = GLOB.all_antag_types[role_id]
 	/*
 		We will try to spawn up to [target_quantity] antags
 		If the attempt fails at any point, we will abort
 	*/
 
-	var/outer = (role_id in outer_antag_types)
+	var/outer = GLOB.outer_antag_types[role_id] ? TRUE : FALSE
 	var/list/candidates = list()
 	if (outer)
 		candidates = ghost_candidates_list(role_id)
@@ -163,7 +152,7 @@
 //Tests if its possible for us to trigger, by compiling candidate lists but doing nothing with them
 /datum/storyevent/roleset/can_trigger()
 	var/list/possible_candidates = list()
-	if(role_id in outer_antag_types)
+	if(GLOB.outer_antag_types[role_id])
 		possible_candidates = ghost_candidates_list(role_id, FALSE) //We set act check to false so it doesn't ask ghosts
 	else
 		possible_candidates = candidates_list(role_id)

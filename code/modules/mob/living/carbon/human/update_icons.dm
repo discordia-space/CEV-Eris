@@ -304,7 +304,6 @@ var/global/list/damage_icon_parts = list()
 		//END CACHED ICON GENERATION.
 		stand_icon.Blend(base_icon,ICON_OVERLAY)
 
-	update_underwear(0)
 	appearance_test.Log("EXIT update_body()")
 	if(update_icons)
 		update_icons()

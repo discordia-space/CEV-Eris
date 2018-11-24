@@ -120,9 +120,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		pref.has_cortical_stack = FALSE
 
 	//var/low_skin_tone = mob_species ? (35 - mob_species.max_skin_tone()) : -185
-	var/low_skin_tone = -185
+	var/low_skin_tone = 0
 
-	sanitize_integer(pref.s_tone, low_skin_tone, 34, initial(pref.s_tone))
+	sanitize_integer(pref.s_tone, low_skin_tone, 35, initial(pref.s_tone))
 
 	//if(!mob_species.base_skin_colours || isnull(mob_species.base_skin_colours[pref.s_base]))
 	//	pref.s_base = ""
@@ -184,7 +184,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	if(has_flag(mob_species, HAS_A_SKIN_TONE))
 //		. += "Skin Tone: <a href='?src=\ref[src];skin_tone=1'>[-pref.s_tone + 35]/[mob_species.max_skin_tone()]</a><br>"
-		. += "Skin Tone: <a href='?src=\ref[src];skin_tone=1'>[-pref.s_tone + 35]/220</a><br>"
+		. += "Skin Tone: <a href='?src=\ref[src];skin_tone=1'>[-pref.s_tone + 35]/225</a><br>"
 
 	. += "Needs Glasses: <a href='?src=\ref[src];disabilities=[NEARSIGHTED]'><b>[pref.disabilities & NEARSIGHTED ? "Yes" : "No"]</b></a><br>"
 	//. += "Limbs: <a href='?src=\ref[src];limbs=1'>Adjust</a> <a href='?src=\ref[src];reset_limbs=1'>Reset</a><br>"
