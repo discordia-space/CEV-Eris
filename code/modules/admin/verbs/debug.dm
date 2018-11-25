@@ -421,7 +421,6 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 
 			job.equip(M)
 			job.apply_fingerprints(M)
-			SSjob.spawnId(M, selected_job)
 
 		if ("standard space gear")
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(M), slot_shoes)

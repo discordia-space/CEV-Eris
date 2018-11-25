@@ -9,13 +9,13 @@
 	spawn_positions = 1
 	supervisors = "the Captain"
 	selection_color = "#c7b97b"
-	idtype = /obj/item/weapon/card/id/ce
 	req_admin_notify = 1
 	economic_modifier = 10
 	also_known_languages = list(LANGUAGE_CYRILLIC = 100)
 
 	ideal_character_age = 50
 
+	outfit_type = /decl/hierarchy/outfit/job/engineering/exultant
 
 	access = list(
 		access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels,
@@ -40,27 +40,6 @@
 							 /datum/computer_file/program/shield_control,
 							 /datum/computer_file/program/reports)
 
-	uniform = /obj/item/clothing/under/rank/exultant
-	suit = /obj/item/clothing/suit/storage/hazardvest
-	shoes = /obj/item/clothing/shoes/jackboots
-	pda = /obj/item/modular_computer/pda/heads/ce
-	hat = /obj/item/clothing/head/hardhat/white
-	gloves = /obj/item/clothing/gloves/thick
-	belt = /obj/item/weapon/storage/belt/utility/full
-	ear = /obj/item/device/radio/headset/heads/ce
-	survival_gear = /obj/item/weapon/storage/box/engineer
-
-	put_in_backpack = list(\
-		/obj/item/device/t_scanner,\
-		/obj/item/device/lighting/glowstick/yellow
-		)
-
-	backpacks = list(
-		/obj/item/weapon/storage/backpack/industrial,\
-		/obj/item/weapon/storage/backpack/satchel_eng,\
-		/obj/item/weapon/storage/backpack/satchel
-		)
-
 /obj/landmark/join/start/chief_engineer
 	name = "Technomancer Exultant"
 	icon_state = "player-orange-officer"
@@ -79,11 +58,13 @@
 	selection_color = "#d5c88f"
 	economic_modifier = 5
 	also_known_languages = list(LANGUAGE_CYRILLIC = 100)
+
+	outfit_type = /decl/hierarchy/outfit/job/engineering/engineer
+
 	access = list(
 		access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels,
 		access_external_airlocks, access_construction, access_atmospherics
 	)
-	idtype = /obj/item/weapon/card/id/engie
 
 	stat_modifers = list(
 		STAT_MEC = 30,
@@ -97,27 +78,6 @@
 							 /datum/computer_file/program/rcon_console,
 							 /datum/computer_file/program/camera_monitor,
 							 /datum/computer_file/program/shield_control)
-
-	uniform = /obj/item/clothing/under/rank/engineer
-	suit = /obj/item/clothing/suit/storage/hazardvest
-	shoes = /obj/item/clothing/shoes/jackboots
-	pda = /obj/item/modular_computer/pda/engineering
-	gloves = /obj/item/clothing/gloves/thick
-	hat = /obj/item/clothing/head/hardhat
-	belt = /obj/item/weapon/storage/belt/utility/full
-	ear = /obj/item/device/radio/headset/headset_eng
-	survival_gear = /obj/item/weapon/storage/box/engineer
-
-	put_in_backpack = list(\
-		/obj/item/device/t_scanner,\
-		/obj/item/device/lighting/glowstick/yellow
-		)
-
-	backpacks = list(
-		/obj/item/weapon/storage/backpack/industrial,\
-		/obj/item/weapon/storage/backpack/satchel_eng,\
-		/obj/item/weapon/storage/backpack/satchel
-		)
 
 /obj/landmark/join/start/technomancer
 	name = "Technomancer"

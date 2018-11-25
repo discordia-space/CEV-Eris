@@ -7,5 +7,5 @@
 	suit = /obj/item/clothing/suit/straight_jacket
 
 /decl/hierarchy/outfit/job/silicon/cyborg
-	name = OUTFIT_JOB_NAME("Cyborg")
+	name = OUTFIT_JOB_NAME("Robot")
 	suit = /obj/item/clothing/suit/cardborg

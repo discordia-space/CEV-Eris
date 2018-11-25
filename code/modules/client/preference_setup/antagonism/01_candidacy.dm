@@ -37,7 +37,6 @@
 
 	for(var/A in GLOB.all_antag_selectable_types)
 		var/datum/antagonist/antag = GLOB.all_antag_selectable_types[A]
-		testing(antag.id)
 		. += "<tr><td>[antag.role_text]: </td><td>"
 		if(jobban_isbanned(preference_mob(), antag.id) || (antag.id == ROLE_MALFUNCTION && jobban_isbanned(preference_mob(), "AI")))
 			. += "<span class='danger'>\[BANNED\]</span><br>"
@@ -123,7 +122,7 @@
 				continue
 			if(((antag  == ROLE_MALFUNCTION) && jobban_isbanned(preference_mob(), "AI")))
 				continue
-		private_valid_special_roles += antag
+		private_valid_special_roles += antag.id
 
 	var/list/ghost_traps = get_ghost_traps()
 	for(var/ghost_trap_key in ghost_traps)

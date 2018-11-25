@@ -308,11 +308,11 @@ SUBSYSTEM_DEF(job)
 		//var/list/custom_equip_leftovers = list()
 
 		//Equip job items and language stuff
-		job.equip(H)
+		job.equip(H, H.mind ? H.mind.role_alt_title : "")
 		job.add_stats(H)
 		job.add_additiional_language(H)
 		job.setup_account(H)
-
+		
 		job.apply_fingerprints(H)
 
 		//If some custom items could not be equipped before, try again now.
@@ -343,10 +343,13 @@ SUBSYSTEM_DEF(job)
 	if(!joined_late)
 		to_world("equip rank not late")
 		var/obj/S = get_roundstart_spawnpoint(rank)
+		to_world(H.job)
 
 		if(istype(S, /obj/landmark/join/start) && istype(S.loc, /turf))
 			H.forceMove(S.loc)
+			to_world("is landmark")
 		else
+			to_world("not landmark")
 			var/datum/spawnpoint/spawnpoint = get_spawnpoint_for(H.client, rank)
 			H.forceMove(pick(spawnpoint.turfs))
 
@@ -414,11 +417,6 @@ SUBSYSTEM_DEF(job)
 	if(job.supervisors)
 		H << "<b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>"
 
-	if(job.idtype)
-		spawnId(H, rank, alt_title)
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset(H), slot_l_ear)
-		H << "<b>To speak on your department's radio channel use :h. For the use of other channels, examine your headset.</b>"
-
 	if(job.req_admin_notify)
 		H << "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>"
 
@@ -432,44 +430,6 @@ SUBSYSTEM_DEF(job)
 	BITSET(H.hud_updateflag, ID_HUD)
 	BITSET(H.hud_updateflag, SPECIALROLE_HUD)
 	return H
-
-
-/datum/controller/subsystem/job/proc/spawnId(mob/living/carbon/human/H, rank, title, idtype)
-	if(!H)
-		return FALSE
-	var/obj/item/weapon/card/id/C = null
-
-	var/datum/job/job = null
-	for(var/datum/job/J in occupations)
-		if(J.title == rank)
-			job = J
-			break
-
-	if(job)
-		if(job.title == "Robot")
-			return
-		else
-			idtype = idtype ? idtype : job.idtype
-			C = new idtype(H)
-			C.access = job.get_access()
-	else
-		C = new /obj/item/weapon/card/id(H)
-	if(C)
-		C.rank = rank
-		C.assignment = title ? title : rank
-		H.set_id_info(C)
-
-		//put the player's account number onto the ID
-		if(H.mind && H.mind.initial_account)
-			C.associated_account_number = H.mind.initial_account.account_number
-
-		if(H.mind.initial_email_login)
-			C.associated_email_login = H.mind.initial_email_login.Copy()
-
-		H.equip_to_slot_or_del(C, slot_wear_id)
-
-	return TRUE
-
 
 /datum/controller/subsystem/job/proc/LoadJobs(jobsfile) //ran during round setup, reads info from jobs.txt -- Urist
 	if(!config.load_jobs_from_txt)
@@ -550,8 +510,10 @@ SUBSYSTEM_DEF(job)
 
 	if(spawnpoint == DEFAULT_SPAWNPOINT_ID)
 		spawnpoint = maps_data.default_spawn
+		to_world("default one")
 
 	if(spawnpoint)
+		to_world("is spawnpoint")
 		if(!(spawnpoint in maps_data.allowed_spawns))
 			if(H)
 				to_chat(H, "<span class='warning'>Your chosen spawnpoint ([C.prefs.spawnpoint]) is unavailable for the current map. Spawning you at one of the enabled spawn points instead. To resolve this error head to your character's setup and choose a different spawn point.</span>")
@@ -571,11 +533,14 @@ SUBSYSTEM_DEF(job)
 			if(candidate.check_job_spawning(rank))
 				spawnpos = candidate
 				break
+		to_world("no spawnpos last")
 
 	if(!spawnpos)
 		// Pick at random from all the (wrong) spawnpoints, just so we have one
 		warning("Could not find an appropriate spawnpoint for job [rank].")
 		spawnpos = spawntypes()[pick(maps_data.allowed_spawns)]
+
+		to_world("no spawnpos last")
 
 	return spawnpos
 

@@ -1,5 +1,6 @@
 /decl/hierarchy/outfit/job/assistant
 	name = OUTFIT_JOB_NAME("Assistant")
+	suit = /obj/item/clothing/suit/storage/ass_jacket
 
 /decl/hierarchy/outfit/job/service
 	l_ear = /obj/item/device/radio/headset/headset_service
@@ -8,58 +9,43 @@
 /decl/hierarchy/outfit/job/service/bartender
 	name = OUTFIT_JOB_NAME("Bartender")
 	uniform = /obj/item/clothing/under/rank/bartender
-	id_type = /obj/item/weapon/card/id/civilian/bartender
 	pda_type = /obj/item/modular_computer/pda
+	backpack_contents = list(/obj/item/ammo_casing/shotgun/beanbag = 4)
+	
 
 /decl/hierarchy/outfit/job/service/chef
 	name = OUTFIT_JOB_NAME("Chef")
 	uniform = /obj/item/clothing/under/rank/chef
 	suit = /obj/item/clothing/suit/chef
 	head = /obj/item/clothing/head/chefhat
-	id_type = /obj/item/weapon/card/id/civilian/chef
+	id_type = /obj/item/weapon/card/id/ltgrey
 	pda_type = /obj/item/modular_computer/pda
 
 /decl/hierarchy/outfit/job/service/gardener
 	name = OUTFIT_JOB_NAME("Gardener")
 	uniform = /obj/item/clothing/under/rank/hydroponics
 	suit = /obj/item/clothing/suit/apron
-	gloves = /obj/item/clothing/gloves/thick/botany
-	r_pocket = /obj/item/device/analyzer/plant_analyzer
-	id_type = /obj/item/weapon/card/id/civilian/botanist
+	gloves = /obj/item/clothing/gloves/botanic_leather
+	r_pocket = /obj/item/device/scanner/analyzer/plant_analyzer
+	id_type = /obj/item/weapon/card/id/hydro
 	pda_type = /obj/item/modular_computer/pda
 
 /decl/hierarchy/outfit/job/service/gardener/New()
 	..()
-	backpack_overrides[/decl/backpack_outfit/backpack]      = /obj/item/weapon/storage/backpack/hydroponics
-	backpack_overrides[/decl/backpack_outfit/satchel]       = /obj/item/weapon/storage/backpack/satchel/hyd
-	backpack_overrides[/decl/backpack_outfit/messenger_bag] = /obj/item/weapon/storage/backpack/messenger/hyd
 
 /decl/hierarchy/outfit/job/service/janitor
 	name = OUTFIT_JOB_NAME("Janitor")
 	uniform = /obj/item/clothing/under/rank/janitor
-	id_type = /obj/item/weapon/card/id/civilian/janitor
 	pda_type = /obj/item/modular_computer/pda
 
-/decl/hierarchy/outfit/job/librarian
-	name = OUTFIT_JOB_NAME("Librarian")
-	uniform = /obj/item/clothing/under/suit_jacket/red
-	id_type = /obj/item/weapon/card/id/civilian/librarian
-	pda_type = /obj/item/modular_computer/pda
+/decl/hierarchy/outfit/job/service/actor/clown
+	name = OUTFIT_JOB_NAME("Clown")
+	uniform = /obj/item/clothing/under/rank/clown
+	shoes = /obj/item/clothing/shoes/clown_shoes
+	mask = /obj/item/clothing/mask/gas/clown_hat
+	l_pocket = /obj/item/weapon/bikehorn
+	backpack_contents = list(/obj/item/weapon/bananapeel = 1, /obj/item/weapon/storage/fancy/crayons = 1, /obj/item/toy/waterflower = 1, /obj/item/weapon/stamp/clown = 1)
 
-/decl/hierarchy/outfit/job/internal_affairs_agent
-	name = OUTFIT_JOB_NAME("Internal affairs agent")
-	l_ear = /obj/item/device/radio/headset/ia
-	uniform = /obj/item/clothing/under/rank/internalaffairs
-	suit = /obj/item/clothing/suit/storage/toggle/suit/black
-	shoes = /obj/item/clothing/shoes/brown
-	glasses = /obj/item/clothing/glasses/sunglasses/big
-	l_hand = /obj/item/weapon/storage/briefcase
-	id_type = /obj/item/weapon/card/id/civilian/internal_affairs_agent
-	pda_type = /obj/item/modular_computer/pda/heads/paperpusher
-
-/decl/hierarchy/outfit/job/chaplain
-	name = OUTFIT_JOB_NAME("Chaplain")
-	uniform = /obj/item/clothing/under/rank/chaplain
-	l_hand = /obj/item/weapon/storage/bible
-	id_type = /obj/item/weapon/card/id/civilian/chaplain
-	pda_type = /obj/item/modular_computer/pda/medical
+/decl/hierarchy/outfit/job/service/actor/clown/post_equip(var/mob/living/carbon/human/H)
+	..()
+	H.mutations.Add(CLUMSY)

@@ -16,32 +16,7 @@
 		STAT_ROB = 10,
 	)
 
-	uniform = /obj/item/clothing/under/rank/bartender
-	pda = /obj/item/modular_computer/pda
-	ear = /obj/item/device/radio/headset/headset_service
-
-	equip(var/mob/living/carbon/human/H)
-		if(!..())	return 0
-		var/obj/item/weapon/storage/box/survival/Barpack = null
-		if(H.back)
-			Barpack = locate() in H.back
-			if(!Barpack)
-				Barpack = new(H)
-				H.equip_to_slot_or_del(Barpack, slot_in_backpack)
-
-		else //TODO: check both hands
-			if(!H.r_hand)
-				Barpack = new /obj/item/weapon/storage/box/survival(H)
-				H.equip_to_slot_or_del(Barpack, slot_r_hand)
-			else if(istype(H.r_hand, /obj/item/weapon/storage/box))
-				Barpack = H.r_hand
-
-		if(Barpack)
-			new /obj/item/ammo_casing/shotgun/beanbag(Barpack)
-			new /obj/item/ammo_casing/shotgun/beanbag(Barpack)
-			new /obj/item/ammo_casing/shotgun/beanbag(Barpack)
-			new /obj/item/ammo_casing/shotgun/beanbag(Barpack)
-		return 1
+	outfit_type = /decl/hierarchy/outfit/job/service/bartender
 
 /obj/landmark/join/start/bartender
 	name = "Bartender"
@@ -61,14 +36,9 @@
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
 	access = list(access_hydroponics, access_bar, access_kitchen)
-	idtype = /obj/item/weapon/card/id/ltgrey
+	alt_titles = list("Cook")
 
-	uniform = /obj/item/clothing/under/rank/chef
-	shoes = /obj/item/clothing/shoes/black
-	pda = /obj/item/modular_computer/pda
-	hat = /obj/item/clothing/head/chefhat
-	suit = /obj/item/clothing/suit/chef
-	ear = /obj/item/device/radio/headset/headset_service
+	outfit_type = /decl/hierarchy/outfit/job/service/chef
 
 /obj/landmark/join/start/chef
 	name = "Chef"
@@ -87,9 +57,11 @@
 	spawn_positions = 3
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
+	//alt_titles = list("Hydroponicist")
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
 	access = list(access_hydroponics, access_bar, access_kitchen)
-	idtype = /obj/item/weapon/card/id/hydro
+
+	outfit_type = /decl/hierarchy/outfit/job/service/gardener
 
 	stat_modifers = list(
 		STAT_BIO = 10,
@@ -97,14 +69,6 @@
 		STAT_ROB = 20,
 	)
 
-	uniform = /obj/item/clothing/under/rank/hydroponics
-	pda = /obj/item/modular_computer/pda
-	suit = /obj/item/clothing/suit/apron
-	gloves = /obj/item/clothing/gloves/botanic_leather
-	ear = /obj/item/device/radio/headset/headset_service
-	put_in_backpack = list(\
-		/obj/item/device/scanner/analyzer/plant_analyzer
-		)
 
 /obj/landmark/join/start/hydro
 	name = "Gardener"
@@ -125,36 +89,21 @@
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
 	access = list(access_maint_tunnels, access_theatre)
 
+	outfit_type = /decl/hierarchy/outfit/job/service/actor/clown
+
 	stat_modifers = list(
 		STAT_TGH = 10,
 		STAT_ROB = 20,
 	)
 
-	uniform = /obj/item/clothing/under/rank/clown
-	shoes = /obj/item/clothing/shoes/clown_shoes
-	pda = /obj/item/modular_computer/pda
-	mask = /obj/item/clothing/mask/gas/clown_hat
-	ear = /obj/item/device/radio/headset/headset_service
-
-	put_in_backpack = list(\
-		/obj/item/weapon/bananapeel,\
-		/obj/item/weapon/bikehorn,\
-		//obj/item/toy/crayon/rainbow,\
-		/obj/item/weapon/storage/fancy/crayons,\
-		/obj/item/toy/waterflower,\
-		/obj/item/weapon/stamp/clown
-		)
-
+	
+	/*TODO: DEL THIS
 	backpacks = list(
 		/obj/item/weapon/storage/backpack/clown,\
 		/obj/item/weapon/storage/backpack/satchel_norm,\
 		/obj/item/weapon/storage/backpack/satchel
 		)
-
-	equip(var/mob/living/carbon/human/H)
-		if(!..())	return 0
-		H.mutations.Add(CLUMSY)
-		return 1
+	*/
 
 /obj/landmark/join/start/actor
 	name = "Actor"
@@ -172,8 +121,11 @@
 	spawn_positions = 3
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
+	//alt_titles = list("Custodian","Sanitation Technician")
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
 	access = list(access_janitor, access_maint_tunnels)
+
+	outfit_type = /decl/hierarchy/outfit/job/service/janitor
 
 	stat_modifers = list(
 		STAT_ROB = 10,
@@ -181,10 +133,6 @@
 
 	software_on_spawn = list(
 							 /datum/computer_file/program/camera_monitor)
-
-	uniform = /obj/item/clothing/under/rank/janitor
-	pda = /obj/item/modular_computer/pda
-	ear = /obj/item/device/radio/headset/headset_service
 
 /obj/landmark/join/start/janitor
 	name = "Janitor"

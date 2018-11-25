@@ -9,10 +9,12 @@
 	spawn_positions = 1
 	supervisors = "Moebius Corporation"
 	selection_color = "#b39aaf"
-	idtype = /obj/item/weapon/card/id/rd
 	req_admin_notify = 1
 	economic_modifier = 15
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
+
+	outfit_type = /decl/hierarchy/outfit/job/science/rd
+
 	access = list(
 		access_rd, access_heads, access_tox, access_genetics, access_morgue,
 		access_tox_storage, access_teleporter, access_sec_doors,
@@ -34,19 +36,6 @@
 							 /datum/computer_file/program/camera_monitor,
 							 /datum/computer_file/program/reports)
 
-	uniform = /obj/item/clothing/under/rank/expedition_overseer
-	pda = /obj/item/modular_computer/pda/heads/rd
-	ear = /obj/item/device/radio/headset/heads/rd
-	shoes = /obj/item/clothing/shoes/reinforced
-	suit = /obj/item/clothing/suit/storage/toggle/labcoat
-	hand = /obj/item/weapon/clipboard
-
-	backpacks = list(
-		/obj/item/weapon/storage/backpack,\
-		/obj/item/weapon/storage/backpack/satchel_norm,\
-		/obj/item/weapon/storage/backpack/satchel
-		)
-
 /obj/landmark/join/start/rd
 	name = "Moebius Expedition Overseer"
 	icon_state = "player-purple-officer"
@@ -66,11 +55,14 @@
 	selection_color = "#bdb1bb"
 	economic_modifier = 7
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
+
+	//alt_titles = list("Moebius Xenobiologist")
+	outfit_type = /decl/hierarchy/outfit/job/science/scientist
+
 	access = list(
 		access_robotics, access_tox, access_tox_storage, access_moebius, access_xenobiology, access_xenoarch,
 		access_genetics
 	)
-	idtype = /obj/item/weapon/card/id/sci
 
 	stat_modifers = list(
 		STAT_MEC = 20,
@@ -78,17 +70,6 @@
 		STAT_BIO = 20,
 	)
 
-	uniform = /obj/item/clothing/under/rank/scientist
-	pda = /obj/item/modular_computer/pda/science
-	ear = /obj/item/device/radio/headset/headset_sci
-	shoes = /obj/item/clothing/shoes/jackboots
-	suit = /obj/item/clothing/suit/storage/toggle/labcoat/science
-
-	backpacks = list(
-		/obj/item/weapon/storage/backpack,\
-		/obj/item/weapon/storage/backpack/satchel_norm,\
-		/obj/item/weapon/storage/backpack/satchel
-		)
 
 /obj/landmark/join/start/scientist
 	name = "Moebius Scientist"
@@ -108,10 +89,12 @@
 	selection_color = "#bdb1bb"
 	economic_modifier = 5
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
+
+	outfit_type = /decl/hierarchy/outfit/job/science/scientist
+
 	access = list(
 		access_robotics, access_tox, access_tox_storage, access_tech_storage, access_morgue, access_moebius
 	) //As a job that handles so many corpses, it makes sense for them to have morgue access.
-	idtype = /obj/item/weapon/card/id/dkgrey
 
 	stat_modifers = list(
 		STAT_MEC = 30,
@@ -119,13 +102,6 @@
 		STAT_BIO = 30,
 	)
 
-	uniform = /obj/item/clothing/under/rank/roboticist
-	pda = /obj/item/modular_computer/pda/roboticist
-	gloves = /obj/item/clothing/gloves/thick
-	ear = /obj/item/device/radio/headset/headset_sci
-	suit = /obj/item/clothing/suit/storage/robotech_jacket
-	hand = /obj/item/weapon/storage/toolbox/mechanical
-	shoes = /obj/item/clothing/shoes/jackboots
 
 /obj/landmark/join/start/roboticist
 	name = "Moebius Roboticist"

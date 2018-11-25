@@ -13,7 +13,7 @@
 	var/supervisors = null                // Supervisors, who this person answers to directly
 	var/selection_color = "#ffffff"       // Selection screen color
 	var/list/alt_titles
-	var/idtype = /obj/item/weapon/card/id // The type of the ID the player will have
+	
 	var/req_admin_notify                  // If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
 	var/department = null                 // Does this position have a department tag?
 	var/head_position = 0                 // Is this position Command?
@@ -27,59 +27,8 @@
 
 	var/outfit_type                       // The outfit the employee will be dressed in, if any
 
-
-	var/survival_gear = /obj/item/weapon/storage/box/survival// Custom box for spawn in backpack
-//job equipment
-	var/uniform = /obj/item/clothing/under/color/grey
-	var/shoes = /obj/item/clothing/shoes/black
-	var/pda = /obj/item/modular_computer/pda
-	var/hat = null
-	var/suit = null
-	var/gloves = null
-	var/mask = null
-	var/belt = null
-	var/ear = /obj/item/device/radio/headset
-	var/hand = null
-	var/glasses = null
-	var/suit_store = null
-
-	var/list/backpacks = list(
-		/obj/item/weapon/storage/backpack,
-		/obj/item/weapon/storage/backpack/satchel_norm,
-		/obj/item/weapon/storage/backpack/satchel
-		)
-
 	//Character stats modifers
 	var/list/stat_modifers = list()
-
-	//This will be put in backpack. List ordered by priority!
-	var/list/put_in_backpack = list()
-
-	/*For copy-pasting:
-	implanted =
-	uniform =
-	pda =
-	ear =
-	shoes =
-	suit =
-	suit_store =
-	gloves =
-	mask =
-	belt =
-	hand =
-	glasses =
-	hat =
-
-	put_in_backpack = list(
-
-		)
-
-	backpacks = list(
-		/obj/item/weapon/storage/backpack,
-		/obj/item/weapon/storage/backpack/satchel_norm,
-		/obj/item/weapon/storage/backpack/satchel
-		)
-	*/
 
 /datum/job/proc/equip(var/mob/living/carbon/human/H, var/alt_title)
 	var/decl/hierarchy/outfit/outfit = get_outfit()

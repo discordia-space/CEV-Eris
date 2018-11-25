@@ -11,12 +11,12 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	spawn_positions = 1
 	supervisors = "your heart and wisdom"
 	selection_color = "#ccccff"
-	idtype = /obj/item/weapon/card/id/gold
 	req_admin_notify = 1
 	economic_modifier = 25
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
 
 	ideal_character_age = 70 // Old geezer captains ftw
+	outfit_type = /decl/hierarchy/outfit/job/captain
 
 	stat_modifers = list(
 		STAT_ROB = 10,
@@ -28,22 +28,6 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 							 /datum/computer_file/program/camera_monitor,
 							 /datum/computer_file/program/reports)
 
-	uniform = /obj/item/clothing/under/rank/captain
-	shoes = /obj/item/clothing/shoes/color/brown
-	pda = /obj/item/modular_computer/pda/captain
-	hat = /obj/item/clothing/head/caphat
-	ear = /obj/item/device/radio/headset/heads/captain
-	glasses = /obj/item/clothing/glasses/sunglasses
-
-	backpacks = list(
-		/obj/item/weapon/storage/backpack/captain,\
-		/obj/item/weapon/storage/backpack/satchel_cap,\
-		/obj/item/weapon/storage/backpack/satchel
-		)
-
-	put_in_backpack = list(
-		/obj/item/weapon/storage/box/ids \
-	)
 
 	equip(var/mob/living/carbon/human/H)
 		if(!..())	return 0
@@ -73,7 +57,6 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	spawn_positions = 1
 	supervisors = "the captain"
 	selection_color = "#ddddff"
-	idtype = /obj/item/weapon/card/id/hop
 	req_admin_notify = 1
 	economic_modifier = 15
 	also_known_languages = list(LANGUAGE_CYRILLIC = 20)
@@ -88,16 +71,6 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 							 /datum/computer_file/program/camera_monitor,
 							 /datum/computer_file/program/reports)
 
-	uniform = /obj/item/clothing/under/rank/first_officer
-	shoes = /obj/item/clothing/shoes/reinforced
-	suit = /obj/item/clothing/suit/armor/vest
-	gloves = /obj/item/clothing/gloves/thick
-	pda = /obj/item/modular_computer/pda/heads/hop
-	ear = /obj/item/device/radio/headset/heads/hop
-
-	put_in_backpack = list(
-		/obj/item/weapon/storage/box/ids \
-		)
 
 	get_access()
 		return get_all_station_access()

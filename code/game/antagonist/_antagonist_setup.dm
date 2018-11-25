@@ -93,10 +93,6 @@ GLOBAL_LIST_EMPTY(faction_types)
 /proc/populate_antag_type_list()
 	for(var/antag_type in typesof(/datum/antagonist)-/datum/antagonist)
 		var/datum/antagonist/A = new antag_type()
-		testing(antag_type)
-		testing(A)
-		testing(A.id)
-		testing(A.role_text)
 		if(!A.id)
 			continue
 
