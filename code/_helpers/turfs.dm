@@ -206,3 +206,12 @@
 	if (SA && SA.target)
 		return get_turf(SA.target)
 	return T
+
+
+//Used for border objects. This returns true if this atom is on the border between the two specified turfs
+//This assumes that the atom is located inside the target turf
+/atom/proc/is_between_turfs(var/turf/origin, var/turf/target)
+	if (flags & ON_BORDER)
+		var/testdir = get_dir(target, origin)
+		return (dir & testdir)
+	return TRUE
