@@ -7,7 +7,7 @@
 	restricted_jobs = list("Cyberchristian Preacher")
 
 	possible_objectives = list(
-		/datum/objective/assasinate = 30,
+		/datum/objective/assassinate = 30,
 		/datum/objective/brig = 15,
 		/datum/objective/harm = 15,
 		/datum/objective/steal = 30,
