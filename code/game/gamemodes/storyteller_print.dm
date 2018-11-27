@@ -244,8 +244,13 @@
 				message_admins("Event \"[evt.id]\" was [evt.enabled?"allowed":"restricted"] to spawn by [key_name(usr)]")
 				build_event_pools()
 			if(href_list["ev_spawn"])
-				if (!evt.can_trigger())
-					var/answer = alert(usr, "\"[evt.id]\" is not allowed to trigger. Would you like to force it anyway?.", "Force Event? ", "yes", "no")
+				//When in debug mode, we pass in the user.
+					//If antag spawning fails, they will be spammed with text explaining why
+				if (!evt.can_trigger(href_list["severity"], debug_mode? usr : null))
+					var/answer = alert(usr, "\"[evt.id]\" is not allowed to trigger.\n\
+					To find out why, turn on debug mode in the storyteller panel and try again. \n\
+					You can also try to bypass the requirement and force it anyway, but this is unlikely to work\n \
+					 Would you like to force it anyway?.", "Force Event? ", "yes", "no")
 					if (answer == "no")
 						return
 

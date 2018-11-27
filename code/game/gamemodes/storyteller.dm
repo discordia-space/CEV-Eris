@@ -305,7 +305,12 @@ var/datum/storyteller/storyteller = null
 /*Sets up an event to be fired in the near future. This keeps things unpredictable
 The actual fire event proc is located in storyteller_meta*/
 /datum/storyteller/proc/schedule_event(var/datum/storyevent/C, var/event_type)
-	var/handle = addtimer(CALLBACK(GLOBAL_PROC, .proc/fire_event, C, event_type), rand(1, event_schedule_delay), TIMER_STOPPABLE)
+	var/delay
+	if (event_type == EVENT_LEVEL_ROLESET)
+		delay = 1 //Basically no delay on these to reduce bugginess
+	else
+		delay = rand(1, event_schedule_delay)
+	var/handle = addtimer(CALLBACK(GLOBAL_PROC, .proc/fire_event, C, event_type), delay, TIMER_STOPPABLE)
 	scheduled_events.Add(list(C), type, handle)
 
 
