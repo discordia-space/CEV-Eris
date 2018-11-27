@@ -640,6 +640,7 @@
 		wearer.wearing_rig = src
 		update_icon()
 
+
 /obj/item/weapon/rig/proc/toggle_piece(var/piece, var/mob/initiator, var/deploy_mode)
 
 	if(sealing || !cell || !cell.charge)

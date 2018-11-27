@@ -9,4 +9,4 @@
 #endif
 
 
-#define JETPACK_MOVE_COST	0.01
+#define JETPACK_MOVE_COST	0.025

@@ -10,11 +10,13 @@ particle whenever the target moves
 /datum/effect/effect/system/trail
 	var/obj/effect/effect/trail_effect = /obj/effect/trail_particle/gasjet
 	var/active = FALSE
-
-	var/copy_pixel_offsets = TRUE
+	var/obj/item/weapon/tank/jetpack/jetpack
+	var/fromback = TRUE //The trail is being emitted from something on their back
+	//When the user is facing north, it will draw ontop of them
 
 /datum/effect/effect/system/trail/set_up(atom/atom)
 	attach(atom)
+	jetpack = holder
 
 /datum/effect/effect/system/trail/start()
 	//We can't start unless we're attached to an atom
@@ -29,7 +31,11 @@ particle whenever the target moves
 
 
 /datum/effect/effect/system/trail/proc/holder_moved(var/atom/A, var/atom/old_loc)
-	do_effect(old_loc, get_dir(A, old_loc))
+	var/obj/effect/trail_particle/E = do_effect(old_loc, get_dir(A, old_loc))
+	if (fromback && ismob(holder.loc)) //Makes jetpack particles draw over the user when facing north
+		var/mob/M = holder.loc
+		if (M.dir == NORTH)
+			E.layer = M.layer+0.01
 
 /datum/effect/effect/system/trail/proc/do_effect(var/turf/eloc, var/newdir)
 	var/obj/effect/effect/E = new trail_effect(eloc)
@@ -53,23 +59,6 @@ particle whenever the target moves
 	trail_effect = /obj/effect/effect/ion_trails
 
 
-	/*start()
-		if(!src.on)
-			src.on = 1
-			src.processing = 1
-		if(src.processing)
-			src.processing = 0
-			spawn(0)
-				var/turf/T = get_turf(src.holder)
-				if(T != src.oldposition)
-					if(istype(T, /turf/space))
-						var/obj/effect/effect/ion_trails/I = new(oldposition)
-						src.oldposition = T
-						I.set_dir(src.holder.dir)
-						flick("ion_fade", I)
-						I.icon_state = "blank"
-						spawn( 20 )
-							qdel(I)*/
 
 
 /////////////////////////////////////////////
@@ -92,14 +81,10 @@ particle whenever the target moves
 
 //Only do a thrust if the holder has the done var set false, and is also turned on
 /datum/effect/effect/system/trail/jet/holder_moved(var/atom/A, var/atom/old_loc)
-	var/obj/item/weapon/tank/jetpack/J = holder
-	if (J && J.thrust_fx_done == FALSE && J.on)
+	if (jetpack && jetpack.thrust_fx_done == FALSE && jetpack.on)
 		.=..()
 		//Set it true after.
-		J.thrust_fx_done = TRUE
-
-		//It will be set false again next time the jetpack does more thrust
-
+		jetpack.thrust_fx_done = TRUE
 
 
 

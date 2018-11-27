@@ -193,21 +193,12 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	status_flags ^= GODMODE
 	src << span("notice", "God mode is now [status_flags & GODMODE ? "enabled" : "disabled"]")
 
-/mob/living/carbon/human/bst/verb/allow_unequip()
-	set name = "Allow Unequip"
-	set desc = "Allows you to unequip your unique items. Don't let them fall into the wrong hands."
-	set category = "BST"
 
-	for (var/obj/item/I in src)
-		I.canremove = TRUE
-	src << SPAN_NOTICE("You can now remove your equipment")
-
-//Equipment. All should have canremove set to 0
+//Equipment.
 //All items with a /bst need the attack_hand() proc overrided to stop people getting overpowered items.
 
 //Bag o Holding
 /obj/item/weapon/storage/backpack/holding/bst
-	canremove = 0
 	worn_access = TRUE
 
 /obj/item/device/radio/headset/ert/bst/attack_hand()
@@ -225,7 +216,6 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	desc = "A Bluespace Technician's headset. The letters 'BST' are stamped on the side."
 	translate_binary = 1
 	translate_hive = 1
-	canremove = 0
 	keyslot1 = new /obj/item/device/encryptionkey/binary
 	//keyslot2 = new /obj/item/device/encryptionkey/ert
 
@@ -251,7 +241,6 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	desc = "A Bluespace Technician's Uniform. There is a logo on the sleeve that reads 'BST'."
 	has_sensor = 0
 	sensor_mode = 0
-	canremove = 0
 	siemens_coefficient = 0
 	cold_protection = FULL_BODY
 	heat_protection = FULL_BODY
@@ -271,7 +260,6 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	desc = "A pair of modified gloves. The letters 'BST' are stamped on the side."
 	siemens_coefficient = 0
 	permeability_coefficient = 0
-	canremove = 0
 
 /obj/item/clothing/gloves/color/white/bst/attack_hand()
 	if(!usr)
@@ -289,7 +277,6 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 //	var/list/obj/item/clothing/glasses/hud/health/hud = null
 	vision_flags = (SEE_TURFS|SEE_OBJS|SEE_MOBS)
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
-	canremove = 0
 	flash_protection = FLASH_PROTECTION_MAJOR
 
 /obj/item/clothing/glasses/sunglasses/bst/verb/toggle_xray(mode in list("X-Ray without Lighting", "X-Ray with Lighting", "Normal"))
@@ -332,7 +319,6 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	desc = "A pair of black shoes with extra grip. The letters 'BST' are stamped on the side."
 	icon_state = "black"
 	item_flags = NOSLIP
-	canremove = 0
 
 /obj/item/clothing/shoes/black/bst/attack_hand()
 	if(!usr)
@@ -349,7 +335,6 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 /obj/item/weapon/card/id/bst
 	icon_state = "centcom"
 	desc = "An ID straight from Central Command. This one looks highly classified."
-//	canremove = 0
 	New()
 		access = get_all_accesses()+get_all_centcom_access()+get_all_syndicate_access()
 
@@ -363,21 +348,19 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 		..()
 
 /obj/item/weapon/storage/belt/utility/full/bst
-	canremove = 0
 
 /obj/item/weapon/storage/belt/utility/full/bst/New()
 	..() //Full set of tools
 	new /obj/item/weapon/tool/multitool(src)
 
 /mob/living/carbon/human/bst/restrained()
-	return 0
+	return !(status_flags & GODMODE)
 
 
 /mob/living/carbon/human/bst/can_fall()
 	return fall_override ? FALSE : ..()
 
 
-//These verbs are temporary, in future they should be available to all mobs with appropriate checks
 /mob/living/carbon/human/bst/verb/moveup()
 	set name = "Phase Upwards"
 	set category = "BST"

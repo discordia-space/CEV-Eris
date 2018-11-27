@@ -37,6 +37,9 @@
 	//Measured in deciseconds
 	var/base_time = 30
 
+	//The chance that you'll lose your grip and fall out of control
+	var/slip_chance = 30
+
 	//The actual/total amount of time it will take
 	var/duration
 
@@ -48,14 +51,14 @@
 	var/needs_hands = TRUE
 
 	//If true, this vtm will call tick() once every decisecond while it is in process
-	var/do_tick = FALSE
+	var/do_tick = TRUE
 
 	//Text describing what the mob is doing
 	var/start_verb_visible = "%m starts moving %dward"
 	var/start_verb_personal = "You start moving %dward"
 
-	var/end_verb_visible = "%m arrives from %d2"
-	var/end_verb_personal = "You arrive from %d2"
+	var/end_verb_visible = "%m arrives from %-d2"
+	var/end_verb_personal = "You arrive from %-d2"
 
 
 	//If true, the user is trying to ztravel in an environment with gravity
@@ -81,7 +84,7 @@
 	var/animating = FALSE
 
 
-/datum/vertical_travel_method/New(var/mob/living/L)
+/datum/vertical_travel_method/New(var/mob/L)
 	M = L
 	cache_values()
 
@@ -97,10 +100,12 @@
 	prev_layer = M.layer
 	prev_plane = M.plane
 	origin = get_turf(M)
+	gravity = origin.has_gravity()
 
 
 
 /datum/vertical_travel_method/proc/reset_values()
+	animate(M)
 	M.pixel_x = prev_x
 	M.pixel_y = prev_y
 	M.transform = prev_matrix
@@ -122,20 +127,28 @@
 
 
 //Combines testing and starting. Autostarts if possible
-/datum/vertical_travel_method/proc/attempt(var/mob/living/L, var/dir)
-	.=can_perform(L, dir)
-	if (.)
+/datum/vertical_travel_method/proc/attempt(var/dir)
+	.=can_perform(dir)
+	if (. == TRUE)
 		spawn()
-			start()
+			start(dir)
+		return TRUE
+	else if (istext(.))
+		M << SPAN_NOTICE(.)
+	return FALSE
 
-/datum/vertical_travel_method/proc/can_perform(var/mob/living/L, var/dir)
+/*
+	Can perform checks whether its possible to do this ztravel method.
+	Naturally the return value can be true or false, but it can also be a text string.
+	In this case, it's treated as a failure with an error message, which will be shown to the user.
+
+	This should be used for rare edge cases where someone is almost able to do a transition, but minor details ruin it
+	Like if they're wearing a jetpack but it's empty or not turned on.
+	Generally, use a message in a case where a user would expect it to work, to explain why it doesn't.
+*/
+/datum/vertical_travel_method/proc/can_perform(var/dir)
 	if (dir != direction)
 		direction = dir
-
-	//Late specification of subject mob
-	if (L != M)
-		M = L
-		cache_values()
 
 	if (!get_destination())
 		return FALSE
@@ -147,26 +160,34 @@
 	direction = dir
 	calculate_time()
 	announce_start()
-
+	start_time = world.time
 	spawn()
 		start_animation()
 
 	spawn()
 		handle_ticking()
 
-	if (!do_after(M, time, M, needs_hands))
+	if (!do_after(M, duration, M, needs_hands))
 		abort()
 		return
 	finish()
 
 /datum/vertical_travel_method/proc/abort()
 	animating = FALSE
-	if (gravity)
+	reset_values()
+	//If you cancel late, you fall and get hurt
+	if (gravity && (progress() > 0.5))
 		M.fall_impact()
+
+	if (prob(slip_chance))
+		slip()
 
 /datum/vertical_travel_method/proc/finish()
 	animating = FALSE
+	reset_values()
 	M.forceMove(destination)
+	if (prob(slip_chance))
+		slip()
 	announce_end()
 
 
@@ -196,8 +217,10 @@
 	string = replacetext(string, "%m", M.name)
 	string = replacetext(string, "%d3", direction == UP ? "ascen" : "descen")
 	string = replacetext(string, "%d2", direction == UP ? "above" : "below")
+	string = replacetext(string, "%-d2", direction == UP ? "below" : "above") //Inverted version for finishing message
 	string = replacetext(string, "%d", dir2text(direction))
-	string = replacetext(string, "%s", subject.name)
+	if (subject)
+		string = replacetext(string, "%s", subject.name)
 	return string
 
 
@@ -220,4 +243,30 @@
 
 
 /datum/vertical_travel_method/proc/tick()
+	if (M.incapacitated() || M.loc != origin)
+		abort()
 	return
+
+//Some ztravel methods are unsafe and will cause you to slip
+/datum/vertical_travel_method/proc/slip()
+	var/list/spaces = list()
+
+	//We will first attempt to slip the user to a nearby empty space
+	for (var/turf/T in orange(1, M))
+		if (T.is_hole)
+			spaces.Add(T)
+
+	if (!spaces.len)
+		//Welp we didn't find one. lets loop again, all floors are allowed now
+		for (var/turf/simulated/floor/T in orange(1, M))
+			spaces.Add(T)
+
+	if (!spaces.len)
+		//Still didn't find any? We must somehow be in a 1x1 room. Can't slip here
+		return
+
+	//Move to the target turf, and fall over
+	var/turf/target = pick(spaces)
+	M.Move(target)
+	M.Weaken(2)
+	M << SPAN_DANGER("You lose control and slip into freefall")
