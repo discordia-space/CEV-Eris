@@ -36,7 +36,7 @@
 		if (!T)
 			return FALSE
 
-		if (T.CanZPass(src, testdir))
+		if (T.CanZPass(M, testdir))
 			return FALSE
 
 
@@ -62,13 +62,17 @@
 /datum/vertical_travel_method/jump/start_animation()
 	.=..()
 	if (direction == DOWN)
-		var/matrix/mat = matrix()
+		var/matrix/mat = M.transform
+		mat.Turn(180)
+		M.transform = mat
+
+		mat = M.transform
 		mat.Scale(0.9)
 		M.plane = FLOOR_PLANE
 		M.layer = 1
 		animate(M, alpha = 100, pixel_y = -16, transform = mat,  time = duration*1.4, easing = BACK_EASING)
 	else
-		animate(M, alpha = 50, pixel_y = 64, time = duration*1.4, easing = BACK_EASING)
+		animate(M, alpha = 0, pixel_y = 64, time = duration*1.4, easing = BACK_EASING)
 
 
 
