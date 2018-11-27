@@ -54,6 +54,62 @@ var/list/flooring_types
 
 	var/removal_time = WORKTIME_FAST * 0.75
 
+	//Flooring Icon vars
+	var/smooth_nothing = FALSE //True/false only, optimisation
+	//If true, all smoothing logic is entirely skipped
+
+	//The rest of these x_smooth vars use one of the following options
+	//SMOOTH_NONE: Ignore all of type
+	//SMOOTH_ALL: Smooth with all of type
+	//SMOOTH_WHITELIST: Ignore all except types on this list
+	//SMOOTH_BLACKLIST: Smooth with all except types on this list
+	//SMOOTH_GREYLIST: Objects only: Use both lists
+
+	//How we smooth with other flooring
+	var/floor_smooth = SMOOTH_ALL
+	var/list/flooring_whitelist = list() //Smooth with nothing except the contents of this list
+	var/list/flooring_blacklist = list() //Smooth with everything except the contents of this list
+
+	//How we smooth with walls
+	var/wall_smooth = SMOOTH_NONE
+	//There are no lists for walls at this time
+
+	//How we smooth with space and openspace tiles
+	var/space_smooth = SMOOTH_ALL
+	//There are no lists for spaces
+
+
+	/*
+	How we smooth with movable atoms
+	These are checked after the above turf based smoothing has been handled
+	SMOOTH_ALL or SMOOTH_NONE are treated the same here. Both of those will just ignore atoms
+	Using the white/blacklists will override what the turfs concluded, to force or deny smoothing
+
+	Movable atom lists are much more complex, to account for many possibilities
+	Each entry in a list, is itself a list consisting of three items:
+		Type: The typepath to allow/deny. This will be checked against istype, so all subtypes are included
+		Priority: Used when items in two opposite lists conflict. The one with the highest priority wins out.
+		Vars: An associative list of variables (varnames in text) and desired values
+			Code will look for the desired vars on the target item and only call it a match if all desired values match
+			This can be used, for example, to check that objects are dense and anchored
+			there are no safety checks on this, it will probably throw runtimes if you make typos
+
+	Common example:
+	Don't smooth with dense anchored objects except airlocks
+
+	smooth_movable_atom = SMOOTH_GREYLIST
+	movable_atom_blacklist = list(
+		list(/obj, list("density" = TRUE, "anchored" = TRUE), 1)
+		)
+	movable_atom_whitelist = list(
+	list(/obj/machinery/door/airlock, list(), 2)
+	)
+
+	*/
+	var/smooth_movable_atom = SMOOTH_NONE
+	var/list/movable_atom_whitelist = list()
+	var/list/movable_atom_blacklist = list()
+
 
 //Flooring Procs
 /decl/flooring/proc/get_plating_type(var/turf/location)
@@ -81,26 +137,29 @@ var/list/flooring_types
 	icon_base = "grass"
 	has_base_range = 3
 	damage_temperature = T0C+80
-	flags = TURF_REMOVE_SHOVEL | SMOOTH_ONLY_WITH_ITSELF | TURF_HAS_EDGES | TURF_EDGES_EXTERNAL
+	flags = TURF_REMOVE_SHOVEL | TURF_EDGES_EXTERNAL | TURF_HAS_CORNERS
 	build_type = /obj/item/stack/tile/grass
 	plating_type = /decl/flooring/dirt
 	footstep_sound = "grass"
+	floor_smooth = SMOOTH_NONE
+	space_smooth = SMOOTH_NONE
 
 /decl/flooring/dirt
 	name = "dirt"
 	desc = "Do they smoke grass out in space, Bowie? Or do they smoke AstroTurf?"
 	icon = 'icons/turf/flooring/dirt.dmi'
 	icon_base = "dirt"
-	flags = TURF_REMOVE_SHOVEL | SMOOTH_ONLY_WITH_ITSELF
+	flags = TURF_REMOVE_SHOVEL
 	build_type = null //Todo: add bags of fertilised soil or something to create dirt floors
 	footstep_sound = "gravel"
+
 
 /decl/flooring/asteroid
 	name = "coarse sand"
 	desc = "Gritty and unpleasant."
 	icon = 'icons/turf/flooring/asteroid.dmi'
 	icon_base = "asteroid"
-	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL | TURF_CAN_BURN | TURF_CAN_BREAK
+	flags = TURF_REMOVE_SHOVEL | TURF_CAN_BURN | TURF_CAN_BREAK
 	build_type = null
 	footstep_sound = "asteroid"
 
@@ -115,14 +174,22 @@ var/list/flooring_types
 	descriptor = "plating"
 	icon = 'icons/turf/flooring/plating.dmi'
 	icon_base = "plating"
-	build_type = MATERIAL_STEEL
-	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_WELDER | TURF_CAN_BURN | TURF_CAN_BREAK
+	build_type = /obj/item/stack/material/steel
+	flags = TURF_REMOVE_WELDER | TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS | TURF_CAN_BURN | TURF_CAN_BREAK
 	can_paint = 1
 	plating_type = /decl/flooring/reinforced/plating/under
 	is_plating = TRUE
 	footstep_sound = "plating"
+	space_smooth = FALSE
 	removal_time = 150
 	health = 100
+	floor_smooth = SMOOTH_BLACKLIST
+	flooring_blacklist = list(/decl/flooring/reinforced/plating/under,/decl/flooring/reinforced/plating/hull) //Smooth with everything except the contents of this list
+	smooth_movable_atom = SMOOTH_GREYLIST
+	movable_atom_blacklist = list(
+		list(/obj, list("density" = TRUE, "anchored" = TRUE), 1)
+		)
+	movable_atom_whitelist = list(list(/obj/machinery/door/airlock, list(), 2))
 
 //Normal plating allows anything, except other types of plating
 /decl/flooring/reinforced/plating/can_build_floor(var/decl/flooring/newfloor)
@@ -153,6 +220,8 @@ var/list/flooring_types
 	health = 200
 	resistance = RESISTANCE_ARMOURED
 	footstep_sound = "catwalk"
+	smooth_nothing = TRUE
+
 
 //Underplating can only be upgraded to normal plating
 /decl/flooring/reinforced/plating/under/can_build_floor(var/decl/flooring/newfloor)
@@ -215,7 +284,7 @@ var/list/flooring_types
 	descriptor = "outer hull"
 	icon = 'icons/turf/flooring/hull.dmi'
 	icon_base = "hullcenter"
-	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_USE0ICON | TURF_REMOVE_WELDER | TURF_CAN_BURN | TURF_CAN_BREAK
+	flags = TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS | TURF_REMOVE_WELDER | TURF_CAN_BURN | TURF_CAN_BREAK
 	build_type = MATERIAL_PLASTEEL
 	has_base_range = 35
 	//try_update_icon = 0
@@ -225,7 +294,9 @@ var/list/flooring_types
 	resistance = RESISTANCE_HEAVILY_ARMOURED
 	removal_time = 1 MINUTE //Cutting through the hull is very slow work
 	footstep_sound = "hull"
-
+	wall_smooth = SMOOTH_ALL
+	space_smooth = SMOOTH_NONE
+	smooth_movable_atom = SMOOTH_NONE
 
 //Hull can upgrade to underplating
 /decl/flooring/reinforced/plating/hull/can_build_floor(var/decl/flooring/newfloor)
@@ -248,7 +319,9 @@ var/list/flooring_types
 	footstep_sound = "carpet"
 	build_type = /obj/item/stack/tile/carpet
 	damage_temperature = T0C+200
-	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BURN | SMOOTH_ONLY_WITH_ITSELF | TURF_HIDES_THINGS
+	flags = TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BURN | TURF_HIDES_THINGS
+	floor_smooth = SMOOTH_NONE
+	wall_smooth = SMOOTH_NONE
 
 /decl/flooring/carpet/bcarpet
 	name = "black carpet"
@@ -388,6 +461,7 @@ var/list/flooring_types
 	damage_temperature = T0C+200
 	descriptor = "planks"
 	build_type = /obj/item/stack/tile/wood
+	smooth_nothing = TRUE
 	flags = TURF_CAN_BREAK | TURF_CAN_BURN | TURF_IS_FRAGILE | TURF_REMOVE_SCREWDRIVER | TURF_HIDES_THINGS
 
 /decl/flooring/reinforced
@@ -410,7 +484,8 @@ var/list/flooring_types
 	icon = 'icons/turf/flooring/circuit.dmi'
 	icon_base = "bcircuit"
 	build_type = null
-	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK | TURF_HAS_EDGES | TURF_HAS_CORNERS | SMOOTH_ONLY_WITH_ITSELF | TURF_HIDES_THINGS
+	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK | TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS |TURF_HIDES_THINGS
+	floor_smooth = SMOOTH_NONE
 	can_paint = 1
 
 /decl/flooring/reinforced/circuit/green

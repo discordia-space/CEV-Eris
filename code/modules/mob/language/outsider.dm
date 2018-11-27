@@ -85,6 +85,28 @@
 		"gal'h'rfikk", "harfrandid", "mud'gib", "fuu", "ma'jin", "dedo", "ol'btoh", "n'ath", "reth", "sh'yro", "eth", \
 		"d'rekkathnor", "khari'd", "gual'te", "nikka", "nikt'o", "barada", "kla'atu", "barhah", "hra" ,"zar'garis")
 
+/datum/language/serbian
+	name = LANGUAGE_SERBIAN
+	desc = "Language popular among Serbian mercenaries, pirates and habitants of Predstraza planet."
+	colour = "serbian"
+	key = "x"
+	flags = RESTRICTED
+	space_chance = 80
+	syllables = list("zena", "rob", "macka", "tvoj", "ruke", "jebote", "placenik", "tsatsh", "da", "zivim", "cich", "jovan", "be", "ot", \
+					 "ja", "tamo", "moj", "za", "gdje", "su", "brodove", "noge", "da", "ne", "svemirskog", "pochemu", "zasto","ljubav", \
+					 "zajebavati", "krevet", "tabela", "za", "red", "dan", "voyna", "rat", "razmisljam", "bubasvaba", "zdravlje", "dan", "novac", \
+					 "jebeno", "mate", "tvoj", "kucka", "ayblya", "ja", "sisati", "kurac", "uciniti", "pobediti", "picka", "krades", "probajte", "zapaljen", \
+					 "razgovaramo", "sranje", "naci", "ubijen", "nakazo", "dodavola", "zakacis", "prosrali", "suche", "elektricar", "glupo", "dole", "lepo", \
+					 "bolestan", "savrsenstvo", "vristi", "beda", "muesli", "spasenje", "pomoc", "zvezdej", "prostor", "osvaja", "zavrsim", "jezero",  \
+					 "mesec", "nagib", "planeta", "pozovi", "treperenje", "smeh", "svesnost", "raditi", "mucenje", "cudo", "magarci", "sudbina", "sloboda", \
+					 "provodljivost", "inicijalizacija", "kompjuter", "mlada", "glumac", "analiza", "andeo", \
+					 "vojska", "napad", "atmosferu", "laser", "tocno", "uprave", "zapamti", "automatskog", "uredaja", \
+					 "pecnice", "platiti", "pozari", "pokazati", "zivot", "radio", "bojne", "uzasno", "ujutro", "sudionika", \
+					 "gas", "glavnog", "grijeh", "granica", "zeljezo", "baterije", "knjiznica", "kontrola", "borba", \
+					 "brat", "zidov", "jedu", "jeo", "prirodno", "alat", "zainteresiran", "koristenje", "tako", "njihov", \
+					 "dinamica", "brzo", "organizacuya", "yeyenet", "radio", "peredacha", "priem", "slushno", "chastota", "gerts", "stantiya", \
+					 "biti", "je", "ponekad", "jedan", "cetiri", "pet", "granata", "br", "re", "da", "do")
+
 /datum/language/cult
 	name = LANGUAGE_OCCULT
 	desc = "The initiated can share their thoughts by means defying all reason."

@@ -1868,6 +1868,10 @@
 		return ..(AM, old_loc, 0)
 	return ..()
 
+/obj/mecha/Exited(var/atom/movable/AM, var/atom/old_loc, var/special_event)
+	dropped_items -= AM
+	return ..()
+
 //////////////////////////////////////////
 ////////  Mecha global iterators  ////////
 //////////////////////////////////////////

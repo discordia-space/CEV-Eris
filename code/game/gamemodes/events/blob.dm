@@ -15,7 +15,7 @@
 
 
 	event_type = /datum/event/blob
-	event_pools = list(EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR*1.2)
+	event_pools = list(EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR*1.35)
 	tags = list(TAG_COMBAT, TAG_DESTRUCTIVE, TAG_NEGATIVE)
 //============================================
 
@@ -68,11 +68,11 @@
 	anchored = 1
 	mouse_opacity = 2
 
-	var/maxHealth = 25
+	var/maxHealth = 23
 	var/health = 1
-	var/health_regen = 1.8
+	var/health_regen = 1.7
 	var/brute_resist = 1.25
-	var/fire_resist = 0.75
+	var/fire_resist = 0.6
 	var/expandType = /obj/effect/blob
 
 	//We will periodically update and track neighbors in two lists:
@@ -449,7 +449,7 @@
 			continue
 		L.visible_message(SPAN_DANGER("The blob attacks \the [L]!"), SPAN_DANGER("The blob attacks you!"))
 		playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
-		L.take_organ_damage(burn = rand_between(0.5, 2.5))
+		L.take_organ_damage(burn = rand_between(0.4, 2.3))
 
 		//In addition to the flat damage above, we will also splash a small amount of acid on the target
 		//This allows them to wear acidproof gear to resist it
@@ -481,21 +481,33 @@
 /*******************
 	BLOB DEFENSE
 ********************/
+
+//Bullets which hit a blob will keep going on through if they kill it
 /obj/effect/blob/bullet_act(var/obj/item/projectile/Proj)
 	if(!Proj)
 		return
 
+	var/absorbed_damage //The amount of damage that will be subtracted from the projectile
+	var/taken_damage //The amount of damage the blob will recieve
 	switch(Proj.damage_type)
 		if(BRUTE)
-			take_damage(Proj.damage / brute_resist)
+			absorbed_damage = min(health * brute_resist, Proj.damage)
+			taken_damage = (Proj.damage / brute_resist)
 		if(BURN)
-			take_damage(Proj.damage / fire_resist)
-	return 0
+			absorbed_damage = min(health * fire_resist, Proj.damage)
+			taken_damage= (Proj.damage / fire_resist)
+
+	take_damage(taken_damage)
+	Proj.damage -= absorbed_damage
+	if (Proj.damage <= 0)
+		return 0
+	else
+		return PROJECTILE_CONTINUE
 
 /obj/effect/blob/attackby(var/obj/item/weapon/W, var/mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(W.force && !(W.flags & NOBLUDGEON))
-		visible_message("<span class='danger'>\The [src] has been attacked with \the [W][(user ? " by [user]." : ".")]</span>")
+		user.do_attack_animation(src, TRUE)
 		var/damage = 0
 		switch(W.damtype)
 			if("fire")

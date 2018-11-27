@@ -39,17 +39,31 @@
 	var/hitsound = 'sound/weapons/Genhit.ogg'
 	climbable = TRUE
 
+
+//Low walls mark the turf they're on as a wall.  This is vital for floor icon updating code
+/obj/structure/low_wall/New()
+	var/turf/T = loc
+	if (istype(T))
+		T.is_wall = TRUE
+	.=..()
+
 /obj/structure/low_wall/Destroy()
 	for (var/obj/structure/window/W in loc)
 		if (!QDELETED(W))
 			W.shatter()
 
+	//If we're on a floor, make it no longer be counted as a wall
+	var/turf/simulated/floor/T = loc
+	if (istype(T))
+		T.is_wall = FALSE
 
 	connected = FALSE
 	update_connections(1) //Updating connections with false connected will make nearby walls ignore this one
-	for(var/obj/structure/table/T in orange(src, 1))
-		T.update_icon()
+	for(var/obj/structure/low_wall/L in orange(src, 1))
+		L.update_icon()
 	. = ..()
+
+
 
 /obj/structure/low_wall/Initialize()
 	return INITIALIZE_HINT_LATELOAD
