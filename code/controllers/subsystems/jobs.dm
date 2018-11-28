@@ -294,12 +294,11 @@ SUBSYSTEM_DEF(job)
 
 
 /datum/controller/subsystem/job/proc/EquipRank(mob/living/carbon/human/H, rank, joined_late = FALSE)
-	to_world("equip rank")
 	if(!H)
 		return null
 
 	var/datum/job/job = GetJob(rank)
-	//var/list/spawn_in_storage = list()
+	var/list/spawn_in_storage = list()
 
 	if(job)
 
@@ -314,19 +313,7 @@ SUBSYSTEM_DEF(job)
 		job.setup_account(H)
 		
 		job.apply_fingerprints(H)
-
-		//If some custom items could not be equipped before, try again now.
-		/*for(var/thing in custom_equip_leftovers)
-			var/datum/gear/G = gear_datums[thing]
-			if(G.slot in custom_equip_slots)
-				spawn_in_storage += thing
-			else
-				var/metadata = H.client.prefs.gear[G.display_name]
-				if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
-					H << SPAN_NOTICE("Equipping you with \the [thing]!")
-					custom_equip_slots.Add(G.slot)
-				else
-					spawn_in_storage += thing*/
+		spawn_in_storage = EquipCustomLoadout(H, job)
 		// EMAIL GENERATION
 		if(rank != "Robot" && rank != "AI")		//These guys get their emails later.
 			var/domain
@@ -341,15 +328,11 @@ SUBSYSTEM_DEF(job)
 	H.job = rank
 
 	if(!joined_late)
-		to_world("equip rank not late")
 		var/obj/S = get_roundstart_spawnpoint(rank)
-		to_world(H.job)
 
 		if(istype(S, /obj/landmark/join/start) && istype(S.loc, /turf))
 			H.forceMove(S.loc)
-			to_world("is landmark")
 		else
-			to_world("not landmark")
 			var/datum/spawnpoint/spawnpoint = get_spawnpoint_for(H.client, rank)
 			H.forceMove(pick(spawnpoint.turfs))
 
@@ -385,22 +368,11 @@ SUBSYSTEM_DEF(job)
 				var/sound/announce_sound = (SSticker.current_state <= GAME_STATE_SETTING_UP)? null : sound('sound/misc/boatswain.ogg', volume=20)
 				captain_announcement.Announce("All hands, Captain [H.real_name] on deck!", new_sound=announce_sound)
 
-		//Deferred item spawning.
-/*		if(spawn_in_storage && spawn_in_storage.len)
-			var/obj/item/weapon/storage/B
-			for(var/obj/item/weapon/storage/S in H.contents)
-				B = S
-				break
+	//loadout items.
+	if(spawn_in_storage)
+		for(var/datum/gear/G in spawn_in_storage)
+			G.spawn_in_storage_or_drop(H, H.client.prefs.Gear()[G.display_name])
 
-			if(!isnull(B))
-				for(var/thing in spawn_in_storage)
-					H << SPAN_NOTICE("Placing \the [thing] in your [B.name]!")
-					var/datum/gear/G = gear_datums[thing]
-					var/metadata = H.client.prefs.gear[G.display_name]
-					G.spawn_item(B, metadata)
-			else
-				H << SPAN_DANGER("Failed to locate a storage object on your mob, either you spawned with no arms and no backpack or this is a bug.")
-*/
 	if(istype(H)) //give humans wheelchairs, if they need them.
 		var/obj/item/organ/external/l_leg = H.get_organ(BP_L_LEG)
 		var/obj/item/organ/external/r_leg = H.get_organ(BP_R_LEG)
@@ -430,6 +402,41 @@ SUBSYSTEM_DEF(job)
 	BITSET(H.hud_updateflag, ID_HUD)
 	BITSET(H.hud_updateflag, SPECIALROLE_HUD)
 	return H
+
+proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
+	if(!H || !H.client)
+		return
+
+	// Equip custom gear loadout, replacing any job items
+	var/list/spawn_in_storage = list()
+	var/list/loadout_taken_slots = list()
+	if(H.client.prefs.Gear() && job.loadout_allowed)
+		for(var/thing in H.client.prefs.Gear())
+			var/datum/gear/G = gear_datums[thing]
+			if(G)
+				var/permitted = 1
+				if(permitted)
+					if(G.allowed_roles)
+						if(job.type in G.allowed_roles)
+							permitted = 1
+						else
+							permitted = 0
+					else
+						permitted = 1
+
+				if(G.whitelisted && (!(H.species.name in G.whitelisted)))
+					permitted = 0
+
+				if(!permitted)
+					to_chat(H, "<span class='warning'>Your current job or whitelist status does not permit you to spawn with [thing]!</span>")
+					continue
+
+				if(!G.slot || G.slot == slot_accessory_buffer || (G.slot in loadout_taken_slots) || !G.spawn_on_mob(H, H.client.prefs.Gear()[G.display_name]))
+					spawn_in_storage.Add(G)
+				else
+					loadout_taken_slots.Add(G.slot)
+
+	return spawn_in_storage
 
 /datum/controller/subsystem/job/proc/LoadJobs(jobsfile) //ran during round setup, reads info from jobs.txt -- Urist
 	if(!config.load_jobs_from_txt)
@@ -510,10 +517,8 @@ SUBSYSTEM_DEF(job)
 
 	if(spawnpoint == DEFAULT_SPAWNPOINT_ID)
 		spawnpoint = maps_data.default_spawn
-		to_world("default one")
 
 	if(spawnpoint)
-		to_world("is spawnpoint")
 		if(!(spawnpoint in maps_data.allowed_spawns))
 			if(H)
 				to_chat(H, "<span class='warning'>Your chosen spawnpoint ([C.prefs.spawnpoint]) is unavailable for the current map. Spawning you at one of the enabled spawn points instead. To resolve this error head to your character's setup and choose a different spawn point.</span>")
@@ -533,14 +538,11 @@ SUBSYSTEM_DEF(job)
 			if(candidate.check_job_spawning(rank))
 				spawnpos = candidate
 				break
-		to_world("no spawnpos last")
 
 	if(!spawnpos)
 		// Pick at random from all the (wrong) spawnpoints, just so we have one
 		warning("Could not find an appropriate spawnpoint for job [rank].")
 		spawnpos = spawntypes()[pick(maps_data.allowed_spawns)]
-
-		to_world("no spawnpos last")
 
 	return spawnpos
 

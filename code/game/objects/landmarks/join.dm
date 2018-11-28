@@ -1,5 +1,5 @@
 /obj/landmark/join
-	delete_me = TRUE
+	delete_me = FALSE
 	var/join_tag = "latejoin"
 
 /obj/landmark/join/late
@@ -9,12 +9,12 @@
 	var/disallow_job = null
 
 /obj/landmark/join/late/New()
+	..()
 	switch(join_tag)
 		if("late_cryo")
 			GLOB.latejoin_cryo += loc
 		if("late_cyborg")
 			GLOB.latejoin_cyborg += loc
-	..()
 
 /obj/landmark/join/late/cryo
 	name = "Cryogenic Storage"
@@ -38,4 +38,3 @@
 	alpha = 124
 	invisibility = 101
 	join_tag = null
-	delete_me = TRUE

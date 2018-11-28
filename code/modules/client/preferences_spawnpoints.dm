@@ -42,6 +42,11 @@ GLOBAL_VAR(spawntypes)
 	msg = "has completed cryogenic revival"
 	always_visible = TRUE
 
+/datum/spawnpoint/default/New()
+	..()
+	if(!turfs)
+		turfs = GLOB.latejoin_cryo
+
 /datum/spawnpoint/cryo
 	display_name = "Cryogenic Storage"
 	msg = "has completed cryogenic revival"

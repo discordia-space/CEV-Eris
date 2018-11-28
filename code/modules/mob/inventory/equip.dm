@@ -1,8 +1,10 @@
 /mob/proc/equip_to_slot(obj/item/Item, slot, redraw_mob = TRUE)
 
 
-/mob/proc/equip_to_slot_if_possible(obj/item/Item, slot, disable_warning, redraw_mob = TRUE)
+/mob/proc/equip_to_slot_if_possible(obj/item/Item, slot, disable_warning = 1, redraw_mob = TRUE, del_on_fail = 0)
 	if(!mob_can_equip(src, Item, slot, disable_warning))
+		if(del_on_fail)
+			qdel(Item)
 		return FALSE
 
 	var/world_time = world.timeofday

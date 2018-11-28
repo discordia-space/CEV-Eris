@@ -27,6 +27,8 @@
 
 	var/outfit_type                       // The outfit the employee will be dressed in, if any
 
+	var/loadout_allowed = TRUE			  // Does this job allows loadout ?
+
 	//Character stats modifers
 	var/list/stat_modifers = list()
 

@@ -311,16 +311,17 @@ var/global/list/damage_icon_parts = list()
 //UNDERWEAR OVERLAY
 
 /mob/living/carbon/human/proc/update_underwear(var/update_icons=1)
-	overlays_standing[UNDERWEAR_LAYER] = list()
+	overlays_standing[UNDERWEAR_LAYER] = null
+	
 	if(species.appearance_flags & HAS_UNDERWEAR)
+		var/icon/underwear = new/icon(body_build.underwear_icon, "blank")
 		for(var/entry in worn_underwear)
 			var/obj/item/underwear/UW = entry
-
-			var/image/I = image(icon = UW.icon, icon_state = UW.icon_state)
-			I.appearance_flags = RESET_COLOR
-			I.color = UW.color
-
-			overlays_standing[UNDERWEAR_LAYER] += I
+			var/icon/I = new /icon(body_build.underwear_icon, UW.icon_state)
+			if(UW.color)
+				I.Blend(UW.color, ICON_ADD)
+			underwear.Blend(I, ICON_OVERLAY)
+		overlays_standing[UNDERWEAR_LAYER] = image(underwear)
 	if(update_icons)
 		update_icons()
 
@@ -344,7 +345,7 @@ var/global/list/damage_icon_parts = list()
 	var/icon/face_standing = new /icon('icons/mob/hair.dmi',"bald")
 
 	if(f_style)
-		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[f_style]
+		var/datum/sprite_accessory/facial_hair_style = GLOB.facial_hair_styles_list[f_style]
 		if(facial_hair_style && facial_hair_style.species_allowed && (src.species.get_bodytype() in facial_hair_style.species_allowed))
 			var/icon/facial_s = new/icon(facial_hair_style.icon, facial_hair_style.icon_state)
 			if(facial_hair_style.do_colouration)
@@ -353,7 +354,7 @@ var/global/list/damage_icon_parts = list()
 			face_standing.Blend(facial_s, ICON_OVERLAY)
 
 	if(h_style && !(head && (head.flags_inv & BLOCKHEADHAIR)))
-		var/datum/sprite_accessory/hair/hair_style = hair_styles_list[h_style]
+		var/datum/sprite_accessory/hair/hair_style = GLOB.hair_styles_list[h_style]
 		if(hair_style && (src.species.get_bodytype() in hair_style.species_allowed))
 			var/icon/hair_s = new/icon(hair_style.icon, hair_style.icon_state)
 			if(hair_style.do_colouration)

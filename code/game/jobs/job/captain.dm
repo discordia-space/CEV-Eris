@@ -62,6 +62,8 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	also_known_languages = list(LANGUAGE_CYRILLIC = 20)
 	ideal_character_age = 50
 
+	outfit_type = /decl/hierarchy/outfit/job/hop
+
 	stat_modifers = list(
 		STAT_TGH = 10,
 	)

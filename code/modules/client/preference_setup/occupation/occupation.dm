@@ -14,8 +14,6 @@
 	var/list/job_medium        //List of all things selected for medium weight
 	var/list/job_low           //List of all the things selected for low weight
 	var/list/player_alt_titles // the default name of a job like "Medical Doctor"
-	var/char_branch	= "None"   // military branch
-	var/char_rank = "None"     // military rank
 
 	//Keeps track of preferrence for not getting any wanted jobs
 	var/alternate_option = 2
