@@ -357,7 +357,7 @@
 
 	var/quantity = input(usr,
 	"This stack contains [amount]/[max_amount]. How many would you like to split off into a new stack?\n\
-	The new stack will be put into your hands if possible", "Split Stack", round(amount * 0.5)) as num
+	The new stack will be put into your hands if possible", "Split Stack", round(amount * 0.5)) as null|num
 
 	if (!Adjacent(usr))
 		usr << SPAN_WARNING("You need to be in arm's reach for that!")
