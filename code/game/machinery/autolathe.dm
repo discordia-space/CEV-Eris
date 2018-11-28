@@ -629,16 +629,28 @@
 
 	if(!M.stack_type)
 		return
+	amount = min(amount, stored_material[material])
 
 	var/whole_amount = round(amount)
 	var/remainder = amount - whole_amount
 
+
 	if (whole_amount)
-		var/eject = stored_material[material]
-		eject = amount == -1 ? eject : min(eject, whole_amount)
-		//We eject a number of sheets equal to the whole amount
-		//var/obj/item/stack/material/S =
-		new M.stack_type(loc, whole_amount)
+		var/obj/item/stack/material/S = new M.stack_type(get_turf(src))
+
+		//Accounting for the possibility of too much to fit in one stack
+		if (whole_amount <= S.max_amount)
+			S.amount = whole_amount
+		else
+			//There's too much, how many stacks do we need
+			var/fullstacks = round(whole_amount / S.max_amount)
+			//And how many sheets leftover for this stack
+			S.amount = whole_amount % S.max_amount
+
+			for(var/i = 0; i < fullstacks; i++)
+				var/obj/item/stack/material/MS = new M.stack_type(get_turf(src))
+				MS.amount = MS.max_amount
+
 
 	//And if there's any remainder, we eject that as a shard
 	if (remainder)
@@ -646,6 +658,15 @@
 
 	//The stored material gets the amount (whole+remainder) subtracted
 	stored_material[material] -= amount
+
+
+/obj/machinery/autolathe/dismantle()
+
+	for(var/mat in stored_material)
+		eject(mat, stored_material[mat])
+
+	..()
+	return 1
 
 //Updates overall lathe storage size.
 /obj/machinery/autolathe/RefreshParts()
@@ -662,26 +683,7 @@
 	speed = man_rating*3
 	mat_efficiency = 1.1 - man_rating * 0.1// Normally, price is 1.25 the amount of material, so this shouldn't go higher than 0.8. Maximum rating of parts is 3
 
-/obj/machinery/autolathe/dismantle()
 
-	for(var/mat in stored_material)
-		var/material/M = get_material_by_name(mat)
-		if(!istype(M) || stored_material[mat] <= 0)
-			continue
-
-		var/obj/item/stack/material/S = new M.stack_type(get_turf(src))
-
-		if(S.max_amount <= stored_material[mat])
-			S.amount = stored_material[mat]
-		else
-			var/fullstacks = stored_material[mat] / S.max_amount
-			S.amount = stored_material[mat] % S.max_amount
-			for(var/i = 0; i < fullstacks; i++)
-				var/obj/item/stack/material/MS = new M.stack_type(get_turf(src))
-				MS.amount = MS.max_amount
-
-	..()
-	return 1
 
 
 //Cancels the current construction
