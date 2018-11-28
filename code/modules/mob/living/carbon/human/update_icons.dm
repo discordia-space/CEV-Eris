@@ -353,7 +353,7 @@ var/global/list/damage_icon_parts = list()
 			face_standing.Blend(facial_s, ICON_OVERLAY)
 
 	if(h_style && !(head && (head.flags_inv & BLOCKHEADHAIR)))
-		var/datum/sprite_accessory/hair_style = hair_styles_list[h_style]
+		var/datum/sprite_accessory/hair/hair_style = hair_styles_list[h_style]
 		if(hair_style && (src.species.get_bodytype() in hair_style.species_allowed))
 			var/icon/hair_s = new/icon(hair_style.icon, hair_style.icon_state)
 			if(hair_style.do_colouration)

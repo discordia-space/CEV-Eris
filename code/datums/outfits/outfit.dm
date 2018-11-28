@@ -164,6 +164,8 @@ var/list/outfits_decls_by_type_
 	if(OUTFIT_ADJUSTMENT_SKIP_ID_PDA & equip_adjustments)
 		return
 	var/obj/item/weapon/card/id/W = new id_type(H)
+	var/datum/job/job = SSjob.GetJob(H.mind.assigned_role)
+	W.access = job.get_access()
 	if(id_desc)
 		W.desc = id_desc
 	if(rank)

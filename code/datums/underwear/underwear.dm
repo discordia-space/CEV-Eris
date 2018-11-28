@@ -39,7 +39,7 @@ datum/category_group/underwear/dd_SortValue()
 /datum/category_item/underwear
 	var/always_last = FALSE          // Should this entry be sorte last?
 	var/is_default = FALSE           // Should this entry be considered the default for its type?
-	var/icon = 'icons/mob/human.dmi' // Which icon to get the underwear from.
+	var/icon = 'icons/mob/human_races/underware.dmi' // Which icon to get the underwear from.
 	var/icon_state                   // And the particular item state.
 	var/list/tweaks = list()         // Underwear customizations.
 	var/has_color = FALSE

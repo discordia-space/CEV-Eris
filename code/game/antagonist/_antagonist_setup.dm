@@ -112,7 +112,7 @@ GLOBAL_LIST_EMPTY(faction_types)
 			A.role_type = A.role_text
 
 		if(A.selectable)
-			GLOB.all_antag_selectable_types[A.id] = A
+			GLOB.all_antag_selectable_types[A.bantype] = A
 		if(A.faction_id)
 			GLOB.group_antag_types[A.id] = A
 

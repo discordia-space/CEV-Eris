@@ -66,8 +66,6 @@
 	var/mob/remoteview_target = null
 	var/hand_blood_color
 
-	var/list/flavor_texts = list()
-
 	var/gunshot_residue
 	var/pulling_punches // Are you trying not to hurt your opponent?
 
@@ -90,6 +88,3 @@
 
 	var/stance_damage = 0 //Whether this mob's ability to stand has been affected
 	var/identifying_gender // In case the human identifies as another gender than it's biological
-
-	//Plug untill baymed
-	var/list/descriptors

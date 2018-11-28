@@ -23,7 +23,8 @@
 /datum/category_item/player_setup_item/occupation
 	name = "Occupation"
 	sort_order = 1
-	var/datum/browser/panel
+	//var/datum/browser/panel
+	var/job_desc = "Press \[?\] button near job name to show description.<br><br><br><br><br><br>"			//text containing job description
 
 /datum/category_item/player_setup_item/occupation/load_character(var/savefile/S)
 	from_file(S["alternate_option"], 	pref.alternate_option)
@@ -85,9 +86,8 @@
 
 	. += "<tt><center>"
 	//. += "<b>Choose occupation chances. <font size=3>Click on the occupation to select skills.</font><br>Unavailable occupations are crossed out.</b>"
+	. += "<div class = 'statusDisplay' style = 'margin: auto; width: 700px; height: 300; overflow: auto;'>[job_desc]</div>"
 	. += "<b>Choose occupation chances.<br>Unavailable occupations are crossed out.</b>"
-
-	. += "<br>"
 	. += "<table width='100%' cellpadding='1' cellspacing='0'><tr><td width='20%'>" // Table within a table for alignment, also allows you to easily add more columns.
 	. += "<table width='100%' cellpadding='1' cellspacing='0'>"
 
@@ -176,7 +176,7 @@
 
 	. += "<a href='?src=\ref[src];reset_jobs=1'>\[Reset\]</a></center>"
 	. += "</tt><br>"
-	. += "Jobs that <span class='Points'>look like this</span> have unspent skill points remaining."
+	//. += "Jobs that <span class='Points'>look like this</span> have unspent skill points remaining."
 	. = jointext(.,null)
 
 /datum/category_item/player_setup_item/occupation/OnTopic(href, href_list, user)
@@ -239,31 +239,30 @@
 	else if(href_list["job_info"])
 		var/rank = href_list["job_info"]
 		var/datum/job/job = SSjob.GetJob(rank)
-		var/dat = list()
 
-		dat += "<p style='background-color: [job.selection_color]'><br><br><p>"
+		job_desc = ""
+		
+		job_desc += "<p style='background-color: [job.selection_color]'><br><p>"
 		if(job.alt_titles)
-			dat += "<i><b>Alternative titles:</b> [english_list(job.alt_titles)].</i>"
+			job_desc += "<i><b>Alternative titles:</b> [english_list(job.alt_titles)].</i>"
 		send_rsc(user, job.get_job_icon(), "job[ckey(rank)].png")
-		dat += "<img src=job[ckey(rank)].png width=96 height=96 style='float:left;'>"
+		job_desc += "<img src=job[ckey(rank)].png width=96 height=96 style='float:left;'>"
 		if(job.department)
-			dat += "<b>Department:</b> [job.department]."
+			job_desc += "<b>Department:</b> [job.department]."
 			if(job.head_position)
-				dat += "You are in charge of this department."
+				job_desc += "You are in charge of this department."
+		job_desc += "<br>"
+		job_desc += "You answer to <b>[job.supervisors]</b> normally."
 
-		dat += "You answer to <b>[job.supervisors]</b> normally."
-
-		dat += "<hr style='clear:left;'>"
+		job_desc += "<hr>"
 		if(config.wikiurl)
-			dat += "<a href='?src=\ref[src];job_wiki=[rank]'>Open wiki page in browser</a>"
+			job_desc += "<a href='?src=\ref[src];job_wiki=[rank]'>Open wiki page in browser</a>"
 		var/description = job.get_description_blurb()
 		/*if(job.required_education)
 		description = "[description ? "[description]\n\n" : ""]"*/
 		if(description)
-			dat += html_encode(description)
-		var/datum/browser/popup = new(user, "Job Info", "[capitalize(rank)]", 430, 520, src)
-		popup.set_content(jointext(dat,"<br>"))
-		popup.open()
+			job_desc += html_encode(description)
+		return TOPIC_REFRESH
 
 	else if(href_list["job_wiki"])
 		var/rank = href_list["job_wiki"]

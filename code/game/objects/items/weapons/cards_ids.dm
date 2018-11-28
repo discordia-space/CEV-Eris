@@ -109,8 +109,6 @@ var/const/NO_EMAG_ACT = -50
 	var/icon/front
 	var/icon/side
 
-	var/job_access_type     // Job type to acquire access rights from, if any
-
 	//alt titles are handled a bit weirdly in order to unobtrusively integrate into existing ID system
 	var/assignment = null	//can be alt title or the actual job
 	var/rank = null			//actual job
@@ -264,7 +262,6 @@ var/const/NO_EMAG_ACT = -50
 /obj/item/weapon/card/id/gold
 	icon_state = MATERIAL_GOLD
 	item_state = "gold_id"
-	job_access_type = /datum/job/captain
 
 /obj/item/weapon/card/id/sci
 	icon_state = "id_sci"

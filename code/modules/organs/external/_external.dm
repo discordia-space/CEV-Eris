@@ -41,11 +41,6 @@
 	var/skin_tone			// Skin tone.
 	var/skin_col			// skin colour
 	var/hair_col
-	var/tattoo
-	var/tattoo_color = "#000000"
-	var/list/markings = list()         // Markings (body_markings) to apply to the icon
-
-
 
 	// Wound and structural data.
 	var/wound_update_accuracy = 1		// how often wounds should be updated, a higher number means less often

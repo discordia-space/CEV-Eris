@@ -37,15 +37,15 @@
 
 	for(var/A in GLOB.all_antag_selectable_types)
 		var/datum/antagonist/antag = GLOB.all_antag_selectable_types[A]
-		. += "<tr><td>[antag.role_text]: </td><td>"
-		if(jobban_isbanned(preference_mob(), antag.id) || (antag.id == ROLE_MALFUNCTION && jobban_isbanned(preference_mob(), "AI")))
+		. += "<tr><td>[antag.bantype]: </td><td>"
+		if(jobban_isbanned(preference_mob(), antag.bantype) || (antag.id == ROLE_MALFUNCTION && jobban_isbanned(preference_mob(), "AI")))
 			. += "<span class='danger'>\[BANNED\]</span><br>"
-		else if(antag.id in pref.be_special_role)
-			. += "<span class='linkOn'>High</span> <a href='?src=\ref[src];del_special=[antag.id]'>Low</a> <a href='?src=\ref[src];add_never=[antag.id]'>Never</a></br>"
-		else if(antag.id in pref.never_be_special_role)
-			. += "<a href='?src=\ref[src];add_special=[antag.id]'>High</a> <a href='?src=\ref[src];del_special=[antag.id]'>Low</a> <span class='linkOn'>Never</span></br>"
+		else if(antag.bantype in pref.be_special_role)
+			. += "<span class='linkOn'>High</span> <a href='?src=\ref[src];del_special=[antag.bantype]'>Low</a> <a href='?src=\ref[src];add_never=[antag.bantype]'>Never</a></br>"
+		else if(antag.bantype in pref.never_be_special_role)
+			. += "<a href='?src=\ref[src];add_special=[antag.bantype]'>High</a> <a href='?src=\ref[src];del_special=[antag.bantype]'>Low</a> <span class='linkOn'>Never</span></br>"
 		else
-			. += "<a href='?src=\ref[src];add_special=[antag.id]'>High</a> <span class='linkOn'>Low</span> <a href='?src=\ref[src];add_never=[antag.id]'>Never</a></br>"
+			. += "<a href='?src=\ref[src];add_special=[antag.bantype]'>High</a> <span class='linkOn'>Low</span> <a href='?src=\ref[src];add_never=[antag.bantype]'>Never</a></br>"
 		. += "</td></tr>"
 
 	var/list/ghost_traps = get_ghost_traps()
@@ -118,11 +118,11 @@
 	for(var/A in GLOB.all_antag_selectable_types)
 		var/datum/antagonist/antag = GLOB.all_antag_selectable_types[A]
 		if(!include_bans)
-			if(jobban_isbanned(preference_mob(), antag.id))
+			if(jobban_isbanned(preference_mob(), antag.bantype))
 				continue
-			if(((antag  == ROLE_MALFUNCTION) && jobban_isbanned(preference_mob(), "AI")))
+			if(((antag.id  == ROLE_MALFUNCTION) && jobban_isbanned(preference_mob(), "AI")))
 				continue
-		private_valid_special_roles += antag.id
+		private_valid_special_roles += antag.bantype
 
 	var/list/ghost_traps = get_ghost_traps()
 	for(var/ghost_trap_key in ghost_traps)

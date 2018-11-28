@@ -222,7 +222,6 @@
 	return 1
 
 /mob/new_player/proc/AttemptLateSpawn(rank, var/spawning_at)
-	to_world("attempting late spawn")
 	if(src != usr)
 		return 0
 	if(SSticker.current_state != GAME_STATE_PLAYING)
@@ -261,12 +260,11 @@
 		qdel(src)
 		return
 		
-	var/datum/spawnpoint/spawnpoint = SSjob.get_spawnpoint_for(client, job.title)
+	var/datum/spawnpoint/spawnpoint = SSjob.get_spawnpoint_for(character.client, job.title)
 	var/turf/spawn_turf = pick(spawnpoint.turfs)
 
 	if(!SSjob.CheckUnsafeSpawn(src, spawn_turf))
 		return
-	to_world("after unsafe")
 	
 	character = SSjob.EquipRank(character, rank, 1)					//equips the human
 	equip_custom_items(character)

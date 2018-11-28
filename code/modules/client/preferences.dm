@@ -147,7 +147,7 @@ datum/preferences
 	player_setup.sanitize_setup()
 	character.set_species(species)
 
-	/*if(be_random_name)
+	if(be_random_name)
 		real_name = random_name(gender,species)
 
 	if(config.humans_need_surnames)
@@ -159,7 +159,7 @@ datum/preferences
 			real_name += "[pick(GLOB.last_names)]"
 
 	character.fully_replace_character_name(real_name)
-
+	character.body_build = get_body_build(gender, body_build)
 	character.gender = gender
 	character.age = age
 	character.b_type = b_type
@@ -167,12 +167,15 @@ datum/preferences
 	character.h_style = h_style
 	character.f_style = f_style
 
+	// Build mob body from prefs
+	character.rebuild_organs(src)
+
 	//TODO: replace with hex colors
 
-	character.eyes_color = rgb(r_eyes, g_eyes, b_eyes)
-	character.hair_color = rgb(r_hair, g_hair, b_hair)
-	character.facial_color = rgb(r_facial, g_facial, b_facial)
-	character.skin_color = rgb(r_skin, g_skin, b_skin)
+	character.eyes_color = eyes_color
+	character.hair_color = hair_color
+	character.facial_color = facial_color
+	character.skin_color = skin_color
 
 	character.religion = religion
 	character.s_tone = s_tone
@@ -183,39 +186,29 @@ datum/preferences
 	for(var/underwear_category_name in all_underwear)
 		var/datum/category_group/underwear/underwear_category = GLOB.underwear.categories_by_name[underwear_category_name]
 		if(underwear_category)
+			to_world(underwear_category)
 			var/underwear_item_name = all_underwear[underwear_category_name]
 			var/datum/category_item/underwear/UWD = underwear_category.items_by_name[underwear_item_name]
 			var/metadata = all_underwear_metadata[underwear_category_name]
 			var/obj/item/underwear/UW = UWD.create_underwear(metadata)
 			if(UW)
+				to_world("underware created")
 				UW.ForceEquipUnderwear(character, FALSE)
 		else
 			all_underwear -= underwear_category_name
 
 	character.backpack_setup = new(backpack, backpack_metadata["[backpack]"])
 	
-	for(var/N in character.organs_by_name)
-		var/obj/item/organ/external/O = character.organs_by_name[N]
-		O.markings.Cut()
-	
-	for(var/M in body_markings)
-		var/datum/sprite_accessory/marking/mark_datum = GLOB.body_marking_styles_list[M]
-		var/mark_color = "[body_markings[M]]"
-
-		for(var/BP in mark_datum.body_parts)
-			var/obj/item/organ/external/O = character.organs_by_name[BP]
-			if(O)
-				O.markings[M] = list("color" = mark_color, "datum" = mark_datum)
 	character.force_update_limbs()
 	character.update_mutations(0)
 	
 	
-	character.update_body(0)*/
-	//character.update_underwear(0)
+	character.update_body(0)
+	character.update_underwear(0)
 	
-	//character.update_hair(0)
+	character.update_hair(0)
 
-	//character.update_icons()
+	character.update_icons()
 	
 	if(is_preview_copy)
 		return
@@ -223,25 +216,10 @@ datum/preferences
 	for(var/lang in alternate_languages)
 		character.add_language(lang)
 
-	character.flavor_texts["general"] = flavor_texts["general"]
-	character.flavor_texts["head"] = flavor_texts["head"]
-	character.flavor_texts["face"] = flavor_texts["face"]
-	character.flavor_texts["eyes"] = flavor_texts["eyes"]
-	character.flavor_texts["torso"] = flavor_texts["torso"]
-	character.flavor_texts["arms"] = flavor_texts["arms"]
-	character.flavor_texts["hands"] = flavor_texts["hands"]
-	character.flavor_texts["legs"] = flavor_texts["legs"]
-	character.flavor_texts["feet"] = flavor_texts["feet"]
-
 	character.med_record = med_record
 	character.sec_record = sec_record
 	character.gen_record = gen_record
 	character.exploit_record = exploit_record
-	/*
-	if(LAZYLEN(character.descriptors))
-		for(var/entry in body_descriptors)
-			character.descriptors[entry] = body_descriptors[entry]
-	*/
 	if(!character.isSynthetic())
 		character.nutrition = rand(140,360)
 

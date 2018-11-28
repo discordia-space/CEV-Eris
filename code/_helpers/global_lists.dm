@@ -165,12 +165,6 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 				facial_hair_styles_male_list += H.name
 				facial_hair_styles_female_list += H.name
 
-	//Body markings - Initialise all /datum/sprite_accessory/marking into an list indexed by marking name
-	paths = typesof(/datum/sprite_accessory/marking) - /datum/sprite_accessory/marking
-	for(var/path in paths)
-		var/datum/sprite_accessory/marking/M = new path()
-		GLOB.body_marking_styles_list[M.name] = M
-
 
 	//Surgery Steps - Initialize all /datum/surgery_step into a list
 	paths = typesof(/datum/surgery_step)-/datum/surgery_step

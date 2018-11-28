@@ -19,11 +19,10 @@ datum/preferences/proc/update_preview_icon()
 	qdel(preview_west)
 
 	var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin(client_ckey)
-	//mannequin.delete_inventory(TRUE)
-	//dress_preview_mob(mannequin)
+	mannequin.delete_inventory(TRUE)
+	dress_preview_mob(mannequin)
 
 	preview_icon = icon('icons/effects/96x64.dmi', bgstate)
-	//preview_icon.Scale(48+32, 16+32)
 
 	preview_east = getFlatIcon(mannequin, EAST, always_use_defdir = 1)
 
@@ -42,7 +41,12 @@ datum/preferences/proc/update_preview_icon()
 	preview_icon.Blend(stamp, ICON_OVERLAY, preview_icon.Width()/100 * 68,preview_icon.Height()/100 * 5)
 	preview_south = stamp
 
-	preview_icon.Scale(preview_icon.Width() * 2, preview_icon.Height() * 2) // Scaling here to prevent blurring in the browser.
+	// Scaling here to prevent blurring in the browser.
+	preview_east.Scale(preview_icon.Width() * 2, preview_icon.Height() * 2)
+	preview_west.Scale(preview_icon.Width() * 2, preview_icon.Height() * 2)
+	preview_north.Scale(preview_icon.Width() * 2, preview_icon.Height() * 2)
+	preview_south.Scale(preview_icon.Width() * 2, preview_icon.Height() * 2)
+	preview_icon.Scale(preview_icon.Width() * 2, preview_icon.Height() * 2) 
 /*
 datum/preferences/proc/update_preview_icon()
 	req_update_icon = 0			//No check. Can be forced.

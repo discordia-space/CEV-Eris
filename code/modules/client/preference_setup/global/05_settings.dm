@@ -1,5 +1,5 @@
 /datum/preferences
-	var/list/preference_values
+	var/list/preference_values = list()
 
 /datum/category_item/player_setup_item/player_global/settings
 	name = "Settings"

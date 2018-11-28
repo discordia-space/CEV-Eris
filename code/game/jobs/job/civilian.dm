@@ -36,7 +36,6 @@
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
 	access = list(access_hydroponics, access_bar, access_kitchen)
-	alt_titles = list("Cook")
 
 	outfit_type = /decl/hierarchy/outfit/job/service/chef
 
