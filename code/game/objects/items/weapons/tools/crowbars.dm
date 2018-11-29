@@ -19,7 +19,7 @@
 	icon_state = "impro_crowbar"
 	item_state = "crowbar"
 	tool_qualities = list(QUALITY_PRYING = 10)
-	degradation = 7 //This one breaks REALLY fast
+	degradation = 5 //This one breaks REALLY fast
 
 /obj/item/weapon/tool/crowbar/pneumatic
 	name = "pneumatic crowbar"
@@ -28,6 +28,7 @@
 	item_state = "jackhammer"
 	matter = list(MATERIAL_STEEL = 6, MATERIAL_PLASTIC = 2)
 	tool_qualities = list(QUALITY_PRYING = 40, QUALITY_DIGGING = 15)
-	degradation = 0.12
-	use_power_cost = 0.6
+	degradation = 0.07
+	use_power_cost = 0.8
+	max_upgrades = 4
 	suitable_cell = /obj/item/weapon/cell/medium

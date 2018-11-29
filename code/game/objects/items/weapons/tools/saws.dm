@@ -21,7 +21,7 @@
 	icon_state = "impro_saw"
 	force = WEAPON_FORCE_PAINFULL
 	tool_qualities = list(QUALITY_SAWING = 15, QUALITY_CUTTING = 10, QUALITY_WIRE_CUTTING = 10)
-	degradation = 3
+	degradation = 0.7
 
 /obj/item/weapon/tool/saw/circular
 	name = "circular saw"
@@ -33,7 +33,7 @@
 	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTIC = 2)
 	tool_qualities = list(QUALITY_SAWING = 40, QUALITY_CUTTING = 30, QUALITY_WIRE_CUTTING = 30)
 
-	use_power_cost = 0.12
+	use_power_cost = 0.15
 	suitable_cell = /obj/item/weapon/cell/small
 
 /obj/item/weapon/tool/saw/advanced_circular
@@ -45,9 +45,10 @@
 	force = WEAPON_FORCE_ROBUST
 	matter = list(MATERIAL_STEEL = 6, MATERIAL_PLASTIC = 2)
 	tool_qualities = list(QUALITY_SAWING = 50, QUALITY_CUTTING = 40, QUALITY_WIRE_CUTTING = 40)
-	degradation = 0.12
-	use_power_cost = 0.18
+	degradation = 0.07
+	use_power_cost = 0.22
 	suitable_cell = /obj/item/weapon/cell/small
+	max_upgrades = 4
 
 /obj/item/weapon/tool/saw/chain
 	name = "chainsaw"
@@ -58,6 +59,6 @@
 	force = WEAPON_FORCE_ROBUST
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 3)
 	tool_qualities = list(QUALITY_SAWING = 60, QUALITY_CUTTING = 50, QUALITY_WIRE_CUTTING = 20)
-
+	max_upgrades = 4
 	use_fuel_cost = 0.1
 	max_fuel = 80

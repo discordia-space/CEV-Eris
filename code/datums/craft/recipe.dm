@@ -30,6 +30,8 @@
 
 /datum/craft_recipe/proc/get_description(pass_steps)
 	. = list()
+	var/atom/A = result
+	.+="[initial(A.desc)]<br>"
 	for(var/item in steps)
 		if(pass_steps > 0)
 			--pass_steps
