@@ -120,6 +120,18 @@
 
 	return list(R + x,R,R, G,G + x,G, B,B,B + x)
 
+
+//Changes our pixel offset by offset pixels towards the target atom
+/atom/proc/offset_to(var/atom/target, var/offset = 1)
+	if (target.x < x)
+		pixel_x -= offset
+	else if (target.x > x)
+		pixel_x += offset
+	if (target.y < y)
+		pixel_y -= offset
+	else if (target.y > y)
+		pixel_y += offset
+
 #undef LUMR
 #undef LUMG
 #undef LUMB
