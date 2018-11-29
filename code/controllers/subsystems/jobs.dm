@@ -435,7 +435,7 @@ proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
 					spawn_in_storage.Add(G)
 				else
 					loadout_taken_slots.Add(G.slot)
-
+				
 	return spawn_in_storage
 
 /datum/controller/subsystem/job/proc/LoadJobs(jobsfile) //ran during round setup, reads info from jobs.txt -- Urist

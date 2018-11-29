@@ -3,7 +3,6 @@
 #define MODIFICATION_REMOVED 3
 
 datum/preferences
-	var/req_update_icon = 1
 	var/icon/preview_icon  = null
 	var/icon/preview_south = null
 	var/icon/preview_north = null
@@ -11,8 +10,7 @@ datum/preferences
 	var/icon/preview_west  = null
 	var/preview_dir = SOUTH
 
-datum/preferences/proc/update_preview_icon()
-	req_update_icon = 0			//No check. Can be forced.
+datum/preferences/proc/update_preview_icon(var/naked = FALSE)
 	qdel(preview_south)
 	qdel(preview_north)
 	qdel(preview_east)
@@ -20,7 +18,7 @@ datum/preferences/proc/update_preview_icon()
 
 	var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin(client_ckey)
 	mannequin.delete_inventory(TRUE)
-	dress_preview_mob(mannequin)
+	dress_preview_mob(mannequin, naked)
 
 	preview_icon = icon('icons/effects/96x64.dmi', bgstate)
 

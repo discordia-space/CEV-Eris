@@ -121,7 +121,6 @@ datum/preferences
 
 	else if(href_list["religion"])
 		pref.religion = input("Religion") in list("None", "Christianity")
-		pref.req_update_icon = 1
 		return TOPIC_REFRESH
 
 	return ..()

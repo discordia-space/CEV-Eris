@@ -6,11 +6,13 @@ var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
 /datum/category_group/player_setup_category/physical_preferences
 	name = "General"
 	sort_order = 1
+	update_preview_icon = TRUE
 	category_item_type = /datum/category_item/player_setup_item/physical
 
 /datum/category_group/player_setup_category/augmentation
 	name = "Augmentation"
 	sort_order = 2
+	update_preview_icon = TRUE
 	category_item_type = /datum/category_item/player_setup_item/augmentation
 /*
 /datum/category_group/player_setup_category/background_preferences
@@ -40,6 +42,7 @@ var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
 
 /datum/category_group/player_setup_category/loadout_preferences
 	name = "Loadout"
+	update_preview_icon = TRUE
 	sort_order = 7
 	category_item_type = /datum/category_item/player_setup_item/loadout
 
@@ -120,6 +123,8 @@ var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
 		var/category = locate(href_list["category"])
 		if(category && category in categories)
 			selected_category = category
+			if(selected_category.update_preview_icon)
+				preferences.update_preview_icon(naked = istype(selected_category, /datum/category_group/player_setup_category/augmentation))
 		. = 1
 
 	if(.)
@@ -130,6 +135,7 @@ var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
 **************************/
 /datum/category_group/player_setup_category
 	var/sort_order = 0
+	var/update_preview_icon = FALSE
 
 /datum/category_group/player_setup_category/dd_SortValue()
 	return sort_order

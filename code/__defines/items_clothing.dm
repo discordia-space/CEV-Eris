@@ -196,7 +196,3 @@
 #define INV_W_UNIFORM_DEF_ICON 'icons/inventory/uniform/mob.dmi'
 #define INV_ACCESSORIES_DEF_ICON 'icons/inventory/accessory/mob.dmi'
 #define INV_SUIT_DEF_ICON 'icons/inventory/suit/mob.dmi'
-
-// Hair Flags
-#define VERY_SHORT 0x1
-#define HAIR_TIEABLE 0x2

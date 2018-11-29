@@ -1250,4 +1250,3 @@ var/list/FLOORITEMS = list(
 		return 1
 	else
 		return 0
-

@@ -1,8 +1,8 @@
 /mob/proc/equip_to_slot(obj/item/Item, slot, redraw_mob = TRUE)
 
 
-/mob/proc/equip_to_slot_if_possible(obj/item/Item, slot, disable_warning = 1, redraw_mob = TRUE, del_on_fail = 0)
-	if(!mob_can_equip(src, Item, slot, disable_warning))
+/mob/proc/equip_to_slot_if_possible(obj/item/Item, slot, disable_warning = 1, redraw_mob = TRUE, force = FALSE, del_on_fail = FALSE, put_in_storage = FALSE)
+	if(!mob_can_equip(src, Item, slot, disable_warning, force))
 		if(del_on_fail)
 			qdel(Item)
 		return FALSE
@@ -12,12 +12,10 @@
 	//Pre-equip intercepts here to let the item know it's about to be equipped
 	if(Item.pre_equip(src, slot))
 		return FALSE
-
 	//Pre-equip can take time
 	if(world_time != world.timeofday)
-		if(!mob_can_equip(src, Item, slot, disable_warning))
+		if(!mob_can_equip(src, Item, slot, disable_warning, force))
 			return FALSE
-
 	if(Item.is_equipped())
 		var/mob/Wearer = Item.loc
 		if(!Wearer.unEquip(Item))
@@ -26,10 +24,9 @@
 		var/obj/item/weapon/storage/S = Item.loc
 		S.remove_from_storage(Item, null)
 
-	equip_to_slot(Item, slot, redraw_mob) //This proc should not ever fail.
+	equip_to_slot(Item, slot, redraw_mob, put_in_storage) //This proc should not ever fail.
 
 	return TRUE
-
 
 /mob/proc/equip_to_slot_or_del(obj/item/Item, slot)
 	. = equip_to_slot_if_possible(Item, slot, disable_warning = TRUE, redraw_mob = FALSE)

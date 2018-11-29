@@ -170,8 +170,6 @@ datum/preferences
 	// Build mob body from prefs
 	character.rebuild_organs(src)
 
-	//TODO: replace with hex colors
-
 	character.eyes_color = eyes_color
 	character.hair_color = hair_color
 	character.facial_color = facial_color

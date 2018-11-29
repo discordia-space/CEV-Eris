@@ -105,7 +105,13 @@ var/list/gear_datums = list()
 		else
 			pref.gear_list[index] = list()
 
-/datum/category_item/player_setup_item/loadout/content()
+/datum/category_item/player_setup_item/loadout/content(var/mob/user)
+	if(!pref.preview_icon)
+		pref.update_preview_icon()
+	if(pref.preview_north && pref.preview_south && pref.preview_west)
+		user << browse_rsc(pref.preview_north, "new_previewicon[NORTH].png")
+		user << browse_rsc(pref.preview_south, "new_previewicon[SOUTH].png")
+		user << browse_rsc(pref.preview_west, "new_previewicon[WEST].png")
 	. = list()
 	var/total_cost = 0
 	var/list/gears = pref.gear_list[pref.gear_slot]
@@ -150,7 +156,7 @@ var/list/gear_datums = list()
 				. += " <a href='?src=\ref[src];select_category=[category]'><font color = '#e67300'>[category] - [category_cost]</font></a> "
 			else
 				. += " <a href='?src=\ref[src];select_category=[category]'>[category] - 0</a> "
-
+	. += "<div class='statusDisplay' style = 'max-width: 192px; clear:both;'><img src=new_previewicon[SOUTH].png width=64 height=64><img src=new_previewicon[WEST].png width=64 height=64><img src=new_previewicon[NORTH].png width=64 height=64></div>"
 	. += "</b></center></td></tr>"
 
 	var/datum/loadout_category/LC = loadout_categories[current_tab]
@@ -341,7 +347,7 @@ var/list/gear_datums = list()
 
 /datum/gear/proc/spawn_on_mob(var/mob/living/carbon/human/H, var/metadata)
 	var/obj/item/item = spawn_item(H, metadata)
-	if(H.equip_to_slot_if_possible(item, slot, del_on_fail = 1, force = 1))
+	if(H.equip_to_slot_if_possible(item, slot, force = TRUE, del_on_fail = TRUE, put_in_storage = TRUE))
 		to_chat(H, "<span class='notice'>Equipping you with \the [item]!</span>")
 		. = item
 
