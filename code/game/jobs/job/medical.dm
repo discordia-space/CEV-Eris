@@ -12,7 +12,7 @@
 	idtype = /obj/item/weapon/card/id/cmo
 	req_admin_notify = 1
 	economic_modifier = 10
-	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10, LANGUAGE_SERBIAN = 5)
 	access = list(
 		access_moebius, access_medical_equip, access_morgue, access_genetics, access_heads,
 		access_chemistry, access_virology, access_cmo, access_surgery, access_RC_announce,
@@ -191,7 +191,7 @@
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#ffeef0"
 	economic_modifier = 4
-	also_known_languages = list(LANGUAGE_CYRILLIC = 20)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 20, LANGUAGE_SERBIAN = 15)
 	access = list(
 		access_moebius, access_medical_equip, access_morgue, access_surgery,
 		access_eva, access_maint_tunnels, access_external_airlocks, access_psychiatrist

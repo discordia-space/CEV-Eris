@@ -23,26 +23,33 @@
 	var/list/L = candidates_list(a_type)
 	return L.len
 
-/datum/storyevent/roleset/proc/candidates_list(var/antag, var/oneantag = TRUE)
+/datum/storyevent/roleset/proc/candidates_list(var/antag, var/report)
 	var/datum/antagonist/temp
 	if(ispath(antag_types[antag]))
 		var/t = antag_types[antag]
 		temp = new t
 	if(!istype(temp))
+		if (report) report << SPAN_NOTICE("Failure: Unable to locate antag datum: -[temp]-[antag_types[antag]]- for antag [antag]")
 		return list()
 	var/list/candidates = list()
 	for(var/datum/mind/candidate in SSticker.minds)
 		if(!candidate.current)
+			if (report) report << SPAN_NOTICE("Failure: [candidate] has no mob")
 			continue
 		if(!temp.can_become_antag(candidate))
+			if (report) report << SPAN_NOTICE("Failure: [candidate] can't become this antag")
 			continue
 		if(!antagonist_suitable(candidate,temp))
+			if (report) report << SPAN_NOTICE("Failure: [candidate] is not antagonist suitable")
 			continue
 		if(!(temp.role_type in candidate.current.client.prefs.be_special_role))
+			if (report) report << SPAN_NOTICE("Failure: [candidate] has special role [temp.role_type] disabled")
 			continue
 		if(storyteller && storyteller.one_role_per_player && candidate.antagonist.len)
+			if (report) report << SPAN_NOTICE("Failure: [candidate] is already a [candidate.antagonist[1]] and can't be two antags")
 			continue
 		if(player_is_antag_id(candidate,antag))
+			if (report) report << SPAN_NOTICE("Failure: [candidate] is already a [antag]")
 			continue
 
 		candidates.Add(candidate)
@@ -50,7 +57,7 @@
 	qdel(temp)
 	return shuffle(candidates)
 
-/datum/storyevent/roleset/proc/ghost_candidates_list(var/antag, var/act_test = TRUE)
+/datum/storyevent/roleset/proc/ghost_candidates_list(var/antag, var/act_test = TRUE, var/report)
 
 	var/datum/antagonist/temp
 
@@ -67,10 +74,13 @@
 	if(temp.outer)
 		for(var/mob/observer/candidate in player_list)
 			if(!candidate.client)
+				if (report) report << SPAN_NOTICE("Failure: [candidate] is disconnected")
 				continue
 			if(!temp.can_become_antag_ghost(candidate))
+				if (report) report << SPAN_NOTICE("Failure: [candidate] can't become this antag from ghost")
 				continue
 			if(!(temp.role_type in candidate.client.prefs.be_special_role))
+				if (report) report << SPAN_NOTICE("Failure: [candidate] has special role [temp.role_type] disabled")
 				continue
 
 			any_candidates = TRUE
@@ -161,15 +171,16 @@
 
 
 //Tests if its possible for us to trigger, by compiling candidate lists but doing nothing with them
-/datum/storyevent/roleset/can_trigger()
+/datum/storyevent/roleset/can_trigger(var/severity = EVENT_LEVEL_ROLESET, var/report)
 	var/list/possible_candidates = list()
 	if(role_id in outer_antag_types)
-		possible_candidates = ghost_candidates_list(role_id, FALSE) //We set act check to false so it doesn't ask ghosts
+		possible_candidates = ghost_candidates_list(role_id, FALSE, report) //We set act check to false so it doesn't ask ghosts
 	else
-		possible_candidates = candidates_list(role_id)
+		possible_candidates = candidates_list(role_id, report)
 
 	if (possible_candidates.len > 0)
 		return TRUE
+	if (report) report << SPAN_NOTICE("Failure: No candidates found")
 	return FALSE
 
 
