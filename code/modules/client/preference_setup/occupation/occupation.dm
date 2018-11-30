@@ -114,6 +114,7 @@
 					. += "<tr bgcolor='[lastJob.selection_color]'><td width='40%' align='right'><a>&nbsp</a></td><td><a>&nbsp</a></td></tr>"
 			. += "</table></td><td width='20%'><table width='100%' cellpadding='1' cellspacing='0'>"
 			index = 0
+			
 
 		. += "<tr bgcolor='[job.selection_color]'><td width='40%' align='right'>"
 		var/rank = job.title
@@ -147,10 +148,11 @@
 
 		if(rank == "Assistant")//Assistant is special
 			. += "<a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_LOW]'>"
-			. += "[rank in pref.job_low ? "<font color=55cc55>" : ""]\[Yes\][rank in pref.job_low ? "</font>" : ""]"
+			. += "[(rank in pref.job_low) ? "<font color=#55cc55>" : ""]\[Yes\][(rank in pref.job_low) ? "</font>" : ""]"
+			//. += "\[Yes\]"
 			. += "</a>"
 			. += "<a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_NEVER]'>"
-			. += " [!(rank in pref.job_low) ? "<font color=black>" : ""]\[No\][!(rank in pref.job_low) ? "</font>" : ""]"
+			. += "[!(rank in pref.job_low) ? "<font color=black>" : ""]\[No\][!(rank in pref.job_low) ? "</font>" : ""]"
 			. += "</a>"
 		else
 			. += " <a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_HIGH]'>[current_level == JOB_LEVEL_HIGH ? "<font color=55cc55>" : ""]\[High][current_level == JOB_LEVEL_HIGH ? "</font>" : ""]</a>"
@@ -240,7 +242,7 @@
 
 		job_desc = ""
 		
-		job_desc += "<p style='background-color: [job.selection_color]'><br><p>"
+		job_desc += "<p style='margin-top:0px; background-color: [job.selection_color]'><br><p>"
 		if(job.alt_titles)
 			job_desc += "<i><b>Alternative titles:</b> [english_list(job.alt_titles)].</i>"
 		send_rsc(user, job.get_job_icon(), "job[ckey(rank)].png")

@@ -12,6 +12,7 @@
 	//alt_titles = list("Technomancer Assistant","Moebius Medical Intern","Moebius Research Assistant")
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
 	access = list(access_maint_tunnels)
+	outfit_type = /decl/hierarchy/outfit/job/assistant
 
 /obj/landmark/join/start/assistant
 	name = "Assistant"

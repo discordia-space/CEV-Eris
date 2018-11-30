@@ -385,9 +385,9 @@
 	return L
 
 /datum/species/proc/equip_survival_gear(var/mob/living/carbon/human/H,var/extendedtank = 1)
-	if(istype(H.get_equipped_item(slot_back), /obj/item/weapon/storage/backpack))
-		if (extendedtank)	H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/engineer(H.back), slot_in_backpack)
-		else	H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), slot_in_backpack)
+	if(istype(H.get_equipped_item(slot_back), /obj/item/weapon/storage))
+		if (extendedtank)	H.equip_to_storage(new /obj/item/weapon/storage/box/engineer(H.back))
+		else	H.equip_to_storage(new /obj/item/weapon/storage/box/survival(H.back))
 	else
 		if (extendedtank)	H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/engineer(H), slot_r_hand)
 		else	H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), slot_r_hand)

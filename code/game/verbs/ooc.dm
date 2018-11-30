@@ -159,7 +159,7 @@
 
 
 	for(var/client/adm in admins)	//Now send to all admins that weren't in range.
-		if(!(adm in listening))
+		if(!(adm in listening) && adm.get_preference_value(/datum/client_preference/staff/show_rlooc) == GLOB.PREF_SHOW)
 			var/admin_stuff = "/([key])([admin_jump_link(mob, adm.holder)])"
 			var/prefix = "(R)"
 

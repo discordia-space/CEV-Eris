@@ -73,7 +73,7 @@
 	return
 
 /mob/new_player/Stat()
-	..()
+	. = ..()
 
 	if(statpanel("Lobby"))
 		stat("Storyteller:", "[master_storyteller]") // Old setting for showing the game mode

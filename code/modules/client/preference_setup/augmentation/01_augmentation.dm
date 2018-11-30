@@ -42,11 +42,11 @@
 	var/dat = list()
 
 	dat += "<style>div.block{margin: 3px 0px;padding: 4px 0px;}"
-	dat += "span.box{display: inline-block; width: 20px; height: 10px; border:1px solid #000;}"
+	dat += "span.color_holder_box{display: inline-block; width: 20px; height: 8px; border:1px solid #000; padding: 0px;}<"
 	dat += "a.Organs_active {background: #cc5555;}</style>"
 
 	dat +=  "<script language='javascript'> [js_byjax] function set(param, value) {window.location='?src=\ref[src];'+param+'='+value;}</script>"
-	dat += "<table style='max-height:400px;height:410px'>"
+	dat += "<table style='max-height:400px;height:410px; margin-left:250px; margin-right:250px'>"
 	dat += "<tr style='vertical-align:top'><td><div style='max-width:230px;width:230px;height:100%;overflow-y:auto;border-right:1px solid;padding:3px'>"
 	dat += modifications_types[pref.current_organ]
 	dat += "</div></td><td style='margin-left:10px;width-max:310px;width:310px;'>"
@@ -60,7 +60,7 @@
 		else
 			dat += "<a href='?src=\ref[src];organ=[organ]'><b>[organ_tag_to_name[organ]]</b></a>"
 		if(mod.hascolor)
-			dat += "<a href='?src=\ref[src];color=[organ]'><span class='box' style='background-color:[pref.modifications_colors[organ]]'></span></a>"
+			dat += "<a href='?src=\ref[src];color=[organ]'><span class='color_holder_box' style='background-color:[pref.modifications_colors[organ]]'></span></a>"
 		dat += "<br><div >[disp_name]</div></div>"
 
 	dat += "</td><td style='width:80px;'><center><img src=new_previewicon[pref.preview_dir].png height=64 width=64>"
@@ -71,7 +71,7 @@
 		var/datum/body_modification/mod = pref.get_modification(organ)
 		var/disp_name = mod ? mod.short_name : "Nothing"
 		if(mod.hascolor)
-			dat += "<div><a href='?src=\ref[src];color=[organ]'><span class='box' style='background-color:[pref.modifications_colors[organ]]'></span></a>"
+			dat += "<div><a href='?src=\ref[src];color=[organ]'><span class='color_holder_box' style='background-color:[pref.modifications_colors[organ]]'></span></a>"
 		if(organ == pref.current_organ)
 			dat += "<a class='Organs_active' href='?src=\ref[src];organ=[organ]'><b>[organ_tag_to_name[organ]]</b></a>"
 		else

@@ -96,19 +96,18 @@
 		If the attempt fails at any point, we will abort
 	*/
 
-	var/outer = GLOB.outer_antag_types[role_id] ? TRUE : FALSE
 	var/list/candidates = list()
-	if (outer)
-		candidates = ghost_candidates_list(role_id)
+	if (antag.outer)
+		candidates = ghost_candidates_list(antag.bantype)
 	else
-		candidates = candidates_list(role_id)
+		candidates = candidates_list(antag.bantype)
 
 	if (candidates.len)
 		for (var/i = 1; i <= target_quantity;i++)
 			if (!candidates.len)
 				break
 
-			var/datum/antagonist/A = new antag
+			var/datum/antagonist/A = new antag.type
 
 			var/mob/M = pick_n_take(candidates)
 			if(!M)
@@ -116,7 +115,7 @@
 				break
 
 			var/success = FALSE
-			if (outer)
+			if (antag.outer)
 				success = A.create_from_ghost(M, announce = FALSE)
 			else
 				success = A.create_antagonist(M, announce = FALSE)

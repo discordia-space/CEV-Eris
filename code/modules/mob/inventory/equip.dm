@@ -1,10 +1,8 @@
 /mob/proc/equip_to_slot(obj/item/Item, slot, redraw_mob = TRUE)
 
 
-/mob/proc/equip_to_slot_if_possible(obj/item/Item, slot, disable_warning = 1, redraw_mob = TRUE, force = FALSE, del_on_fail = FALSE, put_in_storage = FALSE)
+/mob/proc/equip_to_slot_if_possible(obj/item/Item, slot, disable_warning = 1, redraw_mob = TRUE, force = FALSE, put_in_storage = FALSE)
 	if(!mob_can_equip(src, Item, slot, disable_warning, force))
-		if(del_on_fail)
-			qdel(Item)
 		return FALSE
 
 	var/world_time = world.timeofday
@@ -28,8 +26,8 @@
 
 	return TRUE
 
-/mob/proc/equip_to_slot_or_del(obj/item/Item, slot)
-	. = equip_to_slot_if_possible(Item, slot, disable_warning = TRUE, redraw_mob = FALSE)
+/mob/proc/equip_to_slot_or_del(obj/item/Item, slot, force = FALSE, put_in_storage = FALSE)
+	. = equip_to_slot_if_possible(Item, slot, disable_warning = TRUE, redraw_mob = FALSE, force = force, put_in_storage = put_in_storage)
 	if(!.)
 		qdel(Item)
 

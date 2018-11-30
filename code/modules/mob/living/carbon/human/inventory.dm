@@ -178,7 +178,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			return BP_R_ARM
 
 
-/mob/living/carbon/human/equip_to_slot(obj/item/W, slot, redraw_mob = 1, put_in_storage = 0)
+/mob/living/carbon/human/equip_to_slot(obj/item/W, slot, redraw_mob = 1, put_in_storage = FALSE)
 	var/obj/item/old_item = get_equipped_item(slot)
 	switch(slot)
 		if(slot_in_backpack)

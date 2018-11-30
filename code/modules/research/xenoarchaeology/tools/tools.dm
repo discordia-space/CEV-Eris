@@ -11,9 +11,24 @@
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	w_class = ITEM_SIZE_SMALL
 
-/obj/item/device/gps/attack_self(var/mob/user as mob)
+/obj/item/device/gps/proc/get_coordinates()
 	var/turf/T = get_turf(src)
-	user << "\blue \icon[src] [src] flashes <i>[T.x].[rand(0,9)]:[T.y].[rand(0,9)]:[T.z].[rand(0,9)]</i>."
+	return T ? "[T.x].[rand(0,9)]:[T.y].[rand(0,9)]:[T.z].[rand(0,9)]" : "N/A"
+
+/obj/item/device/gps/examine(var/mob/user)
+	..()
+	to_chat(user, "<span class='notice'>\The [src]'s screen shows: <i>[get_coordinates()]</i>.</span>")
+
+/obj/item/device/gps/attack_self(var/mob/user as mob)
+	to_chat(user, "<span class='notice'>\icon[src] \The [src] flashes <i>[get_coordinates()]</i>.</span>")
+
+
+/mob/living/carbon/human/Stat()
+	. = ..()
+	if(statpanel("Status"))
+		var/obj/item/device/gps/L = locate() in src
+		if(L)
+			stat("Coordinates:", "[L.get_coordinates()]")
 
 /obj/item/device/measuring_tape
 	name = "measuring tape"
