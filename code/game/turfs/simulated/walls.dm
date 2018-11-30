@@ -21,7 +21,9 @@
 	var/construction_stage
 	var/hitsound = 'sound/weapons/Genhit.ogg'
 	var/list/wall_connections = list("0", "0", "0", "0")
+ 
 	var/static/list/damage_overlays
+	is_wall = TRUE
 
 // Walls always hide the stuff below them.
 /turf/simulated/wall/levelupdate()

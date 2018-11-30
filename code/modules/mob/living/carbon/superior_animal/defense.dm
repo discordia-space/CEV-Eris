@@ -181,7 +181,7 @@
 
 /mob/living/carbon/superior_animal/adjustFireLoss(var/amount)
 	. = ..()
-	if (overkill_gib && (amount >= overkill_dust) && (getFireLoss() >= maxHealth*2))
+	if (overkill_dust && (amount >= overkill_dust) && (getFireLoss() >= maxHealth*2))
 		dust()
 
 /mob/living/carbon/superior_animal/updatehealth()
@@ -279,7 +279,7 @@
 			adjustBruteLoss(2)
 
 	if (overkill_dust && (getFireLoss() >= maxHealth*2))
-		if (bodytemperature > max_bodytemperature*2)
+		if (bodytemperature >= max_bodytemperature*1.5)
 			dust()
 			return
 
@@ -320,7 +320,7 @@
 
 /mob/living/carbon/superior_animal/handle_fire()
 	if(..())
-		return .
+		return
 
 	var/burn_temperature = fire_burn_temperature()
 	var/thermal_protection = get_heat_protection(burn_temperature)

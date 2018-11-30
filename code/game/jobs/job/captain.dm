@@ -13,7 +13,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	selection_color = "#ccccff"
 	req_admin_notify = 1
 	economic_modifier = 25
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 20, LANGUAGE_SERBIAN = 20)
 
 	ideal_character_age = 70 // Old geezer captains ftw
 	outfit_type = /decl/hierarchy/outfit/job/captain
@@ -59,7 +59,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	selection_color = "#ddddff"
 	req_admin_notify = 1
 	economic_modifier = 15
-	also_known_languages = list(LANGUAGE_CYRILLIC = 20)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 20, LANGUAGE_SERBIAN = 15)
 	ideal_character_age = 50
 
 	outfit_type = /decl/hierarchy/outfit/job/hop

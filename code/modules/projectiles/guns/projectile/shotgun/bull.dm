@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/shotgun/bull
 	name = "FS SG \"Bull\""
-	desc = "A Frozen Star double-barreled pump action shotgun. Marvel of engineering, this gun  often use by police SWAT teams."
+	desc = "A \"Frozen Star\" double-barreled pump-action shotgun. Marvel of engineering, this gun is often used by Ironhammer tactical units."
 	icon_state = "PeaceWalker"
 	item_state = "PW"
 	load_method = SINGLE_CASING|SPEEDLOADER

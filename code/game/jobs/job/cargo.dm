@@ -11,7 +11,7 @@
 	supervisors = "your greed"
 	selection_color = "#b3a68c"
 	economic_modifier = 20
-	also_known_languages = list(LANGUAGE_CYRILLIC = 25)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 100, LANGUAGE_SERBIAN = 100)
 	access = list(
 		access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_merchant, access_mining,
 		access_heads, access_mining_station, access_RC_announce, access_keycard_auth, access_sec_doors,
@@ -44,7 +44,7 @@
 	spawn_positions = 3
 	supervisors = "the Guild Merchant"
 	selection_color = "#c3b9a6"
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5)
 
 	outfit_type = /decl/hierarchy/outfit/job/cargo/cargo_tech
 
@@ -81,7 +81,7 @@
 	supervisors = "the Guild Merchant"
 	selection_color = "#c3b9a6"
 	economic_modifier = 5
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5)
 
 	outfit_type = /decl/hierarchy/outfit/job/cargo/mining
 

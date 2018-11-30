@@ -9,7 +9,7 @@
 	spawn_positions = 1
 	supervisors = "the NeoTheology Church and God"
 	selection_color = "#ecd37d"
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 25)
 	access = list(access_morgue, access_chapel_office, access_crematorium, access_maint_tunnels)
 
 	outfit_type = /decl/hierarchy/outfit/job/chaplain	

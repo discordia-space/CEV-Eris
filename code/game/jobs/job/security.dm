@@ -11,7 +11,7 @@
 	selection_color = "#97b0be"
 	req_admin_notify = 1
 	economic_modifier = 10
-	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 60, LANGUAGE_SERBIAN = 60)
 
 	outfit_type = /decl/hierarchy/outfit/job/security/ihc
 
@@ -51,7 +51,7 @@
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#a7bbc6"
 	economic_modifier = 5
-	also_known_languages = list(LANGUAGE_CYRILLIC = 5)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 25)
 
 	outfit_type = /decl/hierarchy/outfit/job/security/gunserg
 
@@ -87,7 +87,7 @@
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#a7bbc6"
 	economic_modifier = 5
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 50, LANGUAGE_SERBIAN = 50)
 	access = list(
 		access_security, access_moebius, access_moebius, access_engine, access_mailsorting,
 		access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels,
@@ -156,9 +156,10 @@
 	//alt_titles = list("Ironhammer Junior Operative")
 	selection_color = "#a7bbc6"
 	economic_modifier = 4
-	also_known_languages = list(LANGUAGE_CYRILLIC = 5)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 25)
 
 	outfit_type = /decl/hierarchy/outfit/job/security/ihoper
+
 	access = list(
 		access_security, access_moebius, access_moebius, access_engine, access_mailsorting,
 		access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_morgue, access_external_airlocks

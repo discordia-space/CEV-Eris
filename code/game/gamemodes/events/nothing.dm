@@ -5,7 +5,7 @@
 /datum/storyevent/nothing
 	id = "nothing"
 	name = "nothing"
-	weight = 1
+	weight = 2
 	event_type = /datum/event/nothing
 	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE,
 	EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE,

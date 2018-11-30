@@ -10,7 +10,8 @@
 	selection_color = "#dddddd"
 	economic_modifier = 1
 	//alt_titles = list("Technomancer Assistant","Moebius Medical Intern","Moebius Research Assistant")
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5)
+
 	access = list(access_maint_tunnels)
 	outfit_type = /decl/hierarchy/outfit/job/assistant
 

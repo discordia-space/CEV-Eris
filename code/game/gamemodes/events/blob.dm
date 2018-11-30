@@ -15,7 +15,7 @@
 
 
 	event_type = /datum/event/blob
-	event_pools = list(EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR*1.2)
+	event_pools = list(EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR*1.35)
 	tags = list(TAG_COMBAT, TAG_DESTRUCTIVE, TAG_NEGATIVE)
 //============================================
 
@@ -68,9 +68,9 @@
 	anchored = 1
 	mouse_opacity = 2
 
-	var/maxHealth = 25
+	var/maxHealth = 23
 	var/health = 1
-	var/health_regen = 1.8
+	var/health_regen = 1.7
 	var/brute_resist = 1.25
 	var/fire_resist = 0.6
 	var/expandType = /obj/effect/blob
@@ -449,7 +449,7 @@
 			continue
 		L.visible_message(SPAN_DANGER("The blob attacks \the [L]!"), SPAN_DANGER("The blob attacks you!"))
 		playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
-		L.take_organ_damage(burn = rand_between(0.5, 2.5))
+		L.take_organ_damage(burn = rand_between(0.4, 2.3))
 
 		//In addition to the flat damage above, we will also splash a small amount of acid on the target
 		//This allows them to wear acidproof gear to resist it
@@ -497,8 +497,7 @@
 			absorbed_damage = min(health * fire_resist, Proj.damage)
 			taken_damage= (Proj.damage / fire_resist)
 
-	spawn()
-		take_damage(taken_damage)
+	take_damage(taken_damage)
 	Proj.damage -= absorbed_damage
 	if (Proj.damage <= 0)
 		return 0

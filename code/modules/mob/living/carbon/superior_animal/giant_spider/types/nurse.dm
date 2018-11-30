@@ -138,9 +138,11 @@
 									M.forceMove(C)
 									break
 
-								if(C && (large_cocoon || C.is_large_cocoon))
-									C.becomeLarge()
-								C.update_openspace()
+								if (C)
+									if(large_cocoon || C.is_large_cocoon)
+										C.becomeLarge()
+									C.update_openspace()
+
 								cocoon_target = null
 
 							busy = 0

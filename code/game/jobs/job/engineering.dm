@@ -11,7 +11,7 @@
 	selection_color = "#c7b97b"
 	req_admin_notify = 1
 	economic_modifier = 10
-	also_known_languages = list(LANGUAGE_CYRILLIC = 100)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 100, LANGUAGE_SERBIAN = 25)
 
 	ideal_character_age = 50
 
@@ -57,7 +57,7 @@
 	supervisors = "the Technomancer Exultant"
 	selection_color = "#d5c88f"
 	economic_modifier = 5
-	also_known_languages = list(LANGUAGE_CYRILLIC = 100)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 100, LANGUAGE_SERBIAN = 5)
 
 	outfit_type = /decl/hierarchy/outfit/job/engineering/engineer
 

@@ -9,7 +9,7 @@
 	spawn_positions = 2
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
-	also_known_languages = list(LANGUAGE_CYRILLIC = 25)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 15)
 	access = list(access_hydroponics, access_bar, access_kitchen)
 
 	stat_modifers = list(
@@ -85,7 +85,7 @@
 	spawn_positions = 2
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5)
 	access = list(access_maint_tunnels, access_theatre)
 
 	outfit_type = /decl/hierarchy/outfit/job/service/actor/clown

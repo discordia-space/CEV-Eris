@@ -207,6 +207,7 @@
 		return get_turf(SA.target)
 	return T
 
+
 /proc/IsTurfAtmosUnsafe(var/turf/T)
 	if(istype(T, /turf/space)) // Space tiles
 		return "Spawn location is open to space."
@@ -214,3 +215,13 @@
 	if(!air)
 		return "Spawn location lacks atmosphere."
 	return get_atmosphere_issues(air, 1)
+
+
+//Used for border objects. This returns true if this atom is on the border between the two specified turfs
+//This assumes that the atom is located inside the target turf
+/atom/proc/is_between_turfs(var/turf/origin, var/turf/target)
+	if (flags & ON_BORDER)
+		var/testdir = get_dir(target, origin)
+		return (dir & testdir)
+	return TRUE
+

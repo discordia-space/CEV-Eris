@@ -11,7 +11,7 @@
 	selection_color = "#94a87f"
 	req_admin_notify = 1
 	economic_modifier = 10
-	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10, LANGUAGE_SERBIAN = 5)
 
 	outfit_type = /decl/hierarchy/outfit/job/medical/cmo
 
@@ -149,10 +149,9 @@
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#a8b69a"
 	economic_modifier = 4
-	also_known_languages = list(LANGUAGE_CYRILLIC = 20)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 20, LANGUAGE_SERBIAN = 15)
 
 	outfit_type = /decl/hierarchy/outfit/job/medical/paramedic
-
 	access = list(
 		access_moebius, access_medical_equip, access_morgue, access_surgery,
 		access_eva, access_maint_tunnels, access_external_airlocks, access_psychiatrist

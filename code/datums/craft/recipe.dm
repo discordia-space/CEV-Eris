@@ -30,6 +30,8 @@
 
 /datum/craft_recipe/proc/get_description(pass_steps)
 	. = list()
+	var/atom/A = result
+	.+="[initial(A.desc)]<br>"
 	for(var/item in steps)
 		if(pass_steps > 0)
 			--pass_steps
@@ -40,10 +42,22 @@
 
 
 /datum/craft_recipe/proc/can_build(mob/living/user, var/turf/T)
+	if (!T)
+		return FALSE
+
 	if(flags & (CRAFT_ONE_PER_TURF|CRAFT_ON_FLOOR))
-		if(!T || (locate(result) in T))
+		if((locate(result) in T))
 			user << SPAN_WARNING("You can't create more [name] here!")
 			return FALSE
+		else
+			//Prevent building dense things in turfs that already contain dense objects
+			var/atom/A = result
+			if (initial(A.density))
+				for (var/atom/movable/AM in T)
+					if (AM != user && AM.density)
+						user << SPAN_WARNING("You can't build here, it's blocked by [AM]!")
+						return FALSE
+
 	return TRUE
 
 
