@@ -4,7 +4,7 @@
 	message = capitalize_cp1251(trim_left(message))
 	var/verb = say_quote(message)
 
-	if(copytext(message,1,2) == "*")
+	if(copytext(message,1,2) == get_prefix_key(/decl/prefix/custom_emote))
 		return emote(copytext(message,2))
 
 	if(stat)

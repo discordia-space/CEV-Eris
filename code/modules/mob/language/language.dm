@@ -162,8 +162,6 @@
 /mob/proc/get_language_prefix()
 	return get_prefix_key(/decl/prefix/language)
 
-	return config.language_prefixes[1]
-
 /mob/proc/is_language_prefix(var/prefix)
 	return prefix == get_prefix_key(/decl/prefix/language)
 

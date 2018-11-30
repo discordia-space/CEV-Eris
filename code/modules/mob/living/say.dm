@@ -114,21 +114,20 @@ proc/get_radio_key_from_channel(var/channel)
 		src << SPAN_DANGER("You're muzzled and cannot speak!")
 		return
 
-	var/message_mode = parse_message_mode(message, "headset")
-
-	switch(copytext(message, 1, 2))
-		if("*")
-			return emote(copytext(message, 2))
-		if("^")
-			return custom_emote(1, copytext(message, 2))
+	var/prefix = copytext(message,1,2)
+	if(prefix == get_prefix_key(/decl/prefix/custom_emote))
+		return emote(copytext(message,2))
+	if(prefix == get_prefix_key(/decl/prefix/visible_emote))
+		return custom_emote(1, copytext(message,2))
 
 	//parse the radio code and consume it
-	if(message_mode)
+	var/message_mode = parse_message_mode(message, "headset")
+	if (message_mode)
 		//it would be really nice if the parse procs could do this for us.
-		if(message_mode == "headset")
-			message = copytext(message, 2)
+		if (message_mode == "headset")
+			message = copytext(message,2)
 		else
-			message = copytext(message, 3)
+			message = copytext(message,3)
 
 	message = trim_left(message)
 
