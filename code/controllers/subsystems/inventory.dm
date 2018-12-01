@@ -4,6 +4,8 @@ SUBSYSTEM_DEF(inventory)
 	flags = SS_NO_FIRE
 	var/global/list/slots
 
+	var/initialized = FALSE	//set to TRUE after it has been initialized, will obviously never be set if the subsystem doesn't initialize
+
 /datum/controller/subsystem/inventory/Initialize(start_timeofday)
 	slots = new()
 	for(var/path in subtypesof(/datum/inventory_slot))
@@ -14,9 +16,10 @@ SUBSYSTEM_DEF(inventory)
 		if(S.id > slots.len)
 			slots.len = S.id
 		slots[S.id] = S
+	initialized = TRUE
 
 /datum/controller/subsystem/inventory/proc/get_slot_datum(slot)
-	return (slots && slots.len >= slot) ? slots[slot] : null
+	return slots.len >= slot ? slots[slot] : null
 
 /datum/controller/subsystem/inventory/proc/update_mob(mob/living/target, slot, redraw)
 	var/datum/inventory_slot/IS = get_slot_datum(slot)

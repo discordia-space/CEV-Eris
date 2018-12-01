@@ -99,7 +99,7 @@
 	/*TODO: DEL THIS
 	backpacks = list(
 		/obj/item/weapon/storage/backpack/clown,\
-		/obj/item/weapon/storage/backpack/satchel_norm,\
+		/obj/item/weapon/storage/backpack/satchel/norm,\
 		/obj/item/weapon/storage/backpack/satchel
 		)
 	*/

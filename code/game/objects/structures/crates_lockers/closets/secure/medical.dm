@@ -41,7 +41,7 @@
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/medic(src)
 	else
-		new /obj/item/weapon/storage/backpack/satchel_norm(src)
+		new /obj/item/weapon/storage/backpack/satchel/norm(src)
 	switch(pick("blue", "green", "purple"))
 		if ("blue")
 			new /obj/item/clothing/under/rank/medical/blue(src)
@@ -82,7 +82,7 @@
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/medic(src)
 	else
-		new /obj/item/weapon/storage/backpack/satchel_norm(src)
+		new /obj/item/weapon/storage/backpack/satchel/norm(src)
 	new /obj/item/clothing/suit/bio_suit/cmo(src)
 	new /obj/item/clothing/head/bio_hood/cmo(src)
 	new /obj/item/clothing/shoes/color/white(src)

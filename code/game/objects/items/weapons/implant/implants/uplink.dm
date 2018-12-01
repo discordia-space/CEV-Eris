@@ -22,5 +22,5 @@
 		hidden_uplink.check_trigger(source, emote, activation_emote)
 
 /obj/item/weapon/implanter/uplink
-	name = "implanter (U)"
+	name = "implanter (Uplink)"
 	implant = /obj/item/weapon/implant/uplink

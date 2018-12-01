@@ -25,6 +25,8 @@
 				src << SPAN_WARNING("Your species can't wear that!")
 			return FALSE
 
+	if(!SSinventory.initialized)
+		return FALSE
 	var/datum/inventory_slot/S = SSinventory.get_slot_datum(slot)
 	if(S && !S.can_equip(Item, src, disable_warning))
 		return FALSE
