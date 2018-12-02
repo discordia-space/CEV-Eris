@@ -48,6 +48,8 @@
 	var/air_type =   /obj/item/weapon/tank/oxygen
 
 	//Component/device holders.
+	var/modules_effects_icon = 'icons/mob/rig_modules.dmi'
+	var/on_mob_icon = 'icons/mob/rig_back.dmi'
 	var/obj/item/weapon/tank/air_supply                       // Air tank, if any.
 	var/obj/item/clothing/shoes/boots = null                  // Deployable boots, if any.
 	var/obj/item/clothing/suit/space/rig/chest                // Deployable chestpiece, if any.
@@ -517,26 +519,37 @@
 		ui.set_auto_update(1)
 
 /obj/item/weapon/rig/update_icon(var/update_mob_icon)
-
-	overlays.Cut()
+	overlays.Cut()//this part basically makes rig's "backpack" on your back
 	if(!mob_icon || update_mob_icon)
 		var/species_icon = 'icons/mob/rig_back.dmi'
-		// Since setting mob_icon will override the species checks in
-		// update_inv_wear_suit(), handle species checks here.
 		mob_icon = image("icon" = species_icon, "icon_state" = icon_state)
 
-	if(installed_modules.len)
+	if(modules_effects_icon && installed_modules.len)//this makes your modules be drawn upon your chest's rig
 		for(var/obj/item/rig_module/module in installed_modules)
 			if(module.suit_overlay)
-				chest.overlays += image("icon" = 'icons/mob/rig_modules.dmi', "icon_state" = module.suit_overlay, "dir" = SOUTH)
+				chest.overlays += image("icon" = modules_effects_icon, "icon_state" = module.suit_overlay_item, "dir" = SOUTH)
 
 	if(wearer)
 		wearer.update_inv_shoes()
 		wearer.update_inv_gloves()
 		wearer.update_inv_head()
+		wearer.update_inv_wear_mask()
 		wearer.update_inv_wear_suit()
+		wearer.update_inv_w_uniform()
 		wearer.update_inv_back()
 	return
+
+/obj/item/weapon/rig/proc/get_mob_overlay(mob/user_mob, slot)
+	if(slot != slot_wear_suit_str || !active)//this means we should not show our modules till reg isn't engaged
+		return
+
+	var/image/ret = new
+	if(on_mob_icon && installed_modules.len)
+		ret.overlays.Cut()
+		for(var/obj/item/rig_module/module in installed_modules)
+			if(module.suit_overlay)
+				ret.overlays += image("icon" = on_mob_icon, "icon_state" = module.suit_overlay)
+		return ret
 
 /obj/item/weapon/rig/proc/check_suit_access(var/mob/living/carbon/human/user)
 

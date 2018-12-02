@@ -41,6 +41,7 @@
 
 	// Icons.
 	var/suit_overlay
+	var/suit_overlay_item               // Only item's overlay, only one state to not to overload this code with four different states
 	var/suit_overlay_active             // If set, drawn over icon and mob when effect is active.
 	var/suit_overlay_inactive           // As above, inactive.
 	var/suit_overlay_used               // As above, when engaged.
@@ -54,12 +55,36 @@
 
 	var/list/stat_rig_module/stat_modules = new()
 
+/obj/item/rig_module/New()
+	..()
+	if(suit_overlay_inactive)
+		suit_overlay = suit_overlay_inactive
+
+	if(charges && charges.len)
+		var/list/processed_charges = list()
+		for(var/list/charge in charges)
+			var/datum/rig_charge/charge_dat = new
+
+			charge_dat.short_name   = charge[1]
+			charge_dat.display_name = charge[2]
+			charge_dat.product_type = charge[3]
+			charge_dat.charges      = charge[4]
+
+			if(!charge_selected) charge_selected = charge_dat.short_name
+			processed_charges[charge_dat.short_name] = charge_dat
+
+		charges = processed_charges
+
+	stat_modules +=	new/stat_rig_module/activate(src)
+	stat_modules +=	new/stat_rig_module/deactivate(src)
+	stat_modules +=	new/stat_rig_module/engage(src)
+	stat_modules +=	new/stat_rig_module/select(src)
+	stat_modules +=	new/stat_rig_module/charge(src)
+
 /obj/item/rig_module/Destroy()
 	if (holder)
 		holder.uninstall(src)
 	.=..()
-
-
 
 /obj/item/rig_module/examine()
 	..()
@@ -115,32 +140,6 @@
 		return
 	..()
 
-/obj/item/rig_module/New()
-	..()
-	if(suit_overlay_inactive)
-		suit_overlay = suit_overlay_inactive
-
-	if(charges && charges.len)
-		var/list/processed_charges = list()
-		for(var/list/charge in charges)
-			var/datum/rig_charge/charge_dat = new
-
-			charge_dat.short_name   = charge[1]
-			charge_dat.display_name = charge[2]
-			charge_dat.product_type = charge[3]
-			charge_dat.charges      = charge[4]
-
-			if(!charge_selected) charge_selected = charge_dat.short_name
-			processed_charges[charge_dat.short_name] = charge_dat
-
-		charges = processed_charges
-
-	stat_modules +=	new/stat_rig_module/activate(src)
-	stat_modules +=	new/stat_rig_module/deactivate(src)
-	stat_modules +=	new/stat_rig_module/engage(src)
-	stat_modules +=	new/stat_rig_module/select(src)
-	stat_modules +=	new/stat_rig_module/charge(src)
-
 // Called after the module is installed into a suit. The holder var is already set to the new suit
 /obj/item/rig_module/proc/installed(var/mob/living/user)
 	return
@@ -189,7 +188,6 @@
 
 // Proc for toggling on active abilities.
 /obj/item/rig_module/proc/activate()
-
 	if(active || !engage())
 		return 0
 
@@ -201,12 +199,10 @@
 		else
 			suit_overlay = null
 		holder.update_icon()
-
 	return 1
 
 // Proc for toggling off active abilities.
 /obj/item/rig_module/proc/deactivate()
-
 	if(!active)
 		return 0
 
@@ -219,7 +215,6 @@
 			suit_overlay = null
 		if(holder)
 			holder.update_icon()
-
 	return 1
 
 

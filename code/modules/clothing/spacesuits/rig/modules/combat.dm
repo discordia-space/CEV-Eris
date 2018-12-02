@@ -141,6 +141,7 @@
 
 	usable = 0
 
+	suit_overlay_item = "mounted-taser"
 	suit_overlay_active = "mounted-taser"
 	suit_overlay_inactive = "mounted-taser"
 

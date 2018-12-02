@@ -32,6 +32,9 @@
 	name = "health scanner module"
 	desc = "A hardsuit-mounted health scanner."
 	icon_state = "scanner"
+	suit_overlay_item = "scanner"
+	suit_overlay_active = "scanner"
+	suit_overlay_inactive = "scanner"
 	interface_name = "health scanner"
 	interface_desc = "Shows an informative health readout when used on a subject."
 
@@ -43,6 +46,7 @@
 	icon_state = "drill"
 	interface_name = "mounted drill"
 	interface_desc = "A diamond-tipped industrial drill."
+	suit_overlay_item = "mounted-drill"
 	suit_overlay_active = "mounted-drill"
 	suit_overlay_inactive = "mounted-drill"
 	use_power_cost = 0.1
@@ -53,6 +57,9 @@
 	name = "hardsuit anomaly scanner"
 	desc = "You think it's called an Elder Sarsparilla or something."
 	icon_state = "eldersasparilla"
+	suit_overlay_item = "scanner"
+	suit_overlay_active = "scanner"
+	suit_overlay_inactive = "scanner"
 	interface_name = "Alden-Saraspova counter"
 	interface_desc = "An exotic particle detector commonly used by xenoarchaeologists."
 	engage_string = "Begin Scan"
@@ -64,6 +71,9 @@
 	name = "ore scanner module"
 	desc = "A clunky old ore scanner."
 	icon_state = "scanner"
+	suit_overlay_item = "scanner"
+	suit_overlay_active = "scanner"
+	suit_overlay_inactive = "scanner"
 	interface_name = "ore detector"
 	interface_desc = "A sonar system for detecting large masses of ore."
 	engage_string = "Begin Scan"
@@ -246,6 +256,10 @@
 	selectable = 1
 	disruptive = 1
 
+	suit_overlay_item = "mounted-injector"
+	suit_overlay_active = "mounted-injector"
+	suit_overlay_inactive = "mounted-injector"
+
 	interface_name = "mounted chem injector"
 	interface_desc = "Dispenses loaded chemicals via an arm-mounted injector."
 
@@ -312,8 +326,9 @@
 	selectable = 0
 	disruptive = 0
 
+	suit_overlay_item = "maneuvering_item"
 	suit_overlay_active = "maneuvering_active"
-	suit_overlay_inactive = null //"maneuvering_inactive"
+	suit_overlay_inactive = "maneuvering_inactive"
 
 	engage_string = "Toggle Stabilizers"
 	activate_string = "Activate Thrusters"
@@ -331,7 +346,6 @@
 	return 1
 
 /obj/item/rig_module/maneuvering_jets/activate()
-
 	if(active)
 		return 0
 
@@ -368,5 +382,3 @@
 	..()
 	jets.holder = null
 	jets.ion_trail.set_up(jets)
-
-/obj/item/rig_module/foam_sprayer

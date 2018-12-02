@@ -703,23 +703,30 @@ var/global/list/damage_icon_parts = list()
 			var/obj/item/clothing/suit/S = wear_suit
 			var/image/bloodsies = image("icon" = species.blood_mask, "icon_state" = "[S.blood_overlay_type]blood")
 			bloodsies.color = wear_suit.blood_color
-			standing.overlays	+= bloodsies
+			standing.overlays += bloodsies
 
-		// Accessories - copied from uniform, BOILERPLATE because fuck this system.
 		var/obj/item/clothing/suit/suit = wear_suit
 		if(istype(suit) && suit.accessories.len)
 			for(var/obj/item/clothing/accessory/A in suit.accessories)
 				standing.overlays |= A.get_mob_overlay()
 
-		overlays_standing[SUIT_LAYER]	= standing
+		if(istype(wear_suit, /obj/item/clothing/suit/space/rig))
+			if(back)
+				if(istype(back, /obj/item/weapon/rig))//and the main part also needed
+					var/obj/item/weapon/rig/R = back//this is safecheck, again
+					if(R && R.active)//we are fully engaged and charged
+						standing.overlays += R.get_mob_overlay(src,slot_wear_suit_str)
+
+		overlays_standing[SUIT_LAYER] = standing
 
 	else
-		overlays_standing[SUIT_LAYER]	= null
+		overlays_standing[SUIT_LAYER] = null
 		update_inv_shoes(0)
 
 	update_collar(0)
 
-	if(update_icons)   update_icons()
+	if(update_icons)
+		update_icons()
 
 /mob/living/carbon/human/update_inv_pockets(var/update_icons=1)
 	return
@@ -745,17 +752,11 @@ var/global/list/damage_icon_parts = list()
 		overlays_standing[FACEMASK_LAYER]	= null
 	if(update_icons)   update_icons()
 
-
 /mob/living/carbon/human/update_inv_back(var/update_icons=1)
 	if(back)
-		//determine the icon to use
 		var/icon/overlay_icon
 		if(back.icon_override)
 			overlay_icon = back.icon_override
-		else if(istype(back, /obj/item/weapon/rig))
-			//If this is a rig and a mob_icon is set, it will take species into account in the rig update_icon() proc.
-			var/obj/item/weapon/rig/rig = back
-			overlay_icon = rig.mob_icon
 
 		else if(back.item_icons && (slot_back_str in back.item_icons))
 			overlay_icon = back.item_icons[slot_back_str]
@@ -767,21 +768,21 @@ var/global/list/damage_icon_parts = list()
 		if(back.item_state_slots && back.item_state_slots[slot_back_str])
 			overlay_state = back.item_state_slots[slot_back_str]
 
-
 		//apply color
 		var/image/standing = image(icon = overlay_icon, icon_state = overlay_state)
 		standing.color = back.color
 
-		//create the image
+		if(back)//rig's sprite by itself, then moduls
+			if(istype(back, /obj/item/weapon/rig))
+				var/obj/item/weapon/rig/R = back
+				standing.overlays += R.mob_icon//do not forget about basic backpack sprite
+
 		overlays_standing[BACK_LAYER] = standing
 	else
 		overlays_standing[BACK_LAYER] = null
 
 	if(update_icons)
 		update_icons()
-
-
-
 
 /mob/living/carbon/human/update_inv_handcuffed(var/update_icons=1)
 	if(handcuffed)

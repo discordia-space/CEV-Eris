@@ -20,6 +20,7 @@
 
 	initial_modules = list(
 		/obj/item/rig_module/mounted,
+		/obj/item/rig_module/mounted/taser,
 		/obj/item/rig_module/vision/thermal,
 		/obj/item/rig_module/grenade_launcher,
 		/obj/item/rig_module/ai_container,
@@ -52,6 +53,7 @@
 
 
 	initial_modules = list(
+		/obj/item/rig_module/mounted/taser,
 		/obj/item/rig_module/vision/thermal,
 		/obj/item/rig_module/ai_container,
 		/obj/item/rig_module/maneuvering_jets,
