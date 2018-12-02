@@ -121,7 +121,7 @@
 			return
 		if(target)
 			announce_action(start_msg, user, I, target)
-		if(!I.use_tool(user, target || user, time, reqed_quality))
+		if(!I.use_tool(user, target || user, time, reqed_quality, FAILCHANCE_NORMAL, list(STAT_SUM, STAT_MEC, STAT_COG)))
 			user << SPAN_WARNING("Work aborted")
 			return
 

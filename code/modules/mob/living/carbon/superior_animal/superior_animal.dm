@@ -65,8 +65,6 @@
 	var/atom/target_mob //currently chased target
 	var/attack_same = 0 //whether mob AI should target own faction members for attacks
 	var/list/friends = list() //list of mobs to consider friends, not types
-	var/move_to_delay = 4 //delay for walk() movement
-
 	var/environment_smash = 1
 	var/destroy_surroundings = 1
 	var/break_stuff_probability = 10
@@ -81,6 +79,12 @@
 	objectsInView = new
 
 	verbs -= /mob/verb/observe
+
+
+/mob/living/carbon/superior_animal/Initialize(var/mapload)
+	.=..()
+	if (mapload)
+		find_or_create_burrow(get_turf(src))
 
 /mob/living/carbon/superior_animal/Destroy()
 	. = ..()
