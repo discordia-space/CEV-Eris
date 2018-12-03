@@ -21,6 +21,7 @@
 	var/construction_stage
 	var/hitsound = 'sound/weapons/Genhit.ogg'
 	var/list/wall_connections = list("0", "0", "0", "0")
+	var/bulletholes = 0 //This isn't a bool
  
 	var/static/list/damage_overlays
 	is_wall = TRUE
@@ -182,6 +183,10 @@
 
 
 /turf/simulated/wall/bullet_act(var/obj/item/projectile/Proj)
+	var/p_x = Proj.p_x + pick(0,0,0,0,0,-1,1) // really ugly way of coding "sometimes offset Proj.p_x!"
+	var/p_y = Proj.p_y + pick(0,0,0,0,0,-1,1) // Used for bulletholes
+	var/decaltype = 1 // 1 - scorch, 2 - bullet
+	
 	if(src.ricochet_id != 0)
 		if(src.ricochet_id == Proj.ricochet_id)
 			src.ricochet_id = 0
@@ -209,13 +214,42 @@
 			projectile_reflection(Proj)
 			return PROJECTILE_CONTINUE // complete projectile permutation
 
-	//cut some projectile damage here and not in projectile.dm, becouse we need not to all things what are using get_str_dam() becomes thin and weak.
+	//cut some projectile damage here and not in projectile.dm, because we need not to all things what are using get_str_dam() becomes thin and weak.
 	//in general, bullets have 35-95 damage, and they are plased in ~30 bullets magazines, so 50*30 = 150, but plasteel walls have only 400 hp =|
 	//but you may also increase materials thickness or etc.
 	proj_damage = round(Proj.get_structure_damage() / 3)//Yo may replace 3 to 5-6 to make walls fucking stronk as a Poland
 
 	//cap the amount of damage, so that things like emitters can't destroy walls in one hit.
 	var/damage = min(proj_damage, 100)
+
+	if(bulletholes >= 30)
+		clear_bulletholes()
+
+	var/obj/effect/overlay/bmark/BM = new(src)
+
+	BM.pixel_x = p_x
+	BM.pixel_y = p_y
+
+	if(decaltype == 1)
+		// Energy weapons are hot. they scorch!
+
+		// offset correction
+		BM.pixel_x--
+		BM.pixel_y--
+
+		if(Proj.damage >= 20 || istype(Proj, /obj/item/projectile/beam/practice))
+			BM.icon_state = "scorch"
+			BM.set_dir(pick(NORTH,SOUTH,EAST,WEST)) // random scorch design
+
+
+		else
+			BM.icon_state = "light_scorch"
+	else
+
+		// Bullets are hard. They make dents!
+		BM.icon_state = "dent"
+
+	bulletholes++
 
 	take_damage(damage)
 	return
@@ -231,6 +265,10 @@
 
 	take_damage(tforce)
 
+/turf/simulated/wall/proc/clear_bulletholes()
+	for(var/obj/effect/overlay/bmark/BM in src)
+		qdel(BM)
+
 /turf/simulated/wall/proc/clear_plants()
 	for(var/obj/effect/overlay/wallrot/WR in src)
 		qdel(WR)
@@ -244,6 +282,7 @@
 
 /turf/simulated/wall/ChangeTurf(var/newtype)
 	clear_plants()
+	clear_bulletholes()
 	..(newtype)
 
 //Appearance
@@ -334,6 +373,7 @@
 			O.loc = src
 
 	clear_plants()
+	clear_bulletholes()
 	material = get_material_by_name("placeholder")
 	reinf_material = null
 	update_connections(1)
