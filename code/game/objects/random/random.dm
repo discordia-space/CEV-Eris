@@ -33,7 +33,8 @@
 	var/list/spawns = list()
 	if (spread_range && istype(loc, /turf))
 		for(var/turf/T in trange(spread_range, src.loc))
-			points_for_spawn += T
+			if (!T.is_wall && !T.is_hole)
+				points_for_spawn += T
 	else
 		points_for_spawn += loc //We do not use get turf here, so that things can spawn inside containers
 	for(var/i in 1 to rand(min_amount, max_amount))

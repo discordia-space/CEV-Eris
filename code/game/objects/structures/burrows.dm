@@ -48,6 +48,11 @@
 
 	life_scan()
 
+	//Hide burrows under floors
+	var/turf/simulated/floor/F = loc
+	if (istype(F))
+		F.levelupdate()
+
 
 
 //This is called from the migration subsystem. It scans for nearby creatures
@@ -103,6 +108,10 @@
 	if (!_target)
 		return
 
+	//We're already busy sending or recieving a migration, can't start another
+	if (target || recieving)
+		return
+
 	target = _target
 
 	if (!processing)
@@ -152,17 +161,6 @@
 			break
 
 
-/obj/structure/burrow/proc/enter_burrow(var/mob/living/L)
-	spawn()
-		L.do_pickup_animation(src, L.loc)
-		sleep(8)
-		L.forceMove(src)
-
-//Mobs that are summoned will walk up and attack this burrow
-//This will suck them in
-/obj/structure/burrow/attack_generic(var/mob/L)
-	if (is_valid(L))
-		enter_burrow(L)
 
 
 //Tells this burrow that it's soon to recieve new arrivals
@@ -196,7 +194,12 @@
 				//Its already inside
 				continue
 
+
+
 			//Succ
+			pull_mob(L)
+
+			//If its near enough, swallow it
 			if (get_dist(L, src) <= 1)
 				enter_burrow(L)
 
@@ -215,7 +218,19 @@
 	//Processing on the recieving end is done to make sounds and visual FX
 	else if (recieving)
 		//Do a shake animation each second that gets more intense the closer we are to emergence
+
+		if (invisibility)
+			var/turf/simulated/floor/F = loc
+			if (istype(F) && F.flooring)
+				//This should never be false
+
+				//If the current flooring is a plating, we shake that
+				if (!F.flooring.is_plating)
+					F.shake_animation(progress * max_shake_intensity)
+					return
 		shake_animation(progress * max_shake_intensity)
+
+
 
 
 
@@ -239,10 +254,13 @@
 
 	if (recieving)
 		//If we're the burrow recieving the migration, then the above code will have put lots of mobs inside us. Lets move them out into surrounding turfs
+		//First, make sure we clear the destination area
+		break_open()
+		world << "About to disgorge mobs [jumplink(src)]"
 
-		//First get a list of floors to move them to
+		//Next get a list of floors to move them to
 		var/list/floors = list()
-		for (var/turf/simulated/floor/F in dview(2, src))
+		for (var/turf/simulated/floor/F in dview(2, loc))
 			floors.Add(F)
 
 		world << "Got [floors.len] floors"
@@ -256,8 +274,7 @@
 					M.forceMove(T)
 
 					//Emerging from a burrow will sometimes create rubble and mess
-					if (prob(10) && !(locate(/obj/effect/decal/cleanable/rubble) in T))
-						new/obj/effect/decal/cleanable/rubble(T)
+					spawn_rubble(loc, 2, 30)
 
 
 	//Lets reset all these vars that we used during migration
@@ -272,8 +289,6 @@
 	duration = 0
 
 
-/obj/structure/burrow/proc/pull_mob(var/mob/living/L)
-	walk_to(L, src, 1, L.move_to_delay)
 
 //Very rare, abort would mostly only happen in the case that one burrow is destroyed during the process
 /obj/structure/burrow/proc/abort_migration()
@@ -289,6 +304,63 @@
 
 	for (var/mob/M in contents)
 		M.forceMove(loc)
+
+
+
+//Called when an area becomes uninhabitable
+/obj/structure/burrow/proc/evacuate(var/force_nonmaint = TRUE)
+	world << "Burrow [jumplink(src)] calling evacuate"
+	//We're already busy sending or recieving a migration, can't start another
+	if (target || recieving)
+		return
+
+	//Lets check there's anyone to evacuate
+	life_scan()
+	if (population.len)
+		var/obj/structure/burrow/btarget = SSmigration.choose_burrow_target(src, FALSE, 100)
+		if (!btarget)
+			//If no target then maybe there are no nonmaint burrows left. In that case lets try to get one in maint
+			btarget = SSmigration.choose_burrow_target(src)
+
+			//If still no target, then every other burrow on the map is collapsed. Evacuation failed
+			if (!btarget)
+				return
+
+
+		migrate_to(btarget, 5 SECONDS, 1)
+
+/***********************************
+	Breaking and rubble
+***********************************/
+
+
+//Called when things enter or leave this burrow
+//This proc destroys anything that blocks the entrance, ie floors and catwalks
+/obj/structure/burrow/proc/break_open()
+	var/turf/simulated/floor/F = loc
+	if (istype(F) && F.flooring)
+		//This should never be false
+
+		//If the current flooring isnt a plating, then it must be an overfloor, tiles, soil, whatever
+		if (!F.flooring.is_plating)
+			F.ex_act(3)//Destroy the flooring
+			spawn_rubble(loc, 1, 100)//And make some rubble
+
+		//Smash any catwalks blocking us
+		for (var/obj/structure/catwalk/C in loc)
+			C.ex_act(1)
+			spawn_rubble(loc, 1, 100)//And make some rubble
+
+
+//If underfloor, hide the burrow
+/obj/structure/burrow/hide(var/i)
+	invisibility = i ? 101 : 0
+
+/obj/structure/burrow/hides_under_flooring()
+	return TRUE
+
+
+
 
 /*****************************************************
 	Collapsing burrows. Slow and hard work, but failure will make the next attempt easier,
@@ -312,6 +384,8 @@
 
 			collapse()
 		else
+
+			spawn_rubble(loc, 2, 100)
 			user << SPAN_WARNING("The [src] crumbles a bit. Keep trying!")
 			//On failure, the hole takes some damage based on the digging quality of the tool.
 			//This will make things much easier next time
@@ -331,4 +405,47 @@
 
 //Collapses the burrow, deleting it
 /obj/structure/burrow/proc/collapse()
+	spawn_rubble(loc, 0, 100)
 	qdel(src)
+
+//Spawns some rubble on or near a target turf
+//Will only allow one rubble decal per tile
+/obj/structure/burrow/proc/spawn_rubble(var/turf/T, var/spread = 0, var/chance = 100)
+	if (!prob(chance))
+		return
+
+	var/list/floors = list()
+	for (var/turf/simulated/floor/F in trange(spread, T))
+		if (F.is_wall)
+			continue
+		if (locate(/obj/effect/decal/cleanable/rubble) in F)
+			continue
+
+		floors |= F
+
+	if (!floors.len)
+		return
+
+	new /obj/effect/decal/cleanable/rubble(pick(floors))
+
+
+
+/****************************
+	Burrow entering
+****************************/
+/obj/structure/burrow/proc/enter_burrow(var/mob/living/L)
+	break_open()
+	spawn()
+		L.do_pickup_animation(src, L.loc)
+		sleep(8)
+		L.forceMove(src)
+
+//Mobs that are summoned will walk up and attack this burrow
+//This will suck them in
+/obj/structure/burrow/attack_generic(var/mob/L)
+	if (is_valid(L))
+		enter_burrow(L)
+
+
+/obj/structure/burrow/proc/pull_mob(var/mob/living/L)
+	walk_to(L, src, 1, L.move_to_delay)

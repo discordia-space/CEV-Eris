@@ -17,6 +17,7 @@
 	var/icon_gib //gibbing animation
 	var/icon_dust //dusting animation
 	var/dust_remains = /obj/effect/decal/cleanable/ash //what remains if mob turns to dust
+	var/randpixel = 6 //Mob may be offset randomly on both axes by this much
 
 	var/overkill_gib = 17 //0 to disable, gib when at maxhealth*2 brute loss and hit with at least overkill_gib brute damage
 	var/overkill_dust = 20 //0 to disable, dust when at maxhealth*2 fire loss and hit with at least overkill_dust fire damage, or from 2*max_bodytemperature
@@ -40,6 +41,7 @@
 	var/light_dam = 0 //0 to disable, minimum amount of lums to cause damage, otherwise heals in darkness
 	var/hunger_factor = 0 //0 to disable, how much nutrition is consumed per life tick
 
+
 	var/min_air_pressure = 50 //below this, brute damage is dealt
 	var/max_air_pressure = 300 //above this, brute damage is dealt
 	var/min_bodytemperature = 200 //below this, burn damage is dealt
@@ -49,7 +51,7 @@
 	var/attacktext = "bitten"
 	var/attack_sound = 'sound/weapons/spiderlunge.ogg'
 	var/attack_sound_chance = 33
-	var/attack_sound_volume = 30
+	var/attack_sound_volume = 20
 
 	var/meat_type = /obj/item/weapon/reagent_containers/food/snacks/roachmeat
 	var/meat_amount = 3
@@ -68,6 +70,10 @@
 	var/environment_smash = 1
 	var/destroy_surroundings = 1
 	var/break_stuff_probability = 10
+	can_burrow = TRUE
+
+	var/bad_environment = FALSE //Briefly set true whenever anything in the atmosphere damages this mob
+	//When this is true, mobs will attempt to evacuate via the nearest burrow
 
 /mob/living/carbon/superior_animal/New()
 	..()
@@ -83,7 +89,7 @@
 
 /mob/living/carbon/superior_animal/Initialize(var/mapload)
 	.=..()
-	if (mapload)
+	if (mapload && can_burrow)
 		find_or_create_burrow(get_turf(src))
 
 /mob/living/carbon/superior_animal/Destroy()
@@ -115,6 +121,9 @@
 			transform = M
 	else if (icon_living)
 		icon_state = icon_living
+
+	pixel_x = rand_between(-randpixel, randpixel)
+	pixel_y = rand_between(-randpixel, randpixel)
 
 /mob/living/carbon/superior_animal/regenerate_icons()
 	. = ..()

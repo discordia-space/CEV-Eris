@@ -137,7 +137,7 @@
 
 /obj/effect/decal/cleanable/rubble
 	name = "rubble"
-	desc = "Dirt, soil, loose stones, and residue from some kind of digging"
+	desc = "Dirt, soil, loose stones, and residue from some kind of digging. Clean it up!"
 	density = 0
 	anchored = 1
 	icon = 'icons/obj/burrows.dmi'

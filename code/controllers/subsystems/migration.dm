@@ -8,6 +8,7 @@
 var/list/global/all_burrows = list()
 var/list/global/populated_burrows = list()
 var/list/global/unpopulated_burrows = list()
+var/list/global/distressed_burrows = list()
 
 SUBSYSTEM_DEF(migration)
 	name = "Migration"
@@ -24,8 +25,9 @@ SUBSYSTEM_DEF(migration)
 	var/migrate_chance = 15 //The chance, during each migration, for each populated burrow, that mobs will move from there to somewhere else
 
 
-	var/roundstart_burrows = 140
-
+	var/roundstart_burrows = 160
+	var/migrate_time = 60 SECONDS //How long it takes to move mobs from one burrow to another
+	var/reinforcement_time = 20 SECONDS //How long it takes for reinforcements to arrive
 /*
 	On initialize, the migration system generates a large number of burrows spread across the ship[
 */
@@ -44,6 +46,9 @@ SUBSYSTEM_DEF(migration)
 	//Life scanning
 	if (world.time > next_scan)
 		do_scan()
+
+	if (distressed_burrows.len)
+		handle_distress_calls()
 
 	if (world.time > next_migrate)
 		do_migrate()
@@ -83,34 +88,37 @@ SUBSYSTEM_DEF(migration)
 
 
 		//We have all the data we need, lets go!
-		B.migrate_to(target, rand(2000,4000), percentage) //TODO: Lower this time down to 20-40 secs
+		B.migrate_to(target, migrate_time, percentage) //TODO: Lower this time down to 20-40 secs
 
 	next_migrate = world.time + burrow_migrate_interval
 
+
+
+//Sends reinforcements to any burrow that requested backup
+/datum/controller/subsystem/migration/proc/handle_distress_calls()
+	for (var/obj/structure/burrow/B in distressed_burrows)
+		var/obj/structure/burrow/source = choose_burrow_source()
+
+		//If we fail to find a source, then we must have run out of populated burrows to draw reinforcements from.
+		//Sorry! nobody's coming to help
+		if (!source)
+			break
+
+		source.migrate_to(B, reinforcement_time, migration_percentage())
+
+	//Whether they got their reinforcements or not, all distress calls are handled. Clear the list
+	distressed_burrows.Cut()
 
 /*
 	Picks a destination for migrating mobs.
 	High chance to reroll burrows that are outside of maintenance areas, to minimise incursions into crew space
 */
-/datum/controller/subsystem/migration/proc/choose_burrow_target(var/obj/structure/burrow/source, var/reroll_nonmaint_prob = 95)
+/datum/controller/subsystem/migration/proc/choose_burrow_target(var/obj/structure/burrow/source, var/reroll_type = TRUE, var/reroll_prob = 97)
 	var/num_attempts = 100 //A sanity to prevent infinite loops
 	var/obj/structure/burrow/candidate
 
-	//Lets copy the list of our choice into a candidates buffer
-	//50% each to pick a populated or unpopulated target
-	var/list/candidates = list()
-	if (!unpopulated_burrows.len)
-		//world << "Candidates taking populated burrows [populated_burrows.len]"
-		candidates = populated_burrows.Copy(1,0)
-
-	else if (!populated_burrows.len)
-		//world << "Candidates taking unpopulated burrows [unpopulated_burrows.len]"
-		candidates = unpopulated_burrows.Copy(1,0)
-
-	else if (prob(50))
-		candidates = populated_burrows.Copy(1,0)
-	else
-		candidates = unpopulated_burrows.Copy(1,0)
+	//Lets copy the list into a candidates buffer
+	var/list/candidates = all_burrows.Copy(0,1)
 
 	world << "choosetarget Candidates length: [candidates.len]"
 	//No picking the source burrow
@@ -121,21 +129,65 @@ SUBSYSTEM_DEF(migration)
 
 		candidate = pick_n_take(candidates)
 
+
 		if (!candidate)
 			//If we get here both lists must have been empty
 			return null
+
+		if (candidate.target || candidate.recieving)
+			continue
 
 		//If that was the last candidate, we're taking it
 		if (candidates.len <= 0)
 			break
 
-		//And a high chance to reroll it if its not in maint
-		if (!candidate.maintenance && prob(reroll_nonmaint_prob))
+		//And a high chance to reroll it if its not what we want in terms of being in/out of maintenance
+		if ((candidate.maintenance != reroll_type) && prob(reroll_prob))
 			continue
 
 	return candidate
 
 
+/*
+	Picks a source to pull reinforcements from. Used for distress calls
+*/
+/datum/controller/subsystem/migration/proc/choose_burrow_source()
+	var/num_attempts = 100 //A sanity to prevent infinite loops
+	var/obj/structure/burrow/candidate
+
+	//Make a copy of populated burrows to work with
+	var/list/candidates = populated_burrows.Copy(1,0)
+
+
+	for (var/i = 0; i < num_attempts; i++)
+
+		if (!candidates || !candidates.len)
+			return null
+
+		candidate = pick_n_take(candidates)
+
+		//List must be empty?
+		if (!candidate)
+			return null
+
+		//Burrow is already busy
+		if (candidate.target || candidate.recieving)
+			continue
+
+		//Lets not take mobs away from a burrow that's requesting more
+		if (candidate in distressed_burrows)
+			continue
+
+		//Do a life scan to ensure it's still populated
+		candidate.life_scan()
+
+		//And then check the population
+		if (!candidate.population.len)
+			continue
+
+
+
+		return candidate
 
 
 /datum/controller/subsystem/migration/proc/migration_percentage()
@@ -189,6 +241,12 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 				possible_turfs[F] = T //We put this floor and its wall into the possible turfs list
 
 
+
+	//This can happen, there's at least one room made of catwalks that has no floor, and thusly no burrow spots
+	if (!possible_turfs.len)
+		return
+
+
 	//Alrighty, now we have a list of viable floors in view, lets pick one
 	var/turf/floor = pick(possible_turfs)
 	world << "Successfully created at [jumplink(floor)]"
@@ -203,3 +261,33 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 
 	create_burrow(target)
 	return FALSE
+
+
+//Things hidden under floors don't show in some view/range calls
+//To work around this, use these procs to locate nearby burrows
+/proc/find_nearby_burrow(var/atom/target, var/dist = 10)
+	var/turf/t = get_turf(target)
+	for (var/turf/T in range(dist, t))
+		for (var/obj/structure/burrow/B in T.contents)
+			return B
+
+/proc/find_nearby_burrows(var/atom/target, var/dist = 10)
+	var/turf/t = get_turf(target)
+	var/list/NB = list()
+	for (var/turf/T in range(dist, t))
+		for (var/obj/structure/burrow/B in T.contents)
+			NB.Add(B)
+
+
+/proc/find_visible_burrow(var/atom/target, var/dist = 10)
+	var/turf/t = get_turf(target)
+	for (var/turf/T in dview(dist, t))
+		for (var/obj/structure/burrow/B in T.contents)
+			return B
+
+/proc/find_visible_burrows(var/atom/target, var/dist = 10)
+	var/turf/t = get_turf(target)
+	var/list/NB = list()
+	for (var/turf/T in dview(dist, t))
+		for (var/obj/structure/burrow/B in T.contents)
+			NB.Add(B)

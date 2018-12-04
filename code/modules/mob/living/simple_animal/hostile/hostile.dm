@@ -14,6 +14,7 @@
 	stop_automated_movement_when_pulled = 0
 	var/destroy_surroundings = 1
 	a_intent = I_HURT
+	can_burrow = TRUE
 
 /mob/living/simple_animal/hostile/proc/FindTarget()
 

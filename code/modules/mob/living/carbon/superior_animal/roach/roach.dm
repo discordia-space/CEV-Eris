@@ -16,8 +16,8 @@
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/roachmeat
 	meat_amount = 3
 
-	maxHealth = 10
-	health = 10
+	maxHealth = 15
+	health = 15
 
 	var/blattedin_revives_left = 1 // how many times blattedin can get us back to life (as num for adminbus fun).
 
@@ -28,5 +28,13 @@
 	min_air_pressure = 15 //below this, brute damage is dealt
 
 	faction = "roach"
-
+	pass_flags = PASSTABLE
 	acceptableTargetDistance = 3 //consider all targets within this range equally
+
+
+//When roaches die near a leader, the leader may call for reinforcements
+/mob/living/carbon/superior_animal/roach/death()
+	.=..()
+	if (.)
+		for (var/mob/living/carbon/superior_animal/roach/fuhrer/F in range(src,10))
+			F.distress_call()

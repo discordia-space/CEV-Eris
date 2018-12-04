@@ -53,6 +53,7 @@
 	can_pull_mobs = MOB_PULL_NONE
 
 	var/decompose_time = 18000
+	can_burrow = TRUE
 
 	//kitchen_tag = "rodent" //This is part of cooking overhaul, not yet ported
 

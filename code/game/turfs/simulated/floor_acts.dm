@@ -9,10 +9,10 @@
 		turf_shield.ex_act(severity)
 		turf_shield.ignoreExAct = temp
 
-	if (!turf_shield.isInactive())
-		return
-	else
-		severity--
+		if (!turf_shield.isInactive())
+			return
+		else
+			severity++
 
 	switch(severity)
 		if(1.0)

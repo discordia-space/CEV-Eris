@@ -82,7 +82,7 @@
 
 /mob/living/simple_animal/Initialize(var/mapload)
 	.=..()
-	if (mapload)
+	if (mapload && can_burrow)
 		find_or_create_burrow(get_turf(src))
 
 /mob/living/simple_animal/Login()
