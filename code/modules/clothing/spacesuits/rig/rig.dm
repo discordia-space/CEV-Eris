@@ -48,8 +48,8 @@
 	var/air_type =   /obj/item/weapon/tank/oxygen
 
 	//Component/device holders.
-	var/modules_effects_icon = 'icons/mob/rig_modules.dmi'
-	var/on_mob_icon = 'icons/mob/rig_back.dmi'
+	var/item_effect_icon = 'icons/inventory/suit/modules/icon.dmi'
+	var/onmob_effect_icon = 'icons/inventory/suit/modules/mob.dmi'//we save both these here to not to pull human's body_build datum's fields every update_icon() here
 	var/obj/item/weapon/tank/air_supply                       // Air tank, if any.
 	var/obj/item/clothing/shoes/boots = null                  // Deployable boots, if any.
 	var/obj/item/clothing/suit/space/rig/chest                // Deployable chestpiece, if any.
@@ -519,15 +519,12 @@
 		ui.set_auto_update(1)
 
 /obj/item/weapon/rig/update_icon(var/update_mob_icon)
-	overlays.Cut()//this part basically makes rig's "backpack" on your back
-	if(!mob_icon || update_mob_icon)
-		var/species_icon = 'icons/mob/rig_back.dmi'
-		mob_icon = image("icon" = species_icon, "icon_state" = icon_state)
+	overlays.Cut()
 
-	if(modules_effects_icon && installed_modules.len)//this makes your modules be drawn upon your chest's rig
-		for(var/obj/item/rig_module/module in installed_modules)
-			if(module.suit_overlay)
-				chest.overlays += image("icon" = modules_effects_icon, "icon_state" = module.suit_overlay_item, "dir" = SOUTH)
+	if(!mob_icon || update_mob_icon)
+		mob_icon = image("icon" = onmob_effect_icon, "icon_state" = icon_state)
+
+	add_item_overlay(chest)
 
 	if(wearer)
 		wearer.update_inv_shoes()
@@ -539,16 +536,28 @@
 		wearer.update_inv_back()
 	return
 
-/obj/item/weapon/rig/proc/get_mob_overlay(mob/user_mob, slot)
-	if(slot != slot_wear_suit_str || !active)//this means we should not show our modules till reg isn't engaged
+//this makes your modules' overlays be drawn upon your rig's chest if it exists
+/obj/item/weapon/rig/proc/add_item_overlay(obj/item/I)
+	if(istype(I, chest))//e.g. we have parts which are supposed to be on our helmet, so we check
+		if(item_effect_icon && installed_modules.len)
+			for(var/obj/item/rig_module/module in installed_modules)
+				if(module.suit_overlay)
+					I.overlays += image("icon" = item_effect_icon, "icon_state" = module.suit_overlay_item, "dir" = SOUTH)
+
+/obj/item/weapon/rig/proc/get_mob_overlay(slot)
+	if(slot != slot_wear_suit_str || !active)//this means we should not show our modules till reg isn't engaged and charged
 		return
 
+	var/mob/living/carbon/human/H = wearer
+	if(H.body_build.index)//slim, fat, but not standart. Standart is already set in icons.
+		onmob_effect_icon = H.body_build.rig_icon
+
 	var/image/ret = new
-	if(on_mob_icon && installed_modules.len)
+	if(onmob_effect_icon && installed_modules.len)
 		ret.overlays.Cut()
 		for(var/obj/item/rig_module/module in installed_modules)
 			if(module.suit_overlay)
-				ret.overlays += image("icon" = on_mob_icon, "icon_state" = module.suit_overlay)
+				ret.overlays += image("icon" = onmob_effect_icon, "icon_state" = module.suit_overlay)
 		return ret
 
 /obj/item/weapon/rig/proc/check_suit_access(var/mob/living/carbon/human/user)

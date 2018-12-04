@@ -680,7 +680,6 @@ var/global/list/damage_icon_parts = list()
 		overlays_standing[BELT_LAYER_ALT] = null
 	if(update_icons)   update_icons()
 
-
 /mob/living/carbon/human/update_inv_wear_suit(var/update_icons=1)
 
 	if( wear_suit && istype(wear_suit, /obj/item/) )
@@ -710,12 +709,10 @@ var/global/list/damage_icon_parts = list()
 			for(var/obj/item/clothing/accessory/A in suit.accessories)
 				standing.overlays |= A.get_mob_overlay()
 
-		if(istype(wear_suit, /obj/item/clothing/suit/space/rig))
-			if(back)
-				if(istype(back, /obj/item/weapon/rig))//and the main part also needed
-					var/obj/item/weapon/rig/R = back//this is safecheck, again
-					if(R && R.active)//we are fully engaged and charged
-						standing.overlays += R.get_mob_overlay(src,slot_wear_suit_str)
+		if(back && istype(back, /obj/item/weapon/rig))//and the main part also needed
+			var/obj/item/weapon/rig/R = back//this is safecheck, again
+			if(R && R.active)//we are fully engaged and charged
+				standing.overlays += R.get_mob_overlay(slot_wear_suit_str)
 
 		overlays_standing[SUIT_LAYER] = standing
 

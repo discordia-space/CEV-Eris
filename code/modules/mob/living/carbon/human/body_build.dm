@@ -6,7 +6,7 @@ var/datum/body_build/default_body_build = new
 	var/name			= "Default"
 	var/gender 			= MALE
 	var/identifying_gender = MALE
-	var/index			= "" 					// For icon_ovveride body_build supply
+	var/index			= ""// For icon_overide body_build supply
 	var/uniform_icon	= 'icons/inventory/uniform/mob.dmi'
 	var/suit_icon		= 'icons/inventory/suit/mob.dmi'
 	var/gloves_icon		= 'icons/inventory/hands/mob.dmi'
@@ -20,6 +20,7 @@ var/datum/body_build/default_body_build = new
 	var/s_store_icon	= 'icons/inventory/on_suit/mob.dmi'
 	var/backpack_icon	= 'icons/inventory/back/mob.dmi'
 	var/underwear_icon	= 'icons/inventory/underwear/mob.dmi'
+	var/rig_icon        = 'icons/inventory/suit/modules/mob.dmi'
 
 /datum/body_build/proc/get_mob_icon(var/slot, var/icon_state)
 	var/icon/I
@@ -39,8 +40,8 @@ var/datum/body_build/default_body_build = new
 			if("s_store") I = BB.s_store_icon
 			if("back")    I = BB.backpack_icon
 			/*if("tie")     I = BB.ties_icon
-			if("hidden")  I = BB.hidden_icon
-			if("rig")     I = BB.rig_back*/
+			if("hidden")  I = BB.hidden_icon*/
+			if("rig")     I = BB.rig_icon
 			else
 				log_world("##ERROR. Wrong sprite group for mob icon \"[slot]\"")
 		if(icon_state in icon_states(I))
@@ -58,6 +59,7 @@ var/datum/body_build/default_body_build = new
 	index			= "_slim"
 	uniform_icon	= 'icons/inventory/uniform/mob_slim.dmi'
 	suit_icon		= 'icons/inventory/suit/mob_slim.dmi'
+	rig_icon        = 'icons/inventory/suit/modules/mob_slim.dmi'
 	gloves_icon		= 'icons/inventory/hands/mob_slim.dmi'
 	glasses_icon	= 'icons/inventory/eyes/mob_slim.dmi'
 	ears_icon		= 'icons/inventory/ears/mob_slim.dmi'
@@ -80,6 +82,7 @@ var/datum/body_build/default_body_build = new
 	index			= "_fat"
 	uniform_icon	= 'icons/inventory/uniform/mob_fat.dmi'
 	suit_icon		= 'icons/inventory/suit/mob_fat.dmi'
+	rig_icon        = 'icons/inventory/suit/modules/mob_fat.dmi'
 	gloves_icon		= 'icons/inventory/hands/mob_fat.dmi'
 	glasses_icon	= 'icons/inventory/eyes/mob_fat.dmi'
 	ears_icon		= 'icons/inventory/ears/mob_fat.dmi'

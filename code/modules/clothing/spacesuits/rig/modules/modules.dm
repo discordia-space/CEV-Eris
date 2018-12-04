@@ -41,8 +41,8 @@
 
 	// Icons.
 	var/suit_overlay
-	var/suit_overlay_item               // Only item's overlay, only one state to not to overload this code with four different states
-	var/suit_overlay_active             // If set, drawn over icon and mob when effect is active.
+	var/suit_overlay_item               // Item's overlay, only one state to not to overload this code with four different states
+	var/suit_overlay_active             // If set, drawn over mob's icon when effect is active.
 	var/suit_overlay_inactive           // As above, inactive.
 	var/suit_overlay_used               // As above, when engaged.
 
