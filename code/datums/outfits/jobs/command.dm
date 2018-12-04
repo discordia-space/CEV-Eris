@@ -22,7 +22,7 @@
 	if(H.age>49)
 		// Since we can have something other than the default uniform at this
 		// point, check if we can actually attach the medal
-		var/obj/item/clothing/uniform = H.w_uniform
+		var/obj/item/clothing/uniform = H.get_equipped_item(slot_w_uniform)
 		if(uniform)
 			var/obj/item/clothing/accessory/medal/gold/captain/medal = new()
 			if(uniform.can_attach_accessory(medal))

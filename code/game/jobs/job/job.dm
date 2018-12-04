@@ -141,11 +141,11 @@
 
 	return FALSE
 
-/datum/job/proc/get_job_icon()
+/datum/job/proc/get_job_icon(dir = SOUTH)
 	if(!SSjob.job_icons[title])
 		var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin("#job_icon")
 		dress_mannequin(mannequin)
-		mannequin.dir = SOUTH
+		mannequin.dir = dir
 		var/icon/preview_icon = getFlatIcon(mannequin)
 
 		preview_icon.Scale(preview_icon.Width() * 2, preview_icon.Height() * 2) // Scaling here to prevent blurring in the browser.

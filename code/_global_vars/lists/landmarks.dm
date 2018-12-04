@@ -1,2 +1,0 @@
-GLOBAL_LIST_EMPTY(latejoin_cryo)
-GLOBAL_LIST_EMPTY(latejoin_cyborg)

@@ -293,7 +293,7 @@ SUBSYSTEM_DEF(job)
 	return TRUE
 
 
-/datum/controller/subsystem/job/proc/EquipRank(mob/living/carbon/human/H, rank, joined_late = FALSE)
+/datum/controller/subsystem/job/proc/EquipRank(mob/living/carbon/human/H, rank)
 	if(!H)
 		return null
 
@@ -326,20 +326,6 @@ SUBSYSTEM_DEF(job)
 		H << "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator."
 
 	H.job = rank
-
-	if(!joined_late)
-		var/obj/S = get_roundstart_spawnpoint(rank)
-
-		if(istype(S, /obj/landmark/join/start) && istype(S.loc, /turf))
-			H.forceMove(S.loc)
-		else
-			var/datum/spawnpoint/spawnpoint = get_spawnpoint_for(H.client, rank)
-			H.forceMove(pick(spawnpoint.turfs))
-
-		// Moving wheelchair if they have one
-		if(H.buckled && istype(H.buckled, /obj/structure/bed/chair/wheelchair))
-			H.buckled.forceMove(H.loc)
-			H.buckled.set_dir(H.dir)
 
 	// If they're head, give them the account info for their department
 	if(H.mind && job.head_position)
@@ -506,76 +492,45 @@ proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
  *  preference is not set, or the preference is not appropriate for the rank, in
  *  which case a fallback will be selected.
  */
-/datum/controller/subsystem/job/proc/get_spawnpoint_for(var/client/C, var/rank)
+/datum/controller/subsystem/job/proc/get_spawnpoint_for(var/client/C, var/rank, type = "late")
 
 	if(!C)
 		CRASH("Null client passed to get_spawnpoint_for() proc!")
 
 	var/mob/H = C.mob
-	var/spawnpoint = C.prefs.spawnpoint
-	var/datum/spawnpoint/spawnpos
-
-	if(spawnpoint == DEFAULT_SPAWNPOINT_ID)
-		spawnpoint = maps_data.default_spawn
-
-	if(spawnpoint)
-		if(!(spawnpoint in maps_data.allowed_spawns))
-			if(H)
-				to_chat(H, "<span class='warning'>Your chosen spawnpoint ([C.prefs.spawnpoint]) is unavailable for the current map. Spawning you at one of the enabled spawn points instead. To resolve this error head to your character's setup and choose a different spawn point.</span>")
-			spawnpos = null
+	var/pref_spawn = C.prefs.spawnpoint
+	
+	var/datum/spawnpoint/SP
+	switch(type)
+		if("late")
+			if(!pref_spawn)
+				SP = getSpawnPoint(maps_data.default_spawn, type)
+				H << SPAN_WARNING("You have not selected spawnpoint in preference menu, you will be assigned default one which is \"[SP.display_name]\".")
+			else
+				SP = getSpawnPoint(pref_spawn, type)
+				if(SP && !SP.check_job_spawning(rank))
+					H << SPAN_WARNING("Your chosen spawnpoint ([SP.display_name]) is unavailable for your chosen job ([rank]). Spawning you at another spawn point instead.")
+					SP = null
+					for(var/spawntype in get_late_spawntypes())
+						var/datum/spawnpoint/candidate = get_late_spawntypes()[spawntype]
+						if(candidate.check_job_spawning(rank))
+							SP = candidate
+							break
+						if(!SP)
+							// Pick default spawnpoint, just so we have one
+							warning("Could not find an appropriate spawnpoint for job [rank] (latespawn).")
+							SP = SP = getSpawnPoint(maps_data.default_spawn, type)
+		if("roundstart")
+			SP = getSpawnPoint(rank, type)
+			if(!SP)
+				warning("Could not find an appropriate spawnpoint for job [rank] (roundstart).")
+				SP = getSpawnPoint(maps_data.default_spawn, type = "late")
 		else
-			spawnpos = spawntypes()[spawnpoint]
-
-	if(spawnpos && !spawnpos.check_job_spawning(rank))
-		if(H)
-			to_chat(H, "<span class='warning'>Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job ([rank]). Spawning you at another spawn point instead.</span>")
-		spawnpos = null
-
-	if(!spawnpos)
-		// Step through all spawnpoints and pick first appropriate for job
-		for(var/spawntype in maps_data.allowed_spawns)
-			var/datum/spawnpoint/candidate = spawntypes()[spawntype]
-			if(candidate.check_job_spawning(rank))
-				spawnpos = candidate
-				break
-
-	if(!spawnpos)
-		// Pick at random from all the (wrong) spawnpoints, just so we have one
-		warning("Could not find an appropriate spawnpoint for job [rank].")
-		spawnpos = spawntypes()[pick(maps_data.allowed_spawns)]
-
-	return spawnpos
+			error("Unexpected spawnpoint type in \"/datum/controller/subsystem/job/proc/get_spawnpoint_for\".")
+	return SP
 
 /datum/controller/subsystem/job/proc/ShouldCreateRecords(var/title)
 	if(!title) return 0
 	var/datum/job/job = GetJob(title)
 	if(!job) return 0
 	return job.create_record
-
-/datum/controller/subsystem/job/proc/CheckUnsafeSpawn(var/mob/living/spawner, var/turf/spawn_turf)
-	//var/radlevel = SSradiation.get_rads_at_turf(spawn_turf)
-	var/airstatus = IsTurfAtmosUnsafe(spawn_turf)
-	//if(airstatus || radlevel > 0)
-	if(airstatus)
-		/*var/reply = alert(spawner, "Warning. Your selected spawn location seems to have unfavorable conditions. \
-		You may die shortly after spawning. \
-		Spawn anyway? More information: [airstatus] Radiation: [radlevel] Bq", "Atmosphere warning", "Abort", "Spawn anyway")
-		*/
-		var/reply = alert(spawner, "Warning. Your selected spawn location seems to have unfavorable conditions. \
-		You may die shortly after spawning. \
-		Spawn anyway? More information: [airstatus]", "Atmosphere warning", "Abort", "Spawn anyway")
-		if(reply == "Abort")
-			return FALSE
-		else
-			// Let the staff know, in case the person complains about dying due to this later. They've been warned.
-			log_and_message_admins("User [spawner] spawned at spawn point with dangerous atmosphere.")
-	return TRUE
-
-/datum/controller/subsystem/job/proc/get_roundstart_spawnpoint(var/rank)
-	var/list/loc_list = list()
-	for(var/obj/landmark/join/start/sloc in landmarks_list)
-		if(sloc.name != rank)	continue
-		if(locate(/mob/living) in sloc.loc)	continue
-		loc_list += sloc
-	if(loc_list.len)
-		return pick(loc_list)

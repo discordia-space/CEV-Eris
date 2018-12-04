@@ -23,6 +23,8 @@
 	sort_order = 1
 	//var/datum/browser/panel
 	var/job_desc = "Press \[?\] button near job name to show description.<br><br><br><br><br><br>"			//text containing job description
+	var/job_icon_dir = SOUTH
+	var/job_info_selected_rank
 
 /datum/category_item/player_setup_item/occupation/load_character(var/savefile/S)
 	from_file(S["alternate_option"], 	pref.alternate_option)
@@ -237,31 +239,16 @@
 		show_browser(user, jointext(HTML, null), "window=\ref[user]skillinfo")
 	*/
 	else if(href_list["job_info"])
-		var/rank = href_list["job_info"]
-		var/datum/job/job = SSjob.GetJob(rank)
-
-		job_desc = ""
-		
-		job_desc += "<p style='margin-top:0px; background-color: [job.selection_color]'><br><p>"
-		if(job.alt_titles)
-			job_desc += "<i><b>Alternative titles:</b> [english_list(job.alt_titles)].</i>"
-		send_rsc(user, job.get_job_icon(), "job[ckey(rank)].png")
-		job_desc += "<img src=job[ckey(rank)].png width=96 height=96 style='float:left;'>"
-		if(job.department)
-			job_desc += "<b>Department:</b> [job.department]."
-			if(job.head_position)
-				job_desc += "You are in charge of this department."
-		job_desc += "<br>"
-		job_desc += "You answer to <b>[job.supervisors]</b> normally."
-
-		job_desc += "<hr>"
-		if(config.wikiurl)
-			job_desc += "<a href='?src=\ref[src];job_wiki=[rank]'>Open wiki page in browser</a>"
-		var/description = job.get_description_blurb()
-		/*if(job.required_education)
-		description = "[description ? "[description]\n\n" : ""]"*/
-		if(description)
-			job_desc += html_encode(description)
+		job_info_selected_rank = href_list["job_info"]
+		create_job_description(user)
+		return TOPIC_REFRESH
+	
+	else if(href_list["rotate"])
+		if(href_list["rotate"] == "right")
+			job_icon_dir = turn(job_icon_dir,-90)
+		else
+			job_icon_dir = turn(job_icon_dir,90)
+		create_job_description(user)
 		return TOPIC_REFRESH
 
 	else if(href_list["job_wiki"])
@@ -269,6 +256,34 @@
 		open_link(user,"[config.wikiurl][rank]")
 
 	return ..()
+
+/datum/category_item/player_setup_item/occupation/proc/create_job_description(var/mob/user)
+	if(!job_info_selected_rank)
+		return
+	var/datum/job/job = SSjob.GetJob(job_info_selected_rank)
+	job_desc = ""
+	
+	job_desc += "<p style='margin-top:0px; background-color: [job.selection_color]'><br><p>"
+	if(job.alt_titles)
+		job_desc += "<i><b>Alternative titles:</b> [english_list(job.alt_titles)].</i>"
+	send_rsc(user, job.get_job_icon(job_icon_dir), "job[ckey(job_info_selected_rank)]_[job_icon_dir].png")
+	job_desc += "<img src=job[ckey(job_info_selected_rank)]_[job_icon_dir].png width=112 height=112 style='float:left;'>"
+	job_desc += "<br><div style='float:left;'><a href='?src=\ref[src];rotate=right'>&lt;&lt;</a> <a href='?src=\ref[src];rotate=left'>&gt;&gt;</a></div>"
+	if(job.department)
+		job_desc += "<b>Department:</b> [job.department]."
+		if(job.head_position)
+			job_desc += "You are in charge of this department."
+	job_desc += "<br>"
+	job_desc += "You answer to <b>[job.supervisors]</b> normally."
+
+	job_desc += "<hr>"
+	if(config.wikiurl)
+		job_desc += "<a href='?src=\ref[src];job_wiki=[job_info_selected_rank]'>Open wiki page in browser</a>"
+	var/description = job.get_description_blurb()
+	/*if(job.required_education)
+	description = "[description ? "[description]\n\n" : ""]"*/
+	if(description)
+		job_desc += html_encode(description)
 
 /datum/category_item/player_setup_item/occupation/proc/SetPlayerAltTitle(datum/job/job, new_title)
 	// remove existing entry

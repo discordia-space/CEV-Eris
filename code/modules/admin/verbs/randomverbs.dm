@@ -393,8 +393,13 @@ ADMIN_VERB_ADD(/client/proc/respawn_character, R_FUN, FALSE)
 	var/player_key = G_found.key
 
 	//Now for special roles and equipment.
-	SSjob.EquipRank(new_character, new_character.mind.assigned_role, 1)
-	//SSjob.LateSpawn(new_character.client, new_character.mind.assigned_role)
+	SSjob.EquipRank(new_character, new_character.mind.assigned_role)
+
+	var/datum/spawnpoint/spawnpoint = SSjob.get_spawnpoint_for(new_character.client, new_character.mind.assigned_role)
+	if (!spawnpoint.put_mob(new_character))
+		message_admins("\blue [admin] has tried to respawn [player_key] as [new_character.real_name] but they declined to spawn in harmful environment.", 1)
+		return
+
 
 	//Announces the character on all the systems, based on the record.
 	if(!issilicon(new_character))//If they are not a cyborg/AI.

@@ -75,7 +75,6 @@
 #include "code\_compatibility\509\JSON\JSON Writer.dm"
 #include "code\_global_vars\misc.dm"
 #include "code\_global_vars\lists\flavor.dm"
-#include "code\_global_vars\lists\landmarks.dm"
 #include "code\_global_vars\lists\mapping.dm"
 #include "code\_global_vars\lists\names.dm"
 #include "code\_helpers\_global_objects.dm"

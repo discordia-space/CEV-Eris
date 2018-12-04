@@ -40,6 +40,7 @@
  */
 /obj/item/clothing/proc/attach_accessory(mob/user, obj/item/clothing/accessory/A)
 	accessories += A
+	src.verbs |= /obj/item/clothing/proc/removetie_verb
 	A.on_attached(src, user)
 	
 /obj/item/clothing/attack_hand(var/mob/user)

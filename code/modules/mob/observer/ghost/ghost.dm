@@ -34,9 +34,8 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 	see_in_dark = 100
 	verbs += /mob/observer/ghost/proc/dead_tele
 
-	var/turf/T
 	if(ismob(body))
-		T = get_turf(body)				//Where is the body located?
+		var/turf/T = get_turf(body)				//Where is the body located?
 		attack_log = body.attack_log	//preserve our attack logs by copying them to our ghost
 
 		if (ishuman(body))
@@ -63,11 +62,11 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 					name = capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
 
 		mind = body.mind	//we don't transfer the mind but we keep a reference to it.
-
-	if(!T)
+		forceMove(T)
+	else
 		//Safety in case we cannot find the body's position
-		T = pickSpawnLocation("observer", FALSE)
-	forceMove(T)
+		var/datum/spawnpoint/spawnpoint = SSjob.get_spawnpoint_for(client, "Observer", type = "roundstart")
+		spawnpoint.put_mob(src, ignore_environment = TRUE)
 
 	if(!name)							//To prevent nameless ghosts
 		name = capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))

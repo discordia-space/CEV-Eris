@@ -97,9 +97,8 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 
 	var/list/loadout_blacklist	//list of types of loadout items that will not be pickable
 
-
-	var/allowed_spawns = list("Cryogenic Storage", "Cyborg Storage")
 	var/default_spawn = "Cryogenic Storage"
+
 	var/allowed_jobs = list(/datum/job/captain, /datum/job/rd, /datum/job/hop, /datum/job/cmo, /datum/job/chief_engineer, /datum/job/ihc,
 						/datum/job/gunserg, /datum/job/inspector, /datum/job/medspec, /datum/job/ihoper,
 						/datum/job/doctor, /datum/job/chemist, /datum/job/paramedic, /datum/job/psychiatrist,
