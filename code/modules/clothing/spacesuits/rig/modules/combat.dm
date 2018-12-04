@@ -141,10 +141,6 @@
 
 	usable = 0
 
-	suit_overlay_item = "mounted-taser"
-	suit_overlay_active = "mounted-taser"
-	suit_overlay_inactive = "mounted-taser"
-
 	interface_name = "mounted taser"
 	interface_desc = "A shoulder-mounted cell-powered taser."
 

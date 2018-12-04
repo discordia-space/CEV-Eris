@@ -32,11 +32,13 @@
 	name = "health scanner module"
 	desc = "A hardsuit-mounted health scanner."
 	icon_state = "scanner"
+
+	interface_name = "health scanner"
+	interface_desc = "Shows an informative health readout when used on a subject."
+
 	suit_overlay_item = "scanner"
 	suit_overlay_active = "scanner"
 	suit_overlay_inactive = "scanner"
-	interface_name = "health scanner"
-	interface_desc = "Shows an informative health readout when used on a subject."
 
 	device_type = /obj/item/device/scanner/healthanalyzer
 
@@ -46,9 +48,7 @@
 	icon_state = "drill"
 	interface_name = "mounted drill"
 	interface_desc = "A diamond-tipped industrial drill."
-	suit_overlay_item = "mounted-drill"
-	suit_overlay_active = "mounted-drill"
-	suit_overlay_inactive = "mounted-drill"
+
 	use_power_cost = 0.1
 
 	device_type = /obj/item/weapon/tool/pickaxe/diamonddrill
@@ -57,12 +57,15 @@
 	name = "hardsuit anomaly scanner"
 	desc = "You think it's called an Elder Sarsparilla or something."
 	icon_state = "eldersasparilla"
-	suit_overlay_item = "scanner"
-	suit_overlay_active = "scanner"
-	suit_overlay_inactive = "scanner"
+
 	interface_name = "Alden-Saraspova counter"
 	interface_desc = "An exotic particle detector commonly used by xenoarchaeologists."
 	engage_string = "Begin Scan"
+
+	suit_overlay_item = "scanner"
+	suit_overlay_active = "scanner"
+	suit_overlay_inactive = "scanner"
+
 	usable = 1
 	selectable = 0
 	device_type = /obj/item/device/ano_scanner
@@ -71,11 +74,14 @@
 	name = "ore scanner module"
 	desc = "A clunky old ore scanner."
 	icon_state = "scanner"
+
+	interface_name = "ore detector"
+	interface_desc = "A sonar system for detecting large masses of ore."
+
 	suit_overlay_item = "scanner"
 	suit_overlay_active = "scanner"
 	suit_overlay_inactive = "scanner"
-	interface_name = "ore detector"
-	interface_desc = "A sonar system for detecting large masses of ore."
+
 	engage_string = "Begin Scan"
 	usable = 1
 	selectable = 0
@@ -256,12 +262,12 @@
 	selectable = 1
 	disruptive = 1
 
+	interface_name = "mounted chem injector"
+	interface_desc = "Dispenses loaded chemicals via an arm-mounted injector."
+
 	suit_overlay_item = "mounted-injector"
 	suit_overlay_active = "mounted-injector"
 	suit_overlay_inactive = "mounted-injector"
-
-	interface_name = "mounted chem injector"
-	interface_desc = "Dispenses loaded chemicals via an arm-mounted injector."
 
 /obj/item/rig_module/voice
 
@@ -325,10 +331,6 @@
 	toggleable = 1
 	selectable = 0
 	disruptive = 0
-
-	suit_overlay_item = "maneuvering_item"
-	suit_overlay_active = "maneuvering_active"
-	suit_overlay_inactive = "maneuvering_inactive"
 
 	engage_string = "Toggle Stabilizers"
 	activate_string = "Activate Thrusters"
