@@ -31,7 +31,7 @@
 	Enabled determines the power status. Is the scanner turned on or not?
 	The scanner is enabled as long as it has power, and the power switch is turned on. While enabled it will use power
 	*/
-	var/enabled = 0
+	var/enabled = FALSE
 
 	/*
 		Active determines if the scanner is actually working in a technical sense.
