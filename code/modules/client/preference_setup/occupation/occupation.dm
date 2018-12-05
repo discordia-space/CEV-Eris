@@ -86,7 +86,7 @@
 
 	. += "<tt><center>"
 	//. += "<b>Choose occupation chances. <font size=3>Click on the occupation to select skills.</font><br>Unavailable occupations are crossed out.</b>"
-	. += "<div class = 'statusDisplay' style = 'margin: auto; width: 700px; height: 300; overflow: auto;'>[job_desc]</div>"
+	. += "<div class = 'statusDisplay' style = 'margin: auto; width: auto; height: 400; overflow: auto;'>[job_desc]</div>"
 	. += "<b>Choose occupation chances.<br>Unavailable occupations are crossed out.</b>"
 	. += "<table width='100%' cellpadding='1' cellspacing='0'><tr><td width='20%'>" // Table within a table for alignment, also allows you to easily add more columns.
 	. += "<table width='100%' cellpadding='1' cellspacing='0'>"

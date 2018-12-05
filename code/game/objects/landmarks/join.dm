@@ -6,7 +6,14 @@ GLOBAL_LIST_EMPTY(spawntypes)
 
 /obj/landmark/join/New()
 	if(join_tag)
-		error("[join_tag]: landmark was not assigned to any spawnpoints.")
+		var/datum/spawnpoint/SP = getSpawnPoint(name, silenced = TRUE)
+		if (!SP)
+			SP = createSpawnPoint(name)
+			SP.turfs += src.loc
+			SP.display_name = name
+		else
+			SP.turfs += src.loc
+		GLOB.spawntypes[name] = SP
 	..()
 
 /obj/landmark/join/late
@@ -21,7 +28,7 @@ GLOBAL_LIST_EMPTY(spawntypes)
 	if(join_tag)
 		var/datum/spawnpoint/SP = getSpawnPoint(name, late = TRUE, silenced = TRUE)
 		if (!SP)
-			SP = createSpawnPoint(name, "late")
+			SP = createSpawnPoint(name, late = TRUE)
 			SP.turfs += src.loc
 			SP.display_name = name
 			SP.restrict_job = restrict_job
@@ -29,8 +36,7 @@ GLOBAL_LIST_EMPTY(spawntypes)
 			SP.message = message
 		else
 			SP.turfs += src.loc
-		GLOB.late_spawntypes[name] = SP
-		join_tag = null
+		GLOB.late_spawntypes[name] = SP	
 	..()
 
 /obj/landmark/join/late/cryo
@@ -44,7 +50,7 @@ GLOBAL_LIST_EMPTY(spawntypes)
 	icon_state = "synth-cyan"
 	join_tag = "late_cyborg"
 	message = "has been activated from storage"
-	restrict_job = list("Cyborg")
+	restrict_job = list("Robot")
 
 /obj/landmark/join/observer
 	name = "Observer"
@@ -58,16 +64,3 @@ GLOBAL_LIST_EMPTY(spawntypes)
 	alpha = 124
 	invisibility = 101
 	join_tag = null
-
-/obj/landmark/join/start/New()
-	if(join_tag)
-		var/datum/spawnpoint/SP = getSpawnPoint(name, silenced = TRUE)
-		if (!SP)
-			SP = createSpawnPoint(name, "roundstart")
-			SP.turfs += src.loc
-			SP.display_name = name
-		else
-			SP.turfs += src.loc
-		GLOB.spawntypes[name] = SP
-		join_tag = null
-	..()

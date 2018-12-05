@@ -111,9 +111,6 @@ datum/announcement/proc/Log(message as text, message_title as text)
 /proc/AnnounceArrival(var/mob/living/character, var/rank, var/join_message)
 	if (join_message && SSticker.current_state == GAME_STATE_PLAYING && SSjob.ShouldCreateRecords(rank))
 		if(issilicon(character))
-			global_announcer.autosay(utf8_to_cp1251("A new [rank] [join_message].", ANNOUNSER_NAME))
+			global_announcer.autosay(utf8_to_cp1251("A new [rank] [join_message]."), ANNOUNSER_NAME)
 		else
-			AnnounceArrivalSimple(character.real_name, rank, join_message)
-
-/proc/AnnounceArrivalSimple(var/name, var/rank = "visitor", var/join_message = "has arrived on the station")
-	global_announcer.autosay(utf8_to_cp1251("[utf8_to_cp1251(name)], [utf8_to_cp1251(rank)], [utf8_to_cp1251(join_message)]."), ANNOUNSER_NAME)
+			global_announcer.autosay(utf8_to_cp1251("[utf8_to_cp1251(character.real_name)], [utf8_to_cp1251(rank)], [utf8_to_cp1251(join_message)]."), ANNOUNSER_NAME)

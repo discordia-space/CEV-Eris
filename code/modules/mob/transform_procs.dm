@@ -81,7 +81,7 @@
 
 	if(move)
 		var/obj/new_location = null
-		for(var/turf/sloc in getSpawnLocations(/datum/job/ai))
+		for(var/turf/sloc in getSpawnLocations("AI"))
 			if(locate(/obj/structure/AIcore) in sloc)
 				continue
 			new_location = sloc

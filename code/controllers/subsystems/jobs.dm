@@ -492,7 +492,7 @@ proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
  *  preference is not set, or the preference is not appropriate for the rank, in
  *  which case a fallback will be selected.
  */
-/datum/controller/subsystem/job/proc/get_spawnpoint_for(var/client/C, var/rank, type = "late")
+/datum/controller/subsystem/job/proc/get_spawnpoint_for(var/client/C, var/rank, late = FALSE)
 
 	if(!C)
 		CRASH("Null client passed to get_spawnpoint_for() proc!")
@@ -501,32 +501,29 @@ proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
 	var/pref_spawn = C.prefs.spawnpoint
 	
 	var/datum/spawnpoint/SP
-	switch(type)
-		if("late")
-			if(!pref_spawn)
-				SP = getSpawnPoint(maps_data.default_spawn, type)
-				H << SPAN_WARNING("You have not selected spawnpoint in preference menu, you will be assigned default one which is \"[SP.display_name]\".")
-			else
-				SP = getSpawnPoint(pref_spawn, type)
-				if(SP && !SP.check_job_spawning(rank))
-					H << SPAN_WARNING("Your chosen spawnpoint ([SP.display_name]) is unavailable for your chosen job ([rank]). Spawning you at another spawn point instead.")
-					SP = null
-					for(var/spawntype in get_late_spawntypes())
-						var/datum/spawnpoint/candidate = get_late_spawntypes()[spawntype]
-						if(candidate.check_job_spawning(rank))
-							SP = candidate
-							break
-						if(!SP)
-							// Pick default spawnpoint, just so we have one
-							warning("Could not find an appropriate spawnpoint for job [rank] (latespawn).")
-							SP = SP = getSpawnPoint(maps_data.default_spawn, type)
-		if("roundstart")
-			SP = getSpawnPoint(rank, type)
-			if(!SP)
-				warning("Could not find an appropriate spawnpoint for job [rank] (roundstart).")
-				SP = getSpawnPoint(maps_data.default_spawn, type = "late")
+	if(late)
+		if(!pref_spawn)
+			SP = getSpawnPoint(maps_data.default_spawn, late = TRUE)
+			H << SPAN_WARNING("You have not selected spawnpoint in preference menu, you will be assigned default one which is \"[SP.display_name]\".")
 		else
-			error("Unexpected spawnpoint type in \"/datum/controller/subsystem/job/proc/get_spawnpoint_for\".")
+			SP = getSpawnPoint(pref_spawn, late = TRUE)
+			if(SP && !SP.check_job_spawning(rank))
+				H << SPAN_WARNING("Your chosen spawnpoint ([SP.display_name]) is unavailable for your chosen job ([rank]). Spawning you at another spawn point instead.")
+				SP = null
+				for(var/spawntype in get_late_spawntypes())
+					var/datum/spawnpoint/candidate = get_late_spawntypes()[spawntype]
+					if(candidate.check_job_spawning(rank))
+						SP = candidate
+						break
+					if(!SP)
+						// Pick default spawnpoint, just so we have one
+						warning("Could not find an appropriate spawnpoint for job [rank] (latespawn).")
+						SP = SP = getSpawnPoint(maps_data.default_spawn, late = TRUE)
+	else
+		SP = getSpawnPoint(rank)
+		if(!SP)
+			warning("Could not find an appropriate spawnpoint for job [rank] (roundstart).")
+			SP = getSpawnPoint(maps_data.default_spawn, late = TRUE)
 	return SP
 
 /datum/controller/subsystem/job/proc/ShouldCreateRecords(var/title)

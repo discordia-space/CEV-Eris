@@ -116,7 +116,7 @@
 
 			observer.started_as_observer = 1
 			close_spawn_windows()
-			var/turf/T = pickSpawnLocation(/mob/observer)
+			var/turf/T = pickSpawnLocation("Observer")
 			if(istype(T))
 				src << SPAN_NOTICE("You are observer now.")
 				observer.forceMove(T)
@@ -125,8 +125,7 @@
 			observer.timeofdeath = world.time // Set the time of death so that the respawn timer works correctly.
 
 			announce_ghost_joinleave(src)
-			client.prefs.update_preview_icon()
-			observer.icon = client.prefs.preview_icon
+			observer.icon = client.prefs.update_preview_icon()
 			observer.alpha = 127
 
 			if(client.prefs.be_random_name)
@@ -261,7 +260,7 @@
 	character = SSjob.EquipRank(character, rank)					//equips the human
 	equip_custom_items(character)
 
-	var/datum/spawnpoint/spawnpoint = SSjob.get_spawnpoint_for(character.client, rank)
+	var/datum/spawnpoint/spawnpoint = SSjob.get_spawnpoint_for(character.client, rank, late = TRUE)
 	if (!spawnpoint.put_mob(character))
 		return
 

@@ -335,7 +335,7 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/proc/move_characters_to_spawnpoints()
 	for(var/mob/living/carbon/human/player in player_list)
-		var/datum/spawnpoint/SP = SSjob.get_spawnpoint_for(player.client, player.mind.assigned_role, type = "roundstart")
+		var/datum/spawnpoint/SP = SSjob.get_spawnpoint_for(player.client, player.mind.assigned_role)
 		SP.put_mob(player)
 
 

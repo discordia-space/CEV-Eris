@@ -65,8 +65,9 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 		forceMove(T)
 	else
 		//Safety in case we cannot find the body's position
-		var/datum/spawnpoint/spawnpoint = SSjob.get_spawnpoint_for(client, "Observer", type = "roundstart")
-		spawnpoint.put_mob(src, ignore_environment = TRUE)
+		var/turf/T = pickSpawnLocation("Observer")
+		if(istype(T))
+			src.forceMove(T)
 
 	if(!name)							//To prevent nameless ghosts
 		name = capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
