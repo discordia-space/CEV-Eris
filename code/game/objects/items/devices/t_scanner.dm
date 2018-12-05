@@ -1,7 +1,9 @@
 #define OVERLAY_CACHE_LEN 50
 
 /*
+	T-Ray scanners v2.0, By Nanako
 	A T-Ray scanner is a complicated thing which allows users to see underfloor pipes, wires and burrows
+
 */
 
 /obj/item/device/t_scanner
