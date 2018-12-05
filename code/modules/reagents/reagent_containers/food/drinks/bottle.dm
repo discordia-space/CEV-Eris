@@ -320,7 +320,6 @@
 	New()
 		..()
 		reagents.add_reagent("melonliquor", 100)
-		icon_state_empty = "alco-clear"
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/bluecuracao
 	name = "Miss Blue Curacao"
@@ -330,7 +329,6 @@
 	New()
 		..()
 		reagents.add_reagent("bluecuracao", 100)
-		icon_state_empty = "alco-clear"
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/grenadine
 	name = "Briar Rose Grenadine Syrup"

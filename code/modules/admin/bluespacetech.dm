@@ -15,12 +15,17 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	set desc = "Spawns a Bluespace Tech to debug stuff"
 
 
-	if(!check_rights(R_ADMIN|R_DEBUG))
-		return
+	if(!check_rights(R_ADMIN|R_DEBUG))	return
 
+
+
+
+	//I couldn't get the normal way to work so this works.
+	//This whole section looks like a hack, I don't like it.
 	var/T = get_turf(usr)
 	var/mob/living/carbon/human/bst/bst = new(T)
-	bst.anchored = TRUE
+//	bst.original_mob = usr
+	bst.anchored = 1
 	bst.ckey = usr.ckey
 	bst.name = "Bluespace Technician"
 	bst.real_name = "Bluespace Technician"
@@ -28,7 +33,8 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	bst.h_style = "Crewcut"
 
 	//Items
-	bst.equip_to_slot_or_del(new /obj/item/clothing/under/assistantformal/bst(bst), slot_w_uniform)
+	var/obj/item/clothing/under/U = new /obj/item/clothing/under/assistantformal/bst(bst)
+	bst.equip_to_slot_or_del(U, slot_w_uniform)
 	bst.equip_to_slot_or_del(new /obj/item/device/radio/headset/ert/bst(bst), slot_l_ear)
 	bst.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/holding/bst(bst), slot_back)
 	bst.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(bst.back), slot_in_backpack)
@@ -37,8 +43,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	bst.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/bst(bst), slot_glasses)
 	bst.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(bst), slot_belt)
 	bst.equip_to_slot_or_del(new /obj/item/clothing/gloves/color/white/bst(bst), slot_gloves)
-
-	if(bst.backbag == 1)//depends on char's prefs
+	if(bst.backbag == 1)
 		bst.equip_to_slot_or_del(new /obj/item/weapon/storage/box/ids(bst), slot_r_hand)
 	else
 		bst.equip_to_slot_or_del(new /obj/item/weapon/storage/box/ids(bst.back), slot_in_backpack)
@@ -51,6 +56,9 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 			new /obj/item/weapon/reagent_containers/pill/adminordrazine(pills)
 		bst.equip_to_slot_or_del(pills, slot_in_backpack)
 
+	//Implant because access
+	//bst.implant_loyalty(bst,TRUE)
+
 	//Sort out ID
 	var/obj/item/weapon/card/id/bst/id = new/obj/item/weapon/card/id/bst(bst)
 	id.registered_name = bst.real_name
@@ -61,9 +69,9 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	bst.regenerate_icons()
 
 	//Add the rest of the languages
+	//Because universal speak doesn't work right.
 	bst.add_language(LANGUAGE_COMMON)
 	bst.add_language(LANGUAGE_CYRILLIC)
-	bst.add_language(LANGUAGE_SERBIAN)
 	bst.add_language(LANGUAGE_MONKEY)
 	// Antagonist languages
 	bst.add_language(LANGUAGE_XENOMORPH)
@@ -73,13 +81,18 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	bst.add_language(LANGUAGE_CULT)
 	bst.add_language(LANGUAGE_OCCULT)
 
+	//addtimer(CALLBACK(src, .proc/bst_post_spawn, bst), 5)
 	spawn(10)
 		bst_post_spawn(bst)
+	//addtimer(CALLBACK(src, .proc/bst_spawn_cooldown), 5 SECONDS)
 
 	log_debug("Bluespace Tech Spawned: X:[bst.x] Y:[bst.y] Z:[bst.z] User:[src]")
+
+	//feedback_add_details("admin_verb","BST")
 	return 1
 
 /client/proc/bst_post_spawn(mob/living/carbon/human/bst/bst)
+	//spark(bst, 3, alldirs)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(5, 1, src)
 	s.start()
@@ -87,7 +100,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	bst.anchored = FALSE
 
 /mob/living/carbon/human/bst
-	universal_understand = TRUE
+	universal_understand = 1
 	status_flags = GODMODE
 	var/fall_override = TRUE
 	var/mob/original_body = null
@@ -95,19 +108,22 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 /mob/living/carbon/human/bst/can_inject(var/mob/user, var/error_msg, var/target_zone)
 	user << span("alert", "The [src] disarms you before you can inject them.")
 	user.drop_item()
-	return FALSE
+	return 0
 
 /mob/living/carbon/human/bst/binarycheck()
-	return TRUE
+	return 1
 
 /mob/living/carbon/human/bst/proc/suicide()
 
 	src.custom_emote(1,"presses a button on their suit, followed by a polite bow.")
+	//spark(src, 5, alldirs)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(5, 1, src)
 	s.start()
 	spawn(10)
 		qdel(src)
+	//addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, src), 10, TIMER_CLIENT_TIME)
+	//animate(src, alpha = 0, time = 9, easing = QUAD_EASING)
 	if(key)
 		var/mob/observer/ghost/ghost = new(src)	//Transfer safety to observer spawning proc.
 		ghost.key = key
@@ -115,8 +131,10 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 		ghost.name = "[ghost.key] BSTech"
 		ghost.real_name = "[ghost.key] BSTech"
 		ghost.voice_name = "[ghost.key] BSTech"
-		ghost.admin_ghosted = TRUE
-		ghost.can_reenter_corpse = TRUE
+		ghost.admin_ghosted = 1
+		ghost.can_reenter_corpse = 1
+
+
 
 /mob/living/carbon/human/bst/verb/antigrav()
 	set name = "Toggle Gravity"
@@ -125,10 +143,10 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 
 	if (fall_override)
 		fall_override = FALSE
-		src << SPAN_NOTICE("You will now fall normally.")
+		to_chat(usr, "<span class='notice'>You will now fall normally.</span>")
 	else
 		fall_override = TRUE
-		src << SPAN_NOTICE("You will no longer fall.")
+		to_chat(usr, "<span class='notice'>You will no longer fall.</span>")
 
 /mob/living/carbon/human/bst/verb/bstwalk()
 	set name = "Ruin Everything"
@@ -138,16 +156,17 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 
 	if(!src.incorporeal_move)
 		src.incorporeal_move = 2
-		src << SPAN_NOTICE("You will now phase through solid matter.")
+		src << span("notice", "You will now phase through solid matter.")
 	else
 		src.incorporeal_move = 0
-		src << SPAN_NOTICE("You will no-longer phase through solid matter.")
+		src << span("notice", "You will no-longer phase through solid matter.")
+	return
 
 /mob/living/carbon/human/bst/verb/bstrecover()
 	set name = "Rejuv"
 	set desc = "Use the bluespace within you to restore your health"
 	set category = "BST"
-	set popup_menu = FALSE
+	set popup_menu = 0
 
 	src.revive()
 
@@ -155,16 +174,16 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	set name = "Wake up"
 	set desc = "This is a quick fix to the relogging sleep bug"
 	set category = "BST"
-	set popup_menu = FALSE
+	set popup_menu = 0
 
-	src.sleeping = FALSE
+	src.sleeping = 0
 
 /mob/living/carbon/human/bst/verb/bstquit()
 	set name = "Teleport out"
 	set desc = "Activate bluespace to leave and return to your original mob (if you have one)."
 	set category = "BST"
 
-	src.suicide()
+	suicide()
 
 /mob/living/carbon/human/bst/verb/tgm()
 	set name = "Toggle Godmode"
@@ -172,7 +191,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	set category = "BST"
 
 	status_flags ^= GODMODE
-	src << SPAN_NOTICE("God mode is now [status_flags & GODMODE ? "enabled" : "disabled"]")
+	src << span("notice", "God mode is now [status_flags & GODMODE ? "enabled" : "disabled"]")
 
 /mob/living/carbon/human/bst/verb/allow_unequip()
 	set name = "Allow Unequip"
@@ -183,42 +202,56 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 		I.canremove = TRUE
 	src << SPAN_NOTICE("You can now remove your equipment")
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////I T E M S/////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
+//Equipment. All should have canremove set to 0
+//All items with a /bst need the attack_hand() proc overrided to stop people getting overpowered items.
 
+//Bag o Holding
 /obj/item/weapon/storage/backpack/holding/bst
-	canremove = FALSE
+	canremove = 0
 	worn_access = TRUE
-
-/obj/item/device/radio/headset/ert/bst
-	name = "bluespace technician's headset"
-	desc = "A Bluespace Technician's headset. The letters 'BST' are stamped on the side."
-	translate_binary = TRUE
-	translate_hive = TRUE
-	canremove = FALSE
-	keyslot1 = new /obj/item/device/encryptionkey/binary
 
 /obj/item/device/radio/headset/ert/bst/attack_hand()
 	if(!usr)
 		return
-	if(!isbst(usr))
+	if(!istype(usr, /mob/living/carbon/human/bst))
 		usr << span("alert", "Your hand seems to go right through the [src]. It's like it doesn't exist.")
 		return
 	else
 		..()
 
-/obj/item/device/radio/headset/ert/bst/recalculateChannels(var/setDescription = FALSE)
-	..(setDescription)
-	translate_binary = TRUE
-	translate_hive = TRUE
+//Headset
+/obj/item/device/radio/headset/ert/bst
+	name = "bluespace technician's headset"
+	desc = "A Bluespace Technician's headset. The letters 'BST' are stamped on the side."
+	translate_binary = 1
+	translate_hive = 1
+	canremove = 0
+	keyslot1 = new /obj/item/device/encryptionkey/binary
+	//keyslot2 = new /obj/item/device/encryptionkey/ert
 
+/obj/item/device/radio/headset/ert/bst/attack_hand()
+	if(!usr)
+		return
+	if(!istype(usr, /mob/living/carbon/human/bst))
+		usr << span("alert", "Your hand seems to go right through the [src]. It's like it doesn't exist.")
+		return
+	else
+		..()
+
+// overload this so we can force translate flags without the required keys
+/obj/item/device/radio/headset/ert/bst/recalculateChannels(var/setDescription = 0)
+	..(setDescription)
+	translate_binary = 1
+	translate_hive = 1
+
+//Clothes
+//Nobody ever wears the formal assistant uniform so this is fine
 /obj/item/clothing/under/assistantformal/bst
 	name = "bluespace technician's uniform"
 	desc = "A Bluespace Technician's Uniform. There is a logo on the sleeve that reads 'BST'."
-	has_sensor = FALSE
+	has_sensor = 0
 	sensor_mode = 0
-	canremove = FALSE
+	canremove = 0
 	siemens_coefficient = 0
 	cold_protection = FULL_BODY
 	heat_protection = FULL_BODY
@@ -226,34 +259,37 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 /obj/item/clothing/under/assistantformal/bst/attack_hand()
 	if(!usr)
 		return
-	if(!isbst(usr))
+	if(!istype(usr, /mob/living/carbon/human/bst))
 		usr << span("alert", "Your hand seems to go right through the [src]. It's like it doesn't exist.")
 		return
 	else
 		..()
 
+//Gloves
 /obj/item/clothing/gloves/color/white/bst
 	name = "bluespace technician's gloves"
 	desc = "A pair of modified gloves. The letters 'BST' are stamped on the side."
 	siemens_coefficient = 0
 	permeability_coefficient = 0
-	canremove = FALSE
+	canremove = 0
 
 /obj/item/clothing/gloves/color/white/bst/attack_hand()
 	if(!usr)
 		return
-	if(!isbst(usr))
+	if(!istype(usr, /mob/living/carbon/human/bst))
 		usr << span("alert", "Your hand seems to go right through the [src]. It's like it doesn't exist.")
 		return
 	else
 		..()
 
+//Sunglasses
 /obj/item/clothing/glasses/sunglasses/bst
 	name = "bluespace technician's glasses"
 	desc = "A pair of modified sunglasses. The word 'BST' is stamped on the side."
+//	var/list/obj/item/clothing/glasses/hud/health/hud = null
 	vision_flags = (SEE_TURFS|SEE_OBJS|SEE_MOBS)
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
-	canremove = FALSE
+	canremove = 0
 	flash_protection = FLASH_PROTECTION_MAJOR
 
 /obj/item/clothing/glasses/sunglasses/bst/verb/toggle_xray(mode in list("X-Ray without Lighting", "X-Ray with Lighting", "Normal"))
@@ -270,63 +306,71 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 			vision_flags = (SEE_TURFS|SEE_OBJS|SEE_MOBS)
 			see_invisible = -1
 		if ("Normal")
-			vision_flags = FALSE
+			vision_flags = 0
 			see_invisible = -1
 
 	usr << "<span class='notice'>\The [src]'s vision mode is now <b>[mode]</b>.</span>"
 
+/*	New()
+		..()
+		src.hud += new/obj/item/clothing/glasses/hud/security(src)
+		src.hud += new/obj/item/clothing/glasses/hud/health(src)
+		return
+*/
 /obj/item/clothing/glasses/sunglasses/bst/attack_hand()
 	if(!usr)
 		return
-	if(!isbst(usr))
+	if(!istype(usr, /mob/living/carbon/human/bst))
 		usr << span("alert", "Your hand seems to go right through the [src]. It's like it doesn't exist.")
 		return
 	else
 		..()
 
+//Shoes
 /obj/item/clothing/shoes/black/bst
 	name = "bluespace technician's shoes"
 	desc = "A pair of black shoes with extra grip. The letters 'BST' are stamped on the side."
 	icon_state = "black"
 	item_flags = NOSLIP
-	canremove = FALSE
+	canremove = 0
 
 /obj/item/clothing/shoes/black/bst/attack_hand()
 	if(!usr)
 		return
-	if(!isbst(usr))
+	if(!istype(usr, /mob/living/carbon/human/bst))
 		usr << span("alert", "Your hand seems to go right through the [src]. It's like it doesn't exist.")
 		return
 	else
 		..()
 
-	return TRUE //Because Bluespace
+	return 1 //Because Bluespace
 
+//ID
 /obj/item/weapon/card/id/bst
 	icon_state = "centcom"
 	desc = "An ID straight from Central Command. This one looks highly classified."
-
-/obj/item/weapon/card/id/bst/New()
+//	canremove = 0
+	New()
 		access = get_all_accesses()+get_all_centcom_access()+get_all_syndicate_access()
 
 /obj/item/weapon/card/id/bst/attack_hand()
 	if(!usr)
 		return
-	if(!isbst(usr))
+	if(!istype(usr, /mob/living/carbon/human/bst))
 		usr << span("alert", "Your hand seems to go right through the [src]. It's like it doesn't exist.")
 		return
 	else
 		..()
 
 /obj/item/weapon/storage/belt/utility/full/bst
-	canremove = FALSE
+	canremove = 0
 
 /obj/item/weapon/storage/belt/utility/full/bst/New()
-	..()
+	..() //Full set of tools
 	new /obj/item/weapon/tool/multitool(src)
 
 /mob/living/carbon/human/bst/restrained()
-	return FALSE
+	return 0
 
 //TODO: Refactor zmove to check incorpmove so bsts don't need an override
 /mob/living/carbon/human/bst/zMove(direction)
