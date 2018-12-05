@@ -1,5 +1,9 @@
 #define OVERLAY_CACHE_LEN 50
 
+/*
+	A T-Ray scanner is a complicated thing which allows users to see underfloor pipes, wires and burrows
+*/
+
 /obj/item/device/t_scanner
 	name = "\improper T-ray scanner"
 	desc = "A terahertz-ray emitter and scanner used to detect underfloor objects such as cables and pipes."
@@ -10,45 +14,213 @@
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
 
+
+	//Scan range can be changed, and the power costs scale up with it
 	var/scan_range = 1
 
-	var/on = 0
+	//TODO: Make devices have cell support as an inherent behaviour
+	var/obj/item/weapon/cell/cell = null
+	var/suitable_cell = /obj/item/weapon/cell/small
+	var/active_power_usage = 20 //Watts
+
+	var/turn_on_sound = 'sound/effects/Custom_flashlight.ogg'
+
+	/*Enabled and active are seperate things.
+	Enabled determines the power status. Is the scanner turned on or not?
+	The scanner is enabled as long as it has power, and the power switch is turned on. While enabled it will use power
+	*/
+	var/enabled = 0
+
+	/*
+		Active determines if the scanner is actually working in a technical sense.
+		The scanner is active when it's enabled, and is held in the hand of a player who is connected.
+		IE: Has a client
+		A scanner can be enabled but not active, like if its turned on but left on a table
+
+		To be active it must be enabled
+	*/
+	var/active
+
 	var/list/active_scanned = list() //assoc list of objects being scanned, mapped to their overlay
 	var/client/user_client //since making sure overlays are properly added and removed is pretty important, so we track the current user explicitly
-	var/flicker = 0
+
 
 	var/global/list/overlay_cache = list() //cache recent overlays
+	var/datum/event_source //When listening for movement, this is the source we're listening to
+	var/mob/current_user //The last mob who interacted with us. We'll try to fetch the client from them
 
 /obj/item/device/t_scanner/update_icon()
-	icon_state = "t-ray[on]"
+	icon_state = "t-ray[enabled]"
 
 /obj/item/device/t_scanner/attack_self(mob/user)
-	set_active(!on)
+	set_user(user)
+	ui_interact(user)
+	//set_enabled(!enabled)
 
-/obj/item/device/t_scanner/proc/set_active(var/active)
-	on = active
-	if(on)
+//Alt click provides a rapid way to turn it on and off
+/obj/item/device/t_scanner/AltClick(var/mob/M)
+	if (loc == M)
+		set_enabled(!enabled)
+
+/obj/item/device/t_scanner/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+	// this is the data which will be sent to the ui
+	var/data[0]
+	data["enabled"] = enabled ? 1 : 0
+	get_power_cost()
+	data["wattage"] = (get_power_cost()/CELLRATE)
+	data["lifeTime"] = get_lifetime()
+	data["cellPercent"] = cell ? round(cell.percent(),0.1) : SPAN_DANGER("---")
+	data["powerSetting"] = scan_range
+
+	// update the ui if it exists, returns null if no ui is passed/found
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if(!ui)
+		// the ui does not exist, so we'll create a new() one
+        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		ui = new(user, src, ui_key, "t_ray.tmpl", "Terahertz Ray Emitter", 440, 300)
+		// when the ui is first opened this is the data it will use
+		ui.set_initial_data(data)
+		// open the new ui window
+		ui.open()
+		// auto update every Master Controller tick
+		ui.set_auto_update(1)
+
+/obj/item/device/t_scanner/Topic(href, href_list)
+	if(..())
+		return 1
+	if(href_list["toggleStatus"])
+		set_enabled(!enabled)
+	if(href_list["setPower"]) //setting power to 0 is redundant anyways
+		var/new_setting = between(1, text2num(href_list["setPower"]), 7)
+		scan_range = new_setting
+		update_overlay()
+	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
+	add_fingerprint(usr)
+
+
+/obj/item/device/t_scanner/New()
+	.=..()
+	cell = new suitable_cell(src)
+
+
+/obj/item/device/t_scanner/examine(var/mob/user)
+	.=..()
+	if (cell)
+		user << SPAN_NOTICE("The power meter reads [round(cell.percent(),0.1)]%")
+	else
+		user << SPAN_WARNING("No power cell is installed and it can't function!")
+
+/obj/item/device/t_scanner/proc/set_enabled(var/targetstate)
+	//Check power here#
+	if (targetstate == FALSE && enabled)
+		playsound(src.loc, turn_on_sound, 75, 1)
+	enabled = FALSE
+	if (targetstate == TRUE)
+		if(cell && cell.checked_use(active_power_usage*(scan_range+2)*CELLRATE))
+			enabled = TRUE
+			playsound(src.loc, turn_on_sound, 75, 1)
+
+	if (enabled)
 		START_PROCESSING(SSobj, src)
-		flicker = 0
 	else
 		STOP_PROCESSING(SSobj, src)
-		set_user_client(null)
+	check_active(enabled)
 	update_icon()
 
-//If reset is set, then assume the client has none of our overlays, otherwise we only send new overlays.
+/obj/item/device/t_scanner/proc/check_active(var/targetstate = TRUE)
+	//First of all, check if its being turned off. This is simpler
+	if (!targetstate)
+		if (!active)
+			//If we were just turned off, but we were already inactive, then we don't need to do anything
+			return
+
+		//We were active, ok lets shut down things
+		set_inactive()
+	else
+		//We're trying to become active, alright lets do some checks
+		//We'll do these checks even if we're already active, they ensure we can remain so
+		var/can_activate = TRUE
+
+		//First we must be enabled
+		if (!enabled)
+			can_activate = FALSE
+
+		//Secondly, we must be held in someone's hands
+		else if (!check_location())
+			can_activate = FALSE
+
+		//Thirdly, we need a client to display to
+		else if (!user_client)
+			//The client may not be set if the user logged out and in again
+			set_client() //Try re-setting it
+			if (!user_client)
+				can_activate = FALSE
+
+		if (!can_activate)
+			//We failed the above, what now
+			if (active)
+				set_inactive()
+
+			return
+
+		else
+			if (!active)
+				set_active()
+
+
+
+//Handles shutdown and cleanup
+/obj/item/device/t_scanner/proc/set_inactive()
+	unset_client(null)
+	active = FALSE
+
+
+/obj/item/device/t_scanner/proc/set_active()
+	event_source = get_track_target()
+	GLOB.moved_event.register(event_source, src, /obj/item/device/t_scanner/proc/update_overlay)
+	active = TRUE
+	update_overlay()
+
+
+/obj/item/device/t_scanner/proc/check_location()
+	//This proc checks that the scanner is where it needs to be.
+	//In this case, this means it must be held in the hands of a mob
+
+	//This is a seperate proc so that it can be overridden later. For example to allow for scanners embedded in other things
+	if (!istype(loc, /mob))
+		return FALSE
+
+	if (!is_held())
+		return FALSE
+
+	return TRUE
+
+
+//Find the object whose movement we will track
+//Like the above, this is a seperate proc so it can be overridden
+/obj/item/device/t_scanner/proc/get_track_target()
+	return current_user
+
+
 /obj/item/device/t_scanner/Process()
-	if(!on) return
+	if(enabled)
+		if(!cell || !cell.checked_use(get_power_cost()))
+			set_enabled(FALSE)
+			return //Ran out of power
 
-	//handle clients changing
-	var/client/loc_client = null
-	if(ismob(src.loc))
-		var/mob/M = src.loc
-		loc_client = M.client
-	set_user_client(loc_client)
 
-	//no sense processing if no-one is going to see it.
-	if(!user_client) return
 
+
+//Returns an estimate of how long the scanner will run on its current remaining battery
+/obj/item/device/t_scanner/proc/get_lifetime()
+	if (!cell || !cell.charge)
+		return "00:00"
+
+	var/numseconds = cell.charge / get_power_cost()
+	return time2text(numseconds*10, "mm:ss") //time2text takes deciseconds, so the amounts are tenfold
+
+
+/obj/item/device/t_scanner/proc/update_overlay()
 	//get all objects in scan range
 	var/list/scanned = get_scanned_objects(scan_range)
 	var/list/update_add = scanned - active_scanned
@@ -56,7 +228,9 @@
 
 	//Add new overlays
 	for(var/obj/O in update_add)
-		var/image/overlay = get_overlay(O)
+		var/mutable_appearance/overlay = get_overlay(O)
+		//var/image/overlay = get_overlay(O)
+
 		active_scanned[O] = overlay
 		user_client.images += overlay
 
@@ -65,14 +239,7 @@
 		user_client.images -= active_scanned[O]
 		active_scanned -= O
 
-	//Flicker effect
-	for(var/obj/O in active_scanned)
-		var/image/overlay = active_scanned[O]
-		if(flicker)
-			overlay.alpha = 0
-		else
-			overlay.alpha = 128
-	flicker = !flicker
+
 
 //creates a new overlay for a scanned object
 /obj/item/device/t_scanner/proc/get_overlay(obj/scanned)
@@ -81,6 +248,7 @@
 	if(scanned in overlay_cache)
 		. = overlay_cache[scanned]
 	else
+		/*
 		var/image/I = image(loc = scanned, icon = scanned.icon, icon_state = scanned.icon_state, layer = ABOVE_HUD_LAYER)
 		I.plane = ABOVE_HUD_PLANE
 
@@ -93,6 +261,24 @@
 		I.alpha = 128
 		I.mouse_opacity = 0
 		. = I
+		*/
+
+		/*
+		var/mutable_appearance/MA = new(scanned)
+		MA.appearance_flags = KEEP_APART | RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
+		MA.plane = GAME_PLANE
+		MA.layer = ABOVE_HUD_LAYER
+		MA.alpha = 128
+		.=MA
+		*/
+
+
+		var/image/I = image(loc = scanned, icon = getFlatIcon(scanned))
+		I.plane = GAME_PLANE
+		I.layer = ABOVE_HUD_LAYER
+		I.mouse_opacity = 0
+		I.alpha = 128
+		.=I
 
 	// Add it to cache, cutting old entries if the list is too long
 	overlay_cache[scanned] = .
@@ -106,31 +292,84 @@
 	if(!center) return
 
 	for(var/turf/T in trange(scan_range, center))
-		if(!!T.is_plating())
-			continue
-
 		for(var/obj/O in T.contents)
 			if(O.level != 1)
 				continue
-			if(!O.invisibility)
+			if(!O.invisibility && !O.hides_under_flooring())
 				continue //if it's already visible don't need an overlay for it
 			. += O
 
-/obj/item/device/t_scanner/proc/set_user_client(var/client/new_client)
-	if(new_client == user_client)
-		return
+//Called in any situation where the user might change
+/obj/item/device/t_scanner/proc/set_user(var/mob/living/newuser)
+	if (current_user == newuser)
+		return //Do nothing
+
+	//If there's an existing user we may need to unregister them first
+	if (current_user)
+		unset_client()
+
+	//Actually set it
+	current_user = newuser
+	set_client()
+	event_source = get_track_target()
+	check_active()
+
+
+/obj/item/device/t_scanner/proc/set_client()
+	if (!current_user || !current_user.client)
+		return FALSE
+
+	user_client = current_user.client
+
+
+	for(var/scanned in active_scanned)
+		user_client += active_scanned[scanned]
+
+
+
+/obj/item/device/t_scanner/proc/unset_client()
+	if (event_source)
+		GLOB.moved_event.unregister(event_source, src)
+		event_source = null
 	if(user_client)
 		for(var/scanned in active_scanned)
 			user_client.images -= active_scanned[scanned]
-	if(new_client)
-		for(var/scanned in active_scanned)
-			new_client.images += active_scanned[scanned]
-	else
-		active_scanned.Cut()
 
-	user_client = new_client
+	user_client = null
+	active_scanned.Cut()
 
+
+
+
+//Whenever the scanner is equipped to a slot or dropped on the ground or deleted, set the user appropriately
 /obj/item/device/t_scanner/dropped(mob/user)
-	set_user_client(null)
+	.=..()
+	set_user(null)
 
+/obj/item/device/t_scanner/equipped(mob/M)
+	.=..()
+	set_user(M)
+
+/obj/item/device/t_scanner/Destroy()
+	set_user(null)
+	.=..()
 #undef OVERLAY_CACHE_LEN
+
+//Device procs
+
+//This stuff shouldn't be limited to this, but should be basic device behaviour
+
+//How much power we use when enabled. Based on scan range
+/obj/item/device/t_scanner/proc/get_power_cost()
+
+	return active_power_usage*(2+scan_range)*CELLRATE
+
+/obj/item/device/t_scanner/MouseDrop(over_object)
+	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
+		cell = null
+	else
+		return ..()
+
+/obj/item/device/t_scanner/attackby(obj/item/C, mob/living/user)
+	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
+		src.cell = C
