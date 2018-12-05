@@ -39,4 +39,11 @@
 		list(CRAFT_MATERIAL, 1, MATERIAL_WOOD)
 	)
 
+/datum/craft_recipe/floor/grille
+	name = "regular grille"
+	result = /obj/structure/grille
+	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
+	steps = list(
+		list(/obj/item/stack/rods, 2, "time" = 10)
+	)
 
