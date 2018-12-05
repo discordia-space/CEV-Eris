@@ -40,8 +40,9 @@
  */
 /obj/item/clothing/proc/attach_accessory(mob/user, obj/item/clothing/accessory/A)
 	accessories += A
-	src.verbs |= /obj/item/clothing/proc/removetie_verb
 	A.on_attached(src, user)
+	src.verbs |= /obj/item/clothing/proc/removetie_verb
+	src.update_wear_icon()
 	
 /obj/item/clothing/attack_hand(var/mob/user)
 	//only forward to the attached accessory if the clothing is equipped (not in a storage)

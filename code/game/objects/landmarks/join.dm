@@ -1,5 +1,5 @@
 GLOBAL_LIST_EMPTY(late_spawntypes)
-GLOBAL_LIST_EMPTY(roundstart_spawntypes)
+GLOBAL_LIST_EMPTY(spawntypes)
 /obj/landmark/join
 	delete_me = FALSE
 	var/join_tag = "latejoin"
@@ -19,7 +19,7 @@ GLOBAL_LIST_EMPTY(roundstart_spawntypes)
 
 /obj/landmark/join/late/New()
 	if(join_tag)
-		var/datum/spawnpoint/SP = getSpawnPoint(name, "late")
+		var/datum/spawnpoint/SP = getSpawnPoint(name, late = TRUE, silenced = TRUE)
 		if (!SP)
 			SP = createSpawnPoint(name, "late")
 			SP.turfs += src.loc
@@ -61,18 +61,13 @@ GLOBAL_LIST_EMPTY(roundstart_spawntypes)
 
 /obj/landmark/join/start/New()
 	if(join_tag)
-		var/datum/spawnpoint/SP = getSpawnPoint(name, "roundstart", silensed = TRUE)
+		var/datum/spawnpoint/SP = getSpawnPoint(name, silenced = TRUE)
 		if (!SP)
 			SP = createSpawnPoint(name, "roundstart")
 			SP.turfs += src.loc
 			SP.display_name = name
 		else
 			SP.turfs += src.loc
-		GLOB.roundstart_spawntypes[name] = SP
+		GLOB.spawntypes[name] = SP
 		join_tag = null
 	..()
-
-/obj/landmark/join/start/triai
-	icon_state = "ai-green"
-	name = "tripai"
-	join_tag = "tripai"

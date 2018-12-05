@@ -92,7 +92,7 @@
 				new_location = sloc
 		if (!new_location)
 			O << "Oh god sorry we can't find an unoccupied AI spawn location, so we're spawning you on top of someone."
-			new_location = pickSpawnLocation(/datum/job/ai, FALSE)
+			new_location = pickSpawnLocation(/datum/job/ai)
 
 		O.forceMove(new_location)
 

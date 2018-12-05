@@ -242,7 +242,7 @@
 	var/mob/living/character = create_character()	//creates the human and transfers vars and mind
 	
 	// AIs don't need a spawnpoint, they must spawn at an empty core
-	if(character.mind.assigned_role == "AI")
+	if(rank == "AI")
 
 		character = character.AIize(move=0) // AIize the character, but don't move them yet
 		SSticker.minds += character.mind

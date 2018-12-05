@@ -3,58 +3,53 @@
 		error("\"late_spawntypes\" list is empty.")
 	return GLOB.late_spawntypes
 
-/proc/getSpawnPoint(name, type = "late", silenced = FALSE)
+/proc/getSpawnPoint(name, late = FALSE, silenced = FALSE)
 	ASSERT(name)
 	var/error = FALSE
-	switch(type)
-		if("late")
-			if(GLOB.late_spawntypes[name])	
-				return GLOB.late_spawntypes[name]
-			else
-				error = TRUE
-		if("roundstart")
-			if(GLOB.roundstart_spawntypes[name])	
-				return GLOB.roundstart_spawntypes[name]
-			else
-				error = TRUE
+	if(late)
+		if(GLOB.late_spawntypes[name])	
+			return GLOB.late_spawntypes[name]
+		else
+			error = TRUE
+	if(GLOB.spawntypes[name])	
+		return GLOB.spawntypes[name]
+	else
+		error = TRUE
 	if(error && !silenced)
 		error("Trying to get non existing spawnpoint with name \"[name]\".")
 	return null
 	
 
-/proc/createSpawnPoint(name, type = "late")
+/proc/createSpawnPoint(name, late = FALSE)
 	ASSERT(name)
 	var/error = FALSE
 	var/datum/spawnpoint/SP
-	switch(type)
-		if("late")
-			if(GLOB.late_spawntypes[name])
-				error = TRUE
-			else
-				SP = new(name)
-				GLOB.late_spawntypes[name] = SP
-		if("roundstart")
-			if(GLOB.roundstart_spawntypes[name])
-				error = TRUE
-			else
-				SP = new(name)
-				GLOB.roundstart_spawntypes[name] = SP
+	if(late)
+		if(GLOB.late_spawntypes[name])
+			error = TRUE
 		else
-			error("Unexpected spawnpoint type in \"/proc/createSpawnPoint.\"")
+			SP = new(name)
+			GLOB.late_spawntypes[name] = SP
+	else
+		if(GLOB.spawntypes[name])
+			error = TRUE
+		else
+			SP = new(name)
+			GLOB.spawntypes[name] = SP
 	if(error)
 		error("Trying to create existing spawnpoint.")
 	return SP
 
-/proc/getSpawnLocations(name = "late_cryo", free_only = TRUE, type = "late")
-	var/datum/spawnpoint/SP = getSpawnPoint(name, type)
+/proc/getSpawnLocations(name = "late_cryo", free_only = TRUE, late = FALSE)
+	var/datum/spawnpoint/SP = getSpawnPoint(name, late)
 	if (SP)
 		if(free_only)
 			return SP.getFreeTurfs()
 		else
 			return SP.turfs
 
-/proc/pickSpawnLocation(name, free_only = TRUE, type = "late")
-	var/list/locations = getSpawnLocations(name, free_only, type)
+/proc/pickSpawnLocation(name, free_only = TRUE, late = FALSE)
+	var/list/locations = getSpawnLocations(name, free_only, late)
 	return safepick(locations)
 
 /datum/spawnpoint

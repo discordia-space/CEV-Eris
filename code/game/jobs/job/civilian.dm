@@ -95,15 +95,6 @@
 		STAT_ROB = 20,
 	)
 
-	
-	/*TODO: DEL THIS
-	backpacks = list(
-		/obj/item/weapon/storage/backpack/clown,\
-		/obj/item/weapon/storage/backpack/satchel/norm,\
-		/obj/item/weapon/storage/backpack/satchel
-		)
-	*/
-
 /obj/landmark/join/start/actor
 	name = "Actor"
 	icon_state = "player-grey"

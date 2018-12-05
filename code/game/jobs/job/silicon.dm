@@ -24,8 +24,8 @@
 
 /obj/landmark/join/start/triai
 	icon_state = "ai-green"
-	name = "tripai"
-	join_tag = "tripai"
+	name = "triai"
+	join_tag = "triai"
 
 
 /datum/job/cyborg

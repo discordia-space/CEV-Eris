@@ -36,7 +36,8 @@
 
 /decl/hierarchy/outfit/job/medical/chemist/New()
 	..()
-	BACKPACK_OVERRIDE_VIROLOGY
+	//backpack_overrides[/decl/backpack_outfit/backpack]      = /obj/item/weapon/storage/backpack/chemistry;
+	//backpack_overrides[/decl/backpack_outfit/satchel]       = /obj/item/weapon/storage/backpack/satchel/chem;
 
 /decl/hierarchy/outfit/job/medical/psychiatrist
 	name = OUTFIT_JOB_NAME("Moebius Psychiatrist")

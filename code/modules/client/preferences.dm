@@ -107,7 +107,7 @@
 		if(config.forumurl)
 			user << link(config.forumurl)
 		else
-			to_chat(user, "<span class='danger'>The forum URL is not set in the server configuration.</span>")
+			user << SPAN_DANGER("The forum URL is not set in the server configuration.")
 			return
 	ShowChoices(usr)
 	return 1
