@@ -530,9 +530,7 @@
 		wearer.update_inv_shoes()
 		wearer.update_inv_gloves()
 		wearer.update_inv_head()
-		wearer.update_inv_wear_mask()
 		wearer.update_inv_wear_suit()
-		wearer.update_inv_w_uniform()
 		wearer.update_inv_back()
 	return
 
