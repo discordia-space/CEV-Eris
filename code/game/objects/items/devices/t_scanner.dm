@@ -104,8 +104,10 @@
 		MA.plane = GAME_PLANE
 		MA.layer = ABOVE_HUD_LAYER
 		MA.alpha = 128
+
 		var/image/I = image(loc = scanned)
 		I.appearance = MA
+		I.mouse_opacity = 0
 		.=I
 
 	// Add it to cache, cutting old entries if the list is too long
