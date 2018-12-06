@@ -20,3 +20,7 @@
 #define SMOOTH_WHITELIST 2	//Smooth with a whitelist of subtypes
 #define SMOOTH_BLACKLIST 3 //Smooth with all but a blacklist of subtypes
 #define SMOOTH_GREYLIST 4 // Use a whitelist and a blacklist at the same time. atom smoothing only
+
+
+#define DECK_HEIGHT 3	//3 metres in vertical height between decks
+//Note that the height of a turf's airspace is defined elsewhere as 2.5 metres, this adds extra to account for floor thickness

@@ -8,7 +8,7 @@
 				/mob/living/carbon/superior_animal/roach/tank = 2,
 				/mob/living/carbon/superior_animal/roach/hunter = 4,
 				/mob/living/carbon/superior_animal/roach/support = 4,
-				/mob/living/carbon/superior_animal/roach/fuhrer = 0.75))
+				/mob/living/carbon/superior_animal/roach/fuhrer = 0.5))
 
 /obj/random/mob/roaches/low_chance
 	name = "low chance random roach"
@@ -21,7 +21,7 @@
 	alpha = 128
 	min_amount = 3
 	max_amount = 9
-	spread_range = 1
+	spread_range = 0
 
 /obj/random/cluster/roaches/item_to_spawn()
 	return /obj/random/mob/roaches

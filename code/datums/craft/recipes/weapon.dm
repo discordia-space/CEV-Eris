@@ -121,3 +121,15 @@
 		list(QUALITY_SCREW_DRIVING, 10, 70),
 		list(/obj/item/device/assembly/igniter, 1),
 	)
+
+/datum/craft_recipe/weapon/rxd
+	name = "RXD - Rapid Crossbow Device"
+	result = /obj/item/weapon/gun/launcher/crossbow/RCD
+	steps = list(
+		list(/obj/item/weapon/rcd, 1, "time" = 30),
+		list(QUALITY_SCREW_DRIVING, 10, 30),
+		list(QUALITY_SAWING, 10, "time" = 60),
+		list(/obj/item/weapon/crossbowframe, 1, "time" = 20),
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(/obj/item/stack/cable_coil, 2, "time" = 10)
+	)

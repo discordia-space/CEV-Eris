@@ -26,7 +26,7 @@
 
 /datum/storyevent/roleset/inquisitor/get_special_weight(var/new_weight)
 	var/c_count = 0
-	for(var/mob/M in christians)
+	for(var/mob/M in disciples)
 		if(M.client &&  M.stat != DEAD && ishuman(M))
 			c_count++
 

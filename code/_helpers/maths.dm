@@ -138,3 +138,17 @@
 
 /proc/rand_between(var/lower, var/upper)
 	return (rand() * (upper - lower)) + lower
+
+
+/proc/dist3D(var/atom/A, var/atom/B)
+	var/turf/a = get_turf(A)
+	var/turf/b = get_turf(B)
+
+	if (!a || !b)
+		return 0
+
+	var/vecX = A.x - B.x
+	var/vecY = A.y - B.y
+	var/vecZ = (A.y - B.y)*DECK_HEIGHT
+
+	return abs(sqrt((vecX*vecX) + (vecY*vecY) +(vecZ*vecZ)))

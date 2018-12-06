@@ -1143,7 +1143,7 @@
 	equip_cooldown = 5
 	energy_drain = 50
 	var/wait = 0
-	var/datum/effect/effect/system/ion_trail_follow/ion_trail
+	var/datum/effect/effect/system/trail/ion/trail
 
 
 	can_attach(obj/mecha/M as obj)
@@ -1152,9 +1152,9 @@
 
 	attach(obj/mecha/M as obj)
 		..()
-		if(!ion_trail)
-			ion_trail = new
-		ion_trail.set_up(chassis)
+		if(!trail)
+			trail = new /datum/effect/effect/system/trail/ion()
+		trail.set_up(chassis)
 		return
 
 	proc/toggle()
@@ -1165,13 +1165,13 @@
 
 	proc/turn_on()
 		set_ready_state(0)
-		ion_trail.start()
+		trail.start()
 		occupant_message("Activated")
 		log_message("Activated")
 
 	proc/turn_off()
 		set_ready_state(1)
-		ion_trail.stop()
+		trail.stop()
 		occupant_message("Deactivated")
 		log_message("Deactivated")
 

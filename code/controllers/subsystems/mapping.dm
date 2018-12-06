@@ -33,7 +33,6 @@ SUBSYSTEM_DEF(mapping)
 
 	return ..()
 
-/datum/controller/subsystem/mapping/proc/spawn_burrows()
 
 /datum/controller/subsystem/mapping/proc/build_overmap()
 	testing("Building overmap...")

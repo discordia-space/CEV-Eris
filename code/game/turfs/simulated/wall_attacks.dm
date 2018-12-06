@@ -148,6 +148,7 @@
 			if(damage)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user << SPAN_NOTICE("You repair the damage to [src].")
+					clear_bulletholes()
 					take_damage(-damage)
 					return
 			if(isnull(construction_stage) || !reinf_material)

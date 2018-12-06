@@ -121,6 +121,17 @@ var/list/long_equipement_sound = list(
 	'sound/misc/inventory/long_3.ogg'
 )
 
+//Sounds of earth, rock and stone
+var/list/crumble_sound = list('sound/effects/crumble1.ogg',\
+'sound/effects/crumble2.ogg',\
+'sound/effects/crumble3.ogg',\
+'sound/effects/crumble4.ogg',\
+'sound/effects/crumble5.ogg')
+
+//Heavy impact sounds, like a hammer or hard strike
+var/list/thud_sound = list('sound/effects/impacts/thud1.ogg',\
+'sound/effects/impacts/thud2.ogg',\
+'sound/effects/impacts/thud3.ogg')
 
 var/list/footstep_asteroid = list(\
 		'sound/effects/footstep/asteroid1.ogg',\
@@ -213,6 +224,7 @@ var/list/footstep_wood = list(\
 			toplay = pick(footstep_tile)
 		if ("wood")
 			toplay = pick(footstep_wood)
+
 
 	return toplay
 
@@ -356,6 +368,10 @@ var/const/FALLOFF_SOUNDS = 0.5
 			if ("ric_sound") soundin = pick(ric_sound)
 			if ("casing_sound") soundin = pick(casing_sound)
 			if ("hitobject") soundin = pick(bullet_hit_object_sound)
+			if ("climb")soundin = pick(climb_sound)
+			if ("catwalk")soundin = pick(footstep_catwalk)
+			if ("crumble") soundin = pick(crumble_sound)
+			if ("thud") soundin = pick(thud_sound)
 			//if ("gunshot") soundin = pick(gun_sound)
 	return soundin
 

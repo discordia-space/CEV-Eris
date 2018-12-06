@@ -10,7 +10,8 @@
 	plane = FLOOR_PLANE
 	icon = 'icons/obj/burrows.dmi'
 	icon_state = "hole"
-	//layer = LOW_OBJ_LAYER
+	level = 1 //Apparently this is a magic constant for things to appear under floors. Should really be a define
+	layer = ABOVE_NORMAL_TURF_LAYER
 
 	//Integrity is used when attempting to collapse this hole. It is a multiplier on the time taken and failure rate
 	//Any failed attempt to collapse it will reduce the integrity, making future attempts easier
@@ -36,13 +37,22 @@
 	var/completion_time //Time that the mobs will actually arrive at the target
 	var/duration
 
+	var/datum/seed/plant = null //Seed datum of the plant that spreads from here, if any
+	var/list/plantspread_burrows = list()
+	/*A list of burrow references. Either ones that we sent plants to,or one that sent plants to us.
+	As long as any burrow in this list still exists, our plants will keep regrowing,
+	and we cannot send plants to any other burrow.
+	If every burrow in this list is destroyed, we will send our plants somewhere new, if we still have them
+	*/
+
 	//Animation
 	var/max_shake_intensity = 20
+
+	var/reinforcements = 2 //Maximum number of times this burrow may recieve reinforcements
 
 /obj/structure/burrow/New(var/loc, var/turf/anchor)
 	.=..()
 	all_burrows.Add(src)
-	world << "Burrow created at [jumplink(loc)] using anchor [jumplink(anchor)]"
 	if (anchor)
 		offset_to(anchor, 8)
 
@@ -53,6 +63,10 @@
 	if (istype(F))
 		F.levelupdate()
 
+	var/area/A = get_area(src)
+	if (A && A.is_maintenance)
+		maintenance = TRUE
+
 
 
 //This is called from the migration subsystem. It scans for nearby creatures
@@ -60,7 +74,6 @@
 /obj/structure/burrow/proc/life_scan()
 	population.Cut()
 	for (var/mob/living/L in dview(14, loc))
-		//world << "Burrow found [L], checking validity"
 		if (is_valid(L))
 			population |= "\ref[L]"
 
@@ -87,6 +100,9 @@
 	if (L.client)
 		return FALSE
 
+	//Type must be designated eligible for burrowing
+	if (!L.can_burrow)
+		return FALSE
 
 	//Creatures only. No humans or robots
 	if (!isanimal(L) && !issuperioranimal(L))
@@ -103,7 +119,17 @@
 */
 
 
-//Starts the process of sending mobs from one burrow to another
+/*
+Starts the process of sending mobs from one burrow to another
+_target is the burrow we will send our mobs to,
+time, is how long, in deciseconds, we will wait before putting them into the target.
+	During this time, we will suck up nearby mobs into this burrow, and at the end of the time only those inside
+	the burrow are sent
+percentage is a value in the range 0..1 that determines what portion of this mob's population to send.
+	It is possible for percentage to be zero, this is used by the infestation event.
+	Passing a percentage of zero is a special case, this burrow will not suck up any mobs.
+	The mobs it is to send should be placed inside it by the caller
+*/
 /obj/structure/burrow/proc/migrate_to(var/obj/structure/burrow/_target, var/time = 0, var/percentage = 1)
 	if (!_target)
 		return
@@ -117,7 +143,6 @@
 	if (!processing)
 		START_PROCESSING(SSobj, src)
 
-	world << "About to start migration from [jumplink(src)] to [jumplink(target)]"
 
 	//The time we started. Used for animations
 	migration_initiated = world.time
@@ -127,7 +152,15 @@
 	//When the completion time is reached, the mobs we're sending will emerge from the destination hole
 	completion_time = migration_initiated + duration
 
-	summon_mobs(percentage)
+
+	if (percentage != 0)
+		summon_mobs(percentage)
+	else
+		//Special case, mobs have already spawned inside us by infestation event or somesuch
+		//add all the mobs in our contents to the sending mobs list
+		sending_mobs = list()
+		for (var/mob/M in contents)
+			sending_mobs.Add(M)
 
 	target.prepare_reception(migration_initiated, duration, src)
 
@@ -190,8 +223,11 @@
 				sending_mobs -= L
 				continue
 
-			if (L.loc == src)
-				//Its already inside
+			if (!istype(L.loc, /turf))
+				//Its already inside, this burrow or another one
+				if (L.loc != src)
+					//If it went inside another burrow its no longer our problem
+					sending_mobs -= L
 				continue
 
 
@@ -202,13 +238,14 @@
 			//If its near enough, swallow it
 			if (get_dist(L, src) <= 1)
 				enter_burrow(L)
+				return //One mob enters per second
 
 			else if (progress > 0.5)
 				//If the mob has spent more than half the time, it must be unable to reach.
 				//Increase the suck range
 				if (get_dist(L, src) <= 2)
 					enter_burrow(L)
-
+					return //One mob enters per second
 
 
 		if (progress >= 1)
@@ -217,8 +254,11 @@
 
 	//Processing on the recieving end is done to make sounds and visual FX
 	else if (recieving)
-		//Do a shake animation each second that gets more intense the closer we are to emergence
+		//Do audio, but not every second
+		if (prob(45))
+			audio("crumble", progress*100)
 
+		//Do a shake animation each second that gets more intense the closer we are to emergence
 		if (invisibility)
 			var/turf/simulated/floor/F = loc
 			if (istype(F) && F.flooring)
@@ -226,6 +266,8 @@
 
 				//If the current flooring is a plating, we shake that
 				if (!F.flooring.is_plating)
+					if (prob(25)) //Occasional impact sound of something trying to force its way through
+						audio("thud", progress*100)
 					F.shake_animation(progress * max_shake_intensity)
 					return
 		shake_animation(progress * max_shake_intensity)
@@ -256,14 +298,22 @@
 		//If we're the burrow recieving the migration, then the above code will have put lots of mobs inside us. Lets move them out into surrounding turfs
 		//First, make sure we clear the destination area
 		break_open()
-		world << "About to disgorge mobs [jumplink(src)]"
 
+		audio("crumble", 120) //And a loud sound as mobs emerge
 		//Next get a list of floors to move them to
 		var/list/floors = list()
 		for (var/turf/simulated/floor/F in dview(2, loc))
+			if (F.is_wall)
+				continue
+
+			if (turf_is_external(F))
+				continue
+
+			if (!turf_clear(F))
+				continue
+
 			floors.Add(F)
 
-		world << "Got [floors.len] floors"
 		if (floors.len > 0)
 
 			//We'll move all the mobs briefly onto our own turf, then shortly after, onto a surrounding one
@@ -273,8 +323,9 @@
 					var/turf/T = pick(floors)
 					M.forceMove(T)
 
-					//Emerging from a burrow will sometimes create rubble and mess
-					spawn_rubble(loc, 2, 30)
+					//Emerging from a burrow will create rubble and mess
+					if(spawn_rubble(loc, 2, 80))
+						spawn_rubble(loc, 3, 30)
 
 
 	//Lets reset all these vars that we used during migration
@@ -309,7 +360,6 @@
 
 //Called when an area becomes uninhabitable
 /obj/structure/burrow/proc/evacuate(var/force_nonmaint = TRUE)
-	world << "Burrow [jumplink(src)] calling evacuate"
 	//We're already busy sending or recieving a migration, can't start another
 	if (target || recieving)
 		return
@@ -327,7 +377,22 @@
 				return
 
 
-		migrate_to(btarget, 5 SECONDS, 1)
+		migrate_to(btarget, 10 SECONDS, 1)
+
+
+/obj/structure/burrow/proc/distress(var/immediate = FALSE)
+	//This burrow requests reinforcements from elsewhere
+	if (reinforcements <= 0)
+		return
+
+	distressed_burrows |= src //Add ourselves to a global list.
+	//The migration subsystem will look at it and send things.
+	//It may take up to 30 seconds to tick and notice our request
+
+	if (immediate)
+		//Alternatively, we can demand things be sent right now
+		spawn()
+			SSmigration.handle_distress_calls()
 
 /***********************************
 	Breaking and rubble
@@ -343,7 +408,11 @@
 
 		//If the current flooring isnt a plating, then it must be an overfloor, tiles, soil, whatever
 		if (!F.flooring.is_plating)
+			//Play a sound
+			audio('sound/effects/impacts/thud_break.ogg', 100)
 			F.ex_act(3)//Destroy the flooring
+			if (!F.flooring.is_plating) //If it survived hit it again
+				F.ex_act(3)
 			spawn_rubble(loc, 1, 100)//And make some rubble
 
 		//Smash any catwalks blocking us
@@ -360,7 +429,13 @@
 	return TRUE
 
 
+/obj/structure/burrow/proc/exposed()
+	var/turf/simulated/floor/F = loc
+	if (istype(F) && F.flooring)
+		if (!F.flooring.is_plating)
+			return FALSE
 
+	return TRUE
 
 /*****************************************************
 	Collapsing burrows. Slow and hard work, but failure will make the next attempt easier,
@@ -371,25 +446,43 @@
 	advised to use proper mining tools. A pickaxe or a drill will do the job in a reasonable time
 *****************************************************/
 /obj/structure/burrow/attackby(obj/item/I, mob/user)
+	if (!exposed())
+		user << SPAN_WARNING("You have to remove the floor to access the [src]!")
+		return
+
 	if (I.has_quality(QUALITY_DIGGING))
 		user.visible_message("[user] starts breaking and collapsing [src] with the [I]", "You start breaking and collapsing [src] with the [I]")
+
+		//Attempting to collapse a burrow may trigger reinforcements.
+		//Not immediate so they will take some time to arrive.
+		//Enough time to finish one attempt at breaking the burrow.
+		//If you succeed, then the reinforcements won't come
+		if (prob(5))
+			distress()
 
 		//We record the time to prevent exploits of starting and quickly cancelling
 		var/start = world.time
 		var/target_time = WORKTIME_FAST+ 2*integrity
 
-		if (I.use_tool(user, src, target_time, QUALITY_DIGGING, 1.5*integrity, list(STAT_SUM, STAT_MEC, STAT_ROB), forced_sound = WORKSOUND_PICKAXE))
+		if (I.use_tool(user, src, target_time, QUALITY_DIGGING, 1.3*integrity, list(STAT_SUM, STAT_MEC, STAT_ROB), forced_sound = WORKSOUND_PICKAXE))
 			//On success, the hole is destroyed!
 			user.visible_message("[user] collapses [src] with the [I]", "You collapse [src] with the [I]")
 
 			collapse()
 		else
+			var/duration = world.time - start
+			if (duration < 10) //Digging less than a second does nothing
+				return
 
-			spawn_rubble(loc, 2, 100)
-			user << SPAN_WARNING("The [src] crumbles a bit. Keep trying!")
+			spawn_rubble(loc, 1, 100)
+
+			if (I.get_tool_quality(QUALITY_DIGGING) > 30)
+				user << SPAN_NOTICE("The [src] crumbles a bit. Keep trying and you'll break it eventually")
+			else
+				user << SPAN_NOTICE("This isn't working very well. Perhaps you should get a better digging tool?")
+
 			//On failure, the hole takes some damage based on the digging quality of the tool.
 			//This will make things much easier next time
-			var/duration = world.time - start
 			var/time_mult = 1
 
 			if (duration < target_time)
@@ -412,10 +505,10 @@
 //Will only allow one rubble decal per tile
 /obj/structure/burrow/proc/spawn_rubble(var/turf/T, var/spread = 0, var/chance = 100)
 	if (!prob(chance))
-		return
+		return FALSE
 
 	var/list/floors = list()
-	for (var/turf/simulated/floor/F in trange(spread, T))
+	for (var/turf/simulated/floor/F in dview(spread, T))
 		if (F.is_wall)
 			continue
 		if (locate(/obj/effect/decal/cleanable/rubble) in F)
@@ -424,10 +517,10 @@
 		floors |= F
 
 	if (!floors.len)
-		return
+		return FALSE
 
 	new /obj/effect/decal/cleanable/rubble(pick(floors))
-
+	return TRUE
 
 
 /****************************
@@ -448,4 +541,34 @@
 
 
 /obj/structure/burrow/proc/pull_mob(var/mob/living/L)
-	walk_to(L, src, 1, L.move_to_delay)
+	if (!L.incapacitated())//Can't flee if you're stunned
+		walk_to(L, src, 1, L.move_to_delay*rand_between(1,1.5))
+//We randomise the move delay a bit so that mobs don't just move in sync like particles of dust being sucked up
+
+
+
+/****************************
+	Plant Management
+****************************/
+
+//This proc handles creation of a plant on this burrow
+//It relies on the plant seed already being set
+/obj/structure/burrow/proc/spread_plants()
+	for (var/obj/effect/plant in loc)
+		return
+
+	//The plant is not assigned a parent, so it will become the parent of plants that grow from here
+	//If it were assigned a parent from a previous burrow, it'd never spread at all due to distance
+	new /obj/effect/plant(get_turf(src), plant)
+
+
+
+/****************************
+	Audio Management
+****************************/
+/obj/structure/burrow/proc/audio(var/soundtype, var/volume)
+	//All audio generated by burrows is run through this function
+	//If this burrow is located in maintenance, players care about it less, and as a result the sounds it makes
+	//will be quieter and not travel as far
+	playsound(src, soundtype, maintenance ? volume*0.5 : volume, TRUE,maintenance ? -3 : 0)
+
