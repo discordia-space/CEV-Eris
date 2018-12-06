@@ -118,7 +118,7 @@ SUBSYSTEM_DEF(migration)
 	var/obj/structure/burrow/candidate
 
 	//Lets copy the list into a candidates buffer
-	var/list/candidates = all_burrows.Copy(0,1)
+	var/list/candidates = all_burrows.Copy(1,0)
 
 	world << "choosetarget Candidates length: [candidates.len]"
 	//No picking the source burrow

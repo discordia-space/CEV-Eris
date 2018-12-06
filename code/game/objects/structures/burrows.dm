@@ -10,7 +10,8 @@
 	plane = FLOOR_PLANE
 	icon = 'icons/obj/burrows.dmi'
 	icon_state = "hole"
-	//layer = LOW_OBJ_LAYER
+	level = 1 //Apparently this is a magic constant for things to appear under floors. Should really be a define
+	layer = LOW_OBJ_LAYER
 
 	//Integrity is used when attempting to collapse this hole. It is a multiplier on the time taken and failure rate
 	//Any failed attempt to collapse it will reduce the integrity, making future attempts easier
@@ -190,8 +191,11 @@
 				sending_mobs -= L
 				continue
 
-			if (L.loc == src)
-				//Its already inside
+			if (!istype(L.loc, /turf))
+				//Its already inside, this burrow or another one
+				if (L.loc != src)
+					//If it went inside another burrow its no longer our problem
+					sending_mobs -= L
 				continue
 
 
@@ -448,4 +452,6 @@
 
 
 /obj/structure/burrow/proc/pull_mob(var/mob/living/L)
-	walk_to(L, src, 1, L.move_to_delay)
+	if (!L.incapacitated())//Can't flee if you're stunned
+		walk_to(L, src, 1, L.move_to_delay*rand_between(1,1.5))
+//We randomise the move delay a bit so that mobs don't just move in sync like particles of dust being sucked up

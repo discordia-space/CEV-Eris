@@ -13,6 +13,8 @@
 	melee_damage_upper = 30
 	move_to_delay = 8
 	var/distress_level = 0
+	extra_burrow_chance = 100
+
 
 /mob/living/carbon/superior_animal/roach/fuhrer/update_icons()
 	.=..()
