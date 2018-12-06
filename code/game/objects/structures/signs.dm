@@ -546,12 +546,12 @@
 
 /obj/structure/sign/faction/neotheology
 	name = "NeoTheology"
-	desc = "Tau Cross of Cyberchristianity - symbol of NeoTheology."
+	desc = "the Tau Cross - symbol of NeoTheology."
 	icon_state = "neotheology"
 
 /obj/structure/sign/faction/neotheology_old
 	name = "NeoTheology"
-	desc = "Tau Cross of Cyberchristianity - symbol of NeoTheology."
+	desc = "the Tau Cross - symbol of NeoTheology."
 	icon_state = "neotheology-old"
 
 /obj/structure/sign/faction/neotheology_cross

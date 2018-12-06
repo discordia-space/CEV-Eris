@@ -1,13 +1,13 @@
 //Due to how large this one is it gets its own file
 /datum/job/chaplain
-	title = "Cyberchristian Preacher"
+	title = "Neotheology Preacher"
 	flag = CHAPLAIN
 	department = "Civilian"
 	department_flag = CHURCH
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the NeoTheology Church and God"
+	supervisors = "the NeoTheology Church"
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 25)
 	access = list(access_morgue, access_chapel_office, access_crematorium, access_maint_tunnels)
@@ -27,7 +27,7 @@
 	pda = /obj/item/modular_computer/pda
 
 /obj/landmark/join/start/chaplain
-	name = "Cyberchristian Preacher"
+	name = "Neotheology Preacher"
 	icon_state = "player-black"
 	join_tag = /datum/job/chaplain
 
@@ -38,7 +38,7 @@
 	C.add_module(new CRUCIFORM_PRIEST)
 	C.add_module(new CRUCIFORM_REDLIGHT)
 
-	H.religion = "Christianity"
+	H.religion = "Neotheology"
 
 	if(!..())	return FALSE
 

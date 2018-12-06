@@ -1014,8 +1014,8 @@
 
 /obj/machinery/vending/theomat
 	name = "NeoTheology Theo-Mat"
-	desc = "A Cyber-Christian bible vending machine."
-	product_slogans = "Make the RIGHT choice!;Every answer can be found in Cyber Bible. Found out yourself!;Help humanity ascend, join us today!;Remember kids, Cyber-Jesus is wathing you. Always.;NeoTheology know what do you truly need. Join us!"
+	desc = "A Neotheology dispensary for disciples and new converts."
+	product_slogans = "Immortality is the reward of the faithful; Help humanity ascend, join your brethren today!; Come and seek a new life"
 	product_ads = "Praise!;Pray!;Obey!"
 	icon_state = "teomat"
 	products = list(/obj/item/weapon/book/ritual/cruciform = 10, /obj/item/weapon/storage/fancy/candle_box = 10, /obj/item/weapon/reagent_containers/food/drinks/bottle/ntcahors = 20)

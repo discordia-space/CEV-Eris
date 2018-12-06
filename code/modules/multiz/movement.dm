@@ -1,99 +1,93 @@
-/obj/item/weapon/tank/jetpack/verb/moveup()
+#define Z_MOVE_PHASE			/datum/vertical_travel_method/phase 	//Used by ghosts, AI eye and mobs with incorp move. Instant and goes through obstacle. It's basically an OOC action
+#define Z_MOVE_JETPACK			/datum/vertical_travel_method/jetpack
+#define Z_MOVE_CLIMB			/datum/vertical_travel_method/climb
+#define Z_MOVE_CLIMB_MAG		/datum/vertical_travel_method/climb/mag	//Walking up a wall with magboots in zero G. Fast and safe
+#define Z_MOVE_JUMP				/datum/vertical_travel_method/jump
+
+/atom/movable
+	/** Used to check wether or not an atom is being handled by SSfalling. */
+	var/tmp/multiz_falling = 0
+
+/**
+ * Verb for the mob to move up a z-level if possible.
+ */
+/mob/verb/up()
 	set name = "Move Upwards"
-	set category = "Object"
+	set category = "IC"
 
-	. = 1
-	if(!allow_thrust(0.01, usr))
-		usr << SPAN_WARNING("\The [src] is disabled.")
-		return
+	if(zMove(UP))
+		to_chat(usr, "<span class='notice'>You move upwards.</span>")
 
-	var/turf/above = GetAbove(src)
-	if(!istype(above))
-		usr << SPAN_NOTICE("There is nothing of interest in this direction.")
-		return
-
-	if(!istype(above, /turf/space) && !istype(above, /turf/simulated/open))
-		usr << SPAN_WARNING("You bump against \the [above].")
-		return
-
-	for(var/atom/A in above)
-		if(A.density)
-			usr << SPAN_WARNING("\The [A] blocks you.")
-			return
-
-	usr.Move(above)
-	usr << SPAN_NOTICE("You move upwards.")
-
-/obj/item/weapon/tank/jetpack/verb/movedown()
+/**
+ * Verb for the mob to move down a z-level if possible.
+ */
+/mob/verb/down()
 	set name = "Move Downwards"
-	set category = "Object"
+	set category = "IC"
 
-	. = 1
-	if(!allow_thrust(0.01, usr))
-		usr << SPAN_WARNING("\The [src] is disabled.")
-		return
+	if(zMove(DOWN))
+		to_chat(usr, "<span class='notice'>You move down.</span>")
 
-	var/turf/below = GetBelow(src)
-	if(!istype(below))
-		usr << SPAN_NOTICE("There is nothing of interest in this direction.")
-		return
-
-	if(!istype(below, /turf/space) && !istype(below, /turf/simulated/open))
-		usr << SPAN_WARNING("You bump against \the [below].")
-		return
-
-	for(var/atom/A in below)
-		if(A.density)
-			usr << SPAN_WARNING("\The [A] blocks you.")
-			return
-
-	usr.Move(below)
-	usr << SPAN_NOTICE("You move downwards.")
-
-//////////////////////////////////////////Thank you bay
-
-/mob/proc/zMove(direction)
-	if(eyeobj)//for AI
+/**
+ * Used to check if a mob can move up or down a Z-level and to then actually do the move.
+ *
+ * @param	direction The direction in which we're moving. Expects defines UP or DOWN.
+ *
+ * @return	TRUE if the mob has been successfully moved a Z-level.
+ *			FALSE otherwise.
+ */
+/mob/proc/zMove(direction, var/method = 0)
+	// In the case of an active eyeobj, move that instead.
+	if (eyeobj)
 		return eyeobj.zMove(direction)
 
-	if(!can_ztravel())
-		src << SPAN_WARNING("You lack means of travel in that direction.")
-		return
+	//Todo: Implement mech zmovement
+	if (istype(src.loc,/obj/mecha))
+		return FALSE
 
-	var/turf/start = loc
-	if(!istype(start))
-		src << SPAN_NOTICE("You are unable to move from here.")
-		return 0
+
 
 	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
+	var/turf/start = get_turf(src)
 	if(!destination)
-		src << SPAN_NOTICE("There is nothing of interest in this direction.")
-		return 0
+		to_chat(src, "<span class='notice'>There is nothing of interest in this direction.</span>")
+		return FALSE
+
+	//After checking that there's a valid destination, we'll first attempt phase movement as a shortcut.
+	//Since it can pass through obstacles, we'll do this before checking whether anything is blocking us
+	var/datum/vertical_travel_method/VTM = new Z_MOVE_PHASE(src)
+	if (VTM.attempt(direction))
+		return
+
+
+	var/list/possible_methods = list(
+	Z_MOVE_JETPACK,
+	Z_MOVE_CLIMB_MAG,
+	Z_MOVE_CLIMB,
+	Z_MOVE_JUMP
+	)
 
 	if(!start.CanZPass(src, direction))
-		src << SPAN_WARNING("\The [start] is in the way.</span>")
-		return 0
+		to_chat(src, "<span class='warning'>\The [start] under you is in the way.</span>")
+		return FALSE
 
 	if(!destination.CanZPass(src, direction))
-		src << SPAN_WARNING("You bump against \the [destination].")
-		return 0
+		to_chat(src, "<span class='warning'>The ceiling above you is in the way.</span>")
+		return FALSE
 
-	var/area/area = get_area(src)
-	if(direction == UP && area.has_gravity() && !can_overcome_gravity())
-		src << SPAN_WARNING("Gravity stops you from moving upward.")
-		return 0
+	// Check for blocking atoms at the destination.
+	for (var/atom/A in destination)
+		if (!A.CanPass(src, start, 1.5, 0))
+			to_chat(src, "<span class='warning'>\The [A] blocks you.</span>")
+			return FALSE
 
-	for(var/atom/A in destination)
-		if(!A.CanMoveOnto(src, start, 1.5, direction))
-			src << SPAN_WARNING("\The [A] blocks you.")
-			return 0
+	for (var/a in possible_methods)
+		VTM = new a(src)
+		if (VTM.attempt(direction))
+			return TRUE
 
-/*	if(direction == UP && area.has_gravity() && can_fall(FALSE, destination) NOT FOR NOW)
-		to_chat(src, "<span class='warning'>You see nothing to hold on to.</span>")
-		return 0*/
-
-	forceMove(destination)
-	return 1
+	to_chat(src, "<span class='notice'>You lack a means of z-travel in that direction.</span>")
+	return FALSE
 
 /mob/living/zMove(direction)
 	if (is_ventcrawling)
@@ -103,96 +97,166 @@
 
 	return ..()
 
-/atom/proc/CanMoveOnto(atom/movable/mover, turf/target, height=1.5, direction = 0)
-	//Purpose: Determines if the object can move through this
-	//Uses regular limitations plus whatever we think is an exception for the purpose of
-	//moving up and down z levles
-	return CanPass(mover, target, height, 0) || (direction == DOWN)
 
-/mob/proc/can_overcome_gravity()
+
+/**
+ * An initial check for Z-level travel. Called relatively early in mob/proc/zMove.
+ *
+ * Useful for overwriting and special conditions for STOPPING z-level transit.
+ *
+ * @return	TRUE if the mob can move a Z-level of its own volition.
+ *			FALSE otherwise.
+ */
+/mob/proc/can_ztravel(var/direction)
 	return FALSE
 
-/mob/living/carbon/human/can_overcome_gravity()
-	if (incorporeal_move)
-		return TRUE
-/*	//First do species check
-	Not for now, again. First is implementig CLIBMBABLE things and structures, and then this shit below
-	if(species && species.can_overcome_gravity(src))//also NO ANY CLIMBING SPECIES, so this is deadcode and we need to clear it out in future
-		return 1
-	else
-		for(var/atom/a in src.loc)
-			if(a.atom_flags & ATOM_FLAG_CLIMBABLE)
-				return 1
-
-		//Last check, list of items that could plausibly be used to climb but aren't climbable themselves
-		var/list/objects_to_stand_on = list(
-				/obj/item/weapon/stool,
-				/obj/structure/bed,
-			)
-		for(var/type in objects_to_stand_on)
-			if(locate(type) in src.loc)
-				return 1*/
-	return 0//for this moment peolpe can overcome it only with jetpacks!
-
-/mob/observer/zMove(direction)
-	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
-	if(destination)
-		forceMove(destination)
-	else
-		src << SPAN_NOTICE("There is nothing of interest in this direction.")
-
-/mob/observer/eye/zMove(direction)
-	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
-	if(destination)
-		setLoc(destination)
-	else
-		src << SPAN_NOTICE("There is nothing of interest in this direction.")
-
-/mob/proc/can_ztravel()
-	return FALSE
-
-/mob/observer/can_ztravel()
+/mob/observer/can_ztravel(var/direction)
 	return TRUE
 
-/mob/living/silicon/ai/can_ztravel()
-	return TRUE
-
-/mob/living/carbon/human/can_ztravel()
+/mob/living/carbon/human/can_ztravel(var/direction)
 	if(incapacitated())
-		return 0
+		return FALSE
 
-/* TODO : REPLACE ALLOW_SPMV() PROC WITH SOMETHING VALID if(Allow_Spacemove())
-		return 1*/
+	if(Allow_Spacemove())
+		return TRUE
 
-	if(Check_Shoegrip())	//scaling hull with magboots
-		for(var/turf/simulated/T in trange(1,src))
-			if(T.density)
-				return 1
-
-/mob/living/silicon/robot/can_ztravel()
-	if(incapacitated() || is_dead())
-		return 0
-
-/*if(Allow_Spacemove()) //Checks for active jetpack
-		return 1*/
-
-	for(var/turf/simulated/T in trange(1,src)) //Robots get "magboots" near dence things
+	for(var/turf/simulated/T in trange(1,src))
 		if(T.density)
-			return 1
+			if(Check_Shoegrip(FALSE))
+				return TRUE
 
-//////////////////////////////////////////////////
+/mob/living/silicon/robot/can_ztravel(var/direction)
+	if(incapacitated() || is_dead())
+		return FALSE
 
-/mob/observer/ghost/verb/moveup()
-	set name = "Move Upwards"
-	set category = "Ghost"
-	zMove(UP)
+	if(Allow_Spacemove()) //Checks for active jetpack
+		return TRUE
 
-/mob/observer/ghost/verb/movedown()
-	set name = "Move Downwards"
-	set category = "Ghost"
-	zMove(DOWN)
+	for(var/turf/simulated/T in trange(1,src)) //Robots get "magboots"
+		if(T.density)
+			return TRUE
 
-// Laders and stairs pulling movement
+/**
+ * Used to determine whether or not a given mob can override gravity when
+ * attempting to Z-move UP.
+ *
+ * Returns FALSE in standard mob cases. Exists for carbon/human and other child overrides.
+ *
+ * @return	TRUE if the mob can Z-move up despite gravity.
+ *			FALSE otherwise.
+ */
+/mob/proc/CanAvoidGravity()
+	return FALSE
+
+// Humans and borgs have jetpacks which allows them to override gravity! Or rather,
+// they can have them. So we override and check.
+/mob/living/carbon/human/CanAvoidGravity()
+	if (!restrained())
+		var/obj/item/weapon/tank/jetpack/thrust = get_jetpack()
+
+		if (thrust && !lying && thrust.allow_thrust(0.01, src))
+			return TRUE
+
+	return ..()
+
+/mob/living/silicon/robot/CanAvoidGravity()
+	var/obj/item/weapon/tank/jetpack/thrust = get_jetpack()
+
+	if (thrust && thrust.allow_thrust(0.02, src))
+		return TRUE
+
+	return ..()
+
+/**
+ * An overridable proc used by SSfalling to determine whether or not an atom
+ * should continue falling to the next level, or stop processing and be caught
+ * in midair, effectively. One of the ways to make things never fall is to make
+ * this return FALSE.
+ *
+ * If the mob has fallen and is stopped amidst a fall by this, fall_impact is
+ * invoked with the second argument being TRUE. As opposed to the default value, FALSE.
+ *
+ * @param	below The turf that the mob is expected to end up at.
+ * @param	dest The tile we're presuming the mob to be at for this check. Default
+ * value is src.loc, (src. is important there!) but this is used for magboot lookahead
+ * checks it turf/simulated/open/Enter().
+ *
+ * @return	TRUE if the atom can continue falling in its present situation.
+ *			FALSE if it should stop falling and not invoke fall_through or fall_impact
+ * this cycle.
+ */
+/atom/movable/proc/can_fall(turf/below, turf/simulated/open/dest = src.loc)
+	if (!istype(dest) || !dest.is_hole)
+		return FALSE
+
+	// Anchored things don't fall.
+	if(anchored)
+		return FALSE
+
+	// The var/climbers API is implemented here.
+	if (LAZYLEN(dest.climbers) && (src in dest.climbers))
+		return FALSE
+
+	// True otherwise.
+	return TRUE
+
+/obj/effect/can_fall()
+	return FALSE
+
+/obj/effect/decal/cleanable/can_fall()
+	return TRUE
+
+/obj/item/pipe/can_fall(turf/below, turf/simulated/open/dest = src.loc)
+	. = ..()
+
+	if((locate(/obj/structure/disposalpipe/up) in below) || locate(/obj/machinery/atmospherics/pipe/zpipe/up in below))
+		return FALSE
+
+// Only things that stop mechas are atoms that, well, stop them.
+// Lattices and stairs get crushed in fall_through.
+/obj/mecha/can_fall(turf/below, turf/simulated/open/dest = src.loc)
+	// The var/climbers API is implemented here.
+	if (LAZYLEN(dest.climbers) && (src in dest.climbers))
+		return FALSE
+
+	if (!dest.is_hole)
+		return FALSE
+
+	// See if something prevents us from falling.
+	for(var/atom/A in below)
+		if(!A.CanPass(src, dest))
+			return FALSE
+
+	// True otherwise.
+	return TRUE
+
+/mob/living/carbon/human/can_fall(turf/below, turf/simulated/open/dest = src.loc)
+	// Special condition for jetpack mounted folk!
+	if (!restrained())
+		var/obj/item/weapon/tank/jetpack/thrust = get_jetpack()
+
+		if (thrust && thrust.stabilization_on &&\
+			!lying && thrust.allow_thrust(0.01, src))
+			return FALSE
+
+	return ..()
+
+/mob/living/carbon/human/bst/can_fall()
+	return fall_override ? FALSE : ..()
+
+/mob/eye/can_fall()
+	return FALSE
+
+/mob/living/silicon/robot/can_fall(turf/below, turf/simulated/open/dest = src.loc)
+	var/obj/item/weapon/tank/jetpack/thrust = get_jetpack()
+
+	if (thrust && thrust.stabilization_on && thrust.allow_thrust(0.02, src))
+		return FALSE
+
+	return ..()
+
+
+// Ladders and stairs pulling movement
 /obj/structure/multiz/proc/try_resolve_mob_pulling(mob/M, obj/structure/multiz/ES)
 	if(istype(M) && (ES && ES.istop == istop))
 		var/list/moveWithMob = list()
@@ -209,3 +273,13 @@
 			for(var/Elem in moveWithMob)
 				var/atom/movable/A = Elem
 				A.forceMove(pull_target)
+
+/mob/observer/ghost/verb/moveup()
+	set name = "Move Upwards"
+	set category = "Ghost"
+	zMove(UP)
+
+/mob/observer/ghost/verb/movedown()
+	set name = "Move Downwards"
+	set category = "Ghost"
+	zMove(DOWN)

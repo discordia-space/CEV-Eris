@@ -1,15 +1,17 @@
 // TODO: remove the robot.mmi and robot.cell variables and completely rely on the robot component system
+/datum/robot_component/
+	var/name
+	var/installed = 0
+	var/powered = 0
+	var/toggled = 1
+	var/brute_damage = 0
+	var/electronics_damage = 0
+	var/idle_usage = 0   // Amount of power used every MC tick. In joules.
+	var/active_usage = 0 // Amount of power used for every action. Actions are module-specific. Actuator for each tile moved, etc.
+	var/max_damage = 30  // HP of this component.
+	var/mob/living/silicon/robot/owner
+	var/installed_by_default = TRUE
 
-/datum/robot_component/var/name
-/datum/robot_component/var/installed = 0
-/datum/robot_component/var/powered = 0
-/datum/robot_component/var/toggled = 1
-/datum/robot_component/var/brute_damage = 0
-/datum/robot_component/var/electronics_damage = 0
-/datum/robot_component/var/idle_usage = 0   // Amount of power used every MC tick. In joules.
-/datum/robot_component/var/active_usage = 0 // Amount of power used for every action. Actions are module-specific. Actuator for each tile moved, etc.
-/datum/robot_component/var/max_damage = 30  // HP of this component.
-/datum/robot_component/var/mob/living/silicon/robot/owner
 
 // The actual device object that has to be installed for this.
 /datum/robot_component/var/external_type = null
@@ -76,6 +78,46 @@
 	name = "armour plating"
 	external_type = /obj/item/robot_parts/robot_component/armour
 	max_damage = 60
+
+
+
+// JETPACK
+// Allows the cyborg to move in space
+// Uses no power when idle. Uses 50J for each tile the cyborg moves.
+/datum/robot_component/jetpack
+	name = "jetpack"
+	external_type = /obj/item/robot_parts/robot_component/jetpack
+	max_damage = 60
+	installed_by_default = FALSE
+	active_usage = 150
+
+	var/obj/item/weapon/tank/jetpack/synthetic/tank = null
+
+
+/datum/robot_component/jetpack/install()
+	..()
+	tank = new/obj/item/weapon/tank/jetpack/synthetic
+	//owner.internals = tank
+	tank.forceMove(owner)
+	owner.jetpack = tank
+	tank.component = src
+
+/datum/robot_component/jetpack/uninstall()
+	..()
+	qdel(tank)
+	tank = null
+	owner.jetpack = null
+
+//Uses power when the tank is compressing air to refill itself
+/datum/robot_component/jetpack/update_power_state()
+	if(tank && tank.compressing)
+		idle_usage = active_usage
+	else
+		idle_usage = 0
+	.=..()
+
+
+
 
 
 // ACTUATOR
@@ -184,6 +226,7 @@
 	components["camera"] = new/datum/robot_component/camera(src)
 	components["comms"] = new/datum/robot_component/binary_communication(src)
 	components["armour"] = new/datum/robot_component/armour(src)
+	components["jetpack"] = new/datum/robot_component/jetpack(src)
 
 // Checks if component is functioning
 /mob/living/silicon/robot/proc/is_component_functioning(module_name)
@@ -245,3 +288,10 @@
 	name = "radio"
 	icon_state = "radio"
 	icon_state_broken = "radio_broken"
+
+/obj/item/robot_parts/robot_component/jetpack
+	name = "jetpack"
+	desc = "Self refilling jetpack that makes the unit suitable for EVA work."
+	icon = 'icons/obj/tank.dmi'
+	icon_state = "jetpack-black"
+	icon_state_broken = "jetpack-black"
