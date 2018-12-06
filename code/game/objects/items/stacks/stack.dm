@@ -363,6 +363,9 @@
 		usr << SPAN_WARNING("You need to be in arm's reach for that!")
 		return
 
+	if (usr.incapacitated())
+		return
+
 	if (!isnum(quantity) || quantity < 1)
 		return
 
