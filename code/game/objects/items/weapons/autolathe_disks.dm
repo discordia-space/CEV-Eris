@@ -88,6 +88,7 @@
 		/datum/autolathe/recipe/device/lightreplacer,
 		/datum/autolathe/recipe/misc/tube,
 		/datum/autolathe/recipe/misc/bulb,
+
 	)
 	..()
 
@@ -143,6 +144,7 @@
 		/datum/autolathe/recipe/part/timer,
 		/datum/autolathe/recipe/part/sensor_prox,
 		/datum/autolathe/recipe/part/camera_assembly,
+		/datum/autolathe/recipe/part/laserguide,
 	)
 	..()
 
@@ -165,6 +167,7 @@
 		/datum/autolathe/recipe/tool/electric_screwdriver,
 		/datum/autolathe/recipe/tool/combi_driver,
 		/datum/autolathe/recipe/tool/armature_cutter,
+		/datum/autolathe/recipe/part/diamondblade,
 	)
 	..()
 
