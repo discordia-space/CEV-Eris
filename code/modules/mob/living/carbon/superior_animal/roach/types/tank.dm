@@ -12,8 +12,3 @@
 
 
 
-/mob/living/carbon/superior_animal/roach/tank/update_icons()
-	.=..()
-	var/matrix/M = transform
-	M.Scale(1.2)
-	transform = M

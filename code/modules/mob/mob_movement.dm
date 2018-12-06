@@ -185,8 +185,6 @@
 	if(!mob.canmove)
 		return
 
-	//if(istype(mob.loc, /turf/space) || (mob.flags & NOGRAV))
-	//	if(!mob.Process_Spacemove(0))	return 0
 
 	if(!mob.lastarea)
 		mob.lastarea = get_area(mob.loc)
@@ -201,7 +199,7 @@
 	if(isturf(mob.loc))
 
 		if((istype(mob.loc, /turf/space)) || (mob.lastarea.has_gravity == 0))
-			if(!mob.Process_Spacemove(0))
+			if(!mob.Allow_Spacemove(0))
 				return 0
 
 
@@ -218,7 +216,7 @@
 			src << "\blue You're pinned to a wall by [mob.pinned[1]]!"
 			return 0
 
-		
+
 
 		if(istype(mob.buckled, /obj/vehicle))
 			//manually set move_delay for vehicles so we don't inherit any mob movement penalties
@@ -383,7 +381,7 @@
 							return
 					else
 						return
-				
+
 				move_delayer.setDelayMin(delay)
 				mob.forceMove(locate(locx,locy,mobloc.z), glide_size_override=DELAY2GLIDESIZE(delay))
 				spawn(0)
@@ -416,11 +414,11 @@
 /mob/proc/Post_Incorpmove()
 	return
 
-///Process_Spacemove
+///Allow_Spacemove
 ///Called by /client/Move()
 ///For moving in space
 ///Return 1 for movement 0 for none
-/mob/proc/Process_Spacemove(var/check_drift = 0)
+/mob/proc/Allow_Spacemove(var/check_drift = 0)
 
 	if(!Check_Dense_Object()) //Nothing to push off of so end here
 		update_floating(0)
@@ -453,8 +451,10 @@
 			if(A.has_gravity || shoegrip)
 				return 1
 
-	for(var/obj/O in orange(1, src))
+	for(var/obj/O in range(1, src))
 		if(istype(O, /obj/structure/lattice))
+			return 1
+		if(istype(O, /obj/structure/catwalk))
 			return 1
 		if(O && O.density && O.anchored)
 			return 1
@@ -490,3 +490,21 @@
 	set name = ".moveleft"
 	set instant = 1
 	Move(get_step(mob, WEST), WEST)
+
+
+/mob/proc/total_movement_delay()
+	var/delay = 0
+
+	switch(m_intent)
+		if("run")
+			if(drowsyness > 0)
+				delay += 6
+			delay += 1
+		if("walk")
+			delay += 7
+	delay += movement_delay()
+
+	if (speed_factor && speed_factor != 1.0)
+		delay /= speed_factor
+
+	return delay

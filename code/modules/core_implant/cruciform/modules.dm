@@ -82,11 +82,11 @@
 	module.user = user
 
 
-/datum/core_module/cruciform/christianhud
+/datum/core_module/cruciform/neotheologyhud
 
-/datum/core_module/cruciform/christianhud/proc/update_crucihud()
+/datum/core_module/cruciform/neotheologyhud/proc/update_crucihud()
 	if(implant.wearer.client)
-		for(var/mob/living/carbon/human/christian in christians)
+		for(var/mob/living/carbon/human/christian in disciples)
 			var/image/I = image('icons/mob/hud.dmi', christian, icon_state = "hudcyberchristian", layer = ABOVE_LIGHTING_LAYER)
 			implant.wearer.client.images += I
 		implant.use_power(1)

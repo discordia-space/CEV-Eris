@@ -293,7 +293,8 @@
 		updatehealth()
 
 
-	if (!stat && bad_environment)
+	//If we're unable to breathe, lets get out of here
+	if (can_burrow && !stat && bad_environment)
 		evacuate()
 
 /mob/living/carbon/superior_animal/handle_breath(datum/gas_mixture/breath)
@@ -342,7 +343,16 @@
 	if(on_fire)
 		overlays += image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing")
 
+//The most common cause of an airflow stun is a sudden breach. Evac conditions generally
+/mob/living/carbon/superior_animal/airflow_stun()
+	.=..()
+	if (can_burrow && !stat)
+		evacuate()
+
+
 //Called when the environment becomes unlivable, maybe in other situations
+//The mobs will request the nearby burrow to take them away somewhere else
 /mob/living/carbon/superior_animal/proc/evacuate()
 	var/obj/structure/burrow/B = find_visible_burrow(src)
-	B.evacuate()
+	if (B)
+		B.evacuate()

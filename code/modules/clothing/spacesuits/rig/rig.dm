@@ -640,6 +640,7 @@
 		wearer.wearing_rig = src
 		update_icon()
 
+
 /obj/item/weapon/rig/proc/toggle_piece(var/piece, var/mob/initiator, var/deploy_mode)
 
 	if(sealing || !cell || !cell.charge)
@@ -905,7 +906,7 @@
 		wearer.lastarea = get_area(wearer.loc)
 
 	if((istype(wearer.loc, /turf/space)) || (wearer.lastarea.has_gravity == 0))
-		if(!wearer.Process_Spacemove(0))
+		if(!wearer.Allow_Spacemove(0))
 			return 0
 
 	if(malfunctioning)

@@ -17,7 +17,7 @@
 	var/icon_gib //gibbing animation
 	var/icon_dust //dusting animation
 	var/dust_remains = /obj/effect/decal/cleanable/ash //what remains if mob turns to dust
-	var/randpixel = 6 //Mob may be offset randomly on both axes by this much
+	var/randpixel = 9 //Mob may be offset randomly on both axes by this much
 
 	var/overkill_gib = 17 //0 to disable, gib when at maxhealth*2 brute loss and hit with at least overkill_gib brute damage
 	var/overkill_dust = 20 //0 to disable, dust when at maxhealth*2 fire loss and hit with at least overkill_dust fire damage, or from 2*max_bodytemperature
@@ -71,6 +71,8 @@
 	var/destroy_surroundings = 1
 	var/break_stuff_probability = 10
 	can_burrow = TRUE
+	var/extra_burrow_chance = 1 //The chance that this animal will spawn another burrow in its vicinity
+	//This is in addition to the single guaranteed burrow that always exists in sight of any burrowing mob
 
 	var/bad_environment = FALSE //Briefly set true whenever anything in the atmosphere damages this mob
 	//When this is true, mobs will attempt to evacuate via the nearest burrow
@@ -85,12 +87,16 @@
 	objectsInView = new
 
 	verbs -= /mob/verb/observe
+	pixel_x = rand_between(-randpixel, randpixel)
+	pixel_y = rand_between(-randpixel, randpixel)
 
 
 /mob/living/carbon/superior_animal/Initialize(var/mapload)
 	.=..()
 	if (mapload && can_burrow)
 		find_or_create_burrow(get_turf(src))
+		if (prob(extra_burrow_chance))
+			create_burrow(get_turf(src))
 
 /mob/living/carbon/superior_animal/Destroy()
 	. = ..()
@@ -122,8 +128,7 @@
 	else if (icon_living)
 		icon_state = icon_living
 
-	pixel_x = rand_between(-randpixel, randpixel)
-	pixel_y = rand_between(-randpixel, randpixel)
+
 
 /mob/living/carbon/superior_animal/regenerate_icons()
 	. = ..()
