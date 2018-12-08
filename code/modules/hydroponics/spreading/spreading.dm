@@ -82,7 +82,7 @@
 
 	name = seed.display_name
 	max_health = round(seed.get_trait(TRAIT_ENDURANCE)/2)
-	if(seed.get_trait(TRAIT_SPREAD)==2)
+	if(seed.get_trait(TRAIT_SPREAD)>=2)
 		layer = LOW_OBJ_LAYER
 		max_growth = VINE_GROWTH_STAGES
 		growth_threshold = max_health/VINE_GROWTH_STAGES
@@ -163,7 +163,7 @@
 		set_light(0)
 
 /obj/effect/plant/proc/refresh_icon()
-	var/growth = min(max_growth,round(health/growth_threshold))
+	var/growth = max(1,min(max_growth,round(health/growth_threshold)))
 	var/at_fringe = get_dist(src,parent)
 	if(spread_distance > 5)
 		if(at_fringe >= (spread_distance-3))

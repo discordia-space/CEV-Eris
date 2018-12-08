@@ -48,7 +48,7 @@
 		if (istype(A, /area/shuttle))
 			continue
 
-		if (filter_maintenance && istype(A, /area/eris/maintenance))
+		if (filter_maintenance && A.is_maintenance)
 			continue
 
 		if (filter_critical && (A.flags & AREA_FLAG_CRITICAL))
@@ -83,6 +83,4 @@
 	if (turfs.len)
 		return pick(turfs)
 	else return null
-
-
 

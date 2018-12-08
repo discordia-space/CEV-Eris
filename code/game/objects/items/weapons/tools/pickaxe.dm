@@ -37,7 +37,7 @@
 	origin_tech = list(TECH_MATERIAL = 2, TECH_POWER = 3, TECH_ENGINEERING = 2)
 	desc = "Yours is the drill that will pierce through the rock walls."
 	degradation = 0.07
-	use_fuel_cost = 0.2
+	use_fuel_cost = 0.15
 	max_fuel = 100
 
 /obj/item/weapon/tool/pickaxe/diamonddrill
@@ -51,7 +51,7 @@
 	desc = "Yours is the drill that will pierce the heavens!"
 	max_upgrades = 4
 	degradation = 0.01
-	use_fuel_cost = 0.2
+	use_fuel_cost = 0.15
 	max_fuel = 120
 
 /obj/item/weapon/tool/pickaxe/excavation

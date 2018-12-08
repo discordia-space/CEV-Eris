@@ -3,7 +3,7 @@
 	desc = "A monstrous, dog-sized cockroach. This one smells like hell and secretes strange vapors."
 	icon_state = "seuche"
 	meat_amount = 3
-	turns_per_move = 4
+	turns_per_move = 6
 	maxHealth = 20
 	health = 20
 

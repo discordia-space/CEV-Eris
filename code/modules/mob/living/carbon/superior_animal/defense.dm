@@ -346,7 +346,7 @@
 //The most common cause of an airflow stun is a sudden breach. Evac conditions generally
 /mob/living/carbon/superior_animal/airflow_stun()
 	.=..()
-	if (can_burrow)
+	if (can_burrow && !stat)
 		evacuate()
 
 
@@ -354,4 +354,5 @@
 //The mobs will request the nearby burrow to take them away somewhere else
 /mob/living/carbon/superior_animal/proc/evacuate()
 	var/obj/structure/burrow/B = find_visible_burrow(src)
-	B.evacuate()
+	if (B)
+		B.evacuate()
