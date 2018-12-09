@@ -2,7 +2,7 @@
 /obj/item/weapon/rcd
 	name = "rapid construction device"
 	desc = "A device used to rapidly build walls and floors."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/tools.dmi'
 	icon_state = "rcd"
 	opacity = 0
 	density = 0
@@ -39,6 +39,7 @@
 	src.spark_system = new /datum/effect/effect/system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
+	update_icon()	//Initializes the fancy ammo counter
 
 /obj/item/weapon/rcd/Destroy()
 	qdel(spark_system)
@@ -56,6 +57,7 @@
 		stored_matter += 10
 		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 		user << SPAN_NOTICE("The RCD now holds [stored_matter]/30 matter-units.")
+		update_icon()	//Updates the ammo counter
 		return
 	..()
 
@@ -124,7 +126,8 @@
 		return 0
 
 	if(!useResource(build_cost, user, 1))
-		user << "Insufficient resources."
+		user << "The \'Low Ammo\' light on the device blinks yellow."
+		flick("[icon_state]-empty", src)
 		return 0
 
 	playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
@@ -141,7 +144,8 @@
 		return 0
 
 	if(!useResource(build_cost, user))
-		user << "Insufficient resources."
+		user << "The \'Low Ammo\' light on the device blinks yellow."
+		flick("[icon_state]-empty", src)
 		return 0
 
 	if(build_turf)
@@ -151,8 +155,18 @@
 	else
 		qdel(T)
 
+	update_icon()	//Updates the ammo counter if ammo is succesfully used
 	playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 	return 1
+
+/obj/item/weapon/rcd/update_icon()	//For the fancy "ammo" counter
+	overlays.Cut()
+
+	var/ratio = 0
+	ratio = stored_matter / 30	//30 is the hardcoded max capacity of the RCD
+	ratio = max(round(ratio, 0.10) * 100, 10)
+
+	overlays += "[icon_state]-[ratio]"
 
 /obj/item/weapon/rcd_ammo
 	name = "compressed matter cartridge"
