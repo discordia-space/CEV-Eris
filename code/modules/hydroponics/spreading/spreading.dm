@@ -116,7 +116,7 @@
 
 	mature_time = world.time + seed.get_trait(TRAIT_MATURATION) + 15 //prevent vines from maturing until at least a few seconds after they've been created.
 	spread_chance = seed.get_trait(TRAIT_POTENCY)
-	spread_distance = ((growth_type>0) ? round(spread_chance*1.2) : round(spread_chance*0.6))
+	spread_distance = ((growth_type>0) ? round(spread_chance*1.0) : round(spread_chance*0.5))
 	update_icon()
 
 	if(seed.get_trait(TRAIT_CHEMS) > 0)
@@ -164,7 +164,7 @@
 
 /obj/effect/plant/proc/refresh_icon()
 	var/growth = max(1,min(max_growth,round(health/growth_threshold)))
-	var/at_fringe = get_dist(src,parent)
+	var/at_fringe = dist3D(src,parent)
 	if(spread_distance > 5)
 		if(at_fringe >= (spread_distance-3))
 			max_growth--

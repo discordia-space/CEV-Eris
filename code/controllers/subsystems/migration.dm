@@ -23,12 +23,12 @@ SUBSYSTEM_DEF(migration)
 
 	var/next_scan = 0 //We'll do a scan as soon as round starts
 	var/next_migrate = 10 MINUTES
-	var/next_plantspread = 0 MINUTES//TODO Debug: Set this to ten minutes
+	var/next_plantspread = 10 MINUTES
 
 	var/migrate_chance = 15 //The chance, during each migration, for each populated burrow, that mobs will move from there to somewhere else
 
 
-	var/roundstart_burrows = 140
+	var/roundstart_burrows = 120
 	var/migrate_time = 80 SECONDS //How long it takes to move mobs from one burrow to another
 	var/reinforcement_time = 20 SECONDS //How long it takes for reinforcements to arrive
 	var/plantspread_burrows_num = 3 //How many other burrows will each one with plants send them to
@@ -48,8 +48,6 @@ SUBSYSTEM_DEF(migration)
 		var/turf/T = A.random_space() //Lets make sure the selected area is valid
 		create_burrow(T)
 
-	spawn(100)
-		world << "MIGRATION INITIALIZED, Burrows: [all_burrows.len], Populated: [populated_burrows.len]"
 
 
 /*
@@ -190,7 +188,6 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 		B.reinforcements--
 
 		source.migrate_to(B, reinforcement_time, migration_percentage())
-		world << "Sending mobs from [jumplink(src)] to distress [jumplink(B)]"
 
 	//Whether they got their reinforcements or not, all distress calls are handled. Clear the list
 	distressed_burrows.Cut()
@@ -361,8 +358,6 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 	Finds burrows near to the specified one, and sends plants from it to them
 */
 /datum/controller/subsystem/migration/proc/spread_plants_from(var/obj/structure/burrow/B)
-	world << "Spreading plants from [jumplink(B)]"
-	sleep(10)
 	var/list/sorted = get_sorted_burrow_network(B)
 	/*
 	This gives us a list of burrows in ascending order of distance. The order is important, we dont want plants to
@@ -389,14 +384,11 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 		//Maybe more checks here
 
 		//If it has no plants yet, it should be okay to send things to it
-		world << "Spreading plants to [jumplink(C)]"
 		i++ //Increment this
 		B.plantspread_burrows.Add("\ref[C]") //Add them to each other's plantspread lists
 		C.plantspread_burrows.Add("\ref[B]")
 		C.plant = B.plant //Make them share the same seed
-		world << "C plant is [C.plant]"
 		C.spread_plants() //And make some plants at the new burrow
-		sleep(10)
 
 
 
@@ -451,7 +443,6 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 
 //Returns a list of all burrows, sorted in ascending order of distance from the source atom
 /proc/get_sorted_burrow_network(var/atom/source)
-	world << "Getting sorted burrow network"
 	var/list/sorted = list() //List of the burrows, in order
 	var/list/distances  = list() //Associative list of burrows and distances
 	for (var/b in all_burrows)
@@ -459,11 +450,10 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 			continue //Don't have ourselves in the return list
 
 		var/obj/structure/burrow/B = b
-		//world << "Checking [jumplink(B)]"
+
 		//How far between the burrows?
 		var/dist = dist3D(source, B)
 		distances[B] = dist
-		//world << "Distance is [dist]"
 
 		//Now lets scroll through the list of sorted burrows and find where to insert it
 		var/index = 0
@@ -472,7 +462,6 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 			//When we find one that is farther away than us, we will insert ourselves before it
 			if (dist <= distances[a])
 				sorted.Insert(index, B)
-				//world << "Inserted a thing at [index]"
 				break
 
 		if (index)

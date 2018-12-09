@@ -16,13 +16,9 @@
 	var/distress_calls = 1 //Each fuhrer can only call for help once in its life
 	var/retreat_calls = 1 //Can call for retreat once too
 	extra_burrow_chance = 100
+	blattedin_revives_left = 0 //He only lives once, cuz he's huge
 
 
-/mob/living/carbon/superior_animal/roach/fuhrer/update_icons()
-	.=..()
-	var/matrix/M = transform
-	M.Scale(1.25)
-	transform = M
 
 
 /mob/living/carbon/superior_animal/roach/fuhrer/bullet_act()
