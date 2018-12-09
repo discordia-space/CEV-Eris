@@ -2,7 +2,6 @@ datum/preferences
 	var/gender = MALE					//gender of character (well duh)
 	var/age = 30						//age of character
 	var/spawnpoint = "Cryogenic Storage" 			//where this character will spawn
-	var/metadata = ""
 	var/real_name						//our character's name
 	var/be_random_name = 0				//whether we are a random name every round
 
@@ -17,7 +16,6 @@ datum/preferences
 	from_file(S["gender"],                pref.gender)
 	from_file(S["age"],                   pref.age)
 	from_file(S["spawnpoint"],            pref.spawnpoint)
-	from_file(S["OOC_Notes"],             pref.metadata)
 	from_file(S["real_name"],             pref.real_name)
 	from_file(S["name_is_always_random"], pref.be_random_name)
 
@@ -25,7 +23,6 @@ datum/preferences
 	to_file(S["gender"],                  pref.gender)
 	to_file(S["age"],                     pref.age)
 	to_file(S["spawnpoint"],              pref.spawnpoint)
-	to_file(S["OOC_Notes"],               pref.metadata)
 	to_file(S["real_name"],               pref.real_name)
 	to_file(S["name_is_always_random"],   pref.be_random_name)
 
@@ -58,8 +55,6 @@ datum/preferences
 	. += "<b>Spawn Point</b>: <a href='?src=\ref[src];spawnpoint=1'>[pref.spawnpoint]</a><br>"
 	. += "<b>Religion:</b> <a href='?src=\ref[src];religion=1'>[pref.religion]</a><br>"
 
-	if(config.allow_Metadata)
-		. += "<br><b>OOC Notes:</b> <a href='?src=\ref[src];metadata=1'> Edit </a>"
 	. = jointext(.,null)
 
 /datum/category_item/player_setup_item/physical/basic/OnTopic(var/href,var/list/href_list, var/mob/user)
@@ -112,12 +107,6 @@ datum/preferences
 		if(!choice || !get_late_spawntypes()[choice] || !CanUseTopic(user))	return TOPIC_NOACTION
 		pref.spawnpoint = choice
 		return TOPIC_REFRESH
-
-	else if(href_list["metadata"])
-		var/new_metadata = sanitize(input(user, "Enter any information you'd like others to see, such as Roleplay-preferences:", "Game Preference" , pref.metadata)) as message|null
-		if(new_metadata && CanUseTopic(user))
-			pref.metadata = new_metadata
-			return TOPIC_REFRESH
 
 	else if(href_list["religion"])
 		pref.religion = input("Religion") in list("None", "Christianity")

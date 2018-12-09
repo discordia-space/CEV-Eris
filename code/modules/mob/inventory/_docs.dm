@@ -1,13 +1,12 @@
 // EQUIP //
 
 
-/mob/proc/equip_to_slot(obj/item/Item, slot, redraw_mob = TRUE, put_in_storage = FALSE)
+/mob/proc/equip_to_slot(obj/item/Item, slot, redraw_mob = TRUE)
 /*
 This is an UNSAFE proc.
 It merely handles the actual job of equipping. Set vars, update icons. Also calls Item.equipped(mob, slot).
 All the checks on whether you can or can't eqip need to be done before! Use mob_can_equip() for that task.
 In most cases you will want to use equip_to_slot_if_possible()
-In situation when there was already an item use put_in_storage to store that item. If put_in_storage is not set replaced item will be qdel'ed. (this should never happen if you are using safe procs or not forcing to bypass slot check)
 */
 
 
@@ -15,21 +14,18 @@ In situation when there was already an item use put_in_storage to store that ite
 	obj/item/Item,
 	slot,
 	disable_warning = FALSE,
-	redraw_mob = TRUE,
-	force = FALSE,
-	put_in_storage = FALSE
+	redraw_mob = TRUE
 )
 /*
 This is a SAFE proc. Use this instead of equip_to_slot()!
 Set disable_warning to disable the 'you are unable to equip that' warning.
 Unset redraw_mob to prevent the mob from being redrawn at the end.
-Can be used with force and put_in_storage to bypass slot availability check and forcefully replace item and put it available storage. 
 It calls:
 	- Mob.can_equip(Item, slot, disable_warning) and Item.can_be_equiped(mob, slot, disable_warning)
 	- If Item already equipped on someone other_mob.unEquip(Item) will be called.
 	- Item.pre_equip(src, slot)
 	- if Item.pre_equip(..) take some time Mob.can_equip(...) and Item.can_be_equiped(...) will be called again .
-	- Mob.equip_to_slot(Item, slot, redraw_mob, put_in_storage))
+	- Mob.equip_to_slot(Item, slot, redraw_mob)
 */
 
 
@@ -38,7 +34,7 @@ It calls:
 Item will be deleted if it fails to equip with equip_to_slot_if_possible() proc
 used to equip people when the rounds tarts and when events happen and such.
 It calls:
-	- equip_to_slot_if_possible(Item, slot, disable_warning = TRUE, redraw_mob = FALSE, force = force, put_in_storage = put_in_storage)
+	- equip_to_slot_if_possible(Item, slot, disable_warning = TRUE, redraw_mob = FALSE)
 */
 
 
@@ -83,20 +79,19 @@ Checks if a given slot can be accessed at this time, either to equip or unequip 
 */
 
 
-/mob/proc/can_equip(obj/item/Item, slot, disable_warning = FALSE, force = FALSE)
+/mob/proc/can_equip(obj/item/Item, slot, disable_warning = FALSE)
 /*
 Return TRUE if Mob can equip Item
-Use force to bypass slot availability check (when used with )
 Don't confuse with Item.can_be_equipped(Mob, slot, disable_warning)
 */
 
 
-/proc/mob_can_equip(mob/living/L, obj/item/Item, slot, disable_warning = FALSE, force = FALSE)
+/proc/mob_can_equip(mob/living/L, obj/item/Item, slot, disable_warning = FALSE)
 /*
 Now we have two separated procs: Mob.can_equip(Item...) and Item.can_be_equipped(Mob...)
 That proc is simple way to call them both if you wanna check "Can that mob equip this item in some slot"
 It calls:
-	- Mob.can_equip(Item, slot, disable_warning, force)
+	- Mob.can_equip(Item, slot, disable_warning)
 	- Item.can_be_equipped(Mob, slot, disable_warning)
 */
 

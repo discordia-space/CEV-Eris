@@ -8,14 +8,9 @@ datum/preferences
 	var/icon/preview_north = null
 	var/icon/preview_east  = null
 	var/icon/preview_west  = null
-	var/preview_dir = SOUTH
+	var/preview_dir = SOUTH	//for augmentation
 
 datum/preferences/proc/update_preview_icon(var/naked = FALSE)
-	qdel(preview_south)
-	qdel(preview_north)
-	qdel(preview_east)
-	qdel(preview_west)
-
 	var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin(client_ckey)
 	mannequin.delete_inventory(TRUE)
 	dress_preview_mob(mannequin, naked)

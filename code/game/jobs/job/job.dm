@@ -141,17 +141,17 @@
 
 	return FALSE
 
-/datum/job/proc/get_job_icon(dir = SOUTH)
-	if(!SSjob.job_icons[title])
+//	Creates mannequin with equipment for current job and stores it for future reference
+//	used for preview
+//	You can use getflaticon(mannequin) to get icon out of it
+/datum/job/proc/get_job_mannequin()
+	if(!SSjob.job_mannequins[title])
 		var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin("#job_icon")
 		dress_mannequin(mannequin)
-		mannequin.dir = dir
-		var/icon/preview_icon = getFlatIcon(mannequin)
 
-		preview_icon.Scale(preview_icon.Width() * 2, preview_icon.Height() * 2) // Scaling here to prevent blurring in the browser.
-		SSjob.job_icons[title] = preview_icon
+		SSjob.job_mannequins[title] = mannequin
 
-	return SSjob.job_icons[title]
+	return SSjob.job_mannequins[title]
 
 /datum/job/proc/get_description_blurb()
 	return ""

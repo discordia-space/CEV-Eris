@@ -11,7 +11,7 @@ SUBSYSTEM_DEF(job)
 	var/list/occupations_by_name = list()	//Dict of all jobs, keys are titles
 	var/list/unassigned = list()			//Players who need jobs
 	var/list/job_debug = list()				//Debug info
-	var/list/job_icons = list()				//Cache of icons for job info window
+	var/list/job_mannequins = list()				//Cache of icons for job info window
 
 /datum/controller/subsystem/job/Initialize(start_timeofday)
 	if(!occupations.len)

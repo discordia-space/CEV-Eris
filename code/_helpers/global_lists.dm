@@ -63,6 +63,9 @@ GLOBAL_LIST_EMPTY(body_marking_styles_list)		//stores /datum/sprite_accessory/ma
 
 GLOBAL_DATUM_INIT(underwear, /datum/category_collection/underwear, new())
 
+// Used by robots and robot preferences.
+GLOBAL_LIST_EMPTY(robot_module_types)
+
 var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Alt")
 var/global/list/exclude_jobs = list(/datum/job/ai,/datum/job/cyborg)
 
@@ -127,6 +130,12 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 //////////////////////////
 /////Initial Building/////
 //////////////////////////
+/proc/populate_misc_lists()
+	var/list/paths
+	paths = typesof(/obj/item/weapon/robot_module) - /obj/item/weapon/robot_module
+	for(var/path in paths)
+		var/obj/item/weapon/robot_module/M = path
+		GLOB.robot_module_types += initial(M.name)
 
 /proc/makeDatumRefLists()
 

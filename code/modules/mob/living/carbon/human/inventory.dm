@@ -177,9 +177,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_r_hand)
 			return BP_R_ARM
 
-
-/mob/living/carbon/human/equip_to_slot(obj/item/W, slot, redraw_mob = 1, put_in_storage = FALSE)
-	var/obj/item/old_item = get_equipped_item(slot)
+/mob/living/carbon/human/equip_to_slot(obj/item/W, slot, redraw_mob = 1)
 	switch(slot)
 		if(slot_in_backpack)
 			if(src.get_active_hand() == W)
@@ -206,17 +204,6 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 			if(W.action_button_name)
 				update_action_buttons()
-	// if we replaced an item, store or delete the old item. do this at the end to make the replacement seamless
-	if(old_item)
-		if(put_in_storage)	//trying to store item, if failed we delete it
-			var/obj/item/weapon/storage/S = equip_to_storage(old_item)
-			if(S)
-				src << SPAN_NOTICE("Storing your \the [old_item] into \the [W]!")
-			else
-				qdel(old_item)
-		else
-			qdel(old_item)
-
 
 //This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible()
 //set redraw_mob to 0 if you don't wish the hud to be updated - if you're doing it manually in your own proc.

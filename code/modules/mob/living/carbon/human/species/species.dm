@@ -391,3 +391,9 @@
 	else
 		if (extendedtank)	H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/engineer(H), slot_r_hand)
 		else	H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), slot_r_hand)
+
+/datum/species/proc/has_equip_slot(slot)
+	if(hud && hud.equip_slots)
+		if(!(slot in hud.equip_slots))
+			return FALSE
+	return TRUE
