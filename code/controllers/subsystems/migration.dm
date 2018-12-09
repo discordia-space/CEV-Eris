@@ -2,7 +2,8 @@
 	The migration subsystem handles burrows and the movement of various NPC mobs aboard Eris.
 
 	It allows mobs to move between burrows, dispatches reinforcements to distress calls from mobs under attack,
-	and keeps track of all the burrows, negating any need for them to process individually
+	and keeps track of all the burrows, negating any need for them to process individually most of the time
+	This subsystem also handles spreading plants through burrows
 
 */
 var/list/global/all_burrows = list()
