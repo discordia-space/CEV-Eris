@@ -81,6 +81,7 @@
 		return 0
 	if (!checkOnly)
 		stored_matter -= amount
+		update_icon()	//Updates the ammo counter if ammo is succesfully used
 	return 1
 
 /obj/item/weapon/rcd/proc/alter_turf(var/turf/T,var/mob/user,var/deconstruct)
@@ -155,7 +156,6 @@
 	else
 		qdel(T)
 
-	update_icon()	//Updates the ammo counter if ammo is succesfully used
 	playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 	return 1
 
