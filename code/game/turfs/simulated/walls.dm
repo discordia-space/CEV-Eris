@@ -21,8 +21,7 @@
 	var/construction_stage
 	var/hitsound = 'sound/weapons/Genhit.ogg'
 	var/list/wall_connections = list("0", "0", "0", "0")
-	var/bulletholes = 0 //This isn't a bool
- 
+	 
 	var/static/list/damage_overlays
 	is_wall = TRUE
 
@@ -183,9 +182,7 @@
 
 
 /turf/simulated/wall/bullet_act(var/obj/item/projectile/Proj)
-	var/p_x = Proj.p_x + pick(0,0,0,0,0,-1,1) // really ugly way of coding "sometimes offset Proj.p_x!"
-	var/p_y = Proj.p_y + pick(0,0,0,0,0,-1,1) // Used for bulletholes
-	
+
 	if(src.ricochet_id != 0)
 		if(src.ricochet_id == Proj.ricochet_id)
 			src.ricochet_id = 0
@@ -221,25 +218,7 @@
 	//cap the amount of damage, so that things like emitters can't destroy walls in one hit.
 	var/damage = min(proj_damage, 100)
 
-	if(bulletholes >= 30)
-		clear_bulletholes()
-
-	//Actually adding the bullet hole effect now.
-	var/obj/effect/overlay/bmark/BM = new(src)
-
-	BM.pixel_x = p_x
-	BM.pixel_y = p_y
-	// offset correction
-	BM.pixel_x--
-	BM.pixel_y--
-
-	if(Proj.damage >= 20)//If it does a lot of damage it makes a nice big black hole.
-		BM.icon_state = "scorch"
-		BM.set_dir(pick(NORTH,SOUTH,EAST,WEST)) // random scorch design
-	else //Otherwise it's a light dent.
-		BM.icon_state = "light_scorch"
-
-	bulletholes++
+	create_bullethole(Proj)//Potentially infinite bullet holes but most walls don't last long enough for this to be a problem.
 
 	take_damage(damage)
 	return
@@ -255,9 +234,6 @@
 
 	take_damage(tforce)
 
-/turf/simulated/wall/proc/clear_bulletholes()
-	for(var/obj/effect/overlay/bmark/BM in src)
-		qdel(BM)
 
 /turf/simulated/wall/proc/clear_plants()
 	for(var/obj/effect/overlay/wallrot/WR in src)
