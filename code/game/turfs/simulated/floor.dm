@@ -28,10 +28,10 @@
 	var/maxHealth = 100
 
 
-/turf/simulated/floor/Entered(atom/atom as mob|obj)
-	..(atom)
+/turf/simulated/floor/Entered(var/atom/movable/AM, var/atom/old_loc)
+	..(AM, old_loc)
 	if (flooring)
-		flooring.Entered(atom)
+		flooring.Entered(AM, old_loc)
 
 /turf/simulated/floor/is_plating()
 	if (flooring)
