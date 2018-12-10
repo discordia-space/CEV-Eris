@@ -60,3 +60,7 @@
 
 /obj/item/weapon/storage/internal/Adjacent(var/atom/neighbor)
 	return master_item.Adjacent(neighbor)
+
+/obj/item/weapon/storage/internal/updating/update_icon()
+	if(master_item)
+		master_item.update_icon()

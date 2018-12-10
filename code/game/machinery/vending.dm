@@ -55,6 +55,8 @@
 	else
 		product = new product_path
 	amount -= 1
+	if(vending_machine.oldified && prob(30))
+		product.make_old()
 	product.forceMove(product_location)
 	return product
 

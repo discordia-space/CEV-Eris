@@ -53,3 +53,13 @@
 
 /obj/random/single/item_to_spawn()
 	return ispath(spawn_object) ? spawn_object : text2path(spawn_object)
+
+/obj/randomcatcher
+	name = "Random Catcher Object"
+	desc = "You should not see this."
+	icon = 'icons/misc/mark.dmi'
+	icon_state = "rup"
+
+/obj/randomcatcher/proc/get_item(type)
+	new type(src)
+	. = pick(contents)
