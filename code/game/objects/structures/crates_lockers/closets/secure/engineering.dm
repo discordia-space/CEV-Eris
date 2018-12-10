@@ -63,12 +63,9 @@
 	new /obj/item/weapon/weldpack(src)
 	new /obj/item/weapon/weldpack(src)
 	new /obj/item/weapon/weldpack(src)
-	new /obj/item/weapon/weldpack/canister(src)
-	new /obj/item/weapon/weldpack/canister(src)
-	new /obj/item/weapon/weldpack/canister(src)
-	new /obj/item/weapon/weldpack/canister(src)
-	new /obj/item/weapon/weldpack/canister(src)
-	new /obj/item/weapon/weldpack/canister(src)
+	new /obj/item/weapon/tool_upgrade/augment/fuel_tank(src)
+	new /obj/item/weapon/tool_upgrade/augment/fuel_tank(src)
+	new /obj/item/weapon/tool_upgrade/augment/fuel_tank(src)
 
 /obj/structure/closet/secure_closet/personal/engineering_personal
 	name = "technomancer's locker"

@@ -28,4 +28,5 @@
 	matter = list(MATERIAL_STEEL = 4)
 	force = WEAPON_FORCE_NORMAL
 	throwforce = WEAPON_FORCE_NORMAL
-	degradation = 0.12
+	degradation = 0.07
+	max_upgrades = 4

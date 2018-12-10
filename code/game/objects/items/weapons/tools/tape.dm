@@ -11,6 +11,7 @@
 	max_stock = 100
 	degradation = 0 //its consumable anyway
 	flags = NOBLUDGEON //Its not a weapon
+	max_upgrades = 0 //These are consumable, so no wasting upgrades on them
 
 /obj/item/weapon/tool/tape_roll/web
 	name = "web tape"
