@@ -21,3 +21,11 @@
 	name = "low chance random structures"
 	icon_state = "machine-black-low"
 	spawn_nothing_percentage = 60
+
+/obj/random/structure_pack
+	name = "truly random structure"
+	icon_state = "machine-blank"
+
+/obj/random/structure_pack/item_to_spawn()
+	return pick(/obj/random/structures,
+				/obj/random/closet)
