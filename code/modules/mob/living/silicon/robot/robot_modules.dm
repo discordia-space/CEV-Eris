@@ -108,6 +108,9 @@ var/global/list/robot_modules = list(
 		I.plane = ABOVE_HUD_PLANE
 		I.layer = ABOVE_HUD_LAYER
 
+	for (var/obj/item/weapon/tool/T in modules)
+		T.degradation = 0 //We don't want robot tools breaking
+
 
 /obj/item/weapon/robot_module/proc/Reset(var/mob/living/silicon/robot/R)
 	remove_camera_networks(R)
@@ -388,7 +391,7 @@ var/global/list/robot_modules = list(
 	//Rescue module has built in crew monitor
 	//General medical does not, they're expected to stay in medbay and use the computers
 	subsystems = list(/datum/nano_module/crew_monitor)
-	supported_upgrades = list(/obj/item/borg/upgrade/jetpack)
+
 
 	health = 270 //Tough
 	speed_factor = 1.3 //Turbospeed!
@@ -456,7 +459,6 @@ var/global/list/robot_modules = list(
 	channels = list("Engineering" = 1)
 	networks = list(NETWORK_ENGINEERING)
 	subsystems = list(/datum/nano_module/power_monitor)
-	supported_upgrades = list(/obj/item/borg/upgrade/jetpack)
 	sprites = list(
 					"Basic" = "robotengi",
 					"Antique" = "engineerrobot",
@@ -470,7 +472,6 @@ var/global/list/robot_modules = list(
 					"Plated" = "ceborg",
 					"Heavy" = "heavyeng"
 					)
-	supported_upgrades = list(/obj/item/borg/upgrade/jetpack)
 	health = 240 //Slightly above average
 	speed_factor = 1.1 //Slightly above average
 	power_efficiency = 0.9 //Slightly below average
@@ -866,7 +867,6 @@ var/global/list/robot_modules = list(
 					"Heavy" = "heavymine",
 					"Spider" = "spidermining"
 				)
-	supported_upgrades = list(/obj/item/borg/upgrade/jetpack)
 	health = 250 //Pretty tough
 	speed_factor = 0.9 //meh
 	power_efficiency = 1.5 //Best efficiency
@@ -986,7 +986,6 @@ var/global/list/robot_modules = list(
 	//src.modules += new /obj/item/weapon/gun/launcher/grenade/cyborg(src)
 	src.modules += new /obj/item/weapon/tool/crowbar/robotic(src)
 	//src.modules += new /obj/item/weapon/robot_emag(src)
-	supported_upgrades = list(/obj/item/borg/upgrade/jetpack)
 
 	..(R)
 
@@ -1001,7 +1000,6 @@ var/global/list/robot_modules = list(
 	subsystems = list(/datum/nano_module/crew_monitor)
 	sprites = list("Roller" = "droid-combat")
 	can_be_pushed = 0
-	supported_upgrades = list(/obj/item/borg/upgrade/jetpack)
 
 /obj/item/weapon/robot_module/combat/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/device/flash(src)
@@ -1146,6 +1144,5 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/tool/multitool/robotic(src)
 	src.modules += new /obj/item/weapon/tool/wirecutters/robotic(src)
 	src.modules += new /obj/item/weapon/tool/weldingtool/robotic(src)
-	supported_upgrades = list(/obj/item/borg/upgrade/jetpack)
 
 	..(R)

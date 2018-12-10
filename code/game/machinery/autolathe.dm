@@ -1,5 +1,6 @@
-// makes sure that discounted prices from upgraded lathe no less than 1 unit.
-#define SANITIZE_LATHE_COST(n) max(1, n) // helps to fix prices where "* mat_efficiency" is used.
+
+#define SANITIZE_LATHE_COST(n) round(n * mat_efficiency, 0.01)
+
 
 #define ERR_OK 0
 #define ERR_NOTFOUND 1
@@ -92,7 +93,7 @@
 
 			var/text = ""
 			for(var/m in R.resources)
-				text += "[m]: [SANITIZE_LATHE_COST(round(R.resources[m] * mat_efficiency))]<br>"
+				text += "[m]: [SANITIZE_LATHE_COST(R.resources[m])]<br>"
 			LE["resources"] = text == "" ? "None" : text
 
 			text = ""
@@ -142,7 +143,7 @@
 
 		var/list/RS = list()
 		for(var/mat in R.resources)
-			RS.Add(list(list("name" = mat, "req" = SANITIZE_LATHE_COST(round(R.resources[mat] * mat_efficiency)))))
+			RS.Add(list(list("name" = mat, "req" = SANITIZE_LATHE_COST(R.resources[mat]))))
 
 		data["req_materials"] = RS
 
@@ -369,15 +370,16 @@
 	var/mass_per_sheet = 0 // Amount of material constituting one sheet.
 
 	for(var/obj/O in eating.GetAllContents(includeSelf = TRUE))
-		if(O.matter && O.matter.len)
-			for(var/material in O.matter)
+		var/list/_matter = O.get_matter()
+		if(_matter)
+			for(var/material in _matter)
 				if(!(material in stored_material))
 					stored_material[material] = 0
 
 				if(stored_material[material] >= storage_capacity)
 					continue
 
-				var/total_material = round(O.matter[material])
+				var/total_material = _matter[material]
 
 				//If it's a stack, we eat multiple sheets.
 				if(istype(O,/obj/item/stack))
@@ -493,7 +495,7 @@
 			if(!(rmat in stored_material))
 				return ERR_NOMATERIAL
 
-			if(stored_material[rmat] < SANITIZE_LATHE_COST(round(R.resources[rmat] * mat_efficiency)))
+			if(stored_material[rmat] < SANITIZE_LATHE_COST(R.resources[rmat]))
 				return ERR_NOMATERIAL
 
 		if(R.reagents.len)
@@ -577,7 +579,7 @@
 		return FALSE
 
 	for(var/material in R.resources)
-		stored_material[material] = max(0, stored_material[material] - SANITIZE_LATHE_COST(round(R.resources[material] * mat_efficiency)))
+		stored_material[material] = max(0, stored_material[material] - SANITIZE_LATHE_COST(R.resources[material]))
 
 	for(var/reagent in R.reagents)
 		container.reagents.remove_reagent(reagent, R.reagents[reagent])
@@ -614,22 +616,57 @@
 	queue = Q
 
 
+//Autolathes can eject decimal quantities of material as a shard
 /obj/machinery/autolathe/proc/eject(var/material, var/amount)
 	if(!(material in stored_material))
+		return
+
+
+	if (!amount)
 		return
 
 	var/material/M = get_material_by_name(material)
 
 	if(!M.stack_type)
 		return
+	amount = min(amount, stored_material[material])
 
-	var/eject = stored_material[material]
-	eject = amount == -1 ? eject : min(eject, amount)
-	if(eject < 1)
-		return
-	var/obj/item/stack/material/S = new M.stack_type(loc)
-	S.amount = eject
-	stored_material[material] -= eject
+	var/whole_amount = round(amount)
+	var/remainder = amount - whole_amount
+
+
+	if (whole_amount)
+		var/obj/item/stack/material/S = new M.stack_type(get_turf(src))
+
+		//Accounting for the possibility of too much to fit in one stack
+		if (whole_amount <= S.max_amount)
+			S.amount = whole_amount
+		else
+			//There's too much, how many stacks do we need
+			var/fullstacks = round(whole_amount / S.max_amount)
+			//And how many sheets leftover for this stack
+			S.amount = whole_amount % S.max_amount
+
+			for(var/i = 0; i < fullstacks; i++)
+				var/obj/item/stack/material/MS = new M.stack_type(get_turf(src))
+				MS.amount = MS.max_amount
+
+
+	//And if there's any remainder, we eject that as a shard
+	if (remainder)
+		new /obj/item/weapon/material/shard(loc, material, _amount = remainder)
+
+	//The stored material gets the amount (whole+remainder) subtracted
+	stored_material[material] -= amount
+
+
+/obj/machinery/autolathe/dismantle()
+
+	for(var/mat in stored_material)
+		eject(mat, stored_material[mat])
+
+	..()
+	return 1
 
 //Updates overall lathe storage size.
 /obj/machinery/autolathe/RefreshParts()
@@ -646,26 +683,7 @@
 	speed = man_rating*3
 	mat_efficiency = 1.1 - man_rating * 0.1// Normally, price is 1.25 the amount of material, so this shouldn't go higher than 0.8. Maximum rating of parts is 3
 
-/obj/machinery/autolathe/dismantle()
 
-	for(var/mat in stored_material)
-		var/material/M = get_material_by_name(mat)
-		if(!istype(M) || stored_material[mat] <= 0)
-			continue
-
-		var/obj/item/stack/material/S = new M.stack_type(get_turf(src))
-
-		if(S.max_amount <= stored_material[mat])
-			S.amount = stored_material[mat]
-		else
-			var/fullstacks = stored_material[mat] / S.max_amount
-			S.amount = stored_material[mat] % S.max_amount
-			for(var/i = 0; i < fullstacks; i++)
-				var/obj/item/stack/material/MS = new M.stack_type(get_turf(src))
-				MS.amount = MS.max_amount
-
-	..()
-	return 1
 
 
 //Cancels the current construction
@@ -736,5 +754,4 @@
 #undef ERR_NOMATERIAL
 #undef ERR_NOREAGENT
 #undef ERR_NOLICENSE
-
 #undef SANITIZE_LATHE_COST

@@ -98,20 +98,31 @@
 
 /datum/core_module/rituals/cruciform
 	implant_type = /obj/item/weapon/implant/core_implant/cruciform
+	var/list/ritual_types = list()
+
+/datum/core_module/rituals/cruciform/set_up()
+	for (var/grouptype in ritual_types)
+		for (var/rn in GLOB.all_rituals)
+			var/datum/ritual/R = GLOB.all_rituals[rn]
+			if (istype(R, grouptype))
+				module_rituals |= R.name
+
+/datum/core_module/rituals/cruciform/base
+	ritual_types = list(/datum/ritual/cruciform/base,
+	/datum/ritual/targeted/cruciform/base,
+	/datum/ritual/group/cruciform)
 
 
-/datum/core_module/rituals/cruciform/base/set_up()
-	rituals = subtypesof(/datum/ritual/cruciform/base)+subtypesof(/datum/ritual/targeted/cruciform/base)
-	rituals += subtypesof(/datum/ritual/group/cruciform)
-
-/datum/core_module/rituals/cruciform/priest/set_up()
-	rituals = subtypesof(/datum/ritual/cruciform/priest)+subtypesof(/datum/ritual/targeted/cruciform/priest)
+/datum/core_module/rituals/cruciform/priest
+	ritual_types = list(/datum/ritual/cruciform/priest,
+	/datum/ritual/targeted/cruciform/priest)
 
 
 
-/datum/core_module/rituals/cruciform/inquisitor/set_up()
-	rituals = subtypesof(/datum/ritual/inquisitor)+subtypesof(/datum/ritual/targeted/inquisitor)
+/datum/core_module/rituals/cruciform/inquisitor
+	ritual_types = list(/datum/ritual/inquisitor,
+	/datum/ritual/targeted/inquisitor)
 
 
-/datum/core_module/rituals/cruciform/crusader/set_up()
-	rituals = list()
+/datum/core_module/rituals/cruciform/crusader
+	ritual_types = list(/datum/ritual/cruciform/crusader)

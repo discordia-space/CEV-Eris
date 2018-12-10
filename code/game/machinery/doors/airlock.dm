@@ -918,9 +918,9 @@ There are 9 wires.
 						user << SPAN_NOTICE("The airlock's bolts prevent it from being forced.")
 					else
 						if(density)
-							spawn(0)	open(1)
+							spawn(0)	open(I)
 						else
-							spawn(0)	close(1)
+							spawn(0)	close(I)
 			return
 
 		if(QUALITY_SCREW_DRIVING)
@@ -998,7 +998,11 @@ There are 9 wires.
 	if(arePowerSystemsOn())
 		playsound(src.loc, open_sound_powered, 100, 1)
 	else
-		playsound(src.loc, open_sound_unpowered, 100, 1)
+		var/obj/item/weapon/tool/T = forced
+		if (istype(T) && T.silenced)
+			playsound(src.loc, open_sound_unpowered, 3, 1, -5) //Silenced tools can force open airlocks silently
+		else
+			playsound(src.loc, open_sound_unpowered, 100, 1)
 
 	if(src.closeOther != null && istype(src.closeOther, /obj/machinery/door/airlock/) && !src.closeOther.density)
 		src.closeOther.close()
@@ -1101,7 +1105,11 @@ There are 9 wires.
 	if(arePowerSystemsOn())
 		playsound(src.loc, close_sound, 100, 1)
 	else
-		playsound(src.loc, open_sound_unpowered, 100, 1)
+		var/obj/item/weapon/tool/T = forced
+		if (istype(T) && T.silenced)
+			playsound(src.loc, open_sound_unpowered, 3, 1, -5) //Silenced tools can force airlocks silently
+		else
+			playsound(src.loc, open_sound_unpowered, 100, 1)
 
 	..()
 
@@ -1238,16 +1246,21 @@ There are 9 wires.
 	var/obj/item/weapon/W = I
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.5)
 	var/calc_damage = W.force*W.structure_damage_factor
+	var/quiet = FALSE
+	if (istool(I))
+		var/obj/item/weapon/tool/T = I
+		quiet = T.silenced
+
 	if (locked)
 		calc_damage *= 0.66
 	calc_damage -= resistance
 	user.do_attack_animation(src)
 	if(calc_damage <= 0)
 		user.visible_message(SPAN_DANGER("\The [user] hits \the [src] with \the [W] with no visible effect."))
-		playsound(src.loc, hitsound, 20, 1)
+		quiet ? () : playsound(src.loc, hitsound, 20, 1)
 	else
 		user.visible_message(SPAN_DANGER("\The [user] forcefully strikes \the [src] with \the [W]!"))
-		playsound(src.loc, hitsound, calc_damage*2.5, 1, 3,3)
+		playsound(src.loc, hitsound, quiet? 3: calc_damage*2.5, 1, 3,quiet?-5 :3)
 		take_damage(W.force)
 
 

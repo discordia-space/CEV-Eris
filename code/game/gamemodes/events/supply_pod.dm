@@ -12,9 +12,9 @@
 /datum/storyevent/supply_pod
 	id = "supply_pod"
 	name = "supply pod"
-
+	weight = 0.75
 	event_type = /datum/event/supply_pod
-	event_pools = list(EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR*0.8) //Slightly lower cost than other major events
+	event_pools = list(EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR*1.2) //Slightly higher cost than other major events
 
 	tags = list(TAG_DESTRUCTIVE, TAG_POSITIVE, TAG_COMBAT, TAG_EXTERNAL)
 
@@ -86,7 +86,7 @@
 
 
 	//Secondly, some rare items, to bring all the boys to the yard
-	for (var/i = 0; i < 7; i++)
+	for (var/i = 0; i < 10; i++)
 		pod_contents.Add(/obj/random/rare)
 
 	//Aaand thirdly a bunch of random stuff just to fill out space

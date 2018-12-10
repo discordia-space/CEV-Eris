@@ -9,7 +9,7 @@
 	spawn_positions = 1
 	supervisors = "the NeoTheology Church"
 	selection_color = "#dddddd"
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 25)
 	access = list(access_morgue, access_chapel_office, access_crematorium, access_maint_tunnels)
 	idtype = /obj/item/weapon/card/id/chaplain
 

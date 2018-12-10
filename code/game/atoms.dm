@@ -1,7 +1,7 @@
 /atom
 	layer = TURF_LAYER
 	plane = GAME_PLANE
-	appearance_flags = TILE_BOUND|PIXEL_SCALE
+	appearance_flags = TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
 	var/level = 2
 	var/flags = 0
 	var/list/fingerprints
@@ -513,8 +513,7 @@ its easier to just keep the beam vertical.
 		return FALSE
 
 //Multi-z falling procs
-/atom/movable/proc/can_fall()
-	return !anchored
+
 
 //Execution by grand piano!
 /atom/movable/proc/get_fall_damage(var/turf/from, var/turf/dest)
@@ -617,3 +616,6 @@ its easier to just keep the beam vertical.
 		C.y_pos = T.y
 		C.z_pos = T.z
 		return C
+
+/atom/proc/change_area(var/area/old_area, var/area/new_area)
+	return

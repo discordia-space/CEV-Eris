@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/handmade_pistol
 	name = "handmade pistol"
-	desc = "Looks unreliable. Maybe will blow up in your hands. Due to a strange design this one can be reload only after shot. Or with screwdriver."
+	desc = "Looks unreliable. May blow up in your hands. Due to a strange design, this one can be reload only after shot. Or with the use of a screwdriver."
 	icon_state = "hm_pistol"
 	caliber = "38"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)

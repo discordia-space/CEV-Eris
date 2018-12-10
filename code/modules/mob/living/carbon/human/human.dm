@@ -248,15 +248,11 @@
 //gets name from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
 /mob/living/carbon/human/proc/get_authentification_name(var/if_no_id = "Unknown")
-	var/obj/item/weapon/card/id/id
-	if (istype(wear_id, /obj/item/modular_computer/pda))
-		id = wear_id.GetIdCard()
-	if(!id)
-		id = get_idcard()
-		if(id)
-			return id.registered_name
-		else
-			return if_no_id
+	var/obj/item/weapon/card/id/id = GetIdCard()
+	if(id)
+		return id.registered_name || if_no_id
+	else
+		return if_no_id
 
 //Trust me I'm an engineer
 //I think we'll put this shit right here
@@ -427,7 +423,7 @@ var/list/rank_prefix = list(\
 				perpname = id.registered_name
 			else
 				perpname = src.name
-				
+
 			for (var/datum/data/record/E in data_core.general)
 				if (E.fields["name"] == perpname)
 					for (var/datum/data/record/R in data_core.security)

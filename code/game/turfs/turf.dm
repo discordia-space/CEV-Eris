@@ -24,7 +24,9 @@
 
 	var/list/decals
 
-	var/is_hole = FALSE
+	var/is_hole = FALSE			// If true, turf is open to vertical transitions through it.
+								// This is a more generic way of handling open space turfs
+	var/is_wall = FALSE 	//True for wall turfs, but also true if they contain a low wall object
 
 /turf/New()
 	..()
@@ -171,16 +173,16 @@ var/const/enterloopsanity = 100
 	if(!(A.last_move))	return
 	if((istype(A, /mob/) && src.x > 2 && src.x < (world.maxx - 1) && src.y > 2 && src.y < (world.maxy-1)))
 		var/mob/M = A
-		if(M.Process_Spacemove(1))
+		if(M.Allow_Spacemove(1))
 			M.inertia_dir  = 0
 			return
 		spawn(5)
 			if((M && !(M.anchored) && !(M.pulledby) && (M.loc == src)))
 				if(M.inertia_dir)
-					step(M, M.inertia_dir)
+					step_glide(M, M.inertia_dir, DELAY2GLIDESIZE(5))
 					return
 				M.inertia_dir = M.last_move
-				step(M, M.inertia_dir)
+				step(M, M.inertia_dir, DELAY2GLIDESIZE(5))
 	return
 
 /turf/proc/levelupdate()

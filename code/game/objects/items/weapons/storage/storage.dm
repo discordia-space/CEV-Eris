@@ -1,4 +1,3 @@
-//todo: display_contents_with_number
 //todo: get rid of s_active
 //todo: close hud when storage item is thrown
 
@@ -50,7 +49,7 @@
 	if(S)
 		S.close(clientMob)
 
-/obj/item/weapon/storage/proc/setupItemBackground(var/HUD_element/itemBackground, var/atom/item)
+/obj/item/weapon/storage/proc/setupItemBackground(var/HUD_element/itemBackground, var/atom/item, var/itemCount)
 	itemBackground.setClickProc(.itemBackgroundClick)
 	itemBackground.setData("item", item)
 
@@ -58,6 +57,7 @@
 	itemIcon.setDimensions(32,32) //todo: should be width/height of real object icon
 	itemIcon.setAlignment(3,3) //center
 
+	//todo: remove vis_contents, use mimic icon, make wrappers for dragdrop/examine/clicks, do not alter item
 	item.pixel_x = 0 //no pixel offsets inside storage
 	item.pixel_y = 0
 	item.pixel_w = 0
@@ -67,6 +67,9 @@
 
 	itemIcon.vis_contents += item //this draws the actual item, see byond ref for vis_contents var
 	itemBackground.setName(item.name, TRUE)
+
+	if (itemCount)
+		item.maptext = "<font color='white'>[itemCount]</font>"
 
 /obj/item/weapon/storage/proc/generateHUD(var/datum/hud/data)
 	var/HUD_element/main = new("storage")
@@ -80,7 +83,7 @@
 	closeButton.setData("item", src)
 
 	//storage space based items
-	if(storage_slots == null)
+	if((storage_slots == null) && !display_contents_with_number)
 		var/baseline_max_storage_space = 16 //should be equal to default backpack capacity
 		var/minBackgroundWidth = min( round( 224 * max_storage_space/baseline_max_storage_space ,1) ,260) //in pixels
 
@@ -129,24 +132,51 @@
 
 	//slot storage based items
 	else
-		var/maxColumnCount = data.StorageData["ColCount"]
+		var/list/storage_contents
+		var/list/filtered_contents_last
+		var/list/filtered_contents_count
+		if (display_contents_with_number) //used to display number next to item icons, indicating how many of such items are in storage
+			storage_contents = new //item types in storage
+			filtered_contents_last = new //last of x item type in storage
+			filtered_contents_count = new //total number of x item type in storage
+			for(var/obj/item/I in contents) //count items and remember last item for each type
+				var/item_type = I.type
+				if (filtered_contents_count[item_type])
+					filtered_contents_count[item_type]++
+				else
+					storage_contents.Add(item_type)
+					filtered_contents_count[item_type] = 1
+
+				filtered_contents_last[item_type] = I
+		else
+			storage_contents = contents //items in storage
+
 		var/spacingBetweenSlots = 0 //in pixels
 
 		var/totalWidth = 0 //in pixels
 		var/totalHeight = 0
 
+		var/slotsToDisplay = storage_contents.len+1 //how many item slots are being displayed
+		if (storage_slots)
+			slotsToDisplay = min(slotsToDisplay, storage_slots) //limit display to max slot count, if present
+
 		var/currentSlot
 		var/currentItemNumber = 1
-		var/slotsToDisplay = storage_slots
+		var/maxColumnCount = min(data.StorageData["ColCount"], slotsToDisplay)
 		for (currentSlot = 1, currentSlot <= slotsToDisplay, currentSlot++)
 			var/HUD_element/slottedItemBackground/itemBackground = new()
 			main.add(itemBackground)
 			itemBackground.setPosition(totalWidth, totalHeight)
 
-			if (currentItemNumber <= contents.len)
-				setupItemBackground(itemBackground, contents[currentItemNumber])
+			if (currentItemNumber <= storage_contents.len)
+				if (display_contents_with_number)
+					var/item_type = storage_contents[currentItemNumber]
+					setupItemBackground(itemBackground, filtered_contents_last[item_type], filtered_contents_count[item_type])
+				else
+					setupItemBackground(itemBackground, storage_contents[currentItemNumber])
+
 				currentItemNumber++
-			else
+			else //empty slots
 				itemBackground.setClickProc(.storageBackgroundClick)
 				itemBackground.setData("item", src)
 

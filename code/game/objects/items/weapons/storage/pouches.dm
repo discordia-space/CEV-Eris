@@ -95,7 +95,7 @@
 	icon_state = "engineering_tool"
 	item_state = "engineering_tool"
 
-	storage_slots = 2
+	storage_slots = 3
 	max_w_class = ITEM_SIZE_SMALL
 
 	can_hold = list(
@@ -200,6 +200,7 @@
 		/obj/item/weapon/gun/projectile/mk58,
 		/obj/item/weapon/gun/projectile/olivaw,
 		/obj/item/weapon/gun/projectile/silenced,
+		/obj/item/weapon/gun/energy/gun/martin,
 		/obj/item/weapon/gun/projectile/revolver)
 
 	sliding_behavior = TRUE

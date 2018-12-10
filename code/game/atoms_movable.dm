@@ -51,9 +51,12 @@
 /atom/movable/proc/entered_with_container(var/atom/old_loc)
 	return
 
-/atom/movable/proc/forceMove(atom/destination, var/special_event)
+/atom/movable/proc/forceMove(atom/destination, var/special_event, glide_size_override=0)
 	if(loc == destination)
 		return 0
+
+	if (glide_size_override)
+		set_glide_size(glide_size_override)
 
 	var/is_origin_turf = isturf(loc)
 	var/is_destination_turf = isturf(destination)
@@ -296,3 +299,74 @@
 		return null
 	return text2num(pickweight(candidates))
 
+
+/atom/movable/proc/set_glide_size(glide_size_override = 0, var/min = 0.9, var/max = world.icon_size/2)
+	if (!glide_size_override || glide_size_override > max)
+		glide_size = 0
+	else
+		glide_size = max(min, glide_size_override)
+	
+	for (var/atom/movable/AM in contents)
+		AM.set_glide_size(glide_size, min, max)
+
+
+//This proc should never be overridden elsewhere at /atom/movable to keep directions sane.
+// Spoiler alert: it is, in moved.dm
+/atom/movable/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+	if (glide_size_override > 0)
+		set_glide_size(glide_size_override)
+	
+	// To prevent issues, diagonal movements are broken up into two cardinal movements.
+
+	// Is this a diagonal movement?
+	if (Dir & (Dir - 1))
+		if (Dir & NORTH)
+			if (Dir & EAST)
+				// Pretty simple really, try to move north -> east, else try east -> north
+				// Pretty much exactly the same for all the other cases here.
+				if (step(src, NORTH))
+					step(src, EAST)
+				else
+					if (step(src, EAST))
+						step(src, NORTH)
+			else
+				if (Dir & WEST)
+					if (step(src, NORTH))
+						step(src, WEST)
+					else
+						if (step(src, WEST))
+							step(src, NORTH)
+		else
+			if (Dir & SOUTH)
+				if (Dir & EAST)
+					if (step(src, SOUTH))
+						step(src, EAST)
+					else
+						if (step(src, EAST))
+							step(src, SOUTH)
+				else
+					if (Dir & WEST)
+						if (step(src, SOUTH))
+							step(src, WEST)
+						else
+							if (step(src, WEST))
+								step(src, SOUTH)
+	else
+		var/atom/A = src.loc
+
+		var/olddir = dir //we can't override this without sacrificing the rest of movable/New()
+		. = ..()
+		if(Dir != olddir)
+			dir = olddir
+			set_dir(Dir)
+
+		src.move_speed = world.time - src.l_move_time
+		src.l_move_time = world.time
+		src.m_flag = 1
+		if ((A != src.loc && A && A.z == src.z))
+			src.last_move = get_dir(A, src.loc)
+
+// Wrapper of step() that also sets glide size to a specific value.
+/proc/step_glide(var/atom/movable/am, var/dir, var/glide_size_override)
+	am.set_glide_size(glide_size_override)
+	return step(am, dir)

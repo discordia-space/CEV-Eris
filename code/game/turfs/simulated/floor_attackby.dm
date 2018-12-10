@@ -3,6 +3,12 @@
 	if(!I || !user)
 		return 0
 
+	var/obj/effect/shield/turf_shield = getEffectShield()
+
+	if (turf_shield && !turf_shield.CanActThrough(user))
+		turf_shield.attackby(I, user)
+		return TRUE
+
 	//Flooring attackby may intercept the proc.
 	//If it has a nonzero return value, then we return too
 	if (flooring && flooring.attackby(I, user, src))

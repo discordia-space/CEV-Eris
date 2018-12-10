@@ -305,7 +305,12 @@ var/datum/storyteller/storyteller = null
 /*Sets up an event to be fired in the near future. This keeps things unpredictable
 The actual fire event proc is located in storyteller_meta*/
 /datum/storyteller/proc/schedule_event(var/datum/storyevent/C, var/event_type)
-	var/handle = addtimer(CALLBACK(GLOBAL_PROC, .proc/fire_event, C, event_type), rand(1, event_schedule_delay), TIMER_STOPPABLE)
+	var/delay
+	if (event_type == EVENT_LEVEL_ROLESET)
+		delay = 1 //Basically no delay on these to reduce bugginess
+	else
+		delay = rand(1, event_schedule_delay)
+	var/handle = addtimer(CALLBACK(GLOBAL_PROC, .proc/fire_event, C, event_type), delay, TIMER_STOPPABLE)
 	scheduled_events.Add(list(C), type, handle)
 
 
@@ -320,14 +325,18 @@ The actual fire event proc is located in storyteller_meta*/
 	event_pool_major.Cut()
 	event_pool_roleset.Cut()
 	for (var/datum/storyevent/a in storyevents)
-		if (!a.enabled)
-			continue
 
-		var/new_weight = calculate_event_weight(a)
-		//Reduce the weight based on number of ocurrences.
-		//This is mostly for the sake of midround handovers
-		if (a.ocurrences >= 1)
-			new_weight *= repetition_multiplier ** a.ocurrences
+
+		var/new_weight
+
+		if (!a.enabled)
+			new_weight = 0
+		else
+			new_weight = calculate_event_weight(a)
+			//Reduce the weight based on number of ocurrences.
+			//This is mostly for the sake of midround handovers
+			if (a.ocurrences >= 1)
+				new_weight *= repetition_multiplier ** a.ocurrences
 
 		//We setup the event pools as an associative list in preparation for a pickweight call
 		if (EVENT_LEVEL_MUNDANE in a.event_pools)

@@ -50,6 +50,11 @@
 
 #define isdrone(A) istype(A, /mob/living/silicon/robot/drone)
 
+//-----------------Objects
+#define isitem(A) istype(A, /obj/item)
+
+#define istool(A) istype(A, /obj/item/weapon/tool)
+
 #define isWrench(A) istype(A, /obj/item/weapon/tool/wrench)
 
 #define isWelder(A) istype(A, /obj/item/weapon/tool/weldingtool)

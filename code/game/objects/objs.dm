@@ -14,6 +14,7 @@
 	var/corporation = null
 	var/heat = 0
 
+
 /obj/proc/is_hot()
 	return heat
 
@@ -216,3 +217,9 @@
 	playsound(src.loc, 'sound/weapons/guns/interact/pistol_magout.ogg', 75, 1)
 	M << SPAN_NOTICE("You insert [I] into [src].")
 	return TRUE
+
+
+//Returns the list of matter in this object
+//You can override it to customise exactly what is returned.
+/obj/proc/get_matter()
+	return matter

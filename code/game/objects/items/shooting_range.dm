@@ -18,8 +18,8 @@
 			break
 	. = ..() // delete target
 
-/obj/item/target/Move()
-	..()
+/obj/item/target/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+	. = ..()
 	// After target moves, check for nearby stakes. If associated, move to target
 	for(var/obj/structure/target_stake/M in view(3,src))
 		if(M.density == 0 && M.pinned_target == src)

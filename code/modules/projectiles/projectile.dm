@@ -227,6 +227,8 @@
 	var/passthrough = FALSE //if the projectile should continue flying
 	var/distance = get_dist(starting,loc)
 
+	var/tempLoc = get_turf(A)
+
 	bumped = TRUE
 	if(ismob(A))
 		var/mob/M = A
@@ -257,12 +259,13 @@
 
 	//the bullet passes through a dense object!
 	if(passthrough)
-		//move ourselves onto A so we can continue on our way.
-		if(A)
-			if(istype(A, /turf))
-				loc = A
-			else
-				loc = A.loc
+		//move ourselves onto A so we can continue on our way
+		if (!tempLoc)
+			qdel(src)
+			return TRUE
+
+		loc = tempLoc
+		if (A)
 			permutated.Add(A)
 		bumped = FALSE //reset bumped variable!
 		return FALSE

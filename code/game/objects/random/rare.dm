@@ -19,4 +19,5 @@
 	/obj/random/voidsuit = 4,
 	/obj/item/weapon/storage/pouch/medium_generic = 4,
 	/obj/item/weapon/storage/pouch/large_generic = 2,
+	/obj/random/tool_upgrade/rare = 4
 	))

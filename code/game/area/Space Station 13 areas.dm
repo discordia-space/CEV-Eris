@@ -102,6 +102,7 @@ var/list/ghostteleportlocs = list()
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
+	has_gravity = FALSE
 	flags = AREA_FLAG_EXTERNAL
 	ambience = list('sound/ambience/ambispace.ogg')
 	vessel = null
@@ -122,6 +123,7 @@ area/space/atmosalert()
 	return
 
 /area/turret_protected/
+	flags = AREA_FLAG_CRITICAL
 
 /area/arrival
 	requires_power = 0
@@ -2311,7 +2313,6 @@ area/space/atmosalert()
 	name = "\improper AI Upload Chamber"
 	icon_state = "ai_upload"
 	ambience = list('sound/ambience/ambimalf.ogg')
-	flags = AREA_FLAG_CRITICAL
 
 /area/turret_protected/ai_upload_foyer
 	name = "AI Upload Access"

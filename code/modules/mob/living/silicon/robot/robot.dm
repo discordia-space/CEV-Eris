@@ -54,6 +54,7 @@
 	var/mob/living/silicon/ai/connected_ai = null
 	var/obj/item/weapon/cell/large/cell = null
 	var/obj/machinery/camera/camera = null
+	var/obj/item/weapon/tank/jetpack/synthetic/jetpack = null
 
 	var/cell_emp_mult = 2
 
@@ -77,7 +78,6 @@
 	var/viewalerts = 0
 	var/modtype = "Default"
 	var/lower_mod = 0
-	var/jetpack = 0
 	var/datum/effect/effect/system/ion_trail_follow/ion_trail = null
 	var/datum/effect/effect/system/spark_spread/spark_system//So they can initialize sparks whenever/N
 	var/jeton = 0
@@ -135,8 +135,9 @@
 	// Create all the robot parts.
 	for(var/V in components) if(V != "power cell")
 		var/datum/robot_component/C = components[V]
-		C.installed = 1
-		C.wrapped = new C.external_type
+		C.installed = C.installed_by_default
+		if (C.installed)
+			C.wrapped = new C.external_type
 
 	if(!cell)
 		cell = new /obj/item/weapon/cell/large(src)
@@ -349,10 +350,10 @@
 		updateicon()
 
 // this verb lets cyborgs see the stations manifest
-/mob/living/silicon/robot/verb/cmd_station_manifest()
+/mob/living/silicon/robot/verb/open_manifest()
 	set category = "Silicon Commands"
 	set name = "Show Crew Manifest"
-	show_station_manifest()
+	show_manifest(src)
 
 /mob/living/silicon/robot/proc/self_diagnosis()
 	if(!is_component_functioning("diagnosis unit"))
@@ -442,17 +443,9 @@
 // this function displays jetpack pressure in the stat panel
 /mob/living/silicon/robot/proc/show_jetpack_pressure()
 	// if you have a jetpack, show the internal tank pressure
-	var/obj/item/weapon/tank/jetpack/current_jetpack = installed_jetpack()
-	if (current_jetpack)
-		stat("Internal Atmosphere Info", current_jetpack.name)
-		stat("Tank Pressure", current_jetpack.air_contents.return_pressure())
-
-
-// this function returns the robots jetpack, if one is installed
-/mob/living/silicon/robot/proc/installed_jetpack()
-	if(module)
-		return (locate(/obj/item/weapon/tank/jetpack) in module.modules)
-	return 0
+	if (jetpack)
+		stat("Internal Atmosphere Info", jetpack.name)
+		stat("Tank Pressure", jetpack.gastank.air_contents.return_pressure())
 
 
 // this function displays the cyborgs current cell charge in the stat panel
@@ -506,6 +499,8 @@
 				usr << SPAN_NOTICE("You install the [I.name].")
 
 				return
+
+
 
 		if (istype(I, /obj/item/weapon/gripper))//Code for allowing cyborgs to use rechargers
 			var/obj/item/weapon/gripper/Gri = I
@@ -920,7 +915,7 @@
 	radio.interact(src)//Just use the radio's Topic() instead of bullshit special-snowflake code
 
 
-/mob/living/silicon/robot/Move(a, b, flag)
+/mob/living/silicon/robot/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 
 	. = ..()
 

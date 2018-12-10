@@ -25,6 +25,10 @@ proc/admin_notice(var/message, var/rights)
 		if(check_rights(rights, 0, M))
 			M << message
 
+// Not happening.
+/datum/admins/SDQL_update(var/const/var_name, var/new_value)
+	return 0
+
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
 ADMIN_VERB_ADD(/datum/admins/proc/show_player_panel, null, TRUE)

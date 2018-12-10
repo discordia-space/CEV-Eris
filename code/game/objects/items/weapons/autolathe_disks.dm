@@ -40,16 +40,19 @@
 /obj/item/weapon/disk/autolathe_disk/basic/New()
 	recipes = list(
 		/datum/autolathe/recipe/misc/flashlight,
+		/datum/autolathe/recipe/tool/ducttape,
 		/datum/autolathe/recipe/misc/extinguisher,
 		/datum/autolathe/recipe/misc/radio_headset,
 		/datum/autolathe/recipe/misc/radio_bounced,
 		/datum/autolathe/recipe/misc/ashtray,
 		/datum/autolathe/recipe/container/bucket,
 		/datum/autolathe/recipe/container/jar,
-		/datum/autolathe/recipe/container/vial,
 		/datum/autolathe/recipe/container/syringe,
+		/datum/autolathe/recipe/container/vial,
 		/datum/autolathe/recipe/container/beaker,
 		/datum/autolathe/recipe/container/beaker_large,
+		/datum/autolathe/recipe/container/pill_bottle,
+		/datum/autolathe/recipe/container/spray,
 		/datum/autolathe/recipe/misc/cane,
 		/datum/autolathe/recipe/misc/floor_light,
 		/datum/autolathe/recipe/misc/tube,
@@ -85,6 +88,7 @@
 		/datum/autolathe/recipe/device/lightreplacer,
 		/datum/autolathe/recipe/misc/tube,
 		/datum/autolathe/recipe/misc/bulb,
+
 	)
 	..()
 
@@ -98,6 +102,7 @@
 	recipes = list(
 		/datum/autolathe/recipe/tool/hatchet,
 		/datum/autolathe/recipe/tool/minihoe,
+		/datum/autolathe/recipe/tool/ducttape,
 		/datum/autolathe/recipe/tool/knife,
 		/datum/autolathe/recipe/misc/heavyflashlight,
 		/datum/autolathe/recipe/tool/crowbar,
@@ -113,6 +118,7 @@
 		/datum/autolathe/recipe/tool/weldertool,
 		/datum/autolathe/recipe/tool/weldinggoggles,
 		/datum/autolathe/recipe/tool/weldermask,
+		/datum/autolathe/recipe/device/flamethrower,
 	)
 	..()
 
@@ -138,6 +144,7 @@
 		/datum/autolathe/recipe/part/timer,
 		/datum/autolathe/recipe/part/sensor_prox,
 		/datum/autolathe/recipe/part/camera_assembly,
+		/datum/autolathe/recipe/part/laserguide,
 	)
 	..()
 
@@ -151,6 +158,7 @@
 	recipes = list(
 		/datum/autolathe/recipe/tool/big_wrench,
 		/datum/autolathe/recipe/tool/jackhammer,
+		/datum/autolathe/recipe/tool/pneumatic_crowbar,
 		/datum/autolathe/recipe/tool/mining_drill,
 		/datum/autolathe/recipe/tool/diamonddrill,
 		/datum/autolathe/recipe/tool/pickaxe_excavation,
@@ -159,6 +167,7 @@
 		/datum/autolathe/recipe/tool/electric_screwdriver,
 		/datum/autolathe/recipe/tool/combi_driver,
 		/datum/autolathe/recipe/tool/armature_cutter,
+		/datum/autolathe/recipe/part/diamondblade,
 	)
 	..()
 
@@ -178,9 +187,6 @@
 		/datum/autolathe/recipe/circuit/autolathe_disk_cloner,
 		/datum/autolathe/recipe/circuit/arcade_battle,
 		/datum/autolathe/recipe/circuit/arcade_orion_trail,
-		/datum/autolathe/recipe/circuit/communications,
-		/datum/autolathe/recipe/circuit/med_data,
-		/datum/autolathe/recipe/circuit/secure_data,
 		/datum/autolathe/recipe/circuit/teleporter,
 		/datum/autolathe/recipe/circuit/operating,
 		/datum/autolathe/recipe/circuit/helm,
@@ -204,10 +210,12 @@
 		/datum/autolathe/recipe/tool/retractor,
 		/datum/autolathe/recipe/tool/cautery,
 		/datum/autolathe/recipe/tool/hemostat,
-		/datum/autolathe/recipe/container/beaker,
-		/datum/autolathe/recipe/container/beaker_large,
 		/datum/autolathe/recipe/container/syringe,
 		/datum/autolathe/recipe/container/vial,
+		/datum/autolathe/recipe/container/beaker,
+		/datum/autolathe/recipe/container/beaker_large,
+		/datum/autolathe/recipe/container/pill_bottle,
+		/datum/autolathe/recipe/container/spray,
 		/datum/autolathe/recipe/device/implanter,
 		/datum/autolathe/recipe/container/syringegun_ammo,
 	)

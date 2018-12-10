@@ -5,11 +5,11 @@
 	department = "Civilian"
 	department_flag = SERVICE
 	faction = "CEV Eris"
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
-	also_known_languages = list(LANGUAGE_CYRILLIC = 25)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 15)
 	access = list(access_hydroponics, access_bar, access_kitchen)
 
 	stat_modifers = list(
@@ -55,8 +55,8 @@
 	department = "Civilian"
 	department_flag = SERVICE
 	faction = "CEV Eris"
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 3
+	spawn_positions = 3
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
@@ -83,8 +83,8 @@
 	department = "Civilian"
 	department_flag = SERVICE
 	faction = "CEV Eris"
-	total_positions = 2
-	spawn_positions = 1
+	total_positions = 3
+	spawn_positions = 3
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
@@ -122,7 +122,7 @@
 	spawn_positions = 2
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5)
 	access = list(access_maint_tunnels, access_theatre)
 
 	stat_modifers = list(
@@ -168,8 +168,8 @@
 	department = "Civilian"
 	department_flag = SERVICE
 	faction = "CEV Eris"
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 3
+	spawn_positions = 3
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15)

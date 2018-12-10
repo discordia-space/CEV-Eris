@@ -134,12 +134,14 @@
 	var/obj/item/weapon/implant/core_implant/CI = M.get_cruciform()
 	if(CI)
 		if(cnt >= 2)
-			if(!locate(/datum/ritual/cruciform/crusader/brotherhood) in CI.rituals)
-				CI.rituals += /datum/ritual/cruciform/crusader/brotherhood
+			var/datum/ritual/cruciform/crusader/C = /datum/ritual/cruciform/crusader/brotherhood
+			CI.known_rituals |= initial(C.name)
+
 		if(cnt >= 3)
-			if(!locate(/datum/ritual/cruciform/crusader/battle_call) in CI.rituals)
-				CI.rituals += /datum/ritual/cruciform/crusader/battle_call
+			var/datum/ritual/cruciform/crusader/C = /datum/ritual/cruciform/crusader/battle_call
+			CI.known_rituals |= initial(C.name)
+
 		if(cnt >= 4)
-			if(!locate(/datum/ritual/cruciform/crusader/flash) in CI.rituals)
-				CI.rituals += /datum/ritual/cruciform/crusader/flash
+			var/datum/ritual/cruciform/crusader/C = /datum/ritual/cruciform/crusader/flash
+			CI.known_rituals |= initial(C.name)
 

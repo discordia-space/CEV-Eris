@@ -7,8 +7,8 @@
 	speak_emote = list("chirps")
 
 	layer = 5
-	maxHealth = 150
-	health = 150
+	maxHealth = 120
+	health = 120
 	gender = NEUTER
 
 	update_icon = 0
@@ -86,9 +86,9 @@
 
 /mob/living/carbon/slime/movement_delay()
 	if (bodytemperature >= 330.23) // 135 F
-		return -1	// slimes become supercharged at high temperatures
+		return 0	// slimes become supercharged at high temperatures
 
-	var/tally = 0
+	var/tally = MOVE_DELAY_BASE
 
 	var/health_deficiency = (maxHealth - health)
 	if(health_deficiency >= 30) tally += (health_deficiency / 25)
@@ -106,7 +106,7 @@
 	if(health <= 0) // if damaged, the slime moves twice as slow
 		tally *= 2
 
-	return tally + config.slime_delay
+	return tally
 
 /mob/living/carbon/slime/Bump(atom/movable/AM as mob|obj, yes)
 	if ((!(yes) || now_pushing))
@@ -148,7 +148,7 @@
 
 	..()
 
-/mob/living/carbon/slime/Process_Spacemove()
+/mob/living/carbon/slime/Allow_Spacemove()
 	return 2
 
 /mob/living/carbon/slime/Stat()

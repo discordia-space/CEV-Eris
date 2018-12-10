@@ -193,14 +193,14 @@
 	if(D.time > progress)
 		return
 	for(var/M in D.materials)
-		materials[M] = max(0, round(materials[M] - D.materials[M] * mat_efficiency))
+		materials[M] = max(0, round(materials[M] - D.materials[M] * mat_efficiency, 0.01))
 	if(D.build_path)
 		var/obj/new_item = D.Fabricate(loc, src)
 		visible_message("\The [src] pings, indicating that \the [D] is complete.", "You hear a ping.")
 		if(mat_efficiency != 1)
 			if(new_item.matter && new_item.matter.len > 0)
 				for(var/i in new_item.matter)
-					new_item.matter[i] = round(new_item.matter[i] * mat_efficiency)
+					new_item.matter[i] = round(new_item.matter[i] * mat_efficiency, 0.01)
 	remove_from_queue(1)
 
 /obj/machinery/mecha_part_fabricator/proc/get_queue_names()

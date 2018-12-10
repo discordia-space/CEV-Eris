@@ -1,4 +1,17 @@
 // Generates a simple HTML crew manifest for use in various places
+
+//Intended for open manifest in separate window
+/proc/show_manifest(var/mob/user, var/datum/src_object = user, nano_state = GLOB.default_state)
+	var/list/data = list()
+	data["crew_manifest"] = html_crew_manifest(TRUE)
+
+	var/datum/nanoui/ui = SSnano.try_update_ui(user, src_object, "manifest", null, data, TRUE)
+	if (!ui)
+		ui = new(user, src_object, "manifest", "crew_manifest.tmpl", "Crew Manifest", 450, 600, state = nano_state)
+		ui.auto_update_layout = 1
+		ui.set_initial_data(data)
+		ui.open()
+
 /proc/html_crew_manifest(var/monochrome, var/OOC)
 	var/list/dept_data = list(
 
@@ -23,7 +36,6 @@
 			bot = department["names"]
 
 	var/list/isactive = new()
-	var/list/mil_ranks = list() // HTML to prepend to name
 	var/dat = {"
 	<head><style>
 		.manifest {border-collapse:collapse;width:100%;}
@@ -41,15 +53,24 @@
 		var/name = CR.get_name()
 		var/rank = CR.get_job()
 
-		if(OOC)
-			var/active = 0
-			for(var/mob/M in player_list)
-				if(M.real_name == name && M.client && M.client.inactivity <= 10 * 60 * 10)
-					active = 1
-					break
-			isactive[name] = active ? "Active" : "Inactive"
-		else
-			isactive[name] = CR.get_status()
+		var/matched = FALSE
+		var/skip = FALSE
+		//Minds should never be deleted, so our crew record must be in here somewhere
+		for(var/datum/mind/M in SSticker.minds)
+			if(M.name == name)
+				matched = TRUE
+				var/temp = M.manifest_status(CR)
+				if (temp)
+					isactive[name] = temp
+				else
+					skip = TRUE
+				break
+
+		if (skip)
+			continue
+
+		if (!matched)
+			isactive[name] = "Unknown"
 
 		var/datum/job/job = SSjob.occupations_by_name[rank]
 		var/found_place = 0
@@ -78,7 +99,7 @@
 		if(names.len > 0)
 			dat += "<tr><th colspan=3>[department["header"]]</th></tr>"
 			for(var/name in names)
-				dat += "<tr class='candystripe'><td>[mil_ranks[name]][name]</td><td>[names[name]]</td><td>[isactive[name]]</td></tr>"
+				dat += "<tr class='candystripe'><td>[name]</td><td>[names[name]]</td><td>[isactive[name]]</td></tr>"
 
 	dat += "</table>"
 	dat = replacetext(dat, "\n", "") // so it can be placed on paper correctly

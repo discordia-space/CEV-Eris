@@ -127,7 +127,6 @@
 	if(istype(L))
 		L.fire_stacks = 0
 		L.ExtinguishMob()
-		remove_self(amount)
 		/*
 		var/needed = L.fire_stacks * 10
 		if(amount > needed)

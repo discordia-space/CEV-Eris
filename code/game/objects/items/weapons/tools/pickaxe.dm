@@ -24,8 +24,8 @@
 	tool_qualities = list(QUALITY_DIGGING = 30)
 	origin_tech = list(TECH_MATERIAL = 3, TECH_POWER = 2, TECH_ENGINEERING = 2)
 	desc = "Cracks rocks with blasts, perfect for killing cave lizards."
-
-	use_power_cost = 0.5
+	degradation = 0.07
+	use_power_cost = 0.6
 	suitable_cell = /obj/item/weapon/cell/medium
 
 /obj/item/weapon/tool/pickaxe/drill
@@ -36,7 +36,7 @@
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 2)
 	origin_tech = list(TECH_MATERIAL = 2, TECH_POWER = 3, TECH_ENGINEERING = 2)
 	desc = "Yours is the drill that will pierce through the rock walls."
-
+	degradation = 0.07
 	use_fuel_cost = 0.2
 	max_fuel = 100
 
@@ -49,7 +49,8 @@
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 2, MATERIAL_DIAMOND = 1)
 	origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 4, TECH_ENGINEERING = 5)
 	desc = "Yours is the drill that will pierce the heavens!"
-
+	max_upgrades = 4
+	degradation = 0.01
 	use_fuel_cost = 0.2
 	max_fuel = 120
 

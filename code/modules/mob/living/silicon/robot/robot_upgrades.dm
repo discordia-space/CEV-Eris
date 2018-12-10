@@ -121,7 +121,7 @@
 /obj/item/borg/upgrade/tasercooler/action(var/mob/living/silicon/robot/R)
 	if(..()) return 0
 
-	if(!R.module || !(src in R.module.supported_upgrades))
+	if(!R.module || !(type in R.module.supported_upgrades))
 		R << "Upgrade mounting error!  No suitable hardpoint detected!"
 		usr << "There's no mounting point for the module!"
 		return 0
@@ -154,7 +154,7 @@
 /obj/item/borg/upgrade/jetpack/action(var/mob/living/silicon/robot/R)
 	if(..()) return 0
 
-	if(!R.module || !(src in R.module.supported_upgrades))
+	if(!R.module || !(type in R.module.supported_upgrades))
 		R << "Upgrade mounting error!  No suitable hardpoint detected!"
 		usr << "There's no mounting point for the module!"
 		return 0
@@ -163,6 +163,7 @@
 //		for(var/obj/item/weapon/tank/jetpack/carbondioxide in R.module.modules)
 //			R.internals = src
 		//R.icon_state="Miner+j"
+		R.module.Initialize() //Fixes layering and possible tool issues
 		return 1
 
 /obj/item/borg/upgrade/rcd
@@ -180,6 +181,7 @@
 		return 0
 	else
 		R.module.modules += new/obj/item/weapon/rcd/borg(R.module)
+		R.module.Initialize() //Fixes layering and possible tool issues
 		return 1
 
 /obj/item/borg/upgrade/syndicate/

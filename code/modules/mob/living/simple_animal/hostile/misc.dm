@@ -8,10 +8,10 @@
 	icon_dead = "samak_dead"
 	icon = 'icons/jungle.dmi'
 	move_to_delay = 2
-	maxHealth = 150
-	health = 150
+	maxHealth = 130
+	health = 130
 	speed = 2
-	melee_damage_lower = 5
+	melee_damage_lower = 8
 	melee_damage_upper = 15
 	attacktext = "mauled"
 	cold_damage_per_tick = 0
@@ -20,6 +20,7 @@
 	emote_see = list("paws the ground","shakes its mane","stomps")
 	emote_hear = list("snuffles")
 	mob_size = 10
+	resistance = 8
 
 /mob/living/simple_animal/hostile/diyaab
 	name = "diyaab"
@@ -54,17 +55,18 @@
 	icon_dead = "shantak_dead"
 	icon = 'icons/jungle.dmi'
 	move_to_delay = 1
-	maxHealth = 75
-	health = 75
+	maxHealth = 55
+	health = 55
 	speed = 1
-	melee_damage_lower = 4
-	melee_damage_upper = 12
+	melee_damage_lower = 6
+	melee_damage_upper = 14
 	attacktext = "gouged"
 	cold_damage_per_tick = 0
 	speak_chance = 5
 	speak = list("Shuhn","Shrunnph?","Shunpf")
 	emote_see = list("scratches the ground","shakes out it's mane","tinkles gently")
 	mob_size = 5
+	resistance = 3
 
 /mob/living/simple_animal/yithian
 	name = "yithian"

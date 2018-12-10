@@ -2,9 +2,8 @@
 	id = "borer"
 	name = "cortical borers"
 	role_id = ROLE_BORER
-	weight = 0.5
+	weight = 0.4
 
-	req_crew = 15
 
 	base_quantity = 2
 	scaling_threshold = 15
@@ -14,7 +13,7 @@
 	id = "traitor"
 	name = "traitor"
 	role_id = ROLE_TRAITOR
-	weight = 1
+	weight = 1.2
 	scaling_threshold = 10
 
 /datum/storyevent/roleset/inquisitor
@@ -22,7 +21,8 @@
 	name = "inquisitor"
 	role_id = ROLE_INQUISITOR
 	weight = 0.2
-	req_crew = 7
+	req_crew = 10
+	event_pools = list(EVENT_LEVEL_ROLESET = -30) //This is an antitag, it has a negative cost to allow more antags to exist
 
 /datum/storyevent/roleset/inquisitor/get_special_weight(var/new_weight)
 	var/c_count = 0
@@ -46,7 +46,22 @@
 	id = "marshal"
 	name = "marshal"
 	role_id = ROLE_MARSHAL
-	req_crew = 20
+	weight = 0.2
+	req_crew = 10
+	event_pools = list(EVENT_LEVEL_ROLESET = -30) //This is an antitag, it has a negative cost to allow more antags to exist
+
+/datum/storyevent/roleset/marshal/can_trigger(var/severity, var/report)
+	var/a_count = 0
+	for(var/datum/antagonist/A in current_antags)
+		if(!A.is_dead())
+			a_count++
+			break
+
+	if (a_count == 0)
+		if (report) report << SPAN_NOTICE("Failure: No antags which can serve as target")
+		return FALSE //Can't spawn without at least one antag
+
+	return ..()
 
 /datum/storyevent/roleset/marshal/get_special_weight(var/new_weight)
 	var/a_count = 0
@@ -54,16 +69,16 @@
 		if(A.owner && A.is_active() && !A.is_dead())
 			a_count++
 
-	var/maxc = (a_count > 3) ? a_count : 3
-	new_weight *= weight_mult(weight,maxc,0,maxc)
+	if (a_count == 0)
+		return 0 //Can't spawn without at least one antag
 
-	return new_weight
+	return new_weight * max(a_count, 1)
+
 
 /datum/storyevent/roleset/changeling
 	id = "changeling"
 	name = "changeling"
 	role_id = ROLE_CHANGELING
 
-	req_crew = 7
 	base_quantity = 2
 	scaling_threshold = 15
