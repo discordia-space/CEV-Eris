@@ -1,1 +1,0 @@
-dm -max_errors 0  cev_eris > output.txt
