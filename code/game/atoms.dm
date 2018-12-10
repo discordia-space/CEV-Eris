@@ -633,7 +633,7 @@ its easier to just keep the beam vertical.
 	BM.pixel_x--
 	BM.pixel_y--
 
-	if(Proj.damage >= 20)//If it does a lot of damage it makes a nice big black hole.
+	if(Proj.damage >= WEAPON_FORCE_DANGEROUS)//If it does a lot of damage it makes a nice big black hole.
 		BM.icon_state = "scorch"
 		BM.set_dir(pick(NORTH,SOUTH,EAST,WEST)) // random scorch design
 	else //Otherwise it's a light dent.
