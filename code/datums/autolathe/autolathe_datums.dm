@@ -36,12 +36,12 @@
 			recipe.resources = list()
 		else
 			for(var/material in recipe.resources)
-				recipe.resources[material] = round(recipe.resources[material] * 1.25, 1) // More expensive to produce than they are to recycle.
+				recipe.resources[material] = round(recipe.resources[material] * 1.25, 0.01) // More expensive to produce than they are to recycle.
 
 		if(I.matter_reagents && !recipe.reagents) //This can be overidden in the datums.
 			recipe.reagents = list()
 			for(var/reagent in I.matter_reagents)
-				recipe.reagents[reagent] = round(I.matter_reagents[reagent]*1.125) // More expensive to produce than they are to recycle.
+				recipe.reagents[reagent] = round(I.matter_reagents[reagent]*1.125, 0.01) // More expensive to produce than they are to recycle.
 
 		if(!recipe.reagents)
 			recipe.reagents = list()
