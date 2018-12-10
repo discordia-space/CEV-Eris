@@ -6,4 +6,7 @@
 #define DELAY2GLIDESIZE(delay) (world.icon_size / max(Ceiling(delay / world.tick_lag), 1))
 #else
 #define DELAY2GLIDESIZE(delay) (Ceiling(world.icon_size / max(Ceiling(delay / world.tick_lag), 1)))
-#endif 
+#endif
+
+
+#define JETPACK_MOVE_COST	0.025

@@ -98,7 +98,7 @@
 
 /obj/item/weapon/material/knife/neotritual
 	name = "NeoTheology ritual knife"
-	desc = "Cyberchristians priests use this for ending followers agony. When nothing can help, and only new body can bring salvation, use this."
+	desc = "The sweet embrace of mercy, for relieving the soul from a tortured vessel."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "neot-knife"
 	item_state = "knife"

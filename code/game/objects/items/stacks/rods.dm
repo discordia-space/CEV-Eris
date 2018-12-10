@@ -49,5 +49,4 @@
 
 
 /obj/item/stack/rods/attack_self(mob/living/user)
-
-	user.craft_menu()//this now calls craft window, do building stuff there
+	user.open_craft_menu("Tiles")//see menu.dm

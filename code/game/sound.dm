@@ -214,6 +214,7 @@ var/list/footstep_wood = list(\
 		if ("wood")
 			toplay = pick(footstep_wood)
 
+
 	return toplay
 
 /proc/playsound(var/atom/source, soundin, vol as num, vary, extrarange as num, falloff, var/is_global, var/use_pressure = TRUE)
@@ -356,6 +357,8 @@ var/const/FALLOFF_SOUNDS = 0.5
 			if ("ric_sound") soundin = pick(ric_sound)
 			if ("casing_sound") soundin = pick(casing_sound)
 			if ("hitobject") soundin = pick(bullet_hit_object_sound)
+			if ("climb")soundin = pick(climb_sound)
+			if ("catwalk")soundin = pick(footstep_catwalk)
 			//if ("gunshot") soundin = pick(gun_sound)
 	return soundin
 

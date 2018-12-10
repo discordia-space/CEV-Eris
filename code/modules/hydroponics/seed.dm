@@ -331,7 +331,8 @@
 
 		var/list/turfs = list()
 		if(inner_teleport_radius > 0)
-			for(var/turf/T in trange(outer_teleport_radius, get_turf(target)))
+			var/turf/TLoc = get_turf(target)
+			for(var/turf/T in trange(outer_teleport_radius, TLoc))
 				if(get_dist(target,T) >= inner_teleport_radius)
 					turfs |= T
 
