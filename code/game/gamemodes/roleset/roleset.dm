@@ -108,9 +108,9 @@
 
 	var/list/candidates = list()
 	if (antag.outer)
-		candidates = ghost_candidates_list(antag.bantype)
+		candidates = ghost_candidates_list(role_id)
 	else
-		candidates = candidates_list(antag.bantype)
+		candidates = candidates_list(role_id)
 
 	if (candidates.len)
 		for (var/i = 1; i <= target_quantity;i++)

@@ -1,7 +1,7 @@
 /datum/storyevent/roleset/double_agents
 	id = "double_agents"
 	name = "double agents"
-	role_id = null
+	role_id = ROLE_TRAITOR
 	base_quantity = 2
 	scaling_threshold = 0
 	/*

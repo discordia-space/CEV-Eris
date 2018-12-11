@@ -1,7 +1,7 @@
 /datum/storyevent/roleset/excelsior
 	id = "excelsior"
 	name = "excelsior"
-	role_id = null
+	role_id = ROLE_EXCELSIOR_REV
 
 	//min_cost = 10
 	//max_cost = 20
