@@ -512,6 +512,7 @@
 	set_trait(TRAIT_PLANT_COLOUR,"#E6E6E6")
 	set_trait(TRAIT_PLANT_ICON,"mushroom10")
 
+
 /datum/seed/mushroom/maintshroom
 	name = "fungoartiglieria"
 	seed_name = "Fungo di Artiglieria mushroom"
@@ -527,8 +528,8 @@
 	set_trait(TRAIT_REQUIRES_NUTRIENTS, FALSE)
 	set_trait(TRAIT_REQUIRES_WATER, FALSE)
 	set_trait(TRAIT_PRODUCT_ICON,"mushroom3")
-	set_trait(TRAIT_PRODUCT_COLOUR,"#3EBCD5")
-	set_trait(TRAIT_PLANT_COLOUR,"#FFFFFF")
+
+
 	set_trait(TRAIT_PLANT_ICON,"fungoartiglieria")
 	set_trait(TRAIT_SPREAD, 2)
 	set_trait(TRAIT_CHEMS, 1)
@@ -573,11 +574,32 @@
 		"stoxin",
 		"acetone",
 		"hydrazine",
-		"blattedin"
+		"blattedin",
+		"honey",
+		"frostoil",
+		"capsaicin",
+		"banana",
+		"polyacid",
+		"mutagen",
+		"chloralhydrate"
 		)
+
+
 
 	var/new_chem = pick(possible_chems)
 	chems[new_chem] = list(rand(1,5),rand(5,10))
+
+	//Set the maintshroom to the hue of the chem
+	var/datum/reagent/chem = chemical_reagents_list[new_chem]
+	var/color = chem.color
+
+	//Set the color's saturation and lightness to specific values, we only want the hue
+	color = set_HSV(color, list(null, 120, 255))
+
+	if (chem)
+		world << "Picked chemical [chem] and setting color to [color]"
+		set_trait(TRAIT_PLANT_COLOUR,color)
+		set_trait(TRAIT_PRODUCT_COLOUR,color)
 
 //Flowers/varieties
 /datum/seed/flower

@@ -140,7 +140,8 @@
 		src.transform = null
 		var/matrix/M = matrix()
 		// should make the plant flush against the wall it's meant to be growing from.
-		M.Translate(0,-(rand(12,14)))
+		var/offset = rand(-12, -14)
+		M.Translate(0,offset)
 		switch(dir)
 			if(WEST)
 				M.Turn(90)
@@ -148,9 +149,19 @@
 				M.Turn(180)
 			if(EAST)
 				M.Turn(270)
+			else
+				world << "Doing icon blend thing"
+				//Lets cutoff part of the plant
+				var/icon/I = getFlatIcon(src)
+				if (prob(50))
+					I.Blend(new /icon('icons/obj/hydroponics_vines.dmi', "blank"),ICON_UNDERLAY, y=abs(offset+1))
+
+				I.Blend(new /icon('icons/obj/hydroponics_vines.dmi', "blank"),ICON_MULTIPLY, y=abs(offset-1))
+				//I.Blend(new /icon('icons/obj/food_custom.dmi', coating.icon_cooked),ICON_MULTIPLY)
+				icon = I
 		src.transform = M
 	var/icon_colour = seed.get_trait(TRAIT_PLANT_COLOUR)
-	if(icon_colour && (seed.type != /datum/seed/mushroom/maintshroom))
+	if(icon_colour)
 		color = icon_colour
 	// Apply colour and light from seed datum.
 	if(seed.get_trait(TRAIT_BIOLUM))

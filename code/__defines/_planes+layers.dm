@@ -63,6 +63,7 @@ What is the naming convention for planes or layers?
 #define GAME_PLANE -1
 #define BLACKNESS_PLANE 0 //To keep from conflicts with SEE_BLACKNESS internals
 #define SPACE_LAYER 1.8
+#define BELOW_TURF_LAYER 1.99 //Used to make things be covered by walls. They'll still draw over floors as those are on a seperate plane
 //#define TURF_LAYER 2 //For easy recordkeeping; this is a byond define
 #define TURF_PLATING_DECAL_LAYER 2.031
 #define TURF_DECAL_LAYER 2.039 //Makes turf decals appear in DM how they will look inworld.
