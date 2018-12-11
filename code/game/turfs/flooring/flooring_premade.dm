@@ -71,103 +71,26 @@
 	name = "floor"
 	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_state = "techmaint"
-	initial_flooring = /decl/flooring/tiling/new_tile/techmaint
+	initial_flooring = /decl/flooring/tiling/techmaint
 
 /turf/simulated/floor/tiled/monofloor
 	name = "floor"
 	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_state = "monofloor"
-	initial_flooring = /decl/flooring/tiling/new_tile/monofloor
+	initial_flooring = /decl/flooring/tiling/monofloor
 
 /turf/simulated/floor/tiled/techfloor
 	name = "floor"
-	icon = 'icons/turf/flooring/techfloor.dmi'
 	icon_state = "techfloor_gray"
+	icon = 'icons/turf/flooring/tiles.dmi'
 	initial_flooring = /decl/flooring/tiling/tech
 
 /turf/simulated/floor/tiled/monotile
 	name = "floor"
 	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_state = "monotile"
-	initial_flooring = /decl/flooring/tiling/new_tile/monotile
+	initial_flooring = /decl/flooring/tiling/monotile
 
-/turf/simulated/floor/tiled/steel_grid
-	name = "floor"
-	icon = 'icons/turf/flooring/tiles.dmi'
-	icon_state = "steel_grid"
-	initial_flooring = /decl/flooring/tiling/new_tile/steel_grid
-
-/turf/simulated/floor/tiled/steel_ridged
-	name = "floor"
-	icon = 'icons/turf/flooring/tiles.dmi'
-	icon_state = "steel_ridged"
-	initial_flooring = /decl/flooring/tiling/new_tile/steel_ridged
-
-/turf/simulated/floor/tiled/old_tile
-	name = "floor"
-	icon_state = "tile_full"
-	initial_flooring = /decl/flooring/tiling/new_tile
-/turf/simulated/floor/tiled/old_tile/white
-	color = "#d9d9d9"
-/turf/simulated/floor/tiled/old_tile/blue
-	color = "#8ba7ad"
-/turf/simulated/floor/tiled/old_tile/yellow
-	color = "#8c6d46"
-/turf/simulated/floor/tiled/old_tile/gray
-	color = "#687172"
-/turf/simulated/floor/tiled/old_tile/beige
-	color = "#385e60"
-/turf/simulated/floor/tiled/old_tile/red
-	color = "#964e51"
-/turf/simulated/floor/tiled/old_tile/purple
-	color = "#906987"
-/turf/simulated/floor/tiled/old_tile/green
-	color = "#46725c"
-
-
-
-/turf/simulated/floor/tiled/old_cargo
-	name = "floor"
-	icon_state = "cargo_one_full"
-	initial_flooring = /decl/flooring/tiling/new_tile/cargo_one
-/turf/simulated/floor/tiled/old_cargo/white
-	color = "#d9d9d9"
-/turf/simulated/floor/tiled/old_cargo/blue
-	color = "#8ba7ad"
-/turf/simulated/floor/tiled/old_cargo/yellow
-	color = "#8c6d46"
-/turf/simulated/floor/tiled/old_cargo/gray
-	color = "#687172"
-/turf/simulated/floor/tiled/old_cargo/beige
-	color = "#385e60"
-/turf/simulated/floor/tiled/old_cargo/red
-	color = "#964e51"
-/turf/simulated/floor/tiled/old_cargo/purple
-	color = "#906987"
-/turf/simulated/floor/tiled/old_cargo/green
-	color = "#46725c"
-
-
-/turf/simulated/floor/tiled/kafel_full
-	name = "floor"
-	icon_state = "kafel_full"
-	initial_flooring = /decl/flooring/tiling/new_tile/kafel
-/turf/simulated/floor/tiled/kafel_full/white
-	color = "#d9d9d9"
-/turf/simulated/floor/tiled/kafel_full/blue
-	color = "#8ba7ad"
-/turf/simulated/floor/tiled/kafel_full/yellow
-	color = "#8c6d46"
-/turf/simulated/floor/tiled/kafel_full/gray
-	color = "#687172"
-/turf/simulated/floor/tiled/kafel_full/beige
-	color = "#385e60"
-/turf/simulated/floor/tiled/kafel_full/red
-	color = "#964e51"
-/turf/simulated/floor/tiled/kafel_full/purple
-	color = "#906987"
-/turf/simulated/floor/tiled/kafel_full/green
-	color = "#46725c"
 
 
 /turf/simulated/floor/tiled/techfloor/grid

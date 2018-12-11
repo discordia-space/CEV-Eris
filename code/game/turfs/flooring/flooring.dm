@@ -212,7 +212,7 @@ var/list/flooring_types
 	descriptor = "support beams"
 	icon_base = "under"
 	build_type = MATERIAL_STEEL //Same type as the normal plating, we'll use can_build_floor to control it
-	flags = TURF_REMOVE_WRENCH | TURF_CAN_BURN | TURF_CAN_BREAK
+	flags = TURF_REMOVE_WRENCH | TURF_CAN_BURN | TURF_CAN_BREAK | TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS
 	can_paint = 1
 	plating_type = /decl/flooring/reinforced/plating/hull
 	is_plating = TRUE
@@ -311,6 +311,10 @@ var/list/flooring_types
 	else
 		return null //This should never happen, hull plating should only be on the exterior
 
+
+
+
+//==========CARPET==============
 /decl/flooring/carpet
 	name = "carpet"
 	desc = "Imported and comfy."
@@ -358,6 +362,10 @@ var/list/flooring_types
 	icon_base = "oracarpet"
 	build_type = /obj/item/stack/tile/carpet/oracarpet
 
+
+
+
+//==========TILING==============
 /decl/flooring/tiling
 	name = "floor"
 	desc = "Scuffed from the passage of countless greyshirts."
@@ -365,63 +373,41 @@ var/list/flooring_types
 	icon_base = "steel"
 	has_damage_range = 2 //RECHECK THIS. MAYBE MISTAKE
 	damage_temperature = T0C+1400
-	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_CAN_BURN | TURF_HIDES_THINGS
+	flags = TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_CAN_BURN | TURF_HIDES_THINGS
 	build_type = /obj/item/stack/tile/floor
 	can_paint = 1
 	resistance = RESISTANCE_FRAGILE
 
+	floor_smooth = SMOOTH_NONE
+	wall_smooth = SMOOTH_NONE
+
 /decl/flooring/tiling/tech
 //	name = "techfloor"
-	desc = "Scuffed from the passage of countless greyshirts."
-	icon = 'icons/turf/flooring/techfloor.dmi'
 	icon_base = "techfloor_gray"
 	build_type = /obj/item/stack/tile/floor/techgrey
-	can_paint = null
 
 /decl/flooring/tiling/tech/grid
 	icon_base = "techfloor_grid"
 	build_type = /obj/item/stack/tile/floor/techgrid
 
-/decl/flooring/tiling/new_tile
-	name = "floor"
-	icon_base = "tile_full"
-	flags = TURF_CAN_BREAK | TURF_CAN_BURN | TURF_IS_FRAGILE
-	build_type = null
-	footstep_sound = "tile" //This Sound is for ceramic tiles, but not for metal ones
-
-/decl/flooring/tiling/new_tile/cargo_one
+/decl/flooring/tiling/cargo_one
 //	name = "cargo one"
 	icon_base = "cargo_one_full"
 	footstep_sound = "floor"
 
-/decl/flooring/tiling/new_tile/kafel
-//	name = "kafel"
-	icon_base = "kafel_full"
-	footstep_sound = "tile"
-
-/decl/flooring/tiling/new_tile/techmaint
+/decl/flooring/tiling/techmaint
 //	name = "techmaint"
 	icon_base = "techmaint"
 	footstep_sound = "floor"
 
-/decl/flooring/tiling/new_tile/monofloor
-//	name = "monofloor"
+/decl/flooring/tiling/monofloor
 	icon_base = "monofloor"
 	footstep_sound = "floor"
+	has_base_range = 15
 
-/decl/flooring/tiling/new_tile/monotile
+/decl/flooring/tiling/monotile
 //	name = "monotile"
 	icon_base = "monotile"
-	footstep_sound = "floor"
-
-/decl/flooring/tiling/new_tile/steel_grid
-//	name = "steelgrid"
-	icon_base = "steel_grid"
-	footstep_sound = "floor"
-
-/decl/flooring/tiling/new_tile/steel_ridged
-//	name = "steelridged"
-	icon_base = "steel_ridged"
 	footstep_sound = "floor"
 
 /decl/flooring/tiling/steel
@@ -451,6 +437,10 @@ var/list/flooring_types
 	build_type = /obj/item/stack/tile/floor/freezer
 	footstep_sound = "tile"
 
+
+
+
+//==========MISC==============
 /decl/flooring/wood
 	name = "wooden floor"
 	desc = "Polished redwood planks."
@@ -463,6 +453,7 @@ var/list/flooring_types
 	build_type = /obj/item/stack/tile/wood
 	smooth_nothing = TRUE
 	flags = TURF_CAN_BREAK | TURF_CAN_BURN | TURF_IS_FRAGILE | TURF_REMOVE_SCREWDRIVER | TURF_HIDES_THINGS
+
 
 /decl/flooring/reinforced
 	name = "reinforced floor"

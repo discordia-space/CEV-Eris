@@ -101,8 +101,8 @@ var/list/flooring_cache = list()
 
 			//Now lets handle those fancy floors which have many centre icons
 			if(flooring.has_base_range)
-				if (!has_border)
-					//Random icons are only for centre turfs, so we need it to not have borders
+				if (!has_border || (flooring.flags & TURF_CAN_HAVE_RANDOM_BORDER))
+					//Some floors can have random tiles on the borders, some don't. It all depends on the sprite
 					icon_state = "[flooring.icon_base][rand(0,flooring.has_base_range)]"
 					flooring_override = icon_state
 				else
@@ -163,7 +163,7 @@ var/list/flooring_cache = list()
 		else if (istype(T, /turf/simulated/floor))
 			var/turf/simulated/floor/t = T
 			//If the floor is the same as us,then we're linked,
-			if (t.flooring.name == name)
+			if (t.flooring.type == type)
 				is_linked = TRUE
 				/*
 					But there's a caveat. To make atom black/whitelists work correctly, we also need to check that
