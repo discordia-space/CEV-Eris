@@ -63,6 +63,7 @@
 	var/release_speed = 5                   // Speed per unit of tension.
 	var/obj/item/weapon/cell/large/cell = null    // Used for firing superheated rods.
 	var/current_user                        // Used to check if the crossbow has changed hands since being drawn.
+	var/draw_time = 20							// How long it takes to increase the draw on the bow by one "tension"
 
 /obj/item/weapon/gun/launcher/crossbow/update_release_force()
 	release_force = tension*release_speed
@@ -108,7 +109,7 @@
 	tension = 1
 
 	while(bolt && tension && loc == current_user)
-		if(!do_after(user, 25, src)) //crossbow strings don't just magically pull back on their own.
+		if(!do_after(user, draw_time, src)) //crossbow strings don't just magically pull back on their own.
 			user.visible_message("[usr] stops drawing and relaxes the string of [src].",SPAN_WARNING("You stop drawing back and relax the string of [src]."))
 			tension = 0
 			update_icon()
@@ -306,6 +307,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "rxb"
 	slot_flags = null
+	draw_time = 10
 	var/stored_matter = 0
 	var/max_stored_matter = 40
 	var/boltcost = 10
@@ -326,28 +328,8 @@
 		tension = 0
 		update_icon()
 	else
-		draw(user)
 		genBolt(user)
-
-/obj/item/weapon/gun/launcher/crossbow/RCD/draw(var/mob/user as mob)
-	if(user.restrained())
-		return
-	current_user = user
-	user.visible_message("[user] begins to draw back the string of [src].","<span class='notice'>You begin to draw back the string of [src].</span>")
-	tension = 1
-	while(tension && loc == current_user)
-		if(!do_after(user, 10, src)) //crossbow strings don't just magically pull back on their own.
-			user.visible_message("[usr] stops drawing and relaxes the string of [src].","<span class='warning'>You stop drawing back and relax the string of [src].</span>")
-			tension = 0
-			update_icon()
-			return
-		tension++
-		update_icon()
-		if(tension >= max_tension)
-			tension = max_tension
-			to_chat(usr, "[src] clunks as you draw the string to its maximum tension!")
-			return
-		user.visible_message("[usr] draws back the string of [src]!","<span class='notice'>You continue drawing back the string of [src]!</span>")
+		draw(user)
 
 /obj/item/weapon/gun/launcher/crossbow/RCD/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/rcd_ammo))
@@ -390,5 +372,5 @@
 
 /obj/item/weapon/gun/launcher/crossbow/RCD/examine(var/user)
 	. = ..()
-	if(src.type == /obj/item/weapon/gun/launcher/crossbow/RCD && loc == user)
+	if(.)
 		to_chat(user, "It currently holds [stored_matter]/[max_stored_matter] matter-units.")
