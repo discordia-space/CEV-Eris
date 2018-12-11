@@ -13,7 +13,7 @@
 	var/supervisors = null                // Supervisors, who this person answers to directly
 	var/selection_color = "#ffffff"       // Selection screen color
 	var/list/alt_titles
-	
+
 	var/req_admin_notify                  // If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
 	var/department = null                 // Does this position have a department tag?
 	var/head_position = 0                 // Is this position Command?
@@ -146,11 +146,10 @@
 //	You can use getflaticon(mannequin) to get icon out of it
 /datum/job/proc/get_job_mannequin()
 	if(!SSjob.job_mannequins[title])
-		var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin("#job_icon")
+		var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin("#job_icon_[title]")
 		dress_mannequin(mannequin)
 
 		SSjob.job_mannequins[title] = mannequin
-
 	return SSjob.job_mannequins[title]
 
 /datum/job/proc/get_description_blurb()

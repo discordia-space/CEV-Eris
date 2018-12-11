@@ -86,7 +86,7 @@
 
 	. += "<tt><center>"
 	//. += "<b>Choose occupation chances. <font size=3>Click on the occupation to select skills.</font><br>Unavailable occupations are crossed out.</b>"
-	. += "<div class = 'statusDisplay' style = 'min-height:240px; height:240px; overflow: auto;'>[job_desc]</div>"
+	. += "<div class = 'statusDisplay' style = 'min-height:250px; height:100%; overflow: auto;'>[job_desc]</div>"
 	. += "<b>Choose occupation chances.<br>Unavailable occupations are crossed out.</b>"
 	. += "<table width='100%' cellpadding='1' cellspacing='0'><tr><td width='20%'>" // Table within a table for alignment, also allows you to easily add more columns.
 	. += "<table width='100%' cellpadding='1' cellspacing='0'>"
@@ -116,7 +116,7 @@
 					. += "<tr bgcolor='[lastJob.selection_color]'><td width='40%' align='right'><a>&nbsp</a></td><td><a>&nbsp</a></td></tr>"
 			. += "</table></td><td width='20%'><table width='100%' cellpadding='1' cellspacing='0'>"
 			index = 0
-			
+
 
 		. += "<tr bgcolor='[job.selection_color]'><td width='40%' align='right'>"
 		var/rank = job.title
@@ -242,7 +242,7 @@
 		job_info_selected_rank = href_list["job_info"]
 		create_job_description(user)
 		return TOPIC_REFRESH
-	
+
 	else if(href_list["rotate"])
 		if(href_list["rotate"] == "right")
 			job_icon_dir = turn(job_icon_dir,-90)
@@ -261,16 +261,16 @@
 	if(!job_info_selected_rank)
 		return
 	var/datum/job/job = SSjob.GetJob(job_info_selected_rank)
-	job_desc = "<div style='min-height:240px'>"
-	
+	job_desc = ""
+
 	job_desc += "<p style='margin-top:0px; background-color: [job.selection_color]'><br><p>"
 	if(job.alt_titles)
 		job_desc += "<i><b>Alternative titles:</b> [english_list(job.alt_titles)].</i>"
 	var/mob/living/carbon/human/dummy/mannequin/mannequin = job.get_job_mannequin()
 	var/icon/job_icon = getFlatIcon(mannequin, job_icon_dir)
-	job_icon.Scale(job_icon.Width() * 3, job_icon.Height() * 3)
+	job_icon.Scale(job_icon.Width() * 2, job_icon.Height() * 2)
 	send_rsc(user, job_icon, "job_icon_[job_icon_dir].png")
-	job_desc += "<table style='float:left;' cellpadding='0' cellspacing='0'><tr><td><img src=job_icon_[job_icon_dir].png width=120 height=120 style='float:left;'></td></tr>"
+	job_desc += "<table style='float:left;' cellpadding='0' cellspacing='0'><tr><td><img src=job_icon_[job_icon_dir].png width=200 height=200 style='float:left;'></td></tr>"
 	job_desc += "<tr><td><center><a href='?src=\ref[src];rotate=right'>&lt;&lt;</a> <a href='?src=\ref[src];rotate=left'>&gt;&gt;</a></center></td></tr></table>"
 	if(job.department)
 		job_desc += "<b>Department:</b> [job.department]."
@@ -285,7 +285,7 @@
 	var/description = job.get_description_blurb()
 	/*if(job.required_education)
 	description = "[description ? "[description]\n\n" : ""]"*/
-	job_desc += "</div>"
+	//job_desc += "</div>"
 	if(description)
 		job_desc += html_encode(description)
 
