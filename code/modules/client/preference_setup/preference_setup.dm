@@ -275,7 +275,15 @@ var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
 			if(C.ckey == pref.client_ckey)
 				pref.client = C
 				break
-
+	
+	//lets try again after 1 second
+	//for some reason it doesnt find client on login
+	spawn(10)
+		if(!pref.client)
+			for(var/client/C)
+				if(C.ckey == pref.client_ckey)
+					pref.client = C
+					break
 	if(pref.client)
 		return pref.client.mob
 /*
