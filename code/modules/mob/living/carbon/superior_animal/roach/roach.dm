@@ -31,7 +31,7 @@
 	pass_flags = PASSTABLE
 	acceptableTargetDistance = 3 //consider all targets within this range equally
 	randpixel = 12
-
+	overkill_gib = 16
 
 //When roaches die near a leader, the leader may call for reinforcements
 /mob/living/carbon/superior_animal/roach/death()

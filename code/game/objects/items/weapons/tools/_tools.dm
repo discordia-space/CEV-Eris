@@ -545,7 +545,10 @@
 /*********************
 	Resource Consumption
 **********************/
-/obj/item/weapon/tool/proc/consume_resources(var/timespent, var/user)
+/obj/item/proc/consume_resources(var/timespent, var/user)
+	return
+
+/obj/item/weapon/tool/consume_resources(var/timespent, var/user)
 	//We will always use a minimum of 0.5 second worth of resources
 	if (timespent < 5)
 		timespent = 5
