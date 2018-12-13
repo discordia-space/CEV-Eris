@@ -13,6 +13,24 @@
 	req_med = -1
 	req_sci = 3
 
+/datum/storyevent/roleset/can_trigger(var/severity = EVENT_LEVEL_ROLESET, var/report)
+	var/list/hunters = candidates_list(ROLE_TRAITOR)
+	if(hunters.len < 1)
+		if (report) report << SPAN_NOTICE("Failure: No hunter candidates found")
+		.=FALSE
+
+	var/hunter = pick(hunters)
+
+	var/list/scientists = candidates_list(ROLE_SECDOC_DEFENDER)
+	scientists -= hunter
+	if(scientists.len < 1)
+		if (report) report << SPAN_NOTICE("Failure: No scientist candidates found")
+		.= FALSE
+
+
+	if (!. && report) report << SPAN_NOTICE("Failure: No candidates found")
+	return TRUE
+
 
 /datum/storyevent/roleset/secdoc_hunters/trigger_event()
 	var/list/hunters = candidates_list(ROLE_TRAITOR)
