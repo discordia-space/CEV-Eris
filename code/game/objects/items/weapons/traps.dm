@@ -317,7 +317,7 @@ Very rarely it might escape
 /obj/item/weapon/beartrap/makeshift
 	base_damage = 16
 	fail_damage = 4
-	base_difficulty = 70
+	base_difficulty = 75
 	name = "jury-rigged mechanical trap"
 	desc = "A wicked looking construct of spiky bits of metal and wires. Will snap shut on anyone who steps in it. It'll do some nasty damage."
 	icon_state = "sawtrap"
@@ -345,6 +345,10 @@ Very rarely it might escape
 
 
 /obj/item/weapon/beartrap/makeshift/proc/break_apart()
+	visible_message(SPAN_DANGER("\the [src] shatters into fragments!"))
+	new /obj/item/stack/material/steel(loc, 10)
+	new /obj/item/weapon/material/shard/shrapnel(loc)
+	new /obj/item/weapon/material/shard/shrapnel(loc)
 	qdel(src)
 
 

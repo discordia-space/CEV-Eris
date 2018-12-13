@@ -14,7 +14,7 @@
 
 
 	//Wire splice can only exist on a cable. Lets try to place it in a good location
-	if (roundstart && !(locate(/obj/structure/cable) in loc))
+	if (!(locate(/obj/structure/cable) in loc))
 		//No cable in our location, lets find one nearby
 
 		//Make a list of turfs with cables in them
@@ -22,7 +22,7 @@
 
 		//We will give each turf a score to determine its suitability
 		var/best_score = -INFINITY
-		for (var/obj/structure/cable/C in dview(3, loc))
+		for (var/obj/structure/cable/C in range(3, loc))
 			var/turf/simulated/floor/T = get_turf(C)
 
 			//Wire inside a wall? can't splice there
@@ -38,6 +38,9 @@
 			//Nobody walks on underplating so we don't want to place traps there
 			if (istype(T.flooring, /decl/flooring/reinforced/plating/under))
 				turf_score -= 1
+
+			if (turf_is_external(T))
+				continue //No traps in space
 
 			//Catwalks are made for walking on, we definitely want traps there
 			if (locate(/obj/structure/catwalk in T))
@@ -60,6 +63,7 @@
 
 
 		loc = pick(candidates)
+		world << "Cable moved to [jumplink(loc)]"
 	messiness = rand (1,10)
 	icon_state = "wire_splicing[messiness]"
 

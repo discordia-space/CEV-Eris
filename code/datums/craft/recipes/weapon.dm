@@ -136,7 +136,7 @@
 
 /datum/craft_recipe/weapon/mechanical_trap
 	name = "makeshift mechanical trap"
-	result = /obj/item/weapon/flamethrower
+	result = /obj/item/weapon/beartrap/makeshift
 	steps = list(
 		list(/obj/item/weapon/tool/saw, 1, "time" = 120),
 		list(QUALITY_SCREW_DRIVING, 10, 70),
