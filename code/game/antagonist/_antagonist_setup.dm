@@ -108,16 +108,10 @@ GLOBAL_LIST_EMPTY(faction_types)
 		else
 			GLOB.station_antag_types[A.id] = A
 
-		if(!A.role_type)
-			A.role_type = A.role_text
-
 		if(A.selectable)
 			GLOB.all_antag_selectable_types[A.bantype] = A
 		if(A.faction_id)
 			GLOB.group_antag_types[A.id] = A
-
-		if(!A.bantype)
-			A.bantype = A.role_type
 
 		GLOB.antag_bantypes[A.id] = A.bantype
 

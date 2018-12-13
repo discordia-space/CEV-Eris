@@ -2,7 +2,7 @@
 	id = ROLE_EXCELSIOR_REV
 	role_text = "Excelsior Infiltrator"
 	role_text_plural = "Infiltrators"
-	role_type = "Excelsior Infiltrator"
+	bantype = ROLE_BANTYPE_EXCELSIOR
 	welcome_text = "Viva la revolution!"
 
 	faction_id = FACTION_EXCELSIOR

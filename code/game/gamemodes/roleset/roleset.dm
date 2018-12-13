@@ -39,8 +39,8 @@
 		if(!antagonist_suitable(candidate,temp))
 			if (report) report << SPAN_NOTICE("Failure: [candidate] is not antagonist suitable")
 			continue
-		if(!(temp.role_type in candidate.current.client.prefs.be_special_role))
-			if (report) report << SPAN_NOTICE("Failure: [candidate] has special role [temp.role_type] disabled")
+		if(!(temp.bantype in candidate.current.client.prefs.be_special_role))
+			if (report) report << SPAN_NOTICE("Failure: [candidate] has special role [temp.bantype] disabled")
 			continue
 		if(storyteller && storyteller.one_role_per_player && candidate.antagonist.len)
 			if (report) report << SPAN_NOTICE("Failure: [candidate] is already a [candidate.antagonist[1]] and can't be two antags")
@@ -69,8 +69,8 @@
 			if(!temp.can_become_antag_ghost(candidate))
 				if (report) report << SPAN_NOTICE("Failure: [candidate] can't become this antag from ghost")
 				continue
-			if(!(temp.role_type in candidate.client.prefs.be_special_role))
-				if (report) report << SPAN_NOTICE("Failure: [candidate] has special role [temp.role_type] disabled")
+			if(!(temp.bantype in candidate.client.prefs.be_special_role))
+				if (report) report << SPAN_NOTICE("Failure: [candidate] has special role [temp.bantype] disabled")
 				continue
 
 			any_candidates = TRUE
