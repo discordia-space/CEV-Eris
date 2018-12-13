@@ -112,7 +112,9 @@
 	if(prob(40))
 		new /obj/item/clothing/head/hardhat(src)
 	new /obj/random/tool_upgrade(src)
-	//Every tool closet contains exactly one random guaranteed toolmod
+	new /obj/random/tool_upgrade(src)
+	new /obj/random/tool_upgrade(src)
+	//Every tool closet contains a couple guaranteed toolmods
 
 /*
  * Radiation Closet
