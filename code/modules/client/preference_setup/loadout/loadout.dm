@@ -347,7 +347,7 @@ var/list/gear_datums = list()
 
 /datum/gear/proc/spawn_on_mob(var/mob/living/carbon/human/H, var/metadata)
 	var/obj/item/item = spawn_item(H, metadata)
-	if(!SSinventory.initialized && H.replace_in_slot(item, slot, put_in_storage = TRUE, skip_covering_check = TRUE, del_if_failed_to_equip = TRUE))
+	if(SSinventory.initialized && H.replace_in_slot(item, slot, put_in_storage = TRUE, skip_covering_check = TRUE, del_if_failed_to_equip = TRUE))
 		to_chat(H, "<span class='notice'>Equipping you with \the [item]!</span>")
 		. = item
 

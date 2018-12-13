@@ -13,7 +13,7 @@
 
 
 /datum/storyevent/roleset/excelsior/trigger_event()
-	if(get_faction_by_id(FACTION_EXCELSIOR))
+	if(!get_faction_by_id(FACTION_EXCELSIOR))
 		return FALSE
 
 	var/list/candidates = candidates_list(ROLE_EXCELSIOR_REV)
