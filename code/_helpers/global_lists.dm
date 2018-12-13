@@ -59,8 +59,6 @@ var/global/list/female_body_builds = list()
 GLOBAL_LIST_EMPTY(hair_styles_list)        //stores /datum/sprite_accessory/hair indexed by name
 GLOBAL_LIST_EMPTY(facial_hair_styles_list) //stores /datum/sprite_accessory/facial_hair indexed by name
 
-GLOBAL_LIST_EMPTY(body_marking_styles_list)		//stores /datum/sprite_accessory/marking indexed by name
-
 GLOBAL_DATUM_INIT(underwear, /datum/category_collection/underwear, new())
 
 // Used by robots and robot preferences.

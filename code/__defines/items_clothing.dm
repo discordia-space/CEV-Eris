@@ -124,7 +124,6 @@
 #define LEG_LEFT    0x40
 #define LEG_RIGHT   0x80
 #define LEGS        0xC0    //  LEG_LEFT | LEG_RIGHT
-#define FEET        0x180  // FOOT_LEFT | FOOT_RIGHT
 #define ARM_LEFT    0x400
 #define ARM_RIGHT   0x800
 #define ARMS        0xC00   //  ARM_LEFT | ARM_RIGHT
