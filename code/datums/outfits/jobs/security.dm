@@ -19,6 +19,7 @@
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud/tactical
 	belt = /obj/item/weapon/gun/projectile/lamia
 	id_type = /obj/item/weapon/card/id/hos
+	head = /obj/item/clothing/head/HoS
 	pda_type = /obj/item/modular_computer/pda/heads/hos
 	backpack_contents = list(/obj/item/weapon/handcuffs = 1,/obj/item/ammo_magazine/cl44/rubber = 1,/obj/item/device/lighting/toggleable/flashlight/seclite = 1, /obj/item/weapon/cell/small/high = 2, /obj/item/weapon/gun/energy/gun/martin = 1)
 

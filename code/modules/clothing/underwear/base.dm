@@ -94,7 +94,7 @@
 		return FALSE
 
 	H.worn_underwear -= src
-	dropInto(H.loc)
+	forceMove(H.loc)
 	user.put_in_hands(src)
 	H.update_underwear()
 

@@ -40,7 +40,7 @@
 		error("Trying to create existing spawnpoint.")
 	return SP
 
-/proc/getSpawnLocations(name = "late_cryo", free_only = TRUE, late = FALSE)
+/proc/getSpawnLocations(name = maps_data.default_spawn, free_only = TRUE, late = FALSE)
 	var/datum/spawnpoint/SP = getSpawnPoint(name, late)
 	if (SP)
 		if(free_only)

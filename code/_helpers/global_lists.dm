@@ -133,7 +133,7 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 	paths = typesof(/obj/item/weapon/robot_module) - /obj/item/weapon/robot_module
 	for(var/path in paths)
 		var/obj/item/weapon/robot_module/M = path
-		GLOB.robot_module_types += initial(M.name)
+		GLOB.robot_module_types[initial(M.name)] = path
 
 /proc/makeDatumRefLists()
 
