@@ -32,7 +32,7 @@
 
 	if(!T)
 		//Safety in case we cannot find the body's position
-		T = pickSpawnLocation(/mob/observer)
+		T = pickSpawnLocation("Observer")
 	forceMove(T)
 
 	real_name = name
