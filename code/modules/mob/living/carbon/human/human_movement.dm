@@ -1,11 +1,13 @@
 /mob/living/carbon/human/movement_delay()
+	if (istype(loc, /turf/space)) return MOVE_DELAY_BASE // It's hard to be slowed down in space by... anything
+
 	// Humans specifically are 1 delay unit SLOWER because shoes make them 1 delay unit FASTER.
 	var/tally = MOVE_DELAY_BASE+1
 
 	if(species.slowdown)
 		tally += species.slowdown
 
-	if (istype(loc, /turf/space)) return 0 // It's hard to be slowed down in space by... anything
+
 
 	if(embedded_flag)
 		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
@@ -60,30 +62,27 @@
 
 	return tally
 
-/mob/living/carbon/human/Process_Spacemove(var/check_drift = 0)
+/mob/living/carbon/human/Allow_Spacemove(var/check_drift = 0)
 	//Can we act?
 	if(restrained())	return 0
 
 	//Do we have a working jetpack?
-	var/obj/item/weapon/tank/jetpack/thrust
-	if(back)
-		if(istype(back,/obj/item/weapon/tank/jetpack))
-			thrust = back
-		else if(istype(back,/obj/item/weapon/rig))
-			var/obj/item/weapon/rig/rig = back
-			for(var/obj/item/rig_module/maneuvering_jets/module in rig.installed_modules)
-				thrust = module.jets
-				break
+	var/obj/item/weapon/tank/jetpack/thrust = get_jetpack()
 
 	if(thrust)
-		if(((!check_drift) || (check_drift && thrust.stabilization_on)) && (!lying) && (thrust.allow_thrust(0.01, src)))
+		//The cost for stabilization is paid later
+		if (check_drift)
+			if (thrust.stabilization_on)
+				inertia_dir = 0
+				return TRUE
+			return FALSE
+		else if(thrust.allow_thrust(JETPACK_MOVE_COST, src))
 			inertia_dir = 0
-			return 1
+			return TRUE
 
 	//If no working jetpack then use the other checks
-	if(..())
-		return 1
-	return 0
+	. = ..()
+
 
 
 /mob/living/carbon/human/slip_chance(var/prob_slip = 5)

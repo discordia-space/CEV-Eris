@@ -19,8 +19,8 @@
 		"nuclear fuel" = 0,
 		"exotic matter" = 0
 		)
-
-	for(var/turf/simulated/T in trange(2, get_turf(user)))
+	var/turf/TLoc = get_turf(user)
+	for(var/turf/simulated/T in trange(2, TLoc))
 
 		if(!T.has_resources)
 			continue
