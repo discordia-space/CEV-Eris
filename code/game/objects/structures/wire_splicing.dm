@@ -13,14 +13,57 @@
 	.=..()
 
 
-	//Wire splice can only exist on a cable
-	if (roundstart && !(locate(/obj/structure/cable) in loc))
+	//Wire splice can only exist on a cable. Lets try to place it in a good location
+	if (!(locate(/obj/structure/cable) in loc))
 		//No cable in our location, lets find one nearby
-		var/obj/structure/cable/C = locate(/obj/structure/cable) in range(3, loc)
-		if(!C)
-			//No nearby cable, wire splice can't be here
+
+		//Make a list of turfs with cables in them
+		var/list/candidates = list()
+
+		//We will give each turf a score to determine its suitability
+		var/best_score = -INFINITY
+		for (var/obj/structure/cable/C in range(3, loc))
+			var/turf/simulated/floor/T = get_turf(C)
+
+			//Wire inside a wall? can't splice there
+			if (!istype(T))
+				continue
+
+			//We already checked this one
+			if (T in candidates)
+				continue
+
+			var/turf_score = 0
+
+			//Nobody walks on underplating so we don't want to place traps there
+			if (istype(T.flooring, /decl/flooring/reinforced/plating/under))
+				turf_score -= 1
+
+			if (turf_is_external(T))
+				continue //No traps in space
+
+			//Catwalks are made for walking on, we definitely want traps there
+			if (locate(/obj/structure/catwalk in T))
+				turf_score += 2
+
+			//If its below the threshold ignore it
+			if (turf_score < best_score)
+				continue
+
+			//If it sets a new threshold, discard everything before
+			else if (turf_score > best_score)
+				best_score = turf_score
+				candidates.Cut()
+
+			candidates.Add(src)
+
+		//No nearby cables? Cancel
+		if (!candidates.len)
 			return INITIALIZE_HINT_QDEL
-		loc = C.loc
+
+
+		loc = pick(candidates)
+		world << "Cable moved to [jumplink(loc)]"
 	messiness = rand (1,10)
 	icon_state = "wire_splicing[messiness]"
 

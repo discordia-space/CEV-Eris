@@ -406,5 +406,6 @@
 		/datum/autolathe/recipe/part/igniter,
 		/datum/autolathe/recipe/part/signaler,
 		/datum/autolathe/recipe/part/sensor_prox,
+		/datum/autolathe/recipe/sec/beartrap
 	)
 	..()
