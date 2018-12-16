@@ -355,6 +355,8 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 			//If people cut down all the plants near us, but didn't collapse this burrow, they're in for a bad time
 			//Plants are back baby!
 
+
+
 /*
 	Finds burrows near to the specified one, and sends plants from it to them
 */
@@ -366,7 +368,7 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 
 
 
-	var/list/viewlist = dview(10, B) //Capture a dview list, we'll use this in a minute
+	var/list/viewlist = find_visible_burrows(B, 10) //Capture a list of nearby burrows
 	var/i = 0 //Number of burrows we've sent plants to. We're done when this gets high enough
 	//Lets go through this list and find places to send plants to
 	while (i < plantspread_burrows_num && sorted.len)
@@ -382,7 +384,9 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 		if (C in viewlist)
 			continue
 
-		//Maybe more checks here
+		//Chance to reject it anyways to make plant spreading less predictable
+		if (prob(60))
+			continue
 
 		//If it has no plants yet, it should be okay to send things to it
 		i++ //Increment this

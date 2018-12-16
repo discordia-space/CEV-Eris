@@ -11,7 +11,7 @@
 	icon = 'icons/obj/burrows.dmi'
 	icon_state = "hole"
 	level = 1 //Apparently this is a magic constant for things to appear under floors. Should really be a define
-	layer = LOW_OBJ_LAYER
+	layer = ABOVE_NORMAL_TURF_LAYER
 
 	//Integrity is used when attempting to collapse this hole. It is a multiplier on the time taken and failure rate
 	//Any failed attempt to collapse it will reduce the integrity, making future attempts easier
@@ -464,7 +464,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 		var/start = world.time
 		var/target_time = WORKTIME_FAST+ 2*integrity
 
-		if (I.use_tool(user, src, target_time, QUALITY_DIGGING, 1.5*integrity, list(STAT_SUM, STAT_MEC, STAT_ROB), forced_sound = WORKSOUND_PICKAXE))
+		if (I.use_tool(user, src, target_time, QUALITY_DIGGING, 1.3*integrity, list(STAT_SUM, STAT_MEC, STAT_ROB), forced_sound = WORKSOUND_PICKAXE))
 			//On success, the hole is destroyed!
 			user.visible_message("[user] collapses [src] with the [I]", "You collapse [src] with the [I]")
 
