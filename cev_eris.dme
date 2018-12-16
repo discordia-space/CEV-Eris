@@ -941,6 +941,7 @@
 #include "code\game\objects\random\food.dm"
 #include "code\game\objects\random\guns.dm"
 #include "code\game\objects\random\junk.dm"
+#include "code\game\objects\random\lathe_disks.dm"
 #include "code\game\objects\random\materials.dm"
 #include "code\game\objects\random\medicine.dm"
 #include "code\game\objects\random\pouches.dm"

@@ -39,6 +39,8 @@
 		points_for_spawn += loc //We do not use get turf here, so that things can spawn inside containers
 	for(var/i in 1 to rand(min_amount, max_amount))
 		var/build_path = item_to_spawn()
+		if (!build_path)
+			return list()
 		if(!points_for_spawn.len)
 			log_debug("Spawner \"[type]\" ([x],[y],[z]) try spawn without free space around!")
 			break
