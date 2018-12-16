@@ -49,7 +49,6 @@
 #include "code\__defines\reagents.dm"
 #include "code\__defines\research.dm"
 #include "code\__defines\shields.dm"
-#include "code\__defines\species.dm"
 #include "code\__defines\species_languages.dm"
 #include "code\__defines\storyteller_defines.dm"
 #include "code\__defines\subsystems-priority.dm"

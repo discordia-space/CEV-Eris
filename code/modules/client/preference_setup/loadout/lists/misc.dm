@@ -1,3 +1,16 @@
+/datum/gear/bible
+	display_name = "Neotheology ritual book"
+	path = /obj/item/weapon/book/ritual/cruciform
+	cost = 2
+
+/datum/gear/flashlight
+	display_name = "Flashlight"
+	path = /obj/item/device/lighting/toggleable/flashlight
+
+/datum/gear/crowbar
+	display_name = "Crowbar"
+	path = /obj/item/weapon/tool/crowbar
+
 /datum/gear/cane
 	display_name = "cane"
 	path = /obj/item/weapon/cane
