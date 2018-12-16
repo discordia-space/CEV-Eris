@@ -36,6 +36,16 @@
 							 /datum/computer_file/program/camera_monitor,
 							 /datum/computer_file/program/reports)
 
+	description = "You are the head of the moebius research branch, tasked with directing shipboard research to new and profitable discoveries."
+
+	duties = "Direct the scientists under your command, ensure they work efficiently towards the bettering of all mankind.\
+Use department funds to purchase scientific curios, artefacts, and anything of interesting research value. As well as any equipment and supplies that would be useful for these ends\
+Organise away missions to gather artefacts and research interesting environments. You have the right to request support from other factions as required"
+
+	loyalties = "As a scientist, your first loyalty is to knowledge, the ultimate good in the universe. Learning and developing new technologies is the greatest goal humanity can pursue, and no sacrifice is too great to achieve that end. Even the lives of others or yourself.\
+
+Your second loyalty is to moebius corp. In order to ensure it can continue its mission of research, it must remain profitable. Ensure its interests are farthered, and take care of your colleagues in both research and medical wings"
+
 /obj/landmark/join/start/rd
 	name = "Moebius Expedition Overseer"
 	icon_state = "player-purple-officer"
