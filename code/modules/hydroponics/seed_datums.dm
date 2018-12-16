@@ -67,6 +67,7 @@
 /datum/seed/berry/glow/New()
 	..()
 	set_trait(TRAIT_SPREAD,1)
+	set_trait(TRAIT_WALL_HUGGER,1)
 	set_trait(TRAIT_BIOLUM,1)
 	set_trait(TRAIT_BIOLUM_COLOUR,"#006622")
 	set_trait(TRAIT_MATURATION,5)
@@ -350,6 +351,7 @@
 /datum/seed/mushroom/mold/New()
 	..()
 	set_trait(TRAIT_SPREAD,1)
+	set_trait(TRAIT_WALL_HUGGER,1)
 	set_trait(TRAIT_MATURATION,10)
 	set_trait(TRAIT_YIELD,-1)
 	set_trait(TRAIT_PRODUCT_ICON,"mushroom5")
@@ -484,6 +486,7 @@
 /datum/seed/mushroom/glowshroom/New()
 	..()
 	set_trait(TRAIT_SPREAD,1)
+	set_trait(TRAIT_WALL_HUGGER,1)
 	set_trait(TRAIT_MATURATION,12)
 	set_trait(TRAIT_YIELD,3)
 	set_trait(TRAIT_POTENCY,30)
@@ -512,6 +515,7 @@
 	set_trait(TRAIT_PLANT_COLOUR,"#E6E6E6")
 	set_trait(TRAIT_PLANT_ICON,"mushroom10")
 
+
 /datum/seed/mushroom/maintshroom
 	name = "fungoartiglieria"
 	seed_name = "Fungo di Artiglieria mushroom"
@@ -523,12 +527,12 @@
 	set_trait(TRAIT_MATURATION,6)
 	set_trait(TRAIT_PRODUCTION,6)
 	set_trait(TRAIT_YIELD,10)
-	set_trait(TRAIT_POTENCY,15)
+	set_trait(TRAIT_POTENCY,12)//
 	set_trait(TRAIT_REQUIRES_NUTRIENTS, FALSE)
 	set_trait(TRAIT_REQUIRES_WATER, FALSE)
 	set_trait(TRAIT_PRODUCT_ICON,"mushroom3")
-	set_trait(TRAIT_PRODUCT_COLOUR,"#3EBCD5")
-	set_trait(TRAIT_PLANT_COLOUR,"#FFFFFF")
+	set_trait(TRAIT_WALL_HUGGER,1)
+
 	set_trait(TRAIT_PLANT_ICON,"fungoartiglieria")
 	set_trait(TRAIT_SPREAD, 2)
 	set_trait(TRAIT_CHEMS, 1)
@@ -573,11 +577,35 @@
 		"stoxin",
 		"acetone",
 		"hydrazine",
-		"blattedin"
+		"blattedin",
+		"honey",
+		"frostoil",
+		"capsaicin",
+		"banana",
+		"pacid",
+		"mutagen",
+		"chloralhydrate"
 		)
+
+
 
 	var/new_chem = pick(possible_chems)
 	chems[new_chem] = list(rand(1,5),rand(5,10))
+
+	//Set the maintshroom to the hue of the chem
+	var/datum/reagent/chem = chemical_reagents_list[new_chem]
+	var/color = chem.color
+
+	//Color Wizardry
+	//We will take the color's hue completely
+	//We will cap its saturation to a low value, giving more of a pastel shade
+	//We will hard set the brightness to max
+	var/list/HSV = ReadHSV(RGBtoHSV(color))
+	color = set_HSV(color, list(null, min(HSV[2],100), 255))
+
+	if (chem)
+		set_trait(TRAIT_PLANT_COLOUR,color)
+		set_trait(TRAIT_PRODUCT_COLOUR,color)
 
 //Flowers/varieties
 /datum/seed/flower
