@@ -757,9 +757,9 @@
 
 	var/obj/item/weapon/implant/core_implant/cruciform/C = get_cruciform() //ugh, we need more flexible hud
 	if(C)
-		var/datum/core_module/cruciform/christianhud/christian_hud = C.get_module(/datum/core_module/cruciform/christianhud)
-		if(christian_hud)
-			christian_hud.update_crucihud()
+		var/datum/core_module/cruciform/neotheologyhud/NT_hud = C.get_module(/datum/core_module/cruciform/neotheologyhud)
+		if(NT_hud)
+			NT_hud.update_crucihud()
 
 	if(!.)
 		return

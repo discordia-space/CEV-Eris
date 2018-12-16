@@ -1,5 +1,5 @@
 /obj/item/weapon/circuitboard/neotheology/cloner
-	name = T_BOARD("christian cloner")
+	name = T_BOARD("neotheology cloner")
 	build_path = /obj/machinery/neotheology/cloner
 	board_type = "machine"
 	frame_type = FRAME_VERTICAL

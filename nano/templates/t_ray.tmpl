@@ -1,0 +1,48 @@
+<div class="item">
+	<div class="itemLabel">
+		Status:
+	</div>
+	<div class="itemContent">		
+		{{:helper.link('On', 'power', {'toggleStatus' : 1}, data.enabled ? 'selected' : null)}}{{:helper.link('Off', 'close', {'toggleStatus' : 1}, data.enabled ? null : 'selected')}}
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Power Level:
+	</div>
+	<div class="itemContent">		
+		{{:helper.link('1', null, {'setPower' :  1}, (data.powerSetting ==  1)? 'selected' : null)}}
+		{{:helper.link('2', null, {'setPower' :  2}, (data.powerSetting ==  2)? 'selected' : null)}}
+		{{:helper.link('3', null, {'setPower' :  3}, (data.powerSetting ==  3)? 'selected' : null)}}
+		{{:helper.link('4', null, {'setPower' :  4}, (data.powerSetting ==  4)? 'selected' : null)}}
+		{{:helper.link('5', null, {'setPower' : 5}, (data.powerSetting == 5)? 'selected' : null)}}
+		{{:helper.link('6', null, {'setPower' :  6}, (data.powerSetting ==  6)? 'selected' : null)}}
+		{{:helper.link('7', null, {'setPower' : 7}, (data.powerSetting == 7)? 'selected' : null)}}
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Current Power Usage:
+	</div>
+	<div class="itemContent">		
+		{{:data.wattage}} W
+	</div>
+</div>
+<div class="item">
+	<div class="itemLabel">
+		Cell:
+	</div>
+	<div class="itemContent">		
+		{{:data.cellPercent}}%
+	</div>
+</div>
+<div class="item">
+	<div class="itemLabel">
+		Estimated usage remaining:
+	</div>
+	<div class="itemContent">		
+		{{:data.lifeTime}}
+	</div>
+</div>

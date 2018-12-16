@@ -55,7 +55,10 @@
 				/obj/item/weapon/inflatable_dispenser = 3,
 				/obj/item/weapon/grenade/chem_grenade/cleaner = 2,
 				/obj/item/device/lighting/toggleable/flashlight = 10,
-				/obj/random/voidsuit/damaged = 2,
+				/obj/item/weapon/tank/jetpack/carbondioxide = 1.5,
+				/obj/item/weapon/tank/jetpack/oxygen = 1,
+				/obj/item/robot_parts/robot_component/jetpack = 0.75,
+				/obj/random/voidsuit/damaged = 1.5,
 				/obj/random/voidsuit = 0.5,
 				/obj/random/pouch = 5,
 				/obj/random/tool_upgrade = 25))

@@ -207,6 +207,12 @@
 		return get_turf(SA.target)
 	return T
 
+/turf/proc/has_gravity()
+	var/area/A = loc
+	if (A)
+		return A.has_gravity()
+
+	return FALSE
 
 /proc/IsTurfAtmosUnsafe(var/turf/T)
 	if(istype(T, /turf/space)) // Space tiles

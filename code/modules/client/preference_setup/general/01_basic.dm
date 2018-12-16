@@ -109,7 +109,7 @@ datum/preferences
 		return TOPIC_REFRESH
 
 	else if(href_list["religion"])
-		pref.religion = input("Religion") in list("None", "Christianity")
+		pref.religion = input("Religion") in list("None", "Neotheology")
 		return TOPIC_REFRESH
 
 	return ..()
