@@ -239,11 +239,8 @@
 	for(var/obj/effect/overlay/wallrot/WR in src)
 		qdel(WR)
 	for(var/obj/effect/plant/plant in range(src, 1))
-		if(!plant.floor) //shrooms drop to the floor
-			plant.floor = 1
-			plant.update_icon()
-			plant.pixel_x = 0
-			plant.pixel_y = 0
+		if(plant.wall_mount == src) //shrooms drop to the floor
+			qdel(plant)
 		plant.update_neighbors()
 
 /turf/simulated/wall/ChangeTurf(var/newtype)

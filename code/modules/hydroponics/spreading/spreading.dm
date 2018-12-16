@@ -38,7 +38,7 @@
 	var/obj/effect/plant/parent
 	var/datum/seed/seed
 	var/sampled = 0
-	var/floor = 0
+	var/atom/wall_mount = null
 	var/spread_chance = 40
 	var/spread_distance = 3
 	var/evolve_chance = 2
@@ -82,7 +82,7 @@
 
 	name = seed.display_name
 	max_health = round(seed.get_trait(TRAIT_ENDURANCE)/2)
-	if(seed.get_trait(TRAIT_SPREAD)==2)
+	if(seed.get_trait(TRAIT_SPREAD)>=2)
 		layer = LOW_OBJ_LAYER
 		max_growth = VINE_GROWTH_STAGES
 		growth_threshold = max_health/VINE_GROWTH_STAGES
@@ -99,7 +99,7 @@
 			else
 				growth_type = 4 // Mold
 
-		if (growth_type != 4)
+		if (growth_type != 4 && !(seed.get_trait(TRAIT_WALL_HUGGER)))
 			//Random rotation for vines
 			//Disabled for mold because it looks bad
 			//0 is in here several times to weight it a bit more towards normal
@@ -116,7 +116,7 @@
 
 	mature_time = world.time + seed.get_trait(TRAIT_MATURATION) + 15 //prevent vines from maturing until at least a few seconds after they've been created.
 	spread_chance = seed.get_trait(TRAIT_POTENCY)
-	spread_distance = ((growth_type>0) ? round(spread_chance*1.2) : round(spread_chance*0.6))
+	spread_distance = ((growth_type>0) ? round(spread_chance*1.0) : round(spread_chance*0.5))
 	update_icon()
 
 	if(seed.get_trait(TRAIT_CHEMS) > 0)
@@ -124,8 +124,9 @@
 		for (var/reagent in seed.chems)
 			src.reagents.add_reagent(reagent, 5)
 
-	spawn(1) // Plants will sometimes be spawned in the turf adjacent to the one they need to end up in, for the sake of correct dir/etc being set.
-		set_dir(calc_dir())
+	spawn(2) // Plants will sometimes be spawned in the turf adjacent to the one they need to end up in, for the sake of correct dir/etc being set.
+		if(seed.get_trait(TRAIT_WALL_HUGGER))
+			set_dir(calc_dir())
 		update_icon()
 		plant_controller.add_plant(src)
 		// Some plants eat through plating.
@@ -136,21 +137,9 @@
 /obj/effect/plant/update_icon()
 	//TODO: should really be caching this.
 	refresh_icon()
-	if(growth_type == 0 && !floor)
-		src.transform = null
-		var/matrix/M = matrix()
-		// should make the plant flush against the wall it's meant to be growing from.
-		M.Translate(0,-(rand(12,14)))
-		switch(dir)
-			if(WEST)
-				M.Turn(90)
-			if(NORTH)
-				M.Turn(180)
-			if(EAST)
-				M.Turn(270)
-		src.transform = M
+
 	var/icon_colour = seed.get_trait(TRAIT_PLANT_COLOUR)
-	if(icon_colour && (seed.type != /datum/seed/mushroom/maintshroom))
+	if(icon_colour)
 		color = icon_colour
 	// Apply colour and light from seed datum.
 	if(seed.get_trait(TRAIT_BIOLUM))
@@ -163,8 +152,9 @@
 		set_light(0)
 
 /obj/effect/plant/proc/refresh_icon()
-	var/growth = min(max_growth,round(health/growth_threshold))
-	var/at_fringe = get_dist(src,parent)
+	var/prevstate = icon_state
+	var/growth = max(1,min(max_growth,round(health/growth_threshold)))
+	var/at_fringe = dist3D(src,parent)
 	if(spread_distance > 5)
 		if(at_fringe >= (spread_distance-3))
 			max_growth--
@@ -194,40 +184,103 @@
 		layer = (seed && seed.force_layer) ? seed.force_layer : 5
 		density = 0
 
+
+var/list/global/cutoff_plant_icons = list()
+//Used for wall hugger plants. Retrieves or creates an icon used for plants growing on the north side of a wall
+//This allows them to be cutoff and appear to draw under the wall
+
+/obj/effect/plant/proc/get_cutoff_plant_icon(var/icon_base)
+	if (!icon_base)
+		return icon //This is not unlikely
+
+	//We retrieve things from this global list first, used as a cache to prevent repeating this expensive icon work
+	if (cutoff_plant_icons[icon_base])
+		return cutoff_plant_icons[icon_base]
+
+	//Ok it doesnt exist yet, lets make it
+
+	//First we need an empty icon to hold the finished result
+	var/icon/I = new()
+
+	//We will loop through each of the five iconstates of a plant
+	for (var/i = 1; i <= 5; i++)
+		//For each state, we create an icon containing only that state
+		var/icon/J = new(icon, "[icon_base]-[i]")
+
+		//We blend the blank icon with it with an offset that will chop 12 pixels off the bottom
+		J.Blend(new /icon('icons/obj/hydroponics_vines.dmi', "blank"),ICON_MULTIPLY, y=WALL_HUG_OFFSET-31)
+
+		//Finally we'll insert this new icon into the container we made
+		I.Insert(J, "[icon_base]-[i]")
+
+	//We're done, it's made, now store it
+	cutoff_plant_icons[icon_base] = I
+
+	//And return it so we can use it immediately
+	return I
+
+
+//Used for plants that grow on walls
 /obj/effect/plant/proc/calc_dir()
 	set background = 1
+	pixel_x = 0
+	pixel_y = 0
 	var/turf/T = get_turf(src)
 	if(!istype(T)) return
 
-	var/direction = 16
+	var/direction = UP
 
 	for(var/wallDir in cardinal)
 		var/turf/newTurf = get_step(T,wallDir)
-		if(newTurf.density)
+		if(newTurf.is_wall)
 			direction |= wallDir
 
 	for(var/obj/effect/plant/shroom in T.contents)
 		if(shroom == src)
 			continue
-		if(shroom.floor) //special
-			direction &= ~16
+		if(!shroom.wall_mount) //special
+			direction &= ~UP
 		else
 			direction &= ~shroom.dir
 
 	var/list/dirList = list()
 
-	for(var/i=1,i<=16,i <<= 1)
+	for(var/i=1,i<=UP,i <<= 1)
 		if(direction & i)
 			dirList += i
 
 	if(dirList.len)
 		var/newDir = pick(dirList)
-		if(newDir == 16)
-			floor = 1
+		if(newDir == UP)
 			newDir = 1
+		else
+			wall_mount = get_step(loc, newDir)
+			var/matrix/M = matrix()
+			// should make the plant flush against the wall it's meant to be growing from.
+
+			//M.Translate(0,offset)
+
+			switch(newDir)
+				if(WEST)
+					M.Turn(90)
+				if(NORTH)
+					M.Turn(180)
+					offset_to(wall_mount, WALL_HUG_OFFSET*0.5) //Due to perspective, there's more space to the north
+					//So plants that hug a north wall will be offset 50% more
+				if(EAST)
+					M.Turn(270)
+			src.transform = M
+
+			if (newDir == SOUTH)
+				//Lets cutoff part of the plant
+				icon = get_cutoff_plant_icon(seed.get_trait(TRAIT_PLANT_ICON))
+
+
+			offset_to(wall_mount, WALL_HUG_OFFSET)
+
 		return newDir
 
-	floor = 1
+	wall_mount = null
 	return 1
 
 

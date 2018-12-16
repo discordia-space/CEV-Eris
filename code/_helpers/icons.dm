@@ -845,6 +845,35 @@ proc/adjust_brightness(var/color, var/value)
 	RGB[3] = Clamp(RGB[3]+value, 0, 255)
 	return rgb(RGB[1],RGB[2],RGB[3])
 
+
+//Adds a list of values to the HSV of a color
+proc/adjust_HSV(var/color, var/list/values)
+	if (!color) return "#FFFFFF"
+	if (!values || !values.len) return color
+
+	var/hsv_string = RGBtoHSV(color)
+	var/list/HSV = ReadHSV(hsv_string)
+	HSV[1] = Clamp(HSV[1]+values[1], 0, 255)
+	HSV[2] = Clamp(HSV[2]+values[2], 0, 255)
+	HSV[3] = Clamp(HSV[3]+values[3], 0, 255)
+	return HSVtoRGB(hsv(HSV[1],HSV[2],HSV[3], null))
+
+//Uses a list of values to overwrite HSV components of a color
+//A null entry won't overwrite anything
+proc/set_HSV(var/color, var/list/values)
+	if (!color) return "#FFFFFF"
+	if (!values || !values.len) return color
+
+	var/hsv_string = RGBtoHSV(color)
+	var/list/HSV = ReadHSV(hsv_string)
+	if (!isnull(values[1]))
+		HSV[1] = Clamp(values[1], 0, 255)
+	if (!isnull(values[2]))
+		HSV[2] = Clamp(values[2], 0, 255)
+	if (!isnull(values[3]))
+		HSV[3] = Clamp(values[3], 0, 255)
+	return HSVtoRGB(hsv(HSV[1],HSV[2],HSV[3], null))
+
 proc/sort_atoms_by_layer(var/list/atoms)
 	// Comb sort icons based on levels
 	var/list/result = atoms.Copy()

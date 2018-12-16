@@ -4,9 +4,9 @@
 	icon_state = "jager"
 
 	meat_amount = 3
-	turns_per_move = 2
-	maxHealth = 15
-	health = 15
+	turns_per_move = 3
+	maxHealth = 25
+	health = 25
 
 	melee_damage_lower = 3
 	melee_damage_upper = 10
