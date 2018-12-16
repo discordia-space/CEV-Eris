@@ -1,6 +1,13 @@
+/datum/category_item/underwear/top
+	underwear_name = "bra"
+	underwear_type = /obj/item/underwear/top
+	underwear_gender = FEMALE
+
 /datum/category_item/underwear/top/none
 	name = "None"
 	always_last = TRUE
+	underwear_type = null
+	underwear_gender = MALE
 
 /datum/category_item/underwear/top/none/is_default(var/gender)
 	return gender != FEMALE
@@ -28,10 +35,6 @@
 /datum/category_item/underwear/top/bra_black
 	name = "Bra, black"
 	icon_state = "f5"
-
-/datum/category_item/underwear/top/sports_bra_black
-	name = "Sports bra, black"
-	icon_state = "f7"
 
 /datum/category_item/underwear/top/sports_bra_white
 	name = "Sports bra, white"

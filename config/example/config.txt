@@ -50,6 +50,9 @@ LOG_GAME
 ## log player votes
 LOG_VOTE
 
+## log debug messages
+##LOG_DEBUG
+
 ## log client Whisper
 LOG_WHISPER
 

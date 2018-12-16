@@ -102,10 +102,36 @@
 
 #define attack_animation(A) if(istype(A)) A.do_attack_animation(src)
 
-#define LAZYADD(L, I) if(!L) { L = list(); } L += I;
+// Helper macros to aid in optimizing lazy instantiation of lists.
+// All of these are null-safe, you can use them without knowing if the list var is initialized yet
 
+//Picks from the list, with some safeties, and returns the "default" arg if it fails
+#define DEFAULTPICK(L, default) ((istype(L, /list) && L:len) ? pick(L) : default)
+// Ensures L is initailized after this point
+#define LAZYINITLIST(L) if (!L) L = list()
+// Sets a L back to null iff it is empty
+#define UNSETEMPTY(L) if (L && !L.len) L = null
+// Removes I from list L, and sets I to null if it is now empty
+#define LAZYREMOVE(L, I) if(L) { L -= I; if(!L.len) { L = null; } }
+// Adds I to L, initalizing L if necessary
+#define LAZYADD(L, I) if(!L) { L = list(); } L += I;
+// Insert I into L at position X, initalizing L if necessary
+#define LAZYINSERT(L, I, X) if(!L) { L = list(); } L.Insert(X, I);
 // Adds I to L, initalizing L if necessary, if I is not already in L
 #define LAZYDISTINCTADD(L, I) if(!L) { L = list(); } L |= I;
+// Sets L[A] to I, initalizing L if necessary
+#define LAZYSET(L, A, I) if(!L) { L = list(); } L[A] = I;
+// Reads I from L safely - Works with both associative and traditional lists.
+#define LAZYACCESS(L, I) (L ? (isnum(I) ? (I > 0 && I <= L.len ? L[I] : null) : L[I]) : null)
+// Reads the length of L, returning 0 if null
+#define LAZYLEN(L) length(L)
+// Safely checks if I is in L
+#define LAZYISIN(L, I) (L ? (I in L) : FALSE)
+// Null-safe L.Cut()
+#define LAZYCLEARLIST(L) if(L) L.Cut()
+// Reads L or an empty list if L is not a list.  Note: Does NOT assign, L may be an expression.
+#define SANITIZE_LIST(L) ( islist(L) ? L : list() )
+
 
 #define sound_to(target, sound)                             target << sound
 #define to_chat(target, message)                            target << message
@@ -113,9 +139,14 @@
 #define to_world_log(message)                               log_world(message)
 #define show_browser(target, browser_content, browser_name) target << browse(browser_content, browser_name)
 #define to_file(file_entry, source_var)                     file_entry << source_var
-#define from_file(file_entry, target_var) 					file_entry >> target_var
+#define from_file(file_entry, target_var)                   file_entry >> target_var
+#define send_rsc(target, rsc_content, rsc_name)             target << browse_rsc(rsc_content, rsc_name)
+#define open_link(target, url)             					target << link(url)
+
 
 #define any2ref(x) "\ref[x]"
+
+#define RANDOM_BLOOD_TYPE pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
 
 #define MAP_IMAGE_PATH "nano/images/[maps_data.path]/"
 
@@ -139,3 +170,5 @@
 
 // Insert an object A into a sorted list using cmp_proc (/code/_helpers/cmp.dm) for comparison.
 #define ADD_SORTED(list, A, cmp_proc) if(!list.len) {list.Add(A)} else {list.Insert(FindElementIndex(A, list, cmp_proc), A)}
+
+#define FLAGS_EQUALS(flag, flags) ((flag & (flags)) == (flags))

@@ -5,13 +5,12 @@
 	faction = "CEV Eris"
 	total_positions = 0 // Not used for AI, see is_position_available below and modules/mob/living/silicon/ai/latejoin.dm
 	spawn_positions = 1
-	selection_color = "#ccffcc"
+	selection_color = "#b5b7cb"
 	supervisors = "your laws"
 	req_admin_notify = 1
 	account_allowed = 0
 	economic_modifier = 0
-	equip(var/mob/living/carbon/human/H)
-		return H
+	outfit_type = /decl/hierarchy/outfit/job/silicon/ai
 
 
 /datum/job/ai/is_position_available()
@@ -25,8 +24,8 @@
 
 /obj/landmark/join/start/triai
 	icon_state = "ai-green"
-	name = "tripai"
-	join_tag = "tripai"
+	name = "triai"
+	join_tag = "triai"
 
 
 /datum/job/cyborg
@@ -36,13 +35,13 @@
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
+	alt_titles = list("Drone", "Cyborg")
 	supervisors = "your laws and the AI"
-	selection_color = "#ddffdd"
+	selection_color = "#cdcfe0"
 	account_allowed = 0
 	economic_modifier = 0
 
-	equip(var/mob/living/carbon/human/H)
-		return H
+	outfit_type = /decl/hierarchy/outfit/job/silicon/cyborg
 
 /obj/landmark/join/start/cyborg
 	join_tag = /datum/job/cyborg

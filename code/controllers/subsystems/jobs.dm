@@ -11,6 +11,7 @@ SUBSYSTEM_DEF(job)
 	var/list/occupations_by_name = list()	//Dict of all jobs, keys are titles
 	var/list/unassigned = list()			//Players who need jobs
 	var/list/job_debug = list()				//Debug info
+	var/list/job_mannequins = list()				//Cache of icons for job info window
 
 /datum/controller/subsystem/job/Initialize(start_timeofday)
 	if(!occupations.len)
@@ -292,7 +293,7 @@ SUBSYSTEM_DEF(job)
 	return TRUE
 
 
-/datum/controller/subsystem/job/proc/EquipRank(mob/living/carbon/human/H, rank, joined_late = FALSE)
+/datum/controller/subsystem/job/proc/EquipRank(mob/living/carbon/human/H, rank)
 	if(!H)
 		return null
 
@@ -302,60 +303,17 @@ SUBSYSTEM_DEF(job)
 	if(job)
 
 		//Equip custom gear loadout.
-		var/list/custom_equip_slots = list() //If more than one item takes the same slot, all after the first one spawn in storage.
-		var/list/custom_equip_leftovers = list()
-		if(H.client.prefs.gear && H.client.prefs.gear.len && job.title != "Robot" && job.title != "AI")
-			for(var/thing in H.client.prefs.gear)
-				var/datum/gear/G = gear_datums[thing]
-				if(G)
-					var/permitted
-					if(G.allowed_roles)
-						for(var/job_name in G.allowed_roles)
-							if(job.title == job_name)
-								permitted = 1
-					else
-						permitted = 1
+		//var/list/custom_equip_slots = list() //If more than one item takes the same slot, all after the first one spawn in storage.
+		//var/list/custom_equip_leftovers = list()
 
-					if(G.whitelisted && !is_alien_whitelisted(H, G.whitelisted))
-						permitted = 0
-
-					if(!permitted)
-						H << SPAN_WARNING("Your current job or whitelist status does not permit you to spawn with [thing]!")
-						continue
-
-					if(G.slot && !(G.slot in custom_equip_slots))
-						// This is a miserable way to fix the loadout overwrite bug, but the alternative requires
-						// adding an arg to a bunch of different procs. Will look into it after this merge. ~ Z
-						var/metadata = H.client.prefs.gear[G.display_name]
-						if(G.slot == slot_wear_mask || G.slot == slot_wear_suit || G.slot == slot_head)
-							custom_equip_leftovers += thing
-						else if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
-							H << SPAN_NOTICE("Equipping you with \the [thing]!")
-							custom_equip_slots.Add(G.slot)
-						else
-							custom_equip_leftovers.Add(thing)
-					else
-						spawn_in_storage += thing
 		//Equip job items and language stuff
-		job.equip(H)
+		job.equip(H, H.mind ? H.mind.role_alt_title : "")
 		job.add_stats(H)
 		job.add_additiional_language(H)
 		job.setup_account(H)
-
+		
 		job.apply_fingerprints(H)
-
-		//If some custom items could not be equipped before, try again now.
-		for(var/thing in custom_equip_leftovers)
-			var/datum/gear/G = gear_datums[thing]
-			if(G.slot in custom_equip_slots)
-				spawn_in_storage += thing
-			else
-				var/metadata = H.client.prefs.gear[G.display_name]
-				if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
-					H << SPAN_NOTICE("Equipping you with \the [thing]!")
-					custom_equip_slots.Add(G.slot)
-				else
-					spawn_in_storage += thing
+		spawn_in_storage = EquipCustomLoadout(H, job)
 		// EMAIL GENERATION
 		if(rank != "Robot" && rank != "AI")		//These guys get their emails later.
 			var/domain
@@ -368,18 +326,6 @@ SUBSYSTEM_DEF(job)
 		H << "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator."
 
 	H.job = rank
-
-	if(!joined_late)
-		var/turf/S = pickSpawnLocation(job.type)
-		if(istype(S))
-			H.forceMove(S)
-		else
-			LateSpawn(H.client, rank)
-
-		// Moving wheelchair if they have one
-		if(H.buckled && istype(H.buckled, /obj/structure/bed/chair/wheelchair))
-			H.buckled.forceMove(H.loc)
-			H.buckled.set_dir(H.dir)
 
 	// If they're head, give them the account info for their department
 	if(H.mind && job.head_position)
@@ -408,21 +354,10 @@ SUBSYSTEM_DEF(job)
 				var/sound/announce_sound = (SSticker.current_state <= GAME_STATE_SETTING_UP)? null : sound('sound/misc/boatswain.ogg', volume=20)
 				captain_announcement.Announce("All hands, Captain [H.real_name] on deck!", new_sound=announce_sound)
 
-		//Deferred item spawning.
-		if(spawn_in_storage && spawn_in_storage.len)
-			var/obj/item/weapon/storage/B
-			for(var/obj/item/weapon/storage/S in H.contents)
-				B = S
-				break
-
-			if(!isnull(B))
-				for(var/thing in spawn_in_storage)
-					H << SPAN_NOTICE("Placing \the [thing] in your [B.name]!")
-					var/datum/gear/G = gear_datums[thing]
-					var/metadata = H.client.prefs.gear[G.display_name]
-					G.spawn_item(B, metadata)
-			else
-				H << SPAN_DANGER("Failed to locate a storage object on your mob, either you spawned with no arms and no backpack or this is a bug.")
+	//loadout items.
+	if(spawn_in_storage)
+		for(var/datum/gear/G in spawn_in_storage)
+			G.spawn_in_storage_or_drop(H, H.client.prefs.Gear()[G.display_name])
 
 	if(istype(H)) //give humans wheelchairs, if they need them.
 		var/obj/item/organ/external/l_leg = H.get_organ(BP_L_LEG)
@@ -440,11 +375,6 @@ SUBSYSTEM_DEF(job)
 	if(job.supervisors)
 		H << "<b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>"
 
-	if(job.idtype)
-		spawnId(H, rank, alt_title)
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset(H), slot_l_ear)
-		H << "<b>To speak on your department's radio channel use :h. For the use of other channels, examine your headset.</b>"
-
 	if(job.req_admin_notify)
 		H << "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>"
 
@@ -459,43 +389,40 @@ SUBSYSTEM_DEF(job)
 	BITSET(H.hud_updateflag, SPECIALROLE_HUD)
 	return H
 
+proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
+	if(!H || !H.client)
+		return
 
-/datum/controller/subsystem/job/proc/spawnId(mob/living/carbon/human/H, rank, title, idtype)
-	if(!H)
-		return FALSE
-	var/obj/item/weapon/card/id/C = null
+	// Equip custom gear loadout, replacing any job items
+	var/list/spawn_in_storage = list()
+	var/list/loadout_taken_slots = list()
+	if(H.client.prefs.Gear() && job.loadout_allowed)
+		for(var/thing in H.client.prefs.Gear())
+			var/datum/gear/G = gear_datums[thing]
+			if(G)
+				var/permitted = 1
+				if(permitted)
+					if(G.allowed_roles)
+						if(job.type in G.allowed_roles)
+							permitted = 1
+						else
+							permitted = 0
+					else
+						permitted = 1
 
-	var/datum/job/job = null
-	for(var/datum/job/J in occupations)
-		if(J.title == rank)
-			job = J
-			break
+				if(G.whitelisted && (!(H.species.name in G.whitelisted)))
+					permitted = 0
 
-	if(job)
-		if(job.title == "Robot")
-			return
-		else
-			idtype = idtype ? idtype : job.idtype
-			C = new idtype(H)
-			C.access = job.get_access()
-	else
-		C = new /obj/item/weapon/card/id(H)
-	if(C)
-		C.rank = rank
-		C.assignment = title ? title : rank
-		H.set_id_info(C)
+				if(!permitted)
+					to_chat(H, "<span class='warning'>Your current job or whitelist status does not permit you to spawn with [thing]!</span>")
+					continue
 
-		//put the player's account number onto the ID
-		if(H.mind && H.mind.initial_account)
-			C.associated_account_number = H.mind.initial_account.account_number
-
-		if(H.mind.initial_email_login)
-			C.associated_email_login = H.mind.initial_email_login.Copy()
-
-		H.equip_to_slot_or_del(C, slot_wear_id)
-
-	return TRUE
-
+				if(!G.slot || G.slot == slot_accessory_buffer || (G.slot in loadout_taken_slots) || !G.spawn_on_mob(H, H.client.prefs.Gear()[G.display_name]))
+					spawn_in_storage.Add(G)
+				else
+					loadout_taken_slots.Add(G.slot)
+				
+	return spawn_in_storage
 
 /datum/controller/subsystem/job/proc/LoadJobs(jobsfile) //ran during round setup, reads info from jobs.txt -- Urist
 	if(!config.load_jobs_from_txt)
@@ -558,38 +485,46 @@ SUBSYSTEM_DEF(job)
 		tmp_str += "HIGH=[level1]|MEDIUM=[level2]|LOW=[level3]|NEVER=[level4]|BANNED=[level5]|YOUNG=[level6]|-"
 
 
-/datum/controller/subsystem/job/proc/LateSpawn(client/C, rank, return_location = FALSE)
-	//spawn at one of the latespawn locations
-	var/datum/spawnpoint/spawnpos
+/**
+ *  Return appropriate /datum/spawnpoint for given client and rank
+ *
+ *  Spawnpoint will be the one set in preferences for the client, unless the
+ *  preference is not set, or the preference is not appropriate for the rank, in
+ *  which case a fallback will be selected.
+ */
+/datum/controller/subsystem/job/proc/get_spawnpoint_for(var/client/C, var/rank, late = FALSE)
 
 	if(!C)
-		CRASH("Null client passed to LateSpawn() proc!")
+		CRASH("Null client passed to get_spawnpoint_for() proc!")
 
 	var/mob/H = C.mob
-	if(C.prefs.spawnpoint)
-		spawnpos = getSpawnPoint(C.prefs.spawnpoint, FALSE)
-	if(!spawnpos || !spawnpos.check_job_spawning(rank))
-		for(var/name in spawnpoints_late)
-			var/datum/spawnpoint/SP = spawnpoints_late[name]
-			if(SP.check_job_spawning(rank))
-				spawnpos = SP
-				break
-
-	if(spawnpos && istype(spawnpos))
-		var/list/latejoin = safepick(spawnpos.getFreeTurfs())
-		if(return_location)
-			return latejoin
+	var/pref_spawn = C.prefs.spawnpoint
+	
+	var/datum/spawnpoint/SP
+	if(late)
+		if(!pref_spawn)
+			SP = getSpawnPoint(maps_data.default_spawn, late = TRUE)
+			H << SPAN_WARNING("You have not selected spawnpoint in preference menu, you will be assigned default one which is \"[SP.display_name]\".")
 		else
-			if(H)
-				H.forceMove(latejoin)
-			return spawnpos.message
+			SP = getSpawnPoint(pref_spawn, late = TRUE)
+			if(SP && !SP.check_job_spawning(rank))
+				H << SPAN_WARNING("Your chosen spawnpoint ([SP.display_name]) is unavailable for your chosen job ([rank]). Spawning you at another spawn point instead.")
+				SP = null
+				for(var/spawntype in get_late_spawntypes())
+					var/datum/spawnpoint/candidate = get_late_spawntypes()[spawntype]
+					if(candidate.check_job_spawning(rank))
+						SP = candidate
+						break
+					if(!SP)
+						// Pick default spawnpoint, just so we have one
+						warning("Could not find an appropriate spawnpoint for job [rank] (latespawn).")
+						SP = SP = getSpawnPoint(maps_data.default_spawn, late = TRUE)
 	else
-		if(return_location)
-			return pickSpawnLocation()
-		else
-			if(H)
-				H.forceMove(pickSpawnLocation())
-			return "has arrived on the station"
+		SP = getSpawnPoint(rank)
+		if(!SP)
+			warning("Could not find an appropriate spawnpoint for job [rank] (roundstart).")
+			SP = getSpawnPoint(maps_data.default_spawn, late = TRUE)
+	return SP
 
 /datum/controller/subsystem/job/proc/ShouldCreateRecords(var/title)
 	if(!title) return 0

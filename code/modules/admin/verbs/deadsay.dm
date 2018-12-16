@@ -12,8 +12,7 @@ ADMIN_VERB_ADD(/client/proc/dsay, R_ADMIN|R_DEBUG|R_MOD, TRUE)
 	if(prefs.muted & MUTE_DEADCHAT)
 		src << SPAN_WARNING("You cannot send DSAY messages (muted).")
 		return
-
-	if(!is_preference_enabled(/datum/client_preference/show_dsay))
+	if(src.get_preference_value(/datum/client_preference/show_dsay) == GLOB.PREF_HIDE)
 		src << SPAN_WARNING("You have deadchat muted.")
 		return
 

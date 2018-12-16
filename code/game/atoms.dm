@@ -641,3 +641,4 @@ its easier to just keep the beam vertical.
 /atom/proc/clear_bulletholes()
 	for(var/obj/effect/overlay/bmark/BM in src)
 		qdel(BM)
+

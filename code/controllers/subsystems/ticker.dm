@@ -177,6 +177,7 @@ SUBSYSTEM_DEF(ticker)
 	create_characters() //Create player characters and transfer them
 	collect_minds()
 	equip_characters()
+	move_characters_to_spawnpoints()
 	for(var/mob/living/carbon/human/H in player_list)
 		if(!H.mind || player_is_antag(H.mind, only_offstation_roles = 1) || !SSjob.ShouldCreateRecords(H.mind.assigned_role))
 			continue
@@ -325,12 +326,17 @@ SUBSYSTEM_DEF(ticker)
 			if(player.mind.assigned_role == "Captain")
 				captainless = FALSE
 			if(!player_is_antag(player.mind, only_offstation_roles = 1))
-				SSjob.EquipRank(player, player.mind.assigned_role, 0)
+				SSjob.EquipRank(player, player.mind.assigned_role)
 				equip_custom_items(player)
 	if(captainless)
 		for(var/mob/M in player_list)
 			if(!isnewplayer(M))
 				M << "Captainship not forced on anyone."
+
+/datum/controller/subsystem/ticker/proc/move_characters_to_spawnpoints()
+	for(var/mob/living/carbon/human/player in player_list)
+		var/datum/spawnpoint/SP = SSjob.get_spawnpoint_for(player.client, player.mind.assigned_role)
+		SP.put_mob(player)
 
 
 /datum/controller/subsystem/ticker/proc/declare_completion()

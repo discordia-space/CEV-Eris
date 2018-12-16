@@ -30,7 +30,6 @@
 	{{:helper.link('Change Password', 'locked', {'changepassword' : 1})}}
 	{{:helper.link('Log Out', 'key', {'logout' : 1})}}
 	{{:helper.link((data.ringtone ? 'Ringtone enabled' : 'Ringtone muted'), (data.ringtone ? 'volume-on' : 'volume-off'), {'ringtone_toggle' : 1})}}<br><br>
-
 	{{if data.addressbook}}
 		{{:helper.link('Back', null, {'close_addressbook' : 1})}}
 		{{:helper.link('Enter Email', 'pencil', {'edit_recipient' : 1})}}

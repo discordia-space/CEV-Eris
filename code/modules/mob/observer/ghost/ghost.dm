@@ -34,9 +34,8 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 	see_in_dark = 100
 	verbs += /mob/observer/ghost/proc/dead_tele
 
-	var/turf/T
 	if(ismob(body))
-		T = get_turf(body)				//Where is the body located?
+		var/turf/T = get_turf(body)				//Where is the body located?
 		attack_log = body.attack_log	//preserve our attack logs by copying them to our ghost
 
 		if (ishuman(body))
@@ -58,19 +57,20 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 				name = body.real_name
 			else
 				if(gender == MALE)
-					name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+					name = capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
 				else
-					name = capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
+					name = capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
 
 		mind = body.mind	//we don't transfer the mind but we keep a reference to it.
-
-	if(!T)
+		forceMove(T)
+	else
 		//Safety in case we cannot find the body's position
-		T = pickSpawnLocation("observer", FALSE)
-	forceMove(T)
+		var/turf/T = pickSpawnLocation("Observer")
+		if(istype(T))
+			src.forceMove(T)
 
 	if(!name)							//To prevent nameless ghosts
-		name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+		name = capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
 	real_name = name
 
 	ghost_multitool = new(src)
@@ -197,7 +197,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/observer/ghost/is_active()		return 0
 
 /mob/observer/ghost/Stat()
-	..()
+	. = ..()
 	if(statpanel("Status"))
 		if(evacuation_controller)
 			var/eta_status = evacuation_controller.get_status_panel_eta()

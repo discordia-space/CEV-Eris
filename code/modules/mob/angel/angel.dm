@@ -32,7 +32,7 @@
 
 	if(!T)
 		//Safety in case we cannot find the body's position
-		T = pickSpawnLocation("observer", FALSE)
+		T = pickSpawnLocation("Observer")
 	forceMove(T)
 
 	real_name = name

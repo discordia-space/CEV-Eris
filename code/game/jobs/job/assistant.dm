@@ -9,10 +9,11 @@
 	supervisors = "absolutely everyone"
 	selection_color = "#dddddd"
 	economic_modifier = 1
+	//alt_titles = list("Technomancer Assistant","Moebius Medical Intern","Moebius Research Assistant")
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5)
+
 	access = list(access_maint_tunnels)
-	uniform = /obj/item/clothing/under/rank/assistant
-	suit = /obj/item/clothing/suit/storage/ass_jacket
+	outfit_type = /decl/hierarchy/outfit/job/assistant
 
 /obj/landmark/join/start/assistant
 	name = "Assistant"

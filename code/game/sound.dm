@@ -343,8 +343,14 @@ var/const/FALLOFF_SOUNDS = 0.5
 /client/proc/playtitlemusic()
 	if(!SSticker.login_music)
 		return
-	if(is_preference_enabled(/datum/client_preference/play_lobby_music))
+	if(get_preference_value(/datum/client_preference/play_lobby_music) == GLOB.PREF_YES)
 		src << sound(SSticker.login_music, repeat = 0, wait = 0, volume = 85, channel = 1) // MAD JAMS
+
+/client/proc/stoptitlemusic()
+	if(!SSticker.login_music)
+		return
+	src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // NO MAD JAMS
+
 
 /proc/get_rand_frequency()
 	return rand(32000, 55000) //Frequency stuff only works with 45kbps oggs.

@@ -18,14 +18,15 @@
 	var/native                        			// If set, non-native speakers will have trouble speaking.
 	var/list/syllables                			// Used when scrambling text for a non-speaker.
 	var/list/space_chance = 55        			// Likelihood of getting a space in the random scramble string
-	var/machine_understands = 1 		  // Whether machines can parse and understand this language
+	var/machine_understands = 1 		  		// Whether machines can parse and understand this language
+	var/shorthand = "CO"						// Shorthand that shows up in chat for this language.
 
 /datum/language/proc/get_random_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
 	if(!syllables || !syllables.len)
 		if(gender==FEMALE)
-			return capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
+			return capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
 		else
-			return capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+			return capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
 
 	var/full_name = ""
 	var/new_name = ""
@@ -159,16 +160,10 @@
 	return (universal_speak || (speaking && speaking.flags & INNATE) || speaking in src.languages)
 
 /mob/proc/get_language_prefix()
-	if(client && client.prefs.language_prefixes && client.prefs.language_prefixes.len)
-		return client.prefs.language_prefixes[1]
-
-	return config.language_prefixes[1]
+	return get_prefix_key(/decl/prefix/language)
 
 /mob/proc/is_language_prefix(var/prefix)
-	if(client && client.prefs.language_prefixes && client.prefs.language_prefixes.len)
-		return prefix in client.prefs.language_prefixes
-
-	return prefix in config.language_prefixes
+	return prefix == get_prefix_key(/decl/prefix/language)
 
 //TBD
 /mob/verb/check_languages()

@@ -1,6 +1,6 @@
 /client/verb/fit_viewport()
 	set name = "Fit Viewport"
-	set category = "Preferences"
+	set category = "OOC"
 	set desc = "Fit the width of the map window to match the viewport"
 
 	// Fetch aspect ratio

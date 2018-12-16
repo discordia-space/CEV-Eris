@@ -178,3 +178,5 @@
 #define OPEN_ORGAN_BLEED_AMOUNT 1.5 //Wounds with open, unclamped incisions bleed this many units of blood per process tick
 
 #define HEAT_MOBIGNITE_THRESHOLD 530 //minimum amount of heat an object needs to ignite a mob when it hits the mob
+
+#define SPECIES_HUMAN       "Human"

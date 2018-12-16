@@ -13,6 +13,23 @@
 	req_med = -1
 	req_sci = 3
 
+/datum/storyevent/roleset/secdoc_hunters/can_trigger(var/severity = EVENT_LEVEL_ROLESET, var/report)
+	var/list/scientists = candidates_list(ROLE_SECDOC_DEFENDER, report)
+	if(scientists.len < 1)
+		if (report) report << SPAN_NOTICE("Failure: No scientist candidates found")
+		.= FALSE
+
+	var/scientist = pick(scientists)
+	var/list/hunters = candidates_list(ROLE_TRAITOR, report)
+	hunters -= scientist
+	if(hunters.len < 1)
+		if (report) report << SPAN_NOTICE("Failure: No hunter candidates found")
+		.=FALSE
+
+
+	if (!. && report) report << SPAN_NOTICE("Failure: No candidates found")
+	return TRUE
+
 
 /datum/storyevent/roleset/secdoc_hunters/trigger_event()
 	var/list/hunters = candidates_list(ROLE_TRAITOR)
@@ -28,8 +45,8 @@
 
 	var/datum/mind/sci = pick(scientists)
 
-	var/datum/antagonist/H = get_antag_instance(ROLE_TRAITOR)
-	var/datum/antagonist/S = get_antag_instance(ROLE_SECDOC_DEFENDER)
+	var/datum/antagonist/H = create_antag_instance(ROLE_TRAITOR)
+	var/datum/antagonist/S = create_antag_instance(ROLE_SECDOC_DEFENDER)
 
 	H.create_antagonist(hunter, announce = FALSE)
 	S.create_antagonist(sci, announce = FALSE)
