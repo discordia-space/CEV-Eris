@@ -385,7 +385,7 @@ var/list/flooring_types
 /decl/flooring/tiling/new_tile
 	name = "floor"
 	icon_base = "tile_full"
-	flags = TURF_CAN_BREAK | TURF_CAN_BURN | TURF_IS_FRAGILE
+	flags = TURF_CAN_BREAK | TURF_CAN_BURN | TURF_IS_FRAGILE | TURF_HIDES_THINGS
 	build_type = null
 	footstep_sound = "tile" //This Sound is for ceramic tiles, but not for metal ones
 
@@ -469,7 +469,7 @@ var/list/flooring_types
 	desc = "Heavily reinforced with steel rods."
 	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_base = "reinforced"
-	flags = TURF_REMOVE_WRENCH | TURF_ACID_IMMUNE | TURF_CAN_BURN | TURF_CAN_BREAK
+	flags = TURF_REMOVE_WRENCH | TURF_ACID_IMMUNE | TURF_CAN_BURN | TURF_CAN_BREAK | TURF_HIDES_THINGS
 	build_type = /obj/item/stack/rods
 	build_cost = 2
 	build_time = 30

@@ -10,7 +10,7 @@
 
 	attack_sound = 'sound/voice/insect_battle_bite.ogg'
 	emote_see = list("chirps loudly.", "cleans its whiskers with forelegs.")
-	turns_per_move = 3
+	turns_per_move = 4
 	turns_since_move = 0
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/roachmeat
@@ -28,5 +28,14 @@
 	min_air_pressure = 15 //below this, brute damage is dealt
 
 	faction = "roach"
-
+	pass_flags = PASSTABLE
 	acceptableTargetDistance = 3 //consider all targets within this range equally
+	randpixel = 12
+
+
+//When roaches die near a leader, the leader may call for reinforcements
+/mob/living/carbon/superior_animal/roach/death()
+	.=..()
+	if (.)
+		for (var/mob/living/carbon/superior_animal/roach/fuhrer/F in range(src,8))
+			F.distress_call()

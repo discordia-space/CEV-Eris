@@ -7,8 +7,8 @@
 
 	mob_size = MOB_MEDIUM
 
-	maxHealth = 170
-	health = 170
+	maxHealth = 120
+	health = 120
 
 	attack_sound = 'sound/weapons/spiderlunge.ogg'
 	speak_emote = list("chitters")
@@ -21,15 +21,15 @@
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/xenomeat
 	stop_automated_movement_when_pulled = 0
 
-	melee_damage_lower = 14
-	melee_damage_upper = 19
+	melee_damage_lower = 12
+	melee_damage_upper = 17
 
 	min_breath_required_type = 3
 	min_air_pressure = 15 //below this, brute damage is dealt
 
 	var/poison_per_bite = 5
 	var/poison_type = "toxin"
-
+	pass_flags = PASSTABLE
 	faction = "spiders"
 	var/busy = 0
 

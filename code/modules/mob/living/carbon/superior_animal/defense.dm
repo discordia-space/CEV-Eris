@@ -232,12 +232,14 @@
 	return heat_protection
 
 /mob/living/carbon/superior_animal/handle_environment(var/datum/gas_mixture/environment)
+	bad_environment = FALSE
 	if(!environment)
 		return
 
 	if (!contaminant_immunity)
 		for(var/g in environment.gas)
 			if(gas_data.flags[g] & XGM_GAS_CONTAMINANT && environment.gas[g] > gas_data.overlay_limit[g] + 1)
+				bad_environment = TRUE
 				pl_effects()
 				break
 
@@ -246,6 +248,7 @@
 			bodytemperature = max(1,bodytemperature - 10*(1-get_cold_protection(0)))
 
 		if (min_air_pressure > 0)
+			bad_environment = TRUE
 			adjustBruteLoss(2)
 	else
 		var/loc_temp = T0C
@@ -276,6 +279,7 @@
 		bodytemperature += between(BODYTEMP_COOLING_MAX, temp_adj*relative_density, BODYTEMP_HEATING_MAX)
 
 		if ((loc_pressure < min_air_pressure) || (loc_pressure > max_air_pressure))
+			bad_environment = TRUE
 			adjustBruteLoss(2)
 
 	if (overkill_dust && (getFireLoss() >= maxHealth*2))
@@ -284,8 +288,14 @@
 			return
 
 	if ((bodytemperature > max_bodytemperature) || (bodytemperature < min_bodytemperature))
+		bad_environment = TRUE
 		adjustFireLoss(5)
 		updatehealth()
+
+
+	//If we're unable to breathe, lets get out of here
+	if (can_burrow && !stat && bad_environment)
+		evacuate()
 
 /mob/living/carbon/superior_animal/handle_breath(datum/gas_mixture/breath)
 	if(status_flags & GODMODE)
@@ -332,3 +342,17 @@
 	overlays -= image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing")
 	if(on_fire)
 		overlays += image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing")
+
+//The most common cause of an airflow stun is a sudden breach. Evac conditions generally
+/mob/living/carbon/superior_animal/airflow_stun()
+	.=..()
+	if (can_burrow && !stat)
+		evacuate()
+
+
+//Called when the environment becomes unlivable, maybe in other situations
+//The mobs will request the nearby burrow to take them away somewhere else
+/mob/living/carbon/superior_animal/proc/evacuate()
+	var/obj/structure/burrow/B = find_visible_burrow(src)
+	if (B)
+		B.evacuate()

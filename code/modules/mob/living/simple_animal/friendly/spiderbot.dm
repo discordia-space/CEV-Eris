@@ -39,6 +39,7 @@
 	speed = -1                    //Spiderbots gotta go fast.
 	pass_flags = PASSTABLE
 	speak_emote = list("beeps","clicks","chirps")
+	can_burrow = TRUE
 
 /mob/living/simple_animal/spiderbot/New()
 	..()

@@ -10,14 +10,14 @@
 
 
 	event_type = /datum/event/spacevine
-	event_pools = list(EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR*0.8)
+	event_pools = list(EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR*0.6)
 
 	tags = list(TAG_DESTRUCTIVE, TAG_NEGATIVE, TAG_COMBAT)
 
 /var/global/spacevines_spawned = 0
 
 /datum/event/spacevine
-	announceWhen	= 100
+	announceWhen	= 120
 
 /datum/event/spacevine/start()
 
