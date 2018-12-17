@@ -255,6 +255,8 @@
 /obj/item/weapon/tool_upgrade/augment/fuel_tank/apply_values()
 	if (..())
 		holder.max_fuel += 30
+		if (holder.reagents)
+			holder.reagents.maximum_volume = holder.max_fuel
 
 
 //Penalises the tool, but unlocks several more augment slots.

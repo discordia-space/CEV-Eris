@@ -633,6 +633,8 @@
 	precision = initial(precision)
 	suitable_cell = initial(suitable_cell)
 	max_fuel = initial(max_fuel)
+	if (reagents)
+		reagents.maximum_volume = max_fuel
 	use_fuel_cost = initial(use_fuel_cost)
 	use_power_cost = initial(use_power_cost)
 	force = initial(force)
