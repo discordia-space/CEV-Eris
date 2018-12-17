@@ -63,7 +63,6 @@
 
 
 		loc = pick(candidates)
-		world << "Cable moved to [jumplink(loc)]"
 	messiness = rand (1,10)
 	icon_state = "wire_splicing[messiness]"
 
