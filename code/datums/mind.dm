@@ -97,6 +97,8 @@
 	if(active)
 		new_character.key = key		//now transfer the key to link the client to our new body
 		last_activity = world.time
+	
+	new_character.create_UI()
 
 /datum/mind/proc/store_memory(new_text)
 	memory += "[new_text]<BR>"

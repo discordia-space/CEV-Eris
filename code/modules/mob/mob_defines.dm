@@ -172,7 +172,7 @@
 
 	var/list/HUDneed = list() // What HUD object need see
 	var/list/HUDinventory = list()
-	var/list/HUDfrippery = list()//свестелки и перделки
+	var/list/HUDfrippery = list()//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	var/list/HUDprocess = list() //What HUD object need process
 	var/list/HUDtech = list()
 	var/defaultHUD = "" //Default mob hud
@@ -183,3 +183,5 @@
 	var/speed_factor = 1.0
 
 	var/datum/stat_holder/stats
+
+	var/datum/interface/UI

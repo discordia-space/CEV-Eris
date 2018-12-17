@@ -8,6 +8,6 @@
 
 			message_admins("Admin logout: [key_name(src)]")
 
-
+	destroy_UI()
 	..()
 	return 1

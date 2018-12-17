@@ -91,6 +91,8 @@ var/list/ai_verbs_default = list(
 
 	var/multitool_mode = 0
 
+	defaultHUD = "Eris"
+
 /mob/living/silicon/ai/proc/add_ai_verbs()
 	src.verbs |= ai_verbs_default
 
@@ -209,6 +211,7 @@ var/list/ai_verbs_default = list(
 	hud_list[SPECIALROLE_HUD] = image('icons/mob/hud.dmi', src, "hudblank")
 
 	ai_list += src
+	
 	..()
 
 /mob/living/silicon/ai/proc/on_mob_init()
