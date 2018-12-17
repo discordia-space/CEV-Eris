@@ -15,4 +15,4 @@
 	delete_inventory()
 
 /mob/living/carbon/human/dummy/mannequin/fully_replace_character_name(var/oldname, var/newname)
-	..(newname = "[new_name] (mannequin)")
+	..(newname = "[newname] (mannequin)")
