@@ -384,6 +384,12 @@ SUBSYSTEM_DEF(job)
 		if(equipped != 1)
 			var/obj/item/clothing/glasses/G = H.glasses
 			G.prescription = 1
+	
+	if(H.religion == "Neotheology" && !locate(/obj/item/weapon/implant/core_implant/cruciform, H))
+		var/obj/item/weapon/implant/core_implant/cruciform/C = new /obj/item/weapon/implant/core_implant/cruciform(H)
+
+		C.install(H)
+		C.activate()
 
 	BITSET(H.hud_updateflag, ID_HUD)
 	BITSET(H.hud_updateflag, SPECIALROLE_HUD)
