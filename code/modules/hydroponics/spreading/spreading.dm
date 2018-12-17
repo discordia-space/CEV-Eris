@@ -47,6 +47,7 @@
 	var/obj/machinery/portable_atmospherics/hydroponics/soil/invisible/plant
 	var/spray_cooldown = FALSE
 	var/chem_regen_cooldown = FALSE
+	var/near_external = FALSE
 
 /obj/effect/plant/Destroy()
 	if(plant_controller)
@@ -129,10 +130,22 @@
 			set_dir(calc_dir())
 		update_icon()
 		plant_controller.add_plant(src)
+
 		// Some plants eat through plating.
 		if(islist(seed.chems) && !isnull(seed.chems["pacid"]))
+			world << "POLYACID SEED [jumplink(src)]"
 			var/turf/T = get_turf(src)
-			T.ex_act(prob(80) ? 3 : 2)
+			//Lets make acid plants not cause random breaches
+
+			//Check for external tiles around it
+			for (var/turf/U in range(T, 2))
+				if (turf_is_external(U))
+					near_external = TRUE
+					break
+
+			//If we're not near to any external tiles, then we can melt stuff
+			if (!near_external)
+				T.ex_act(prob(80) ? 3 : 2)
 
 /obj/effect/plant/update_icon()
 	//TODO: should really be caching this.
@@ -152,7 +165,6 @@
 		set_light(0)
 
 /obj/effect/plant/proc/refresh_icon()
-	var/prevstate = icon_state
 	var/growth = max(1,min(max_growth,round(health/growth_threshold)))
 	var/at_fringe = dist3D(src,parent)
 	if(spread_distance > 5)

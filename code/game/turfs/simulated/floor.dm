@@ -41,11 +41,12 @@
 		return TRUE
 
 /turf/simulated/floor/New(var/newloc, var/floortype)
-	..(newloc)
 	if(!floortype && initial_flooring)
 		floortype = initial_flooring
 	if(floortype)
 		set_flooring(get_flooring_data(floortype), FALSE)
+	..(newloc)
+
 
 /turf/simulated/floor/Initialize()
 	turfs += src

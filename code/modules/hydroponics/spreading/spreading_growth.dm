@@ -21,7 +21,9 @@
 		if((locate(/obj/effect/plant) in zdest.contents) || (locate(/obj/effect/dead_plant) in zdest.contents) )
 
 			continue
-		if(floor.density)
+
+		//We dont want to melt external walls and cause breaches
+		if(!near_external && floor.density)
 			if(!isnull(seed.chems["pacid"]))
 				spawn(rand(5,25)) floor.ex_act(3)
 			continue
