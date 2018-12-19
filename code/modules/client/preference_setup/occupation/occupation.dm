@@ -86,7 +86,7 @@
 
 	. += "<tt><center>"
 	//. += "<b>Choose occupation chances. <font size=3>Click on the occupation to select skills.</font><br>Unavailable occupations are crossed out.</b>"
-	. += "<div class = 'statusDisplay' style = 'min-height:250px; height:100%; overflow: auto;'>[job_desc]</div>"
+	. += "<div class = 'statusDisplay' style = 'min-height:250px; height:250px; overflow: auto;'>[job_desc]</div>"
 	. += "<b>Choose occupation chances.<br>Unavailable occupations are crossed out.</b>"
 	. += "<table width='100%' cellpadding='1' cellspacing='0'><tr><td width='20%'>" // Table within a table for alignment, also allows you to easily add more columns.
 	. += "<table width='100%' cellpadding='1' cellspacing='0'>"
@@ -257,21 +257,31 @@
 
 	return ..()
 
+
+
 /datum/category_item/player_setup_item/occupation/proc/create_job_description(var/mob/user)
 	if(!job_info_selected_rank)
 		return
 	var/datum/job/job = SSjob.GetJob(job_info_selected_rank)
 	job_desc = ""
 
-	job_desc += "<p style='margin-top:0px; background-color: [job.selection_color]'><br><p>"
-	if(job.alt_titles)
-		job_desc += "<i><b>Alternative titles:</b> [english_list(job.alt_titles)].</i>"
+
+
+
+	//The mannequin and its burrons are in their own little mini table
+
 	var/mob/living/carbon/human/dummy/mannequin/mannequin = job.get_job_mannequin()
 	var/icon/job_icon = getFlatIcon(mannequin, job_icon_dir)
 	job_icon.Scale(job_icon.Width() * 2, job_icon.Height() * 2)
 	send_rsc(user, job_icon, "job_icon_[job_icon_dir].png")
 	job_desc += "<table style='float:left;' cellpadding='0' cellspacing='0'><tr><td><img src=job_icon_[job_icon_dir].png width=200 height=200 style='float:left;'></td></tr>"
 	job_desc += "<tr><td><center><a href='?src=\ref[src];rotate=right'>&lt;&lt;</a> <a href='?src=\ref[src];rotate=left'>&gt;&gt;</a></center></td></tr></table>"
+
+
+
+	job_desc += "<p style='margin-top:0px; background-color: [job.selection_color]'><br><p>"
+	if(job.alt_titles)
+		job_desc += "<i><b>Alternative titles:</b> [english_list(job.alt_titles)].</i>"
 	if(job.department)
 		job_desc += "<b>Department:</b> [job.department]."
 		if(job.head_position)
@@ -280,6 +290,9 @@
 	job_desc += "You answer to <b>[job.supervisors]</b> normally."
 
 	job_desc += "<hr>"
+
+
+
 	if(config.wikiurl)
 		job_desc += "<a href='?src=\ref[src];job_wiki=[job_info_selected_rank]'>Open wiki page in browser</a>"
 	var/description = job.get_description_blurb()
@@ -287,7 +300,9 @@
 	description = "[description ? "[description]\n\n" : ""]"*/
 	//job_desc += "</div>"
 	if(description)
-		job_desc += html_encode(description)
+		job_desc += description
+
+
 
 /datum/category_item/player_setup_item/occupation/proc/SetPlayerAltTitle(datum/job/job, new_title)
 	// remove existing entry

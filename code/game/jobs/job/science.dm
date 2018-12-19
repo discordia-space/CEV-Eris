@@ -38,11 +38,11 @@
 
 	description = "You are the head of the moebius research branch, tasked with directing shipboard research to new and profitable discoveries."
 
-	duties = "Direct the scientists under your command, ensure they work efficiently towards the bettering of all mankind.\
-Use department funds to purchase scientific curios, artefacts, and anything of interesting research value. As well as any equipment and supplies that would be useful for these ends\
+	duties = "Direct the scientists under your command, ensure they work efficiently towards the bettering of all mankind.<br>\
+Use department funds to purchase scientific curios, artefacts, and anything of interesting research value. As well as any equipment and supplies that would be useful for these ends<br>\
 Organise away missions to gather artefacts and research interesting environments. You have the right to request support from other factions as required"
 
-	loyalties = "As a scientist, your first loyalty is to knowledge, the ultimate good in the universe. Learning and developing new technologies is the greatest goal humanity can pursue, and no sacrifice is too great to achieve that end. Even the lives of others or yourself.\
+	loyalties = "As a scientist, your first loyalty is to knowledge, the ultimate good in the universe. Learning and developing new technologies is the greatest goal humanity can pursue, and no sacrifice is too great to achieve that end. Even the lives of others or yourself.<br>\
 
 Your second loyalty is to moebius corp. In order to ensure it can continue its mission of research, it must remain profitable. Ensure its interests are farthered, and take care of your colleagues in both research and medical wings"
 
@@ -81,7 +81,7 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 	)
 
 
-	loyalties = "As a scientist, your first loyalty is to knowledge, the ultimate good in the universe. Learning and developing new technologies is the greatest goal humanity can pursue, and no sacrifice is too great to achieve that end. Even the lives of others or yourself.\
+	loyalties = "As a scientist, your first loyalty is to knowledge, the ultimate good in the universe. Learning and developing new technologies is the greatest goal humanity can pursue, and no sacrifice is too great to achieve that end. Even the lives of others or yourself.<br>\
 
 Your second loyalty is to moebius corp. In order to ensure it can continue its mission of research, it must remain profitable. Ensure its interests are farthered, and take care of your colleagues in both research and medical wings"
 
@@ -119,14 +119,14 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 
 
 
-	description = "As a roboticist, you are probably the busiest person in the research wing. For it is the only area of the department that focuses on providing services to others.\
+	description = "As a roboticist, you are probably the busiest person in the research wing. For it is the only area of the department that focuses on providing services to others.<br>\
 
-You have a broad range of tools and machinery at your disposal, and a similarly broad range of responsibilities. You will also have a constant stream of visitors, and rarely a moment to yourself\
+You have a broad range of tools and machinery at your disposal, and a similarly broad range of responsibilities. You will also have a constant stream of visitors, and rarely a moment to yourself<br>\
 
-The duties of robotics are many, and the lab often benefits from having multiple staff.\
-You must maintain, tend to, and upgrade the fleet of synthetics that help keep the ship running. Farther to that, the duty of constructing new robots falls to you too. With the aid of your fabricators, you may turn a pile of sheet metal and wires into sentient life. The robots of the ship are operated by moebius, and its not unknown for roboticists to develop a parental attachment to them.\
+The duties of robotics are many, and the lab often benefits from having multiple staff.<br>\
+You must maintain, tend to, and upgrade the fleet of synthetics that help keep the ship running. Farther to that, the duty of constructing new robots falls to you too. With the aid of your fabricators, you may turn a pile of sheet metal and wires into sentient life. The robots of the ship are operated by moebius, and its not unknown for roboticists to develop a parental attachment to them.<br>\
 
-In addition, your department contains the manufacturing facilities for prosthetic limbs and enhancements. It typically also falls to you to install them too, and thus it is common for biomechanical engineers to work in the robotics lab. This may or may not be in your character's skillset. If surgery isn't your specialty, you may defer the implementation to your colleagues over in Moebius Medical instead, and simply supply the parts for them to install.\
+In addition, your department contains the manufacturing facilities for prosthetic limbs and enhancements. It typically also falls to you to install them too, and thus it is common for biomechanical engineers to work in the robotics lab. This may or may not be in your character's skillset. If surgery isn't your specialty, you may defer the implementation to your colleagues over in Moebius Medical instead, and simply supply the parts for them to install.<br>\
 
 Lastly, though they're not commonly used, you have the facilities to construct massive and powerful mechanised vehicles. These have powerful capabilities in mining and rescue, as well as obvious military applications"
 

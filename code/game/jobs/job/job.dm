@@ -156,7 +156,24 @@
 	return SSjob.job_mannequins[title]
 
 /datum/job/proc/get_description_blurb()
-	return ""
+	var/job_desc = ""
+	//Here's the actual content of the description
+	job_desc += description
+	job_desc += "<br>"
+
+	if (duties)
+		job_desc += "<h1>Duties:</h1>"
+		job_desc += "<hr>"
+		job_desc += duties
+		job_desc += "<br>"
+
+	if (loyalties)
+		job_desc += "<h1>Loyalties:</h1>"
+		job_desc += "<hr>"
+		job_desc += loyalties
+		job_desc += "<br>"
+
+	return job_desc
 
 /datum/job/proc/dress_mannequin(var/mob/living/carbon/human/dummy/mannequin/mannequin)
 	mannequin.delete_inventory(TRUE)

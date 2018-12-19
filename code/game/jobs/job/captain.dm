@@ -18,17 +18,17 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	ideal_character_age = 70 // Old geezer captains ftw
 	outfit_type = /decl/hierarchy/outfit/job/captain
 
-	description = "You are a privateeer. \
-The owner of the vast rusting hulk that is the CEV Eris. At least, as long as you keep up repayments.\
-This ship is your life's work, crewed by an alliance of corporations and factions that you've brokered uneasy treaties with.\
+	description = "You are a privateeer. <br>\
+The owner of the vast rusting hulk that is the CEV Eris. At least, as long as you keep up repayments.<br>\
+This ship is your life's work, crewed by an alliance of corporations and factions that you've brokered uneasy treaties with.<br>\
 
-You are the supreme leader of this world, and your word is law. But only as long as you can enforce that law.\
-The heads of the factions which make up your command staff, each have their own agendas. Their interests must be served too. If you make them unhappy, the loyalty of their faction goes with them, and you may have a mutiny on your hands.\
-Treat your command officers with respect, and listen to their council. Try not to micromanage their departments or interfere in their affairs, and they should serve you well\
+You are the supreme leader of this world, and your word is law. But only as long as you can enforce that law.<br>\
+The heads of the factions which make up your command staff, each have their own agendas. Their interests must be served too. If you make them unhappy, the loyalty of their faction goes with them, and you may have a mutiny on your hands.<br>\
+Treat your command officers with respect, and listen to their council. Try not to micromanage their departments or interfere in their affairs, and they should serve you well<br>\
 
 You are a free agent, able to go where you will, and loyal to no particular government or nation. You are however, in quite a lot of debt. So wherever you go, you should be sure a profitable venture awaits."
 
-	loyalties = "Your first loyalty is to Eris, your ship. It is the purpose of your life, and you are nothing without it. If it were to be destroyed, you and your descendants would be ruined for centuries. \
+	loyalties = "Your first loyalty is to Eris, your ship. It is the purpose of your life, and you are nothing without it. If it were to be destroyed, you and your descendants would be ruined for centuries. <br>\
 
 Your second loyalty is to your command officers. The heads of each faction. Listen to their counsel, ensure their interests are served, and keep them happy"
 
