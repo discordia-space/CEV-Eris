@@ -32,9 +32,12 @@ You are a free agent, able to go where you will, and loyal to no particular gove
 
 Your second loyalty is to your command officers. The heads of each faction. Listen to their counsel, ensure their interests are served, and keep them happy"
 
-	stat_modifers = list(
-		STAT_ROB = 10,
-		STAT_TGH = 10,
+	stat_modifiers = list(
+		STAT_ROB = 15,
+		STAT_TGH = 15,
+		STAT_BIO = 15,
+		STAT_MEC = 15,
+		STAT_COG = 15
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/comm,
@@ -76,11 +79,30 @@ Your second loyalty is to your command officers. The heads of each faction. List
 	also_known_languages = list(LANGUAGE_CYRILLIC = 20, LANGUAGE_SERBIAN = 15)
 	ideal_character_age = 50
 
+	description = "You are the captain's right hand. His second in command. Where he goes, you follow. Where he leads, you drag everyone else along. You make sure his will is done, his orders obeyed, and his laws enforced.\
+If he makes mistakes, discreetly inform him. Help to cover up his indiscretions and smooth relations with the crew, especially other command staff. Keep the captain safe, by endangering yourself in his stead if necessary.\
+\
+Do not embarass him or harm relations with faction leaders.\
+\
+But who are you?\
+Perhaps you are the captain's lifelong friend, or a trusted associate to whom he gave a position of power.\
+Perhaps you're a consummate professional who comes highly recommended.\
+A retired general or naval officer?\
+Perhaps you're the captain's brother, firstborn son, or spouse. Nobody can prevent nepotism if he chooses\
+Perhaps you're a foreign diplomat, your position a ceremonial one to ensure a treaty.\
+
+Whatever your origin, you are fiercely loyal to the captain"
+
+	duties = "Oversee everyone else, especially the other command staff, to ensure the captain's orders are being carried out.\
+Handle job reassignments and promotion requests, if an appropriate faction leader isn't available\
+Act as the captain's surrogate in risky situations where a command presence is required\
+Replace the captain if they become incapacitated, need to take a break, or suffer a premature death\
+Act as the captain's sidekick, bodyguard, and last line of defense in a crisis or mutiny situation"
+
+	loyalties = "Your first and only loyalty is to the captain. Unless you're an antagonist and have a good reason for betrayal, you should remain loyal to the death. You are the only one he can trust"
+
 	outfit_type = /decl/hierarchy/outfit/job/hop
 
-	stat_modifers = list(
-		STAT_TGH = 10,
-	)
 
 	software_on_spawn = list(/datum/computer_file/program/comm,
 							 /datum/computer_file/program/card_mod,
@@ -90,6 +112,14 @@ Your second loyalty is to your command officers. The heads of each faction. List
 
 	get_access()
 		return get_all_station_access()
+
+	stat_modifiers = list(
+		STAT_ROB = 10,
+		STAT_TGH = 10,
+		STAT_BIO = 10,
+		STAT_MEC = 10,
+		STAT_COG = 10
+	)
 
 /obj/landmark/join/start/hop
 	name = "First Officer"

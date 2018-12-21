@@ -33,7 +33,7 @@
 	var/loyalties = ""
 
 	//Character stats modifers
-	var/list/stat_modifers = list()
+	var/list/stat_modifiers = list()
 
 /datum/job/proc/equip(var/mob/living/carbon/human/H, var/alt_title)
 	var/decl/hierarchy/outfit/outfit = get_outfit()
@@ -50,8 +50,8 @@
 /datum/job/proc/add_stats(var/mob/living/carbon/human/target)
 	if(!ishuman(target))
 		return FALSE
-	for(var/name in src.stat_modifers)
-		target.stats.changeStat(name, stat_modifers[name])
+	for(var/name in src.stat_modifiers)
+		target.stats.changeStat(name, stat_modifiers[name])
 
 	return TRUE
 
@@ -158,8 +158,11 @@
 /datum/job/proc/get_description_blurb()
 	var/job_desc = ""
 	//Here's the actual content of the description
-	job_desc += description
-	job_desc += "<br>"
+	if (description)
+		job_desc += "<h1>Overview:</h1>"
+		job_desc += "<hr>"
+		job_desc += description
+		job_desc += "<br>"
 
 	if (duties)
 		job_desc += "<h1>Duties:</h1>"

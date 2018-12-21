@@ -23,7 +23,7 @@
 
 	ideal_character_age = 50
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_BIO = 40,
 	)
 
@@ -74,7 +74,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 		access_genetics
 	)
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_BIO = 30,
 	)
 
@@ -130,7 +130,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 		access_moebius, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology
 	)
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_COG = 10,
 		STAT_BIO = 30,
 	)
@@ -162,7 +162,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 		access_moebius, access_medical_equip, access_morgue, access_psychiatrist
 	)
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_BIO = 15,
 	)
 
@@ -195,7 +195,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 		access_eva, access_maint_tunnels, access_external_airlocks, access_psychiatrist
 	)
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_BIO = 20,
 		STAT_ROB = 10,
 		STAT_TGH = 10,

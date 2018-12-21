@@ -14,7 +14,7 @@
 
 	outfit_type = /decl/hierarchy/outfit/job/chaplain
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_TGH = 10,
 	)
 

@@ -23,7 +23,7 @@
 		access_external_airlocks
 	)
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_ROB = 30,
 		STAT_TGH = 20,
 	)
@@ -77,7 +77,7 @@
 		access_external_airlocks
 	)
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_ROB = 20,
 		STAT_TGH = 20,
 	)
@@ -126,7 +126,7 @@
 
 	outfit_type = /decl/hierarchy/outfit/job/security/inspector
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_BIO = 10,
 		STAT_ROB = 10,
 		STAT_TGH = 10,
@@ -175,7 +175,7 @@
 		access_security, access_moebius, access_sec_doors, access_medspec, access_morgue, access_maint_tunnels
 	)
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_BIO = 20,
 	)
 
@@ -225,7 +225,7 @@
 		access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_morgue, access_external_airlocks
 	)
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_ROB = 10,
 		STAT_TGH = 20,
 	)

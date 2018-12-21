@@ -24,7 +24,7 @@
 	)
 	ideal_character_age = 50
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_MEC = 30,
 		STAT_COG = 40,
 		STAT_BIO = 30,
@@ -74,7 +74,7 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 		access_genetics
 	)
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_MEC = 20,
 		STAT_COG = 30,
 		STAT_BIO = 20,
@@ -111,7 +111,7 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 		access_robotics, access_tox, access_tox_storage, access_tech_storage, access_morgue, access_moebius
 	) //As a job that handles so many corpses, it makes sense for them to have morgue access.
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_MEC = 30,
 		STAT_COG = 20,
 		STAT_BIO = 30,

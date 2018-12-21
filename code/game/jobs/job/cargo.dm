@@ -71,7 +71,7 @@ Your second loyalty is to the guild. Ensure it retains good relations with priva
 		access_mining_station
 	)
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_ROB = 10,
 		STAT_TGH = 10,
 	)
@@ -122,7 +122,7 @@ Your main duties are to keep the local guild branch operational and profitable. 
 	)
 
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_ROB = 20,
 		STAT_TGH = 15,
 		STAT_MEC = 15

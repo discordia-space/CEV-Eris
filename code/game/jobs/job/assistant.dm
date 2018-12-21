@@ -15,6 +15,14 @@
 	access = list(access_maint_tunnels)
 	outfit_type = /decl/hierarchy/outfit/job/assistant
 
+	stat_modifiers = list(
+		STAT_ROB = 8,
+		STAT_TGH = 8,
+		STAT_BIO = 8,
+		STAT_MEC = 8,
+		STAT_COG = 8
+	)
+
 	description = "You are not part of the crew. Or at least, you don't hold an official rank. You will not be paid a wage.<br>\
 Where did you come from, why are you here? These things are up to you.<br>\
 
