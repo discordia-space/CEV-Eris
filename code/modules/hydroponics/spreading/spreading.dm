@@ -133,7 +133,6 @@
 
 		// Some plants eat through plating.
 		if(islist(seed.chems) && !isnull(seed.chems["pacid"]))
-			world << "POLYACID SEED [jumplink(src)]"
 			var/turf/T = get_turf(src)
 			//Lets make acid plants not cause random breaches
 
