@@ -2,7 +2,7 @@ SUBSYSTEM_DEF(supply)
 	name = "Supply"
 	wait = 30 SECONDS
 	priority = SS_PRIORITY_SUPPLY
-	flags = SS_NO_TICK_CHECK
+	flags = SS_NO_FIRE
 
 /datum/controller/subsystem/supply
 	//supply points
@@ -27,7 +27,6 @@ SUBSYSTEM_DEF(supply)
 
 	return ..()
 
-/datum/controller/subsystem/supply/fire()
 
 /datum/controller/subsystem/supply/stat_entry()
 	..("Credits: [get_supply_credits()]")
