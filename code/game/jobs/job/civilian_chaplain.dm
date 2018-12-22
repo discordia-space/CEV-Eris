@@ -32,7 +32,7 @@
 	When the living are tended to, your next duty is to the dead. <br>\
 	The church holds exclusive patents on cloning technology, utilising the Cruciform implanted in each of its disciples as a Cortical Stack, storing a backup of the host's memories and personality - their soul, if you will. When one of the faithful suffers an untimely demise, it is your sacred duty to grow a new vessel and transplant their soul into it, restoring them to life. Immortality is the reward of the faithful.<br>\
 	<br>\
-	For those who are not part of the fold, the next best thing you can offer is a dignified funeral. The chapel area contains coffins and machinery to commit the dead unto the void. Burial at space."
+	For those who are not part of the fold, the next best thing you can offer is a dignified funeral. The chapel area contains coffins and machinery to commit the dead unto the void. Burial at space. Any player who is given a proper funeral will have their respawn time reduced, allowing them to rejoin the crew as a new character more quickly, after death."
 
 
 	duties = "Represent the interests of NT disciples aboard Eris. Protect them from persecution and speak for them.<br>\
