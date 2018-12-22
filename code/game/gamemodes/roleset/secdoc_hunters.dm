@@ -27,7 +27,6 @@
 		return FALSE
 
 
-	if (!. && report) report << SPAN_NOTICE("Failure: No candidates found")
 	return TRUE
 
 
