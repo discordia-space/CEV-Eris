@@ -377,7 +377,6 @@
 	else if (istype(back, /obj/item/weapon/rig))
 		var/obj/item/weapon/rig/rig = back
 		for (var/obj/item/rig_module/maneuvering_jets/module in rig.installed_modules)
-			world << "Found rig jetpack"
 			return module.jets
 
 
