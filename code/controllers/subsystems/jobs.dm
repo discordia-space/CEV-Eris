@@ -307,10 +307,11 @@ SUBSYSTEM_DEF(job)
 		//var/list/custom_equip_leftovers = list()
 
 		//Equip job items and language stuff
+		job.setup_account(H)
 		job.equip(H, H.mind ? H.mind.role_alt_title : "")
 		job.add_stats(H)
 		job.add_additiional_language(H)
-		job.setup_account(H)
+
 
 		job.apply_fingerprints(H)
 		spawn_in_storage = EquipCustomLoadout(H, job)
