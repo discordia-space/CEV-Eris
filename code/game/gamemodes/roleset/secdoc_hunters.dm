@@ -17,17 +17,16 @@
 	var/list/scientists = candidates_list(ROLE_SECDOC_DEFENDER, report)
 	if(scientists.len < 1)
 		if (report) report << SPAN_NOTICE("Failure: No scientist candidates found")
-		.= FALSE
+		return FALSE
 
 	var/scientist = pick(scientists)
 	var/list/hunters = candidates_list(ROLE_TRAITOR, report)
 	hunters -= scientist
 	if(hunters.len < 1)
 		if (report) report << SPAN_NOTICE("Failure: No hunter candidates found")
-		.=FALSE
+		return FALSE
 
 
-	if (!. && report) report << SPAN_NOTICE("Failure: No candidates found")
 	return TRUE
 
 
