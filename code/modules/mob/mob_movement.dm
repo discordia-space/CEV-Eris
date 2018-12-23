@@ -198,7 +198,7 @@
 
 	if(isturf(mob.loc))
 
-		if((istype(mob.loc, /turf/space)) || (mob.lastarea.has_gravity == 0))
+		if(!mob.loc.has_gravity())
 			if(!mob.Allow_Spacemove(0))
 				return 0
 

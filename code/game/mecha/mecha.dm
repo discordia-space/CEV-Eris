@@ -22,9 +22,7 @@
 	var/can_move = 1
 	var/mob/living/carbon/occupant = null
 	var/list/dropped_items = list()
-	var/step_in = 10 //make a step in step_in/10 sec.
-	var/dir_in = 2//What direction will the mech face when entered/powered on? Defaults to South.
-	var/step_energy_drain = 10
+
 	var/health = 300 //health is health
 	var/deflect_chance = 10 //chance to deflect incoming projectiles, hits, or lesser the effect of ex_act.
 	var/r_deflect_coeff = 1
@@ -34,6 +32,12 @@
 	var/m_damage_coeff = 1
 	var/rhit_power_use = 0
 	var/mhit_power_use = 0
+
+	//Movement
+	var/step_in = 10 //make a step in step_in/10 sec.
+	var/dir_in = 2//What direction will the mech face when entered/powered on? Defaults to South.
+	var/step_energy_drain = 10
+	var/obj/item/mecha_parts/mecha_equipment/thruster/thruster = null
 
 	//the values in this list show how much damage will pass through, not how much will be absorbed.
 	var/list/damage_absorption = list("brute"=0.8,"fire"=1.2,"bullet"=0.9,"laser"=1,"energy"=1,"bomb"=1)
@@ -241,18 +245,28 @@
 	return 1
 
 
-
+//Called each step by mechas, and periodically when drifting through space
 /obj/mecha/proc/check_for_support()
-	if(
-		locate(/obj/structure/grille, orange(1, src)) || \
-		locate(/obj/structure/lattice, orange(1, src)) ||\
-		locate(/obj/structure/catwalk, orange(1, src)) ||\
-		locate(/turf/simulated, orange(1, src)) ||\
-		locate(/turf/unsimulated, orange(1, src))
-	)
-		return 1
+	var/turf/T = get_turf(src)
+
+	//If we're standing on solid ground, we are fine, even in space.
+	//We'll assume mechas have magnetic feet and don't slip
+	if (!T.is_hole)
+		return TRUE
+
+	//We must be over a space or openspace tile. We may fall through, but that's not handled here
+	//As long as there's gravity, return true
+	else if(T.has_gravity())
+		return TRUE
+
+
+	//Ok we're floating and there's no gravity
 	else
-		return 0
+		for (var/a in T)
+			var/atom/A = a
+			if (A.can_prevent_fall())
+				return TRUE
+		return FALSE
 
 /obj/mecha/examine(mob/user)
 	..(user)
@@ -391,18 +405,44 @@
 		return
 	return do_move(direction)
 
+//This uses a goddamn do_after for movement, this is very bad. Todo: Redesign this in future
 /obj/mecha/proc/do_move(direction)
-	var/obj/item/mecha_parts/mecha_equipment/jetpack/J = locate() in equipment
-	if(J && J.do_move(direction))
-		return 1
 
+
+	//If false, it's just moved, or locked down, or disabled or something
 	if(!can_move)
 		return 0
+
+	//Currently drifting through space. The iterator that controls this will cancel it if the mech finds
+	// things to grip or enables thrusters
 	if(src.pr_inertial_movement.active())
 		return 0
+
+
 	if(!has_charge(step_energy_drain))
 		return 0
 	var/move_result = 0
+
+	//Alright lets check if we can move
+	//If there's no support then we will use the thruster
+	if(!src.check_for_support())
+		//Check if the thruster exists, and is able to work. The do_move proc will handle paying gas costs
+		if (thruster && thruster.do_move(direction))
+			//The thruster uses power, but far less than moving the legs
+			if (!use_power(step_energy_drain*0.1))
+				//No movement if power is dead
+				return FALSE
+		else
+			src.pr_inertial_movement.start(list(src,direction))
+			src.log_message("Movement control lost. Inertial movement started.")
+	//There is support, normal movement, normal energy cost
+	else
+		if (!use_power(step_energy_drain))
+			//No movement if power is dead
+			return FALSE
+
+	//If we make it to here then we can definitely make a movement
+
 	// TODO: Glide size handling in here is fucked,
 	// because the timing system uses sleep instead of world.time comparisons/delay controllers
 	// At least that's my theory I can't be bothered to investigate fully.
@@ -416,11 +456,9 @@
 		move_result = mechstep(direction)
 	if(move_result)
 		can_move = 0
-		use_power(step_energy_drain)
-		if(istype(src.loc, /turf/space))
-			if(!src.check_for_support())
-				src.pr_inertial_movement.start(list(src,direction))
-				src.log_message("Movement control lost. Inertial movement started.")
+
+
+
 		if(do_after(step_in))
 			can_move = 1
 		return 1
@@ -1830,17 +1868,18 @@
 		return
 	return max(0, src.cell.charge)
 
+//Attempts to use the given amount of power
 /obj/mecha/proc/use_power(amount)
-	if(get_charge())
+	if(get_charge() >= amount)
 		cell.use(amount)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/mecha/proc/give_power(amount)
 	if(!isnull(get_charge()))
 		cell.give(amount)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 
 /obj/mecha/attack_generic(var/mob/user, var/damage, var/attack_message)

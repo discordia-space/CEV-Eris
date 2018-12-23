@@ -14,6 +14,8 @@
 	var/stabilization_on = 0
 	action_button_name = "Toggle Jetpack"
 
+	var/thrust_cost = JETPACK_MOVE_COST
+
 
 	//Vars used for stabilisation visual effects
 
@@ -48,45 +50,75 @@
 		user << SPAN_DANGER("The gauge on \the [src] indicates you are almost out of gas!")
 		playsound(user, 'sound/effects/alert.ogg', 50, 1)
 
+
+
+//Toggling does as little as possible, to make jetpacks more modular.
+//All the work is done in the enable/disable procs
 /obj/item/weapon/tank/jetpack/verb/toggle_rockets()
 	set name = "Toggle Jetpack Stabilization"
 	set category = "Object"
 
 	//Turning off stabilisation always works
-	if (stabilization_on == TRUE)
-		stabilization_on = FALSE
+	if (stabilization_on)
+		disable_stabilizer()
+	else
+		enable_stabilizer()
 
-	//Turning it on requires you to have enough gas to do so, and it will immediately stabilise you
-	else if (stabilize(usr, usr.l_move_time, TRUE))
+
+/obj/item/weapon/tank/jetpack/proc/enable_stabilizer()
+	if (stabilize(usr, usr.l_move_time, TRUE))
 		stabilization_on = TRUE
-
+		usr << "You toggle the stabilization [stabilization_on? "on":"off"]."
+		return TRUE
 	else
 		if (!on)
 			usr << SPAN_WARNING("The [src] must be enabled first!")
 		else
 			usr << SPAN_WARNING("The [src] doesnt have enough gas to enable the stabiliser.")
-		return
+		return FALSE
 
+
+/obj/item/weapon/tank/jetpack/proc/disable_stabilizer()
+	stabilization_on = FALSE
 	usr << "You toggle the stabilization [stabilization_on? "on":"off"]."
+	return TRUE
 
+
+
+
+//Toggling does as little as possible, to make jetpacks more modular.
+//All the work is done in the enable/disable procs
 /obj/item/weapon/tank/jetpack/verb/toggle()
 	set name = "Toggle Jetpack"
 	set category = "Object"
 
-	on = !on
 	if(on)
-		icon_state = "[icon_state]-on"
-		trail.start()
+		disable_thruster()
 	else
-		icon_state = initial(icon_state)
-		trail.stop()
+		enable_thruster()
 
+
+/obj/item/weapon/tank/jetpack/proc/enable_thruster()
+	on = TRUE
+	icon_state = "[icon_state]-on"
+	trail.start()
 	if (ismob(usr))
 		var/mob/M = usr
 		M.update_inv_back()
 		M.update_action_buttons()
+		usr << "You toggle the thrusters [on? "on":"off"]."
+	return TRUE
 
-	usr << "You toggle the thrusters [on? "on":"off"]."
+/obj/item/weapon/tank/jetpack/proc/disable_thruster()
+	on = FALSE
+	icon_state = initial(icon_state)
+	trail.stop()
+	if (ismob(usr))
+		var/mob/M = usr
+		M.update_inv_back()
+		M.update_action_buttons()
+		usr << "You toggle the thrusters [on? "on":"off"]."
+	return TRUE
 
 
 //Safety checks for thrust and stabilisation are seperated into a seperate proc, for overriding
@@ -100,14 +132,17 @@
 /obj/item/weapon/tank/jetpack/proc/allow_thrust(num, mob/living/user as mob, var/stabilization_check = FALSE)
 
 	if(!(src.on)) //Someone has to be wearing it
-		return 0
+		return FALSE
 
 	if (!operational_safety(user))
-		return 0
+		return FALSE
 
-	if((num < 0.005 || gastank.air_contents.total_moles < num))
+	if (!num)
+		num = thrust_cost
+
+	if(gastank.air_contents.total_moles < num)
 		src.trail.stop()
-		return 0
+		return FALSE
 
 	//Setup a stabilize check, but only if this isn't already from one
 	if (!stabilization_check)
@@ -167,7 +202,7 @@
 
 
 	//Ok now lets be sure we have enough gas to do stabilisation
-	if (!allow_thrust(JETPACK_MOVE_COST, user, stabilization_check = TRUE))
+	if (!allow_thrust(thrust_cost, user, stabilization_check = TRUE))
 		return FALSE
 
 	//Great, everything works fine, the user is now stable
@@ -252,6 +287,14 @@
 		return FALSE
 	return TRUE
 
+
+/****************************
+	MECHA JETPACK
+*****************************/
+//Mecha jetpack uses the giant internal gas canister inside mechs
+/obj/item/weapon/tank/jetpack/mecha
+	gastank = null //Starts off null, will be connected once installed
+	thrust_cost = JETPACK_MOVE_COST*10 //A mecha is much, much heavier than a human, and requires more gas to move
 
 /****************************
 	SYNTHETIC JETPACK
@@ -364,10 +407,18 @@
 
 //Returns the jetpack associated with this atom.
 //Being an atom proc allows it to be overridden by non mob types, like mechas
-/atom/proc/get_jetpack()
+//The user proc optionally allows us to state who we're getting it for.
+	//This allows mechas to return a jetpack for the driver, but not the passengers
+/atom/proc/get_jetpack(var/mob/user)
 	return
 
-/mob/living/carbon/human/get_jetpack()
+/mob/living/carbon/human/get_jetpack(var/mob/user)
+
+	//If we're inside something that's not a turf, then ask that thing for its jetpack instead
+		//This generally means vehicles/mechs
+	if (!istype(loc, turf))
+		return loc.get_jetpack(src)
+
 	// Search the human for a jetpack. Either on back or on a RIG that's on
 	// on their back.
 	if (istype(back, /obj/item/weapon/tank/jetpack))
@@ -380,6 +431,6 @@
 			return module.jets
 
 
-/mob/living/silicon/robot/get_jetpack()
+/mob/living/silicon/robot/get_jetpack(var/mob/user)
 	return jetpack
 

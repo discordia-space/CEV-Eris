@@ -19,7 +19,6 @@
 	var/allow_spin = TRUE
 	var/used_now = FALSE //For tools system, check for it should forbid to work on atom for more than one user at time
 
-
 	///Chemistry.
 	var/datum/reagents/reagents = null
 
@@ -637,7 +636,7 @@ its easier to just keep the beam vertical.
 		BM.set_dir(pick(NORTH,SOUTH,EAST,WEST)) // random scorch design
 	else //Otherwise it's a light dent.
 		BM.icon_state = "light_scorch"
-	
+
 /atom/proc/clear_bulletholes()
 	for(var/obj/effect/overlay/bmark/BM in src)
 		qdel(BM)

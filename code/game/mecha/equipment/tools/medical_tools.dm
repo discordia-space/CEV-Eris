@@ -1,3 +1,10 @@
+/*
+ * Contains
+ * /obj/item/mecha_parts/mecha_equipment/tool/sleeper
+ * /obj/item/mecha_parts/mecha_equipment/tool/cable_layer
+ * /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun
+ */
+
 /obj/item/mecha_parts/mecha_equipment/tool/sleeper
 	name = "mounted sleeper"
 	desc = "A sleeper. Mountable to an exosuit. (Can be attached to: Medical Exosuits)"
