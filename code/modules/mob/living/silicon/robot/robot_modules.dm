@@ -57,7 +57,7 @@ var/global/list/robot_modules = list(
 	var/power_efficiency = 1.0 //Power efficiency, applied as a divisor on power taken from the internal cell
 
 	//Stat modifiers for skillchecks
-	var/list/stat_modifers = list(
+	var/list/stat_modifiers = list(
 		STAT_BIO = 5,
 		STAT_COG = 5,
 		STAT_ROB = 5,
@@ -92,8 +92,8 @@ var/global/list/robot_modules = list(
 	R.speed_factor = speed_factor
 	R.power_efficiency = power_efficiency
 
-	for(var/name in stat_modifers)
-		R.stats.changeStat(name, stat_modifers[name])
+	for(var/name in stat_modifiers)
+		R.stats.changeStat(name, stat_modifiers[name])
 
 	R.set_module_sprites(sprites)
 	R.icon_selected = 0
@@ -121,8 +121,8 @@ var/global/list/robot_modules = list(
 	R.maxHealth = initial(R.maxHealth)
 	R.speed_factor = initial(R.speed_factor)
 	R.power_efficiency = initial(R.power_efficiency)
-	for(var/name in stat_modifers)
-		R.stats.changeStat(name, stat_modifers[name]*-1)
+	for(var/name in stat_modifiers)
+		R.stats.changeStat(name, stat_modifiers[name]*-1)
 
 	if(R.radio)
 		R.radio.recalculateChannels()
@@ -240,7 +240,7 @@ var/global/list/robot_modules = list(
 				  )
 
 	desc = "The baseline, jack of all trades. Can do a little of everything. Some DIY, some healing, some combat."
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_BIO = 15,
 		STAT_COG = 15,
 		STAT_ROB = 15,
@@ -307,7 +307,7 @@ var/global/list/robot_modules = list(
 	speed_factor = 0.8 //Kinda slow
 	power_efficiency = 0.6 //Very poor, shackled to a charger
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_BIO = 40,
 		STAT_COG = 10
 	)
@@ -397,7 +397,7 @@ var/global/list/robot_modules = list(
 	speed_factor = 1.3 //Turbospeed!
 	power_efficiency = 1.2 //Good for long journeys
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_BIO = 20,
 		STAT_ROB = 10,
 		STAT_TGH = 10
@@ -480,7 +480,7 @@ var/global/list/robot_modules = list(
 	as well as occasional repair work here and there. It's a good all rounder that can serve most \
 	engineering tasks."
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_COG = 20,
 		STAT_MEC = 40
 	)
@@ -667,7 +667,7 @@ var/global/list/robot_modules = list(
 	desc = "Focused on keeping the peace and fighting off threats to the ship, the security module is a \
 	heavily armored, though lightly armed battle unit."
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_ROB = 30,
 		STAT_TGH = 20
 	)
@@ -728,7 +728,7 @@ var/global/list/robot_modules = list(
 	speed_factor = 0.85 //Slow
 	power_efficiency = 0.8 //Poor
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_ROB = 20
 	)
 
@@ -871,7 +871,7 @@ var/global/list/robot_modules = list(
 	speed_factor = 0.9 //meh
 	power_efficiency = 1.5 //Best efficiency
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_ROB = 20,
 		STAT_TGH = 20
 	)
@@ -915,7 +915,7 @@ var/global/list/robot_modules = list(
 	duties, this module prioritises flexibility over efficiency. Capable of working in R&D, Toxins, \
 	chemistry, xenobiology and robotics."
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_BIO = 30,
 		STAT_COG = 40,
 		STAT_MEC = 30
@@ -1017,7 +1017,7 @@ var/global/list/robot_modules = list(
 	hide_on_manifest = TRUE
 	no_slip = 1
 	networks = list(NETWORK_ENGINEERING)
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_COG = 15,
 		STAT_MEC = 30
 	)
