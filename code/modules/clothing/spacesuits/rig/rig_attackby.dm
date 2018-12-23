@@ -81,7 +81,8 @@
 							if(!removal_choice)
 								return
 
-							uninstall(possible_removals[removal_choice], user)
+							if (can_uninstall(possible_removals[removal_choice], user, TRUE))
+								uninstall(possible_removals[removal_choice], user)
 							return TRUE
 			else
 				user << "\The [src] access panel is closed."
@@ -202,11 +203,32 @@
 
 
 /obj/item/weapon/rig/attack_hand(var/mob/user)
-
 	if(electrified != 0)
 		if(shock(user)) //Handles removing charge from the cell, as well. No need to do that here.
 			return
-	..()
+
+	//If the rig has a storage module, we can attempt to access it
+	if (storage && (is_worn() || is_held()))
+		//This will return false if we're done, or true to tell us to keep going and call parent attackhand
+		if (!storage.handle_attack_hand(user))
+			return
+	.=..()
+
+
+//For those pesky items which incur effects on the rigsuit, an altclick will force them to go in if possible
+/obj/item/weapon/rig/AltClick(var/mob/user)
+	if (storage && user.get_active_hand())
+		if (user == loc || Adjacent(user)) //Rig must be on or near you
+			storage.accepts_item(user.get_active_hand())
+			return
+	.=..()
+
+//When not wearing a rig, you can drag it onto yourself to access the internal storage
+/obj/item/weapon/rig/MouseDrop(obj/over_object)
+	if (storage && !is_worn())
+		if(ishuman(usr) && usr == over_object && !usr.incapacitated() && Adjacent(usr))
+			return storage.handle_attack_hand(usr)
+	return ..()
 
 /obj/item/weapon/rig/emag_act(var/remaining_charges, var/mob/user)
 	if(!subverted)

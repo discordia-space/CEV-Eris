@@ -10,6 +10,16 @@
 				if (user && feedback)
 					user << "The hardsuit already has a module of that class installed."
 				return FALSE
+
+	if (!mod.can_install(src, user, feedback))
+		return FALSE
+
+	return TRUE
+
+/obj/item/weapon/rig/proc/can_uninstall(var/obj/item/rig_module/mod, var/mob/user, var/feedback = FALSE)
+	if (!mod.can_uninstall(src, user, feedback))
+		return FALSE
+
 	return TRUE
 
 /obj/item/weapon/rig/proc/install(var/obj/item/rig_module/mod, var/mob/user)
