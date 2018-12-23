@@ -15,7 +15,7 @@
 	. = ..()
 
 /obj/item/clothing/suit/storage/attack_hand(mob/user)
-	if ((is_worn() || is_held()) && pockets.handle_attack_hand(user))
+	if ((is_worn() || is_held()) && !pockets.handle_attack_hand(user))
 		return TRUE
 	..(user)
 
