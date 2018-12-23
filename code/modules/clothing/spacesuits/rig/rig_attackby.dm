@@ -225,9 +225,8 @@
 
 //When not wearing a rig, you can drag it onto yourself to access the internal storage
 /obj/item/weapon/rig/MouseDrop(obj/over_object)
-	if (storage && !is_worn())
-		if(ishuman(usr) && usr == over_object && !usr.incapacitated() && Adjacent(usr))
-			return storage.handle_attack_hand(usr)
+	if (storage && storage.handle_mousedrop(usr, over_object))
+		return TRUE
 	return ..()
 
 /obj/item/weapon/rig/emag_act(var/remaining_charges, var/mob/user)

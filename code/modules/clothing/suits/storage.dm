@@ -15,12 +15,14 @@
 	. = ..()
 
 /obj/item/clothing/suit/storage/attack_hand(mob/user)
-	if (pockets.handle_attack_hand(user))
-		..(user)
+	if ((is_worn() || is_held()) && pockets.handle_attack_hand(user))
+		return TRUE
+	..(user)
 
 /obj/item/clothing/suit/storage/MouseDrop(obj/over_object)
-	if(!pockets.handle_mousedrop(usr, over_object))
-		..(over_object)
+	if(pockets.handle_mousedrop(usr, over_object))
+		return TRUE
+	..(over_object)
 
 /obj/item/clothing/suit/storage/attackby(obj/item/W, mob/user)
 	..()

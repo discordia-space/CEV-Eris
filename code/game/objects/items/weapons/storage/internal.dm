@@ -29,7 +29,11 @@
 //items that use internal storage have the option of calling this to emulate default storage MouseDrop behaviour.
 //returns TRUE if the master item's parent's MouseDrop() shouldn't be called, FALSE otherwise.
 /obj/item/weapon/storage/internal/proc/handle_mousedrop(mob/living/carbon/human/user, obj/over_object)
+
 	if (istype(user))
+		if (user.incapacitated())
+			return FALSE
+
 		if(over_object == user && Adjacent(user))
 			src.open(user)
 			return TRUE

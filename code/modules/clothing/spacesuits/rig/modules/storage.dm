@@ -63,7 +63,8 @@
 /obj/item/rig_module/storage/proc/handle_attack_hand(mob/user as mob)
 	return container.handle_attack_hand(user)
 
-
+/obj/item/rig_module/storage/proc/handle_mousedrop(var/mob/user, var/atom/over_object)
+	return container.handle_mousedrop(user, over_object)
 
 
 /*****************************
@@ -77,8 +78,8 @@
 
 //More external functionality
 /obj/item/rig_module/storage/MouseDrop(obj/over_object)
-	if(ishuman(usr) && usr == over_object && !usr.incapacitated() && Adjacent(usr) && container)
-		return container.open(usr)
+	if(container.handle_mousedrop(usr, over_object))
+		return TRUE
 	return ..()
 
 
