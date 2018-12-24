@@ -6,7 +6,6 @@
 	desc = "Cats really don't like these things."
 	density = 0
 	anchored = 1.0
-	is_floor = TRUE
 
 
 /obj/structure/catwalk/New()

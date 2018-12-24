@@ -198,7 +198,7 @@
 
 	if(isturf(mob.loc))
 
-		if(!mob.loc.has_gravity())
+		if(!mob.lastarea.has_gravity())
 			if(!mob.Allow_Spacemove(0))
 				return 0
 

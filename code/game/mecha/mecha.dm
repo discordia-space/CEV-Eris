@@ -7,6 +7,9 @@
 #define MELEE 1
 #define RANGED 2
 
+#define MOVEMODE_STEP 1
+#define MOVEMODE_THRUST 2
+
 
 /obj/mecha
 	name = "Mecha"
@@ -435,6 +438,7 @@
 		else
 			src.pr_inertial_movement.start(list(src,direction))
 			src.log_message("Movement control lost. Inertial movement started.")
+			return FALSE
 	//There is support, normal movement, normal energy cost
 	else
 		if (!use_power(step_energy_drain))
@@ -470,7 +474,7 @@
 	return 1
 
 /obj/mecha/proc/mechstep(direction)
-	var/result = step(src,direction)
+	var/result = Move(get_step(src, direction),direction)
 	if(result)
 		playsound(src,'sound/mecha/Mech_Step.ogg',100,1)
 	return result

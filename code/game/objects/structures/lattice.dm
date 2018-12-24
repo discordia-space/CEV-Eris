@@ -8,7 +8,6 @@
 	anchored = TRUE
 	w_class = ITEM_SIZE_NORMAL
 	layer = LATTICE_LAYER //under pipes
-	is_floor = TRUE
 	//	flags = CONDUCT
 
 /obj/structure/lattice/Initialize()

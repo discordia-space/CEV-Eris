@@ -44,6 +44,8 @@
 	..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/tool/safety_clamp
 	ME.attach(src)
+	ME = new /obj/item/mecha_parts/mecha_equipment/thruster
+	ME.attach(src)
 	return
 
 /obj/mecha/working/ripley/mining
