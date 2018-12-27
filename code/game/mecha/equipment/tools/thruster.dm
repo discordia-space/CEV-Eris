@@ -72,16 +72,6 @@
 	return FALSE
 
 
-
-/obj/item/mecha_parts/mecha_equipment/thruster/action_checks()
-	if(equip_ready || wait)
-		return 0
-	if(energy_drain && !chassis.has_charge(energy_drain))
-		return 0
-	if(chassis.check_for_support())
-		return 0
-	return 1
-
 /obj/item/mecha_parts/mecha_equipment/thruster/get_equip_info()
 	if(!chassis) return
 	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name] \[<a href=\"?src=\ref[src];toggle=1\">Toggle</a>\]"
@@ -92,8 +82,3 @@
 	..()
 	if(href_list["toggle"])
 		toggle()
-
-/obj/item/mecha_parts/mecha_equipment/thruster/do_after_cooldown()
-	sleep(equip_cooldown)
-	wait = 0
-	return 1
