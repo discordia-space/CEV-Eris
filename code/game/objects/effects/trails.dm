@@ -28,14 +28,12 @@ particle whenever the target moves
 
 	//Moved event is a global datum of type /decl/observ/moved
 	//It will fire a proc whenever the holder atom moves from one turf to another
-	world << "Registering moved event on holder [holder]"
 	GLOB.moved_event.register(holder, src, /datum/effect/effect/system/trail/proc/holder_moved)
 
 	active = TRUE
 
 
 /datum/effect/effect/system/trail/proc/holder_moved(var/atom/A, var/atom/old_loc)
-	world << "Holder moved"
 	var/obj/effect/trail_particle/E = do_effect(old_loc, get_dir(A, old_loc))
 	if (fromback && ismob(holder.loc)) //Makes jetpack particles draw over the user when facing north
 		var/mob/M = holder.loc
@@ -48,7 +46,7 @@ particle whenever the target moves
 	return E
 
 /datum/effect/effect/system/trail/proc/stop()
-	GLOB.moved_event.register(holder, src, /datum/effect/effect/system/trail/proc/holder_moved)
+	GLOB.moved_event.unregister(holder, src, /datum/effect/effect/system/trail/proc/holder_moved)
 	active = FALSE
 
 /////////////////////////////////////////////

@@ -491,8 +491,12 @@
 	set instant = 1
 	Move(get_step(mob, WEST), WEST)
 
+//This is an atom proc for the sake of vehicles and mechas
+//Attempts to return the expected total time in deciseconds, between this atom making moves
+/atom/movable/proc/total_movement_delay()
+	return 0
 
-/mob/proc/total_movement_delay()
+/mob/total_movement_delay()
 	var/delay = 0
 
 	switch(m_intent)

@@ -85,14 +85,17 @@
 	var/max_equip = 3
 	var/datum/events/events
 
+	//Sounds
+	var/step_sound = 'sound/mecha/Mech_Step.ogg'
+	var/step_turn_sound = 'sound/mecha/Mech_Rotation.ogg'
+
+
+
 /obj/mecha/can_prevent_fall()
 	return TRUE
 
 /obj/mecha/get_fall_damage()
 	return FALL_GIB_DAMAGE
-
-/obj/mecha/can_fall()
-	return TRUE
 
 /obj/mecha/drain_power(var/drain_check)
 
@@ -251,21 +254,19 @@
 //Called each step by mechas, and periodically when drifting through space
 /obj/mecha/proc/check_for_support()
 	var/turf/T = get_turf(src)
-
 	//If we're standing on solid ground, we are fine, even in space.
 	//We'll assume mechas have magnetic feet and don't slip
 	if (!T.is_hole)
-		return TRUE
-
-	//We must be over a space or openspace tile. We may fall through, but that's not handled here
-	//As long as there's gravity, return true
-	else if(T.has_gravity())
 		return TRUE
 
 
 	//Ok we're floating and there's no gravity
 	else
 		for (var/a in T)
+
+			if (a == src)
+				continue
+
 			var/atom/A = a
 			if (A.can_prevent_fall())
 				return TRUE
@@ -289,7 +290,6 @@
 		user << "It's equipped with:"
 		for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
 			user << "\icon[ME] [ME]"
-	return
 
 
 /obj/mecha/proc/drop_item()//Derpfix, but may be useful in future for engineering exosuits.
@@ -298,7 +298,6 @@
 /obj/mecha/hear_talk(mob/M as mob, text)
 	if(M==occupant && radio.broadcasting)
 		radio.talk_into(M, text)
-	return
 
 ////////////////////////////
 ///// Action processing ////
@@ -424,13 +423,23 @@
 
 	if(!has_charge(step_energy_drain))
 		return 0
+
+	var/turn = FALSE //If true, we are turning in place instead of moving
+	if(src.dir!=direction)
+		turn = TRUE
+
 	var/move_result = 0
+	var/movemode = MOVEMODE_STEP
 
 	//Alright lets check if we can move
 	//If there's no support then we will use the thruster
-	if(!src.check_for_support())
+	if(!check_for_support())
 		//Check if the thruster exists, and is able to work. The do_move proc will handle paying gas costs
-		if (thruster && thruster.do_move(direction))
+		if (thruster && thruster.do_move(direction, turn))
+			//We pass this into the move procs, prevents stomping sounds
+			movemode = MOVEMODE_THRUST
+
+
 			//The thruster uses power, but far less than moving the legs
 			if (!use_power(step_energy_drain*0.1))
 				//No movement if power is dead
@@ -447,17 +456,26 @@
 
 	//If we make it to here then we can definitely make a movement
 
+	anchored = FALSE //Unanchor in order to move
 	// TODO: Glide size handling in here is fucked,
 	// because the timing system uses sleep instead of world.time comparisons/delay controllers
 	// At least that's my theory I can't be bothered to investigate fully.
-	if(hasInternalDamage(MECHA_INT_CONTROL_LOST))
+	if(turn)
+		move_result = mechturn(direction, movemode)
+		//We don't set l_move_time for turning on the spot. it doesnt count as movement
+	else if(hasInternalDamage(MECHA_INT_CONTROL_LOST))
 		set_glide_size(DELAY2GLIDESIZE(step_in))
-		move_result = mechsteprand()
-	else if(src.dir!=direction)
-		move_result = mechturn(direction)
+		move_result = mechsteprand(movemode)
+		if (occupant)
+			occupant.l_move_time = world.time
+
 	else
 		set_glide_size(DELAY2GLIDESIZE(step_in))
-		move_result = mechstep(direction)
+		move_result = mechstep(direction, movemode)
+		if (occupant)
+			occupant.l_move_time = world.time
+
+	anchored = TRUE //Reanchor after moving
 	if(move_result)
 		can_move = 0
 
@@ -468,23 +486,37 @@
 		return 1
 	return 0
 
-/obj/mecha/proc/mechturn(direction)
+/obj/mecha/proc/mechturn(direction, var/movemode = MOVEMODE_STEP)
+	//When turning in 0g with a thruster, we do a little airburst to rotate us
+	//The thrust happens in the direction we're already facing, to turn us away from that and to a different direction
+	if (movemode == MOVEMODE_THRUST)
+		thruster.thrust.trail.do_effect(get_step(loc, dir), dir)
+
 	set_dir(direction)
-	playsound(src,'sound/mecha/Mech_Rotation.ogg',40,1)
+
+	if (movemode == MOVEMODE_STEP)
+		playsound(src,step_turn_sound,40,1)
+
 	return 1
 
-/obj/mecha/proc/mechstep(direction)
+/obj/mecha/proc/mechstep(direction, var/movemode = MOVEMODE_STEP)
 	var/result = Move(get_step(src, direction),direction)
 	if(result)
-		playsound(src,'sound/mecha/Mech_Step.ogg',100,1)
+		if (movemode == MOVEMODE_STEP)
+			playsound(src,step_sound,100,1)
 	return result
 
 
-/obj/mecha/proc/mechsteprand()
+/obj/mecha/proc/mechsteprand(var/movemode = MOVEMODE_STEP)
 	var/result = step_rand(src)
 	if(result)
-		playsound(src,'sound/mecha/Mech_Step.ogg',100,1)
+		if (movemode == MOVEMODE_STEP)
+			playsound(src,step_sound,100,1)
 	return result
+
+//Used for jetpacks
+/obj/mecha/total_movement_delay()
+	return step_in
 
 /obj/mecha/Bump(var/atom/obstacle)
 //	src.inertia_dir = null
@@ -504,6 +536,62 @@
 	else
 		obstacle.Bumped(src)
 	return
+
+/obj/mecha/get_jetpack()
+	if (thruster)
+		return thruster.thrust
+
+	return null
+
+//Here we hook in any modules that would prevent the mech from falling
+//Return false to float in the air, return true to fall
+/obj/mecha/can_fall()
+	if (thruster)
+		if (thruster.thrust.check_thrust() && thruster.thrust.stabilization_on)
+			return FALSE
+	.=..()
+
+
+
+/*Falling mechas have a similar effect to falling robots. Major devastation to the area and death to
+anything directly under them. However, since they are walking vehicles, with legs - and more importantly, knees-
+they can absorb most of the shock that would hit themselves, and thusly only take light damage from falling.
+This damage is 8% of their max health.
+It's still not healthy or recommended in most circumstances, but stomping someone in a mech would be an excellent
+assassination method if you time it right*/
+/obj/mecha/fall_impact(var/turf/from, var/turf/dest)
+	anchored = TRUE //We may have set this temporarily false so we could fall
+	take_damage(initial(health)*0.08)
+
+	//Wreck the contents of the tile
+	for (var/atom/movable/AM in dest)
+		if (AM != src)
+			AM.ex_act(3)
+
+	//Damage the tile itself
+	dest.ex_act(2)
+
+	//Damage surrounding tiles
+	for (var/turf/T in range(1, src))
+		if (T == dest)
+			continue
+
+		T.ex_act(3)
+
+	//And do some screenshake for everyone in the vicinity
+	for (var/mob/M in range(20, src))
+		var/dist = get_dist(M, src)
+		dist *= 0.5
+		if (dist <= 1)
+			dist = 1 //Prevent runtime errors
+
+		shake_camera(M, 10/dist, 2.5/dist, 0.12)
+
+	playsound(src, 'sound/weapons/heavysmash.ogg', 100, 1, 20,20)
+	spawn(1)
+		playsound(src, 'sound/weapons/heavysmash.ogg', 100, 1, 20,20)
+	spawn(2)
+		playsound(src, 'sound/weapons/heavysmash.ogg', 100, 1, 20,20)
 
 ///////////////////////////////////
 ////////  Internal damage  ////////
@@ -1969,8 +2057,12 @@
 
 	Process(var/obj/mecha/mecha as obj,direction)
 		if(direction)
-			if(!step(mecha, direction)||mecha.check_for_support())
+			mecha.anchored = FALSE //Unanchor while moving, so we can fall if we float over a hole witgh gravity
+			if(!step(mecha, direction)||mecha.check_for_support() || (mecha.thruster && mecha.thruster.do_move()))
+				mecha.inertia_dir = 0
 				src.stop()
+			mecha.anchored = TRUE
+			mecha.inertia_dir = direction
 		else
 			src.stop()
 		return

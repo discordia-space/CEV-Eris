@@ -14,6 +14,7 @@
 	var/moved_recently = 0
 	var/mob/pulledby = null
 	var/item_state = null // Used to specify the item state for the on-mob overlays.
+	var/inertia_dir = 0
 
 /atom/movable/Del()
 	if(isnull(gc_destroyed) && loc)
@@ -305,7 +306,7 @@
 		glide_size = 0
 	else
 		glide_size = max(min, glide_size_override)
-	
+
 	for (var/atom/movable/AM in contents)
 		AM.set_glide_size(glide_size, min, max)
 
@@ -315,7 +316,7 @@
 /atom/movable/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	if (glide_size_override > 0)
 		set_glide_size(glide_size_override)
-	
+
 	// To prevent issues, diagonal movements are broken up into two cardinal movements.
 
 	// Is this a diagonal movement?

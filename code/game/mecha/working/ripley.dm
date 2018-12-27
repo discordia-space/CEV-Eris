@@ -38,7 +38,6 @@
 	opacity=0
 	lights_power = 60
 	wreckage = /obj/effect/decal/mecha_wreckage/ripley/deathripley
-	step_energy_drain = 0
 
 /obj/mecha/working/ripley/deathripley/New()
 	..()

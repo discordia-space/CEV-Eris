@@ -17,8 +17,11 @@
 	Unless you're reeeally sure what you're doing
 */
 /datum/vertical_travel_method
-	//The mob who is attempting to travel
-	var/mob/M
+	//The thing which is attempting to travel. May be a mob or a vehicle
+	var/atom/movable/M
+
+	//The mob that is travelling, if any. Used only for messages
+	var/mob/mob
 
 	//A thing that we use to aid our travels.
 	//in the case of climbing, this would be the wall we climb up
@@ -85,7 +88,11 @@
 
 
 /datum/vertical_travel_method/New(var/mob/L)
-	M = L
+	if (istype(L.loc, /obj/mecha)) //Add more vehicle related checks here in future
+		M = L.loc
+	else
+		M = L
+	mob = L
 	cache_values()
 
 
@@ -167,7 +174,7 @@
 	spawn()
 		handle_ticking()
 
-	if (!do_after(M, duration, M, needs_hands))
+	if (!do_after(mob, duration, M, needs_hands))
 		abort()
 		return
 	finish()
@@ -204,14 +211,14 @@
 
 	var/personal = format_message(start_verb_personal)
 
-	M.visible_message(SPAN_NOTICE(visible), SPAN_NOTICE(personal))
+	mob.visible_message(SPAN_NOTICE(visible), SPAN_NOTICE(personal))
 
 /datum/vertical_travel_method/proc/announce_end()
 	var/visible = format_message(end_verb_visible)
 
 	var/personal = format_message(end_verb_personal)
 
-	M.visible_message(SPAN_NOTICE(visible), SPAN_NOTICE(personal))
+	mob.visible_message(SPAN_NOTICE(visible), SPAN_NOTICE(personal))
 
 /datum/vertical_travel_method/proc/format_message(var/string)
 	string = replacetext(string, "%m", M.name)
@@ -243,7 +250,12 @@
 
 
 /datum/vertical_travel_method/proc/tick()
-	if (M.incapacitated() || M.loc != origin)
+	if (M.loc != origin)
+		abort()
+		return
+
+	//Being incapacitated in a mech won't stop it from finishing the journey
+	else if (ismob(M) && mob.incapacitated())
 		abort()
 	return
 
@@ -268,5 +280,6 @@
 	//Move to the target turf, and fall over
 	var/turf/target = pick(spaces)
 	M.Move(target)
-	M.Weaken(2)
-	M << SPAN_DANGER("You lose control and slip into freefall")
+	if (ismob(M))
+		mob.Weaken(2)
+	mob << SPAN_DANGER("You lose control and slip into freefall")

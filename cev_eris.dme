@@ -80,6 +80,7 @@
 #include "code\_helpers\areas.dm"
 #include "code\_helpers\atmospherics.dm"
 #include "code\_helpers\atom_movables.dm"
+#include "code\_helpers\atoms.dm"
 #include "code\_helpers\delays.dm"
 #include "code\_helpers\files.dm"
 #include "code\_helpers\functional.dm"

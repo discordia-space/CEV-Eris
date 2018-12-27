@@ -126,6 +126,21 @@
 /obj/item/weapon/tank/jetpack/proc/disable_stabilizer()
 	stabilization_on = FALSE
 	usr << "You toggle the stabilization [stabilization_on? "on":"off"]."
+
+	//If your jetpack cuts out, you'll fall in a gravity area. Lets trigger that
+	var/atom/movable/A = get_toplevel_atom() //Get what this jetpack is attached to, usually a mob or object
+	if (A)
+		//This is a hack. Future todo: Make mechas not utilize anchored
+		if (istype(A, /obj/mecha))
+			A.anchored = FALSE
+
+		var/turf/T = get_turf(A)
+		if (T)
+			T.fallThrough(A)
+		//This proc will handle alll of the logic checks, like gravity, catwalks, other means of staying afloat,
+		//And of course checking if the turf is actually a hole to fall through. We just fire it and let it do the hard work
+
+
 	return TRUE
 
 
@@ -154,6 +169,7 @@
 		usr << "You toggle the thrusters [on? "on":"off"]."
 	return TRUE
 
+
 /obj/item/weapon/tank/jetpack/proc/disable_thruster()
 	on = FALSE
 	icon_state = initial(icon_state)
@@ -163,6 +179,9 @@
 		M.update_inv_back()
 		M.update_action_buttons()
 		usr << "You toggle the thrusters [on? "on":"off"]."
+
+
+
 	return TRUE
 
 
@@ -178,7 +197,7 @@
 //Stabilization check is a somewhat hacky mechanic to handle an extra burst of gas for stabilizing, read below
 /obj/item/weapon/tank/jetpack/proc/allow_thrust(num, mob/living/user as mob, var/stabilization_check = FALSE)
 
-	if(!(src.on)) //Someone has to be wearing it
+	if(!(src.on))
 		return FALSE
 
 	if (!operational_safety(user))
@@ -205,8 +224,9 @@
 	if(allgases >= 0.005)
 		return TRUE
 
-	//If we've run out of gas, turn off stabilisation
-	stabilization_on = FALSE
+	//If we've run out of gas, turn off
+	disable_stabilizer()
+	disable_thruster()
 	qdel(G)
 	return TRUE
 
@@ -224,6 +244,7 @@
 		some proper refactoring of the movement system to fix that
 
 */
+
 
 /obj/item/weapon/tank/jetpack/proc/stabilize(var/mob/living/user, var/schedule_time, var/enable_stabilize = FALSE)
 	//First up, lets check we still have the user and they're still wearing this jetpack
@@ -284,18 +305,12 @@
 */
 /obj/item/weapon/tank/jetpack/proc/get_gas()
 	if (istype(gastank, /obj/item/weapon/tank))
-		world << "Gastank: [gastank] [gastank.type] is a normal tank"
 		return gastank.air_contents
 
 
-	world << "Gastank is not a tank"
 	if (istype(gastank, /obj/machinery/portable_atmospherics))
-		world << "Gastank is portable atmos"
 		var/obj/machinery/portable_atmospherics/canister/C = gastank
-		world << "Canister pressure is [C.return_pressure()]"
 		return C.air_contents
-	else
-		world << "Gastank is not portable atmos!"
 
 	//Unknown type? Create and return an empty gas mixture to prevent runtime errors
 	return new /datum/gas_mixture(0)
@@ -309,7 +324,7 @@
 	Checks
 *****************************/
 //A check only version of the above, does not alter any values
-/obj/item/weapon/tank/jetpack/proc/check_thrust(num, mob/living/user as mob)
+/obj/item/weapon/tank/jetpack/proc/check_thrust(num = thrust_cost, mob/living/user as mob)
 	if(!(src.on))
 		return FALSE
 	if((get_gas().total_moles < num))
@@ -352,11 +367,14 @@
 *****************************/
 //Mecha jetpack uses the giant internal gas canister inside mechs
 /obj/item/weapon/tank/jetpack/mecha
+	name = "gas thruster system"
 	gastank = null //Starts off null, will be connected once installed
 	thrust_cost = JETPACK_MOVE_COST*10 //A mecha is much, much heavier than a human, and requires more gas to move
 
 /obj/item/weapon/tank/jetpack/mecha/operational_safety(var/mob/living/user)
-	return TRUE
+	if (gastank)
+		return TRUE
+	return FALSE
 
 
 
