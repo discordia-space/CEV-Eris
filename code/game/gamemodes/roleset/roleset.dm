@@ -33,7 +33,7 @@
 		if(!candidate.current)
 			if (report) report << SPAN_NOTICE("Failure: [candidate] has no mob")
 			continue
-		if(!temp.can_become_antag(candidate))
+		if(!temp.can_become_antag(candidate, report))
 			if (report) report << SPAN_NOTICE("Failure: [candidate] can't become this antag")
 			continue
 		if(!antagonist_suitable(candidate,temp))
@@ -112,6 +112,7 @@
 	else
 		candidates = candidates_list(role_id)
 
+	world << "Attempting to spawn [src], candidates [candidates.len]"
 	if (candidates.len)
 		for (var/i = 1; i <= target_quantity;i++)
 			if (!candidates.len)

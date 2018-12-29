@@ -35,7 +35,7 @@
 	if(doequip)
 		equip()
 
-	if(announce) //why this one is commented? It prevents ai from to be a malf
+	if(announce)
 		greet()
 
 	return TRUE
