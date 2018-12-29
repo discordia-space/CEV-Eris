@@ -11,11 +11,7 @@ A small pool of thematically appropriate religious items that are generally chea
 //We do this by setting canview conditions on the individual items like this.
 //These are checked by the category, and also in other places
 /datum/uplink_item/item/neotheology/can_view(obj/item/device/uplink/U)
-	world << "Checking canview [src] [U]"
 	if (!U || !U.uplink_owner || !U.uplink_owner.current)
-		world << "Failed: [U]"
-		world << "Failed: [U.uplink_owner]"
-		world << "Failed: [U.uplink_owner.current]"
 		return FALSE
 
 	//Get the mob and their cruciform implant
@@ -23,16 +19,13 @@ A small pool of thematically appropriate religious items that are generally chea
 	var/obj/item/weapon/implant/core_implant/cruciform/C = L.get_cruciform()
 
 	if (!C)
-		world << "Failed to find cruciform"
 		return FALSE
 
 	//Now lets check that cruciform for modules that indicate rank
 
 	//Inquisitor is okay
 	if (C.get_module(CRUCIFORM_INQUISITOR))
-		world << "Has inquisitor module"
 		return TRUE
-	world << "Not inquisitor"
 
 	//Crusader is fine too
 	if (C.get_module(/datum/core_module/rituals/cruciform/crusader))

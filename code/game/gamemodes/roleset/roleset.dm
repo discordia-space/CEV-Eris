@@ -112,7 +112,6 @@
 	else
 		candidates = candidates_list(role_id)
 
-	world << "Attempting to spawn [src], candidates [candidates.len]"
 	if (candidates.len)
 		for (var/i = 1; i <= target_quantity;i++)
 			if (!candidates.len)
