@@ -6,8 +6,9 @@
 	Succour: Heals a target disciple within arms reach
 	Scrying: Look through the eyes of a target disciple.  Global range, expensive and limited duration
 	Sending: Send a telepathic message to a specific disciple. Global range
+	Initiation: Promotes a disciple to a preacher
 	Knowledge: Checks remaining telecrystals (Inquisitor also has a traitor uplink)
-	Grant Relic: Spawns one of three specific items. A ritual book, an obey cruciform implant, and a priest cruciform implant
+	Bounty: Calls up the uplink to order supplies
 */
 /datum/ritual/cruciform/inquisitor
 	name = "inquisitor"
