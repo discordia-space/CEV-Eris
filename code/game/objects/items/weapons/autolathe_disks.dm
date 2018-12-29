@@ -265,6 +265,7 @@
 		/datum/autolathe/recipe/gun/revolver,
 		/datum/autolathe/recipe/gun/revolver_consul,
 		/datum/autolathe/recipe/gun/revolver_deckard,
+		/datum/autolathe/recipe/gun/gladstone,
 		/datum/autolathe/recipe/gun/lamia,
 		/datum/autolathe/recipe/gun/deagle,
 		/datum/autolathe/recipe/gun/smg_sol,
