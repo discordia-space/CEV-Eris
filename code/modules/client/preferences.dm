@@ -149,7 +149,7 @@
 
 	if(be_random_name)
 		real_name = random_name(gender,species)
-
+		
 	if(config.humans_need_surnames)
 		var/firstspace = findtext(real_name, " ")
 		var/name_length = length(real_name)
@@ -157,8 +157,7 @@
 			real_name += " [pick(GLOB.last_names)]"
 		else if(firstspace == name_length)
 			real_name += "[pick(GLOB.last_names)]"
-
-	character.fully_replace_character_name(real_name)
+	character.fully_replace_character_name(newname = real_name)
 	character.body_build = get_body_build(gender, body_build)
 	character.gender = gender
 	character.age = age

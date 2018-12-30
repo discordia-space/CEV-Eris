@@ -23,6 +23,7 @@
 	sort_order = 1
 	//var/datum/browser/panel
 	var/job_desc = "Press \[?\] button near job name to show description.<br><br><br><br><br><br>"			//text containing job description
+	var/desc_set = FALSE
 	var/job_icon_dir = SOUTH
 	var/job_info_selected_rank
 
@@ -80,13 +81,17 @@
 	if(!SSjob)
 		return
 
+
 	. = list()
 	. += "<style>.Points,a.Points{background: #cc5555;}</style>"
 	//. += "<style>a.Points:hover{background: #55cc55;}</style>"
 
 	. += "<tt><center>"
-	//. += "<b>Choose occupation chances. <font size=3>Click on the occupation to select skills.</font><br>Unavailable occupations are crossed out.</b>"
-	. += "<div class = 'statusDisplay' style = 'min-height:250px; height:100%; overflow: auto;'>[job_desc]</div>"
+
+	//Attempts to set job description based on a high ranked or selected job
+	if (!desc_set)
+		create_job_description(user)
+	. += "[job_desc]"
 	. += "<b>Choose occupation chances.<br>Unavailable occupations are crossed out.</b>"
 	. += "<table width='100%' cellpadding='1' cellspacing='0'><tr><td width='20%'>" // Table within a table for alignment, also allows you to easily add more columns.
 	. += "<table width='100%' cellpadding='1' cellspacing='0'>"
@@ -203,6 +208,7 @@
 				return (pref.equip_preview_mob ? TOPIC_REFRESH_UPDATE_PREVIEW : TOPIC_REFRESH)
 
 	else if(href_list["set_job"] && href_list["set_level"])
+		create_job_description(user)
 		if(SetJob(user, href_list["set_job"], text2num(href_list["set_level"]))) return (pref.equip_preview_mob ? TOPIC_REFRESH_UPDATE_PREVIEW : TOPIC_REFRESH)
 /*
 	else if(href_list["set_skills"])
@@ -257,37 +263,95 @@
 
 	return ..()
 
-/datum/category_item/player_setup_item/occupation/proc/create_job_description(var/mob/user)
-	if(!job_info_selected_rank)
-		return
-	var/datum/job/job = SSjob.GetJob(job_info_selected_rank)
-	job_desc = ""
 
-	job_desc += "<p style='margin-top:0px; background-color: [job.selection_color]'><br><p>"
-	if(job.alt_titles)
-		job_desc += "<i><b>Alternative titles:</b> [english_list(job.alt_titles)].</i>"
+
+/datum/category_item/player_setup_item/occupation/proc/create_job_description(var/mob/user)
+	var/datum/job/job
+	//Which job will we show info for?
+
+	//First of all, we check if the user has opted to query any specific job by clicking the ? button
+	if(job_info_selected_rank)
+		job = SSjob.GetJob(job_info_selected_rank)
+	else
+		//If not, then we'll attempt to get the job they have set as high priority, if any
+		job = SSjob.GetJob(pref.job_high)
+
+	if (!job)
+		return
+
+	desc_set = TRUE
+
+	job_desc = "<div class = 'roleDescription' style = 'height:270px;'>"
+
+
+
+
+	job_desc += "<table style='float:left;  table-layout: fixed;' cellpadding='0' cellspacing='0'>"
+
+	//At the top of the table, there's a coloured stripe
+	job_desc += "<tr><td colspan='2'><p style='margin-top: 0px;margin-bottom: 0px; background-color: [job.selection_color];'><br></td></tr>"
+
+
+
+	job_desc += "<tr><td style='width: 220px;overflow: hidden;display: inline-block; white-space: nowrap;'>"
+	//The mannequin and its buttons are in their own little mini table, within a fixed width 200px cell
 	var/mob/living/carbon/human/dummy/mannequin/mannequin = job.get_job_mannequin()
 	var/icon/job_icon = getFlatIcon(mannequin, job_icon_dir)
-	job_icon.Scale(job_icon.Width() * 2, job_icon.Height() * 2)
+	job_icon.Scale(job_icon.Width() * 2.5, job_icon.Height() * 2.5)
 	send_rsc(user, job_icon, "job_icon_[job_icon_dir].png")
-	job_desc += "<table style='float:left;' cellpadding='0' cellspacing='0'><tr><td><img src=job_icon_[job_icon_dir].png width=200 height=200 style='float:left;'></td></tr>"
+	job_desc += "<table style='float:left; height = 270px; table-layout: fixed; vertical-align:top' cellpadding='0' cellspacing='0'><tr><td><img src=job_icon_[job_icon_dir].png width=220 height=220 style='float:left;'></td></tr>"
 	job_desc += "<tr><td><center><a href='?src=\ref[src];rotate=right'>&lt;&lt;</a> <a href='?src=\ref[src];rotate=left'>&gt;&gt;</a></center></td></tr></table>"
+
+	job_desc += "</td>"
+
+
+	//Actual body of description starts here.
+	//Width 100% needed otherwise a huge gap is left between this and the previous cell
+	job_desc += "<td style = 'width: 100%;'>"
+
+	//Capped at 240px height. I couldn't figure out how to set this height on the table row or cell.
+	//It only works when set directly on this div
+	job_desc += "<div style = 'overflow: auto;height: 240px;'>"
+
+	//Header job title
+	job_desc += "<h1 style='text-align: center; padding-top: 5px;padding-bottom: 0px;'>[job.title]</h1>"
+	job_desc += "<hr>"
+
+	//Here we have a right-floating textbox that shows user's stats
+	job_desc +="<div style='border: 1px solid grey; float: right; margin-right: 20px; padding: 8px; line-height: 120%;'> <h1 style='padding: 0px;'>Stats:</h1>"
+	if (job.stat_modifiers.len)
+		job_desc += "<ul>"
+		for (var/a in job.stat_modifiers)
+			job_desc += "<li>[a]: [job.stat_modifiers[a]]</li>"
+		job_desc += "</ul>"
+	else
+		job_desc += "None"
+	job_desc +="</div>"
+
+	if(job.alt_titles)
+		job_desc += "<i><b>Alternative titles:</b> [english_list(job.alt_titles)].</i>"
 	if(job.department)
-		job_desc += "<b>Department:</b> [job.department]."
+		job_desc += "<b>Department:</b> [job.department]. <br>"
 		if(job.head_position)
 			job_desc += "You are in charge of this department."
 	job_desc += "<br>"
 	job_desc += "You answer to <b>[job.supervisors]</b> normally."
 
-	job_desc += "<hr>"
+
+
+
+
 	if(config.wikiurl)
-		job_desc += "<a href='?src=\ref[src];job_wiki=[job_info_selected_rank]'>Open wiki page in browser</a>"
+		job_desc += "<a href='?src=\ref[src];job_info_selected_rank_wiki=[job_info_selected_rank]'>Open wiki page in browser</a>"
 	var/description = job.get_description_blurb()
 	/*if(job.required_education)
 	description = "[description ? "[description]\n\n" : ""]"*/
-	//job_desc += "</div>"
+
 	if(description)
-		job_desc += html_encode(description)
+		job_desc += description
+	job_desc += "</div>"
+	job_desc += "</td></tr></table></div>"
+
 
 /datum/category_item/player_setup_item/occupation/proc/SetPlayerAltTitle(datum/job/job, new_title)
 	// remove existing entry
