@@ -10,14 +10,17 @@
 	pda_slot = slot_belt
 	pda_type = /obj/item/modular_computer/pda
 
-
+//The base outfit that mercs spawn in. They get their armor and weapons from the merc base
 /decl/hierarchy/outfit/antagonist/mercenary/casual
 	name = "Serbian Mercenary fatigues"
 
 
+
+//This outfit is just for admin fun. Spawns them fully equipped
 /decl/hierarchy/outfit/antagonist/mercenary/equipped
 	name = "Serbian Mercenary combat gear"
 
 	suit = /obj/item/clothing/suit/space/void/SCAF
 	head = /obj/item/clothing/head/helmet/space/void/SCAF
 	suit_store = /obj/item/weapon/tank/jetpack/oxygen
+	back = /obj/item/weapon/storage/backpack/military
