@@ -43,7 +43,7 @@
 	name = "mainframe floor"
 	icon = 'icons/turf/flooring/circuit.dmi'
 	icon_state = "bcircuit"
-	flags = TURF_HAS_CORNERS
+	flags = TURF_HAS_CORNERS  | TURF_HIDES_THINGS
 	initial_flooring = /decl/flooring/reinforced/circuit
 
 

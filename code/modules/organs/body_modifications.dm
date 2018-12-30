@@ -19,7 +19,7 @@ var/global/list/modifications_types = list(
 		if(BM.allowed_species && BM.allowed_species.len)
 			class = " limited [BM.allowed_species.Join(" ")]"
 		for(var/part in BM.body_parts)
-			modifications_types[part] += "<div onclick=\"set('body_modification', '[BM.id]');\" class='block[class]'><b>[BM.name]</b><br>[BM.desc]</div>"
+			modifications_types[part] += "<div style = 'padding:2px' onclick=\"set('body_modification', '[BM.id]');\" class='block[class]'><b>[BM.name]</b><br>[BM.desc]</div>"
 
 /proc/get_default_modificaton(var/nature = MODIFICATION_ORGANIC)
 	switch(nature)
@@ -50,7 +50,7 @@ var/global/list/modifications_types = list(
 
 /datum/body_modification/proc/is_allowed(var/organ = "", datum/preferences/P)
 	if(!organ || !(organ in body_parts))
-		usr << "[name] isn't useable for [organ_tag_to_name[organ]]"
+		//usr << "[name] isn't useable for [organ]"
 		return FALSE
 	var/list/organ_data = organ_structure[organ]
 	if(organ_data)
@@ -68,7 +68,7 @@ var/global/list/modifications_types = list(
 /datum/body_modification/none
 	name = "Unmodified organ"
 	id = "nothing"
-	short_name = "nothing"
+	short_name = "Nothing"
 	desc = "Normal organ."
 	allowed_species = null
 

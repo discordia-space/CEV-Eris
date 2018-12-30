@@ -36,6 +36,7 @@
 	set_trait(TRAIT_STINGS,               0)            // Can cause damage/inject reagents when thrown or handled.
 	set_trait(TRAIT_YIELD,                0)            // Amount of product.
 	set_trait(TRAIT_SPREAD,               0)            // 0 limits plant to tray, 1 = creepers, 2 = vines.
+	set_trait(TRAIT_WALL_HUGGER,          0)            // If 1, plant grows on walls as well as floors. Only useful if Spread is set
 	set_trait(TRAIT_MATURATION,           0)            // Time taken before the plant is mature.
 	set_trait(TRAIT_PRODUCTION,           0)            // Time before harvesting can be undertaken again.
 	set_trait(TRAIT_TELEPORTING,          0)            // Uses the bluespace tomato effect.
@@ -491,7 +492,7 @@
 		set_trait(TRAIT_SPREAD,2)
 	else if(vine_prob < 10)
 		set_trait(TRAIT_SPREAD,1)
-
+		set_trait(TRAIT_WALL_HUGGER, 1)
 	if(prob(5))
 		set_trait(TRAIT_BIOLUM,1)
 		set_trait(TRAIT_BIOLUM_COLOUR,get_random_colour(0,75,190))

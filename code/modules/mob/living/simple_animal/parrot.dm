@@ -110,7 +110,7 @@
 	..()
 
 /mob/living/simple_animal/parrot/Stat()
-	..()
+	. = ..()
 	stat("Held Item", held_item)
 
 /*
@@ -707,7 +707,7 @@
 
 
 	var/message_mode=""
-	if(copytext(message,1,2) == ";")
+	if(copytext(message,1,2) == get_prefix_key(/decl/prefix/radio_main_channel))
 		message_mode = "headset"
 		message = copytext(message,2)
 
@@ -715,7 +715,7 @@
 		var/channel_prefix = copytext(message, 1 ,3)
 		message_mode = department_radio_keys[channel_prefix]
 
-	if(copytext(message,1,2) == ":")
+	if(copytext(message,1,2) == get_prefix_key(/decl/prefix/radio_channel_selection))
 		var/positioncut = 3
 		message = trim(copytext(message,positioncut))
 

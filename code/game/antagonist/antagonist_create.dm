@@ -105,5 +105,5 @@
 /datum/antagonist/proc/place_antagonist()
 	if(!owner.current)
 		return
-	var/turf/T = pick_mobless_turf_if_exists(antag_starting_locations[id])
+	var/turf/T = pick_mobless_turf_if_exists(GLOB.antag_starting_locations[id])
 	owner.current.forceMove(T)

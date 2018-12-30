@@ -7,8 +7,8 @@
 	speak_emote = list("chirps")
 
 	layer = 5
-	maxHealth = 120
-	health = 120
+	maxHealth = 80
+	health = 80
 	gender = NEUTER
 
 	update_icon = 0
@@ -152,7 +152,7 @@
 	return 2
 
 /mob/living/carbon/slime/Stat()
-	..()
+	. = ..()
 
 	statpanel("Status")
 	stat(null, "Health: [round((health / maxHealth) * 100)]%")

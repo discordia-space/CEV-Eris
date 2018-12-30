@@ -16,6 +16,7 @@
 		if(issmall(M)) removed *= 2 // Small bodymass, more effect from lower volume.
 		M.adjustToxLoss(strength * removed)
 
+
 /datum/reagent/toxin/plasticide
 	name = "Plasticide"
 	id = "plasticide"
@@ -43,14 +44,7 @@
 	color = "#003333"
 	strength = 10
 
-/datum/reagent/toxin/blattedin
-	name = "Blattedin"
-	id = "blattedin"
-	description = "A powerful toxin produced by those omnipresent roaches."
-	taste_description = "chicken"
-	reagent_state = LIQUID
-	color = "#0F4800"
-	strength = 5
+///datum/reagent/toxin/blattedin is defined in blattedin.dm
 
 /datum/reagent/toxin/plasma
 	name = "Plasma"

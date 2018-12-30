@@ -20,7 +20,7 @@
 	desc = "A large but fragile tool for moving dirt and rock."
 	icon_state = "impro_shovel"
 	degradation = 1.5
-	tool_qualities = list(QUALITY_SHOVELING = 15, QUALITY_DIGGING = 15, QUALITY_EXCAVATION = 10)
+	tool_qualities = list(QUALITY_SHOVELING = 25, QUALITY_DIGGING = 25, QUALITY_EXCAVATION = 10)
 
 /obj/item/weapon/tool/shovel/spade
 	name = "spade"
@@ -29,4 +29,4 @@
 	item_state = "spade"
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 1)
 	w_class = ITEM_SIZE_SMALL
-	tool_qualities = list(QUALITY_SHOVELING = 20, QUALITY_DIGGING = 10, QUALITY_EXCAVATION = 20)
+	tool_qualities = list(QUALITY_SHOVELING = 20, QUALITY_DIGGING = 20, QUALITY_EXCAVATION = 20)

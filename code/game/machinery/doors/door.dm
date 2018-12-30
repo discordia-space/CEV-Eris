@@ -30,7 +30,7 @@
 	var/close_door_at = 0 //When to automatically close the door, if possible
 	var/obj/machinery/filler_object/f5
 	var/obj/machinery/filler_object/f6
-
+	var/welded = null //Placed here for simplicity, only airlocks can be welded tho
 	//Multi-tile doors
 	dir = EAST
 	var/width = 1

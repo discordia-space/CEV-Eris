@@ -545,7 +545,10 @@
 /*********************
 	Resource Consumption
 **********************/
-/obj/item/weapon/tool/proc/consume_resources(var/timespent, var/user)
+/obj/item/proc/consume_resources(var/timespent, var/user)
+	return
+
+/obj/item/weapon/tool/consume_resources(var/timespent, var/user)
 	//We will always use a minimum of 0.5 second worth of resources
 	if (timespent < 5)
 		timespent = 5
@@ -630,6 +633,7 @@
 	precision = initial(precision)
 	suitable_cell = initial(suitable_cell)
 	max_fuel = initial(max_fuel)
+
 	use_fuel_cost = initial(use_fuel_cost)
 	use_power_cost = initial(use_power_cost)
 	force = initial(force)
@@ -648,6 +652,10 @@
 
 	for (var/prefix in prefixes)
 		name = "[prefix] [name]"
+
+	//Set the fuel volume, incase any mods altered our max fuel
+	if (reagents)
+		reagents.maximum_volume = max_fuel
 
 
 /obj/item/weapon/tool/examine(mob/user)

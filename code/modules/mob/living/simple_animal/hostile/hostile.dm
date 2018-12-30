@@ -8,12 +8,13 @@
 	var/projectiletype
 	var/projectilesound
 	var/casingtype
-	var/move_to_delay = 4 //delay for the automated movement.
+
 	var/list/friends = list()
 	var/break_stuff_probability = 10
 	stop_automated_movement_when_pulled = 0
 	var/destroy_surroundings = 1
 	a_intent = I_HURT
+	can_burrow = TRUE
 
 /mob/living/simple_animal/hostile/proc/FindTarget()
 

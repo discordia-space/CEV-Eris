@@ -79,6 +79,12 @@
 
 	verbs -= /mob/verb/observe
 
+
+/mob/living/simple_animal/Initialize(var/mapload)
+	.=..()
+	if (mapload && can_burrow)
+		find_or_create_burrow(get_turf(src))
+
 /mob/living/simple_animal/Login()
 	if(src && src.client)
 		src.client.screen = null
@@ -274,7 +280,7 @@
 	return tally
 
 /mob/living/simple_animal/Stat()
-	..()
+	. = ..()
 
 	if(statpanel("Status") && show_stat_health)
 		stat(null, "Health: [round((health / maxHealth) * 100)]%")

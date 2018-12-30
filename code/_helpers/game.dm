@@ -158,7 +158,7 @@
 
 	for(var/m in player_list)
 		var/mob/M = m
-		if(checkghosts == GHOSTS_ALL_HEAR && M.stat == DEAD && !isnewplayer(M) && (M.client && M.is_preference_enabled(/datum/client_preference/ghost_ears)))
+		if(checkghosts == GHOSTS_ALL_HEAR && M.stat == DEAD && !isnewplayer(M) && (M.client && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH))
 			if (!mobs[M])
 				mobs[M] = TRUE
 			continue
@@ -205,7 +205,7 @@
 			var/turf/ear = get_turf(M)
 			if(ear)
 				// Ghostship is magic: Ghosts can hear radio chatter from anywhere
-				if(speaker_coverage[ear] || (isghost(M) && M.is_preference_enabled(/datum/client_preference/ghost_radio)))
+				if(speaker_coverage[ear] || (isghost(M) && M.get_preference_value(/datum/client_preference/ghost_radio) == GLOB.PREF_ALL_CHATTER))
 					. |= M		// Since we're already looping through mobs, why bother using |= ? This only slows things down.
 	return .
 
@@ -534,8 +534,8 @@ datum/projectile_data
 	if (target.client)
 		P = target.client.prefs
 	else if (target.ckey)
-		P = preferences_datums[target.ckey]
+		P = SScharacter_setup.preferences_datums[target.ckey]
 	else if (target.mind && target.mind.key)
-		P = preferences_datums[target.mind.key]
+		P = SScharacter_setup.preferences_datums[target.mind.key]
 
 	return P

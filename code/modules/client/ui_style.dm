@@ -10,7 +10,7 @@
 
 /client/verb/change_ui_format()
 	set name = "Change UI format"
-	set category = "Preferences"
+	set category = "OOC"
 	set desc = "Minimize or maximaze you UI"
 
 	if(!ishuman(usr))
@@ -25,7 +25,7 @@
 
 /client/verb/change_ui()
 	set name = "Change UI"
-	set category = "Preferences"
+	set category = "OOC"
 	set desc = "Configure your user interface"
 
 	if(!ishuman(usr))

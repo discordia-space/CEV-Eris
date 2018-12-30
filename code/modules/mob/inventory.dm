@@ -122,7 +122,6 @@
 		slot = I.get_equip_slot()
 	return slot
 
-
 //This differs from remove_from_mob() in that it checks if the item can be unequipped first.
 /mob/proc/unEquip(obj/item/I, var/atom/Target = null, force = 0) //Force overrides NODROP for things like wizarditis and admin undress.
 	if(!canUnEquip(I))
@@ -175,3 +174,28 @@
 	if (hand)
 		return slot_l_hand
 	return slot_r_hand
+
+/mob/proc/delete_inventory(var/include_carried = FALSE)
+	for(var/entry in get_equipped_items(include_carried))
+		drop_from_inventory(entry)
+		qdel(entry)
+
+/mob/proc/equip_to_slot_or_store_or_drop(obj/item/W as obj, slot)
+	var/store = equip_to_slot_if_possible(W, slot, 0, 1, 0)
+	if(!store)
+		return equip_to_storage_or_drop(W)
+	return store
+
+/mob/proc/equip_to_storage_or_drop(obj/item/newitem)
+	var/stored = equip_to_storage(newitem)
+	if(!stored && newitem)
+		newitem.forceMove(loc)
+	return stored
+
+// Returns all items which covers any given body part
+/mob/proc/get_covering_equipped_items(var/body_parts)
+	. = list()
+	for(var/entry in get_equipped_items())
+		var/obj/item/I = entry
+		if(I.body_parts_covered & body_parts)
+			. += I

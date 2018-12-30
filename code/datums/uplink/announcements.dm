@@ -74,7 +74,7 @@
 		medical.fields["b_type"]	= I.blood_type
 		medical.fields["b_dna"]		= I.dna_hash
 
-	AnnounceArrivalSimple(general.fields["name"], general.fields["rank"])
+	AnnounceArrival(general.fields["name"], general.fields["rank"], "has completed cryogenic revival")
 	return 1
 
 /datum/uplink_item/abstract/announcements/fake_ion_storm

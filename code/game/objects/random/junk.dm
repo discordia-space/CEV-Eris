@@ -61,7 +61,8 @@
 		/obj/effect/decal/cleanable/vomit = 1,
 		/obj/effect/decal/cleanable/blood/splatter = 1,
 		/obj/effect/spider/stickyweb = 10, //These are useful for tape crafting
-		/obj/random/pouch = 1
+		/obj/random/pouch = 1,
+		/obj/random/lathe_disk = 2
 	))
 
 /obj/random/junk/low_chance

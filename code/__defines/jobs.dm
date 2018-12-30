@@ -8,3 +8,4 @@
 #define JOBS_CIVILIAN "Bartender","Gardener","Chef","Janitor","Assistant"
 #define JOBS_CHURCH	"Neotheology Preacher"
 #define JOBS_NONHUMAN "AI","Robot","pAI"
+

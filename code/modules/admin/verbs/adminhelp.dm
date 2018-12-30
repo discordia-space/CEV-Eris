@@ -25,7 +25,7 @@
 		return
 
 
-	
+
 	if(!mob) //this doesn't happen
 		return
 
@@ -41,7 +41,7 @@
 	for(var/client/X in admins)
 		if((R_ADMIN|R_MOD|R_MENTOR) & X.holder.rights)
 
-			if(X.is_preference_enabled(/datum/client_preference/holder/play_adminhelp_ping))
+			if(X.get_preference_value(/datum/client_preference/staff/play_adminhelp_ping) == GLOB.PREF_HEAR)
 				X << 'sound/effects/adminhelp.ogg'
 			if(X.holder.rights == R_MENTOR)
 				X << mentor_msg		// Mentors won't see coloring of names on people with special_roles (Antags, etc.)
