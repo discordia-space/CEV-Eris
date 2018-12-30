@@ -1,3 +1,30 @@
+/obj/item/clothing/head/helmet/space/void/SCAF
+	name = "SCAF helmet"
+	desc = "A thick airtight helmet designed for planetside warfare."
+	icon_state = "scaf"
+	item_state = "scaf"
+	//Headshots OP so these have tons of head protection. Aim for the body or suffer
+	armor = list(melee = 65, bullet = 75, laser = 65,energy = 25, bomb = 45, bio = 100, rad = 80)
+	siemens_coefficient = 0.6
+	species_restricted = list("Human")
+	camera_networks = list(NETWORK_MERCENARY)
+	light_overlay = "helmet_light_green" //todo: species-specific light overlays
+
+/obj/item/clothing/suit/space/void/SCAF
+	icon_state = "scaf"
+	name = "SCAF suit"
+	desc = "A bulky antique suit of refurbished infantry armour, retrofitted with seals and coatings to make it EVA capable"
+	item_state = "scaf"
+	slowdown = 1.5
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
+	w_class = ITEM_SIZE_NORMAL
+	armor = list(melee = 50, bullet = 65, laser = 50, energy = 15, bomb = 35, bio = 100, rad = 80)
+	siemens_coefficient = 0.6
+	species_restricted = list("Human")
+
+
+
 //Syndicate rig
 /obj/item/clothing/head/helmet/space/void/merc
 	name = "blood-red voidsuit helmet"

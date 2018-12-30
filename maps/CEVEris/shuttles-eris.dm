@@ -159,7 +159,7 @@
 
 
 //Merc
-/*
+
 /datum/shuttle/autodock/multi/antag/mercenary
 	name = "Mercenary"
 	warmup_time = 0
@@ -177,7 +177,7 @@
 	home_waypoint = "nav_merc_start"
 	arrival_message = "Attention, vessel detected entering vessel proximity."
 	departure_message = "Attention, vessel detected leaving vessel proximity."
-*/
+
 /obj/effect/shuttle_landmark/merc/start
 	name = "Mercenary Base"
 	icon_state = "shuttle-red"

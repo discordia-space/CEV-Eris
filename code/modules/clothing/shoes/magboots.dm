@@ -107,3 +107,18 @@
 	if(item_flags & NOSLIP)
 		state = "enabled"
 	user << "Its mag-pulse traction system appears to be [state]."
+
+
+/*
+	Used by mercenaries
+*/
+/obj/item/clothing/shoes/magboots/merc
+	desc = "Sturdy hiking boots with powerful magnetic soles. Useful in or out of a vessel."
+	name = "military magboots"
+	icon_state = "mercboots0"
+	species_restricted = null
+	can_hold_knife = TRUE
+	overshoes = 0
+	mag_slow = 2
+	icon_base = "mercboots"
+	action_button_name = "Toggle Magboots"

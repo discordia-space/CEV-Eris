@@ -5,6 +5,7 @@
 	mag_type = SPEEDLOADER	//To prevent load in magazine filled guns
 	multiple_sprites = 1
 	reload_delay = 30
+	ammo_mag = "box"
 
 /obj/item/ammo_magazine/ammobox/c9mm
 	name = "ammunition box (9mm)"
@@ -155,6 +156,7 @@
 	w_class = ITEM_SIZE_LARGE
 	caliber = "a762"
 	ammo_type = /obj/item/ammo_casing/a762
+	mag_type = SPEEDLOADER | MAGAZINE
 	max_ammo = 80
 
 /obj/item/ammo_magazine/ammobox/a145
