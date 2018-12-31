@@ -15,6 +15,7 @@ LINEN BINS
 	throw_speed = 1
 	throw_range = 2
 	w_class = ITEM_SIZE_SMALL
+	var/folded = 0
 
 /obj/item/weapon/bedsheet/attack_self(mob/user as mob)
 	user.drop_item()
@@ -38,6 +39,25 @@ LINEN BINS
 			qdel(src)
 		return
 	..()
+
+/obj/item/weapon/bedsheet/AltClick()
+	if (do_after(usr, 8, src))
+		usr.do_attack_animation(src)
+		playsound(get_turf(loc), "rustle", 15, 1, -5)
+		if(!folded)
+			folded = 1
+			usr.visible_message(
+				SPAN_NOTICE("\The [usr] folded \the [src]."),
+				SPAN_NOTICE("You folded \the [src].")
+			)
+			icon_state = "sheet-folded"
+		else
+			usr.visible_message(
+				SPAN_NOTICE("\The [usr] unfolded \the [src]."),
+				SPAN_NOTICE("You unfolded \the [src].")
+			)
+			folded = 0
+			icon_state = initial(icon_state)
 
 /obj/item/weapon/bedsheet/blue
 	icon_state = "sheetblue"
