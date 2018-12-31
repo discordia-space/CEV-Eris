@@ -381,6 +381,7 @@
 		output_level = max(0, min(output_level_max, output_level))	// clamp to range
 
 	investigate_log("input/output; <font color='[input_level>output_level?"green":"red"][input_level]/[output_level]</font> | Output-mode: [output_attempt?"<font color='green'>on</font>":"<font color='red'>off</font>"] | Input-mode: [input_attempt?"<font color='green'>auto</font>":"<font color='red'>off</font>"] by [usr.key]","singulo")
+	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 
 	return 1
 
@@ -417,11 +418,19 @@
 			energy_fail(rand(0, 30))
 
 /obj/machinery/power/smes/proc/inputting(var/do_input)
+	if(do_input)
+		usr << "[src] input mode set to auto."
+	else
+		usr << "[src] output mode set to off."
 	input_attempt = do_input
 	if(!input_attempt)
 		inputting = 0
 
 /obj/machinery/power/smes/proc/outputting(var/do_output)
+	if(do_output)
+		usr << "[src] output mode set to online."
+	else
+		usr << "[src] output mode set to offline."
 	output_attempt = do_output
 	if(!output_attempt)
 		outputting = 0
