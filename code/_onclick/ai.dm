@@ -194,10 +194,8 @@
 /obj/machinery/alarm/AICtrlClick()
 	if(mode == AALARM_MODE_OFF)
 		Topic(src, list("command"="mode", "mode" = AALARM_MODE_SCRUBBING))
-	else if(mode == AALARM_MODE_PANIC)
-		Topic(src, list("command"="mode", "mode" = AALARM_MODE_SCRUBBING))
-	else if(mode == AALARM_MODE_SCRUBBING)
-		Topic(src, list("command"="mode", "mode" = AALARM_MODE_PANIC))
+	else
+		Topic(src, list("command"="mode", "mode" = AALARM_MODE_OFF))
 	return 1
 
 //

@@ -1098,7 +1098,8 @@ FIRE ALARM
 	return ..()
 
 /obj/machinery/firealarm/Topic(href, href_list)
-	..()
+	if(..())
+		return 1
 
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	if (href_list["status"] == "reset")

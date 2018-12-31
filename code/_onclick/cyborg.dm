@@ -219,3 +219,47 @@
 /atom/proc/attack_robot(mob/user as mob)
 	attack_ai(user)
 	return
+
+//
+//	On Ctrl-Click will turn on if off otherwise will switch between Filtering and Panic Siphon
+//
+/obj/machinery/alarm/BorgCtrlClick()
+	AICtrlClick()
+
+//
+//	On Alt-Click will cycle through modes
+//
+/obj/machinery/alarm/BorgAltClick()
+	AIAltClick()
+
+//
+//	On Ctrl-Click will turn on if off otherwise will switch between Filtering and Panic Siphon
+//
+/obj/machinery/firealarm/BorgCtrlClick()
+	AICtrlClick()
+
+//
+//	On Ctrl-Click will turn on or off SMES input 
+//
+/obj/machinery/power/smes/BorgCtrlClick()
+	AICtrlClick()
+
+//
+//	On Alt-Click will turn on or off SMES output 
+//
+/obj/machinery/power/smes/BorgAltClick()
+	AIAltClick()
+
+//
+//	On Ctrl-Click will turn on or off gas cooling system
+//
+/obj/machinery/atmospherics/unary/freezer/BorgCtrlClick()
+	AICtrlClick()
+
+//
+//	On Ctrl-Click will turn on or off telecomms machinery
+//	ENABLE WHEN TCOMS UI WILL BE UPDATED TO NANOUI
+/*
+/obj/machinery/telecomms/BorgCtrlClick()
+	AICtrlClick()
+*/
