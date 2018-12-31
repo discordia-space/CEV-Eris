@@ -4,6 +4,7 @@
 	icon_state = "scaf"
 	item_state = "scaf"
 	//Headshots OP so these have tons of head protection. Aim for the body or suffer
+	//These helmets are essentially an impenetrable fortress for the head
 	armor = list(melee = 65, bullet = 75, laser = 65,energy = 25, bomb = 45, bio = 100, rad = 80)
 	siemens_coefficient = 0.6
 	species_restricted = list("Human")
@@ -19,7 +20,8 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 	w_class = ITEM_SIZE_NORMAL
-	armor = list(melee = 50, bullet = 65, laser = 50, energy = 15, bomb = 35, bio = 100, rad = 80)
+	//Melee attacks to the torso are the weakness of this armor.  It's optimised for ballistic resistance
+	armor = list(melee = 40, bullet = 65, laser = 50, energy = 15, bomb = 35, bio = 100, rad = 80)
 	siemens_coefficient = 0.6
 	species_restricted = list("Human")
 

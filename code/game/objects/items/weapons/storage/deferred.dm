@@ -74,7 +74,15 @@
 	initial_contents = list(/obj/random/pouch = 8, /obj/item/weapon/storage/pouch/pistol_holster = 1)
 	//One guaranteed holster and plenty of randoms
 
+/obj/item/weapon/storage/deferred/comms
+	name = "communications kit"
+	desc = "A box full of radios and beacons"
+	initial_contents = list(/obj/item/device/radio/beacon = 6, /obj/item/device/radio = 6)
 
+/obj/item/weapon/storage/deferred/lights
+	name = "illumination kit"
+	desc = "A box of flares and flashlights"
+	initial_contents = list(/obj/item/device/lighting/glowstick/flare = 20, /obj/item/device/lighting/toggleable/flashlight/heavy = 6)
 
 //Medical
 /obj/item/weapon/storage/deferred/surgery
@@ -123,20 +131,19 @@
 //These use open topped crate sprites but are still functionally boxes. They can be picked up, but are too large to fit in anything
 /obj/item/weapon/storage/deferred/crate
 	w_class = ITEM_SIZE_HUGE //This is too big to fit in a backpack
+	item_state = "toolbox_yellow"
 
 /obj/item/weapon/storage/deferred/crate/tools
 	name = "tool storage box"
 	desc = "A moderately sized crate full of assorted tools"
 	icon_state = "plasmacrate"
-	item_state = "toolbox_yellow"
-	initial_contents = list(/obj/random/tool = 8, /obj/random/tool/advanced = 3)
+	initial_contents = list(/obj/random/tool = 10, /obj/random/tool/advanced = 2)
 
 
 /obj/item/weapon/storage/deferred/crate/saw
 	name = "infantry support crate"
 	desc = "a crate containing two L6 SAW light machine guns, and 640 rounds of 7.62mm ammunition"
 	icon_state = "weaponcrate"
-	item_state = "toolbox_yellow"
 	initial_contents = list(/obj/item/weapon/gun/projectile/automatic/l6_saw = 2, /obj/item/ammo_magazine/ammobox/a762 = 8)
 
 
@@ -144,25 +151,40 @@
 	name = "rifleman crate"
 	desc = "a crate containing six AK-47 rifles, and plenty of magazines"
 	icon_state = "weaponcrate"
-	item_state = "toolbox_yellow"
-	initial_contents = list(/obj/item/weapon/gun/projectile/automatic/ak47/fs  = 6, /obj/item/ammo_magazine/ak47 = 14)
+	initial_contents = list(/obj/item/weapon/gun/projectile/automatic/ak47/fs  = 6, /obj/item/ammo_magazine/ak47 = 18)
 
 /obj/item/weapon/storage/deferred/crate/grenadier
 	name = "grenadier crate"
 	desc = "a crate containing one \"Lenar\" launcher, and copious quantities of hand-propelled explosive devices"
 	icon_state = "weaponcrate"
-	item_state = "toolbox_yellow"
-	initial_contents = list(/obj/item/weapon/grenade/frag/explosive = 3,
+	initial_contents = list(/obj/item/weapon/grenade/frag/explosive = 5,
 	/obj/item/weapon/grenade/frag = 14,
 	/obj/item/weapon/grenade/empgrenade/low_yield = 4,
 	/obj/item/weapon/grenade/smokebomb = 8,
 	/obj/item/weapon/gun/launcher/grenade/lenar = 1)
 
+/obj/item/weapon/storage/deferred/crate/antiarmor
+	name = "anti-armor crate"
+	desc = "a crate containing one \"RPG-7\" launcher, and twenty 40mm PG-7VL warheads"
+	icon_state = "weaponcrate"
+	initial_contents = list(/obj/item/ammo_casing/rocket = 20,
+	/obj/item/weapon/gun/launcher/rocket = 1)
+
+
+/obj/item/weapon/storage/deferred/crate/demolition
+	name = "demolitions crate"
+	desc = "a crate of tools to deal with stationary hard targets, and remove obstacles"
+	icon_state = "weaponcrate"
+	initial_contents = list(/obj/item/weapon/plastique = 12,
+	/obj/item/weapon/hatton = 1,
+	/obj/item/weapon/hatton_magazine = 5,
+	/obj/item/weapon/tool/pickaxe/diamonddrill = 1)
+
+
 /obj/item/weapon/storage/deferred/crate/marksman
 	name = "marksman crate"
 	desc = "a crate containing one \"Penetrator\" rifle, and seventy 14.5mm AP shells"
 	icon_state = "weaponcrate"
-	item_state = "toolbox_yellow"
 	initial_contents = list(/obj/item/weapon/gun/projectile/heavysniper = 1,
 	/obj/item/weapon/storage/box/sniperammo = 2)
 
@@ -170,7 +192,6 @@
 	name = "sidearm crate"
 	desc = "a crate containing six Makarov 9mm pistols, 200 rounds of 9mm ammunition, and six fixed-blade combat knives"
 	icon_state = "weaponcrate"
-	item_state = "toolbox_yellow"
 	initial_contents = list(/obj/item/weapon/gun/projectile/clarissa/makarov = 6,
 	/obj/item/ammo_magazine/mc9mm  = 20,
 	/obj/item/weapon/material/knife/boot = 6)
@@ -179,7 +200,6 @@
 	name = "power cell bin"
 	desc = "A moderately sized crate full of various power cells"
 	icon_state = "plasmacrate"
-	item_state = "toolbox_yellow"
 	initial_contents = list(/obj/random/powercell = 16)
 
 
@@ -187,7 +207,6 @@
 	name = "liquor crate"
 	desc = "A moderately sized crate full of various alcoholic drinks"
 	icon_state = "plasticcrate"
-	item_state = "toolbox_yellow"
 	initial_contents = list(/obj/random/booze = 10,
 	/obj/random/booze/low_chance = 10,
 	/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka = 3)

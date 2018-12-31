@@ -219,8 +219,8 @@
 	amount = 5
 
 /obj/item/ammo_casing/rocket
-	name = "rocket shell"
-	desc = "A high explosive designed to be fired from a launcher."
+	name = "PG-7VL grenade"
+	desc = "A 40mm warhead designed for the RPG-7 launcher."
 	icon_state = "rocketshell"
 	projectile_type = /obj/item/missile
 	caliber = "rocket"
