@@ -3,7 +3,7 @@
 	desc = "An ancient rocket-propelled grenade launcher, this model is centuries old, but well preserved."
 	icon_state = "rocket"
 	item_state = "rocket"
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_HUGE
 	throw_speed = 2
 	throw_range = 10
 	force = 5.0

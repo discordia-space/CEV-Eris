@@ -3,7 +3,7 @@
 	desc = "A rather traditionally made L6 SAW with a pleasantly lacquered wooden pistol grip. This one is unmarked."
 	icon_state = "l6closed-empty"
 	item_state = "l6closedmag"
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_HUGE
 	force = 10
 	slot_flags = 0
 	max_shells = 50
