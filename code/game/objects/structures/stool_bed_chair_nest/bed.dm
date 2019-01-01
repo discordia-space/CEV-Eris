@@ -141,7 +141,7 @@
 		playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
 		remove_padding()
 
-	else
+	else if(!istype(W, /obj/item/weapon/bedsheet))
 		..()
 
 /obj/structure/bed/attack_robot(var/mob/user)

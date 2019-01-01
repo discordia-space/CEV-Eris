@@ -7,7 +7,7 @@ LINEN BINS
 /obj/item/weapon/bedsheet
 	name = "bedsheet"
 	desc = "A surprisingly soft linen bedsheet."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/bedsheets.dmi'
 	icon_state = "sheet"
 	item_state = "bedsheet"
 	layer = 4.0
@@ -15,16 +15,96 @@ LINEN BINS
 	throw_speed = 1
 	throw_range = 2
 	w_class = ITEM_SIZE_SMALL
-	var/folded = 0
+	var/rolled = FALSE
+	var/folded = FALSE
+	var/inuse = FALSE
 
-/obj/item/weapon/bedsheet/attack_self(mob/user as mob)
-	user.drop_item()
-	if(layer == initial(layer))
-		layer = ABOVE_MOB_LAYER
-	else
-		layer = initial(layer)
-	add_fingerprint(user)
-	return
+/obj/item/weapon/bedsheet/afterattack(atom/A, mob/user)
+	if(!user || user.incapacitated() || !user.Adjacent(A))
+		return
+	if(toggle_fold(user))
+		user.drop_item()
+		src.forceMove(get_turf(A))
+		add_fingerprint(user)
+		return
+
+/obj/item/weapon/bedsheet/proc/toggle_roll(var/mob/living/user, var/no_message = FALSE)
+	if(!user)
+		return FALSE
+	if(inuse)
+		user << "Someone already using \the [src]"
+		return FALSE
+	inuse = TRUE
+	if (do_after(user, 6, src, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_STUNNED))
+		if(user.loc != src.loc)
+			user.do_attack_animation(src)
+		playsound(get_turf(loc), "rustle", 15, 1, -5)
+		if(!no_message)
+			user.visible_message(
+				SPAN_NOTICE("\The [user] [rolled ? "unrolled" : "rolled"] \the [src]."),
+				SPAN_NOTICE("You [rolled ? "unrolled" : "rolled"] \the [src].")
+			)
+		if(!rolled)
+			rolled = TRUE
+		else
+			rolled = FALSE
+			if(!user.resting && get_turf(src) == get_turf(user))
+				user.lay_down() 
+		inuse = FALSE
+		update_icon()
+		return TRUE
+	inuse = FALSE
+	return FALSE
+
+/obj/item/weapon/bedsheet/proc/toggle_fold(var/mob/user, var/no_message = FALSE)
+	if(!user)
+		return FALSE
+	if(inuse)
+		user << "Someone already using \the [src]"
+		return FALSE
+	inuse = TRUE
+	if (do_after(user, 25, src))
+		rolled = FALSE
+		if(user.loc != src.loc)
+			user.do_attack_animation(src)
+		playsound(get_turf(loc), "rustle", 15, 1, -5)
+		if(!no_message)
+			user.visible_message(
+				SPAN_NOTICE("\The [user] [folded ? "unfolded" : "folded"] \the [src]."),
+				SPAN_NOTICE("You [folded ? "unfolded" : "folded"] \the [src].")
+			)
+		if(!folded)
+			folded = TRUE
+		else
+			
+			folded = FALSE
+		inuse = FALSE
+		update_icon()
+		return TRUE
+	inuse = FALSE
+	return FALSE
+
+/obj/item/weapon/bedsheet/verb/fold_verb()
+	set name = "Fold bedsheet"
+	set category = "Object"
+	set src in view(1)
+
+	if(istype(src.loc,/mob))
+		usr << "Drop \the [src] first."
+	else if(ishuman(usr))
+		toggle_fold(usr)
+
+/obj/item/weapon/bedsheet/verb/roll_verb()
+	set name = "Roll bedsheet"
+	set category = "Object"
+	set src in view(1)
+
+	if(folded)
+		usr << "Unfold \the [src] first."
+	else if(istype(src.loc,/mob))
+		usr << "Drop \the [src] first."
+	else if(ishuman(usr))
+		toggle_roll(usr)
 
 /obj/item/weapon/bedsheet/attackby(obj/item/I, mob/user)
 	if(is_sharp(I))
@@ -40,24 +120,31 @@ LINEN BINS
 		return
 	..()
 
-/obj/item/weapon/bedsheet/AltClick()
-	if (do_after(usr, 8, src))
-		usr.do_attack_animation(src)
-		playsound(get_turf(loc), "rustle", 15, 1, -5)
+/obj/item/weapon/bedsheet/attack_hand(mob/user as mob)
+	if(!user || user.incapacitated(incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_STUNNED))
+		return
+	if(!folded)
+		toggle_roll(user)
+	pickup(usr)
+	add_fingerprint(user)
+
+/obj/item/weapon/bedsheet/MouseDrop(over_object, src_location, over_location)
+	..()
+	if(over_object == usr || istype(over_object, /obj/screen/inventory/hand))
+		if(!ishuman(over_object))
+			return
 		if(!folded)
-			folded = 1
-			usr.visible_message(
-				SPAN_NOTICE("\The [usr] folded \the [src]."),
-				SPAN_NOTICE("You folded \the [src].")
-			)
-			icon_state = "sheet-folded"
-		else
-			usr.visible_message(
-				SPAN_NOTICE("\The [usr] unfolded \the [src]."),
-				SPAN_NOTICE("You unfolded \the [src].")
-			)
-			folded = 0
-			icon_state = initial(icon_state)
+			toggle_fold(usr)
+		if(folded)
+			pickup(usr)
+			
+/obj/item/weapon/bedsheet/update_icon()
+	if (folded)
+		icon_state = "sheet-folded"
+	else if (rolled)
+		icon_state = "sheet-rolled"
+	else
+		icon_state = initial(icon_state)
 
 /obj/item/weapon/bedsheet/blue
 	icon_state = "sheetblue"

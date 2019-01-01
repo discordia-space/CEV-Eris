@@ -295,7 +295,7 @@
 		qdel(src)
 		return
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/pickup(mob/user)
+/obj/item/weapon/reagent_containers/food/snacks/grown/before_pickup(mob/user)
 	..()
 	if(!seed)
 		return

@@ -169,7 +169,7 @@
 
 	return val
 
-/obj/item/weapon/tray/pickup(mob/user)
+/obj/item/weapon/tray/before_pickup(mob/user)
 
 	if(!isturf(loc))
 		return

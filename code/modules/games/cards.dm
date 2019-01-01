@@ -302,5 +302,5 @@
 	else
 		update_icon()
 
-/obj/item/weapon/hand/pickup(mob/user as mob)
+/obj/item/weapon/hand/before_pickup(mob/user as mob)
 	src.update_icon()

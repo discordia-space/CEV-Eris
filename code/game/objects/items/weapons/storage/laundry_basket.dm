@@ -41,7 +41,7 @@
 	user << SPAN_NOTICE("You dump the [src]'s contents onto \the [T].")
 	return ..()
 
-/obj/item/weapon/storage/laundry_basket/pickup(mob/user)
+/obj/item/weapon/storage/laundry_basket/before_pickup(mob/user)
 	var/obj/item/weapon/storage/laundry_basket/offhand/O = new(user)
 	O.name = "[name] - second hand"
 	O.desc = "Your second grip on the [name]."

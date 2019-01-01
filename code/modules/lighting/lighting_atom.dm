@@ -119,7 +119,7 @@
 	. = ..()
 	update_light()
 
-/obj/item/pickup()
+/obj/item/before_pickup()
 	. = ..()
 	update_light()
 
