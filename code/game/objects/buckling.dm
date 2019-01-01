@@ -47,7 +47,7 @@
 	return
 
 /obj/proc/user_buckle_mob(mob/living/M, mob/user)
-	if(!user.Adjacent(M) || user.restrained() || user.lying || user.stat || istype(user, /mob/living/silicon/pai))
+	if(!user.Adjacent(M) || !src.Adjacent(M) || user.restrained() || user.lying || user.stat || istype(user, /mob/living/silicon/pai))
 		return
 	if(M == buckled_mob)
 		return
@@ -58,31 +58,65 @@
 	add_fingerprint(user)
 	unbuckle_mob()
 
-	if(buckle_mob(M))
-		if(M == user)
-			M.visible_message(\
-				SPAN_NOTICE("[M.name] buckles themselves to [src]."),\
-				SPAN_NOTICE("You buckle yourself to [src]."),\
-				SPAN_NOTICE("You hear metal clanking."))
-		else
-			M.visible_message(\
-				SPAN_DANGER("[M.name] is buckled to [src] by [user.name]!"),\
-				SPAN_DANGER("You are buckled to [src] by [user.name]!"),\
-				SPAN_NOTICE("You hear metal clanking."))
+	
+	
+	var/buckleTime = 25
+	if (M == user)
+		user.set_dir(src.dir)
+		buckleTime = 8
+	else
+		user.face_atom(src)
+		//can't buckle unless you share locs so try to move M to the obj.
+		spawn()
+			if(M.loc != src.loc && do_after(user, buckleTime*0.66, src, progress = FALSE))
+				step_towards(M, src)
+				if(user.loc != M.loc)
+					user.do_attack_animation(M)
+		user.visible_message(\
+		SPAN_NOTICE("[user] attempts to buckle [M] into \the [src]!</span>"),
+		SPAN_NOTICE("You attempt to buckle [M] into \the [src]!</span>"),
+		SPAN_NOTICE("You hear metal clanking."))
+	
+	if(do_after(user, buckleTime, src))
+		if(buckle_mob(M))
+			playsound(src.loc, 'sound/machines/Custom_closetopen.ogg', 15, 1, -3)
+			if(M == user)
+				M.visible_message(\
+					SPAN_NOTICE("[M.name] buckles themselves to [src]."),
+					SPAN_NOTICE("You buckle yourself to [src]."),
+					SPAN_NOTICE("You hear metal clanking."),
+					range = 1)
+			else
+				M.visible_message(\
+					SPAN_DANGER("[M.name] is buckled to [src] by [user.name]!"),
+					SPAN_DANGER("You are buckled to [src] by [user.name]!"),
+					SPAN_NOTICE("You hear metal clanking."))
 
 /obj/proc/user_unbuckle_mob(mob/user)
-	var/mob/living/M = unbuckle_mob()
-	if(M)
-		if(M != user)
-			M.visible_message(\
-				SPAN_NOTICE("[M.name] was unbuckled by [user.name]!"),\
-				SPAN_NOTICE("You were unbuckled from [src] by [user.name]."),\
-				SPAN_NOTICE("You hear metal clanking."))
-		else
-			M.visible_message(\
-				SPAN_NOTICE("[M.name] unbuckled themselves!"),\
-				SPAN_NOTICE("You unbuckle yourself from [src]."),\
-				SPAN_NOTICE("You hear metal clanking."))
-		add_fingerprint(user)
-	return M
+	var/unbuckleTime = 18
+	if (buckled_mob == user)
+		unbuckleTime = 6
+	else
+		user.visible_message(\
+		SPAN_NOTICE("[user] attempts to unbuckle [buckled_mob] out of \the [src]!</span>"),
+		SPAN_NOTICE("You attempt to unbuckle [buckled_mob] out of \the [src]!</span>"),
+		SPAN_NOTICE("You hear metal clanking."))
+	if(do_after(user, unbuckleTime, src))
+		var/mob/living/M = unbuckle_mob()
+		if(M)
+			if(user.loc != M.loc)
+				user.do_attack_animation(src)
+			if(M != user)
+				M.visible_message(\
+					SPAN_NOTICE("[M.name] was unbuckled by [user.name]!"),
+					SPAN_NOTICE("You were unbuckled from [src] by [user.name]."),
+					SPAN_NOTICE("You hear metal clanking."))
+			else
+				M.visible_message(\
+					SPAN_NOTICE("[M.name] unbuckled themselves!"),
+					SPAN_NOTICE("You unbuckle yourself from [src]."),
+					SPAN_NOTICE("You hear metal clanking."),
+					range = 1)
+			add_fingerprint(user)
+		return M
 
