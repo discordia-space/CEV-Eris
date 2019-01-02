@@ -10,7 +10,6 @@
 	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_canmove() call.
 
 /mob/living/carbon/human/New(var/new_loc, var/new_species = null)
-//	world << "new"
 	body_build = get_body_build(gender)
 
 	if(!dna)
@@ -88,6 +87,10 @@
 			if(mind.changeling)
 				stat("Chemical Storage", mind.changeling.chem_charges)
 				stat("Genetic Damage Time", mind.changeling.geneticdamage)
+
+		var/obj/item/weapon/implant/core_implant/cruciform/C = get_cruciform()
+		if (C)
+			stat("Cruciform", "[C.power]/[C.max_power]")
 
 /mob/living/carbon/human/ex_act(severity)
 	if(!blinded)
@@ -1053,7 +1056,6 @@ var/list/rank_prefix = list(\
 		usr << SPAN_WARNING("You failed to check the pulse. Try again.")
 
 /mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour)
-//	world << "set species"
 	if(!dna)
 		if(!new_species)
 			new_species = "Human"

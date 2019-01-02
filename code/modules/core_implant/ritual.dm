@@ -7,7 +7,7 @@
 	var/phrase = ""
 	var/power = 0
 	var/chance = 100
-	var/success_message = "Ritual successed."
+	var/success_message = "Ritual successful."
 	var/fail_message = "Ritual failed."
 	var/implant_type = /obj/item/weapon/implant/core_implant
 	var/category = "???"
@@ -105,18 +105,18 @@
 
 
 //Getting mobs
-/datum/ritual/proc/get_grabbed_mob(var/mob/living/carbon/human/user)
+/proc/get_grabbed_mob(var/mob/living/carbon/human/user)
 	var/obj/item/weapon/grab/G = locate(/obj/item/weapon/grab) in user
 
 	if (G && G.affecting && istype(G.affecting, /mob/living))
 		return G.affecting
 	return null
 
-/datum/ritual/proc/get_front_mob(var/mob/living/carbon/human/user)
+/proc/get_front_mob(var/mob/living/carbon/human/user)
 	var/turf/T = get_step(user,user.dir)
 	return (locate(/mob/living) in T)
 
-/datum/ritual/proc/get_victim(var/mob/living/carbon/human/user)
+/proc/get_victim(var/mob/living/carbon/human/user)
 	var/mob/living/L = get_grabbed_mob(user)
 	if (!L)
 		L = get_front_mob(user)
@@ -124,16 +124,29 @@
 
 
 //Getting implants (from mobs usually)
-/datum/ritual/proc/get_coreimplant(var/ctype = /obj/item/weapon/implant/core_implant, var/mob/living/H)
+/proc/get_coreimplant(var/ctype = /obj/item/weapon/implant/core_implant, var/mob/living/H)
 	var/obj/item/weapon/implant/core_implant/CI = locate(ctype) in H
 	return CI
 
-/datum/ritual/proc/get_implant_from_victim(var/mob/living/carbon/human/user, var/ctype = /obj/item/weapon/implant/core_implant)
+/proc/get_implant_from_victim(var/mob/living/carbon/human/user, var/ctype = /obj/item/weapon/implant/core_implant)
 	var/mob/living/L = get_victim(user)
 	return get_coreimplant(ctype, L)
 
 
 //Getting other objects
-/datum/ritual/proc/get_front(var/mob/living/carbon/human/user)
+/proc/get_front(var/mob/living/carbon/human/user)
 	var/turf/T = get_step(user,user.dir)
 	return T.contents
+
+
+/proc/pick_disciple_global(var/mob/user, var/allow_dead = TRUE)
+	var/list/candidates = list()
+	for (var/mob/living/L in disciples)
+		if (QDELETED(L))
+			continue
+		if (!allow_dead && L.stat == DEAD)
+			continue
+
+		candidates += L
+
+	return input(user, "Who do you wish to target?", "Select a disciple") as (null|mob) in candidates

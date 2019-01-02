@@ -18,7 +18,11 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	var/list/purchase_log = new
 	var/datum/mind/uplink_owner = null
 	var/used_TC = 0
-	var/pda_login
+
+
+	var/passive_gain = 0.1 //Number of telecrystals this uplink gains per minute.
+	//The total uses is only increased when this is a whole number
+	var/gain_progress = 0.0
 
 /obj/item/device/uplink/nano_host()
 	return loc
@@ -29,10 +33,29 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	purchase_log = list()
 	world_uplinks += src
 	uses = telecrystals
+	addtimer(CALLBACK(src, .obj/item/device/uplink/proc/gain_TC), 600)
 
 /obj/item/device/uplink/Destroy()
 	world_uplinks -= src
 	return ..()
+
+
+//Passive TC gain, triggers once per minute as long as the owner is alive and active
+/obj/item/device/uplink/proc/gain_TC()
+	addtimer(CALLBACK(src, .obj/item/device/uplink/proc/gain_TC), 600)
+	if (!uplink_owner || !uplink_owner.current)
+		return
+
+	var/mob/M = uplink_owner.current
+	if (M.stat == DEAD)
+		return
+
+	gain_progress += passive_gain
+	if (gain_progress >= 1)
+		uses += 1
+		gain_progress -= 1
+
+
 
 // HIDDEN UPLINK - Can be stored in anything but the host item has to have a trigger for it.
 /* How to create an uplink in 3 easy steps!
@@ -52,10 +75,11 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	var/active = 0
 	var/datum/uplink_category/category 	= 0		// The current category we are in
 	var/exploit_id								// Id of the current exploit record we are viewing
+	var/trigger_code
 
 
 // The hidden uplink MUST be inside an obj/item's contents.
-/obj/item/device/uplink/hidden/New()
+/obj/item/device/uplink/hidden/New(var/location, var/datum/mind/owner, var/telecrystals = DEFAULT_TELECRYSTAL_AMOUNT)
 	spawn(2)
 		if(!istype(src.loc, /obj/item))
 			qdel(src)
@@ -77,7 +101,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 // If true, it accesses trigger() and returns 1. If it fails, it returns false. Use this to see if you need to close the
 // current item's menu.
 /obj/item/device/uplink/hidden/proc/check_trigger(mob/user as mob, var/value)
-	if(value == pda_login)
+	if(value == trigger_code)
 		trigger(user)
 		return 1
 	return 0
@@ -141,10 +165,12 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	else if(nanoui_menu == 1)
 		var/items[0]
 		for(var/datum/uplink_item/item in category.items)
+
 			if(item.can_view(src))
 				var/cost = item.cost(uses)
 				if(!cost) cost = "???"
 				items[++items.len] = list("name" = item.name, "description" = replacetext(item.description(), "\n", "<br>"), "can_buy" = item.can_buy(src), "cost" = cost, "ref" = "\ref[item]")
+
 		nanoui_data["items"] = items
 	else if(nanoui_menu == 2)
 		var/permanentData[0]
