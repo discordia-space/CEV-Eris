@@ -18,6 +18,7 @@ datum/preferences
 	from_file(S["spawnpoint"],            pref.spawnpoint)
 	from_file(S["real_name"],             pref.real_name)
 	from_file(S["name_is_always_random"], pref.be_random_name)
+	from_file(S["religion"], 			  pref.religion)
 
 /datum/category_item/player_setup_item/physical/basic/save_character(var/savefile/S)
 	to_file(S["gender"],                  pref.gender)
@@ -25,6 +26,7 @@ datum/preferences
 	to_file(S["spawnpoint"],              pref.spawnpoint)
 	to_file(S["real_name"],               pref.real_name)
 	to_file(S["name_is_always_random"],   pref.be_random_name)
+	to_file(S["religion"], 				  pref.religion)
 
 /datum/category_item/player_setup_item/physical/basic/sanitize_character()
 	var/datum/species/S = all_species[pref.species ? pref.species : SPECIES_HUMAN]
@@ -33,6 +35,8 @@ datum/preferences
 	pref.gender             = sanitize_inlist(pref.gender, S.genders, pick(S.genders))
 	pref.spawnpoint         = sanitize_inlist(pref.spawnpoint, get_late_spawntypes(), initial(pref.spawnpoint))
 	pref.be_random_name     = sanitize_integer(pref.be_random_name, 0, 1, initial(pref.be_random_name))
+	if(!pref.religion)
+		pref.religion =    "None"
 	// This is a bit noodly. If pref.cultural_info[TAG_CULTURE] is null, then we haven't finished loading/sanitizing, which means we might purge
 	// numbers or w/e from someone's name by comparing them to the map default. So we just don't bother sanitizing at this point otherwise.
 	/*
