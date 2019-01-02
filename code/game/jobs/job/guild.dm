@@ -55,7 +55,7 @@
 		access_mining_station
 	)
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_ROB = 10,
 		STAT_TGH = 10,
 	)
@@ -93,7 +93,7 @@
 	)
 
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_ROB = 20,
 		STAT_TGH = 15,
 		STAT_MEC = 15
