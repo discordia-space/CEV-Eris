@@ -1,38 +1,33 @@
 GLOBAL_LIST_EMPTY(ui_styles)
 
 /*
-/datum/interface/create_using_style(var/datum/UI_style/style)
+/datum/interface/createUsingStyle(var/datum/UI_style/style)
 
-/datum/interface/new_UI_element(var/plane = "noplane")
+/datum/interface/getElementByID()
 
-/datum/interface/get_element_by_id()
+/datum/interface/getElementsByPlaneID(var/id)
 
-/datum/interface/get_element_by_type()
+/datum/interface/hide(var/id)
 
-/datum/interface/get_elements_by_plane(var/plane)
-
-/datum/interface/hide(var/plane)
-
-/datum/interface/show(var/plane)
+/datum/interface/show(var/id)
 
 /datum/interface/validate()
 
 /datum/interface/update()
 
-/datum/interface/move_on_top(var/plane)
+/datum/interface/moveOnTop(var/id)
 
-/datum/interface/move_to_bottom(var/plane)
-
+/datum/interface/moveToBottom(var/id)
 
 
 ###########################################
-/mob/proc/create_UI()
+/client/proc/create_UI(var/mob_type)
 	used in:
 		/datum/mind/proc/transfer_to(mob/living/new_character)
 		/datum/admins/proc/cmd_ghost_drag(var/mob/observer/ghost/frommob, var/mob/living/tomob)
-		/mob/living/Login()
+		/mob/Login()
 
-/mob/proc/destroy_UI()
+/client/proc/destroy_UI()
 	used in:
 		/mob/Logout()
 		/mob/proc/ghostize(var/can_reenter_corpse = 1)
@@ -40,30 +35,45 @@ GLOBAL_LIST_EMPTY(ui_styles)
 */
 
 //TODO:
-//	CREATE BASIC ELEMENTS (OVERLAY, ACTIVABLE BUTTON)
-//	REWRITE AND FILL DATA IN STYLES
-//	CREATE UI
+/*
+//		Improve elements
+//		3 overlays layers under/filling/over
+//	rename planes to layouts
+//	Improve layouts
+		override alignElements with padding(all sides)
+		every element has its own padding that are used in _recalculateAlignmentOffset()
+		TODO: LATER
+			add ablity to lock element and drag it, then save it offset difference in prefs
+			calculate offsets based on saved in prefs
+			scaling UI
+			debug mode
 
-//	MAKE PLANES
+//	CREATE UI
+//	CREATE BASIC ELEMENTS (OVERLAY, ACTIVABLE BUTTON)
+	overlays 
+		that based on flat icon is scaled
+	buttons
+		filling is highlighted when hovered/clicked
+
+//	REWRITE AND FILL DATA IN STYLES
+*/
+
+//	TEST PLANES
 //	complete other procs
-//	move UI to client
-//	icon is not required for batteries in data holder etc
-// 	get style from pref
 
 /datum/interface
 	var/chosenStyle
-	var/list/planes = list()						//	list of planes that used group elements and to determinate in which order to draw elements
-	var/list/HUD_element/ui/_elements = list()		//	list of ui elements
+	var/list/HUD_element/_elements = list()		//	list of all ui elements
 	var/client/observer						
 
 /datum/interface/New(var/client/observer, var/datum/UI_style/style)
 	if(!observer || !istype(observer))
-		log_debug("Error: Passed incorrect observer to interface.")
+		error("Passed incorrect observer to interface.")
 		qdel(src)
 		return
 	src.observer = observer
 	if(style)
-		if(!create_using_style(style))
+		if(!createUsingStyle(style))
 			qdel(src)
 			return
 	. = ..()
@@ -71,131 +81,178 @@ GLOBAL_LIST_EMPTY(ui_styles)
 /datum/interface/Destroy()
 	hide()
 	QDEL_NULL_LIST(_elements)
-	//QDEL_NULL_LIST(planes)
 	. = ..()
 
-/datum/interface/proc/create_using_style(var/datum/UI_style/style)
+/datum/interface/proc/createUsingStyle(var/datum/UI_style/style)
 	if(!style)
-		log_debug("Error: No style.")
+		error("No style.")
 		return FALSE
-	if(!style.UI_data || !style.UI_data.len)
-		log_debug("Error: UI style data is empty.")
+	if(!style._elements || !style._elements.len)
+		
+		error("UI style elements data is empty.")
 		return FALSE
 
 	chosenStyle = style.styleName
-	for (var/UI_elementData/data in style.UI_data)
-		new_UI_element(data.name, data.ui_type, data.icon_state, data.x, data.y, data.plane, data.icon_overlays, data.data)
+	for (var/HUD_element/data in style._elements)
+		src._elements += DuplicateObject(data, TRUE)
 	return TRUE
 
-/datum/interface/proc/new_UI_element(var/name, var/ui_type, var/icon/icon_state, var/x = 0, var/y = 0, var/plane = "noplane", var/icon/icon_overlays, var/data)
-	if(!name || !ui_type || !icon_state)
-		log_debug("Error: interface element will not be created, incorrect data for either name, type or icon_state.")
-		return FALSE
-	var/HUD_element/ui/element = new ui_type(name)
-	element.setName(name)
-	element.setIcon(icon_state)
-	element.setPosition(x,y)
-	if(!planes[plane])
-		planes[plane] = list()
-		planes[plane] += element
+/datum/interface/proc/getElementByID(var/id)
+	for(var/list/HUD_element/element in _elements)
+		if(element.getIdentifier() == id)
+			return element
+	error("No element found with id \"[id]\".")
+
+/datum/interface/proc/hide(var/id)
+	if (!id)
+		for(var/list/HUD_element/element in _elements)
+			element.hide()
 	else
-		planes[plane] += element
-	element.setIconOverlay(icon_overlays)
-	element.setData(data)
+		var/HUD_element/E = getElementByID(id)
+		if(E)
+			E.hide()
+		else
+			error("No element with id \"[id]\" found.")
 
-	_elements += element
-
-/datum/interface/proc/get_element_by_id()
-
-/datum/interface/proc/get_element_by_type()
-
-/datum/interface/proc/get_elements_by_plane(var/plane)
-
-//TODO: rework planes
-//TODO: show/hide planes
-/datum/interface/proc/hide(var/plane)
-	for(var/list/HUD_element/ui/element in _elements)
-		element.hide()
-
-/datum/interface/proc/show(var/plane)
+/datum/interface/proc/show(var/id)
 	if(!observer)
-		log_debug("Error: Interface has no observer.")
+		error("Interface has no observer.")
 		return FALSE
-	if (!plane)
-		for(var/list/HUD_element/ui/element in _elements)
+	if (!id)
+		for(var/list/HUD_element/element in _elements)
 			element.show(observer)
+	else
+		var/HUD_element/E = getElementByID(id)
+		if(E)
+			E.show()
+		else
+			error("No element with id \"[id]\" found.")
 	return TRUE
 
 /datum/interface/proc/validate()
-
+	//TODO: THIS
 /datum/interface/proc/update()
+	//TODO: THIS
 
-/datum/interface/proc/move_on_top(var/plane)
+/datum/interface/proc/moveOnTop(var/id)
+	var/HUD_element/E = getElementByID(id)
+	if(istype(E, /HUD_element))
+		if(E.getElements())
+			for(var/HUD_element/element in E.getElements())
+				E.moveChildOnTop(element.getIdentifier())
+				_elements.Remove(element)
+				_elements.Insert(1,element)
+		else
+			_elements.Remove(E)
+			_elements.Insert(1,E)
+	else
+		error("moveOnTop(): No element with id \"[id]\" found.")
 
-/datum/interface/proc/move_to_bottom(var/plane)
-
-
-//	Holder data type that contains parameters for creating ui element
-/UI_elementData/
-	//	name of the UI element, used as unique identifier for element. There cant be two elements on the screen with the same identifier
-	var/name
-	//	type of the UI element, determinates what type of /HUD_element/ui to create
-	var/ui_type
-	//	name of icon that taken from DMI file to create icon (note that name of DMI file are taken from UI_style datum)
-	var/icon_state
-	//	position of the element on the screen
-	var/x
-	var/y
-	//	plane name that element will be assigned to
-	var/plane
-	//	icon overlays that are put on top of ui element icon (things like inventory icons)
-	var/icon_overlays
-	//	misc data that can be used by /HUD_element/ui
-	var/data
-
-//	Creates holder datatype for ui element, first 3 arguments are mandatory
-/UI_elementData/New(var/name, var/ui_type, var/icon/icon_state, var/x = 0, var/y = 0, var/plane, var/icon/icon_overlays, var/data)
-	if(!name || !type)
-		log_debug("Error: \"UI_elementData\" will not be created, incorrect data for either name or type.")
-	if(name && !istext(name))
-		log_debug("Error: name var is not a string.")
-	if(type && !ispath(ui_type))
-		log_debug("Error: type var is not a path.")
-	if(x == 0 && y == 0)
-		log_debug("Warning: created ui element with no set position.")
-	src.name = name
-	src.ui_type = ui_type
-	src.icon_state = icon_state
-	src.x = x
-	src.y = y
-	src.plane = plane
-	src.icon_overlays = icon_overlays
-	src.data = data
+/datum/interface/proc/moveToBottom(var/id)
+	var/HUD_element/E = getElementByID(id)
+	if(istype(E, /HUD_element))
+		if(E.getElements())
+			for(var/HUD_element/element in E.getElements())
+				E.moveChildToBottom(element.getIdentifier())
+				_elements.Remove(element)
+				_elements.Add(element)
+		else
+			_elements.Remove(E)
+			_elements.Add(E)
+	else
+		error("moveToBottom(): No element with id \"[id]\" found.")
 
 //	UI_style is a datum that initialized at roundstart and stored in global var for easy access
 //	Contains data that used by /datum/interface to build interface
-
+//
+//	To properly align UI to the screen YOU HAVE TO align planes or elements to either main screen or already aligned planes or elements to main screen
+//	STRONGLY KEEP THAT IN MIND otherwise UI will fucked up when client.view var is changed
 /datum/UI_style
 	var/mobtype
 	var/styleName
 
-	var/list/UI_elementData/UI_data = list()
+	var/list/HUD_element/_elements = list()
+
 	var/list/storageData = list()
 
-/hook/startup/proc/generate_UI_styles()
+/datum/UI_style/proc/newUIElement(var/name, var/ui_type, var/icon/icon_state, var/x = 0, var/y = 0, var/list/icon_overlays, var/data)
+	if(!name || !ui_type)
+		error("interface element will not be created, incorrect data for either name or type")
+		return FALSE
+	if(name && !istext(name))
+		error("name var is not a string.")
+		return FALSE
+	if(ui_type && !ispath(ui_type))
+		error("type var is not a path.")
+		return FALSE
+
+	var/HUD_element/element = new ui_type(name)
+	element.setName(name)
+	if(icon_state)
+		element.setIcon(icon_state)
+	element.setPosition(x,y)
+
+	if(icon_overlays)
+		element.setIconOverlays(icon_overlays)
+	if(data)
+		element.setData(data)
+
+	_elements += element
+
+	return element
+
+//	ENSURING THAT STYLE IS CREATED PROPERLY
+/datum/UI_style/proc/validate()
+	var/failed = FALSE
+	if(!mobtype)
+		error("UI style has no assigned mob type.")
+		failed = TRUE
+	if(!styleName)
+		error("UI style has no name.")
+		failed = TRUE
+	if(!_elements || !_elements.len)
+		error("UI style has no elements.")
+		failed = TRUE
+	for(var/HUD_element/E in _elements)
+		if(E.getParent())
+			continue
+		else
+			if(E.getAlignmentHorizontal() == HUD_NO_ALIGNMENT && E.getAlignmentVertical() == HUD_NO_ALIGNMENT)
+				error("YOU DONE GOOFED, i told you that elements without parent should have aligment to screen. Look /datum/UI_style/ docs and /HUD_element/proc/setAlignment(var/horizontal, var/vertical).")
+				failed = TRUE
+	if(failed)
+		error("UI style are created incorrected, see errors above.")
+		return FALSE
+	return TRUE
+
+
+
+/hook/startup/proc/generateUIStyles()
 	for(var/UI_type in typesof(/datum/UI_style)-/datum/UI_style)
 		var/datum/UI_style/UI = new UI_type()
+		if(!GLOB.ui_styles[UI.mobtype])
+			GLOB.ui_styles[UI.mobtype] = list()
 		GLOB.ui_styles[UI.mobtype] += UI
+		//I wont forbid incorectly created UI's to populate list (maybe for testing reasons), but they will have to be fixed anyway
+		UI.validate()
 	return TRUE
 
 /datum/UI_style/AI_Eris
 	mobtype = /mob/living/silicon/ai
-	styleName = "Eris"
+	styleName = "ErisStyle"
 
 /datum/UI_style/AI_Eris/New()
-			 ///UI_elementData/New(var/name, var/ui_type, var/icon/icon_state, var/x = 0, var/y = 0, var/plane, var/icon/icon_overlays, var/data)
-	UI_data += new /UI_elementData("AI Core", /HUD_element/ui/button, icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"button_thin"), 20, 20, "actionPanel", icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"core"))
-	UI_data += new /UI_elementData("Email", /HUD_element/ui/button, icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"button_thin"), 30, 30, "actionPanel", icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"email"))
+	//newUIElement(var/name, var/ui_type, var/icon/icon_state, var/x = 0, var/y = 0, var/list/icon_overlays, var/data)
+	var/HUD_element/layout/actionPanel = newUIElement("actionPanel", /HUD_element/layout)
+	
+	var/list/HUD_element/actions = list()
+	actions += newUIElement("AI Core", /HUD_element/button/thin, null, 0, 0, list("filling" = icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"core")))
+	actions += newUIElement("Email", /HUD_element/button/thin, null, 32, 0, list("filling" = icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"email")))
+
+	actionPanel.alignElements(HUD_HORIZONTAL_WEST_INSIDE_ALIGNMENT, HUD_NO_ALIGNMENT, actions)
+	//panel is aligned to screen because it has no parent
+	actionPanel.setAlignment(HUD_CENTER_ALIGNMENT, HUD_VERTICAL_SOUTH_INSIDE_ALIGNMENT)
+
 
 /*
 /mob/living/silicon/ai/update_hud()

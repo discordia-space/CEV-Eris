@@ -6,6 +6,7 @@ each element can only be seen by 1 client
 element identifiers are used to manage different hud parts for clients, f.e. there can be only one "storage" identifier element displayed for a client
 */
 
+
 /HUD_element
 	parent_type = /atom/movable
 
@@ -50,6 +51,14 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 	var/proc/_clickProc //called when element is clicked
 	var/list/_data //internal storage that can be utilized by _clickProc
 
+	var/list/_icon_overlays = list()
+
+	//padding is used in _recalculateAlignmentOffset() to make indent between aligned elements
+	var/_padding_top = 0
+	var/_padding_right = 0
+	var/_padding_bottom = 0
+	var/_padding_left = 0
+
 /HUD_element/New(var/identifier)
 	_elements = new
 	_identifier = identifier
@@ -72,6 +81,9 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 	if (parent)
 		parent.getElements().Remove(src)
 		_setParent()
+	
+	for(var/name in _icon_overlays)
+		qdel(_icon_overlays[name])
 
 	return QDEL_HINT_QUEUE
 

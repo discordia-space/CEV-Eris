@@ -1170,17 +1170,3 @@ mob/proc/yank_out_object()
 /mob/proc/has_admin_rights()
 	return check_rights(R_ADMIN, 0, src)
 
-//TODO complete this, make default UI setting for every mob type and create it here
-//this is not complete
-/mob/proc/create_UI()
-	if(!UI)
-		if(client && defaultHUD)
-			UI = new(client, GLOB.ui_styles[src.type])
-	if(UI)
-		UI.show()
-
-/mob/proc/destroy_UI()
-	if(UI)
-		qdel(UI)
-		UI = null
-

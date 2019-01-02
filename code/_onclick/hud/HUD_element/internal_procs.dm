@@ -5,53 +5,73 @@ see external_procs.dm for usable procs and documentation on how to use them
 
 /HUD_element/proc/_recalculateAlignmentOffset()
 	/*
-	horizontal/vertical alignment values:
-	0 == no alignment
-	1 == bordering west/south side of parent from outside
-	2 == bordering west/south side of parent from inside
-	3 == center of parent
-	4 == bordering east/north side of parent from inside
-	5 == bordering east/north side of parent from outside
-	*/
+	- look HUD_defines.dm for arguments
 
-	//todo: no parent means align relative to screen/view
+	- in order to calculate screen width and height we use client.view which represents radius of screen
+	- we calculate size in pixels using (2 * (_observer ? _observer.view : 7) + 1) * 32
+	*/
 	var/HUD_element/parent = getParent()
 	switch (_currentAlignmentHorizontal)
-		if (0)
+		if (HUD_NO_ALIGNMENT)
 			_alignmentOffsetX = 0
-		if (1)
-			_alignmentOffsetX = -getWidth()
-		if (2)
-			_alignmentOffsetX = 0
-		if (3)
+		if (HUD_HORIZONTAL_WEST_OUTSIDE_ALIGNMENT)
+			if (!parent)
+				error("Trying to align outside of the screen.")
+			else
+				_alignmentOffsetX = -getWidth()
+		if (HUD_HORIZONTAL_WEST_INSIDE_ALIGNMENT)
+			if (!parent)
+				_alignmentOffsetX = _absolutePositionX * -1
+			else
+				_alignmentOffsetX = 0
+		if (HUD_CENTER_ALIGNMENT)
 			if (parent)
 				_alignmentOffsetX = parent.getWidth()/2 - getWidth()/2
-		if (4)
+			else if (!parent)
+				_alignmentOffsetX = ((2 * (_observer ? _observer.view : 7) + 1) * 32)/2 - (getWidth()/2)
+		if (HUD_HORIZONTAL_EAST_INSIDE_ALIGNMENT)
 			if (parent)
 				_alignmentOffsetX = parent.getWidth() - getWidth()
-		if (5)
-			if (parent)
+			else if (!parent)
+				_alignmentOffsetX = (2 * (_observer ? _observer.view : 7) + 1) * 32 - _absolutePositionX - getWidth()
+		if (HUD_HORIZONTAL_EAST_OUTSIDE_ALIGNMENT)
+			if (!parent)
+				error("Trying to align outside of the screen.")
+			else if (parent)
 				_alignmentOffsetX = parent.getWidth()
 		else
+			error("Passed wrong argument for horizontal alignment.")
 			_alignmentOffsetX = 0
 
 	switch (_currentAlignmentVertical)
-		if (0)
+		if (HUD_NO_ALIGNMENT)
 			_alignmentOffsetY = 0
-		if (1)
+		if (HUD_VERTICAL_SOUTH_OUTSIDE_ALIGNMENT)
+			if (!parent)
+				error("Trying to align outside of the screen.")
 			_alignmentOffsetY = -getHeight()
-		if (2)
-			_alignmentOffsetY = 0
-		if (3)
+		if (HUD_VERTICAL_SOUTH_INSIDE_ALIGNMENT)
+			if (!parent)
+				_alignmentOffsetY = _absolutePositionY * -1
+			else
+				_alignmentOffsetY = 0
+		if (HUD_CENTER_ALIGNMENT)
 			if (parent)
 				_alignmentOffsetY = parent.getHeight()/2 - getHeight()/2
-		if (4)
+			else if (!parent)
+				_alignmentOffsetY = ((2 * (_observer ? _observer.view : 7) + 1) * 32)/2 - (getHeight()/2)
+		if (HUD_VERTICAL_NORTH_INSIDE_ALIGNMENT)
 			if (parent)
 				_alignmentOffsetY = parent.getHeight() - getHeight()
-		if (5)
-			if (parent)
+			else if (!parent)
+				_alignmentOffsetY = (2 * (_observer ? _observer.view : 7) + 1) * 32 - _absolutePositionY - getHeight()
+		if (HUD_VERTICAL_NORTH_OUTSIDE_ALIGNMENT)
+			if (!parent)
+				error("Trying to align outside of the screen.")
+			else if (parent)
 				_alignmentOffsetY = parent.getHeight()
 		else
+			error("Passed wrong argument for vertical alignment.")
 			_alignmentOffsetY = 0
 
 /HUD_element/proc/_updatePosition()
@@ -114,7 +134,35 @@ see external_procs.dm for usable procs and documentation on how to use them
 
 	return src
 
+/HUD_element/proc/_disconnectElement(var/HUD_element/E)
+	if (!E)
+		log_to_dd("Error: Invalid HUD element '[E]'")
+		return
+
+	var/list/HUD_element/elements = getElements()
+	if (elements.Find(E))
+		elements.Remove(E)
+
+	E._unsetParent()
+	
+	return src
+
 /HUD_element/proc/_setParent(var/HUD_element/E)
 	_parent = E
 
+	return src
+
+/HUD_element/proc/_unsetParent()
+	_parent = null
+
+	return src
+
+/HUD_element/proc/_updateOverlays()
+	overlays.Cut()
+	if(_icon_overlays["bottom"])
+		overlays += _icon_overlays["bottom"]
+	if(_icon_overlays["filling"])
+		overlays += _icon_overlays["filling"]
+	if(_icon_overlays["covering"])
+		overlays += _icon_overlays["covering"]
 	return src

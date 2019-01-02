@@ -371,3 +371,22 @@
 
 	. = ..()
 	sleep(1)
+
+/client/proc/create_UI(var/mob_type)
+	if(!UI)
+		var/success = FALSE
+		for(var/datum/UI_style/style in GLOB.ui_styles[mob_type])
+			if(style.styleName == prefs.UI_style)
+				UI = new(src, style)
+				success = TRUE
+				break
+		if(!success)
+			log_debug("Could not find style \"[prefs.UI_style]\" for [mob_type].")
+				
+	if(UI)
+		UI.show()
+
+/client/proc/destroy_UI()
+	if(UI)
+		qdel(UI)
+		UI = null

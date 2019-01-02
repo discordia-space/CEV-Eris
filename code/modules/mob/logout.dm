@@ -8,6 +8,7 @@
 
 			message_admins("Admin logout: [key_name(src)]")
 
-	destroy_UI()
+	if(client && client.UI)
+		client.UI.hide()
 	..()
 	return 1

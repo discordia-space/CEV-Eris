@@ -2,6 +2,9 @@
 add(var/HUD_element/newElement) -> /HUD_element/newElement
 - adds child element into parent element, element position is relative to parent
 
+remove(var/HUD_element/element) -> /HUD_element/element
+- removes child and usets childs parent
+
 getClickProc() -> /proc/clickProc
 setClickProc(var/proc/P) -> src
 - sets a proc that will be called when element is clicked, in byond proc Click()
@@ -56,15 +59,10 @@ updateIconInformation() -> src
 
 getAlignmentVertical() -> alignmentVertical
 getAlignmentHorizontal() -> alignmentHorizontal
-setAlignment(var/horizontal, var/vertical) -> src
+setAlignment(var/horizontal, var/vertical, var/HUD_element/newParent) -> src
 - sets alignment behavior for element, relative to parent, null arguments indicate not to change the relevant alignment
-- values for arguments:
-	0 == no alignment
-	1 == bordering west/south side of parent from outside
-	2 == bordering west/south side of parent from inside
-	3 == center of parent
-	4 == bordering east/north side of parent from inside
-	5 == bordering east/north side of parent from outside
+- look HUD_defines.dm for arguments
+	
 
 getPositionX() -> x
 getPositionY() -> y
@@ -105,7 +103,35 @@ show(var/client/C) -> src
 hide() -> src || null
 - hides element from client
 - returns null if element deleted itself
+
+setIconOverlays(var/icon/iconOverlays)
+- sets icon overlays
+- accepts only associative list
+
+updateIcon()
+- Updates icon using overlays
+- overlays must be named list
+-	default names ("bottom", "filling", "covering")
+-	3 layers are more that enought in most cases, user overriden proc for special cases
+
+getIconOverlays() -> _iconOverlays
+- gets icon overlays
+
+getChildElementWithID(var/id) -> /HUD_element || null
+- return child element with identifier id or null if none
+
+moveChildOnTop(var/id) -> /HUD_element || null
+- return moved element with identifier id or null if none
+
+moveChildToBottom(var/id) -> /HUD_element || null
+- return moved element with identifier id or null if none
+
+alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HUD_element || null
+- return src if aligned atleast one objects from targets
+
+
 */
+
 
 /HUD_element/proc/add(var/HUD_element/newElement)
 	newElement = newElement || new
@@ -113,6 +139,9 @@ hide() -> src || null
 
 	return newElement
 
+/HUD_element/proc/remove(var/HUD_element/element)
+	if(_disconnectElement(element))
+		return element
 
 /HUD_element/proc/setClickProc(var/proc/P)
 	_clickProc = P
@@ -241,6 +270,7 @@ hide() -> src || null
 /HUD_element/proc/setIcon(var/icon/I)
 	icon = I
 	updateIconInformation()
+	updateIcon()
 
 	return src
 
@@ -260,6 +290,7 @@ hide() -> src || null
 	underlays = A.underlays
 
 	updateIconInformation()
+	updateIcon()
 
 	return src
 
@@ -285,6 +316,14 @@ hide() -> src || null
 
 	return src
 
+/HUD_element/proc/alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets)
+	if(targets && targets.len)
+		for (var/list/HUD_element/T in targets)
+			src.add(T)
+			T.setAlignment(horizontal,vertical)
+	else
+		return
+	return src
 
 /HUD_element/proc/setAlignment(var/horizontal, var/vertical)
 	if (horizontal != null)
@@ -432,3 +471,66 @@ hide() -> src || null
 		return
 
 	return src
+
+/HUD_element/proc/setIconOverlays(var/icon/iconOverlays)
+	if(!is_associative(iconOverlays))
+		error("List is not associative")
+		return
+		
+	for (var/name in iconOverlays)
+		_icon_overlays[name] = iconOverlays[name]
+
+	updateIcon()
+	return src
+
+/HUD_element/proc/updateIcon()
+	_updateOverlays()
+	return src
+
+/HUD_element/proc/getIconOverlays()
+	return _icon_overlays
+
+/HUD_element/proc/getChildElementWithID(var/id)
+	for(var/list/HUD_element/element in getElements())
+		if(element.getIdentifier() == id)
+			return element
+	error("No element found with id \"[id]\".")
+
+/HUD_element/proc/moveChildOnTop(var/id)
+	if(!_elements.len)
+		error("Element has no child elements.")
+		return
+	var/HUD_element/E = getChildElementWithID(id)
+	if (E)
+		_elements.Remove(E)
+		_elements.Insert(1,E)
+		return E
+	else
+		error("moveChildOnTop(): No element with id \"[id]\" found.")
+
+/HUD_element/proc/moveChildToBottom(var/id)
+	if(!_elements.len)
+		error("Element has no child elements.")
+		return
+	var/HUD_element/E = getChildElementWithID(id)
+	if (E)
+		_elements.Remove(E)
+		_elements.Add(E)
+		return E
+	else
+		error("moveChildToBottom(): No element with id \"[id]\" found.")
+
+/HUD_element/proc/setPadding(var/top,var/right,var/bottom,var/left)		
+	
+	//applying padding here
+	_padding_top = top
+	_padding_right = right
+	_padding_bottom = bottom
+	_padding_left = left
+	/*
+	if(_padding_top || _padding_right || _padding_bottom || _padding_left)
+		//container = new("[getIdentifier()]_container", _padding_top, _padding_right, _padding_bottom, _padding_left)
+	else
+		//qdel(contaniner)
+*/
+	_recalculateAlignmentOffset()
