@@ -21,7 +21,19 @@
 	var/machine_understands = 1 		  		// Whether machines can parse and understand this language
 	var/shorthand = "CO"						// Shorthand that shows up in chat for this language.
 
+	//Random name lists
+	var/name_lists = FALSE
+	var/first_names_male = list()
+	var/first_names_female = list()
+	var/last_names = list()
 /datum/language/proc/get_random_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
+	//This language has its own name lists
+	if (name_lists)
+		if(gender==FEMALE)
+			return capitalize(pick(first_names_female)) + " " + capitalize(pick(GLOB.last_names))
+		else
+			return capitalize(pick(first_names_male)) + " " + capitalize(pick(GLOB.last_names))
+
 	if(!syllables || !syllables.len)
 		if(gender==FEMALE)
 			return capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
@@ -38,6 +50,18 @@
 		full_name += " [capitalize(lowertext(new_name))]"
 
 	return "[trim(full_name)]"
+
+//A wrapper for the above that gets a random name and sets it onto the mob
+/datum/language/proc/set_random_name(var/mob/M, name_count=2, syllable_count=4, syllable_divisor=2)
+	var/mob/living/carbon/human/H = null
+	if (ishuman(M))
+		H = M
+
+	var/oldname = M.name
+	if (H)
+		oldname = H.real_name
+	M.fully_replace_character_name(oldname, get_random_name(M.get_gender(), name_count, syllable_count, syllable_divisor))
+
 
 /datum/language
 	var/list/scramble_cache = list()
@@ -154,6 +178,13 @@
 	if(default_language == L)
 		default_language = null
 	return ..()
+
+
+/mob/living/proc/set_default_language(var/langname)
+	var/datum/language/L = all_languages[langname]
+	if (!(L in languages))
+		languages.Add(L)
+	default_language = L
 
 // Can we speak this language, as opposed to just understanding it?
 /mob/proc/can_speak(datum/language/speaking)

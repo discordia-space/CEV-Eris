@@ -11,9 +11,10 @@
 	var/list/whitelist
 	var/list/blacklist
 
-/datum/nano_module/appearance_changer/New(var/location, var/mob/living/carbon/human/H, var/check_species_whitelist = 1, var/list/species_whitelist = list(), var/list/species_blacklist = list())
+/datum/nano_module/appearance_changer/New(var/location, var/mob/living/carbon/human/H, var/check_species_whitelist = 1, var/list/species_whitelist = list("human"), var/list/species_blacklist = list())
 	..()
 	owner = H
+	world << "New appearance changer: [check_species_whitelist]"
 	src.check_whitelist = check_species_whitelist
 	src.whitelist = species_whitelist
 	src.blacklist = species_blacklist
@@ -30,6 +31,11 @@
 	if(href_list["gender"])
 		if(can_change(APPEARANCE_GENDER) && (href_list["gender"] in owner.species.genders))
 			if(owner.change_gender(href_list["gender"]))
+				cut_and_generate_data()
+				return 1
+	if(href_list["build"])
+		if(can_change(APPEARANCE_BUILD))
+			if(owner.change_build(href_list["build"]))
 				cut_and_generate_data()
 				return 1
 	//if(href_list["skin_tone"])
@@ -89,6 +95,7 @@
 
 	data["specimen"] = owner.species.name
 	data["gender"] = owner.gender
+	data["build"] = owner.body_build.name
 	data["change_race"] = can_change(APPEARANCE_RACE)
 	if(data["change_race"])
 		var/species[0]
@@ -102,6 +109,17 @@
 		for(var/gender in owner.species.genders)
 			genders[++genders.len] =  list("gender_name" = gender2text(gender), "gender_key" = gender)
 		data["genders"] = genders
+
+	data["change_build"] = can_change(APPEARANCE_BUILD)
+	if(data["change_build"])
+		data["builds"] = list()
+		if (owner.gender == MALE)
+			for (var/a in male_body_builds)
+				data["builds"] += a
+		else
+			for (var/a in female_body_builds)
+				data["builds"] += a
+
 	data["change_skin_tone"] = can_change_skin_tone()
 	data["change_skin_color"] = can_change_skin_color()
 	data["change_eye_color"] = can_change(APPEARANCE_EYE_COLOR)
@@ -153,6 +171,7 @@
 	if(!owner)
 		return
 	if(!valid_species.len)
+		world << "Appearance changer generating species list [check_whitelist], [whitelist.len] [blacklist.len]"
 		valid_species = owner.generate_valid_species(check_whitelist, whitelist, blacklist)
 	if(!valid_hairstyles.len || !valid_facial_hairstyles.len)
 		valid_hairstyles = owner.generate_valid_hairstyles(check_gender = 0)

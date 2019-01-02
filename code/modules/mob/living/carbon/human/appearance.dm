@@ -18,13 +18,31 @@
 	return 1
 
 /mob/living/carbon/human/proc/change_gender(var/gender)
+	world << "Changing gender to [gender]"
 	if(src.gender == gender)
+		world << "We already are that gender, aborting"
 		return
 
 	src.gender = gender
-	reset_hair()
-	update_body()
-	update_dna()
+	var/datum/body_build/B = src.body_build
+	world << "Attempting to get bodybuild for [B.name] [gender]"
+	body_build = get_body_build(gender, B.name)
+	world << "The build we got is [body_build] [body_build.name] [body_build.gender]"
+	regenerate_icons() //This is overkill, but we do need to update all of the clothing. Maybe there's a more precise call
+	//reset_hair()
+	//update_body()
+	//update_dna()
+	return 1
+
+/mob/living/carbon/human/proc/change_build(var/build)
+	if(build == body_build.name)
+		return
+
+	body_build = get_body_build(gender, build)
+	regenerate_icons() //This is overkill, but we do need to update all of the clothing. Maybe there's a more precise call
+	//reset_hair()
+	//update_body()
+	//update_dna()
 	return 1
 
 /mob/living/carbon/human/proc/change_hair(var/hair_style)
@@ -134,7 +152,7 @@
 	for(var/current_species_name in all_species)
 		var/datum/species/current_species = all_species[current_species_name]
 
-		if(check_whitelist && !check_rights(R_ADMIN, 0, src)) //If we're using the whitelist, make sure to check it!
+		if(check_whitelist)// && !check_rights(R_ADMIN, 0, src)) //If we're using the whitelist, make sure to check it!
 			if(!(current_species.spawn_flags & CAN_JOIN))
 				continue
 			if(whitelist.len && !(current_species_name in whitelist))

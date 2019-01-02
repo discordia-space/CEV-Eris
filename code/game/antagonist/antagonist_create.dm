@@ -9,7 +9,6 @@
 
 	owner = target
 	target.antagonist.Add(src)
-
 	if(outer)
 		if(!ispath(mob_path))
 			owner = null
@@ -22,9 +21,13 @@
 
 		place_antagonist()
 
+		if (appearance_editor)
+			spawn(3)
+				var/mob/living/carbon/human/H = owner.current
+				if(istype(H))
+					H.change_appearance(APPEARANCE_ALL, H.loc, H, TRUE, list("Human"), state = GLOB.z_state)
 
 	current_antags.Add(src)
-
 	special_init()
 
 	if(new_faction)
@@ -56,8 +59,20 @@
 		log_debug("ANTAGONIST mob_path in [id] is not path! ([mob_path])")
 		return FALSE
 
+
 	var/mob/M = new mob_path(null)
 	M.client = ghost.client
+	world <<"Creating antag from ghost [M] [M.type] \ref[M]"
+
+	//Load your character setup onto the new mob, only if human
+	if (load_character && ishuman(M))
+
+		var/datum/preferences/P = M.client.prefs
+		world <<"Loading character from prefs [P]"
+		P.copy_to(M, FALSE)
+		world <<"Done loading prefs ref is \ref[M]"
+
+
 
 	if(!M.mind)
 		log_debug("ANTAGONIST mob, which created from mob_path has no mind. ([M] - \ref[M] : [mob_path])")
@@ -65,7 +80,8 @@
 		qdel(M)
 		return FALSE
 
-	return create_antagonist(M.mind, new_faction, doequip, announce, update)
+	world <<"About to call create_antagonist. M: \ref[M] Current: \ref[M.mind.current]"
+	return create_antagonist(M.mind, new_faction, doequip, announce, update = FALSE)
 
 /datum/antagonist/proc/create_faction()
 	if(!faction && faction_id)
@@ -107,3 +123,4 @@
 		return
 	var/turf/T = pick_mobless_turf_if_exists(GLOB.antag_starting_locations[id])
 	owner.current.forceMove(T)
+	world << "Mob \ref[owner.current] successfully moved to [jumplink(T)]"

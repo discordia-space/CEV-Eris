@@ -11,6 +11,14 @@
 	//For every [scaling_threshold] non-antag players in the crew, we will spawn one extra antag
 	//Set to 0 to disable this feature
 
+	var/max_quantity = 6 //Never spawn more than this many
+
+
+	//Whenever we ask a player to become this antag but they decline, they will be recorded here.
+	//They will not be asked again until a certain time has passed
+	var/list/request_log = list()
+	var/request_timeout = 60 MINUTES
+
 	//Transient vars, these are specific to one triggering of the event
 	var/tmp/target_quantity = 0 //How many copies of this antag we are currently attempting to spawn, based on the above
 	var/tmp/success_quantity = 0 //How many copies we have successfully spawned so far
@@ -66,6 +74,13 @@
 			if(!candidate.client)
 				if (report) report << SPAN_NOTICE("Failure: [candidate] is disconnected")
 				continue
+
+			//Lets check if we asked them recently to prevent spam
+			if ((candidate.key in request_log))
+				var/last_request = request_log[candidate.key]
+				if ((world.time - last_request) < request_timeout)
+					if (report) report << SPAN_NOTICE("Failure: [candidate] was already asked too recently")
+					continue
 			if(!temp.can_become_antag_ghost(candidate))
 				if (report) report << SPAN_NOTICE("Failure: [candidate] can't become this antag from ghost")
 				continue
@@ -78,6 +93,7 @@
 			//Activity test
 			if(act_test)
 				spawn()
+					request_log[candidate.key] = world.time //Record this request so we don't spam them repeatedly
 					usr = candidate
 					if(alert("Do you want to become the [temp.role_text]? Hurry up, you have 20 seconds to make choice!","Antag lottery","OH YES","No, I'm autist") == "OH YES")
 						if(!agree_time_out)
@@ -202,3 +218,5 @@
 	//We add extra antags based on crew numbers
 	if (scaling_threshold && num_crew >= scaling_threshold)
 		target_quantity += round(num_crew / scaling_threshold)
+
+	target_quantity = min(target_quantity, max_quantity)

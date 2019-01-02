@@ -35,17 +35,24 @@
 	. += "<b>Special Role Availability:</b><br>"
 	. += "<table>"
 
+	var/list/bantypes
 	for(var/A in GLOB.all_antag_selectable_types)
 		var/datum/antagonist/antag = GLOB.all_antag_selectable_types[A]
+
+		//Multiple antags can share one bantype, we only want it to be shown once
+		if (antag.bantype in bantypes)
+			continue
+
+		bantypes += antag.bantype
 		. += "<tr><td>[antag.bantype]: </td><td>"
 		if(jobban_isbanned(preference_mob(), antag.bantype) || (antag.id == ROLE_MALFUNCTION && jobban_isbanned(preference_mob(), "AI")))
 			. += "<span class='danger'>\[BANNED\]</span><br>"
 		else if(antag.bantype in pref.be_special_role)
-			. += "<span class='linkOn'>High</span> <a href='?src=\ref[src];del_special=[antag.bantype]'>Low</a> <a href='?src=\ref[src];add_never=[antag.bantype]'>Never</a></br>"
+			. += "<span class='linkOn'>Yes</span> <a href='?src=\ref[src];add_never=[antag.bantype]'>Never</a></br>"
 		else if(antag.bantype in pref.never_be_special_role)
-			. += "<a href='?src=\ref[src];add_special=[antag.bantype]'>High</a> <a href='?src=\ref[src];del_special=[antag.bantype]'>Low</a> <span class='linkOn'>Never</span></br>"
+			. += "<a href='?src=\ref[src];add_special=[antag.bantype]'>Yes</a> <span class='linkOn'>Never</span></br>"
 		else
-			. += "<a href='?src=\ref[src];add_special=[antag.bantype]'>High</a> <span class='linkOn'>Low</span> <a href='?src=\ref[src];add_never=[antag.bantype]'>Never</a></br>"
+			. += "<a href='?src=\ref[src];add_special=[antag.bantype]'>Yes</a> <a href='?src=\ref[src];add_never=[antag.bantype]'>Never</a></br>"
 		. += "</td></tr>"
 
 	var/list/ghost_traps = get_ghost_traps()
@@ -58,13 +65,13 @@
 		if(banned_from_ghost_role(preference_mob(), ghost_trap))
 			. += "<span class='danger'>\[BANNED\]</span><br>"
 		else if(ghost_trap.pref_check in pref.be_special_role)
-			. += "<span class='linkOn'>High</span> <a href='?src=\ref[src];del_special=[ghost_trap.pref_check]'>Low</a> <a href='?src=\ref[src];add_never=[ghost_trap.pref_check]'>Never</a></br>"
+			. += "<span class='linkOn'>Yes</span>  <a href='?src=\ref[src];add_never=[ghost_trap.pref_check]'>Never</a></br>"
 		else if(ghost_trap.pref_check in pref.never_be_special_role)
-			. += "<a href='?src=\ref[src];add_special=[ghost_trap.pref_check]'>High</a> <a href='?src=\ref[src];del_special=[ghost_trap.pref_check]'>Low</a> <span class='linkOn'>Never</span></br>"
+			. += "<a href='?src=\ref[src];add_special=[ghost_trap.pref_check]'>Yes</a>  <span class='linkOn'>Never</span></br>"
 		else
-			. += "<a href='?src=\ref[src];add_special=[ghost_trap.pref_check]'>High</a> <span class='linkOn'>Low</span> <a href='?src=\ref[src];add_never=[ghost_trap.pref_check]'>Never</a></br>"
+			. += "<a href='?src=\ref[src];add_special=[ghost_trap.pref_check]'>Yes</a><a href='?src=\ref[src];add_never=[ghost_trap.pref_check]'>Never</a></br>"
 		. += "</td></tr>"
-	. += "<tr><td>Select All: </td><td><a href='?src=\ref[src];select_all=2'>High</a> <a href='?src=\ref[src];select_all=1'>Low</a> <a href='?src=\ref[src];select_all=0'>Never</a></td></tr>"
+	. += "<tr><td>Select All: </td><td><a href='?src=\ref[src];select_all=1'>Yes</a> <a href='?src=\ref[src];select_all=0'>Never</a></td></tr>"
 	. += "</table>"
 	. = jointext(.,null)
 
@@ -104,9 +111,6 @@
 					pref.be_special_role -= id
 					pref.never_be_special_role |= id
 				if(1)
-					pref.be_special_role -= id
-					pref.never_be_special_role -= id
-				if(2)
 					pref.be_special_role |= id
 					pref.never_be_special_role -= id
 		return TOPIC_REFRESH
