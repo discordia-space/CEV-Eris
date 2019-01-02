@@ -27,6 +27,8 @@
 	new /obj/item/weapon/tool/shovel(src)
 	new /obj/item/weapon/tool/pickaxe(src)
 	new /obj/item/weapon/tool/pickaxe/jackhammer(src)
+	new /obj/item/device/t_scanner(src)
+	new /obj/random/tool_upgrade(src)
 
 /******************************Lantern*******************************/
 

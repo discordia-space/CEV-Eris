@@ -112,6 +112,12 @@ var/global/list/robot_modules = list(
 		T.degradation = 0 //We don't want robot tools breaking
 
 
+	for (var/obj/item/I in modules)
+		for (var/obj/item/weapon/cell/C in I)
+			C.charge = 999999999 //A quick hack to stop robot modules running out of power
+			//Later they'll be wired to the robot's central battery once we code functionality for that
+			//Setting it to infinity causes errors, so just a high number is fine
+
 /obj/item/weapon/robot_module/proc/Reset(var/mob/living/silicon/robot/R)
 	remove_camera_networks(R)
 	remove_languages(R)
@@ -258,6 +264,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/tool/crowbar/robotic(src)
 	src.modules += new /obj/item/device/scanner/healthanalyzer(src)
 	src.modules += new /obj/item/weapon/gripper(src)
+	src.modules += new /obj/item/device/t_scanner(src)
 	src.emag = new /obj/item/weapon/melee/energy/sword(src)
 
 	var/datum/matter_synth/medicine = new /datum/matter_synth/medicine(10000)
@@ -747,6 +754,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/device/lightreplacer(src)
 	src.modules += new /obj/item/weapon/reagent_containers/glass/bucket(src) // a hydroponist's bucket
 	src.modules += new /obj/item/weapon/matter_decompiler(src) // free drone remains for all
+	src.modules += new /obj/item/device/t_scanner(src)
 	src.emag = new /obj/item/weapon/reagent_containers/spray(src)
 	src.emag.reagents.add_reagent("lube", 250)
 	src.emag.name = "Lube spray"
@@ -892,6 +900,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/storage/bag/sheetsnatcher/borg(src)
 	src.modules += new /obj/item/weapon/gripper/miner(src)
 	src.modules += new /obj/item/weapon/mining_scanner(src)
+	src.modules += new /obj/item/device/t_scanner(src)
 	//src.emag = new /obj/item/weapon/gun/energy/plasmacutter/mounted(src)
 	..(R)
 
@@ -1029,6 +1038,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/tool/crowbar/robotic(src)
 	src.modules += new /obj/item/weapon/tool/wirecutters/robotic(src)
 	src.modules += new /obj/item/weapon/tool/multitool/robotic(src)
+	src.modules += new /obj/item/device/t_scanner(src)
 	src.modules += new /obj/item/device/lightreplacer(src)
 	src.modules += new /obj/item/weapon/gripper(src)
 	src.modules += new /obj/item/weapon/soap(src)
