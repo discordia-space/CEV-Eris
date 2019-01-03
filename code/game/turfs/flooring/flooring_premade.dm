@@ -79,6 +79,10 @@
 	icon_state = "tiles"
 	initial_flooring = /decl/flooring/tiling/steel
 
+/turf/simulated/floor/tiled/steel/panels
+	icon_state = "panels"
+	initial_flooring = /decl/flooring/tiling/steel/panels
+
 /turf/simulated/floor/tiled/steel/techfloor
 	icon_state = "techfloor"
 	initial_flooring = /decl/flooring/tiling/steel/techfloor
@@ -143,7 +147,11 @@
 	name = "floor"
 	icon = 'icons/turf/flooring/tiles_white.dmi'
 	icon_state = "tiles"
-	initial_flooring = /decl/flooring/tiling
+	initial_flooring = /decl/flooring/tiling/white
+
+/turf/simulated/floor/tiled/white/panels
+	icon_state = "panels"
+	initial_flooring = /decl/flooring/tiling/white/panels
 
 /turf/simulated/floor/tiled/white/techfloor
 	icon_state = "techfloor"
@@ -210,7 +218,11 @@
 	name = "floor"
 	icon = 'icons/turf/flooring/tiles_dark.dmi'
 	icon_state = "tiles"
-	initial_flooring = /decl/flooring/tiling
+	initial_flooring = /decl/flooring/tiling/dark
+
+/turf/simulated/floor/tiled/dark/panels
+	icon_state = "panels"
+	initial_flooring = /decl/flooring/tiling/dark/panels
 
 /turf/simulated/floor/tiled/dark/techfloor
 	icon_state = "techfloor"
@@ -281,9 +293,28 @@
 
 /turf/simulated/floor/tiled/techmaint
 	name = "floor"
-	icon = 'icons/turf/flooring/tiles.dmi'
+	icon = 'icons/turf/flooring/tiles_maint.dmi'
 	icon_state = "techmaint"
 	initial_flooring = /decl/flooring/tiling/techmaint
+
+/turf/simulated/floor/tiled/techmaint_perforated
+	name = "floor"
+	icon = 'icons/turf/flooring/tiles_maint.dmi'
+	icon_state = "techmaint_perforated"
+	initial_flooring = /decl/flooring/tiling/techmaint_perforated
+
+/turf/simulated/floor/tiled/techmaint_panels
+	name = "floor"
+	icon = 'icons/turf/flooring/tiles_maint.dmi'
+	icon_state = "techmaint_panels"
+	initial_flooring = /decl/flooring/tiling/techmaint_panels
+
+/turf/simulated/floor/tiled/techmaint_cargo
+	name = "floor"
+	icon = 'icons/turf/flooring/tiles_maint.dmi'
+	icon_state = "techmaint_cargo"
+	initial_flooring = /decl/flooring/tiling/techmaint_cargo
+
 
 /turf/simulated/floor/reinforced
 	name = "reinforced floor"

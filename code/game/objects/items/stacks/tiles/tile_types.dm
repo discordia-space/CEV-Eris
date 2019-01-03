@@ -109,7 +109,23 @@
 	icon_state = "tile_steel"
 	matter = list(MATERIAL_STEEL = 1)
 
+/obj/item/stack/tile/floor/techmaint_perforated
+	name = "perforated maint floor tile"
+	singular_name = "perforated maint floor tile"
+	icon_state = "tile_steel"
+	matter = list(MATERIAL_STEEL = 1)
 
+/obj/item/stack/tile/floor/techmaint_panels
+	name = "panel maint floor tile"
+	singular_name = "panel maint floor tile"
+	icon_state = "tile_steel"
+	matter = list(MATERIAL_STEEL = 1)
+
+/obj/item/stack/tile/floor/techmaint_cargo
+	name = "cargo maint floor tile"
+	singular_name = "cargo maint floor tile"
+	icon_state = "tile_steel"
+	matter = list(MATERIAL_STEEL = 1)
 
 
 
@@ -118,6 +134,10 @@
 	singular_name = "steel floor tile"
 	icon_state = "tile_steel"
 	matter = list(MATERIAL_STEEL = 1)
+
+/obj/item/stack/tile/floor/steel/panels
+	name = "steel panel tile"
+	singular_name = "steel panel tile"
 
 /obj/item/stack/tile/floor/steel/techfloor
 	name = "steel techfloor tile"
@@ -185,6 +205,10 @@
 	icon_state = "tile_white"
 	matter = list(MATERIAL_PLASTIC = 1)
 
+/obj/item/stack/tile/floor/white/panels
+	name = "white panel tile"
+	singular_name = "white panel tile"
+
 /obj/item/stack/tile/floor/white/techfloor
 	name = "white techfloor tile"
 	singular_name = "white techfloor tile"
@@ -251,6 +275,10 @@
 	singular_name = "dark floor tile"
 	icon_state = "tile_dark"
 	matter = list(MATERIAL_dark = 1)
+
+/obj/item/stack/tile/floor/dark/panels
+	name = "dark panel tile"
+	singular_name = "dark panel tile"
 
 /obj/item/stack/tile/floor/dark/techfloor
 	name = "dark techfloor tile"

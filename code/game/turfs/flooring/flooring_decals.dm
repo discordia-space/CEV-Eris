@@ -9,6 +9,7 @@ var/list/floor_decals = list()
 	plane = FLOOR_PLANE
 	layer = TURF_PLATING_DECAL_LAYER
 	var/supplied_dir
+	var/variants_amount
 
 /obj/effect/floor_decal/New(var/newloc, var/newdir, var/newcolour)
 	supplied_dir = newdir
@@ -17,6 +18,11 @@ var/list/floor_decals = list()
 
 /obj/effect/floor_decal/Initialize()
 	..()
+
+	//Some decals could have a variety of base sprites
+	if(variants_amount)
+		icon_state = "[initial(icon_state)][rand(0,variants_amount)]"
+
 	if(supplied_dir) set_dir(supplied_dir)
 	var/turf/T = get_turf(src)
 	if(istype(T, /turf/simulated/floor) || istype(T, /turf/unsimulated/floor))
@@ -294,6 +300,7 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal/rust
 	name = "rust"
 	icon_state = "rust"
+	variants_amount = 9
 
 
 

@@ -26,10 +26,34 @@
 		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL)
 	)
 
+/datum/craft_recipe/floor/techmaint_perforated
+	name = "perforated maint floor tile"
+	result = /obj/item/stack/tile/floor/techmaint_perforated
+	steps = list(
+		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL)
+	)
+
+/datum/craft_recipe/floor/techmaint_panels
+	name = "panels maint floor tile"
+	result = /obj/item/stack/tile/floor/techmaint_panels
+	steps = list(
+		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL)
+	)
+
+/datum/craft_recipe/floor/techmaint_cargo
+	name = "cargo maint floor tile"
+	result = /obj/item/stack/tile/floor/techmaint_cargo
+	steps = list(
+		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL)
+	)
 
 /datum/craft_recipe/floor/steel
 	name = "regular steel floor tile"
 	result = /obj/item/stack/tile/floor/steel
+
+/datum/craft_recipe/floor/steel/panels
+	name = "steel panel tile"
+	result = /obj/item/stack/tile/floor/steel/panels
 
 /datum/craft_recipe/floor/steel/techfloor
 	name = "steel techfloor tile"
@@ -98,6 +122,10 @@
 		list(CRAFT_MATERIAL, 1, MATERIAL_PLASTIC)
 	)
 
+/datum/craft_recipe/floor/white/panels
+	name = "white panel tile"
+	result = /obj/item/stack/tile/floor/white/panels
+
 /datum/craft_recipe/floor/white/techfloor
 	name = "white techfloor tile"
 	result = /obj/item/stack/tile/floor/white/techfloor
@@ -161,6 +189,10 @@
 /datum/craft_recipe/floor/dark
 	name = "regular dark floor tile"
 	result = /obj/item/stack/tile/floor/dark
+
+/datum/craft_recipe/floor/dark/panels
+	name = "dark panel tile"
+	result = /obj/item/stack/tile/floor/dark/panels
 
 /datum/craft_recipe/floor/dark/techfloor
 	name = "dark techfloor tile"

@@ -183,6 +183,7 @@ var/list/flooring_types
 	space_smooth = FALSE
 	removal_time = 150
 	health = 100
+	has_base_range = 18
 	floor_smooth = SMOOTH_BLACKLIST
 	flooring_blacklist = list(/decl/flooring/reinforced/plating/under,/decl/flooring/reinforced/plating/hull) //Smooth with everything except the contents of this list
 	smooth_movable_atom = SMOOTH_GREYLIST
@@ -220,8 +221,8 @@ var/list/flooring_types
 	health = 200
 	resistance = RESISTANCE_ARMOURED
 	footstep_sound = "catwalk"
-	smooth_nothing = TRUE
-
+	space_smooth = SMOOTH_ALL
+	floor_smooth = SMOOTH_NONE
 
 //Underplating can only be upgraded to normal plating
 /decl/flooring/reinforced/plating/under/can_build_floor(var/decl/flooring/newfloor)
@@ -380,7 +381,7 @@ var/list/flooring_types
 
 	floor_smooth = SMOOTH_NONE
 	wall_smooth = SMOOTH_NONE
-
+	space_smooth = SMOOTH_NONE
 
 
 
@@ -391,6 +392,10 @@ var/list/flooring_types
 	icon = 'icons/turf/flooring/tiles_steel.dmi'
 	build_type = /obj/item/stack/tile/floor/steel
 	footstep_sound = "floor"
+
+/decl/flooring/tiling/steel/panels
+	icon_base = "panels"
+	build_type = /obj/item/stack/tile/floor/steel/panels
 
 /decl/flooring/tiling/steel/techfloor
 	icon_base = "techfloor"
@@ -460,6 +465,10 @@ var/list/flooring_types
 	build_type = /obj/item/stack/tile/floor/white
 	footstep_sound = "tile" //those are made from plastic, so they sound different
 
+/decl/flooring/tiling/white/panels
+	icon_base = "panels"
+	build_type = /obj/item/stack/tile/floor/white/panels
+
 /decl/flooring/tiling/white/techfloor
 	icon_base = "techfloor"
 	build_type = /obj/item/stack/tile/floor/white/techfloor
@@ -527,6 +536,10 @@ var/list/flooring_types
 	icon = 'icons/turf/flooring/tiles_dark.dmi'
 	build_type = /obj/item/stack/tile/floor/dark
 	footstep_sound = "floor"
+
+/decl/flooring/tiling/dark/panels
+	icon_base = "panels"
+	build_type = /obj/item/stack/tile/floor/dark/panels
 
 /decl/flooring/tiling/dark/techfloor
 	icon_base = "techfloor"
@@ -597,10 +610,39 @@ var/list/flooring_types
 /decl/flooring/tiling/techmaint
 	name = "floor"
 	icon_base = "techmaint"
-	icon = 'icons/turf/flooring/tiles.dmi'
+	icon = 'icons/turf/flooring/tiles_maint.dmi'
 	build_type = /obj/item/stack/tile/floor/techmaint
 	footstep_sound = "floor"
 
+	floor_smooth = SMOOTH_WHITELIST
+	flooring_whitelist = list(/decl/flooring/tiling/techmaint_perforated, /decl/flooring/tiling/techmaint_panels)
+
+/decl/flooring/tiling/techmaint_perforated
+	name = "floor"
+	icon_base = "techmaint_perforated"
+	icon = 'icons/turf/flooring/tiles_maint.dmi'
+	build_type = /obj/item/stack/tile/floor/techmaint_perforated
+	footstep_sound = "floor"
+
+	floor_smooth = SMOOTH_WHITELIST
+	flooring_whitelist = list(/decl/flooring/tiling/techmaint, /decl/flooring/tiling/techmaint_panels)
+
+/decl/flooring/tiling/techmaint_panels
+	name = "floor"
+	icon_base = "techmaint_panels"
+	icon = 'icons/turf/flooring/tiles_maint.dmi'
+	build_type = /obj/item/stack/tile/floor/techmaint_panels
+	footstep_sound = "floor"
+
+	floor_smooth = SMOOTH_WHITELIST
+	flooring_whitelist = list(/decl/flooring/tiling/techmaint_perforated, /decl/flooring/tiling/techmaint)
+
+/decl/flooring/tiling/techmaint_cargo
+	name = "floor"
+	icon_base = "techmaint_cargo"
+	icon = 'icons/turf/flooring/tiles_maint.dmi'
+	build_type = /obj/item/stack/tile/floor/techmaint_cargo
+	footstep_sound = "floor"
 
 
 //==========MISC==============
