@@ -24,7 +24,7 @@ LINEN BINS
 		return
 	if(toggle_fold(user))
 		user.drop_item()
-		src.forceMove(get_turf(A))
+		forceMove(get_turf(A))
 		add_fingerprint(user)
 		return
 
@@ -36,7 +36,7 @@ LINEN BINS
 		return FALSE
 	inuse = TRUE
 	if (do_after(user, 6, src, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_STUNNED))
-		if(user.loc != src.loc)
+		if(user.loc != loc)
 			user.do_attack_animation(src)
 		playsound(get_turf(loc), "rustle", 15, 1, -5)
 		if(!no_message)
@@ -65,7 +65,7 @@ LINEN BINS
 	inuse = TRUE
 	if (do_after(user, 25, src))
 		rolled = FALSE
-		if(user.loc != src.loc)
+		if(user.loc != loc)
 			user.do_attack_animation(src)
 		playsound(get_turf(loc), "rustle", 15, 1, -5)
 		if(!no_message)
@@ -89,7 +89,7 @@ LINEN BINS
 	set category = "Object"
 	set src in view(1)
 
-	if(istype(src.loc,/mob))
+	if(istype(loc,/mob))
 		usr << "Drop \the [src] first."
 	else if(ishuman(usr))
 		toggle_fold(usr)
@@ -101,7 +101,7 @@ LINEN BINS
 
 	if(folded)
 		usr << "Unfold \the [src] first."
-	else if(istype(src.loc,/mob))
+	else if(istype(loc,/mob))
 		usr << "Drop \the [src] first."
 	else if(ishuman(usr))
 		toggle_roll(usr)
