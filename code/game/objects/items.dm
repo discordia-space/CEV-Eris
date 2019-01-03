@@ -127,14 +127,13 @@
 	return ..(user, distance, "", message)
 
 /obj/item/attack_hand(mob/user as mob)
-	src.before_pickup(user)
-	if(src.pickup(user))
+	if(pre_pickup(user))
+		pickup(user)
 		return TRUE
-	else
-		return FALSE
+	return FALSE
 
 //	Places item in active hand and invokes pickup animation
-//	NOTE: This proc was created and replaced previous pickup() proc which is now called before_pickup() as it makes more sense
+//	NOTE: This proc was created and replaced previous pickup() proc which is now called pre_pickup() as it makes more sense
 //	keep that in mind when porting items form other builds
 /obj/item/proc/pickup(mob/target)
 	src.throwing = 0
@@ -142,8 +141,6 @@
 	if(target.put_in_active_hand(src) && old_loc )
 		if ((target != old_loc) && (target != old_loc.get_holding_mob()))
 			do_pickup_animation(target,old_loc)
-			return TRUE
-	return FALSE
 
 /obj/item/attack_ai(mob/user as mob)
 	if (istype(src.loc, /obj/item/weapon/robot_module))
@@ -171,8 +168,8 @@
 //	Called before an item is picked up (loc is not yet changed)
 //	NOTE: This proc name was changed form pickup() as it makes more sense
 //	keep that in mind when porting items form other builds
-/obj/item/proc/before_pickup(mob/user)
-	return
+/obj/item/proc/pre_pickup(mob/user)
+	return TRUE
 
 // called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
 /obj/item/proc/on_exit_storage(obj/item/weapon/storage/S as obj)

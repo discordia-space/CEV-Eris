@@ -169,10 +169,9 @@
 
 	return val
 
-/obj/item/weapon/tray/before_pickup(mob/user)
-
+/obj/item/weapon/tray/pre_pickup(mob/user)
 	if(!isturf(loc))
-		return
+		return FALSE
 
 	for(var/obj/item/I in loc)
 		if( I != src && !I.anchored && !istype(I, /obj/item/clothing/under) && !istype(I, /obj/item/clothing/suit) && !istype(I, /obj/item/projectile) )
@@ -189,6 +188,8 @@
 			I.loc = src
 			carrying.Add(I)
 			overlays += image("icon" = I.icon, "icon_state" = I.icon_state, "layer" = 30 + I.layer, "pixel_x" = I.pixel_x, "pixel_y" = I.pixel_y)
+
+	return ..()
 
 /obj/item/weapon/tray/dropped(mob/user)
 

@@ -119,7 +119,7 @@ var/list/tape_roll_applications = list()
 	update_icon()
 	return ..()
 
-/obj/item/taperoll/before_pickup(mob/user)
+/obj/item/taperoll/pre_pickup(mob/user)
 	update_icon()
 	return ..()
 

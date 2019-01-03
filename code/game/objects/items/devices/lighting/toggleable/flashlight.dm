@@ -160,10 +160,10 @@
 	spot_locked = FALSE
 	set_dir(new_dir)
 
-/obj/item/device/lighting/toggleable/flashlight/before_pickup(mob/user)
-	..()
+/obj/item/device/lighting/toggleable/flashlight/pre_pickup(mob/user)
 	calculate_dir()
 	dir = WEST
+	return ..()
 
 /obj/item/device/lighting/toggleable/flashlight/dropped(mob/user as mob)
 	if(light_direction)
