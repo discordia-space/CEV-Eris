@@ -23,6 +23,6 @@
 	if(!owner.current)
 		return FALSE
 
-	spawn_uplink(owner)
+	spawn_uplink(owner.current)
 
 	return TRUE

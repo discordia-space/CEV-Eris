@@ -93,9 +93,10 @@ var/global/economy_init = 0
 	create_station_account()
 
 	for(var/department in station_departments)
+
 		create_department_account(department)
-	create_department_account("Vendor")
-	vendor_account = department_accounts["Vendor"]
+	//create_department_account("Vendor")
+	vendor_account = department_accounts["Guild"] //Vendors are operated by the guild and purchases pay into their stock
 
 	current_date_string = "[num2text(rand(1,31))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], [game_year]"
 

@@ -68,7 +68,7 @@
 //Chaplain
 /obj/item/clothing/suit/chaplain_hoodie
 	name = "preacher coat"
-	desc = "This suit says to you 'hush'!"
+	desc = "A long, lightly armoured coat. Dark, stylish and authoritarian"
 	icon_state = "chaplain_hoodie"
 	item_state = "chaplain_hoodie"
 	blood_overlay_type = "coat"
@@ -83,7 +83,7 @@
 		/obj/item/weapon/tool/wrench, /obj/item/weapon/tank/emergency_oxygen, /obj/item/clothing/mask/gas,
 		/obj/item/taperoll/engineering
 	)
-	armor = list(melee = 10, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 15, bullet = 15, laser = 15, energy = 15, bomb = 0, bio = 0, rad = 0)
 
 //Chaplain
 /obj/item/clothing/suit/nun

@@ -3,7 +3,7 @@ var/list/disciples = list()
 /obj/item/weapon/implant/core_implant/cruciform
 	name = "cruciform"
 	icon_state = "cruciform_green"
-	desc = "Soul holder for every disciple."
+	desc = "Soul holder for every disciple. With the proper rituals, this can be implanted to induct a new believer into Neotheology."
 	allowed_organs = list(BP_CHEST)
 	implant_type = /obj/item/weapon/implant/core_implant/cruciform
 	layer = ABOVE_MOB_LAYER
@@ -125,6 +125,7 @@ var/list/disciples = list()
 /obj/item/weapon/implant/core_implant/cruciform/proc/make_inquisitor()
 	add_module(new CRUCIFORM_PRIEST)
 	add_module(new CRUCIFORM_INQUISITOR)
+	add_module(new /datum/core_module/cruciform/uplink())
 	remove_modules(/datum/core_module/cruciform/red_light)
 
 /mob/proc/get_cruciform()
