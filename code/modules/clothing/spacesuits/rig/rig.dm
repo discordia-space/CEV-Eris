@@ -546,13 +546,13 @@
 				if(module.suit_overlay)
 					I.overlays += image("icon" = item_effect_icon, "icon_state" = module.suit_overlay_item, "dir" = SOUTH)
 
-//this is usable elswhere but non-standart function for humans' update_icon.dm code
+//this is usable elswhere but non-standard function for humans' update_icon.dm code
 /obj/item/weapon/rig/proc/get_mob_overlay(slot)
-	if(slot != slot_wear_suit_str || !active)//this means we should not show our modules till reg isn't engaged and charged
+	if(slot != slot_wear_suit_str || !active)//this means we should not show our modules till rig isn't engaged and charged
 		return
 
 	var/mob/living/carbon/human/H = wearer
-	if(H.body_build.index)//slim, fat, but not standart. Standart is already set in icons.
+	if(H.body_build.index)//slim, fat, but not standard. Standart is already set in icons.
 		onmob_effect_icon = H.body_build.rig_icon
 
 	var/image/ret = new
