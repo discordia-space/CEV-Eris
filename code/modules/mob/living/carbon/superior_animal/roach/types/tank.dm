@@ -4,8 +4,11 @@
 	icon_state = "panzer"
 	meat_amount = 4
 	turns_per_move = 2
-	maxHealth = 30
-	health = 30
-
+	maxHealth = 60
+	health = 60
+	move_to_delay = 7
 	mob_size = MOB_MEDIUM
 	density = 1
+
+
+

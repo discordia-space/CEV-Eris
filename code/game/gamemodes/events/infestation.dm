@@ -1,7 +1,9 @@
-//Infestation is the primary combat event. It has a broad pool of mobs, both hostile and peaceful,
-//which it can spawn in any non-maintenance area of the ship.
-//It focuses on spawning large numbers of moderate-to-weak monsters, and includes some elements of surprise
-
+/*
+Infestation is the primary combat event. It has a broad pool of mobs, both hostile and peaceful,
+Infestation spawns monsters via burrows, and relies on the burrow network to operate.
+If players somehow manage to destroy every burrow on the ship, this event will be unable to spawn
+It focuses on spawning large numbers of moderate-to-weak monsters, and includes some elements of surprise
+*/
 /datum/storyevent/infestation
 	id = "infestation"
 	name = "infestation"
@@ -33,61 +35,99 @@
 /datum/event/infestation
 	startWhen = 1
 	announceWhen = 10
-	endWhen = 11
+	endWhen = 90
 	var/num_areas = 1
 	var/num_spawns_per_area
-	var/list/area/chosen_areas = list()
+	var/list/obj/structure/burrow/chosen_burrows = list()
+	var/failures //If we're unable to locate a suitable source or target burrow, increment this
 	var/event_name = "Slime Leak"
 	var/chosen_mob = INFESTATION_SLIMES
 	var/chosen_verb = "have leaked into"
+	var/infestation_time = 3 MINUTES
 	var/list/chosen_mob_types = list()
 	var/list/possible_mobs_mundane = list(
-		INFESTATION_MICE = 20,
+		INFESTATION_MICE = 17,
 		INFESTATION_LIZARDS = 12,
 		INFESTATION_SPIDERLINGS = 8,
 		INFESTATION_YITHIAN = 6,
 		INFESTATION_TINDALOS = 6,
 		INFESTATION_DIYAAB = 6,
-		INFESTATION_SPACE_BATS = 8
+		INFESTATION_SPACE_BATS = 7
 	)
 
 	var/possible_mobs_moderate = list(
-		INFESTATION_SPACE_BATS = 12,
-		INFESTATION_SAMAK = 7,
-		INFESTATION_SHANTAK = 10,
-		INFESTATION_SPIDERS = 8,//This is a combination of spiderlings and adult spiders
-		INFESTATION_ROACHES = 8
+		INFESTATION_SPACE_BATS = 10,
+		INFESTATION_SAMAK = 5,
+		INFESTATION_SHANTAK = 7,
+		INFESTATION_SPIDERS = 7,//This is a combination of spiderlings and adult spiders
+		INFESTATION_ROACHES = 7
 	)
 
 	var/possible_mobs_major = list(
-		INFESTATION_SPIDERS = 10,
-		INFESTATION_HIVEBOTS = 8,
-		INFESTATION_SLIMES = 6
+		INFESTATION_SPIDERS = 8,
+		INFESTATION_HIVEBOTS = 6,
+		INFESTATION_SLIMES = 5
 	)
 
 /datum/event/infestation/setup()
-	//announceWhen = rand(10,80) //Very large random window for announcement,
+	announceWhen = rand(20,80) //Very large random window for announcement,
+	num_areas = 2
 	switch(severity)
 		if (EVENT_LEVEL_MODERATE)
-			num_areas = 2
-		if (EVENT_LEVEL_MAJOR)
 			num_areas = 3
+		if (EVENT_LEVEL_MAJOR)
+			num_areas = 4
 	choose_area()
 	choose_mobs()
 
 /datum/event/infestation/start()
 	spawn_mobs()
 
-/datum/event/infestation/proc/choose_area()
-	for (var/i = 1; i <= num_areas; i++)
-		var/area/A = random_ship_area(TRUE)
-		var/turf/T = A.random_space() //Lets make sure the selected area is valid
-		if (!T)
-			//We failed to find a clear turf, can't spawn in that area
-			i-- //Decrement i so that we'll get another try
-			continue
-		chosen_areas += A
+//Upon ending, if we had any failures, refund some points to the storyteller
+//A set of mobs that failed to spawn due to not finding burrows is fully refunded
+//Mobs that were spawned but never emerged because players destroyed the burrows, are only refunded 50%
+/datum/event/infestation/end()
+	if (failures)
+		storyevent.cancel(severity, 1 - (failures / num_areas))
 
+
+
+//We'll do a tick to watch the burrows and make sure everything is going as planned
+/datum/event/infestation/tick()
+	for (var/obj/structure/burrow/B in chosen_burrows)
+		if (QDELETED(B) || QDELETED(chosen_burrows[B]))
+			//One or both burrows was destroyed during sending!
+			//This probably means someone destroyed it and this act should be rewarded
+			failures += 0.5 //We increment failures by half a point, so some of the points will be refunded
+			if (B)
+				for (var/mob/M in B.sending_mobs)
+					qdel(M) //We delete the mobs we were going to send, they won't come anymore
+
+			continue
+
+		//If both burrows are still there, then things are progressing fine
+
+
+
+
+
+/datum/event/infestation/proc/choose_area()
+	//For each area we plan to spawn in, we need both an origin and a destination burrow
+	failures = 0
+	chosen_burrows = list()
+	for (var/i = 0; i < num_areas;i++)
+		//The origin must be in maintenance somewhere
+		var/obj/structure/burrow/origin = SSmigration.choose_burrow_target(null, TRUE, 100)
+
+		//And the destination must be in crew living areas. Not maintenance
+		var/obj/structure/burrow/destination = SSmigration.choose_burrow_target(null, FALSE, 100)
+		if (!origin || !destination)
+			//If we failed to find either burrow, then this spawn fails
+			failures++
+			continue
+
+		//As long as we've got both, add em to the lists
+		chosen_burrows[origin] = destination
 
 /datum/event/infestation/proc/choose_mobs()
 
@@ -167,24 +207,38 @@
 		chosen_mob = "[pick("unidentified", "unknown", "unrecognised", "indeterminate")] [pick("creatures","lifeforms","critters","aliens","biosignatures", "organics")]"
 		chosen_verb = pick("have been detected in", "have boarded the ship at", "are currently infesting", "are currently rampaging in")
 
+//We spawn a set of mobs inside each origin burrow
 /datum/event/infestation/proc/spawn_mobs()
-	for (var/area/A in chosen_areas)
+	for (var/obj/structure/burrow/B in chosen_burrows)
 		for(var/i = 1, i <= num_spawns_per_area,i++)
 			var/spawned_mob = pickweight(chosen_mob_types)
-			var/turf/T = A.random_space()
-			new spawned_mob(T)
+			new spawned_mob(B)
+
+		//Send the migration
+		B.migrate_to(chosen_burrows[B], infestation_time, 0)
+		log_and_message_admins("Infestation [event_name] sending mobs to [jumplink(chosen_burrows[B])]")
+
+
+
 
 /datum/event/infestation/announce()
-
+	world << "Infestation announce"
 	//Occasional chance to play the same generic announcement as spiders and carp
 	//Just to screw with the metagamers even more
 	if (prob(8))
 		command_announcement.Announce("Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert", new_sound = 'sound/AI/aliens.ogg')
 	else
-		switch(severity)
-			if (EVENT_LEVEL_MUNDANE)
-				command_announcement.Announce("Bioscans indicate that [chosen_mob] [chosen_verb] [strip_improper(chosen_areas[1].name)]. Clear them out before this starts to affect productivity.", event_name, new_sound = 'sound/AI/vermin.ogg')
-			if (EVENT_LEVEL_MODERATE)
-				command_announcement.Announce("Bioscans indicate that [chosen_mob] [chosen_verb] [strip_improper(chosen_areas[1].name)] and [strip_improper(chosen_areas[2].name)]. Ironhammer are advised to approach with caution.", event_name, new_sound = 'sound/AI/vermin.ogg')
-			if (EVENT_LEVEL_MAJOR)
-				command_announcement.Announce("Shipwide Alert: Bioscans indicate that [chosen_mob] [chosen_verb] [strip_improper(chosen_areas[1].name)],[strip_improper(chosen_areas[2].name)] and [strip_improper(chosen_areas[3].name)]. Crew are advised to evacuate those areas immediately.", event_name, new_sound = 'sound/AI/vermin.ogg')
+		var/list/areanames = list()
+		for (var/b in chosen_burrows)
+			var/obj/structure/burrow/B = chosen_burrows[b]
+			if (QDELETED(B))
+				continue
+			areanames += strip_improper(get_area(B).name)
+		if (areanames.len)
+			switch(severity)
+				if (EVENT_LEVEL_MUNDANE)
+					command_announcement.Announce("Bioscans indicate that [chosen_mob] [chosen_verb] [english_list(areanames)]. Clear them out before this starts to affect productivity.", event_name, new_sound = 'sound/AI/vermin.ogg')
+				if (EVENT_LEVEL_MODERATE)
+					command_announcement.Announce("Bioscans indicate that [chosen_mob] [chosen_verb] [english_list(areanames)]. Ironhammer are advised to approach with caution.", event_name, new_sound = 'sound/AI/vermin.ogg')
+				if (EVENT_LEVEL_MAJOR)
+					command_announcement.Announce("Shipwide Alert: Bioscans indicate that [chosen_mob] [chosen_verb] [english_list(areanames)]. Crew are advised to evacuate those areas immediately.", event_name, new_sound = 'sound/AI/vermin.ogg')

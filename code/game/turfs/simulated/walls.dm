@@ -21,7 +21,7 @@
 	var/construction_stage
 	var/hitsound = 'sound/weapons/Genhit.ogg'
 	var/list/wall_connections = list("0", "0", "0", "0")
- 
+	 
 	var/static/list/damage_overlays
 	is_wall = TRUE
 
@@ -182,6 +182,7 @@
 
 
 /turf/simulated/wall/bullet_act(var/obj/item/projectile/Proj)
+
 	if(src.ricochet_id != 0)
 		if(src.ricochet_id == Proj.ricochet_id)
 			src.ricochet_id = 0
@@ -209,13 +210,15 @@
 			projectile_reflection(Proj)
 			return PROJECTILE_CONTINUE // complete projectile permutation
 
-	//cut some projectile damage here and not in projectile.dm, becouse we need not to all things what are using get_str_dam() becomes thin and weak.
+	//cut some projectile damage here and not in projectile.dm, because we need not to all things what are using get_str_dam() becomes thin and weak.
 	//in general, bullets have 35-95 damage, and they are plased in ~30 bullets magazines, so 50*30 = 150, but plasteel walls have only 400 hp =|
 	//but you may also increase materials thickness or etc.
 	proj_damage = round(Proj.get_structure_damage() / 3)//Yo may replace 3 to 5-6 to make walls fucking stronk as a Poland
 
 	//cap the amount of damage, so that things like emitters can't destroy walls in one hit.
 	var/damage = min(proj_damage, 100)
+
+	create_bullethole(Proj)//Potentially infinite bullet holes but most walls don't last long enough for this to be a problem.
 
 	take_damage(damage)
 	return
@@ -231,19 +234,18 @@
 
 	take_damage(tforce)
 
+
 /turf/simulated/wall/proc/clear_plants()
 	for(var/obj/effect/overlay/wallrot/WR in src)
 		qdel(WR)
 	for(var/obj/effect/plant/plant in range(src, 1))
-		if(!plant.floor) //shrooms drop to the floor
-			plant.floor = 1
-			plant.update_icon()
-			plant.pixel_x = 0
-			plant.pixel_y = 0
+		if(plant.wall_mount == src) //shrooms drop to the floor
+			qdel(plant)
 		plant.update_neighbors()
 
 /turf/simulated/wall/ChangeTurf(var/newtype)
 	clear_plants()
+	clear_bulletholes()
 	..(newtype)
 
 //Appearance
@@ -334,6 +336,7 @@
 			O.loc = src
 
 	clear_plants()
+	clear_bulletholes()
 	material = get_material_by_name("placeholder")
 	reinf_material = null
 	update_connections(1)

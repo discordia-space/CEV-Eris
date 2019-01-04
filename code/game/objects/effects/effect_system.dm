@@ -5,6 +5,8 @@ it needs to create more trails.A beaker could have a steam_trail_follow system s
 would spawn and follow the beaker, even if it is carried or thrown.
 */
 
+/obj/effect
+	var/random_rotation = 0 //If 1, pick a random cardinal direction. if 2, pick a randomised angle
 
 /obj/effect/effect
 	name = "effect"
@@ -12,6 +14,19 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	mouse_opacity = 0
 	unacidable = 1//So effect are not targeted by alien acid.
 	pass_flags = PASSTABLE | PASSGRILLE
+
+
+/obj/effect/New()
+	.=..()
+	if (random_rotation)
+		var/matrix/M = transform
+		if (random_rotation == 1)
+			M.Turn(pick(0,90,180,-90))
+
+		else if (random_rotation == 2)
+			M.Turn(rand(0,360))
+
+		transform = M
 
 /obj/effect/Destroy()
 	if(reagents)
@@ -57,7 +72,7 @@ steam.start() -- spawns the effect
 /obj/effect/effect/steam
 	name = "steam"
 	icon = 'icons/effects/effects.dmi'
-	icon_state = "extinguish"
+	icon_state = "jet"
 	density = 0
 
 /datum/effect/effect/system/steam_spread
@@ -375,103 +390,8 @@ steam.start() -- spawns the effect
 	smoke_type = /obj/effect/effect/smoke/mustard
 
 
-/////////////////////////////////////////////
-//////// Attach an Ion trail to any object, that spawns when it moves (like for the jetpack)
-/// just pass in the object to attach it to in set_up
-/// Then do start() to start it and stop() to stop it, obviously
-/// and don't call start() in a loop that will be repeated otherwise it'll get spammed!
-/////////////////////////////////////////////
-
-/obj/effect/effect/ion_trails
-	name = "ion trails"
-	icon_state = "ion_trails"
-	anchored = 1.0
-
-/datum/effect/effect/system/ion_trail_follow
-	var/turf/oldposition
-	var/processing = 1
-	var/on = 1
-
-	set_up(atom/atom)
-		attach(atom)
-		oldposition = get_turf(atom)
-
-	start()
-		if(!src.on)
-			src.on = 1
-			src.processing = 1
-		if(src.processing)
-			src.processing = 0
-			spawn(0)
-				var/turf/T = get_turf(src.holder)
-				if(T != src.oldposition)
-					if(istype(T, /turf/space))
-						var/obj/effect/effect/ion_trails/I = new(oldposition)
-						src.oldposition = T
-						I.set_dir(src.holder.dir)
-						flick("ion_fade", I)
-						I.icon_state = "blank"
-						spawn( 20 )
-							qdel(I)
-					spawn(2)
-						if(src.on)
-							src.processing = 1
-							src.start()
-				else
-					spawn(2)
-						if(src.on)
-							src.processing = 1
-							src.start()
-
-	proc/stop()
-		src.processing = 0
-		src.on = 0
 
 
-
-
-/////////////////////////////////////////////
-//////// Attach a steam trail to an object (eg. a reacting beaker) that will follow it
-// even if it's carried of thrown.
-/////////////////////////////////////////////
-
-/datum/effect/effect/system/steam_trail_follow
-	var/turf/oldposition
-	var/processing = 1
-	var/on = 1
-
-	set_up(atom/atom)
-		attach(atom)
-		oldposition = get_turf(atom)
-
-	start()
-		if(!src.on)
-			src.on = 1
-			src.processing = 1
-		if(src.processing)
-			src.processing = 0
-			spawn(0)
-				if(src.number < 3)
-					var/obj/effect/effect/steam/I = new(oldposition)
-					src.number++
-					src.oldposition = get_turf(holder)
-					I.set_dir(src.holder.dir)
-					spawn(10)
-						qdel(I)
-						src.number--
-					spawn(2)
-						if(src.on)
-							src.processing = 1
-							src.start()
-				else
-					spawn(2)
-						if(src.on)
-							src.processing = 1
-							src.start()
-
-	proc/stop()
-		src.processing = 0
-		src.on = 0
 
 /datum/effect/effect/system/reagents_explosion
 	var/amount 						// TNT equivalent

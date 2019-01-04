@@ -42,6 +42,10 @@
 	name = "NT SG \"Regulator 1000\""
 	path = /obj/item/weapon/gun/projectile/shotgun/pump/combat
 
+/datum/autolathe/recipe/gun/gladstone
+	name = "FS SG \"Gladstone\""
+	path = /obj/item/weapon/gun/projectile/shotgun/pump/gladstone
+
 /datum/autolathe/recipe/gun/revolver
 	name = "FS REV .357 \"Miller\""
 	path = /obj/item/weapon/gun/projectile/revolver

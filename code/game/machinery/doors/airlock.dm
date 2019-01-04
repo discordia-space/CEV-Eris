@@ -17,7 +17,7 @@
 	var/backup_power_lost_until = -1	//World time when backup power is restored.
 	var/next_beep_at = 0				//World time when we may next beep due to doors being blocked by mobs
 	var/spawnPowerRestoreRunning = 0
-	var/welded = null
+
 	var/locked = 0
 	var/lights = 1 // bolt lights show by default
 	var/aiDisabledIdScanner = 0

@@ -1,7 +1,7 @@
 /datum/storyevent/roleset/excelsior
 	id = "excelsior"
 	name = "excelsior"
-	role_id = null
+	role_id = ROLE_EXCELSIOR_REV
 
 	//min_cost = 10
 	//max_cost = 20
@@ -13,7 +13,7 @@
 
 
 /datum/storyevent/roleset/excelsior/trigger_event()
-	if(get_faction_by_id(FACTION_EXCELSIOR))
+	if(!get_faction_by_id(FACTION_EXCELSIOR))
 		return FALSE
 
 	var/list/candidates = candidates_list(ROLE_EXCELSIOR_REV)
@@ -45,7 +45,7 @@
 	if(!rev)
 		return FALSE
 
-	var/datum/antagonist/R = get_antag_instance(ROLE_EXCELSIOR_REV)
+	var/datum/antagonist/R = create_antag_instance(ROLE_EXCELSIOR_REV)
 
 	var/datum/faction/revolutionary/excelsior/E = new
 	E.create_objectives()

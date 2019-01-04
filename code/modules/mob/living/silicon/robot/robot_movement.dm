@@ -3,13 +3,25 @@
 		return 0
 	..(prob_slip)
 
-/mob/living/silicon/robot/Process_Spacemove()
-	if(module)
-		for(var/obj/item/weapon/tank/jetpack/J in module.modules)
-			if(J && istype(J, /obj/item/weapon/tank/jetpack))
-				if(J.allow_thrust(0.01))	return 1
-	if(..())	return 1
-	return 0
+/mob/living/silicon/robot/Allow_Spacemove(var/check_drift = 0)
+
+	//Do we have a working jetpack?
+	var/obj/item/weapon/tank/jetpack/thrust = get_jetpack()
+
+	if(thrust)
+		//The cost for stabilization is paid later
+		if (check_drift)
+			if (thrust.stabilization_on)
+				inertia_dir = 0
+				return TRUE
+			return FALSE
+		else if(thrust.allow_thrust(JETPACK_MOVE_COST, src))
+			inertia_dir = 0
+			return TRUE
+
+	//If no working jetpack then use the other checks
+	if (is_component_functioning("actuator"))
+		. = ..()
 
  //No longer needed, but I'll leave it here incase we plan to re-use it.
 /mob/living/silicon/robot/movement_delay()
@@ -22,7 +34,6 @@
 
 	return tally
 
-// NEW: Use power while moving.
 /mob/living/silicon/robot/SelfMove(turf/n, direct)
 	if (!is_component_functioning("actuator"))
 		return 0

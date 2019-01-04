@@ -53,3 +53,7 @@
 		return FALSE
 	return TRUE
 
+/datum/antagonist/proc/is_type(var/antag_type)
+	if(antag_type == id || antag_type == role_text)
+		return 1
+	return 0

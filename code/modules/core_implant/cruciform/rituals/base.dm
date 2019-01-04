@@ -47,7 +47,7 @@
 	chance = 60
 
 /datum/ritual/cruciform/base/entreaty/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
-	for(var/mob/living/carbon/human/target in christians)
+	for(var/mob/living/carbon/human/target in disciples)
 		if(target == H)
 			continue
 

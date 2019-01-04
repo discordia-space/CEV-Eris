@@ -110,28 +110,29 @@ Please contact me on #coderbus IRC. ~Carn x
 #define DAMAGE_LAYER		2
 #define SURGERY_LAYER		3
 #define IMPLANTS_LAYER		4
-#define UNIFORM_LAYER		5
-#define ID_LAYER			6
-#define SHOES_LAYER			7
-#define GLOVES_LAYER		8
-#define BELT_LAYER			9
-#define SUIT_LAYER			10
-#define TAIL_LAYER			11		//bs12 specific. this hack is probably gonna come back to haunt me
-#define GLASSES_LAYER		12
-#define BELT_LAYER_ALT		13
-#define SUIT_STORE_LAYER	14
-#define BACK_LAYER			15
-#define HAIR_LAYER			16		//TODO: make part of head layer?
-#define EARS_LAYER			17
-#define FACEMASK_LAYER		18
-#define HEAD_LAYER			19
-#define COLLAR_LAYER		20
-#define HANDCUFF_LAYER		21
-#define LEGCUFF_LAYER		22
-#define L_HAND_LAYER		23
-#define R_HAND_LAYER		24
-#define FIRE_LAYER			25		//If you're on fire
-#define TARGETED_LAYER		26		//BS12: Layer for the target overlay from weapon targeting system
+#define UNDERWEAR_LAYER 	5
+#define UNIFORM_LAYER		6
+#define ID_LAYER			7
+#define SHOES_LAYER			8
+#define GLOVES_LAYER		9
+#define BELT_LAYER			10
+#define SUIT_LAYER			11
+#define TAIL_LAYER			12		//bs12 specific. this hack is probably gonna come back to haunt me
+#define GLASSES_LAYER		13
+#define BELT_LAYER_ALT		14
+#define SUIT_STORE_LAYER	15
+#define BACK_LAYER			16
+#define HAIR_LAYER			17		//TODO: make part of head layer?
+#define EARS_LAYER			18
+#define FACEMASK_LAYER		19
+#define HEAD_LAYER			20
+#define COLLAR_LAYER		21
+#define HANDCUFF_LAYER		22
+#define LEGCUFF_LAYER		23
+#define L_HAND_LAYER		24
+#define R_HAND_LAYER		25
+#define FIRE_LAYER			26		//If you're on fire
+#define TARGETED_LAYER		27		//BS12: Layer for the target overlay from weapon targeting system
 #define TOTAL_LAYERS		27
 //////////////////////////////////
 
@@ -303,15 +304,24 @@ var/global/list/damage_icon_parts = list()
 		//END CACHED ICON GENERATION.
 		stand_icon.Blend(base_icon,ICON_OVERLAY)
 
-	//Underwear
-	if(species.appearance_flags & HAS_UNDERWEAR)
-		for(var/category in all_underwear)
-			var/datum/category_item/underwear/UW = all_underwear[category]
-			if(!UW.icon_state)
-				continue
-			stand_icon.Blend(new /icon(body_build.underwear_icon, UW.icon_state), ICON_OVERLAY)
-
 	appearance_test.Log("EXIT update_body()")
+	if(update_icons)
+		update_icons()
+
+//UNDERWEAR OVERLAY
+
+/mob/living/carbon/human/proc/update_underwear(var/update_icons=1)
+	overlays_standing[UNDERWEAR_LAYER] = null
+	
+	if(species.appearance_flags & HAS_UNDERWEAR)
+		var/icon/underwear = new/icon(body_build.underwear_icon, "blank")
+		for(var/entry in worn_underwear)
+			var/obj/item/underwear/UW = entry
+			var/icon/I = new /icon(body_build.underwear_icon, UW.icon_state)
+			if(UW.color)
+				I.Blend(UW.color, ICON_ADD)
+			underwear.Blend(I, ICON_OVERLAY)
+		overlays_standing[UNDERWEAR_LAYER] = image(underwear)
 	if(update_icons)
 		update_icons()
 
@@ -335,7 +345,7 @@ var/global/list/damage_icon_parts = list()
 	var/icon/face_standing = new /icon('icons/mob/hair.dmi',"bald")
 
 	if(f_style)
-		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[f_style]
+		var/datum/sprite_accessory/facial_hair_style = GLOB.facial_hair_styles_list[f_style]
 		if(facial_hair_style && facial_hair_style.species_allowed && (src.species.get_bodytype() in facial_hair_style.species_allowed))
 			var/icon/facial_s = new/icon(facial_hair_style.icon, facial_hair_style.icon_state)
 			if(facial_hair_style.do_colouration)
@@ -344,7 +354,7 @@ var/global/list/damage_icon_parts = list()
 			face_standing.Blend(facial_s, ICON_OVERLAY)
 
 	if(h_style && !(head && (head.flags_inv & BLOCKHEADHAIR)))
-		var/datum/sprite_accessory/hair_style = hair_styles_list[h_style]
+		var/datum/sprite_accessory/hair/hair_style = GLOB.hair_styles_list[h_style]
 		if(hair_style && (src.species.get_bodytype() in hair_style.species_allowed))
 			var/icon/hair_s = new/icon(hair_style.icon, hair_style.icon_state)
 			if(hair_style.do_colouration)
@@ -409,6 +419,7 @@ var/global/list/damage_icon_parts = list()
 	update_mutations(0)
 	update_implants(0)
 	update_body(0)
+	update_underwear(0)
 	update_hair(0)
 	update_hud()//Hud Stuff
 	update_inv_w_uniform(0)
@@ -922,6 +933,7 @@ var/global/list/damage_icon_parts = list()
 #undef MUTATIONS_LAYER
 #undef DAMAGE_LAYER
 #undef SURGERY_LAYER
+#undef UNDERWEAR_LAYER
 #undef IMPLANTS_LAYER
 #undef UNIFORM_LAYER
 #undef ID_LAYER

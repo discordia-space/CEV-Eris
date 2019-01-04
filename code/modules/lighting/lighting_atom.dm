@@ -119,9 +119,9 @@
 	. = ..()
 	update_light()
 
-/obj/item/pickup()
-	. = ..()
+/obj/item/pre_pickup()
 	update_light()
+	return ..()
 
 /obj/item/dropped()
 	. = ..()

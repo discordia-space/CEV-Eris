@@ -35,21 +35,18 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	bst.equip_to_slot_or_del(new /obj/item/clothing/shoes/black/bst(bst), slot_shoes)
 	bst.equip_to_slot_or_del(new /obj/item/clothing/head/beret(bst), slot_head)
 	bst.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/bst(bst), slot_glasses)
-	bst.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(bst), slot_belt)
+	bst.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full/bst(bst), slot_belt)
 	bst.equip_to_slot_or_del(new /obj/item/clothing/gloves/color/white/bst(bst), slot_gloves)
 
-	if(bst.backbag == 1)//depends on char's prefs
-		bst.equip_to_slot_or_del(new /obj/item/weapon/storage/box/ids(bst), slot_r_hand)
-	else
-		bst.equip_to_slot_or_del(new /obj/item/weapon/storage/box/ids(bst.back), slot_in_backpack)
-		bst.equip_to_slot_or_del(new /obj/item/device/t_scanner(bst.back), slot_in_backpack)
-		bst.equip_to_slot_or_del(new /obj/item/modular_computer/pda/captain(bst.back), slot_in_backpack)
+	bst.equip_to_slot_or_del(new /obj/item/weapon/storage/box/ids(bst.back), slot_in_backpack)
+	bst.equip_to_slot_or_del(new /obj/item/device/t_scanner(bst.back), slot_in_backpack)
+	bst.equip_to_slot_or_del(new /obj/item/modular_computer/pda/captain(bst.back), slot_in_backpack)
 
-		var/obj/item/weapon/storage/box/pills = new /obj/item/weapon/storage/box(null, TRUE)
-		pills.name = "adminordrazine"
-		for(var/i = 1, i < 12, i++)
-			new /obj/item/weapon/reagent_containers/pill/adminordrazine(pills)
-		bst.equip_to_slot_or_del(pills, slot_in_backpack)
+	var/obj/item/weapon/storage/box/pills = new /obj/item/weapon/storage/box(null, TRUE)
+	pills.name = "adminordrazine"
+	for(var/i = 1, i < 12, i++)
+		new /obj/item/weapon/reagent_containers/pill/adminordrazine(pills)
+	bst.equip_to_slot_or_del(pills, slot_in_backpack)
 
 	//Sort out ID
 	var/obj/item/weapon/card/id/bst/id = new/obj/item/weapon/card/id/bst(bst)
@@ -174,21 +171,14 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	status_flags ^= GODMODE
 	src << SPAN_NOTICE("God mode is now [status_flags & GODMODE ? "enabled" : "disabled"]")
 
-/mob/living/carbon/human/bst/verb/allow_unequip()
-	set name = "Allow Unequip"
-	set desc = "Allows you to unequip your unique items. Don't let them fall into the wrong hands."
-	set category = "BST"
+	src << span("notice", "God mode is now [status_flags & GODMODE ? "enabled" : "disabled"]")
 
-	for (var/obj/item/I in src)
-		I.canremove = TRUE
-	src << SPAN_NOTICE("You can now remove your equipment")
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////I T E M S/////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 /obj/item/weapon/storage/backpack/holding/bst
-	canremove = FALSE
 	worn_access = TRUE
 
 /obj/item/device/radio/headset/ert/bst
@@ -196,7 +186,6 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	desc = "A Bluespace Technician's headset. The letters 'BST' are stamped on the side."
 	translate_binary = TRUE
 	translate_hive = TRUE
-	canremove = FALSE
 	keyslot1 = new /obj/item/device/encryptionkey/binary
 
 /obj/item/device/radio/headset/ert/bst/attack_hand()
@@ -218,7 +207,6 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	desc = "A Bluespace Technician's Uniform. There is a logo on the sleeve that reads 'BST'."
 	has_sensor = FALSE
 	sensor_mode = 0
-	canremove = FALSE
 	siemens_coefficient = 0
 	cold_protection = FULL_BODY
 	heat_protection = FULL_BODY
@@ -237,7 +225,6 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	desc = "A pair of modified gloves. The letters 'BST' are stamped on the side."
 	siemens_coefficient = 0
 	permeability_coefficient = 0
-	canremove = FALSE
 
 /obj/item/clothing/gloves/color/white/bst/attack_hand()
 	if(!usr)
@@ -253,7 +240,6 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	desc = "A pair of modified sunglasses. The word 'BST' is stamped on the side."
 	vision_flags = (SEE_TURFS|SEE_OBJS|SEE_MOBS)
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
-	canremove = FALSE
 	flash_protection = FLASH_PROTECTION_MAJOR
 
 /obj/item/clothing/glasses/sunglasses/bst/verb/toggle_xray(mode in list("X-Ray without Lighting", "X-Ray with Lighting", "Normal"))
@@ -289,7 +275,6 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	desc = "A pair of black shoes with extra grip. The letters 'BST' are stamped on the side."
 	icon_state = "black"
 	item_flags = NOSLIP
-	canremove = FALSE
 
 /obj/item/clothing/shoes/black/bst/attack_hand()
 	if(!usr)
@@ -319,34 +304,26 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 		..()
 
 /obj/item/weapon/storage/belt/utility/full/bst
-	canremove = FALSE
 
 /obj/item/weapon/storage/belt/utility/full/bst/New()
 	..()
 	new /obj/item/weapon/tool/multitool(src)
+	new /obj/item/device/t_scanner(src)
 
 /mob/living/carbon/human/bst/restrained()
-	return FALSE
+	return !(status_flags & GODMODE)
 
-//TODO: Refactor zmove to check incorpmove so bsts don't need an override
-/mob/living/carbon/human/bst/zMove(direction)
-	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
-	if(destination)
-		forceMove(destination)
-	else
-		to_chat(src, "<span class='notice'>There is nothing of interest in this direction.</span>")
 
 /mob/living/carbon/human/bst/can_fall()
 	return fall_override ? FALSE : ..()
 
 
-//These verbs are temporary, in future they should be available to all mobs with appropriate checks
 /mob/living/carbon/human/bst/verb/moveup()
-	set name = "Move Upwards"
+	set name = "Phase Upwards"
 	set category = "BST"
 	zMove(UP)
 
 /mob/living/carbon/human/bst/verb/movedown()
-	set name = "Move Downwards"
+	set name = "Phase Downwards"
 	set category = "BST"
 	zMove(DOWN)

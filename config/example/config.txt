@@ -50,6 +50,9 @@ LOG_GAME
 ## log player votes
 LOG_VOTE
 
+## log debug messages
+##LOG_DEBUG
+
 ## log client Whisper
 LOG_WHISPER
 
@@ -96,7 +99,7 @@ PROBABILITY CULT 1
 PROBABILITY EXTEND-A-TRAITORMONGOUS 6
 
 ## Enable asteroid tunnel/cave generation. Will behave strangely if turned off with a map that expects it on.
-GENERATE_ASTEROID
+#GENERATE_ASTEROID
 
 ## Hash out to disable random events during the round.
 ALLOW_RANDOM_EVENTS

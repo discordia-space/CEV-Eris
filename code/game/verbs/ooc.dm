@@ -15,7 +15,7 @@
 	msg = sanitize(msg)
 	if(!msg)	return
 
-	if(!is_preference_enabled(/datum/client_preference/show_ooc))
+	if(src.get_preference_value(/datum/client_preference/show_ooc) == GLOB.PREF_HIDE)
 		src << SPAN_WARNING("You have OOC muted.")
 		return
 
@@ -45,7 +45,7 @@
 			ooc_style = "admin"
 
 	for(var/client/target in clients)
-		if(target.is_preference_enabled(/datum/client_preference/show_ooc))
+		if(target.get_preference_value(/datum/client_preference/show_ooc) == GLOB.PREF_SHOW)
 			var/display_name = src.key
 			if(holder)
 				if(holder.fakekey)
@@ -78,7 +78,7 @@
 	if(!msg)
 		return
 
-	if(!is_preference_enabled(/datum/client_preference/show_looc))
+	if(src.get_preference_value(/datum/client_preference/show_looc) == GLOB.PREF_HIDE)
 		src << SPAN_DANGER("You have LOOC muted.")
 		return
 
@@ -130,7 +130,7 @@
 				listening_obj |= O
 
 		for(var/mob/M in player_list)
-			if(!M.is_preference_enabled(/datum/client_preference/show_looc))
+			if(M.get_preference_value(/datum/client_preference/show_ooc) == GLOB.PREF_HIDE)
 				continue
 			if(isAI(M))
 				var/mob/living/silicon/ai/A = M
@@ -159,7 +159,7 @@
 
 
 	for(var/client/adm in admins)	//Now send to all admins that weren't in range.
-		if(!(adm in listening))
+		if(!(adm in listening) && adm.get_preference_value(/datum/client_preference/staff/show_rlooc) == GLOB.PREF_SHOW)
 			var/admin_stuff = "/([key])([admin_jump_link(mob, adm.holder)])"
 			var/prefix = "(R)"
 

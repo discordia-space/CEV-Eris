@@ -1,0 +1,39 @@
+<!-- 
+Title: Fire Alarm
+Used In File(s): code\game\machinery\alarm.dm
+-->
+<div align='center'>
+The current alert level is - 
+{{if data.seclevel == 'code green'}}
+	<span class='good'>Green</span>
+{{else data.seclevel == 'code blue'}}
+	<span style='color: rgb(40, 80, 255);font-weight: bold;'>Blue</span>
+{{else data.seclevel == 'code red'}}
+	<span class='bad'>Red</span>
+{{else data.seclevel == 'code delta'}}
+	<span class='bad'>DELTA</span>
+{{/if}}
+<hr>
+<h3>State</h3>
+	<table><tr>
+	<td>{{:helper.link('Normal', '', {'status': 'reset'}, data.active ? null : 'selected')}}
+	<td>{{:helper.link('Lockdown', '', {'status': 'alarm'}, data.active ? 'redButton' : null)}}
+	</table>
+	{{if !data.active}}
+		<h3>Timing</h3>
+			<table>
+				<tr>
+					<td>{{:helper.link('Set', '', {'timer' : 'set'})}}
+				{{if data.timing}}
+					<td>{{:helper.link('Stop', '', {'timer' : 'stop'})}}
+				{{/if}}
+				{{if !(data.timing)}}
+					<td>{{:helper.link('Start', '', {'timer' : 'start'})}}
+				{{/if}}
+				</tr>
+			</table>
+		<br>
+			{{if data.time > 0}}
+				Time Left: {{:data.time}} seconds.
+			{{/if}}
+	{{/if}}

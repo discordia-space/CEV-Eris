@@ -375,12 +375,25 @@
 	..()
 	jets = new(src)
 
+//Some slightly complex setup here to make hardsuit jetpacks work right
 /obj/item/rig_module/maneuvering_jets/installed()
 	..()
+	//Holder is the rig core module, the thing the user is wearing
 	jets.holder = holder
-	jets.ion_trail.set_up(holder)
+
+	//We set the jetpack's gastank to the core's internal airtank.
+	//So the jetpack isn't really a tank but more of a pressure valve for another tank
+	jets.gastank = holder.air_supply
+
+	//Sets up the trail fx to track movement of the core module, and thusly the user
+	jets.trail.set_up(holder)
+
+	//Tells the trail that its jetpack isn't the core module, but the jets
+	jets.trail.jetpack = jets
 
 /obj/item/rig_module/maneuvering_jets/uninstalled()
 	..()
 	jets.holder = null
-	jets.ion_trail.set_up(jets)
+	jets.trail.set_up(jets)
+
+/obj/item/rig_module/foam_sprayer

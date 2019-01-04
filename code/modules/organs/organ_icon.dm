@@ -97,7 +97,7 @@ var/global/list/limb_icon_cache = list()
 
 	if(robotic < ORGAN_ROBOT)
 		if(owner.f_style)
-			var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[owner.f_style]
+			var/datum/sprite_accessory/facial_hair_style = GLOB.facial_hair_styles_list[owner.f_style]
 			if(facial_hair_style && facial_hair_style.species_allowed && (species.get_bodytype() in facial_hair_style.species_allowed))
 				var/icon/facial = new/icon(facial_hair_style.icon, facial_hair_style.icon_state)
 				if(facial_hair_style.do_colouration)
@@ -105,7 +105,7 @@ var/global/list/limb_icon_cache = list()
 				overlays |= facial
 
 		if(owner.h_style && !(owner.head && (owner.head.flags_inv & BLOCKHEADHAIR)))
-			var/datum/sprite_accessory/hair_style = hair_styles_list[owner.h_style]
+			var/datum/sprite_accessory/hair_style = GLOB.hair_styles_list[owner.h_style]
 			if(hair_style && (species.get_bodytype() in hair_style.species_allowed))
 				var/icon/hair = new/icon(hair_style.icon, hair_style.icon_state)
 				if(hair_style.do_colouration)
