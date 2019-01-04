@@ -943,6 +943,12 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/fries
 
+
+/datum/recipe/stakeroach
+	items = list(/obj/item/weapon/reagent_containers/food/snacks/roachmeat)
+	result = /obj/item/weapon/reagent_containers/food/snacks/stakeroach
+
+	
 /datum/recipe/mint
 	reagents = list("sugar" = 5, "frostoil" = 5)
 	result = /obj/item/weapon/reagent_containers/food/snacks/mint

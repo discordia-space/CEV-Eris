@@ -1317,11 +1317,26 @@
 /obj/item/weapon/reagent_containers/food/snacks/meatsteak
 	name = "Meat steak"
 	desc = "A piece of hot spicy meat."
-	icon_state = "meatstake"
+	icon_state = "meatsteak"
 	trash = /obj/item/trash/plate
 	filling_color = "#7A3D11"
 	center_of_mass = list("x"=16, "y"=13)
 
+	New()
+		..()
+		reagents.add_reagent("protein", 4)
+		reagents.add_reagent("sodiumchloride", 1)
+		reagents.add_reagent("blackpepper", 1)
+		bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/stakeroach
+	name = "Roach steake"
+	desc = "A piece of hot, spicy, cockroach meat."
+	icon_state = "stakeroach"
+	trash = /obj/item/trash/plate
+	filling_color = "#7A3D11"
+	center_of_mass = list("x"=16, "y"=13)
+	
 	New()
 		..()
 		reagents.add_reagent("protein", 4)
