@@ -137,7 +137,7 @@
 	name = "tool storage box"
 	desc = "A moderately sized crate full of assorted tools"
 	icon_state = "plasmacrate"
-	initial_contents = list(/obj/random/tool = 10, /obj/random/tool/advanced = 2)
+	initial_contents = list(/obj/random/tool = 13, /obj/random/tool/advanced = 2)
 
 
 /obj/item/weapon/storage/deferred/crate/saw

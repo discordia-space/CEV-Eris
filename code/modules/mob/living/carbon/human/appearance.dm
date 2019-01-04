@@ -17,17 +17,23 @@
 	reset_hair()
 	return 1
 
+/mob/living/carbon/human/proc/change_name(var/type)
+	if (type == "random")
+		var/datum/language/L = get_default_language()
+		L.set_random_name(src)
+
+	else
+		var/newname = input("Choose a name for your character.","Your Name", real_name)
+		fully_replace_character_name(real_name, newname)
+	src << SPAN_NOTICE("Your name is now [real_name]")
+
 /mob/living/carbon/human/proc/change_gender(var/gender)
-	world << "Changing gender to [gender]"
 	if(src.gender == gender)
-		world << "We already are that gender, aborting"
 		return
 
 	src.gender = gender
 	var/datum/body_build/B = src.body_build
-	world << "Attempting to get bodybuild for [B.name] [gender]"
 	body_build = get_body_build(gender, B.name)
-	world << "The build we got is [body_build] [body_build.name] [body_build.gender]"
 	regenerate_icons() //This is overkill, but we do need to update all of the clothing. Maybe there's a more precise call
 	//reset_hair()
 	//update_body()

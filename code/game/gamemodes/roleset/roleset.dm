@@ -5,7 +5,10 @@
 	parallel = FALSE //Most roleset storyevents take time to choose antags. no multiqueueing
 
 	//Spawning vars
-	var/base_quantity = 1//How many of this antag we will attempt to at least spawn
+	var/min_quantity = 1 //A hard minimum. If we can't spawn at least this many, we spawn none at all.
+
+	var/base_quantity = 1//How many of this antag we will attempt to at least spawn.
+	//If we can't spawn them all though its  okay
 
 	var/scaling_threshold = 15
 	//For every [scaling_threshold] non-antag players in the crew, we will spawn one extra antag
@@ -24,12 +27,21 @@
 	var/tmp/success_quantity = 0 //How many copies we have successfully spawned so far
 	var/severity = EVENT_LEVEL_MUNDANE //The severity we're trying to trigger with
 
+
 /datum/storyevent/roleset/proc/antagonist_suitable(var/datum/mind/player, var/datum/antagonist/antag)
 	return TRUE
 
 /datum/storyevent/roleset/proc/get_candidates_count(var/a_type)	//For internal using
-	var/list/L = candidates_list(a_type)
+	var/list/L = get_candidates_list(a_type)
 	return L.len
+
+/datum/storyevent/roleset/proc/get_candidates_list(var/antag, var/report)
+	var/datum/antagonist/A = GLOB.all_antag_types[role_id]
+
+	if (A.outer)
+		return ghost_candidates_list(role_id)
+	else
+		return candidates_list(role_id)
 
 /datum/storyevent/roleset/proc/candidates_list(var/antag, var/report)
 	var/datum/antagonist/temp = GLOB.all_antag_types[antag]
@@ -117,16 +129,16 @@
 		cancel(severity, 0.0)
 
 	var/datum/antagonist/antag = GLOB.all_antag_types[role_id]
+
+
+
 	/*
 		We will try to spawn up to [target_quantity] antags
 		If the attempt fails at any point, we will abort
 	*/
 
-	var/list/candidates = list()
-	if (antag.outer)
-		candidates = ghost_candidates_list(role_id)
-	else
-		candidates = candidates_list(role_id)
+	var/list/candidates = get_candidates_list(role_id)
+
 
 	if (candidates.len)
 		for (var/i = 1; i <= target_quantity;i++)

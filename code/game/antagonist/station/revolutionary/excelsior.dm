@@ -8,6 +8,11 @@
 	faction_id = FACTION_EXCELSIOR
 	allow_neotheology = FALSE //Implant causes head asplode
 
+/datum/antagonist/revolutionary/excelsior/equip()
+	.=..()
+	var/obj/item/weapon/implant/revolution/excelsior/implant = new(owner.current)
+	implant.install(owner.current)
+
 /datum/faction/revolutionary/excelsior
 	id = FACTION_EXCELSIOR
 	name = "Excelsior"

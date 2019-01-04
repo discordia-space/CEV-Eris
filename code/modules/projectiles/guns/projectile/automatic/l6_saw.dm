@@ -52,8 +52,19 @@
 	else
 		return ..() //once open, behave like normal
 
+/obj/item/weapon/gun/projectile/automatic/l6_saw/equipped(var/mob/user, var/slot)
+	.=..()
+	update_icon()
+
 /obj/item/weapon/gun/projectile/automatic/l6_saw/update_icon()
 	icon_state = "l6[cover_open ? "open" : "closed"][ammo_magazine ? round(ammo_magazine.stored_ammo.len, 25) : "-empty"]"
+
+	//No worn icons exist so we will instead use the worn icons for the black AK
+	if (is_worn())
+		item_state = "black-AK[ammo_magazine ?"-full":""]"
+	else
+		item_state = "l6[cover_open ? "open" : "closed"][ammo_magazine ?"mag":"nomag"]"
+	update_wear_icon()
 
 /obj/item/weapon/gun/projectile/automatic/l6_saw/load_ammo(var/obj/item/A, mob/user)
 	if(!cover_open)

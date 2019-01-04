@@ -8,7 +8,10 @@
 /datum/shuttle/autodock/ferry/escape_pod/erispod/New()
 	name = "Escape Pod [number]"
 	default_docking_controller = "escape_pod_[number]"
-	arming_controller = "escape_pod_[number]_berth"
+	arming_controller = "escape_pod_[number]"
+	//Todo: The controllers inside escape pods need to be swapped to the correct type of controller
+	//One which has escape pod programs instead of normal docking programs
+	dock_target = "escape_pod_[number]_berth"
 	waypoint_station = "escape_pod_[number]_start"
 	landmark_transition = "escape_pod_[number]_internim"
 	waypoint_offsite = "escape_pod_[number]_out"
@@ -22,7 +25,7 @@
 
 /obj/effect/shuttle_landmark/escape_pod/start/New()
 	landmark_tag = "escape_pod_[number]_start"
-	docking_controller = "escape_pod_[number]_berth"
+	dock_target = "escape_pod_[number]_berth"
 	..()
 
 /obj/effect/shuttle_landmark/escape_pod/transit
@@ -37,7 +40,7 @@
 
 /obj/effect/shuttle_landmark/escape_pod/out/New()
 	landmark_tag = "escape_pod_[number]_out"
-	docking_controller = "escape_pod_[number]_recovery"
+	dock_target = "escape_pod_[number]_recovery"
 	..()
 
 

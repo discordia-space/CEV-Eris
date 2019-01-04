@@ -12,16 +12,20 @@ var/global/list/all_objectives_types = null
 /datum/objective
 	var/datum/antagonist/antag = null
 	var/datum/mind/owner = null			//Who owns the objective.
+	var/datum/faction/owner_faction = null
 	var/explanation_text = "Nothing"	//What that person is supposed to do.
 	var/datum/mind/target = null		//If they are focused on a particular person.
 	var/target_amount = 0				//If they are focused on a particular number. Steal objectives have their own counter.
 	var/completed = FALSE				//currently only used for custom objectives.
 
 /datum/objective/New(var/datum/antagonist/new_owner, var/datum/mind/target)
-	antag = new_owner
-	antag.objectives += src
-	if(antag.owner)
-		owner = antag.owner
+	if (istype(new_owner))
+		antag = new_owner
+		antag.objectives += src
+		if(antag.owner)
+			owner = antag.owner
+	else if (istype(new_owner, /datum/faction))
+		owner_faction = new_owner
 	if(!target)
 		find_target()
 	update_explanation()
@@ -89,3 +93,16 @@ var/global/list/all_objectives_types = null
 	if(href_list["switch_target"])
 		select_human_target(usr)
 		antag.antagonist_panel()
+
+
+//Used for steal objectives. Returns a list of the owner's contents, if the owner is a single player
+//If the owner is a faction, then asks that faction to return its inventory
+/datum/objective/proc/get_owner_inventory()
+	var/list/contents = list()
+	if (owner && owner.current)
+		contents.Add(owner.current.get_contents())
+
+	if (owner_faction)
+		contents.Add(owner_faction.get_inventory())
+
+	return contents

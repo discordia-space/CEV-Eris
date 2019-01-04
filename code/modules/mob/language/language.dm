@@ -26,13 +26,14 @@
 	var/first_names_male = list()
 	var/first_names_female = list()
 	var/last_names = list()
+
 /datum/language/proc/get_random_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
 	//This language has its own name lists
 	if (name_lists)
 		if(gender==FEMALE)
-			return capitalize(pick(first_names_female)) + " " + capitalize(pick(GLOB.last_names))
+			return capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
 		else
-			return capitalize(pick(first_names_male)) + " " + capitalize(pick(GLOB.last_names))
+			return capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 
 	if(!syllables || !syllables.len)
 		if(gender==FEMALE)

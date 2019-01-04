@@ -11,17 +11,25 @@
 	var/list/whitelist
 	var/list/blacklist
 
+
+
 /datum/nano_module/appearance_changer/New(var/location, var/mob/living/carbon/human/H, var/check_species_whitelist = 1, var/list/species_whitelist = list("human"), var/list/species_blacklist = list())
 	..()
 	owner = H
-	world << "New appearance changer: [check_species_whitelist]"
 	src.check_whitelist = check_species_whitelist
 	src.whitelist = species_whitelist
 	src.blacklist = species_blacklist
 
+
 /datum/nano_module/appearance_changer/Topic(ref, href_list, var/datum/topic_state/state = GLOB.default_state)
 	if(..())
 		return 1
+
+	if(href_list["name"])
+		if(can_change(APPEARANCE_NAME))
+			if(owner.change_name(href_list["name"]))
+				cut_and_generate_data()
+				return 1
 
 	if(href_list["race"])
 		if(can_change(APPEARANCE_RACE) && (href_list["race"] in valid_species))
@@ -93,6 +101,9 @@
 	generate_data(check_whitelist, whitelist, blacklist)
 	var/list/data = host.initial_data()
 
+	data["change_name"] = can_change(APPEARANCE_NAME)
+	if (data["change_name"])
+		data["name"] = owner.real_name
 	data["specimen"] = owner.species.name
 	data["gender"] = owner.gender
 	data["build"] = owner.body_build.name
@@ -171,7 +182,6 @@
 	if(!owner)
 		return
 	if(!valid_species.len)
-		world << "Appearance changer generating species list [check_whitelist], [whitelist.len] [blacklist.len]"
 		valid_species = owner.generate_valid_species(check_whitelist, whitelist, blacklist)
 	if(!valid_hairstyles.len || !valid_facial_hairstyles.len)
 		valid_hairstyles = owner.generate_valid_hairstyles(check_gender = 0)

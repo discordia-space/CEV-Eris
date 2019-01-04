@@ -62,15 +62,12 @@
 
 	var/mob/M = new mob_path(null)
 	M.client = ghost.client
-	world <<"Creating antag from ghost [M] [M.type] \ref[M]"
 
 	//Load your character setup onto the new mob, only if human
 	if (load_character && ishuman(M))
 
 		var/datum/preferences/P = M.client.prefs
-		world <<"Loading character from prefs [P]"
 		P.copy_to(M, FALSE)
-		world <<"Done loading prefs ref is \ref[M]"
 
 
 
@@ -80,7 +77,6 @@
 		qdel(M)
 		return FALSE
 
-	world <<"About to call create_antagonist. M: \ref[M] Current: \ref[M.mind.current]"
 	return create_antagonist(M.mind, new_faction, doequip, announce, update = FALSE)
 
 /datum/antagonist/proc/create_faction()
@@ -123,4 +119,3 @@
 		return
 	var/turf/T = pick_mobless_turf_if_exists(GLOB.antag_starting_locations[id])
 	owner.current.forceMove(T)
-	world << "Mob \ref[owner.current] successfully moved to [jumplink(T)]"

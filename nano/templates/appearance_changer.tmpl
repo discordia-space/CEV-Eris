@@ -1,3 +1,15 @@
+{{if data.change_name}}
+    <div class="item">
+        <div class="itemLabelNarrow">
+            Name:
+        </div>
+		<div class="itemContentWide">
+			{{:helper.link('Random', null, { 'name' : 'random'}, null, null)}}
+			{{:helper.link('Custom', null, { 'name' : 'custom'}, null, null)}}
+        </div>
+    </div>
+{{/if}}
+
 {{if data.change_race}}
     <div class="item">
         <div class="itemLabelNarrow">

@@ -58,6 +58,20 @@
 	update_icons(member)
 	return TRUE
 
+
+//Randomly selects leaders from the faction members
+/datum/faction/proc/pick_leaders(var/num)
+	var/list/candidates = members.Copy()
+
+	//Specifically check equality to zero, rather than <=
+	//This allows a value of -1 to be passed, to convert everyone into a leader since it will never reach zero
+		//Just keeps going until theres no candidates left
+	while (num != 0 && candidates.len)
+		var/datum/antagonist/A = pick_n_take(candidates)
+		add_leader(A)
+		num--
+
+
 /datum/faction/proc/remove_leader(var/datum/antagonist/member, var/announce = TRUE)
 	if(!member || !(member in leaders) || !member.owner.current)
 		return
@@ -295,3 +309,17 @@
 
 	faction_panel()
 
+
+//This returns a list of all items owned, held, worn, etc by faction members
+/datum/faction/proc/get_inventory()
+	var/list/contents = list()
+	for (var/datum/antagonist/A in members)
+		if (A.owner && A.owner.current)
+			contents.Add(A.owner.current.get_contents())
+
+	return contents
+
+
+/datum/faction/proc/greet()
+	for (var/datum/antagonist/A in members)
+		A.greet()
