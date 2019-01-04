@@ -24,8 +24,9 @@ GLOBAL_LIST_INIT(default_uplink_source_priority, list(
 		return SETUP_FAILED
 
 	var/pda_pass = "[rand(100,999)] [pick(GLOB.greek_letters)]"
-	var/obj/item/device/uplink/T = new(P, M.mind, amount)
+	var/obj/item/device/uplink/hidden/T = new(P, M.mind, amount)
 	P.hidden_uplink = T
+	T.trigger_code = pda_pass
 	var/datum/computer_file/program/uplink/program = new(pda_pass)
 	if(!P.hard_drive.try_store_file(program))
 		P.hard_drive.remove_file(P.hard_drive.find_file_by_name(program.filename))	//Maybe it already has a fake copy.
@@ -54,9 +55,9 @@ GLOBAL_LIST_INIT(default_uplink_source_priority, list(
 			freq += 1
 
 	freq = freqlist[rand(1, freqlist.len)]
-	var/obj/item/device/uplink/T = new(R, M.mind, amount)
+	var/obj/item/device/uplink/hidden/T = new(R, M.mind, amount)
 	R.hidden_uplink = T
-	R.traitor_frequency = freq
+	T.trigger_code = freq
 	to_chat(M, "<span class='notice'>A portable object teleportation relay has been installed in your [R.name]. Simply dial the frequency [format_frequency(freq)] to unlock its hidden features.</span>")
 	M.mind.store_memory("<B>Radio Freq:</B> [format_frequency(freq)] ([R.name]).")
 
@@ -131,7 +132,6 @@ GLOBAL_LIST_INIT(default_uplink_source_priority, list(
 		var/decl/uplink_source/US = entry
 		if(US.setup_uplink_source(M, amount) != SETUP_FAILED)
 			return TRUE
-
 	to_chat(M, "<span class='warning'>Either by choice or circumstance you will be without an uplink.</span>")
 	return FALSE
 

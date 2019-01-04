@@ -34,3 +34,21 @@
 	name = "14.5mm"
 	item_cost = 4
 	path = /obj/item/weapon/storage/box/sniperammo
+
+
+//Super-class cells, better than what you'll find in a vendor,
+//but not as good as the best maint loot, so scavenging is still encouraged
+/datum/uplink_item/item/ammo/cell/small
+	name = "Small Power Cell"
+	item_cost = 2
+	path = /obj/item/weapon/cell/small/super
+
+/datum/uplink_item/item/ammo/cell/medium
+	name = "Medium Power Cell"
+	item_cost = 3
+	path = /obj/item/weapon/cell/medium/super
+
+/datum/uplink_item/item/ammo/cell/large
+	name = "Large Power Cell"
+	item_cost = 4
+	path = /obj/item/weapon/cell/large/super
