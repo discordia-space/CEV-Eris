@@ -219,10 +219,12 @@ var/list/flooring_types
 	is_plating = TRUE
 	removal_time = 250
 	health = 200
+	has_base_range = 0
 	resistance = RESISTANCE_ARMOURED
 	footstep_sound = "catwalk"
 	space_smooth = SMOOTH_ALL
 	floor_smooth = SMOOTH_NONE
+	smooth_movable_atom = SMOOTH_NONE
 
 //Underplating can only be upgraded to normal plating
 /decl/flooring/reinforced/plating/under/can_build_floor(var/decl/flooring/newfloor)
