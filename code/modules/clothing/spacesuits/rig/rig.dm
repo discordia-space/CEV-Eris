@@ -534,6 +534,10 @@
 		wearer.update_inv_back()
 	return
 
+/obj/item/weapon/rig/proc/apply_image(image/standing)
+	if(standing)
+		standing.overlays += src.mob_icon
+
 //this makes your modules' overlays be drawn upon your rig's chest if it exists
 /obj/item/weapon/rig/proc/add_item_overlay(obj/item/I)
 	if(istype(I, chest))//e.g. we have parts which are supposed to be on our helmet, so we check
@@ -542,6 +546,7 @@
 				if(module.suit_overlay)
 					I.overlays += image("icon" = item_effect_icon, "icon_state" = module.suit_overlay_item, "dir" = SOUTH)
 
+//this is usable elswhere but non-standart function for humans' update_icon.dm code
 /obj/item/weapon/rig/proc/get_mob_overlay(slot)
 	if(slot != slot_wear_suit_str || !active)//this means we should not show our modules till reg isn't engaged and charged
 		return

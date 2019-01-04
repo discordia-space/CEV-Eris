@@ -709,10 +709,9 @@ var/global/list/damage_icon_parts = list()
 			for(var/obj/item/clothing/accessory/A in suit.accessories)
 				standing.overlays |= A.get_mob_overlay()
 
-		if(back && istype(back, /obj/item/weapon/rig))//and the main part also needed
-			var/obj/item/weapon/rig/R = back//this is safecheck, again
-			if(R && R.active)//we are fully engaged and charged
-				standing.overlays += R.get_mob_overlay(slot_wear_suit_str)
+		var/obj/item/weapon/rig/R = back//we need rig on our back!
+		if(istype(R) && R.active)//we are fully engaged and charged
+			standing.overlays += R.get_mob_overlay(slot_wear_suit_str)
 
 		overlays_standing[SUIT_LAYER] = standing
 
@@ -769,10 +768,10 @@ var/global/list/damage_icon_parts = list()
 		var/image/standing = image(icon = overlay_icon, icon_state = overlay_state)
 		standing.color = back.color
 
-		if(back)//rig's sprite by itself, then moduls
-			if(istype(back, /obj/item/weapon/rig))
-				var/obj/item/weapon/rig/R = back
-				standing.overlays += R.mob_icon//do not forget about basic backpack sprite
+		//rig's sprite by itself, then moduls
+		if(istype(back, /obj/item/weapon/rig))
+			var/obj/item/weapon/rig/R = back
+			R.apply_image(standing)
 
 		overlays_standing[BACK_LAYER] = standing
 	else
