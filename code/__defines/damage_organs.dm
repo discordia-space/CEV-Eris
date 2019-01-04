@@ -35,6 +35,7 @@
 #define O_KIDNEYS  "kidneys"
 #define O_APPENDIX "appendix"
 #define O_CELL     "cell"
+#define O_POSIBRAIN	"posibrain"
 
 #define O_PLASMA   "plasma vessel"
 #define O_HIVE     "hive node"

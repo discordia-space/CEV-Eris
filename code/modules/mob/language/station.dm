@@ -3,15 +3,17 @@
 	desc = "Most popular language in Canis Majoris constellation, thanks to many USA colonial ships arrived there in distant past."
 	key = "0"
 	flags = RESTRICTED
+	shorthand = "CO"
+
 
 	//syllables are at the bottom of the file
 
 /datum/language/common/get_random_name(var/gender)
 	if (prob(80))
 		if(gender==FEMALE)
-			return capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
+			return capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
 		else
-			return capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+			return capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
 	else
 		return ..()
 
@@ -98,3 +100,5 @@
 					 "portal", "systema", "electronika", "nigilizm", "anarhizm", "communistu", "tupuye", "sopla", "obshivka", "obtekaemost", \
 					 "dinamica", "statica", "organizacuya", "yeyenet", "radio", "peredacha", "priem", "slushno", "chastota", "gerts", "stantiya", \
 					 "suda", "huyar", "odin", "dva", "tri", "holod", "granata", "ne", "re", "ru", "korabl")
+	shorthand = "RU"
+

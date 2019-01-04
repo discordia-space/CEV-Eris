@@ -2,6 +2,7 @@
 /datum/antagonist/traitor
 	id = ROLE_TRAITOR
 	protected_jobs = list(JOBS_SECURITY, JOBS_COMMAND)
+	bantype = ROLE_TRAITOR
 
 	possible_objectives = list(
 		/datum/objective/assassinate = 30,
@@ -32,7 +33,7 @@
 	if(!..())
 		return FALSE
 
-	spawn_uplink()
+	spawn_uplink(owner.current)
 	give_codewords()
 
 	return TRUE

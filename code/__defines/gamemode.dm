@@ -30,6 +30,16 @@
 // Storyteller names macro
 #define STORYTELLER_BASE "guide"
 
+// antag bantypes macros.
+#define ROLE_BANTYPE_BORER ROLE_BORER
+#define ROLE_BANTYPE_MALFUNCTION ROLE_MALFUNCTION
+#define ROLE_BANTYPE_TRAITOR ROLE_TRAITOR
+#define ROLE_BANTYPE_INQUISITOR ROLE_INQUISITOR
+#define ROLE_BANTYPE_EXCELSIOR ROLE_EXCELSIOR_REV
+#define ROLE_BANTYPE_CHANGELING ROLE_CHANGELING
+#define ROLE_BANTYPE_XENOS ROLE_XENOMORPH
+#define ROLE_BANTYPE_CREW_SIDED "crew_sided"
+
 // antag template macros.
 #define ROLE_BORER "borer"
 #define ROLE_BORER_REPRODUCED "borer_r"
@@ -60,6 +70,8 @@
 #define ROLESET_VERSUS_TRAITOR "double_agents"
 
 #define DEFAULT_TELECRYSTAL_AMOUNT 25
+#define IMPLANT_TELECRYSTAL_AMOUNT(x) (round(x * 0.49)) // If this cost is ever greater than half of DEFAULT_TELECRYSTAL_AMOUNT then it is possible to buy more TC than you spend
+
 
 /////////////////
 ////WIZARD //////

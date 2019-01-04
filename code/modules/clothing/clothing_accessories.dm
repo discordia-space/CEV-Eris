@@ -32,6 +32,18 @@
 
 	..()
 
+/**
+ *  Attach accessory A to src
+ *
+ *  user is the user doing the attaching. Can be null, such as when attaching
+ *  items on spawn
+ */
+/obj/item/clothing/proc/attach_accessory(mob/user, obj/item/clothing/accessory/A)
+	accessories += A
+	A.on_attached(src, user)
+	src.verbs |= /obj/item/clothing/proc/removetie_verb
+	src.update_wear_icon()
+	
 /obj/item/clothing/attack_hand(var/mob/user)
 	//only forward to the attached accessory if the clothing is equipped (not in a storage)
 	if(accessories.len && src.loc == user)

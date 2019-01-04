@@ -546,7 +546,7 @@
 	..()
 
 /obj/machinery/cash_register/cargo
-	account_to_connect = "Cargo"
+	account_to_connect = "Guild"
 	..()
 
 /obj/machinery/cash_register/civilian

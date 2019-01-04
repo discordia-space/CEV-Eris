@@ -14,7 +14,7 @@
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	handle_casings = HOLD_CASINGS
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
-	bulletinsert_sound 	= 'sound/weapons/guns/interact/shotgun_instert.ogg'
+	bulletinsert_sound 	= 'sound/weapons/guns/interact/shotgun_insert.ogg'
 	var/recentpump = 0 // to prevent spammage
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
 

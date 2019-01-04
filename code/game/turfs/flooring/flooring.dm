@@ -466,7 +466,7 @@ var/list/flooring_types
 	icon = 'icons/turf/flooring/tiles_white.dmi'
 	build_type = /obj/item/stack/tile/floor/white
 	footstep_sound = "tile" //those are made from plastic, so they sound different
-
+	flags = TURF_CAN_BREAK | TURF_CAN_BURN | TURF_IS_FRAGILE
 /decl/flooring/tiling/white/panels
 	icon_base = "panels"
 	build_type = /obj/item/stack/tile/floor/white/panels
@@ -667,7 +667,7 @@ var/list/flooring_types
 	desc = "Heavily reinforced with steel rods."
 	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_base = "reinforced"
-	flags = TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS | TURF_REMOVE_WRENCH | TURF_ACID_IMMUNE | TURF_CAN_BURN | TURF_CAN_BREAK
+	flags = TURF_REMOVE_WRENCH | TURF_ACID_IMMUNE | TURF_CAN_BURN | TURF_CAN_BREAK | TURF_HIDES_THINGS
 	build_type = /obj/item/stack/rods
 	build_cost = 2
 	build_time = 30

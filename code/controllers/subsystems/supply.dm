@@ -2,16 +2,10 @@ SUBSYSTEM_DEF(supply)
 	name = "Supply"
 	wait = 30 SECONDS
 	priority = SS_PRIORITY_SUPPLY
-	flags = SS_NO_TICK_CHECK
+	flags = SS_NO_FIRE
 
 /datum/controller/subsystem/supply
 	//supply points
-	var/points = 5000
-	var/points_per_process = 0
-	var/points_per_slip = 2
-	var/points_per_crate = 5
-	var/points_per_platinum = 5 // 5 points per sheet
-	var/points_per_plasma = 5
 	var/centcom_message = ""
 	var/contraband = 0
 	var/hacked = 0
@@ -33,11 +27,9 @@ SUBSYSTEM_DEF(supply)
 
 	return ..()
 
-/datum/controller/subsystem/supply/fire()
-	points += points_per_process
 
 /datum/controller/subsystem/supply/stat_entry()
-	..("Points: [points]")
+	..("Credits: [get_supply_credits()]")
 
 //To stop things being sent to centcomm which should not be sent to centcomm. Recursively checks for these types.
 /datum/controller/subsystem/supply/proc/forbidden_atoms_check(atom/A)
@@ -57,7 +49,8 @@ SUBSYSTEM_DEF(supply)
 
 //Sellin
 /datum/controller/subsystem/supply/proc/sell()
-
+	//Selling things to centcom removed, will replace in future with a system of npc traders
+	/*
 	var/msg = ""
 	var/sold_atoms = ""
 
@@ -79,6 +72,7 @@ SUBSYSTEM_DEF(supply)
 		E.export_end()
 
 	centcom_message = msg
+	*/
 
 //Buyin
 /datum/controller/subsystem/supply/proc/buy()
@@ -162,3 +156,24 @@ SUBSYSTEM_DEF(supply)
 
 	shoppinglist.Cut()
 	return
+
+
+//Returns the credits in the guild account, which is used for purchasing things
+/proc/get_supply_credits()
+	var/datum/money_account/GA = department_accounts["Guild"]
+	if (!GA)
+		return 0
+
+	return GA.money
+
+//Deducts credits from the guild account to pay for external purchases
+/proc/pay_supply_cost(var/source_name, var/purpose, var/terminal_id, var/amount)
+	var/datum/money_account/GA = department_accounts["Guild"]
+	if (!GA)
+		return FALSE
+
+	if (GA.money < amount)
+		return FALSE
+
+	charge_to_account(GA.account_number, source_name, purpose, terminal_id, -amount) //We invert the amount here
+	return TRUE

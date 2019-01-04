@@ -7,3 +7,4 @@
 	exclaim_verb = list("screeches")
 	key = "6"
 	flags = WHITELISTED
+	shorthand = "HM"

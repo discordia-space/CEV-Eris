@@ -1,43 +1,61 @@
-// These are not flags, binary operations not intended
-#define TOPIC_NOACTION 0
-#define TOPIC_HANDLED 1
-#define TOPIC_REFRESH 2
+#define TOPIC_UPDATE_PREVIEW 4
+#define TOPIC_REFRESH_UPDATE_PREVIEW (TOPIC_REFRESH|TOPIC_UPDATE_PREVIEW)
 
-/datum/category_group/player_setup_category/general_preferences
+var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
+
+/datum/category_group/player_setup_category/physical_preferences
 	name = "General"
 	sort_order = 1
-	category_item_type = /datum/category_item/player_setup_item/general
+	update_preview_icon = TRUE
+	category_item_type = /datum/category_item/player_setup_item/physical
 
+/datum/category_group/player_setup_category/augmentation
+	name = "Augmentation"
+	sort_order = 2
+	update_preview_icon = TRUE
+	category_item_type = /datum/category_item/player_setup_item/augmentation
+/*
+/datum/category_group/player_setup_category/background_preferences
+	name = "Background"
+	sort_order = 3
+	category_item_type = /datum/category_item/player_setup_item/background
+
+/datum/category_group/player_setup_category/background_preferences/content(var/mob/user)
+	. = ""
+	for(var/datum/category_item/player_setup_item/PI in items)
+		. += "[PI.content(user)]<br>"
+*/
 /datum/category_group/player_setup_category/occupation_preferences
 	name = "Occupation"
-	sort_order = 3
+	sort_order = 4
 	category_item_type = /datum/category_item/player_setup_item/occupation
 
 /datum/category_group/player_setup_category/appearance_preferences
 	name = "Roles"
-	sort_order = 4
+	sort_order = 5
 	category_item_type = /datum/category_item/player_setup_item/antagonism
+
+/datum/category_group/player_setup_category/relations_preferences
+	name = "Matchmaking"
+	sort_order = 6
+	category_item_type = /datum/category_item/player_setup_item/relations
 
 /datum/category_group/player_setup_category/loadout_preferences
 	name = "Loadout"
-	sort_order = 5
+	update_preview_icon = TRUE
+	sort_order = 7
 	category_item_type = /datum/category_item/player_setup_item/loadout
 
 /datum/category_group/player_setup_category/global_preferences
 	name = "Global"
-	sort_order = 6
+	sort_order = 8
 	category_item_type = /datum/category_item/player_setup_item/player_global
 
+/datum/category_group/player_setup_category/law_pref
+	name = "Laws"
+	sort_order = 9
+	category_item_type = /datum/category_item/player_setup_item/law_pref
 
-/datum/category_group/player_setup_category/augmentation
-	name = "Augmentation"
-	sort_order = 7
-	category_item_type = /datum/category_item/player_setup_item/augmentation
-
-/datum/category_group/player_setup_category/matchmaking_preferences
-	name = "Matchmaking"
-	sort_order = 8
-	category_item_type = /datum/category_item/player_setup_item/matchmaking
 
 /****************************
 * Category Collection Setup *
@@ -79,7 +97,7 @@
 
 /datum/category_collection/player_setup_collection/proc/update_setup(var/savefile/preferences, var/savefile/character)
 	for(var/datum/category_group/player_setup_category/PS in categories)
-		. = . && PS.update_setup(preferences, character)
+		. = PS.update_setup(preferences, character) || .
 
 /datum/category_collection/player_setup_collection/proc/header()
 	var/dat = ""
@@ -105,6 +123,8 @@
 		var/category = locate(href_list["category"])
 		if(category && category in categories)
 			selected_category = category
+			if(selected_category.update_preview_icon)
+				preferences.update_preview_icon(naked = istype(selected_category, /datum/category_group/player_setup_category/augmentation))
 		. = 1
 
 	if(.)
@@ -115,6 +135,7 @@
 **************************/
 /datum/category_group/player_setup_category
 	var/sort_order = 0
+	var/update_preview_icon = FALSE
 
 /datum/category_group/player_setup_category/dd_SortValue()
 	return sort_order
@@ -126,12 +147,8 @@
 		PI.sanitize_character()
 
 /datum/category_group/player_setup_category/proc/load_character(var/savefile/S)
-	// Load all data, then sanitize it.
-	// Need due to, for example, the 01_basic module relying on species having been loaded to sanitize correctly but that isn't loaded until module 03_body.
 	for(var/datum/category_item/player_setup_item/PI in items)
 		PI.load_character(S)
-	for(var/datum/category_item/player_setup_item/PI in items)
-		PI.sanitize_character()
 
 /datum/category_group/player_setup_category/proc/save_character(var/savefile/S)
 	// Sanitize all data, then save it
@@ -143,8 +160,6 @@
 /datum/category_group/player_setup_category/proc/load_preferences(var/savefile/S)
 	for(var/datum/category_item/player_setup_item/PI in items)
 		PI.load_preferences(S)
-	for(var/datum/category_item/player_setup_item/PI in items)
-		PI.sanitize_preferences()
 
 /datum/category_group/player_setup_category/proc/save_preferences(var/savefile/S)
 	for(var/datum/category_item/player_setup_item/PI in items)
@@ -154,7 +169,7 @@
 
 /datum/category_group/player_setup_category/proc/update_setup(var/savefile/preferences, var/savefile/character)
 	for(var/datum/category_item/player_setup_item/PI in items)
-		. = . && PI.update_setup(preferences, character)
+		. = PI.update_setup(preferences, character) || .
 
 /datum/category_group/player_setup_category/proc/content(var/mob/user)
 	. = "<table style='width:100%'><tr style='vertical-align:top'><td style='width:50%'>"
@@ -233,15 +248,19 @@
 	if(..())
 		return 1
 	var/mob/pref_mob = preference_mob()
-
-	if(isnull(pref_mob))
-		return
-
 	if(!pref_mob || !pref_mob.client)
 		return 1
 
 	. = OnTopic(href, href_list, usr)
-	if(. == TOPIC_REFRESH)
+
+	// The user might have joined the game or otherwise had a change of mob while tweaking their preferences.
+	pref_mob = preference_mob()
+	if(!pref_mob || !pref_mob.client)
+		return 1
+
+	if(. & TOPIC_UPDATE_PREVIEW)
+		pref_mob.client.prefs.preview_icon = null
+	if(. & TOPIC_REFRESH)
 		pref_mob.client.prefs.ShowChoices(usr)
 
 /datum/category_item/player_setup_item/CanUseTopic(var/mob/user)
@@ -256,6 +275,18 @@
 			if(C.ckey == pref.client_ckey)
 				pref.client = C
 				break
-
+	
+	//lets try again after 1 second
+	//for some reason it doesnt find client on login
+	spawn(10)
+		if(!pref.client)
+			for(var/client/C)
+				if(C.ckey == pref.client_ckey)
+					pref.client = C
+					break
 	if(pref.client)
 		return pref.client.mob
+/*
+/datum/category_item/player_setup_item/proc/preference_species()
+	return all_species[pref.species] || all_species[SPECIES_HUMAN]
+*/

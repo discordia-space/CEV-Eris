@@ -132,3 +132,15 @@
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "mfloor1"
 	random_icon_states = list("mfloor1", "mfloor2", "mfloor3", "mfloor4", "mfloor5", "mfloor6", "mfloor7")
+
+
+
+/obj/effect/decal/cleanable/rubble
+	name = "rubble"
+	desc = "Dirt, soil, loose stones, and residue from some kind of digging. Clean it up!"
+	density = 0
+	anchored = 1
+	icon = 'icons/obj/burrows.dmi'
+	icon_state = "asteroid0"
+	random_rotation = 2
+	random_icon_states = list("asteroid0", "asteroid1", "asteroid2", "asteroid3", "asteroid4", "asteroid5", "asteroid6","asteroid7","asteroid8")

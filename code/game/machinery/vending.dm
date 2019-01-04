@@ -763,10 +763,14 @@
 	product_slogans = "The best defense is good offense!;Buy for your whole family today!;Nobody can outsmart bullet!;God created man - Frozen Star made them EQUAL!;Stupidity can be cured! By LEAD.;Dead kids can't bully your children!"
 	product_ads = "Stunning!;Take justice in your own hands!;LEADearship!"
 	icon_state = "weapon"
-	products = list(/obj/item/device/flash = 6,/obj/item/weapon/reagent_containers/spray/pepper = 6, /obj/item/weapon/gun/projectile/olivaw = 5, /obj/item/weapon/gun/projectile/giskard = 5, /obj/item/weapon/gun/projectile/revolver/detective = 5, /obj/item/weapon/gun/projectile/shotgun/pump = 5, /obj/item/ammo_magazine/cl32/rubber = 20, /obj/item/ammo_magazine/sl38/rubber = 20, /obj/item/ammo_magazine/ammobox/c38/rubber = 20, /obj/item/ammo_magazine/ammobox/cl32/rubber = 20, /obj/item/weapon/storage/box/shotgunammo/beanbags = 10, /obj/item/weapon/storage/box/shotgunammo/flashshells = 10, /obj/item/weapon/storage/box/shotgunammo/blanks = 10, /obj/item/clothing/accessory/holster = 5)
+	products = list(/obj/item/device/flash = 6,/obj/item/weapon/reagent_containers/spray/pepper = 6, /obj/item/weapon/gun/projectile/olivaw = 5, /obj/item/weapon/gun/projectile/giskard = 5, /obj/item/weapon/gun/projectile/revolver/detective = 5, /obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3,
+					/obj/item/weapon/gun/projectile/shotgun/pump = 5, /obj/item/ammo_magazine/cl32/rubber = 20, /obj/item/ammo_magazine/sl38/rubber = 20, /obj/item/ammo_magazine/ammobox/c38/rubber = 20, /obj/item/ammo_magazine/ammobox/cl32/rubber = 20,
+					/obj/item/weapon/storage/box/shotgunammo/beanbags = 10, /obj/item/weapon/storage/box/shotgunammo/flashshells = 10, /obj/item/weapon/storage/box/shotgunammo/blanks = 10, /obj/item/clothing/accessory/holster = 5)
 	contraband = list(/obj/item/ammo_magazine/sl38 = 20, /obj/item/ammo_magazine/cl32 = 20, /obj/item/ammo_magazine/ammobox/cl32 = 20, /obj/item/ammo_magazine/ammobox/c38 = 20, /obj/item/weapon/storage/box/shotgunammo/slug = 10, /obj/item/weapon/storage/box/shotgunammo/buckshot = 10)
-	prices = list(/obj/item/device/flash = 600,/obj/item/weapon/reagent_containers/spray/pepper = 800,  /obj/item/weapon/gun/projectile/olivaw = 1600, /obj/item/weapon/gun/projectile/giskard = 1200, /obj/item/weapon/gun/projectile/revolver/detective = 2500, /obj/item/weapon/gun/projectile/shotgun/pump = 2000, /obj/item/ammo_magazine/cl32/rubber = 300, /obj/item/ammo_magazine/sl38/rubber = 400, /obj/item/ammo_magazine/ammobox/c38/rubber = 400, /obj/item/ammo_magazine/ammobox/cl32/rubber = 500, /obj/item/weapon/storage/box/shotgunammo/beanbags = 300, /obj/item/weapon/storage/box/shotgunammo/flashshells = 300, /obj/item/weapon/storage/box/shotgunammo/blanks = 50, /obj/item/clothing/accessory/holster = 150,
-				/obj/item/ammo_magazine/sl38 = 400, /obj/item/ammo_magazine/cl32 = 300, /obj/item/ammo_magazine/ammobox/cl32 = 500, /obj/item/ammo_magazine/ammobox/c38 = 400, /obj/item/weapon/storage/box/shotgunammo/slug = 300, /obj/item/weapon/storage/box/shotgunammo/buckshot = 300)
+	prices = list(/obj/item/device/flash = 600,/obj/item/weapon/reagent_containers/spray/pepper = 800,  /obj/item/weapon/gun/projectile/olivaw = 1600, /obj/item/weapon/gun/projectile/giskard = 1200, /obj/item/weapon/gun/projectile/revolver/detective = 2500, /obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3700,
+					/obj/item/weapon/gun/projectile/shotgun/pump = 2000, /obj/item/ammo_magazine/cl32/rubber = 300, /obj/item/ammo_magazine/sl38/rubber = 400, /obj/item/ammo_magazine/ammobox/c38/rubber = 400, /obj/item/ammo_magazine/ammobox/cl32/rubber = 500,
+					/obj/item/weapon/storage/box/shotgunammo/beanbags = 300, /obj/item/weapon/storage/box/shotgunammo/flashshells = 300, /obj/item/weapon/storage/box/shotgunammo/blanks = 50, /obj/item/clothing/accessory/holster = 150,
+					/obj/item/ammo_magazine/sl38 = 400, /obj/item/ammo_magazine/cl32 = 300, /obj/item/ammo_magazine/ammobox/cl32 = 500, /obj/item/ammo_magazine/ammobox/c38 = 400, /obj/item/weapon/storage/box/shotgunammo/slug = 300, /obj/item/weapon/storage/box/shotgunammo/buckshot = 300)
 
 //This one's from bay12
 /obj/machinery/vending/cart
@@ -1014,8 +1018,8 @@
 
 /obj/machinery/vending/theomat
 	name = "NeoTheology Theo-Mat"
-	desc = "A Cyber-Christian bible vending machine."
-	product_slogans = "Make the RIGHT choice!;Every answer can be found in Cyber Bible. Found out yourself!;Help humanity ascend, join us today!;Remember kids, Cyber-Jesus is wathing you. Always.;NeoTheology know what do you truly need. Join us!"
+	desc = "A Neotheology dispensary for disciples and new converts."
+	product_slogans = "Immortality is the reward of the faithful; Help humanity ascend, join your brethren today!; Come and seek a new life"
 	product_ads = "Praise!;Pray!;Obey!"
 	icon_state = "teomat"
 	products = list(/obj/item/weapon/book/ritual/cruciform = 10, /obj/item/weapon/storage/fancy/candle_box = 10, /obj/item/weapon/reagent_containers/food/drinks/bottle/ntcahors = 20)

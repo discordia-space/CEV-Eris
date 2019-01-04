@@ -29,18 +29,26 @@
 #define ANTAG_RANDOM_EXCEPTED  2048 // If a game mode randomly selects antag types, antag types with this flag should be excluded.
 
 // Globals.
-var/global/list/antag_types = list()
-var/global/list/antag_names = list()
-var/global/list/station_antag_types = list()
-var/global/list/outer_antag_types = list()
-var/global/list/group_antag_types = list()
-var/global/list/antag_starting_locations = list()
-var/global/list/selectable_antag_types = list()
-var/global/list/antag_bantypes = list()
-
-var/global/list/faction_types = list()
+GLOBAL_LIST_EMPTY(all_antag_types)
+GLOBAL_LIST_EMPTY(all_antag_selectable_types)
+GLOBAL_LIST_EMPTY(station_antag_types)
+GLOBAL_LIST_EMPTY(outer_antag_types)
+GLOBAL_LIST_EMPTY(antag_starting_locations)
+GLOBAL_LIST_EMPTY(group_antag_types)
+GLOBAL_LIST_EMPTY(antag_bantypes)
+GLOBAL_LIST_EMPTY(faction_types)
 
 // Global procs.
+/proc/get_antag_data(var/antag_type)
+	if(GLOB.all_antag_types[antag_type])
+		return GLOB.all_antag_types[antag_type]
+	else
+		var/list/all_antag_types = GLOB.all_antag_types
+		for(var/cur_antag_type in all_antag_types)
+			var/datum/antagonist/antag = all_antag_types[cur_antag_type]
+			if(antag && antag.is_type(antag_type))
+				return antag
+
 /proc/clear_antagonist(var/datum/mind/player)
 	for(var/datum/antagonist/A in player.antagonist)
 		A.remove_antagonist()
@@ -50,28 +58,28 @@ var/global/list/faction_types = list()
 		if(A.id == a_id)
 			A.remove_antagonist()
 
-/proc/get_antag_instance(var/a_id)
-	if(antag_types[a_id])
-		var/atype = antag_types[a_id]
+/proc/create_antag_instance(var/a_id)
+	if(GLOB.all_antag_types[a_id])
+		var/atype = GLOB.all_antag_types[a_id].type
 		return new atype
 
 /proc/make_antagonist_ghost(var/mob/M, var/a_id)
-	if(antag_types[a_id])
-		var/a_type = antag_types[a_id]
+	if(GLOB.all_antag_types[a_id])
+		var/a_type = GLOB.all_antag_types[a_id].type
 		var/datum/antagonist/A = new a_type
 		if(A.create_from_ghost(M))
 			return A
 
 /proc/make_antagonist(var/datum/mind/M, var/a_id)
-	if(antag_types[a_id])
-		var/a_type = antag_types[a_id]
+	if(GLOB.all_antag_types[a_id])
+		var/a_type = GLOB.all_antag_types[a_id].type
 		var/datum/antagonist/A = new a_type
 		if(istype(M) && A.create_antagonist(M))
 			return A
 
 /proc/make_antagonist_faction(var/datum/mind/M, var/a_id, var/datum/faction/F)
-	if(antag_types[a_id])
-		var/a_type = antag_types[a_id]
+	if(GLOB.all_antag_types[a_id])
+		var/a_type = GLOB.all_antag_types[a_id].type
 		var/datum/antagonist/A = new a_type
 		A.create_antagonist(M, F)
 
@@ -84,43 +92,32 @@ var/global/list/faction_types = list()
 
 /proc/populate_antag_type_list()
 	for(var/antag_type in typesof(/datum/antagonist)-/datum/antagonist)
-		var/datum/antagonist/A = antag_type
-		var/id = initial(A.id)
-
-		if(!id)
+		var/datum/antagonist/A = new antag_type()
+		if(!A.id)
 			continue
 
-		antag_types[id] = antag_type
-		if(initial(A.outer))
-			outer_antag_types[id] = antag_type
+		GLOB.all_antag_types[A.id] = A
+
+		if(A.outer)
+			GLOB.outer_antag_types[A.id] = A
 			var/list/start_locs = list()
-			var/landmark_id = initial(A.landmark_id)
 			for(var/obj/landmark/L in landmarks_list)
-				if(L.name == landmark_id)
-					start_locs |= get_turf(L)
-			antag_starting_locations[id] = start_locs
+				if(L.name == A.landmark_id)
+					start_locs += get_turf(L)
+			GLOB.antag_starting_locations[A.id] = start_locs
 		else
-			station_antag_types[id] = antag_type
+			GLOB.station_antag_types[A.id] = A
 
-		var/role_type = initial(A.role_type)
-		if(!role_type)
-			role_type = initial(A.role_text)
+		if(A.selectable)
+			GLOB.all_antag_selectable_types[A.bantype] = A
+		if(A.faction_id)
+			GLOB.group_antag_types[A.id] = A
 
-		if(initial(A.selectable))
-			selectable_antag_types |= role_type
-		if(initial(A.faction_id))
-			group_antag_types[id] = antag_type
-		antag_names[id] = initial(A.role_text)
-
-		var/bantype = initial(A.bantype)
-		if(!bantype)
-			bantype = role_type
-
-		antag_bantypes[id] = bantype
+		GLOB.antag_bantypes[A.id] = A.bantype
 
 	for(var/faction_type in typesof(/datum/faction)-/datum/faction)
-		var/datum/faction/F = faction_type
-		faction_types[initial(F.id)] = faction_type
+		var/datum/faction/F = new faction_type
+		GLOB.faction_types[F.id] = F
 
 /proc/get_antags(var/id)
 	var/list/L = list()

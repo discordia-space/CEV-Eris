@@ -15,7 +15,7 @@
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
 	burst_delay = null
 	fire_delay = null
-	bulletinsert_sound 	= 'sound/weapons/guns/interact/shotgun_instert.ogg'
+	bulletinsert_sound = 'sound/weapons/guns/interact/shotgun_insert.ogg'
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	move_delay = null
 	firemodes = list(

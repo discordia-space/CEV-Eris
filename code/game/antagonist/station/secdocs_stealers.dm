@@ -2,8 +2,7 @@
 	id = ROLE_SECDOC_DEFENDER
 	role_text = "Scientist"
 	role_text_plural = "Scientists"
-	bantype = "Crew-sided"
-	role_type = "crew-sided"
+	bantype = ROLE_BANTYPE_CREW_SIDED
 	restricted_jobs = list("AI", "Robot")
 	protected_jobs = list(JOBS_COMMAND)
 

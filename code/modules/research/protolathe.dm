@@ -199,7 +199,7 @@
 /obj/machinery/r_n_d/protolathe/proc/build(var/datum/design/D)
 	var/power = active_power_usage
 	for(var/M in D.materials)
-		power += round(D.materials[M] / 5)
+		power += round(D.materials[M] / 5, 0.01)
 	power = max(active_power_usage, power)
 	use_power(power)
 	for(var/M in D.materials)

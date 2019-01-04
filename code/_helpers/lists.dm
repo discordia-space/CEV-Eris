@@ -256,6 +256,12 @@ proc/listclearnulls(list/list)
 	for(var/i in L)
 		. |= i
 
+// Return a list of the values in an assoc list (including null)
+/proc/list_values(var/list/L)
+	. = list()
+	for(var/e in L)
+		. += L[e]
+
 //Mergesort: divides up the list into halves to begin the sort
 /proc/sortKey(var/list/client/L, var/order = 1)
 	if(isnull(L) || L.len < 2)
@@ -896,3 +902,28 @@ Checks if a list has the same entries and values as an element of big.
 		// if the key is a list that means it's actually an array of lists (stupid Byond...)
 		if(isnum(key) && isnull(L[key]) && istype(key, /list))
 			return FALSE
+	return TRUE
+
+/proc/group_by(var/list/group_list, var/key, var/value)
+	var/values = group_list[key]
+	if(!values)
+		values = list()
+		group_list[key] = values
+
+	values += value
+
+/proc/duplicates(var/list/L)
+	. = list()
+	var/list/checked = list()
+	for(var/value in L)
+		if(value in checked)
+			. |= value
+		else
+			checked += value
+
+//Checks for specific paths in a list
+/proc/is_path_in_list(var/path, var/list/L)
+	for(var/type in L)
+		if(ispath(path, type))
+			return 1
+	return 0

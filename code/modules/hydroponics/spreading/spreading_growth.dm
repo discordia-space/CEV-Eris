@@ -21,7 +21,9 @@
 		if((locate(/obj/effect/plant) in zdest.contents) || (locate(/obj/effect/dead_plant) in zdest.contents) )
 
 			continue
-		if(floor.density)
+
+		//We dont want to melt external walls and cause breaches
+		if(!near_external && floor.density)
 			if(!isnull(seed.chems["pacid"]))
 				spawn(rand(5,25)) floor.ex_act(3)
 			continue
@@ -31,12 +33,16 @@
 		//Space vines can grow through airlocks by forcing their way into tiny gaps
 		if (!floor.Enter(src))
 
+			//Maintshooms cannot, spread trait must be 3 or more
+			if(seed.get_trait(TRAIT_SPREAD) < 3)
+				continue
+
 			//If these two are not the same then we're attempting to enter a portal or stairs
 			//We will allow it
 			if (zdest == floor)
 				var/obj/machinery/door/found_door = null
 				for (var/obj/machinery/door/D in floor)
-					if (!D || !istype(D) || !D.density)
+					if (!D || !istype(D) || !D.density || D.welded) //Can't grow through doors that are welded shut
 						continue
 
 					found_door = D
@@ -92,9 +98,9 @@
 		//Plants can grow through closed airlocks, but more slowly, since they have to force metal to make space
 		var/obj/machinery/door/D = (locate(/obj/machinery/door) in loc)
 		if (D)
-			health += rand_between(0,1.2)
+			health += rand_between(0,0.5)
 		else
-			health += rand_between(2,3.5)
+			health += rand_between(1,2.5)
 		refresh_icon()
 		if(health > max_health)
 			health = max_health

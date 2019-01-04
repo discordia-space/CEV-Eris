@@ -8,22 +8,22 @@
 /datum/ritual/cruciform/crusader/brotherhood
 	name = "Eternal Brotherhood"
 	phrase = "Ita multi unum corpus sumus in Christo singuli autem alter alterius membra."
-	desc = "Reveals other cyberchristians to speaker."
+	desc = "Reveals other disciples to speaker."
 
 
 /datum/ritual/cruciform/crusader/brotherhood/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
-	var/datum/core_module/cruciform/christianhud/hud_module = C.get_module(/datum/core_module/cruciform/christianhud)
+	var/datum/core_module/cruciform/neotheologyhud/hud_module = C.get_module(/datum/core_module/cruciform/neotheologyhud)
 	if(hud_module)
 		C.remove_module(hud_module)
 	else
-		C.add_module(new /datum/core_module/cruciform/christianhud)
+		C.add_module(new /datum/core_module/cruciform/neotheologyhud)
 	return TRUE
 
 
 /datum/ritual/cruciform/crusader/battle_call
 	name = "Call to Battle"
 	phrase = "Si exieritis ad bellum de terra vestra contra hostes qui dimicant adversum vos clangetis ululantibus tubis et erit recordatio vestri coram Domino Deo vestro ut eruamini de manibus inimicorum vestrorum."
-	desc = "Inspires the prayer and gives him strength to protect the other cyberchristians. True strength in unity."
+	desc = "Inspires the prayer and gives him strength to protect the other disciples. True strength in unity."
 	cooldown = TRUE
 	cooldown_time = 10 MINUTES
 	cooldown_category = "battle call"

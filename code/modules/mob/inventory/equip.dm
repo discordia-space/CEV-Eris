@@ -1,7 +1,7 @@
 /mob/proc/equip_to_slot(obj/item/Item, slot, redraw_mob = TRUE)
 
 
-/mob/proc/equip_to_slot_if_possible(obj/item/Item, slot, disable_warning, redraw_mob = TRUE)
+/mob/proc/equip_to_slot_if_possible(obj/item/Item, slot, disable_warning = 1, redraw_mob = TRUE)
 	if(!mob_can_equip(src, Item, slot, disable_warning))
 		return FALSE
 
@@ -25,6 +25,46 @@
 		S.remove_from_storage(Item, null)
 
 	equip_to_slot(Item, slot, redraw_mob) //This proc should not ever fail.
+
+	return TRUE
+
+//	This function will attempt to replace item in slot
+//	proc will return TRUE if we succeded to equip item and FALSE otherwise
+//	put_in_storage - if TRUE will put replaced item into available storage or hands or drop if 'drop_if_unable_to_store' flag is TRUE, otherwise will delete it
+//	drop_if_unable_to_store - if TRUE will drop item on turf if failed to store it, otherwise will delete it
+//	skip_covering_check - if TRUE will ignore slot inaccessibleness for example helmet will prevent equip cause it covering slot 
+//	del_if_failed_to_equip - if TRUE will delete the item we attempting to replace with
+/mob/proc/replace_in_slot(obj/item/Item, slot, put_in_storage = FALSE, drop_if_unable_to_store = FALSE, skip_covering_check = FALSE, del_if_failed_to_equip = FALSE)
+	var/failed = FALSE
+	if(can_equip(Item, slot, disable_warning = TRUE, skip_item_check = TRUE, skip_covering_check = skip_covering_check))	//checking if mob is able to equip it, but not checking if slot is occupied or covered
+		var/obj/item/old_item = get_equipped_item(slot)
+		if(old_item)
+			unEquip(old_item)
+			if(put_in_storage)	//trying to store item, if failed we delete it
+				var/obj/item/weapon/storage/S = equip_to_storage(old_item)
+				if(S)
+					src << SPAN_NOTICE("Storing your \the [old_item] into \the [S]!")
+				else if (equip_to_slot_if_possible(old_item, slot_l_hand, disable_warning = TRUE))
+					src << SPAN_NOTICE("Putting your \the [old_item] into your left hand!")
+				else if (equip_to_slot_if_possible(old_item, slot_r_hand, disable_warning = TRUE))
+					src << SPAN_NOTICE("Putting your \the [old_item] into your right hand!")
+				else if (drop_if_unable_to_store)
+					var/turf/T = get_turf(src)
+					Item.forceMove(T)
+				else
+					qdel(old_item)
+			else
+				qdel(old_item)
+		if(!equip_to_slot_if_possible(Item, slot, disable_warning = TRUE))	//should not happen but just in case
+			log_debug("Item could not be equipped despite the fact it passed checks.")
+			failed = TRUE
+	else
+		failed = TRUE
+
+	if(failed)
+		if(del_if_failed_to_equip)
+			qdel(Item)
+		return FALSE
 
 	return TRUE
 

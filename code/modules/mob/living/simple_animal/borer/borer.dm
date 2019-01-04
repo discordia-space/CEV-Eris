@@ -34,8 +34,7 @@
 /mob/living/simple_animal/borer/Login()
 	..()
 	if(!roundstart && mind && !mind.antagonist.len)
-		var/a_type = antag_types[ROLE_BORER_REPRODUCED]
-		var/datum/antagonist/A = new a_type
+		var/datum/antagonist/A = create_antag_instance(ROLE_BORER_REPRODUCED)
 		A.create_antagonist(mind,update = FALSE)
 
 /mob/living/simple_animal/borer/New()
@@ -87,7 +86,7 @@
 					host.say("*[pick(list("blink","blink_r","choke","aflap","drool","twitch","twitch_s","gasp"))]")
 
 /mob/living/simple_animal/borer/Stat()
-	..()
+	. = ..()
 	statpanel("Status")
 
 	if(evacuation_controller)

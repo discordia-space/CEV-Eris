@@ -8,6 +8,7 @@
 	key = "4"
 	flags = RESTRICTED
 	syllables = list("sss","sSs","SSS")
+	shorthand = "Xeno"
 
 /datum/language/xenos
 	name = LANGUAGE_HIVEMIND
@@ -18,6 +19,7 @@
 	colour = "alien"
 	key = "a"
 	flags = RESTRICTED | HIVEMIND
+	shorthand = "N/A"
 
 /datum/language/xenos/check_special_condition(var/mob/other)
 
@@ -35,6 +37,7 @@
 	colour = "changeling"
 	key = "g"
 	flags = RESTRICTED | HIVEMIND
+	shorthand = "N/A"
 
 /datum/language/ling/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
 
@@ -52,6 +55,7 @@
 	colour = "alien"
 	key = "x"
 	flags = RESTRICTED | HIVEMIND
+	shorthand = "N/A"
 
 /datum/language/corticalborer/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
 
@@ -84,6 +88,7 @@
 		"sektath", "mal'zua", "zasan", "therium", "viortia", "kla'atu", "barada", "nikt'o", "fwe'sh", "mah", "erl", "nyag", "r'ya", \
 		"gal'h'rfikk", "harfrandid", "mud'gib", "fuu", "ma'jin", "dedo", "ol'btoh", "n'ath", "reth", "sh'yro", "eth", \
 		"d'rekkathnor", "khari'd", "gual'te", "nikka", "nikt'o", "barada", "kla'atu", "barhah", "hra" ,"zar'garis")
+	shorthand = "CT"
 
 /datum/language/serbian
 	name = LANGUAGE_SERBIAN
@@ -92,6 +97,7 @@
 	key = "x"
 	flags = RESTRICTED
 	space_chance = 80
+	shorthand = "SB"
 	syllables = list("zena", "rob", "macka", "tvoj", "ruke", "jebote", "placenik", "tsatsh", "da", "zivim", "cich", "jovan", "be", "ot", \
 					 "ja", "tamo", "moj", "za", "gdje", "su", "brodove", "noge", "da", "ne", "svemirskog", "pochemu", "zasto","ljubav", \
 					 "zajebavati", "krevet", "tabela", "za", "red", "dan", "voyna", "rat", "razmisljam", "bubasvaba", "zdravlje", "dan", "novac", \
@@ -116,3 +122,4 @@
 	colour = "cult"
 	key = "y"
 	flags = RESTRICTED | HIVEMIND
+	shorthand = "N/A"

@@ -452,22 +452,6 @@ default behaviour is:
 /mob/living/proc/UpdateDamageIcon()
 	return
 
-
-/mob/living/proc/Examine_OOC()
-	set name = "Examine Meta-Info (OOC)"
-	set category = "OOC"
-	set src in view()
-
-	if(config.allow_Metadata)
-		if(client)
-			usr << "[src]'s Metainfo:<br>[client.prefs.metadata]"
-		else
-			usr << "[src] does not have any stored infomation!"
-	else
-		usr << "OOC Metadata is not supported by this server!"
-
-	return
-
 /mob/living/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	if (buckled)
 		return
@@ -660,15 +644,63 @@ default behaviour is:
 	set name = "Rest"
 	set category = "IC"
 
-	resting = !resting
-	src << "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>"
+	var/state_changed = FALSE
+	if(resting && can_stand_up())
+		resting = FALSE
+		state_changed = TRUE
 
+		
+	else if (!resting)
+		if(ishuman(src))
+			var/obj/item/weapon/bedsheet/BS = locate(/obj/item/weapon/bedsheet) in get_turf(src)
+			// If there is unrolled bedsheet roll and unroll it to get in bed like a proper adult does
+			if(BS && !BS.rolled && !BS.folded)
+				resting = TRUE
+				BS.toggle_roll(src, no_message = TRUE)
+				BS.toggle_roll(src)
+			else
+				resting = TRUE
+			state_changed = TRUE
+		else
+			resting = TRUE
+			state_changed = TRUE
+	if(state_changed)
+		src << "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>"
+		update_canmove()
+
+/mob/living/proc/can_stand_up()
+	var/no_blankets = FALSE
+	no_blankets = unblanket()
+	
+	if(no_blankets)
+		return TRUE
+	else
+		src << SPAN_WARNING("You can stand up, bedsheets are in the way and you struggle to get rid of them.")
+		return FALSE
+
+//used to push away bedsheets in order to stand up, only humans will roll them (see overriden human proc)
+/mob/living/proc/unblanket()
+	if((locate(/obj/item/weapon/bedsheet) in get_turf(src)) && do_after(src,10,incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_STUNNED))
+		var/quantity = 0
+		for (var/obj/item/weapon/bedsheet/BS in get_turf(src))
+			quantity++
+			if(prob(25))
+				BS.rolled = TRUE
+				BS.update_icon()
+			if(prob(85))
+				var/turf/T = get_offset_target_turf(get_turf(src),rand(-1,1),rand(-1,1))
+				step_towards(BS,T)
+		if(quantity)
+			src.visible_message(
+				SPAN_WARNING("\The [src] shoves aside \the [quantity > 1 ? "blankets" : "blanket"] as it stands up."),
+				SPAN_WARNING("You shove aside \the [quantity > 1 ? "blankets" : "blanket"] as you stand up.")
+			)
+	return TRUE
 
 /mob/living/simple_animal/spiderbot/is_allowed_vent_crawl_item(var/obj/item/carried_item)
 	if(carried_item == held_item)
 		return FALSE
 	return ..()
-
 
 /mob/living/proc/cannot_use_vents()
 	return "You can't fit into that vent."

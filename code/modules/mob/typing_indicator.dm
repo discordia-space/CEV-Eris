@@ -16,7 +16,7 @@
 		typing_indicator.layer = ABOVE_MOB_LAYER
 	if(client && !stat)
 		typing_indicator.invisibility = invisibility
-		if(!is_preference_enabled(/datum/client_preference/show_typing_indicator))
+		if(get_preference_value(/datum/client_preference/show_typing_indicator) == GLOB.PREF_HIDE)
 			overlays -= typing_indicator
 		else
 			if(state)
@@ -30,7 +30,7 @@
 			return state
 
 /mob/proc/handle_typing_indicator()
-	if(is_preference_enabled(/datum/client_preference/show_typing_indicator) && !hud_typing)
+	if(get_preference_value(/datum/client_preference/show_typing_indicator) == GLOB.PREF_SHOW && !hud_typing)
 		var/temp = winget(client, "input", "text")
 
 		if (temp != last_typed)
