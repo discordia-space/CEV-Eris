@@ -19,6 +19,7 @@
 #include "code\__datastructures\globals.dm"
 #include "code\__datastructures\path_node.dm"
 #include "code\__datastructures\priority_queue.dm"
+#include "code\__datastructures\stack.dm"
 #include "code\__defines\_compile_options.dm"
 #include "code\__defines\_planes+layers.dm"
 #include "code\__defines\admin.dm"
