@@ -28,7 +28,7 @@
 		for (var/mob/M in player_list)
 			if (isnewplayer(M))
 				continue
-			else if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))
+			else if(M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
 				M << "The captive mind of [src] whispers, \"[message]\""
 
 /mob/living/captive_brain/emote(var/message)

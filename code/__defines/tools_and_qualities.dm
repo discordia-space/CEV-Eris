@@ -42,7 +42,7 @@
 #define FAILCHANCE_HARD					80
 #define FAILCHANCE_CHALLENGING			90
 #define FAILCHANCE_VERY_HARD			120
-#define FAILCHANCE_IMPOSSIBLY			150
+#define FAILCHANCE_IMPOSSIBLE			150
 
 //Sounds for working with tools
 #define NO_WORKSOUND					-1

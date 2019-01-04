@@ -14,11 +14,56 @@
 	var/datum/stat/S = stat_list[statName]
 	S.changeValue(Value)
 
+
 /datum/stat_holder/proc/getStat(statName, Pure = null)
-	var/datum/stat/S = stat_list[statName]
-	return S ? S.getValue(Pure) : 0
+	if (!islist(statName))
+		var/datum/stat/S = stat_list[statName]
+		return S ? S.getValue(Pure) : 0
+	else
+		/*
+			Passing a list to getStat allows you to do some fancy compound behaviour
+			Check the other mob_stats define file for the defines used here
+		*/
+		var/list/request = statName
+		var/combine_type = request[1]
 
+		var/list/values = list()
 
+		//Lets get the values of the stats involved
+		//We loop through the list starting from 2, since element 1 is a define telling us how to combine values
+		for (var/i = 2; i <= request.len;i++)
+			var/datum/stat/S = stat_list[request[i]]
+			values.Add(S ? S.getValue(Pure) : 0)
+
+		//Now we've got the values, what do we do with them?
+		switch (combine_type)
+			if (STAT_MAX)
+				var/highest = -INFINITY
+				for (var/a in values)
+					if (a > highest)
+						highest = a
+				return highest
+			if (STAT_MIN)
+				var/lowest = INFINITY
+				for (var/a in values)
+					if (a < lowest)
+						lowest = a
+				return lowest
+
+			if (STAT_SUM)
+				var/total = 0
+				for (var/a in values)
+					total += a
+				return total
+
+			if (STAT_AVG)
+				var/total = 0
+				for (var/a in values)
+					total += a
+				return total / values.len
+
+			else
+				return 0
 
 /datum/stat_mod
 	var/time = 0

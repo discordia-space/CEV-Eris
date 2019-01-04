@@ -349,9 +349,9 @@
 	//Antagonist (Orange)
 
 		var/jobban_list = list()
-		for(var/a_id in antag_bantypes)
-			var/a_ban = antag_bantypes[a_id]
-			jobban_list[antag_names[a_id]] = a_ban
+		for(var/a_id in GLOB.antag_bantypes)
+			var/a_ban = GLOB.antag_bantypes[a_id]
+			jobban_list[get_antag_data(a_id).role_text] = a_ban
 		body += formatJobGroup(M, "Antagonist Positions", "ffeeaa", "Syndicate", jobban_list)
 
 		dat = "<head>[header]</head><body><tt><table width='100%'>[body.Join(null)]</table></tt></body>"

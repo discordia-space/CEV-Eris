@@ -890,6 +890,15 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/weapon/computer_hardware/card_slot
 	sort_string = "VBAAM"
 
+/datum/design/item/modularcomponent/cardslot/broadcaster
+	name = "RFID card broadcaster"
+	id = "cardbroadcaster"
+	req_tech = list(TECH_DATA = 2)
+	build_type = PROTOLATHE
+	materials = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+	build_path = /obj/item/weapon/computer_hardware/card_slot/broadcaster
+	sort_string = "VBAAN"
+
 // Nano printer
 /datum/design/item/modularcomponent/nanoprinter
 	name = "nano printer"
@@ -898,7 +907,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/computer_hardware/nano_printer
-	sort_string = "VBAAN"
+	sort_string = "VBAAO"
 
 // Card slot
 /datum/design/item/modularcomponent/teslalink
@@ -908,7 +917,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/computer_hardware/tesla_link
-	sort_string = "VBAAO"
+	sort_string = "VBAAP"
 
 // Batteries
 /datum/design/item/modularcomponent/battery/normal
@@ -918,7 +927,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/computer_hardware/battery_module
-	sort_string = "VBAAP"
+	sort_string = "VBAAQ"
 
 /datum/design/item/modularcomponent/battery/advanced
 	name = "advanced battery module"
@@ -927,7 +936,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/computer_hardware/battery_module/advanced
-	sort_string = "VBAAQ"
+	sort_string = "VBAAR"
 
 /datum/design/item/modularcomponent/battery/super
 	name = "super battery module"
@@ -936,7 +945,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/computer_hardware/battery_module/super
-	sort_string = "VBAAR"
+	sort_string = "VBAAS"
 
 /datum/design/item/modularcomponent/battery/ultra
 	name = "ultra battery module"
@@ -945,7 +954,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/computer_hardware/battery_module/ultra
-	sort_string = "VBAAS"
+	sort_string = "VBAAT"
 
 /datum/design/item/modularcomponent/battery/nano
 	name = "nano battery module"
@@ -954,7 +963,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/computer_hardware/battery_module/nano
-	sort_string = "VBAAT"
+	sort_string = "VBAAU"
 
 /datum/design/item/modularcomponent/battery/micro
 	name = "micro battery module"
@@ -963,7 +972,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/computer_hardware/battery_module/micro
-	sort_string = "VBAAU"
+	sort_string = "VBAAV"
 
 /datum/design/item/modularcomponent/cpu
 	name = "computer processor unit"
@@ -973,7 +982,7 @@ other types of metals and chemistry for reagents).
 	materials = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	chemicals = list("sacid" = 20)
 	build_path = /obj/item/weapon/computer_hardware/processor_unit
-	sort_string = "VBAAV"
+	sort_string = "VBAAW"
 
 /datum/design/item/modularcomponent/cpu/small
 	name = "computer microprocessor unit"
@@ -983,7 +992,7 @@ other types of metals and chemistry for reagents).
 	materials = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	chemicals = list("sacid" = 20)
 	build_path = /obj/item/weapon/computer_hardware/processor_unit/small
-	sort_string = "VBAAW"
+	sort_string = "VBAAX"
 
 /datum/design/item/modularcomponent/cpu/photonic
 	name = "computer photonic processor unit"
@@ -993,7 +1002,7 @@ other types of metals and chemistry for reagents).
 	materials = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	chemicals = list("sacid" = 40)
 	build_path = /obj/item/weapon/computer_hardware/processor_unit/photonic
-	sort_string = "VBAAX"
+	sort_string = "VBAAY"
 
 /datum/design/item/modularcomponent/cpu/photonic/small
 	name = "computer photonic microprocessor unit"
@@ -1003,7 +1012,7 @@ other types of metals and chemistry for reagents).
 	materials = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	chemicals = list("sacid" = 20)
 	build_path = /obj/item/weapon/computer_hardware/processor_unit/photonic/small
-	sort_string = "VBAAY"
+	sort_string = "VBAAZ"
 /*
 CIRCUITS BELOW
 */

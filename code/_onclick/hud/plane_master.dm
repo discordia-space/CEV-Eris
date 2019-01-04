@@ -30,7 +30,7 @@
 
 /obj/screen/plane_master/game_world/backdrop(mob/mymob)
 	filters = list()
-	if(mymob.client && mymob.client.is_preference_enabled(/datum/client_preference/ambient_occlusion))
+	if(mymob.client && mymob.client.get_preference_value(/datum/client_preference/ambient_occlusion) == GLOB.PREF_YES)
 		filters += AMBIENT_OCCLUSION
 
 /obj/screen/plane_master/lighting

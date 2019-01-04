@@ -3,8 +3,8 @@
 
 /datum/core_module/cruciform/red_light/install()
 	implant.icon_state = "cruciform_red"
-	implant.max_power = 80
-	implant.power_regen = 0.8
+	implant.max_power += 30
+	implant.power_regen += 0.3
 
 	if(ishuman(implant.wearer))
 		var/mob/living/carbon/human/H = implant.wearer
@@ -12,16 +12,46 @@
 
 /datum/core_module/cruciform/red_light/uninstall()
 	implant.icon_state = "cruciform_green"
-	implant.max_power = 50
-	implant.power_regen = 0.5
+	implant.max_power -= 30
+	implant.power_regen -= 0.3
 
 	if(ishuman(implant.wearer))
 		var/mob/living/carbon/human/H = implant.wearer
 		H.update_implants()
 
 
+
+
+/*
+	Traitor uplink hidden inside cruciform. Used for inquisitors and maybe other NT antags
+*/
 /datum/core_module/cruciform/uplink
 	var/telecrystals = 15
+	var/obj/item/device/uplink/hidden/uplink
+
+/datum/core_module/cruciform/uplink/install()
+
+
+	//Hook up the uplink with the mob wearing this implant
+	var/mob/living/M = implant.get_holding_mob()
+	if (M && M.mind)
+		uplink = new(implant, M.mind, telecrystals)
+		implant.hidden_uplink = uplink
+		uplink.uplink_owner = M.mind
+
+		//Update the nanodata after installation, to activate the neotheology category
+		uplink.update_nano_data()
+
+
+
+
+/datum/core_module/cruciform/uplink/uninstall()
+	telecrystals = uplink.uses
+	implant.hidden_uplink = null
+	QDEL_NULL(uplink)
+
+
+
 
 /datum/core_module/cruciform/cloning
 	var/datum/dna/dna = null
@@ -69,12 +99,21 @@
 		H.mind.store_memory(txt)
 
 
-/datum/core_module/activatable/cruciform/priest_convert/set_up()
-	module = new CRUCIFORM_PRIEST
+
+
+
+/datum/core_module/activatable/cruciform/priest_convert/activate()
+	..()
+	var/obj/item/weapon/implant/core_implant/cruciform/C = implant
+	C.make_priest()
 
 /datum/core_module/activatable/cruciform/priest_convert/uninstall()
 	..()
-	implant.remove_modules(CRUCIFORM_PRIEST)
+	var/obj/item/weapon/implant/core_implant/cruciform/C = implant
+	C.make_common()
+
+
+
 
 
 /datum/core_module/activatable/cruciform/obey_activator/set_up()
@@ -82,11 +121,11 @@
 	module.user = user
 
 
-/datum/core_module/cruciform/christianhud
+/datum/core_module/cruciform/neotheologyhud
 
-/datum/core_module/cruciform/christianhud/proc/update_crucihud()
+/datum/core_module/cruciform/neotheologyhud/proc/update_crucihud()
 	if(implant.wearer.client)
-		for(var/mob/living/carbon/human/christian in christians)
+		for(var/mob/living/carbon/human/christian in disciples)
 			var/image/I = image('icons/mob/hud.dmi', christian, icon_state = "hudcyberchristian", layer = ABOVE_LIGHTING_LAYER)
 			implant.wearer.client.images += I
 		implant.use_power(1)
@@ -120,8 +159,20 @@
 
 
 /datum/core_module/rituals/cruciform/inquisitor
-	ritual_types = list(/datum/ritual/inquisitor,
-	/datum/ritual/targeted/inquisitor)
+	ritual_types = list(/datum/ritual/cruciform/inquisitor,
+	/datum/ritual/targeted/cruciform/inquisitor)
+
+/datum/core_module/rituals/cruciform/inquisitor/install()
+	..()
+	implant.max_power += 50
+	implant.power_regen += 0.5
+
+
+/datum/core_module/rituals/cruciform/inquisitor/uninstall()
+	..()
+	implant.max_power -= 50
+	implant.power_regen -= 0.5
+
 
 
 /datum/core_module/rituals/cruciform/crusader

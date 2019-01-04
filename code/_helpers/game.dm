@@ -78,13 +78,7 @@
 	//turfs += centerturf
 	return atoms
 
-/proc/trange(rad = 0, turf/centre = null) //alternative to range (ONLY processes turfs and thus less intensive)
-	if(!centre)
-		return
 
-	var/turf/x1y1 = locate(((centre.x-rad)<1 ? 1 : centre.x-rad), ((centre.y-rad)<1 ? 1 : centre.y-rad), centre.z)
-	var/turf/x2y2 = locate(((centre.x+rad)>world.maxx ? world.maxx : centre.x+rad), ((centre.y+rad)>world.maxy ? world.maxy : centre.y+rad), centre.z)
-	return block(x1y1, x2y2)
 
 /proc/get_dist_euclidian(atom/Loc1 as turf|mob|obj, atom/Loc2 as turf|mob|obj)
 	var/dx = Loc1.x - Loc2.x
@@ -164,7 +158,7 @@
 
 	for(var/m in player_list)
 		var/mob/M = m
-		if(checkghosts == GHOSTS_ALL_HEAR && M.stat == DEAD && !isnewplayer(M) && (M.client && M.is_preference_enabled(/datum/client_preference/ghost_ears)))
+		if(checkghosts == GHOSTS_ALL_HEAR && M.stat == DEAD && !isnewplayer(M) && (M.client && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH))
 			if (!mobs[M])
 				mobs[M] = TRUE
 			continue
@@ -211,7 +205,7 @@
 			var/turf/ear = get_turf(M)
 			if(ear)
 				// Ghostship is magic: Ghosts can hear radio chatter from anywhere
-				if(speaker_coverage[ear] || (isghost(M) && M.is_preference_enabled(/datum/client_preference/ghost_radio)))
+				if(speaker_coverage[ear] || (isghost(M) && M.get_preference_value(/datum/client_preference/ghost_radio) == GLOB.PREF_ALL_CHATTER))
 					. |= M		// Since we're already looping through mobs, why bother using |= ? This only slows things down.
 	return .
 
@@ -540,8 +534,8 @@ datum/projectile_data
 	if (target.client)
 		P = target.client.prefs
 	else if (target.ckey)
-		P = preferences_datums[target.ckey]
+		P = SScharacter_setup.preferences_datums[target.ckey]
 	else if (target.mind && target.mind.key)
-		P = preferences_datums[target.mind.key]
+		P = SScharacter_setup.preferences_datums[target.mind.key]
 
 	return P

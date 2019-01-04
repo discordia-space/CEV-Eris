@@ -88,7 +88,6 @@
 	damage += round(amount) 					// We want nice rounded numbers here.
 	damage = between(0, damage, max_damage)		// Clamp the value.
 
-
 //Called when the component is installed or turned on
 /obj/item/weapon/computer_hardware/proc/enabled()
 

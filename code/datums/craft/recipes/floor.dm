@@ -250,3 +250,12 @@
 	name = "dark monofloor tile"
 	result = /obj/item/stack/tile/floor/dark/monofloor
 
+/datum/craft_recipe/floor/grille
+	name = "regular grille"
+	result = /obj/structure/grille
+	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
+	steps = list(
+		list(/obj/item/stack/rods, 2, "time" = 10)
+	)
+
+

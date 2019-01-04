@@ -40,7 +40,6 @@
 
 	var/assigned_role
 	var/role_alt_title
-//	var/special_role
 	var/list/antagonist = list()
 
 	var/datum/job/assigned_job
@@ -128,8 +127,9 @@
 	out += "Special roles:<br><table>"
 
 	out += "<b>Make_antagonist: </b>"
-	for(var/antag in antag_types)
-		var/antag_name = selectable_antag_types[antag] ? selectable_antag_types[antag] : "<font color='red'>[antag]</font>"
+	for(var/A in GLOB.all_antag_selectable_types)
+		var/datum/antagonist/antag = GLOB.all_antag_selectable_types[A]
+		var/antag_name = (antag in GLOB.all_antag_selectable_types) ? antag : "<font color='red'>[antag]</font>"
 		out += "<a href='?src=\ref[src];add_antagonist=[antag]'>[antag_name]</a>  "
 	out += "<br>"
 
@@ -145,7 +145,7 @@
 		return
 
 	if(href_list["add_antagonist"])
-		var/t = antag_types[href_list["add_antagonist"]]
+		var/t = GLOB.all_antag_types[href_list["add_antagonist"]]
 		var/datum/antagonist/antag = new t
 		if(antag)
 			var/ok = FALSE
@@ -278,7 +278,6 @@
 
 /datum/mind/proc/reset()
 	assigned_role =   null
-	//special_role =    null
 	//role_alt_title =  null
 	assigned_job =    null
 	//faction =       null //Uncommenting this causes a compile error due to 'undefined type', fucked if I know.
@@ -292,8 +291,10 @@
 //Antagonist role check
 /mob/living/proc/check_special_role(role)
 	if(mind)
-		return player_is_antag_id(mind,role)
-	return FALSE
+		if(!role)
+			return player_is_antag_id(mind,role)
+	else
+		return FALSE
 
 //Initialisation procs
 /mob/living/proc/mind_initialize()

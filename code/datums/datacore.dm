@@ -123,7 +123,7 @@ var/global/ManifestJSON
 			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[sci[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
 	if(car.len > 0)
-		dat += "<tr><th colspan=3>Cargo</th></tr>"
+		dat += "<tr><th colspan=3>Guild</th></tr>"
 		for(name in car)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[car[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
@@ -227,12 +227,12 @@ var/global/ManifestJSON
 	var/icon/preview_icon = new(H.stand_icon)
 	var/icon/temp
 
-	var/datum/sprite_accessory/hair_style = hair_styles_list[H.h_style]
+	var/datum/sprite_accessory/hair_style = GLOB.hair_styles_list[H.h_style]
 	if(hair_style)
 		temp = new/icon(hair_style.icon, hair_style.icon_state)
 		temp.Blend(H.hair_color, ICON_ADD)
 
-	hair_style = facial_hair_styles_list[H.h_style]
+	hair_style = GLOB.facial_hair_styles_list[H.h_style]
 	if(hair_style)
 		var/icon/facial = new/icon(hair_style.icon, hair_style.icon_state)
 		facial.Blend(H.facial_color, ICON_ADD)
@@ -244,12 +244,8 @@ var/global/ManifestJSON
 	var/datum/job/J = SSjob.GetJob(H.mind.assigned_role)
 	if(J)
 		var/t_state
-		var/obj/item/clothing/under/UF = J.uniform
-		t_state = initial(UF.icon_state)
 		temp = new /icon(H.body_build.get_mob_icon("uniform", t_state), t_state)
 
-		var/obj/item/clothing/shoes/SH = J.shoes
-		t_state = initial(SH.icon_state)
 		temp.Blend(new /icon(H.body_build.get_mob_icon("shoes", t_state), t_state), ICON_OVERLAY)
 	else
 		temp = new /icon(H.body_build.get_mob_icon("uniform", "grey"), "grey")

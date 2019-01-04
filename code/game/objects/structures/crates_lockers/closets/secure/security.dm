@@ -7,7 +7,7 @@
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/captain(src)
 	else
-		new /obj/item/weapon/storage/backpack/satchel_cap(src)
+		new /obj/item/weapon/storage/backpack/satchel/cap(src)
 	new /obj/item/clothing/head/caphat/cap(src)
 	new /obj/item/clothing/under/rank/captain(src)
 	new /obj/item/clothing/suit/armor/vest(src)
@@ -56,7 +56,7 @@
 
 /obj/structure/closet/secure_closet/reinforced/hos/populate_contents()
 	new /obj/item/weapon/storage/backpack/security(src)
-	new /obj/item/weapon/storage/backpack/satchel_sec(src)
+	new /obj/item/weapon/storage/backpack/satchel/sec(src)
 	new /obj/item/clothing/head/beret/sec/navy/hos(src)
 	new /obj/item/clothing/head/HoS(src)
 	new /obj/item/clothing/suit/armor/vest/security(src)
@@ -92,7 +92,7 @@
 
 /obj/structure/closet/secure_closet/warden/populate_contents()
 	new /obj/item/weapon/storage/backpack/security(src)
-	new /obj/item/weapon/storage/backpack/satchel_sec(src)
+	new /obj/item/weapon/storage/backpack/satchel/sec(src)
 	new /obj/item/clothing/suit/armor/vest/security(src)
 	new /obj/item/clothing/under/rank/warden(src)
 	new /obj/item/clothing/head/beret/sec/navy/warden(src)
@@ -126,7 +126,7 @@
 
 /obj/structure/closet/secure_closet/personal/security/populate_contents()
 	new /obj/item/weapon/storage/backpack/security(src)
-	new /obj/item/weapon/storage/backpack/satchel_sec(src)
+	new /obj/item/weapon/storage/backpack/satchel/sec(src)
 	new /obj/item/device/radio/headset/headset_sec(src)
 	new /obj/item/weapon/storage/belt/security(src)
 	new /obj/item/device/flash(src)

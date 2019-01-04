@@ -15,6 +15,7 @@
 	var/datum/seed/seed
 	var/harvest_time
 	var/min_explode_time = 1200
+	can_burrow = TRUE
 
 /mob/living/simple_animal/mushroom/New()
 	..()

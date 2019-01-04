@@ -134,7 +134,7 @@
 
 
 	else if(href_list["new_faction"] && faction_id && !faction)
-		var/t = faction_types[faction_id]
+		var/t = GLOB.faction_types[faction_id]
 		var/datum/faction/F = new t
 		F.customize()
 		F.add_leader(src)

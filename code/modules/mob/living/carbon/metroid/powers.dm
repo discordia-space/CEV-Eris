@@ -117,7 +117,7 @@
 	if(!is_adult)
 		if(amount_grown >= 10)
 			is_adult = 1
-			maxHealth = 180
+			maxHealth = 150
 			amount_grown = 0
 			regenerate_icons()
 			name = text("[colour] [is_adult ? "adult" : "baby"] slime ([number])")
