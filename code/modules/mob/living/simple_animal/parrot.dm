@@ -200,7 +200,7 @@
 									available_channels.Add(":m")
 								if("Mining")
 									available_channels.Add(":d")
-								if("Cargo")
+								if("Guild")
 									available_channels.Add(":q")
 		else
 			..()

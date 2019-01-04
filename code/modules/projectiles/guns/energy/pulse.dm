@@ -24,7 +24,7 @@
 
 /obj/item/weapon/gun/energy/pulse_rifle/destroyer
 	name = "NT PR \"Purger\""
-	desc = "A heavy-duty, pulse-based energy weapon. Because of its complexity and cost, it is rarely seen in use, except by specialists."
+	desc = "A heavy-duty, pulse-based energy weapon. Slow-firing and difficult to operate.. Because of its complexity and cost, it is rarely seen in use, except by specialists."
 	fire_delay = 25
 	fire_sound='sound/weapons/pulse.ogg'
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 10, MATERIAL_URANIUM = 5)
