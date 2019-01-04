@@ -10,19 +10,6 @@
 				/obj/item/stack/medical/splint = 2,\
 				/obj/item/bodybag = 3,\
 				/obj/item/bodybag/cryobag = 2,\
-				/obj/item/weapon/storage/pill_bottle/kelotane = 2,\
-				/obj/item/weapon/storage/pill_bottle/antitox = 2,\
-				/obj/item/weapon/storage/pill_bottle/tramadol = 2,\
-				/obj/item/weapon/storage/pill_bottle/happy = 1,\
-				/obj/item/weapon/storage/pill_bottle/zoom = 1,\
-				/obj/item/weapon/storage/pill_bottle/bicaridine = 1,\
-				/obj/item/weapon/storage/pill_bottle/dexalin_plus = 1,\
-				/obj/item/weapon/storage/pill_bottle/dexalin = 2,\
-				/obj/item/weapon/storage/pill_bottle/dermaline = 2,\
-				/obj/item/weapon/storage/pill_bottle/dylovene = 2,\
-				/obj/item/weapon/storage/pill_bottle/inaprovaline = 2,\
-				/obj/item/weapon/storage/pill_bottle/spaceacillin = 2,\
-				/obj/item/weapon/storage/pill_bottle/citalopram = 2,\
 				/obj/item/weapon/reagent_containers/glass/bottle/stoxin = 2,\
 				/obj/item/weapon/reagent_containers/glass/bottle/toxin = 2,\
 				/obj/item/weapon/reagent_containers/glass/bottle/cyanide = 0.5,\
@@ -35,6 +22,36 @@
 				/obj/item/weapon/reagent_containers/syringe/antiviral = 1,\
 				/obj/item/weapon/reagent_containers/syringe/inaprovaline = 2,\
 				/obj/item/stack/nanopaste = 1))
+				
+/obj/random/medical/pill_bottle/random/maint
+	name = "Random pill bottle"
+	icon_state = "meds-green-low"
+	has_postspawn = TRUE
+
+/obj/random/medical/pill_bottle/random/maint/item_to_spawn()
+	return pickweight (list(
+				/obj/item/weapon/storage/pill_bottle/happy = 1,\
+				/obj/item/weapon/storage/pill_bottle/zoom = 1,\
+				/obj/item/weapon/storage/pill_bottle/bicaridine = 1,\
+				/obj/item/weapon/storage/pill_bottle/dexalin_plus = 1,\
+				/obj/item/weapon/storage/pill_bottle/dexalin = 2,\
+				/obj/item/weapon/storage/pill_bottle/dermaline = 2,\
+				/obj/item/weapon/storage/pill_bottle/dylovene = 2,\
+				/obj/item/weapon/storage/pill_bottle/inaprovaline = 2,\
+				/obj/item/weapon/storage/pill_bottle/spaceacillin = 2,\
+				/obj/item/weapon/storage/pill_bottle/citalopram = 2,\
+	))
+
+/obj/random/medical/pill_bottle/random/maint/post_spawn(var/list/spawns)
+	for(var/obj/item/weapon/storage/pill_bottle/B in spawns)
+		B.name = "pill bottle"
+		B.desc = "It's an airtight container for storing medication."
+		var/icon_state = "pill[rand(1, 20)]"
+		for(var/obj/item/weapon/reagent_containers/pill/P in B)
+			P.name = "pill"
+			P.desc = "A pill."
+			P.icon_state = icon_state
+	return spawns
 
 /obj/random/medical/low_chance
 	name = "low chance random medicine"
