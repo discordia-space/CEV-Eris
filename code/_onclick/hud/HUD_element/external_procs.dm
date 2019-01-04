@@ -59,7 +59,7 @@ updateIconInformation() -> src
 
 getAlignmentVertical() -> alignmentVertical
 getAlignmentHorizontal() -> alignmentHorizontal
-setAlignment(var/horizontal, var/vertical, var/HUD_element/newParent) -> src
+setAlignment(var/horizontal, var/vertical) -> src
 - sets alignment behavior for element, relative to parent, null arguments indicate not to change the relevant alignment
 - look HUD_defines.dm for arguments
 	
@@ -106,13 +106,12 @@ hide() -> src || null
 
 setIconOverlays(var/icon/iconOverlays)
 - sets icon overlays
+- overlays must be named list
 - accepts only associative list
+-	for overlay names see HUD_defines
 
 updateIcon()
 - Updates icon using overlays
-- overlays must be named list
--	default names ("bottom", "filling", "covering")
--	3 layers are more that enought in most cases, user overriden proc for special cases
 
 getIconOverlays() -> _iconOverlays
 - gets icon overlays
@@ -274,6 +273,15 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 
 	return src
 
+/HUD_element/proc/setIconFromDMI(var/filename, var/iconState, var/iconDir)
+	icon = filename
+	icon_state = iconState
+	dir = iconDir
+	updateIconInformation()
+	updateIcon()
+
+	return src
+
 /HUD_element/proc/getIconWidth()
 	return _iconWidth
 
@@ -308,21 +316,11 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 	var/newIconHeight = I.Height()
 	if ((newIconWidth == _iconWidth) && (newIconHeight == _iconHeight))
 		return src
-
 	_iconWidth = newIconWidth
 	_iconHeight = newIconHeight
 
 	_updatePosition()
 
-	return src
-
-/HUD_element/proc/alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets)
-	if(targets && targets.len)
-		for (var/list/HUD_element/T in targets)
-			src.add(T)
-			T.setAlignment(horizontal,vertical)
-	else
-		return
 	return src
 
 /HUD_element/proc/setAlignment(var/horizontal, var/vertical)
@@ -472,23 +470,58 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 
 	return src
 
-/HUD_element/proc/setIconOverlays(var/icon/iconOverlays)
-	if(!is_associative(iconOverlays))
-		error("List is not associative")
+/HUD_element/proc/setOverlaysData(var/list/overlaysData)
+	if(!is_associative(overlaysData))
+		error("OverlayData list is not associative")
 		return
 		
-	for (var/name in iconOverlays)
-		_icon_overlays[name] = iconOverlays[name]
+	for (var/overlayName in overlaysData)
+		var/list/data = overlaysData[overlayName]
+		if(!is_associative(data))
+			error("OverlayData list contains not associative data list with name\"[overlayName]\".")
+			continue
+		setIconOverlay(overlayName, data["icon"], data["color"], data["alpha"])
+	return src
 
+/HUD_element/proc/setIconOverlay(var/overlayName, var/icon/icon, var/color, var/alpha)
+	if(!overlayName)
+		error("No overlay name was passed")
+		return
+
+	var/list/data = getIconOverlaysData(overlayName)
+	// if passed only overlay name and there is overlay with this name then we null delete it
+	if(data && (!icon && !color && !alpha))
+		qdel(data["icon"])
+		_iconOverlaysData[overlayName] = null
+		qdel(_iconsBuffer[overlayName])
+		_iconsBuffer[overlayName] = null
+		updateIcon()
+		return src
+
+	if(!data)
+		data = list()
+		_iconOverlaysData[overlayName] = data
+
+	if(icon)
+		data["icon"] = icon
+	else
+		qdel(data["icon"])
+		data["icon"] = null
+
+	setOverlayAlpha(overlayName, alpha, noIconUpdate = TRUE)
+	setOverlayColor(overlayName, color, noIconUpdate = TRUE)
+	
+	_assembleAndBufferOverlayIcon(overlayName, data)
 	updateIcon()
+
 	return src
 
 /HUD_element/proc/updateIcon()
 	_updateOverlays()
 	return src
 
-/HUD_element/proc/getIconOverlays()
-	return _icon_overlays
+/HUD_element/proc/getIconOverlaysData(var/overlayName)
+	return _iconOverlaysData[overlayName]
 
 /HUD_element/proc/getChildElementWithID(var/id)
 	for(var/list/HUD_element/element in getElements())
@@ -520,17 +553,86 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 	else
 		error("moveChildToBottom(): No element with id \"[id]\" found.")
 
-/HUD_element/proc/setPadding(var/top,var/right,var/bottom,var/left)		
-	
-	//applying padding here
-	_padding_top = top
-	_padding_right = right
-	_padding_bottom = bottom
-	_padding_left = left
-	/*
-	if(_padding_top || _padding_right || _padding_bottom || _padding_left)
-		//container = new("[getIdentifier()]_container", _padding_top, _padding_right, _padding_bottom, _padding_left)
+/HUD_element/proc/setOverlayAlpha(var/overlayName, var/alpha, var/noIconUpdate = FALSE)
+	var/list/data = getIconOverlaysData(overlayName)
+	if(!data)
+		error("Can't set overlay icon alpha, no overlay.")
+		return
+	data["alpha"] = alpha
+	if(!noIconUpdate)
+		_assembleAndBufferOverlayIcon(overlayName, data)
+		updateIcon()
+	return src
+
+/HUD_element/proc/setOverlayColor(var/overlayName, var/color, var/noIconUpdate = FALSE)
+	var/list/data = getIconOverlaysData(overlayName)
+	if(!data)
+		error("Can't set overlay icon color, no overlay.")
+		return
+	data["color"] = color
+	if(!noIconUpdate)
+		_assembleAndBufferOverlayIcon(overlayName, data)
+		updateIcon()
+	return src
+
+/HUD_element/proc/setClickedInteraction(var/state, var/list/color, var/icon/overlay , var/duration = 8, var/alpha = 50 , var/isPlain = FALSE)
+	if(!color && !overlay && duration >= 0)
+		error("incorrect button interaction setup.")
+		return
+	_onClickedInteraction = state
+	if (state)
+		_onClickedHighlightDuration = duration
+		if(isPlain)
+			overlay.PaintWhite()
+		setIconOverlay(HUD_OVERLAY_CLICKED, overlay, color, alpha)
 	else
-		//qdel(contaniner)
-*/
-	_recalculateAlignmentOffset()
+		_onClickedState = FALSE
+
+
+/HUD_element/proc/setHoveredInteraction(var/state, var/list/color, var/icon/overlay, var/alpha = 50, var/isPlain = FALSE)
+	if(!color || !overlay)
+		error("incorrect button interaction setup.")
+		return
+	_onHoveredInteraction = state
+	if (state)
+		if(isPlain)
+			overlay.PaintWhite()
+		setIconOverlay(HUD_OVERLAY_HOVERED, overlay, color, alpha)
+	else
+		_onHoveredState = FALSE
+
+/HUD_element/proc/setToggledInteraction(var/state, var/list/color, var/icon/overlay, var/alpha = 50, var/isPlain = FALSE)
+	if(!color && !overlay)
+		error("incorrect button interaction setup.")
+		return
+	_onToggledInteraction = state
+	if (state)
+		if(isPlain)
+			overlay.PaintWhite()
+		setIconOverlay(HUD_OVERLAY_TOGGLED, overlay, color, alpha)
+	else
+		_onToggledState = FALSE
+
+/HUD_element/proc/toggleDebugMode()
+	debugMode = !debugMode
+	if(debugMode)
+		var/HUD_element/debugBox = new("\[debug_box\]([type])_[getIdentifier()]")
+		debugBox.setName("\[debug_box\]([type])_[getIdentifier()]")
+		debugBox.setIconFromDMI('icons/mob/screen/misc.dmi',"white_box")
+		debugBox.setPosition(getAbsolutePositionX(), getAbsolutePositionY())
+		debugBox.scaleToSize(getWidth(),getHeight())
+		debugBox.color = debugColor
+		debugBox.alpha = 80
+		_connectElement(debugBox)
+		debugBox.show(_observer)
+	else
+		var/HUD_element/debugBox = getChildElementWithID("\[debug_box\]([type])_[getIdentifier()]")
+		debugBox.hide()
+		_disconnectElement(debugBox)
+		qdel(debugBox)
+	/*
+		I.DrawBox(ReadRGB(COLOR_BLACK),0,0,getWidth(),getHeight())
+		I.DrawBox(ReadRGB(debugColor),1,1,getWidth()-1,getHeight()-1) 
+		setIconOverlay(HUD_OVERLAY_DEBUG,I, alpha = 80)*/
+	
+	updateIcon()

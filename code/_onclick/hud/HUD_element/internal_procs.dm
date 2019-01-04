@@ -40,8 +40,9 @@ see external_procs.dm for usable procs and documentation on how to use them
 			else if (parent)
 				_alignmentOffsetX = parent.getWidth()
 		else
-			error("Passed wrong argument for horizontal alignment.")
-			_alignmentOffsetX = 0
+			if(_currentAlignmentHorizontal)
+				error("Passed wrong argument for horizontal alignment.")
+				_alignmentOffsetX = 0
 
 	switch (_currentAlignmentVertical)
 		if (HUD_NO_ALIGNMENT)
@@ -71,8 +72,9 @@ see external_procs.dm for usable procs and documentation on how to use them
 			else if (parent)
 				_alignmentOffsetY = parent.getHeight()
 		else
-			error("Passed wrong argument for vertical alignment.")
-			_alignmentOffsetY = 0
+			if(_currentAlignmentVertical)
+				error("Passed wrong argument for vertical alignment.")
+				_alignmentOffsetY = 0
 
 /HUD_element/proc/_updatePosition()
 	var/realX = _relativePositionX
@@ -157,12 +159,70 @@ see external_procs.dm for usable procs and documentation on how to use them
 
 	return src
 
+/HUD_element/proc/_addOverlayIcon(var/overlayName)
+	if(!_iconsBuffer[overlayName])
+		if(getIconOverlaysData(overlayName))
+			error("Icon for overlay [overlayName] is not buffered.")
+			return
+
+	overlays += _iconsBuffer[overlayName]
+
+/HUD_element/proc/_assembleAndBufferOverlayIcon(var/overlayName, var/list/data)
+	if(!data)
+		return
+	
+	var/icon/I = DuplicateObject(data["icon"], TRUE)
+	if(data["color"])
+		I.ColorTone(HSVtoRGB(data["color"]))
+	if(data["alpha"])
+		I.ChangeOpacity(data["alpha"]/255)
+
+	_iconsBuffer[overlayName] = I
+	return I
+
 /HUD_element/proc/_updateOverlays()
 	overlays.Cut()
-	if(_icon_overlays["bottom"])
-		overlays += _icon_overlays["bottom"]
-	if(_icon_overlays["filling"])
-		overlays += _icon_overlays["filling"]
-	if(_icon_overlays["covering"])
-		overlays += _icon_overlays["covering"]
-	return src
+
+	if(!debugMode)
+		_addOverlayIcon(HUD_OVERLAY_BACKGROUND_1)
+		_addOverlayIcon(HUD_OVERLAY_BACKGROUND_2)
+		_addOverlayIcon(HUD_OVERLAY_BACKGROUND_3)
+
+		_addOverlayIcon(HUD_OVERLAY_FILLING)
+
+		_addOverlayIcon(HUD_OVERLAY_FOREGROUND_1)
+		_addOverlayIcon(HUD_OVERLAY_FOREGROUND_2)
+		_addOverlayIcon(HUD_OVERLAY_FOREGROUND_3)
+
+		if(_onToggledInteraction)
+			_addOverlayIcon(HUD_OVERLAY_TOGGLED)
+		if(_onHoveredState)
+			_addOverlayIcon(HUD_OVERLAY_HOVERED)
+		if(_onClickedState)
+			_addOverlayIcon(HUD_OVERLAY_CLICKED)
+
+/HUD_element/button/MouseEntered(location)
+	if(_onHoveredInteraction && !_onHoveredState)
+		_onHoveredState = TRUE
+		updateIcon()
+	return ..()
+
+/HUD_element/button/MouseExited(object,location,control,params)
+	if(_onHoveredInteraction)
+		_onHoveredState = FALSE
+		updateIcon()
+	return ..()
+
+/HUD_element/button/Click(location,control,params)
+	if(_onClickedInteraction && !_onClickedState)
+		_onClickedState = TRUE
+		updateIcon()
+		spawn(_onClickedHighlightDuration)
+			_onClickedState = FALSE
+			updateIcon()
+
+	if(_onToggledInteraction)
+		_onToggledState = !_onToggledState
+		updateIcon()
+
+	return ..()

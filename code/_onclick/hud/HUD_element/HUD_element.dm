@@ -19,6 +19,9 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 	var/client/_observer //each element is shown to at most 1 client
 	var/_identifier //unique identitifier for this element, if such element is already seen by a client, it is closed first
 
+	var/debugMode = FALSE
+	var/debugColor = COLOR_WHITE
+
 	var/_screenBottomLeftX = 1 //in screen_loc tiles
 	var/_screenBottomLeftY = 1
 
@@ -51,13 +54,26 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 	var/proc/_clickProc //called when element is clicked
 	var/list/_data //internal storage that can be utilized by _clickProc
 
-	var/list/_icon_overlays = list()
+	var/list/_iconOverlaysData = list()
 
-	//padding is used in _recalculateAlignmentOffset() to make indent between aligned elements
-	var/_padding_top = 0
-	var/_padding_right = 0
-	var/_padding_bottom = 0
-	var/_padding_left = 0
+	var/list/_iconsBuffer = list()
+
+	/*
+	settings for animation that occur on mouse interactions
+	*/
+	var/_onClickedInteraction = FALSE
+	var/_onClickedHighlightDuration
+	var/_onClickedState = FALSE
+	var/_onClickedAlpha
+	
+	
+	var/_onHoveredInteraction = FALSE
+	var/_onHoveredState = FALSE
+	var/_onHoveredAlpha
+	
+	var/_onToggledInteraction = FALSE
+	var/_onToggledState = FALSE
+	var/_onToggledAlpha
 
 /HUD_element/New(var/identifier)
 	_elements = new
@@ -82,8 +98,14 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 		parent.getElements().Remove(src)
 		_setParent()
 	
-	for(var/name in _icon_overlays)
-		qdel(_icon_overlays[name])
+	for(var/name in _iconOverlaysData)
+		var/list/data = getIconOverlaysData(name)
+		if(data)
+			qdel(data["icon"])
+		_iconOverlaysData[name] = null
+	
+	for(var/name in _iconsBuffer)
+		qdel(_iconsBuffer[name])
 
 	return QDEL_HINT_QUEUE
 

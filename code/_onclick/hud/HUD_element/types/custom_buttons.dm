@@ -2,16 +2,33 @@
 	
 */
 
-/HUD_element/button/thin
-
 /HUD_element/button/thin/New()
-	setIcon(icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"button_thin_rim"))
-	setIconOverlays(list("bottom" = icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"button_thin_bg")))
-	return ..()
-
-/HUD_element/button/thick
+	. = ..()
+	//icon is blank cuz we adding rim as overlay and will colorize it
+	var/iconFile = 'icons/mob/screen/ErisStyle_32x32.dmi'
+	setIconFromDMI(iconFile, "blank")
+	setIconOverlay(HUD_OVERLAY_BACKGROUND_1, icon(iconFile,"button_thin_rim"))
+	setIconOverlay(HUD_OVERLAY_BACKGROUND_2, icon(iconFile,"button_thin_bg"))
+	setIconOverlay(HUD_OVERLAY_BACKGROUND_3, icon(iconFile,"button_thin_lights"))
 
 /HUD_element/button/thick/New()
-	setIcon(icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"button_thick_rim"))
-	setIconOverlays(list("bottom" = icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"button_thick_bg")))
-	return ..()
+	. = ..()
+	var/iconFile = 'icons/mob/screen/ErisStyle_32x32.dmi'
+	setIconFromDMI(iconFile, "button_thick_rim")
+	setIconOverlay(HUD_OVERLAY_BACKGROUND_1, icon(iconFile,"button_thick_bg"))
+	setIconOverlay(HUD_OVERLAY_BACKGROUND_2, icon(iconFile,"button_thick_lights"))
+
+/HUD_element/button/thin/ai/New()
+	. = ..()
+	var/iconFile = 'icons/mob/screen/silicon/AI/HUD_actionButtons.dmi'
+	setIconFromDMI(iconFile, "button_thin_rim")
+	setIconOverlay(HUD_OVERLAY_BACKGROUND_1, icon(iconFile,"button_thin_bg"))
+	setIconOverlay(HUD_OVERLAY_BACKGROUND_2, null)
+	setIconOverlay(HUD_OVERLAY_BACKGROUND_3, icon(iconFile,"button_thin_lights"))
+
+/HUD_element/button/thick/ai/New()
+	. = ..()
+	var/iconFile = 'icons/mob/screen/silicon/AI/HUD_actionButtons.dmi'
+	setIconFromDMI(iconFile, "button_thick_rim")
+	setIconOverlay(HUD_OVERLAY_BACKGROUND_1, icon(iconFile,"button_thick_bg"))
+	setIconOverlay(HUD_OVERLAY_BACKGROUND_3, icon(iconFile,"button_thin_lights"))

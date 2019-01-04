@@ -48,6 +48,8 @@ icon/UseAlphaMask(mask, mode)
     Sometimes you may want to take the alpha values from one icon and use them on a different icon.
     This proc will do that. Just supply the icon whose alpha mask you want to use, and src will change
     so it has the same colors as before but uses the mask for opacity.
+icon/PaintWhite()
+	paints all non transparent pixels into white
 
 COLOR MANAGEMENT AND HSV
 
@@ -107,7 +109,7 @@ AngleToHue(hue)
     Converts an angle to a hue in the valid range.
 RotateHue(hsv, angle)
     Takes an HSV or HSVA value and rotates the hue forward through red, green, and blue by an angle from 0 to 360.
-    (Rotating red by 60° produces yellow.) The result is another HSV or HSVA color with the same saturation and value
+    (Rotating red by 60ï¿½ produces yellow.) The result is another HSV or HSVA color with the same saturation and value
     as the original, but a different hue.
 GrayScale(rgb)
     Takes an RGB or RGBA color and converts it to grayscale. Returns an RGB or RGBA string.
@@ -294,6 +296,15 @@ icon
 		M.Blend("#ffffff", ICON_SUBTRACT)
 		// apply mask
 		Blend(M, ICON_ADD)
+	
+	//	paints all non transparent pixels into white
+	proc/PaintWhite()
+		for (var/x = 1, x <= Width(), x++)
+			for (var/y = 1, y <= Height(), y++)
+				if (!GetPixel(x, y))
+					continue
+				DrawBox(ReadRGB(COLOR_WHITE),x,y) 
+
 
 /*
 	HSV format is represented as "#hhhssvv" or "#hhhssvvaa"

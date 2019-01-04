@@ -5,8 +5,6 @@ GLOBAL_LIST_EMPTY(ui_styles)
 
 /datum/interface/getElementByID()
 
-/datum/interface/getElementsByPlaneID(var/id)
-
 /datum/interface/hide(var/id)
 
 /datum/interface/show(var/id)
@@ -36,46 +34,56 @@ GLOBAL_LIST_EMPTY(ui_styles)
 
 //TODO:
 /*
-//		Improve elements
-//		3 overlays layers under/filling/over
-//	rename planes to layouts
-//	Improve layouts
-		override alignElements with padding(all sides)
-		every element has its own padding that are used in _recalculateAlignmentOffset()
-		TODO: LATER
-			add ablity to lock element and drag it, then save it offset difference in prefs
-			calculate offsets based on saved in prefs
-			scaling UI
-			debug mode
+	
+!!!!!!!!!!!!!!			debug mode			!!!!!!!!!!!!!!!!!
+	paint all make rim another color
+	
+	fix layouts
+
+	fix painting icon in plain color
+
+buttons
+	filling is highlighted when hovered/clicked
 
 //	CREATE UI
-//	CREATE BASIC ELEMENTS (OVERLAY, ACTIVABLE BUTTON)
-	overlays 
-		that based on flat icon is scaled
-	buttons
-		filling is highlighted when hovered/clicked
+	flipperty slopes
+	radio button
+	language button
+	notes button
+	pop up vote button
 
-//	REWRITE AND FILL DATA IN STYLES
+
+TODO: LATER
+	add underlays, remove division between background/filling/foreground and make filling to be icon of the element instead
+	add ablity to lock element and drag it, then save it offset difference in prefs
+	calculate offsets based on saved in prefs
+	scaling UI
+	colorize proc for UI element
+		
 */
 
 //	TEST PLANES
 //	complete other procs
 
 /datum/interface
-	var/chosenStyle
-	var/list/HUD_element/_elements = list()		//	list of all ui elements
-	var/client/observer						
+	var/mobtype = "interfaceless"
+	var/styleName = "ErisStyle"
 
-/datum/interface/New(var/client/observer, var/datum/UI_style/style)
+	var/list/HUD_element/_elements = list()		//	list of all ui elements
+	var/client/_observer	
+
+	var/list/storageData = list()					
+
+/datum/interface/New(var/client/observer)
 	if(!observer || !istype(observer))
 		error("Passed incorrect observer to interface.")
 		qdel(src)
 		return
-	src.observer = observer
-	if(style)
-		if(!createUsingStyle(style))
-			qdel(src)
-			return
+	_observer = observer
+
+	buildUI()
+	validate()
+	
 	. = ..()
 
 /datum/interface/Destroy()
@@ -83,19 +91,12 @@ GLOBAL_LIST_EMPTY(ui_styles)
 	QDEL_NULL_LIST(_elements)
 	. = ..()
 
-/datum/interface/proc/createUsingStyle(var/datum/UI_style/style)
-	if(!style)
-		error("No style.")
-		return FALSE
-	if(!style._elements || !style._elements.len)
-		
-		error("UI style elements data is empty.")
-		return FALSE
-
-	chosenStyle = style.styleName
-	for (var/HUD_element/data in style._elements)
-		src._elements += DuplicateObject(data, TRUE)
+/datum/interface/proc/buildUI()
 	return TRUE
+
+/datum/interface/proc/postBuildUI()
+	for(var/HUD_element/E in _elements)
+		E.alpha = _observer.prefs.UI_style_alpha
 
 /datum/interface/proc/getElementByID(var/id)
 	for(var/list/HUD_element/element in _elements)
@@ -115,12 +116,12 @@ GLOBAL_LIST_EMPTY(ui_styles)
 			error("No element with id \"[id]\" found.")
 
 /datum/interface/proc/show(var/id)
-	if(!observer)
+	if(!_observer)
 		error("Interface has no observer.")
 		return FALSE
 	if (!id)
 		for(var/list/HUD_element/element in _elements)
-			element.show(observer)
+			element.show(_observer)
 	else
 		var/HUD_element/E = getElementByID(id)
 		if(E)
@@ -129,8 +130,6 @@ GLOBAL_LIST_EMPTY(ui_styles)
 			error("No element with id \"[id]\" found.")
 	return TRUE
 
-/datum/interface/proc/validate()
-	//TODO: THIS
 /datum/interface/proc/update()
 	//TODO: THIS
 
@@ -167,15 +166,8 @@ GLOBAL_LIST_EMPTY(ui_styles)
 //
 //	To properly align UI to the screen YOU HAVE TO align planes or elements to either main screen or already aligned planes or elements to main screen
 //	STRONGLY KEEP THAT IN MIND otherwise UI will fucked up when client.view var is changed
-/datum/UI_style
-	var/mobtype
-	var/styleName
 
-	var/list/HUD_element/_elements = list()
-
-	var/list/storageData = list()
-
-/datum/UI_style/proc/newUIElement(var/name, var/ui_type, var/icon/icon_state, var/x = 0, var/y = 0, var/list/icon_overlays, var/data)
+/datum/interface/proc/newUIElement(var/name, var/ui_type, var/iconData, var/x = 0, var/y = 0, var/list/icon_overlays, var/data)
 	if(!name || !ui_type)
 		error("interface element will not be created, incorrect data for either name or type")
 		return FALSE
@@ -188,12 +180,20 @@ GLOBAL_LIST_EMPTY(ui_styles)
 
 	var/HUD_element/element = new ui_type(name)
 	element.setName(name)
-	if(icon_state)
-		element.setIcon(icon_state)
+	if(iconData)
+		if(istype(iconData, /list))
+			var/list/D = iconData
+			if(is_associative(D))
+				element.setIconFromDMI(D["file"],D["state"],D["dir"])
+			else
+				error("(not associative) IconData have to be associative list containing icon info for loading from DMI or path to resource file.")
+		else if(istext(iconData))
+			element.setIcon(iconData)
+		
 	element.setPosition(x,y)
 
 	if(icon_overlays)
-		element.setIconOverlays(icon_overlays)
+		element.setOverlaysData(icon_overlays)
 	if(data)
 		element.setData(data)
 
@@ -201,8 +201,14 @@ GLOBAL_LIST_EMPTY(ui_styles)
 
 	return element
 
-//	ENSURING THAT STYLE IS CREATED PROPERLY
-/datum/UI_style/proc/validate()
+/datum/interface/proc/addUIElement(var/HUD_element/element)
+	if(!element)
+		error("Passed null element")
+		return
+	_elements += element
+
+//	ENSURING THAT UI IS CREATED PROPERLY
+/datum/interface/proc/validate()
 	var/failed = FALSE
 	if(!mobtype)
 		error("UI style has no assigned mob type.")
@@ -221,38 +227,93 @@ GLOBAL_LIST_EMPTY(ui_styles)
 				error("YOU DONE GOOFED, i told you that elements without parent should have aligment to screen. Look /datum/UI_style/ docs and /HUD_element/proc/setAlignment(var/horizontal, var/vertical).")
 				failed = TRUE
 	if(failed)
-		error("UI style are created incorrected, see errors above.")
+		error("UI style \"[styleName]\" for mob \"[mobtype]\" is created incorrectly, see errors above.")
 		return FALSE
 	return TRUE
 
-
+/datum/interface/proc/toggleDebugMode()
+	for(var/HUD_element/E in _elements)
+		E.toggleDebugMode()
 
 /hook/startup/proc/generateUIStyles()
-	for(var/UI_type in typesof(/datum/UI_style)-/datum/UI_style)
-		var/datum/UI_style/UI = new UI_type()
-		if(!GLOB.ui_styles[UI.mobtype])
-			GLOB.ui_styles[UI.mobtype] = list()
-		GLOB.ui_styles[UI.mobtype] += UI
-		//I wont forbid incorectly created UI's to populate list (maybe for testing reasons), but they will have to be fixed anyway
-		UI.validate()
+	for(var/UI_type in typesof(/datum/interface) - /datum/interface)
+		var/datum/interface/UI = UI_type
+		if(!GLOB.ui_styles[initial(UI.mobtype)])
+			GLOB.ui_styles[initial(UI.mobtype)] = list()
+		GLOB.ui_styles[initial(UI.mobtype)] += UI_type
 	return TRUE
 
-/datum/UI_style/AI_Eris
+/datum/interface/AI_Eris
 	mobtype = /mob/living/silicon/ai
 	styleName = "ErisStyle"
 
-/datum/UI_style/AI_Eris/New()
+/datum/interface/AI_Eris/buildUI()
 	//newUIElement(var/name, var/ui_type, var/icon/icon_state, var/x = 0, var/y = 0, var/list/icon_overlays, var/data)
-	var/HUD_element/layout/actionPanel = newUIElement("actionPanel", /HUD_element/layout)
+	var/HUD_element/layout/horizontal/actionPanel = newUIElement("actionPanel", /HUD_element/layout/horizontal)
+	var/HUD_element/layout/vertical/cameraPanel = newUIElement("actionPanel", /HUD_element/layout/vertical)
+	var/HUD_element/layout/vertical/navigationPanel = newUIElement("actionPanel", /HUD_element/layout/vertical)
 	
 	var/list/HUD_element/actions = list()
-	actions += newUIElement("AI Core", /HUD_element/button/thin, null, 0, 0, list("filling" = icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"core")))
-	actions += newUIElement("Email", /HUD_element/button/thin, null, 32, 0, list("filling" = icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"email")))
+	var/list/HUD_element/camera = list()
+	var/list/HUD_element/navigation = list()
 
-	actionPanel.alignElements(HUD_HORIZONTAL_WEST_INSIDE_ALIGNMENT, HUD_NO_ALIGNMENT, actions)
+	camera += newUIElement("Take Photo", /HUD_element/button/thin/ai, null, 0, 0, list(HUD_OVERLAY_FILLING = list("icon" = icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"photo"))))
+	camera += newUIElement("Show Photos", /HUD_element/button/thin/ai, null, 0, 0, list(HUD_OVERLAY_FILLING = list("icon" = icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"photos"))))
+	camera += newUIElement("Cameras", /HUD_element/button/thin/ai, null, 0, 0, list(HUD_OVERLAY_FILLING = list("icon" = icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"cameras"))))
+	camera += newUIElement("Toggle Camera Light", /HUD_element/button/thin/ai, null, 0, 0, list(HUD_OVERLAY_FILLING = list("icon" = icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"camera_light"))))
+	camera += newUIElement("Track With Camera", /HUD_element/button/thin/ai, null, 0, 0, list(HUD_OVERLAY_FILLING = list("icon" = icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"track"))))
+	
+	actions += newUIElement("Announce", /HUD_element/button/thin/ai, null, 0, 0, list(HUD_OVERLAY_FILLING = list("icon" = icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"announce"))))
+	actions += newUIElement("Crew sensors", /HUD_element/button/thin/ai, null, 0, 0, list(HUD_OVERLAY_FILLING = list("icon" = icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"crew_sensors"))))
+	actions += newUIElement("Subsystems", /HUD_element/button/thin/ai, null, 0, 0, list(HUD_OVERLAY_FILLING = list("icon" = icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"subsystems"))))
+	actions += newUIElement("Email", /HUD_element/button/thin/ai, null, 0, 0, list(HUD_OVERLAY_FILLING = list("icon" = icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"email"))))
+	actions += newUIElement("Show Alerts", /HUD_element/button/thin/ai, null, 0, 0, list(HUD_OVERLAY_FILLING = list("icon" = icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"alerts"))))
+	actions += newUIElement("Crew Manifest", /HUD_element/button/thin/ai, null, 0, 0, list(HUD_OVERLAY_FILLING = list("icon" = icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"manifest"))))
+	
+	navigation += newUIElement("Move downwards", /HUD_element/button/thick/ai, null, 0, 0, list(HUD_OVERLAY_FILLING = list("icon" = icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"down"))))
+	navigation += newUIElement("AI Core", /HUD_element/button/thick/ai, null, 0, 0, list(HUD_OVERLAY_FILLING = list("icon" = icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"core"))))
+	navigation += newUIElement("Move upwards", /HUD_element/button/thick/ai, null, 0, 0, list(HUD_OVERLAY_FILLING = list("icon" = icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"up"))))
+
+	for(var/HUD_element/E in actions)
+		E.setOverlayColor(HUD_OVERLAY_BACKGROUND_1, _observer.prefs.UI_style_color)
+		E.setClickedInteraction(TRUE, COLOR_WHITE, icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"button_thin_bg") , 8, 170, isPlain = TRUE)
+		E.setHoveredInteraction(TRUE, COLOR_WHITE, icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"button_thin_bg"), 170, isPlain = TRUE)
+
+	cameraPanel.alignElements(HUD_NO_ALIGNMENT, HUD_VERTICAL_SOUTH_INSIDE_ALIGNMENT, camera, 0)
+	actionPanel.alignElements(HUD_HORIZONTAL_EAST_INSIDE_ALIGNMENT, HUD_NO_ALIGNMENT, actions, 0)
+	navigationPanel.alignElements(HUD_NO_ALIGNMENT, HUD_VERTICAL_NORTH_INSIDE_ALIGNMENT, navigation, 0)
+
+	//panels are aligned to screen because they has no parent
+	cameraPanel.setAlignment(HUD_HORIZONTAL_WEST_INSIDE_ALIGNMENT, HUD_CENTER_ALIGNMENT)
+	actionPanel.setAlignment(HUD_CENTER_ALIGNMENT, HUD_VERTICAL_SOUTH_INSIDE_ALIGNMENT)
+	navigationPanel.setAlignment(HUD_HORIZONTAL_EAST_INSIDE_ALIGNMENT, HUD_CENTER_ALIGNMENT)
+	postBuildUI()
+
+/datum/interface/ghost_Eris
+	mobtype = /mob/observer/ghost
+	styleName = "ErisStyle"
+
+/datum/interface/ghost_Eris/buildUI()
+	//newUIElement(var/name, var/ui_type, var/icon/icon_state, var/x = 0, var/y = 0, var/list/icon_overlays, var/data)
+	var/HUD_element/layout/horizontal/actionPanel = newUIElement("actionPanel", /HUD_element/layout/horizontal)
+	
+	var/list/HUD_element/actions = list()
+	actions += newUIElement("AI Core", /HUD_element/button/thin, null, 0, 0, list(HUD_OVERLAY_FILLING = list("icon" = icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"core"))))
+	
+	actionPanel.alignElements(HUD_HORIZONTAL_WEST_INSIDE_ALIGNMENT, HUD_NO_ALIGNMENT, actions, -1)
 	//panel is aligned to screen because it has no parent
 	actionPanel.setAlignment(HUD_CENTER_ALIGNMENT, HUD_VERTICAL_SOUTH_INSIDE_ALIGNMENT)
 
+	
+	
+	postBuildUI()
+
+/*
+/datum/interface/AI_Eris/proc/postAssignment(var/client/observer, var/list/HUD_element/clientElements)
+	for(var/HUD_element/E in clientElements.getElementByID)
+	for(var/HUD_element/E in clientElements)
+		E.setOverlayColor(HUD_OVERLAY_BACKGROUND_1, H.client.prefs.UI_style_color)
+*/
 
 /*
 /mob/living/silicon/ai/update_hud()

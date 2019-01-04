@@ -375,9 +375,10 @@
 /client/proc/create_UI(var/mob_type)
 	if(!UI)
 		var/success = FALSE
-		for(var/datum/UI_style/style in GLOB.ui_styles[mob_type])
-			if(style.styleName == prefs.UI_style)
-				UI = new(src, style)
+		for(var/S in GLOB.ui_styles[mob_type])
+			var/datum/interface/style = S
+			if(initial(style.styleName) == prefs.UI_style)
+				UI = new style(src)
 				success = TRUE
 				break
 		if(!success)
@@ -390,3 +391,7 @@
 	if(UI)
 		qdel(UI)
 		UI = null
+
+/client/proc/recreate_UI()
+	destroy_UI()
+	create_UI(mob.type)
