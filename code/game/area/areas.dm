@@ -249,7 +249,7 @@ var/list/mob/living/forced_ambiance_list = new
 			else
 				var/new_ambience = pick(pick(forced_ambience))
 				CL.ambience_playing = new_ambience
-				L << sound(new_ambience, repeat = 1, wait = 0, volume = 30, channel = SOUND_CHANNEL_AMBIENCE)
+				sound_to(L, sound(new_ambience, repeat = 1, wait = 0, volume = 30, channel = GLOB.ambience_sound_channel))
 				return 1
 		if(CL.ambience_playing in ambience)
 			return 1
@@ -258,13 +258,13 @@ var/list/mob/living/forced_ambiance_list = new
 		if(world.time >= L.client.played + 600)
 			var/sound = pick(ambience)
 			CL.ambience_playing = sound
-			L << sound(sound, repeat = 0, wait = 0, volume = 10, channel = SOUND_CHANNEL_AMBIENCE)
+			sound_to(L, sound(sound, repeat = 0, wait = 0, volume = 10, channel = GLOB.ambience_sound_channel))
 			L.client.played = world.time
 			return 1
 	else
 		var/sound = 'sound/ambience/shipambience.ogg'
 		CL.ambience_playing = sound
-		L << sound(sound, repeat = 1, wait = 0, volume = 30, channel = SOUND_CHANNEL_AMBIENCE)
+		sound_to(L, sound(sound, repeat = 1, wait = 0, volume = 30, channel = GLOB.ambience_sound_channel))
 
 /area/proc/gravitychange(var/gravitystate = 0, var/area/A)
 	A.has_gravity = gravitystate
