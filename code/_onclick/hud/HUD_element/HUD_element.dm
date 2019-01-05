@@ -52,6 +52,9 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 	var/_passClickToParent = FALSE
 
 	var/proc/_clickProc //called when element is clicked
+	var/_holder	//object that used with called proc
+	var/list/_procArguments	//arguments that can be passed to proc
+
 	var/list/_data //internal storage that can be utilized by _clickProc
 
 	var/list/_iconOverlaysData = list()
@@ -64,16 +67,12 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 	var/_onClickedInteraction = FALSE
 	var/_onClickedHighlightDuration
 	var/_onClickedState = FALSE
-	var/_onClickedAlpha
-	
 	
 	var/_onHoveredInteraction = FALSE
 	var/_onHoveredState = FALSE
-	var/_onHoveredAlpha
-	
+
 	var/_onToggledInteraction = FALSE
 	var/_onToggledState = FALSE
-	var/_onToggledAlpha
 
 /HUD_element/New(var/identifier)
 	_elements = new
@@ -99,7 +98,7 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 		_setParent()
 	
 	for(var/name in _iconOverlaysData)
-		var/list/data = getIconOverlaysData(name)
+		var/list/data = getOverlayData(name)
 		if(data)
 			qdel(data["icon"])
 		_iconOverlaysData[name] = null
@@ -111,7 +110,11 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 
 /HUD_element/Click(location,control,params)
 	if (_clickProc)
-		call(_clickProc)(src, usr, location, control, params)
+		if(_holder)
+			call(_holder, _clickProc)(_procArguments)
+		else
+			call(_clickProc)(src, usr, location, control, params)
+
 
 	if (_passClickToParent)
 		var/HUD_element/parent = getParent()

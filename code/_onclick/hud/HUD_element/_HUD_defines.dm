@@ -12,6 +12,8 @@
 #define HUD_VERTICAL_NORTH_INSIDE_ALIGNMENT 8	 //bordering north side of parent from inside
 #define HUD_VERTICAL_NORTH_OUTSIDE_ALIGNMENT 9	 //bordering north side of parent from outside
 
+
+//TODO REWORK THIS TO UNDERLAYS AND OVERLAYS AND SET REGULAR ICON AS FILLING INSTEAD
 #define HUD_OVERLAY_TOGGLED "toggled"
 #define HUD_OVERLAY_HOVERED "hovered"
 #define HUD_OVERLAY_CLICKED "clicked"

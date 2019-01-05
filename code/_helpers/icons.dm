@@ -48,7 +48,7 @@ icon/UseAlphaMask(mask, mode)
     Sometimes you may want to take the alpha values from one icon and use them on a different icon.
     This proc will do that. Just supply the icon whose alpha mask you want to use, and src will change
     so it has the same colors as before but uses the mask for opacity.
-icon/PaintWhite()
+icon/PlainPaint()
 	paints all non transparent pixels into white
 
 COLOR MANAGEMENT AND HSV
@@ -297,13 +297,14 @@ icon
 		// apply mask
 		Blend(M, ICON_ADD)
 	
-	//	paints all non transparent pixels into white
-	proc/PaintWhite()
-		for (var/x = 1, x <= Width(), x++)
-			for (var/y = 1, y <= Height(), y++)
-				if (!GetPixel(x, y))
-					continue
-				DrawBox(ReadRGB(COLOR_WHITE),x,y) 
+	//	paints all non transparent pixels into color
+	proc/PlainPaint(var/color)
+		var/list/rgb = ReadRGB(color)
+		MapColors(0,	0,	0,	0, //-\  Ignore
+				0,	0,	0,	0, //--> The
+				0,	0,	0,	0, //-/  Colors
+				rgb[1],rgb[2],rgb[3],1, //Keep alpha channel, any pixel with non-zero alpha gets the color
+				0,	0,	0,	0)
 
 
 /*

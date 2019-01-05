@@ -27,7 +27,10 @@ var/list/ai_verbs_default = list(
 	/mob/living/silicon/ai/proc/toggle_acceleration,
 	/mob/living/silicon/ai/proc/toggle_camera_light,
 	/mob/living/silicon/ai/proc/multitool_mode,
-	/mob/living/silicon/ai/proc/toggle_hologram_movement
+	/mob/living/silicon/ai/proc/toggle_hologram_movement,
+	/mob/living/silicon/verb/show_crew_sensors,
+	/mob/living/silicon/verb/show_email,
+	/mob/living/silicon/verb/show_alerts
 )
 
 //Not sure why this is necessary...
@@ -777,3 +780,16 @@ var/list/ai_verbs_default = list(
 //just a plug for now untill baymed arrives
 /mob/living/silicon/ai/proc/has_power(var/respect_override = 1)
 	return 1
+
+// shortcuts for UI
+/mob/living/silicon/ai/proc/take_photo(var/e)
+	if(e)
+		var/obj/item/device/camera/siliconcam/ai_camera/cam = aiCamera
+		cam.take_image()
+	else
+		log_world("worked")
+		
+
+/mob/living/silicon/ai/proc/view_photos()
+	var/obj/item/device/camera/siliconcam/ai_camera/cam = aiCamera
+	cam.view_images()

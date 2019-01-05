@@ -31,4 +31,4 @@
 	var/iconFile = 'icons/mob/screen/silicon/AI/HUD_actionButtons.dmi'
 	setIconFromDMI(iconFile, "button_thick_rim")
 	setIconOverlay(HUD_OVERLAY_BACKGROUND_1, icon(iconFile,"button_thick_bg"))
-	setIconOverlay(HUD_OVERLAY_BACKGROUND_3, icon(iconFile,"button_thin_lights"))
+	setIconOverlay(HUD_OVERLAY_BACKGROUND_2, icon(iconFile,"button_thick_lights"))

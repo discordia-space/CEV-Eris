@@ -63,12 +63,31 @@
 	SSS.Click(given)
 	return TRUE
 
-/mob/living/silicon/verb/activate_subsystem(var/datum/silicon_subsystem_name in silicon_subsystems_by_name)
+/mob/living/silicon/verb/show_crew_sensors()
+	set name = "Show Crew Sensors"
+	set desc = "Track crew gps beacons"
+
+	open_subsystem(/datum/nano_module/crew_monitor)
+
+/mob/living/silicon/verb/show_email()
+	set name = "Show Emails"
+	set desc = "Open email subsystem"
+
+	open_subsystem(/datum/nano_module/email_client)
+
+/mob/living/silicon/verb/show_alerts()
+	set name = "Show Alerts"
+	set desc = "Open alerts monitor system"
+	open_subsystem(/datum/nano_module/alarm_monitor/all)
+
+/mob/living/silicon/verb/activate_subsystem()
 	set name = "Subsystems"
 	set desc = "Activates the given subsystem"
 	set category = "Silicon Commands"
 
-	var/stat_silicon_subsystem/SSS = silicon_subsystems_by_name[silicon_subsystem_name]
+	var/subsystem = input(src, "Chose a sybsystem:", "Subsystems") as null|anything in silicon_subsystems_by_name
+	var/stat_silicon_subsystem/SSS = silicon_subsystems_by_name[subsystem]
+	
 	if(istype(SSS))
 		SSS.Click()
 

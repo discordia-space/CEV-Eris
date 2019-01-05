@@ -161,7 +161,7 @@ see external_procs.dm for usable procs and documentation on how to use them
 
 /HUD_element/proc/_addOverlayIcon(var/overlayName)
 	if(!_iconsBuffer[overlayName])
-		if(getIconOverlaysData(overlayName))
+		if(getOverlayData(overlayName))
 			error("Icon for overlay [overlayName] is not buffered.")
 			return
 
@@ -173,7 +173,7 @@ see external_procs.dm for usable procs and documentation on how to use them
 	
 	var/icon/I = DuplicateObject(data["icon"], TRUE)
 	if(data["color"])
-		I.ColorTone(HSVtoRGB(data["color"]))
+		I.ColorTone(data["color"])
 	if(data["alpha"])
 		I.ChangeOpacity(data["alpha"]/255)
 

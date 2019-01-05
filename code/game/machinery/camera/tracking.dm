@@ -22,15 +22,18 @@
 	return T
 
 
-/mob/living/silicon/ai/proc/ai_camera_list(var/camera in get_camera_list())
+/mob/living/silicon/ai/proc/ai_camera_list()
 	set category = "Silicon Commands"
 	set name = "Show Camera List"
 
+	var/camera = get_camera_list()
+	log_world("ai_camera_list start")
 	if(check_unable())
 		return
-
+	log_world("ai_camera_list afterchec")
 	if (!camera)
 		return 0
+	log_world("ai_camera_list aftercam")
 
 	var/obj/machinery/camera/C = track.cameras[camera]
 	src.eyeobj.setLoc(C)
@@ -125,11 +128,12 @@
 	src.track = TB
 	return targets
 
-/mob/living/silicon/ai/proc/ai_camera_track(var/target_name in trackable_mobs())
+/mob/living/silicon/ai/proc/ai_camera_track()
 	set category = "Silicon Commands"
 	set name = "Follow With Camera"
 	set desc = "Select who you would like to track."
 
+	var/target_name = trackable_mobs()
 	if(src.stat == 2)
 		src << "You can't follow [target_name] with cameras because you are dead!"
 		return
