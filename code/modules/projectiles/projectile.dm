@@ -276,6 +276,7 @@
 	density = FALSE
 	invisibility = 101
 
+
 	qdel(src)
 	return TRUE
 

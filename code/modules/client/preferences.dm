@@ -149,7 +149,7 @@
 
 	if(be_random_name)
 		real_name = random_name(gender,species)
-		
+
 	if(config.humans_need_surnames)
 		var/firstspace = findtext(real_name, " ")
 		var/name_length = length(real_name)
@@ -162,7 +162,7 @@
 	character.gender = gender
 	character.age = age
 	character.b_type = b_type
-	
+
 	character.h_style = h_style
 	character.f_style = f_style
 
@@ -193,18 +193,18 @@
 			all_underwear -= underwear_category_name
 
 	character.backpack_setup = new(backpack, backpack_metadata["[backpack]"])
-	
+
 	character.force_update_limbs()
 	character.update_mutations(0)
-	
-	
+
+
 	character.update_body(0)
 	character.update_underwear(0)
-	
+
 	character.update_hair(0)
 
 	character.update_icons()
-	
+
 	if(is_preview_copy)
 		return
 
@@ -217,6 +217,7 @@
 	character.exploit_record = exploit_record
 	if(!character.isSynthetic())
 		character.nutrition = rand(140,360)
+
 
 
 /datum/preferences/proc/open_load_dialog(mob/user)

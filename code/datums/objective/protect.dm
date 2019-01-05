@@ -6,11 +6,13 @@
 
 /datum/objective/protect/update_explanation()
 	if(target && target.current)
-		explanation_text = "Protect [target.current.real_name], the [target.assigned_role]."
+		explanation_text = "Protect [target.current.real_name], the [target.assigned_role]. Make sure they survive"
 	else
 		explanation_text = "Target has not arrived today. Lets hope they are alive."
 
 /datum/objective/protect/check_completion()
+	if (failed)
+		return FALSE
 	if(!target)
 		return TRUE
 	if(target.current)

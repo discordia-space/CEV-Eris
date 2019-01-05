@@ -57,6 +57,7 @@
 	var/obj/item/rig_module/selected_module = null            // Primary system (used with middle-click)
 	var/obj/item/rig_module/vision/visor                      // Kinda shitty to have a var for a module, but saves time.
 	var/obj/item/rig_module/voice/speech                      // As above.
+	var/obj/item/rig_module/storage/storage					  // var for installed storage module, if any
 	var/mob/living/carbon/human/wearer                        // The person currently wearing the rig.
 	var/image/mob_icon                                        // Holder for on-mob icon.
 	var/list/installed_modules = list()                       // Power consumption/use bookkeeping.

@@ -26,6 +26,9 @@
 	return target_amount
 
 /datum/objective/absorb/check_completion()
+	if (failed)
+		return FALSE
+
 	if(owner && owner.changeling && owner.changeling.absorbed_dna && (owner.changeling.absorbedcount >= target_amount))
 		return TRUE
 	else
