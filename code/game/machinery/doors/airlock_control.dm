@@ -247,8 +247,15 @@
 
 	This sensor will never return air from its own tile, even if the external door is open. It will always move at least one step out
 */
+
 /obj/machinery/airlock_sensor/shuttle_exterior
 	var/sensor_dir = NORTH
+	/*
+	1 = NORTH
+	2 = SOUTH
+	4 = EAST
+	8 = WEST
+	*/
 	var/max_steps = 3
 
 //Checks for walls and closed airlocks blocking the tile. Ignores other dense objects

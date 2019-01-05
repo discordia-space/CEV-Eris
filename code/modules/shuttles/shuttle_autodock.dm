@@ -16,7 +16,7 @@
 	var/datum/computer/file/embedded_program/docking/active_docking_controller
 
 	var/obj/effect/shuttle_landmark/landmark_transition
-	var/move_time = 240		//the time spent in the transition area
+	var/move_time = 24//0		//the time spent in the transition area
 
 	category = /datum/shuttle/autodock
 
@@ -32,7 +32,6 @@
 	current_dock_target = get_docking_target(current_location)
 
 	if (active_docking_controller)
-		world << "[_name] about to dock"
 		dock()
 
 	//Optional transition area
@@ -61,7 +60,6 @@
 	Docking stuff
 */
 /datum/shuttle/autodock/proc/dock()
-	world << "Docking, controller is [active_docking_controller]"
 	if(active_docking_controller)
 		active_docking_controller.initiate_docking(current_dock_target)
 		last_dock_attempt_time = world.time

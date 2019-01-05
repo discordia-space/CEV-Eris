@@ -24,7 +24,7 @@ var/list/escape_pods_by_name = list()
 
 	//find the pod's own controller
 	//var/datum/computer/file/embedded_program/docking/simple/prog = locate(dock_target)
-	var/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod/controller_master = locate(dock_target)//prog.master
+	var/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth/controller_master = locate(dock_target)//prog.master
 	if(!istype(controller_master))
 		CRASH("Escape pod \"[name]\" could not find it's controller master tagged [dock_target]!")
 
@@ -50,6 +50,7 @@ var/list/escape_pods_by_name = list()
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod
 	name = "escape pod controller"
 	var/datum/shuttle/autodock/ferry/escape_pod/pod
+	progtype = /datum/computer/file/embedded_program/docking/simple/escape_pod
 
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	var/data[0]

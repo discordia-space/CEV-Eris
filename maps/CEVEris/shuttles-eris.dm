@@ -184,7 +184,7 @@
 	landmark_transition = "nav_merc_transition"
 	announcer = "CEV Eris Sensor Array"
 	home_waypoint = "nav_merc_start"
-	arrival_message = "Attention, unidentified vessel detected on long range sensors. <br>Vessel is approaching on an intercept course. <br>Hailing frequencies open."
+	arrival_message = "Attention, unidentified vessel detected on long range sensors. \nVessel is approaching on an intercept course. \nHailing frequencies open."
 	departure_message = "Attention, unknown vessel has departed"
 
 //This fires, and the mission timer starts ticking, as soon as they leave Eris on course to the mercenary base
@@ -223,7 +223,7 @@
 	name = "Docking Port"
 	icon_state = "shuttle-red"
 	landmark_tag = "nav_merc_dock"
-	dock_target = "nuke_shuttle_dock_airlock"
+	dock_target = "second_sec_1_access_console"
 
 /obj/effect/shuttle_landmark/merc/northeast
 	name = "Northeast of the Vessel"

@@ -147,7 +147,6 @@
 	player_setup.sanitize_setup()
 	character.set_species(species)
 
-	world << "Copying prefs to [character]"
 	if(be_random_name)
 		real_name = random_name(gender,species)
 
@@ -159,14 +158,12 @@
 		else if(firstspace == name_length)
 			real_name += "[pick(GLOB.last_names)]"
 	character.fully_replace_character_name(newname = real_name)
-	world << "Done name [character.real_name]"
 	character.body_build = get_body_build(gender, body_build)
 	character.gender = gender
 	character.age = age
 	character.b_type = b_type
 
 	character.h_style = h_style
-	world << "hairstyle set to h_style"
 	character.f_style = f_style
 
 	// Build mob body from prefs
@@ -221,7 +218,6 @@
 	if(!character.isSynthetic())
 		character.nutrition = rand(140,360)
 
-	world << "Done copying to character"
 
 
 /datum/preferences/proc/open_load_dialog(mob/user)
