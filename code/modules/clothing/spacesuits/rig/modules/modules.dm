@@ -141,6 +141,17 @@
 	stat_modules +=	new/stat_rig_module/select(src)
 	stat_modules +=	new/stat_rig_module/charge(src)
 
+
+//Called before the module is installed in a suit
+//Return FALSE to deny the installation
+/obj/item/rig_module/proc/can_install(var/obj/item/weapon/rig/rig, var/mob/user, var/feedback = FALSE)
+	return TRUE
+
+//Called before the module is removed from a suit
+//Return FALSE to deny the removal
+/obj/item/rig_module/proc/can_uninstall(var/obj/item/weapon/rig/rig, var/mob/user, var/feedback = FALSE)
+	return TRUE
+
 // Called after the module is installed into a suit. The holder var is already set to the new suit
 /obj/item/rig_module/proc/installed(var/mob/living/user)
 	return
