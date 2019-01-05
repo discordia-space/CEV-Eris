@@ -6,13 +6,13 @@
 /obj/effect/damagedfloor
 	icon_state = "scorched1"
 
-/obj/effect/damagedfloor/New(loc)
+/obj/effect/damagedfloor/Initialize()
 	var/turf/simulated/floor/F = loc
 	if(istype(F))
 		F.break_tile(1)
 	qdel(src)
 
-/obj/effect/damagedfloor/fire/New(loc)
+/obj/effect/damagedfloor/fire/Initialize()
 	var/turf/simulated/floor/F = loc
 	if(istype(F))
 		F.burn_tile()
@@ -21,6 +21,6 @@
 /obj/effect/damagedfloor/rust
 	icon_state = "rust"
 
-/obj/effect/damagedfloor/rust/New(loc)
-	..()
+/obj/effect/damagedfloor/rust/Initialize()
 	icon_state = "rust[rand(1,9)]"
+	..()
