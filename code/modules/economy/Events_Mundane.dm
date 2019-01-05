@@ -140,7 +140,7 @@
 	"Rock and paper sues scissors for discrimination.",\
 	"Steak tell-all book reveals he never liked sitting by potato.",\
 	"Woodchuck stops counting how many times he�s chucked 'Never again'.",\
-	"[affected_dest.name] clerk first person able to pronounce '@*$%!'.",\
+	"[affected_dest.name] clerk first person able to pronounce '@*[CREDS]%!'.",\
 	"[affected_dest.name] delis serving boiled paperback dictionaries, 'Adjectives chewy' customers declare.",\
 	"[affected_dest.name] weather deemed 'boring'; meteors and rad storms to be imported.",\
 	"Most [affected_dest.name] security officers prefer cream over sugar.",\
