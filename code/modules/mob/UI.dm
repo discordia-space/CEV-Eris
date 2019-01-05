@@ -45,7 +45,6 @@ GLOBAL_LIST_EMPTY(ui_styles)
 
 
 TODO: LATER
-	add underlays, remove division between background/filling/foreground and make filling to be icon of the element instead
 	add ablity to lock element and drag it, then save it offset difference in prefs
 	calculate offsets based on saved in prefs
 	scaling UI
@@ -88,10 +87,14 @@ TODO: LATER
 
 	// #####	ADDING HIGHLIGTING FOR BUTTONS    #####
 	for(var/HUD_element/button/E in _elements)
-		E.setClickedInteraction(TRUE, _observer.prefs.UI_style_color, DuplicateObject(E.getOverlayIcon(HUD_OVERLAY_BACKGROUND_1), 1) , 2, 60, isPlain = TRUE)
-		E.setHoveredInteraction(TRUE, _observer.prefs.UI_style_color, DuplicateObject(E.getOverlayIcon(HUD_OVERLAY_BACKGROUND_1), 1), 60, isPlain = TRUE)
-
-	//_observer.mob.onUICreate()
+		var/list/iconData = E.getIconAdditionData(HUD_ICON_UNDERLAY, HUD_UNDERLAY_BACKGROUND)
+		iconData["color"] = _observer.prefs.UI_style_color
+		iconData["alpha"] = 80
+		iconData["is_plain"] = TRUE
+		
+		E.setHoveredInteraction(TRUE, iconData)
+		E.setClickedInteraction(TRUE, iconData, 2)
+		
 
 /datum/interface/proc/getElementByID(var/id)
 	for(var/list/HUD_element/element in _elements)
@@ -162,7 +165,7 @@ TODO: LATER
 //	To properly align UI to the screen YOU HAVE TO align planes or elements to either main screen or already aligned planes or elements to main screen
 //	STRONGLY KEEP THAT IN MIND otherwise UI will fucked up when client.view var is changed
 
-/datum/interface/proc/newUIElement(var/name, var/ui_type, var/iconData, var/x = 0, var/y = 0, var/list/icon_overlays, var/data)
+/datum/interface/proc/newUIElement(var/name, var/ui_type, var/iconData, var/x = 0, var/y = 0, var/list/icon_overlays, var/list/icon_underlays, var/data)
 	if(!name || !ui_type)
 		error("interface element will not be created, incorrect data for either name or type")
 		return FALSE
@@ -179,16 +182,20 @@ TODO: LATER
 		if(istype(iconData, /list))
 			var/list/D = iconData
 			if(is_associative(D))
-				element.setIconFromDMI(D["file"],D["state"],D["dir"])
+				element.setIconFromDMI(D["icon"],D["icon_state"],D["dir"])
 			else
 				error("(not associative) IconData have to be associative list containing icon info for loading from DMI or path to resource file.")
 		else if(istext(iconData))
 			element.setIcon(iconData)
+		else
+			error("UI element has incorrect IconData.")
 		
 	element.setPosition(x,y)
 
 	if(icon_overlays)
-		element.setOverlaysData(icon_overlays)
+		element.setIconAdditionsData(HUD_ICON_OVERLAY, icon_overlays)
+	if(icon_underlays)
+		element.setIconAdditionsData(HUD_ICON_OVERLAY, icon_underlays)
 	if(data)
 		element.setData(data)
 

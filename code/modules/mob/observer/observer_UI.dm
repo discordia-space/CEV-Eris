@@ -2,6 +2,11 @@
 	mobtype = /mob/observer/ghost
 	styleName = "ErisStyle"
 
+/datum/interface/ghost_Eris/postBuildUI()
+	for(var/HUD_element/button/E in _elements)
+		E.setIconAdditionColor(HUD_ICON_UNDERLAY, HUD_UNDERLAY_BACKGROUND, _observer.prefs.UI_style_color)
+	..()
+
 /datum/interface/ghost_Eris/buildUI()
 	// #####	CREATING LAYOUTS    #####
 	//var/HUD_element/layout/horizontal/actionPanel = newUIElement("actionPanel", /HUD_element/layout/horizontal)
@@ -12,8 +17,8 @@
 	var/list/HUD_element/navigation = list()
 
 	// #####	CREATING UI ELEMENTS AND ASSIGNING THEM APPROPRIATE LISTS    #####
-	navigation += newUIElement("Move downwards", /HUD_element/button/thick, null, 0, 0, list(HUD_OVERLAY_FILLING = list("icon" = icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"down"))))
-	navigation += newUIElement("Move upwards", /HUD_element/button/thick, null, 0, 0, list(HUD_OVERLAY_FILLING = list("icon" = icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"up"))))
+	navigation += newUIElement("Move downwards", /HUD_element/button/thick, list(icon = 'icons/mob/screen/silicon/AI/HUD_actionButtons.dmi', icon_state = "down"))
+	navigation += newUIElement("Move upwards", /HUD_element/button/thick, list(icon = 'icons/mob/screen/silicon/AI/HUD_actionButtons.dmi', icon_state = "up"))
 
 	// #####	ADDING CLICK PROCS TO BUTTONS    #####
 	getElementByID("Move upwards").setClickProc(/mob/observer/ghost/verb/moveup, _observer.mob)

@@ -159,47 +159,52 @@ see external_procs.dm for usable procs and documentation on how to use them
 
 	return src
 
-/HUD_element/proc/_addOverlayIcon(var/overlayName)
-	if(!_iconsBuffer[overlayName])
-		if(getOverlayData(overlayName))
-			error("Icon for overlay [overlayName] is not buffered.")
+/HUD_element/proc/_addAdditionIcon(var/additionType, var/additionName)
+	if(!_iconsBuffer["[additionType]_[additionName]"])
+		if(getIconAdditionData(additionType, additionName))
+			error("Icon for [additionType]_[additionName] is not buffered.")
 			return
+	if(additionType == HUD_ICON_UNDERLAY)
+		underlays += _iconsBuffer["[additionType]_[additionName]"]
+	else if(additionType == HUD_ICON_OVERLAY)
+		overlays += _iconsBuffer["[additionType]_[additionName]"]
 
-	overlays += _iconsBuffer[overlayName]
-
-/HUD_element/proc/_assembleAndBufferOverlayIcon(var/overlayName, var/list/data)
+/HUD_element/proc/_assembleAndBufferIcon(var/additionType, var/additionName, var/list/data)
 	if(!data)
+		error("Nothing was passed to buffer")
 		return
-	
-	var/icon/I = DuplicateObject(data["icon"], TRUE)
-	if(data["color"])
-		I.ColorTone(data["color"])
-	if(data["alpha"])
-		I.ChangeOpacity(data["alpha"]/255)
+	//TODO: make so this can also work with non dmi files (png, gif)
+	var/icon/I = new(data["icon"], data["icon_state"], data["dir"])
+	if(I)
+		if(data["is_plain"])
+			I.PlainPaint(data["color"])
+		else if(data["color"])
+			I.ColorTone(data["color"])
+		if(data["alpha"])
+			I.ChangeOpacity(data["alpha"]/255)
 
-	_iconsBuffer[overlayName] = I
-	return I
+		_iconsBuffer["[additionType]_[additionName]"] = I
+		return I
+	return null
 
-/HUD_element/proc/_updateOverlays()
+/HUD_element/proc/_updateLayers()
 	overlays.Cut()
+	underlays.Cut()
 
 	if(!debugMode)
-		_addOverlayIcon(HUD_OVERLAY_BACKGROUND_1)
-		_addOverlayIcon(HUD_OVERLAY_BACKGROUND_2)
-		_addOverlayIcon(HUD_OVERLAY_BACKGROUND_3)
-
-		_addOverlayIcon(HUD_OVERLAY_FILLING)
-
-		_addOverlayIcon(HUD_OVERLAY_FOREGROUND_1)
-		_addOverlayIcon(HUD_OVERLAY_FOREGROUND_2)
-		_addOverlayIcon(HUD_OVERLAY_FOREGROUND_3)
+		for(var/name in _iconUnderlaysData)
+			_addAdditionIcon(HUD_ICON_UNDERLAY, name)
+		for(var/name in _iconOverlaysData)
+			if(name == HUD_OVERLAY_TOGGLED || name == HUD_OVERLAY_HOVERED || name == HUD_OVERLAY_CLICKED)
+				continue
+			_addAdditionIcon(HUD_ICON_OVERLAY, name)
 
 		if(_onToggledInteraction)
-			_addOverlayIcon(HUD_OVERLAY_TOGGLED)
+			_addAdditionIcon(HUD_ICON_OVERLAY, HUD_OVERLAY_TOGGLED)
 		if(_onHoveredState)
-			_addOverlayIcon(HUD_OVERLAY_HOVERED)
+			_addAdditionIcon(HUD_ICON_OVERLAY, HUD_OVERLAY_HOVERED)
 		if(_onClickedState)
-			_addOverlayIcon(HUD_OVERLAY_CLICKED)
+			_addAdditionIcon(HUD_ICON_OVERLAY, HUD_OVERLAY_CLICKED)
 
 /HUD_element/button/MouseEntered(location)
 	if(_onHoveredInteraction && !_onHoveredState)

@@ -470,62 +470,105 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 
 	return src
 
-/HUD_element/proc/setOverlaysData(var/list/overlaysData)
-	if(!is_associative(overlaysData))
+/HUD_element/proc/setIconAdditionsData(var/additionType, var/list/additionsData)
+	if(additionType != HUD_ICON_UNDERLAY && additionType != HUD_ICON_OVERLAY)
+		error("Trying to add icon addition data without setting type (HUD_ICON_UNDERLAY/HUD_ICON_OVERLAY).")
+		return
+
+	if(!is_associative(additionsData))
 		error("OverlayData list is not associative")
 		return
 		
-	for (var/overlayName in overlaysData)
-		var/list/data = overlaysData[overlayName]
+	for (var/additionName in additionsData)
+		var/list/data = additionsData[additionName]
 		if(!is_associative(data))
-			error("OverlayData list contains not associative data list with name\"[overlayName]\".")
+			error("OverlayData list contains not associative data list with name\"[additionName]\".")
 			continue
-		setIconOverlay(overlayName, data["icon"], data["color"], data["alpha"])
+		setIconAddition(additionType, additionName, data["icon"], data["icon_state"], data["dir"], data["color"], data["alpha"], data["is_plain"])
 	return src
 
-/HUD_element/proc/setIconOverlay(var/overlayName, var/icon/icon, var/color, var/alpha)
-	if(!overlayName)
-		error("No overlay name was passed")
+/HUD_element/proc/setIconAddition(var/additionType, var/additionName, var/addIcon, var/addIconState, var/addDir, var/color, var/alpha, var/isPlain)
+	if(additionType != HUD_ICON_UNDERLAY && additionType != HUD_ICON_OVERLAY)
+		error("Trying to add icon addition without setting type (HUD_ICON_UNDERLAY/HUD_ICON_OVERLAY).")
+		return
+	if(!additionName)
+		error("No addition name was passed")
 		return
 
-	var/list/data = getOverlayData(overlayName)
+	var/list/data = getIconAdditionData(additionType, additionName)
 	// if passed only overlay name and there is overlay with this name then we null delete it
 	if(data && (!icon && !color && !alpha))
-		qdel(data["icon"])
-		_iconOverlaysData[overlayName] = null
-		qdel(_iconsBuffer[overlayName])
-		_iconsBuffer[overlayName] = null
+		data[additionName] = null
+		qdel(_iconsBuffer["[additionType]_[additionName]"])
+		_iconsBuffer["[additionType]_[additionName]"] = null
 		updateIcon()
 		return src
 	
 	if(!data)
 		data = list()
-		_iconOverlaysData[overlayName] = data
+		if(additionType == HUD_ICON_UNDERLAY)
+			_iconUnderlaysData[additionName] = data
+		else if(additionType == HUD_ICON_OVERLAY)
+			_iconOverlaysData[additionName] = data
 
-	if(icon)
-		data["icon"] = icon
+	if(addIcon)
+		data["icon"] = addIcon
+		data["icon_state"] = addIconState
+		data["dir"] = addDir
+		data["is_plain"] = isPlain
 	else
-		qdel(data["icon"])
 		data["icon"] = null
 
-	setOverlayAlpha(overlayName, alpha, noIconUpdate = TRUE)
-	setOverlayColor(overlayName, color, noIconUpdate = TRUE)
+	setIconAdditionAlpha(additionType, additionName, alpha, noIconUpdate = TRUE)
+	setIconAdditionColor(additionType, additionName, color, noIconUpdate = TRUE)
 	
-	_assembleAndBufferOverlayIcon(overlayName, data)
+	_assembleAndBufferIcon(additionType, additionName, data)
 	updateIcon()
 
 	return src
 
-/HUD_element/proc/updateIcon()
-	_updateOverlays()
+/HUD_element/proc/setIconAdditionAlpha(var/additionType, var/additionName, var/alpha, var/noIconUpdate = FALSE)
+	if(additionType != HUD_ICON_UNDERLAY && additionType != HUD_ICON_OVERLAY)
+		error("Trying to set icon addition alpha without setting type (HUD_ICON_UNDERLAY/HUD_ICON_OVERLAY).")
+		return
+	var/list/data = getIconAdditionData(additionType, additionName)
+	if(!data)
+		error("Can't set overlay icon alpha, no addition data.")
+		return
+	data["alpha"] = alpha
+	if(!noIconUpdate)
+		_assembleAndBufferIcon(additionType, additionName, data)
+		updateIcon()
 	return src
 
-/HUD_element/proc/getOverlayData(var/overlayName)
-	return _iconOverlaysData[overlayName]
+/HUD_element/proc/setIconAdditionColor(var/additionType, var/additionName, var/color, var/noIconUpdate = FALSE)
+	if(additionType != HUD_ICON_UNDERLAY && additionType != HUD_ICON_OVERLAY)
+		error("Trying to set icon addition color without setting type (HUD_ICON_UNDERLAY/HUD_ICON_OVERLAY).")
+		return
+	var/list/data = getIconAdditionData(additionType, additionName)
+	if(!data)
+		error("Can't set overlay icon color, no addition data.")
+		return
+	data["color"] = color
+	if(!noIconUpdate)
+		_assembleAndBufferIcon(additionType, additionName, data)
+		updateIcon()
+	return src
 
-/HUD_element/proc/getOverlayIcon(var/overlayName)
-	var/list/data = getOverlayData(overlayName)
-	return data ? data["icon"] : null
+/HUD_element/proc/getIconAdditionData(var/additionType, var/additionName)
+	if(additionType != HUD_ICON_UNDERLAY && additionType != HUD_ICON_OVERLAY)
+		error("Trying to get icon addition data without setting type (HUD_ICON_UNDERLAY/HUD_ICON_OVERLAY).")
+		return
+
+	if(additionType == HUD_ICON_UNDERLAY)
+		return _iconUnderlaysData[additionName]
+
+	else if(additionType == HUD_ICON_OVERLAY)
+		return _iconOverlaysData[additionName]
+
+/HUD_element/proc/updateIcon()
+	_updateLayers()
+	return src
 
 /HUD_element/proc/getChildElementWithID(var/id)
 	for(var/list/HUD_element/element in getElements())
@@ -557,66 +600,39 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 	else
 		error("moveChildToBottom(): No element with id \"[id]\" found.")
 
-/HUD_element/proc/setOverlayAlpha(var/overlayName, var/alpha, var/noIconUpdate = FALSE)
-	var/list/data = getOverlayData(overlayName)
-	if(!data)
-		error("Can't set overlay icon alpha, no overlay.")
-		return
-	data["alpha"] = alpha
-	if(!noIconUpdate)
-		_assembleAndBufferOverlayIcon(overlayName, data)
-		updateIcon()
-	return src
-
-/HUD_element/proc/setOverlayColor(var/overlayName, var/color, var/noIconUpdate = FALSE)
-	var/list/data = getOverlayData(overlayName)
-	if(!data)
-		error("Can't set overlay icon color, no overlay.")
-		return
-	data["color"] = color
-	if(!noIconUpdate)
-		_assembleAndBufferOverlayIcon(overlayName, data)
-		updateIcon()
-	return src
-
-/HUD_element/proc/setClickedInteraction(var/state, var/color, var/icon/overlay , var/duration = 8, var/alpha = 50 , var/isPlain = FALSE)
-	if(!overlay || duration <= 0)
+/HUD_element/proc/setClickedInteraction(var/state, var/list/iconData , var/duration = 8)
+	if(!iconData || duration <= 0)
 		error("incorrect button interaction setup.")
 		_onClickedInteraction = FALSE
 		return
 	_onClickedInteraction = state
 	if (state)
 		_onClickedHighlightDuration = duration
-		if(isPlain)
-			overlay.PlainPaint(color)
-		setIconOverlay(HUD_OVERLAY_CLICKED, overlay, color, alpha)
+
+		setIconAddition(HUD_ICON_OVERLAY, HUD_OVERLAY_CLICKED, iconData["icon"], iconData["icon_state"], color = iconData["color"], alpha = iconData["alpha"], isPlain = iconData["is_plain"])
 	else
 		_onClickedState = FALSE
 
 
-/HUD_element/proc/setHoveredInteraction(var/state, var/color, var/icon/overlay, var/alpha = 50, var/isPlain = FALSE)
-	if(!overlay)
+/HUD_element/proc/setHoveredInteraction(var/state, var/list/iconData)
+	if(!iconData)
 		error("incorrect button interaction setup.")
 		_onHoveredInteraction = FALSE
 		return
 	_onHoveredInteraction = state
 	if (state)
-		if(isPlain)
-			overlay.PlainPaint(color)
-		setIconOverlay(HUD_OVERLAY_HOVERED, overlay, color, alpha)
+		setIconAddition(HUD_ICON_OVERLAY, HUD_OVERLAY_HOVERED, iconData["icon"], iconData["icon_state"], color = iconData["color"], alpha = iconData["alpha"], isPlain = iconData["is_plain"])
 	else
 		_onHoveredState = FALSE
 
-/HUD_element/proc/setToggledInteraction(var/state, var/color, var/icon/overlay, var/alpha = 50, var/isPlain = FALSE)
-	if(!overlay)
+/HUD_element/proc/setToggledInteraction(var/state, var/list/iconData)
+	if(!iconData)
 		error("incorrect button interaction setup.")
 		_onToggledInteraction = FALSE
 		return
 	_onToggledInteraction = state
 	if (state)
-		if(isPlain)
-			overlay.PlainPaint(color)
-		setIconOverlay(HUD_OVERLAY_TOGGLED, overlay, color, alpha)
+		setIconAddition(HUD_ICON_OVERLAY, HUD_OVERLAY_TOGGLED, iconData["icon"], iconData["icon_state"], color = iconData["color"], alpha = iconData["alpha"], isPlain = iconData["is_plain"])
 	else
 		_onToggledState = FALSE
 

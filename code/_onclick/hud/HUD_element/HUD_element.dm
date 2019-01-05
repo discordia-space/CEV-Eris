@@ -58,6 +58,7 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 	var/list/_data //internal storage that can be utilized by _clickProc
 
 	var/list/_iconOverlaysData = list()
+	var/list/_iconUnderlaysData = list()
 	var/list/_iconsBuffer = list()
 
 	/*
@@ -95,12 +96,6 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 	if (parent)
 		parent.getElements().Remove(src)
 		_setParent()
-	
-	for(var/name in _iconOverlaysData)
-		var/list/data = getOverlayData(name)
-		if(data)
-			qdel(data["icon"])
-		_iconOverlaysData[name] = null
 	
 	for(var/name in _iconsBuffer)
 		qdel(_iconsBuffer[name])

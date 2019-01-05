@@ -12,15 +12,13 @@
 #define HUD_VERTICAL_NORTH_INSIDE_ALIGNMENT 8	 //bordering north side of parent from inside
 #define HUD_VERTICAL_NORTH_OUTSIDE_ALIGNMENT 9	 //bordering north side of parent from outside
 
+#define HUD_ICON_UNDERLAY "underlay"
+#define HUD_ICON_OVERLAY "overlay"
 
-//TODO REWORK THIS TO UNDERLAYS AND OVERLAYS AND SET REGULAR ICON AS FILLING INSTEAD
+#define HUD_UNDERLAY_BACKGROUND "background"
+#define HUD_OVERLAY_FRAME "frame"
 #define HUD_OVERLAY_TOGGLED "toggled"
 #define HUD_OVERLAY_HOVERED "hovered"
 #define HUD_OVERLAY_CLICKED "clicked"
-#define HUD_OVERLAY_BACKGROUND_1 "background_1"
-#define HUD_OVERLAY_BACKGROUND_2 "background_2"
-#define HUD_OVERLAY_BACKGROUND_3 "background_3"
-#define HUD_OVERLAY_FILLING "filling"
-#define HUD_OVERLAY_FOREGROUND_1 "foreground_1"
-#define HUD_OVERLAY_FOREGROUND_2 "foreground_2"
-#define HUD_OVERLAY_FOREGROUND_3 "foreground_3"
+
+
