@@ -158,7 +158,7 @@
 	item_state = "flare"
 
 	storage_slots = 5
-	w_class = ITEM_SIZE_SMALL
+	w_class = ITEM_SIZE_NORMAL
 
 	can_hold = list(
 		/obj/item/device/lighting/glowstick,
@@ -166,7 +166,8 @@
 		/obj/item/weapon/reagent_containers/glass/beaker/vial,
 		/obj/item/weapon/reagent_containers/hypospray,
 		/obj/item/weapon/pen,
-		/obj/item/weapon/storage/box/pillbottles
+		/obj/item/weapon/storage/pill_bottle,
+		/obj/item/weapon/reagent_containers/glass/bottle
 		)
 
 /obj/item/weapon/storage/pouch/flare/vial
