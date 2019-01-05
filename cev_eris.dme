@@ -241,6 +241,7 @@
 #include "code\datums\progressbar.dm"
 #include "code\datums\recipe.dm"
 #include "code\datums\security_state.dm"
+#include "code\datums\sound_player.dm"
 #include "code\datums\weakref.dm"
 #include "code\datums\autolathe\ammo.dm"
 #include "code\datums\autolathe\autolathe_datums.dm"
