@@ -146,7 +146,7 @@
 		if(user_buckle_mob(affecting, user))
 			qdel(W)
 
-	else
+	else if(!istype(W, /obj/item/weapon/bedsheet))
 		..()
 
 /obj/structure/bed/attack_robot(var/mob/user)
