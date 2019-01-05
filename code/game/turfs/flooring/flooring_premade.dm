@@ -61,119 +61,260 @@
 
 
 
+
+
 /turf/simulated/floor/tiled
 	name = "floor"
 	icon = 'icons/turf/flooring/tiles.dmi'
-	icon_state = "steel"
+	icon_state = "tiles"
 	initial_flooring = /decl/flooring/tiling
+
+
+
+
+
+/turf/simulated/floor/tiled/steel
+	name = "floor"
+	icon = 'icons/turf/flooring/tiles_steel.dmi'
+	icon_state = "tiles"
+	initial_flooring = /decl/flooring/tiling/steel
+
+/turf/simulated/floor/tiled/steel/panels
+	icon_state = "panels"
+	initial_flooring = /decl/flooring/tiling/steel/panels
+
+/turf/simulated/floor/tiled/steel/techfloor
+	icon_state = "techfloor"
+	initial_flooring = /decl/flooring/tiling/steel/techfloor
+
+/turf/simulated/floor/tiled/steel/techfloor_grid
+	icon_state = "techfloor_grid"
+	initial_flooring = /decl/flooring/tiling/steel/techfloor_grid
+
+/turf/simulated/floor/tiled/steel/brown_perforated
+	icon_state = "brown_perforated"
+	initial_flooring = /decl/flooring/tiling/steel/brown_perforated
+
+/turf/simulated/floor/tiled/steel/gray_perforated
+	icon_state = "gray_perforated"
+	initial_flooring = /decl/flooring/tiling/steel/gray_perforated
+
+/turf/simulated/floor/tiled/steel/cargo
+	icon_state = "cargo"
+	initial_flooring = /decl/flooring/tiling/steel/cargo
+
+/turf/simulated/floor/tiled/steel/brown_platform
+	icon_state = "brown_platform"
+	initial_flooring = /decl/flooring/tiling/steel/brown_platform
+
+/turf/simulated/floor/tiled/steel/gray_platform
+	icon_state = "gray_platform"
+	initial_flooring = /decl/flooring/tiling/steel/gray_platform
+
+/turf/simulated/floor/tiled/steel/danger
+	icon_state = "danger"
+	initial_flooring = /decl/flooring/tiling/steel/danger
+
+/turf/simulated/floor/tiled/steel/golden
+	icon_state = "golden"
+	initial_flooring = /decl/flooring/tiling/steel/golden
+
+/turf/simulated/floor/tiled/steel/bluecorner
+	icon_state = "bluecorner"
+	initial_flooring = /decl/flooring/tiling/steel/bluecorner
+
+/turf/simulated/floor/tiled/steel/orangecorner
+	icon_state = "orangecorner"
+	initial_flooring = /decl/flooring/tiling/steel/orangecorner
+
+/turf/simulated/floor/tiled/steel/cyancorner
+	icon_state = "cyancorner"
+	initial_flooring = /decl/flooring/tiling/steel/cyancorner
+
+/turf/simulated/floor/tiled/steel/violetcorener
+	icon_state = "violetcorener"
+	initial_flooring = /decl/flooring/tiling/steel/violetcorener
+
+/turf/simulated/floor/tiled/steel/monofloor
+	icon_state = "monofloor"
+	initial_flooring = /decl/flooring/tiling/steel/monofloor
+
+
+
+
+
+/turf/simulated/floor/tiled/white
+	name = "floor"
+	icon = 'icons/turf/flooring/tiles_white.dmi'
+	icon_state = "tiles"
+	initial_flooring = /decl/flooring/tiling/white
+
+/turf/simulated/floor/tiled/white/panels
+	icon_state = "panels"
+	initial_flooring = /decl/flooring/tiling/white/panels
+
+/turf/simulated/floor/tiled/white/techfloor
+	icon_state = "techfloor"
+	initial_flooring = /decl/flooring/tiling/white/techfloor
+
+/turf/simulated/floor/tiled/white/techfloor_grid
+	icon_state = "techfloor_grid"
+	initial_flooring = /decl/flooring/tiling/white/techfloor_grid
+
+/turf/simulated/floor/tiled/white/brown_perforated
+	icon_state = "brown_perforated"
+	initial_flooring = /decl/flooring/tiling/white/brown_perforated
+
+/turf/simulated/floor/tiled/white/gray_perforated
+	icon_state = "gray_perforated"
+	initial_flooring = /decl/flooring/tiling/white/gray_perforated
+
+/turf/simulated/floor/tiled/white/cargo
+	icon_state = "cargo"
+	initial_flooring = /decl/flooring/tiling/white/cargo
+
+/turf/simulated/floor/tiled/white/brown_platform
+	icon_state = "brown_platform"
+	initial_flooring = /decl/flooring/tiling/white/brown_platform
+
+/turf/simulated/floor/tiled/white/gray_platform
+	icon_state = "gray_platform"
+	initial_flooring = /decl/flooring/tiling/white/gray_platform
+
+/turf/simulated/floor/tiled/white/danger
+	icon_state = "danger"
+	initial_flooring = /decl/flooring/tiling/white/danger
+
+/turf/simulated/floor/tiled/white/golden
+	icon_state = "golden"
+	initial_flooring = /decl/flooring/tiling/white/golden
+
+/turf/simulated/floor/tiled/white/bluecorner
+	icon_state = "bluecorner"
+	initial_flooring = /decl/flooring/tiling/white/bluecorner
+
+/turf/simulated/floor/tiled/white/orangecorner
+	icon_state = "orangecorner"
+	initial_flooring = /decl/flooring/tiling/white/orangecorner
+
+/turf/simulated/floor/tiled/white/cyancorner
+	icon_state = "cyancorner"
+	initial_flooring = /decl/flooring/tiling/white/cyancorner
+
+/turf/simulated/floor/tiled/white/violetcorener
+	icon_state = "violetcorener"
+	initial_flooring = /decl/flooring/tiling/white/violetcorener
+
+/turf/simulated/floor/tiled/white/monofloor
+	icon_state = "monofloor"
+	initial_flooring = /decl/flooring/tiling/white/monofloor
+
+
+
+
+
+
+/turf/simulated/floor/tiled/dark
+	name = "floor"
+	icon = 'icons/turf/flooring/tiles_dark.dmi'
+	icon_state = "tiles"
+	initial_flooring = /decl/flooring/tiling/dark
+
+/turf/simulated/floor/tiled/dark/panels
+	icon_state = "panels"
+	initial_flooring = /decl/flooring/tiling/dark/panels
+
+/turf/simulated/floor/tiled/dark/techfloor
+	icon_state = "techfloor"
+	initial_flooring = /decl/flooring/tiling/dark/techfloor
+
+/turf/simulated/floor/tiled/dark/techfloor_grid
+	icon_state = "techfloor_grid"
+	initial_flooring = /decl/flooring/tiling/dark/techfloor_grid
+
+/turf/simulated/floor/tiled/dark/brown_perforated
+	icon_state = "brown_perforated"
+	initial_flooring = /decl/flooring/tiling/dark/brown_perforated
+
+/turf/simulated/floor/tiled/dark/gray_perforated
+	icon_state = "gray_perforated"
+	initial_flooring = /decl/flooring/tiling/dark/gray_perforated
+
+/turf/simulated/floor/tiled/dark/cargo
+	icon_state = "cargo"
+	initial_flooring = /decl/flooring/tiling/dark/cargo
+
+/turf/simulated/floor/tiled/dark/brown_platform
+	icon_state = "brown_platform"
+	initial_flooring = /decl/flooring/tiling/dark/brown_platform
+
+/turf/simulated/floor/tiled/dark/gray_platform
+	icon_state = "gray_platform"
+	initial_flooring = /decl/flooring/tiling/dark/gray_platform
+
+/turf/simulated/floor/tiled/dark/danger
+	icon_state = "danger"
+	initial_flooring = /decl/flooring/tiling/dark/danger
+
+/turf/simulated/floor/tiled/dark/golden
+	icon_state = "golden"
+	initial_flooring = /decl/flooring/tiling/dark/golden
+
+/turf/simulated/floor/tiled/dark/bluecorner
+	icon_state = "bluecorner"
+	initial_flooring = /decl/flooring/tiling/dark/bluecorner
+
+/turf/simulated/floor/tiled/dark/orangecorner
+	icon_state = "orangecorner"
+	initial_flooring = /decl/flooring/tiling/dark/orangecorner
+
+/turf/simulated/floor/tiled/dark/cyancorner
+	icon_state = "cyancorner"
+	initial_flooring = /decl/flooring/tiling/dark/cyancorner
+
+/turf/simulated/floor/tiled/dark/violetcorener
+	icon_state = "violetcorener"
+	initial_flooring = /decl/flooring/tiling/dark/violetcorener
+
+/turf/simulated/floor/tiled/dark/monofloor
+	icon_state = "monofloor"
+	initial_flooring = /decl/flooring/tiling/dark/monofloor
+
+
+
+
+
+
+/turf/simulated/floor/tiled/cafe
+	name = "floor"
+	icon = 'icons/turf/flooring/tiles.dmi'
+	icon_state = "cafe"
+	initial_flooring = /decl/flooring/tiling/cafe
 
 /turf/simulated/floor/tiled/techmaint
 	name = "floor"
-	icon = 'icons/turf/flooring/tiles.dmi'
+	icon = 'icons/turf/flooring/tiles_maint.dmi'
 	icon_state = "techmaint"
-	initial_flooring = /decl/flooring/tiling/new_tile/techmaint
+	initial_flooring = /decl/flooring/tiling/techmaint
 
-/turf/simulated/floor/tiled/monofloor
+/turf/simulated/floor/tiled/techmaint_perforated
 	name = "floor"
-	icon = 'icons/turf/flooring/tiles.dmi'
-	icon_state = "monofloor"
-	initial_flooring = /decl/flooring/tiling/new_tile/monofloor
+	icon = 'icons/turf/flooring/tiles_maint.dmi'
+	icon_state = "techmaint_perforated"
+	initial_flooring = /decl/flooring/tiling/techmaint_perforated
 
-/turf/simulated/floor/tiled/techfloor
+/turf/simulated/floor/tiled/techmaint_panels
 	name = "floor"
-	icon = 'icons/turf/flooring/techfloor.dmi'
-	icon_state = "techfloor_gray"
-	initial_flooring = /decl/flooring/tiling/tech
+	icon = 'icons/turf/flooring/tiles_maint.dmi'
+	icon_state = "techmaint_panels"
+	initial_flooring = /decl/flooring/tiling/techmaint_panels
 
-/turf/simulated/floor/tiled/monotile
+/turf/simulated/floor/tiled/techmaint_cargo
 	name = "floor"
-	icon = 'icons/turf/flooring/tiles.dmi'
-	icon_state = "monotile"
-	initial_flooring = /decl/flooring/tiling/new_tile/monotile
+	icon = 'icons/turf/flooring/tiles_maint.dmi'
+	icon_state = "techmaint_cargo"
+	initial_flooring = /decl/flooring/tiling/techmaint_cargo
 
-/turf/simulated/floor/tiled/steel_grid
-	name = "floor"
-	icon = 'icons/turf/flooring/tiles.dmi'
-	icon_state = "steel_grid"
-	initial_flooring = /decl/flooring/tiling/new_tile/steel_grid
-
-/turf/simulated/floor/tiled/steel_ridged
-	name = "floor"
-	icon = 'icons/turf/flooring/tiles.dmi'
-	icon_state = "steel_ridged"
-	initial_flooring = /decl/flooring/tiling/new_tile/steel_ridged
-
-/turf/simulated/floor/tiled/old_tile
-	name = "floor"
-	icon_state = "tile_full"
-	initial_flooring = /decl/flooring/tiling/new_tile
-/turf/simulated/floor/tiled/old_tile/white
-	color = "#d9d9d9"
-/turf/simulated/floor/tiled/old_tile/blue
-	color = "#8ba7ad"
-/turf/simulated/floor/tiled/old_tile/yellow
-	color = "#8c6d46"
-/turf/simulated/floor/tiled/old_tile/gray
-	color = "#687172"
-/turf/simulated/floor/tiled/old_tile/beige
-	color = "#385e60"
-/turf/simulated/floor/tiled/old_tile/red
-	color = "#964e51"
-/turf/simulated/floor/tiled/old_tile/purple
-	color = "#906987"
-/turf/simulated/floor/tiled/old_tile/green
-	color = "#46725c"
-
-
-
-/turf/simulated/floor/tiled/old_cargo
-	name = "floor"
-	icon_state = "cargo_one_full"
-	initial_flooring = /decl/flooring/tiling/new_tile/cargo_one
-/turf/simulated/floor/tiled/old_cargo/white
-	color = "#d9d9d9"
-/turf/simulated/floor/tiled/old_cargo/blue
-	color = "#8ba7ad"
-/turf/simulated/floor/tiled/old_cargo/yellow
-	color = "#8c6d46"
-/turf/simulated/floor/tiled/old_cargo/gray
-	color = "#687172"
-/turf/simulated/floor/tiled/old_cargo/beige
-	color = "#385e60"
-/turf/simulated/floor/tiled/old_cargo/red
-	color = "#964e51"
-/turf/simulated/floor/tiled/old_cargo/purple
-	color = "#906987"
-/turf/simulated/floor/tiled/old_cargo/green
-	color = "#46725c"
-
-
-/turf/simulated/floor/tiled/kafel_full
-	name = "floor"
-	icon_state = "kafel_full"
-	initial_flooring = /decl/flooring/tiling/new_tile/kafel
-/turf/simulated/floor/tiled/kafel_full/white
-	color = "#d9d9d9"
-/turf/simulated/floor/tiled/kafel_full/blue
-	color = "#8ba7ad"
-/turf/simulated/floor/tiled/kafel_full/yellow
-	color = "#8c6d46"
-/turf/simulated/floor/tiled/kafel_full/gray
-	color = "#687172"
-/turf/simulated/floor/tiled/kafel_full/beige
-	color = "#385e60"
-/turf/simulated/floor/tiled/kafel_full/red
-	color = "#964e51"
-/turf/simulated/floor/tiled/kafel_full/purple
-	color = "#906987"
-/turf/simulated/floor/tiled/kafel_full/green
-	color = "#46725c"
-
-
-/turf/simulated/floor/tiled/techfloor/grid
-	name = "floor"
-	icon_state = "techfloor_grid"
-	initial_flooring = /decl/flooring/tiling/tech/grid
 
 /turf/simulated/floor/reinforced
 	name = "reinforced floor"
@@ -223,29 +364,11 @@
 	if(!air) make_air()
 	air.adjust_gas("sleeping_agent", ATMOSTANK_NITROUSOXIDE)
 
-/turf/simulated/floor/tiled/dark
-	name = "floor"
-	icon_state = "dark"
-	initial_flooring = /decl/flooring/tiling/dark
-
-/turf/simulated/floor/tiled/steel
-	name = "floor"
-	icon_state = "steel_dirty"
-	initial_flooring = /decl/flooring/tiling/steel
 
 /turf/simulated/floor/tiled/steel/airless
 	oxygen = 0
 	nitrogen = 0
 
-/turf/simulated/floor/tiled/white
-	name = "floor"
-	icon_state = "white"
-	initial_flooring = /decl/flooring/tiling/white
-
-/turf/simulated/floor/tiled/freezer
-	name = "floor"
-	icon_state = "freezer"
-	initial_flooring = /decl/flooring/tiling/freezer
 
 //ATMOS PREMADES
 /turf/simulated/floor/reinforced/airless
