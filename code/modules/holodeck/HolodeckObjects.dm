@@ -21,13 +21,14 @@
 
 /turf/simulated/floor/holofloor/tiled
 	name = "floor"
-	icon = 'icons/turf/flooring/tiles.dmi'
-	icon_state = "steel"
-	initial_flooring = /decl/flooring/tiling
+	icon = 'icons/turf/flooring/tiles_steel.dmi'
+	icon_state = "tiles"
+	initial_flooring = /decl/flooring/tiling/steel
 
 /turf/simulated/floor/holofloor/tiled/dark
-	name = "dark floor"
-	icon_state = "dark"
+	name = "floor"
+	icon = 'icons/turf/flooring/tiles_dark.dmi'
+	icon_state = "tiles"
 	initial_flooring = /decl/flooring/tiling/dark
 
 /turf/simulated/floor/holofloor/wood
