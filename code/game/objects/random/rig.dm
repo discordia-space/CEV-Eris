@@ -48,6 +48,7 @@
 //Installable modules!
 
 /obj/random/rig_module
+	name = "random hardsuit module"
 
 /obj/random/rig_module/item_to_spawn()
 	return pickweight(list(
