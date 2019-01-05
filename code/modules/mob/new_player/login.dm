@@ -51,7 +51,7 @@
 			the_type = "(text)"
 		else if(isnum(lobby_image))
 			the_type = "(num)"
-		else if(isdatum(lobby_image))	//Already casted
+		else if(istype(lobby_image, /datum))	//Already casted
 			the_type = "[lobby_image.type]"
 		else
 			the_type = "(UNKNOWN)"
