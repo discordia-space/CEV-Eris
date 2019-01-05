@@ -81,7 +81,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 // The hidden uplink MUST be inside an obj/item's contents.
 /obj/item/device/uplink/hidden/New(var/location, var/datum/mind/owner, var/telecrystals = DEFAULT_TELECRYSTAL_AMOUNT)
 	spawn(2)
-		if(!istype(src.loc, /obj/item))
+		if(!istype(src.loc, /obj))
 			qdel(src)
 	..()
 	nanoui_data = list()
@@ -110,6 +110,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	NANO UI FOR UPLINK WOOP WOOP
 */
 /obj/item/device/uplink/hidden/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+	world << "ui interact"
 	var/title = "Remote Uplink"
 	var/data[0]
 
@@ -127,7 +128,8 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 
 
 // Interaction code. Gathers a list of items purchasable from the paren't uplink and displays it. It also adds a lock button.
-/obj/item/device/uplink/hidden/interact(mob/user)
+/obj/item/device/uplink/interact(mob/user)
+	world << "interact"
 	ui_interact(user)
 
 // The purchasing code.
@@ -240,3 +242,26 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	..(loc)
 	hidden_uplink = new(src, mind, crystal_amount)
 	hidden_uplink.uses = DEFAULT_TELECRYSTAL_AMOUNT
+
+
+
+//Uplink beacon
+//A large dense uplink object that can't be moved. Designed for use by team antags on their shuttles
+/obj/structure/uplink
+	name = "Uplink Beacon"
+	icon = 'icons/obj/supplybeacon.dmi'
+	desc = "A bulky machine used for teleporting in supplies from a benefactor."
+	icon_state = "beacon"
+	var/obj/item/device/uplink/hidden/uplink
+	var/telecrystals = 100
+	density = TRUE
+	anchored = TRUE
+
+/obj/structure/uplink/New()
+	uplink = new(src, null, telecrystals)
+	uplink.update_nano_data()
+	..()
+
+/obj/structure/uplink/attack_hand(var/mob/user)
+	world << "Attackhand [user]"
+	uplink.trigger(user)

@@ -65,6 +65,7 @@
 #define FACTION_EXCELSIOR "excelsior"
 #define FACTION_BORERS "borers"
 #define FACTION_XENOMORPHS "xenomorphs"
+#define FACTION_SERBS	"serbians"
 
 #define ROLESET_TRAITOR "traitor"
 #define ROLESET_VERSUS_TRAITOR "double_agents"

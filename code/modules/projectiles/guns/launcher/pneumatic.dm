@@ -3,7 +3,7 @@
 	desc = "A large gas-powered cannon."
 	icon_state = "pneumatic"
 	item_state = "pneumatic"
-	slot_flags = SLOT_BELT
+	slot_flags = SLOT_BACK
 	w_class = ITEM_SIZE_HUGE
 	flags =  CONDUCT
 	fire_sound_text = "a loud whoosh of moving air"

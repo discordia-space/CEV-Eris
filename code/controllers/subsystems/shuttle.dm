@@ -52,3 +52,11 @@ SUBSYSTEM_DEF(shuttle)
 
 /datum/controller/subsystem/shuttle/stat_entry()
 	..("S:[shuttles.len], L:[registered_shuttle_landmarks.len]")
+
+
+/datum/controller/subsystem/shuttle/proc/get_shuttle(var/needle)
+	for (var/S in shuttles)
+		if (S == needle)
+			return shuttles[S]
+
+	return null

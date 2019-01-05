@@ -9,10 +9,14 @@
 	var/dock_target = null
 
 	var/obj/effect/shuttle_landmark/next_location
+
+	//For single airlock ships, this is the controller for that airlock. Otherwise it's only one of them if relevant
+	var/default_docking_controller
+
 	var/datum/computer/file/embedded_program/docking/active_docking_controller
 
 	var/obj/effect/shuttle_landmark/landmark_transition
-	var/move_time = 240		//the time spent in the transition area
+	var/move_time = 24//0		//the time spent in the transition area
 
 	category = /datum/shuttle/autodock
 
@@ -20,9 +24,15 @@
 	..(_name, start_waypoint)
 
 	//Initial dock
-	active_docking_controller = current_location.docking_controller
+	if (default_docking_controller)
+		active_docking_controller = locate(default_docking_controller)
+
+	if (current_location && current_location.docking_controller)
+		active_docking_controller = current_location.docking_controller
 	current_dock_target = get_docking_target(current_location)
-	dock()
+
+	if (active_docking_controller)
+		dock()
 
 	//Optional transition area
 	if(landmark_transition)
@@ -43,7 +53,8 @@
 	if(location && location.special_dock_targets)
 		if(location.special_dock_targets[name])
 			return location.special_dock_targets[name]
-	return dock_target
+	else if (location.dock_target)
+		return location.dock_target
 
 /*
 	Docking stuff
@@ -99,7 +110,8 @@
 
 //not to be confused with the arrived() proc
 /datum/shuttle/autodock/proc/process_arrived()
-	active_docking_controller = next_location.docking_controller
+	if (next_location.docking_controller)
+		active_docking_controller = next_location.docking_controller
 	current_dock_target = get_docking_target(next_location)
 	dock()
 

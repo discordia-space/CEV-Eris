@@ -8,6 +8,16 @@
 	anchored = 1
 	var/shattered = 0
 	var/list/ui_users = list()
+	var/appearance_changer_flags = APPEARANCE_ALL_HAIR
+
+//A variant which allows changing every aspect of appearance. Including bodyshape and name
+//Intended for use by antags and only spawns in antag bases, to allow them to setup their character before going to eris
+/obj/structure/mirror/antag
+	name = "black mirror"
+	desc = "An off-brand nano mirror with a darker finish."
+	color = "#AAAAAA"
+	appearance_changer_flags = APPEARANCE_ALL
+
 
 /obj/structure/mirror/attack_hand(mob/user as mob)
 
@@ -18,6 +28,7 @@
 		if(!AC)
 			AC = new(src, user)
 			AC.name = "SalonPro Nano-Mirror&trade;"
+			AC.flags = appearance_changer_flags
 			ui_users[user] = AC
 		AC.ui_interact(user)
 

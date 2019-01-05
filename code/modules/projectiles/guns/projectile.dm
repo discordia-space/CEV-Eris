@@ -115,7 +115,24 @@
 		if(!(load_method & AM.mag_type) || caliber != AM.caliber)
 			return //incompatible
 
-		switch(AM.mag_type)
+		//How are we trying to apply this magazine to this gun?
+		//Its possible for both magazines and guns to support multiple load methods.
+		//In the case of that, we use a fixed order to determine whats most desireable
+		var/method_for_this_load = 0
+
+		//Magazine loading takes precedence first
+		if ((load_method & AM.mag_type) & MAGAZINE)
+			method_for_this_load = MAGAZINE
+		//Speedloading second
+		else if ((load_method & AM.mag_type) & SPEEDLOADER)
+			method_for_this_load = SPEEDLOADER
+		else if ((load_method & AM.mag_type) & SINGLE_CASING)
+			method_for_this_load = SINGLE_CASING
+		else
+			//Not sure how this could happen, sanity check. Abort and return if none of the above were true
+			return
+
+		switch(method_for_this_load)
 			if(MAGAZINE)
 				if(AM.ammo_mag != ammo_mag && ammo_mag != "default")
 					user << SPAN_WARNING("[src] requires another magazine.") //wrong magazine

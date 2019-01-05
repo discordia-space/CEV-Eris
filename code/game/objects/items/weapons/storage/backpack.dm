@@ -20,7 +20,7 @@
 	w_class = ITEM_SIZE_LARGE
 	slot_flags = SLOT_BACK
 	max_w_class = ITEM_SIZE_LARGE
-	max_storage_space = 49
+	max_storage_space = 40
 	var/worn_access = FALSE
 
 /obj/item/weapon/storage/backpack/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -110,6 +110,14 @@
 	desc = "It's a very robust backpack."
 	icon_state = "securitypack"
 	item_state_slots = null
+
+//Used by mercs
+/obj/item/weapon/storage/backpack/military
+	name = "MOLLE pack"
+	desc = "Designed for planetary infantry, holds a lot of equipment."
+	icon_state = "militarypack"
+	item_state_slots = null
+	max_storage_space = 50
 
 /obj/item/weapon/storage/backpack/captain
 	name = "captain's backpack"
