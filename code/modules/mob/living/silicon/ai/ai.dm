@@ -54,7 +54,7 @@ var/list/ai_verbs_default = list(
 	status_flags = CANSTUN|CANPARALYSE|CANPUSH
 //	shouldnt_see = list()
 	universal_understand = TRUE
-	var/list/network = list("Exodus")
+	var/list/network = list(NETWORK_AI)
 	var/obj/machinery/camera/camera = null
 	var/list/connected_robots = list()
 	var/aiRestorePowerRoutine = 0
@@ -782,13 +782,9 @@ var/list/ai_verbs_default = list(
 	return 1
 
 // shortcuts for UI
-/mob/living/silicon/ai/proc/take_photo(var/e)
-	if(e)
-		var/obj/item/device/camera/siliconcam/ai_camera/cam = aiCamera
-		cam.take_image()
-	else
-		log_world("worked")
-		
+/mob/living/silicon/ai/proc/take_photo()
+	var/obj/item/device/camera/siliconcam/ai_camera/cam = aiCamera
+	cam.take_image()
 
 /mob/living/silicon/ai/proc/view_photos()
 	var/obj/item/device/camera/siliconcam/ai_camera/cam = aiCamera

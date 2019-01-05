@@ -41,6 +41,8 @@
 	face_atom(A) // change direction to face what you clicked on
 
 	if(aiCamera.in_camera_mode)
+		if(!get_turf(A))
+			return
 		aiCamera.camera_mode_off()
 		if(is_component_functioning("camera"))
 			aiCamera.captureimage(A, usr)

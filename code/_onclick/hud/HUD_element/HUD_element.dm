@@ -111,7 +111,7 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 /HUD_element/Click(location,control,params)
 	if (_clickProc)
 		if(_holder)
-			call(_holder, _clickProc)(_procArguments)
+			call(_holder, _clickProc)()
 		else
 			call(_clickProc)(src, usr, location, control, params)
 
@@ -129,3 +129,7 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 			parent = parent.hide()
 			if (!parent) //parent deleted
 				return
+
+// override if needed
+/HUD_element/DblClick(var/location, var/control, var/params)
+	return

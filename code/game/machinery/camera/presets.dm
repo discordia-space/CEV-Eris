@@ -28,49 +28,49 @@ var/global/list/engineering_networks = list(
 	network = list(NETWORK_CRESCENT)
 
 /obj/machinery/camera/network/fist_section
-	network = list(NETWORK_FIRST_SECTION)
+	network = list(NETWORK_AI, NETWORK_FIRST_SECTION)
 
 /obj/machinery/camera/network/second_section
-	network = list(NETWORK_SECOND_SECTION)
+	network = list(NETWORK_AI, NETWORK_SECOND_SECTION)
 
 /obj/machinery/camera/network/third_section
-	network = list(NETWORK_THIRD_SECTION)
+	network = list(NETWORK_AI, NETWORK_THIRD_SECTION)
 
 /obj/machinery/camera/network/fourth_section
-	network = list(NETWORK_FOURTH_SECTION)
+	network = list(NETWORK_AI, NETWORK_FOURTH_SECTION)
 
 /obj/machinery/camera/network/command
-	network = list(NETWORK_COMMAND)
+	network = list(NETWORK_AI, NETWORK_COMMAND)
 
 /obj/machinery/camera/network/engine
-	network = list(NETWORK_ENGINE)
+	network = list(NETWORK_AI, NETWORK_ENGINE)
 
 /obj/machinery/camera/network/engineering
-	network = list(NETWORK_ENGINEERING)
+	network = list(NETWORK_AI, NETWORK_ENGINEERING)
 
 /obj/machinery/camera/network/cev_eris
-	network = list(NETWORK_CEV_ERIS)
+	network = list(NETWORK_AI, NETWORK_CEV_ERIS)
 
 /obj/machinery/camera/network/mining
-	network = list(NETWORK_MINE)
+	network = list(NETWORK_AI, NETWORK_MINE)
 
 /obj/machinery/camera/network/prison
-	network = list(NETWORK_PRISON)
+	network = list(NETWORK_AI, NETWORK_PRISON)
 
 /obj/machinery/camera/network/medbay
-	network = list(NETWORK_MEDICAL)
+	network = list(NETWORK_AI, NETWORK_MEDICAL)
 
 /obj/machinery/camera/network/research
-	network = list(NETWORK_RESEARCH)
+	network = list(NETWORK_AI, NETWORK_RESEARCH)
 
 /obj/machinery/camera/network/research_outpost
-	network = list(NETWORK_RESEARCH_OUTPOST)
+	network = list(NETWORK_AI, NETWORK_RESEARCH_OUTPOST)
 
 /obj/machinery/camera/network/security
-	network = list(NETWORK_SECURITY)
+	network = list(NETWORK_AI, NETWORK_SECURITY)
 
 /obj/machinery/camera/network/telecom
-	network = list(NETWORK_TELECOM)
+	network = list(NETWORK_AI, NETWORK_TELECOM)
 
 /obj/machinery/camera/network/thunder
 	network = list(NETWORK_THUNDER)

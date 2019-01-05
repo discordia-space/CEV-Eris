@@ -1,0 +1,32 @@
+
+/datum/interface/ghost_Eris
+	mobtype = /mob/observer/ghost
+	styleName = "ErisStyle"
+
+/datum/interface/ghost_Eris/buildUI()
+	// #####	CREATING LAYOUTS    #####
+	//var/HUD_element/layout/horizontal/actionPanel = newUIElement("actionPanel", /HUD_element/layout/horizontal)
+	var/HUD_element/layout/vertical/navigationPanel = newUIElement("navigationPanel", /HUD_element/layout/vertical)
+	
+	// #####	CREATING LIST THAT WILL CONTAIN ELEMENTS FOR EASY ACCESS    #####
+	//var/list/HUD_element/actions = list()
+	var/list/HUD_element/navigation = list()
+
+	// #####	CREATING UI ELEMENTS AND ASSIGNING THEM APPROPRIATE LISTS    #####
+	navigation += newUIElement("Move downwards", /HUD_element/button/thick, null, 0, 0, list(HUD_OVERLAY_FILLING = list("icon" = icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"down"))))
+	navigation += newUIElement("Move upwards", /HUD_element/button/thick, null, 0, 0, list(HUD_OVERLAY_FILLING = list("icon" = icon('icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',"up"))))
+
+	// #####	ADDING CLICK PROCS TO BUTTONS    #####
+	getElementByID("Move upwards").setClickProc(/mob/observer/ghost/verb/moveup, _observer.mob)
+	getElementByID("Move downwards").setClickProc(/mob/observer/ghost/verb/movedown, _observer.mob)
+
+	// #####	ALIGNING ELEMENTS USING LAYOUTS    #####
+	//actionPanel.alignElements(HUD_HORIZONTAL_WEST_INSIDE_ALIGNMENT, HUD_NO_ALIGNMENT, actions, 0)
+	navigationPanel.alignElements(HUD_NO_ALIGNMENT, HUD_VERTICAL_NORTH_INSIDE_ALIGNMENT, navigation, 0)
+
+	// #####	ALIGNING LAYOUTS TO SCREEN    #####
+	//panels is aligned to screen because they have no parent
+	//actionPanel.setAlignment(HUD_CENTER_ALIGNMENT, HUD_VERTICAL_SOUTH_INSIDE_ALIGNMENT)
+	navigationPanel.setAlignment(HUD_HORIZONTAL_EAST_INSIDE_ALIGNMENT, HUD_CENTER_ALIGNMENT)
+
+	postBuildUI()

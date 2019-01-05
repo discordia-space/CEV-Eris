@@ -62,6 +62,8 @@
 			return
 
 	if(aiCamera.in_camera_mode)
+		if(!get_turf(A))
+			return
 		aiCamera.camera_mode_off()
 		aiCamera.captureimage(A, usr)
 		return

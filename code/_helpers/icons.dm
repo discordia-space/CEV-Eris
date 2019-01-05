@@ -303,7 +303,7 @@ icon
 		MapColors(0,	0,	0,	0, //-\  Ignore
 				0,	0,	0,	0, //--> The
 				0,	0,	0,	0, //-/  Colors
-				rgb[1],rgb[2],rgb[3],1, //Keep alpha channel, any pixel with non-zero alpha gets the color
+				rgb[1]/255,rgb[2]/255,rgb[3]/1,255, //Keep alpha channel, any pixel with non-zero alpha gets the color
 				0,	0,	0,	0)
 
 

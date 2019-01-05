@@ -85,7 +85,7 @@
 	set desc = "Activates the given subsystem"
 	set category = "Silicon Commands"
 
-	var/subsystem = input(src, "Chose a sybsystem:", "Subsystems") as null|anything in silicon_subsystems_by_name
+	var/subsystem = input(src, "Choose a sybsystem:", "Subsystems") as null|anything in silicon_subsystems_by_name
 	var/stat_silicon_subsystem/SSS = silicon_subsystems_by_name[subsystem]
 	
 	if(istype(SSS))
