@@ -325,7 +325,10 @@
 		if(istype(rig))
 			rig.force_rest(src)
 	else
-		resting = !resting
+		if(resting && can_stand_up())
+			resting = FALSE
+		else if (!resting)
+			resting = TRUE
 		icon_state = resting ? "[chassis]_rest" : "[chassis]"
 		src << "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>"
 

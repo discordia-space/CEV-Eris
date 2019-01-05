@@ -33,7 +33,7 @@
 		if(!candidate.current)
 			if (report) report << SPAN_NOTICE("Failure: [candidate] has no mob")
 			continue
-		if(!temp.can_become_antag(candidate))
+		if(!temp.can_become_antag(candidate, report))
 			if (report) report << SPAN_NOTICE("Failure: [candidate] can't become this antag")
 			continue
 		if(!antagonist_suitable(candidate,temp))

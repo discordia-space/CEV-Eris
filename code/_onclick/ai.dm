@@ -189,3 +189,64 @@
 
 /mob/living/silicon/ai/TurfAdjacent(var/turf/T)
 	return (cameranet && cameranet.checkTurfVis(T))
+
+//
+//	On Ctrl-Click will turn on if off otherwise will switch between Filtering and Panic Siphon
+//
+/obj/machinery/alarm/AICtrlClick()
+	if(mode == AALARM_MODE_OFF)
+		Topic(src, list("command"="mode", "mode" = AALARM_MODE_SCRUBBING))
+	else
+		Topic(src, list("command"="mode", "mode" = AALARM_MODE_OFF))
+	return 1
+
+//
+//	On Alt-Click will cycle through modes
+//
+/obj/machinery/alarm/AIAltClick()
+	if(mode == AALARM_MODE_LAST)
+		Topic(src, list("command"="mode", "mode" = AALARM_MODE_FIRST))
+	else
+		Topic(src, list("command"="mode", "mode" = mode+1))
+	return 1
+
+//
+//	On Ctrl-Click will turn on if off otherwise will switch between Filtering and Panic Siphon
+//
+/obj/machinery/firealarm/AICtrlClick()
+	var/area/A = get_area(src)
+	if(A.fire)
+		Topic(src, list("status"="reset"))
+	else
+		Topic(src, list("status"="alarm"))
+	return 1
+
+//
+//	On Ctrl-Click will turn on or off SMES input 
+//
+/obj/machinery/power/smes/AICtrlClick()
+	Topic(src, list("cmode"="1"))
+	return 1
+
+//
+//	On Alt-Click will turn on or off SMES output 
+//
+/obj/machinery/power/smes/AIAltClick()
+	Topic(src, list("online"="1"))
+	return 1
+
+//
+//	On Ctrl-Click will turn on or off gas cooling system
+//
+/obj/machinery/atmospherics/unary/freezer/AICtrlClick()
+	Topic(src, list("toggleStatus"="1"))
+	return 1
+
+//
+//	On Ctrl-Click will turn on or off telecomms machinery
+//	ENABLE WHEN TCOMS UI WILL BE UPDATED TO NANOUI
+/*
+/obj/machinery/telecomms/AICtrlClick()
+	Topic(src, list("input"="toggle"))
+	return 1
+*/

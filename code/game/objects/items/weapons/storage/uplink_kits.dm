@@ -101,7 +101,11 @@
 	name = "boxed uplink implant (with injector)"
 
 /obj/item/weapon/storage/box/syndie_kit/imp_uplink/New()
-	new /obj/item/weapon/implanter/uplink(src)
+	//Turn off passive gain for boxed implant uplinks. To prevent exploits of gathering tons of free TC
+	var/obj/item/weapon/implanter/uplink/U1 = new /obj/item/weapon/implanter/uplink(src)
+	var/obj/item/weapon/implant/uplink/U2 = locate(/obj/item/weapon/implant/uplink) in U1
+	var/obj/item/device/uplink/hidden/U3 = locate(/obj/item/device/uplink/hidden) in U2
+	U3.passive_gain = 0
 	..()
 
 /obj/item/weapon/storage/box/syndie_kit/space
