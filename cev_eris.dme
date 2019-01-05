@@ -344,6 +344,8 @@
 #include "code\datums\outfits\jobs\misc.dm"
 #include "code\datums\outfits\jobs\science.dm"
 #include "code\datums\outfits\jobs\security.dm"
+#include "code\datums\proximity_trigger\proximity_trigger.dm"
+#include "code\datums\proximity_trigger\turf_selection.dm"
 #include "code\datums\repositories\cameras.dm"
 #include "code\datums\repositories\decls.dm"
 #include "code\datums\repositories\repository.dm"
