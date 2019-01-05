@@ -5,6 +5,8 @@
 	update_explanation()
 
 /datum/objective/download/check_completion()
+	if (failed)
+		return FALSE
 	if(owner && (!owner.current || owner.current.stat == DEAD))
 		return FALSE
 

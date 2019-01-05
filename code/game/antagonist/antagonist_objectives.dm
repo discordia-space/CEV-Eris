@@ -1,6 +1,8 @@
 /datum/antagonist/proc/create_objectives(var/survive = FALSE)
+
 	if(!possible_objectives || !possible_objectives.len)
 		return
+	world << "Antagonist creating its own objectives"
 	for (var/i = 0; i < objective_quantity; i++)
 		var/chosen_obj = pickweight(possible_objectives)
 
@@ -16,6 +18,10 @@
 
 // used only for factions antagonists
 /datum/antagonist/proc/set_objectives(var/list/new_objectives)
+	world << "antagonist recievin objectives"
+	for (var/A in new_objectives)
+		world << "\ref[A]"
+
 	if(!owner || !owner.current)
 		return
 

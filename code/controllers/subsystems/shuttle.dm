@@ -55,8 +55,8 @@ SUBSYSTEM_DEF(shuttle)
 
 
 /datum/controller/subsystem/shuttle/proc/get_shuttle(var/needle)
-	for (var/datum/shuttle/S in shuttles)
-		if (S.name == needle)
-			return S
+	for (var/S in shuttles)
+		if (S == needle)
+			return shuttles[S]
 
 	return null

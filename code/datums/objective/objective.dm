@@ -17,6 +17,8 @@ var/global/list/all_objectives_types = null
 	var/datum/mind/target = null		//If they are focused on a particular person.
 	var/target_amount = 0				//If they are focused on a particular number. Steal objectives have their own counter.
 	var/completed = FALSE				//currently only used for custom objectives.
+	var/failed = FALSE 					//If true, this objective has reached a state where it can never be completed
+	var/human_target = TRUE				//If true, only select human targets
 
 /datum/objective/New(var/datum/antagonist/new_owner, var/datum/mind/target)
 	if (istype(new_owner))
@@ -26,6 +28,7 @@ var/global/list/all_objectives_types = null
 			owner = antag.owner
 	else if (istype(new_owner, /datum/faction))
 		owner_faction = new_owner
+		owner_faction.objectives += src
 	if(!target)
 		find_target()
 	update_explanation()
@@ -47,14 +50,40 @@ var/global/list/all_objectives_types = null
 	return
 
 /datum/objective/proc/check_completion()
+	if (failed)
+		return FALSE
 	return completed
 
 /datum/objective/proc/get_targets_list()
 	var/list/possible_targets = list()
 	for(var/datum/mind/possible_target in SSticker.minds)
-		if(possible_target != owner && ishuman(possible_target.current) && (possible_target.current.stat != 2))
+		if(is_valid_target(possible_target))
 			possible_targets.Add(possible_target)
 	return possible_targets
+
+//Checks if a given mind is a valid target to perform objectives on
+/datum/objective/proc/is_valid_target(var/datum/mind/M)
+	if (!M.current)
+		return FALSE //No mob
+
+	if (M == owner) //No targeting ourselves
+		return FALSE
+
+	if (!ishuman(M) && human_target)
+		return FALSE
+
+	if (M.current.stat == DEAD)
+		//Don't target the dead
+		return FALSE
+
+	//Special handling for targeting other antags
+	if (M.antagonist)
+		var/datum/antagonist/A = M.antagonist
+		//Make sure we don't target our own faction
+		if (owner_faction && (owner_faction == A.faction))
+			return FALSE
+
+	return TRUE
 
 
 /datum/objective/proc/find_target()

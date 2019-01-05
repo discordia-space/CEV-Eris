@@ -11,6 +11,8 @@
 		explanation_text = "Target has not arrived today. Did he know that I would come?"
 
 /datum/objective/debrain/check_completion()
+	if (failed)
+		return FALSE
 	if(!target) //If it's a free objective.
 		return TRUE
 	if(owner && (!owner.current || owner.current.stat == DEAD))//If you're otherwise dead.

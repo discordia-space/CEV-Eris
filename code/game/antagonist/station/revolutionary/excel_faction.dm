@@ -46,3 +46,5 @@
 
 	if(!has)
 		new /datum/objective/faction/rev/excelsior(src)
+
+	.=..()

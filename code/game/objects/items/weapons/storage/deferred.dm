@@ -56,7 +56,7 @@
 	name = "field rations kit"
 	icon_state = "donk_kit"
 	desc = "A box of preserved, ready-to-eat food for soldiers and spacefarers on the go"
-	initial_contents = list(/obj/random/rations = 10)
+	initial_contents = list(/obj/random/rations = 14)
 
 
 /obj/item/weapon/storage/deferred/toolmod
@@ -64,7 +64,7 @@
 	desc = "A sturdy container full of contraptions, bits of material, components and add-ons for modifying tools"
 	icon_state = "syndicate"
 	item_state = "toolbox_syndi"
-	initial_contents = list(/obj/random/tool_upgrade = 9,
+	initial_contents = list(/obj/random/tool_upgrade = 12,
 	/obj/random/tool_upgrade/rare = 3)
 
 
@@ -175,7 +175,7 @@
 	name = "demolitions crate"
 	desc = "a crate of tools to deal with stationary hard targets, and remove obstacles"
 	icon_state = "weaponcrate"
-	initial_contents = list(/obj/item/weapon/plastique = 12,
+	initial_contents = list(/obj/item/weapon/plastique = 14,
 	/obj/item/weapon/hatton = 1,
 	/obj/item/weapon/hatton_magazine = 5,
 	/obj/item/weapon/tool/pickaxe/diamonddrill = 1)

@@ -1,7 +1,7 @@
 /datum/antagonist/mercenary
 	id = ROLE_MERCENARY
 	bantype = ROLE_MERCENARY
-	faction_id = "Serbia"
+	faction_id = FACTION_SERBS
 	role_text = "Serbian Mercenary"
 	welcome_text = WELCOME_SERBS
 	landmark_id = "mercenary-spawn"
@@ -17,7 +17,7 @@
 	appearance_editor = FALSE
 
 
-
+	possible_objectives = list()
 	survive_objective = null
 
 
@@ -25,26 +25,25 @@
 
 
 /datum/antagonist/mercenary/equip()
-	.=..()
-	if (.)
-		var/mob/living/L = owner.current
+	var/mob/living/L = owner.current
 
-		//Put on the fatigues. Armor not included, they equip that manually from the merc base
-		var/decl/hierarchy/outfit/O = outfit_by_type(/decl/hierarchy/outfit/antagonist/mercenary/casual)
-		O.equip(L)
+	//Put on the fatigues. Armor not included, they equip that manually from the merc base
+	var/decl/hierarchy/outfit/O = outfit_by_type(/decl/hierarchy/outfit/antagonist/mercenary/casual)
+	O.equip(L)
 
-		//Set their language, This also adds it to their list
-		L.set_default_language(LANGUAGE_SERBIAN)
+	//Set their language, This also adds it to their list
+	L.set_default_language(LANGUAGE_SERBIAN)
 
-		//Normal mercs can't speak common
-		L.remove_language(LANGUAGE_COMMON)
+	//Normal mercs can't speak common
+	L.remove_language(LANGUAGE_COMMON)
 
-		//And we'll give them a random serbian name to start off with
-		var/datum/language/lang = all_languages[LANGUAGE_SERBIAN]
-		lang.set_random_name(L)
+	//And we'll give them a random serbian name to start off with
+	var/datum/language/lang = all_languages[LANGUAGE_SERBIAN]
+	lang.set_random_name(L)
 
 
-		create_id("Soldier")
+	create_id("Soldier")
+	..()
 
 
 /obj/item/weapon/card/id/merc

@@ -171,6 +171,7 @@
 /datum/shuttle/autodock/multi/antag/mercenary
 	name = "Mercenary"
 	warmup_time = 0
+	cloaked = 0
 	destination_tags = list(
 		"nav_merc_northeast",
 		"nav_merc_southwest",
@@ -183,8 +184,24 @@
 	landmark_transition = "nav_merc_transition"
 	announcer = "CEV Eris Sensor Array"
 	home_waypoint = "nav_merc_start"
-	arrival_message = "Attention, vessel detected entering vessel proximity."
-	departure_message = "Attention, vessel detected leaving vessel proximity."
+	arrival_message = "Attention, unidentified vessel detected on long range sensors. <br>Vessel is approaching on an intercept course. <br>Hailing frequencies open."
+	departure_message = "Attention, unknown vessel has departed"
+
+//This fires, and the mission timer starts ticking, as soon as they leave Eris on course to the mercenary base
+/datum/shuttle/autodock/multi/antag/mercenary/announce_departure()
+	.=..()
+	var/datum/faction/F = get_faction_by_id(FACTION_SERBS)
+	var/datum/objective/timed/merc/MO = (locate(/datum/objective/timed/merc) in F.objectives)
+	if (MO)
+		MO.end_mission()
+
+//This fires, and the mission timer starts ticking, as soon as they leave base
+/datum/shuttle/autodock/multi/antag/mercenary/announce_arrival()
+	.=..()
+	var/datum/faction/F = get_faction_by_id(FACTION_SERBS)
+	var/datum/objective/timed/merc/MO = (locate(/datum/objective/timed/merc) in F.objectives)
+	if (MO)
+		MO.start_mission()
 
 //Docking controller chooses which of our airlocks should open onto the target location.
 //Merc ship has only one airlock, so set that here

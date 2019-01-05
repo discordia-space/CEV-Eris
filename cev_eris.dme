@@ -292,6 +292,7 @@
 #include "code\datums\objective\escape.dm"
 #include "code\datums\objective\faction.dm"
 #include "code\datums\objective\harm.dm"
+#include "code\datums\objective\merc_mission.dm"
 #include "code\datums\objective\nuclear.dm"
 #include "code\datums\objective\objective.dm"
 #include "code\datums\objective\protect.dm"

@@ -3,11 +3,14 @@
 	if(owner && !ishuman(owner.current))
 		return FALSE
 
+	owner.current.regenerate_icons()
 	return TRUE
 
 /datum/antagonist/proc/unequip()
 	if(owner && !ishuman(owner.current))
 		return FALSE
+
+	owner.current.regenerate_icons()
 	return TRUE
 
 /datum/antagonist/proc/clear_equipment()

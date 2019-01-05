@@ -7,7 +7,7 @@
 	When ready, use the console on your shuttle bridge to depart for Eris. Your arrival will be detected on sensors, stealth is not an option. Once you arrive, you have a time limit to complete your mission."
 
 /datum/faction/mercenary
-	id = "serbia"
+	id = FACTION_SERBS
 	name = "Serbians"
 	antag = "soldier"
 	antag_plural = "soldiers"
@@ -29,18 +29,24 @@
 	/datum/objective/protect = 15)
 	var/objective_quantity = 5
 
+	//How long the mercenaries get to do their mission
+
+
 
 /datum/faction/mercenary/create_objectives()
 	objectives.Cut()
 
 	if(!possible_objectives || !possible_objectives.len)
 		return
+
 	for (var/i = 0; i < objective_quantity; i++)
 		var/chosen_obj = pickweight(possible_objectives)
 
 		new chosen_obj(src)
 
-	new /datum/objective/survive/merc(src)
+	new /datum/objective/timed/merc(src)
+
+	..()
 
 
 /datum/faction/mercenary/add_leader(var/datum/antagonist/member, var/announce = TRUE)
@@ -66,3 +72,6 @@ This could potentially return a list of thousands of atoms, but thats fine. Its 
 		contents |= get_area_contents(a)
 
 	return contents
+
+
+

@@ -59,6 +59,8 @@
 	return steal_target
 
 /datum/objective/steal/check_completion()
+	if (failed)
+		return FALSE
 	if(!steal_target || !owner.current)
 		return FALSE
 	if(!isliving(owner.current))

@@ -6,8 +6,10 @@
 	update_explanation()
 
 /datum/objective/secdocs/check_completion()
+	if (failed)
+		return FALSE
 	if(owner && owner.current)
-		var/list/L = owner.current.get_contents()
+		var/list/L = get_owner_inventory()
 		if(documents in L)
 			return TRUE
 	return FALSE
