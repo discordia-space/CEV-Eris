@@ -9,7 +9,7 @@
 		"a jetpack" = /obj/item/weapon/tank/jetpack,
 		"a captain's jumpsuit" = /obj/item/clothing/under/rank/captain,
 		"a functional AI" = /obj/item/device/aicard,
-		"a pair of magboots" = /obj/item/clothing/shoes/magboots,
+		"the Technomancer Exultant's advanced voidsuit" = /obj/item/weapon/rig/ce,
 		"the station blueprints" = /obj/item/blueprints,
 		"a nasa voidsuit" = /obj/item/clothing/suit/space/void,
 		"28 moles of plasma (full tank)" = /obj/item/weapon/tank,
@@ -23,6 +23,7 @@
 		"the hypospray" = /obj/item/weapon/reagent_containers/hypospray,
 		"the captain's pinpointer" = /obj/item/weapon/pinpointer,
 		"an ablative armor vest" = /obj/item/clothing/suit/armor/laserproof,
+		"an ironhammer hardsuit" = /obj/item/weapon/rig/ihs_combat
 	)
 
 	var/global/possible_items_special[] = list(
@@ -58,11 +59,13 @@
 	return steal_target
 
 /datum/objective/steal/check_completion()
+	if (failed)
+		return FALSE
 	if(!steal_target || !owner.current)
 		return FALSE
 	if(!isliving(owner.current))
 		return FALSE
-	var/list/all_items = owner.current.get_contents()
+	var/list/all_items = get_owner_inventory()
 	switch(target_name)
 		if("28 moles of plasma (full tank)", "10 diamonds", "50 gold bars", "25 refined uranium bars")
 			var/target_amount = text2num(target_name)//Non-numbers are ignored.

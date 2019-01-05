@@ -86,7 +86,6 @@
 	var/receive_tag = signal.data["tag"]		//for docking signals, this is the sender id
 	var/command = signal.data["command"]
 	var/recipient = signal.data["recipient"]	//the intended recipient of the docking signal
-
 	if (recipient != id_tag)
 		return	//this signal is not for us
 
@@ -114,9 +113,11 @@
 				dock_state = STATE_DOCKING
 				broadcast_docking_status()
 
+
 				tag_target = receive_tag
 				if (!override_enabled)
 					prepare_for_docking()
+
 				send_docking_command(tag_target, "confirm_dock")	//acknowledge the request
 
 		if ("confirm_undock")
@@ -211,6 +212,7 @@
 
 //tell the docking port to start getting ready for docking - e.g. pressurize
 /datum/computer/file/embedded_program/docking/proc/prepare_for_docking()
+	response_sent = 0
 	return
 
 //are we ready for docking?
@@ -249,7 +251,6 @@
 	received_confirm = 0
 
 /datum/computer/file/embedded_program/docking/proc/force_undock()
-	//world << "[id_tag]: forcing undock"
 	if (tag_target)
 		send_docking_command(tag_target, "dock_error")
 	reset()

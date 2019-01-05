@@ -9,7 +9,6 @@
 
 	owner = target
 	target.antagonist.Add(src)
-
 	if(outer)
 		if(!ispath(mob_path))
 			owner = null
@@ -22,9 +21,13 @@
 
 		place_antagonist()
 
+		if (appearance_editor)
+			spawn(3)
+				var/mob/living/carbon/human/H = owner.current
+				if(istype(H))
+					H.change_appearance(APPEARANCE_ALL, H.loc, H, TRUE, list("Human"), state = GLOB.z_state)
 
 	current_antags.Add(src)
-
 	special_init()
 
 	if(new_faction)
@@ -56,8 +59,17 @@
 		log_debug("ANTAGONIST mob_path in [id] is not path! ([mob_path])")
 		return FALSE
 
+
 	var/mob/M = new mob_path(null)
 	M.client = ghost.client
+
+	//Load your character setup onto the new mob, only if human
+	if (load_character && ishuman(M))
+
+		var/datum/preferences/P = M.client.prefs
+		P.copy_to(M, FALSE)
+
+
 
 	if(!M.mind)
 		log_debug("ANTAGONIST mob, which created from mob_path has no mind. ([M] - \ref[M] : [mob_path])")
@@ -65,7 +77,7 @@
 		qdel(M)
 		return FALSE
 
-	return create_antagonist(M.mind, new_faction, doequip, announce, update)
+	return create_antagonist(M.mind, new_faction, doequip, announce, update = FALSE)
 
 /datum/antagonist/proc/create_faction()
 	if(!faction && faction_id)

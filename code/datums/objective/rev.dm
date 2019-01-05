@@ -15,6 +15,8 @@
 		explanation_text = "Hm-m-m... Viva la revolucion!"
 
 /datum/objective/faction/rev/excelsior/check_completion()
+	if (failed)
+		return FALSE
 	if(faction && target && target.current)
 		var/mob/living/carbon/human/H = target.current
 		if(!istype(H))

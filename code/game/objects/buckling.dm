@@ -62,7 +62,9 @@
 	
 	var/buckleTime = 25
 	if (M == user)
-		user.set_dir(src.dir)
+		step_towards(M, src)
+		if(get_turf(user) == get_turf(src))
+			user.set_dir(src.dir)
 		buckleTime = 8
 	else
 		user.face_atom(src)

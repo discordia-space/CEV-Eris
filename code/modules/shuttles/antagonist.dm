@@ -3,9 +3,9 @@
 	req_access = list(access_syndicate)
 	shuttle_tag = "Skipjack"
 
-/obj/machinery/computer/shuttle_control/multi/syndicate
+/obj/machinery/computer/shuttle_control/multi/mercenary
 	name = "mercenary shuttle control console"
-	req_access = list(access_syndicate)
+	req_access = list(access_mercenary)
 	shuttle_tag = "Mercenary"
 
 /obj/machinery/computer/shuttle_control/multi/rescue

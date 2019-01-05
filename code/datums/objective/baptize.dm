@@ -11,6 +11,9 @@
 		explanation_text = "Target has not arrived today. Is it a coincidence?"
 
 /datum/objective/baptize/update_completion()
+	if (failed)
+		return FALSE
+
 	if(!completed || target && target.current)
 		if(target.current in disciples)
 			completed = TRUE
