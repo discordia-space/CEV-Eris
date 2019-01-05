@@ -18,15 +18,15 @@ var/list/escape_pods_by_name = list()
 
 	//find the arming controller (berth)
 	var/arming_controller_tag = arming_controller
-	arming_controller = locate(arming_controller_tag)
+	arming_controller = locate(dock_target)
 	if(!istype(arming_controller))
-		CRASH("Could not find arming controller for escape pod \"[name]\", tag was '[arming_controller_tag]'.")
+		CRASH("Could not find arming controller for escape pod \"[name]\", tag was '[dock_target]'.")
 
 	//find the pod's own controller
 	//var/datum/computer/file/embedded_program/docking/simple/prog = locate(dock_target)
-	var/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth/controller_master = locate(dock_target)//prog.master
+	var/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod/controller_master = locate(arming_controller_tag)//prog.master
 	if(!istype(controller_master))
-		CRASH("Escape pod \"[name]\" could not find it's controller master tagged [dock_target]!")
+		CRASH("Escape pod \"[name]\" could not find it's controller master tagged [arming_controller_tag]!")
 
 	controller_master.pod = src
 
