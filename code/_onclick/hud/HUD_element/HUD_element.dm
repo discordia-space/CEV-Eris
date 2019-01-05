@@ -58,7 +58,6 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 	var/list/_data //internal storage that can be utilized by _clickProc
 
 	var/list/_iconOverlaysData = list()
-
 	var/list/_iconsBuffer = list()
 
 	/*
@@ -111,7 +110,7 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 /HUD_element/Click(location,control,params)
 	if (_clickProc)
 		if(_holder)
-			call(_holder, _clickProc)()
+			call(_holder, _clickProc)(arglist(_procArguments))
 		else
 			call(_clickProc)(src, usr, location, control, params)
 

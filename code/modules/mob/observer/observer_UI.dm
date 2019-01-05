@@ -1,4 +1,3 @@
-
 /datum/interface/ghost_Eris
 	mobtype = /mob/observer/ghost
 	styleName = "ErisStyle"

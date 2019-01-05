@@ -23,7 +23,7 @@
 	var/iconFile = 'icons/mob/screen/silicon/AI/HUD_actionButtons.dmi'
 	setIconFromDMI(iconFile, "button_thin_rim")
 	setIconOverlay(HUD_OVERLAY_BACKGROUND_1, icon(iconFile,"button_thin_bg"))
-	setIconOverlay(HUD_OVERLAY_BACKGROUND_2, null)
+	//setIconOverlay(HUD_OVERLAY_BACKGROUND_2, null)
 	setIconOverlay(HUD_OVERLAY_BACKGROUND_3, icon(iconFile,"button_thin_lights"))
 
 /HUD_element/button/thick/ai/New()

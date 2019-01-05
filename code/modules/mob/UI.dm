@@ -53,9 +53,6 @@ TODO: LATER
 		
 */
 
-//	TEST PLANES
-//	complete other procs
-
 /datum/interface
 	var/mobtype = "interfaceless"
 	var/styleName = "ErisStyle"
