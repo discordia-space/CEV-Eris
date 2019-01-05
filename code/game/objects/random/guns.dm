@@ -24,6 +24,7 @@
 				/obj/item/weapon/gun/projectile/automatic/idaho = 1,\
 				/obj/item/weapon/gun/projectile/automatic/atreides = 1,\
 				/obj/item/weapon/gun/projectile/deagle = 2,\
+				/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 2,\
 				/obj/item/weapon/gun/projectile/colt = 4,\
 				/obj/item/weapon/gun/projectile/revolver/consul = 4,\
 				/obj/item/weapon/gun/projectile/revolver = 4))

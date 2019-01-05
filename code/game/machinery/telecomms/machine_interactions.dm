@@ -426,6 +426,7 @@
 
 	usr.set_machine(src)
 	src.add_fingerprint(usr)
+	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 
 	updateUsrDialog()
 

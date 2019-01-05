@@ -38,18 +38,15 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	bst.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full/bst(bst), slot_belt)
 	bst.equip_to_slot_or_del(new /obj/item/clothing/gloves/color/white/bst(bst), slot_gloves)
 
-	if(istype(bst.backpack_setup.backpack, /decl/backpack_outfit/nothing))//depends on char's prefs
-		bst.equip_to_slot_or_del(new /obj/item/weapon/storage/box/ids(bst), slot_r_hand)
-	else
-		bst.equip_to_slot_or_del(new /obj/item/weapon/storage/box/ids(bst.back), slot_in_backpack)
-		bst.equip_to_slot_or_del(new /obj/item/device/t_scanner(bst.back), slot_in_backpack)
-		bst.equip_to_slot_or_del(new /obj/item/modular_computer/pda/captain(bst.back), slot_in_backpack)
+	bst.equip_to_slot_or_del(new /obj/item/weapon/storage/box/ids(bst.back), slot_in_backpack)
+	bst.equip_to_slot_or_del(new /obj/item/device/t_scanner(bst.back), slot_in_backpack)
+	bst.equip_to_slot_or_del(new /obj/item/modular_computer/pda/captain(bst.back), slot_in_backpack)
 
-		var/obj/item/weapon/storage/box/pills = new /obj/item/weapon/storage/box(null, TRUE)
-		pills.name = "adminordrazine"
-		for(var/i = 1, i < 12, i++)
-			new /obj/item/weapon/reagent_containers/pill/adminordrazine(pills)
-		bst.equip_to_slot_or_del(pills, slot_in_backpack)
+	var/obj/item/weapon/storage/box/pills = new /obj/item/weapon/storage/box(null, TRUE)
+	pills.name = "adminordrazine"
+	for(var/i = 1, i < 12, i++)
+		new /obj/item/weapon/reagent_containers/pill/adminordrazine(pills)
+	bst.equip_to_slot_or_del(pills, slot_in_backpack)
 
 	//Sort out ID
 	var/obj/item/weapon/card/id/bst/id = new/obj/item/weapon/card/id/bst(bst)

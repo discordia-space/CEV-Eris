@@ -72,10 +72,10 @@
 	data += "Heads: [heads] "
 	if(debug_mode)
 		data += "<a href='?src=\ref[src];edit_heads=1'>\[EDIT\]</a>"
-	data += "<br>Security: [sec] "
+	data += "<br>Ironhammer: [sec] "
 	if(debug_mode)
 		data += "<a href='?src=\ref[src];edit_sec=1'>\[EDIT\]</a>"
-	data += "<br>Engineering: [eng] "
+	data += "<br>Technomancers: [eng] "
 	if(debug_mode)
 		data += "<a href='?src=\ref[src];edit_eng=1'>\[EDIT\]</a>"
 	data += "<br>Medical: [med] "
@@ -84,6 +84,7 @@
 	data += "<br>Science: [sci] "
 	if(debug_mode)
 		data += "<a href='?src=\ref[src];edit_sci=1'>\[EDIT\]</a>"
+	data += "<br>NT Disciples: [disciples.len] "
 	data += "<br><b>Total: [crew]</b> "
 	if(debug_mode)
 		data += "<a href='?src=\ref[src];edit_crew=1'>\[EDIT\]</a>"

@@ -18,9 +18,26 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	ideal_character_age = 70 // Old geezer captains ftw
 	outfit_type = /decl/hierarchy/outfit/job/captain
 
-	stat_modifers = list(
-		STAT_ROB = 10,
-		STAT_TGH = 10,
+	description = "You are a privateeer. <br>\
+The owner of the vast rusting hulk that is the CEV Eris. At least, as long as you keep up repayments.<br>\
+This ship is your life's work, crewed by an alliance of corporations and factions that you've brokered uneasy treaties with.<br>\
+
+You are the supreme leader of this world, and your word is law. But only as long as you can enforce that law.<br>\
+The heads of the factions which make up your command staff, each have their own agendas. Their interests must be served too. If you make them unhappy, the loyalty of their faction goes with them, and you may have a mutiny on your hands.<br>\
+Treat your command officers with respect, and listen to their council. Try not to micromanage their departments or interfere in their affairs, and they should serve you well<br>\
+
+You are a free agent, able to go where you will, and loyal to no particular government or nation. You are however, in quite a lot of debt. So wherever you go, you should be sure a profitable venture awaits."
+
+	loyalties = "Your first loyalty is to Eris, your ship. It is the purpose of your life, and you are nothing without it. If it were to be destroyed, you and your descendants would be ruined for centuries. <br>\
+
+Your second loyalty is to your command officers. The heads of each faction. Listen to their counsel, ensure their interests are served, and keep them happy"
+
+	stat_modifiers = list(
+		STAT_ROB = 15,
+		STAT_TGH = 15,
+		STAT_BIO = 15,
+		STAT_MEC = 15,
+		STAT_COG = 15
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/comm,
@@ -62,11 +79,30 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	also_known_languages = list(LANGUAGE_CYRILLIC = 20, LANGUAGE_SERBIAN = 15)
 	ideal_character_age = 50
 
+	description = "You are the captain's right hand. His second in command. Where he goes, you follow. Where he leads, you drag everyone else along. You make sure his will is done, his orders obeyed, and his laws enforced.<br>\
+If he makes mistakes, discreetly inform him. Help to cover up his indiscretions and smooth relations with the crew, especially other command staff. Keep the captain safe, by endangering yourself in his stead if necessary.<br>\
+<br>\
+Do not embarass him or harm relations with faction leaders.<br>\
+<br>\
+But who are you?<br>\
+Perhaps you are the captain's lifelong friend, or a trusted associate to whom he gave a position of power.<br>\
+Perhaps you're a consummate professional who comes highly recommended.<br>\
+A retired general or naval officer?<br>\
+Perhaps you're the captain's brother, firstborn son, or spouse. Nobody can prevent nepotism if he chooses<br>\
+Perhaps you're a foreign diplomat, your position a ceremonial one to ensure a treaty.<br>\
+
+Whatever your origin, you are fiercely loyal to the captain"
+
+	duties = "Oversee everyone else, especially the other command staff, to ensure the captain's orders are being carried out.<br>\
+Handle job reassignments and promotion requests, if an appropriate faction leader isn't available<br>\
+Act as the captain's surrogate in risky situations where a command presence is required<br>\
+Replace the captain if they become incapacitated, need to take a break, or suffer a premature death<br>\
+Act as the captain's sidekick, bodyguard, and last line of defense in a crisis or mutiny situation"
+
+	loyalties = "Your first and only loyalty is to the captain. Unless you're an antagonist and have a good reason for betrayal, you should remain loyal to the death. You are the only one he can trust"
+
 	outfit_type = /decl/hierarchy/outfit/job/hop
 
-	stat_modifers = list(
-		STAT_TGH = 10,
-	)
 
 	software_on_spawn = list(/datum/computer_file/program/comm,
 							 /datum/computer_file/program/card_mod,
@@ -76,6 +112,14 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 	get_access()
 		return get_all_station_access()
+
+	stat_modifiers = list(
+		STAT_ROB = 10,
+		STAT_TGH = 10,
+		STAT_BIO = 10,
+		STAT_MEC = 10,
+		STAT_COG = 10
+	)
 
 /obj/landmark/join/start/hop
 	name = "First Officer"

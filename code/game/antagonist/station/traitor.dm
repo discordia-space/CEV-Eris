@@ -33,7 +33,7 @@
 	if(!..())
 		return FALSE
 
-	spawn_uplink()
+	spawn_uplink(owner.current)
 	give_codewords()
 
 	return TRUE

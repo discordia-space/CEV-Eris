@@ -1,7 +1,12 @@
+#define ERRORCODE_INVALID	1
+#define ERRORCODE_NOFUNDS	2
+
 /datum/supply_order
 	var/ordernum
 	var/orderedby = null
 	var/comment = null
+
+
 
 /obj/machinery/computer/supplycomp
 	name = "supply control console"
@@ -19,6 +24,7 @@
 	var/contraband = FALSE
 	var/hacked = FALSE
 
+//Normal users aren't privy to guild finances, so the ordering console does not show guild credits
 /obj/machinery/computer/ordercomp
 	name = "supply ordering console"
 	icon = 'icons/obj/computer.dmi'
@@ -46,7 +52,7 @@
 		if (shuttle)
 			dat += {"<BR><B>Supply shuttle</B><HR>
 			Location: [shuttle.has_arrive_time() ? "Moving to station ([shuttle.eta_minutes()] Mins.)":shuttle.at_station() ? "Docked":"Away"]<BR>
-			<HR>Supply points: [SSsupply.points]<BR>
+
 		<BR>\n<A href='?src=\ref[src];order=categories'>Request items</A><BR><BR>
 		<A href='?src=\ref[src];vieworders=1'>View approved orders</A><BR><BR>
 		<A href='?src=\ref[src];viewrequests=1'>View requests</A><BR><BR>
@@ -69,14 +75,14 @@
 			//all_supply_groups
 			//Request what?
 			last_viewed_group = "categories"
-			temp = "<b>Supply points: [SSsupply.points]</b><BR>"
+			//temp = "<b>Guild Credits: $[get_supply_credits()]</b><BR>"
 			temp += "<A href='?src=\ref[src];mainmenu=1'>Main Menu</A><HR><BR><BR>"
 			temp += "<b>Select a category</b><BR><BR>"
 			for(var/supply_group_name in all_supply_groups )
 				temp += "<A href='?src=\ref[src];order=[supply_group_name]'>[supply_group_name]</A><BR>"
 		else
 			last_viewed_group = href_list["order"]
-			temp = "<b>Supply points: [SSsupply.points]</b><BR>"
+			//temp = "<b>Guild Credits: $[get_supply_credits()]</b><BR>"
 			temp += "<A href='?src=\ref[src];order=categories'>Back to all categories</A><HR><BR><BR>"
 			temp += "<b>Request from: [last_viewed_group]</b><BR><BR>"
 			for(var/supply_name in SSsupply.supply_packs)
@@ -133,7 +139,7 @@
 		O.orderedby = idname
 		SSsupply.requestlist += O
 
-		temp = "Thanks for your request. The cargo team will process it as soon as possible.<BR>"
+		temp = "Thanks for your request. The guild team will process it as soon as possible.<BR>"
 		temp += "<BR><A href='?src=\ref[src];order=[last_viewed_group]'>Back</A> <A href='?src=\ref[src];mainmenu=1'>Main Menu</A>"
 
 	else if (href_list["vieworders"])
@@ -144,7 +150,7 @@
 		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 
 	else if (href_list["viewrequests"])
-		temp = "Current requests: <BR><BR>"
+		temp = "Current requests: <BR>Orders cannot be cancelled once approved. Ensure payment is made by the customer first<BR>"
 		for(var/S in SSsupply.requestlist)
 			var/datum/supply_order/SO = S
 			temp += "#[SO.ordernum] - [SO.object.name] requested by [SO.orderedby]<BR>"
@@ -199,7 +205,7 @@
 						dat += "*Shuttle is busy*"
 					dat += "<BR>\n<BR>"
 
-		dat += {"<HR>\nSupply points: [SSsupply.points]<BR>\n<BR>
+		dat += {"<HR>\n<b>Guild Credits: $[get_supply_credits()]</b><BR>\n<BR>
 		<A href='?src=\ref[src];viewmes=1'>View messages</A><BR><BR>
 		\n<A href='?src=\ref[src];order=categories'>Order items</A><BR>\n<BR>
 		\n<A href='?src=\ref[src];viewrequests=1'>View requests</A><BR>\n<BR>
@@ -262,14 +268,14 @@
 			//all_supply_groups
 			//Request what?
 			last_viewed_group = "categories"
-			temp = "<b>Supply points: [SSsupply.points]</b><BR>"
+			temp = "<b>Guild Credits: $[get_supply_credits()]</b><BR>"
 			temp += "<A href='?src=\ref[src];mainmenu=1'>Main Menu</A><HR><BR><BR>"
 			temp += "<b>Select a category</b><BR><BR>"
 			for(var/supply_group_name in all_supply_groups )
 				temp += "<A href='?src=\ref[src];order=[supply_group_name]'>[supply_group_name]</A><BR>"
 		else
 			last_viewed_group = href_list["order"]
-			temp = "<b>Supply points: [SSsupply.points]</b><BR>"
+			temp = "<b>Guild Credits: $[get_supply_credits()]</b><BR>"
 			temp += "<A href='?src=\ref[src];order=categories'>Back to all categories</A><HR><BR><BR>"
 			temp += "<b>Request from: [last_viewed_group]</b><BR><BR>"
 			for(var/supply_name in SSsupply.supply_packs)
@@ -333,24 +339,17 @@
 	else if(href_list["confirmorder"])
 		//Find the correct supply_order datum
 		var/ordernum = text2num(href_list["confirmorder"])
-		var/datum/supply_order/O
-		var/datum/supply_pack/P
-		temp = "Invalid Request"
-		for (var/i in 1 to SSsupply.requestlist.len)
-			var/datum/supply_order/SO = SSsupply.requestlist[i]
-			if(SO.ordernum == ordernum)
-				O = SO
-				P = O.object
-				if(SSsupply.points >= P.cost)
-					SSsupply.requestlist.Cut(i,i+1)
-					SSsupply.points -= P.cost
-					SSsupply.shoppinglist += O
-					temp = "Thanks for your order.<BR>"
-					temp += "<BR><A href='?src=\ref[src];viewrequests=1'>Back</A> <A href='?src=\ref[src];mainmenu=1'>Main Menu</A>"
-				else
-					temp = "Not enough supply points.<BR>"
-					temp += "<BR><A href='?src=\ref[src];viewrequests=1'>Back</A> <A href='?src=\ref[src];mainmenu=1'>Main Menu</A>"
-				break
+		var/error = approve_order(ordernum)
+
+		//An errorcode of 0 means success
+		if (!error)
+			temp = "Thanks for your order.<BR>"
+		else if (error == ERRORCODE_NOFUNDS)
+			temp = "Not enough credits.<BR>"
+		else if (error == ERRORCODE_INVALID)
+			temp = "Invalid Request<br>"
+
+		temp += "<BR><A href='?src=\ref[src];viewrequests=1'>Back</A> <A href='?src=\ref[src];mainmenu=1'>Main Menu</A>"
 
 	else if (href_list["vieworders"])
 		temp = "Current approved orders: <BR><BR>"
@@ -359,16 +358,20 @@
 			temp += "#[SO.ordernum] - [SO.object.name] approved by [SO.orderedby][SO.comment ? " ([SO.comment])":""]<BR>"// <A href='?src=\ref[src];cancelorder=[S]'>(Cancel)</A><BR>"
 		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 
+	/*
+	//Cancelling already authorised orders gets messy, disabled for now
+	//Just don't authorise it til you're sure
 	else if (href_list["cancelorder"])
 		var/datum/supply_order/remove_supply = href_list["cancelorder"]
 		SSsupply.requestlist -= remove_supply
-		SSsupply.points += remove_supply.object.cost
+		get_supply_credits() += remove_supply.object.cost
 		temp += "Canceled: [remove_supply.object.name]<BR><BR><BR>"
 
 		for(var/S in SSsupply.requestlist)
 			var/datum/supply_order/SO = S
 			temp += "[SO.object.name] approved by [SO.orderedby][SO.comment ? " ([SO.comment])":""] <A href='?src=\ref[src];cancelorder=[S]'>(Cancel)</A><BR>"
 		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
+	*/
 
 	else if (href_list["viewrequests"])
 		temp = "Current requests: <BR><BR>"
@@ -402,6 +405,24 @@
 	updateUsrDialog()
 	return
 
+/obj/machinery/computer/supplycomp/proc/approve_order(var/ordernum)
+	var/datum/supply_order/O
+	var/datum/supply_pack/P
+	for (var/i in 1 to SSsupply.requestlist.len)
+		var/datum/supply_order/SO = SSsupply.requestlist[i]
+		if(SO.ordernum == ordernum)
+			O = SO
+			P = O.object
+			if (pay_supply_cost(O.orderedby, P.name, "[name] \ref[src]", P.cost))
+				SSsupply.requestlist.Cut(i,i+1)
+				SSsupply.shoppinglist += O
+				return 0
+
+			else
+				return ERRORCODE_NOFUNDS
+
+			break
+
 /obj/machinery/computer/supplycomp/proc/post_signal(var/command)
 
 	var/datum/radio_frequency/frequency = SSradio.return_frequency(1435)
@@ -414,3 +435,6 @@
 	status_signal.data["command"] = command
 
 	frequency.post_signal(src, status_signal)
+
+#undef ERRORCODE_INVALID
+#undef ERRORCODE_NOFUNDS
