@@ -29,7 +29,12 @@
 	..()
 
 /obj/item/weapon/storage/backpack/attack_hand(mob/user)
-	if (!worn_check())
+	if (!worn_check(no_message = TRUE))
+		if(src.loc != user || user.incapacitated())
+			return
+		if (!user.unEquip(src))
+			return
+		user.put_in_active_hand(src)
 		return
 	..()
 
@@ -47,12 +52,13 @@
 	..()
 
 
-/obj/item/weapon/storage/backpack/proc/worn_check()
+/obj/item/weapon/storage/backpack/proc/worn_check(var/no_message = FALSE)
 	if(!worn_access && is_worn())
 		var/mob/living/L = loc
 		if (istype(L))
-			to_chat(L, "<span class='warning'>Oh no! Your arms are not long enough to open [src] while it is on your back!</span>")
-		if (use_sound)
+			if(!no_message)
+				to_chat(L, "<span class='warning'>Oh no! Your arms are not long enough to open [src] while it is on your back!</span>")
+		if (!no_message && use_sound)
 			playsound(loc, use_sound, 50, 1, -5)
 		return FALSE
 
