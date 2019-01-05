@@ -28,9 +28,12 @@
 	var/outfit_type                       // The outfit the employee will be dressed in, if any
 
 	var/loadout_allowed = TRUE			  // Does this job allows loadout ?
+	var/description = ""
+	var/duties = ""
+	var/loyalties = ""
 
 	//Character stats modifers
-	var/list/stat_modifers = list()
+	var/list/stat_modifiers = list()
 
 /datum/job/proc/equip(var/mob/living/carbon/human/H, var/alt_title)
 	var/decl/hierarchy/outfit/outfit = get_outfit()
@@ -47,8 +50,8 @@
 /datum/job/proc/add_stats(var/mob/living/carbon/human/target)
 	if(!ishuman(target))
 		return FALSE
-	for(var/name in src.stat_modifers)
-		target.stats.changeStat(name, stat_modifers[name])
+	for(var/name in src.stat_modifiers)
+		target.stats.changeStat(name, stat_modifiers[name])
 
 	return TRUE
 
@@ -84,7 +87,7 @@
 		var/remembered_info = ""
 		remembered_info += "<b>Your account number is:</b> #[M.account_number]<br>"
 		remembered_info += "<b>Your account pin is:</b> [M.remote_access_pin]<br>"
-		remembered_info += "<b>Your account funds are:</b> $[M.money]<br>"
+		remembered_info += "<b>Your account funds are:</b> [CREDS][M.money]<br>"
 
 		if(M.transaction_log.len)
 			var/datum/transaction/T = M.transaction_log[1]
@@ -153,7 +156,27 @@
 	return SSjob.job_mannequins[title]
 
 /datum/job/proc/get_description_blurb()
-	return ""
+	var/job_desc = ""
+	//Here's the actual content of the description
+	if (description)
+		job_desc += "<h1>Overview:</h1>"
+		job_desc += "<hr>"
+		job_desc += description
+		job_desc += "<br>"
+
+	if (duties)
+		job_desc += "<h1>Duties:</h1>"
+		job_desc += "<hr>"
+		job_desc += duties
+		job_desc += "<br>"
+
+	if (loyalties)
+		job_desc += "<h1>Loyalties:</h1>"
+		job_desc += "<hr>"
+		job_desc += loyalties
+		job_desc += "<br>"
+
+	return job_desc
 
 /datum/job/proc/dress_mannequin(var/mob/living/carbon/human/dummy/mannequin/mannequin)
 	mannequin.delete_inventory(TRUE)

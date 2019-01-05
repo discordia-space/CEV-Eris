@@ -806,3 +806,18 @@ ADMIN_VERB_ADD(/client/proc/view_runtimes, R_DEBUG, FALSE)
 	set name = "View Runtimes"
 	set desc = "Open the Runtime Viewer"
 	error_cache.showTo(usr)
+
+
+ADMIN_VERB_ADD(/client/proc/spawn_disciple, R_DEBUG, FALSE)
+/client/proc/spawn_disciple()
+	set category = "Debug"
+	set name = "Spawn Disciple"
+	set desc = "Spawns a human with a cruciform, for ritual testing"
+	if (!mob)
+		return
+
+	var/mob/living/carbon/human/H = new (get_turf(mob))
+	var/obj/item/weapon/implant/core_implant/cruciform/C = new /obj/item/weapon/implant/core_implant/cruciform(H)
+
+	C.install(H)
+	C.activate()

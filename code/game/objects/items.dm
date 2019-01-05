@@ -72,7 +72,7 @@
 	if(ismob(loc))
 		var/mob/m = loc
 		m.u_equip(src)
-		src.loc = null
+		loc = null
 	return ..()
 
 /obj/item/get_fall_damage()
@@ -97,14 +97,14 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(!istype(src.loc, /turf) || usr.stat || usr.restrained() )
+	if(!istype(loc, /turf) || usr.stat || usr.restrained() )
 		return
 
-	var/turf/T = src.loc
+	var/turf/T = loc
 
-	src.loc = null
+	loc = null
 
-	src.loc = T
+	loc = T
 
 /obj/item/examine(mob/user, var/distance = -1)
 	var/message
@@ -112,7 +112,7 @@
 		message += "\n<blue>This item posses [tool_qualities[Q]] tier of [Q] quality.<blue>"
 
 	var/size
-	switch(src.w_class)
+	switch(w_class)
 		if(1.0)
 			size = "tiny"
 		if(2.0)
@@ -127,18 +127,23 @@
 	return ..(user, distance, "", message)
 
 /obj/item/attack_hand(mob/user as mob)
-	var/atom/old_loc = src.loc
+	if(pre_pickup(user))
+		pickup(user)
+		return TRUE
+	return FALSE
 
-	src.pickup(user)
-
-	src.throwing = 0
-
-	if(user.put_in_active_hand(src) && old_loc )
-		if ((user != old_loc) && (user != old_loc.get_holding_mob()))
-			do_pickup_animation(user,old_loc)
+//	Places item in active hand and invokes pickup animation
+//	NOTE: This proc was created and replaced previous pickup() proc which is now called pre_pickup() as it makes more sense
+//	keep that in mind when porting items form other builds
+/obj/item/proc/pickup(mob/target)
+	throwing = 0
+	var/atom/old_loc = loc
+	if(target.put_in_active_hand(src) && old_loc )
+		if ((target != old_loc) && (target != old_loc.get_holding_mob()))
+			do_pickup_animation(target,old_loc)
 
 /obj/item/attack_ai(mob/user as mob)
-	if (istype(src.loc, /obj/item/weapon/robot_module))
+	if (istype(loc, /obj/item/weapon/robot_module))
 		//If the item is part of a cyborg module, equip it
 		if(!isrobot(user))
 			return
@@ -160,9 +165,11 @@
 		zoom(user)
 
 
-// called just as an item is picked up (loc is not yet changed)
-/obj/item/proc/pickup(mob/user)
-	return
+//	Called before an item is picked up (loc is not yet changed)
+//	NOTE: This proc name was changed form pickup() as it makes more sense
+//	keep that in mind when porting items form other builds
+/obj/item/proc/pre_pickup(mob/user)
+	return TRUE
 
 // called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
 /obj/item/proc/on_exit_storage(obj/item/weapon/storage/S as obj)
@@ -190,7 +197,7 @@
 	if( usr.stat || usr.restrained() )//Is not asleep/dead and is not restrained
 		usr << SPAN_WARNING("You can't pick things up!")
 		return
-	if(src.anchored) //Object isn't anchored
+	if(anchored) //Object isn't anchored
 		usr << SPAN_WARNING("You can't pick that up!")
 		return
 	if(!usr.hand && usr.r_hand) //Right hand is not full
@@ -199,7 +206,7 @@
 	if(usr.hand && usr.l_hand) //Left hand is not full
 		usr << SPAN_WARNING("Your left hand is full.")
 		return
-	if(!istype(src.loc, /turf)) //Object is on a turf
+	if(!istype(loc, /turf)) //Object is on a turf
 		usr << SPAN_WARNING("You can't pick that up!")
 		return
 	//All checks are done, time to pick it up!
@@ -240,14 +247,14 @@
 		user << SPAN_WARNING("You cannot locate any eyes on [M]!")
 		return
 
-	user.attack_log += "\[[time_stamp()]\]<font color='red'> Attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>"
-	M.attack_log += "\[[time_stamp()]\]<font color='orange'> Attacked by [user.name] ([user.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>"
-	msg_admin_attack("[user.name] ([user.ckey]) attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)") //BS12 EDIT ALG
+	user.attack_log += "\[[time_stamp()]\]<font color='red'> Attacked [M.name] ([M.ckey]) with [name] (INTENT: [uppertext(user.a_intent)])</font>"
+	M.attack_log += "\[[time_stamp()]\]<font color='orange'> Attacked by [user.name] ([user.ckey]) with [name] (INTENT: [uppertext(user.a_intent)])</font>"
+	msg_admin_attack("[user.name] ([user.ckey]) attacked [M.name] ([M.ckey]) with [name] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)") //BS12 EDIT ALG
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	user.do_attack_animation(M)
 
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	//if((CLUMSY in user.mutations) && prob(50))
 	//	M = user
 		/*
@@ -376,7 +383,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(zoomdevicename)
 		devicename = zoomdevicename
 	else
-		devicename = src.name
+		devicename = name
 
 	var/cannotzoom
 
@@ -413,7 +420,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 				usr.client.pixel_x = -viewoffset
 				usr.client.pixel_y = 0
 
-		usr.visible_message("[usr] peers through the [zoomdevicename ? "[zoomdevicename] of the [src.name]" : "[src.name]"].")
+		usr.visible_message("[usr] peers through the [zoomdevicename ? "[zoomdevicename] of the [name]" : "[name]"].")
 
 	else
 		usr.client.view = world.view
@@ -425,7 +432,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		usr.client.pixel_y = 0
 
 		if(!cannotzoom)
-			usr.visible_message("[zoomdevicename ? "[usr] looks up from the [src.name]" : "[usr] lowers the [src.name]"].")
+			usr.visible_message("[zoomdevicename ? "[usr] looks up from the [name]" : "[usr] lowers the [name]"].")
 
 	return
 

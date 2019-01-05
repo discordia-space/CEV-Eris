@@ -2,7 +2,7 @@
 /datum/job/merchant
 	title = "Guild Merchant"
 	flag = MERCHANT
-	department = "Cargo"
+	department = "Guild"
 	head_position = 1
 	department_flag = GUILD | COMMAND
 	faction = "CEV Eris"
@@ -10,7 +10,9 @@
 	spawn_positions = 1
 	supervisors = "your greed"
 	selection_color = "#b3a68c"
-	economic_modifier = 20
+	economic_modifier = 0
+	//The merchant gets no personal salary, but he's free to pay himself as much as he likes from the guild account
+
 	also_known_languages = list(LANGUAGE_CYRILLIC = 100, LANGUAGE_SERBIAN = 100)
 	access = list(
 		access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_merchant, access_mining,
@@ -37,7 +39,7 @@
 /datum/job/cargo_tech
 	title = "Guild Technician"
 	flag = GUILDTECH
-	department = "Cargo"
+	department = "Guild"
 	department_flag = GUILD
 	faction = "CEV Eris"
 	total_positions = 3
@@ -53,7 +55,7 @@
 		access_mining_station
 	)
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_ROB = 10,
 		STAT_TGH = 10,
 	)
@@ -73,7 +75,7 @@
 /datum/job/mining
 	title = "Guild Miner"
 	flag = MINER
-	department = "Cargo"
+	department = "Guild"
 	department_flag = GUILD
 	faction = "CEV Eris"
 	total_positions = 4
@@ -91,7 +93,7 @@
 	)
 
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_ROB = 20,
 		STAT_TGH = 15,
 		STAT_MEC = 15

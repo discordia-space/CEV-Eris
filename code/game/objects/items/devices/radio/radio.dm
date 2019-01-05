@@ -201,8 +201,9 @@ var/global/list/default_medbay_channels = list(
 			new_frequency = sanitize_frequency(new_frequency)
 		set_frequency(new_frequency)
 		if(hidden_uplink)
-			if(hidden_uplink.check_trigger(usr, frequency, traitor_frequency))
-				usr << browse(null, "window=radio")
+			if(hidden_uplink.check_trigger(usr, frequency))
+				hidden_uplink.trigger(usr)
+				return
 		. = 1
 	else if (href_list["talk"])
 		ToggleBroadcast()
@@ -233,7 +234,6 @@ var/global/list/default_medbay_channels = list(
 	var/datum/radio_frequency/connection = null
 	if(channel && channels && channels.len > 0)
 		if (channel == "department")
-			//world << "DEBUG: channel=\"[channel]\" switching to \"[channels[1]]\""
 			channel = channels[1]
 		connection = secure_radio_connections[channel]
 	else

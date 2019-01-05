@@ -61,7 +61,8 @@
 				/obj/random/voidsuit/damaged = 1.5,
 				/obj/random/voidsuit = 0.5,
 				/obj/random/pouch = 5,
-				/obj/random/tool_upgrade = 25))
+				/obj/random/tool_upgrade = 25,
+				/obj/random/rig_module = 5))
 
 
 //Randomly spawned tools will often be in imperfect condition
