@@ -22,6 +22,7 @@
 	bar.alpha = 0
 	bar.plane = HUD_PLANE
 	bar.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	bar.mouse_opacity = 0
 	user = User
 	if(user)
 		client = user.client
