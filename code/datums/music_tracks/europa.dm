@@ -39,17 +39,3 @@
 	song = 'sound/music/europa/WildEncounters.ogg'
 	license = /decl/license/cc_by_sa_4_0
 	url = "https://ghyti.bandcamp.com/"
-
-/music_track/torn
-	artist = "Macamoto"
-	title = "Torn"
-	song = 'sound/music/europa/Macamoto_-_05_-_Torn.ogg'
-	license = /decl/license/cc_by_nc_sa_3_0
-	url = "https://macamoto.bandcamp.com/track/torn"
-
-/music_track/nebula
-	artist = "Pulse Emitter"
-	title = "Nebula"
-	song = 'sound/music/europa/Pulse_Emitter_-_04_-_Nebula.ogg'
-	license = /decl/license/cc_by_nc_sa_3_0
-	url = "https://pulseemitter.bandcamp.com/track/nebula"
