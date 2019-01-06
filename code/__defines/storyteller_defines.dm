@@ -7,9 +7,9 @@
 
 
 //The threshold of points that we need before attempting to purchase things
-#define POOL_THRESHOLD_MUNDANE	20
-#define POOL_THRESHOLD_MODERATE	40
-#define POOL_THRESHOLD_MAJOR	80
+#define POOL_THRESHOLD_MUNDANE	25
+#define POOL_THRESHOLD_MODERATE	50
+#define POOL_THRESHOLD_MAJOR	90
 #define POOL_THRESHOLD_ROLESET	120
 
 
