@@ -9,7 +9,7 @@
 'every light is blinking at once'
 An original jam, (c)2018 Earthcrusher, aka Alexander Divine.
 
-Licensed for use under Creative Commons License: CC BY-SA 3.0
+Licensed for use under Creative Commons License: CC BY-NC-SA 3.0
 
 Use it however you like. Stay beautiful.
 Link to online version at: https://soundcloud.com/alexanderdivine/every-light-is-blinking-at-once
