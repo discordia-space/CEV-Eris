@@ -205,7 +205,7 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 	Picks a destination for migrating mobs.
 	High chance to reroll burrows that are outside of maintenance areas, to minimise incursions into crew space
 */
-/datum/controller/subsystem/migration/proc/choose_burrow_target(var/obj/structure/burrow/source, var/reroll_type = TRUE, var/reroll_prob = 99)
+/datum/controller/subsystem/migration/proc/choose_burrow_target(var/obj/structure/burrow/source, var/reroll_type = TRUE, var/reroll_prob = 99.5)
 	var/obj/structure/burrow/candidate
 
 	//Lets copy the list into a candidates buffer
