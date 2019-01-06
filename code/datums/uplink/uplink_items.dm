@@ -75,7 +75,7 @@ var/datum/uplink/uplink = new()
 
 	// With no owner, there's no need to check antag status.
 	if(!U.uplink_owner)
-		return 0
+		return 1
 
 	for(var/antag_role in antag_roles)
 		if(player_is_antag_id(U.uplink_owner, antag_role))
