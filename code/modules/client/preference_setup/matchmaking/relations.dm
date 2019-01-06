@@ -54,3 +54,27 @@
 			pref.relations_info[R] = info
 		return TOPIC_REFRESH
 	return ..()
+
+/datum/category_item/player_setup_item/relations/update_setup(var/savefile/preferences, var/savefile/character)
+	if(preferences["version"] < 18)
+		// Remove old relation types
+		for(var/i in pref.relations)
+			var/f = FALSE
+			for(var/T in subtypesof(/datum/relation))
+				var/datum/relation/R = T
+				if(initial(R.name) == i)
+					f = TRUE
+					break
+			if(!f)
+				pref.relations -= i
+				. = TRUE
+		for(var/i in pref.relations_info)
+			var/f = FALSE
+			for(var/T in subtypesof(/datum/relation))
+				var/datum/relation/R = T
+				if(initial(R.name) == i)
+					f = TRUE
+					break
+			if(!f)
+				pref.relations_info -= i
+				. = TRUE
