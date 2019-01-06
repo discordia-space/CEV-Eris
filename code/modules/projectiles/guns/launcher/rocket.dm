@@ -1,14 +1,14 @@
 /obj/item/weapon/gun/launcher/rocket
-	name = "rocket launcher"
-	desc = "MAGGOT."
+	name = "RPG-7"
+	desc = "An ancient rocket-propelled grenade launcher, this model is centuries old, but well preserved."
 	icon_state = "rocket"
 	item_state = "rocket"
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_HUGE
 	throw_speed = 2
 	throw_range = 10
 	force = 5.0
 	flags =  CONDUCT
-	slot_flags = 0
+	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 5)
 	fire_sound = 'sound/effects/bang.ogg'
 

@@ -183,6 +183,7 @@ var/list/flooring_types
 	space_smooth = FALSE
 	removal_time = 150
 	health = 100
+	has_base_range = 18
 	floor_smooth = SMOOTH_BLACKLIST
 	flooring_blacklist = list(/decl/flooring/reinforced/plating/under,/decl/flooring/reinforced/plating/hull) //Smooth with everything except the contents of this list
 	smooth_movable_atom = SMOOTH_GREYLIST
@@ -212,16 +213,18 @@ var/list/flooring_types
 	descriptor = "support beams"
 	icon_base = "under"
 	build_type = MATERIAL_STEEL //Same type as the normal plating, we'll use can_build_floor to control it
-	flags = TURF_REMOVE_WRENCH | TURF_CAN_BURN | TURF_CAN_BREAK
+	flags = TURF_REMOVE_WRENCH | TURF_CAN_BURN | TURF_CAN_BREAK | TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS
 	can_paint = 1
 	plating_type = /decl/flooring/reinforced/plating/hull
 	is_plating = TRUE
 	removal_time = 250
 	health = 200
+	has_base_range = 0
 	resistance = RESISTANCE_ARMOURED
 	footstep_sound = "catwalk"
-	smooth_nothing = TRUE
-
+	space_smooth = SMOOTH_ALL
+	floor_smooth = SMOOTH_NONE
+	smooth_movable_atom = SMOOTH_NONE
 
 //Underplating can only be upgraded to normal plating
 /decl/flooring/reinforced/plating/under/can_build_floor(var/decl/flooring/newfloor)
@@ -311,6 +314,10 @@ var/list/flooring_types
 	else
 		return null //This should never happen, hull plating should only be on the exterior
 
+
+
+
+//==========CARPET==============
 /decl/flooring/carpet
 	name = "carpet"
 	desc = "Imported and comfy."
@@ -358,99 +365,289 @@ var/list/flooring_types
 	icon_base = "oracarpet"
 	build_type = /obj/item/stack/tile/carpet/oracarpet
 
+
+
+
+//==========TILING==============
 /decl/flooring/tiling
 	name = "floor"
 	desc = "Scuffed from the passage of countless greyshirts."
 	icon = 'icons/turf/flooring/tiles.dmi'
-	icon_base = "steel"
+	icon_base = "tiles"
 	has_damage_range = 2 //RECHECK THIS. MAYBE MISTAKE
 	damage_temperature = T0C+1400
-	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_CAN_BURN | TURF_HIDES_THINGS
+	flags = TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_CAN_BURN | TURF_HIDES_THINGS
 	build_type = /obj/item/stack/tile/floor
 	can_paint = 1
 	resistance = RESISTANCE_FRAGILE
 
-/decl/flooring/tiling/tech
-//	name = "techfloor"
-	desc = "Scuffed from the passage of countless greyshirts."
-	icon = 'icons/turf/flooring/techfloor.dmi'
-	icon_base = "techfloor_gray"
-	build_type = /obj/item/stack/tile/floor/techgrey
-	can_paint = null
+	floor_smooth = SMOOTH_NONE
+	wall_smooth = SMOOTH_NONE
+	space_smooth = SMOOTH_NONE
 
-/decl/flooring/tiling/tech/grid
-	icon_base = "techfloor_grid"
-	build_type = /obj/item/stack/tile/floor/techgrid
 
-/decl/flooring/tiling/new_tile
-	name = "floor"
-	icon_base = "tile_full"
-	flags = TURF_CAN_BREAK | TURF_CAN_BURN | TURF_IS_FRAGILE | TURF_HIDES_THINGS
-	build_type = null
-	footstep_sound = "tile" //This Sound is for ceramic tiles, but not for metal ones
 
-/decl/flooring/tiling/new_tile/cargo_one
-//	name = "cargo one"
-	icon_base = "cargo_one_full"
-	footstep_sound = "floor"
-
-/decl/flooring/tiling/new_tile/kafel
-//	name = "kafel"
-	icon_base = "kafel_full"
-	footstep_sound = "tile"
-
-/decl/flooring/tiling/new_tile/techmaint
-//	name = "techmaint"
-	icon_base = "techmaint"
-	footstep_sound = "floor"
-
-/decl/flooring/tiling/new_tile/monofloor
-//	name = "monofloor"
-	icon_base = "monofloor"
-	footstep_sound = "floor"
-
-/decl/flooring/tiling/new_tile/monotile
-//	name = "monotile"
-	icon_base = "monotile"
-	footstep_sound = "floor"
-
-/decl/flooring/tiling/new_tile/steel_grid
-//	name = "steelgrid"
-	icon_base = "steel_grid"
-	footstep_sound = "floor"
-
-/decl/flooring/tiling/new_tile/steel_ridged
-//	name = "steelridged"
-	icon_base = "steel_ridged"
-	footstep_sound = "floor"
 
 /decl/flooring/tiling/steel
 	name = "floor"
-	icon_base = "steel"
+	icon_base = "tiles"
+	icon = 'icons/turf/flooring/tiles_steel.dmi'
 	build_type = /obj/item/stack/tile/floor/steel
 	footstep_sound = "floor"
 
+/decl/flooring/tiling/steel/panels
+	icon_base = "panels"
+	build_type = /obj/item/stack/tile/floor/steel/panels
+
+/decl/flooring/tiling/steel/techfloor
+	icon_base = "techfloor"
+	build_type = /obj/item/stack/tile/floor/steel/techfloor
+
+/decl/flooring/tiling/steel/techfloor_grid
+	icon_base = "techfloor_grid"
+	build_type = /obj/item/stack/tile/floor/steel/techfloor_grid
+
+/decl/flooring/tiling/steel/brown_perforated
+	icon_base = "brown_perforated"
+	build_type = /obj/item/stack/tile/floor/steel/brown_perforated
+
+/decl/flooring/tiling/steel/gray_perforated
+	icon_base = "gray_perforated"
+	build_type = /obj/item/stack/tile/floor/steel/gray_perforated
+
+/decl/flooring/tiling/steel/cargo
+	icon_base = "cargo"
+	build_type = /obj/item/stack/tile/floor/steel/cargo
+
+/decl/flooring/tiling/steel/brown_platform
+	icon_base = "brown_platform"
+	build_type = /obj/item/stack/tile/floor/steel/brown_platform
+
+/decl/flooring/tiling/steel/gray_platform
+	icon_base = "gray_platform"
+	build_type = /obj/item/stack/tile/floor/steel/gray_platform
+
+/decl/flooring/tiling/steel/danger
+	icon_base = "danger"
+	build_type = /obj/item/stack/tile/floor/steel/danger
+
+/decl/flooring/tiling/steel/golden
+	icon_base = "golden"
+	build_type = /obj/item/stack/tile/floor/steel/golden
+
+/decl/flooring/tiling/steel/bluecorner
+	icon_base = "bluecorner"
+	build_type = /obj/item/stack/tile/floor/steel/bluecorner
+
+/decl/flooring/tiling/steel/orangecorner
+	icon_base = "orangecorner"
+	build_type = /obj/item/stack/tile/floor/steel/orangecorner
+
+/decl/flooring/tiling/steel/cyancorner
+	icon_base = "cyancorner"
+	build_type = /obj/item/stack/tile/floor/steel/cyancorner
+
+/decl/flooring/tiling/steel/violetcorener
+	icon_base = "violetcorener"
+	build_type = /obj/item/stack/tile/floor/steel/violetcorener
+
+/decl/flooring/tiling/steel/monofloor
+	icon_base = "monofloor"
+	build_type = /obj/item/stack/tile/floor/steel/monofloor
+	has_base_range = 15
+
+
+
+
+
 /decl/flooring/tiling/white
 	name = "floor"
-	desc = "How sterile."
-	icon_base = "white"
+	icon_base = "tiles"
+	icon = 'icons/turf/flooring/tiles_white.dmi'
 	build_type = /obj/item/stack/tile/floor/white
-	footstep_sound = "tile"
+	footstep_sound = "tile" //those are made from plastic, so they sound different
+
+/decl/flooring/tiling/white/panels
+	icon_base = "panels"
+	build_type = /obj/item/stack/tile/floor/white/panels
+
+/decl/flooring/tiling/white/techfloor
+	icon_base = "techfloor"
+	build_type = /obj/item/stack/tile/floor/white/techfloor
+
+/decl/flooring/tiling/white/techfloor_grid
+	icon_base = "techfloor_grid"
+	build_type = /obj/item/stack/tile/floor/white/techfloor_grid
+
+/decl/flooring/tiling/white/brown_perforated
+	icon_base = "brown_perforated"
+	build_type = /obj/item/stack/tile/floor/white/brown_perforated
+
+/decl/flooring/tiling/white/gray_perforated
+	icon_base = "gray_perforated"
+	build_type = /obj/item/stack/tile/floor/white/gray_perforated
+
+/decl/flooring/tiling/white/cargo
+	icon_base = "cargo"
+	build_type = /obj/item/stack/tile/floor/white/cargo
+
+/decl/flooring/tiling/white/brown_platform
+	icon_base = "brown_platform"
+	build_type = /obj/item/stack/tile/floor/white/brown_platform
+
+/decl/flooring/tiling/white/gray_platform
+	icon_base = "gray_platform"
+	build_type = /obj/item/stack/tile/floor/white/gray_platform
+
+/decl/flooring/tiling/white/danger
+	icon_base = "danger"
+	build_type = /obj/item/stack/tile/floor/white/danger
+
+/decl/flooring/tiling/white/golden
+	icon_base = "golden"
+	build_type = /obj/item/stack/tile/floor/white/golden
+
+/decl/flooring/tiling/white/bluecorner
+	icon_base = "bluecorner"
+	build_type = /obj/item/stack/tile/floor/white/bluecorner
+
+/decl/flooring/tiling/white/orangecorner
+	icon_base = "orangecorner"
+	build_type = /obj/item/stack/tile/floor/white/orangecorner
+
+/decl/flooring/tiling/white/cyancorner
+	icon_base = "cyancorner"
+	build_type = /obj/item/stack/tile/floor/white/cyancorner
+
+/decl/flooring/tiling/white/violetcorener
+	icon_base = "violetcorener"
+	build_type = /obj/item/stack/tile/floor/white/violetcorener
+
+/decl/flooring/tiling/white/monofloor
+	icon_base = "monofloor"
+	build_type = /obj/item/stack/tile/floor/white/monofloor
+	has_base_range = 15
+
+
+
+
 
 /decl/flooring/tiling/dark
 	name = "floor"
-	desc = "How ominous."
-	icon_base = "dark"
+	icon_base = "tiles"
+	icon = 'icons/turf/flooring/tiles_dark.dmi'
 	build_type = /obj/item/stack/tile/floor/dark
-	footstep_sound = "tile"
+	footstep_sound = "floor"
 
-/decl/flooring/tiling/freezer
+/decl/flooring/tiling/dark/panels
+	icon_base = "panels"
+	build_type = /obj/item/stack/tile/floor/dark/panels
+
+/decl/flooring/tiling/dark/techfloor
+	icon_base = "techfloor"
+	build_type = /obj/item/stack/tile/floor/dark/techfloor
+
+/decl/flooring/tiling/dark/techfloor_grid
+	icon_base = "techfloor_grid"
+	build_type = /obj/item/stack/tile/floor/dark/techfloor_grid
+
+/decl/flooring/tiling/dark/brown_perforated
+	icon_base = "brown_perforated"
+	build_type = /obj/item/stack/tile/floor/dark/brown_perforated
+
+/decl/flooring/tiling/dark/gray_perforated
+	icon_base = "gray_perforated"
+	build_type = /obj/item/stack/tile/floor/dark/gray_perforated
+
+/decl/flooring/tiling/dark/cargo
+	icon_base = "cargo"
+	build_type = /obj/item/stack/tile/floor/dark/cargo
+
+/decl/flooring/tiling/dark/brown_platform
+	icon_base = "brown_platform"
+	build_type = /obj/item/stack/tile/floor/dark/brown_platform
+
+/decl/flooring/tiling/dark/gray_platform
+	icon_base = "gray_platform"
+	build_type = /obj/item/stack/tile/floor/dark/gray_platform
+
+/decl/flooring/tiling/dark/danger
+	icon_base = "danger"
+	build_type = /obj/item/stack/tile/floor/dark/danger
+
+/decl/flooring/tiling/dark/golden
+	icon_base = "golden"
+	build_type = /obj/item/stack/tile/floor/dark/golden
+
+/decl/flooring/tiling/dark/bluecorner
+	icon_base = "bluecorner"
+	build_type = /obj/item/stack/tile/floor/dark/bluecorner
+
+/decl/flooring/tiling/dark/orangecorner
+	icon_base = "orangecorner"
+	build_type = /obj/item/stack/tile/floor/dark/orangecorner
+
+/decl/flooring/tiling/dark/cyancorner
+	icon_base = "cyancorner"
+	build_type = /obj/item/stack/tile/floor/dark/cyancorner
+
+/decl/flooring/tiling/dark/violetcorener
+	icon_base = "violetcorener"
+	build_type = /obj/item/stack/tile/floor/dark/violetcorener
+
+/decl/flooring/tiling/dark/monofloor
+	icon_base = "monofloor"
+	build_type = /obj/item/stack/tile/floor/dark/monofloor
+	has_base_range = 15
+
+
+
+/decl/flooring/tiling/cafe
 	name = "floor"
-	desc = "Don't slip."
-	icon_base = "freezer"
-	build_type = /obj/item/stack/tile/floor/freezer
-	footstep_sound = "tile"
+	icon_base = "cafe"
+	icon = 'icons/turf/flooring/tiles.dmi'
+	build_type = /obj/item/stack/tile/floor/cafe
+	footstep_sound = "floor"
 
+/decl/flooring/tiling/techmaint
+	name = "floor"
+	icon_base = "techmaint"
+	icon = 'icons/turf/flooring/tiles_maint.dmi'
+	build_type = /obj/item/stack/tile/floor/techmaint
+	footstep_sound = "floor"
+
+	floor_smooth = SMOOTH_WHITELIST
+	flooring_whitelist = list(/decl/flooring/tiling/techmaint_perforated, /decl/flooring/tiling/techmaint_panels)
+
+/decl/flooring/tiling/techmaint_perforated
+	name = "floor"
+	icon_base = "techmaint_perforated"
+	icon = 'icons/turf/flooring/tiles_maint.dmi'
+	build_type = /obj/item/stack/tile/floor/techmaint_perforated
+	footstep_sound = "floor"
+
+	floor_smooth = SMOOTH_WHITELIST
+	flooring_whitelist = list(/decl/flooring/tiling/techmaint, /decl/flooring/tiling/techmaint_panels)
+
+/decl/flooring/tiling/techmaint_panels
+	name = "floor"
+	icon_base = "techmaint_panels"
+	icon = 'icons/turf/flooring/tiles_maint.dmi'
+	build_type = /obj/item/stack/tile/floor/techmaint_panels
+	footstep_sound = "floor"
+
+	floor_smooth = SMOOTH_WHITELIST
+	flooring_whitelist = list(/decl/flooring/tiling/techmaint_perforated, /decl/flooring/tiling/techmaint)
+
+/decl/flooring/tiling/techmaint_cargo
+	name = "floor"
+	icon_base = "techmaint_cargo"
+	icon = 'icons/turf/flooring/tiles_maint.dmi'
+	build_type = /obj/item/stack/tile/floor/techmaint_cargo
+	footstep_sound = "floor"
+
+
+//==========MISC==============
 /decl/flooring/wood
 	name = "wooden floor"
 	desc = "Polished redwood planks."
@@ -464,12 +661,13 @@ var/list/flooring_types
 	smooth_nothing = TRUE
 	flags = TURF_CAN_BREAK | TURF_CAN_BURN | TURF_IS_FRAGILE | TURF_REMOVE_SCREWDRIVER | TURF_HIDES_THINGS
 
+
 /decl/flooring/reinforced
 	name = "reinforced floor"
 	desc = "Heavily reinforced with steel rods."
 	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_base = "reinforced"
-	flags = TURF_REMOVE_WRENCH | TURF_ACID_IMMUNE | TURF_CAN_BURN | TURF_CAN_BREAK | TURF_HIDES_THINGS
+	flags = TURF_REMOVE_WRENCH | TURF_ACID_IMMUNE | TURF_CAN_BURN | TURF_CAN_BREAK | TURF_HIDES_THINGS | TURF_HAS_INNER_CORNERS |TURF_HIDES_THINGS
 	build_type = /obj/item/stack/rods
 	build_cost = 2
 	build_time = 30
@@ -485,8 +683,11 @@ var/list/flooring_types
 	icon_base = "bcircuit"
 	build_type = null
 	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK | TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS |TURF_HIDES_THINGS
-	floor_smooth = SMOOTH_NONE
 	can_paint = 1
+
+	floor_smooth = SMOOTH_NONE
+	wall_smooth = SMOOTH_NONE
+	space_smooth = SMOOTH_NONE
 
 /decl/flooring/reinforced/circuit/green
 	name = "processing strata"

@@ -2,6 +2,8 @@
 	explanation_text = "Do not allow anyone to escape the station.  Only allow the shuttle to be called when everyone is dead and your story is the only one left."
 
 /datum/objective/silence/check_completion()
+	if (failed)
+		return FALSE
 	if(!evacuation_controller.has_evacuated())
 		return FALSE
 

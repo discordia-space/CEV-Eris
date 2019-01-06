@@ -126,11 +126,11 @@
 	out += "<hr>"
 	out += "Special roles:<br><table>"
 
-	out += "<b>Make_antagonist: </b>"
+	out += "<b>Make_antagonist: </b><br>"
 	for(var/A in GLOB.all_antag_selectable_types)
 		var/datum/antagonist/antag = GLOB.all_antag_selectable_types[A]
-		var/antag_name = (antag in GLOB.all_antag_selectable_types) ? antag : "<font color='red'>[antag]</font>"
-		out += "<a href='?src=\ref[src];add_antagonist=[antag]'>[antag_name]</a>  "
+		var/antag_name = (antag.bantype in GLOB.all_antag_selectable_types) ? antag.bantype : "<font color='red'>[antag.bantype]</font>"
+		out += "<a href='?src=\ref[src];add_antagonist=[antag.bantype]'>[antag_name]</a><br>"
 	out += "<br>"
 
 	for(var/datum/antagonist/antag in antagonist)
@@ -145,21 +145,23 @@
 		return
 
 	if(href_list["add_antagonist"])
-		var/t = GLOB.all_antag_types[href_list["add_antagonist"]]
-		var/datum/antagonist/antag = new t
+		var/datum/antagonist/antag = GLOB.all_antag_types[href_list["add_antagonist"]]
+		world << "Antag is [antag], attempted to get [href_list["add_antagonist"]]"
 		if(antag)
 			var/ok = FALSE
 			if(antag.outer && active)
 				var/answer = alert("[antag.role_text] is outer antagonist. [name] will be taken from the current mob and spawned as antagonist. Continue?","No","Yes")
-				ok = answer == "Yes"
+				ok = (answer == "Yes")
 			else
 				var/answer = alert("Are you sure you want to make [name] the [antag.role_text]","Confirmation","No","Yes")
-				ok = answer == "Yes"
+				ok = (answer == "Yes")
 
 			if(!ok)
 				return
 
 			if(antag.outer)
+				antag.create_antagonist(src)
+
 
 			else
 				if(antag.create_antagonist(src))
