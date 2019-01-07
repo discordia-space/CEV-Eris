@@ -257,12 +257,12 @@
 		qdel(src)
 		return
 
-	character = SSjob.EquipRank(character, rank)					//equips the human
-	equip_custom_items(character)
-
 	var/datum/spawnpoint/spawnpoint = SSjob.get_spawnpoint_for(character.client, rank, late = TRUE)
 	if (!spawnpoint.put_mob(character))
 		return
+
+	character = SSjob.EquipRank(character, rank)					//equips the human
+	equip_custom_items(character)
 
 	character.lastarea = get_area(loc)
 

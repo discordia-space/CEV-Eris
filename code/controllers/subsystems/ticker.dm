@@ -176,8 +176,8 @@ SUBSYSTEM_DEF(ticker)
 	Master.SetRunLevel(RUNLEVEL_GAME)
 	create_characters() //Create player characters and transfer them
 	collect_minds()
-	equip_characters()
 	move_characters_to_spawnpoints()
+	equip_characters()
 	for(var/mob/living/carbon/human/H in player_list)
 		if(!H.mind || player_is_antag(H.mind, only_offstation_roles = 1) || !SSjob.ShouldCreateRecords(H.mind.assigned_role))
 			continue
