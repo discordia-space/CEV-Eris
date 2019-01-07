@@ -28,6 +28,10 @@
 			if (pod.arming_controller)
 				pod.arming_controller.arm()
 
+			if (istype(pod.active_docking_controller, /datum/computer/file/embedded_program/docking/simple/escape_pod))
+				var/datum/computer/file/embedded_program/docking/simple/escape_pod/pod_controller = pod.active_docking_controller
+				pod_controller.arm()
+
 /datum/evacuation_controller/starship/launch_evacuation()
 
 	state = EVAC_IN_TRANSIT

@@ -152,7 +152,8 @@ var/list/escape_pods_by_name = list()
 	return 1
 
 /datum/computer/file/embedded_program/docking/simple/escape_pod/finish_docking()
-	return		//don't do anything - the doors only open when the pod is armed.
+	if(armed)
+		open_door()
 
 /datum/computer/file/embedded_program/docking/simple/escape_pod/prepare_for_undocking()
 	eject_time = world.time + eject_delay*10
