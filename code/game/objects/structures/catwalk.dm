@@ -77,3 +77,7 @@
 			new /obj/structure/lattice/(src.loc)
 			qdel(src)
 	return
+
+
+/obj/structure/catwalk/can_prevent_fall()
+	return TRUE

@@ -591,7 +591,7 @@
 /datum/design/item/mecha/jetpack
 	name = "jetpack module"
 	id = "mech_jetpack"
-	build_path = /obj/item/mecha_parts/mecha_equipment/jetpack
+	build_path = /obj/item/mecha_parts/mecha_equipment/thruster
 	materials = list(MATERIAL_STEEL = 20, MATERIAL_GLASS = 5)
 
 /datum/design/item/mecha/ai_holder
