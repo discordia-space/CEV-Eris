@@ -168,7 +168,7 @@
 	if(!istype(M))
 		return 0
 
-	var/wall_fake
+	//var/wall_fake
 	add_hiddenprint(usr)
 
 	if(M.integrity < 50)
