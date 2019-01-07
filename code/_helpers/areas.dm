@@ -15,6 +15,23 @@
 				turfs += T
 	return turfs
 
+//Returns everything in an area based on type, searching two layers deep
+/proc/get_area_contents(var/areatype)
+	var/list/turf/LT = get_area_turfs(areatype)
+	var/list/contents = list()
+	for (var/turf/T in LT)
+		contents.Add(T)
+		var/list/L = contents.Copy()
+		//Lets recurse down a layer to find things inside storage
+		var/list/L2
+		for (var/atom/A in L)
+			L2.Add(A.get_contents())
+
+		L.Add(L2)
+		contents.Add(L)
+
+
+
 /proc/pick_area_turf(var/areatype, var/list/predicates)
 	var/list/turfs = get_area_turfs(areatype, predicates)
 	if(turfs && turfs.len)

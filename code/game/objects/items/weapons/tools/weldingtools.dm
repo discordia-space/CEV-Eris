@@ -64,6 +64,7 @@
 
 
 /obj/item/weapon/tool/weldingtool/advanced
+	name = "advanced welding tool"
 	icon_state = "adv_welder"
 	item_state = "adv_welder"
 	glow_color = COLOR_BLUE_LIGHT

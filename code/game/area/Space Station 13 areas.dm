@@ -276,8 +276,8 @@ area/space/atmosalert()
 /area/shuttle/specops/station
 	icon_state = "shuttlered2"
 
-/area/shuttle/syndicate_elite
-	name = "\improper Merc Elite Shuttle"
+/area/shuttle/mercenary
+	name = "\improper Mercenary Ship"
 	flags = AREA_FLAG_RAD_SHIELDED
 
 /area/shuttle/syndicate_elite/mothership
@@ -399,19 +399,19 @@ area/space/atmosalert()
 
 //SYNDICATES
 
-/area/syndicate_mothership
+/area/antag/merc_base
 	name = "\improper Mercenary Base"
 	icon_state = "syndie-ship"
 	requires_power = 0
 	dynamic_lighting = 0
 	vessel = "syndicate mothership"
 
-/area/syndicate_mothership/control
-	name = "\improper Mercenary Control Room"
+/area/antag/raider_base
+	name = "\improper Raider Base"
 	icon_state = "syndie-control"
 
-/area/syndicate_mothership/elite_squad
-	name = "\improper Elite Mercenary Squad"
+/area/antag/small_base
+	name = "\improper Unused base"
 	icon_state = "syndie-elite"
 
 //EXTRA

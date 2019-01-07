@@ -443,11 +443,16 @@
 /***************
 * Antag access *
 ***************/
-/var/const/access_syndicate = 150//General Syndicate Access
+/var/const/access_mercenary = 150//Merc ship and base access
+/datum/access/mercenary
+	id = access_mercenary
+	access_type = ACCESS_TYPE_SYNDICATE
+
+
+/var/const/access_syndicate = 140//General Syndicate Access
 /datum/access/syndicate
 	id = access_syndicate
 	access_type = ACCESS_TYPE_SYNDICATE
-
 /*******
 * Misc *
 *******/

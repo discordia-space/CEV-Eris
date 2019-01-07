@@ -641,3 +641,7 @@ its easier to just keep the beam vertical.
 	for(var/obj/effect/overlay/bmark/BM in src)
 		qdel(BM)
 
+
+//Returns a list of things in this atom, can be overridden for more nuanced behaviour
+/atom/proc/get_contents()
+	return contents

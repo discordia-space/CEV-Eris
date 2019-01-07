@@ -16,19 +16,8 @@
 	item_state = "void"
 	desc = "A high-tech dark red space suit. Used for AI satellite maintenance."
 	slowdown = 1
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	armor = list(melee = 40, bullet = 35, laser = 35,energy = 5, bomb = 35, bio = 100, rad = 90)
-	allowed = list(
-	/obj/item/weapon/storage/pouch/,
-	/obj/item/weapon/gun,
-	/obj/item/weapon/melee/baton,
-	/obj/item/weapon/melee/energy/sword,
-	/obj/item/ammo_magazine,
-	/obj/item/ammo_casing,
-	/obj/item/weapon/handcuffs,
-	/obj/item/weapon/tank,
-	/obj/item/device/suit_cooling_unit,
-	/obj/item/weapon/cell)
-
 
 
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS

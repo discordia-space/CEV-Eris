@@ -54,6 +54,7 @@ ADMIN_VERB_ADD(/client/proc/jumptomob, R_ADMIN|R_DEBUG, FALSE)
 	set category = "Admin"
 	set name = "Jump to Mob"
 
+
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
 		return
 
@@ -70,6 +71,7 @@ ADMIN_VERB_ADD(/client/proc/jumptomob, R_ADMIN|R_DEBUG, FALSE)
 				A << "This mob is not located in the game world."
 	else
 		alert("Admin jumping disabled")
+
 ADMIN_VERB_ADD(/client/proc/jumptocoord, R_ADMIN|R_DEBUG, FALSE)
 //we ghost and jump to a coordinate
 /client/proc/jumptocoord(tx as num, ty as num, tz as num)

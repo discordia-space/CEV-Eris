@@ -35,8 +35,6 @@
 		power_environ = 0
 	power_change()		// all machines set to current power level, also updates lighting icon
 
-/area/proc/get_contents()
-	return contents
 
 /area/proc/get_cameras()
 	var/list/cameras = list()
