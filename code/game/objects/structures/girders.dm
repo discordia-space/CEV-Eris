@@ -175,6 +175,16 @@
 		user << SPAN_NOTICE("This material is too soft for use in wall construction.")
 		return 0
 
+
+	//Note By Nanako
+	//7th January 2019: Fake wall construction disabled, due to critical bugs in wall icon updating.
+	//A byond issue is triggering illegal operation errors and this is the simplest way to fix
+	//In addtion we never made sprites for fake walls so it'd look awful anyway.
+	//TODO in future: Re-enable this feature after the underlying problem is solved
+	if (!anchored)
+		user << SPAN_NOTICE("The girders must be anchored to build a wall here.")
+		return
+
 	user << SPAN_NOTICE("You begin adding the plating...")
 
 	if(!do_after(user,WORKTIME_SLOW,src) || !S.use(3))
@@ -183,15 +193,17 @@
 	if(anchored)
 		user << SPAN_NOTICE("You added the plating!")
 	else
-		user << SPAN_NOTICE("You create a false wall! Push on it to open or close the passage.")
-		wall_fake = 1
+		user << SPAN_NOTICE("The girders must be anchored to build a wall here.")
+		return
+		//user << SPAN_NOTICE("You create a false wall! Push on it to open or close the passage.")
+		//wall_fake = 1
 
 	var/turf/Tsrc = get_turf(src)
 	Tsrc.ChangeTurf(/turf/simulated/wall)
 	var/turf/simulated/wall/T = get_turf(src)
 	T.set_material(M, reinf_material)
-	if(wall_fake)
-		T.can_open = 1
+	//if(wall_fake)
+		//T.can_open = 1
 	T.add_hiddenprint(usr)
 	qdel(src)
 	return 1
