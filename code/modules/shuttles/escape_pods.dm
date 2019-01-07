@@ -69,9 +69,9 @@ var/list/escape_pods_by_name = list()
 		ui.set_auto_update(1)
 
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod/Topic(user, href_list)
-	if("manual_arm")
+	/*if("manual_arm")
 		pod.arming_controller.arm()
-		return TOPIC_REFRESH
+		return TOPIC_REFRESH*/
 
 	if("force_launch")
 		if (pod.can_force())
@@ -120,26 +120,15 @@ var/list/escape_pods_by_name = list()
 //A docking controller program for a simple door based docking port
 /datum/computer/file/embedded_program/docking/simple/escape_pod
 	var/armed = FALSE
-	var/locked = TRUE		//pod should be locked until evacuation scheduled
 	var/datum/shuttle/autodock/ferry/escape_pod/pod
 
 /datum/computer/file/embedded_program/docking/simple/escape_pod/proc/arm()
 	if(!armed && pod)
 		armed = TRUE
-		locked = FALSE
-		pod.dock()
 
 /datum/computer/file/embedded_program/docking/simple/escape_pod/receive_user_command(command)
 	if (!armed)
 		return
 	..(command)
-
-/datum/computer/file/embedded_program/docking/simple/escape_pod/initiate_docking(var/target)
-	if(locked)
-		return
-	..(target)
-
-/datum/computer/file/embedded_program/docking/simple/escape_pod/ready_for_docking()
-	return armed
 
 
