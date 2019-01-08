@@ -10,7 +10,7 @@
 	if (.)
 		if (istype(M, /mob/observer))
 			return TRUE
-		if (M.incorporeal_move)
+		if (ismob(M) && mob.incorporeal_move)
 			return TRUE
 
 		return FALSE

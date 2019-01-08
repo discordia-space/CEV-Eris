@@ -116,9 +116,9 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	var/overmap_size = 50
 	var/overmap_event_areas = 40
 
-	var/emergency_shuttle_docked_message = "The escape pods are now unlocked. You have approximately %ETD% to board the escape pods."
+	var/emergency_shuttle_docked_message = "The escape pods are now armed. You have approximately %ETD% to board the escape pods."
 	var/emergency_shuttle_leaving_dock = "The escape pods have been launched, arriving at rendezvous point in %ETA%."
-	var/emergency_shuttle_called_message = "The emergency evacuation procedures are now in effect. Escape pods will unlock in %ETA%"
+	var/emergency_shuttle_called_message = "The emergency evacuation procedures are now in effect. Escape pods will be armed in %ETA%"
 	var/emergency_shuttle_recall_message = "Emergency evacuation sequence aborted. Return to normal operating conditions."
 
 	var/shuttle_docked_message = "Jump preparation complete. The bluespace drive is now spooling up, secure all stations for departure. Time to jump: approximately %ETD%."

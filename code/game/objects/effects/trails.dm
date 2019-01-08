@@ -14,9 +14,12 @@ particle whenever the target moves
 	var/fromback = TRUE //The trail is being emitted from something on their back
 	//When the user is facing north, it will draw ontop of them
 
-/datum/effect/effect/system/trail/set_up(atom/atom)
-	attach(atom)
-	jetpack = holder
+/datum/effect/effect/system/trail/set_up(var/atom/_holder, var/obj/item/weapon/tank/jetpack/J)
+	attach(_holder)
+	if (J)
+		jetpack = J
+	else
+		jetpack = holder
 
 /datum/effect/effect/system/trail/start()
 	//We can't start unless we're attached to an atom
@@ -43,7 +46,7 @@ particle whenever the target moves
 	return E
 
 /datum/effect/effect/system/trail/proc/stop()
-	GLOB.moved_event.register(holder, src, /datum/effect/effect/system/trail/proc/holder_moved)
+	GLOB.moved_event.unregister(holder, src, /datum/effect/effect/system/trail/proc/holder_moved)
 	active = FALSE
 
 /////////////////////////////////////////////

@@ -89,7 +89,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	user << browse_rsc(pref.preview_icon, "previewicon.png")
 
 	var/datum/species/mob_species = all_species[pref.species]
-		. += "<style>span.color_holder_box{display: inline-block; width: 20px; height: 8px; border:1px solid #000; padding: 0px;}</style>"
+	. += "<style>span.color_holder_box{display: inline-block; width: 20px; height: 8px; border:1px solid #000; padding: 0px;}</style>"
 	. += "<hr>"
 	. += "<table><tr style='vertical-align:top; width: 100%'><td width=65%><b>Body</b> "
 	. += "(<a href='?src=\ref[src];random=1'>&reg;</A>)"
@@ -105,12 +105,12 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	. += "Needs Glasses: <a href='?src=\ref[src];disabilities=[NEARSIGHTED]'><b>[pref.disabilities & NEARSIGHTED ? "Yes" : "No"]</b></a><br><br>"
 
 	. += "<b>Hair:</b><br>"
-	. += " Style: <a href='?src=\ref[src];hair_style=1'>[pref.h_style]</a>"
+	. += " Style: <a href='?src=\ref[src];cycle_hair=right'>&lt;&lt;</a><a href='?src=\ref[src];cycle_hair=left'>&gt;&gt;</a><a href='?src=\ref[src];hair_style=1'>[pref.h_style]</a>"
 	if(has_flag(mob_species, HAS_HAIR_COLOR))
 		. += "<a href='?src=\ref[src];hair_color=1'><span class='color_holder_box' style='background-color:[pref.facial_color]'></span></a><br>"
 
 	. += "<br><b>Facial:</b><br>"
-	. += " Style: <a href='?src=\ref[src];facial_style=1'>[pref.f_style]</a>"
+	. += " Style: <a href='?src=\ref[src];cycle_facial_hair=right'>&lt;&lt;</a><a href='?src=\ref[src];cycle_facial_hair=left'>&gt;&gt;</a><a href='?src=\ref[src];facial_style=1'>[pref.f_style]</a>"
 	if(has_flag(mob_species, HAS_HAIR_COLOR))
 		. += "<a href='?src=\ref[src];facial_color=1'><span class='color_holder_box' style='background-color:[pref.facial_color]'></span></a><br>"
 	
@@ -294,6 +294,40 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else if(href_list["cycle_bg"])
 		pref.bgstate = next_in_list(pref.bgstate, pref.bgstate_options)
 		return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["cycle_hair"])
+		var/list/valid_hairstyles = mob_species.get_hair_styles()
+		var/old_pos = valid_hairstyles.Find(pref.h_style)
+		var/new_h_style
+		if(href_list["cycle_hair"] == "right")
+			if(old_pos - 1 < 1)
+				return TOPIC_NOACTION
+			new_h_style = valid_hairstyles[old_pos-1]
+		else
+			if(old_pos + 1 > valid_hairstyles.len)
+				return TOPIC_NOACTION
+			new_h_style = valid_hairstyles[old_pos+1]
+			
+		mob_species = all_species[pref.species]
+		if(new_h_style && CanUseTopic(user) && (new_h_style in mob_species.get_hair_styles()))
+			pref.h_style = new_h_style
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+	else if(href_list["cycle_facial_hair"])
+		var/list/valid_facialhairstyles = mob_species.get_facial_hair_styles(pref.gender)
+		var/old_pos = valid_facialhairstyles.Find(pref.f_style)
+		var/new_f_style
+		if(href_list["cycle_facial_hair"] == "right")
+			if(old_pos - 1 < 1)
+				return TOPIC_NOACTION
+			new_f_style = valid_facialhairstyles[old_pos-1]
+		else
+			if(old_pos + 1 > valid_facialhairstyles.len)
+				return TOPIC_NOACTION
+			new_f_style = valid_facialhairstyles[old_pos+1]
+		mob_species = all_species[pref.species]
+		if(new_f_style && CanUseTopic(user) && mob_species.get_facial_hair_styles(pref.gender))
+			pref.f_style = new_f_style
+			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	return ..()
 

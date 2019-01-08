@@ -250,6 +250,154 @@ SUBSYSTEM_DEF(garbage)
 			queues[i] |= SSgarbage.queues[i]
 
 
+
+
+
+
+
+
+
+
+//DEBUG procs
+/******************************************/
+/datum/controller/subsystem/garbage/proc/purge()
+	//An emergency proc that attempts to resolve broken GC by hard-deling everything that's queued
+	for (var/d in queues[GC_QUEUE_PREQUEUE])
+		del(d)
+
+	queues[GC_QUEUE_PREQUEUE] = list()
+
+	for (var/d in queues[GC_QUEUE_CHECK])
+		var/datum/e = locate(d)
+		if (e)
+			del(e)
+
+	queues[GC_QUEUE_CHECK] = list()
+
+ADMIN_VERB_ADD(/client/proc/GCDebugItems, R_DEBUG, FALSE)
+/client/proc/GCDebugItems()
+	set category = "Debug"
+	set name = "GCDebugItems"
+	if(!check_rights(R_DEBUG))	return
+
+	var/data = "-----------------------<br>"
+	var/list/totals = list()
+	for (var/a in SSgarbage.items)
+		var/datum/qdel_item/qi = SSgarbage.items[a]
+		totals[a] = qi.qdels
+
+	var/list/sorted = slowSortAssocValue(totals)
+
+	for (var/b in sorted)
+		data += "[b]: [totals[b]]<br>"
+	usr << browse(data,"window=GCItems")
+
+ADMIN_VERB_ADD(/client/proc/GCDebugPreQueue, R_DEBUG, FALSE)
+/client/proc/GCDebugPreQueue()
+	set category = "Debug"
+	set name = "GCDebugPreQueue"
+	if(!check_rights(R_DEBUG))	return
+	var/depth = input(usr, "How many elements to search?", "GC Queue", 1000) as num
+
+	var/list/totals = list()
+	var/data = "-----------------------<br>"
+	var/list/a = SSgarbage.queues[GC_QUEUE_PREQUEUE]
+	if (a && a.len)
+		for (var/i = 1; i <= depth; i++)
+			if (i > a.len)
+				break
+			var/datum/c = a[i]
+
+			if (totals[c.type])
+				totals[c.type]++
+			else
+				totals[c.type] = 1
+
+	var/list/sorted = slowSortAssocValue(totals)
+
+	for (var/b in sorted)
+		data += "[b]: [totals[b]]<br>"
+
+	usr << browse(data,"window=GCQueue")
+
+
+ADMIN_VERB_ADD(/client/proc/GCDebugQueue, R_DEBUG, FALSE)
+/client/proc/GCDebugQueue()
+	set category = "Debug"
+	set name = "GCDebugQueue"
+	if(!check_rights(R_DEBUG))	return
+	var/depth = input(usr, "How many elements to search?", "GC Queue", 1000) as num
+
+	var/list/totals = list()
+	var/data = "-----------------------<br>"
+	var/list/a = SSgarbage.queues[GC_QUEUE_CHECK]
+	if (a && a.len)
+		for (var/i = 1; i <= depth; i++)
+			if (i > a.len)
+				break
+			var/datum/c = locate(a[i])
+
+			if (!c)
+				continue
+
+			if (totals[c.type])
+				totals[c.type]++
+			else
+				totals[c.type] = 1
+
+	var/list/sorted = slowSortAssocValue(totals)
+
+	for (var/b in sorted)
+		data += "[b]: [totals[b]]<br>"
+
+	usr << browse(data,"window=GCQueue")
+
+
+
+ADMIN_VERB_ADD(/client/proc/GCDebugQueueNS, R_DEBUG, FALSE)
+/client/proc/GCDebugQueueNS()
+	set category = "Debug"
+	set name = "GCDebugQueueNS"
+	if(!check_rights(R_DEBUG))	return
+	var/depth = input(usr, "How many elements to search?", "GC Queue", 1000) as num
+
+	var/list/totals = list()
+	var/data = ""
+	var/list/a = SSgarbage.queues[GC_QUEUE_CHECK]
+	if (a && a.len)
+		for (var/i = 1; i <= depth; i++)
+			if (i > a.len)
+				break
+			var/datum/c = locate(a[i])
+
+			if (!c)
+				continue
+
+			if (totals[c.type])
+				totals[c.type]++
+			else
+				totals[c.type] = 1
+
+	//totals = sortAssoc(totals)
+
+	for (var/b in totals)
+		data += "[b]: [totals[b]]<br>"
+
+	usr << browse(data,"window=GCQueue")
+
+
+
+
+
+
+
+/******************************************/
+
+
+
+
+
+
 /datum/qdel_item
 	var/name = ""
 	var/qdels = 0			//Total number of times it's passed thru qdel.
@@ -332,6 +480,8 @@ SUBSYSTEM_DEF(garbage)
 				SSgarbage.PreQueue(D)
 	else if(D.gc_destroyed == GC_CURRENTLY_BEING_QDELETED)
 		CRASH("[D.type] destroy proc was called multiple times, likely due to a qdel loop in the Destroy logic")
+
+
 
 #ifdef TESTING
 

@@ -59,7 +59,7 @@
 	option_text = "Abandon spacecraft"
 	option_desc = "abandon the spacecraft"
 	option_target = EVAC_OPT_ABANDON_SHIP
-	needs_syscontrol = TRUE
+	needs_syscontrol = FALSE
 	silicon_allowed = TRUE
 
 /datum/evacuation_option/abandon_ship/execute(mob/user)
@@ -81,7 +81,7 @@
 	option_text = "Cancel abandonment"
 	option_desc = "cancel abandonment of the spacecraft"
 	option_target = EVAC_OPT_CANCEL_ABANDON_SHIP
-	needs_syscontrol = TRUE
+	needs_syscontrol = FALSE
 	silicon_allowed = FALSE
 
 /datum/evacuation_option/cancel_abandon_ship/execute(mob/user)

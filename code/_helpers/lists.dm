@@ -429,6 +429,30 @@ proc/listclearnulls(list/list)
 		return (result + L.Copy(Li, 0))
 	return (result + R.Copy(Ri, 0))
 
+
+
+//I don't know wtf the sortAssoc above is supposed to do, but it sure doesn't seem to sort anything.
+//Here's a simple iterative sort for an associative list, it expects numerical values, and returns a list of keys sorted by their value
+/proc/slowSortAssocValue(var/list/L)
+	var/list/result = list()
+	for (var/a in L)
+
+		var/compare = L[a]
+		if (!result.len)
+			result.Add(a) //First element is free
+			continue
+		var/inserted = FALSE
+		for (var/i = 1; i <= result.len; i++)
+			if (compare > L[result[i]])
+				result.Insert(i, a)
+				inserted = TRUE
+				break
+
+		//Its smaller or equal to the last element in the list, stick it on the end
+		if (!inserted)
+			result.Add(a)
+	return result
+
 //returns an unsorted list of nearest map objects from a given list to sourceLocation using get_dist, acceptableDistance sets tolerance for distance
 //result is intended to be used with pick()
 /proc/nearestObjectsInList(var/list/L, var/sourceLocation, var/acceptableDistance = 0)
@@ -865,7 +889,7 @@ This actually tests if they have the same entries and values.
 		if(!(entry in second) || (first[entry] != second[entry]))
 			return 0
 	return 1
-	
+
 /*
 Checks if a list has the same entries and values as an element of big.
 */

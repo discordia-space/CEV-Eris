@@ -41,10 +41,11 @@
 	if (eyeobj)
 		return eyeobj.zMove(direction)
 
-	//Todo: Implement mech zmovement
-	if (istype(src.loc,/obj/mecha))
-		return FALSE
+	var/atom/movable/mover = src
 
+	//If we're inside a thing, that thing is the thing that moves
+	if (istype(loc, /obj))
+		mover = loc
 
 
 	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
@@ -67,17 +68,17 @@
 	Z_MOVE_JUMP
 	)
 
-	if(!start.CanZPass(src, direction))
+	if(!start.CanZPass(mover, direction))
 		to_chat(src, "<span class='warning'>\The [start] under you is in the way.</span>")
 		return FALSE
 
-	if(!destination.CanZPass(src, direction))
+	if(!destination.CanZPass(mover, direction))
 		to_chat(src, "<span class='warning'>The ceiling above you is in the way.</span>")
 		return FALSE
 
 	// Check for blocking atoms at the destination.
 	for (var/atom/A in destination)
-		if (!A.CanPass(src, start, 1.5, 0))
+		if (!A.CanPass(mover, start, 1.5, 0))
 			to_chat(src, "<span class='warning'>\The [A] blocks you.</span>")
 			return FALSE
 
@@ -212,23 +213,7 @@
 	if((locate(/obj/structure/disposalpipe/up) in below) || locate(/obj/machinery/atmospherics/pipe/zpipe/up in below))
 		return FALSE
 
-// Only things that stop mechas are atoms that, well, stop them.
-// Lattices and stairs get crushed in fall_through.
-/obj/mecha/can_fall(turf/below, turf/simulated/open/dest = src.loc)
-	// The var/climbers API is implemented here.
-	if (LAZYLEN(dest.climbers) && (src in dest.climbers))
-		return FALSE
 
-	if (!dest.is_hole)
-		return FALSE
-
-	// See if something prevents us from falling.
-	for(var/atom/A in below)
-		if(!A.CanPass(src, dest))
-			return FALSE
-
-	// True otherwise.
-	return TRUE
 
 /mob/living/carbon/human/can_fall(turf/below, turf/simulated/open/dest = src.loc)
 	// Special condition for jetpack mounted folk!

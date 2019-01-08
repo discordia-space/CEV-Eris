@@ -8,7 +8,7 @@
 /datum/shuttle/autodock/ferry/escape_pod/erispod/New()
 	name = "Escape Pod [number]"
 	default_docking_controller = "escape_pod_[number]"
-	arming_controller = "escape_pod_[number]"
+	controller_master = "escape_pod_[number]_controller"
 	//Todo: The controllers inside escape pods need to be swapped to the correct type of controller
 	//One which has escape pod programs instead of normal docking programs
 	dock_target = "escape_pod_[number]_berth"

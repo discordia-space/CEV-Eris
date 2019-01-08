@@ -76,6 +76,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	var/datum/uplink_category/category 	= 0		// The current category we are in
 	var/exploit_id								// Id of the current exploit record we are viewing
 	var/trigger_code
+	var/emplaced = FALSE
 
 
 // The hidden uplink MUST be inside an obj/item's contents.
@@ -110,7 +111,6 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	NANO UI FOR UPLINK WOOP WOOP
 */
 /obj/item/device/uplink/hidden/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	world << "ui interact"
 	var/title = "Remote Uplink"
 	var/data[0]
 
@@ -122,14 +122,16 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)	// No auto-refresh
-		ui = new(user, src, ui_key, "uplink.tmpl", title, 450, 600, state =GLOB.inventory_state)
+		if (emplaced)
+			ui = new(user, src, ui_key, "uplink.tmpl", title, 450, 600, state =GLOB.default_state)
+		else
+			ui = new(user, src, ui_key, "uplink.tmpl", title, 450, 600, state =GLOB.inventory_state)
 		ui.set_initial_data(data)
 		ui.open()
 
 
 // Interaction code. Gathers a list of items purchasable from the paren't uplink and displays it. It also adds a lock button.
 /obj/item/device/uplink/interact(mob/user)
-	world << "interact"
 	ui_interact(user)
 
 // The purchasing code.
@@ -260,8 +262,8 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 /obj/structure/uplink/New()
 	uplink = new(src, null, telecrystals)
 	uplink.update_nano_data()
+	uplink.emplaced = TRUE
 	..()
 
 /obj/structure/uplink/attack_hand(var/mob/user)
-	world << "Attackhand [user]"
 	uplink.trigger(user)

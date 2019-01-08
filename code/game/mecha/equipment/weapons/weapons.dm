@@ -1,3 +1,18 @@
+/*
+ * Contains
+ * /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser
+ * /obj/item/mecha_parts/mecha_equipment/weapon/energy/riggedlaser
+ * /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy
+ * /obj/item/mecha_parts/mecha_equipment/weapon/energy/ion
+ * /obj/item/mecha_parts/mecha_equipment/weapon/energy/pulse
+ * /obj/item/mecha_parts/mecha_equipment/weapon/energy/taser
+ * /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot
+ * /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg
+ * /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flare
+ * /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive
+ * /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang
+ */
+
 /obj/item/mecha_parts/mecha_equipment/weapon
 	name = "mecha weapon"
 	range = RANGED
