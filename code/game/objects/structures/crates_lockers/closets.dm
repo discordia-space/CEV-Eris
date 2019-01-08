@@ -376,14 +376,19 @@
 	else if(istype(I, /obj/item/weapon/melee/energy/blade) && secure)
 		emag_act(INFINITY, user)
 		return
-	else if(QUALITY_PULSING in I.tool_qualities && secure && locked)
+	else if((QUALITY_PULSING in I.tool_qualities) && secure && locked)
 		user.visible_message(
 		SPAN_WARNING("[user] picks in wires of the [src.name] with a multitool"), \
 		SPAN_WARNING("[pick("Picking wires in [src.name] lock", "Hacking [src.name] security systems", "Pulsing in locker controller")].")
 		)
 		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_PULSING, FAILCHANCE_HARD, required_stat = STAT_MEC))
 			if(hack_stage < hack_require)
-				playsound(loc, 'sound/items/glitch.ogg', 60, 1, -3)
+				var/obj/item/weapon/tool/T = I
+				if (istype(T))
+					if(!(T.silenced))
+						playsound(loc, 'sound/items/glitch.ogg', 60, 1, -3)
+				else
+					playsound(loc, 'sound/items/glitch.ogg', 60, 1, -3)
 				hack_stage++
 				user << SPAN_NOTICE("Multitool blinks <b>([hack_stage]/[hack_require])</b> on screen.")
 			else if(hack_stage >= hack_require)
