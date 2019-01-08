@@ -78,8 +78,3 @@
 	if((world.time > last_launch + 1 MINUTE) && (!icon_forced))
 		set_rand_sprite()
 		last_launch = world.time
-
-/obj/machinery/firealarm/securityLevelChanged(var/newlevel)
-	if(seclevel != newlevel)
-		seclevel = newlevel
-		update_icon()
