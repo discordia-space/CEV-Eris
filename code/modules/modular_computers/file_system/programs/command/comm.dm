@@ -70,7 +70,6 @@
 	data["current_security_level_title"] = security_state.current_security_level.name
 
 	data["cannot_change_security_level"] = !security_state.can_change_security_level()
-	data["current_security_level_is_high_security_level"] = security_state.current_security_level == security_state.high_security_level
 	var/list/security_levels = list()
 	for(var/decl/security_level/security_level in security_state.comm_console_security_levels)
 		var/list/security_setup = list()
@@ -368,4 +367,3 @@ var/last_message_id = 0
 		return
 
 	. = evacuation_controller.call_evacuation(null, _emergency_evac = FALSE, autotransfer = TRUE)
-

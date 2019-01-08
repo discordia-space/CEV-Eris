@@ -1765,14 +1765,17 @@ area/space/atmosalert()
 
 /area/eris/anomalisolone
 	name = "Anomalous Research Isolation One"
+	flags = AREA_FLAG_RAD_SHIELDED
 	icon_state = "erisgreen"
 
 /area/eris/anomalisoltwo
 	name = "Anomalous Research Isolation Two"
+	flags = AREA_FLAG_RAD_SHIELDED
 	icon_state = "erisgreen"
 
 /area/eris/anomalisolthree
 	name = "Anomalous Research Isolation Three"
+	flags = AREA_FLAG_RAD_SHIELDED
 	icon_state = "erisgreen"
 
 /area/eris/chemstor
@@ -1844,6 +1847,7 @@ area/space/atmosalert()
 
 /area/eris/security/disposal
 	name = "Security Disposal"
+	flags = AREA_FLAG_RAD_SHIELDED
 	icon_state = "hammerblue"
 	is_maintenance = TRUE
 
@@ -1873,6 +1877,7 @@ area/space/atmosalert()
 
 /area/eris/security/maintpost
 	name = "Maintenance Post"
+	flags = AREA_FLAG_RAD_SHIELDED
 	icon_state = "hammerred"
 	is_maintenance = TRUE
 
@@ -1918,6 +1923,7 @@ area/space/atmosalert()
 
 /area/eris/engineering/substation
 	name = "Substation"
+	flags = AREA_FLAG_RAD_SHIELDED
 	icon_state = "substation"
 	forced_ambience = list('sound/ambience/maintambience.ogg')
 	sound_env = SMALL_ENCLOSED
@@ -1945,6 +1951,7 @@ area/space/atmosalert()
 
 /area/eris/maintenance
 	is_maintenance = TRUE
+	flags = AREA_FLAG_RAD_SHIELDED
 	name = "Maintenance"
 	icon_state = "erisyellow"
 	forced_ambience = list('sound/ambience/maintambience.ogg')
