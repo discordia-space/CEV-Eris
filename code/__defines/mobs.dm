@@ -166,9 +166,6 @@
 #define TASTE_DULL 0.5 //anything below 30%
 #define TASTE_NUMB 0.1 //anything below 150%
 
-//Ambience
-#define SOUND_CHANNEL_AMBIENCE 2
-
 //Health
 #define HEALTH_THRESHOLD_SOFTCRIT 0
 #define HEALTH_THRESHOLD_CRIT -50

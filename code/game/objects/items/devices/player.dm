@@ -1,5 +1,3 @@
-#define MP3_CHANNEL 4
-
 /obj/item/device/player
 	name = "Player"
 	var/active = FALSE
@@ -35,7 +33,7 @@
 		else
 			return
 	active = FALSE
-	affected << sound(null, channel = MP3_CHANNEL)
+	affected << sound(null, channel = GLOB.mp3_sound_channel)
 
 /obj/item/device/player/proc/outofenergy()
 	current_track = null
@@ -43,7 +41,7 @@
 	active = FALSE
 	if(ishuman(holder.loc))
 		var/mob/living/carbon/human/H = holder.loc
-		H << sound(null, channel = MP3_CHANNEL)
+		H << sound(null, channel = GLOB.mp3_sound_channel)
 
 /obj/item/device/player/proc/play()
 	if(!current_track || !(current_track in songs))
@@ -53,7 +51,7 @@
 	if(ishuman(holder.loc))
 		var/mob/living/carbon/human/H = holder.loc
 		if(holder in list(H.l_ear, H.r_ear))
-			H << sound(songs[current_track], channel = MP3_CHANNEL, volume=100)
+			H << sound(songs[current_track], channel = GLOB.mp3_sound_channel, volume=100)
 			active = TRUE
 
 /obj/item/device/player/proc/OpenInterface(mob/user as mob)
@@ -79,5 +77,3 @@
 	else if(href_list["stop"])
 		stop(holder.loc)
 	spawn OpenInterface(usr)
-
-#undef MP3_CHANNEL
