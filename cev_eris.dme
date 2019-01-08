@@ -280,6 +280,7 @@
 #include "code\datums\helper_datums\global_iterator.dm"
 #include "code\datums\helper_datums\teleport.dm"
 #include "code\datums\helper_datums\topic_input.dm"
+#include "code\datums\objective\abduct.dm"
 #include "code\datums\objective\absorb.dm"
 #include "code\datums\objective\assassinate.dm"
 #include "code\datums\objective\assassinate_marshal.dm"
