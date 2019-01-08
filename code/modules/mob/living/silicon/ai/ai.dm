@@ -340,7 +340,7 @@ var/list/ai_verbs_default = list(
 
 /mob/living/silicon/ai/proc/ai_movement_down()
 	set category = "Silicon Commands"
-	set name = "Move Downwards"
+	set name = "Move Down"
 	zMove(DOWN)
 
 /mob/living/silicon/ai/proc/pick_icon()

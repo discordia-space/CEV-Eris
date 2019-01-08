@@ -22,7 +22,7 @@
  * Verb for the mob to move down a z-level if possible.
  */
 /mob/verb/down()
-	set name = "Move Downwards"
+	set name = "Move Down"
 	set category = "IC"
 
 	if(zMove(DOWN))
@@ -265,6 +265,6 @@
 	zMove(UP)
 
 /mob/observer/ghost/verb/movedown()
-	set name = "Move Downwards"
+	set name = "Move Down"
 	set category = "Ghost"
 	zMove(DOWN)
