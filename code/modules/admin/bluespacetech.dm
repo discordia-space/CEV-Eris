@@ -73,7 +73,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	spawn(10)
 		bst_post_spawn(bst)
 
-	log_debug("Bluespace Tech Spawned: X:[bst.x] Y:[bst.y] Z:[bst.z] User:[src]")
+	log_admin("Bluespace Tech Spawned: X:[bst.x] Y:[bst.y] Z:[bst.z] User:[src]")
 	return 1
 
 /client/proc/bst_post_spawn(mob/living/carbon/human/bst/bst)
