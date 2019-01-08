@@ -106,7 +106,7 @@
 
 	var/in_throw_mode = 0
 
-	var/inertia_dir = 0
+
 
 	var/targeted_organ = BP_CHEST
 

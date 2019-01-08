@@ -1,8 +1,13 @@
-/mob/proc/on_mob_jump()
-	return
+/mob/proc/on_mob_jump(var/turf/T)
+	if (istype(loc, /obj/mecha))
+		var/obj/mecha/M = loc
+		M.forceMove(T)
+	else
+		forceMove(T)
 
 /mob/observer/ghost/on_mob_jump()
 	stop_following()
+	..()
 
 ADMIN_VERB_ADD(/client/proc/Jump, R_ADMIN|R_DEBUG, FALSE)
 /client/proc/Jump(var/area/A in return_sorted_areas())
@@ -13,11 +18,10 @@ ADMIN_VERB_ADD(/client/proc/Jump, R_ADMIN|R_DEBUG, FALSE)
 		return
 
 	if(config.allow_admin_jump)
-		usr.on_mob_jump()
 		var/new_location = safepick(get_area_turfs(A))
 
 		if(new_location)
-			usr.forceMove(new_location)
+			usr.on_mob_jump(new_location)
 			log_admin("[key_name(usr)] jumped to [A]")
 			message_admins("[key_name_admin(usr)] jumped to [A]", 1)
 		else
@@ -36,8 +40,9 @@ ADMIN_VERB_ADD(/client/proc/jumptoturf, R_ADMIN, FALSE)
 	if(config.allow_admin_jump)
 		log_admin("[key_name(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]")
 		message_admins("[key_name_admin(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]", 1)
-		usr.on_mob_jump()
-		usr.forceMove(T)
+
+		//When inside a mech, move the mech instead of teleporting out of it
+		usr.on_mob_jump(T)
 
 	else
 		alert("Admin jumping disabled")
@@ -61,8 +66,7 @@ ADMIN_VERB_ADD(/client/proc/jumptomob, R_ADMIN|R_DEBUG, FALSE)
 			var/turf/T = get_turf(M)
 			if(T && isturf(T))
 
-				A.on_mob_jump()
-				A.forceMove(T)
+				A.on_mob_jump(T)
 			else
 				A << "This mob is not located in the game world."
 	else
@@ -80,8 +84,7 @@ ADMIN_VERB_ADD(/client/proc/jumptocoord, R_ADMIN|R_DEBUG, FALSE)
 	if (config.allow_admin_jump)
 		if(src.mob)
 			var/mob/A = src.mob
-			A.on_mob_jump()
-			A.forceMove(locate(tx,ty,tz))
+			A.on_mob_jump(locate(tx,ty,tz))
 
 		message_admins("[key_name_admin(usr)] jumped to coordinates [tx], [ty], [tz]")
 
@@ -108,8 +111,7 @@ ADMIN_VERB_ADD(/client/proc/jumptokey, R_ADMIN, TRUE)
 		var/mob/M = selection:mob
 		log_admin("[key_name(usr)] jumped to [key_name(M)]")
 		message_admins("[key_name_admin(usr)] jumped to [key_name_admin(M)]", 1)
-		usr.on_mob_jump()
-		usr.forceMove(get_turf(M))
+		usr.on_mob_jump(get_turf(M))
 
 	else
 		alert("Admin jumping disabled")
@@ -125,8 +127,7 @@ ADMIN_VERB_ADD(/client/proc/Getmob, R_ADMIN, FALSE)
 	if(config.allow_admin_jump)
 		log_admin("[key_name(usr)] teleported [key_name(M)]")
 		message_admins("[key_name_admin(usr)] teleported [key_name_admin(M)]", 1)
-		M.on_mob_jump()
-		M.forceMove(get_turf(usr))
+		M.on_mob_jump(get_turf(usr))
 
 	else
 		alert("Admin jumping disabled")
@@ -155,8 +156,7 @@ ADMIN_VERB_ADD(/client/proc/Getkey, R_ADMIN, FALSE)
 		log_admin("[key_name(usr)] teleported [key_name(M)]")
 		message_admins("[key_name_admin(usr)] teleported [key_name(M)]", 1)
 		if(M)
-			M.on_mob_jump()
-			M.forceMove(get_turf(usr))
+			M.on_mob_jump(get_turf(usr))
 
 	else
 		alert("Admin jumping disabled")

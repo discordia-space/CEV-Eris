@@ -36,6 +36,8 @@
 /datum/vertical_travel_method/jetpack/calculate_time()
 	if (isrobot(M))
 		base_time *= 2 //Robots are heavy and slow, but they can use jetpacks
+	else if (istype(M, /obj/mecha))
+		base_time *= 2.5 //Heavier still
 	.=..()
 
 /datum/vertical_travel_method/jetpack/can_perform(var/mob/living/L, var/dir)
@@ -64,7 +66,7 @@
 	if (world.time >= next_burst)
 
 		//Multiplying the cost by the burst interval allows this cost to be independant of the interval
-		if (thrust.allow_thrust(JETPACK_MOVE_COST*burst_interval * 0.3, M, TRUE))
+		if (thrust.allow_thrust(thrust.thrust_cost*burst_interval * 0.3, M, TRUE))
 			var/obj/effect/effect/E = thrust.trail.do_effect(origin, SOUTH)
 			//Since the user will have their pixel offset animated by the transition, we must compensate the visuals
 			//We will calculate a pixel offset for the thrust particle based on the progress
