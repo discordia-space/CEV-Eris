@@ -28,7 +28,7 @@
 	var/turf/LM = landmark.get_loc()
 
 	new /obj/item/weapon/disk/autolathe_disk/excelsior(LM)
-	new /obj/item/weapon/circuitboard/autolathe(LM)
+	new /obj/item/weapon/circuitboard/excelsiorautolathe(LM)
 	new /obj/item/weapon/circuitboard/excelsior_teleporter(LM)
 
 	for (var/datum/antagonist/A in members)

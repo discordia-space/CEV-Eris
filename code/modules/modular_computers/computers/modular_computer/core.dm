@@ -353,3 +353,34 @@
 	if(has_terminal(user))
 		return
 	LAZYADD(terminals, new /datum/terminal/(user, src))
+
+
+/obj/item/modular_computer/proc/getProgramByType(var/type)
+	if(!hard_drive || !hard_drive.check_functionality())
+		return null
+	var/datum/computer_file/F = locate(type) in hard_drive.stored_files
+	if(!F || !istype(F, type))
+		return null
+	return F
+
+/obj/item/modular_computer/proc/getFileByName(var/name)
+	if(!hard_drive || !hard_drive.check_functionality())
+		return null
+	var/datum/computer_file/F = hard_drive.find_file_by_name(name)
+	if(!F || !istype(F))
+		return null
+	return F
+
+// accepts either name or type
+/obj/item/modular_computer/proc/getNanoModuleByFile(var/name)
+	var/datum/computer_file/program/P
+	if(ispath(name))
+		P = getProgramByType(name)
+	else
+		P = getFileByName(name)
+	if(!P || !istype(P))
+		return null
+	var/datum/nano_module/module = P.NM
+	if(!module)
+		return null
+	return module
