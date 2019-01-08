@@ -383,12 +383,13 @@
 		)
 		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_PULSING, FAILCHANCE_HARD, required_stat = STAT_MEC))
 			if(hack_stage < hack_require)
+
 				var/obj/item/weapon/tool/T = I
-				if (istype(T))
-					if(!(T.silenced))
-						playsound(loc, 'sound/items/glitch.ogg', 60, 1, -3)
+				if (istype(T) && T.silenced)
+					playsound(src.loc, 'sound/items/glitch.ogg', 3, 1, -5) //Silenced tools can hack it silently
 				else
-					playsound(loc, 'sound/items/glitch.ogg', 60, 1, -3)
+					playsound(src.loc, 'sound/items/glitch.ogg', 70, 1, -1)
+
 				hack_stage++
 				user << SPAN_NOTICE("Multitool blinks <b>([hack_stage]/[hack_require])</b> on screen.")
 			else if(hack_stage >= hack_require)
