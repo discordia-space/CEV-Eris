@@ -81,7 +81,7 @@
 	
 	if(do_after(user, buckleTime, src))
 		if(buckle_mob(M))
-			playsound(src.loc, 'sound/machines/Custom_closetopen.ogg', 15, 1, -3)
+			playsound(src.loc, 'sound/machines/Custom_closetopen.ogg', 65, 1, -3)
 			if(M == user)
 				M.visible_message(\
 					SPAN_NOTICE("[M.name] buckles themselves to [src]."),
@@ -106,6 +106,7 @@
 	if(do_after(user, unbuckleTime, src))
 		var/mob/living/M = unbuckle_mob()
 		if(M)
+			playsound(src.loc, 'sound/machines/Custom_closetopen.ogg', 65, 1, -3)
 			if(user.loc != M.loc)
 				user.do_attack_animation(src)
 			if(M != user)
