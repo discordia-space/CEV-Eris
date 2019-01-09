@@ -29,9 +29,9 @@
 	actions += newUIElement("State Laws", /HUD_element/button/thin/ai, list(icon = 'icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',icon_state = "state_laws"))
 	actions += newUIElement("Crew Manifest", /HUD_element/button/thin/ai, list(icon = 'icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',icon_state = "manifest"))
 	
-	navigation += newUIElement("Move downwards", /HUD_element/button/thick/ai, list(icon = 'icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',icon_state = "down"))
-	navigation += newUIElement("AI Core", /HUD_element/button/thick/ai, list(icon = 'icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',icon_state = "core"))
-	navigation += newUIElement("Move upwards", /HUD_element/button/thick/ai, list(icon = 'icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',icon_state = "up"))
+	navigation += newUIElement("Move downwards", /HUD_element/button/thin/ai, list(icon = 'icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',icon_state = "down"))
+	navigation += newUIElement("AI Core", /HUD_element/button/thin/ai, list(icon = 'icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',icon_state = "core"))
+	navigation += newUIElement("Move upwards", /HUD_element/button/thin/ai, list(icon = 'icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',icon_state = "up"))
 
 	// #####	ADDING CLICK PROCS TO BUTTONS    #####
 	getElementByID("Take Photo").setClickProc(/mob/living/silicon/ai/proc/take_photo, _observer.mob)

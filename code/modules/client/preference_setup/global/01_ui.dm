@@ -100,6 +100,7 @@
 				pref.UI_style_alpha = initial(pref.UI_style_alpha)
 			if("ooc")
 				pref.ooccolor = initial(pref.ooccolor)
+		pref.client.recreate_UI()
 		return TOPIC_REFRESH
 
 	return ..()

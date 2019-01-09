@@ -17,8 +17,8 @@
 	var/list/HUD_element/navigation = list()
 
 	// #####	CREATING UI ELEMENTS AND ASSIGNING THEM APPROPRIATE LISTS    #####
-	navigation += newUIElement("Move downwards", /HUD_element/button/thick, list(icon = 'icons/mob/screen/silicon/AI/HUD_actionButtons.dmi', icon_state = "down"))
-	navigation += newUIElement("Move upwards", /HUD_element/button/thick, list(icon = 'icons/mob/screen/silicon/AI/HUD_actionButtons.dmi', icon_state = "up"))
+	navigation += newUIElement("Move downwards", /HUD_element/button/thin, list(icon = 'icons/mob/screen/silicon/AI/HUD_actionButtons.dmi', icon_state = "down"))
+	navigation += newUIElement("Move upwards", /HUD_element/button/thin, list(icon = 'icons/mob/screen/silicon/AI/HUD_actionButtons.dmi', icon_state = "up"))
 
 	// #####	ADDING CLICK PROCS TO BUTTONS    #####
 	getElementByID("Move upwards").setClickProc(/mob/observer/ghost/verb/moveup, _observer.mob)
