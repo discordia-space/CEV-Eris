@@ -102,8 +102,7 @@ var/list/_client_preferences_by_type
 
 /datum/client_preference/play_ambiance/changed(var/mob/preference_mob, var/new_value)
 	if(new_value == GLOB.PREF_NO)
-		sound_to(preference_mob, sound(null, repeat = 0, wait = 0, volume = 0, channel = 1))
-		sound_to(preference_mob, sound(null, repeat = 0, wait = 0, volume = 0, channel = 2))
+		sound_to(preference_mob, sound(null, repeat = 0, wait = 0, volume = 0, channel = GLOB.ambience_sound_channel))
 
 /datum/client_preference/ghost_ears
 	description ="Ghost ears"
@@ -207,6 +206,10 @@ var/list/_client_preferences_by_type
 /datum/client_preference/ambient_occlusion
 	description = "Ambient occlusion"
 	key = "AMBIENT_OCCLUSION"
+
+/datum/client_preference/play_instruments
+	description ="Play instruments"
+	key = "SOUND_INSTRUMENTS"
 
 /********************
 * General Staff Preferences *

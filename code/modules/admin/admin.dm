@@ -1085,6 +1085,12 @@ ADMIN_VERB_ADD(/datum/admins/proc/toggleguests, R_ADMIN, FALSE)
 	log_admin("[key_name(usr)] stuffed [frommob.ckey] into [tomob.name].")
 
 	tomob.ckey = frommob.ckey
+	if(tomob.client)
+		if(tomob.client.UI)
+			tomob.client.UI.show()
+		else
+			tomob.client.create_UI(tomob.type)
+
 	qdel(frommob)
 	return 1
 

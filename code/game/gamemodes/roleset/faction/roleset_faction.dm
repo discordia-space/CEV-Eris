@@ -36,7 +36,7 @@
 
 		var/datum/antagonist/A = new antag.type
 
-		var/mob/M = pick_n_take(candidates)
+		var/M = pick_n_take(candidates)
 		if(!M)
 			//No candidates, abort
 			break
@@ -55,9 +55,11 @@
 			i-- //Decrement i so we can try again
 			//That candidate is still removed from the list by pick_n_take
 
+
 	//Appoint leaders for this faction
 	if (leaders)
 		F.pick_leaders(leaders)
+
 
 	//And pick objectives
 	F.create_objectives()

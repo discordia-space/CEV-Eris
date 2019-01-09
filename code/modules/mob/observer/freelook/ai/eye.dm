@@ -70,7 +70,7 @@
 /mob/living/silicon/ai/proc/core()
 	set category = "Silicon Commands"
 	set name = "AI Core"
-
+	
 	view_core()
 
 /mob/living/silicon/ai/proc/view_core()
