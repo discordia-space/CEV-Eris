@@ -11,7 +11,6 @@
 		slot_r_hand_str = 'icons/mob/items/righthand_backpacks.dmi',
 		)
 	icon_state = "backpack"
-	item_state = null
 	//most backpacks use the default backpack state for inhand overlays
 	item_state_slots = list(
 		slot_l_hand_str = "backpack",
@@ -22,6 +21,11 @@
 	max_w_class = ITEM_SIZE_LARGE
 	max_storage_space = 40
 	var/worn_access = FALSE
+
+/obj/item/weapon/storage/backpack/New()
+	if (!item_state)
+		item_state = icon_state
+	..()
 
 /obj/item/weapon/storage/backpack/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (!worn_check())
