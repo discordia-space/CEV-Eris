@@ -41,7 +41,8 @@
 	scanner = list("stats")
 	starting_seeds = list(
 		/obj/item/seeds/appleseed = 3,
-		/obj/item/seeds/bananaseed = 3,/obj/item/seeds/berryseed = 3,
+		/obj/item/seeds/bananaseed = 3,
+		/obj/item/seeds/berryseed = 3,
 		/obj/item/seeds/cabbageseed = 3,
 		/obj/item/seeds/carrotseed = 3,
 		/obj/item/seeds/chantermycelium = 3,
