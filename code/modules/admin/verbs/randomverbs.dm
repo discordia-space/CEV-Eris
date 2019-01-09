@@ -413,8 +413,7 @@ ADMIN_VERB_ADD(/client/proc/respawn_character, R_FUN, FALSE)
 	message_admins("\blue [admin] has respawned [player_key] as [new_character.real_name].", 1)
 
 	new_character << "You have been fully respawned. Enjoy the game."
-
-
+	AnnounceArrival(new_character, new_character.mind.assigned_role, spawnpoint.message)	//will not broadcast if there is no message
 	return new_character
 
 ADMIN_VERB_ADD(/client/proc/cmd_admin_add_freeform_ai_law, R_FUN, FALSE)
