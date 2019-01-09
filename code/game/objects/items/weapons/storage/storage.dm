@@ -55,7 +55,7 @@
 
 	var/HUD_element/itemIcon = itemBackground.add(new/HUD_element())
 	itemIcon.setDimensions(32,32) //todo: should be width/height of real object icon
-	itemIcon.setAlignment(3,3) //center
+	itemIcon.setAlignment(HUD_CENTER_ALIGNMENT,HUD_CENTER_ALIGNMENT) //center
 
 	//todo: remove vis_contents, use mimic icon, make wrappers for dragdrop/examine/clicks, do not alter item
 	item.pixel_x = 0 //no pixel offsets inside storage
@@ -112,7 +112,7 @@
 			var/itemBackgroundWidth = round(minBackgroundWidth * itemStorageCost/max_storage_space)
 			itemBackground.setPosition(totalWidth,0)
 			itemBackground.scaleToSize(itemBackgroundWidth)
-			itemBackground.setAlignment(0,3) //vertical center
+			itemBackground.setAlignment(HUD_NO_ALIGNMENT,HUD_CENTER_ALIGNMENT) //vertical center
 
 			setupItemBackground(itemBackground,I)
 
@@ -128,7 +128,7 @@
 		storageBackground.scaleToSize(max(totalWidth + remainingStorage, minBackgroundWidth) + paddingSides)
 
 		storageBackground.add(closeButton)
-		closeButton.setAlignment(5,3) //east of parent, center
+		closeButton.setAlignment(HUD_HORIZONTAL_EAST_OUTSIDE_ALIGNMENT,HUD_CENTER_ALIGNMENT) //east of parent, center
 
 	//slot storage based items
 	else

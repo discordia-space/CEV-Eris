@@ -49,4 +49,8 @@
 	winset(src, null, "mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true input.background-color=#D3B5B5")
 
 	if (client)
+		if(client.UI)
+			client.UI.show()
+		else
+			client.create_UI(src.type)
 		client.CAN_MOVE_DIAGONALLY = FALSE

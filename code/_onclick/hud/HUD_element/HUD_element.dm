@@ -6,6 +6,7 @@ each element can only be seen by 1 client
 element identifiers are used to manage different hud parts for clients, f.e. there can be only one "storage" identifier element displayed for a client
 */
 
+
 /HUD_element
 	parent_type = /atom/movable
 
@@ -17,6 +18,9 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 	var/HUD_element/_parent //parent element
 	var/client/_observer //each element is shown to at most 1 client
 	var/_identifier //unique identitifier for this element, if such element is already seen by a client, it is closed first
+
+	var/debugMode = FALSE
+	var/debugColor = COLOR_WHITE
 
 	var/_screenBottomLeftX = 1 //in screen_loc tiles
 	var/_screenBottomLeftY = 1
@@ -48,7 +52,27 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 	var/_passClickToParent = FALSE
 
 	var/proc/_clickProc //called when element is clicked
+	var/_holder	//object that used with called proc
+	var/list/_procArguments	//arguments that can be passed to proc
+
 	var/list/_data //internal storage that can be utilized by _clickProc
+
+	var/list/_iconOverlaysData = list()
+	var/list/_iconUnderlaysData = list()
+	var/list/_iconsBuffer = list()
+
+	/*
+	settings for animation that occur on mouse interactions
+	*/
+	var/_onClickedInteraction = FALSE
+	var/_onClickedHighlightDuration
+	var/_onClickedState = FALSE
+	
+	var/_onHoveredInteraction = FALSE
+	var/_onHoveredState = FALSE
+
+	var/_onToggledInteraction = FALSE
+	var/_onToggledState = FALSE
 
 /HUD_element/New(var/identifier)
 	_elements = new
@@ -72,12 +96,19 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 	if (parent)
 		parent.getElements().Remove(src)
 		_setParent()
+	
+	for(var/name in _iconsBuffer)
+		qdel(_iconsBuffer[name])
 
 	return QDEL_HINT_QUEUE
 
 /HUD_element/Click(location,control,params)
 	if (_clickProc)
-		call(_clickProc)(src, usr, location, control, params)
+		if(_holder)
+			call(_holder, _clickProc)(arglist(_procArguments))
+		else
+			call(_clickProc)(src, usr, location, control, params)
+
 
 	if (_passClickToParent)
 		var/HUD_element/parent = getParent()
@@ -92,3 +123,7 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 			parent = parent.hide()
 			if (!parent) //parent deleted
 				return
+
+// override if needed
+/HUD_element/DblClick(var/location, var/control, var/params)
+	return
