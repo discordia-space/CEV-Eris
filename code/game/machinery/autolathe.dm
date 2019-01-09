@@ -74,7 +74,7 @@
 	return ..()
 
 
-/obj/machinery/autolathe/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/autolathe/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = 0)
 	var/list/data = list()
 
 	data["disk"] = disk_name()
@@ -201,13 +201,18 @@
 		// open the new ui window
 		ui.open()
 
-
 /obj/machinery/autolathe/attackby(var/obj/item/I, var/mob/user)
 	if(default_deconstruction(I, user))
 		return
 
 	if(default_part_replacement(I, user))
 		return
+
+	if(istype(I, /obj/item/weapon/disk/autolathe_disk))
+		insert_disk(user)
+	
+	if(istype(I,/obj/item/stack))
+		eat(user)
 
 	user.set_machine(src)
 	ui_interact(user)
@@ -270,6 +275,19 @@
 		if(recipe)
 			if(queue.len < queue_max)
 				queue.Add(recipe)
+			else
+				usr << SPAN_NOTICE(" \The [src]'s queue is full.")
+
+	if(href_list["add_to_queue_several"])
+		var/recipe = text2path(href_list["add_to_queue_several"])
+		if(recipe)
+			var/datum/autolathe/recipe/R = recipe
+			var/amount = input("How many \"[initial(R.name)]\" you want to print ?", "Print several") as null|num
+			if(amount && (queue.len + amount) < queue_max)
+				for(var/i = 1, i <= amount, i++)
+					queue.Add(recipe)
+			else if (amount)
+				usr << SPAN_NOTICE("Not enough free postions in \the [src]'s queue.")
 
 	if(href_list["remove_from_queue"])
 		var/ind = text2num(href_list["remove_from_queue"])
@@ -361,8 +379,14 @@
 		return FALSE
 
 	if(!eating.matter || !eating.matter.len)
-		user << SPAN_NOTICE("\The [eating] does not contain significant amounts of useful materials and cannot be accepted.")
-		return
+		user << SPAN_NOTICE("\The [src] refuses to accept \the [eating] as it has non-null license.")
+		return FALSE
+
+	if(istype(eating, /obj/item/weapon/disk/autolathe_disk))
+		var/obj/item/weapon/disk/autolathe_disk/disk = eating
+		if(disk.license)
+			user << SPAN_NOTICE("\The [eating] does not contain significant amounts of useful materials and cannot be accepted.")
+			return
 
 	var/filltype = 0       // Used to determine message.
 	var/reagents_filltype = 0
@@ -475,6 +499,9 @@
 	return
 
 /obj/machinery/autolathe/proc/print_post()
+	if(!queue.len)
+		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1 -3)
+		visible_message("\icon[src]\The [src] pings indicating that queue is complete.")
 	return
 
 
