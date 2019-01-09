@@ -379,13 +379,13 @@
 		return FALSE
 
 	if(!eating.matter || !eating.matter.len)
-		user << SPAN_NOTICE("\The [src] refuses to accept \the [eating] as it has non-null license.")
+		user << SPAN_NOTICE("\The [eating] does not contain significant amounts of useful materials and cannot be accepted.")
 		return FALSE
 
 	if(istype(eating, /obj/item/weapon/disk/autolathe_disk))
 		var/obj/item/weapon/disk/autolathe_disk/disk = eating
 		if(disk.license)
-			user << SPAN_NOTICE("\The [eating] does not contain significant amounts of useful materials and cannot be accepted.")
+			user << SPAN_NOTICE("\The [src] refuses to accept \the [eating] as it has non-null license.")
 			return
 
 	var/filltype = 0       // Used to determine message.
