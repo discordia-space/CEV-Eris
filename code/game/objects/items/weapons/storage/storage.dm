@@ -55,7 +55,7 @@
 
 	var/HUD_element/itemIcon = itemBackground.add(new/HUD_element())
 	itemIcon.setDimensions(32,32) //todo: should be width/height of real object icon
-	itemIcon.setAlignment(3,3) //center
+	itemIcon.setAlignment(HUD_CENTER_ALIGNMENT,HUD_CENTER_ALIGNMENT) //center
 
 	//todo: remove vis_contents, use mimic icon, make wrappers for dragdrop/examine/clicks, do not alter item
 	item.pixel_x = 0 //no pixel offsets inside storage
@@ -112,7 +112,7 @@
 			var/itemBackgroundWidth = round(minBackgroundWidth * itemStorageCost/max_storage_space)
 			itemBackground.setPosition(totalWidth,0)
 			itemBackground.scaleToSize(itemBackgroundWidth)
-			itemBackground.setAlignment(0,3) //vertical center
+			itemBackground.setAlignment(HUD_NO_ALIGNMENT,HUD_CENTER_ALIGNMENT) //vertical center
 
 			setupItemBackground(itemBackground,I)
 
@@ -128,7 +128,7 @@
 		storageBackground.scaleToSize(max(totalWidth + remainingStorage, minBackgroundWidth) + paddingSides)
 
 		storageBackground.add(closeButton)
-		closeButton.setAlignment(5,3) //east of parent, center
+		closeButton.setAlignment(HUD_HORIZONTAL_EAST_OUTSIDE_ALIGNMENT,HUD_CENTER_ALIGNMENT) //east of parent, center
 
 	//slot storage based items
 	else
@@ -472,20 +472,32 @@
 
 
 /obj/item/weapon/storage/resolve_attackby(atom/A, mob/user)
-	if(collection_mode && isturf(A) || istype(A, /obj/item))
-		if(collectItems(get_turf(A), user))
-			return
+	if(src.verbs.Find(/obj/item/weapon/storage/verb/toggle_gathering_mode))
+		if(collection_mode && isturf(A) || istype(A, /obj/item))
+			if(collectItems(get_turf(A), user))
+				return TRUE
+	//Clicking on tile with no collectible items will empty it, if it has the verb to do that.
+	if(src.verbs.Find(/obj/item/weapon/storage/verb/quick_empty))
+		if(isturf(A))
+			src.quick_empty(A)
+			return TRUE
+	
 	return ..()
 
-
-/obj/item/weapon/storage/verb/quick_empty()
+/obj/item/weapon/storage/verb/quick_empty(var/turf/target)
 	set name = "Empty Contents"
 	set category = "Object"
 
 	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
 		return
 
-	var/turf/T = get_turf(src)
+	var/turf/T
+	if(isturf(target))
+		T = target
+	else
+		T = get_turf(src)
+	if(!istype(T))
+		return
 	hide_from(usr)
 	for(var/obj/item/I in contents)
 		remove_from_storage(I, T)
@@ -515,11 +527,9 @@
 	..()
 
 /obj/item/weapon/storage/attack_self(mob/user as mob)
-	//Clicking on itself will empty it, if it has the verb to do that.
-	if(user.get_active_hand() == src)
-		if(src.verbs.Find(/obj/item/weapon/storage/verb/quick_empty))
-			src.quick_empty()
-			return 1
+	if(user.get_active_hand() == src && user.get_inactive_hand() == null)
+		if(user.swap_hand())
+			open(user)
 
 /obj/item/weapon/storage/proc/make_exact_fit()
 	storage_slots = contents.len

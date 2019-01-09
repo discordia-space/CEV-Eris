@@ -10,7 +10,6 @@
 		return
 
 	cameranet.process_sort()
-
 	var/list/T = list()
 	for (var/obj/machinery/camera/C in cameranet.cameras)
 		var/list/tempnetwork = C.network&src.network
@@ -21,17 +20,18 @@
 	track.cameras = T
 	return T
 
-
-/mob/living/silicon/ai/proc/ai_camera_list(var/camera in get_camera_list())
+/mob/living/silicon/ai/proc/ai_camera_list()
 	set category = "Silicon Commands"
 	set name = "Show Camera List"
 
 	if(check_unable())
 		return
-
-	if (!camera)
+	var/list/cameras = get_camera_list()
+	if (!cameras.len)
 		return 0
-
+	var/camera = input(src, "Choose a camera:", "Registered cameras") as null|anything in cameras
+	if(!camera)
+		return
 	var/obj/machinery/camera/C = track.cameras[camera]
 	src.eyeobj.setLoc(C)
 
@@ -125,11 +125,12 @@
 	src.track = TB
 	return targets
 
-/mob/living/silicon/ai/proc/ai_camera_track(var/target_name in trackable_mobs())
+/mob/living/silicon/ai/proc/ai_camera_track()
 	set category = "Silicon Commands"
 	set name = "Follow With Camera"
 	set desc = "Select who you would like to track."
 
+	var/target_name = input(src, "Select who you would like to track.", "Follow with cameras") as null|anything in trackable_mobs()
 	if(src.stat == 2)
 		src << "You can't follow [target_name] with cameras because you are dead!"
 		return
@@ -210,7 +211,7 @@
 	return L
 
 
-mob/living/proc/near_camera()
+/mob/living/proc/near_camera()
 	if (!isturf(loc))
 		return 0
 	else if(!cameranet.checkVis(src))

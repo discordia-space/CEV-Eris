@@ -137,6 +137,7 @@
 			//observer.key = key
 			observer.ckey = ckey
 			observer.initialise_postkey()
+			observer.client.create_UI()
 			qdel(src)
 
 			return 1
