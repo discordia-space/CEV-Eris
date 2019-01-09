@@ -283,6 +283,7 @@
 #include "code\datums\helper_datums\global_iterator.dm"
 #include "code\datums\helper_datums\teleport.dm"
 #include "code\datums\helper_datums\topic_input.dm"
+#include "code\datums\objective\abduct.dm"
 #include "code\datums\music_tracks\_music_track.dm"
 #include "code\datums\music_tracks\ambispace.dm"
 #include "code\datums\music_tracks\comet_haley.dm"
