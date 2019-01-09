@@ -274,3 +274,9 @@ Proc for attack log creation, because really why not
 		return TRUE
 
 	return FALSE
+
+/proc/mob_hearers(var/atom/movable/heard_atom, var/range = world.view)
+	. = list()
+
+	for(var/mob/hmob in hearers(range, heard_atom))
+		. |= hmob

@@ -496,7 +496,6 @@ its easier to just keep the beam vertical.
 		cur_y = y_arr.Find(src.z)
 		if(cur_y)
 			break
-//	world << "X = [cur_x]; Y = [cur_y]"
 	if(cur_x && cur_y)
 		return list("x"=cur_x, "y"=cur_y)
 	else
@@ -645,3 +644,11 @@ its easier to just keep the beam vertical.
 //Returns a list of things in this atom, can be overridden for more nuanced behaviour
 /atom/proc/get_contents()
 	return contents
+
+
+/atom/proc/get_recursive_contents()
+	var/list/result = list()
+	for (var/atom/a in contents)
+		result += a
+		result |= a.get_recursive_contents()
+	return result
