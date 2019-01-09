@@ -15,6 +15,16 @@
 				turfs += T
 	return turfs
 
+//Returns everything in an area based on type, searching recursively
+/proc/get_area_contents(var/areatype)
+	var/list/turf/LT = get_area_turfs(areatype)
+	var/list/contents = list()
+	for (var/turf/T in LT)
+		contents |= T.get_recursive_contents()
+
+	return contents
+
+
 /proc/pick_area_turf(var/areatype, var/list/predicates)
 	var/list/turfs = get_area_turfs(areatype, predicates)
 	if(turfs && turfs.len)

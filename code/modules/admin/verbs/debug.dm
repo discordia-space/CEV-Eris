@@ -375,10 +375,28 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_tog_aliens, R_DEBUG, FALSE)
 	for(var/areatype in areas_without_camera)
 		world << "* [areatype]"
 
+
 ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 /client/proc/cmd_admin_dress()
 	set category = "Fun"
 	set name = "Select equipment"
+
+	var/mob/living/carbon/human/M = input("Select mob.", "Select equipment.") as null|anything in human_mob_list
+	if(!M) return
+
+	var/list/dresspacks = outfits()
+	var/decl/hierarchy/outfit/dresscode = input("Select dress for [M]", "Robust quick dress shop") as null|anything in dresspacks
+	if (isnull(dresscode))
+		return
+
+	dresscode.equip(M)
+
+
+//Preserving the old one for now, so the dress lists in it can be converted into real outfits
+ADMIN_VERB_ADD(/client/proc/cmd_admin_dress_old, R_FUN, FALSE)
+/client/proc/cmd_admin_dress_old()
+	set category = "Fun"
+	set name = "Select equipment OLD"
 
 	var/mob/living/carbon/human/M = input("Select mob.", "Select equipment.") as null|anything in human_mob_list
 	if(!M) return

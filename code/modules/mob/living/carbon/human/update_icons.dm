@@ -312,7 +312,7 @@ var/global/list/damage_icon_parts = list()
 
 /mob/living/carbon/human/proc/update_underwear(var/update_icons=1)
 	overlays_standing[UNDERWEAR_LAYER] = null
-	
+
 	if(species.appearance_flags & HAS_UNDERWEAR)
 		var/icon/underwear = new/icon(body_build.underwear_icon, "blank")
 		for(var/entry in worn_underwear)
@@ -605,9 +605,18 @@ var/global/list/damage_icon_parts = list()
 
 /mob/living/carbon/human/update_inv_s_store(var/update_icons=1)
 	if(s_store)
+		var/store_icon = body_build.s_store_icon
 		var/t_state = s_store.item_state
 		if(!t_state)	t_state = s_store.icon_state
-		overlays_standing[SUIT_STORE_LAYER]	= image(icon = body_build.s_store_icon, icon_state = t_state)
+
+		//Special case here. We will check if the suit store icon contains our desired iconstate
+		//If not we will use the mob's back icon instead. This allows reusing back icons for shoulder-slung guns
+		var/icon/test = new (store_icon)
+		if (!(t_state in icon_states(test)))
+			store_icon = get_back_icon()
+
+
+		overlays_standing[SUIT_STORE_LAYER]	= image(icon = store_icon, icon_state = t_state)
 	else
 		overlays_standing[SUIT_STORE_LAYER]	= null
 	if(update_icons)   update_icons()
@@ -757,7 +766,9 @@ var/global/list/damage_icon_parts = list()
 	if(update_icons)   update_icons()
 
 
-/mob/living/carbon/human/update_inv_back(var/update_icons=1)
+
+//Seperate proc because this is reused for suit storage
+/mob/living/carbon/human/proc/get_back_icon()
 	if(back)
 		//determine the icon to use
 		var/icon/overlay_icon
@@ -773,11 +784,18 @@ var/global/list/damage_icon_parts = list()
 		else
 			overlay_icon = body_build.backpack_icon
 
+		return overlay_icon
+
+	else return body_build.backpack_icon
+
+/mob/living/carbon/human/update_inv_back(var/update_icons=1)
+	//determine the icon to use
+	var/icon/overlay_icon = get_back_icon()
+	if(back && overlay_icon)
 		//determine state to use
-		var/overlay_state = back.icon_state
+		var/overlay_state = back.item_state
 		if(back.item_state_slots && back.item_state_slots[slot_back_str])
 			overlay_state = back.item_state_slots[slot_back_str]
-
 
 		//apply color
 		var/image/standing = image(icon = overlay_icon, icon_state = overlay_state)

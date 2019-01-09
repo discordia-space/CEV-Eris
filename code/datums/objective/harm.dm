@@ -15,6 +15,8 @@
 	return "([last_harm_points] injure points)"
 
 /datum/objective/harm/update_completion()
+	if (failed)
+		return FALSE
 	if(completed)
 		return
 	var/harm_points = 0

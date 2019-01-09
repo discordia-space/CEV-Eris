@@ -158,7 +158,7 @@
 	item_state = "flare"
 
 	storage_slots = 5
-	w_class = ITEM_SIZE_SMALL
+	w_class = ITEM_SIZE_NORMAL
 
 	can_hold = list(
 		/obj/item/device/lighting/glowstick,
@@ -166,7 +166,7 @@
 		/obj/item/weapon/reagent_containers/glass/beaker/vial,
 		/obj/item/weapon/reagent_containers/hypospray,
 		/obj/item/weapon/pen,
-		/obj/item/weapon/storage/box/pillbottles
+		/obj/item/weapon/storage/pill_bottle
 		)
 
 /obj/item/weapon/storage/pouch/flare/vial
@@ -200,7 +200,11 @@
 		/obj/item/weapon/gun/projectile/mk58,
 		/obj/item/weapon/gun/projectile/olivaw,
 		/obj/item/weapon/gun/projectile/silenced,
-		/obj/item/weapon/gun/energy/gun/martin,
+		/obj/item/weapon/gun/energy/gun,
+		/obj/item/weapon/gun/energy/retro,
+		/obj/item/weapon/gun/energy/chameleon,
+		/obj/item/weapon/gun/energy/captain,
+		/obj/item/weapon/gun/energy/stunrevolver,
 		/obj/item/weapon/gun/projectile/revolver)
 
 	sliding_behavior = TRUE

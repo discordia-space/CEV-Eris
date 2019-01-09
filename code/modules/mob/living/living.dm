@@ -311,7 +311,8 @@ default behaviour is:
 
 // ++++ROCKDTBEN++++ MOB PROCS //END
 
-/mob/proc/get_contents()
+/mob/get_contents()
+	return contents
 
 
 //Recursive function to find everything a mob is holding.

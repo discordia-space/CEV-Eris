@@ -28,7 +28,7 @@
 	return TRUE
 
 
-turf/simulated/floor/plating
+/turf/simulated/floor/plating
 	icon = 'icons/turf/flooring/plating.dmi'
 	name = "plating"
 	icon_state = "plating"

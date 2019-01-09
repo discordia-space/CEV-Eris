@@ -23,7 +23,6 @@ var/z_levels = 0 // Each bit represents a connection between adjacent levels.  S
 /proc/GetBelow(var/atom/atom)
 	var/turf/turf = get_turf(atom)
 	if(!turf)
-		world << "No turf"
 		return null
 	return HasBelow(turf.z) ? get_step(turf, DOWN) : null
 

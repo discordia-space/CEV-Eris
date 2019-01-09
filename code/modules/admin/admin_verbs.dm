@@ -473,13 +473,15 @@ ADMIN_VERB_ADD(/client/proc/change_security_level, R_ADMIN, FALSE)
 	set category = "Admin"
 
 	if(!check_rights(R_ADMIN))	return
-	var sec_level = input(usr, "It's currently code [get_security_level()].", "Select Security Level")  as null|anything in (list("green","blue","red")-get_security_level())
-	if(!sec_level)
+
+	var/decl/security_state/security_state = decls_repository.get_decl(maps_data.security_state)
+	var/decl/security_level/new_security_level = input(usr, "It's currently [security_state.current_security_level.name].", "Select Security Level")  as null|anything in (security_state.all_security_levels - security_state.current_security_level)
+	if(!new_security_level)
 		return
 
-	if(alert("Switch from code [get_security_level()] to code [sec_level]?","Change security level?","Yes","No") == "Yes")
-		set_security_level(sec_level)
-		log_admin("[key_name(usr)] changed the security level to code [sec_level].")
+	if(alert("Switch from code [security_state.current_security_level.name] to [new_security_level.name]?","Change security level?","Yes","No") == "Yes")
+		security_state.set_security_level(new_security_level, TRUE)
+		log_admin("[key_name(usr)] changed the security level to code [new_security_level].")
 
 
 //---- bs12 verbs ----

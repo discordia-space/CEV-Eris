@@ -85,6 +85,11 @@
 			target.ex_act(2) // c4 can't gib mobs anymore.
 		else
 			target.ex_act(1)
+
+	//Girders are a pain, just delete em
+	for (var/obj/structure/girder/G in loc)
+		qdel(G)
+
 	if(target)
 		target.overlays -= image_overlay
 	qdel(src)

@@ -222,7 +222,6 @@ It focuses on spawning large numbers of moderate-to-weak monsters, and includes 
 
 
 /datum/event/infestation/announce()
-	world << "Infestation announce"
 	//Occasional chance to play the same generic announcement as spiders and carp
 	//Just to screw with the metagamers even more
 	if (prob(8))

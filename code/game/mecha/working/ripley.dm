@@ -38,11 +38,12 @@
 	opacity=0
 	lights_power = 60
 	wreckage = /obj/effect/decal/mecha_wreckage/ripley/deathripley
-	step_energy_drain = 0
 
 /obj/mecha/working/ripley/deathripley/New()
 	..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/tool/safety_clamp
+	ME.attach(src)
+	ME = new /obj/item/mecha_parts/mecha_equipment/thruster
 	ME.attach(src)
 	return
 

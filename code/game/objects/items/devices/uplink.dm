@@ -76,12 +76,13 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	var/datum/uplink_category/category 	= 0		// The current category we are in
 	var/exploit_id								// Id of the current exploit record we are viewing
 	var/trigger_code
+	var/emplaced = FALSE
 
 
 // The hidden uplink MUST be inside an obj/item's contents.
 /obj/item/device/uplink/hidden/New(var/location, var/datum/mind/owner, var/telecrystals = DEFAULT_TELECRYSTAL_AMOUNT)
 	spawn(2)
-		if(!istype(src.loc, /obj/item))
+		if(!istype(src.loc, /obj))
 			qdel(src)
 	..()
 	nanoui_data = list()
@@ -121,13 +122,16 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)	// No auto-refresh
-		ui = new(user, src, ui_key, "uplink.tmpl", title, 450, 600, state =GLOB.inventory_state)
+		if (emplaced)
+			ui = new(user, src, ui_key, "uplink.tmpl", title, 450, 600, state =GLOB.default_state)
+		else
+			ui = new(user, src, ui_key, "uplink.tmpl", title, 450, 600, state =GLOB.inventory_state)
 		ui.set_initial_data(data)
 		ui.open()
 
 
 // Interaction code. Gathers a list of items purchasable from the paren't uplink and displays it. It also adds a lock button.
-/obj/item/device/uplink/hidden/interact(mob/user)
+/obj/item/device/uplink/interact(mob/user)
 	ui_interact(user)
 
 // The purchasing code.
@@ -240,3 +244,26 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	..(loc)
 	hidden_uplink = new(src, mind, crystal_amount)
 	hidden_uplink.uses = DEFAULT_TELECRYSTAL_AMOUNT
+
+
+
+//Uplink beacon
+//A large dense uplink object that can't be moved. Designed for use by team antags on their shuttles
+/obj/structure/uplink
+	name = "Uplink Beacon"
+	icon = 'icons/obj/supplybeacon.dmi'
+	desc = "A bulky machine used for teleporting in supplies from a benefactor."
+	icon_state = "beacon"
+	var/obj/item/device/uplink/hidden/uplink
+	var/telecrystals = 100
+	density = TRUE
+	anchored = TRUE
+
+/obj/structure/uplink/New()
+	uplink = new(src, null, telecrystals)
+	uplink.update_nano_data()
+	uplink.emplaced = TRUE
+	..()
+
+/obj/structure/uplink/attack_hand(var/mob/user)
+	uplink.trigger(user)

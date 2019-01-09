@@ -13,12 +13,11 @@ datum/preferences
 datum/preferences/proc/update_preview_icon(var/naked = FALSE)
 	var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin(client_ckey)
 	mannequin.delete_inventory(TRUE)
-	if(SSticker.current_state == GAME_STATE_STARTUP)
-		return mannequin.icon
-	dress_preview_mob(mannequin, naked)
-
 	preview_icon = icon('icons/effects/96x64.dmi', bgstate)
 
+	if(SSticker.current_state > GAME_STATE_STARTUP)
+		dress_preview_mob(mannequin, naked)
+	
 	preview_east = getFlatIcon(mannequin, EAST, always_use_defdir = 1)
 
 	mannequin.dir = WEST

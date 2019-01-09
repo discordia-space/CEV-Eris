@@ -11,7 +11,6 @@
 		slot_r_hand_str = 'icons/mob/items/righthand_backpacks.dmi',
 		)
 	icon_state = "backpack"
-	item_state = null
 	//most backpacks use the default backpack state for inhand overlays
 	item_state_slots = list(
 		slot_l_hand_str = "backpack",
@@ -20,8 +19,13 @@
 	w_class = ITEM_SIZE_LARGE
 	slot_flags = SLOT_BACK
 	max_w_class = ITEM_SIZE_LARGE
-	max_storage_space = 49
+	max_storage_space = 40
 	var/worn_access = FALSE
+
+/obj/item/weapon/storage/backpack/New()
+	if (!item_state)
+		item_state = icon_state
+	..()
 
 /obj/item/weapon/storage/backpack/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (!worn_check())
@@ -29,7 +33,12 @@
 	..()
 
 /obj/item/weapon/storage/backpack/attack_hand(mob/user)
-	if (!worn_check())
+	if (!worn_check(no_message = TRUE))
+		if(src.loc != user || user.incapacitated())
+			return
+		if (!user.unEquip(src))
+			return
+		user.put_in_active_hand(src)
 		return
 	..()
 
@@ -47,12 +56,13 @@
 	..()
 
 
-/obj/item/weapon/storage/backpack/proc/worn_check()
+/obj/item/weapon/storage/backpack/proc/worn_check(var/no_message = FALSE)
 	if(!worn_access && is_worn())
 		var/mob/living/L = loc
 		if (istype(L))
-			to_chat(L, "<span class='warning'>Oh no! Your arms are not long enough to open [src] while it is on your back!</span>")
-		if (use_sound)
+			if(!no_message)
+				to_chat(L, "<span class='warning'>Oh no! Your arms are not long enough to open [src] while it is on your back!</span>")
+		if (!no_message && use_sound)
 			playsound(loc, use_sound, 50, 1, -5)
 		return FALSE
 
@@ -110,6 +120,14 @@
 	desc = "It's a very robust backpack."
 	icon_state = "securitypack"
 	item_state_slots = null
+
+//Used by mercs
+/obj/item/weapon/storage/backpack/military
+	name = "MOLLE pack"
+	desc = "Designed for planetary infantry, holds a lot of equipment."
+	icon_state = "militarypack"
+	item_state_slots = null
+	max_storage_space = 50
 
 /obj/item/weapon/storage/backpack/captain
 	name = "captain's backpack"

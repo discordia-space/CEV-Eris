@@ -3,6 +3,7 @@
 	// Base vars
 	var/list/objectives = list()
 
+	var/objective_quantity = 1 //How many random objectives will we create.
 	var/list/possible_objectives = list()
 	var/survive_objective = /datum/objective/escape
 

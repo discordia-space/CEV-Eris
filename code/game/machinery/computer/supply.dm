@@ -75,14 +75,14 @@
 			//all_supply_groups
 			//Request what?
 			last_viewed_group = "categories"
-			//temp = "<b>Guild Credits: $[get_supply_credits()]</b><BR>"
+			//temp = "<b>Guild Credits: [CREDS][get_supply_credits()]</b><BR>"
 			temp += "<A href='?src=\ref[src];mainmenu=1'>Main Menu</A><HR><BR><BR>"
 			temp += "<b>Select a category</b><BR><BR>"
 			for(var/supply_group_name in all_supply_groups )
 				temp += "<A href='?src=\ref[src];order=[supply_group_name]'>[supply_group_name]</A><BR>"
 		else
 			last_viewed_group = href_list["order"]
-			//temp = "<b>Guild Credits: $[get_supply_credits()]</b><BR>"
+			//temp = "<b>Guild Credits: [CREDS][get_supply_credits()]</b><BR>"
 			temp += "<A href='?src=\ref[src];order=categories'>Back to all categories</A><HR><BR><BR>"
 			temp += "<b>Request from: [last_viewed_group]</b><BR><BR>"
 			for(var/supply_name in SSsupply.supply_packs)
@@ -205,7 +205,7 @@
 						dat += "*Shuttle is busy*"
 					dat += "<BR>\n<BR>"
 
-		dat += {"<HR>\n<b>Guild Credits: $[get_supply_credits()]</b><BR>\n<BR>
+		dat += {"<HR>\n<b>Guild Credits: [CREDS][get_supply_credits()]</b><BR>\n<BR>
 		<A href='?src=\ref[src];viewmes=1'>View messages</A><BR><BR>
 		\n<A href='?src=\ref[src];order=categories'>Order items</A><BR>\n<BR>
 		\n<A href='?src=\ref[src];viewrequests=1'>View requests</A><BR>\n<BR>
@@ -268,14 +268,14 @@
 			//all_supply_groups
 			//Request what?
 			last_viewed_group = "categories"
-			temp = "<b>Guild Credits: $[get_supply_credits()]</b><BR>"
+			temp = "<b>Guild Credits: [CREDS][get_supply_credits()]</b><BR>"
 			temp += "<A href='?src=\ref[src];mainmenu=1'>Main Menu</A><HR><BR><BR>"
 			temp += "<b>Select a category</b><BR><BR>"
 			for(var/supply_group_name in all_supply_groups )
 				temp += "<A href='?src=\ref[src];order=[supply_group_name]'>[supply_group_name]</A><BR>"
 		else
 			last_viewed_group = href_list["order"]
-			temp = "<b>Guild Credits: $[get_supply_credits()]</b><BR>"
+			temp = "<b>Guild Credits: [CREDS][get_supply_credits()]</b><BR>"
 			temp += "<A href='?src=\ref[src];order=categories'>Back to all categories</A><HR><BR><BR>"
 			temp += "<b>Request from: [last_viewed_group]</b><BR><BR>"
 			for(var/supply_name in SSsupply.supply_packs)
