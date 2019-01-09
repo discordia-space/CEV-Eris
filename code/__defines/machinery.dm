@@ -28,7 +28,6 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 //#define FRAME_HORIZONTAL 2
 
 // Camera networks
-#define NETWORK_AI "AI"
 #define NETWORK_CRESCENT "Crescent"
 #define NETWORK_FIRST_SECTION "First Section"
 #define	NETWORK_SECOND_SECTION "Second Section"

@@ -6,8 +6,6 @@ var/list/ai_verbs_default = list(
 	/mob/living/silicon/ai/proc/ai_movement_up,
 	/mob/living/silicon/ai/proc/ai_movement_down,
 	/mob/living/silicon/ai/proc/ai_announcement,
-	/mob/living/silicon/ai/proc/ai_call_shuttle,
-	// /mob/living/silicon/ai/proc/ai_recall_shuttle,
 	/mob/living/silicon/ai/proc/ai_emergency_message,
 	/mob/living/silicon/ai/proc/ai_camera_track,
 	/mob/living/silicon/ai/proc/ai_camera_list,
@@ -54,7 +52,22 @@ var/list/ai_verbs_default = list(
 	status_flags = CANSTUN|CANPARALYSE|CANPUSH
 //	shouldnt_see = list()
 	universal_understand = TRUE
-	var/list/network = list(NETWORK_AI)
+	var/list/network = list(NETWORK_FIRST_SECTION,
+							NETWORK_SECOND_SECTION,
+							NETWORK_THIRD_SECTION,
+							NETWORK_FOURTH_SECTION,
+							NETWORK_COMMAND,
+							NETWORK_ENGINE,
+							NETWORK_ENGINEERING,
+							NETWORK_CEV_ERIS,
+							NETWORK_MINE,
+							NETWORK_PRISON,
+							NETWORK_MEDICAL,
+							NETWORK_RESEARCH,
+							NETWORK_RESEARCH_OUTPOST,
+							NETWORK_SECURITY,
+							NETWORK_TELECOM
+							)
 	var/obj/machinery/camera/camera = null
 	var/list/connected_robots = list()
 	var/aiRestorePowerRoutine = 0
@@ -388,35 +401,6 @@ var/list/ai_verbs_default = list(
 	message_cooldown = 1
 	spawn(600)//One minute cooldown
 		message_cooldown = 0
-
-/mob/living/silicon/ai/proc/ai_call_shuttle()
-	set category = "Silicon Commands"
-	set name = "Call Emergency Shuttle"
-
-	if(check_unable(AI_CHECK_WIRELESS))
-		return
-
-	var/confirm = alert("Are you sure you want to evacuate?", "Confirm Evacuation", "Yes", "No")
-
-	if(check_unable(AI_CHECK_WIRELESS))
-		return
-
-	if(confirm == "Yes")
-		call_shuttle_proc(src)
-
-/mob/living/silicon/ai/proc/ai_recall_shuttle()
-	set category = "Silicon Commands"
-	set name = "Recall Emergency Shuttle"
-
-	if(check_unable(AI_CHECK_WIRELESS))
-		return
-
-	var/confirm = alert("Are you sure you want to recall the shuttle?", "Confirm Shuttle Recall", "Yes", "No")
-	if(check_unable(AI_CHECK_WIRELESS))
-		return
-
-	if(confirm == "Yes")
-		cancel_call_proc(src)
 
 /mob/living/silicon/ai/var/emergency_message_cooldown = 0
 /mob/living/silicon/ai/proc/ai_emergency_message()

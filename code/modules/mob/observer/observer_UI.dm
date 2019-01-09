@@ -31,6 +31,6 @@
 	// #####	ALIGNING LAYOUTS TO SCREEN    #####
 	//panels is aligned to screen because they have no parent
 	//actionPanel.setAlignment(HUD_CENTER_ALIGNMENT, HUD_VERTICAL_SOUTH_INSIDE_ALIGNMENT)
-	navigationPanel.setAlignment(HUD_HORIZONTAL_EAST_INSIDE_ALIGNMENT, HUD_CENTER_ALIGNMENT)
+	navigationPanel.setAlignment(HUD_HORIZONTAL_EAST_INSIDE_ALIGNMENT, HUD_VERTICAL_SOUTH_INSIDE_ALIGNMENT)
 
 	postBuildUI()
