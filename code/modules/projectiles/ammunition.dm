@@ -67,6 +67,7 @@
 		else
 			user << "\blue You inscribe \"[label_text]\" into \the [initial(BB.name)]."
 			BB.name = "[initial(BB.name)] (\"[label_text]\")"
+		return TRUE
 	else if(istype(I, /obj/item/ammo_casing) && (src.amount != src.maxamount) && (src.desc == I.desc))
 		var/obj/item/ammo_casing/merged_casing = I
 		if((!src.BB && !merged_casing.BB) || (src.BB && merged_casing.BB))
@@ -78,6 +79,7 @@
 				src.amount += 1
 				QDEL_NULL(merged_casing)
 			src.update_icon()
+			return TRUE
 
 
 /obj/item/ammo_casing/update_icon()
@@ -154,31 +156,23 @@
 /obj/item/ammo_magazine/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = W
-		if(C.caliber != caliber)
-			user << SPAN_WARNING("[C] does not fit into [src].")
-			return
 		if(stored_ammo.len >= max_ammo)
 			user << SPAN_WARNING("[src] is full!")
 			return
-		if(C.amount > 1)
-			C.amount -= 1
-			var/obj/item/ammo_casing/inserted_casing = new /obj/item/ammo_casing(src)
-			inserted_casing.desc = C.desc
-			inserted_casing.caliber = C.caliber
-			inserted_casing.projectile_type = C.projectile_type
-			inserted_casing.icon_state = C.icon_state
-			inserted_casing.spent_icon = C.spent_icon
-			inserted_casing.maxamount = C.maxamount
-			if(ispath(inserted_casing.projectile_type) && C.BB)
-				inserted_casing.BB = new inserted_casing.projectile_type(inserted_casing)
-			C.update_icon()
-			inserted_casing.update_icon()
-			stored_ammo.Insert(1, inserted_casing)
+		if(C.caliber != caliber)
+			user << SPAN_WARNING("[C] does not fit into [src].")
+			return
+		if(stored_ammo.len)
+			var/obj/item/ammo_casing/T = removeCasing()
+			if(T)
+				if(!C.attackby(T,user))
+					if(C.amount >= C.maxamount)
+						user << SPAN_WARNING("You cant hold more ammo.")
+					else if(T.desc != C.desc)
+						user << SPAN_WARNING("Inscribed ammo wont stack.")
+					insertCasing(T)
 		else
-			user.remove_from_mob(C)
-			C.loc = src
-			stored_ammo.Insert(1, C) //add to the head of the list
-		update_icon()
+			insertCasing(C)
 	else if(istype(W, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/other = W
 		if(!src.stored_ammo.len)
@@ -188,31 +182,96 @@
 			user << SPAN_WARNING("You stop loading ammo into [other]")
 			return
 		for(var/obj/item/ammo in src.stored_ammo)
-			other.attackby(ammo, user)
-			if(ammo in other.stored_ammo)
-				src.stored_ammo -= ammo
+			if(other.stored_ammo.len >= other.max_ammo)
+				break
+			var/obj/item/ammo_casing/T = removeCasing()
+			if(T)
+				other.insertCasing(T)
 			else
-				return
+				break
 		user << SPAN_NOTICE("You're done here")
 
+/obj/item/ammo_magazine/proc/insertCasing(var/obj/item/ammo_casing/C)
+	if(!istype(C))
+		return FALSE
+	if(C.caliber != caliber)
+		return FALSE
+	if(stored_ammo.len >= max_ammo)
+		return FALSE
+	if(C.amount > 1)
+		C.amount -= 1
+		var/obj/item/ammo_casing/inserted_casing = new /obj/item/ammo_casing(src)
+		inserted_casing.desc = C.desc
+		inserted_casing.caliber = C.caliber
+		inserted_casing.projectile_type = C.projectile_type
+		inserted_casing.icon_state = C.icon_state
+		inserted_casing.spent_icon = C.spent_icon
+		inserted_casing.maxamount = C.maxamount
+		if(ispath(inserted_casing.projectile_type) && C.BB)
+			inserted_casing.BB = new inserted_casing.projectile_type(inserted_casing)
+		C.update_icon()
+		inserted_casing.update_icon()
+		stored_ammo.Insert(1, inserted_casing)
+	else
+		if(istype(C.loc,/mob))
+			var/mob/M = C.loc
+			M.remove_from_mob(C)
+		C.loc = src
+		stored_ammo.Insert(1, C) //add to the head of the list
+	update_icon()
+	return TRUE
+
+/obj/item/ammo_magazine/proc/removeCasing()
+	if(stored_ammo.len)
+		var/obj/item/ammo_casing/AC = stored_ammo[1]
+		stored_ammo -= AC
+		if(!stored_ammo.len)
+			stored_ammo.Cut()
+		update_icon()
+		return AC
+	
 /obj/item/ammo_magazine/attack_hand(mob/living/user)
 	if(user.get_inactive_hand() == src && stored_ammo.len)
-		var/obj/item/ammo_casing/AC = stored_ammo[1]
-		if(user.put_in_active_hand(AC))
-			stored_ammo -= AC
-		update_icon()
+		var/obj/item/ammo_casing/AC = removeCasing()
+		if(AC)
+			user.put_in_active_hand(AC)
 	else
 		return ..()
 
 /obj/item/ammo_magazine/attack_self(mob/user)
-	if(!stored_ammo.len)
-		user << SPAN_NOTICE("[src] is already empty!")
+	quick_empty()
+
+/obj/item/ammo_magazine/resolve_attackby(atom/A, mob/user)
+	//Clicking on tile with no collectible items will empty it, if it has the verb to do that.
+	if(isturf(A))
+		src.quick_empty(A)
+		return TRUE
+	return ..()
+
+/obj/item/ammo_magazine/verb/quick_empty(var/turf/target)
+	set name = "Empty Ammo Container"
+	set category = "Object"
+
+	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
 		return
-	user << SPAN_NOTICE("You take ammo from [src].")
-	for(var/obj/item/ammo_casing/C in stored_ammo)
-		C.loc = user.loc
+
+	var/turf/T
+	if(isturf(target))
+		T = target
+	else
+		T = get_turf(src)
+
+	if(!istype(T))
+		return
+
+	if(!stored_ammo.len)
+		usr << SPAN_NOTICE("[src] is already empty!")
+		return
+	usr << SPAN_NOTICE("You take out ammo from [src].")
+	for(var/i=1 to stored_ammo.len)
+		var/obj/item/ammo_casing/C = removeCasing()
+		C.loc = T
 		C.set_dir(pick(cardinal))
-	stored_ammo.Cut()
 	update_icon()
 
 /obj/item/ammo_magazine/update_icon()

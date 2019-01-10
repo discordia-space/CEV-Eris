@@ -2,6 +2,9 @@
 add(var/HUD_element/newElement) -> /HUD_element/newElement
 - adds child element into parent element, element position is relative to parent
 
+remove(var/HUD_element/element) -> /HUD_element/element
+- removes child and usets childs parent
+
 getClickProc() -> /proc/clickProc
 setClickProc(var/proc/P) -> src
 - sets a proc that will be called when element is clicked, in byond proc Click()
@@ -58,13 +61,8 @@ getAlignmentVertical() -> alignmentVertical
 getAlignmentHorizontal() -> alignmentHorizontal
 setAlignment(var/horizontal, var/vertical) -> src
 - sets alignment behavior for element, relative to parent, null arguments indicate not to change the relevant alignment
-- values for arguments:
-	0 == no alignment
-	1 == bordering west/south side of parent from outside
-	2 == bordering west/south side of parent from inside
-	3 == center of parent
-	4 == bordering east/north side of parent from inside
-	5 == bordering east/north side of parent from outside
+- look HUD_defines.dm for arguments
+	
 
 getPositionX() -> x
 getPositionY() -> y
@@ -105,7 +103,34 @@ show(var/client/C) -> src
 hide() -> src || null
 - hides element from client
 - returns null if element deleted itself
+
+setIconOverlays(var/icon/iconOverlays)
+- sets icon overlays
+- overlays must be named list
+- accepts only associative list
+-	for overlay names see HUD_defines
+
+updateIcon()
+- Updates icon using overlays
+
+getIconOverlays() -> _iconOverlays
+- gets icon overlays
+
+getChildElementWithID(var/id) -> /HUD_element || null
+- return child element with identifier id or null if none
+
+moveChildOnTop(var/id) -> /HUD_element || null
+- return moved element with identifier id or null if none
+
+moveChildToBottom(var/id) -> /HUD_element || null
+- return moved element with identifier id or null if none
+
+alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HUD_element || null
+- return src if aligned atleast one objects from targets
+
+
 */
+
 
 /HUD_element/proc/add(var/HUD_element/newElement)
 	newElement = newElement || new
@@ -113,15 +138,18 @@ hide() -> src || null
 
 	return newElement
 
+/HUD_element/proc/remove(var/HUD_element/element)
+	if(_disconnectElement(element))
+		return element
 
-/HUD_element/proc/setClickProc(var/proc/P)
+/HUD_element/proc/setClickProc(var/proc/P, var/holder, var/list/arguments)
 	_clickProc = P
-
+	_holder = holder
+	_procArguments = arguments
 	return src
 
 /HUD_element/proc/getClickProc()
 	return _clickProc
-
 
 /HUD_element/proc/setHideParentOnClick(var/value)
 	_hideParentOnClick = value
@@ -241,6 +269,16 @@ hide() -> src || null
 /HUD_element/proc/setIcon(var/icon/I)
 	icon = I
 	updateIconInformation()
+	updateIcon()
+
+	return src
+
+/HUD_element/proc/setIconFromDMI(var/filename, var/iconState, var/iconDir)
+	icon = filename
+	icon_state = iconState
+	dir = iconDir
+	updateIconInformation()
+	updateIcon()
 
 	return src
 
@@ -260,6 +298,7 @@ hide() -> src || null
 	underlays = A.underlays
 
 	updateIconInformation()
+	updateIcon()
 
 	return src
 
@@ -277,14 +316,12 @@ hide() -> src || null
 	var/newIconHeight = I.Height()
 	if ((newIconWidth == _iconWidth) && (newIconHeight == _iconHeight))
 		return src
-
 	_iconWidth = newIconWidth
 	_iconHeight = newIconHeight
 
 	_updatePosition()
 
 	return src
-
 
 /HUD_element/proc/setAlignment(var/horizontal, var/vertical)
 	if (horizontal != null)
@@ -432,3 +469,202 @@ hide() -> src || null
 		return
 
 	return src
+
+/HUD_element/proc/setIconAdditionsData(var/additionType, var/list/additionsData)
+	if(additionType != HUD_ICON_UNDERLAY && additionType != HUD_ICON_OVERLAY)
+		error("Trying to add icon addition data without setting type (HUD_ICON_UNDERLAY/HUD_ICON_OVERLAY).")
+		return
+
+	if(!is_associative(additionsData))
+		error("OverlayData list is not associative")
+		return
+		
+	for (var/additionName in additionsData)
+		var/list/data = additionsData[additionName]
+		if(!is_associative(data))
+			error("OverlayData list contains not associative data list with name\"[additionName]\".")
+			continue
+		setIconAddition(additionType, additionName, data["icon"], data["icon_state"], data["dir"], data["color"], data["alpha"], data["is_plain"])
+	return src
+
+/HUD_element/proc/setIconAddition(var/additionType, var/additionName, var/addIcon, var/addIconState, var/addDir, var/color, var/alpha, var/isPlain)
+	if(additionType != HUD_ICON_UNDERLAY && additionType != HUD_ICON_OVERLAY)
+		error("Trying to add icon addition without setting type (HUD_ICON_UNDERLAY/HUD_ICON_OVERLAY).")
+		return
+	if(!additionName)
+		error("No addition name was passed")
+		return
+
+	var/list/data = getIconAdditionData(additionType, additionName)
+	// if passed only overlay name and there is overlay with this name then we null delete it
+	if(data && (!icon && !color && !alpha))
+		data[additionName] = null
+		qdel(_iconsBuffer["[additionType]_[additionName]"])
+		_iconsBuffer["[additionType]_[additionName]"] = null
+		updateIcon()
+		return src
+	
+	if(!data)
+		data = list()
+		if(additionType == HUD_ICON_UNDERLAY)
+			_iconUnderlaysData[additionName] = data
+		else if(additionType == HUD_ICON_OVERLAY)
+			_iconOverlaysData[additionName] = data
+
+	if(addIcon)
+		data["icon"] = addIcon
+		data["icon_state"] = addIconState
+		data["dir"] = addDir
+		data["is_plain"] = isPlain
+	else
+		data["icon"] = null
+
+	setIconAdditionAlpha(additionType, additionName, alpha, noIconUpdate = TRUE)
+	setIconAdditionColor(additionType, additionName, color, noIconUpdate = TRUE)
+	
+	_assembleAndBufferIcon(additionType, additionName, data)
+	updateIcon()
+
+	return src
+
+/HUD_element/proc/setIconAdditionAlpha(var/additionType, var/additionName, var/alpha, var/noIconUpdate = FALSE)
+	if(additionType != HUD_ICON_UNDERLAY && additionType != HUD_ICON_OVERLAY)
+		error("Trying to set icon addition alpha without setting type (HUD_ICON_UNDERLAY/HUD_ICON_OVERLAY).")
+		return
+	var/list/data = getIconAdditionData(additionType, additionName)
+	if(!data)
+		error("Can't set overlay icon alpha, no addition data.")
+		return
+	data["alpha"] = alpha
+	if(!noIconUpdate)
+		_assembleAndBufferIcon(additionType, additionName, data)
+		updateIcon()
+	return src
+
+/HUD_element/proc/setIconAdditionColor(var/additionType, var/additionName, var/color, var/noIconUpdate = FALSE)
+	if(additionType != HUD_ICON_UNDERLAY && additionType != HUD_ICON_OVERLAY)
+		error("Trying to set icon addition color without setting type (HUD_ICON_UNDERLAY/HUD_ICON_OVERLAY).")
+		return
+	var/list/data = getIconAdditionData(additionType, additionName)
+	if(!data)
+		error("Can't set overlay icon color, no addition data.")
+		return
+	data["color"] = color
+	if(!noIconUpdate)
+		_assembleAndBufferIcon(additionType, additionName, data)
+		updateIcon()
+	return src
+
+/HUD_element/proc/getIconAdditionData(var/additionType, var/additionName)
+	if(additionType != HUD_ICON_UNDERLAY && additionType != HUD_ICON_OVERLAY)
+		error("Trying to get icon addition data without setting type (HUD_ICON_UNDERLAY/HUD_ICON_OVERLAY).")
+		return
+
+	if(additionType == HUD_ICON_UNDERLAY)
+		return _iconUnderlaysData[additionName]
+
+	else if(additionType == HUD_ICON_OVERLAY)
+		return _iconOverlaysData[additionName]
+
+/HUD_element/proc/updateIcon()
+	_updateLayers()
+	return src
+
+/HUD_element/proc/getChildElementWithID(var/id)
+	for(var/list/HUD_element/element in getElements())
+		if(element.getIdentifier() == id)
+			return element
+	error("No element found with id \"[id]\".")
+
+/HUD_element/proc/moveChildOnTop(var/id)
+	if(!_elements.len)
+		error("Element has no child elements.")
+		return
+	var/HUD_element/E = getChildElementWithID(id)
+	if (E)
+		_elements.Remove(E)
+		_elements.Insert(1,E)
+		return E
+	else
+		error("moveChildOnTop(): No element with id \"[id]\" found.")
+
+/HUD_element/proc/moveChildToBottom(var/id)
+	if(!_elements.len)
+		error("Element has no child elements.")
+		return
+	var/HUD_element/E = getChildElementWithID(id)
+	if (E)
+		_elements.Remove(E)
+		_elements.Add(E)
+		return E
+	else
+		error("moveChildToBottom(): No element with id \"[id]\" found.")
+
+/HUD_element/proc/setClickedInteraction(var/state, var/list/iconData , var/duration = 8)
+	if(!iconData || duration <= 0)
+		error("incorrect button interaction setup.")
+		_onClickedInteraction = FALSE
+		return
+	_onClickedInteraction = state
+	if (state)
+		_onClickedHighlightDuration = duration
+
+		setIconAddition(HUD_ICON_OVERLAY, HUD_OVERLAY_CLICKED, iconData["icon"], iconData["icon_state"], color = iconData["color"], alpha = iconData["alpha"], isPlain = iconData["is_plain"])
+	else
+		_onClickedState = FALSE
+
+
+/HUD_element/proc/setHoveredInteraction(var/state, var/list/iconData)
+	if(!iconData)
+		error("incorrect button interaction setup.")
+		_onHoveredInteraction = FALSE
+		return
+	_onHoveredInteraction = state
+	if (state)
+		setIconAddition(HUD_ICON_OVERLAY, HUD_OVERLAY_HOVERED, iconData["icon"], iconData["icon_state"], color = iconData["color"], alpha = iconData["alpha"], isPlain = iconData["is_plain"])
+	else
+		_onHoveredState = FALSE
+
+/HUD_element/proc/setToggledInteraction(var/state, var/list/iconData)
+	if(!iconData)
+		error("incorrect button interaction setup.")
+		_onToggledInteraction = FALSE
+		return
+	_onToggledInteraction = state
+	if (state)
+		setIconAddition(HUD_ICON_OVERLAY, HUD_OVERLAY_TOGGLED, iconData["icon"], iconData["icon_state"], color = iconData["color"], alpha = iconData["alpha"], isPlain = iconData["is_plain"])
+	else
+		_onToggledState = FALSE
+
+/HUD_element/proc/toggleDebugMode()
+	debugMode = !debugMode
+	if(debugMode)
+		var/HUD_element/debugBox = new("\[debug_box\]([type])_[getIdentifier()]")
+		debugBox.setName("\[debug_box\]([type])_[getIdentifier()]")
+		debugBox.setIconFromDMI('icons/mob/screen/misc.dmi',"white_box")
+		debugBox.setPosition(getAbsolutePositionX(), getAbsolutePositionY())
+		debugBox.scaleToSize(getWidth(),getHeight())
+		debugBox.setDimensions(getWidth(),getHeight())
+		debugBox.color = debugColor
+		debugBox.alpha = 80
+		debugBox.updateIconInformation()
+		_connectElement(debugBox)
+		debugBox.show(_observer)
+	else
+		var/HUD_element/debugBox = getChildElementWithID("\[debug_box\]([type])_[getIdentifier()]")
+		debugBox.hide()
+		_disconnectElement(debugBox)
+		qdel(debugBox)
+	/*
+		I.DrawBox(ReadRGB(COLOR_BLACK),0,0,getWidth(),getHeight())
+		I.DrawBox(ReadRGB(debugColor),1,1,getWidth()-1,getHeight()-1) 
+		setIconOverlay(HUD_OVERLAY_DEBUG,I, alpha = 80)*/
+	
+	updateIcon()
+
+// mob clicks overrides
+/HUD_element/move_camera_by_click()
+	return
+
+/HUD_element/attack_ghost(mob/observer/ghost/user as mob)
+	return

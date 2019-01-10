@@ -200,7 +200,11 @@
 		/obj/item/weapon/gun/projectile/mk58,
 		/obj/item/weapon/gun/projectile/olivaw,
 		/obj/item/weapon/gun/projectile/silenced,
-		/obj/item/weapon/gun/energy/gun/martin,
+		/obj/item/weapon/gun/energy/gun,
+		/obj/item/weapon/gun/energy/retro,
+		/obj/item/weapon/gun/energy/chameleon,
+		/obj/item/weapon/gun/energy/captain,
+		/obj/item/weapon/gun/energy/stunrevolver,
 		/obj/item/weapon/gun/projectile/revolver)
 
 	sliding_behavior = TRUE

@@ -69,7 +69,7 @@ var/global/list/all_objectives_types = null
 	if (M == owner) //No targeting ourselves
 		return FALSE
 
-	if (!ishuman(M) && human_target)
+	if (!ishuman(M.current) && human_target)
 		return FALSE
 
 	if (M.current.stat == DEAD)
@@ -77,11 +77,11 @@ var/global/list/all_objectives_types = null
 		return FALSE
 
 	//Special handling for targeting other antags
-	if (M.antagonist)
-		var/datum/antagonist/A = M.antagonist
-		//Make sure we don't target our own faction
-		if (owner_faction && (owner_faction == A.faction))
-			return FALSE
+	if (M.antagonist.len)
+		for (var/datum/antagonist/A in M.antagonist)
+			//Make sure we don't target our own faction
+			if (owner_faction && (owner_faction == A.faction))
+				return FALSE
 
 	return TRUE
 

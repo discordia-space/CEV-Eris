@@ -4,6 +4,7 @@
 	gloves = /obj/item/clothing/gloves/thick
 	shoes = /obj/item/clothing/shoes/jackboots
 	id_type = /obj/item/weapon/card/id/sec
+	pda_type = /obj/item/modular_computer/pda/security
 	backpack_contents = list(/obj/item/weapon/handcuffs = 1)
 
 /decl/hierarchy/outfit/job/security/New()
@@ -29,10 +30,9 @@
 	suit = /obj/item/clothing/suit/armor/vest/security
 	head = /obj/item/clothing/head/beret/sec/navy/warden
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud/tactical
-	belt = /obj/item/weapon/gun/projectile/automatic/sol/rds
+	suit_store = /obj/item/weapon/gun/projectile/automatic/sol/rds
 	l_pocket = /obj/item/device/flash
 	gloves = /obj/item/clothing/gloves/stungloves
-	pda_type = /obj/item/modular_computer/pda/security
 	backpack_contents = list(/obj/item/weapon/handcuffs = 1, /obj/item/ammo_magazine/sol65/rubber = 2, /obj/item/device/lighting/toggleable/flashlight/seclite = 1, /obj/item/weapon/cell/small/high = 2, /obj/item/weapon/gun/energy/gun/martin = 1)
 
 /decl/hierarchy/outfit/job/security/inspector
@@ -69,12 +69,11 @@
 	name = OUTFIT_JOB_NAME("Ironhammer Operative")
 	r_pocket = /obj/item/weapon/handcuffs
 	l_pocket = /obj/item/device/flash
-	pda_type = /obj/item/modular_computer/pda/security
 	uniform = /obj/item/clothing/under/rank/security
 	suit = /obj/item/clothing/suit/armor/vest/security
 	mask = /obj/item/clothing/mask/balaclava/tactical
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud/tactical
 	head = /obj/item/clothing/head/helmet
 	gloves = /obj/item/clothing/gloves/stungloves
-	belt = /obj/item/weapon/gun/projectile/automatic/sol/rds
+	suit_store = /obj/item/weapon/gun/projectile/automatic/sol/rds
 	backpack_contents = list(/obj/item/weapon/handcuffs = 2, /obj/item/ammo_magazine/sol65/rubber = 2, /obj/item/device/lighting/toggleable/flashlight/seclite = 1, /obj/item/weapon/cell/small/high = 2, /obj/item/weapon/gun/energy/gun/martin = 1)

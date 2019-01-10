@@ -23,8 +23,8 @@
 	_middle_element.setPassClickToParent(TRUE)
 	_end_element.setPassClickToParent(TRUE)
 
-	_middle_element.setAlignment(5,3) //east of parent, center
-	_end_element.setAlignment(5,3) //east of parent, center
+	_middle_element.setAlignment(HUD_HORIZONTAL_EAST_OUTSIDE_ALIGNMENT,HUD_CENTER_ALIGNMENT) //east of parent, center
+	_end_element.setAlignment(HUD_HORIZONTAL_EAST_OUTSIDE_ALIGNMENT,HUD_CENTER_ALIGNMENT) //east of parent, center
 
 /HUD_element/threePartBox/Destroy()
 	_start_element = null

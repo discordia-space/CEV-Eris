@@ -61,9 +61,9 @@
 /datum/objective/steal/check_completion()
 	if (failed)
 		return FALSE
-	if(!steal_target || !owner.current)
+	if(!steal_target)
 		return FALSE
-	if(!isliving(owner.current))
+	if(owner && !isliving(owner.current))
 		return FALSE
 	var/list/all_items = get_owner_inventory()
 	switch(target_name)

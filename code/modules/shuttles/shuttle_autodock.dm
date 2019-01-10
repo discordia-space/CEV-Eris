@@ -16,7 +16,7 @@
 	var/datum/computer/file/embedded_program/docking/active_docking_controller
 
 	var/obj/effect/shuttle_landmark/landmark_transition
-	var/move_time = 240		//the time spent in the transition area
+	var/move_time = 360		//the time spent in the transition area
 
 	category = /datum/shuttle/autodock
 
