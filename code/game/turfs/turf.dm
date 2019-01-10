@@ -242,6 +242,49 @@ var/const/enterloopsanity = 100
 		user << SPAN_WARNING("\The [source] is too dry to wash that.")
 	source.reagents.trans_to_turf(src, 1, 10)	//10 is the multiplier for the reaction effect. probably needed to wet the floor properly.
 
+
+//As above, but has limitations. Instead of cleaning the tile completely, it just cleans [count] number of things
+/turf/proc/clean_partial(atom/source, mob/user, var/count = 1)
+	if (!count)
+		return
+
+	//A negative value can mean infinite cleaning, but in that case just call the unlimited version
+	if (!isnum(count) || count < 0)
+		clean(source, user)
+		return
+
+	if(source.reagents.has_reagent("water", 1) || source.reagents.has_reagent("cleaner", 1))
+		source.reagents.trans_to_turf(src, 1, 10)
+	else
+		user << SPAN_WARNING("\The [source] is too dry to wash that.")
+		return
+
+	for (count;count > 0;count--)
+		var/cleanedsomething = FALSE
+
+
+		for(var/obj/effect/O in src)
+			if(istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
+				qdel(O)
+				cleanedsomething = TRUE
+				break //Only clean one per loop iteration
+
+		if (cleanedsomething)
+			continue
+
+		//Clean normal dirt
+		if(istype(src, /turf/simulated))
+			var/turf/simulated/T = src
+			if (T.dirt)
+				T.dirt -= 36 //At the dirtiest level, three uses to clean it
+				T.update_dirt()
+				T.dirt = max(T.dirt, 0)
+				continue
+
+		//If the tile is clean, don't keep looping
+		if (!cleanedsomething)
+			break
+
 /turf/proc/update_blood_overlays()
 	return
 
