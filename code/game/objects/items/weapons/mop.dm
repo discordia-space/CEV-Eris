@@ -132,3 +132,7 @@
 	if(istype(I, /obj/item/weapon/mop) || istype(I, /obj/item/weapon/soap))
 		return
 	..()
+
+
+#undef MOPMODE_TILE
+#undef MOPMODE_SWEEP
