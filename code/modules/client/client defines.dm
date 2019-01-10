@@ -57,3 +57,5 @@
 		////////////////
 	var/datum/click_handler/CH
 	var/datum/delay_controller/move_delayer = new
+
+	var/datum/interface/UI	//interface for current mob

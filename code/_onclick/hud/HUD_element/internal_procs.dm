@@ -5,54 +5,76 @@ see external_procs.dm for usable procs and documentation on how to use them
 
 /HUD_element/proc/_recalculateAlignmentOffset()
 	/*
-	horizontal/vertical alignment values:
-	0 == no alignment
-	1 == bordering west/south side of parent from outside
-	2 == bordering west/south side of parent from inside
-	3 == center of parent
-	4 == bordering east/north side of parent from inside
-	5 == bordering east/north side of parent from outside
-	*/
+	- look HUD_defines.dm for arguments
 
-	//todo: no parent means align relative to screen/view
+	- in order to calculate screen width and height we use client.view which represents radius of screen
+	- we calculate size in pixels using (2 * (_observer ? _observer.view : 7) + 1) * 32
+	*/
 	var/HUD_element/parent = getParent()
 	switch (_currentAlignmentHorizontal)
-		if (0)
+		if (HUD_NO_ALIGNMENT)
 			_alignmentOffsetX = 0
-		if (1)
-			_alignmentOffsetX = -getWidth()
-		if (2)
-			_alignmentOffsetX = 0
-		if (3)
+		if (HUD_HORIZONTAL_WEST_OUTSIDE_ALIGNMENT)
+			if (!parent)
+				error("Trying to align outside of the screen.")
+			else
+				_alignmentOffsetX = -getWidth()
+		if (HUD_HORIZONTAL_WEST_INSIDE_ALIGNMENT)
+			if (!parent)
+				_alignmentOffsetX = _absolutePositionX * -1
+			else
+				_alignmentOffsetX = 0
+		if (HUD_CENTER_ALIGNMENT)
 			if (parent)
 				_alignmentOffsetX = parent.getWidth()/2 - getWidth()/2
-		if (4)
+			else if (!parent)
+				_alignmentOffsetX = ((2 * (_observer ? _observer.view : 7) + 1) * 32)/2 - (getWidth()/2)
+		if (HUD_HORIZONTAL_EAST_INSIDE_ALIGNMENT)
 			if (parent)
 				_alignmentOffsetX = parent.getWidth() - getWidth()
-		if (5)
-			if (parent)
+			else if (!parent)
+				_alignmentOffsetX = (2 * (_observer ? _observer.view : 7) + 1) * 32 - _absolutePositionX - getWidth()
+		if (HUD_HORIZONTAL_EAST_OUTSIDE_ALIGNMENT)
+			if (!parent)
+				error("Trying to align outside of the screen.")
+			else if (parent)
 				_alignmentOffsetX = parent.getWidth()
 		else
-			_alignmentOffsetX = 0
+			if(_currentAlignmentHorizontal)
+				error("Passed wrong argument for horizontal alignment.")
+				_alignmentOffsetX = 0
 
 	switch (_currentAlignmentVertical)
-		if (0)
+		if (HUD_NO_ALIGNMENT)
 			_alignmentOffsetY = 0
-		if (1)
+		if (HUD_VERTICAL_SOUTH_OUTSIDE_ALIGNMENT)
+			if (!parent)
+				error("Trying to align outside of the screen.")
 			_alignmentOffsetY = -getHeight()
-		if (2)
-			_alignmentOffsetY = 0
-		if (3)
+		if (HUD_VERTICAL_SOUTH_INSIDE_ALIGNMENT)
+			if (!parent)
+				_alignmentOffsetY = _absolutePositionY * -1
+			else
+				_alignmentOffsetY = 0
+		if (HUD_CENTER_ALIGNMENT)
 			if (parent)
 				_alignmentOffsetY = parent.getHeight()/2 - getHeight()/2
-		if (4)
+			else if (!parent)
+				_alignmentOffsetY = ((2 * (_observer ? _observer.view : 7) + 1) * 32)/2 - (getHeight()/2)
+		if (HUD_VERTICAL_NORTH_INSIDE_ALIGNMENT)
 			if (parent)
 				_alignmentOffsetY = parent.getHeight() - getHeight()
-		if (5)
-			if (parent)
+			else if (!parent)
+				_alignmentOffsetY = (2 * (_observer ? _observer.view : 7) + 1) * 32 - _absolutePositionY - getHeight()
+		if (HUD_VERTICAL_NORTH_OUTSIDE_ALIGNMENT)
+			if (!parent)
+				error("Trying to align outside of the screen.")
+			else if (parent)
 				_alignmentOffsetY = parent.getHeight()
 		else
-			_alignmentOffsetY = 0
+			if(_currentAlignmentVertical)
+				error("Passed wrong argument for vertical alignment.")
+				_alignmentOffsetY = 0
 
 /HUD_element/proc/_updatePosition()
 	var/realX = _relativePositionX
@@ -114,7 +136,98 @@ see external_procs.dm for usable procs and documentation on how to use them
 
 	return src
 
+/HUD_element/proc/_disconnectElement(var/HUD_element/E)
+	if (!E)
+		log_to_dd("Error: Invalid HUD element '[E]'")
+		return
+
+	var/list/HUD_element/elements = getElements()
+	if (elements.Find(E))
+		elements.Remove(E)
+
+	E._unsetParent()
+	
+	return src
+
 /HUD_element/proc/_setParent(var/HUD_element/E)
 	_parent = E
 
 	return src
+
+/HUD_element/proc/_unsetParent()
+	_parent = null
+
+	return src
+
+/HUD_element/proc/_addAdditionIcon(var/additionType, var/additionName)
+	if(!_iconsBuffer["[additionType]_[additionName]"])
+		if(getIconAdditionData(additionType, additionName))
+			error("Icon for [additionType]_[additionName] is not buffered.")
+			return
+	if(additionType == HUD_ICON_UNDERLAY)
+		underlays += _iconsBuffer["[additionType]_[additionName]"]
+	else if(additionType == HUD_ICON_OVERLAY)
+		overlays += _iconsBuffer["[additionType]_[additionName]"]
+
+/HUD_element/proc/_assembleAndBufferIcon(var/additionType, var/additionName, var/list/data)
+	if(!data)
+		error("Nothing was passed to buffer")
+		return
+	//TODO: make so this can also work with non dmi files (png, gif)
+	var/icon/I = new(data["icon"], data["icon_state"], data["dir"])
+	if(I)
+		if(data["is_plain"])
+			I.PlainPaint(data["color"])
+		else if(data["color"])
+			I.ColorTone(data["color"])
+		if(data["alpha"])
+			I.ChangeOpacity(data["alpha"]/255)
+
+		_iconsBuffer["[additionType]_[additionName]"] = I
+		return I
+	return null
+
+/HUD_element/proc/_updateLayers()
+	overlays.Cut()
+	underlays.Cut()
+
+	if(!debugMode)
+		for(var/name in _iconUnderlaysData)
+			_addAdditionIcon(HUD_ICON_UNDERLAY, name)
+		for(var/name in _iconOverlaysData)
+			if(name == HUD_OVERLAY_TOGGLED || name == HUD_OVERLAY_HOVERED || name == HUD_OVERLAY_CLICKED)
+				continue
+			_addAdditionIcon(HUD_ICON_OVERLAY, name)
+
+		if(_onToggledInteraction)
+			_addAdditionIcon(HUD_ICON_OVERLAY, HUD_OVERLAY_TOGGLED)
+		if(_onHoveredState)
+			_addAdditionIcon(HUD_ICON_OVERLAY, HUD_OVERLAY_HOVERED)
+		if(_onClickedState)
+			_addAdditionIcon(HUD_ICON_OVERLAY, HUD_OVERLAY_CLICKED)
+
+/HUD_element/button/MouseEntered(location)
+	if(_onHoveredInteraction && !_onHoveredState)
+		_onHoveredState = TRUE
+		updateIcon()
+	return ..()
+
+/HUD_element/button/MouseExited(object,location,control,params)
+	if(_onHoveredInteraction)
+		_onHoveredState = FALSE
+		updateIcon()
+	return ..()
+
+/HUD_element/button/Click(location,control,params)
+	if(_onClickedInteraction && !_onClickedState)
+		_onClickedState = TRUE
+		updateIcon()
+		spawn(_onClickedHighlightDuration)
+			_onClickedState = FALSE
+			updateIcon()
+
+	if(_onToggledInteraction)
+		_onToggledState = !_onToggledState
+		updateIcon()
+
+	return ..()

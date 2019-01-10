@@ -67,19 +67,8 @@ datum/preferences
 	if(href_list["rename"])
 		var/raw_name = input(user, "Choose your character's name:", "Character Name")  as text|null
 		if (!isnull(raw_name) && CanUseTopic(user))
-			/*
-			var/decl/cultural_info/check = SSculture.get_culture(pref.cultural_info[TAG_CULTURE])
-			var/new_name = check.sanitize_name(raw_name, pref.species)
-
-			if(new_name)
-				pref.real_name = new_name
-				return TOPIC_REFRESH
-			else
-
-				to_chat(user, "<span class='warning'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</span>")
-				return TOPIC_NOACTION
-			*/
 			pref.real_name = raw_name
+			return TOPIC_REFRESH
 
 	else if(href_list["random_name"])
 		pref.real_name = random_name(pref.gender, pref.species)

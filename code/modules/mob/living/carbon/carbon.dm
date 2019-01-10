@@ -127,7 +127,7 @@
 	src.hand = !( src.hand )
 	for (var/obj/screen/inventory/hand/H in src.HUDinventory)
 		H.update_icon()
-	return
+	return TRUE
 
 /mob/living/carbon/proc/activate_hand(var/selhand) //0 or "r" or "right" for right hand; 1 or "l" or "left" for left hand.
 
