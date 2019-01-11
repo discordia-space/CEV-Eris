@@ -90,8 +90,9 @@
 		var/iconName = "[rtype].png"
 		iconName = sanitizeFileName(iconName)
 		// byond rewrites cache every time despite saying its not in documentation
-		if(user && user.client && !user.client.cache.Find())
+		if(user && user.client && !user.client.cache.Find(iconName))
 			user << browse_rsc(getFlatTypeIcon(R.path), iconName)
+			user.client.cache.Add(iconName)
 		LE["icon"] = iconName
 
 		if(unfolded == "[rtype]")
