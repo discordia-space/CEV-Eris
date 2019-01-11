@@ -8,6 +8,7 @@
 	explanation_text = "Return to your ship and withdraw to base within 90 minutes of being detected."
 	var/mission_timer = 90 MINUTES
 	var/mission_status = MISSION_STATUS_SETUP
+	var/ended = FALSE
 
 /datum/objective/timed/merc/check_completion()
 	if (failed)
@@ -15,14 +16,11 @@
 
 	var/datum/shuttle/autodock/multi/antag/mercenary/MS = SSshuttle.get_shuttle("Mercenary")
 
-	world << "Checking completion"
 	if (!MS)
-		world << "Failed to find shuttle"
 		//Shuttle was destroyed?
 		return FALSE
 
 
-	world << "Shuttle current: [MS.current_location], Shuttle Next: [MS.next_location] Home: [MS.home_waypoint]"
 	if (MS.current_location != MS.home_waypoint && MS.next_location != MS.home_waypoint)
 		//The shuttle still near Eris, fail
 		//This will succeed as long as they're enroute away from eris
@@ -32,10 +30,10 @@
 
 
 /datum/objective/timed/merc/update_explanation()
-	explanation_text = "Return to your ship and withdraw to base within [time2text(mission_timer, "mm:ss")]."
+	explanation_text = "Return to your ship and withdraw to base within [time2text(mission_timer, "hh:mm:ss")]."
 
 /datum/objective/timed/merc/get_panel_entry()
-	return "Withdraw to base within [time2text(mission_timer, "mm:ss")]."
+	return "Withdraw to base within [time2text(mission_timer, "hh:mm:ss")]."
 
 
 /datum/objective/timed/merc/proc/start_mission()
@@ -44,13 +42,19 @@
 //The faction datum processes to tick down the mission timer
 /datum/objective/timed/merc/Process()
 	mission_timer -= 1 SECOND
-	if (mission_timer <= 0)
+	if (!ended && mission_timer <= 0)
 		end_mission()
+
+	/*
+	The timer keeps ticking even after its ended because later i plan to extend this to let them hang
+	around the merc base for up to half an hour and then be despawned so the base can be reset
+	*/
 
 
 
 //The mission ends when the mercs return to base or their time limit expires
 /datum/objective/timed/merc/proc/end_mission()
+	ended = TRUE
 	if (!check_completion())
 		abort_mission()
 	else
