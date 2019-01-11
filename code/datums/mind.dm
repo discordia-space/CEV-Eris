@@ -151,7 +151,6 @@
 
 	if(href_list["add_antagonist"])
 		var/datum/antagonist/antag = GLOB.all_antag_types[href_list["add_antagonist"]]
-		world << "Antag is [antag], attempted to get [href_list["add_antagonist"]]"
 		if(antag)
 			var/ok = FALSE
 			if(antag.outer && active)
