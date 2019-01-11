@@ -113,8 +113,6 @@
 
 	M.forceMove(spawn_turf)
 
-	AnnounceArrival(M, M.mind.assigned_role, message)	//will not broadcast if there is no message
-
 	// Moving wheelchair if they have one
 	if(M.buckled && istype(M.buckled, /obj/structure/bed/chair/wheelchair))
 		M.buckled.forceMove(M.loc)

@@ -44,6 +44,7 @@ GLOBAL_LIST_EMPTY(spawntypes)
 	icon_state = "player-blue-cluster"
 	join_tag = "late_cryo"
 	message = "has completed cryogenic revival"
+	disallow_job = list("Robot")
 
 /obj/landmark/join/late/cyborg
 	name = "Cyborg Storage"
