@@ -509,9 +509,7 @@ proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
 
 	var/datum/spawnpoint/SP
 	if(late)
-		if(rank == "Robot")
-			SP = getSpawnPoint("Cyborg Storage", late = TRUE)
-		else if(!pref_spawn)
+		if(!pref_spawn)
 			SP = getSpawnPoint(maps_data.default_spawn, late = TRUE)
 			H << SPAN_WARNING("You have not selected spawnpoint in preference menu, you will be assigned default one which is \"[SP.display_name]\".")
 		else
@@ -524,8 +522,8 @@ proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
 					if(candidate.check_job_spawning(rank))
 						SP = candidate
 						break
-					if(!SP)
-						warning("Could not find an appropriate spawnpoint for job [rank] (latespawn).")
+				if(!SP)
+					warning("Could not find an appropriate spawnpoint for job [rank] (latespawn).")
 	else
 		SP = getSpawnPoint(rank)
 		if(!SP)
