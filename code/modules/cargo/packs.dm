@@ -1276,7 +1276,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	contains = list(/obj/random/tool_upgrade,
 					/obj/random/tool_upgrade/rare)
 	name = "Unsorted Tool Upgrades"
-	cost = 3000
+	cost = 2400
+	containertype = /obj/structure/closet/crate
 	crate_name = "Unsorted Crate"
 	group = "Engineering"
 	
@@ -1322,7 +1323,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/gun/energy/temperature,
 					/obj/item/weapon/gun/energy/xray)
 	name = "Surplus Weaponry"
-	cost = "4000"
+	cost = 3000
 	crate_name = "Surplus Crate"
 	containertype = /obj/structure/closet/crate/secure/weapon
 	group = "Security"
@@ -1335,5 +1336,7 @@ datum/supply_pack/randomised/spacesuit
 					/obj/random/voidsuit,
 					/obj/random/voidsuit/damaged)
 	name = "Spare Space Suit"
-	cost = "2500"
+	cost = 2000
+	crate_name = "Spare Crate"
+	containertype = /obj/structure/closet/crate
 	group = "Operations"
