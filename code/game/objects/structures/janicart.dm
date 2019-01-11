@@ -120,7 +120,7 @@
 //New Altclick functionality!
 //Altclick the cart with a mop to stow the mop away
 //Altclick the cart with a reagent container to pour things into the bucket without putting the bottle in trash
-/obj/structure/janitorialcart/AltClick()
+/obj/structure/janitorialcart/AltClick(mob/living/user)
 	if(user.incapacitated() || !Adjacent(user))	return
 	var/obj/I = usr.get_active_hand()
 	if(istype(I, /obj/item/weapon/mop))
