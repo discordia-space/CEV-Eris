@@ -337,7 +337,7 @@
 
 	if(update & 3)
 		if(update_state & UPDATE_BLUESCREEN)
-			set_light(l_range = 1.5, l_power = 0.2, l_color = "#0000FF")
+			set_light(l_range = 2, l_power = 0.6, l_color = "#0000FF")
 		else if(!(stat & (BROKEN|MAINT)) && update_state & UPDATE_ALLGOOD)
 			var/color
 			switch(charging)
@@ -347,7 +347,7 @@
 					color = "#A8B0F8"
 				if(2)
 					color = "#82FF4C"
-			set_light(l_range = 1.5, l_power = 0.2, l_color = color)
+			set_light(l_range = 2, l_power = 0.6, l_color = color)
 		else
 			set_light(0)
 
@@ -369,10 +369,10 @@
 			update_state |= UPDATE_OPENED1
 		if(opened==2)
 			update_state |= UPDATE_OPENED2
-	else if(emagged || hacker || failure_timer)
-		update_state |= UPDATE_BLUESCREEN
 	else if(wiresexposed)
 		update_state |= UPDATE_WIREEXP
+	if(emagged || hacker || failure_timer)
+		update_state |= UPDATE_BLUESCREEN
 	if(update_state <= 1)
 		update_state |= UPDATE_ALLGOOD
 

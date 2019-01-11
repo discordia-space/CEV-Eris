@@ -146,6 +146,10 @@
 	return 1
 
 /obj/machinery/power/apc/AICtrlClick() // turns off/on APCs.
+	if(failure_timer)
+		failure_timer = 0
+		usr << "APC system restarted"
+		return 1
 	Topic(src, list("breaker"="1"))
 	return 1
 
@@ -250,3 +254,37 @@
 	Topic(src, list("input"="toggle"))
 	return 1
 */
+
+//QOL feature, clicking on turf can toogle doors
+/turf/AICtrlClick()
+	var/obj/machinery/door/airlock/AL = locate(/obj/machinery/door/airlock) in src.contents
+	if(AL)
+		AL.AICtrlClick()
+		return
+	var/obj/machinery/door/firedoor/FD = locate(/obj/machinery/door/firedoor) in src.contents
+	if(FD)
+		FD.AICtrlClick()
+		return
+	return ..()
+
+/turf/AIAltClick()
+	var/obj/machinery/door/airlock/AL = locate(/obj/machinery/door/airlock) in src.contents
+	if(AL)
+		AL.AIAltClick()
+		return
+	var/obj/machinery/door/firedoor/FD = locate(/obj/machinery/door/firedoor) in src.contents
+	if(FD)
+		FD.AIAltClick()
+		return
+	return ..()
+
+/turf/AIShiftClick()
+	var/obj/machinery/door/airlock/AL = locate(/obj/machinery/door/airlock) in src.contents
+	if(AL)
+		AL.AIShiftClick()
+		return
+	var/obj/machinery/door/firedoor/FD = locate(/obj/machinery/door/firedoor) in src.contents
+	if(FD)
+		FD.AIShiftClick()
+		return
+	return ..()
