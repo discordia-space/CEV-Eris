@@ -191,6 +191,9 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	if(empty_levels == null)
 		world.maxz++
 		empty_levels = list(world.maxz)
+
+		add_z_level(world.maxz, world.maxz, 1)
+
 	return pick(empty_levels)
 
 

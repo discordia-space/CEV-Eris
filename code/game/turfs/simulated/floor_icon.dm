@@ -308,7 +308,7 @@ var/list/flooring_cache = list()
 	if(!flooring_cache[cache_key])
 		var/image/I = image(icon = 'icons/turf/damage_overlays.dmi', icon_state = icon_base)
 
-		I.plane = FLOOR_PLANE
+		I.plane = get_relative_plane(FLOOR_PLANE)
 		I.layer = TURF_DECAL_LAYER+0.1
 		flooring_cache[cache_key] = I
 	return flooring_cache[cache_key]

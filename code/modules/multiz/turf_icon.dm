@@ -14,7 +14,7 @@
 		return I
 
 	I = image('icons/turf/space.dmi', "white")
-	I.plane = OPENSPACE_PLANE
+	I.plane = get_relative_plane(OPENSPACE_PLANE)
 	I.layer = ABOVE_LIGHTING_LAYER
 	I.blend_mode = BLEND_MULTIPLY
 	I.color = rgb(0,0,0,110)

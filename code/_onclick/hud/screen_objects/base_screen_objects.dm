@@ -42,6 +42,13 @@
 	master = null
 	return ..()
 
+/obj/screen/update_plane()
+	return
+
+/obj/screen/set_plane(var/np)
+	plane = np
+
+
 /obj/screen/Click(location, control, params)
 	if(!usr)
 		return TRUE

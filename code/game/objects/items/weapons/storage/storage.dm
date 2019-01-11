@@ -63,7 +63,7 @@
 	item.pixel_w = 0
 	item.pixel_z = 0
 	item.layer = ABOVE_HUD_LAYER
-	item.plane = ABOVE_HUD_PLANE
+	item.set_plane(ABOVE_HUD_PLANE)
 
 	itemIcon.vis_contents += item //this draws the actual item, see byond ref for vis_contents var
 	itemBackground.setName(item.name, TRUE)
@@ -362,7 +362,7 @@
 		F.update_icon(1)
 
 	W.layer = initial(W.layer)
-	W.plane = initial(W.plane)
+	W.set_plane(initial(W.plane))
 
 	if (new_location)
 		W.loc = new_location
@@ -481,7 +481,7 @@
 		if(isturf(A))
 			src.quick_empty(A)
 			return TRUE
-	
+
 	return ..()
 
 /obj/item/weapon/storage/verb/quick_empty(var/turf/target)

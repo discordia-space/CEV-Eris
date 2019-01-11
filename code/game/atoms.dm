@@ -60,6 +60,9 @@
 	if(light_power && light_range)
 		update_light()
 
+	init_plane()
+	update_plane()
+
 	return INITIALIZE_HINT_NORMAL
 
 //called if Initialize returns INITIALIZE_HINT_LATELOAD

@@ -1,3 +1,5 @@
+//Don't needed because of vis_contents feature
+
 /mob  // TODO: rewrite as obj.
 	var/mob/shadow/shadow
 
