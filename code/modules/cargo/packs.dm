@@ -1271,7 +1271,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	access = access_theatre
 	group = "Miscellaneous"
 	
-/datum/supply_pack/randomized/toolmods
+/datum/supply_pack/randomised/toolmods
 	num_contained = 4
 	contains = list(/obj/random/tool_upgrade,
 					/obj/random/tool_upgrade/rare)
@@ -1280,7 +1280,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	crate_name = "Unsorted Crate"
 	group = "Engineering"
 	
-/datum/supply_pack/randomized/guns
+/datum/supply_pack/randomised/guns
 	num_contained = 2
 	contains = list(/obj/item/weapon/gun/projectile/automatic/ak47/fs,
 					/obj/item/weapon/gun/projectile/automatic/atreides,
@@ -1315,7 +1315,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/gun/energy/gun,
 					/obj/item/weapon/gun/energy/ionrifle,
 					/obj/item/weapon/gun/energy/laser,
-					obj/item/weapon/gun/energy/retro,
+					/obj/item/weapon/gun/energy/retro,
 					/obj/item/weapon/gun/energy/sniperrifle,
 					/obj/item/weapon/gun/energy/taser,
 					/obj/item/weapon/gun/energy/stunrevolver,
@@ -1324,11 +1324,11 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	name = "Surplus Weaponry"
 	cost = "4000"
 	crate_name = "Surplus Crate"
-	container_type = /obj/structure/closet/crate/secure/weapon
+	containertype = /obj/structure/closet/crate/secure/weapon
 	group = "Security"
 	
 
-datum/supply_pack/randomized/spacesuit
+datum/supply_pack/randomised/spacesuit
 	num_contained = 1
 	contains = list(/obj/random/rig,
 					/obj/random/rig/damaged,
