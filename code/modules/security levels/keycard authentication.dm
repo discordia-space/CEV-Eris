@@ -140,8 +140,9 @@
 /obj/machinery/keycard_auth/proc/trigger_event()
 	switch(event)
 		if("Red alert")
-			set_security_level(SEC_LEVEL_RED)
-
+			var/decl/security_state/security_state = decls_repository.get_decl(maps_data.security_state)
+			if(security_state.can_change_security_level())
+				security_state.set_security_level(security_state.high_security_level)
 		if("Grant Emergency Maintenance Access")
 			make_maint_all_access()
 
