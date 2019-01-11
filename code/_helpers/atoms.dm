@@ -18,5 +18,3 @@
 
 	return null//If we get here, the holder must be buried many layers deep in nested containers, or else is somehow contained in nullspace
 
-
-
