@@ -43,13 +43,12 @@
 
 		var/success = FALSE
 		if (antag.outer)
-			success = A.create_from_ghost(M, announce = FALSE)
+			success = A.create_from_ghost(M, F, announce = FALSE)
 		else
-			success = A.create_antagonist(M, announce = FALSE)
+			success = A.create_antagonist(M, F, announce = FALSE)
 
 		if (success)
 			success_quantity++
-			F.add_member(A, announce = TRUE)
 		else
 			//If we found a viable candidate but failed to turn them into an antag, we'll skip over them
 			i-- //Decrement i so we can try again

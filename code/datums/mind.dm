@@ -164,8 +164,11 @@
 				return
 
 			if(antag.outer)
-				antag.create_antagonist(src)
-
+				//Outer antags are created from ghosts, we must make a ghost first
+				var/mob/observer/ghost/ghost = current.ghostize(FALSE)
+				antag.create_from_ghost(ghost, announce = FALSE)
+				qdel(current) //Delete our old body
+				antag.greet()
 
 			else
 				if(antag.create_antagonist(src))
