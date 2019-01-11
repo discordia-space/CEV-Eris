@@ -530,6 +530,17 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containertype = /obj/structure/closet/crate
 	crate_name = "Mechanical maintenance crate"
 	group = "Engineering"
+	
+/datum/supply_pack/toolmods
+	contains = list(/obj/random/tool_upgrade,
+					/obj/random/tool_upgrade,
+					/obj/random/tool_upgrade,
+					/obj/random/tool_upgrade)
+	name = "Unsorted Tool Upgrades"
+	cost = 2400
+	containertype = /obj/structure/closet/crate
+	crate_name = "Tool upgrade Crate"
+	group = "Engineering"
 
 /datum/supply_pack/fueltank
 	name = "Fuel tank crate"
@@ -1271,16 +1282,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	access = access_theatre
 	group = "Miscellaneous"
 	
-/datum/supply_pack/randomised/toolmods
-	num_contained = 4
-	contains = list(/obj/random/tool_upgrade,
-					/obj/random/tool_upgrade/rare)
-	name = "Unsorted Tool Upgrades"
-	cost = 2400
-	containertype = /obj/structure/closet/crate
-	crate_name = "Unsorted Crate"
-	group = "Engineering"
-	
 /datum/supply_pack/randomised/guns
 	num_contained = 2
 	contains = list(/obj/item/weapon/gun/projectile/automatic/ak47/fs,
@@ -1314,6 +1315,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/gun/projectile/shotgun/pump/gladstone,
 					/obj/item/weapon/gun/energy/cassad,
 					/obj/item/weapon/gun/energy/gun,
+					/obj/item/weapon/gun/energy/gun/martin,
 					/obj/item/weapon/gun/energy/ionrifle,
 					/obj/item/weapon/gun/energy/laser,
 					/obj/item/weapon/gun/energy/retro,
