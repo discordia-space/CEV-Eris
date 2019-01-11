@@ -30,11 +30,13 @@
 	if(stat & BROKEN)
 		icon_state = "glitch"
 		new_color = "#4D658D"
-	else if(security_level >= SEC_LEVEL_RED)
-		icon_state = "attention"
-		new_color =  "#AA7039"
-	else if(icon_state in postertypes)
-		new_color = postertypes[icon_state]
+	else 
+		var/decl/security_state/security_state = decls_repository.get_decl(maps_data.security_state)
+		if(security_state.current_security_level_is_same_or_higher_than(security_state.high_security_level))
+			icon_state = "attention"
+			new_color =  "#AA7039"
+		else if(icon_state in postertypes)
+			new_color = postertypes[icon_state]
 
 	set_light(l_range = 2, l_power = 2, l_color = new_color)
 
@@ -78,8 +80,3 @@
 	if((world.time > last_launch + 1 MINUTE) && (!icon_forced))
 		set_rand_sprite()
 		last_launch = world.time
-
-/obj/machinery/firealarm/securityLevelChanged(var/newlevel)
-	if(seclevel != newlevel)
-		seclevel = newlevel
-		update_icon()
