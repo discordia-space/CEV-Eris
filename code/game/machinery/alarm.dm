@@ -890,7 +890,6 @@ FIRE ALARM
 	var/last_process = 0
 	var/wiresexposed = 0
 	var/buildstage = 2 // 2 = complete, 1 = no wires,  0 = circuit gone
-	var/seclevel
 
 /obj/machinery/firealarm/update_icon()
 	overlays.Cut()
@@ -919,16 +918,11 @@ FIRE ALARM
 			set_light(l_range = 1.5, l_power = 0.5, l_color = COLOR_RED)
 		else
 			icon_state = "fire0"
-			var/new_color = null
-			switch(seclevel)
-				if(SEC_LEVEL_GREEN)
-					new_color = COLOR_LIME
-				if(SEC_LEVEL_BLUE)
-					new_color = "#1024A9"
-				if(SEC_LEVEL_RED)
-					new_color = COLOR_RED
-			set_light(l_range = 1.5, l_power = 0.5, l_color = new_color)
-		src.overlays += image('icons/obj/monitors.dmi', "overlay_[num2seclevel(seclevel)]")
+			var/decl/security_state/security_state = decls_repository.get_decl(maps_data.security_state)
+			var/decl/security_level/sl = security_state.current_security_level
+
+			set_light(sl.light_max_bright, sl.light_inner_range, sl.light_outer_range, 2, sl.light_color_alarm)
+			src.overlays += image('icons/obj/monitors.dmi', sl.overlay_firealarm)
 
 /obj/machinery/firealarm/fire_act(datum/gas_mixture/air, temperature, volume)
 	if(src.detecting)
@@ -1140,7 +1134,7 @@ FIRE ALARM
 		fire_alarm.triggerAlarm(loc, FA, duration)
 	if(iscarbon(usr))
 		visible_message(SPAN_WARNING("[usr] pulled \the [src]'s pull station!"), SPAN_WARNING("You have pulled \the [src]'s pull station!"))
-	else	
+	else
 		usr << "Fire Alarm activated."
 	update_icon()
 	//playsound(src.loc, 'sound/ambience/signal.ogg', 75, 0)
@@ -1163,15 +1157,8 @@ FIRE ALARM
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
 
-/obj/machinery/firealarm/securityLevelChanged(var/newlevel)
-	if(seclevel != newlevel)
-		seclevel = newlevel
-		update_icon()
-
 /obj/machinery/firealarm/Initialize()
 	. = ..()
-	if(isContactLevel(src.z))
-		set_security_level(security_level? get_security_level() : "green")
 
 /*
 FIRE ALARM CIRCUIT
