@@ -20,7 +20,7 @@
 			return
 
 	// Things you might plausibly want to follow
-	if(istype(A,/atom/movable))
+	if(istype(A,/atom/movable) && !istype(A,/HUD_element))
 		ManualFollow(A)
 	// Otherwise jump
 	else

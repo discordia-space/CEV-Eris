@@ -59,6 +59,8 @@
 		if (!dirtoverlay)
 			dirtoverlay = new/obj/effect/decal/cleanable/dirt(src)
 		dirtoverlay.alpha = min((dirt - 50) * 5, 255)
+	else if (dirtoverlay) //It was just cleaned, get rid of the overlay
+		qdel(dirtoverlay)
 
 /turf/simulated/Entered(atom/A, atom/OL)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)

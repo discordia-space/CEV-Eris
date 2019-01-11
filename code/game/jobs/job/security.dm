@@ -172,7 +172,7 @@
 
 	outfit_type = /decl/hierarchy/outfit/job/security/medspec
 	access = list(
-		access_security, access_moebius, access_sec_doors, access_medspec, access_morgue, access_maint_tunnels
+		access_security, access_moebius, access_sec_doors, access_medspec, access_morgue, access_maint_tunnels, access_medical_equip
 	)
 
 	stat_modifiers = list(

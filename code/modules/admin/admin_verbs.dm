@@ -552,3 +552,14 @@ ADMIN_VERB_ADD(/client/proc/global_man_up, R_ADMIN, FALSE)
 
 	log_admin("[key_name(usr)] told everyone to man up and deal with it.")
 	message_admins("\blue [key_name_admin(usr)] told everyone to man up and deal with it.", 1)
+
+ADMIN_VERB_ADD(/client/proc/toggleUIDebugMode, R_DEBUG, FALSE)
+/client/proc/toggleUIDebugMode()
+	set category = "Debug"
+	set name = "UI Debug Mode"
+	set desc = "Toggle UI Debug Mode"
+
+	if(UI)
+		UI.toggleDebugMode()
+	else
+		log_debug("This mob has no UI.")

@@ -87,6 +87,9 @@
 	if(new_character.mind)		//remove any mind currently in our new body's mind variable
 		new_character.mind.current = null
 
+	if(current.client)
+		current.client.destroy_UI()
+
 	current = new_character		//link ourself to our new body
 	new_character.mind = src	//and link our new body to ourself
 
@@ -96,6 +99,8 @@
 	if(active)
 		new_character.key = key		//now transfer the key to link the client to our new body
 		last_activity = world.time
+	if(new_character.client)
+		new_character.client.create_UI(new_character.type)
 
 /datum/mind/proc/store_memory(new_text)
 	memory += "[new_text]<BR>"
@@ -146,7 +151,6 @@
 
 	if(href_list["add_antagonist"])
 		var/datum/antagonist/antag = GLOB.all_antag_types[href_list["add_antagonist"]]
-		world << "Antag is [antag], attempted to get [href_list["add_antagonist"]]"
 		if(antag)
 			var/ok = FALSE
 			if(antag.outer && active)
@@ -160,8 +164,11 @@
 				return
 
 			if(antag.outer)
-				antag.create_antagonist(src)
-
+				//Outer antags are created from ghosts, we must make a ghost first
+				var/mob/observer/ghost/ghost = current.ghostize(FALSE)
+				antag.create_from_ghost(ghost, announce = FALSE)
+				qdel(current) //Delete our old body
+				antag.greet()
 
 			else
 				if(antag.create_antagonist(src))
