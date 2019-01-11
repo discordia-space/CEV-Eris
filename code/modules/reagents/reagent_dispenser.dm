@@ -73,7 +73,7 @@
 	amount_per_transfer_from_this = 10
 	New()
 		..()
-		reagents.add_reagent("water",500)
+		reagents.add_reagent("water",1500)
 
 /obj/structure/reagent_dispensers/watertank/huge
 	name = "high-volume watertank"
@@ -81,7 +81,7 @@
 	icon_state = "hvwatertank"
 	New()
 		..()
-		reagents.add_reagent("water",500)		//Adds 500 units to the amount, that already is inside. It'll be 1000.
+		reagents.add_reagent("water",1500)		//Adds 500 units to the amount, that already is inside. It'll be 1000.
 
 
 /obj/structure/reagent_dispensers/fueltank
