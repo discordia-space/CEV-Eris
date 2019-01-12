@@ -145,10 +145,10 @@
 		Topic(src, list("command"="bolts", "activate" = "1"))
 	return 1
 
-/obj/machinery/power/apc/AICtrlClick() // turns off/on APCs.
+/obj/machinery/power/apc/AICtrlClick(var/mob/user) // turns off/on APCs.
 	if(failure_timer)
 		failure_timer = 0
-		usr << "APC system restarted"
+		user << "APC system restarted."
 		return 1
 	Topic(src, list("breaker"="1"))
 	return 1
