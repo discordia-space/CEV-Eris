@@ -1,6 +1,6 @@
 /datum/objective/block
 	explanation_text = "Do not allow any organic lifeforms to escape on the shuttle alive."
-
+	unique = TRUE
 
 /datum/objective/block/check_completion()
 	if (failed)

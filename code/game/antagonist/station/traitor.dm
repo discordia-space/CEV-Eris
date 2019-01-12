@@ -4,6 +4,8 @@
 	protected_jobs = list(JOBS_SECURITY, JOBS_COMMAND)
 	bantype = ROLE_TRAITOR
 
+	objective_quantity = 3
+
 	possible_objectives = list(/datum/objective/assassinate = 30,
 	/datum/objective/brig = 15,
 	/datum/objective/harm = 15,
