@@ -24,7 +24,7 @@
 		return
 
 	malf.setup_for_malf()
-	malf.laws = new /datum/ai_laws/nanotrasen/malfunction
+	malf.laws = new /datum/ai_laws/eris/malfunction
 
 	return TRUE
 

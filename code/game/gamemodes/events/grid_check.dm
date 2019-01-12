@@ -15,6 +15,7 @@ So sometimes this event can result in people finding new and interesting things
 	event_type = /datum/event/grid_check
 	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE,
 	EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE)
+	weight = 0.5 //Make this less common since its very long lasting
 
 	tags = list(TAG_SCARY, TAG_COMMUNAL)
 
@@ -40,12 +41,13 @@ So sometimes this event can result in people finding new and interesting things
 		command_announcement.Announce("Abnormal activity detected in [station_name()]'s powernet. As a precautionary measure, the ship's power will be shut off for an indeterminate duration.", "Critical Power Failure", new_sound = 'sound/AI/poweroff.ogg')
 
 	for(var/obj/machinery/power/smes/buildable/S in SSmachines.machinery)
-		S.energy_fail(rand(10 * severity*severity,20 * severity*severity))
+		if (is_valid_smes(S))
+			S.energy_fail(rand(30 * severity*severity,40 * severity*severity))
 
 
 	for(var/obj/machinery/power/apc/C in SSmachines.machinery)
 		if(is_valid_apc(C) && (!affected_z_levels || (C.z in affected_z_levels)))
-			C.energy_fail(rand(30 * severity*severity,100 * severity*severity))
+			C.energy_fail(rand(90 * severity*severity,200 * severity*severity))
 
 /proc/power_restore(var/announce = 1)
 	var/list/skipped_areas = list(/area/turret_protected/ai)
@@ -77,3 +79,8 @@ So sometimes this event can result in people finding new and interesting things
 		S.input_attempt = 1
 		S.update_icon()
 		S.power_change()
+
+
+/proc/is_valid_smes(var/obj/machinery/power/smes/S)
+	var/area/A = get_area(S)
+	return !(A && (A.flags & AREA_FLAG_CRITICAL)) && isOnShipLevel(S)

@@ -12,6 +12,8 @@
 	economic_modifier = 0
 	outfit_type = /decl/hierarchy/outfit/job/silicon/ai
 
+/datum/job/ai/equip(var/mob/living/carbon/human/H, var/alt_title)
+	return FALSE
 
 /datum/job/ai/is_position_available()
 	return (empty_playable_ai_cores.len != 0)
@@ -27,7 +29,6 @@
 	name = "triai"
 	join_tag = "triai"
 
-
 /datum/job/cyborg
 	title = "Robot"
 	flag = CYBORG
@@ -42,6 +43,9 @@
 	economic_modifier = 0
 
 	outfit_type = /decl/hierarchy/outfit/job/silicon/cyborg
+
+/datum/job/cyborg/equip(var/mob/living/carbon/human/H, var/alt_title)
+	return FALSE
 
 /obj/landmark/join/start/cyborg
 	join_tag = /datum/job/cyborg
