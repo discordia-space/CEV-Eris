@@ -1134,6 +1134,9 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	name = "Janitorial supplies"
 	contains = list(/obj/item/weapon/reagent_containers/glass/bucket,
 					/obj/item/weapon/mop,
+					/obj/item/weapon/mop,
+					/obj/item/weapon/mop,
+					/obj/item/weapon/mop,
 					/obj/item/weapon/caution,
 					/obj/item/weapon/caution,
 					/obj/item/weapon/caution,
