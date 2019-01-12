@@ -32,6 +32,12 @@
 
 	return TRUE
 
+/datum/antagonist/proc/printTip()
+	var/tipsAndTricks/T = SStips.getRoleTip(src.type)
+	if(T)
+		var/mob/player = owner.current
+		player << SStips.formatTip(T, "Tip for \a [src.id]: ")
+
 /datum/antagonist/proc/get_special_objective_text()
 	return ""
 

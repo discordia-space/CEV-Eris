@@ -442,6 +442,10 @@ SUBSYSTEM_DEF(vote)
 		round_progressing = TRUE
 		world << "<b>The game will start in [SSticker.pregame_timeleft] seconds.</b>"
 	pregame = FALSE
+	spawn(10 SECONDS)
+		var/tipsAndTricks/T = SStips.getRandomTip()
+		if(T)
+			world << SStips.formatTip(T, "Random Tip: ")
 
 /datum/vote_choice/storyteller
 	text = "You shouldn't see this."

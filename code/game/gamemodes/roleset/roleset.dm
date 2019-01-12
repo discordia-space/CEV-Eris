@@ -204,6 +204,7 @@
 	A.objectives.Cut()
 	A.create_objectives(survive = TRUE)
 	A.greet()
+	A.printTip()
 
 /datum/storyevent/roleset/announce()
 	return
