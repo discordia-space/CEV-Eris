@@ -206,6 +206,7 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	var/is_accessable_level = TRUE // Prob modifier for random access (space travelling)
 	var/generate_asteroid= FALSE
 	var/tmp/z_level
+	var/height = -1	///< The number of Z-Levels in the map.
 
 /obj/map_data/station
 	name = "Station Level"
@@ -213,11 +214,13 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	is_player_level = TRUE
 	is_contact_level = TRUE
 	is_accessable_level = TRUE
+	height = 5
 
 /obj/map_data/admin
 	name = "Admin Level"
 	is_admin_level = TRUE
 	is_accessable_level = FALSE
+	height = 1
 
 /obj/map_data/asteroid
 	name = "Asteroid Level"
@@ -225,9 +228,5 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	is_contact_level = TRUE
 	generate_asteroid = TRUE
 	is_accessable_level = TRUE
-
-/obj/map_data/New()
-	..()
-	z_level = z
-	maps_data.registrate(src)
+	height = 1
 

@@ -1,8 +1,8 @@
 /datum/hud
 	var/name
-	var/list/HUDneed//для "активных" элементов (прим. здоровье)
+	var/list/HUDneed//for "active" elements (health)
 //	var/list/HUDprocess = list()
-	var/list/slot_data//inventory styff (for mob variable HUDinventory)
+	var/list/slot_data//inventory stuff (for mob variable HUDinventory)
 	var/icon/icon = null //what dmi we use
 	var/list/HUDfrippery //for nice view
 	var/list/HUDoverlays //tech stuff (flash overlay, pain overlay, etc.)
@@ -14,13 +14,40 @@
 	var/list/obj/screen/plane_master/plane_masters = list() // see "appearance_flags" in the ref, assoc list of "[plane]" = object
 
 /datum/hud/proc/buildPlaneMasters(mob/mymob)
+	var/turf/T = get_turf(mymob)
+	if(!T)
+		return
+
+	var/z = T.z
+
 	for(var/mytype in subtypesof(/obj/screen/plane_master))
-		for(var/z in 1 to z_levels.len)
-			var/obj/screen/plane_master/instance = new mytype()
-			instance.plane = calculate_plane(z,instance.plane)
-			plane_masters["[instance.plane]"] = instance
-			mymob.client.screen += instance
-			instance.backdrop(mymob)
+		var/obj/screen/plane_master/instance = new mytype()
+
+		instance.plane = calculate_plane(z,instance.plane)
+
+		plane_masters["[mytype]"] = instance
+		mymob.client.screen += instance
+		instance.backdrop(mymob)
+
+/datum/hud/proc/updatePlaneMasters(mob/mymob)
+	var/turf/T = get_turf(mymob)
+	if(!T)
+		return
+
+	if(!plane_masters.len)
+		buildPlaneMasters(mymob)
+		return
+
+	var/z = T.z
+
+	for(var/pmaster in plane_masters)
+		var/obj/screen/plane_master/instance = plane_masters[pmaster]
+		instance.plane = calculate_plane(z,initial(instance.plane))
+
+/mob/update_plane()
+	..()
+	if(hud_used)
+		hud_used.updatePlaneMasters(src)
 
 /datum/hud/New(mob/mymob)
 	if(mymob)

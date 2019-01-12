@@ -13,12 +13,14 @@
 	anchored = 1
 	flags = NOREACT
 
-	blend_mode       = BLEND_MULTIPLY
+	blend_mode       = BLEND_OVERLAY
 
 	var/needs_update = FALSE
 
 /atom/movable/lighting_overlay/New(var/atom/loc, var/no_update = FALSE)
+	world.log << "1-[plane] [original_plane]"
 	. = ..()
+	world.log << "2-[plane] [original_plane]"
 	verbs.Cut()
 
 	var/turf/T         = loc // If this runtimes atleast we'll know what's creating overlays in things that aren't turfs.
