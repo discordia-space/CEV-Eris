@@ -19,9 +19,6 @@
 	var/signs = 0	//maximum capacity hardcoded below
 
 
-/obj/structure/janitorialcart/New()
-	//create_reagents(460)
-
 
 /obj/structure/janitorialcart/Destroy()
 	QDEL_NULL(mybag)
@@ -66,10 +63,11 @@
 
 	else if (istype(I, /obj/item/weapon/reagent_containers/glass/bucket) && mybucket)
 		I.afterattack(mybucket, usr, 1)
-		return
+		update_icon()
+		return 1
 
 	else if(istype(I, /obj/item/weapon/reagent_containers/spray) && !myspray)
-		user.drop_from_inventory(I,src)
+		user.unEquip(I, src)
 		myspray = I
 		update_icon()
 		updateUsrDialog()
@@ -77,7 +75,7 @@
 		return 1
 
 	else if(istype(I, /obj/item/device/lightreplacer) && !myreplacer)
-		user.drop_from_inventory(I,src)
+		user.unEquip(I, src)
 		myreplacer = I
 		update_icon()
 		updateUsrDialog()
@@ -85,9 +83,8 @@
 		return 1
 
 	else if(istype(I, /obj/item/weapon/storage/bag/trash) && !mybag)
-		user.drop_from_inventory(I,src)
+		user.unEquip(I, src)
 		mybag = I
-		I.forceMove(src)
 		update_icon()
 		updateUsrDialog()
 		user << "<span class='notice'>You put [I] into [src].</span>"
@@ -95,13 +92,13 @@
 
 	else if(istype(I, /obj/item/weapon/caution))
 		if(signs < 4)
-			user.drop_from_inventory(I,src)
+			user.unEquip(I, src)
 			signs++
 			update_icon()
 			updateUsrDialog()
-			user << "<span class='notice'>You put [I] into [src].</span>"
+			user << SPAN_NOTICE("You put [I] into [src].")
 		else
-			user << "<span class='notice'>[src] can't hold any more signs.</span>"
+			user << SPAN_NOTICE("[src] can't hold any more signs.")
 		return 1
 
 	else if(mybag)
@@ -216,7 +213,7 @@
 
 	if(mybucket)
 		overlays += "cart_bucket"
-		if(mybucket.reagents.total_volume)
+		if(mybucket.reagents.total_volume >= 1)
 			overlays += "water_cart"
 	if(mybag)
 		overlays += "cart_garbage"

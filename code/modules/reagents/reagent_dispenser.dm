@@ -7,7 +7,8 @@
 	icon_state = "watertank"
 	density = 1
 	anchored = 0
-
+	var/volume = 1500
+	var/starting_reagent = null
 	var/amount_per_transfer_from_this = 10
 	var/possible_transfer_amounts = list(10,25,50,100)
 
@@ -15,8 +16,11 @@
 		return
 
 	New()
-		var/datum/reagents/R = new/datum/reagents(1000)
+		var/datum/reagents/R = new/datum/reagents(volume)
+
 		reagents = R
+		if (starting_reagent)
+			reagents.add_reagent(starting_reagent, volume)
 		R.my_atom = src
 		if (!possible_transfer_amounts)
 			src.verbs -= /obj/structure/reagent_dispensers/verb/set_APTFT
@@ -71,18 +75,14 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "watertank"
 	amount_per_transfer_from_this = 10
-	New()
-		..()
-		reagents.add_reagent("water",1500)
+	volume = 1500
+	starting_reagent = "water"
 
 /obj/structure/reagent_dispensers/watertank/huge
 	name = "high-volume watertank"
 	desc = "A high-volume watertank. It is used to store HUGE amounts of water."
 	icon_state = "hvwatertank"
-	New()
-		..()
-		reagents.add_reagent("water",1500)		//Adds 500 units to the amount, that already is inside. It'll be 1000.
-
+	volume = 3000
 
 /obj/structure/reagent_dispensers/fueltank
 	name = "fueltank"
@@ -92,17 +92,14 @@
 	amount_per_transfer_from_this = 10
 	var/modded = 0
 	var/obj/item/device/assembly_holder/rig = null
-	New()
-		..()
-		reagents.add_reagent("fuel",500)
+	volume = 500
+	starting_reagent = "fuel"
 
 /obj/structure/reagent_dispensers/fueltank/huge
 	name = "high-volume fueltank"
 	desc = "A high-volume fueltank. It is used to store HUGE amounts of fuel."
 	icon_state = "hvweldtank"
-	New()
-		..()
-		reagents.add_reagent("fuel",500)		//Adds 500 units to the amount, that already is inside. It'll be 1000.
+	volume = 1000
 
 /obj/structure/reagent_dispensers/fueltank/examine(mob/user)
 	if(!..(user, 2))
@@ -210,9 +207,8 @@
 	anchored = 1
 	density = 0
 	amount_per_transfer_from_this = 45
-	New()
-		..()
-		reagents.add_reagent("condensedcapsaicin",1000)
+	volume = 1000
+	starting_reagent = "condensedcapsaicin"
 
 
 /obj/structure/reagent_dispensers/water_cooler
@@ -223,9 +219,8 @@
 	icon_state = "water_cooler"
 	possible_transfer_amounts = null
 	anchored = 1
-	New()
-		..()
-		reagents.add_reagent("water",500)
+	volume = 500
+	starting_reagent = "water"
 
 /obj/structure/reagent_dispensers/water_cooler/attackby(obj/item/I, mob/user)
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
@@ -250,19 +245,16 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "beertankTEMP"
 	amount_per_transfer_from_this = 10
-	New()
-		..()
-		reagents.add_reagent("beer",1000)
+	volume = 1000
+	starting_reagent = "beer"
 
 /obj/structure/reagent_dispensers/cahorsbarrel
 	name = "NeoTheology Cahors barrel"
 	desc = "Barrel a day - keeps liver away."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "barrel"
-	amount_per_transfer_from_this = 10
-	New()
-		..()
-		reagents.add_reagent("ntcahors",800)
+	volume = 1000
+	starting_reagent = "ntcahors"
 
 /obj/structure/reagent_dispensers/virusfood
 	name = "Virus Food Dispenser"
@@ -272,9 +264,8 @@
 	amount_per_transfer_from_this = 10
 	anchored = 1
 	density = 0
-	New()
-		..()
-		reagents.add_reagent("virusfood", 1000)
+	volume = 1000
+	starting_reagent = "virusfood"
 
 /obj/structure/reagent_dispensers/acid
 	name = "Sulphuric Acid Dispenser"
@@ -284,6 +275,5 @@
 	amount_per_transfer_from_this = 10
 	anchored = 1
 	density = 0
-	New()
-		..()
-		reagents.add_reagent("sacid", 1000)
+	volume = 1000
+	starting_reagent = "sacid"
