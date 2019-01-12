@@ -21,14 +21,6 @@
 	)
 	ideal_character_age = 40
 
-	software_on_spawn = list(///datum/computer_file/program/supply,
-							 ///datum/computer_file/program/deck_management,
-							 /datum/computer_file/program/scanner,
-							 /datum/computer_file/program/wordprocessor,
-							 /datum/computer_file/program/reports)
-
-	outfit_type = /decl/hierarchy/outfit/job/cargo/merchant
-
 	description = "You are the head of the local branch of Asters Merchant Guild, and eris' guild representative<br>\
 A staunch entrepreneur, you are motivated by profit, for the guild and especially for yourself. You are here firstly to make as much money as you can, and secondly to keep the crew supplied. You can order things at cargo using the local guild funds, these will not magically replenish so you will run out of money quickly if you don't charge. Take payments by card or cash, and deposit them into the guild account to enable more purchases.<br>\
 <br>\
@@ -48,8 +40,15 @@ Deploy your mining staff to harvest matter and materials<br>\
 Counsel the captain on directing the ship towards profitable opportunities"
 
 	loyalties = "As a merchant, your first loyalty is to money. You should be unscrupulous, willing to sell anything to anyone if they can pay your prices. Direct the ship towards profitable endeavours, and press the captain to make choices that will be financially lucrative<br>\
-
 Your second loyalty is to the guild. Ensure it retains good relations with privateers like the captain of Eris, and don't embarass it. This means limiting your price gouging to only moderate levels. If you make an enemy of everyone, it may prove a costly mistake"
+
+	software_on_spawn = list(///datum/computer_file/program/supply,
+							 ///datum/computer_file/program/deck_management,
+							 /datum/computer_file/program/scanner,
+							 /datum/computer_file/program/wordprocessor,
+							 /datum/computer_file/program/reports)
+
+	outfit_type = /decl/hierarchy/outfit/job/cargo/merchant
 
 /obj/landmark/join/start/merchant
 	name = "Guild Merchant"
@@ -122,23 +121,6 @@ Your main duties are to keep the local guild branch operational and profitable. 
 
 	outfit_type = /decl/hierarchy/outfit/job/cargo/mining
 
-	access = list(
-		access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_mining,
-		access_mining_station
-	)
-
-
-	stat_modifiers = list(
-		STAT_ROB = 20,
-		STAT_TGH = 15,
-		STAT_MEC = 15
-	)
-
-	software_on_spawn = list(///datum/computer_file/program/supply,
-							 ///datum/computer_file/program/deck_management,
-							 /datum/computer_file/program/wordprocessor,
-							 /datum/computer_file/program/reports)
-
 	description = "You are an asteroid miner, working in resource Procurement for the local branch of Asters' Merchant Guild.<br>\
 Your primary responsibility is to head out on the Mining Barge, and dig up as much ore as you can on an asteroid. The barge contains all the facilities to process that ore too, and allows you to deliver refined materials ready for use.<br>\
 <br>\
@@ -159,6 +141,23 @@ Character Expectations:<br>\
 
 	loyalties = "	Your first loyalty is to yourself and survival. This ship is mostly just a paycheck to you<br>\
 	Your second loyalty is to the merchant, he ensures you're well paid and respected, in a universe where workers are often treated as interchangeable parts.	"
+
+	access = list(
+		access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_mining,
+		access_mining_station
+	)
+
+
+	stat_modifiers = list(
+		STAT_ROB = 20,
+		STAT_TGH = 15,
+		STAT_MEC = 15
+	)
+
+	software_on_spawn = list(///datum/computer_file/program/supply,
+							 ///datum/computer_file/program/deck_management,
+							 /datum/computer_file/program/wordprocessor,
+							 /datum/computer_file/program/reports)
 
 /obj/landmark/join/start/mining
 	name = "Guild Miner"

@@ -24,7 +24,6 @@
 	if(!leader_hud_indicator)
 		leader_hud_indicator = hud_indicator
 	current_factions.Add(src)
-	create_objectives()
 
 /datum/faction/proc/add_member(var/datum/antagonist/member, var/announce = TRUE)
 	if(!member || !member.owner || !member.owner.current || member in members || !member.owner.current.client)
@@ -36,7 +35,9 @@
 	member.faction = src
 	if(announce)
 		member.owner.current << SPAN_NOTICE("You became a member of the [name].")
-	member.set_objectives(objectives)
+
+	if (objectives.len)
+		member.set_objectives(objectives)
 
 	member.owner.current.verbs |= verbs
 	add_icons(member)
@@ -57,6 +58,20 @@
 	update_members()
 	update_icons(member)
 	return TRUE
+
+
+//Randomly selects leaders from the faction members
+/datum/faction/proc/pick_leaders(var/num)
+	var/list/candidates = members.Copy()
+
+	//Specifically check equality to zero, rather than <=
+	//This allows a value of -1 to be passed, to convert everyone into a leader since it will never reach zero
+		//Just keeps going until theres no candidates left
+	while (num != 0 && candidates.len)
+		var/datum/antagonist/A = pick_n_take(candidates)
+		add_leader(A)
+		num--
+
 
 /datum/faction/proc/remove_leader(var/datum/antagonist/member, var/announce = TRUE)
 	if(!member || !(member in leaders) || !member.owner.current)
@@ -107,6 +122,7 @@
 
 
 /datum/faction/proc/create_objectives()
+	set_objectives(objectives)
 
 /datum/faction/proc/set_objectives(var/list/new_objs)
 	objectives = new_objs
@@ -144,7 +160,7 @@
 	if(!members.len)
 		return
 
-	var/text = "<b>[capitalize(name)] was faction of [antag].</b>"
+	var/text = ""//<b>[capitalize(name)] was faction of [antag].</b>"
 
 	if(leaders.len)
 		text += "<br><b>[capitalize(name)]'s leader[leaders.len >= 1?"":"s"] was:</b>"
@@ -261,7 +277,7 @@
 
 
 	data += "<br><br><b>Members:</b>"
-	for(var/i=1;i<=members.len)
+	for(var/i=1;i<=members.len; i++)
 		var/datum/antagonist/member = members[i]
 		if(!istype(member))
 			data += "<br>Invalid element on index [i]: [member ? member : "NULL"]"
@@ -271,6 +287,14 @@
 			else
 				data += "<br>[member.owner ? member.owner.name : "no owner"] <a href='?src=\ref[src];makeleader=\ref[member]'>\[MAKE LEADER\]</a> <a href='?src=\ref[src];remmember=[i]'>\[REMOVE\]</a>"
 			data += "<a href='?src=[member]'>\[EDIT\]</a>"
+
+	data += "<br><br><b>Objectives:</b><br>"
+	for(var/i=1;i<=objectives.len; i++)
+		var/datum/objective/O = objectives[i]
+		//Make sure we show the most up-to-date info
+		O.update_completion()
+		O.update_explanation()
+		data += "[i]. [O.get_panel_entry()]<br>"
 
 	usr << browse(data,"window=[id]faction")
 
@@ -295,3 +319,17 @@
 
 	faction_panel()
 
+
+//This returns a list of all items owned, held, worn, etc by faction members
+/datum/faction/proc/get_inventory()
+	var/list/contents = list()
+	for (var/datum/antagonist/A in members)
+		if (A.owner && A.owner.current)
+			contents.Add(A.owner.current.get_contents())
+
+	return contents
+
+
+/datum/faction/proc/greet()
+	for (var/datum/antagonist/A in members)
+		A.greet()

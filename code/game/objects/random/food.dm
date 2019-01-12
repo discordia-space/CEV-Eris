@@ -1,3 +1,16 @@
+/obj/random/rations
+	name = "random preserved rations"
+	icon_state = "food-red"
+
+/obj/random/rations/item_to_spawn()
+	return pickweight(list(/obj/item/weapon/reagent_containers/food/snacks/chips = 2,\
+				/obj/item/weapon/reagent_containers/food/snacks/candy = 2,\
+				/obj/item/weapon/reagent_containers/food/snacks/tastybread = 2,\
+				/obj/item/weapon/reagent_containers/food/snacks/no_raisin = 2,\
+				/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 4,
+				/obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket = 1))
+
+
 /obj/random/rotfood
 	name = "random spoiled food"
 	icon_state = "food-red"
@@ -5,7 +18,6 @@
 /obj/random/rotfood/item_to_spawn()
 	return pickweight(list(/obj/item/weapon/reagent_containers/food/snacks/chips = 3,\
 				/obj/item/weapon/reagent_containers/food/snacks/candy = 3,\
-				/obj/item/weapon/reagent_containers/food/snacks/unajerky = 3,\
 				/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 3,\
 				/obj/item/weapon/reagent_containers/food/snacks/tastybread = 3,\
 				/obj/item/weapon/reagent_containers/food/snacks/no_raisin = 3,\

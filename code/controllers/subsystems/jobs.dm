@@ -336,7 +336,7 @@ SUBSYSTEM_DEF(job)
 		if(department_account)
 			remembered_info += "<b>Your department's account number is:</b> #[department_account.account_number]<br>"
 			remembered_info += "<b>Your department's account pin is:</b> [department_account.remote_access_pin]<br>"
-			remembered_info += "<b>Your department's account funds are:</b> $[department_account.money]<br>"
+			remembered_info += "<b>Your department's account funds are:</b> [CREDS][department_account.money]<br>"
 		remembered_info += "<b>Your part of nuke code:</b> [SSticker.get_next_nuke_code_part()]<br>"
 
 		H.mind.store_memory(remembered_info)
@@ -385,7 +385,7 @@ SUBSYSTEM_DEF(job)
 		if(equipped != 1)
 			var/obj/item/clothing/glasses/G = H.glasses
 			G.prescription = 1
-	
+
 	if(H.religion == "Neotheology" && !locate(/obj/item/weapon/implant/core_implant/cruciform, H))
 		var/obj/item/weapon/implant/core_implant/cruciform/C = new /obj/item/weapon/implant/core_implant/cruciform(H)
 
@@ -428,7 +428,7 @@ proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
 					spawn_in_storage.Add(G)
 				else
 					loadout_taken_slots.Add(G.slot)
-				
+
 	return spawn_in_storage
 
 /datum/controller/subsystem/job/proc/LoadJobs(jobsfile) //ran during round setup, reads info from jobs.txt -- Urist
@@ -506,7 +506,7 @@ proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
 
 	var/mob/H = C.mob
 	var/pref_spawn = C.prefs.spawnpoint
-	
+
 	var/datum/spawnpoint/SP
 	if(late)
 		if(!pref_spawn)
@@ -522,15 +522,15 @@ proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
 					if(candidate.check_job_spawning(rank))
 						SP = candidate
 						break
-					if(!SP)
-						// Pick default spawnpoint, just so we have one
-						warning("Could not find an appropriate spawnpoint for job [rank] (latespawn).")
-						SP = SP = getSpawnPoint(maps_data.default_spawn, late = TRUE)
+				if(!SP)
+					warning("Could not find an appropriate spawnpoint for job [rank] (latespawn).")
 	else
 		SP = getSpawnPoint(rank)
 		if(!SP)
 			warning("Could not find an appropriate spawnpoint for job [rank] (roundstart).")
-			SP = getSpawnPoint(maps_data.default_spawn, late = TRUE)
+	if(!SP)
+		// Pick default spawnpoint, just so we have one
+		SP = SP = getSpawnPoint(maps_data.default_spawn, late = TRUE)
 	return SP
 
 /datum/controller/subsystem/job/proc/ShouldCreateRecords(var/title)

@@ -1,4 +1,4 @@
-var/global/const/base_law_type = /datum/ai_laws/asimov
+var/global/const/base_law_type = /datum/ai_laws/eris
 
 /datum/ai_law
 	var/law = ""

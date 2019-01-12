@@ -9,3 +9,5 @@
 #define JOBS_CHURCH	"Neotheology Preacher"
 #define JOBS_NONHUMAN "AI","Robot","pAI"
 
+#define CREDITS "&cent;"
+#define CREDS "&cent;"

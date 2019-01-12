@@ -19,7 +19,6 @@
 	var/allow_spin = TRUE
 	var/used_now = FALSE //For tools system, check for it should forbid to work on atom for more than one user at time
 
-
 	///Chemistry.
 	var/datum/reagents/reagents = null
 
@@ -497,7 +496,6 @@ its easier to just keep the beam vertical.
 		cur_y = y_arr.Find(src.z)
 		if(cur_y)
 			break
-//	world << "X = [cur_x]; Y = [cur_y]"
 	if(cur_x && cur_y)
 		return list("x"=cur_x, "y"=cur_y)
 	else
@@ -637,8 +635,20 @@ its easier to just keep the beam vertical.
 		BM.set_dir(pick(NORTH,SOUTH,EAST,WEST)) // random scorch design
 	else //Otherwise it's a light dent.
 		BM.icon_state = "light_scorch"
-	
+
 /atom/proc/clear_bulletholes()
 	for(var/obj/effect/overlay/bmark/BM in src)
 		qdel(BM)
 
+
+//Returns a list of things in this atom, can be overridden for more nuanced behaviour
+/atom/proc/get_contents()
+	return contents
+
+
+/atom/proc/get_recursive_contents()
+	var/list/result = list()
+	for (var/atom/a in contents)
+		result += a
+		result |= a.get_recursive_contents()
+	return result

@@ -68,7 +68,7 @@
 /mob/proc/AIize(move=1)
 
 	if(client)
-		src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // stop the jams for AIs
+		sound_to(src, sound(null, repeat = 0, wait = 0, volume = 85, channel = GLOB.lobby_sound_channel))
 	var/mob/living/silicon/ai/O = new (loc, base_law_type,,1)//No MMI but safety is in effect.
 	O.invisibility = 0
 	O.aiRestorePowerRoutine = 0
@@ -109,15 +109,17 @@
 /mob/living/carbon/human/proc/Robotize()
 	if (transforming)
 		return
+	for(var/t in organs)
+		qdel(t)
 	for(var/obj/item/W in src)
 		drop_from_inventory(W)
+		qdel(W)
 	regenerate_icons()
 	transforming = 1
 	canmove = 0
 	icon = null
 	invisibility = 101
-	for(var/t in organs)
-		qdel(t)
+	
 
 	var/mob/living/silicon/robot/O = new /mob/living/silicon/robot( loc )
 
@@ -294,6 +296,3 @@
 
 	//Not in here? Must be untested!
 	return 0
-
-
-

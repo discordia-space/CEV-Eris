@@ -276,8 +276,8 @@ area/space/atmosalert()
 /area/shuttle/specops/station
 	icon_state = "shuttlered2"
 
-/area/shuttle/syndicate_elite
-	name = "\improper Merc Elite Shuttle"
+/area/shuttle/mercenary
+	name = "\improper Mercenary Ship"
 	flags = AREA_FLAG_RAD_SHIELDED
 
 /area/shuttle/syndicate_elite/mothership
@@ -399,19 +399,19 @@ area/space/atmosalert()
 
 //SYNDICATES
 
-/area/syndicate_mothership
+/area/antag/merc_base
 	name = "\improper Mercenary Base"
 	icon_state = "syndie-ship"
 	requires_power = 0
 	dynamic_lighting = 0
 	vessel = "syndicate mothership"
 
-/area/syndicate_mothership/control
-	name = "\improper Mercenary Control Room"
+/area/antag/raider_base
+	name = "\improper Raider Base"
 	icon_state = "syndie-control"
 
-/area/syndicate_mothership/elite_squad
-	name = "\improper Elite Mercenary Squad"
+/area/antag/small_base
+	name = "\improper Unused base"
 	icon_state = "syndie-elite"
 
 //EXTRA
@@ -1765,14 +1765,17 @@ area/space/atmosalert()
 
 /area/eris/anomalisolone
 	name = "Anomalous Research Isolation One"
+	flags = AREA_FLAG_RAD_SHIELDED
 	icon_state = "erisgreen"
 
 /area/eris/anomalisoltwo
 	name = "Anomalous Research Isolation Two"
+	flags = AREA_FLAG_RAD_SHIELDED
 	icon_state = "erisgreen"
 
 /area/eris/anomalisolthree
 	name = "Anomalous Research Isolation Three"
+	flags = AREA_FLAG_RAD_SHIELDED
 	icon_state = "erisgreen"
 
 /area/eris/chemstor
@@ -1844,6 +1847,7 @@ area/space/atmosalert()
 
 /area/eris/security/disposal
 	name = "Security Disposal"
+	flags = AREA_FLAG_RAD_SHIELDED
 	icon_state = "hammerblue"
 	is_maintenance = TRUE
 
@@ -1873,6 +1877,7 @@ area/space/atmosalert()
 
 /area/eris/security/maintpost
 	name = "Maintenance Post"
+	flags = AREA_FLAG_RAD_SHIELDED
 	icon_state = "hammerred"
 	is_maintenance = TRUE
 
@@ -1918,6 +1923,7 @@ area/space/atmosalert()
 
 /area/eris/engineering/substation
 	name = "Substation"
+	flags = AREA_FLAG_RAD_SHIELDED
 	icon_state = "substation"
 	forced_ambience = list('sound/ambience/maintambience.ogg')
 	sound_env = SMALL_ENCLOSED
@@ -1945,6 +1951,7 @@ area/space/atmosalert()
 
 /area/eris/maintenance
 	is_maintenance = TRUE
+	flags = AREA_FLAG_RAD_SHIELDED
 	name = "Maintenance"
 	icon_state = "erisyellow"
 	forced_ambience = list('sound/ambience/maintambience.ogg')

@@ -125,7 +125,8 @@ LINEN BINS
 		return
 	if(!folded)
 		toggle_roll(user)
-	pickup(usr)
+	else
+		pickup(usr)
 	add_fingerprint(user)
 
 /obj/item/weapon/bedsheet/MouseDrop(over_object, src_location, over_location)

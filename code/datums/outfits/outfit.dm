@@ -62,11 +62,11 @@ var/list/outfits_decls_by_type_
 	outfits_decls_by_type_[type] = src
 	dd_insertObjectList(outfits_decls_, src)
 
-/decl/hierarchy/outfit/proc/pre_equip(mob/living/carbon/human/H)
-	if(flags & OUTFIT_RESET_EQUIPMENT)
+/decl/hierarchy/outfit/proc/pre_equip(mob/living/carbon/human/H, var/equip_adjustments)
+	if((flags & OUTFIT_RESET_EQUIPMENT) && !(equip_adjustments & OUTFIT_ADJUSTMENT_NO_RESET))
 		H.delete_inventory(TRUE)
 
-/decl/hierarchy/outfit/proc/post_equip(mob/living/carbon/human/H)
+/decl/hierarchy/outfit/proc/post_equip(mob/living/carbon/human/H, var/equip_adjustments)
 	if(flags & OUTFIT_HAS_JETPACK)
 		var/obj/item/weapon/tank/jetpack/J = locate(/obj/item/weapon/tank/jetpack) in H
 		if(!J)
@@ -98,7 +98,7 @@ var/list/outfits_decls_by_type_
 	return 1
 
 /decl/hierarchy/outfit/proc/equip_base(mob/living/carbon/human/H, var/equip_adjustments)
-	pre_equip(H)
+	pre_equip(H, equip_adjustments)
 
 	//Start with uniform,suit,backpack for additional slots
 	if(uniform)

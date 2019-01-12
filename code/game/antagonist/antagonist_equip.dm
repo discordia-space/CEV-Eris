@@ -3,11 +3,14 @@
 	if(owner && !ishuman(owner.current))
 		return FALSE
 
+	owner.current.regenerate_icons()
 	return TRUE
 
 /datum/antagonist/proc/unequip()
 	if(owner && !ishuman(owner.current))
 		return FALSE
+
+	owner.current.regenerate_icons()
 	return TRUE
 
 /datum/antagonist/proc/clear_equipment()
@@ -27,7 +30,12 @@
 	if(!owner || !owner.current || !ishuman(owner.current))
 		return
 
+
+
 	var/mob/living/carbon/human/player = owner.current
+	//Remove the old ID
+	if (player.wear_id)
+		QDEL_NULL(player.wear_id)
 
 	var/obj/item/weapon/card/id/W = new id_type(player)
 	if(!W) return

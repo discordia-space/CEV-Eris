@@ -623,7 +623,7 @@ There are 9 wires.
 		if("deny")
 			if(density && src.arePowerSystemsOn())
 				flick("door_deny", src)
-				playsound(src.loc, 'sound/machines/Custom_deny.ogg', 50, 0)
+				playsound(src.loc, 'sound/machines/Custom_deny.ogg', 50, 1, -2)
 	return
 
 /obj/machinery/door/airlock/attack_ai(mob/user as mob)
@@ -996,13 +996,13 @@ There are 9 wires.
 
 	//if the door is unpowered then it doesn't make sense to hear the woosh of a pneumatic actuator
 	if(arePowerSystemsOn())
-		playsound(src.loc, open_sound_powered, 100, 1)
+		playsound(src.loc, open_sound_powered, 70, 1, -2)
 	else
 		var/obj/item/weapon/tool/T = forced
 		if (istype(T) && T.silenced)
 			playsound(src.loc, open_sound_unpowered, 3, 1, -5) //Silenced tools can force open airlocks silently
 		else
-			playsound(src.loc, open_sound_unpowered, 100, 1)
+			playsound(src.loc, open_sound_unpowered, 70, 1, -1)
 
 	if(src.closeOther != null && istype(src.closeOther, /obj/machinery/door/airlock/) && !src.closeOther.density)
 		src.closeOther.close()
@@ -1091,7 +1091,7 @@ There are 9 wires.
 			for(var/atom/movable/AM in turf)
 				if(AM.blocks_airlock())
 					if(world.time > next_beep_at)
-						playsound(src.loc, 'sound/machines/buzz-two.ogg', 30, 0)
+						playsound(src.loc, 'sound/machines/buzz-two.ogg', 30, 1, -1)
 						next_beep_at = world.time + SecondsToTicks(10)
 					close_door_at = world.time + 6
 					return
@@ -1103,13 +1103,13 @@ There are 9 wires.
 
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
 	if(arePowerSystemsOn())
-		playsound(src.loc, close_sound, 100, 1)
+		playsound(src.loc, close_sound, 70, 1, -2)
 	else
 		var/obj/item/weapon/tool/T = forced
 		if (istype(T) && T.silenced)
 			playsound(src.loc, open_sound_unpowered, 3, 1, -5) //Silenced tools can force airlocks silently
 		else
-			playsound(src.loc, open_sound_unpowered, 100, 1)
+			playsound(src.loc, open_sound_unpowered, 70, 1, -2)
 
 	..()
 
@@ -1120,7 +1120,7 @@ There are 9 wires.
 	if (operating && !forced) return 0
 
 	src.locked = 1
-	playsound(src.loc, 'sound/machines/Custom_bolts.ogg', 50, 1, 7)
+	playsound(src.loc, 'sound/machines/Custom_bolts.ogg', 40, 1, 5)
 	for(var/mob/M in range(1,src))
 		M.show_message("You hear a click from the bottom of the door.", 2)
 	update_icon()
@@ -1134,7 +1134,7 @@ There are 9 wires.
 		if(operating || !src.arePowerSystemsOn() || isWireCut(AIRLOCK_WIRE_DOOR_BOLTS)) return
 
 	src.locked = 0
-	playsound(src.loc, 'sound/machines/Custom_boltsup.ogg', 50, 1, 7)
+	playsound(src.loc, 'sound/machines/Custom_boltsup.ogg', 40, 1, 5)
 	for(var/mob/M in range(1,src))
 		M.show_message("You hear a click from the bottom of the door.", 2)
 	update_icon()
@@ -1260,7 +1260,7 @@ There are 9 wires.
 		quiet ? () : playsound(src.loc, hitsound, 20, 1)
 	else
 		user.visible_message(SPAN_DANGER("\The [user] forcefully strikes \the [src] with \the [W]!"))
-		playsound(src.loc, hitsound, quiet? 3: calc_damage*2.5, 1, 3,quiet?-5 :3)
+		playsound(src.loc, hitsound, quiet? 3: calc_damage*2.0, 1, 3,quiet?-5 :2)
 		take_damage(W.force)
 
 

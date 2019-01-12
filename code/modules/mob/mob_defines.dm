@@ -106,7 +106,7 @@
 
 	var/in_throw_mode = 0
 
-	var/inertia_dir = 0
+
 
 	var/targeted_organ = BP_CHEST
 
@@ -172,7 +172,7 @@
 
 	var/list/HUDneed = list() // What HUD object need see
 	var/list/HUDinventory = list()
-	var/list/HUDfrippery = list()//свестелки и перделки
+	var/list/HUDfrippery = list()//flavor
 	var/list/HUDprocess = list() //What HUD object need process
 	var/list/HUDtech = list()
 	var/defaultHUD = "" //Default mob hud

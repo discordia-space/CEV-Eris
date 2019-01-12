@@ -135,7 +135,8 @@
 				/obj/random/pouch = 3,
 				/obj/random/junk = 20,
 				/obj/random/tool_upgrade = 10,
-				/obj/random/lathe_disk = 5))
+				/obj/random/lathe_disk = 5,
+				/obj/random/rig_module = 4))
 
 /obj/random/lowkeyrandom/low_chance
 	name = "low chance random stuff"

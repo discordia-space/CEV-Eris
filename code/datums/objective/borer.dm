@@ -13,6 +13,9 @@
 	explanation_text = "Reproduce at least once."
 
 /datum/objective/borer_reproduce/check_completion()
+	if (failed)
+		return FALSE
+
 	if(owner && owner.current)
 		var/mob/living/simple_animal/borer/B = owner.current
 		if(istype(B) && B.has_reproduced)
