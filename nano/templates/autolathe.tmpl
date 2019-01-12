@@ -103,25 +103,24 @@ Used In File(s): \code\game\machinery\autolathe.dm
 			{{if data.disk}}
 				{{for data.recipes}}
 					<div class="item">
-						<div class="block">
-							<div class="item">
+						<div class="block" style ='padding: 0px; overflow: auto'>
+								<div style ='float: left; max-height:24px; max-width:24px; height:24px; width:24px; margin-left:0px' class='statusDisplayItem'><img src= {{:value.icon}} height=24 width=24></div>
 								<div class="itemContentWidest">{{:value.name}}</div>
-								{{if value.unfolded}}
-									<div class="statusDisplay">
-										<div class="item">
-											<div class="itemLabelWidest"><b>Build time:</b> {{:value.time}}</div>
-										</div>
-										<div class="item">
-											<div class="itemLabelWidest">Materials</div>
-											<div class="itemContentWidest">{{:value.resources}}</div>
-										</div>
-										<div class="item">
-											<div class="itemLabelWidest">Reagents</div>
-											<div class="itemContentWidest">{{:value.reagents}}</div>
-										</div>
+							{{if value.unfolded}}
+								<div class="statusDisplay">
+									<div class="item">
+										<div style="margin-top:8px" class="itemLabelWidest"><b>Build time:</b> {{:value.time}}</div>
 									</div>
-								{{/if}}
-							</div>
+									<div class="item">
+										<div class="itemLabelWidest">Materials</div>
+										<div class="itemContentWidest">{{:value.resources}}</div>
+									</div>
+									<div class="item">
+										<div class="itemLabelWidest">Reagents</div>
+										<div class="itemContentWidest">{{:value.reagents}}</div>
+									</div>
+								</div>
+							{{/if}}
 						</div>
 						<div class="itemlabelNarrow">{{:helper.link('Print', 'plus', {'add_to_queue' : value.type}, null, 'statusValue')}}</b></div>
 						<div class="itemlabelNarrow">{{:helper.link('Print several', 'calculator', {'add_to_queue_several' : value.type}, null, 'statusValue')}}</b></div>

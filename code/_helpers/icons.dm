@@ -646,7 +646,18 @@ as a single icon. Useful for when you want to manipulate an icon via the above a
 The _flatIcons list is a cache for generated icon files.
 */
 
-proc // Creates a single icon from a given /atom or /image.  Only the first argument is required.
+proc 
+	// Creates a single icon from a given /atom type and store it for future use.  Only the first argument is required.
+	getFlatTypeIcon(var/path, defdir=2, deficon=null, defstate="", defblend=BLEND_DEFAULT, always_use_defdir = 0)
+		if(GLOB.initialTypeIcon[path])
+			return GLOB.initialTypeIcon[path]
+		else
+			var/atom/A = new path()
+			GLOB.initialTypeIcon[path] = getFlatIcon(A, defdir, deficon, defstate, defblend, always_use_defdir)
+			qdel(A)
+			return GLOB.initialTypeIcon[path]
+
+	// Creates a single icon from a given /atom or /image.  Only the first argument is required.
 	getFlatIcon(image/A, defdir=2, deficon=null, defstate="", defblend=BLEND_DEFAULT, always_use_defdir = 0)
 		// We start with a blank canvas, otherwise some icon procs crash silently
 		var/icon/flat = icon('icons/effects/effects.dmi', "icon_state"="nothing") // Final flattened icon
