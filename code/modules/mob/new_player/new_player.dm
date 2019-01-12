@@ -279,6 +279,7 @@
 
 	//Add their mind to the global list
 	SSticker.minds += character.mind
+	AnnounceArrival(character, character.mind.assigned_role, spawnpoint.message)	//will not broadcast if there is no message
 
 	qdel(src)
 

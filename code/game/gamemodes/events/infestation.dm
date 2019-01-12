@@ -8,7 +8,7 @@ It focuses on spawning large numbers of moderate-to-weak monsters, and includes 
 	id = "infestation"
 	name = "infestation"
 
-	weight = 1.8
+	weight = 2
 	//Since it's a large pool of content, infestation has twice the weight of other events
 
 	event_type = /datum/event/infestation
