@@ -15,10 +15,12 @@
 
 /datum/hud/proc/buildPlaneMasters(mob/mymob)
 	for(var/mytype in subtypesof(/obj/screen/plane_master))
-		var/obj/screen/plane_master/instance = new mytype()
-		plane_masters["[instance.plane]"] = instance
-		mymob.client.screen += instance
-		instance.backdrop(mymob)
+		for(var/z in 1 to z_levels.len)
+			var/obj/screen/plane_master/instance = new mytype()
+			instance.plane = calculate_plane(z,instance.plane)
+			plane_masters["[instance.plane]"] = instance
+			mymob.client.screen += instance
+			instance.backdrop(mymob)
 
 /datum/hud/New(mob/mymob)
 	if(mymob)

@@ -45,6 +45,8 @@
 	if(created)
 		created += src
 
+	init_plane()
+
 //Called after New if the map is being loaded. mapload = TRUE
 //Called from base of New if the map is not being loaded. mapload = FALSE
 //This base must be called or derivatives must set initialized to TRUE
@@ -60,7 +62,6 @@
 	if(light_power && light_range)
 		update_light()
 
-	init_plane()
 	update_plane()
 
 	return INITIALIZE_HINT_NORMAL

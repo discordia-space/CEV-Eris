@@ -127,24 +127,36 @@
 	..()
 	flags |= NOBLUDGEON
 
+/obj/item/weapon/ducttape/update_plane()
+	..()
+	update_icon()
+
+
 /obj/item/weapon/ducttape/examine(mob/user)
 	return stuck.examine(user)
 
 /obj/item/weapon/ducttape/proc/attach(var/obj/item/weapon/W)
 	stuck = W
 	W.forceMove(src)
-	if (istype(W, /obj/item/weapon/paper))
-		icon_state = W.icon_state + "_taped"
-		overlays = W.overlays
+	update_icon()
+	name = W.name + " (taped)"
+
+/obj/item/weapon/ducttape/update_icon()
+	if (!stuck)
+		return
+
+	if (istype(stuck, /obj/item/weapon/paper))
+		icon_state = stuck.icon_state + "_taped"
+		overlays.Cut()
+		overlays = stuck.overlays
 	else
-		var/mutable_appearance/MA = new(W)
-		MA.layer = layer
+		var/mutable_appearance/MA = new(stuck)
+		MA.layer = layer-0.1
 		MA.plane = plane
 		MA.pixel_x = 0
 		MA.pixel_y = 0
+		underlays.Cut()
 		underlays += MA
-	name = W.name + " (taped)"
-
 
 /obj/item/weapon/ducttape/attack_self(mob/user)
 	if(!stuck)

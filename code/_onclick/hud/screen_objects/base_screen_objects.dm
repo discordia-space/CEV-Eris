@@ -30,6 +30,7 @@
 		src.icon = _icon
 	if (_icon_state)
 		src.icon_state = _icon_state
+	..()
 
 
 /obj/screen/Process()

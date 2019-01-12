@@ -10,6 +10,7 @@
 	anchored = 1
 	unacidable = 1
 	density = 0
+	alpha = 0
 	var/mob/owner = null
 
 /mob/shadow/can_fall()

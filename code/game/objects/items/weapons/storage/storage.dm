@@ -63,7 +63,7 @@
 	item.pixel_w = 0
 	item.pixel_z = 0
 	item.layer = ABOVE_HUD_LAYER
-	item.set_plane(ABOVE_HUD_PLANE)
+	item.plane = ABOVE_HUD_PLANE
 
 	itemIcon.vis_contents += item //this draws the actual item, see byond ref for vis_contents var
 	itemBackground.setName(item.name, TRUE)

@@ -13,7 +13,7 @@
 	anchored = 1
 	flags = NOREACT
 
-	blend_mode       = BLEND_OVERLAY
+	blend_mode       = BLEND_MULTIPLY
 
 	var/needs_update = FALSE
 
@@ -30,9 +30,11 @@
 
 	update_overlay()
 
+	update_plane()
+
 /atom/movable/lighting_overlay/Destroy()
 	global.lighting_update_overlays -= src;
-	
+
 	var/turf/T = loc
 	if(istype(T))
 		T.lighting_overlay = null

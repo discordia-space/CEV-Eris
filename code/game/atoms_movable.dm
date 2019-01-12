@@ -86,7 +86,7 @@
 			if(is_new_area && is_destination_turf)
 				destination.loc.Entered(src, origin)
 
-	if(origin.z != loc.z)
+	if(src)
 		update_plane()
 
 	return 1
