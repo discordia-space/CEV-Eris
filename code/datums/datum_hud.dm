@@ -34,15 +34,26 @@
 	if(!T)
 		return
 
-	if(!plane_masters.len)
-		buildPlaneMasters(mymob)
-		return
-
 	var/z = T.z
+
+	var/datum/level_data/LD = z_levels[z]
 
 	for(var/pmaster in plane_masters)
 		var/obj/screen/plane_master/instance = plane_masters[pmaster]
-		instance.plane = calculate_plane(z,initial(instance.plane))
+		mymob.client.screen -= instance
+
+	plane_masters.Cut()
+
+	for(var/zi in 1 to LD.height)
+		for(var/mytype in subtypesof(/obj/screen/plane_master))
+			var/obj/screen/plane_master/instance = new mytype()
+
+			instance.plane = calculate_plane(zi,instance.plane)
+
+			plane_masters["[mytype][zi]"] = instance
+			mymob.client.screen += instance
+			instance.backdrop(mymob)
+
 
 /mob/update_plane()
 	..()
@@ -51,7 +62,7 @@
 
 /datum/hud/New(mob/mymob)
 	if(mymob)
-		buildPlaneMasters(mymob)
+		updatePlaneMasters(mymob)
 
 /datum/hud/human
 	name = "ErisStyle"

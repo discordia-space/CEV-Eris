@@ -9,7 +9,6 @@
 /obj/map_data/New(var/atom/nloc)
 	..()
 	z_level = nloc.z
-	maps_data.registrate(src)
 
 	var/original_name = name
 	var/original_level = z_level

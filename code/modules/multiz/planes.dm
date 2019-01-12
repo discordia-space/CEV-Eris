@@ -1,7 +1,7 @@
 #define PLANES_PER_Z_LEVEL 32
 
 /atom
-	var/original_plane = GAME_PLANE
+	var/original_plane = null
 
 /atom/proc/init_plane()	//Set initial original plane
 	if(!original_plane)

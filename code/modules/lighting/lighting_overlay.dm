@@ -17,10 +17,18 @@
 
 	var/needs_update = FALSE
 
+/*/atom/movable/lighting_overlay/init_plane()
+	var/static/i = 1
+	if(i)
+		world.log << "1-[plane] [original_plane]"
+	..()
+	if(i)
+		world.log << "2-[plane] [original_plane]"
+	i = 0
+*/
+
 /atom/movable/lighting_overlay/New(var/atom/loc, var/no_update = FALSE)
-	world.log << "1-[plane] [original_plane]"
 	. = ..()
-	world.log << "2-[plane] [original_plane]"
 	verbs.Cut()
 
 	var/turf/T         = loc // If this runtimes atleast we'll know what's creating overlays in things that aren't turfs.
