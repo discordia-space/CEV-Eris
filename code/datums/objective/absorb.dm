@@ -1,4 +1,5 @@
 /datum/objective/absorb
+	unique = TRUE
 
 /datum/objective/absorb/find_target()
 	gen_amount_goal()

@@ -28,7 +28,7 @@
 	/datum/objective/assassinate = 35,
 	/datum/objective/protect = 15,
 	/datum/objective/abduct = 15)
-	var/objective_quantity = 6
+	var/objective_quantity = 20//6
 
 	//How long the mercenaries get to do their mission
 
@@ -36,14 +36,7 @@
 
 /datum/faction/mercenary/create_objectives()
 	objectives.Cut()
-
-	if(!possible_objectives || !possible_objectives.len)
-		return
-
-	for (var/i = 0; i < objective_quantity; i++)
-		var/chosen_obj = pickweight(possible_objectives)
-
-		new chosen_obj(src)
+	pick_objectives(src, possible_objectives, objective_quantity)
 
 	new /datum/objective/timed/merc(src)
 
