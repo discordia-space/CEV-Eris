@@ -109,15 +109,17 @@
 /mob/living/carbon/human/proc/Robotize()
 	if (transforming)
 		return
+	for(var/t in organs)
+		qdel(t)
 	for(var/obj/item/W in src)
 		drop_from_inventory(W)
+		qdel(W)
 	regenerate_icons()
 	transforming = 1
 	canmove = 0
 	icon = null
 	invisibility = 101
-	for(var/t in organs)
-		qdel(t)
+	
 
 	var/mob/living/silicon/robot/O = new /mob/living/silicon/robot( loc )
 

@@ -206,7 +206,11 @@
 					src.pinned += O
 
 /mob/living/proc/embed(var/obj/O, var/def_zone=null)
-	O.loc = src
+	if(ismob(O.loc))
+		var/mob/living/L = O.loc
+		if(!L.unEquip(O, src))
+			return
+	O.forceMove(src)
 	src.embedded += O
 	src.verbs += /mob/proc/yank_out_object
 

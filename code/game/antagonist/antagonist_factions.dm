@@ -294,7 +294,7 @@
 		//Make sure we show the most up-to-date info
 		O.update_completion()
 		O.update_explanation()
-		data += "[i]. [O.explanation_text]<br>"
+		data += "[i]. [O.get_panel_entry()]<br>"
 
 	usr << browse(data,"window=[id]faction")
 
