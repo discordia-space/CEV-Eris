@@ -522,15 +522,15 @@ proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
 					if(candidate.check_job_spawning(rank))
 						SP = candidate
 						break
-					if(!SP)
-						// Pick default spawnpoint, just so we have one
-						warning("Could not find an appropriate spawnpoint for job [rank] (latespawn).")
-						SP = SP = getSpawnPoint(maps_data.default_spawn, late = TRUE)
+				if(!SP)
+					warning("Could not find an appropriate spawnpoint for job [rank] (latespawn).")
 	else
 		SP = getSpawnPoint(rank)
 		if(!SP)
 			warning("Could not find an appropriate spawnpoint for job [rank] (roundstart).")
-			SP = getSpawnPoint(maps_data.default_spawn, late = TRUE)
+	if(!SP)
+		// Pick default spawnpoint, just so we have one
+		SP = SP = getSpawnPoint(maps_data.default_spawn, late = TRUE)
 	return SP
 
 /datum/controller/subsystem/job/proc/ShouldCreateRecords(var/title)

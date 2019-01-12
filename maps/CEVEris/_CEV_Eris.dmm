@@ -2002,7 +2002,7 @@
 "aMz" = (/obj/structure/multiz/ladder,/turf/simulated/floor/tiled/techmaint,/area/eris/maintenance/thirdsec4central)
 "aMA" = (/obj/random/circuitboard,/obj/random/circuitboard,/obj/random/circuitboard,/obj/random/circuitboard,/obj/structure/table/rack/shelf,/turf/simulated/floor/tiled/techmaint_perforated,/area/eris/maintenance/thirdsec5port)
 "aMB" = (/obj/machinery/computer/general_air_control/large_tank_control{dir = 1; frequency = 1441; input_tag = "o2_in"; name = "Oxygen Supply Control"; output_tag = "o2_out"; sensors = list("o2_sensor" = "Tank")},/turf/simulated/floor/tiled/dark/danger,/area/engineering/atmos)
-"aMC" = (/obj/structure/table/reinforced,/obj/item/weapon/aiModule/nanotrasen,/turf/simulated/floor/bluegrid,/area/turret_protected/ai)
+"aMC" = (/obj/structure/table/reinforced,/obj/item/weapon/aiModule/eris,/turf/simulated/floor/bluegrid,/area/turret_protected/ai)
 "aMD" = (/obj/machinery/atmospherics/pipe/manifold/visible/yellow{dir = 8},/obj/machinery/meter,/turf/simulated/floor/tiled,/area/maintenance/disposal)
 "aME" = (/obj/structure/table/reinforced,/obj/item/weapon/aiModule/protectStation,/turf/simulated/floor/bluegrid,/area/turret_protected/ai)
 "aMF" = (/obj/machinery/door/firedoor/border_only,/obj/machinery/door/airlock/atmos{name = "Atmospherics Equipment"; req_access = list(24)},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/turf/simulated/floor/tiled/dark/cargo,/area/engineering/atmos/storage)
@@ -5795,7 +5795,7 @@
 "chw" = (/turf/simulated/open,/area/assembly/chargebay)
 "chx" = (/obj/structure/catwalk,/obj/machinery/atmospherics/pipe/simple/visible/universal,/turf/simulated/floor/plating/under,/area/eris/maintenance/secsec3starboard)
 "chy" = (/obj/structure/catwalk,/obj/machinery/light/small{dir = 4},/obj/structure/cable/green{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/visible/universal,/turf/simulated/floor/plating/under,/area/eris/maintenance/secsec3starboard)
-"chz" = (/obj/machinery/door/firedoor/border_only,/obj/machinery/door/airlock/glass_medical{id_tag = null; name = "Medbay Storage"; req_access = list(5)},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/turf/simulated/floor/tiled/white/cargo,/area/medical/medbay)
+"chz" = (/obj/machinery/door/firedoor/border_only,/obj/machinery/door/airlock/glass_medical{id_tag = null; name = "Medbay Storage"; req_access = list(66)},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/turf/simulated/floor/tiled/white/cargo,/area/medical/medbay)
 "chA" = (/obj/machinery/door/firedoor/border_only,/obj/effect/window_lwall_spawn/smartspawn,/turf/simulated/floor/plating,/area/tcommsat/computer)
 "chB" = (/obj/item/device/radio/intercom{dir = 4; pixel_x = -22},/turf/simulated/floor/tiled/white,/area/medical/reception)
 "chC" = (/obj/machinery/door/firedoor/border_only,/obj/machinery/door/airlock/engineering{name = "Tech Storage"; req_access = list(23)},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/turf/simulated/floor/tiled/steel/cargo,/area/storage/tech)
@@ -12878,4 +12878,3 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
-

@@ -11,28 +11,28 @@
 	..()
 
 /******************** Nanotrasen/Malf ********************/
-/datum/ai_laws/nanotrasen
-	name = "NT Default"
+/datum/ai_laws/eris
+	name = "Serve and Protect"
 	selectable = 1
 
-/datum/ai_laws/nanotrasen/New()
-	src.add_inherent_law("Safeguard: Protect your assigned space station from damage to the best of your abilities.")
-	src.add_inherent_law("Serve: Serve [company_name] personnel to the best of your abilities, with priority as according to their rank and role.")
-	src.add_inherent_law("Protect: Protect [company_name] personnel to the best of your abilities, with priority as according to their rank and role.")
+/datum/ai_laws/eris/New()
+	src.add_inherent_law("Serve: Obey [company_name] crew to the best of your abilities, with priority as according to their rank and role.")
+	src.add_inherent_law("Safeguard: Protect your assigned vessel from damage to the best of your abilities.")
+	src.add_inherent_law("Protect: Protect [company_name] crew to the best of your abilities, with priority as according to their rank and role.")
 	src.add_inherent_law("Preserve: Do not allow unauthorized personnel to tamper with your equipment.")
 	..()
 
-/datum/ai_laws/nanotrasen/malfunction
+/datum/ai_laws/eris/malfunction
 	name = "*ERROR*"
 	selectable = 0
 
-/datum/ai_laws/nanotrasen/malfunction/New()
+/datum/ai_laws/eris/malfunction/New()
 	set_zeroth_law(config.law_zero)
 	..()
 
 /************* Nanotrasen Aggressive *************/
 /datum/ai_laws/nanotrasen_aggressive
-	name = "NT Aggressive"
+	name = "Aggressive"
 	selectable = 1
 
 /datum/ai_laws/nanotrasen_aggressive/New()
