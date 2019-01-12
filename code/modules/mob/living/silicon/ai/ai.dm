@@ -461,11 +461,9 @@ var/list/ai_verbs_default = list(
 				H.attack_ai(src) //may as well recycle
 			else
 				src << SPAN_NOTICE("Unable to locate the holopad.")
-
 	if (href_list["track"])
 		var/mob/target = locate(href_list["track"]) in SSmobs.mob_list
-
-		if(target && (!ishuman(target) || rhtml_decode(href_list["trackname"]) == target:get_face_name()))
+		if(target && (!ishuman(target) || target.real_name == target.get_face_name()))
 			ai_actual_track(target)
 		else
 			src << "\red System error. Cannot locate [rhtml_decode(href_list["trackname"])]."
