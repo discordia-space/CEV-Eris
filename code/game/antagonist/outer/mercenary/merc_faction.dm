@@ -28,7 +28,7 @@
 	/datum/objective/assassinate = 35,
 	/datum/objective/protect = 15,
 	/datum/objective/abduct = 15)
-	var/objective_quantity = 20//6
+	var/objective_quantity = 6
 
 	//How long the mercenaries get to do their mission
 
