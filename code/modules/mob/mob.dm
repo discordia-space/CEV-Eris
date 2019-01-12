@@ -1169,3 +1169,6 @@ mob/proc/yank_out_object()
 
 /mob/proc/has_admin_rights()
 	return check_rights(R_ADMIN, 0, src)
+
+/mob/proc/get_face_name()
+	return name
