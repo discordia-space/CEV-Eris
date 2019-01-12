@@ -63,7 +63,6 @@
 						if(busy == SPINNING_WEB)
 							if(!(locate(/obj/effect/spider/stickyweb) in get_turf(src)))
 								new /obj/effect/spider/stickyweb(src.loc)
-								update_openspace()
 							busy = 0
 							stop_automated_movement = 0
 				else
@@ -77,7 +76,6 @@
 								if(!(locate(/obj/effect/spider/eggcluster) in get_turf(src)))
 									new /obj/effect/spider/eggcluster(loc, src)
 									fed--
-									update_openspace()
 								busy = 0
 								stop_automated_movement = 0
 					else
@@ -141,7 +139,6 @@
 								if (C)
 									if(large_cocoon || C.is_large_cocoon)
 										C.becomeLarge()
-									C.update_openspace()
 
 								cocoon_target = null
 

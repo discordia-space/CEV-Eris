@@ -133,7 +133,6 @@ var/list/flooring_cache = list()
 			if(F == src)
 				continue
 			F.update_icon()
-	update_openspace()
 
 
 //Tests whether this flooring will smooth with the specified turf

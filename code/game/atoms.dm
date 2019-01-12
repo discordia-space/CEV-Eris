@@ -72,8 +72,6 @@
 
 /atom/Destroy()
 	QDEL_NULL(reagents)
-	spawn()
-		update_openspace()
 	. = ..()
 
 /atom/proc/reveal_blood()

@@ -151,7 +151,7 @@
 		overlays = stuck.overlays
 	else
 		var/mutable_appearance/MA = new(stuck)
-		MA.layer = layer-0.1
+		MA.layer = layer
 		MA.plane = plane
 		MA.pixel_x = 0
 		MA.pixel_y = 0
