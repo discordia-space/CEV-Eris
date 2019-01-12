@@ -68,6 +68,7 @@ Like for example singulo act and whatever.
 /obj/effect/shield/New()
 	..()
 	update_nearby_tiles()
+	update_openspace()
 
 
 /obj/effect/shield/Destroy()

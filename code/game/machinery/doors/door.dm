@@ -378,6 +378,7 @@
 		icon_state = "door1"
 	else
 		icon_state = "door0"
+	update_openspace()
 
 
 /obj/machinery/door/proc/do_animate(animation)

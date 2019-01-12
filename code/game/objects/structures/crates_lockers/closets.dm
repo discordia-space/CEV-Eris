@@ -176,6 +176,7 @@
 		density = FALSE
 	dump_contents()
 	update_icon()
+	update_openspace()
 	return 1
 
 /obj/structure/closet/proc/close(mob/living/user)
@@ -192,6 +193,7 @@
 	update_icon()
 	playsound(src.loc, close_sound, 100, 1, -3)
 	density = 1
+	update_openspace()
 	return 1
 
 /obj/structure/closet/proc/toggle(mob/living/user)

@@ -4,14 +4,6 @@
 
 	var/image/DARKOVER = null
 
-/turf/Initialize()
-	..()
-	update_openspace()
-
-/turf/Destroy()
-	..()
-	update_openspace()
-
 /turf/simulated/open
 	isTransparent = TRUE
 
@@ -37,6 +29,7 @@
 	if (SSticker.current_state != GAME_STATE_PLAYING)
 		return
 
+
 	overlays.Cut()
 
 	vis_contents.Cut()
@@ -47,6 +40,7 @@
 	updateFallability()
 
 	_initialized_transparency = TRUE
+	update_openspace() //propagate update upwards
 
 /turf/space/update_icon(var/update_neighbors, var/roundstart_update = FALSE)
 	if (SSticker.current_state < GAME_STATE_PLAYING)
@@ -78,3 +72,10 @@
 	if (T && T.isTransparent)
 		T.update_icon()
 
+/turf/Entered(atom/movable/Obj, atom/OldLoc)
+	. = ..()
+	update_openspace()
+
+/turf/Exited(atom/movable/Obj, atom/OldLoc)
+	. = ..()
+	update_openspace()
