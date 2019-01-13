@@ -5,8 +5,7 @@ GLOBAL_LIST_EMPTY(jobsTips)
 SUBSYSTEM_DEF(tips)
 	name = "Tips and Tricks"
 	priority = SS_PRIORITY_TIPS
-	//Initializes at default time
-	flags = SS_NO_FIRE
+	wait = 60 MINUTES //Ticks once per 60 minute
 
 /client/verb/showRandomTip()
 	set name = "Show Random Tip"
@@ -26,25 +25,33 @@ SUBSYSTEM_DEF(tips)
 			if(T)
 				mob << SStips.formatTip(T, "Tip for your character: ")
 
+/datum/controller/subsystem/tips/fire()
+	for(var/mob/living/L in SSmobs.mob_list)
+		if(L.client)
+			L.client.showSmartTip()
+
 /datum/controller/subsystem/tips/Initialize(start_timeofday)
 	for(var/path in typesof(/tipsAndTricks/mobs) - /tipsAndTricks/mobs)
 		var/tipsAndTricks/mobs/T = new path()
 		for(var/mob in T.mobs_list)
 			if(!GLOB.mobsTips[mob])
 				GLOB.mobsTips[mob] = list()
-			GLOB.mobsTips[mob] += T
+			if(!GLOB.mobsTips[mob].Find(T))
+				GLOB.mobsTips[mob] += T
 	for(var/path in typesof(/tipsAndTricks/roles) - /tipsAndTricks/roles)
 		var/tipsAndTricks/roles/T = new path()
 		for(var/role in T.roles_list)
 			if(!GLOB.rolesTips[role])
 				GLOB.rolesTips[role] = list()
-			GLOB.rolesTips[role] += T
+			if(!GLOB.rolesTips[role].Find(T))
+				GLOB.rolesTips[role] += T
 	for(var/path in typesof(/tipsAndTricks/jobs) - /tipsAndTricks/jobs)
 		var/tipsAndTricks/jobs/T = new path()
 		for(var/job in T.jobs_list)
 			if(!GLOB.jobsTips[job])
 				GLOB.jobsTips[job] = list()
-			GLOB.jobsTips[job] += T
+			if(!GLOB.jobsTips[job].Find(T))
+				GLOB.jobsTips[job] += T
 	for(var/path in typesof(/tipsAndTricks/gameplay) - /tipsAndTricks/gameplay)
 		var/tipsAndTricks/gameplay/T = new path()
 		GLOB.gameplayTips += T
@@ -66,21 +73,21 @@ SUBSYSTEM_DEF(tips)
 	if(!target)
 		return
 	// We need types
-	var/roleType
-	var/jobType
+	var/datum/antagonist/roleType
+	var/datum/job/jobType
 	if(target.mind)
-		roleType = target.mind.antagonist.len ? pick(target.mind.antagonist).type : null	//pick random role cuz its a list
-		jobType = target.mind.assigned_job ? target.mind.assigned_job.type : null
-	var/mobType = target.type ? target.type : null
+		roleType = target.mind.antagonist.len ? pick(target.mind.antagonist) : null	//pick random role cuz its a list
+		jobType = target.mind.assigned_job ? target.mind.assigned_job : null
+	var/mob/mobType = target ? target : null
 
 	var/list/options = list()
 	// Returning tip based on weight, we want more specific tips for player based on its character
 	if(roleType)
-		var/tipsAndTricks/T = getRoleTip(mobType)
+		var/tipsAndTricks/T = getRoleTip(roleType)
 		if(T)
 			options[T] = 40
 	if(jobType)
-		var/tipsAndTricks/T = getJobTip(mobType)
+		var/tipsAndTricks/T = getJobTip(jobType)
 		if(T)
 			options[T] = 30
 	if(mobType)
@@ -104,23 +111,37 @@ SUBSYSTEM_DEF(tips)
 		var/tipsAndTricks/T = pick(GLOB.gameplayTips)
 		return T
 
-/datum/controller/subsystem/tips/proc/getRoleTip(var/path)
-	if(!ispath(path))
-		error("Not path variable was passed to tips subsystem. No tips for you.")
-	if(GLOB.rolesTips[path])
-		var/tipsAndTricks/T = pick(GLOB.rolesTips[path])
+/datum/controller/subsystem/tips/proc/getRoleTip(var/datum/antagonist/role)
+	if(!istype(role))
+		error("Not role type variable was passed to tips subsystem. No tips for you.")
+	var/list/tipsAndTricks/candidates = list()
+	log_world("giving tip for [role.id]")
+	for(var/type in GLOB.rolesTips)
+		log_world("type [type]")
+		if(istype(role, type))
+			candidates += GLOB.rolesTips[type]
+	if(candidates.len)
+		var/tipsAndTricks/T = pick(candidates)
 		return T
 
-/datum/controller/subsystem/tips/proc/getJobTip(var/path)
-	if(!ispath(path))
-		error("Not path variable was passed to tips subsystem. No tips for you.")
-	if(GLOB.jobsTips[path])
-		var/tipsAndTricks/T = pick(GLOB.jobsTips[path])
+/datum/controller/subsystem/tips/proc/getJobTip(var/datum/job/job)
+	if(!istype(job))
+		error("Not job type variable was passed to tips subsystem. No tips for you.")
+	var/list/tipsAndTricks/candidates = list()
+	for(var/type in GLOB.jobsTips)
+		if(istype(job, type))
+			candidates += GLOB.jobsTips[type]
+	if(candidates.len)
+		var/tipsAndTricks/T = pick(candidates)
 		return T
 
-/datum/controller/subsystem/tips/proc/getMobTip(var/path)
-	if(!ispath(path))
-		error("Not path variable was passed to tips subsystem. No tips for you.")
-	if(GLOB.mobsTips[path])
-		var/tipsAndTricks/T = pick(GLOB.mobsTips[path])
+/datum/controller/subsystem/tips/proc/getMobTip(var/mob/mob)
+	if(!istype(mob))
+		error("Not mob type variable was passed to tips subsystem. No tips for you.")
+	var/list/tipsAndTricks/candidates = list()
+	for(var/type in GLOB.mobsTips)
+		if(istype(mob, type))
+			candidates += GLOB.mobsTips[type]
+	if(candidates.len)
+		var/tipsAndTricks/T = pick(candidates)
 		return T

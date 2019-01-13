@@ -18,7 +18,7 @@
 	suit = /obj/item/clothing/suit/armor/hos
 	gloves = /obj/item/clothing/gloves/stungloves
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud/tactical
-	belt = /obj/item/weapon/gun/projectile/lamia
+	suit_store = /obj/item/weapon/gun/projectile/lamia
 	id_type = /obj/item/weapon/card/id/hos
 	head = /obj/item/clothing/head/HoS
 	pda_type = /obj/item/modular_computer/pda/heads/hos
@@ -44,7 +44,7 @@
 	gloves = /obj/item/clothing/gloves/stungloves
 	l_pocket = /obj/item/weapon/flame/lighter/zippo
 	shoes = /obj/item/clothing/shoes/reinforced
-	belt = /obj/item/weapon/gun/projectile/revolver/consul
+	suit_store = /obj/item/weapon/gun/projectile/revolver/consul
 	r_hand = /obj/item/weapon/storage/briefcase/crimekit
 	id_type = /obj/item/weapon/card/id/det
 	pda_type = /obj/item/modular_computer/pda/forensics
@@ -60,10 +60,8 @@
 	uniform = /obj/item/clothing/under/rank/medspec
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/medspec
 	pda_type = /obj/item/modular_computer/pda/forensics
-	belt = /obj/item/weapon/gun/projectile/olivaw
 	l_hand = /obj/item/weapon/storage/briefcase/crimekit
-	backpack_contents = list(/obj/item/ammo_magazine/cl32/rubber = 2, /obj/item/weapon/storage/box/evidence = 1)
-
+	backpack_contents = list(/obj/item/ammo_magazine/cl32/rubber = 2, /obj/item/weapon/storage/box/evidence = 1, /obj/item/weapon/gun/projectile/olivaw = 1)
 
 /decl/hierarchy/outfit/job/security/ihoper
 	name = OUTFIT_JOB_NAME("Ironhammer Operative")

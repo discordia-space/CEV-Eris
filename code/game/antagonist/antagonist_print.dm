@@ -29,11 +29,11 @@
 		player << "[welcome_text]"
 
 	show_objectives()
-
+	printTip()
 	return TRUE
 
 /datum/antagonist/proc/printTip()
-	var/tipsAndTricks/T = SStips.getRoleTip(src.type)
+	var/tipsAndTricks/T = SStips.getRoleTip(src)
 	if(T)
 		var/mob/player = owner.current
 		player << SStips.formatTip(T, "Tip for \a [src.id]: ")

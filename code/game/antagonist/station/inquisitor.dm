@@ -70,6 +70,7 @@
 
 
 	show_objectives()
+	printTip()
 
 	return TRUE
 
