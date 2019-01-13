@@ -37,8 +37,7 @@
 					if(construct_op == 0)
 						user << "You unfasten the bolts."
 						construct_op ++
-						return
-					if(construct_op == 1)
+					else if(construct_op == 1)
 						user << "You fasten the bolts."
 						construct_op --
 						return
@@ -102,11 +101,9 @@
 					if(construct_op == 1)
 						user << "You dislodge the external plating."
 						construct_op ++
-						return
-					if(construct_op == 2)
+					else if(construct_op == 2)
 						user << "You secure the external plating."
 						construct_op --
-						return
 					return
 				return
 
