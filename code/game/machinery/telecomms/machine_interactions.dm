@@ -40,7 +40,6 @@
 					else if(construct_op == 1)
 						user << "You fasten the bolts."
 						construct_op --
-						return
 					return
 				return
 
