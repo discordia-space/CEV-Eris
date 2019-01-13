@@ -106,13 +106,13 @@
 	[get_footer()]
 	"}
 
-/datum/browser/proc/open(var/use_onclose = 1)
+/datum/browser/proc/open(var/use_onclose = 1, var/mob/target = user)
 	var/window_size = ""
 	if (width && height)
 		window_size = "size=[width]x[height];"
-	user << browse(get_content(), "window=[window_id];[window_size][window_options]")
+	target << browse(get_content(), "window=[window_id];[window_size][window_options]")
 	if (use_onclose)
-		onclose(user, window_id, ref)
+		onclose(target, window_id, ref)
 
 /datum/browser/proc/close()
 	user << browse(null, "window=[window_id]")

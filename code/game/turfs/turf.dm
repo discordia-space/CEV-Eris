@@ -274,6 +274,9 @@ var/const/enterloopsanity = 100
 
 		for(var/obj/effect/O in src)
 			if(istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
+
+				if (istype(O, /obj/effect/decal/cleanable/dirt)) //Dirt overlays are handled in update_dirt
+					continue
 				qdel(O)
 				cleanedsomething = TRUE
 				break //Only clean one per loop iteration
@@ -284,11 +287,14 @@ var/const/enterloopsanity = 100
 		//Clean normal dirt
 		if(istype(src, /turf/simulated))
 			var/turf/simulated/T = src
-			if (T.dirt)
+			if (T.dirt > 10)
 				T.dirt -= 36 //At the dirtiest level, three uses to clean it
-				T.update_dirt()
 				T.dirt = max(T.dirt, 0)
+				cleanedsomething = TRUE
+				T.update_dirt()
 				continue
+
+
 
 		//If the tile is clean, don't keep looping
 		if (!cleanedsomething)

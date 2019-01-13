@@ -1,4 +1,6 @@
 /datum/objective/download
+	target = "research_levels"
+	unique = TRUE
 
 /datum/objective/download/find_target()
 	target_amount = rand(10, 20)

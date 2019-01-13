@@ -1,5 +1,6 @@
 /datum/objective/escape
 	explanation_text = "Escape on the shuttle or an escape pod alive and free."
+	unique = TRUE
 
 
 /datum/objective/escape/check_completion()
