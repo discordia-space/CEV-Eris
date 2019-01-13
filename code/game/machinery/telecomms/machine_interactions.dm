@@ -14,6 +14,23 @@
 	var/temp = "" // output message
 	var/construct_op = 0
 
+/obj/machinery/telecomms/examine(mob/user)
+	..(user)
+	switch(integrity)
+		if(100)
+			user << SPAN_NOTICE("It's in perfect condition.")
+		if(85 to 99)
+			user << "It has some minor faults."
+		if(65 to 85)
+			user << "It's slightly damaged."
+		if(45 to 65)
+			user << SPAN_WARNING("It's badly damaged.")
+		if(25 to 45)
+			user << SPAN_WARNING("It's heavily damaged.")
+		else
+			user << SPAN_WARNING("It's falling apart.")
+	if(stat & BROKEN)
+		user << SPAN_DANGER("It's broken.")
 
 /obj/machinery/telecomms/attackby(obj/item/I, mob/user)
 
@@ -37,7 +54,7 @@
 					if(construct_op == 0)
 						user << "You unfasten the bolts."
 						construct_op ++
-					if(construct_op == 1)
+					else if(construct_op == 1)
 						user << "You fasten the bolts."
 						construct_op --
 					return
