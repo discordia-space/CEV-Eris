@@ -178,7 +178,16 @@
 			return
 
 
-	if(istype(I, /obj/item/weapon/tool) && panel_open)
+	if(user.a_intent == I_HURT && (I.damtype == BRUTE || I.damtype == BURN)) // bashing cameras
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		if (I.force >= src.toughness)
+			user.do_attack_animation(src)
+			visible_message(SPAN_WARNING("<b>[src] has been [pick(I.attack_verb)] with [I] by [user]!</b>"))
+			if (I.hitsound)
+				playsound(loc, I.hitsound, 50, 1, -1)
+		take_damage(I.force)
+
+	else if(istype(I, /obj/item/weapon/tool) && panel_open)
 		interact(user)
 
 	// OTHER
@@ -226,15 +235,6 @@
 		else
 			user << SPAN_NOTICE("Camera bugged.")
 			src.bugged = 1
-
-	else if(I.damtype == BRUTE || I.damtype == BURN) //bashing cameras
-		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-		if (I.force >= src.toughness)
-			user.do_attack_animation(src)
-			visible_message(SPAN_WARNING("<b>[src] has been [pick(I.attack_verb)] with [I] by [user]!</b>"))
-			if (I.hitsound)
-				playsound(loc, I.hitsound, 50, 1, -1)
-		take_damage(I.force)
 
 	else
 		..()
