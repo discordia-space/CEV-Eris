@@ -48,6 +48,8 @@
 	var/has_loot = 1
 	faction = "malf_drone"
 
+	mob_types = TYPE_SYNTHETIC
+
 /mob/living/simple_animal/hostile/retaliate/malf_drone/New()
 	..()
 	if(prob(5))

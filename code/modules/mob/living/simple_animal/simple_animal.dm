@@ -70,6 +70,8 @@
 	var/supernatural = 0
 	var/purge = 0
 
+	mob_types = TYPE_ORGANIC
+
 /mob/living/simple_animal/New()
 	..()
 	if(!icon_living)

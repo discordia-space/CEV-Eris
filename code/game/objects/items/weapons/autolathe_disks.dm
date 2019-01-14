@@ -396,6 +396,7 @@
 		/datum/autolathe/recipe/circuit/reconstructor_excelsior,
 		/datum/autolathe/recipe/circuit/diesel_excelsior,
 		/datum/autolathe/recipe/circuit/turret_excelsior,
+		/datum/autolathe/recipe/circuit/autolathe_disk_cloner,
 		/datum/autolathe/recipe/device/implanter,
 		/datum/autolathe/recipe/gun/makarov,
 		/datum/autolathe/recipe/sec/silencer,
@@ -407,6 +408,8 @@
 		/datum/autolathe/recipe/part/igniter,
 		/datum/autolathe/recipe/part/signaler,
 		/datum/autolathe/recipe/part/sensor_prox,
-		/datum/autolathe/recipe/sec/beartrap
+		/datum/autolathe/recipe/sec/beartrap,
+		/datum/autolathe/recipe/clothing/excelsior_armor,
+		/datum/autolathe/recipe/clothing/excelsior_helmet
 	)
 	..()

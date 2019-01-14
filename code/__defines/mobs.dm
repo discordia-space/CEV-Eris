@@ -118,6 +118,16 @@
 #define GLUT_SMALLER 2    // Eat anything smaller than we are
 #define GLUT_ANYTHING 3   // Eat anything, ever
 
+
+
+// Flags for mob types by Nanako. Primarily used for distinguishing organic from synthetic mobs
+#define TYPE_ORGANIC      1	// Almost any creature under /mob/living/carbon and most simple animals
+#define TYPE_SYNTHETIC    2	// Everything under /mob/living/silicon, plus hivebots and similar simple mobs
+#define TYPE_HUMANOID     4	// Humans and humanoid player characters
+#define TYPE_WEIRD        8	// Slimes, constructs, demons, and other creatures of a magical or bluespace nature.
+#define TYPE_INCORPOREAL 16 // Mobs that don't really have any physical form to them. Ghosts mostly
+
+
 #define TINT_NONE 0
 #define TINT_MODERATE 1
 #define TINT_HEAVY 2

@@ -1,9 +1,22 @@
-/datum/faction/revolutionary
-	id = null
-	faction_invisible = FALSE
-	hud_indicator = "rev"
+/datum/faction/excelsior
+	id = FACTION_EXCELSIOR
+	name = "Excelsior"
+	antag = "infiltrator"
+	antag_plural = "infiltrators"
+	welcome_text = "You are an excelsior infiltrator, here to take over the ship. It will be a long and difficult process.\n\
+	Your strengths lie in manufacturing, production and defense, excelsior are not built for an early rush.\n\n\
+	Your first goal is to retrieve your stash, it contains powerful circuitry you will need to found your base\n\n\
+	After that, your second priority is to establish a secret base, somewhere nobody will detect you. Build your autolathe and teleporter, create turrets and shield generators to defend them. \n\n\
+	Your third goal is to expand. Steal implants, prosthetics or robotic parts and convert them into new implants. recruit new allies and manufacture equipment for them. Send them out to scavenge for useful parts for manufacturing.\n\n\
+	When you are ready, your ultimate goal is to overthrow all the heads of staff, and take control of the ship."
 
-/datum/faction/revolutionary/create_objectives()
+	hud_indicator = "hudexcelsior"
+
+	possible_antags = list(ROLE_EXCELSIOR_REV)
+	verbs = list(/datum/faction/excelsior/proc/communicate_verb)
+
+
+/datum/faction/excelsior/create_objectives()
 	objectives.Cut()
 
 
@@ -37,14 +50,28 @@
 
 
 
-	var/has = FALSE
 	for(var/datum/mind/M in SSticker.minds)
-		if(M.assigned_role in list(JOBS_COMMAND))
-			has = TRUE
-			var/datum/objective/faction/rev/excelsior/O = new(src)
-			O.set_target(M)
+		if (M in members)
+			continue
 
-	if(!has)
-		new /datum/objective/faction/rev/excelsior(src)
+		if(M.assigned_role in list(JOBS_COMMAND))
+			new /datum/objective/faction/excelsior(src, M)
+
+
 
 	.=..()
+
+/datum/faction/excelsior/proc/communicate_verb()
+
+	set name = "Excelsior comms"
+	set category = "Cybernetics"
+
+	if(!ishuman(usr))
+		return
+
+	var/datum/faction/F = get_faction_by_id(FACTION_EXCELSIOR)
+
+	if(!F)
+		return
+
+	F.communicate(usr)

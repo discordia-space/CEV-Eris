@@ -81,8 +81,8 @@
 	sharp = 0
 
 /obj/item/projectile/bullet/a762
-	damage = 22
-	armor_penetration = 20
+	damage = 20
+	armor_penetration = 15
 	penetrating = 1
 	can_ricochet = TRUE
 

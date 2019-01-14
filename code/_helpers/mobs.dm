@@ -249,7 +249,11 @@ Proc for attack log creation, because really why not
 	if (progbar)
 		qdel(progbar)
 
-/mob/living/carbon/proc/body_part_covered(var/bodypart)
+//Defined at mob level for ease of use
+/mob/proc/body_part_covered(var/bodypart)
+	return FALSE
+
+/mob/living/carbon/body_part_covered(var/bodypart)
 	var/list/bodyparts = list(
 	BP_HEAD = HEAD,
 	BP_CHEST = UPPER_TORSO,
@@ -275,8 +279,24 @@ Proc for attack log creation, because really why not
 
 	return FALSE
 
+/proc/is_excelsior(var/mob/M)
+	var/obj/item/weapon/implant/excelsior/E = locate(/obj/item/weapon/implant/excelsior) in M
+	if (E && E.wearer == M)
+		return TRUE
+
+	return FALSE
+
 /proc/mob_hearers(var/atom/movable/heard_atom, var/range = world.view)
 	. = list()
 
 	for(var/mob/hmob in hearers(range, heard_atom))
 		. |= hmob
+
+
+// Returns a bitfield representing the mob's type as relevant to the devour system.
+/mob/proc/find_type()
+	return mob_types
+
+/mob/living/carbon/human/find_type()
+	. = ..()
+	. |= TYPE_ORGANIC | TYPE_HUMANOID

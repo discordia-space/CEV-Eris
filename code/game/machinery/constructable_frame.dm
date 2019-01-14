@@ -6,6 +6,7 @@
 
 /obj/machinery/constructable_frame //Made into a seperate type to make future revisions easier.
 	name = "machine frame"
+
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "box_0"
 	density = TRUE
@@ -18,15 +19,31 @@
 	var/state = STATE_NONE
 	frame_type = FRAME_DEFAULT
 
+/obj/machinery/constructable_frame/examine(var/mob/user)
+	update_desc()
+	.=..()
+
+
 /obj/machinery/constructable_frame/proc/update_desc()
 	var/D
+	if (state == STATE_NONE)
+		D = "The beginning of a machine. Add wires, a circuitboard, and any extra required parts"
+	else if (state == STATE_WIRES)
+		D = "Now it needs a circuitboard, this will decide what kind of machine it becomes."
+	else if (state == STATE_CIRCUIT)
+		if (!component_check())
+			D = "Now it needs a few extra parts, listed below."
+		else
+			D = "It's almost complete! Now just use a screwdriver to apply the finishing touch."
+	D += "\n\n"
 	if(req_components)
 		var/list/component_list = new
 		for(var/I in req_components)
 			if(req_components[I] > 0)
 				component_list += "[num2text(req_components[I])] [req_component_names[I]]"
-		D = "Requires [english_list(component_list)]."
+		D += "Requires [english_list(component_list)]."
 	desc = D
+	..()
 
 /obj/machinery/constructable_frame/machine_frame/attackby(obj/item/I, mob/user)
 
@@ -46,12 +63,8 @@
 
 		if(QUALITY_SCREW_DRIVING)
 			if(state == STATE_CIRCUIT)
-				var/component_check = 1
-				for(var/R in req_components)
-					if(req_components[R] > 0)
-						component_check = 0
-						break
-				if(component_check)
+
+				if(component_check())
 					if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY))
 						var/obj/machinery/new_machine = new src.circuit.build_path(src.loc, src.dir)
 						qdel(new_machine.circuit)
@@ -187,6 +200,14 @@
 				if(I && I.loc != src && !istype(I, /obj/item/stack/cable_coil))
 					user << SPAN_WARNING("You cannot add that component to the machine!")
 	update_icon()
+
+/obj/machinery/constructable_frame/proc/component_check()
+	var/ready = TRUE
+	for(var/R in req_components)
+		if(req_components[R] > 0)
+			ready = FALSE
+			break
+	return ready
 
 /obj/machinery/constructable_frame/machine_frame/vertical
 	name = "vertical machine frame"

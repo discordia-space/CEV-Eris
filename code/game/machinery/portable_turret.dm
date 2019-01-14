@@ -21,8 +21,9 @@
 
 	var/raised = 0			//if the turret cover is "open" and the turret is raised
 	var/raising= 0			//if the turret is currently opening or closing its cover
-	var/health = 160			//the turret's health
-	var/maxhealth = 160		//turrets maximal health.
+	var/health = 80			//the turret's health
+	var/maxhealth = 80		//turrets maximal health.
+	var/resistance = 5 		//reduction on incoming damage
 	var/auto_repair = 0		//if 1 the turret slowly repairs itself.
 	var/locked = 1			//if the turret's behaviour control access is locked
 	var/controllock = 0		//if the turret responds to control panels
@@ -276,77 +277,78 @@ var/list/turret_icons
 
 
 /obj/machinery/porta_turret/attackby(obj/item/I, mob/user)
-	if(stat & BROKEN)
-		if(istype(I, /obj/item/weapon/tool/crowbar))
-			//If the turret is destroyed, you can remove it with a crowbar to
-			//try and salvage its components
-			user << SPAN_NOTICE("You begin prying the metal coverings off.")
-			if(do_after(user, 20, src))
-				if(prob(70))
-					user << SPAN_NOTICE("You remove the turret and salvage some components.")
-					if(installation)
-						var/obj/item/weapon/gun/energy/Gun = new installation(loc)
-						Gun.cell.charge = gun_charge
-						Gun.update_icon()
-					if(prob(50))
-						new /obj/item/stack/material/steel(loc, rand(1,4))
-					if(prob(50))
-						new /obj/item/device/assembly/prox_sensor(loc)
-				else
-					user << SPAN_NOTICE("You remove the turret but did not manage to salvage anything.")
-				qdel(src) // qdel
+	if (usr.a_intent != I_HURT)
+		if(stat & BROKEN)
+			if(istype(I, /obj/item/weapon/tool/crowbar))
+				//If the turret is destroyed, you can remove it with a crowbar to
+				//try and salvage its components
+				user << SPAN_NOTICE("You begin prying the metal coverings off.")
+				if(do_after(user, 20, src))
+					if(prob(70))
+						user << SPAN_NOTICE("You remove the turret and salvage some components.")
+						if(installation)
+							var/obj/item/weapon/gun/energy/Gun = new installation(loc)
+							Gun.cell.charge = gun_charge
+							Gun.update_icon()
+						if(prob(50))
+							new /obj/item/stack/material/steel(loc, rand(1,4))
+						if(prob(50))
+							new /obj/item/device/assembly/prox_sensor(loc)
+					else
+						user << SPAN_NOTICE("You remove the turret but did not manage to salvage anything.")
+					qdel(src) // qdel
 
-	else if((istype(I, /obj/item/weapon/tool/wrench)))
-		if(enabled || raised)
-			user << SPAN_WARNING("You cannot unsecure an active turret!")
-			return
-		if(wrenching)
-			user << "<span class='warning'>Someone is already [anchored ? "un" : ""]securing the turret!</span>"
-			return
-		if(!anchored && isinspace())
-			user << SPAN_WARNING("Cannot secure turrets in space!")
-			return
+		else if((istype(I, /obj/item/weapon/tool/wrench)))
+			if(enabled || raised)
+				user << SPAN_WARNING("You cannot unsecure an active turret!")
+				return
+			if(wrenching)
+				user << "<span class='warning'>Someone is already [anchored ? "un" : ""]securing the turret!</span>"
+				return
+			if(!anchored && isinspace())
+				user << SPAN_WARNING("Cannot secure turrets in space!")
+				return
 
-		user.visible_message( \
-				"<span class='warning'>[user] begins [anchored ? "un" : ""]securing the turret.</span>", \
-				"<span class='notice'>You begin [anchored ? "un" : ""]securing the turret.</span>" \
-			)
+			user.visible_message( \
+					"<span class='warning'>[user] begins [anchored ? "un" : ""]securing the turret.</span>", \
+					"<span class='notice'>You begin [anchored ? "un" : ""]securing the turret.</span>" \
+				)
 
-		wrenching = 1
-		if(do_after(user, 50, src))
-			//This code handles moving the turret around. After all, it's a portable turret!
-			if(!anchored)
-				playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
-				anchored = 1
-				update_icon()
-				user << SPAN_NOTICE("You secure the exterior bolts on the turret.")
-			else if(anchored)
-				playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
-				anchored = 0
-				user << SPAN_NOTICE("You unsecure the exterior bolts on the turret.")
-				update_icon()
-		wrenching = 0
+			wrenching = 1
+			if(do_after(user, 50, src))
+				//This code handles moving the turret around. After all, it's a portable turret!
+				if(!anchored)
+					playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
+					anchored = 1
+					update_icon()
+					user << SPAN_NOTICE("You secure the exterior bolts on the turret.")
+				else if(anchored)
+					playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
+					anchored = 0
+					user << SPAN_NOTICE("You unsecure the exterior bolts on the turret.")
+					update_icon()
+			wrenching = 0
 
-	else if(istype(I, /obj/item/weapon/card/id)||istype(I, /obj/item/modular_computer))
-		//Behavior lock/unlock mangement
-		if(allowed(user))
-			locked = !locked
-			user << "<span class='notice'>Controls are now [locked ? "locked" : "unlocked"].</span>"
-			updateUsrDialog()
-		else
-			user << SPAN_NOTICE("Access denied.")
+		else if(istype(I, /obj/item/weapon/card/id)||istype(I, /obj/item/modular_computer))
+			//Behavior lock/unlock mangement
+			if(allowed(user))
+				locked = !locked
+				user << "<span class='notice'>Controls are now [locked ? "locked" : "unlocked"].</span>"
+				updateUsrDialog()
+			else
+				user << SPAN_NOTICE("Access denied.")
 
-	else
+	if ((!I.flags & NOBLUDGEON) && I.force)
 		//if the turret was attacked with the intention of harming it:
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-		take_damage(I.force * 0.5)
-		if(I.force * 0.5 > 1) //if the force of impact dealt at least 1 damage, the turret gets pissed off
-			if(!attacked && !emagged)
-				attacked = 1
-				spawn()
-					sleep(60)
-					attacked = 0
-		..()
+		take_damage(I.force * I.structure_damage_factor)
+		if(!attacked && !emagged)
+			attacked = 1
+			spawn()
+				sleep(60)
+				attacked = 0
+		return TRUE
+	..()
 
 /obj/machinery/porta_turret/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
@@ -365,8 +367,10 @@ var/list/turret_icons
 /obj/machinery/porta_turret/proc/take_damage(var/force)
 	if(!raised && !raising)
 		force = force / 8
-		if(force < 5)
-			return
+
+	force -= resistance
+	if (force <= 0)
+		return
 
 	health -= force
 	if (force > 5 && prob(45))
@@ -389,7 +393,7 @@ var/list/turret_icons
 
 	..()
 
-	take_damage(damage)
+	take_damage(damage*Proj.structure_damage_factor)
 
 /obj/machinery/porta_turret/emp_act(severity)
 	if(enabled)
@@ -413,14 +417,11 @@ var/list/turret_icons
 /obj/machinery/porta_turret/ex_act(severity)
 	switch (severity)
 		if (1)
-			qdel(src)
+			take_damage(rand(140,300))
 		if (2)
-			if (prob(25))
-				qdel(src)
-			else
-				take_damage(initial(health) * 8) //should instakill most turrets
+			take_damage(rand(80,170))
 		if (3)
-			take_damage(initial(health) * 8 / 3)
+			take_damage(rand(50,120))
 
 /obj/machinery/porta_turret/proc/die()	//called when the turret dies, ie, health <= 0
 	health = 0

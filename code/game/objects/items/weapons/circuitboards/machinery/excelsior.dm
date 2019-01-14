@@ -7,7 +7,7 @@
 		/obj/item/weapon/stock_parts/subspace/transmitter = 1,
 		/obj/item/weapon/stock_parts/subspace/crystal = 1,
 		/obj/item/weapon/stock_parts/subspace/amplifier = 1,
-		/obj/item/weapon/stock_parts/capacitor = 3,
+		/obj/item/weapon/stock_parts/capacitor = 2,
 		/obj/item/stack/cable_coil = 30
 	)
 
@@ -16,11 +16,7 @@
 	build_path = /obj/machinery/autolathe/excelsior
 	board_type = "machine"
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_ILLEGAL = 2)
-	req_components = list(
-		/obj/item/weapon/stock_parts/matter_bin = 3,
-		/obj/item/weapon/stock_parts/manipulator = 1,
-		/obj/item/weapon/stock_parts/console_screen = 1
-	)
+	req_components = list() //To help them get started. the excelsior autolathe requires no extra components
 
 /obj/item/weapon/circuitboard/excelsiorreconstructor
 	name = T_BOARD("excelsior implant reconstructor")
@@ -28,7 +24,7 @@
 	board_type = "machine"
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_BIOTECH = 3, TECH_ILLEGAL = 2)
 	req_components = list(
-		/obj/item/weapon/stock_parts/manipulator = 3,
+		/obj/item/weapon/stock_parts/manipulator = 2,
 		/obj/item/weapon/stock_parts/console_screen = 1
 	)
 
@@ -38,7 +34,7 @@
 	board_type = "machine"
 	origin_tech = list(TECH_DATA = 3, TECH_POWER = 3, TECH_PLASMA = 3, TECH_ENGINEERING = 3, TECH_ILLEGAL = 2)
 	req_components = list(
-		/obj/item/weapon/stock_parts/manipulator = 3,
+		/obj/item/weapon/stock_parts/manipulator = 1,
 		/obj/item/weapon/stock_parts/console_screen = 1
 	)
 
@@ -48,8 +44,8 @@
 	board_type = "machine"
 	origin_tech = list(TECH_DATA = 3, TECH_BLUESPACE = 3, TECH_ILLEGAL = 2)
 	req_components = list(
-		/obj/item/weapon/stock_parts/manipulator = 3,
-		/obj/item/weapon/stock_parts/console_screen = 1,
+		/obj/item/weapon/stock_parts/manipulator = 2,
+		/obj/item/weapon/cell/large = 1,
 		/obj/item/weapon/stock_parts/subspace/crystal = 1
 	)
 
@@ -59,8 +55,7 @@
 	board_type = "machine"
 	origin_tech = list(TECH_COMBAT = 3, TECH_ILLEGAL = 2)
 	req_components = list(
-		/obj/item/weapon/stock_parts/manipulator = 3,
-		/obj/item/weapon/stock_parts/console_screen = 1,
-		/obj/item/device/assembly/prox_sensor = 2,
+		/obj/item/weapon/stock_parts/manipulator = 2,
+		/obj/item/device/assembly/prox_sensor = 1,
 		/obj/item/weapon/cell/medium = 1
 	)

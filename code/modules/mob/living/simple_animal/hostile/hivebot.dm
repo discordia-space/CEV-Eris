@@ -24,6 +24,7 @@
 	speed = 4
 	light_range = 3
 	light_color = "#82C2D8"
+	mob_types = TYPE_SYNTHETIC
 
 /mob/living/simple_animal/hostile/hivebot/range
 	name = "Human Alliance Autonomous Sentinel"

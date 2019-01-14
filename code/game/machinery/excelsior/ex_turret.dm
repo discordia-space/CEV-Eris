@@ -4,6 +4,7 @@
 
 /obj/machinery/porta_turret/excelsior
 	icon = 'icons/obj/machines/excelsior/turret.dmi'
+	desc = "A fully automated anti infantry platform. Fires 7.62mm rounds"
 	icon_state = "turret_legs"
 	density = TRUE
 	lethal = TRUE
@@ -12,7 +13,8 @@
 	var/obj/item/ammo_magazine/ammo_box = /obj/item/ammo_magazine/ammobox/a762
 	var/ammo = 0 // number of bullets left.
 	var/ammo_max = 160
-	var/working_range = 3 // how far this turret operates from excelsior teleporter
+	var/working_range = 20 // how far this turret operates from excelsior teleporter
+	health = 60
 
 /obj/machinery/porta_turret/excelsior/proc/has_power_source_nearby()
 	return locate(/obj/machinery/complant_teleporter) in range(working_range, src)
@@ -36,7 +38,7 @@
 	eshot_sound = 'sound/weapons/guns/fire/ltrifle_fire.ogg'
 
 /obj/machinery/porta_turret/excelsior/isLocked(mob/user)
-	if(locate(/obj/item/weapon/implant/revolution/excelsior) in user)
+	if(is_excelsior(user))
 		return 0
 	return 1
 
@@ -99,7 +101,7 @@
 	if(L.stat == DEAD)
 		return TURRET_NOT_TARGET
 
-	if(locate(/obj/item/weapon/implant/revolution/excelsior) in L)
+	if(is_excelsior(L))
 		return TURRET_NOT_TARGET
 
 	if(L.lying)
