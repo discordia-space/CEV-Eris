@@ -79,8 +79,10 @@
 
 /obj/machinery/porta_turret/excelsior/Process()
 	if(!has_power_source_nearby())
+		disabled = TRUE
 		popDown()
 		return
+	disabled = FALSE
 	..()
 
 /obj/machinery/porta_turret/excelsior/assess_living(mob/living/L)
@@ -120,6 +122,7 @@
 	raised = TRUE
 
 /obj/machinery/porta_turret/excelsior/popDown()
+	last_target = null
 	raised = TRUE
 
 /obj/machinery/porta_turret/excelsior/update_icon()
