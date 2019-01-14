@@ -1,3 +1,5 @@
+var/list/global/excelsior_teleporters = list() //This list is used to make turrets more efficient
+
 /obj/machinery/complant_teleporter
 	name = "excelsior long-range teleporter"
 	desc = "a powerful one way teleporter that allows shipping in construction materials. Takes a long time to charge"
@@ -26,6 +28,14 @@
 		MATERIAL_SILVER = list("amount" = 15, "price" = 30),
 		MATERIAL_GOLD = list("amount" = 10, "price" = 30),
 		)
+
+/obj/machinery/complant_teleporter/Initialize()
+	excelsior_teleporters |= src
+	.=..()
+
+/obj/machinery/complant_teleporter/Destroy()
+	excelsior_teleporters -= src
+	.=..()
 
 /obj/machinery/complant_teleporter/update_icon()
 	overlays.Cut()
@@ -66,11 +76,11 @@
 /obj/machinery/complant_teleporter/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			del(src)
+			qdel(src)
 			return
 		if(2.0)
 			if (prob(50))
-				del(src)
+				qdel(src)
 				return
 
 

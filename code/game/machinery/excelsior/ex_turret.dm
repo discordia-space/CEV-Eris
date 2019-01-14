@@ -18,7 +18,10 @@
 	health = 60
 
 /obj/machinery/porta_turret/excelsior/proc/has_power_source_nearby()
-	return locate(/obj/machinery/complant_teleporter) in range(working_range, src)
+	for (var/a in excelsior_teleporters)
+		if (dist3D(src, a) <= working_range) //The turret and teleporter can be on a different zlevel
+			return TRUE
+	return FALSE
 
 /obj/machinery/porta_turret/excelsior/examine(mob/user)
 	if(!..(user, 2))
