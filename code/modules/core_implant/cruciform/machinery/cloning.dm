@@ -234,7 +234,7 @@
 			occupant.flavor_text = R.flavor
 
 		if(progress == CLONING_BODY*time_multiplier)
-			var/datum/effect/effect/system/spark_spread/s = new
+			var/datum/effect/system/spark_spread/s = new
 			s.set_up(3, 1, src)
 			s.start()
 
@@ -407,7 +407,7 @@
 			biomass += BIOMASS_TYPES[type]
 			user.drop_item()
 			qdel(I)
-	
+
 
 /obj/machinery/neotheology/biomass_container/update_icon()
 	overlays.Cut()

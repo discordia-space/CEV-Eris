@@ -595,7 +595,7 @@
 		eyecheck(user)
 
 	if(sparks_on_use && !silenced)
-		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+		var/datum/effect/system/spark_spread/sparks = new /datum/effect/system/spark_spread()
 		sparks.set_up(3, 0, get_turf(src))
 		sparks.start()
 

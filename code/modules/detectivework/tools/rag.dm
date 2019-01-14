@@ -171,7 +171,7 @@
 	//also copied from matches
 	if(reagents.get_reagent_amount("plasma")) // the plasma explodes when exposed to fire
 		visible_message(SPAN_DANGER("\The [src] conflagrates violently!"))
-		var/datum/effect/effect/system/reagents_explosion/e = new()
+		var/datum/effect/system/reagents_explosion/e = new()
 		e.set_up(round(reagents.get_reagent_amount("plasma") / 2.5, 1), get_turf(src), 0, 0)
 		e.start()
 		qdel(src)

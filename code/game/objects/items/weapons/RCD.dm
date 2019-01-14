@@ -15,7 +15,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 5, MATERIAL_SILVER = 3)
-	var/datum/effect/effect/system/spark_spread/spark_system
+	var/datum/effect/system/spark_spread/spark_system
 	var/stored_matter = 0
 	var/working = 0
 	var/mode = 1
@@ -36,7 +36,7 @@
 
 /obj/item/weapon/rcd/New()
 	..()
-	src.spark_system = new /datum/effect/effect/system/spark_spread
+	src.spark_system = new /datum/effect/system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 	update_icon()	//Initializes the fancy ammo counter

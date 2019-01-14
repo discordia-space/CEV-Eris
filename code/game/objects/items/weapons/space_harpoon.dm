@@ -44,7 +44,7 @@
 			O << "<span class = 'warning'>[user] fire from [src]</span>"
 	user << "<span class = 'warning'>You fire from [src]</span>"
 
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 	s.set_up(4, 1, A)
 	s.start()
 

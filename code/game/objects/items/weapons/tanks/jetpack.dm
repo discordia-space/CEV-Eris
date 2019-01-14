@@ -9,7 +9,7 @@
 	item_state = "jetpack"
 	force = WEAPON_FORCE_PAINFULL
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
-	var/datum/effect/effect/system/trail/jet/trail
+	var/datum/effect/system/trail/jet/trail
 	var/on = 0.0
 	var/stabilization_on = 0
 	action_button_name = "Toggle Jetpack"
@@ -77,7 +77,7 @@
 /obj/item/weapon/tank/jetpack/New()
 	..()
 	gastank = src
-	src.trail = new /datum/effect/effect/system/trail/jet()
+	src.trail = new /datum/effect/system/trail/jet()
 	src.trail.set_up(src)
 
 

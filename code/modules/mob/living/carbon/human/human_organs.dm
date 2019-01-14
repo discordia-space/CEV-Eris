@@ -76,7 +76,7 @@
 			stance_damage += 2
 			if(prob(10))
 				visible_message("\The [src]'s [E.name] [pick("twitches", "shudders")] and sparks!")
-				var/datum/effect/effect/system/spark_spread/spark_system = new ()
+				var/datum/effect/system/spark_spread/spark_system = new ()
 				spark_system.set_up(5, 0, src)
 				spark_system.attach(src)
 				spark_system.start()
@@ -159,7 +159,7 @@
 
 			emote("pain", 1, "drops what they were holding, their [E.name] malfunctioning!")
 
-			var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+			var/datum/effect/system/spark_spread/spark_system = new /datum/effect/system/spark_spread()
 			spark_system.set_up(5, 0, src)
 			spark_system.attach(src)
 			spark_system.start()

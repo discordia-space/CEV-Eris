@@ -3,7 +3,7 @@
 
 	if(seed.get_trait(TRAIT_CHEM_SPRAYER))
 		spawn(0)
-			var/obj/effect/effect/water/chempuff/D = new/obj/effect/effect/water/chempuff(get_turf(src))
+			var/obj/effect/water/chempuff/D = new/obj/effect/water/chempuff(get_turf(src))
 			var/turf/my_target = get_turf(AM)
 			D.create_reagents(10*seed.chems.len)
 			if(!src)

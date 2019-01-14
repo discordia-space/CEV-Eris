@@ -18,7 +18,7 @@
 		return
 
 	var/location = get_turf(src)
-	var/datum/effect/effect/system/smoke_spread/chem/S = new
+	var/datum/effect/system/smoke_spread/chem/S = new
 
 	S.attach(location)
 	S.set_up(gas_sac, gas_sac.total_volume, 0, location)

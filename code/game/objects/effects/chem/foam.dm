@@ -2,7 +2,7 @@
 // Similar to smoke, but spreads out more
 // metal foams leave behind a foamed metal wall
 
-/obj/effect/effect/foam
+/obj/effect/foam
 	name = "foam"
 	icon_state = "foam"
 	opacity = 0
@@ -15,7 +15,7 @@
 	var/expand = 1
 	var/metal = 0
 
-/obj/effect/effect/foam/New(var/loc, var/ismetal = 0)
+/obj/effect/foam/New(var/loc, var/ismetal = 0)
 	..(loc)
 	icon_state = "[ismetal? "m" : ""]foam"
 	metal = ismetal
@@ -35,14 +35,14 @@
 		qdel(src)
 	return
 
-/obj/effect/effect/foam/proc/checkReagents() // transfer any reagents to the floor
+/obj/effect/foam/proc/checkReagents() // transfer any reagents to the floor
 	if(!metal && reagents)
 		var/turf/T = get_turf(src)
 		reagents.touch_turf(T)
 		for(var/obj/O in T)
 			reagents.touch_obj(O)
 
-/obj/effect/effect/foam/Process()
+/obj/effect/foam/Process()
 	if(--amount < 0)
 		return
 
@@ -54,7 +54,7 @@
 		if(!T.Enter(src))
 			continue
 
-		var/obj/effect/effect/foam/F = locate() in T
+		var/obj/effect/foam/F = locate() in T
 		if(F)
 			continue
 
@@ -68,26 +68,26 @@
 					F.reagents.add_reagent(R.id, 1, safety = 1)
 
 // foam disolves when heated, except metal foams
-/obj/effect/effect/foam/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/obj/effect/foam/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(!metal && prob(max(0, exposed_temperature - 475)))
 		flick("[icon_state]-disolve", src)
 
 		spawn(5)
 			qdel(src)
 
-/obj/effect/effect/foam/Crossed(var/atom/movable/AM)
+/obj/effect/foam/Crossed(var/atom/movable/AM)
 	if(metal)
 		return
 	if(isliving(AM))
 		var/mob/living/M = AM
 		M.slip("the foam", 6)
 
-/datum/effect/effect/system/foam_spread
+/datum/effect/system/foam_spread
 	var/amount = 5				// the size of the foam spread.
 	var/list/carried_reagents	// the IDs of reagents present when the foam was mixed
 	var/metal = 0				// 0 = foam, 1 = metalfoam, 2 = ironfoam
 
-/datum/effect/effect/system/foam_spread/set_up(amt=5, loca, var/datum/reagents/carry = null, var/metalfoam = 0)
+/datum/effect/system/foam_spread/set_up(amt=5, loca, var/datum/reagents/carry = null, var/metalfoam = 0)
 	amount = round(sqrt(amt / 3), 1)
 	if(istype(loca, /turf/))
 		location = loca
@@ -107,9 +107,9 @@
 		for(var/datum/reagent/R in carry.reagent_list)
 			carried_reagents += R.id
 
-/datum/effect/effect/system/foam_spread/start()
+/datum/effect/system/foam_spread/start()
 	spawn(0)
-		var/obj/effect/effect/foam/F = locate() in location
+		var/obj/effect/foam/F = locate() in location
 		if(F)
 			F.amount += amount
 			return

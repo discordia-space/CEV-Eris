@@ -22,7 +22,7 @@
 	projectiletype = /obj/item/projectile/beam/drone
 	projectilesound = 'sound/weapons/laser3.ogg'
 	destroy_surroundings = 0
-	var/datum/effect/effect/system/trail/ion/trail
+	var/datum/effect/system/trail/ion/trail
 
 	//the drone randomly switches between these states because it's malfunctioning
 	var/hostile_drone = 0
@@ -53,7 +53,7 @@
 	if(prob(5))
 		projectiletype = /obj/item/projectile/beam/pulse/drone
 		projectilesound = 'sound/weapons/pulse2.ogg'
-	trail = new /datum/effect/effect/system/trail/ion(src)
+	trail = new /datum/effect/system/trail/ion(src)
 	trail.set_up(src)
 	trail.start()
 
@@ -85,14 +85,14 @@
 	//repair a bit of damage
 	if(prob(1))
 		src.visible_message("\red \icon[src] [src] shudders and shakes as some of it's damaged systems come back online.")
-		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 		s.set_up(3, 1, src)
 		s.start()
 		health += rand(25,100)
 
 	//spark for no reason
 	if(prob(5))
-		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 		s.set_up(3, 1, src)
 		s.start()
 
@@ -134,7 +134,7 @@
 			src.visible_message("\red \icon[src] [src] begins to spark and shake violenty!")
 		else
 			src.visible_message("\red \icon[src] [src] sparks and shakes like it's about to explode!")
-		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 		s.set_up(3, 1, src)
 		s.start()
 
@@ -163,7 +163,7 @@
 /mob/living/simple_animal/hostile/retaliate/malf_drone/Destroy()
 	//some random debris left behind
 	if(has_loot)
-		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 		s.set_up(3, 1, src)
 		s.start()
 		var/obj/O

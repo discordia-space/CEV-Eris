@@ -144,11 +144,11 @@
 		update_icon()
 		var/turf/target_turf = get_turf(target)
 
-		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 		s.set_up(4, 1, target_turf)
 		s.start()
 
-		new /obj/effect/effect/smoke(target_turf)
+		new /obj/effect/smoke(target_turf)
 
 		//The recoil stops you for a few seconds
 		user.Stun(2)
@@ -160,7 +160,7 @@
 		for(var/atom/A in target_turf.contents)
 			A.hatton_act()
 		target_turf.hatton_act()
-		new /obj/effect/effect/smoke(src.loc)
+		new /obj/effect/smoke(src.loc)
 	else
 		click_empty()
 

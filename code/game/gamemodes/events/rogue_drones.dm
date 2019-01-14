@@ -77,7 +77,7 @@
 /datum/event/rogue_drone/end()
 	var/num_recovered = 0
 	for(var/mob/living/simple_animal/hostile/retaliate/malf_drone/D in drones_list)
-		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+		var/datum/effect/system/spark_spread/sparks = new /datum/effect/system/spark_spread()
 		sparks.set_up(3, 0, D.loc)
 		sparks.start()
 		D.z = maps_data.admin_levels[1]

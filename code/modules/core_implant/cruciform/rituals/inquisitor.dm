@@ -52,7 +52,7 @@
 	M << SPAN_DANGER("A wave of agony washes over you, the cruciform in your chest searing like a star for a few moments of eternity.")
 
 
-	var/datum/effect/effect/system/spark_spread/s = new
+	var/datum/effect/system/spark_spread/s = new
 	s.set_up(1, 1, M.loc)
 	s.start()
 

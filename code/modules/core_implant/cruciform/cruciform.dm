@@ -26,7 +26,7 @@ var/list/disciples = list()
 	if(part)
 		H.apply_damage(100+rand(75), BURN, part)
 	H.apply_effect(40+rand(20), IRRADIATE, check_protection = 0)
-	var/datum/effect/effect/system/spark_spread/s = new
+	var/datum/effect/system/spark_spread/s = new
 	s.set_up(3, 1, src)
 	s.start()
 

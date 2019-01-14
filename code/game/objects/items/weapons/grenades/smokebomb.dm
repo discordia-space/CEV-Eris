@@ -2,7 +2,7 @@
 	name = "FS SG \"Reynolds\""
 	desc = "Smoke grenade, used to create a cloud of smoke providing cover and hiding movement."
 	det_time = 20
-	var/datum/effect/effect/system/smoke_spread/bad/smoke
+	var/datum/effect/system/smoke_spread/bad/smoke
 
 /obj/item/weapon/grenade/smokebomb/New()
 	..()
