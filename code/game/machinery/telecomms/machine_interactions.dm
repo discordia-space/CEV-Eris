@@ -30,7 +30,7 @@
 		else
 			user << SPAN_WARNING("It's falling apart.")
 	if(stat & BROKEN)
-		user << SPAN_DANGER("It's broken.")
+		user << SPAN_DANGER("It's not working.")
 
 /obj/machinery/telecomms/attackby(obj/item/I, mob/user)
 
