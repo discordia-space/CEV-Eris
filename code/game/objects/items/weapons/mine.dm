@@ -11,7 +11,7 @@
 
 	var/fragment_type = /obj/item/projectile/bullet/pellet/fragment/weak
 	var/spread_radius = 4
-	var/num_fragments = 35
+	var/num_fragments = 30
 	var/damage_step = 2
 
 	var/explosion_d_size = -1
