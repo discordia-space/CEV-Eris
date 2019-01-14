@@ -11,7 +11,7 @@
 	var/burn_point = null
 	var/burning = null
 	var/hitsound = null
-	var/worksound = null
+	var/list/worksound = null
 	var/storage_cost = null
 	var/no_attack_log = 0			//If it's an item we don't want to log attack_logs with, set this to 1
 	pass_flags = PASSTABLE

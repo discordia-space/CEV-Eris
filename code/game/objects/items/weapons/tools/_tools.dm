@@ -258,7 +258,7 @@
 		if(forced_sound)
 			soundfile = forced_sound
 		else
-			soundfile = worksound
+			soundfile = pick(worksound)
 
 		if (sound_repeat && time_to_finish)
 			//It will repeat roughly every 2.5 seconds until our tool finishes
