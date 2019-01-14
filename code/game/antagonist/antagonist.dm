@@ -27,6 +27,9 @@
 	var/datum/faction/faction = null
 	var/faction_id = null
 
+	//For station antags, access that gets added to their existing ID
+	//For outer antags, access they spawn with on their newly created ID
+	var/list/default_access = list(access_external_airlocks,access_maint_tunnels)
 
 	// Misc.
 	var/bantype               // Ban to check when spawning this antag.
