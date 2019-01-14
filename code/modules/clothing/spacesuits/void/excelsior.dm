@@ -7,6 +7,7 @@
 	//The excelsior armors cost small amounts of rare materials that they can teleport in.
 	//This means they can either build up materials over time, or make it go faster by scavenging rare mats
 	matter = list(MATERIAL_PLASTIC = 20,
+	MATERIAL_GLASS = 10,
 	MATERIAL_PLASTEEL = 3)
 
 	armor = list(melee = 45, bullet = 45, laser = 55, energy = 55, bomb = 25, bio = 100, rad = 90)
