@@ -55,6 +55,7 @@
 	body_parts_covered = HEAD|FACE|EYES|EARS
 	item_flags = COVER_PREVENT_MANIPULATION
 	siemens_coefficient = 0
+	equip_delay = 50
 	flash_protection = FLASH_PROTECTION_MAJOR
 	tint = TINT_HEAVY
 
@@ -66,13 +67,14 @@
 	w_class = ITEM_SIZE_HUGE//bulky item
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
-	slowdown = 3
+	slowdown = 3.2
 	armor = list(melee = 50, bullet = 50, laser = 50,energy = 50, bomb = 300, bio = 50, rad = 50)
 	flags_inv = HIDEJUMPSUIT|HIDETAIL
 	heat_protection = UPPER_TORSO|LOWER_TORSO
 	item_flags = COVER_PREVENT_MANIPULATION
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0
+	equip_delay = 200
 
 
 /obj/item/clothing/head/bomb_hood/security
