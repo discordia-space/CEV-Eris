@@ -8,6 +8,7 @@
 	icon_state = "turret_legs"
 	density = TRUE
 	lethal = TRUE
+	raised = TRUE
 	circuit = /obj/item/weapon/circuitboard/excelsior_turret
 
 	var/obj/item/ammo_magazine/ammo_box = /obj/item/ammo_magazine/ammobox/a762
@@ -114,24 +115,12 @@
 		return FALSE
 	..()
 
-/obj/machinery/porta_turret/excelsior/popUp() // this turret has no cover.
-	if(disabled)
-		return
-	if(raised)
-		return
-	if(stat & BROKEN)
-		return
+// this turret has no cover, it is always raised
+/obj/machinery/porta_turret/excelsior/popUp()
 	raised = TRUE
 
 /obj/machinery/porta_turret/excelsior/popDown()
-	last_target = null
-	if(disabled)
-		return
-	if(!raised)
-		return
-	if(stat & BROKEN)
-		return
-	raised = FALSE
+	raised = TRUE
 
 /obj/machinery/porta_turret/excelsior/update_icon()
 	overlays.Cut()

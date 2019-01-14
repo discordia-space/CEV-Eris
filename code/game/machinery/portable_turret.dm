@@ -277,7 +277,7 @@ var/list/turret_icons
 
 
 /obj/machinery/porta_turret/attackby(obj/item/I, mob/user)
-	if (usr.a_intent != I_HURT)
+	if (user.a_intent != I_HURT)
 		if(stat & BROKEN)
 			if(istype(I, /obj/item/weapon/tool/crowbar))
 				//If the turret is destroyed, you can remove it with a crowbar to
@@ -338,10 +338,16 @@ var/list/turret_icons
 			else
 				user << SPAN_NOTICE("Access denied.")
 
-	if ((!I.flags & NOBLUDGEON) && I.force)
+	if (!(I.flags & NOBLUDGEON) && I.force && !(stat & BROKEN))
 		//if the turret was attacked with the intention of harming it:
+		user.do_attack_animation(src)
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-		take_damage(I.force * I.structure_damage_factor)
+
+		if (take_damage(I.force * I.structure_damage_factor))
+			playsound(src, 'sound/weapons/smash.ogg', 70, 1)
+		else
+			playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
+
 		if(!attacked && !emagged)
 			attacked = 1
 			spawn()
@@ -368,10 +374,12 @@ var/list/turret_icons
 	if(!raised && !raising)
 		force = force / 8
 
+
 	force -= resistance
 	if (force <= 0)
-		return
+		return FALSE
 
+	.=TRUE //Some damage was done
 	health -= force
 	if (force > 5 && prob(45))
 		spark_system.start()
