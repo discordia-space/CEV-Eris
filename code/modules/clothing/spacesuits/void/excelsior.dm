@@ -1,6 +1,6 @@
 /obj/item/clothing/head/helmet/space/void/excelsior
 	name = "Excelsior helmet"
-	desc = "A deceptively well armored space helmet, based on an ancient design but rebuilt with advanced materials"
+	desc = "A deceptively well armored space helmet. Ancient design, but advanced manufacturing."
 	icon_state = "cosmo"
 	item_state = "cosmo"
 
@@ -11,7 +11,7 @@
 	MATERIAL_PLASTEEL = 3)
 
 	armor = list(melee = 45, bullet = 45, laser = 55, energy = 55, bomb = 25, bio = 100, rad = 90)
-	siemens_coefficient = 1
+	siemens_coefficient = 0
 	species_restricted = list("Human")
 	//camera_networks = list(NETWORK_EXCELSIOR) //Todo future: Excelsior camera network and monitoring console
 	light_overlay = "helmet_light_green"
@@ -28,7 +28,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	//Decent all around, but less ballistic resistance
 	armor = list(melee = 45, bullet = 45, laser = 55, energy = 55, bomb = 25, bio = 100, rad = 90)
-	siemens_coefficient = 1 //Shockproof!
+	siemens_coefficient = 0 //Shockproof!
 	matter = list(MATERIAL_PLASTIC = 30,
 	MATERIAL_STEEL = 10,
 	MATERIAL_PLASTEEL = 5)

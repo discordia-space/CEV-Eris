@@ -3,12 +3,12 @@
 	name = "Excelsior"
 	antag = "infiltrator"
 	antag_plural = "infiltrators"
-	welcome_text = "You are an excelsior infiltrator, here to take over the ship. It will be a long and difficult process.\n\
-	Your strengths lie in manufacturing, production and defense, excelsior are not built for an early rush.\n\n\
-	Your first goal is to retrieve your stash, it contains powerful circuitry you will need to found your base\n\n\
-	After that, your second priority is to establish a secret base, somewhere nobody will detect you. Build your autolathe and teleporter, create turrets and shield generators to defend them. \n\n\
-	Your third goal is to expand. Steal implants, prosthetics or robotic parts and convert them into new implants. recruit new allies and manufacture equipment for them. Send them out to scavenge for useful parts for manufacturing.\n\n\
-	When you are ready, your ultimate goal is to overthrow all the heads of staff, and take control of the ship."
+	welcome_text = "You are Excelsior, Ever Upward. You have infiltrated this vessel to further the Revolution.\n\
+    The People's strength lies in securing our position, gathering the oppressed, and producing arms and armor for the final revolution. A slow and methodical approach is recommended. \n\n\
+    Our first phase is to retrieve the cache of manufacturing materials and circuit boards. Without a means of production our revolution is in peril.\n\n\
+    Our second phase is to establish a fortified position in secret. The People will send additional resources through the teleporter once it is established. This and our autolathe can be protected further with turrets and shield generators, in addition to loyal comrades.\n\n\
+    Our third phase is expansion. Aquire implants, prosthetics or robotic parts and convert them into new implants. These can be injected into the oppressed to formally induct them to the Revolution. Use their labor to produce the weapons of their liberation.\n\n\
+    When the People are ready, break the chains of the oppressor and seize control of the ship"
 
 	hud_indicator = "hudexcelsior"
 
