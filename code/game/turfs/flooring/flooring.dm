@@ -400,7 +400,7 @@ var/list/flooring_types
 	icon = 'icons/turf/flooring/tiles_steel.dmi'
 	build_type = /obj/item/stack/tile/floor/steel
 	footstep_sound = "floor"
-	dirt_resistance = 150 //These are used in the main hallways, high traffic
+	dirt_resistance = 200 //These are used in the main hallways, high traffic
 
 /decl/flooring/tiling/steel/panels
 	icon_base = "panels"
@@ -462,7 +462,7 @@ var/list/flooring_types
 	icon_base = "monofloor"
 	build_type = /obj/item/stack/tile/floor/steel/monofloor
 	has_base_range = 15
-	dirt_resistance = 200 //These are used in the centre of main halls
+	dirt_resistance = 250 //These are used in the centre of main halls
 
 
 
