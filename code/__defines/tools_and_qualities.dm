@@ -47,17 +47,17 @@
 //Sounds for working with tools
 #define NO_WORKSOUND					-1
 
-#define WORKSOUND_CIRCULAR_SAW			list('sound/weapons/circsawhit.ogg')
-#define WORKSOUND_SIMPLE_SAW			list('sound/items/saw.ogg')
-#define WORKSOUND_WRENCHING				list('sound/items/Ratchet.ogg')
-#define WORKSOUND_WIRECUTTING			list('sound/items/Wirecutter.ogg')
-#define WORKSOUND_WELDING				list('sound/items/welding1.ogg','sound/items/welding2.ogg','sound/items/welding3.ogg','sound/items/welding4.ogg')
-#define WORKSOUND_PULSING				list('sound/items/multitool_pulse.ogg')
-#define WORKSOUND_SCREW_DRIVING			list('sound/items/Screwdriver.ogg')
-#define WORKSOUND_EASY_CROWBAR			list('sound/items/Crowbar.ogg')
-#define WORKSOUND_REMOVING				list('sound/items/Deconstruct.ogg')
-#define WORKSOUND_DRIVER_TOOL			list('sound/items/e_screwdriver.ogg')
-#define WORKSOUND_PICKAXE				list('sound/items/pickaxe.ogg')
-#define WORKSOUND_HARD_SLASH			list('sound/weapons/bladeslice.ogg')
-#define WORKSOUND_CHAINSAW				list('sound/items/chainsaw.ogg')
-#define WORKSOUND_TAPE					list('sound/items/duct_tape.ogg')
+#define WORKSOUND_CIRCULAR_SAW			'sound/weapons/circsawhit.ogg'
+#define WORKSOUND_SIMPLE_SAW			'sound/items/saw.ogg'
+#define WORKSOUND_WRENCHING				'sound/items/Ratchet.ogg'
+#define WORKSOUND_WIRECUTTING			'sound/items/Wirecutter.ogg'
+#define WORKSOUND_WELDING				"weld"
+#define WORKSOUND_PULSING				'sound/items/multitool_pulse.ogg'
+#define WORKSOUND_SCREW_DRIVING			'sound/items/Screwdriver.ogg'
+#define WORKSOUND_EASY_CROWBAR			'sound/items/Crowbar.ogg'
+#define WORKSOUND_REMOVING				'sound/items/Deconstruct.ogg'
+#define WORKSOUND_DRIVER_TOOL			'sound/items/e_screwdriver.ogg'
+#define WORKSOUND_PICKAXE				'sound/items/pickaxe.ogg'
+#define WORKSOUND_HARD_SLASH			'sound/weapons/bladeslice.ogg'
+#define WORKSOUND_CHAINSAW				'sound/items/chainsaw.ogg'
+#define WORKSOUND_TAPE					'sound/items/duct_tape.ogg'
