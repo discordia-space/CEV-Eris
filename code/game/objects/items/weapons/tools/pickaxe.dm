@@ -15,6 +15,7 @@
 	sharp = 1
 	structure_damage_factor = 3 //Drills and picks are made for getting through hard materials
 	//They are the best anti-structure melee weapons
+	embed_mult = 1.2 //Digs deep
 
 /obj/item/weapon/tool/pickaxe/jackhammer
 	name = "jackhammer"
