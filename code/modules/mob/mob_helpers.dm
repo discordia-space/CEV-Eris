@@ -616,3 +616,11 @@ proc/is_blind(A)
 		return
 	var/list/hands = list(M.l_hand, M.r_hand)
 	return hands
+
+/mob/proc/drop_embedded()
+	//Embedded list is defined at mob level so we can have this here too
+	for(var/obj/A in embedded)
+		if (A.loc == src)
+			A.forceMove(loc)
+			A.tumble()
+	embedded = list()
