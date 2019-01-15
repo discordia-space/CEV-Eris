@@ -22,6 +22,9 @@
 #define ANTAG_VOTABLE           0x200 // Can be voted as an additional antagonist before roundstart.
 #define ANTAG_SET_APPEARANCE    0x400 // Causes antagonists to use an appearance modifier on spawn.
 
+//A flag to skip target selection
+#define ANTAG_SKIP_TARGET	-1
+
 // Storyteller names macro
 #define STORYTELLER_BASE "guide"
 

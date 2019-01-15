@@ -1,30 +1,34 @@
-<h3>Exosuit Fabricator</h3>
-<div style="float: left; width: 60%;">
-	<div class="item">
-		{{:helper.link("Sync", null, {'sync' : 1})}}
-		{{:data.sync}}
-	</div>
-	<div class="item">
-		{{for data.categories}}
-			{{:helper.link(value, null, {'category' : value}, value == data.category ? 'selected' : null)}}
-		{{empty}}
-		There are no known designs
-		{{/for}}
+<h3>Exosuit Fabricator</h3> 
+<div class="item">
+	{{:helper.link("Sync", null, {'sync' : 1})}}{{:data.sync}}
+</div>
+<div style="float: left; width: 58%;" >
+	<div style ='padding: 0px 4px;' class="block">
+		<div class="item">
+			{{for data.categories}}
+				{{:helper.link(value, null, {'category' : value}, value == data.category ? 'selected' : null)}}
+			{{empty}}
+			There are no known designs
+			{{/for}}
+		</div>
 	</div>
 	{{for data.buildable}}
 		{{if value.category == data.category}}
-			<div class="flexContainer">
-				<div class="flexBox">
-					{{:helper.link(value.name, null, {'build' : value.id})}}
-				</div>
-				<div class="flexBox">
-					{{:value.resourses}}, {{:value.time}}
+			<div style ='padding: 0px;' class="block">
+				<div class="item" style ='padding: 0px;'>
+					<div style ='float: left; max-height:24px; max-width:24px; height:24px;width:24px;' class='statusDisplayItem'><img src= {{:value.icon}} height=24 width=24></div>
+					<div class="flexBox">
+						{{:helper.link(value.name, null, {'build' : value.id})}}
+					</div>
+					<div style ='padding-left: 4px; clear: both;'>
+						Materials: {{:value.resourses}}, Time: {{:value.time}}
+					</div>
 				</div>
 			</div>
 		{{/if}}
 	{{/for}}
 </div>
-<div style="float: right; width: 40%">
+<div style="float: right; width: 38%"  class="block">
 	<div class="item">
 		<b>Queue contains:</b>
 	</div>
@@ -62,9 +66,9 @@
 				{{:value.mat}}: {{:value.amt}}/{{:data.maxres}}
 			</div>
 			<div class="itemContentMedium">
-				{{:helper.link('x1', null, {'eject' : value.mat, 'amount' : 1}, value.amt > 2000 ? null : 'disabled')}}
-				{{:helper.link('x5', null, {'eject' : value.mat, 'amount' : 5}, value.amt > 10000 ? null : 'disabled')}}
-				{{:helper.link('x10', null, {'eject' : value.mat, 'amount' : 10}, value.amt > 20000 ? null : 'disabled')}}
+				{{:helper.link('x1', null, {'eject' : value.mat, 'amount' : 1}, value.amt > 0 ? null : 'disabled')}}
+				{{:helper.link('x5', null, {'eject' : value.mat, 'amount' : 5}, value.amt > 4 ? null : 'disabled')}}
+				{{:helper.link('x10', null, {'eject' : value.mat, 'amount' : 10}, value.amt > 9 ? null : 'disabled')}}
 				{{:helper.link('Stack', null, {'eject' : value.mat, 'amount' : 0})}}
 				{{:helper.link('All', null, {'eject' : value.mat, 'amount' : -1})}}
 			</div>

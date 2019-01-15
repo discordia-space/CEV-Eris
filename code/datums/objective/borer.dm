@@ -1,5 +1,6 @@
 /datum/objective/borer_survive
 	explanation_text = "Survive in a host until the end of the round."
+	unique = TRUE
 
 /datum/objective/borer_survive/check_completion()
 	if(owner && owner.current)

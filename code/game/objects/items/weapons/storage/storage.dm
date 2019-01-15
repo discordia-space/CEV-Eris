@@ -583,3 +583,13 @@
 		return storage_cost
 	else
 		return 2**(w_class-1) //1,2,4,8,16,...
+
+
+//Useful for spilling the contents of containers all over the floor
+/obj/item/weapon/storage/proc/spill(var/dist = 2, var/turf/T = null)
+	if (!T || !istype(T, /turf))//If its not on the floor this might cause issues
+		T = get_turf(src)
+
+	for (var/obj/O in contents)
+		remove_from_storage(O, T)
+		O.tumble(2)
