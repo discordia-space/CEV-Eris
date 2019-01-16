@@ -169,7 +169,7 @@
 			var/obj/item/device/radio/R
 			if(r_hand && istype(r_hand, /obj/item/device/radio))
 				R = r_hand
-			if(r_ear && istype(r_ear, /obj/item/device/radio))
+			if(!R && r_ear && istype(r_ear, /obj/item/device/radio))
 				R = r_ear
 			if(R)
 				R.talk_into(src, message, null, verb, speaking)
@@ -178,7 +178,7 @@
 			var/obj/item/device/radio/R
 			if(l_hand && istype(l_hand, /obj/item/device/radio))
 				R = l_hand
-			if(l_ear && istype(l_ear, /obj/item/device/radio))
+			if(!R && l_ear && istype(l_ear, /obj/item/device/radio))
 				R = l_ear
 			if(R)
 				R.talk_into(src, message, null, verb, speaking)

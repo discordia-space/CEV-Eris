@@ -24,6 +24,12 @@
 
 	apply_damage(effective_force, I.damtype, hit_zone, blocked, sharp=weapon_sharp, edge=weapon_edge, used_weapon=I)
 
+/*Its entirely possible that we were gibbed or dusted by the above. Check if we still exist before
+continuing. Being gibbed or dusted has a 1.5 second delay, during which it sets the transforming var to
+true, and the mob is not yet deleted, so we need to check that as well*/
+	if (QDELETED(src) || transforming)
+		return TRUE
+
 	//Melee weapon embedded object code.
 	if (I && I.damtype == BRUTE && !I.anchored && !is_robot_module(I))
 		var/damage = effective_force
@@ -31,11 +37,13 @@
 			damage /= blocked+1
 
 		//blunt objects should really not be embedding in things unless a huge amount of force is involved
-		var/embed_chance = weapon_sharp? damage/I.w_class : damage/(I.w_class*3)
+
 		var/embed_threshold = weapon_sharp? 5*I.w_class : 15*I.w_class
 
-		//Sharp objects will always embed if they do enough damage.
-		if((weapon_sharp && damage > (10*I.w_class)) || (damage > embed_threshold && prob(embed_chance)))
+		//The user's robustness stat adds to the threshold, allowing you to use more powerful weapons without embedding risk
+		embed_threshold += user.stats.getStat(STAT_ROB)
+		var/embed_chance = (damage - embed_threshold)*I.embed_mult
+		if (embed_chance > 0 && prob(embed_chance))
 			src.embed(I, hit_zone)
 
 	return 1

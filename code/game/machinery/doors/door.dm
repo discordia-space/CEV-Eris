@@ -214,8 +214,13 @@
 	src.add_fingerprint(user)
 
 	//Harm intent overrides other actions
-	if(src.density && user.a_intent == I_HURT && !istype(I, /obj/item/weapon/card))
+	if(src.density && user.a_intent == I_HURT && !I.GetIdCard())
 		hit(user, I)
+		return
+
+	if(density && I.GetIdCard())
+		if(allowed(user))	open()
+		else				do_animate("deny")
 		return
 
 	if(repairing)
