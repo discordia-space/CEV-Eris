@@ -3,151 +3,110 @@
 	desc = "This device is used to trigger station functions, which require more than one ID card to authenticate."
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "auth_off"
-	var/active = 0 //This gets set to 1 on all devices except the one where the initial request was made.
-	var/event = ""
-	var/screen = 1
-	var/confirmed = 0 //This variable is set by the device that confirms the request.
-	var/confirm_delay = 20 //(2 seconds)
-	var/busy = 0 //Busy when waiting for authentication or an event request has been sent from this device.
-	var/obj/machinery/keycard_auth/event_source
-	var/mob/event_triggered_by
-	var/mob/event_confirmed_by
-	//1 = select event
-	//2 = authenticate
-	anchored = 1.0
-	use_power = 1
-	idle_power_usage = 2
-	active_power_usage = 6
-	power_channel = ENVIRON
+	use_power = 0
+	idle_power_usage = 0
+	active_power_usage = 0
+	interact_offline = TRUE
+	req_access = list(access_keycard_auth)
+	var/static/const/countdown = 3 MINUTES
+	var/static/const/cooldown = 10 MINUTES
+	var/static/list/ongoing_countdowns = list()
+	var/static/list/initiator_card = list()
+	var/static/next_countdown
+	var/static/list/event_names = list(
+		redalert = "red alert",
+		pods = "spacecraft abandonment"
+	)
+	var/static/datum/announcement/priority/kcad_announcement = new(do_log = 1, new_sound = sound('sound/misc/notice1.ogg'), do_newscast = 1)
 
 /obj/machinery/keycard_auth/attack_ai(mob/user as mob)
-	user << "The station AI is not to interact with these devices."
 	return
 
-/obj/machinery/keycard_auth/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(stat & (NOPOWER|BROKEN))
-		user << "This device is not powered."
-		return
-	if(istype(W,/obj/item/weapon/card/id))
-		playsound(usr.loc, 'sound/machines/id_swipe.ogg', 100, 1)
-		var/obj/item/weapon/card/id/ID = W
-		if(access_keycard_auth in ID.access)
-			if(active == 1)
-				//This is not the device that made the initial request. It is the device confirming the request.
-				if(event_source)
-					event_source.confirmed = 1
-					event_source.event_confirmed_by = usr
-			else if(screen == 2)
-				event_triggered_by = usr
-				broadcast_request() //This is the device making the initial event request. It needs to broadcast to other devices
+/obj/machinery/keycard_auth/inoperable(var/additional_flags = 0)
+	return (stat & (BROKEN|additional_flags))
 
-/obj/machinery/keycard_auth/power_change()
-	..()
-	if(stat &NOPOWER)
-		icon_state = "auth_off"
-
-/obj/machinery/keycard_auth/attack_hand(mob/user as mob)
-	if(user.stat || stat & (NOPOWER|BROKEN))
-		user << "This device is not powered."
-		return
-	if(!user.IsAdvancedToolUser())
-		return 0
-	if(busy)
-		user << "This device is busy."
+/obj/machinery/keycard_auth/attack_hand(mob/user)
+	. = ..()
+	if(.)
 		return
 
 	user.set_machine(src)
+	ui_interact(user)
 
-	var/dat = "<h1>Keycard Authentication Device</h1>"
+/obj/machinery/keycard_auth/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+	var/data[0]
+	var/decl/security_state/security_state = decls_repository.get_decl(maps_data.security_state)
 
-	dat += "This device is used to trigger some high security events. It requires the simultaneous swipe of two high-level ID cards."
-	dat += "<br><hr><br>"
+	data["seclevel"] = security_state.current_security_level.name
+	data["emergencymaint"] = maint_all_access
+	data["events"] = ongoing_countdowns
+	data["oncooldown"] = next_countdown > world.time
+	data["maint_all_access"] = maint_all_access
 
-	if(screen == 1)
-		dat += "Select an event to trigger:<ul>"
-		dat += "<li><A href='?src=\ref[src];triggerevent=Red alert'>Red alert</A></li>"
-		dat += "<li><A href='?src=\ref[src];triggerevent=Grant Emergency Maintenance Access'>Grant Emergency Maintenance Access</A></li>"
-		dat += "<li><A href='?src=\ref[src];triggerevent=Revoke Emergency Maintenance Access'>Revoke Emergency Maintenance Access</A></li>"
-		dat += "</ul>"
-		user << browse(dat, "window=keycard_auth;size=500x250")
-	if(screen == 2)
-		dat += "Please swipe your card to authorize the following event: <b>[event]</b>"
-		dat += "<p><A href='?src=\ref[src];reset=1'>Back</A>"
-		user << browse(dat, "window=keycard_auth;size=500x250")
-	return
-
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "keycard authentication.tmpl", "Keycard Authentication Device", 440, 300)
+		ui.set_initial_data(data)
+		ui.open()
+		ui.set_auto_update(1)
 
 /obj/machinery/keycard_auth/Topic(href, href_list)
-	..()
-	if(busy)
-		usr << "This device is busy."
-		return
-	if(usr.stat || stat & (BROKEN|NOPOWER))
-		usr << "This device is without power."
-		return
-	if(href_list["triggerevent"])
-		event = href_list["triggerevent"]
-		screen = 2
-	if(href_list["reset"])
-		reset()
+	if(..())
+		return TRUE
 
-	updateUsrDialog()
+	if(!allowed(usr))
+		return TRUE
+
+	if(href_list["start"])
+		if(next_countdown > world.time)
+			return TRUE
+		var/event = href_list["start"]
+		if(ongoing_countdowns[event])
+			return
+		kcad_announcement.Announce("[usr] has initiated [event_names[event]] countdown.")
+		ongoing_countdowns[event] = addtimer(CALLBACK(src, .proc/countdown_finished, event), countdown, TIMER_UNIQUE | TIMER_STOPPABLE)
+		next_countdown = world.time + cooldown
+		var/obj/item/weapon/card/id/id = usr.GetIdCard()
+		initiator_card[event] = id
+	if(href_list["cancel"])
+		var/event = href_list["cancel"]
+		if(!ongoing_countdowns[event])
+			return
+		kcad_announcement.Announce("[usr] has cancelled [event_names[event]] countdown.")
+		deltimer(ongoing_countdowns[event])
+		ongoing_countdowns -= event
+		initiator_card -= event
+	if(href_list["proceed"])
+		var/event = href_list["proceed"]
+		if(!ongoing_countdowns[event])
+			return
+		var/obj/item/weapon/card/id/id = usr.GetIdCard()
+		if(initiator_card[event] == id)
+			return
+		kcad_announcement.Announce("[usr] has proceeded [event_names[event]] countdown.")
+		countdown_finished(event)
+	if(href_list["emergencymaint"])
+		var/event = href_list["emergencymaint"]
+		switch(event)
+			if("grant")
+				make_maint_all_access()
+			if("revoke")
+				revoke_maint_all_access()
 	playsound(usr.loc, 'sound/machines/button.ogg', 100, 1)
 	add_fingerprint(usr)
 	return
 
-/obj/machinery/keycard_auth/proc/reset()
-	active = 0
-	event = ""
-	screen = 1
-	confirmed = 0
-	event_source = null
-	icon_state = "auth_off"
-	event_triggered_by = null
-	event_confirmed_by = null
-
-/obj/machinery/keycard_auth/proc/broadcast_request()
-	icon_state = "auth_on"
-	for(var/obj/machinery/keycard_auth/KA in world)
-		if(KA == src) continue
-		KA.reset()
-		spawn()
-			KA.receive_request(src)
-
-	sleep(confirm_delay)
-	if(confirmed)
-		confirmed = 0
-		trigger_event(event)
-		log_game("[key_name(event_triggered_by)] triggered and [key_name(event_confirmed_by)] confirmed event [event]")
-		message_admins("[key_name(event_triggered_by)] triggered and [key_name(event_confirmed_by)] confirmed event [event]", 1)
-	reset()
-
-/obj/machinery/keycard_auth/proc/receive_request(var/obj/machinery/keycard_auth/source)
-	if(stat & (BROKEN|NOPOWER))
-		return
-	event_source = source
-	busy = 1
-	active = 1
-	icon_state = "auth_on"
-
-	sleep(confirm_delay)
-
-	event_source = null
-	icon_state = "auth_off"
-	active = 0
-	busy = 0
-
-/obj/machinery/keycard_auth/proc/trigger_event()
+/obj/machinery/keycard_auth/proc/countdown_finished(event)
 	switch(event)
-		if("Red alert")
+		if("redalert")
 			var/decl/security_state/security_state = decls_repository.get_decl(maps_data.security_state)
-			if(security_state.can_change_security_level())
-				security_state.set_security_level(security_state.high_security_level)
-		if("Grant Emergency Maintenance Access")
-			make_maint_all_access()
-
-		if("Revoke Emergency Maintenance Access")
-			revoke_maint_all_access()
+			security_state.set_security_level(security_state.high_security_level)
+		if("pods")
+			evacuation_controller.call_evacuation(null, TRUE)
+	if(event)
+		deltimer(ongoing_countdowns[event])
+		ongoing_countdowns -= event
+		initiator_card -= event
 
 var/global/maint_all_access = 0
 
