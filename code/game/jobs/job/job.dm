@@ -23,7 +23,8 @@
 	var/list/also_known_languages = list()// additional chance based languages to all jobs.
 
 	var/account_allowed = 1				  // Does this job type come with a station account?
-	var/economic_modifier = 2			  // With how much does this job modify the initial account amount?
+	var/wage	=	WAGE_LABOUR			  // How much base wage does this job recieve per payday
+	var/wage_source
 
 	var/outfit_type                       // The outfit the employee will be dressed in, if any
 
@@ -98,8 +99,10 @@
 
 	H << SPAN_NOTICE("<b>Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]</b>")
 
-/datum/job/proc/one_time_payment(var/custom_factor = 1)
-	return (rand(5,50) + rand(5, 50)) * economic_modifier * custom_factor
+
+
+
+
 
 // overrideable separately so AIs/borgs can have cardborg hats without unneccessary new()/qdel()
 /datum/job/proc/equip_preview(mob/living/carbon/human/H, var/alt_title, var/datum/mil_branch/branch, var/additional_skips)

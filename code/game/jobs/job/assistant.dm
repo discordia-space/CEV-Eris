@@ -1,14 +1,14 @@
 /datum/job/assistant
 	title = "Assistant"
 	flag = ASSISTANT
-	department = "Civilian"
+	department = DEPARTMENT_CIVILIAN
 	department_flag = CIVILIAN
 	faction = "CEV Eris"
 	total_positions = -1
 	spawn_positions = -1
 	supervisors = "anyone who pays you"
 	selection_color = "#dddddd"
-	economic_modifier = 1
+	wage = WAGE_NONE //Get a job ya lazy bum
 	//alt_titles = list("Technomancer Assistant","Moebius Medical Intern","Moebius Research Assistant")
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5)
 

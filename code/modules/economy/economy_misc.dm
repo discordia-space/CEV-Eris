@@ -78,9 +78,14 @@ var/global/list/all_money_accounts = list()
 var/global/list/transaction_devices = list()
 var/global/economy_init = 0
 
+//Email account used to send notifications about salaries. Payments made, funding failed, etc
+var/global/datum/computer_file/data/email_account/service/payroll/payroll_mailer = null
+
 /proc/setup_economy()
 	if(economy_init)
 		return 2
+
+	payroll_mailer = new
 
 	news_network.CreateFeedChannel("Nyx Daily", "SolGov Minister of Information", 1, 1)
 	news_network.CreateFeedChannel("The Gibson Gazette", "Editor Mike Hammers", 1, 1)
@@ -90,47 +95,33 @@ var/global/economy_init = 0
 		weighted_randomevent_locations[D] = D.viable_random_events.len
 		weighted_mundaneevent_locations[D] = D.viable_mundane_events.len
 
-	create_station_account()
 
-	for(var/department in station_departments)
+	//Create all the department accounts
+	for(var/d in all_departments)
+		create_department_account(all_departments[d])
 
-		create_department_account(department)
-	//create_department_account("Vendor")
-	vendor_account = department_accounts["Guild"] //Vendors are operated by the guild and purchases pay into their stock
+	station_account = department_accounts[DEPARTMENT_COMMAND]
+	vendor_account = department_accounts[DEPARTMENT_GUILD] //Vendors are operated by the guild and purchases pay into their stock
 
 	current_date_string = "[num2text(rand(1,31))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], [game_year]"
 
 	economy_init = 1
 	return 1
 
-/proc/create_station_account()
-	if(!station_account)
-		next_account_number = rand(111111, 999999)
 
-		station_account = new()
-		station_account.owner_name = "[station_name()] Station Account"
-		station_account.account_number = rand(111111, 999999)
-		station_account.remote_access_pin = rand(1111, 111111)
-
-		//create an entry in the account transaction log for when it was created
-		var/datum/transaction/T = new(75000, station_account.owner_name, "Account creation", "Biesel GalaxyNet Terminal #277")
-		T.date = "2nd April, 2555"
-		T.time = "11:24"
-
-		//add the account
-		T.apply_to(station_account)
-		all_money_accounts.Add(station_account)
-
-/proc/create_department_account(department)
+/proc/create_department_account(var/datum/department/department)
 	next_account_number = rand(111111, 999999)
 
 	var/datum/money_account/department_account = new()
-	department_account.owner_name = "[department] Account"
+	department_account.owner_name = "[department.name] Account"
 	department_account.account_number = rand(111111, 999999)
+	department.account_number = department_account.account_number
+
 	department_account.remote_access_pin = rand(1111, 111111)
+	department.account_pin = department_account.remote_access_pin
 
 	//create an entry in the account transaction log for when it was created
-	var/datum/transaction/T = new(5000, department_account.owner_name, "Account creation", "Biesel GalaxyNet Terminal #277")
+	var/datum/transaction/T = new(department.account_initial_balance, department_account.owner_name, "Account creation", "Biesel GalaxyNet Terminal #277")
 	T.date = "2nd April, 2555"
 	T.time = "11:24"
 
@@ -138,4 +129,4 @@ var/global/economy_init = 0
 	T.apply_to(department_account)
 	all_money_accounts.Add(department_account)
 
-	department_accounts[department] = department_account
+	department_accounts[department.id] = department_account
