@@ -5,10 +5,8 @@
 	health = 180
 	filling_color = "#FF1C1C"
 	center_of_mass = list("x"=16, "y"=14)
-	New()
-		..()
-		reagents.add_reagent("protein", 9)
-		src.bitesize = 3
+	bitesize = 3
+	preloaded = list("protein" = 9)
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/attackby(obj/item/I, mob/user)
 	if(QUALITY_CUTTING in I.tool_qualities)
