@@ -85,12 +85,11 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/mask/muzzle/tape(H), slot_wear_mask)
 
 		else if(user.targeted_organ == BP_R_ARM || user.targeted_organ == BP_L_ARM)
-			var/obj/item/weapon/handcuffs/cable/tape/T = new(user)
-			//Uses up tape whether or not you succeed
-			consume_resources(100, user)
-			if(!T.place_handcuffs(H, user))
-				user.unEquip(T)
-				qdel(T)
+			if(use_tool(user, H, 90, QUALITY_ADHESIVE))
+				var/obj/item/weapon/handcuffs/cable/tape/T = new(user)
+				if(!T.place_handcuffs(H, user))
+					user.unEquip(T)
+					qdel(T)
 		else
 			return ..()
 		return 1
