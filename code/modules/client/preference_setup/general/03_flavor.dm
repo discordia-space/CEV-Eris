@@ -23,7 +23,7 @@
 
 /datum/category_item/player_setup_item/physical/flavor/sanitize_character()
 	if(!pref.flavor_text)
-		pref.flavor_text = list()
+		pref.flavor_text = ""
 	if(!istype(pref.flavour_texts_robot))
 		pref.flavour_texts_robot = list()
 
