@@ -89,7 +89,7 @@
 /******************
 	Benefactors
 *******************/
-//Departments subsidised by an external organisation
+//Departments subsidised by an external organisation. These pay their own employees
 /datum/department/moebius_medical
 	name = "Moebius Corp: Medical Division"
 	id = DEPARTMENT_MEDICAL

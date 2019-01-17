@@ -58,7 +58,6 @@ SUBSYSTEM_DEF(economy)
 	//First gather the data for crew wages
 	//Each record covers a specific crewman
 	for(var/datum/data/record/R in data_core.general)
-		world << "Checking data record [R]"
 
 		/* TODO: Add in checks for suspension, dead, etc */
 
@@ -70,18 +69,15 @@ SUBSYSTEM_DEF(economy)
 		if(!istype(temp_job))
 			temp_job = SSjob.GetJob("Assistant")
 		if(!istype(temp_job))
-			world << "Failed to find job"
 			continue
 
 		var/datum/department/department = all_departments[temp_job.department]
 		if (!department)
-			world << "Failed to find department"
 			continue
 
 		var/wage = temp_job.get_wage(R)
 		if (wage <= 0)
 			continue //This person will not be paid
-		world << "Got wage of [wage]"
 
 		//Alright we have their wage and their department, lets add it to the department's pending payments
 		LAZYAPLUS(department.pending_wages, R, wage)
@@ -98,7 +94,6 @@ SUBSYSTEM_DEF(economy)
 //Step 2: Requesting funds
 //Here we attempt to transfer money from funding sources to department accounts
 /proc/request_payroll_funds()
-	world << "Requesting Payroll Funds"
 	for (var/d in all_departments)
 		var/datum/department/department = all_departments[d]
 		world << "Requesting payroll for [department.id]"
@@ -178,7 +173,8 @@ SUBSYSTEM_DEF(economy)
 			continue
 
 		//Check again that the department has enough. Because some departments, like guild, didnt request funds
-		if (account.money <= department.pending_wage_total)
+		if (account.money < department.pending_wage_total)
+			world << "Cannot afford wages [account.money] / [department.pending_wage_total]"
 			//TODO Here: Email the account owner warning them that wages can't be paid
 			continue
 
@@ -200,9 +196,24 @@ SUBSYSTEM_DEF(economy)
 		department.pending_wages = list() //All pending wages paid off
 	command_announcement.Announce("Hourly crew wages have been paid, please check your email for details. In total the crew of CEV Eris have earned [total_paid] credits.", "Dispensation")
 
-/proc/payroll_mail_account_holder(var/datum/data/record/R, var/sender)
+/proc/payroll_mail_account_holder(var/datum/data/record/R, var/sender, var/amount)
 	//In future, this will be expanded to include a report on penalties, bonuses and taxes that affected your wages
 
 	var/address = R.fields["email"]
 
-	//payroll_mailer
+	var/datum/computer_file/data/email_message/message = new()
+	message.title = "You have recieved funds"
+
+	message.stored_data = "You have recieved a payment\n\n \
+	From: [sender]\n \
+	Reason: Regular Wages\n\n \
+	----------------------------\n \
+	Balance: [amount][CREDITS] \n\n"
+
+	message.source = payroll_mailer.login
+	if(!payroll_mailer.send_mail(address, message))
+		world << "Error sending email: this address doesn't exist."
+		return 1
+	else
+		world << "Email successfully sent."
+		return 1
