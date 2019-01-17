@@ -9,7 +9,7 @@
 #define ANIM_CLOSE -1
 
 /obj/machinery/neotheology/cloner
-	name = "NeoTheology's clonpod"
+	name = "NeoTheology's clonepod"
 	desc = "The newest design and God's gift from NeoTheology, this automatic machine will return the flesh to the spirit in no time."
 	icon = 'icons/obj/neotheology_pod.dmi'
 	icon_state = "preview"
