@@ -202,3 +202,7 @@
 #define DIRECTION_COORDS 	1
 #define DIRECTION_LANDMARK 	2
 #define DIRECTION_IMAGE 	4
+
+
+//Stash storytypes
+#define STORY_CRIME	"Crime"

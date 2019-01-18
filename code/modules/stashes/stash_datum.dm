@@ -70,7 +70,7 @@ This file contains the underlying code for stash datums
 	//These can be overridden to adjust how the direction is communicated
 	var/direction_string_base_coords = "can be found at these coordinates: %X, %Y, on deck %Z"
 	var/direction_string_base_landmark = "is located %L"
-	var/direction_string_base_image = "can be found at the marked spot in the attached photo"
+	var/direction_string_base_image = "\n\n(there is a photo attached)"
 
 	//What type of container will be spawned to hold the stash items. Default is a burlap sack
 	//You can also set this blank and the objects will be spawned without a container

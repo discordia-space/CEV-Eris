@@ -161,6 +161,10 @@
 	icon_state = "sheet-adamantine"
 	default_type = MATERIAL_PLATINUM
 
+/obj/item/stack/material/platinum/random
+	rand_min = 1
+	rand_max = 10
+
 //Extremely valuable to Research.
 /obj/item/stack/material/mhydrogen
 	name = "metallic hydrogen"

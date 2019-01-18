@@ -3,10 +3,10 @@
 	loot_type = "Booze"
 	contents_list_base = list(/obj/random/booze = 10, /obj/random/booze/low_chance = 10, /obj/random/credits/c1000 = 1)
 
-/datum/stash/booze/pirates
-	lore = "We are pirates yarr, our stuff is %D"
 
 /datum/stash/booze/distillers
+	story_type = STORY_CRIME
+	directions = DIRECTION_IMAGE
 	contents_list_random = list(/obj/random/rare = 30,
 	/obj/random/rare = 30,
 	/obj/random/lowkeyrandom = 40,
