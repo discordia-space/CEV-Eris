@@ -193,7 +193,7 @@ SUBSYSTEM_DEF(economy)
 
 				payroll_mail_account_holder(R, sender, amount)
 		department.pending_wages = list() //All pending wages paid off
-	command_announcement.Announce("Hourly crew wages have been paid, please check your email for details. In total the crew of CEV Eris have earned [total_paid] credits.", "Dispensation")
+	command_announcement.Announce("Hourly crew wages have been paid, please check your email for details. In total the crew of CEV Eris have earned [total_paid] credits.\n Please contact your Department Heads in case of errors or missing payments.", "Dispensation")
 
 
 //Sent to a head of staff when their department account fails to pay out wages
