@@ -56,6 +56,8 @@ var/global/list/poster_designs = list()
 // Uplinks
 var/list/obj/item/device/uplink/world_uplinks = list()
 
+// Loot stash datums
+GLOBAL_LIST_EMPTY(all_stash_datums) // WHY does this not work
 
 //Neotheology
 GLOBAL_LIST_EMPTY(all_rituals)//List of all rituals
@@ -182,6 +184,14 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 		var/datum/job/J = new T
 		joblist[J.title] = J
 
+	//Stashes
+	paths = typesof(/datum/stash)-/datum/stash
+	for(var/T in paths)
+		var/datum/stash/L = new T
+		if (L.type == L.base_type)
+			continue //Don't store abstract base types
+		world << "Storing [L] [L.type] in all stash datums"
+		GLOB.all_stash_datums += L
 
 
 	//Languages and species.

@@ -196,3 +196,9 @@
 #define INV_W_UNIFORM_DEF_ICON 'icons/inventory/uniform/mob.dmi'
 #define INV_ACCESSORIES_DEF_ICON 'icons/inventory/accessory/mob.dmi'
 #define INV_SUIT_DEF_ICON 'icons/inventory/suit/mob.dmi'
+
+
+//Defines for loot stashes
+#define DIRECTION_COORDS 	1
+#define DIRECTION_LANDMARK 	2
+#define DIRECTION_IMAGE 	4

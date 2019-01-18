@@ -545,3 +545,14 @@ datum/projectile_data
 		P = SScharacter_setup.preferences_datums[target.mind.key]
 
 	return P
+
+
+//Picks a single random landmark of a specified type
+/proc/pick_landmark(var/ltype)
+	var/list/L = list()
+	for(var/S in landmarks_list)
+		if (istype(S, ltype))
+			L.Add(S)
+
+	if (L.len)
+		return pick(L)

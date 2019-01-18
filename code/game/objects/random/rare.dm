@@ -19,5 +19,7 @@
 	/obj/item/weapon/storage/pouch/large_generic = 2,
 	/obj/random/tool_upgrade/rare = 4,
 	/obj/random/rig_module/rare = 4,
-	/obj/random/mecha_equipment = 3
+	/obj/random/credits/c5000 = 4,
+	/obj/random/mecha_equipment = 3,
+	/obj/item/stash_spawner = 10 //Creates a stash of goodies for a scavenger hunt
 	))

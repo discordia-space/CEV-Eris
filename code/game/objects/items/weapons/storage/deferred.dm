@@ -33,7 +33,7 @@
 
 		for (var/i = 0; i < quantity; i++)
 			new a(src)
-	make_exact_fit()
+	expand_to_fit()
 
 /obj/item/weapon/storage/deferred/open(var/mob/user)
 	if (!contents_spawned)

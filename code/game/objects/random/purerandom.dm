@@ -3,7 +3,7 @@
 	icon_state = "radnomstuff-green"
 
 /obj/random/lowkeyrandom/item_to_spawn()
-	return pickweight(list(/obj/random/rare = 1,
+	return pickweight(list(/obj/random/rare = 1.5,
 				/obj/item/weapon/storage/box/shotgunammo/beanbags = 1,
 				/obj/item/ammo_magazine/mc9mmt/rubber = 1,
 				/obj/item/weapon/storage/box/matches = 3,
@@ -139,7 +139,8 @@
 				/obj/random/rig_module = 4,
 				/obj/random/medical = 10,
 				/obj/random/junkfood = 50,
-				/obj/random/cloth/random_cloth = 5))
+				/obj/random/cloth/random_cloth = 5,
+				/obj/random/credits/c100 = 1))
 
 /obj/random/lowkeyrandom/low_chance
 	name = "low chance random stuff"

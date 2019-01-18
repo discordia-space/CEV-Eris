@@ -296,7 +296,7 @@ icon
 		M.Blend("#ffffff", ICON_SUBTRACT)
 		// apply mask
 		Blend(M, ICON_ADD)
-	
+
 	//	paints all non transparent pixels into color
 	proc/PlainPaint(var/color)
 		var/list/rgb = ReadRGB(color)
@@ -646,7 +646,7 @@ as a single icon. Useful for when you want to manipulate an icon via the above a
 The _flatIcons list is a cache for generated icon files.
 */
 
-proc 
+proc
 	// Creates a single icon from a given /atom type and store it for future use.  Only the first argument is required.
 	getFlatTypeIcon(var/path, defdir=2, deficon=null, defstate="", defblend=BLEND_DEFAULT, always_use_defdir = 0)
 		if(GLOB.initialTypeIcon[path])
@@ -942,8 +942,10 @@ proc/generate_image(var/tx as num, var/ty as num, var/tz as num, var/range as nu
 	var/list/atoms = list()
 	for(var/turf/T in turfstocapture)
 		atoms.Add(T)
-		for(var/atom/A in T)
+		for(var/atom/movable/A in T)
 			if(A.invisibility)
+				continue
+			if (cap_mode == CAPTURE_MODE_HISTORICAL && !A.anchored)
 				continue
 			atoms.Add(A)
 	//Lines below actually render all colected data
