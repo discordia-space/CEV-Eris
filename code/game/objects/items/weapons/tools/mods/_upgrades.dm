@@ -89,6 +89,14 @@
 
 
 /obj/item/weapon/tool_upgrade/proc/can_apply(var/obj/item/weapon/tool/T, var/mob/user)
+	if (isrobot(T))
+		var/mob/living/silicon/robot/R = T
+		if (R.module_active && istool(R.module_active))
+			try_apply(R.module_active,user)
+		else
+			user << SPAN_WARNING("[src] needs to be wielding a compatible tool.")
+		return
+
 	if (!istool(T))
 		user << SPAN_WARNING("This can only be applied to a tool!")
 		return

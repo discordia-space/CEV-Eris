@@ -615,19 +615,20 @@
 			return
 
 		if(QUALITY_SCREW_DRIVING)
-			if(opened && !cell)
+			if (opened && !cell)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					wiresexposed = !wiresexposed
 					user << SPAN_NOTICE("The wires have been [wiresexposed ? "exposed" : "unexposed"]")
 					updateicon()
-					return
-			if(opened && cell)
+			else if (module_active && istool(module_active))
+				var/obj/item/weapon/tool/T = module_active
+				T.attackby(I,user)
+			else if (opened && cell)
 				if(!radio)
 					user << SPAN_WARNING("Unable to locate a radio.")
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					radio.attackby(I,user)//Push it to the radio to let it handle everything
 					updateicon()
-					return
 			return
 
 		if(ABORT_CHECK)
@@ -712,6 +713,9 @@
 				U.loc = src
 			else
 				usr << "Upgrade error!"
+
+	else if (istype(I,/obj/item/weapon/tool_upgrade)) //Upgrading is handled in _upgrades.dm
+		return
 
 	else
 		if( !(istype(I, /obj/item/device/robotanalyzer) || istype(I, /obj/item/device/scanner/healthanalyzer)) )
