@@ -113,7 +113,7 @@ var/global/datum/computer_file/data/email_account/service/payroll/payroll_mailer
 	next_account_number = rand(111111, 999999)
 
 	var/datum/money_account/department_account = new()
-	department_account.owner_name = "[department.name] Account"
+	department_account.account_name = "[department.name] Account"
 	department_account.account_number = rand(111111, 999999)
 	department.account_number = department_account.account_number
 

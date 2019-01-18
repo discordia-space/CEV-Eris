@@ -168,6 +168,13 @@ SUBSYSTEM_DEF(economy)
 		//Check again that the department has enough. Because some departments, like guild, didnt request funds
 		if (account.money < department.pending_wage_total)
 			//TODO Here: Email the account owner warning them that wages can't be paid
+			//Ok we can't pay wages, this is bad. Lets tell the account owner
+			var/ownername = account.owner_name
+			if (ownername)
+				//Lets pull up the records for this person
+				var/datum/computer_file/report/crew_record/OR = get_crewmember_record(ownername)
+				if (OR)
+					payroll_failure_mail(OR, account, department.pending_wage_total)
 			continue
 
 		//Here we go, lets pay them!
@@ -187,6 +194,25 @@ SUBSYSTEM_DEF(economy)
 				payroll_mail_account_holder(R, sender, amount)
 		department.pending_wages = list() //All pending wages paid off
 	command_announcement.Announce("Hourly crew wages have been paid, please check your email for details. In total the crew of CEV Eris have earned [total_paid] credits.", "Dispensation")
+
+
+//Sent to a head of staff when their department account fails to pay out wages
+/proc/payroll_failure_mail(var/datum/computer_file/report/crew_record/R, var/datum/money_account/fail_account, var/amount)
+	var/address = R.get_email()
+
+	var/datum/computer_file/data/email_message/message = new()
+	message.title = "Payment Processing Error"
+
+	message.stored_data = "Warning: Automated payroll processing has failed for account \"[fail_account.get_name()]\"\n\n \
+	The pending balance to pay out is [amount][CREDITS]\n \
+	Crewmembers who should be paid from this account have not been paid. \n\n \
+	The pending payments will roll over and another attempt will be made in one hour. Please ensure the account balance is corrected\n"
+
+	message.source = payroll_mailer.login
+	if(!payroll_mailer.send_mail(address, message))
+		return FALSE
+	return TRUE
+
 
 /proc/payroll_mail_account_holder(var/datum/computer_file/report/crew_record/R, var/sender, var/amount)
 	//In future, this will be expanded to include a report on penalties, bonuses and taxes that affected your wages

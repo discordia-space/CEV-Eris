@@ -1,6 +1,7 @@
 
 /datum/money_account
 	var/owner_name = ""
+	var/account_name = "" //Some accounts have a name that is distinct from the name of the owner
 	var/account_number = 0
 	var/remote_access_pin = 0
 	var/money = 0
@@ -16,6 +17,12 @@
 		return FALSE
 
 	return TRUE
+
+//Try to get the name of the account
+/datum/money_account/proc/get_name()
+	if (account_name)
+		return account_name
+	return owner_name
 
 //Attempts to return the associated data record for this account
 /datum/money_account/proc/get_record()
@@ -158,11 +165,11 @@
 	//We've got both accounts and confirmed they are valid
 
 	//The transaction to take the money
-	var/datum/transaction/T1 = new(amount*-1, target.owner_name, purpose, terminal_id)
+	var/datum/transaction/T1 = new(amount*-1, target.get_name(), purpose, terminal_id)
 	if (T1.apply_to(source))
 
 		//The transaction to give the money
-		var/datum/transaction/T2 = new(amount, source.owner_name, purpose, terminal_id)
+		var/datum/transaction/T2 = new(amount, source.get_name(), purpose, terminal_id)
 		return T2.apply_to(target)
 
 	return FALSE
