@@ -5,7 +5,7 @@
 	drawChargeMeter = FALSE
 	w_class = ITEM_SIZE_SMALL
 	max_shells = 6
-	caliber = "38"
+	caliber = ".38"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
 	ammo_type = /obj/item/ammo_casing/c38
