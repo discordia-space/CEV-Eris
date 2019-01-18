@@ -15,46 +15,6 @@
 		if(collectAmmo(get_turf(A), user))
 			return TRUE
 	..()
-/obj/item/ammo_magazine/ammobox/attack_hand(mob/user)	
-	if(stored_ammo.len)
-		var/obj/item/ammo_casing/AC = removeCasing()
-		if(AC)
-			user.put_in_active_hand(AC)
-
-/obj/item/ammo_magazine/ammobox/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/ammo_casing))
-		var/obj/item/ammo_casing/C = W
-		if(stored_ammo.len >= max_ammo)
-			user << SPAN_WARNING("[src] is full!")
-			return
-		if(C.caliber != caliber)
-			user << SPAN_WARNING("[C] does not fit into [src].")
-			return
-		if(stored_ammo.len)
-			var/obj/item/ammo_casing/T = removeCasing()
-			if(T)
-				if(!C.attackby(T,user))
-					if(C.amount >= C.maxamount)
-						user << SPAN_WARNING("You cant hold more ammo.")
-					else if(T.desc != C.desc)
-						user << SPAN_WARNING("Inscribed ammo wont stack.")
-					insertCasing(T)
-		else
-			insertCasing(C)
-		return
-	..()
-
-/obj/item/ammo_magazine/ammobox/AltClick(var/mob/living/user)
-	var/obj/item/W = user.get_active_hand()
-	if(istype(W, /obj/item/ammo_casing))
-		var/obj/item/ammo_casing/C = W
-		if(stored_ammo.len >= max_ammo)
-			user << SPAN_WARNING("[src] is full!")
-			return
-		if(C.caliber != caliber)
-			user << SPAN_WARNING("[C] does not fit into [src].")
-			return
-		insertCasing(C)
 
 /obj/item/ammo_magazine/ammobox/proc/collectAmmo(var/turf/target, var/mob/user)
 	ASSERT(istype(target))

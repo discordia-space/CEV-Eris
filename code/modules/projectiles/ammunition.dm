@@ -69,38 +69,55 @@
 			BB.name = "[initial(BB.name)] (\"[label_text]\")"
 		return TRUE
 	else if(istype(I, /obj/item/ammo_casing))
-		if(src.amount == src.maxamount)
-			user << SPAN_WARNING("[src] is fully stacked!")
-			return FALSE
-		if(src.desc != I.desc)
-			user << SPAN_WARNING("Inscribed ammo wont stack.")
-			return FALSE
-		var/obj/item/ammo_casing/merged_casing = I
-		if((!src.BB && !merged_casing.BB) || (src.BB && merged_casing.BB))
-			if(isturf(src.loc))
-				if(merged_casing.amount == merged_casing.maxamount)
-					user << SPAN_WARNING("[merged_casing] is fully stacked!")
-					return FALSE
-				var/mergedAmount = src.amount
-				if(mergedAmount + merged_casing.amount > merged_casing.maxamount)
-					mergedAmount = merged_casing.maxamount - merged_casing.amount
-				src.amount -= mergedAmount
-				merged_casing.amount += mergedAmount
-				merged_casing.update_icon()
-				if(src.amount == 0)
-					QDEL_NULL(src)
-				else
-					src.update_icon()
+		var/obj/item/ammo_casing/merging_casing = I
+		if(isturf(src.loc))
+			if(merging_casing.amount == merging_casing.maxamount)
+				user << SPAN_WARNING("[merging_casing] is fully stacked!")
+				return FALSE
+			if(merging_casing.mergeCasing(src, null, user))
 				return TRUE
-			if(merged_casing.amount > 1)
-				src.amount += 1
-				merged_casing.amount -= 1
-				merged_casing.update_icon()
-			else
-				src.amount += 1
-				QDEL_NULL(merged_casing)
-			src.update_icon()
+		else if (mergeCasing(I, 1, user))
 			return TRUE
+
+/obj/item/ammo_casing/proc/mergeCasing(var/obj/item/ammo_casing/AC, var/amountToMerge, var/mob/living/user, var/noMessage = FALSE, var/noIconUpdate = FALSE)
+	if(!AC)
+		return FALSE
+	if(!user && noMessage == FALSE)
+		error("Passed no user to mergeCasing() when output messages is active.")
+	if(src.caliber != AC.caliber)
+		if(!noMessage)
+			user << SPAN_WARNING("Ammo are different calibers.")
+		return FALSE
+	if(src.projectile_type != AC.projectile_type)
+		if(!noMessage)
+			user << SPAN_WARNING("Ammo are different types.")
+		return FALSE
+	if(src.amount == src.maxamount)
+		if(!noMessage)
+			user << SPAN_WARNING("[src] is fully stacked!")
+		return FALSE
+	if((!src.BB && AC.BB) || (src.BB && !AC.BB))
+		if(!noMessage)
+			user << SPAN_WARNING("Fired and non-fired ammo wont stack.")
+		return FALSE
+
+	var/mergedAmount
+	if(!amountToMerge)
+		mergedAmount = AC.amount
+	else
+		mergedAmount = amountToMerge
+	if(mergedAmount + src.amount > src.maxamount)
+		mergedAmount = src.maxamount - src.amount
+	AC.amount -= mergedAmount
+	src.amount += mergedAmount
+	if(!noIconUpdate)
+		src.update_icon()
+	if(AC.amount == 0)
+		QDEL_NULL(AC)
+	else
+		if(!noIconUpdate)
+			AC.update_icon()
+	return TRUE
 
 /obj/item/ammo_casing/update_icon()
 	if(spent_icon && !BB)
@@ -201,6 +218,24 @@
 				break
 		user << SPAN_NOTICE("You're done here")
 
+/obj/item/ammo_magazine/attack_hand(mob/user)	
+	if(user.get_inactive_hand() == src && stored_ammo.len)
+		var/obj/item/ammo_casing/stack = removeCasing()
+		if(stack)
+			if(stored_ammo.len)
+				// We end on -1 since we already removed one
+				for(var/i = 1, i <= stack.maxamount - 1, i++)
+					if(!stored_ammo.len)
+						break
+					var/obj/item/ammo_casing/AC = removeCasing()
+					if(!stack.mergeCasing(AC, null, user, noIconUpdate = TRUE))
+						insertCasing(AC)
+						break
+			stack.update_icon()
+			user.put_in_active_hand(stack)
+		return
+	..()
+
 /obj/item/ammo_magazine/AltClick(var/mob/living/user)
 	var/obj/item/W = user.get_active_hand()
 	if(istype(W, /obj/item/ammo_casing))
@@ -214,11 +249,7 @@
 		if(stored_ammo.len)
 			var/obj/item/ammo_casing/T = removeCasing()
 			if(T)
-				if(!C.attackby(T,user))
-					if(C.amount >= C.maxamount)
-						user << SPAN_WARNING("You cant hold more ammo.")
-					else if(T.desc != C.desc)
-						user << SPAN_WARNING("Inscribed ammo wont stack.")
+				if(!C.mergeCasing(T, null, user))
 					insertCasing(T)
 	else if(!W)
 		if(user.get_inactive_hand() == src && stored_ammo.len)
