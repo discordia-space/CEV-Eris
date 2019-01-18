@@ -45,7 +45,6 @@
 	pending_wage_total = 0
 	for (var/a in pending_wages)
 		pending_wage_total += pending_wages[a]
-	world << "Summed wages, pending total is [pending_wage_total]"
 
 
 /*************

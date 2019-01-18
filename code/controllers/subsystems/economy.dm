@@ -57,7 +57,7 @@ SUBSYSTEM_DEF(economy)
 
 	//First gather the data for crew wages
 	//Each record covers a specific crewman
-	for(var/datum/data/record/R in data_core.general)
+	for(var/datum/computer_file/report/crew_record/R in GLOB.all_crew_records)
 
 		/* TODO: Add in checks for suspension, dead, etc */
 
@@ -65,7 +65,7 @@ SUBSYSTEM_DEF(economy)
 
 
 		//Ok lets get their job to determine how much we'll pay them
-		var/datum/job/temp_job = SSjob.GetJob(R.fields["real_rank"])
+		var/datum/job/temp_job = SSjob.GetJob(R.get_job())
 		if(!istype(temp_job))
 			temp_job = SSjob.GetJob("Assistant")
 		if(!istype(temp_job))
@@ -96,9 +96,7 @@ SUBSYSTEM_DEF(economy)
 /proc/request_payroll_funds()
 	for (var/d in all_departments)
 		var/datum/department/department = all_departments[d]
-		world << "Requesting payroll for [department.id]"
 		if (department.funding_type == FUNDING_NONE)
-			world << "No funding"
 			continue //This department gets no funding
 
 		var/datum/money_account/source //Source account for internal funding
@@ -116,11 +114,9 @@ SUBSYSTEM_DEF(economy)
 		if (department.funding_type == FUNDING_EXTERNAL)
 			can_pay = TRUE
 			terminal = "Hansa Galactic Link" //Magical wireless money transfer
-			world << "External funding, canpay"
 
 		//Internal funding, from another account on the ship
 		else if (department.funding_type == FUNDING_INTERNAL)
-			world << "Internal Funding"
 			//First lets get the source account, its probably a department account
 			source = department_accounts[department.funding_source]
 			if (!source)
@@ -135,7 +131,6 @@ SUBSYSTEM_DEF(economy)
 					can_pay = TRUE
 
 		if (can_pay)
-			world << "We can pay"
 			var/paid = FALSE
 
 			//If its external, we use the deposit function to create money and put it in the department account
@@ -150,8 +145,7 @@ SUBSYSTEM_DEF(economy)
 				department.pending_budget_total = 0
 		else
 			//TODO: Some failure condition here
-			//Email the account holder responsible#
-			world << "We cannot pay!"
+			//Email the account holder responsible
 			continue
 
 
@@ -159,7 +153,6 @@ SUBSYSTEM_DEF(economy)
 
 //Step 3: Actually paying the wages
 /proc/pay_wages()
-	world << "Paying out wages"
 	var/total_paid = 0
 	for (var/d in all_departments)
 		var/datum/department/department = all_departments[d]
@@ -174,15 +167,14 @@ SUBSYSTEM_DEF(economy)
 
 		//Check again that the department has enough. Because some departments, like guild, didnt request funds
 		if (account.money < department.pending_wage_total)
-			world << "Cannot afford wages [account.money] / [department.pending_wage_total]"
 			//TODO Here: Email the account owner warning them that wages can't be paid
 			continue
 
 		//Here we go, lets pay them!
-		for (var/datum/data/record/R in department.pending_wages)
+		for (var/datum/computer_file/report/crew_record/R in department.pending_wages)
 			var/paid = FALSE
 			//Get the crewman's account that we'll pay to
-			var/crew_account_num = R.fields["pay_account"]
+			var/crew_account_num = R.get_account()
 			var/amount = department.pending_wages[R]
 			paid = transfer_funds(department.account_number, crew_account_num, "Payroll", "CEV Eris payroll system", amount)
 			if (paid)
@@ -196,10 +188,10 @@ SUBSYSTEM_DEF(economy)
 		department.pending_wages = list() //All pending wages paid off
 	command_announcement.Announce("Hourly crew wages have been paid, please check your email for details. In total the crew of CEV Eris have earned [total_paid] credits.", "Dispensation")
 
-/proc/payroll_mail_account_holder(var/datum/data/record/R, var/sender, var/amount)
+/proc/payroll_mail_account_holder(var/datum/computer_file/report/crew_record/R, var/sender, var/amount)
 	//In future, this will be expanded to include a report on penalties, bonuses and taxes that affected your wages
 
-	var/address = R.fields["email"]
+	var/address = R.get_email()
 
 	var/datum/computer_file/data/email_message/message = new()
 	message.title = "You have recieved funds"
@@ -212,8 +204,5 @@ SUBSYSTEM_DEF(economy)
 
 	message.source = payroll_mailer.login
 	if(!payroll_mailer.send_mail(address, message))
-		world << "Error sending email: this address doesn't exist."
-		return 1
-	else
-		world << "Email successfully sent."
-		return 1
+		return FALSE
+	return TRUE

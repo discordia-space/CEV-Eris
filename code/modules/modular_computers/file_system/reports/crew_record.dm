@@ -23,6 +23,7 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 	GLOB.all_crew_records.Remove(src)
 
 /datum/computer_file/report/crew_record/proc/load_from_mob(var/mob/living/carbon/human/H)
+
 	if(istype(H))
 		photo_front = getFlatIcon(H, SOUTH, always_use_defdir = 1)
 		photo_side = getFlatIcon(H, WEST, always_use_defdir = 1)
@@ -53,8 +54,8 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 	set_age(H ? H.age : 30)
 	set_status(GLOB.default_physical_status)
 
-	set_email(H && H.mind ? H.mind.initial_email_login["login"] : "none")
-	set_account(H && H.mind ? H.mind.initial_account.account_number : "000000")
+	set_email((H && H.mind) ? H.mind.initial_email_login["login"] : "none")
+	set_account((H && H.mind) ? H.mind.initial_account.account_number : "000000")
 
 	// TODO: enable after baymed
 	//set_species(H ? H.get_species() : SPECIES_HUMAN)
@@ -191,7 +192,7 @@ FIELD_LIST_EDIT("Status", status, GLOB.physical_statuses, null, access_moebius)
 
 FIELD_SHORT("Species",species, null, access_change_ids)
 FIELD_SHORT("Email",email, null, access_change_ids)
-FIELD_SHORT("Account",account, null, access_change_ids)
+FIELD_NUM("Account",account, null, access_change_ids)
 
 // MEDICAL RECORDS
 FIELD_LIST("Blood Type", bloodtype, GLOB.blood_types, access_moebius, access_moebius)
