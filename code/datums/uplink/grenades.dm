@@ -31,5 +31,15 @@
 
 /datum/uplink_item/item/grenades/explosive
 	name = "5xHigh Explosive Grenades"
-	item_cost = 9
+	item_cost = 10
 	path = /obj/item/weapon/storage/box/explosive
+
+/datum/uplink_item/item/grenades/viscerator
+	name = "viscerator grenade"
+	item_cost = 4
+	path = /obj/item/weapon/grenade/spawnergrenade/manhacks
+
+/datum/uplink_item/item/grenades/blob
+	name = "bioweapon sample"
+	item_cost = 20
+	path = /obj/item/weapon/grenade/spawnergrenade/blob
