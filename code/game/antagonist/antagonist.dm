@@ -27,6 +27,15 @@
 	var/datum/faction/faction = null
 	var/faction_id = null
 
+	//stats data
+	var/list/stat_modifiers = list(
+		STAT_ROB = 5,
+		STAT_TGH = 5,
+		STAT_BIO = 5,
+		STAT_MEC = 5,
+		STAT_COG = 5
+	)
+
 
 	// Misc.
 	var/bantype               // Ban to check when spawning this antag.

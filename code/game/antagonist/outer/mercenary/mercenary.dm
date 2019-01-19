@@ -20,7 +20,10 @@
 	possible_objectives = list()
 	survive_objective = null
 
-
+	stat_modifiers = list(
+		STAT_ROB = 40,
+		STAT_TGH = 30,
+	)
 
 
 
@@ -41,6 +44,9 @@
 	var/datum/language/lang = all_languages[LANGUAGE_SERBIAN]
 	lang.set_random_name(L)
 
+	//the missingg parrt was antag's stats!
+	for(var/name in stat_modifiers)
+		L.stats.changeStat(name, stat_modifiers[name])
 
 	create_id("Soldier")
 	..()
