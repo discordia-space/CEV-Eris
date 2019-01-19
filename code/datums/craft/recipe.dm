@@ -31,7 +31,7 @@
 /datum/craft_recipe/proc/get_description(pass_steps)
 	. = list()
 	var/atom/A = result
-	.+="[initial(A.desc)]<br>"
+	.+="<div style ='float: left; max-height:48px; max-width:48px; height:48px; width:48px; margin-left:0px'><img src= [SSdynamic_cache.getCacheFilename(A)] height=48 width=48></div>[initial(A.desc)]<br>"
 	for(var/item in steps)
 		if(pass_steps > 0)
 			--pass_steps

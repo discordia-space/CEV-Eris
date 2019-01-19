@@ -653,8 +653,8 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					temp_dat += ", [D.chemicals[T]] [CallReagentName(T)]"
 				if(temp_dat)
 					temp_dat = " \[[copytext(temp_dat, 3)]\]"
-				var/iconName = "[D.type].png"
-				iconName = sanitizeFileName(iconName)
+				// cache is created dynamically at buildCache()
+				var/iconName = sanitizeFileName("[D.build_path].png")
 				// byond rewrites cache every time despite saying its not in documentation
 				if(user && user.client && !user.client.cache.Find(iconName))
 					user << browse_rsc(getFlatTypeIcon(D.build_path), iconName)
@@ -740,7 +740,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					temp_dat += ", [D.chemicals[T]] [CallReagentName(T)]"
 				if(temp_dat)
 					temp_dat = " \[[copytext(temp_dat,3)]\]"
-				var/iconName = cacheAtomIcon(D.build_path, user, TRUE)
+				var/iconName = sanitizeFileName("[D.build_path].png")
 				dat += "<div style ='float: left; margin-left:0px; max-height:24px; max-width:24px; height:24px;width:24px;' class='statusDisplayItem'><img src= [iconName] height=24 width=24></div>"
 
 				if(linked_imprinter.canBuild(D))

@@ -87,7 +87,8 @@
 	for(var/rtype in recipe_list())
 		var/datum/autolathe/recipe/R = autolathe_recipes[rtype]
 		var/list/LE = list("name" = capitalize(R.name), "type" = "[rtype]", "time" = R.time)
-		LE["icon"] = cacheAtomIcon(R.path, user, TRUE)
+		// cache is created dynamically at buildCache()
+		LE["icon"] = sanitizeFileName("[R.path].png")
 
 		if(unfolded == "[rtype]")
 			LE["unfolded"] = TRUE
