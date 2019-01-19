@@ -21,8 +21,10 @@
 	survive_objective = null
 
 	stat_modifiers = list(
-		STAT_ROB = 40,
+		STAT_ROB = 30,
 		STAT_TGH = 30,
+		STAT_BIO = 10,
+		STAT_MEC = 20
 	)
 
 
@@ -47,6 +49,7 @@
 	//the missingg parrt was antag's stats!
 	for(var/name in stat_modifiers)
 		L.stats.changeStat(name, stat_modifiers[name])
+	world << "[L.name] STATS SET"
 
 	create_id("Soldier")
 	..()
