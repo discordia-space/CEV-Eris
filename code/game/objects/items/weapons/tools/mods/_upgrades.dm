@@ -91,10 +91,18 @@
 /obj/item/weapon/tool_upgrade/proc/can_apply(var/obj/item/weapon/tool/T, var/mob/user)
 	if (isrobot(T))
 		var/mob/living/silicon/robot/R = T
-		if (R.module_active && istool(R.module_active))
-			try_apply(R.module_active,user)
+		if(!R.opened)
+			user << SPAN_WARNING("You need to open [R]'s panel to access its tools.")
+		var/list/robotools = list()
+		for(var/obj/item/weapon/tool/robotool in R.module.modules)
+			robotools.Add(robotool)
+		if(robotools.len)
+			var/obj/item/weapon/tool/chosen_tool = input(user,"Which tool are you trying to modify?","Tool Modification","Cancel") in robotools + "Cancel"
+			if(chosen_tool == "Cancel")
+				return
+			try_apply(chosen_tool,user)
 		else
-			user << SPAN_WARNING("[src] needs to be wielding a compatible tool.")
+			user << SPAN_WARNING("[R] has no modifiable tools.")
 		return
 
 	if (!istool(T))
