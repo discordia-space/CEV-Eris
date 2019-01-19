@@ -84,6 +84,9 @@
 
 	var/obj/item/device/radio/radio
 
+	var/datum/looping_sound/supermatter/soundloop
+
+
 	var/debug = 0
 
 /obj/machinery/power/supermatter/New()
@@ -91,9 +94,12 @@
 	radio = new /obj/item/device/radio{channels=list("Engineering")}(src)
 	assign_uid()
 
+	soundloop = new(list(src), TRUE)
+
 
 /obj/machinery/power/supermatter/Destroy()
 	qdel(radio)
+	QDEL_NULL(soundloop)
 	. = ..()
 
 /obj/machinery/power/supermatter/proc/explode()
@@ -177,6 +183,9 @@
 
 	if(!istype(L)) 	//We are in a crate or somewhere that isn't turf, if we return to turf resume processing but for now.
 		return  //Yeah just stop.
+
+	if(power)
+		soundloop.volume = min(40, (round(power/50))) // Volume maxes out at 2000 power.
 
 	if(damage > explosion_point)
 		if(!exploded)

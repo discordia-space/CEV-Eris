@@ -340,6 +340,14 @@ var/const/FALLOFF_SOUNDS = 0.5
 
 	src << S
 
+#define CHANNEL_HIGHEST_AVAILABLE 1014
+
+/proc/open_sound_channel()
+	var/static/next_channel = 1	//loop through the available 1024 - (the ones we reserve) channels and pray that its not still being used
+	. = ++next_channel
+	if(next_channel > CHANNEL_HIGHEST_AVAILABLE)
+		next_channel = 1
+
 /client/proc/playtitlemusic()
 	if(!SSticker.login_music)
 		return

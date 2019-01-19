@@ -23,11 +23,18 @@
 	var/effective_gen = 0
 	var/lastgenlev = 0
 
+	var/datum/looping_sound/generator/soundloop
+
 /obj/machinery/power/generator/New()
 	..()
 	desc = initial(desc) + " Rated for [round(max_power/1000)] kW."
+	soundloop = new(list(src), TRUE)
 	spawn(1)
 		reconnect()
+
+/obj/machinery/power/generator/Destroy()
+	QDEL_NULL(soundloop)
+	. = ..()
 
 //generators connect in dir and reverse_dir(dir) directions
 //mnemonic to determine circulator/generator directions: the cirulators orbit clockwise around the generator
@@ -129,6 +136,7 @@
 	if(effective_gen > 100 && genlev == 0)
 		genlev = 1
 	if(genlev != lastgenlev)
+		soundloop.volume = min(50,round(genlev*4.5)+1)
 		lastgenlev = genlev
 		updateicon()
 	add_avail(effective_gen)
