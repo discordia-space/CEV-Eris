@@ -96,7 +96,7 @@
 	name = "Other ear"
 	w_class = ITEM_SIZE_HUGE
 	icon = 'icons/mob/screen1_Midnight.dmi'
-	icon_state = "block"
+	icon_state = "blocked"
 	slot_flags = SLOT_EARS | SLOT_TWOEARS
 	var/obj/item/master_item = null
 
@@ -105,6 +105,7 @@
 	desc = O.desc
 	icon = O.icon
 	icon_state = O.icon_state
+	w_class = O.w_class
 	set_dir(O.dir)
 	master_item = O
 
