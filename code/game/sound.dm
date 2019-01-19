@@ -96,6 +96,7 @@ var/list/climb_sound = list(
 )
 
 var/list/weld_sound = list(
+	'sound/items/Welder.ogg',
 	'sound/items/welding1.ogg',
 	'sound/items/welding2.ogg',
 	'sound/items/welding3.ogg',
