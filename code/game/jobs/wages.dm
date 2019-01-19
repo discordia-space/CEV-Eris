@@ -1,5 +1,7 @@
 //Determines starting account balance
 /datum/job/proc/one_time_payment(var/custom_factor = 1)
+	if (initial_balance)
+		return round (initial_balance * rand_between(0.7, 1.3))
 	return round(wage * rand_between(1.5, 3.5))
 
 
@@ -8,4 +10,5 @@
 //In future this can be expanded to give bonuses or penalize wages based on work performance
 //Don't check for wage-blocking statuses like dead/suspended here, thats done before this is called
 /datum/job/proc/get_wage(var/datum/data/record/R)
+
 	return wage

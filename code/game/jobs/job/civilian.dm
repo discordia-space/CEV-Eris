@@ -13,7 +13,7 @@
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 15)
 	access = list(access_hydroponics, access_bar, access_kitchen)
-
+	initial_balance	= 1600
 	wage = WAGE_NONE	//Bartender is unpaid, they make money selling drinks
 	stat_modifiers = list(
 		STAT_ROB = 10,
@@ -61,6 +61,7 @@
 
 	loyalties = LOYALTY_CIVILIAN
 	wage = WAGE_NONE	//Chef is unpaid, they make money selling food
+	initial_balance	= 1600
 	description = "	Everyone's favourite person when they're hungry, you are the chef, maker of food and slayer of hunger. Everyone needs to eat, and you make sure they can. Your job is fairly simple, cook food for the crew. Your primary source of raw materials is the garden downstairs, you and the gardener should work closely together. <br>\
 	<br>\
 	You are a sole trader trying to make a profit here, so giving away your food for free is not adviseable unless times are desperate<br>\
