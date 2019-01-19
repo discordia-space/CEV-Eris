@@ -144,6 +144,7 @@
 		/obj/item/weapon/implant/chem,
 		/obj/item/weapon/implant/death_alarm,
 		/obj/item/weapon/implant/tracking
+		/obj/item/weapon/implant/core_implant/cruciform
 	)
 	var/delete
 	var/temphtml
