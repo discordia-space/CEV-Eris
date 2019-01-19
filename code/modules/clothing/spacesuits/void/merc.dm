@@ -6,7 +6,7 @@
 	//Headshots OP so these have tons of head protection. Aim for the body or suffer
 	//These helmets are essentially an impenetrable fortress for the head
 	armor = list(melee = 65, bullet = 75, laser = 65,energy = 25, bomb = 45, bio = 100, rad = 80)
-	siemens_coefficient = 0.6
+	siemens_coefficient = 0.35
 	species_restricted = list("Human")
 	camera_networks = list(NETWORK_MERCENARY)
 	light_overlay = "helmet_light_green" //todo: species-specific light overlays
@@ -22,7 +22,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	//Melee attacks to the torso are the weakness of this armor.  It's optimised for ballistic resistance
 	armor = list(melee = 40, bullet = 65, laser = 50, energy = 15, bomb = 35, bio = 100, rad = 80)
-	siemens_coefficient = 0.6
+	siemens_coefficient = 0.35
 	species_restricted = list("Human")
 
 
@@ -34,7 +34,7 @@
 	icon_state = "rig0-syndie"
 	item_state = "syndie_helm"
 	armor = list(melee = 60, bullet = 50, laser = 40,energy = 15, bomb = 35, bio = 100, rad = 60)
-	siemens_coefficient = 0.6
+	siemens_coefficient = 0.35
 	species_restricted = list("Human")
 	camera_networks = list(NETWORK_MERCENARY)
 	light_overlay = "helmet_light_green" //todo: species-specific light overlays
@@ -47,5 +47,5 @@
 	slowdown = 1
 	w_class = ITEM_SIZE_NORMAL
 	armor = list(melee = 60, bullet = 50, laser = 40, energy = 15, bomb = 35, bio = 100, rad = 60)
-	siemens_coefficient = 0.6
+	siemens_coefficient = 0.35
 	species_restricted = list("Human")
