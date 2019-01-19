@@ -121,11 +121,11 @@
 
 
 // Flags for mob types by Nanako. Primarily used for distinguishing organic from synthetic mobs
-#define TYPE_ORGANIC      1	// Almost any creature under /mob/living/carbon and most simple animals
-#define TYPE_SYNTHETIC    2	// Everything under /mob/living/silicon, plus hivebots and similar simple mobs
-#define TYPE_HUMANOID     4	// Humans and humanoid player characters
-#define TYPE_WEIRD        8	// Slimes, constructs, demons, and other creatures of a magical or bluespace nature.
-#define TYPE_INCORPOREAL 16 // Mobs that don't really have any physical form to them. Ghosts mostly
+#define CLASSIFICATION_ORGANIC      1	// Almost any creature under /mob/living/carbon and most simple animals
+#define CLASSIFICATION_SYNTHETIC    2	// Everything under /mob/living/silicon, plus hivebots and similar simple mobs
+#define CLASSIFICATION_HUMANOID     4	// Humans and humanoid player characters
+#define CLASSIFICATION_WEIRD        8	// Slimes, constructs, demons, and other creatures of a magical or bluespace nature.
+#define CLASSIFICATION_INCORPOREAL 16 // Mobs that don't really have any physical form to them. Ghosts mostly
 
 
 #define TINT_NONE 0

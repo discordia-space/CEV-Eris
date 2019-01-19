@@ -70,7 +70,7 @@
 	var/supernatural = 0
 	var/purge = 0
 
-	mob_types = TYPE_ORGANIC
+	mob_classification = CLASSIFICATION_ORGANIC
 
 /mob/living/simple_animal/New()
 	..()

@@ -294,9 +294,9 @@ Proc for attack log creation, because really why not
 
 
 // Returns a bitfield representing the mob's type as relevant to the devour system.
-/mob/proc/find_type()
-	return mob_types
+/mob/proc/get_classification()
+	return mob_classification
 
-/mob/living/carbon/human/find_type()
+/mob/living/carbon/human/get_classification()
 	. = ..()
-	. |= TYPE_ORGANIC | TYPE_HUMANOID
+	. |= CLASSIFICATION_ORGANIC | CLASSIFICATION_HUMANOID

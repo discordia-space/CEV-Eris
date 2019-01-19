@@ -62,4 +62,4 @@
 	var/job = null//Living
 
 	var/image/static_overlay // For static overlays on living mobs
-	mob_types = TYPE_ORGANIC
+	mob_classification = CLASSIFICATION_ORGANIC

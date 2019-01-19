@@ -184,4 +184,4 @@
 
 	var/datum/stat_holder/stats
 
-	var/mob_types = 0 //Bitfield. Uses TYPE_XXXX defines in defines/mobs.dm.
+	var/mob_classification = 0 //Bitfield. Uses TYPE_XXXX defines in defines/mobs.dm.

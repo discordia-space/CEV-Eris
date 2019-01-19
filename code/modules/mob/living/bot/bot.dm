@@ -17,7 +17,7 @@
 	var/obj/access_scanner = null
 	var/list/req_access = list()
 	var/list/req_one_access = list()
-	mob_types = TYPE_SYNTHETIC
+	mob_classification = CLASSIFICATION_SYNTHETIC
 
 /mob/living/bot/New()
 	..()

@@ -38,8 +38,8 @@
 
 	//Thirdly an organic check. No implanting robots
 	//Any other organic creature is fine. This allows you to implant your pets so the turrets dont shoot them
-	var/types = target.find_type()
-	if (!(types & TYPE_ORGANIC))
+	var/types = target.get_classification()
+	if (!(types & CLASSIFICATION_ORGANIC))
 		return FALSE
 
 	//All good, return true

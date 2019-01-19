@@ -33,7 +33,7 @@
 
 	#define SEC_HUD 1 //Security HUD mode
 	#define MED_HUD 2 //Medical HUD mode
-	mob_types = TYPE_SYNTHETIC
+	mob_classification = CLASSIFICATION_SYNTHETIC
 
 /mob/living/silicon/New()
 	silicon_mob_list |= src
