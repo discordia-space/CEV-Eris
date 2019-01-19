@@ -975,7 +975,7 @@ FIRE ALARM
 			return
 
 		if(QUALITY_WIRE_CUTTING)
-			if(wiresexposed)
+			if(wiresexposed && buildstage == 2)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					user.visible_message(SPAN_WARNING("[user] has remove the wires from \the [src]!"), "You have removed the wires from \the [src].")
 					new/obj/item/stack/cable_coil(get_turf(user), 5)
