@@ -11,6 +11,7 @@
 	name = "mounted taser gun"
 	self_recharge = 1
 	use_external_power = 1
+	restrict_safety = TRUE
 
 /obj/item/weapon/gun/energy/taser/mounted/cyborg
 	name = "taser gun"
