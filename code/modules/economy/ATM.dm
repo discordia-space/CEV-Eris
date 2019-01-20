@@ -191,13 +191,13 @@ log transactions
 								dat += "<td>[T.time]</td>"
 								dat += "<td>[T.target_name]</td>"
 								dat += "<td>[T.purpose]</td>"
-								dat += "<td>[CREDS][T.amount]</td>"
+								dat += "<td>[CREDS][num2text(T.amount,12)]</td>"
 								dat += "<td>[T.source_terminal]</td>"
 								dat += "</tr>"
 							dat += "</table>"
 							dat += "<A href='?src=\ref[src];choice=print_transaction'>Print</a><br>"
 						if(TRANSFER_FUNDS)
-							dat += "<b>Account balance:</b> [CREDS][authenticated_account.money]<br>"
+							dat += "<b>Account balance:</b> [num2text(authenticated_account.money,12)][CREDS]<br>"
 							dat += "<A href='?src=\ref[src];choice=view_screen;view_screen=0'>Back</a><br><br>"
 							dat += "<form name='transfer' action='?src=\ref[src]' method='get'>"
 							dat += "<input type='hidden' name='src' value='\ref[src]'>"
@@ -209,7 +209,7 @@ log transactions
 							dat += "</form>"
 						else
 							dat += "Welcome, <b>[authenticated_account.owner_name].</b><br/>"
-							dat += "<b>Account balance:</b> [CREDS][authenticated_account.money]"
+							dat += "<b>Account balance:</b> [num2text(authenticated_account.money, 12)][CREDS]"
 							dat += "<form name='withdrawal' action='?src=\ref[src]' method='get'>"
 							dat += "<input type='hidden' name='src' value='\ref[src]'>"
 							dat += "<input type='radio' name='choice' value='withdrawal' checked> Cash  <input type='radio' name='choice' value='e_withdrawal'> Chargecard<br>"
@@ -229,7 +229,7 @@ log transactions
 				dat += "<input type='submit' value='Submit'><br>"
 				dat += "</form>"
 
-		user << browse(dat,"window=atm;size=550x650")
+		user << browse(dat,"window=atm;size=600x650")
 	else
 		user << browse(null,"window=atm")
 
@@ -247,12 +247,8 @@ log transactions
 					else if(transfer_amount <= authenticated_account.money)
 						var/target_account_number = text2num(href_list["target_acc_number"])
 						var/transfer_purpose = href_list["purpose"]
-						if(charge_to_account(target_account_number, authenticated_account.owner_name, transfer_purpose, machine_id, transfer_amount))
+						if(transfer_funds(authenticated_account.account_number, target_account_number, transfer_purpose, machine_id, transfer_amount))
 							usr << "\icon[src]<span class='info'>Funds transfer successful.</span>"
-
-							//create an entry in the account transaction log
-							var/datum/transaction/T = new(-transfer_amount, "Account #[target_account_number]", transfer_purpose, machine_id)
-							T.apply_to(authenticated_account)
 						else
 							usr << "\icon[src]<span class='warning'>Funds transfer failed.</span>"
 
