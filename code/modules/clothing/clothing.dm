@@ -449,6 +449,7 @@ BLIND     // can't see anything
 	/obj/item/weapon/storage/pouch/,
 	/obj/item/weapon/gun,
 	/obj/item/weapon/melee,
+	/obj/item/weapon/material,
 	/obj/item/ammo_magazine,
 	/obj/item/ammo_casing,
 	/obj/item/weapon/handcuffs,
