@@ -95,6 +95,14 @@ var/list/climb_sound = list(
 	'sound/effects/ladder4.ogg'
 )
 
+var/list/weld_sound = list(
+	'sound/items/Welder.ogg',
+	'sound/items/welding1.ogg',
+	'sound/items/welding2.ogg',
+	'sound/items/welding3.ogg',
+	'sound/items/welding4.ogg'
+)
+
 var/list/gunshot_sound = list('sound/weapons/Gunshot.ogg',
 	'sound/weapons/guns/fire/ltrifle_fire.ogg',
 	'sound/weapons/guns/fire/m41_shoot.ogg',
@@ -378,6 +386,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 			if ("catwalk")soundin = pick(footstep_catwalk)
 			if ("crumble") soundin = pick(crumble_sound)
 			if ("thud") soundin = pick(thud_sound)
+			if ("weld") soundin = pick(weld_sound)
 			//if ("gunshot") soundin = pick(gun_sound)
 	return soundin
 
