@@ -17,9 +17,15 @@
 
 /datum/uplink_item/item/tools/money
 	name = "Operations Funding"
-	item_cost = 2
+	item_cost = 13
 	path = /obj/item/weapon/storage/secure/briefcase/money
 	desc = "A briefcase with 10,000 untraceable credits for funding your sneaky activities."
+
+/datum/uplink_item/item/tools/pocketchange
+	name = "Spending Money"
+	item_cost = 1
+	path = /obj/item/weapon/spacecash/bundle/c500
+	desc = "A bundle of 500 untraceable credits to cover a few basic expenses."
 
 /datum/uplink_item/item/tools/clerical
 	name = "Morphic Clerical Kit"
@@ -28,7 +34,7 @@
 
 /datum/uplink_item/item/tools/plastique
 	name = "C-4 (Destroys walls)"
-	item_cost = 4
+	item_cost = 3
 	path = /obj/item/weapon/plastique
 
 /datum/uplink_item/item/tools/heavy_vest
@@ -76,7 +82,7 @@
 
 /datum/uplink_item/item/tools/teleporter
 	name = "Teleporter Circuit Board"
-	item_cost = 10
+	item_cost = 8
 	path = /obj/item/weapon/circuitboard/teleporter
 
 /datum/uplink_item/item/tools/teleporter/New()

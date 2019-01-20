@@ -291,7 +291,7 @@
 
 /obj/item/weapon/storage/box/teargas
 	name = "box of pepperspray grenades"
-	desc = "A box containing 7 tear gas grenades. A gas mask is printed on the label.<br> WARNING: Exposure carries risk of serious injury or death. Keep away from persons with lung conditions."
+	desc = "A box containing 6 tear gas grenades. A gas mask is printed on the label.<br> WARNING: Exposure carries risk of serious injury or death. Keep away from persons with lung conditions."
 	icon_state = "flashbang"
 
 	New()
@@ -317,6 +317,33 @@
 		new /obj/item/weapon/grenade/empgrenade(src)
 		new /obj/item/weapon/grenade/empgrenade(src)
 		new /obj/item/weapon/grenade/empgrenade(src)
+
+/obj/item/weapon/storage/box/frag
+	name = "box of emp grenades"
+	desc = "A box containing 5 anti-personnel fragmentation grenades. Very harmful to organic life."
+	icon_state = "flashbang"
+
+	New()
+		..()
+		new /obj/item/weapon/grenade/frag(src)
+		new /obj/item/weapon/grenade/frag(src)
+		new /obj/item/weapon/grenade/frag(src)
+		new /obj/item/weapon/grenade/frag(src)
+		new /obj/item/weapon/grenade/frag(src)
+
+/obj/item/weapon/storage/box/explosive
+	name = "box of emp grenades"
+	desc = "A box containing 5 high explosive grenades. Very destructive to surrounding structures."
+	icon_state = "flashbang"
+
+	New()
+		..()
+		new /obj/item/weapon/grenade/frag/explosive(src)
+		new /obj/item/weapon/grenade/frag/explosive(src)
+		new /obj/item/weapon/grenade/frag/explosive(src)
+		new /obj/item/weapon/grenade/frag/explosive(src)
+		new /obj/item/weapon/grenade/frag/explosive(src)
+
 
 /obj/item/weapon/storage/box/smokes
 	name = "box of smoke bombs"
