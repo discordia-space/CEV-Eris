@@ -19,10 +19,11 @@
 	update_icon()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/New()
-	..()
-	if(isGlass) unacidable = 1
 	icon_state_full = "[icon_state]"
 	icon_state_empty = "[icon_state]_empty"
+	..()
+	if(isGlass) unacidable = 1
+
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/Destroy()
 	if(rag)
@@ -120,6 +121,7 @@
 	..()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/update_icon()
+	world << "Bottle update icon [icon_state]"
 	underlays.Cut()
 	if(rag)
 		var/underlay_image = image(icon='icons/obj/drinks.dmi', icon_state=rag.on_fire? "[rag_underlay]_lit" : rag_underlay)
@@ -131,6 +133,7 @@
 			icon_state = icon_state_full
 		else
 			icon_state = icon_state_empty
+	world << "Bottle ended update icon [icon_state]"
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
 	var/blocked = ..()
