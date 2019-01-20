@@ -128,7 +128,7 @@
 
 		if (C.use_tool(user = user, target =  src, base_time = WORKTIME_SLOW, required_quality = QUALITY_SCREW_DRIVING, fail_chance = FAILCHANCE_CHALLENGING, required_stat = STAT_MEC))
 			//If you pass the check, then you manage to remove the upgrade intact
-			user << SPAN_NOTICE("You successfully remove the [toremove] intact.")
+			user << SPAN_NOTICE("You successfully remove [toremove] while leaving it intact.")
 			upgrades -= toremove
 			toremove.forceMove(get_turf(src))
 			toremove.holder = null
@@ -138,7 +138,7 @@
 			//You failed the check, lets see what happens
 			if (prob(50))
 				//50% chance to break the upgrade and remove it
-				user << SPAN_DANGER("You successfully remove the [toremove], but destroy it in the process.")
+				user << SPAN_DANGER("You successfully remove [toremove], but destroy it in the process.")
 				upgrades -= toremove
 				toremove.forceMove(get_turf(src))
 				toremove.holder = null
@@ -146,9 +146,9 @@
 					QDEL_NULL(toremove)
 				refresh_upgrades()
 				return 1
-			else
+			else if (degradation) //Because robot tools are unbreakable
 				//otherwise, damage the host tool a bit, and give you another try
-				user << SPAN_DANGER("You only managed to damage the [src], but you can retry.")
+				user << SPAN_DANGER("You only managed to damage [src], but you can retry.")
 				unreliability += 10*degradation
 				refresh_upgrades()
 				return 1

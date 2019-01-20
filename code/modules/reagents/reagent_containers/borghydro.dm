@@ -59,16 +59,6 @@
 		user << SPAN_WARNING("The injector is empty.")
 		return
 
-	var/mob/living/carbon/human/H = M
-	if(istype(H))
-		var/obj/item/organ/external/affected = H.get_organ(user.targeted_organ)
-		if(!affected)
-			user << SPAN_DANGER("\The [H] is missing that limb!")
-			return
-		else if(affected.robotic >= ORGAN_ROBOT)
-			user << SPAN_DANGER("You cannot inject a robotic limb.")
-			return
-
 	if (M.can_inject(user, 1))
 		user << SPAN_NOTICE("You inject [M] with the injector.")
 		M << SPAN_NOTICE("You feel a tiny prick!")

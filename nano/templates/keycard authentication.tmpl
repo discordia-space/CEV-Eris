@@ -1,0 +1,31 @@
+The current alert level is - 
+{{if data.seclevel === 'code green'}}
+	<span class='good'>Green</span>
+{{else data.seclevel === 'code blue'}}
+	<span style='color: rgb(40, 80, 255);font-weight: bold;'>Blue</span>
+{{else data.seclevel === 'code red'}}
+	<span class='bad'>Red</span>
+{{else data.seclevel === 'code delta'}}
+	<span class='bad'>DELTA</span>
+{{/if}}
+<hr>
+<div align='center'>
+<h3>Red alert</h3>
+<table><tr>
+<td>{{:helper.link('Start countdown', '', {'start': 'redalert'}, (data.events.redalert || data.seclevel === 'code red' || data.oncooldown) ? 'disabled' : null)}}</td>
+<td>{{:helper.link('Proceed', '', {'proceed': 'redalert'},  data.events.redalert ? null : 'disabled')}}</td>
+<td>{{:helper.link('Cancel', '', {'cancel': 'redalert'},  data.events.redalert ? null : 'disabled')}}</td>
+</table>
+<h3>Abandon spacecraft</h3>
+<!--{{:helper.link('Initiate countdown', '', {'pods': 'start'}, null)}}-->
+<table><tr>
+<td>{{:helper.link('Start countdown', '', {'start': 'pods'},  (data.events.pods || data.oncooldown) ? 'disabled' : null)}}</td>
+<td>{{:helper.link('Proceed', '', {'proceed': 'pods'},  data.events.pods ? null : 'disabled')}}</td>
+<td>{{:helper.link('Cancel', '', {'cancel': 'pods'},  data.events.pods ? null : 'disabled')}}</td>
+</table>
+<h3>Emergency Maintenance Access</h3>
+<table><tr>
+<td>{{:helper.link('Grant', '', {'emergencymaint': 'grant'}, data.maint_all_access ? 'disabled' : null)}}</td>
+<td>{{:helper.link('Revoke', '', {'emergencymaint': 'revoke'}, data.maint_all_access ? null : 'disabled')}}</td>
+</table>
+</div>

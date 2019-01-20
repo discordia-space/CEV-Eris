@@ -98,6 +98,14 @@
 	name = "magazine (.44 hollow point)"
 	path = /obj/item/ammo_magazine/cl44
 
+/datum/autolathe/recipe/ammo/sl_c138_rubber
+	name = "speed loader (.38 rubber)"
+	path = /obj/item/ammo_magazine/sl38/rubber
+
+/datum/autolathe/recipe/ammo/sl_c138_brute
+	name = "speed loader (.38 hollow point)"
+	path = /obj/item/ammo_magazine/sl38
+
 /datum/autolathe/recipe/ammo/mg_cl32_rubber
 	name = "magazine (.32 rubber)"
 	path = /obj/item/ammo_magazine/cl32/rubber

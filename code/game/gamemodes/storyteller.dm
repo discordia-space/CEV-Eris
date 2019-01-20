@@ -73,18 +73,18 @@ var/datum/storyteller/storyteller = null
 	ROUNDSTART AND SETUP
 *********************************/
 /datum/storyteller/proc/can_start(var/announce = FALSE)	//when TRUE, proc should output reason, by which it can't start, to world
-	if(debug_mode)
+	if(debug_mode || SSticker.start_immediately)
 		return TRUE
 
 	var/engineer = FALSE
-	var/captain = FALSE
+	var/command = FALSE
 	for(var/mob/new_player/player in player_list)
 		if(player.ready && player.mind)
-			if(player.mind.assigned_role == "Captain")
-				captain = TRUE
-			if(player.mind.assigned_role in list("Technomancer Exultant","Technomancer"))
+			if(player.mind.assigned_role in list(JOBS_COMMAND))
+				command = TRUE
+			if(player.mind.assigned_role in list(JOBS_ENGINEERING))
 				engineer = TRUE
-			if(captain && engineer)
+			if(command && engineer)
 				return TRUE
 
 	var/tcol = "red"
@@ -92,12 +92,12 @@ var/datum/storyteller/storyteller = null
 		tcol = "black"
 
 	if(announce)
-		if(!engineer && !captain)
-			world << "<b><font color='[tcol]'>Captain and technomancer are required to start round.</font></b>"
+		if(!engineer && !command)
+			world << "<b><font color='[tcol]'>A command officer and technomancer are required to start round.</font></b>"
 		else if(!engineer)
 			world << "<b><font color='[tcol]'>Technomancer is required to start round.</font></b>"
-		else if(!captain)
-			world << "<b><font color='[tcol]'>Captain is required to start round.</font></b>"
+		else if(!command)
+			world << "<b><font color='[tcol]'>A command officer is required to start round.</font></b>"
 
 	if(player_list.len <= 10)
 		world << "<i>But there's less than 10 players, so this requirement will be ignored.</i>"
