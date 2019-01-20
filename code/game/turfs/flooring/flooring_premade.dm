@@ -4,7 +4,6 @@
 	icon_state = "carpet"
 	initial_flooring = /decl/flooring/carpet
 
-
 /turf/simulated/floor/carpet/bcarpet
 	name = "black carpet"
 	icon_state = "bcarpet"
