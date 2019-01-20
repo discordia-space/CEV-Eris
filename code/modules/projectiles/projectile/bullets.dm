@@ -80,12 +80,17 @@
 
 /obj/item/projectile/bullet/pellet/proc/get_pellets(var/distance)
 	var/pellet_loss = round((distance - 1)/range_step) //pellets lost due to distance
-	return max(pellets - pellet_loss, 1)
+	var/remaining = pellets - pellet_loss
+	if (remaining < 0)
+		return 0
+	return round_prob(remaining)
 
 /obj/item/projectile/bullet/pellet/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier)
-	if (pellets < 0) return 1
+
 
 	var/total_pellets = get_pellets(distance)
+	if (total_pellets <= 0)
+		return 1
 	var/spread = max(base_spread - (spread_step*distance), 0)
 
 	//shrapnel explosions miss prone mobs with a chance that increases with distance

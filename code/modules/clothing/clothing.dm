@@ -445,6 +445,16 @@ BLIND     // can't see anything
 	siemens_coefficient = 0.9
 	w_class = ITEM_SIZE_NORMAL
 	var/list/extra_allowed = list()
+	allowed = list(
+	/obj/item/weapon/storage/pouch/,
+	/obj/item/weapon/gun,
+	/obj/item/weapon/melee,
+	/obj/item/ammo_magazine,
+	/obj/item/ammo_casing,
+	/obj/item/weapon/handcuffs,
+	/obj/item/weapon/tank,
+	/obj/item/device/suit_cooling_unit,
+	/obj/item/weapon/cell)
 	equip_delay = 2 SECONDS
 
 /obj/item/clothing/suit/New()
