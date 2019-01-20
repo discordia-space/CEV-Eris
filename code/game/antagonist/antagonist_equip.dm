@@ -2,7 +2,7 @@
 
 	if(owner && !ishuman(owner.current))
 		return FALSE
-
+	update_id()
 	owner.current.regenerate_icons()
 	return TRUE
 
@@ -25,6 +25,16 @@
 			qdel(thing)
 
 	return TRUE
+
+//Adds extra access to a player when they become antag
+/datum/antagonist/proc/update_id()
+	if(!owner || !owner.current)
+		return
+	if (!default_access || !default_access.len)
+		return
+	var/list/things = owner.current.get_recursive_contents()
+	for (var/obj/item/weapon/card/id/W in things)
+		W.access |= default_access
 
 /datum/antagonist/proc/create_id(var/assignment, var/equip = 1)
 	if(!owner || !owner.current || !ishuman(owner.current))

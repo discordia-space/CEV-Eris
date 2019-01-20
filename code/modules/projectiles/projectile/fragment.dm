@@ -11,3 +11,6 @@
 
 /obj/item/projectile/bullet/pellet/fragment/strong
 	damage = 15
+
+/obj/item/projectile/bullet/pellet/fragment/weak
+	damage = 5
