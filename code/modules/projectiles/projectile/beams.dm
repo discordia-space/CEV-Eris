@@ -146,7 +146,7 @@
 	icon_state = "stun"
 	nodamage = 1
 	taser_effect = 1
-	agony = 40
+	agony = 30
 	damage_type = HALLOSS
 
 	muzzle_type = /obj/effect/projectile/stun/muzzle

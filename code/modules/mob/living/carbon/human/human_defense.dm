@@ -309,21 +309,22 @@ meteor_act
 					msg_admin_attack("[src.name] ([src.ckey]) was hit by a [O], thrown by [M.name] ([assailant.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)")
 
 		//thrown weapon embedded object code.
-		if(dtype == BRUTE && istype(O,/obj/item))
+		if(istype(O,/obj/item))
 			var/obj/item/I = O
-			if (!is_robot_module(I))
-				var/sharp = is_sharp(I)
+			if (I && I.damtype == BRUTE && !I.anchored && !is_robot_module(I))
 				var/damage = throw_damage
+				var/sharp = is_sharp(I)
+
 				if (armor)
 					damage /= armor+1
 
 				//blunt objects should really not be embedding in things unless a huge amount of force is involved
-				var/embed_chance = sharp? damage/I.w_class : damage/(I.w_class*3)
-				var/embed_threshold = sharp? 5*I.w_class : 15*I.w_class
 
-				//Sharp objects will always embed if they do enough damage.
-				//Thrown sharp objects have some momentum already and have a small chance to embed even if the damage is below the threshold
-				if((sharp && prob(damage/(10*I.w_class)*100)) || (damage > embed_threshold && prob(embed_chance)))
+				var/embed_threshold = sharp? 3*I.w_class : 9*I.w_class
+
+
+				var/embed_chance = (damage - embed_threshold)*I.embed_mult
+				if (embed_chance > 0 && prob(embed_chance))
 					affecting.embed(I)
 
 		// Begin BS12 momentum-transfer code.

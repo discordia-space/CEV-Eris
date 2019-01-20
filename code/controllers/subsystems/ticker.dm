@@ -163,8 +163,8 @@ SUBSYSTEM_DEF(ticker)
 
 	if(!storyteller.can_start(TRUE))
 		world << "<B>Unable to start game.</B> Reverting to pre-game lobby."
-		storyteller = null
-		story_vote_ended = FALSE
+		//storyteller = null //Possibly bring this back in future if we have storytellers with differing requirements
+		//story_vote_ended = FALSE
 		SSjob.ResetOccupations()
 		return FALSE
 

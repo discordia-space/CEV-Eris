@@ -1290,16 +1290,17 @@ var/list/rank_prefix = list(\
 		if(C.body_parts_covered & FACE)
 			// Do not show flavor if face is hidden
 			return
-
-	flavor_text = src.flavor_text
+	
+	if(client)
+		flavor_text = client.prefs.flavor_text
 
 	if (flavor_text && flavor_text != "" && !shrink)
 		var/msg = trim(replacetext(flavor_text, "\n", " "))
 		if(!msg) return ""
 		if(lentext(msg) <= 40)
-			return "\blue [msg]"
+			return "<font color='blue'>[russian_to_cp1251(msg)]</font>"
 		else
-			return "\blue [copytext_preserve_html(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a>"
+			return "<font color='blue'>[copytext_preserve_html(russian_to_cp1251(msg), 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a></font>"
 	return ..()
 
 /mob/living/carbon/human/getDNA()

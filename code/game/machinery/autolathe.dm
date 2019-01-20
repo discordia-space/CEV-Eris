@@ -87,13 +87,7 @@
 	for(var/rtype in recipe_list())
 		var/datum/autolathe/recipe/R = autolathe_recipes[rtype]
 		var/list/LE = list("name" = capitalize(R.name), "type" = "[rtype]", "time" = R.time)
-		var/iconName = "[rtype].png"
-		iconName = sanitizeFileName(iconName)
-		// byond rewrites cache every time despite saying its not in documentation
-		if(user && user.client && !user.client.cache.Find(iconName))
-			user << browse_rsc(getFlatTypeIcon(R.path), iconName)
-			user.client.cache.Add(iconName)
-		LE["icon"] = iconName
+		LE["icon"] = cacheAtomIcon(R.path, user, TRUE)
 
 		if(unfolded == "[rtype]")
 			LE["unfolded"] = TRUE

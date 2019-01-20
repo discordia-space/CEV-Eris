@@ -201,7 +201,8 @@
 //attempts to unload src. If allow_dump is set to 0, the speedloader unloading method will be disabled
 /obj/item/weapon/gun/projectile/proc/unload_ammo(mob/user, var/allow_dump=1)
 	if(ammo_magazine)
-		user.put_in_hands(ammo_magazine)
+		if(!user.put_in_hands(ammo_magazine))
+			return
 
 		if(unload_sound) playsound(src.loc, unload_sound, 75, 1)
 		ammo_magazine.update_icon()
@@ -243,6 +244,11 @@
 		unload_ammo(user, allow_dump=0)
 	else
 		return ..()
+
+/obj/item/weapon/gun/projectile/MouseDrop(over_object, src_location, over_location)
+	..()
+	if(src.loc == usr && istype(over_object, /obj/screen/inventory/hand))
+		unload_ammo(usr, allow_dump=0)
 
 /obj/item/weapon/gun/projectile/afterattack(atom/A, mob/living/user)
 	..()
