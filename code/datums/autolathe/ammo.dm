@@ -75,11 +75,11 @@
 	path = /obj/item/ammo_magazine/a50
 
 /datum/autolathe/recipe/ammo/SMG_sol_rubber
-	name = "magazine (9mm rubber)"
+	name = "magazine (6.5mm rubber)"
 	path = /obj/item/ammo_magazine/sol65/rubber
 
 /datum/autolathe/recipe/ammo/SMG_sol_brute
-	name = "magazine (9mm hollow point)"
+	name = "magazine (6.5mm)"
 	path = /obj/item/ammo_magazine/sol65
 
 /datum/autolathe/recipe/ammo/sl_cl44_rubber
