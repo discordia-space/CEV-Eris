@@ -45,6 +45,8 @@
 
 	if (get_fuel() > passive_fuel_cost)
 		item_state = "[initial(item_state)]_on"
+		user << SPAN_NOTICE("You switch [src] on.")
+		playsound(loc, 'sound/items/welderactivate.ogg', 50, 1)
 		..()
 		damtype = BURN
 		START_PROCESSING(SSobj, src)
@@ -59,6 +61,8 @@
 
 /obj/item/weapon/tool/weldingtool/turn_off(mob/user)
 	item_state = initial(item_state)
+	playsound(loc, 'sound/items/welderdeactivate.ogg', 50, 1)
+	user << SPAN_NOTICE("You switch [src] off.")
 	..()
 	damtype = initial(damtype)
 
