@@ -96,7 +96,7 @@
 	name = "Other ear"
 	w_class = ITEM_SIZE_HUGE
 	icon = 'icons/mob/screen1_Midnight.dmi'
-	icon_state = "block"
+	icon_state = "blocked"
 	slot_flags = SLOT_EARS | SLOT_TWOEARS
 	var/obj/item/master_item = null
 
@@ -105,6 +105,7 @@
 	desc = O.desc
 	icon = O.icon
 	icon_state = O.icon_state
+	w_class = O.w_class
 	set_dir(O.dir)
 	master_item = O
 
@@ -444,6 +445,16 @@ BLIND     // can't see anything
 	siemens_coefficient = 0.9
 	w_class = ITEM_SIZE_NORMAL
 	var/list/extra_allowed = list()
+	allowed = list(
+	/obj/item/weapon/storage/pouch/,
+	/obj/item/weapon/gun,
+	/obj/item/weapon/melee,
+	/obj/item/ammo_magazine,
+	/obj/item/ammo_casing,
+	/obj/item/weapon/handcuffs,
+	/obj/item/weapon/tank,
+	/obj/item/device/suit_cooling_unit,
+	/obj/item/weapon/cell)
 	equip_delay = 2 SECONDS
 
 /obj/item/clothing/suit/New()

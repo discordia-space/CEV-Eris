@@ -24,7 +24,7 @@
 	if(!armed || !istype(target))
 		return
 
-	//var/types = target.find_type()
+	//var/types = target.get_classification()
 	if(ismouse(target))
 		var/mob/living/simple_animal/mouse/M = target
 		visible_message("<span class='danger'>SPLAT!</span>")

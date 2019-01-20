@@ -1,5 +1,4 @@
 /datum/autolathe/recipe/circuit
-	reagents = list("silicon" = 10)
 
 /datum/autolathe/recipe/circuit/airlockmodule
 	name = "airlock electronics"

@@ -393,7 +393,10 @@ var/global/list/damage_icon_parts = list()
 		overlays_standing[MUTATIONS_LAYER]	= null
 	if(update_icons)   update_icons()
 
-/mob/living/carbon/human/proc/update_implants(var/update_icons = 1)
+/mob/proc/update_implants(var/update_icons = 1)
+	return
+
+/mob/living/carbon/human/update_implants(var/update_icons = 1)
 	var/image/standing = image('icons/mob/mob.dmi', "blank")
 	var/have_icon = FALSE
 	for(var/obj/item/weapon/implant/I in src)

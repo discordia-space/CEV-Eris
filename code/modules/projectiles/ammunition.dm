@@ -68,19 +68,56 @@
 			user << "\blue You inscribe \"[label_text]\" into \the [initial(BB.name)]."
 			BB.name = "[initial(BB.name)] (\"[label_text]\")"
 		return TRUE
-	else if(istype(I, /obj/item/ammo_casing) && (src.amount != src.maxamount) && (src.desc == I.desc))
-		var/obj/item/ammo_casing/merged_casing = I
-		if((!src.BB && !merged_casing.BB) || (src.BB && merged_casing.BB))
-			if(merged_casing.amount > 1)
-				src.amount += 1
-				merged_casing.amount -= 1
-				merged_casing.update_icon()
-			else
-				src.amount += 1
-				QDEL_NULL(merged_casing)
-			src.update_icon()
+	else if(istype(I, /obj/item/ammo_casing))
+		var/obj/item/ammo_casing/merging_casing = I
+		if(isturf(src.loc))
+			if(merging_casing.amount == merging_casing.maxamount)
+				user << SPAN_WARNING("[merging_casing] is fully stacked!")
+				return FALSE
+			if(merging_casing.mergeCasing(src, null, user))
+				return TRUE
+		else if (mergeCasing(I, 1, user))
 			return TRUE
 
+/obj/item/ammo_casing/proc/mergeCasing(var/obj/item/ammo_casing/AC, var/amountToMerge, var/mob/living/user, var/noMessage = FALSE, var/noIconUpdate = FALSE)
+	if(!AC)
+		return FALSE
+	if(!user && noMessage == FALSE)
+		error("Passed no user to mergeCasing() when output messages is active.")
+	if(src.caliber != AC.caliber)
+		if(!noMessage)
+			user << SPAN_WARNING("Ammo are different calibers.")
+		return FALSE
+	if(src.projectile_type != AC.projectile_type)
+		if(!noMessage)
+			user << SPAN_WARNING("Ammo are different types.")
+		return FALSE
+	if(src.amount == src.maxamount)
+		if(!noMessage)
+			user << SPAN_WARNING("[src] is fully stacked!")
+		return FALSE
+	if((!src.BB && AC.BB) || (src.BB && !AC.BB))
+		if(!noMessage)
+			user << SPAN_WARNING("Fired and non-fired ammo wont stack.")
+		return FALSE
+
+	var/mergedAmount
+	if(!amountToMerge)
+		mergedAmount = AC.amount
+	else
+		mergedAmount = amountToMerge
+	if(mergedAmount + src.amount > src.maxamount)
+		mergedAmount = src.maxamount - src.amount
+	AC.amount -= mergedAmount
+	src.amount += mergedAmount
+	if(!noIconUpdate)
+		src.update_icon()
+	if(AC.amount == 0)
+		QDEL_NULL(AC)
+	else
+		if(!noIconUpdate)
+			AC.update_icon()
+	return TRUE
 
 /obj/item/ammo_casing/update_icon()
 	if(spent_icon && !BB)
@@ -162,17 +199,7 @@
 		if(C.caliber != caliber)
 			user << SPAN_WARNING("[C] does not fit into [src].")
 			return
-		if(stored_ammo.len)
-			var/obj/item/ammo_casing/T = removeCasing()
-			if(T)
-				if(!C.attackby(T,user))
-					if(C.amount >= C.maxamount)
-						user << SPAN_WARNING("You cant hold more ammo.")
-					else if(T.desc != C.desc)
-						user << SPAN_WARNING("Inscribed ammo wont stack.")
-					insertCasing(T)
-		else
-			insertCasing(C)
+		insertCasing(C)
 	else if(istype(W, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/other = W
 		if(!src.stored_ammo.len)
@@ -190,6 +217,45 @@
 			else
 				break
 		user << SPAN_NOTICE("You're done here")
+
+/obj/item/ammo_magazine/attack_hand(mob/user)	
+	if(user.get_inactive_hand() == src && stored_ammo.len)
+		var/obj/item/ammo_casing/stack = removeCasing()
+		if(stack)
+			if(stored_ammo.len)
+				// We end on -1 since we already removed one
+				for(var/i = 1, i <= stack.maxamount - 1, i++)
+					if(!stored_ammo.len)
+						break
+					var/obj/item/ammo_casing/AC = removeCasing()
+					if(!stack.mergeCasing(AC, null, user, noIconUpdate = TRUE))
+						insertCasing(AC)
+						break
+			stack.update_icon()
+			user.put_in_active_hand(stack)
+		return
+	..()
+
+/obj/item/ammo_magazine/AltClick(var/mob/living/user)
+	var/obj/item/W = user.get_active_hand()
+	if(istype(W, /obj/item/ammo_casing))
+		var/obj/item/ammo_casing/C = W
+		if(stored_ammo.len >= max_ammo)
+			user << SPAN_WARNING("[src] is full!")
+			return
+		if(C.caliber != caliber)
+			user << SPAN_WARNING("[C] does not fit into [src].")
+			return
+		if(stored_ammo.len)
+			var/obj/item/ammo_casing/T = removeCasing()
+			if(T)
+				if(!C.mergeCasing(T, null, user))
+					insertCasing(T)
+	else if(!W)
+		if(user.get_inactive_hand() == src && stored_ammo.len)
+			var/obj/item/ammo_casing/AC = removeCasing()
+			if(AC)
+				user.put_in_active_hand(AC)
 
 /obj/item/ammo_magazine/proc/insertCasing(var/obj/item/ammo_casing/C)
 	if(!istype(C))
@@ -229,17 +295,6 @@
 			stored_ammo.Cut()
 		update_icon()
 		return AC
-	
-/obj/item/ammo_magazine/attack_hand(mob/living/user)
-	if(user.get_inactive_hand() == src && stored_ammo.len)
-		var/obj/item/ammo_casing/AC = removeCasing()
-		if(AC)
-			user.put_in_active_hand(AC)
-	else
-		return ..()
-
-/obj/item/ammo_magazine/attack_self(mob/user)
-	quick_empty()
 
 /obj/item/ammo_magazine/resolve_attackby(atom/A, mob/user)
 	//Clicking on tile with no collectible items will empty it, if it has the verb to do that.

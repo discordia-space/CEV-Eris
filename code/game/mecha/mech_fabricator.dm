@@ -199,7 +199,7 @@
 
 /obj/machinery/mecha_part_fabricator/proc/can_build(var/datum/design/D)
 	for(var/M in D.materials)
-		if(materials[M] < D.materials[M])
+		if(materials[M] < round(D.materials[M] * mat_efficiency, 0.01))
 			return FALSE
 	return TRUE
 

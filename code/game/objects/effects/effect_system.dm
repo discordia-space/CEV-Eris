@@ -111,6 +111,7 @@ steam.start() -- spawns the effect
 
 /obj/effect/sparks
 	name = "sparks"
+	icon = 'icons/effects/effects.dmi'
 	icon_state = "sparks"
 	var/amount = 6.0
 	anchored = 1.0
@@ -168,7 +169,7 @@ steam.start() -- spawns the effect
 				else
 					direction = pick(alldirs)
 				for(i=0, i<pick(1,2,3), i++)
-					sleep(5)
+					sleep(rand(1,5))
 					step(sparks,direction)
 				spawn(20)
 					if(sparks)
