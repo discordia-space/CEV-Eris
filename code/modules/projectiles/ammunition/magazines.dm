@@ -10,7 +10,7 @@
 /obj/item/ammo_magazine/sl38
 	name = "speed loader (.38)"
 	icon_state = "38"
-	caliber = "38"
+	caliber = ".38"
 	matter = list(MATERIAL_STEEL = 3)
 	ammo_type = /obj/item/ammo_casing/c38
 	max_ammo = 6

@@ -70,7 +70,7 @@
 	name = "ammunition box (.38)"
 	icon_state = "box38"
 	matter = list(MATERIAL_STEEL = 5)
-	caliber = "38"
+	caliber = ".38"
 	ammo_type = /obj/item/ammo_casing/c38
 	max_ammo = 30
 
@@ -83,7 +83,7 @@
 	name = "ammunition box (.32)"
 	icon_state = "box32"
 	matter = list(MATERIAL_STEEL = 5)
-	caliber = "38"
+	caliber = ".32"
 	ammo_type = /obj/item/ammo_casing/cl32
 	max_ammo = 40
 
