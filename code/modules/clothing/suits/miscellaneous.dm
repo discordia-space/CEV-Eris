@@ -216,7 +216,8 @@
 		/obj/item/weapon/tank/emergency_oxygen, /obj/item/device/lighting/toggleable/flashlight,
 		/obj/item/weapon/gun/energy,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,
 		/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,
-		/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/device/taperecorder
+		/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/device/taperecorder,
+		/obj/item/weapon/material/knife, /obj/item/weapon/material/butterfly
 	)
 
 
