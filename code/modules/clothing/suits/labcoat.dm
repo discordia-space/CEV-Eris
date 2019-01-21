@@ -7,11 +7,11 @@
 	icon_closed = "labcoat"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
-	allowed = list(
+	extra_allowed = list(
 		/obj/item/device/scanner/analyzer,/obj/item/stack/medical,/obj/item/weapon/dnainjector,
 		/obj/item/weapon/reagent_containers/dropper,/obj/item/weapon/reagent_containers/syringe,
 		/obj/item/weapon/reagent_containers/hypospray,/obj/item/device/scanner/healthanalyzer,
-		/obj/item/device/lighting/toggleable/flashlight/pen,/obj/item/weapon/paper,
+		/obj/item/weapon/paper,
 		/obj/item/weapon/reagent_containers/glass/bottle,/obj/item/weapon/reagent_containers/glass/beaker,
 		/obj/item/weapon/reagent_containers/pill,/obj/item/weapon/storage/pill_bottle
 	)
