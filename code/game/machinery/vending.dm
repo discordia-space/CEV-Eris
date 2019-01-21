@@ -12,7 +12,7 @@
 	var/price = 0              // Price to buy one
 	var/display_color = null   // Display color for vending machine listing
 	var/category = CAT_NORMAL  // CAT_HIDDEN for contraband, CAT_COIN for premium
-	var/vending_machine        // The vending machine we belong to
+	var/obj/vending_machine        // The vending machine we belong to
 	var/list/instances = list()		   // Stores inserted items. Instances are only used for things added during the round, and not for things spawned at initialize
 
 
@@ -49,7 +49,7 @@
 /datum/data/vending_product/proc/get_product(var/product_location)
 	if(get_amount() <= 0 || !product_location)
 		return
-	var/atom/movable/product
+	var/obj/product
 	if (instances && instances.len)
 		product = instances[instances.len]
 	else

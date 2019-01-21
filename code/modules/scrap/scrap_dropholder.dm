@@ -4,6 +4,7 @@
 	invisibility = 101
 	anchored = TRUE
 	density = FALSE
+	unacidable = TRUE
 	var/falling_type = /obj/random/scrap/moderate_weighted
 
 /obj/effect/falling_effect/Initialize(mapload, type = /obj/random/scrap/moderate_weighted)
@@ -11,15 +12,15 @@
 	falling_type = type
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/effect/falling_effect/atom_init_late()
+/obj/effect/falling_effect/LateInitialize()
 	new falling_type(src)
-	var/atom/movable/dropped = pick(contents) //stupid, but allows to get spawn result without efforts if it is other type
-	dropped.loc = get_turf_loc(src)
+	var/atom/movable/dropped = pick(contents) // Stupid, but allows to get spawn result without efforts if it is other type(Or if it was randomly generated).
+	dropped.loc = get_turf(src)
 	var/initial_x = dropped.pixel_x
 	var/initial_y = dropped.pixel_y
 	dropped.plane = 1
 	dropped.pixel_x = rand(-150, 150)
-	dropped.pixel_y = 500 //when you think that pixel_z is height but you are wrong
+	dropped.pixel_y = 500 // When you think that pixel_z is height but you are wrong
 	dropped.density = FALSE
 	dropped.opacity = FALSE
 	animate(dropped, pixel_y = initial_y, pixel_x = initial_x , time = 7)
@@ -38,6 +39,12 @@
 	density = initial(density)
 	opacity = initial(opacity)
 	plane = initial(plane)
+
+/obj/effect/falling_effect/singularity_act()
+	return
+
+/obj/effect/falling_effect/singularity_pull()
+	return
 
 /obj/effect/falling_effect/ex_act()
 	return

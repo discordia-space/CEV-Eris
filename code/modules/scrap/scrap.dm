@@ -1,5 +1,6 @@
 var/global/list/scrap_base_cache = list()
 
+#define SAFETY_COOLDOWN 100
 
 /obj/structure/scrap
 	name = "scrap pile"
@@ -206,19 +207,17 @@ var/global/list/scrap_base_cache = list()
 		if(!ishuman(user))
 			return FALSE
 		var/mob/living/carbon/human/victim = user
-		if(H.species.siemens_coefficient < 0.5) //Thick skin.
-			return
-		if(victim.species.flags[IS_SYNTHETIC])
+		if(victim.species.flags & NO_MINOR_CUT)
 			return FALSE
 		if(victim.gloves)
 			return FALSE
-		var/obj/item/organ/external/BP = victim.bodyparts_by_name[pick(BP_L_ARM , BP_R_ARM)]
+		var/obj/item/organ/external/BP = victim.get_organ(victim.hand ? BP_L_ARM : BP_R_ARM)
 		if(!BP)
 			return FALSE
 		if(BP.status & ORGAN_ROBOT)
 			return FALSE
 		to_chat(user, "<span class='danger'>Ouch! You cut yourself while picking through \the [src].</span>")
-		BP.take_damage(5, null, DAM_SHARP | DAM_EDGE, "Sharp debris")
+		BP.take_damage(5, null, TRUE, TRUE, "Sharp debris")
 		victim.reagents.add_reagent("toxin", pick(prob(50);0,prob(50);5,prob(10);10,prob(1);25))
 		if(victim.species.flags[NO_PAIN]) // So we still take damage, but actually dig through.
 			return FALSE
@@ -233,9 +232,9 @@ var/global/list/scrap_base_cache = list()
 	loot.open(user)
 	..()
 
-/obj/structure/scrap/attack_paw(mob/user)
+/obj/structure/scrap/attack_generic(mob/user)
 	loot.open(user)
-	..(user)
+	..()
 
 /obj/structure/scrap/MouseDrop(obj/over_object)
 	..(over_object)
@@ -254,18 +253,12 @@ var/global/list/scrap_base_cache = list()
 		return TRUE
 
 /obj/structure/scrap/attackby(obj/item/W, mob/user)
-	var/do_dig = 0
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
-	if(istype(W,/obj/item/weapon/shovel))
-		do_dig = 30
-	if(istype(W,/obj/item/stack/rods))
-		do_dig = 50
-	if(do_dig)
+	if(QUALITY_SHOVELING in W.tool_qualities && W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SHOVELING, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
+		user.visible_message(SPAN_NOTICE("[user] [pick(ways)] \the [src]."))
 		user.do_attack_animation(src)
-		if(do_after(user, do_dig, target = src))
-			visible_message("<span class='notice'>\The [user] [pick(ways)] \the [src].</span>")
-			shuffle_loot()
-			dig_out_lump(user.loc, 0)
+		shuffle_loot()
+		dig_out_lump(user.loc, 0)
 
 /obj/structure/scrap/large
 	name = "large scrap pile"
@@ -289,6 +282,7 @@ var/global/list/scrap_base_cache = list()
 		/obj/random/medical,
 		/obj/random/medical,
 		/obj/random/medical,
+		/obj/random/surgery_tool,
 		/obj/item/stack/rods/random,
 		/obj/item/weapon/material/shard
 	)
@@ -337,9 +331,8 @@ var/global/list/scrap_base_cache = list()
 		/obj/random/gun_normal,
 		/obj/random/powercell,
 		/obj/random/gun_energy_cheap,
-		/obj/item/toy/gun,
 		/obj/item/toy/crossbow,
-		/obj/item/weapon/shard,
+		/obj/item/weapon/material/shard,
 		/obj/item/stack/material/steel/random,
 		/obj/item/stack/rods/random
 	)
@@ -360,7 +353,7 @@ var/global/list/scrap_base_cache = list()
 	name = "cloth pile"
 	desc = "Pile of second hand clothing for charity."
 	parts_icon = 'icons/obj/structures/scrap/cloth.dmi'
-	loot_list = subtypesof(/obj/item/clothing) // Slap me.
+	loot_list = list(/obj/random/cloth/random_cloth)
 
 /obj/structure/scrap/poor
 	icontype = "poor"
@@ -370,8 +363,8 @@ var/global/list/scrap_base_cache = list()
 	loot_list = list(
 		/obj/random/misc/all,
 		/obj/random/misc/all,
-		/obj/random/misc/pack,
-		/obj/random/misc/pack,
+		/obj/item/stack/rods/random,
+		/obj/item/stack/rods/random,
 		/obj/item/stack/rods/random,
 		/obj/item/weapon/material/shard
 	)

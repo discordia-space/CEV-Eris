@@ -1,8 +1,8 @@
 /obj/structure/scrap_cube
 	name = "compressed scrap"
 	desc = "A cube made of scrap compressed with hydraulic clamp."
-	density = 1
-	anchored = 0
+	density = TRUE
+	anchored = FALSE
 	icon_state = "trash_cube"
 	icon = 'icons/obj/structures/scrap/refine.dmi'
 
@@ -11,15 +11,15 @@
 		item.forceMove(loc)
 	qdel(src)
 
-/obj/structure/scrap_cube/atom_init(mapload, size = -1)
+/obj/structure/scrap_cube/Initialize(mapload, size = -1)
 	if(size < 0)
 		new /obj/random/scrap/moderate_weighted(src)
 	. = ..()
 
 /obj/structure/scrap_cube/attackby(obj/item/W, mob/user)
 	user.do_attack_animation(src)
-	user.SetNextMove(CLICK_CD_MELEE)
-	if(istype(W,/obj/item/weapon) && W.force >=8)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	if(istype(W,/obj/item/weapon) && W.force >= 8)
 		visible_message("<span class='notice'>\The [user] smashes the [src], restoring it's original form.</span>")
 		make_pile()
 	else
@@ -32,15 +32,16 @@
 	icon_state = "unrefined"
 	w_class = 4
 
-/obj/item/weapon/scrap_lump/atom_init()
+/obj/item/weapon/scrap_lump/Initialize()
 	. = ..()
+	create_reagents(10)
+	var/reag_num = rand(0, 3)
+	for(var/i in 1 to reag_num)
+		if(reagents.total_volume == reagents.maximum_volume)
+			break
+		reagents.add_reagent(pick(chemical_reagents_list), rand(1, reagents.maximum_volume))
 	pixel_x = rand(0, 16) - 8
 	pixel_y = rand(0, 8) - 8
-
-var/global/list/datum/stack_recipe/scrap_recipes = list ( \
-	new/datum/stack_recipe("cardborg suit", /obj/item/clothing/suit/cardborg, 3), \
-	new/datum/stack_recipe("cardborg helmet", /obj/item/clothing/head/cardborg), \
-)
 
 /obj/item/stack/sheet/refined_scrap
 	name = "refined scrap"

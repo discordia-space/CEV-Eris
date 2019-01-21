@@ -4,7 +4,7 @@
 	icon_state = "stacker"
 	density = TRUE
 	anchored = TRUE
-	use_power = 0
+	use_power = FALSE
 	var/obj/machinery/mineral/input = null
 	var/obj/machinery/mineral/output = null
 	var/list/stack_storage[0]
@@ -33,7 +33,9 @@
 		return
 	if(scrap_amount < 1)
 		return 1
-	user.SetNextMove(CLICK_CD_INTERACT)
-	visible_message("<span class='notice'>\The [src] was forced to release everything inside.</span>")
+	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
+	visible_message(SPAN_NOTICE("\The [src] was forced to release everything inside."))
 	new /obj/item/stack/sheet/refined_scrap(loc, scrap_amount)
 	scrap_amount = 0
+
+#undef SAFETY_COOLDOWN
