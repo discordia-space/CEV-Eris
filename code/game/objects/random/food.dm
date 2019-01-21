@@ -31,7 +31,7 @@
 /obj/random/junkfood/rotten
 	name = "random spoiled food"
 	icon_state = "food-red"
-	has_postpawn = TRUE
+	has_postspawn = TRUE
 
 /obj/random/junkfood/rotten/low_chance
 	name = "low chance spoiled food"
@@ -43,7 +43,7 @@
 		if(!food.reagents)
 			return
 		if(prob(80))
-			food.reagents.add_reqgent("toxin", 25)
+			food.reagents.add_reagent("toxin", 25)
 		if(prob(30)) // So sometimes the rot is visible.
 			food.make_old()
 	return spawns // In the random.dm it is said that the function should return the list of items, yet the return of the function is never used. ~Luduk

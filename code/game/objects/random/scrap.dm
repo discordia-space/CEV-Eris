@@ -6,7 +6,7 @@
 	icon_state = "welder"
 
 /obj/random/scrap/dense_even/item_to_spawn()
-		return pick(
+		return pick(list(
 						/obj/structure/scrap/large,
 						/obj/structure/scrap/medical/large,
 						/obj/structure/scrap/vehicle/large,
@@ -15,7 +15,7 @@
 						/obj/structure/scrap/cloth/large,
 						/obj/structure/scrap/poor/structure,
 						/obj/structure/scrap/science/large
-					)
+					))
 
 /obj/random/scrap/dense_weighted
 	name = "Random dense weighted trash"
@@ -43,7 +43,7 @@
 	icon_state = "welder"
 
 /obj/random/scrap/sparse_even/item_to_spawn()
-		return pick(
+		return pick(list(
 					/obj/structure/scrap,
 					/obj/structure/scrap/medical,
 					/obj/structure/scrap/vehicle,
@@ -51,7 +51,7 @@
 					/obj/structure/scrap/science,
 					/obj/structure/scrap/guns,
 					/obj/structure/scrap/cloth
-					)
+					))
 
 /obj/random/scrap/sparse_weighted
 	name = "Random sparse weighted trash"
