@@ -15,7 +15,7 @@
 		/obj/item/weapon/gun/energy,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,
 		/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,
 		/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/device/taperecorder,
-		/obj/item/material/knife, /obj/item/material/butterfly
+		/obj/item/weapon/material/knife, /obj/item/weapon/material/butterfly
 	)
 	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
@@ -33,7 +33,7 @@
 		/obj/item/weapon/tool/crowbar, /obj/item/weapon/tool/screwdriver, /obj/item/weapon/tool/weldingtool,
 		/obj/item/weapon/tool/wirecutters, /obj/item/weapon/tool/wrench, /obj/item/weapon/tank/emergency_oxygen,
 		/obj/item/clothing/mask/gas, /obj/item/taperoll/engineering, /obj/item/weapon/gun/energy, /obj/item/weapon/gun/projectile,
-		/obj/item/ammo_magazine, /obj/item/ammo_casing, obj/item/material/knife
+		/obj/item/ammo_magazine, /obj/item/ammo_casing, obj/item/weapon/material/knife
 	)
 	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
@@ -53,7 +53,7 @@
 		/obj/item/device/radio, /obj/item/device/t_scanner, /obj/item/weapon/tool/crowbar,
 		/obj/item/weapon/tool/screwdriver, /obj/item/weapon/tool/weldingtool, /obj/item/weapon/tool/wirecutters,
 		/obj/item/weapon/tool/wrench, /obj/item/weapon/tank/emergency_oxygen, /obj/item/clothing/mask/gas,
-		/obj/item/taperoll/engineering, /obj/item/material/knife
+		/obj/item/taperoll/engineering, /obj/item/weapon/material/knife
 	)
 	armor = list(melee = 40, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
 
@@ -83,7 +83,7 @@
 		/obj/item/device/radio, /obj/item/device/t_scanner, /obj/item/weapon/tool/crowbar,
 		/obj/item/weapon/tool/screwdriver, /obj/item/weapon/tool/weldingtool, /obj/item/weapon/tool/wirecutters,
 		/obj/item/weapon/tool/wrench, /obj/item/weapon/tank/emergency_oxygen, /obj/item/clothing/mask/gas,
-		/obj/item/taperoll/engineering, /obj/item/material/knife
+		/obj/item/taperoll/engineering, /obj/item/weapon/material/knife
 	)
 	armor = list(melee = 15, bullet = 15, laser = 15, energy = 15, bomb = 0, bio = 0, rad = 0)
 
@@ -129,7 +129,7 @@
 		/obj/item/weapon/gun/energy,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,
 		/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,
 		/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/device/taperecorder,
-		/obj/item/material/knife
+		/obj/item/weapon/material/knife
 	)
 	armor = list(melee = 50, bullet = 10, laser = 25, energy = 10, bomb = 0, bio = 0, rad = 0)
 
@@ -145,7 +145,7 @@
 		/obj/item/weapon/gun/energy,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,
 		/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,
 		/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,
-		/obj/item/device/taperecorder,/obj/item/material/knife
+		/obj/item/device/taperecorder,/obj/item/weapon/material/knife
 	)
 	armor = list(melee = 50, bullet = 10, laser = 25, energy = 10, bomb = 0, bio = 0, rad = 0)
 
