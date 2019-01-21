@@ -41,6 +41,7 @@ other types of metals and chemistry for reagents).
 /datum/design/proc/AssembleDesignInfo()
 	AssembleDesignName()
 	AssembleDesignDesc()
+	AssembleDesignMaterials()
 	return
 
 /datum/design/proc/AssembleDesignName()
@@ -54,6 +55,21 @@ other types of metals and chemistry for reagents).
 	if(!desc)								//Try to make up a nice description if we don't have one
 		desc = "Allows for the construction of \a [item_name]."
 	return
+
+//Extract matter and reagent requirements from the target object
+//Any materials specified in these designs are extras, added ontop of what is extracted
+/datum/design/proc/AssembleDesignMaterials()
+	if (ispath(build_path, /obj))
+		var/obj/O = new build_path
+		var/list/mats = O.matter
+		if (mats && mats.len)
+			for (var/a in mats)
+				LAZYAPLUS(materials, a, mats[a])
+		mats = O.matter_reagents
+		if (mats && mats.len)
+			for (var/a in mats)
+				LAZYAPLUS(chemicals, a, mats[a])
+		qdel(O)
 
 //Returns a new instance of the item for this design
 //This is to allow additional initialization to be performed, including possibly additional contructor arguments.
