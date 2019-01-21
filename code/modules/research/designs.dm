@@ -84,7 +84,6 @@ other types of metals and chemistry for reagents).
 	desc = "Produce additional disks for storing device designs."
 	id = "design_disk"
 	req_tech = list(TECH_DATA = 1)
-	materials = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/disk/design_disk
 	sort_string = "GAAAA"
 
@@ -93,7 +92,6 @@ other types of metals and chemistry for reagents).
 	desc = "Produce additional disks for storing technology data."
 	id = "tech_disk"
 	req_tech = list(TECH_DATA = 1)
-	materials = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/disk/tech_disk
 	sort_string = "GAAAB"
 
@@ -111,105 +109,90 @@ other types of metals and chemistry for reagents).
 /datum/design/item/stock_part/basic_capacitor
 	id = "basic_capacitor"
 	req_tech = list(TECH_POWER = 1)
-	materials = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/stock_parts/capacitor
 	sort_string = "CAAAA"
 
 /datum/design/item/stock_part/adv_capacitor
 	id = "adv_capacitor"
 	req_tech = list(TECH_POWER = 3)
-	materials = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/stock_parts/capacitor/adv
 	sort_string = "CAAAB"
 
 /datum/design/item/stock_part/super_capacitor
 	id = "super_capacitor"
 	req_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
-	materials = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/stock_parts/capacitor/super
 	sort_string = "CAAAC"
 
 /datum/design/item/stock_part/micro_mani
 	id = "micro_mani"
 	req_tech = list(TECH_MATERIAL = 1, TECH_DATA = 1)
-	materials = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/stock_parts/manipulator
 	sort_string = "CAABA"
 
 /datum/design/item/stock_part/nano_mani
 	id = "nano_mani"
 	req_tech = list(TECH_MATERIAL = 3, TECH_DATA = 2)
-	materials = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/stock_parts/manipulator/nano
 	sort_string = "CAABB"
 
 /datum/design/item/stock_part/pico_mani
 	id = "pico_mani"
 	req_tech = list(TECH_MATERIAL = 5, TECH_DATA = 2)
-	materials = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/stock_parts/manipulator/pico
 	sort_string = "CAABC"
 
 /datum/design/item/stock_part/basic_matter_bin
 	id = "basic_matter_bin"
 	req_tech = list(TECH_MATERIAL = 1)
-	materials = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/stock_parts/matter_bin
 	sort_string = "CAACA"
 
 /datum/design/item/stock_part/adv_matter_bin
 	id = "adv_matter_bin"
 	req_tech = list(TECH_MATERIAL = 3)
-	materials = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/stock_parts/matter_bin/adv
 	sort_string = "CAACB"
 
 /datum/design/item/stock_part/super_matter_bin
 	id = "super_matter_bin"
 	req_tech = list(TECH_MATERIAL = 5)
-	materials = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/stock_parts/matter_bin/super
 	sort_string = "CAACC"
 
 /datum/design/item/stock_part/basic_micro_laser
 	id = "basic_micro_laser"
 	req_tech = list(TECH_MAGNET = 1)
-	materials = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/stock_parts/micro_laser
 	sort_string = "CAADA"
 
 /datum/design/item/stock_part/high_micro_laser
 	id = "high_micro_laser"
 	req_tech = list(TECH_MAGNET = 3)
-	materials = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/stock_parts/micro_laser/high
 	sort_string = "CAADB"
 
 /datum/design/item/stock_part/ultra_micro_laser
 	id = "ultra_micro_laser"
 	req_tech = list(TECH_MAGNET = 5, TECH_MATERIAL = 5)
-	materials = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/stock_parts/micro_laser/ultra
 	sort_string = "CAADC"
 
 /datum/design/item/stock_part/basic_sensor
 	id = "basic_sensor"
 	req_tech = list(TECH_MAGNET = 1)
-	materials = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/stock_parts/scanning_module
 	sort_string = "CAAEA"
 
 /datum/design/item/stock_part/adv_sensor
 	id = "adv_sensor"
 	req_tech = list(TECH_MAGNET = 3)
-	materials = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/stock_parts/scanning_module/adv
 	sort_string = "CAAEB"
 
 /datum/design/item/stock_part/phasic_sensor
 	id = "phasic_sensor"
 	req_tech = list(TECH_MAGNET = 5, TECH_MATERIAL = 3)
-	materials = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/stock_parts/scanning_module/phasic
 	sort_string = "CAAEC"
 
@@ -218,7 +201,6 @@ other types of metals and chemistry for reagents).
 	desc = "Special mechanical module made to store, sort, and apply standard machine parts."
 	id = "rped"
 	req_tech = list(TECH_ENGINEERING = 3, TECH_MATERIAL = 3)
-	materials = list(MATERIAL_PLASTIC = 5, MATERIAL_STEEL = 2)
 	build_path = /obj/item/weapon/storage/part_replacer
 	sort_string = "CBAAA"
 
@@ -243,7 +225,6 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE | MECHFAB
 	id = "basic_cell_b"
 	req_tech = list(TECH_POWER = 1)
-	materials = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 3, MATERIAL_SILVER = 3)
 	build_path = /obj/item/weapon/cell/large/moebius
 	category = "Misc"
 	sort_string = "DAAAA"
@@ -253,7 +234,6 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE | MECHFAB
 	id = "high_cell_b"
 	req_tech = list(TECH_POWER = 2)
-	materials = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 3, MATERIAL_SILVER = 3)
 	build_path = /obj/item/weapon/cell/large/moebius/high
 	category = "Misc"
 	sort_string = "DAAAB"
@@ -262,7 +242,6 @@ other types of metals and chemistry for reagents).
 	name = "Moebius \"Power-Geyser 13000L\""
 	id = "super_cell_b"
 	req_tech = list(TECH_POWER = 3, TECH_MATERIAL = 2)
-	materials = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 3, MATERIAL_SILVER = 3)
 	build_path = /obj/item/weapon/cell/large/moebius/super
 	category = "Misc"
 	sort_string = "DAAAC"
@@ -271,7 +250,6 @@ other types of metals and chemistry for reagents).
 	name = "Moebius \"Power-Geyser 18000L\""
 	id = "hyper_cell_b"
 	req_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
-	materials = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 3, MATERIAL_SILVER = 3)
 	build_path = /obj/item/weapon/cell/large/moebius/hyper
 	category = "Misc"
 	sort_string = "DAAAD"
@@ -281,7 +259,6 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE | MECHFAB
 	id = "basic_cell_m"
 	req_tech = list(TECH_POWER = 1)
-	materials = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_SILVER = 2)
 	build_path = /obj/item/weapon/cell/medium/moebius
 	category = "Misc"
 	sort_string = "DAAAF"
@@ -291,7 +268,6 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE | MECHFAB
 	id = "high_cell_m"
 	req_tech = list(TECH_POWER = 2)
-	materials = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_SILVER = 2)
 	build_path = /obj/item/weapon/cell/medium/moebius/high
 	category = "Misc"
 	sort_string = "DAAAI"
@@ -300,7 +276,6 @@ other types of metals and chemistry for reagents).
 	name = "Moebius \"Power-Geyser 1000M\""
 	id = "super_cell_m"
 	req_tech = list(TECH_POWER = 3, TECH_MATERIAL = 2)
-	materials = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_SILVER = 2)
 	build_path = /obj/item/weapon/cell/medium/moebius/super
 	category = "Misc"
 	sort_string = "DAAAO"
@@ -309,7 +284,6 @@ other types of metals and chemistry for reagents).
 	name = "Moebius \"Power-Geyser 1300M\""
 	id = "hyper_cell_m"
 	req_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
-	materials = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_SILVER = 2)
 	build_path = /obj/item/weapon/cell/medium/moebius/hyper
 	category = "Misc"
 	sort_string = "DAAAP"
@@ -319,7 +293,6 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE | MECHFAB
 	id = "basic_cell_s"
 	req_tech = list(TECH_POWER = 1)
-	materials = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 1)
 	build_path = /obj/item/weapon/cell/small/moebius
 	category = "Misc"
 	sort_string = "DAAAQ"
@@ -329,7 +302,6 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE | MECHFAB
 	id = "high_cell_s"
 	req_tech = list(TECH_POWER = 2)
-	materials = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 1)
 	build_path = /obj/item/weapon/cell/small/moebius/high
 	category = "Misc"
 	sort_string = "DAAAZ"
@@ -338,7 +310,6 @@ other types of metals and chemistry for reagents).
 	name = "Moebius \"Power-Geyser 300S\""
 	id = "super_cell_s"
 	req_tech = list(TECH_POWER = 3, TECH_MATERIAL = 2)
-	materials = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 1)
 	build_path = /obj/item/weapon/cell/small/moebius/super
 	category = "Misc"
 	sort_string = "DAAAW"
@@ -347,7 +318,6 @@ other types of metals and chemistry for reagents).
 	name = "Moebius \"Power-Geyser 400S\""
 	id = "hyper_cell_s"
 	req_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
-	materials = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 1)
 	build_path = /obj/item/weapon/cell/small/moebius/hyper
 	category = "Misc"
 	sort_string = "DAAAY"
@@ -356,7 +326,6 @@ other types of metals and chemistry for reagents).
 	name = "Moebius \"Atomcell 13000L\""
 	id = "nuke_cell_b"
 	req_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
-	materials = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 3, MATERIAL_SILVER = 3, MATERIAL_URANIUM = 6)
 	build_path = /obj/item/weapon/cell/large/moebius/nuclear
 	category = "Misc"
 	sort_string = "DAAAZ"
@@ -365,7 +334,6 @@ other types of metals and chemistry for reagents).
 	name = "Moebius \"Atomcell 1000M\""
 	id = "nuke_cell_m"
 	req_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
-	materials = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_SILVER = 2, MATERIAL_URANIUM = 4)
 	build_path = /obj/item/weapon/cell/medium/moebius/nuclear
 	category = "Misc"
 	sort_string = "DAABA"
@@ -374,13 +342,10 @@ other types of metals and chemistry for reagents).
 	name = "Moebius \"Atomcell 300S\""
 	id = "nuke_cell_s"
 	req_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
-	materials = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 1, MATERIAL_URANIUM = 2)
 	build_path = /obj/item/weapon/cell/small/moebius/nuclear
 	category = "Misc"
 	sort_string = "DAABB"
 
-/datum/design/item/hud
-	materials = list(MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 
 /datum/design/item/hud/AssembleDesignName()
 	..()
@@ -408,7 +373,6 @@ other types of metals and chemistry for reagents).
 	desc = "Using the meson-scanning technology those glasses allow you to see through walls, floor or anything else."
 	id = "mesons"
 	req_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2)
-	materials = list(MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	build_path = /obj/item/clothing/glasses/meson
 	sort_string = "GAAAC"
 
@@ -419,21 +383,18 @@ other types of metals and chemistry for reagents).
 /datum/design/item/weapon/mining/jackhammer
 	id = "jackhammer"
 	req_tech = list(TECH_MATERIAL = 3, TECH_POWER = 2, TECH_ENGINEERING = 2)
-	materials = list(MATERIAL_STEEL = 5)
 	build_path = /obj/item/weapon/tool/pickaxe/jackhammer
 	sort_string = "KAAAA"
 
 /datum/design/item/weapon/mining/drill
 	id = "drill"
 	req_tech = list(TECH_MATERIAL = 2, TECH_POWER = 3, TECH_ENGINEERING = 2)
-	materials = list(MATERIAL_STEEL = 6) //expensive, but no need for miners.
 	build_path = /obj/item/weapon/tool/pickaxe/drill
 	sort_string = "KAAAB"
 
 /datum/design/item/weapon/mining/drill_diamond
 	id = "drill_diamond"
 	req_tech = list(TECH_MATERIAL = 6, TECH_POWER = 4, TECH_ENGINEERING = 4)
-	materials = list(MATERIAL_STEEL = 6, MATERIAL_DIAMOND = 1)
 	build_path = /obj/item/weapon/tool/pickaxe/diamonddrill
 	sort_string = "KAAAC"
 ///////////////////////////////////
@@ -443,8 +404,6 @@ other types of metals and chemistry for reagents).
 	req_tech = list(TECH_BLUESPACE = 4, TECH_PLASMA = 3)
 	materials = list(MATERIAL_PLASTIC = 3, MATERIAL_GOLD = 1)
 
-/datum/design/item/medical
-	materials = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
 
 /datum/design/item/medical/AssembleDesignName()
 	..()
@@ -454,14 +413,12 @@ other types of metals and chemistry for reagents).
 	desc = "A hand-held scanner able to diagnose robotic injuries."
 	id = "robot_scanner"
 	req_tech = list(TECH_MAGNET = 3, TECH_BIO = 2, TECH_ENGINEERING = 3)
-	materials = list(MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	build_path = /obj/item/device/robotanalyzer
 	sort_string = "MACFA"
 
 /datum/design/item/medical/mass_spectrometer
 	desc = "A device for analyzing chemicals in blood."
 	id = "mass_spectrometer"
-	req_tech = list(TECH_BIO = 2, TECH_MAGNET = 2)
 	build_path = /obj/item/device/scanner/mass_spectrometer
 	sort_string = "MACAA"
 
@@ -494,7 +451,6 @@ other types of metals and chemistry for reagents).
 	desc = "A cryostasis beaker that allows for chemical storage without reactions. Can hold up to 50 units."
 	id = "splitbeaker"
 	req_tech = list(TECH_MATERIAL = 2)
-	materials = list(MATERIAL_STEEL = 2)
 	build_path = /obj/item/weapon/reagent_containers/glass/beaker/noreact
 	sort_string = "MADAA"
 
@@ -503,7 +459,6 @@ other types of metals and chemistry for reagents).
 	desc = "A bluespace beaker, powered by experimental bluespace technology and Element Cuban combined with the Compound Pete. Can hold up to 300 units."
 	id = "bluespacebeaker"
 	req_tech = list(TECH_BLUESPACE = 2, TECH_MATERIAL = 6)
-	materials = list(MATERIAL_STEEL = 2)
 	build_path = /obj/item/weapon/reagent_containers/glass/beaker/bluespace
 	sort_string = "MADAB"
 
@@ -511,7 +466,6 @@ other types of metals and chemistry for reagents).
 	desc = "A tube of paste containing swarms of repair nanites. Very effective in repairing robotic machinery."
 	id = "nanopaste"
 	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
-	materials = list(MATERIAL_STEEL = 3)
 	build_path = /obj/item/stack/nanopaste
 	sort_string = "MBAAA"
 
@@ -520,13 +474,10 @@ other types of metals and chemistry for reagents).
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field."
 	id = "scalpel_laser1"
 	req_tech = list(TECH_BIO = 2, TECH_MATERIAL = 2, TECH_MAGNET = 2)
-	materials = list(MATERIAL_STEEL = 2)
 	build_path = /obj/item/weapon/tool/scalpel/laser
 	sort_string = "MBBAA"
 
 
-/datum/design/item/implant
-	materials = list(MATERIAL_STEEL = 1, MATERIAL_GLASS = 1)
 
 /datum/design/item/implant/AssembleDesignName()
 	..()
@@ -560,14 +511,13 @@ other types of metals and chemistry for reagents).
 /datum/design/item/weapon/stunrevolver
 	id = "stunrevolver"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
-	materials = list(MATERIAL_STEEL = 10)
 	build_path = /obj/item/weapon/gun/energy/stunrevolver
 	sort_string = "TAAAA"
 
 /datum/design/item/weapon/nuclear_gun
 	id = "nuclear_gun"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 5, TECH_POWER = 3)
-	materials = list(MATERIAL_STEEL = 20, MATERIAL_URANIUM = 10)
+
 	build_path = /obj/item/weapon/gun/energy/gun/nuclear
 	sort_string = "TAAAB"
 
@@ -575,21 +525,18 @@ other types of metals and chemistry for reagents).
 	desc = "The lasing medium of this prototype is enclosed in a tube lined with uranium-235 and subjected to high neutron flux in a nuclear reactor core."
 	id = "lasercannon"
 	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3)
-	materials = list(MATERIAL_STEEL = 20)
 	build_path = /obj/item/weapon/gun/energy/lasercannon
 	sort_string = "TAAAC"
 
 /datum/design/item/weapon/plasmapistol
 	id = "ppistol"
 	req_tech = list(TECH_COMBAT = 5, TECH_PLASMA = 4)
-	materials = list(MATERIAL_STEEL = 20)
 	build_path = /obj/item/weapon/gun/energy/toxgun
 	sort_string = "TAAAD"
 
 /datum/design/item/weapon/decloner
 	id = "decloner"
 	req_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 7, TECH_BIO = 5, TECH_POWER = 6)
-	materials = list(MATERIAL_STEEL = 20)
 	build_path = /obj/item/weapon/gun/energy/decloner
 	sort_string = "TAAAE"
 
@@ -597,7 +544,6 @@ other types of metals and chemistry for reagents).
 	desc = "A stunning shell for a shotgun."
 	id = "stunshell"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
-	materials = list(MATERIAL_STEEL = 2)
 	build_path = /obj/item/ammo_casing/shotgun/stunshell
 	sort_string = "TAACB"
 
@@ -605,14 +551,12 @@ other types of metals and chemistry for reagents).
 	desc = "An advanced chem spraying device."
 	id = "chemsprayer"
 	req_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 3, TECH_BIO = 2)
-	materials = list(MATERIAL_PLASTIC = 3)
 	build_path = /obj/item/weapon/reagent_containers/spray/chemsprayer
 	sort_string = "TABAA"
 
 /datum/design/item/weapon/rapidsyringe
 	id = "rapidsyringe"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_ENGINEERING = 3, TECH_BIO = 2)
-	materials = list(MATERIAL_PLASTIC = 3)
 	build_path = /obj/item/weapon/gun/launcher/syringe/rapid
 	sort_string = "TABAB"
 
@@ -620,70 +564,61 @@ other types of metals and chemistry for reagents).
 	desc = "A gun that shoots high-powered glass-encased energy temperature bullets."
 	id = "temp_gun"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 4, TECH_POWER = 3, TECH_MAGNET = 2)
-	materials = list(MATERIAL_STEEL = 20)
+
 	build_path = /obj/item/weapon/gun/energy/temperature
 	sort_string = "TABAC"
 
 /datum/design/item/weapon/large_grenade
 	id = "large_Grenade"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2)
-	materials = list(MATERIAL_STEEL = 4)
 	build_path = /obj/item/weapon/grenade/chem_grenade/large
 	sort_string = "TACAA"
 
 /datum/design/item/weapon/flora_gun
 	id = "flora_gun"
 	req_tech = list(TECH_MATERIAL = 2, TECH_BIO = 3, TECH_POWER = 3)
-	materials = list(MATERIAL_STEEL = 20)
 	build_path = /obj/item/weapon/gun/energy/floragun
 	sort_string = "TBAAA"
 
 /datum/design/item/stock_part/subspace_ansible
 	id = "s-ansible"
 	req_tech = list(TECH_DATA = 3, TECH_MAGNET = 4, TECH_MATERIAL = 4, TECH_BLUESPACE = 2)
-	materials = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/stock_parts/subspace/ansible
 	sort_string = "UAAAA"
 
 /datum/design/item/stock_part/hyperwave_filter
 	id = "s-filter"
 	req_tech = list(TECH_DATA = 3, TECH_MAGNET = 3)
-	materials = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/stock_parts/subspace/filter
 	sort_string = "UAAAB"
 
 /datum/design/item/stock_part/subspace_amplifier
 	id = "s-amplifier"
 	req_tech = list(TECH_DATA = 3, TECH_MAGNET = 4, TECH_MATERIAL = 4, TECH_BLUESPACE = 2)
-	materials = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/stock_parts/subspace/amplifier
 	sort_string = "UAAAC"
 
 /datum/design/item/stock_part/subspace_treatment
 	id = "s-treatment"
 	req_tech = list(TECH_DATA = 3, TECH_MAGNET = 2, TECH_MATERIAL = 4, TECH_BLUESPACE = 2)
-	materials = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/stock_parts/subspace/treatment
 	sort_string = "UAAAD"
 
 /datum/design/item/stock_part/subspace_analyzer
 	id = "s-analyzer"
 	req_tech = list(TECH_DATA = 3, TECH_MAGNET = 4, TECH_MATERIAL = 4, TECH_BLUESPACE = 2)
-	materials = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/stock_parts/subspace/analyzer
 	sort_string = "UAAAE"
 
 /datum/design/item/stock_part/subspace_crystal
 	id = "s-crystal"
 	req_tech = list(TECH_MAGNET = 4, TECH_MATERIAL = 4, TECH_BLUESPACE = 2)
-	materials = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/stock_parts/subspace/crystal
 	sort_string = "UAAAF"
 
 /datum/design/item/stock_part/subspace_transmitter
 	id = "s-transmitter"
 	req_tech = list(TECH_MAGNET = 5, TECH_MATERIAL = 5, TECH_BLUESPACE = 3)
-	materials = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	build_path = /obj/item/weapon/stock_parts/subspace/transmitter
 	sort_string = "UAAAG"
 
@@ -692,7 +627,6 @@ other types of metals and chemistry for reagents).
 	desc = "A device to automatically replace lights. Refill with working lightbulbs."
 	id = "light_replacer"
 	req_tech = list(TECH_MAGNET = 3, TECH_MATERIAL = 4)
-	materials = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	build_path = /obj/item/device/lightreplacer
 	sort_string = "VAAAH"
 
@@ -700,7 +634,6 @@ other types of metals and chemistry for reagents).
 	name = "'pAI', personal artificial intelligence device"
 	id = "paicard"
 	req_tech = list(TECH_DATA = 2)
-	materials = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	build_path = /obj/item/device/paicard
 	sort_string = "VABAI"
 
@@ -709,7 +642,6 @@ other types of metals and chemistry for reagents).
 	desc = "Allows for the construction of an intelliCard."
 	id = "intellicard"
 	req_tech = list(TECH_DATA = 4, TECH_MATERIAL = 4)
-	materials = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	build_path = /obj/item/device/aicard
 	sort_string = "VACAA"
 
@@ -718,7 +650,6 @@ other types of metals and chemistry for reagents).
 	id = "posibrain"
 	req_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 6, TECH_BLUESPACE = 2, TECH_DATA = 4)
 	build_type = PROTOLATHE | MECHFAB
-	materials = list(MATERIAL_STEEL = 5, MATERIAL_GLASS = 5, MATERIAL_SILVER = 5, MATERIAL_GOLD = 5)
 	build_path = /obj/item/device/mmi/digital/posibrain
 	category = "Misc"
 	sort_string = "VACAB"
@@ -728,7 +659,6 @@ other types of metals and chemistry for reagents).
 	id = "mmi"
 	req_tech = list(TECH_DATA = 2, TECH_BIO = 3)
 	build_type = PROTOLATHE | MECHFAB
-	materials = list(MATERIAL_STEEL = 5, MATERIAL_GLASS = 3)
 	build_path = /obj/item/device/mmi
 	category = "Misc"
 	sort_string = "VACBA"

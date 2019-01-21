@@ -239,7 +239,6 @@ research holder datum.
 	icon_state = "blue"
 	item_state = "card-id"
 	w_class = ITEM_SIZE_SMALL
-	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	var/datum/tech/stored
 
 /obj/item/weapon/disk/tech_disk/New()
@@ -253,7 +252,6 @@ research holder datum.
 	icon_state = "yellow"
 	item_state = "card-id"
 	w_class = ITEM_SIZE_SMALL
-	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	var/datum/design/blueprint
 
 /obj/item/weapon/disk/design_disk/New()
