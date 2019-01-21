@@ -19,13 +19,16 @@ SUBSYSTEM_DEF(dynamic_cache)
 /datum/controller/subsystem/dynamic_cache/Initialize()
 	for(var/type in typesof(/datum/autolathe/recipe)-/datum/autolathe/recipe)
 		var/datum/autolathe/recipe/R = type
-		addIconToGlobalCache("[initial(R.path)].png", getFlatTypeIcon(initial(R.path)))
+		if(initial(R.path))
+			addIconToGlobalCache("[initial(R.path)].png", getFlatTypeIcon(initial(R.path)))
 	for(var/type in typesof(/datum/design) - /datum/design)
 		var/datum/design/D = type
-		addIconToGlobalCache("[initial(D.build_path)].png", getFlatTypeIcon(initial(D.build_path)))
+		if(initial(D.build_path))
+			addIconToGlobalCache("[initial(D.build_path)].png", getFlatTypeIcon(initial(D.build_path)))
 	for(var/name in SScraft.categories)
 		for(var/datum/craft_recipe/CR in SScraft.categories[name])
-			addIconToGlobalCache("[CR.result].png", getFlatTypeIcon(CR.result))
+			if(CR.result)
+				addIconToGlobalCache("[CR.result].png", getFlatTypeIcon(CR.result))
 			for(var/datum/craft_step/CS in CR.steps)
 				if(CS.reqed_type)
 					addIconToGlobalCache("[CS.reqed_type].png", getFlatTypeIcon(CS.reqed_type))
@@ -40,14 +43,13 @@ SUBSYSTEM_DEF(dynamic_cache)
 // This proc will send to clients cache that they are missing
 /datum/controller/subsystem/dynamic_cache/proc/validateClients()
 	if(initialized)
-		spawn(5)
-			for(var/client/C in clients)
-				C.loadCache()
+		for(var/client/C in clients)
+			C.loadCache()
 
 // After using this proc you should validateClients()
 /datum/controller/subsystem/dynamic_cache/proc/addIconToGlobalCache(var/filename, var/icon/I)
 	if(!filename || !I || !istype(I))
-		error("Invalid arguments passed to addIconToGlobalCache()")
+		return
 	filename = sanitizeFileName(filename)
 	if(!GLOB.cacheToClient[filename])
 		GLOB.cacheToClient[filename] = I
@@ -59,6 +61,5 @@ SUBSYSTEM_DEF(dynamic_cache)
 		return
 	var/filename = "[ispath(A) ? A : A.type].png"
 	filename = sanitizeFileName(filename)
-	log_world("[filename]")
 	if(GLOB.cacheToClient[filename])
 		return filename

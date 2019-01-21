@@ -167,8 +167,7 @@
 			src.changes()
 
 	// loading any cache should be done here
-	spawn(1)
-		loadCache()
+	loadCache()
 
 	//////////////
 	//DISCONNECT//
@@ -400,6 +399,7 @@
 
 // Sends icon as png to client cache folder
 /client/proc/sendCache(var/filename, var/icon/I)
+	set background = 1
 	if(!filename || !I)
 		return
 	filename = sanitizeFileName(filename)
@@ -410,11 +410,11 @@
 
 // Loads all precached at roundstart icons to client
 /client/proc/loadCache()
+	set background = 1
 	if(!SSdynamic_cache.initialized)
 		return
 	if(!GLOB.cacheToClient.len)
 		error("No cache was created for client.")
 		return
 	for(var/filename in GLOB.cacheToClient)
-		log_world(filename)
 		sendCache(filename, GLOB.cacheToClient[filename])
