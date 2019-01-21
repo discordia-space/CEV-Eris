@@ -36,6 +36,7 @@ SUBSYSTEM_DEF(dynamic_cache)
 		addIconToGlobalCache("[type].png", getFlatTypeIcon(type))
 	
 	initialized = TRUE
+	world << "(001)validate started"
 	// now lets load cache to all connected clients
 	validateClients()
 	. = ..()
@@ -43,8 +44,11 @@ SUBSYSTEM_DEF(dynamic_cache)
 // This proc will send to clients cache that they are missing
 /datum/controller/subsystem/dynamic_cache/proc/validateClients()
 	if(initialized)
-		for(var/client/C in clients)
-			C.loadCache()
+		spawn()
+			set background = 1
+			for(var/client/C in clients)
+				C.loadCache()
+			
 
 // After using this proc you should validateClients()
 /datum/controller/subsystem/dynamic_cache/proc/addIconToGlobalCache(var/filename, var/icon/I)
