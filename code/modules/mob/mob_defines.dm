@@ -183,3 +183,5 @@
 	var/speed_factor = 1.0
 
 	var/datum/stat_holder/stats
+
+	var/mob_classification = 0 //Bitfield. Uses TYPE_XXXX defines in defines/mobs.dm.

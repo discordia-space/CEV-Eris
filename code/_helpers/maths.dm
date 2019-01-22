@@ -152,3 +152,15 @@
 	var/vecZ = (A.y - B.y)*DECK_HEIGHT
 
 	return abs(sqrt((vecX*vecX) + (vecY*vecY) +(vecZ*vecZ)))
+
+
+//Probability based rounding that makes whole numbers out of decimals based on luck.
+//The decimal value is the probability to be rounded up.
+//Eg a value of 1.37 has a 37% chance to become 2, otherwise it is 1
+//Useful for game balance matters where the gulf caused by consistent rounding is too much
+/proc/round_prob(var/val)
+	var/remainder = val % 1
+	var/whole = val - remainder
+	if (prob(remainder*100))
+		return whole+1
+	return whole

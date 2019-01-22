@@ -1,6 +1,7 @@
 
 /datum/money_account
 	var/owner_name = ""
+	var/account_name = "" //Some accounts have a name that is distinct from the name of the owner
 	var/account_number = 0
 	var/remote_access_pin = 0
 	var/money = 0
@@ -10,8 +11,26 @@
 							//1 - require manual login / account number and pin
 							//2 - require card and manual login
 
+//One-stop safety checks for accounts
+/datum/money_account/proc/is_valid()
+	if (suspended)
+		return FALSE
+
+	return TRUE
+
+//Try to get the name of the account
+/datum/money_account/proc/get_name()
+	if (account_name)
+		return account_name
+	return owner_name
+
+//Attempts to return the associated data record for this account
+/datum/money_account/proc/get_record()
+	return find_general_record("pay_account", account_number)
+
 /datum/transaction
 	var/target_name = ""
+	var/target_account = 0
 	var/purpose = ""
 	var/amount = 0
 	var/date = ""
@@ -28,7 +47,7 @@
 	src.time = stationtime2text()
 
 /datum/transaction/proc/apply_to(var/datum/money_account/account)
-	if(!istype(account) || account.suspended)
+	if(!istype(account) || !account.is_valid())
 		return FALSE
 
 	if(isnum(amount))
@@ -113,12 +132,45 @@
 
 	return M
 
-/proc/charge_to_account(var/attempt_account_number, var/source_name, var/purpose, var/terminal_id, var/amount)
-	for(var/datum/money_account/D in all_money_accounts)
-		if(D.account_number == attempt_account_number && !D.suspended)
-			//create a transaction log entry
-			var/datum/transaction/T = new(amount, source_name, purpose, terminal_id)
-			return T.apply_to(D)
+//Charges an account a certain amount of money which is functionally just removed from existence
+/proc/charge_to_account(var/attempt_account_number, var/target_name, var/purpose, var/terminal_id, var/amount)
+	var/datum/money_account/D = get_account(attempt_account_number)
+	if (D)
+		//create a transaction log entry
+		var/datum/transaction/T = new(amount*-1, target_name, purpose, terminal_id)
+		return T.apply_to(D)
+
+	return FALSE
+
+//Creates money from nothing and deposits it in an account
+/proc/deposit_to_account(var/attempt_account_number, var/source_name, var/purpose, var/terminal_id, var/amount)
+	var/datum/money_account/D = get_account(attempt_account_number)
+	if (D)
+		//create a transaction log entry
+		var/datum/transaction/T = new(amount, source_name, purpose, terminal_id)
+		return T.apply_to(D)
+
+	return FALSE
+
+//Transfers funds from one account to another
+/proc/transfer_funds(var/source_account, var/target_account, var/purpose, var/terminal_id, var/amount)
+	var/datum/money_account/source = get_account(source_account)
+	var/datum/money_account/target = get_account(target_account)
+
+	if (!source || !target)
+		return FALSE
+	if (!source.is_valid() || !target.is_valid())
+		return FALSE
+
+	//We've got both accounts and confirmed they are valid
+
+	//The transaction to take the money
+	var/datum/transaction/T1 = new(amount*-1, target.get_name(), purpose, terminal_id)
+	if (T1.apply_to(source))
+
+		//The transaction to give the money
+		var/datum/transaction/T2 = new(amount, source.get_name(), purpose, terminal_id)
+		return T2.apply_to(target)
 
 	return FALSE
 
