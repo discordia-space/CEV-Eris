@@ -1445,7 +1445,7 @@ CIRCUITS BELOW
 
 /datum/design/circuit/shield
 	req_tech = list(TECH_BLUESPACE = 4, TECH_PLASMA = 3)
-	materials = list(MATERIAL_GLASS = 2, MATERIAL_GOLD = 1)
+
 
 /datum/design/circuit/shield/AssembleDesignName()
 	name = "Shield generator circuit design ([name])"
