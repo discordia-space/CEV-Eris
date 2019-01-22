@@ -101,7 +101,7 @@
 	/obj/item/weapon/melee/energy/sword,
 	/obj/item/ammo_magazine,
 	/obj/item/ammo_casing,
-	/obj/item/weapon/melee/material,
+	/obj/item/weapon/material,
 	/obj/item/weapon/handcuffs,
 	/obj/item/weapon/tank,
 	/obj/item/device/suit_cooling_unit,
