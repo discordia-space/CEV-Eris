@@ -29,6 +29,7 @@
 
 //return TRUE for implanter icon update.
 /obj/item/weapon/implant/proc/install(var/mob/living/target, var/organ, var/mob/user)
+	world << "Implant installing"
 	var/obj/item/organ/external/affected
 	if (ishuman(target))
 		var/mob/living/carbon/human/H = target
@@ -42,14 +43,17 @@
 
 		if(!affected)
 			user << SPAN_WARNING("[H] is missing that body part!.")
+			world << "Fail missing bodypart"
 			return
 
 		if(allowed_organs && allowed_organs.len && !(organ in allowed_organs))
 			user << SPAN_WARNING("[src] cannot be implanted in this limb.")
+			world << "Fail not allowed"
 			return
 
 	if(!can_install(target, affected))
 		user << SPAN_WARNING("You can't install [src].")
+		world << "Fail caninstall"
 		return
 
 	forceMove(target)
@@ -61,6 +65,7 @@
 
 	on_install(target, affected)
 	wearer.update_implants()
+	world << "success"
 	return TRUE
 
 /obj/item/weapon/implant/proc/can_install(var/mob/living/target, var/obj/item/organ/external/E)

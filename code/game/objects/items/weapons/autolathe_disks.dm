@@ -407,11 +407,17 @@
 		/datum/autolathe/recipe/ammo/ak47,
 		/datum/autolathe/recipe/ammo/box_a762,
 		/datum/autolathe/recipe/device/excelsiormine,
+		/datum/autolathe/recipe/sec/beartrap,
+		/datum/autolathe/recipe/clothing/excelsior_armor,
+		/datum/autolathe/recipe/clothing/excelsior_helmet,
+		/datum/autolathe/recipe/part/manipulator,
+		/datum/autolathe/recipe/part/subspace_amplifier,
+		/datum/autolathe/recipe/part/subspace_crystal,
+		/datum/autolathe/recipe/part/subspace_transmitter,
 		/datum/autolathe/recipe/part/igniter,
 		/datum/autolathe/recipe/part/signaler,
 		/datum/autolathe/recipe/part/sensor_prox,
-		/datum/autolathe/recipe/sec/beartrap,
-		/datum/autolathe/recipe/clothing/excelsior_armor,
-		/datum/autolathe/recipe/clothing/excelsior_helmet
+		/datum/autolathe/recipe/part/capacitor,
+		/datum/autolathe/recipe/part/camera_assembly
 	)
 	..()
