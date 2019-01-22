@@ -77,8 +77,17 @@
 	species_restricted = list("exclude")
 	equip_delay = 12 SECONDS
 	var/list/supporting_limbs //If not-null, automatically splints breaks. Checked when removing the suit.
-  extra_allowed = list(/obj/item/weapon/material, /obj/item/device/suit_cooling_unit, /obj/item/weapon/tank)
-
+	allowed = list(
+		/obj/item/weapon/storage/pouch/,
+		/obj/item/weapon/gun,
+		/obj/item/weapon/melee,
+		/obj/item/weapon/material,
+		/obj/item/ammo_magazine,
+		/obj/item/ammo_casing,
+		/obj/item/weapon/handcuffs,
+		/obj/item/weapon/tank,
+		/obj/item/device/suit_cooling_unit,
+		/obj/item/weapon/cell)
 
 
 /obj/item/clothing/suit/space/equipped(mob/M)
