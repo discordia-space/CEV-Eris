@@ -158,6 +158,14 @@ research holder datum.
 				else
 					D.req_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2)
 				D.build_path = IC.type
+				var/list/mats = IC.matter
+				if (mats && mats.len)
+					for (var/a in mats)
+						LAZYAPLUS(D.materials, a, mats[a])
+				mats = IC.matter_reagents
+				if (mats && mats.len)
+					for (var/a in mats)
+						LAZYAPLUS(D.chemicals, a, mats[a])
 				possible_designs += D
 
 

@@ -1598,95 +1598,13 @@ CIRCUITS BELOW
 	build_path = /obj/item/device/pda
 	sort_string = "VAAAA"
 
-// Cartridges
-/datum/design/item/pda_cartridge
-	req_tech = list(TECH_ENGINEERING = 2, TECH_POWER = 3)
-	materials = list(MATERIAL_PLASTIC = 2)
 
-/datum/design/item/pda_cartridge/AssembleDesignName()
-	..()
-	name = "PDA accessory ([item_name])"
-
-/datum/design/item/pda_cartridge/cart_basic
-	id = "cart_basic"
-	build_path = /obj/item/weapon/cartridge
-	sort_string = "VBAAA"
-
-/datum/design/item/pda_cartridge/engineering
-	id = "cart_engineering"
-	build_path = /obj/item/weapon/cartridge/engineering
-	sort_string = "VBAAB"
-
-/datum/design/item/pda_cartridge/atmos
-	id = "cart_atmos"
-	build_path = /obj/item/weapon/cartridge/atmos
-	sort_string = "VBAAC"
-
-/datum/design/item/pda_cartridge/medical
-	id = "cart_medical"
-	build_path = /obj/item/weapon/cartridge/medical
-	sort_string = "VBAAD"
-
-/datum/design/item/pda_cartridge/chemistry
-	id = "cart_chemistry"
-	build_path = /obj/item/weapon/cartridge/chemistry
-	sort_string = "VBAAE"
-
-/datum/design/item/pda_cartridge/security
-	id = "cart_security"
-	build_path = /obj/item/weapon/cartridge/security
-	sort_string = "VBAAF"
-
-/datum/design/item/pda_cartridge/janitor
-	id = "cart_janitor"
-	build_path = /obj/item/weapon/cartridge/janitor
-	sort_string = "VBAAG"
-
-/datum/design/item/pda_cartridge/science
-	id = "cart_science"
-	build_path = /obj/item/weapon/cartridge/signal/science
-	sort_string = "VBAAH"
-
-/datum/design/item/pda_cartridge/quartermaster
-	id = "cart_quartermaster"
-	build_path = /obj/item/weapon/cartridge/quartermaster
-	sort_string = "VBAAI"
-
-/datum/design/item/pda_cartridge/hop
-	id = "cart_hop"
-	build_path = /obj/item/weapon/cartridge/hop
-	sort_string = "VBAAJ"
-
-/datum/design/item/pda_cartridge/hos
-	id = "cart_hos"
-	build_path = /obj/item/weapon/cartridge/hos
-	sort_string = "VBAAK"
-
-/datum/design/item/pda_cartridge/ce
-	id = "cart_ce"
-	build_path = /obj/item/weapon/cartridge/ce
-	sort_string = "VBAAL"
-
-/datum/design/item/pda_cartridge/cmo
-	id = "cart_cmo"
-	build_path = /obj/item/weapon/cartridge/cmo
-	sort_string = "VBAAM"
-
-/datum/design/item/pda_cartridge/rd
-	id = "cart_rd"
-	build_path = /obj/item/weapon/cartridge/rd
-	sort_string = "VBAAN"
-
-/datum/design/item/pda_cartridge/captain
-	id = "cart_captain"
-	build_path = /obj/item/weapon/cartridge/captain
-	sort_string = "VBAAO"
 
 /datum/design/item/wirer
 	name = "Custom wirer tool"
 	id = "wirer"
 	req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
-	materials = list(MATERIAL_STEEL = 3, MATERIAL_GLASS = 1)
+
 	build_path = /obj/item/device/integrated_electronics/wirer
 	sort_string = "VBVAA"
 
@@ -1694,7 +1612,6 @@ CIRCUITS BELOW
 	name = "Custom circuit debugger tool"
 	id = "debugger"
 	req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
-	materials = list(MATERIAL_STEEL = 3, MATERIAL_GLASS = 1)
 	build_path = /obj/item/device/integrated_electronics/debugger
 	sort_string = "VBVAB"
 
@@ -1705,7 +1622,6 @@ CIRCUITS BELOW
 	desc = "An customizable assembly for simple, small devices."
 	id = "assembly-small"
 	req_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 2, TECH_POWER = 2)
-	materials = list(MATERIAL_STEEL = 4)
 	build_path = /obj/item/device/electronic_assembly
 	sort_string = "VCAAA"
 
@@ -1714,7 +1630,6 @@ CIRCUITS BELOW
 	desc = "An customizable assembly suited for more ambitious mechanisms."
 	id = "assembly-medium"
 	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3, TECH_POWER = 3)
-	materials = list(MATERIAL_STEEL = 5)
 	build_path = /obj/item/device/electronic_assembly/medium
 	sort_string = "VCAAB"
 
@@ -1723,7 +1638,6 @@ CIRCUITS BELOW
 	desc = "An customizable assembly optimized for autonomous devices."
 	id = "assembly-drone"
 	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 4, TECH_POWER = 4)
-	materials = list(MATERIAL_STEEL = 6)
 	build_path = /obj/item/device/electronic_assembly/drone
 	sort_string = "VCAAC"
 
@@ -1732,7 +1646,6 @@ CIRCUITS BELOW
 	desc = "An customizable assembly for large machines."
 	id = "assembly-large"
 	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4, TECH_POWER = 4)
-	materials = list(MATERIAL_STEEL = 8)
 	build_path = /obj/item/device/electronic_assembly/large
 	sort_string = "VCAAD"
 
@@ -1741,7 +1654,6 @@ CIRCUITS BELOW
 	desc = "An customizable assembly for very small devices, implanted into living entities."
 	id = "assembly-implant"
 	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4, TECH_POWER = 3, TECH_BIO = 5)
-	materials = list(MATERIAL_STEEL = 2)
 	build_path = /obj/item/weapon/implant/integrated_circuit
 	sort_string = "VCAAE"
 
