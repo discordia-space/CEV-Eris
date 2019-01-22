@@ -29,7 +29,6 @@
 
 //return TRUE for implanter icon update.
 /obj/item/weapon/implant/proc/install(var/mob/living/target, var/organ, var/mob/user)
-	world << "Implant installing"
 	var/obj/item/organ/external/affected
 	if (ishuman(target))
 		var/mob/living/carbon/human/H = target
