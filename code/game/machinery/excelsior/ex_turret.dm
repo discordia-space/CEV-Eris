@@ -10,11 +10,11 @@
 	lethal = TRUE
 	raised = TRUE
 	circuit = /obj/item/weapon/circuitboard/excelsior_turret
-
+	installation = null
 	var/obj/item/ammo_magazine/ammo_box = /obj/item/ammo_magazine/ammobox/a762
 	var/ammo = 0 // number of bullets left.
 	var/ammo_max = 160
-	var/working_range = 20 // how far this turret operates from excelsior teleporter
+	var/working_range = 30 // how far this turret operates from excelsior teleporter
 	health = 60
 
 /obj/machinery/porta_turret/excelsior/proc/has_power_source_nearby()
