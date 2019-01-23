@@ -17,6 +17,16 @@
 	board_type = "machine"
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_ILLEGAL = 2)
 	req_components = list() //To help them get started. the excelsior autolathe requires no extra components
+	var/built = FALSE
+
+/obj/item/weapon/circuitboard/excelsiorautolathe/construct(var/obj/machinery/M)
+	.=..()
+	if (. && !built)
+		built = TRUE
+		M.component_parts += new /obj/item/weapon/stock_parts/matter_bin(M)
+		M.component_parts += new /obj/item/weapon/stock_parts/matter_bin(M)
+		M.component_parts += new /obj/item/weapon/stock_parts/matter_bin(M)
+		M.component_parts += new /obj/item/weapon/stock_parts/manipulator(M)
 
 /obj/item/weapon/circuitboard/excelsiorreconstructor
 	name = T_BOARD("excelsior implant reconstructor")
