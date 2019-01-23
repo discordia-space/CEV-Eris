@@ -438,18 +438,17 @@ BLIND     // can't see anything
 	name = "suit"
 	var/fire_resist = T0C+100
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	allowed = list(/obj/item/weapon/storage/pouch/,
+	allowed = list(
+		/obj/item/weapon/storage/pouch/,
 		/obj/item/weapon/gun,
 		/obj/item/weapon/melee,
-		/obj/item/weapon/material/kitchen,
-		/obj/item/weapon/material/knife,
-		/obj/item/weapon/material/butterfly,
+		/obj/item/weapon/material,
 		/obj/item/ammo_magazine,
 		/obj/item/ammo_casing,
 		/obj/item/weapon/handcuffs,
-		/obj/item/weapon/tank/emergency_oxygen,
-		/obj/item/weapon/cell,
-		/obj/item/device/lighting/toggleable/flashlight)
+		/obj/item/weapon/tank,
+		/obj/item/device/suit_cooling_unit,
+		/obj/item/weapon/cell)
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	slot_flags = SLOT_OCLOTHING
 	var/blood_overlay_type = "suit"
