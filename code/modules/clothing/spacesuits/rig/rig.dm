@@ -105,7 +105,11 @@
 	/obj/item/weapon/tank,
 	/obj/item/device/suit_cooling_unit,
 	/obj/item/weapon/cell,
-	/obj/item/weapon/handcuffs)
+	/obj/item/weapon/handcuffs,
+	/obj/item/weapon/storage/fancy/cigarettes,
+	/obj/item/weapon/flame/lighter,
+	/obj/item/device/lighting/toggleable/flashlight,
+	/obj/item/device/scanner)
 
 	var/list/extra_allowed = list()
 
