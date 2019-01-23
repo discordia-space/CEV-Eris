@@ -30,7 +30,7 @@
 	desc = "An armored vest of uncertain quality. Provides a good protection against physical damage, for piece of crap."
 	icon_state = "hm_armorvest"
 	item_state = "hm_armorvest"
-	armor = list(melee = 35, bullet = 25, laser = 25, energy = 15, bomb = 15, bio = 0, rad = 0)
+	armor = list(melee = 40, bullet = 35, laser = 30, energy = 15, bomb = 15, bio = 0, rad = 0)
 
 
 /obj/item/clothing/suit/armor/riot
@@ -41,7 +41,7 @@
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	slowdown = 1
-	armor = list(melee = 75, bullet = 30, laser = 30, energy = 20, bomb = 35, bio = 0, rad = 0)
+	armor = list(melee = 75, bullet = 35, laser = 35, energy = 20, bomb = 35, bio = 0, rad = 0)
 	flags_inv = HIDEJUMPSUIT
 	siemens_coefficient = 0.5
 
@@ -52,7 +52,7 @@
 	icon_state = "bulletproof"
 	item_state = "armor"
 	blood_overlay_type = "armor"
-	armor = list(melee = 30, bullet = 75, laser = 30, energy = 10, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 35, bullet = 75, laser = 35, energy = 10, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
 
 /obj/item/clothing/suit/armor/laserproof
@@ -61,7 +61,7 @@
 	icon_state = "armor_reflec"
 	item_state = "armor_reflec"
 	blood_overlay_type = "armor"
-	armor = list(melee = 30, bullet = 30, laser = 75, energy = 50, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 35, bullet = 35, laser = 75, energy = 50, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0
 
 /obj/item/clothing/suit/armor/laserproof/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
