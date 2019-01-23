@@ -58,3 +58,15 @@
 /datum/autolathe/recipe/part/diamondblade
 	name = "Asters \"Gleaming Edge\": Diamond blade"
 	path = /obj/item/weapon/tool_upgrade/productivity/diamond_blade
+
+/datum/autolathe/recipe/part/subspace_transmitter
+	name = "subspace transmitter"
+	path = /obj/item/weapon/stock_parts/subspace/transmitter
+
+/datum/autolathe/recipe/part/subspace_crystal
+	name = "ansible crystal"
+	path = /obj/item/weapon/stock_parts/subspace/crystal
+
+/datum/autolathe/recipe/part/subspace_amplifier
+	name = "subspace amplifier"
+	path = /obj/item/weapon/stock_parts/subspace/amplifier

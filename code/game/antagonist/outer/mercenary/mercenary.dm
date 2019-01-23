@@ -49,7 +49,6 @@
 	//the missingg parrt was antag's stats!
 	for(var/name in stat_modifiers)
 		L.stats.changeStat(name, stat_modifiers[name])
-	world << "[L.name] STATS SET"
 
 	create_id("Soldier")
 	..()

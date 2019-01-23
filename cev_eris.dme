@@ -888,6 +888,7 @@
 #include "code\game\objects\items\weapons\circuitboards\computer\supply.dm"
 #include "code\game\objects\items\weapons\circuitboards\computer\telecomms.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\biogenerator.dm"
+#include "code\game\objects\items\weapons\circuitboards\machinery\chemestry.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\cloning.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\commsantenna.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\excelsior.dm"
