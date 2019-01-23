@@ -13,7 +13,6 @@
 	item_state = "space_suit_syndicate"
 	desc = "A crimson spacesuit sporting clean lines and durable plating. Robust, reliable, and slightly suspicious."
 	w_class = ITEM_SIZE_NORMAL
-	extra_allowed = list(/obj/item/weapon/melee)
 	slowdown = 1
 	armor = list(melee = 60, bullet = 50, laser = 45,energy = 15, bomb = 30, bio = 30, rad = 30)
 	siemens_coefficient = 0.6
