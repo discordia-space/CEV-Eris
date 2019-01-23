@@ -1015,6 +1015,14 @@ CIRCUITS BELOW
 	build_path = /obj/item/weapon/circuitboard/clonescanner
 	sort_string = "FAGAG"
 
+
+/datum/design/circuit/clonescanner
+	name = "ChemMaster 3000"
+	id = "ChemMaster"
+	req_tech = list(TECH_DATA = 2, TECH_BIO = 2)
+	build_path = /obj/item/weapon/circuitboard/chemmaster
+	sort_string = "FAHAA"
+
 /datum/design/circuit/teleconsole
 	name = "teleporter control console"
 	id = "teleconsole"
