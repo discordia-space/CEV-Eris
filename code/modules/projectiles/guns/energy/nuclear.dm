@@ -7,6 +7,7 @@
 	force = WEAPON_FORCE_PAINFULL //looks heavier than a pistol
 	self_recharge = 1
 	modifystate = null
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_URANIUM = 10)
 
 	firemodes = list(
 		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun, fire_sound='sound/weapons/Taser.ogg'),

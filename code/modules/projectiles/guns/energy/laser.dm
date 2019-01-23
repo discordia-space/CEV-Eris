@@ -57,6 +57,7 @@ obj/item/weapon/gun/energy/retro
 	projectile_type = /obj/item/projectile/beam/heavylaser
 	charge_cost = 250
 	fire_delay = 20
+	matter = list(MATERIAL_STEEL = 20)
 
 /obj/item/weapon/gun/energy/lasercannon/mounted
 	name = "mounted laser cannon"

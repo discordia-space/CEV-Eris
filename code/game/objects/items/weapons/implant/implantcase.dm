@@ -10,6 +10,7 @@
 	throw_range = 5
 	w_class = ITEM_SIZE_TINY
 	var/obj/item/weapon/implant/implant = null
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_GLASS = 3)
 
 /obj/item/weapon/implantcase/New()
 	..()

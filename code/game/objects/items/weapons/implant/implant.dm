@@ -7,6 +7,7 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "implant"
 	w_class = ITEM_SIZE_TINY
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_GLASS = 1)
 	var/implanted = FALSE
 	var/mob/living/carbon/human/wearer = null
 	var/obj/item/organ/external/part = null
