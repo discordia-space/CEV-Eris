@@ -25,7 +25,6 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	item_flags = COVER_PREVENT_MANIPULATION
 	slowdown = 1.0
-	extra_allowed = list(/obj/item/weapon/tank,/obj/item/weapon/pen)
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 100, rad = 20)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
 	siemens_coefficient = 0.9
