@@ -286,7 +286,7 @@
 	if(time_to_finish)
 		target.used_now = TRUE
 
-		if(!do_after(user, time_to_finish, user))
+		if(!do_after(user, time_to_finish, target))
 			//If the doafter fails
 			user << SPAN_WARNING("You need to stand still to finish the task properly!")
 			target.used_now = FALSE
