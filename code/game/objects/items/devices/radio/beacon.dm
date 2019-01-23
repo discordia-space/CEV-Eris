@@ -5,6 +5,7 @@
 	item_state = "signaler"
 	var/code = "electronic"
 	origin_tech = list(TECH_BLUESPACE = 1)
+	matter = list (MATERIAL_STEEL = 3, MATERIAL_GLASS = 1)
 
 /obj/item/device/radio/beacon/hear_talk()
 	return

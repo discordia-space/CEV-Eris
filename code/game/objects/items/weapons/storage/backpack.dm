@@ -79,6 +79,7 @@
 	max_w_class = ITEM_SIZE_LARGE
 	max_storage_space = 100
 	storage_cost = 29
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_GOLD = 10, MATERIAL_DIAMOND = 5, MATERIAL_URANIUM = 5)
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
 		if(istype(W, /obj/item/weapon/storage/backpack/holding))
