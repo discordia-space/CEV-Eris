@@ -185,6 +185,10 @@
 	icon_state = "sheet-metal"
 	default_type = MATERIAL_STEEL
 
+//A stack which starts with the max amount
+/obj/item/stack/material/steel/full
+	amount = 120
+
 /obj/item/stack/material/steel/random
 	rand_min = 3
 	rand_max = 30
