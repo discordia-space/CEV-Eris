@@ -18,7 +18,7 @@
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	extra_allowed = list(obj/item/weapon/extinguisher)
+	extra_allowed = list(/obj/item/weapon/extinguisher)
 	slowdown = 1.0
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
 	item_flags = STOPPRESSUREDAMAGE | COVER_PREVENT_MANIPULATION
