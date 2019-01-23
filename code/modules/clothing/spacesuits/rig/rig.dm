@@ -97,8 +97,7 @@
 	allowed = list(
 	/obj/item/weapon/storage/pouch/,
 	/obj/item/weapon/gun,
-	/obj/item/weapon/melee/baton,
-	/obj/item/weapon/melee/energy/sword,
+	/obj/item/weapon/melee,
 	/obj/item/ammo_magazine,
 	/obj/item/ammo_casing,
 	/obj/item/weapon/material,
