@@ -1,3 +1,6 @@
+/obj/item/weapon/disk
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_STEEL = 1)
+
 /obj/item/weapon/disk/autolathe_disk
 	name = "Design disk"
 	desc = "disk for autolathe designs."
@@ -8,7 +11,7 @@
 	flags = CONDUCT
 	force = WEAPON_FORCE_WEAK
 	throwforce = WEAPON_FORCE_WEAK
-	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+
 
 	var/list/recipes = list()
 
