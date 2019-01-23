@@ -7,7 +7,7 @@
 	slot_flags = SLOT_BELT
 	var/flush = null
 	origin_tech = list(TECH_DATA = 4, TECH_MATERIAL = 4)
-
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	var/mob/living/silicon/ai/carded_ai
 
 /obj/item/device/aicard/attack(mob/living/silicon/decoy/M as mob, mob/user as mob)
