@@ -1,12 +1,21 @@
 # General
-
+* Where possible, large projects should be broken up into several smaller pull requests, and/or done in phases over time
 * Pull requests should not contain commented code except TODOs and explanation comments.
-* Pull requests should not contain any debug output, variables or procs.
+* Pull requests should not contain any debug output, variables or procs, unless these are of value to admins for live debugging
 * Pull requests should not contain changes that do not relate with functionality described in commit messages.
 * If pull request relates with existing github issue, it should be specified in commit message, for example, "Fix broken floor sprites, close #23" (see https://help.github.com/articles/closing-issues-via-commit-messages/ for additional info).
 * If pull request contains map files changes, it should be previously proccessed by mapmerger tool (see /tool/mapmerger/install.txt for additional info). Pull request description should contain screenshots of map changes if it's not obvious from map files diff.
 * If pull request contains icon files changes, it should be previously proccessed by icon merger tool (see /tool/dmitool/merging.txt for additional info). Pull request description should contain screenshots of changed icon files.
 
+# Advice for new recruits
+Start small! Make your first couple of PRs focus on bugfixes or small balance tweaks until you get used to the system. The repo is littered with failed projects from people who got overambitious and burned out.
+
+Seek input before starting work on significant features. Your proposal may conflict with existing plans and need modified. Getting the approval of maintainers, and especially the head developer, is important for things which may affect game balance.
+
+Be flexible. Very few submissions are accepted as-is, almost every PR will have some required modifications during the review process, sometimes to how the code works, or often to balance out mechanics. 
+
+# Changelog Entries
+Any pull reqiests which add or change user-visible features should have a changelog written up. See example.yml in the html/changelogs directory. Make a copy of it, insert your own name, and write about what you've changed. Include it with your pull request
 
 # Code style
 
@@ -86,7 +95,7 @@ Boolean variables and return values should use TRUE and FALSE constans instead o
 ```
 ***
 
-Using colon operator (:) for object property and procs access is deprecated.
+Using colon operator (:) for object property and procs access is generally inadviseable
 
 ***Good:***
 ```
@@ -101,13 +110,13 @@ if(hasvar(obj, "count"))
 ```
 ***
 
-Colorized text outputs should use html tags instead of magic color symbols.
+Colorized text outputs should use html tags instead of magic color symbols. Make use of our span defines when possible
 
 ***Good:***
 ```
-player << "<span class='notice'>Everything is OK.</span>"
-player << "<span class='warning'>There's something wrong...</span>"
-player << "<span class='danger'>Everything is fucked up!</span>"
+player << SPAN_NOTICE("Everything is OK.")
+player << SPAN_WARNING("There's something wrong...")
+player << SPAN_DANGER("Everything is fucked up!")
 ```
 ***Bad:***
 ```
@@ -145,25 +154,6 @@ proc/mutate_count(var/obj, var/value)
 ```
 ***
 
-Instance variables should be used with only with source object denotation to avoid namespace conflicts.
-
-***Good:***
-```
-/obj/item/
-	var/name = ""
-	
-/obj/item/proc/set_name(name)
-	src.name = name
-```
-***Bad:***
-```
-/obj/item/
-	var/name = ""
-
-/obj/item/proc/set_name(name)
-	name = name
-	# You will probably get a runtime error.
-```
 
 # Naming
 Avoid short names. No acronyms or abbreviations.
@@ -179,17 +169,7 @@ var/count = 0
 var/c = 1
 ```
 ***
-Avoid digits in names.
 
-***Good:***
-```
-/datum/job/first_officer
-```
-***Bad:***
-```
-var/text1 = "text"
-```
-***
 Variables, types and methods should be named in "snake case". Constant values should be named in uppercase. 
 
 ***Good:***
