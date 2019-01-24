@@ -40,10 +40,7 @@
 	item_state = "apron"
 	blood_overlay_type = "armor"
 	body_parts_covered = 0
-	extra_allowed = list (\
-		/obj/item/weapon/reagent_containers/spray/plantbgone,/obj/item/device/scanner/analyzer/plant_analyzer,
-		/obj/item/seeds,/obj/item/weapon/reagent_containers/glass/fertilizer
-	)
+	extra_allowed = list (/obj/item/seeds, /obj/item/weapon/reagent_containers/glass/fertilizer, /obj/item/weedkiller)
 
 //Chaplain
 /obj/item/clothing/suit/chaplain_hoodie
