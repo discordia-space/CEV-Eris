@@ -6,6 +6,7 @@
 	w_class = ITEM_SIZE_SMALL
 	slot_flags = SLOT_BELT
 	origin_tech = list(TECH_DATA = 2)
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	var/obj/item/device/radio/radio
 	var/looking_for_personality = 0
 	var/mob/living/silicon/pai/pai
