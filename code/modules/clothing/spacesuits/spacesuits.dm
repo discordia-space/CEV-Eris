@@ -79,7 +79,6 @@
 	var/list/supporting_limbs //If not-null, automatically splints breaks. Checked when removing the suit.
 
 
-
 /obj/item/clothing/suit/space/equipped(mob/M)
 	check_limb_support()
 	..()
