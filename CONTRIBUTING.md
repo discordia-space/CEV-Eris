@@ -1,11 +1,12 @@
 # General
 * Where possible, large projects should be broken up into several smaller pull requests, and/or done in phases over time
 * Pull requests should not contain commented code except TODOs and explanation comments.
-* Pull requests should not contain any debug output, variables or procs, unless these are of value to admins for live debugging
+* Pull requests should not contain any debug output, variables or procs, unless these are of value to admins/coders for live debugging
 * Pull requests should not contain changes that do not relate with functionality described in commit messages.
 * If pull request relates with existing github issue, it should be specified in commit message, for example, "Fix broken floor sprites, close #23" (see https://help.github.com/articles/closing-issues-via-commit-messages/ for additional info).
 * If pull request contains map files changes, it should be previously proccessed by mapmerger tool (see /tool/mapmerger/install.txt for additional info). Pull request description should contain screenshots of map changes if it's not obvious from map files diff.
 * If pull request contains icon files changes, it should be previously proccessed by icon merger tool (see /tool/dmitool/merging.txt for additional info). Pull request description should contain screenshots of changed icon files.
+* If you have the permissions, please set appropriate labels on your PRs. Including, at the very least, Ready for Review to indicate that its done.
 
 # Advice for new recruits
 Start small! Make your first couple of PRs focus on bugfixes or small balance tweaks until you get used to the system. The repo is littered with failed projects from people who got overambitious and burned out.
@@ -14,11 +15,33 @@ Seek input before starting work on significant features. Your proposal may confl
 
 Be flexible. Very few submissions are accepted as-is, almost every PR will have some required modifications during the review process, sometimes to how the code works, or often to balance out mechanics. 
 
+Finish what you start. A project is only done when it's merged, not just when the PR is up. After submitting something, try to make some time to be available over the next week or so to fix any requested changes after its reviewed. We won't merge unfinished work.
+
+
 # Changelog Entries
-Any pull reqiests which add or change user-visible features should have a changelog written up. See example.yml in the html/changelogs directory. Make a copy of it, insert your own name, and write about what you've changed. Include it with your pull request
+Any pull requests which add or change user-visible features should have a changelog written up. See example.yml in the html/changelogs directory. Make a copy of it, insert your own name, and write about what you've changed. Include it with your pull request. Not everything needs a changelog, only features that players will notice or care about. Minor bugfixes or code refactors can usually go without.
+
+
+# Coding Policies
+Eris has an unusual top-down development style, with future features largely planned out.
+To avoid conflicts, it is strongly recommended to discuss any proposed changes in the discord, and get the approval of the development team, before starting work on something that may ultimately be rejected. We can work with your ideas and help fit them into the broader vision
+
+When making adjustments to game balance, changes should be explained, and generally made in small steps unless there's an egregious problem. 15-25% at a time is the recommended change for balancing values
+
+When working on large projects, try to make the resulting pull requests as small as feasible. Split large projects into multiple smaller phases if possible. We strongly encourage iterative development, and it's perfectly fine to implement a large feature in many PRs over several months.
+
+Try to comment your code well, there's rarely such a thing as overexplaining. comments are especially important when writing large new features, or using things in unexpected ways.
+
+Values which affect game balance, such as movespeeds, health values and weapon damage, should not be written in or read from config files. Whenever working on an area where such values already exist in config, phase them out and use defines or global variables instead
+
+The following features or systems are deprecated and should not be used if at all possible. 
+Datacore: Use modular records instead
+/obj/item/device/pda, and PDA cartridges: Use modular PDAs instead.
+Single Function computer consoles: Use modular computers instead
+Direct html browse calls: Use NanoUI instead
+
 
 # Code style
-
 Proc defines should contain full type path.
 
 ***Good:***
@@ -76,7 +99,6 @@ Spaces are needed between function agruments (declaration and definition). Space
 ***
 
 Boolean variables and return values should use TRUE and FALSE constans instead of 1 and 0.
-
 ***Good:***
 ```
 /obj/item/pistol/
@@ -137,26 +159,11 @@ del(src)
 ```
 ***
 
-Do not return unused values from functions. Do not use return if there's no any actions in function after it. 
-
-***Good:***
-```
-proc/mutate_count(var/obj, var/value)
-	if(!value)
-	    return
-    obj.count = value
-```
-***Bad:***
-```
-proc/mutate_count(var/obj, var/value)
-	obj.count = value
-	return 1
-```
-***
 
 
 # Naming
-Avoid short names. No acronyms or abbreviations.
+Avoid short names for class variables. No acronyms or abbreviations.
+These are fine to use for local variables within a proc though
 
 ***Good:***
 ```
