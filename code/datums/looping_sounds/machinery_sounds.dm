@@ -2,6 +2,8 @@
 	mid_sounds = list('sound/machines/sm/supermatter1.ogg'=1,'sound/machines/sm/supermatter2.ogg'=1,'sound/machines/sm/supermatter3.ogg'=1,'sound/machines/sm/supermatter4.ogg'=1)
 	mid_length = 20
 	volume = 1
+	vary = 1
+	extrarange = 7
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -9,5 +11,7 @@
 	mid_sounds = list('sound/machines/generator.ogg'=1)
 	mid_length = 20
 	volume = 1
+	vary = 1
+	extrarange = 7
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
