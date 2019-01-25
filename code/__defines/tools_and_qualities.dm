@@ -51,7 +51,7 @@
 #define WORKSOUND_SIMPLE_SAW			'sound/items/saw.ogg'
 #define WORKSOUND_WRENCHING				'sound/items/Ratchet.ogg'
 #define WORKSOUND_WIRECUTTING			'sound/items/Wirecutter.ogg'
-#define WORKSOUND_WELDING				'sound/items/Welder.ogg'
+#define WORKSOUND_WELDING				"weld"
 #define WORKSOUND_PULSING				'sound/items/multitool_pulse.ogg'
 #define WORKSOUND_SCREW_DRIVING			'sound/items/Screwdriver.ogg'
 #define WORKSOUND_EASY_CROWBAR			'sound/items/Crowbar.ogg'

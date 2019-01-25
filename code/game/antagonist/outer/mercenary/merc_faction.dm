@@ -16,7 +16,7 @@
 	hud_indicator = "hudexcelsior"
 
 	possible_antags = list(ROLE_MERCENARY)
-	verbs = list(/datum/faction/revolutioanry/excelsior/proc/communicate_verb)
+
 	faction_invisible = FALSE
 
 	var/objectives_num

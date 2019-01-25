@@ -44,7 +44,7 @@ It focuses on spawning large numbers of moderate-to-weak monsters, and includes 
 	var/chosen_mob = INFESTATION_SLIMES
 	var/chosen_verb = "have leaked into"
 	var/infestation_time = 3 MINUTES
-	var/list/chosen_mob_types = list()
+	var/list/chosen_mob_classification = list()
 	var/list/possible_mobs_mundane = list(
 		INFESTATION_MICE = 17,
 		INFESTATION_LIZARDS = 12,
@@ -149,52 +149,52 @@ It focuses on spawning large numbers of moderate-to-weak monsters, and includes 
 		if(INFESTATION_HIVEBOTS)
 			event_name = "Minor Hivebot Invasion"
 			chosen_verb = "have invaded"
-			chosen_mob_types += /mob/living/simple_animal/hostile/hivebot
-			chosen_mob_types += /mob/living/simple_animal/hostile/hivebot/range
+			chosen_mob_classification += /mob/living/simple_animal/hostile/hivebot
+			chosen_mob_classification += /mob/living/simple_animal/hostile/hivebot/range
 		if(INFESTATION_SPACE_BATS)
 			event_name = "Bat Roost"
 			chosen_verb = "have been roosting in"
-			chosen_mob_types += /mob/living/simple_animal/hostile/scarybat
+			chosen_mob_classification += /mob/living/simple_animal/hostile/scarybat
 		if(INFESTATION_LIZARDS)
 			event_name = "Lizard Nest"
 			chosen_verb = "have been breeding in"
-			chosen_mob_types += /mob/living/simple_animal/lizard
+			chosen_mob_classification += /mob/living/simple_animal/lizard
 		if(INFESTATION_MICE)
 			event_name = "Mouse Nest"
 			chosen_verb = "have been breeding in"
-			chosen_mob_types += /mob/living/simple_animal/mouse //Mice pick random colors on spawn
+			chosen_mob_classification += /mob/living/simple_animal/mouse //Mice pick random colors on spawn
 		if(INFESTATION_SLIMES)
 			event_name = "Slime Leak"
 			chosen_verb = "have leaked into"
-			chosen_mob_types += /obj/random/slime/rainbow
+			chosen_mob_classification += /obj/random/slime/rainbow
 		if(INFESTATION_SPIDERLINGS)
 			event_name = "Spiderling Infestation"
 			chosen_verb = "have burrowed into"
-			chosen_mob_types[/obj/effect/spider/spiderling] = 1
-			chosen_mob_types[/obj/effect/spider/eggcluster] = 0.2
+			chosen_mob_classification[/obj/effect/spider/spiderling] = 1
+			chosen_mob_classification[/obj/effect/spider/eggcluster] = 0.2
 		if(INFESTATION_SPIDERS)
 			event_name = "Spider Infestation"
 			chosen_verb = "have burrowed into"
-			chosen_mob_types += /obj/random/mob/spiders
+			chosen_mob_classification += /obj/random/mob/spiders
 		if(INFESTATION_ROACHES)
 			event_name = "Giant Roach Infestation"
 			chosen_verb = "have burrowed into"
-			chosen_mob_types += /obj/random/mob/roaches
+			chosen_mob_classification += /obj/random/mob/roaches
 		if(INFESTATION_YITHIAN)
 			unidentified = TRUE
-			chosen_mob_types += /mob/living/simple_animal/yithian
+			chosen_mob_classification += /mob/living/simple_animal/yithian
 		if(INFESTATION_TINDALOS)
 			unidentified = TRUE
-			chosen_mob_types += /mob/living/simple_animal/tindalos
+			chosen_mob_classification += /mob/living/simple_animal/tindalos
 		if(INFESTATION_SAMAK)
 			unidentified = TRUE
-			chosen_mob_types += /mob/living/simple_animal/hostile/samak
+			chosen_mob_classification += /mob/living/simple_animal/hostile/samak
 		if(INFESTATION_SHANTAK)
 			unidentified = TRUE
-			chosen_mob_types += /mob/living/simple_animal/hostile/shantak
+			chosen_mob_classification += /mob/living/simple_animal/hostile/shantak
 		if(INFESTATION_DIYAAB)
 			unidentified = TRUE
-			chosen_mob_types += /mob/living/simple_animal/hostile/diyaab
+			chosen_mob_classification += /mob/living/simple_animal/hostile/diyaab
 
 	//Chance for identification to fail even for normal mobs, to frustrate metagamers
 	if (prob(15))
@@ -211,7 +211,7 @@ It focuses on spawning large numbers of moderate-to-weak monsters, and includes 
 /datum/event/infestation/proc/spawn_mobs()
 	for (var/obj/structure/burrow/B in chosen_burrows)
 		for(var/i = 1, i <= num_spawns_per_area,i++)
-			var/spawned_mob = pickweight(chosen_mob_types)
+			var/spawned_mob = pickweight(chosen_mob_classification)
 			new spawned_mob(B)
 
 		//Send the migration

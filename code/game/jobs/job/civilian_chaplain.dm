@@ -2,7 +2,7 @@
 /datum/job/chaplain
 	title = "Neotheology Preacher"
 	flag = CHAPLAIN
-	department = "Civilian"
+	department = DEPARTMENT_CHURCH
 	department_flag = CHURCH
 	faction = "CEV Eris"
 	total_positions = 1
@@ -11,7 +11,7 @@
 	selection_color = "#ecd37d"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 25)
 	access = list(access_morgue, access_chapel_office, access_crematorium, access_maint_tunnels)
-
+	wage = WAGE_PROFESSIONAL //The church has deep pockets
 	outfit_type = /decl/hierarchy/outfit/job/chaplain
 
 	stat_modifiers = list(

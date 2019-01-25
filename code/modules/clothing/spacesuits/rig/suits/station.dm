@@ -109,7 +109,7 @@ Advanced Voidsuit: Technomancer Exultant
 	suit_type = "advanced voidsuit"
 	desc = "An advanced voidsuit that protects against hazardous, low pressure environments. Shines with a high polish."
 	icon_state = "ce_rig"
-	armor = list(melee = 50, bullet = 40, laser = 40,energy = 25, bomb = 60, bio = 100, rad = 100)
+	armor = list(melee = 55, bullet = 45, laser = 45,energy = 35, bomb = 65, bio = 100, rad = 100)
 	slowdown = 0
 	offline_slowdown = 0
 	offline_vision_restriction = 0

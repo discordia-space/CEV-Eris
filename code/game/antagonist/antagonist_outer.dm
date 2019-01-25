@@ -5,7 +5,7 @@
 	var/mob_path = /mob/living/carbon/human // Mobtype this antag will use if none is provided.
 
 	var/id_type
-	var/list/default_access = list()
+
 
 	//If this is true, and the mob_path is human, then we will load the player's character from preferences,
 	//applying the hairstyles, skin tones, hair color, eyes, etc to the newly created mob.

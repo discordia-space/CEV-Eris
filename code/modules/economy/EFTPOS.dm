@@ -123,7 +123,7 @@
 	else if (istype(O, /obj/item/weapon/spacecash/ewallet))
 		var/obj/item/weapon/spacecash/ewallet/E = O
 		if (linked_account)
-			if(!linked_account.suspended)
+			if(linked_account.is_valid())
 				if(transaction_locked && !transaction_paid)
 					if(transaction_amount <= E.worth)
 						playsound(src, 'sound/machines/chime.ogg', 50, 1)
@@ -172,7 +172,7 @@
 				var/attempt_pin = input("Enter pin code", "Account pin") as num
 				linked_account = attempt_account_access(attempt_account_num, attempt_pin, 1)
 				if(linked_account)
-					if(linked_account.suspended)
+					if(!linked_account.is_valid())
 						linked_account = null
 						usr << "\icon[src]<span class='warning'>Account has been suspended.</span>"
 				else
@@ -230,7 +230,7 @@
 			usr.visible_message("<span class='info'>\The [usr] swipes \the [ID_container] through \the [src].</span>")
 		if(transaction_locked && !transaction_paid)
 			if(linked_account)
-				if(!linked_account.suspended)
+				if(linked_account.is_valid())
 					var/attempt_pin = ""
 					var/datum/money_account/D = get_account(C.associated_account_number)
 					if(D.security_level)
@@ -238,7 +238,7 @@
 						D = null
 					D = attempt_account_access(C.associated_account_number, attempt_pin, 2)
 					if(D)
-						if(!D.suspended)
+						if(D.is_valid())
 							if(transaction_amount <= D.money)
 								playsound(src, 'sound/machines/chime.ogg', 50, 1)
 								src.visible_message("\icon[src] \The [src] chimes.")

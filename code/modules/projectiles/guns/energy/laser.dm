@@ -14,6 +14,7 @@
 /obj/item/weapon/gun/energy/laser/mounted
 	self_recharge = 1
 	use_external_power = 1
+	restrict_safety = TRUE
 
 /obj/item/weapon/gun/energy/laser/practice
 	name = "NT LG \"Lightfall\" - P"
@@ -56,9 +57,11 @@ obj/item/weapon/gun/energy/retro
 	projectile_type = /obj/item/projectile/beam/heavylaser
 	charge_cost = 250
 	fire_delay = 20
+	matter = list(MATERIAL_STEEL = 20)
 
 /obj/item/weapon/gun/energy/lasercannon/mounted
 	name = "mounted laser cannon"
 	self_recharge = 1
 	use_external_power = 1
 	recharge_time = 10
+	restrict_safety = TRUE

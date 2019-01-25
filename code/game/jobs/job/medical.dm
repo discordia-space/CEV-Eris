@@ -2,7 +2,7 @@
 	title = "Moebius Biolab Officer"
 	flag = MBO
 	head_position = 1
-	department = "Medical"
+	department = DEPARTMENT_MEDICAL
 	department_flag = MEDICAL | COMMAND
 	faction = "CEV Eris"
 	total_positions = 1
@@ -10,9 +10,8 @@
 	supervisors = "the Moebius Expedition Overseer"
 	selection_color = "#94a87f"
 	req_admin_notify = 1
-	economic_modifier = 10
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10, LANGUAGE_SERBIAN = 5)
-
+	wage = WAGE_COMMAND
 	outfit_type = /decl/hierarchy/outfit/job/medical/cmo
 
 	access = list(
@@ -57,14 +56,14 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 /datum/job/doctor
 	title = "Moebius Doctor"
 	flag = DOCTOR
-	department = "Medical"
+	department = DEPARTMENT_MEDICAL
 	department_flag = MEDICAL
 	faction = "CEV Eris"
 	total_positions = 5
 	spawn_positions = 5
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#a8b69a"
-	economic_modifier = 7
+	wage = WAGE_PROFESSIONAL
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 
 	outfit_type = /decl/hierarchy/outfit/job/medical/doctor
@@ -114,14 +113,14 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 /datum/job/chemist
 	title = "Moebius Chemist"
 	flag = CHEMIST
-	department = "Medical"
+	department = DEPARTMENT_MEDICAL
 	department_flag = MEDICAL
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#a8b69a"
-	economic_modifier = 5
+	wage = WAGE_PROFESSIONAL
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 
 	outfit_type = /decl/hierarchy/outfit/job/medical/chemist
@@ -163,12 +162,12 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 /datum/job/psychiatrist
 	title = "Moebius Psychiatrist"
 	flag = PSYCHIATRIST
-	department = "Medical"
+	department = DEPARTMENT_MEDICAL
 	department_flag = MEDICAL
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	economic_modifier = 5
+	wage = WAGE_PROFESSIONAL
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#a8b69a"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
@@ -196,14 +195,14 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 /datum/job/paramedic
 	title = "Moebius Paramedic"
 	flag = PARAMEDIC
-	department = "Medical"
+	department = DEPARTMENT_MEDICAL
 	department_flag = MEDICAL
 	faction = "CEV Eris"
 	total_positions = 3
 	spawn_positions = 3
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#a8b69a"
-	economic_modifier = 4
+	wage = WAGE_LABOUR_HAZARD
 	also_known_languages = list(LANGUAGE_CYRILLIC = 20, LANGUAGE_SERBIAN = 15)
 
 	outfit_type = /decl/hierarchy/outfit/job/medical/paramedic

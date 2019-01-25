@@ -6,6 +6,8 @@
 	throwforce = WEAPON_FORCE_NORMAL
 	w_class = ITEM_SIZE_SMALL
 
+	var/tool_in_use = FALSE
+
 	var/sparks_on_use = FALSE	//Set to TRUE if you want to have sparks on each use of a tool
 	var/eye_hazard = FALSE	//Set to TRUE should damage users eyes if they without eye protection
 
@@ -90,6 +92,10 @@
 			var/turf/location = get_turf(src)
 			if (location)
 				location.hotspot_expose(700, 5)
+		if(tool_in_use && sparks_on_use && !silenced && prob(50))
+			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+			sparks.set_up(3, 0, get_turf(src))
+			sparks.start()
 
 		if (passive_fuel_cost)
 			if(!consume_fuel(passive_fuel_cost))
@@ -185,7 +191,17 @@
 //Simple form ideal for basic use. That proc will return TRUE only when everything was done right, and FALSE if something went wrong, ot user was unlucky.
 //Editionaly, handle_failure proc will be called for a critical failure roll.
 /obj/item/proc/use_tool(var/mob/living/user, var/atom/target, var/base_time, var/required_quality, var/fail_chance, var/required_stat, var/instant_finish_tier = 110, forced_sound = null, var/sound_repeat = 2.5)
+
+	var/obj/item/weapon/tool/T
+	if (istool(src))
+		T = src
+		T.tool_in_use = TRUE
+
 	var/result = use_tool_extended(user, target, base_time, required_quality, fail_chance, required_stat, instant_finish_tier, forced_sound)
+
+	if (T)
+		T.tool_in_use = FALSE
+
 	switch(result)
 		if(TOOL_USE_CANCEL)
 			return FALSE
@@ -270,7 +286,7 @@
 	if(time_to_finish)
 		target.used_now = TRUE
 
-		if(!do_after(user, time_to_finish, user))
+		if(!do_after(user, time_to_finish, target))
 			//If the doafter fails
 			user << SPAN_WARNING("You need to stand still to finish the task properly!")
 			target.used_now = FALSE
@@ -287,6 +303,7 @@
 		else
 			if (T)
 				T.last_tooluse = world.time
+
 			target.used_now = FALSE
 
 	//If we get here the operation finished correctly, we spent the full time working

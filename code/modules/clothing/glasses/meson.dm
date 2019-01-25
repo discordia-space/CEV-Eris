@@ -10,6 +10,7 @@
 	vision_flags = SEE_TURFS
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	active = FALSE
+	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	var/tick_cost = 0.5
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/small

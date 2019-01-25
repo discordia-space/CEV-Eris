@@ -52,21 +52,30 @@
 	var/mix_message = "The solution begins to bubble."
 	var/reaction_sound = 'sound/effects/bubbles.ogg'
 
+	var/list/require_containers = list() // This reaction will only occure in these containers(Or their subtypes).
+	var/list/blacklist_containers = list() // This reaction will not occure in these containers(Or their subtypes).
+
 	var/log_is_important = 0 // If this reaction should be considered important for logging. Important recipes message admins when mixed, non-important ones just log to file.
 /datum/chemical_reaction/proc/can_happen(var/datum/reagents/holder)
 	//check that all the required reagents are present
 	if(!holder.has_all_reagents(required_reagents))
-		return 0
+		return FALSE
 
 	//check that all the required catalysts are present in the required amount
 	if(!holder.has_all_reagents(catalysts))
-		return 0
+		return FALSE
 
 	//check that none of the inhibitors are present in the required amount
 	if(holder.has_any_reagent(inhibitors))
-		return 0
+		return FALSE
 
-	return 1
+	if(require_containers.len && !is_type_in_list(holder.my_atom, require_containers))
+		return FALSE
+
+	if(blacklist_containers.len && is_type_in_list(holder.my_atom, blacklist_containers))
+		return FALSE
+
+	return TRUE
 
 /datum/chemical_reaction/proc/calc_reaction_progress(var/datum/reagents/holder, var/reaction_limit)
 	var/progress = reaction_limit * reaction_rate //simple exponential progression
@@ -1325,12 +1334,12 @@
 	required_reagents = list("soymilk" = 10)
 	catalysts = list("enzyme" = 5)
 	result_amount = 1
+	blacklist_containers = list(/mob)
 
 /datum/chemical_reaction/tofu/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/weapon/reagent_containers/food/snacks/tofu(location)
-	return
 
 /datum/chemical_reaction/chocolate_bar
 	name = "Chocolate Bar"
@@ -1338,12 +1347,12 @@
 	result = null
 	required_reagents = list("soymilk" = 2, "coco" = 2, "sugar" = 2)
 	result_amount = 1
+	blacklist_containers = list(/mob)
 
 /datum/chemical_reaction/chocolate_bar/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/weapon/reagent_containers/food/snacks/chocolatebar(location)
-	return
 
 /datum/chemical_reaction/chocolate_bar2
 	name = "Chocolate Bar"
@@ -1351,12 +1360,12 @@
 	result = null
 	required_reagents = list("milk" = 2, "coco" = 2, "sugar" = 2)
 	result_amount = 1
+	blacklist_containers = list(/mob)
 
 /datum/chemical_reaction/chocolate_bar2/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/weapon/reagent_containers/food/snacks/chocolatebar(location)
-	return
 
 /datum/chemical_reaction/hot_coco
 	name = "Hot Coco"
@@ -1386,12 +1395,12 @@
 	required_reagents = list("milk" = 40)
 	catalysts = list("enzyme" = 5)
 	result_amount = 1
+	blacklist_containers = list(/mob)
 
 /datum/chemical_reaction/cheesewheel/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/weapon/reagent_containers/food/snacks/sliceable/cheesewheel(location)
-	return
 
 /datum/chemical_reaction/meatball
 	name = "Meatball"
@@ -1399,12 +1408,12 @@
 	result = null
 	required_reagents = list("protein" = 3, "flour" = 5)
 	result_amount = 3
+	blacklist_containers = list(/mob)
 
 /datum/chemical_reaction/meatball/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/weapon/reagent_containers/food/snacks/meatball(location)
-	return
 
 /datum/chemical_reaction/dough
 	name = "Dough"
@@ -1412,12 +1421,12 @@
 	result = null
 	required_reagents = list("egg" = 3, "flour" = 10)
 	result_amount = 1
+	blacklist_containers = list(/mob)
 
 /datum/chemical_reaction/dough/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/weapon/reagent_containers/food/snacks/dough(location)
-	return
 
 /datum/chemical_reaction/syntiflesh
 	name = "Syntiflesh"
@@ -1425,12 +1434,12 @@
 	result = null
 	required_reagents = list("blood" = 5, "clonexadone" = 1)
 	result_amount = 1
+	blacklist_containers = list(/mob)
 
 /datum/chemical_reaction/syntiflesh/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/weapon/reagent_containers/food/snacks/meat/syntiflesh(location)
-	return
 
 /datum/chemical_reaction/hot_ramen
 	name = "Hot Ramen"
