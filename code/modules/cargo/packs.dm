@@ -1380,15 +1380,6 @@ datum/supply_pack/randomised/powercells
 	containertype = /obj/structure/closet/crate
 	group = "Engineering"
 
-datum/supply_pack/randomised/lootcrate
-	num_contained = 10
-	contains = list(/obj/random/lowkeyrandom/noeffects)
-	name = "Asters Guild Lootcrate"
-	cost = 1000
-	crate_name = "Guild Lootcrate"
-	containertype = /obj/structure/closet/crate
-	group = "Supply"
-
 datum/supply_pack/randomised/pouches
 	num_contained = 5
 	contains = list(/obj/random/pouch)
