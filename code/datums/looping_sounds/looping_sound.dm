@@ -27,6 +27,8 @@
 	var/muted = TRUE
 	var/max_loops
 	var/direct
+	var/vary = 0
+	var/extrarange = 0
 
 /datum/looping_sound/New(list/_output_atoms=list(), start_immediately=FALSE, _direct=FALSE)
 	if(!mid_sounds)
@@ -78,7 +80,7 @@
 		if(direct)
 			thing << S
 		else
-			playsound(thing, S, volume)
+			playsound(thing, S, volume, vary, extrarange)
 
 /datum/looping_sound/proc/get_sound(looped, _mid_sounds)
 	if(!_mid_sounds)
