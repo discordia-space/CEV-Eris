@@ -1373,7 +1373,7 @@ datum/supply_pack/randomised/suitmodules
 
 datum/supply_pack/randomised/powercells
 	num_contained = 5
-	contains = list(/obj/random/powercell)
+	contains = list(/obj/random/powercell/asters)
 	name = "Surplus Power Cells"
 	cost = 1000
 	crate_name = "Surplus Crate"
@@ -1382,7 +1382,7 @@ datum/supply_pack/randomised/powercells
 
 datum/supply_pack/randomised/lootcrate
 	num_contained = 10
-	contains = list(/obj/random/lowkeyrandom)
+	contains = list(/obj/random/lowkeyrandom/noeffects)
 	name = "Asters Guild Lootcrate"
 	cost = 1500
 	crate_name = "Guild Lootcrate"
