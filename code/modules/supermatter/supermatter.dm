@@ -185,7 +185,7 @@
 		return  //Yeah just stop.
 
 	if(power)
-		soundloop.volume = min(40, (round(power/50))) // Volume maxes out at 2000 power.
+		soundloop.volume = min(70, (round(power/28.5))) // Volume maxes out at 2000 power.
 
 	if(damage > explosion_point)
 		if(!exploded)

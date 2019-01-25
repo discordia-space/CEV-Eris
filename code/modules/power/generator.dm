@@ -136,7 +136,10 @@
 	if(effective_gen > 100 && genlev == 0)
 		genlev = 1
 	if(genlev != lastgenlev)
-		soundloop.volume = min(50,round(genlev*4.5)+1)
+		if(genlev > 1)
+			soundloop.volume = min(70,round(genlev*6.5)+1)
+		else
+			soundloop.volume = 0
 		lastgenlev = genlev
 		updateicon()
 	add_avail(effective_gen)
