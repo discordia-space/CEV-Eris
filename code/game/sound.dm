@@ -286,39 +286,41 @@ var/const/FALLOFF_SOUNDS = 0.5
 		// 3D sounds, the technology is here!
 		var/turf/T = get_turf(src)
 
-		//sound volume falloff with distance
-		var/distance = get_dist(T, turf_source)
+		//
+		//world << "isturf(turf_source):[isturf(turf_source)]:(turf_source)[turf_source]_X:[turf_source.x]_Y:[turf_source.y]:(distance[distance])"
+		if(T)//this means mob is aboard or somewhere near
+			//sound volume falloff with distance
+			var/distance = get_dist(T, turf_source)
+			S.volume -= max(distance - (world.view + extrarange), 0) * 2 //multiplicative falloff to add on top of natural audio falloff.
 
-		S.volume -= max(distance - (world.view + extrarange), 0) * 2 //multiplicative falloff to add on top of natural audio falloff.
+			var/datum/gas_mixture/hearer_env = T.return_air()
+			var/datum/gas_mixture/source_env = turf_source.return_air()
 
-		var/datum/gas_mixture/hearer_env = T.return_air()
-		var/datum/gas_mixture/source_env = turf_source.return_air()
+			//Use pressure flag allows you to ignore the normal environment based checks, allowing sounds that can be heard in/from space
+			if (use_pressure)
+				if (hearer_env && source_env)
+					var/pressure = min(hearer_env.return_pressure(), source_env.return_pressure())
 
-		//Use pressure flag allows you to ignore the normal environment based checks, allowing sounds that can be heard in/from space
-		if (use_pressure)
-			if (hearer_env && source_env)
-				var/pressure = min(hearer_env.return_pressure(), source_env.return_pressure())
+					if (pressure < ONE_ATMOSPHERE)
+						pressure_factor = max((pressure - SOUND_MINIMUM_PRESSURE)/(ONE_ATMOSPHERE - SOUND_MINIMUM_PRESSURE), 0)
+				else //in space
+					pressure_factor = 0
 
-				if (pressure < ONE_ATMOSPHERE)
-					pressure_factor = max((pressure - SOUND_MINIMUM_PRESSURE)/(ONE_ATMOSPHERE - SOUND_MINIMUM_PRESSURE), 0)
-			else //in space
-				pressure_factor = 0
+				if (distance <= 1)
+					pressure_factor = max(pressure_factor, 0.15)	//hearing through contact
 
-			if (distance <= 1)
-				pressure_factor = max(pressure_factor, 0.15)	//hearing through contact
+				S.volume *= pressure_factor
 
-			S.volume *= pressure_factor
+			if (S.volume <= 0)
+				return	//no volume means no sound
 
-		if (S.volume <= 0)
-			return	//no volume means no sound
-
-		var/dx = turf_source.x - T.x // Hearing from the right/left
-		S.x = dx
-		var/dz = turf_source.y - T.y // Hearing from infront/behind
-		S.z = dz
+			var/dx = turf_source.x - T.x // Hearing from the right/left
+			S.x = dx
+			var/dz = turf_source.y - T.y // Hearing from infront/behind
+			S.z = dz
 		// The y value is for above your head, but there is no ceiling in 2d spessmens.
-		S.y = 1
-		S.falloff = (falloff ? falloff : FALLOFF_SOUNDS)
+			S.y = 1
+			S.falloff = (falloff ? falloff : FALLOFF_SOUNDS)
 
 	if(!is_global)
 
@@ -342,7 +344,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 
 		else if (pressure_factor < 0.5)
 			S.environment = SPACE
-		else
+		else if(!istype(src, /mob/new_player/))//again we may be in lobby
 			var/area/A = get_area(src)
 			S.environment = A.sound_env
 
