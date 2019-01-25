@@ -1361,3 +1361,30 @@ datum/supply_pack/randomised/spacesuit
 	crate_name = "Spare Crate"
 	containertype = /obj/structure/closet/crate
 	group = "Operations"
+
+datum/supply_pack/randomised/suitmodules
+	num_contained = 2
+	contains = list(/obj/random/rig_module)
+	name = "Surplus Hardsuit Modules"
+	cost = 2000
+	crate_name = "Surplus Crate"
+	containertype = /obj/structure/closet/crate/secure/gear
+	group = "Operations"
+
+datum/supply_pack/randomised/powercells
+	num_contained = 5
+	contains = list(/obj/random/powercell)
+	name = "Surplus Power Cells"
+	cost = 1000
+	crate_name = "Surplus Crate"
+	containertype = /obj/structure/closet/crate
+	group = "Engineering"
+
+datum/supply_pack/randomised/lootcrate
+	num_contained = 10
+	contains = list(/obj/random/lowkeyrandom)
+	name = "Asters Guild Lootcrate"
+	cost = 1500
+	crate_name = "Guild Lootcrate"
+	containertype = /obj/structure/closet/crate/secure/gear
+	group = "Supply"
