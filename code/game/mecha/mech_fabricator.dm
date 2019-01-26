@@ -199,7 +199,7 @@
 
 /obj/machinery/mecha_part_fabricator/proc/can_build(var/datum/design/D)
 	for(var/M in D.materials)
-		if(materials[M] < D.materials[M])
+		if(materials[M] < round(D.materials[M] * mat_efficiency, 0.01))
 			return FALSE
 	return TRUE
 
@@ -239,12 +239,7 @@
 		var/datum/design/D = files.known_designs[i]
 		if(!D.build_path || !(D.build_type & MECHFAB))
 			continue
-		var/iconName = "[D.type].png"
-		iconName = sanitizeFileName(iconName)
-		// byond rewrites cache every time despite saying its not in documentation
-		if(user && user.client && !user.client.cache.Find(iconName))
-			user << browse_rsc(getFlatTypeIcon(D.build_path), iconName)
-			user.client.cache.Add(iconName)
+		var/iconName = cacheAtomIcon(D.build_path, user, TRUE)
 		. += list(list("name" = D.name, "id" = i, "category" = D.category, "resourses" = get_design_resourses(D), "time" = get_design_time(D), "icon" = iconName))
 
 /obj/machinery/mecha_part_fabricator/proc/get_design_resourses(var/datum/design/D)

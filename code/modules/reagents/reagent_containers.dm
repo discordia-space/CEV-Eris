@@ -7,6 +7,7 @@
 	var/amount_per_transfer_from_this = 5
 	var/possible_transfer_amounts = list(5,10,15,25,30)
 	var/volume = 30
+	var/list/preloaded = null
 
 /obj/item/weapon/reagent_containers/verb/set_APTFT() //set amount_per_transfer_from_this
 	set name = "Set transfer amount"
@@ -21,6 +22,10 @@
 	if(!possible_transfer_amounts)
 		src.verbs -= /obj/item/weapon/reagent_containers/verb/set_APTFT
 	create_reagents(volume)
+	if(preloaded)
+		for(var/reagent in preloaded)
+			reagents.add_reagent(reagent, preloaded[reagent])
+
 
 /obj/item/weapon/reagent_containers/attack_self(mob/user as mob)
 	return
@@ -67,7 +72,10 @@
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [name] to splash [target.name] ([target.key]). Reagents: [contained]</font>")
 	msg_admin_attack("[user.name] ([user.ckey]) splashed [target.name] ([target.key]) with [name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
-	user.visible_message(SPAN_DANGER("[target] has been splashed with something by [user]!"), "<span class = 'notice'>You splash the solution onto [target].</span>")
+	user.visible_message(
+		SPAN_DANGER("[target] has been splashed with something by [user]!"),
+		SPAN_NOTICE("You splash the solution onto [target].")
+	)
 	reagents.splash(target, reagents.total_volume)
 	return 1
 
@@ -108,7 +116,7 @@
 		feed_sound(user)
 		return 1
 	else
-		if(ishuman(user))
+		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
 			if(!H.check_has_mouth())
 				user << "Where do you intend to put \the [src]? \The [H] doesn't have a mouth!"
@@ -121,7 +129,7 @@
 		other_feed_message_start(user, target)
 
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-		if(!do_mob(user, target))
+		if(!do_mob(user, target, 15))
 			return
 
 		other_feed_message_finish(user, target)

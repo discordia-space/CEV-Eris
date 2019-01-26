@@ -100,10 +100,11 @@
 	var/shielded = 0
 	var/b_loss = null
 	var/f_loss = null
+	var/bomb_defense = getarmor(null, "bomb")
 	switch (severity)
 		if (1.0)
 			b_loss += 500
-			if (!prob(getarmor(null, "bomb")))
+			if (!prob(bomb_defense))
 				gib()
 				return
 			else
@@ -117,12 +118,6 @@
 			if (!shielded)
 				b_loss += 60
 
-			f_loss += 60
-
-			if (prob(getarmor(null, "bomb")))
-				b_loss = b_loss/1.5
-				f_loss = f_loss/1.5
-
 			if (!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
 				ear_damage += 30
 				ear_deaf += 120
@@ -131,14 +126,14 @@
 
 		if(3.0)
 			b_loss += 30
-			if (prob(getarmor(null, "bomb")))
-				b_loss = b_loss/2
 			if (!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
 				ear_damage += 15
 				ear_deaf += 60
 			if (prob(50) && !shielded)
 				Paralyse(10)
-
+	if (bomb_defense)
+		b_loss = max(b_loss - bomb_defense, 0)
+		f_loss = max(f_loss - bomb_defense, 0)
 	var/update = 0
 
 	// focus most of the blast on one organ
@@ -1295,16 +1290,17 @@ var/list/rank_prefix = list(\
 		if(C.body_parts_covered & FACE)
 			// Do not show flavor if face is hidden
 			return
-
-	flavor_text = src.flavor_text
+	
+	if(client)
+		flavor_text = client.prefs.flavor_text
 
 	if (flavor_text && flavor_text != "" && !shrink)
 		var/msg = trim(replacetext(flavor_text, "\n", " "))
 		if(!msg) return ""
 		if(lentext(msg) <= 40)
-			return "\blue [msg]"
+			return "<font color='blue'>[russian_to_cp1251(msg)]</font>"
 		else
-			return "\blue [copytext_preserve_html(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a>"
+			return "<font color='blue'>[copytext_preserve_html(russian_to_cp1251(msg), 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a></font>"
 	return ..()
 
 /mob/living/carbon/human/getDNA()

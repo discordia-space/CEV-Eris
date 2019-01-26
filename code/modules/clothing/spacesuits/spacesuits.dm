@@ -67,17 +67,7 @@
 	permeability_coefficient = 0.02
 	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	allowed = list(
-	/obj/item/weapon/storage/pouch/,
-	/obj/item/weapon/gun,
-	/obj/item/weapon/melee/baton,
-	/obj/item/weapon/melee/energy/sword,
-	/obj/item/ammo_magazine,
-	/obj/item/ammo_casing,
-	/obj/item/weapon/handcuffs,
-	/obj/item/weapon/tank,
-	/obj/item/device/suit_cooling_unit,
-	/obj/item/weapon/cell)
+	matter = list(MATERIAL_PLASTIC = 30, MATERIAL_STEEL = 10)
 	slowdown = 3
 	armor = list(melee = 15, bullet = 15, laser = 15,energy = 0, bomb = 0, bio = 100, rad = 50)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
@@ -87,7 +77,6 @@
 	species_restricted = list("exclude")
 	equip_delay = 12 SECONDS
 	var/list/supporting_limbs //If not-null, automatically splints breaks. Checked when removing the suit.
-
 
 
 /obj/item/clothing/suit/space/equipped(mob/M)

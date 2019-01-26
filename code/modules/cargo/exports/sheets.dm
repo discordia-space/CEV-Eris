@@ -68,19 +68,19 @@
 
 // Metal. Common building material.
 /datum/export/stack/metal
-	cost = 5
+	cost = 2
 	message = "of metal"
 	export_types = list(/obj/item/stack/material/steel)
 
 // Glass. Common building material.
 /datum/export/stack/glass
-	cost = 5
+	cost = 2
 	message = "of glass"
 	export_types = list(/obj/item/stack/material/glass)
 
 // Plasteel. Lightweight, strong and contains some plasma too.
 /datum/export/stack/plasteel
-	cost = 85
+	cost = 10
 	message = "of plasteel"
 	export_types = list(/obj/item/stack/material/plasteel)
 
@@ -92,13 +92,13 @@
 
 // Wood. Quite expensive in the grim and dark 26 century.
 /datum/export/stack/wood
-	cost = 25
+	cost = 10
 	unit_name = "wood plank"
 	export_types = list(/obj/item/stack/material/wood)
 
 // Cardboard. Cheap.
 /datum/export/stack/cardboard
-	cost = 2
+	cost = 1
 	message = "of cardboard"
 	export_types = list(/obj/item/stack/material/cardboard)
 
@@ -127,13 +127,13 @@
 
 // Diamonds. Rare and expensive.
 /datum/export/stack/diamond
-	cost = 2500
+	cost = 30
 	export_types = list(/obj/item/stack/material/diamond)
 	message = "of diamonds"
 
 // Phoron. The oil of 26 century. The reason why you are here.
 /datum/export/stack/phoron
-	cost = 300
+	cost = 25
 	export_types = list(/obj/item/stack/material/plasma)
 	message = "of phoron"
 
@@ -144,19 +144,19 @@
 
 // Uranium. Still useful for both power generation and nuclear annihilation.
 /datum/export/stack/uranium
-	cost = 400
+	cost = 20
 	export_types = list(/obj/item/stack/material/diamond)
 	message = "of uranium"
 
 // Gold. Used in electronics and corrosion-resistant plating.
 /datum/export/stack/gold
-	cost = 250
+	cost = 25
 	export_types = list(/obj/item/stack/material/gold)
 	message = "of gold"
 
 // Silver.
 /datum/export/stack/silver
-	cost = 100
+	cost = 10
 	export_types = list(/obj/item/stack/material/silver)
 	message = "of silver"
 
@@ -168,7 +168,7 @@
 
 // Platinum.
 /datum/export/stack/platinum
-	cost = 1000
+	cost = 40
 	message = "of platinum"
 	export_types = list(/obj/item/stack/material/platinum)
 

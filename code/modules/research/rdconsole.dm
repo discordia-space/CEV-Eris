@@ -666,7 +666,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					dat += "<LI><B>[D.name]</B><div style = 'float: right;'>[temp_dat]</div>"
 				dat += "</div>"
 
-				
+
 			dat += "</UL>"
 
 		if(3.2) //Protolathe Material Storage Sub-menu
@@ -740,12 +740,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					temp_dat += ", [D.chemicals[T]] [CallReagentName(T)]"
 				if(temp_dat)
 					temp_dat = " \[[copytext(temp_dat,3)]\]"
-				var/iconName = "[D.type].png"
-				iconName = sanitizeFileName(iconName)
-				// byond rewrites cache every time despite saying its not in documentation
-				if(user && user.client && !user.client.cache.Find(iconName))
-					user << browse_rsc(getFlatTypeIcon(D.build_path), iconName)
-					user.client.cache.Add(iconName)
+				var/iconName = cacheAtomIcon(D.build_path, user, TRUE)
 				dat += "<div style ='float: left; margin-left:0px; max-height:24px; max-width:24px; height:24px;width:24px;' class='statusDisplayItem'><img src= [iconName] height=24 width=24></div>"
 
 				if(linked_imprinter.canBuild(D))
@@ -759,9 +754,10 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A> || "
 			dat += "<A href='?src=\ref[src];menu=4.1'>Imprinter Menu</A><HR>"
 			dat += "Chemical Storage<BR><HR>"
-			for(var/datum/reagent/R in linked_imprinter.reagents.reagent_list)
-				dat += "Name: [R.name] | Units: [R.volume] "
-				dat += "<A href='?src=\ref[src];disposeI=[R.id]'>(Purge)</A><BR>"
+			if(linked_imprinter.reagents.reagent_list.len)
+				for(var/datum/reagent/R in linked_imprinter.reagents.reagent_list)
+					dat += "Name: [R.name] | Units: [R.volume] "
+					dat += "<A href='?src=\ref[src];disposeI=[R.id]'>(Purge)</A><BR>"
 				dat += "<A href='?src=\ref[src];disposeallI=1'><U>Disposal All Chemicals in Storage</U></A><BR>"
 
 		if(4.3)

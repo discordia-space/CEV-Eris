@@ -158,6 +158,14 @@ research holder datum.
 				else
 					D.req_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2)
 				D.build_path = IC.type
+				var/list/mats = IC.matter
+				if (mats && mats.len)
+					for (var/a in mats)
+						LAZYAPLUS(D.materials, a, mats[a])
+				mats = IC.matter_reagents
+				if (mats && mats.len)
+					for (var/a in mats)
+						LAZYAPLUS(D.chemicals, a, mats[a])
 				possible_designs += D
 
 
@@ -239,7 +247,6 @@ research holder datum.
 	icon_state = "blue"
 	item_state = "card-id"
 	w_class = ITEM_SIZE_SMALL
-	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	var/datum/tech/stored
 
 /obj/item/weapon/disk/tech_disk/New()
@@ -253,7 +260,6 @@ research holder datum.
 	icon_state = "yellow"
 	item_state = "card-id"
 	w_class = ITEM_SIZE_SMALL
-	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	var/datum/design/blueprint
 
 /obj/item/weapon/disk/design_disk/New()

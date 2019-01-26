@@ -255,11 +255,12 @@
 	density = 1
 	anchored = 1
 	layer = BELOW_OBJ_LAYER
+	circuit = /obj/item/weapon/circuitboard/chemmaster
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "mixer0"
 	use_power = 1
 	idle_power_usage = 20
-	var/beaker = null
+	var/obj/item/weapon/reagent_containers/glass/beaker = null
 	var/obj/item/weapon/storage/pill_bottle/loaded_pill_bottle = null
 	var/mode = 0
 	var/condi = 0
@@ -271,21 +272,27 @@
 	var/max_pill_count = 20
 	flags = OPENCONTAINER
 
-/obj/machinery/chem_master/New()
-	..()
-	var/datum/reagents/R = new/datum/reagents(120)
-	reagents = R
-	R.my_atom = src
+/obj/machinery/chem_master/RefreshParts()
+	if(!reagents)
+		create_reagents(10)
+	reagents.maximum_volume = 0
+	for(var/obj/item/weapon/reagent_containers/glass/G in component_parts)
+		reagents.maximum_volume += G.volume
+		G.reagents.trans_to_holder(reagents, G.volume)
+
+/obj/machinery/chem_master/dismantle()
+	for(var/obj/item/weapon/reagent_containers/glass/G in component_parts)
+		var/amount = G.reagents.get_free_space()
+		reagents.trans_to_holder(G, amount)
+	. = ..()
 
 /obj/machinery/chem_master/ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
-			return
 		if(2.0)
 			if (prob(50))
 				qdel(src)
-				return
 
 /obj/machinery/chem_master/attackby(var/obj/item/weapon/B as obj, var/mob/user as mob)
 
@@ -328,7 +335,7 @@
 		return
 
 	if(beaker)
-		var/datum/reagents/R = beaker:reagents
+		var/datum/reagents/R = beaker.reagents
 		if (href_list["analyze"])
 			var/dat = ""
 			if(!condi)
@@ -353,23 +360,27 @@
 
 			if(href_list["amount"])
 				var/id = href_list["add"]
-				var/amount = Clamp((text2num(href_list["amount"])), 0, 200)
+				var/amount = Clamp((text2num(href_list["amount"])), 0, reagents.get_free_space())
 				R.trans_id_to(src, id, amount)
+				if(reagents.get_free_space() < 1)
+					usr << SPAN_WARNING("The [name] is full!")
 
 		else if (href_list["addcustom"])
 
 			var/id = href_list["addcustom"]
 			useramount = input("Select the amount to transfer.", 30, useramount) as num
-			useramount = Clamp(useramount, 0, 200)
+			useramount = Clamp(useramount, 0, reagents.total_volume)
 			src.Topic(null, list("amount" = "[useramount]", "add" = "[id]"))
 
 		else if (href_list["remove"])
 
 			if(href_list["amount"])
 				var/id = href_list["remove"]
-				var/amount = Clamp((text2num(href_list["amount"])), 0, 200)
+				var/amount = Clamp((text2num(href_list["amount"])), 0, beaker.reagents.get_free_space())
 				if(mode)
 					reagents.trans_id_to(beaker, id, amount)
+					if(beaker.reagents.get_free_space() < 1)
+						usr << SPAN_WARNING("The [name] is full!")
 				else
 					reagents.remove_reagent(id, amount)
 
@@ -496,15 +507,20 @@
 		if(!R.total_volume)
 			dat += "Beaker is empty."
 		else
+			var/free_space = reagents.get_free_space()
 			dat += "Add to buffer:<BR>"
 			for(var/datum/reagent/G in R.reagent_list)
 				dat += "[G.name] , [G.volume] Units - "
 				dat += "<A href='?src=\ref[src];analyze=1;desc=[G.description];name=[G.name]'>(Analyze)</A> "
-				dat += "<A href='?src=\ref[src];add=[G.id];amount=1'>(1)</A> "
-				dat += "<A href='?src=\ref[src];add=[G.id];amount=5'>(5)</A> "
-				dat += "<A href='?src=\ref[src];add=[G.id];amount=10'>(10)</A> "
+				for(var/volume in list(1, 5, 10))
+					if(free_space >= volume)
+						dat += "<A href='?src=\ref[src];add=[G.id];amount=[volume]'>([volume])</A> "
+					else
+						dat += "([volume]) "
 				dat += "<A href='?src=\ref[src];add=[G.id];amount=[G.volume]'>(All)</A> "
 				dat += "<A href='?src=\ref[src];addcustom=[G.id]'>(Custom)</A><BR>"
+			if(free_space < 1)
+				dat += "The [name] is full!"
 
 		dat += "<HR>Transfer to <A href='?src=\ref[src];toggle=1'>[(!mode ? "disposal" : "beaker")]:</A><BR>"
 		if(reagents.total_volume)

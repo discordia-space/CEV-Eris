@@ -332,7 +332,7 @@ SUBSYSTEM_DEF(job)
 	if(H.mind && job.head_position)
 		var/remembered_info = ""
 		var/datum/money_account/department_account = department_accounts[job.department]
-
+		department_account.owner_name = H.real_name //Register them as the point of contact for this account
 		if(department_account)
 			remembered_info += "<b>Your department's account number is:</b> #[department_account.account_number]<br>"
 			remembered_info += "<b>Your department's account pin is:</b> [department_account.remote_access_pin]<br>"
@@ -410,7 +410,7 @@ proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
 				var/permitted = 1
 				if(permitted)
 					if(G.allowed_roles)
-						if(job.type in G.allowed_roles)
+						if(job.title in G.allowed_roles)
 							permitted = 1
 						else
 							permitted = 0

@@ -226,7 +226,8 @@ Class Procs:
 	if(ispath(circuit))
 		circuit = new circuit
 
-	component_parts = list()
+	if (!component_parts)
+		component_parts = list()
 	if(circuit)
 		component_parts += circuit
 

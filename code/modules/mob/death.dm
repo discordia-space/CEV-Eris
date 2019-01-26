@@ -18,7 +18,10 @@
 	flick(anim, animation)
 	if(do_gibs) gibs(loc, dna)
 
+
+
 	spawn(15)
+		drop_embedded()
 		if(animation)	qdel(animation)
 		if(src)			qdel(src)
 
@@ -45,8 +48,11 @@
 	flick(anim, animation)
 	new remains(loc)
 
+
+
 	dead_mob_list -= src
 	spawn(15)
+		drop_embedded()
 		if(animation)	qdel(animation)
 		if(src)			qdel(src)
 

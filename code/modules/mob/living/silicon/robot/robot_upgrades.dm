@@ -102,12 +102,10 @@
 	require_module = 1
 
 /obj/item/borg/upgrade/vtec/action(var/mob/living/silicon/robot/R)
-	if(..()) return 0
-
-	if(R.speed == -1)
+	if(..())
 		return 0
 
-	R.speed--
+	R.speed_factor += 0.1
 	return 1
 
 

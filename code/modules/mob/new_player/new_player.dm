@@ -240,12 +240,12 @@
 	SSjob.AssignRole(src, rank, 1)
 	var/datum/job/job = src.mind.assigned_job
 	var/mob/living/character = create_character()	//creates the human and transfers vars and mind
-	
+
 	// AIs don't need a spawnpoint, they must spawn at an empty core
 	if(rank == "AI")
 
 		character = character.AIize(move=0) // AIize the character, but don't move them yet
-		SSticker.minds += character.mind
+
 			// IsJobAvailable for AI checks that there is an empty core available in this list
 		var/obj/structure/AIcore/deactivated/C = empty_playable_ai_cores[1]
 		empty_playable_ai_cores -= C
@@ -277,8 +277,7 @@
 			//Grab some data from the character prefs for use in random news procs.
 
 
-	//Add their mind to the global list
-	SSticker.minds += character.mind
+
 	AnnounceArrival(character, character.mind.assigned_role, spawnpoint.message)	//will not broadcast if there is no message
 
 	qdel(src)

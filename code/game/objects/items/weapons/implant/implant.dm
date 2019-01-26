@@ -7,6 +7,7 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "implant"
 	w_class = ITEM_SIZE_TINY
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_GLASS = 1)
 	var/implanted = FALSE
 	var/mob/living/carbon/human/wearer = null
 	var/obj/item/organ/external/part = null
@@ -28,22 +29,25 @@
 	return external
 
 //return TRUE for implanter icon update.
-/obj/item/weapon/implant/proc/install(var/mob/living/carbon/human/target, var/organ, var/mob/user)
-	var/obj/item/organ/external/affected = target.organs_by_name[organ]
-	if(!affected)
-		if(allowed_organs.len)
-			organ = pick(allowed_organs)
-		else
-			organ = BP_CHEST
-	affected = target.organs_by_name[organ]
+/obj/item/weapon/implant/proc/install(var/mob/living/target, var/organ, var/mob/user)
+	var/obj/item/organ/external/affected
+	if (ishuman(target))
+		var/mob/living/carbon/human/H = target
+		affected = H.organs_by_name[organ]
+		if(!affected)
+			if(allowed_organs.len)
+				organ = pick(allowed_organs)
+			else
+				organ = BP_CHEST
+		affected = H.organs_by_name[organ]
 
-	if(!affected)
-		user << SPAN_WARNING("[target] miss that body part!.")
-		return
+		if(!affected)
+			user << SPAN_WARNING("[H] is missing that body part!.")
+			return
 
-	if(allowed_organs && allowed_organs.len && !(organ in allowed_organs))
-		user << SPAN_WARNING("[src] cannot be implanted in this limb.")
-		return
+		if(allowed_organs && allowed_organs.len && !(organ in allowed_organs))
+			user << SPAN_WARNING("[src] cannot be implanted in this limb.")
+			return
 
 	if(!can_install(target, affected))
 		user << SPAN_WARNING("You can't install [src].")

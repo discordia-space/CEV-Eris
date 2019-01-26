@@ -11,6 +11,7 @@
 	var/stage = 0
 	var/state = 0
 	var/path = 0
+	matter = list(MATERIAL_STEEL = 3)
 	var/obj/item/device/assembly_holder/detonator = null
 	var/list/beakers = new/list()
 	var/list/allowed_containers = list(/obj/item/weapon/reagent_containers/glass/beaker, /obj/item/weapon/reagent_containers/glass/bottle)
@@ -193,6 +194,7 @@
 	allowed_containers = list(/obj/item/weapon/reagent_containers/glass)
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
 	affected_area = 4
+	matter = list(MATERIAL_STEEL = 5)
 
 /obj/item/weapon/grenade/chem_grenade/metalfoam
 	name = "Asters \"Stop-Space\""
