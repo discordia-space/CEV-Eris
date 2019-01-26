@@ -10,6 +10,9 @@
 	..()
 	z_level = nloc.z
 
+	if(height <= 0)
+		CRASH("Map data height not set. ([name], [z_level])")
+
 	var/original_name = name
 	var/original_level = z_level
 
