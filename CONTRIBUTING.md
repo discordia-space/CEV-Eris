@@ -17,6 +17,8 @@ Be flexible. Very few submissions are accepted as-is, almost every PR will have 
 
 Finish what you start. A project is only done when it's merged, not just when the PR is up. After submitting something, try to make some time to be available over the next week or so to fix any requested changes after its reviewed. We won't merge unfinished work.
 
+Ask for help whenever you need it. No man is an island. Don't try to struggle alone, nobody will judge you for asking for help with even silly things
+
 
 # Changelog Entries
 Any pull requests which add or change user-visible features should have a changelog written up. See example.yml in the html/changelogs directory. Make a copy of it, insert your own name, and write about what you've changed. Include it with your pull request. Not everything needs a changelog, only features that players will notice or care about. Minor bugfixes or code refactors can usually go without.
@@ -34,11 +36,15 @@ Try to comment your code well, there's rarely such a thing as overexplaining. co
 
 Values which affect game balance, such as movespeeds, health values and weapon damage, should not be written in or read from config files. Whenever working on an area where such values already exist in config, phase them out and use defines or global variables instead
 
+When designing new systems and features, try not to create an undue burden for future coders who will have to maintain your work.
+
 The following features or systems are deprecated and should not be used if at all possible. 
 Datacore: Use modular records instead
 /obj/item/device/pda, and PDA cartridges: Use modular PDAs instead.
 Single Function computer consoles: Use modular computers instead
 Direct html browse calls: Use NanoUI instead
+
+Avoid "Cargo Cult Programming", the ritual of things you don't understand. Try your best to understand the function of codeblocks you copy and paste
 
 
 # Code style
@@ -174,6 +180,27 @@ var/count = 0
 ```
 /obj/prox_sensor/upd_sprites()
 var/c = 1
+```
+***
+
+
+Name your proc parameters properly to prevent name conflicts. If in doubt, use the prefix _ to clearly indicate an input parameter.
+Do not use src.var if it can be helped
+***Good:***
+```
+/obj/set_name(var/newname)
+	name = newname
+	
+/obj/set_name(var/_name)
+	name = _name
+```
+***Bad:***
+```
+/obj/set_name(var/name)
+	name = name
+	
+/obj/set_name(var/name)
+	src.name = name
 ```
 ***
 
