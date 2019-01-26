@@ -41,7 +41,7 @@
 	icon_state = "ihs_rig"
 	helm_type = /obj/item/clothing/head/helmet/space/rig/ihs_combat
 	suit_type = "ironhammer hardsuit"
-	armor = list(melee = 60, bullet = 55, laser = 55, energy = 55, bomb = 45, bio = 100, rad = 40)
+	armor = list(melee = 65, bullet = 60, laser = 60, energy = 55, bomb = 45, bio = 100, rad = 70)
 	slowdown = 1
 	offline_slowdown = 3
 	offline_vision_restriction = 0

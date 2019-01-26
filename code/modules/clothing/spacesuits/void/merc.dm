@@ -5,7 +5,7 @@
 	item_state = "scaf"
 	//Headshots OP so these have tons of head protection. Aim for the body or suffer
 	//These helmets are essentially an impenetrable fortress for the head
-	armor = list(melee = 65, bullet = 75, laser = 65,energy = 25, bomb = 45, bio = 100, rad = 80)
+	armor = list(melee = 65, bullet = 78, laser = 65,energy = 45, bomb = 55, bio = 100, rad = 80)
 	siemens_coefficient = 0.35
 	species_restricted = list("Human")
 	camera_networks = list(NETWORK_MERCENARY)
@@ -16,12 +16,12 @@
 	name = "SCAF suit"
 	desc = "A bulky antique suit of refurbished infantry armour, retrofitted with seals and coatings to make it EVA capable"
 	item_state = "scaf"
-	slowdown = 1.5
+	slowdown = 1.35
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 	w_class = ITEM_SIZE_NORMAL
 	//Melee attacks to the torso are the weakness of this armor.  It's optimised for ballistic resistance
-	armor = list(melee = 40, bullet = 65, laser = 50, energy = 15, bomb = 35, bio = 100, rad = 80)
+	armor = list(melee = 45, bullet = 72, laser = 55, energy = 45, bomb = 55, bio = 100, rad = 80)
 	siemens_coefficient = 0.35
 	species_restricted = list("Human")
 
