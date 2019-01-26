@@ -10,32 +10,25 @@
 /turf/space
 	isTransparent = TRUE
 
-/turf/proc/getDarknessOverlay()
-	var/image/I
-	/*if (I)
-		DARKOVER = I
-		return I*/
-
-	I = image('icons/turf/space.dmi', "white")
-	I.plane = calculate_plane(z,OVER_OPENSPACE_PLANE)
-	I.layer = ABOVE_LIGHTING_LAYER
-	I.blend_mode = BLEND_MULTIPLY
-	I.color = rgb(0,0,0,110)
-
-	DARKOVER = I
-	return I
 
 /turf/simulated/open/update_icon(var/update_neighbors, var/roundstart_update = FALSE)
 	if (SSticker.current_state != GAME_STATE_PLAYING)
 		return
 
+	if (roundstart_update)
+		if (_initialized_transparency)
+			return
+		var/turf/testBelow = GetBelow(src)
+		if (testBelow && testBelow.isTransparent && !testBelow._initialized_transparency)
+			return //turf below will update this one
 
-	overlays.Cut()
+	var/turf/below = GetBelow(src)
+	if (!below || istype(below, /turf/space))
+		ChangeTurf(/turf/space)
+		return
 
 	vis_contents.Cut()
 	vis_contents.Add(GetBelow(src))
-
-	overlays += getDarknessOverlay()
 
 	updateFallability()
 
@@ -46,6 +39,13 @@
 	if (SSticker.current_state < GAME_STATE_PLAYING)
 		return
 
+	if (roundstart_update)
+		if (_initialized_transparency)
+			return
+		var/turf/testBelow = GetBelow(src)
+		if (testBelow && testBelow.isTransparent && !testBelow._initialized_transparency)
+			return //turf below will update this one
+
 	overlays.Cut()
 	var/turf/below = GetBelow(src)
 	if (istype(below, /turf/simulated/open))
@@ -55,8 +55,6 @@
 	if (below)
 		vis_contents.Cut()
 		vis_contents.Add(below)
-
-		overlays += getDarknessOverlay()
 
 	_initialized_transparency = TRUE
 	update_openspace()

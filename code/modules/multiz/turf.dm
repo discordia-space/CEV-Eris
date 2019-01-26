@@ -34,7 +34,7 @@ see multiz/movement.dm for some info.
 /turf/simulated/open
 	name = "open space"
 	icon = 'icons/turf/space.dmi'
-	icon_state = "transparent"
+	icon_state = "black"
 	density = 0
 	plane = OPENSPACE_PLANE
 	pathweight = 100000 //Seriously, don't try and path over this one numbnuts
@@ -50,6 +50,9 @@ see multiz/movement.dm for some info.
 
 	var/tmp/list/climbers
 
+/turf/simulated/open/New()
+	icon_state = "transparent"
+	..()
 
 /turf/simulated/open/LateInitialize()
 	. = ..()
