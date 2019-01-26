@@ -87,6 +87,6 @@
 	. = ..()
 	if(known)
 		layer = 2
-		set_plane(-1)
+		plane = -1
 		for(var/obj/machinery/computer/helm/H in SSmachines.machinery)
 			H.get_known_sectors()

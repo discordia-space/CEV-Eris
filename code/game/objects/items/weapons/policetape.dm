@@ -249,8 +249,6 @@ var/list/tape_roll_applications = list()
 		P.loc = locate(T.x,T.y,T.z)
 		P.update_icon()
 		P.layer = 3.2
-		P.original_plane = plane
-		P.update_plane()
 		user << SPAN_NOTICE("You finish placing \the [src].")
 
 	if (istype(A, /turf/simulated/floor) ||istype(A, /turf/unsimulated/floor))

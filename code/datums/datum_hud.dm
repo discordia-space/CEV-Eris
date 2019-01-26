@@ -1,8 +1,8 @@
 /datum/hud
 	var/name
-	var/list/HUDneed//for "active" elements (health)
+	var/list/HUDneed//для "активных" элементов (прим. здоровье)
 //	var/list/HUDprocess = list()
-	var/list/slot_data//inventory stuff (for mob variable HUDinventory)
+	var/list/slot_data//inventory styff (for mob variable HUDinventory)
 	var/icon/icon = null //what dmi we use
 	var/list/HUDfrippery //for nice view
 	var/list/HUDoverlays //tech stuff (flash overlay, pain overlay, etc.)
@@ -12,60 +12,17 @@
 	var/list/IconUnderlays //underlays data for HUD objects
 	var/MinStyleFlag = FALSE //that HUD style have compact version?
 	var/list/obj/screen/plane_master/plane_masters = list() // see "appearance_flags" in the ref, assoc list of "[plane]" = object
-	var/list/obj/screen/openspace_overlay/openspace_overlays = list()
 
-/datum/hud/proc/updatePlaneMasters(mob/mymob)
-	var/turf/T = get_turf(mymob)
-	if(!T)
-		return
-
-	var/z = T.z
-
-	var/datum/level_data/LD = z_levels[z]
-
-	for(var/pmaster in plane_masters)
-		var/obj/screen/plane_master/instance = plane_masters[pmaster]
-		mymob.client.screen -= instance
-		qdel(instance)
-
-	plane_masters.Cut()
-
-	for(var/over in openspace_overlays)
-		var/obj/screen/openspace_overlay/instance = openspace_overlays[over]
-		mymob.client.screen -= instance
-		qdel(instance)
-
-	openspace_overlays.Cut()
-	var/local_z = z-(LD.original_level-1)
-	for(var/zi in 1 to local_z)
-		for(var/mytype in subtypesof(/obj/screen/plane_master))
-			var/obj/screen/plane_master/instance = new mytype()
-
-			instance.plane = calculate_plane(zi,instance.plane)
-
-			plane_masters["[zi]-[mytype]"] = instance
-			mymob.client.screen += instance
-			instance.backdrop(mymob)
-
-		for(var/pl in list(GAME_PLANE,FLOOR_PLANE))
-			if(zi < local_z)
-				var/zdiff = local_z-(zi-1)
-
-				var/obj/screen/openspace_overlay/oover = new
-				oover.plane = calculate_plane(zi,pl)
-				oover.alpha = 255-(150/zdiff)
-				openspace_overlays["[zi]-[oover.plane]"] = oover
-				mymob.client.screen += oover
-
-
-/mob/update_plane()
-	..()
-	if(hud_used)
-		hud_used.updatePlaneMasters(src)
+/datum/hud/proc/buildPlaneMasters(mob/mymob)
+	for(var/mytype in subtypesof(/obj/screen/plane_master))
+		var/obj/screen/plane_master/instance = new mytype()
+		plane_masters["[instance.plane]"] = instance
+		mymob.client.screen += instance
+		instance.backdrop(mymob)
 
 /datum/hud/New(mob/mymob)
 	if(mymob)
-		updatePlaneMasters(mymob)
+		buildPlaneMasters(mymob)
 
 /datum/hud/human
 	name = "ErisStyle"

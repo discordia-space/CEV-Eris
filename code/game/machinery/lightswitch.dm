@@ -52,11 +52,11 @@
 		icon_state = "light-p"
 		set_light(0)
 		layer = initial(layer)
-		set_plane(initial(plane))
+		plane = initial(plane)
 	else
 		icon_state = "light[on]"
 		set_light(2, 1.5, on ? "#82FF4C" : "#F86060")
-		set_plane(ABOVE_LIGHTING_PLANE)
+		plane = ABOVE_LIGHTING_PLANE
 		layer = ABOVE_LIGHTING_LAYER
 
 /obj/machinery/light_switch/examine(mob/user)

@@ -22,13 +22,6 @@
 		var/turf/T = get_turf(owner.client.eye)
 		screen_loc = "CENTER:[-224-(T&&T.x)],CENTER:[-224-(T&&T.y)]"
 
-/obj/parallax/update_plane()
-	return
-
-/obj/parallax/set_plane(var/np)
-	plane = np
-
-
 /mob
 	var/obj/parallax/parallax
 
