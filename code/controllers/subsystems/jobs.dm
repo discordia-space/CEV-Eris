@@ -410,7 +410,7 @@ proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
 				var/permitted = 1
 				if(permitted)
 					if(G.allowed_roles)
-						if(job.type in G.allowed_roles)
+						if(job.title in G.allowed_roles)
 							permitted = 1
 						else
 							permitted = 0
