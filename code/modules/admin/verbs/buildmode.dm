@@ -43,6 +43,12 @@
 	icon = 'icons/misc/buildmode.dmi'
 	var/obj/effect/bmode/buildholder/master = null
 
+/obj/effect/bmode/set_plane(var/np)
+	plane = np
+
+/obj/effect/bmode/update_plane()
+	return
+
 /obj/effect/bmode/Destroy()
 	if(master && master.cl)
 		master.cl.screen -= src

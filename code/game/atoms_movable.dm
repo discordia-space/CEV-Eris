@@ -85,6 +85,10 @@
 					AM.Crossed(src)
 			if(is_new_area && is_destination_turf)
 				destination.loc.Entered(src, origin)
+
+	if((!origin || !destination) || origin.z != destination.z)
+		update_plane()
+
 	return 1
 
 /atom/movable/proc/forceMoveOld(atom/destination)
@@ -314,6 +318,8 @@
 //This proc should never be overridden elsewhere at /atom/movable to keep directions sane.
 // Spoiler alert: it is, in moved.dm
 /atom/movable/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+	var/atom/oldloc = loc
+
 	if (glide_size_override > 0)
 		set_glide_size(glide_size_override)
 
@@ -364,8 +370,12 @@
 		src.move_speed = world.time - src.l_move_time
 		src.l_move_time = world.time
 		src.m_flag = 1
+
 		if ((A != src.loc && A && A.z == src.z))
 			src.last_move = get_dir(A, src.loc)
+
+	if((!loc || !oldloc) || loc.z != oldloc.z)
+		update_plane()
 
 // Wrapper of step() that also sets glide size to a specific value.
 /proc/step_glide(var/atom/movable/am, var/dir, var/glide_size_override)

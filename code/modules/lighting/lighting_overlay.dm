@@ -17,6 +17,7 @@
 
 	var/needs_update = FALSE
 
+
 /atom/movable/lighting_overlay/New(var/atom/loc, var/no_update = FALSE)
 	. = ..()
 	verbs.Cut()
@@ -30,9 +31,11 @@
 
 	update_overlay()
 
+	update_plane()
+
 /atom/movable/lighting_overlay/Destroy()
 	global.lighting_update_overlays -= src;
-	
+
 	var/turf/T = loc
 	if(istype(T))
 		T.lighting_overlay = null
