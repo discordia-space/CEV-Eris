@@ -409,8 +409,10 @@
 				else if(istype(loc, /obj/machinery/door/airlock))
 					var/obj/machinery/door/airlock/AD = loc
 					AD.take_out_wedged_item()
+					visible_message(SPAN_NOTICE("[src] drops out of [AD]."))
 				else
 					forceMove(get_turf(src))
+					visible_message(SPAN_NOTICE("[src] drops out of [loc]."))
 				return
 
 			//Hit yourself
@@ -478,6 +480,7 @@
 				if(istype(loc, /obj/machinery/door/airlock))
 					var/obj/machinery/door/airlock/AD = loc
 					AD.take_out_wedged_item()
+					visible_message(SPAN_NOTICE("[src] gets broken beyond repair by [AD]."))
 
 				qdel(src)
 				return

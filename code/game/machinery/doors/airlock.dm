@@ -1105,6 +1105,7 @@ There are 9 wires.
 		return FALSE
 
 	if(wedged_item)
+		shake_animation(12)
 		wedged_item.airlock_crush(DOOR_CRUSH_DAMAGE)
 		return FALSE
 
