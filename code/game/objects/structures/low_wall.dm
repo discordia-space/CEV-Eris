@@ -66,7 +66,6 @@
 
 
 /obj/structure/low_wall/Initialize()
-	..()
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/structure/low_wall/LateInitialize(var/list/args)

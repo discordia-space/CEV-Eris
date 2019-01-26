@@ -34,7 +34,6 @@
 	var/initialized = FALSE
 
 /atom/New(loc, ...)
-	init_plane()
 	var/do_initialize = SSatoms.initialized
 	if(do_initialize > INITIALIZATION_INSSATOMS)
 		args[1] = do_initialize == INITIALIZATION_INNEW_MAPLOAD
@@ -60,8 +59,6 @@
 
 	if(light_power && light_range)
 		update_light()
-
-	update_plane()
 
 	return INITIALIZE_HINT_NORMAL
 

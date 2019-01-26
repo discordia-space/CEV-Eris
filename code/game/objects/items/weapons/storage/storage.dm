@@ -362,7 +362,7 @@
 		F.update_icon(1)
 
 	W.layer = initial(W.layer)
-	W.set_plane(initial(W.plane))
+	W.plane = initial(W.plane)
 
 	if (new_location)
 		W.loc = new_location

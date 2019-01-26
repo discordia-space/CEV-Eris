@@ -306,7 +306,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 	var/turf/old_turf = get_turf(old_loc)
 	var/image/I = image(icon = src, loc = old_turf)
-	I.plane = get_relative_plane(GAME_PLANE)
+	I.plane = GAME_PLANE
 	I.layer = ABOVE_MOB_LAYER
 	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	if (istype(target,/mob))
@@ -346,7 +346,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 		if (QDELETED(old_turf))
 			return
 		var/image/I = image(icon = src, loc = old_turf, layer = layer + 0.1)
-		I.plane = get_relative_plane(GAME_PLANE)
+		I.plane = GAME_PLANE
 		I.layer = ABOVE_MOB_LAYER
 		I.transform = matrix() * 0
 		I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
@@ -378,7 +378,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	invisibility = 100
 	var/turf/old_turf = get_turf(src)
 	var/image/I = image(icon = src, loc = src.loc, layer = layer + 0.1)
-	I.plane = get_relative_plane(GAME_PLANE)
+	I.plane = GAME_PLANE
 	I.layer = ABOVE_MOB_LAYER
 	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 

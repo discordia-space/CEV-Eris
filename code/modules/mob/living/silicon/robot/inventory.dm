@@ -246,7 +246,7 @@
 
 		module_state_1 = O
 		O.layer = ABOVE_HUD_LAYER
-		O.set_plane(ABOVE_HUD_PLANE)
+		O.plane = ABOVE_HUD_PLANE
 		O.screen_loc = find_inv_position(1)
 		contents += O
 		if(istype(module_state_1,/obj/item/borg/sight))
@@ -258,7 +258,7 @@
 			return
 		module_state_2 = O
 		O.layer = ABOVE_HUD_LAYER
-		O.set_plane(ABOVE_HUD_PLANE)
+		O.plane = ABOVE_HUD_PLANE
 		O.screen_loc = find_inv_position(2)
 		contents += O
 		if(istype(module_state_2,/obj/item/borg/sight))
@@ -270,7 +270,7 @@
 			return
 		module_state_3 = O
 		O.layer = ABOVE_HUD_LAYER
-		O.set_plane(ABOVE_HUD_PLANE)
+		O.plane = ABOVE_HUD_PLANE
 		O.screen_loc = find_inv_position(3)
 		contents += O
 		if(istype(module_state_3,/obj/item/borg/sight))
