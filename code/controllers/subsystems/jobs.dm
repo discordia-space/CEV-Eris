@@ -332,7 +332,7 @@ SUBSYSTEM_DEF(job)
 	if(H.mind && job.head_position)
 		var/remembered_info = ""
 		var/datum/money_account/department_account = department_accounts[job.department]
-
+		department_account.owner_name = H.real_name //Register them as the point of contact for this account
 		if(department_account)
 			remembered_info += "<b>Your department's account number is:</b> #[department_account.account_number]<br>"
 			remembered_info += "<b>Your department's account pin is:</b> [department_account.remote_access_pin]<br>"
@@ -410,7 +410,7 @@ proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
 				var/permitted = 1
 				if(permitted)
 					if(G.allowed_roles)
-						if(job.type in G.allowed_roles)
+						if(job.title in G.allowed_roles)
 							permitted = 1
 						else
 							permitted = 0
@@ -522,15 +522,15 @@ proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
 					if(candidate.check_job_spawning(rank))
 						SP = candidate
 						break
-					if(!SP)
-						// Pick default spawnpoint, just so we have one
-						warning("Could not find an appropriate spawnpoint for job [rank] (latespawn).")
-						SP = SP = getSpawnPoint(maps_data.default_spawn, late = TRUE)
+				if(!SP)
+					warning("Could not find an appropriate spawnpoint for job [rank] (latespawn).")
 	else
 		SP = getSpawnPoint(rank)
 		if(!SP)
 			warning("Could not find an appropriate spawnpoint for job [rank] (roundstart).")
-			SP = getSpawnPoint(maps_data.default_spawn, late = TRUE)
+	if(!SP)
+		// Pick default spawnpoint, just so we have one
+		SP = SP = getSpawnPoint(maps_data.default_spawn, late = TRUE)
 	return SP
 
 /datum/controller/subsystem/job/proc/ShouldCreateRecords(var/title)

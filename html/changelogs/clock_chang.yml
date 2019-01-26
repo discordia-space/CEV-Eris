@@ -1,0 +1,6 @@
+author: Clockrigger
+
+delete-after: True
+
+changes:
+  - rscadd: "Added new crate sprites."

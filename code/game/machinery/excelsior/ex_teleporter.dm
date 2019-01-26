@@ -1,5 +1,8 @@
+var/list/global/excelsior_teleporters = list() //This list is used to make turrets more efficient
+
 /obj/machinery/complant_teleporter
 	name = "excelsior long-range teleporter"
+	desc = "a powerful one way teleporter that allows shipping in construction materials. Takes a long time to charge"
 	density = TRUE
 	anchored = TRUE
 	icon = 'icons/obj/machines/excelsior/teleporter.dmi'
@@ -19,12 +22,20 @@
 		MATERIAL_WOOD = list("amount" = 30, "price" = 10),
 		MATERIAL_PLASTIC = list("amount" = 30, "price" = 10),
 		MATERIAL_GLASS = list("amount" = 30, "price" = 10),
-		MATERIAL_PLASTEEL = list("amount" = 30, "price" = 30),
-		MATERIAL_URANIUM = list("amount" = 10, "price" = 30),
+		MATERIAL_PLASTEEL = list("amount" = 10, "price" = 30),
+		MATERIAL_URANIUM = list("amount" = 10, "price" = 40),
 		MATERIAL_DIAMOND = list("amount" = 10, "price" = 50),
-		MATERIAL_SILVER = list("amount" = 20, "price" = 30),
-		MATERIAL_GOLD = list("amount" = 20, "price" = 30),
+		MATERIAL_SILVER = list("amount" = 15, "price" = 30),
+		MATERIAL_GOLD = list("amount" = 10, "price" = 30),
 		)
+
+/obj/machinery/complant_teleporter/Initialize()
+	excelsior_teleporters |= src
+	.=..()
+
+/obj/machinery/complant_teleporter/Destroy()
+	excelsior_teleporters -= src
+	.=..()
 
 /obj/machinery/complant_teleporter/update_icon()
 	overlays.Cut()
@@ -65,11 +76,11 @@
 /obj/machinery/complant_teleporter/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			del(src)
+			qdel(src)
 			return
 		if(2.0)
 			if (prob(50))
-				del(src)
+				qdel(src)
 				return
 
 

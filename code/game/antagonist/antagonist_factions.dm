@@ -294,7 +294,7 @@
 		//Make sure we show the most up-to-date info
 		O.update_completion()
 		O.update_explanation()
-		data += "[i]. [O.explanation_text]<br>"
+		data += "[i]. [O.get_panel_entry()]<br>"
 
 	usr << browse(data,"window=[id]faction")
 
@@ -333,3 +333,12 @@
 /datum/faction/proc/greet()
 	for (var/datum/antagonist/A in members)
 		A.greet()
+
+
+//Returns a list of all minds and atoms which have been targeted by our objectives
+//This is used to disqualify them from being picked by farther objectives
+/datum/faction/proc/get_targets()
+	var/list/targets = list()
+	for (var/datum/objective/O in objectives)
+		targets.Add(O.get_target())
+	return targets

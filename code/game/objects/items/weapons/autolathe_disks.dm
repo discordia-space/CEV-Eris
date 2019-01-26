@@ -1,3 +1,6 @@
+/obj/item/weapon/disk
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_STEEL = 1)
+
 /obj/item/weapon/disk/autolathe_disk
 	name = "Design disk"
 	desc = "disk for autolathe designs."
@@ -8,7 +11,7 @@
 	flags = CONDUCT
 	force = WEAPON_FORCE_WEAK
 	throwforce = WEAPON_FORCE_WEAK
-	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+
 
 	var/list/recipes = list()
 
@@ -343,6 +346,7 @@
 		/datum/autolathe/recipe/ammo/magazine_mc9mmt_rubber,
 		/datum/autolathe/recipe/ammo/magazine_c45m_flash,
 		/datum/autolathe/recipe/ammo/magazine_mc9mm_flash,
+		/datum/autolathe/recipe/ammo/sl_c138_rubber,
 		/datum/autolathe/recipe/ammo/mg_cl32_rubber,
 		/datum/autolathe/recipe/ammo/mg_cl44_rubber,
 		/datum/autolathe/recipe/ammo/sl_cl44_rubber,
@@ -371,6 +375,7 @@
 		/datum/autolathe/recipe/ammo/magazine_a556,
 		/datum/autolathe/recipe/ammo/shotgun,
 		/datum/autolathe/recipe/ammo/shotgun_pellet,
+		/datum/autolathe/recipe/ammo/sl_c138_brute,
 		/datum/autolathe/recipe/ammo/mg_cl44_brute,
 		/datum/autolathe/recipe/ammo/sl_cl44_brute,
 		/datum/autolathe/recipe/ammo/mg_a50,
@@ -396,6 +401,7 @@
 		/datum/autolathe/recipe/circuit/reconstructor_excelsior,
 		/datum/autolathe/recipe/circuit/diesel_excelsior,
 		/datum/autolathe/recipe/circuit/turret_excelsior,
+		/datum/autolathe/recipe/circuit/autolathe_disk_cloner,
 		/datum/autolathe/recipe/device/implanter,
 		/datum/autolathe/recipe/gun/makarov,
 		/datum/autolathe/recipe/sec/silencer,
@@ -404,9 +410,17 @@
 		/datum/autolathe/recipe/ammo/ak47,
 		/datum/autolathe/recipe/ammo/box_a762,
 		/datum/autolathe/recipe/device/excelsiormine,
+		/datum/autolathe/recipe/sec/beartrap,
+		/datum/autolathe/recipe/clothing/excelsior_armor,
+		/datum/autolathe/recipe/clothing/excelsior_helmet,
+		/datum/autolathe/recipe/part/manipulator,
+		/datum/autolathe/recipe/part/subspace_amplifier,
+		/datum/autolathe/recipe/part/subspace_crystal,
+		/datum/autolathe/recipe/part/subspace_transmitter,
 		/datum/autolathe/recipe/part/igniter,
 		/datum/autolathe/recipe/part/signaler,
 		/datum/autolathe/recipe/part/sensor_prox,
-		/datum/autolathe/recipe/sec/beartrap
+		/datum/autolathe/recipe/part/capacitor,
+		/datum/autolathe/recipe/part/camera_assembly
 	)
 	..()

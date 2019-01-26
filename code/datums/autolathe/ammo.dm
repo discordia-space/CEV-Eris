@@ -75,11 +75,11 @@
 	path = /obj/item/ammo_magazine/a50
 
 /datum/autolathe/recipe/ammo/SMG_sol_rubber
-	name = "magazine (9mm rubber)"
+	name = "magazine (6.5mm rubber)"
 	path = /obj/item/ammo_magazine/sol65/rubber
 
 /datum/autolathe/recipe/ammo/SMG_sol_brute
-	name = "magazine (9mm hollow point)"
+	name = "magazine (6.5mm)"
 	path = /obj/item/ammo_magazine/sol65
 
 /datum/autolathe/recipe/ammo/sl_cl44_rubber
@@ -97,6 +97,14 @@
 /datum/autolathe/recipe/ammo/mg_cl44_brute
 	name = "magazine (.44 hollow point)"
 	path = /obj/item/ammo_magazine/cl44
+
+/datum/autolathe/recipe/ammo/sl_c138_rubber
+	name = "speed loader (.38 rubber)"
+	path = /obj/item/ammo_magazine/sl38/rubber
+
+/datum/autolathe/recipe/ammo/sl_c138_brute
+	name = "speed loader (.38 hollow point)"
+	path = /obj/item/ammo_magazine/sl38
 
 /datum/autolathe/recipe/ammo/mg_cl32_rubber
 	name = "magazine (.32 rubber)"

@@ -646,7 +646,18 @@ as a single icon. Useful for when you want to manipulate an icon via the above a
 The _flatIcons list is a cache for generated icon files.
 */
 
-proc // Creates a single icon from a given /atom or /image.  Only the first argument is required.
+proc 
+	// Creates a single icon from a given /atom type and store it for future use.  Only the first argument is required.
+	getFlatTypeIcon(var/path, defdir=2, deficon=null, defstate="", defblend=BLEND_DEFAULT, always_use_defdir = 0)
+		if(GLOB.initialTypeIcon[path])
+			return GLOB.initialTypeIcon[path]
+		else
+			var/atom/A = new path()
+			GLOB.initialTypeIcon[path] = getFlatIcon(A, defdir, deficon, defstate, defblend, always_use_defdir)
+			qdel(A)
+			return GLOB.initialTypeIcon[path]
+
+	// Creates a single icon from a given /atom or /image.  Only the first argument is required.
 	getFlatIcon(image/A, defdir=2, deficon=null, defstate="", defblend=BLEND_DEFAULT, always_use_defdir = 0)
 		// We start with a blank canvas, otherwise some icon procs crash silently
 		var/icon/flat = icon('icons/effects/effects.dmi', "icon_state"="nothing") // Final flattened icon
@@ -1014,3 +1025,20 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 	GLOB.average_icon_color["[icon]:[icon_state]:[image_dir]"] = rgb(average_rgb[1],average_rgb[2],average_rgb[3])
 	return GLOB.average_icon_color["[icon]:[icon_state]:[image_dir]"]
 
+// Will cache atom icon and return filename
+// can accept either object or path
+proc/cacheAtomIcon(var/atom/A, var/mob/user, var/inBackground = FALSE)
+	if(!A || (!istype(A) && !ispath(A)) || !user || !user.client)
+		return
+	var/iconName = "[ispath(A) ? A : A.type].png"
+	iconName = sanitizeFileName(iconName)
+	// for some reason browse_rsc() doesnt register file in client cache so we need to handle it manualy
+	if(!user.client.cache.Find(iconName))
+		if(inBackground)
+			spawn()
+				user << browse_rsc(ispath(A) ? getFlatTypeIcon(A) : getFlatTypeIcon(A), iconName)
+				user.client.cache.Add(iconName)
+		else
+			user << browse_rsc(ispath(A) ? getFlatTypeIcon(A) : getFlatTypeIcon(A), iconName)
+			user.client.cache.Add(iconName)
+	return iconName

@@ -175,5 +175,5 @@ SUBSYSTEM_DEF(supply)
 	if (GA.money < amount)
 		return FALSE
 
-	charge_to_account(GA.account_number, source_name, purpose, terminal_id, -amount) //We invert the amount here
+	charge_to_account(GA.account_number, source_name, purpose, terminal_id, amount)
 	return TRUE

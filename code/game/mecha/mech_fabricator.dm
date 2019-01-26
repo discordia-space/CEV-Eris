@@ -44,15 +44,6 @@
 		use_power = 1
 	update_icon()
 
-/obj/machinery/mecha_part_fabricator/update_icon()
-	overlays.Cut()
-	if(panel_open)
-		icon_state = "fab-o"
-	else
-		icon_state = "fab-idle"
-	if(busy)
-		overlays += "fab-active"
-
 /obj/machinery/mecha_part_fabricator/dismantle()
 	for(var/f in materials)
 		eject_materials(f, -1)
@@ -82,7 +73,7 @@
 	if(current)
 		data["current"] = current.name
 	data["queue"] = get_queue_names()
-	data["buildable"] = get_build_options()
+	data["buildable"] = get_build_options(user)
 	data["category"] = category
 	data["categories"] = categories
 	data["materials"] = get_materials()
@@ -93,7 +84,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "mechfab.tmpl", "Exosuit Fabricator UI", 800, 600)
+		ui = new(user, src, ui_key, "mechfab.tmpl", "Exosuit Fabricator UI", 900, 600)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
@@ -124,7 +115,7 @@
 
 /obj/machinery/mecha_part_fabricator/attackby(var/obj/item/I, var/mob/user)
 	if(busy)
-		user << SPAN_NOTICE("\The [src] is busy. Please wait for completion of previous operation.")
+		user << SPAN_NOTICE("\icon[src]\The [src] is busy. Please wait for completion of previous operation.")
 		return TRUE
 
 	if(default_deconstruction(I, user))
@@ -133,31 +124,61 @@
 	if(default_part_replacement(I, user))
 		return
 
-	if(!istype(I,/obj/item/stack/material))
+	if (user.a_intent != I_HURT)
+		loadMaterials(I, user)
+	else
 		return ..()
 
-	var/material = I.get_material_name()
+/obj/machinery/mecha_part_fabricator/proc/loadMaterials(var/obj/item/stack/material/S, var/mob/user)
+	if(!istype(user))
+		return
+
+	if(!istype(S, /obj/item/stack/material))
+		user << SPAN_NOTICE("You cannot insert this item into \the [src]!")
+		return
+
+	var/material = S.get_material_name()
 
 	if(!material || !(material in materials))
 		return ..()
 
-	var/obj/item/stack/material/stack = I
-	var/sname = "[stack.name]"
-
 	if(materials[material] >= res_max_amount)
-		user << "The fabricator cannot hold more [sname]."
+		user << "\icon[src]\The [src] cannot hold more [material]."
 
-	overlays += "fab-load-metal"
-	spawn(10)
-		overlays -= "fab-load-metal"
+	var/amount = round(input("How many sheets do you want to add?") as num)
 
-	var/load = min(res_max_amount - materials[material], stack.get_amount())
+	if(!Adjacent(user))
+		return
+	if(!S)
+		return
+	if(amount <= 0)//No negative numbers
+		return
+	if(amount > S.get_amount())
+		amount = S.get_amount()
+	if(res_max_amount - materials[material] < amount) //Can't overfill
+		amount = min(S.get_amount(), res_max_amount - materials[material])
 
-	stack.use(load)
-	materials[material] += load
-
-	user << "You insert [load] [sname] into the fabricator."
+	use_power(1000)
+	if(do_after(usr, 16, src))
+		res_load(material)
+		if(S.use(amount))
+			user << SPAN_NOTICE("You add [amount] [material] sheet\s to \the [src].")
+			materials[material] += amount
 	update_busy()
+	return TRUE
+
+/obj/machinery/mecha_part_fabricator/proc/res_load(var/name)
+	var/obj/effect/temp_visual/resourceInsertion/mechfab/effect = new(src.loc)
+	effect.setMaterial(name)
+
+/obj/machinery/mecha_part_fabricator/update_icon()
+	overlays.Cut()
+	if(panel_open)
+		icon_state = "fab-o"
+	else
+		icon_state = "fab-idle"
+	if(busy)
+		overlays += "fab-active"
 
 /obj/machinery/mecha_part_fabricator/proc/update_busy()
 	if(queue.len)
@@ -178,7 +199,7 @@
 
 /obj/machinery/mecha_part_fabricator/proc/can_build(var/datum/design/D)
 	for(var/M in D.materials)
-		if(materials[M] < D.materials[M])
+		if(materials[M] < round(D.materials[M] * mat_efficiency, 0.01))
 			return FALSE
 	return TRUE
 
@@ -190,18 +211,21 @@
 	if(!can_build(D))
 		progress = 0
 		return
+	if(progress == 0)
+		print_pre(D)
 	if(D.time > progress)
 		return
 	for(var/M in D.materials)
 		materials[M] = max(0, round(materials[M] - D.materials[M] * mat_efficiency, 0.01))
 	if(D.build_path)
 		var/obj/new_item = D.Fabricate(loc, src)
-		visible_message("\The [src] pings, indicating that \the [D] is complete.", "You hear a ping.")
 		if(mat_efficiency != 1)
 			if(new_item.matter && new_item.matter.len > 0)
 				for(var/i in new_item.matter)
 					new_item.matter[i] = round(new_item.matter[i] * mat_efficiency, 0.01)
+	
 	remove_from_queue(1)
+	print_post(D)
 
 /obj/machinery/mecha_part_fabricator/proc/get_queue_names()
 	. = list()
@@ -209,13 +233,14 @@
 		var/datum/design/D = queue[i]
 		. += D.name
 
-/obj/machinery/mecha_part_fabricator/proc/get_build_options()
+/obj/machinery/mecha_part_fabricator/proc/get_build_options(var/mob/user)
 	. = list()
 	for(var/i = 1 to files.known_designs.len)
 		var/datum/design/D = files.known_designs[i]
 		if(!D.build_path || !(D.build_type & MECHFAB))
 			continue
-		. += list(list("name" = D.name, "id" = i, "category" = D.category, "resourses" = get_design_resourses(D), "time" = get_design_time(D)))
+		var/iconName = cacheAtomIcon(D.build_path, user, TRUE)
+		. += list(list("name" = D.name, "id" = i, "category" = D.category, "resourses" = get_design_resourses(D), "time" = get_design_time(D), "icon" = iconName))
 
 /obj/machinery/mecha_part_fabricator/proc/get_design_resourses(var/datum/design/D)
 	var/list/F = list()
@@ -241,6 +266,7 @@
 		. += list(list("mat" = capitalize(T), "amt" = materials[T]))
 
 /obj/machinery/mecha_part_fabricator/proc/eject_materials(var/material, var/amount) // 0 amount = 0 means ejecting a full stack; -1 means eject everything
+	material = lowertext(material)
 	var/recursive = amount == -1
 	var/mattype = material_stack_type(material)
 
@@ -269,3 +295,13 @@
 		files.RefreshResearch()
 		sync_message = "Sync complete."
 	update_categories()
+
+/obj/machinery/mecha_part_fabricator/proc/print_pre(var/datum/design/D)
+	return
+
+/obj/machinery/mecha_part_fabricator/proc/print_post(var/datum/design/D)
+	visible_message("\icon[src]\The [src] flashes, indicating that \the [D] is complete.", range = 3)
+	if(!queue.len)
+		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1 -3)
+		visible_message("\icon[src]\The [src] pings indicating that queue is complete.")
+	return

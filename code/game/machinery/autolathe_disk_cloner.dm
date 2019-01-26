@@ -33,11 +33,11 @@
 		laser_rating += ML.rating
 
 	if(scanner_rating+laser_rating >= 9)
-		copying_delay = 10
+		copying_delay = 30
 	else if(scanner_rating+laser_rating >= 6)
-		copying_delay = 20
+		copying_delay = 60
 	else
-		copying_delay = 40
+		copying_delay = 120
 
 	hack_fail_chance = ((scanner_rating+laser_rating) >= 9) ? 20 : 40
 

@@ -232,13 +232,25 @@ This saves us from having to call add_fingerprint() any time something is put in
 			src.l_ear = W
 			if(l_ear.slot_flags & SLOT_TWOEARS)
 				var/obj/item/clothing/ears/offear/O = new(W)
-				equip_to_slot_if_possible(O, slot_r_ear, TRUE, FALSE, FALSE)
+				O.loc = src
+				src.r_ear = O
+				O.screen_loc = "4,3"
+				O.layer = ABOVE_HUD_LAYER
+				O.plane = ABOVE_HUD_PLANE
+				if(client)
+					client.screen |= O
 
 		if(slot_r_ear)
 			src.r_ear = W
 			if(r_ear.slot_flags & SLOT_TWOEARS)
 				var/obj/item/clothing/ears/offear/O = new(W)
-				equip_to_slot_if_possible(O, slot_l_ear, TRUE, FALSE, FALSE)
+				O.loc = src
+				src.l_ear = O
+				O.screen_loc = "4,2"
+				O.layer = ABOVE_HUD_LAYER
+				O.plane = ABOVE_HUD_PLANE
+				if(client)
+					client.screen |= O
 		if(slot_glasses)
 			src.glasses = W
 		if(slot_gloves)

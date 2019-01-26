@@ -71,6 +71,7 @@
 
 	var/list/operation_req_access = list()//required access level for mecha operation
 	var/list/internals_req_access = list(access_engine,access_robotics)//required access level to open cell compartment
+	var/list/dna_req_access = list(access_heads)
 
 	var/datum/global_iterator/pr_int_temp_processor //normalizes internal air mixture temperature
 	var/datum/global_iterator/pr_inertial_movement //controls intertial movement in spesss
@@ -1423,6 +1424,12 @@ assassination method if you time it right*/
 			return 1
 	return 0
 
+/obj/mecha/proc/dna_reset_allowed(mob/living/carbon/human/H)
+	for(var/atom/ID in list(H.get_active_hand(), H.wear_id, H.belt))
+		if(src.check_access(ID,src.dna_req_access))
+			return 1
+	return 0
+
 
 /obj/mecha/check_access(obj/item/weapon/card/id/I, list/access_list)
 	if(!istype(access_list))
@@ -1438,10 +1445,11 @@ assassination method if you time it right*/
 		for(var/req in access_list)
 			if(!(req in I.access)) //doesn't have this access
 				return 0
-	else if(access_list==src.internals_req_access)
+	else if(access_list == src.internals_req_access || access_list == src.dna_req_access)
 		for(var/req in access_list)
 			if(req in I.access)
 				return 1
+		return 0
 	return 1
 
 
@@ -1563,7 +1571,7 @@ assassination method if you time it right*/
 						<div class='links'>
 						<a href='?src=\ref[src];toggle_id_upload=1'><span id='t_id_upload'>[add_req_access?"L":"Unl"]ock ID upload panel</span></a><br>
 						<a href='?src=\ref[src];toggle_maint_access=1'><span id='t_maint_access'>[maint_access?"Forbid":"Permit"] maintenance protocols</span></a><br>
-						<a href='?src=\ref[src];dna_lock=1'>DNA-lock</a><br>
+						<a href='?src=\ref[src];dna_lock=1'>DNA-Lock</a><br>
 						<a href='?src=\ref[src];view_log=1'>View internal log</a><br>
 						<a href='?src=\ref[src];change_name=1'>Change exosuit name</a><br>
 						</div>
@@ -1637,6 +1645,8 @@ assassination method if you time it right*/
 	var/maint_options = "<a href='?src=\ref[src];set_internal_tank_valve=1;user=\ref[user]'>Set Cabin Air Pressure</a>"
 	if (locate(/obj/item/mecha_parts/mecha_equipment/tool/passenger) in contents)
 		maint_options += "<a href='?src=\ref[src];remove_passenger=1;user=\ref[user]'>Remove Passenger</a>"
+	if (src.dna)
+		maint_options += "<a href='?src=\ref[src];maint_reset_dna=1;user=\ref[user]'>Revert DNA-Lock</a>"
 
 	var/output = {"<html>
 						<head>
@@ -1870,6 +1880,16 @@ assassination method if you time it right*/
 			return
 		usr << sound('sound/mecha/UI_SCI-FI_Tone_10_stereo.ogg',channel=4, volume=100)
 		src.dna = null
+		src.occupant_message("DNA-Lock disengaged.")
+	if(href_list["maint_reset_dna"])
+		if(src.dna_reset_allowed(usr))
+			usr << sound('sound/mecha/UI_SCI-FI_Tone_10_stereo.ogg',channel=4, volume=100)
+			usr << SPAN_NOTICE("DNA-Lock has been reverted.")
+			src.dna = null
+		else
+			usr << sound('sound/mecha/UI_SCI-FI_Tone_Deep_Wet_15_stereo_error.ogg',channel=4, volume=100)
+			usr << SPAN_WARNING("Invalid ID: Higher clearance is required.")
+			return
 	if(href_list["repair_int_control_lost"])
 		if(usr != src.occupant)
 			return

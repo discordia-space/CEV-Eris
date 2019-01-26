@@ -23,10 +23,19 @@ var/global/list/landmarks_list = list()				//list of all landmarks created
 var/global/list/shuttle_landmarks_list = list()		//list of all /obj/effect/shuttle_landmark.
 var/global/list/surgery_steps = list()				//list of all surgery steps  |BS12
 var/global/list/mechas_list = list()				//list of all mechs. Used by hostile mobs target tracking.
-var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
+
+
+
 var/global/list/hearing_objects = list()			//list of all objects, that can hear mob say
 
+//Jobs and economy
+var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
+var/global/list/all_departments = list()			//List of all department datums
+var/global/list/department_IDs = list(DEPARTMENT_COMMAND, DEPARTMENT_MEDICAL, DEPARTMENT_ENGINEERING,
+ DEPARTMENT_SCIENCE, DEPARTMENT_SECURITY, DEPARTMENT_GUILD, DEPARTMENT_CHURCH, DEPARTMENT_CIVILIAN)
 var/global/list/global_corporations = list()
+
+
 var/global/list/HUDdatums = list()
 
 #define all_genders_define_list list(MALE, FEMALE, PLURAL, NEUTER)
@@ -161,12 +170,20 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 		surgery_steps += S
 	sort_surgeries()
 
-	//List of job. I can't believe this was calculated multiple times per tick!
+	//List of job department datums
+	paths = subtypesof(/datum/department)
+	for(var/T in paths)
+		var/datum/department/D = new T
+		all_departments[D.id] = D
+
+	//List of job datums
 	paths = typesof(/datum/job)-/datum/job
 	paths -= exclude_jobs
 	for(var/T in paths)
 		var/datum/job/J = new T
 		joblist[J.title] = J
+
+
 
 	//Languages and species.
 	paths = typesof(/datum/language)-/datum/language

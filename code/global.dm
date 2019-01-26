@@ -34,9 +34,9 @@ var/station_short       = "Eris"
 var/const/dock_name     = "N.A.S. Crescent"
 var/const/boss_name     = "Central Command"
 var/const/boss_short    = "Centcomm"
-var/const/company_name  = "NanoTrasen"
-var/const/company_short = "NT"
-var/game_version        = "Baystation12"
+var/const/company_name  = "CEV Eris"
+var/const/company_short = "Eris"
+var/game_version        = "Discordia"
 var/changelog_hash      = ""
 var/game_year           = (text2num(time2text(world.realtime, "YYYY")) + 544)
 
@@ -121,6 +121,4 @@ var/max_explosion_range = 14
 
 // Announcer intercom, because too much stuff creates an intercom for one message then hard del()s it.
 var/global/obj/item/device/radio/intercom/global_announcer = new(null)
-
-var/list/station_departments = list("Command", "Medical", "Engineering", "Science", "Security", "Guild", "Civilian")
 

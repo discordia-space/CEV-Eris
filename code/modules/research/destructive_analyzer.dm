@@ -89,5 +89,6 @@ Note: Must be placed within 3 tiles of the R&D Console
 			spawn(10)
 				update_icon()
 				busy = 0
+				linked_console.updateUsrDialog()
 			return 1
 	return
