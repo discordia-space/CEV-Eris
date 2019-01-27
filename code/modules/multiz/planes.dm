@@ -19,9 +19,6 @@
 
 	if(LD != null)
 		return min(32767,((z-LD.original_level)*PLANES_PER_Z_LEVEL) + original_plane)
-	/*else
-		world << "SOMETHING WENT TERRIBLY WRONG in update_plane()"
-		world.log << "SOMETHING WENT TERRIBLY WRONG in update_plane()"*/
 
 /atom/proc/update_plane()	//Updates plane using local z-coordinate
 	plane = calculate_plane(z,original_plane)

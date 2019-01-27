@@ -35,6 +35,7 @@
 
 /atom/New(loc, ...)
 	init_plane()
+	update_plane()
 	var/do_initialize = SSatoms.initialized
 	if(do_initialize > INITIALIZATION_INSSATOMS)
 		args[1] = do_initialize == INITIALIZATION_INNEW_MAPLOAD
@@ -45,6 +46,7 @@
 	var/list/created = SSatoms.created_atoms
 	if(created)
 		created += src
+
 
 //Called after New if the map is being loaded. mapload = TRUE
 //Called from base of New if the map is not being loaded. mapload = FALSE

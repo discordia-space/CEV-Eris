@@ -31,7 +31,6 @@
 
 	update_overlay()
 
-	update_plane()
 
 /atom/movable/lighting_overlay/Destroy()
 	global.lighting_update_overlays -= src;

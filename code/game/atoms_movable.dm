@@ -86,7 +86,7 @@
 			if(is_new_area && is_destination_turf)
 				destination.loc.Entered(src, origin)
 
-	if((!origin || !destination) || origin.z != destination.z)
+	if((!isturf(origin) || !isturf(destination)) || origin.z != destination.z)
 		update_plane()
 
 	return 1
@@ -374,7 +374,7 @@
 		if ((A != src.loc && A && A.z == src.z))
 			src.last_move = get_dir(A, src.loc)
 
-	if((!loc || !oldloc) || loc.z != oldloc.z)
+	if((!isturf(loc) || !isturf(oldloc)) || loc.z != oldloc.z)
 		update_plane()
 
 // Wrapper of step() that also sets glide size to a specific value.
