@@ -10,7 +10,7 @@
 	icon_state = "id_mod"
 	item_state = "electronic"
 	origin_tech = list(TECH_DATA = 2)
-	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_STEEL = 2)
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 3)
 	matter_reagents = list("silicon" = 10)
 	density = 0
 	anchored = 0

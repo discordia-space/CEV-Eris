@@ -18,7 +18,10 @@
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	extra_allowed = list(/obj/item/weapon/extinguisher)
+	allowed = list(
+		/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank/emergency_oxygen,
+		/obj/item/weapon/extinguisher
+	)
 	slowdown = 1.0
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
 	item_flags = STOPPRESSUREDAMAGE | COVER_PREVENT_MANIPULATION
@@ -104,7 +107,10 @@
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	extra_allowed = list(/obj/item/clothing/head/radiation)
+	allowed = list(
+		/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank/emergency_oxygen,
+		/obj/item/clothing/head/radiation,/obj/item/clothing/mask/gas
+	)
 	slowdown = 1.5
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 60, rad = 100)
 	flags_inv = HIDEJUMPSUIT|HIDETAIL

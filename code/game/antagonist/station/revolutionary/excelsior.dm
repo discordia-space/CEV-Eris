@@ -10,5 +10,5 @@
 
 /datum/antagonist/excelsior/equip()
 	.=..()
-	var/obj/item/weapon/implant/excelsior/leader/implant = new(owner.current)
-	implant.install(owner.current, BP_HEAD)
+	var/obj/item/weapon/implant/excelsior/implant = new(owner.current)
+	implant.install(owner.current)

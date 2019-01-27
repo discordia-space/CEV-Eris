@@ -7,7 +7,6 @@
 	w_class = ITEM_SIZE_SMALL
 	icon = 'icons/obj/electronic_assemblies.dmi'
 	icon_state = "setup_small"
-	matter = list(MATERIAL_STEEL = 4)
 	var/max_components = IC_COMPONENTS_BASE
 	var/max_complexity = IC_COMPLEXITY_BASE
 	var/opened = 0

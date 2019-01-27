@@ -4,7 +4,7 @@
 	flags = OPENCONTAINER
 	circuit = /obj/item/weapon/circuitboard/protolathe
 
-	use_power = TRUE
+	use_power = 1
 	idle_power_usage = 30
 	active_power_usage = 5000
 
@@ -25,14 +25,14 @@
 		update_icon()
 		return
 	if(queue.len == 0)
-		busy = FALSE
+		busy = 0
 		update_icon()
 		return
 	var/datum/design/D = queue[1]
 	if(canBuild(D))
 		if(progress == 0)
 			print_pre(D)
-		busy = TRUE
+		busy = 1
 		progress += speed
 		if(progress >= D.time)
 			build(D)
@@ -45,7 +45,7 @@
 	else
 		if(busy)
 			visible_message(SPAN_NOTICE("\icon[src]\The [src] flashes: insufficient materials: [getLackingMaterials(D)]."))
-			busy = FALSE
+			busy = 0
 			update_icon()
 
 /obj/machinery/r_n_d/protolathe/proc/TotalMaterials() //returns the total of all the stored materials. Makes code neater.
@@ -91,7 +91,7 @@
 /obj/machinery/r_n_d/protolathe/attackby(var/obj/item/I, var/mob/user as mob)
 	if(busy)
 		user << SPAN_NOTICE("\icon[src]\The [src] is busy. Please wait for completion of previous operation.")
-		return TRUE
+		return 1
 
 	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING))
 	switch(tool_type)
@@ -121,19 +121,20 @@
 	if(default_part_replacement(I, user))
 		return
 	if(I.is_open_container())
-		return FALSE
+		return 1
 	if(panel_open)
 		user << SPAN_NOTICE("You can't load \the [src] while it's opened.")
-		return TRUE
+		return 1
 	if(!linked_console)
 		user << SPAN_NOTICE("\icon[src]\The [src] must be linked to an R&D console first!")
-		return TRUE
+		return 1
 	if(is_robot_module(I))
-		return FALSE
+		return 0
 	if (user.a_intent != I_HURT)
 		loadMaterials(I, user)
 	else
 		return ..()
+
 
 /obj/machinery/r_n_d/protolathe/proc/loadMaterials(var/obj/item/stack/material/S, var/mob/user)
 	if(!istype(user))
@@ -145,7 +146,7 @@
 
 	if(TotalMaterials() + 1 > max_material_storage)
 		user << SPAN_NOTICE("\icon[src]\The [src]'s material bin is full. Please remove material before adding more.")
-		return
+		return 
 
 	var/amount = round(input("How many sheets do you want to add?") as num)
 
@@ -160,7 +161,7 @@
 	if(max_material_storage - TotalMaterials() < amount) //Can't overfill
 		amount = min(S.get_amount(), max_material_storage - TotalMaterials())
 
-	busy = TRUE
+	busy = 1
 	use_power(1000)
 	var/material = S.get_material_name()
 	if(material)
@@ -169,8 +170,8 @@
 			if(S.use(amount))
 				materials[material] += amount
 				user << SPAN_NOTICE("You add [amount] [material] sheet\s to \the [src]. Material storage is [TotalMaterials()]/[max_material_storage] full.")
-
-	busy = FALSE
+				
+	busy = 0
 	linked_console.updateUsrDialog()
 	return TRUE
 
@@ -193,11 +194,11 @@
 /obj/machinery/r_n_d/protolathe/proc/canBuild(var/datum/design/D)
 	for(var/M in D.materials)
 		if(materials[M] < D.materials[M])
-			return FALSE
+			return 0
 	for(var/C in D.chemicals)
 		if(!reagents.has_reagent(C, D.chemicals[C]))
-			return FALSE
-	return TRUE
+			return 0
+	return 1
 
 /obj/machinery/r_n_d/protolathe/proc/getLackingMaterials(var/datum/design/D)
 	var/ret = ""

@@ -473,43 +473,29 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	crate_name = "Replacement lights"
 	group = "Engineering"
 
-/datum/supply_pack/metal120
-	name = "120 metal sheets"
+/datum/supply_pack/metal50
+	name = "50 metal sheets"
 	contains = list(/obj/item/stack/material/steel)
-	amount = 120
-	cost = 360
+	amount = 50
+	cost = 1000
 	containertype = /obj/structure/closet/crate/secure
 	crate_name = "Metal sheets crate"
 	group = "Engineering"
 
-
-/datum/supply_pack/metal480
-	name = "Bulk metal crate"
-	contains = list(/obj/item/stack/material/steel/full,
-	/obj/item/stack/material/steel/full,
-	/obj/item/stack/material/steel/full,
-	/obj/item/stack/material/steel/full)
-	cost = 1000
-	containertype = /obj/structure/largecrate
-	crate_name = "Bulk metal crate"
-	group = "Engineering"
-
-
-
 /datum/supply_pack/glass50
-	name = "120 glass sheets"
+	name = "50 glass sheets"
 	contains = list(/obj/item/stack/material/glass)
-	amount = 120
-	cost = 360
+	amount = 50
+	cost = 1000
 	containertype = /obj/structure/closet/crate/secure
 	crate_name = "Glass sheets crate"
 	group = "Engineering"
 
 /datum/supply_pack/wood50
-	name = "120 wooden planks"
+	name = "50 wooden planks"
 	contains = list(/obj/item/stack/material/wood)
-	amount = 120
-	cost = 1200
+	amount = 50
+	cost = 1000
 	containertype = /obj/structure/closet/crate
 	crate_name = "Wooden planks crate"
 	group = "Engineering"
@@ -544,7 +530,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containertype = /obj/structure/closet/crate
 	crate_name = "Mechanical maintenance crate"
 	group = "Engineering"
-
+	
 /datum/supply_pack/toolmods
 	contains = list(/obj/random/tool_upgrade,
 					/obj/random/tool_upgrade,
@@ -759,7 +745,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	crate_name = "Disposal Dispenser Crate"
 	group = "Engineering"
 	access = access_atmospherics
-
+	
 
 //----------------------------------------------
 //------------MEDICAL / SCIENCE-----------------
@@ -1300,7 +1286,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	crate_name = "Actor Costumes"
 	access = access_theatre
 	group = "Miscellaneous"
-
+	
 /datum/supply_pack/randomised/guns
 	num_contained = 2
 	contains = list(/obj/item/weapon/gun/projectile/automatic/ak47/fs,
@@ -1348,7 +1334,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	crate_name = "Surplus Crate"
 	containertype = /obj/structure/closet/crate/secure/weapon
 	group = "Security"
-
+	
 
 datum/supply_pack/randomised/spacesuit
 	num_contained = 1

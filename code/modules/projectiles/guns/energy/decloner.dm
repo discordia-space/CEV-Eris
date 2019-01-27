@@ -7,4 +7,3 @@
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 4, TECH_POWER = 3)
 	projectile_type = /obj/item/projectile/energy/declone
 	charge_cost = 100
-	matter = list(MATERIAL_STEEL = 20)

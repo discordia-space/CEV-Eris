@@ -23,7 +23,7 @@
 	icon_state = "mmi_empty"
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_BIO = 3)
-	matter = list(MATERIAL_STEEL = 5, MATERIAL_GLASS = 3)
+
 	req_access = list(access_robotics)
 
 	//Revised. Brainmob is now contained directly within object of transfer. MMI in this case.

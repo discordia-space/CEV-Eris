@@ -13,4 +13,4 @@
 	display_contents_with_number = 1
 	max_w_class = ITEM_SIZE_NORMAL
 	max_storage_space = 100
-	matter = list(MATERIAL_PLASTIC = 5, MATERIAL_STEEL = 2)
+

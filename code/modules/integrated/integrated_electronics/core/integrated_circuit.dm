@@ -3,15 +3,10 @@
 a creative player the means to solve many problems.  Circuits are held inside an electronic assembly, and are wired using special tools.
 */
 
-/obj/item/integrated_circuit
-	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_STEEL = 1)
-	matter_reagents = list("silicon" = 5)
-
 /obj/item/integrated_circuit/examine(mob/user)
 	. = ..()
 	external_examine(user)
 	interact(user)
-
 
 // This should be used when someone is examining while the case is opened.
 /obj/item/integrated_circuit/proc/internal_examine(mob/user)

@@ -188,7 +188,7 @@ var/list/gear_datums = list()
 				++ind
 				if(ind > 1)
 					entry += ", "
-				if(J.title in G.allowed_roles)
+				if(J.type in G.allowed_roles)
 					entry += "<font color=55cc55>[J.title]</font>"
 					good_job = 1
 				else

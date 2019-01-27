@@ -10,6 +10,12 @@
 	item_state = "ass_jacket"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
+	allowed = list(
+		/obj/item/weapon/tank/emergency_oxygen, /obj/item/device/lighting/toggleable/flashlight,
+		/obj/item/weapon/gun/energy,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,
+		/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,
+		/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/device/taperecorder
+	)
 	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
 //Guild Technician
@@ -20,6 +26,13 @@
 	item_state = "cargo_jacket"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	allowed = list (
+		/obj/item/device/scanner/analyzer, /obj/item/device/lighting/toggleable/flashlight, /obj/item/weapon/tool/multitool,
+		/obj/item/device/pipe_painter, /obj/item/device/radio, /obj/item/device/t_scanner,
+		/obj/item/weapon/tool/crowbar, /obj/item/weapon/tool/screwdriver, /obj/item/weapon/tool/weldingtool,
+		/obj/item/weapon/tool/wirecutters, /obj/item/weapon/tool/wrench, /obj/item/weapon/tank/emergency_oxygen,
+		/obj/item/clothing/mask/gas, /obj/item/taperoll/engineering
+	)
 	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
 //Quartermaster
@@ -30,6 +43,16 @@
 	item_state = "qm_coat"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	allowed = list(
+		/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/gun/energy,/obj/item/weapon/gun/projectile,
+		/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,
+		/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/device/taperecorder,
+		/obj/item/device/scanner/analyzer, /obj/item/weapon/tool/multitool, /obj/item/device/pipe_painter,
+		/obj/item/device/radio, /obj/item/device/t_scanner, /obj/item/weapon/tool/crowbar,
+		/obj/item/weapon/tool/screwdriver, /obj/item/weapon/tool/weldingtool, /obj/item/weapon/tool/wirecutters,
+		/obj/item/weapon/tool/wrench, /obj/item/weapon/tank/emergency_oxygen, /obj/item/clothing/mask/gas,
+		/obj/item/taperoll/engineering
+	)
 	armor = list(melee = 40, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
 
 //Botonist
@@ -40,7 +63,7 @@
 	item_state = "apron"
 	blood_overlay_type = "armor"
 	body_parts_covered = 0
-	extra_allowed = list (/obj/item/seeds, /obj/item/weapon/reagent_containers/glass/fertilizer, /obj/item/weedkiller)
+	allowed = list (/obj/item/weapon/reagent_containers/spray/plantbgone,/obj/item/device/scanner/analyzer/plant_analyzer,/obj/item/seeds,/obj/item/weapon/reagent_containers/glass/fertilizer,/obj/item/weapon/material/minihoe)
 
 //Chaplain
 /obj/item/clothing/suit/chaplain_hoodie
@@ -50,6 +73,16 @@
 	item_state = "chaplain_hoodie"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	allowed = list(
+		/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/gun/energy,/obj/item/weapon/gun/projectile,
+		/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,
+		/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/device/taperecorder,
+		/obj/item/device/scanner/analyzer, /obj/item/weapon/tool/multitool, /obj/item/device/pipe_painter,
+		/obj/item/device/radio, /obj/item/device/t_scanner, /obj/item/weapon/tool/crowbar,
+		/obj/item/weapon/tool/screwdriver, /obj/item/weapon/tool/weldingtool, /obj/item/weapon/tool/wirecutters,
+		/obj/item/weapon/tool/wrench, /obj/item/weapon/tank/emergency_oxygen, /obj/item/clothing/mask/gas,
+		/obj/item/taperoll/engineering
+	)
 	armor = list(melee = 15, bullet = 15, laser = 15, energy = 15, bomb = 0, bio = 0, rad = 0)
 
 //Chaplain
@@ -70,6 +103,7 @@
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	allowed = list (/obj/item/weapon/material/knife)
 
 //Chef
 /obj/item/clothing/suit/chef/classic
@@ -88,6 +122,12 @@
 	item_state = "insp_coat"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
+	allowed = list(
+		/obj/item/weapon/tank/emergency_oxygen, /obj/item/device/lighting/toggleable/flashlight,
+		/obj/item/weapon/gun/energy,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,
+		/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,
+		/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/device/taperecorder
+	)
 	armor = list(melee = 50, bullet = 10, laser = 25, energy = 10, bomb = 0, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/storage/det_trench
@@ -97,6 +137,13 @@
 	item_state = "det_suit"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
+	allowed = list(
+		/obj/item/weapon/tank/emergency_oxygen, /obj/item/device/lighting/toggleable/flashlight,
+		/obj/item/weapon/gun/energy,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,
+		/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,
+		/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,
+		/obj/item/device/taperecorder
+	)
 	armor = list(melee = 50, bullet = 10, laser = 25, energy = 10, bomb = 0, bio = 0, rad = 0)
 
 //Engineering
@@ -106,7 +153,13 @@
 	icon_state = "hazard"
 	item_state = "hazard"
 	blood_overlay_type = "armor"
-	extra_allowed = list(/obj/item/weapon/tool)
+	allowed = list(
+		/obj/item/device/scanner/analyzer, /obj/item/device/lighting/toggleable/flashlight, /obj/item/weapon/tool/multitool,
+		/obj/item/device/pipe_painter, /obj/item/device/radio, /obj/item/device/t_scanner,
+		/obj/item/weapon/tool/crowbar, /obj/item/weapon/tool/screwdriver, /obj/item/weapon/tool/weldingtool,
+		/obj/item/weapon/tool/wirecutters, /obj/item/weapon/tool/wrench, /obj/item/weapon/tank/emergency_oxygen,
+		/obj/item/clothing/mask/gas, /obj/item/taperoll/engineering
+	)
 	body_parts_covered = UPPER_TORSO
 
 //Roboticist
@@ -116,6 +169,13 @@
 	icon_state = "robotech_jacket"
 	item_state = "robotech_jacket"
 	blood_overlay_type = "coat"
+	allowed = list(
+		/obj/item/device/scanner/analyzer, /obj/item/device/lighting/toggleable/flashlight, /obj/item/weapon/tool/multitool,
+		/obj/item/device/pipe_painter, /obj/item/device/radio, /obj/item/device/t_scanner,
+		/obj/item/weapon/tool/crowbar, /obj/item/weapon/tool/screwdriver, /obj/item/weapon/tool/weldingtool,
+		/obj/item/weapon/tool/wirecutters, /obj/item/weapon/tool/wrench, /obj/item/weapon/tank/emergency_oxygen,
+		/obj/item/clothing/mask/gas, /obj/item/taperoll/engineering
+	)
 	body_parts_covered = UPPER_TORSO|ARMS
 
 /obj/item/clothing/suit/storage/surgical_apron
@@ -124,7 +184,7 @@
 	icon_state = "surgeon"
 	item_state = "surgeon"
 	blood_overlay_type = "armor"
-	extra_allowed = list(
+	allowed = list(
 		/obj/item/weapon/tool/bonesetter,
 		/obj/item/weapon/tool/cautery,
 		/obj/item/weapon/tool/saw/circular,

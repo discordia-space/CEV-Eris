@@ -74,16 +74,3 @@
 	if(prob(66))
 		wearer.adjustBrainLoss(200)
 		part.droplimb(FALSE, DROPLIMB_BLUNT)
-
-//The leader version of the implant is the one given to antags spawned by the storyteller.
-//It has no special gameplay properties and is not attainable in normal gameplay, it just exists to
-//prevent buggy behaviour.
-/obj/item/weapon/implant/excelsior/leader
-
-//Caninstall returns true, so it wont fail when inserted into someone who was already made an antag
-/obj/item/weapon/implant/excelsior/leader/can_install()
-	return TRUE
-
-//On install is short circuited, so that it doesnt spam them with double greeting
-/obj/item/weapon/implant/excelsior/leader/on_install()
-	return TRUE

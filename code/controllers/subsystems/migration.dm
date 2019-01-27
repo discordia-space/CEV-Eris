@@ -18,7 +18,7 @@ SUBSYSTEM_DEF(migration)
 	wait = 300 //Ticks once per 30 seconds
 
 	var/burrow_scan_interval = 5 MINUTES //Every 5 minutes, they'll scan and catalogue the lifeforms around them
-	var/burrow_plantspread_interval = 1 MINUTES //Every 10 minutes, plants near burrows will spread through them
+	var/burrow_plantspread_interval = 10 MINUTES //Every 10 minutes, plants near burrows will spread through them
 	var/burrow_migrate_interval = 10 MINUTES //Every 10 minutes, some mobs will move from a populated burrow to a different place
 
 
@@ -375,7 +375,6 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 		var/obj/structure/burrow/C = sorted[1] //Grab the first element
 		sorted.Cut(1,2)//And remove it from the list
 
-
 		//It already has plants, no good
 		if (C.plant)
 			continue
@@ -463,16 +462,14 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 
 		//Now lets scroll through the list of sorted burrows and find where to insert it
 		var/index = 0
-		var/inserted = FALSE
 		for (var/a in sorted)
 			index++
 			//When we find one that is farther away than us, we will insert ourselves before it
 			if (dist <= distances[a])
 				sorted.Insert(index, B)
-				inserted = TRUE
 				break
 
-		if (inserted)
+		if (index)
 			continue
 
 		//If we get here then sorted was empty. just add the first element

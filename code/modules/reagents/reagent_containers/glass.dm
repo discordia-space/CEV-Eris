@@ -70,14 +70,25 @@
 		update_icon()
 
 	afterattack(var/obj/target, var/mob/user, var/flag)
+
 		if(!is_open_container() || !flag)
 			return
+
 		for(var/type in can_be_placed_into)
 			if(istype(target, type))
 				return
+
+		if(standard_splash_mob(user, target))
+			return 1
 		if(standard_dispenser_refill(user, target))
 			return 1
 		if(standard_pour_into(user, target))
+			return 1
+
+		if(reagents.total_volume)
+			playsound(src,'sound/effects/Splash_Small_01_mono.ogg',50,1)
+			user << SPAN_NOTICE("You splash the solution onto [target].")
+			reagents.splash(target, reagents.total_volume)
 			return 1
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -96,21 +107,6 @@
 			name = base_name
 		else
 			name = "[base_name] ([label_text])"
-
-/obj/item/weapon/reagent_containers/glass/beaker/pre_attack(atom/a, mob/user, params)
-	if(user.a_intent == I_HURT)
-		if(standard_splash_mob(user, a))
-			return TRUE
-		if(is_open_container() && reagents && reagents.total_volume)
-			if(istype(a, /obj/structure/sink))
-				user << SPAN_NOTICE("You pour the solution into [a].")
-				reagents.remove_any(reagents.total_volume)
-			else
-				playsound(src,'sound/effects/Splash_Small_01_mono.ogg',50,1)
-				user << SPAN_NOTICE("You splash the solution onto [a].")
-				reagents.splash(a, reagents.total_volume)
-			return TRUE
-	return ..()
 
 /obj/item/weapon/reagent_containers/glass/beaker
 	name = "beaker"
