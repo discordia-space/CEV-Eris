@@ -25,7 +25,7 @@
 			stop_automated_movement = 0
 			target_mob = findTarget()
 			if (target_mob)
-				stance = HOSTILE_STANCE_ATTACK
+				enter_attack_stance()
 
 		if(HOSTILE_STANCE_ATTACK)
 			if(destroy_surroundings)

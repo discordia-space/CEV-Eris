@@ -66,3 +66,7 @@
 			if (istype(obstacle, /obj/structure/window) || istype(obstacle, /obj/structure/closet) || istype(obstacle, /obj/structure/table) || istype(obstacle, /obj/structure/grille))
 				obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
 
+
+//Can be overridden to not enter attack stance
+/mob/living/carbon/superior_animal/proc/enter_attack_stance()
+	stance = HOSTILE_STANCE_ATTACK

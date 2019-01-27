@@ -1,5 +1,5 @@
 //Space bears!
-/mob/living/simple_animal/hostile/bear
+/mob/living/carbon/superior_animal/bear
 	name = "space bear"
 	desc = "RawrRawr!!"
 	icon_state = "bear"
@@ -14,10 +14,23 @@
 	response_disarm = "gently pushes aside"
 	response_harm   = "pokes"
 	stop_automated_movement_when_pulled = 0
-	maxHealth = 60
-	health = 60
+	maxHealth = 250
 	melee_damage_lower = 20
-	melee_damage_upper = 30
+	melee_damage_upper = 35
+	randpixel = 8
+
+	breath_required_type = 0 //Does not breathe
+
+	var/quiet_sounds = list('sound/effects/creatures/bear_quiet_1.ogg',
+	'sound/effects/creatures/bear_quiet_2.ogg',
+	'sound/effects/creatures/bear_quiet_3.ogg',
+	'sound/effects/creatures/bear_quiet_4.ogg',
+	'sound/effects/creatures/bear_quiet_5.ogg',
+	'sound/effects/creatures/bear_quiet_6.ogg')
+	var/loud_sounds = list('sound/effects/creatures/bear_loud_1.ogg',
+	'sound/effects/creatures/bear_loud_2.ogg',
+	'sound/effects/creatures/bear_loud_3.ogg',
+	'sound/effects/creatures/bear_loud_4.ogg')
 
 	//Space bears aren't affected by atmos.
 	min_oxy = 0
@@ -28,11 +41,43 @@
 	max_co2 = 0
 	min_n2 = 0
 	max_n2 = 0
-	minbodytemp = 0
 	var/stance_step = 0
+
+	min_air_pressure = 0 //Exists happily in a vacuum
+	max_air_pressure = 120 //poor tolerance for high pressure
+	min_bodytemperature = 0
+	max_bodytemperature = 300 //Vulnerable to fire
 
 	faction = "russian"
 
+	//Anger management!
+	//Bears are territorial, they gradually become more angry whenever they see a nearby target
+	//They will not attack until anger reaches the attack threshold
+	var/anger = 0
+	var/anger_attack_threshold = 20
+
+
+//Gradually build anger
+/mob/living/carbon/superior_animal/bear/enter_attack_stance()
+	if (anger >= anger_attack_threshold)
+		.=..()
+	else
+		if (target_mob)
+			anger++
+			speak_audio()
+
+
+/mob/living/carbon/superior_animal/bear/harvest()
+	new /obj/item/clothing/head/bearpelt(get_turf(src))
+	..()
+
+
+/mob/living/carbon/superior_animal/bear/proc/angry()
+	if (anger < anger_attack_threshold)
+		return FALSE
+	return TRUE
+
+/*
 //SPACE BEARS! SQUEEEEEEEE~     OW! FUCK! IT BIT MY HAND OFF!!
 /mob/living/simple_animal/hostile/bear/Hudson
 	name = "Hudson"
@@ -142,18 +187,7 @@
 		//M.attack_animal(src)
 		//return M
 
-
-
-
-
-
-
-
-
-
-
-
-
+*/
 
 
 
