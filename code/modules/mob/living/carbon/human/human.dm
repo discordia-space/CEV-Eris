@@ -1490,6 +1490,8 @@ var/list/rank_prefix = list(\
 
 //	If covered in blakets you wont get up while all blankets is unrolled
 /mob/living/carbon/human/unblanket()
+	if(!(locate(/obj/item/weapon/bedsheet) in get_turf(src)))
+		return TRUE
 	if(incapacitated(incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_STUNNED))
 		return FALSE
 	var/obj/item/weapon/bedsheet/unrolledBlanket
