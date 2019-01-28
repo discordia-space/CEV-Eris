@@ -11,6 +11,9 @@
 	icon_state = "generator0"
 	density = 1
 	anchored = 0
+
+	var/needs_update = FALSE //If true, will update in process
+
 	var/datum/wires/shield_generator/wires
 	var/list/field_segments = list()	// List of all shield segments owned by this generator.
 	var/list/damaged_segments = list()	// List of shield segments that have failed and are currently regenerating.
@@ -142,6 +145,7 @@
 
 // Generates the field objects. Deletes existing field, if applicable.
 /obj/machinery/power/shield_generator/proc/regenerate_field()
+	needs_update = FALSE
 	if (generatingShield)
 		return
 	generatingShield = TRUE
@@ -165,6 +169,8 @@
 	if(check_flag(MODEFLAG_HULL))
 		var/isFloor
 		for(var/turf/T in shielded_turfs)
+			if (T.diffused)
+				continue
 			isFloor = TRUE
 			for(var/turf/TN in orange(1, T))
 				if (!turf_is_external(TN) || !TN.CanPass(target = TN))
@@ -254,6 +260,9 @@
 			S.regenerate()
 	else if (field_integrity() > 5)
 		overloaded = 0
+
+	if (needs_update)
+		regenerate_field()
 
 
 /obj/machinery/power/shield_generator/attackby(obj/item/O as obj, mob/user as mob)
