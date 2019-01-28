@@ -87,6 +87,7 @@
 	taste_description = "pure alcohol"
 	reagent_state = LIQUID
 	color = "#404030"
+	ingest_met = REM * 4
 	touch_met = 5
 	var/nutriment_factor = 0
 	var/strength = 10 // This is, essentially, units between stages - the lower, the stronger. Less fine tuning, more clarity.
@@ -118,28 +119,28 @@
 	M.add_chemical_effect(CE_ALCOHOL, 1)
 
 //Robust people can drink a lot
-	strength = max(10, strength + M.stats.getStat(STAT_TGH))
+	var/tolerance = max(10, strength + M.stats.getStat(STAT_TGH))
 
-	if(dose * strength_mod >= strength) // Early warning
+	if(dose * strength_mod >= tolerance) // Early warning
 		M.make_dizzy(6) // It is decreased at the speed of 3 per tick
 
-	if(dose * strength_mod >= strength * 2) // Slurring
+	if(dose * strength_mod >= tolerance * 2) // Slurring
 		M.slurring = max(M.slurring, 30)
 
-	if(dose * strength_mod >= strength * 3) // Confusion - walking in random directions
+	if(dose * strength_mod >= tolerance * 3) // Confusion - walking in random directions
 		M.confused = max(M.confused, 20)
 
-	if(dose * strength_mod >= strength * 4) // Blurry vision
+	if(dose * strength_mod >= tolerance * 4) // Blurry vision
 		M.eye_blurry = max(M.eye_blurry, 10)
 
-	if(dose * strength_mod >= strength * 5) // Drowsyness - periodically falling asleep
+	if(dose * strength_mod >= tolerance * 5) // Drowsyness - periodically falling asleep
 		M.drowsyness = max(M.drowsyness, 20)
 
-	if(dose * strength_mod >= strength * 7) // Pass out
+	if(dose * strength_mod >= tolerance * 7) // Pass out
 		M.paralysis = max(M.paralysis, 20)
 		M.sleeping  = max(M.sleeping, 30)
 
-	if(dose * strength_mod >= strength * 9) // Toxic dose
+	if(dose * strength_mod >= tolerance * 9) // Toxic dose
 		M.add_chemical_effect(CE_ALCOHOL_TOXIC, toxicity)
 
 
