@@ -791,6 +791,154 @@ area/space/atmosalert()
 	name = "Atmospherics"
 	icon_state = "green"
 
+/area/maintenance/oldtele
+	name = "Reserve Teleporter"
+	icon_state = "erisblue"
+
+/area/maintenance/oldbridge
+	name = "Old Bridge"
+	icon_state = "erisblue"
+
+/area/maintenance/fueltankstorage
+	name = "Fueltank Storage"
+	icon_state = "erisblue"
+
+/area/maintenance/fore1
+	name = "Bridge Deck 5 Fore Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/fore2
+	name = "Bridge Deck 4 Fore Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/fore3
+	name = "Bridge Deck 3 Fore Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/fore4
+	name = "Security Deck 2 Fore Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/fore5
+	name = "Security Deck 1 Fore Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/secsec1port
+	name = "Second Section Deck 5 Port Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/secsec1starboard
+	name = "Second Section Deck 5 Starboard Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/secsec2port
+	name = "Second Section Deck 4 Port Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/secsec2starboard
+	name = "Second Section Deck 4 Starboard Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/secsec3port
+	name = "Second Section Deck 3 Port Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/secsec3starboard
+	name = "Second Section Deck 3 Starboard Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/secsec4port
+	name = "Second Section Deck 2 Port Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/secsec4starboard
+	name = "Second Section Deck 2 Starboard Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/secsec4central
+	name = "Second Section Deck 2 Central Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/secsec5port
+	name = "Second Section Deck 1 Port Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/secsec5starboard
+	name = "Second Section Deck 1 Starboard Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/thirdsec1
+	name = "Third Section Deck 5 Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/thirdsec2port
+	name = "Third Section Deck 4 Port Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/thirdsec2starboard
+	name = "Third Section Deck 4 Starboard Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/thirdsec3port
+	name = "Third Section Deck 3 Port Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/thirdsec3starboard
+	name = "Third Section Deck 3 Starboard Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/thirdsec4port
+	name = "Third Section Deck 2 Port Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/thirdsec4starboard
+	name = "Third Section Deck 2 Starboard Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/thirdsec4central
+	name = "Third Section Deck 2 Central Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/thirdsec5port
+	name = "Third Section Deck 1 Port Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/thirdsec5starboard
+	name = "Third Section Deck 1 Starboard Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/aft1
+	name = "Aft Section Deck 5 Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/aft2port
+	name = "Aft Deck 4 Port Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/aft2starboard
+	name = "Aft 4 Starboard Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/aft3port
+	name = "Aft Deck 3 Port Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/aft4port
+	name = "Aft Section Deck 2 Port Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/aft4central
+	name = "Aft Section Deck 2 Central Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/aftsec5port
+	name = "Aft Section Deck 1 Port Maintenance"
+	icon_state = "erisyellow"
+
+/area/maintenance/aftsec5starboard
+	name = "Aft Section Deck 1 Starboard Maintenance"
+	icon_state = "erisyellow"
+
 // SUBSTATIONS (Subtype of maint, that should let them serve as shielded area during radstorm)
 
 /area/maintenance/substation
@@ -828,64 +976,46 @@ area/space/atmosalert()
 
 //Hallway
 
-/area/hallway/primary/
+/area/hallway
 	sound_env = LARGE_ENCLOSED
+	icon_state = "erisgreen"
 
-/area/hallway/primary/fore
-	name = "\improper Fore Primary Hallway"
-	icon_state = "hallF"
+/area/hallway/main/section1
+	name = "First Section Hallway"
 
-/area/hallway/primary/starboard
-	name = "\improper Starboard Primary Hallway"
-	icon_state = "hallS"
+/area/hallway/main/section2
+	name = "Second Section Hallway"
 
-/area/hallway/primary/aft
-	name = "\improper Aft Primary Hallway"
-	icon_state = "hallA"
+/area/hallway/main/section3
+	name = "Third Section Hallway"
 
-/area/hallway/primary/port
-	name = "\improper Port Primary Hallway"
-	icon_state = "hallP"
+/area/hallway/main/section4
+	name = "Fourth Section Hallway"
 
-/area/hallway/primary/central_one
-	name = "\improper Central Primary Hallway"
-	icon_state = "hallC1"
+/area/hallway/side/section3port
+	name = "Third Section Port Hallway"
 
-/area/hallway/primary/central_two
-	name = "\improper Central Primary Hallway"
-	icon_state = "hallC2"
+/area/hallway/side/section3starboard
+	name = "Third Section Starboard Hallway"
+	icon_state = "erisgreen"
 
-/area/hallway/primary/central_three
-	name = "\improper Central Primary Hallway"
-	icon_state = "hallC3"
+/area/hallway/side/hydroponicshallway
+	name = "Hydroponics Hallway"
+	icon_state = "erisyellow"
 
-/area/hallway/secondary/exit
-	name = "\improper Escape Shuttle Hallway"
-	icon_state = "escape"
+/area/hallway/side/morguehallway
+	name = "Morgue Hallway"
 
-/area/hallway/secondary/construction
-	name = "\improper Construction Area"
-	icon_state = "construction"
+/area/hallway/side/atmosphericshallway
+	name = "Atmospherics Hallway"
 
-/area/hallway/secondary/entry
-	name = "\improper Cryo Chamber Hallway"
-	icon_state = "entry_1"
+/area/hallway/side/cryo
+	name = "Cryo Hallway"
 
-/area/hallway/secondary/entry/fore
-	name = "\improper Arrival Shuttle Hallway - Fore"
-	icon_state = "entry_1"
+/area/hallway/side/bridgehallway
+	name = "Bridge Hallway"
+	icon_state = "erisblue"
 
-/area/hallway/secondary/entry/port
-	name = "\improper Arrival Shuttle Hallway - Port"
-	icon_state = "entry_2"
-
-/area/hallway/secondary/entry/starboard
-	name = "\improper Arrival Shuttle Hallway - Starboard"
-	icon_state = "entry_3"
-
-/area/hallway/secondary/entry/aft
-	name = "\improper Arrival Shuttle Hallway - Aft"
-	icon_state = "entry_4"
 
 //Command
 
@@ -898,6 +1028,10 @@ area/space/atmosalert()
 	icon_state = "bridge"
 	ambience = list()
 	sound_env = MEDIUM_SOFTFLOOR
+
+/area/bridge/bridgebar
+	name = "V.I.P. Bar"
+	icon_state = "erisblue"
 
 /area/crew_quarters/captain
 	name = "\improper Command - Captain's Office"
@@ -1041,29 +1175,48 @@ area/space/atmosalert()
 	icon_state = "bar"
 	sound_env = LARGE_SOFTFLOOR
 
+/area/crew_quarters/barbackroom
+	name = "Bar Backroom"
+	icon_state = "erisgreen"
+
 /area/crew_quarters/theatre
 	name = "\improper Theatre"
 	icon_state = "Theatre"
 	sound_env = LARGE_SOFTFLOOR
 
-/area/library
+/area/crew_quarters/clownoffice
+	name = "Clown Office"
+	icon_state = "erisblue"
+
+/area/crew_quarters/library
  	name = "\improper Library"
  	icon_state = "library"
  	sound_env = LARGE_SOFTFLOOR
 
-/area/chapel/main
+/area/crew_quarters/librarybackroom
+	name = "Library Backroom"
+	icon_state = "erisgreen"
+
+
+
+
+
+/area/neotheology
+	icon_state = "erisgreen"
+
+/area/neotheology/chapel
 	name = "\improper Chapel"
 	icon_state = "chapel"
 	ambience = list('sound/ambience/ambicha1.ogg','sound/ambience/ambicha2.ogg','sound/ambience/ambicha3.ogg','sound/ambience/ambicha4.ogg')
 	sound_env = LARGE_ENCLOSED
 
-/area/chapel/office
+/area/neotheology/office
 	name = "\improper Chapel Office"
 	icon_state = "chapeloffice"
 
-/area/lawoffice
-	name = "\improper Internal Affairs"
-	icon_state = "law"
+/area/neotheology/chapelritualroom
+	name = "Chapel Rituals Room"
+	icon_state = "erisgreen"
 
 
 
@@ -1137,7 +1290,7 @@ area/space/atmosalert()
 
 //Engineering
 
-/area/engineering/
+/area/engineering
 	name = "\improper Engineering"
 	icon_state = "engineering"
 
@@ -1224,6 +1377,75 @@ area/space/atmosalert()
 /area/engineering/workshop
 	name = "\improper Engineering Workshop"
 	icon_state = "engineering_workshop"
+
+/area/engineering/starboardhallway
+	name = "Engineering Starboard Hallway"
+	icon_state = "erisgreen"
+
+/area/engineering/wastingroom
+	name = "Wasting Room"
+	icon_state = "erisred"
+
+/area/engineering/post
+	name = "Engineering Post"
+	icon_state = "erisred"
+
+/area/engineering/wastingroom
+	name = "Wasting Room"
+	icon_state = "erisred"
+
+/area/engineering/techstorage
+	name = "Tools Storage"
+	icon_state = "erisred"
+
+/area/engineering/telecommonitor
+	name = "Telecommunications Monitor Room"
+	icon_state = "erisred"
+
+/area/engineering/breakroom
+	name = "Engineering Break Room"
+	icon_state = "erisred"
+
+/area/engineering/freezercontrol
+	name = "Freezer Control"
+	icon_state = "erisred"
+
+/area/engineering/atmoscontrol
+	name = "Atmospherics Control"
+	icon_state = "erisred"
+
+/area/engineering/engeva
+	name = "Engineering E.V.A. Storage"
+	icon_state = "erisblue"
+
+
+
+/area/engineering/substation
+	name = "Substation"
+	flags = AREA_FLAG_RAD_SHIELDED
+	icon_state = "substation"
+	forced_ambience = list('sound/ambience/maintambience.ogg')
+	sound_env = SMALL_ENCLOSED
+	is_maintenance = TRUE
+
+/area/engineering/substation/engineering
+	name = "Engineering Substation"
+
+/area/engineering/substation/section1
+	name = "First Section Substation"
+
+/area/engineering/substation/section2
+	name = "Second Section Substation"
+
+/area/engineering/substation/section3
+	name = "Third Section Substation"
+
+/area/engineering/substation/section4
+	name = "Fourth Section Substation"
+
+/area/engineering/substation/bridge
+	name = "Bridge Substation"
+
 
 
 
@@ -1446,6 +1668,25 @@ area/space/atmosalert()
 	name = "\improper Emergency Treatment Centre"
 	icon_state = "exam_room"
 
+/area/medical/chemstor
+	name = "Chemical Storage"
+	icon_state = "erisblue"
+
+/area/medical/medeva
+	name = "Medical E.V.A. Storage"
+	icon_state = "erisblue"
+
+/area/medical/medbay/iso
+	name = "Isolation Wing"
+	icon_state = "erisgreen"
+
+/area/medical/medbay/uppercor
+	name = "Medbay Upper Coridor"
+	icon_state = "erisgreen"
+
+
+
+
 //Security
 
 /area/security/main
@@ -1499,24 +1740,6 @@ area/space/atmosalert()
 	name = "\improper Security - Tactical Equipment"
 	icon_state = "Tactical"
 
-
-/*
-	New()
-		..()
-
-		spawn(10) //let objects set up first
-			for(var/turf/turfToGrayscale in src)
-				if(turfToGrayscale.icon)
-					var/icon/newIcon = icon(turfToGrayscale.icon)
-					newIcon.GrayScale()
-					turfToGrayscale.icon = newIcon
-				for(var/obj/objectToGrayscale in turfToGrayscale) //1 level deep, means tables, apcs, locker, etc, but not locker contents
-					if(objectToGrayscale.icon)
-						var/icon/newIcon = icon(objectToGrayscale.icon)
-						newIcon.GrayScale()
-						objectToGrayscale.icon = newIcon
-*/
-
 /area/security/nuke_storage
 	name = "\improper Vault"
 	icon_state = "nuke_storage"
@@ -1553,6 +1776,50 @@ area/space/atmosalert()
 	name = "\improper Vacant Office"
 	icon_state = "security"
 
+/area/security/inspectors_office
+	name = "Inspectors Office"
+	icon_state = "hammerblue"
+
+/area/security/disposal
+	name = "Security Disposal"
+	flags = AREA_FLAG_RAD_SHIELDED
+	icon_state = "hammerblue"
+	is_maintenance = TRUE
+
+/area/security/barracks
+	name = "Ironhammer Barracks"
+	icon_state = "hammerblue"
+
+/area/security/prisoncells
+	name = "Prison Cells"
+	icon_state = "hammerblue"
+
+/area/security/evidencestorage
+	name = "Evidence Storage"
+	icon_state = "hammerred"
+
+/area/security/commander
+	name = "Ironhammer Commander's Office"
+	icon_state = "hammerred"
+
+/area/security/armory
+	name = "Armory"
+	icon_state = "hammerred"
+
+/area/security/exerooms
+	name = "Executive Rooms"
+	icon_state = "hammerred"
+
+/area/security/maintpost
+	name = "Maintenance Post"
+	flags = AREA_FLAG_RAD_SHIELDED
+	icon_state = "hammerred"
+	is_maintenance = TRUE
+
+
+
+
+
 /area/quartermaster
 	name = "\improper Merchants"
 	icon_state = "quart"
@@ -1586,10 +1853,19 @@ area/space/atmosalert()
 	name = "\improper Garden"
 	icon_state = "garden"
 
-//rnd (Research and Development
+
+
+
+
+//Research and Development
+
 /area/rnd/research
 	name = "\improper Research and Development"
 	icon_state = "research"
+
+/area/rnd/scient
+	name = "Science Department Entrance"
+	icon_state = "erisblue"
 
 /area/rnd/docking
 	name = "\improper Research Dock"
@@ -1635,9 +1911,36 @@ area/space/atmosalert()
 	name = "\improper Miscellaneous Research"
 	icon_state = "toxmisc"
 
-/area/toxins/server
+/area/rnd/server
 	name = "\improper Server Room"
 	icon_state = "server"
+
+/area/rnd/podbay
+	name = "Pod Bay"
+	icon_state = "erisblue"
+
+/area/rnd/anomal
+	name = "Anomalous Research Laboratory"
+	icon_state = "erisblue"
+
+/area/rnd/anomalisolone
+	name = "Anomalous Research Isolation One"
+	flags = AREA_FLAG_RAD_SHIELDED
+	icon_state = "erisgreen"
+
+/area/rnd/anomalisoltwo
+	name = "Anomalous Research Isolation Two"
+	flags = AREA_FLAG_RAD_SHIELDED
+	icon_state = "erisgreen"
+
+/area/rnd/anomalisolthree
+	name = "Anomalous Research Isolation Three"
+	flags = AREA_FLAG_RAD_SHIELDED
+	icon_state = "erisgreen"
+
+
+
+
 
 //Storage
 
@@ -1695,49 +1998,24 @@ area/space/atmosalert()
 	ship_area = TRUE
 
 
-/area/eris/bridgebar
-	name = "V.I.P. Bar"
-	icon_state = "erisblue"
 
-/area/eris/barbackroom
-	name = "Bar Backroom"
-	icon_state = "erisgreen"
 
-/area/eris/librarybackroom
-	name = "Library Backroom"
-	icon_state = "erisgreen"
 
-/area/eris/chapelritualroom
-	name = "Chapel Rituals Room"
-	icon_state = "erisgreen"
 
 /area/eris/clothingstorage
 	name = "Clothing Storage"
 	icon_state = "erisyellow"
 
-/area/eris/medeva
-	name = "Medical E.V.A. Storage"
-	icon_state = "erisblue"
-
 /area/eris/pubeva
 	name = "Public E.V.A. Storage"
-	icon_state = "erisblue"
-
-/area/eris/engeva
-	name = "Engineering E.V.A. Storage"
 	icon_state = "erisblue"
 
 /area/eris/publichydro
 	name = "Public Hydroponics"
 	icon_state = "erisblue"
 
-/area/eris/clownoffice
-	name = "Clown Office"
-	icon_state = "erisblue"
 
-/area/eris/scient
-	name = "Science Department Entrance"
-	icon_state = "erisblue"
+
 
 /area/eris/disposaldrop
 	name = "Disposal and Delivery"
@@ -1755,32 +2033,6 @@ area/space/atmosalert()
 	name = "Supply Shuttle Hangar"
 	icon_state = "erisblue"
 
-/area/eris/podbay
-	name = "Pod Bay"
-	icon_state = "erisblue"
-
-/area/eris/anomal
-	name = "Anomalous Research Laboratory"
-	icon_state = "erisblue"
-
-/area/eris/anomalisolone
-	name = "Anomalous Research Isolation One"
-	flags = AREA_FLAG_RAD_SHIELDED
-	icon_state = "erisgreen"
-
-/area/eris/anomalisoltwo
-	name = "Anomalous Research Isolation Two"
-	flags = AREA_FLAG_RAD_SHIELDED
-	icon_state = "erisgreen"
-
-/area/eris/anomalisolthree
-	name = "Anomalous Research Isolation Three"
-	flags = AREA_FLAG_RAD_SHIELDED
-	icon_state = "erisgreen"
-
-/area/eris/chemstor
-	name = "Chemical Storage"
-	icon_state = "erisblue"
 
 /area/eris/eschangara
 	name = "Escape Hangar A"
@@ -1789,320 +2041,6 @@ area/space/atmosalert()
 /area/eris/eschangarb
 	name = "Escape Hangar B"
 	icon_state = "erisred"
-
-//Eris Medbay
-
-/area/eris/medbay/iso
-	name = "Isolation Wing"
-	icon_state = "erisgreen"
-
-/area/eris/medbay/seconddeck
-	name = "Medbay Deck 2"
-	icon_state = "erisgreen"
-
-//Eris Hallways
-
-/area/eris/hallway
-	sound_env = LARGE_ENCLOSED
-	icon_state = "erisgreen"
-
-/area/eris/hallway/main/section1
-	name = "First Section Hallway"
-
-/area/eris/hallway/main/section2
-	name = "Second Section Hallway"
-
-/area/eris/hallway/main/section3
-	name = "Third Section Hallway"
-
-/area/eris/hallway/main/section4
-	name = "Fourth Section Hallway"
-
-/area/eris/hallway/side/section3port
-	name = "Third Section Port Hallway"
-
-/area/eris/hallway/side/section3starboard
-	name = "Third Section Starboard Hallway"
-	icon_state = "erisgreen"
-
-/area/eris/hallway/side/hydroponicshallway
-	name = "Hydroponics Hallway"
-	icon_state = "erisyellow"
-
-/area/eris/hallway/side/morguehallway
-	name = "Morgue Hallway"
-
-/area/eris/hallway/side/atmosphericshallway
-	name = "Atmospherics Hallway"
-
-/area/eris/hallway/side/bridgehallway
-	name = "Bridge Hallway"
-	icon_state = "erisblue"
-
-//Eris Security
-
-/area/eris/security/inspectors_office
-	name = "Inspectors Office"
-	icon_state = "hammerblue"
-
-/area/eris/security/disposal
-	name = "Security Disposal"
-	flags = AREA_FLAG_RAD_SHIELDED
-	icon_state = "hammerblue"
-	is_maintenance = TRUE
-
-/area/eris/security/barracks
-	name = "Ironhammer Barracks"
-	icon_state = "hammerblue"
-
-/area/eris/security/prisoncells
-	name = "Prison Cells"
-	icon_state = "hammerblue"
-
-/area/eris/security/evidencestorage
-	name = "Evidence Storage"
-	icon_state = "hammerred"
-
-/area/eris/security/commander
-	name = "Ironhammer Commander's Office"
-	icon_state = "hammerred"
-
-/area/eris/security/armory
-	name = "Armory"
-	icon_state = "hammerred"
-
-/area/eris/security/exerooms
-	name = "Executive Rooms"
-	icon_state = "hammerred"
-
-/area/eris/security/maintpost
-	name = "Maintenance Post"
-	flags = AREA_FLAG_RAD_SHIELDED
-	icon_state = "hammerred"
-	is_maintenance = TRUE
-
-//Eris Engineering
-
-/area/eris/engineering/starboardhallway
-	name = "Engineering Starboard Hallway"
-	icon_state = "erisgreen"
-
-/area/eris/engineering/wastingroom
-	name = "Wasting Room"
-	icon_state = "erisred"
-
-/area/eris/engineering/post
-	name = "Engineering Post"
-	icon_state = "erisred"
-
-/area/eris/engineering/wastingroom
-	name = "Wasting Room"
-	icon_state = "erisred"
-
-/area/eris/engineering/techstorage
-	name = "Tools Storage"
-	icon_state = "erisred"
-
-/area/eris/engineering/telecommonitor
-	name = "Telecommunications Monitor Room"
-	icon_state = "erisred"
-
-/area/eris/engineering/breakroom
-	name = "Engineering Break Room"
-	icon_state = "erisred"
-
-/area/eris/engineering/freezercontrol
-	name = "Freezer Control"
-	icon_state = "erisred"
-
-/area/eris/engineering/atmoscontrol
-	name = "Atmospherics Control"
-	icon_state = "erisred"
-
-//Eris substations
-
-/area/eris/engineering/substation
-	name = "Substation"
-	flags = AREA_FLAG_RAD_SHIELDED
-	icon_state = "substation"
-	forced_ambience = list('sound/ambience/maintambience.ogg')
-	sound_env = SMALL_ENCLOSED
-	is_maintenance = TRUE
-
-/area/eris/engineering/substation/engineering
-	name = "Engineering Substation"
-
-/area/eris/engineering/substation/section1
-	name = "First Section Substation"
-
-/area/eris/engineering/substation/section2
-	name = "Second Section Substation"
-
-/area/eris/engineering/substation/section3
-	name = "Third Section Substation"
-
-/area/eris/engineering/substation/section4
-	name = "Fourth Section Substation"
-
-/area/eris/engineering/substation/bridge
-	name = "Bridge Substation"
-
-//Eris Maint
-
-/area/eris/maintenance
-	is_maintenance = TRUE
-	flags = AREA_FLAG_RAD_SHIELDED
-	name = "Maintenance"
-	icon_state = "erisyellow"
-	forced_ambience = list('sound/ambience/maintambience.ogg')
-
-/area/eris/maintenance/oldtele
-	name = "Reserve Teleporter"
-	icon_state = "erisblue"
-
-/area/eris/maintenance/oldbridge
-	name = "Old Bridge"
-	icon_state = "erisblue"
-
-/area/eris/maintenance/fueltankstorage
-	name = "Fueltank Storage"
-	icon_state = "erisblue"
-
-/area/eris/maintenance/fore1
-	name = "Bridge Deck 5 Fore Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/fore2
-	name = "Bridge Deck 4 Fore Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/fore3
-	name = "Bridge Deck 3 Fore Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/fore4
-	name = "Security Deck 2 Fore Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/fore5
-	name = "Security Deck 1 Fore Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/secsec1port
-	name = "Second Section Deck 5 Port Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/secsec1starboard
-	name = "Second Section Deck 5 Starboard Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/secsec2port
-	name = "Second Section Deck 4 Port Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/secsec2starboard
-	name = "Second Section Deck 4 Starboard Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/secsec3port
-	name = "Second Section Deck 3 Port Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/secsec3starboard
-	name = "Second Section Deck 3 Starboard Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/secsec4port
-	name = "Second Section Deck 2 Port Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/secsec4starboard
-	name = "Second Section Deck 2 Starboard Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/secsec4central
-	name = "Second Section Deck 2 Central Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/secsec5port
-	name = "Second Section Deck 1 Port Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/secsec5starboard
-	name = "Second Section Deck 1 Starboard Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/thirdsec1
-	name = "Third Section Deck 5 Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/thirdsec2port
-	name = "Third Section Deck 4 Port Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/thirdsec2starboard
-	name = "Third Section Deck 4 Starboard Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/thirdsec3port
-	name = "Third Section Deck 3 Port Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/thirdsec3starboard
-	name = "Third Section Deck 3 Starboard Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/thirdsec4port
-	name = "Third Section Deck 2 Port Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/thirdsec4starboard
-	name = "Third Section Deck 2 Starboard Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/thirdsec4central
-	name = "Third Section Deck 2 Central Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/thirdsec5port
-	name = "Third Section Deck 1 Port Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/thirdsec5starboard
-	name = "Third Section Deck 1 Starboard Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/aft1
-	name = "Aft Section Deck 5 Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/aft2port
-	name = "Aft Deck 4 Port Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/aft2starboard
-	name = "Aft 4 Starboard Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/aft3port
-	name = "Aft Deck 3 Port Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/aft4port
-	name = "Aft Section Deck 2 Port Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/aft4central
-	name = "Aft Section Deck 2 Central Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/aftsec5port
-	name = "Aft Section Deck 1 Port Maintenance"
-	icon_state = "erisyellow"
-
-/area/eris/maintenance/aftsec5starboard
-	name = "Aft Section Deck 1 Starboard Maintenance"
-	icon_state = "erisyellow"
 
 //DJSTATION
 

@@ -17,7 +17,7 @@
 
 /turf/simulated/New()
 	..()
-	if(istype(loc, /area/chapel))
+	if(istype(loc, /area/neotheology))
 		holy = 1
 	levelupdate()
 
