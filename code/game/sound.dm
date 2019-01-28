@@ -264,6 +264,7 @@ var/list/footstep_wood = list(\
 
 var/const/FALLOFF_SOUNDS = 0.5
 
+//turf_source = our_turf, soundin = 'sound/effects/alert.ogg', vol = 100, vary = 1, extrarange = 0.5
 /mob/proc/playsound_local(var/turf/turf_source, soundin, vol as num, vary, extrarange as num, frequency, falloff, is_global, use_pressure = TRUE)
 	if(!src.client || ear_deaf > 0)	return
 	soundin = get_sfx(soundin)
@@ -282,13 +283,12 @@ var/const/FALLOFF_SOUNDS = 0.5
 	//sound volume falloff with pressure
 	var/pressure_factor = 1.0
 
-	if(isturf(turf_source))
-		// 3D sounds, the technology is here!
-		var/turf/T = get_turf(src)
+	// 3D sounds, the technology is here!
+	var/turf/T = get_turf(src)
 
+	if(T)
 		//sound volume falloff with distance
 		var/distance = get_dist(T, turf_source)
-
 		S.volume -= max(distance - (world.view + extrarange), 0) * 2 //multiplicative falloff to add on top of natural audio falloff.
 
 		var/datum/gas_mixture/hearer_env = T.return_air()
@@ -298,7 +298,6 @@ var/const/FALLOFF_SOUNDS = 0.5
 		if (use_pressure)
 			if (hearer_env && source_env)
 				var/pressure = min(hearer_env.return_pressure(), source_env.return_pressure())
-
 				if (pressure < ONE_ATMOSPHERE)
 					pressure_factor = max((pressure - SOUND_MINIMUM_PRESSURE)/(ONE_ATMOSPHERE - SOUND_MINIMUM_PRESSURE), 0)
 			else //in space
@@ -338,13 +337,15 @@ var/const/FALLOFF_SOUNDS = 0.5
 				S.environment = SPACE
 			else
 				var/area/A = get_area(src)
-				S.environment = A.sound_env
+				if(istype(A))
+					S.environment = A.sound_env
 
 		else if (pressure_factor < 0.5)
 			S.environment = SPACE
 		else
 			var/area/A = get_area(src)
-			S.environment = A.sound_env
+			if(istype(A))
+				S.environment = A.sound_env
 
 	src << S
 
