@@ -103,7 +103,7 @@
 	/obj/random/mob/spiders,
 	/obj/random/mob/roaches,
 	/mob/living/simple_animal/hostile/samak,
-	/mob/living/simple_animal/hostile/bear,
+	/mob/living/carbon/superior_animal/bear,
 	/mob/living/simple_animal/hostile/carp,
 	/mob/living/simple_animal/hostile/creature,
 	/mob/living/simple_animal/hostile/carp/pike

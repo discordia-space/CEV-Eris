@@ -20,7 +20,7 @@
 	var/time_to_escape = 40
 	var/target_zone
 	var/min_size = 5 //Mobs smaller than this won't trigger the trap
-	var/struggle_prob = 2
+	var/struggle_prob = 3
 
 
 /obj/item/weapon/beartrap/Initialize()
@@ -137,6 +137,10 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	if (buckled_mob)
 		attempt_release(user)
 		return
+
+	if (deployed) //Disarm when picked up
+		deployed = FALSE
+		update_icon()
 	.=..()
 
 /obj/item/weapon/beartrap/attack_generic(var/mob/user, var/damage)
@@ -209,6 +213,12 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 		visible_message(SPAN_DANGER("\The [src] snaps back, digging deeper into [buckled_mob.name]'s [H.get_organ(target_zone).name]"))
 	else
 		visible_message(SPAN_DANGER("\The [src] snaps back, digging deeper into [buckled_mob.name]"))
+		if (istype(L, /mob/living/carbon/superior_animal/bear))
+			var/mob/living/carbon/superior_animal/bear/B = L
+			B.instant_aggro()//Special bear interactions
+
+	shake_animation()
+	L.shake_animation()
 	L.apply_damage(fail_damage, BRUTE, target_zone, blocked, src)
 	playsound(src, 'sound/effects/impacts/beartrap_shut.ogg', 10, 1,-2,-2)//Fairly quiet snapping sound
 
@@ -248,6 +258,12 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	buckle_mob(L)
 	L << "<span class='danger'>The steel jaws of \the [src] bite into you, trapping you in place!</span>"
 
+	shake_animation()
+	L.shake_animation()
+
+	if (istype(L, /mob/living/carbon/superior_animal/bear))
+		var/mob/living/carbon/superior_animal/bear/B = L
+		B.instant_aggro()//Special bear interactions
 
 	//If the victim is nonhuman and has no client, start processing.
 	if (!ishuman(L) && !L.client)

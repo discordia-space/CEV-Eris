@@ -204,10 +204,11 @@
 
 /obj/item/clothing/head/bearpelt
 	name = "bear pelt hat"
-	desc = "Fuzzy."
+	desc = "An unexpectedly dense and strong coat, of something artificial that is not quite fur."
+	armor = list(melee = 55, bullet = 55, laser = 55,energy = 55, bomb = 55, bio = 55, rad = 55)
 	icon_state = "bearpelt"
 	flags_inv = BLOCKHAIR
-	siemens_coefficient = 0.7
+	siemens_coefficient = 0.2
 
 /obj/item/clothing/head/xenos
 	name = "xenos helmet"

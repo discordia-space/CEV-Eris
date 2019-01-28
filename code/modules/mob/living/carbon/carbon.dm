@@ -7,7 +7,7 @@
 	..()
 
 /mob/living/carbon/Life()
-	..()
+	.=..()
 
 	handle_viruses()
 

@@ -119,7 +119,7 @@
 	canmove = 0
 	icon = null
 	invisibility = 101
-	
+
 
 	var/mob/living/silicon/robot/O = new /mob/living/silicon/robot( loc )
 
@@ -289,7 +289,7 @@
 		return 1
 	if(ispath(MP, /mob/living/simple_animal/mouse))
 		return 1 //It is impossible to pull up the player panel for mice (Fixed! - Nodrak)
-	if(ispath(MP, /mob/living/simple_animal/hostile/bear))
+	if(ispath(MP, /mob/living/carbon/superior_animal/bear))
 		return 1 //Bears will auto-attack mobs, even if they're player controlled (Fixed! - Nodrak)
 	if(ispath(MP, /mob/living/simple_animal/parrot))
 		return 1 //Parrots are no longer unfinished! -Nodrak

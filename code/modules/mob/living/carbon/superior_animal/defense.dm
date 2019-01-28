@@ -305,12 +305,16 @@
 	failed_last_breath = 0
 
 	if (!(breath_required_type || breath_poison_type))
-		return
+		return TRUE
 
 	if(breath_required_type && (!breath || (breath.total_moles == 0)))
 		failed_last_breath = 1
 		adjustOxyLoss(2)
 		return
+
+	if (!breath)
+		//This prevents runtime errors with non-breathing mobs in a vacuum
+		return TRUE
 
 	var/breath_pressure = (breath.total_moles*R_IDEAL_GAS_EQUATION*breath.temperature)/BREATH_VOLUME
 

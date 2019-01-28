@@ -780,7 +780,7 @@
 
 
 /mob/facedir(var/ndir)
-	if(!canface() || client.moving || client.isMovementBlocked())
+	if(!canface() || client && (client.moving || client.isMovementBlocked()))
 		return 0
 	set_dir(ndir)
 	if(buckled && buckled.buckle_movable)

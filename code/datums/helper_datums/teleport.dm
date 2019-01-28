@@ -1,7 +1,9 @@
-//wrapper
+//This creates the datum and then calls initTeleport on it so that it can return true/false
 /proc/do_teleport(ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null)
-	new /datum/teleport/instant/science(arglist(args))
-	return
+	var/datum/teleport/T = new /datum/teleport/science()
+	if (T.initTeleport(arglist(args)))
+		return T.teleport()
+	return FALSE
 
 /datum/teleport
 	var/atom/movable/teleatom //atom to teleport
@@ -14,13 +16,7 @@
 	var/force_teleport = 1 //if false, teleport will use Move() proc (dense objects will prevent teleportation)
 
 
-/datum/teleport/New(ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null)
-	..()
-	if(!initTeleport(arglist(args)))
-		return 0
-	return 1
-
-/datum/teleport/proc/initTeleport(ateleatom, adestination, aprecision, afteleport, aeffectin, aeffectout, asoundin, asoundout)
+/datum/teleport/proc/initTeleport(ateleatom, adestination, aprecision = 0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null)
 	if(!setTeleatom(ateleatom))
 		return 0
 	if(!setDestination(adestination))
@@ -128,25 +124,24 @@
 		return doTeleport()
 	return 0
 
-/datum/teleport/instant //teleports when datum is created
 
-/datum/teleport/instant/New(ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null)
-	if(..())
-		teleport()
-	return
-
-
-/datum/teleport/instant/science/setEffects(datum/effect/effect/system/aeffectin, datum/effect/effect/system/aeffectout)
+/datum/teleport/science/setEffects(datum/effect/effect/system/aeffectin, datum/effect/effect/system/aeffectout)
 	if(!aeffectin || !aeffectout)
-		var/datum/effect/effect/system/spark_spread/aeffect = new
-		aeffect.set_up(5, 1, teleatom)
-		effectin = effectin || aeffect
-		effectout = effectout || aeffect
+		aeffectin = new /datum/effect/effect/system/spark_spread()
+		aeffectout = new /datum/effect/effect/system/spark_spread()
+
+		//This one plays when we teleport away, so it attaches to the place where we were
+		aeffectin.set_up(5, FALSE, teleatom.loc)
+
+		//This one attaches to the atom which is moving, so its with us on arrival
+		aeffectout.set_up(5, FALSE, teleatom)
+		effectin = effectin || aeffectin
+		effectout = effectout || aeffectout
 		return 1
 	else
 		return ..()
 
-/datum/teleport/instant/science/setPrecision(aprecision)
+/datum/teleport/science/setPrecision(aprecision)
 	..()
 	if(istype(teleatom, /obj/item/weapon/storage/backpack/holding))
 		precision = rand(1, 100)
@@ -159,7 +154,7 @@
 			MM << SPAN_DANGER("The Bluespace interface on your [teleatom] interferes with the teleport!")
 	return 1
 
-/datum/teleport/instant/science/teleportChecks()
+/datum/teleport/science/teleportChecks()
 	if(istype(teleatom, /obj/item/weapon/disk/nuclear)) // Don't let nuke disks get teleported --NeoFite
 		teleatom.visible_message(SPAN_DANGER("\The [teleatom] bounces off of the portal!"))
 		return 0

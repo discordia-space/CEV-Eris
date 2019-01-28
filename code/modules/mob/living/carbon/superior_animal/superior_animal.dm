@@ -110,6 +110,12 @@
 	if(message)
 		visible_message("<span class='name'>[src]</span> [message]")
 
+	speak_audio()
+
+//Does nothing initially but should be overridden
+/mob/living/carbon/superior_animal/proc/speak_audio()
+	return
+
 /mob/living/carbon/superior_animal/update_icons()
 	. = ..()
 	transform = null

@@ -46,6 +46,13 @@ proc/iscuffed(A)
 			return 1
 	return 0
 
+//Quick way to check if a given thing is a mob which is also lying down
+/proc/islying(var/A)
+	if (ismob(A))
+		var/mob/M = A
+		return M.lying
+	return FALSE
+
 proc/hassensorlevel(A, var/level)
 	var/mob/living/carbon/human/H = A
 	if(istype(H) && istype(H.w_uniform, /obj/item/clothing/under))

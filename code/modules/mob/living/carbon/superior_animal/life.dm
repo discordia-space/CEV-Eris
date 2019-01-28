@@ -31,10 +31,8 @@
 			if(destroy_surroundings)
 				destroySurroundings()
 
-			stop_automated_movement = 1
 			stance = HOSTILE_STANCE_ATTACKING
-			set_glide_size(DELAY2GLIDESIZE(move_to_delay))
-			walk_to(src, target_mob, 1, move_to_delay)
+			move_to_target()
 
 		if(HOSTILE_STANCE_ATTACKING)
 			if(destroy_surroundings)

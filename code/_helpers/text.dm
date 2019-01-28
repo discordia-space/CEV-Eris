@@ -484,7 +484,7 @@ proc/TextPreview(var/string, var/len=40)
 	return jointext(dat, null)
 
 
-//Generates a clickable link which will jump the camera/ghost to the target atom
+//Generates a clickable link which will jump the camera/ghost to the location of target atom
 //Useful for admin procs
 /proc/jumplink(var/atom/target)
 	if (QDELETED(target))
@@ -493,5 +493,17 @@ proc/TextPreview(var/string, var/len=40)
 	var/area/A = get_area(target)
 	var/where = "[A? A.name : "Unknown Location"] | [T.x], [T.y], [T.z]"
 	var/whereLink = "<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>[where]</a>"
+	return whereLink
+
+
+//Generates a clickable link which will jump the camera/ghost to the target atom
+//Unlike the above version, this will take you to wherever the atom is now, rather than where it was when the link was made
+/proc/followlink(var/atom/target)
+	if (QDELETED(target))
+		return ""
+	var/turf/T = get_turf(target)
+	var/area/A = get_area(target)
+	var/where = "[A? A.name : "Unknown Location"] | [T.x], [T.y], [T.z]"
+	var/whereLink = "<A HREF='?_src_=holder;adminplayerobservejump=\ref[target];'>[where]</a>"
 	return whereLink
 #define gender2text(gender) capitalize(gender)

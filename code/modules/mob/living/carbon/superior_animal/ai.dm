@@ -70,3 +70,10 @@
 //Can be overridden to not enter attack stance
 /mob/living/carbon/superior_animal/proc/enter_attack_stance()
 	stance = HOSTILE_STANCE_ATTACK
+
+
+/mob/living/carbon/superior_animal/proc/move_to_target()
+	stop_automated_movement = 1
+
+	set_glide_size(DELAY2GLIDESIZE(move_to_delay))
+	walk_to(src, target_mob, 1, move_to_delay)
