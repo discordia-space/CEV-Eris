@@ -10,6 +10,7 @@
 	turns_per_move = 4
 	see_in_dark = 6
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/bearmeat
+	meat_amount = 6
 	stop_automated_movement_when_pulled = 0
 	maxHealth = 250
 	melee_damage_lower = 20
@@ -55,9 +56,7 @@
 	.=..()
 
 
-/mob/living/carbon/superior_animal/bear/harvest()
-	new /obj/item/clothing/head/bearpelt(get_turf(src))
-	..()
+
 
 
 /mob/living/carbon/superior_animal/bear/proc/angry()

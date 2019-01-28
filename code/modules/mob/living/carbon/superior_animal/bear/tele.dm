@@ -1,6 +1,7 @@
 //An extremely mobile hunter, these creatures teleport around the vessel in search of prey.
 /mob/living/carbon/superior_animal/bear/tele
 	name = "bluespace bear"
+	desc = "An augmented bioweapon broken loose. Hunts down prey over long distances, moving slightly out of phase with reality"
 	maxHealth = 350
 	melee_damage_lower = 22
 	melee_damage_upper = 38
@@ -27,6 +28,9 @@
 	var/escape_threshold = 200
 
 
+/mob/living/carbon/superior_animal/bear/tele/harvest()
+	new /obj/item/clothing/head/bearpelt(get_turf(src))
+	..()
 
 //Teleports somewhere random, looking for prey
 /mob/living/carbon/superior_animal/bear/tele/proc/teleport_strategic()
