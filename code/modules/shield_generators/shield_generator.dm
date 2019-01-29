@@ -157,6 +157,7 @@
 
 	// The generator is not turned on, so don't generate any new tiles.
 	if(!running)
+		generatingShield = FALSE
 		return
 
 	var/list/shielded_turfs
