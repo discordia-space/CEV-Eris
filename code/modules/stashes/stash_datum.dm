@@ -59,6 +59,8 @@ This file contains the underlying code for stash datums
 	//Somewhere it must include the string "%D", this will be dynamically replaced with the directions to the stash
 	var/lore = "Our stuff %D"
 
+	var/text_size = 14 //Pixels, the height of text
+
 	//What type of paper the note will be written on
 	//TODO Future, add support for digital notes on memory sticks
 	var/note_paper_type = /obj/item/weapon/paper/crumpled
@@ -278,3 +280,4 @@ This file contains the underlying code for stash datums
 //Does final creation on lore, override this to do fancy things
 /datum/stash/proc/create_note_content()
 	lore = replacetext(lore, "%D", direction_string)
+	lore = "<div style='font-size: [text_size]px'>[lore]</div>"

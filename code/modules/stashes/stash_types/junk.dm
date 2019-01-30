@@ -29,13 +29,13 @@ just stuff it here for now, and he can go stuff himself. %D"
 	lore =  "Hey jackass! The ship's computer monitors the emails, the radios, and probably turns on \
 	the fucking microphones when we aren't looking. So here, let me help you out. That shit you wanted\
 	 is HERE.%D Now you're all paid up so don't go fucking talking about our deal, any which damn way,\
-	  because you'll get us both brigged. And for fuck's sake, burn this when you're done?\n\n\
+	  because you'll get us both brigged. And for fuck's sake, burn this when you're done?<br><br>\
 	  (The note is mildly singed around the edges, but quite readable)"
 
 /datum/stash/junk/scrawl
 	story_type = STORY_CRIME
 	directions = DIRECTION_IMAGE
-	lore = "(the handwriting is messy and barely legible)\n\n\
+	lore = "(the handwriting is messy and barely legible)<br><br>\
 	calling me a packrat im not a packrat i just like to be prepared for shit thats all and whats wrong\
 	 with that sometimes you gotta have shit to swap for whatever when the shit goes down and it always\
 	  goes down and when it does i go down to better not write it i go down to here and these stupid \
