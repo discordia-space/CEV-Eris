@@ -354,4 +354,4 @@
 	rejuvenate()
 	restore_blood()
 	fixblood()
-	update_canmove()
+	update_lying_buckled_and_verb_status()

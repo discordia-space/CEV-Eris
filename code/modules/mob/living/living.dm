@@ -650,7 +650,7 @@ default behaviour is:
 		resting = FALSE
 		state_changed = TRUE
 
-		
+
 	else if (!resting)
 		if(ishuman(src))
 			var/obj/item/weapon/bedsheet/BS = locate(/obj/item/weapon/bedsheet) in get_turf(src)
@@ -667,12 +667,12 @@ default behaviour is:
 			state_changed = TRUE
 	if(state_changed)
 		src << "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>"
-		update_canmove()
+		update_lying_buckled_and_verb_status()
 
 /mob/living/proc/can_stand_up()
 	var/no_blankets = FALSE
 	no_blankets = unblanket()
-	
+
 	if(no_blankets)
 		return TRUE
 	else
@@ -760,6 +760,13 @@ default behaviour is:
 	src << "<b>You are now \the [src]!</b>"
 	src << "<span class='notice'>Remember to stay in character for a mob of this type!</span>"
 	return TRUE
+
+/mob/living/reset_layer()
+	if(hiding)
+		plane = HIDING_MOB_PLANE
+		layer = HIDING_MOB_LAYER
+	else
+		..()
 
 /mob/living/throw_mode_off()
 	src.in_throw_mode = 0
