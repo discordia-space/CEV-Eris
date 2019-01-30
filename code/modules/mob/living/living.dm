@@ -676,7 +676,7 @@ default behaviour is:
 	if(no_blankets)
 		return TRUE
 	else
-		src << SPAN_WARNING("You can stand up, bedsheets are in the way and you struggle to get rid of them.")
+		src << SPAN_WARNING("You can't stand up, bedsheets are in the way and you struggle to get rid of them.")
 		return FALSE
 
 //used to push away bedsheets in order to stand up, only humans will roll them (see overriden human proc)
