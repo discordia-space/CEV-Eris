@@ -51,7 +51,7 @@
 
 	handle_actions()
 
-	update_canmove()
+	update_lying_buckled_and_verb_status()
 
 	handle_regular_hud_updates()
 

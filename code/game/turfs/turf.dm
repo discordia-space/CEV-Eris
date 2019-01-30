@@ -157,7 +157,7 @@ var/const/enterloopsanity = 100
 			inertial_drift(M)
 		else if(is_space())
 			M.inertia_dir = 0
-		M.update_floating(TRUE) // no Check_Dense_Object() proc in arg because it will make this line more costly for almost zero reward in my opinion.
+		M.update_floating() // no check_dense_object() proc in arg because it will make this line more costly for almost zero reward in my opinion.
 		if(isliving(M))
 			var/mob/living/L = M
 			L.handle_footstep(src)
@@ -184,7 +184,7 @@ var/const/enterloopsanity = 100
 	if(!(A.last_move))	return
 	if((istype(A, /mob/) && src.x > 2 && src.x < (world.maxx - 1) && src.y > 2 && src.y < (world.maxy-1)))
 		var/mob/M = A
-		if(M.Allow_Spacemove(1))
+		if(M.allow_spacemove(1))
 			M.inertia_dir  = 0
 			return
 		spawn(5)

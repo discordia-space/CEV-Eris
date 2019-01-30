@@ -1000,7 +1000,7 @@
 	if(wires.LockedCut())
 		state = 1
 	lockcharge = state
-	update_canmove()
+	update_lying_buckled_and_verb_status()
 
 /mob/living/silicon/robot/mode()
 	set name = "Activate Held Object"
@@ -1182,3 +1182,11 @@
 				src << "Hack attempt detected."
 			return 1
 		return
+
+
+/mob/living/silicon/robot/incapacitated(var/incapacitation_flags = INCAPACITATION_DEFAULT)
+	if ((incapacitation_flags & INCAPACITATION_FORCELYING) && (lockcharge || !is_component_functioning("actuator")))
+		return 1
+	if ((incapacitation_flags & INCAPACITATION_UNCONSCIOUS) && !is_component_functioning("actuator"))
+		return 1
+	return ..()

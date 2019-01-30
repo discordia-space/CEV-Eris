@@ -89,3 +89,14 @@
 /mob/living/carbon/human/proc/get_core_implant()
 	var/obj/item/weapon/implant/core_implant/C = locate(/obj/item/weapon/implant/core_implant, src)
 	return C
+
+
+/mob/living/carbon/human/reset_layer()
+	if(hiding)
+		plane = HIDING_MOB_PLANE
+		layer = HIDING_MOB_LAYER
+	else if(lying)
+		plane = LYING_HUMAN_PLANE
+		layer = LYING_HUMAN_LAYER
+	else
+		..()

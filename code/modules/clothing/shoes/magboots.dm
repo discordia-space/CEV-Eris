@@ -36,6 +36,7 @@
 		user << "You enable the mag-pulse traction system."
 	user.update_inv_shoes()	//so our mob-overlays update
 	user.update_action_buttons()
+	user.update_floating()
 
 
 //We want to allow the user to equip magboots even if they're already wearing shoes
