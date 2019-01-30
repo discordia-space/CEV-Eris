@@ -33,7 +33,7 @@
 		if(is_valid_apc(apc))
 			// Greatly reduce the chance for APCs in maintenance areas to be selected
 			var/area/A = get_area(apc)
-			if(!istype(A,/area/maintenance) || prob(25))
+			if(!istype(A,/area/eris/maintenance) || prob(25))
 				apcs += apc
 
 	if(!apcs.len)
