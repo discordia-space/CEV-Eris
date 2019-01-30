@@ -7,7 +7,7 @@
 
 	var/list/hud_list[10]
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
-	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_canmove() call.
+	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_lying_buckled_and_verb_status() call.
 
 /mob/living/carbon/human/New(var/new_loc, var/new_species = null)
 	body_build = get_body_build(gender)
@@ -1290,7 +1290,7 @@ var/list/rank_prefix = list(\
 		if(C.body_parts_covered & FACE)
 			// Do not show flavor if face is hidden
 			return
-	
+
 	if(client)
 		flavor_text = client.prefs.flavor_text
 
@@ -1490,6 +1490,8 @@ var/list/rank_prefix = list(\
 
 //	If covered in blakets you wont get up while all blankets is unrolled
 /mob/living/carbon/human/unblanket()
+	if(!(locate(/obj/item/weapon/bedsheet) in get_turf(src)))
+		return TRUE
 	if(incapacitated(incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_STUNNED))
 		return FALSE
 	var/obj/item/weapon/bedsheet/unrolledBlanket
