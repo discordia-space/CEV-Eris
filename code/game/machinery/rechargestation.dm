@@ -251,7 +251,7 @@
 	go_in(usr)
 
 /obj/machinery/recharge_station/MouseDrop_T(var/mob/target, var/mob/user)
-	if(!CanMouseDrop(src, target, user))
+	if(!CanMouseDrop(target, user))
 		return
 	if(!istype(target,/mob/living/silicon))
 		return
