@@ -59,7 +59,10 @@ This file contains the underlying code for stash datums
 	//Somewhere it must include the string "%D", this will be dynamically replaced with the directions to the stash
 	var/lore = "Our stuff %D"
 
-	var/text_size = 14 //Pixels, the height of text
+	//Text formatting stuff
+	var/text_size = 18 //Pixels, the height of text
+	var/padding = 30
+	var/textclass = "rough" //CSS class of the text div
 
 	//What type of paper the note will be written on
 	//TODO Future, add support for digital notes on memory sticks
@@ -72,7 +75,7 @@ This file contains the underlying code for stash datums
 	//These can be overridden to adjust how the direction is communicated
 	var/direction_string_base_coords = "can be found at these coordinates: %X, %Y, on deck %Z"
 	var/direction_string_base_landmark = "is located %L"
-	var/direction_string_base_image = "\n\n(there is a photo attached)"
+	var/direction_string_base_image = "<br>(there is a photo attached)<br>"
 
 	//What type of container will be spawned to hold the stash items. Default is a burlap sack
 	//You can also set this blank and the objects will be spawned without a container
@@ -119,6 +122,7 @@ This file contains the underlying code for stash datums
 		//For any other spawning method, we pick our own location
 		//100 tries for sanity. Its very unlikely to fail even on the first try,
 		//but maybe the ship is rekt. Limiting attempts just prevents an infinite loop situation
+
 		for (var/i = 1; i <= 100; i++)
 			//Can pick any area without players in it.
 			//This is overwhelmingly likely to be in maintenance and thats good.
@@ -280,4 +284,5 @@ This file contains the underlying code for stash datums
 //Does final creation on lore, override this to do fancy things
 /datum/stash/proc/create_note_content()
 	lore = replacetext(lore, "%D", direction_string)
-	lore = "<div style='font-size: [text_size]px'>[lore]</div>"
+	//Todo, find out why textclass isnt working
+	lore = "<div [textclass ? "class='[textclass]'" : ""] style='font-size: [text_size]px; padding: [padding]px'>[lore]</div>"

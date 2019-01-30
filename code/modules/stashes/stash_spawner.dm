@@ -10,16 +10,13 @@
 
 
 /obj/item/stash_spawner/Initialize()
-	world << "Stash spawner initializing"
 	select_datum()
 	if (!datum)
-		world << "Failed to get datum"
 		//If it failed to get a datum, we can't do anything
 		return INITIALIZE_HINT_QDEL
 
 	datum.select_location()
 	if (!datum.stash_location)
-		world << "Datum failed to get location"
 		//We require a found location
 		return INITIALIZE_HINT_QDEL
 

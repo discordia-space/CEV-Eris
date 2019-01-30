@@ -18,7 +18,7 @@
 /datum/stash/junk/inspection
 	story_type = STORY_CRIME
 	directions = DIRECTION_IMAGE
-	lore = "Dear Diary,\n\
+	lore = "Dear Diary,<br>\
 That prick First Officer keeps doing inspections of personal lockers, claiming some idiot terrorist\
 threat. I think he just wants to go poking around through my unmentionables, but still, he'll start \
 wondering where all these little odds and ends come from, or what kind of favors he can get. I'll \
@@ -28,7 +28,7 @@ just stuff it here for now, and he can go stuff himself. %D"
 	story_type = STORY_CRIME
 	lore =  "Hey jackass! The ship's computer monitors the emails, the radios, and probably turns on \
 	the fucking microphones when we aren't looking. So here, let me help you out. That shit you wanted\
-	 is HERE.%D Now you're all paid up so don't go fucking talking about our deal, any which damn way,\
+	 is HERE.<br>%D <br>Now you're all paid up so don't go fucking talking about our deal, any which damn way,\
 	  because you'll get us both brigged. And for fuck's sake, burn this when you're done?<br><br>\
 	  (The note is mildly singed around the edges, but quite readable)"
 

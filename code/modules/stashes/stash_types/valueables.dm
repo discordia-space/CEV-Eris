@@ -16,8 +16,8 @@
 
 /datum/stash/valueable/poker
 
-	lore = "Logbook \n\
+	lore = "Logbook <br>\
 	Made out like a bandit in poker last night but the boys think there's something to it. It isn't my\
 	 damn fault the kids don't know what a fucking tell is. Two hearts does not make a good bluff, \
 	 dumbass. I actually think they might shake me down for it, but they don't know the ship like I do.\
-	  Here ya go, idiots. Better than a thousand words.\n %D"
+	  Here ya go, idiots. Better than a thousand words.<br> %D"
