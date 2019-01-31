@@ -1004,7 +1004,6 @@
 #include "code\game\objects\random\powercells.dm"
 #include "code\game\objects\random\purerandom.dm"
 #include "code\game\objects\random\random.dm"
-#include "code\game\objects\random\random_all.dm"
 #include "code\game\objects\random\rare.dm"
 #include "code\game\objects\random\rig.dm"
 #include "code\game\objects\random\scrap.dm"

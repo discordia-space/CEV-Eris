@@ -46,4 +46,4 @@
 			food.reagents.add_reagent("toxin", 25)
 		if(prob(30)) // So sometimes the rot is visible.
 			food.make_old()
-	return spawns // In the random.dm it is said that the function should return the list of items, yet the return of the function is never used. ~Luduk
+	return spawns

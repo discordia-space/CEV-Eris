@@ -28,4 +28,5 @@
 
 /obj/random/structure_pack/item_to_spawn()
 	return pick(/obj/random/structures,
-				/obj/random/closet)
+				/obj/random/closet,
+				/obj/random/scrap)

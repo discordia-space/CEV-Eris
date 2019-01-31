@@ -1,4 +1,4 @@
-var/global/list/scrap_base_cache = list()
+GLOBAL_LIST_EMPTY(scrap_base_cache)
 
 #define SAFETY_COOLDOWN 100
 
@@ -182,15 +182,15 @@ var/global/list/scrap_base_cache = list()
 /obj/structure/scrap/update_icon(rebuild_base=0)
 	if(rebuild_base)
 		var/ID = rand(40)
-		if(!scrap_base_cache["[icontype][icon_state][ID]"])
+		if(!GLOB.scrap_base_cache["[icontype][icon_state][ID]"])
 			var/num = rand(base_min,base_max)
 			var/image/base_icon = image(icon, icon_state = icon_state)
 			for(var/i in 1 to num)
 				var/image/I = image(parts_icon,pick(icon_states(parts_icon)))
 				I.color = pick("#996633", "#663300", "#666666", "")
 				base_icon.overlays += randomize_image(I)
-			scrap_base_cache["[icontype][icon_state][ID]"] = base_icon
-		overlays += scrap_base_cache["[icontype][icon_state][ID]"]
+			GLOB.scrap_base_cache["[icontype][icon_state][ID]"] = base_icon
+		overlays += GLOB.scrap_base_cache["[icontype][icon_state][ID]"]
 	if(loot_generated)
 		underlays.Cut()
 		for(var/obj/O in loot.contents)
@@ -254,7 +254,7 @@ var/global/list/scrap_base_cache = list()
 
 /obj/structure/scrap/attackby(obj/item/W, mob/user)
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
-	if(QUALITY_SHOVELING in W.tool_qualities && W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SHOVELING, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
+	if((QUALITY_SHOVELING in W.tool_qualities) && W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SHOVELING, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
 		user.visible_message(SPAN_NOTICE("[user] [pick(ways)] \the [src]."))
 		user.do_attack_animation(src)
 		shuffle_loot()
@@ -361,8 +361,8 @@ var/global/list/scrap_base_cache = list()
 	desc = "Pile of mixed rubbish. Useless and rotten, mostly."
 	parts_icon = 'icons/obj/structures/scrap/all_mixed.dmi'
 	loot_list = list(
-		/obj/random/misc/all,
-		/obj/random/misc/all,
+		/obj/random/lowkeyrandom,
+		/obj/random/lowkeyrandom,
 		/obj/item/stack/rods/random,
 		/obj/item/stack/rods/random,
 		/obj/item/stack/rods/random,
