@@ -30,6 +30,10 @@
 	name = "tape recorder"
 	path = /obj/item/device/taperecorder
 
+/datum/autolathe/recipe/misc/cassette_tape
+	name = "cassette tape"
+	path = /obj/item/cassette_tape
+
 /datum/autolathe/recipe/misc/tube
 	name = "light tube"
 	path = /obj/item/weapon/light/tube

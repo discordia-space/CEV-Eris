@@ -47,6 +47,7 @@
 		/datum/autolathe/recipe/misc/extinguisher,
 		/datum/autolathe/recipe/misc/radio_headset,
 		/datum/autolathe/recipe/misc/radio_bounced,
+		/datum/autolathe/recipe/misc/cassette_tape,
 		/datum/autolathe/recipe/misc/ashtray,
 		/datum/autolathe/recipe/container/bucket,
 		/datum/autolathe/recipe/container/jar,
