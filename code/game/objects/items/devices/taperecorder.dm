@@ -14,6 +14,8 @@
 	var/obj/item/cassette_tape/mytape
 	var/starting_tape_type = /obj/item/cassette_tape/random
 	var/canprint = 1
+	var/datum/wires/taperecorder/wires = null // Wires datum
+	var/open_panel = 0
 	flags = CONDUCT
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 4
@@ -22,13 +24,24 @@
 /obj/item/device/taperecorder/New()
 	..()
 	add_hearing()
+	wires = new(src)
 	if(starting_tape_type)
 		mytape = new starting_tape_type(src)
 	update_icon()
 
 /obj/item/device/taperecorder/Destroy()
+	qdel(wires)
 	remove_hearing()
 	. = ..()
+
+/obj/item/device/taperecorder/fire_act()
+	if(mytape)
+		mytape.ruin()
+	..()
+
+/obj/item/device/taperecorder/examine(mob/user)
+	if(..(user, 1) && open_panel)
+		usr << "The wire panel is open."
 
 /obj/item/device/taperecorder/attackby(obj/item/I, mob/user, params)
 	if(!mytape && istype(I, /obj/item/cassette_tape))
@@ -38,9 +51,20 @@
 		if(insert_item(I, user))
 			mytape = I
 			update_icon()
+		return
+
+	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+			open_panel = !open_panel
+			usr << SPAN_NOTICE("You [open_panel ? "open" : "close"] the wire panel.")
+
+	else if(istool(I))
+		wires.Interact(user)
+	else
+		..()
 
 /obj/item/device/taperecorder/MouseDrop(over_object)
-	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(mytape, usr))
+	if(mytape && (src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(mytape, usr))
 		stop()
 		mytape = null
 		update_icon()
@@ -104,7 +128,7 @@
 	qdel(src)
 	return
 
-/obj/item/device/taperecorder/verb/record()
+/obj/item/device/taperecorder/verb/record(var/show_message = 1 as num)
 	set name = "Start Recording"
 	set category = "Object"
 
@@ -117,12 +141,14 @@
 	if(playing)
 		return
 	if(emagged)
-		usr << SPAN_WARNING("The tape recorder makes a scratchy noise.")
+		if(show_message)
+			usr << SPAN_WARNING("The tape recorder makes a scratchy noise.")
 		return
 
 	icon_state = "taperecorder_recording"
 	if(mytape.used_capacity < mytape.max_capacity)
-		usr << SPAN_NOTICE("Recording started.")
+		if(show_message)
+			usr << SPAN_NOTICE("Recording started.")
 		recording = 1
 		mytape.timestamp += mytape.used_capacity
 		mytape.storedinfo += "\[[time2text(mytape.used_capacity * 10,"mm:ss")]\] Recording started."
@@ -137,24 +163,26 @@
 		recording = 0
 		update_icon()
 		return
-	else
+	else if(show_message)
 		usr << SPAN_NOTICE("The tape is full.")
 
 
-/obj/item/device/taperecorder/verb/stop()
+/obj/item/device/taperecorder/verb/stop(var/show_message = 1 as num)
 	set name = "Stop"
 	set category = "Object"
 
 	if(usr.stat)
 		return
 	if(emagged)
-		usr << SPAN_WARNING("The tape recorder makes a scratchy noise.")
+		if(show_message)
+			usr << SPAN_WARNING("The tape recorder makes a scratchy noise.")
 		return
 	if(recording)
 		recording = 0
 		mytape.timestamp += mytape.used_capacity
 		mytape.storedinfo += "\[[time2text(mytape.used_capacity*10,"mm:ss")]\] Recording stopped."
-		usr << SPAN_NOTICE("Recording stopped.")
+		if(show_message)
+			usr << SPAN_NOTICE("Recording stopped.")
 		icon_state = "taperecorder_idle"
 		return
 	else if(playing)
@@ -165,44 +193,51 @@
 		return
 
 
-/obj/item/device/taperecorder/verb/clear_memory()
+/obj/item/device/taperecorder/verb/clear_memory(var/show_message = 1 as num)
 	set name = "Clear Tape"
 	set category = "Object"
 
 	if(usr.stat)
 		return
 	if(emagged)
-		usr << SPAN_WARNING("The tape recorder makes a scratchy noise.")
+		if(show_message)
+			usr << SPAN_WARNING("The tape recorder makes a scratchy noise.")
+		return
+	if(!mytape || mytape.ruined)
 		return
 	if(recording || playing)
-		usr << SPAN_NOTICE("You can't clear the memory while playing or recording!")
+		if(show_message)
+			usr << SPAN_NOTICE("You can't clear the memory while playing or recording!")
 		return
 	else
 		if(mytape.storedinfo)	mytape.storedinfo.Cut()
 		if(mytape.timestamp)	mytape.timestamp.Cut()
 		mytape.used_capacity = 0
-		usr << SPAN_NOTICE("Tape cleared.")
+		if(show_message)
+			usr << SPAN_NOTICE("Tape cleared.")
 		return
 
 
-/obj/item/device/taperecorder/verb/playback_memory()
+/obj/item/device/taperecorder/verb/playback_memory(var/show_message = 1 as num)
 	set name = "Play Tape"
 	set category = "Object"
 
 	if(usr.stat)
 		return
-	if(emagged)
-		usr << SPAN_WARNING("The tape recorder makes a scratchy noise.")
+	if(!mytape || mytape.ruined)
 		return
 	if(recording)
-		usr << SPAN_NOTICE("You can't playback when recording!")
+		if(show_message)
+			usr << SPAN_NOTICE("You can't playback when recording!")
 		return
 	if(playing)
-		usr << SPAN_NOTICE("You're already playing!")
+		if(show_message)
+			usr << SPAN_NOTICE("You're already playing!")
 		return
 	playing = 1
 	icon_state = "taperecorder_playing"
-	usr << SPAN_NOTICE("Playing started.")
+	if(show_message)
+		usr << SPAN_NOTICE("Playing started.")
 	var/used = mytape.used_capacity	//to stop runtimes when you eject the tape
 	var/max = mytape.max_capacity
 	for(var/i=1,used<max,sleep(10 * (playsleepseconds) ))
@@ -249,22 +284,25 @@
 		explode()
 
 
-/obj/item/device/taperecorder/verb/print_transcript()
+/obj/item/device/taperecorder/verb/print_transcript(var/show_message = 1 as num)
 	set name = "Print Transcript"
 	set category = "Object"
 
 	if(usr.stat)
 		return
 	if(emagged)
-		usr << SPAN_WARNING("The tape recorder makes a scratchy noise.")
+		if(show_message)
+			usr << SPAN_WARNING("The tape recorder makes a scratchy noise.")
 		return
 	if(!mytape || mytape.ruined)
 		return
 	if(!canprint)
-		usr << SPAN_NOTICE("The recorder can't print that fast!")
+		if(show_message)
+			usr << SPAN_NOTICE("The recorder can't print that fast!")
 		return
 	if(recording || playing)
-		usr << SPAN_NOTICE("You can't print the transcript while playing or recording!")
+		if(show_message)
+			usr << SPAN_NOTICE("You can't print the transcript while playing or recording!")
 		return
 	usr << SPAN_NOTICE("Transcript printed.")
 	var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(get_turf(src))
@@ -295,7 +333,7 @@
 
 /obj/item/cassette_tape
 	name = "cassette tape"
-	desc = "A magnetic tape that can hold up to ten minutes of content."
+	desc = "A magnetic tape that can hold up to twenty minutes of content."
 	icon_state = "tape_white"
 	icon = 'icons/obj/device.dmi'
 	item_state = "analyzer"
@@ -304,7 +342,7 @@
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 4
 	throw_range = 20
-	var/max_capacity = 600
+	var/max_capacity = 1200
 	var/used_capacity = 0
 	var/list/storedinfo = list()
 	var/list/timestamp = list()
