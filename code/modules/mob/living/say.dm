@@ -235,7 +235,7 @@ proc/get_radio_key_from_channel(var/channel)
 			speech_bubble_recipients += M.client
 		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
 
-	flick_overlay(speech_bubble, speech_bubble_recipients, 30)
+	animate_speechbubble(speech_bubble, speech_bubble_recipients, 30)
 
 	for(var/obj/O in listening_obj)
 		spawn(0)
@@ -244,6 +244,22 @@ proc/get_radio_key_from_channel(var/channel)
 
 	log_say("[name]/[key] : [message]")
 	return TRUE
+
+
+/proc/animate_speechbubble(image/I, list/show_to, duration)
+	var/matrix/M = matrix()
+	M.Scale(0,0)
+	I.transform = M
+	I.alpha = 0
+	for(var/client/C in show_to)
+		C.images += I
+	animate(I, transform = 0, alpha = 255, time = 5, easing = ELASTIC_EASING)
+	sleep(duration-5)
+	animate(I, alpha = 0, time = 5, easing = EASE_IN)
+	sleep(5)
+	for(var/client/C in show_to)
+		C.images -= I
+
 
 /mob/living/proc/say_signlang(var/message, var/verb="gestures", var/datum/language/language)
 	for (var/mob/O in viewers(src, null))
