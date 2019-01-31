@@ -6,13 +6,17 @@
 	loadable = TRUE
 
 	var/fragment_type = /obj/item/projectile/bullet/pellet/fragment/strong
-	var/num_fragments = 250  //total number of fragments produced by the grenade
-	var/fragment_damage = 10
+	var/num_fragments = 150  //total number of fragments produced by the grenade
+	var/fragment_damage = 5
 	var/damage_step = 2      //projectiles lose a fragment each time they travel this distance. Can be a non-integer.
-	var/explosion_size = 0   //size of the center explosion
 
 	//The radius of the circle used to launch projectiles. Lower values mean less projectiles are used but if set too low gaps may appear in the spread pattern
 	var/spread_range = 7
+
+	var/devastation_range = -1
+	var/heavy_range = -1
+	var/weak_range = 1
+	var/flash_range = -1
 
 /obj/item/weapon/grenade/frag/prime()
 	set waitfor = 0
@@ -40,15 +44,15 @@
 	qdel(src)
 
 /obj/item/weapon/grenade/frag/proc/on_explosion(var/turf/O)
-	if(explosion_size)
-		explosion(O, round(explosion_size/2), explosion_size, explosion_size*2)
-	else
-		explosion(O, -1, -1, 1, 10)
+	explosion(O, devastation_range, heavy_range, weak_range, flash_range)
 
 /obj/item/weapon/grenade/frag/explosive
 	name = "FS HEG \"Zoe\""
 	desc = "A military High Explosive grenade, designed to wreak havoc in a certain radius."
 	icon_state = "explosive"
 
-	explosion_size = 2
+	devastation_range = -1
+	heavy_range = 1
+	weak_range = 4
+	flash_range = 10
 	num_fragments = 0
