@@ -3,6 +3,7 @@
 	var/buckle_movable = 0
 	var/buckle_dir = 0
 	var/buckle_lying = -1 //bed-like behavior, forces mob.lying = buckle_lying if != -1
+	var/buckle_pixel_shift = "x=0;y=0" //where the buckled mob should be pixel shifted to, or null for no pixel shift control
 	var/buckle_require_restraints = 0 //require people to be handcuffed before being able to buckle. eg: pipes
 	var/mob/living/buckled_mob = null
 
@@ -22,14 +23,19 @@
 
 
 /obj/proc/buckle_mob(mob/living/M)
-	if(!can_buckle || !istype(M) || (M.loc != loc) || M.buckled || M.pinned.len || (buckle_require_restraints && !M.restrained()))
+	if(buckled_mob) //unless buckled_mob becomes a list this can cause problems
 		return 0
+	if(!istype(M) || (M.loc != loc) || M.buckled || M.pinned.len || (buckle_require_restraints && !M.restrained()))
+		return 0
+
 
 	M.buckled = src
 	M.facing_dir = null
 	M.set_dir(buckle_dir ? buckle_dir : dir)
-	M.update_canmove()
+	M.update_lying_buckled_and_verb_status()
+	M.update_floating()
 	buckled_mob = M
+
 	post_buckle_mob(M)
 	return 1
 
@@ -38,88 +44,62 @@
 		. = buckled_mob
 		buckled_mob.buckled = null
 		buckled_mob.anchored = initial(buckled_mob.anchored)
-		buckled_mob.update_canmove()
+		buckled_mob.update_lying_buckled_and_verb_status()
+		buckled_mob.update_floating()
 		buckled_mob = null
 
 		post_buckle_mob(.)
 
 /obj/proc/post_buckle_mob(mob/living/M)
-	return
+	if(buckle_pixel_shift)
+		if(M == buckled_mob)
+			var/list/pixel_shift = cached_key_number_decode(buckle_pixel_shift)
+			animate(M, pixel_x = M.default_pixel_x + pixel_shift["x"], pixel_y = M.default_pixel_y + pixel_shift["y"], 4, 1, LINEAR_EASING)
+		else
+			animate(M, pixel_x = M.default_pixel_x, pixel_y = M.default_pixel_y, 4, 1, LINEAR_EASING)
 
 /obj/proc/user_buckle_mob(mob/living/M, mob/user)
-	if(!user.Adjacent(M) || !src.Adjacent(M) || user.restrained() || user.lying || user.stat || istype(user, /mob/living/silicon/pai))
-		return
+	if(!user.Adjacent(M) || user.restrained() || user.stat || istype(user, /mob/living/silicon/pai))
+		return 0
 	if(M == buckled_mob)
-		return
+		return 0
 	if(isslime(M))
-		user << SPAN_WARNING("The [M] is too squishy to buckle in.")
-		return
+		to_chat(user, SPAN_WARNING("\The [M] is too squishy to buckle in."))
+		return 0
 
 	add_fingerprint(user)
 	unbuckle_mob()
 
-	
-	
-	var/buckleTime = 25
-	if (M == user)
+	//can't buckle unless you share locs so try to move M to the obj.
+	if(M.loc != src.loc)
 		step_towards(M, src)
-		if(get_turf(user) == get_turf(src))
-			user.set_dir(src.dir)
-		buckleTime = 8
-	else
-		user.face_atom(src)
-		//can't buckle unless you share locs so try to move M to the obj.
-		spawn()
-			if(M.loc != src.loc && do_after(user, buckleTime*0.66, src, progress = FALSE))
-				step_towards(M, src)
-				if(user.loc != M.loc)
-					user.do_attack_animation(M)
-		user.visible_message(\
-		SPAN_NOTICE("[user] attempts to buckle [M] into \the [src]!</span>"),
-		SPAN_NOTICE("You attempt to buckle [M] into \the [src]!</span>"),
-		SPAN_NOTICE("You hear metal clanking."))
-	
-	if(do_after(user, buckleTime, src))
-		if(buckle_mob(M))
-			playsound(src.loc, 'sound/machines/Custom_closetopen.ogg', 65, 1, -3)
-			if(M == user)
-				M.visible_message(\
-					SPAN_NOTICE("[M.name] buckles themselves to [src]."),
-					SPAN_NOTICE("You buckle yourself to [src]."),
-					SPAN_NOTICE("You hear metal clanking."),
-					range = 1)
-			else
-				M.visible_message(\
-					SPAN_DANGER("[M.name] is buckled to [src] by [user.name]!"),
-					SPAN_DANGER("You are buckled to [src] by [user.name]!"),
-					SPAN_NOTICE("You hear metal clanking."))
+
+	. = buckle_mob(M)
+	if(.)
+		if(M == user)
+			M.visible_message(\
+				SPAN_NOTICE("\The [M.name] buckles themselves to \the [src]."),\
+				SPAN_NOTICE("You buckle yourself to \the [src]."),\
+				SPAN_NOTICE("You hear metal clanking."))
+		else
+			M.visible_message(\
+				SPAN_DANGER("\The [M.name] is buckled to \the [src] by \the [user.name]!"),\
+				SPAN_DANGER("You are buckled to \the [src] by \the [user.name]!"),\
+				SPAN_NOTICE("You hear metal clanking."))
 
 /obj/proc/user_unbuckle_mob(mob/user)
-	var/unbuckleTime = 18
-	if (buckled_mob == user)
-		unbuckleTime = 6
-	else
-		user.visible_message(\
-		SPAN_NOTICE("[user] attempts to unbuckle [buckled_mob] out of \the [src]!</span>"),
-		SPAN_NOTICE("You attempt to unbuckle [buckled_mob] out of \the [src]!</span>"),
-		SPAN_NOTICE("You hear metal clanking."))
-	if(do_after(user, unbuckleTime, src))
-		var/mob/living/M = unbuckle_mob()
-		if(M)
-			playsound(src.loc, 'sound/machines/Custom_closetopen.ogg', 65, 1, -3)
-			if(user.loc != M.loc)
-				user.do_attack_animation(src)
-			if(M != user)
-				M.visible_message(\
-					SPAN_NOTICE("[M.name] was unbuckled by [user.name]!"),
-					SPAN_NOTICE("You were unbuckled from [src] by [user.name]."),
-					SPAN_NOTICE("You hear metal clanking."))
-			else
-				M.visible_message(\
-					SPAN_NOTICE("[M.name] unbuckled themselves!"),
-					SPAN_NOTICE("You unbuckle yourself from [src]."),
-					SPAN_NOTICE("You hear metal clanking."),
-					range = 1)
-			add_fingerprint(user)
-		return M
+	var/mob/living/M = unbuckle_mob()
+	if(M)
+		if(M != user)
+			M.visible_message(\
+				SPAN_NOTICE("\The [M.name] was unbuckled by \the [user.name]!"),\
+				SPAN_NOTICE("You were unbuckled from \the [src] by \the [user.name]."),\
+				SPAN_NOTICE("You hear metal clanking."))
+		else
+			M.visible_message(\
+				SPAN_NOTICE("\The [M.name] unbuckled themselves!"),\
+				SPAN_NOTICE("You unbuckle yourself from \the [src]."),\
+				SPAN_NOTICE("You hear metal clanking."))
+		add_fingerprint(user)
+	return M
 

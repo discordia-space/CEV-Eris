@@ -86,7 +86,7 @@
 		if (!ishuman(M))
 			return FALSE
 		var/mob/living/carbon/human/H = M
-		if (H.Check_Shoegrip()) //This checks for magboots
+		if (H.check_shoegrip()) //This checks for magboots
 			return TRUE
 
 		else
