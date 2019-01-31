@@ -5,7 +5,7 @@
 	desc = "It smells like an accident in a chemical factory."
 
 /obj/item/organ/internal/xenos/proc/check_alien_ability(var/cost,var/needs_foundation)
-	var/obj/item/organ/internal/xenos/plasmavessel/P = owner.internal_organs_by_name[O_PLASMA]
+	var/obj/item/organ/internal/xenos/plasmavessel/P = owner.internal_organs_by_name[BP_PLASMA]
 	if(!istype(P))
 		owner << SPAN_DANGER("Your plasma vessel has been removed!")
 		return

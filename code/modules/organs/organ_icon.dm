@@ -69,7 +69,7 @@ var/global/list/limb_icon_cache = list()
 
 /obj/item/organ/external/head/sync_colour_to_human(var/mob/living/carbon/human/human)
 	..()
-	var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[O_EYES]
+	var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[BP_EYES]
 	if(eyes) eyes.update_colour()
 
 /obj/item/organ/external/head/removed()
@@ -86,8 +86,8 @@ var/global/list/limb_icon_cache = list()
 	if(!owner || !owner.species)
 		return
 
-	if(owner.species.has_organ[O_EYES])
-		var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[O_EYES]
+	if(owner.species.has_organ[BP_EYES])
+		var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[BP_EYES]
 		if(eyes)
 			mob_icon.Blend(eyes.get_icon(), ICON_OVERLAY)
 

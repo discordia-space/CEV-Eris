@@ -346,7 +346,7 @@
 					menu = 1
 				else
 
-					var/mob/selected = find_dead_player("[C.ckey]")
+					var/mob/selected = find_dead_player("[C.ckey]", TRUE)
 					selected << 'sound/machines/chime.ogg'	//probably not the best sound but I think it's reasonable
 					var/answer = alert(selected,"Do you want to return to life?","Cloning","Yes","No")
 					if(answer != "No" && pod.growclone(C))
@@ -374,7 +374,7 @@
 	if (!subject.has_brain())
 		if(ishuman(subject))
 			var/mob/living/carbon/human/H = subject
-			if(H.species.has_organ[O_BRAIN])
+			if(H.species.has_organ[BP_BRAIN])
 				scantemp = "Error: No signs of intelligence detected."
 		else
 			scantemp = "Error: No signs of intelligence detected."

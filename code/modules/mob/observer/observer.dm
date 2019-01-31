@@ -51,5 +51,5 @@ mob/observer/check_airflow_movable()
 	return
 
 /proc/updateallghostimages()
-	for (var/mob/observer/ghost/O in player_list)
+	for (var/mob/observer/ghost/O in GLOB.player_list)
 		O.updateghostimages()

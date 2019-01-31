@@ -82,7 +82,7 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 				last_request = world.time
 				user << SPAN_NOTICE("You request an AI's presence.")
 				var/area/area = get_area(src)
-				for(var/mob/living/silicon/ai/AI in living_mob_list)
+				for(var/mob/living/silicon/ai/AI in GLOB.living_mob_list)
 					if(!AI.client)	continue
 					AI << "<span class='info'>Your presence is requested at <a href='?src=\ref[AI];jumptoholopad=\ref[src]'>\the [area]</a>.</span>"
 			else

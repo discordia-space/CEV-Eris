@@ -39,10 +39,10 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 	if(in_stasis)
 		return
 
-	if(!species.has_organ[O_HEART])
+	if(!species.has_organ[BP_HEART])
 		return
 
-	var/obj/item/organ/internal/heart/H = internal_organs_by_name[O_HEART]
+	var/obj/item/organ/internal/heart/H = internal_organs_by_name[BP_HEART]
 	if(!H)	//not having a heart is bad for health
 		setOxyLoss(max(getOxyLoss(),60))
 		adjustOxyLoss(10)
@@ -252,7 +252,7 @@ proc/blood_splatter(var/target,var/datum/reagent/blood/source,var/large)
 
 //Percentage of maximum blood volume, affected by the condition of circulation organs
 /mob/living/carbon/human/proc/get_blood_circulation()
-	var/obj/item/organ/internal/heart/heart = internal_organs_by_name[O_HEART]
+	var/obj/item/organ/internal/heart/heart = internal_organs_by_name[BP_HEART]
 	var/blood_volume = get_blood_volume()
 	if(!heart || (heart.pulse == PULSE_NONE && !(status_flags & FAKEDEATH) && !BP_IS_ROBOTIC(heart)))
 		blood_volume *= 0.25

@@ -33,7 +33,7 @@
 
 /obj/item/weapon/tool/tape_roll/attack(var/mob/living/carbon/human/H, var/mob/user)
 	if(istype(H))
-		if(user.targeted_organ == O_EYES)
+		if(user.targeted_organ == BP_EYES)
 
 			if(!H.organs_by_name[BP_HEAD])
 				user << SPAN_WARNING("\The [H] doesn't have a head.")

@@ -16,7 +16,7 @@
 
 	var/light_direction
 	var/lightspot_hitObstacle = FALSE
-	
+
 /obj/item/device/lighting/toggleable/flashlight/New()
 	..()
 	if(!cell && suitable_cell)
@@ -30,7 +30,7 @@
 	if (istype(src.loc,/obj/item/weapon/storage) || istype(src.loc,/obj/structure/closet))
 		return
 	if (istype(src.loc,/mob/living))
-		var/mob/living/L = src.loc 
+		var/mob/living/L = src.loc
 		set_dir(L.dir)
 	else if (pulledby && old_loc)
 		var/x_diff = src.x - old_loc.x
@@ -72,7 +72,7 @@
 					if(T.is_space())
 						break
 					NT = T
-				else 
+				else
 					hitSomething = TRUE
 					break
 		if(EAST)
@@ -82,7 +82,7 @@
 					if(T.is_space())
 						break
 					NT = T
-				else 
+				else
 					hitSomething = TRUE
 					break
 		if(WEST)
@@ -92,7 +92,7 @@
 					if(T.is_space())
 						break
 					NT = T
-				else 
+				else
 					hitSomething = TRUE
 					break
 	lightspot_hitObstacle = hitSomething
@@ -250,7 +250,7 @@
 
 /obj/item/device/lighting/toggleable/flashlight/attack(mob/living/M, mob/living/user)
 	add_fingerprint(user)
-	if(on && user.targeted_organ == O_EYES)
+	if(on && user.targeted_organ == BP_EYES)
 
 		if((CLUMSY in user.mutations) && prob(50))	//too dumb to use flashlight properly
 			return ..()	//just hit them in the head
@@ -266,7 +266,7 @@
 			if(H.species.vision_organ)
 				vision = H.internal_organs_by_name[H.species.vision_organ]
 			if(!vision)
-				user << "<span class='warning'>You can't find any [H.species.vision_organ ? H.species.vision_organ : O_EYES] on [H]!</span>"
+				user << "<span class='warning'>You can't find any [H.species.vision_organ ? H.species.vision_organ : BP_EYES] on [H]!</span>"
 				return
 
 			user.visible_message(SPAN_NOTICE("\The [user] directs [src] to [M]'s eyes."), \

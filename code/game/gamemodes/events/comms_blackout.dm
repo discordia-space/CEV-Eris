@@ -15,7 +15,7 @@
 						"Ionospheri:%£ MCayj^j<.3-BZZZZZZT", \
 						"#4nd%;f4y6,>£%-BZZZZZZZT")
 
-	for(var/mob/living/silicon/ai/A in player_list)	//AIs are always aware of communication blackouts.
+	for(var/mob/living/silicon/ai/A in GLOB.player_list)	//AIs are always aware of communication blackouts.
 		A << "<br>"
 		A << SPAN_WARNING("<b>[alert]</b>")
 		A << "<br>"
@@ -35,7 +35,7 @@
 	if(!silent)
 		command_announcement.Announce("Ionospheric anomalies detected. Temporary telecommunication failure imminent. Please contact you-BZZT", new_sound = 'sound/misc/interference.ogg')
 	else // AIs will always know if there's a comm blackout, rogue AIs could then lie about comm blackouts in the future while they shutdown comms
-		for(var/mob/living/silicon/ai/A in player_list)
+		for(var/mob/living/silicon/ai/A in GLOB.player_list)
 			A << "<br>"
 			A << SPAN_WARNING("<b>Ionospheric anomalies detected. Temporary telecommunication failure imminent. Please contact you-BZZT</b>")
 			A << "<br>"

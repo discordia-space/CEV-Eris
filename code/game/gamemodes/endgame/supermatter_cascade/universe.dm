@@ -42,7 +42,7 @@ var/global/universe_has_ended = 0
 
 	world << sound('sound/effects/cascade.ogg')
 
-	for(var/mob/living/M in player_list)
+	for(var/mob/living/M in GLOB.player_list)
 		if (M.HUDtech.Find("flash"))
 			flick("e_flash", M.HUDtech["flash"])
 

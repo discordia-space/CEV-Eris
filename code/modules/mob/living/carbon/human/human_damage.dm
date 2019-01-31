@@ -28,8 +28,8 @@
 
 	if(status_flags & GODMODE)	return 0	//godmode
 
-	if(species && species.has_organ[O_BRAIN])
-		var/obj/item/organ/internal/brain/sponge = internal_organs_by_name[O_BRAIN]
+	if(species && species.has_organ[BP_BRAIN])
+		var/obj/item/organ/internal/brain/sponge = internal_organs_by_name[BP_BRAIN]
 		if(sponge)
 			sponge.take_damage(amount)
 			brainloss = sponge.damage
@@ -42,8 +42,8 @@
 
 	if(status_flags & GODMODE)	return 0	//godmode
 
-	if(species && species.has_organ[O_BRAIN])
-		var/obj/item/organ/internal/brain/sponge = internal_organs_by_name[O_BRAIN]
+	if(species && species.has_organ[BP_BRAIN])
+		var/obj/item/organ/internal/brain/sponge = internal_organs_by_name[BP_BRAIN]
 		if(sponge)
 			sponge.damage = min(max(amount, 0),(maxHealth*2))
 			brainloss = sponge.damage
@@ -56,8 +56,8 @@
 
 	if(status_flags & GODMODE)	return 0	//godmode
 
-	if(species && species.has_organ[O_BRAIN])
-		var/obj/item/organ/internal/brain/sponge = internal_organs_by_name[O_BRAIN]
+	if(species && species.has_organ[BP_BRAIN])
+		var/obj/item/organ/internal/brain/sponge = internal_organs_by_name[BP_BRAIN]
 		if(sponge)
 			brainloss = min(sponge.damage,maxHealth*2)
 		else
@@ -347,7 +347,7 @@ This function restores all organs.
 /mob/living/carbon/human/proc/get_organ(var/zone)
 	if(!zone)
 		zone = BP_CHEST
-	else if(zone in list(O_EYES, "mouth"))
+	else if(zone in list(BP_EYES, "mouth"))
 		zone = BP_HEAD
 	return organs_by_name[zone]
 

@@ -173,7 +173,7 @@
 							parentmob.targeted_organ = "mouth"
 					if(25 to 27)
 						if(icon_x in 14 to 18)
-							parentmob.targeted_organ = O_EYES
+							parentmob.targeted_organ = BP_EYES
 
 	if(old_selecting != parentmob.targeted_organ)
 		update_icon()

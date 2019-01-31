@@ -63,7 +63,7 @@ var/list/disciples = list()
 		return FALSE
 	var/datum/core_module/cruciform/cloning/data = get_module(CRUCIFORM_CLONING)
 	if(wearer.dna.unique_enzymes == data.dna.unique_enzymes)
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			if(M.ckey == data.ckey)
 				if(!isghost(M) && !isangel(M))
 					return FALSE

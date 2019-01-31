@@ -64,7 +64,7 @@
 		if(istype(H.loc, /obj/mecha))
 			var/obj/mecha/M = loc
 			return M.return_temperature()
-		else if(istype(H.loc, /obj/machinery/atmospherics/unary/cryo_cell))
+		else if(istype(H.loc, /obj/machinery/atmospherics/unary/cryBP_CELL))
 			return H.loc:air_contents.temperature
 
 	var/turf/T = get_turf(src)
