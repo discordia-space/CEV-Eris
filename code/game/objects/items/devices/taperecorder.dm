@@ -57,6 +57,7 @@
 		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			open_panel = !open_panel
 			usr << SPAN_NOTICE("You [open_panel ? "open" : "close"] the wire panel.")
+		return
 
 	else if(istool(I))
 		wires.Interact(user)
@@ -128,9 +129,37 @@
 	qdel(src)
 	return
 
-/obj/item/device/taperecorder/verb/record(var/show_message = 1 as num)
+/obj/item/device/taperecorder/proc/recordverb()
 	set name = "Start Recording"
 	set category = "Object"
+
+	record()
+
+/obj/item/device/taperecorder/proc/stopverb()
+	set name = "Stop"
+	set category = "Object"
+
+	stop()
+
+/obj/item/device/taperecorder/verb/playverb()
+	set name = "Play Tape"
+	set category = "Object"
+
+	playback_memory()
+
+/obj/item/device/taperecorder/verb/clearverb()
+	set name = "Clear Tape"
+	set category = "Object"
+
+	clear_memory()
+
+/obj/item/device/taperecorder/verb/printverb()
+	set name = "Print Transcript"
+	set category = "Object"
+
+	print_transcript()
+
+/obj/item/device/taperecorder/proc/record(var/show_message = 1)
 
 	if(usr.stat)
 		return
@@ -167,9 +196,7 @@
 		usr << SPAN_NOTICE("The tape is full.")
 
 
-/obj/item/device/taperecorder/verb/stop(var/show_message = 1 as num)
-	set name = "Stop"
-	set category = "Object"
+/obj/item/device/taperecorder/proc/stop(var/show_message = 1)
 
 	if(usr.stat)
 		return
@@ -193,9 +220,7 @@
 		return
 
 
-/obj/item/device/taperecorder/verb/clear_memory(var/show_message = 1 as num)
-	set name = "Clear Tape"
-	set category = "Object"
+/obj/item/device/taperecorder/proc/clear_memory(var/show_message = 1)
 
 	if(usr.stat)
 		return
@@ -218,9 +243,7 @@
 		return
 
 
-/obj/item/device/taperecorder/verb/playback_memory(var/show_message = 1 as num)
-	set name = "Play Tape"
-	set category = "Object"
+/obj/item/device/taperecorder/proc/playback_memory(var/show_message = 1)
 
 	if(usr.stat)
 		return
@@ -284,9 +307,7 @@
 		explode()
 
 
-/obj/item/device/taperecorder/verb/print_transcript(var/show_message = 1 as num)
-	set name = "Print Transcript"
-	set category = "Object"
+/obj/item/device/taperecorder/proc/print_transcript(var/show_message = 1)
 
 	if(usr.stat)
 		return
@@ -333,7 +354,7 @@
 
 /obj/item/cassette_tape
 	name = "cassette tape"
-	desc = "A magnetic tape that can hold up to twenty minutes of content."
+	desc = "A magnetic tape that can hold up to twenty minutes of content. It's made of electrochromic materials and changes color if an electric pulse is applied."
 	icon_state = "tape_white"
 	icon = 'icons/obj/device.dmi'
 	item_state = "analyzer"
@@ -377,10 +398,29 @@
 		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			user << SPAN_NOTICE("You wound the tape back in.")
 			fix()
+		return
 
+	if(istype(I, /obj/item/weapon/pen))
+		var/new_name = input(user, "What would you like to label the tape?", "Tape labeling") as null|text
+		if(isnull(new_name)) return
+		new_name = sanitizeSafe(new_name)
+		if(new_name)
+			SetName("cassette tape - '[new_name]'")
+			user << SPAN_NOTICE("You label the tape '[new_name]'.")
+		else
+			SetName("cassette tape")
+			user << SPAN_NOTICE("You scratch off the label.")
+		return
+
+	if(QUALITY_PULSING in I.tool_qualities)
+		var/selected_color = lowertext(input(user,"Choose a color for the tape.","Cassette tape color") in list("White","Blue","Red","Yellow","Purple"))
+		if(selected_color)
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_PULSING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+				user << SPAN_NOTICE("You pulse the tape, changing its color.")
+				icon_state = "tape_[selected_color]"
 //Random colour tapes
 /obj/item/cassette_tape/random
-	icon_state = "random_tape"
+	icon_state = "tape_white"
 
 /obj/item/cassette_tape/random/New()
 	icon_state = "tape_[pick("white", "blue", "red", "yellow", "purple")]"

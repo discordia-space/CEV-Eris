@@ -32,7 +32,7 @@
 
 /datum/autolathe/recipe/misc/cassette_tape
 	name = "cassette tape"
-	path = /obj/item/cassette_tape
+	path = /obj/item/cassette_tape/random
 
 /datum/autolathe/recipe/misc/tube
 	name = "light tube"
