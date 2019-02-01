@@ -75,7 +75,8 @@ var/list/disciples = list()
 		for(var/datum/language/L in data.languages)
 			wearer.add_language(L.name)
 		update_data()
-		return TRUE
+		if (activate())
+			return TRUE
 
 /obj/item/weapon/implant/core_implant/cruciform/proc/remove_cyber()
 	if(!wearer)
