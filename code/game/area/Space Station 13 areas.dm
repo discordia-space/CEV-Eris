@@ -41,6 +41,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	var/used_environ = 0
 
 	var/has_gravity = 1
+	var/cached_gravity = 1		//stores updated has_gravity even if it's blocked
+	var/atom/gravity_blocker = null	//ref to antigrav
 	var/obj/machinery/power/apc/apc = null
 	var/no_air = null
 	var/list/all_doors = list()		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area

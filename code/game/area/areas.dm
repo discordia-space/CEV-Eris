@@ -267,7 +267,14 @@ var/list/mob/living/forced_ambiance_list = new
 		sound_to(L, sound(sound, repeat = 1, wait = 0, volume = 30, channel = GLOB.ambience_sound_channel))
 
 /area/proc/gravitychange(var/gravitystate = 0, var/area/A)
-	A.has_gravity = gravitystate
+	A.cached_gravity = gravitystate
+
+	if(gravity_blocker)
+		if(get_area(gravity_blocker) != src)
+			gravity_blocker = null
+			A.has_gravity = gravitystate
+	else
+		A.has_gravity = gravitystate
 
 	for(var/mob/M in A)
 		if(has_gravity)
