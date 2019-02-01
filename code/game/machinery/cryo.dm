@@ -1,6 +1,6 @@
 #define HEAT_CAPACITY_HUMAN 100 //249840 J/K, for a 72 kg person.
 
-/obj/machinery/atmospherics/unary/cryBP_CELL
+/obj/machinery/atmospherics/unary/cryo_cell
 	name = "cryo cell"
 	icon = 'icons/obj/cryogenics.dmi' // map only
 	icon_state = "pod_preview"
@@ -21,20 +21,20 @@
 
 	var/current_heat_capacity = 50
 
-/obj/machinery/atmospherics/unary/cryBP_CELL/New()
+/obj/machinery/atmospherics/unary/cryo_cell/New()
 	..()
 	icon = 'icons/obj/cryogenics_split.dmi'
 	update_icon()
 	initialize_directions = dir
 
-/obj/machinery/atmospherics/unary/cryBP_CELL/Destroy()
+/obj/machinery/atmospherics/unary/cryo_cell/Destroy()
 	var/turf/T = loc
 	T.contents += contents
 	if(beaker)
 		beaker.loc = get_step(loc, SOUTH) //Beaker is carefully ejected from the wreckage of the cryotube
 	. = ..()
 
-/obj/machinery/atmospherics/unary/cryBP_CELL/atmos_init()
+/obj/machinery/atmospherics/unary/cryo_cell/atmos_init()
 	if(node1) return
 	var/node1_connect = dir
 	for(var/obj/machinery/atmospherics/target in get_step(src,node1_connect))
@@ -42,7 +42,7 @@
 			node1 = target
 			break
 
-/obj/machinery/atmospherics/unary/cryBP_CELL/Process()
+/obj/machinery/atmospherics/unary/cryo_cell/Process()
 	..()
 	if(!node1)
 		return
@@ -63,12 +63,12 @@
 
 	return 1
 
-/obj/machinery/atmospherics/unary/cryBP_CELL/relaymove(mob/user as mob)
+/obj/machinery/atmospherics/unary/cryo_cell/relaymove(mob/user as mob)
 	// note that relaymove will also be called for mobs outside the cell with UI open
 	if(src.occupant == user && !user.stat)
 		go_out()
 
-/obj/machinery/atmospherics/unary/cryBP_CELL/attack_hand(mob/user)
+/obj/machinery/atmospherics/unary/cryo_cell/attack_hand(mob/user)
 	ui_interact(user)
 
  /**
@@ -82,7 +82,7 @@
   *
   * @return nothing
   */
-/obj/machinery/atmospherics/unary/cryBP_CELL/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/atmospherics/unary/cryo_cell/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 
 	if(user == occupant || user.stat)
 		return
@@ -144,7 +144,7 @@
 		// auto update every Master Controller tick
 		ui.set_auto_update(1)
 
-/obj/machinery/atmospherics/unary/cryBP_CELL/Topic(href, href_list)
+/obj/machinery/atmospherics/unary/cryo_cell/Topic(href, href_list)
 	if(usr == occupant)
 		return 0 // don't update UIs attached to this object
 
@@ -173,14 +173,14 @@
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	return 1 // update UIs attached to this object
 
-/obj/machinery/atmospherics/unary/cryBP_CELL/affect_grab(var/mob/user, var/mob/target)
+/obj/machinery/atmospherics/unary/cryo_cell/affect_grab(var/mob/user, var/mob/target)
 	for(var/mob/living/carbon/slime/M in range(1,target))
 		if(M.Victim == target)
 			user << "[target] will not fit into the cryo because they have a slime latched onto their head."
 			return
 	return put_mob(target)
 
-/obj/machinery/atmospherics/unary/cryBP_CELL/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/unary/cryo_cell/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
 	if(istype(W, /obj/item/weapon/reagent_containers/glass))
 		if(beaker)
 			user << SPAN_WARNING("A beaker is already loaded into the machine.")
@@ -193,7 +193,7 @@
 			)
 	return
 
-/obj/machinery/atmospherics/unary/cryBP_CELL/update_icon()
+/obj/machinery/atmospherics/unary/cryo_cell/update_icon()
 	overlays.Cut()
 	icon_state = "pod[on]"
 	var/image/I
@@ -219,7 +219,7 @@
 	I.pixel_z = 32
 	overlays += I
 
-/obj/machinery/atmospherics/unary/cryBP_CELL/proc/process_occupant()
+/obj/machinery/atmospherics/unary/cryo_cell/proc/process_occupant()
 	if(air_contents.total_moles < 10)
 		return
 	if(occupant)
@@ -248,7 +248,7 @@
 		if(beaker && !has_cryo_medicine)
 			beaker.reagents.trans_to_mob(occupant, 1, CHEM_BLOOD, 10)
 
-/obj/machinery/atmospherics/unary/cryBP_CELL/proc/heat_gas_contents()
+/obj/machinery/atmospherics/unary/cryo_cell/proc/heat_gas_contents()
 	if(air_contents.total_moles < 1)
 		return
 	var/air_heat_capacity = air_contents.heat_capacity()
@@ -257,7 +257,7 @@
 		var/combined_energy = T20C*current_heat_capacity + air_heat_capacity*air_contents.temperature
 		air_contents.temperature = combined_energy/combined_heat_capacity
 
-/obj/machinery/atmospherics/unary/cryBP_CELL/proc/expel_gas()
+/obj/machinery/atmospherics/unary/cryo_cell/proc/expel_gas()
 	if(air_contents.total_moles < 1)
 		return
 //	var/datum/gas_mixture/expel_gas = new
@@ -268,7 +268,7 @@
 	//expel_gas.temperature = T20C // Lets expel hot gas and see if that helps people not die as they are removed
 	//loc.assume_air(expel_gas)
 
-/obj/machinery/atmospherics/unary/cryBP_CELL/proc/go_out()
+/obj/machinery/atmospherics/unary/cryo_cell/proc/go_out()
 	if(!( occupant ))
 		return
 	//for(var/obj/O in src)
@@ -286,7 +286,7 @@
 	update_icon()
 	return
 
-/obj/machinery/atmospherics/unary/cryBP_CELL/proc/put_mob(mob/living/carbon/M as mob)
+/obj/machinery/atmospherics/unary/cryo_cell/proc/put_mob(mob/living/carbon/M as mob)
 	if (stat & (NOPOWER|BROKEN))
 		usr << SPAN_WARNING("The cryo cell is not functioning.")
 		return
@@ -318,7 +318,7 @@
 	update_icon()
 	return 1
 
-/obj/machinery/atmospherics/unary/cryBP_CELL/MouseDrop_T(var/mob/target, var/mob/user)
+/obj/machinery/atmospherics/unary/cryo_cell/MouseDrop_T(var/mob/target, var/mob/user)
 	if(!ismob(target))
 		return
 	if (target.buckled)
@@ -334,7 +334,7 @@
 	return
 
 
-/obj/machinery/atmospherics/unary/cryBP_CELL/verb/move_eject()
+/obj/machinery/atmospherics/unary/cryo_cell/verb/move_eject()
 	set name = "Eject occupant"
 	set category = "Object"
 	set src in oview(1)
@@ -353,7 +353,7 @@
 	add_fingerprint(usr)
 	return
 
-/obj/machinery/atmospherics/unary/cryBP_CELL/verb/move_inside()
+/obj/machinery/atmospherics/unary/cryo_cell/verb/move_inside()
 	set name = "Move Inside"
 	set category = "Object"
 	set src in oview(1)
@@ -369,7 +369,7 @@
 /atom/proc/return_air_for_internal_lifeform()
 	return return_air()
 
-/obj/machinery/atmospherics/unary/cryBP_CELL/return_air_for_internal_lifeform()
+/obj/machinery/atmospherics/unary/cryo_cell/return_air_for_internal_lifeform()
 	//assume that the cryo cell has some kind of breath mask or something that
 	//draws from the cryo tube's environment, instead of the cold internal air.
 	if(loc)

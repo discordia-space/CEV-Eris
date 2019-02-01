@@ -377,7 +377,7 @@
 		if(istype(loc, /obj/mecha))
 			var/obj/mecha/M = loc
 			loc_temp =  M.return_temperature()
-		else if(istype(loc, /obj/machinery/atmospherics/unary/cryBP_CELL))
+		else if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
 			loc_temp = loc:air_contents.temperature
 		else
 			loc_temp = environment.temperature
@@ -421,7 +421,7 @@
 		fire_alert = max(fire_alert, 1)
 		if(status_flags & GODMODE)	return 1	//godmode
 
-		if(!istype(loc, /obj/machinery/atmospherics/unary/cryBP_CELL))
+		if(!istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
 			var/burn_dam = 0
 			switch(bodytemperature)
 				if(-INFINITY to species.cold_level_3)
