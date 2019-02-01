@@ -31,7 +31,7 @@
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 3)
 
 /obj/item/weapon/circuitboard/antigrav
-	name = T_BOARD("antgrav")
+	name = T_BOARD("antgrav generator")
 	build_path = /obj/machinery/antigrav
 	board_type = "machine"
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_MAGNET = 4)
