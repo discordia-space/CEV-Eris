@@ -94,42 +94,6 @@
 #define BP_IS_BRITTLE(org)  (org.status & ORGAN_BRITTLE)
 #define BP_IS_CRYSTAL(org)  (org.status & ORGAN_CRYSTAL)
 
-// Bodyparts and organs.
-/*
-#define BP_MOUTH    "mouth"
-#define BP_EYES     "eyes"
-#define BP_HEART    "heart"
-#define BP_LUNGS    "lungs"
-#define BP_BRAIN    "brain"
-#define BP_LIVER    "liver"
-#define BP_KIDNEYS  "kidneys"
-#define BP_APPENDIX "appendix"
-#define BP_CELL     "cell"
-#define BP_POSIBRAIN	"posibrain"
-
-#define BP_PLASMA   "plasma vessel"
-#define BP_HIVE     "hive node"
-#define BP_NUTRIENT "nutrient vessel"
-#define BP_STRATA   "neural strata"
-#define BP_RESPONSE "response node"
-#define O_GBLADDER "gas bladder"
-#define O_POLYP    "polyp segment"
-#define O_ANCHOR   "anchoring ligament"
-#define O_ACID     "acid gland"
-#define O_EGG      "egg sac"
-#define O_RESIN    "resin spinner"
-
-#define BP_L_LEG  "l_leg"
-#define BP_R_LEG  "r_leg"
-#define BP_L_ARM  "l_arm"
-#define BP_R_ARM  "r_arm"
-#define BP_HEAD   "head"
-#define BP_CHEST  "chest"
-#define BP_GROIN  "groin"
-
-#define BP_LEGS list(BP_R_LEG, BP_L_LEG)
-#define BP_ALL_LIMBS list(BP_CHEST, BP_GROIN, BP_HEAD, BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG)
-*/
 
 // Organ defines.
 #define ORGAN_CUT_AWAY   (1<<0)
