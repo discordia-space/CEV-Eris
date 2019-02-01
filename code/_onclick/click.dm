@@ -25,8 +25,12 @@
 //	if(buildmode && !istype(target, /obj/screen))
 //		buildmode.build_click(src.mob, params, target)
 //		return
+
+	// Fixes the middle mouse exploit aimbot
 	var/list/L = params2list(params)
 	var/dragged = L["drag"]
+	
+	// Deny the exploit when middleclick is pressed during the left click event
 	if(dragged && !L[dragged])
 		return
 
