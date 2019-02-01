@@ -539,10 +539,10 @@ var/list/storyteller_cache = list()
 					config.forbidden_versions = splittext(value, ";")
 
 				if("minimum_byond_version")
-					config.minimum_byond_version = value
+					config.minimum_byond_version = text2num(value)
 
 				if("minimum_byond_build")
-					config.minimum_byond_build = value
+					config.minimum_byond_build = text2num(value)
 
 				if("irc_bot_host")
 					config.irc_bot_host = value
