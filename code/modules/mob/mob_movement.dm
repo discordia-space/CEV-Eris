@@ -199,7 +199,7 @@
 	if(isturf(mob.loc))
 
 		if(!mob.lastarea.has_gravity())
-			if(!mob.Allow_Spacemove(0))
+			if(!mob.allow_spacemove(0))
 				return 0
 
 
@@ -414,17 +414,17 @@
 /mob/proc/Post_Incorpmove()
 	return
 
-///Allow_Spacemove
+///allow_spacemove
 ///Called by /client/Move()
 ///For moving in space
 ///Return 1 for movement 0 for none
-/mob/proc/Allow_Spacemove(var/check_drift = 0)
+/mob/proc/allow_spacemove(var/check_drift = 0)
 
-	if(!Check_Dense_Object()) //Nothing to push off of so end here
-		update_floating(0)
+	if(!check_dense_object()) //Nothing to push off of so end here
+		update_floating()
 		return 0
 
-	update_floating(1)
+	update_floating()
 
 	if(restrained()) //Check to see if we can do things
 		return 0
@@ -439,9 +439,23 @@
 	inertia_dir = 0
 	return 1
 
-/mob/proc/Check_Dense_Object() //checks for anything to push off in the vicinity. also handles magboots on gravity-less floors tiles
+//Checks if a mob has solid ground to stand on
+//If there's no gravity then there's no up or down so naturally you can't stand on anything.
+//For the same reason lattices in space don't count - those are things you grip, presumably.
+/mob/proc/check_gravity()
+	if(istype(loc, /turf/space))
+		return 0
 
-	var/shoegrip = Check_Shoegrip()
+	if(!lastarea)
+		lastarea = get_area(src)
+	if(!lastarea || !lastarea.has_gravity)
+		return 0
+
+	return 1
+
+/mob/proc/check_dense_object() //checks for anything to push off or grip in the vicinity. also handles magboots on gravity-less floors tiles
+
+	var/shoegrip = check_shoegrip()
 
 	for(var/turf/simulated/T in trange(1,src)) //we only care for non-space turfs
 		if(T.density)	//walls work
@@ -451,23 +465,21 @@
 			if(A.has_gravity || shoegrip)
 				return 1
 
-	for(var/obj/O in range(1, src))
+	for(var/obj/O in orange(1, src))
 		if(istype(O, /obj/structure/lattice))
-			return 1
-		if(istype(O, /obj/structure/catwalk))
 			return 1
 		if(O && O.density && O.anchored)
 			return 1
 
 	return 0
 
-/mob/proc/Check_Shoegrip()
+/mob/proc/check_shoegrip()
 	return 0
 
 /mob/proc/slip_chance(var/prob_slip = 5)
 	if(stat)
 		return 0
-	if(Check_Shoegrip())
+	if(check_shoegrip())
 		return 0
 	return prob_slip
 

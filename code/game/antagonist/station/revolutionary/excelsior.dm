@@ -4,6 +4,7 @@
 	role_text_plural = "Infiltrators"
 	bantype = ROLE_BANTYPE_EXCELSIOR
 	welcome_text = "Viva la revolution!"
+	antaghud_indicator = "hudexcelsior"
 
 	faction_id = FACTION_EXCELSIOR
 	allow_neotheology = FALSE //Implant causes head asplode

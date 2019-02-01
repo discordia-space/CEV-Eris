@@ -6,7 +6,7 @@
 	canmove = 0
 	icon = null
 	invisibility = 101
-	update_canmove()
+	update_lying_buckled_and_verb_status()
 	dead_mob_list -= src
 
 	var/atom/movable/overlay/animation = null
@@ -69,7 +69,7 @@
 
 	stat = DEAD
 
-	update_canmove()
+	update_lying_buckled_and_verb_status()
 
 	layer = MOB_LAYER
 

@@ -184,7 +184,9 @@
 	if(!affecting)
 		return
 	if(affecting.buckled)
-		animate(affecting, pixel_x = 0, pixel_y = 0, 4, 1, LINEAR_EASING)
+		var/obj/O = affecting.buckled
+		if (istype(O))
+			O.post_buckle_mob(affecting) //A hack to fix offsets on altars and tables
 		return
 	if(affecting.lying && state != GRAB_KILL)
 		animate(affecting, pixel_x = 0, pixel_y = 0, 5, 1, LINEAR_EASING)
@@ -354,8 +356,13 @@
 
 /obj/item/weapon/grab/Destroy()
 	if(affecting)
-		animate(affecting, pixel_x = 0, pixel_y = 0, 4, 1, LINEAR_EASING)
-		affecting.layer = 4
+		if(affecting.buckled)
+			var/obj/O = affecting.buckled
+			if (istype(O))
+				O.post_buckle_mob(affecting) //A hack to fix offsets on altars and tables
+		else
+			animate(affecting, pixel_x = 0, pixel_y = 0, 4, 1, LINEAR_EASING)
+		affecting.reset_plane_and_layer()
 		affecting.grabbed_by -= src
 		affecting = null
 	if(assailant)
@@ -366,3 +373,8 @@
 	hud = null
 	destroying = 1 // stops us calling qdel(src) on dropped()
 	return ..()
+
+
+//A stub for bay grab system. This is supposed to check a var on the associated grab datum
+/obj/item/weapon/grab/proc/force_stand()
+	return FALSE
