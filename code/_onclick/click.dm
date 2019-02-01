@@ -25,6 +25,11 @@
 //	if(buildmode && !istype(target, /obj/screen))
 //		buildmode.build_click(src.mob, params, target)
 //		return
+	var/list/L = params2list(params)
+	var/dragged = L["drag"]
+	if(dragged && !L[dragged])
+		return
+
 	if(!isHUDobj(target) && CH)
 		if(CH.mob_check(mob))
 			if (CH.use_ability(mob,target) && CH.one_use_flag)
@@ -37,9 +42,6 @@
 
 	if(!target.Click(location, control, params))
 		usr.ClickOn(target, params)
-
-/atom/Click(var/location, var/control, var/params) // This is their reaction to being clicked on (standard proc)
-	return
 
 /atom/DblClick(var/location, var/control, var/params)
 	if(src)
