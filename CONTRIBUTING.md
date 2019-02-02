@@ -1,7 +1,7 @@
 # General
-* Where possible, large projects should be broken up into several smaller pull requests, and/or done in phases over time
+* Where possible, large projects should be broken up into several smaller pull requests, and/or done in phases over time.
 * Pull requests should not contain commented code except TODOs and explanation comments.
-* Pull requests should not contain any debug output, variables or procs, unless these are of value to admins/coders for live debugging
+* Pull requests should not contain any debug output, variables or procs, unless these are of value to admins/coders for live debugging.
 * Pull requests should not contain changes that do not relate with functionality described in commit messages.
 * If pull request relates with existing github issue, it should be specified in commit message, for example, "Fix broken floor sprites, close #23" (see https://help.github.com/articles/closing-issues-via-commit-messages/ for additional info).
 * If pull request contains map files changes, it should be previously proccessed by mapmerger tool (see /tool/mapmerger/install.txt for additional info). Pull request description should contain screenshots of map changes if it's not obvious from map files diff.
@@ -219,6 +219,7 @@ var/c = 1
 
 Name your proc parameters properly to prevent name conflicts. If in doubt, use the prefix _ to clearly indicate an input parameter.
 Do not use src.var if it can be helped.
+
 ***Good:***
 ```
 /obj/set_name(var/newname)
