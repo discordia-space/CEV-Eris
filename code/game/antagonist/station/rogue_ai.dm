@@ -4,6 +4,7 @@
 	role_text_plural = "Rampant AIs"
 	bantype = ROLE_BANTYPE_MALFUNCTION
 	welcome_text = "You are malfunctioning! You do not have to follow any laws."
+	antaghud_indicator = "hudmalai"
 	only_human = FALSE
 
 

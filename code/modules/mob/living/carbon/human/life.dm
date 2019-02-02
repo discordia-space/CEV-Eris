@@ -973,17 +973,17 @@
 		hud_list[IMPTRACK_HUD] = holder1
 		hud_list[IMPCHEM_HUD]  = holder2
 
-/*	if (BITTEST(hud_updateflag, SPECIALROLE_HUD))
+	if (BITTEST(hud_updateflag, SPECIALROLE_HUD))
 		var/image/holder = hud_list[SPECIALROLE_HUD]
 		holder.icon_state = "hudblank"
-		if(mind && mind.special_role)
-			if(hud_icon_reference[mind.special_role])
-				holder.icon_state = hud_icon_reference[mind.special_role]
+		if(mind && mind.antagonist.len != 0)
+			if(hud_icon_reference[mind.antagonist[1].role_text]) //only display the first antagonist role
+				holder.icon_state = hud_icon_reference[mind.antagonist[1].role_text]
 			else
 				holder.icon_state = "hudsyndicate"
 			hud_list[SPECIALROLE_HUD] = holder
 	hud_updateflag = 0
-*/
+
 /mob/living/carbon/human/handle_silent()
 	if(..())
 		speech_problem_flag = 1
