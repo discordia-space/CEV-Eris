@@ -1,5 +1,5 @@
 /obj/item/weapon/grenade/frag
-	name = "NT DFG \"Pomme"\""
+	name = "NT DFG \"Pomme\""
 	desc = "A military-grade defensive fragmentation grenade, designed to be thrown from cover."
 	icon_state = "frag"
 	item_state = "frggrenade"
