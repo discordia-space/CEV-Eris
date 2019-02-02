@@ -42,6 +42,7 @@ var/list/disciples = list()
 	add_module(new CRUCIFORM_COMMON)
 	update_data()
 	disciples |= wearer
+	return TRUE
 
 
 /obj/item/weapon/implant/core_implant/cruciform/deactivate()
