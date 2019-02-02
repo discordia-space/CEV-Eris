@@ -125,6 +125,22 @@
 	)
 	..()
 
+/obj/item/weapon/disk/autolathe_disk/robustcells
+	name = "Asters Robustcells"
+	category = "Engineering"
+	icon_state = "guild"
+	license = 8
+
+/obj/item/weapon/disk/autolathe_disk/robustcells/New()
+	recipes = list(
+		/datum/autolathe/recipe/cell/large,
+		/datum/autolathe/recipe/cell/large/high,
+		/datum/autolathe/recipe/cell/medium,
+		/datum/autolathe/recipe/cell/medium/high,
+		/datum/autolathe/recipe/cell/small,
+		/datum/autolathe/recipe/cell/small/high,
+	)
+	..()
 
 /obj/item/weapon/disk/autolathe_disk/component
 	name = "Technomancers ARK-034 Components"
@@ -413,6 +429,9 @@
 		/datum/autolathe/recipe/sec/beartrap,
 		/datum/autolathe/recipe/clothing/excelsior_armor,
 		/datum/autolathe/recipe/clothing/excelsior_helmet,
+		/datum/autolathe/recipe/cell/large/excelsior,
+		/datum/autolathe/recipe/cell/medium/excelsior,
+		/datum/autolathe/recipe/cell/small/excelsior,
 		/datum/autolathe/recipe/part/manipulator,
 		/datum/autolathe/recipe/part/subspace_amplifier,
 		/datum/autolathe/recipe/part/subspace_crystal,
