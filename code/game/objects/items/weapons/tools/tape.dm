@@ -59,7 +59,7 @@
 			user.visible_message(SPAN_DANGER("\The [user] has taped up \the [H]'s eyes!"))
 			H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/blindfold/tape(H), slot_glasses)
 
-		else if(user.targeted_organ == "mouth" || user.targeted_organ == BP_HEAD)
+		else if(user.targeted_organ == BP_MOUTH || user.targeted_organ == BP_HEAD)
 			if(!H.organs_by_name[BP_HEAD])
 				user << SPAN_WARNING("\The [H] doesn't have a head.")
 				return

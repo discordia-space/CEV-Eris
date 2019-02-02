@@ -71,7 +71,7 @@
 	desc = "A rechargable starch based power cell."
 	origin_tech = list(TECH_POWER = 1)
 	icon = 'icons/obj/power.dmi'
-	icon_state = "potatBP_CELL"
+	icon_state = "potato_cell"
 	charge = 100
 	maxcharge = 300
 	minor_fault = 1

@@ -170,7 +170,7 @@
 				switch(icon_y)
 					if(23 to 24)
 						if(icon_x in 15 to 17)
-							parentmob.targeted_organ = "mouth"
+							parentmob.targeted_organ = BP_MOUTH
 					if(25 to 27)
 						if(icon_x in 14 to 18)
 							parentmob.targeted_organ = BP_EYES
