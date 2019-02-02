@@ -38,14 +38,14 @@
 		if(selected_audio.storedinfo.len < i+1)
 			playsleepseconds = 1
 			sleep(10)
-			T = get_turf(src)
+			T = get_turf(computer)
 			T.audible_message("<font color=Maroon><B>Audio Player</B>: End of recording.</font>")
 			playing = FALSE
 		else
 			playsleepseconds = selected_audio.timestamp[i+1] - selected_audio.timestamp[i]
 		if(playsleepseconds > 14)
 			sleep(10)
-			T = get_turf(src)
+			T = get_turf(computer)
 			T.audible_message("<font color=Maroon><B>Audio Player</B>: Skipping [playsleepseconds] seconds of silence</font>")
 			playsleepseconds = 1
 		i++
@@ -65,6 +65,7 @@
 				transcribe_netspeed = NTNETSPEED_ETHERNET
 		transcribe_progress += transcribe_netspeed
 		if(transcribe_progress >= selected_audio.size)
+			transcribe_progress = 0
 			transcribing = 0
 			selected_audio.transcribed = TRUE
 		SSnano.update_uis(NM)
@@ -88,13 +89,19 @@
 		error = null
 		return TRUE
 
-	if(href_list["PRG_playaudio"])
-		playing = TRUE
-		play_audio()
+	if(href_list["PRG_reset"])
+		transcribing = 0
+		transcribe_progress = 0
 		return TRUE
 
-	if(href_list["PRG_stopaudio"])
-		playing = FALSE
+	if(href_list["PRG_toggleaudio"])
+		if(playing)
+			playing = FALSE
+		else
+			if(selected_audio)
+				playing = TRUE
+				play_audio()
+		SSnano.update_uis(NM)
 		return TRUE
 
 	if(href_list["PRG_loadmenu"])
@@ -108,6 +115,7 @@
 
 	if(href_list["PRG_openaudio"])
 		. = TRUE
+		playing = FALSE
 		browsing = FALSE
 		if(!open_audio(href_list["PRG_openaudio"]))
 			error = "I/O error: Unable to open file '[href_list["PRG_openaudio"]]'."
@@ -166,10 +174,15 @@
 						)))
 				data["usbfiles"] = usbfiles
 
-	else if(PRG.selected_audio && !PRG.transcribing)
-		data["filename"] = PRG.selected_audio.filename
-		data["transcript"] = PRG.selected_audio.transcribed ? PRG.selected_audio.stored_data : "Please press the \"Transcribe\" button to transcribe the audio file."
-	else if(PRG.transcribing)
+	else if(!PRG.transcribing)
+		data["playing"] = PRG.playing
+		if(PRG.selected_audio)
+			data["filename"] = PRG.selected_audio.filename
+			data["transcript"] = PRG.selected_audio.transcribed ? PRG.selected_audio.stored_data : "Please press the \"Transcribe\" button to transcribe the audio file."
+		else
+			data["filename"] = "No File"
+			data["transcript"] = "Please load an audio file."
+	else
 		data["transcribe_running"] = 1
 		data["transcribe_progress"] = PRG.transcribe_progress
 		data["transcribe_maxprogress"] = PRG.selected_audio.size

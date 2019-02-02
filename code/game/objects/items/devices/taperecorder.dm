@@ -153,7 +153,11 @@
 
 	print_transcript()
 
+/obj/item/device/taperecorder/verb/change_audioverb()
+	set name = "Switch Audio"
+	set category = "Object"
 
+	change_audio()
 
 /obj/item/device/taperecorder/proc/record(var/show_message = 1)
 
@@ -171,24 +175,19 @@
 		return
 
 	if(!audio_file)
-		var/audio_title = input(usr, "What do you want to name the recording?", "Audio file") as null|text
-		if(isnull(audio_title)) return
-		var/datum/computer_file/data/audio/F = new()
-		F.filename = audio_title
-		if(mydrive.store_file(F))
-			audio_file = F
-		else
-			usr << SPAN_WARNING("The recorder beeps. The file was unable to be saved.")
+		create_audio_file(show_message)
+		if(!audio_file)
 			return
 
-	icon_state = "taperecorder_recording"
+	playsound(loc, 'sound/machines/button.ogg', 100, 1)
 	if(audio_file.used_capacity < audio_file.max_capacity)
+		icon_state = "taperecorder_recording"
 		if(show_message)
 			usr << SPAN_NOTICE("Recording started.")
 		recording = 1
 		audio_file.timestamp += audio_file.used_capacity
 		audio_file.storedinfo += "\[[time2text(audio_file.used_capacity * 10,"mm:ss")]\] Recording started."
-		var/used = audio_file.used_capacity	//to stop runtimes when you eject the tape
+		var/used = audio_file.used_capacity	//to stop runtimes when you eject the drive
 		var/max = audio_file.max_capacity
 		for(used, used < max)
 			if(!recording)
@@ -200,7 +199,7 @@
 		update_icon()
 		return
 	else if(show_message)
-		usr << SPAN_NOTICE("The tape is full.")
+		usr << SPAN_NOTICE("The file is full.")
 
 
 /obj/item/device/taperecorder/proc/stop(var/show_message = 1)
@@ -211,12 +210,13 @@
 		if(show_message)
 			usr << SPAN_WARNING("The recorder makes a scratchy noise.")
 		return
+	playsound(loc, 'sound/machines/button.ogg', 100, 1)
 	if(recording)
 		recording = 0
 		audio_file.timestamp += audio_file.used_capacity
+		audio_file.storedinfo += "\[[time2text(audio_file.used_capacity*10,"mm:ss")]\] Recording stopped."
 		for(var/entry in audio_file.storedinfo)
 			audio_file.stored_data += "[entry]<br>"
-		audio_file.storedinfo += "\[[time2text(audio_file.used_capacity*10,"mm:ss")]\] Recording stopped."
 		if(show_message)
 			usr << SPAN_NOTICE("Recording stopped.")
 		icon_state = "taperecorder_idle"
@@ -238,6 +238,8 @@
 			usr << SPAN_WARNING("The recorder makes a scratchy noise.")
 		return
 	if(!audio_file)
+		if(show_message)
+			usr << SPAN_WARNING("The recorder beeps. No file selected.")
 		return
 	if(recording || playing)
 		if(show_message)
@@ -248,8 +250,9 @@
 		if(audio_file.timestamp)	audio_file.timestamp.Cut()
 		audio_file.used_capacity = 0
 		if(show_message)
-			usr << SPAN_NOTICE("Tape cleared.")
+			usr << SPAN_NOTICE("File cleared.")
 		return
+	playsound(loc, 'sound/machines/button.ogg', 100, 1)
 
 
 /obj/item/device/taperecorder/proc/playback_memory(var/show_message = 1)
@@ -257,6 +260,8 @@
 	if(usr.stat)
 		return
 	if(!audio_file)
+		if(show_message)
+			usr << SPAN_WARNING("The recorder beeps. No file selected.")
 		return
 	if(recording)
 		if(show_message)
@@ -270,12 +275,16 @@
 	icon_state = "taperecorder_playing"
 	if(show_message)
 		usr << SPAN_NOTICE("Playing started.")
+	playsound(loc, 'sound/machines/button.ogg', 100, 1)
 	var/used = audio_file.used_capacity	//to stop runtimes when you eject the tape
 	var/max = audio_file.max_capacity
 	for(var/i=1,used<max,sleep(10 * (playsleepseconds) ))
 		if(!playing)
 			break
 		if(audio_file.storedinfo.len < i)
+			break
+		if(!mydrive)
+			playing = FALSE
 			break
 		var/turf/T = get_turf(src)
 		var/playedmessage = audio_file.storedinfo[i]
@@ -334,7 +343,9 @@
 		if(show_message)
 			usr << SPAN_NOTICE("You can't print the transcript while playing or recording!")
 		return
-	usr << SPAN_NOTICE("Transcript printed.")
+	playsound(loc, 'sound/machines/button.ogg', 100, 1)
+	if(show_message)
+		usr << SPAN_NOTICE("Transcript printed.")
 	var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(get_turf(src))
 	var/t1 = "<B>Transcript:</B><BR><BR>"
 	for(var/i=1,audio_file.storedinfo.len >= i,i++)
@@ -348,6 +359,49 @@
 	sleep(300)
 	canprint = 1
 
+/obj/item/device/taperecorder/proc/change_audio(var/show_message = 1)
+
+	if(emagged)
+		if(show_message)
+			usr << SPAN_WARNING("The recorder makes a scratchy noise.")
+		return
+	if(!mydrive)
+		return
+	if(recording || playing)
+		if(show_message)
+			usr << SPAN_NOTICE("You can't switch to another file while playing or recording!")
+		return
+	playsound(loc, 'sound/machines/button.ogg', 100, 1)
+	var/list/audio_list = list()
+	for(var/datum/computer_file/data/audio/A in mydrive.stored_files)
+		audio_list[A.filename] = A
+	if(show_message)
+		var/usr_input = input(usr, "Which audio file do you want to switch to?.", "Audio Files") in audio_list|"New File"|"Cancel"|null
+		if(isnull(usr_input))
+			return
+		if(usr_input == "New File")
+			create_audio_file(show_message)
+			return
+		else if(usr_input == "Cancel")
+			return
+		audio_file = audio_list[usr_input]
+	else
+		create_audio_file(show_message)
+
+/obj/item/device/taperecorder/proc/create_audio_file(var/show_message = 1)
+	var/audio_title
+	if(show_message)
+		audio_title = sanitizeSafe(input(usr, "What do you want to name the recording? If you leave this blank, the title will be the current time.", "Audio file") as null|text, MAX_NAME_LEN)
+	if(isnull(audio_title))
+		audio_title = "Recording ([stationtime2text()])"
+	var/datum/computer_file/data/audio/F = new()
+	F.filename = audio_title
+	if(mydrive.store_file(F))
+		audio_file = F
+	else
+		if(show_message)
+			usr << SPAN_WARNING("The recorder beeps. The file was unable to be saved.")
+		return
 
 /obj/item/device/taperecorder/attack_self(mob/user)
 	if(!mydrive)

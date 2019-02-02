@@ -55,8 +55,7 @@ Additional information: {{:data.error}}<br>
 	<h2>Audio file: {{:data.filename}}</h2>
 	<div class='item'>
 	{{:helper.link('LOAD', null, { "PRG_loadmenu" : 1 })}}
-	{{:helper.link('PLAY', null, { "PRG_playaudio" : 1 })}}
-	{{:helper.link('STOP', null, { "PRG_stopaudio" : 1 })}}
+	{{:helper.link(data.playing ? 'STOP' : 'PLAY', data.playing ? 'stop' : 'play', {'PRG_toggleaudio' : 1}, null)}}
 	</div>
 	<div class='item'>
 	{{:helper.link('TRANSCRIBE', null, { "PRG_transcribe" : 1 })}}
