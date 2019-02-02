@@ -125,13 +125,13 @@
 	)
 	..()
 
-/obj/item/weapon/disk/autolathe_disk/devices
+/obj/item/weapon/disk/autolathe_disk/robustcells
 	name = "Asters Robustcells"
 	category = "Engineering"
 	icon_state = "guild"
 	license = 8
 
-/obj/item/weapon/disk/autolathe_disk/devices/New()
+/obj/item/weapon/disk/autolathe_disk/robustcells/New()
 	recipes = list(
 		/datum/autolathe/recipe/cell/large,
 		/datum/autolathe/recipe/cell/large/high,
