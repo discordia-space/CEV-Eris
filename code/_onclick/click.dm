@@ -28,10 +28,11 @@
 
 	// Fixes the middle mouse exploit aimbot
 	var/list/L = params2list(params)
-	var/dragged = L["drag"]
+	var/draggedMiddle = L["drag"]	// Returns anything pressed down during the left click event as we are in Click() method by left or middle click
+	var/left = L["left"]		// Obivously checking if the left got clicked and not held down.
 	
 	// Deny the exploit when middleclick is pressed during the left click event
-	if(dragged && !L[dragged])
+	if(draggedMiddle == "middle" && left)
 		return
 
 	if(!isHUDobj(target) && CH)
