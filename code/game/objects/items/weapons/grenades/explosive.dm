@@ -1,6 +1,6 @@
 /obj/item/weapon/grenade/frag
-	name = "FS FG \"Cobb\""
-	desc = "A fragmentation grenade, optimized for harming personnel without causing massive structural damage."
+	name = "NT DFG \"Pomme"\""
+	desc = "A military-grade defensive fragmentation grenade, designed to be thrown from cover."
 	icon_state = "frag"
 	item_state = "frggrenade"
 	loadable = TRUE
@@ -47,12 +47,12 @@
 	explosion(O, devastation_range, heavy_range, weak_range, flash_range)
 
 /obj/item/weapon/grenade/frag/explosive
-	name = "FS HEG \"Zoe\""
-	desc = "A military High Explosive grenade, designed to wreak havoc in a certain radius."
+	name = "NT OBG \"Cracker\""
+	desc = "A military-grade offensive blast grenade, designed to be thrown by assaulting troops."
 	icon_state = "explosive"
 
 	devastation_range = -1
 	heavy_range = 1
 	weak_range = 4
 	flash_range = 10
-	num_fragments = 0
+	num_fragments = 10

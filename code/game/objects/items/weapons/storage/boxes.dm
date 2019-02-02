@@ -319,8 +319,8 @@
 		new /obj/item/weapon/grenade/empgrenade(src)
 
 /obj/item/weapon/storage/box/frag
-	name = "box of emp grenades"
-	desc = "A box containing 4 anti-personnel fragmentation grenades. Very harmful to organic life."
+	name = "box of fragmentation grenades"
+	desc = "A box containing 4 fragmentation grenades. Designed for use on enemies in the open."
 	icon_state = "flashbang"
 
 	New()
@@ -331,8 +331,8 @@
 		new /obj/item/weapon/grenade/frag(src)
 
 /obj/item/weapon/storage/box/explosive
-	name = "box of emp grenades"
-	desc = "A box containing 4 high explosive grenades. Very destructive to surrounding structures."
+	name = "box of blast grenades"
+	desc = "A box containing 4 blast grenades. Designed for assaulting strongpoints."
 	icon_state = "flashbang"
 
 	New()
