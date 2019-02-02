@@ -17,7 +17,21 @@
 	cocked_sound = 'sound/weapons/guns/interact/smg_cock.ogg'
 
 	firemodes = list(
-		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, dispersion=null),
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    dispersion=list(0.0, 0.6, 1.0)),
-		list(mode_name="short bursts",   burst=5, fire_delay=null, move_delay=4,    dispersion=list(0.6, 1.0, 1.0, 1.0, 1.2)),
+		list(mode_name="full auto",  burst=1,  mode_type = /datum/firemode/automatic, fire_delay=2.5,     dispersion=list(0.6, 1.0, 1.0, 1.0, 1.2)),
+		list(mode_name="semiauto",       burst=1, fire_delay=0,     dispersion=null),
+		list(mode_name="3-round bursts", burst=3, fire_delay=null,     dispersion=list(0.0, 0.6, 1.0)),
+		list(mode_name="short bursts",   burst=5, fire_delay=null,     dispersion=list(0.6, 1.0, 1.0, 1.0, 1.2)),
 		)
+
+
+//Automatic firing
+//Todo: Way more checks and safety here
+/datum/firemode/automatic/update()
+	if (gun && gun.is_held())
+		var/mob/living/L = gun.loc
+		if (L && L.client && !L.client.CH)
+			//A click handler intercepts mouseup/drag/down events which allow fullauto firing
+			var/datum/click_handler/fullauto/FA = new /datum/click_handler/fullauto()
+			FA.reciever = gun
+			L.client.CH = FA
+			FA.owner = L.client

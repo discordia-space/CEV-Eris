@@ -21,11 +21,75 @@
 	return ..()
 //	owner = null
 
+//Return false from these procs to discard the click afterwards
+/datum/click_handler/proc/Click(var/atom/target, location, control, params)
+	if (!isHUDobj(target))
+		if (mob_check(owner.mob) && use_ability(owner.mob, target))
+			//Ability successful
+			if (one_use_flag)
+				//If we're single use, delete ourselves anyways
+				qdel(src)
+		else
+			//Ability fail, delete ourselves
+			owner.mob << "For some reason you can't use [handler_name] ability"
+			qdel(src)
+
+		return FALSE //As long as we're not clicking a hud object, we drop the click
+	return TRUE
+
+/datum/click_handler/proc/MouseDown(object,location,control,params)
+	return TRUE
+
+/datum/click_handler/proc/MouseDrag(over_object,src_location,over_location,src_control,over_control,params)
+	return TRUE
+
+/datum/click_handler/proc/MouseUp(object,location,control,params)
+	return TRUE
+
+
 /datum/click_handler/proc/mob_check(mob/living/carbon/human/user) //Check can mob use a ability
 	return
 
 /datum/click_handler/proc/use_ability(mob/living/carbon/human/user,atom/target)
 	return
+
+
+//Full auto gunfire
+/datum/click_handler/fullauto
+	var/atom/target = null
+	var/firing = FALSE
+	var/obj/item/weapon/gun/reciever //The thing we send firing signals to.
+	//Todo: Make this work with callbacks
+
+/datum/click_handler/fullauto/Click()
+	return TRUE //Doesn't work with normal clicks
+
+/datum/click_handler/fullauto/proc/start_firing()
+	firing = TRUE
+	while (firing && target)
+		do_fire()
+		sleep(1) //Keep spamming events every frame as long as the button is held
+	stop_firing()
+
+//Next loop will notice these vars and stop shooting
+/datum/click_handler/fullauto/proc/stop_firing()
+	firing = FALSE
+	target = null
+
+/datum/click_handler/fullauto/proc/do_fire()
+	reciever.afterattack(target, owner.mob, FALSE)
+
+/datum/click_handler/fullauto/MouseDown(object,location,control,params)
+	target = object
+	spawn()
+		start_firing()
+
+/datum/click_handler/fullauto/MouseDrag(over_object,src_location,over_location,src_control,over_control,params)
+	target = src_location //This var contains the thing the user is hovering over, oddly
+
+/datum/click_handler/fullauto/MouseUp(object,location,control,params)
+	stop_firing()
+
 
 /datum/click_handler/human/mob_check(mob/living/carbon/human/user)
 	if(ishuman(user))

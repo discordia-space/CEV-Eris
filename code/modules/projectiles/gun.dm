@@ -8,11 +8,13 @@
 /datum/firemode
 	var/name = "default"
 	var/list/settings = list()
+	var/obj/item/gun = null
 
-/datum/firemode/New(obj/item/weapon/gun/gun, list/properties = null)
+/datum/firemode/New(obj/item/weapon/gun/_gun, list/properties = null)
 	..()
 	if(!properties) return
 
+	gun = _gun
 	for(var/propname in properties)
 		var/propvalue = properties[propname]
 
@@ -23,9 +25,16 @@
 		else
 			settings[propname] = propvalue
 
-/datum/firemode/proc/apply_to(obj/item/weapon/gun/gun)
+/datum/firemode/proc/apply_to(obj/item/weapon/gun/_gun)
+	gun = _gun
 	for(var/propname in settings)
-		gun.vars[propname] = settings[propname]
+		if (propname in gun.vars)
+			gun.vars[propname] = settings[propname]
+
+//Called whenever the firemode is switched to, or the gun is picked up while its active
+/datum/firemode/proc/update()
+	return
+
 
 //Parent gun type. Guns are weapons that can be aimed at mobs and act over a distance
 /obj/item/weapon/gun
@@ -63,6 +72,8 @@
 	var/requires_two_hands
 	var/wielded_icon = "gun_wielded"
 
+	var/suppress_delay_warning = FALSE
+
 	var/safety = TRUE//is safety will be toggled on spawn() or not
 	var/restrict_safety = FALSE//if gun don't need safety in all - toggle to TRUE
 
@@ -83,7 +94,17 @@
 /obj/item/weapon/gun/New()
 	..()
 	for(var/i in 1 to firemodes.len)
-		firemodes[i] = new /datum/firemode(src, firemodes[i])
+		var/list/L = firemodes[i]
+
+		//If this var is set, it means spawn a specific subclass of firemode
+		if (L["mode_type"])
+			var/newtype = L["mode_type"]
+			firemodes[i] = new newtype(src, firemodes[i])
+		else
+			firemodes[i] = new /datum/firemode(src, firemodes[i])
+
+	if (firemodes.len)
+		var/datum/firemode
 
 	if(!restrict_safety)
 		verbs += /obj/item/weapon/gun/proc/toggle_safety//addint it to all guns
@@ -184,7 +205,7 @@
 		return
 
 	if(world.time < next_fire_time)
-		if (world.time % 3) //to prevent spam
+		if (!suppress_delay_warning && world.time % 3) //to prevent spam
 			user << SPAN_WARNING("[src] is not ready to fire again!")
 		return
 
@@ -410,7 +431,7 @@
 		sel_mode = 1
 	var/datum/firemode/new_mode = firemodes[sel_mode]
 	new_mode.apply_to(src)
-
+	new_mode.update()
 	return new_mode
 
 /obj/item/weapon/gun/attack_self(mob/user)
@@ -425,6 +446,19 @@
 			safety = !safety
 			playsound(user, 'sound/weapons/selector.ogg', 50, 1)
 			user << SPAN_NOTICE("You toggle the safety [safety ? "on":"off"].")
+			//Update firemode when safeties are toggled
+			update_firemode()
+
+
+//Finds the current firemode and calls update on it. This is called from a few places:
+//When firemode is changed
+//When safety is toggled
+//When gun is picked up
+//When gun is readied
+/obj/item/weapon/gun/proc/update_firemode()
+	if (sel_mode && firemodes && firemodes.len)
+		var/datum/firemode/new_mode = firemodes[sel_mode]
+		new_mode.update()
 
 /obj/item/weapon/gun/AltClick(mob/user)
 	if(!restrict_safety)
@@ -433,6 +467,10 @@
 			return
 
 		check_safety(user)
+
+/obj/item/weapon/gun/pickup(mob/user)
+	.=..()
+	update_firemode()
 
 /obj/item/weapon/gun/proc/toggle_safety()
 	set name = "Toggle gun's safety"

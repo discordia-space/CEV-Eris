@@ -21,6 +21,7 @@
 	fire_sound = 'sound/weapons/guns/fire/lmg_fire.ogg'
 
 	firemodes = list(
+		list(mode_name="full auto",  burst=1,  mode_type = /datum/firemode/automatic, fire_delay=2.5,     dispersion=list(0.6, 1.0, 1.0, 1.0, 1.2)),
 		list(mode_name="short bursts",	burst=5, move_delay=6, dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
 		list(mode_name="long bursts",	burst=8, move_delay=8, dispersion = list(1.0, 1.0, 1.0, 1.0, 1.2)),
 		)

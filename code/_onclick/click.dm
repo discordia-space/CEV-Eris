@@ -16,34 +16,39 @@
 	Note that this proc can be overridden, and is in the case of screen objects.
 */
 
+/client/MouseDown(object,location,control,params)
+	if (CH)
+		if (!CH.MouseDown(object,location,control,params))
+			return
+	.=..()
+
+/client/MouseUp(object,location,control,params)
+	if (CH)
+		if (!CH.MouseUp(object,location,control,params))
+			return
+	.=..()
+
+/client/MouseDrag(over_object,src_location,over_location,src_control,over_control,params)
+	if (CH)
+		if (!CH.MouseDrag(over_object,src_location,over_location,src_control,over_control,params))
+			return
+	world << src_location
+	.=..()
+
+
 /client/Click(var/atom/target, location, control, params)
-//	if(world.time <= next_click) // Hard check, before anything else, to avoid crashing
-//		return
-
-//	next_click = world.time + 1
-
-//	if(buildmode && !istype(target, /obj/screen))
-//		buildmode.build_click(src.mob, params, target)
-//		return
-
-	// Fixes the middle mouse exploit aimbot
 	var/list/L = params2list(params)
 	var/draggedMiddle = L["drag"]	// Returns anything pressed down during the left click event as we are in Click() method by left or middle click
 	var/left = L["left"]		// Obivously checking if the left got clicked and not held down.
-	
+
 	// Deny the exploit when middleclick is pressed during the left click event
 	if(draggedMiddle == "middle" && left)
 		return
 
-	if(!isHUDobj(target) && CH)
-		if(CH.mob_check(mob))
-			if (CH.use_ability(mob,target) && CH.one_use_flag)
-				qdel(CH)// = null
-				return
-		else
-			src << "For some reason you can't use [CH.handler_name] ability"
-			qdel(CH)// = null
+	if (CH)
+		if (!CH.Click(target, location, control, params))
 			return
+
 
 	if(!target.Click(location, control, params))
 		usr.ClickOn(target, params)
