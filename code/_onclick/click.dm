@@ -25,6 +25,16 @@
 //	if(buildmode && !istype(target, /obj/screen))
 //		buildmode.build_click(src.mob, params, target)
 //		return
+
+	// Fixes the middle mouse exploit aimbot
+	var/list/L = params2list(params)
+	var/draggedMiddle = L["drag"]	// Returns anything pressed down during the left click event as we are in Click() method by left or middle click
+	var/left = L["left"]		// Obivously checking if the left got clicked and not held down.
+	
+	// Deny the exploit when middleclick is pressed during the left click event
+	if(draggedMiddle == "middle" && left)
+		return
+
 	if(!isHUDobj(target) && CH)
 		if(CH.mob_check(mob))
 			if (CH.use_ability(mob,target) && CH.one_use_flag)
@@ -37,9 +47,6 @@
 
 	if(!target.Click(location, control, params))
 		usr.ClickOn(target, params)
-
-/atom/Click(var/location, var/control, var/params) // This is their reaction to being clicked on (standard proc)
-	return
 
 /atom/DblClick(var/location, var/control, var/params)
 	if(src)
