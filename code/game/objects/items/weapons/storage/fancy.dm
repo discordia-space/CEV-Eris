@@ -160,7 +160,7 @@
 	if(!ismob(M))
 		return
 
-	if(M == user && user.targeted_organ == "mouth")
+	if(M == user && user.targeted_organ == BP_MOUTH)
 		// Find ourselves a cig. Note that we could be full of lighters.
 		var/obj/item/clothing/mask/smokable/cigarette/cig = locate() in src
 

@@ -60,7 +60,7 @@
 	if(!istype(attacker))
 		return
 
-	var/datum/unarmed_attack/attack = attacker.get_unarmed_attack(target, O_EYES)
+	var/datum/unarmed_attack/attack = attacker.get_unarmed_attack(target, BP_EYES)
 
 	if(!attack)
 		return

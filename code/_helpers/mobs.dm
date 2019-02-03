@@ -159,7 +159,7 @@ Proc for attack log creation, because really why not
 /proc/get_exposed_defense_zone(var/atom/movable/target)
 	var/obj/item/weapon/grab/G = locate() in target
 	if(G && G.state >= GRAB_NECK) //works because mobs are currently not allowed to upgrade to NECK if they are grabbing two people.
-		return pick(BP_ALL - list(BP_CHEST, BP_GROIN))
+		return pick(BP_ALL_LIMBS - list(BP_CHEST, BP_GROIN))
 	else
 		return pick(BP_CHEST, BP_GROIN)
 
@@ -300,3 +300,69 @@ Proc for attack log creation, because really why not
 /mob/living/carbon/human/get_classification()
 	. = ..()
 	. |= CLASSIFICATION_ORGANIC | CLASSIFICATION_HUMANOID
+
+
+// Returns true if M was not already in the dead mob list
+/mob/proc/switch_from_living_to_dead_mob_list()
+	remove_from_living_mob_list()
+	. = add_to_dead_mob_list()
+
+// Returns true if M was not already in the living mob list
+/mob/proc/switch_from_dead_to_living_mob_list()
+	remove_from_dead_mob_list()
+	. = add_to_living_mob_list()
+
+// Returns true if the mob was in neither the dead or living list
+/mob/proc/add_to_living_mob_list()
+	return FALSE
+/mob/living/add_to_living_mob_list()
+	if((src in GLOB.living_mob_list) || (src in GLOB.dead_mob_list))
+		return FALSE
+	GLOB.living_mob_list += src
+	return TRUE
+
+// Returns true if the mob was removed from the living list
+/mob/proc/remove_from_living_mob_list()
+	return GLOB.living_mob_list.Remove(src)
+
+// Returns true if the mob was in neither the dead or living list
+/mob/proc/add_to_dead_mob_list()
+	return FALSE
+/mob/living/add_to_dead_mob_list()
+	if((src in GLOB.living_mob_list) || (src in GLOB.dead_mob_list))
+		return FALSE
+	GLOB.dead_mob_list += src
+	return TRUE
+
+// Returns true if the mob was removed form the dead list
+/mob/proc/remove_from_dead_mob_list()
+	return GLOB.dead_mob_list.Remove(src)
+
+//Find a dead mob with a brain and client.
+/proc/find_dead_player(var/find_key, var/include_observers = 0)
+	if(isnull(find_key))
+		return
+
+	var/mob/selected = null
+
+	if(include_observers)
+		for(var/mob/M in GLOB.player_list)
+			if((M.stat != DEAD) || (!M.client))
+				continue
+			if(M.ckey == find_key)
+				selected = M
+				break
+	else
+		for(var/mob/living/M in GLOB.player_list)
+			//Dead people only thanks!
+			if((M.stat != DEAD) || (!M.client))
+				continue
+			//They need a brain!
+			if(istype(M, /mob/living/carbon/human))
+				var/mob/living/carbon/human/H = M
+				if(H.should_have_organ(BP_BRAIN) && !H.has_brain())
+					continue
+			if(M.ckey == find_key)
+				selected = M
+				break
+	return selected
