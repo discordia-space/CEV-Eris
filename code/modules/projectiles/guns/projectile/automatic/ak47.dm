@@ -36,7 +36,7 @@
 /obj/item/weapon/gun/projectile/automatic/ak47/fs
 	name = "FS AR 7.62x39 \"Kalashnikov\""
 	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours.\
-		 This is an ancient automatic rifle, chambered in 7.62x39. If it won't fire, percussive maintenance should get it working again.\
+		 This is an ancient semi-automatic rifle, chambered in 7.62x39. If it won't fire, percussive maintenance should get it working again.\
 		 It is known for its easy maintenance, and low price. This gun is not in active military service anymore, but has become ubiquitous among criminals and insurgents."
 	icon_state = "AK"
 	item_state = "AK"
