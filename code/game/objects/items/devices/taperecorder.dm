@@ -361,7 +361,7 @@
 	if(show_message)
 		audio_title = sanitizeSafe(input(usr, "What do you want to name the recording? If you leave this blank, the title will be the current time.", "Audio file") as null|text, MAX_NAME_LEN)
 	if(isnull(audio_title))
-		audio_title = "Recording ([stationtime2text()])"
+		audio_title = "Recording ([replacetext(stationtime2text(),":","hr")]min)"
 	var/datum/computer_file/data/audio/F = new()
 	F.filename = audio_title
 	if(mydrive.store_file(F))

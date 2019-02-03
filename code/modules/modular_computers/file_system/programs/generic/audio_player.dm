@@ -28,6 +28,8 @@
 	for(var/i=1,used<max,sleep(10 * (playsleepseconds) ))
 		if(!playing)
 			break
+		if(!selected_audio)
+			break
 		if(selected_audio.storedinfo.len < i)
 			break
 		var/turf/T = get_turf(computer)
