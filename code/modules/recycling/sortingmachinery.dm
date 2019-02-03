@@ -18,7 +18,7 @@
 	unwrap()
 
 /obj/structure/bigDelivery/proc/unwrap()
-	if(wrapped) //sometimes items can disappear. For example, bombs. --rastaf0
+	if(src.wrapped && src.wrapped in src.contents) //sometimes items can disappear. For example, bombs. --rastaf0
 		wrapped.forceMove(get_turf(src.loc))
 		if(istype(wrapped, /obj/structure/closet))
 			var/obj/structure/closet/O = wrapped
@@ -124,7 +124,7 @@
 	var/tag_x
 
 /obj/item/smallDelivery/attack_self(mob/user as mob)
-	if (src.wrapped) //sometimes items can disappear. For example, bombs. --rastaf0
+	if (src.wrapped && src.wrapped in src.contents) //sometimes items can disappear. For example, bombs. --rastaf0
 		wrapped.forceMove(user.loc)
 		if(ishuman(user))
 			user.put_in_hands(wrapped)
