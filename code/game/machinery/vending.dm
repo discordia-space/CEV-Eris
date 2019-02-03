@@ -12,7 +12,7 @@
 	var/price = 0              // Price to buy one
 	var/display_color = null   // Display color for vending machine listing
 	var/category = CAT_NORMAL  // CAT_HIDDEN for contraband, CAT_COIN for premium
-	var/vending_machine        // The vending machine we belong to
+	var/obj/machinery/vending/vending_machine   // The vending machine we belong to
 	var/list/instances = list()		   // Stores inserted items. Instances are only used for things added during the round, and not for things spawned at initialize
 
 
@@ -34,6 +34,7 @@
 	src.vending_machine = vending_machine
 
 /datum/data/vending_product/Destroy()
+	vending_machine.product_records.Remove(src)
 	vending_machine = null
 	. = ..()
 
@@ -52,6 +53,7 @@
 	var/atom/movable/product
 	if (instances && instances.len)
 		product = instances[instances.len]
+		instances.Remove(product)
 	else
 		product = new product_path
 	amount -= 1
@@ -74,6 +76,7 @@
 
 	var/icon_vend //Icon_state when vending
 	var/icon_deny //Icon_state when denying access
+	var/icon_type //For overlays after remodeling a custom vending machine
 
 	// Power
 	use_power = 1
@@ -86,6 +89,7 @@
 	var/vend_delay = 10 //How long does it take to vend?
 	var/categories = CAT_NORMAL // Bitmask of cats we're currently showing
 	var/datum/data/vending_product/currently_vending = null // What we're requesting payment for right now
+	var/managing = 0 //Are we in the vendor management screen?
 	var/status_message = "" // Status screen messages like "insufficient funds", displayed in NanoUI
 	var/status_error = 0 // Set to 1 if status_message is an error
 
@@ -122,6 +126,9 @@
 	var/seconds_electrified = 0 //Shock customers like an airlock.
 	var/shoot_inventory = 0 //Fire items at customers! We're broken!
 
+	var/custom_vendor = FALSE //If it's custom, it can be loaded with stuff as long as it's unlocked.
+	var/locked = TRUE
+	var/datum/money_account/machine_vendor_account
 	var/scan_id = 1
 	var/obj/item/weapon/coin/coin
 	var/datum/wires/vending/wires = null
@@ -132,6 +139,8 @@
 /obj/machinery/vending/New()
 	..()
 	wires = new(src)
+	icon_type = initial(icon_state)
+	power_change()
 
 
 /obj/machinery/vending/Initialize()
@@ -209,6 +218,7 @@
 	product.price = 0
 	src.product_records.Add(product)
 	product.instances.Add(I)
+	I.forceMove(src)
 	return product
 
 
@@ -264,7 +274,7 @@
 				user << SPAN_NOTICE("You [src.panel_open ? "open" : "close"] the maintenance panel.")
 				overlays.Cut()
 				if(src.panel_open)
-					src.overlays += image(src.icon, "[initial(icon_state)]-panel")
+					src.overlays += image(src.icon, "[icon_type]-panel")
 				SSnano.update_uis(src)
 			return
 
@@ -273,7 +283,7 @@
 
 	var/obj/item/weapon/card/id/ID = I.GetIdCard()
 
-	if (currently_vending && vendor_account && !vendor_account.suspended)
+	if (currently_vending && machine_vendor_account && !machine_vendor_account.suspended)
 		var/paid = 0
 		var/handled = 0
 
@@ -298,6 +308,40 @@
 			SSnano.update_uis(src)
 			return // don't smack that machine with your 2 credits
 
+	if (custom_vendor && ID)
+		var/datum/money_account/user_account = get_account(ID.associated_account_number)
+		playsound(usr.loc, 'sound/machines/id_swipe.ogg', 100, 1)
+		visible_message("<span class='info'>\The [usr] swipes \the [ID] through \the [src].</span>")
+		managing = 1
+		if (!user_account)
+			src.status_message = "Error: Unable to access account. Please contact technical support if problem persists."
+			src.status_error = 1
+			return 0
+
+		if(user_account.suspended)
+			src.status_message = "Unable to access account: account suspended."
+			src.status_error = 1
+			return 0
+
+		if(machine_vendor_account == user_account || !machine_vendor_account)
+			// Enter PIN, so you can't loot a vending machine with only the owner's ID card (as long as they increased the sec level)
+			if(user_account.security_level != 0)
+				var/attempt_pin = input("Enter pin code", "Vendor transaction") as num
+				user_account = attempt_account_access(ID.associated_account_number, attempt_pin, 2)
+
+				if(!user_account)
+					src.status_message = "Unable to access account: incorrect credentials."
+					src.status_error = 1
+					return 0
+			if(!machine_vendor_account)
+				machine_vendor_account = user_account
+
+			locked = !locked
+			src.status_error = 0
+			src.status_message = "Owner confirmed. Vendor has been [locked ? "" : "un"]locked."
+			SSnano.update_uis(src)
+			return
+
 	if (I && istype(I, /obj/item/weapon/spacecash))
 		attack_hand(user)
 		return
@@ -314,7 +358,7 @@
 		user << SPAN_NOTICE("You insert \the [I] into \the [src].")
 		SSnano.update_uis(src)
 		return
-	else if (panel_open || always_open)
+	else if (panel_open && !locked || always_open)
 		for(var/datum/data/vending_product/R in product_records)
 			if(istype(I, R.product_path) && (R.product_name == I.name))
 				stock(I, R, user)
@@ -407,7 +451,7 @@
 		// Okay to move the money at this point
 
 		// create entry in the purchaser's account log
-		var/datum/transaction/T = new(-currently_vending.price, "[vendor_account.owner_name] (via [src.name])", "Purchase of [currently_vending.product_name]", name)
+		var/datum/transaction/T = new(-currently_vending.price, "[machine_vendor_account.owner_name] (via [src.name])", "Purchase of [currently_vending.product_name]", name)
 		T.apply_to(customer_account)
 
 		// Give the vendor the money. We use the account owner name, which means
@@ -423,7 +467,7 @@
  */
 /obj/machinery/vending/proc/credit_purchase(var/target as text)
 	var/datum/transaction/T = new(currently_vending.price, target, "Purchase of [currently_vending.product_name]", name)
-	T.apply_to(vendor_account)
+	T.apply_to(machine_vendor_account)
 
 /obj/machinery/vending/attack_ai(mob/user as mob)
 	return attack_hand(user)
@@ -448,7 +492,17 @@
 	user.set_machine(src)
 
 	var/list/data = list()
-	if(currently_vending)
+
+	data["unlocked"] = !locked
+	data["custom"] = custom_vendor
+	if(custom_vendor && machine_vendor_account && machine_vendor_account.owner_name)
+		data["owner_name"] = machine_vendor_account.owner_name
+
+	if(managing)
+		data["mode"] = 2
+		data["message"] = src.status_message
+		data["message_err"] = src.status_error
+	else if(currently_vending)
 		data["mode"] = 1
 		data["product"] = currently_vending.product_name
 		data["price"] = currently_vending.price
@@ -521,19 +575,37 @@
 			if(!(R.category & src.categories))
 				return
 
-			if(R.price <= 0)
+			if(R.price <= 0 || !src.locked)
 				src.vend(R, usr)
 			else if(issilicon(usr)) //If the item is not free, provide feedback if a synth is trying to buy something.
 				usr << SPAN_DANGER("Artificial unit recognized.  Artificial units cannot complete this transaction.  Purchase canceled.")
 				return
 			else
 				src.currently_vending = R
-				if(!vendor_account || vendor_account.suspended)
+				if(!machine_vendor_account || machine_vendor_account.suspended)
 					src.status_message = "This machine is currently unable to process payments due to problems with the associated account."
 					src.status_error = 1
 				else
 					src.status_message = "Please swipe a card or insert cash to pay for the item."
 					src.status_error = 0
+
+		else if (href_list["setprice"] && !locked)
+			var/key = text2num(href_list["setprice"])
+			var/datum/data/vending_product/R = product_records[key]
+
+			R.price = input("Enter item price", "Item price") as num
+
+		else if (href_list["remove"] && !locked)
+			var/key = text2num(href_list["remove"])
+			var/datum/data/vending_product/R = product_records[key]
+
+			qdel(R)
+
+		else if (href_list["return"])
+			src.managing = null
+
+		else if (href_list["unregister"])
+			src.machine_vendor_account = null
 
 		else if (href_list["cancelpurchase"])
 			src.currently_vending = null
@@ -624,13 +696,13 @@
 /obj/machinery/vending/power_change()
 	..()
 	if(stat & BROKEN)
-		icon_state = "[initial(icon_state)]-broken"
+		icon_state = "[icon_type]-broken"
 	else
 		if( !(stat & NOPOWER) )
-			icon_state = initial(icon_state)
+			icon_state = icon_type
 		else
 			spawn(rand(0, 15))
-				src.icon_state = "[initial(icon_state)]-off"
+				src.icon_state = "[icon_type]-off"
 
 //Oh no we're malfunctioning!  Dump out some product and break.
 /obj/machinery/vending/proc/malfunction()
@@ -640,7 +712,7 @@
 		break
 
 	stat |= BROKEN
-	src.icon_state = "[initial(icon_state)]-broken"
+	src.icon_state = "[icon_type]-broken"
 	return
 
 //Somebody cut an important wire and now we're following a new definition of "pitch."
@@ -1048,10 +1120,75 @@
 					/obj/item/weapon/disk/autolathe_disk/devices = 10, /obj/item/weapon/disk/autolathe_disk/toolpack = 10, /obj/item/weapon/disk/autolathe_disk/component = 10,
 					/obj/item/weapon/disk/autolathe_disk/advtoolpack = 5, /obj/item/weapon/disk/autolathe_disk/circuitpack = 5, /obj/item/weapon/disk/autolathe_disk/medical = 20,
 					/obj/item/weapon/disk/autolathe_disk/security = 5, /obj/item/weapon/disk/autolathe_disk/fs_cheap_guns = 5, /obj/item/weapon/disk/autolathe_disk/nonlethal_ammo = 10,
-					/obj/item/weapon/circuitboard/autolathe = 3, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 3)
+					/obj/item/weapon/circuitboard/autolathe = 3, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 3, /obj/item/weapon/circuitboard/vending = 10)
 	contraband = list(/obj/item/weapon/disk/autolathe_disk/lethal_ammo = 3, /obj/item/weapon/disk/autolathe_disk/fs_energy_guns = 2)
 	prices = list(/obj/item/weapon/disk/autolathe_disk/blank = 150, /obj/item/weapon/disk/autolathe_disk/basic = 300,
 					/obj/item/weapon/disk/autolathe_disk/devices = 400, /obj/item/weapon/disk/autolathe_disk/toolpack = 400, /obj/item/weapon/disk/autolathe_disk/component = 500,
 					/obj/item/weapon/disk/autolathe_disk/advtoolpack = 1800, /obj/item/weapon/disk/autolathe_disk/circuitpack = 600, /obj/item/weapon/disk/autolathe_disk/medical = 400,
 					/obj/item/weapon/disk/autolathe_disk/security = 600, /obj/item/weapon/disk/autolathe_disk/fs_cheap_guns = 3000, /obj/item/weapon/disk/autolathe_disk/nonlethal_ammo = 700,
-					/obj/item/weapon/circuitboard/autolathe = 700, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 1000, /obj/item/weapon/disk/autolathe_disk/lethal_ammo = 1200, /obj/item/weapon/disk/autolathe_disk/fs_energy_guns = 4000)
+					/obj/item/weapon/circuitboard/autolathe = 700, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 1000,
+					/obj/item/weapon/circuitboard/vending = 500, /obj/item/weapon/disk/autolathe_disk/lethal_ammo = 1200, /obj/item/weapon/disk/autolathe_disk/fs_energy_guns = 4000)
+
+/obj/machinery/vending/custom
+	name = "Custom Vendomat"
+	desc = "A custom vending machine."
+	custom_vendor = TRUE
+	locked = TRUE
+	can_stock = list(/obj/item)
+
+/obj/machinery/vending/custom/verb/remodel()
+	set name = "Remodel Vendomat"
+	set category = "Object"
+	set src in oview(1)
+
+	if(locked)
+		usr << SPAN_WARNING("[src] needs to be unlocked to remodel it.")
+		return
+	var/choice = input(usr, "How do you want your Vendomat to look? You can remodel it again later.", "Vendomat Remodeling", null) in list("Generic", "Security", "Electronics", "Research", "Medical", "Engineering", "Engineering 2", "Tools", "Shady", "Fridge", "Alcohol", "Frozen Star", "NeoTheo", "Asters Power Cells", "Asters Disks")
+	if(!choice)
+		return
+	switch(choice)
+		if("Generic")
+			icon_type = "generic"
+		if("Security")
+			icon_type = "sec"
+		if("Electronics")
+			icon_type = "cart"
+		if("Research")
+			icon_type = "robotics"
+		if("Medical")
+			icon_type = "med"
+		if("Engineering")
+			icon_type = "engivend"
+		if("Engineering 2")
+			icon_type = "engi"
+		if("Tools")
+			icon_type = "tool"
+		if("Shady")
+			icon_type = "sovietsoda"
+		if("Fridge")
+			icon_type = "smartfridge"
+		if("Alcohol")
+			icon_type = "boozeomat"
+		if("Frozen Star")
+			icon_type = "weapon"
+		if("NeoTheo")
+			icon_type = "teomat"
+		if("Asters Power Cells")
+			icon_type = "powermat"
+		if("Asters Disks")
+			icon_type = "discomat"
+	power_change()
+
+/obj/machinery/vending/custom/verb/rename()
+	set name = "Rename Vendomat"
+	set category = "Object"
+	set src in oview(1)
+
+	if(locked)
+		usr << SPAN_WARNING("[src] needs to be unlocked to rename it.")
+		return
+
+	var/choice = sanitize(input("What do you want to name your Vendomat as? You can rename it again later.", "Vendomat Renaming", src.name) as text|null, MAX_NAME_LEN)
+	if(choice)
+		SetName(choice)

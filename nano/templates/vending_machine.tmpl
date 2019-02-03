@@ -9,11 +9,18 @@
 	{{for data.products}}
 	<div class='item'>
 			<div style='float'>
-				{{if value.price > 0}}
+				{{if value.price > 0 || (data.custom && !data.unlocked)}}
 					{{:helper.link('Buy (' + value.price + ')', 'cart', { "vend" : value.key }, value.amount > 0 ? null : 'disabled')}}
 				{{else}}
 					{{:helper.link('Vend', 'circle-arrow-s', { "vend" : value.key }, value.amount > 0 ? null : 'disabled')}}
 				{{/if}}
+				{{if data.custom && data.unlocked}}
+					{{:helper.link('Set Price', 'cash-register', { "setprice" : value.key }, null)}}
+					{{if value.amount <= 0}}
+						{{:helper.link('Remove', 'times', { "remove" : value.key }, null)}}
+					{{/if}}
+				{{/if}}
+					
 			</div>
 		<div class='itemContent'>
 		{{if value.color}}<span style='color:{{:value.color}}'>{{:value.name}}</span>
@@ -47,10 +54,24 @@
 		{{:helper.link('Cancel', 'arrowreturn-1-w', {'cancelpurchase' : 1})}}
 	</div>
 </div>
+{{else data.mode == 2}} <!-- Owner screen -->
+<h2>Vendomat management</h2>
+<div class='statusDisplay' style='overflow: auto;'>
+	{{if data.message_err}} <span class='uiIcon16 icon-alert' ></span>{{/if}} {{:data.message}}
+</div>
+<div class='item'>
+	{{:helper.link('OK', 'arrowreturn-1-w', {'return' : 1})}}
+</div>
 {{/if}}
 {{if data.panel}}
 <h2>Maintenance panel</h2>
 <div class='item'>
 	<div class='itemLabel'>Speaker</div><div class='item'>{{:helper.link(data.speaker ? 'Enabled' : 'Disabled',  'gear', {'togglevoice' : 1})}}</div>
 </div>
+	{{if data.owner_name}}
+		<br><br><hr><i>This Vendomat is registered to {{:data.owner_name}}.</i>
+		{{if data.unlocked}}
+			{{:helper.link("Unregister", null, {'unregister' : 1})}}
+		{{/if}}
+	{{/if}}
 {{/if}}
