@@ -53,8 +53,20 @@
 /datum/click_handler/proc/use_ability(mob/living/carbon/human/user,atom/target)
 	return
 
+//Returns true if the passed thing is an atom on a turf, or a turf itself, false otherwise
+/datum/click_handler/proc/is_world_target(var/a)
+	if (istype(a, /turf))
+		return TRUE
 
-//Full auto gunfire
+	else if (istype(a, /atom))
+		var/atom/A = a
+		if (istype(A.loc, /turf))
+			return TRUE
+	return FALSE
+
+/****************************
+	Full auto gunfire
+*****************************/
 /datum/click_handler/fullauto
 	var/atom/target = null
 	var/firing = FALSE
@@ -68,7 +80,7 @@
 	firing = TRUE
 	while (firing && target)
 		do_fire()
-		sleep(1) //Keep spamming events every frame as long as the button is held
+		sleep(0.5) //Keep spamming events every frame as long as the button is held
 	stop_firing()
 
 //Next loop will notice these vars and stop shooting
@@ -80,15 +92,35 @@
 	reciever.afterattack(target, owner.mob, FALSE)
 
 /datum/click_handler/fullauto/MouseDown(object,location,control,params)
-	target = object
-	spawn()
-		start_firing()
+	if (is_world_target(object))
+		target = object
+		owner.mob.face_atom(target)
+		spawn()
+			start_firing()
+		return FALSE
+	return TRUE
 
 /datum/click_handler/fullauto/MouseDrag(over_object,src_location,over_location,src_control,over_control,params)
-	target = src_location //This var contains the thing the user is hovering over, oddly
+	if (firing && (is_world_target(src_location)))
+		target = src_location //This var contains the thing the user is hovering over, oddly
+		owner.mob.face_atom(target)
+		return FALSE
+	return TRUE
 
 /datum/click_handler/fullauto/MouseUp(object,location,control,params)
 	stop_firing()
+	return TRUE
+
+/datum/click_handler/fullauto/Destroy()
+	stop_firing()//Without this it keeps firing in an infinite loop when deleted
+	.=..()
+
+
+
+
+
+
+
 
 
 /datum/click_handler/human/mob_check(mob/living/carbon/human/user)

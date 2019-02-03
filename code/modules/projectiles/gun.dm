@@ -8,7 +8,7 @@
 /datum/firemode
 	var/name = "default"
 	var/list/settings = list()
-	var/obj/item/gun = null
+	var/obj/item/weapon/gun/gun = null
 
 /datum/firemode/New(obj/item/weapon/gun/_gun, list/properties = null)
 	..()
@@ -103,8 +103,10 @@
 		else
 			firemodes[i] = new /datum/firemode(src, firemodes[i])
 
+	//Properly initialize the default firing mode
 	if (firemodes.len)
-		var/datum/firemode
+		var/datum/firemode/F = firemodes[sel_mode]
+		F.apply_to(src)
 
 	if(!restrict_safety)
 		verbs += /obj/item/weapon/gun/proc/toggle_safety//addint it to all guns
@@ -199,15 +201,18 @@
 /obj/item/weapon/gun/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
 	if(!user || !target) return
 
+	if(world.time < next_fire_time)
+		if (!suppress_delay_warning && world.time % 3) //to prevent spam
+			user << SPAN_WARNING("[src] is not ready to fire again!")
+		return
+
+
 	add_fingerprint(user)
 
 	if(!special_check(user))
 		return
 
-	if(world.time < next_fire_time)
-		if (!suppress_delay_warning && world.time % 3) //to prevent spam
-			user << SPAN_WARNING("[src] is not ready to fire again!")
-		return
+
 
 	var/shoot_time = (burst - 1)* burst_delay
 	user.setClickCooldown(shoot_time) //no clicking on things while shooting
@@ -270,6 +275,7 @@
 	else
 		src.visible_message("*click click*")
 	playsound(src.loc, 'sound/weapons/guns/misc/gun_empty.ogg', 100, 1)
+	update_firemode() //Stops automatic weapons spamming this shit endlessly
 
 //called after successfully firing
 /obj/item/weapon/gun/proc/handle_post_fire(mob/user, atom/target, var/pointblank=0, var/reflex=0)
@@ -468,7 +474,21 @@
 
 		check_safety(user)
 
+
+//Updating firing modes at appropriate times
 /obj/item/weapon/gun/pickup(mob/user)
+	.=..()
+	update_firemode()
+
+/obj/item/weapon/gun/dropped(mob/user)
+	.=..()
+	update_firemode()
+
+/obj/item/weapon/gun/swapped_from()
+	.=..()
+	update_firemode()
+
+/obj/item/weapon/gun/swapped_to()
 	.=..()
 	update_firemode()
 

@@ -32,7 +32,6 @@
 	if (CH)
 		if (!CH.MouseDrag(over_object,src_location,over_location,src_control,over_control,params))
 			return
-	world << src_location
 	.=..()
 
 
