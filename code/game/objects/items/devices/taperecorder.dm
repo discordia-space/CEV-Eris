@@ -1,6 +1,6 @@
 /obj/item/device/taperecorder
 	name = "universal recorder"
-	desc = "A device that can record audio to flash drives, and play them. It automatically translates the content in playback."
+	desc = "A device that can record audio to data crystals, and play them. It automatically translates the content in playback."
 	icon_state = "taperecorder_idle"
 	item_state = "analyzer"
 	w_class = ITEM_SIZE_SMALL
@@ -14,7 +14,6 @@
 	var/obj/item/weapon/computer_hardware/hard_drive/portable/mydrive
 	var/datum/computer_file/data/audio/audio_file
 	var/starting_drive_type = /obj/item/weapon/computer_hardware/hard_drive/portable
-	var/canprint = 1
 	var/datum/wires/taperecorder/wires = null // Wires datum
 	var/open_panel = 0
 	flags = CONDUCT
@@ -58,11 +57,8 @@
 		..()
 
 /obj/item/device/taperecorder/MouseDrop(over_object)
-	if(mydrive && (src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(mydrive, usr))
-		stop()
-		mydrive = null
-		audio_file = null
-		update_icon()
+	if(mydrive && (src.loc == usr) && istype(over_object, /obj/screen/inventory/hand))
+		eject_usb()
 
 /obj/item/device/taperecorder/update_icon()
 	if(!mydrive)
@@ -123,13 +119,19 @@
 	qdel(src)
 	return
 
-/obj/item/device/taperecorder/proc/recordverb()
+/obj/item/device/taperecorder/verb/eject_usbverb()
+	set name = "Eject Crystal"
+	set category = "Object"
+
+	eject_usb()
+
+/obj/item/device/taperecorder/verb/recordverb()
 	set name = "Start Recording"
 	set category = "Object"
 
 	record()
 
-/obj/item/device/taperecorder/proc/stopverb()
+/obj/item/device/taperecorder/verb/stopverb()
 	set name = "Stop"
 	set category = "Object"
 
@@ -147,17 +149,18 @@
 
 	clear_memory()
 
-/obj/item/device/taperecorder/verb/printverb()
-	set name = "Print Transcript"
-	set category = "Object"
-
-	print_transcript()
-
 /obj/item/device/taperecorder/verb/change_audioverb()
 	set name = "Switch Audio"
 	set category = "Object"
 
 	change_audio()
+
+/obj/item/device/taperecorder/proc/eject_usb()
+	if(mydrive && eject_item(mydrive, usr))
+		stop()
+		mydrive = null
+		audio_file = null
+		update_icon()
 
 /obj/item/device/taperecorder/proc/record(var/show_message = 1)
 
@@ -323,41 +326,6 @@
 		T.audible_message("<font color=Maroon><B>Recorder</B>: One.</font>")
 		sleep(10)
 		explode()
-
-
-/obj/item/device/taperecorder/proc/print_transcript(var/show_message = 1)
-
-	if(usr.stat)
-		return
-	if(emagged)
-		if(show_message)
-			usr << SPAN_WARNING("The recorder makes a scratchy noise.")
-		return
-	if(!audio_file)
-		return
-	if(!canprint)
-		if(show_message)
-			usr << SPAN_NOTICE("The recorder can't print that fast!")
-		return
-	if(recording || playing)
-		if(show_message)
-			usr << SPAN_NOTICE("You can't print the transcript while playing or recording!")
-		return
-	playsound(loc, 'sound/machines/button.ogg', 100, 1)
-	if(show_message)
-		usr << SPAN_NOTICE("Transcript printed.")
-	var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(get_turf(src))
-	var/t1 = "<B>Transcript:</B><BR><BR>"
-	for(var/i=1,audio_file.storedinfo.len >= i,i++)
-		var/printedmessage = audio_file.storedinfo[i]
-		if (findtextEx(printedmessage,"*",1,2)) //replace action sounds
-			printedmessage = "\[[time2text(audio_file.timestamp[i]*10,"mm:ss")]\] (Unrecognized sound)"
-		t1 += "[printedmessage]<BR>"
-	P.info = t1
-	P.name = "Transcript"
-	canprint = 0
-	sleep(300)
-	canprint = 1
 
 /obj/item/device/taperecorder/proc/change_audio(var/show_message = 1)
 

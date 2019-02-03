@@ -109,8 +109,11 @@
 		return TRUE
 
 	if(href_list["PRG_transcribe"])
-		playing = FALSE
-		transcribing = TRUE
+		if(selected_audio)
+			playing = FALSE
+			transcribing = TRUE
+		else
+			error = "Error: No file loaded."
 		return TRUE
 
 	if(href_list["PRG_openaudio"])
@@ -122,6 +125,9 @@
 
 	if(href_list["PRG_printfile"])
 		. = TRUE
+		if(!selected_audio)
+			error = "Error: No file loaded."
+			return TRUE
 		if(!computer.nano_printer)
 			error = "Missing Hardware: Your computer does not have the required hardware to complete this operation."
 			return TRUE
