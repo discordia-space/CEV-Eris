@@ -64,6 +64,14 @@
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 3, MATERIAL_SILVER = 3, MATERIAL_URANIUM = 6)
 	maxcharge = 13000
 
+/obj/item/weapon/cell/large/excelsior
+	name = "Excelsior \"Zarya 8000L\""
+	desc = "Commie rechargeable L-standardized power cell. Power to the people!"
+	icon_state = "exs_l"
+	origin_tech = list(TECH_POWER = 3)
+	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 2, MATERIAL_SILVER = 3)
+	maxcharge = 8000
+
 //Meme cells - for fun and cancer
 
 /obj/item/weapon/cell/large/potato
@@ -155,6 +163,14 @@
 	origin_tech = list(TECH_POWER = 6)
 	maxcharge = 1000
 
+/obj/item/weapon/cell/medium/excelsior
+	name = "Excelsior \"Zarya 800M\""
+	desc = "Commie rechargeable M-standardized power cell. Power to the people!"
+	icon_state = "exs_m"
+	origin_tech = list(TECH_POWER = 3)
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 2)
+	maxcharge = 800
+
 //SMALL CELLS - for small devices, such as flashlights, analyzers and HUDs.
 
 /obj/item/weapon/cell/small
@@ -224,3 +240,11 @@
 	origin_tech = list(TECH_POWER = 6)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 1, MATERIAL_URANIUM = 2)
 	maxcharge = 300
+
+/obj/item/weapon/cell/small/excelsior
+	name = "Excelsior \"Zarya 250S\""
+	desc = "Commie rechargeable S-standardized power cell. Power to the people!"
+	icon_state = "exs_s"
+	origin_tech = list(TECH_POWER = 3)
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 1)
+	maxcharge = 250

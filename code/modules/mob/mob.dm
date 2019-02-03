@@ -707,9 +707,16 @@
 
 
 //Updates lying and icons
+/*
+Note from Nanako: 2019-02-01
+TODO: Bay Movement:
+All Canmove setting in this proc is temporary. This var should not be set from here, but from movement controllers
+*/
 /mob/proc/update_lying_buckled_and_verb_status()
+
 	if(!resting && cannot_stand() && can_stand_overridden())
 		lying = 0
+		canmove = TRUE //TODO: Remove this
 	else if(buckled)
 		anchored = 1
 		if(istype(buckled))
@@ -719,14 +726,17 @@
 				lying = buckled.buckle_lying
 			if(buckled.buckle_movable)
 				anchored = 0
+		canmove = FALSE //TODO: Remove this
 	else
 		lying = incapacitated(INCAPACITATION_KNOCKDOWN)
+		canmove = FALSE //TODO: Remove this
 
 	if(lying)
 		set_density(0)
 		if(l_hand) unEquip(l_hand)
 		if(r_hand) unEquip(r_hand)
 	else
+		canmove = TRUE
 		set_density(initial(density))
 	reset_layer()
 

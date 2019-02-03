@@ -44,6 +44,7 @@
 				/obj/item/weapon/disk/autolathe_disk/component = 3,\
 				/obj/item/weapon/disk/autolathe_disk/advtoolpack = 2,\
 				/obj/item/weapon/disk/autolathe_disk/circuitpack = 2,\
+				/obj/item/weapon/disk/autolathe_disk/robustcells = 2,\
 				/obj/item/weapon/disk/autolathe_disk/medical = 2,\
 				/obj/item/weapon/disk/autolathe_disk/fs_cheap_guns = 2,\
 				/obj/item/weapon/disk/autolathe_disk/fs_kinetic_guns = 1,\
