@@ -167,5 +167,5 @@ What is the naming convention for planes or layers?
 
 
 /atom/proc/reset_plane_and_layer()
-	plane = initial(plane)
+	set_plane(original_plane)
 	layer = initial(layer)

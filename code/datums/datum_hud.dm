@@ -16,7 +16,7 @@
 
 /datum/hud/proc/updatePlaneMasters(mob/mymob)
 	var/turf/T = get_turf(mymob)
-	if(!T)
+	if(!T || !mymob || !mymob.client)
 		return
 
 	var/z = T.z
