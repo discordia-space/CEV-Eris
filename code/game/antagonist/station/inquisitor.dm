@@ -4,6 +4,7 @@
 	role_text_plural = "NeoTheology Inquisitors"
 	bantype = ROLE_BANTYPE_INQUISITOR
 	welcome_text = ""
+	antaghud_indicator = "hudcyberchristian"
 	possible_objectives = list(
 		/datum/objective/assassinate = 30,
 		/datum/objective/brig = 15,

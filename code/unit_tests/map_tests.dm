@@ -2,7 +2,7 @@
  *
  *  Map Unit Tests.
  *  Zone checks / APC / Scrubber / Vent.
- *  
+ *
  *
  */
 
@@ -17,24 +17,21 @@ datum/unit_test/apc_area_test/start_test()
 	var/list/bad_areas = list()
 	var/area_test_count = 0
 	var/list/exempt_areas = typesof(/area/space, \
-					/area/syndicate_station, \
 					/area/skipjack_station,  \
-					/area/solar, \
 					/area/shuttle, \
 					/area/holodeck, \
 					/area/supply/station \
 					)
 
-	var/list/exempt_from_atmos = typesof(   /area/maintenance, \
-						/area/storage, \
-						/area/engineering/atmos/storage, \
-						/area/rnd/test_area, \
-						/area/construction, \
-						/area/server
+	var/list/exempt_from_atmos = typesof(   /area/eris/maintenance, \
+						/area/eris/storage, \
+						/area/eris/engineering/atmos/storage, \
+						/area/eris/engineering/construction, \
+						/area/eris/rnd/server
 						)
 
-	var/list/exempt_from_apc = typesof(	/area/construction, \
-						/area/medical/genetics
+	var/list/exempt_from_apc = typesof(	/area/eris/engineering/construction, \
+						/area/eris/medical/genetics
 						)
 
 	for(var/area/A in world)
@@ -55,13 +52,13 @@ datum/unit_test/apc_area_test/start_test()
 			if(!A.air_vent_info.len && !(A.type in exempt_from_atmos))
 				log_unit_test("[bad_msg] lacks an Air vent.[ascii_reset]")
 				area_good = 0
-		
+
 			if(!area_good)
 				bad_areas.Add(A)
 
 	if(bad_areas.len)
 		fail("\[[bad_areas.len]/[area_test_count]\]Some areas lacked APCs, Air Scrubbers, or Air vents.")
-	else			
+	else
 		pass("All \[[area_test_count]\] areas contained APCs, Air scrubbers, and Air vents.")
 
 	return 1
@@ -103,7 +100,7 @@ datum/unit_test/wire_test/start_test()
 		pass("All \[[wire_test_count]\] wires had no overlapping cables going the same direction.")
 
 	return 1
-				
+
 
 #undef SUCCESS
 #undef FAILURE

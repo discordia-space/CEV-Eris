@@ -4,6 +4,7 @@
 	faction_id = FACTION_SERBS
 	role_text = "Serbian Mercenary"
 	welcome_text = WELCOME_SERBS
+	antaghud_indicator = "hudoperative"
 	landmark_id = "mercenary-spawn"
 	outer = TRUE
 
