@@ -424,7 +424,7 @@ SUBSYSTEM_DEF(vote)
 	if (SSticker.current_state == GAME_STATE_PREGAME)
 		pregame = TRUE
 		round_progressing = FALSE
-		world << "<b>Game start has been delayed.</b>"
+		world << "<b>Game start has been delayed due to voting.</b>"
 
 //If one wins, on_end is called after on_win, so the new storyteller will be set in master_storyteller
 /datum/poll/storyteller/on_end()

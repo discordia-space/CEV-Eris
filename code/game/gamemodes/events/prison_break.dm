@@ -14,25 +14,25 @@
 
 	var/eventDept = "Security"			//Department name in announcement
 	var/list/areaName = list("Brig")	//Names of areas mentioned in AI and Engineering announcements
-	var/list/areaType = list(/area/security/prison, /area/security/brig)	//Area types to include.
+	var/list/areaType = list(/area/eris/security/prison, /area/eris/security/brig)	//Area types to include.
 	var/list/areaNotType = list()		//Area types to specifically exclude.
 
 /datum/event/prison_break/virology
 	eventDept = "Medical"
 	areaName = list("Virology")
-	areaType = list(/area/medical/virology, /area/medical/virologyaccess)
+	areaType = list(/area/eris/medical/virology, /area/eris/medical/virologyaccess)
 
 /datum/event/prison_break/xenobiology
 	eventDept = "Science"
 	areaName = list("Xenobiology")
-	areaType = list(/area/rnd/xenobiology)
-	areaNotType = list(/area/rnd/xenobiology/xenoflora, /area/rnd/xenobiology/xenoflora_storage)
+	areaType = list(/area/eris/rnd/xenobiology)
+	areaNotType = list(/area/eris/rnd/xenobiology/xenoflora, /area/eris/rnd/xenobiology/xenoflora_storage)
 
 /datum/event/prison_break/station
 	eventDept = "Station"
 	areaName = list("Brig","Virology","Xenobiology")
-	areaType = list(/area/security/prison, /area/security/brig, /area/medical/virology, /area/medical/virologyaccess, /area/rnd/xenobiology)
-	areaNotType = list(/area/rnd/xenobiology/xenoflora, /area/rnd/xenobiology/xenoflora_storage)
+	areaType = list(/area/eris/security/prison, /area/eris/security/brig, /area/eris/medical/virology, /area/eris/medical/virologyaccess, /area/eris/rnd/xenobiology)
+	areaNotType = list(/area/eris/rnd/xenobiology/xenoflora, /area/eris/rnd/xenobiology/xenoflora_storage)
 
 
 /datum/event/prison_break/setup()
