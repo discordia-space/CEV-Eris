@@ -391,6 +391,7 @@
 		/datum/autolathe/recipe/ammo/magazine_a556,
 		/datum/autolathe/recipe/ammo/shotgun,
 		/datum/autolathe/recipe/ammo/shotgun_pellet,
+		/datum/autolathe/recipe/ammo/mg_cl32_brute,
 		/datum/autolathe/recipe/ammo/sl_c138_brute,
 		/datum/autolathe/recipe/ammo/mg_cl44_brute,
 		/datum/autolathe/recipe/ammo/sl_cl44_brute,
