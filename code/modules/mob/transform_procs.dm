@@ -24,7 +24,7 @@
 	transforming = 0
 	stunned = 0
 
-	update_canmove()
+	update_lying_buckled_and_verb_status()
 	invisibility = initial(invisibility)
 
 	if(!species.primitive_form) //If the creature in question has no primitive set, this is going to be messy.
@@ -119,7 +119,7 @@
 	canmove = 0
 	icon = null
 	invisibility = 101
-	
+
 
 	var/mob/living/silicon/robot/O = new /mob/living/silicon/robot( loc )
 

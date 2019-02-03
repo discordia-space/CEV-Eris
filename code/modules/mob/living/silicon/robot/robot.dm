@@ -620,24 +620,25 @@
 					wiresexposed = !wiresexposed
 					user << SPAN_NOTICE("The wires have been [wiresexposed ? "exposed" : "unexposed"]")
 					updateicon()
-			switch(alert(user,"What are you trying to interact with?",,"Tools","Radio"))
-				if("Tools")
-					var/list/robotools = list()
-					for(var/obj/item/weapon/tool/robotool in src.module.modules)
-						robotools.Add(robotool)
-					if(robotools.len)
-						var/obj/item/weapon/tool/chosen_tool = input(user,"Which tool are you trying to modify?","Tool Modification","Cancel") in robotools + "Cancel"
-						if(chosen_tool == "Cancel")
-							return
-						chosen_tool.attackby(I,user)
-					else
-						user << SPAN_WARNING("[src] has no modifiable tools.")
-				if("Radio")
-					if(!radio)
-						user << SPAN_WARNING("Unable to locate a radio.")
-					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-						radio.attackby(I,user)//Push it to the radio to let it handle everything
-						updateicon()
+			else
+				switch(alert(user,"What are you trying to interact with?",,"Tools","Radio"))
+					if("Tools")
+						var/list/robotools = list()
+						for(var/obj/item/weapon/tool/robotool in src.module.modules)
+							robotools.Add(robotool)
+						if(robotools.len)
+							var/obj/item/weapon/tool/chosen_tool = input(user,"Which tool are you trying to modify?","Tool Modification","Cancel") in robotools + "Cancel"
+							if(chosen_tool == "Cancel")
+								return
+							chosen_tool.attackby(I,user)
+						else
+							user << SPAN_WARNING("[src] has no modifiable tools.")
+					if("Radio")
+						if(!radio)
+							user << SPAN_WARNING("Unable to locate a radio.")
+						if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+							radio.attackby(I,user)//Push it to the radio to let it handle everything
+							updateicon()
 			return
 
 		if(ABORT_CHECK)
@@ -999,7 +1000,7 @@
 	if(wires.LockedCut())
 		state = 1
 	lockcharge = state
-	update_canmove()
+	update_lying_buckled_and_verb_status()
 
 /mob/living/silicon/robot/mode()
 	set name = "Activate Held Object"
@@ -1181,3 +1182,11 @@
 				src << "Hack attempt detected."
 			return 1
 		return
+
+
+/mob/living/silicon/robot/incapacitated(var/incapacitation_flags = INCAPACITATION_DEFAULT)
+	if ((incapacitation_flags & INCAPACITATION_FORCELYING) && (lockcharge || !is_component_functioning("actuator")))
+		return 1
+	if ((incapacitation_flags & INCAPACITATION_UNCONSCIOUS) && !is_component_functioning("actuator"))
+		return 1
+	return ..()

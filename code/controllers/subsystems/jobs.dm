@@ -366,7 +366,7 @@ SUBSYSTEM_DEF(job)
 		if(!l_leg || !r_leg)
 			var/obj/structure/bed/chair/wheelchair/W = new /obj/structure/bed/chair/wheelchair(H.loc)
 			H.buckled = W
-			H.update_canmove()
+			H.update_lying_buckled_and_verb_status()
 			W.set_dir(H.dir)
 			W.buckled_mob = H
 			W.add_fingerprint(H)
@@ -410,7 +410,7 @@ proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
 				var/permitted = 1
 				if(permitted)
 					if(G.allowed_roles)
-						if(job.type in G.allowed_roles)
+						if(job.title in G.allowed_roles)
 							permitted = 1
 						else
 							permitted = 0
