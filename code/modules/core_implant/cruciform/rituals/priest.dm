@@ -123,6 +123,7 @@
 		fail("Soul transfer failed.", user, C)
 		return FALSE
 
+
 	return TRUE
 
 
@@ -168,9 +169,9 @@
 		fail("[H] must be undressed.", user, C)
 		return FALSE
 
-	CI.install(H)
 
-	if(CI.wearer != H)
+
+	if(!CI.install(H, BP_CHEST, user) || CI.wearer != H)
 		fail("Commitment failed.", user, C)
 		return FALSE
 

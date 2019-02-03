@@ -22,7 +22,11 @@
 
 /obj/item/weapon/implant/proc/trigger(emote, mob/living/source)
 /obj/item/weapon/implant/proc/activate()
+	return TRUE
+
 /obj/item/weapon/implant/proc/deactivate()
+	return TRUE
+
 /obj/item/weapon/implant/proc/malfunction(var/severity)
 
 /obj/item/weapon/implant/proc/is_external()
