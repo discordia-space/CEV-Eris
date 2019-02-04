@@ -3,6 +3,13 @@
 	sharp = 0
 	can_ricochet = TRUE
 
+/obj/item/projectile/bullet/c9mmh
+	damage = 24
+	armor_penetration = 10
+	penetrating = 1
+	sharp = 0
+	can_ricochet = TRUE
+
 /obj/item/projectile/bullet/c9mmr
 	damage = 4
 	agony = 20
@@ -16,7 +23,13 @@
 	sharp = 0
 
 /obj/item/projectile/bullet/a10mm
-	damage = 30
+	damage = 22
+	can_ricochet = TRUE
+
+/obj/item/projectile/bullet/a10mmh
+	damage = 27
+	armor_penetration = 10
+	penetrating = 1
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/cl32
@@ -25,37 +38,43 @@
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/cl32r
-	damage = 6
+	damage = 5
 	agony = 30
 	embed = 0
 	sharp = 0
 
 /obj/item/projectile/bullet/a357
-	damage = 48
-	can_ricochet = TRUE
-
-/obj/item/projectile/bullet/c38
 	damage = 40
 	can_ricochet = TRUE
 
+/obj/item/projectile/bullet/a357h
+	damage = 50
+	armor_penetration = 10
+	penetrating = 1
+	can_ricochet = TRUE
+
+/obj/item/projectile/bullet/c38
+	damage = 35
+	can_ricochet = TRUE
+
 /obj/item/projectile/bullet/c38r
-	damage = 8
-	agony = 40
+	damage = 6
+	agony = 55
 	embed = 0
 	sharp = 0
 
 /obj/item/projectile/bullet/cl44
-	damage = 40
+	damage = 45
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/cl44r
-	damage = 10
-	agony = 80
+	damage = 8
+	agony = 65
 	embed = 0
 	sharp = 0
 
 /obj/item/projectile/bullet/c45
-	damage = 44
+	damage = 22
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/c45p
@@ -65,8 +84,8 @@
 	sharp = 0
 
 /obj/item/projectile/bullet/c45r
-	damage = 10
-	agony = 85
+	damage = 5
+	agony = 40
 	embed = 0
 	sharp = 0
 
@@ -81,14 +100,20 @@
 	sharp = 0
 
 /obj/item/projectile/bullet/a762
-	damage = 20
+	damage = 27
 	armor_penetration = 15
 	penetrating = 1
 	can_ricochet = TRUE
 
+/obj/item/projectile/bullet/a762h
+	damage = 27
+	armor_penetration = 30
+	penetrating = 1
+	can_ricochet = TRUE
+
 /obj/item/projectile/bullet/a556
-	damage = 30
-	armor_penetration = 20
+	damage = 20
+	armor_penetration = 27
 	penetrating = 1
 	can_ricochet = TRUE
 
@@ -99,15 +124,15 @@
 	sharp = 0
 
 /obj/item/projectile/bullet/c65
-	damage = 22
-	armor_penetration = 15
+	damage = 25
+	armor_penetration = 20
 	penetrating = 1
 	sharp = 0
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/c65r
-	damage = 8
-	agony = 24
+	damage = 5
+	agony = 27
 	embed = 0
 	sharp = 0
 
@@ -125,7 +150,6 @@
 	penetrating = 5
 	armor_penetration = 80
 	hitscan = 1 //so the PTR isn't useless as a sniper weapon
-	can_ricochet = TRUE
 
 /* Shotguns */
 
@@ -137,8 +161,8 @@
 /obj/item/projectile/bullet/shotgun/beanbag		//because beanbags are not bullets
 	name = "beanbag"
 	check_armour = "melee"
-	damage = 15
-	agony = 50
+	damage = 10
+	agony = 80
 	embed = 0
 	sharp = 0
 
