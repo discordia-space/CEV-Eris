@@ -649,7 +649,7 @@
 				src.status_message = "No account specified. Vendomat will transfer its profits to its owner. Organization will be prioritized if set."
 				earnings_account = null
 			else
-				src.status_message = "This Vendomat will now transfer its profits to the specified account, owned by [newaccount.owner_name]"
+				src.status_message = "This Vendomat will now transfer its profits to the specified account, owned by [newaccount.owner_name]."
 				src.status_error = 0
 				earnings_account = newaccount
 
