@@ -254,9 +254,11 @@
 	return
 
 /obj/machinery/vending/emag_act(var/remaining_charges, var/mob/user)
-	if (machine_vendor_account)
-		user << "You override the ownership protocols on \the [src]. You can now register it in your name."
+	if (machine_vendor_account || vendor_department || earnings_account)
+		user << "You override the ownership protocols on \the [src] and unlock it. You can now register it in your name."
 		machine_vendor_account = null
+		vendor_department = null
+		earnings_account = null
 		return 1
 	if (!emagged)
 		src.emagged = 1
