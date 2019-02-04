@@ -181,11 +181,7 @@
 	return ..()
 
 
-/mob/living/proc/set_default_language(var/langname)
-	var/datum/language/L = all_languages[langname]
-	if (!(L in languages))
-		languages.Add(L)
-	default_language = L
+
 
 // Can we speak this language, as opposed to just understanding it?
 /mob/proc/can_speak(datum/language/speaking)
@@ -233,6 +229,7 @@
 			set_default_language(null)
 		else
 			var/datum/language/L = locate(href_list["default_lang"])
+			if((L in languages))
 			if(L && (L in languages))
 				set_default_language(L)
 		check_languages()
