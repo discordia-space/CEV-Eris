@@ -9,13 +9,13 @@
 	{{for data.products}}
 	<div class='item'>
 			<div style='float'>
-				{{if value.price > 0 || (data.custom && !data.unlocked)}}
+				{{if value.price > 0 || (value.price > 0 && data.custom && !data.unlocked)}}
 					{{:helper.link('Buy (' + value.price + ')', 'cart', { "vend" : value.key }, value.amount > 0 ? null : 'disabled')}}
 				{{else}}
 					{{:helper.link('Vend', 'circle-arrow-s', { "vend" : value.key }, value.amount > 0 ? null : 'disabled')}}
 				{{/if}}
 				{{if data.custom && data.unlocked}}
-					{{:helper.link('Set Price', 'cash-register', { "setprice" : value.key }, null)}}
+					{{:helper.link('Set Price', 'file-invoice-dollar', { "setprice" : value.key }, null)}}
 					{{if value.amount <= 0}}
 						{{:helper.link('Remove', 'times', { "remove" : value.key }, null)}}
 					{{/if}}
@@ -32,6 +32,11 @@
 	{{empty}}
 	No items available!
 	{{/for}}
+	{{if data.custom && data.unlocked}}
+		<div class='item'>
+			{{:helper.link('Management Screen', 'gear', {'management' : 1})}}
+		</div>
+	{{/if}}
 </div>
 {{if data.coin}}
 <h2>Coin</h2>
@@ -55,12 +60,16 @@
 	</div>
 </div>
 {{else data.mode == 2}} <!-- Owner screen -->
-<h2>Vendomat management</h2>
+<h2>Vendomat Management</h2>
 <div class='statusDisplay' style='overflow: auto;'>
 	{{if data.message_err}} <span class='uiIcon16 icon-alert' ></span>{{/if}} {{:data.message}}
 </div>
 <div class='item'>
 	{{:helper.link('OK', 'arrowreturn-1-w', {'return' : 1})}}
+	{{if data.unlocked}}
+		{{:helper.link('Set Organization', 'address-book', {'setdepartment' : 1})}}
+		{{:helper.link('Set Account', 'address-book', {'setaccount' : 1})}}
+	{{/if}}
 </div>
 {{/if}}
 {{if data.panel}}

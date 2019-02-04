@@ -44,6 +44,7 @@
 /datum/data/vending_product/proc/add_product(var/atom/movable/product)
 	if(product.type != product_path)
 		return 0
+	instances.Add(product)
 	product.forceMove(vending_machine)
 	amount += 1
 
@@ -128,7 +129,9 @@
 
 	var/custom_vendor = FALSE //If it's custom, it can be loaded with stuff as long as it's unlocked.
 	var/locked = TRUE
-	var/datum/money_account/machine_vendor_account
+	var/datum/money_account/machine_vendor_account //Owner of this vendomat. It's the account of the person who registered it.
+	var/datum/money_account/earnings_account //If set, profits go to this account instead of machine_vendor_account
+	var/vendor_department = null //If set, earnings go to this department, and members can manage the vendomat
 	var/scan_id = 1
 	var/obj/item/weapon/coin/coin
 	var/datum/wires/vending/wires = null
@@ -251,6 +254,10 @@
 	return
 
 /obj/machinery/vending/emag_act(var/remaining_charges, var/mob/user)
+	if (machine_vendor_account)
+		user << "You override the ownership protocols on \the [src]. You can now register it in your name."
+		machine_vendor_account = null
+		return 1
 	if (!emagged)
 		src.emagged = 1
 		user << "You short out the product lock on \the [src]"
@@ -258,7 +265,7 @@
 
 /obj/machinery/vending/attackby(obj/item/I, mob/user)
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_BOLT_TURNING, QUALITY_SCREW_DRIVING))
+	var/tool_type = I.get_tool_type(user, list(QUALITY_BOLT_TURNING, QUALITY_SCREW_DRIVING, QUALITY_WELDING))
 	switch(tool_type)
 
 		if(QUALITY_BOLT_TURNING)
@@ -277,6 +284,20 @@
 					src.overlays += image(src.icon, "[icon_type]-panel")
 				SSnano.update_uis(src)
 			return
+
+		if(QUALITY_WELDING)
+			if(custom_vendor)
+				if(!panel_open)
+					usr << SPAN_WARNING("The maintenance panel on \the [src] needs to be open before deconstructing it.")
+					return
+				if(I.use_tool(user, src, WORKTIME_EXTREMELY_LONG, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+					src.visible_message(SPAN_WARNING("\The [src] has been dismantled by [user]!"),"You hear welding.")
+					new /obj/item/stack/material/steel(src.loc, 8)
+					for(var/datum/data/vending_product/R in product_records)
+						for(var/obj/O in R.instances)
+							O.forceMove(src.loc)
+					new /obj/item/weapon/circuitboard/vending(src.loc)
+					qdel(src)
 
 		if(ABORT_CHECK)
 			return
@@ -323,7 +344,20 @@
 			src.status_error = 1
 			return 0
 
-		if(machine_vendor_account == user_account || !machine_vendor_account)
+
+		if(machine_vendor_account == user_account || !machine_vendor_account || vendor_department)
+			if(vendor_department)
+				var/datum/computer_file/report/crew_record/CR = get_crewmember_record(user_account.owner_name)
+				var/datum/job/userjob = SSjob.GetJob(CR.get_job())
+				if(userjob.department == vendor_department)
+					locked = !locked
+					src.status_error = 0
+					src.status_message = "Affiliation confirmed. Vendor has been [locked ? "" : "un"]locked."
+				else
+					src.status_error = 1
+					src.status_message = "Error: You are not authorized to manage this Vendomat."
+				SSnano.update_uis(src)
+				return
 			// Enter PIN, so you can't loot a vending machine with only the owner's ID card (as long as they increased the sec level)
 			if(user_account.security_level != 0)
 				var/attempt_pin = input("Enter pin code", "Vendor transaction") as num
@@ -358,7 +392,7 @@
 		user << SPAN_NOTICE("You insert \the [I] into \the [src].")
 		SSnano.update_uis(src)
 		return
-	else if (panel_open && !locked || always_open)
+	else if (!locked || always_open)
 		for(var/datum/data/vending_product/R in product_records)
 			if(istype(I, R.product_path) && (R.product_name == I.name))
 				stock(I, R, user)
@@ -467,7 +501,7 @@
  */
 /obj/machinery/vending/proc/credit_purchase(var/target as text)
 	var/datum/transaction/T = new(currently_vending.price, target, "Purchase of [currently_vending.product_name]", name)
-	T.apply_to(machine_vendor_account)
+	T.apply_to(vendor_department ? vendor_department : machine_vendor_account)
 
 /obj/machinery/vending/attack_ai(mob/user as mob)
 	return attack_hand(user)
@@ -602,7 +636,50 @@
 			qdel(R)
 
 		else if (href_list["return"])
-			src.managing = null
+			src.managing = FALSE
+
+		else if (href_list["management"])
+			src.managing = TRUE
+			src.status_message = "Welcome to the management screen."
+			src.status_error = 0
+
+		else if (href_list["setaccount"])
+			var/datum/money_account/newaccount = get_account(input("Please enter the number of the account that will receive profits from this Vendomat.", "Vendomat Account", null) as num)
+			if(!newaccount)
+				src.status_message = "No account specified. Vendomat will transfer its profits to its owner. Organization will be prioritized if set."
+				earnings_account = null
+			else
+				src.status_message = "This Vendomat will now transfer its profits to the specified account, owned by [newaccount.owner_name]"
+				src.status_error = 0
+				earnings_account = newaccount
+
+		else if (href_list["setdepartment"])
+			var/newdepartment = input("Which organization should be considered the owner of this Vendomat? This will also allow members to manage it.", "Vendomat Department", null) in list("Privately Owned", "Ironhammer Security", "Moebius Laboratories (Medical Division)","Moebius Laboratories (Research Division)","Church of NeoTheology","Asters Guild","Technomancer League")
+			if(!newdepartment)
+				return
+			switch(newdepartment)
+				if("Privately Owned")
+					vendor_department = null
+				if("Ironhammer Security")
+					vendor_department = DEPARTMENT_SECURITY
+				if("Moebius Laboratories (Medical Division)")
+					vendor_department = DEPARTMENT_MEDICAL
+				if("Moebius Laboratories (Science Division)")
+					vendor_department = DEPARTMENT_SCIENCE
+				if("Church of NeoTheology")
+					vendor_department = DEPARTMENT_CHURCH
+				if("Asters Guild")
+					vendor_department = DEPARTMENT_GUILD
+				if("Technomancer League")
+					vendor_department = DEPARTMENT_ENGINEERING
+			if(newdepartment == "Privately Owned")
+				src.status_message = "This Vendomat now belongs only to you."
+				src.desc = "A custom Vendomat."
+			else
+				src.status_message = "This Vendomat is now property of \"[newdepartment]\"."
+				src.desc = "A custom Vendomat. It bears the logo of [newdepartment]."
+			earnings_account = null
+			src.status_error = 0
 
 		else if (href_list["unregister"])
 			src.machine_vendor_account = null
@@ -1189,6 +1266,6 @@
 		usr << SPAN_WARNING("[src] needs to be unlocked to rename it.")
 		return
 
-	var/choice = sanitize(input("What do you want to name your Vendomat as? You can rename it again later.", "Vendomat Renaming", src.name) as text|null, MAX_NAME_LEN)
+	var/choice = sanitize(input("What do you want to name your Vendomat? You can rename it again later.", "Vendomat Renaming", src.name) as text|null, MAX_NAME_LEN)
 	if(choice)
 		SetName(choice)
