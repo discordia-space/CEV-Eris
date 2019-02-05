@@ -2,6 +2,8 @@
 #define CAT_HIDDEN 2  // also used in corresponding wires/vending.dm
 #define CAT_COIN   4
 
+#define CUSTOM_VENDOMAT_MODELS list("Generic" = "generic", "Security" = "sec", "Electronics" = "cart", "Research" = "robotics", "Medical" = "med", "Engineering" = "engivend", "Engineering 2" = "engi", "Tools" = "tool", "Shady" = "sovietsoda", "Fridge" = "smartfridge", "Alcohol" = "boozeomat", "Frozen Star" = "weapon", "NeoTheo" = "teomat", "Asters Power Cells" = "powermat", "Asters Disks" = "discomat")
+
 /**
  *  Datum used to hold information about a product in a vending machine
  */
@@ -44,6 +46,7 @@
 /datum/data/vending_product/proc/add_product(var/atom/movable/product)
 	if(product.type != product_path)
 		return 0
+	playsound(vending_machine.loc, 'sound/machines/vending_drop.ogg', 100, 1)
 	instances.Add(product)
 	product.forceMove(vending_machine)
 	amount += 1
@@ -131,7 +134,8 @@
 	var/locked = TRUE
 	var/datum/money_account/machine_vendor_account //Owner of this vendomat. It's the account of the person who registered it.
 	var/datum/money_account/earnings_account //If set, profits go to this account instead of machine_vendor_account
-	var/vendor_department = null //If set, earnings go to this department, and members can manage the vendomat
+	var/vendor_department = null //If set, members can manage this vendomat. earnings_account is set to the department's account automatically.
+	var/buying_percentage = 0 //If set, the vendomat will accept people selling items to it, and in return will give (percentage * listed item price) in cash
 	var/scan_id = 1
 	var/obj/item/weapon/coin/coin
 	var/datum/wires/vending/wires = null
@@ -187,6 +191,37 @@
 
 	SSnano.update_uis(src)
 
+/obj/machinery/vending/proc/try_to_buy(obj/item/weapon/W, var/datum/data/vending_product/R, var/mob/user)
+	if(!earnings_account && !machine_vendor_account)
+		user << SPAN_WARNING("[src] flashes a message: Vendomat not registered to an account.")
+		return
+	if(vendor_department)
+		user << SPAN_WARNING("[src] flashes a message: Vendomat not authorized to accept sales. Please contact a member of [all_departments[vendor_department]].")
+		return
+	if(buying_percentage <= 0)
+		user << SPAN_WARNING("[src] flashes a message: Vendomat not accepting sales.")
+		return
+
+	if(!user.unEquip(W))
+		return
+
+	var/buying_price = round(R.price * buying_percentage/100,5)
+	var/datum/money_account/buying_account = earnings_account ? earnings_account : machine_vendor_account
+	if(buying_account.money < buying_price)
+		user << SPAN_WARNING("[src] flashes a message: Account is unable to make this purchase.")
+		return
+	var/datum/transaction/T = new(-buying_price, "[user.name] (via [src.name])", "Sale of [R.product_name]", name)
+	T.apply_to(buying_account)
+
+	R.add_product(W)
+
+	spawn_money(buying_price,src.loc,usr)
+
+	user << SPAN_NOTICE("[src] accepts the sale of [W] and dispenses [buying_price] credits.")
+
+
+	SSnano.update_uis(src)
+
 
 /**
  *  Build src.produdct_records from the products lists
@@ -219,6 +254,7 @@
 	var/datum/data/vending_product/product = new/datum/data/vending_product(src, I.type, I.name)
 	product.amount = 1
 	product.price = 0
+	playsound(loc, 'sound/machines/vending_drop.ogg', 100, 1)
 	src.product_records.Add(product)
 	product.instances.Add(I)
 	I.forceMove(src)
@@ -394,17 +430,22 @@
 		user << SPAN_NOTICE("You insert \the [I] into \the [src].")
 		SSnano.update_uis(src)
 		return
-	else if (!locked || always_open)
-		for(var/datum/data/vending_product/R in product_records)
-			if(istype(I, R.product_path) && (R.product_name == I.name))
+
+	for(var/datum/data/vending_product/R in product_records)
+		if(I.type == R.product_path)
+			if (!locked || always_open)
 				stock(I, R, user)
 				return 1
+			else if (custom_vendor)
+				try_to_buy(I, R, user)
+				return 1
 
-		for (var/a in can_stock)
-			if (istype(I, a))
+	for (var/a in can_stock)
+		if (istype(I, a))
+			if (!locked || always_open || !custom_vendor)
 				stock(I, null, user)
 				return 1
-		..()
+	..()
 
 /**
  *  Receive payment with cashmoney.
@@ -503,7 +544,7 @@
  */
 /obj/machinery/vending/proc/credit_purchase(var/target as text)
 	var/datum/transaction/T = new(currently_vending.price, target, "Purchase of [currently_vending.product_name]", name)
-	T.apply_to(vendor_department ? vendor_department : machine_vendor_account)
+	T.apply_to(earnings_account ? earnings_account : machine_vendor_account)
 
 /obj/machinery/vending/attack_ai(mob/user as mob)
 	return attack_hand(user)
@@ -546,6 +587,7 @@
 		data["message"] = src.status_message
 		data["message_err"] = src.status_error
 	else
+		data["markup"] = buying_percentage
 		data["mode"] = 0
 		var/list/listed_products = list()
 
@@ -651,37 +693,21 @@
 				src.status_message = "No account specified. Vendomat will transfer its profits to its owner. Organization will be prioritized if set."
 				earnings_account = null
 			else
-				src.status_message = "This Vendomat will now transfer its profits to the specified account, owned by [newaccount.owner_name]."
-				src.status_error = 0
-				earnings_account = newaccount
+				var/input_pin = input("Please enter the PIN for this account.", "Account PIN", null) as num
+				if(input_pin == newaccount.remote_access_pin)
+					src.status_message = "This Vendomat will now transfer its profits to the specified account, owned by [newaccount.owner_name]."
+					src.status_error = 0
+					earnings_account = newaccount
+				else
+					src.status_message = "Error: PIN incorrect. No change to earnings account has been made."
+					src.status_error = 1
+
+		else if (href_list["markup"])
+			var/newpercent = input("Please enter the percentage of the sale value the Vendomat should offer when purchasing items. Set to 0 to deny sales.", "Markup", null) as num
+			buying_percentage = max(0, min(newpercent,100))
 
 		else if (href_list["setdepartment"])
-			var/newdepartment = input("Which organization should be considered the owner of this Vendomat? This will also allow members to manage it.", "Vendomat Department", null) in list("Privately Owned", "Ironhammer Security", "Moebius Laboratories (Medical Division)","Moebius Laboratories (Research Division)","Church of NeoTheology","Asters Guild","Technomancer League")
-			if(!newdepartment)
-				return
-			switch(newdepartment)
-				if("Privately Owned")
-					vendor_department = null
-				if("Ironhammer Security")
-					vendor_department = DEPARTMENT_SECURITY
-				if("Moebius Laboratories (Medical Division)")
-					vendor_department = DEPARTMENT_MEDICAL
-				if("Moebius Laboratories (Science Division)")
-					vendor_department = DEPARTMENT_SCIENCE
-				if("Church of NeoTheology")
-					vendor_department = DEPARTMENT_CHURCH
-				if("Asters Guild")
-					vendor_department = DEPARTMENT_GUILD
-				if("Technomancer League")
-					vendor_department = DEPARTMENT_ENGINEERING
-			if(newdepartment == "Privately Owned")
-				src.status_message = "This Vendomat now belongs only to you."
-				src.desc = "A custom Vendomat."
-			else
-				src.status_message = "This Vendomat is now property of \"[newdepartment]\"."
-				src.desc = "A custom Vendomat. It bears the logo of [newdepartment]."
-			earnings_account = null
-			src.status_error = 0
+			set_department()
 
 		else if (href_list["unregister"])
 			src.machine_vendor_account = null
@@ -812,6 +838,25 @@
 		throw_item.throw_at(target, 16, 3, src)
 	src.visible_message(SPAN_WARNING("\The [src] launches \a [throw_item] at \the [target]!"))
 	return 1
+
+/obj/machinery/vending/proc/set_department()
+	var/list/possible_departments = list("Privately Owned" = null)
+	for(var/d in all_departments)
+		possible_departments[all_departments[d]] = department_accounts[d]
+	var/newdepartment = input("Which organization should be considered the owner of this Vendomat? This will also allow members to manage it.", "Vendomat Department", null) in possible_departments
+	if(!newdepartment)
+		return
+	if(newdepartment == "Privately Owned")
+		src.status_message = "This Vendomat now belongs only to you."
+		src.desc = "A custom Vendomat."
+		vendor_department = null
+		earnings_account = null
+	else
+		src.status_message = "This Vendomat is now property of \"[newdepartment]\"."
+		src.desc = "A custom Vendomat. It bears the logo of [newdepartment]."
+		vendor_department = newdepartment:id
+		earnings_account = department_accounts[newdepartment]
+	src.status_error = 0
 
 /*
  * Vending machine types
@@ -1174,6 +1219,7 @@
 	product_slogans = "Immortality is the reward of the faithful; Help humanity ascend, join your brethren today!; Come and seek a new life"
 	product_ads = "Praise!;Pray!;Obey!"
 	icon_state = "teomat"
+	vendor_department = DEPARTMENT_CHURCH
 	products = list(/obj/item/weapon/book/ritual/cruciform = 10, /obj/item/weapon/storage/fancy/candle_box = 10, /obj/item/weapon/reagent_containers/food/drinks/bottle/ntcahors = 20)
 	contraband = list(/obj/item/weapon/implant/core_implant/cruciform = 3)
 	prices = list(/obj/item/weapon/book/ritual/cruciform = 500, /obj/item/weapon/storage/fancy/candle_box = 200, /obj/item/weapon/reagent_containers/food/drinks/bottle/ntcahors = 250, /obj/item/weapon/implant/core_implant/cruciform = 1000)
@@ -1223,40 +1269,10 @@
 	if(locked)
 		usr << SPAN_WARNING("[src] needs to be unlocked to remodel it.")
 		return
-	var/choice = input(usr, "How do you want your Vendomat to look? You can remodel it again later.", "Vendomat Remodeling", null) in list("Generic", "Security", "Electronics", "Research", "Medical", "Engineering", "Engineering 2", "Tools", "Shady", "Fridge", "Alcohol", "Frozen Star", "NeoTheo", "Asters Power Cells", "Asters Disks")
+	var/choice = input(usr, "How do you want your Vendomat to look? You can remodel it again later.", "Vendomat Remodeling", null) in CUSTOM_VENDOMAT_MODELS
 	if(!choice)
 		return
-	switch(choice)
-		if("Generic")
-			icon_type = "generic"
-		if("Security")
-			icon_type = "sec"
-		if("Electronics")
-			icon_type = "cart"
-		if("Research")
-			icon_type = "robotics"
-		if("Medical")
-			icon_type = "med"
-		if("Engineering")
-			icon_type = "engivend"
-		if("Engineering 2")
-			icon_type = "engi"
-		if("Tools")
-			icon_type = "tool"
-		if("Shady")
-			icon_type = "sovietsoda"
-		if("Fridge")
-			icon_type = "smartfridge"
-		if("Alcohol")
-			icon_type = "boozeomat"
-		if("Frozen Star")
-			icon_type = "weapon"
-		if("NeoTheo")
-			icon_type = "teomat"
-		if("Asters Power Cells")
-			icon_type = "powermat"
-		if("Asters Disks")
-			icon_type = "discomat"
+	icon_type = CUSTOM_VENDOMAT_MODELS[choice]
 	power_change()
 
 /obj/machinery/vending/custom/verb/rename()
@@ -1271,3 +1287,6 @@
 	var/choice = sanitize(input("What do you want to name your Vendomat? You can rename it again later.", "Vendomat Renaming", src.name) as text|null, MAX_NAME_LEN)
 	if(choice)
 		SetName(choice)
+
+
+#undef CUSTOM_VENDOMAT_MODELS

@@ -32,6 +32,11 @@
 	{{empty}}
 	No items available!
 	{{/for}}
+	{{if data.markup}}
+		<div class='item'>
+			<br>This Vendomat will buy items for {{:data.markup}}% of their listed price.
+		</div>
+	{{/if}}
 	{{if data.custom && data.unlocked}}
 		<div class='item'>
 			{{:helper.link('Management Screen', 'gear', {'management' : 1})}}
@@ -69,6 +74,7 @@
 	{{if data.unlocked}}
 		{{:helper.link('Set Organization', 'address-book', {'setdepartment' : 1})}}
 		{{:helper.link('Set Account', 'address-book', {'setaccount' : 1})}}
+		{{:helper.link('Markup', 'cart', {'markup' : 1})}}
 	{{/if}}
 </div>
 {{/if}}
