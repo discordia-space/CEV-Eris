@@ -29,7 +29,7 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 		far_dist += heavy_impact_range * 5
 		far_dist += devastation_range * 20
 		var/frequency = get_rand_frequency()
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			// Double check for client
 			if(M && M.client)
 				var/turf/M_turf = get_turf(M)

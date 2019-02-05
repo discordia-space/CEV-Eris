@@ -46,7 +46,7 @@ var/global/ManifestJSON
 
 		if(OOC)
 			var/active = 0
-			for(var/mob/M in player_list)
+			for(var/mob/M in GLOB.player_list)
 				if(M.real_name == name && M.client && M.client.inactivity <= 10 * 60 * 10)
 					active = 1
 					break
@@ -145,7 +145,7 @@ var/global/ManifestJSON
 
 /datum/datacore/proc/manifest()
 	spawn()
-		for(var/mob/living/carbon/human/H in player_list)
+		for(var/mob/living/carbon/human/H in GLOB.player_list)
 			manifest_inject(H)
 		return
 

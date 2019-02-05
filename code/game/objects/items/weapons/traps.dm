@@ -9,7 +9,7 @@
 	throwforce = 0
 	w_class = 3
 	origin_tech = list(TECH_MATERIAL = 1)
-	matter = list(DEFAULT_WALL_MATERIAL = 25)
+	matter = list(MATERIAL_STEEL = 25)
 	edge = TRUE
 	sharp = TRUE
 	var/deployed = 0
@@ -321,7 +321,7 @@ Very rarely it might escape
 	name = "jury-rigged mechanical trap"
 	desc = "A wicked looking construct of spiky bits of metal and wires. Will snap shut on anyone who steps in it. It'll do some nasty damage."
 	icon_state = "sawtrap"
-	matter = list(DEFAULT_WALL_MATERIAL = 15)
+	matter = list(MATERIAL_STEEL = 15)
 	var/integrity = 100
 
 

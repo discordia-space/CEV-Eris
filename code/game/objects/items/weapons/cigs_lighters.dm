@@ -485,7 +485,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		return
 	M.IgniteMob()
 
-	if(istype(M.wear_mask, /obj/item/clothing/mask/smokable/cigarette) && user.targeted_organ == "mouth" && lit)
+	if(istype(M.wear_mask, /obj/item/clothing/mask/smokable/cigarette) && user.targeted_organ == BP_MOUTH && lit)
 		var/obj/item/clothing/mask/smokable/cigarette/cig = M.wear_mask
 		if(M == user)
 			cig.attackby(src, user)

@@ -24,8 +24,8 @@
 	projectile_type = /obj/item/projectile/bullet/a10mm
 
 /obj/item/ammo_casing/cl32
-	desc = "A .38 FS hollow point bullet casing."
-	caliber = ".38"
+	desc = "A .32 FS hollow point bullet casing."
+	caliber = ".32"
 	projectile_type = /obj/item/projectile/bullet/cl32
 
 /obj/item/ammo_casing/cl32r

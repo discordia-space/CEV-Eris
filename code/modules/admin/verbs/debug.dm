@@ -381,7 +381,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 	set category = "Fun"
 	set name = "Select equipment"
 
-	var/mob/living/carbon/human/M = input("Select mob.", "Select equipment.") as null|anything in human_mob_list
+	var/mob/living/carbon/human/M = input("Select mob.", "Select equipment.") as null|anything in GLOB.human_mob_list
 	if(!M) return
 
 	var/list/dresspacks = outfits()
@@ -398,7 +398,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress_old, R_FUN, FALSE)
 	set category = "Fun"
 	set name = "Select equipment OLD"
 
-	var/mob/living/carbon/human/M = input("Select mob.", "Select equipment.") as null|anything in human_mob_list
+	var/mob/living/carbon/human/M = input("Select mob.", "Select equipment.") as null|anything in GLOB.human_mob_list
 	if(!M) return
 
 	//log_admin("[key_name(src)] has alienized [M.key].")
@@ -793,15 +793,15 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_mob_lists, R_DEBUG, FALSE)
 
 	switch(input("Which list?") in list("Players","Admins","Mobs","Living Mobs","Dead Mobs", "Clients"))
 		if("Players")
-			usr << jointext(player_list,",")
+			usr << jointext(GLOB.player_list,",")
 		if("Admins")
 			usr << jointext(admins,",")
 		if("Mobs")
 			usr << jointext(SSmobs.mob_list,",")
 		if("Living Mobs")
-			usr << jointext(living_mob_list,",")
+			usr << jointext(GLOB.living_mob_list,",")
 		if("Dead Mobs")
-			usr << jointext(dead_mob_list,",")
+			usr << jointext(GLOB.dead_mob_list,",")
 		if("Clients")
 			usr << jointext(clients,",")
 

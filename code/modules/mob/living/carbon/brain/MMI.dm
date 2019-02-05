@@ -52,8 +52,8 @@
 			brainmob.loc = src
 			brainmob.container = src
 			brainmob.stat = 0
-			dead_mob_list -= brainmob//Update dem lists
-			living_mob_list += brainmob
+			GLOB.dead_mob_list -= brainmob//Update dem lists
+			GLOB.living_mob_list += brainmob
 
 			user.drop_item()
 			brainobj = O
@@ -97,7 +97,7 @@
 				brain = new(user.loc)
 			brainmob.container = null//Reset brainmob mmi var.
 			brainmob.loc = brain//Throw mob into brain.
-			living_mob_list -= brainmob//Get outta here
+			GLOB.living_mob_list -= brainmob//Get outta here
 			brain.brainmob = brainmob//Set the brain to use the brainmob
 			brainmob = null//Set mmi brainmob var to null
 

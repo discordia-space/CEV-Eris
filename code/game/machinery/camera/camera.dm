@@ -187,8 +187,8 @@
 		var/list/mob/viewers = list()
 		if(last_shown_time < world.time)
 			U << "You hold \a [I.name] up to the camera ..."
-			for(var/mob/O in living_mob_list)
-				if(!O.client) 
+			for(var/mob/O in GLOB.living_mob_list)
+				if(!O.client)
 					continue
 				if (istype(O, /mob/living/silicon/ai))
 					viewers += O
@@ -199,12 +199,12 @@
 						if (CM.current_camera == src)
 							viewers += O
 			for(var/mob/O in viewers)
-				if(!O.client) 
+				if(!O.client)
 					continue
 				if(istype(O, /mob/living/silicon/ai))
 					if(U.name == "Unknown")
 						O << "<b>[U]</b> holds \a [I.name] up to one of your cameras ..."
-					else 
+					else
 						O << "<b><a href='byond://?src=\ref[O];track2=\ref[O];track=\ref[U];trackname=[U.name]'>[U]</a></b> holds \a [I.name] up to one of your cameras ..."
 				else
 					O << "<b>[U]</b> holds \a [I.name] up to the camera ..."
