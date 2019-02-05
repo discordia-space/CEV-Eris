@@ -59,6 +59,7 @@
 	attack_verb = list("struck", "hit", "bashed")
 	zoomdevicename = "scope"
 
+	var/damage_multiplier = 1 //Multiplies damage of projectiles fired from this gun
 	var/burst = 1
 	var/fire_delay = 6 	//delay after shooting before the gun can be used again
 	var/burst_delay = 2	//delay between shots, if firing in bursts
@@ -233,6 +234,8 @@
 
 		var/disp = dispersion[min(i, dispersion.len)] + held_disp_mod
 		process_accuracy(projectile, user, target, disp)
+
+		projectile.multiply_projectile_damage(damage_multiplier)
 
 		if(pointblank)
 			process_point_blank(projectile, user, target)
