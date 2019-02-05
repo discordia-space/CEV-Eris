@@ -434,7 +434,7 @@
 /obj/item/weapon/gun/proc/switch_firemodes()
 	if(firemodes.len <= 1)
 		return null
-
+	update_firemode(FALSE) //Disable the old firing mode before we switch away from it
 	sel_mode++
 	if(sel_mode > firemodes.len)
 		sel_mode = 1
@@ -464,10 +464,10 @@
 //When safety is toggled
 //When gun is picked up
 //When gun is readied
-/obj/item/weapon/gun/proc/update_firemode()
+/obj/item/weapon/gun/proc/update_firemode(var/force_state = null)
 	if (sel_mode && firemodes && firemodes.len)
 		var/datum/firemode/new_mode = firemodes[sel_mode]
-		new_mode.update()
+		new_mode.update(force_state)
 
 /obj/item/weapon/gun/AltClick(mob/user)
 	if(!restrict_safety)
@@ -485,11 +485,11 @@
 
 /obj/item/weapon/gun/dropped(mob/user)
 	.=..()
-	update_firemode()
+	update_firemode(FALSE)
 
 /obj/item/weapon/gun/swapped_from()
 	.=..()
-	update_firemode()
+	update_firemode(FALSE)
 
 /obj/item/weapon/gun/swapped_to()
 	.=..()

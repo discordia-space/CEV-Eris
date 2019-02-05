@@ -31,54 +31,62 @@
 	//The full auto clickhandler we have
 	var/datum/click_handler/fullauto/CH = null
 
-/datum/firemode/automatic/update()
+/datum/firemode/automatic/update(var/force_state = null)
+	var/mob/living/L
 	if (gun && gun.is_held())
-		var/mob/living/L = gun.loc
-		if (L && L.client)
-			//First of all, lets determine whether we're enabling or disabling the click handler
-			var/enable = FALSE
+		L = gun.loc
 
-			//We enable it if the gun is held in the user's active hand and the safety is off
-			if (L.get_active_hand() == gun)
-				//Lets also make sure it can fire
-				var/can_fire = TRUE
+	var/enable = FALSE
+	//Force state is used for forcing it to be disabled in circumstances where it'd normally be valid
+	if (!isnull(force_state))
+		enable = force_state
+	else if (L && L.client)
 
-				//Safety stops it
-				if (gun.safety)
+		//First of all, lets determine whether we're enabling or disabling the click handler
+
+
+		//We enable it if the gun is held in the user's active hand and the safety is off
+		if (L.get_active_hand() == gun)
+			//Lets also make sure it can fire
+			var/can_fire = TRUE
+
+			//Safety stops it
+			if (gun.safety)
+				can_fire = FALSE
+
+			//Projectile weapons need to have enough ammo to fire
+			if(istype(gun, /obj/item/weapon/gun/projectile))
+				var/obj/item/weapon/gun/projectile/P = gun
+				if (!P.getAmmo())
 					can_fire = FALSE
 
-				//Projectile weapons need to have enough ammo to fire
-				if(istype(gun, /obj/item/weapon/gun/projectile))
-					var/obj/item/weapon/gun/projectile/P = gun
-					if (!P.getAmmo())
-						can_fire = FALSE
+			//TODO: Centralise all this into some can_fire proc
+			if (can_fire)
+				enable = TRUE
+		else
+			enable = FALSE
 
-				//TODO: Centralise all this into some can_fire proc
-				if (can_fire)
-					enable = TRUE
+	//Ok now lets set the desired state
+	if (!enable)
+		if (!CH)
+			//If we're turning it off, but the click handler doesn't exist, then we have nothing to do
+			return
 
+		//Todo: make client click handlers into a list
+		if (CH.owner) //Remove our handler from the client
+			CH.owner.CH = null //wew
+		QDEL_NULL(CH) //And delete it
+		return
 
-			//Ok now lets set the desired state
-			if (!enable)
-				if (!CH)
-					//If we're turning it off, but the click handler doesn't exist, then we have nothing to do
-					return
-
-				//Todo: make client click handlers into a list
-				if (L.client.CH == CH) //Remove our handler from the client
-					L.client.CH = null
-				QDEL_NULL(CH) //And delete it
-				return
-
-			else
-				//We're trying to turn things on
-				if (CH)
-					return //The click handler exists, we dont need to do anything
+	else
+		//We're trying to turn things on
+		if (CH)
+			return //The click handler exists, we dont need to do anything
 
 
-				//Create and assign the click handler
-				//A click handler intercepts mouseup/drag/down events which allow fullauto firing
-				CH = new /datum/click_handler/fullauto()
-				CH.reciever = gun //Reciever is the gun that gets the fire events
-				L.client.CH = CH //Put it on the client
-				CH.owner = L.client //And tell it where it is
+		//Create and assign the click handler
+		//A click handler intercepts mouseup/drag/down events which allow fullauto firing
+		CH = new /datum/click_handler/fullauto()
+		CH.reciever = gun //Reciever is the gun that gets the fire events
+		L.client.CH = CH //Put it on the client
+		CH.owner = L.client //And tell it where it is
