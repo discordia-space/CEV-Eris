@@ -175,7 +175,7 @@
 	//How long has this player been alive
 	//This comes after the antag check because that's more important
 	var/lifetime = world.time - mind.creation_time
-	if (lifetime <= MINIMUM_NORMALVOTE_LIFETIME)
+	if (lifetime <= MINIMUM_VOTE_LIFETIME)
 		//If you just spawned for the vote, your weight is still low
 		return VOTE_WEIGHT_LOW
 
