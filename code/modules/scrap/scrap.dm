@@ -230,6 +230,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		return
 	try_make_loot()
 	loot.open(user)
+	playsound(src, "rummage", 70, 1)
 	..()
 
 /obj/structure/scrap/attack_generic(mob/user)
