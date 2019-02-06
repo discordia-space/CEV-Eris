@@ -590,6 +590,7 @@
 		data["message"] = src.status_message
 		data["message_err"] = src.status_error
 	else
+		data["advertisement"] = ads_list.len ? pick(ads_list) : null
 		data["markup"] = buying_percentage
 		data["mode"] = 0
 		var/list/listed_products = list()
@@ -781,10 +782,17 @@
 		src.seconds_electrified--
 
 	//Pitch to the people!  Really sell it!
-	if(((src.last_slogan + src.slogan_delay) <= world.time) && (src.slogan_list.len > 0) && (!src.shut_up) && prob(5))
-		var/slogan = pick(src.slogan_list)
-		src.speak(slogan)
-		src.last_slogan = world.time
+	if(((src.last_slogan + src.slogan_delay) <= world.time) && (src.slogan_list.len > 0 || src.custom_vendor) && (!src.shut_up) && prob(5))
+		if(custom_vendor && product_records.len)
+			var/datum/data/vending_product/advertised = pick(product_records)
+			if(advertised)
+				var/advertisement = "[pick("Come get","Come buy","Buy","Sale on","We have")] \an [advertised.product_name], [pick("for only","only","priced at")] [advertised.price] credits![pick(" What a deal!"," Can you believe it?","")]"
+				src.speak(advertisement)
+				src.last_slogan = world.time
+		else
+			var/slogan = pick(src.slogan_list)
+			src.speak(slogan)
+			src.last_slogan = world.time
 
 	if(src.shoot_inventory && prob(2))
 		src.throw_item()
@@ -976,7 +984,7 @@
 /obj/machinery/vending/cart
 	name = "PTech"
 	desc = "PDAs and hardware."
-	product_slogans = "PDAs to everyone!"
+	product_slogans = "PDAs for everyone!"
 	icon_state = "cart"
 	icon_deny = "cart-deny"
 	products = list(/obj/item/modular_computer/pda = 10,/obj/item/weapon/computer_hardware/scanner/medical = 6,
@@ -990,7 +998,7 @@
 	desc = "A softdrink vendor provided by Robust Industries, LLC."
 	icon_state = "Cola_Machine"
 	product_slogans = "Robust Softdrinks: More robust than a toolbox to the head!"
-	product_ads = "Refreshing!;Hope you're thirsty!;Over 1 million drinks sold!;Thirsty? Why not cola?;Please, have a drink!;Drink up!;The best drinks in space."
+	product_ads = "Refreshing!;Hope you're thirsty!;Over 1 million drinks sold!;Thirsty? Why not have some cola?;Please, have a drink!;Drink up!;The best drinks in space."
 	products = list(/obj/item/weapon/reagent_containers/food/drinks/cans/cola = 10,/obj/item/weapon/reagent_containers/food/drinks/cans/space_mountain_wind = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb = 10,/obj/item/weapon/reagent_containers/food/drinks/cans/starkist = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 10,/obj/item/weapon/reagent_containers/food/drinks/cans/space_up = 10,
@@ -1066,7 +1074,7 @@
 /obj/machinery/vending/security
 	name = "SecTech"
 	desc = "A security equipment vendor."
-	product_ads = "Crack capitalist skulls!;Beat some heads in!;Don't forget - harm is good!;Your weapons are right here.;Handcuffs!;Freeze, scumbag!;Don't tase me bro!;Tase them, bro.;Why not have a donut?"
+	product_ads = "Crack some skulls!;Beat some heads in!;Don't forget - harm is good!;Your weapons are right here.;Handcuffs!;Freeze, scumbag!;Don't tase me bro!;Tase them, bro.;Why not have a donut?"
 	icon_state = "sec"
 	icon_deny = "sec-deny"
 	req_access = list(access_security)
@@ -1220,7 +1228,7 @@
 /obj/machinery/vending/theomat
 	name = "NeoTheology Theo-Mat"
 	desc = "A Neotheology dispensary for disciples and new converts."
-	product_slogans = "Immortality is the reward of the faithful; Help humanity ascend, join your brethren today!; Come and seek a new life"
+	product_slogans = "Immortality is the reward of the faithful.; Help humanity ascend, join your brethren today!; Come and seek a new life!"
 	product_ads = "Praise!;Pray!;Obey!"
 	icon_state = "teomat"
 	vendor_department = DEPARTMENT_CHURCH
@@ -1231,7 +1239,7 @@
 /obj/machinery/vending/powermat
 	name = "Asters Guild Power-Mat"
 	desc = "Trust is power, and there’s no power you can trust like Robustcell."
-	product_slogans = "Trust is power, and there’s no power you can trust like Robustcell.;No battery is stronger longer.;One that Last!;You can't top the copper top!"
+	product_slogans = "Trust is power, and there’s no cell you can trust like Robustcell.;No battery is stronger nor lasts longer.;One that Lasts!;You can't top the copper top!"
 	product_ads = "Robust!;Trustworthy!;Durable!"
 	icon_state = "powermat"
 	products = list(/obj/item/weapon/cell/large = 10, /obj/item/weapon/cell/large/high = 10, /obj/item/weapon/cell/medium = 15, /obj/item/weapon/cell/medium/high = 15, /obj/item/weapon/cell/small = 20, /obj/item/weapon/cell/small/high = 20)
@@ -1243,7 +1251,7 @@
 	name = "Asters Guild Print-o-Mat"
 	desc = "Everything you can imagine (not really) on a disc! Print your own gun TODAY."
 	product_slogans = "Print your own gun TODAY!; The future is NOW!; Can't stop the industrial revolution!"
-	product_ads = "Almoust free!;Print it your-self!"
+	product_ads = "Almost free!;Print it yourself!;Don't copy that floppy!"
 	icon_state = "discomat"
 	products = list(/obj/item/weapon/disk/autolathe_disk/blank = 20, /obj/item/weapon/disk/autolathe_disk/basic = 10,
 					/obj/item/weapon/disk/autolathe_disk/devices = 10, /obj/item/weapon/disk/autolathe_disk/toolpack = 10, /obj/item/weapon/disk/autolathe_disk/component = 10,

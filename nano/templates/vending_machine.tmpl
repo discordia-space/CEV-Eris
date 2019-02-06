@@ -32,6 +32,11 @@
 	{{empty}}
 	No items available!
 	{{/for}}
+	{{if data.advertisement}}
+		<div class='statusDisplay' style='text-align: center'>
+			{{:data.advertisement}}
+		</div>
+	{{/if}}
 	{{if data.markup}}
 		<div class='item'>
 			<br>This Vendomat will buy items for {{:data.markup}}% of their listed price.
