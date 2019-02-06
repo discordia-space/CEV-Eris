@@ -105,7 +105,7 @@ var/global/datum/computer_file/data/email_account/service/payroll/payroll_mailer
 
 	for(var/obj/machinery/vending/V in SSmachines.machinery)
 		if(!V.custom_vendor)
-			V.machine_vendor_account = V.vendor_department ? department_accounts[V.vendor_department] : vendor_account
+			V.earnings_account = V.vendor_department ? department_accounts[V.vendor_department] : vendor_account
 
 	current_date_string = "[num2text(rand(1,31))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], [game_year]"
 

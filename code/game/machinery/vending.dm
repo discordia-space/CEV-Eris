@@ -9,6 +9,7 @@
  */
 /datum/data/vending_product
 	var/product_name = "generic" // Display name for the product
+	var/product_desc
 	var/product_path = null
 	var/amount = 0            // The original amount held in the vending machine
 	var/price = 0              // Price to buy one
@@ -22,13 +23,14 @@
 	..()
 
 	src.product_path = path
+	var/atom/tmp = path
 
 	if(!name)
-		var/atom/tmp = path
 		src.product_name = initial(tmp.name)
 	else
 		src.product_name = name
 
+	src.product_desc = initial(tmp.desc)
 	src.amount = amount
 	src.price = price
 	src.display_color = color
@@ -132,8 +134,8 @@
 
 	var/custom_vendor = FALSE //If it's custom, it can be loaded with stuff as long as it's unlocked.
 	var/locked = TRUE
-	var/datum/money_account/machine_vendor_account //Owner of this vendomat. It's the account of the person who registered it.
-	var/datum/money_account/earnings_account //If set, profits go to this account instead of machine_vendor_account
+	var/datum/money_account/machine_vendor_account //Owner of this vendomat. Used for access.
+	var/datum/money_account/earnings_account //Money flows in and out of this account.
 	var/vendor_department = null //If set, members can manage this vendomat. earnings_account is set to the department's account automatically.
 	var/buying_percentage = 0 //If set, the vendomat will accept people selling items to it, and in return will give (percentage * listed item price) in cash
 	var/scan_id = 1
@@ -192,7 +194,7 @@
 	SSnano.update_uis(src)
 
 /obj/machinery/vending/proc/try_to_buy(obj/item/weapon/W, var/datum/data/vending_product/R, var/mob/user)
-	if(!earnings_account && !machine_vendor_account)
+	if(!earnings_account)
 		user << SPAN_WARNING("[src] flashes a message: Vendomat not registered to an account.")
 		return
 	if(vendor_department)
@@ -206,12 +208,11 @@
 		return
 
 	var/buying_price = round(R.price * buying_percentage/100,5)
-	var/datum/money_account/buying_account = earnings_account ? earnings_account : machine_vendor_account
-	if(buying_account.money < buying_price)
+	if(earnings_account.money < buying_price)
 		user << SPAN_WARNING("[src] flashes a message: Account is unable to make this purchase.")
 		return
 	var/datum/transaction/T = new(-buying_price, "[user.name] (via [src.name])", "Sale of [R.product_name]", name)
-	T.apply_to(buying_account)
+	T.apply_to(earnings_account)
 
 	R.add_product(W)
 
@@ -342,7 +343,7 @@
 
 	var/obj/item/weapon/card/id/ID = I.GetIdCard()
 
-	if (currently_vending && machine_vendor_account && !machine_vendor_account.suspended)
+	if (currently_vending && earnings_account && !earnings_account.suspended)
 		var/paid = 0
 		var/handled = 0
 
@@ -407,6 +408,7 @@
 					return 0
 			if(!machine_vendor_account)
 				machine_vendor_account = user_account
+				earnings_account = user_account
 
 			locked = !locked
 			src.status_error = 0
@@ -528,7 +530,7 @@
 		// Okay to move the money at this point
 
 		// create entry in the purchaser's account log
-		var/datum/transaction/T = new(-currently_vending.price, "[machine_vendor_account.owner_name] (via [src.name])", "Purchase of [currently_vending.product_name]", name)
+		var/datum/transaction/T = new(-currently_vending.price, "[earnings_account.get_name()] (via [src.name])", "Purchase of [currently_vending.product_name]", name)
 		T.apply_to(customer_account)
 
 		// Give the vendor the money. We use the account owner name, which means
@@ -544,7 +546,7 @@
  */
 /obj/machinery/vending/proc/credit_purchase(var/target as text)
 	var/datum/transaction/T = new(currently_vending.price, target, "Purchase of [currently_vending.product_name]", name)
-	T.apply_to(earnings_account ? earnings_account : machine_vendor_account)
+	T.apply_to(earnings_account)
 
 /obj/machinery/vending/attack_ai(mob/user as mob)
 	return attack_hand(user)
@@ -573,7 +575,7 @@
 	data["unlocked"] = !locked
 	data["custom"] = custom_vendor
 	if(custom_vendor && machine_vendor_account && machine_vendor_account.owner_name)
-		data["owner_name"] = machine_vendor_account.owner_name
+		data["owner_name"] = machine_vendor_account.get_name()
 
 	if(managing)
 		data["mode"] = 2
@@ -582,6 +584,7 @@
 	else if(currently_vending)
 		data["mode"] = 1
 		data["product"] = currently_vending.product_name
+		data["description"] = currently_vending.product_desc
 		data["price"] = currently_vending.price
 		data["message_err"] = 0
 		data["message"] = src.status_message
@@ -660,7 +663,7 @@
 				return
 			else
 				src.currently_vending = R
-				if(!machine_vendor_account || machine_vendor_account.suspended)
+				if(!earnings_account || earnings_account.suspended)
 					src.status_message = "This machine is currently unable to process payments due to problems with the associated account."
 					src.status_error = 1
 				else
@@ -688,14 +691,14 @@
 			src.status_error = 0
 
 		else if (href_list["setaccount"])
-			var/datum/money_account/newaccount = get_account(input("Please enter the number of the account that will receive profits from this Vendomat.", "Vendomat Account", null) as num)
+			var/datum/money_account/newaccount = get_account(input("Please enter the number of the account that will handle transactions for this Vendomat.", "Vendomat Account", null) as num)
 			if(!newaccount)
-				src.status_message = "No account specified. Vendomat will transfer its profits to its owner. Organization will be prioritized if set."
-				earnings_account = null
+				src.status_message = "No account specified. Owner's account will be used for handling transactions."
+				earnings_account = machine_vendor_account
 			else
 				var/input_pin = input("Please enter the PIN for this account.", "Account PIN", null) as num
 				if(input_pin == newaccount.remote_access_pin)
-					src.status_message = "This Vendomat will now transfer its profits to the specified account, owned by [newaccount.owner_name]."
+					src.status_message = "This Vendomat will now use the specified account, owned by [newaccount.get_name()]."
 					src.status_error = 0
 					earnings_account = newaccount
 				else
@@ -711,6 +714,7 @@
 
 		else if (href_list["unregister"])
 			src.machine_vendor_account = null
+			src.earnings_account = null
 
 		else if (href_list["cancelpurchase"])
 			src.currently_vending = null
@@ -855,7 +859,7 @@
 		src.status_message = "This Vendomat is now property of \"[newdepartment]\"."
 		src.desc = "A custom Vendomat. It bears the logo of [newdepartment]."
 		vendor_department = newdepartment:id
-		earnings_account = department_accounts[newdepartment]
+		earnings_account = department_accounts[vendor_department]
 	src.status_error = 0
 
 /*
