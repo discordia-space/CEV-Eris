@@ -341,7 +341,7 @@
 
 		oxygen_alert = max(oxygen_alert, 1)
 		return 0
-	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
+	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[BP_LUNGS]
 	if(L && L.handle_breath(breath))
 		failed_last_breath = 0
 	else
@@ -618,7 +618,7 @@
 	else				//ALIVE. LIGHTS ARE ON
 		updatehealth()	//TODO
 
-		if(health <= HEALTH_THRESHOLD_DEAD || (species.has_organ[O_BRAIN] && !has_brain()))
+		if(health <= HEALTH_THRESHOLD_DEAD || (species.has_organ[BP_BRAIN] && !has_brain()))
 			death()
 			blinded = 1
 			silent = 0

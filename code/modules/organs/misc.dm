@@ -25,7 +25,7 @@
 	name = "cortical borer"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "borer"
-	organ_tag = O_BRAIN
+	organ_tag = BP_BRAIN
 	desc = "A disgusting space slug."
 	parent_organ = BP_HEAD
 	vital = 1

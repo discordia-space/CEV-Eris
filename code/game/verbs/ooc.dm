@@ -129,7 +129,7 @@
 				hearturfs |= O.locs[1]
 				listening_obj |= O
 
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			if(M.get_preference_value(/datum/client_preference/show_ooc) == GLOB.PREF_HIDE)
 				continue
 			if(isAI(M))

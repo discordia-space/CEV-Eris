@@ -581,7 +581,7 @@ What a mess.*/
 
 					if ("Change Criminal Status")
 						if (active2)
-							for(var/mob/living/carbon/human/H in player_list)
+							for(var/mob/living/carbon/human/H in GLOB.player_list)
 								BITSET(H.hud_updateflag, WANTED_HUD)
 							switch(href_list["criminal2"])
 								if("none")

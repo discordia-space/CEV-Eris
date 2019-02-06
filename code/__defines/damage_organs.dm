@@ -25,30 +25,57 @@
 #define FIRE_DAMAGE_MODIFIER 0.0215 // Higher values result in more external fire damage to the skin. (default 0.0215)
 #define  AIR_DAMAGE_MODIFIER 2.025  // More means less damage from hot air scalding lungs, less = more damage. (default 2.025)
 
-// Bodyparts and organs.
-#define O_MOUTH    "mouth"
-#define O_EYES     "eyes"
-#define O_HEART    "heart"
-#define O_LUNGS    "lungs"
-#define O_BRAIN    "brain"
-#define O_LIVER    "liver"
-#define O_KIDNEYS  "kidneys"
-#define O_APPENDIX "appendix"
-#define O_CELL     "cell"
-#define O_POSIBRAIN	"posibrain"
 
-#define O_PLASMA   "plasma vessel"
-#define O_HIVE     "hive node"
-#define O_NUTRIENT "nutrient vessel"
-#define O_STRATA   "neural strata"
-#define O_RESPONSE "response node"
-#define O_GBLADDER "gas bladder"
-#define O_POLYP    "polyp segment"
-#define O_ANCHOR   "anchoring ligament"
-#define O_ACID     "acid gland"
-#define O_EGG      "egg sac"
-#define O_RESIN    "resin spinner"
+// Organs.
+#define BP_MOUTH    "mouth"
+#define BP_EYES     "eyes"
+#define BP_HEART    "heart"
+#define BP_LUNGS    "lungs"
+#define BP_TRACH	"tracheae"
+#define BP_BRAIN    "brain"
+#define BP_LIVER    "liver"
+#define BP_KIDNEYS  "kidneys"
+#define BP_STOMACH  "stomach"
+#define BP_PLASMA   "plasma vessel"
+#define BP_APPENDIX "appendix"
+#define BP_CELL     "cell"
+#define BP_HIVE     "hive node"
+#define BP_NUTRIENT "nutrient vessel"
+#define BP_ACID     "acid gland"
+#define BP_EGG      "egg sac"
+#define BP_RESIN    "resin spinner"
+#define BP_STRATA   "neural strata"
+#define BP_RESPONSE "response node"
+#define BP_GBLADDER "gas bladder"
+#define BP_POLYP    "polyp segment"
+#define BP_ANCHOR   "anchoring ligament"
+#define BP_PHORON   "phoron filter"
+#define BP_ACETONE  "acetone reactor"
 
+// Robo Organs.
+#define BP_POSIBRAIN	"posibrain"
+#define BP_VOICE		"vocal synthesiser"
+#define BP_STACK		"stack"
+#define BP_OPTICS		"optics"
+#define BP_FLOAT		"floatation disc"
+#define BP_JETS			"maneuvering jets"
+#define BP_COOLING_FINS "cooling fins"
+
+//Augmetations
+#define BP_AUGMENT_R_ARM         "right arm augment"
+#define BP_AUGMENT_L_ARM         "left arm augment"
+#define BP_AUGMENT_R_LEG         "right leg augment"
+#define BP_AUGMENT_L_LEG         "left leg augment"
+#define BP_AUGMENT_CHEST_ARMOUR   "chest armor augment"
+#define BP_AUGMENT_CHEST_ACTIVE  "active chest augment"
+#define BP_AUGMENT_HEAD           "head augment"
+
+//Augment flags
+#define AUGMENTATION_MECHANIC 1
+#define AUGMENTATION_ORGANIC  2
+
+
+// Limbs.
 #define BP_L_LEG  "l_leg"
 #define BP_R_LEG  "r_leg"
 #define BP_L_ARM  "l_arm"
@@ -56,9 +83,16 @@
 #define BP_HEAD   "head"
 #define BP_CHEST  "chest"
 #define BP_GROIN  "groin"
-
 #define BP_LEGS list(BP_R_LEG, BP_L_LEG)
-#define BP_ALL list(BP_CHEST, BP_GROIN, BP_HEAD, BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG)
+#define BP_ARMS list(BP_R_ARM, BP_L_ARM)
+#define BP_ALL_LIMBS list(BP_CHEST, BP_GROIN, BP_HEAD, BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG)
+#define BP_BY_DEPTH list(BP_HEAD, BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_CHEST)
+
+// Prosthetic helpers.
+#define BP_IS_ROBOTIC(org)  (org.status & ORGAN_ROBOTIC)
+#define BP_IS_ASSISTED(org) (org.status & ORGAN_ASSISTED)
+#define BP_IS_BRITTLE(org)  (org.status & ORGAN_BRITTLE)
+#define BP_IS_CRYSTAL(org)  (org.status & ORGAN_CRYSTAL)
 
 
 // Organ defines.

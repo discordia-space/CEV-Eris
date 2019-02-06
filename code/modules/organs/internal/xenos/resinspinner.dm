@@ -2,7 +2,7 @@
 	name = "resin spinner"
 	parent_organ = BP_HEAD
 	icon_state = "xgibmid2"
-	organ_tag = O_RESIN
+	organ_tag = BP_RESIN
 	owner_verbs = list(
 		/obj/item/organ/internal/xenos/resinspinner/proc/plant,
 		/obj/item/organ/internal/xenos/resinspinner/proc/resin
