@@ -16,6 +16,7 @@
 	sound_env = TUNNEL_ENCLOSED
 	turf_initializer = new /datum/turf_initializer/maintenance()
 	forced_ambience = list('sound/ambience/maintambience.ogg')
+	area_light_color = COLOR_LIGHTING_MAINT_DARK
 
 /area/eris/maintenance/disposal
 	name = "Waste Disposal"
@@ -485,6 +486,7 @@
 
 /area/eris/neotheology
 	icon_state = "erisgreen"
+	area_light_color = COLOR_LIGHTING_NEOTHEOLOGY_BRIGHT
 
 /area/eris/neotheology/chapel
 	name = "\improper Chapel"
@@ -654,7 +656,12 @@
 //MedBay
 
 /area/eris/medical/medbay
-	name = "\improper Medbay Hallway - Port"
+	name = "\improper Medical"
+	icon_state = "erisgreen"
+	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
+
+/area/eris/medical/medbay
+	name = "\improper Medbay"
 	icon_state = "medbay"
 	ambience = list('sound/ambience/signal.ogg')
 
@@ -955,6 +962,9 @@
 
 
 //Research and Development
+
+/area/eris/rnd
+	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
 
 /area/eris/rnd/research
 	name = "\improper Research and Development"

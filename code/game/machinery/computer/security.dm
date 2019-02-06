@@ -1,11 +1,9 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-
-/obj/machinery/computer/secure_data//TODO:SANITY
+/obj/machinery/computer/secure_data
 	name = "security records console"
 	desc = "Used to view, edit and maintain security records"
 	icon_keyboard = "security_key"
 	icon_screen = "security"
-	light_color = COLOR_WHITE
+	light_color = COLOR_LIGHTING_SCI_BRIGHT
 	req_one_access = list(access_security)
 	circuit = /obj/item/weapon/circuitboard/secure_data
 	var/obj/item/weapon/card/id/scan = null

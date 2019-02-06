@@ -150,7 +150,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		update_wear_icon()
 		var/turf/T = get_turf(src)
 		T.visible_message(flavor_text)
-		set_light(2, 0.25, "#E38F46")
+		set_light(2, 0.25, COLOR_LIGHTING_ORANGE_DARK)
 		START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/mask/smokable/proc/die(var/nomessage = 0)
