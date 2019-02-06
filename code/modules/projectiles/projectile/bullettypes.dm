@@ -1,5 +1,5 @@
 /obj/item/projectile/bullet/c9mm
-	damage = 18
+	damage = 22
 	sharp = 0
 	can_ricochet = TRUE
 
@@ -74,7 +74,7 @@
 	sharp = 0
 
 /obj/item/projectile/bullet/c45
-	damage = 22
+	damage = 25
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/c45p
@@ -100,15 +100,15 @@
 	sharp = 0
 
 /obj/item/projectile/bullet/a762
-	damage = 27
-	armor_penetration = 15
+	damage = 20
+	armor_penetration = 10
 	penetrating = 1
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/a762h
-	damage = 27
-	armor_penetration = 30
-	penetrating = 1
+	damage = 20
+	armor_penetration = 25
+	penetrating = 2
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/a556
@@ -124,8 +124,8 @@
 	sharp = 0
 
 /obj/item/projectile/bullet/c65
-	damage = 25
-	armor_penetration = 20
+	damage = 18
+	armor_penetration = 15
 	penetrating = 1
 	sharp = 0
 	can_ricochet = TRUE
@@ -156,13 +156,12 @@
 /obj/item/projectile/bullet/shotgun
 	name = "slug"
 	damage = 50
-	armor_penetration = 15
 
 /obj/item/projectile/bullet/shotgun/beanbag		//because beanbags are not bullets
 	name = "beanbag"
 	check_armour = "melee"
 	damage = 10
-	agony = 80
+	agony = 60
 	embed = 0
 	sharp = 0
 
