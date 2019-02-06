@@ -229,7 +229,6 @@
 			set_default_language(null)
 		else
 			var/datum/language/L = locate(href_list["default_lang"])
-			if((L in languages))
 			if(L && (L in languages))
 				set_default_language(L)
 		check_languages()

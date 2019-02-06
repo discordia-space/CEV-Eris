@@ -31,6 +31,5 @@
 		L = langname
 	else
 		L = all_languages[langname]
-	if (!(L in languages))
-		languages.Add(L)
+	languages |= L
 	default_language = L
