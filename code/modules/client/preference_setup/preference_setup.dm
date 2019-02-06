@@ -14,7 +14,7 @@ var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
 	sort_order = 2
 	update_preview_icon = TRUE
 	category_item_type = /datum/category_item/player_setup_item/augmentation
-/*
+
 /datum/category_group/player_setup_category/background_preferences
 	name = "Background"
 	sort_order = 3
@@ -24,7 +24,7 @@ var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
 	. = ""
 	for(var/datum/category_item/player_setup_item/PI in items)
 		. += "[PI.content(user)]<br>"
-*/
+
 /datum/category_group/player_setup_category/occupation_preferences
 	name = "Occupation"
 	sort_order = 4
@@ -275,7 +275,7 @@ var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
 			if(C.ckey == pref.client_ckey)
 				pref.client = C
 				break
-	
+
 	//lets try again after 1 second
 	//for some reason it doesnt find client on login
 	spawn(10)
