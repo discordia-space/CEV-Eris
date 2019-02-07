@@ -181,11 +181,7 @@
 	return ..()
 
 
-/mob/living/proc/set_default_language(var/langname)
-	var/datum/language/L = all_languages[langname]
-	if (!(L in languages))
-		languages.Add(L)
-	default_language = L
+
 
 // Can we speak this language, as opposed to just understanding it?
 /mob/proc/can_speak(datum/language/speaking)
