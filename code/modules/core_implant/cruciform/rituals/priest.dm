@@ -178,7 +178,10 @@
 	if(ishuman(H))
 		var/mob/living/carbon/human/M = H
 		var/obj/item/organ/external/E = M.organs_by_name[BP_CHEST]
-		E.take_damage(25, sharp = FALSE)
+		for (var/i = 0; i < 5;i++)
+			E.take_damage(5, sharp = FALSE)
+			//Deal 25 damage in five hits. Using multiple small hits mostly prevents internal damage
+
 		M.custom_pain("You feel cruciform rips into your chest!",1)
 		M.update_implants()
 		M.updatehealth()
