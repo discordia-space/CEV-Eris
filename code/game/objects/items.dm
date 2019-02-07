@@ -442,3 +442,11 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 /obj/item/device
 	icon = 'icons/obj/device.dmi'
+
+//Called when a human swaps hands to a hand which is holding this item
+/obj/item/proc/swapped_to(var/mob/user)
+	return
+
+//Called when a human swaps hands away from a hand which is holding this item
+/obj/item/proc/swapped_from(var/mob/user)
+	return
