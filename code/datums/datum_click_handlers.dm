@@ -53,16 +53,23 @@
 /datum/click_handler/proc/use_ability(mob/living/carbon/human/user,atom/target)
 	return
 
-//Returns true if the passed thing is an atom on a turf, or a turf itself, false otherwise
-/datum/click_handler/proc/is_world_target(var/a)
+//Tests whether the target thing is valid, and returns it if so.
+//If its not valid, null will be returned
+//In the case of click catchers, we resolve and return the turf under it
+/datum/click_handler/proc/resolve_world_target(var/a)
+
+	if (istype(a, /obj/screen/click_catcher))
+		var/obj/screen/click_catcher/CC = a
+		return CC.resolve(owner.mob)
+
 	if (istype(a, /turf))
-		return TRUE
+		return a
 
 	else if (istype(a, /atom))
 		var/atom/A = a
 		if (istype(A.loc, /turf))
-			return TRUE
-	return FALSE
+			return A
+	return null
 
 /****************************
 	Full auto gunfire
@@ -92,7 +99,8 @@
 	reciever.afterattack(target, owner.mob, FALSE)
 
 /datum/click_handler/fullauto/MouseDown(object,location,control,params)
-	if (is_world_target(object))
+	object = resolve_world_target(object)
+	if (object)
 		target = object
 		owner.mob.face_atom(target)
 		spawn()
@@ -101,7 +109,8 @@
 	return TRUE
 
 /datum/click_handler/fullauto/MouseDrag(over_object,src_location,over_location,src_control,over_control,params)
-	if (firing && (is_world_target(src_location)))
+	src_location = resolve_world_target(src_location)
+	if (src_location && firing)
 		target = src_location //This var contains the thing the user is hovering over, oddly
 		owner.mob.face_atom(target)
 		return FALSE
