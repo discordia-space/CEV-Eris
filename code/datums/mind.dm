@@ -36,6 +36,8 @@
 	var/mob/living/original	//TODO: remove.not used in any meaningful way ~Carn. First I'll need to tweak the way silicon-mobs handle minds.
 	var/active = FALSE
 
+
+
 	var/memory
 
 	var/assigned_role
@@ -70,8 +72,11 @@
 		If this is 0, the mind has never had a cliented mob
 	*/
 
+	var/creation_time = 0 //World time when this datum was New'd. Useful to tell how long since a character spawned
+
 /datum/mind/New(var/key)
 	src.key = key
+	creation_time = world.time
 	..()
 
 /datum/mind/proc/transfer_to(mob/living/new_character)
