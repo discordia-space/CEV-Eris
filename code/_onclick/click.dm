@@ -37,13 +37,10 @@
 
 
 /client/Click(var/atom/target, location, control, params)
-	var/list/L = params2list(params)
-	var/draggedMiddle = L["drag"]	// Returns anything pressed down during the left click event as we are in Click() method by left or middle click
-	var/left = L["left"]		// Obivously checking if the left got clicked and not held down.
-
-	// Deny the exploit when middleclick is pressed during the left click event
-	if(draggedMiddle == "middle" && left)
-		return
+	var/list/L = params2list(params) //convert params into a list
+	var/dragged = L["drag"] //grab what mouse button they are dragging with, if any.
+	if(dragged && !L[dragged]) //check to ensure they aren't using drag clicks to aimbot
+		return //if they are dragging, and they clicked with a different mouse button, reject the click as it will always go the atom they are currently dragging, even if out of view and not under the mouse
 
 	if (CH)
 		if (!CH.Click(target, location, control, params))
