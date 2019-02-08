@@ -230,6 +230,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		return
 	try_make_loot()
 	loot.open(user)
+	playsound(src, "rummage", 70, 1)
 	..()
 
 /obj/structure/scrap/attack_generic(mob/user)
@@ -254,7 +255,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 
 /obj/structure/scrap/attackby(obj/item/W, mob/user)
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
-	if((QUALITY_SHOVELING in W.tool_qualities) && W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SHOVELING, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
+	if((QUALITY_SHOVELING in W.tool_qualities) && W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SHOVELING, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB, forced_sound = "rummage"))
 		user.visible_message(SPAN_NOTICE("[user] [pick(ways)] \the [src]."))
 		user.do_attack_animation(src)
 		shuffle_loot()
