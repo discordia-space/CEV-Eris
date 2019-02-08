@@ -55,7 +55,7 @@ var/list/ghost_traps
 	else
 		request_timeouts -= target
 
-	for(var/mob/observer/ghost/O in player_list)
+	for(var/mob/observer/ghost/O in GLOB.player_list)
 		if(!O.MayRespawn())
 			continue
 		if(islist(ban_checks))

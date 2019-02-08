@@ -424,7 +424,7 @@
 				return
 			if(H.species.flags & NO_BLOOD)
 				return
-			if(!H.should_have_organ(O_HEART))
+			if(!H.should_have_organ(BP_HEART))
 				return
 
 			// If the human is losing too much blood, beep.

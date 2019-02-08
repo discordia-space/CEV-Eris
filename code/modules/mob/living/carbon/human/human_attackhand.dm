@@ -118,7 +118,7 @@
 			return 1
 
 		if(I_HURT)
-			if(M.targeted_organ == "mouth" && wear_mask && istype(wear_mask, /obj/item/weapon/grenade))
+			if(M.targeted_organ == BP_MOUTH && wear_mask && istype(wear_mask, /obj/item/weapon/grenade))
 				var/obj/item/weapon/grenade/G = wear_mask
 				if(!G.active)
 					visible_message(SPAN_DANGER("\The [M] pulls the pin from \the [src]'s [G.name]!"))

@@ -1,28 +1,6 @@
 //Cloning revival method.
 //The pod handles the actual cloning while the computer manages the clone profiles
 
-//Potential replacement for genetics revives or something I dunno (?)
-
-//Find a dead mob with a brain and client.
-/proc/find_dead_player(var/find_key)
-	if(isnull(find_key))
-		return
-
-	var/mob/selected = null
-	for(var/mob/living/M in player_list)
-		//Dead people only thanks!
-		if((M.stat != DEAD) || (!M.client))
-			continue
-		//They need a brain!
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			if(H.species.has_organ[O_BRAIN] && !H.has_brain())
-				continue
-		if(M.ckey == find_key)
-			selected = M
-			break
-	return selected
-
 #define CLONE_BIOMASS 150
 
 /obj/machinery/clonepod
@@ -85,7 +63,7 @@
 		if(ckey(clonemind.key) != R.ckey)
 			return 0
 	else
-		for(var/mob/observer/ghost/G in player_list)
+		for(var/mob/observer/ghost/G in GLOB.player_list)
 			if(G.ckey == R.ckey)
 				if(G.can_reenter_corpse)
 					break
@@ -216,7 +194,7 @@
 		else
 			locked = 0
 			user << "System unlocked."
-	else 
+	else
 		for(var/type in BIOMASS_TYPES)
 			if(istype(I,type))
 				user << SPAN_NOTICE("\The [src] processes \the [I].")

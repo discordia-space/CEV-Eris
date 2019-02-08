@@ -5,6 +5,7 @@
 	bantype = ROLE_BANTYPE_CREW_SIDED
 	restricted_jobs = list("AI", "Robot")
 	protected_jobs = list(JOBS_COMMAND)
+	antaghud_indicator = "hudblank"		//crewsided antag(also we have no icon for this)
 
 	survive_objective = /datum/objective/escape
 

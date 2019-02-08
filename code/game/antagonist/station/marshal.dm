@@ -4,6 +4,7 @@
 	role_text_plural = "Ironhammer Marshals"
 	bantype = ROLE_BANTYPE_CREW_SIDED
 	protected_jobs = list(JOBS_COMMAND, JOBS_SECURITY)
+	antaghud_indicator = "huddeathsquad"
 
 	possible_objectives = list(
 	/datum/objective/assassinate/marshal = 100,

@@ -235,7 +235,7 @@ proc/get_radio_key_from_channel(var/channel)
 			speech_bubble_recipients += M.client
 		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
 
-	flick_overlay(speech_bubble, speech_bubble_recipients, 30)
+	animate_speechbubble(speech_bubble, speech_bubble_recipients, 30)
 
 	for(var/obj/O in listening_obj)
 		spawn(0)
@@ -244,6 +244,22 @@ proc/get_radio_key_from_channel(var/channel)
 
 	log_say("[name]/[key] : [message]")
 	return TRUE
+
+
+/proc/animate_speechbubble(image/I, list/show_to, duration)
+	var/matrix/M = matrix()
+	M.Scale(0,0)
+	I.transform = M
+	I.alpha = 0
+	for(var/client/C in show_to)
+		C.images += I
+	animate(I, transform = 0, alpha = 255, time = 5, easing = ELASTIC_EASING)
+	sleep(duration-5)
+	animate(I, alpha = 0, time = 5, easing = EASE_IN)
+	sleep(5)
+	for(var/client/C in show_to)
+		C.images -= I
+
 
 /mob/living/proc/say_signlang(var/message, var/verb="gestures", var/datum/language/language)
 	for (var/mob/O in viewers(src, null))
@@ -271,7 +287,7 @@ proc/get_radio_key_from_channel(var/channel)
 				if(ishuman(speaker))
 					var/mob/living/carbon/human/H = speaker
 					speaker_name = H.rank_prefix_name(speaker_name)
-				src << "<span class='name'>[speaker_name]</span>[alt_name] talks but you cannot hear \him."
+				to_chat(src,"<span class='name'>[speaker_name]</span>[alt_name] talks but you cannot hear \him.")
 		return
 
 	//make sure the air can transmit speech - hearer's side
@@ -317,7 +333,7 @@ proc/get_radio_key_from_channel(var/channel)
 
 	if(sdisabilities&DEAF || ear_deaf)
 		if(prob(20))
-			src << SPAN_WARNING("You feel your headset vibrate but can hear nothing from it!")
+			to_chat(src, SPAN_WARNING("You feel your headset vibrate but can hear nothing from it!"))
 		return
 
 	if(sleeping || stat == UNCONSCIOUS) //If unconscious or sleeping
@@ -365,4 +381,4 @@ proc/get_radio_key_from_channel(var/channel)
 	else
 		heard = "<span class = 'game_say'>...<i>You almost hear someone talking</i>...</span>"
 
-	src << heard
+	to_chat(src, heard)

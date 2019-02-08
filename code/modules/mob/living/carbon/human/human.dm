@@ -40,7 +40,7 @@
 
 
 
-	human_mob_list |= src
+	GLOB.human_mob_list |= src
 	..()
 
 	if(dna)
@@ -50,7 +50,7 @@
 	make_blood()
 
 /mob/living/carbon/human/Destroy()
-	human_mob_list -= src
+	GLOB.human_mob_list -= src
 	for(var/organ in organs)
 		qdel(organ)
 	return ..()
@@ -73,7 +73,7 @@
 				stat("Tank Pressure", internal.air_contents.return_pressure())
 				stat("Distribution Pressure", internal.distribute_pressure)
 
-		var/obj/item/organ/internal/xenos/plasmavessel/P = internal_organs_by_name[O_PLASMA]
+		var/obj/item/organ/internal/xenos/plasmavessel/P = internal_organs_by_name[BP_PLASMA]
 		if(P)
 			stat(null, "Plasma Stored: [P.stored_plasma]/[P.max_plasma]")
 
@@ -616,11 +616,11 @@ var/list/rank_prefix = list(\
 ///eyecheck()
 ///Returns a number between -1 to 2
 /mob/living/carbon/human/eyecheck()
-	if(!species.has_organ[O_EYES]) //No eyes, can't hurt them.
+	if(!species.has_organ[BP_EYES]) //No eyes, can't hurt them.
 		return FLASH_PROTECTION_MAJOR
 
-	if(internal_organs_by_name[O_EYES]) // Eyes are fucked, not a 'weak point'.
-		var/obj/item/organ/I = internal_organs_by_name[O_EYES]
+	if(internal_organs_by_name[BP_EYES]) // Eyes are fucked, not a 'weak point'.
+		var/obj/item/organ/I = internal_organs_by_name[BP_EYES]
 		if(I.status & ORGAN_CUT_AWAY)
 			return FLASH_PROTECTION_MAJOR
 
@@ -628,7 +628,7 @@ var/list/rank_prefix = list(\
 
 //Used by various things that knock people out by applying blunt trauma to the head.
 //Checks that the species has a "head" (brain containing organ) and that hit_zone refers to it.
-/mob/living/carbon/human/proc/headcheck(var/target_zone, var/brain_tag = O_BRAIN)
+/mob/living/carbon/human/proc/headcheck(var/target_zone, var/brain_tag = BP_BRAIN)
 	if(!species.has_organ[brain_tag])
 		return 0
 
@@ -896,11 +896,11 @@ var/list/rank_prefix = list(\
 	..()
 
 /mob/living/carbon/human/proc/is_lung_ruptured()
-	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
+	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[BP_LUNGS]
 	return L && L.is_bruised()
 
 /mob/living/carbon/human/proc/rupture_lung()
-	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
+	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[BP_LUNGS]
 
 	if(L && !L.is_bruised())
 		src.custom_pain("You feel a stabbing pain in your chest!", 1)
@@ -1258,7 +1258,7 @@ var/list/rank_prefix = list(\
 
 	if(!target_zone)
 		if(!user)
-			target_zone = pick(BP_ALL + BP_CHEST + BP_CHEST)
+			target_zone = pick(BP_ALL_LIMBS + BP_CHEST + BP_CHEST)
 		else
 			target_zone = user.targeted_organ
 
@@ -1314,11 +1314,11 @@ var/list/rank_prefix = list(\
 	..()
 
 /mob/living/carbon/human/has_brain()
-	return istype(internal_organs_by_name[O_BRAIN], /obj/item/organ/internal/brain)
+	return istype(internal_organs_by_name[BP_BRAIN], /obj/item/organ/internal/brain)
 
 /mob/living/carbon/human/has_eyes()
-	if(internal_organs_by_name[O_EYES])
-		var/obj/item/organ/internal/eyes = internal_organs_by_name[O_EYES]
+	if(internal_organs_by_name[BP_EYES])
+		var/obj/item/organ/internal/eyes = internal_organs_by_name[BP_EYES]
 		if(eyes && istype(eyes) && !(eyes.status & ORGAN_CUT_AWAY))
 			return 1
 	return 0
@@ -1435,7 +1435,7 @@ var/list/rank_prefix = list(\
 //			output for machines^	^^^^^^^output for people^^^^^^^^^
 
 /mob/living/carbon/human/proc/pulse()
-	var/obj/item/organ/internal/heart/H = internal_organs_by_name[O_HEART]
+	var/obj/item/organ/internal/heart/H = internal_organs_by_name[BP_HEART]
 	if(!H)
 		return PULSE_NONE
 	else
@@ -1465,9 +1465,9 @@ var/list/rank_prefix = list(\
 /mob/living/carbon/human/should_have_organ(var/organ_check)
 
 	var/obj/item/organ/external/affecting
-	if(organ_check in list(O_HEART, O_LUNGS))
+	if(organ_check in list(BP_HEART, BP_LUNGS))
 		affecting = organs_by_name[BP_CHEST]
-	else if(organ_check in list(O_LIVER, O_KIDNEYS))
+	else if(organ_check in list(BP_LIVER, BP_KIDNEYS))
 		affecting = organs_by_name[BP_GROIN]
 
 	if(affecting && (affecting.robotic >= ORGAN_ROBOT))
