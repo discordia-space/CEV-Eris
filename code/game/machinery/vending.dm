@@ -254,7 +254,7 @@
 /obj/machinery/vending/proc/new_inventory(var/obj/item/I)
 	var/datum/data/vending_product/product = new/datum/data/vending_product(src, I.type, I.name)
 	product.amount = 1
-	product.price = 0
+	product.price = I.get_item_cost()
 	playsound(loc, 'sound/machines/vending_drop.ogg', 100, 1)
 	src.product_records.Add(product)
 	product.instances.Add(I)
@@ -370,17 +370,17 @@
 
 	if (custom_vendor && ID)
 		var/datum/money_account/user_account = get_account(ID.associated_account_number)
-		playsound(usr.loc, 'sound/machines/id_swipe.ogg', 100, 1)
-		visible_message("<span class='info'>\The [usr] swipes \the [ID] through \the [src].</span>")
 		managing = 1
 		if (!user_account)
 			src.status_message = "Error: Unable to access account. Please contact technical support if problem persists."
 			src.status_error = 1
+			SSnano.update_uis(src)
 			return 0
 
 		if(user_account.suspended)
 			src.status_message = "Unable to access account: account suspended."
 			src.status_error = 1
+			SSnano.update_uis(src)
 			return 0
 
 
@@ -405,6 +405,7 @@
 				if(!user_account)
 					src.status_message = "Unable to access account: incorrect credentials."
 					src.status_error = 1
+					SSnano.update_uis(src)
 					return 0
 			if(!machine_vendor_account)
 				machine_vendor_account = user_account
@@ -413,6 +414,8 @@
 			locked = !locked
 			src.status_error = 0
 			src.status_message = "Owner confirmed. Vendor has been [locked ? "" : "un"]locked."
+			playsound(usr.loc, 'sound/machines/id_swipe.ogg', 60, 1)
+			visible_message("<span class='info'>\The [usr] swipes \the [ID] through \the [src], [locked ? "" : "un"]locking it.</span>")
 			SSnano.update_uis(src)
 			return
 
@@ -694,8 +697,7 @@
 		else if (href_list["setaccount"])
 			var/datum/money_account/newaccount = get_account(input("Please enter the number of the account that will handle transactions for this Vendomat.", "Vendomat Account", null) as num)
 			if(!newaccount)
-				src.status_message = "No account specified. Owner's account will be used for handling transactions."
-				earnings_account = machine_vendor_account
+				src.status_message = "No account specified. No change to earnings account has been made."
 			else
 				var/input_pin = input("Please enter the PIN for this account.", "Account PIN", null) as num
 				if(input_pin == newaccount.remote_access_pin)
@@ -707,8 +709,12 @@
 					src.status_error = 1
 
 		else if (href_list["markup"])
-			var/newpercent = input("Please enter the percentage of the sale value the Vendomat should offer when purchasing items. Set to 0 to deny sales.", "Markup", null) as num
-			buying_percentage = max(0, min(newpercent,100))
+			if(vendor_department)
+				src.status_message = "Error: Department Vendomats are not authorized to buy items for fraud concerns."
+				src.status_error = 1
+			else
+				var/newpercent = input("Please enter the percentage of the sale value the Vendomat should offer when purchasing items. Set to 0 to deny sales.", "Markup", null) as num
+				buying_percentage = max(0, min(newpercent,100))
 
 		else if (href_list["setdepartment"])
 			set_department()
@@ -790,9 +796,10 @@
 				src.speak(advertisement)
 				src.last_slogan = world.time
 		else
-			var/slogan = pick(src.slogan_list)
-			src.speak(slogan)
-			src.last_slogan = world.time
+			if(slogan_list.len)
+				var/slogan = pick(src.slogan_list)
+				src.speak(slogan)
+				src.last_slogan = world.time
 
 	if(src.shoot_inventory && prob(2))
 		src.throw_item()
@@ -868,6 +875,7 @@
 		src.desc = "A custom Vendomat. It bears the logo of [newdepartment]."
 		vendor_department = newdepartment:id
 		earnings_account = department_accounts[vendor_department]
+		buying_percentage = 0
 	src.status_error = 0
 
 /*
