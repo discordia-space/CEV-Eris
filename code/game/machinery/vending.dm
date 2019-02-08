@@ -399,7 +399,7 @@
 				return
 			// Enter PIN, so you can't loot a vending machine with only the owner's ID card (as long as they increased the sec level)
 			if(user_account.security_level != 0)
-				var/attempt_pin = input("Enter pin code", "Vendor transaction") as num
+				var/attempt_pin = input("Enter pin code", "Vendor transaction") as num | null
 				user_account = attempt_account_access(ID.associated_account_number, attempt_pin, 2)
 
 				if(!user_account)
@@ -678,7 +678,7 @@
 			var/key = text2num(href_list["setprice"])
 			var/datum/data/vending_product/R = product_records[key]
 
-			R.price = input("Enter item price", "Item price") as num
+			R.price = input("Enter item price.", "Item price") as num | null
 
 		else if (href_list["remove"] && !locked)
 			var/key = text2num(href_list["remove"])
@@ -695,11 +695,11 @@
 			src.status_error = 0
 
 		else if (href_list["setaccount"])
-			var/datum/money_account/newaccount = get_account(input("Please enter the number of the account that will handle transactions for this Vendomat.", "Vendomat Account", null) as num)
+			var/datum/money_account/newaccount = get_account(input("Please enter the number of the account that will handle transactions for this Vendomat.", "Vendomat Account", null) as num | null)
 			if(!newaccount)
 				src.status_message = "No account specified. No change to earnings account has been made."
 			else
-				var/input_pin = input("Please enter the PIN for this account.", "Account PIN", null) as num
+				var/input_pin = input("Please enter the PIN for this account.", "Account PIN", null) as num | null
 				if(input_pin == newaccount.remote_access_pin)
 					src.status_message = "This Vendomat will now use the specified account, owned by [newaccount.get_name()]."
 					src.status_error = 0
@@ -713,8 +713,9 @@
 				src.status_message = "Error: Department Vendomats are not authorized to buy items for fraud concerns."
 				src.status_error = 1
 			else
-				var/newpercent = input("Please enter the percentage of the sale value the Vendomat should offer when purchasing items. Set to 0 to deny sales.", "Markup", null) as num
-				buying_percentage = max(0, min(newpercent,100))
+				var/newpercent = input("Please enter the percentage of the sale value the Vendomat should offer when purchasing items. Set to 0 to deny sales.", "Markup", null) as num | null
+				if(newpercent)
+					buying_percentage = max(0, min(newpercent,100))
 
 		else if (href_list["setdepartment"])
 			set_department()
