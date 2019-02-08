@@ -1,4 +1,4 @@
-#define MAX_LANGUAGES 4
+#define MAX_LANGUAGES 2
 
 /datum/preferences
 	var/list/alternate_languages
@@ -62,6 +62,10 @@
 
 	if(!user)
 		return
+
+	//A quick hack. Todo: Draw this from species or culture or something
+	free_languages[LANGUAGE_COMMON] = TRUE
+
 	/*
 	for(var/thing in pref.cultural_info)
 		var/decl/cultural_info/culture = SSculture.get_culture(pref.cultural_info[thing])
@@ -77,7 +81,7 @@
 	*/
 	for(var/thing in all_languages)
 		var/datum/language/lang = all_languages[thing]
-		if(user.has_admin_rights() || (!(lang.flags & RESTRICTED) && (lang.flags & WHITELISTED) && is_alien_whitelisted(user, lang)))
+		if(!(lang.flags & RESTRICTED))
 			allowed_languages[thing] = TRUE
 
 /datum/category_item/player_setup_item/background/languages/proc/is_allowed_language(var/mob/user, var/datum/language/lang)
