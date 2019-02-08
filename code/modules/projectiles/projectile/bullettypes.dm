@@ -4,7 +4,7 @@
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/c9mmh
-	damage = 24
+	damage = 1.2*22
 	armor_penetration = 10
 	penetrating = 1
 	sharp = 0
@@ -27,7 +27,7 @@
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/a10mmh
-	damage = 27
+	damage = 1.2*22
 	armor_penetration = 10
 	penetrating = 1
 	can_ricochet = TRUE
@@ -48,7 +48,7 @@
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/a357h
-	damage = 50
+	damage = 1.2*40
 	armor_penetration = 10
 	penetrating = 1
 	can_ricochet = TRUE
@@ -101,13 +101,13 @@
 
 /obj/item/projectile/bullet/a762
 	damage = 20
-	armor_penetration = 10
+	armor_penetration = 15
 	penetrating = 1
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/a762h
-	damage = 20
-	armor_penetration = 25
+	damage = 1.2*20
+	armor_penetration = 1.2*15
 	penetrating = 2
 	can_ricochet = TRUE
 
