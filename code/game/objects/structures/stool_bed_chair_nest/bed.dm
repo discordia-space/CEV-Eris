@@ -102,7 +102,7 @@
 		return TRUE
 
 /obj/structure/bed/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/tool/wrench))
+	if(QUALITY_BOLT_TURNING in W.tool_qualities)
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 		dismantle()
 		qdel(src)
@@ -133,7 +133,7 @@
 		add_padding(padding_type)
 		return
 
-	else if (istype(W, /obj/item/weapon/tool/wirecutters))
+	else if (QUALITY_WIRE_CUTTING in W.tool_qualities)
 		if(!padding_material)
 			user << "\The [src] has no padding to remove."
 			return
@@ -177,9 +177,11 @@
 	update_icon()
 
 /obj/structure/bed/proc/dismantle()
-	new material(loc, 5)
+	if(material)
+		material.place_sheet(get_turf(src))
 	if(padding_material)
 		padding_material.place_sheet(get_turf(src))
+	qdel(src)
 
 /obj/structure/bed/psych
 	name = "psychiatrist's couch"
