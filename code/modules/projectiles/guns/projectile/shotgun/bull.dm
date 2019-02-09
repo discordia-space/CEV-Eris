@@ -67,7 +67,7 @@
 
 /obj/item/weapon/gun/projectile/shotgun/bull/unload_ammo(mob/user, allow_dump)
 	if(chambered)
-		to_chat(user, SPAN_NOTICE("You unchamber [(other_chambered ? 2 : 1)] round\s from [src]."))
+		to_chat(user, SPAN_NOTICE("You unchamber [(other_chambered ? 2 : 1)] shell\s from [src]."))
 		chambered.loc = get_turf(src)//Eject casing
 		chambered = null
 	if(other_chambered)
