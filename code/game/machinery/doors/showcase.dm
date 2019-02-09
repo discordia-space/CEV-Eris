@@ -17,6 +17,14 @@
 		return ..(target_dir, FALSE, target)
 
 /obj/machinery/door/blast/shutters/glass/attackby(obj/item/I, mob/user, params)
+	if(QUALITY_PRYING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_VERY_EASY,  required_stat = STAT_ROB))
+			if(((stat & NOPOWER) || (stat & BROKEN)) && !( src.operating ))
+				force_toggle()
+			else
+				usr << SPAN_NOTICE("[src]'s motors resist your effort.")
+		return
+
 	if(density)
 		if(QUALITY_WELDING in I.tool_qualities)
 			if((stat&BROKEN) && have_glass)
