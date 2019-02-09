@@ -80,7 +80,7 @@
 
 //attack_as_weapon
 /obj/item/weapon/soap/attack(mob/living/target, mob/living/user, var/target_zone)
-	if(ishuman(target) && ishuman(user) && !target.stat && user.targeted_organ == "mouth")
+	if(ishuman(target) && ishuman(user) && !target.stat && user.targeted_organ == BP_MOUTH)
 		user.visible_message(
 			SPAN_DANGER("\The [user] washes \the [target]'s mouth out with soap!")
 		)

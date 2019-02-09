@@ -2,7 +2,7 @@
 	name = "plasma vessel"
 	parent_organ = BP_CHEST
 	icon_state = "xgibdown1"
-	organ_tag = O_PLASMA
+	organ_tag = BP_PLASMA
 	var/stored_plasma = 0
 	var/max_plasma = 500
 	owner_verbs = list(/obj/item/organ/internal/xenos/plasmavessel/proc/transfer_plasma)

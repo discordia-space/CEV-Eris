@@ -151,7 +151,7 @@
 		for(var/datum/wound/W in affected.wounds) if(W.internal)
 			return FALSE
 
-		var/obj/item/organ/internal/brain/sponge = target.internal_organs_by_name[O_BRAIN]
+		var/obj/item/organ/internal/brain/sponge = target.internal_organs_by_name[BP_BRAIN]
 		return ..() && (!sponge || !sponge.damage)
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)

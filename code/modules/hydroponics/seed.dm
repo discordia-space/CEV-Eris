@@ -116,7 +116,7 @@
 
 
 	if(!target_limb)
-		target_limb = pick(BP_ALL)
+		target_limb = pick(BP_ALL_LIMBS)
 	var/obj/item/organ/external/affecting = target.get_organ(target_limb)
 	var/damage = 0
 

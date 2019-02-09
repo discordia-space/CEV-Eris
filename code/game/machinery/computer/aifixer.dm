@@ -112,8 +112,8 @@
 			if (src.occupant.health >= 0 && src.occupant.stat == DEAD)
 				src.occupant.stat = CONSCIOUS
 				src.occupant.lying = 0
-				dead_mob_list -= src.occupant
-				living_mob_list += src.occupant
+				GLOB.dead_mob_list -= src.occupant
+				GLOB.living_mob_list += src.occupant
 				src.overlays -= image('icons/obj/computer.dmi', "ai-fixer-404")
 				src.overlays += image('icons/obj/computer.dmi', "ai-fixer-full")
 				src.occupant.add_ai_verbs()

@@ -32,7 +32,7 @@
 		user.visible_message(SPAN_DANGER("\The [user] tries to take a swab sample from \the [H], but they move away."))
 		return
 
-	if(user.targeted_organ == "mouth")
+	if(user.targeted_organ == BP_MOUTH)
 		if(!H.organs_by_name[BP_HEAD])
 			user << SPAN_WARNING("They don't have a head.")
 			return
