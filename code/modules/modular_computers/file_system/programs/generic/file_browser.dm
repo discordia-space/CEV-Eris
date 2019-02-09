@@ -168,7 +168,9 @@
 		else
 			HDD = PRG.computer.hard_drive
 			file = HDD.find_file_by_name(PRG.open_file)
-			if(!istype(file))
+			if(file.filetype == "AUD")
+				data["error"] = "Software error: Please use a dedicated Audio Player program to read audio files."
+			else if(!istype(file))
 				data["error"] = "I/O ERROR: Unable to open file."
 			else
 				data["filedata"] = pencode2html(file.stored_data)
