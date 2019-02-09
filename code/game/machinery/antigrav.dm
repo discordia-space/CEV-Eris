@@ -5,9 +5,9 @@
 	density = 1
 	anchored = 0
 	use_power = 1
-	idle_power_usage = 10
+	idle_power_usage = 0
 	active_power_usage = 10000
-	circuit = /obj/item/weapon/circuitboard/autolathe
+	circuit = /obj/item/weapon/circuitboard/antigrav
 
 	var/on = FALSE
 	var/image/ball = null
