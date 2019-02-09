@@ -102,10 +102,9 @@
 		return TRUE
 
 /obj/structure/bed/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(QUALITY_BOLT_TURNING in W.tool_qualities)
+	if(W.has_quality(QUALITY_BOLT_TURNING))
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 		dismantle()
-		qdel(src)
 	else if(istype(W,/obj/item/stack))
 		if(padding_material)
 			user << "\The [src] is already padded."
@@ -133,7 +132,7 @@
 		add_padding(padding_type)
 		return
 
-	else if (QUALITY_WIRE_CUTTING in W.tool_qualities)
+	else if (W.has_quality(QUALITY_WIRE_CUTTING))
 		if(!padding_material)
 			user << "\The [src] has no padding to remove."
 			return
