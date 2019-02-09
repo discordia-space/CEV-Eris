@@ -254,11 +254,11 @@ proc/get_radio_key_from_channel(var/channel)
 	for(var/client/C in show_to)
 		C.images += I
 	animate(I, transform = 0, alpha = 255, time = 5, easing = ELASTIC_EASING)
-	sleep(duration-5)
-	animate(I, alpha = 0, time = 5, easing = EASE_IN)
-	sleep(5)
-	for(var/client/C in show_to)
-		C.images -= I
+	spawn(duration-5)
+		animate(I, alpha = 0, time = 5, easing = EASE_IN)
+		spawn(5)
+			for(var/client/C in show_to)
+				C.images -= I
 
 
 /mob/living/proc/say_signlang(var/message, var/verb="gestures", var/datum/language/language)
