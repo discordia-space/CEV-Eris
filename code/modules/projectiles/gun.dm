@@ -8,11 +8,13 @@
 /datum/firemode
 	var/name = "default"
 	var/list/settings = list()
+	var/obj/item/weapon/gun/gun = null
 
-/datum/firemode/New(obj/item/weapon/gun/gun, list/properties = null)
+/datum/firemode/New(obj/item/weapon/gun/_gun, list/properties = null)
 	..()
 	if(!properties) return
 
+	gun = _gun
 	for(var/propname in properties)
 		var/propvalue = properties[propname]
 
@@ -23,9 +25,16 @@
 		else
 			settings[propname] = propvalue
 
-/datum/firemode/proc/apply_to(obj/item/weapon/gun/gun)
+/datum/firemode/proc/apply_to(obj/item/weapon/gun/_gun)
+	gun = _gun
 	for(var/propname in settings)
-		gun.vars[propname] = settings[propname]
+		if (propname in gun.vars)
+			gun.vars[propname] = settings[propname]
+
+//Called whenever the firemode is switched to, or the gun is picked up while its active
+/datum/firemode/proc/update()
+	return
+
 
 //Parent gun type. Guns are weapons that can be aimed at mobs and act over a distance
 /obj/item/weapon/gun
@@ -50,6 +59,7 @@
 	attack_verb = list("struck", "hit", "bashed")
 	zoomdevicename = "scope"
 
+	var/damage_multiplier = 1 //Multiplies damage of projectiles fired from this gun
 	var/burst = 1
 	var/fire_delay = 6 	//delay after shooting before the gun can be used again
 	var/burst_delay = 2	//delay between shots, if firing in bursts
@@ -62,6 +72,8 @@
 	var/list/dispersion = list(0)
 	var/requires_two_hands
 	var/wielded_icon = "gun_wielded"
+
+	var/suppress_delay_warning = FALSE
 
 	var/safety = TRUE//is safety will be toggled on spawn() or not
 	var/restrict_safety = FALSE//if gun don't need safety in all - toggle to TRUE
@@ -83,7 +95,19 @@
 /obj/item/weapon/gun/New()
 	..()
 	for(var/i in 1 to firemodes.len)
-		firemodes[i] = new /datum/firemode(src, firemodes[i])
+		var/list/L = firemodes[i]
+
+		//If this var is set, it means spawn a specific subclass of firemode
+		if (L["mode_type"])
+			var/newtype = L["mode_type"]
+			firemodes[i] = new newtype(src, firemodes[i])
+		else
+			firemodes[i] = new /datum/firemode(src, firemodes[i])
+
+	//Properly initialize the default firing mode
+	if (firemodes.len)
+		var/datum/firemode/F = firemodes[sel_mode]
+		F.apply_to(src)
 
 	if(!restrict_safety)
 		verbs += /obj/item/weapon/gun/proc/toggle_safety//addint it to all guns
@@ -168,7 +192,7 @@
 		Fire(A,user,params) //Otherwise, fire normally.
 
 /obj/item/weapon/gun/attack(atom/A, mob/living/user, def_zone)
-	if (A == user && user.targeted_organ == "mouth" && !mouthshoot)
+	if (A == user && user.targeted_organ == BP_MOUTH && !mouthshoot)
 		handle_suicide(user)
 	else if(user.a_intent == I_HURT) //point blank shooting
 		Fire(A, user, pointblank=1)
@@ -178,15 +202,18 @@
 /obj/item/weapon/gun/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
 	if(!user || !target) return
 
+	if(world.time < next_fire_time)
+		if (!suppress_delay_warning && world.time % 3) //to prevent spam
+			user << SPAN_WARNING("[src] is not ready to fire again!")
+		return
+
+
 	add_fingerprint(user)
 
 	if(!special_check(user))
 		return
 
-	if(world.time < next_fire_time)
-		if (world.time % 3) //to prevent spam
-			user << SPAN_WARNING("[src] is not ready to fire again!")
-		return
+
 
 	var/shoot_time = (burst - 1)* burst_delay
 	user.setClickCooldown(shoot_time) //no clicking on things while shooting
@@ -207,6 +234,8 @@
 
 		var/disp = dispersion[min(i, dispersion.len)] + held_disp_mod
 		process_accuracy(projectile, user, target, disp)
+
+		projectile.multiply_projectile_damage(damage_multiplier)
 
 		if(pointblank)
 			process_point_blank(projectile, user, target)
@@ -249,6 +278,7 @@
 	else
 		src.visible_message("*click click*")
 	playsound(src.loc, 'sound/weapons/guns/misc/gun_empty.ogg', 100, 1)
+	update_firemode() //Stops automatic weapons spamming this shit endlessly
 
 //called after successfully firing
 /obj/item/weapon/gun/proc/handle_post_fire(mob/user, atom/target, var/pointblank=0, var/reflex=0)
@@ -404,13 +434,13 @@
 /obj/item/weapon/gun/proc/switch_firemodes()
 	if(firemodes.len <= 1)
 		return null
-
+	update_firemode(FALSE) //Disable the old firing mode before we switch away from it
 	sel_mode++
 	if(sel_mode > firemodes.len)
 		sel_mode = 1
 	var/datum/firemode/new_mode = firemodes[sel_mode]
 	new_mode.apply_to(src)
-
+	new_mode.update()
 	return new_mode
 
 /obj/item/weapon/gun/attack_self(mob/user)
@@ -425,6 +455,19 @@
 			safety = !safety
 			playsound(user, 'sound/weapons/selector.ogg', 50, 1)
 			user << SPAN_NOTICE("You toggle the safety [safety ? "on":"off"].")
+			//Update firemode when safeties are toggled
+			update_firemode()
+
+
+//Finds the current firemode and calls update on it. This is called from a few places:
+//When firemode is changed
+//When safety is toggled
+//When gun is picked up
+//When gun is readied
+/obj/item/weapon/gun/proc/update_firemode(var/force_state = null)
+	if (sel_mode && firemodes && firemodes.len)
+		var/datum/firemode/new_mode = firemodes[sel_mode]
+		new_mode.update(force_state)
 
 /obj/item/weapon/gun/AltClick(mob/user)
 	if(!restrict_safety)
@@ -433,6 +476,24 @@
 			return
 
 		check_safety(user)
+
+
+//Updating firing modes at appropriate times
+/obj/item/weapon/gun/pickup(mob/user)
+	.=..()
+	update_firemode()
+
+/obj/item/weapon/gun/dropped(mob/user)
+	.=..()
+	update_firemode(FALSE)
+
+/obj/item/weapon/gun/swapped_from()
+	.=..()
+	update_firemode(FALSE)
+
+/obj/item/weapon/gun/swapped_to()
+	.=..()
+	update_firemode()
 
 /obj/item/weapon/gun/proc/toggle_safety()
 	set name = "Toggle gun's safety"

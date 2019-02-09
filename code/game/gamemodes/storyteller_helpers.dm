@@ -45,7 +45,7 @@
 	med = 0
 	sci = 0
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M.client && (M.mind && !M.mind.antagonist.len) && M.stat != DEAD && (ishuman(M) || isrobot(M) || isAI(M)))
 			var/datum/job/job = SSjob.GetJob(M.mind.assigned_role)
 			if(job)
@@ -132,7 +132,7 @@ var/list/event_last_fired = list()
 	active_with_role["Janitor"] = 0
 	active_with_role["Gardener"] = 0
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		// longer than 10 minutes AFK counts them as inactive
 		if(!M.mind || !M.client || M.client.is_afk(10 MINUTES))
 			continue

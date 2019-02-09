@@ -234,3 +234,8 @@
 				if(src)
 					step(src, pick(NORTH,SOUTH,EAST,WEST))
 					sleep(rand(2,4))
+
+
+//Intended for gun projectiles, but defined at this level for various things that aren't of projectile type
+/obj/proc/multiply_projectile_damage(var/newmult)
+	throwforce = initial(throwforce)*newmult

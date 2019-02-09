@@ -2,7 +2,7 @@
 	name = "kidneys"
 	icon_state = "kidneys"
 	gender = PLURAL
-	organ_tag = O_KIDNEYS
+	organ_tag = BP_KIDNEYS
 	parent_organ = BP_GROIN
 
 /obj/item/organ/internal/kidneys/Process()

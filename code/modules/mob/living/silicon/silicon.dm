@@ -36,14 +36,14 @@
 	mob_classification = CLASSIFICATION_SYNTHETIC
 
 /mob/living/silicon/New()
-	silicon_mob_list |= src
+	GLOB.silicon_mob_list |= src
 	..()
 	add_language(LANGUAGE_COMMON)
 	init_id()
 	init_subsystems()
 
 /mob/living/silicon/Destroy()
-	silicon_mob_list -= src
+	GLOB.silicon_mob_list -= src
 	for(var/datum/alarm_handler/AH in SSalarm.all_handlers)
 		AH.unregister_alarm(src)
 	. = ..()

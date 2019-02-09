@@ -1,7 +1,7 @@
 /obj/item/organ_module/debugger
 	name = "debug organ module"
 	desc = "Embedded organ module."
-	allowed_organs = BP_ALL
+	allowed_organs = BP_ALL_LIMBS
 
 /obj/item/organ_module/debugger/onInstall(var/obj/item/organ/external/E)
 	usr << "Module installed"

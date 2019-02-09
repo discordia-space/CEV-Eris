@@ -2,12 +2,12 @@
 //added different sort of gibs and animations. N
 /mob/proc/gib(anim="gibbed-m",do_gibs)
 	death(1)
-	transforming = 1
+	transforming = 1 //TODO: Replace this with the define from bay, after porting their movement system
 	canmove = 0
 	icon = null
 	invisibility = 101
 	update_lying_buckled_and_verb_status()
-	dead_mob_list -= src
+	GLOB.dead_mob_list -= src
 
 	var/atom/movable/overlay/animation = null
 	animation = new(loc)
@@ -20,10 +20,11 @@
 
 
 
-	spawn(15)
-		drop_embedded()
-		if(animation)	qdel(animation)
-		if(src)			qdel(src)
+	addtimer(CALLBACK(src, .proc/check_delete, animation), 15)
+
+/mob/proc/check_delete(var/atom/movable/overlay/animation)
+	if(animation)	qdel(animation)
+	if(src)			qdel(src)
 
 //This is the proc for turning a mob into ash. Mostly a copy of gib code (above).
 //Originally created for wizard disintegrate. I've removed the virus code since it's irrelevant here.
@@ -50,14 +51,13 @@
 
 
 
-	dead_mob_list -= src
-	spawn(15)
-		drop_embedded()
-		if(animation)	qdel(animation)
-		if(src)			qdel(src)
+	remove_from_dead_mob_list()
+	addtimer(CALLBACK(src, .proc/check_delete, animation), 15)
 
 
-/mob/proc/death(gibbed,deathmessage="seizes up and falls limp...")
+
+/mob/proc/death(gibbed,deathmessage="seizes up and falls limp...",show_dead_message = "You have died.")
+
 
 	if(stat == DEAD)
 		return 0
@@ -68,30 +68,19 @@
 		src.visible_message("<b>\The [src.name]</b> [deathmessage]")
 
 	stat = DEAD
-
 	update_lying_buckled_and_verb_status()
+	reset_plane_and_layer()
 
-	layer = MOB_LAYER
-
-/*	if(blind && client)
-		blind.alpha = 0*/
-
-	sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
-	see_in_dark = 8
-	see_invisible = SEE_INVISIBLE_LEVEL_TWO
+	set_sight(sight|SEE_TURFS|SEE_MOBS|SEE_OBJS)
+	set_see_in_dark(8)
+	set_see_invisible(SEE_INVISIBLE_LEVEL_TWO)
 
 	drop_r_hand()
 	drop_l_hand()
 
-	//TODO:  Change death state to health_dead for all these icon files.  This is a stop gap.
-/*
-	if(healths)
-		if("health7" in icon_states(healths.icon))
-			healths.icon_state = "health7"
-		else
-			healths.icon_state = "health6"
-			log_debug("[src] ([src.type]) died but does not have a valid health7 icon_state (using health6 instead). report this error to Ccomp5950 or your nearest Developer")
-*/
+	//Bay statistics system would be hooked in here, but we're not porting it
+
+
 	if(isliving(src))
 		var/mob/living/L = src
 		if(L.HUDneed.Find("health"))
@@ -110,11 +99,9 @@
 		set_death_time(CREW, world.time)//Crew is the fallback
 	if(mind)
 		mind.store_memory("Time of death: [stationtime2text()]", 0)
-	living_mob_list -= src
-	dead_mob_list |= src
-
+	switch_from_living_to_dead_mob_list()
 	updateicon()
-
+	to_chat(src,"<span class='deadsay'>[show_dead_message]</span>")
 	return 1
 
 

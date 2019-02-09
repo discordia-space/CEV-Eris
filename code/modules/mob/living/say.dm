@@ -287,7 +287,7 @@ proc/get_radio_key_from_channel(var/channel)
 				if(ishuman(speaker))
 					var/mob/living/carbon/human/H = speaker
 					speaker_name = H.rank_prefix_name(speaker_name)
-				src << "<span class='name'>[speaker_name]</span>[alt_name] talks but you cannot hear \him."
+				to_chat(src,"<span class='name'>[speaker_name]</span>[alt_name] talks but you cannot hear \him.")
 		return
 
 	//make sure the air can transmit speech - hearer's side
@@ -333,7 +333,7 @@ proc/get_radio_key_from_channel(var/channel)
 
 	if(sdisabilities&DEAF || ear_deaf)
 		if(prob(20))
-			src << SPAN_WARNING("You feel your headset vibrate but can hear nothing from it!")
+			to_chat(src, SPAN_WARNING("You feel your headset vibrate but can hear nothing from it!"))
 		return
 
 	if(sleeping || stat == UNCONSCIOUS) //If unconscious or sleeping
@@ -381,4 +381,4 @@ proc/get_radio_key_from_channel(var/channel)
 	else
 		heard = "<span class = 'game_say'>...<i>You almost hear someone talking</i>...</span>"
 
-	src << heard
+	to_chat(src, heard)

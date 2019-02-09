@@ -84,7 +84,6 @@
 	desc = "Ancient language of Russian colonists, rusted with time and bastardized with technical terms in everyday use."
 	colour = "russian"
 	key = "r"
-	flags = RESTRICTED
 	space_chance = 80
 	syllables = list("zhena", "reb", "kot", "tvoy", "vodka", "blyad", "verbovka", "ponimat", "zhit", "kley", "sto", "yat", "si", "det", \
 					 "re", "be", "nok", "chto", "techno", "kak", "govor", "navernoe", "da", "net", "horosho", "pochemu", "privet","lubov", \
