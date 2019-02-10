@@ -82,7 +82,7 @@
 	var/any_candidates = FALSE
 
 	if(temp.outer)
-		for(var/mob/observer/candidate in player_list)
+		for(var/mob/observer/candidate in GLOB.player_list)
 			if(!candidate.client)
 				if (report) report << SPAN_NOTICE("Failure: [candidate] is disconnected")
 				continue

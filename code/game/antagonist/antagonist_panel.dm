@@ -69,7 +69,7 @@
 					create_antagonist(M)
 			else
 				var/list/CD = list()
-				for(var/mob/observer/M in player_list)
+				for(var/mob/observer/M in GLOB.player_list)
 					if(can_become_antag_ghost(M))
 						CD[M.name] = M
 				CD["CANCEL"] = null

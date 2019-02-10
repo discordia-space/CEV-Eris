@@ -78,7 +78,7 @@ var/datum/storyteller/storyteller = null
 
 	var/engineer = FALSE
 	var/command = FALSE
-	for(var/mob/new_player/player in player_list)
+	for(var/mob/new_player/player in GLOB.player_list)
 		if(player.ready && player.mind)
 			if(player.mind.assigned_role in list(JOBS_COMMAND))
 				command = TRUE
@@ -88,7 +88,7 @@ var/datum/storyteller/storyteller = null
 				return TRUE
 
 	var/tcol = "red"
-	if(player_list.len <= 10)
+	if(GLOB.player_list.len <= 10)
 		tcol = "black"
 
 	if(announce)
@@ -99,7 +99,7 @@ var/datum/storyteller/storyteller = null
 		else if(!command)
 			world << "<b><font color='[tcol]'>A command officer is required to start round.</font></b>"
 
-	if(player_list.len <= 10)
+	if(GLOB.player_list.len <= 10)
 		world << "<i>But there's less than 10 players, so this requirement will be ignored.</i>"
 		return TRUE
 

@@ -2,7 +2,7 @@
 	name = "acid gland"
 	parent_organ = BP_HEAD
 	icon_state = "xgibtorso"
-	organ_tag = O_ACID
+	organ_tag = BP_ACID
 	owner_verbs = list(
 		/obj/item/organ/internal/xenos/acidgland/proc/neurotoxin,
 		/obj/item/organ/internal/xenos/acidgland/proc/corrosive_acid

@@ -2,7 +2,7 @@
 	name = "lungs"
 	icon_state = "lungs"
 	gender = PLURAL
-	organ_tag = O_LUNGS
+	organ_tag = BP_LUNGS
 	parent_organ = BP_CHEST
 
 	var/breath_type

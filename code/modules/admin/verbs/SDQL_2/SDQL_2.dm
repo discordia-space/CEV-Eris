@@ -1,7 +1,7 @@
 /*
 	Welcome admins, badmins and coders alike, to Structured Datum Query Language.
 	SDQL allows you to powerfully run code on batches of objects (or single objects, it's still unmatched even there.)
-	When I say "powerfully" I mean it you're in for a ride. 
+	When I say "powerfully" I mean it you're in for a ride.
 
 	Ok so say you want to get a list of every mob. How does one do this?
 	"SELECT /mob"
@@ -24,7 +24,7 @@
 
 	Here "*" as type functions as a wildcard.
 	We know everything in the global SSmachines.machinery list is a machine.
-	
+
 	You can specify "IN <expression>" to return a list to operate on.
 	This can be any list that you can wizard together from global variables and global proc calls.
 	Every variable/proc name in the "IN" block is global.
@@ -57,7 +57,7 @@
 	Oh yeah you'd rather not delete all the spiders in maintenace. Only that one room the spiders were spawned in.
 
 	"DELETE /mob/living/carbon/superior_animal/giant_spider WHERE loc.loc == marked"
-	
+
 	Here I used VV to mark the area they were in, and since loc.loc = area, voila.
 	Only the spiders in a specific area are gone.
 
@@ -107,8 +107,8 @@
 
 	"IN" (or "FROM", that works too but it's kinda weird to read),
 	is the list of objects to work on. This defaults to world if not provided.
-	But doing something like "IN living_mob_list" is quite handy and can optimize your query.
-	All names inside the IN block are global scope, so you can do living_mob_list (a global var) easily.
+	But doing something like "IN GLOB.living_mob_list" is quite handy and can optimize your query.
+	All names inside the IN block are global scope, so you can do GLOB.living_mob_list (a global var) easily.
 	You can also run it on a single object. Because SDQL is that convenient even for single operations.
 
 	<type> filters out objects of, well, that type easily. "*" is a wildcard and just takes everything in the source list.
@@ -193,14 +193,14 @@ ADMIN_VERB_ADD(/client/proc/SDQL2_query, R_DEBUG, FALSE)
 					for(var/datum/d in objs)
 						SDQL_var(d, query_tree["call"][1], source = d)
 						CHECK_TICK
-					
+
 					to_chat(usr, "SDQL Query done")
 
 				if("delete")
 					for(var/datum/d in objs)
 						qdel(d)
 						CHECK_TICK
-					
+
 					to_chat(usr, "SDQL Query done")
 
 				if("select")
@@ -209,7 +209,7 @@ ADMIN_VERB_ADD(/client/proc/SDQL2_query, R_DEBUG, FALSE)
 						SDQL_print(t, text_list)
 						text_list += "<br>"
 						CHECK_TICK
-					
+
 					var/text = text_list.Join()
 
 					if (text)
@@ -243,7 +243,7 @@ ADMIN_VERB_ADD(/client/proc/SDQL2_query, R_DEBUG, FALSE)
 										break
 
 							CHECK_TICK
-					
+
 					to_chat(usr, "SDQL Query done")
 
 	catch (var/exception/e)
@@ -328,7 +328,7 @@ ADMIN_VERB_ADD(/client/proc/SDQL2_query, R_DEBUG, FALSE)
 	if (type == "*")
 		for (var/x in location)
 			out += x
-		
+
 		return out
 
 	if(ispath(type, /mob))
@@ -720,7 +720,7 @@ ADMIN_VERB_ADD(/client/proc/SDQL2_query, R_DEBUG, FALSE)
 
 		else
 			text_list += ": [object]"
-	
+
 	else if (islist(object))
 		var/list/L = object
 		var/first = TRUE

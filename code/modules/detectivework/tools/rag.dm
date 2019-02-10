@@ -111,7 +111,7 @@
 			user.do_attack_animation(src)
 			M.IgniteMob()
 		else if(reagents.total_volume)
-			if(user.targeted_organ == "mouth")
+			if(user.targeted_organ == BP_MOUTH)
 				user.do_attack_animation(src)
 				user.visible_message(
 					SPAN_DANGER("\The [user] smothers [target] with [src]!"),

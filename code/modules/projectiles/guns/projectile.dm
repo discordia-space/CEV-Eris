@@ -1,3 +1,4 @@
+
 #define HOLD_CASINGS	0 //do not do anything after firing. Manual action, like pump shotguns, or guns that want to define custom behaviour
 #define EJECT_CASINGS	1 //drop spent casings on the ground after firing
 #define CYCLE_CASINGS 	2 //experimental: cycle casings, like a revolver. Also works for multibarrelled guns
@@ -148,6 +149,7 @@
 
 				if(reload_sound) playsound(src.loc, reload_sound, 75, 1)
 				cock_gun(user)
+				update_firemode()
 			if(SPEEDLOADER)
 				if(loaded.len >= max_shells)
 					user << SPAN_WARNING("[src] is full!")
@@ -168,6 +170,7 @@
 					user.visible_message("[user] reloads [src].", SPAN_NOTICE("You load [count] round\s into [src]."))
 					if(reload_sound) playsound(src.loc, reload_sound, 75, 1)
 					cock_gun(user)
+				update_firemode()
 		AM.update_icon()
 	else if(istype(A, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = A
@@ -195,6 +198,7 @@
 			user.remove_from_mob(C)
 			C.loc = src
 			loaded.Insert(1, C) //add to the head of the list
+		update_firemode()
 		user.visible_message("[user] inserts \a [C] into [src].", SPAN_NOTICE("You insert \a [C] into [src]."))
 		if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, 1)
 
