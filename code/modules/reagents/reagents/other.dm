@@ -267,6 +267,8 @@
 		if(istype(T, /turf/simulated))
 			var/turf/simulated/S = T
 			S.dirt = 0
+			if(S.wet >= 2)
+				S.wet_floor(1, TRUE)
 		T.clean_blood()
 
 		for(var/mob/living/carbon/slime/M in T)

@@ -636,6 +636,9 @@
 		if(!isnum(mute_type))	return
 
 		cmd_admin_mute(M, mute_type)
+	else if(href_list["check_antagonist"])
+		if(!check_rights(R_ADMIN))	return
+		storyteller.storyteller_panel()
 
 	else if(href_list["c_mode"])
 		if(!check_rights(R_ADMIN))	return
@@ -647,6 +650,7 @@
 			dat += {"<A href='?src=\ref[src];c_mode2=[mode]'>[config.storyteller_names[mode]]</A><br>"}
 		dat += {"Now: [master_storyteller]"}
 		usr << browse(dat, "window=c_mode")
+
 
 	else if(href_list["c_mode2"])
 		if(!check_rights(R_ADMIN|R_SERVER))	return
