@@ -34,6 +34,7 @@
 	var/received_irc_pm = -99999
 	var/irc_admin			//IRC admin that spoke with them last.
 	var/mute_irc = 0
+	var/warned_about_multikeying = 0	// Prevents people from being spammed about multikeying every time their mob changes.
 
 
 		////////////////////////////////////
