@@ -70,7 +70,7 @@ reinforcements left it will attempt to evacuate*/
 			//Add all nearby burrows to the distressed burrows list
 			//for (var/obj/structure/burrow/B in range(20, loc))
 			for (var/obj/structure/burrow/B in find_nearby_burrows())
-				B.distress(TRUE)
+				B.distress(TRUE, /mob/living/carbon/superior_animal/roach)
 
 
 

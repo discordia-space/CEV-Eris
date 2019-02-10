@@ -29,6 +29,7 @@
 
 	//Vars for migration
 	var/processing = FALSE
+	var/wanted_type = null //What mob we would like to come to this location
 	var/obj/structure/burrow/target //Burrow we're currently sending mobs to
 	var/obj/structure/burrow/recieving	//Burrow currently sending mobs to us
 
@@ -160,6 +161,8 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 		//add all the mobs in our contents to the sending mobs list
 		sending_mobs = list()
 		for (var/mob/M in contents)
+			if(target.wanted_type && !istype(M, target.wanted_type))
+				continue
 			sending_mobs.Add(M)
 
 	target.prepare_reception(migration_initiated, duration, src)
@@ -177,6 +180,8 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 		if (!is_valid(L))
 			continue
 
+		if(target.wanted_type && !istype(L, target.wanted_type))
+			continue
 
 		//Alright now how do we make this mob come to us?
 		if (issuperioranimal(L))
@@ -326,7 +331,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 					//Emerging from a burrow will create rubble and mess
 					if(spawn_rubble(loc, 2, 80))
 						spawn_rubble(loc, 3, 30)
-
+		wanted_type = null
 
 	//Lets reset all these vars that we used during migration
 	STOP_PROCESSING(SSobj, src)
@@ -380,10 +385,12 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 		migrate_to(btarget, 10 SECONDS, 1)
 
 
-/obj/structure/burrow/proc/distress(var/immediate = FALSE)
+/obj/structure/burrow/proc/distress(var/immediate = FALSE, var/type)
 	//This burrow requests reinforcements from elsewhere
 	if (reinforcements <= 0)
 		return
+	if(type)
+		wanted_type = type
 
 	distressed_burrows |= src //Add ourselves to a global list.
 	//The migration subsystem will look at it and send things.
