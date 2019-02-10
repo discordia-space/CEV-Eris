@@ -12,13 +12,13 @@
 	var/last_launch = 0
 
 	var/list/postertypes = list(
-		"ironhammer" = COLOR_LIGHTING_BLUE_MACHINERY,
-		"frozenstar" = COLOR_LIGHTING_BLUE_MACHINERY,
-		"neotheology" = COLOR_LIGHTING_ORANGE_MACHINERY,
-		"asters" = COLOR_LIGHTING_GREEN_MACHINERY,
-		"tehnomancers" = COLOR_LIGHTING_ORANGE_MACHINERY,
-		"moebius" = COLOR_LIGHTING_PURPLE_MACHINERY,
-		"med" = COLOR_LIGHTING_GREEN_MACHINERY,
+		"ironhammer" = COLOR_LIGHTING_BLUE_BRIGHT,
+		"frozenstar" = COLOR_LIGHTING_BLUE_BRIGHT,
+		"neotheology" = COLOR_LIGHTING_ORANGE_BRIGHT,
+		"asters" = COLOR_LIGHTING_GREEN_BRIGHT,
+		"tehnomancers" = COLOR_LIGHTING_ORANGE_BRIGHT,
+		"moebius" = COLOR_LIGHTING_PURPLE_BRIGHT,
+		"med" = COLOR_LIGHTING_GREEN_BRIGHT,
 	)
 
 /obj/machinery/holoposter/update_icon()
