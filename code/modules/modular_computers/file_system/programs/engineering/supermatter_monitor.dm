@@ -94,13 +94,13 @@
 			data["SM_gas_O2"] = round(100*air.gas["oxygen"]/air.total_moles,0.01)
 			data["SM_gas_CO2"] = round(100*air.gas["carbon_dioxide"]/air.total_moles,0.01)
 			data["SM_gas_N2"] = round(100*air.gas["nitrogen"]/air.total_moles,0.01)
-			data["SM_gas_TX"] = round(100*air.gas["plasma"]/air.total_moles,0.01)
+			data["SM_gas_PZ"] = round(100*air.gas["plasma"]/air.total_moles,0.01)
 			data["SM_gas_N2O"] = round(100*air.gas["sleeping_agent"]/air.total_moles,0.01)
 		else
 			data["SM_gas_O2"] = 0
 			data["SM_gas_CO2"] = 0
 			data["SM_gas_N2"] = 0
-			data["SM_gas_TX"] = 0
+			data["SM_gas_PZ"] = 0
 			data["SM_gas_N2O"] = 0
 	else
 		var/list/SMS = list()
