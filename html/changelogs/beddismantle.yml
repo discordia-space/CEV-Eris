@@ -1,0 +1,5 @@
+author: Carbonhell
+delete-after: True
+changes: 
+  - bugfix: "Beds, chairs and all subtypes can now be dismantled again."
+  - tweak: "They can also be dismantled by any tool with the bolt turning quality, and the padding removed with the wirecutting quality."

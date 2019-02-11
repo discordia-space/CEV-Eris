@@ -226,8 +226,7 @@ proc/get_radio_key_from_channel(var/channel)
 	var/speech_bubble_test = say_test(message)
 	var/image/speech_bubble = image('icons/mob/talk.dmi', src, "h[speech_bubble_test]")
 	speech_bubble.layer = ABOVE_MOB_LAYER
-	spawn(30)
-		qdel(speech_bubble)
+	QDEL_IN(speech_bubble, 30)
 
 	var/list/speech_bubble_recipients = list()
 	for(var/mob/M in listening)
@@ -254,11 +253,10 @@ proc/get_radio_key_from_channel(var/channel)
 	for(var/client/C in show_to)
 		C.images += I
 	animate(I, transform = 0, alpha = 255, time = 5, easing = ELASTIC_EASING)
-	sleep(duration-5)
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/fade_speechbubble, I), duration-5)
+
+/proc/fade_speechbubble(image/I)
 	animate(I, alpha = 0, time = 5, easing = EASE_IN)
-	sleep(5)
-	for(var/client/C in show_to)
-		C.images -= I
 
 
 /mob/living/proc/say_signlang(var/message, var/verb="gestures", var/datum/language/language)
