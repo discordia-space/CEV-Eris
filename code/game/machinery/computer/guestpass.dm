@@ -5,7 +5,7 @@
 	name = "guest pass"
 	desc = "Allows temporary access to station areas."
 	icon_state = "guest"
-	light_color = "#0099ff"
+	light_color = COLOR_LIGHTING_BLUE_MACHINERY
 
 	var/temp_access = list() //to prevent agent cards stealing access as permanent
 	var/expiration_time = 0
@@ -50,7 +50,7 @@
 	icon_state = "guest"
 	icon_keyboard = null
 	icon_screen = "pass"
-	light_color = COLOR_BLUE
+	light_color = COLOR_LIGHTING_BLUE_MACHINERY
 	light_range = 1.5
 	light_power = 0.2
 	light_range_on = 1.5
