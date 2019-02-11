@@ -182,7 +182,7 @@
 			E.take_damage(5, sharp = FALSE)
 			//Deal 25 damage in five hits. Using multiple small hits mostly prevents internal damage
 
-		M.custom_pain("You feel cruciform rips into your chest!",1)
+		M.custom_pain("You feel the nails of the cruciform drive into your ribs!",1)
 		M.update_implants()
 		M.updatehealth()
 
