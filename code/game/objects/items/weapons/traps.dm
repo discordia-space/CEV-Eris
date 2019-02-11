@@ -266,6 +266,7 @@ Very rarely it might escape
 	//If its dead or gone, stop processing
 	//Also stop if a player took control of it, they can try to free themselves
 	if (QDELETED(L) || L.stat == DEAD || L.loc != loc || L.client)
+		release_mob()		// Reset the trap properly if the roach was gibbed during the processing.
 		return PROCESS_KILL
 
 	if (L.incapacitated())
