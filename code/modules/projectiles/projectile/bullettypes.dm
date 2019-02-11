@@ -18,11 +18,15 @@
 #define damage_50 50
 //Other
 #define damage_12g_slug 50
+
+/obj/item/projectile/bullet/hv
+	step_delay = 0.75
+
 /obj/item/projectile/bullet/c9mm
 	damage = damage_9mm
 	can_ricochet = TRUE
 
-/obj/item/projectile/bullet/c9mmh
+/obj/item/projectile/bullet/hv/c9mm
 	damage = HV_MULT*damage_9mm
 	armor_penetration = 10
 	penetrating = 1
@@ -45,7 +49,7 @@
 	damage = damage_10mm
 	can_ricochet = TRUE
 
-/obj/item/projectile/bullet/a10mmh
+/obj/item/projectile/bullet/hv/a10mm
 	damage = HV_MULT*damage_10mm
 	armor_penetration = 10
 	penetrating = 1
@@ -66,7 +70,7 @@
 	damage = damage_357
 	can_ricochet = TRUE
 
-/obj/item/projectile/bullet/a357h
+/obj/item/projectile/bullet/hv/a357
 	damage = HV_MULT*damage_357
 	armor_penetration = 10
 	penetrating = 1
@@ -128,7 +132,7 @@
 	penetrating = 1
 	can_ricochet = TRUE
 
-/obj/item/projectile/bullet/a762h
+/obj/item/projectile/bullet/hv/a762
 	damage = HV_MULT*damage_762
 	armor_penetration = HV_MULT*AP_762
 	penetrating = 2
