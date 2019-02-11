@@ -11,7 +11,7 @@
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
 	caliber = "shotgun"
-	var/obj/item/ammo_casing/other_chambered = null
+	var/reload = 1
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
 	burst_delay = null
 	fire_delay = null
@@ -29,26 +29,13 @@
 		if(!chambered.BB)
 			chambered.loc = get_turf(src)//Eject casing
 			chambered = null
-	if(other_chambered)
-		if(!other_chambered.BB)
-			other_chambered.loc = get_turf(src)//Eject other casing
-			other_chambered = null
-		else if(!chambered) //this is to prevent the case where theres one in the side chamber and nothing to load the main chamber
-			chambered = other_chambered
-			other_chambered = null
-
-	//load the chambers
-	var/obj/item/ammo_casing/AC
 	if(!chambered)
 		if(loaded.len)
-			AC = loaded[1] //load next casing.
+			var/obj/item/ammo_casing/AC = loaded[1] //load next casing.
 			loaded -= AC //Remove casing from loaded list.
 			chambered = AC
-	if(!other_chambered)
-		if(loaded.len)
-			AC = loaded[1] //load another casing.
-			loaded -= AC //Remove casing from loaded list.
-			other_chambered = AC
+			if(chambered.BB != null)
+				reload = 0
 	update_icon()
 
 /obj/item/weapon/gun/projectile/shotgun/bull/consume_next_projectile()
@@ -61,22 +48,22 @@
 	if(chambered)
 		chambered.loc = get_turf(src)//Eject casing
 		chambered = null
-		if(other_chambered != null)
-			chambered = other_chambered //load the main barrel we use with the side barrel.
-			other_chambered = null
+		if(!reload)
+			if(loaded.len)
+				var/obj/item/ammo_casing/AC = loaded[1] //load next casing.
+				loaded -= AC //Remove casing from loaded list.
+				chambered = AC
+	reload = 1
 
-/obj/item/weapon/gun/projectile/shotgun/bull/unload_ammo(mob/user, allow_dump)
+/obj/item/weapon/gun/projectile/shotgun/bull/unload_ammo(user, allow_dump)
 	if(chambered)
-		to_chat(user, SPAN_NOTICE("You unchamber [(other_chambered ? 2 : 1)] shell\s from [src]."))
 		chambered.loc = get_turf(src)//Eject casing
 		chambered = null
-	if(other_chambered)
-		other_chambered.loc = get_turf(src)//Eject casing
-		other_chambered = null
+		reload = 1
 	..(user, allow_dump=1)
 
 /obj/item/weapon/gun/projectile/shotgun/bull/attack_self(mob/user as mob)
-	if(other_chambered == null || (chambered && !chambered.BB) || (chambered && !other_chambered.BB)) // so that spent shells dont jam the gun
+	if(reload)
 		pump(user)
 	else
 		if(firemodes.len > 1)
@@ -85,12 +72,10 @@
 			unload_ammo(user)
 
 /obj/item/weapon/gun/projectile/shotgun/bull/proc/update_charge()
-	var/ratio = get_ammo() / (max_shells + 2)//2 in the chambers
+	var/ratio = get_ammo() / (max_shells + 1)//1 in the chamber
 	ratio = round(ratio, 0.25) * 100
 	overlays += "[ratio]_PW"
 
-/obj/item/weapon/gun/projectile/shotgun/bull/get_ammo()
-	return ..() + (other_chambered? 1 : 0)
 
 /obj/item/weapon/gun/projectile/shotgun/bull/update_icon()
 	overlays.Cut()

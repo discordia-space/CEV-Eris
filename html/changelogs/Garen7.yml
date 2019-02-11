@@ -3,8 +3,5 @@ author: Garen7
 delete-after: True
 
 changes: 
-  - tweak: "Bull shotguns actually have a second chamber."
-  - bugfix: "Bull shotguns no longer break when you load a spent shell."
   - bugfix: "Bull shotguns ammo overlay no longer breaks when you have shots in the chamber and fully load the gun."
-  - rscadd: "Bull shotguns now mention the shots in the chamber you remove when you unload the gun."
   - rscdel: "IH Commander no longer has 2 berets in his locker since there should only ever be one commander.
