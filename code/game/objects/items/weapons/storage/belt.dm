@@ -57,6 +57,21 @@
 	new /obj/item/weapon/tool/wirecutters(src)
 	new /obj/item/stack/cable_coil(src,30,pick("red","yellow","orange"))
 
+/obj/item/weapon/storage/belt/utility/mostlyfull/New()
+	..()
+	if (prob(65))
+		new /obj/item/weapon/tool/screwdriver(src)
+	if (prob(65))
+		new /obj/item/weapon/tool/wrench(src)
+	if (prob(65))
+		new /obj/item/weapon/tool/weldingtool(src)
+	if (prob(65))
+		new /obj/item/weapon/tool/crowbar(src)
+	if (prob(65))
+		new /obj/item/weapon/tool/wirecutters(src)
+	if (prob(65))
+		new /obj/item/stack/cable_coil(src,30,pick("red","yellow","orange"))
+
 
 /obj/item/weapon/storage/belt/utility/atmostech/New()
 	..()

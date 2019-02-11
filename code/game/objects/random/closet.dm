@@ -15,7 +15,29 @@
 				/obj/structure/closet/wardrobe/mixed = 1,
 				/obj/structure/closet/lasertag/red = 1,
 				/obj/structure/closet/lasertag/blue = 1,
-				/obj/structure/closet/toolcloset = 8))
+				/obj/structure/closet/toolcloset = 8,
+				/obj/structure/closet/gimmick/russian = 0.5,
+				/obj/structure/closet/gimmick/tacticool = 0.1,
+				/obj/structure/closet/thunderdome/tdred = 0.4,
+				/obj/structure/closet/thunderdome/tdgreen = 0.4,
+				/obj/structure/closet/jcloset = 1,
+				/obj/structure/closet/malf/suits =  0.5,
+				/obj/structure/closet/syndicate/personal = 0.1,
+				/obj/structure/closet/bombcloset = 0.5,
+				/obj/structure/closet/bombclosetsecurity = 0.4))
+
+//Fancy closets containing interesting or gimmicky things
+/obj/random/closet/rare/item_to_spawn()
+	return pickweight(list(/obj/structure/closet/toolcloset = 1,
+				/obj/structure/closet/gimmick/russian = 0.5,
+				/obj/structure/closet/gimmick/tacticool = 0.1,
+				/obj/structure/closet/thunderdome/tdred = 0.4,
+				/obj/structure/closet/thunderdome/tdgreen = 0.4,
+				/obj/structure/closet/jcloset = 1,
+				/obj/structure/closet/malf/suits =  0.5,
+				/obj/structure/closet/syndicate/personal = 0.1,
+				/obj/structure/closet/bombcloset = 0.5,
+				/obj/structure/closet/bombclosetsecurity = 0.4))
 
 /obj/random/closet/low_chance
 	name = "low chance random closet"
