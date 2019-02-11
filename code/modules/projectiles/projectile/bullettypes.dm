@@ -1,16 +1,35 @@
+#define HV_MULT 1.2
+//Low damage pistols and smgs
+#define damage_32 20
+#define damage_9mm 22
+#define damage_10mm 24
+#define damage_45 26
+//Carbines and rifles
+#define damage_556 16
+#define AP_556 25
+#define damage_65 18
+#define AP_65 20
+#define damage_762 20
+#define AP_762 15
+//Revolvers and high-caliber pistols
+#define damage_38 35
+#define damage_357 40
+#define damage_44 45
+#define damage_50 50
+//Other
+#define damage_12g_slug 50
 /obj/item/projectile/bullet/c9mm
-	damage = 22
-	sharp = 0
+	damage = damage_9mm
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/c9mmh
-	damage = 1.2*22
+	damage = HV_MULT*damage_9mm
 	armor_penetration = 10
 	penetrating = 1
-	sharp = 0
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/c9mmr
+	name = "rubber bullet"
 	damage = 4
 	agony = 20
 	embed = 0
@@ -23,58 +42,60 @@
 	sharp = 0
 
 /obj/item/projectile/bullet/a10mm
-	damage = 22
+	damage = damage_10mm
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/a10mmh
-	damage = 1.2*22
+	damage = HV_MULT*damage_10mm
 	armor_penetration = 10
 	penetrating = 1
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/cl32
-	damage = 20
-	sharp = 0
+	damage = damage_32
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/cl32r
+	name = "rubber bullet"
 	damage = 5
 	agony = 30
 	embed = 0
 	sharp = 0
 
 /obj/item/projectile/bullet/a357
-	damage = 40
+	damage = damage_357
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/a357h
-	damage = 1.2*40
+	damage = HV_MULT*damage_357
 	armor_penetration = 10
 	penetrating = 1
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/c38
-	damage = 35
+	damage = damage_38
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/c38r
+	name = "rubber bullet"
 	damage = 6
 	agony = 55
 	embed = 0
 	sharp = 0
 
 /obj/item/projectile/bullet/cl44
-	damage = 45
+	damage = damage_44
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/cl44r
+	name = "rubber bullet"
 	damage = 8
 	agony = 65
 	embed = 0
 	sharp = 0
 
 /obj/item/projectile/bullet/c45
-	damage = 25
+	damage = damage_45
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/c45p
@@ -84,37 +105,39 @@
 	sharp = 0
 
 /obj/item/projectile/bullet/c45r
+	name = "rubber bullet"
 	damage = 5
 	agony = 40
 	embed = 0
 	sharp = 0
 
 /obj/item/projectile/bullet/a50
-	damage = 50
+	damage = damage_50
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/a50r
+	name = "rubber bullet"
 	damage = 10
 	agony = 75
 	embed = 0
 	sharp = 0
 
 /obj/item/projectile/bullet/a762
-	damage = 20
-	armor_penetration = 15
+	damage = damage_762
+	armor_penetration = AP_762
 	penetrating = 1
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/a762h
-	damage = 1.2*20
-	armor_penetration = 1.2*15
+	damage = HV_MULT*damage_762
+	armor_penetration = HV_MULT*AP_762
 	penetrating = 2
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/a556
-	damage = 20
-	armor_penetration = 27
-	penetrating = 1
+	damage = damage_556
+	armor_penetration = AP_556
+	penetrating = 2
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/a556p
@@ -124,13 +147,14 @@
 	sharp = 0
 
 /obj/item/projectile/bullet/c65
-	damage = 18
-	armor_penetration = 15
+	damage = damage_65
+	armor_penetration = AP_65
 	penetrating = 1
 	sharp = 0
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/c65r
+	name = "rubber bullet"
 	damage = 5
 	agony = 27
 	embed = 0
@@ -155,7 +179,7 @@
 
 /obj/item/projectile/bullet/shotgun
 	name = "slug"
-	damage = 50
+	damage = damage_12g_slug
 
 /obj/item/projectile/bullet/shotgun/beanbag		//because beanbags are not bullets
 	name = "beanbag"
@@ -193,3 +217,20 @@
 	nodamage = 1
 	embed = 0
 	sharp = 0
+
+#undef HV_MULT
+#undef damage_32
+#undef damage_9mm
+#undef damage_10mm
+#undef damage_45
+#undef damage_556
+#undef AP_556
+#undef damage_65
+#undef AP_65
+#undef damage_762
+#undef AP_762
+#undef damage_38
+#undef damage_357
+#undef damage_44
+#undef damage_50
+#undef damage_12g_slug
