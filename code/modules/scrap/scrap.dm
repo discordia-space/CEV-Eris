@@ -14,8 +14,8 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	icon_state = "small"
 	icon = 'icons/obj/structures/scrap/base.dmi'
 	var/obj/item/weapon/storage/internal/updating/loot	//the visible loot
-	var/loot_min = 4
-	var/loot_max = 9
+	var/loot_min = 6
+	var/loot_max = 12
 	var/list/loot_list = list(
 		/obj/random/material,
 		/obj/item/stack/rods/random,
@@ -173,7 +173,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 
 	if(contents.len)
 		contents = shuffle(contents)
-		var/num = rand(1,loot_min)
+		var/num = rand(2,loot_min)
 		for(var/obj/item/O in contents)
 			if(!num)
 				break
@@ -293,7 +293,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	opacity = TRUE
 	density = TRUE
 	icon_state = "big"
-	loot_min = 10
+	loot_min = 13
 	loot_max = 20
 	dig_amount = 6
 	base_min = 9
@@ -398,7 +398,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	opacity = TRUE
 	density = TRUE
 	icon_state = "big"
-	loot_min = 10
+	loot_min = 13
 	loot_max = 20
 	base_min = 9
 	base_max = 14
@@ -409,7 +409,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	opacity = TRUE
 	density = TRUE
 	icon_state = "big"
-	loot_min = 10
+	loot_min = 13
 	loot_max = 20
 	base_min = 9
 	base_max = 14
@@ -421,7 +421,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	opacity = TRUE
 	density = TRUE
 	icon_state = "big"
-	loot_min = 10
+	loot_min = 13
 	loot_max = 20
 	base_min = 9
 	base_max = 14
@@ -433,7 +433,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	opacity = TRUE
 	density = TRUE
 	icon_state = "big"
-	loot_min = 10
+	loot_min = 13
 	loot_max = 20
 	base_min = 9
 	base_max = 14
@@ -445,7 +445,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	opacity = TRUE
 	density = TRUE
 	icon_state = "big"
-	loot_min = 10
+	loot_min = 13
 	loot_max = 15
 	base_min = 9
 	base_max = 14
@@ -457,7 +457,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	opacity = TRUE
 	density = TRUE
 	icon_state = "big"
-	loot_min = 10
+	loot_min = 13
 	loot_max = 20
 	base_min = 9
 	base_max = 14
@@ -481,8 +481,8 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	opacity = TRUE
 	density = TRUE
 	icon_state = "med"
-	loot_min = 3
-	loot_max = 6
+	loot_min = 4
+	loot_max = 7
 	dig_amount = 3
 	base_min = 3
 	base_max = 6

@@ -2,7 +2,11 @@
 	var/oldified = FALSE  // Whether the item has underwent make_old()
 	// var/crit_fail = FALSE // In theory should make the item fail horifically, currently only used in vending.dm
 
-/obj/proc/make_old()
+//Defined at atom level for convenience, not currently used for mobs and turfs, but there are possible applications
+/atom/proc/make_old()
+	return
+
+/obj/make_old()
 	if (oldified)
 		return
 	color = pick("#AA7744", "#774411", "#777777")
@@ -28,7 +32,7 @@
 
 /obj/item/weapon/tool/make_old()
 	..()
-	unreliability += rand(40, 100) * degradation
+	unreliability += rand(40, 150) * degradation
 
 /obj/item/weapon/storage/make_old()
 	var/del_count = rand(0, contents.len)

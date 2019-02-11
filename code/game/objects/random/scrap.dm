@@ -1,9 +1,13 @@
 //RANDOM SCRAP PILE GENERATOR
+/obj/random/scrap
+	icon = 'icons/misc/landmarks.dmi'
+	icon_state = "material-grey"
+
 /obj/random/scrap/dense_even
 	name = "Random dense even trash"
 	desc = "This is a random trash."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "welder"
+
+
 
 /obj/random/scrap/dense_even/item_to_spawn()
 		return pick(list(
@@ -20,8 +24,8 @@
 /obj/random/scrap/dense_weighted
 	name = "Random dense weighted trash"
 	desc = "This is a random trash."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "welder"
+
+
 
 /obj/random/scrap/dense_weighted/item_to_spawn()
 		return pickweight(list(
@@ -39,8 +43,8 @@
 /obj/random/scrap/sparse_even
 	name = "Random sparse even trash"
 	desc = "This is a random trash."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "welder"
+
+
 
 /obj/random/scrap/sparse_even/item_to_spawn()
 		return pick(list(
@@ -56,8 +60,8 @@
 /obj/random/scrap/sparse_weighted
 	name = "Random sparse weighted trash"
 	desc = "This is a random trash."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "welder"
+
+
 /obj/random/scrap/sparse_weighted/item_to_spawn()
 		return pickweight(list(
 						/obj/structure/scrap/poor = 100,
@@ -73,10 +77,13 @@
 /obj/random/scrap/moderate_weighted
 	name = "Random moderate weighted trash"
 	desc = "This is a random tool."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "welder"
+
+
 /obj/random/scrap/moderate_weighted/item_to_spawn()
 		return pickweight(list(
 						/obj/random/scrap/sparse_weighted = 2,
 						/obj/random/scrap/dense_weighted = 1
 					))
+
+/obj/random/scrap/moderate_weighted/low_chance
+	spawn_nothing_percentage = 60
