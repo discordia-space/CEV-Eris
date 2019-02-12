@@ -310,7 +310,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/random/surgery_tool,
 		/obj/item/stack/rods/random,
 		/obj/item/weapon/material/shard,
-		/obj/random/rare = 0.5
+		/obj/random/rare = 0.3
 	)
 
 /obj/structure/scrap/vehicle
@@ -326,8 +326,8 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/item/stack/material/steel/random,
 		/obj/item/stack/rods/random,
 		/obj/item/weapon/material/shard,
-		/obj/random/rare = 0.5,
-		/obj/random/tool_upgrade
+		/obj/random/rare = 0.4,
+		/obj/random/tool_upgrade = 2
 	)
 
 /obj/structure/scrap/food
@@ -341,7 +341,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/random/booze,
 		/obj/item/stack/rods/random,
 		/obj/item/weapon/material/shard,
-		/obj/random/rare = 0.5
+		/obj/random/rare = 0.4
 	)
 
 /obj/structure/scrap/guns
@@ -358,7 +358,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/item/weapon/material/shard,
 		/obj/item/stack/material/steel/random,
 		/obj/item/stack/rods/random,
-		/obj/random/rare = 0.5
+		/obj/random/rare = 0.4
 	)
 
 /obj/structure/scrap/science
@@ -370,7 +370,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/random/techpart,
 		/obj/random/powercell,
 		/obj/random/circuitboard,
-		/obj/random/rare = 0.5,
+		/obj/random/rare = 0.4,
 		/obj/random/tool_upgrade
 	)
 
@@ -387,10 +387,10 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	desc = "Pile of mixed rubbish. Useless and rotten, mostly."
 	parts_icon = 'icons/obj/structures/scrap/all_mixed.dmi'
 	loot_list = list(
-		/obj/random/lowkeyrandom = 2,
-		/obj/item/stack/rods/random = 3,
+		/obj/random/lowkeyrandom = 4,
+		/obj/item/stack/rods/random = 2,
 		/obj/item/weapon/material/shard,
-		/obj/random/rare = 0.4
+		/obj/random/rare = 0.3
 	)
 
 /obj/structure/scrap/poor/large

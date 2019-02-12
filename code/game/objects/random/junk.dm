@@ -1,4 +1,5 @@
 /obj/random/junk //Broken items, or stuff that could be picked up
+	has_postspawn = TRUE
 	name = "random junk"
 	icon_state = "junk-black"
 	var/list/exclusions = list()
@@ -62,10 +63,13 @@
 		/obj/effect/spider/stickyweb = 10, //These are useful for tape crafting
 		/obj/random/pouch = 1,
 		/obj/random/lathe_disk = 2,
-		/obj/random/scrap/moderate_weighted = 8
+		/obj/random/scrap/moderate_weighted = 10
 	)
 
-
+/obj/random/junk/post_spawn(var/list/stuff)
+	for (var/atom/thing in stuff)
+		if (prob(30))
+			thing.make_old()
 
 /obj/random/junk/item_to_spawn()
 	return pickweight(items - exclusions)

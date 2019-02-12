@@ -27,6 +27,22 @@
 	crayon = null
 	. = ..()
 
+
+//A washing machine cleans away most of the bad effects of old clothes
+//Armor penalties and name/desc changes are left
+/obj/machinery/washing_machine/proc/wash(var/atom/A)
+	A.clean_blood()
+	if (istype(A, /obj/item))
+		var/obj/item/I = A
+		I.decontaminate()
+	if (A.oldified && istype(A, /obj/item/clothing))
+		var/obj/item/clothing/C = A
+		C.slowdown = initial(C.slowdown)
+		C.heat_protection = initial(C.heat_protection)
+		C.cold_protection = initial(C.cold_protection)
+		C.equip_delay = initial(C.equip_delay)
+		C.color = initial(C.color)
+
 /obj/machinery/washing_machine/verb/start()
 	set name = "Start Washing"
 	set category = "Object"
@@ -46,10 +62,11 @@
 	update_icon()
 	sleep(200)
 	for(var/atom/A in contents)
-		A.clean_blood()
+		sleep(100)
+		wash(A)
 		if(istype(A, /obj/item))
 			var/obj/item/I = A
-			I.decontaminate()
+
 			if(istype(crayon,/obj/item/weapon/pen/crayon) && istype(I, /obj/item/clothing/gloves/color) || istype(I, /obj/item/clothing/head/soft) || istype(I, /obj/item/clothing/shoes/color) || istype(I, /obj/item/clothing/under/color))
 				var/obj/item/clothing/C = I
 				var/obj/item/weapon/pen/crayon/CR = crayon

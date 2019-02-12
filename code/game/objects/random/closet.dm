@@ -2,6 +2,13 @@
 	name = "random closet"
 	icon_state = "closet-grey"
 	alpha = 128
+	has_postspawn = TRUE
+
+//Closets in maint may be old
+/obj/random/closet/post_spawn(var/list/things)
+	for (var/atom/thing in things)
+		if (thing.in_maintenance() && prob(40))
+			thing.make_old()
 
 /obj/random/closet/item_to_spawn()
 	return pickweight(list(/obj/structure/closet = 4,
@@ -47,6 +54,13 @@
 /obj/random/closet_tech
 	name = "random technical closet"
 	icon_state = "closet-orange"
+	has_postspawn = TRUE
+
+//Closets in maint may be old
+/obj/random/closet_tech/post_spawn(var/list/things)
+	for (var/atom/thing in things)
+		if (thing.in_maintenance() && prob(40))
+			thing.make_old()
 
 /obj/random/closet_tech/item_to_spawn()
 	return pickweight(list(/obj/structure/closet/firecloset = 4,
@@ -61,6 +75,13 @@
 /obj/random/closet_wardrobe
 	name = "random wardrobe closet"
 	icon_state = "closet-blue"
+	has_postspawn = TRUE
+
+//Closets in maint may be old
+/obj/random/closet_wardrobe/post_spawn(var/list/things)
+	for (var/atom/thing in things)
+		if (thing.in_maintenance() && prob(40))
+			thing.make_old()
 
 /obj/random/closet_wardrobe/item_to_spawn()
 	return pick(/obj/structure/closet/wardrobe/black,

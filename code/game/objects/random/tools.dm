@@ -69,7 +69,7 @@
 /obj/random/tool/post_spawn(var/list/spawns)
 	if (isturf(loc))
 		for (var/obj/O in spawns)
-			if (!istype(O, /obj/random) && prob(15))
+			if (!istype(O, /obj/random) && prob(20))
 				O.make_old()
 
 
