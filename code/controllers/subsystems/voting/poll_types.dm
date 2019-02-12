@@ -131,7 +131,7 @@
 /datum/poll/evac
 	name = "Evacuate Ship"
 	question = "Do you want to call evacuation and restart the round?"
-	time = 5//20
+	time = 120
 	minimum_win_percentage = 0.6
 	cooldown = 20 MINUTES
 	next_vote = 90 MINUTES //Minimum round length before it can be called for the first time
