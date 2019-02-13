@@ -19,6 +19,10 @@
 	var/datum/construction/construct
 	flags = CONDUCT
 
+/obj/item/mecha_parts/chassis/Destroy()
+	QDEL_NULL(construct)
+	return ..()
+
 /obj/item/mecha_parts/chassis/attackby(obj/item/I, mob/user)
 	if(!construct || !construct.action(I, user))
 		..()
