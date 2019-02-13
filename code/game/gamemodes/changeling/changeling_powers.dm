@@ -315,7 +315,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	set category = "Changeling"
 	set name = "Lesser Form (1)"
 
-	if (transforming)
+	if(HAS_TRANSFORMATION_MOVEMENT_HANDLER(src))
 		return
 
 	var/datum/changeling/changeling = changeling_power(1,0,0)
@@ -330,6 +330,8 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	if(!istype(H) || !H.species.primitive_form)
 		src << SPAN_WARNING("We cannot perform this ability in this form!")
 		return
+
+	ADD_TRANSFORMATION_MOVEMENT_HANDLER(C)
 
 	changeling.chem_charges--
 	H.remove_changeling_powers()

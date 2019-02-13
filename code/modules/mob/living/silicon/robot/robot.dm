@@ -183,6 +183,7 @@
 		lawupdate = 0
 
 	playsound(loc, 'sound/voice/liveagain.ogg', 75, 1)
+	AddMovementHandler(/datum/movement_handler/robot/use_power, /datum/movement_handler/mob/space)
 
 /mob/living/silicon/robot/SetName(pickedName as text)
 	custom_name = pickedName

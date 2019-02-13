@@ -5,6 +5,21 @@
 	flags = PROXMOVE
 	var/datum/mind/mind
 
+	movement_handlers = list(
+	/datum/movement_handler/mob/relayed_movement,
+	/datum/movement_handler/mob/death,
+	/datum/movement_handler/mob/conscious,
+	/datum/movement_handler/mob/eye,
+	/datum/movement_handler/move_relay,
+	/datum/movement_handler/mob/buckle_relay,
+	/datum/movement_handler/mob/delay,
+	/datum/movement_handler/mob/stop_effect,
+	/datum/movement_handler/mob/physically_capable,
+	/datum/movement_handler/mob/physically_restrained,
+	/datum/movement_handler/mob/space,
+	/datum/movement_handler/mob/movement
+	)
+
 	var/lastKnownIP = null
 	var/computer_id = null
 
@@ -52,6 +67,8 @@
 	var/sdisabilities = 0	//Carbon
 	var/disabilities = 0	//Carbon
 
+
+	var/last_move_attempt = 0 //Last time the mob attempted to move, successful or not
 	var/atom/movable/pulling = null
 	var/other_mobs = null
 	var/next_move = null

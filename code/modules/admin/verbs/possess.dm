@@ -25,6 +25,7 @@ ADMIN_VERB_ADD(/proc/possess, R_FUN, FALSE)
 	usr.name = O.name
 	usr.client.eye = O
 	usr.control_object = O
+	usr.ReplaceMovementHandler(/datum/movement_handler/mob/admin_possess)
 
 
 ADMIN_VERB_ADD(/proc/release, R_FUN, FALSE)
@@ -35,6 +36,7 @@ ADMIN_VERB_ADD(/proc/release, R_FUN, FALSE)
 
 	var/obj/controlled_obj = null
 	if(usr.control_object && usr.name_archive) //if you have a name archived and if you are actually relassing an object
+		usr.RemoveMovementHandler(/datum/movement_handler/mob/admin_possess)
 		controlled_obj = usr.control_object
 		usr.real_name = usr.name_archive
 		usr.name = usr.real_name

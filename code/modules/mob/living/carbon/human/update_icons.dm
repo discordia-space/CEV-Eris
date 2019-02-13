@@ -417,8 +417,8 @@ var/global/list/damage_icon_parts = list()
 //For legacy support.
 /mob/living/carbon/human/regenerate_icons()
 	..()
-	if(transforming)
-		return
+	if(HasMovementHandler(/datum/movement_handler/mob/transformation) || QDELETED(src))		return
+
 	update_mutations(0)
 	update_implants(0)
 	update_body(0)
