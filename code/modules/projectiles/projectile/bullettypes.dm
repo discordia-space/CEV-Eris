@@ -3,15 +3,20 @@
 #define RUBBER_DAMAGE_MULTIPLIER 0.15 //Determines the damage value from base damage.
 #define RUBBER_AGONY_MULTIPLIER 0.85 //Determines the agony value from base damage.
 #define RUBBER_PENETRATION_MULTIPLIER 0 //Determines the armor_penetration value from base armor_penetration.
-#define PRACTICE_MULTIPLIER 0.1 //Determines damage, armor_penetration, & agony values from base damage.
+#define PRACTICE_DAMAGE_MULTIPLIER 0 //Determines the damage value from base damage.
+#define PRACTICE_AGONY_MULTIPLIER 0.1 //Determines the agony value from base damage.
+#define PRACTICE_PENETRATION_MULTIPLIER 0.2 //Determines the armor_penetration value from base armor_penetration.
+
 //Step delays //Default value is 1. Lower value makes bullet go faster, higher value makes bullet go slower.
 #define HIGH_VELOCITY_STEP_DELAY 0.75
+
 //Low-caliber pistols and SMGs
 #define ARMOR_PENETRATION_LOW_CALIBER_PISTOL 5
-#define DAMAGE_9MM 22
 #define DAMAGE_10MM 24
+#define DAMAGE_9MM 22
 #define DAMAGE_32 20
 #define DAMAGE_45 26
+
 //Carbines and rifles
 #define DAMAGE_10X24 30
 #define ARMOR_PENETRATION_10X24 10
@@ -21,6 +26,7 @@
 #define ARMOR_PENETRATION_65 20
 #define DAMAGE_762 20
 #define ARMOR_PENETRATION_762 15
+
 //Revolvers and high-caliber pistols
 #define ARMOR_PENETRATION_REVOLVER 12
 #define DAMAGE_357 40
@@ -28,9 +34,11 @@
 #define ARMOR_PENETRATION_HIGH_CALIBER_PISTOL 10
 #define DAMAGE_44 45
 #define DAMAGE_50 50
+
 //Sniper rifles
 #define ARMOR_PENETRATION_SNIPER 80
 #define DAMAGE_145 70
+
 //Shotguns
 #define DAMAGE_SLUG 50
 #define ARMOR_PENETRATION_SLUG 12
@@ -44,11 +52,20 @@
 	armor_penetration = ARMOR_PENETRATION_LOW_CALIBER_PISTOL
 	can_ricochet = TRUE
 
-/obj/item/projectile/bullet/c9mm/high_velocity
+/obj/item/projectile/bullet/c9mm/hv
 	damage = DAMAGE_9MM * HIGH_VELOCITY_MULTIPLIER
 	armor_penetration = ARMOR_PENETRATION_LOW_CALIBER_PISTOL * HIGH_VELOCITY_MULTIPLIER
 	penetrating = 1
 	step_delay = HIGH_VELOCITY_STEP_DELAY
+
+/obj/item/projectile/bullet/c9mm/practice
+	name = "practice bullet"
+	damage = DAMAGE_9MM * PRACTICE_DAMAGE_MULTIPLIER
+	agony = DAMAGE_9MM * PRACTICE_AGONY_MULTIPLIER
+	armor_penetration = ARMOR_PENETRATION_LOW_CALIBER_PISTOL * PRACTICE_PENETRATION_MULTIPLIER
+	embed = FALSE
+	sharp = FALSE
+	can_ricochet = FALSE
 
 /obj/item/projectile/bullet/c9mm/rubber
 	name = "rubber bullet"
@@ -57,22 +74,13 @@
 	armor_penetration = ARMOR_PENETRATION_LOW_CALIBER_PISTOL * RUBBER_PENETRATION_MULTIPLIER
 	embed = FALSE
 	sharp = FALSE
-	can_ricochet = FALSE
-
-/obj/item/projectile/bullet/c9mm/practice
-	damage = DAMAGE_9MM * PRACTICE_MULTIPLIER
-	agony = DAMAGE_9MM * PRACTICE_MULTIPLIER
-	armor_penetration = ARMOR_PENETRATION_LOW_CALIBER_PISTOL * PRACTICE_MULTIPLIER
-	embed = FALSE
-	sharp = FALSE
-	can_ricochet = FALSE
 
 /obj/item/projectile/bullet/a10mm
 	damage = DAMAGE_10MM
 	armor_penetration = ARMOR_PENETRATION_LOW_CALIBER_PISTOL
 	can_ricochet = TRUE
 
-/obj/item/projectile/bullet/a10mm/high_velocity
+/obj/item/projectile/bullet/a10mm/hv
 	damage = DAMAGE_10MM * HIGH_VELOCITY_MULTIPLIER
 	armor_penetration = ARMOR_PENETRATION_LOW_CALIBER_PISTOL * HIGH_VELOCITY_MULTIPLIER
 	penetrating = 1
@@ -90,12 +98,20 @@
 	armor_penetration = ARMOR_PENETRATION_LOW_CALIBER_PISTOL * RUBBER_PENETRATION_MULTIPLIER
 	embed = FALSE
 	sharp = FALSE
-	can_ricochet = FALSE
 
 /obj/item/projectile/bullet/c45
 	damage = DAMAGE_45
 	armor_penetration = ARMOR_PENETRATION_LOW_CALIBER_PISTOL
 	can_ricochet = TRUE
+
+/obj/item/projectile/bullet/c45/practice
+	name = "practice bullet"
+	damage = DAMAGE_45 * PRACTICE_DAMAGE_MULTIPLIER
+	agony = DAMAGE_45 * PRACTICE_AGONY_MULTIPLIER
+	armor_penetration = ARMOR_PENETRATION_LOW_CALIBER_PISTOL * PRACTICE_PENETRATION_MULTIPLIER
+	embed = FALSE
+	sharp = FALSE
+	can_ricochet = FALSE
 
 /obj/item/projectile/bullet/c45/rubber
 	name = "rubber bullet"
@@ -104,15 +120,6 @@
 	armor_penetration = ARMOR_PENETRATION_LOW_CALIBER_PISTOL * RUBBER_PENETRATION_MULTIPLIER
 	embed = FALSE
 	sharp = FALSE
-	can_ricochet = FALSE
-
-/obj/item/projectile/bullet/c45/practice
-	damage = DAMAGE_45 * PRACTICE_MULTIPLIER
-	agony = DAMAGE_45 * PRACTICE_MULTIPLIER
-	armor_penetration = ARMOR_PENETRATION_LOW_CALIBER_PISTOL * PRACTICE_MULTIPLIER
-	embed = FALSE
-	sharp = FALSE
-	can_ricochet = FALSE
 
 //Carbines and rifles
 /obj/item/projectile/bullet/c10x24
@@ -129,9 +136,10 @@
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/a556/practice
-	damage = DAMAGE_556 * PRACTICE_MULTIPLIER
-	agony = DAMAGE_556 * PRACTICE_MULTIPLIER
-	armor_penetration = ARMOR_PENETRATION_556 * PRACTICE_MULTIPLIER
+	name = "practice bullet"
+	damage = DAMAGE_556 * PRACTICE_DAMAGE_MULTIPLIER
+	agony = DAMAGE_556 * PRACTICE_AGONY_MULTIPLIER
+	armor_penetration = ARMOR_PENETRATION_556 * PRACTICE_PENETRATION_MULTIPLIER
 	embed = FALSE
 	sharp = FALSE
 	can_ricochet = FALSE
@@ -150,7 +158,6 @@
 	armor_penetration = ARMOR_PENETRATION_65 * RUBBER_PENETRATION_MULTIPLIER
 	embed = FALSE
 	sharp = FALSE
-	can_ricochet = FALSE
 
 /obj/item/projectile/bullet/a762
 	damage = DAMAGE_762
@@ -158,7 +165,7 @@
 	penetrating = 1
 	can_ricochet = TRUE
 
-/obj/item/projectile/bullet/a762/high_velocity
+/obj/item/projectile/bullet/a762/hv
 	damage = DAMAGE_762 * HIGH_VELOCITY_MULTIPLIER
 	armor_penetration = ARMOR_PENETRATION_762 * HIGH_VELOCITY_MULTIPLIER
 	penetrating = 2
@@ -170,7 +177,7 @@
 	armor_penetration = ARMOR_PENETRATION_REVOLVER
 	can_ricochet = TRUE
 
-/obj/item/projectile/bullet/a357/high_velocity
+/obj/item/projectile/bullet/a357/hv
 	damage = DAMAGE_357 * HIGH_VELOCITY_MULTIPLIER
 	armor_penetration = ARMOR_PENETRATION_REVOLVER * HIGH_VELOCITY_MULTIPLIER
 	penetrating = 1
@@ -188,7 +195,6 @@
 	armor_penetration = ARMOR_PENETRATION_REVOLVER * RUBBER_PENETRATION_MULTIPLIER
 	embed = FALSE
 	sharp = FALSE
-	can_ricochet = FALSE
 
 /obj/item/projectile/bullet/cl44
 	damage = DAMAGE_44
@@ -202,7 +208,6 @@
 	armor_penetration = ARMOR_PENETRATION_HIGH_CALIBER_PISTOL * RUBBER_PENETRATION_MULTIPLIER
 	embed = FALSE
 	sharp = FALSE
-	can_ricochet = FALSE
 
 /obj/item/projectile/bullet/a50
 	damage = DAMAGE_50
@@ -216,7 +221,6 @@
 	armor_penetration = ARMOR_PENETRATION_HIGH_CALIBER_PISTOL * RUBBER_PENETRATION_MULTIPLIER
 	embed = FALSE
 	sharp = FALSE
-	can_ricochet = FALSE
 
 //Sniper rifles
 /obj/item/projectile/bullet/a145
@@ -242,6 +246,13 @@
 	embed = FALSE
 	sharp = FALSE
 
+/obj/item/projectile/bullet/shotgun/practice
+	name = "practice slug"
+	damage = DAMAGE_SLUG * PRACTICE_DAMAGE_MULTIPLIER
+	agony = DAMAGE_SLUG * PRACTICE_AGONY_MULTIPLIER
+	armor_penetration = ARMOR_PENETRATION_SLUG * PRACTICE_PENETRATION_MULTIPLIER
+	embed = FALSE
+
 //Should do about 80 damage at 1 tile distance (adjacent), and 50 damage at 3 tiles distance.
 //Overall less damage than slugs in exchange for more damage at very close range and more embedding
 /obj/item/projectile/bullet/pellet/shotgun
@@ -250,11 +261,6 @@
 	pellets = 6
 	range_step = 1
 	spread_step = 10
-
-/obj/item/projectile/bullet/shotgun/practice
-	name = "practice slug"
-	damage = DAMAGE_SLUG * PRACTICE_MULTIPLIER
-	embed = FALSE
 
 //Miscellaneous
 /obj/item/projectile/bullet/blank
@@ -274,11 +280,13 @@
 #undef RUBBER_DAMAGE_MULTIPLIER
 #undef RUBBER_AGONY_MULTIPLIER
 #undef RUBBER_PENETRATION_MULTIPLIER
-#undef PRACTICE_MULTIPLIER
+#undef PRACTICE_DAMAGE_MULTIPLIER
+#undef PRACTICE_AGONY_MULTIPLIER
+#undef PRACTICE_PENETRATION_MULTIPLIER
 #undef HIGH_VELOCITY_STEP_DELAY
 #undef ARMOR_PENETRATION_LOW_CALIBER_PISTOL
-#undef DAMAGE_9MM
 #undef DAMAGE_10MM
+#undef DAMAGE_9MM
 #undef DAMAGE_32
 #undef DAMAGE_45
 #undef DAMAGE_10X24
