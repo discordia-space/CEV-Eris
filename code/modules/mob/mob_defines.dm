@@ -113,7 +113,10 @@
 
 	var/shakecamera = 0
 	var/a_intent = I_HELP//Living
-	var/m_intent = "run"//Living
+
+	var/decl/move_intent/move_intent = /decl/move_intent/run
+	var/move_intents = list(/decl/move_intent/run, /decl/move_intent/walk)
+
 	var/obj/buckled = null//Living
 	var/obj/item/l_hand = null//Living
 	var/obj/item/r_hand = null//Living

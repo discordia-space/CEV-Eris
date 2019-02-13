@@ -299,5 +299,5 @@
 
 /obj/item/weapon/tool_upgrade/augment/dampener/apply_values()
 	if (..())
-		holder.silenced = TRUE
+		holder.item_flags |= SILENCED
 		holder.color = "#AAAAAA"

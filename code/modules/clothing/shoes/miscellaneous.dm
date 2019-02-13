@@ -4,12 +4,11 @@
 	icon_state = "brown"
 	item_state = "brown"
 	permeability_coefficient = 0.05
-	item_flags = NOSLIP
+	item_flags = NOSLIP | SILENCED
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/list/clothing_choices = list()
 	siemens_coefficient = 0.8
 	species_restricted = null
-	silence_steps = TRUE
 
 /obj/item/clothing/shoes/mime
 	name = "mime shoes"

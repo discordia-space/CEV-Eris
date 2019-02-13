@@ -392,8 +392,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set hidden = 1
 	src << "\red You are dead! You have no mind to store memory!"
 
-/mob/observer/ghost/Post_Incorpmove()
-	stop_following()
 
 /mob/observer/ghost/verb/analyze_air()
 	set name = "Analyze Air"

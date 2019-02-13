@@ -353,7 +353,6 @@ BLIND     // can't see anything
 	var/can_hold_knife
 	var/obj/item/holding
 
-	var/silence_steps = FALSE
 
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN

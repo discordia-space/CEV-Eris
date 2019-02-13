@@ -48,7 +48,6 @@
 	var/precision = 0	//Subtracted from failure rates
 	var/workspeed = 1	//Worktimes are divided by this
 	var/extra_bulk = 0 	//Extra physicial volume added by certain mods
-	var/silenced = FALSE //If true the tool makes far less noise when used
 	var/list/prefixes = list()
 
 /******************************
@@ -691,6 +690,7 @@
 	color = initial(color)
 	sharp = initial(sharp)
 	prefixes = list()
+	item_flags = initial(item_flags)
 
 	//Now lets have each upgrade reapply its modifications
 	for (var/obj/item/weapon/tool_upgrade/T in upgrades)

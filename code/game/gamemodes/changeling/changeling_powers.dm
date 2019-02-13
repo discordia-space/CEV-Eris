@@ -331,7 +331,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 		src << SPAN_WARNING("We cannot perform this ability in this form!")
 		return
 
-	ADD_TRANSFORMATION_MOVEMENT_HANDLER(C)
+	ADD_TRANSFORMATION_MOVEMENT_HANDLER(src)
 
 	changeling.chem_charges--
 	H.remove_changeling_powers()

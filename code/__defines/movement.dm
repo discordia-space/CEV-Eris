@@ -16,5 +16,10 @@
 #define ADD_TRANSFORMATION_MOVEMENT_HANDLER(X) X.AddMovementHandler(/datum/movement_handler/mob/transformation)
 #define DEL_TRANSFORMATION_MOVEMENT_HANDLER(X) X.RemoveMovementHandler(/datum/movement_handler/mob/transformation)
 
+// Quick and deliberate movements are not necessarily mutually exclusive
+#define MOVE_INTENT_DELIBERATE 0x0001
+#define MOVE_INTENT_EXERTIVE   0x0002
+#define MOVE_INTENT_QUICK      0x0004
+
 #define MOVING_DELIBERATELY(X) (X.move_intent.flags & MOVE_INTENT_DELIBERATE)
 #define MOVING_QUICKLY(X) (X.move_intent.flags & MOVE_INTENT_QUICK)

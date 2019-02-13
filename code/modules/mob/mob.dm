@@ -53,7 +53,9 @@
 		GLOB.dead_mob_list += src
 	else
 		GLOB.living_mob_list += src
+	move_intent = decls_repository.get_decl(move_intent)
 	. = ..()
+
 
 /mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
 
@@ -769,7 +771,7 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 		reset_plane_and_layer()
 
 /mob/facedir(var/ndir)
-	if(!canface() || client.moving || client.isMovementBlocked())
+	if(!canface() || client.moving)
 		return 0
 	set_dir(ndir)
 	if(buckled && buckled.buckle_movable)

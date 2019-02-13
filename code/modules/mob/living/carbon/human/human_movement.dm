@@ -108,10 +108,11 @@
 		return 1
 	return 0
 
+/*
 /mob/living/carbon/human/handle_footstep(atom/T)
 	if(..())
 
-		if(m_intent == "run")
+		if(MOVING_QUICKLY(src))
 			if(!(step_count % 2)) //every other turf makes a sound
 				return
 
@@ -137,16 +138,15 @@
 		var/S = T.get_footstep_sound("human")
 		if(S)
 			var/range = -(world.view - 2)
-			if(m_intent == "walk")
-				range -= 0.333
-			if(!shoes)
-				range -= 0.333
-
 			var/volume = 90
-			if(m_intent == "walk")
+
+			if(MOVING_DELIBERATELY(src))
 				volume -= 55
+				range -= 0.333
 			if(!shoes)
 				volume -= 70
+				range -= 0.333
 
 			playsound(T, S, volume, 1, range)
 			return
+*/

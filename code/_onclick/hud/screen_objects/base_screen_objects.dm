@@ -783,18 +783,12 @@ obj/screen/fire/DEADelize()
 
 
 /obj/screen/mov_intent/Click()
-//	if(iscarbon(parentmob))
-	var/mob/living/carbon/C = parentmob
-	if(C.legcuffed)
-		C << SPAN_NOTICE("You are legcuffed! You cannot run until you get [C.legcuffed] removed!")
-		C.m_intent = "walk"	//Just incase
-		update_icon()
-		return TRUE
-	switch(C.m_intent)
-		if("run")
-			C.m_intent = "walk"
-		if("walk")
-			C.m_intent = "run"
+	var/move_intent_type = next_in_list(usr.move_intent.type, usr.move_intents)
+	var/decl/newintent = decls_repository.get_decl(move_intent_type)
+	if (newintent.can_enter(parentmob, TRUE))
+		parentmob.move_intent = newintent
+		parentmob.hud_used.move_intent.icon_state = usr.move_intent.hud_icon_state
+
 	update_icon()
 
 /obj/screen/mov_intent/New()
@@ -803,11 +797,7 @@ obj/screen/fire/DEADelize()
 
 /obj/screen/mov_intent/update_icon()
 	var/mob/living/carbon/C = parentmob
-	switch(C.m_intent)
-		if("run")
-			icon_state = "running"
-		if("walk")
-			icon_state = "walking"
+	icon_state = parentmob.move_intent.hud_icon_state
 
 //-----------------------mov_intent END------------------------------
 /obj/screen/equip

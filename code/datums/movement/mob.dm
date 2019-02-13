@@ -290,7 +290,7 @@
 	if(!confused)
 		return
 
-	var/stability = WALKING(src) ? 75 : 25
+	var/stability = ((MOVING_DELIBERATELY(src)) ? 75 : 25)
 	if(prob(stability))
 		return
 

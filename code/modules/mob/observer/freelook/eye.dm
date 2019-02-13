@@ -13,7 +13,6 @@
 	var/cooldown = 0
 	var/acceleration = 1
 	var/owner_follows_eye = 0
-	var/datum/delay_controller/move_delayer = new(0)
 
 	see_in_dark = 7
 	invisibility = INVISIBILITY_EYE
@@ -80,15 +79,11 @@
 	return eyeobj.EyeMove(n, direct)
 
 /mob/observer/eye/EyeMove(n, direct)
-	if (move_delayer.isBlocked())
-		return 0
-
 	var/initial = initial(sprint)
 	var/max_sprint = 50
 
 	var/delay = 0.5
 	set_glide_size(DELAY2GLIDESIZE(delay))
-	move_delayer.setDelay(delay)
 
 	if (cooldown && cooldown < world.timeofday)
 		sprint = initial

@@ -34,7 +34,6 @@
 	var/interface_path = "hardsuit.tmpl"
 	var/ai_interface_path = "hardsuit.tmpl"
 	var/interface_title = "Hardsuit Controller"
-	var/datum/delay_controller/wearer_move_delayer = new
 	var/ai_controlled_move_delay = 10
 
 	// Keeps track of what this rig should spawn with.
