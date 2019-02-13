@@ -17,7 +17,7 @@
 	pass_flags = PASSTABLE
 //	causeerrorheresoifixthis
 	var/obj/item/master = null
-	var/list/origin_tech = null	//Used by R&D to determine what research bonuses it grants.
+	var/list/origin_tech = list()	//Used by R&D to determine what research bonuses it grants.
 	var/list/attack_verb = list() //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
 
 
@@ -43,7 +43,7 @@
 	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
 	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
 	var/list/armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
-	var/list/allowed = null //suit storage stuff.
+	var/list/allowed = list() //suit storage stuff.
 	var/obj/item/device/uplink/hidden/hidden_uplink = null // All items can have an uplink hidden inside, just remember to add the triggers.
 	var/zoomdevicename = null //name used for message when binoculars/scope is used
 	var/zoom = 0 //1 if item is actively being used to zoom. For scoped guns and binoculars.
@@ -62,7 +62,7 @@
 
 	//Damage vars
 	var/force = 0	//How much damage the weapon deals
-
+	var/embed_mult = 0.5 //Multiplier for the chance of embedding in mobs. Set to zero to completely disable embedding
 	var/structure_damage_factor = STRUCTURE_DAMAGE_NORMAL	//Multiplier applied to the damage when attacking structures and machinery
 	//Does not affect damage dealt to mobs
 
@@ -266,7 +266,7 @@
 
 	if(istype(H))
 
-		var/obj/item/organ/internal/eyes/eyes = H.internal_organs_by_name[O_EYES]
+		var/obj/item/organ/internal/eyes/eyes = H.internal_organs_by_name[BP_EYES]
 
 		if(!eyes)
 			return
@@ -442,3 +442,11 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 /obj/item/device
 	icon = 'icons/obj/device.dmi'
+
+//Called when a human swaps hands to a hand which is holding this item
+/obj/item/proc/swapped_to(var/mob/user)
+	return
+
+//Called when a human swaps hands away from a hand which is holding this item
+/obj/item/proc/swapped_from(var/mob/user)
+	return

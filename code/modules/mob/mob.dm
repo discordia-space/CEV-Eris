@@ -1,7 +1,7 @@
 /mob/Destroy()//This makes sure that mobs with clients/keys are not just deleted from the game.
 	STOP_PROCESSING(SSmobs, src)
-	dead_mob_list -= src
-	living_mob_list -= src
+	GLOB.dead_mob_list -= src
+	GLOB.living_mob_list -= src
 	unset_machine()
 	qdel(hud_used)
 	if(client)
@@ -50,9 +50,9 @@
 /mob/Initialize()
 	START_PROCESSING(SSmobs, src)
 	if(stat == DEAD)
-		dead_mob_list += src
+		GLOB.dead_mob_list += src
 	else
-		living_mob_list += src
+		GLOB.living_mob_list += src
 	. = ..()
 
 /mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
@@ -94,10 +94,10 @@
 
 		messageturfs += turf
 
-	for(var/A in player_list)
+	for(var/A in GLOB.player_list)
 		var/mob/M = A
 		if (QDELETED(M))
-			player_list -= M
+			GLOB.player_list -= M
 			continue
 		if (!M.client || istype(M, /mob/new_player))
 			continue
@@ -184,10 +184,13 @@
 	return incapacitated(INCAPACITATION_DISABLED)
 
 /mob/proc/incapacitated(var/incapacitation_flags = INCAPACITATION_DEFAULT)
-	if ((incapacitation_flags & INCAPACITATION_STUNNED) && (stunned || weakened || resting))
+	if ((incapacitation_flags & INCAPACITATION_STUNNED) && stunned)
 		return 1
 
-	if((incapacitation_flags & INCAPACITATION_UNCONSCIOUS) && (stat || paralysis || sleeping || (status_flags & FAKEDEATH)))
+	if ((incapacitation_flags & INCAPACITATION_FORCELYING) && (weakened || resting || pinned.len))
+		return 1
+
+	if ((incapacitation_flags & INCAPACITATION_UNCONSCIOUS) && (stat || paralysis || sleeping || (status_flags & FAKEDEATH)))
 		return 1
 
 	if((incapacitation_flags & INCAPACITATION_RESTRAINED) && restrained())
@@ -366,9 +369,9 @@
 		var/msg = trim(replacetext(flavor_text, "\n", " "))
 		if(!msg) return ""
 		if(lentext(msg) <= 40)
-			return "\blue [msg]"
+			return "<font color='blue'>[russian_to_cp1251(msg)]</font>"
 		else
-			return "\blue [copytext_preserve_html(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a>"
+			return "<font color='blue'>[copytext_preserve_html(russian_to_cp1251(msg), 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a></font>"
 
 /*
 /mob/verb/help()
@@ -702,64 +705,44 @@
 /mob/proc/cannot_stand()
 	return incapacitated(INCAPACITATION_DEFAULT & (~INCAPACITATION_RESTRAINED))
 
-//Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
-/mob/proc/update_canmove()
+
+//Updates lying and icons
+/*
+Note from Nanako: 2019-02-01
+TODO: Bay Movement:
+All Canmove setting in this proc is temporary. This var should not be set from here, but from movement controllers
+*/
+/mob/proc/update_lying_buckled_and_verb_status()
 
 	if(!resting && cannot_stand() && can_stand_overridden())
 		lying = 0
-		canmove = 1
-	else
-		if(istype(buckled, /obj/vehicle))
-			var/obj/vehicle/V = buckled
-			if(is_physically_disabled())
-				lying = 1
-				canmove = 0
-				pixel_y = V.mob_offset_y - 5
+		canmove = TRUE //TODO: Remove this
+	else if(buckled)
+		anchored = 1
+		if(istype(buckled))
+			if(buckled.buckle_lying == -1)
+				lying = incapacitated(INCAPACITATION_KNOCKDOWN)
 			else
-				if(buckled.buckle_lying != -1) lying = buckled.buckle_lying
-				canmove = 1
-				pixel_y = V.mob_offset_y
-		else if(buckled)
-			anchored = 1
-			canmove = 0
-			if(istype(buckled))
-				if(buckled.buckle_lying != -1)
-					lying = buckled.buckle_lying
-				if(buckled.buckle_movable)
-					anchored = 0
-					canmove = 1
-
-		else if(cannot_stand())
-			lying = 1
-			canmove = 0
-		else if(stunned)
-			canmove = 0
-		else if(captured)
-			anchored = 1
-			canmove = 0
-			lying = 0
-		else
-			lying = 0
-			canmove = 1
+				lying = buckled.buckle_lying
+			if(buckled.buckle_movable)
+				anchored = 0
+		canmove = FALSE //TODO: Remove this
+	else
+		lying = incapacitated(INCAPACITATION_KNOCKDOWN)
+		canmove = FALSE //TODO: Remove this
 
 	if(lying)
-		density = 0
+		set_density(0)
 		if(l_hand) unEquip(l_hand)
 		if(r_hand) unEquip(r_hand)
 	else
-		density = initial(density)
+		canmove = TRUE
+		set_density(initial(density))
+	reset_layer()
 
 	for(var/obj/item/weapon/grab/G in grabbed_by)
-		if(G.state >= GRAB_AGGRESSIVE)
-			canmove = 0
-			break
-
-	if(lying)
-		if(layer == initial(layer)) //to avoid special cases like hiding larvas.
-			layer = MOB_LAYER - 0.1 //so mob lying always appear behind standing mobs
-	else
-		if(layer == MOB_LAYER - 0.1)
-			layer = initial(layer)
+		if(G.force_stand())
+			lying = 0
 
 	//Temporarily moved here from the various life() procs
 	//I'm fixing stuff incrementally so this will likely find a better home.
@@ -768,16 +751,14 @@
 		update_icon = 0
 		regenerate_icons()
 	else if( lying != lying_prev )
-		if(lying)
-			if(layer == initial(layer)) //to avoid special cases like hiding larvas.
-				layer = LYING_MOB_LAYER //so mob lying always appear behind standing mobs
-		else
-			if(layer == LYING_MOB_LAYER)
-				layer = initial(layer)
 		update_icons()
 
-	return canmove
-
+/mob/proc/reset_layer()
+	if(lying)
+		plane = LYING_MOB_PLANE
+		layer = LYING_MOB_LAYER
+	else
+		reset_plane_and_layer()
 
 /mob/facedir(var/ndir)
 	if(!canface() || client.moving || client.isMovementBlocked())
@@ -817,38 +798,38 @@
 	if(status_flags & CANSTUN)
 		facing_dir = null
 		stunned = max(max(stunned,amount),0) //can't go below 0, getting a low amount of stun doesn't lower your current stun
-		update_canmove()
+		update_lying_buckled_and_verb_status()
 	return
 
 /mob/proc/SetStunned(amount) //if you REALLY need to set stun to a set amount without the whole "can't go below current stunned"
 	if(status_flags & CANSTUN)
 		stunned = max(amount,0)
-		update_canmove()
+		update_lying_buckled_and_verb_status()
 	return
 
 /mob/proc/AdjustStunned(amount)
 	if(status_flags & CANSTUN)
 		stunned = max(stunned + amount,0)
-		update_canmove()
+		update_lying_buckled_and_verb_status()
 	return
 
 /mob/proc/Weaken(amount)
 	if(status_flags & CANWEAKEN)
 		facing_dir = null
 		weakened = max(max(weakened,amount),0)
-		update_canmove()	//updates lying, canmove and icons
+		update_lying_buckled_and_verb_status()	//updates lying, canmove and icons
 	return
 
 /mob/proc/SetWeakened(amount)
 	if(status_flags & CANWEAKEN)
 		weakened = max(amount,0)
-		update_canmove()	//updates lying, canmove and icons
+		update_lying_buckled_and_verb_status()	//updates lying, canmove and icons
 	return
 
 /mob/proc/AdjustWeakened(amount)
 	if(status_flags & CANWEAKEN)
 		weakened = max(weakened + amount,0)
-		update_canmove()	//updates lying, canmove and icons
+		update_lying_buckled_and_verb_status()	//updates lying, canmove and icons
 	return
 
 /mob/proc/Paralyse(amount)
@@ -1023,7 +1004,7 @@ mob/proc/yank_out_object()
 
 /mob/living/proc/handle_weakened()
 	if(weakened)
-		weakened = max(weakened-1,0)	//before you get mad Rockdtben: I done this so update_canmove isn't called multiple times
+		weakened = max(weakened-1,0)	//before you get mad Rockdtben: I done this so update_lying_buckled_and_verb_status isn't called multiple times
 	return weakened
 
 /mob/living/proc/handle_stuttering()
@@ -1169,3 +1150,6 @@ mob/proc/yank_out_object()
 
 /mob/proc/has_admin_rights()
 	return check_rights(R_ADMIN, 0, src)
+
+/mob/proc/get_face_name()
+	return name

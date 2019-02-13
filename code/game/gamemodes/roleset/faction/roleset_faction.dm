@@ -36,28 +36,29 @@
 
 		var/datum/antagonist/A = new antag.type
 
-		var/mob/M = pick_n_take(candidates)
+		var/M = pick_n_take(candidates)
 		if(!M)
 			//No candidates, abort
 			break
 
 		var/success = FALSE
 		if (antag.outer)
-			success = A.create_from_ghost(M, announce = FALSE)
+			success = A.create_from_ghost(M, F, announce = FALSE)
 		else
-			success = A.create_antagonist(M, announce = FALSE)
+			success = A.create_antagonist(M, F, announce = FALSE)
 
 		if (success)
 			success_quantity++
-			F.add_member(A, announce = TRUE)
 		else
 			//If we found a viable candidate but failed to turn them into an antag, we'll skip over them
 			i-- //Decrement i so we can try again
 			//That candidate is still removed from the list by pick_n_take
 
+
 	//Appoint leaders for this faction
 	if (leaders)
 		F.pick_leaders(leaders)
+
 
 	//And pick objectives
 	F.create_objectives()

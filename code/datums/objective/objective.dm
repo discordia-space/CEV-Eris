@@ -19,8 +19,9 @@ var/global/list/all_objectives_types = null
 	var/completed = FALSE				//currently only used for custom objectives.
 	var/failed = FALSE 					//If true, this objective has reached a state where it can never be completed
 	var/human_target = TRUE				//If true, only select human targets
+	var/unique = FALSE					//If true, each antag/faction can have only one instance of this objective
 
-/datum/objective/New(var/datum/antagonist/new_owner, var/datum/mind/target)
+/datum/objective/New(var/datum/antagonist/new_owner, var/datum/mind/_target)
 	if (istype(new_owner))
 		antag = new_owner
 		antag.objectives += src
@@ -29,8 +30,10 @@ var/global/list/all_objectives_types = null
 	else if (istype(new_owner, /datum/faction))
 		owner_faction = new_owner
 		owner_faction.objectives += src
-	if(!target)
+	if(!_target)
 		find_target()
+	else if (_target != ANTAG_SKIP_TARGET)
+		target = _target
 	update_explanation()
 	all_objectives.Add(src)
 	..()
@@ -39,6 +42,9 @@ var/global/list/all_objectives_types = null
 	if(antag)
 		antag.objectives -= src
 		antag = null
+	if (owner_faction)
+		owner_faction.objectives -= src
+		owner_faction = null
 	if(owner)
 		owner = null
 	if(target)
@@ -58,7 +64,7 @@ var/global/list/all_objectives_types = null
 	var/list/possible_targets = list()
 	for(var/datum/mind/possible_target in SSticker.minds)
 		if(is_valid_target(possible_target))
-			possible_targets.Add(possible_target)
+			possible_targets |= possible_target
 	return possible_targets
 
 //Checks if a given mind is a valid target to perform objectives on
@@ -69,7 +75,7 @@ var/global/list/all_objectives_types = null
 	if (M == owner) //No targeting ourselves
 		return FALSE
 
-	if (!ishuman(M) && human_target)
+	if (!ishuman(M.current) && human_target)
 		return FALSE
 
 	if (M.current.stat == DEAD)
@@ -77,19 +83,24 @@ var/global/list/all_objectives_types = null
 		return FALSE
 
 	//Special handling for targeting other antags
-	if (M.antagonist)
-		var/datum/antagonist/A = M.antagonist
-		//Make sure we don't target our own faction
-		if (owner_faction && (owner_faction == A.faction))
-			return FALSE
+	if (M.antagonist.len)
+		for (var/datum/antagonist/A in M.antagonist)
+			//Make sure we don't target our own faction
+			if (owner_faction && (owner_faction == A.faction))
+				return FALSE
 
 	return TRUE
 
 
 /datum/objective/proc/find_target()
 	var/list/possible_targets = get_targets_list()
+
+	var/list/existing_targets = get_owner_targets()
+	possible_targets -= existing_targets
 	if(possible_targets.len > 0)
 		set_target(pick(possible_targets))
+		return TRUE
+	return FALSE
 
 /datum/objective/proc/set_target(var/datum/mind/new_target)
 	if(new_target)
@@ -135,3 +146,18 @@ var/global/list/all_objectives_types = null
 		contents.Add(owner_faction.get_inventory())
 
 	return contents
+
+//Returns whatever this objective is targeting.
+//Could be a datum, a mind, a typepath, a name, a role, or even a list of the above.
+/datum/objective/proc/get_target()
+	return target
+
+
+//Gets the list of targets from our owner
+/datum/objective/proc/get_owner_targets()
+	if (owner_faction)
+		return owner_faction.get_targets()
+	else if (antag)
+		return antag.get_targets()
+	else
+		return list()

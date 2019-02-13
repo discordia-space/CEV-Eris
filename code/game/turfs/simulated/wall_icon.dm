@@ -57,15 +57,15 @@
 
 	overlays.Cut()
 	var/image/I
-
+	/*
 	if(!density)
 		I = image('icons/turf/wall_masks.dmi', "[material.icon_base]fwall_open")
 		I.color = (istype(material, /material/plasteel) || istype(material, /material/steel)) ? PLASTEEL_COLOUR : material.icon_colour
 		overlays += I
 		return
-
+	*/
 	for(var/i = 1 to 4)
-		I = image('icons/turf/wall_masks.dmi', "[material.icon_base][wall_connections[i]]", dir = 1<<(i-1))
+		I = image('icons/turf/wall_masks.dmi', "[material.icon_base][wall_connections[i]]", dir = GLOB.cardinal[i])
 		I.color = (istype(material, /material/plasteel) || istype(material, /material/steel)) ? PLASTEEL_COLOUR : material.icon_colour
 		overlays += I
 

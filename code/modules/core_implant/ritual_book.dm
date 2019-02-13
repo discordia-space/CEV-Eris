@@ -6,7 +6,7 @@
 	var/has_reference = FALSE
 
 	var/expanded_group = null
-	var/current_category = ""
+	var/current_category = "Common"
 	var/reference_mode = FALSE
 
 
@@ -32,6 +32,7 @@
 
 		for(var/RT in CI.known_rituals)
 			var/datum/ritual/R = GLOB.all_rituals[RT]
+
 
 			if(!(R.category in cdata))
 				cdata.Add(R.category)
@@ -78,8 +79,11 @@
 
 		data["currcat"] = current_category
 		data["currexp"] = expanded_group
+
 	else
 		data["noimplant"] = TRUE
+
+
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)

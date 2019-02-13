@@ -46,7 +46,8 @@
 	return steal_target
 
 /datum/objective/steal/find_target()
-	return set_target(pick(possible_items))
+	var/list/valid_items = possible_items - get_owner_targets()
+	return set_target(pick(valid_items))
 
 
 /datum/objective/steal/proc/select_target(var/mob/user)
@@ -61,9 +62,9 @@
 /datum/objective/steal/check_completion()
 	if (failed)
 		return FALSE
-	if(!steal_target || !owner.current)
+	if(!steal_target)
 		return FALSE
-	if(!isliving(owner.current))
+	if(owner && !isliving(owner.current))
 		return FALSE
 	var/list/all_items = get_owner_inventory()
 	switch(target_name)
@@ -120,3 +121,6 @@
 	if(href_list["switch_item"])
 		select_target(usr)
 		antag.antagonist_panel()
+
+/datum/objective/steal/get_target()
+	return target_name

@@ -7,6 +7,9 @@
 #define MELEE 1
 #define RANGED 2
 
+#define MOVEMODE_STEP 1
+#define MOVEMODE_THRUST 2
+
 
 /obj/mecha
 	name = "Mecha"
@@ -22,9 +25,7 @@
 	var/can_move = 1
 	var/mob/living/carbon/occupant = null
 	var/list/dropped_items = list()
-	var/step_in = 10 //make a step in step_in/10 sec.
-	var/dir_in = 2//What direction will the mech face when entered/powered on? Defaults to South.
-	var/step_energy_drain = 10
+
 	var/health = 300 //health is health
 	var/deflect_chance = 10 //chance to deflect incoming projectiles, hits, or lesser the effect of ex_act.
 	var/r_deflect_coeff = 1
@@ -34,6 +35,12 @@
 	var/m_damage_coeff = 1
 	var/rhit_power_use = 0
 	var/mhit_power_use = 0
+
+	//Movement
+	var/step_in = 10 //make a step in step_in/10 sec.
+	var/dir_in = 2//What direction will the mech face when entered/powered on? Defaults to South.
+	var/step_energy_drain = 10
+	var/obj/item/mecha_parts/mecha_equipment/thruster/thruster = null
 
 	//the values in this list show how much damage will pass through, not how much will be absorbed.
 	var/list/damage_absorption = list("brute"=0.8,"fire"=1.2,"bullet"=0.9,"laser"=1,"energy"=1,"bomb"=1)
@@ -64,6 +71,7 @@
 
 	var/list/operation_req_access = list()//required access level for mecha operation
 	var/list/internals_req_access = list(access_engine,access_robotics)//required access level to open cell compartment
+	var/list/dna_req_access = list(access_heads)
 
 	var/datum/global_iterator/pr_int_temp_processor //normalizes internal air mixture temperature
 	var/datum/global_iterator/pr_inertial_movement //controls intertial movement in spesss
@@ -78,14 +86,17 @@
 	var/max_equip = 3
 	var/datum/events/events
 
+	//Sounds
+	var/step_sound = 'sound/mecha/Mech_Step.ogg'
+	var/step_turn_sound = 'sound/mecha/Mech_Rotation.ogg'
+
+
+
 /obj/mecha/can_prevent_fall()
 	return TRUE
 
 /obj/mecha/get_fall_damage()
 	return FALL_GIB_DAMAGE
-
-/obj/mecha/can_fall()
-	return TRUE
 
 /obj/mecha/drain_power(var/drain_check)
 
@@ -241,18 +252,26 @@
 	return 1
 
 
-
+//Called each step by mechas, and periodically when drifting through space
 /obj/mecha/proc/check_for_support()
-	if(
-		locate(/obj/structure/grille, orange(1, src)) || \
-		locate(/obj/structure/lattice, orange(1, src)) ||\
-		locate(/obj/structure/catwalk, orange(1, src)) ||\
-		locate(/turf/simulated, orange(1, src)) ||\
-		locate(/turf/unsimulated, orange(1, src))
-	)
-		return 1
+	var/turf/T = get_turf(src)
+	//If we're standing on solid ground, we are fine, even in space.
+	//We'll assume mechas have magnetic feet and don't slip
+	if (!T.is_hole)
+		return TRUE
+
+
+	//Ok we're floating and there's no gravity
 	else
-		return 0
+		for (var/a in T)
+
+			if (a == src)
+				continue
+
+			var/atom/A = a
+			if (A.can_prevent_fall())
+				return TRUE
+		return FALSE
 
 /obj/mecha/examine(mob/user)
 	..(user)
@@ -272,7 +291,6 @@
 		user << "It's equipped with:"
 		for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
 			user << "\icon[ME] [ME]"
-	return
 
 
 /obj/mecha/proc/drop_item()//Derpfix, but may be useful in future for engineering exosuits.
@@ -281,7 +299,6 @@
 /obj/mecha/hear_talk(mob/M as mob, text)
 	if(M==occupant && radio.broadcasting)
 		radio.talk_into(M, text)
-	return
 
 ////////////////////////////
 ///// Action processing ////
@@ -391,58 +408,116 @@
 		return
 	return do_move(direction)
 
+//This uses a goddamn do_after for movement, this is very bad. Todo: Redesign this in future
 /obj/mecha/proc/do_move(direction)
-	var/obj/item/mecha_parts/mecha_equipment/jetpack/J = locate() in equipment
-	if(J && J.do_move(direction))
-		return 1
 
+
+	//If false, it's just moved, or locked down, or disabled or something
 	if(!can_move)
 		return 0
+
+	//Currently drifting through space. The iterator that controls this will cancel it if the mech finds
+	// things to grip or enables thrusters
 	if(src.pr_inertial_movement.active())
 		return 0
+
+
 	if(!has_charge(step_energy_drain))
 		return 0
+
+	var/turn = FALSE //If true, we are turning in place instead of moving
+	if(src.dir!=direction)
+		turn = TRUE
+
 	var/move_result = 0
+	var/movemode = MOVEMODE_STEP
+
+	//Alright lets check if we can move
+	//If there's no support then we will use the thruster
+	if(!check_for_support())
+		//Check if the thruster exists, and is able to work. The do_move proc will handle paying gas costs
+		if (thruster && thruster.do_move(direction, turn))
+			//We pass this into the move procs, prevents stomping sounds
+			movemode = MOVEMODE_THRUST
+
+
+			//The thruster uses power, but far less than moving the legs
+			if (!use_power(step_energy_drain*0.1))
+				//No movement if power is dead
+				return FALSE
+		else
+			src.pr_inertial_movement.start(list(src,direction))
+			src.log_message("Movement control lost. Inertial movement started.")
+			return FALSE
+	//There is support, normal movement, normal energy cost
+	else
+		if (!use_power(step_energy_drain))
+			//No movement if power is dead
+			return FALSE
+
+	//If we make it to here then we can definitely make a movement
+
+	anchored = FALSE //Unanchor in order to move
 	// TODO: Glide size handling in here is fucked,
 	// because the timing system uses sleep instead of world.time comparisons/delay controllers
 	// At least that's my theory I can't be bothered to investigate fully.
-	if(hasInternalDamage(MECHA_INT_CONTROL_LOST))
+	if(turn)
+		move_result = mechturn(direction, movemode)
+		//We don't set l_move_time for turning on the spot. it doesnt count as movement
+	else if(hasInternalDamage(MECHA_INT_CONTROL_LOST))
 		set_glide_size(DELAY2GLIDESIZE(step_in))
-		move_result = mechsteprand()
-	else if(src.dir!=direction)
-		move_result = mechturn(direction)
+		move_result = mechsteprand(movemode)
+		if (occupant)
+			occupant.l_move_time = world.time
+
 	else
 		set_glide_size(DELAY2GLIDESIZE(step_in))
-		move_result = mechstep(direction)
+		move_result = mechstep(direction, movemode)
+		if (occupant)
+			occupant.l_move_time = world.time
+
+	anchored = TRUE //Reanchor after moving
 	if(move_result)
 		can_move = 0
-		use_power(step_energy_drain)
-		if(istype(src.loc, /turf/space))
-			if(!src.check_for_support())
-				src.pr_inertial_movement.start(list(src,direction))
-				src.log_message("Movement control lost. Inertial movement started.")
+
+
+
 		if(do_after(step_in))
 			can_move = 1
 		return 1
 	return 0
 
-/obj/mecha/proc/mechturn(direction)
+/obj/mecha/proc/mechturn(direction, var/movemode = MOVEMODE_STEP)
+	//When turning in 0g with a thruster, we do a little airburst to rotate us
+	//The thrust happens in the direction we're already facing, to turn us away from that and to a different direction
+	if (movemode == MOVEMODE_THRUST)
+		thruster.thrust.trail.do_effect(get_step(loc, dir), dir)
+
 	set_dir(direction)
-	playsound(src,'sound/mecha/Mech_Rotation.ogg',40,1)
+
+	if (movemode == MOVEMODE_STEP)
+		playsound(src,step_turn_sound,40,1)
+
 	return 1
 
-/obj/mecha/proc/mechstep(direction)
-	var/result = step(src,direction)
+/obj/mecha/proc/mechstep(direction, var/movemode = MOVEMODE_STEP)
+	var/result = Move(get_step(src, direction),direction)
 	if(result)
-		playsound(src,'sound/mecha/Mech_Step.ogg',100,1)
+		if (movemode == MOVEMODE_STEP)
+			playsound(src,step_sound,100,1)
 	return result
 
 
-/obj/mecha/proc/mechsteprand()
+/obj/mecha/proc/mechsteprand(var/movemode = MOVEMODE_STEP)
 	var/result = step_rand(src)
 	if(result)
-		playsound(src,'sound/mecha/Mech_Step.ogg',100,1)
+		if (movemode == MOVEMODE_STEP)
+			playsound(src,step_sound,100,1)
 	return result
+
+//Used for jetpacks
+/obj/mecha/total_movement_delay()
+	return step_in
 
 /obj/mecha/Bump(var/atom/obstacle)
 //	src.inertia_dir = null
@@ -462,6 +537,62 @@
 	else
 		obstacle.Bumped(src)
 	return
+
+/obj/mecha/get_jetpack()
+	if (thruster)
+		return thruster.thrust
+
+	return null
+
+//Here we hook in any modules that would prevent the mech from falling
+//Return false to float in the air, return true to fall
+/obj/mecha/can_fall()
+	if (thruster)
+		if (thruster.thrust.check_thrust() && thruster.thrust.stabilization_on)
+			return FALSE
+	.=..()
+
+
+
+/*Falling mechas have a similar effect to falling robots. Major devastation to the area and death to
+anything directly under them. However, since they are walking vehicles, with legs - and more importantly, knees-
+they can absorb most of the shock that would hit themselves, and thusly only take light damage from falling.
+This damage is 8% of their max health.
+It's still not healthy or recommended in most circumstances, but stomping someone in a mech would be an excellent
+assassination method if you time it right*/
+/obj/mecha/fall_impact(var/turf/from, var/turf/dest)
+	anchored = TRUE //We may have set this temporarily false so we could fall
+	take_damage(initial(health)*0.08)
+
+	//Wreck the contents of the tile
+	for (var/atom/movable/AM in dest)
+		if (AM != src)
+			AM.ex_act(3)
+
+	//Damage the tile itself
+	dest.ex_act(2)
+
+	//Damage surrounding tiles
+	for (var/turf/T in range(1, src))
+		if (T == dest)
+			continue
+
+		T.ex_act(3)
+
+	//And do some screenshake for everyone in the vicinity
+	for (var/mob/M in range(20, src))
+		var/dist = get_dist(M, src)
+		dist *= 0.5
+		if (dist <= 1)
+			dist = 1 //Prevent runtime errors
+
+		shake_camera(M, 10/dist, 2.5/dist, 0.12)
+
+	playsound(src, 'sound/weapons/heavysmash.ogg', 100, 1, 20,20)
+	spawn(1)
+		playsound(src, 'sound/weapons/heavysmash.ogg', 100, 1, 20,20)
+	spawn(2)
+		playsound(src, 'sound/weapons/heavysmash.ogg', 100, 1, 20,20)
 
 ///////////////////////////////////
 ////////  Internal damage  ////////
@@ -1293,6 +1424,12 @@
 			return 1
 	return 0
 
+/obj/mecha/proc/dna_reset_allowed(mob/living/carbon/human/H)
+	for(var/atom/ID in list(H.get_active_hand(), H.wear_id, H.belt))
+		if(src.check_access(ID,src.dna_req_access))
+			return 1
+	return 0
+
 
 /obj/mecha/check_access(obj/item/weapon/card/id/I, list/access_list)
 	if(!istype(access_list))
@@ -1308,10 +1445,11 @@
 		for(var/req in access_list)
 			if(!(req in I.access)) //doesn't have this access
 				return 0
-	else if(access_list==src.internals_req_access)
+	else if(access_list == src.internals_req_access || access_list == src.dna_req_access)
 		for(var/req in access_list)
 			if(req in I.access)
 				return 1
+		return 0
 	return 1
 
 
@@ -1433,7 +1571,7 @@
 						<div class='links'>
 						<a href='?src=\ref[src];toggle_id_upload=1'><span id='t_id_upload'>[add_req_access?"L":"Unl"]ock ID upload panel</span></a><br>
 						<a href='?src=\ref[src];toggle_maint_access=1'><span id='t_maint_access'>[maint_access?"Forbid":"Permit"] maintenance protocols</span></a><br>
-						<a href='?src=\ref[src];dna_lock=1'>DNA-lock</a><br>
+						<a href='?src=\ref[src];dna_lock=1'>DNA-Lock</a><br>
 						<a href='?src=\ref[src];view_log=1'>View internal log</a><br>
 						<a href='?src=\ref[src];change_name=1'>Change exosuit name</a><br>
 						</div>
@@ -1507,6 +1645,8 @@
 	var/maint_options = "<a href='?src=\ref[src];set_internal_tank_valve=1;user=\ref[user]'>Set Cabin Air Pressure</a>"
 	if (locate(/obj/item/mecha_parts/mecha_equipment/tool/passenger) in contents)
 		maint_options += "<a href='?src=\ref[src];remove_passenger=1;user=\ref[user]'>Remove Passenger</a>"
+	if (src.dna)
+		maint_options += "<a href='?src=\ref[src];maint_reset_dna=1;user=\ref[user]'>Revert DNA-Lock</a>"
 
 	var/output = {"<html>
 						<head>
@@ -1740,6 +1880,16 @@
 			return
 		usr << sound('sound/mecha/UI_SCI-FI_Tone_10_stereo.ogg',channel=4, volume=100)
 		src.dna = null
+		src.occupant_message("DNA-Lock disengaged.")
+	if(href_list["maint_reset_dna"])
+		if(src.dna_reset_allowed(usr))
+			usr << sound('sound/mecha/UI_SCI-FI_Tone_10_stereo.ogg',channel=4, volume=100)
+			usr << SPAN_NOTICE("DNA-Lock has been reverted.")
+			src.dna = null
+		else
+			usr << sound('sound/mecha/UI_SCI-FI_Tone_Deep_Wet_15_stereo_error.ogg',channel=4, volume=100)
+			usr << SPAN_WARNING("Invalid ID: Higher clearance is required.")
+			return
 	if(href_list["repair_int_control_lost"])
 		if(usr != src.occupant)
 			return
@@ -1830,17 +1980,18 @@
 		return
 	return max(0, src.cell.charge)
 
+//Attempts to use the given amount of power
 /obj/mecha/proc/use_power(amount)
-	if(get_charge())
+	if(get_charge() >= amount)
 		cell.use(amount)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/mecha/proc/give_power(amount)
 	if(!isnull(get_charge()))
 		cell.give(amount)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 
 /obj/mecha/attack_generic(var/mob/user, var/damage, var/attack_message)
@@ -1926,8 +2077,12 @@
 
 	Process(var/obj/mecha/mecha as obj,direction)
 		if(direction)
-			if(!step(mecha, direction)||mecha.check_for_support())
+			mecha.anchored = FALSE //Unanchor while moving, so we can fall if we float over a hole witgh gravity
+			if(!step(mecha, direction)||mecha.check_for_support() || (mecha.thruster && mecha.thruster.do_move()))
+				mecha.inertia_dir = 0
 				src.stop()
+			mecha.anchored = TRUE
+			mecha.inertia_dir = direction
 		else
 			src.stop()
 		return

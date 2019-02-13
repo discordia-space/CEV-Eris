@@ -70,6 +70,8 @@
 	var/supernatural = 0
 	var/purge = 0
 
+	mob_classification = CLASSIFICATION_ORGANIC
+
 /mob/living/simple_animal/New()
 	..()
 	if(!icon_living)

@@ -348,6 +348,14 @@ div.notice {
 	overflow: hidden;
 }
 
+.statusDisplayItem {
+    background: #000000;
+    color: #ffffff;
+    border: 1px solid #40628a;
+    padding: 1px;
+    margin: 0px 4px;
+    overflow: hidden;
+}
 .statusDisplayRecords {
     background: #000000;
     color: #ffffff;

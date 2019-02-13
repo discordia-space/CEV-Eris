@@ -6,8 +6,6 @@ var/list/ai_verbs_default = list(
 	/mob/living/silicon/ai/proc/ai_movement_up,
 	/mob/living/silicon/ai/proc/ai_movement_down,
 	/mob/living/silicon/ai/proc/ai_announcement,
-	/mob/living/silicon/ai/proc/ai_call_shuttle,
-	// /mob/living/silicon/ai/proc/ai_recall_shuttle,
 	/mob/living/silicon/ai/proc/ai_emergency_message,
 	/mob/living/silicon/ai/proc/ai_camera_track,
 	/mob/living/silicon/ai/proc/ai_camera_list,
@@ -27,7 +25,10 @@ var/list/ai_verbs_default = list(
 	/mob/living/silicon/ai/proc/toggle_acceleration,
 	/mob/living/silicon/ai/proc/toggle_camera_light,
 	/mob/living/silicon/ai/proc/multitool_mode,
-	/mob/living/silicon/ai/proc/toggle_hologram_movement
+	/mob/living/silicon/ai/proc/toggle_hologram_movement,
+	/mob/living/silicon/verb/show_crew_sensors,
+	/mob/living/silicon/verb/show_email,
+	/mob/living/silicon/verb/show_alerts
 )
 
 //Not sure why this is necessary...
@@ -51,7 +52,22 @@ var/list/ai_verbs_default = list(
 	status_flags = CANSTUN|CANPARALYSE|CANPUSH
 //	shouldnt_see = list()
 	universal_understand = TRUE
-	var/list/network = list("Exodus")
+	var/list/network = list(NETWORK_FIRST_SECTION,
+							NETWORK_SECOND_SECTION,
+							NETWORK_THIRD_SECTION,
+							NETWORK_FOURTH_SECTION,
+							NETWORK_COMMAND,
+							NETWORK_ENGINE,
+							NETWORK_ENGINEERING,
+							NETWORK_CEV_ERIS,
+							NETWORK_MINE,
+							NETWORK_PRISON,
+							NETWORK_MEDICAL,
+							NETWORK_RESEARCH,
+							NETWORK_RESEARCH_OUTPOST,
+							NETWORK_SECURITY,
+							NETWORK_TELECOM
+							)
 	var/obj/machinery/camera/camera = null
 	var/list/connected_robots = list()
 	var/aiRestorePowerRoutine = 0
@@ -90,6 +106,8 @@ var/list/ai_verbs_default = list(
 	var/carded
 
 	var/multitool_mode = 0
+
+	defaultHUD = "Eris"
 
 /mob/living/silicon/ai/proc/add_ai_verbs()
 	src.verbs |= ai_verbs_default
@@ -209,6 +227,7 @@ var/list/ai_verbs_default = list(
 	hud_list[SPECIALROLE_HUD] = image('icons/mob/hud.dmi', src, "hudblank")
 
 	ai_list += src
+	
 	..()
 
 /mob/living/silicon/ai/proc/on_mob_init()
@@ -383,35 +402,6 @@ var/list/ai_verbs_default = list(
 	spawn(600)//One minute cooldown
 		message_cooldown = 0
 
-/mob/living/silicon/ai/proc/ai_call_shuttle()
-	set category = "Silicon Commands"
-	set name = "Call Emergency Shuttle"
-
-	if(check_unable(AI_CHECK_WIRELESS))
-		return
-
-	var/confirm = alert("Are you sure you want to evacuate?", "Confirm Evacuation", "Yes", "No")
-
-	if(check_unable(AI_CHECK_WIRELESS))
-		return
-
-	if(confirm == "Yes")
-		call_shuttle_proc(src)
-
-/mob/living/silicon/ai/proc/ai_recall_shuttle()
-	set category = "Silicon Commands"
-	set name = "Recall Emergency Shuttle"
-
-	if(check_unable(AI_CHECK_WIRELESS))
-		return
-
-	var/confirm = alert("Are you sure you want to recall the shuttle?", "Confirm Shuttle Recall", "Yes", "No")
-	if(check_unable(AI_CHECK_WIRELESS))
-		return
-
-	if(confirm == "Yes")
-		cancel_call_proc(src)
-
 /mob/living/silicon/ai/var/emergency_message_cooldown = 0
 /mob/living/silicon/ai/proc/ai_emergency_message()
 	set category = "Silicon Commands"
@@ -471,11 +461,9 @@ var/list/ai_verbs_default = list(
 				H.attack_ai(src) //may as well recycle
 			else
 				src << SPAN_NOTICE("Unable to locate the holopad.")
-
 	if (href_list["track"])
 		var/mob/target = locate(href_list["track"]) in SSmobs.mob_list
-
-		if(target && (!ishuman(target) || rhtml_decode(href_list["trackname"]) == target:get_face_name()))
+		if(target && (!ishuman(target) || target.real_name == target.get_face_name()))
 			ai_actual_track(target)
 		else
 			src << "\red System error. Cannot locate [rhtml_decode(href_list["trackname"])]."
@@ -774,3 +762,12 @@ var/list/ai_verbs_default = list(
 //just a plug for now untill baymed arrives
 /mob/living/silicon/ai/proc/has_power(var/respect_override = 1)
 	return 1
+
+// shortcuts for UI
+/mob/living/silicon/ai/proc/take_photo()
+	var/obj/item/device/camera/siliconcam/ai_camera/cam = aiCamera
+	cam.take_image()
+
+/mob/living/silicon/ai/proc/view_photos()
+	var/obj/item/device/camera/siliconcam/ai_camera/cam = aiCamera
+	cam.view_images()

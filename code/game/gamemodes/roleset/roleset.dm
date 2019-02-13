@@ -82,7 +82,7 @@
 	var/any_candidates = FALSE
 
 	if(temp.outer)
-		for(var/mob/observer/candidate in player_list)
+		for(var/mob/observer/candidate in GLOB.player_list)
 			if(!candidate.client)
 				if (report) report << SPAN_NOTICE("Failure: [candidate] is disconnected")
 				continue
@@ -107,14 +107,14 @@
 				spawn()
 					request_log[candidate.key] = world.time //Record this request so we don't spam them repeatedly
 					usr = candidate
-					if(alert("Do you want to become the [temp.role_text]? Hurry up, you have 20 seconds to make choice!","Antag lottery","OH YES","No, I'm autist") == "OH YES")
+					if(alert("Do you want to become the [temp.role_text]? Hurry up, you have 60 seconds to make choice!","Antag lottery","OH YES","No, I'm autist") == "OH YES")
 						if(!agree_time_out)
 							candidates.Add(candidate)
 			else
 				candidates.Add(candidate)
 
 		if(any_candidates && act_test)	//we don't need to wait if there's no candidates
-			sleep(20 SECONDS)
+			sleep(60 SECONDS)
 			agree_time_out = TRUE
 
 	return shuffle(candidates)

@@ -119,7 +119,7 @@ SUBSYSTEM_DEF(job)
 			break
 
 /datum/controller/subsystem/job/proc/ResetOccupations()
-	for(var/mob/new_player/player in player_list)
+	for(var/mob/new_player/player in GLOB.player_list)
 		if((player) && (player.mind))
 			player.mind.assigned_role = null
 			player.mind.assigned_job = null
@@ -202,7 +202,7 @@ SUBSYSTEM_DEF(job)
 				break
 
 	//Get the players who are ready
-	for(var/mob/new_player/player in player_list)
+	for(var/mob/new_player/player in GLOB.player_list)
 		if(player.ready && player.mind && !player.mind.assigned_role)
 			unassigned += player
 
@@ -332,7 +332,7 @@ SUBSYSTEM_DEF(job)
 	if(H.mind && job.head_position)
 		var/remembered_info = ""
 		var/datum/money_account/department_account = department_accounts[job.department]
-
+		department_account.owner_name = H.real_name //Register them as the point of contact for this account
 		if(department_account)
 			remembered_info += "<b>Your department's account number is:</b> #[department_account.account_number]<br>"
 			remembered_info += "<b>Your department's account pin is:</b> [department_account.remote_access_pin]<br>"
@@ -366,7 +366,7 @@ SUBSYSTEM_DEF(job)
 		if(!l_leg || !r_leg)
 			var/obj/structure/bed/chair/wheelchair/W = new /obj/structure/bed/chair/wheelchair(H.loc)
 			H.buckled = W
-			H.update_canmove()
+			H.update_lying_buckled_and_verb_status()
 			W.set_dir(H.dir)
 			W.buckled_mob = H
 			W.add_fingerprint(H)
@@ -410,7 +410,7 @@ proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
 				var/permitted = 1
 				if(permitted)
 					if(G.allowed_roles)
-						if(job.type in G.allowed_roles)
+						if(job.title in G.allowed_roles)
 							permitted = 1
 						else
 							permitted = 0
@@ -475,7 +475,7 @@ proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
 		var/level4 = 0 //never
 		var/level5 = 0 //banned
 		var/level6 = 0 //account too young
-		for(var/mob/new_player/player in player_list)
+		for(var/mob/new_player/player in GLOB.player_list)
 			if(!(player.ready && player.mind && !player.mind.assigned_role))
 				continue //This player is not ready
 			if(jobban_isbanned(player, job.title))
@@ -522,15 +522,15 @@ proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
 					if(candidate.check_job_spawning(rank))
 						SP = candidate
 						break
-					if(!SP)
-						// Pick default spawnpoint, just so we have one
-						warning("Could not find an appropriate spawnpoint for job [rank] (latespawn).")
-						SP = SP = getSpawnPoint(maps_data.default_spawn, late = TRUE)
+				if(!SP)
+					warning("Could not find an appropriate spawnpoint for job [rank] (latespawn).")
 	else
 		SP = getSpawnPoint(rank)
 		if(!SP)
 			warning("Could not find an appropriate spawnpoint for job [rank] (roundstart).")
-			SP = getSpawnPoint(maps_data.default_spawn, late = TRUE)
+	if(!SP)
+		// Pick default spawnpoint, just so we have one
+		SP = SP = getSpawnPoint(maps_data.default_spawn, late = TRUE)
 	return SP
 
 /datum/controller/subsystem/job/proc/ShouldCreateRecords(var/title)

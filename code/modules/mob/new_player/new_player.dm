@@ -83,7 +83,7 @@
 			stat("Players: [totalPlayers]", "Players Ready: [totalPlayersReady]")
 			totalPlayers = 0
 			totalPlayersReady = 0
-			for(var/mob/new_player/player in player_list)
+			for(var/mob/new_player/player in GLOB.player_list)
 				stat("[player.key]", (player.ready)?("(Playing)"):(null))
 				totalPlayers++
 				if(player.ready)totalPlayersReady++
@@ -112,7 +112,7 @@
 			var/mob/observer/ghost/observer = new()
 
 			spawning = 1
-			src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // MAD JAMS cant last forever yo
+			sound_to(src, sound(null, repeat = 0, wait = 0, volume = 85, channel = GLOB.lobby_sound_channel))
 
 			observer.started_as_observer = 1
 			close_spawn_windows()
@@ -137,6 +137,7 @@
 			//observer.key = key
 			observer.ckey = ckey
 			observer.initialise_postkey()
+			observer.client.create_UI()
 			qdel(src)
 
 			return 1
@@ -239,12 +240,12 @@
 	SSjob.AssignRole(src, rank, 1)
 	var/datum/job/job = src.mind.assigned_job
 	var/mob/living/character = create_character()	//creates the human and transfers vars and mind
-	
+
 	// AIs don't need a spawnpoint, they must spawn at an empty core
 	if(rank == "AI")
 
 		character = character.AIize(move=0) // AIize the character, but don't move them yet
-		SSticker.minds += character.mind
+
 			// IsJobAvailable for AI checks that there is an empty core available in this list
 		var/obj/structure/AIcore/deactivated/C = empty_playable_ai_cores[1]
 		empty_playable_ai_cores -= C
@@ -257,12 +258,12 @@
 		qdel(src)
 		return
 
-	character = SSjob.EquipRank(character, rank)					//equips the human
-	equip_custom_items(character)
-
 	var/datum/spawnpoint/spawnpoint = SSjob.get_spawnpoint_for(character.client, rank, late = TRUE)
 	if (!spawnpoint.put_mob(character))
 		return
+
+	character = SSjob.EquipRank(character, rank)					//equips the human
+	equip_custom_items(character)
 
 	character.lastarea = get_area(loc)
 
@@ -276,8 +277,8 @@
 			//Grab some data from the character prefs for use in random news procs.
 
 
-	//Add their mind to the global list
-	SSticker.minds += character.mind
+
+	AnnounceArrival(character, character.mind.assigned_role, spawnpoint.message)	//will not broadcast if there is no message
 
 	qdel(src)
 
@@ -303,7 +304,7 @@
 				continue
 			var/active = 0
 			// Only players with the job assigned and AFK for less than 10 minutes count as active
-			for(var/mob/M in player_list) if(M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 * 60 * 10)
+			for(var/mob/M in GLOB.player_list) if(M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 * 60 * 10)
 				active++
 			dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
 
@@ -347,7 +348,7 @@
 	else
 		client.prefs.copy_to(new_character)
 
-	src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // MAD JAMS cant last forever yo
+	sound_to(src, sound(null, repeat = 0, wait = 0, volume = 85, channel = GLOB.lobby_sound_channel))
 
 	if(mind)
 		mind.active = 0//we wish to transfer the key manually

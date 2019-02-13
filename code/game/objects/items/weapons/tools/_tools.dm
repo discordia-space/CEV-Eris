@@ -6,6 +6,8 @@
 	throwforce = WEAPON_FORCE_NORMAL
 	w_class = ITEM_SIZE_SMALL
 
+	var/tool_in_use = FALSE
+
 	var/sparks_on_use = FALSE	//Set to TRUE if you want to have sparks on each use of a tool
 	var/eye_hazard = FALSE	//Set to TRUE should damage users eyes if they without eye protection
 
@@ -90,6 +92,10 @@
 			var/turf/location = get_turf(src)
 			if (location)
 				location.hotspot_expose(700, 5)
+		if(tool_in_use && sparks_on_use && !silenced && prob(50))
+			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+			sparks.set_up(3, 0, get_turf(src))
+			sparks.start()
 
 		if (passive_fuel_cost)
 			if(!consume_fuel(passive_fuel_cost))
@@ -122,7 +128,7 @@
 
 		if (C.use_tool(user = user, target =  src, base_time = WORKTIME_SLOW, required_quality = QUALITY_SCREW_DRIVING, fail_chance = FAILCHANCE_CHALLENGING, required_stat = STAT_MEC))
 			//If you pass the check, then you manage to remove the upgrade intact
-			user << SPAN_NOTICE("You successfully remove the [toremove] intact.")
+			user << SPAN_NOTICE("You successfully remove [toremove] while leaving it intact.")
 			upgrades -= toremove
 			toremove.forceMove(get_turf(src))
 			toremove.holder = null
@@ -132,7 +138,7 @@
 			//You failed the check, lets see what happens
 			if (prob(50))
 				//50% chance to break the upgrade and remove it
-				user << SPAN_DANGER("You successfully remove the [toremove], but destroy it in the process.")
+				user << SPAN_DANGER("You successfully remove [toremove], but destroy it in the process.")
 				upgrades -= toremove
 				toremove.forceMove(get_turf(src))
 				toremove.holder = null
@@ -140,9 +146,9 @@
 					QDEL_NULL(toremove)
 				refresh_upgrades()
 				return 1
-			else
+			else if (degradation) //Because robot tools are unbreakable
 				//otherwise, damage the host tool a bit, and give you another try
-				user << SPAN_DANGER("You only managed to damage the [src], but you can retry.")
+				user << SPAN_DANGER("You only managed to damage [src], but you can retry.")
 				unreliability += 10*degradation
 				refresh_upgrades()
 				return 1
@@ -185,7 +191,16 @@
 //Simple form ideal for basic use. That proc will return TRUE only when everything was done right, and FALSE if something went wrong, ot user was unlucky.
 //Editionaly, handle_failure proc will be called for a critical failure roll.
 /obj/item/proc/use_tool(var/mob/living/user, var/atom/target, var/base_time, var/required_quality, var/fail_chance, var/required_stat, var/instant_finish_tier = 110, forced_sound = null, var/sound_repeat = 2.5)
+	var/obj/item/weapon/tool/T
+	if (istool(src))
+		T = src
+		T.tool_in_use = TRUE
+
 	var/result = use_tool_extended(user, target, base_time, required_quality, fail_chance, required_stat, instant_finish_tier, forced_sound)
+
+	if (T)
+		T.tool_in_use = FALSE
+
 	switch(result)
 		if(TOOL_USE_CANCEL)
 			return FALSE
@@ -270,7 +285,7 @@
 	if(time_to_finish)
 		target.used_now = TRUE
 
-		if(!do_after(user, time_to_finish, user))
+		if(!do_after(user, time_to_finish, target))
 			//If the doafter fails
 			user << SPAN_WARNING("You need to stand still to finish the task properly!")
 			target.used_now = FALSE
@@ -287,6 +302,7 @@
 		else
 			if (T)
 				T.last_tooluse = world.time
+
 			target.used_now = FALSE
 
 	//If we get here the operation finished correctly, we spent the full time working
@@ -345,32 +361,34 @@
 		return
 
 	//This list initially contains the fail types that are always valid, even for robots
-	var/list/failtypes = list("slip" = 2, "swing" = 1)
+	var/list/failtypes = list()
 
 	if(T && T.use_fuel_cost)
 		//Robots can do this one too
 		failtypes["burn"] = 0.5
 
-	if(ishuman(user))
-		if (canremove)
+	if(canremove)
+		failtypes["throw"] = 1
 
-			failtypes["drop"] = 2
-			failtypes["throw"] = 1
+		if(T && T.degradation)
+			failtypes["damage"] = 2.5
+			if(T.unreliability >= 3)
+				failtypes["break"] = T.unreliability * 0.1 // Damaged tools are more likely to break.
+		else
+			failtypes["break"] = 0.5
 
-			if (T && T.degradation)
-				failtypes["damage"] = 2.5
-				if (T.unreliability >= 3)
-					failtypes["break"] = T.unreliability*0.1 //Damaged tools are more likely to break
-			else
-				failtypes["break"] = 0.5
-		if (sharp)
-			failtypes["stab"] = 1
+	if(user)
+		failtypes["slip"] = 2
+		failtypes["swing"] = 1
+		if(ishuman(user))
+			if(canremove)
+				failtypes["drop"] = 2
+			if (sharp)
+				failtypes["stab"] = 1
 
-		//This one is limited to humans only since robots often can't remove/replace their device cells
-		if (locate(/obj/item/weapon/cell) in contents)
-			failtypes["overload"] = 0.5
-
-
+			//This one is limited to humans only since robots often can't remove/replace their device cells
+			if(locate(/obj/item/weapon/cell) in contents)
+				failtypes["overload"] = 0.5
 
 	if(prob(crit_fail_chance))
 		var/fail_type = pickweight(failtypes)
@@ -378,14 +396,21 @@
 		switch(fail_type)
 			//Drop the tool on the floor
 			if("damage")
-				user << SPAN_DANGER("Your hand slips and you damage [src] a bit.")
+				if(user)
+					user << SPAN_DANGER("Your hand slips and you damage [src] a bit.")
 				T.unreliability += 5
 				return
 
 			//Drop the tool on the floor
 			if("drop")
-				user << SPAN_DANGER("You drop [src] on the floor.")
-				user.drop_from_inventory(src)
+				if(user)
+					user << SPAN_DANGER("You drop [src] on the floor.")
+					user.drop_from_inventory(src)
+				else if(istype(loc, /obj/machinery/door/airlock))
+					var/obj/machinery/door/airlock/AD = loc
+					AD.take_out_wedged_item()
+				else
+					forceMove(get_turf(src))
 				return
 
 			//Hit yourself
@@ -413,11 +438,20 @@
 
 			//Throw the tool in a random direction
 			if("throw")
-				var/mob/living/carbon/human/H = user
-				var/throw_target = pick(trange(6, user))
-				user << SPAN_DANGER("Your [src] flies away!")
-				H.unEquip(src)
-				src.throw_at(throw_target, src.throw_range, src.throw_speed, H)
+				if(user)
+					var/mob/living/carbon/human/H = user
+					var/throw_target = pick(trange(6, user))
+					user << SPAN_DANGER("Your [src] flies away!")
+					H.unEquip(src)
+					throw_at(throw_target, src.throw_range, src.throw_speed, H)
+					return
+				if(istype(loc, /obj/machinery/door/airlock))
+					var/obj/machinery/door/airlock/AD = loc
+					AD.take_out_wedged_item()
+				else
+					forceMove(get_turf(src))
+				var/throw_target = pick(trange(6, src))
+				throw_at(throw_target, src.throw_range, src.throw_speed)
 				return
 
 			//Stab yourself in the hand so hard your tool embeds
@@ -429,14 +463,22 @@
 
 			//The tool completely breaks, permanantly gone
 			if("break")
-				user << SPAN_DANGER("Your [src] broke beyond repair!")
-				new /obj/item/weapon/material/shard/shrapnel(user.loc)
+				if(user)
+					user << SPAN_DANGER("Your [src] broke beyond repair!")
+					new /obj/item/weapon/material/shard/shrapnel(user.loc)
+				else
+					new /obj/item/weapon/material/shard/shrapnel(get_turf(src))
 
 				//To encourage using makeshift tools, upgrades are preserved if the tool breaks
 				if (T)
 					for (var/obj/item/weapon/tool_upgrade/A in T.upgrades)
 						A.forceMove(get_turf(src))
 						A.holder = null
+
+				if(istype(loc, /obj/machinery/door/airlock))
+					var/obj/machinery/door/airlock/AD = loc
+					AD.take_out_wedged_item()
+
 				qdel(src)
 				return
 
@@ -460,7 +502,8 @@
 					C = locate(/obj/item/weapon/cell) in contents
 
 
-				user << SPAN_DANGER("You overload the cell in the [src]!")
+				if(user)
+					user << SPAN_DANGER("You overload the cell in the [src]!")
 				C.explode()
 				if (T)
 					T.cell = null
@@ -769,7 +812,7 @@
 		return TRUE
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
+		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[BP_EYES]
 		if(!E)
 			return
 		var/safety = H.eyecheck()

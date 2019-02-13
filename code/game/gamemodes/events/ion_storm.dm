@@ -113,7 +113,7 @@
 
 
 /datum/event/ionstorm/proc/get_random_humanoid_player_name(var/default_if_none)
-	for (var/mob/living/carbon/human/player in player_list)
+	for (var/mob/living/carbon/human/player in GLOB.player_list)
 		if(!player.mind || player_is_antag(player.mind, only_offstation_roles = 1) || !player.is_client_active(5))
 			continue
 		players += player.real_name
@@ -142,7 +142,7 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 */
 
 	//AI laws
-	for(var/mob/living/silicon/ai/M in living_mob_list)
+	for(var/mob/living/silicon/ai/M in GLOB.living_mob_list)
 		if(M.stat != 2 && M.see_in_dark != 0)
 			var/who2 = pick("ALIENS", "BEARS", "CLOWNS", "XENOS", "PETES", "BOMBS", "FETISHES", "WIZARDS", "MERCENARIES", "CENTCOM OFFICERS", "SPACE PIRATES", "TRAITORS", "MONKEYS",  "BEES", "CARP", "CRABS", "EELS", "BANDITS", "LIGHTS")
 			var/what2 = pick("BOLTERS", "STAVES", "DICE", "SINGULARITIES", "TOOLBOXES", "NETTLES", "AIRLOCKS", "CLOTHES", "WEAPONS", "MEDKITS", "BOMBS", "CANISTERS", "CHAIRS", "BBQ GRILLS", "ID CARDS", "CAPTAINS")
@@ -161,7 +161,7 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 			var/allergysev = pick("deathly", "mildly", "severely", "contagiously")
 			var/crew
 			var/list/pos_crew = list()
-			for(var/mob/living/carbon/human/pos in player_list)
+			for(var/mob/living/carbon/human/pos in GLOB.player_list)
 				pos_crew += pos.real_name
 			if(pos_crew.len)
 				crew = pick(pos_crew)

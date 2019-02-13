@@ -4,7 +4,7 @@
 	Once you have your basic gear, you may also wish to take along a specialist weapon, like the RPG-7 or the L6 SAW LMG. Each of the specialist weapons is powerful but very bulky, you will need to wear it over your back.<br>\
 	<br>\
 	Discuss your specialties with your team, choose a broad range of weapons that will allow your group to overcome a variety of obstacles. Search the base and load up everything onto your ship which may be useful, you will not be able to easily return here once you depart.<br>\
-	When ready, use the console on your shuttle bridge to depart for Eris. Your arrival will be detected on sensors, stealth is not an option. Once you arrive, you have a time limit to complete your mission."
+	When ready, use the console on your shuttle bridge to depart for Eris. Travelling will take several minutes, and you will be detected before you even arrive, stealth is not an option. Once you arrive, you have a time limit to complete your mission."
 
 /datum/faction/mercenary
 	id = FACTION_SERBS
@@ -16,18 +16,19 @@
 	hud_indicator = "hudexcelsior"
 
 	possible_antags = list(ROLE_MERCENARY)
-	verbs = list(/datum/faction/revolutioanry/excelsior/proc/communicate_verb)
+
 	faction_invisible = FALSE
 
 	var/objectives_num
 	var/list/possible_objectives = list(
-	/datum/objective/download = 30,
-	/datum/objective/debrain = 5,
+	// /datum/objective/download = 30,
+	/datum/objective/debrain = 10,
 	/datum/objective/harm = 20,
-	/datum/objective/steal = 50,
-	/datum/objective/assassinate = 40,
-	/datum/objective/protect = 15)
-	var/objective_quantity = 5
+	/datum/objective/steal = 55,
+	/datum/objective/assassinate = 35,
+	/datum/objective/protect = 15,
+	/datum/objective/abduct = 15)
+	var/objective_quantity = 6
 
 	//How long the mercenaries get to do their mission
 
@@ -35,14 +36,7 @@
 
 /datum/faction/mercenary/create_objectives()
 	objectives.Cut()
-
-	if(!possible_objectives || !possible_objectives.len)
-		return
-
-	for (var/i = 0; i < objective_quantity; i++)
-		var/chosen_obj = pickweight(possible_objectives)
-
-		new chosen_obj(src)
+	pick_objectives(src, possible_objectives, objective_quantity)
 
 	new /datum/objective/timed/merc(src)
 
@@ -67,7 +61,7 @@ back to their ship counts for objectives.
 This could potentially return a list of thousands of atoms, but thats fine. Its not as much work as it sounds */
 /datum/faction/mercenary/get_inventory()
 	var/list/contents = ..()
-	var/list/search_areas = list(/area/shuttle/mercenary, /area/antag/merc_base)
+	var/list/search_areas = list(/area/shuttle/mercenary, /area/centcom/merc_base)
 	for (var/a in search_areas)
 		contents |= get_area_contents(a)
 

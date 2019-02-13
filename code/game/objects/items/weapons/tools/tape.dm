@@ -33,7 +33,7 @@
 
 /obj/item/weapon/tool/tape_roll/attack(var/mob/living/carbon/human/H, var/mob/user)
 	if(istype(H))
-		if(user.targeted_organ == O_EYES)
+		if(user.targeted_organ == BP_EYES)
 
 			if(!H.organs_by_name[BP_HEAD])
 				user << SPAN_WARNING("\The [H] doesn't have a head.")
@@ -59,7 +59,7 @@
 			user.visible_message(SPAN_DANGER("\The [user] has taped up \the [H]'s eyes!"))
 			H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/blindfold/tape(H), slot_glasses)
 
-		else if(user.targeted_organ == "mouth" || user.targeted_organ == BP_HEAD)
+		else if(user.targeted_organ == BP_MOUTH || user.targeted_organ == BP_HEAD)
 			if(!H.organs_by_name[BP_HEAD])
 				user << SPAN_WARNING("\The [H] doesn't have a head.")
 				return
@@ -85,12 +85,11 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/mask/muzzle/tape(H), slot_wear_mask)
 
 		else if(user.targeted_organ == BP_R_ARM || user.targeted_organ == BP_L_ARM)
-			var/obj/item/weapon/handcuffs/cable/tape/T = new(user)
-			//Uses up tape whether or not you succeed
-			consume_resources(100, user)
-			if(!T.place_handcuffs(H, user))
-				user.unEquip(T)
-				qdel(T)
+			if(use_tool(user, H, 90, QUALITY_ADHESIVE))
+				var/obj/item/weapon/handcuffs/cable/tape/T = new(user)
+				if(!T.place_handcuffs(H, user))
+					user.unEquip(T)
+					qdel(T)
 		else
 			return ..()
 		return 1

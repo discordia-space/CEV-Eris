@@ -29,7 +29,7 @@
 		return ..()
 
 	if(user.a_intent != I_HELP)
-		if(user.targeted_organ in list(BP_HEAD, O_EYES))
+		if(user.targeted_organ in list(BP_HEAD, BP_EYES))
 			if((CLUMSY in user.mutations) && prob(50))
 				M = user
 			return eyestab(M,user)

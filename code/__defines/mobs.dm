@@ -118,6 +118,16 @@
 #define GLUT_SMALLER 2    // Eat anything smaller than we are
 #define GLUT_ANYTHING 3   // Eat anything, ever
 
+
+
+// Flags for mob types by Nanako. Primarily used for distinguishing organic from synthetic mobs
+#define CLASSIFICATION_ORGANIC      1	// Almost any creature under /mob/living/carbon and most simple animals
+#define CLASSIFICATION_SYNTHETIC    2	// Everything under /mob/living/silicon, plus hivebots and similar simple mobs
+#define CLASSIFICATION_HUMANOID     4	// Humans and humanoid player characters
+#define CLASSIFICATION_WEIRD        8	// Slimes, constructs, demons, and other creatures of a magical or bluespace nature.
+#define CLASSIFICATION_INCORPOREAL 16 // Mobs that don't really have any physical form to them. Ghosts mostly
+
+
 #define TINT_NONE 0
 #define TINT_MODERATE 1
 #define TINT_HEAVY 2
@@ -142,15 +152,19 @@
 
 
 // Incapacitation flags, used by the mob/proc/incapacitated() proc
+#define INCAPACITATION_NONE 0
 #define INCAPACITATION_RESTRAINED 1
 #define INCAPACITATION_BUCKLED_PARTIALLY 2
 #define INCAPACITATION_BUCKLED_FULLY 4
 #define INCAPACITATION_STUNNED 8
-#define INCAPACITATION_UNCONSCIOUS 16
+#define INCAPACITATION_FORCELYING 16 //needs a better name - represents being knocked down BUT still conscious.
+#define INCAPACITATION_UNCONSCIOUS 32
 
+#define INCAPACITATION_KNOCKDOWN (INCAPACITATION_UNCONSCIOUS|INCAPACITATION_FORCELYING)
+#define INCAPACITATION_DISABLED (INCAPACITATION_KNOCKDOWN|INCAPACITATION_STUNNED)
 #define INCAPACITATION_DEFAULT (INCAPACITATION_RESTRAINED|INCAPACITATION_BUCKLED_FULLY|INCAPACITATION_DISABLED)
-#define INCAPACITATION_ALL (INCAPACITATION_RESTRAINED|INCAPACITATION_BUCKLED_PARTIALLY|INCAPACITATION_BUCKLED_FULLY|INCAPACITATION_DISABLED)
-#define INCAPACITATION_DISABLED (INCAPACITATION_STUNNED | INCAPACITATION_UNCONSCIOUS)
+#define INCAPACITATION_ALL (~INCAPACITATION_NONE)
+
 
 #define MOB_PULL_NONE 0
 #define MOB_PULL_SMALLER 1
@@ -165,9 +179,6 @@
 #define TASTE_NORMAL 1 //anything below 15%
 #define TASTE_DULL 0.5 //anything below 30%
 #define TASTE_NUMB 0.1 //anything below 150%
-
-//Ambience
-#define SOUND_CHANNEL_AMBIENCE 2
 
 //Health
 #define HEALTH_THRESHOLD_SOFTCRIT 0

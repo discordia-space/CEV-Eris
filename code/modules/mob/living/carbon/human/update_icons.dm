@@ -120,8 +120,8 @@ Please contact me on #coderbus IRC. ~Carn x
 #define TAIL_LAYER			12		//bs12 specific. this hack is probably gonna come back to haunt me
 #define GLASSES_LAYER		13
 #define BELT_LAYER_ALT		14
-#define SUIT_STORE_LAYER	15
-#define BACK_LAYER			16
+#define BACK_LAYER			15
+#define SUIT_STORE_LAYER	16
 #define HAIR_LAYER			17		//TODO: make part of head layer?
 #define EARS_LAYER			18
 #define FACEMASK_LAYER		19
@@ -393,7 +393,10 @@ var/global/list/damage_icon_parts = list()
 		overlays_standing[MUTATIONS_LAYER]	= null
 	if(update_icons)   update_icons()
 
-/mob/living/carbon/human/proc/update_implants(var/update_icons = 1)
+/mob/proc/update_implants(var/update_icons = 1)
+	return
+
+/mob/living/carbon/human/update_implants(var/update_icons = 1)
 	var/image/standing = image('icons/mob/mob.dmi', "blank")
 	var/have_icon = FALSE
 	for(var/obj/item/weapon/implant/I in src)
@@ -613,7 +616,7 @@ var/global/list/damage_icon_parts = list()
 		//If not we will use the mob's back icon instead. This allows reusing back icons for shoulder-slung guns
 		var/icon/test = new (store_icon)
 		if (!(t_state in icon_states(test)))
-			store_icon = get_back_icon()
+			store_icon = get_back_icon(s_store)
 
 
 		overlays_standing[SUIT_STORE_LAYER]	= image(icon = store_icon, icon_state = t_state)
@@ -768,19 +771,22 @@ var/global/list/damage_icon_parts = list()
 
 
 //Seperate proc because this is reused for suit storage
-/mob/living/carbon/human/proc/get_back_icon()
-	if(back)
+/mob/living/carbon/human/proc/get_back_icon(var/obj/item/test = null)
+	if(!test && back)
+		test = back
+
+	if (test)
 		//determine the icon to use
 		var/icon/overlay_icon
-		if(back.icon_override)
-			overlay_icon = back.icon_override
-		else if(istype(back, /obj/item/weapon/rig))
+		if(test.icon_override)
+			overlay_icon = test.icon_override
+		else if(istype(test, /obj/item/weapon/rig))
 			//If this is a rig and a mob_icon is set, it will take species into account in the rig update_icon() proc.
-			var/obj/item/weapon/rig/rig = back
+			var/obj/item/weapon/rig/rig = test
 			overlay_icon = rig.mob_icon
 
-		else if(back.item_icons && (slot_back_str in back.item_icons))
-			overlay_icon = back.item_icons[slot_back_str]
+		else if(test.item_icons && (slot_back_str in test.item_icons))
+			overlay_icon = test.item_icons[slot_back_str]
 		else
 			overlay_icon = body_build.backpack_icon
 

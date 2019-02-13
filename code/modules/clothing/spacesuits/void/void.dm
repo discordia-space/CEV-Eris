@@ -135,7 +135,6 @@
 			H << SPAN_DANGER("You cannot deploy your helmet while wearing \the [H.head].")
 			return
 		if(H.equip_to_slot_if_possible(helmet, slot_head))
-			helmet.pickup(H)
 			helmet.canremove = 0
 			H << "<span class='info'>You deploy your suit helmet, sealing you off from the world.</span>"
 			playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)

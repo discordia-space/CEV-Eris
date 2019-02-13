@@ -281,13 +281,13 @@
 	switch(icon_level)
 		if (0)
 			icon_state = "alarm0"
-			new_color = "#03A728"
+			new_color = COLOR_LIGHTING_GREEN_BRIGHT
 		if (1)
 			icon_state = "alarm2" //yes, alarm2 is yellow alarm
-			new_color = COLOR_SUN
+			new_color = COLOR_LIGHTING_ORANGE_MACHINERY
 		if (2)
 			icon_state = "alarm1"
-			new_color = "#DA0205"
+			new_color = COLOR_LIGHTING_RED_MACHINERY
 
 	set_light(l_range = 1.5, l_power = 0.2, l_color = new_color)
 
@@ -778,7 +778,7 @@
 			return
 
 		if(QUALITY_WIRE_CUTTING)
-			if(wiresexposed)
+			if(wiresexposed && buildstage == 2)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					user.visible_message(SPAN_WARNING("[user] removed the wires from \the [src]!"), "You have removed the wires from \the [src].")
 					new/obj/item/stack/cable_coil(get_turf(user), 5)
@@ -890,7 +890,6 @@ FIRE ALARM
 	var/last_process = 0
 	var/wiresexposed = 0
 	var/buildstage = 2 // 2 = complete, 1 = no wires,  0 = circuit gone
-	var/seclevel
 
 /obj/machinery/firealarm/update_icon()
 	overlays.Cut()
@@ -916,19 +915,14 @@ FIRE ALARM
 		var/area/area = get_area(src)
 		if(area.fire)
 			icon_state = "fire1"
-			set_light(l_range = 1.5, l_power = 0.5, l_color = COLOR_RED)
+			set_light(l_range = 1.5, l_power = 0.5, l_color = COLOR_LIGHTING_RED_MACHINERY)
 		else
 			icon_state = "fire0"
-			var/new_color = null
-			switch(seclevel)
-				if(SEC_LEVEL_GREEN)
-					new_color = COLOR_LIME
-				if(SEC_LEVEL_BLUE)
-					new_color = "#1024A9"
-				if(SEC_LEVEL_RED)
-					new_color = COLOR_RED
-			set_light(l_range = 1.5, l_power = 0.5, l_color = new_color)
-		src.overlays += image('icons/obj/monitors.dmi', "overlay_[num2seclevel(seclevel)]")
+			var/decl/security_state/security_state = decls_repository.get_decl(maps_data.security_state)
+			var/decl/security_level/sl = security_state.current_security_level
+
+			set_light(sl.light_max_bright, sl.light_inner_range, sl.light_outer_range, 2, sl.light_color_alarm)
+			src.overlays += image('icons/obj/monitors.dmi', sl.overlay_firealarm)
 
 /obj/machinery/firealarm/fire_act(datum/gas_mixture/air, temperature, volume)
 	if(src.detecting)
@@ -981,9 +975,9 @@ FIRE ALARM
 			return
 
 		if(QUALITY_WIRE_CUTTING)
-			if(wiresexposed)
+			if(wiresexposed && buildstage == 2)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					user.visible_message(SPAN_WARNING("[user] has remove the wires from \the [src]!"), "You have removed the wires from \the [src].")
+					user.visible_message(SPAN_WARNING("[user] has removed the wires from \the [src]!"), "You have removed the wires from \the [src].")
 					new/obj/item/stack/cable_coil(get_turf(user), 5)
 					buildstage = 1
 					update_icon()
@@ -1140,7 +1134,7 @@ FIRE ALARM
 		fire_alarm.triggerAlarm(loc, FA, duration)
 	if(iscarbon(usr))
 		visible_message(SPAN_WARNING("[usr] pulled \the [src]'s pull station!"), SPAN_WARNING("You have pulled \the [src]'s pull station!"))
-	else	
+	else
 		usr << "Fire Alarm activated."
 	update_icon()
 	//playsound(src.loc, 'sound/ambience/signal.ogg', 75, 0)
@@ -1163,15 +1157,8 @@ FIRE ALARM
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
 
-/obj/machinery/firealarm/securityLevelChanged(var/newlevel)
-	if(seclevel != newlevel)
-		seclevel = newlevel
-		update_icon()
-
 /obj/machinery/firealarm/Initialize()
 	. = ..()
-	if(isContactLevel(src.z))
-		set_security_level(security_level? get_security_level() : "green")
 
 /*
 FIRE ALARM CIRCUIT

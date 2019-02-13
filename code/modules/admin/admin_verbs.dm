@@ -400,7 +400,7 @@ ADMIN_VERB_ADD(/client/proc/rename_silicon, R_ADMIN, FALSE)
 
 	if(!check_rights(R_ADMIN)) return
 
-	var/mob/living/silicon/S = input("Select silicon.", "Rename Silicon.") as null|anything in silicon_mob_list
+	var/mob/living/silicon/S = input("Select silicon.", "Rename Silicon.") as null|anything in GLOB.silicon_mob_list
 	if(!S) return
 
 	var/new_name = sanitizeSafe(input(src, "Enter new name. Leave blank or as is to cancel.", "[S.real_name] - Enter new silicon name", S.real_name))
@@ -417,7 +417,7 @@ ADMIN_VERB_ADD(/client/proc/manage_silicon_laws, R_ADMIN, TRUE)
 
 	if(!check_rights(R_ADMIN)) return
 
-	var/mob/living/silicon/S = input("Select silicon.", "Manage Silicon Laws") as null|anything in silicon_mob_list
+	var/mob/living/silicon/S = input("Select silicon.", "Manage Silicon Laws") as null|anything in GLOB.silicon_mob_list
 	if(!S) return
 
 	var/datum/nano_module/law_manager/L = new(S)
@@ -434,7 +434,7 @@ ADMIN_VERB_ADD(/client/proc/change_human_appearance_admin, R_ADMIN, FALSE)
 
 	if(!check_rights(R_FUN)) return
 
-	var/mob/living/carbon/human/H = input("Select mob.", "Change Mob Appearance - Admin") as null|anything in human_mob_list
+	var/mob/living/carbon/human/H = input("Select mob.", "Change Mob Appearance - Admin") as null|anything in GLOB.human_mob_list
 	if(!H) return
 
 	log_and_message_admins("is altering the appearance of [H].")
@@ -450,7 +450,7 @@ ADMIN_VERB_ADD(/client/proc/change_human_appearance_self, R_ADMIN, FALSE)
 
 	if(!check_rights(R_FUN)) return
 
-	var/mob/living/carbon/human/H = input("Select mob.", "Change Mob Appearance - Self") as null|anything in human_mob_list
+	var/mob/living/carbon/human/H = input("Select mob.", "Change Mob Appearance - Self") as null|anything in GLOB.human_mob_list
 	if(!H) return
 
 	if(!H.client)
@@ -473,13 +473,15 @@ ADMIN_VERB_ADD(/client/proc/change_security_level, R_ADMIN, FALSE)
 	set category = "Admin"
 
 	if(!check_rights(R_ADMIN))	return
-	var sec_level = input(usr, "It's currently code [get_security_level()].", "Select Security Level")  as null|anything in (list("green","blue","red")-get_security_level())
-	if(!sec_level)
+
+	var/decl/security_state/security_state = decls_repository.get_decl(maps_data.security_state)
+	var/decl/security_level/new_security_level = input(usr, "It's currently [security_state.current_security_level.name].", "Select Security Level")  as null|anything in (security_state.all_security_levels - security_state.current_security_level)
+	if(!new_security_level)
 		return
 
-	if(alert("Switch from code [get_security_level()] to code [sec_level]?","Change security level?","Yes","No") == "Yes")
-		set_security_level(sec_level)
-		log_admin("[key_name(usr)] changed the security level to code [sec_level].")
+	if(alert("Switch from code [security_state.current_security_level.name] to [new_security_level.name]?","Change security level?","Yes","No") == "Yes")
+		security_state.set_security_level(new_security_level, TRUE)
+		log_admin("[key_name(usr)] changed the security level to code [new_security_level].")
 
 
 //---- bs12 verbs ----
@@ -550,3 +552,14 @@ ADMIN_VERB_ADD(/client/proc/global_man_up, R_ADMIN, FALSE)
 
 	log_admin("[key_name(usr)] told everyone to man up and deal with it.")
 	message_admins("\blue [key_name_admin(usr)] told everyone to man up and deal with it.", 1)
+
+ADMIN_VERB_ADD(/client/proc/toggleUIDebugMode, R_DEBUG, FALSE)
+/client/proc/toggleUIDebugMode()
+	set category = "Debug"
+	set name = "UI Debug Mode"
+	set desc = "Toggle UI Debug Mode"
+
+	if(UI)
+		UI.toggleDebugMode()
+	else
+		log_debug("This mob has no UI.")

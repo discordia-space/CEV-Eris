@@ -176,7 +176,7 @@ ADMIN_VERB_ADD(/client/proc/virus2_editor, R_DEBUG, FALSE)
 					antigens = list()
 			if("infectee")
 				var/list/candidates = list()
-				for(var/mob/living/carbon/G in living_mob_list)
+				for(var/mob/living/carbon/G in GLOB.living_mob_list)
 					if(G.stat != DEAD && G.species)
 						if(G.species.get_bodytype() in species)
 							candidates["[G.name][G.client ? "" : " (no client)"]"] = G

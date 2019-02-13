@@ -57,7 +57,7 @@
 	playsound(loc, 'sound/machines/id_swipe.ogg', 100, 1)
 	proc_eject_id(usr)
 
-// Eject ID card from computer, if it has ID slot with card inside.
+// Eject USB from computer
 /obj/item/modular_computer/verb/eject_usb()
 	set name = "Eject Portable Storage"
 	set category = "Object"
@@ -124,7 +124,10 @@
 		to_chat(user, "There is no portable device connected to \the [src].")
 		return
 
+	var/obj/item/weapon/computer_hardware/hard_drive/portable/PD = portable_drive
+
 	uninstall_component(user, portable_drive)
+	user.put_in_hands(PD)
 	update_uis()
 
 /obj/item/modular_computer/proc/proc_eject_ai(mob/user)
@@ -282,7 +285,7 @@
 	if(scanner)
 		scanner.do_on_afterattack(user, target, proximity)
 
-obj/item/modular_computer/CtrlAltClick(mob/user)
+/obj/item/modular_computer/CtrlAltClick(mob/user)
 	if(!CanPhysicallyInteract(user))
 		return
 	open_terminal(user)

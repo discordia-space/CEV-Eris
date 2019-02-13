@@ -7,7 +7,7 @@
 
 	var/list/hud_list[10]
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
-	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_canmove() call.
+	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_lying_buckled_and_verb_status() call.
 
 /mob/living/carbon/human/New(var/new_loc, var/new_species = null)
 	body_build = get_body_build(gender)
@@ -40,7 +40,7 @@
 
 
 
-	human_mob_list |= src
+	GLOB.human_mob_list |= src
 	..()
 
 	if(dna)
@@ -50,7 +50,7 @@
 	make_blood()
 
 /mob/living/carbon/human/Destroy()
-	human_mob_list -= src
+	GLOB.human_mob_list -= src
 	for(var/organ in organs)
 		qdel(organ)
 	return ..()
@@ -73,7 +73,7 @@
 				stat("Tank Pressure", internal.air_contents.return_pressure())
 				stat("Distribution Pressure", internal.distribute_pressure)
 
-		var/obj/item/organ/internal/xenos/plasmavessel/P = internal_organs_by_name[O_PLASMA]
+		var/obj/item/organ/internal/xenos/plasmavessel/P = internal_organs_by_name[BP_PLASMA]
 		if(P)
 			stat(null, "Plasma Stored: [P.stored_plasma]/[P.max_plasma]")
 
@@ -100,10 +100,11 @@
 	var/shielded = 0
 	var/b_loss = null
 	var/f_loss = null
+	var/bomb_defense = getarmor(null, "bomb")
 	switch (severity)
 		if (1.0)
 			b_loss += 500
-			if (!prob(getarmor(null, "bomb")))
+			if (!prob(bomb_defense))
 				gib()
 				return
 			else
@@ -117,12 +118,6 @@
 			if (!shielded)
 				b_loss += 60
 
-			f_loss += 60
-
-			if (prob(getarmor(null, "bomb")))
-				b_loss = b_loss/1.5
-				f_loss = f_loss/1.5
-
 			if (!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
 				ear_damage += 30
 				ear_deaf += 120
@@ -131,14 +126,14 @@
 
 		if(3.0)
 			b_loss += 30
-			if (prob(getarmor(null, "bomb")))
-				b_loss = b_loss/2
 			if (!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
 				ear_damage += 15
 				ear_deaf += 60
 			if (prob(50) && !shielded)
 				Paralyse(10)
-
+	if (bomb_defense)
+		b_loss = max(b_loss - bomb_defense, 0)
+		f_loss = max(f_loss - bomb_defense, 0)
 	var/update = 0
 
 	// focus most of the blast on one organ
@@ -289,7 +284,7 @@ var/list/rank_prefix = list(\
 	return face_name
 
 //Returns "Unknown" if facially disfigured and real_name if not. Useful for setting name when polyacided or when updating a human's name variable
-/mob/living/carbon/human/proc/get_face_name()
+/mob/living/carbon/human/get_face_name()
 	var/obj/item/organ/external/head = get_organ(BP_HEAD)
 	if(!head || head.disfigured || head.is_stump() || !real_name || (HUSK in mutations) )	//disfigured. use id-name if possible
 		return "Unknown"
@@ -621,11 +616,11 @@ var/list/rank_prefix = list(\
 ///eyecheck()
 ///Returns a number between -1 to 2
 /mob/living/carbon/human/eyecheck()
-	if(!species.has_organ[O_EYES]) //No eyes, can't hurt them.
+	if(!species.has_organ[BP_EYES]) //No eyes, can't hurt them.
 		return FLASH_PROTECTION_MAJOR
 
-	if(internal_organs_by_name[O_EYES]) // Eyes are fucked, not a 'weak point'.
-		var/obj/item/organ/I = internal_organs_by_name[O_EYES]
+	if(internal_organs_by_name[BP_EYES]) // Eyes are fucked, not a 'weak point'.
+		var/obj/item/organ/I = internal_organs_by_name[BP_EYES]
 		if(I.status & ORGAN_CUT_AWAY)
 			return FLASH_PROTECTION_MAJOR
 
@@ -633,7 +628,7 @@ var/list/rank_prefix = list(\
 
 //Used by various things that knock people out by applying blunt trauma to the head.
 //Checks that the species has a "head" (brain containing organ) and that hit_zone refers to it.
-/mob/living/carbon/human/proc/headcheck(var/target_zone, var/brain_tag = O_BRAIN)
+/mob/living/carbon/human/proc/headcheck(var/target_zone, var/brain_tag = BP_BRAIN)
 	if(!species.has_organ[brain_tag])
 		return 0
 
@@ -901,11 +896,11 @@ var/list/rank_prefix = list(\
 	..()
 
 /mob/living/carbon/human/proc/is_lung_ruptured()
-	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
+	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[BP_LUNGS]
 	return L && L.is_bruised()
 
 /mob/living/carbon/human/proc/rupture_lung()
-	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
+	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[BP_LUNGS]
 
 	if(L && !L.is_bruised())
 		src.custom_pain("You feel a stabbing pain in your chest!", 1)
@@ -1263,7 +1258,7 @@ var/list/rank_prefix = list(\
 
 	if(!target_zone)
 		if(!user)
-			target_zone = pick(BP_ALL + BP_CHEST + BP_CHEST)
+			target_zone = pick(BP_ALL_LIMBS + BP_CHEST + BP_CHEST)
 		else
 			target_zone = user.targeted_organ
 
@@ -1296,15 +1291,16 @@ var/list/rank_prefix = list(\
 			// Do not show flavor if face is hidden
 			return
 
-	flavor_text = src.flavor_text
+	if(client)
+		flavor_text = client.prefs.flavor_text
 
 	if (flavor_text && flavor_text != "" && !shrink)
 		var/msg = trim(replacetext(flavor_text, "\n", " "))
 		if(!msg) return ""
 		if(lentext(msg) <= 40)
-			return "\blue [msg]"
+			return "<font color='blue'>[russian_to_cp1251(msg)]</font>"
 		else
-			return "\blue [copytext_preserve_html(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a>"
+			return "<font color='blue'>[copytext_preserve_html(russian_to_cp1251(msg), 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a></font>"
 	return ..()
 
 /mob/living/carbon/human/getDNA()
@@ -1318,11 +1314,11 @@ var/list/rank_prefix = list(\
 	..()
 
 /mob/living/carbon/human/has_brain()
-	return istype(internal_organs_by_name[O_BRAIN], /obj/item/organ/internal/brain)
+	return istype(internal_organs_by_name[BP_BRAIN], /obj/item/organ/internal/brain)
 
 /mob/living/carbon/human/has_eyes()
-	if(internal_organs_by_name[O_EYES])
-		var/obj/item/organ/internal/eyes = internal_organs_by_name[O_EYES]
+	if(internal_organs_by_name[BP_EYES])
+		var/obj/item/organ/internal/eyes = internal_organs_by_name[BP_EYES]
 		if(eyes && istype(eyes) && !(eyes.status & ORGAN_CUT_AWAY))
 			return 1
 	return 0
@@ -1439,7 +1435,7 @@ var/list/rank_prefix = list(\
 //			output for machines^	^^^^^^^output for people^^^^^^^^^
 
 /mob/living/carbon/human/proc/pulse()
-	var/obj/item/organ/internal/heart/H = internal_organs_by_name[O_HEART]
+	var/obj/item/organ/internal/heart/H = internal_organs_by_name[BP_HEART]
 	if(!H)
 		return PULSE_NONE
 	else
@@ -1469,9 +1465,9 @@ var/list/rank_prefix = list(\
 /mob/living/carbon/human/should_have_organ(var/organ_check)
 
 	var/obj/item/organ/external/affecting
-	if(organ_check in list(O_HEART, O_LUNGS))
+	if(organ_check in list(BP_HEART, BP_LUNGS))
 		affecting = organs_by_name[BP_CHEST]
-	else if(organ_check in list(O_LIVER, O_KIDNEYS))
+	else if(organ_check in list(BP_LIVER, BP_KIDNEYS))
 		affecting = organs_by_name[BP_GROIN]
 
 	if(affecting && (affecting.robotic >= ORGAN_ROBOT))
@@ -1494,6 +1490,8 @@ var/list/rank_prefix = list(\
 
 //	If covered in blakets you wont get up while all blankets is unrolled
 /mob/living/carbon/human/unblanket()
+	if(!(locate(/obj/item/weapon/bedsheet) in get_turf(src)))
+		return TRUE
 	if(incapacitated(incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_STUNNED))
 		return FALSE
 	var/obj/item/weapon/bedsheet/unrolledBlanket

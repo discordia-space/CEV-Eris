@@ -2,7 +2,7 @@
 	title = "Technomancer Exultant"
 	flag = EXULTANT
 	head_position = 1
-	department = "Engineering"
+	department = DEPARTMENT_ENGINEERING
 	department_flag = ENGINEERING | COMMAND
 	faction = "CEV Eris"
 	total_positions = 1
@@ -10,9 +10,8 @@
 	supervisors = "the Captain"
 	selection_color = "#c7b97b"
 	req_admin_notify = 1
-	economic_modifier = 10
 	also_known_languages = list(LANGUAGE_CYRILLIC = 100, LANGUAGE_SERBIAN = 25)
-
+	wage = WAGE_COMMAND
 	ideal_character_age = 50
 
 	outfit_type = /decl/hierarchy/outfit/job/engineering/exultant
@@ -56,14 +55,13 @@ Your second loyalty is to your clan. Ensure they are paid, fed and safe. Don't r
 /datum/job/technomancer
 	title = "Technomancer"
 	flag = TECHNOMANCER
-	department = "Engineering"
+	department = DEPARTMENT_ENGINEERING
 	department_flag = ENGINEERING
 	faction = "CEV Eris"
 	total_positions = 5
 	spawn_positions = 5
 	supervisors = "the Technomancer Exultant"
 	selection_color = "#d5c88f"
-	economic_modifier = 5
 	also_known_languages = list(LANGUAGE_CYRILLIC = 100, LANGUAGE_SERBIAN = 5)
 
 	outfit_type = /decl/hierarchy/outfit/job/engineering/engineer

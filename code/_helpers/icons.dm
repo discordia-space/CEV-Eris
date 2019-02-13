@@ -48,6 +48,8 @@ icon/UseAlphaMask(mask, mode)
     Sometimes you may want to take the alpha values from one icon and use them on a different icon.
     This proc will do that. Just supply the icon whose alpha mask you want to use, and src will change
     so it has the same colors as before but uses the mask for opacity.
+icon/PlainPaint(var/color)
+	paints all non transparent pixels into provided color
 
 COLOR MANAGEMENT AND HSV
 
@@ -107,7 +109,7 @@ AngleToHue(hue)
     Converts an angle to a hue in the valid range.
 RotateHue(hsv, angle)
     Takes an HSV or HSVA value and rotates the hue forward through red, green, and blue by an angle from 0 to 360.
-    (Rotating red by 60° produces yellow.) The result is another HSV or HSVA color with the same saturation and value
+    (Rotating red by 60Â° produces yellow.) The result is another HSV or HSVA color with the same saturation and value
     as the original, but a different hue.
 GrayScale(rgb)
     Takes an RGB or RGBA color and converts it to grayscale. Returns an RGB or RGBA string.
@@ -294,6 +296,16 @@ icon
 		M.Blend("#ffffff", ICON_SUBTRACT)
 		// apply mask
 		Blend(M, ICON_ADD)
+	
+	//	paints all non transparent pixels into color
+	proc/PlainPaint(var/color)
+		var/list/rgb = ReadRGB(color)
+		MapColors(0,	0,	0,	0, //-\  Ignore
+				0,	0,	0,	0, //--> The
+				0,	0,	0,	0, //-/  Colors
+				rgb[1]/255,rgb[2]/255,rgb[3]/1,255, //Keep alpha channel, any pixel with non-zero alpha gets the color
+				0,	0,	0,	0)
+
 
 /*
 	HSV format is represented as "#hhhssvv" or "#hhhssvvaa"
@@ -634,7 +646,18 @@ as a single icon. Useful for when you want to manipulate an icon via the above a
 The _flatIcons list is a cache for generated icon files.
 */
 
-proc // Creates a single icon from a given /atom or /image.  Only the first argument is required.
+proc 
+	// Creates a single icon from a given /atom type and store it for future use.  Only the first argument is required.
+	getFlatTypeIcon(var/path, defdir=2, deficon=null, defstate="", defblend=BLEND_DEFAULT, always_use_defdir = 0)
+		if(GLOB.initialTypeIcon[path])
+			return GLOB.initialTypeIcon[path]
+		else
+			var/atom/A = new path()
+			GLOB.initialTypeIcon[path] = getFlatIcon(A, defdir, deficon, defstate, defblend, always_use_defdir)
+			qdel(A)
+			return GLOB.initialTypeIcon[path]
+
+	// Creates a single icon from a given /atom or /image.  Only the first argument is required.
 	getFlatIcon(image/A, defdir=2, deficon=null, defstate="", defblend=BLEND_DEFAULT, always_use_defdir = 0)
 		// We start with a blank canvas, otherwise some icon procs crash silently
 		var/icon/flat = icon('icons/effects/effects.dmi', "icon_state"="nothing") // Final flattened icon
@@ -1002,3 +1025,20 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 	GLOB.average_icon_color["[icon]:[icon_state]:[image_dir]"] = rgb(average_rgb[1],average_rgb[2],average_rgb[3])
 	return GLOB.average_icon_color["[icon]:[icon_state]:[image_dir]"]
 
+// Will cache atom icon and return filename
+// can accept either object or path
+proc/cacheAtomIcon(var/atom/A, var/mob/user, var/inBackground = FALSE)
+	if(!A || (!istype(A) && !ispath(A)) || !user || !user.client)
+		return
+	var/iconName = "[ispath(A) ? A : A.type].png"
+	iconName = sanitizeFileName(iconName)
+	// for some reason browse_rsc() doesnt register file in client cache so we need to handle it manualy
+	if(!user.client.cache.Find(iconName))
+		if(inBackground)
+			spawn()
+				user << browse_rsc(ispath(A) ? getFlatTypeIcon(A) : getFlatTypeIcon(A), iconName)
+				user.client.cache.Add(iconName)
+		else
+			user << browse_rsc(ispath(A) ? getFlatTypeIcon(A) : getFlatTypeIcon(A), iconName)
+			user.client.cache.Add(iconName)
+	return iconName

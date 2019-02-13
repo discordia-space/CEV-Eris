@@ -95,9 +95,13 @@ see multiz/movement.dm for some info.
 
 	return TRUE
 
-/turf/simulated/open/proc/fallThrough(var/atom/movable/mover)
+/turf/proc/fallThrough(var/atom/movable/mover)
+	return
+
+/turf/simulated/open/fallThrough(var/atom/movable/mover)
 	if(!mover.can_fall())
 		return
+
 
 	// No gravit, No fall.
 	if(!has_gravity(src))
@@ -146,8 +150,8 @@ see multiz/movement.dm for some info.
 					"You land on \the [below].", "You hear a soft whoosh and a crunch"
 				)
 
-			// Handle people getting hurt, it's funny!
-			mover.fall_impact(src, below)
+		// Handle people getting hurt, it's funny!
+		mover.fall_impact(src, below)
 
 
 
@@ -216,3 +220,12 @@ see multiz/movement.dm for some info.
 //Since there's no floor to walk on, this will simply not happen. Return without doing anything
 /turf/simulated/open/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
 	return
+
+
+//Since walking around on openspaces wasn't possible before i fixed jetpacks, nobody thought to fix this
+/turf/simulated/open/get_footstep_sound(var/mobtype)
+	var/obj/structure/catwalk/catwalk = locate(/obj/structure/catwalk) in src
+	if(catwalk)
+		return footstep_sound("catwalk")
+	else
+		return null

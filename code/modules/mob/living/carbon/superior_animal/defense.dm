@@ -1,6 +1,7 @@
 /mob/living/carbon/superior_animal/proc/harvest(var/mob/user)
 	var/actual_meat_amount = max(1,(meat_amount/2))
 	if(meat_type && actual_meat_amount>0 && (stat == DEAD))
+		drop_embedded()
 		for(var/i=0;i<actual_meat_amount;i++)
 			var/obj/item/meat = new meat_type(get_turf(src))
 			meat.name = "[src.name] [meat.name]"
@@ -12,7 +13,7 @@
 			user.visible_message(SPAN_DANGER("[user] butchers \the [src] messily!"))
 			gib()
 
-/mob/living/carbon/superior_animal/update_canmove()
+/mob/living/carbon/superior_animal/update_lying_buckled_and_verb_status()
 	..()
 
 	check_AI_act()

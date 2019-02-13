@@ -175,7 +175,7 @@
 
 /mob/living/silicon/robot/proc/init()
 	aiCamera = new/obj/item/device/camera/siliconcam/robot_camera(src)
-	laws = new /datum/ai_laws/nanotrasen()
+	laws = new /datum/ai_laws/eris()
 	var/new_ai = select_active_ai_with_fewest_borgs()
 	if(new_ai)
 		lawupdate = 1
@@ -259,7 +259,8 @@
 		return
 	var/list/modules = list()
 	modules.Add(robot_modules) //This is a global list in robot_modules.dm
-	if((crisis && security_level == SEC_LEVEL_RED) || crisis_override) //Leaving this in until it's balanced appropriately.
+	var/decl/security_state/security_state = decls_repository.get_decl(maps_data.security_state)
+	if((crisis && security_state.current_security_level_is_same_or_higher_than(security_state.high_security_level)) || crisis_override) //Leaving this in until it's balanced appropriately.
 		src << "\red Crisis mode active. Combat module available."
 		modules+="Combat"
 	modtype = input("Please, select a module!", "Robot", null, null) as null|anything in modules
@@ -614,19 +615,30 @@
 			return
 
 		if(QUALITY_SCREW_DRIVING)
-			if(opened && !cell)
+			if (opened && !cell)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					wiresexposed = !wiresexposed
 					user << SPAN_NOTICE("The wires have been [wiresexposed ? "exposed" : "unexposed"]")
 					updateicon()
-					return
-			if(opened && cell)
-				if(!radio)
-					user << SPAN_WARNING("Unable to locate a radio.")
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					radio.attackby(I,user)//Push it to the radio to let it handle everything
-					updateicon()
-					return
+			else
+				switch(alert(user,"What are you trying to interact with?",,"Tools","Radio"))
+					if("Tools")
+						var/list/robotools = list()
+						for(var/obj/item/weapon/tool/robotool in src.module.modules)
+							robotools.Add(robotool)
+						if(robotools.len)
+							var/obj/item/weapon/tool/chosen_tool = input(user,"Which tool are you trying to modify?","Tool Modification","Cancel") in robotools + "Cancel"
+							if(chosen_tool == "Cancel")
+								return
+							chosen_tool.attackby(I,user)
+						else
+							user << SPAN_WARNING("[src] has no modifiable tools.")
+					if("Radio")
+						if(!radio)
+							user << SPAN_WARNING("Unable to locate a radio.")
+						if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+							radio.attackby(I,user)//Push it to the radio to let it handle everything
+							updateicon()
 			return
 
 		if(ABORT_CHECK)
@@ -711,6 +723,9 @@
 				U.loc = src
 			else
 				usr << "Upgrade error!"
+
+	else if (istype(I,/obj/item/weapon/tool_upgrade)) //Upgrading is handled in _upgrades.dm
+		return
 
 	else
 		if( !(istype(I, /obj/item/device/robotanalyzer) || istype(I, /obj/item/device/scanner/healthanalyzer)) )
@@ -985,7 +1000,7 @@
 	if(wires.LockedCut())
 		state = 1
 	lockcharge = state
-	update_canmove()
+	update_lying_buckled_and_verb_status()
 
 /mob/living/silicon/robot/mode()
 	set name = "Activate Held Object"
@@ -1167,3 +1182,11 @@
 				src << "Hack attempt detected."
 			return 1
 		return
+
+
+/mob/living/silicon/robot/incapacitated(var/incapacitation_flags = INCAPACITATION_DEFAULT)
+	if ((incapacitation_flags & INCAPACITATION_FORCELYING) && (lockcharge || !is_component_functioning("actuator")))
+		return 1
+	if ((incapacitation_flags & INCAPACITATION_UNCONSCIOUS) && !is_component_functioning("actuator"))
+		return 1
+	return ..()

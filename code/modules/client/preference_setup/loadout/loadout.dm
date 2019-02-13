@@ -188,7 +188,7 @@ var/list/gear_datums = list()
 				++ind
 				if(ind > 1)
 					entry += ", "
-				if(J.type in G.allowed_roles)
+				if(J.title in G.allowed_roles)
 					entry += "<font color=55cc55>[J.title]</font>"
 					good_job = 1
 				else
@@ -348,6 +348,11 @@ var/list/gear_datums = list()
 /datum/gear/proc/spawn_on_mob(var/mob/living/carbon/human/H, var/metadata)
 	var/obj/item/item = spawn_item(H, metadata)
 	if(SSinventory.initialized && H.replace_in_slot(item, slot, put_in_storage = TRUE, skip_covering_check = TRUE, del_if_failed_to_equip = TRUE))
+		if(istype(item, /obj/item/clothing/under))
+			// this means we replaced jumpsuit and all items inside now on the floor
+			// so we need to pick them up
+			for(var/obj/item/I in get_turf(H))
+				H.equip_to_appropriate_slot(I)
 		to_chat(H, "<span class='notice'>Equipping you with \the [item]!</span>")
 		. = item
 

@@ -143,6 +143,7 @@
 	var/light_color_status_display
 
 	var/overlay_alarm
+	var/overlay_firealarm
 	var/overlay_status_display
 
 	var/up_description
@@ -199,10 +200,12 @@
 	light_inner_range = 0.1
 	light_outer_range = 1
 
-	light_color_alarm = COLOR_GREEN
-	light_color_status_display = COLOR_GREEN
+	light_color_alarm = COLOR_LIGHTING_GREEN_MACHINERY
+	light_color_status_display = COLOR_LIGHTING_GREEN_MACHINERY
 
 	overlay_alarm = "alarm_green"
+	overlay_firealarm = "overlay_green"
+
 	overlay_status_display = "status_display_green"
 
 	down_description = "All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
@@ -213,10 +216,12 @@
 	light_max_bright = 0.5
 	light_inner_range = 0.1
 	light_outer_range = 2
-	light_color_alarm = COLOR_BLUE
-	light_color_status_display = COLOR_BLUE
+	light_color_alarm = COLOR_LIGHTING_BLUE_MACHINERY
+	light_color_status_display = COLOR_LIGHTING_BLUE_MACHINERY
 
 	overlay_alarm = "alarm_blue"
+	overlay_firealarm = "overlay_blue"
+
 	overlay_status_display = "status_display_blue"
 
 	up_description = "The station has received reliable information about possible hostile activity on the station. Security staff may have weapons visible, random searches are permitted."
@@ -228,10 +233,12 @@
 	light_max_bright = 0.5
 	light_inner_range = 0.1
 	light_outer_range = 2
-	light_color_alarm = COLOR_RED
-	light_color_status_display = COLOR_RED
+	light_color_alarm = COLOR_LIGHTING_RED_MACHINERY
+	light_color_status_display = COLOR_LIGHTING_RED_MACHINERY
 
 	overlay_alarm = "alarm_red"
+	overlay_firealarm = "overlay_red"
+
 	overlay_status_display = "status_display_red"
 
 	up_description = "There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised."
@@ -243,10 +250,12 @@
 	light_max_bright = 0.75
 	light_inner_range = 0.1
 	light_outer_range = 3
-	light_color_alarm = COLOR_RED
-	light_color_status_display = COLOR_NAVY_BLUE
+	light_color_alarm = COLOR_LIGHTING_RED_MACHINERY
+	light_color_status_display = COLOR_LIGHTING_BLUE_MACHINERY
 
 	overlay_alarm = "alarm_delta"
+	overlay_firealarm = "overlay_delta"
+
 	overlay_status_display = "status_display_delta"
 
 	var/static/datum/announcement/priority/security/security_announcement_delta = new(do_log = 0, do_newscast = 1, new_sound = sound('sound/effects/siren.ogg'))

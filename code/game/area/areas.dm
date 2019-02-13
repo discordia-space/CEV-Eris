@@ -231,14 +231,14 @@ var/list/mob/living/forced_ambiance_list = new
 	var/area/oldarea = L.lastarea
 	if((oldarea.has_gravity == 0) && (newarea.has_gravity == 1) && (L.m_intent == "run")) // Being ready when you change areas gives you a chance to avoid falling all together.
 		thunk(L)
-		L.update_floating( L.Check_Dense_Object() )
+		L.update_floating( L.check_dense_object() )
 
 	L.lastarea = newarea
 	play_ambience(L)
 
 /area/proc/play_ambience(var/mob/living/L)
     // Ambience goes down here -- make sure to list each area seperately for ease of adding things in later, thanks! Note: areas adjacent to each other should have the same sounds to prevent cutoff when possible.- LastyScratch
-	if(!(L && L.get_preference_value(/datum/client_preference/play_ambiance) == GLOB.PREF_YES))    return
+	if(!(L && L.client && L.get_preference_value(/datum/client_preference/play_ambiance) == GLOB.PREF_YES))    return
 
 	var/client/CL = L.client
 
@@ -249,7 +249,7 @@ var/list/mob/living/forced_ambiance_list = new
 			else
 				var/new_ambience = pick(pick(forced_ambience))
 				CL.ambience_playing = new_ambience
-				L << sound(new_ambience, repeat = 1, wait = 0, volume = 30, channel = SOUND_CHANNEL_AMBIENCE)
+				sound_to(L, sound(new_ambience, repeat = 1, wait = 0, volume = 30, channel = GLOB.ambience_sound_channel))
 				return 1
 		if(CL.ambience_playing in ambience)
 			return 1
@@ -258,13 +258,13 @@ var/list/mob/living/forced_ambiance_list = new
 		if(world.time >= L.client.played + 600)
 			var/sound = pick(ambience)
 			CL.ambience_playing = sound
-			L << sound(sound, repeat = 0, wait = 0, volume = 10, channel = SOUND_CHANNEL_AMBIENCE)
+			sound_to(L, sound(sound, repeat = 0, wait = 0, volume = 10, channel = GLOB.ambience_sound_channel))
 			L.client.played = world.time
 			return 1
 	else
 		var/sound = 'sound/ambience/shipambience.ogg'
 		CL.ambience_playing = sound
-		L << sound(sound, repeat = 1, wait = 0, volume = 30, channel = SOUND_CHANNEL_AMBIENCE)
+		sound_to(L, sound(sound, repeat = 1, wait = 0, volume = 30, channel = GLOB.ambience_sound_channel))
 
 /area/proc/gravitychange(var/gravitystate = 0, var/area/A)
 	A.has_gravity = gravitystate
@@ -272,7 +272,7 @@ var/list/mob/living/forced_ambiance_list = new
 	for(var/mob/M in A)
 		if(has_gravity)
 			thunk(M)
-		M.update_floating( M.Check_Dense_Object() )
+		M.update_floating( M.check_dense_object() )
 
 /area/proc/thunk(mob)
 	if(istype(get_turf(mob), /turf/space)) // Can't fall onto nothing.

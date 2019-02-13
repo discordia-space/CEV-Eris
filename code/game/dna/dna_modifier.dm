@@ -134,7 +134,7 @@
 	// search for ghosts, if the corpse is empty and the scanner is connected to a cloner
 	if(locate(/obj/machinery/computer/cloning) in range(1))
 		if(!M.client && M.mind)
-			for(var/mob/observer/ghost/ghost in player_list)
+			for(var/mob/observer/ghost/ghost in GLOB.player_list)
 				if(ghost.mind == M.mind)
 					ghost << {"
 						<font color = #330033 size = 3>

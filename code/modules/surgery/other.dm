@@ -1,4 +1,4 @@
-//Procedures in this file: Inernal wound patching, Implant removal.
+//Procedures in this file: Inernal wound patching, Implant removal, Hardsuit removal.
 //////////////////////////////////////////////////////////////////
 //					INTERNAL WOUND PATCHING						//
 //////////////////////////////////////////////////////////////////
@@ -69,7 +69,7 @@
 		if(!hasorgans(target))
 			return 0
 
-		if (target_zone == "mouth" || target_zone == O_EYES)
+		if (target_zone == BP_MOUTH || target_zone == BP_EYES)
 			return 0
 
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -130,7 +130,7 @@
 		if(!hasorgans(target))
 			return 0
 
-		if (target_zone == "mouth" || target_zone == O_EYES)
+		if (target_zone == BP_MOUTH || target_zone == BP_EYES)
 			return 0
 
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)

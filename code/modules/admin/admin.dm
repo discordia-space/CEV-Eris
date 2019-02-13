@@ -709,11 +709,11 @@ ADMIN_VERB_ADD(/datum/admins/proc/delay, R_SERVER, FALSE)
 
 	if(!check_rights(R_SERVER))
 		return
-	if (SSticker.current_state != GAME_STATE_PREGAME)
+	if (SSticker.current_state != GAME_STATE_PREGAME && SSticker.current_state != GAME_STATE_STARTUP)
 		SSticker.delay_end = !SSticker.delay_end
 		log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
 		message_admins("\blue [key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].", 1)
-		return //alert("Round end delayed", null, null, null, null, null)
+		return
 	round_progressing = !round_progressing
 	if (!round_progressing)
 		world << "<b>The game start has been delayed.</b>"
@@ -1085,6 +1085,12 @@ ADMIN_VERB_ADD(/datum/admins/proc/toggleguests, R_ADMIN, FALSE)
 	log_admin("[key_name(usr)] stuffed [frommob.ckey] into [tomob.name].")
 
 	tomob.ckey = frommob.ckey
+	if(tomob.client)
+		if(tomob.client.UI)
+			tomob.client.UI.show()
+		else
+			tomob.client.create_UI(tomob.type)
+
 	qdel(frommob)
 	return 1
 

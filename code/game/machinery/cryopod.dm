@@ -15,7 +15,7 @@
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "cellconsole"
 	light_power = 1.5
-	light_color = COLOR_BLUE_LIGHT
+	light_color = COLOR_LIGHTING_BLUE_MACHINERY
 	circuit = /obj/item/weapon/circuitboard/cryopodcontrol
 	density = 0
 	interact_offline = 1

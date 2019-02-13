@@ -36,6 +36,8 @@
 	var/mob/living/original	//TODO: remove.not used in any meaningful way ~Carn. First I'll need to tweak the way silicon-mobs handle minds.
 	var/active = FALSE
 
+
+
 	var/memory
 
 	var/assigned_role
@@ -70,8 +72,11 @@
 		If this is 0, the mind has never had a cliented mob
 	*/
 
+	var/creation_time = 0 //World time when this datum was New'd. Useful to tell how long since a character spawned
+
 /datum/mind/New(var/key)
 	src.key = key
+	creation_time = world.time
 	..()
 
 /datum/mind/proc/transfer_to(mob/living/new_character)
@@ -87,6 +92,9 @@
 	if(new_character.mind)		//remove any mind currently in our new body's mind variable
 		new_character.mind.current = null
 
+	if(current.client)
+		current.client.destroy_UI()
+
 	current = new_character		//link ourself to our new body
 	new_character.mind = src	//and link our new body to ourself
 
@@ -96,6 +104,8 @@
 	if(active)
 		new_character.key = key		//now transfer the key to link the client to our new body
 		last_activity = world.time
+	if(new_character.client)
+		new_character.client.create_UI(new_character.type)
 
 /datum/mind/proc/store_memory(new_text)
 	memory += "[new_text]<BR>"
@@ -146,7 +156,6 @@
 
 	if(href_list["add_antagonist"])
 		var/datum/antagonist/antag = GLOB.all_antag_types[href_list["add_antagonist"]]
-		world << "Antag is [antag], attempted to get [href_list["add_antagonist"]]"
 		if(antag)
 			var/ok = FALSE
 			if(antag.outer && active)
@@ -160,8 +169,11 @@
 				return
 
 			if(antag.outer)
-				antag.create_antagonist(src)
-
+				//Outer antags are created from ghosts, we must make a ghost first
+				var/mob/observer/ghost/ghost = current.ghostize(FALSE)
+				antag.create_from_ghost(ghost, announce = FALSE)
+				qdel(current) //Delete our old body
+				antag.greet()
 
 			else
 				if(antag.create_antagonist(src))
@@ -264,7 +276,7 @@
 		brigged_since = -1
 		return 0
 	var/is_currently_brigged = 0
-	if(istype(T.loc,/area/security/brig))
+	if(istype(T.loc,/area/eris/security/brig))
 		is_currently_brigged = 1
 		if(current.GetIdCard())
 			is_currently_brigged = 0

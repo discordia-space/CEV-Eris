@@ -108,13 +108,13 @@ Works together with spawning an observer, noted above.
 			if(copytext(hud.icon_state,1,4) == "hud")
 				client.images.Remove(hud)
 
-	/*if(antagHUD)
+	if(antagHUD)
 		var/list/target_list = list()
 		for(var/mob/living/target in oview(src, 14))
-			if(target.mind && target.mind.special_role)
+			if(target.mind && target.mind.antagonist.len != 0)
 				target_list += target
 		if(target_list.len)
-			assess_targets(target_list, src)*/
+			assess_targets(target_list, src)
 	if(medHUD)
 		process_medHUD(src)
 
@@ -135,6 +135,8 @@ Works together with spawning an observer, noted above.
 
 /mob/proc/ghostize(var/can_reenter_corpse = 1)
 	if(key)
+		if(client)
+			client.destroy_UI()
 		var/mob/observer/ghost/ghost = new(src)	//Transfer safety to observer spawning proc.
 		ghost.can_reenter_corpse = can_reenter_corpse
 		ghost.timeofdeath = src.stat == DEAD ? src.timeofdeath : world.time
@@ -155,12 +157,12 @@ Works together with spawning an observer, noted above.
 				src << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
 			set_respawn_bonus("CRYOSLEEP", CRYOPOD_SPAWN_BONUS)
 
-
 		ghost.ckey = ckey
 		ghost.client = client
 		ghost.initialise_postkey()
 		if(ghost.client && !ghost.client.holder && !config.antag_hud_allowed)		// For new ghosts we remove the verb from even showing up if it's not allowed.
 			ghost.verbs -= /mob/observer/ghost/verb/toggle_antagHUD	// Poor guys, don't know what they are missing!
+
 		return ghost
 
 /*
@@ -208,6 +210,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost"
 	set name = "Re-enter Corpse"
 	if(!client)	return
+	client.destroy_UI()
+
 	if(!(mind && mind.current && can_reenter_corpse))
 		src << "<span class='warning'>You have no body.</span>"
 		return
@@ -344,9 +348,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return 0
 	return (T && T.holy) && (invisibility <= SEE_INVISIBLE_LIVING)
 
-/mob/observer/ghost/verb/jumptomob(target in getmobs()) //Moves the ghost instead of just changing the ghosts's eye -Nodrak
+/mob/observer/ghost/verb/jumptomob_ghost(target in getmobs()) //Moves the ghost instead of just changing the ghosts's eye -Nodrak
 	set category = "Ghost"
-	set name = "Jump to Mob"
+	set name = "Jump to a Mob"
 	set desc = "Teleport to a mob"
 
 	if(isghost(usr)) //Make sure they're an observer!

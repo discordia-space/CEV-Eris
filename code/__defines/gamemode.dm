@@ -5,11 +5,6 @@
 #define GAME_STATE_PLAYING		3
 #define GAME_STATE_FINISHED		4
 
-// Security levels.
-#define SEC_LEVEL_GREEN 0
-#define SEC_LEVEL_BLUE  1
-#define SEC_LEVEL_RED   2
-
 #define BE_PLANT "BE_PLANT"
 #define BE_SYNTH "BE_SYNTH"
 #define BE_PAI   "BE_PAI"
@@ -26,6 +21,9 @@
 #define ANTAG_RANDSPAWN         0x100 // Potentially randomly spawns due to events.
 #define ANTAG_VOTABLE           0x200 // Can be voted as an additional antagonist before roundstart.
 #define ANTAG_SET_APPEARANCE    0x400 // Causes antagonists to use an appearance modifier on spawn.
+
+//A flag to skip target selection
+#define ANTAG_SKIP_TARGET	-1
 
 // Storyteller names macro
 #define STORYTELLER_BASE "guide"

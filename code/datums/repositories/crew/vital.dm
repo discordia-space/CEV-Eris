@@ -49,8 +49,8 @@
 				crew_data["oxygenation"] = "extremely low"
 				crew_data["oxygenation_span"] = "bad"
 	*/
-	if(!H.isSynthetic() && H.should_have_organ(O_HEART))
-		var/obj/item/organ/internal/heart/O = H.internal_organs_by_name[O_HEART]
+	if(!H.isSynthetic() && H.should_have_organ(BP_HEART))
+		var/obj/item/organ/internal/heart/O = H.internal_organs_by_name[BP_HEART]
 		if (!O || !BP_IS_ROBOTIC(O)) // Don't make medical freak out over prosthetic hearts
 			crew_data["true_pulse"] = H.pulse()
 			crew_data["pulse"] = H.get_pulse(1)
@@ -72,7 +72,7 @@
 	crew_data["true_oxygenation"] = -1
 	crew_data["oxygenation"] = ""
 	crew_data["oxygenation_span"] = ""
-	if(!H.isSynthetic() && H.should_have_organ(O_HEART))
+	if(!H.isSynthetic() && H.should_have_organ(BP_HEART))
 		crew_data["pressure"] = H.get_blood_pressure()
 		crew_data["true_oxygenation"] = H.getOxyLoss()
 		switch (crew_data["true_oxygenation"])
@@ -88,7 +88,7 @@
 			if(0 to 10)
 				crew_data["oxygenation"] = "normal"
 				crew_data["oxygenation_span"] = "good"
-				
+
 	crew_data["bodytemp"] = H.bodytemperature - T0C
 	return ..()
 

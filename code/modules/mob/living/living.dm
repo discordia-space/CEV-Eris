@@ -369,7 +369,7 @@ default behaviour is:
 /mob/living/proc/get_organ_target()
 	var/mob/shooter = src
 	var/t = shooter:targeted_organ
-	if(t in list(O_EYES, "mouth"))
+	if(t in list(BP_EYES, BP_MOUTH))
 		t = BP_HEAD
 	var/obj/item/organ/external/def_zone = ran_zone(t)
 	return def_zone
@@ -431,8 +431,8 @@ default behaviour is:
 
 	// remove the character from the list of the dead
 	if(stat == DEAD)
-		dead_mob_list -= src
-		living_mob_list += src
+		GLOB.dead_mob_list -= src
+		GLOB.living_mob_list += src
 		tod = null
 		timeofdeath = 0
 
@@ -650,7 +650,7 @@ default behaviour is:
 		resting = FALSE
 		state_changed = TRUE
 
-		
+
 	else if (!resting)
 		if(ishuman(src))
 			var/obj/item/weapon/bedsheet/BS = locate(/obj/item/weapon/bedsheet) in get_turf(src)
@@ -667,16 +667,16 @@ default behaviour is:
 			state_changed = TRUE
 	if(state_changed)
 		src << "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>"
-		update_canmove()
+		update_lying_buckled_and_verb_status()
 
 /mob/living/proc/can_stand_up()
 	var/no_blankets = FALSE
 	no_blankets = unblanket()
-	
+
 	if(no_blankets)
 		return TRUE
 	else
-		src << SPAN_WARNING("You can stand up, bedsheets are in the way and you struggle to get rid of them.")
+		src << SPAN_WARNING("You can't stand up, bedsheets are in the way and you struggle to get rid of them.")
 		return FALSE
 
 //used to push away bedsheets in order to stand up, only humans will roll them (see overriden human proc)
@@ -760,6 +760,13 @@ default behaviour is:
 	src << "<b>You are now \the [src]!</b>"
 	src << "<span class='notice'>Remember to stay in character for a mob of this type!</span>"
 	return TRUE
+
+/mob/living/reset_layer()
+	if(hiding)
+		plane = HIDING_MOB_PLANE
+		layer = HIDING_MOB_LAYER
+	else
+		..()
 
 /mob/living/throw_mode_off()
 	src.in_throw_mode = 0
@@ -870,7 +877,7 @@ default behaviour is:
 		stats = new /datum/stat_holder
 
 	generate_static_overlay()
-	for(var/mob/observer/eye/angel/A in player_list)
+	for(var/mob/observer/eye/angel/A in GLOB.player_list)
 		if(A)
 			A.static_overlays |= static_overlay
 			A.client.images |= static_overlay

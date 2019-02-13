@@ -15,21 +15,14 @@
 				turfs += T
 	return turfs
 
-//Returns everything in an area based on type, searching two layers deep
+//Returns everything in an area based on type, searching recursively
 /proc/get_area_contents(var/areatype)
 	var/list/turf/LT = get_area_turfs(areatype)
 	var/list/contents = list()
 	for (var/turf/T in LT)
-		contents.Add(T)
-		var/list/L = contents.Copy()
-		//Lets recurse down a layer to find things inside storage
-		var/list/L2
-		for (var/atom/A in L)
-			L2.Add(A.get_contents())
+		contents |= T.get_recursive_contents()
 
-		L.Add(L2)
-		contents.Add(L)
-
+	return contents
 
 
 /proc/pick_area_turf(var/areatype, var/list/predicates)
@@ -78,7 +71,7 @@
 
 		if(filter_players)
 			var/should_continue = FALSE
-			for(var/mob/living/carbon/human/H in human_mob_list)
+			for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
 				if(!H.client)
 					continue
 				if(A == get_area(H))

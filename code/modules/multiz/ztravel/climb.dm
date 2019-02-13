@@ -17,6 +17,9 @@
 	if (.)
 		if (isrobot(M))
 			return FALSE //Robots can't climb
+		else if (istype(M, /obj/mecha))
+			return FALSE //Mechas can't climb, for now.
+			//Todo future: add some kind of var or function to allow certain mecha to climb
 
 		if (gravity)
 			/*
@@ -83,7 +86,7 @@
 		if (!ishuman(M))
 			return FALSE
 		var/mob/living/carbon/human/H = M
-		if (H.Check_Shoegrip()) //This checks for magboots
+		if (H.check_shoegrip()) //This checks for magboots
 			return TRUE
 
 		else

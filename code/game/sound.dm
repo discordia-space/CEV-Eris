@@ -95,6 +95,14 @@ var/list/climb_sound = list(
 	'sound/effects/ladder4.ogg'
 )
 
+var/list/weld_sound = list(
+	'sound/items/Welder.ogg',
+	'sound/items/welding1.ogg',
+	'sound/items/welding2.ogg',
+	'sound/items/welding3.ogg',
+	'sound/items/welding4.ogg'
+)
+
 var/list/gunshot_sound = list('sound/weapons/Gunshot.ogg',
 	'sound/weapons/guns/fire/ltrifle_fire.ogg',
 	'sound/weapons/guns/fire/m41_shoot.ogg',
@@ -240,7 +248,7 @@ var/list/footstep_wood = list(\
 	var/turf/turf_source = get_turf(source)
 
  	// Looping through the player list has the added bonus of working for mobs inside containers
-	for (var/P in player_list)
+	for (var/P in GLOB.player_list)
 		var/mob/M = P
 		if(!M || !M.client)
 			continue
@@ -256,6 +264,7 @@ var/list/footstep_wood = list(\
 
 var/const/FALLOFF_SOUNDS = 0.5
 
+//turf_source = our_turf, soundin = 'sound/effects/alert.ogg', vol = 100, vary = 1, extrarange = 0.5
 /mob/proc/playsound_local(var/turf/turf_source, soundin, vol as num, vary, extrarange as num, frequency, falloff, is_global, use_pressure = TRUE)
 	if(!src.client || ear_deaf > 0)	return
 	soundin = get_sfx(soundin)
@@ -274,13 +283,12 @@ var/const/FALLOFF_SOUNDS = 0.5
 	//sound volume falloff with pressure
 	var/pressure_factor = 1.0
 
-	if(isturf(turf_source))
-		// 3D sounds, the technology is here!
-		var/turf/T = get_turf(src)
+	// 3D sounds, the technology is here!
+	var/turf/T = get_turf(src)
 
+	if(T)
 		//sound volume falloff with distance
 		var/distance = get_dist(T, turf_source)
-
 		S.volume -= max(distance - (world.view + extrarange), 0) * 2 //multiplicative falloff to add on top of natural audio falloff.
 
 		var/datum/gas_mixture/hearer_env = T.return_air()
@@ -290,7 +298,6 @@ var/const/FALLOFF_SOUNDS = 0.5
 		if (use_pressure)
 			if (hearer_env && source_env)
 				var/pressure = min(hearer_env.return_pressure(), source_env.return_pressure())
-
 				if (pressure < ONE_ATMOSPHERE)
 					pressure_factor = max((pressure - SOUND_MINIMUM_PRESSURE)/(ONE_ATMOSPHERE - SOUND_MINIMUM_PRESSURE), 0)
 			else //in space
@@ -330,13 +337,15 @@ var/const/FALLOFF_SOUNDS = 0.5
 				S.environment = SPACE
 			else
 				var/area/A = get_area(src)
-				S.environment = A.sound_env
+				if(istype(A))
+					S.environment = A.sound_env
 
 		else if (pressure_factor < 0.5)
 			S.environment = SPACE
 		else
 			var/area/A = get_area(src)
-			S.environment = A.sound_env
+			if(istype(A))
+				S.environment = A.sound_env
 
 	src << S
 
@@ -344,12 +353,12 @@ var/const/FALLOFF_SOUNDS = 0.5
 	if(!SSticker.login_music)
 		return
 	if(get_preference_value(/datum/client_preference/play_lobby_music) == GLOB.PREF_YES)
-		src << sound(SSticker.login_music, repeat = 0, wait = 0, volume = 85, channel = 1) // MAD JAMS
+		sound_to(src, sound(SSticker.login_music, repeat = 0, wait = 0, volume = 85, channel = GLOB.lobby_sound_channel))
 
 /client/proc/stoptitlemusic()
 	if(!SSticker.login_music)
 		return
-	src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // NO MAD JAMS
+	sound_to(src, sound(null, repeat = 0, wait = 0, volume = 85, channel = GLOB.lobby_sound_channel))
 
 
 /proc/get_rand_frequency()
@@ -378,6 +387,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 			if ("catwalk")soundin = pick(footstep_catwalk)
 			if ("crumble") soundin = pick(crumble_sound)
 			if ("thud") soundin = pick(thud_sound)
+			if ("weld") soundin = pick(weld_sound)
 			//if ("gunshot") soundin = pick(gun_sound)
 	return soundin
 

@@ -68,7 +68,7 @@
 	anchored = 1
 	mouse_opacity = 2
 
-	var/maxHealth = 23
+	var/maxHealth = 20
 	var/health = 1
 	var/health_regen = 1.7
 	var/brute_resist = 1.25
@@ -363,12 +363,8 @@
 
 	// Above things, we destroy completely and thus can use locate. Mobs are different.
 	for(var/mob/living/L in T)
-		if(L.stat == DEAD)
-			continue
-		L.visible_message(SPAN_DANGER("The blob attacks \the [L]!"), SPAN_DANGER("The blob attacks you!"))
-		playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
-		L.take_organ_damage(burn = rand(15, 25))
-		return
+		attack_mobs(T)//We don't destroy mobs, we'll just grow under their feet and attack them in the process
+		break
 
 	//We'll occasionally spawn shield tiles instead of normal blobs
 	var/obj/effect/blob/child
@@ -443,8 +439,10 @@
 ********************/
 //Blobs will do horrible things to any mobs they share a tile with
 //Returns true if any mob was damaged, false if not
-/obj/effect/blob/proc/attack_mobs()
-	for (var/mob/living/L in loc)
+/obj/effect/blob/proc/attack_mobs(var/turf/T)
+	if (!T)
+		T = loc
+	for (var/mob/living/L in T)
 		if(L.stat == DEAD)
 			continue
 		L.visible_message(SPAN_DANGER("The blob attacks \the [L]!"), SPAN_DANGER("The blob attacks you!"))
@@ -531,6 +529,7 @@
 	fire_resist = 2
 	density = TRUE
 	icon_scale = 1.2
+	health_regen = 0 //The core does not heal
 
 	expandType = /obj/effect/blob/shield
 
@@ -559,8 +558,8 @@
 	icon = 'icons/mob/blob.dmi'
 	icon_state = "blob_idle"
 	desc = "Some blob creature thingy"
-	maxHealth = 180
-	health = 180
+	maxHealth = 160
+	health = 160
 	health_regen = 2
 	brute_resist = 2
 	fire_resist = 1

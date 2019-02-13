@@ -94,19 +94,6 @@
 
 
 	//Stuff rigs can store
-	allowed = list(
-	/obj/item/weapon/storage/pouch/,
-	/obj/item/weapon/gun,
-	/obj/item/weapon/melee/baton,
-	/obj/item/weapon/melee/energy/sword,
-	/obj/item/ammo_magazine,
-	/obj/item/ammo_casing,
-	/obj/item/weapon/melee/baton,
-	/obj/item/weapon/handcuffs,
-	/obj/item/weapon/tank,
-	/obj/item/device/suit_cooling_unit,
-	/obj/item/weapon/cell,
-	/obj/item/weapon/handcuffs)
 
 	var/list/extra_allowed = list()
 
@@ -167,7 +154,7 @@
 		chest = new chest_type(src)
 		chest.equip_delay = 0
 		if(allowed)
-			chest.allowed = allowed
+			chest.allowed |= allowed
 		chest.slowdown = offline_slowdown
 		verbs |= /obj/item/weapon/rig/proc/toggle_chest
 
@@ -907,7 +894,7 @@
 		wearer.lastarea = get_area(wearer.loc)
 
 	if((istype(wearer.loc, /turf/space)) || (wearer.lastarea.has_gravity == 0))
-		if(!wearer.Allow_Spacemove(0))
+		if(!wearer.allow_spacemove(0))
 			return 0
 
 	if(malfunctioning)
