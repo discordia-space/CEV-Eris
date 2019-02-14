@@ -299,7 +299,7 @@ var/list/turret_icons
 					qdel(src) // qdel
 
 		else if((istype(I, /obj/item/weapon/tool/wrench)))
-			if(enabled || raised)
+			if(enabled)
 				user << SPAN_WARNING("You cannot unsecure an active turret!")
 				return
 			if(wrenching)
