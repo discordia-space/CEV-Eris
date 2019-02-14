@@ -44,7 +44,8 @@ SUBSYSTEM_DEF(vote)
 	if(ispath(newvote) && newvote in votes)
 		poll = votes[newvote]
 
-	if(!poll || !poll.can_start())
+	//can_start check is done before calling this so that admins can skip it
+	if(!poll)
 		return FALSE
 
 	if(!poll.start())
@@ -104,11 +105,14 @@ SUBSYSTEM_DEF(vote)
 		else
 			data += "You can't change your vote."
 
+		if (active_vote.description)
+			data += "<br>[active_vote.description]<br>"
+
 		data += "<hr>"
 		data += "<table width = '100%'><tr><td align = 'center'><b>Choices</b></td><td align = 'center'><b>Votes</b></td>"
 
 		for(var/datum/vote_choice/choice in active_vote.choices)
-			var/c_votes = (active_vote.see_votes || admin) ? choice.voters.len : "*"
+			var/c_votes = (active_vote.see_votes || admin) ? choice.total_votes() : "*"
 			data += "<tr><td>"
 			if(C.key in choice.voters)
 				data += "<b><a href='?src=\ref[src];vote=\ref[choice]'>[choice.text]</a></b>"
@@ -134,6 +138,8 @@ SUBSYSTEM_DEF(vote)
 				data += "<a href='?src=\ref[src];start_vote=\ref[poll]'>[poll.name]</a>"
 			else
 				data += "<s>[poll.name]</s>"
+				if (admin)
+					data += " <a href='?src=\ref[src];start_vote=\ref[poll]'>force</a> "
 
 			if(admin)
 				data += "\t(<a href='?src=\ref[src];toggle_admin=\ref[poll]'>[poll.only_admin?"Only admin":"Allowed"]</a>)"
@@ -161,7 +167,7 @@ SUBSYSTEM_DEF(vote)
 
 	if(href_list["start_vote"])
 		var/datum/poll/poll = locate(href_list["start_vote"])
-		if(istype(poll) && (!poll.only_admin || check_rights(R_ADMIN)))
+		if(istype(poll) && (check_rights(R_ADMIN) || (!poll.only_admin && poll.can_start())))
 			start_vote(poll.type)
 
 	if(href_list["cancel"])
@@ -181,151 +187,8 @@ SUBSYSTEM_DEF(vote)
 
 
 
-/datum/poll
-	var/name = "Voting"
-	var/question = "Voting, voting, candidates are faggots!"
-	var/time = 60	//in seconds
-	var/list/choice_types = list(/datum/vote_choice)	//Choices will be initialized from this list
-
-	var/only_admin = TRUE	//Is only admins can initiate this?
-
-	var/multiple_votes = FALSE
-	var/can_revote = TRUE	//Can voters change their mind?
-	var/can_unvote = FALSE
-
-	var/see_votes = TRUE	//Can voters see choices votes count?
-
-	var/list/choices = list()
-	var/initiator = null	//Initiator's key
 
 
-	var/cooldown = 30 MINUTES //After this vote is called, how long must pass before it can be called again
-
-	var/last_vote = 0	//When was the last time this vote was called
-	var/next_vote = 0	//When will we next be allowed to call it again?
-
-/datum/poll/proc/init_choices()
-	for(var/ch in choice_types)
-		choices.Add(new ch(src))
-
-/datum/poll/proc/start()
-	init_choices()
-	if(!choices.len)
-		return FALSE
-
-
-	if(usr && usr.client)
-		initiator = usr.client.key
-	else
-		initiator = "server"
-
-	on_start()
-	SSvote.active_vote = src
-	return TRUE
-
-/datum/poll/proc/can_start()
-	if (world.time >= next_vote)
-		return TRUE
-
-	return FALSE
-
-/datum/poll/proc/on_start()
-	return
-
-/datum/poll/proc/on_end()
-	last_vote = world.time
-
-	//If this is false, the poll may have already set a custom next vote time
-	if (next_vote <= last_vote)
-		next_vote = last_vote + cooldown
-	return
-
-/datum/poll/proc/reset()
-	on_end()
-	choices.Cut()
-	initiator = null
-	if(SSvote.active_vote == src)
-		SSvote.active_vote = null
-
-
-
-/datum/poll/Process()
-	return
-
-
-/datum/poll/proc/vote(datum/vote_choice/choice, client/CL)
-	var/key = CL.key
-	if(key in choice.voters)
-		if(can_revote && can_unvote)
-			choice.voters.Remove(key)
-	else
-		if(multiple_votes)
-			choice.voters.Add(key)
-		else
-			var/vtd = FALSE
-			for(var/datum/vote_choice/C in choices)
-				vtd = TRUE
-				if(can_revote)
-					C.voters.Remove(key)
-
-			if(can_revote || !vtd)
-				choice.voters.Add(key)
-
-/datum/poll/proc/check_winners()
-
-	var/list/choice_votes = list()
-	var/list/all_voters = list()
-
-	for(var/datum/vote_choice/V in choices)
-		all_voters |= V.voters
-		choice_votes[V] = V.voters.len
-
-	var/max_votes = 1
-
-	for(var/datum/vote_choice/V in choice_votes)
-		max_votes = max(max_votes, choice_votes[V])
-
-	var/list/winners = list()
-	for(var/datum/vote_choice/V in choice_votes)
-		if(V.voters.len == max_votes)
-			winners.Add(V)
-
-	var/non_voters = clients.len - all_voters.len
-	var/text = "<b>Votes:</b><br>"
-	var/datum/vote_choice/winner = null
-	if(winners.len)
-		winner = pick(winners)
-
-	for(var/datum/vote_choice/ch in choice_votes)
-		if(ch == winner)
-			text += "<b>"
-		text += "\t[ch.text] - [ch.voters.len] vote[(ch.voters.len>1)?"s":""].<br>"
-		if(ch == winner)
-			text += "</b>"
-
-	if(!winner)
-		text += "\t<b>Did not vote - [non_voters]</b><br>"
-	else
-		text += "\tDid not vote - [non_voters]<br>"
-		winner.on_win()
-
-
-	log_vote(text)
-	world << "<font color='purple'>[text]</font>"
-
-
-
-/datum/vote_choice
-	var/text = "Vladimir Putin"
-	var/desc = null
-	var/list/voters = list()	//list of ckeys of voters
-	var/datum/poll/poll //The poll we're assigned to
-
-/datum/vote_choice/New(var/datum/poll/_poll)
-	poll = _poll
-
-/datum/vote_choice/proc/on_win()
-	return
 
 
 
@@ -335,176 +198,3 @@ SUBSYSTEM_DEF(vote)
 
 	SSvote.interface_client(client)
 
-
-///////////////////////////////////////////////
-///////////////////VOTES//////////////////////
-//////////////////////////////////////////////
-
-/datum/poll/restart
-	name = "Restart"
-	question = "Restart Round"
-	time = 60
-	choice_types = list(/datum/vote_choice/restart, /datum/vote_choice/countinue_round)
-
-	only_admin = TRUE
-
-	multiple_votes = FALSE
-	can_revote = TRUE
-	can_unvote = FALSE
-
-	see_votes = TRUE
-
-/datum/vote_choice/restart
-	text = "Restart Round"
-
-/datum/vote_choice/restart/on_win()
-	world << "<b>World restarting due to vote...<b>"
-	sleep(50)
-	log_game("Rebooting due to restart vote")
-	world.Reboot()
-
-/datum/vote_choice/countinue_round
-	text = "Continue Round"
-
-
-
-
-
-/*********************
-	Storyteller
-**********************/
-/datum/poll/storyteller
-	name = "Storyteller"
-	question = "Choose storyteller"
-	time = 120
-	choice_types = list()
-
-	only_admin = FALSE
-
-	multiple_votes = FALSE
-	can_revote = TRUE
-	can_unvote = TRUE
-	cooldown = 60 MINUTES //Debug only
-	see_votes = TRUE
-
-	var/pregame = FALSE
-
-//We will sort the storyteller choices carefully. Guide is always first, all the rest are in a random order
-/datum/poll/storyteller/init_choices()
-	master_storyteller = null
-	var/datum/vote_choice/storyteller/base = null
-	for(var/ch in storyteller_cache)
-		var/datum/vote_choice/storyteller/CS = new
-		var/datum/storyteller/S = storyteller_cache[ch]
-		CS.text = S.name
-		CS.desc = S.description
-		CS.new_storyteller = ch
-
-		//The base storyteller, Guide, is put aside for a moment
-		if (S.config_tag == STORYTELLER_BASE)
-			base = CS
-			continue
-		//Storytellers are inserted at a random spot so they will be randomly sorted
-		var/index = rand(1, max(choices.len, 1))
-		choices.Insert(index, CS)
-
-	//After everything else is in, the guide is inserted at the top,
-	//so it will always be the first option in the poll
-	choices.Insert(1, base)
-
-/datum/poll/storyteller/Process()
-	if(pregame && SSticker.current_state != GAME_STATE_PREGAME)
-		SSvote.stop_vote()
-		world << "<b>Voting aborted due to game start.</b>"
-	return
-
-
-
-/datum/poll/storyteller/on_start()
-	if (SSticker.current_state == GAME_STATE_PREGAME)
-		pregame = TRUE
-		round_progressing = FALSE
-		world << "<b>Game start has been delayed.</b>"
-
-//If one wins, on_end is called after on_win, so the new storyteller will be set in master_storyteller
-/datum/poll/storyteller/on_end()
-	..()
-	//This happens if the vote was skipped with force start
-	if (!master_storyteller)
-		master_storyteller = STORYTELLER_BASE
-		world.save_storyteller(master_storyteller)
-
-	SSticker.story_vote_ended = TRUE
-
-
-	set_storyteller(config.pick_storyteller(master_storyteller), announce = !(pregame)) //This does the actual work //Even if master storyteller is null, this will pick the default
-	if (pregame)
-		round_progressing = TRUE
-		world << "<b>The game will start in [SSticker.pregame_timeleft] seconds.</b>"
-	pregame = FALSE
-
-/datum/vote_choice/storyteller
-	text = "You shouldn't see this."
-	var/new_storyteller = STORYTELLER_BASE
-
-//on_end will be called after this, so that's where we actually call set_storyteller
-/datum/vote_choice/storyteller/on_win()
-	if (master_storyteller == new_storyteller)
-		poll.next_vote = world.time + (poll.cooldown * 0.5) //If the storyteller didn't actually change, the cooldown is half as long
-	master_storyteller = new_storyteller
-	world.save_storyteller(master_storyteller)
-
-
-
-
-
-/datum/poll/custom
-	name = "Custom"
-	question = "Why is there no text here?"
-	time = 60
-	choice_types = list()
-
-	only_admin = TRUE
-
-	multiple_votes = TRUE
-	can_revote = TRUE
-	can_unvote = FALSE
-
-	see_votes = TRUE
-
-/datum/poll/custom/init_choices()
-	multiple_votes = FALSE
-	can_revote = TRUE
-	can_unvote = FALSE
-	see_votes = TRUE
-
-	question = input("What's your vote question?","Custom vote","Custom vote question")
-
-	var/choice_text = ""
-	var/ch_num = 1
-	do
-		choice_text = input("Vote choice [ch_num]. Type nothing to stop.","Custom vote","")
-		ch_num += 1
-		if(choice_text != "")
-			var/datum/vote_choice/custom/C = new
-			C.text = choice_text
-			choices.Add(C)
-	while(choice_text != "" && ch_num < 10)
-
-	if(alert("Should the voters be able to vote multiple options?","Custom vote","Yes","No") == "Yes")
-		multiple_votes = TRUE
-
-	if(alert("Should the voters be able to change their choice?","Custom vote","Yes","No") == "No")
-		can_revote = FALSE
-
-	if(alert("Should the voters be able to remove their votes?","Custom vote","Yes","No") == "Yes")
-		can_unvote = TRUE
-
-	if(alert("Should the voters see another voters votes?","Custom vote","Yes","No") == "No")
-		see_votes = FALSE
-
-	if(alert("Are you sure you want to continue?","Custom vote","Yes","No") == "No")
-		choices.Cut()
-
-/datum/vote_choice/custom
-	text = "Vote choice"

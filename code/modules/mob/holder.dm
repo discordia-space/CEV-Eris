@@ -3,7 +3,7 @@ var/list/holder_mob_icon_cache = list()
 //Helper object for picking dionaea (and other creatures) up.
 /obj/item/weapon/holder
 	name = "holder"
-	desc = "You shouldn't ever see this."
+	desc = null
 	icon = 'icons/mob/held_mobs.dmi'
 	slot_flags = 0
 	//sprite_sheets = list("Vox" = 'icons/mob/species/vox/head.dmi')
@@ -31,7 +31,8 @@ var/list/holder_mob_icon_cache = list()
 		/obj/item/weapon/reagent_containers,
 		/obj/structure/closet/crate,
 		///obj/machinery/appliance,
-		/obj/machinery/microwave
+		/obj/machinery/microwave,
+		/obj/machinery/vending
 	))
 
 /obj/item/weapon/holder/Initialize()

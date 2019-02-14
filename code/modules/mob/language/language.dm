@@ -130,7 +130,7 @@
 	if(!speaker_mask) speaker_mask = speaker.name
 	message = format_message(message, get_spoken_verb(message))
 
-	for(var/mob/player in player_list)
+	for(var/mob/player in GLOB.player_list)
 		player.hear_broadcast(src, speaker, speaker_mask, message)
 
 /mob/proc/hear_broadcast(var/datum/language/language, var/mob/speaker, var/speaker_name, var/message)
@@ -181,11 +181,7 @@
 	return ..()
 
 
-/mob/living/proc/set_default_language(var/langname)
-	var/datum/language/L = all_languages[langname]
-	if (!(L in languages))
-		languages.Add(L)
-	default_language = L
+
 
 // Can we speak this language, as opposed to just understanding it?
 /mob/proc/can_speak(datum/language/speaking)

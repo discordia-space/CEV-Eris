@@ -6,6 +6,7 @@
 	mob_path = /mob/living/simple_animal/borer/roundstart
 	bantype = ROLE_BANTYPE_BORER
 	welcome_text = "Use your Infest power to crawl into the ear of a host and fuse with their brain. You can only take control temporarily, and at risk of hurting your host, so be clever and careful; your host is encouraged to help you however they can. Talk to your fellow borers with :x."
+	antaghud_indicator = "hudborer"
 
 	outer = TRUE
 	only_human = FALSE

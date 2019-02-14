@@ -55,7 +55,7 @@
 		plane = initial(plane)
 	else
 		icon_state = "light[on]"
-		set_light(2, 1.5, on ? "#82FF4C" : "#F86060")
+		set_light(2, 1.5, on ? COLOR_LIGHTING_GREEN_BRIGHT : COLOR_LIGHTING_RED_BRIGHT)
 		plane = ABOVE_LIGHTING_PLANE
 		layer = ABOVE_LIGHTING_LAYER
 

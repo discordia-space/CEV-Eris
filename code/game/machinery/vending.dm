@@ -2,17 +2,20 @@
 #define CAT_HIDDEN 2  // also used in corresponding wires/vending.dm
 #define CAT_COIN   4
 
+#define CUSTOM_VENDOMAT_MODELS list("Generic" = "generic", "Security" = "sec", "Electronics" = "cart", "Research" = "robotics", "Medical" = "med", "Engineering" = "engivend", "Engineering 2" = "engi", "Tools" = "tool", "Shady" = "sovietsoda", "Fridge" = "smartfridge", "Alcohol" = "boozeomat", "Frozen Star" = "weapon", "NeoTheo" = "teomat", "Asters Power Cells" = "powermat", "Asters Disks" = "discomat")
+
 /**
  *  Datum used to hold information about a product in a vending machine
  */
 /datum/data/vending_product
 	var/product_name = "generic" // Display name for the product
+	var/product_desc
 	var/product_path = null
 	var/amount = 0            // The original amount held in the vending machine
 	var/price = 0              // Price to buy one
 	var/display_color = null   // Display color for vending machine listing
 	var/category = CAT_NORMAL  // CAT_HIDDEN for contraband, CAT_COIN for premium
-	var/vending_machine        // The vending machine we belong to
+	var/obj/machinery/vending/vending_machine   // The vending machine we belong to
 	var/list/instances = list()		   // Stores inserted items. Instances are only used for things added during the round, and not for things spawned at initialize
 
 
@@ -20,13 +23,14 @@
 	..()
 
 	src.product_path = path
+	var/atom/tmp = path
 
 	if(!name)
-		var/atom/tmp = path
 		src.product_name = initial(tmp.name)
 	else
 		src.product_name = name
 
+	src.product_desc = initial(tmp.desc)
 	src.amount = amount
 	src.price = price
 	src.display_color = color
@@ -34,6 +38,7 @@
 	src.vending_machine = vending_machine
 
 /datum/data/vending_product/Destroy()
+	vending_machine.product_records.Remove(src)
 	vending_machine = null
 	. = ..()
 
@@ -43,6 +48,8 @@
 /datum/data/vending_product/proc/add_product(var/atom/movable/product)
 	if(product.type != product_path)
 		return 0
+	playsound(vending_machine.loc, 'sound/machines/vending_drop.ogg', 100, 1)
+	instances.Add(product)
 	product.forceMove(vending_machine)
 	amount += 1
 
@@ -52,6 +59,7 @@
 	var/atom/movable/product
 	if (instances && instances.len)
 		product = instances[instances.len]
+		instances.Remove(product)
 	else
 		product = new product_path
 	amount -= 1
@@ -74,6 +82,7 @@
 
 	var/icon_vend //Icon_state when vending
 	var/icon_deny //Icon_state when denying access
+	var/icon_type //For overlays after remodeling a custom vending machine
 
 	// Power
 	use_power = 1
@@ -86,6 +95,7 @@
 	var/vend_delay = 10 //How long does it take to vend?
 	var/categories = CAT_NORMAL // Bitmask of cats we're currently showing
 	var/datum/data/vending_product/currently_vending = null // What we're requesting payment for right now
+	var/managing = 0 //Are we in the vendor management screen?
 	var/status_message = "" // Status screen messages like "insufficient funds", displayed in NanoUI
 	var/status_error = 0 // Set to 1 if status_message is an error
 
@@ -122,6 +132,12 @@
 	var/seconds_electrified = 0 //Shock customers like an airlock.
 	var/shoot_inventory = 0 //Fire items at customers! We're broken!
 
+	var/custom_vendor = FALSE //If it's custom, it can be loaded with stuff as long as it's unlocked.
+	var/locked = TRUE
+	var/datum/money_account/machine_vendor_account //Owner of this vendomat. Used for access.
+	var/datum/money_account/earnings_account //Money flows in and out of this account.
+	var/vendor_department = null //If set, members can manage this vendomat. earnings_account is set to the department's account automatically.
+	var/buying_percentage = 0 //If set, the vendomat will accept people selling items to it, and in return will give (percentage * listed item price) in cash
 	var/scan_id = 1
 	var/obj/item/weapon/coin/coin
 	var/datum/wires/vending/wires = null
@@ -132,6 +148,8 @@
 /obj/machinery/vending/New()
 	..()
 	wires = new(src)
+	icon_type = initial(icon_state)
+	power_change()
 
 
 /obj/machinery/vending/Initialize()
@@ -175,6 +193,36 @@
 
 	SSnano.update_uis(src)
 
+/obj/machinery/vending/proc/try_to_buy(obj/item/weapon/W, var/datum/data/vending_product/R, var/mob/user)
+	if(!earnings_account)
+		user << SPAN_WARNING("[src] flashes a message: Vendomat not registered to an account.")
+		return
+	if(vendor_department)
+		user << SPAN_WARNING("[src] flashes a message: Vendomat not authorized to accept sales. Please contact a member of [all_departments[vendor_department]].")
+		return
+	if(buying_percentage <= 0)
+		user << SPAN_WARNING("[src] flashes a message: Vendomat not accepting sales.")
+		return
+
+	if(!user.unEquip(W))
+		return
+
+	var/buying_price = round(R.price * buying_percentage/100,5)
+	if(earnings_account.money < buying_price)
+		user << SPAN_WARNING("[src] flashes a message: Account is unable to make this purchase.")
+		return
+	var/datum/transaction/T = new(-buying_price, "[user.name] (via [src.name])", "Sale of [R.product_name]", name)
+	T.apply_to(earnings_account)
+
+	R.add_product(W)
+
+	spawn_money(buying_price,src.loc,usr)
+
+	user << SPAN_NOTICE("[src] accepts the sale of [W] and dispenses [buying_price] credits.")
+
+
+	SSnano.update_uis(src)
+
 
 /**
  *  Build src.produdct_records from the products lists
@@ -206,9 +254,11 @@
 /obj/machinery/vending/proc/new_inventory(var/obj/item/I)
 	var/datum/data/vending_product/product = new/datum/data/vending_product(src, I.type, I.name)
 	product.amount = 1
-	product.price = 0
+	product.price = I.get_item_cost()
+	playsound(loc, 'sound/machines/vending_drop.ogg', 100, 1)
 	src.product_records.Add(product)
 	product.instances.Add(I)
+	I.forceMove(src)
 	return product
 
 
@@ -241,6 +291,12 @@
 	return
 
 /obj/machinery/vending/emag_act(var/remaining_charges, var/mob/user)
+	if (machine_vendor_account || vendor_department || earnings_account)
+		user << "You override the ownership protocols on \the [src] and unlock it. You can now register it in your name."
+		machine_vendor_account = null
+		vendor_department = null
+		earnings_account = null
+		return 1
 	if (!emagged)
 		src.emagged = 1
 		user << "You short out the product lock on \the [src]"
@@ -248,7 +304,7 @@
 
 /obj/machinery/vending/attackby(obj/item/I, mob/user)
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_BOLT_TURNING, QUALITY_SCREW_DRIVING))
+	var/tool_type = I.get_tool_type(user, list(QUALITY_BOLT_TURNING, QUALITY_SCREW_DRIVING, QUALITY_WELDING))
 	switch(tool_type)
 
 		if(QUALITY_BOLT_TURNING)
@@ -264,16 +320,30 @@
 				user << SPAN_NOTICE("You [src.panel_open ? "open" : "close"] the maintenance panel.")
 				overlays.Cut()
 				if(src.panel_open)
-					src.overlays += image(src.icon, "[initial(icon_state)]-panel")
+					src.overlays += image(src.icon, "[icon_type]-panel")
 				SSnano.update_uis(src)
 			return
+
+		if(QUALITY_WELDING)
+			if(custom_vendor)
+				if(!panel_open)
+					usr << SPAN_WARNING("The maintenance panel on \the [src] needs to be open before deconstructing it.")
+					return
+				if(I.use_tool(user, src, WORKTIME_EXTREMELY_LONG, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+					src.visible_message(SPAN_WARNING("\The [src] has been dismantled by [user]!"),"You hear welding.")
+					new /obj/item/stack/material/steel(src.loc, 8)
+					for(var/datum/data/vending_product/R in product_records)
+						for(var/obj/O in R.instances)
+							O.forceMove(src.loc)
+					new /obj/item/weapon/circuitboard/vending(src.loc)
+					qdel(src)
 
 		if(ABORT_CHECK)
 			return
 
 	var/obj/item/weapon/card/id/ID = I.GetIdCard()
 
-	if (currently_vending && vendor_account && !vendor_account.suspended)
+	if (currently_vending && earnings_account && !earnings_account.suspended)
 		var/paid = 0
 		var/handled = 0
 
@@ -298,6 +368,57 @@
 			SSnano.update_uis(src)
 			return // don't smack that machine with your 2 credits
 
+	if (custom_vendor && ID)
+		var/datum/money_account/user_account = get_account(ID.associated_account_number)
+		managing = 1
+		if (!user_account)
+			src.status_message = "Error: Unable to access account. Please contact technical support if problem persists."
+			src.status_error = 1
+			SSnano.update_uis(src)
+			return 0
+
+		if(user_account.suspended)
+			src.status_message = "Unable to access account: account suspended."
+			src.status_error = 1
+			SSnano.update_uis(src)
+			return 0
+
+
+		if(machine_vendor_account == user_account || !machine_vendor_account || vendor_department)
+			if(vendor_department)
+				var/datum/computer_file/report/crew_record/CR = get_crewmember_record(user_account.owner_name)
+				var/datum/job/userjob = SSjob.GetJob(CR.get_job())
+				if(userjob.department == vendor_department)
+					locked = !locked
+					src.status_error = 0
+					src.status_message = "Affiliation confirmed. Vendor has been [locked ? "" : "un"]locked."
+				else
+					src.status_error = 1
+					src.status_message = "Error: You are not authorized to manage this Vendomat."
+				SSnano.update_uis(src)
+				return
+			// Enter PIN, so you can't loot a vending machine with only the owner's ID card (as long as they increased the sec level)
+			if(user_account.security_level != 0)
+				var/attempt_pin = input("Enter pin code", "Vendor transaction") as num | null
+				user_account = attempt_account_access(ID.associated_account_number, attempt_pin, 2)
+
+				if(!user_account)
+					src.status_message = "Unable to access account: incorrect credentials."
+					src.status_error = 1
+					SSnano.update_uis(src)
+					return 0
+			if(!machine_vendor_account)
+				machine_vendor_account = user_account
+				earnings_account = user_account
+
+			locked = !locked
+			src.status_error = 0
+			src.status_message = "Owner confirmed. Vendor has been [locked ? "" : "un"]locked."
+			playsound(usr.loc, 'sound/machines/id_swipe.ogg', 60, 1)
+			visible_message("<span class='info'>\The [usr] swipes \the [ID] through \the [src], [locked ? "" : "un"]locking it.</span>")
+			SSnano.update_uis(src)
+			return
+
 	if (I && istype(I, /obj/item/weapon/spacecash))
 		attack_hand(user)
 		return
@@ -314,17 +435,22 @@
 		user << SPAN_NOTICE("You insert \the [I] into \the [src].")
 		SSnano.update_uis(src)
 		return
-	else if (panel_open || always_open)
-		for(var/datum/data/vending_product/R in product_records)
-			if(istype(I, R.product_path) && (R.product_name == I.name))
+
+	for(var/datum/data/vending_product/R in product_records)
+		if(I.type == R.product_path)
+			if (!locked || always_open)
 				stock(I, R, user)
 				return 1
+			else if (custom_vendor)
+				try_to_buy(I, R, user)
+				return 1
 
-		for (var/a in can_stock)
-			if (istype(I, a))
+	for (var/a in can_stock)
+		if (istype(I, a))
+			if (!locked || always_open || !custom_vendor)
 				stock(I, null, user)
 				return 1
-		..()
+	..()
 
 /**
  *  Receive payment with cashmoney.
@@ -407,7 +533,7 @@
 		// Okay to move the money at this point
 
 		// create entry in the purchaser's account log
-		var/datum/transaction/T = new(-currently_vending.price, "[vendor_account.owner_name] (via [src.name])", "Purchase of [currently_vending.product_name]", name)
+		var/datum/transaction/T = new(-currently_vending.price, "[earnings_account.get_name()] (via [src.name])", "Purchase of [currently_vending.product_name]", name)
 		T.apply_to(customer_account)
 
 		// Give the vendor the money. We use the account owner name, which means
@@ -423,7 +549,7 @@
  */
 /obj/machinery/vending/proc/credit_purchase(var/target as text)
 	var/datum/transaction/T = new(currently_vending.price, target, "Purchase of [currently_vending.product_name]", name)
-	T.apply_to(vendor_account)
+	T.apply_to(earnings_account)
 
 /obj/machinery/vending/attack_ai(mob/user as mob)
 	return attack_hand(user)
@@ -448,14 +574,27 @@
 	user.set_machine(src)
 
 	var/list/data = list()
-	if(currently_vending)
+
+	data["unlocked"] = !locked
+	data["custom"] = custom_vendor
+	if(custom_vendor && machine_vendor_account && machine_vendor_account.owner_name)
+		data["owner_name"] = machine_vendor_account.get_name()
+
+	if(managing)
+		data["mode"] = 2
+		data["message"] = src.status_message
+		data["message_err"] = src.status_error
+	else if(currently_vending)
 		data["mode"] = 1
 		data["product"] = currently_vending.product_name
+		data["description"] = currently_vending.product_desc
 		data["price"] = currently_vending.price
 		data["message_err"] = 0
 		data["message"] = src.status_message
 		data["message_err"] = src.status_error
 	else
+		data["advertisement"] = ads_list.len ? pick(ads_list) : null
+		data["markup"] = buying_percentage
 		data["mode"] = 0
 		var/list/listed_products = list()
 
@@ -521,19 +660,69 @@
 			if(!(R.category & src.categories))
 				return
 
-			if(R.price <= 0)
+			if(R.price <= 0 || !src.locked)
 				src.vend(R, usr)
 			else if(issilicon(usr)) //If the item is not free, provide feedback if a synth is trying to buy something.
 				usr << SPAN_DANGER("Artificial unit recognized.  Artificial units cannot complete this transaction.  Purchase canceled.")
 				return
 			else
 				src.currently_vending = R
-				if(!vendor_account || vendor_account.suspended)
+				if(!earnings_account || earnings_account.suspended)
 					src.status_message = "This machine is currently unable to process payments due to problems with the associated account."
 					src.status_error = 1
 				else
 					src.status_message = "Please swipe a card or insert cash to pay for the item."
 					src.status_error = 0
+
+		else if (href_list["setprice"] && !locked)
+			var/key = text2num(href_list["setprice"])
+			var/datum/data/vending_product/R = product_records[key]
+
+			R.price = input("Enter item price.", "Item price") as num | null
+
+		else if (href_list["remove"] && !locked)
+			var/key = text2num(href_list["remove"])
+			var/datum/data/vending_product/R = product_records[key]
+
+			qdel(R)
+
+		else if (href_list["return"])
+			src.managing = FALSE
+
+		else if (href_list["management"])
+			src.managing = TRUE
+			src.status_message = "Welcome to the management screen."
+			src.status_error = 0
+
+		else if (href_list["setaccount"])
+			var/datum/money_account/newaccount = get_account(input("Please enter the number of the account that will handle transactions for this Vendomat.", "Vendomat Account", null) as num | null)
+			if(!newaccount)
+				src.status_message = "No account specified. No change to earnings account has been made."
+			else
+				var/input_pin = input("Please enter the PIN for this account.", "Account PIN", null) as num | null
+				if(input_pin == newaccount.remote_access_pin)
+					src.status_message = "This Vendomat will now use the specified account, owned by [newaccount.get_name()]."
+					src.status_error = 0
+					earnings_account = newaccount
+				else
+					src.status_message = "Error: PIN incorrect. No change to earnings account has been made."
+					src.status_error = 1
+
+		else if (href_list["markup"])
+			if(vendor_department)
+				src.status_message = "Error: Department Vendomats are not authorized to buy items for fraud concerns."
+				src.status_error = 1
+			else
+				var/newpercent = input("Please enter the percentage of the sale value the Vendomat should offer when purchasing items. Set to 0 to deny sales.", "Markup", null) as num | null
+				if(newpercent)
+					buying_percentage = max(0, min(newpercent,100))
+
+		else if (href_list["setdepartment"])
+			set_department()
+
+		else if (href_list["unregister"])
+			src.machine_vendor_account = null
+			src.earnings_account = null
 
 		else if (href_list["cancelpurchase"])
 			src.currently_vending = null
@@ -600,10 +789,18 @@
 		src.seconds_electrified--
 
 	//Pitch to the people!  Really sell it!
-	if(((src.last_slogan + src.slogan_delay) <= world.time) && (src.slogan_list.len > 0) && (!src.shut_up) && prob(5))
-		var/slogan = pick(src.slogan_list)
-		src.speak(slogan)
-		src.last_slogan = world.time
+	if(((src.last_slogan + src.slogan_delay) <= world.time) && (src.slogan_list.len > 0 || src.custom_vendor) && (!src.shut_up) && prob(5))
+		if(custom_vendor && product_records.len)
+			var/datum/data/vending_product/advertised = pick(product_records)
+			if(advertised)
+				var/advertisement = "[pick("Come get","Come buy","Buy","Sale on","We have")] \an [advertised.product_name], [pick("for only","only","priced at")] [advertised.price] credits![pick(" What a deal!"," Can you believe it?","")]"
+				src.speak(advertisement)
+				src.last_slogan = world.time
+		else
+			if(slogan_list.len)
+				var/slogan = pick(src.slogan_list)
+				src.speak(slogan)
+				src.last_slogan = world.time
 
 	if(src.shoot_inventory && prob(2))
 		src.throw_item()
@@ -624,13 +821,13 @@
 /obj/machinery/vending/power_change()
 	..()
 	if(stat & BROKEN)
-		icon_state = "[initial(icon_state)]-broken"
+		icon_state = "[icon_type]-broken"
 	else
 		if( !(stat & NOPOWER) )
-			icon_state = initial(icon_state)
+			icon_state = icon_type
 		else
 			spawn(rand(0, 15))
-				src.icon_state = "[initial(icon_state)]-off"
+				src.icon_state = "[icon_type]-off"
 
 //Oh no we're malfunctioning!  Dump out some product and break.
 /obj/machinery/vending/proc/malfunction()
@@ -640,7 +837,7 @@
 		break
 
 	stat |= BROKEN
-	src.icon_state = "[initial(icon_state)]-broken"
+	src.icon_state = "[icon_type]-broken"
 	return
 
 //Somebody cut an important wire and now we're following a new definition of "pitch."
@@ -661,6 +858,26 @@
 		throw_item.throw_at(target, 16, 3, src)
 	src.visible_message(SPAN_WARNING("\The [src] launches \a [throw_item] at \the [target]!"))
 	return 1
+
+/obj/machinery/vending/proc/set_department()
+	var/list/possible_departments = list("Privately Owned" = null)
+	for(var/d in all_departments)
+		possible_departments[all_departments[d]] = department_accounts[d]
+	var/newdepartment = input("Which organization should be considered the owner of this Vendomat? This will also allow members to manage it.", "Vendomat Department", null) in possible_departments
+	if(!newdepartment)
+		return
+	if(newdepartment == "Privately Owned")
+		src.status_message = "This Vendomat now belongs only to you."
+		src.desc = "A custom Vendomat."
+		vendor_department = null
+		earnings_account = null
+	else
+		src.status_message = "This Vendomat is now property of \"[newdepartment]\"."
+		src.desc = "A custom Vendomat. It bears the logo of [newdepartment]."
+		vendor_department = newdepartment:id
+		earnings_account = department_accounts[vendor_department]
+		buying_percentage = 0
+	src.status_error = 0
 
 /*
  * Vending machine types
@@ -776,7 +993,7 @@
 /obj/machinery/vending/cart
 	name = "PTech"
 	desc = "PDAs and hardware."
-	product_slogans = "PDAs to everyone!"
+	product_slogans = "PDAs for everyone!"
 	icon_state = "cart"
 	icon_deny = "cart-deny"
 	products = list(/obj/item/modular_computer/pda = 10,/obj/item/weapon/computer_hardware/scanner/medical = 6,
@@ -790,7 +1007,7 @@
 	desc = "A softdrink vendor provided by Robust Industries, LLC."
 	icon_state = "Cola_Machine"
 	product_slogans = "Robust Softdrinks: More robust than a toolbox to the head!"
-	product_ads = "Refreshing!;Hope you're thirsty!;Over 1 million drinks sold!;Thirsty? Why not cola?;Please, have a drink!;Drink up!;The best drinks in space."
+	product_ads = "Refreshing!;Hope you're thirsty!;Over 1 million drinks sold!;Thirsty? Why not have some cola?;Please, have a drink!;Drink up!;The best drinks in space."
 	products = list(/obj/item/weapon/reagent_containers/food/drinks/cans/cola = 10,/obj/item/weapon/reagent_containers/food/drinks/cans/space_mountain_wind = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb = 10,/obj/item/weapon/reagent_containers/food/drinks/cans/starkist = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 10,/obj/item/weapon/reagent_containers/food/drinks/cans/space_up = 10,
@@ -846,7 +1063,7 @@
 	desc = "Wall-mounted Medical Equipment dispenser."
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?"
 	icon_state = "wallmed"
-	light_color = "#e6fff2"
+	light_color = COLOR_LIGHTING_GREEN_BRIGHT
 	icon_deny = "wallmed-deny"
 	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
 	products = list(/obj/item/stack/medical/bruise_pack = 2,/obj/item/stack/medical/ointment = 2,/obj/item/weapon/reagent_containers/hypospray/autoinjector = 4,/obj/item/device/scanner/healthanalyzer = 1)
@@ -856,7 +1073,7 @@
 	name = "NanoMed"
 	desc = "Wall-mounted Medical Equipment dispenser."
 	icon_state = "wallmed"
-	light_color = "#e6fff2"
+	light_color = COLOR_LIGHTING_GREEN_BRIGHT
 	icon_deny = "wallmed-deny"
 	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
 	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector = 5,/obj/item/weapon/reagent_containers/syringe/antitoxin = 3,/obj/item/stack/medical/bruise_pack = 3,
@@ -866,7 +1083,7 @@
 /obj/machinery/vending/security
 	name = "SecTech"
 	desc = "A security equipment vendor."
-	product_ads = "Crack capitalist skulls!;Beat some heads in!;Don't forget - harm is good!;Your weapons are right here.;Handcuffs!;Freeze, scumbag!;Don't tase me bro!;Tase them, bro.;Why not have a donut?"
+	product_ads = "Crack some skulls!;Beat some heads in!;Don't forget - harm is good!;Your weapons are right here.;Handcuffs!;Freeze, scumbag!;Don't tase me bro!;Tase them, bro.;Why not have a donut?"
 	icon_state = "sec"
 	icon_deny = "sec-deny"
 	req_access = list(access_security)
@@ -1020,9 +1237,10 @@
 /obj/machinery/vending/theomat
 	name = "NeoTheology Theo-Mat"
 	desc = "A Neotheology dispensary for disciples and new converts."
-	product_slogans = "Immortality is the reward of the faithful; Help humanity ascend, join your brethren today!; Come and seek a new life"
+	product_slogans = "Immortality is the reward of the faithful.; Help humanity ascend, join your brethren today!; Come and seek a new life!"
 	product_ads = "Praise!;Pray!;Obey!"
 	icon_state = "teomat"
+	vendor_department = DEPARTMENT_CHURCH
 	products = list(/obj/item/weapon/book/ritual/cruciform = 10, /obj/item/weapon/storage/fancy/candle_box = 10, /obj/item/weapon/reagent_containers/food/drinks/bottle/ntcahors = 20)
 	contraband = list(/obj/item/weapon/implant/core_implant/cruciform = 3)
 	prices = list(/obj/item/weapon/book/ritual/cruciform = 500, /obj/item/weapon/storage/fancy/candle_box = 200, /obj/item/weapon/reagent_containers/food/drinks/bottle/ntcahors = 250, /obj/item/weapon/implant/core_implant/cruciform = 1000)
@@ -1030,7 +1248,7 @@
 /obj/machinery/vending/powermat
 	name = "Asters Guild Power-Mat"
 	desc = "Trust is power, and there’s no power you can trust like Robustcell."
-	product_slogans = "Trust is power, and there’s no power you can trust like Robustcell.;No battery is stronger longer.;One that Last!;You can't top the copper top!"
+	product_slogans = "Trust is power, and there’s no cell you can trust like Robustcell.;No battery is stronger nor lasts longer.;One that Lasts!;You can't top the copper top!"
 	product_ads = "Robust!;Trustworthy!;Durable!"
 	icon_state = "powermat"
 	products = list(/obj/item/weapon/cell/large = 10, /obj/item/weapon/cell/large/high = 10, /obj/item/weapon/cell/medium = 15, /obj/item/weapon/cell/medium/high = 15, /obj/item/weapon/cell/small = 20, /obj/item/weapon/cell/small/high = 20)
@@ -1042,16 +1260,54 @@
 	name = "Asters Guild Print-o-Mat"
 	desc = "Everything you can imagine (not really) on a disc! Print your own gun TODAY."
 	product_slogans = "Print your own gun TODAY!; The future is NOW!; Can't stop the industrial revolution!"
-	product_ads = "Almoust free!;Print it your-self!"
+	product_ads = "Almost free!;Print it yourself!;Don't copy that floppy!"
 	icon_state = "discomat"
 	products = list(/obj/item/weapon/disk/autolathe_disk/blank = 20, /obj/item/weapon/disk/autolathe_disk/basic = 10,
 					/obj/item/weapon/disk/autolathe_disk/devices = 10, /obj/item/weapon/disk/autolathe_disk/toolpack = 10, /obj/item/weapon/disk/autolathe_disk/component = 10,
 					/obj/item/weapon/disk/autolathe_disk/advtoolpack = 5, /obj/item/weapon/disk/autolathe_disk/circuitpack = 5, /obj/item/weapon/disk/autolathe_disk/medical = 20,
 					/obj/item/weapon/disk/autolathe_disk/security = 5, /obj/item/weapon/disk/autolathe_disk/fs_cheap_guns = 5, /obj/item/weapon/disk/autolathe_disk/nonlethal_ammo = 10,
-					/obj/item/weapon/circuitboard/autolathe = 3, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 3)
+					/obj/item/weapon/circuitboard/autolathe = 3, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 3, /obj/item/weapon/circuitboard/vending = 10)
 	contraband = list(/obj/item/weapon/disk/autolathe_disk/lethal_ammo = 3, /obj/item/weapon/disk/autolathe_disk/fs_energy_guns = 2)
 	prices = list(/obj/item/weapon/disk/autolathe_disk/blank = 150, /obj/item/weapon/disk/autolathe_disk/basic = 300,
 					/obj/item/weapon/disk/autolathe_disk/devices = 400, /obj/item/weapon/disk/autolathe_disk/toolpack = 400, /obj/item/weapon/disk/autolathe_disk/component = 500,
 					/obj/item/weapon/disk/autolathe_disk/advtoolpack = 1800, /obj/item/weapon/disk/autolathe_disk/circuitpack = 600, /obj/item/weapon/disk/autolathe_disk/medical = 400,
 					/obj/item/weapon/disk/autolathe_disk/security = 600, /obj/item/weapon/disk/autolathe_disk/fs_cheap_guns = 3000, /obj/item/weapon/disk/autolathe_disk/nonlethal_ammo = 700,
-					/obj/item/weapon/circuitboard/autolathe = 700, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 1000, /obj/item/weapon/disk/autolathe_disk/lethal_ammo = 1200, /obj/item/weapon/disk/autolathe_disk/fs_energy_guns = 4000)
+					/obj/item/weapon/circuitboard/autolathe = 700, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 1000,
+					/obj/item/weapon/circuitboard/vending = 500, /obj/item/weapon/disk/autolathe_disk/lethal_ammo = 1200, /obj/item/weapon/disk/autolathe_disk/fs_energy_guns = 4000)
+
+/obj/machinery/vending/custom
+	name = "Custom Vendomat"
+	desc = "A custom vending machine."
+	custom_vendor = TRUE
+	locked = TRUE
+	can_stock = list(/obj/item)
+
+/obj/machinery/vending/custom/verb/remodel()
+	set name = "Remodel Vendomat"
+	set category = "Object"
+	set src in oview(1)
+
+	if(locked)
+		usr << SPAN_WARNING("[src] needs to be unlocked to remodel it.")
+		return
+	var/choice = input(usr, "How do you want your Vendomat to look? You can remodel it again later.", "Vendomat Remodeling", null) in CUSTOM_VENDOMAT_MODELS
+	if(!choice)
+		return
+	icon_type = CUSTOM_VENDOMAT_MODELS[choice]
+	power_change()
+
+/obj/machinery/vending/custom/verb/rename()
+	set name = "Rename Vendomat"
+	set category = "Object"
+	set src in oview(1)
+
+	if(locked)
+		usr << SPAN_WARNING("[src] needs to be unlocked to rename it.")
+		return
+
+	var/choice = sanitize(input("What do you want to name your Vendomat? You can rename it again later.", "Vendomat Renaming", src.name) as text|null, MAX_NAME_LEN)
+	if(choice)
+		SetName(choice)
+
+
+#undef CUSTOM_VENDOMAT_MODELS

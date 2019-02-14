@@ -13,7 +13,7 @@
 	icon = 'icons/obj/computer.dmi'
 	icon_keyboard = "tech_key"
 	icon_screen = "supply"
-	light_color = "#b88b2e"
+	light_color = COLOR_LIGHTING_ORANGE_MACHINERY
 	req_access = list(access_cargo)
 	circuit = /obj/item/weapon/circuitboard/supplycomp
 	var/temp = null

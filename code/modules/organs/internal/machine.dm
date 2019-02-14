@@ -3,7 +3,7 @@
 	desc = "A small, powerful cell for use in fully prosthetic bodies."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "scell"
-	organ_tag = O_CELL
+	organ_tag = BP_CELL
 	parent_organ = BP_CHEST
 	robotic = ORGAN_ROBOT
 	vital = TRUE
@@ -27,7 +27,7 @@
 // Used for an MMI or posibrain being installed into a human.
 /obj/item/organ/mmi_holder
 	name = "brain"
-	organ_tag = O_BRAIN
+	organ_tag = BP_BRAIN
 	parent_organ = BP_CHEST
 	vital = 1
 	var/obj/item/device/mmi/stored_mmi

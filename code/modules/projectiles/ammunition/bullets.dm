@@ -18,14 +18,24 @@
 	caliber = "9mm"
 	projectile_type = /obj/item/projectile/bullet/c9mmp
 
+/obj/item/ammo_casing/c9mmh
+	desc = "A 9mm high-velocity bullet casing."
+	caliber = "9mm"
+	projectile_type = /obj/item/projectile/bullet/hv/c9mm
+
 /obj/item/ammo_casing/a10mm
 	desc = "A 10mm bullet casing."
 	caliber = "10mm"
 	projectile_type = /obj/item/projectile/bullet/a10mm
 
+/obj/item/ammo_casing/a10mmh
+	desc = "A 10mm high-velocity bullet casing."
+	caliber = "10mm"
+	projectile_type = /obj/item/projectile/bullet/hv/a10mm
+
 /obj/item/ammo_casing/cl32
-	desc = "A .38 FS hollow point bullet casing."
-	caliber = ".38"
+	desc = "A .32 FS hollow point bullet casing."
+	caliber = ".32"
 	projectile_type = /obj/item/projectile/bullet/cl32
 
 /obj/item/ammo_casing/cl32r
@@ -37,6 +47,11 @@
 	desc = "A .357 bullet casing."
 	caliber = "357"
 	projectile_type = /obj/item/projectile/bullet/a357
+
+/obj/item/ammo_casing/a357h
+	desc = "A .357 high-velocity bullet casing."
+	caliber = "357"
+	projectile_type = /obj/item/projectile/bullet/hv/a357
 
 /obj/item/ammo_casing/c38
 	desc = "A .38 bullet casing."
@@ -92,6 +107,11 @@
 	desc = "A 7.62mm bullet casing."
 	caliber = "a762"
 	projectile_type = /obj/item/projectile/bullet/a762
+
+/obj/item/ammo_casing/a762h
+	desc = "A 7.62mm high-velocity bullet casing."
+	caliber = "a762"
+	projectile_type = /obj/item/projectile/bullet/hv/a762
 
 /obj/item/ammo_casing/a556
 	desc = "A 5.56mm bullet casing."
