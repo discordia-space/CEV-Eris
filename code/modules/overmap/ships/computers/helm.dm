@@ -1,9 +1,9 @@
 /obj/machinery/computer/helm
 	name = "helm control console"
-	icon_state = "thick"
+	icon_state = "computer"
 	icon_keyboard = "teleport_key"
-	icon_screen = "helm"
-	light_color = "#7faaff"
+	icon_screen = "eris_control"
+	light_color = COLOR_LIGHTING_CYAN_MACHINERY
 	circuit = /obj/item/weapon/circuitboard/helm
 	var/obj/effect/overmap/ship/linked			//connected overmap object
 	var/autopilot = 0
@@ -54,6 +54,11 @@
 		return 1
 
 /obj/machinery/computer/helm/check_eye(var/mob/user as mob)
+	if (isAI(user))
+		user.unset_machine()
+		if (!manual_control)
+			user.reset_view(user.eyeobj)
+		return 0
 	if (!manual_control)
 		return -1
 	if (!get_dist(user, src) > 1 || user.blinded || !linked )
@@ -68,8 +73,8 @@
 
 	if(!isAI(user))
 		user.set_machine(src)
-		if(linked)
-			user.reset_view(linked)
+	if(linked && manual_control)
+		user.reset_view(linked)
 
 	ui_interact(user)
 
@@ -103,7 +108,8 @@
 		data["ETAnext"] = "N/A"
 
 	var/list/locations[0]
-	for (var/datum/data/record/R in known_sectors)
+	for (var/key in known_sectors)
+		var/datum/data/record/R = known_sectors[key]
 		var/list/rdata[0]
 		rdata["name"] = R.fields["name"]
 		rdata["x"] = R.fields["x"]
@@ -113,7 +119,7 @@
 
 	data["locations"] = locations
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "helm.tmpl", "[linked.name] Helm Control", 380, 530)
 		ui.set_initial_data(data)
@@ -198,6 +204,11 @@
 
 	if (href_list["manual"])
 		manual_control = !manual_control
+		if(manual_control)
+			usr.reset_view(linked)
+		else
+			if (isAI(usr))
+				usr.reset_view(usr.eyeobj)
 
 	add_fingerprint(usr)
 	updateUsrDialog()
@@ -235,7 +246,7 @@
 	else
 		data["ETAnext"] = "N/A"
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "nav.tmpl", "[linked.name] Navigation Screen", 380, 530)
 		ui.set_initial_data(data)
@@ -243,6 +254,11 @@
 		ui.set_auto_update(1)
 
 /obj/machinery/computer/navigation/check_eye(var/mob/user as mob)
+	if (isAI(user))
+		user.unset_machine()
+		if (!viewing)
+			user.reset_view(user.eyeobj)
+		return 0
 	if (!viewing)
 		return -1
 	if (!get_dist(user, src) > 1 || user.blinded || !linked )
@@ -256,8 +272,9 @@
 		viewing = 0
 		return
 
-	if(viewing && linked &&!isAI(user))
-		user.set_machine(src)
+	if(viewing && linked)
+		if (!isAI(user))
+			user.set_machine(src)
 		user.reset_view(linked)
 
 	ui_interact(user)
@@ -271,7 +288,9 @@
 
 	if (href_list["viewing"])
 		viewing = !viewing
-		if(viewing && !isAI(usr))
-			var/mob/user = usr
-			user.reset_view(linked)
+		if(viewing)
+			usr.reset_view(linked)
+		else
+			if (isAI(usr))
+				usr.reset_view(usr.eyeobj)
 		return 1

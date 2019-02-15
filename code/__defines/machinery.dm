@@ -20,10 +20,6 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 #define MAINT    0x8  // Under maintenance.
 #define EMPED    0x10 // Temporary broken by EMP pulse.
 
-// Used by firelocks
-#define FIREDOOR_OPEN 1
-#define FIREDOOR_CLOSED 2
-
 #define AI_CAMERA_LUMINOSITY 6
 
 //Frame types
@@ -51,6 +47,12 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 #define NETWORK_SECURITY "Security"
 #define NETWORK_TELECOM "Tcomsat"
 #define NETWORK_THUNDER "Thunderdome"
+
+#define NETWORK_ALARM_ATMOS "Atmosphere Alarms"
+#define NETWORK_ALARM_CAMERA "Camera Alarms"
+#define NETWORK_ALARM_FIRE "Fire Alarms"
+#define NETWORK_ALARM_MOTION "Motion Alarms"
+#define NETWORK_ALARM_POWER "Power Alarms"
 
 // Those networks can only be accessed by pre-existing terminals. AIs and new terminals can't use them.
 var/list/restricted_camera_networks = list(NETWORK_MERCENARY, "Secret")
@@ -126,3 +128,43 @@ var/list/restricted_camera_networks = list(NETWORK_MERCENARY, "Secret")
 #define KILOWATTS *1000
 #define MEGAWATTS *1000000
 #define GIGAWATTS *1000000000
+
+// These are used by supermatter and supermatter monitor program, mostly for UI updating purposes. Higher should always be worse!
+#define SUPERMATTER_ERROR -1		// Unknown status, shouldn't happen but just in case.
+#define SUPERMATTER_INACTIVE 0		// No or minimal energy
+#define SUPERMATTER_NORMAL 1		// Normal operation
+#define SUPERMATTER_NOTIFY 2		// Ambient temp > 80% of CRITICAL_TEMPERATURE
+#define SUPERMATTER_WARNING 3		// Ambient temp > CRITICAL_TEMPERATURE OR integrity damaged
+#define SUPERMATTER_DANGER 4		// Integrity < 50%
+#define SUPERMATTER_EMERGENCY 5		// Integrity < 25%
+#define SUPERMATTER_DELAMINATING 6	// Pretty obvious.
+
+////////////////////////////////////////
+//CONTAINS: Air Alarms and Fire Alarms//
+////////////////////////////////////////
+
+#define AALARM_MODE_FIRST		1
+#define AALARM_MODE_SCRUBBING	1
+#define AALARM_MODE_REPLACEMENT	2 //like scrubbing, but faster.
+#define AALARM_MODE_PANIC		3 //constantly sucks all air
+#define AALARM_MODE_CYCLE		4 //sucks off all air, then refill and switches to scrubbing
+#define AALARM_MODE_FILL		5 //emergency fill
+#define AALARM_MODE_OFF			6 //Shuts it all down.
+#define AALARM_MODE_LAST		6
+
+#define AALARM_SCREEN_MAIN		1
+#define AALARM_SCREEN_VENT		2
+#define AALARM_SCREEN_SCRUB		3
+#define AALARM_SCREEN_MODE		4
+#define AALARM_SCREEN_SENSORS	5
+
+#define AALARM_REPORT_TIMEOUT 100
+
+#define RCON_NO		1
+#define RCON_AUTO	2
+#define RCON_YES	3
+
+#define MAX_TEMPERATURE 90
+#define MIN_TEMPERATURE -40
+
+////////////////////////////////////////////

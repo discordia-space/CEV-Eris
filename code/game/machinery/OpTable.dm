@@ -3,15 +3,22 @@
 	desc = "Used for advanced medical procedures."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "optable-idle"
+
+	layer = TABLE_LAYER
 	density = 1
 	anchored = 1.0
 	use_power = 1
 	idle_power_usage = 1
 	active_power_usage = 5
+
 	var/mob/living/carbon/human/victim = null
 
 	var/obj/machinery/computer/operating/computer = null
+	can_buckle = TRUE
+	buckle_dir = SOUTH
+	buckle_lying = TRUE //bed-like behavior, forces mob.lying = buckle_lying if != -1
 
+	var/y_offset = 0
 /obj/machinery/optable/New()
 	..()
 	for(var/dir in list(NORTH,EAST,SOUTH,WEST))
@@ -41,11 +48,19 @@
 	return
 
 /obj/machinery/optable/attack_hand(mob/user as mob)
+	if (user.incapacitated(INCAPACITATION_DEFAULT))
+		return
+	if (victim)
+		user_unbuckle_mob(user)
+		return
 	if (HULK in usr.mutations)
 		visible_message(SPAN_DANGER("\The [usr] destroys \the [src]!"))
 		src.density = 0
 		qdel(src)
-	return
+
+/obj/machinery/optable/unbuckle_mob()
+	. = ..()
+	check_victim()
 
 /obj/machinery/optable/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return 1
@@ -56,12 +71,12 @@
 		return 0
 
 /obj/machinery/optable/proc/check_victim()
-	if(locate(/mob/living/carbon/human, src.loc))
-		var/mob/living/carbon/human/M = locate(/mob/living/carbon/human, src.loc)
-		if(M.lying)
-			src.victim = M
-			icon_state = M.pulse() ? "optable-active" : "optable-idle"
-			return 1
+	if (istype(buckled_mob,/mob/living/carbon/human))
+		var/mob/living/carbon/human/M = buckled_mob
+		src.victim = M
+		icon_state = M.pulse() ? "optable-active" : "optable-idle"
+		return 1
+
 	src.victim = null
 	icon_state = "optable-idle"
 	return 0
@@ -79,17 +94,12 @@
 	if (C.client)
 		C.client.perspective = EYE_PERSPECTIVE
 		C.client.eye = src
-	C.resting = 1
 	C.loc = src.loc
 	for(var/obj/O in src)
 		O.loc = src.loc
 	src.add_fingerprint(user)
-	if(ishuman(C))
-		var/mob/living/carbon/human/H = C
-		src.victim = H
-		icon_state = H.pulse() ? "optable-active" : "optable-idle"
-	else
-		icon_state = "optable-idle"
+	buckle_mob(C)
+
 
 /obj/machinery/optable/MouseDrop_T(mob/target, mob/user)
 
@@ -124,3 +134,11 @@
 		usr << SPAN_NOTICE("Unbuckle \the [patient] first!")
 		return 0
 	return 1
+
+/obj/machinery/optable/post_buckle_mob(mob/living/M as mob)
+	if(M == buckled_mob)
+		M.pixel_y = y_offset
+	else
+		M.pixel_y = 0
+
+	check_victim()

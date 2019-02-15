@@ -4,6 +4,7 @@
 	var/stored_data = "" 			// Stored data in string format.
 	filetype = "DAT"
 	var/block_size = 250
+	var/read_only = 0				// Whether the user will be reminded that the file probably shouldn't be edited.
 
 /datum/computer_file/data/clone()
 	var/datum/computer_file/data/temp = ..()
@@ -17,3 +18,22 @@
 /datum/computer_file/data/logfile
 	filetype = "LOG"
 
+/datum/computer_file/data/text
+	filetype = "TXT"
+
+/datum/computer_file/data/audio
+	filetype = "AUD"
+	var/transcribed = FALSE
+	var/max_capacity = 600
+	var/used_capacity = 0
+	var/list/storedinfo = list()
+	var/list/timestamp = list()
+
+/datum/computer_file/data/audio/clone()
+	var/datum/computer_file/data/audio/A = ..()
+	A.max_capacity = max_capacity
+	A.used_capacity = used_capacity
+	A.storedinfo = storedinfo
+	A.timestamp = timestamp
+	A.transcribed = transcribed
+	return A

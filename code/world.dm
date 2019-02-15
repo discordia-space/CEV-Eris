@@ -2,11 +2,10 @@
 /*
 	The initialization of the game happens roughly like this:
 
-	1. All global variables are initialized (including the global_init instance).
+	1. All global variables are initialized (including the global_init and tgstation's master controller instances including subsystems).
 	2. The map is initialized, and map objects are created.
-	3. world/New() runs, creating the process scheduler (and the old master controller) and spawning their setup.
-	4. processScheduler/setup() runs, creating all the processes. game_controller/setup() runs, calling initialize() on all movable atoms in the world.
-	5. The gameticker is created.
+	3. world/New() runs.
+	4. tgstation's MC runs initialization for various subsystems (refer to its own defines for the load order).
 
 */
 var/global/datum/global_init/init = new ()
@@ -17,7 +16,6 @@ var/global/datum/global_init/init = new ()
 
 /datum/global_init/New()
 	generate_gameid()
-
 	makeDatumRefLists()
 	load_configuration()
 
@@ -58,7 +56,7 @@ var/game_id = null
 	cache_lifespan = 0	//stops player uploaded stuff from being kept in the rsc past the current session
 
 
-#define RECOMMENDED_VERSION 509
+#define RECOMMENDED_VERSION 512
 /world/New()
 	//logs
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
@@ -68,16 +66,13 @@ var/game_id = null
 	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
 
 	if(byond_version < RECOMMENDED_VERSION)
-		world.log << "Your server's byond version does not meet the recommended requirements for this server. Please update BYOND"
+		log_world("Your server's byond version does not meet the recommended requirements for this server. Please update BYOND")
 
 	config.post_load()
 
 	if(config && config.server_name != null && config.server_suffix && world.port > 0)
 		// dumb and hardcoded but I don't care~
 		config.server_name += " #[(world.port % 1000) / 100]"
-
-	if(config && config.log_runtime)
-		log = file("data/logs/runtime/[time2text(world.realtime, "YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
 
 	callHook("startup")
 	//Emergency Fix
@@ -90,11 +85,7 @@ var/game_id = null
 
 	. = ..()
 
-#ifndef UNIT_TEST
-
-	sleep_offline = 1
-
-#else
+#ifdef UNIT_TEST
 	log_unit_test("Unit Tests Enabled.  This will destroy the world when testing is complete.")
 	load_unit_test_changes()
 #endif
@@ -105,30 +96,10 @@ var/game_id = null
 	// This is kinda important. Set up details of what the hell things are made of.
 	populate_material_list()
 
-	if(config.generate_asteroid)
-		// These values determine the specific area that the map is applied to.
-		// Because we do not use Bay's default map, we check the config file to see if custom parameters are needed, so we need to avoid hardcoding.
-		if(maps_data.asteroid_leves)
-			for(var/z_level in maps_data.asteroid_leves)
-				if(!isnum(z_level))
-					// If it's still not a number, we probably got fed some nonsense string.
-					admin_notice("<span class='danger'>Error: ASTEROID_Z_LEVELS config wasn't given a number.</span>")
-				// Now for the actual map generating.  This occurs for every z-level defined in the config.
-				new /datum/random_map/automata/cave_system(null, 1, 1, z_level, 300, 300)
-				// Let's add ore too.
-				new /datum/random_map/noise/ore(null, 1, 1, z_level, 64, 64)
-		else
-			admin_notice("<span class='danger'>Error: No asteroid z-levels defined in config!</span>")
-
-	processScheduler = new
-	master_controller = new /datum/controller/game_controller()
-
-	processScheduler.deferSetupFor(/datum/controller/process/ticker)
-	processScheduler.setup()
 	Master.Initialize(10, FALSE)
 
 #ifdef UNIT_TEST
-		initialize_unit_tests()
+	initialize_unit_tests()
 #endif
 
 
@@ -155,7 +126,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	else if(T == "players")
 		var/n = 0
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			if(M.client)
 				n++
 		return n
@@ -387,8 +358,6 @@ var/world_topic_spam_protect_time = world.timeofday
 		world << sound(pick('sound/AI/newroundsexy.ogg','sound/misc/apcdestroyed.ogg','sound/misc/bangindonk.ogg')) // random end sounds!! - LastyBatsy
 		*/
 
-	processScheduler.stop()
-
 	for(var/client/C in clients)
 		if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
 			C << link("byond://[config.server]")
@@ -488,7 +457,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	var/list/features = list()
 
-	if(ticker)
+	if(SSticker)
 		if(master_storyteller)
 			features += master_storyteller
 	else
@@ -506,7 +475,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		features += "AI allowed"
 
 	var/n = 0
-	for (var/mob/M in player_list)
+	for (var/mob/M in GLOB.player_list)
 		if (M.client)
 			n++
 
@@ -532,9 +501,9 @@ var/failed_old_db_connections = 0
 
 /hook/startup/proc/connectDB()
 	if(!setup_database_connection())
-		world.log << "Your server failed to establish a connection with the feedback database."
+		log_world("Your server failed to establish a connection with the feedback database.")
 	else
-		world.log << "Feedback database connection established."
+		log_world("Feedback database connection established.")
 	return 1
 
 proc/setup_database_connection()
@@ -557,7 +526,7 @@ proc/setup_database_connection()
 		failed_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
 	else
 		failed_db_connections++		//If it failed, increase the failed connections counter.
-		world.log << dbcon.ErrorMsg()
+		log_world(dbcon.ErrorMsg())
 
 	return .
 

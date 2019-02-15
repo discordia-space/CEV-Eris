@@ -2,6 +2,8 @@
 	icon = 'icons/turf/floors.dmi'
 	level = 1
 	var/holy = 0
+	var/diffused = 0 //If above zero, shields can't be on this turf. Set by floor diffusers only
+	//This is not a boolean. Multiple diffusers can stack and set it to 2, 3, etc
 
 	// Initial air contents (in moles)
 	var/oxygen = 0
@@ -24,6 +26,10 @@
 
 	var/list/decals
 
+	var/is_hole = FALSE			// If true, turf is open to vertical transitions through it.
+								// This is a more generic way of handling open space turfs
+	var/is_wall = FALSE 	//True for wall turfs, but also true if they contain a low wall object
+
 /turf/New()
 	..()
 	for(var/atom/movable/AM as mob|obj in src)
@@ -36,6 +42,11 @@
 
 /turf/Initialize()
 	turfs += src
+	var/area/A = loc
+	if (!A.ship_area)
+		if (z in maps_data.station_levels)
+			A.set_ship_area()
+
 	. = ..()
 
 /turf/Destroy()
@@ -56,12 +67,21 @@
 	return 0
 
 /turf/attack_hand(mob/user)
+	//QOL feature, clicking on turf can toogle doors
+	var/obj/machinery/door/airlock/AL = locate(/obj/machinery/door/airlock) in src.contents
+	if(AL)
+		AL.attack_hand(user)
+		return TRUE
+	var/obj/machinery/door/firedoor/FD = locate(/obj/machinery/door/firedoor) in src.contents
+	if(FD)
+		FD.attack_hand(user)
+		return TRUE
 	if(!(user.canmove) || user.restrained() || !(user.pulling))
-		return 0
+		return FALSE
 	if(user.pulling.anchored || !isturf(user.pulling.loc))
-		return 0
+		return FALSE
 	if(user.pulling.loc != user.loc && get_dist(user, user.pulling) > 1)
-		return 0
+		return FALSE
 	if(ismob(user.pulling))
 		var/mob/M = user.pulling
 		var/atom/movable/t = M.pulling
@@ -70,7 +90,7 @@
 		M.start_pulling(t)
 	else
 		step(user.pulling, get_dir(user.pulling.loc, src))
-	return 1
+	return TRUE
 
 /turf/Enter(atom/movable/mover as mob|obj, atom/forget as mob|obj|turf|area)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
@@ -137,7 +157,7 @@ var/const/enterloopsanity = 100
 			inertial_drift(M)
 		else if(is_space())
 			M.inertia_dir = 0
-		M.update_floating(TRUE) // no Check_Dense_Object() proc in arg because it will make this line more costly for almost zero reward in my opinion.
+		M.update_floating() // no check_dense_object() proc in arg because it will make this line more costly for almost zero reward in my opinion.
 		if(isliving(M))
 			var/mob/living/L = M
 			L.handle_footstep(src)
@@ -164,16 +184,16 @@ var/const/enterloopsanity = 100
 	if(!(A.last_move))	return
 	if((istype(A, /mob/) && src.x > 2 && src.x < (world.maxx - 1) && src.y > 2 && src.y < (world.maxy-1)))
 		var/mob/M = A
-		if(M.Process_Spacemove(1))
+		if(M.allow_spacemove(1))
 			M.inertia_dir  = 0
 			return
 		spawn(5)
 			if((M && !(M.anchored) && !(M.pulledby) && (M.loc == src)))
 				if(M.inertia_dir)
-					step(M, M.inertia_dir)
+					step_glide(M, M.inertia_dir, DELAY2GLIDESIZE(5))
 					return
 				M.inertia_dir = M.last_move
-				step(M, M.inertia_dir)
+				step(M, M.inertia_dir, DELAY2GLIDESIZE(5))
 	return
 
 /turf/proc/levelupdate()
@@ -211,9 +231,6 @@ var/const/enterloopsanity = 100
 				L.Add(t)
 	return L
 
-/turf/Process()
-	return PROCESS_KILL
-
 /turf/proc/contains_dense_objects()
 	if(density)
 		return 1
@@ -222,22 +239,7 @@ var/const/enterloopsanity = 100
 			return 1
 	return 0
 
-//expects an atom containing the reagents used to clean the turf
-/turf/proc/clean(atom/source, mob/user)
-	if(source.reagents.has_reagent("water", 1) || source.reagents.has_reagent("cleaner", 1))
-		clean_blood()
-		if(istype(src, /turf/simulated))
-			var/turf/simulated/T = src
-			T.dirt = 0
-		for(var/obj/effect/O in src)
-			if(istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
-				qdel(O)
-	else
-		user << SPAN_WARNING("\The [source] is too dry to wash that.")
-	source.reagents.trans_to_turf(src, 1, 10)	//10 is the multiplier for the reaction effect. probably needed to wet the floor properly.
 
-/turf/proc/update_blood_overlays()
-	return
 
 /turf/get_footstep_sound(var/mobtype)
 
@@ -245,8 +247,21 @@ var/const/enterloopsanity = 100
 
 	var/obj/structure/catwalk/catwalk = locate(/obj/structure/catwalk) in src
 	if(catwalk)
-		sound = safepick(catwalk.footstep_sounds[mobtype])
+		sound = footstep_sound("catwalk")
 	else
-		sound = safepick(footstep_sounds[mobtype])
+		sound =  footstep_sound("floor")
+
+	return sound
+
+
+/turf/simulated/floor/get_footstep_sound(var/mobtype)
+
+	var/sound
+
+	var/obj/structure/catwalk/catwalk = locate(/obj/structure/catwalk) in src
+	if(catwalk)
+		sound = footstep_sound("catwalk")
+	else
+		sound =  footstep_sound(flooring.footstep_sound)
 
 	return sound

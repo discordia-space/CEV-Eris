@@ -34,11 +34,11 @@
 	desc = "Forensics"
 	region = ACCESS_REGION_SECURITY
 
-/var/const/access_medical = 5
-/datum/access/medical
-	id = access_medical
-	desc = "Medical"
-	region = ACCESS_REGION_MEDBAY
+/var/const/access_moebius = 5
+/datum/access/moebius
+	id = access_moebius
+	desc = "Moebius General"
+	region = ACCESS_REGION_RESEARCH
 
 /var/const/access_morgue = 6
 /datum/access/morgue
@@ -270,11 +270,7 @@
 
 // /var/const/free_access_id = 46
 
-/var/const/access_research = 47
-/datum/access/research
-	id = access_research
-	desc = "Science"
-	region = ACCESS_REGION_RESEARCH
+// /var/const/free_access_id = 47
 
 /var/const/access_mining = 48
 /datum/access/mining
@@ -339,7 +335,7 @@
 	desc = "RC Announcements"
 	region = ACCESS_REGION_COMMAND
 
-/var/const/access_keycard_auth = 60 //Used for events which require at least two people to confirm them
+/var/const/access_keycard_auth = 60
 /datum/access/keycard_auth
 	id = access_keycard_auth
 	desc = "Keycode Auth. Device"
@@ -447,11 +443,16 @@
 /***************
 * Antag access *
 ***************/
-/var/const/access_syndicate = 150//General Syndicate Access
+/var/const/access_mercenary = 150//Merc ship and base access
+/datum/access/mercenary
+	id = access_mercenary
+	access_type = ACCESS_TYPE_SYNDICATE
+
+
+/var/const/access_syndicate = 140//General Syndicate Access
 /datum/access/syndicate
 	id = access_syndicate
 	access_type = ACCESS_TYPE_SYNDICATE
-
 /*******
 * Misc *
 *******/

@@ -77,3 +77,49 @@
 	if(drowsy)		apply_effect(drowsy, DROWSY, blocked)
 	if(agony)		apply_effect(agony, AGONY, blocked)
 	return 1
+
+
+// heal ONE external organ, organ gets randomly selected from damaged ones.
+/mob/living/proc/heal_organ_damage(var/brute, var/burn)
+	adjustBruteLoss(-brute)
+	adjustFireLoss(-burn)
+	src.updatehealth()
+
+// damage ONE external organ, organ gets randomly selected from damaged ones.
+/mob/living/proc/take_organ_damage(var/brute, var/burn, var/emp=0)
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
+	adjustBruteLoss(brute)
+	adjustFireLoss(burn)
+	src.updatehealth()
+
+// heal MANY external organs, in random order
+/mob/living/proc/heal_overall_damage(var/brute, var/burn)
+	adjustBruteLoss(-brute)
+	adjustFireLoss(-burn)
+	src.updatehealth()
+
+// damage MANY external organs, in random order
+/mob/living/take_overall_damage(var/brute, var/burn, var/used_weapon = null)
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
+	adjustBruteLoss(brute)
+	adjustFireLoss(burn)
+	src.updatehealth()
+
+
+/mob/living/get_fall_damage(var/turf/from, var/turf/dest)
+	var/damage = min(15, maxHealth*0.4)
+
+	//If damage is multiplied by the number of floors you fall simultaneously
+	if (from && dest)
+		damage *= abs(from.z - dest.z)+1
+	return damage
+
+/mob/living/fall_impact(var/turf/from, var/turf/dest)
+	var/damage = get_fall_damage(from, dest)
+	if (damage > 0)
+		take_overall_damage(damage)
+		playsound(src, pick(punch_sound), 100, 1, 10)
+		Weaken(4)
+		updatehealth()

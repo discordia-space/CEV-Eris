@@ -5,8 +5,8 @@
 	desc = "Used to view, edit and maintain medical records."
 	icon_keyboard = "med_key"
 	icon_screen = "medcomp"
-	light_color = COLOR_LIME
-	req_one_access = list(access_medical, access_forensics_lockers)
+	light_color = COLOR_LIGHTING_GREEN_MACHINERY
+	req_one_access = list(access_moebius, access_forensics_lockers)
 	circuit = /obj/item/weapon/circuitboard/med_data
 	var/obj/item/weapon/card/id/scan = null
 	var/authenticated = null
@@ -531,7 +531,7 @@
 		if(prob(10/severity))
 			switch(rand(1,6))
 				if(1)
-					R.fields["name"] = "[pick(pick(first_names_male), pick(first_names_female))] [pick(last_names)]"
+					R.fields["name"] = "[pick(pick(GLOB.first_names_male), pick(GLOB.first_names_female))] [pick(GLOB.last_names)]"
 				if(2)
 					R.fields["sex"]	= pick("Male", "Female")
 				if(3)

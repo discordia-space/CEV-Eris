@@ -78,7 +78,7 @@
 	if(surplus() < 500)
 		if(user) user << SPAN_NOTICE("The connected wire doesn't have enough current.")
 		return
-	set_light(3, 3, "#00CCAA")
+	set_light(3, 3, COLOR_LIGHTING_ORANGE_MACHINERY)
 	icon_state = "beacon_active"
 	use_power = 1
 	if(user) user << SPAN_NOTICE("You activate the beacon. The supply drop will be dispatched soon.")

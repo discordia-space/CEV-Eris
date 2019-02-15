@@ -31,7 +31,7 @@
 		src << SPAN_DANGER("You cannot send deadchat emotes (muted).")
 		return
 
-	if(!is_preference_enabled(/datum/client_preference/show_dsay))
+	if(get_preference_value(/datum/client_preference/show_dsay) == GLOB.PREF_HIDE)
 		src << SPAN_DANGER("You have deadchat muted.")
 		return
 
@@ -59,7 +59,7 @@
 	for (var/turf in view(world.view, get_turf(src)))
 		messageturfs += turf
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if (!M.client || istype(M, /mob/new_player))
 			continue
 		if(get_turf(M) in messageturfs)
@@ -69,7 +69,7 @@
 			else if (istype(M, /mob/living) && !(type == 2 && (sdisabilities & DEAF || ear_deaf)))
 				messagemobs += M
 		else if(src.client)
-			if  (M.stat == DEAD && (M.is_preference_enabled(/datum/client_preference/ghost_ears)))
+			if  (M.stat == DEAD && (M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH))
 				messagemobs += M
 				continue
 

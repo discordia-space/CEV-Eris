@@ -4,7 +4,7 @@
 	desc = "Used to access the station's automated alert system."
 	icon_keyboard = "tech_key"
 	icon_screen = "alert:0"
-	light_color = "#e6ffff"
+	light_color = COLOR_LIGHTING_CYAN_MACHINERY
 	circuit = /obj/item/weapon/circuitboard/stationalert
 	var/datum/nano_module/alarm_monitor/alarm_monitor
 	var/monitor_type = /datum/nano_module/alarm_monitor
@@ -61,7 +61,6 @@
 	icon_screen = initial(icon_screen)
 	if(!(stat & (BROKEN|NOPOWER)))
 		if(alarm_monitor)
-			var/list/alarms = alarm_monitor.major_alarms()
-			if(alarms.len)
+			if(alarm_monitor.has_major_alarms(get_z(src)))
 				icon_screen = "alert:2"
 	..()

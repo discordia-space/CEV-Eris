@@ -28,6 +28,10 @@
 		height = nheight
 	if (nref)
 		ref = nref
+
+	// If a client exists, but they have disabled fancy windowing, disable it!
+	if(user && user.client && user.client.get_preference_value(/datum/client_preference/browser_style) == GLOB.PREF_PLAIN)
+		return
 	add_stylesheet("common", 'html/browser/common.css') // this CSS sheet is common to all UIs
 
 /datum/browser/proc/set_title(ntitle)
@@ -74,10 +78,12 @@
 	if (title_image)
 		title_attributes = "class='uiTitle icon' style='background-image: url([title_image]);'"
 
-	return {"<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	return {"<!DOCTYPE html>
 <html>
+	<meta charset=ISO-8859-1">
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		[head_content]
 	</head>
 	<body scroll=auto>
@@ -100,13 +106,13 @@
 	[get_footer()]
 	"}
 
-/datum/browser/proc/open(var/use_onclose = 1)
+/datum/browser/proc/open(var/use_onclose = 1, var/mob/target = user)
 	var/window_size = ""
 	if (width && height)
 		window_size = "size=[width]x[height];"
-	user << browse(get_content(), "window=[window_id];[window_size][window_options]")
+	target << browse(get_content(), "window=[window_id];[window_size][window_options]")
 	if (use_onclose)
-		onclose(user, window_id, ref)
+		onclose(target, window_id, ref)
 
 /datum/browser/proc/close()
 	user << browse(null, "window=[window_id]")
@@ -178,3 +184,9 @@
 		//world << "[src] was [src.mob.machine], setting to null"
 		src.mob.unset_machine()
 	return
+
+/datum/browser/proc/update(var/force_open = 0, var/use_onclose = 1)
+	if(force_open)
+		open(use_onclose)
+	else
+		send_output(user, get_content(), "[window_id].browser")

@@ -1,3 +1,6 @@
+/obj/item/weapon/disk
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_STEEL = 1)
+
 /obj/item/weapon/disk/autolathe_disk
 	name = "Design disk"
 	desc = "disk for autolathe designs."
@@ -8,7 +11,7 @@
 	flags = CONDUCT
 	force = WEAPON_FORCE_WEAK
 	throwforce = WEAPON_FORCE_WEAK
-	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+
 
 	var/list/recipes = list()
 
@@ -40,16 +43,19 @@
 /obj/item/weapon/disk/autolathe_disk/basic/New()
 	recipes = list(
 		/datum/autolathe/recipe/misc/flashlight,
+		/datum/autolathe/recipe/tool/ducttape,
 		/datum/autolathe/recipe/misc/extinguisher,
 		/datum/autolathe/recipe/misc/radio_headset,
 		/datum/autolathe/recipe/misc/radio_bounced,
-		/datum/autolathe/recipe/misc/ashtray_glass,
+		/datum/autolathe/recipe/misc/ashtray,
 		/datum/autolathe/recipe/container/bucket,
 		/datum/autolathe/recipe/container/jar,
-		/datum/autolathe/recipe/container/vial,
 		/datum/autolathe/recipe/container/syringe,
+		/datum/autolathe/recipe/container/vial,
 		/datum/autolathe/recipe/container/beaker,
 		/datum/autolathe/recipe/container/beaker_large,
+		/datum/autolathe/recipe/container/pill_bottle,
+		/datum/autolathe/recipe/container/spray,
 		/datum/autolathe/recipe/misc/cane,
 		/datum/autolathe/recipe/misc/floor_light,
 		/datum/autolathe/recipe/misc/tube,
@@ -85,6 +91,7 @@
 		/datum/autolathe/recipe/device/lightreplacer,
 		/datum/autolathe/recipe/misc/tube,
 		/datum/autolathe/recipe/misc/bulb,
+
 	)
 	..()
 
@@ -98,6 +105,7 @@
 	recipes = list(
 		/datum/autolathe/recipe/tool/hatchet,
 		/datum/autolathe/recipe/tool/minihoe,
+		/datum/autolathe/recipe/tool/ducttape,
 		/datum/autolathe/recipe/tool/knife,
 		/datum/autolathe/recipe/misc/heavyflashlight,
 		/datum/autolathe/recipe/tool/crowbar,
@@ -113,9 +121,26 @@
 		/datum/autolathe/recipe/tool/weldertool,
 		/datum/autolathe/recipe/tool/weldinggoggles,
 		/datum/autolathe/recipe/tool/weldermask,
+		/datum/autolathe/recipe/device/flamethrower,
 	)
 	..()
 
+/obj/item/weapon/disk/autolathe_disk/robustcells
+	name = "Asters Robustcells"
+	category = "Engineering"
+	icon_state = "guild"
+	license = 8
+
+/obj/item/weapon/disk/autolathe_disk/robustcells/New()
+	recipes = list(
+		/datum/autolathe/recipe/cell/large,
+		/datum/autolathe/recipe/cell/large/high,
+		/datum/autolathe/recipe/cell/medium,
+		/datum/autolathe/recipe/cell/medium/high,
+		/datum/autolathe/recipe/cell/small,
+		/datum/autolathe/recipe/cell/small/high,
+	)
+	..()
 
 /obj/item/weapon/disk/autolathe_disk/component
 	name = "Technomancers ARK-034 Components"
@@ -138,6 +163,7 @@
 		/datum/autolathe/recipe/part/timer,
 		/datum/autolathe/recipe/part/sensor_prox,
 		/datum/autolathe/recipe/part/camera_assembly,
+		/datum/autolathe/recipe/part/laserguide,
 	)
 	..()
 
@@ -151,6 +177,7 @@
 	recipes = list(
 		/datum/autolathe/recipe/tool/big_wrench,
 		/datum/autolathe/recipe/tool/jackhammer,
+		/datum/autolathe/recipe/tool/pneumatic_crowbar,
 		/datum/autolathe/recipe/tool/mining_drill,
 		/datum/autolathe/recipe/tool/diamonddrill,
 		/datum/autolathe/recipe/tool/pickaxe_excavation,
@@ -159,6 +186,7 @@
 		/datum/autolathe/recipe/tool/electric_screwdriver,
 		/datum/autolathe/recipe/tool/combi_driver,
 		/datum/autolathe/recipe/tool/armature_cutter,
+		/datum/autolathe/recipe/part/diamondblade,
 	)
 	..()
 
@@ -176,13 +204,10 @@
 		/datum/autolathe/recipe/circuit/powermodule,
 		/datum/autolathe/recipe/circuit/autolathe,
 		/datum/autolathe/recipe/circuit/autolathe_disk_cloner,
+		/datum/autolathe/recipe/circuit/vending,
 		/datum/autolathe/recipe/circuit/arcade_battle,
 		/datum/autolathe/recipe/circuit/arcade_orion_trail,
-		/datum/autolathe/recipe/circuit/communications,
-		/datum/autolathe/recipe/circuit/med_data,
-		/datum/autolathe/recipe/circuit/secure_data,
 		/datum/autolathe/recipe/circuit/teleporter,
-		/datum/autolathe/recipe/circuit/crew,
 		/datum/autolathe/recipe/circuit/operating,
 		/datum/autolathe/recipe/circuit/helm,
 		/datum/autolathe/recipe/circuit/nav,
@@ -205,10 +230,12 @@
 		/datum/autolathe/recipe/tool/retractor,
 		/datum/autolathe/recipe/tool/cautery,
 		/datum/autolathe/recipe/tool/hemostat,
-		/datum/autolathe/recipe/container/beaker,
-		/datum/autolathe/recipe/container/beaker_large,
 		/datum/autolathe/recipe/container/syringe,
 		/datum/autolathe/recipe/container/vial,
+		/datum/autolathe/recipe/container/beaker,
+		/datum/autolathe/recipe/container/beaker_large,
+		/datum/autolathe/recipe/container/pill_bottle,
+		/datum/autolathe/recipe/container/spray,
 		/datum/autolathe/recipe/device/implanter,
 		/datum/autolathe/recipe/container/syringegun_ammo,
 	)
@@ -258,6 +285,7 @@
 		/datum/autolathe/recipe/gun/revolver,
 		/datum/autolathe/recipe/gun/revolver_consul,
 		/datum/autolathe/recipe/gun/revolver_deckard,
+		/datum/autolathe/recipe/gun/gladstone,
 		/datum/autolathe/recipe/gun/lamia,
 		/datum/autolathe/recipe/gun/deagle,
 		/datum/autolathe/recipe/gun/smg_sol,
@@ -335,6 +363,7 @@
 		/datum/autolathe/recipe/ammo/magazine_mc9mmt_rubber,
 		/datum/autolathe/recipe/ammo/magazine_c45m_flash,
 		/datum/autolathe/recipe/ammo/magazine_mc9mm_flash,
+		/datum/autolathe/recipe/ammo/sl_c138_rubber,
 		/datum/autolathe/recipe/ammo/mg_cl32_rubber,
 		/datum/autolathe/recipe/ammo/mg_cl44_rubber,
 		/datum/autolathe/recipe/ammo/sl_cl44_rubber,
@@ -363,6 +392,8 @@
 		/datum/autolathe/recipe/ammo/magazine_a556,
 		/datum/autolathe/recipe/ammo/shotgun,
 		/datum/autolathe/recipe/ammo/shotgun_pellet,
+		/datum/autolathe/recipe/ammo/mg_cl32_brute,
+		/datum/autolathe/recipe/ammo/sl_c138_brute,
 		/datum/autolathe/recipe/ammo/mg_cl44_brute,
 		/datum/autolathe/recipe/ammo/sl_cl44_brute,
 		/datum/autolathe/recipe/ammo/mg_a50,
@@ -388,6 +419,7 @@
 		/datum/autolathe/recipe/circuit/reconstructor_excelsior,
 		/datum/autolathe/recipe/circuit/diesel_excelsior,
 		/datum/autolathe/recipe/circuit/turret_excelsior,
+		/datum/autolathe/recipe/circuit/autolathe_disk_cloner,
 		/datum/autolathe/recipe/device/implanter,
 		/datum/autolathe/recipe/gun/makarov,
 		/datum/autolathe/recipe/sec/silencer,
@@ -396,8 +428,20 @@
 		/datum/autolathe/recipe/ammo/ak47,
 		/datum/autolathe/recipe/ammo/box_a762,
 		/datum/autolathe/recipe/device/excelsiormine,
+		/datum/autolathe/recipe/sec/beartrap,
+		/datum/autolathe/recipe/clothing/excelsior_armor,
+		/datum/autolathe/recipe/clothing/excelsior_helmet,
+		/datum/autolathe/recipe/cell/large/excelsior,
+		/datum/autolathe/recipe/cell/medium/excelsior,
+		/datum/autolathe/recipe/cell/small/excelsior,
+		/datum/autolathe/recipe/part/manipulator,
+		/datum/autolathe/recipe/part/subspace_amplifier,
+		/datum/autolathe/recipe/part/subspace_crystal,
+		/datum/autolathe/recipe/part/subspace_transmitter,
 		/datum/autolathe/recipe/part/igniter,
 		/datum/autolathe/recipe/part/signaler,
 		/datum/autolathe/recipe/part/sensor_prox,
+		/datum/autolathe/recipe/part/capacitor,
+		/datum/autolathe/recipe/part/camera_assembly
 	)
 	..()

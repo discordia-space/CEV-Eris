@@ -22,6 +22,9 @@
 /proc/cmp_subsystem_priority(datum/controller/subsystem/a, datum/controller/subsystem/b)
 	return a.priority - b.priority
 
+/proc/cmp_timer(datum/timedevent/a, datum/timedevent/b)
+	return a.timeToRun - b.timeToRun
+
 /proc/cmp_text_asc(a,b)
 	return sorttext(b, a)
 
@@ -36,3 +39,6 @@
 		. = B.failures - A.failures
 	if (!.)
 		. = B.qdels - A.qdels
+
+/proc/cmp_crew_sensor_modifier(var/crew_sensor_modifier/a, var/crew_sensor_modifier/b)
+	return b.priority - a.priority

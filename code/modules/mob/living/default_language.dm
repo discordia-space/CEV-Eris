@@ -1,7 +1,7 @@
 /mob/living
 	var/datum/language/default_language
 
-/mob/living/verb/set_default_language(language as null|anything in languages)
+/mob/living/verb/set_default_lang_verb(language as null|anything in languages)
 	set name = "Set Default Language"
 	set category = "IC"
 
@@ -9,7 +9,7 @@
 		src << SPAN_NOTICE("You will now speak [language] if you do not specify a language when speaking.")
 	else
 		src << SPAN_NOTICE("You will now speak whatever your standard default language is if you do not specify one when speaking.")
-	default_language = language
+	set_default_language(language)
 
 // Silicons can't neccessarily speak everything in their languages list
 /mob/living/silicon/set_default_language(language as null|anything in speech_synthesizer_langs)
@@ -23,3 +23,13 @@
 		src << SPAN_NOTICE("You are currently speaking [default_language] by default.")
 	else
 		src << SPAN_NOTICE("Your current default language is your species or mob type default.")
+
+/mob/living/proc/set_default_language(var/langname)
+	var/datum/language/L
+	//Support for passing a datum directly, or the name of a language to go fetch. Very flexible proc
+	if (istype(langname, /datum/language))
+		L = langname
+	else
+		L = all_languages[langname]
+	languages |= L
+	default_language = L

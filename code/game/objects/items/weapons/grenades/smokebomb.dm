@@ -1,12 +1,12 @@
 /obj/item/weapon/grenade/smokebomb
 	name = "FS SG \"Reynolds\""
-	desc = "Smoke grenade, used to provide cover and hide movements."
+	desc = "Smoke grenade, used to create a cloud of smoke providing cover and hiding movement."
 	det_time = 20
 	var/datum/effect/effect/system/smoke_spread/bad/smoke
 
 /obj/item/weapon/grenade/smokebomb/New()
 	..()
-	src.smoke = PoolOrNew(/datum/effect/effect/system/smoke_spread/bad)
+	src.smoke = new
 	src.smoke.attach(src)
 
 /obj/item/weapon/grenade/smokebomb/Destroy()

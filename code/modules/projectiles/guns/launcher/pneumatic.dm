@@ -3,7 +3,7 @@
 	desc = "A large gas-powered cannon."
 	icon_state = "pneumatic"
 	item_state = "pneumatic"
-	slot_flags = SLOT_BELT
+	slot_flags = SLOT_BACK
 	w_class = ITEM_SIZE_HUGE
 	flags =  CONDUCT
 	fire_sound_text = "a loud whoosh of moving air"
@@ -131,10 +131,7 @@
 		icon_state = "pneumatic"
 		item_state = "pneumatic"
 
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.update_inv_r_hand()
-		M.update_inv_l_hand()
+	update_wear_icon()
 
 //Constructable pneumatic cannon.
 

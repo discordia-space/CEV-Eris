@@ -11,7 +11,8 @@ see multiz/movement.dm for some info.
 			return !density
 
 /turf/simulated/open/CanZPass(atom/A, direction)
-	if(locate(/obj/structure/catwalk, src))
+	var/obj/effect/shield/turf_shield = getEffectShield()
+	if(locate(/obj/structure/catwalk, src) || (turf_shield && turf_shield.CanPass(A)))
 		if(z == A.z)
 			if(direction == DOWN)
 				return 0
@@ -20,7 +21,8 @@ see multiz/movement.dm for some info.
 	return 1
 
 /turf/space/CanZPass(atom/A, direction)
-	if(locate(/obj/structure/catwalk, src))
+	var/obj/effect/shield/turf_shield = getEffectShield()
+	if(locate(/obj/structure/catwalk, src) || (turf_shield && turf_shield.CanPass(A)))
 		if(z == A.z)
 			if(direction == DOWN)
 				return 0
@@ -41,6 +43,12 @@ see multiz/movement.dm for some info.
 	var/turf/below
 	var/list/underlay_references
 	var/global/overlay_map = list()
+	is_hole = TRUE
+
+	// A lazy list to contain a list of mobs who are currently scaling
+	// up this turf. Used in human/can_fall.
+
+	var/tmp/list/climbers
 
 /turf/simulated/open/LateInitialize()
 	. = ..()
@@ -87,12 +95,20 @@ see multiz/movement.dm for some info.
 
 	return TRUE
 
-/turf/simulated/open/proc/fallThrough(var/atom/movable/mover)
+/turf/proc/fallThrough(var/atom/movable/mover)
+	return
+
+/turf/simulated/open/fallThrough(var/atom/movable/mover)
 	if(!mover.can_fall())
 		return
 
+
 	// No gravit, No fall.
 	if(!has_gravity(src))
+		return
+
+	var/obj/effect/shield/turf_shield = getEffectShield()
+	if (turf_shield && !turf_shield.CanPass(mover))
 		return
 
 	// See if something prevents us from falling.
@@ -109,6 +125,7 @@ see multiz/movement.dm for some info.
 		playsound(src, 'sound/hallucinations/scream.ogg', 100)
 
 	if(!soft)
+
 		if(!isliving(mover))
 			if(istype(below, /turf/simulated/open))
 				mover.visible_message(
@@ -133,18 +150,13 @@ see multiz/movement.dm for some info.
 					"You land on \the [below].", "You hear a soft whoosh and a crunch"
 				)
 
-			// Handle people getting hurt, it's funny!
-			if (ishuman(mover))
-				var/mob/living/carbon/human/H = mover
-				var/damage = 5
-				for(var/organ in list(BP_CHEST, BP_R_ARM, BP_L_ARM, BP_R_LEG, BP_L_LEG))
-					H.apply_damage(rand(0, damage), BRUTE, organ)
+		// Handle people getting hurt, it's funny!
+		mover.fall_impact(src, below)
 
-				H.Weaken(4)
-				H.updatehealth()
 
-		var/fall_damage = mover.get_fall_damage()
+
 		for(var/mob/living/M in below)
+			var/fall_damage = mover.get_fall_damage()
 			if(M == mover)
 				continue
 			M.Weaken(10)
@@ -172,20 +184,35 @@ see multiz/movement.dm for some info.
 			ReplaceWithLattice()
 		return
 
-	if (istype(C, /obj/item/stack/tile/floor))
+	if (istype(C, /obj/item/stack/material))
+		var/obj/item/stack/material/M = C
+
+		var/material/mat = M.get_material()
+		if (!mat.name == MATERIAL_STEEL)
+
+			return
+
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
+
 		if(L)
 			var/obj/item/stack/tile/floor/S = C
-			if (S.get_amount() < 1)
+			if (S.get_amount() < 4)
 				return
-			qdel(L)
+
+			user << SPAN_NOTICE("You start constructing underplating on the lattice.")
 			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
-			S.use(1)
-			ChangeTurf(/turf/simulated/floor/airless)
+			if(do_after(user,80, src))
+				qdel(L)
+				S.use(4)
+				ChangeTurf(/turf/simulated/floor/plating/under)
 			return
 		else
 			user << SPAN_WARNING("The plating is going to need some support.")
 
+	if(istype(C, /obj/item/stack/cable_coil))
+		var/obj/item/stack/cable_coil/coil = C
+		coil.turf_place(src, user)
+		return
 
 //Some effect handling procs for openspaces
 
@@ -193,3 +220,12 @@ see multiz/movement.dm for some info.
 //Since there's no floor to walk on, this will simply not happen. Return without doing anything
 /turf/simulated/open/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
 	return
+
+
+//Since walking around on openspaces wasn't possible before i fixed jetpacks, nobody thought to fix this
+/turf/simulated/open/get_footstep_sound(var/mobtype)
+	var/obj/structure/catwalk/catwalk = locate(/obj/structure/catwalk) in src
+	if(catwalk)
+		return footstep_sound("catwalk")
+	else
+		return null

@@ -2,8 +2,7 @@
 	//SECURITY//
 	////////////
 #define UPLOAD_LIMIT		10485760	//Restricts client uploads to the server to 10MB //Boosted this thing. What's the worst that can happen?
-#define MIN_CLIENT_VERSION	0		//Just an ambiguously low version for now, I don't want to suddenly stop people playing.
-									//I would just like the code ready should it ever need to be used.
+
 	/*
 	When somebody clicks a link in game, this Topic is called first.
 	It does the stuff in this proc and  then is redirected to the Topic() proc for the src=[0xWhatever]
@@ -25,7 +24,7 @@
 
 	//search the href for script injection
 	if( findtext(href,"<script",1,0) )
-		world.log << "Attempted use of scripts within a topic call, by [src]"
+		log_world("Attempted use of scripts within a topic call, by [src]")
 		message_admins("Attempted use of scripts within a topic call, by [src]")
 		//del(usr)
 		return
@@ -102,8 +101,19 @@
 
 	if(!(connection in list("seeker", "web")))					//Invalid connection type.
 		return null
-	if(byond_version < MIN_CLIENT_VERSION)		//Out of date client.
-		return null
+
+	#if DM_VERSION >= 512
+	if(byond_version < config.minimum_byond_version || byond_build < config.minimum_byond_build)		//BYOND out of date.
+		to_chat(src, "You are attempting to connect with a out of date version of BYOND. Please update to the latest version at http://www.byond.com/ before trying again.")
+		qdel(src)
+		return
+
+	if("[byond_version].[byond_build]" in config.forbidden_versions)
+		log_and_message_admins("[ckey] Tried to connect with broken and possibly exploitable BYOND build.")
+		to_chat(src, "You are attempting to connect with a broken and possibly exploitable BYOND build. Please update to the latest version at http://www.byond.com/ before trying again.")
+		qdel(src)
+		return
+	#endif
 
 	if(!config.guests_allowed && IsGuestKey(key))
 		alert(src,"This server doesn't allow guest accounts to play. Please go to http://www.byond.com/ and register for a key.","Guest","OK")
@@ -128,10 +138,10 @@
 		holder.owner = src
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
-	prefs = preferences_datums[ckey]
+	prefs = SScharacter_setup.preferences_datums[ckey]
 	if(!prefs)
 		prefs = new /datum/preferences(src)
-		preferences_datums[ckey] = prefs
+		SScharacter_setup.preferences_datums[ckey] = prefs
 	prefs.last_ip = address				//these are gonna be used for banning
 	prefs.last_id = computer_id			//these are gonna be used for banning
 
@@ -178,7 +188,7 @@
 	if(dbcon.IsConnected())
 		var/DBQuery/query = dbcon.NewQuery("UPDATE players SET last_seen = Now() WHERE id = [src.id]")
 		if(!query.Execute())
-			world.log << "Failed to update players table for user with id [src.id]. Error message: [query.ErrorMsg()]."
+			log_world("Failed to update players table for user with id [src.id]. Error message: [query.ErrorMsg()].")
 	directory -= ckey
 	clients -= src
 	return ..()
@@ -204,9 +214,9 @@
 				src.registration_date = "[year]-[month]-[day]"
 				return src.registration_date
 			else
-				world.log << "Failed retrieving registration date for player [src.ckey] from byond site."
+				log_world("Failed retrieving registration date for player [src.ckey] from byond site.")
 	else
-		world.log << "Failed retrieving registration date for player [src.ckey] from byond site."
+		log_world("Failed retrieving registration date for player [src.ckey] from byond site.")
 	return null
 
 
@@ -247,7 +257,7 @@
 			src.country_code = response[3]
 			return list("country" = src.country, "country_code" = src.country_code)
 
-	world.log << "Failed on retrieving location for player [src.ckey] from byond site."
+	log_world("Failed on retrieving location for player [src.ckey] from byond site.")
 	return null
 
 
@@ -257,7 +267,7 @@
 
 	var/DBQuery/query_insert = dbcon.NewQuery("INSERT INTO players (ckey, first_seen, last_seen, registered, ip, cid, rank, byond_version, country) VALUES ('[src.ckey]', Now(), Now(), '[registration_date]', '[sql_sanitize_text(src.address)]', '[sql_sanitize_text(src.computer_id)]', 'player', [src.byond_version], '[src.country_code]')")
 	if(!query_insert.Execute())
-		world.log << "##CRITICAL: Failed to create player record for user [ckey]. Error message: [query_insert.ErrorMsg()]."
+		log_world("##CRITICAL: Failed to create player record for user [ckey]. Error message: [query_insert.ErrorMsg()].")
 		return
 
 	else
@@ -278,7 +288,7 @@
 	// check if client already registered in db
 	var/DBQuery/query = dbcon.NewQuery("SELECT id from players WHERE ckey = '[src.ckey]'")
 	if(!query.Execute())
-		world.log << "Failed to get player record for user with ckey '[src.ckey]'. Error message: [query.ErrorMsg()]."
+		log_world("Failed to get player record for user with ckey '[src.ckey]'. Error message: [query.ErrorMsg()].")
 		// don't know how to properly handle this case so let's just quit
 		return
 	else
@@ -295,7 +305,7 @@
 				var/DBQuery/query_update = dbcon.NewQuery("UPDATE players SET last_seen = Now(), ip = '[src.address]', cid = '[src.computer_id]', byond_version = '[src.byond_version]', country = '[src.country_code]' WHERE id = [src.id]")
 
 				if(!query_update.Execute())
-					world.log << "Failed to update players table for user with id [src.id]. Error message: [query_update.ErrorMsg()]."
+					log_world("Failed to update players table for user with id [src.id]. Error message: [query_update.ErrorMsg()].")
 					return
 		else
 			src.register_in_db()
@@ -303,13 +313,13 @@
 
 #undef TOPIC_SPAM_DELAY
 #undef UPLOAD_LIMIT
-#undef MIN_CLIENT_VERSION
 
 //checks if a client is afk
 //3000 frames = 5 minutes
 /client/proc/is_afk(duration=3000)
-	if(inactivity > duration)
-		return inactivity
+	if (duration)
+		if(inactivity > duration)
+			return inactivity
 	return FALSE
 
 
@@ -348,6 +358,49 @@
 
 /client/verb/character_setup()
 	set name = "Character Setup"
-	set category = "Preferences"
+	set category = "OOC"
 	if(prefs)
 		prefs.ShowChoices(usr)
+/*
+/client/proc/apply_fps(var/client_fps)
+	if(world.byond_version >= 511 && byond_version >= 511 && client_fps >= CLIENT_MIN_FPS && client_fps <= CLIENT_MAX_FPS)
+		vars["fps"] = prefs.clientfps
+
+*/
+
+// Byond seemingly calls stat, each tick.
+// Calling things each tick can get expensive real quick.
+// So we slow this down a little.
+// See: http://www.byond.com/docs/ref/info.html#/client/proc/Stat
+/client/Stat()
+	if(!usr)
+		return
+	// Add always-visible stat panel calls here, to define a consistent display order.
+	statpanel("Status")
+
+	. = ..()
+	sleep(1)
+
+/client/proc/create_UI(var/mob_type)
+	if(!UI)
+		var/success = FALSE
+		for(var/S in GLOB.ui_styles[mob_type])
+			var/datum/interface/style = S
+			if(initial(style.styleName) == prefs.UI_style)
+				UI = new style(src)
+				success = TRUE
+				break
+		if(!success)
+			log_debug("Could not find style \"[prefs.UI_style]\" for [mob_type].")
+
+	if(UI)
+		UI.show()
+
+/client/proc/destroy_UI()
+	if(UI)
+		qdel(UI)
+		UI = null
+
+/client/proc/recreate_UI()
+	destroy_UI()
+	create_UI(mob.type)

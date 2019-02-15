@@ -2,7 +2,7 @@
 /obj/item/weapon/rcd
 	name = "rapid construction device"
 	desc = "A device used to rapidly build walls and floors."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/tools.dmi'
 	icon_state = "rcd"
 	opacity = 0
 	density = 0
@@ -20,7 +20,7 @@
 	var/working = 0
 	var/mode = 1
 	var/list/modes = list("Floor & Walls","Airlock","Deconstruct")
-	var/canRwall = 0
+	var/canRwall = 1
 	var/disabled = 0
 
 /obj/item/weapon/rcd/attack()
@@ -39,6 +39,7 @@
 	src.spark_system = new /datum/effect/effect/system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
+	update_icon()	//Initializes the fancy ammo counter
 
 /obj/item/weapon/rcd/Destroy()
 	qdel(spark_system)
@@ -56,6 +57,7 @@
 		stored_matter += 10
 		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 		user << SPAN_NOTICE("The RCD now holds [stored_matter]/30 matter-units.")
+		update_icon()	//Updates the ammo counter
 		return
 	..()
 
@@ -74,10 +76,12 @@
 		return 0
 	return alter_turf(A,user,(mode == 3))
 
-/obj/item/weapon/rcd/proc/useResource(var/amount, var/mob/user)
+/obj/item/weapon/rcd/proc/useResource(var/amount, var/mob/user, var/checkOnly)
 	if(stored_matter < amount)
 		return 0
-	stored_matter -= amount
+	if (!checkOnly)
+		stored_matter -= amount
+		update_icon()	//Updates the ammo counter if ammo is succesfully used
 	return 1
 
 /obj/item/weapon/rcd/proc/alter_turf(var/turf/T,var/mob/user,var/deconstruct)
@@ -106,8 +110,8 @@
 		build_turf =  /turf/simulated/floor/airless
 	else if(deconstruct && istype(T,/turf/simulated/wall))
 		var/turf/simulated/wall/W = T
-		build_delay = deconstruct ? 50 : 40
-		build_cost =  5
+		build_delay = deconstruct ? (W.reinf_material) ? 150 : 50 : 40
+		build_cost =  (W.reinf_material) ? 10 : 5
 		build_type =  (!canRwall && W.reinf_material) ? null : "wall"
 		build_turf =  /turf/simulated/floor
 	else if(istype(T,/turf/simulated/floor))
@@ -122,8 +126,9 @@
 		working = 0
 		return 0
 
-	if(!useResource(build_cost, user))
-		user << "Insufficient resources."
+	if(!useResource(build_cost, user, 1))
+		user << "The \'Low Ammo\' light on the device blinks yellow."
+		flick("[icon_state]-empty", src)
 		return 0
 
 	playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
@@ -139,6 +144,11 @@
 	if(build_delay && !can_use(user,T))
 		return 0
 
+	if(!useResource(build_cost, user))
+		user << "The \'Low Ammo\' light on the device blinks yellow."
+		flick("[icon_state]-empty", src)
+		return 0
+
 	if(build_turf)
 		T.ChangeTurf(build_turf)
 	else if(build_other)
@@ -148,6 +158,15 @@
 
 	playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 	return 1
+
+/obj/item/weapon/rcd/update_icon()	//For the fancy "ammo" counter
+	overlays.Cut()
+
+	var/ratio = 0
+	ratio = stored_matter / 30	//30 is the hardcoded max capacity of the RCD
+	ratio = max(round(ratio, 0.10) * 100, 10)
+
+	overlays += "[icon_state]-[ratio]"
 
 /obj/item/weapon/rcd_ammo
 	name = "compressed matter cartridge"
@@ -162,13 +181,14 @@
 /obj/item/weapon/rcd/borg
 	canRwall = 1
 
-/obj/item/weapon/rcd/borg/useResource(var/amount, var/mob/user)
+/obj/item/weapon/rcd/borg/useResource(var/amount, var/mob/user, var/checkOnly)
 	if(isrobot(user))
 		var/mob/living/silicon/robot/R = user
 		if(R.cell)
 			var/cost = amount*30
 			if(R.cell.charge >= cost)
-				R.cell.use(cost)
+				if (!checkOnly)
+					R.cell.use(cost)
 				return 1
 	return 0
 
@@ -179,13 +199,14 @@
 	return (user.Adjacent(T) && !user.stat)
 
 
-/obj/item/weapon/rcd/mounted/useResource(var/amount, var/mob/user)
+/obj/item/weapon/rcd/mounted/useResource(var/amount, var/mob/user, var/checkOnly)
 	var/cost = amount*130 //so that a rig with default powercell can build ~2.5x the stuff a fully-loaded RCD can.
 	if(istype(loc,/obj/item/rig_module))
 		var/obj/item/rig_module/module = loc
 		if(module.holder && module.holder.cell)
 			if(module.holder.cell.charge >= cost)
-				module.holder.cell.use(cost)
+				if (!checkOnly)
+					module.holder.cell.use(cost)
 				return 1
 	return 0
 

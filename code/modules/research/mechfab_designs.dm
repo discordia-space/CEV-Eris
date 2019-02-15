@@ -89,6 +89,14 @@
 	id = "armour"
 	build_path = /obj/item/robot_parts/robot_component/armour
 
+
+/datum/design/item/mechfab/robot/component/jetpack
+	name = "Jetpack module"
+	desc = "Self refilling jetpack that makes the unit suitable for EVA work."
+	id = "borg_jetpack_module"
+	materials = list(MATERIAL_STEEL = 10, MATERIAL_PLASMA = 10, MATERIAL_SILVER = 20)
+	build_path = /obj/item/robot_parts/robot_component/jetpack
+
 //Modules ====================================
 
 /datum/design/item/mechfab/modules
@@ -493,12 +501,7 @@
 	materials = list(MATERIAL_STEEL = 8, MATERIAL_GLASS = 6, MATERIAL_GOLD = 2, MATERIAL_DIAMOND = 2)
 	build_path = /obj/item/borg/upgrade/tasercooler
 
-/datum/design/item/robot_upgrade/jetpack
-	name = "Jetpack module"
-	desc = "A carbon dioxide jetpack suitable for low-gravity mining operations."
-	id = "borg_jetpack_module"
-	materials = list(MATERIAL_STEEL = 10, MATERIAL_PLASMA = 15, MATERIAL_URANIUM = 2)
-	build_path = /obj/item/borg/upgrade/jetpack
+
 
 /datum/design/item/robot_upgrade/rcd
 	name = "RCD module"
@@ -588,7 +591,7 @@
 /datum/design/item/mecha/jetpack
 	name = "jetpack module"
 	id = "mech_jetpack"
-	build_path = /obj/item/mecha_parts/mecha_equipment/jetpack
+	build_path = /obj/item/mecha_parts/mecha_equipment/thruster
 	materials = list(MATERIAL_STEEL = 20, MATERIAL_GLASS = 5)
 
 /datum/design/item/mecha/ai_holder

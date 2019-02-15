@@ -79,7 +79,7 @@
 	data["gasTemperatureClass"] = temp_class
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
@@ -96,6 +96,10 @@
 		return 1
 	if(href_list["toggleStatus"])
 		use_power = !use_power
+		if(use_power)
+			usr << "[src] turned on."
+		else
+			usr << "[src] turned off."
 		update_icon()
 	if(href_list["temp"])
 		var/amount = text2num(href_list["temp"])

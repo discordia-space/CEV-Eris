@@ -15,15 +15,34 @@
 	default_material = MATERIAL_GLASS
 	unbreakable = 1 //It's already broken.
 	drops_debris = 0
+	var/amount = 0
 
-/obj/item/weapon/material/shard/set_material(var/new_material)
+/obj/item/weapon/material/shard/New(var/newloc, var/material_key, var/_amount)
+	if (_amount)
+		amount = max(round(_amount, 0.01), 0.01) //We won't ever need to physically represent less than 1% of a material unit
+	.=..()
+	//Material will be set during the parent callstack
+	if (!material)
+		qdel(src)
+		return
+
+
+	//Shards must be made of some matter
+	if (!amount)
+		amount = rand_between(0.1, 1)
+
+	//Overwrite whatever was populated before. A shard contains <1 unit of a single material
+	matter = list(material.name = amount)
+	update_icon()
+
+/obj/item/weapon/material/shard/set_material(var/new_material, var/update)
 	..(new_material)
 	if(!istype(material))
 		return
 
-	icon_state = "[material.shard_icon][pick("large", "medium", "small")]"
 	pixel_x = rand(-8, 8)
 	pixel_y = rand(-8, 8)
+
 	update_icon()
 
 	if(material.shard_type)
@@ -46,13 +65,77 @@
 		color = "#ffffff"
 		alpha = 255
 
+
+	if (amount > 0.7)
+		icon_state = "[material.shard_icon]["large"]"
+	else if (amount < 0.4)
+		icon_state = "[material.shard_icon]["medium"]"
+	else
+		icon_state = "[material.shard_icon]["small"]"
+	//variable rotation based on randomness
+	var/rot = rand(0, 360)
+	var/matrix/M = matrix()
+	M.Turn(rot)
+
+	//Variable icon size based on material quantity
+	//Shards will scale from 0.6 to 1.25 scale, in the range of 0..1 amount
+	if (amount < 1)
+		M.Scale(((1.25 - 0.8)*amount)+0.8)
+
+	transform = M
+
 /obj/item/weapon/material/shard/attackby(obj/item/I, mob/user)
 	if(QUALITY_WELDING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_COG))
-			material.place_sheet(loc)
-			qdel(src)
-			return
+		merge_shards(I, user)
+		return
 	return ..()
+
+//Allows you to weld together similar shards in a tile to create useful sheets
+/obj/item/weapon/material/shard/proc/merge_shards(obj/item/I, mob/user)
+	if (!istype(loc, /turf))
+		user << SPAN_WARNING("You need to lay the shards down on a surface to do this!")
+		return
+
+	var/list/shards = list()
+	var/total = amount
+
+	//Loop through all the other shards in the tile and cache them
+	for (var/obj/item/weapon/material/shard/S in loc)
+		if (S.material.name == material.name && S != src)
+			shards.Add(S)
+			total += S.amount
+
+	//If there's less than one unit of material in total, we can't do anything
+	if (total < 1)
+		user << SPAN_WARNING("There's not enough [material.name] in [shards.len < 2 ? "this piece" : "these [shards.len] pieces"] to make anything useful. Gather more.")
+		return
+
+
+	//Alright, we've got enough to make at least one sheet!
+	var/obj/item/stack/output = null //This stack will contain the sheets
+	user << SPAN_NOTICE("You start welding the [name]s into useful material sheets...")
+
+	//Do a tool operation for each shard
+	for (var/obj/item/weapon/material/shard/S in shards)
+		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_WELDING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+			//We meld each shard with ourselves
+			amount += S.amount
+			qdel(S)
+
+			//And when our amount gets high enough, we split it off into a sheet
+			if (amount > 1)
+				//We create a new sheet stack if one doesn't exist yet
+				//We also check the location and create a new stack if the old one is gone. Like if someone picked it up
+				if (!output || output.loc != loc)
+					output = material.place_sheet(loc)
+					output.amount = 0
+				output.amount++
+				amount -= 1
+			update_icon()
+		else
+			//If we fail any of the operations, we abort it all
+			break
+
 
 /obj/item/weapon/material/shard/Crossed(AM as mob|obj)
 	..()
@@ -91,7 +174,11 @@
 			return
 
 // Preset types - left here for the code that uses them
+/obj/item/weapon/material/shard/shrapnel
+	name = "shrapnel" //Needed for crafting
+
 /obj/item/weapon/material/shard/shrapnel/New(loc)
+
 	..(loc, MATERIAL_STEEL)
 
 /obj/item/weapon/material/shard/plasma/New(loc)

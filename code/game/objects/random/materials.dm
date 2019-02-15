@@ -2,14 +2,15 @@
 	name = "random building material"
 	icon_state = "material-grey"
 
+//This stuff can't be easily converted to pickweight because of these amount fields
 /obj/random/material/item_to_spawn()
-	return pick(/obj/item/stack/material/steel{amount = 20},\
-				/obj/item/stack/material/glass{amount = 20},\
-				/obj/item/stack/material/plastic{amount = 20},\
-				/obj/item/stack/material/wood{amount = 20},\
-				/obj/item/stack/material/cardboard{amount = 20},\
-				/obj/item/stack/rods{amount = 30},\
-				/obj/item/stack/material/plasteel{amount = 10})
+	return pick(/obj/item/stack/material/steel/random,\
+				/obj/item/stack/material/glass/random,\
+				/obj/item/stack/material/plastic/random,\
+				/obj/item/stack/material/wood/random,\
+				/obj/item/stack/material/cardboard/random,\
+				/obj/item/stack/rods/random,\
+				/obj/item/stack/material/plasteel/random)
 
 /obj/random/material/low_chance
 	name = "low chance random building material"
@@ -21,14 +22,15 @@
 	icon_state = "material-green"
 
 /obj/random/material_resources/item_to_spawn()
-	return pick(prob(5);/obj/item/stack/material/steel{amount = 20},\
-				prob(4);/obj/item/stack/material/glass{amount = 20},\
-				prob(4);/obj/item/stack/material/iron{amount = 20},\
-				prob(1);/obj/item/stack/material/diamond{amount = 3},\
-				prob(3);/obj/item/stack/material/plasma{amount = 10},\
-				prob(2);/obj/item/stack/material/gold{amount = 5},\
-				prob(1);/obj/item/stack/material/uranium{amount = 3},\
-				prob(2);/obj/item/stack/material/silver{amount = 5})
+	return pickweight(list(/obj/item/stack/material/steel/random = 5,\
+				/obj/item/stack/material/glass/random = 4,\
+				/obj/item/stack/material/glass/plasmaglass/random = 3,\
+				/obj/item/stack/material/iron/random = 2,\
+				/obj/item/stack/material/diamond/random = 1,\
+				/obj/item/stack/material/plasma/random = 3,\
+				/obj/item/stack/material/gold/random = 2,\
+				/obj/item/stack/material/uranium/random = 1,\
+				/obj/item/stack/material/silver/random = 2))
 
 /obj/random/material_resources/low_chance
 	name = "low chance random resource material"
@@ -40,10 +42,11 @@
 	icon_state = "material-orange"
 
 /obj/random/material_rare/item_to_spawn()
-	return pick(prob(1);/obj/item/stack/material/diamond{amount = 5},\
-				prob(2);/obj/item/stack/material/gold{amount = 20},\
-				prob(1);/obj/item/stack/material/uranium{amount = 10},\
-				prob(2);/obj/item/stack/material/silver{amount = 20})
+	return pickweight(list(/obj/item/stack/material/diamond/random = 1,\
+				/obj/item/stack/material/gold/random = 2,\
+				/obj/item/stack/material/uranium/random = 1,\
+				/obj/item/stack/material/silver/random = 2,\
+				/obj/item/stack/material/glass/plasmaglass/random = 2))
 
 /obj/random/material_rare/low_chance
 	name = "low chance random rare material"

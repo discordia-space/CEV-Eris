@@ -1,94 +1,132 @@
-/turf/simulated/open/update_icon()
-	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
+/turf
+	var/_initialized_transparency = FALSE //used only for roundstard update_icon
+	var/isTransparent = FALSE
+
+/turf/simulated/open
+	isTransparent = TRUE
+
+/turf/space
+	isTransparent = TRUE
+
+/turf/proc/getDarknessOverlay()
+	var/static/image/I
+	if (I)
+		return I
+
+	I = image('icons/turf/space.dmi', "white")
+	I.plane = OPENSPACE_PLANE
+	I.layer = ABOVE_LIGHTING_LAYER
+	I.blend_mode = BLEND_MULTIPLY
+	I.color = rgb(0,0,0,110)
+
+	return I
+
+/proc/atomToImage(var/atom/A)
+	var/image/I = new(A, dir = A.dir, layer = A.layer)
+	I.color = A.color
+	I.alpha = A.alpha
+	I.overlays = A.overlays
+	I.underlays = A.underlays
+	I.pixel_x = A.pixel_x
+	I.pixel_y = A.pixel_y
+	I.pixel_w = A.pixel_w
+	I.pixel_z = A.pixel_z
+	I.transform = A.transform
+	if (!I.icon) //thanks byond
+		I.icon_state = null
+
+	return I
+
+/turf/proc/mimicTurf(var/turf/T, var/mimic_plane = plane, var/objectsOnly = FALSE)
+	var/image/I
+
+	if (!objectsOnly)
+		I = atomToImage(T)
+		I.plane = mimic_plane
+		overlays += I
+
+	for (var/obj/O in T)
+		if (!O.invisibility) // ignore objects that have any form of invisibility
+			I = atomToImage(O)
+			I.plane = mimic_plane
+			overlays += I
+
+/turf/simulated/open/update_icon(var/update_neighbors, var/roundstart_update = FALSE)
+	if (SSticker.current_state != GAME_STATE_PLAYING)
 		return
+
+	if (roundstart_update)
+		if (_initialized_transparency)
+			return
+		var/turf/testBelow = GetBelow(src)
+		if (testBelow && testBelow.isTransparent && !testBelow._initialized_transparency)
+			return //turf below will update this one
 
 	overlays.Cut()
 	var/turf/below = GetBelow(src)
-	if(below)
-		if(below.is_space())
-			plane = PLANE_SPACE
-		else
-			plane = OPENSPACE_PLANE
-		icon = below.icon
-		icon_state = below.icon_state
-		dir = below.dir
-		color = below.color//rgb(127,127,127)
-		overlays += below.overlays
-
-		if(!istype(below,/turf/simulated/open))
-			// get objects
-			var/image/o_img = list()
-			for(var/obj/o in below)
-				// ingore objects that have any form of invisibility
-				if(o.invisibility) continue
-				var/image/temp2 = image(o, dir=o.dir, layer = o.layer)
-				temp2.plane = plane
-				temp2.color = o.color//rgb(127,127,127)
-				temp2.overlays += o.overlays
-				o_img += temp2
-			overlays += o_img
-
-		var/image/over_OS_darkness = image('icons/turf/floors.dmi', "black_open")
-		over_OS_darkness.plane = OVER_OPENSPACE_PLANE
-		over_OS_darkness.layer = MOB_LAYER
-		overlays += over_OS_darkness
-		spawn()
-			updateFallability()
-	else
+	if (!below || istype(below, /turf/space))
 		ChangeTurf(/turf/space)
-
-/turf/space/update_icon()
-	if(!ticker || ticker.current_state < GAME_STATE_PLAYING)
 		return
+
+	if (below.is_hole)
+		plane = PLANE_SPACE
+
+		overlays += below.overlays
+		mimicTurf(below, OPENSPACE_PLANE, TRUE)
+	else
+		plane = OPENSPACE_PLANE
+
+		mimicTurf(below, OPENSPACE_PLANE)
+
+	overlays += getDarknessOverlay()
+
+	updateFallability()
+
+	_initialized_transparency = TRUE
+	update_openspace() //propagate update upwards
+
+/turf/space/update_icon(var/update_neighbors, var/roundstart_update = FALSE)
+	if (SSticker.current_state < GAME_STATE_PLAYING)
+		return
+
+	if (roundstart_update)
+		if (_initialized_transparency)
+			return
+		var/turf/testBelow = GetBelow(src)
+		if (testBelow && testBelow.isTransparent && !testBelow._initialized_transparency)
+			return //turf below will update this one
 
 	overlays.Cut()
 	var/turf/below = GetBelow(src)
-	if(below)
-		if(below.icon == 'icons/turf/space.dmi')
+	if (istype(below, /turf/simulated/open))
+		ChangeTurf(/turf/simulated/open)
+		return
+
+	if (below)
+		if (below.is_hole)
 			plane = PLANE_SPACE
+
+			overlays += below.overlays
+			mimicTurf(below, OPENSPACE_PLANE, TRUE)
 		else
 			plane = OPENSPACE_PLANE
-			var/image/over_OS_darkness = image('icons/turf/floors.dmi', "black_open")
-			over_OS_darkness.plane = OVER_OPENSPACE_PLANE
-			over_OS_darkness.layer = MOB_LAYER
-			overlays += over_OS_darkness
-		icon = below.icon
-		icon_state = below.icon_state
-		dir = below.dir
-		color = below.color//rgb(127,127,127)
-		overlays += below.overlays
 
-		if(!istype(below,/turf/simulated/open))
-			// get objects
-			var/image/o_img = list()
-			for(var/obj/o in below)
-				// ingore objects that have any form of invisibility
-				if(o.invisibility) continue
-				var/image/temp2 = image(o, dir=o.dir, layer = o.layer)
-				temp2.plane = plane
-				temp2.color = o.color//rgb(127,127,127)
-				temp2.overlays += o.overlays
-				o_img += temp2
-			overlays += o_img
-	else
-		icon = initial(icon)
-		plane = initial(plane)
-		if(!istype(src, /turf/space/transit))
-			icon_state = "white"
+			mimicTurf(below, OPENSPACE_PLANE)
 
+		overlays += getDarknessOverlay()
+
+	_initialized_transparency = TRUE
+	update_openspace()
 
 /hook/roundstart/proc/init_openspace()
-	var/turf/T
-	for(var/elem in turfs)
-		if(istype(elem, /turf/simulated/open) || istype(elem, /turf/space))
-			T = elem
-			T.update_icon()
+	for (var/turf/T in turfs)
+		if (T.isTransparent)
+			T.update_icon(roundstart_update=TRUE)
 	return TRUE
-
 
 /atom/proc/update_openspace()
 	var/turf/T = GetAbove(src)
-	if(istype(T,/turf/simulated/open) || istype(T,/turf/space))
+	if (T && T.isTransparent)
 		T.update_icon()
 
 /turf/Entered(atom/movable/Obj, atom/OldLoc)

@@ -33,11 +33,28 @@
 		mind.current = src
 
 	loc = null
-	client.screen += lobby_image
 	my_client = client
 	sight |= SEE_TURFS
-	player_list |= src
+	GLOB.player_list |= src
 
 	new_player_panel()
 	if(client)
 		client.playtitlemusic()
+
+	if(!istype(lobby_image, /obj/effect/lobby_image))
+		var/the_type
+		if(isnull(lobby_image))
+			the_type = "(null)"
+		else if(isicon(lobby_image))		//All of these should be impossible, just catching possibilities.
+			the_type = "/icon"
+		else if(istext(lobby_image))
+			the_type = "(text)"
+		else if(isnum(lobby_image))
+			the_type = "(num)"
+		else if(istype(lobby_image, /datum))	//Already casted
+			the_type = "[lobby_image.type]"
+		else
+			the_type = "(UNKNOWN)"
+		crash_with("WARNING: lobby_image global variable was the wrong type \[[the_type]\] instead of the proper /obj/effect/lobby_image!")
+		lobby_image = new /obj/effect/lobby_image			//Ensures it's the right type.
+	client.screen += lobby_image

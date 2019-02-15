@@ -1,8 +1,6 @@
 #define SOLAR_MAX_DIST 40
 #define SOLARGENRATE 1500
 
-var/list/solars_list = list()
-
 /obj/machinery/power/solar
 	name = "solar panel"
 	desc = "A solar electrical generator."
@@ -101,14 +99,12 @@ var/list/solars_list = list()
 
 //calculates the fraction of the sunlight that the panel recieves
 /obj/machinery/power/solar/proc/update_solar_exposure()
-	if(!sun)
-		return
 	if(obscured)
 		sunfrac = 0
 		return
 
 	//find the smaller angle between the direction the panel is facing and the direction of the sun (the sign is not important here)
-	var/p_angle = min(abs(adir - sun.angle), 360 - abs(adir - sun.angle))
+	var/p_angle = min(abs(adir - SSsun.angle), 360 - abs(adir - SSsun.angle))
 
 	if(p_angle > 90)			// if facing more than 90deg from sun, zero output
 		sunfrac = 0
@@ -120,7 +116,7 @@ var/list/solars_list = list()
 /obj/machinery/power/solar/Process()//TODO: remove/add this from machines to save on processing as needed ~Carn PRIORITY
 	if(stat & BROKEN)
 		return
-	if(!sun || !control) //if there's no sun or the panel is not linked to a solar control computer, no need to proceed
+	if(!control) //if there's no panel is not linked to a solar control computer, no need to proceed
 		return
 
 	if(powernet)
@@ -178,8 +174,8 @@ var/list/solars_list = list()
 	var/turf/T = null
 
 	for(var/i = 1 to 20)		// 20 steps is enough
-		ax += sun.dx	// do step
-		ay += sun.dy
+		ax += SSsun.dx	// do step
+		ay += SSsun.dy
 
 		T = locate( round(ax,0.5),round(ay,0.5),z)
 
@@ -311,12 +307,12 @@ var/list/solars_list = list()
 
 /obj/machinery/power/solar_control/disconnect_from_network()
 	..()
-	solars_list.Remove(src)
+	SSsun.solars.Remove(src)
 
 /obj/machinery/power/solar_control/connect_to_network()
 	var/to_return = ..()
 	if(powernet) //if connected and not already in solar_list...
-		solars_list |= src //... add it
+		SSsun.solars |= src //... add it
 	return to_return
 
 //search for unconnected panels and trackers in the computer powernet and connect them
@@ -346,7 +342,7 @@ var/list/solars_list = list()
 				cdir = targetdir //...the current direction is the targetted one (and rotates panels to it)
 		if(2) // auto-tracking
 			if(connected_tracker)
-				connected_tracker.set_angle(sun.angle)
+				connected_tracker.set_angle(SSsun.angle)
 
 	set_panels(cdir)
 	updateDialog()
@@ -379,7 +375,7 @@ var/list/solars_list = list()
 /obj/machinery/power/solar_control/interact(mob/user)
 
 	var/t = "<B><span class='highlight'>Generated power</span></B> : [round(lastgen)] W<BR>"
-	t += "<B><span class='highlight'>Star Orientation</span></B>: [sun.angle]&deg ([angle2text(sun.angle)])<BR>"
+	t += "<B><span class='highlight'>Star Orientation</span></B>: [SSsun.angle]&deg ([angle2text(SSsun.angle)])<BR>"
 	t += "<B><span class='highlight'>Array Orientation</span></B>: [rate_control(src,"cdir","[cdir]&deg",1,15)] ([angle2text(cdir)])<BR>"
 	t += "<B><span class='highlight'>Tracking:</span></B><div class='statusDisplay'>"
 	switch(track)
@@ -480,7 +476,7 @@ var/list/solars_list = list()
 		track = text2num(href_list["track"])
 		if(track == 2)
 			if(connected_tracker)
-				connected_tracker.set_angle(sun.angle)
+				connected_tracker.set_angle(SSsun.angle)
 				set_panels(cdir)
 		else if (track == 1) //begin manual tracking
 			src.targetdir = src.cdir
@@ -490,7 +486,7 @@ var/list/solars_list = list()
 	if(href_list["search_connected"])
 		src.search_for_connected()
 		if(connected_tracker && track == 2)
-			connected_tracker.set_angle(sun.angle)
+			connected_tracker.set_angle(SSsun.angle)
 		src.set_panels(cdir)
 
 	interact(usr)
@@ -540,7 +536,7 @@ var/list/solars_list = list()
 	spawn(150) // Wait 15 seconds to ensure everything was set up properly (such as, powernets, solar panels, etc.
 		src.search_for_connected()
 		if(connected_tracker && track == 2)
-			connected_tracker.set_angle(sun.angle)
+			connected_tracker.set_angle(SSsun.angle)
 		src.set_panels(cdir)
 
 //

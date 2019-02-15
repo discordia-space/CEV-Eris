@@ -30,7 +30,7 @@
 
 /obj/screen/plane_master/game_world/backdrop(mob/mymob)
 	filters = list()
-	if(mymob.client && mymob.client.is_preference_enabled(/datum/client_preference/ambient_occlusion))
+	if(mymob.client && mymob.client.get_preference_value(/datum/client_preference/ambient_occlusion) == GLOB.PREF_YES)
 		filters += AMBIENT_OCCLUSION
 
 /obj/screen/plane_master/lighting
@@ -52,4 +52,8 @@
 /obj/screen/plane_master/parallax_white
 	name = "parallax whitifier plane master"
 	plane = PLANE_SPACE
+
+/obj/screen/plane_master/open_space_plane
+	name = "open space shadow plane"
+	plane = OPENSPACE_PLANE
 

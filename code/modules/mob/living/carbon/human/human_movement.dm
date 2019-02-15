@@ -1,17 +1,19 @@
 /mob/living/carbon/human/movement_delay()
+	if (istype(loc, /turf/space)) return MOVE_DELAY_BASE // It's hard to be slowed down in space by... anything
 
-	var/tally = 0
+	// Humans specifically are 1 delay unit SLOWER because shoes make them 1 delay unit FASTER.
+	var/tally = MOVE_DELAY_BASE+1
 
 	if(species.slowdown)
-		tally = species.slowdown
+		tally += species.slowdown
 
-	if (istype(loc, /turf/space)) return -1 // It's hard to be slowed down in space by... anything
+
 
 	if(embedded_flag)
 		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
 
 	if(CE_SPEEDBOOST in chem_effects)
-		return -1
+		return 0
 
 	var/health_deficiency = (maxHealth - health)
 	if(health_deficiency >= 40) tally += (health_deficiency / 25)
@@ -58,32 +60,29 @@
 	if(mRun in mutations)
 		tally = 0
 
-	return (tally+config.human_delay)
+	return tally
 
-/mob/living/carbon/human/Process_Spacemove(var/check_drift = 0)
+/mob/living/carbon/human/allow_spacemove(var/check_drift = 0)
 	//Can we act?
 	if(restrained())	return 0
 
 	//Do we have a working jetpack?
-	var/obj/item/weapon/tank/jetpack/thrust
-	if(back)
-		if(istype(back,/obj/item/weapon/tank/jetpack))
-			thrust = back
-		else if(istype(back,/obj/item/weapon/rig))
-			var/obj/item/weapon/rig/rig = back
-			for(var/obj/item/rig_module/maneuvering_jets/module in rig.installed_modules)
-				thrust = module.jets
-				break
+	var/obj/item/weapon/tank/jetpack/thrust = get_jetpack()
 
 	if(thrust)
-		if(((!check_drift) || (check_drift && thrust.stabilization_on)) && (!lying) && (thrust.allow_thrust(0.01, src)))
+		//The cost for stabilization is paid later
+		if (check_drift)
+			if (thrust.stabilization_on)
+				inertia_dir = 0
+				return TRUE
+			return FALSE
+		else if(thrust.allow_thrust(JETPACK_MOVE_COST, src))
 			inertia_dir = 0
-			return 1
+			return TRUE
 
 	//If no working jetpack then use the other checks
-	if(..())
-		return 1
-	return 0
+	. = ..()
+
 
 
 /mob/living/carbon/human/slip_chance(var/prob_slip = 5)
@@ -102,7 +101,7 @@
 
 	return prob_slip
 
-/mob/living/carbon/human/Check_Shoegrip()
+/mob/living/carbon/human/check_shoegrip()
 	if(species.flags & NO_SLIP)
 		return 1
 	if(shoes && (shoes.item_flags & NOSLIP) && istype(shoes, /obj/item/clothing/shoes/magboots))  //magboots + dense_object = no floating

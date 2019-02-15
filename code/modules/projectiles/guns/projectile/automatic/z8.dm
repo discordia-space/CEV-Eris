@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/automatic/z8
 	name = "FS AR 5.56x45mm \"Z8 Bulldog\""
-	desc = "The Z8 Bulldog is an older model bullpup carbine, made by Frozen Star. Uses armor piercing 5.56mm rounds. Makes you feel like a space marine when you hold it."
+	desc = "The Z8 Bulldog is an older model bullpup carbine, made by \"Frozen Star\". Uses armor piercing 5.56mm rounds. Makes you feel like a space marine when you hold it."
 	icon_state = "carbine"
 	item_state = "z8carbine"
 	w_class = ITEM_SIZE_LARGE
@@ -20,6 +20,7 @@
 
 	burst_delay = 4
 	firemodes = list(
+		FULL_AUTO_400,
 		list(mode_name="semiauto",       burst=1,    fire_delay=0,    move_delay=null, use_launcher=null, dispersion=null),
 		list(mode_name="3-round bursts", burst=3,    fire_delay=null, move_delay=6,    use_launcher=null, dispersion=list(0.0, 0.6, 0.6)),
 		list(mode_name="fire grenades",  burst=null, fire_delay=null, move_delay=null, use_launcher=1,    dispersion=null)

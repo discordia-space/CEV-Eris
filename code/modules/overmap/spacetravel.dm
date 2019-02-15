@@ -22,7 +22,7 @@ var/list/cached_space = list()
 
 /obj/effect/overmap/sector/temporary/proc/can_die(var/mob/observer)
 	testing("Checking if sector at [map_z[1]] can die.")
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M != observer && M.z in map_z)
 			testing("There are people on it.")
 			return 0
@@ -49,6 +49,9 @@ proc/get_deepspace(x,y)
 
 proc/overmap_spacetravel(var/turf/space/T, var/atom/movable/A)
 	if (!T || !A)
+		return
+
+	if(istype(A, /mob/observer/eye/aiEye))
 		return
 
 	var/obj/effect/overmap/M = map_sectors["[T.z]"]

@@ -85,7 +85,7 @@
 	if(stat & BROKEN)
 		return
 
-	if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
+	if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/modular_computer))
 		if(src.allowed(usr))
 			playsound(loc, 'sound/machines/id_swipe.ogg', 100, 1)
 			if(emagged)
@@ -134,7 +134,7 @@
 		settings[++settings.len] = list("category" = "Check misc. Lifeforms", "setting" = "check_anomalies", "value" = check_anomalies)
 		data["settings"] = settings
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "turret_control.tmpl", "Turret Controls", 500, 300)
 		ui.set_initial_data(data)
@@ -199,13 +199,13 @@
 	else if (enabled)
 		if (lethal)
 			icon_state = "control_kill"
-			set_light(1.5, 1,"#990000")
+			set_light(1.5, 1,COLOR_LIGHTING_RED_MACHINERY)
 		else
 			icon_state = "control_stun"
-			set_light(1.5, 1,"#FF9900")
+			set_light(1.5, 1,COLOR_LIGHTING_ORANGE_MACHINERY)
 	else
 		icon_state = "control_standby"
-		set_light(1.5, 1,"#003300")
+		set_light(1.5, 1,COLOR_LIGHTING_GREEN_MACHINERY)
 
 /obj/machinery/turretid/emp_act(severity)
 	if(enabled)

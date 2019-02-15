@@ -62,31 +62,33 @@
 
 // returns true if the area has power on given channel (or doesn't require power).
 // defaults to power_channel
-/obj/machinery/proc/powered(var/chan = -1) // defaults to power_channel
-
-	if(!src.loc)
-		return 0
-
+/obj/machinery/proc/powered(var/chan = power_channel) // defaults to power_channel
 	//Don't do this. It allows machines that set use_power to 0 when off (many machines) to
 	//be turned on again and used after a power failure because they never gain the NOPOWER flag.
 	//if(!use_power)
 	//	return 1
 
-	var/area/A = src.loc.loc		// make sure it's in an area
-	if(!A || !isarea(A))
-		return 0					// if not, then not powered
-	if(chan == -1)
-		chan = power_channel
-	return A.powered(chan)			// return power status of the area
+	var/area/A = get_area(src)
+	if(A)
+		return A.powered(chan)			// return power status of the area
+	return 0
 
 // increment the power usage stats for an area
-/obj/machinery/proc/use_power(var/amount, var/chan = -1) // defaults to power_channel
+/obj/machinery/proc/use_power(var/amount, var/chan = power_channel) // defaults to power_channel
 	var/area/A = get_area(src)		// make sure it's in an area
-	if(!A || !isarea(A))
-		return
-	if(chan == -1)
-		chan = power_channel
-	A.use_power(amount, chan)
+	if(A && A.powered(chan))
+		A.use_power(amount, chan)
+
+//sets the use_power var and then forces an area power update
+/obj/machinery/proc/update_use_power(var/new_use_power)
+	use_power = new_use_power
+
+/obj/machinery/proc/auto_use_power()
+	switch (use_power)
+		if (1)
+			use_power(idle_power_usage)
+		if (2)
+			use_power(active_power_usage)
 
 /obj/machinery/proc/power_change()		// called whenever the power settings of the containing area change
 										// by default, check equipment channel & set flag
@@ -200,16 +202,8 @@
 // if unmarked==1, only return those with no powernet
 /proc/power_list(var/turf/T, var/source, var/d, var/unmarked=0, var/cable_only = 0)
 	. = list()
-	var/fdir = (!d)? 0 : turn(d, 180)			// the opposite direction to d (or 0 if d==0)
-///// Z-Level Stuff
-	var/Zdir
-	if(d==11)
-		Zdir = 11
-	else if (d==12)
-		Zdir = 12
-	else
-		Zdir = 999
-///// Z-Level Stuff
+
+	var/reverse = d ? reverse_dir[d] : 0
 	for(var/AM in T)
 		if(AM == source)	continue			//we don't want to return source
 
@@ -225,17 +219,13 @@
 			var/obj/structure/cable/C = AM
 
 			if(!unmarked || !C.powernet)
-///// Z-Level Stuff
-				if(C.d1 == fdir || C.d2 == fdir || C.d1 == Zdir || C.d2 == Zdir)
-///// Z-Level Stuff
-					. += C
-				else if(C.d1 == d || C.d2 == d)
+				if(C.d1 == d || C.d2 == d || C.d1 == reverse || C.d2 == reverse )
 					. += C
 	return .
 
 //remove the old powernet and replace it with a new one throughout the network.
 /proc/propagate_network(var/obj/O, var/datum/powernet/PN)
-	//world.log << "propagating new network"
+	//log_world("propagating new network")
 	var/list/worklist = list()
 	var/list/found_machines = list()
 	var/index = 1
@@ -297,7 +287,9 @@
 //power_source is a source of electricity, can be powercell, area, apc, cable, powernet or null
 //source is an object caused electrocuting (airlock, grille, etc)
 //No animations will be performed by this proc.
-/proc/electrocute_mob(mob/living/carbon/M as mob, var/power_source, var/obj/source, var/siemens_coeff = 1.0)
+/proc/electrocute_mob(mob/living/carbon/M as mob, var/power_source, var/obj/source, var/siemens_coeff = 1.0, var/hands = TRUE)
+	if (!M || !(istype(M)))
+		return
 	if(istype(M.loc,/obj/mecha))	return 0	//feckin mechs are dumb
 	var/area/source_area
 	if(istype(power_source,/area))
@@ -332,9 +324,10 @@
 		var/mob/living/carbon/human/H = M
 		if(H.species.siemens_coefficient == 0)
 			return
-		if(H.gloves)
+		if(hands && H.gloves)
 			var/obj/item/clothing/gloves/G = H.gloves
 			if(G.siemens_coefficient == 0)	return 0		//to avoid spamming with insulated glvoes on
+
 
 	//Checks again. If we are still here subject will be shocked, trigger standard 20 tick warning
 	//Since this one is longer it will override the original one.

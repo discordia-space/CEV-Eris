@@ -1,6 +1,6 @@
 /obj/item/weapon/grenade/flashbang
 	name = "FS FBG \"Serra\""
-	desc = "Frozen Star flashbang grenade. If in any doubt - use it"
+	desc = "A \"Frozen Star\" flashbang grenade. If in any doubt - use it."
 	icon_state = "flashbang"
 	item_state = "flashbang"
 	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 1)
@@ -82,7 +82,7 @@
 	//This really should be in mob not every check
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
+		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[BP_EYES]
 		if (E && E.damage >= E.min_bruised_damage)
 			M << SPAN_DANGER("Your eyes start to burn badly!")
 	if (M.ear_damage >= 15)

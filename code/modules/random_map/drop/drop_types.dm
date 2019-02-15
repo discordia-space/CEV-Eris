@@ -22,12 +22,6 @@ var/global/list/datum/supply_drop_loot/supply_drop
 /datum/supply_drop_loot/dd_SortValue()
 	return name
 
-/datum/supply_drop_loot/supermatter
-	name = "Supermatter"
-/datum/supply_drop_loot/supermatter/New()
-	..()
-	contents = list(/obj/machinery/power/supermatter)
-
 /datum/supply_drop_loot/lasers
 	name = "Lasers"
 	container = /obj/structure/largecrate
@@ -155,21 +149,6 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/item/weapon/storage/box/syringes,
 		/obj/item/weapon/storage/box/autoinjectors)
 
-/datum/supply_drop_loot/power
-	name = "Power"
-	container = /obj/structure/largecrate
-/datum/supply_drop_loot/power/New()
-	..()
-	contents = list(
-		/obj/item/stack/material/steel,
-		/obj/item/stack/material/steel,
-		/obj/item/stack/material/steel,
-		/obj/item/stack/material/glass,
-		/obj/item/stack/material/glass,
-		/obj/item/stack/material/wood,
-		/obj/item/stack/material/plastic,
-		/obj/item/stack/material/glass/reinforced,
-		/obj/item/stack/material/plasteel)
 
 /datum/supply_drop_loot/hydroponics
 	name = "Hydroponics"

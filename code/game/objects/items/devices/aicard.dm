@@ -7,7 +7,7 @@
 	slot_flags = SLOT_BELT
 	var/flush = null
 	origin_tech = list(TECH_DATA = 4, TECH_MATERIAL = 4)
-
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	var/mob/living/silicon/ai/carded_ai
 
 /obj/item/device/aicard/attack(mob/living/silicon/decoy/M as mob, mob/user as mob)
@@ -21,7 +21,7 @@
 
 	ui_interact(user)
 
-/obj/item/device/aicard/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = inventory_state)
+/obj/item/device/aicard/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state =GLOB.inventory_state)
 	var/data[0]
 	data["has_ai"] = carded_ai != null
 	if(carded_ai)
@@ -39,7 +39,7 @@
 		data["laws"] = laws
 		data["has_laws"] = laws.len
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "aicard.tmpl", "[name]", 600, 400, state = state)
 		ui.set_initial_data(data)

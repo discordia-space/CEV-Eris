@@ -106,9 +106,9 @@
 					body += "and their partner announced the birth of their [pick("first","second","third")] child on [affected_dest.name] early this morning. \
 					Doctors say the child is well, and the parents are considering "
 					if(prob(50))
-						body += capitalize(pick(first_names_female))
+						body += capitalize(pick(GLOB.first_names_female))
 					else
-						body += capitalize(pick(first_names_male))
+						body += capitalize(pick(GLOB.first_names_male))
 					body += " for the name."
 				else if(prob(50))
 					body += "announced their [pick("split","break up","marriage","engagement")] with [pick("TV host","webcast personality","superstar","model","actor","singer")] \
@@ -139,8 +139,8 @@
 	"Pens proclaim pencils obsolete, 'lead is dead'.",\
 	"Rock and paper sues scissors for discrimination.",\
 	"Steak tell-all book reveals he never liked sitting by potato.",\
-	"Woodchuck stops counting how many times he’s chucked 'Never again'.",\
-	"[affected_dest.name] clerk first person able to pronounce '@*$%!'.",\
+	"Woodchuck stops counting how many times heï¿½s chucked 'Never again'.",\
+	"[affected_dest.name] clerk first person able to pronounce '@*[CREDS]%!'.",\
 	"[affected_dest.name] delis serving boiled paperback dictionaries, 'Adjectives chewy' customers declare.",\
 	"[affected_dest.name] weather deemed 'boring'; meteors and rad storms to be imported.",\
 	"Most [affected_dest.name] security officers prefer cream over sugar.",\
@@ -153,8 +153,8 @@
 	"[pick("Unathi","Spacer")] gets tattoo of Nyx on chest '[pick("[boss_short]","star","starship","asteroid")] tickles most'.",\
 	"Chef reports successfully using harmonica as cheese grater.",\
 	"[company_name] invents handkerchief that says 'Bless you' after sneeze.",\
-	"Clone accused of posing for other clones’s school photo.",\
-	"Clone accused of stealing other clones’s employee of the month award.",\
+	"Clone accused of posing for other clonesï¿½s school photo.",\
+	"Clone accused of stealing other clonesï¿½s employee of the month award.",\
 	"Woman robs station with hair dryer; crewmen love new style.",\
 	"This space for rent.",\
 	"[affected_dest.name] Baker Wins Pickled Crumpet Toss Three Years Running",\

@@ -11,10 +11,13 @@
 	icon_state = "generator0"
 	density = 1
 	anchored = 0
+
+	var/needs_update = FALSE //If true, will update in process
+
 	var/datum/wires/shield_generator/wires
 	var/list/field_segments = list()	// List of all shield segments owned by this generator.
 	var/list/damaged_segments = list()	// List of shield segments that have failed and are currently regenerating.
-	var/list/event_log() = list()				// List of relevant events for this shield
+	var/list/event_log = list()			// List of relevant events for this shield
 	var/max_log_entries = 200			// A safety to prevent players generating endless logs and maybe endangering server memory
 
 	var/shield_modes = 0				// Enabled shield mode flags
@@ -38,8 +41,9 @@
 	var/list/mode_list = null			// A list of shield_mode datums.
 	var/emergency_shutdown = FALSE		// Whether the generator is currently recovering from an emergency shutdown
 	var/list/default_modes = list()
-	// The shield mode flags which should be enabled on this generator by default
+	var/generatingShield = FALSE //true when shield tiles are in process of being generated
 
+	// The shield mode flags which should be enabled on this generator by default
 
 	var/list/allowed_modes = list(MODEFLAG_HYPERKINETIC,
 									MODEFLAG_PHOTONIC,
@@ -130,6 +134,7 @@
 /obj/machinery/power/shield_generator/proc/shutdown_field()
 	for(var/obj/effect/shield/S in field_segments)
 		qdel(S)
+		CHECK_TICK
 
 	running = SHIELD_OFF
 	mitigation_em = 0
@@ -140,12 +145,19 @@
 
 // Generates the field objects. Deletes existing field, if applicable.
 /obj/machinery/power/shield_generator/proc/regenerate_field()
+	needs_update = FALSE
+	if (generatingShield)
+		return
+	generatingShield = TRUE
+
 	if(field_segments.len)
 		for(var/obj/effect/shield/S in field_segments)
 			qdel(S)
+			CHECK_TICK
 
 	// The generator is not turned on, so don't generate any new tiles.
 	if(!running)
+		generatingShield = FALSE
 		return
 
 	var/list/shielded_turfs
@@ -155,12 +167,38 @@
 	else
 		shielded_turfs = fieldtype_square()
 
-	for(var/turf/T in shielded_turfs)
-		var/obj/effect/shield/S = new(T)
-		S.gen = src
-		S.flags_updated()
-		field_segments |= S
+	if(check_flag(MODEFLAG_HULL))
+		var/isFloor
+		for(var/turf/T in shielded_turfs)
+			if (T.diffused)
+				continue
+			isFloor = TRUE
+			for(var/turf/TN in orange(1, T))
+				if (!turf_is_external(TN) || !TN.CanPass(target = TN))
+					isFloor = FALSE
+					break
+
+			var/obj/effect/shield/S
+			if (isFloor)
+				S = new/obj/effect/shield/floor(T)
+			else
+				S = new/obj/effect/shield(T)
+			S.gen = src
+			S.flags_updated()
+			field_segments |= S
+
+			CHECK_TICK
+	else
+		for(var/turf/T in shielded_turfs)
+			var/obj/effect/shield/S = new(T)
+			S.gen = src
+			S.flags_updated()
+			field_segments |= S
+			CHECK_TICK
+
 	update_icon()
+
+	generatingShield = FALSE
 
 
 // Recalculates and updates the upkeep multiplier
@@ -224,6 +262,9 @@
 	else if (field_integrity() > 5)
 		overloaded = 0
 
+	if (needs_update)
+		regenerate_field()
+
 
 /obj/machinery/power/shield_generator/attackby(obj/item/O as obj, mob/user as mob)
 	// Prevents dismantle-rebuild tactics to reset the emergency shutdown timer.
@@ -283,7 +324,7 @@
 	data["shutdown"] = emergency_shutdown
 
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "shieldgen.tmpl", src.name, 650, 800)
 		ui.set_initial_data(data)
@@ -457,6 +498,7 @@
 	update_upkeep_multiplier()
 	for(var/obj/effect/shield/S in field_segments)
 		S.flags_updated()
+		CHECK_TICK
 
 	if((flag & (MODEFLAG_HULL|MODEFLAG_MULTIZ)) && running)
 		regenerate_field()
@@ -489,11 +531,7 @@
 		)))
 	return all_logs
 
-
-// These two procs determine tiles that should be shielded given the field range. They are quite CPU intensive and may trigger BYOND infinite loop checks, therefore they are set
-// as background procs to prevent locking up the server. They are only called when the field is generated, or when hull mode is toggled on/off.
 /obj/machinery/power/shield_generator/proc/fieldtype_square()
-	set background = 1
 	var/list/out = list()
 	var/list/base_turfs = get_base_turfs()
 
@@ -506,6 +544,7 @@
 			T = locate(gen_turf.x + x_offset, gen_turf.y + field_radius, gen_turf.z)
 			if(T)
 				out += T
+			CHECK_TICK
 
 		for (var/y_offset = -field_radius+1; y_offset < field_radius; y_offset++)
 			T = locate(gen_turf.x - field_radius, gen_turf.y + y_offset, gen_turf.z)
@@ -514,30 +553,25 @@
 			T = locate(gen_turf.x + field_radius, gen_turf.y + y_offset, gen_turf.z)
 			if(T)
 				out += T
+			CHECK_TICK
 	return out
 
-
 /obj/machinery/power/shield_generator/proc/fieldtype_hull()
-	set background = 1
-	. = list()
+	var/list/turf/valid_turfs = list()
 	var/list/base_turfs = get_base_turfs()
 
-
-
-
 	for(var/turf/gen_turf in base_turfs)
-		var/area/TA = null // Variable for area checking. Defining it here so memory does not have to be allocated repeatedly.
 		for(var/turf/T in trange(field_radius, gen_turf))
-			// Don't expand to space or on shuttle areas.
-			if(istype(T, /turf/space) || istype(T, /turf/simulated/open))
+			if(istype(T, /turf/space))
 				continue
 
-			// Find adjacent space/shuttle tiles and cover them. Shuttles won't be blocked if shield diffuser is mapped in and turned on.
 			for(var/turf/TN in orange(1, T))
-				TA = get_area(TN)
-				if ((istype(TN, /turf/space) || (istype(TN, /turf/simulated/open) && (istype(TA, /area/space) || TA.flags & AREA_FLAG_EXTERNAL))))
-					. |= TN
-					continue
+				if (turf_is_external(TN))
+					valid_turfs |= TN
+
+			CHECK_TICK
+
+	return valid_turfs
 
 // Returns a list of turfs from which a field will propagate. If multi-Z mode is enabled, this will return a "column" of turfs above and below the generator.
 /obj/machinery/power/shield_generator/proc/get_base_turfs()
@@ -684,7 +718,6 @@
 
 		//If we're over the limit, cut the oldest entry
 		if (event_log.len > max_log_entries)
-			world << "Too many logs, pruning"
 			event_log.Cut(1,2)
 
 

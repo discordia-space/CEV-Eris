@@ -1,5 +1,6 @@
-s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
-#define SANITIZE_LATHE_COST(n) max(1, n) // helps to fix prices where "* mat_efficiency" is used.
+
+#define SANITIZE_LATHE_COST(n) round(n * mat_efficiency, 0.01)
+
 
 #define ERR_OK 0
 #define ERR_NOTFOUND 1
@@ -73,7 +74,7 @@ s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
 	return ..()
 
 
-/obj/machinery/autolathe/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/autolathe/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = 0)
 	var/list/data = list()
 
 	data["disk"] = disk_name()
@@ -86,13 +87,14 @@ s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
 	for(var/rtype in recipe_list())
 		var/datum/autolathe/recipe/R = autolathe_recipes[rtype]
 		var/list/LE = list("name" = capitalize(R.name), "type" = "[rtype]", "time" = R.time)
+		LE["icon"] = cacheAtomIcon(R.path, user, TRUE)
 
 		if(unfolded == "[rtype]")
 			LE["unfolded"] = TRUE
 
 			var/text = ""
 			for(var/m in R.resources)
-				text += "[m]: [SANITIZE_LATHE_COST(round(R.resources[m] * mat_efficiency))]<br>"
+				text += "[m]: [SANITIZE_LATHE_COST(R.resources[m])]<br>"
 			LE["resources"] = text == "" ? "None" : text
 
 			text = ""
@@ -142,7 +144,7 @@ s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
 
 		var/list/RS = list()
 		for(var/mat in R.resources)
-			RS.Add(list(list("name" = mat, "req" = SANITIZE_LATHE_COST(round(R.resources[mat] * mat_efficiency)))))
+			RS.Add(list(list("name" = mat, "req" = SANITIZE_LATHE_COST(R.resources[mat]))))
 
 		data["req_materials"] = RS
 
@@ -190,7 +192,7 @@ s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
 	data["queue_len"] = queue.len
 	data["queue_max"] = queue_max
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
@@ -200,13 +202,18 @@ s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
 		// open the new ui window
 		ui.open()
 
-
 /obj/machinery/autolathe/attackby(var/obj/item/I, var/mob/user)
 	if(default_deconstruction(I, user))
 		return
 
 	if(default_part_replacement(I, user))
 		return
+
+	if(istype(I, /obj/item/weapon/disk/autolathe_disk))
+		insert_disk(user)
+
+	if(istype(I,/obj/item/stack))
+		eat(user)
 
 	user.set_machine(src)
 	ui_interact(user)
@@ -269,6 +276,19 @@ s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
 		if(recipe)
 			if(queue.len < queue_max)
 				queue.Add(recipe)
+			else
+				usr << SPAN_NOTICE(" \The [src]'s queue is full.")
+
+	if(href_list["add_to_queue_several"])
+		var/recipe = text2path(href_list["add_to_queue_several"])
+		if(recipe)
+			var/datum/autolathe/recipe/R = recipe
+			var/amount = input("How many \"[initial(R.name)]\" you want to print ?", "Print several") as null|num
+			if(amount && (queue.len + amount) < queue_max)
+				for(var/i = 1, i <= amount, i++)
+					queue.Add(recipe)
+			else if (amount)
+				usr << SPAN_NOTICE("Not enough free postions in \the [src]'s queue.")
 
 	if(href_list["remove_from_queue"])
 		var/ind = text2num(href_list["remove_from_queue"])
@@ -299,7 +319,7 @@ s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
 		else
 			unfolded = href_list["unfold"]
 
-	nanomanager.update_uis(src)
+	SSnano.update_uis(src)
 
 /obj/machinery/autolathe/proc/insert_disk(var/mob/living/user)
 	if(!istype(user))
@@ -320,7 +340,7 @@ s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
 		user.unEquip(eating, src)
 		disk = eating
 		user << SPAN_NOTICE("You put \the [eating] into the autolathe.")
-		nanomanager.update_uis(src)
+		SSnano.update_uis(src)
 
 
 /obj/machinery/autolathe/proc/insert_beaker(var/mob/living/user)
@@ -339,7 +359,7 @@ s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
 		user.unEquip(eating, src)
 		container = eating
 		user << SPAN_NOTICE("You put \the [eating] into the autolathe.")
-		nanomanager.update_uis(src)
+		SSnano.update_uis(src)
 
 /obj/machinery/autolathe/proc/eat(var/mob/living/user)
 	if(!istype(user))
@@ -361,7 +381,13 @@ s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
 
 	if(!eating.matter || !eating.matter.len)
 		user << SPAN_NOTICE("\The [eating] does not contain significant amounts of useful materials and cannot be accepted.")
-		return
+		return FALSE
+
+	if(istype(eating, /obj/item/weapon/disk/autolathe_disk))
+		var/obj/item/weapon/disk/autolathe_disk/disk = eating
+		if(disk.license)
+			user << SPAN_NOTICE("\The [src] refuses to accept \the [eating] as it has non-null license.")
+			return
 
 	var/filltype = 0       // Used to determine message.
 	var/reagents_filltype = 0
@@ -369,15 +395,16 @@ s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
 	var/mass_per_sheet = 0 // Amount of material constituting one sheet.
 
 	for(var/obj/O in eating.GetAllContents(includeSelf = TRUE))
-		if(O.matter && O.matter.len)
-			for(var/material in O.matter)
+		var/list/_matter = O.get_matter()
+		if(_matter)
+			for(var/material in _matter)
 				if(!(material in stored_material))
 					stored_material[material] = 0
 
 				if(stored_material[material] >= storage_capacity)
 					continue
 
-				var/total_material = round(O.matter[material])
+				var/total_material = _matter[material]
 
 				//If it's a stack, we eat multiple sheets.
 				if(istype(O,/obj/item/stack))
@@ -409,7 +436,7 @@ s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
 		if(O.reagents && container)
 			O.reagents.trans_to(container, O.reagents.total_volume)
 
-	if(!filltype)
+	if(!filltype && !reagents_filltype)
 		user << SPAN_NOTICE("\The [src] is full. Please remove material from the autolathe in order to insert more.")
 		return
 	else if(filltype == 1)
@@ -473,6 +500,9 @@ s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
 	return
 
 /obj/machinery/autolathe/proc/print_post()
+	if(!queue.len)
+		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1 -3)
+		visible_message("\icon[src]\The [src] pings indicating that queue is complete.")
 	return
 
 
@@ -493,7 +523,7 @@ s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
 			if(!(rmat in stored_material))
 				return ERR_NOMATERIAL
 
-			if(stored_material[rmat] < SANITIZE_LATHE_COST(round(R.resources[rmat] * mat_efficiency)))
+			if(stored_material[rmat] < SANITIZE_LATHE_COST(R.resources[rmat]))
 				return ERR_NOMATERIAL
 
 		if(R.reagents.len)
@@ -557,7 +587,7 @@ s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
 	fix_queue()
 	special_process()
 	update_icon()
-	nanomanager.update_uis(src)
+	SSnano.update_uis(src)
 
 
 
@@ -577,7 +607,7 @@ s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
 		return FALSE
 
 	for(var/material in R.resources)
-		stored_material[material] = max(0, stored_material[material] - SANITIZE_LATHE_COST(round(R.resources[material] * mat_efficiency)))
+		stored_material[material] = max(0, stored_material[material] - SANITIZE_LATHE_COST(R.resources[material]))
 
 	for(var/reagent in R.reagents)
 		container.reagents.remove_reagent(reagent, R.reagents[reagent])
@@ -614,22 +644,57 @@ s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
 	queue = Q
 
 
+//Autolathes can eject decimal quantities of material as a shard
 /obj/machinery/autolathe/proc/eject(var/material, var/amount)
 	if(!(material in stored_material))
+		return
+
+
+	if (!amount)
 		return
 
 	var/material/M = get_material_by_name(material)
 
 	if(!M.stack_type)
 		return
+	amount = min(amount, stored_material[material])
 
-	var/eject = stored_material[material]
-	eject = amount == -1 ? eject : min(eject, amount)
-	if(eject < 1)
-		return
-	var/obj/item/stack/material/S = new M.stack_type(loc)
-	S.amount = eject
-	stored_material[material] -= eject
+	var/whole_amount = round(amount)
+	var/remainder = amount - whole_amount
+
+
+	if (whole_amount)
+		var/obj/item/stack/material/S = new M.stack_type(get_turf(src))
+
+		//Accounting for the possibility of too much to fit in one stack
+		if (whole_amount <= S.max_amount)
+			S.amount = whole_amount
+		else
+			//There's too much, how many stacks do we need
+			var/fullstacks = round(whole_amount / S.max_amount)
+			//And how many sheets leftover for this stack
+			S.amount = whole_amount % S.max_amount
+
+			for(var/i = 0; i < fullstacks; i++)
+				var/obj/item/stack/material/MS = new M.stack_type(get_turf(src))
+				MS.amount = MS.max_amount
+
+
+	//And if there's any remainder, we eject that as a shard
+	if (remainder)
+		new /obj/item/weapon/material/shard(loc, material, _amount = remainder)
+
+	//The stored material gets the amount (whole+remainder) subtracted
+	stored_material[material] -= amount
+
+
+/obj/machinery/autolathe/dismantle()
+
+	for(var/mat in stored_material)
+		eject(mat, stored_material[mat])
+
+	..()
+	return 1
 
 //Updates overall lathe storage size.
 /obj/machinery/autolathe/RefreshParts()
@@ -646,26 +711,7 @@ s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
 	speed = man_rating*3
 	mat_efficiency = 1.1 - man_rating * 0.1// Normally, price is 1.25 the amount of material, so this shouldn't go higher than 0.8. Maximum rating of parts is 3
 
-/obj/machinery/autolathe/dismantle()
 
-	for(var/mat in stored_material)
-		var/material/M = get_material_by_name(mat)
-		if(!istype(M) || stored_material[mat] <= 0)
-			continue
-
-		var/obj/item/stack/material/S = new M.stack_type(get_turf(src))
-
-		if(S.max_amount <= stored_material[mat])
-			S.amount = stored_material[mat]
-		else
-			var/fullstacks = stored_material[mat] / S.max_amount
-			S.amount = stored_material[mat] % S.max_amount
-			for(var/i = 0; i < fullstacks; i++)
-				var/obj/item/stack/material/MS = new M.stack_type(get_turf(src))
-				MS.amount = MS.max_amount
-
-	..()
-	return 1
 
 
 //Cancels the current construction
@@ -736,5 +782,4 @@ s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
 #undef ERR_NOMATERIAL
 #undef ERR_NOREAGENT
 #undef ERR_NOLICENSE
-
 #undef SANITIZE_LATHE_COST

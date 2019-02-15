@@ -8,6 +8,7 @@
 		density = 1
 		req_access = list(access_engine_equip)
 		circuit = /obj/item/weapon/circuitboard/shieldwallgen
+		var/shield_type = /obj/machinery/shieldwall //Overridden by excelsior variant
 		var/active = 0
 		var/power = 0
 		var/state = 0
@@ -173,7 +174,7 @@
 	T = src.loc
 	for(var/dist = 1, dist <= get_dist(src, G)-1, dist += 1) // creates each field tile
 		T = get_step(T, f_dir)
-		var/obj/machinery/shieldwall/CF = new/obj/machinery/shieldwall/(src, G) //(ref to this gen, ref to connected gen)
+		var/obj/machinery/shieldwall/CF = new shield_type(src, G) //(ref to this gen, ref to connected gen)
 		CF.loc = T
 		CF.set_dir(f_dir)
 
@@ -223,7 +224,7 @@
 				src.anchored = 0
 				return
 
-	if(istype(I, /obj/item/weapon/card/id) || istype(I, /obj/item/device/pda))
+	if(istype(I, /obj/item/weapon/card/id) || istype(I, /obj/item/modular_computer))
 		if (src.allowed(user))
 			src.locked = !src.locked
 			user << "Controls are now [src.locked ? "locked." : "unlocked."]"

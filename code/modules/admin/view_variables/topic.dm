@@ -156,9 +156,9 @@
 		if(!check_rights(R_DEBUG|R_SERVER))
 			return
 
-		var/obj/O = locate(href_list["delall"])
-		if(!isobj(O))
-			usr << "This can only be used on instances of type /obj"
+		var/atom/movable/O = locate(href_list["delall"])
+		if(!istype(O))
+			usr << "This can only be used on instances of type /atom/movable"
 			return
 
 		var/action_type = alert("Strict type ([O.type]) or type and all subtypes?",,"Strict type","Type and subtypes","Cancel")
@@ -175,7 +175,7 @@
 		switch(action_type)
 			if("Strict type")
 				var/i = 0
-				for(var/obj/Obj in world)
+				for(var/atom/movable/Obj in world)
 					if(Obj.type == O_type)
 						i++
 						qdel(Obj)
@@ -186,7 +186,7 @@
 				message_admins(SPAN_NOTICE("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted)"))
 			if("Type and subtypes")
 				var/i = 0
-				for(var/obj/Obj in world)
+				for(var/atom/movable/Obj in world)
 					if(istype(Obj,O_type))
 						i++
 						qdel(Obj)
@@ -475,7 +475,7 @@
 			usr << "This can only be done on mobs with clients"
 			return
 
-		nanomanager.close_uis(H)
+		SSnano.close_uis(H)
 		H.client.cache.Cut()
 		var/datum/asset/assets = get_asset_datum(/datum/asset/nanoui)
 		assets.send(H)
@@ -528,6 +528,29 @@
 		var/datum/D = locate(href_list["call_proc"])
 		if(istype(D) || istype(D, /client)) // can call on clients too, not just datums
 			callproc_targetpicked(1, D)
+
+	else if(href_list["teleport_here"])
+		if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
+			return
+
+		var/atom/movable/A = locate(href_list["teleport_here"])
+		if(!istype(A))
+			to_chat(usr, "This can only be done to instances of movable atoms.")
+			return
+
+		var/turf/T = get_turf(usr)
+		A.forceMove(T)
+
+	else if(href_list["teleport_to"])
+		if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
+			return
+
+		var/atom/A = locate(href_list["teleport_to"])
+		if(!istype(A))
+			to_chat(usr, "This can only be done to instances of atoms.")
+			return
+
+		usr.forceMove(get_turf(A))
 
 	if(href_list["datumrefresh"])
 		var/datum/DAT = locate(href_list["datumrefresh"])

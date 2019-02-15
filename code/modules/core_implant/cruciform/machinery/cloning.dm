@@ -9,7 +9,7 @@
 #define ANIM_CLOSE -1
 
 /obj/machinery/neotheology/cloner
-	name = "NeoTheology's clonpod"
+	name = "NeoTheology's clonepod"
 	desc = "The newest design and God's gift from NeoTheology, this automatic machine will return the flesh to the spirit in no time."
 	icon = 'icons/obj/neotheology_pod.dmi'
 	icon_state = "preview"
@@ -33,7 +33,8 @@
 	var/progress = 0
 
 	var/time_multiplier = 1	//Try to avoid use of non integer values
-	var/biomass_multiplier = 1
+
+	var/biomass_consumption = 2
 
 	var/image/anim0 = null
 	var/image/anim1 = null
@@ -195,6 +196,15 @@
 
 		progress++
 		var/progress_percent = get_progress()
+
+		if(progress <= CLONING_DONE)
+			if(container)
+				if(container.biomass - biomass_consumption < 0)
+					stop()
+				else
+					container.biomass -= biomass_consumption
+			else
+				stop()
 
 		if(occupant && ishuman(occupant))
 			occupant.setCloneLoss(CLONING_DONE-progress_percent)
@@ -362,7 +372,7 @@
 
 /obj/machinery/neotheology/biomass_container/New()
 	..()
-	if(!(ticker && ticker.current_state == GAME_STATE_PLAYING))
+	if(SSticker.current_state != GAME_STATE_PLAYING)
 		biomass = 300
 
 /obj/machinery/neotheology/biomass_container/RefreshParts()
@@ -388,16 +398,16 @@
 	if(default_part_replacement(I, user))
 		return
 
-	if(istype(I, /obj/item/weapon/reagent_containers/food/snacks/meat))
-		if(biomass >= biomass_max)
-			user << SPAN_NOTICE("\The [src] is full.")
-			return
-		user << SPAN_NOTICE("You put [I] into [src]'s load hatch.")
-		biomass += 50
-		user.drop_item()
-		qdel(I)
-
-	src.add_fingerprint(user)
+	for(var/type in BIOMASS_TYPES)
+		if(istype(I,type))
+			if(biomass >= biomass_max)
+				user << SPAN_NOTICE("\The [src] is full.")
+				return
+			user << SPAN_NOTICE("You put [I] into [src]'s load hatch.")
+			biomass += BIOMASS_TYPES[type]
+			user.drop_item()
+			qdel(I)
+	
 
 /obj/machinery/neotheology/biomass_container/update_icon()
 	overlays.Cut()

@@ -39,6 +39,7 @@
 	density = 0
 	storage_capacity = (MOB_MEDIUM * 2) - 1
 	var/contains_body = 0
+	layer = LOW_OBJ_LAYER+0.01
 
 /obj/structure/closet/body_bag/attackby(W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/pen))

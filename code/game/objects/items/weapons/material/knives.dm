@@ -9,6 +9,7 @@
 	attack_verb = list("patted", "tapped")
 	force_divisor = 0.25 // 15 when wielded with hardness 60 (steel)
 	thrown_force_divisor = 0.25 // 5 when thrown with weight 20 (steel)
+	structure_damage_factor = STRUCTURE_DAMAGE_BLADE
 
 /obj/item/weapon/material/butterfly/update_force()
 	if(active)
@@ -65,6 +66,7 @@
 	unbreakable = 1
 	slot_flags = SLOT_BELT
 	tool_qualities = list(QUALITY_CUTTING = 20,  QUALITY_WIRE_CUTTING = 10)
+	structure_damage_factor = STRUCTURE_DAMAGE_BLADE
 
 /obj/item/weapon/material/knife/boot
 	name = "boot knife"
@@ -79,6 +81,7 @@
 	desc = "A sharp, metal hook what sticks into things."
 	icon_state = "hook_knife"
 	item_state = "hook_knife"
+	embed_mult = 1.5 //This is designed for embedding
 
 /obj/item/weapon/material/knife/ritual
 	name = "ritual knife"
@@ -96,7 +99,7 @@
 
 /obj/item/weapon/material/knife/neotritual
 	name = "NeoTheology ritual knife"
-	desc = "Cyberchristians priests use this for ending followers agony. When nothing can help, and only new body can bring salvation, use this."
+	desc = "The sweet embrace of mercy, for relieving the soul from a tortured vessel."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "neot-knife"
 	item_state = "knife"

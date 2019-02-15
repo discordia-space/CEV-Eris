@@ -15,7 +15,7 @@ var/prison_shuttle_timeleft = 0
 	icon = 'icons/obj/computer.dmi'
 	icon_keyboard = "security_key"
 	icon_screen = "syndishuttle"
-	light_color = "#00ffff"
+	light_color = COLOR_LIGHTING_SCI_BRIGHT
 	req_access = list(access_security)
 	circuit = /obj/item/weapon/circuitboard/prison_shuttle
 	var/temp = null
@@ -143,7 +143,7 @@ var/prison_shuttle_timeleft = 0
 
 
 	proc/post_signal(var/command)
-		var/datum/radio_frequency/frequency = radio_controller.return_frequency(1311)
+		var/datum/radio_frequency/frequency = SSradio.return_frequency(1311)
 		if(!frequency) return
 		var/datum/signal/status_signal = new
 		status_signal.source = src

@@ -1,25 +1,41 @@
-/datum/ritual/inquisitor
+/*
+	Powers contained here:
+	Penance: Deals large amounts of harmless pain to a target disciple
+	//Obey: Second step of a two-part process to enslave a disciple with an Obey module
+	Convalescence: Moderately powerful selfheal
+	Succour: Heals a target disciple within arms reach
+	Scrying: Look through the eyes of a target disciple.  Global range, expensive and limited duration
+	Sending: Send a telepathic message to a specific disciple. Global range
+	Initiation: Promotes a disciple to a preacher
+	Knowledge: Checks remaining telecrystals (Inquisitor also has a traitor uplink)
+	Bounty: Calls up the uplink to order supplies
+*/
+/datum/ritual/cruciform/inquisitor
 	name = "inquisitor"
 	implant_type = /obj/item/weapon/implant/core_implant/cruciform
-	success_message = "On the verge of audibility you hear pleasant music, your mind clears up and the spirit grows stronger. Your prayer was heard."
-	fail_message = "Cruciform on your chest is getting cold and pricks your skin."
 	category = "Inquisitor"
+	power = 30
 
-
-/datum/ritual/targeted/inquisitor
+/datum/ritual/targeted/cruciform/inquisitor
 	name = "inquisitor targeted"
 	implant_type = /obj/item/weapon/implant/core_implant/cruciform
-	success_message = "On the verge of audibility you hear pleasant music, your mind clears up and the spirit grows stronger. Your prayer was heard."
-	fail_message = "Cruciform on your chest is getting cold and pricks your skin."
 	category = "Inquisitor"
+	power = 30
 
 
-/datum/ritual/targeted/inquisitor/whip
-	name = "Retribution"
+
+
+/*
+	Penance
+	Deals pain damage to a targeted disciple
+*/
+/datum/ritual/targeted/cruciform/inquisitor/penance
+	name = "Penance"
 	phrase = "Mihi vindicta \[Target human]"
-	desc = "Trow guilty believers on relentless agony."
+	desc = "Imparts extreme pain on the target disciple. Does no actual harm.."
+	power = 35
 
-/datum/ritual/targeted/inquisitor/whip/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
+/datum/ritual/targeted/cruciform/inquisitor/penance/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
 	if(!targets.len)
 		fail("Target not found.",user,C,targets)
 		return FALSE
@@ -33,34 +49,37 @@
 
 	var/mob/living/M = CI.wearer
 
-	M << SPAN_DANGER("You feel wave of shocking pain coming from your cruciform.")
+	M << SPAN_DANGER("A wave of agony washes over you, the cruciform in your chest searing like a star for a few moments of eternity.")
 
-	if(CI.active)
-		fail("This cruciform already activated.", user, C)
-		return FALSE
 
 	var/datum/effect/effect/system/spark_spread/s = new
-	s.set_up(1, 1, M)
+	s.set_up(1, 1, M.loc)
 	s.start()
 
 	M.apply_effect(50, AGONY, 0)
 
 	return TRUE
 
-/datum/ritual/targeted/inquisitor/whip/process_target(var/index, var/obj/item/weapon/implant/core_implant/target, var/text)
+/datum/ritual/targeted/cruciform/inquisitor/penance/process_target(var/index, var/obj/item/weapon/implant/core_implant/target, var/text)
 	target.update_address()
 	if(index == 1 && target.address == text)
 		if(target.wearer && (target.loc && target.locs[1] in view()))
 			return target
 
 
-/datum/ritual/inquisitor/obey
+
+/*
+	Obey
+	Goes with obey module, disabled for now
+*/
+/*
+/datum/ritual/cruciform/inquisitor/obey
 	name = "Obey"
 	phrase = "Sicut dilexit me Pater et ego dilexi, vos manete in dilectione mea"
 	desc = "Bound believer to your will."
 
-/datum/ritual/inquisitor/obey/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
-	var/obj/item/weapon/implant/core_implant/CI = get_grabbed(user)
+/datum/ritual/cruciform/inquisitor/obey/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
+	var/obj/item/weapon/implant/core_implant/CI = get_implant_from_victim(user)
 
 	if(!CI || !CI.wearer || !ishuman(CI.wearer) || !CI.active)
 
@@ -80,32 +99,56 @@
 	OA.activate()
 
 	return TRUE
+*/
 
-/datum/ritual/inquisitor/crusader_litany
-	name = "Endure"
+
+
+
+/*
+	Convalescence
+	Heals yourself a fair amount
+*/
+/datum/ritual/cruciform/inquisitor/selfheal
+	name = "Convalescence"
 	phrase = "Dominus autem dirigat corda vestra in caritate Dei et patientia Christi"
-	desc = "Withstand the ravages of wounds and pain."
+	desc = "Recover from the ravages of wounds and pain."
+	cooldown = TRUE
+	cooldown_time = 100
+	power = 25 //Healing yourself is slightly easier than healing someone else
 
-/datum/ritual/inquisitor/crusader_litany/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C,list/targets)
-	H << "<span class='info'>You feel relieved. The pain goes away, the wounds heal.</span>"
+/datum/ritual/cruciform/inquisitor/selfheal/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C,list/targets)
+	H << "<span class='info'>A sensation of relief bathes you, washing away your pain</span>"
 	H.add_chemical_effect(CE_PAINKILLER, 20)
 	H.adjustBruteLoss(-20)
 	H.adjustFireLoss(-20)
 	H.adjustOxyLoss(-40)
 	H.updatehealth()
+	set_personal_cooldown(H)
 	return TRUE
 
-/datum/ritual/inquisitor/healing_palm
-	name = "Healing Hand"
-	phrase = "Venite ad me, omnes qui laboratis, et onerati estis et ego reficiam vos"
-	desc = "Heal loyal believers"
 
-/datum/ritual/inquisitor/healing_palm/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
-	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_grabbed(user)
+
+
+/*
+	Succour
+	Heals another person, quite powerfully. Only works on NT disciples
+*/
+/datum/ritual/cruciform/inquisitor/heal_other
+	name = "Succour"
+	phrase = "Venite ad me, omnes qui laboratis, et onerati estis et ego reficiam vos"
+	desc = "Heal a nearby disciple"
+	cooldown = TRUE
+	cooldown_time = 100
+	power = 35
+
+/datum/ritual/cruciform/inquisitor/heal_other/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
+	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user)
 
 	if(!CI || !CI.active || !CI.wearer)
 		fail("Cruciform not found.", user, C)
 		return FALSE
+
+
 
 	var/mob/living/carbon/human/H = CI.wearer
 
@@ -113,40 +156,53 @@
 		fail("Target not found.",user,C,targets)
 		return FALSE
 
-	H << "<span class='info'>You feel relieved. The pain goes away, the wounds heal.</span>"
-	H.add_chemical_effect(CE_PAINKILLER, 20)
-	H.adjustBruteLoss(-20)
-	H.adjustFireLoss(-20)
-	H.adjustOxyLoss(-40)
-	H.updatehealth()
+	//Checking turfs allows this to be done in unusual circumstances, like if both are inside the same mecha
+	var/turf/T = get_turf(user)
+	if (!(T.Adjacent(get_turf(H))))
+		user << SPAN_DANGER("[H] is beyond your reach..")
+		return
 
-	return TRUE
 
-/datum/ritual/targeted/inquisitor/god_eye
-	name = "Eye of God"
-	phrase = "Non enim est aliquid absconditum, nisi ut manifestitur \[Target human]"
-	desc = "Look on the world from the eyes of the believer."
+	user.visible_message("[user] places their hands upon [H] and utters a prayer", "You lay your hands upon [H] and begin speaking the words of convalescence")
+	if (do_after(user, 40, H, TRUE))
+		T = get_turf(user)
+		if (!(T.Adjacent(get_turf(H))))
+			user << SPAN_DANGER("[H] is beyond your reach..")
+			return
+		H << "<span class='info'>A sensation of relief bathes you, washing away your pain</span>"
+		H.add_chemical_effect(CE_PAINKILLER, 20)
+		H.adjustBruteLoss(-20)
+		H.adjustFireLoss(-20)
+		H.adjustOxyLoss(-40)
+		H.updatehealth()
+		set_personal_cooldown(user)
+		return TRUE
 
-/datum/ritual/targeted/inquisitor/god_eye/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
-	if(!targets.len)
-		fail("Target not found.",user,C,targets)
-		return FALSE
 
-	var/obj/item/weapon/implant/core_implant/CI = targets[1]
+/*
+	Scrying: Remotely look through someone's eyes. Global range, useful to find fugitives or corpses
+	Uses all of your power and has a limited duration
+*/
+/datum/ritual/cruciform/inquisitor/scrying
+	name = "Scrying"
+	phrase = "Ecce ego ad te et ad caelum. Scio omnes absconditis tuis. Vos can abscondere, tu es coram me: nudus."
+	desc = "Look on the world from the eyes of another believer. Strenuous and can only be maintained for half a minute. The target will sense they are being watched, but not by whom."
+	power = 100
 
-	if(!CI.active || !CI.wearer)
-
-		fail("Cruciform not found.", user, C)
-		return FALSE
-
-	var/mob/living/M = CI.wearer
+/datum/ritual/cruciform/inquisitor/scrying/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
 
 	if(!user.client)
 		return FALSE
 
+	var/mob/living/M = pick_disciple_global(user, TRUE)
+	if (!M)
+		return
+
 	if(user == M)
 		fail("You feel stupid.",user,C,targets)
 		return FALSE
+
+	M << SPAN_NOTICE("You feel an odd presence in the back of your mind. A lingering sense that someone is watching you...")
 
 	var/mob/observer/eye/god/eye = new/mob/observer/eye/god(M)
 	eye.target = M
@@ -155,56 +211,55 @@
 	eye.owner = eye
 	user.reset_view(eye)
 
+	//After 30 seconds, your view is forced back to yourself
+	addtimer(CALLBACK(user, .mob/proc/reset_view, user), 300)
+
 	return TRUE
 
 
-/datum/ritual/targeted/inquisitor/god_eye/process_target(var/index, var/obj/item/weapon/implant/core_implant/target, var/text)
+/datum/ritual/targeted/cruciform/inquisitor/god_eye/process_target(var/index, var/obj/item/weapon/implant/core_implant/target, var/text)
 	if(index == 1 && target.address == text && target.active)
 		if(target.wearer && target.wearer.stat != DEAD)
 			return target
 
-/datum/ritual/targeted/inquisitor/message
-	name = "Message"
-	phrase = "Audite \[Target human] et responde mihi \[Target words]"
-	desc = "Send message to other believer."
 
-/datum/ritual/targeted/inquisitor/message/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
-	if(targets.len < 2)
-		fail("Target not found.",user,C,targets)
-		return FALSE
 
-	var/obj/item/weapon/implant/core_implant/CI = targets[1]
+/*
+	Sends a telepathic message to any disciple
+*/
+/datum/ritual/cruciform/inquisitor/message
+	name = "Sending"
+	phrase = "Audit, me audit vocationem. Ego nuntius vobis."
+	desc = "Send a message anonymously through the void, straight into the mind of another disciple"
+	power = 30
 
-	if(!CI.active || !CI.wearer)
-		fail("Cruciform not found.", user, C)
-		return FALSE
-
-	var/mob/living/carbon/human/H = CI.wearer
+/datum/ritual/cruciform/inquisitor/message/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
+	var/mob/living/carbon/human/H = pick_disciple_global(user, TRUE)
+	if (!H)
+		return
 
 	if(user == H)
 		fail("You feel stupid.",user,C,targets)
 		return FALSE
 
-	var/text = targets[2]
+	var/text = input(user, "What message will you send to the target? The message will be recieved telepathically and they will not know who it is from unless you reveal yourself.", "Sending a message") as (text|null)
+	if (!text)
+		return
+	H << "<span class='notice'>A voice speaks in your mind: \"[text]\"</span>"
 
-	H << "<span class='notice'>You hear a strange voice in your head. It says: \"[text]\"</span>"
 
-/datum/ritual/targeted/inquisitor/message/process_target(var/index, var/obj/item/weapon/implant/core_implant/target, var/text)
-	switch(index)
-		if(1)
-			if(target.address == text && target.wearer)
-				return target
-		if(2)
-			if(text && text != "")
-				return text
 
-/datum/ritual/inquisitor/initiation
+
+
+
+/datum/ritual/cruciform/inquisitor/initiation
 	name = "Initiation"
 	phrase = "Habe fiduciam in Domino ex toto corde tuo et ne innitaris prudentiae tuae, in omnibus viis tuis cogita illum et ipse diriget gressus tuos"
-	desc = "Grant the power of priest to one of believers."
+	desc = "The second stage of granting a field promotion to a disciple, upgrading them to Preacher. The Preacher ascension kit is the first step."
+	power = 100
 
-/datum/ritual/inquisitor/initiation/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
-	var/obj/item/weapon/implant/core_implant/CI = get_grabbed(user)
+/datum/ritual/cruciform/inquisitor/initiation/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
+	var/obj/item/weapon/implant/core_implant/CI = get_implant_from_victim(user)
 
 	if(!CI || !CI.wearer || !ishuman(CI.wearer) || !CI.active)
 		fail("Cruciform not found",user,C)
@@ -212,76 +267,58 @@
 
 
 	if(CI.get_module(CRUCIFORM_PRIEST) || CI.get_module(CRUCIFORM_INQUISITOR))
-		fail("The target is already a priest.",user,C)
+		fail("The target is already a preacher.",user,C)
 		return FALSE
 
 	var/datum/core_module/activatable/cruciform/priest_convert/PC = CI.get_module(CRUCIFORM_PRIEST_CONVERT)
 
 	if(!PC)
-		fail("Target must have priest upgrade inside his cruciform.",user,C)
+		fail("Target must have preacher upgrade inside his cruciform.",user,C)
 		return FALSE
 
 	PC.activate()
 
 	return TRUE
 
-/datum/ritual/inquisitor/check_telecrystals
+
+
+/datum/ritual/cruciform/inquisitor/check_telecrystals
 	name = "Knowledge"
 	phrase = "Cor sapientis quaerit doctrinam, et os stultorum pascetur inperitia"
 	desc = "Find out the limits of your power, how much telecrystals you have now."
+	power = 5
 
-/datum/ritual/inquisitor/check_telecrystals/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
+/datum/ritual/cruciform/inquisitor/check_telecrystals/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
 	var/datum/core_module/cruciform/uplink/I = C.get_module(CRUCIFORM_UPLINK)
 
-	if(I && I.telecrystals)
+	if(I && I.uplink)
+		I.telecrystals = I.uplink.uses
 		user << "<span class='info'>You have [I.telecrystals] telecrystals.</span>"
 		return FALSE
 	else
-		user << "<span class='info'>You have no telecrystals.</span>"
+		user << "<span class='info'>You have no uplink.</span>"
 		return FALSE
 
 
-/datum/ritual/targeted/inquisitor/spawn_item
-	name = "Grant Relic"
-	phrase = "Dona mihi viam meam \[Target words]"
-	desc = "Receive item needed in your jorney."
 
-/datum/ritual/targeted/inquisitor/spawn_item/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
+
+
+/*
+	Opens the interface for the embedded Uplink, allowing stuff to be purchased
+	Uses all your power, so you can't use abilities for a couple minutes
+*/
+/datum/ritual/targeted/cruciform/inquisitor/spawn_item
+	name = "Bounty"
+	phrase = "Supra Domini, bona de te peto. Audi me, et libera vocationem ad me munera tua"
+	desc = "Request supplies and items from headquarters. Find a private place to do this. Establishing the connection takes a lot of power."
+	power = 100
+
+/datum/ritual/targeted/cruciform/inquisitor/spawn_item/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
 	var/datum/core_module/cruciform/uplink/I = C.get_module(CRUCIFORM_UPLINK)
 
-	if(!targets.len)
-		fail("Item name was wrong.",user,C,targets)
-		return FALSE
+	if(I && I.uplink)
+		I.uplink.trigger(user)
 
-	if(!I || I.telecrystals <= 0)
-		fail("You have no telecrystals.",user,C)
-		return FALSE
+		return TRUE
+	return FALSE
 
-	var/item_name = targets[1]
-	var/correct = FALSE
-	var/turf/T = get_turf(user)
-
-	switch(item_name)
-		if("book")
-			correct = try_to_spawn(/obj/item/weapon/book/ritual/cruciform/inquisitor,5,I,T)
-		if("obey")
-			correct = try_to_spawn(/obj/item/weapon/coreimplant_upgrade/cruciform/obey,10,I,T)
-		if("priest")
-			correct = try_to_spawn(/obj/item/weapon/coreimplant_upgrade/cruciform/priest,10,I,T)
-
-	if(!correct)
-		fail("Item name was wrong.",user,C,targets)
-		return FALSE
-
-	return TRUE
-
-/datum/ritual/targeted/inquisitor/spawn_item/proc/try_to_spawn(var/type, var/price, var/datum/core_module/cruciform/uplink/I, var/turf/T)
-	if(!I || I.telecrystals < price || !isturf(T) || !ispath(type))
-		return FALSE
-
-	new type(T)
-	I.telecrystals -= price
-	return TRUE
-
-/datum/ritual/targeted/inquisitor/spawn_item/process_target(var/index, var/obj/item/weapon/implant/core_implant/target, var/text)
-	return text

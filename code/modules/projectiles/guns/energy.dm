@@ -89,14 +89,14 @@
 		//make sure that rounding down will not give us the empty state even if we have charge for a shot left.
 		if(cell && cell.charge >= charge_cost)
 			ratio = cell.charge / cell.maxcharge
-			ratio = max(round(ratio, 0.25) * 100, 25)
+			ratio = min(max(round(ratio, 0.25) * 100, 25), 100)
 
 		if(modifystate)
 			icon_state = "[modifystate][ratio]"
 		else
 			icon_state = "[initial(icon_state)][ratio]"
 	if(!ignore_inhands)
-		update_held_icon()
+		update_wear_icon()
 
 /obj/item/weapon/gun/energy/MouseDrop(over_object)
 	if(!self_recharge)

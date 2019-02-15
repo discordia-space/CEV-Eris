@@ -10,7 +10,7 @@
 	var/access_security = 0
 	var/access_engine = 0
 	var/access_atmos = 0
-	var/access_medical = 0
+	var/access_moebius = 0
 	var/access_clown = 0
 	var/access_mime = 0
 	var/access_janitor = 0
@@ -46,7 +46,7 @@
 /obj/item/weapon/cartridge/medical
 	name = "\improper Med-U cartridge"
 	icon_state = "cart-m"
-	access_medical = 1
+	access_moebius = 1
 
 /obj/item/weapon/cartridge/chemistry
 	name = "\improper ChemWhiz cartridge"
@@ -66,7 +66,7 @@
 	name = "\improper D.E.T.E.C.T. cartridge"
 	icon_state = "cart-s"
 	access_security = 1
-	access_medical = 1
+	access_moebius = 1
 
 
 /obj/item/weapon/cartridge/janitor
@@ -167,7 +167,7 @@
 	icon_state = "cart-cmo"
 	access_status_display = 1
 	access_reagent_scanner = 1
-	access_medical = 1
+	access_moebius = 1
 
 /obj/item/weapon/cartridge/rd
 	name = "\improper Signal Ace DELUXE"
@@ -188,7 +188,7 @@
 	access_janitor = 1
 	access_engine = 1
 	access_security = 1
-	access_medical = 1
+	access_moebius = 1
 	access_reagent_scanner = 1
 	access_status_display = 1
 	access_atmos = 1
@@ -203,7 +203,7 @@
 
 /obj/item/weapon/cartridge/proc/post_status(var/command, var/data1, var/data2)
 
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(1435)
+	var/datum/radio_frequency/frequency = SSradio.return_frequency(1435)
 	if(!frequency) return
 
 	var/datum/signal/status_signal = new
@@ -393,14 +393,14 @@
 
 	if(mode==47)
 		var/supplyData[0]
-		var/datum/shuttle/autodock/ferry/supply/shuttle = supply_controller.shuttle
+		var/datum/shuttle/autodock/ferry/supply/shuttle = SSsupply.shuttle
 		if (shuttle)
 			supplyData["shuttle_moving"] = shuttle.has_arrive_time()
 			supplyData["shuttle_eta"] = shuttle.eta_minutes()
 			supplyData["shuttle_loc"] = shuttle.at_station() ? "Station" : "Dock"
 		var/supplyOrderCount = 0
 		var/supplyOrderData[0]
-		for(var/S in supply_controller.shoppinglist)
+		for(var/S in SSsupply.shoppinglist)
 			var/datum/supply_order/SO = S
 
 			supplyOrderData[++supplyOrderData.len] = list("Number" = SO.ordernum, "Name" = rhtml_encode(SO.object.name), "ApprovedBy" = SO.orderedby, "Comment" = rhtml_encode(SO.comment))
@@ -412,7 +412,7 @@
 
 		var/requestCount = 0
 		var/requestData[0]
-		for(var/S in supply_controller.requestlist)
+		for(var/S in SSsupply.requestlist)
 			var/datum/supply_order/SO = S
 			requestCount++
 			requestData[++requestData.len] = list("Number" = SO.ordernum, "Name" = rhtml_encode(SO.object.name), "OrderedBy" = SO.orderedby, "Comment" = rhtml_encode(SO.comment))

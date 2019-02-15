@@ -17,11 +17,11 @@
 	var/max_matter = 300
 	var/loaded_dna //Blood sample for DNA hashing.
 	var/list/products = list(
-		O_HEART =   list(/obj/item/organ/internal/heart,  50),
-		O_LUNGS =   list(/obj/item/organ/internal/lungs,  40),
-		O_KIDNEYS = list(/obj/item/organ/internal/kidneys,20),
-		O_EYES =    list(/obj/item/organ/internal/eyes,   30),
-		O_LIVER =   list(/obj/item/organ/internal/liver,  50)
+		BP_HEART =   list(/obj/item/organ/internal/heart,  50),
+		BP_LUNGS =   list(/obj/item/organ/internal/lungs,  40),
+		BP_KIDNEYS = list(/obj/item/organ/internal/kidneys,20),
+		BP_EYES =    list(/obj/item/organ/internal/eyes,   30),
+		BP_LIVER =   list(/obj/item/organ/internal/liver,  50)
 		)
 
 /obj/machinery/bioprinter/prosthetics
@@ -31,7 +31,7 @@
 
 /obj/machinery/bioprinter/New()
 	..()
-	if(!(ticker && ticker.current_state == GAME_STATE_PLAYING))
+	if(SSticker.current_state != GAME_STATE_PLAYING)
 		stored_matter = 200
 
 
@@ -73,12 +73,14 @@
 			user << "<span class='info'>You inject the blood sample into the bioprinter.</span>"
 		return
 	// Meat for biomass.
-	if(!prints_prosthetics && istype(W, /obj/item/weapon/reagent_containers/food/snacks/meat))
-		stored_matter += 50
-		user.drop_item()
-		user << "<span class='info'>\The [src] processes \the [W]. Levels of stored biomass now: [stored_matter]</span>"
-		qdel(W)
-		return
+	if(!prints_prosthetics)
+		for(var/type in BIOMASS_TYPES)
+			if(istype(W,type))
+				stored_matter += BIOMASS_TYPES[type]
+				user.drop_item()
+				user << "<span class='info'>\The [src] processes \the [W]. Levels of stored biomass now: [stored_matter]</span>"
+				qdel(W)
+				return
 	// Steel for matter.
 	if(prints_prosthetics && istype(W, /obj/item/stack/material) && W.get_material_name() == MATERIAL_STEEL)
 		var/obj/item/stack/S = W
@@ -88,4 +90,4 @@
 		qdel(W)
 		return
 
-	return..()
+	return ..()

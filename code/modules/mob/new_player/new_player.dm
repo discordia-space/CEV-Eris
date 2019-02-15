@@ -33,7 +33,7 @@
 	output +="<hr>"
 	output += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Setup Character</A></p>"
 
-	if(!ticker || ticker.current_state <= GAME_STATE_PREGAME)
+	if(SSticker.current_state <= GAME_STATE_PREGAME)
 		if(ready)
 			output += "<p>\[ <span class='linkOn'><b>Ready</b></span> | <a href='byond://?src=\ref[src];ready=0'>Not Ready</a> \]</p>"
 		else
@@ -73,17 +73,17 @@
 	return
 
 /mob/new_player/Stat()
-	..()
+	. = ..()
 
-	if(statpanel("Lobby") && ticker)
+	if(statpanel("Lobby"))
 		stat("Storyteller:", "[master_storyteller]") // Old setting for showing the game mode
 
-		if(ticker.current_state == GAME_STATE_PREGAME)
-			stat("Time To Start:", "[ticker.pregame_timeleft][round_progressing ? "" : " (DELAYED)"]")
+		if(SSticker.current_state == GAME_STATE_PREGAME)
+			stat("Time To Start:", "[SSticker.pregame_timeleft][round_progressing ? "" : " (DELAYED)"]")
 			stat("Players: [totalPlayers]", "Players Ready: [totalPlayersReady]")
 			totalPlayers = 0
 			totalPlayersReady = 0
-			for(var/mob/new_player/player in player_list)
+			for(var/mob/new_player/player in GLOB.player_list)
 				stat("[player.key]", (player.ready)?("(Playing)"):(null))
 				totalPlayers++
 				if(player.ready)totalPlayersReady++
@@ -96,7 +96,7 @@
 		return 1
 
 	if(href_list["ready"])
-		if(!ticker || ticker.current_state <= GAME_STATE_PREGAME) // Make sure we don't ready up after the round has started
+		if(SSticker.current_state <= GAME_STATE_PREGAME) // Make sure we don't ready up after the round has started
 			ready = text2num(href_list["ready"])
 		else
 			ready = 0
@@ -107,16 +107,16 @@
 
 	if(href_list["observe"])
 
-		if(alert(src,"Are you sure you wish to observe? You will have to wait 30 minutes before being able to respawn!","Player Setup","Yes","No") == "Yes")
+		if(alert(src,"Are you sure you wish to observe? You will have to wait 30 minutes before being able join the crew! But you can play as a mouse or drone immediately.","Player Setup","Yes","No") == "Yes")
 			if(!client)	return 1
 			var/mob/observer/ghost/observer = new()
 
 			spawning = 1
-			src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // MAD JAMS cant last forever yo
+			sound_to(src, sound(null, repeat = 0, wait = 0, volume = 85, channel = GLOB.lobby_sound_channel))
 
 			observer.started_as_observer = 1
 			close_spawn_windows()
-			var/turf/T = pickSpawnLocation(/mob/observer)
+			var/turf/T = pickSpawnLocation("Observer")
 			if(istype(T))
 				src << SPAN_NOTICE("You are observer now.")
 				observer.forceMove(T)
@@ -125,8 +125,7 @@
 			observer.timeofdeath = world.time // Set the time of death so that the respawn timer works correctly.
 
 			announce_ghost_joinleave(src)
-			client.prefs.update_preview_icon()
-			observer.icon = client.prefs.preview_icon
+			observer.icon = client.prefs.update_preview_icon()
 			observer.alpha = 127
 
 			if(client.prefs.be_random_name)
@@ -135,14 +134,17 @@
 			observer.name = observer.real_name
 			if(!client.holder && !config.antag_hud_allowed)           // For new ghosts we remove the verb from even showing up if it's not allowed.
 				observer.verbs -= /mob/observer/ghost/verb/toggle_antagHUD        // Poor guys, don't know what they are missing!
-			observer.key = key
+			//observer.key = key
+			observer.ckey = ckey
+			observer.initialise_postkey()
+			observer.client.create_UI()
 			qdel(src)
 
 			return 1
 
 	if(href_list["late_join"])
 
-		if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
+		if(SSticker.current_state != GAME_STATE_PLAYING)
 			usr << "\red The round is either not ready, or has already finished..."
 			return
 
@@ -159,14 +161,14 @@
 		LateChoices()
 
 	if(href_list["manifest"])
-		ViewManifest()
+		show_manifest(src, nano_state = GLOB.interactive_state)
 
 	if(href_list["SelectedJob"])
 
 		if(!config.enter_allowed)
 			usr << "<span class='notice'>There is an administrative lock on entering the game!</span>"
 			return
-		else if(ticker && ticker.nuke_in_progress)
+		else if(SSticker.nuke_in_progress)
 			usr << "<span class='danger'>The station is currently exploding. Joining would go poorly.</span>"
 			return
 
@@ -213,16 +215,16 @@
 
 
 /mob/new_player/proc/IsJobAvailable(rank)
-	var/datum/job/job = job_master.GetJob(rank)
+	var/datum/job/job = SSjob.GetJob(rank)
 	if(!job)	return 0
 	if(!job.is_position_available()) return 0
 	if(jobban_isbanned(src,rank))	return 0
 	return 1
 
-/mob/new_player/proc/AttemptLateSpawn(rank,var/spawning_at)
+/mob/new_player/proc/AttemptLateSpawn(rank, var/spawning_at)
 	if(src != usr)
 		return 0
-	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
+	if(SSticker.current_state != GAME_STATE_PLAYING)
 		usr << "\red The round is either not ready, or has already finished..."
 		return 0
 	if(!config.enter_allowed)
@@ -235,14 +237,12 @@
 	spawning = 1
 	close_spawn_windows()
 
-	job_master.AssignRole(src, rank, 1)
-
+	SSjob.AssignRole(src, rank, 1)
+	var/datum/job/job = src.mind.assigned_job
 	var/mob/living/character = create_character()	//creates the human and transfers vars and mind
-	character = job_master.EquipRank(character, rank, 1)					//equips the human
-	equip_custom_items(character)
 
 	// AIs don't need a spawnpoint, they must spawn at an empty core
-	if(character.mind.assigned_role == "AI")
+	if(rank == "AI")
 
 		character = character.AIize(move=0) // AIize the character, but don't move them yet
 
@@ -250,40 +250,37 @@
 		var/obj/structure/AIcore/deactivated/C = empty_playable_ai_cores[1]
 		empty_playable_ai_cores -= C
 
-		character.loc = C.loc
+		character.forceMove(C.loc)
 
-		AnnounceCyborg(character, rank, "has been downloaded to the empty core in \the [character.loc.loc]")
+		AnnounceArrival(character, rank, "has been downloaded to the empty core in \the [character.loc.loc]")
 
 		qdel(C)
 		qdel(src)
 		return
 
-	//Find our spawning point.
-	var/join_message = job_master.LateSpawn(character.client, rank)
+	var/datum/spawnpoint/spawnpoint = SSjob.get_spawnpoint_for(character.client, rank, late = TRUE)
+	if (!spawnpoint.put_mob(character))
+		return
+
+	character = SSjob.EquipRank(character, rank)					//equips the human
+	equip_custom_items(character)
 
 	character.lastarea = get_area(loc)
-	// Moving wheelchair if they have one
-	if(character.buckled && istype(character.buckled, /obj/structure/bed/chair/wheelchair))
-		character.buckled.loc = character.loc
-		character.buckled.set_dir(character.dir)
 
-	if(character.mind.assigned_role != "Cyborg")
-		data_core.manifest_inject(character)
-		matchmaker.do_matchmaking()
-		ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
+	if(SSjob.ShouldCreateRecords(job.title))
+		if(character.mind.assigned_role != "Robot")
+			CreateModularRecord(character)
+			data_core.manifest_inject(character)
+			matchmaker.do_matchmaking()
+			SSticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 
-		//Grab some data from the character prefs for use in random news procs.
+			//Grab some data from the character prefs for use in random news procs.
 
-		AnnounceArrival(character, rank, join_message)
-	else
-		AnnounceCyborg(character, rank, join_message)
+
+
+	AnnounceArrival(character, character.mind.assigned_role, spawnpoint.message)	//will not broadcast if there is no message
 
 	qdel(src)
-
-/mob/new_player/proc/AnnounceCyborg(var/mob/living/character, var/rank, var/join_message)
-	if (ticker.current_state == GAME_STATE_PLAYING)
-		// can't use their name here, since cyborg namepicking is done post-spawn, so we'll just say "A new Cyborg has arrived"/"A new Android has arrived"/etc.
-		global_announcer.autosay("A new[rank ? " [rank]" : " visitor" ] [join_message ? join_message : "has completed cryogenic revival"].", "Arrivals Announcement Computer")
 
 /mob/new_player/proc/LateChoices()
 	var/name = client.prefs.be_random_name ? "friend" : client.prefs.real_name
@@ -301,13 +298,13 @@
 			dat += "<font color='red'>The vessel is currently undergoing crew transfer procedures.</font><br>"
 
 	dat += "Choose from the following open/valid positions:<br>"
-	for(var/datum/job/job in job_master.occupations)
+	for(var/datum/job/job in SSjob.occupations)
 		if(job && IsJobAvailable(job.title))
 			if(job.minimum_character_age && (client.prefs.age < job.minimum_character_age))
 				continue
 			var/active = 0
 			// Only players with the job assigned and AFK for less than 10 minutes count as active
-			for(var/mob/M in player_list) if(M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 * 60 * 10)
+			for(var/mob/M in GLOB.player_list) if(M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 * 60 * 10)
 				active++
 			dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
 
@@ -344,14 +341,14 @@
 				|| (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
 				new_character.add_language(lang)
 
-	if(ticker.random_players)
+	if(SSticker.random_players)
 		new_character.gender = pick(MALE, FEMALE)
 		client.prefs.real_name = random_name(new_character.gender)
-		client.prefs.randomize_appearance_for(new_character)
+		client.prefs.randomize_appearance_and_body_for(new_character)
 	else
 		client.prefs.copy_to(new_character)
 
-	src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // MAD JAMS cant last forever yo
+	sound_to(src, sound(null, repeat = 0, wait = 0, volume = 85, channel = GLOB.lobby_sound_channel))
 
 	if(mind)
 		mind.active = 0//we wish to transfer the key manually
@@ -385,21 +382,12 @@
 
 	return new_character
 
-/mob/new_player/proc/ViewManifest()
-	var/dat = "<html><body>"
-	dat += "<h4>Show Crew Manifest</h4>"
-	dat += data_core.get_manifest(OOC = 1)
-	src << browse(dat, "window=manifest;size=370x420;can_close=1")
-
-/mob/new_player/Move()
+/mob/new_player/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	return 0
 
 /mob/new_player/proc/close_spawn_windows()
 	src << browse(null, "window=latechoices") //closes late choices window
 	panel.close()
-
-/mob/new_player/proc/has_admin_rights()
-	return check_rights(R_ADMIN, 0, src)
 
 /mob/new_player/proc/is_species_whitelisted(datum/species/S)
 	if(!S) return 1

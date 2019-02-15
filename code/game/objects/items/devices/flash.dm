@@ -83,7 +83,7 @@
 			else
 				flashfail = 1
 
-	else if(issilicon(M))
+	else if(isrobot(M))
 		M.Weaken(rand(5,10))
 		if (M.HUDtech.Find("flash"))
 			flick("e_flash", M.HUDtech["flash"])

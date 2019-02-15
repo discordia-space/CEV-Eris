@@ -37,8 +37,8 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	return "off"
 
 // You aren't allowed to move.
-/obj/machinery/gravity_generator/Move()
-	..()
+/obj/machinery/gravity_generator/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+	. = ..()
 	qdel(src)
 
 /obj/machinery/gravity_generator/proc/set_broken()
@@ -392,7 +392,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 		var/turf/our_turf = get_turf(src.loc)
 		if(M.client)
 			shake_camera(M, 15, 1)
-			M.playsound_local(our_turf, 'sound/effects/alert.ogg', 100, 1, 0.5)
+			M.playsound_local(our_turf, 'sound/effects/alert.ogg', 100, 1, 0.5, is_global = TRUE)
 
 // Misc
 /obj/item/weapon/paper/gravity_gen

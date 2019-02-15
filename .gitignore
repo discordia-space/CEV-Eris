@@ -10,3 +10,4 @@ tools/
 data/
 cfg/
 build_log.txt
+.vscode

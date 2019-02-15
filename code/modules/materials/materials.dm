@@ -1,4 +1,4 @@
-ficon/*
+/*
 	MATERIAL DATUMS
 	This data is used by various parts of the game for basic physical properties and behaviors
 	of the metals/materials used for constructing many objects. Each var is commented and should be pretty
@@ -53,7 +53,7 @@ var/list/name_to_material
 /proc/get_material_by_name(name)
 	if(!name_to_material)
 		populate_material_list()
-	return name_to_material[name]
+	return name_to_material[lowertext(name)]
 
 /proc/get_material_name_by_stack_type(stype)
 	if(!name_to_material)
@@ -113,6 +113,7 @@ var/list/name_to_material
 
 	// Placeholder vars for the time being, todo properly integrate windows/light tiles/rods.
 	var/created_window
+	var/created_window_full
 	var/rod_product
 	var/wire_product
 	var/list/window_options = list()
@@ -237,7 +238,7 @@ var/list/name_to_material
 
 // Datum definitions follow.
 /material/uranium
-	name = "uranium"
+	name = MATERIAL_URANIUM
 	stack_type = /obj/item/stack/material/uranium
 	radioactivity = 12
 	icon_base = "stone"
@@ -248,7 +249,7 @@ var/list/name_to_material
 	door_icon_base = "stone"
 
 /material/diamond
-	name = "diamond"
+	name = MATERIAL_DIAMOND
 	stack_type = /obj/item/stack/material/diamond
 	flags = MATERIAL_UNMELTABLE
 	cut_delay = 60
@@ -260,7 +261,7 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 6)
 
 /material/gold
-	name = "gold"
+	name = MATERIAL_GOLD
 	stack_type = /obj/item/stack/material/gold
 	icon_colour = "#EDD12F"
 	weight = 24
@@ -274,7 +275,7 @@ var/list/name_to_material
 	icon_colour = "#EDD12F"
 
 /material/silver
-	name = "silver"
+	name = MATERIAL_SILVER
 	stack_type = /obj/item/stack/material/silver
 	icon_colour = "#D1E6E3"
 	weight = 22
@@ -284,7 +285,7 @@ var/list/name_to_material
 	sheet_plural_name = "ingots"
 
 /material/plasma
-	name = "plasma"
+	name = MATERIAL_PLASMA
 	stack_type = /obj/item/stack/material/plasma
 	ignition_point = PLASMA_MINIMUM_BURN_TEMPERATURE
 	icon_base = "stone"
@@ -314,7 +315,7 @@ var/list/name_to_material
 */
 
 /material/stone
-	name = "sandstone"
+	name = MATERIAL_SANDSTONE
 	stack_type = /obj/item/stack/material/sandstone
 	icon_base = "stone"
 	icon_reinf = "reinf_stone"
@@ -327,7 +328,7 @@ var/list/name_to_material
 	sheet_plural_name = "bricks"
 
 /material/stone/marble
-	name = "marble"
+	name = MATERIAL_MARBLE
 	icon_colour = "#AAAAAA"
 	weight = 26
 	hardness = 100
@@ -350,7 +351,7 @@ var/list/name_to_material
 	shard_type = SHARD_NONE
 
 /material/plasteel
-	name = "plasteel"
+	name = MATERIAL_PLASTEEL
 	stack_type = /obj/item/stack/material/plasteel
 	integrity = 400
 	melting_point = 6000
@@ -372,7 +373,7 @@ var/list/name_to_material
 	icon_reinf = "reinf_metal"
 
 /material/glass
-	name = "glass"
+	name = MATERIAL_GLASS
 	stack_type = /obj/item/stack/material/glass
 	flags = MATERIAL_BRITTLE
 	icon_colour = "#00E1FF"
@@ -384,8 +385,9 @@ var/list/name_to_material
 	weight = 15
 	door_icon_base = "stone"
 	destruction_desc = "shatters"
-	window_options = list("One Direction" = 1, "Full Window" = 4)
+	window_options = list("One Direction" = 1, "Full Window" = 6)
 	created_window = /obj/structure/window/basic
+	created_window_full = /obj/structure/window/basic/full
 	rod_product = /obj/item/stack/material/glass/reinforced
 	hitsound = 'sound/effects/Glasshit.ogg'
 
@@ -409,21 +411,22 @@ var/list/name_to_material
 	if(!choice || !used_stack || !user || used_stack.loc != user || user.stat || user.loc != T)
 		return 1
 
-	// Get data for building windows here.
-	var/list/possible_directions = cardinal.Copy()
-	var/window_count = 0
-	for (var/obj/structure/window/check_window in user.loc)
-		window_count++
-		possible_directions  -= check_window.dir
-
 	// Get the closest available dir to the user's current facing.
 	var/build_dir = SOUTHWEST //Default to southwest for fulltile windows.
-	var/failed_to_build
+	if(choice in list("One Direction","Windoor"))
+		// Get data for building windows here.
+		var/list/possible_directions = cardinal.Copy()
+		var/window_count = 0
+		for (var/obj/structure/window/check_window in user.loc)
+			window_count++
+			possible_directions  -= check_window.dir
 
-	if(window_count >= 4)
-		failed_to_build = 1
-	else
-		if(choice in list("One Direction","Windoor"))
+
+		var/failed_to_build
+
+		if(window_count >= 4)
+			failed_to_build = 1
+		else
 			if(possible_directions.len)
 				for(var/direction in list(user.dir, turn(user.dir,90), turn(user.dir,180), turn(user.dir,270) ))
 					if(direction in possible_directions)
@@ -437,14 +440,38 @@ var/list/name_to_material
 					return
 				if((locate(/obj/structure/windoor_assembly) in T.contents) || (locate(/obj/machinery/door/window) in T.contents))
 					failed_to_build = 1
-	if(failed_to_build)
-		user << SPAN_WARNING("There is no room in this location.")
-		return 1
+
+		if(failed_to_build)
+			user << SPAN_WARNING("There is no room in this location.")
+			return 1
+
+	else
+		build_dir = SOUTHWEST
+		//We're attempting to build a full window.
+		//We need to find a suitable low wall to build ontop of
+		var/obj/structure/low_wall/mount = null
+		//We will check the tile infront of the user
+		var/turf/t = get_step(T, user.dir)
+		mount = locate(/obj/structure/low_wall) in t
+
+
+		if (!mount)
+			user << SPAN_WARNING("Full windows must be mounted on a low wall infront of you.")
+			return 1
+
+		if (locate(/obj/structure/window) in t)
+			user << SPAN_WARNING("The target tile must be clear of other windows")
+			return 1
+
+		//building will be successful, lets set the build location
+		T = t
 
 	var/build_path = /obj/structure/windoor_assembly
 	var/sheets_needed = window_options[choice]
 	if(choice == "Windoor")
 		build_dir = user.dir
+	else if (choice == "Full Window")
+		build_path = created_window_full
 	else
 		build_path = created_window
 
@@ -454,14 +481,15 @@ var/list/name_to_material
 
 	// Build the structure and update sheet count etc.
 	used_stack.use(sheets_needed)
-	new build_path(T, build_dir, 1)
+	var/obj/O = new build_path(T, build_dir)
+	O.Created()
 	return 1
 
 /material/glass/proc/is_reinforced()
 	return (hardness > 35) //todo
 
 /material/glass/reinforced
-	name = "rglass"
+	name = MATERIAL_RGLASS
 	display_name = "reinforced glass"
 	stack_type = /obj/item/stack/material/glass/reinforced
 	flags = MATERIAL_BRITTLE
@@ -474,13 +502,14 @@ var/list/name_to_material
 	weight = 30
 	stack_origin_tech = "materials=2"
 	composite_material = list(MATERIAL_STEEL = 2,MATERIAL_GLASS = 3)
-	window_options = list("One Direction" = 1, "Full Window" = 4, "Windoor" = 5)
+	window_options = list("One Direction" = 1, "Full Window" = 6, "Windoor" = 5)
 	created_window = /obj/structure/window/reinforced
+	created_window_full = /obj/structure/window/reinforced/full
 	wire_product = null
 	rod_product = null
 
 /material/glass/plasma
-	name = "borosilicate glass"
+	name = MATERIAL_PLASMAGLASS
 	display_name = "borosilicate glass"
 	stack_type = /obj/item/stack/material/glass/plasmaglass
 	flags = MATERIAL_BRITTLE
@@ -488,16 +517,18 @@ var/list/name_to_material
 	icon_colour = "#FC2BC5"
 	stack_origin_tech = list(TECH_MATERIAL = 4)
 	created_window = /obj/structure/window/plasmabasic
+	created_window_full = /obj/structure/window/plasmabasic/full
 	wire_product = null
 	rod_product = /obj/item/stack/material/glass/plasmarglass
 
 /material/glass/plasma/reinforced
-	name = "reinforced borosilicate glass"
+	name = MATERIAL_RPLASMAGLASS
 	display_name = "reinforced borosilicate glass"
 	stack_type = /obj/item/stack/material/glass/plasmarglass
 	stack_origin_tech = list(TECH_MATERIAL = 5)
 	composite_material = list() //todo
 	created_window = /obj/structure/window/reinforced/plasma
+	created_window = /obj/structure/window/reinforced/plasma/full
 	hardness = 40
 	weight = 30
 	//stack_origin_tech = list(TECH_MATERIAL = 2)
@@ -505,7 +536,7 @@ var/list/name_to_material
 	rod_product = null
 
 /material/plastic
-	name = "plastic"
+	name = MATERIAL_PLASTIC
 	stack_type = /obj/item/stack/material/plastic
 	flags = MATERIAL_BRITTLE
 	icon_base = "solid"
@@ -523,7 +554,7 @@ var/list/name_to_material
 	shard_type = SHARD_NONE
 
 /material/osmium
-	name = "osmium"
+	name = MATERIAL_OSMIUM
 	stack_type = /obj/item/stack/material/osmium
 	icon_colour = "#9999FF"
 	stack_origin_tech = list(TECH_MATERIAL = 5)
@@ -531,7 +562,7 @@ var/list/name_to_material
 	sheet_plural_name = "ingots"
 
 /material/tritium
-	name = "tritium"
+	name = MATERIAL_TRITIUM
 	stack_type = /obj/item/stack/material/tritium
 	icon_colour = "#777777"
 	stack_origin_tech = list(TECH_MATERIAL = 5)
@@ -539,13 +570,13 @@ var/list/name_to_material
 	sheet_plural_name = "ingots"
 
 /material/mhydrogen
-	name = "mhydrogen"
+	name = MATERIAL_MHYDROGEN
 	stack_type = /obj/item/stack/material/mhydrogen
 	icon_colour = "#E6C5DE"
 	stack_origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 6, TECH_MAGNET = 5)
 
 /material/platinum
-	name = "platinum"
+	name = MATERIAL_PLATINUM
 	stack_type = /obj/item/stack/material/platinum
 	icon_colour = "#9999FF"
 	weight = 27
@@ -554,7 +585,7 @@ var/list/name_to_material
 	sheet_plural_name = "ingots"
 
 /material/iron
-	name = "iron"
+	name = MATERIAL_IRON
 	stack_type = /obj/item/stack/material/iron
 	icon_colour = "#5C5454"
 	weight = 22
@@ -575,7 +606,7 @@ var/list/name_to_material
 	weight = 500
 
 /material/wood
-	name = "wood"
+	name = MATERIAL_WOOD
 	stack_type = /obj/item/stack/material/wood
 	icon_colour = "#824B28"
 	integrity = 50
@@ -602,7 +633,7 @@ var/list/name_to_material
 	shard_type = SHARD_NONE
 
 /material/cardboard
-	name = "cardboard"
+	name = MATERIAL_CARDBOARD
 	stack_type = /obj/item/stack/material/cardboard
 	flags = MATERIAL_BRITTLE
 	integrity = 10
@@ -618,7 +649,7 @@ var/list/name_to_material
 	destruction_desc = "crumples"
 
 /material/cloth //todo
-	name = "cloth"
+	name = MATERIAL_CLOTH
 	stack_origin_tech = list(TECH_MATERIAL = 2)
 	door_icon_base = "wood"
 	ignition_point = T0C+232
@@ -642,7 +673,7 @@ var/list/name_to_material
 
 //TODO PLACEHOLDERS:
 /material/leather
-	name = "leather"
+	name = MATERIAL_LEATHER
 	icon_colour = "#5C4831"
 	stack_origin_tech = list(TECH_MATERIAL = 2)
 	flags = MATERIAL_PADDING

@@ -1,7 +1,7 @@
 /atom
 	layer = TURF_LAYER
 	plane = GAME_PLANE
-	appearance_flags = TILE_BOUND|PIXEL_SCALE
+	appearance_flags = TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
 	var/level = 2
 	var/flags = 0
 	var/list/fingerprints
@@ -18,8 +18,6 @@
 	var/fluorescent // Shows up under a UV light.
 	var/allow_spin = TRUE
 	var/used_now = FALSE //For tools system, check for it should forbid to work on atom for more than one user at time
-
-	var/list/footstep_sounds = list() // Footsteps sound
 
 	///Chemistry.
 	var/datum/reagents/reagents = null
@@ -273,9 +271,14 @@ its easier to just keep the beam vertical.
 	if(new_dir == old_dir)
 		return FALSE
 
+	for(var/i in src.contents)
+		var/atom/A = i
+		A.container_dir_changed(new_dir)
 	dir = new_dir
-	dir_set_event.raise_event(src, old_dir, new_dir)
 	return TRUE
+
+/atom/proc/container_dir_changed(new_dir)
+	return
 
 /atom/proc/ex_act()
 	return
@@ -493,7 +496,6 @@ its easier to just keep the beam vertical.
 		cur_y = y_arr.Find(src.z)
 		if(cur_y)
 			break
-//	world << "X = [cur_x]; Y = [cur_y]"
 	if(cur_x && cur_y)
 		return list("x"=cur_x, "y"=cur_y)
 	else
@@ -509,12 +511,13 @@ its easier to just keep the beam vertical.
 		return FALSE
 
 //Multi-z falling procs
-/atom/movable/proc/can_fall()
-	return !anchored
+
 
 //Execution by grand piano!
-/atom/movable/proc/get_fall_damage()
+/atom/movable/proc/get_fall_damage(var/turf/from, var/turf/dest)
 	return 42
+
+/atom/movable/proc/fall_impact(var/turf/from, var/turf/dest)
 
 //If atom stands under open space, it can prevent fall, or not
 /atom/proc/can_prevent_fall()
@@ -565,9 +568,13 @@ its easier to just keep the beam vertical.
 		O.show_message(message,2,deaf_message,1)
 
 /atom/Entered(var/atom/movable/AM, var/atom/old_loc, var/special_event)
-	if(loc && MOVED_DROP == special_event)
-		AM.forceMove(loc, MOVED_DROP)
-		return CANCEL_MOVE_EVENT
+	if(loc)
+		for(var/i in AM.contents)
+			var/atom/movable/A = i
+			A.entered_with_container(old_loc)
+		if(MOVED_DROP == special_event)
+			AM.forceMove(loc, MOVED_DROP)
+			return CANCEL_MOVE_EVENT
 	return ..()
 
 /turf/Entered(var/atom/movable/AM, var/atom/old_loc, var/special_event)
@@ -596,3 +603,52 @@ its easier to just keep the beam vertical.
 		//An item is delivered on the cargo shuttle
 		//An item is purchased or dispensed from a vendor (Those things contain premade items and just release them)
 
+/atom/proc/get_cell()
+	return
+
+/atom/proc/get_coords()
+	var/turf/T = get_turf(src)
+	if (T)
+		var/datum/coords/C = new
+		C.x_pos = T.x
+		C.y_pos = T.y
+		C.z_pos = T.z
+		return C
+
+/atom/proc/change_area(var/area/old_area, var/area/new_area)
+	return
+
+//Bullethole shit.
+/atom/proc/create_bullethole(var/obj/item/projectile/Proj)
+	var/p_x = Proj.p_x + pick(0,0,0,0,0,-1,1) // really ugly way of coding "sometimes offset Proj.p_x!"
+	var/p_y = Proj.p_y + pick(0,0,0,0,0,-1,1) // Used for bulletholes
+	var/obj/effect/overlay/bmark/BM = new(src)
+
+	BM.pixel_x = p_x
+	BM.pixel_y = p_y
+	// offset correction
+	BM.pixel_x--
+	BM.pixel_y--
+
+	if(Proj.damage >= WEAPON_FORCE_DANGEROUS)//If it does a lot of damage it makes a nice big black hole.
+		BM.icon_state = "scorch"
+		BM.set_dir(pick(NORTH,SOUTH,EAST,WEST)) // random scorch design
+	else //Otherwise it's a light dent.
+		BM.icon_state = "light_scorch"
+
+/atom/proc/clear_bulletholes()
+	for(var/obj/effect/overlay/bmark/BM in src)
+		qdel(BM)
+
+
+//Returns a list of things in this atom, can be overridden for more nuanced behaviour
+/atom/proc/get_contents()
+	return contents
+
+
+/atom/proc/get_recursive_contents()
+	var/list/result = list()
+	for (var/atom/a in contents)
+		result += a
+		result |= a.get_recursive_contents()
+	return result

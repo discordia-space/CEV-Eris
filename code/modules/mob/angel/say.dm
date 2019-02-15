@@ -23,7 +23,7 @@
 			src << SPAN_DANGER("Deadchat and ANGEL chat are globally muted.")
 			return
 
-	if(!is_preference_enabled(/datum/client_preference/show_dsay))
+	if(get_preference_value(/datum/client_preference/show_dsay) == GLOB.PREF_HIDE)
 		usr << SPAN_DANGER("You have deadchat and ANGEL chat muted.")
 		return
 
@@ -53,7 +53,7 @@
 		src << SPAN_DANGER("You cannot send deadchat and ANGEL emotes (muted).")
 		return
 
-	if(!is_preference_enabled(/datum/client_preference/show_dsay))
+	if(get_preference_value(/datum/client_preference/show_dsay) == GLOB.PREF_HIDE)
 		src << SPAN_DANGER("You have deadchat and ANGEL chat muted.")
 		return
 
@@ -86,11 +86,11 @@
 		else
 			name = "Unknown ANGEL"
 			// this should not happen usually
-			world.log << "DEBUG: say_angel_direct() invoked when client has no .mob property"
+			log_world("DEBUG: say_angel_direct() invoked when client has no .mob property")
 			log_debug("say_angel_direct() invoked when client has no .mob property")
 
-	for(var/mob/M in player_list)
-		if(M.client && ((!istype(M, /mob/new_player) && M.stat == DEAD) || (M.client.holder && !is_mentor(M.client))) && M.is_preference_enabled(/datum/client_preference/show_dsay))
+	for(var/mob/M in GLOB.player_list)
+		if(M.client && ((!istype(M, /mob/new_player) && M.stat == DEAD) || (M.client.holder && !is_mentor(M.client))) && M.get_preference_value(/datum/client_preference/show_dsay) == GLOB.PREF_SHOW)
 			var/lname
 			if(subject)
 				if(M.client.holder) 							// What admins see

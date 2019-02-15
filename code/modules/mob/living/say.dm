@@ -114,21 +114,20 @@ proc/get_radio_key_from_channel(var/channel)
 		src << SPAN_DANGER("You're muzzled and cannot speak!")
 		return
 
-	var/message_mode = parse_message_mode(message, "headset")
-
-	switch(copytext(message, 1, 2))
-		if("*")
-			return emote(copytext(message, 2))
-		if("^")
-			return custom_emote(1, copytext(message, 2))
+	var/prefix = copytext(message,1,2)
+	if(prefix == get_prefix_key(/decl/prefix/custom_emote))
+		return emote(copytext(message,2))
+	if(prefix == get_prefix_key(/decl/prefix/visible_emote))
+		return custom_emote(1, copytext(message,2))
 
 	//parse the radio code and consume it
-	if(message_mode)
+	var/message_mode = parse_message_mode(message, "headset")
+	if (message_mode)
 		//it would be really nice if the parse procs could do this for us.
-		if(message_mode == "headset")
-			message = copytext(message, 2)
+		if (message_mode == "headset")
+			message = copytext(message,2)
 		else
-			message = copytext(message, 3)
+			message = copytext(message,3)
 
 	message = trim_left(message)
 
@@ -217,7 +216,7 @@ proc/get_radio_key_from_channel(var/channel)
 		for(var/mob/M in SSmobs.mob_list)
 			if(M.locs.len && M.locs[1] in hear)
 				listening |= M
-			else if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))
+			else if(M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
 				listening |= M
 
 		for(var/obj/O in hearing_objects)
@@ -226,8 +225,8 @@ proc/get_radio_key_from_channel(var/channel)
 
 	var/speech_bubble_test = say_test(message)
 	var/image/speech_bubble = image('icons/mob/talk.dmi', src, "h[speech_bubble_test]")
-	spawn(30)
-		qdel(speech_bubble)
+	speech_bubble.layer = ABOVE_MOB_LAYER
+	QDEL_IN(speech_bubble, 30)
 
 	var/list/speech_bubble_recipients = list()
 	for(var/mob/M in listening)
@@ -235,7 +234,7 @@ proc/get_radio_key_from_channel(var/channel)
 			speech_bubble_recipients += M.client
 		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
 
-	flick_overlay(speech_bubble, speech_bubble_recipients, 30)
+	animate_speechbubble(speech_bubble, speech_bubble_recipients, 30)
 
 	for(var/obj/O in listening_obj)
 		spawn(0)
@@ -244,6 +243,21 @@ proc/get_radio_key_from_channel(var/channel)
 
 	log_say("[name]/[key] : [message]")
 	return TRUE
+
+
+/proc/animate_speechbubble(image/I, list/show_to, duration)
+	var/matrix/M = matrix()
+	M.Scale(0,0)
+	I.transform = M
+	I.alpha = 0
+	for(var/client/C in show_to)
+		C.images += I
+	animate(I, transform = 0, alpha = 255, time = 5, easing = ELASTIC_EASING)
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/fade_speechbubble, I), duration-5)
+
+/proc/fade_speechbubble(image/I)
+	animate(I, alpha = 0, time = 5, easing = EASE_IN)
+
 
 /mob/living/proc/say_signlang(var/message, var/verb="gestures", var/datum/language/language)
 	for (var/mob/O in viewers(src, null))
@@ -271,7 +285,7 @@ proc/get_radio_key_from_channel(var/channel)
 				if(ishuman(speaker))
 					var/mob/living/carbon/human/H = speaker
 					speaker_name = H.rank_prefix_name(speaker_name)
-				src << "<span class='name'>[speaker_name]</span>[alt_name] talks but you cannot hear \him."
+				to_chat(src,"<span class='name'>[speaker_name]</span>[alt_name] talks but you cannot hear \him.")
 		return
 
 	//make sure the air can transmit speech - hearer's side
@@ -317,7 +331,7 @@ proc/get_radio_key_from_channel(var/channel)
 
 	if(sdisabilities&DEAF || ear_deaf)
 		if(prob(20))
-			src << SPAN_WARNING("You feel your headset vibrate but can hear nothing from it!")
+			to_chat(src, SPAN_WARNING("You feel your headset vibrate but can hear nothing from it!"))
 		return
 
 	if(sleeping || stat == UNCONSCIOUS) //If unconscious or sleeping
@@ -365,4 +379,4 @@ proc/get_radio_key_from_channel(var/channel)
 	else
 		heard = "<span class = 'game_say'>...<i>You almost hear someone talking</i>...</span>"
 
-	src << heard
+	to_chat(src, heard)

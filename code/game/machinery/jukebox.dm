@@ -1,12 +1,18 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
-datum/track
+/datum/track
 	var/title
-	var/sound
+	var/track
 
-datum/track/New(var/title_name, var/audio)
-	title = title_name
-	sound = audio
+/datum/track/New(var/title, var/track)
+	src.title = title
+	src.track = track
+
+/datum/track/proc/GetTrack()
+	if(ispath(track, /music_track))
+		var/music_track/music_track = decls_repository.get_decl(track)
+		return music_track.song
+	return track
 
 /obj/machinery/media/jukebox/
 	name = "space jukebox"
@@ -21,16 +27,32 @@ datum/track/New(var/title_name, var/audio)
 	active_power_usage = 100
 
 	var/playing = 0
+	var/volume = 20 // TODO: Adjustable volume
+	var/range = 7
+
+	var/sound_id
+	var/datum/sound_token/sound_token
 
 	var/datum/track/current_track
-	var/list/datum/track/tracks = list(
-		new/datum/track("Part A", 'sound/misc/TestLoop1.ogg'),
-	)
+	var/list/datum/track/tracks
 
+/obj/machinery/media/jukebox/New()
+	..()
+	update_icon()
+	sound_id = "[/obj/machinery/media/jukebox]_[sequential_id(/obj/machinery/media/jukebox)]"
+
+/obj/machinery/media/jukebox/Initialize()
+	. = ..()
+	tracks = setup_music_tracks(tracks)
 
 /obj/machinery/media/jukebox/Destroy()
-	StopPlaying()
+	stop_playing()
+	QDEL_NULL_LIST(tracks)
+	current_track = null
 	. = ..()
+
+/obj/machinery/media/jukebox/powered()
+	return anchored && ..()
 
 /obj/machinery/media/jukebox/power_change()
 	if(!powered(power_channel) || !anchored)
@@ -39,7 +61,7 @@ datum/track/New(var/title_name, var/audio)
 		stat &= ~NOPOWER
 
 	if(stat & (NOPOWER|BROKEN) && playing)
-		StopPlaying()
+		stop_playing()
 	update_icon()
 
 /obj/machinery/media/jukebox/update_icon()
@@ -73,10 +95,10 @@ datum/track/New(var/title_name, var/audio)
 		for(var/datum/track/T in tracks)
 			if(T.title == href_list["title"])
 				current_track = T
-				StartPlaying()
+				start_playing()
 				break
 	else if(href_list["stop"])
-		StopPlaying()
+		stop_playing()
 	else if(href_list["play"])
 		if(emagged)
 			playsound(src.loc, 'sound/items/AirHorn.ogg', 100, 1)
@@ -97,18 +119,27 @@ datum/track/New(var/title_name, var/audio)
 			spawn(15)
 				explode()
 		else if(current_track == null)
-			usr << "No track selected."
+			to_chat(usr, "No track selected.")
 		else
-			StartPlaying()
+			start_playing()
 
 	return 1
 
 /obj/machinery/media/jukebox/interact(mob/user)
+	if(!anchored)
+		to_chat(usr, "<span class='warning'>You must secure \the [src] first.</span>")
+		return
+
 	if(stat & (NOPOWER|BROKEN))
 		usr << "\The [src] doesn't appear to function."
 		return
 
 	ui_interact(user)
+
+/obj/machinery/media/jukebox/ui_status(mob/user, datum/ui_state/state)
+	if(!anchored || inoperable())
+		return UI_CLOSE
+	return ..()
 
 /obj/machinery/media/jukebox/ui_interact(mob/user, ui_key = "jukebox", var/datum/nanoui/ui = null, var/force_open = 1)
 	var/title = "RetroBox - Space Style"
@@ -125,7 +156,7 @@ datum/track/New(var/title_name, var/audio)
 		data["tracks"] = nano_tracks
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
@@ -159,7 +190,7 @@ datum/track/New(var/title_name, var/audio)
 
 	if(istype(W, /obj/item/weapon/tool/wrench))
 		if(playing)
-			StopPlaying()
+			stop_playing()
 		user.visible_message("<span class='warning'>[user] has [anchored ? "un" : ""]secured \the [src].</span>", "<span class='notice'>You [anchored ? "un" : ""]secure \the [src].</span>")
 		anchored = !anchored
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
@@ -171,33 +202,24 @@ datum/track/New(var/title_name, var/audio)
 /obj/machinery/media/jukebox/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		emagged = 1
-		StopPlaying()
+		stop_playing()
 		visible_message(SPAN_DANGER("\The [src] makes a fizzling sound."))
 		update_icon()
 		return 1
 
-/obj/machinery/media/jukebox/proc/StopPlaying()
-	var/area/main_area = get_area(src)
-	// Always kill the current sound
-	for(var/mob/living/M in mobs_in_area(main_area))
-		M << sound(null, channel = 1)
-
-		main_area.forced_ambience = null
+/obj/machinery/media/jukebox/proc/stop_playing()
 	playing = 0
 	update_use_power(1)
 	update_icon()
+	QDEL_NULL(sound_token)
 
 
-/obj/machinery/media/jukebox/proc/StartPlaying()
-	StopPlaying()
+/obj/machinery/media/jukebox/proc/start_playing()
+	stop_playing()
 	if(!current_track)
 		return
 
-	var/area/main_area = get_area(src)
-	main_area.forced_ambience = list(current_track.sound)
-	for(var/mob/living/M in mobs_in_area(main_area))
-		if(M.mind)
-			main_area.play_ambience(M)
+	sound_token = GLOB.sound_player.play_looping(src, sound_id, current_track.GetTrack(), volume = volume, range = range, falloff = 3, prefer_mute = TRUE)
 
 	playing = 1
 	update_use_power(2)

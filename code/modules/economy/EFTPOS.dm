@@ -3,6 +3,7 @@
 	desc = "Swipe your ID card to make purchases electronically."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "eftpos"
+	w_class = ITEM_SIZE_SMALL
 	var/machine_id = ""
 	var/eftpos_name = "Default EFTPOS scanner"
 	var/transaction_locked = 0
@@ -90,7 +91,7 @@
 			dat += "<a href='?src=\ref[src];choice=toggle_lock'>Back[transaction_paid ? "" : " (authentication required)"]</a><br><br>"
 
 			dat += "Transaction purpose: <b>[transaction_purpose]</b><br>"
-			dat += "Value: <b>$[transaction_amount]</b><br>"
+			dat += "Value: <b>[CREDS][transaction_amount]</b><br>"
 			dat += "Linked account: <b>[linked_account ? linked_account.owner_name : "None"]</b><hr>"
 			if(transaction_paid)
 				dat += "<i>This transaction has been processed successfully.</i><hr>"
@@ -101,7 +102,7 @@
 			dat += "<a href='?src=\ref[src];choice=toggle_lock'>Lock in new transaction</a><br><br>"
 
 			dat += "<a href='?src=\ref[src];choice=trans_purpose'>Transaction purpose: [transaction_purpose]</a><br>"
-			dat += "Value: <a href='?src=\ref[src];choice=trans_value'>$[transaction_amount]</a><br>"
+			dat += "Value: <a href='?src=\ref[src];choice=trans_value'>[CREDS][transaction_amount]</a><br>"
 			dat += "Linked account: <a href='?src=\ref[src];choice=link_account'>[linked_account ? linked_account.owner_name : "None"]</a><hr>"
 			dat += "<a href='?src=\ref[src];choice=change_code'>Change access code</a><br>"
 			dat += "<a href='?src=\ref[src];choice=change_id'>Change EFTPOS ID</a><br>"
@@ -112,7 +113,7 @@
 
 /obj/item/device/eftpos/attackby(obj/item/O as obj, user as mob)
 
-	var/obj/item/weapon/card/id/I = O.GetID()
+	var/obj/item/weapon/card/id/I = O.GetIdCard()
 
 	if(I)
 		if(linked_account)
@@ -122,7 +123,7 @@
 	else if (istype(O, /obj/item/weapon/spacecash/ewallet))
 		var/obj/item/weapon/spacecash/ewallet/E = O
 		if (linked_account)
-			if(!linked_account.suspended)
+			if(linked_account.is_valid())
 				if(transaction_locked && !transaction_paid)
 					if(transaction_amount <= E.worth)
 						playsound(src, 'sound/machines/chime.ogg', 50, 1)
@@ -133,10 +134,7 @@
 						E.worth -= transaction_amount
 
 						//create entry in the EFTPOS linked account transaction log
-						var/datum/transaction/T = PoolOrNew(/datum/transaction, list(
-							transaction_amount, E.owner_name,
-							transaction_purpose ? transaction_purpose : "None supplied.", machine_id
-						))
+						var/datum/transaction/T = new(transaction_amount, E.owner_name, transaction_purpose ? transaction_purpose : "None supplied.", machine_id)
 						T.apply_to(linked_account)
 					else
 						usr << "\icon[src]<span class='warning'>\The [O] doesn't have that much money!</span>"
@@ -174,7 +172,7 @@
 				var/attempt_pin = input("Enter pin code", "Account pin") as num
 				linked_account = attempt_account_access(attempt_account_num, attempt_pin, 1)
 				if(linked_account)
-					if(linked_account.suspended)
+					if(!linked_account.is_valid())
 						linked_account = null
 						usr << "\icon[src]<span class='warning'>Account has been suspended.</span>"
 				else
@@ -232,7 +230,7 @@
 			usr.visible_message("<span class='info'>\The [usr] swipes \the [ID_container] through \the [src].</span>")
 		if(transaction_locked && !transaction_paid)
 			if(linked_account)
-				if(!linked_account.suspended)
+				if(linked_account.is_valid())
 					var/attempt_pin = ""
 					var/datum/money_account/D = get_account(C.associated_account_number)
 					if(D.security_level)
@@ -240,7 +238,7 @@
 						D = null
 					D = attempt_account_access(C.associated_account_number, attempt_pin, 2)
 					if(D)
-						if(!D.suspended)
+						if(D.is_valid())
 							if(transaction_amount <= D.money)
 								playsound(src, 'sound/machines/chime.ogg', 50, 1)
 								src.visible_message("\icon[src] \The [src] chimes.")
@@ -248,10 +246,7 @@
 
 								//transfer the money
 								//create entries in the two account transaction logs
-								var/datum/transaction/T = PoolOrNew(/datum/transaction, list(
-									-transaction_amount, "[linked_account.owner_name] (via [eftpos_name])",
-									transaction_purpose, machine_id
-								))
+								var/datum/transaction/T = new(-transaction_amount, "[linked_account.owner_name] (via [eftpos_name])", transaction_purpose, machine_id)
 								T.apply_to(D)
 								//
 								T = new(

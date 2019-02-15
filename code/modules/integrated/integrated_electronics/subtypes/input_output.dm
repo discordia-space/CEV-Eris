@@ -55,7 +55,7 @@
 
 /obj/item/integrated_circuit/input/numberpad/ask_for_input(mob/user)
 	var/new_input = input(user, "Enter a number, please.","Number pad") as null|num
-	if(isnum(new_input) && CanInteract(user, physical_state))
+	if(isnum(new_input) && CanInteract(user,GLOB.physical_state))
 		set_pin_data(IC_OUTPUT, 1, new_input)
 		push_data()
 		activate_pin(1)
@@ -74,7 +74,7 @@
 
 /obj/item/integrated_circuit/input/textpad/ask_for_input(mob/user)
 	var/new_input = input(user, "Enter some words, please.","Number pad") as null|text
-	if(istext(new_input) && CanInteract(user, physical_state))
+	if(istext(new_input) && CanInteract(user,GLOB.physical_state))
 		set_pin_data(IC_OUTPUT, 1, new_input)
 		push_data()
 		activate_pin(1)
@@ -227,8 +227,7 @@
 	set_pin_data(IC_INPUT, 2, code)
 
 /obj/item/integrated_circuit/input/signaler/Destroy()
-	if(radio_controller)
-		radio_controller.remove_object(src,frequency)
+	SSradio.remove_object(src,frequency)
 	frequency = 0
 	. = ..()
 
@@ -255,13 +254,9 @@
 /obj/item/integrated_circuit/input/signaler/proc/set_frequency(new_frequency)
 	if(!frequency)
 		return
-	if(!radio_controller)
-		sleep(20)
-	if(!radio_controller)
-		return
-	radio_controller.remove_object(src, frequency)
+	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
-	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
+	radio_connection = SSradio.add_object(src, frequency, RADIO_CHAT)
 
 /obj/item/integrated_circuit/input/signaler/receive_signal(datum/signal/signal)
 	var/new_code = get_pin_data(IC_INPUT, 2)

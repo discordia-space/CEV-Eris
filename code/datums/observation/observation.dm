@@ -63,8 +63,8 @@
 	var/list/global_listeners = list()  // Associative list of instances that listen to all events of this type (as opposed to events belonging to a specific source) and the proc to call.
 
 /decl/observ/New()
-	all_observable_events.events += src
-	. = ..()
+	GLOB.all_observable_events += src
+	..()
 
 /decl/observ/proc/is_listening(var/event_source, var/datum/listener, var/proc_call)
 	// Return whether there are global listeners unless the event source is given.
@@ -141,12 +141,12 @@
 
 	// Remove all callbacks if no specific one is given.
 	if (!proc_call)
-		listeners -= listener
-
-		// Perform some cleanup and return true.
-		if (!listeners.len)
-			event_sources -= event_source
-		return TRUE
+		if(listeners.Remove(listener))
+			// Perform some cleanup and return true.
+			if (!listeners.len)
+				event_sources -= event_source
+			return TRUE
+		return FALSE
 
 	// See if the listener is registered.
 	var/list/callbacks = listeners[listener]
@@ -215,6 +215,7 @@
 			try
 				call(listener, proc_call)(arglist(args))
 			catch (var/exception/e)
+				error("[e.name] - [e.file] - [e.line]")
 				error(e.desc)
 				unregister_global(listener, proc_call)
 
@@ -230,6 +231,7 @@
 				try
 					call(listener, proc_call)(arglist(args))
 				catch (var/exception/e)
+					error("[e.name] - [e.file] - [e.line]")
 					error(e.desc)
 					unregister(source, listener, proc_call)
 

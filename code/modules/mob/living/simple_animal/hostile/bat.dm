@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/scarybat
-	name = "space bats"
+	name = "bats"
 	desc = "A swarm of cute little blood sucking bats that looks pretty upset."
 	icon = 'icons/mob/bats.dmi'
 	icon_state = "bat"
@@ -41,7 +41,7 @@
 	if(istype(L))
 		owner = L
 
-/mob/living/simple_animal/hostile/scarybat/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_animal/hostile/scarybat/allow_spacemove(var/check_drift = 0)
 	return ..()	//No drifting in space for space carp!	//original comments do not steal
 
 /mob/living/simple_animal/hostile/scarybat/FindTarget()

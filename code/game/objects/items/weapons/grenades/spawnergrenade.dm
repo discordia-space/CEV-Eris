@@ -34,6 +34,15 @@
 
 /obj/item/weapon/grenade/spawnergrenade/manhacks
 	name = "manhack delivery grenade"
+	desc = "Deploys a swarm of floating robots that will attack anything nearby."
 	spawner_type = /mob/living/simple_animal/hostile/viscerator
 	deliveryamt = 5
+	origin_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 4, TECH_ILLEGAL = 4)
+
+
+/obj/item/weapon/grenade/spawnergrenade/blob
+	name = "bioweapon sample"
+	desc = "Contains an absurdly dangerous bioweapon in suspended animation. It will expand rapidly upon release. Once deployed, run like hell."
+	spawner_type = /obj/effect/blob/core
+	deliveryamt = 1
 	origin_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 4, TECH_ILLEGAL = 4)

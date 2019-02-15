@@ -36,25 +36,27 @@
 
 //lipstick wiping is in code/game/objects/items/weapons/cosmetics.dm!
 
-/obj/item/weapon/paper/New()
+/obj/item/weapon/paper/New(loc, text, title)
 	..()
 	pixel_y = rand(-8, 8)
 	pixel_x = rand(-9, 9)
 	stamps = ""
 
+	set_content(text ? text : info, title)
+
 	if(name != "paper")
 		desc = "This is a paper titled '" + name + "'."
 
-	if(info != initial(info))
-		info = rhtml_encode(info)
-		info = replacetext(info, "\n", "<BR>")
-		info = parsepencode(info)
-
+/obj/item/weapon/paper/proc/set_content(text,title)
+	if(title)
+		name = title
+	info = rhtml_encode(text)
+	info = replacetext(info, "\n", "<BR>")
+	info = parsepencode(info)
 	spawn(2)
 		update_icon()
 		update_space(info)
 		updateinfolinks()
-		return
 
 /obj/item/weapon/paper/update_icon()
 	if(icon_state == "paper_talisman")
@@ -140,12 +142,12 @@
 	return
 
 /obj/item/weapon/paper/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	if(user.targeted_organ == O_EYES)
+	if(user.targeted_organ == BP_EYES)
 		user.visible_message(SPAN_NOTICE("You show the paper to [M]. "), \
 			SPAN_NOTICE(" [user] holds up a paper and shows it to [M]. "))
 		M.examinate(src)
 
-	else if(user.targeted_organ == "mouth") // lipstick wiping
+	else if(user.targeted_organ == BP_MOUTH) // lipstick wiping
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(H == user)
@@ -245,6 +247,8 @@
 	t = replacetext(t, "\[/h2\]", "</H2>")
 	t = replacetext(t, "\[h3\]", "<H3>")
 	t = replacetext(t, "\[/h3\]", "</H3>")
+	t = replacetext(t, "&gt;", ">")
+	t = replacetext(t, "&lt;", "<")
 
 	if(!iscrayon)
 		t = replacetext(t, "\[*\]", "<li>")
@@ -383,13 +387,13 @@
 		update_icon()
 
 
+
+
 /obj/item/weapon/paper/attackby(obj/item/weapon/P as obj, mob/user as mob)
 	..()
 
-	if(istype(P, /obj/item/weapon/tape_roll))
-		var/obj/item/weapon/tape_roll/tape = P
-		tape.stick(src, user)
-		return
+	if(P.has_quality(QUALITY_ADHESIVE))
+		return //The tool's afterattack will handle this
 
 	if(istype(P, /obj/item/weapon/paper) || istype(P, /obj/item/weapon/photo))
 		if (istype(P, /obj/item/weapon/paper/carbon))

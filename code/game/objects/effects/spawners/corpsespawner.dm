@@ -60,14 +60,14 @@
 	if(src.corpseback)
 		M.equip_to_slot_or_del(new src.corpseback(M), slot_back)
 
-	var/datum/job/jobdatum = corpseidjob && job_master.GetJob(corpseidjob)
+	var/datum/job/jobdatum = corpseidjob && SSjob.GetJob(corpseidjob)
 	if(jobdatum)
 		jobdatum.equip(M)
 
 	if(src.corpseid)
 		var/datum/job/job_access = jobdatum
 		if(corpseidaccess)
-			job_access = job_master.GetJob(corpseidaccess)
+			job_access = SSjob.GetJob(corpseidaccess)
 		var/obj/item/weapon/card/id/W = new(M)
 		if(job_access)
 			W.access = job_access.get_access()

@@ -24,7 +24,7 @@
 	transforming = 0
 	stunned = 0
 
-	update_canmove()
+	update_lying_buckled_and_verb_status()
 	invisibility = initial(invisibility)
 
 	if(!species.primitive_form) //If the creature in question has no primitive set, this is going to be messy.
@@ -68,7 +68,7 @@
 /mob/proc/AIize(move=1)
 
 	if(client)
-		src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // stop the jams for AIs
+		sound_to(src, sound(null, repeat = 0, wait = 0, volume = 85, channel = GLOB.lobby_sound_channel))
 	var/mob/living/silicon/ai/O = new (loc, base_law_type,,1)//No MMI but safety is in effect.
 	O.invisibility = 0
 	O.aiRestorePowerRoutine = 0
@@ -81,7 +81,7 @@
 
 	if(move)
 		var/obj/new_location = null
-		for(var/turf/sloc in getSpawnLocations(/datum/job/ai))
+		for(var/turf/sloc in getSpawnLocations("AI"))
 			if(locate(/obj/structure/AIcore) in sloc)
 				continue
 			new_location = sloc
@@ -92,7 +92,7 @@
 				new_location = sloc
 		if (!new_location)
 			O << "Oh god sorry we can't find an unoccupied AI spawn location, so we're spawning you on top of someone."
-			new_location = pickSpawnLocation(/datum/job/ai, FALSE)
+			new_location = pickSpawnLocation("AI")
 
 		O.forceMove(new_location)
 
@@ -109,15 +109,17 @@
 /mob/living/carbon/human/proc/Robotize()
 	if (transforming)
 		return
+	for(var/t in organs)
+		qdel(t)
 	for(var/obj/item/W in src)
 		drop_from_inventory(W)
+		qdel(W)
 	regenerate_icons()
 	transforming = 1
 	canmove = 0
 	icon = null
 	invisibility = 101
-	for(var/t in organs)
-		qdel(t)
+
 
 	var/mob/living/silicon/robot/O = new /mob/living/silicon/robot( loc )
 
@@ -132,7 +134,7 @@
 
 	if(mind)		//TODO
 		mind.transfer_to(O)
-		if(O.mind.assigned_role == "Cyborg")
+		if(O.mind.assigned_role == "Robot")
 			O.mind.original = O
 		else if(mind && mind.antagonist.len)
 			O.mind.store_memory("In case you look at this after being borged, the objectives are only here until I find a way to make them not show up for you, as I can't simply delete them without screwing up round-end reporting. --NeoFite")
@@ -140,8 +142,8 @@
 		O.key = key
 
 	O.loc = loc
-	O.job = "Cyborg"
-	if(O.mind.assigned_role == "Cyborg")
+	O.job = "Robot"
+	if(O.mind.assigned_role == "Robot")
 		O.mmi = new /obj/item/device/mmi(O)
 		O.mmi.transfer_identity(src)
 
@@ -294,6 +296,3 @@
 
 	//Not in here? Must be untested!
 	return 0
-
-
-

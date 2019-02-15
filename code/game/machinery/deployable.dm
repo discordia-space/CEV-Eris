@@ -8,7 +8,7 @@ for reference:
 	access_brig = 2
 	access_armory = 3
 	access_forensics_lockers= 4
-	access_medical = 5
+	access_moebius = 5
 	access_morgue = 6
 	access_tox = 7
 	access_tox_storage = 8
@@ -158,7 +158,7 @@ for reference:
 	icon_state = "barrier[locked]"
 
 /obj/machinery/deployable/barrier/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.GetID())
+	if(W.GetIdCard())
 		if(allowed(user))
 			if	(emagged < 2.0)
 				locked = !locked
@@ -234,7 +234,7 @@ for reference:
 	var/turf/Tsec = get_turf(src)
 
 /*	var/obj/item/stack/rods/ =*/
-	PoolOrNew(/obj/item/stack/rods, Tsec)
+	new /obj/item/stack/rods(Tsec)
 
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(3, 1, src)

@@ -31,10 +31,10 @@
 			if(D.client && D.local_transmit)
 				D << "<b>[src]</b> transmits, \"[message]\""
 
-		for (var/mob/M in player_list)
+		for (var/mob/M in GLOB.player_list)
 			if (isnewplayer(M))
 				continue
-			else if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))
+			else if(M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
 				if(M.client) M << "<b>[src]</b> transmits, \"[message]\""
 		return 1
 	return ..(message, 0)

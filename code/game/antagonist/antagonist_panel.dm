@@ -34,7 +34,7 @@
 		dat += "<b>Objectives</b><br>"
 		var/num = 1
 		for(var/datum/objective/O in objectives)
-			dat += "<b>Objective #[num]:</b> [O.explanation_text] "
+			dat += "<b>Objective #[num]:</b>"
 			if(O.completed)
 				dat += "(<font color='green'>complete</font>)"
 			else
@@ -59,7 +59,7 @@
 		if(!owner)
 			if(!outer)
 				var/list/MN = list()
-				for(var/datum/mind/M in ticker.minds)
+				for(var/datum/mind/M in SSticker.minds)
 					if(can_become_antag(M))
 						MN[M.name] = M
 				MN["CANCEL"] = null
@@ -69,7 +69,7 @@
 					create_antagonist(M)
 			else
 				var/list/CD = list()
-				for(var/mob/observer/M in player_list)
+				for(var/mob/observer/M in GLOB.player_list)
 					if(can_become_antag_ghost(M))
 						CD[M.name] = M
 				CD["CANCEL"] = null
@@ -134,7 +134,7 @@
 
 
 	else if(href_list["new_faction"] && faction_id && !faction)
-		var/t = faction_types[faction_id]
+		var/t = GLOB.faction_types[faction_id]
 		var/datum/faction/F = new t
 		F.customize()
 		F.add_leader(src)

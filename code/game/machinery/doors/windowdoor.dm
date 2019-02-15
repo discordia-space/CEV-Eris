@@ -7,7 +7,7 @@
 	icon = 'icons/obj/doors/windoor.dmi'
 	icon_state = "left"
 	var/base_state = "left"
-	min_force = 4
+	resistance = RESISTANCE_FRAGILE
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 100 //If you change this, consiter changing ../door/window/brigdoor/ health at the bottom of this .dm file
 	health = 100
@@ -76,8 +76,6 @@
 					close()
 		return
 	var/mob/M = AM // we've returned by here if M is not a mob
-	if (!( ticker ))
-		return
 	if (src.operating)
 		return
 	if (src.density && (!issmall(M) || ishuman(M)) && src.allowed(AM))
@@ -108,8 +106,6 @@
 
 /obj/machinery/door/window/open()
 	if (src.operating == 1) //doors can still open when emag-disabled
-		return 0
-	if (!ticker)
 		return 0
 	if(!src.operating) //in case of emag
 		src.operating = 1

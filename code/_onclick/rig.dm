@@ -30,19 +30,25 @@
 			hardsuit_click_mode = MIDDLE_CLICK
 
 /mob/living/MiddleClickOn(atom/A)
-	if(client && client.hardsuit_click_mode == MIDDLE_CLICK)
+	if(get_preference_value(/datum/client_preference/hardsuit_activation) == GLOB.PREF_MIDDLE_CLICK)
 		if(HardsuitClickOn(A))
 			return
 	..()
 
 /mob/living/AltClickOn(atom/A)
-	if(client && client.hardsuit_click_mode == ALT_CLICK)
+	if(get_preference_value(/datum/client_preference/hardsuit_activation) == GLOB.PREF_ALT_CLICK)
 		if(HardsuitClickOn(A))
 			return
 	..()
 
 /mob/living/CtrlClickOn(atom/A)
-	if(client && client.hardsuit_click_mode == CTRL_CLICK)
+	if(get_preference_value(/datum/client_preference/hardsuit_activation) == GLOB.PREF_CTRL_CLICK)
+		if(HardsuitClickOn(A))
+			return
+	..()
+
+/mob/living/CtrlShiftClickOn(atom/A)
+	if(get_preference_value(/datum/client_preference/hardsuit_activation) == GLOB.PREF_CTRL_SHIFT_CLICK)
 		if(HardsuitClickOn(A))
 			return
 	..()

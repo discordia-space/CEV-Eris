@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/shotgun/bull
 	name = "FS SG \"Bull\""
-	desc = "A Frozen Star double-barreled pump action shotgun. Marvel of engineering, this gun  often use by police SWAT teams."
+	desc = "A \"Frozen Star\" double-barreled pump-action shotgun. Marvel of engineering, this gun is often used by Ironhammer tactical units."
 	icon_state = "PeaceWalker"
 	item_state = "PW"
 	load_method = SINGLE_CASING|SPEEDLOADER
@@ -13,9 +13,10 @@
 	caliber = "shotgun"
 	var/reload = 1
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
+	damage_multiplier = 0.75
 	burst_delay = null
 	fire_delay = null
-	bulletinsert_sound 	= 'sound/weapons/guns/interact/shotgun_instert.ogg'
+	bulletinsert_sound = 'sound/weapons/guns/interact/shotgun_insert.ogg'
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	move_delay = null
 	firemodes = list(

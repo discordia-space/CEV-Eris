@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/shotgun/pump
 	name = "FS SG \"Kammerer\""
-	desc = "Old Remington design from modern materials, this shotgun is a favourite of militia forces on many worlds."
+	desc = "When an old Remington design meets modern materials, this is the result. A favourite weapon of militia forces throughout many worlds."
 	icon_state = "shotgun"
 	item_state = "shotgun"
 	max_shells = 4
@@ -14,7 +14,7 @@
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	handle_casings = HOLD_CASINGS
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
-	bulletinsert_sound 	= 'sound/weapons/guns/interact/shotgun_instert.ogg'
+	bulletinsert_sound 	= 'sound/weapons/guns/interact/shotgun_insert.ogg'
 	var/recentpump = 0 // to prevent spammage
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
 

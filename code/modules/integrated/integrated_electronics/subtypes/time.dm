@@ -99,13 +99,8 @@
 		ticks_completed = 0
 
 /obj/item/integrated_circuit/time/ticker/Process()
-	var/process_ticks = process_schedule_interval("obj")
-	ticks_completed += process_ticks
-	if(ticks_completed >= ticks_to_pulse)
-		if(ticks_to_pulse >= process_ticks)
-			ticks_completed -= ticks_to_pulse
-		else
-			ticks_completed = 0
+	if(++ticks_completed >= ticks_to_pulse)
+		ticks_completed = 0
 		activate_pin(1)
 
 /obj/item/integrated_circuit/time/ticker/fast

@@ -67,6 +67,7 @@
 #define ROBOT_NOTIFICATION_NEW_NAME 2
 #define ROBOT_NOTIFICATION_NEW_MODULE 3
 #define ROBOT_NOTIFICATION_MODULE_RESET 4
+#define ROBOT_NOTIFICATION_SIGNAL_LOST 5
 
 // Appearance change flags
 #define APPEARANCE_UPDATE_DNA  0x1
@@ -77,7 +78,9 @@
 #define APPEARANCE_HAIR_COLOR  0x20
 #define APPEARANCE_FACIAL_HAIR 0x40
 #define APPEARANCE_FACIAL_HAIR_COLOR 0x80
-#define APPEARANCE_EYE_COLOR 0x100
+#define APPEARANCE_EYE_COLOR 	0x100
+#define APPEARANCE_BUILD	 	0x200
+#define APPEARANCE_NAME	 		0x400
 #define APPEARANCE_ALL_HAIR (APPEARANCE_HAIR|APPEARANCE_HAIR_COLOR|APPEARANCE_FACIAL_HAIR|APPEARANCE_FACIAL_HAIR_COLOR)
 #define APPEARANCE_ALL       0xFFFF
 
@@ -115,6 +118,16 @@
 #define GLUT_SMALLER 2    // Eat anything smaller than we are
 #define GLUT_ANYTHING 3   // Eat anything, ever
 
+
+
+// Flags for mob types by Nanako. Primarily used for distinguishing organic from synthetic mobs
+#define CLASSIFICATION_ORGANIC      1	// Almost any creature under /mob/living/carbon and most simple animals
+#define CLASSIFICATION_SYNTHETIC    2	// Everything under /mob/living/silicon, plus hivebots and similar simple mobs
+#define CLASSIFICATION_HUMANOID     4	// Humans and humanoid player characters
+#define CLASSIFICATION_WEIRD        8	// Slimes, constructs, demons, and other creatures of a magical or bluespace nature.
+#define CLASSIFICATION_INCORPOREAL 16 // Mobs that don't really have any physical form to them. Ghosts mostly
+
+
 #define TINT_NONE 0
 #define TINT_MODERATE 1
 #define TINT_HEAVY 2
@@ -124,20 +137,34 @@
 #define FLASH_PROTECTION_NONE 0
 #define FLASH_PROTECTION_MODERATE 1
 #define FLASH_PROTECTION_MAJOR 2
-#define ANIMAL_SPAWN_DELAY round(config.respawn_delay / 6)
-#define DRONE_SPAWN_DELAY  round(config.respawn_delay / 3)
 
-#define ANIMAL_SPAWN_DELAY round(config.respawn_delay / 6)
-#define DRONE_SPAWN_DELAY  round(config.respawn_delay / 3)
+
+//Time of Death constants
+//Used with a list in preference datums to track times of death
+#define	CREW 	"crew"//Used for crewmembers, AI, cyborgs, nymphs, antags
+#define ANIMAL	"animal"//Used for mice and any other simple animals
+#define MINISYNTH	"minisynth"//Used for drones and pAIs
+
+#define ANIMAL_SPAWN_DELAY 5 MINUTES
+#define DRONE_SPAWN_DELAY  10 MINUTES
+
+#define CRYOPOD_SPAWN_BONUS	20 MINUTES //Going to sleep in a cryopod takes this much off your respawn time
+
 
 // Incapacitation flags, used by the mob/proc/incapacitated() proc
+#define INCAPACITATION_NONE 0
 #define INCAPACITATION_RESTRAINED 1
 #define INCAPACITATION_BUCKLED_PARTIALLY 2
 #define INCAPACITATION_BUCKLED_FULLY 4
-#define INCAPACITATION_DISABLED 8
+#define INCAPACITATION_STUNNED 8
+#define INCAPACITATION_FORCELYING 16 //needs a better name - represents being knocked down BUT still conscious.
+#define INCAPACITATION_UNCONSCIOUS 32
 
+#define INCAPACITATION_KNOCKDOWN (INCAPACITATION_UNCONSCIOUS|INCAPACITATION_FORCELYING)
+#define INCAPACITATION_DISABLED (INCAPACITATION_KNOCKDOWN|INCAPACITATION_STUNNED)
 #define INCAPACITATION_DEFAULT (INCAPACITATION_RESTRAINED|INCAPACITATION_BUCKLED_FULLY|INCAPACITATION_DISABLED)
-#define INCAPACITATION_ALL (INCAPACITATION_RESTRAINED|INCAPACITATION_BUCKLED_PARTIALLY|INCAPACITATION_BUCKLED_FULLY|INCAPACITATION_DISABLED)
+#define INCAPACITATION_ALL (~INCAPACITATION_NONE)
+
 
 #define MOB_PULL_NONE 0
 #define MOB_PULL_SMALLER 1
@@ -153,9 +180,6 @@
 #define TASTE_DULL 0.5 //anything below 30%
 #define TASTE_NUMB 0.1 //anything below 150%
 
-//Ambience
-#define SOUND_CHANNEL_AMBIENCE 2
-
 //Health
 #define HEALTH_THRESHOLD_SOFTCRIT 0
 #define HEALTH_THRESHOLD_CRIT -50
@@ -165,3 +189,7 @@
 #define ORGAN_REGENERATION_MULTIPLIER 0.2
 #define WOUND_BLEED_MULTIPLIER 0.02 //Bleeding wounds drip damage*this units of blood per process tick
 #define OPEN_ORGAN_BLEED_AMOUNT 1.5 //Wounds with open, unclamped incisions bleed this many units of blood per process tick
+
+#define HEAT_MOBIGNITE_THRESHOLD 530 //minimum amount of heat an object needs to ignite a mob when it hits the mob
+
+#define SPECIES_HUMAN       "Human"

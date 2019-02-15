@@ -1,5 +1,5 @@
 /mob/living/carbon/human/proc/update_eyes()
-	var/obj/item/organ/internal/eyes/eyes = internal_organs_by_name[O_EYES]
+	var/obj/item/organ/internal/eyes/eyes = internal_organs_by_name[BP_EYES]
 	if(eyes)
 		eyes.update_colour()
 		regenerate_icons()
@@ -157,7 +157,7 @@
 						continue
 					drop_from_inventory(r_hand)
 
-			emote("me", 1, "drops what they were holding, their [E.name] malfunctioning!")
+			emote("pain", 1, "drops what they were holding, their [E.name] malfunctioning!")
 
 			var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 			spark_system.set_up(5, 0, src)

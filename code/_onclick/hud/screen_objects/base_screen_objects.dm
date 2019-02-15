@@ -170,10 +170,10 @@
 				switch(icon_y)
 					if(23 to 24)
 						if(icon_x in 15 to 17)
-							parentmob.targeted_organ = "mouth"
+							parentmob.targeted_organ = BP_MOUTH
 					if(25 to 27)
 						if(icon_x in 14 to 18)
-							parentmob.targeted_organ = O_EYES
+							parentmob.targeted_organ = BP_EYES
 
 	if(old_selecting != parentmob.targeted_organ)
 		update_icon()
@@ -243,9 +243,7 @@
 		if("hand")
 			usr:swap_hand()
 		else
-			if(usr.attack_ui(slot_id))
-				usr.update_inv_l_hand(0)
-				usr.update_inv_r_hand(0)
+			usr.attack_ui(slot_id)
 	return TRUE
 
 /obj/screen/inventory/hand
@@ -729,6 +727,8 @@ obj/screen/fire/DEADelize()
 
 /obj/screen/HUDthrow/Click()
 	parentmob.toggle_throw_mode()
+	update_icon()
+	return TRUE
 
 /obj/screen/HUDthrow/update_icon()
 	if (parentmob.in_throw_mode)
@@ -1086,6 +1086,11 @@ obj/screen/fire/DEADelize()
 	if(istype(H.glasses, /obj/item/clothing/glasses))
 		var/obj/item/clothing/glasses/G = H.glasses
 		if (G.active && G.overlay)//check here need if someone want call this func directly
+			overlays |= G.overlay
+
+	if(istype(H.wearing_rig,/obj/item/weapon/rig))
+		var/obj/item/clothing/glasses/G = H.wearing_rig.getCurrentGlasses()
+		if (G && H.wearing_rig.visor.active)
 			overlays |= G.overlay
 
 

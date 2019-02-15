@@ -5,7 +5,7 @@
 	icon_state = "void"
 
 	heat_protection = HEAD
-	armor = list(melee = 40, bullet = 5, laser = 20,energy = 5, bomb = 35, bio = 100, rad = 20)
+	armor = list(melee = 40, bullet = 35, laser = 35,energy = 5, bomb = 35, bio = 100, rad = 60)
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 
 	light_overlay = "helmet_light"
@@ -16,8 +16,10 @@
 	item_state = "void"
 	desc = "A high-tech dark red space suit. Used for AI satellite maintenance."
 	slowdown = 1
-	armor = list(melee = 40, bullet = 5, laser = 20,energy = 5, bomb = 35, bio = 100, rad = 20)
-	allowed = list(/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit)
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	armor = list(melee = 40, bullet = 35, laser = 35,energy = 5, bomb = 35, bio = 100, rad = 90)
+
+
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 
@@ -39,6 +41,9 @@
 	user << "\The [src] has [english_list(part_list)] installed."
 	if(tank && in_range(src,user))
 		user << SPAN_NOTICE("The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank].")
+
+
+
 
 /obj/item/clothing/suit/space/void/equipped(mob/M)
 	..()
@@ -130,7 +135,6 @@
 			H << SPAN_DANGER("You cannot deploy your helmet while wearing \the [H.head].")
 			return
 		if(H.equip_to_slot_if_possible(helmet, slot_head))
-			helmet.pickup(H)
 			helmet.canremove = 0
 			H << "<span class='info'>You deploy your suit helmet, sealing you off from the world.</span>"
 			playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)

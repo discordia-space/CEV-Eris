@@ -105,8 +105,16 @@
 		new /obj/item/weapon/tool/multitool(src)
 	if(prob(5))
 		new /obj/item/clothing/gloves/insulated(src)
+	if(prob(5))
+		new /obj/item/weapon/storage/pouch/engineering_tools(src)
+	if(prob(1))
+		new /obj/item/weapon/storage/pouch/engineering_supply(src)
 	if(prob(40))
 		new /obj/item/clothing/head/hardhat(src)
+	new /obj/random/tool_upgrade(src)
+	new /obj/random/tool_upgrade(src)
+	new /obj/random/tool_upgrade(src)
+	//Every tool closet contains a couple guaranteed toolmods
 
 /*
  * Radiation Closet

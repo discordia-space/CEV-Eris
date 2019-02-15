@@ -23,7 +23,8 @@
 	minbodytemp = 0
 	speed = 4
 	light_range = 3
-	light_color = "#82C2D8"
+	light_color = COLOR_LIGHTING_BLUE_BRIGHT
+	mob_classification = CLASSIFICATION_SYNTHETIC
 
 /mob/living/simple_animal/hostile/hivebot/range
 	name = "Human Alliance Autonomous Sentinel"

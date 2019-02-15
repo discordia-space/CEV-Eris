@@ -17,5 +17,8 @@
 		var/obj/item/device/aicard/card = loc
 		card.update_icon()
 
+	for (var/mob/living/silicon/robot/R in connected_robots)
+		to_chat(R, "<span class='notice'>You lost signal from your master [src.name].</span>")
+		
 	. = ..(gibbed,"gives one shrill beep before falling lifeless.")
 	density = 1

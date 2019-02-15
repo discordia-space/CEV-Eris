@@ -69,7 +69,7 @@ var/global/list/limb_icon_cache = list()
 
 /obj/item/organ/external/head/sync_colour_to_human(var/mob/living/carbon/human/human)
 	..()
-	var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[O_EYES]
+	var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[BP_EYES]
 	if(eyes) eyes.update_colour()
 
 /obj/item/organ/external/head/removed()
@@ -86,8 +86,8 @@ var/global/list/limb_icon_cache = list()
 	if(!owner || !owner.species)
 		return
 
-	if(owner.species.has_organ[O_EYES])
-		var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[O_EYES]
+	if(owner.species.has_organ[BP_EYES])
+		var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[BP_EYES]
 		if(eyes)
 			mob_icon.Blend(eyes.get_icon(), ICON_OVERLAY)
 
@@ -97,7 +97,7 @@ var/global/list/limb_icon_cache = list()
 
 	if(robotic < ORGAN_ROBOT)
 		if(owner.f_style)
-			var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[owner.f_style]
+			var/datum/sprite_accessory/facial_hair_style = GLOB.facial_hair_styles_list[owner.f_style]
 			if(facial_hair_style && facial_hair_style.species_allowed && (species.get_bodytype() in facial_hair_style.species_allowed))
 				var/icon/facial = new/icon(facial_hair_style.icon, facial_hair_style.icon_state)
 				if(facial_hair_style.do_colouration)
@@ -105,7 +105,7 @@ var/global/list/limb_icon_cache = list()
 				overlays |= facial
 
 		if(owner.h_style && !(owner.head && (owner.head.flags_inv & BLOCKHEADHAIR)))
-			var/datum/sprite_accessory/hair_style = hair_styles_list[owner.h_style]
+			var/datum/sprite_accessory/hair_style = GLOB.hair_styles_list[owner.h_style]
 			if(hair_style && (species.get_bodytype() in hair_style.species_allowed))
 				var/icon/hair = new/icon(hair_style.icon, hair_style.icon_state)
 				if(hair_style.do_colouration)

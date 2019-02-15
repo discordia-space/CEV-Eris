@@ -5,16 +5,24 @@
 	layer = BELOW_OBJ_LAYER
 	w_class = ITEM_SIZE_HUGE
 	var/state = 0
-	var/health = 200
+	var/health = 150
 	var/cover = 50 //how much cover the girder provides against projectiles.
 	var/material/reinf_material
 	var/reinforcing = 0
+	var/resistance = RESISTANCE_TOUGH
+	var/dismantle_materials_count = 5
 
 /obj/structure/girder/displaced
 	icon_state = "displaced"
 	anchored = 0
 	health = 50
 	cover = 25
+
+//Low girders are used to build low walls
+/obj/structure/girder/low
+	health = 120
+	cover = 25 //how much cover the girder provides against projectiles.
+	dismantle_materials_count = 3
 
 /obj/structure/girder/attack_generic(var/mob/user, var/damage, var/attack_message = "smashes apart", var/wallbreaker)
 	if(!damage || !wallbreaker)
@@ -36,10 +44,7 @@
 	if(!istype(Proj, /obj/item/projectile/beam))
 		damage *= 0.4 //non beams do reduced damage
 
-	health -= damage
-	..()
-	if(health <= 0)
-		dismantle()
+	take_damage(damage)
 
 	return
 
@@ -54,6 +59,25 @@
 		reinforce_girder()
 
 /obj/structure/girder/attackby(obj/item/I, mob/user)
+
+	//Attempting to damage girders
+	//This supercedes all construction, deconstruction and similar actions. So change your intent out of harm if you don't want to smack it
+	if (usr.a_intent == I_HURT && user.Adjacent(src))
+		if(!(I.flags & NOBLUDGEON))
+			user.do_attack_animation(src)
+			var/calc_damage = (I.force*I.structure_damage_factor) - resistance
+			var/volume = (calc_damage)*3.5
+			volume = min(volume, 15)
+			if (I.hitsound)
+				playsound(src, I.hitsound, volume, 1, -1)
+
+			if (calc_damage > 0)
+				visible_message(SPAN_DANGER("[src] has been hit by [user] with [I]."))
+				take_damage(I.force*I.structure_damage_factor, I.damtype)
+			else
+				visible_message(SPAN_DANGER("[user] ineffectually hits [src] with [I]"))
+			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.75)
+			return TRUE
 
 	var/list/usable_qualities = list()
 	if(state == 0 && ((anchored && !reinf_material) || !anchored))
@@ -136,7 +160,7 @@
 		return ..()
 
 /obj/structure/girder/proc/construct_wall(obj/item/stack/material/S, mob/user)
-	if(S.get_amount() < 2)
+	if(S.get_amount() < 3)
 		user << SPAN_NOTICE("There isn't enough material here to construct a wall.")
 		return 0
 
@@ -144,31 +168,69 @@
 	if(!istype(M))
 		return 0
 
-	var/wall_fake
+	//var/wall_fake
 	add_hiddenprint(usr)
 
 	if(M.integrity < 50)
 		user << SPAN_NOTICE("This material is too soft for use in wall construction.")
 		return 0
 
+
+	//Note By Nanako
+	//7th January 2019: Fake wall construction disabled, due to critical bugs in wall icon updating.
+	//A byond issue is triggering illegal operation errors and this is the simplest way to fix
+	//In addtion we never made sprites for fake walls so it'd look awful anyway.
+	//TODO in future: Re-enable this feature after the underlying problem is solved
+	if (!anchored)
+		user << SPAN_NOTICE("The girders must be anchored to build a wall here.")
+		return
+
 	user << SPAN_NOTICE("You begin adding the plating...")
 
-	if(!do_after(user,40,src) || !S.use(2))
+	if(!do_after(user,WORKTIME_SLOW,src) || !S.use(3))
 		return 1 //once we've gotten this far don't call parent attackby()
 
 	if(anchored)
 		user << SPAN_NOTICE("You added the plating!")
 	else
-		user << SPAN_NOTICE("You create a false wall! Push on it to open or close the passage.")
-		wall_fake = 1
+		user << SPAN_NOTICE("The girders must be anchored to build a wall here.")
+		return
+		//user << SPAN_NOTICE("You create a false wall! Push on it to open or close the passage.")
+		//wall_fake = 1
 
 	var/turf/Tsrc = get_turf(src)
 	Tsrc.ChangeTurf(/turf/simulated/wall)
 	var/turf/simulated/wall/T = get_turf(src)
 	T.set_material(M, reinf_material)
-	if(wall_fake)
-		T.can_open = 1
+	//if(wall_fake)
+		//T.can_open = 1
 	T.add_hiddenprint(usr)
+	qdel(src)
+	return 1
+
+/obj/structure/girder/low/construct_wall(obj/item/stack/material/S, mob/user)
+	if(S.get_amount() < 1)
+		user << SPAN_NOTICE("There isn't enough material here to construct a low wall.")
+		return 0
+
+	var/material/M = name_to_material[S.default_type]
+	if(!istype(M))
+		return 0
+
+	if (!istype(M, /material/steel))
+		user << SPAN_NOTICE("Low walls can only be made of steel.")
+		return 0
+	add_hiddenprint(usr)
+
+	user << SPAN_NOTICE("You begin adding the plating...")
+
+	if(!do_after(user,WORKTIME_NORMAL,src) || !S.use(1))
+		return 1 //once we've gotten this far don't call parent attackby()
+
+
+	var/obj/structure/low_wall/T = new(loc)
+	T.add_hiddenprint(usr)
+	T.Created()
 	qdel(src)
 	return 1
 
@@ -203,7 +265,7 @@
 	reinforcing = 0
 
 /obj/structure/girder/proc/dismantle()
-	new /obj/item/stack/material/steel(src.loc, 5)
+	new /obj/item/stack/material/steel(src.loc, dismantle_materials_count)
 	qdel(src)
 
 /obj/structure/girder/attack_hand(mob/user as mob)
@@ -213,27 +275,25 @@
 		return
 	return ..()
 
+/obj/structure/girder/proc/take_damage(var/damage, var/damage_type = BRUTE, var/ignore_resistance = FALSE)
+	if (!ignore_resistance)
+		damage -= resistance
+	if (!damage || damage <= 0)
+		return
+
+	health -= damage
+	if (health <= 0)
+		dismantle()
+
 
 /obj/structure/girder/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			qdel(src)
-			return
+			take_damage(rand(500))
 		if(2.0)
-			if (prob(30))
-				dismantle()
-				return
-			else
-				health -= rand(60,180)
+			take_damage(rand(120,300))
 
 		if(3.0)
-			if (prob(5))
-				dismantle()
-				return
-			else
-				health -= rand(40,80)
-		else
+			take_damage(rand(60,180))
 
-	if(health <= 0)
-		dismantle()
-	return
+

@@ -32,8 +32,8 @@
 
 		for(var/event_turf in event_turfs)
 			events_by_turf[event_turf] = overmap_event
-			entered_event.register(event_turf, src, /decl/overmap_event_handler/proc/on_turf_entered)
-			exited_event.register(event_turf, src, /decl/overmap_event_handler/proc/on_turf_exited)
+			GLOB.entered_event.register(event_turf, src, /decl/overmap_event_handler/proc/on_turf_entered)
+			GLOB.exited_event.register(event_turf, src, /decl/overmap_event_handler/proc/on_turf_exited)
 
 			var/obj/effect/overmap_event/event = new(event_turf)
 //			world << "Created new event in [event.loc.x], [event.loc.y]"
@@ -137,18 +137,20 @@
 
 /datum/overmap_event/proc/enter(var/obj/effect/overmap/ship/victim)
 //	world << "Ship [victim] encountered [name]"
-	if(!event_manager)
+	if(!SSevent)
 		admin_notice("<span class='danger'>Event manager not setup.</span>")
 		return
 	if(victim in victims)
 		admin_notice("<span class='danger'>Multiple attempts to trigger the same event by [victim] detected.</span>")
 		return
 	LAZYADD(victims, victim)
-	var/datum/event_meta/EM = new(difficulty, "Overmap event - [name]", event, add_to_queue = FALSE, is_one_shot = TRUE)
-	var/datum/event/E = new event(EM)
+	//var/datum/event_meta/EM = new(difficulty, "Overmap event - [name]", event, add_to_queue = FALSE, is_one_shot = TRUE)
+	var/datum/event/E = new event(null, difficulty)
+	E.name = "Overmap event - [E.name]"
 	E.startWhen = 0
 	E.endWhen = INFINITY
 	victims[victim] = E
+	E.Initialize()
 
 /datum/overmap_event/proc/leave(victim)
 	if(victims && victims[victim])

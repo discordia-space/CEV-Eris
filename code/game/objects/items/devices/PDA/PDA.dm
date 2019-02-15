@@ -313,19 +313,15 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	else
 		return ..()
 
-/obj/item/device/pda/GetID()
-	return id
-
-/obj/item/device/pda/MouseDrop(obj/over_object as obj, src_location, over_location)
-	var/mob/M = usr
+/obj/item/device/pda/MouseDrop(obj/over_object, src_location, over_location)
 	if((!istype(over_object, /obj/screen)) && can_use())
-		return attack_self(M)
-	return
+		return attack_self(usr)
+	return ..()
 
 
 /obj/item/device/pda/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	ui_tick++
-	var/datum/nanoui/old_ui = nanomanager.get_open_ui(user, src, "main")
+	var/datum/nanoui/old_ui = SSnano.get_open_ui(user, src, "main")
 	var/auto_update = 1
 	if(mode in no_auto_update)
 		auto_update = 0
@@ -362,7 +358,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 					"access_security" = cartridge.access_security,\
 					"access_engine" = cartridge.access_engine,\
 					"access_atmos" = cartridge.access_atmos,\
-					"access_medical" = cartridge.access_medical,\
+					"access_moebius" = cartridge.access_moebius,\
 					"access_clown" = cartridge.access_clown,\
 					"access_mime" = cartridge.access_mime,\
 					"access_janitor" = cartridge.access_janitor,\
@@ -505,12 +501,12 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	nanoUI = data
 	// update the ui if it exists, returns null if no ui is passed/found
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
 	        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "pda.tmpl", title, 520, 400, state = inventory_state)
+		ui = new(user, src, ui_key, "pda.tmpl", title, 520, 400, state =GLOB.inventory_state)
 		// when the ui is first opened this is the data it will use
 
 		ui.set_initial_data(data)
@@ -543,7 +539,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 	..()
 	var/mob/user = usr
-	var/datum/nanoui/ui = nanomanager.get_open_ui(user, src, "main")
+	var/datum/nanoui/ui = SSnano.get_open_ui(user, src, "main")
 	var/mob/living/U = usr
 	//Looking for master was kind of pointless since PDAs don't appear to have one.
 	//if ((src in U.contents) || ( istype(loc, /turf) && in_range(src, U) ) )
@@ -619,7 +615,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		if("Medical Scan")
 			if(scanmode == 1)
 				scanmode = 0
-			else if((!isnull(cartridge)) && (cartridge.access_medical))
+			else if((!isnull(cartridge)) && (cartridge.access_moebius))
 				scanmode = 1
 		if("Reagent Scan")
 			if(scanmode == 3)
@@ -778,7 +774,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 						var/difficulty = 2
 
 						if(P.cartridge)
-							difficulty += P.cartridge.access_medical
+							difficulty += P.cartridge.access_moebius
 							difficulty += P.cartridge.access_security
 							difficulty += P.cartridge.access_engine
 							difficulty += P.cartridge.access_clown
@@ -964,8 +960,8 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 		tnote.Add(list(list("sent" = 1, "owner" = "[P.owner]", "job" = "[P.ownjob]", "message" = "[t]", "target" = "\ref[P]")))
 		P.tnote.Add(list(list("sent" = 0, "owner" = "[owner]", "job" = "[ownjob]", "message" = "[t]", "target" = "\ref[src]")))
-		for(var/mob/M in player_list)
-			if((M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears)) || isangel(M)) // src.client is so that ghosts don't have to listen to mice
+		for(var/mob/M in GLOB.player_list)
+			if((M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH) || isangel(M)) // src.client is so that ghosts don't have to listen to mice
 				if(isnewplayer(M))
 					continue
 				M.show_message("<span class='game say'>PDA Message - <span class='name'>[owner]</span> -> <span class='name'>[P.owner]</span>: <span class='message'>[reception.message]</span></span>")
@@ -976,17 +972,9 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			P.conversations.Add("\ref[src]")
 
 
-		if (prob(15)) //Give the AI a chance of intercepting the message
-			var/who = src.owner
-			if(prob(50))
-				who = P.owner
-			for(var/mob/living/silicon/ai/ai in SSmobs.mob_list)
-				// Allows other AIs to intercept the message but the AI won't intercept their own message.
-				if(ai.aiPDA != P && ai.aiPDA != src)
-					ai.show_message("<i>Intercepted message from <b>[who]</b>: [t]</i>")
 
 		P.new_message_from_pda(src, t)
-		nanomanager.update_user_uis(U, src) // Update the sending user's PDA UI so that they can see the new message
+		SSnano.update_user_uis(U, src) // Update the sending user's PDA UI so that they can see the new message
 	else
 		U << SPAN_NOTICE("ERROR: Messaging server is not responding.")
 
@@ -1006,7 +994,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	if(L)
 		if(reception_message)
 			L << reception_message
-		nanomanager.update_user_uis(L, src) // Update the receiving user's PDA UI so that they can see the new message
+		SSnano.update_user_uis(L, src) // Update the receiving user's PDA UI so that they can see the new message
 
 /obj/item/device/pda/proc/new_news(var/message)
 	new_info(news_silent, newstone, news_silent ? "" : "\icon[src] <b>[message]</b>")
@@ -1050,7 +1038,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 	if(can_use(usr))
 		mode = 0
-		nanomanager.update_uis(src)
+		SSnano.update_uis(src)
 		usr << SPAN_NOTICE("You press the reset button on \the [src].")
 	else
 		usr << SPAN_NOTICE("You cannot do this while restrained.")
@@ -1152,7 +1140,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		user.drop_item()
 		cartridge.loc = src
 		user << SPAN_NOTICE("You insert [cartridge] into [src].")
-		nanomanager.update_uis(src) // update all UIs attached to src
+		SSnano.update_uis(src) // update all UIs attached to src
 		if(cartridge.radio)
 			cartridge.radio.hostpda = src
 
@@ -1181,7 +1169,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		C.loc = src
 		pai = C
 		user << SPAN_NOTICE("You slot \the [C] into [src].")
-		nanomanager.update_uis(src) // update all UIs attached to src
+		SSnano.update_uis(src) // update all UIs attached to src
 	else if(istype(C, /obj/item/weapon/pen))
 		var/obj/item/weapon/pen/O = locate() in src
 		if(O)

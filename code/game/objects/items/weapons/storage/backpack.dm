@@ -11,7 +11,6 @@
 		slot_r_hand_str = 'icons/mob/items/righthand_backpacks.dmi',
 		)
 	icon_state = "backpack"
-	item_state = null
 	//most backpacks use the default backpack state for inhand overlays
 	item_state_slots = list(
 		slot_l_hand_str = "backpack",
@@ -20,25 +19,54 @@
 	w_class = ITEM_SIZE_LARGE
 	slot_flags = SLOT_BACK
 	max_w_class = ITEM_SIZE_LARGE
-	max_storage_space = 28
+	max_storage_space = 40
+	var/worn_access = FALSE
+
+/obj/item/weapon/storage/backpack/New()
+	if (!item_state)
+		item_state = icon_state
+	..()
 
 /obj/item/weapon/storage/backpack/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (src.use_sound)
-		playsound(src.loc, src.use_sound, 50, 1, -5)
+	if (!worn_check())
+		return
+	..()
+
+/obj/item/weapon/storage/backpack/attack_hand(mob/user)
+	if (!worn_check(no_message = TRUE))
+		if(src.loc != user || user.incapacitated())
+			return
+		if (!user.unEquip(src))
+			return
+		user.put_in_active_hand(src)
+		return
 	..()
 
 /obj/item/weapon/storage/backpack/equipped(var/mob/user, var/slot)
-	if (slot == slot_back && src.use_sound)
-		playsound(src.loc, src.use_sound, 50, 1, -5)
 	..(user, slot)
+	if (use_sound)
+		playsound(loc, use_sound, 50, 1, -5)
+	if(!worn_access && is_worn()) //currently looking into the backpack
+		close(user)
 
-/*
-/obj/item/weapon/storage/backpack/dropped(mob/user as mob)
-	if (loc == user && src.use_sound)
-		playsound(src.loc, src.use_sound, 50, 1, -5)
-	..(user)
-*/
 
+/obj/item/weapon/storage/backpack/open(mob/user)
+	if (!worn_check())
+		return
+	..()
+
+
+/obj/item/weapon/storage/backpack/proc/worn_check(var/no_message = FALSE)
+	if(!worn_access && is_worn())
+		var/mob/living/L = loc
+		if (istype(L))
+			if(!no_message)
+				to_chat(L, "<span class='warning'>Oh no! Your arms are not long enough to open [src] while it is on your back!</span>")
+		if (!no_message && use_sound)
+			playsound(loc, use_sound, 50, 1, -5)
+		return FALSE
+
+	return TRUE
 /*
  * Backpack Types
  */
@@ -49,12 +77,9 @@
 	origin_tech = list(TECH_BLUESPACE = 4)
 	icon_state = "holdingpack"
 	max_w_class = ITEM_SIZE_LARGE
-	max_storage_space = 56
+	max_storage_space = 100
 	storage_cost = 29
-
-	New()
-		..()
-		return
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_GOLD = 10, MATERIAL_DIAMOND = 5, MATERIAL_URANIUM = 5)
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
 		if(istype(W, /obj/item/weapon/storage/backpack/holding))
@@ -97,6 +122,14 @@
 	icon_state = "securitypack"
 	item_state_slots = null
 
+//Used by mercs
+/obj/item/weapon/storage/backpack/military
+	name = "MOLLE pack"
+	desc = "Designed for planetary infantry, holds a lot of equipment."
+	icon_state = "militarypack"
+	item_state_slots = null
+	max_storage_space = 50
+
 /obj/item/weapon/storage/backpack/captain
 	name = "captain's backpack"
 	desc = "It's a special backpack made exclusively for officers."
@@ -117,18 +150,22 @@
 	name = "leather satchel"
 	desc = "It's a very fancy satchel made with fine leather."
 	icon_state = "satchel"
+	max_storage_space = 24
+	worn_access = TRUE
 
 /obj/item/weapon/storage/backpack/satchel/withwallet
 	New()
 		..()
 		new /obj/item/weapon/storage/wallet/random( src )
 
-/obj/item/weapon/storage/backpack/satchel_norm
+/obj/item/weapon/storage/backpack/satchel/norm
 	name = "satchel"
 	desc = "A trendy looking satchel."
 	icon_state = "satchel-norm"
+	max_storage_space = 24
+	worn_access = TRUE
 
-/obj/item/weapon/storage/backpack/satchel_eng
+/obj/item/weapon/storage/backpack/satchel/eng
 	name = "industrial satchel"
 	desc = "A tough satchel with extra pockets."
 	icon_state = "satchel-eng"
@@ -136,8 +173,10 @@
 		slot_l_hand_str = "engiepack",
 		slot_r_hand_str = "engiepack",
 		)
+	max_storage_space = 24
+	worn_access = TRUE
 
-/obj/item/weapon/storage/backpack/satchel_med
+/obj/item/weapon/storage/backpack/satchel/med
 	name = "medical satchel"
 	desc = "A sterile satchel used in medical departments."
 	icon_state = "satchel-med"
@@ -145,8 +184,10 @@
 		slot_l_hand_str = "medicalpack",
 		slot_r_hand_str = "medicalpack",
 		)
+	max_storage_space = 24
+	worn_access = TRUE
 
-/obj/item/weapon/storage/backpack/satchel_sec
+/obj/item/weapon/storage/backpack/satchel/sec
 	name = "security satchel"
 	desc = "A robust satchel for security related needs."
 	icon_state = "satchel-sec"
@@ -154,8 +195,10 @@
 		slot_l_hand_str = "securitypack",
 		slot_r_hand_str = "securitypack",
 		)
+	max_storage_space = 24
+	worn_access = TRUE
 
-/obj/item/weapon/storage/backpack/satchel_cap
+/obj/item/weapon/storage/backpack/satchel/cap
 	name = "captain's satchel"
 	desc = "An exclusive satchel for officers."
 	icon_state = "satchel-cap"
@@ -163,3 +206,5 @@
 		slot_l_hand_str = "satchel-cap",
 		slot_r_hand_str = "satchel-cap",
 		)
+	max_storage_space = 24
+	worn_access = TRUE

@@ -36,15 +36,10 @@
 
 	if ( !ispath(src.foldable) )
 		return
-	var/found = 0
+
 	// Close any open UI windows first
-	for(var/mob/M in range(1))
-		if (M.s_active == src)
-			src.close(M)
-		if ( M == user )
-			found = 1
-	if ( !found )	// User is too far away
-		return
+	close_all()
+
 	// Now make the cardboard
 	user << SPAN_NOTICE("You fold [src] flat.")
 	new src.foldable(get_turf(src))
@@ -296,7 +291,7 @@
 
 /obj/item/weapon/storage/box/teargas
 	name = "box of pepperspray grenades"
-	desc = "A box containing 7 tear gas grenades. A gas mask is printed on the label.<br> WARNING: Exposure carries risk of serious injury or death. Keep away from persons with lung conditions."
+	desc = "A box containing 6 tear gas grenades. A gas mask is printed on the label.<br> WARNING: Exposure carries risk of serious injury or death. Keep away from persons with lung conditions."
 	icon_state = "flashbang"
 
 	New()
@@ -322,6 +317,31 @@
 		new /obj/item/weapon/grenade/empgrenade(src)
 		new /obj/item/weapon/grenade/empgrenade(src)
 		new /obj/item/weapon/grenade/empgrenade(src)
+
+/obj/item/weapon/storage/box/frag
+	name = "box of fragmentation grenades"
+	desc = "A box containing 4 fragmentation grenades. Designed for use on enemies in the open."
+	icon_state = "flashbang"
+
+	New()
+		..()
+		new /obj/item/weapon/grenade/frag(src)
+		new /obj/item/weapon/grenade/frag(src)
+		new /obj/item/weapon/grenade/frag(src)
+		new /obj/item/weapon/grenade/frag(src)
+
+/obj/item/weapon/storage/box/explosive
+	name = "box of blast grenades"
+	desc = "A box containing 4 blast grenades. Designed for assaulting strongpoints."
+	icon_state = "flashbang"
+
+	New()
+		..()
+		new /obj/item/weapon/grenade/frag/explosive(src)
+		new /obj/item/weapon/grenade/frag/explosive(src)
+		new /obj/item/weapon/grenade/frag/explosive(src)
+		new /obj/item/weapon/grenade/frag/explosive(src)
+
 
 /obj/item/weapon/storage/box/smokes
 	name = "box of smoke bombs"
@@ -665,3 +685,12 @@
 	can_hold = list(/obj/item/organ, /obj/item/weapon/reagent_containers/food, /obj/item/weapon/reagent_containers/glass)
 	max_storage_space = 21
 	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
+
+/obj/item/weapon/storage/box/autolathe_blank
+	name = "Autolathe Diskette Box"
+	icon_state = "disk_kit"
+
+/obj/item/weapon/storage/box/autolathe_blank/New()
+	..()
+	for(var/i in 1 to 7)
+		new /obj/item/weapon/disk/autolathe_disk/blank(src)

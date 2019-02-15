@@ -3,15 +3,17 @@
 	desc = "Most popular language in Canis Majoris constellation, thanks to many USA colonial ships arrived there in distant past."
 	key = "0"
 	flags = RESTRICTED
+	shorthand = "CO"
+
 
 	//syllables are at the bottom of the file
 
 /datum/language/common/get_random_name(var/gender)
 	if (prob(80))
 		if(gender==FEMALE)
-			return capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
+			return capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
 		else
-			return capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+			return capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
 	else
 		return ..()
 
@@ -82,8 +84,8 @@
 	desc = "Ancient language of Russian colonists, rusted with time and bastardized with technical terms in everyday use."
 	colour = "russian"
 	key = "r"
-	flags = RESTRICTED
-	syllables = list("zhena", "reb", "kot", "tvoy", "vodka", "blyad", "imperatrica", "ponimat", "zhit", "kley", "sto", "yat", "si", "det", \
+	space_chance = 80
+	syllables = list("zhena", "reb", "kot", "tvoy", "vodka", "blyad", "verbovka", "ponimat", "zhit", "kley", "sto", "yat", "si", "det", \
 					 "re", "be", "nok", "chto", "techno", "kak", "govor", "navernoe", "da", "net", "horosho", "pochemu", "privet","lubov", \
 					 "ebat", "krovat", "stol", "za", "ryad", "ka", "voyna", "dumat", "patroni", "tarakanu", "zdorovie", "day", "dengi", \
 					 "pizdec", "mat", "tvoyu", "suka", "ayblya", "uebok", "sosi", "ebi", "huyar", "trahat", "pizda", "uebu", "zaebal", "zgorela", \
@@ -97,4 +99,5 @@
 					 "portal", "systema", "electronika", "nigilizm", "anarhizm", "communistu", "tupuye", "sopla", "obshivka", "obtekaemost", \
 					 "dinamica", "statica", "organizacuya", "yeyenet", "radio", "peredacha", "priem", "slushno", "chastota", "gerts", "stantiya", \
 					 "suda", "huyar", "odin", "dva", "tri", "holod", "granata", "ne", "re", "ru", "korabl")
+	shorthand = "RU"
 

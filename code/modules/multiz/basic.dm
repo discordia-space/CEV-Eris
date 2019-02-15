@@ -23,7 +23,6 @@ var/z_levels = 0 // Each bit represents a connection between adjacent levels.  S
 /proc/GetBelow(var/atom/atom)
 	var/turf/turf = get_turf(atom)
 	if(!turf)
-		world << "No turf"
 		return null
 	return HasBelow(turf.z) ? get_step(turf, DOWN) : null
 
@@ -33,3 +32,14 @@ var/z_levels = 0 // Each bit represents a connection between adjacent levels.  S
 		. |= level-1
 	for(var/level = z, HasAbove(level), level++)
 		. |= level+1
+
+/proc/get_zstep(ref, dir)
+	if(dir == UP)
+		. = GetAbove(ref)
+	else if (dir == DOWN)
+		. = GetBelow(ref)
+	else
+		. = get_step(ref, dir)
+
+/proc/AreConnectedZLevels(var/zA, var/zB)
+	return zA == zB || (zB in GetConnectedZlevels(zA))

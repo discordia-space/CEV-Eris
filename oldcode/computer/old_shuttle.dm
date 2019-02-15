@@ -3,7 +3,7 @@
 	desc = "For shuttle control."
 	icon_keyboard = "tech_key"
 	icon_screen = "shuttle"
-	light_color = "#00ffff"
+	light_color = COLOR_LIGHTING_CYAN_MACHINERY
 	var/auth_need = 3.0
 	var/list/authorized = list(  )
 
@@ -11,8 +11,8 @@
 	attackby(var/obj/item/weapon/card/W as obj, var/mob/user as mob)
 		if(stat & (BROKEN|NOPOWER))	return
 		if ((!( istype(W, /obj/item/weapon/card) ) || !( ticker ) || emergency_shuttle.location() || !( user )))	return
-		if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
-			if (istype(W, /obj/item/device/pda))
+		if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/modular_computer))
+			if (istype(W, /obj/item/modular_computer))
 				var/obj/item/device/pda/pda = W
 				W = pda.id
 			if (!W:access) //no access

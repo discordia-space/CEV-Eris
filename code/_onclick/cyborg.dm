@@ -41,6 +41,8 @@
 	face_atom(A) // change direction to face what you clicked on
 
 	if(aiCamera.in_camera_mode)
+		if(!get_turf(A))
+			return
 		aiCamera.camera_mode_off()
 		if(is_component_functioning("camera"))
 			aiCamera.captureimage(A, usr)
@@ -171,37 +173,36 @@
 /atom/proc/BorgCtrlShiftClick(var/mob/living/silicon/robot/user) //forward to human click if not overriden
 	CtrlShiftClick(user)
 
-/obj/machinery/door/airlock/BorgCtrlShiftClick()
-	AICtrlShiftClick()
+/obj/machinery/door/airlock/BorgCtrlShiftClick(var/mob/living/silicon/robot/user)
+	AICtrlShiftClick(user)
 
 /atom/proc/BorgShiftClick(var/mob/living/silicon/robot/user) //forward to human click if not overriden
 	ShiftClick(user)
 
-/obj/machinery/door/airlock/BorgShiftClick()  // Opens and closes doors! Forwards to AI code.
-	AIShiftClick()
-
+/obj/machinery/door/airlock/BorgShiftClick(var/mob/living/silicon/robot/user)  // Opens and closes doors! Forwards to AI code.
+	AIShiftClick(user)
 
 /atom/proc/BorgCtrlClick(var/mob/living/silicon/robot/user) //forward to human click if not overriden
 	CtrlClick(user)
 
-/obj/machinery/door/airlock/BorgCtrlClick() // Bolts doors. Forwards to AI code.
-	AICtrlClick()
+/obj/machinery/door/airlock/BorgCtrlClick(var/mob/living/silicon/robot/user) // Bolts doors. Forwards to AI code.
+	AICtrlClick(user)
 
-/obj/machinery/power/apc/BorgCtrlClick() // turns off/on APCs. Forwards to AI code.
-	AICtrlClick()
+/obj/machinery/power/apc/BorgCtrlClick(var/mob/living/silicon/robot/user) // turns off/on APCs. Forwards to AI code.
+	AICtrlClick(user)
 
-/obj/machinery/turretid/BorgCtrlClick() //turret control on/off. Forwards to AI code.
-	AICtrlClick()
+/obj/machinery/turretid/BorgCtrlClick(var/mob/living/silicon/robot/user) //turret control on/off. Forwards to AI code.
+	AICtrlClick(user)
 
 /atom/proc/BorgAltClick(var/mob/living/silicon/robot/user)
 	AltClick(user)
 	return
 
-/obj/machinery/door/airlock/BorgAltClick() // Eletrifies doors. Forwards to AI code.
-	AIAltClick()
+/obj/machinery/door/airlock/BorgAltClick(var/mob/living/silicon/robot/user) // Eletrifies doors. Forwards to AI code.
+	AIAltClick(user)
 
-/obj/machinery/turretid/BorgAltClick() //turret lethal on/off. Forwards to AI code.
-	AIAltClick()
+/obj/machinery/turretid/BorgAltClick(var/mob/living/silicon/robot/user) //turret lethal on/off. Forwards to AI code.
+	AIAltClick(user)
 
 /*
 	As with AI, these are not used in click code,
@@ -219,3 +220,57 @@
 /atom/proc/attack_robot(mob/user as mob)
 	attack_ai(user)
 	return
+
+//
+//	On Ctrl-Click will turn on if off otherwise will switch between Filtering and Panic Siphon
+//
+/obj/machinery/alarm/BorgCtrlClick(var/mob/living/silicon/robot/user)
+	AICtrlClick(user)
+
+//
+//	On Alt-Click will cycle through modes
+//
+/obj/machinery/alarm/BorgAltClick(var/mob/living/silicon/robot/user)
+	AIAltClick(user)
+
+//
+//	On Ctrl-Click will turn on if off otherwise will switch between Filtering and Panic Siphon
+//
+/obj/machinery/firealarm/BorgCtrlClick(var/mob/living/silicon/robot/user)
+	AICtrlClick(user)
+
+//
+//	On Ctrl-Click will turn on or off SMES input 
+//
+/obj/machinery/power/smes/BorgCtrlClick(var/mob/living/silicon/robot/user)
+	AICtrlClick(user)
+
+//
+//	On Alt-Click will turn on or off SMES output 
+//
+/obj/machinery/power/smes/BorgAltClick(var/mob/living/silicon/robot/user)
+	AIAltClick(user)
+
+//
+//	On Ctrl-Click will turn on or off gas cooling system
+//
+/obj/machinery/atmospherics/unary/freezer/BorgCtrlClick(var/mob/living/silicon/robot/user)
+	AICtrlClick(user)
+
+//
+//	On Ctrl-Click will turn on or off telecomms machinery
+//	ENABLE WHEN TCOMS UI WILL BE UPDATED TO NANOUI
+/*
+/obj/machinery/telecomms/BorgCtrlClick(var/mob/living/silicon/robot/user)
+	AICtrlClick(user)
+*/
+
+//QOL feature, clicking on turf can toogle doors
+/turf/BorgCtrlClick(var/mob/living/silicon/robot/user)
+	AICtrlClick(user)
+
+/turf/BorgAltClick(var/mob/living/silicon/robot/user)
+	AIAltClick(user)
+
+/turf/BorgShiftClick(var/mob/living/silicon/robot/user)
+	AIShiftClick(user)

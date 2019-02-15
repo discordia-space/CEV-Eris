@@ -1,8 +1,11 @@
 /datum/objective/escape
 	explanation_text = "Escape on the shuttle or an escape pod alive and free."
+	unique = TRUE
 
 
 /datum/objective/escape/check_completion()
+	if (failed)
+		return FALSE
 	if(issilicon(owner.current))
 		return FALSE
 	if(isbrain(owner.current))

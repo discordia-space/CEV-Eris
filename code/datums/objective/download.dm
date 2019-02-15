@@ -1,31 +1,29 @@
 /datum/objective/download
+	target = "research_levels"
+	unique = TRUE
 
 /datum/objective/download/find_target()
 	target_amount = rand(10, 20)
 	update_explanation()
 
 /datum/objective/download/check_completion()
-	if(!ishuman(owner.current))
+	if (failed)
 		return FALSE
-	if(!owner.current || owner.current.stat == DEAD)
-		return FALSE
-
-	var/current_amount
-	var/obj/item/weapon/rig/S
-	if(ishuman(owner.current))
-		var/mob/living/carbon/human/H = owner.current
-		S = H.back
-
-	if(!istype(S) || !S.installed_modules || !S.installed_modules.len)
+	if(owner && (!owner.current || owner.current.stat == DEAD))
 		return FALSE
 
-	var/obj/item/rig_module/datajack/stolen_data = locate() in S.installed_modules
-	if(!istype(stolen_data))
-		return FALSE
+	var/list/contents = get_owner_inventory()
+	var/current_amount = 0
 
-	for(var/datum/tech/current_data in stolen_data.stored_research)
-		if(current_data.level > 1)
-			current_amount += (current_data.level - 1)
+	//Check rig suits for data, in future this needs to check disks and computer files too
+	for (var/obj/item/weapon/rig/S in contents)
+		var/obj/item/rig_module/datajack/stolen_data = locate() in S.installed_modules
+		if(!istype(stolen_data))
+			continue
+
+		for(var/datum/tech/current_data in stolen_data.stored_research)
+			if(current_data.level > 1)
+				current_amount += (current_data.level - 1)
 
 	return (current_amount < target_amount) ? FALSE : TRUE
 

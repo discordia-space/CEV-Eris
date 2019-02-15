@@ -123,6 +123,7 @@
 	if(anchored)
 		connect_to_network()
 	if(use_reagents_as_fuel)
+		create_reagents(max_fuel_volume)
 		fuel_name = chemical_reagents_list[fuel_reagent_id]
 		desc = "A power generator that runs on [fuel_name]. Rated for [(power_gen * max_safe_output) / 1000] kW max safe output."
 
@@ -380,7 +381,7 @@
 	data["fuel_units"] = "sheets"
 	data["fuel_ejectable"] = TRUE
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "pacman.tmpl", src.name, 500, 560)
 		ui.set_initial_data(data)

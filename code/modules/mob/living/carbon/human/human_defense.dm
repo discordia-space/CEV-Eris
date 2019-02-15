@@ -24,8 +24,8 @@ meteor_act
 			P.on_hit(src, 2, def_zone)
 			return 2
 	//Checking abosrb for spawning shrapnel
-	.=..(P , def_zone) 
-	
+	.=..(P , def_zone)
+
 	var/check_absorb = .
 	//Shrapnel
 	if(P.can_embed() && (check_absorb < 2))
@@ -37,7 +37,6 @@ meteor_act
 			SP.loc = organ
 			organ.embed(SP)
 
-	return (..(P , def_zone))
 
 /mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
 	var/obj/item/organ/external/affected = get_organ(check_zone(def_zone))
@@ -60,10 +59,10 @@ meteor_act
 
 				drop_from_inventory(c_hand)
 				if (affected.robotic >= ORGAN_ROBOT)
-					emote("me", 1, "drops what they were holding, their [affected.name] malfunctioning!")
+					emote("pain", 1, "drops what they were holding, their [affected.name] malfunctioning!")
 				else
 					var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
-					emote("me", 1, "[(species && species.flags & NO_PAIN) ? "" : emote_scream ]drops what they were holding in their [affected.name]!")
+					emote("pain", 1, "[(species && species.flags & NO_PAIN) ? "" : emote_scream ]drops what they were holding in their [affected.name]!")
 
 	..(stun_amount, agony_amount, def_zone)
 
@@ -291,6 +290,9 @@ meteor_act
 		var/obj/item/organ/external/affecting = get_organ(zone)
 		var/hit_area = affecting.name
 
+		if (O.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
+			IgniteMob()
+
 		src.visible_message("\red [src] has been hit in the [hit_area] by [O].")
 		var/armor = run_armor_check(affecting, "melee", O.armor_penetration, "Your armor has protected your [hit_area].", "Your armor has softened hit to your [hit_area].") //I guess "melee" is the best fit here
 
@@ -307,21 +309,22 @@ meteor_act
 					msg_admin_attack("[src.name] ([src.ckey]) was hit by a [O], thrown by [M.name] ([assailant.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)")
 
 		//thrown weapon embedded object code.
-		if(dtype == BRUTE && istype(O,/obj/item))
+		if(istype(O,/obj/item))
 			var/obj/item/I = O
-			if (!is_robot_module(I))
-				var/sharp = is_sharp(I)
+			if (I && I.damtype == BRUTE && !I.anchored && !is_robot_module(I))
 				var/damage = throw_damage
+				var/sharp = is_sharp(I)
+
 				if (armor)
 					damage /= armor+1
 
 				//blunt objects should really not be embedding in things unless a huge amount of force is involved
-				var/embed_chance = sharp? damage/I.w_class : damage/(I.w_class*3)
-				var/embed_threshold = sharp? 5*I.w_class : 15*I.w_class
 
-				//Sharp objects will always embed if they do enough damage.
-				//Thrown sharp objects have some momentum already and have a small chance to embed even if the damage is below the threshold
-				if((sharp && prob(damage/(10*I.w_class)*100)) || (damage > embed_threshold && prob(embed_chance)))
+				var/embed_threshold = sharp? 3*I.w_class : 9*I.w_class
+
+
+				var/embed_chance = (damage - embed_threshold)*I.embed_mult
+				if (embed_chance > 0 && prob(embed_chance))
 					affecting.embed(I)
 
 		// Begin BS12 momentum-transfer code.

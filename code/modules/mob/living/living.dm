@@ -120,10 +120,10 @@ default behaviour is:
 						for(var/obj/structure/window/win in get_step(AM,t))
 							now_pushing = FALSE
 							return
-					step(AM, t)
+					step_glide(AM, t, glide_size)
 					if(ishuman(AM) && AM:grabbed_by)
 						for(var/obj/item/weapon/grab/G in AM:grabbed_by)
-							step(G:assailant, get_dir(G:assailant, AM))
+							step_glide(G:assailant, get_dir(G:assailant, AM), glide_size)
 							G.adjust_position()
 				now_pushing = FALSE
 			return
@@ -311,7 +311,8 @@ default behaviour is:
 
 // ++++ROCKDTBEN++++ MOB PROCS //END
 
-/mob/proc/get_contents()
+/mob/get_contents()
+	return contents
 
 
 //Recursive function to find everything a mob is holding.
@@ -368,39 +369,12 @@ default behaviour is:
 /mob/living/proc/get_organ_target()
 	var/mob/shooter = src
 	var/t = shooter:targeted_organ
-	if(t in list(O_EYES, "mouth"))
+	if(t in list(BP_EYES, BP_MOUTH))
 		t = BP_HEAD
 	var/obj/item/organ/external/def_zone = ran_zone(t)
 	return def_zone
 
 
-// heal ONE external organ, organ gets randomly selected from damaged ones.
-/mob/living/proc/heal_organ_damage(var/brute, var/burn)
-	adjustBruteLoss(-brute)
-	adjustFireLoss(-burn)
-	src.updatehealth()
-
-// damage ONE external organ, organ gets randomly selected from damaged ones.
-/mob/living/proc/take_organ_damage(var/brute, var/burn, var/emp=0)
-	if(status_flags & GODMODE)
-		return FALSE	//godmode
-	adjustBruteLoss(brute)
-	adjustFireLoss(burn)
-	src.updatehealth()
-
-// heal MANY external organs, in random order
-/mob/living/proc/heal_overall_damage(var/brute, var/burn)
-	adjustBruteLoss(-brute)
-	adjustFireLoss(-burn)
-	src.updatehealth()
-
-// damage MANY external organs, in random order
-/mob/living/proc/take_overall_damage(var/brute, var/burn, var/used_weapon = null)
-	if(status_flags & GODMODE)
-		return FALSE	//godmode
-	adjustBruteLoss(brute)
-	adjustFireLoss(burn)
-	src.updatehealth()
 
 /mob/living/proc/restore_all_organs()
 	return
@@ -426,7 +400,8 @@ default behaviour is:
 	fire_stacks = 0
 
 /mob/living/proc/rejuvenate()
-	reagents.clear_reagents()
+	if (reagents)
+		reagents.clear_reagents()
 
 	// shut down various types of badness
 	setToxLoss(0)
@@ -456,8 +431,8 @@ default behaviour is:
 
 	// remove the character from the list of the dead
 	if(stat == DEAD)
-		dead_mob_list -= src
-		living_mob_list += src
+		GLOB.dead_mob_list -= src
+		GLOB.living_mob_list += src
 		tod = null
 		timeofdeath = 0
 
@@ -478,23 +453,7 @@ default behaviour is:
 /mob/living/proc/UpdateDamageIcon()
 	return
 
-
-/mob/living/proc/Examine_OOC()
-	set name = "Examine Meta-Info (OOC)"
-	set category = "OOC"
-	set src in view()
-
-	if(config.allow_Metadata)
-		if(client)
-			usr << "[src]'s Metainfo:<br>[client.prefs.metadata]"
-		else
-			usr << "[src] does not have any stored infomation!"
-	else
-		usr << "OOC Metadata is not supported by this server!"
-
-	return
-
-/mob/living/Move(a, b, flag)
+/mob/living/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	if (buckled)
 		return
 
@@ -572,7 +531,7 @@ default behaviour is:
 													H.vessel.remove_reagent("blood", 1)
 
 
-						step(pulling, get_dir(pulling.loc, T))
+						step_glide(pulling, get_dir(pulling.loc, T), glide_size)
 						if(t)
 							M.start_pulling(t)
 				else
@@ -583,7 +542,7 @@ default behaviour is:
 								for(var/obj/structure/window/win in get_step(pulling,get_dir(pulling.loc, T)))
 									stop_pulling()
 					if (pulling)
-						step(pulling, get_dir(pulling.loc, T))
+						step_glide(pulling, get_dir(pulling.loc, T), glide_size)
 	else
 		stop_pulling()
 		. = ..()
@@ -686,15 +645,63 @@ default behaviour is:
 	set name = "Rest"
 	set category = "IC"
 
-	resting = !resting
-	src << "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>"
+	var/state_changed = FALSE
+	if(resting && can_stand_up())
+		resting = FALSE
+		state_changed = TRUE
 
+
+	else if (!resting)
+		if(ishuman(src))
+			var/obj/item/weapon/bedsheet/BS = locate(/obj/item/weapon/bedsheet) in get_turf(src)
+			// If there is unrolled bedsheet roll and unroll it to get in bed like a proper adult does
+			if(BS && !BS.rolled && !BS.folded)
+				resting = TRUE
+				BS.toggle_roll(src, no_message = TRUE)
+				BS.toggle_roll(src)
+			else
+				resting = TRUE
+			state_changed = TRUE
+		else
+			resting = TRUE
+			state_changed = TRUE
+	if(state_changed)
+		src << "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>"
+		update_lying_buckled_and_verb_status()
+
+/mob/living/proc/can_stand_up()
+	var/no_blankets = FALSE
+	no_blankets = unblanket()
+
+	if(no_blankets)
+		return TRUE
+	else
+		src << SPAN_WARNING("You can't stand up, bedsheets are in the way and you struggle to get rid of them.")
+		return FALSE
+
+//used to push away bedsheets in order to stand up, only humans will roll them (see overriden human proc)
+/mob/living/proc/unblanket()
+	if((locate(/obj/item/weapon/bedsheet) in get_turf(src)) && do_after(src,10,incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_STUNNED))
+		var/quantity = 0
+		for (var/obj/item/weapon/bedsheet/BS in get_turf(src))
+			quantity++
+			if(prob(25))
+				BS.rolled = TRUE
+				BS.update_icon()
+			if(prob(85))
+				var/turf/T = get_offset_target_turf(get_turf(src),rand(-1,1),rand(-1,1))
+				step_towards(BS,T)
+		if(quantity)
+			src.visible_message(
+				SPAN_WARNING("\The [src] shoves aside \the [quantity > 1 ? "blankets" : "blanket"] as it stands up."),
+				SPAN_WARNING("You shove aside \the [quantity > 1 ? "blankets" : "blanket"] as you stand up.")
+			)
+	return TRUE
 
 /mob/living/simple_animal/spiderbot/is_allowed_vent_crawl_item(var/obj/item/carried_item)
 	if(carried_item == held_item)
 		return FALSE
 	return ..()
-
 
 /mob/living/proc/cannot_use_vents()
 	return "You can't fit into that vent."
@@ -753,6 +760,13 @@ default behaviour is:
 	src << "<b>You are now \the [src]!</b>"
 	src << "<span class='notice'>Remember to stay in character for a mob of this type!</span>"
 	return TRUE
+
+/mob/living/reset_layer()
+	if(hiding)
+		plane = HIDING_MOB_PLANE
+		layer = HIDING_MOB_LAYER
+	else
+		..()
 
 /mob/living/throw_mode_off()
 	src.in_throw_mode = 0
@@ -857,10 +871,13 @@ default behaviour is:
 
 /mob/living/New()
 	..()
-	stats = new /datum/stat_holder
+
+	//Some mobs may need to create their stats datum farther up
+	if (!stats)
+		stats = new /datum/stat_holder
 
 	generate_static_overlay()
-	for(var/mob/observer/eye/angel/A in player_list)
+	for(var/mob/observer/eye/angel/A in GLOB.player_list)
 		if(A)
 			A.static_overlays |= static_overlay
 			A.client.images |= static_overlay

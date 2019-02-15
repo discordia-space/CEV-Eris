@@ -19,3 +19,9 @@
 	icon_state = "spy-green"
 	alpha = 124
 	var/navigation = "But you forgot where you left it. Oops."
+
+/obj/landmark/storyevent/merc_spawn
+	name = "mercenary-spawn"
+	icon_state = "spy-green"
+	alpha = 124
+	var/navigation = "This marks Serbia, it is our land"

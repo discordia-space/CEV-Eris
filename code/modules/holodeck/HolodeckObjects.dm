@@ -21,13 +21,14 @@
 
 /turf/simulated/floor/holofloor/tiled
 	name = "floor"
-	icon = 'icons/turf/flooring/tiles.dmi'
-	icon_state = "steel"
-	initial_flooring = /decl/flooring/tiling
+	icon = 'icons/turf/flooring/tiles_steel.dmi'
+	icon_state = "tiles"
+	initial_flooring = /decl/flooring/tiling/steel
 
 /turf/simulated/floor/holofloor/tiled/dark
-	name = "dark floor"
-	icon_state = "dark"
+	name = "floor"
+	icon = 'icons/turf/flooring/tiles_dark.dmi'
+	icon_state = "tiles"
 	initial_flooring = /decl/flooring/tiling/dark
 
 /turf/simulated/floor/holofloor/wood
@@ -44,11 +45,8 @@
 
 /turf/simulated/floor/holofloor/snow
 	name = "snow"
-	base_name = "snow"
 	icon = 'icons/turf/floors.dmi'
-	base_icon = 'icons/turf/floors.dmi'
 	icon_state = "snow"
-	base_icon_state = "snow"
 
 /turf/simulated/floor/holofloor/space
 	icon = 'icons/turf/space.dmi'
@@ -66,36 +64,27 @@
 
 /turf/simulated/floor/holofloor/beach
 	desc = "Uncomfortably gritty for a hologram."
-	base_desc = "Uncomfortably gritty for a hologram."
 	icon = 'icons/misc/beach.dmi'
-	base_icon = 'icons/misc/beach.dmi'
 	initial_flooring = null
 
 /turf/simulated/floor/holofloor/beach/sand
 	name = "sand"
 	icon_state = "desert"
-	base_icon_state = "desert"
 
 /turf/simulated/floor/holofloor/beach/coastline
 	name = "coastline"
 	icon = 'icons/misc/beach2.dmi'
 	icon_state = "sandwater"
-	base_icon_state = "sandwater"
 
 /turf/simulated/floor/holofloor/beach/water
 	name = "water"
 	icon_state = "seashallow"
-	base_icon_state = "seashallow"
 
 /turf/simulated/floor/holofloor/desert
 	name = "desert sand"
-	base_name = "desert sand"
 	desc = "Uncomfortably gritty for a hologram."
-	base_desc = "Uncomfortably gritty for a hologram."
 	icon_state = "asteroid"
-	base_icon_state = "asteroid"
 	icon = 'icons/turf/flooring/asteroid.dmi'
-	base_icon = 'icons/turf/flooring/asteroid.dmi'
 	initial_flooring = null
 
 /turf/simulated/floor/holofloor/desert/New()
@@ -250,13 +239,9 @@
 		playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
 		user << SPAN_NOTICE("[src] can now be concealed.")
 
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		H.update_inv_l_hand()
-		H.update_inv_r_hand()
+	update_wear_icon()
 
 	add_fingerprint(user)
-	return
 
 //BASKETBALL OBJECTS
 

@@ -17,6 +17,7 @@
 	var/obj/access_scanner = null
 	var/list/req_access = list()
 	var/list/req_one_access = list()
+	mob_classification = CLASSIFICATION_SYNTHETIC
 
 /mob/living/bot/New()
 	..()
@@ -53,7 +54,7 @@
 	explode()
 
 /mob/living/bot/attackby(var/obj/item/O, var/mob/user)
-	if(O.GetID())
+	if(O.GetIdCard())
 		if(access_scanner.allowed(user) && !open && !emagged)
 			locked = !locked
 			user << "<span class='notice'>Controls are now [locked ? "locked." : "unlocked."]</span>"

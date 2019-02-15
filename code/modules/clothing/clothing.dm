@@ -1,6 +1,7 @@
 /obj/item/clothing
 	name = "clothing"
 	siemens_coefficient = 0.9
+	item_flags = DRAG_AND_DROP_UNEQUIP
 	var/flash_protection = FLASH_PROTECTION_NONE	// Sets the item's level of flash protection.
 	var/tint = TINT_NONE							// Sets the item's level of visual impairment tint.
 	var/list/species_restricted = null				// Only these species can wear this kit.
@@ -10,15 +11,44 @@
 	var/list/accessories = list()
 	var/list/valid_accessory_slots
 	var/list/restricted_accessory_slots
+	var/equip_delay = 0 //If set to a nonzero value, the item will require that much time to wear and remove
 
-//Updates the icons of the mob wearing the clothing item, if any.
-/obj/item/clothing/proc/update_clothing_icon()
-	return
+	//Used for hardsuits. If false, this piece cannot be retracted while the core module is engaged
+	var/retract_while_active = TRUE
+
+/obj/item/clothing/Destroy()
+	for(var/obj/item/clothing/accessory/A in accessories)
+		qdel(A)
+	accessories = null
+	return ..()
 
 // Aurora forensics port.
 /obj/item/clothing/clean_blood()
-	..()
+	. = ..()
 	gunshot_residue = null
+
+
+//Delayed equipping
+/obj/item/clothing/pre_equip(var/mob/user, var/slot)
+	if (equip_delay > 0)
+		//If its currently worn, we must be taking it off
+		if (is_worn())
+			user.visible_message(
+				SPAN_NOTICE("[user] starts taking off \the [src]..."),
+				SPAN_NOTICE("You start taking off \the [src]...")
+			)
+			if(!do_after(user,equip_delay,src))
+				return TRUE //A nonzero return value will cause the equipping operation to fail
+
+		else if (is_held() && !(slot in unworn_slots))
+			user.visible_message(
+				SPAN_NOTICE("[user] starts putting on \the [src]..."),
+				SPAN_NOTICE("You start putting on \the [src]...")
+			)
+			if(!do_after(user,equip_delay,src))
+				return TRUE //A nonzero return value will cause the equipping operation to fail
+
+
 
 ///////////////////////////////////////////////////////////////////////
 // Ears: headsets, earmuffs and tiny objects
@@ -62,16 +92,11 @@
 	if(istype(src,/obj/item/clothing/ears/offear))
 		qdel(src)
 
-/obj/item/clothing/ears/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.update_inv_ears()
-
 /obj/item/clothing/ears/offear
 	name = "Other ear"
 	w_class = ITEM_SIZE_HUGE
 	icon = 'icons/mob/screen1_Midnight.dmi'
-	icon_state = "block"
+	icon_state = "blocked"
 	slot_flags = SLOT_EARS | SLOT_TWOEARS
 	var/obj/item/master_item = null
 
@@ -80,12 +105,11 @@
 	desc = O.desc
 	icon = O.icon
 	icon_state = O.icon_state
+	w_class = O.w_class
 	set_dir(O.dir)
 	master_item = O
 
-/obj/item/clothing/ears/offear/mob_can_equip(mob/living/user, slot, disable_warning)
-	if(!slot || !user)
-		return
+/obj/item/clothing/ears/offear/can_be_equipped(mob/living/user, slot, disable_warning)
 	var/other_slot = (slot == slot_l_ear) ? slot_r_ear : slot_l_ear
 	if(user.get_equipped_item(other_slot) != master_item || user.get_equipped_item(slot))
 		return FALSE
@@ -147,12 +171,14 @@
 
 
 /obj/item/clothing/ears/earmuffs/mp3/MouseDrop(over_object)
-    if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
-        cell = null
+	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
+		cell = null
+	else
+		return ..()
 
 /obj/item/clothing/ears/earmuffs/mp3/attackby(obj/item/C, mob/living/user)
-    if(istype(C, suitable_cell) && !cell && insert_item(C, user))
-        src.cell = C
+	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
+		src.cell = C
 
 ///////////////////////////////////////////////////////////////////////
 //Glasses
@@ -175,11 +201,6 @@ BLIND     // can't see anything
 	var/darkness_view = 0//Base human is 2
 	var/see_invisible = -1
 
-/obj/item/clothing/glasses/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.update_inv_glasses()
-
 ///////////////////////////////////////////////////////////////////////
 //Gloves
 /obj/item/clothing/gloves
@@ -193,11 +214,6 @@ BLIND     // can't see anything
 	body_parts_covered = ARMS
 	slot_flags = SLOT_GLOVES
 	attack_verb = list("challenged")
-
-/obj/item/clothing/gloves/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.update_inv_gloves()
 
 // Called just before an attack_hand(), in mob/UnarmedAttack()
 /obj/item/clothing/gloves/proc/Touch(var/atom/A, var/proximity)
@@ -307,11 +323,6 @@ BLIND     // can't see anything
 	if(H)
 		H.update_inv_head()
 
-/obj/item/clothing/head/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.update_inv_head()
-
 ///////////////////////////////////////////////////////////////////////
 //Mask
 /obj/item/clothing/mask
@@ -324,11 +335,6 @@ BLIND     // can't see anything
 	var/voicechange = 0
 	var/list/say_messages
 	var/list/say_verbs
-
-/obj/item/clothing/mask/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.update_inv_wear_mask()
 
 /obj/item/clothing/mask/proc/filter_air(datum/gas_mixture/air)
 	return
@@ -363,13 +369,17 @@ BLIND     // can't see anything
 	if(usr.stat || usr.restrained() || usr.incapacitated())
 		return
 
+	if(!holding)
+		usr << SPAN_WARNING("\The [src] has no knife.")
+		return
+
 	holding.forceMove(get_turf(usr))
 
 	if(usr.put_in_hands(holding))
 		usr.visible_message(SPAN_DANGER("\The [usr] pulls a knife out of their boot!"))
 		holding = null
 	else
-		usr << SPAN_WARNING("Your need an empty, unbroken hand to do that.")
+		usr << SPAN_WARNING("You need an empty, unbroken hand to do that.")
 		holding.forceMove(src)
 
 	if(!holding)
@@ -379,25 +389,36 @@ BLIND     // can't see anything
 	return
 
 /obj/item/clothing/shoes/AltClick()
-	if(src in usr)
+	if((src in usr) && holding)
+		draw_knife()
+	else
+		..()
+
+/obj/item/clothing/shoes/attack_hand()
+	if((src in usr) && holding)
 		draw_knife()
 	else
 		..()
 
 /obj/item/clothing/shoes/attackby(var/obj/item/I, var/mob/user)
-	if(can_hold_knife && istype(I, /obj/item/weapon/material/shard) || \
-	 istype(I, /obj/item/weapon/material/butterfly) || \
-	 istype(I, /obj/item/weapon/material/kitchen/utensil) || \
-	 istype(I, /obj/item/weapon/material/hatchet/tacknife))
+	var/global/knifes
+	if(!knifes)
+		knifes = list(
+			/obj/item/weapon/material/knife,
+			/obj/item/weapon/material/shard,
+			/obj/item/weapon/material/butterfly,
+			/obj/item/weapon/material/kitchen/utensil,
+			/obj/item/weapon/material/hatchet/tacknife,
+		)
+	if(can_hold_knife && is_type_in_list(I, knifes))
 		if(holding)
 			user << SPAN_WARNING("\The [src] is already holding \a [holding].")
 			return
-		user.unEquip(I)
-		I.forceMove(src)
-		holding = I
-		user.visible_message(SPAN_NOTICE("\The [user] shoves \the [I] into \the [src]."))
-		verbs |= /obj/item/clothing/shoes/proc/draw_knife
-		update_icon()
+		if(user.unEquip(I, src))
+			holding = I
+			user.visible_message(SPAN_NOTICE("\The [user] shoves \the [I] into \the [src]."))
+			verbs |= /obj/item/clothing/shoes/proc/draw_knife
+			update_icon()
 	else
 		return ..()
 
@@ -410,11 +431,6 @@ BLIND     // can't see anything
 /obj/item/clothing/shoes/proc/handle_movement(var/turf/walking, var/running)
 	return
 
-/obj/item/clothing/shoes/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.update_inv_shoes()
-
 ///////////////////////////////////////////////////////////////////////
 //Suit
 /obj/item/clothing/suit
@@ -422,18 +438,35 @@ BLIND     // can't see anything
 	name = "suit"
 	var/fire_resist = T0C+100
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	allowed = list(/obj/item/weapon/tank/emergency_oxygen)
+	allowed = list(
+		/obj/item/weapon/storage/pouch/,
+		/obj/item/weapon/gun,
+		/obj/item/weapon/melee,
+		/obj/item/weapon/material,
+		/obj/item/ammo_magazine,
+		/obj/item/ammo_casing,
+		/obj/item/weapon/handcuffs,
+		/obj/item/weapon/tank,
+		/obj/item/device/suit_cooling_unit,
+		/obj/item/weapon/cell,
+		/obj/item/weapon/storage/fancy,
+		/obj/item/weapon/flame,
+		/obj/item/device/lighting,
+		/obj/item/device/scanner,
+		/obj/item/weapon/reagent_containers/spray,
+		/obj/item/device/radio,
+		/obj/item/clothing/mask)
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	slot_flags = SLOT_OCLOTHING
 	var/blood_overlay_type = "suit"
 	siemens_coefficient = 0.9
 	w_class = ITEM_SIZE_NORMAL
+	var/list/extra_allowed = list()
+	equip_delay = 2 SECONDS
 
-/obj/item/clothing/suit/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.update_inv_wear_suit()
-
+/obj/item/clothing/suit/New()
+	allowed |= extra_allowed
+	.=..()
 ///////////////////////////////////////////////////////////////////////
 //Under clothing
 /obj/item/clothing/under
@@ -456,6 +489,7 @@ BLIND     // can't see anything
 		3 = Report location
 		*/
 	var/displays_id = 1
+	equip_delay = 2 SECONDS
 
 	//convenience var for defining the icon state for the overlay used when the clothing is worn.
 
@@ -473,12 +507,6 @@ BLIND     // can't see anything
 /obj/item/clothing/under/New()
 	..()
 	item_state_slots[slot_w_uniform_str] = icon_state //TODO: drop or gonna use it?
-
-/obj/item/clothing/under/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.update_inv_w_uniform()
-
 
 /obj/item/clothing/under/examine(mob/user)
 	..(user)
@@ -535,7 +563,7 @@ BLIND     // can't see anything
 	sensor_mode = 3
 	..()
 
-/obj/item/clothing/under/rank/attackby(var/obj/item/I, var/mob/U)
+/obj/item/clothing/under/attackby(var/obj/item/I, var/mob/U)
 	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING)) && ishuman(U))
 		set_sensors(U)
 	else

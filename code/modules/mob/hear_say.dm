@@ -14,7 +14,7 @@
 
 	var/track = null
 	if(isghost(src))
-		if(italics && is_preference_enabled(/datum/client_preference/ghost_radio))
+		if(italics && get_preference_value(/datum/client_preference/ghost_radio) != GLOB.PREF_ALL_CHATTER)
 			return
 		if(check_rights(0, 0, src))
 			if(speaker_name != speaker.real_name && speaker.real_name)
@@ -22,11 +22,22 @@
 			else
 				speaker_name = "[speaker_name]"
 		track = "([ghost_follow_link(speaker, src)]) "
-		if(is_preference_enabled(/datum/client_preference/ghost_ears) && (speaker in view(src)))
+		if(get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH && (speaker in view(src)))
 			message = "<b>[message]</b>"
 
 	if(language)
-		on_hear_say("<span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [track][language.format_message(message, verb)]</span>")
+		var/nverb = null
+		if(!say_understands(speaker,language) || language.name == LANGUAGE_COMMON) //Check to see if we can understand what the speaker is saying. If so, add the name of the language after the verb. Don't do this for Galactic Common.
+			on_hear_say("<span class='game say'>[track]<span class='name'>[speaker_name]</span>[alt_name] [language.format_message(message, verb)]</span>")
+		else //Check if the client WANTS to see language names.
+			switch(src.get_preference_value(/datum/client_preference/language_display))
+				if(GLOB.PREF_FULL) // Full language name
+					nverb = "[verb] in [language.name]"
+				if(GLOB.PREF_SHORTHAND) //Shorthand codes
+					nverb = "[verb] ([language.shorthand])"
+				if(GLOB.PREF_OFF)//Regular output
+					nverb = verb
+			on_hear_say("<span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [track][language.format_message(message, nverb)]</span>")
 	else
 		on_hear_say("<span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [track][verb], <span class='message'><span class='body'>\"[message]\"</span></span></span>")
 	if(speech_sound && (get_dist(speaker, src) <= world.view && src.z == speaker.z))
@@ -34,11 +45,11 @@
 		src.playsound_local(source, speech_sound, sound_vol, 1)
 
 /mob/proc/on_hear_say(var/message)
-	src << message
+	to_chat(src, message)
 
 /mob/living/silicon/on_hear_say(var/message)
 	var/time = say_timestamp()
-	src << "[time] [message]"
+	to_chat(src,"[time] [message]")
 
 /mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language=null,\
 		var/part_a, var/part_b, var/mob/speaker = null, var/hard_to_hear = 0, var/voice_name ="")
@@ -49,7 +60,18 @@
 	var/speaker_name = get_hear_name(speaker, hard_to_hear, voice_name)
 
 	if(language)
-		message = language.format_message_radio(message, verb)
+		if(!say_understands(speaker,language) || language.name == LANGUAGE_COMMON) //Check if we understand the message. If so, add the language name after the verb. Don't do this for Galactic Common.
+			message = language.format_message_radio(message, verb)
+		else
+			var/nverb = null
+			switch(src.get_preference_value(/datum/client_preference/language_display))
+				if(GLOB.PREF_FULL) // Full language name
+					nverb = "[verb] in [language.name]"
+				if(GLOB.PREF_SHORTHAND) //Shorthand codes
+					nverb = "[verb] ([language.shorthand])"
+				if(GLOB.PREF_OFF)//Regular output
+					nverb = verb
+			message = language.format_message_radio(message, nverb)
 	else
 		message = "[verb], <span class=\"body\">\"[message]\"</span>"
 
@@ -108,7 +130,7 @@
 	else if(isAI(speaker))
 		jobname = "AI"
 	else if(isrobot(speaker))
-		jobname = "Cyborg"
+		jobname = "Robot"
 	else if(istype(speaker, /mob/living/silicon/pai))
 		jobname = "Personal AI"
 	else
@@ -136,12 +158,12 @@
 	return "<span class='say_quote'>\[[stationtime2text()]\]</span>"
 
 /mob/proc/on_hear_radio(part_a, speaker_name, part_b, message)
-	src << "[part_a][speaker_name][part_b][message]"
+	to_chat(src,"[part_a][speaker_name][part_b][message]")
 
 
 /mob/living/silicon/on_hear_radio(part_a, speaker_name, part_b, message)
 	var/time = say_timestamp()
-	src << "[time][part_a][speaker_name][part_b][message]"
+	to_chat(src,"[time][part_a][speaker_name][part_b][message]")
 
 
 /mob/proc/hear_signlang(var/message, var/verb = "gestures", var/datum/language/language, var/mob/speaker = null)
@@ -149,7 +171,7 @@
 		return
 
 	if(say_understands(speaker, language))
-		message = "<B>[src]</B> [verb], \"[message]\""
+		message = "<B>[src]</B> [language.format_message(message, verb)]"
 	else
 		message = "<B>[src]</B> [verb]."
 

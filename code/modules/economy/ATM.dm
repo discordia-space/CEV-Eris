@@ -29,7 +29,7 @@ log transactions
 	var/ticks_left_locked_down = 0
 	var/ticks_left_timeout = 0
 	var/machine_id = ""
-	var/obj/item/weapon/card/held_card
+	var/obj/item/weapon/card/id/held_card
 	var/editing_security_level = 0
 	var/view_screen = NO_SCREEN
 	var/datum/effect/effect/system/spark_spread/spark_system
@@ -124,7 +124,7 @@ log transactions
 			playsound(loc, pick('sound/items/polaroid1.ogg','sound/items/polaroid2.ogg'), 50, 1)
 
 			//create a transaction log entry
-			var/datum/transaction/T = PoolOrNew(/datum/transaction, list(cash.worth, authenticated_account.owner_name, "Credit deposit", machine_id))
+			var/datum/transaction/T = new(cash.worth, authenticated_account.owner_name, "Credit deposit", machine_id)
 			T.apply_to(authenticated_account)
 
 			user << "<span class='info'>You insert [I] into [src].</span>"
@@ -191,13 +191,13 @@ log transactions
 								dat += "<td>[T.time]</td>"
 								dat += "<td>[T.target_name]</td>"
 								dat += "<td>[T.purpose]</td>"
-								dat += "<td>$[T.amount]</td>"
+								dat += "<td>[CREDS][num2text(T.amount,12)]</td>"
 								dat += "<td>[T.source_terminal]</td>"
 								dat += "</tr>"
 							dat += "</table>"
 							dat += "<A href='?src=\ref[src];choice=print_transaction'>Print</a><br>"
 						if(TRANSFER_FUNDS)
-							dat += "<b>Account balance:</b> $[authenticated_account.money]<br>"
+							dat += "<b>Account balance:</b> [num2text(authenticated_account.money,12)][CREDS]<br>"
 							dat += "<A href='?src=\ref[src];choice=view_screen;view_screen=0'>Back</a><br><br>"
 							dat += "<form name='transfer' action='?src=\ref[src]' method='get'>"
 							dat += "<input type='hidden' name='src' value='\ref[src]'>"
@@ -209,7 +209,7 @@ log transactions
 							dat += "</form>"
 						else
 							dat += "Welcome, <b>[authenticated_account.owner_name].</b><br/>"
-							dat += "<b>Account balance:</b> $[authenticated_account.money]"
+							dat += "<b>Account balance:</b> [num2text(authenticated_account.money, 12)][CREDS]"
 							dat += "<form name='withdrawal' action='?src=\ref[src]' method='get'>"
 							dat += "<input type='hidden' name='src' value='\ref[src]'>"
 							dat += "<input type='radio' name='choice' value='withdrawal' checked> Cash  <input type='radio' name='choice' value='e_withdrawal'> Chargecard<br>"
@@ -229,7 +229,7 @@ log transactions
 				dat += "<input type='submit' value='Submit'><br>"
 				dat += "</form>"
 
-		user << browse(dat,"window=atm;size=550x650")
+		user << browse(dat,"window=atm;size=600x650")
 	else
 		user << browse(null,"window=atm")
 
@@ -247,12 +247,8 @@ log transactions
 					else if(transfer_amount <= authenticated_account.money)
 						var/target_account_number = text2num(href_list["target_acc_number"])
 						var/transfer_purpose = href_list["purpose"]
-						if(charge_to_account(target_account_number, authenticated_account.owner_name, transfer_purpose, machine_id, transfer_amount))
+						if(transfer_funds(authenticated_account.account_number, target_account_number, transfer_purpose, machine_id, transfer_amount))
 							usr << "\icon[src]<span class='info'>Funds transfer successful.</span>"
-
-							//create an entry in the account transaction log
-							var/datum/transaction/T = new(-transfer_amount, "Account #[target_account_number]", transfer_purpose, machine_id)
-							T.apply_to(authenticated_account)
 						else
 							usr << "\icon[src]<span class='warning'>Funds transfer failed.</span>"
 
@@ -288,7 +284,7 @@ log transactions
 								var/datum/money_account/failed_account = get_account(tried_account_num)
 								if(failed_account)
 									//Just crazy
-									var/datum/transaction/T = PoolOrNew(/datum/transaction, list(0, failed_account.owner_name, "Unauthorised login attempt", machine_id))
+									var/datum/transaction/T = new(0, failed_account.owner_name, "Unauthorised login attempt", machine_id)
 									T.apply_to(failed_account)
 							else
 								usr << "\red \icon[src] Incorrect pin/account combination entered, [max_pin_attempts - number_incorrect_tries] attempts remaining."
@@ -303,7 +299,7 @@ log transactions
 						view_screen = NO_SCREEN
 
 						//create a transaction log entry
-						var/datum/transaction/T = PoolOrNew(/datum/transaction, list(0, authenticated_account.owner_name, "Remote terminal access", machine_id))
+						var/datum/transaction/T = new(0, authenticated_account.owner_name, "Remote terminal access", machine_id)
 						T.apply_to(authenticated_account)
 
 						usr << "\blue \icon[src] Access granted. Welcome user '[authenticated_account.owner_name].'"
@@ -321,7 +317,7 @@ log transactions
 
 						//remove the money
 						//create an entry in the account transaction log
-						var/datum/transaction/T = PoolOrNew(/datum/transaction, list(-amount, authenticated_account.owner_name, "Credit withdrawal", machine_id))
+						var/datum/transaction/T = new(-amount, authenticated_account.owner_name, "Credit withdrawal", machine_id)
 						if(T.apply_to(authenticated_account))
 							//	spawn_money(amount,src.loc)
 							spawn_ewallet(amount,src.loc,usr)
@@ -337,7 +333,7 @@ log transactions
 						playsound(src, 'sound/machines/chime.ogg', 50, 1)
 
 						//create an entry in the account transaction log
-						var/datum/transaction/T = PoolOrNew(/datum/transaction, list(-amount, authenticated_account.owner_name, "Credit withdrawal", machine_id))
+						var/datum/transaction/T = new(-amount, authenticated_account.owner_name, "Credit withdrawal", machine_id)
 						if(T.apply_to(authenticated_account))
 							//remove the money
 							spawn_money(amount,src.loc,usr)
@@ -351,7 +347,7 @@ log transactions
 					R.info = "<b>NT Automated Teller Account Statement</b><br><br>"
 					R.info += "<i>Account holder:</i> [authenticated_account.owner_name]<br>"
 					R.info += "<i>Account number:</i> [authenticated_account.account_number]<br>"
-					R.info += "<i>Balance:</i> $[authenticated_account.money]<br>"
+					R.info += "<i>Balance:</i> [CREDS][authenticated_account.money]<br>"
 					R.info += "<i>Date and time:</i> [stationtime2text()], [current_date_string]<br><br>"
 					R.info += "<i>Service terminal ID:</i> [machine_id]<br>"
 
@@ -389,7 +385,7 @@ log transactions
 						R.info += "<td>[T.time]</td>"
 						R.info += "<td>[T.target_name]</td>"
 						R.info += "<td>[T.purpose]</td>"
-						R.info += "<td>$[T.amount]</td>"
+						R.info += "<td>[CREDS][T.amount]</td>"
 						R.info += "<td>[T.source_terminal]</td>"
 						R.info += "</tr>"
 					R.info += "</table>"
@@ -431,16 +427,15 @@ log transactions
 			var/obj/item/weapon/card/id/I
 			if(istype(human_user.wear_id, /obj/item/weapon/card/id) )
 				I = human_user.wear_id
-			else if(istype(human_user.wear_id, /obj/item/device/pda) )
-				var/obj/item/device/pda/P = human_user.wear_id
-				I = P.id
+			else if(istype(human_user.wear_id, /obj/item/modular_computer/pda) )
+				I = I.GetIdCard()
 			if(I)
 				authenticated_account = attempt_account_access(I.associated_account_number)
 				if(authenticated_account)
 					human_user << "\blue \icon[src] Access granted. Welcome user '[authenticated_account.owner_name].'"
 
 					//create a transaction log entry
-					var/datum/transaction/T = PoolOrNew(/datum/transaction, list(0, authenticated_account.owner_name, "Remote terminal access", machine_id))
+					var/datum/transaction/T = new(0, authenticated_account.owner_name, "Remote terminal access", machine_id)
 					T.apply_to(authenticated_account)
 
 					view_screen = NO_SCREEN

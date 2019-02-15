@@ -134,8 +134,10 @@
 	name = "FS GL \"Lenar\""
 	desc = "A bulky pump-action grenade launcher. Holds up to 6 grenades in a revolving magazine."
 	icon_state = "Grenadelauncher_PMC"
-	item_state = "riotgun"
-	w_class = ITEM_SIZE_LARGE
+	item_state = "pneumatic"
+	item_state_slots = list(slot_back_str = "pneumatic")
+	w_class = ITEM_SIZE_HUGE
+	slot_flags = SLOT_BACK
 	force = 10
 	fire_sound = 'sound/weapons/empty.ogg'
 	fire_sound_text = "a metallic thunk"
@@ -152,4 +154,5 @@
 
 /obj/item/weapon/gun/launcher/grenade/lenar/update_icon()
 	overlays.Cut()
+
 	update_charge()

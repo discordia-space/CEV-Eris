@@ -13,7 +13,7 @@
 
 /datum/nano_module/alarm_monitor/all/New()
 	..()
-	alarm_handlers = alarm_manager.all_handlers
+	alarm_handlers = SSalarm.all_handlers
 
 /datum/nano_module/alarm_monitor/engineering/New()
 	..()
@@ -34,21 +34,21 @@
 /datum/nano_module/alarm_monitor/proc/all_alarms()
 	var/list/all_alarms = new()
 	for(var/datum/alarm_handler/AH in alarm_handlers)
-		all_alarms += AH.alarms
+		all_alarms += AH.alarms(get_host_z())
 
 	return all_alarms
 
 /datum/nano_module/alarm_monitor/proc/major_alarms()
 	var/list/all_alarms = new()
 	for(var/datum/alarm_handler/AH in alarm_handlers)
-		all_alarms += AH.major_alarms()
+		all_alarms += AH.major_alarms(get_host_z())
 
 	return all_alarms
 
 // Modified version of above proc that uses slightly less resources, returns 1 if there is a major alarm, 0 otherwise.
 /datum/nano_module/alarm_monitor/proc/has_major_alarms()
 	for(var/datum/alarm_handler/AH in alarm_handlers)
-		if(AH.has_major_alarms())
+		if(AH.has_major_alarms(get_host_z()))
 			return 1
 
 	return 0
@@ -56,7 +56,7 @@
 /datum/nano_module/alarm_monitor/proc/minor_alarms()
 	var/list/all_alarms = new()
 	for(var/datum/alarm_handler/AH in alarm_handlers)
-		all_alarms += AH.minor_alarms()
+		all_alarms += AH.minor_alarms(get_host_z())
 
 	return all_alarms
 
@@ -71,13 +71,13 @@
 		usr.switch_to_camera(C)
 		return 1
 
-/datum/nano_module/alarm_monitor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+/datum/nano_module/alarm_monitor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	var/list/data = host.initial_data()
 
 	var/categories[0]
 	for(var/datum/alarm_handler/AH in alarm_handlers)
 		categories[++categories.len] = list("category" = AH.category, "alarms" = list())
-		for(var/datum/alarm/A in AH.major_alarms())
+		for(var/datum/alarm/A in AH.major_alarms(get_host_z()))
 			var/cameras[0]
 			var/lost_sources[0]
 
@@ -96,7 +96,7 @@
 					"lost_sources" = lost_sources.len ? sanitize(english_list(lost_sources, nothing_text = "", and_text = ", ")) : ""))
 	data["categories"] = categories
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "alarm_monitor.tmpl", "Alarm Monitoring Console", 800, 800, state = state)
 		if(host.update_layout()) // This is necessary to ensure the status bar remains updated along with rest of the UI.

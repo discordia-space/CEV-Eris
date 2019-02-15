@@ -86,12 +86,12 @@ DEBUG
 				jobban_keylist.Add("[ckey] - [job]")
 
 		//Job tempbans
-		var/DBQuery/query1 = dbcon.NewQuery("SELECT target_id, job FROM bans WHERE type = 'JOB_TEMPBAN' AND isnull(unbanned) AND expiration_time > Now()")
-		query1.Execute()
+		var/DBQuery/perma_query = dbcon.NewQuery("SELECT target_id, job FROM bans WHERE type = 'JOB_TEMPBAN' AND isnull(unbanned) AND expiration_time > Now()")
+		perma_query.Execute()
 
-		while(query1.NextRow())
-			var/id = query.item[1]
-			var/job = query.item[2]
+		while(perma_query.NextRow())
+			var/id = perma_query.item[1]
+			var/job = perma_query.item[2]
 			var/DBQuery/get_ckey = dbcon.NewQuery("SELECT ckey from players WHERE id = [id]")
 			if(get_ckey.NextRow())
 				var/ckey = get_ckey.item[1]

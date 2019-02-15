@@ -1,11 +1,10 @@
 /datum/storyevent/roleset/double_agents
 	id = "double_agents"
-	role_id = null
-	multispawn = TRUE
-
-	min_cost = 14
-	max_cost = 22
-
+	name = "double agents"
+	role_id = ROLE_TRAITOR
+	base_quantity = 2
+	scaling_threshold = 0
+	/*
 	req_crew = 10
 	req_heads = -1
 	req_sec = 2
@@ -13,9 +12,10 @@
 	req_med = -1
 	req_sci = -1
 
-	spawn_times_max = 2
+	trigger_times_max = 2
+	*/
 
-/datum/storyevent/roleset/double_agents/spawn_event()
+/datum/storyevent/roleset/double_agents/trigger_event()
 	var/list/candidates = candidates_list(ROLE_TRAITOR)
 	if(candidates.len < 2)
 		return FALSE
@@ -24,8 +24,8 @@
 	candidates.Remove(first)
 	var/datum/mind/second = pick(candidates)
 
-	var/datum/antagonist/a1 = get_antag_instance(ROLE_TRAITOR)
-	var/datum/antagonist/a2 = get_antag_instance(ROLE_TRAITOR)
+	var/datum/antagonist/a1 = create_antag_instance(ROLE_TRAITOR)
+	var/datum/antagonist/a2 = create_antag_instance(ROLE_TRAITOR)
 
 	a1.create_antagonist(first, announce = FALSE)
 	a2.create_antagonist(second, announce = FALSE)

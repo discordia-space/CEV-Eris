@@ -45,7 +45,7 @@
 	var/mob/living/carbon/human/H = M      ///////////////////////////////////// /Let's have this ready for later.
 
 
-	if(!(user.targeted_organ in list(O_EYES, BP_HEAD))) //////////////hitting anything else other than the eyes
+	if(!(user.targeted_organ in list(BP_EYES, BP_HEAD))) //////////////hitting anything else other than the eyes
 		if(prob(33))
 			src.add_blood(H)
 			var/turf/location = H.loc
@@ -169,10 +169,9 @@
 
 	return val
 
-/obj/item/weapon/tray/pickup(mob/user)
-
+/obj/item/weapon/tray/pre_pickup(mob/user)
 	if(!isturf(loc))
-		return
+		return FALSE
 
 	for(var/obj/item/I in loc)
 		if( I != src && !I.anchored && !istype(I, /obj/item/clothing/under) && !istype(I, /obj/item/clothing/suit) && !istype(I, /obj/item/projectile) )
@@ -189,6 +188,8 @@
 			I.loc = src
 			carrying.Add(I)
 			overlays += image("icon" = I.icon, "icon_state" = I.icon_state, "layer" = 30 + I.layer, "pixel_x" = I.pixel_x, "pixel_y" = I.pixel_y)
+
+	return ..()
 
 /obj/item/weapon/tray/dropped(mob/user)
 

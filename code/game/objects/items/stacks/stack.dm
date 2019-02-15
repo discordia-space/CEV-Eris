@@ -22,13 +22,27 @@
 	var/list/charge_costs = null
 	var/list/datum/matter_synth/synths = null
 
+	//If either of these two are set to nonzero values, the stack will have randomised quantity on spawn
+	//Used for the /random subtypes of material stacks. any stack works
+	var/rand_min = 0
+	var/rand_max = 0
+
+
+
+
 /obj/item/stack/New(var/loc, var/amount=null)
-	..()
-	if (!stacktype)
-		stacktype = type
+	.=..()
 	if (amount)
 		src.amount = amount
-	return
+
+/obj/item/stack/Initialize()
+	.=..()
+	if (!stacktype)
+		stacktype = type
+
+	if (rand_min || rand_max)
+		amount = rand(rand_min, rand_max)
+		amount = round(amount, 1) //Just in case
 
 /obj/item/stack/Destroy()
 	if (synths)
@@ -127,7 +141,7 @@
 
 	if (recipe.time)
 		user << SPAN_NOTICE("Building [recipe.title] ...")
-		if (!do_after(user, recipe.time))
+		if (!do_after(user, recipe.time, user))
 			return
 
 	if (use(required))
@@ -329,6 +343,39 @@
 				src.interact(usr)
 	else
 		return ..()
+
+//Verb to split stacks
+/obj/item/stack/verb/split_verb()
+	set src in view(1)
+	set name = "Split"
+	set category = "Object"
+
+	if (!usr.IsAdvancedToolUser())
+		return
+
+
+
+	var/quantity = input(usr,
+	"This stack contains [amount]/[max_amount]. How many would you like to split off into a new stack?\n\
+	The new stack will be put into your hands if possible", "Split Stack", round(amount * 0.5)) as null|num
+
+	if (!Adjacent(usr))
+		usr << SPAN_WARNING("You need to be in arm's reach for that!")
+		return
+
+	if (usr.incapacitated())
+		return
+
+	if (!isnum(quantity) || quantity < 1)
+		return
+
+	var/obj/item/stack/S = split(round(quantity, 1))
+	if (istype(S))
+		//Try to put the new stack into the user's hands
+		if (!(usr.put_in_hands(S)))
+			//If that fails, leave it beside the original stack
+			S.forceMove(get_turf(src))
+
 
 /*
  * Recipe datum

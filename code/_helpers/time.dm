@@ -1,18 +1,3 @@
-#define SECOND *10
-#define SECONDS *10
-
-#define MINUTE *600
-#define MINUTES *600
-
-#define HOUR *36000
-#define HOURS *36000
-
-#define DAY *864000
-#define DAYS *864000
-
-#define TimeOfGame (get_game_time())
-#define TimeOfTick (world.tick_usage*0.01*world.tick_lag)
-
 /proc/get_game_time()
 	var/global/time_offset = 0
 	var/global/last_time = 0
@@ -56,6 +41,21 @@ var/next_station_date_change = 1 DAY
 /proc/time_stamp()
 	return time2text(world.timeofday, "hh:mm:ss")
 
+
+//Returns the world time in english
+/proc/worldtime2text(time = world.time, timeshift = 1)
+	if(!roundstart_hour) roundstart_hour = rand(0, 23)
+	return timeshift ? time2text(time+(roundstart_hour HOURS), "hh:mm") : time2text(time, "hh:mm")
+
+/proc/worldtime2hours()
+	if (!roundstart_hour)
+		worldtime2text()
+	. = text2num(time2text(world.time + (roundstart_hour HOURS), "hh"))
+
+/proc/worlddate2text()
+	return num2text(game_year) + "-" + time2text(world.timeofday, "MM-DD")
+
+
 /* Returns 1 if it is the selected month and day */
 proc/isDay(var/month, var/day)
 	if(isnum(month) && isnum(day))
@@ -93,11 +93,6 @@ var/round_start_time = 0
 	last_roundduration2text = "[hours]:[mins]"
 	next_duration_update = world.time + 1 MINUTES
 	return last_roundduration2text
-
-//Can be useful for things dependent on process timing
-/proc/process_schedule_interval(var/process_name)
-	var/datum/controller/process/process = processScheduler.getProcess(process_name)
-	return process.schedule_interval
 
 
 var/global/midnight_rollovers = 0

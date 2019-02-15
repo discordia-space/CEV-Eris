@@ -25,7 +25,7 @@ var/list/admin_verbs = list("default" = list(), "hideable" = list())
 	if(holder)
 		verbs += admin_verbs["default"]
 		for(var/text_right in admin_verbs)
-			if(text2num(text_right)|holder.rights)
+			if(text2num(text_right) & holder.rights)
 				verbs += admin_verbs[text_right]
 
 /client/proc/remove_admin_verbs()
@@ -209,7 +209,7 @@ ADMIN_VERB_ADD(/client/proc/stealth, R_ADMIN, TRUE)
 	var/datum/preferences/D
 	var/client/C = directory[warned_ckey]
 	if(C)	D = C.prefs
-	else	D = preferences_datums[warned_ckey]
+	else	D = SScharacter_setup.preferences_datums[warned_ckey]
 
 	if(!D)
 		src << "<font color='red'>Error: warn(): No such ckey found.</font>"
@@ -337,15 +337,12 @@ ADMIN_VERB_ADD(/client/proc/kill_air, R_DEBUG, FALSE)
 	set category = "Debug"
 	set name = "Kill Air"
 	set desc = "Toggle Air Processing"
-	if(air_processing_killed)
-		air_processing_killed = 0
-		usr << "<b>Enabled air processing.</b>"
-	else
-		air_processing_killed = 1
-		usr << "<b>Disabled air processing.</b>"
 
-	log_admin("[key_name(usr)] used 'kill air'.")
-	message_admins("\blue [key_name_admin(usr)] used 'kill air'.", 1)
+	SSair.can_fire = !SSair.can_fire
+
+	var/msg = "[SSair.can_fire ? "Enabled" : "Disabled"] SSair processing."
+	log_admin("[key_name(usr)] used 'kill air'. [msg]")
+	message_admins("\blue [key_name_admin(usr)] used 'kill air'. [msg]", 1)
 
 /client/proc/readmin_self()
 	set name = "Re-Admin self"
@@ -403,7 +400,7 @@ ADMIN_VERB_ADD(/client/proc/rename_silicon, R_ADMIN, FALSE)
 
 	if(!check_rights(R_ADMIN)) return
 
-	var/mob/living/silicon/S = input("Select silicon.", "Rename Silicon.") as null|anything in silicon_mob_list
+	var/mob/living/silicon/S = input("Select silicon.", "Rename Silicon.") as null|anything in GLOB.silicon_mob_list
 	if(!S) return
 
 	var/new_name = sanitizeSafe(input(src, "Enter new name. Leave blank or as is to cancel.", "[S.real_name] - Enter new silicon name", S.real_name))
@@ -420,11 +417,11 @@ ADMIN_VERB_ADD(/client/proc/manage_silicon_laws, R_ADMIN, TRUE)
 
 	if(!check_rights(R_ADMIN)) return
 
-	var/mob/living/silicon/S = input("Select silicon.", "Manage Silicon Laws") as null|anything in silicon_mob_list
+	var/mob/living/silicon/S = input("Select silicon.", "Manage Silicon Laws") as null|anything in GLOB.silicon_mob_list
 	if(!S) return
 
 	var/datum/nano_module/law_manager/L = new(S)
-	L.ui_interact(usr, state = admin_state)
+	L.ui_interact(usr, state = GLOB.admin_state)
 	log_and_message_admins("has opened [S]'s law manager.")
 
 
@@ -437,11 +434,11 @@ ADMIN_VERB_ADD(/client/proc/change_human_appearance_admin, R_ADMIN, FALSE)
 
 	if(!check_rights(R_FUN)) return
 
-	var/mob/living/carbon/human/H = input("Select mob.", "Change Mob Appearance - Admin") as null|anything in human_mob_list
+	var/mob/living/carbon/human/H = input("Select mob.", "Change Mob Appearance - Admin") as null|anything in GLOB.human_mob_list
 	if(!H) return
 
 	log_and_message_admins("is altering the appearance of [H].")
-	H.change_appearance(APPEARANCE_ALL, usr, usr, check_species_whitelist = 0, state = admin_state)
+	H.change_appearance(APPEARANCE_ALL, usr, usr, check_species_whitelist = 0, state = GLOB.admin_state)
 
 
 ADMIN_VERB_ADD(/client/proc/change_human_appearance_self, R_ADMIN, FALSE)
@@ -453,7 +450,7 @@ ADMIN_VERB_ADD(/client/proc/change_human_appearance_self, R_ADMIN, FALSE)
 
 	if(!check_rights(R_FUN)) return
 
-	var/mob/living/carbon/human/H = input("Select mob.", "Change Mob Appearance - Self") as null|anything in human_mob_list
+	var/mob/living/carbon/human/H = input("Select mob.", "Change Mob Appearance - Self") as null|anything in GLOB.human_mob_list
 	if(!H) return
 
 	if(!H.client)
@@ -476,13 +473,15 @@ ADMIN_VERB_ADD(/client/proc/change_security_level, R_ADMIN, FALSE)
 	set category = "Admin"
 
 	if(!check_rights(R_ADMIN))	return
-	var sec_level = input(usr, "It's currently code [get_security_level()].", "Select Security Level")  as null|anything in (list("green","blue","red")-get_security_level())
-	if(!sec_level)
+
+	var/decl/security_state/security_state = decls_repository.get_decl(maps_data.security_state)
+	var/decl/security_level/new_security_level = input(usr, "It's currently [security_state.current_security_level.name].", "Select Security Level")  as null|anything in (security_state.all_security_levels - security_state.current_security_level)
+	if(!new_security_level)
 		return
 
-	if(alert("Switch from code [get_security_level()] to code [sec_level]?","Change security level?","Yes","No") == "Yes")
-		set_security_level(sec_level)
-		log_admin("[key_name(usr)] changed the security level to code [sec_level].")
+	if(alert("Switch from code [security_state.current_security_level.name] to [new_security_level.name]?","Change security level?","Yes","No") == "Yes")
+		security_state.set_security_level(new_security_level, TRUE)
+		log_admin("[key_name(usr)] changed the security level to code [new_security_level].")
 
 
 //---- bs12 verbs ----
@@ -501,7 +500,7 @@ ADMIN_VERB_ADD(/client/proc/free_slot, R_ADMIN, FALSE)
 	set category = "Admin"
 	if(holder)
 		var/list/jobs = list()
-		for (var/datum/job/J in job_master.occupations)
+		for (var/datum/job/J in SSjob.occupations)
 			if (J.current_positions >= J.total_positions && J.total_positions != -1)
 				jobs += J.title
 		if (!jobs.len)
@@ -509,7 +508,7 @@ ADMIN_VERB_ADD(/client/proc/free_slot, R_ADMIN, FALSE)
 			return
 		var/job = input("Please select job slot to free", "Free job slot")  as null|anything in jobs
 		if (job)
-			job_master.FreeRole(job)
+			SSjob.FreeRole(job)
 			message_admins("A job slot for [job] has been opened by [key_name_admin(usr)]")
 			return
 
@@ -553,3 +552,14 @@ ADMIN_VERB_ADD(/client/proc/global_man_up, R_ADMIN, FALSE)
 
 	log_admin("[key_name(usr)] told everyone to man up and deal with it.")
 	message_admins("\blue [key_name_admin(usr)] told everyone to man up and deal with it.", 1)
+
+ADMIN_VERB_ADD(/client/proc/toggleUIDebugMode, R_DEBUG, FALSE)
+/client/proc/toggleUIDebugMode()
+	set category = "Debug"
+	set name = "UI Debug Mode"
+	set desc = "Toggle UI Debug Mode"
+
+	if(UI)
+		UI.toggleDebugMode()
+	else
+		log_debug("This mob has no UI.")

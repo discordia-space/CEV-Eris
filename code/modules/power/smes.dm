@@ -251,50 +251,42 @@
 
 
 /obj/machinery/power/smes/attackby(var/obj/item/I, var/mob/user)
-
-	var/list/usable_qualities = list(QUALITY_SCREW_DRIVING)
-	if(terminal && !building_terminal && !open_hatch)
-		usable_qualities.Add(QUALITY_WELDING)
+	var/list/usable_qualities = list(QUALITY_SCREW_DRIVING,QUALITY_WIRE_CUTTING,QUALITY_PRYING,QUALITY_PULSING)
 
 	var/tool_type = I.get_tool_type(user, usable_qualities)
-	switch(tool_type)
-
-		if(QUALITY_SCREW_DRIVING)
-			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-				open_hatch = !open_hatch
-				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
-			return
-
-		if(QUALITY_WIRE_CUTTING)
-			if(terminal && !building_terminal && !open_hatch)
-				var/turf/tempTDir = terminal.loc
-				if (istype(tempTDir))
-					if(!tempTDir.is_plating())
-						user << SPAN_WARNING("You must remove the floor plating first.")
-						return
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-					building_terminal = 1
-					if (prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
-						var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-						s.set_up(5, 1, src)
-						s.start()
-						building_terminal = 0
-						if(usr.stunned)
-							return
-					new /obj/item/stack/cable_coil(loc,10)
-					user.visible_message(\
-						SPAN_NOTICE("[user.name] remove the cables and dismantled the power terminal."),\
-						SPAN_NOTICE("You remove the cables and dismantle the power terminal."))
-					qdel(terminal)
-					building_terminal = 0
-			return
-
-		if(ABORT_CHECK)
-			return
+	if(tool_type == QUALITY_SCREW_DRIVING)
+		if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+			open_hatch = !open_hatch
+			user << SPAN_NOTICE("You [open_hatch ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
+		return
 
 	if (!open_hatch)
 		user << SPAN_WARNING("You need to open access hatch on [src] first!")
 		return 0
+
+	if(tool_type == QUALITY_WIRE_CUTTING)
+		if(terminal && !building_terminal && open_hatch)
+			var/turf/tempTDir = terminal.loc
+			if (istype(tempTDir))
+				if(!tempTDir.is_plating())
+					user << SPAN_WARNING("You must remove the floor plating first.")
+					return
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+				building_terminal = 1
+				if (prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
+					var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+					s.set_up(5, 1, src)
+					s.start()
+					building_terminal = 0
+					if(usr.stunned)
+						return
+				new /obj/item/stack/cable_coil(loc,10)
+				user.visible_message(\
+					SPAN_NOTICE("[user.name] remove the cables and dismantled the power terminal."),\
+					SPAN_NOTICE("You remove the cables and dismantle the power terminal."))
+				qdel(terminal)
+				building_terminal = 0
+		return
 
 	if(istype(I, /obj/item/stack/cable_coil) && !terminal && !building_terminal)
 		building_terminal = 1
@@ -315,7 +307,7 @@
 		stat = 0
 		return 0
 
-	return
+	return tool_type || 1
 
 /obj/machinery/power/smes/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 
@@ -339,7 +331,7 @@
 
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
@@ -389,6 +381,7 @@
 		output_level = max(0, min(output_level_max, output_level))	// clamp to range
 
 	investigate_log("input/output; <font color='[input_level>output_level?"green":"red"][input_level]/[output_level]</font> | Output-mode: [output_attempt?"<font color='green'>on</font>":"<font color='red'>off</font>"] | Input-mode: [input_attempt?"<font color='green'>auto</font>":"<font color='red'>off</font>"] by [usr.key]","singulo")
+	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 
 	return 1
 
@@ -425,11 +418,19 @@
 			energy_fail(rand(0, 30))
 
 /obj/machinery/power/smes/proc/inputting(var/do_input)
+	if(do_input)
+		usr << "[src] input mode set to auto."
+	else
+		usr << "[src] output mode set to off."
 	input_attempt = do_input
 	if(!input_attempt)
 		inputting = 0
 
 /obj/machinery/power/smes/proc/outputting(var/do_output)
+	if(do_output)
+		usr << "[src] output mode set to online."
+	else
+		usr << "[src] output mode set to offline."
 	output_attempt = do_output
 	if(!output_attempt)
 		outputting = 0

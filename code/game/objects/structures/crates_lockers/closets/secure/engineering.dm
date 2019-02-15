@@ -7,7 +7,7 @@
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/industrial(src)
 	else
-		new /obj/item/weapon/storage/backpack/satchel_eng(src)
+		new /obj/item/weapon/storage/backpack/satchel/eng(src)
 	new /obj/item/blueprints(src)
 	new /obj/item/clothing/under/rank/exultant(src)
 	new /obj/item/clothing/head/hardhat/white(src)
@@ -26,6 +26,7 @@
 	new /obj/item/weapon/hatton_magazine(src)
 	new /obj/item/weapon/hatton_magazine(src)
 	new /obj/item/weapon/hatton_magazine(src)
+	new /obj/item/weapon/storage/pouch/engineering_supply(src)
 
 /obj/structure/closet/secure_closet/engineering_electrical
 	name = "electrical supplies"
@@ -62,12 +63,9 @@
 	new /obj/item/weapon/weldpack(src)
 	new /obj/item/weapon/weldpack(src)
 	new /obj/item/weapon/weldpack(src)
-	new /obj/item/weapon/weldpack/canister(src)
-	new /obj/item/weapon/weldpack/canister(src)
-	new /obj/item/weapon/weldpack/canister(src)
-	new /obj/item/weapon/weldpack/canister(src)
-	new /obj/item/weapon/weldpack/canister(src)
-	new /obj/item/weapon/weldpack/canister(src)
+	new /obj/item/weapon/tool_upgrade/augment/fuel_tank(src)
+	new /obj/item/weapon/tool_upgrade/augment/fuel_tank(src)
+	new /obj/item/weapon/tool_upgrade/augment/fuel_tank(src)
 
 /obj/structure/closet/secure_closet/personal/engineering_personal
 	name = "technomancer's locker"
@@ -80,7 +78,7 @@
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/industrial(src)
 	else
-		new /obj/item/weapon/storage/backpack/satchel_eng(src)
+		new /obj/item/weapon/storage/backpack/satchel/eng(src)
 	new /obj/item/weapon/storage/toolbox/mechanical(src)
 	new /obj/item/clothing/under/rank/engineer(src)
 	new /obj/item/clothing/head/hardhat(src)

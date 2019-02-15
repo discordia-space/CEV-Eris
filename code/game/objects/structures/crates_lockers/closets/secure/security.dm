@@ -7,7 +7,7 @@
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/captain(src)
 	else
-		new /obj/item/weapon/storage/backpack/satchel_cap(src)
+		new /obj/item/weapon/storage/backpack/satchel/cap(src)
 	new /obj/item/clothing/head/caphat/cap(src)
 	new /obj/item/clothing/under/rank/captain(src)
 	new /obj/item/clothing/suit/armor/vest(src)
@@ -24,6 +24,7 @@
 	new /obj/item/weapon/melee/telebaton(src)
 	new /obj/item/clothing/head/caphat/formal(src)
 	new /obj/item/clothing/under/captainformal(src)
+	new /obj/item/weapon/storage/pouch/pistol_holster(src)
 
 /obj/structure/closet/secure_closet/reinforced/hop
 	name = "First Officer's locker"
@@ -46,6 +47,7 @@
 	new /obj/item/ammo_magazine/a50/rubber(src)
 	new /obj/item/ammo_magazine/a50/rubber(src)
 	new /obj/item/device/flash(src)
+	new /obj/item/weapon/storage/pouch/pistol_holster(src)
 
 /obj/structure/closet/secure_closet/reinforced/hos
 	name = "Ironhammer Commander locker"
@@ -54,7 +56,7 @@
 
 /obj/structure/closet/secure_closet/reinforced/hos/populate_contents()
 	new /obj/item/weapon/storage/backpack/security(src)
-	new /obj/item/weapon/storage/backpack/satchel_sec(src)
+	new /obj/item/weapon/storage/backpack/satchel/sec(src)
 	new /obj/item/clothing/head/beret/sec/navy/hos(src)
 	new /obj/item/clothing/head/HoS(src)
 	new /obj/item/clothing/suit/armor/vest/security(src)
@@ -80,6 +82,8 @@
 	new /obj/item/weapon/melee/telebaton(src)
 	new /obj/item/clothing/head/beret/sec/navy/hos(src)
 	new /obj/item/clothing/accessory/badge/hos(src)
+	new /obj/item/weapon/storage/pouch/pistol_holster(src)
+	new /obj/item/weapon/storage/pouch/baton_holster(src)
 
 /obj/structure/closet/secure_closet/warden
 	name = "Gunnery Sergeant's locker"
@@ -88,7 +92,7 @@
 
 /obj/structure/closet/secure_closet/warden/populate_contents()
 	new /obj/item/weapon/storage/backpack/security(src)
-	new /obj/item/weapon/storage/backpack/satchel_sec(src)
+	new /obj/item/weapon/storage/backpack/satchel/sec(src)
 	new /obj/item/clothing/suit/armor/vest/security(src)
 	new /obj/item/clothing/under/rank/warden(src)
 	new /obj/item/clothing/head/beret/sec/navy/warden(src)
@@ -111,6 +115,8 @@
 	new /obj/item/weapon/gun/energy/gun/martin(src)
 	new /obj/item/weapon/storage/box/holobadge(src)
 	new /obj/item/clothing/accessory/badge/warden(src)
+	new /obj/item/weapon/storage/pouch/pistol_holster(src)
+	new /obj/item/weapon/storage/pouch/baton_holster(src)
 
 /obj/structure/closet/secure_closet/personal/security
 	name = "Ironhammer Operative locker"
@@ -120,7 +126,7 @@
 
 /obj/structure/closet/secure_closet/personal/security/populate_contents()
 	new /obj/item/weapon/storage/backpack/security(src)
-	new /obj/item/weapon/storage/backpack/satchel_sec(src)
+	new /obj/item/weapon/storage/backpack/satchel/sec(src)
 	new /obj/item/device/radio/headset/headset_sec(src)
 	new /obj/item/weapon/storage/belt/security(src)
 	new /obj/item/device/flash(src)
@@ -140,6 +146,8 @@
 	new /obj/item/ammo_magazine/sol65/rubber(src)
 	new /obj/item/ammo_magazine/sol65/rubber(src)
 	new /obj/item/ammo_magazine/sol65/rubber(src)
+	new /obj/item/weapon/storage/pouch/pistol_holster(src)
+	new /obj/item/weapon/storage/pouch/baton_holster(src)
 
 /obj/structure/closet/secure_closet/medspec
 	name = "Ironhammer Medical Specialist locker"
@@ -183,11 +191,13 @@
 	new /obj/item/clothing/glasses/sunglasses/sechud/tactical(src)
 	new /obj/item/weapon/cell/small/high(src)
 	new /obj/item/weapon/cell/small/high(src)
+	new /obj/item/device/taperecorder(src)
 	new /obj/item/weapon/gun/projectile/revolver/consul(src)
 	new /obj/item/clothing/accessory/holster/armpit(src)
 	new /obj/item/ammo_magazine/sl44/rubber(src)
 	new /obj/item/ammo_magazine/sl44/rubber(src)
 	new /obj/item/ammo_magazine/sl44/rubber(src)
+	new /obj/item/weapon/storage/pouch/pistol_holster(src)
 
 /obj/structure/closet/secure_closet/injection
 	name = "lethal injections locker"

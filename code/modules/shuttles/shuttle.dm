@@ -43,29 +43,30 @@
 	if(!istype(current_location))
 		CRASH("Shuttle \"[name]\" could not find its starting location.")
 
-	if(src.name in shuttle_controller.shuttles)
+	if(src.name in SSshuttle.shuttles)
 		CRASH("A shuttle with the name '[name]' is already defined.")
-	shuttle_controller.shuttles[src.name] = src
+	SSshuttle.shuttles[src.name] = src
 	if(flags & SHUTTLE_FLAGS_PROCESS)
-		shuttle_controller.process_shuttles += src
+		SSshuttle.process_shuttles += src
 	if(flags & SHUTTLE_FLAGS_SUPPLY)
-		if(supply_controller.shuttle)
+		if(SSsupply.shuttle)
 			CRASH("A supply shuttle is already defined.")
-		supply_controller.shuttle = src
+		SSsupply.shuttle = src
 
 /datum/shuttle/Destroy()
 	current_location = null
 
-	shuttle_controller.shuttles -= src.name
-	shuttle_controller.process_shuttles -= src
-	if(supply_controller.shuttle == src)
-		supply_controller.shuttle = null
+	SSshuttle.shuttles -= src.name
+	SSshuttle.process_shuttles -= src
+	if(SSsupply.shuttle == src)
+		SSsupply.shuttle = null
 
 	. = ..()
 
 /datum/shuttle/proc/short_jump(var/obj/effect/shuttle_landmark/destination)
 	if(moving_status != SHUTTLE_IDLE) return
 
+	var/obj/effect/shuttle_landmark/start_location = current_location
 	moving_status = SHUTTLE_WARMUP
 	if(sound_takeoff)
 		playsound(current_location, sound_takeoff, 100, 20, 0.2)
@@ -82,6 +83,7 @@
 		moving_status = SHUTTLE_INTRANSIT //shouldn't matter but just to be safe
 		attempt_move(destination)
 		moving_status = SHUTTLE_IDLE
+		shuttle_arrived(start_location)
 
 /datum/shuttle/proc/long_jump(var/obj/effect/shuttle_landmark/destination, var/obj/effect/shuttle_landmark/interim, var/travel_time)
 	if(moving_status != SHUTTLE_IDLE) return
@@ -114,6 +116,7 @@
 				attempt_move(start_location) //try to go back to where we started. If that fails, I guess we're stuck in the interim location
 
 		moving_status = SHUTTLE_IDLE
+		shuttle_arrived(start_location)
 
 /datum/shuttle/proc/fuel_check()
 	return 1 //fuel check should always pass in non-overmap shuttles (they have magic engines)
@@ -180,7 +183,6 @@
 	translate_turfs(turf_translation, current_location.base_area, current_location.base_turf)
 
 	if(current_location.base_turf != destination.base_turf)
-//		world << "Base_turfs don't match"
 		for(var/area/A in shuttle_area)
 			for(var/turf/Turf in A.contents)
 				if(istype(Turf, current_location.base_turf))
@@ -206,6 +208,14 @@
 			var/datum/powernet/NewPN = new()
 			NewPN.add_cable(C)
 			propagate_network(C,C.powernet)
+
+
+//Called after a move has successfully completed.
+//Origin is where we came from,
+//current_location now contains where we arrived at
+/datum/shuttle/proc/shuttle_arrived(var/obj/effect/shuttle_landmark/origin)
+
+
 
 //returns 1 if the shuttle has a valid arrive time
 /datum/shuttle/proc/has_arrive_time()

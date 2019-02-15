@@ -9,14 +9,17 @@
 	if(.)
 		log_and_message_admins("has triggered a falsified [src]", user)
 
-/datum/uplink_item/abstract/announcements/fake_centcom/New()
+/datum/uplink_item/abstract/announcements/announce/New()
 	..()
-	name = "[command_name()] Update Announcement"
-	item_cost = round(DEFAULT_TELECRYSTAL_AMOUNT / 2)
-	desc = "Causes a falsified [command_name()] Update. Triggers immediately after supplying additional data."
+	name = "Shipwide Announcement"
+	item_cost = 2
+	desc = "Broadcasts a message anonymously to the entire vessel. Triggers immediately after supplying additional data."
 
 /datum/uplink_item/abstract/announcements/fake_centcom/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/user, var/list/args)
-	command_announcement.Announce(args.["message"], args.["title"])
+	var/message = input(user, "What would you like the text of the announcement to be? Write as much as you like, The title will appear as Unknown Broadcast", "False Announcement") as text|null
+	if (!message)
+		return FALSE
+	command_announcement.Announce(message, "Unknown Broadcast")
 	return 1
 
 /datum/uplink_item/abstract/announcements/fake_crew_arrival
@@ -74,7 +77,7 @@
 		medical.fields["b_type"]	= I.blood_type
 		medical.fields["b_dna"]		= I.dna_hash
 
-	AnnounceArrivalSimple(general.fields["name"], general.fields["rank"])
+	AnnounceArrival(general.fields["name"], general.fields["rank"], "has completed cryogenic revival")
 	return 1
 
 /datum/uplink_item/abstract/announcements/fake_ion_storm
@@ -89,9 +92,9 @@
 /datum/uplink_item/abstract/announcements/fake_radiation
 	name = "Radiation Storm Announcement"
 	desc = "Interferes with the station's radiation sensors. Triggers immediately upon investment."
-	item_cost = 6
+	item_cost = 7
 
 /datum/uplink_item/abstract/announcements/fake_radiation/get_goods(var/obj/item/device/uplink/U, var/loc)
-	var/datum/event_meta/EM = new(EVENT_LEVEL_MUNDANE, "Fake Radiation Storm", add_to_queue = 0)
-	new/datum/event/radiation_storm/syndicate(EM)
+	var/datum/event/radiation_storm/syndicate/S =  new(null, EVENT_LEVEL_MODERATE)
+	S.Initialize()
 	return 1

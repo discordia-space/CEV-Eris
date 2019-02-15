@@ -28,4 +28,4 @@
 	icon_state = "lampgreen"
 	item_state = "lampgreen"
 	brightness_on = 4
-	light_color = "#FFC58F"
+	light_color = COLOR_LIGHTING_GREEN_BRIGHT

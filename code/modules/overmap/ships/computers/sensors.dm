@@ -3,7 +3,7 @@
 	icon_state = "thick"
 	icon_keyboard = "teleport_key"
 	icon_screen = "teleport"
-	light_color = "#77fff8"
+	light_color = COLOR_LIGHTING_CYAN_MACHINERY
 	//circuit = /obj/item/weapon/circuitboard/sensors
 	var/obj/effect/overmap/ship/linked
 	var/obj/machinery/shipsensors/sensors
@@ -36,7 +36,7 @@
 		data["range"] = sensors.range
 		data["health"] = sensors.health
 		data["max_health"] = sensors.max_health
-		data["heat"] = sensors.heat
+		data["heat"] = sensors.current_heat
 		data["critical_heat"] = sensors.critical_heat
 		if(sensors.health == 0)
 			data["status"] = "DESTROYED"
@@ -51,7 +51,7 @@
 		data["range"] = "N/A"
 		data["on"] = 0
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "shipsensors.tmpl", "[linked.name] Sensors Control", 420, 530)
 		ui.set_initial_data(data)
@@ -125,7 +125,7 @@
 	var/health = 200
 	var/critical_heat = 50 // sparks and takes damage when active & above this heat
 	var/heat_reduction = 1.5 // mitigates this much heat per tick
-	var/heat = 0
+	var/current_heat = 0
 	var/range = 1
 	idle_power_usage = 5000
 
@@ -183,7 +183,7 @@
 	if(use_power) //can't run in non-vacuum
 		if(!in_vacuum())
 			toggle()
-		if(heat > critical_heat)
+		if(current_heat > critical_heat)
 			src.visible_message("<span class='danger'>\The [src] violently spews out sparks!</span>")
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 			s.set_up(3, 1, src)
@@ -191,10 +191,10 @@
 
 			take_damage(rand(10,50))
 			toggle()
-		heat += idle_power_usage/15000
+		current_heat += idle_power_usage/15000
 
-	if (heat > 0)
-		heat = max(0, heat - heat_reduction)
+	if (current_heat > 0)
+		current_heat = max(0, current_heat - heat_reduction)
 
 /obj/machinery/shipsensors/power_change()
 	if(use_power && !powered())

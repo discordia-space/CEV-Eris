@@ -42,7 +42,7 @@ var/global/universe_has_ended = 0
 
 	world << sound('sound/effects/cascade.ogg')
 
-	for(var/mob/living/M in player_list)
+	for(var/mob/living/M in GLOB.player_list)
 		if (M.HUDtech.Find("flash"))
 			flick("e_flash", M.HUDtech["flash"])
 
@@ -76,13 +76,13 @@ The access requirements on the Asteroid Shuttles' consoles have now been revoked
 				C.req_one_access = list()
 
 		spawn(5 MINUTES)
-			ticker.station_explosion_cinematic(0,null) // TODO: Custom cinematic
+			SSticker.station_explosion_cinematic(0,null) // TODO: Custom cinematic
 			universe_has_ended = 1
 		return
 
 /datum/universal_state/supermatter_cascade/proc/AreaSet()
 	for(var/area/A in all_areas)
-		if(!istype(A,/area) || istype(A, /area/space) || istype(A,/area/beach))
+		if(!istype(A,/area) || istype(A, /area/space))
 			continue
 
 		A.updateicon()
@@ -105,7 +105,7 @@ The access requirements on the Asteroid Shuttles' consoles have now been revoked
 
 /datum/universal_state/supermatter_cascade/proc/APCSet()
 	for (var/obj/machinery/power/apc/APC in SSmachines.machinery)
-		if (!(APC.stat & BROKEN) && !APC.is_critical)
+		if (!(APC.stat & BROKEN) && is_valid_apc(APC))
 			APC.chargemode = 0
 			if(APC.cell)
 				APC.cell.charge = 0

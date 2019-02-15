@@ -47,15 +47,13 @@
 	var/const/STATUS_DISPLAY_CUSTOM = 99
 
 /obj/machinery/status_display/Destroy()
-	if(radio_controller)
-		radio_controller.remove_object(src,frequency)
+	SSradio.remove_object(src,frequency)
 	return ..()
 
 // register for radio system
 /obj/machinery/status_display/Initialize()
 	. = ..()
-	if(radio_controller)
-		radio_controller.add_object(src, frequency)
+	SSradio.add_object(src, frequency)
 
 // timed process
 /obj/machinery/status_display/Process()
@@ -170,7 +168,7 @@
 	return "[add_zero(num2text((timeleft / 60) % 60),2)]:[add_zero(num2text(timeleft % 60), 2)]"
 
 /obj/machinery/status_display/proc/get_supply_shuttle_timer()
-	var/datum/shuttle/autodock/ferry/supply/shuttle = supply_controller.shuttle
+	var/datum/shuttle/autodock/ferry/supply/shuttle = SSsupply.shuttle
 	if (!shuttle)
 		return "Error"
 

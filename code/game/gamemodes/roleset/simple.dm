@@ -1,124 +1,119 @@
 /datum/storyevent/roleset/borer
 	id = "borer"
+	name = "cortical borers"
 	role_id = ROLE_BORER
+	weight = 0.4
 
-	min_cost = 10
-	max_cost = 18
 
-	req_crew = 15
-	req_heads = -1
-	req_sec = 2
-	req_eng = -1
-	req_med = 4
-	req_sci = -1
-	req_stage = -1
+	base_quantity = 2
+	scaling_threshold = 15
 
-	spawn_times_max = 1
 
 /datum/storyevent/roleset/traitor
 	id = "traitor"
+	name = "traitor"
 	role_id = ROLE_TRAITOR
-	multispawn = TRUE
+	weight = 1.2
+	scaling_threshold = 10
 
-	min_cost = 5
-	max_cost = 10
 
-	req_crew = 7
-	req_heads = -1
-	req_sec = 3
-	req_eng = -1
-	req_med = 1
-	req_sci = -1
-	req_stage = -1
-
-	spawn_times_max = 7
-
+/*
+	Inquisitor
+*/
 /datum/storyevent/roleset/inquisitor
 	id = "inquisitor"
+	name = "inquisitor"
 	role_id = ROLE_INQUISITOR
-	multispawn = TRUE
+	weight = 0.15
+	event_pools = list(EVENT_LEVEL_ROLESET = -30) //This is an antitag, it has a negative cost to allow more antags to exist
 
-	min_cost = 5
-	max_cost = 10
 
-	req_crew = 7
-	req_heads = -1
-	req_sec = 3
-	req_eng = -1
-	req_med = -1
-	req_sci = -1
-
-	spawn_times_max = 3
-
-/datum/storyevent/roleset/inquisitor/get_special_weight(var/weight)
+//Weighting is based on the total number of active antags and disciples.
+//Antags who are also disciples get counted twice, this is intentional
+/datum/storyevent/roleset/inquisitor/get_special_weight(var/new_weight)
 	var/c_count = 0
-	for(var/mob/M in christians)
+	for(var/mob/M in disciples)
 		if(M.client &&  M.stat != DEAD && ishuman(M))
 			c_count++
 
-	var/maxc = (c_count > 7) ? c_count : 7
-	weight *= weight_mult(weight,maxc,0,maxc)
-
-	return weight
-
-/datum/storyevent/roleset/malf
-	id = "malf"
-	role_id = ROLE_MALFUNCTION
-
-	min_cost = 15
-	max_cost = 30
-
-	req_crew = 15
-	req_heads = 2
-	req_sec = 3
-	req_eng = 5
-	req_med = -1
-	req_sci = -1
-
-	spawn_times_max = 1
-
-/datum/storyevent/roleset/marshal
-	id = "marshal"
-	role_id = ROLE_MARSHAL
-	multispawn = TRUE
-
-	min_cost = 5
-	max_cost = 10
-
-	req_crew = 7
-	req_heads = -1
-	req_sec = 6
-	req_eng = -1
-	req_med = -1
-	req_sci = -1
-
-	spawn_times_max = 4
-
-/datum/storyevent/roleset/marshal/get_special_weight(var/weight)
 	var/a_count = 0
 	for(var/datum/antagonist/A in current_antags)
 		if(A.owner && A.is_active() && !A.is_dead())
 			a_count++
 
-	var/maxc = (a_count > 3) ? a_count : 3
-	weight *= weight_mult(weight,maxc,0,maxc)
+	if (!a_count && !c_count)
+		return 0 //Can't spawn without at least one antag and one disciple
 
-	return weight
+	return new_weight * max(a_count+c_count, 1)
+
+
+//Requires at least one antag to serve as a target
+//Also requires the candidate to have a cruciform, that is handled seperately in antagonist/station/inquisitor.dm
+/datum/storyevent/roleset/inquisitor/can_trigger(var/severity, var/report)
+
+
+	var/a_count = 0
+	for(var/datum/antagonist/A in current_antags)
+		if(A.owner && A.is_active() && !A.is_dead())
+			a_count++
+			break
+
+	if (!a_count)
+		if (report) report << SPAN_NOTICE("Failure: No antags which can serve as target")
+		return FALSE //Can't spawn without at least one antag
+
+
+	return ..()
+
+
+
+
+
+
+/datum/storyevent/roleset/malf
+	id = "malf"
+	name = "malfunctioning AI"
+	role_id = ROLE_MALFUNCTION
+	req_crew = 15
+
+
+/datum/storyevent/roleset/marshal
+	id = "marshal"
+	name = "marshal"
+	role_id = ROLE_MARSHAL
+	weight = 0.2
+	req_crew = 10
+	event_pools = list(EVENT_LEVEL_ROLESET = -30) //This is an antitag, it has a negative cost to allow more antags to exist
+
+/datum/storyevent/roleset/marshal/can_trigger(var/severity, var/report)
+	var/a_count = 0
+	for(var/datum/antagonist/A in current_antags)
+		if(!A.is_dead())
+			a_count++
+			break
+
+	if (a_count == 0)
+		if (report) report << SPAN_NOTICE("Failure: No antags which can serve as target")
+		return FALSE //Can't spawn without at least one antag
+
+	return ..()
+
+/datum/storyevent/roleset/marshal/get_special_weight(var/new_weight)
+	var/a_count = 0
+	for(var/datum/antagonist/A in current_antags)
+		if(A.owner && A.is_active() && !A.is_dead())
+			a_count++
+
+	if (a_count == 0)
+		return 0 //Can't spawn without at least one antag
+
+	return new_weight * max(a_count, 1)
+
 
 /datum/storyevent/roleset/changeling
 	id = "changeling"
+	name = "changeling"
 	role_id = ROLE_CHANGELING
-	multispawn = TRUE
 
-	min_cost = 6
-	max_cost = 10
-
-	req_crew = 7
-	req_heads = -1
-	req_sec = 4
-	req_eng = -1
-	req_med = 2
-	req_sci = -1
-	req_stage = -1
-
-	spawn_times_max = 4
+	base_quantity = 2
+	scaling_threshold = 15

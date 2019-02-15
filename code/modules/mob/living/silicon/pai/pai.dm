@@ -54,8 +54,6 @@
 	var/screen				// Which screen our main window displays
 	var/subscreen			// Which specific function of the main screen is being displayed
 
-	var/obj/item/device/pda/ai/pai/pda = null
-
 	var/secHUD = 0			// Toggles whether the Security HUD is active or not
 	var/medHUD = 0			// Toggles whether the Medical  HUD is active or not
 
@@ -75,8 +73,6 @@
 
 	var/translator_on = 0 // keeps track of the translator module
 
-	var/current_pda_messaging = null
-
 /mob/living/silicon/pai/New(var/obj/item/device/paicard)
 	src.loc = paicard
 	card = paicard
@@ -92,13 +88,6 @@
 	verbs += /mob/living/silicon/pai/proc/choose_chassis
 	verbs += /mob/living/silicon/pai/proc/choose_verbs
 
-	//PDA
-	pda = new(src)
-	spawn(5)
-		pda.ownjob = "Personal Assistant"
-		pda.owner = text("[]", src)
-		pda.name = pda.owner + " (" + pda.ownjob + ")"
-		pda.toff = 1
 	..()
 
 /mob/living/silicon/pai/Login()
@@ -113,7 +102,7 @@
 
 
 /mob/living/silicon/pai/Stat()
-	..()
+	. = ..()
 	statpanel("Status")
 	if (src.client.statpanel == "Status")
 		show_silenced()
@@ -186,7 +175,7 @@
 	medicalActive1 = null
 	medicalActive2 = null
 	medical_cannotfind = 0
-	nanomanager.update_uis(src)
+	SSnano.update_uis(src)
 	usr << SPAN_NOTICE("You reset your record-viewing software.")
 
 /mob/living/silicon/pai/cancel_camera()
@@ -267,9 +256,6 @@
 					H.visible_message(SPAN_DANGER("\The [src] explodes out of \the [H]'s [affecting.name] in shower of gore!"))
 					break
 		holder.drop_from_inventory(card)
-	else if(istype(card.loc,/obj/item/device/pda))
-		var/obj/item/device/pda/holder = card.loc
-		holder.pai = null
 
 	src.client.perspective = EYE_PERSPECTIVE
 	src.client.eye = src
@@ -339,7 +325,10 @@
 		if(istype(rig))
 			rig.force_rest(src)
 	else
-		resting = !resting
+		if(resting && can_stand_up())
+			resting = FALSE
+		else if (!resting)
+			resting = TRUE
 		icon_state = resting ? "[chassis]_rest" : "[chassis]"
 		src << "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>"
 
@@ -407,8 +396,7 @@
 	if(!istype(H))
 		return
 	H.icon_state = "pai-[icon_state]"
-	grabber.update_inv_l_hand()
-	grabber.update_inv_r_hand()
+	H.update_wear_icon()
 	return H
 
 /mob/living/silicon/pai/MouseDrop(atom/over_object)

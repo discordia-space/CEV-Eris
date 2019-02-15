@@ -24,9 +24,9 @@
 	for(var/obj/vehicle/train/T in orange(1, src))
 		latch(T)
 
-/obj/vehicle/train/Move()
+/obj/vehicle/train/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	var/old_loc = get_turf(src)
-	if(..())
+	if((. = ..()))
 		if(tow)
 			tow.Move(old_loc)
 		return 1

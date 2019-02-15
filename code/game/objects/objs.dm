@@ -12,8 +12,11 @@
 	var/damtype = "brute"
 	var/armor_penetration = 0
 	var/corporation = null
+	var/heat = 0
 
 
+/obj/proc/is_hot()
+	return heat
 
 /obj/get_fall_damage()
 	return w_class * 2
@@ -36,7 +39,7 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/Topic(href, href_list, var/datum/topic_state/state = default_state)
+/obj/Topic(href, href_list, var/datum/topic_state/state = GLOB.default_state)
 	if(..())
 		return 1
 
@@ -214,3 +217,25 @@
 	playsound(src.loc, 'sound/weapons/guns/interact/pistol_magout.ogg', 75, 1)
 	M << SPAN_NOTICE("You insert [I] into [src].")
 	return TRUE
+
+
+//Returns the list of matter in this object
+//You can override it to customise exactly what is returned.
+/obj/proc/get_matter()
+	return matter
+
+//To be called from things that spill objects on the floor.
+//Makes an object move around randomly for a couple of tiles
+/obj/proc/tumble(var/dist = 2)
+	if (dist >= 1)
+		spawn()
+			dist += rand(0,1)
+			for(var/i = 1, i <= dist, i++)
+				if(src)
+					step(src, pick(NORTH,SOUTH,EAST,WEST))
+					sleep(rand(2,4))
+
+
+//Intended for gun projectiles, but defined at this level for various things that aren't of projectile type
+/obj/proc/multiply_projectile_damage(var/newmult)
+	throwforce = initial(throwforce)*newmult

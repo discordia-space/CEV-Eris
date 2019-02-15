@@ -68,10 +68,10 @@
 
 			gain_nutrition(rand(20,25))
 
-			adjustOxyLoss(-10) //Heal yourself
-			adjustBruteLoss(-10)
-			adjustFireLoss(-10)
-			adjustCloneLoss(-10)
+			adjustOxyLoss(-8) //Heal yourself
+			adjustBruteLoss(-8)
+			adjustFireLoss(-8)
+			adjustCloneLoss(-8)
 			updatehealth()
 			if(Victim)
 				Victim.updatehealth()
@@ -117,7 +117,7 @@
 	if(!is_adult)
 		if(amount_grown >= 10)
 			is_adult = 1
-			maxHealth = 200
+			maxHealth = 150
 			amount_grown = 0
 			regenerate_icons()
 			name = text("[colour] [is_adult ? "adult" : "baby"] slime ([number])")

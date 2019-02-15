@@ -18,14 +18,28 @@
 	var/native                        			// If set, non-native speakers will have trouble speaking.
 	var/list/syllables                			// Used when scrambling text for a non-speaker.
 	var/list/space_chance = 55        			// Likelihood of getting a space in the random scramble string
-	var/machine_understands = 1 		  // Whether machines can parse and understand this language
+	var/machine_understands = 1 		  		// Whether machines can parse and understand this language
+	var/shorthand = "CO"						// Shorthand that shows up in chat for this language.
+
+	//Random name lists
+	var/name_lists = FALSE
+	var/first_names_male = list()
+	var/first_names_female = list()
+	var/last_names = list()
 
 /datum/language/proc/get_random_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
-	if(!syllables || !syllables.len)
+	//This language has its own name lists
+	if (name_lists)
 		if(gender==FEMALE)
 			return capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
 		else
 			return capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+
+	if(!syllables || !syllables.len)
+		if(gender==FEMALE)
+			return capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
+		else
+			return capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
 
 	var/full_name = ""
 	var/new_name = ""
@@ -37,6 +51,18 @@
 		full_name += " [capitalize(lowertext(new_name))]"
 
 	return "[trim(full_name)]"
+
+//A wrapper for the above that gets a random name and sets it onto the mob
+/datum/language/proc/set_random_name(var/mob/M, name_count=2, syllable_count=4, syllable_divisor=2)
+	var/mob/living/carbon/human/H = null
+	if (ishuman(M))
+		H = M
+
+	var/oldname = M.name
+	if (H)
+		oldname = H.real_name
+	M.fully_replace_character_name(oldname, get_random_name(M.get_gender(), name_count, syllable_count, syllable_divisor))
+
 
 /datum/language
 	var/list/scramble_cache = list()
@@ -104,7 +130,7 @@
 	if(!speaker_mask) speaker_mask = speaker.name
 	message = format_message(message, get_spoken_verb(message))
 
-	for(var/mob/player in player_list)
+	for(var/mob/player in GLOB.player_list)
 		player.hear_broadcast(src, speaker, speaker_mask, message)
 
 /mob/proc/hear_broadcast(var/datum/language/language, var/mob/speaker, var/speaker_name, var/message)
@@ -154,21 +180,18 @@
 		default_language = null
 	return ..()
 
+
+
+
 // Can we speak this language, as opposed to just understanding it?
 /mob/proc/can_speak(datum/language/speaking)
 	return (universal_speak || (speaking && speaking.flags & INNATE) || speaking in src.languages)
 
 /mob/proc/get_language_prefix()
-	if(client && client.prefs.language_prefixes && client.prefs.language_prefixes.len)
-		return client.prefs.language_prefixes[1]
-
-	return config.language_prefixes[1]
+	return get_prefix_key(/decl/prefix/language)
 
 /mob/proc/is_language_prefix(var/prefix)
-	if(client && client.prefs.language_prefixes && client.prefs.language_prefixes.len)
-		return prefix in client.prefs.language_prefixes
-
-	return prefix in config.language_prefixes
+	return prefix == get_prefix_key(/decl/prefix/language)
 
 //TBD
 /mob/verb/check_languages()

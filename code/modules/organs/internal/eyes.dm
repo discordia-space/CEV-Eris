@@ -2,11 +2,11 @@
 	name = "eyeballs"
 	icon_state = "eyes"
 	gender = PLURAL
-	organ_tag = O_EYES
+	organ_tag = BP_EYES
 	parent_organ = BP_HEAD
 	var/eyes_color = "#000000"
 	var/robo_color = "#000000"
-	var/cache_key = O_EYES
+	var/cache_key = BP_EYES
 
 /obj/item/organ/internal/eyes/proc/get_icon()
 	var/icon/eyes_icon = new/icon('icons/mob/human_face.dmi', "eye_l[owner.body_build.index]")

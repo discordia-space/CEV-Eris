@@ -36,6 +36,7 @@
 	set_trait(TRAIT_STINGS,               0)            // Can cause damage/inject reagents when thrown or handled.
 	set_trait(TRAIT_YIELD,                0)            // Amount of product.
 	set_trait(TRAIT_SPREAD,               0)            // 0 limits plant to tray, 1 = creepers, 2 = vines.
+	set_trait(TRAIT_WALL_HUGGER,          0)            // If 1, plant grows on walls as well as floors. Only useful if Spread is set
 	set_trait(TRAIT_MATURATION,           0)            // Time taken before the plant is mature.
 	set_trait(TRAIT_PRODUCTION,           0)            // Time before harvesting can be undertaken again.
 	set_trait(TRAIT_TELEPORTING,          0)            // Uses the bluespace tomato effect.
@@ -115,7 +116,7 @@
 
 
 	if(!target_limb)
-		target_limb = pick(BP_ALL)
+		target_limb = pick(BP_ALL_LIMBS)
 	var/obj/item/organ/external/affecting = target.get_organ(target_limb)
 	var/damage = 0
 
@@ -331,7 +332,8 @@
 
 		var/list/turfs = list()
 		if(inner_teleport_radius > 0)
-			for(var/turf/T in trange(outer_teleport_radius, get_turf(target)))
+			var/turf/TLoc = get_turf(target)
+			for(var/turf/T in trange(outer_teleport_radius, TLoc))
 				if(get_dist(target,T) >= inner_teleport_radius)
 					turfs |= T
 
@@ -490,7 +492,7 @@
 		set_trait(TRAIT_SPREAD,2)
 	else if(vine_prob < 10)
 		set_trait(TRAIT_SPREAD,1)
-
+		set_trait(TRAIT_WALL_HUGGER, 1)
 	if(prob(5))
 		set_trait(TRAIT_BIOLUM,1)
 		set_trait(TRAIT_BIOLUM_COLOUR,get_random_colour(0,75,190))
@@ -654,7 +656,7 @@
 			P.values["mob_product"] = has_mob_product
 			traits_to_copy = list(TRAIT_REQUIRES_NUTRIENTS,TRAIT_REQUIRES_WATER,TRAIT_ALTER_TEMP)
 		if(GENE_VIGOUR)
-			traits_to_copy = list(TRAIT_PRODUCTION,TRAIT_MATURATION,TRAIT_YIELD,TRAIT_SPREAD)
+			traits_to_copy = list(TRAIT_PRODUCTION,TRAIT_MATURATION,TRAIT_YIELD,TRAIT_SPREAD,TRAIT_WALL_HUGGER)
 		if(GENE_DIET)
 			P.values["[TRAIT_CONSUME_GASSES]"] = consume_gasses
 			traits_to_copy = list(TRAIT_CARNIVOROUS,TRAIT_PARASITE,TRAIT_NUTRIENT_CONSUMPTION,TRAIT_WATER_CONSUMPTION)
@@ -665,7 +667,7 @@
 		if(GENE_STRUCTURE)
 			traits_to_copy = list(TRAIT_PLANT_ICON,TRAIT_PRODUCT_ICON,TRAIT_HARVEST_REPEAT)
 		if(GENE_FRUIT)
-			traits_to_copy = list(TRAIT_STINGS,TRAIT_EXPLOSIVE,TRAIT_FLESH_COLOUR,TRAIT_JUICY)
+			traits_to_copy = list(TRAIT_STINGS,TRAIT_EXPLOSIVE,TRAIT_FLESH_COLOUR,TRAIT_JUICY,TRAIT_CHEM_SPRAYER)
 		if(GENE_SPECIAL)
 			traits_to_copy = list(TRAIT_TELEPORTING)
 

@@ -18,14 +18,24 @@
 	caliber = "9mm"
 	projectile_type = /obj/item/projectile/bullet/c9mmp
 
+/obj/item/ammo_casing/c9mmh
+	desc = "A 9mm high-velocity bullet casing."
+	caliber = "9mm"
+	projectile_type = /obj/item/projectile/bullet/hv/c9mm
+
 /obj/item/ammo_casing/a10mm
 	desc = "A 10mm bullet casing."
 	caliber = "10mm"
 	projectile_type = /obj/item/projectile/bullet/a10mm
 
+/obj/item/ammo_casing/a10mmh
+	desc = "A 10mm high-velocity bullet casing."
+	caliber = "10mm"
+	projectile_type = /obj/item/projectile/bullet/hv/a10mm
+
 /obj/item/ammo_casing/cl32
-	desc = "A .38 FS hollow point bullet casing."
-	caliber = ".38"
+	desc = "A .32 FS hollow point bullet casing."
+	caliber = ".32"
 	projectile_type = /obj/item/projectile/bullet/cl32
 
 /obj/item/ammo_casing/cl32r
@@ -38,14 +48,19 @@
 	caliber = "357"
 	projectile_type = /obj/item/projectile/bullet/a357
 
+/obj/item/ammo_casing/a357h
+	desc = "A .357 high-velocity bullet casing."
+	caliber = "357"
+	projectile_type = /obj/item/projectile/bullet/hv/a357
+
 /obj/item/ammo_casing/c38
 	desc = "A .38 bullet casing."
-	caliber = "38"
+	caliber = ".38"
 	projectile_type = /obj/item/projectile/bullet/c38
 
 /obj/item/ammo_casing/c38r
 	desc = "A .38 rubber bullet casing."
-	caliber = "38"
+	caliber = ".38"
 	projectile_type = /obj/item/projectile/bullet/c38r
 
 /obj/item/ammo_casing/cl44
@@ -92,6 +107,11 @@
 	desc = "A 7.62mm bullet casing."
 	caliber = "a762"
 	projectile_type = /obj/item/projectile/bullet/a762
+
+/obj/item/ammo_casing/a762h
+	desc = "A 7.62mm high-velocity bullet casing."
+	caliber = "a762"
+	projectile_type = /obj/item/projectile/bullet/hv/a762
 
 /obj/item/ammo_casing/a556
 	desc = "A 5.56mm bullet casing."
@@ -196,7 +216,7 @@
 	icon_state = "stunshell"
 	spent_icon = "stunshell-spent"
 	projectile_type = /obj/item/projectile/energy/electrode/stunshot
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_SILVER = 1)
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_SILVER = 0.5)
 	maxamount = 5
 
 /obj/item/ammo_casing/shotgun/stunshell/emp_act(severity)
@@ -212,15 +232,15 @@
 	desc = "A chemical shell used to signal distress or provide illumination."
 	icon_state = "fshell"
 	projectile_type = /obj/item/projectile/energy/flash/flare
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_SILVER = 1)
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_SILVER = 0.5)
 	maxamount = 5
 
 /obj/item/ammo_casing/shotgun/flash/prespawned
 	amount = 5
 
 /obj/item/ammo_casing/rocket
-	name = "rocket shell"
-	desc = "A high explosive designed to be fired from a launcher."
+	name = "PG-7VL grenade"
+	desc = "A 40mm warhead designed for the RPG-7 launcher."
 	icon_state = "rocketshell"
 	projectile_type = /obj/item/missile
 	caliber = "rocket"

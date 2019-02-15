@@ -70,6 +70,8 @@
 	var/supernatural = 0
 	var/purge = 0
 
+	mob_classification = CLASSIFICATION_ORGANIC
+
 /mob/living/simple_animal/New()
 	..()
 	if(!icon_living)
@@ -79,26 +81,25 @@
 
 	verbs -= /mob/verb/observe
 
+
+/mob/living/simple_animal/Initialize(var/mapload)
+	.=..()
+	if (mapload && can_burrow)
+		find_or_create_burrow(get_turf(src))
+
 /mob/living/simple_animal/Login()
 	if(src && src.client)
 		src.client.screen = null
 	..()
 
+
 /mob/living/simple_animal/updatehealth()
-	return
+	..()
+	if (health <= 0)
+		death()
 
 /mob/living/simple_animal/Life()
 	..()
-
-	//Health
-	if(stat == DEAD)
-		if(health > 0)
-			icon_state = icon_living
-			dead_mob_list -= src
-			living_mob_list += src
-			stat = CONSCIOUS
-			density = 1
-		return 0
 
 
 	if(health <= 0)
@@ -122,7 +123,7 @@
 					var/moving_to = 0 // otherwise it always picks 4, fuck if I know.   Did I mention fuck BYOND
 					moving_to = pick(cardinal)
 					set_dir(moving_to)			//How about we turn them the direction they are moving, yay.
-					Move(get_step(src,moving_to))
+					step_glide(src, moving_to, DELAY2GLIDESIZE(0.5 SECONDS))
 					turns_since_move = 0
 
 	//Speaking
@@ -205,6 +206,12 @@
 	adjustBruteLoss(Proj.damage)
 	return 0
 
+/mob/living/simple_animal/rejuvenate()
+	..()
+	health = maxHealth
+	density = initial(density)
+	update_icons()
+
 /mob/living/simple_animal/attack_hand(mob/living/carbon/human/M as mob)
 	..()
 
@@ -238,6 +245,7 @@
 
 		if(I_HURT)
 			adjustBruteLoss(harm_intent_damage)
+			playsound(src, pick(punch_sound),60,1)
 			M.visible_message("\red [M] [response_harm] \the [src]")
 			M.do_attack_animation(src)
 
@@ -246,58 +254,35 @@
 /mob/living/simple_animal/attackby(var/obj/item/O, var/mob/user)
 	if(istype(O, /obj/item/weapon/gripper))
 		return ..(O, user)
-	if(istype(O, /obj/item/stack/medical))
-		if(stat != DEAD)
-			var/obj/item/stack/medical/MED = O
-			if(health < maxHealth)
-				if(MED.amount >= 1)
-					adjustBruteLoss(-MED.heal_brute)
-					MED.amount -= 1
-					if(MED.amount <= 0)
-						qdel(MED)
-					for(var/mob/M in viewers(src, null))
-						if ((M.client && !( M.blinded )))
-							M.show_message(SPAN_NOTICE("[user] applies the [MED] on [src]."))
-		else
-			user << SPAN_NOTICE("\The [src] is dead, medical items won't bring \him back to life.")
+
 	if(meat_type && (stat == DEAD))	//if the animal has a meat, and if it is dead.
 		if(QUALITY_CUTTING in O.tool_qualities)
 			if(O.use_tool(user, src, WORKTIME_NORMAL, QUALITY_CUTTING, FAILCHANCE_NORMAL, required_stat = STAT_BIO))
 				harvest(user)
 	else
-		if(!O.force)
-			visible_message(SPAN_NOTICE("[user] gently taps [src] with \the [O]."))
-		else
-			O.attack(src, user, user.targeted_organ)
+		O.attack(src, user, user.targeted_organ)
 
 /mob/living/simple_animal/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
 
-	visible_message(SPAN_DANGER("\The [src] has been attacked with \the [O] by [user]."))
-
-	if(O.force <= resistance)
+	if(effective_force <= resistance)
 		user << SPAN_DANGER("This weapon is ineffective, it does no damage.")
 		return 2
-
-	var/damage = O.force
-	if (O.damtype == HALLOSS)
-		damage = 0
-	adjustBruteLoss(damage)
-
-	return 0
+	effective_force -= resistance
+	.=..(O, user, effective_force, hit_zone)
 
 /mob/living/simple_animal/movement_delay()
-	var/tally = 0 //Incase I need to add stuff other than "speed" later
+	var/tally = MOVE_DELAY_BASE //Incase I need to add stuff other than "speed" later
 
-	tally = speed
+	tally += speed
 	if(purge)//Purged creatures will move more slowly. The more time before their purge stops, the slower they'll move.
 		if(tally <= 0)
 			tally = 1
 		tally *= purge
 
-	return tally+config.animal_delay
+	return tally
 
 /mob/living/simple_animal/Stat()
-	..()
+	. = ..()
 
 	if(statpanel("Status") && show_stat_health)
 		stat(null, "Health: [round((health / maxHealth) * 100)]%")
@@ -324,8 +309,7 @@
 		if(3.0)
 			adjustBruteLoss(30)
 
-/mob/living/simple_animal/adjustBruteLoss(damage)
-	health = Clamp(health - damage, 0, maxHealth)
+
 
 /mob/living/simple_animal/proc/SA_attackable(target_mob)
 	if (isliving(target_mob))
@@ -424,9 +408,9 @@
 /mob/living/simple_animal/lay_down()
 	set name = "Rest"
 	set category = "Abilities"
-	if (resting)
+	if(resting && can_stand_up())
 		wake_up()
-	else
+	else if (!resting)
 		fall_asleep()
 	src << span("notice","You are now [resting ? "resting" : "getting up"]")
 	update_icons()
@@ -435,3 +419,7 @@
 //This is called when an animal 'speaks'. It does nothing here, but descendants should override it to add audio
 /mob/living/simple_animal/proc/speak_audio()
 	return
+
+//Animals are generally good at falling, small ones are immune
+/mob/living/simple_animal/get_fall_damage()
+	return mob_size - 1

@@ -8,7 +8,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if (isslime(target))
 			return 0
-		if (target_zone == O_EYES)	//there are specific steps for eye surgery
+		if (target_zone == BP_EYES)	//there are specific steps for eye surgery
 			return 0
 		if (!hasorgans(target))
 			return 0
@@ -30,7 +30,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			return affected && affected.open == 0 && target_zone != "mouth"
+			return affected && affected.open == 0 && target_zone != BP_MOUTH
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -50,7 +50,7 @@
 		SPAN_WARNING("Your [tool] slips, failing to unscrew [target]'s [affected.name]."))
 
 /datum/surgery_step/robotics/open_hatch
-	requedQuality = QUALITY_RETRACTING
+	requedQuality = QUALITY_PRYING
 
 	min_duration = 30
 	max_duration = 40
@@ -78,7 +78,7 @@
 		SPAN_WARNING("Your [tool] slips, failing to open the hatch on [target]'s [affected.name]."))
 
 /datum/surgery_step/robotics/close_hatch
-	requedQuality = QUALITY_RETRACTING
+	requedQuality = QUALITY_PRYING
 
 	min_duration = 70
 	max_duration = 100
@@ -86,7 +86,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			return affected && affected.open && target_zone != "mouth"
+			return affected && affected.open && target_zone != BP_MOUTH
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -115,9 +115,9 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			if(istype(tool,/obj/item/weapon/tool/weldingtool))
+			if(!istype(tool,/obj/item/weapon/tool/weldingtool))
 				return 0
-			return affected && affected.open == 2 && affected.brute_dam > 0 && target_zone != "mouth"
+			return affected && affected.brute_dam > 0 && target_zone != BP_MOUTH
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -149,7 +149,7 @@
 		if(..())
 			var/obj/item/stack/cable_coil/C = tool
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			var/limb_can_operate = (affected && affected.open == 2 && affected.burn_dam > 0 && target_zone != "mouth")
+			var/limb_can_operate = (affected && affected.open == 2 && affected.burn_dam > 0 && target_zone != BP_MOUTH)
 			if(limb_can_operate)
 				if(istype(C))
 					if(!C.get_amount() >= 3)
@@ -367,11 +367,11 @@
 			user << SPAN_DANGER("You have no idea what species this person is. Report this on the bug tracker.")
 			return SURGERY_FAILURE
 
-		if(!target.species.has_organ[O_BRAIN])
+		if(!target.species.has_organ[BP_BRAIN])
 			user << SPAN_DANGER("You're pretty sure [target.species.name_plural] don't normally have a brain.")
 			return SURGERY_FAILURE
 
-		if(!isnull(target.internal_organs[O_BRAIN]))
+		if(!isnull(target.internal_organs[BP_BRAIN]))
 			user << SPAN_DANGER("Your subject already has a brain.")
 			return SURGERY_FAILURE
 
@@ -390,7 +390,7 @@
 
 		var/obj/item/device/mmi/M = tool
 		var/obj/item/organ/mmi_holder/holder = new(target, 1)
-		target.internal_organs_by_name[O_BRAIN] = holder
+		target.internal_organs_by_name[BP_BRAIN] = holder
 		user.drop_from_inventory(tool)
 		tool.loc = holder
 		holder.stored_mmi = tool

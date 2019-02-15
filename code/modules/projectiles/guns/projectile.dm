@@ -1,3 +1,4 @@
+
 #define HOLD_CASINGS	0 //do not do anything after firing. Manual action, like pump shotguns, or guns that want to define custom behaviour
 #define EJECT_CASINGS	1 //drop spent casings on the ground after firing
 #define CYCLE_CASINGS 	2 //experimental: cycle casings, like a revolver. Also works for multibarrelled guns
@@ -85,6 +86,8 @@
 		if(EJECT_CASINGS) //eject casing onto ground.
 			chambered.loc = get_turf(src)
 			for(var/obj/item/ammo_casing/temp_casing in chambered.loc)
+				if(temp_casing == chambered)
+					continue
 				if((temp_casing.desc == chambered.desc) && !temp_casing.BB)
 					var/temp_amount = temp_casing.amount + chambered.amount
 					if(temp_amount > chambered.maxamount)
@@ -115,7 +118,24 @@
 		if(!(load_method & AM.mag_type) || caliber != AM.caliber)
 			return //incompatible
 
-		switch(AM.mag_type)
+		//How are we trying to apply this magazine to this gun?
+		//Its possible for both magazines and guns to support multiple load methods.
+		//In the case of that, we use a fixed order to determine whats most desireable
+		var/method_for_this_load = 0
+
+		//Magazine loading takes precedence first
+		if ((load_method & AM.mag_type) & MAGAZINE)
+			method_for_this_load = MAGAZINE
+		//Speedloading second
+		else if ((load_method & AM.mag_type) & SPEEDLOADER)
+			method_for_this_load = SPEEDLOADER
+		else if ((load_method & AM.mag_type) & SINGLE_CASING)
+			method_for_this_load = SINGLE_CASING
+		else
+			//Not sure how this could happen, sanity check. Abort and return if none of the above were true
+			return
+
+		switch(method_for_this_load)
 			if(MAGAZINE)
 				if(AM.ammo_mag != ammo_mag && ammo_mag != "default")
 					user << SPAN_WARNING("[src] requires another magazine.") //wrong magazine
@@ -129,6 +149,7 @@
 
 				if(reload_sound) playsound(src.loc, reload_sound, 75, 1)
 				cock_gun(user)
+				update_firemode()
 			if(SPEEDLOADER)
 				if(loaded.len >= max_shells)
 					user << SPAN_WARNING("[src] is full!")
@@ -149,6 +170,7 @@
 					user.visible_message("[user] reloads [src].", SPAN_NOTICE("You load [count] round\s into [src]."))
 					if(reload_sound) playsound(src.loc, reload_sound, 75, 1)
 					cock_gun(user)
+				update_firemode()
 		AM.update_icon()
 	else if(istype(A, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = A
@@ -176,6 +198,7 @@
 			user.remove_from_mob(C)
 			C.loc = src
 			loaded.Insert(1, C) //add to the head of the list
+		update_firemode()
 		user.visible_message("[user] inserts \a [C] into [src].", SPAN_NOTICE("You insert \a [C] into [src]."))
 		if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, 1)
 
@@ -184,7 +207,8 @@
 //attempts to unload src. If allow_dump is set to 0, the speedloader unloading method will be disabled
 /obj/item/weapon/gun/projectile/proc/unload_ammo(mob/user, var/allow_dump=1)
 	if(ammo_magazine)
-		user.put_in_hands(ammo_magazine)
+		if(!user.put_in_hands(ammo_magazine))
+			return
 
 		if(unload_sound) playsound(src.loc, unload_sound, 75, 1)
 		ammo_magazine.update_icon()
@@ -226,6 +250,11 @@
 		unload_ammo(user, allow_dump=0)
 	else
 		return ..()
+
+/obj/item/weapon/gun/projectile/MouseDrop(over_object, src_location, over_location)
+	..()
+	if(src.loc == usr && istype(over_object, /obj/screen/inventory/hand))
+		unload_ammo(usr, allow_dump=0)
 
 /obj/item/weapon/gun/projectile/afterattack(atom/A, mob/living/user)
 	..()

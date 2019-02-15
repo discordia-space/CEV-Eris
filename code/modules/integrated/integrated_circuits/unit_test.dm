@@ -29,13 +29,13 @@ var/total_unit_tests = 0
 /proc/initialize_unit_tests()
 	log_unit_test("Initializing Unit Testing")
 
-	if(!ticker)
+	if(!SSticker)
 		crash_with("No Ticker")
 		world.Del()
 
 	var/said_msg = 0
-	while(ticker.pregame_timeleft && ticker.pregame_timeleft > 160)	// Make sure the initial startup is complete.
-		if(ticker.pregame_timeleft < 175 && !said_msg)
+	while(SSticker.pregame_timeleft && SSticker.pregame_timeleft > 160)	// Make sure the initial startup is complete.
+		if(SSticker.pregame_timeleft < 175 && !said_msg)
 			said_msg = 1
 			log_unit_test("Pregame Count down has started, giving it 20 seconds to finish.")
 		sleep(1)
@@ -44,7 +44,7 @@ var/total_unit_tests = 0
 
 	sleep(1)
 
-	ticker.current_state = GAME_STATE_SETTING_UP
+	SSticker.current_state = GAME_STATE_SETTING_UP
 	Master.SetRunLevel(RUNLEVEL_SETUP)
 
 	log_unit_test("Round has been started.  Waiting 10 seconds to start tests.")

@@ -12,6 +12,21 @@
 
 	storage_capacity = 150
 
+/obj/machinery/autolathe/excelsior/New()
+	..()
+	container = new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
+
+
+//Since the excelsior lathe doesn't have parts registered in its circuit board, we make them manually here
+/obj/machinery/autolathe/excelsior/InitCircuit()
+	if(ispath(circuit))
+		circuit = new circuit(src)
+	circuit.req_components[/obj/item/weapon/stock_parts/matter_bin] = 3
+	circuit.req_components[/obj/item/weapon/stock_parts/manipulator] = 1
+	var/obj/item/weapon/circuitboard/excelsiorautolathe/C = circuit
+	C.built = TRUE
+	.=..()
+
 /obj/machinery/autolathe/excelsior/update_icon()
 	overlays.Cut()
 

@@ -30,7 +30,7 @@
 	title = "Security Announcement"
 	announcement_type = "Security Announcement"
 
-/datum/announcement/proc/Announce(var/message as text, var/new_title = "", var/new_sound = null, var/do_newscast = newscast, var/msg_sanitized = 0)
+/datum/announcement/proc/Announce(var/message as text, var/new_title = "", var/new_sound = null, var/do_newscast = newscast, var/msg_sanitized = 0, var/zlevels = maps_data.contact_levels)
 	if(!message)
 		return
 	var/message_title = new_title ? new_title : title
@@ -43,7 +43,10 @@
 	Message(message, message_title)
 	if(do_newscast)
 		NewsCast(message, message_title)
-	Sound(message_sound)
+
+	for(var/mob/M in GLOB.player_list)
+		if((M.z in (zlevels | maps_data.admin_levels)) && !istype(M,/mob/new_player) && !isdeaf(M) && message_sound)
+			sound_to(M, message_sound)
 	Log(message, message_title)
 
 datum/announcement/proc/Message(message as text, message_title as text)
@@ -56,7 +59,7 @@ datum/announcement/priority/Message(message as text, message_title as text)
 	global_announcer.autosay(utf8_to_cp1251("<span class='alert'>[utf8_to_cp1251(message_title)]:</span> [utf8_to_cp1251(message)]"), announcer ? announcer : ANNOUNSER_NAME)
 
 datum/announcement/priority/command/Message(message as text, message_title as text)
-	global_announcer.autosay(utf8_to_cp1251("<span class='warning'>[utf8_to_cp1251(command_name())] [utf8_to_cp1251(message_title)]:</span> [utf8_to_cp1251(message)]"), ANNOUNSER_NAME)
+	global_announcer.autosay(utf8_to_cp1251("<span class='warning'>[utf8_to_cp1251(message_title)]:</span> [utf8_to_cp1251(message)]"), ANNOUNSER_NAME)
 
 datum/announcement/priority/security/Message(message as text, message_title as text)
 	global_announcer.autosay(utf8_to_cp1251("<font color='red'>[utf8_to_cp1251(message_title)]:</span> [utf8_to_cp1251(message)]"), ANNOUNSER_NAME)
@@ -76,7 +79,7 @@ datum/announcement/proc/NewsCast(message as text, message_title as text)
 datum/announcement/proc/PlaySound(var/message_sound)
 	if(!message_sound)
 		return
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(!isnewplayer(M) && !isdeaf(M))
 			M << message_sound
 
@@ -105,11 +108,9 @@ datum/announcement/proc/Log(message as text, message_title as text)
 /proc/ion_storm_announcement()
 	command_announcement.Announce("It has come to our attention that the ship passed through an ion storm.  Please monitor all electronic equipment for malfunctions.", "Anomaly Alert")
 
-/proc/AnnounceArrival(var/mob/living/carbon/human/character, var/rank, var/join_message)
-	if (ticker.current_state == GAME_STATE_PLAYING)
-	/*	if(character.mind.role_alt_title)
-			rank = character.mind.role_alt_title*/
-		AnnounceArrivalSimple(character.real_name, rank, join_message)
-
-/proc/AnnounceArrivalSimple(var/name, var/rank = "visitor", var/join_message = "has arrived on the station")
-	global_announcer.autosay(utf8_to_cp1251("[utf8_to_cp1251(name)], [utf8_to_cp1251(rank)], [utf8_to_cp1251(join_message)]."), ANNOUNSER_NAME)
+/proc/AnnounceArrival(var/mob/living/character, var/rank, var/join_message)
+	if (join_message && SSticker.current_state == GAME_STATE_PLAYING && SSjob.ShouldCreateRecords(rank))
+		if(issilicon(character))
+			global_announcer.autosay(utf8_to_cp1251("A new [rank] [join_message]."), ANNOUNSER_NAME)
+		else
+			global_announcer.autosay(utf8_to_cp1251("[utf8_to_cp1251(character.real_name)], [utf8_to_cp1251(rank)], [utf8_to_cp1251(join_message)]."), ANNOUNSER_NAME)

@@ -473,29 +473,43 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	crate_name = "Replacement lights"
 	group = "Engineering"
 
-/datum/supply_pack/metal50
-	name = "50 metal sheets"
+/datum/supply_pack/metal120
+	name = "120 metal sheets"
 	contains = list(/obj/item/stack/material/steel)
-	amount = 50
-	cost = 1000
+	amount = 120
+	cost = 360
 	containertype = /obj/structure/closet/crate/secure
 	crate_name = "Metal sheets crate"
 	group = "Engineering"
 
-/datum/supply_pack/glass50
-	name = "50 glass sheets"
-	contains = list(/obj/item/stack/material/glass)
-	amount = 50
+
+/datum/supply_pack/metal480
+	name = "Bulk metal crate"
+	contains = list(/obj/item/stack/material/steel/full,
+	/obj/item/stack/material/steel/full,
+	/obj/item/stack/material/steel/full,
+	/obj/item/stack/material/steel/full)
 	cost = 1000
+	containertype = /obj/structure/largecrate
+	crate_name = "Bulk metal crate"
+	group = "Engineering"
+
+
+
+/datum/supply_pack/glass50
+	name = "120 glass sheets"
+	contains = list(/obj/item/stack/material/glass)
+	amount = 120
+	cost = 360
 	containertype = /obj/structure/closet/crate/secure
 	crate_name = "Glass sheets crate"
 	group = "Engineering"
 
 /datum/supply_pack/wood50
-	name = "50 wooden planks"
+	name = "120 wooden planks"
 	contains = list(/obj/item/stack/material/wood)
-	amount = 50
-	cost = 1000
+	amount = 120
+	cost = 1200
 	containertype = /obj/structure/closet/crate
 	crate_name = "Wooden planks crate"
 	group = "Engineering"
@@ -529,6 +543,19 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	cost = 1000
 	containertype = /obj/structure/closet/crate
 	crate_name = "Mechanical maintenance crate"
+	group = "Engineering"
+
+/datum/supply_pack/toolmods
+	contains = list(/obj/random/tool_upgrade,
+					/obj/random/tool_upgrade,
+					/obj/random/tool_upgrade,
+					/obj/random/tool_upgrade,
+					/obj/random/tool_upgrade,
+					/obj/random/tool_upgrade)
+	name = "Unsorted Tool Upgrades"
+	cost = 1500
+	containertype = /obj/structure/closet/crate
+	crate_name = "Tool upgrade Crate"
 	group = "Engineering"
 
 /datum/supply_pack/fueltank
@@ -733,6 +760,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	group = "Engineering"
 	access = access_atmospherics
 
+
 //----------------------------------------------
 //------------MEDICAL / SCIENCE-----------------
 //----------------------------------------------
@@ -808,7 +836,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	cost = 2500
 	containertype = /obj/structure/closet/crate/secure
 	crate_name = "Surgery crate"
-	access = access_medical
+	access = access_moebius
 	group = "Medical / Science"
 
 /datum/supply_pack/sterile
@@ -839,12 +867,12 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	crate_name = "blood freezer"
 	group = "Medical / Science"
 
-/datum/supply_pack/iv_drip
-	name = "IV Drip Crate"
+/datum/supply_pack/medical_stand
+	name = "Medical stand Crate"
 	cost = 1000
-	contains = list(/obj/machinery/iv_drip)
+	contains = list(/obj/structure/medical_stand)
 	containertype = /obj/structure/closet/crate/medical
-	crate_name = "iv drip crate"
+	crate_name = "medical stand crate"
 	group = "Medical / Science"
 
 /datum/supply_pack/body_bags
@@ -862,7 +890,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	contains = list(/obj/machinery/suspension_gen)
 	containertype = /obj/structure/closet/crate/secure/scisecurecrate
 	crate_name = "Suspension Field Generetor Crate"
-	access = access_research
+	access = access_moebius
 	group = "Medical / Science"
 
 /datum/supply_pack/floodlight
@@ -1120,6 +1148,9 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	name = "Janitorial supplies"
 	contains = list(/obj/item/weapon/reagent_containers/glass/bucket,
 					/obj/item/weapon/mop,
+					/obj/item/weapon/mop,
+					/obj/item/weapon/mop,
+					/obj/item/weapon/mop,
 					/obj/item/weapon/caution,
 					/obj/item/weapon/caution,
 					/obj/item/weapon/caution,
@@ -1269,3 +1300,64 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	crate_name = "Actor Costumes"
 	access = access_theatre
 	group = "Miscellaneous"
+
+/datum/supply_pack/randomised/guns
+	num_contained = 2
+	contains = list(/obj/item/weapon/gun/projectile/automatic/ak47/fs,
+					/obj/item/weapon/gun/projectile/automatic/atreides,
+					/obj/item/weapon/gun/projectile/automatic/c20r,
+					/obj/item/weapon/gun/projectile/automatic/idaho,
+					/obj/item/weapon/gun/projectile/automatic/sts35,
+					/obj/item/weapon/gun/projectile/automatic/wt550,
+					/obj/item/weapon/gun/projectile/automatic/z8,
+					/obj/item/weapon/gun/projectile/clarissa,
+					/obj/item/weapon/gun/projectile/clarissa/makarov,
+					/obj/item/weapon/gun/projectile/colt,
+					/obj/item/weapon/gun/projectile/deagle,
+					/obj/item/weapon/gun/projectile/giskard,
+					/obj/item/weapon/gun/projectile/handmade_pistol,
+					/obj/item/weapon/gun/projectile/lamia,
+					/obj/item/weapon/gun/projectile/mk58,
+					/obj/item/weapon/gun/projectile/mk58/wood,
+					/obj/item/weapon/gun/projectile/olivaw,
+					/obj/item/weapon/gun/projectile/silenced,
+					/obj/item/weapon/gun/projectile/revolver/consul,
+					/obj/item/weapon/gun/projectile/revolver/deckard,
+					/obj/item/weapon/gun/projectile/revolver/detective,
+					/obj/item/weapon/gun/projectile/revolver/mateba,
+					/obj/item/weapon/gun/projectile/revolver,
+					/obj/item/weapon/gun/projectile/shotgun/bull,
+					/obj/item/weapon/gun/projectile/shotgun/doublebarrel,
+					/obj/item/weapon/gun/projectile/shotgun/pump,
+					/obj/item/weapon/gun/projectile/shotgun/pump/combat,
+					/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn,
+					/obj/item/weapon/gun/projectile/shotgun/pump/gladstone,
+					/obj/item/weapon/gun/energy/cassad,
+					/obj/item/weapon/gun/energy/gun,
+					/obj/item/weapon/gun/energy/gun/martin,
+					/obj/item/weapon/gun/energy/ionrifle,
+					/obj/item/weapon/gun/energy/laser,
+					/obj/item/weapon/gun/energy/retro,
+					/obj/item/weapon/gun/energy/sniperrifle,
+					/obj/item/weapon/gun/energy/taser,
+					/obj/item/weapon/gun/energy/stunrevolver,
+					/obj/item/weapon/gun/energy/temperature,
+					/obj/item/weapon/gun/energy/xray)
+	name = "Surplus Weaponry"
+	cost = 2000
+	crate_name = "Surplus Crate"
+	containertype = /obj/structure/closet/crate/secure/weapon
+	group = "Security"
+
+
+datum/supply_pack/randomised/spacesuit
+	num_contained = 1
+	contains = list(/obj/random/rig,
+					/obj/random/rig/damaged,
+					/obj/random/voidsuit,
+					/obj/random/voidsuit/damaged)
+	name = "Spare Space Suit"
+	cost = 1500
+	crate_name = "Spare Crate"
+	containertype = /obj/structure/closet/crate
+	group = "Operations"

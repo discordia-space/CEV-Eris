@@ -40,11 +40,12 @@
 	icon = 'icons/obj/decals.dmi'
 	icon_state = "securearea"
 	var/sight_mode = null
-
+	var/obj/screen/overlay = null
 
 /obj/item/borg/sight/xray
 	name = "\proper x-ray vision"
 	sight_mode = BORGXRAY
+
 
 
 /obj/item/borg/sight/thermal
@@ -53,12 +54,22 @@
 	icon_state = "thermal"
 	icon = 'icons/inventory/eyes/icon.dmi'
 
+/obj/item/borg/sight/thermal/New()
+	..()
+	overlay = global_hud.thermal
+
+
 
 /obj/item/borg/sight/meson
 	name = "\proper meson vision"
 	sight_mode = BORGMESON
 	icon_state = "meson"
 	icon = 'icons/inventory/eyes/icon.dmi'
+
+/obj/item/borg/sight/meson/New()
+	..()
+	overlay = global_hud.meson
+
 
 /obj/item/borg/sight/material
 	name = "\proper material scanner vision"
@@ -67,6 +78,7 @@
 /obj/item/borg/sight/hud
 	name = "hud"
 	var/obj/item/clothing/glasses/hud/hud = null
+
 
 
 /obj/item/borg/sight/hud/med

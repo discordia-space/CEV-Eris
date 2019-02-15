@@ -1,12 +1,12 @@
 /obj/item/projectile/bullet
 	name = "bullet"
 	icon_state = "bullet"
-	damage = 60
+	damage = 40
 	damage_type = BRUTE
 	nodamage = 0
 	check_armour = "bullet"
 	embed = 1
-	sharp = 1
+	sharp = 0
 	hitsound_wall = "ric_sound"
 	var/mob_passthrough_check = 0
 
@@ -67,7 +67,7 @@
 //For projectiles that actually represent clouds of projectiles
 /obj/item/projectile/bullet/pellet
 	name = "shrapnel" //'shrapnel' sounds more dangerous (i.e. cooler) than 'pellet'
-	damage = 20
+	damage = 15
 	//icon_state = "bullet" //TODO: would be nice to have it's own icon state
 	var/pellets = 4			//number of pellets
 	var/range_step = 2		//projectile will lose a fragment each time it travels this distance. Can be a non-integer.
@@ -80,12 +80,17 @@
 
 /obj/item/projectile/bullet/pellet/proc/get_pellets(var/distance)
 	var/pellet_loss = round((distance - 1)/range_step) //pellets lost due to distance
-	return max(pellets - pellet_loss, 1)
+	var/remaining = pellets - pellet_loss
+	if (remaining < 0)
+		return 0
+	return round_prob(remaining)
 
 /obj/item/projectile/bullet/pellet/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier)
-	if (pellets < 0) return 1
+
 
 	var/total_pellets = get_pellets(distance)
+	if (total_pellets <= 0)
+		return 1
 	var/spread = max(base_spread - (spread_step*distance), 0)
 
 	//shrapnel explosions miss prone mobs with a chance that increases with distance
@@ -114,7 +119,7 @@
 	var/distance = get_dist(loc, starting)
 	return ..() * get_pellets(distance)
 
-/obj/item/projectile/bullet/pellet/Move()
+/obj/item/projectile/bullet/pellet/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	. = ..()
 
 	//If this is a shrapnel explosion, allow mobs that are prone to get hit, too

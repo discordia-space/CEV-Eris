@@ -5,8 +5,6 @@
 //Supply packs are in /code/defines/obj/supplypacks.dm
 //Computers are in /code/game/machinery/computer/supply.dm
 
-var/datum/controller/supply/supply_controller = new()
-
 var/list/mechtoys = list(
 	/obj/item/toy/prize/ripley,
 	/obj/item/toy/prize/fireripley,

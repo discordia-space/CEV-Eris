@@ -15,6 +15,7 @@
 	thrown_force_divisor = 0.25 // 5 when thrown with weight 20 (steel)
 	var/loaded      //Descriptive string for currently loaded food object.
 	var/scoop_food = 1
+	structure_damage_factor = STRUCTURE_DAMAGE_WEAK
 
 /obj/item/weapon/material/kitchen/utensil/New()
 	..()
@@ -28,7 +29,7 @@
 		return ..()
 
 	if(user.a_intent != I_HELP)
-		if(user.targeted_organ in list(BP_HEAD, O_EYES))
+		if(user.targeted_organ in list(BP_HEAD, BP_EYES))
 			if((CLUMSY in user.mutations) && prob(50))
 				M = user
 			return eyestab(M,user)

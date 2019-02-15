@@ -1,7 +1,7 @@
 /*
   HOW IT WORKS
 
-  The radio_controller is a global object maintaining all radio transmissions, think about it as about "ether".
+  The SSradio is a global object maintaining all radio transmissions, think about it as about "ether".
   Note that walkie-talkie, intercoms and headsets handle transmission using nonstandard way.
   procs:
 
@@ -198,55 +198,9 @@ var/const/RADIO_SECBOT = "radio_secbot"
 var/const/RADIO_MULEBOT = "radio_mulebot"
 var/const/RADIO_MAGNETS = "radio_magnet"
 
-var/global/datum/controller/radio/radio_controller
-
-/hook/startup/proc/createRadioController()
-	radio_controller = new /datum/controller/radio()
-	return 1
-
 //callback used by objects to react to incoming radio signals
 /obj/proc/receive_signal(datum/signal/signal, receive_method, receive_param)
 	return null
-
-//The global radio controller
-/datum/controller/radio
-	var/list/datum/radio_frequency/frequencies = list()
-
-/datum/controller/radio/proc/add_object(obj/device as obj, var/new_frequency as num, var/filter = null as text|null)
-	var/f_text = num2text(new_frequency)
-	var/datum/radio_frequency/frequency = frequencies[f_text]
-
-	if(!frequency)
-		frequency = new
-		frequency.frequency = new_frequency
-		frequencies[f_text] = frequency
-
-	frequency.add_listener(device, filter)
-	return frequency
-
-/datum/controller/radio/proc/remove_object(obj/device, old_frequency)
-	var/f_text = num2text(old_frequency)
-	var/datum/radio_frequency/frequency = frequencies[f_text]
-
-	if(frequency)
-		frequency.remove_listener(device)
-
-		if(frequency.devices.len == 0)
-			qdel(frequency)
-			frequencies -= f_text
-
-	return 1
-
-/datum/controller/radio/proc/return_frequency(var/new_frequency as num)
-	var/f_text = num2text(new_frequency)
-	var/datum/radio_frequency/frequency = frequencies[f_text]
-
-	if(!frequency)
-		frequency = new
-		frequency.frequency = new_frequency
-		frequencies[f_text] = frequency
-
-	return frequency
 
 /datum/radio_frequency
 	var/frequency as num

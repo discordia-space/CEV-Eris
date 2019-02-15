@@ -151,7 +151,7 @@
 		for(var/datum/wound/W in affected.wounds) if(W.internal)
 			return FALSE
 
-		var/obj/item/organ/internal/brain/sponge = target.internal_organs_by_name[O_BRAIN]
+		var/obj/item/organ/internal/brain/sponge = target.internal_organs_by_name[BP_BRAIN]
 		return ..() && (!sponge || !sponge.damage)
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -228,8 +228,9 @@
 			var/fail_prob = 10
 			fail_prob += 100 - tool_quality(tool)
 			if (prob(fail_prob))
+				user.visible_message("\red You scrape something inside [target]'s [affected.name]." )
 				var/obj/item/weapon/implant/imp = affected.implants[1]
-				user.visible_message("\red Something beeps inside [target]'s [affected.name]!")
-				playsound(imp.loc, 'sound/items/countdown.ogg', 75, 1, -3)
 				spawn(25)
-					imp.malfunction()
+					if (QDELETED(imp))
+						return
+					imp.malfunction(1)

@@ -50,6 +50,9 @@ LOG_GAME
 ## log player votes
 LOG_VOTE
 
+## log debug messages
+##LOG_DEBUG
+
 ## log client Whisper
 LOG_WHISPER
 
@@ -96,7 +99,7 @@ PROBABILITY CULT 1
 PROBABILITY EXTEND-A-TRAITORMONGOUS 6
 
 ## Enable asteroid tunnel/cave generation. Will behave strangely if turned off with a map that expects it on.
-GENERATE_ASTEROID
+#GENERATE_ASTEROID
 
 ## Hash out to disable random events during the round.
 ALLOW_RANDOM_EVENTS
@@ -258,14 +261,6 @@ GHOST_INTERACTION
 REQ_CULT_GHOSTWRITER 6
 
 
-## The variables below affect the movement of specific mob types.
-HUMAN_DELAY 0
-ROBOT_DELAY 0
-MONKEY_DELAY 0
-ALIEN_DELAY 0
-METROID_DELAY 0
-ANIMAL_DELAY 0
-
 ## Determines whether bones can be broken through excessive damage to the organ
 ## 0 means bones can't break, 1 means they can
 BONES_CAN_BREAK 1
@@ -286,28 +281,6 @@ REVIVAL_CLONING 1
 REVIVAL_BRAIN_LIFE -1
 
 
-
-### MOB MOVEMENT ###
-
-## We suggest editing these variabled in-game to find a good speed for your server. To do this you must be a high level admin. Open the 'debug' tab ingame. Select "Debug Controller" and then, in the popup, select "Configuration". These variables should have the same name.
-
-## These values get directly added to values and totals in-game. To speed things up make the number negative, to slow things down, make the number positive.
-
-
-## These modify the run/walk speed of all mobs before the mob-specific modifiers are applied. 
-RUN_SPEED 3
-WALK_SPEED 2
-
-
-## The variables below affect the movement of specific mob types.
-HUMAN_DELAY 0
-ROBOT_DELAY 0
-MONKEY_DELAY 0
-ALIEN_DELAY 0
-METROID_DELAY 0
-ANIMAL_DELAY 0
-
-
 ### Miscellaneous ###
 
 ## Config options which, of course, don't fit into previous categories.
@@ -321,3 +294,8 @@ JOIN_UNASSIGNED
 ## Uncomment to use overmap system for zlevel travel
 #USE_OVERMAP
 
+##Clients will be unable to connect unless their version is equal to or higher than this (a number, e.g. 511)
+#MINIMUM_BYOND_VERSION
+
+## Clients will be unable to connect unless their build is equal to or higher than this (a number, e.g. 1000)
+#MINIMUM_BYOND_BUILD

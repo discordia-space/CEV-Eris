@@ -277,13 +277,13 @@
 	if (failing)
 		user << SPAN_WARNING("The [src]'s screen is flashing with alerts. It seems to be overloaded! Touching it now is probably not a good idea.")
 		return
-	// If parent returned 1:
+	// If parent returned tool type or 1
 	// - Hatch is open, so we can modify the SMES
 	// - No action was taken in parent function (terminal de/construction atm).
-	if (..())
-
+	var/tool_type = ..()
+	if (tool_type)
 		// Multitool - change RCON tag
-		if(istype(W, /obj/item/weapon/tool/multitool))
+		if(tool_type == QUALITY_PULSING)
 			var/newtag = input(user, "Enter new RCON tag. Use \"NO_TAG\" to disable RCON or leave empty to cancel.", "SMES RCON system") as text
 			if(newtag)
 				RCon_tag = newtag
@@ -306,7 +306,7 @@
 			failure_probability = 0
 
 		// Crowbar - Disassemble the SMES.
-		if(istype(W, /obj/item/weapon/tool/crowbar))
+		if(tool_type == QUALITY_PRYING)
 			if (terminal)
 				user << SPAN_WARNING("You have to disassemble the terminal first!")
 				return

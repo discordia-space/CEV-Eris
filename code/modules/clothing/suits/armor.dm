@@ -1,8 +1,7 @@
 
 /obj/item/clothing/suit/armor
-	allowed = list(/obj/item/weapon/gun/energy,/obj/item/device/radio,/obj/item/weapon/reagent_containers/spray/pepper,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	item_flags = THICKMATERIAL
+	item_flags = THICKMATERIAL|DRAG_AND_DROP_UNEQUIP
 
 	cold_protection = UPPER_TORSO|LOWER_TORSO
 	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
@@ -17,13 +16,20 @@
 	icon_state = "armor"
 	item_state = "armor"
 	blood_overlay_type = "armor"
-	armor = list(melee = 50, bullet = 15, laser = 50, energy = 10, bomb = 10, bio = 0, rad = 0)
+	armor = list(melee = 50, bullet = 40, laser = 40, energy = 30, bomb = 15, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/armor/vest/security
 	name = "security armor"
 	desc = "An armored vest that protects against some damage. This one have Ironhammer Security signs. Not designed for serious operations."
 	icon_state = "armorsec"
 	item_state = "armorsec"
+
+/obj/item/clothing/suit/armor/vest/handmade
+	name = "handmade armor vest"
+	desc = "An armored vest of uncertain quality. Provides a good protection against physical damage, for piece of crap."
+	icon_state = "hm_armorvest"
+	item_state = "hm_armorvest"
+	armor = list(melee = 40, bullet = 35, laser = 30, energy = 15, bomb = 15, bio = 0, rad = 0)
 
 
 /obj/item/clothing/suit/armor/riot
@@ -34,7 +40,7 @@
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	slowdown = 1
-	armor = list(melee = 75, bullet = 20, laser = 20, energy = 20, bomb = 35, bio = 0, rad = 0)
+	armor = list(melee = 75, bullet = 35, laser = 35, energy = 20, bomb = 35, bio = 0, rad = 0)
 	flags_inv = HIDEJUMPSUIT
 	siemens_coefficient = 0.5
 
@@ -45,7 +51,8 @@
 	icon_state = "bulletproof"
 	item_state = "armor"
 	blood_overlay_type = "armor"
-	armor = list(melee = 10, bullet = 80, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
+	slowdown = 0.5
+	armor = list(melee = 35, bullet = 75, laser = 35, energy = 10, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
 
 /obj/item/clothing/suit/armor/laserproof
@@ -54,7 +61,8 @@
 	icon_state = "armor_reflec"
 	item_state = "armor_reflec"
 	blood_overlay_type = "armor"
-	armor = list(melee = 10, bullet = 10, laser = 80, energy = 50, bomb = 0, bio = 0, rad = 0)
+	slowdown = 0.5
+	armor = list(melee = 35, bullet = 35, laser = 75, energy = 50, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0
 
 /obj/item/clothing/suit/armor/laserproof/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
@@ -88,7 +96,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/tank/emergency_oxygen)
 	slowdown = 1
-	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 100, rad = 100)
+	armor = list(melee = 70, bullet = 60, laser = 60,energy = 25, bomb = 50, bio = 100, rad = 100)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
@@ -114,13 +122,14 @@
 	item_state = "reactiveoff"
 	blood_overlay_type = "armor"
 	slowdown = 1
-	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 30, bullet = 30, laser = 30, energy = 0, bomb = 0, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/armor/reactive/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(prob(50))
 		user.visible_message(SPAN_DANGER("The reactive teleport system flings [user] clear of the attack!"))
 		var/list/turfs = new/list()
-		for(var/turf/T in trange(6, get_turf(user)))
+		var/turf/TLoc = get_turf(user)
+		for(var/turf/T in trange(6, TLoc))
 			if(istype(T,/turf/space)) continue
 			if(T.density) continue
 			if(T.x>world.maxx-6 || T.x<6)	continue
@@ -205,11 +214,10 @@
 	name = "webbed armor vest"
 	desc = "A synthetic armor vest. This one has added webbing and ballistic plates."
 	icon_state = "webvest"
-	armor = list(melee = 50, bullet = 40, laser = 50, energy = 25, bomb = 30, bio = 0, rad = 0)
-	allowed = list(/obj/item/weapon/gun/energy,/obj/item/device/radio,/obj/item/weapon/reagent_containers/spray/pepper,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs)
-
+	armor = list(melee = 50, bullet = 45, laser = 50, energy = 25, bomb = 30, bio = 0, rad = 0)
+	
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	item_flags = THICKMATERIAL
+	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS|THICKMATERIAL
 
 	cold_protection = UPPER_TORSO|LOWER_TORSO
 	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
@@ -223,7 +231,7 @@
 	desc = "A high-quality armor vest in a fetching tan. It is surprisingly flexible and light, even with the added webbing and armor plating."
 	icon_state = "mercwebvest"
 	item_state = "mercwebvest"
-	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)
+	armor = list(melee = 60, bullet = 65, laser = 65, energy = 40, bomb = 40, bio = 0, rad = 0)
 
 
 //All of the armor below is mostly unused
@@ -243,7 +251,7 @@
 /obj/item/clothing/suit/armor/tdome
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	item_flags = COVER_PREVENT_MANIPULATION
+	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS|COVER_PREVENT_MANIPULATION
 
 /obj/item/clothing/suit/armor/tdome/red
 	name = "Thunderdome suit (red)"

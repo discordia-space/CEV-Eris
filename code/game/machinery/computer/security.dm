@@ -1,11 +1,9 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-
-/obj/machinery/computer/secure_data//TODO:SANITY
+/obj/machinery/computer/secure_data
 	name = "security records console"
 	desc = "Used to view, edit and maintain security records"
 	icon_keyboard = "security_key"
 	icon_screen = "security"
-	light_color = COLOR_WHITE
+	light_color = COLOR_LIGHTING_SCI_BRIGHT
 	req_one_access = list(access_security)
 	circuit = /obj/item/weapon/circuitboard/secure_data
 	var/obj/item/weapon/card/id/scan = null
@@ -581,7 +579,7 @@ What a mess.*/
 
 					if ("Change Criminal Status")
 						if (active2)
-							for(var/mob/living/carbon/human/H in player_list)
+							for(var/mob/living/carbon/human/H in GLOB.player_list)
 								BITSET(H.hud_updateflag, WANTED_HUD)
 							switch(href_list["criminal2"])
 								if("none")
@@ -637,7 +635,7 @@ What a mess.*/
 		if(prob(10/severity))
 			switch(rand(1,6))
 				if(1)
-					R.fields["name"] = "[pick(pick(first_names_male), pick(first_names_female))] [pick(last_names)]"
+					R.fields["name"] = "[pick(pick(GLOB.first_names_male), pick(GLOB.first_names_female))] [pick(GLOB.last_names)]"
 				if(2)
 					R.fields["sex"]	= pick("Male", "Female")
 				if(3)

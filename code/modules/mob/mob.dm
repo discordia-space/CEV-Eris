@@ -1,7 +1,7 @@
 /mob/Destroy()//This makes sure that mobs with clients/keys are not just deleted from the game.
 	STOP_PROCESSING(SSmobs, src)
-	dead_mob_list -= src
-	living_mob_list -= src
+	GLOB.dead_mob_list -= src
+	GLOB.living_mob_list -= src
 	unset_machine()
 	qdel(hud_used)
 	if(client)
@@ -9,12 +9,18 @@
 		for(var/atom/movable/AM in client.screen)
 			qdel(AM)
 		client.screen = list()
+
 	ghostize()
 	..()
 	return QDEL_HINT_HARDDEL
 
-/mob/get_fall_damage()
-	return 15
+/mob/get_fall_damage(var/turf/from, var/turf/dest)
+	return 0
+
+/mob/fall_impact(var/turf/from, var/turf/dest)
+	return
+
+/mob/proc/take_overall_damage(var/brute, var/burn, var/used_weapon = null)
 
 /mob/proc/remove_screen_obj_references()//FIX THIS SHIT
 //	flash = null
@@ -44,9 +50,9 @@
 /mob/Initialize()
 	START_PROCESSING(SSmobs, src)
 	if(stat == DEAD)
-		dead_mob_list += src
+		GLOB.dead_mob_list += src
 	else
-		living_mob_list += src
+		GLOB.living_mob_list += src
 	. = ..()
 
 /mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
@@ -88,10 +94,10 @@
 
 		messageturfs += turf
 
-	for(var/A in player_list)
+	for(var/A in GLOB.player_list)
 		var/mob/M = A
 		if (QDELETED(M))
-			player_list -= M
+			GLOB.player_list -= M
 			continue
 		if (!M.client || istype(M, /mob/new_player))
 			continue
@@ -156,7 +162,7 @@
 	return 0
 
 /mob/proc/movement_delay()
-	return 0
+	return MOVE_DELAY_BASE
 
 /mob/proc/Life()
 //	if(organStructure)
@@ -178,7 +184,13 @@
 	return incapacitated(INCAPACITATION_DISABLED)
 
 /mob/proc/incapacitated(var/incapacitation_flags = INCAPACITATION_DEFAULT)
-	if ((incapacitation_flags & INCAPACITATION_DISABLED) && (stat || paralysis || stunned || weakened || resting || sleeping || (status_flags & FAKEDEATH)))
+	if ((incapacitation_flags & INCAPACITATION_STUNNED) && stunned)
+		return 1
+
+	if ((incapacitation_flags & INCAPACITATION_FORCELYING) && (weakened || resting || pinned.len))
+		return 1
+
+	if ((incapacitation_flags & INCAPACITATION_UNCONSCIOUS) && (stat || paralysis || sleeping || (status_flags & FAKEDEATH)))
 		return 1
 
 	if((incapacitation_flags & INCAPACITATION_RESTRAINED) && restrained())
@@ -228,6 +240,9 @@
 		return 1
 
 	face_atom(A)
+	var/obj/item/device/lighting/toggleable/flashlight/FL = locate() in src
+	if (FL && FL.on && src.stat != DEAD && !incapacitated())
+		FL.afterattack(A,src)
 	A.examine(src)
 
 /mob/verb/pointed(atom/A as mob|obj|turf in view())
@@ -245,9 +260,9 @@
 
 	var/obj/P = new /obj/effect/decal/point(tile)
 	P.invisibility = invisibility
-	spawn (20)
-		if(P)
-			qdel(P)	// qdel
+	P.pixel_x = A.pixel_x
+	P.pixel_y = A.pixel_y
+	QDEL_IN(P, 2 SECONDS)
 
 	face_atom(A)
 	return 1
@@ -292,19 +307,9 @@
 	set category = "Object"
 	set src = usr
 
-	if(istype(loc,/obj/mecha)) return
-
-	if(hand)
-		var/obj/item/W = l_hand
-		if (W)
-			W.attack_self(src)
-			update_inv_l_hand()
-	else
-		var/obj/item/W = r_hand
-		if (W)
-			W.attack_self(src)
-			update_inv_r_hand()
-	return
+	var/obj/item/W = get_active_hand()
+	if (W)
+		W.attack_self(src)
 
 /*
 /mob/verb/dump_source()
@@ -364,9 +369,9 @@
 		var/msg = trim(replacetext(flavor_text, "\n", " "))
 		if(!msg) return ""
 		if(lentext(msg) <= 40)
-			return "\blue [msg]"
+			return "<font color='blue'>[russian_to_cp1251(msg)]</font>"
 		else
-			return "\blue [copytext_preserve_html(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a>"
+			return "<font color='blue'>[copytext_preserve_html(russian_to_cp1251(msg), 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a></font>"
 
 /*
 /mob/verb/help()
@@ -375,46 +380,7 @@
 	return
 */
 
-/mob/verb/abandon_mob()
-	set name = "Respawn"
-	set category = "OOC"
 
-	if (!( config.abandon_allowed ))
-		usr << "<span class='notice'>Respawn is disabled.</span>"
-		return
-	if ((stat != DEAD || !( ticker )))
-		usr << "<span class='notice'><B>You must be dead to use this!</B></span>"
-		return
-	else if(!MayRespawn(1, config.respawn_delay))
-		if(!check_rights(0, 0) || alert("Normal players must wait at least [config.respawn_delay] minutes to respawn! Would you?","Warning", "No", "Ok") != "Ok")
-			return
-
-	usr << "You can respawn now, enjoy your new life!"
-
-	log_game("[usr.name]/[usr.key] used abandon mob.")
-
-	usr << "<span class='notice'><B>Make sure to play a different character, and please roleplay correctly!</B></span>"
-
-	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
-		return
-	client.screen.Cut()
-	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
-		return
-
-	announce_ghost_joinleave(client, 0)
-
-	var/mob/new_player/M = new /mob/new_player()
-	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
-		qdel(M)
-		return
-
-	M.key = key
-	if(M.mind)
-		M.mind.reset()
-	return
 
 /client/verb/changes()
 	set name = "Changelog"
@@ -659,7 +625,7 @@
 	return stat == DEAD
 
 /mob/proc/is_mechanical()
-	if(mind && (mind.assigned_role == "Cyborg" || mind.assigned_role == "AI"))
+	if(mind && (mind.assigned_role == "Robot" || mind.assigned_role == "AI"))
 		return 1
 	return issilicon(src)
 
@@ -684,16 +650,13 @@
 	. = (is_client_active(10 MINUTES))
 
 	if(.)
-		if(statpanel("Status") && ticker && ticker.current_state != GAME_STATE_PREGAME)
+		if(statpanel("Status") && SSticker.current_state != GAME_STATE_PREGAME)
 			stat("Station Time", stationtime2text())
 			stat("Round Duration", roundduration2text())
 
 		if(client.holder)
 			if(statpanel("Status"))
 				stat("Location:", "([x], [y], [z]) [loc]")
-			if(statpanel("Processes"))
-				if(processScheduler)
-					processScheduler.statProcesses()
 			if(statpanel("MC"))
 				stat("CPU:","[world.cpu]")
 				stat("Instances:","[world.contents.len]")
@@ -742,64 +705,44 @@
 /mob/proc/cannot_stand()
 	return incapacitated(INCAPACITATION_DEFAULT & (~INCAPACITATION_RESTRAINED))
 
-//Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
-/mob/proc/update_canmove()
+
+//Updates lying and icons
+/*
+Note from Nanako: 2019-02-01
+TODO: Bay Movement:
+All Canmove setting in this proc is temporary. This var should not be set from here, but from movement controllers
+*/
+/mob/proc/update_lying_buckled_and_verb_status()
 
 	if(!resting && cannot_stand() && can_stand_overridden())
 		lying = 0
-		canmove = 1
-	else
-		if(istype(buckled, /obj/vehicle))
-			var/obj/vehicle/V = buckled
-			if(is_physically_disabled())
-				lying = 1
-				canmove = 0
-				pixel_y = V.mob_offset_y - 5
+		canmove = TRUE //TODO: Remove this
+	else if(buckled)
+		anchored = 1
+		if(istype(buckled))
+			if(buckled.buckle_lying == -1)
+				lying = incapacitated(INCAPACITATION_KNOCKDOWN)
 			else
-				if(buckled.buckle_lying != -1) lying = buckled.buckle_lying
-				canmove = 1
-				pixel_y = V.mob_offset_y
-		else if(buckled)
-			anchored = 1
-			canmove = 0
-			if(istype(buckled))
-				if(buckled.buckle_lying != -1)
-					lying = buckled.buckle_lying
-				if(buckled.buckle_movable)
-					anchored = 0
-					canmove = 1
-
-		else if(cannot_stand())
-			lying = 1
-			canmove = 0
-		else if(stunned)
-			canmove = 0
-		else if(captured)
-			anchored = 1
-			canmove = 0
-			lying = 0
-		else
-			lying = 0
-			canmove = 1
+				lying = buckled.buckle_lying
+			if(buckled.buckle_movable)
+				anchored = 0
+		canmove = FALSE //TODO: Remove this
+	else
+		lying = incapacitated(INCAPACITATION_KNOCKDOWN)
+		canmove = FALSE //TODO: Remove this
 
 	if(lying)
-		density = 0
+		set_density(0)
 		if(l_hand) unEquip(l_hand)
 		if(r_hand) unEquip(r_hand)
 	else
-		density = initial(density)
+		canmove = TRUE
+		set_density(initial(density))
+	reset_layer()
 
 	for(var/obj/item/weapon/grab/G in grabbed_by)
-		if(G.state >= GRAB_AGGRESSIVE)
-			canmove = 0
-			break
-
-	if(lying)
-		if(layer == initial(layer)) //to avoid special cases like hiding larvas.
-			layer = MOB_LAYER - 0.1 //so mob lying always appear behind standing mobs
-	else
-		if(layer == MOB_LAYER - 0.1)
-			layer = initial(layer)
+		if(G.force_stand())
+			lying = 0
 
 	//Temporarily moved here from the various life() procs
 	//I'm fixing stuff incrementally so this will likely find a better home.
@@ -808,24 +751,22 @@
 		update_icon = 0
 		regenerate_icons()
 	else if( lying != lying_prev )
-		if(lying)
-			if(layer == initial(layer)) //to avoid special cases like hiding larvas.
-				layer = LYING_MOB_LAYER //so mob lying always appear behind standing mobs
-		else
-			if(layer == LYING_MOB_LAYER)
-				layer = initial(layer)
 		update_icons()
 
-	return canmove
-
+/mob/proc/reset_layer()
+	if(lying)
+		plane = LYING_MOB_PLANE
+		layer = LYING_MOB_LAYER
+	else
+		reset_plane_and_layer()
 
 /mob/facedir(var/ndir)
-	if(!canface() || client.moving || world.time < client.move_delay)
+	if(!canface() || client.moving || client.isMovementBlocked())
 		return 0
 	set_dir(ndir)
 	if(buckled && buckled.buckle_movable)
 		buckled.set_dir(ndir)
-	client.move_delay += movement_delay()
+	setMoveCooldown(movement_delay())
 	return 1
 
 
@@ -857,38 +798,38 @@
 	if(status_flags & CANSTUN)
 		facing_dir = null
 		stunned = max(max(stunned,amount),0) //can't go below 0, getting a low amount of stun doesn't lower your current stun
-		update_canmove()
+		update_lying_buckled_and_verb_status()
 	return
 
 /mob/proc/SetStunned(amount) //if you REALLY need to set stun to a set amount without the whole "can't go below current stunned"
 	if(status_flags & CANSTUN)
 		stunned = max(amount,0)
-		update_canmove()
+		update_lying_buckled_and_verb_status()
 	return
 
 /mob/proc/AdjustStunned(amount)
 	if(status_flags & CANSTUN)
 		stunned = max(stunned + amount,0)
-		update_canmove()
+		update_lying_buckled_and_verb_status()
 	return
 
 /mob/proc/Weaken(amount)
 	if(status_flags & CANWEAKEN)
 		facing_dir = null
 		weakened = max(max(weakened,amount),0)
-		update_canmove()	//updates lying, canmove and icons
+		update_lying_buckled_and_verb_status()	//updates lying, canmove and icons
 	return
 
 /mob/proc/SetWeakened(amount)
 	if(status_flags & CANWEAKEN)
 		weakened = max(amount,0)
-		update_canmove()	//updates lying, canmove and icons
+		update_lying_buckled_and_verb_status()	//updates lying, canmove and icons
 	return
 
 /mob/proc/AdjustWeakened(amount)
 	if(status_flags & CANWEAKEN)
 		weakened = max(weakened + amount,0)
-		update_canmove()	//updates lying, canmove and icons
+		update_lying_buckled_and_verb_status()	//updates lying, canmove and icons
 	return
 
 /mob/proc/Paralyse(amount)
@@ -1063,7 +1004,7 @@ mob/proc/yank_out_object()
 
 /mob/living/proc/handle_weakened()
 	if(weakened)
-		weakened = max(weakened-1,0)	//before you get mad Rockdtben: I done this so update_canmove isn't called multiple times
+		weakened = max(weakened-1,0)	//before you get mad Rockdtben: I done this so update_lying_buckled_and_verb_status isn't called multiple times
 	return weakened
 
 /mob/living/proc/handle_stuttering()
@@ -1188,7 +1129,27 @@ mob/proc/yank_out_object()
 /mob/proc/swap_hand()
 	return
 
+/mob/proc/check_CH(CH_name as text, var/CH_type, var/second_arg = null)
+	if(!src.client.CH || !istype(src.client.CH, CH_type))//(src.client.CH.handler_name != CH_name))
+		src.client.CH = new CH_type(client, second_arg)
+		src << SPAN_WARNING("You prepare [CH_name].")
+	else
+		kill_CH()
+	return
+
+/mob/proc/kill_CH()
+	if (src.client.CH)
+		src << SPAN_NOTICE ("You unprepare [src.client.CH.handler_name].")
+		qdel(src.client.CH)
+
+
 /mob/living/proc/Released()
 	//This is called when the mob is let out of a holder
 	//Override for mob-specific functionality
 	return
+
+/mob/proc/has_admin_rights()
+	return check_rights(R_ADMIN, 0, src)
+
+/mob/proc/get_face_name()
+	return name

@@ -36,7 +36,7 @@
 		data["prime"] = user.pai_law0
 		data["supplemental"] = user.pai_laws
 
-		ui = nanomanager.try_update_ui(user, user, id, ui, data, force_open)
+		ui = SSnano.try_update_ui(user, user, id, ui, data, force_open)
 		if(!ui)
 			// Don't copy-paste this unless you're making a pAI software module!
 			ui = new(user, user, id, "pai_directives.tmpl", "pAI Directives", 450, 600)
@@ -101,7 +101,7 @@
 
 		data["channels"] = channels
 
-		ui = nanomanager.try_update_ui(user, user, id, ui, data, force_open)
+		ui = SSnano.try_update_ui(user, user, id, ui, data, force_open)
 		if(!ui)
 			ui = new(user, user, id, "pai_radio.tmpl", "Radio Configuration", 300, 150)
 			ui.set_initial_data(data)
@@ -127,89 +127,13 @@
 		// This is dumb, but NanoUI breaks if it has no data to send
 		data["manifest"] = list("__json_cache" = ManifestJSON)
 
-		ui = nanomanager.try_update_ui(user, user, id, ui, data, force_open)
+		ui = SSnano.try_update_ui(user, user, id, ui, data, force_open)
 		if(!ui)
 			// Don't copy-paste this unless you're making a pAI software module!
 			ui = new(user, user, id, "pai_manifest.tmpl", "Crew Manifest", 450, 600)
 			ui.set_initial_data(data)
 			ui.open()
 			ui.set_auto_update(1)
-
-/datum/pai_software/messenger
-	name = "Digital Messenger"
-	ram_cost = 5
-	id = "messenger"
-	toggle = 0
-
-	on_ui_interact(mob/living/silicon/pai/user, datum/nanoui/ui=null, force_open=1)
-		var/data[0]
-
-		data["receiver_off"] = user.pda.toff
-		data["ringer_off"] = user.pda.message_silent
-		data["current_ref"] = null
-		data["current_name"] = user.current_pda_messaging
-
-		var/pdas[0]
-		if(!user.pda.toff)
-			for(var/obj/item/device/pda/P in sortAtom(PDAs))
-				if(!P.owner || P.toff || P == user.pda || P.hidden) continue
-				var/pda[0]
-				pda["name"] = "[P]"
-				pda["owner"] = "[P.owner]"
-				pda["ref"] = "\ref[P]"
-				if(P.owner == user.current_pda_messaging)
-					data["current_ref"] = "\ref[P]"
-				pdas[++pdas.len] = pda
-
-		data["pdas"] = pdas
-
-		var/messages[0]
-		if(user.current_pda_messaging)
-			for(var/index in user.pda.tnote)
-				if(index["owner"] != user.current_pda_messaging)
-					continue
-				var/msg[0]
-				var/sent = index["sent"]
-				msg["sent"] = sent ? 1 : 0
-				msg["target"] = index["owner"]
-				msg["message"] = index["message"]
-				messages[++messages.len] = msg
-
-		data["messages"] = messages
-
-		ui = nanomanager.try_update_ui(user, user, id, ui, data, force_open)
-		if(!ui)
-			// Don't copy-paste this unless you're making a pAI software module!
-			ui = new(user, user, id, "pai_messenger.tmpl", "Digital Messenger", 450, 600)
-			ui.set_initial_data(data)
-			ui.open()
-			ui.set_auto_update(1)
-
-	Topic(href, href_list)
-		var/mob/living/silicon/pai/P = usr
-		if(!istype(P)) return
-
-		if(!isnull(P.pda))
-			if(href_list["toggler"])
-				P.pda.toff = href_list["toggler"] != "1"
-				return 1
-			else if(href_list["ringer"])
-				P.pda.message_silent = href_list["ringer"] != "1"
-				return 1
-			else if(href_list["select"])
-				var/s = href_list["select"]
-				if(s == "*NONE*")
-					P.current_pda_messaging = null
-				else
-					P.current_pda_messaging = s
-				return 1
-			else if(href_list["target"])
-				if(P.silence_time)
-					return alert("Communications circuits remain uninitialized.")
-
-				var/target = locate(href_list["target"])
-				P.pda.create_message(P, target, 1)
-				return 1
 
 /datum/pai_software/med_records
 	name = "Medical Records"
@@ -235,7 +159,7 @@
 		data["medical"] = M ? M.fields : null
 		data["could_not_find"] = user.medical_cannotfind
 
-		ui = nanomanager.try_update_ui(user, user, id, ui, data, force_open)
+		ui = SSnano.try_update_ui(user, user, id, ui, data, force_open)
 		if(!ui)
 			// Don't copy-paste this unless you're making a pAI software module!
 			ui = new(user, user, id, "pai_medrecords.tmpl", "Medical Records", 450, 600)
@@ -289,7 +213,7 @@
 		data["security"] = S ? S.fields : null
 		data["could_not_find"] = user.security_cannotfind
 
-		ui = nanomanager.try_update_ui(user, user, id, ui, data, force_open)
+		ui = SSnano.try_update_ui(user, user, id, ui, data, force_open)
 		if(!ui)
 			// Don't copy-paste this unless you're making a pAI software module!
 			ui = new(user, user, id, "pai_secrecords.tmpl", "Security Records", 450, 600)
@@ -339,7 +263,7 @@
 		data["progress_b"] = user.hackprogress % 10
 		data["aborted"] = user.hack_aborted
 
-		ui = nanomanager.try_update_ui(user, user, id, ui, data, force_open)
+		ui = SSnano.try_update_ui(user, user, id, ui, data, force_open)
 		if(!ui)
 			// Don't copy-paste this unless you're making a pAI software module!
 			ui = new(user, user, id, "pai_doorjack.tmpl", "Door Jack", 300, 150)
@@ -370,7 +294,7 @@
 
 /mob/living/silicon/pai/proc/hackloop()
 	var/turf/T = get_turf_or_move(src.loc)
-	for(var/mob/living/silicon/ai/AI in player_list)
+	for(var/mob/living/silicon/ai/AI in GLOB.player_list)
 		if(T.loc)
 			AI << "<font color = red><b>Network Alert: Brute-force encryption crack in progress in [T.loc].</b></font>"
 		else
@@ -430,7 +354,7 @@
 				gases[++gases.len] = gas
 			data["gas"] = gases
 
-		ui = nanomanager.try_update_ui(user, user, id, ui, data, force_open)
+		ui = SSnano.try_update_ui(user, user, id, ui, data, force_open)
 		if(!ui)
 			// Don't copy-paste this unless you're making a pAI software module!
 			ui = new(user, user, id, "pai_atmosphere.tmpl", "Atmosphere Sensor", 350, 300)
@@ -483,7 +407,7 @@
 		data["frequency"] = format_frequency(user.sradio.frequency)
 		data["code"] = user.sradio.code
 
-		ui = nanomanager.try_update_ui(user, user, id, ui, data, force_open)
+		ui = SSnano.try_update_ui(user, user, id, ui, data, force_open)
 		if(!ui)
 			// Don't copy-paste this unless you're making a pAI software module!
 			ui = new(user, user, id, "pai_signaller.tmpl", "Signaller", 320, 150)

@@ -26,8 +26,9 @@
 	var/age = 30		//Player's age (pure fluff)
 	var/b_type = "A+"	//Player's bloodtype
 
-	var/list/all_underwear = list()
-	var/backbag = 2		//Which backpack type the player has chosen. Nothing, Satchel or Backpack.
+	var/list/worn_underwear = list()
+
+	var/datum/backpack_setup/backpack_setup
 
 	// General information
 	var/religion = ""
@@ -87,3 +88,4 @@
 
 	var/stance_damage = 0 //Whether this mob's ability to stand has been affected
 	var/identifying_gender // In case the human identifies as another gender than it's biological
+	mob_classification = CLASSIFICATION_ORGANIC | CLASSIFICATION_HUMANOID

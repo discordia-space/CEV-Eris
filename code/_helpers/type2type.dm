@@ -7,6 +7,7 @@
  *			angle2dir
  *			angle2text
  *			worldtime2stationtime
+ *			key2mob
  */
 
 // Returns an integer given a hexadecimal number string as input.
@@ -69,19 +70,21 @@
 		if (4.0) return EAST
 		if (8.0) return WEST
 		else
-			world.log << "UNKNOWN DIRECTION: [direction]"
+			log_world("UNKNOWN DIRECTION: [direction]")
 
 // Turns a direction into text
 /proc/dir2text(direction)
 	switch (direction)
-		if (1.0)  return "north"
-		if (2.0)  return "south"
-		if (4.0)  return "east"
-		if (8.0)  return "west"
-		if (5.0)  return "northeast"
-		if (6.0)  return "southeast"
-		if (9.0)  return "northwest"
-		if (10.0) return "southwest"
+		if (NORTH)  return "north"
+		if (SOUTH)  return "south"
+		if (EAST)  return "east"
+		if (WEST)  return "west"
+		if (NORTHEAST)  return "northeast"
+		if (SOUTHEAST)  return "southeast"
+		if (NORTHWEST)  return "northwest"
+		if (SOUTHWEST) return "southwest"
+		if (UP) return "up"
+		if (DOWN) return "down"
 
 // Turns text into proper directions
 /proc/text2dir(direction)
@@ -213,3 +216,31 @@
 
 /proc/isLeap(y)
 	return ((y) % 4 == 0 && ((y) % 100 != 0 || (y) % 400 == 0))
+
+
+//Takes a key and attempts to find the mob it currently belongs to
+/proc/key2mob(var/key)
+	var/client/C = directory[key]
+	if (C)
+		//This should work if the mob is currently logged in
+		return C.mob
+	else
+		//This is a fallback for if they're not logged in
+		for (var/mob/M in GLOB.player_list)
+			if (M.key == key)
+				return M
+		return null
+
+/proc/atomtypes2nameassoclist(var/list/atom_types)
+	. = list()
+	for(var/atom_type in atom_types)
+		var/atom/A = atom_type
+		.[initial(A.name)] = atom_type
+	. = sortAssoc(.)
+
+/proc/atomtype2nameassoclist(var/atom_type)
+	return atomtypes2nameassoclist(typesof(atom_type))
+
+//Splits the text of a file at seperator and returns them in a list.
+/world/proc/file2list(filename, seperator="\n")
+	return splittext(file2text(filename), seperator)

@@ -4,6 +4,7 @@
 	icon = 'icons/obj/rune.dmi'
 	layer = TURF_DECAL_LAYER
 	anchored = 1
+	random_rotation = 0
 
 	New(location,main = "#FFFFFF",shade = "#000000",var/type = "rune")
 		..()

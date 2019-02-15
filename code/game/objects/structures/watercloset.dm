@@ -208,11 +208,11 @@
 			spawn(50)
 				if(src && on)
 					ismist = 1
-					mymist = PoolOrNew(/obj/effect/mist,loc)
+					mymist = new(loc)
 		else
-			mymist = PoolOrNew(/obj/effect/mist,loc)
+			mymist = new(loc)
 	else if(ismist)
-		mymist = PoolOrNew(/obj/effect/mist,loc)
+		mymist = new(loc)
 		spawn(250)
 			if(src && !on)
 				qdel(mymist)
@@ -297,6 +297,7 @@
 				if(H.belt.clean_blood())
 					H.update_inv_belt(0)
 			H.clean_blood(washshoes)
+			H.update_icons()
 		else
 			if(M.wear_mask)						//if the mob is not human, it cleans the mask without asking for bitflags
 				if(M.wear_mask.clean_blood())
@@ -365,6 +366,7 @@
 	icon_state = "sink"
 	desc = "A sink used for washing one's hands and face."
 	anchored = 1
+	flags = OPENCONTAINER
 	var/busy = 0 	//Something's being washed at the moment
 
 /obj/structure/sink/MouseDrop_T(var/obj/item/thing, var/mob/user)
@@ -449,9 +451,6 @@
 				)
 				return 1
 	else if(istype(O, /obj/item/weapon/mop))
-		O.reagents.add_reagent("water", 5)
-		user << SPAN_NOTICE("You wet \the [O] in \the [src].")
-		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 		return
 
 	var/turf/location = user.loc

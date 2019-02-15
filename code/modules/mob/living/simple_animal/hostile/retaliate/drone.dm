@@ -16,13 +16,13 @@
 	emote_see = list("beeps menacingly","whirrs threateningly","scans its immediate vicinity")
 	a_intent = I_HURT
 	stop_automated_movement_when_pulled = 0
-	health = 300
-	maxHealth = 300
+	health = 150
+	maxHealth = 150
 	speed = 8
 	projectiletype = /obj/item/projectile/beam/drone
 	projectilesound = 'sound/weapons/laser3.ogg'
 	destroy_surroundings = 0
-	var/datum/effect/effect/system/ion_trail_follow/ion_trail
+	var/datum/effect/effect/system/trail/ion/trail
 
 	//the drone randomly switches between these states because it's malfunctioning
 	var/hostile_drone = 0
@@ -48,16 +48,18 @@
 	var/has_loot = 1
 	faction = "malf_drone"
 
+	mob_classification = CLASSIFICATION_SYNTHETIC
+
 /mob/living/simple_animal/hostile/retaliate/malf_drone/New()
 	..()
 	if(prob(5))
 		projectiletype = /obj/item/projectile/beam/pulse/drone
 		projectilesound = 'sound/weapons/pulse2.ogg'
-	ion_trail = new
-	ion_trail.set_up(src)
-	ion_trail.start()
+	trail = new /datum/effect/effect/system/trail/ion(src)
+	trail.set_up(src)
+	trail.start()
 
-/mob/living/simple_animal/hostile/retaliate/malf_drone/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_animal/hostile/retaliate/malf_drone/allow_spacemove(var/check_drift = 0)
 	return 1
 
 /mob/living/simple_animal/hostile/retaliate/malf_drone/ListTargets()
@@ -113,10 +115,10 @@
 		explode_chance = 0
 	else if(health / maxHealth > 0.5)
 		icon_state = "drone1"
-		explode_chance = 0.5
+		explode_chance = 0.1
 	else if(health / maxHealth > 0.3)
 		icon_state = "drone0"
-		explode_chance = 5
+		explode_chance = 1
 	else if(health > 0)
 		//if health gets too low, shut down
 		icon_state = "drone_dead"
@@ -182,16 +184,16 @@
 			step_to(O, get_turf(pick(view(7, src))))
 
 		//rods
-		O = PoolOrNew(/obj/item/stack/rods, src.loc)
+		O = new /obj/item/stack/rods(loc)
 		step_to(O, get_turf(pick(view(7, src))))
 		if(prob(75))
-			O = PoolOrNew(/obj/item/stack/rods, src.loc)
+			O = new /obj/item/stack/rods(loc)
 			step_to(O, get_turf(pick(view(7, src))))
 		if(prob(50))
-			O = PoolOrNew(/obj/item/stack/rods, src.loc)
+			O = new /obj/item/stack/rods(loc)
 			step_to(O, get_turf(pick(view(7, src))))
 		if(prob(25))
-			O = PoolOrNew(/obj/item/stack/rods, src.loc)
+			O = new /obj/item/stack/rods(loc)
 			step_to(O, get_turf(pick(view(7, src))))
 
 		//plasteel

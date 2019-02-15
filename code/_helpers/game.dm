@@ -9,6 +9,10 @@
 	src:Topic(href, href_list)
 	return null
 
+/proc/get_z(O)
+	var/turf/loc = get_turf(O)
+	return loc ? loc.z : 0
+
 /proc/get_area(O)
 	var/turf/loc = get_turf(O)
 	if(loc)
@@ -74,13 +78,7 @@
 	//turfs += centerturf
 	return atoms
 
-/proc/trange(rad = 0, turf/centre = null) //alternative to range (ONLY processes turfs and thus less intensive)
-	if(!centre)
-		return
 
-	var/turf/x1y1 = locate(((centre.x-rad)<1 ? 1 : centre.x-rad), ((centre.y-rad)<1 ? 1 : centre.y-rad), centre.z)
-	var/turf/x2y2 = locate(((centre.x+rad)>world.maxx ? world.maxx : centre.x+rad), ((centre.y+rad)>world.maxy ? world.maxy : centre.y+rad), centre.z)
-	return block(x1y1, x2y2)
 
 /proc/get_dist_euclidian(atom/Loc1 as turf|mob|obj, atom/Loc2 as turf|mob|obj)
 	var/dx = Loc1.x - Loc2.x
@@ -158,9 +156,9 @@
 			objs[AM] = TRUE
 			hearturfs[AM.locs[1]] = TRUE
 
-	for(var/m in player_list)
+	for(var/m in GLOB.player_list)
 		var/mob/M = m
-		if(checkghosts == GHOSTS_ALL_HEAR && M.stat == DEAD && !isnewplayer(M) && (M.client && M.is_preference_enabled(/datum/client_preference/ghost_ears)))
+		if(checkghosts == GHOSTS_ALL_HEAR && M.stat == DEAD && !isnewplayer(M) && (M.client && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH))
 			if (!mobs[M])
 				mobs[M] = TRUE
 			continue
@@ -201,13 +199,13 @@
 
 
 	// Try to find all the players who can hear the message
-	for(var/i = 1; i <= player_list.len; i++)
-		var/mob/M = player_list[i]
+	for(var/i = 1; i <= GLOB.player_list.len; i++)
+		var/mob/M = GLOB.player_list[i]
 		if(M)
 			var/turf/ear = get_turf(M)
 			if(ear)
 				// Ghostship is magic: Ghosts can hear radio chatter from anywhere
-				if(speaker_coverage[ear] || (isghost(M) && M.is_preference_enabled(/datum/client_preference/ghost_radio)))
+				if(speaker_coverage[ear] || (isghost(M) && M.get_preference_value(/datum/client_preference/ghost_radio) == GLOB.PREF_ALL_CHATTER))
 					. |= M		// Since we're already looping through mobs, why bother using |= ? This only slows things down.
 	return .
 
@@ -285,7 +283,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 	var/list/candidates = list() //List of candidate KEYS to assume control of the new larva ~Carn
 	var/i = 0
 	while(candidates.len <= 0 && i < 5)
-		for(var/mob/observer/ghost/G in player_list)
+		for(var/mob/observer/ghost/G in GLOB.player_list)
 			if(((G.client.inactivity/10)/60) <= buffer + i) // the most active players are more likely to become an alien
 				if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
 					candidates += G.key
@@ -298,7 +296,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 	var/list/candidates = list() //List of candidate KEYS to assume control of the new larva ~Carn
 	var/i = 0
 	while(candidates.len <= 0 && i < 5)
-		for(var/mob/observer/ghost/G in player_list)
+		for(var/mob/observer/ghost/G in GLOB.player_list)
 			if(ROLE_XENOMORPH in G.client.prefs.be_special_role)
 				if(((G.client.inactivity/10)/60) <= ALIEN_SELECT_AFK_BUFFER + i) // the most active players are more likely to become an alien
 					if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
@@ -521,3 +519,23 @@ datum/projectile_data
 			if(temp_vent.network.normal_members.len > 15)
 				vents += temp_vent
 	return vents
+
+
+/proc/is_opaque(var/turf/T)
+	if (T.opacity)
+		return TRUE
+	for(var/obj/O in T.contents)
+		if (O.opacity)
+			return TRUE
+	return FALSE
+
+/proc/get_preferences(var/mob/target)
+	var/datum/preferences/P = null
+	if (target.client)
+		P = target.client.prefs
+	else if (target.ckey)
+		P = SScharacter_setup.preferences_datums[target.ckey]
+	else if (target.mind && target.mind.key)
+		P = SScharacter_setup.preferences_datums[target.mind.key]
+
+	return P

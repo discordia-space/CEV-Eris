@@ -138,6 +138,10 @@
 	else
 		return ..()
 
+//Cats always land on their feet
+/mob/living/simple_animal/cat/get_fall_damage()
+	return 0
+
 //Basic friend AI
 /mob/living/simple_animal/cat/fluff
 	var/mob/living/carbon/human/friend

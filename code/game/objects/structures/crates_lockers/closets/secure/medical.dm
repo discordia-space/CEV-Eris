@@ -20,7 +20,7 @@
 	name = "anesthetics closet"
 	desc = "Used to knock people out."
 	icon_state = "med"
-	req_access = list(access_medical)
+	req_access = list(access_moebius)
 
 /obj/structure/closet/secure_closet/anesthetics/populate_contents()
 	new /obj/item/weapon/tank/anesthetic(src)
@@ -29,6 +29,7 @@
 	new /obj/item/clothing/mask/breath/medical(src)
 	new /obj/item/clothing/mask/breath/medical(src)
 	new /obj/item/clothing/mask/breath/medical(src)
+	new /obj/item/weapon/tool/wrench(src)
 
 /obj/structure/closet/secure_closet/personal/doctor
 	name = "moebius doctor's locker"
@@ -40,7 +41,7 @@
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/medic(src)
 	else
-		new /obj/item/weapon/storage/backpack/satchel_norm(src)
+		new /obj/item/weapon/storage/backpack/satchel/norm(src)
 	switch(pick("blue", "green", "purple"))
 		if ("blue")
 			new /obj/item/clothing/under/rank/medical/blue(src)
@@ -81,7 +82,7 @@
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/medic(src)
 	else
-		new /obj/item/weapon/storage/backpack/satchel_norm(src)
+		new /obj/item/weapon/storage/backpack/satchel/norm(src)
 	new /obj/item/clothing/suit/bio_suit/cmo(src)
 	new /obj/item/clothing/head/bio_hood/cmo(src)
 	new /obj/item/clothing/shoes/color/white(src)
@@ -103,6 +104,7 @@
 	new /obj/item/device/radio/headset/heads/cmo(src)
 	new /obj/item/device/flash(src)
 	new /obj/item/weapon/reagent_containers/hypospray(src)
+	new /obj/item/weapon/storage/pouch/medical_supply(src)
 
 /obj/structure/closet/secure_closet/animal
 	name = "animal control closet"
@@ -125,3 +127,4 @@
 /obj/structure/closet/secure_closet/chemical/populate_contents()
 	new /obj/item/weapon/storage/box/pillbottles(src)
 	new /obj/item/weapon/storage/box/pillbottles(src)
+	new /obj/item/weapon/storage/pouch/flare/vial(src)

@@ -1,10 +1,9 @@
 #define EVAC_OPT_ABANDON_SHIP "abandon_ship"
-#define EVAC_OPT_BLUESPACE_JUMP "bluespace_jump"
 #define EVAC_OPT_CANCEL_ABANDON_SHIP "cancel_abandon_ship"
-#define EVAC_OPT_CANCEL_BLUESPACE_JUMP "cancel_bluespace_jump"
 
 // Apparently, emergency_evacuation --> "abandon ship" and !emergency_evacuation --> "bluespace jump"
 // That stuff should be moved to the evacuation option datums but someone can do that later
+
 /datum/evacuation_controller/starship
 	name = "escape pod controller"
 
@@ -18,9 +17,7 @@
 
 	evacuation_options = list(
 		EVAC_OPT_ABANDON_SHIP = new /datum/evacuation_option/abandon_ship(),
-		EVAC_OPT_BLUESPACE_JUMP = new /datum/evacuation_option/bluespace_jump(),
-		EVAC_OPT_CANCEL_ABANDON_SHIP = new /datum/evacuation_option/cancel_abandon_ship(),
-		EVAC_OPT_CANCEL_BLUESPACE_JUMP = new /datum/evacuation_option/cancel_bluespace_jump()
+		EVAC_OPT_CANCEL_ABANDON_SHIP = new /datum/evacuation_option/cancel_abandon_ship()
 	)
 
 /datum/evacuation_controller/starship/finish_preparing_evac()
@@ -43,15 +40,7 @@
 				pod.launch(src)
 
 		priority_announcement.Announce(replacetext(replacetext(maps_data.emergency_shuttle_leaving_dock, "%dock_name%", "[dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] minute\s"))
-	else
-		// Bluespace Jump
-		priority_announcement.Announce(replacetext(replacetext(maps_data.shuttle_leaving_dock, "%dock_name%", "[dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] minute\s"))
-//		SetUniversalState(/datum/universal_state/bluespace_jump, arguments=list(maps_data.station_levels))
 
-		for (var/datum/shuttle/autodock/ferry/escape_pod/pod in escape_pods) // Launch the pods!
-			if (!pod.arming_controller || pod.arming_controller.armed)
-				pod.move_time = (evac_transit_delay/10)
-				pod.launch(src)
 /datum/evacuation_controller/starship/finish_evacuation()
 	..()
 	if(!emergency_evacuation) //bluespace jump
@@ -61,22 +50,20 @@
 	if (is_on_cooldown())
 		return list()
 	if (is_idle())
-		return list(evacuation_options[EVAC_OPT_BLUESPACE_JUMP], evacuation_options[EVAC_OPT_ABANDON_SHIP])
+		return list(evacuation_options[EVAC_OPT_ABANDON_SHIP])
 	if (is_evacuating())
 		if (emergency_evacuation)
 			return list(evacuation_options[EVAC_OPT_CANCEL_ABANDON_SHIP])
-		else
-			return list(evacuation_options[EVAC_OPT_CANCEL_BLUESPACE_JUMP])
 
 /datum/evacuation_option/abandon_ship
 	option_text = "Abandon spacecraft"
 	option_desc = "abandon the spacecraft"
 	option_target = EVAC_OPT_ABANDON_SHIP
-	needs_syscontrol = TRUE
+	needs_syscontrol = FALSE
 	silicon_allowed = TRUE
 
 /datum/evacuation_option/abandon_ship/execute(mob/user)
-	if (!ticker || !evacuation_controller)
+	if (!evacuation_controller)
 		return
 	if (evacuation_controller.deny)
 		user << "Unable to initiate escape procedures."
@@ -90,49 +77,16 @@
 	if (evacuation_controller.call_evacuation(user, 1))
 		log_and_message_admins("[user? key_name(user) : "Autotransfer"] has initiated abandonment of the spacecraft.")
 
-/datum/evacuation_option/bluespace_jump
-	option_text = "Initiate bluespace jump"
-	option_desc = "initiate a bluespace jump"
-	option_target = EVAC_OPT_BLUESPACE_JUMP
-	needs_syscontrol = TRUE
-	silicon_allowed = TRUE
-
-/datum/evacuation_option/bluespace_jump/execute(mob/user)
-	if (!ticker || !evacuation_controller)
-		return
-	if (evacuation_controller.deny)
-		user << "Unable to initiate jump preparation."
-		return
-	if (evacuation_controller.is_on_cooldown())
-		user << evacuation_controller.get_cooldown_message()
-		return
-	if (evacuation_controller.is_evacuating())
-		user << "Jump preparation already in progress."
-		return
-	if (evacuation_controller.call_evacuation(user, 0))
-		log_and_message_admins("[user? key_name(user) : "Autotransfer"] has initiated bluespace jump preparation.")
-
 /datum/evacuation_option/cancel_abandon_ship
 	option_text = "Cancel abandonment"
 	option_desc = "cancel abandonment of the spacecraft"
 	option_target = EVAC_OPT_CANCEL_ABANDON_SHIP
-	needs_syscontrol = TRUE
+	needs_syscontrol = FALSE
 	silicon_allowed = FALSE
 
 /datum/evacuation_option/cancel_abandon_ship/execute(mob/user)
-	if (ticker && evacuation_controller && evacuation_controller.cancel_evacuation())
+	if (evacuation_controller && evacuation_controller.cancel_evacuation())
 		log_and_message_admins("[key_name(user)] has cancelled abandonment of the spacecraft.")
-
-/datum/evacuation_option/cancel_bluespace_jump
-	option_text = "Cancel bluespace jump"
-	option_desc = "cancel the jump preparation"
-	option_target = EVAC_OPT_CANCEL_BLUESPACE_JUMP
-	needs_syscontrol = TRUE
-	silicon_allowed = FALSE
-
-/datum/evacuation_option/cancel_bluespace_jump/execute(mob/user)
-	if (ticker && evacuation_controller && evacuation_controller.cancel_evacuation())
-		log_and_message_admins("[key_name(user)] has cancelled the bluespace jump.")
 
 /obj/screen/fullscreen/bluespace_overlay
 	icon = 'icons/effects/effects.dmi'
@@ -142,6 +96,4 @@
 	blend_mode = BLEND_SUBTRACT
 
 #undef EVAC_OPT_ABANDON_SHIP
-#undef EVAC_OPT_BLUESPACE_JUMP
 #undef EVAC_OPT_CANCEL_ABANDON_SHIP
-#undef EVAC_OPT_CANCEL_BLUESPACE_JUMP

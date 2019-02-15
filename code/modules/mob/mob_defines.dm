@@ -85,6 +85,9 @@
 	var/timeofdeath = 0.0
 
 	var/bodytemperature = 310.055	//98.7 F
+
+	var/default_pixel_x = 0
+	var/default_pixel_y = 0
 	var/old_x = 0
 	var/old_y = 0
 
@@ -106,7 +109,7 @@
 
 	var/in_throw_mode = 0
 
-	var/inertia_dir = 0
+
 
 	var/targeted_organ = BP_CHEST
 
@@ -172,7 +175,7 @@
 
 	var/list/HUDneed = list() // What HUD object need see
 	var/list/HUDinventory = list()
-	var/list/HUDfrippery = list()//свестелки и перделки
+	var/list/HUDfrippery = list()//flavor
 	var/list/HUDprocess = list() //What HUD object need process
 	var/list/HUDtech = list()
 	var/defaultHUD = "" //Default mob hud
@@ -181,3 +184,7 @@
 
 
 	var/speed_factor = 1.0
+
+	var/datum/stat_holder/stats
+
+	var/mob_classification = 0 //Bitfield. Uses TYPE_XXXX defines in defines/mobs.dm.

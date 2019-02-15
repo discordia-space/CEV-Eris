@@ -6,7 +6,7 @@ var/global/list/body_modifications = list()
 var/global/list/modifications_types = list(
 	BP_CHEST = "",  "chest2" = "", BP_HEAD = "",   BP_GROIN = "",
 	BP_L_ARM  = "", BP_R_ARM  = "", BP_L_LEG  = "", BP_R_LEG  = "",
-	O_HEART  = "", O_LUNGS  = "", O_LIVER  = "", O_EYES   = ""
+	BP_HEART  = "", BP_LUNGS  = "", BP_LIVER  = "", BP_EYES   = ""
 )
 
 /proc/generate_body_modification_lists()
@@ -19,7 +19,7 @@ var/global/list/modifications_types = list(
 		if(BM.allowed_species && BM.allowed_species.len)
 			class = " limited [BM.allowed_species.Join(" ")]"
 		for(var/part in BM.body_parts)
-			modifications_types[part] += "<div onclick=\"set('body_modification', '[BM.id]');\" class='block[class]'><b>[BM.name]</b><br>[BM.desc]</div>"
+			modifications_types[part] += "<div style = 'padding:2px' onclick=\"set('body_modification', '[BM.id]');\" class='block[class]'><b>[BM.name]</b><br>[BM.desc]</div>"
 
 /proc/get_default_modificaton(var/nature = MODIFICATION_ORGANIC)
 	switch(nature)
@@ -37,7 +37,7 @@ var/global/list/modifications_types = list(
 	var/desc = ""							// Description.
 	var/list/body_parts = list(				// For sorting'n'selection optimization.
 		BP_CHEST, "chest2", BP_HEAD, BP_GROIN, BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG,\
-		O_HEART, O_LUNGS, O_LIVER, O_BRAIN, O_EYES)
+		BP_HEART, BP_LUNGS, BP_LIVER, BP_BRAIN, BP_EYES)
 	var/list/allowed_species = list("Human")// Species restriction.
 	var/replace_limb = null					// To draw usual limb or not.
 	var/mob_icon = ""
@@ -50,7 +50,7 @@ var/global/list/modifications_types = list(
 
 /datum/body_modification/proc/is_allowed(var/organ = "", datum/preferences/P)
 	if(!organ || !(organ in body_parts))
-		usr << "[name] isn't useable for [organ_tag_to_name[organ]]"
+		//usr << "[name] isn't useable for [organ]"
 		return FALSE
 	var/list/organ_data = organ_structure[organ]
 	if(organ_data)
@@ -68,7 +68,7 @@ var/global/list/modifications_types = list(
 /datum/body_modification/none
 	name = "Unmodified organ"
 	id = "nothing"
-	short_name = "nothing"
+	short_name = "Nothing"
 	desc = "Normal organ."
 	allowed_species = null
 
@@ -170,7 +170,7 @@ var/global/list/modifications_types = list(
 	short_name = "P: assisted"
 	id = "assisted"
 	desc = "Assisted organ."
-	body_parts = list(O_HEART, O_LUNGS, O_LIVER, O_EYES)
+	body_parts = list(BP_HEART, BP_LUNGS, BP_LIVER, BP_EYES)
 
 /datum/body_modification/organ/assisted/create_organ(var/mob/living/carbon/holder, var/O, var/color)
 	var/obj/item/organ/I = ..(holder,O,color)
@@ -184,7 +184,7 @@ var/global/list/modifications_types = list(
 	short_name = "P: prosthesis"
 	id = "robotize_organ"
 	desc = "Robotic organ."
-	body_parts = list(O_HEART, O_LUNGS, O_LIVER, O_EYES)
+	body_parts = list(BP_HEART, BP_LUNGS, BP_LIVER, BP_EYES)
 
 /datum/body_modification/organ/robotize_organ/create_organ(var/mob/living/carbon/holder, O, color)
 	var/obj/item/organ/I = ..(holder,O,color)
@@ -201,7 +201,7 @@ var/global/list/modifications_types = list(
 	short_name = "M: One eye (l)"
 	id = "missed_eye"
 	desc = "One of your eyes was missed."
-	body_parts = list(O_EYES)
+	body_parts = list(BP_EYES)
 	hascolor = TRUE
 	replace_limb = /obj/item/organ/internal/eyes/oneeye
 
@@ -233,7 +233,7 @@ var/global/list/modifications_types = list(
 	short_name = "M: Heterochromia"
 	id = "mutation_heterochromia"
 	desc = "Special color for left eye."
-	body_parts = list(O_EYES)
+	body_parts = list(BP_EYES)
 	hascolor = TRUE
 
 /datum/body_modification/organ/heterochromia/get_mob_icon(organ, body_build, color, gender, species)

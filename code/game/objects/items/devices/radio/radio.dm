@@ -53,9 +53,9 @@ var/global/list/default_medbay_channels = list(
 	var/list/datum/radio_frequency/secure_radio_connections = new
 
 /obj/item/device/radio/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
+	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
-	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
+	radio_connection = SSradio.add_object(src, frequency, RADIO_CHAT)
 
 /obj/item/device/radio/New()
 	..()
@@ -67,10 +67,9 @@ var/global/list/default_medbay_channels = list(
 	remove_hearing()
 	qdel(wires)
 	wires = null
-	if(radio_controller)
-		radio_controller.remove_object(src, frequency)
-		for (var/ch_name in channels)
-			radio_controller.remove_object(src, radiochannels[ch_name])
+	SSradio.remove_object(src, frequency)
+	for (var/ch_name in channels)
+		SSradio.remove_object(src, radiochannels[ch_name])
 	return ..()
 
 
@@ -82,7 +81,7 @@ var/global/list/default_medbay_channels = list(
 	set_frequency(frequency)
 
 	for (var/ch_name in channels)
-		secure_radio_connections[ch_name] = radio_controller.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
+		secure_radio_connections[ch_name] = SSradio.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
 
 /obj/item/device/radio/attack_self(mob/user as mob)
 	user.set_machine(src)
@@ -116,7 +115,7 @@ var/global/list/default_medbay_channels = list(
 	if(syndie)
 		data["useSyndMode"] = 1
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "radio_basic.tmpl", "[name]", 400, 430)
 		ui.set_initial_data(data)
@@ -202,8 +201,9 @@ var/global/list/default_medbay_channels = list(
 			new_frequency = sanitize_frequency(new_frequency)
 		set_frequency(new_frequency)
 		if(hidden_uplink)
-			if(hidden_uplink.check_trigger(usr, frequency, traitor_frequency))
-				usr << browse(null, "window=radio")
+			if(hidden_uplink.check_trigger(usr, frequency))
+				hidden_uplink.trigger(usr)
+				return
 		. = 1
 	else if (href_list["talk"])
 		ToggleBroadcast()
@@ -227,14 +227,13 @@ var/global/list/default_medbay_channels = list(
 		return 1
 
 	if(.)
-		nanomanager.update_uis(src)
+		SSnano.update_uis(src)
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 
 /obj/item/device/radio/proc/autosay(var/message, var/from, var/channel) //BS12 EDIT
 	var/datum/radio_frequency/connection = null
 	if(channel && channels && channels.len > 0)
 		if (channel == "department")
-			//world << "DEBUG: channel=\"[channel]\" switching to \"[channels[1]]\""
 			channel = channels[1]
 		connection = secure_radio_connections[channel]
 	else
@@ -331,7 +330,7 @@ var/global/list/default_medbay_channels = list(
 
 	// --- Cyborg ---
 	else if (isrobot(M))
-		jobname = "Cyborg"
+		jobname = "Robot"
 
 	// --- Personal AI (pAI) ---
 	else if (istype(M, /mob/living/silicon/pai))
@@ -600,7 +599,7 @@ var/global/list/default_medbay_channels = list(
 
 
 			for(var/ch_name in channels)
-				radio_controller.remove_object(src, radiochannels[ch_name])
+				SSradio.remove_object(src, radiochannels[ch_name])
 				secure_radio_connections[ch_name] = null
 
 
@@ -652,13 +651,7 @@ var/global/list/default_medbay_channels = list(
 			src.syndie = 1
 
 	for (var/ch_name in src.channels)
-		if(!radio_controller)
-			sleep(30) // Waiting for the radio_controller to be created.
-		if(!radio_controller)
-			src.name = "broken radio"
-			return
-
-		secure_radio_connections[ch_name] = radio_controller.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
+		secure_radio_connections[ch_name] = SSradio.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
 
 	return
 
@@ -692,7 +685,7 @@ var/global/list/default_medbay_channels = list(
 		. = 1
 
 	if(.)
-		nanomanager.update_uis(src)
+		SSnano.update_uis(src)
 
 /obj/item/device/radio/borg/interact(mob/user as mob)
 	if(!on)
@@ -721,21 +714,19 @@ var/global/list/default_medbay_channels = list(
 	data["has_subspace"] = 1
 	data["subspace"] = subspace_transmission
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "radio_basic.tmpl", "[name]", 400, 430)
 		ui.set_initial_data(data)
 		ui.open()
 
 /obj/item/device/radio/proc/config(op)
-	if(radio_controller)
-		for (var/ch_name in channels)
-			radio_controller.remove_object(src, radiochannels[ch_name])
+	for (var/ch_name in channels)
+		SSradio.remove_object(src, radiochannels[ch_name])
 	secure_radio_connections = new
 	channels = op
-	if(radio_controller)
-		for (var/ch_name in op)
-			secure_radio_connections[ch_name] = radio_controller.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
+	for (var/ch_name in op)
+		secure_radio_connections[ch_name] = SSradio.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
 	return
 
 /obj/item/device/radio/off

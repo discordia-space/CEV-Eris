@@ -49,3 +49,24 @@
 /datum/autolathe/recipe/part/camera_assembly
 	name = "camera assembly"
 	path = /obj/item/weapon/camera_assembly
+
+
+/datum/autolathe/recipe/part/laserguide
+	name = "Asters \"Guiding Light\" laser guide"
+	path = /obj/item/weapon/tool_upgrade/refinement/laserguide
+
+/datum/autolathe/recipe/part/diamondblade
+	name = "Asters \"Gleaming Edge\": Diamond blade"
+	path = /obj/item/weapon/tool_upgrade/productivity/diamond_blade
+
+/datum/autolathe/recipe/part/subspace_transmitter
+	name = "subspace transmitter"
+	path = /obj/item/weapon/stock_parts/subspace/transmitter
+
+/datum/autolathe/recipe/part/subspace_crystal
+	name = "ansible crystal"
+	path = /obj/item/weapon/stock_parts/subspace/crystal
+
+/datum/autolathe/recipe/part/subspace_amplifier
+	name = "subspace amplifier"
+	path = /obj/item/weapon/stock_parts/subspace/amplifier

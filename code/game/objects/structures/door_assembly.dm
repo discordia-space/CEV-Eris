@@ -166,7 +166,7 @@
 			bound_height = width * world.icon_size
 		update_state()
 
-	Move()
+	Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 		. = ..()
 		if(dir in list(EAST, WEST))
 			bound_width = width * world.icon_size

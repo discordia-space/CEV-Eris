@@ -41,7 +41,7 @@ var/datum/controller/process/open_space/OS_controller = null
 /datum/controller/process/open_space/proc/add_z_level(var/level)
 #ifdef DEBUG_OPENSPACE
 	world << "OPENSPACE: ADD [level] z lelel"
-	world.log << "OPENSPACE: ADD [level] z lelel"
+	log_world("OPENSPACE: ADD [level] z lelel")
 #endif
 	if(levels.len < level)
 		levels.len = level
@@ -70,19 +70,17 @@ var/datum/controller/process/open_space/OS_controller = null
 		OD.add(list(T), LIST_FAST, 1)
 
 /*
-/obj/Move() //Hackish
+/obj/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0) //Hackish
 	. = ..()
 	OS_controller.add_turf(get_turf(src))
 */
 /turf/Entered(atom/movable/Obj, atom/OldLoc)
 	. = ..()
-	if(ticker)
-		OS_controller.add_turf(src)
+	OS_controller.add_turf(src)
 
 /turf/simulated/open/New()
 	..()
-	if(ticker)
-		OS_controller.add_turf(src)
+	OS_controller.add_turf(src)
 
 /datum/ospace_data
 	var/z = 0

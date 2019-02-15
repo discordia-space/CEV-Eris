@@ -31,7 +31,7 @@
 
 
 /obj/item/clothing/under/rank/chaplain
-	desc = "Ceremonial robe of Cyberchristianity preacher."
+	desc = "Ceremonial robe of Neotheology preacher."
 	name = "preacher's robe"
 	icon_state = "preacher"
 	item_state = "w_suit"
@@ -74,7 +74,7 @@
 	icon_state = "janitor"
 
 	item_state = "janitor"
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 30, rad = 0)
 
 
 /obj/item/clothing/under/librarian

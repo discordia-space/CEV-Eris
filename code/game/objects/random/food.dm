@@ -1,20 +1,32 @@
+/obj/random/rations
+	name = "random preserved rations"
+	icon_state = "food-red"
+
+/obj/random/rations/item_to_spawn()
+	return pickweight(list(/obj/item/weapon/reagent_containers/food/snacks/chips = 2,\
+				/obj/item/weapon/reagent_containers/food/snacks/candy = 2,\
+				/obj/item/weapon/reagent_containers/food/snacks/tastybread = 2,\
+				/obj/item/weapon/reagent_containers/food/snacks/no_raisin = 2,\
+				/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 4,
+				/obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket = 1))
+
+
 /obj/random/rotfood
 	name = "random spoiled food"
 	icon_state = "food-red"
 
 /obj/random/rotfood/item_to_spawn()
-	return pick(prob(3);/obj/item/weapon/reagent_containers/food/snacks/chips,\
-				prob(3);/obj/item/weapon/reagent_containers/food/snacks/candy,\
-				prob(3);/obj/item/weapon/reagent_containers/food/snacks/unajerky,\
-				prob(3);/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers,\
-				prob(3);/obj/item/weapon/reagent_containers/food/snacks/tastybread,\
-				prob(3);/obj/item/weapon/reagent_containers/food/snacks/no_raisin,\
-				prob(3);/obj/item/weapon/reagent_containers/food/snacks/spacetwinkie,\
-				prob(2);/obj/item/weapon/reagent_containers/food/drinks/dry_ramen,\
-				prob(1);/obj/item/weapon/reagent_containers/food/snacks/hotdog,\
-				prob(2);/obj/item/weapon/reagent_containers/food/snacks/liquidfood,\
-				prob(1);/obj/item/weapon/reagent_containers/food/snacks/pie,\
-				prob(1);/obj/item/weapon/reagent_containers/food/snacks/sandwich)
+	return pickweight(list(/obj/item/weapon/reagent_containers/food/snacks/chips = 3,\
+				/obj/item/weapon/reagent_containers/food/snacks/candy = 3,\
+				/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 3,\
+				/obj/item/weapon/reagent_containers/food/snacks/tastybread = 3,\
+				/obj/item/weapon/reagent_containers/food/snacks/no_raisin = 3,\
+				/obj/item/weapon/reagent_containers/food/snacks/spacetwinkie = 3,\
+				/obj/item/weapon/reagent_containers/food/drinks/dry_ramen = 2,\
+				/obj/item/weapon/reagent_containers/food/snacks/hotdog = 1,\
+				/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 2,\
+				/obj/item/weapon/reagent_containers/food/snacks/pie = 1,\
+				/obj/item/weapon/reagent_containers/food/snacks/sandwich = 1))
 
 /obj/random/rotfood/low_chance
 	name = "low chance spoiled food"

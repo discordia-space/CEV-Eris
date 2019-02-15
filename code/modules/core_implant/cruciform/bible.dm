@@ -1,5 +1,5 @@
 /obj/item/weapon/book/ritual/cruciform
-	name = "Cyberchristian prayer book"
+	name = "Neotheology ritual book"
 	desc = "Contains holy litany and chants."
 	icon_state = "bible"
 
@@ -14,7 +14,7 @@
 */
 
 /obj/item/weapon/book/ritual/cruciform/inquisitor
-	name = "Inquisitor prayer book"
+	name = "Inquisitor ritual book"
 	desc = "Contains holy litany and chants of inquisitor."
 	icon_state = "bible"
 

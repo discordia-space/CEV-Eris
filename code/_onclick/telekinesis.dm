@@ -108,20 +108,13 @@ var/const/tk_maxrange = 15
 		return
 
 	var/d = get_dist(user, target)
-	if(focus) d = max(d, get_dist(user, focus)) // whichever is further
-	switch(d)
-		if(0)
-			;
-		if(1 to 5) // not adjacent may mean blocked by window
-			if(!proximity)
-				user.setMoveCooldown(2)
-		if(5 to 7)
-			user.setMoveCooldown(5)
-		if(8 to tk_maxrange)
-			user.setMoveCooldown(10)
-		else
-			user << SPAN_NOTICE("Your mind won't reach that far.")
-			return
+	if(focus)
+		d = max(d, get_dist(user, focus)) // whichever is further
+	if (d == 0)
+		return
+	if (d > tk_maxrange)
+		user << SPAN_NOTICE("Your mind won't reach that far.")
+		return
 
 	if(!focus)
 		focus_object(target, user)
@@ -161,7 +154,7 @@ var/const/tk_maxrange = 15
 /obj/item/tk_grab/proc/apply_focus_overlay()
 	if(!focus)
 		return
-	PoolOrNew(/obj/effect/overlay/pulse, list(get_turf(focus), 5))
+	new /obj/effect/overlay/pulse(get_turf(focus), 5)
 
 /obj/item/tk_grab/update_icon()
 	overlays.Cut()

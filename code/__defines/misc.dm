@@ -23,7 +23,7 @@
 #define SEE_INVISIBLE_MINIMUM 5
 #define INVISIBILITY_MAXIMUM 100
 
-// Some arbitrary defines to be used by self-pruning global lists. (see master_controller)
+// Some arbitrary defines to be used by self-pruning global lists.
 #define PROCESS_KILL 26 // Used to trigger removal from a processing list.
 #define MAX_GEAR_COST 5 // Used in chargen for accessory loadout limit.
 
@@ -37,44 +37,6 @@
 #define SPECIALROLE_HUD 7 // AntagHUD image.
 #define  STATUS_HUD_OOC 8 // STATUS_HUD without virus DB check for someone being ill.
 #define        LIFE_HUD 9 // STATUS_HUD that only reports dead or alive
-
-//some colors
-#define COLOR_WHITE            "#ffffff"
-#define COLOR_SILVER           "#c0c0c0"
-#define COLOR_GRAY             "#808080"
-#define COLOR_BLACK            "#000000"
-#define COLOR_RED              "#ff0000"
-#define COLOR_RED_LIGHT        "#b00000"
-#define COLOR_MAROON           "#800000"
-#define COLOR_YELLOW           "#ffff00"
-#define COLOR_AMBER            "#ffbf00"
-#define COLOR_OLIVE            "#808000"
-#define COLOR_LIME             "#00ff00"
-#define COLOR_GREEN            "#008000"
-#define COLOR_CYAN             "#00ffff"
-#define COLOR_TEAL             "#008080"
-#define COLOR_BLUE             "#0000ff"
-#define COLOR_BLUE_LIGHT       "#33ccff"
-#define COLOR_NAVY             "#000080"
-#define COLOR_PINK             "#ff00ff"
-#define COLOR_PURPLE           "#800080"
-#define COLOR_ORANGE           "#ff9900"
-#define COLOR_LUMINOL          "#66ffff"
-#define COLOR_BEIGE            "#ceb689"
-#define COLOR_BLUE_GRAY        "#6a97b0"
-#define COLOR_BROWN            "#b19664"
-#define COLOR_DARK_BROWN       "#917448"
-#define COLOR_DARK_ORANGE      "#b95a00"
-#define COLOR_GREEN_GRAY       "#8daf6a"
-#define COLOR_RED_GRAY         "#aa5f61"
-#define COLOR_PALE_BLUE_GRAY   "#8bbbd5"
-#define COLOR_PALE_GREEN_GRAY  "#aed18b"
-#define COLOR_PALE_RED_GRAY    "#cc9090"
-#define COLOR_PALE_PURPLE_GRAY "#bda2ba"
-#define COLOR_PURPLE_GRAY      "#a2819e"
-#define COLOR_SUN              "#ec8b2f"
-
-//	Shuttles.
 
 // These define the time taken for the shuttle to get to the space station, and the time before it leaves again.
 
@@ -100,12 +62,9 @@
 #define MAX_BOOK_MESSAGE_LEN  9216
 #define MAX_LNAME_LEN         64
 #define MAX_NAME_LEN          26
+#define MAX_DESC_LEN          128
+#define MAX_TEXTFILE_LENGTH 128000		// 512GQ file
 
-// Event defines.
-#define EVENT_LEVEL_MUNDANE  1
-#define EVENT_LEVEL_MODERATE 2
-#define EVENT_LEVEL_MAJOR    3
-#define EVENT_LEVEL_ECONOMY  4
 
 // Cargo-related stuff.
 #define MANIFEST_ERROR_CHANCE		5
@@ -123,6 +82,7 @@
 #define AREA_FLAG_RAD_SHIELDED 1 // shielded from radiation, clearly
 #define AREA_FLAG_EXTERNAL     2 // External as in exposed to space, not outside in a nice, green, forest
 #define AREA_FLAG_ION_SHIELDED 4 // shielded from ionospheric anomalies as an FBP / IPC
+#define AREA_FLAG_CRITICAL		8 //Area should not be targeted by very destructive events
 
 // Convoluted setup so defines can be supplied by Bay12 main server compile script.
 // Should still work fine for people jamming the icons into their repo.
@@ -164,15 +124,6 @@
 #define BOMBCAP_HEAVY_RADIUS (max_explosion_range/2)
 #define BOMBCAP_LIGHT_RADIUS max_explosion_range
 #define BOMBCAP_FLASH_RADIUS (max_explosion_range*1.5)
-
-#define WEAPON_FORCE_HARMLESS    3
-#define WEAPON_FORCE_WEAK        7
-#define WEAPON_FORCE_NORMAL      10
-#define WEAPON_FORCE_PAINFULL    15
-#define WEAPON_FORCE_DANGEROUS   20
-#define WEAPON_FORCE_ROBUST      26
-#define WEAPON_FORCE_LETHAL      51
-
 									// NTNet module-configuration values. Do not change these. If you need to add another use larger number (5..6..7 etc)
 #define NTNET_SOFTWAREDOWNLOAD 1 	// Downloads of software from NTNet
 #define NTNET_PEERTOPEER 2			// P2P transfers of files between devices
@@ -180,15 +131,18 @@
 #define NTNET_SYSTEMCONTROL 4		// Control of various systems, RCon, air alarm control, etc.
 
 // NTNet transfer speeds, used when downloading/uploading a file/program.
-#define NTNETSPEED_LOWSIGNAL 0.025	// GQ/s transfer speed when the device is wirelessly connected and on Low signal
-#define NTNETSPEED_HIGHSIGNAL 0.1	// GQ/s transfer speed when the device is wirelessly connected and on High signal
-#define NTNETSPEED_ETHERNET 0.5		// GQ/s transfer speed when the device is using wired connection
+#define NTNETSPEED_LOWSIGNAL 0.015	// GQ/s transfer speed when the device is wirelessly connected and on Low signal
+#define NTNETSPEED_HIGHSIGNAL 0.05	// GQ/s transfer speed when the device is wirelessly connected and on High signal
+#define NTNETSPEED_ETHERNET 0.25		// GQ/s transfer speed when the device is using wired connection
+#define NTNETSPEED_DOS_AMPLIFICATION 2.5	// Multiplier for Denial of Service program. Resulting load on NTNet relay is this multiplied by NTNETSPEED of the device
 
 // Program bitflags
-#define PROGRAM_ALL 7
-#define PROGRAM_CONSOLE 1
-#define PROGRAM_LAPTOP 2
-#define PROGRAM_TABLET 4
+#define PROGRAM_ALL 		0x1F
+#define PROGRAM_CONSOLE 	0x1
+#define PROGRAM_LAPTOP 		0x2
+#define PROGRAM_TABLET 		0x4
+#define PROGRAM_TELESCREEN 	0x8
+#define PROGRAM_PDA 		0x10
 
 #define PROGRAM_STATE_KILLED 0
 #define PROGRAM_STATE_BACKGROUND 1
@@ -246,3 +200,14 @@
 
 //Filters
 #define AMBIENT_OCCLUSION filter(type="drop_shadow", x=0, y=-2, size=4, border=4, color="#04080FAA")
+
+//Built-in email accounts
+#define EMAIL_DOCUMENTS "document.server@internal-services.net"
+#define EMAIL_SYSADMIN  "admin@internal-services.net"
+#define EMAIL_BROADCAST "broadcast@internal-services.net"
+#define EMAIL_PAYROLL "payroll@internal-services.net"
+
+#define LEGACY_RECORD_STRUCTURE(X, Y) GLOBAL_LIST_EMPTY(##X);/datum/computer_file/data/##Y/var/list/fields[0];/datum/computer_file/data/##Y/New(){..();GLOB.##X.Add(src);}/datum/computer_file/data/##Y/Destroy(){. = ..();GLOB.##X.Remove(src);}
+
+//Number of slots a modular computer has which can be tweaked via gear tweaks.
+#define TWEAKABLE_COMPUTER_PART_SLOTS 8

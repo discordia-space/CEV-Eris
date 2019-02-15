@@ -2,20 +2,21 @@
 /datum/antagonist/traitor
 	id = ROLE_TRAITOR
 	protected_jobs = list(JOBS_SECURITY, JOBS_COMMAND)
+	bantype = ROLE_TRAITOR
+	antaghud_indicator = "hudtraitor"
 
-	possible_objectives = list(
-	list(
-	/datum/objective/assasinate = 30,
+	objective_quantity = 3
+
+	possible_objectives = list(/datum/objective/assassinate = 30,
 	/datum/objective/brig = 15,
 	/datum/objective/harm = 15,
-	/datum/objective/steal = 30,
-	))
+	/datum/objective/steal = 30)
 
 	survive_objective = /datum/objective/escape
 
 
 /datum/antagonist/traitor/get_extra_panel_options()
-	if(owner.current)
+	if(owner && owner.current)
 		return "<a href='?src=\ref[owner];common=crystals'>\[set crystals\]</a><a href='?src=\ref[src];spawn_uplink=\ref[owner.current]'>\[spawn uplink\]</a>"
 
 /datum/antagonist/traitor/Topic(href, href_list)
@@ -33,7 +34,7 @@
 	if(!..())
 		return FALSE
 
-	spawn_uplink()
+	spawn_uplink(owner.current)
 	give_codewords()
 
 	return TRUE
@@ -58,14 +59,13 @@
 	only_human = FALSE
 
 	possible_objectives = list(
-	/datum/objective/assasinate = 100,
-	/datum/objective/assasinate = 90,
+	/datum/objective/assassinate = 100,
 	/datum/objective/block = 15)
 
 	survive_objective = /datum/objective/survive
 
 /datum/antagonist/traitor/synth/can_become_antag(var/datum/mind/player)
-	return issilicon(player) && ..(player)
+	return issilicon(player.current) && ..(player)
 
 /datum/antagonist/traitor/synth/equip()
 	add_law_zero()

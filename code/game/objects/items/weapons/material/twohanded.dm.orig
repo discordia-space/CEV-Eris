@@ -113,13 +113,6 @@
 		O.desc = "Your second grip on the [base_name]."
 		user.put_in_inactive_hand(O)
 
-	if(istype(user,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
-		H.update_inv_l_hand()
-		H.update_inv_r_hand()
-
-	return
-
 ///////////OFFHAND///////////////
 /obj/item/weapon/material/twohanded/offhand
 	w_class = 5

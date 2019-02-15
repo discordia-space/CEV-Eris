@@ -316,14 +316,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 					ID.name = "[newname]'s ID Card ([ID.assignment])"
 					if(!search_pda)	break
 					search_id = 0
-
-			else if( search_pda && istype(A,/obj/item/device/pda) )
-				var/obj/item/device/pda/PDA = A
-				if(PDA.owner == oldname)
-					PDA.owner = newname
-					PDA.name = "PDA-[newname] ([PDA.ownjob])"
-					if(!search_id)	break
-					search_pda = 0
 	return 1
 
 
@@ -343,7 +335,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 				return	//took too long
 			newname = sanitizeName(newname, ,allow_numbers)	//returns null if the name doesn't meet some basic requirements. Tidies up a few other things like bad-characters.
 
-			for(var/mob/living/M in player_list)
+			for(var/mob/living/M in GLOB.player_list)
 				if(M == src)
 					continue
 				if(!newname || M.real_name == newname)
@@ -360,8 +352,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			if(isAI(src))
 				var/mob/living/silicon/ai/A = src
 				oldname = null//don't bother with the records update crap
-				//world << "<b>[newname] is the AI!</b>"
-				//world << sound('sound/AI/newAI.ogg')
+
 				// Set eyeobj name
 				A.SetName(newname)
 
@@ -378,7 +369,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/freeborg()
 	var/select = null
 	var/list/borgs = list()
-	for (var/mob/living/silicon/robot/A in player_list)
+	for (var/mob/living/silicon/robot/A in GLOB.player_list)
 		if (A.stat == 2 || A.connected_ai || A.scrambledcodes || isdrone(A))
 			continue
 		var/name = "[A.real_name] ([A.modtype] [A.braintype])"
@@ -391,7 +382,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 //When a borg is activated, it can choose which AI it wants to be slaved to
 /proc/active_ais()
 	. = list()
-	for(var/mob/living/silicon/ai/A in living_mob_list)
+	for(var/mob/living/silicon/ai/A in GLOB.living_mob_list)
 		if(A.stat == DEAD)
 			continue
 		if(A.control_disabled == 1)
@@ -1121,7 +1112,7 @@ var/list/WALLITEMS = list(
 	"/obj/machinery/newscaster", "/obj/machinery/firealarm", "/obj/structure/noticeboard", "/obj/machinery/door_control",
 	"/obj/machinery/computer/security/telescreen", "/obj/machinery/embedded_controller/radio/simple_vent_controller",
 	"/obj/item/weapon/storage/secure/safe", "/obj/machinery/door_timer", "/obj/machinery/flasher", "/obj/machinery/keycard_auth",
-	"/obj/structure/mirror", "/obj/structure/closet/fireaxecabinet", "/obj/machinery/computer/security/telescreen/entertainment",
+	"/obj/structure/mirror", "/obj/structure/closet/fireaxecabinet","/obj/item/modular_computer/telescreen",
 	"/obj/machinery/light_construct", "/obj/machinery/light"
 	)
 /proc/gotwallitem(loc, dir)
@@ -1225,6 +1216,8 @@ var/list/FLOORITEMS = list(
 	. = view(range, dview_mob)
 	dview_mob.loc = null
 
+/var/mob/dview/dview_mob = new
+
 /mob/dview
 	invisibility = 101
 	density = 0
@@ -1257,4 +1250,3 @@ var/list/FLOORITEMS = list(
 		return 1
 	else
 		return 0
-

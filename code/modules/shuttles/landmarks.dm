@@ -10,10 +10,13 @@
 	invisibility = 101
 
 	var/landmark_tag
-	//ID of the controller on the dock side
+	//ID of the controller on the shuttle
 	var/datum/computer/file/embedded_program/docking/docking_controller
-	//ID of controller used for this landmark for shuttles with multiple ones.
+
+	//ID of controller used for this landmark for docks with multiple ones.
 	var/list/special_dock_targets
+
+	var/dock_target
 
 	//when the shuttle leaves this landmark, it will leave behind the base area
 	//also used to determine if the shuttle can arrive here without obstruction
@@ -25,6 +28,7 @@
 
 /obj/effect/shuttle_landmark/New()
 	..()
+	shuttle_landmarks_list += src
 	tag = copytext(landmark_tag, 1) //since tags cannot be set at compile time
 	if(autoset)
 		base_area = get_area(src)
@@ -43,7 +47,7 @@
 			docking_controller = locate(docking_tag)
 			if(!istype(docking_controller))
 				admin_notice("Could not find docking controller for shuttle waypoint '[name]', docking tag was '[docking_tag]'.")
-		shuttle_controller.register_landmark(tag, src)
+		SSshuttle.register_landmark(tag, src)
 
 /obj/effect/shuttle_landmark/proc/is_valid(var/datum/shuttle/shuttle)
 	if(shuttle.current_location == src)
@@ -53,6 +57,10 @@
 		if(check_collision(translation))
 			return FALSE
 	return TRUE
+
+/obj/effect/shuttle_landmark/Destroy()
+	shuttle_landmarks_list -= src
+	return ..()
 
 /obj/effect/shuttle_landmark/proc/check_collision(var/list/turf_translation)
 	for(var/source in turf_translation)
@@ -110,7 +118,7 @@
 	name = "bluespace flare"
 	desc = "Burst transmitter used to broadcast all needed information for shuttle navigation systems. Has a flare attached for marking the spot where you probably shouldn't be standing."
 	icon_state = "bluflare"
-	light_color = "#3728ff"
+	light_color = COLOR_LIGHTING_BLUE_MACHINERY
 	var/active
 
 /obj/item/device/spaceflare/attack_self(var/mob/user)

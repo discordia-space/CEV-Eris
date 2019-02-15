@@ -5,7 +5,7 @@
 	icon_state = "posibrain"
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 4, TECH_BLUESPACE = 2, TECH_DATA = 4)
-
+	matter = list(MATERIAL_STEEL = 5, MATERIAL_GLASS = 5, MATERIAL_SILVER = 5, MATERIAL_GOLD = 5)
 	var/searching = 0
 	var/askDelay = 10 * 60 * 1
 	req_access = list(access_robotics)
@@ -38,11 +38,11 @@
 		return
 
 	var/datum/ghosttrap/G = get_ghost_trap("positronic brain")
-	if(!G.assess_candidate(user))
+	if(!G.assess_candidate(user, check_respawn_timer=FALSE))
 		return
 	var/response = alert(user, "Are you sure you wish to possess this [src]?", "Possess [src]", "Yes", "No")
 	if(response == "Yes")
-		G.transfer_personality(user, brainmob)
+		G.transfer_personality(user, brainmob, check_respawn_timer=FALSE)
 	return
 
 /obj/item/device/mmi/digital/posibrain/examine(mob/user)

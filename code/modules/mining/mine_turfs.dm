@@ -402,25 +402,14 @@
 	name = "sand"
 	icon = 'icons/turf/flooring/asteroid.dmi'
 	icon_state = "asteroid"
-	base_name = "sand"
-	base_desc = "Gritty and unpleasant."
-	base_icon = 'icons/turf/flooring/asteroid.dmi'
-	base_icon_state = "asteroid"
 
-	initial_flooring = null
+	initial_flooring = /decl/flooring/asteroid
 	oxygen = 0
 	nitrogen = 0
 	temperature = TCMB
 	var/dug = 0       //0 = has not yet been dug, 1 = has already been dug
 	var/overlay_detail
 	has_resources = 1
-
-	footstep_sounds = list("human" = list(\
-		'sound/effects/footstep/asteroid1.ogg',\
-		'sound/effects/footstep/asteroid2.ogg',\
-		'sound/effects/footstep/asteroid3.ogg',\
-		'sound/effects/footstep/asteroid4.ogg',\
-		'sound/effects/footstep/asteroid5.ogg'))
 
 /turf/simulated/floor/asteroid/New()
 	..()

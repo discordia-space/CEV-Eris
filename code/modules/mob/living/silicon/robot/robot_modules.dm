@@ -19,6 +19,7 @@ var/global/list/robot_modules = list(
 	w_class = 100.0
 	item_state = "electronic"
 	flags = CONDUCT
+	var/hide_on_manifest = FALSE
 	var/channels = list()
 	var/networks = list()
 	var/languages = list(							//Any listed language will be understandable. Any set to 1 will be speakable
@@ -56,7 +57,7 @@ var/global/list/robot_modules = list(
 	var/power_efficiency = 1.0 //Power efficiency, applied as a divisor on power taken from the internal cell
 
 	//Stat modifiers for skillchecks
-	var/list/stat_modifers = list(
+	var/list/stat_modifiers = list(
 		STAT_BIO = 5,
 		STAT_COG = 5,
 		STAT_ROB = 5,
@@ -69,10 +70,10 @@ var/global/list/robot_modules = list(
 	desc = "This is a robot module parent class. You shouldn't see this description"
 
 /obj/item/weapon/robot_module/New(var/mob/living/silicon/robot/R)
-
 	..()
 	if (!istype(R))
 		return
+
 	R.module = src
 
 	add_camera_networks(R)
@@ -91,8 +92,8 @@ var/global/list/robot_modules = list(
 	R.speed_factor = speed_factor
 	R.power_efficiency = power_efficiency
 
-	for(var/name in stat_modifers)
-		R.stats.changeStat(name, stat_modifers[name])
+	for(var/name in stat_modifiers)
+		R.stats.changeStat(name, stat_modifiers[name])
 
 	R.set_module_sprites(sprites)
 	R.icon_selected = 0
@@ -107,6 +108,15 @@ var/global/list/robot_modules = list(
 		I.plane = ABOVE_HUD_PLANE
 		I.layer = ABOVE_HUD_LAYER
 
+	for (var/obj/item/weapon/tool/T in modules)
+		T.degradation = 0 //We don't want robot tools breaking
+
+
+	for (var/obj/item/I in modules)
+		for (var/obj/item/weapon/cell/C in I)
+			C.charge = 999999999 //A quick hack to stop robot modules running out of power
+			//Later they'll be wired to the robot's central battery once we code functionality for that
+			//Setting it to infinity causes errors, so just a high number is fine
 
 /obj/item/weapon/robot_module/proc/Reset(var/mob/living/silicon/robot/R)
 	remove_camera_networks(R)
@@ -117,8 +127,8 @@ var/global/list/robot_modules = list(
 	R.maxHealth = initial(R.maxHealth)
 	R.speed_factor = initial(R.speed_factor)
 	R.power_efficiency = initial(R.power_efficiency)
-	for(var/name in stat_modifers)
-		R.stats.changeStat(name, stat_modifers[name]*-1)
+	for(var/name in stat_modifiers)
+		R.stats.changeStat(name, stat_modifiers[name]*-1)
 
 	if(R.radio)
 		R.radio.recalculateChannels()
@@ -236,7 +246,7 @@ var/global/list/robot_modules = list(
 				  )
 
 	desc = "The baseline, jack of all trades. Can do a little of everything. Some DIY, some healing, some combat."
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_BIO = 15,
 		STAT_COG = 15,
 		STAT_ROB = 15,
@@ -254,6 +264,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/tool/crowbar/robotic(src)
 	src.modules += new /obj/item/device/scanner/healthanalyzer(src)
 	src.modules += new /obj/item/weapon/gripper(src)
+	src.modules += new /obj/item/device/t_scanner(src)
 	src.emag = new /obj/item/weapon/melee/energy/sword(src)
 
 	var/datum/matter_synth/medicine = new /datum/matter_synth/medicine(10000)
@@ -303,7 +314,7 @@ var/global/list/robot_modules = list(
 	speed_factor = 0.8 //Kinda slow
 	power_efficiency = 0.6 //Very poor, shackled to a charger
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_BIO = 40,
 		STAT_COG = 10
 	)
@@ -387,13 +398,13 @@ var/global/list/robot_modules = list(
 	//Rescue module has built in crew monitor
 	//General medical does not, they're expected to stay in medbay and use the computers
 	subsystems = list(/datum/nano_module/crew_monitor)
-	supported_upgrades = list(/obj/item/borg/upgrade/jetpack)
+
 
 	health = 270 //Tough
 	speed_factor = 1.3 //Turbospeed!
 	power_efficiency = 1.2 //Good for long journeys
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_BIO = 20,
 		STAT_ROB = 10,
 		STAT_TGH = 10
@@ -455,7 +466,6 @@ var/global/list/robot_modules = list(
 	channels = list("Engineering" = 1)
 	networks = list(NETWORK_ENGINEERING)
 	subsystems = list(/datum/nano_module/power_monitor)
-	supported_upgrades = list(/obj/item/borg/upgrade/jetpack)
 	sprites = list(
 					"Basic" = "robotengi",
 					"Antique" = "engineerrobot",
@@ -469,7 +479,6 @@ var/global/list/robot_modules = list(
 					"Plated" = "ceborg",
 					"Heavy" = "heavyeng"
 					)
-	supported_upgrades = list(/obj/item/borg/upgrade/jetpack)
 	health = 240 //Slightly above average
 	speed_factor = 1.1 //Slightly above average
 	power_efficiency = 0.9 //Slightly below average
@@ -478,7 +487,7 @@ var/global/list/robot_modules = list(
 	as well as occasional repair work here and there. It's a good all rounder that can serve most \
 	engineering tasks."
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_COG = 20,
 		STAT_MEC = 40
 	)
@@ -665,7 +674,7 @@ var/global/list/robot_modules = list(
 	desc = "Focused on keeping the peace and fighting off threats to the ship, the security module is a \
 	heavily armored, though lightly armed battle unit."
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_ROB = 30,
 		STAT_TGH = 20
 	)
@@ -726,7 +735,7 @@ var/global/list/robot_modules = list(
 	speed_factor = 0.85 //Slow
 	power_efficiency = 0.8 //Poor
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_ROB = 20
 	)
 
@@ -745,6 +754,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/device/lightreplacer(src)
 	src.modules += new /obj/item/weapon/reagent_containers/glass/bucket(src) // a hydroponist's bucket
 	src.modules += new /obj/item/weapon/matter_decompiler(src) // free drone remains for all
+	src.modules += new /obj/item/device/t_scanner(src)
 	src.emag = new /obj/item/weapon/reagent_containers/spray(src)
 	src.emag.reagents.add_reagent("lube", 250)
 	src.emag.name = "Lube spray"
@@ -817,7 +827,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/form_printer(src)
 	src.modules += new /obj/item/weapon/gripper/paperwork(src)
 	src.modules += new /obj/item/weapon/hand_labeler(src)
-	src.modules += new /obj/item/weapon/tape_roll(src) //allows it to place flyers
+	src.modules += new /obj/item/weapon/tool/tape_roll(src) //allows it to place flyers
 	src.modules += new /obj/item/weapon/stamp/denied(src) //why was this even a emagged item before smh
 
 	var/obj/item/weapon/rsf/M = new /obj/item/weapon/rsf(src)
@@ -865,12 +875,11 @@ var/global/list/robot_modules = list(
 					"Heavy" = "heavymine",
 					"Spider" = "spidermining"
 				)
-	supported_upgrades = list(/obj/item/borg/upgrade/jetpack)
 	health = 250 //Pretty tough
 	speed_factor = 0.9 //meh
 	power_efficiency = 1.5 //Best efficiency
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_ROB = 20,
 		STAT_TGH = 20
 	)
@@ -891,6 +900,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/storage/bag/sheetsnatcher/borg(src)
 	src.modules += new /obj/item/weapon/gripper/miner(src)
 	src.modules += new /obj/item/weapon/mining_scanner(src)
+	src.modules += new /obj/item/device/t_scanner(src)
 	//src.emag = new /obj/item/weapon/gun/energy/plasmacutter/mounted(src)
 	..(R)
 
@@ -914,7 +924,7 @@ var/global/list/robot_modules = list(
 	duties, this module prioritises flexibility over efficiency. Capable of working in R&D, Toxins, \
 	chemistry, xenobiology and robotics."
 
-	stat_modifers = list(
+	stat_modifiers = list(
 		STAT_BIO = 30,
 		STAT_COG = 40,
 		STAT_MEC = 30
@@ -956,6 +966,7 @@ var/global/list/robot_modules = list(
 //Syndicate borg is intended for summoning by traitors. Not currently implemented
 /obj/item/weapon/robot_module/syndicate
 	name = "syndicate robot module"
+	hide_on_manifest = TRUE
 	languages = list(
 					LANGUAGE_SOL_COMMON = 1,
 					LANGUAGE_TRADEBAND = 1,
@@ -984,7 +995,6 @@ var/global/list/robot_modules = list(
 	//src.modules += new /obj/item/weapon/gun/launcher/grenade/cyborg(src)
 	src.modules += new /obj/item/weapon/tool/crowbar/robotic(src)
 	//src.modules += new /obj/item/weapon/robot_emag(src)
-	supported_upgrades = list(/obj/item/borg/upgrade/jetpack)
 
 	..(R)
 
@@ -993,12 +1003,12 @@ var/global/list/robot_modules = list(
 //Not currently implemented, needs discussion
 /obj/item/weapon/robot_module/combat
 	name = "combat robot module"
+	hide_on_manifest = TRUE
 	channels = list("Security" = 1)
 	networks = list(NETWORK_SECURITY)
 	subsystems = list(/datum/nano_module/crew_monitor)
 	sprites = list("Roller" = "droid-combat")
 	can_be_pushed = 0
-	supported_upgrades = list(/obj/item/borg/upgrade/jetpack)
 
 /obj/item/weapon/robot_module/combat/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/device/flash(src)
@@ -1013,8 +1023,13 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/drone
 	name = "drone module"
+	hide_on_manifest = TRUE
 	no_slip = 1
 	networks = list(NETWORK_ENGINEERING)
+	stat_modifiers = list(
+		STAT_COG = 15,
+		STAT_MEC = 30
+	)
 
 /obj/item/weapon/robot_module/drone/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/weapon/tool/weldingtool/robotic(src)
@@ -1023,6 +1038,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/tool/crowbar/robotic(src)
 	src.modules += new /obj/item/weapon/tool/wirecutters/robotic(src)
 	src.modules += new /obj/item/weapon/tool/multitool/robotic(src)
+	src.modules += new /obj/item/device/t_scanner(src)
 	src.modules += new /obj/item/device/lightreplacer(src)
 	src.modules += new /obj/item/weapon/gripper(src)
 	src.modules += new /obj/item/weapon/soap(src)
@@ -1036,8 +1052,8 @@ var/global/list/robot_modules = list(
 
 	var/datum/matter_synth/metal = new /datum/matter_synth/metal(25000)
 	var/datum/matter_synth/glass = new /datum/matter_synth/glass(25000)
-	var/datum/matter_synth/wood = new /datum/matter_synth/wood(4000)
-	var/datum/matter_synth/plastic = new /datum/matter_synth/plastic(2000)
+	var/datum/matter_synth/wood = new /datum/matter_synth/wood(10000)
+	var/datum/matter_synth/plastic = new /datum/matter_synth/plastic(10000)
 	var/datum/matter_synth/wire = new /datum/matter_synth/wire(15)
 	synths += metal
 	synths += glass
@@ -1138,6 +1154,5 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/tool/multitool/robotic(src)
 	src.modules += new /obj/item/weapon/tool/wirecutters/robotic(src)
 	src.modules += new /obj/item/weapon/tool/weldingtool/robotic(src)
-	supported_upgrades = list(/obj/item/borg/upgrade/jetpack)
 
 	..(R)

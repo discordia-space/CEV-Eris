@@ -6,6 +6,8 @@
 // Items that ask to be called every cycle.
 var/global/datum/datacore/data_core = null
 var/global/list/all_areas                = list()
+var/global/list/ship_areas                = list()
+
 //var/global/list/machines                 = list()		//Removed
 //var/global/list/processing_objects       = list()		//Removed
 //var/global/list/processing_power_items   = list()		//Removed
@@ -23,6 +25,7 @@ var/global/list/global_map = null
 var/list/hit_appends = list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")
 
 
+var/runtime_diary		= null
 var/diary               = null
 var/world_qdel_log		= null
 var/href_logfile        = null
@@ -31,9 +34,9 @@ var/station_short       = "Eris"
 var/const/dock_name     = "N.A.S. Crescent"
 var/const/boss_name     = "Central Command"
 var/const/boss_short    = "Centcomm"
-var/const/company_name  = "NanoTrasen"
-var/const/company_short = "NT"
-var/game_version        = "Baystation12"
+var/const/company_name  = "CEV Eris"
+var/const/company_short = "Eris"
+var/game_version        = "Discordia"
 var/changelog_hash      = ""
 var/game_year           = (text2num(time2text(world.realtime, "YYYY")) + 544)
 
@@ -58,16 +61,12 @@ var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
 )
 
 var/datum/configuration/config      = null
-var/datum/sun/sun                   = new
 
 var/Debug2 = 0
 
 var/gravity_is_on = 1
 
 var/join_motd = null
-
-var/datum/nanomanager/nanomanager		= new() // NanoManager, the manager for Nano UIs.
-var/datum/event_manager/event_manager	= new() // Event Manager, the manager for events.
 
 var/list/awaydestinations = list() // Away missions. A list of landmarks that the warpgate can take you to.
 
@@ -123,4 +122,3 @@ var/max_explosion_range = 14
 // Announcer intercom, because too much stuff creates an intercom for one message then hard del()s it.
 var/global/obj/item/device/radio/intercom/global_announcer = new(null)
 
-var/list/station_departments = list("Command", "Medical", "Engineering", "Science", "Security", "Cargo", "Civilian")

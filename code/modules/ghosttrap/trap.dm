@@ -22,7 +22,7 @@ var/list/ghost_traps
 /datum/ghosttrap
 	var/object = "positronic brain"
 	var/minutes_since_death = 0     // If non-zero the ghost must have been dead for this many minutes to be allowed to spawn
-	var/list/ban_checks = list("AI","Cyborg")
+	var/list/ban_checks = list("AI","Robot")
 	var/pref_check = BE_SYNTH
 	var/ghost_trap_message = "They are occupying a positronic brain now."
 	var/ghost_trap_role = "Positronic Brain"
@@ -36,9 +36,10 @@ var/list/ghost_traps
 	..()
 
 // Check for bans, proper atom types, etc.
-/datum/ghosttrap/proc/assess_candidate(var/mob/observer/ghost/candidate, var/mob/target)
-	if(!candidate.MayRespawn(1, minutes_since_death))
-		return 0
+/datum/ghosttrap/proc/assess_candidate(var/mob/observer/ghost/candidate, var/mob/target, check_respawn_timer=TRUE)
+	if(check_respawn_timer)
+		if(!candidate.MayRespawn(1, respawn_type=CREW))
+			return 0
 	if(islist(ban_checks))
 		for(var/bantype in ban_checks)
 			if(jobban_isbanned(candidate, "[bantype]"))
@@ -50,11 +51,11 @@ var/list/ghost_traps
 /datum/ghosttrap/proc/request_player(var/mob/target, var/request_string, var/request_timeout)
 	if(request_timeout)
 		request_timeouts[target] = world.time + request_timeout
-		destroyed_event.register(target, src, /datum/ghosttrap/proc/target_destroyed)
+		GLOB.destroyed_event.register(target, src, /datum/ghosttrap/proc/target_destroyed)
 	else
 		request_timeouts -= target
 
-	for(var/mob/observer/ghost/O in player_list)
+	for(var/mob/observer/ghost/O in GLOB.player_list)
 		if(!O.MayRespawn())
 			continue
 		if(islist(ban_checks))
@@ -91,8 +92,8 @@ var/list/ghost_traps
 		return 1
 
 // Shunts the ckey/mind into the target mob.
-/datum/ghosttrap/proc/transfer_personality(var/mob/candidate, var/mob/target)
-	if(!assess_candidate(candidate))
+/datum/ghosttrap/proc/transfer_personality(var/mob/candidate, var/mob/target, check_respawn_timer=TRUE)
+	if(!assess_candidate(candidate, check_respawn_timer=check_respawn_timer))
 		return 0
 	target.ckey = candidate.ckey
 	if(target.mind)

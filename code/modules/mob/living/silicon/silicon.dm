@@ -6,6 +6,8 @@
 	var/lawchannel = MAIN_CHANNEL // Default channel on which to state laws
 	var/list/stating_laws = list()// Channels laws are currently being stated on
 	var/obj/item/device/radio/common_radio
+	//plug before baymed arrives
+	var/obj/item/device/radio/silicon_radio
 
 	var/list/hud_list[10]
 	var/list/speech_synthesizer_langs = list()	//which languages can be vocalized by the speech synthesizer
@@ -27,19 +29,22 @@
 	var/obj/item/weapon/card/id/idcard
 	var/idcard_type = /obj/item/weapon/card/id/synthetic
 
+	var/email_ringtone = TRUE
+
 	#define SEC_HUD 1 //Security HUD mode
 	#define MED_HUD 2 //Medical HUD mode
+	mob_classification = CLASSIFICATION_SYNTHETIC
 
 /mob/living/silicon/New()
-	silicon_mob_list |= src
+	GLOB.silicon_mob_list |= src
 	..()
 	add_language(LANGUAGE_COMMON)
 	init_id()
 	init_subsystems()
 
 /mob/living/silicon/Destroy()
-	silicon_mob_list -= src
-	for(var/datum/alarm_handler/AH in alarm_manager.all_handlers)
+	GLOB.silicon_mob_list -= src
+	for(var/datum/alarm_handler/AH in SSalarm.all_handlers)
 		AH.unregister_alarm(src)
 	. = ..()
 
@@ -49,14 +54,18 @@
 	idcard = new idcard_type(src)
 	set_id_info(idcard)
 
-/mob/living/silicon/proc/SetName(pickedName as text)
+/mob/living/silicon/SetName(pickedName as text)
 	real_name = pickedName
 	name = real_name
+	create_or_rename_email(pickedName, "root.rt")
 
 /mob/living/silicon/proc/show_laws()
 	return
 
 /mob/living/silicon/drop_item()
+	if(isrobot(src))
+		var/mob/living/silicon/robot/R = src
+		R.update_robot_modules_display()
 	return
 
 /mob/living/silicon/emp_act(severity)
@@ -100,6 +109,8 @@
 	return 1
 
 /mob/living/silicon/bullet_act(var/obj/item/projectile/Proj)
+	if (Proj.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
+		IgniteMob()
 
 	if(!Proj.nodamage)
 		switch(Proj.damage_type)
@@ -170,22 +181,11 @@
 		show_malf_ai()
 	. = ..()
 
-// this function displays the stations manifest in a separate window
-/mob/living/silicon/proc/show_station_manifest()
-	var/dat
-	dat += "<h4>Crew Manifest</h4>"
-	if(data_core)
-		dat += data_core.get_manifest(1) // make it monochrome
-	dat += "<br>"
-	src << browse(dat, "window=airoster")
-	onclose(src, "airoster")
-
 //can't inject synths
 /mob/living/silicon/can_inject(var/mob/user, var/error_msg)
 	if(error_msg)
 		user << "<span class='alert'>The armoured plating is too tough.</span>"
 	return 0
-
 
 //Silicon mob language procs
 

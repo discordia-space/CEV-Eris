@@ -194,7 +194,7 @@
 			<tr id='title_tr'>
 				<td align='center'>
 					<font size='5'><b>Player panel</b></font><br>
-					Hover over a line to see more information - <a href='?src=\ref[src];check_antagonist=1'>Check antagonists</a>
+					Hover over a line to see more information - <a href='?src=\ref[src];check_antagonist=1'>Storyteller Panel</a>
 					<p>
 				</td>
 			</tr>
@@ -245,7 +245,7 @@
 					else if(ispAI(M))
 						M_job = "pAI"
 					else if(isrobot(M))
-						M_job = "Cyborg"
+						M_job = "Robot"
 					else
 						M_job = "Silicon-based"
 
@@ -320,8 +320,8 @@
 
 
 /datum/admins/proc/storyteller_panel()
-	if(ticker && ticker.storyteller)
-		ticker.storyteller.storyteller_panel()
+	if(get_storyteller())
+		get_storyteller().storyteller_panel()
 	else
 		usr << SPAN_WARNING("There is no storyteller.")
 

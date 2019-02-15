@@ -18,7 +18,7 @@
 /obj/item/weapon/storage/bag
 	allow_quick_gather = 1
 	allow_quick_empty = 1
-	display_contents_with_number = 0 // UNStABLE AS FuCK, turn on when it stops crashing clients
+	display_contents_with_number = 1
 	use_to_pickup = 1
 	slot_flags = SLOT_BELT
 
@@ -171,8 +171,8 @@
 
 		if(!inserted || !S.amount)
 			usr.remove_from_mob(S)
-			usr.update_icons()	//update our overlays
-			if (usr.client && usr.s_active != src)
+			usr.update_icons() //update our overlays
+			if (usr.client)
 				usr.client.screen -= S
 			S.dropped(usr)
 			if(!S.amount)
@@ -180,36 +180,9 @@
 			else
 				S.loc = src
 
-		orient2hud(usr)
-		if(usr.s_active)
-			usr.s_active.show_to(usr)
+		refresh_all()
 		update_icon()
 		return 1
-
-
-// Sets up numbered display to show the stack size of each stored mineral
-// NOTE: numbered display is turned off currently because it's broken
-	orient2hud(mob/user as mob)
-		var/adjusted_contents = contents.len
-
-		//Numbered contents display
-		var/list/datum/numbered_display/numbered_contents
-		if(display_contents_with_number)
-			numbered_contents = list()
-			adjusted_contents = 0
-			for(var/obj/item/stack/material/I in contents)
-				adjusted_contents++
-				var/datum/numbered_display/D = new/datum/numbered_display(I)
-				D.number = I.amount
-				numbered_contents.Add( D )
-
-		var/row_num = 0
-		var/col_count = min(7,storage_slots) -1
-		if (adjusted_contents > 7)
-			row_num = round((adjusted_contents-1) / 7) // 7 is the maximum allowed width.
-		src.slot_orient_objs(row_num, col_count, numbered_contents)
-		return
-
 
 // Modified quick_empty verb drops appropriate sized stacks
 	quick_empty()
@@ -222,9 +195,8 @@
 				S.amount -= stacksize
 			if(!S.amount)
 				qdel(S) // todo: there's probably something missing here
-		orient2hud(usr)
-		if(usr.s_active)
-			usr.s_active.show_to(usr)
+
+		refresh_all()
 		update_icon()
 
 // Instead of removing

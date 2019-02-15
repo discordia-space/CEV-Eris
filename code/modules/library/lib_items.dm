@@ -46,7 +46,7 @@
 		user << SPAN_NOTICE("You begin dismantling \the [src].")
 		if(do_after(user,25,src))
 			user << SPAN_NOTICE("You dismantle \the [src].")
-			new /obj/item/stack/material/wood(get_turf(src), amount = 3)
+			new /obj/item/stack/material/wood(get_turf(src), 10)
 			for(var/obj/item/weapon/book/b in contents)
 				b.loc = (get_turf(src))
 			qdel(src)
@@ -258,7 +258,7 @@
 		..()
 
 /obj/item/weapon/book/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	if(user.targeted_organ == O_EYES)
+	if(user.targeted_organ == BP_EYES)
 		user.visible_message(SPAN_NOTICE("You open up the book and show it to [M]. "), \
 			SPAN_NOTICE(" [user] opens up a book and shows it to [M]. "))
 		M << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book")

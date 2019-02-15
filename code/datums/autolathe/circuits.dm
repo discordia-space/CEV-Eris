@@ -1,5 +1,4 @@
 /datum/autolathe/recipe/circuit
-	reagents = list("silicon" = 10)
 
 /datum/autolathe/recipe/circuit/airlockmodule
 	name = "airlock electronics"
@@ -20,6 +19,10 @@
 /datum/autolathe/recipe/circuit/autolathe
 	name = "autolathe"
 	path = /obj/item/weapon/circuitboard/autolathe
+
+/datum/autolathe/recipe/circuit/vending
+	name = "custom Vendomat"
+	path = /obj/item/weapon/circuitboard/vending
 
 /datum/autolathe/recipe/circuit/autolathe_excelsior
 	name = "excelsior autolathe"
@@ -52,10 +55,6 @@
 /datum/autolathe/recipe/circuit/teleporter
 	name = "teleporter control console"
 	path = /obj/item/weapon/circuitboard/teleporter
-
-/datum/autolathe/recipe/circuit/crew
-	name = "crew monitoring console"
-	path = /obj/item/weapon/circuitboard/crew
 
 /datum/autolathe/recipe/circuit/operating
 	name = "patient monitoring console"

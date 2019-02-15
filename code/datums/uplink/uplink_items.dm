@@ -75,7 +75,7 @@ var/datum/uplink/uplink = new()
 
 	// With no owner, there's no need to check antag status.
 	if(!U.uplink_owner)
-		return 0
+		return 1
 
 	for(var/antag_role in antag_roles)
 		if(player_is_antag_id(U.uplink_owner, antag_role))
@@ -116,9 +116,8 @@ datum/uplink_item/dd_SortValue()
 		var/list/L = I
 		if(L.len) I = L[1]
 
-	if(istype(I) && ishuman(user))
-		var/mob/living/carbon/human/A = user
-		A.put_in_any_hand_if_possible(I)
+	if(istype(I))
+		user.put_in_hands(I)
 	return I
 
 /datum/uplink_item/item/get_goods(var/obj/item/device/uplink/U, var/loc)

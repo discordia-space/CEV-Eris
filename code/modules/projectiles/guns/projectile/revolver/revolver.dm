@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/revolver
 	name = "FS REV .357 \"Miller\""
-	desc = "The Frozen Star's Miller is a choice revolver for when you absolutely, positively need to put a hole in the other guy. Uses old school .357 ammo."
+	desc = "The \"Frozen Star\" \"Miller\" is a revolver of choice when you absolutely, positively need to make a hole in someone. Uses old-school .357 ammo."
 	icon_state = "revolver"
 	item_state = "revolver"
 	caliber = "357"
@@ -13,6 +13,7 @@
 	reload_sound 	= 'sound/weapons/guns/interact/rev_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/rev_cock.ogg'
 	fire_sound = 'sound/weapons/guns/fire/revolver_fire.ogg'
+	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 8)
 	var/chamber_offset = 0 //how many empty chambers in the cylinder until you hit a round
 
 /obj/item/weapon/gun/projectile/revolver/verb/spin_cylinder()

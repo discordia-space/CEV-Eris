@@ -5,7 +5,8 @@
 	computer_id	= client.computer_id
 	log_access("Login: [key_name(src)] from [lastKnownIP ? lastKnownIP : "localhost"]-[computer_id] || BYOND v[client.byond_version]")
 	if(config.log_access)
-		for(var/mob/M in player_list)
+		var/is_multikeying = 0
+		for(var/mob/M in GLOB.player_list)
 			if(M == src)	continue
 			if( M.key && (M.key != key) )
 				var/matches
@@ -14,7 +15,7 @@
 				if( (client.connection != "web") && (M.computer_id == client.computer_id) )
 					if(matches)	matches += " and "
 					matches += "ID ([client.computer_id])"
-					spawn() alert("You have logged in already with another key this round, please log out of this one NOW or risk being banned!")
+					is_multikeying = 1
 				if(matches)
 					if(M.client)
 						message_admins("<font color='red'><B>Notice: </B></font><font color='blue'><A href='?src=\ref[usr];priv_msg=\ref[src]'>[key_name_admin(src)]</A> has the same [matches] as <A href='?src=\ref[usr];priv_msg=\ref[M]'>[key_name_admin(M)]</A>.</font>", 1)
@@ -22,10 +23,13 @@
 					else
 						message_admins("<font color='red'><B>Notice: </B></font><font color='blue'><A href='?src=\ref[usr];priv_msg=\ref[src]'>[key_name_admin(src)]</A> has the same [matches] as [key_name_admin(M)] (no longer logged in). </font>", 1)
 						log_access("Notice: [key_name(src)] has the same [matches] as [key_name(M)] (no longer logged in).")
+		if(is_multikeying && !client.warned_about_multikeying)
+			client.warned_about_multikeying = 1
+			spawn(1 SECOND)
+				to_chat(src, "<b>WARNING:</b> It would seem that you are sharing connection or computer with another player. If you haven't done so already, please contact the staff via the Adminhelp verb to resolve this situation. Failure to do so may result in administrative action. You have been warned.")
 
 /mob/Login()
-
-	player_list |= src
+	GLOB.player_list |= src
 	update_Login_details()
 	world.update_status()
 
@@ -47,3 +51,11 @@
 
 	//set macro to normal incase it was overriden (like cyborg currently does)
 	winset(src, null, "mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true input.background-color=#D3B5B5")
+
+	if (client)
+		if(client.UI)
+			client.UI.show()
+		else
+			client.create_UI(src.type)
+		add_click_catcher()
+		client.CAN_MOVE_DIAGONALLY = FALSE

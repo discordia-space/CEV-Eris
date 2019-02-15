@@ -93,20 +93,66 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	var/list/accessable_levels = new
 	var/list/empty_levels = null     // Empty Z-levels that may be used for various things
 	var/list/names = new
+	var/security_state = /decl/security_state/default // The default security state system to use.
+
+	var/list/loadout_blacklist	//list of types of loadout items that will not be pickable
+
+	var/default_spawn = "Cryogenic Storage"
+
+	var/allowed_jobs = list(/datum/job/captain, /datum/job/rd, /datum/job/hop, /datum/job/cmo, /datum/job/chief_engineer, /datum/job/ihc,
+						/datum/job/gunserg, /datum/job/inspector, /datum/job/medspec, /datum/job/ihoper,
+						/datum/job/doctor, /datum/job/chemist, /datum/job/paramedic, /datum/job/psychiatrist,
+						/datum/job/technomancer,
+						/datum/job/cargo_tech, /datum/job/mining, /datum/job/merchant,
+						/datum/job/janitor, /datum/job/chef, /datum/job/bartender, /datum/job/hydro, /datum/job/actor,
+						/datum/job/chaplain,
+						/datum/job/scientist, /datum/job/roboticist,
+						/datum/job/ai, /datum/job/cyborg,
+						/datum/job/assistant
+
+						)
 
 	var/overmap_z
 	var/overmap_size = 50
 	var/overmap_event_areas = 40
 
-	var/emergency_shuttle_docked_message = "The escape pods are now unlocked. You have approximately %ETD% to board the escape pods."
+	var/emergency_shuttle_docked_message = "The escape pods are now armed. You have approximately %ETD% to board the escape pods."
 	var/emergency_shuttle_leaving_dock = "The escape pods have been launched, arriving at rendezvous point in %ETA%."
-	var/emergency_shuttle_called_message = "The emergency evacuation procedures are now in effect. Escape pods will unlock in %ETA%"
+	var/emergency_shuttle_called_message = "The emergency evacuation procedures are now in effect. Escape pods will be armed in %ETA%"
 	var/emergency_shuttle_recall_message = "Emergency evacuation sequence aborted. Return to normal operating conditions."
 
 	var/shuttle_docked_message = "Jump preparation complete. The bluespace drive is now spooling up, secure all stations for departure. Time to jump: approximately %ETD%."
 	var/shuttle_leaving_dock = "Jump initiated, exiting bluespace in %ETA%."
 	var/shuttle_called_message = "Jump sequence initiated. Transit procedures are now in effect. Jump in %ETA%."
 	var/shuttle_recall_message = "Jump sequence aborted, return to normal operating conditions."
+
+	var/list/usable_email_tlds = list("cev_eris.org","eris.scg","eris.net")
+	var/path = "eris"
+
+	var/access_modify_region = list(
+		ACCESS_REGION_SECURITY = list(access_hos, access_change_ids),
+		ACCESS_REGION_MEDBAY = list(access_cmo, access_change_ids),
+		ACCESS_REGION_RESEARCH = list(access_rd, access_change_ids),
+		ACCESS_REGION_ENGINEERING = list(access_ce, access_change_ids),
+		ACCESS_REGION_COMMAND = list(access_change_ids),
+		ACCESS_REGION_GENERAL = list(access_change_ids),
+		ACCESS_REGION_SUPPLY = list(access_change_ids)
+	)
+
+/datum/maps_data/proc/character_save_path(var/slot)
+	return "/[path]/character[slot]"
+
+/datum/maps_data/proc/character_load_path(var/savefile/S, var/slot)
+	var/original_cd = S.cd
+	S.cd = "/"
+	. = private_use_legacy_saves(S, slot) ? "/character[slot]" : "/[path]/character[slot]"
+	S.cd = original_cd // Attempting to make this call as side-effect free as possible
+
+/datum/maps_data/proc/private_use_legacy_saves(var/savefile/S, var/slot)
+	if(!S.dir.Find(path)) // If we cannot find the map path folder, load the legacy save
+		return TRUE
+	S.cd = "/[path]" // Finally, if we cannot find the character slot in the map path folder, load the legacy save
+	return !S.dir.Find("character[slot]")
 
 
 /datum/maps_data/proc/registrate(var/obj/map_data/MD)

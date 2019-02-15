@@ -16,7 +16,7 @@ var/global/floorIsLava = 0
 	var/rendered = "<span class=\"log_message\"><span class=\"prefix\">ATTACK:</span> <span class=\"message\">[text]</span></span>"
 	for(var/client/C in admins)
 		if(R_ADMIN & C.holder.rights)
-			if(C.is_preference_enabled(/datum/client_preference/admin/show_attack_logs))
+			if(C.get_preference_value(/datum/client_preference/staff/show_attack_logs) == GLOB.PREF_SHOW)
 				var/msg = rendered
 				C << msg
 
@@ -24,6 +24,10 @@ proc/admin_notice(var/message, var/rights)
 	for(var/mob/M in SSmobs.mob_list)
 		if(check_rights(rights, 0, M))
 			M << message
+
+// Not happening.
+/datum/admins/SDQL_update(var/const/var_name, var/new_value)
+	return 0
 
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
@@ -476,8 +480,8 @@ ADMIN_VERB_ADD(/datum/admins/proc/access_news_network, R_ADMIN, FALSE)
 		return
 
 	var/dat = "<center><B>Game Panel</B></center><hr>"
-	if(ticker.storyteller && (ticker.current_state != GAME_STATE_PREGAME))
-		dat += "<A href='?src=\ref[ticker.storyteller]'>Storyteller Panel</A><br>"
+	if(get_storyteller() && (SSticker.current_state != GAME_STATE_PREGAME))
+		dat += "<A href='?src=\ref[get_storyteller()]'>Storyteller Panel</A><br>"
 	else
 		dat += "<A href='?src=\ref[src];c_mode=1'>Change Storyteller</A><br>"
 
@@ -630,18 +634,17 @@ ADMIN_VERB_ADD(/datum/admins/proc/startnow, R_SERVER, FALSE)
 	set category = "Server"
 	set desc="Start the round RIGHT NOW"
 	set name="Start Now"
-	if(!ticker)
-		alert("Unable to start the game as it is not set up.")
-		return
-	if(ticker.current_state == GAME_STATE_PREGAME)
-		ticker.current_state = GAME_STATE_SETTING_UP
+	if(SSticker.current_state <= GAME_STATE_PREGAME)
+		SSticker.start_immediately = TRUE
 		log_admin("[usr.key] has started the game.")
-		message_admins("<font color='blue'>[usr.key] has started the game.</font>")
-
-		return 1
+		var/msg = ""
+		if(SSticker.current_state == GAME_STATE_STARTUP)
+			msg = " (The server is still setting up, but the round will be \
+				started as soon as possible.)"
+		message_admins("<font color='blue'>\
+			[usr.key] has started the game.[msg]</font>")
 	else
 		usr << "<font color='red'>Error: Start Now: Game has already started.</font>"
-		return 0
 
 ADMIN_VERB_ADD(/datum/admins/proc/toggleenter, R_ADMIN, FALSE)
 //toggles whether people can join the current game
@@ -706,11 +709,11 @@ ADMIN_VERB_ADD(/datum/admins/proc/delay, R_SERVER, FALSE)
 
 	if(!check_rights(R_SERVER))
 		return
-	if (!ticker || ticker.current_state != GAME_STATE_PREGAME)
-		ticker.delay_end = !ticker.delay_end
-		log_admin("[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
-		message_admins("\blue [key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].", 1)
-		return //alert("Round end delayed", null, null, null, null, null)
+	if (SSticker.current_state != GAME_STATE_PREGAME && SSticker.current_state != GAME_STATE_STARTUP)
+		SSticker.delay_end = !SSticker.delay_end
+		log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
+		message_admins("\blue [key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].", 1)
+		return
 	round_progressing = !round_progressing
 	if (!round_progressing)
 		world << "<b>The game start has been delayed.</b>"
@@ -914,28 +917,28 @@ ADMIN_VERB_ADD(/datum/admins/proc/show_game_mode, R_ADMIN, FALSE)
 	set desc = "Show the current round storyteller."
 	set name = "Show Storyteller"
 
-	if(!ticker || !ticker.storyteller)
+	if(!get_storyteller())
 		alert("Not before roundstart!", "Alert")
 		return
 
-	var/out = "<font size=3><b>Current storyteller: [ticker.storyteller.name] (<a href='?src=\ref[ticker.storyteller];debug_antag=self'>[ticker.storyteller.config_tag]</a>)</b></font><br/>"
+	var/out = "<font size=3><b>Current storyteller: [get_storyteller().name] (<a href='?src=\ref[get_storyteller()];debug_antag=self'>[get_storyteller().config_tag]</a>)</b></font><br/>"
 	out += "<hr>"
 
-	if(ticker.mode.antag_tags && ticker.mode.antag_tags.len)
+	if(SSticker.mode.antag_tags && SSticker.mode.antag_tags.len)
 		out += "<b>Core antag templates:</b></br>"
-		for(var/antag_tag in ticker.mode.antag_tags)
-			out += "<a href='?src=\ref[ticker.mode];debug_antag=[antag_tag]'>[antag_tag]</a>.</br>"
+		for(var/antag_tag in SSticker.mode.antag_tags)
+			out += "<a href='?src=\ref[SSticker.mode];debug_antag=[antag_tag]'>[antag_tag]</a>.</br>"
 
 	out += "<b>All antag ids:</b>"
-	if(ticker.mode.antag_templates && ticker.mode.antag_templates.len).
-		for(var/datum/antagonist/antag in ticker.mode.antag_templates)
+	if(SSticker.mode.antag_templates && SSticker.mode.antag_templates.len).
+		for(var/datum/antagonist/antag in SSticker.mode.antag_templates)
 			antag.update_current_antag_max()
-			out += " <a href='?src=\ref[ticker.mode];debug_antag=[antag.id]'>[antag.id]</a>"
+			out += " <a href='?src=\ref[SSticker.mode];debug_antag=[antag.id]'>[antag.id]</a>"
 			out += " ([antag.get_antag_count()]/[antag.cur_max]) "
-			out += " <a href='?src=\ref[ticker.mode];remove_antag_type=[antag.id]'>\[-\]</a><br/>"
+			out += " <a href='?src=\ref[SSticker.mode];remove_antag_type=[antag.id]'>\[-\]</a><br/>"
 	else
 		out += " None."
-	out += " <a href='?src=\ref[ticker.mode];add_antag_type=1'>\[+\]</a><br/>"
+	out += " <a href='?src=\ref[SSticker.mode];add_antag_type=1'>\[+\]</a><br/>"
 
 	usr << browse(out, "window=edit_mode[src]")
 */
@@ -1082,6 +1085,12 @@ ADMIN_VERB_ADD(/datum/admins/proc/toggleguests, R_ADMIN, FALSE)
 	log_admin("[key_name(usr)] stuffed [frommob.ckey] into [tomob.name].")
 
 	tomob.ckey = frommob.ckey
+	if(tomob.client)
+		if(tomob.client.UI)
+			tomob.client.UI.show()
+		else
+			tomob.client.create_UI(tomob.type)
+
 	qdel(frommob)
 	return 1
 
@@ -1099,12 +1108,12 @@ ADMIN_VERB_ADD(/datum/admins/proc/force_mode_latespawn, R_ADMIN, FALSE)
 		usr << "Error: you are not an admin!"
 		return
 
-	if(!ticker || !ticker.mode)
+	if(!SSticker.mode)
 		usr << "Mode has not started."
 		return
 
 	log_and_message_admins("attempting to force mode autospawn.")
-	ticker.mode.process_autoantag()
+	SSticker.mode.process_autoantag()
 */
 
 ADMIN_VERB_ADD(/datum/admins/proc/paralyze_mob, R_ADMIN, FALSE)

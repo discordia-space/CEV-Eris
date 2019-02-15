@@ -7,8 +7,11 @@
 
 /datum/shuttle/autodock/ferry/escape_pod/erispod/New()
 	name = "Escape Pod [number]"
-	dock_target = "escape_pod_[number]"
-	arming_controller = "escape_pod_[number]_berth"
+	default_docking_controller = "escape_pod_[number]"
+	controller_master = "escape_pod_[number]_controller"
+	//Todo: The controllers inside escape pods need to be swapped to the correct type of controller
+	//One which has escape pod programs instead of normal docking programs
+	dock_target = "escape_pod_[number]_berth"
 	waypoint_station = "escape_pod_[number]_start"
 	landmark_transition = "escape_pod_[number]_internim"
 	waypoint_offsite = "escape_pod_[number]_out"
@@ -22,7 +25,7 @@
 
 /obj/effect/shuttle_landmark/escape_pod/start/New()
 	landmark_tag = "escape_pod_[number]_start"
-	docking_controller = "escape_pod_[number]_berth"
+	dock_target = "escape_pod_[number]_berth"
 	..()
 
 /obj/effect/shuttle_landmark/escape_pod/transit
@@ -37,7 +40,7 @@
 
 /obj/effect/shuttle_landmark/escape_pod/out/New()
 	landmark_tag = "escape_pod_[number]_out"
-	docking_controller = "escape_pod_[number]_recovery"
+	dock_target = "escape_pod_[number]_recovery"
 	..()
 
 
@@ -70,7 +73,7 @@
 	name = "Vasiliy Dokuchaev"
 	move_time = 50
 	shuttle_area = /area/shuttle/research/station
-	dock_target = "vasiliy_dokuchaev_shuttle"
+	default_docking_controller = "vasiliy_dokuchaev_shuttle"
 	current_location = "nav_dock_expl"
 	landmark_transition = "nav_transit_expl"
 	range = 4
@@ -79,7 +82,8 @@
 /obj/effect/shuttle_landmark/eris/dock/exploration_shuttle
 	name = "Vasiliy Dokuchaev Dock"
 	landmark_tag = "nav_dock_expl"
-	docking_controller = "research_dock_airlock"
+	dock_target = "research_dock_airlock"
+	docking_controller = "vasiliy_dokuchaev_shuttle"
 	base_turf = /turf/space
 
 /obj/effect/shuttle_landmark/eris/transit/exploration_shuttle
@@ -87,11 +91,14 @@
 	landmark_tag = "nav_transit_expl"
 	base_turf = /turf/space
 
+
+
+
 /datum/shuttle/autodock/overmap/hulk
 	name = "Hulk"
 	move_time = 60
 	shuttle_area = /area/shuttle/mining/station
-	dock_target = "hulk_shuttle"
+	default_docking_controller = "hulk_shuttle"
 	current_location = "nav_dock_hulk"
 	landmark_transition = "nav_transit_hulk"
 	range = 2
@@ -100,7 +107,8 @@
 /obj/effect/shuttle_landmark/eris/dock/hulk
 	name = "Hulk Dock"
 	landmark_tag = "nav_dock_hulk"
-	docking_controller = "mining_dock_airlock"
+	dock_target = "mining_dock_airlock"
+	docking_controller = "hulk_shuttle"
 	base_turf = /turf/space
 
 /obj/effect/shuttle_landmark/eris/transit/hulk
@@ -109,7 +117,9 @@
 	base_turf = /turf/space
 
 //Skipjack
-
+//antag Shuttles disabled by nanako, 2018-09-15
+//These shuttles are created with a subtypesof loop at runtime. Starting points for the skipjack and merc shuttle are not currentl mapped in
+/*
 /datum/shuttle/autodock/multi/antag/skipjack
 	name = "Skipjack"
 	warmup_time = 0
@@ -127,7 +137,7 @@
 	home_waypoint = "nav_skipjack_start"
 	arrival_message = "Attention, vessel detected entering vessel proximity."
 	departure_message = "Attention, vessel detected leaving vessel proximity."
-
+*/
 /obj/effect/shuttle_landmark/skipjack/start
 	name = "Raider Outpost"
 	icon_state = "shuttle-red"
@@ -161,26 +171,48 @@
 /datum/shuttle/autodock/multi/antag/mercenary
 	name = "Mercenary"
 	warmup_time = 0
+	cloaked = 0
 	destination_tags = list(
 		"nav_merc_northeast",
 		"nav_merc_southwest",
 		"nav_merc_dock",
 		"nav_merc_start",
 		)
-	shuttle_area = /area/syndicate_station/start
-	dock_target = "merc_shuttle"
+	shuttle_area = /area/shuttle/mercenary
+	default_docking_controller = "merc_shuttle"
 	current_location = "nav_merc_start"
 	landmark_transition = "nav_merc_transition"
-	announcer = "SEV Torch Sensor Array"
+	announcer = "CEV Eris Sensor Array"
 	home_waypoint = "nav_merc_start"
-	arrival_message = "Attention, vessel detected entering vessel proximity."
-	departure_message = "Attention, vessel detected leaving vessel proximity."
+	arrival_message = "Attention, unidentified vessel detected on long range sensors. \nVessel is approaching on an intercept course. \nHailing frequencies open."
+	departure_message = "Attention, unknown vessel has departed"
+
+//This fires, and the mission timer starts ticking, as soon as they leave Eris on course to the mercenary base
+/datum/shuttle/autodock/multi/antag/mercenary/announce_departure()
+	.=..()
+	var/datum/faction/F = get_faction_by_id(FACTION_SERBS)
+	var/datum/objective/timed/merc/MO = (locate(/datum/objective/timed/merc) in F.objectives)
+	if (MO)
+		MO.end_mission()
+
+//This fires, and the mission timer starts ticking, as soon as they leave base
+/datum/shuttle/autodock/multi/antag/mercenary/announce_arrival()
+	.=..()
+	var/datum/faction/F = get_faction_by_id(FACTION_SERBS)
+	var/datum/objective/timed/merc/MO = (locate(/datum/objective/timed/merc) in F.objectives)
+	if (MO)
+		MO.start_mission()
+
+//Docking controller chooses which of our airlocks should open onto the target location.
+//Merc ship has only one airlock, so set that here
+/obj/effect/shuttle_landmark/merc
+	docking_controller = "merc_shuttle"
 
 /obj/effect/shuttle_landmark/merc/start
 	name = "Mercenary Base"
 	icon_state = "shuttle-red"
 	landmark_tag = "nav_merc_start"
-	docking_controller = "merc_base"
+	dock_target = "merc_base"
 
 /obj/effect/shuttle_landmark/merc/internim
 	name = "In transit"
@@ -191,7 +223,7 @@
 	name = "Docking Port"
 	icon_state = "shuttle-red"
 	landmark_tag = "nav_merc_dock"
-	docking_controller = "nuke_shuttle_dock_airlock"
+	dock_target = "second_sec_1_access_console"
 
 /obj/effect/shuttle_landmark/merc/northeast
 	name = "Northeast of the Vessel"
@@ -213,7 +245,7 @@
 	shuttle_area = /area/supply/dock
 	waypoint_offsite = "nav_cargo_start"
 	waypoint_station = "nav_cargo_vessel"
-	dock_target = "supply_shuttle"
+	default_docking_controller = "supply_shuttle"
 
 /obj/effect/shuttle_landmark/supply/centcom
 	name = "Centcom"
@@ -222,4 +254,4 @@
 /obj/effect/shuttle_landmark/supply/station
 	name = "Dock"
 	landmark_tag = "nav_cargo_vessel"
-	docking_controller = "cargo_bay"
+	dock_target = "cargo_bay"

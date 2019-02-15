@@ -18,6 +18,7 @@
 	var/hitcost = 100
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/medium
+	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
 
 /obj/item/weapon/melee/baton/New()
 	..()
@@ -44,7 +45,7 @@
 		icon_state = "[initial(name)]"
 
 	if(icon_state == "[initial(name)]_active")
-		set_light(1.5, 1, "#FF6A00")
+		set_light(1.5, 1, COLOR_LIGHTING_ORANGE_BRIGHT)
 	else
 		set_light(0)
 
@@ -163,3 +164,4 @@
 	hitcost = 150
 	attack_verb = list("poked")
 	slot_flags = null
+	structure_damage_factor = STRUCTURE_DAMAGE_NORMAL

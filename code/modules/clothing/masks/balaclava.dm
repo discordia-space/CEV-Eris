@@ -28,7 +28,7 @@
 			body_parts_covered = initial(body_parts_covered)
 			icon_state = initial(icon_state)
 			user << "You pull balaclava up to cover your face."
-		update_clothing_icon()
+		update_wear_icon()
 
 /obj/item/clothing/mask/balaclava/tactical/attack_self(mob/user)
 	adjust_mask(user)

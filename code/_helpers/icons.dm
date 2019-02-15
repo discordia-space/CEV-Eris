@@ -48,6 +48,8 @@ icon/UseAlphaMask(mask, mode)
     Sometimes you may want to take the alpha values from one icon and use them on a different icon.
     This proc will do that. Just supply the icon whose alpha mask you want to use, and src will change
     so it has the same colors as before but uses the mask for opacity.
+icon/PlainPaint(var/color)
+	paints all non transparent pixels into provided color
 
 COLOR MANAGEMENT AND HSV
 
@@ -107,7 +109,7 @@ AngleToHue(hue)
     Converts an angle to a hue in the valid range.
 RotateHue(hsv, angle)
     Takes an HSV or HSVA value and rotates the hue forward through red, green, and blue by an angle from 0 to 360.
-    (Rotating red by 60° produces yellow.) The result is another HSV or HSVA color with the same saturation and value
+    (Rotating red by 60Â° produces yellow.) The result is another HSV or HSVA color with the same saturation and value
     as the original, but a different hue.
 GrayScale(rgb)
     Takes an RGB or RGBA color and converts it to grayscale. Returns an RGB or RGBA string.
@@ -294,6 +296,16 @@ icon
 		M.Blend("#ffffff", ICON_SUBTRACT)
 		// apply mask
 		Blend(M, ICON_ADD)
+	
+	//	paints all non transparent pixels into color
+	proc/PlainPaint(var/color)
+		var/list/rgb = ReadRGB(color)
+		MapColors(0,	0,	0,	0, //-\  Ignore
+				0,	0,	0,	0, //--> The
+				0,	0,	0,	0, //-/  Colors
+				rgb[1]/255,rgb[2]/255,rgb[3]/1,255, //Keep alpha channel, any pixel with non-zero alpha gets the color
+				0,	0,	0,	0)
+
 
 /*
 	HSV format is represented as "#hhhssvv" or "#hhhssvvaa"
@@ -634,7 +646,18 @@ as a single icon. Useful for when you want to manipulate an icon via the above a
 The _flatIcons list is a cache for generated icon files.
 */
 
-proc // Creates a single icon from a given /atom or /image.  Only the first argument is required.
+proc 
+	// Creates a single icon from a given /atom type and store it for future use.  Only the first argument is required.
+	getFlatTypeIcon(var/path, defdir=2, deficon=null, defstate="", defblend=BLEND_DEFAULT, always_use_defdir = 0)
+		if(GLOB.initialTypeIcon[path])
+			return GLOB.initialTypeIcon[path]
+		else
+			var/atom/A = new path()
+			GLOB.initialTypeIcon[path] = getFlatIcon(A, defdir, deficon, defstate, defblend, always_use_defdir)
+			qdel(A)
+			return GLOB.initialTypeIcon[path]
+
+	// Creates a single icon from a given /atom or /image.  Only the first argument is required.
 	getFlatIcon(image/A, defdir=2, deficon=null, defstate="", defblend=BLEND_DEFAULT, always_use_defdir = 0)
 		// We start with a blank canvas, otherwise some icon procs crash silently
 		var/icon/flat = icon('icons/effects/effects.dmi', "icon_state"="nothing") // Final flattened icon
@@ -819,10 +842,10 @@ proc // Creates a single icon from a given /atom or /image.  Only the first argu
 			if(4)	I.pixel_y++
 		overlays += I//And finally add the overlay.
 
-/proc/getHologramIcon(icon/A, safety=1)//If safety is on, a new icon is not created.
+/proc/getHologramIcon(icon/A, safety=1, var/hologram_opacity = 0.5, var/hologram_color)//If safety is on, a new icon is not created.
 	var/icon/flat_icon = safety ? A : new(A)//Has to be a new icon to not constantly change the same icon.
-	flat_icon.ColorTone(rgb(125, 180, 225))//Let's make it bluish.
-	flat_icon.ChangeOpacity(0.5)//Make it half transparent.
+	flat_icon.ColorTone(hologram_color || rgb(125, 180, 225))//Let's make it bluish.
+	flat_icon.ChangeOpacity(hologram_opacity)//Make it half transparent.
 	var/icon/alpha_mask = new('icons/effects/effects.dmi', "scanline")//Scanline effect.
 	flat_icon.AddAlphaMask(alpha_mask)//Finally, let's mix in a distortion effect.
 	return flat_icon
@@ -844,6 +867,35 @@ proc/adjust_brightness(var/color, var/value)
 	RGB[2] = Clamp(RGB[2]+value, 0, 255)
 	RGB[3] = Clamp(RGB[3]+value, 0, 255)
 	return rgb(RGB[1],RGB[2],RGB[3])
+
+
+//Adds a list of values to the HSV of a color
+proc/adjust_HSV(var/color, var/list/values)
+	if (!color) return "#FFFFFF"
+	if (!values || !values.len) return color
+
+	var/hsv_string = RGBtoHSV(color)
+	var/list/HSV = ReadHSV(hsv_string)
+	HSV[1] = Clamp(HSV[1]+values[1], 0, 255)
+	HSV[2] = Clamp(HSV[2]+values[2], 0, 255)
+	HSV[3] = Clamp(HSV[3]+values[3], 0, 255)
+	return HSVtoRGB(hsv(HSV[1],HSV[2],HSV[3], null))
+
+//Uses a list of values to overwrite HSV components of a color
+//A null entry won't overwrite anything
+proc/set_HSV(var/color, var/list/values)
+	if (!color) return "#FFFFFF"
+	if (!values || !values.len) return color
+
+	var/hsv_string = RGBtoHSV(color)
+	var/list/HSV = ReadHSV(hsv_string)
+	if (!isnull(values[1]))
+		HSV[1] = Clamp(values[1], 0, 255)
+	if (!isnull(values[2]))
+		HSV[2] = Clamp(values[2], 0, 255)
+	if (!isnull(values[3]))
+		HSV[3] = Clamp(values[3], 0, 255)
+	return HSVtoRGB(hsv(HSV[1],HSV[2],HSV[3], null))
 
 proc/sort_atoms_by_layer(var/list/atoms)
 	// Comb sort icons based on levels
@@ -943,3 +995,50 @@ proc/set_pixel_click_offset(var/atom/A, var/params, var/animate = FALSE)
 		A.pixel_x = Clamp(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
 		A.pixel_y = Clamp(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
 
+//Calculate average color of an icon and store it in global list for future use
+proc/get_average_color(var/icon, var/icon_state, var/image_dir)
+	var/icon/I = icon(icon, icon_state, image_dir)
+	if (!istype(I))
+		return
+	if (!I.Width() || !I.Height())
+		error("proc/get_average_color: Image has wrong dimensions")
+		return
+
+	if(GLOB.average_icon_color["[icon]:[icon_state]:[image_dir]"])
+		return GLOB.average_icon_color["[icon]:[icon_state]:[image_dir]"]
+
+	var/list/average_rgb = list(0,0,0)
+	var/pixel_count = 0
+	for (var/x = 1, x <= I.Width(), x++)
+		for (var/y = 1, y <= I.Height(), y++)
+			if (!I.GetPixel(x, y, dir = image_dir))
+				continue
+			pixel_count++
+			var/list/rgb = ReadRGB(I.GetPixel(x, y, dir = image_dir))
+			average_rgb[1] += rgb[1]
+			average_rgb[2] += rgb[2]
+			average_rgb[3] += rgb[3]
+	average_rgb[1] = round(average_rgb[1] / pixel_count)
+	average_rgb[2] = round(average_rgb[2] / pixel_count)
+	average_rgb[3] = round(average_rgb[3] / pixel_count)
+
+	GLOB.average_icon_color["[icon]:[icon_state]:[image_dir]"] = rgb(average_rgb[1],average_rgb[2],average_rgb[3])
+	return GLOB.average_icon_color["[icon]:[icon_state]:[image_dir]"]
+
+// Will cache atom icon and return filename
+// can accept either object or path
+proc/cacheAtomIcon(var/atom/A, var/mob/user, var/inBackground = FALSE)
+	if(!A || (!istype(A) && !ispath(A)) || !user || !user.client)
+		return
+	var/iconName = "[ispath(A) ? A : A.type].png"
+	iconName = sanitizeFileName(iconName)
+	// for some reason browse_rsc() doesnt register file in client cache so we need to handle it manualy
+	if(!user.client.cache.Find(iconName))
+		if(inBackground)
+			spawn()
+				user << browse_rsc(ispath(A) ? getFlatTypeIcon(A) : getFlatTypeIcon(A), iconName)
+				user.client.cache.Add(iconName)
+		else
+			user << browse_rsc(ispath(A) ? getFlatTypeIcon(A) : getFlatTypeIcon(A), iconName)
+			user.client.cache.Add(iconName)
+	return iconName

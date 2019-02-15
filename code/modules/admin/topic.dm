@@ -82,7 +82,7 @@
 
 		var/mob/playermob
 
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			if(M.ckey == banckey)
 				playermob = M
 				break
@@ -133,7 +133,7 @@
 
 				message_admins("[key_name_admin(usr)] removed [adm_ckey] from the admins list")
 				log_admin("[key_name(usr)] removed [adm_ckey] from the admins list")
-				log_admin_rank_modification(adm_ckey, "Removed")
+				log_admin_rank_modification(adm_ckey, "player")
 
 		else if(task == "rank")
 			var/new_rank
@@ -193,7 +193,7 @@
 			C << "[key_name_admin(usr)] has toggled your permission: [new_permission]."
 			message_admins("[key_name_admin(usr)] toggled the [new_permission] permission of [adm_ckey]")
 			log_admin("[key_name(usr)] toggled the [new_permission] permission of [adm_ckey]")
-			log_admin_permission_modification(adm_ckey, permissionlist[new_permission])
+			log_admin_permission_modification(adm_ckey, permissionlist[new_permission], new_permission)
 
 		edit_admin_permissions()
 
@@ -315,9 +315,6 @@
 		if(!M.ckey)	//sanity
 			usr << "This mob has no ckey"
 			return
-		if(!job_master)
-			usr << "Job Master has not been setup!"
-			return
 
 		var/dat = ""
 		var/header = {"
@@ -352,9 +349,9 @@
 	//Antagonist (Orange)
 
 		var/jobban_list = list()
-		for(var/a_id in antag_bantypes)
-			var/a_ban = antag_bantypes[a_id]
-			jobban_list[antag_names[a_id]] = a_ban
+		for(var/a_id in GLOB.antag_bantypes)
+			var/a_ban = GLOB.antag_bantypes[a_id]
+			jobban_list[get_antag_data(a_id).role_text] = a_ban
 		body += formatJobGroup(M, "Antagonist Positions", "ffeeaa", "Syndicate", jobban_list)
 
 		dat = "<head>[header]</head><body><tt><table width='100%'>[body.Join(null)]</table></tt></body>"
@@ -381,48 +378,44 @@
 				alert("You cannot perform this action. You must be of a higher administrative rank!")
 				return
 
-		if(!job_master)
-			usr << "Job Master has not been setup!"
-			return
-
 		//get jobs for department if specified, otherwise just returnt he one job in a list.
 		var/list/joblist = list()
 		switch(href_list["jobban3"])
 			if("commanddept")
 				for(var/jobPos in command_positions)
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.GetJob(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("securitydept")
 				for(var/jobPos in security_positions)
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.GetJob(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("engineeringdept")
 				for(var/jobPos in engineering_positions)
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.GetJob(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("medicaldept")
 				for(var/jobPos in medical_positions)
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.GetJob(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("sciencedept")
 				for(var/jobPos in science_positions)
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.GetJob(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("civiliandept")
 				for(var/jobPos in civilian_positions)
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.GetJob(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("nonhumandept")
 				joblist += "pAI"
 				for(var/jobPos in nonhuman_positions)
 					if(!jobPos)	continue
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.GetJob(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			else
@@ -643,11 +636,14 @@
 		if(!isnum(mute_type))	return
 
 		cmd_admin_mute(M, mute_type)
+	else if(href_list["check_antagonist"])
+		if(!check_rights(R_ADMIN))	return
+		storyteller.storyteller_panel()
 
 	else if(href_list["c_mode"])
 		if(!check_rights(R_ADMIN))	return
 
-		if(ticker && ticker.storyteller)
+		if(get_storyteller())
 			return alert(usr, "The game has already started.", null, null, null, null)
 		var/dat = {"<B>What storyteller do you wish to install?</B><HR>"}
 		for(var/mode in config.storytellers)
@@ -655,15 +651,16 @@
 		dat += {"Now: [master_storyteller]"}
 		usr << browse(dat, "window=c_mode")
 
+
 	else if(href_list["c_mode2"])
 		if(!check_rights(R_ADMIN|R_SERVER))	return
 
-		if (ticker && ticker.storyteller)
-			return alert(usr, "The game has already started.", null, null, null, null)
+		//if (get_storyteller())
+			//return alert(usr, "The game has already started.", null, null, null, null)
 		master_storyteller = href_list["c_mode2"]
+		set_storyteller(master_storyteller) //This does the actual work
 		log_admin("[key_name(usr)] set the storyteller to [master_storyteller].")
 		message_admins("\blue [key_name_admin(usr)] set the storyteller to [master_storyteller].", 1)
-		world << "\blue <b>The storyteller is now: [master_storyteller]</b>"
 		Game() // updates the main game menu
 		world.save_storyteller(master_storyteller)
 		.(href, list("c_mode"=1))
@@ -877,17 +874,11 @@
 			usr << "This can only be used on instances of type /mob/living/carbon/human"
 			return
 
-		H.equip_to_slot_or_del( new /obj/item/weapon/reagent_containers/food/snacks/cookie(H), slot_l_hand )
-		if(!(istype(H.l_hand,/obj/item/weapon/reagent_containers/food/snacks/cookie)))
-			H.equip_to_slot_or_del( new /obj/item/weapon/reagent_containers/food/snacks/cookie(H), slot_r_hand )
-			if(!(istype(H.r_hand,/obj/item/weapon/reagent_containers/food/snacks/cookie)))
+		if(!H.equip_to_slot_or_del( new /obj/item/weapon/reagent_containers/food/snacks/cookie(H), slot_l_hand ))
+			if(!H.equip_to_slot_or_del( new /obj/item/weapon/reagent_containers/food/snacks/cookie(H), slot_r_hand ))
 				log_admin("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
 				message_admins("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
 				return
-			else
-				H.update_inv_r_hand()//To ensure the icon appears in the HUD
-		else
-			H.update_inv_l_hand()
 		log_admin("[key_name(H)] got their cookie, spawned by [key_name(src.owner)]")
 		message_admins("[key_name(H)] got their cookie, spawned by [key_name(src.owner)]")
 
@@ -1082,7 +1073,7 @@
 	else if(href_list["traitor"])
 		if(!check_rights(R_ADMIN|R_MOD))	return
 
-		if(!ticker || !ticker.storyteller)
+		if(!storyteller)
 			alert("The game hasn't started yet!")
 			return
 
@@ -1440,6 +1431,17 @@
 					usr << "Failed to add language '[lang2toggle]' from \the [M]!"
 
 			show_player_panel(M)
+
+	else if(href_list["viewruntime"])
+		if(check_rights(R_DEBUG))
+			var/datum/ErrorViewer/error_viewer = locate(href_list["viewruntime"])
+			if(!istype(error_viewer))
+				to_chat(usr, "<span class='warning'>That runtime viewer no longer exists.</span>")
+				return
+			if(href_list["viewruntime_backto"])
+				error_viewer.showTo(usr, locate(href_list["viewruntime_backto"]), href_list["viewruntime_linear"])
+			else
+				error_viewer.showTo(usr, null, href_list["viewruntime_linear"])
 
 mob/living/proc/can_centcom_reply()
 	return 0

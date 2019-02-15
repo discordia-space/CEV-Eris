@@ -27,7 +27,7 @@
 	var/base_name
 	var/unwielded_force_divisor = 0.25
 
-/obj/item/weapon/material/twohanded/update_held_icon()
+/obj/item/weapon/material/twohanded/update_wear_icon()
 	var/mob/living/M = loc
 	if(istype(M) && !issmall(M) && ((M.r_hand == src && !M.l_hand) || (M.l_hand == src && !M.r_hand)))
 		wielded = 1
@@ -78,7 +78,7 @@
 	name = "fire axe"
 	desc = "Truly, the weapon of a madman. Who would think to fight fire with an axe?"
 	unwielded_force_divisor = 0.25
-	force_divisor = 0.7 // 10/42 with hardness 60 (steel) and 0.25 unwielded divisor
+	force_divisor = 0.6 // 10/42 with hardness 60 (steel) and 0.25 unwielded divisor
 	sharp = 1
 	edge = 1
 	tool_qualities = list(QUALITY_CUTTING = 10, QUALITY_PRYING = 20)
@@ -87,15 +87,14 @@
 	force_wielded = 30
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	applies_material_colour = 0
+	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
+	embed_mult = 1 //Axes cut deep, and their hooked shape catches on things
 
 /obj/item/weapon/material/twohanded/fireaxe/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
 	if(!proximity) return
 	..()
 	if(A && wielded)
-		if(istype(A,/obj/structure/window))
-			var/obj/structure/window/W = A
-			W.shatter()
-		else if(istype(A,/obj/structure/grille))
+		if(istype(A,/obj/structure/grille))
 			qdel(A)
 		else if(istype(A,/obj/effect/plant))
 			var/obj/effect/plant/P = A
@@ -119,3 +118,4 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored")
 	default_material = MATERIAL_GLASS
+	embed_mult = 1.5

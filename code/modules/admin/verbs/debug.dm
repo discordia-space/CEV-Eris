@@ -43,9 +43,6 @@ ADMIN_VERB_ADD(/client/proc/Debug2, R_DEBUG, FALSE)
 	set category = "Fun"
 	set name = "Make Robot"
 
-	if(!ticker)
-		alert("Wait until the game starts")
-		return
 	if(ishuman(M))
 		log_admin("[key_name(src)] has robotized [M.key].")
 		spawn(10)
@@ -57,10 +54,6 @@ ADMIN_VERB_ADD(/client/proc/Debug2, R_DEBUG, FALSE)
 /client/proc/cmd_admin_animalize(var/mob/M in SSmobs.mob_list)
 	set category = "Fun"
 	set name = "Make Simple Animal"
-
-	if(!ticker)
-		alert("Wait until the game starts")
-		return
 
 	if(!M)
 		alert("That mob doesn't seem to exist, close the panel and try again.")
@@ -97,18 +90,15 @@ ADMIN_VERB_ADD(/client/proc/Debug2, R_DEBUG, FALSE)
 	pai.real_name = pai.name
 	pai.key = choice.key
 	card.setPersonality(pai)
-	for(var/datum/paiCandidate/candidate in paiController.pai_candidates)
+	for(var/datum/paiCandidate/candidate in SSpai.pai_candidates)
 		if(candidate.key == choice.key)
-			paiController.pai_candidates.Remove(candidate)
+			SSpai.pai_candidates.Remove(candidate)
 
 
 /client/proc/cmd_admin_slimeize(var/mob/M in SSmobs.mob_list)
 	set category = "Fun"
 	set name = "Make slime"
 
-	if(!ticker)
-		alert("Wait until the game starts")
-		return
 	if(ishuman(M))
 		log_admin("[key_name(src)] has slimeized [M.key].")
 		spawn(10)
@@ -251,26 +241,20 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_tog_aliens, R_DEBUG, FALSE)
 	set category = "Admin"
 	set name = "Grant Full Access"
 
-	if (!ticker)
-		alert("Wait until the game starts")
-		return
 	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if (H.wear_id)
-			var/obj/item/weapon/card/id/id = H.wear_id
-			if(istype(H.wear_id, /obj/item/device/pda))
-				var/obj/item/device/pda/pda = H.wear_id
-				id = pda.id
+		var/obj/item/weapon/card/id/id = H.GetIdCard()
+		if(id)
 			id.icon_state = "gold"
 			id.access = get_all_accesses()
 		else
-			var/obj/item/weapon/card/id/id = new/obj/item/weapon/card/id(M);
-			id.icon_state = "gold"
-			id.access = get_all_accesses()
-			id.registered_name = H.real_name
-			id.assignment = "Captain"
-			id.name = "[id.registered_name]'s ID Card ([id.assignment])"
-			H.equip_to_slot_or_del(id, slot_wear_id)
+			var/obj/item/weapon/card/id/new_id = new/obj/item/weapon/card/id(M);
+			new_id.icon_state = "gold"
+			new_id.access = get_all_accesses()
+			new_id.registered_name = H.real_name
+			new_id.assignment = "Captain"
+			new_id.name = "[new_id.registered_name]'s ID Card ([new_id.assignment])"
+			H.equip_to_slot_or_del(new_id, slot_wear_id)
 			H.update_inv_wear_id()
 	else
 		alert("Invalid mob")
@@ -391,12 +375,30 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_tog_aliens, R_DEBUG, FALSE)
 	for(var/areatype in areas_without_camera)
 		world << "* [areatype]"
 
+
 ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 /client/proc/cmd_admin_dress()
 	set category = "Fun"
 	set name = "Select equipment"
 
-	var/mob/living/carbon/human/M = input("Select mob.", "Select equipment.") as null|anything in human_mob_list
+	var/mob/living/carbon/human/M = input("Select mob.", "Select equipment.") as null|anything in GLOB.human_mob_list
+	if(!M) return
+
+	var/list/dresspacks = outfits()
+	var/decl/hierarchy/outfit/dresscode = input("Select dress for [M]", "Robust quick dress shop") as null|anything in dresspacks
+	if (isnull(dresscode))
+		return
+
+	dresscode.equip(M)
+
+
+//Preserving the old one for now, so the dress lists in it can be converted into real outfits
+ADMIN_VERB_ADD(/client/proc/cmd_admin_dress_old, R_FUN, FALSE)
+/client/proc/cmd_admin_dress_old()
+	set category = "Fun"
+	set name = "Select equipment OLD"
+
+	var/mob/living/carbon/human/M = input("Select mob.", "Select equipment.") as null|anything in GLOB.human_mob_list
 	if(!M) return
 
 	//log_admin("[key_name(src)] has alienized [M.key].")
@@ -404,7 +406,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 		"strip",
 		"job",
 		"standard space gear",
-		"tournament standard red",
+		"tournament standard grey",
 		"tournament standard green",
 		"tournament gangster",
 		"tournament chef",
@@ -414,26 +416,14 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 		"soviet admiral",
 		"tunnel clown",
 		"masked killer",
-		"assassin",
-		"death commando",
-		"syndicate commando",
-		"special ops officer",
-		"blue wizard",
-		"red wizard",
-		"marisa wizard",
-		"nanotrasen representative",
-		"nanotrasen officer",
-		"nanotrasen captain"
+		"special ops officer"
 		)
 	var/dresscode = input("Select dress for [M]", "Robust quick dress shop") as null|anything in dresspacks
 	if (isnull(dresscode))
 		return
 
-	for (var/obj/item/I in M)
-		if (istype(I, /obj/item/weapon/implant))
-			continue
-		M.drop_from_inventory(I)
-		if(I.loc != M)
+	for (var/obj/item/I in M.get_equipped_items(TRUE))
+		if (M.unEquip(I))
 			qdel(I)
 	switch(dresscode)
 		if ("strip")
@@ -443,13 +433,12 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 			if (isnull(selected_job))
 				return
 
-			var/datum/job/job = job_master.GetJob(selected_job)
+			var/datum/job/job = SSjob.GetJob(selected_job)
 			if(!job)
 				return
 
 			job.equip(M)
 			job.apply_fingerprints(M)
-			job_master.spawnId(M, selected_job)
 
 		if ("standard space gear")
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(M), slot_shoes)
@@ -599,10 +588,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 			sec_briefcase.contents += new /obj/item/weapon/plastique
 			M.equip_to_slot_or_del(sec_briefcase, slot_l_hand)
 
-			var/obj/item/device/pda/heads/pda = new(M)
-			pda.owner = M.real_name
-			pda.ownjob = "Reaper"
-			pda.name = "PDA-[M.real_name] ([pda.ownjob])"
+			var/obj/item/modular_computer/pda/pda = new(M)
 
 			M.equip_to_slot_or_del(pda, slot_belt)
 
@@ -625,10 +611,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/color/white(M), slot_gloves)
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/hop(M), slot_l_ear)
 
-			var/obj/item/device/pda/heads/pda = new(M)
-			pda.owner = M.real_name
-			pda.ownjob = "NanoTrasen Navy Representative"
-			pda.name = "PDA-[M.real_name] ([pda.ownjob])"
+			var/obj/item/modular_computer/pda/pda = new(M)
 
 			M.equip_to_slot_or_del(pda, slot_r_store)
 			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(M), slot_l_store)
@@ -650,10 +633,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/color/white(M), slot_gloves)
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/captain(M), slot_l_ear)
 
-			var/obj/item/device/pda/heads/pda = new(M)
-			pda.owner = M.real_name
-			pda.ownjob = "NanoTrasen Navy Officer"
-			pda.name = "PDA-[M.real_name] ([pda.ownjob])"
+			var/obj/item/modular_computer/pda/pda = new(M)
 
 			M.equip_to_slot_or_del(pda, slot_r_store)
 			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(M), slot_l_store)
@@ -674,10 +654,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/color/white(M), slot_gloves)
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/captain(M), slot_l_ear)
 
-			var/obj/item/device/pda/heads/pda = new(M)
-			pda.owner = M.real_name
-			pda.ownjob = "NanoTrasen Navy Captain"
-			pda.name = "PDA-[M.real_name] ([pda.ownjob])"
+			var/obj/item/modular_computer/pda/pda = new(M)
 
 			M.equip_to_slot_or_del(pda, slot_r_store)
 			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(M), slot_l_store)
@@ -816,23 +793,20 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_mob_lists, R_DEBUG, FALSE)
 
 	switch(input("Which list?") in list("Players","Admins","Mobs","Living Mobs","Dead Mobs", "Clients"))
 		if("Players")
-			usr << jointext(player_list,",")
+			usr << jointext(GLOB.player_list,",")
 		if("Admins")
 			usr << jointext(admins,",")
 		if("Mobs")
 			usr << jointext(SSmobs.mob_list,",")
 		if("Living Mobs")
-			usr << jointext(living_mob_list,",")
+			usr << jointext(GLOB.living_mob_list,",")
 		if("Dead Mobs")
-			usr << jointext(dead_mob_list,",")
+			usr << jointext(GLOB.dead_mob_list,",")
 		if("Clients")
 			usr << jointext(clients,",")
 
 // DNA2 - Admin Hax
 /client/proc/cmd_admin_toggle_block(var/mob/M,var/block)
-	if(!ticker)
-		alert("Wait until the game starts")
-		return
 	if(iscarbon(M))
 		M.dna.SetSEState(block,!M.dna.GetSEState(block))
 		domutcheck(M,null,MUTCHK_FORCED)
@@ -843,3 +817,25 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_mob_lists, R_DEBUG, FALSE)
 		log_admin("[key_name(src)] has toggled [M.key]'s [blockname] block [state]!")
 	else
 		alert("Invalid mob")
+
+ADMIN_VERB_ADD(/client/proc/view_runtimes, R_DEBUG, FALSE)
+/client/proc/view_runtimes()
+	set category = "Debug"
+	set name = "View Runtimes"
+	set desc = "Open the Runtime Viewer"
+	error_cache.showTo(usr)
+
+
+ADMIN_VERB_ADD(/client/proc/spawn_disciple, R_DEBUG, FALSE)
+/client/proc/spawn_disciple()
+	set category = "Debug"
+	set name = "Spawn Disciple"
+	set desc = "Spawns a human with a cruciform, for ritual testing"
+	if (!mob)
+		return
+
+	var/mob/living/carbon/human/H = new (get_turf(mob))
+	var/obj/item/weapon/implant/core_implant/cruciform/C = new /obj/item/weapon/implant/core_implant/cruciform(H)
+
+	C.install(H)
+	C.activate()

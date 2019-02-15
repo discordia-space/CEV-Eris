@@ -2,10 +2,10 @@
 	id = ROLE_SECDOC_DEFENDER
 	role_text = "Scientist"
 	role_text_plural = "Scientists"
-	bantype = "Crew-sided"
-	role_type = "crew-sided"
-	restricted_jobs = list("AI", "Cyborg")
+	bantype = ROLE_BANTYPE_CREW_SIDED
+	restricted_jobs = list("AI", "Robot")
 	protected_jobs = list(JOBS_COMMAND)
+	antaghud_indicator = "hudblank"		//crewsided antag(also we have no icon for this)
 
 	survive_objective = /datum/objective/escape
 

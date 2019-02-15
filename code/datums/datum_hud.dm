@@ -8,7 +8,7 @@
 	var/list/HUDoverlays //tech stuff (flash overlay, pain overlay, etc.)
 //	var/Xbags
 //	var/Ybags
-	var/list/ConteinerData // for space_orient_objs and slot_orient_objs
+	var/list/StorageData //for storage bags
 	var/list/IconUnderlays //underlays data for HUD objects
 	var/MinStyleFlag = FALSE //that HUD style have compact version?
 	var/list/obj/screen/plane_master/plane_masters = list() // see "appearance_flags" in the ref, assoc list of "[plane]" = object
@@ -30,12 +30,10 @@
 	//Xbags, Ybags for space_orient_objs
 	//Others for slot_orient_objs
 	MinStyleFlag = TRUE
-	ConteinerData = list(
-		"Xspace" = 5,
-		"Yspace" = 2,
+	StorageData = list(
+		"Xspace" = 4.5*32, //in pixels
+		"Yspace" = 1.5*32, //in pixels
 		"ColCount" = 7,
-		"Xslot" = 5,
-		"Yslot" = 2
 	)
 
 
@@ -163,8 +161,9 @@
 
 
 	HUDoverlays = list(
-		"flash" =  list("type" = /obj/screen, "loc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
-		"blind" =  list("type" = /obj/screen, "loc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
+		"flash" 		=  list("type" = /obj/screen, "loc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
+		"blind" 		=  list("type" = /obj/screen, "loc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
+		"glassesoverlay" = list("type" = /obj/screen/silicon/glasses_overlay, "loc" = "1,1", )
 	)
 
 	HUDneed = list(

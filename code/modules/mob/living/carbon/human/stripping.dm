@@ -13,17 +13,17 @@
 		// Handle things that are part of this interface but not removing/replacing a given item.
 		if("pockets")
 			visible_message(SPAN_DANGER("\The [user] is trying to empty \the [src]'s pockets!"))
-			if(do_mob(user,src,HUMAN_STRIP_DELAY,progress = 0))
+			if(do_mob(user,src,HUMAN_STRIP_DELAY,progress = 1))
 				empty_pockets(user)
 			return
 		if("splints")
 			visible_message(SPAN_DANGER("\The [user] is trying to remove \the [src]'s splints!"))
-			if(do_mob(user,src,HUMAN_STRIP_DELAY,progress = 0))
+			if(do_mob(user,src,HUMAN_STRIP_DELAY,progress = 1))
 				remove_splints(user)
 			return
 		if("internals")
 			visible_message(SPAN_DANGER("\The [usr] is trying to set \the [src]'s internals!"))
-			if(do_mob(user,src,HUMAN_STRIP_DELAY, progress = 0))
+			if(do_mob(user,src,HUMAN_STRIP_DELAY, progress = 1))
 				toggle_internals(user)
 			return
 		if("tie")
@@ -35,7 +35,7 @@
 				return
 			visible_message(SPAN_DANGER("\The [usr] is trying to remove \the [src]'s [A.name]!"))
 
-			if(!do_mob(user,src,HUMAN_STRIP_DELAY,progress=0))
+			if(!do_mob(user,src,HUMAN_STRIP_DELAY,progress=1))
 				return
 
 			if(!A || suit.loc != src || !(A in suit.accessories))
@@ -66,7 +66,7 @@
 	else
 		visible_message(SPAN_DANGER("\The [user] is trying to put \a [held] on \the [src]!"))
 
-	if(!do_mob(user,src,HUMAN_STRIP_DELAY,progress = 0))
+	if(!do_mob(user,src,HUMAN_STRIP_DELAY,progress = 1))
 		return
 
 	if(!stripping && user.get_active_hand() != held)
@@ -76,7 +76,7 @@
 		admin_attack_log(user, src, "Attempted to remove \a [target_slot]", "Target of an attempt to remove \a [target_slot].", "attempted to remove \a [target_slot] from")
 		unEquip(target_slot)
 	else if(user.unEquip(held))
-		equip_to_slot_if_possible(held, text2num(slot_to_strip), 0, 1, 1)
+		equip_to_slot_if_possible(held, text2num(slot_to_strip), TRUE) // Disable warning
 		if(held.loc != src)
 			user.put_in_hands(held)
 

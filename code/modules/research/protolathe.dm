@@ -4,7 +4,7 @@
 	flags = OPENCONTAINER
 	circuit = /obj/item/weapon/circuitboard/protolathe
 
-	use_power = 1
+	use_power = TRUE
 	idle_power_usage = 30
 	active_power_usage = 5000
 
@@ -25,12 +25,14 @@
 		update_icon()
 		return
 	if(queue.len == 0)
-		busy = 0
+		busy = FALSE
 		update_icon()
 		return
 	var/datum/design/D = queue[1]
 	if(canBuild(D))
-		busy = 1
+		if(progress == 0)
+			print_pre(D)
+		busy = TRUE
 		progress += speed
 		if(progress >= D.time)
 			build(D)
@@ -38,11 +40,12 @@
 			removeFromQueue(1)
 			if(linked_console)
 				linked_console.updateUsrDialog()
+			print_post(D)
 		update_icon()
 	else
 		if(busy)
-			visible_message(SPAN_NOTICE("\icon [src] flashes: insufficient materials: [getLackingMaterials(D)]."))
-			busy = 0
+			visible_message(SPAN_NOTICE("\icon[src]\The [src] flashes: insufficient materials: [getLackingMaterials(D)]."))
+			busy = FALSE
 			update_icon()
 
 /obj/machinery/r_n_d/protolathe/proc/TotalMaterials() //returns the total of all the stored materials. Makes code neater.
@@ -77,6 +80,7 @@
 	..()
 
 /obj/machinery/r_n_d/protolathe/update_icon()
+	overlays.Cut()
 	if(panel_open)
 		icon_state = "protolathe_t"
 	else if(busy)
@@ -86,8 +90,8 @@
 
 /obj/machinery/r_n_d/protolathe/attackby(var/obj/item/I, var/mob/user as mob)
 	if(busy)
-		user << SPAN_NOTICE("\The [src] is busy. Please wait for completion of previous operation.")
-		return 1
+		user << SPAN_NOTICE("\icon[src]\The [src] is busy. Please wait for completion of previous operation.")
+		return TRUE
 
 	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING))
 	switch(tool_type)
@@ -104,7 +108,7 @@
 			var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
 				if(linked_console)
-					linked_console.linked_imprinter = null
+					linked_console.linked_lathe = null
 					linked_console = null
 				panel_open = !panel_open
 				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
@@ -117,51 +121,66 @@
 	if(default_part_replacement(I, user))
 		return
 	if(I.is_open_container())
-		return 1
+		return FALSE
 	if(panel_open)
 		user << SPAN_NOTICE("You can't load \the [src] while it's opened.")
-		return 1
+		return TRUE
 	if(!linked_console)
-		user << SPAN_NOTICE("\The [src] must be linked to an R&D console first!")
-		return 1
+		user << SPAN_NOTICE("\icon[src]\The [src] must be linked to an R&D console first!")
+		return TRUE
 	if(is_robot_module(I))
-		return 0
-	if(!istype(I, /obj/item/stack/material))
+		return FALSE
+	if (user.a_intent != I_HURT)
+		loadMaterials(I, user)
+	else
+		return ..()
+
+/obj/machinery/r_n_d/protolathe/proc/loadMaterials(var/obj/item/stack/material/S, var/mob/user)
+	if(!istype(user))
+		return
+
+	if(!istype(S, /obj/item/stack/material))
 		user << SPAN_NOTICE("You cannot insert this item into \the [src]!")
-		return 0
-	if(stat)
-		return 1
+		return
 
 	if(TotalMaterials() + 1 > max_material_storage)
-		user << SPAN_NOTICE("\The [src]'s material bin is full. Please remove material before adding more.")
-		return 1
+		user << SPAN_NOTICE("\icon[src]\The [src]'s material bin is full. Please remove material before adding more.")
+		return
 
-	var/obj/item/stack/material/stack = I
-	var/amount = round(input("How many sheets do you want to add?") as num)//No decimals
-	if(!I)
+	var/amount = round(input("How many sheets do you want to add?") as num)
+
+	if(!Adjacent(user))
+		return
+	if(!S)
 		return
 	if(amount <= 0)//No negative numbers
 		return
-	if(amount > stack.get_amount())
-		amount = stack.get_amount()
-		if(max_material_storage - TotalMaterials() < amount) //Can't overfill
-			amount = min(stack.get_amount(), max_material_storage - TotalMaterials())
+	if(amount > S.get_amount())
+		amount = S.get_amount()
+	if(max_material_storage - TotalMaterials() < amount) //Can't overfill
+		amount = min(S.get_amount(), max_material_storage - TotalMaterials())
 
-	var/t = stack.get_material_name()
-	overlays += "protolathe_[t]"
-	spawn(10)
-		overlays -= "protolathe_[t]"
-
-	busy = 1
+	busy = TRUE
 	use_power(1000)
-	if(t)
-		if(do_after(user, 16,src))
-			if(stack.use(amount))
-				user << SPAN_NOTICE("You add [amount] sheet\s to \the [src].")
-				materials[t] += amount
-	busy = 0
-	updateUsrDialog()
-	return
+	var/material = S.get_material_name()
+	if(material)
+		if(do_after(usr, 16, src))
+			res_load(material)
+			if(S.use(amount))
+				materials[material] += amount
+				user << SPAN_NOTICE("You add [amount] [material] sheet\s to \the [src]. Material storage is [TotalMaterials()]/[max_material_storage] full.")
+
+	busy = FALSE
+	linked_console.updateUsrDialog()
+	return TRUE
+
+/obj/machinery/r_n_d/protolathe/examine(mob/user)
+	..()
+	user << "Material storage is [TotalMaterials()]/[max_material_storage] full."
+
+/obj/machinery/r_n_d/protolathe/proc/res_load(var/name)
+	var/obj/effect/temp_visual/resourceInsertion/protolathe/effect = new(src.loc)
+	effect.setMaterial(name)
 
 /obj/machinery/r_n_d/protolathe/proc/addToQueue(var/datum/design/D)
 	queue += D
@@ -174,11 +193,11 @@
 /obj/machinery/r_n_d/protolathe/proc/canBuild(var/datum/design/D)
 	for(var/M in D.materials)
 		if(materials[M] < D.materials[M])
-			return 0
+			return FALSE
 	for(var/C in D.chemicals)
 		if(!reagents.has_reagent(C, D.chemicals[C]))
-			return 0
-	return 1
+			return FALSE
+	return TRUE
 
 /obj/machinery/r_n_d/protolathe/proc/getLackingMaterials(var/datum/design/D)
 	var/ret = ""
@@ -197,7 +216,7 @@
 /obj/machinery/r_n_d/protolathe/proc/build(var/datum/design/D)
 	var/power = active_power_usage
 	for(var/M in D.materials)
-		power += round(D.materials[M] / 5)
+		power += round(D.materials[M] / 5, 0.01)
 	power = max(active_power_usage, power)
 	use_power(power)
 	for(var/M in D.materials)
@@ -209,3 +228,13 @@
 		var/obj/new_item = D.Fabricate(src, src)
 		new_item.loc = loc
 		new_item.Created()
+
+/obj/machinery/r_n_d/protolathe/proc/print_pre(var/datum/design/D)
+	return
+
+/obj/machinery/r_n_d/protolathe/proc/print_post(var/datum/design/D)
+	visible_message("\icon[src]\The [src] flashes, indicating that \the [D] is complete.", range = 3)
+	if(!queue.len)
+		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1 -3)
+		visible_message("\icon[src]\The [src] pings indicating that queue is complete.")
+	return

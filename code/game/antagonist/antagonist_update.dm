@@ -14,10 +14,7 @@
 
 		if(holder)
 			qdel(holder)
-		spawn(3)
-			var/mob/living/carbon/human/H = owner.current
-			if(istype(H))
-				H.change_appearance(APPEARANCE_ALL, H.loc, H, list("Human"), state = z_state)
+
 		return owner.current
 
 /datum/antagonist/proc/update_access()

@@ -1,12 +1,9 @@
+
+#define GAME_STATE_STARTUP		0
 #define GAME_STATE_PREGAME		1
 #define GAME_STATE_SETTING_UP	2
 #define GAME_STATE_PLAYING		3
 #define GAME_STATE_FINISHED		4
-
-// Security levels.
-#define SEC_LEVEL_GREEN 0
-#define SEC_LEVEL_BLUE  1
-#define SEC_LEVEL_RED   2
 
 #define BE_PLANT "BE_PLANT"
 #define BE_SYNTH "BE_SYNTH"
@@ -25,8 +22,21 @@
 #define ANTAG_VOTABLE           0x200 // Can be voted as an additional antagonist before roundstart.
 #define ANTAG_SET_APPEARANCE    0x400 // Causes antagonists to use an appearance modifier on spawn.
 
+//A flag to skip target selection
+#define ANTAG_SKIP_TARGET	-1
+
 // Storyteller names macro
-#define STORYTELLER_BASE "erida"
+#define STORYTELLER_BASE "guide"
+
+// antag bantypes macros.
+#define ROLE_BANTYPE_BORER ROLE_BORER
+#define ROLE_BANTYPE_MALFUNCTION ROLE_MALFUNCTION
+#define ROLE_BANTYPE_TRAITOR ROLE_TRAITOR
+#define ROLE_BANTYPE_INQUISITOR ROLE_INQUISITOR
+#define ROLE_BANTYPE_EXCELSIOR ROLE_EXCELSIOR_REV
+#define ROLE_BANTYPE_CHANGELING ROLE_CHANGELING
+#define ROLE_BANTYPE_XENOS ROLE_XENOMORPH
+#define ROLE_BANTYPE_CREW_SIDED "crew_sided"
 
 // antag template macros.
 #define ROLE_BORER "borer"
@@ -53,11 +63,14 @@
 #define FACTION_EXCELSIOR "excelsior"
 #define FACTION_BORERS "borers"
 #define FACTION_XENOMORPHS "xenomorphs"
+#define FACTION_SERBS	"serbians"
 
 #define ROLESET_TRAITOR "traitor"
 #define ROLESET_VERSUS_TRAITOR "double_agents"
 
 #define DEFAULT_TELECRYSTAL_AMOUNT 25
+#define IMPLANT_TELECRYSTAL_AMOUNT(x) (round(x * 0.49)) // If this cost is ever greater than half of DEFAULT_TELECRYSTAL_AMOUNT then it is possible to buy more TC than you spend
+
 
 /////////////////
 ////WIZARD //////
@@ -96,8 +109,3 @@
 #define Sp_RECHARGE	"recharge"
 #define Sp_CHARGES	"charges"
 #define Sp_HOLDVAR	"holdervar"
-
-#define INITIALIZATION_NOW 1
-#define INITIALIZATION_HAS_BEGUN 2
-#define INITIALIZATION_COMPLETE 4
-#define INITIALIZATION_NOW_AND_COMPLETE (INITIALIZATION_NOW|INITIALIZATION_COMPLETE)

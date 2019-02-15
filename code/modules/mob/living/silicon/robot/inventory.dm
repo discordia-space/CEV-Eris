@@ -51,6 +51,7 @@
 		module_state_3:loc = module
 		module_state_3 = null
 		//inv3.icon_state = "inv3"
+	update_robot_modules_display()
 	updateicon()
 
 /mob/living/silicon/robot/proc/uneq_all()

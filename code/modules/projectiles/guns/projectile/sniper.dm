@@ -1,9 +1,9 @@
 /obj/item/weapon/gun/projectile/heavysniper
 	name = "NT AMR \"Penetrator\""
-	desc = "A portable anti-armour rifle fitted with a scope, it was originally designed to used against armoured exosuits. It is capable of punching through windows and non-reinforced walls with ease. Fires armor piercing 14.5mm shells."
+	desc = "A portable anti-armour rifle, fitted with a scope, it was originally designed for use against armoured exosuits. It is capable of punching through windows and non-reinforced walls with ease. Fires armor piercing 14.5mm shells."
 	icon_state = "heavysniper"
-	item_state = "l6closednomag" //placeholder
-	w_class = ITEM_SIZE_LARGE
+	item_state = "heavysniper"
+	w_class = ITEM_SIZE_HUGE
 	force = WEAPON_FORCE_PAINFULL
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)

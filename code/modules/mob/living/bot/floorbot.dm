@@ -266,7 +266,7 @@
 				if(building == 1)
 					I = new /obj/item/stack/tile/floor(src)
 				else
-					I = PoolOrNew(/obj/item/stack/rods, src)
+					I = new /obj/item/stack/rods(src)
 				A.attackby(I, src)
 		target = null
 		repairing = 0
@@ -355,8 +355,7 @@
 	if(contents.len >= 1)
 		user << SPAN_NOTICE("They wont fit in as there is already stuff inside.")
 		return
-	if(user.s_active)
-		user.s_active.close(user)
+	close_all()
 	if(T.use(10))
 		var/obj/item/weapon/toolbox_tiles/B = new /obj/item/weapon/toolbox_tiles
 		user.put_in_hands(B)

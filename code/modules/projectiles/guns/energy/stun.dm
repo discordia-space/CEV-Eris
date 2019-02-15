@@ -11,6 +11,7 @@
 	name = "mounted taser gun"
 	self_recharge = 1
 	use_external_power = 1
+	restrict_safety = TRUE
 
 /obj/item/weapon/gun/energy/taser/mounted/cyborg
 	name = "taser gun"
@@ -18,7 +19,7 @@
 
 /obj/item/weapon/gun/energy/stunrevolver
 	name = "NT SP \"Zeus\""
-	desc = "Also know as stunrevolver. Older and less precise Nanotrasen solution for non-lethal takedowns. This gun have smaller capacity in exchange for S-cells use."
+	desc = "Also know as stunrevolver. Older and less precise Nanotrasen solution for non-lethal takedowns. This gun has smaller capacity in exchange for S-cells use."
 	icon_state = "stunrevolver"
 	item_state = "stunrevolver"
 	fire_sound = 'sound/weapons/Gunshot.ogg'

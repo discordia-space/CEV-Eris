@@ -1,6 +1,6 @@
 /obj/machinery/complant_maker
 	name = "implant reconstructor"
-	desc = "Thic machine exist to reconstruct implants to another implants."
+	desc = "This machine repurposes implants, robot components and bionics, reworking their circuitry into the Excelsior implant pattern which allows recruitment."
 	icon = 'icons/obj/machines/excelsior/reconstructor.dmi'
 	icon_state = "idle"
 	circuit = /obj/item/weapon/circuitboard/excelsiorreconstructor

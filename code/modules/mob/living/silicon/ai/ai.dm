@@ -6,8 +6,6 @@ var/list/ai_verbs_default = list(
 	/mob/living/silicon/ai/proc/ai_movement_up,
 	/mob/living/silicon/ai/proc/ai_movement_down,
 	/mob/living/silicon/ai/proc/ai_announcement,
-	/mob/living/silicon/ai/proc/ai_call_shuttle,
-	// /mob/living/silicon/ai/proc/ai_recall_shuttle,
 	/mob/living/silicon/ai/proc/ai_emergency_message,
 	/mob/living/silicon/ai/proc/ai_camera_track,
 	/mob/living/silicon/ai/proc/ai_camera_list,
@@ -27,7 +25,10 @@ var/list/ai_verbs_default = list(
 	/mob/living/silicon/ai/proc/toggle_acceleration,
 	/mob/living/silicon/ai/proc/toggle_camera_light,
 	/mob/living/silicon/ai/proc/multitool_mode,
-	/mob/living/silicon/ai/proc/toggle_hologram_movement
+	/mob/living/silicon/ai/proc/toggle_hologram_movement,
+	/mob/living/silicon/verb/show_crew_sensors,
+	/mob/living/silicon/verb/show_email,
+	/mob/living/silicon/verb/show_alerts
 )
 
 //Not sure why this is necessary...
@@ -50,14 +51,29 @@ var/list/ai_verbs_default = list(
 	density = 1
 	status_flags = CANSTUN|CANPARALYSE|CANPUSH
 //	shouldnt_see = list()
-	var/list/network = list("Exodus")
+	universal_understand = TRUE
+	var/list/network = list(NETWORK_FIRST_SECTION,
+							NETWORK_SECOND_SECTION,
+							NETWORK_THIRD_SECTION,
+							NETWORK_FOURTH_SECTION,
+							NETWORK_COMMAND,
+							NETWORK_ENGINE,
+							NETWORK_ENGINEERING,
+							NETWORK_CEV_ERIS,
+							NETWORK_MINE,
+							NETWORK_PRISON,
+							NETWORK_MEDICAL,
+							NETWORK_RESEARCH,
+							NETWORK_RESEARCH_OUTPOST,
+							NETWORK_SECURITY,
+							NETWORK_TELECOM
+							)
 	var/obj/machinery/camera/camera = null
 	var/list/connected_robots = list()
 	var/aiRestorePowerRoutine = 0
 	var/viewalerts = 0
 	var/icon/holo_icon//Default is assigned when AI is created.
 	var/obj/mecha/controlled_mech //For controlled_mech a mech, to determine whether to relaymove or use the AI eye.
-	var/obj/item/device/pda/ai/aiPDA = null
 	var/obj/item/weapon/tool/multitool/aiMulti = null
 	var/obj/item/device/radio/headset/heads/ai_integrated/aiRadio = null
 	var/camera_light_on = 0	//Defines if the AI toggled the light on the camera it's looking through.
@@ -90,6 +106,8 @@ var/list/ai_verbs_default = list(
 	var/carded
 
 	var/multitool_mode = 0
+
+	defaultHUD = "Eris"
 
 /mob/living/silicon/ai/proc/add_ai_verbs()
 	src.verbs |= ai_verbs_default
@@ -137,17 +155,16 @@ var/list/ai_verbs_default = list(
 	announcement.announcement_type = "A.I. Announcement"
 	announcement.newscast = 1
 
-	var/list/possibleNames = ai_names
+	var/list/possibleNames = GLOB.ai_names
 
 	var/pickedName = null
 	while(!pickedName)
-		pickedName = pick(ai_names)
+		pickedName = pick(GLOB.ai_names)
 		for (var/mob/living/silicon/ai/A in SSmobs.mob_list)
 			if (A.real_name == pickedName && possibleNames.len > 1) //fixing the theoretically possible infinite loop
 				possibleNames -= pickedName
 				pickedName = null
 
-	aiPDA = new/obj/item/device/pda/ai(src)
 	SetName(pickedName)
 	anchored = 1
 	canmove = 0
@@ -177,6 +194,15 @@ var/list/ai_verbs_default = list(
 	add_language(LANGUAGE_ROBOT, 1)
 	add_language(LANGUAGE_COMMON, 1)
 
+	//Stats
+	//The AI gets 100 in all three knowledge stats.
+		//These are only ever used to operate machinery and software
+	//It doesnt get any physical stats, like robustness, since its a disembodied mind
+	stats = new /datum/stat_holder
+	stats.changeStat(STAT_BIO, 100)
+	stats.changeStat(STAT_MEC, 100)
+	stats.changeStat(STAT_COG, 100)
+
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.
 			empty_playable_ai_cores += new/obj/structure/AIcore/deactivated(loc)//New empty terminal.
@@ -201,6 +227,7 @@ var/list/ai_verbs_default = list(
 	hud_list[SPECIALROLE_HUD] = image('icons/mob/hud.dmi', src, "hudblank")
 
 	ai_list += src
+	
 	..()
 
 /mob/living/silicon/ai/proc/on_mob_init()
@@ -229,10 +256,8 @@ var/list/ai_verbs_default = list(
 	setup_icon()
 
 /mob/living/silicon/ai/Destroy()
-	qdel(aiPDA)
 	qdel(aiMulti)
 	qdel(aiRadio)
-	aiPDA = null
 	aiMulti = null
 	aiRadio = null
 
@@ -286,13 +311,6 @@ var/list/ai_verbs_default = list(
 	announcement.announcer = pickedName
 	if(eyeobj)
 		eyeobj.name = "[pickedName] (AI Eye)"
-
-	// Set ai pda name
-	if(aiPDA)
-		aiPDA.ownjob = "AI"
-		aiPDA.owner = pickedName
-		aiPDA.name = pickedName + " (" + aiPDA.ownjob + ")"
-
 /*
 	The AI Power supply is a dummy object used for powering the AI since only machinery should be using power.
 	The alternative was to rewrite a bunch of AI code instead here we are.
@@ -359,7 +377,7 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/proc/ai_roster()
 	set category = "Silicon Commands"
 	set name = "Show Crew Manifest"
-	show_station_manifest()
+	show_manifest(src)
 
 /mob/living/silicon/ai/var/message_cooldown = 0
 /mob/living/silicon/ai/proc/ai_announcement()
@@ -383,35 +401,6 @@ var/list/ai_verbs_default = list(
 	message_cooldown = 1
 	spawn(600)//One minute cooldown
 		message_cooldown = 0
-
-/mob/living/silicon/ai/proc/ai_call_shuttle()
-	set category = "Silicon Commands"
-	set name = "Call Emergency Shuttle"
-
-	if(check_unable(AI_CHECK_WIRELESS))
-		return
-
-	var/confirm = alert("Are you sure you want to evacuate?", "Confirm Evacuation", "Yes", "No")
-
-	if(check_unable(AI_CHECK_WIRELESS))
-		return
-
-	if(confirm == "Yes")
-		call_shuttle_proc(src)
-
-/mob/living/silicon/ai/proc/ai_recall_shuttle()
-	set category = "Silicon Commands"
-	set name = "Recall Emergency Shuttle"
-
-	if(check_unable(AI_CHECK_WIRELESS))
-		return
-
-	var/confirm = alert("Are you sure you want to recall the shuttle?", "Confirm Shuttle Recall", "Yes", "No")
-	if(check_unable(AI_CHECK_WIRELESS))
-		return
-
-	if(confirm == "Yes")
-		cancel_call_proc(src)
 
 /mob/living/silicon/ai/var/emergency_message_cooldown = 0
 /mob/living/silicon/ai/proc/ai_emergency_message()
@@ -472,11 +461,9 @@ var/list/ai_verbs_default = list(
 				H.attack_ai(src) //may as well recycle
 			else
 				src << SPAN_NOTICE("Unable to locate the holopad.")
-
 	if (href_list["track"])
 		var/mob/target = locate(href_list["track"]) in SSmobs.mob_list
-
-		if(target && (!ishuman(target) || rhtml_decode(href_list["trackname"]) == target:get_face_name()))
+		if(target && (!ishuman(target) || target.real_name == target.get_face_name()))
 			ai_actual_track(target)
 		else
 			src << "\red System error. Cannot locate [rhtml_decode(href_list["trackname"])]."
@@ -770,3 +757,17 @@ var/list/ai_verbs_default = list(
 
 #undef AI_CHECK_WIRELESS
 #undef AI_CHECK_RADIO
+
+// Handles all necessary power checks: Area power, inteliCard and Malf AI APU power and manual override.
+//just a plug for now untill baymed arrives
+/mob/living/silicon/ai/proc/has_power(var/respect_override = 1)
+	return 1
+
+// shortcuts for UI
+/mob/living/silicon/ai/proc/take_photo()
+	var/obj/item/device/camera/siliconcam/ai_camera/cam = aiCamera
+	cam.take_image()
+
+/mob/living/silicon/ai/proc/view_photos()
+	var/obj/item/device/camera/siliconcam/ai_camera/cam = aiCamera
+	cam.view_images()

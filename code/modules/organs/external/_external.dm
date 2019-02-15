@@ -3,9 +3,9 @@
 ****************************************************/
 
 //These control the damage thresholds for the various ways of removing limbs
-#define DROPLIMB_THRESHOLD_EDGE 5
-#define DROPLIMB_THRESHOLD_TEAROFF 2
-#define DROPLIMB_THRESHOLD_DESTROY 1
+#define DROPLIMB_THRESHOLD_EDGE 0.75
+#define DROPLIMB_THRESHOLD_TEAROFF 1.35
+#define DROPLIMB_THRESHOLD_DESTROY 1.5
 
 /obj/item/organ/external
 	name = "external"
@@ -41,9 +41,6 @@
 	var/skin_tone			// Skin tone.
 	var/skin_col			// skin colour
 	var/hair_col
-	var/tattoo
-	var/tattoo_color = "#000000"
-
 
 	// Wound and structural data.
 	var/wound_update_accuracy = 1		// how often wounds should be updated, a higher number means less often

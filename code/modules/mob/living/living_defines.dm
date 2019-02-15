@@ -36,6 +36,9 @@
 	var/mob_swap_flags = 0
 	var/mob_push_flags = 0
 	var/mob_always_swap = 0
+	var/move_to_delay = 4 //delay for the automated movement.
+	var/can_burrow = FALSE //If true, this mob can travel around using the burrow network.
+	//When this mob spawns at roundstart, a burrow will be created near it if it can't find one
 
 	var/mob/living/cameraFollow = null
 	var/list/datum/action/actions = list()
@@ -59,5 +62,4 @@
 	var/job = null//Living
 
 	var/image/static_overlay // For static overlays on living mobs
-
-	var/datum/stat_holder/stats
+	mob_classification = CLASSIFICATION_ORGANIC

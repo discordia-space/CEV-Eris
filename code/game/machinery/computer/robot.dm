@@ -4,7 +4,7 @@
 	icon = 'icons/obj/computer.dmi'
 	icon_keyboard = "tech_key"
 	icon_screen = "robot"
-	light_color = "#a97faa"
+	light_color = COLOR_LIGHTING_PURPLE_MACHINERY
 	req_access = list(access_robotics)
 	circuit = /obj/item/weapon/circuitboard/robotics
 
@@ -26,7 +26,7 @@
 	data["is_ai"] = issilicon(user)
 
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "robot_control.tmpl", "Robotic Control Console", 400, 500)
 		ui.set_initial_data(data)

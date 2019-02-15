@@ -16,6 +16,7 @@
 	w_class = ITEM_SIZE_SMALL
 	var/datum/integrated_io/selected_io = null
 	var/mode = WIRE
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_GLASS = 1)
 
 /obj/item/device/integrated_electronics/wirer/update_icon()
 	icon_state = "wirer-[mode]"
@@ -114,10 +115,11 @@
 	w_class = ITEM_SIZE_SMALL
 	var/data_to_write = null
 	var/accepting_refs = 0
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_GLASS = 1)
 
 /obj/item/device/integrated_electronics/debugger/attack_self(mob/user)
 	var/type_to_use = input("Please choose a type to use.","[src] type setting") as null|anything in list("string","number","ref", "null")
-	if(!CanInteract(user, physical_state))
+	if(!CanInteract(user,GLOB.physical_state))
 		return
 
 	var/new_data = null
@@ -125,13 +127,13 @@
 		if("string")
 			accepting_refs = 0
 			new_data = input("Now type in a string.","[src] string writing") as null|text
-			if(istext(new_data) && CanInteract(user, physical_state))
+			if(istext(new_data) && CanInteract(user,GLOB.physical_state))
 				data_to_write = new_data
 				user << "<span class='notice'>You set \the [src]'s memory to \"[new_data]\".</span>"
 		if("number")
 			accepting_refs = 0
 			new_data = input("Now type in a number.","[src] number writing") as null|num
-			if(isnum(new_data) && CanInteract(user, physical_state))
+			if(isnum(new_data) && CanInteract(user,GLOB.physical_state))
 				data_to_write = new_data
 				user << SPAN_NOTICE("You set \the [src]'s memory to [new_data].")
 		if("ref")

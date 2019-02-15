@@ -109,7 +109,7 @@
 /obj/machinery/door/blast/attackby(obj/item/I, mob/user)
 	src.add_fingerprint(user)
 	if(QUALITY_PRYING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_PRYING, FAILCHANCE_VERY_EASY,  required_stat = STAT_ROB))
+		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_VERY_EASY,  required_stat = STAT_ROB))
 			if(((stat & NOPOWER) || (stat & BROKEN)) && !( src.operating ))
 				force_toggle()
 			else
@@ -137,10 +137,10 @@
 	return
 
 // Proc: open()
-// Parameters: None
+// Parameters: 1 (forced - if true, the checks will be skipped)
 // Description: Opens the door. Does necessary checks. Automatically closes if autoclose is true
-/obj/machinery/door/blast/open()
-	if (src.operating || (stat & BROKEN || stat & NOPOWER))
+/obj/machinery/door/blast/open(forced = FALSE)
+	if ((operating || (stat & BROKEN || stat & NOPOWER)) && !forced)
 		return
 	force_open()
 	if(autoclose)
@@ -149,10 +149,10 @@
 	return 1
 
 // Proc: close()
-// Parameters: None
+// Parameters: 1 (forced - if true, the checks will be skipped)
 // Description: Closes the door. Does necessary checks.
-/obj/machinery/door/blast/close()
-	if (src.operating || (stat & BROKEN || stat & NOPOWER))
+/obj/machinery/door/blast/close(forced = FALSE)
+	if ((operating || (stat & BROKEN || stat & NOPOWER)) && !forced)
 		return
 	force_close()
 	crush()

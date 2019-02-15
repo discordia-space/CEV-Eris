@@ -23,7 +23,7 @@ var/list/storyteller_cache = list()
 	var/log_pda = 0						// log pda messages
 	var/log_hrefs = 0					// logs all links clicked in-game. Could be used for debugging and tracking down exploits
 	var/log_runtime = 0					// logs world.log to a file
-	var/log_world_output = 0			// log world.log << messages
+	var/log_world_output = 0			// log log_world(messages)
 	var/sql_enabled = 1					// for sql switching
 	var/allow_admin_ooccolor = 0		// Allows admins with relevant permissions to have their own ooc colour
 	var/allow_vote_restart = 0 			// allow votes to restart
@@ -43,10 +43,8 @@ var/list/storyteller_cache = list()
 	var/protect_roles_from_antagonist = 0// If security and such can be traitor/cult/other
 	var/allow_Metadata = 0				// Metadata is supported.
 	var/popup_admin_pm = 0				//adminPMs to non-admins show in a pop-up 'reply' window when set to 1.
-	var/fps = 20
 	var/tick_limit_mc_init = TICK_LIMIT_MC_INIT_DEFAULT	//SSinitialization throttling
-	var/Ticklag = 0.9
-	var/Tickcomp = 0
+	var/Ticklag = 0.33
 	var/socket_talk	= 0					// use socket_talk to communicate with other processes
 	var/list/resource_urls = null
 	var/antag_hud_allowed = 0			// Ghosts can turn on Antagovision to see a HUD of who is the bad guys this round.
@@ -70,8 +68,12 @@ var/list/storyteller_cache = list()
 	var/load_jobs_from_txt = 0
 	var/ToRban = 0
 	var/automute_on = 0					//enables automuting/spam prevention
+	var/use_cortical_stacks = 0			//enables neural lace
 
 	var/character_slots = 10				// The number of available character slots
+	var/loadout_slots = 3					// The number of loadout slots per character
+
+	var/max_gear_cost = 10 // Used in chargen for accessory loadout limit. 0 disables loadout, negative allows infinite points.
 
 	var/max_maint_drones = 5				//This many drones can spawn,
 	var/allow_drone_spawn = 1				//assuming the admin allow them to.
@@ -121,20 +123,6 @@ var/list/storyteller_cache = list()
 	var/generate_asteroid = 0
 	var/no_click_cooldown = 0
 
-	//Used for modifying movement speed for mobs.
-	//Unversal modifiers
-	var/run_speed = 0
-	var/walk_speed = 0
-
-	//Mob specific modifiers. NOTE: These will affect different mob types in different ways
-	var/human_delay = 0
-	var/robot_delay = 0
-	var/monkey_delay = 0
-	var/alien_delay = 0
-	var/slime_delay = 0
-	var/animal_delay = 0
-
-
 	var/admin_legacy_system = 0	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system. Config option in config.txt
 	var/ban_legacy_system = 0	//Defines whether the server uses the legacy banning system with the files in /data or the SQL system. Config option in config.txt
 
@@ -147,6 +135,10 @@ var/list/storyteller_cache = list()
 	var/ghost_interaction = 0
 
 	var/comms_password = ""
+
+	var/list/forbidden_versions = list() // Clients with these byond versions will be autobanned. Format: string "byond_version.byond_build"; separate with ; in config, e.g. 512.1234;512.1235
+	var/minimum_byond_version
+	var/minimum_byond_build
 
 	var/enter_allowed = 1
 
@@ -168,6 +160,7 @@ var/list/storyteller_cache = list()
 		EVENT_LEVEL_MUNDANE = null,
 		EVENT_LEVEL_MODERATE = null,
 		EVENT_LEVEL_MAJOR = list("lower" = 48000, "upper" = 60000),
+		EVENT_LEVEL_ROLESET = null,
 		EVENT_LEVEL_ECONOMY = list("lower" = 16000, "upper" = 20000),
 	)
 	// The lowest delay until next event
@@ -176,6 +169,7 @@ var/list/storyteller_cache = list()
 		EVENT_LEVEL_MUNDANE = 6000,
 		EVENT_LEVEL_MODERATE = 18000,
 		EVENT_LEVEL_MAJOR = 30000,
+		EVENT_LEVEL_ROLESET = null,
 		EVENT_LEVEL_ECONOMY = 18000
 	)
 	// The upper delay until next event
@@ -184,6 +178,7 @@ var/list/storyteller_cache = list()
 		EVENT_LEVEL_MUNDANE = 9000,
 		EVENT_LEVEL_MODERATE = 27000,
 		EVENT_LEVEL_MAJOR = 42000,
+		EVENT_LEVEL_ROLESET = null,
 		EVENT_LEVEL_ECONOMY = 18000
 	)
 
@@ -207,6 +202,8 @@ var/list/storyteller_cache = list()
 	var/ghosts_can_possess_animals = 0
 
 /datum/configuration/New()
+	fill_storyevents_list()
+
 	var/list/L = typesof(/datum/storyteller)-/datum/storyteller
 	for (var/T in L)
 		// I wish I didn't have to instance the game modes in order to look up
@@ -277,7 +274,7 @@ var/list/storyteller_cache = list()
 					config.log_admin = 1
 
 				if ("log_debug")
-					config.log_debug = text2num(value)
+					config.log_debug = 1
 
 				if ("log_game")
 					config.log_game = 1
@@ -311,6 +308,10 @@ var/list/storyteller_cache = list()
 
 				if ("log_runtime")
 					config.log_runtime = 1
+					var/newlog = file("data/logs/runtimes/runtime-[time2text(world.realtime, "YYYY-MM-DD")].log")
+					if(runtime_diary != newlog)
+						world.log << "Now logging runtimes to data/logs/runtimes/runtime-[time2text(world.realtime, "YYYY-MM-DD")].log"
+						runtime_diary = newlog
 
 				if ("generate_asteroid")
 					config.generate_asteroid = 1
@@ -496,9 +497,6 @@ var/list/storyteller_cache = list()
 				if("ticklag")
 					Ticklag = text2num(value)
 
-				if("fps")
-					fps = text2num(value)
-
 				if("tick_limit_mc_init")
 					tick_limit_mc_init = text2num(value)
 
@@ -509,9 +507,6 @@ var/list/storyteller_cache = list()
 
 				if("socket_talk")
 					socket_talk = text2num(value)
-
-				if("tickcomp")
-					Tickcomp = 1
 
 				if("humans_need_surnames")
 					humans_need_surnames = 1
@@ -540,6 +535,15 @@ var/list/storyteller_cache = list()
 				if("comms_password")
 					config.comms_password = value
 
+				if("forbidden_versions")
+					config.forbidden_versions = splittext(value, ";")
+
+				if("minimum_byond_version")
+					config.minimum_byond_version = text2num(value)
+
+				if("minimum_byond_build")
+					config.minimum_byond_build = text2num(value)
+
 				if("irc_bot_host")
 					config.irc_bot_host = value
 
@@ -558,6 +562,11 @@ var/list/storyteller_cache = list()
 
 				if("use_lib_nudge")
 					config.use_lib_nudge = 1
+
+				if("max_gear_cost")
+					max_gear_cost = text2num(value)
+					if(max_gear_cost < 0)
+						max_gear_cost = INFINITY
 
 				if("character_slots")
 					config.character_slots = text2num(value)
@@ -621,6 +630,12 @@ var/list/storyteller_cache = list()
 					if(!config.ert_species.len)
 						config.ert_species += "Human"
 
+				if("use_cortical_stacks")
+					config.use_cortical_stacks = 1
+
+				if("loadout_slots")
+					config.loadout_slots = text2num(value)
+
 				if("law_zero")
 					law_zero = value
 
@@ -662,24 +677,6 @@ var/list/storyteller_cache = list()
 					config.bones_can_break = value
 				if("limbs_can_break")
 					config.limbs_can_break = value
-
-				if("run_speed")
-					config.run_speed = value
-				if("walk_speed")
-					config.walk_speed = value
-
-				if("human_delay")
-					config.human_delay = value
-				if("robot_delay")
-					config.robot_delay = value
-				if("monkey_delay")
-					config.monkey_delay = value
-				if("alien_delay")
-					config.alien_delay = value
-				if("slime_delay")
-					config.slime_delay = value
-				if("animal_delay")
-					config.animal_delay = value
 
 
 				if("use_loyalty_implants")
@@ -741,6 +738,8 @@ var/list/storyteller_cache = list()
 		if(S)
 			runnable_storytellers |= S
 	return runnable_storytellers
+
+
 
 /datum/configuration/proc/post_load()
 	//apply a default value to config.python_path, if needed

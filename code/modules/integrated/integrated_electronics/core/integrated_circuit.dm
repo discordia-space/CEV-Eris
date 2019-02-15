@@ -3,10 +3,15 @@
 a creative player the means to solve many problems.  Circuits are held inside an electronic assembly, and are wired using special tools.
 */
 
+/obj/item/integrated_circuit
+	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_STEEL = 1)
+	matter_reagents = list("silicon" = 5)
+
 /obj/item/integrated_circuit/examine(mob/user)
 	. = ..()
 	external_examine(user)
 	interact(user)
+
 
 // This should be used when someone is examining while the case is opened.
 /obj/item/integrated_circuit/proc/internal_examine(mob/user)
@@ -64,16 +69,16 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	set desc = "Rename your circuit, useful to stay organized."
 
 	var/mob/M = usr
-	if(!CanInteract(M, physical_state))
+	if(!CanInteract(M,GLOB.physical_state))
 		return
 
 	var/input = sanitizeSafe(input("What do you want to name the circuit?", "Rename", src.name) as null|text, MAX_NAME_LEN)
-	if(src && input && CanInteract(M, physical_state))
+	if(src && input && CanInteract(M,GLOB.physical_state))
 		M << SPAN_NOTICE("The circuit '[src.name]' is now labeled '[input]'.")
 		name = input
 
 /obj/item/integrated_circuit/interact(mob/user)
-	if(!CanInteract(user, physical_state))
+	if(!CanInteract(user,GLOB.physical_state))
 		return
 
 	var/window_height = 350
@@ -186,7 +191,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 
 	onclose(user, "circuit-\ref[src]")
 
-/obj/item/integrated_circuit/Topic(href, href_list, state = physical_state)
+/obj/item/integrated_circuit/Topic(href, href_list, state =GLOB.physical_state)
 	if(..())
 		return 1
 	var/pin = locate(href_list["pin"]) in inputs + outputs + activators

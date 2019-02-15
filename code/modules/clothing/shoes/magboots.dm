@@ -6,15 +6,18 @@
 	force = 3
 	overshoes = 1
 	var/magpulse = 0
+	var/mag_slow = 3
 	var/icon_base = "magboots"
 	action_button_name = "Toggle Magboots"
 	var/obj/item/clothing/shoes/shoes = null	//Undershoes
 	var/mob/living/carbon/human/wearer = null	//For shoe procs
+	armor = list(melee = 40, bullet = 30, laser = 30,energy = 25, bomb = 50, bio = 100, rad = 70)
+	//This armor only applies to legs
 
 /obj/item/clothing/shoes/magboots/proc/set_slowdown()
 	slowdown = shoes? max(SHOES_SLOWDOWN, shoes.slowdown): SHOES_SLOWDOWN	//So you can't put on magboots to make you walk faster.
 	if (magpulse)
-		slowdown += 3
+		slowdown += mag_slow
 
 /obj/item/clothing/shoes/magboots/attack_self(mob/user)
 	if(magpulse)
@@ -33,11 +36,12 @@
 		user << "You enable the mag-pulse traction system."
 	user.update_inv_shoes()	//so our mob-overlays update
 	user.update_action_buttons()
+	user.update_floating()
 
 
 //We want to allow the user to equip magboots even if they're already wearing shoes
 //As long as those shoes are not themselves magboots or similar overshoe-shoes
-/obj/item/clothing/shoes/magboots/mob_can_equip(mob/user, slot, disable_warning = 0)
+/obj/item/clothing/shoes/magboots/can_be_equipped(mob/user, slot, disable_warning = 0)
 	if (slot == slot_shoes)
 		var/mob/living/carbon/human/H = user
 
@@ -104,3 +108,18 @@
 	if(item_flags & NOSLIP)
 		state = "enabled"
 	user << "Its mag-pulse traction system appears to be [state]."
+
+
+/*
+	Used by mercenaries
+*/
+/obj/item/clothing/shoes/magboots/merc
+	desc = "Sturdy hiking boots with powerful magnetic soles. Useful in or out of a vessel."
+	name = "military magboots"
+	icon_state = "mercboots0"
+	species_restricted = null
+	can_hold_knife = TRUE
+	overshoes = 0
+	mag_slow = 2
+	icon_base = "mercboots"
+	action_button_name = "Toggle Magboots"

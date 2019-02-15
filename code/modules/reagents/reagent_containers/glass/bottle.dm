@@ -60,136 +60,88 @@
 	desc = "A small bottle. Contains inaprovaline - used to stabilize patients."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
-
-	New()
-		..()
-		reagents.add_reagent("inaprovaline", 60)
-		update_icon()
+	preloaded = list("inaprovaline" = 60)
 
 /obj/item/weapon/reagent_containers/glass/bottle/toxin
 	name = "toxin bottle"
 	desc = "A small bottle of toxins. Do not drink, it is poisonous."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-3"
-
-	New()
-		..()
-		reagents.add_reagent("toxin", 60)
-		update_icon()
+	preloaded = list("toxin" = 60)
 
 /obj/item/weapon/reagent_containers/glass/bottle/cyanide
 	name = "cyanide bottle"
 	desc = "A small bottle of cyanide. Bitter almonds?"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-3"
-
-	New()
-		..()
-		reagents.add_reagent("cyanide", 30) //volume changed to match chloral
-		update_icon()
+	preloaded = list("cyanide" = 30)
 
 /obj/item/weapon/reagent_containers/glass/bottle/stoxin
 	name = "soporific bottle"
 	desc = "A small bottle of soporific. Just the fumes make you sleepy."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-3"
-
-	New()
-		..()
-		reagents.add_reagent("stoxin", 60)
-		update_icon()
+	preloaded = list("stoxin" = 60)
 
 /obj/item/weapon/reagent_containers/glass/bottle/chloralhydrate
 	name = "Chloral Hydrate Bottle"
 	desc = "A small bottle of Choral Hydrate. Mickey's Favorite!"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-3"
-
-	New()
-		..()
-		reagents.add_reagent("chloralhydrate", 30)		//Intentionally low since it is so strong. Still enough to knock someone out.
-		update_icon()
+	preloaded = list("chloralhydrate" = 30)
 
 /obj/item/weapon/reagent_containers/glass/bottle/antitoxin
 	name = "dylovene bottle"
 	desc = "A small bottle of dylovene. Counters poisons, and repairs damage. A wonder drug."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
-
-	New()
-		..()
-		reagents.add_reagent("anti_toxin", 60)
-		update_icon()
+	preloaded = list("anti_toxin" = 60)
 
 /obj/item/weapon/reagent_containers/glass/bottle/mutagen
 	name = "unstable mutagen bottle"
 	desc = "A small bottle of unstable mutagen. Randomly changes the DNA structure of whoever comes in contact."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-1"
-
-	New()
-		..()
-		reagents.add_reagent("mutagen", 60)
-		update_icon()
+	preloaded = list("mutagen" = 60)
 
 /obj/item/weapon/reagent_containers/glass/bottle/ammonia
 	name = "ammonia bottle"
 	desc = "A small bottle."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-1"
-
-	New()
-		..()
-		reagents.add_reagent("ammonia", 60)
-		update_icon()
+	preloaded = list("ammonia" = 60)
 
 /obj/item/weapon/reagent_containers/glass/bottle/diethylamine
 	name = "diethylamine bottle"
 	desc = "A small bottle."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
-
-	New()
-		..()
-		reagents.add_reagent("diethylamine", 60)
-		update_icon()
+	preloaded = list("diethylamine" = 60)
 
 /obj/item/weapon/reagent_containers/glass/bottle/pacid
 	name = "Polytrinic Acid Bottle"
 	desc = "A small bottle. Contains a small amount of Polytrinic Acid"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
-	New()
-		..()
-		reagents.add_reagent("pacid", 60)
-		update_icon()
+	preloaded = list("pacid" = 60)
 
 /obj/item/weapon/reagent_containers/glass/bottle/adminordrazine
 	name = "Adminordrazine Bottle"
 	desc = "A small bottle. Contains the liquid essence of the gods."
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "holyflask"
-	New()
-		..()
-		reagents.add_reagent("adminordrazine", 60)
-		update_icon()
+	preloaded = list("adminordrazine" = 60)
 
 /obj/item/weapon/reagent_containers/glass/bottle/capsaicin
 	name = "Capsaicin Bottle"
 	desc = "A small bottle. Contains hot sauce."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
-	New()
-		..()
-		reagents.add_reagent("capsaicin", 60)
-		update_icon()
+	preloaded = list("capsaicin" = 60)
 
 /obj/item/weapon/reagent_containers/glass/bottle/frostoil
 	name = "Frost Oil Bottle"
 	desc = "A small bottle. Contains cold sauce."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
-	New()
-		..()
-		reagents.add_reagent("frostoil", 60)
-		update_icon()
+	preloaded = list("frostoil" = 60)

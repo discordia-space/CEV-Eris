@@ -5,5 +5,19 @@
 #define JOBS_MEDICAL "Moebius Biolab Officer",	"Moebius Doctor","Moebius Psychiatrist","Moebius Chemist","Moebius Paramedic"
 #define JOBS_SCIENCE "Moebius Expedition Overseer","Moebius Scientist","Moebius Roboticist"
 #define JOBS_CARGO "Guild Merchant","Guild Technician","Guild Miner"
-#define JOBS_CIVILIAN "First Officer","Bartender","Gardener","Chef","Janitor","Cyberchristian Preacher","Assistant"
-#define JOBS_NONHUMAN "AI","Cyborg","pAI"
+#define JOBS_CIVILIAN "Bartender","Gardener","Chef","Janitor","Assistant"
+#define JOBS_CHURCH	"Neotheology Preacher"
+#define JOBS_NONHUMAN "AI","Robot","pAI"
+
+#define CREDITS "&cent;"
+#define CREDS "&cent;"
+
+
+#define DEPARTMENT_COMMAND	"Command"
+#define DEPARTMENT_MEDICAL	"Medical"
+#define DEPARTMENT_ENGINEERING	"Engineering"
+#define DEPARTMENT_SCIENCE	"Science"
+#define DEPARTMENT_SECURITY "Security"
+#define DEPARTMENT_GUILD "Guild"
+#define DEPARTMENT_CIVILIAN	"Civilian"
+#define DEPARTMENT_CHURCH	"Church"

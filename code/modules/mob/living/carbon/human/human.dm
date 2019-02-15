@@ -7,10 +7,9 @@
 
 	var/list/hud_list[10]
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
-	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_canmove() call.
+	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_lying_buckled_and_verb_status() call.
 
 /mob/living/carbon/human/New(var/new_loc, var/new_species = null)
-//	world << "new"
 	body_build = get_body_build(gender)
 
 	if(!dna)
@@ -29,19 +28,19 @@
 		if(mind)
 			mind.name = real_name
 
-	hud_list[HEALTH_HUD]      = image('icons/mob/hud.dmi', src, "hudhealth100")
-	hud_list[STATUS_HUD]      = image('icons/mob/hud.dmi', src, "hudhealthy")
-	hud_list[LIFE_HUD]	      = image('icons/mob/hud.dmi', src, "hudhealthy")
-	hud_list[ID_HUD]          = image('icons/mob/hud.dmi', src, "hudunknown")
-	hud_list[WANTED_HUD]      = image('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[IMPCHEM_HUD]     = image('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[IMPTRACK_HUD]    = image('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[SPECIALROLE_HUD] = image('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[STATUS_HUD_OOC]  = image('icons/mob/hud.dmi', src, "hudhealthy")
+	hud_list[HEALTH_HUD]      = image('icons/mob/hud.dmi', src, "hudhealth100", ON_MOB_HUD_LAYER)
+	hud_list[STATUS_HUD]      = image('icons/mob/hud.dmi', src, "hudhealthy",   ON_MOB_HUD_LAYER)
+	hud_list[LIFE_HUD]        = image('icons/mob/hud.dmi', src, "hudhealthy",   ON_MOB_HUD_LAYER)
+	hud_list[ID_HUD]          = image('icons/mob/hud.dmi', src, "hudunknown",   ON_MOB_HUD_LAYER)
+	hud_list[WANTED_HUD]      = image('icons/mob/hud.dmi', src, "hudblank",     ON_MOB_HUD_LAYER)
+	hud_list[IMPCHEM_HUD]     = image('icons/mob/hud.dmi', src, "hudblank",     ON_MOB_HUD_LAYER)
+	hud_list[IMPTRACK_HUD]    = image('icons/mob/hud.dmi', src, "hudblank",     ON_MOB_HUD_LAYER)
+	hud_list[SPECIALROLE_HUD] = image('icons/mob/hud.dmi', src, "hudblank",     ON_MOB_HUD_LAYER)
+	hud_list[STATUS_HUD_OOC]  = image('icons/mob/hud.dmi', src, "hudhealthy",   ON_MOB_HUD_LAYER)
 
 
 
-	human_mob_list |= src
+	GLOB.human_mob_list |= src
 	..()
 
 	if(dna)
@@ -51,13 +50,13 @@
 	make_blood()
 
 /mob/living/carbon/human/Destroy()
-	human_mob_list -= src
+	GLOB.human_mob_list -= src
 	for(var/organ in organs)
 		qdel(organ)
 	return ..()
 
 /mob/living/carbon/human/Stat()
-	..()
+	. = ..()
 	if(statpanel("Status"))
 		stat("Intent:", "[a_intent]")
 		stat("Move Mode:", "[m_intent]")
@@ -74,7 +73,7 @@
 				stat("Tank Pressure", internal.air_contents.return_pressure())
 				stat("Distribution Pressure", internal.distribute_pressure)
 
-		var/obj/item/organ/internal/xenos/plasmavessel/P = internal_organs_by_name[O_PLASMA]
+		var/obj/item/organ/internal/xenos/plasmavessel/P = internal_organs_by_name[BP_PLASMA]
 		if(P)
 			stat(null, "Plasma Stored: [P.stored_plasma]/[P.max_plasma]")
 
@@ -89,6 +88,10 @@
 				stat("Chemical Storage", mind.changeling.chem_charges)
 				stat("Genetic Damage Time", mind.changeling.geneticdamage)
 
+		var/obj/item/weapon/implant/core_implant/cruciform/C = get_cruciform()
+		if (C)
+			stat("Cruciform", "[C.power]/[C.max_power]")
+
 /mob/living/carbon/human/ex_act(severity)
 	if(!blinded)
 		if (HUDtech.Find("flash"))
@@ -97,10 +100,11 @@
 	var/shielded = 0
 	var/b_loss = null
 	var/f_loss = null
+	var/bomb_defense = getarmor(null, "bomb")
 	switch (severity)
 		if (1.0)
 			b_loss += 500
-			if (!prob(getarmor(null, "bomb")))
+			if (!prob(bomb_defense))
 				gib()
 				return
 			else
@@ -114,12 +118,6 @@
 			if (!shielded)
 				b_loss += 60
 
-			f_loss += 60
-
-			if (prob(getarmor(null, "bomb")))
-				b_loss = b_loss/1.5
-				f_loss = f_loss/1.5
-
 			if (!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
 				ear_damage += 30
 				ear_deaf += 120
@@ -128,14 +126,14 @@
 
 		if(3.0)
 			b_loss += 30
-			if (prob(getarmor(null, "bomb")))
-				b_loss = b_loss/2
 			if (!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
 				ear_damage += 15
 				ear_deaf += 60
 			if (prob(50) && !shielded)
 				Paralyse(10)
-
+	if (bomb_defense)
+		b_loss = max(b_loss - bomb_defense, 0)
+		f_loss = max(f_loss - bomb_defense, 0)
 	var/update = 0
 
 	// focus most of the blast on one organ
@@ -230,50 +228,29 @@
 
 // Get rank from ID, ID inside PDA, PDA, ID in wallet, etc.
 /mob/living/carbon/human/proc/get_authentification_rank(var/if_no_id = "No id", var/if_no_job = "No job")
-	var/obj/item/device/pda/pda = wear_id
-	if (istype(pda))
-		if (pda.id)
-			return pda.id.rank
-		else
-			return pda.ownrank
+	var/obj/item/weapon/card/id/id = GetIdCard()
+	if(istype(id))
+		return id.rank ? id.rank : if_no_job
 	else
-		var/obj/item/weapon/card/id/id = get_idcard()
-		if(id)
-			return id.rank ? id.rank : if_no_job
-		else
-			return if_no_id
+		return if_no_id
 
 //gets assignment from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
 /mob/living/carbon/human/proc/get_assignment(var/if_no_id = "No id", var/if_no_job = "No job")
-	var/obj/item/device/pda/pda = wear_id
-	if (istype(pda))
-		if (pda.id)
-			return pda.id.assignment
-		else
-			return pda.ownjob
+	var/obj/item/weapon/card/id/id = GetIdCard()
+	if(istype(id))
+		return id.assignment ? id.assignment : if_no_job
 	else
-		var/obj/item/weapon/card/id/id = get_idcard()
-		if(id)
-			return id.assignment ? id.assignment : if_no_job
-		else
-			return if_no_id
+		return if_no_id
 
 //gets name from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
 /mob/living/carbon/human/proc/get_authentification_name(var/if_no_id = "Unknown")
-	var/obj/item/device/pda/pda = wear_id
-	if (istype(pda))
-		if (pda.id)
-			return pda.id.registered_name
-		else
-			return pda.owner
+	var/obj/item/weapon/card/id/id = GetIdCard()
+	if(id)
+		return id.registered_name || if_no_id
 	else
-		var/obj/item/weapon/card/id/id = get_idcard()
-		if(id)
-			return id.registered_name
-		else
-			return if_no_id
+		return if_no_id
 
 //Trust me I'm an engineer
 //I think we'll put this shit right here
@@ -307,7 +284,7 @@ var/list/rank_prefix = list(\
 	return face_name
 
 //Returns "Unknown" if facially disfigured and real_name if not. Useful for setting name when polyacided or when updating a human's name variable
-/mob/living/carbon/human/proc/get_face_name()
+/mob/living/carbon/human/get_face_name()
 	var/obj/item/organ/external/head = get_organ(BP_HEAD)
 	if(!head || head.disfigured || head.is_stump() || !real_name || (HUSK in mutations) )	//disfigured. use id-name if possible
 		return "Unknown"
@@ -317,31 +294,27 @@ var/list/rank_prefix = list(\
 //Useful when player is being seen by other mobs
 /mob/living/carbon/human/proc/get_id_name(var/if_no_id = "Unknown")
 	. = if_no_id
-	if(istype(wear_id,/obj/item/device/pda))
-		var/obj/item/device/pda/P = wear_id
-		return P.owner
-	if(wear_id)
-		var/obj/item/weapon/card/id/I = wear_id.GetID()
-		if(I)
-			return I.registered_name
-	return
+	var/obj/item/weapon/card/id/I = GetIdCard()
+	if(istype(I))
+		return I.registered_name
 
 /mob/living/carbon/human/proc/get_id_rank()
 	var/rank
-	if(istype(wear_id,/obj/item/device/pda))
-		var/obj/item/device/pda/P = wear_id
-		rank = P.ownjob
-	else if(wear_id)
-		var/obj/item/weapon/card/id/I = wear_id.GetID()
-		rank = I.rank
-	if(rank_prefix[rank])
-		return rank_prefix[rank]
+	var/obj/item/weapon/card/id/id
+	if (istype(wear_id, /obj/item/modular_computer/pda))
+		id = wear_id.GetIdCard()
+	if(!id)
+		id = get_idcard()
+	if(id)
+		rank = id.rank
+		if(rank_prefix[rank])
+			return rank_prefix[rank]
 	return ""
 
 //gets ID card object from special clothes slot or null.
 /mob/living/carbon/human/proc/get_idcard()
 	if(wear_id)
-		return wear_id.GetID()
+		return wear_id.GetIdCard()
 
 //Removed the horrible safety parameter. It was only being used by ninja code anyways.
 //Now checks siemens_coefficient of the affected area by default
@@ -377,7 +350,7 @@ var/list/rank_prefix = list(\
 			var/modified = 0
 			var/perpname = "wot"
 			if(wear_id)
-				var/obj/item/weapon/card/id/I = wear_id.GetID()
+				var/obj/item/weapon/card/id/I = wear_id.GetIdCard()
 				if(I)
 					perpname = I.registered_name
 				else
@@ -415,14 +388,12 @@ var/list/rank_prefix = list(\
 			var/perpname = "wot"
 			var/read = 0
 
-			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/pda))
-					var/obj/item/device/pda/tempPda = wear_id
-					perpname = tempPda.owner
+			var/obj/item/weapon/card/id/id = GetIdCard()
+			if(istype(id))
+				perpname = id.registered_name
 			else
 				perpname = src.name
+
 			for (var/datum/data/record/E in data_core.general)
 				if (E.fields["name"] == perpname)
 					for (var/datum/data/record/R in data_core.security)
@@ -445,14 +416,12 @@ var/list/rank_prefix = list(\
 			var/perpname = "wot"
 			var/read = 0
 
-			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/pda))
-					var/obj/item/device/pda/tempPda = wear_id
-					perpname = tempPda.owner
+			var/obj/item/weapon/card/id/id = GetIdCard()
+			if(istype(id))
+				perpname = id.registered_name
 			else
 				perpname = src.name
+
 			for (var/datum/data/record/E in data_core.general)
 				if (E.fields["name"] == perpname)
 					for (var/datum/data/record/R in data_core.security)
@@ -474,11 +443,13 @@ var/list/rank_prefix = list(\
 		if(hasHUD(usr,"security"))
 			var/perpname = "wot"
 			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/pda))
-					var/obj/item/device/pda/tempPda = wear_id
-					perpname = tempPda.owner
+				var/obj/item/weapon/card/id/id
+				if (istype(wear_id, /obj/item/modular_computer/pda))
+					id = wear_id.GetIdCard()
+				if(!id)
+					id = get_idcard()
+					if(id)
+						perpname = id.registered_name
 			else
 				perpname = src.name
 			for (var/datum/data/record/E in data_core.general)
@@ -504,12 +475,9 @@ var/list/rank_prefix = list(\
 			var/perpname = "wot"
 			var/modified = 0
 
-			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/pda))
-					var/obj/item/device/pda/tempPda = wear_id
-					perpname = tempPda.owner
+			var/obj/item/weapon/card/id/id = GetIdCard()
+			if(istype(id))
+				perpname = id.registered_name
 			else
 				perpname = src.name
 
@@ -544,11 +512,13 @@ var/list/rank_prefix = list(\
 			var/read = 0
 
 			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/pda))
-					var/obj/item/device/pda/tempPda = wear_id
-					perpname = tempPda.owner
+				var/obj/item/weapon/card/id/id
+				if (istype(wear_id, /obj/item/modular_computer/pda))
+					id = wear_id.GetIdCard()
+				if(!id)
+					id = get_idcard()
+					if(id)
+						perpname = id.registered_name
 			else
 				perpname = src.name
 			for (var/datum/data/record/E in data_core.general)
@@ -575,11 +545,13 @@ var/list/rank_prefix = list(\
 			var/read = 0
 
 			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/pda))
-					var/obj/item/device/pda/tempPda = wear_id
-					perpname = tempPda.owner
+				var/obj/item/weapon/card/id/id
+				if (istype(wear_id, /obj/item/modular_computer/pda))
+					id = wear_id.GetIdCard()
+				if(!id)
+					id = get_idcard()
+					if(id)
+						perpname = id.registered_name
 			else
 				perpname = src.name
 			for (var/datum/data/record/E in data_core.general)
@@ -603,11 +575,13 @@ var/list/rank_prefix = list(\
 		if(hasHUD(usr,"medical"))
 			var/perpname = "wot"
 			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/pda))
-					var/obj/item/device/pda/tempPda = wear_id
-					perpname = tempPda.owner
+				var/obj/item/weapon/card/id/id
+				if (istype(wear_id, /obj/item/modular_computer/pda))
+					id = wear_id.GetIdCard()
+				if(!id)
+					id = get_idcard()
+					if(id)
+						perpname = id.registered_name
 			else
 				perpname = src.name
 			for (var/datum/data/record/E in data_core.general)
@@ -642,11 +616,11 @@ var/list/rank_prefix = list(\
 ///eyecheck()
 ///Returns a number between -1 to 2
 /mob/living/carbon/human/eyecheck()
-	if(!species.has_organ[O_EYES]) //No eyes, can't hurt them.
+	if(!species.has_organ[BP_EYES]) //No eyes, can't hurt them.
 		return FLASH_PROTECTION_MAJOR
 
-	if(internal_organs_by_name[O_EYES]) // Eyes are fucked, not a 'weak point'.
-		var/obj/item/organ/I = internal_organs_by_name[O_EYES]
+	if(internal_organs_by_name[BP_EYES]) // Eyes are fucked, not a 'weak point'.
+		var/obj/item/organ/I = internal_organs_by_name[BP_EYES]
 		if(I.status & ORGAN_CUT_AWAY)
 			return FLASH_PROTECTION_MAJOR
 
@@ -654,7 +628,7 @@ var/list/rank_prefix = list(\
 
 //Used by various things that knock people out by applying blunt trauma to the head.
 //Checks that the species has a "head" (brain containing organ) and that hit_zone refers to it.
-/mob/living/carbon/human/proc/headcheck(var/target_zone, var/brain_tag = O_BRAIN)
+/mob/living/carbon/human/proc/headcheck(var/target_zone, var/brain_tag = BP_BRAIN)
 	if(!species.has_organ[brain_tag])
 		return 0
 
@@ -922,11 +896,11 @@ var/list/rank_prefix = list(\
 	..()
 
 /mob/living/carbon/human/proc/is_lung_ruptured()
-	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
+	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[BP_LUNGS]
 	return L && L.is_bruised()
 
 /mob/living/carbon/human/proc/rupture_lung()
-	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
+	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[BP_LUNGS]
 
 	if(L && !L.is_bruised())
 		src.custom_pain("You feel a stabbing pain in your chest!", 1)
@@ -1077,7 +1051,6 @@ var/list/rank_prefix = list(\
 		usr << SPAN_WARNING("You failed to check the pulse. Try again.")
 
 /mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour)
-//	world << "set species"
 	if(!dna)
 		if(!new_species)
 			new_species = "Human"
@@ -1285,7 +1258,7 @@ var/list/rank_prefix = list(\
 
 	if(!target_zone)
 		if(!user)
-			target_zone = pick(BP_ALL + BP_CHEST + BP_CHEST)
+			target_zone = pick(BP_ALL_LIMBS + BP_CHEST + BP_CHEST)
 		else
 			target_zone = user.targeted_organ
 
@@ -1318,15 +1291,16 @@ var/list/rank_prefix = list(\
 			// Do not show flavor if face is hidden
 			return
 
-	flavor_text = src.flavor_text
+	if(client)
+		flavor_text = client.prefs.flavor_text
 
 	if (flavor_text && flavor_text != "" && !shrink)
 		var/msg = trim(replacetext(flavor_text, "\n", " "))
 		if(!msg) return ""
 		if(lentext(msg) <= 40)
-			return "\blue [msg]"
+			return "<font color='blue'>[russian_to_cp1251(msg)]</font>"
 		else
-			return "\blue [copytext_preserve_html(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a>"
+			return "<font color='blue'>[copytext_preserve_html(russian_to_cp1251(msg), 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a></font>"
 	return ..()
 
 /mob/living/carbon/human/getDNA()
@@ -1340,11 +1314,11 @@ var/list/rank_prefix = list(\
 	..()
 
 /mob/living/carbon/human/has_brain()
-	return istype(internal_organs_by_name[O_BRAIN], /obj/item/organ/internal/brain)
+	return istype(internal_organs_by_name[BP_BRAIN], /obj/item/organ/internal/brain)
 
 /mob/living/carbon/human/has_eyes()
-	if(internal_organs_by_name[O_EYES])
-		var/obj/item/organ/internal/eyes = internal_organs_by_name[O_EYES]
+	if(internal_organs_by_name[BP_EYES])
+		var/obj/item/organ/internal/eyes = internal_organs_by_name[BP_EYES]
 		if(eyes && istype(eyes) && !(eyes.status & ORGAN_CUT_AWAY))
 			return 1
 	return 0
@@ -1461,7 +1435,7 @@ var/list/rank_prefix = list(\
 //			output for machines^	^^^^^^^output for people^^^^^^^^^
 
 /mob/living/carbon/human/proc/pulse()
-	var/obj/item/organ/internal/heart/H = internal_organs_by_name[O_HEART]
+	var/obj/item/organ/internal/heart/H = internal_organs_by_name[BP_HEART]
 	if(!H)
 		return PULSE_NONE
 	else
@@ -1488,3 +1462,48 @@ var/list/rank_prefix = list(\
 		src << SPAN_NOTICE("You can't do it right now.")
 	return
 
+/mob/living/carbon/human/should_have_organ(var/organ_check)
+
+	var/obj/item/organ/external/affecting
+	if(organ_check in list(BP_HEART, BP_LUNGS))
+		affecting = organs_by_name[BP_CHEST]
+	else if(organ_check in list(BP_LIVER, BP_KIDNEYS))
+		affecting = organs_by_name[BP_GROIN]
+
+	if(affecting && (affecting.robotic >= ORGAN_ROBOT))
+		return FALSE
+	return (species && species.has_organ[organ_check])
+
+/mob/living/carbon/human/has_appendage(var/appendage_check)	//returns TRUE if found, 2 or 3 if limb is robotic, FALSE if not found
+
+	if (appendage_check == BP_CHEST)
+		return TRUE
+
+	var/obj/item/organ/external/appendage
+	appendage = organs_by_name[appendage_check]
+
+	if(appendage && !appendage.is_stump())
+		if(appendage.robotic >= ORGAN_ROBOT)
+			return appendage.robotic
+		else return TRUE
+	return FALSE
+
+//	If covered in blakets you wont get up while all blankets is unrolled
+/mob/living/carbon/human/unblanket()
+	if(!(locate(/obj/item/weapon/bedsheet) in get_turf(src)))
+		return TRUE
+	if(incapacitated(incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_STUNNED))
+		return FALSE
+	var/obj/item/weapon/bedsheet/unrolledBlanket
+	for (var/obj/item/weapon/bedsheet/BS in get_turf(src))
+		if(!BS.rolled && !BS.folded)
+			unrolledBlanket = BS
+			break
+	if(unrolledBlanket)
+		if(unrolledBlanket.toggle_roll(src))
+			if (unblanket())
+				return TRUE
+		else
+			return FALSE
+	else
+		return TRUE
