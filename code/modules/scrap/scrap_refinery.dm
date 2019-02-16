@@ -37,13 +37,13 @@
 	chance_to_recycle = min(100, chance_to_recycle)
 
 /obj/machinery/recycler/examine(mob/user)
-	..()
+	.=..()
 	to_chat(user, "The power light is [(stat & NOPOWER) ? "off" : "on"].")
 	to_chat(user, "The safety-mode light is [safety_mode ? "on" : "off"].")
 	to_chat(user, "The safety-sensors status light is [emagged ? "off" : "on"].")
 
 /obj/machinery/recycler/power_change()
-	..()
+	.=..()
 	update_icon()
 
 
@@ -70,7 +70,7 @@
 		to_chat(user, SPAN_NOTICE("You use the cryptographic sequencer on the [name]."))
 
 /obj/machinery/recycler/update_icon()
-	..()
+	.=..()
 	var/is_powered = !(stat & (BROKEN|NOPOWER))
 	if(safety_mode)
 		is_powered = FALSE
@@ -78,7 +78,7 @@
 
 // This is purely for admin possession !FUN!.
 /obj/machinery/recycler/Bump(atom/movable/AM)
-	..()
+	.=..()
 	if(AM)
 		Bumped(AM)
 

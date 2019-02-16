@@ -20,4 +20,4 @@
 	time_per_fuel_unit = 80
 
 /obj/machinery/power/port_gen/pacman/scrap/overheat()
-		explosion(loc, 1, 5, 2, -1)
+	explosion(loc, 1, 5, 2, -1)

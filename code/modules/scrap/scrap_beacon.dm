@@ -14,7 +14,7 @@
 	var/active = 0
 
 /obj/structure/scrap_beacon/attack_hand(mob/user)
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	.=..()
 	if((last_summon + summon_cooldown) >= world.time)
 		to_chat(user, "<span class='notice'>[name] not charged yet.</span>")
 		return
@@ -45,4 +45,3 @@
 		new /obj/effect/falling_effect(newloc, /obj/random/scrap/moderate_weighted)
 	active = FALSE
 	icon_state = "beacon0"
-	return

@@ -94,7 +94,7 @@
 	if(default_part_replacement(I, user))
 		return
 
-	..()
+	.=..()
 
 /obj/machinery/pile_ripper/emag_act(mob/user)
 	if(!emagged)

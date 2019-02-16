@@ -248,11 +248,11 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	try_make_loot()
 	loot.open(user)
 	playsound(src, "rummage", 50, 1)
-	..()
+	.=..()
 
 /obj/structure/scrap/attack_generic(mob/user)
 	loot.open(user)
-	..()
+	.=..()
 
 
 /obj/structure/scrap/proc/dig_out_lump(newloc = loc)
