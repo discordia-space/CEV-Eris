@@ -1,0 +1,7 @@
+author: Garen7
+
+delete-after: True
+
+changes: 
+  - bugfix: "Bull shotguns ammo overlay no longer breaks when you have shots in the chamber and fully load the gun."
+  - rscdel: "IH Commander no longer has 2 berets in his locker since there should only ever be one commander.
