@@ -105,7 +105,7 @@
 	prev_matrix = M.transform
 	prev_alpha = M.alpha
 	prev_layer = M.layer
-	prev_plane = M.plane
+	prev_plane = M.original_plane
 	origin = get_turf(M)
 	gravity = origin.has_gravity()
 
@@ -118,7 +118,7 @@
 	M.transform = prev_matrix
 	M.alpha = prev_alpha
 	M.layer = prev_layer
-	M.plane = prev_plane
+	M.set_plane(prev_plane)
 	if (travelsound)
 		travelsound.stop()
 

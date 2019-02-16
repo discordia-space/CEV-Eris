@@ -35,6 +35,6 @@
 				/obj/item/weapon/cell/small/excelsior = 1))
 
 /obj/random/powercell/low_chance
-	name = "low chance random tool"
+	name = "low chance random powercell"
 	icon_state = "battery-green-low"
 	spawn_nothing_percentage = 60
