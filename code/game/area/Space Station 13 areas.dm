@@ -39,6 +39,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	var/used_equip = 0
 	var/used_light = 0
 	var/used_environ = 0
+	var/area_light_color = null		//Used by lights to create different light on different departments and locations
 
 	var/has_gravity = 1
 	var/cached_gravity = 1		//stores updated has_gravity even if it's blocked

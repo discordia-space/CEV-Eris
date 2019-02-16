@@ -3,7 +3,7 @@
 	icon = 'icons/obj/computer.dmi'
 	icon_keyboard = "med_key"
 	icon_screen = "crew"
-	light_color = COLOR_LIME
+	light_color = COLOR_LIGHTING_GREEN_MACHINERY
 	CheckFaceFlag = 0
 	var/datum/disease2/effectholder/memorybank = null
 	var/list/species_buffer = null

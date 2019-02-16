@@ -10,7 +10,7 @@
 #define LIGHT_BURNED 3
 #define LIGHT_BULB_TEMPERATURE 400 //K - used value for a 60W bulb
 
-/obj/machinery/light_construct // Добавить понятие "базовая иконка"
+/obj/machinery/light_construct
 	name = "light fixture frame"
 	desc = "A light fixture under construction."
 	icon = 'icons/obj/lighting.dmi'
@@ -127,7 +127,7 @@
 		if (coil.use(1))
 			switch(fixture_type)
 				if ("tube")
-					if (!istype(src, /obj/machinery/light_construct/floor)) // TODO Переделать это
+					if (!istype(src, /obj/machinery/light_construct/floor))
 						src.icon_state = "tube-construct-stage2"
 					else
 						src.icon_state = "floortube-construct-stage2"
@@ -174,7 +174,7 @@
 	var/on_gs = 0
 	var/brightness_range = 7	// luminosity when on, also used in power calculation
 	var/brightness_power = 2
-	var/brightness_color = null
+	var/brightness_color = COLOR_LIGHTING_DEFAULT_BRIGHT
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
 	var/flickering = 0
 	var/light_type = /obj/item/weapon/light/tube		// the type of light item
@@ -199,19 +199,8 @@
 	fitting = "bulb"
 	brightness_range = 4
 	brightness_power = 2
-	brightness_color = "#a0a080"
 	desc = "A small lighting fixture."
 	light_type = /obj/item/weapon/light/bulb
-
-/obj/machinery/light/small/emergency
-	brightness_range = 6
-	brightness_power = 2
-	brightness_color = "#da0205"
-
-/obj/machinery/light/small/red
-	brightness_range = 5
-	brightness_power = 1
-	brightness_color = "#da0205"
 
 /obj/machinery/light/spot
 	name = "spotlight"
@@ -236,22 +225,18 @@
 	..()
 
 // create a new lighting fixture
-/obj/machinery/light/New()
-	..()
+/obj/machinery/light/Initialize()
+	. = ..()
 
-	spawn(2)
-		var/area/A = get_area(src)
-		if(A && !A.requires_power)
-			on = 1
+	var/area/A = get_area(src)
+	if(A && !A.requires_power)
+		on = 1
 
-		if(src.z == 1 || src.z == 5)
-			switch(fitting)
-				if("tube","bulb")
-					if(prob(2))
-						broken(1)
+	var/area/location = get_area(loc)
+	if(location.area_light_color)
+		brightness_color = location.area_light_color
 
-		spawn(1)
-			update(0)
+	update(0)
 
 /obj/machinery/light/Destroy()
 	var/area/A = get_area(src)
@@ -286,7 +271,7 @@
 		if(cmptext(base_state,"tube"))
 			atmosalarmed = 1
 			firealarmed = 0
-			brightness_color = "#6D6DFC"
+			brightness_color = COLOR_LIGHTING_BLUE_MACHINERY
 		update()
 
 /obj/machinery/light/proc/set_red()
@@ -294,7 +279,7 @@
 		if(cmptext(base_state,"tube"))
 			firealarmed = 1
 			atmosalarmed = 0
-			brightness_color = "#FF3030"
+			brightness_color = COLOR_LIGHTING_RED_MACHINERY
 		update()
 
 /obj/machinery/light/proc/reset_color()
@@ -302,7 +287,14 @@
 		if(cmptext(base_state,"tube"))
 			firealarmed = 0
 			atmosalarmed = 0
-			brightness_color = "#FFFFFF"
+
+			var/area/location = get_area(loc)
+			if(location.area_light_color)
+				brightness_color = location.area_light_color
+
+			else
+				brightness_color = COLOR_LIGHTING_DEFAULT_BRIGHT
+
 		update()
 
 
@@ -715,7 +707,6 @@
 	matter = list(MATERIAL_GLASS = 1)
 	brightness_range = 5
 	brightness_power = 2
-	brightness_color = "#a0a080"
 
 /obj/item/weapon/light/throw_impact(atom/hit_atom)
 	..()

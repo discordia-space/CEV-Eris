@@ -122,16 +122,13 @@
 
 	for(var/datum/vote_choice/V in choices)
 		all_voters |= V.voters
+		choice_votes[V] = V.total_votes()
 
-		//Variable power per voter
-		for (var/voter in V.voters)
-			var/votepower = V.voters[voter]
-			choice_votes[V] = votepower
 
 	var/max_votes = 0
 
 	for(var/datum/vote_choice/V in choice_votes)
-		max_votes = max(max_votes, V.total_votes())
+		max_votes = max(max_votes, choice_votes[V])
 
 	//The result text will be built and displayed
 	var/text = ""

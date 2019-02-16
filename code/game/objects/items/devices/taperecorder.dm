@@ -218,6 +218,7 @@
 		recording = 0
 		audio_file.timestamp += audio_file.used_capacity
 		audio_file.storedinfo += "\[[time2text(audio_file.used_capacity*10,"mm:ss")]\] Recording stopped."
+		audio_file.stored_data = null
 		for(var/entry in audio_file.storedinfo)
 			audio_file.stored_data += "[entry]<br>"
 		if(show_message)

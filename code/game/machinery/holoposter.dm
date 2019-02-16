@@ -12,13 +12,13 @@
 	var/last_launch = 0
 
 	var/list/postertypes = list(
-		"ironhammer" = "#4D658D",
-		"frozenstar" = "#4D658D",
-		"neotheology" = "#D49E6A",
-		"asters" = "#5FAE57",
-		"tehnomancers" = "#AA7039",
-		"moebius" = "#5D2971",
-		"med" = "#17A32D",
+		"ironhammer" = COLOR_LIGHTING_BLUE_BRIGHT,
+		"frozenstar" = COLOR_LIGHTING_BLUE_BRIGHT,
+		"neotheology" = COLOR_LIGHTING_ORANGE_BRIGHT,
+		"asters" = COLOR_LIGHTING_GREEN_BRIGHT,
+		"tehnomancers" = COLOR_LIGHTING_ORANGE_BRIGHT,
+		"moebius" = COLOR_LIGHTING_PURPLE_BRIGHT,
+		"med" = COLOR_LIGHTING_GREEN_BRIGHT,
 	)
 
 /obj/machinery/holoposter/update_icon()
@@ -26,11 +26,11 @@
 		icon_state = "off"
 		set_light(0)
 		return
-	var/new_color = "#FFFFFF"
+	var/new_color = COLOR_LIGHTING_DEFAULT_BRIGHT
 	if(stat & BROKEN)
 		icon_state = "glitch"
-		new_color = "#4D658D"
-	else 
+		new_color = COLOR_LIGHTING_SCI_BRIGHT
+	else
 		var/decl/security_state/security_state = decls_repository.get_decl(maps_data.security_state)
 		if(security_state.current_security_level_is_same_or_higher_than(security_state.high_security_level))
 			icon_state = "attention"

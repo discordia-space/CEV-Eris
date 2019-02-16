@@ -11,6 +11,7 @@
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/c45smg
 	matter = list(MATERIAL_PLASTEEL = 16, MATERIAL_PLASTIC = 4)
+	damage_multiplier = 0.75
 
 	firemodes = list(
 		FULL_AUTO_400,
