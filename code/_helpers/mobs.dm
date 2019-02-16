@@ -366,3 +366,12 @@ Proc for attack log creation, because really why not
 				selected = M
 				break
 	return selected
+
+
+//Returns true if this person has a job which is a department head
+/mob/proc/is_head_role()
+	.=FALSE
+	if (!mind || !mind.assigned_job)
+		return
+
+	return mind.assigned_job.head_position
