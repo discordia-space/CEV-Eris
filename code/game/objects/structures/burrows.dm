@@ -554,6 +554,17 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 //This proc handles creation of a plant on this burrow
 //It relies on the plant seed already being set
 /obj/structure/burrow/proc/spread_plants()
+	if(istype(plant, /datum/seed/wires))		//hivemind wireweeds handling
+		if(locate(/obj/effect/plant) in loc)
+			return
+
+		var/obj/structure/hivemind_machine/node/hivemind_node = locate() in world
+		if(!hivemind_node)
+			return
+
+		var/obj/effect/plant/hivemind/wire = new(src.loc, plant)
+		hivemind_node.add_wireweed(wire)
+
 	for (var/obj/effect/plant in loc)
 		return
 

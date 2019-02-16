@@ -19,8 +19,12 @@
 
 		//We check zdest, not floor, for existing plants
 		if((locate(/obj/effect/plant) in zdest.contents) || (locate(/obj/effect/dead_plant) in zdest.contents) )
-
 			continue
+
+		//If our floor is open space, so let's check turf below
+		if(istype(floor, /turf/simulated/open))
+			if(locate(/obj/effect/plant) in GetBelow(floor))
+				continue
 
 		//We dont want to melt external walls and cause breaches
 		if(!near_external && floor.density)
@@ -31,7 +35,13 @@
 			continue
 
 		//Space vines can grow through airlocks by forcing their way into tiny gaps
+		//There also can be special conditions handling
 		if (!floor.Enter(src))
+
+			//special condition check
+			if(is_can_pass_special(floor))
+				neighbors |= floor
+				continue
 
 			//Maintshooms cannot, spread trait must be 3 or more
 			if(seed.get_trait(TRAIT_SPREAD) < 3)
@@ -70,6 +80,9 @@
 	for(var/obj/effect/plant/neighbor in range(1,src))
 		neighbor.neighbors -= T
 
+//special pass check
+/obj/effect/plant/proc/is_can_pass_special(var/turf/target)
+	return TRUE
 
 //This silly special case override is needed to make vines work with portals.
 //Code is copied from /atoms_movable.dm, but a spawn call is removed, making it completely synchronous
@@ -91,6 +104,50 @@
 			return
 
 	// Handle life.
+	life()
+
+	if(buckled_mob)
+		seed.do_sting(buckled_mob,src)
+		if(seed.get_trait(TRAIT_CARNIVOROUS))
+			seed.do_thorns(buckled_mob,src)
+
+	if(world.time >= last_tick+NEIGHBOR_REFRESH_TIME)
+		last_tick = world.time
+		update_neighbors()
+
+	if(sampled)
+		//Should be between 2-7 for given the default range of values for TRAIT_PRODUCTION
+		var/chance = max(1, round(30/seed.get_trait(TRAIT_PRODUCTION)))
+		if(prob(chance))
+			sampled = 0
+
+	if(is_mature() && neighbors.len && prob(spread_chance))
+		spread()
+
+	// We shouldn't have spawned if the controller doesn't exist.
+	check_health(FALSE)//Dont want to update the icon every process
+	if(neighbors.len || health != max_health)
+		plant_controller.add_plant(src)
+
+	if (seed.get_trait(TRAIT_CHEM_SPRAYER) && !spray_cooldown)
+		var/turf/mainloc = get_turf(src)
+		for(var/mob/living/A in range(1,mainloc))
+			if(A.move_speed < 12)
+				HasProximity(A)
+				A.visible_message(SPAN_WARNING("[src] sprays something on [A.name]!"), SPAN_WARNING("[src] sprays something on you!"))
+				spray_cooldown = TRUE
+				spawn(10)
+					spray_cooldown = FALSE
+
+	if(seed.get_trait(TRAIT_CHEMS) && reagents.get_free_space() && !chem_regen_cooldown)
+		for (var/reagent in seed.chems)
+			src.reagents.add_reagent(reagent, 1)
+		chem_regen_cooldown = TRUE
+		spawn(600)
+			chem_regen_cooldown = FALSE
+
+
+/obj/effect/plant/proc/life()
 	var/turf/simulated/T = get_turf(src)
 	if(istype(T))
 		health -= seed.handle_environment(T,T.return_air(),null,1)
@@ -115,59 +172,35 @@
 		else
 			plant.layer = layer + 0.1
 
-	if(buckled_mob)
-		seed.do_sting(buckled_mob,src)
-		if(seed.get_trait(TRAIT_CARNIVOROUS))
-			seed.do_thorns(buckled_mob,src)
 
-	if(world.time >= last_tick+NEIGHBOR_REFRESH_TIME)
-		last_tick = world.time
-		update_neighbors()
+/obj/effect/plant/proc/spread()
+	//spread to 1-3 adjacent turfs depending on yield trait.
+	var/max_spread = between(1, round(seed.get_trait(TRAIT_YIELD)*3/14), 3)
 
-	if(sampled)
-		//Should be between 2-7 for given the default range of values for TRAIT_PRODUCTION
-		var/chance = max(1, round(30/seed.get_trait(TRAIT_PRODUCTION)))
-		if(prob(chance))
-			sampled = 0
+	for(var/i in 1 to max_spread)
+		if(prob(spread_chance))
+			sleep(rand(3,5))
+			if(!neighbors.len)
+				break
+			var/turf/target_turf = pick(neighbors)
+			if(istype(target_turf, /turf/simulated/open)) //openspace handle
+				var/turf/simulated/open/turf_below = GetBelow(target_turf)
+				var/obj/effect/plant/child = new type(get_turf(src),seed,src)
+				after_spread(child, turf_below)
+			else
+				var/obj/effect/plant/child = new type(get_turf(src),seed,src)
+				after_spread(child, target_turf)
+			// Update neighboring squares.
+			for(var/obj/effect/plant/neighbor in range(1,target_turf))
+				neighbor.neighbors -= target_turf
 
-	if(is_mature() && neighbors.len && prob(spread_chance))
-		//spread to 1-3 adjacent turfs depending on yield trait.
-		var/max_spread = between(1, round(seed.get_trait(TRAIT_YIELD)*3/14), 3)
 
-		for(var/i in 1 to max_spread)
-			if(prob(spread_chance))
-				sleep(rand(3,5))
-				if(!neighbors.len)
-					break
-				var/turf/target_turf = pick(neighbors)
-				var/obj/effect/plant/child = new(get_turf(src),seed,parent)
-				spawn(1) // This should do a little bit of animation.
-					child.handle_move(loc, target_turf)
-				// Update neighboring squares.
-				for(var/obj/effect/plant/neighbor in range(1,target_turf))
-					neighbor.neighbors -= target_turf
-
-	// We shouldn't have spawned if the controller doesn't exist.
-	check_health(FALSE)//Dont want to update the icon every process
-	if(neighbors.len || health != max_health)
-		plant_controller.add_plant(src)
-
-	if (seed.get_trait(TRAIT_CHEM_SPRAYER) && !spray_cooldown)
-		var/turf/mainloc = get_turf(src)
-		for(var/mob/living/A in range(1,mainloc))
-			if(A.move_speed < 12)
-				HasProximity(A)
-				A.visible_message(SPAN_WARNING("[src] sprays something on [A.name]!"), SPAN_WARNING("[src] sprays something on you!"))
-				spray_cooldown = TRUE
-				spawn(10)
-					spray_cooldown = FALSE
-
-	if(seed.get_trait(TRAIT_CHEMS) && reagents.get_free_space() && !chem_regen_cooldown)
-		for (var/reagent in seed.chems)
-			src.reagents.add_reagent(reagent, 1)
-		chem_regen_cooldown = TRUE
-		spawn(600)
-			chem_regen_cooldown = FALSE
+//after creation act
+//by default, there goes an animation code
+/obj/effect/plant/proc/after_spread(var/obj/effect/plant/child, var/turf/target_turf)
+	spawn(1) // This should do a little bit of animation.
+		child.loc = target_turf
+		child.update_icon()
 
 
 //Once created, the new vine moves to destination turf
