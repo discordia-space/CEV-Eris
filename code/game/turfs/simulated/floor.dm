@@ -8,11 +8,6 @@
 	var/broken
 	var/burnt
 
-	// Plating data.
-	var/base_name = "plating"
-	var/base_desc = "The naked hull."
-	var/base_icon = 'icons/turf/flooring/plating.dmi'
-	var/base_icon_state = "plating"
 
 	// Flooring data.
 	var/flooring_override
@@ -71,6 +66,7 @@
 	name = flooring.name
 	maxHealth = flooring.health
 	health = maxHealth
+	flooring_override = null
 
 	/*This is passed false in the New() flooring set, so that we're not calling everything up to
 	nine times when the world is created. This saves on tons of roundstart processing*/
@@ -102,10 +98,7 @@
 		decals.Cut()
 		decals = null
 
-	name = base_name
-	desc = base_desc
-	icon = base_icon
-	icon_state = base_icon_state
+
 	set_light(0)
 	broken = null
 	burnt = null
