@@ -16,6 +16,7 @@
 	sound_env = TUNNEL_ENCLOSED
 	turf_initializer = new /datum/turf_initializer/maintenance()
 	forced_ambience = list('sound/ambience/maintambience.ogg')
+	area_light_color = COLOR_LIGHTING_MAINT_DARK
 
 /area/eris/maintenance/disposal
 	name = "Waste Disposal"
@@ -259,6 +260,9 @@
 
 
 //Command
+/area/eris/command
+	name = "\improper Command"
+	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
 
 /area/eris/command/bridge
 	name = "\improper Bridge"
@@ -273,11 +277,13 @@
 /area/eris/command/bridgebar
 	name = "V.I.P. Bar"
 	icon_state = "erisblue"
+	area_light_color = COLOR_LIGHTING_CREW_SOFT
 
 /area/eris/command/captain
 	name = "\improper Command - Captain's Office"
 	icon_state = "captain"
 	sound_env = SMALL_SOFTFLOOR
+	area_light_color = COLOR_LIGHTING_CREW_SOFT
 
 /area/eris/command/fo
 	name = "\improper Command - First Officer's Office"
@@ -288,6 +294,7 @@
 	name = "\improper Command - First Officer's Quarters"
 	icon_state = "head_quarters"
 	sound_env = SMALL_SOFTFLOOR
+	area_light_color = COLOR_LIGHTING_CREW_SOFT
 
 /area/eris/command/meo
 	name = "\improper Research - MEO's Office"
@@ -298,6 +305,7 @@
 	name = "\improper Research - MEO's Quarters"
 	icon_state = "head_quarters"
 	sound_env = SMALL_SOFTFLOOR
+	area_light_color = COLOR_LIGHTING_CREW_SOFT
 
 /area/eris/command/exultant
 	name = "\improper Engineering - Exultant Office"
@@ -308,6 +316,7 @@
 	name = "\improper Engineering - Exultant Quarters"
 	icon_state = "head_quarters"
 	sound_env = SMALL_SOFTFLOOR
+	area_light_color = COLOR_LIGHTING_CREW_SOFT
 
 /area/eris/command/mbo
 	name = "\improper Medbay - MBO's Office"
@@ -318,11 +327,13 @@
 	name = "\improper Medbay - MBO's Quarters"
 	icon_state = "head_quarters"
 	sound_env = SMALL_SOFTFLOOR
+	area_light_color = COLOR_LIGHTING_CREW_SOFT
 
 /area/eris/command/commander
 	name = "Ironhammer Commander's Office"
 	icon_state = "hammerred"
 	sound_env = SMALL_SOFTFLOOR
+	area_light_color = COLOR_LIGHTING_CREW_SOFT
 
 /area/eris/command/merchant
 	name = "\improper Cargo - Merchant Office"
@@ -333,7 +344,7 @@
 	name = "\improper Teleporter"
 	icon_state = "teleporter"
 
-/area/eris/command/tcommsat/
+/area/eris/command/tcommsat
 	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
 	flags = AREA_FLAG_CRITICAL
 
@@ -357,7 +368,7 @@
 /area/eris/crew_quarters
 	name = "\improper Dormitories"
 	icon_state = "Sleep"
-	flags = AREA_FLAG_RAD_SHIELDED
+	area_light_color = COLOR_LIGHTING_CREW_SOFT
 
 /area/eris/crew_quarters/toilet
 	name = "\improper Dormitory Toilets"
@@ -389,7 +400,8 @@
 /area/eris/crew_quarters/sleep/cryo
 	name = "\improper Cryogenic Storage"
 	icon_state = "Sleep"
-	flags = AREA_FLAG_CRITICAL
+	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
+	flags = AREA_FLAG_CRITICAL | AREA_FLAG_RAD_SHIELDED
 
 /area/eris/crew_quarters/sleep_male
 	name = "\improper Male Dorm"
@@ -485,6 +497,7 @@
 
 /area/eris/neotheology
 	icon_state = "erisgreen"
+	area_light_color = COLOR_LIGHTING_NEOTHEOLOGY_BRIGHT
 
 /area/eris/neotheology/chapel
 	name = "\improper Chapel"
@@ -495,6 +508,7 @@
 /area/eris/neotheology/office
 	name = "\improper Chapel Office"
 	icon_state = "chapeloffice"
+	area_light_color = COLOR_LIGHTING_NEOTHEOLOGY_DARK
 
 /area/eris/neotheology/chapelritualroom
 	name = "Chapel Rituals Room"
@@ -510,6 +524,7 @@
 /area/eris/engineering
 	name = "\improper Engineering"
 	icon_state = "engineering"
+	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
 
 /area/eris/engineering/gravity_generator
 	name = "Gravity Generator Room"
@@ -577,6 +592,7 @@
 /area/eris/engineering/storage
 	name = "\improper Engineering Storage"
 	icon_state = "engineering_storage"
+	area_light_color = COLOR_LIGHTING_SCI_DARK
 
 /area/eris/engineering/break_room
 	name = "\improper Engineering Break Room"
@@ -586,6 +602,7 @@
 /area/eris/engineering/engine_eva
 	name = "\improper Engine EVA"
 	icon_state = "engine_eva"
+	area_light_color = COLOR_LIGHTING_SCI_DARK
 
 /area/eris/engineering/locker_room
 	name = "\improper Engineering Locker Room"
@@ -602,10 +619,12 @@
 /area/eris/engineering/wastingroom
 	name = "Wasting Room"
 	icon_state = "erisred"
+	area_light_color = COLOR_LIGHTING_SCI_DARK
 
 /area/eris/engineering/post
 	name = "Engineering Post"
 	icon_state = "erisred"
+	area_light_color = COLOR_LIGHTING_SCI_DARK
 
 /area/eris/engineering/wastingroom
 	name = "Wasting Room"
@@ -634,6 +653,7 @@
 /area/eris/engineering/engeva
 	name = "Engineering E.V.A. Storage"
 	icon_state = "erisblue"
+	area_light_color = COLOR_LIGHTING_SCI_DARK
 
 /area/eris/engineering/construction
 	name = "\improper Engineering Construction Area"
@@ -654,7 +674,12 @@
 //MedBay
 
 /area/eris/medical/medbay
-	name = "\improper Medbay Hallway - Port"
+	name = "\improper Medical"
+	icon_state = "erisgreen"
+	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
+
+/area/eris/medical/medbay
+	name = "\improper Medbay"
 	icon_state = "medbay"
 	ambience = list('sound/ambience/signal.ogg')
 
@@ -688,6 +713,7 @@
 	name = "\improper Psych Room"
 	icon_state = "medbay3"
 	ambience = list('sound/ambience/signal.ogg')
+	area_light_color = COLOR_LIGHTING_CREW_SOFT
 
 /area/eris/medical/medbreak
 	name = "\improper Break Room"
@@ -778,10 +804,12 @@
 /area/eris/medical/chemstor
 	name = "Chemical Storage"
 	icon_state = "erisblue"
+	area_light_color = COLOR_LIGHTING_SCI_DARK
 
 /area/eris/medical/medeva
 	name = "Medical E.V.A. Storage"
 	icon_state = "erisblue"
+	area_light_color = COLOR_LIGHTING_SCI_DARK
 
 /area/eris/medical/medbay/iso
 	name = "Isolation Wing"
@@ -795,6 +823,11 @@
 
 
 //Security
+
+/area/eris/security
+	name = "Security"
+	icon_state = "security"
+	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
 
 /area/eris/security/main
 	name = "\improper Security Office"
@@ -886,6 +919,7 @@
 /area/eris/security/inspectors_office
 	name = "Inspectors Office"
 	icon_state = "hammerblue"
+	area_light_color = COLOR_LIGHTING_CREW_SOFT
 
 /area/eris/security/disposal
 	name = "Security Disposal"
@@ -904,6 +938,7 @@
 /area/eris/security/evidencestorage
 	name = "Evidence Storage"
 	icon_state = "hammerred"
+	area_light_color = COLOR_LIGHTING_SCI_DARK
 
 /area/eris/security/armory
 	name = "Armory"
@@ -912,6 +947,7 @@
 /area/eris/security/exerooms
 	name = "Executive Rooms"
 	icon_state = "hammerred"
+	area_light_color = COLOR_LIGHTING_SCI_DARK
 
 /area/eris/security/maintpost
 	name = "Maintenance Post"
@@ -926,6 +962,7 @@
 /area/eris/quartermaster
 	name = "\improper Merchants"
 	icon_state = "quart"
+	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
 
 /area/eris/quartermaster/office
 	name = "\improper Cargo Office"
@@ -955,6 +992,9 @@
 
 
 //Research and Development
+
+/area/eris/rnd
+	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
 
 /area/eris/rnd/research
 	name = "\improper Research and Development"
@@ -1003,6 +1043,7 @@
 /area/eris/rnd/storage
 	name = "\improper Toxins Storage"
 	icon_state = "toxstorage"
+	area_light_color = COLOR_LIGHTING_SCI_DARK
 
 /area/eris/rnd/mixing
 	name = "\improper Toxins Mixing Room"
@@ -1011,6 +1052,7 @@
 /area/eris/rnd/misc_lab
 	name = "\improper Miscellaneous Research"
 	icon_state = "toxmisc"
+	area_light_color = COLOR_LIGHTING_SCI_DARK
 
 /area/eris/rnd/server
 	name = "\improper Server Room"

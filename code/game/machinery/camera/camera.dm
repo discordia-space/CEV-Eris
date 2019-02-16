@@ -182,7 +182,7 @@
 		interact(user)
 
 	// OTHER
-	else if (can_use() && isliving(user))
+	else if (can_use() && isliving(user) && user.a_intent != I_HURT)
 		var/mob/living/U = user
 		var/list/mob/viewers = list()
 		if(last_shown_time < world.time)

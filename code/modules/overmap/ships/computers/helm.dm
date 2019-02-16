@@ -3,7 +3,7 @@
 	icon_state = "computer"
 	icon_keyboard = "teleport_key"
 	icon_screen = "eris_control"
-	light_color = "#7faaff"
+	light_color = COLOR_LIGHTING_CYAN_MACHINERY
 	circuit = /obj/item/weapon/circuitboard/helm
 	var/obj/effect/overmap/ship/linked			//connected overmap object
 	var/autopilot = 0
