@@ -30,7 +30,7 @@
 	set name = "Toggle stun mode"
 	set src in view(1)
 
-	if ( usr.stat || usr.restrained() )
+	if(usr.incapacitated())
 		return
 
 	stunmode = !stunmode
