@@ -53,7 +53,7 @@
 
 				var/obj/screen/openspace_overlay/oover = new
 				oover.plane = calculate_plane(zi,pl)
-				oover.alpha = 255-(150/zdiff)
+				oover.alpha = min(255,zdiff*50 + 30)
 				openspace_overlays["[zi]-[oover.plane]"] = oover
 				mymob.client.screen += oover
 
