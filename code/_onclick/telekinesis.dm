@@ -162,7 +162,7 @@ var/const/tk_maxrange = 15
 		var/old_layer = focus.layer
 		var/old_plane = focus.plane
 		focus.layer = layer+0.01
-		focus.plane = ABOVE_HUD_PLANE
+		focus.set_plane(ABOVE_HUD_PLANE)
 		overlays += focus //this is kind of ick, but it's better than using icon()
 		focus.layer = old_layer
-		focus.plane = old_plane
+		focus.set_plane(old_plane)
