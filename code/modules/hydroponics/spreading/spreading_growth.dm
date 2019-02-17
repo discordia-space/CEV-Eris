@@ -199,7 +199,7 @@
 //by default, there goes an animation code
 /obj/effect/plant/proc/after_spread(var/obj/effect/plant/child, var/turf/target_turf)
 	spawn(1) // This should do a little bit of animation.
-		child.loc = target_turf
+		child.forceMove(target_turf)
 		child.update_icon()
 
 

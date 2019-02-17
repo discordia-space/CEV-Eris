@@ -11,9 +11,10 @@
 	check_armour = "bullet"
 	step_delay = 2
 
-	on_hit(var/atom/target, var/blocked = 0)
-		..()
-		if(!(locate(/obj/effect/decal/cleanable/spiderling_remains) in target.loc))
-			var/obj/effect/decal/cleanable/spiderling_remains/goo = new /obj/effect/decal/cleanable/spiderling_remains(target.loc)
-			goo.name = "green goo"
-			goo.desc = "Phe-e-e-ew..."
+
+/obj/item/projectile/goo/on_hit(var/atom/target, var/blocked = 0)
+	. = ..()
+	if(!(locate(/obj/effect/decal/cleanable/spiderling_remains) in target.loc))
+		var/obj/effect/decal/cleanable/spiderling_remains/goo = new /obj/effect/decal/cleanable/spiderling_remains(target.loc)
+		goo.name = "green goo"
+		goo.desc = "Phe-e-e-ew..."

@@ -55,7 +55,7 @@
 /mob/living/simple_animal/hostile/hivemind/proc/mulfunction()
 	stance = HOSTILE_STANCE_IDLE //it give us some kind of stun effect
 	target_mob = null
-	walk(src, 0)
+	walk(src, FALSE)
 	var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 	sparks.set_up(3, 3, loc)
 	sparks.start()
@@ -83,7 +83,7 @@
 
 /mob/living/simple_animal/hostile/hivemind/say()
 	..()
-	playsound(src.loc, pick('sound/machines/robots/robot_talk_heavy1.ogg',
+	playsound(src, pick('sound/machines/robots/robot_talk_heavy1.ogg',
 							'sound/machines/robots/robot_talk_heavy2.ogg',
 							'sound/machines/robots/robot_talk_heavy3.ogg',
 							'sound/machines/robots/robot_talk_heavy4.ogg',
@@ -107,11 +107,7 @@
 
 	closet_interaction()
 
-	..()
-
-
-/mob/living/simple_animal/hostile/hivemind/AttackingTarget()
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/hivemind/proc/speak()
 	if(!client && speak_chance && prob(speak_chance) && speak.len)
@@ -136,19 +132,19 @@
 /mob/living/simple_animal/hostile/hivemind/death()
 	if(master) //for spawnable mobs
 		master.spawned_creatures.Remove(src)
-	..()
+	. = ..()
 	gibs(loc, null, /obj/effect/gibspawner/robot)
 
 
 
 ///life's///////////////////////////////////////////////////
-////////////////////////////////RESSURECTION///////////////
+////////////////////////////////RESURRECTION///////////////
 ///////////////////////////////////////////////go on//////
 
 
 //these guys is appears from bodies, and takes corpses appearence
-/mob/living/simple_animal/hostile/hivemind/ressurected
-	name = "ressurected creature"
+/mob/living/simple_animal/hostile/hivemind/resurrected
+	name = "resurrected creature"
 	malfunction_chance = 10
 
 
@@ -157,7 +153,7 @@
 //this also should add random special abilities, so they can be more individual, but it's in future
 //how to use: Make hive mob, then just use this one and don't forget to delete victim
 
-/mob/living/simple_animal/hostile/hivemind/ressurected/proc/absorb_the(var/mob/living/victim)
+/mob/living/simple_animal/hostile/hivemind/resurrected/proc/absorb_the(var/mob/living/victim)
 	icon = victim.icon
 	icon_state = victim.icon_state
 	//simple_animal's change their icons to dead one after death, so we make special check
@@ -201,7 +197,7 @@
 		speak.Add(phrase)
 
 
-/mob/living/simple_animal/hostile/hivemind/ressurected/death()
+/mob/living/simple_animal/hostile/hivemind/resurrected/death()
 	..()
 	gibs(loc, null, /obj/effect/gibspawner/robot)
 	qdel(src)
@@ -285,15 +281,16 @@
 						"Oh god, this is... Yes, this is what we are looking for."
 						)
 
-	New()
-		..()
-		set_light(2, 1, "#820D1C")
+
+/mob/living/simple_animal/hostile/hivemind/bomber/Initialize()
+	..()
+	set_light(2, 1, "#820D1C")
 
 
 /mob/living/simple_animal/hostile/hivemind/bomber/death()
 	..()
 	gibs(loc, null, /obj/effect/gibspawner/robot)
-	explosion(src.loc, 0, 0, 2)
+	explosion(loc, 0, 0, 2)
 	qdel(src)
 
 
@@ -358,7 +355,7 @@
 		stun_with_claw()
 		return
 
-	..() //default attack
+	return ..() //default attack
 
 
 /mob/living/simple_animal/hostile/hivemind/hiborg/proc/splash_slash()
@@ -428,7 +425,7 @@
 
 
 /mob/living/simple_animal/hostile/hivemind/himan/Life()
-	..()
+	. = ..()
 
 	//shriek
 	if(target_mob && world.time > special_ability_cooldown && !fake_dead)
@@ -479,7 +476,7 @@
 //Shriek stuns our victims and make them deaf for a while
 /mob/living/simple_animal/hostile/hivemind/himan/special_ability()
 	visible_emote("screams!")
-	playsound(src.loc, 'sound/hallucinations/veryfar_noise.ogg', 90, 1)
+	playsound(src, 'sound/hallucinations/veryfar_noise.ogg', 90, 1)
 	for(var/mob/living/victim in view(src))
 		if(isdeaf(victim))
 			continue
@@ -497,7 +494,7 @@
 /mob/living/simple_animal/hostile/hivemind/himan/proc/fake_death()
 	src.visible_message("<b>[src]</b> dies!")
 	fake_dead = TRUE
-	walk(src, 0)
+	walk(src, FALSE)
 	icon_state = icon_dead
 	fake_dead_wait_time = world.time + 10 SECONDS
 
@@ -587,7 +584,7 @@
 
 
 /mob/living/simple_animal/hostile/hivemind/mechiver/Life()
-	..()
+	. = ..()
 	update_icon()
 
 	//when we have passenger, we torture him
@@ -599,7 +596,7 @@
 								"You feel awful, cadaveric smell", "Something sharp cut your cheek!",
 								"You feel how worm-like thing trying to get inside your head through ear..."))
 		shake_the(src)
-		playsound(src.loc, 'sound/effects/clang.ogg', 70, 1)
+		playsound(src, 'sound/effects/clang.ogg', 70, 1)
 
 
 	//corpse ressurection
@@ -671,7 +668,7 @@
 	target.loc = src
 	target.canmove = FALSE
 	target << SPAN_DANGER("You've got inside that thing! It's hard to see here, but there something, something that moves around you!")
-	playsound(src.loc, 'sound/effects/blobattack.ogg', 70, 1)
+	playsound(src, 'sound/effects/blobattack.ogg', 70, 1)
 	addtimer(CALLBACK(src, .proc/release_passenger), 20 SECONDS)
 
 
@@ -702,7 +699,7 @@
 			passenger.loc = get_turf(src)
 			passenger = null
 			special_ability_cooldown = world.time + ability_cooldown
-		playsound(src.loc, 'sound/effects/blobattack.ogg', 70, 1)
+		playsound(src, 'sound/effects/blobattack.ogg', 70, 1)
 
 
 /mob/living/simple_animal/hostile/hivemind/mechiver/proc/dead_body_restoration(var/mob/living/corpse)
@@ -718,7 +715,7 @@
 	if(picked_mob)
 		new picked_mob(get_turf(src))
 	else
-		var/mob/living/simple_animal/hostile/hivemind/ressurected/fixed_mob = new(get_turf(src))
+		var/mob/living/simple_animal/hostile/hivemind/resurrected/fixed_mob = new(get_turf(src))
 		fixed_mob.absorb_the(corpse)
 	destroy_passenger()
 
@@ -765,14 +762,14 @@
 	var/can_use_special_ability = TRUE
 	var/list/my_copies = list()
 
-	New()
-		..()
-		filters += filter(type="blur", size = 0)
+/mob/living/simple_animal/hostile/hivemind/phaser/New()
+	..()
+	filters += filter(type="blur", size = 0)
 
 
 /mob/living/simple_animal/hostile/hivemind/phaser/Life()
 	stop_automated_movement = TRUE
-	..()
+	. = ..()
 
 	//special ability using
 	if(world.time > special_ability_cooldown && can_use_special_ability)
@@ -884,19 +881,19 @@
 	//we gives to copies our appearence and pick random direction for them
 	//with animation it's hard to say, who's real. And i hope it looks great
 	for(var/i = 1 to 3)
-		var/mob/living/simple_animal/hostile/hivemind/phaser/Reflection = new src.type(spawn_point)
-		Reflection.name = src.name
+		var/mob/living/simple_animal/hostile/hivemind/phaser/Reflection = new type(spawn_point)
+		Reflection.name = name
 		Reflection.can_use_special_ability = FALSE
-		Reflection.icon_state = src.icon_state
+		Reflection.icon_state = icon_state
 		my_copies.Add(Reflection)
 		var/d = pick(possible_directions)
 		possible_directions -= d
 		var/turf/new_position = get_step(spawn_point, d)
 		if(Reflection.is_can_jump_on(new_position))
 			spawn(1) //ugh, i know, i know, it's bad. Animation
-				Reflection.loc = new_position
+				Reflection.forceMove(new_position)
 		addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, Reflection), 60 SECONDS)
-	src.loc = get_step(spawn_point, possible_directions[1]) //there must left last direction
+	loc = get_step(spawn_point, possible_directions[1]) //there must left last direction
 	special_ability_cooldown = world.time + ability_cooldown
 	playsound(spawn_point, 'sound/effects/cascade.ogg', 100, 1)
 

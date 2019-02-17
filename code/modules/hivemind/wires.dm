@@ -11,17 +11,18 @@
 	var/obj/structure/hivemind_machine/node/master_node
 	var/list/wires_connections = list("0", "0", "0", "0")
 
-	New()
-		..()
-		icon = 'icons/obj/hivemind.dmi'
-		spawn(2)
-			update_neighbors()
+
+/obj/effect/plant/hivemind/New()
+	..()
+	icon = 'icons/obj/hivemind.dmi'
+	spawn(2)
+		update_neighbors()
 
 
 /obj/effect/plant/hivemind/Destroy()
 	if(master_node)
 		master_node.my_wireweeds.Remove(src)
-	..()
+	return ..()
 
 
 /obj/effect/plant/hivemind/after_spread(var/obj/effect/plant/child, var/turf/target_turf)
@@ -30,13 +31,13 @@
 	spawn(1)
 		child.dir = get_dir(loc, target_turf) //actually this means nothing for wires, but need for animation
 		flick("spread_anim", child)
-		child.loc = target_turf
+		child.forceMove(target_turf)
 		update_icon()
 
 
 /obj/effect/plant/hivemind/proc/try_to_annihilate()
 	if(hive_mind_ai && master_node)
-		for(var/obj/machinery/machine_on_my_tile in src.loc)
+		for(var/obj/machinery/machine_on_my_tile in loc)
 			var/can_annihilate = TRUE
 
 			//whitelist check
@@ -51,19 +52,19 @@
 				return
 
 			 //only one machine per turf
-			if(can_annihilate && !locate(/obj/structure/hivemind_machine) in src.loc)
+			if(can_annihilate && !locate(/obj/structure/hivemind_machine) in loc)
 				annihilate(machine_on_my_tile)
 			//other will be... merged
 			else if(can_annihilate)
 				qdel(machine_on_my_tile)
 
 		//modular computers handling
-		var/obj/item/modular_computer/console/mod_comp = locate() in src.loc
+		var/obj/item/modular_computer/console/mod_comp = locate() in loc
 		if(mod_comp)
 			annihilate(mod_comp)
 
 		//dead bodies handling
-		for(var/mob/living/dead_body in src.loc)
+		for(var/mob/living/dead_body in loc)
 			if(dead_body.stat == DEAD)
 				annihilate(dead_body)
 
@@ -183,7 +184,7 @@
 		if(prob(hive_mind_ai.failure_chance))
 			//critical failure! This machine would be a dummy, which means - without any ability
 			//let's make an infested sprite
-			var/obj/structure/hivemind_machine/new_machine = new (src.loc)
+			var/obj/structure/hivemind_machine/new_machine = new (loc)
 			var/icon/infected_icon = new('icons/obj/hivemind_machines.dmi', icon_state = "wires-[rand(1, 3)]")
 			var/icon/new_icon = new(subject.icon, icon_state = subject.icon_state, dir = subject.dir)
 			new_icon.Blend(infected_icon, ICON_OVERLAY)
@@ -193,7 +194,7 @@
 		else
 			//of course, here we have a very little chance to spawn him, our mini-boss
 			if(prob(1))
-				new /mob/living/simple_animal/hostile/hivemind/mechiver(src.loc)
+				new /mob/living/simple_animal/hostile/hivemind/mechiver(loc)
 				qdel(subject)
 				return
 			else
@@ -213,7 +214,7 @@
 
 				if(!picked_machine)
 					picked_machine = pick(possible_machines)
-				var/obj/structure/hivemind_machine/new_machine = new picked_machine(src.loc)
+				var/obj/structure/hivemind_machine/new_machine = new picked_machine(loc)
 				new_machine.update_icon()
 
 	if(istype(subject, /mob/living) && !istype(subject, /mob/living/simple_animal/hostile/hivemind))
@@ -223,13 +224,13 @@
 			for(var/obj/item/W in L)
 				L.drop_from_inventory(W)
 			var/M = pick(/mob/living/simple_animal/hostile/hivemind/himan, /mob/living/simple_animal/hostile/hivemind/phaser)
-			new M(src.loc)
+			new M(loc)
 		//robot corpses
 		else if(istype(subject, /mob/living/silicon))
-			new /mob/living/simple_animal/hostile/hivemind/hiborg(src.loc)
+			new /mob/living/simple_animal/hostile/hivemind/hiborg(loc)
 		//other dead bodies
 		else
-			var/mob/living/simple_animal/hostile/hivemind/ressurected/transformed_mob =  new(src.loc)
+			var/mob/living/simple_animal/hostile/hivemind/resurrected/transformed_mob =  new(loc)
 			transformed_mob.absorb_the(subject)
 
 	qdel(subject)

@@ -4,9 +4,9 @@
 //We even don't know why this ai do it.
 
 
-var/datum/hivemind/mind/hive_mind_ai
+var/datum/hivemind/hive_mind_ai
 
-datum/hivemind/mind
+/datum/hivemind
 	var/name
 	var/surname
 	var/evo_points = 0
@@ -29,30 +29,30 @@ datum/hivemind/mind
 	var/list/global_abilities_cooldown = list()
 	var/list/EP_price_list = list()
 
-	New()
-		..()
-		name = pick("Reworker", "Executor", "Annihilator",
-					"Bugmerger", "Exploiter", "Builder", "Maker",
-					"Connector", "Splicer", "Reproducer")
+/datum/hivemind/New()
+	..()
+	name = pick("Reworker", "Executor", "Annihilator",
+				"Bugmerger", "Exploiter", "Builder", "Maker",
+				"Connector", "Splicer", "Reproducer")
 
-		surname = pick("ALPHA", "BETA", "GAMMA", "DELTA", "OMEGA", "UTOPIA",
-						"SALVATION-X", "CHORUS", "ICARUS", "HEGEMONY", "HARMONY")
-		var/list/all_machines = subtypesof(/obj/structure/hivemind_machine) - /obj/structure/hivemind_machine/node
-		//price list building
-		//here we create list with EP price to compare it at annihilation proc
-		for(var/machine_path in all_machines)
-			var/obj/structure/hivemind_machine/temporary_machine = new machine_path
-			EP_price_list[machine_path] = temporary_machine.evo_points_required
-			qdel(temporary_machine)
-		message_admins("Hivemind [name] [surname] has been created.")
+	surname = pick("ALPHA", "BETA", "GAMMA", "DELTA", "OMEGA", "UTOPIA",
+					"SALVATION-X", "CHORUS", "ICARUS", "HEGEMONY", "HARMONY")
+	var/list/all_machines = subtypesof(/obj/structure/hivemind_machine) - /obj/structure/hivemind_machine/node
+	//price list building
+	//here we create list with EP price to compare it at annihilation proc
+	for(var/machine_path in all_machines)
+		var/obj/structure/hivemind_machine/temporary_machine = new machine_path
+		EP_price_list[machine_path] = temporary_machine.evo_points_required
+		qdel(temporary_machine)
+	message_admins("Hivemind [name] [surname] has been created.")
 
 
-datum/hivemind/mind/proc/die()
+/datum/hivemind/proc/die()
 	message_admins("Hivemind [name] [surname] is destroyed.")
 	hive_mind_ai = null
 	qdel(src)
 
-datum/hivemind/mind/proc/get_points()
+/datum/hivemind/proc/get_points()
 	if(evo_points < evo_points_max)
 		evo_points++
 		if(failure_chance > 10 && (evo_points % 10 == 0))
