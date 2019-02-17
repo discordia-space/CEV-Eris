@@ -19,8 +19,13 @@ obj/machinery/recharger
 	var/icon_state_charging = "recharger1"
 	var/icon_state_idle = "recharger0" //also when unpowered
 	var/portable = 1
+	var/screwed = FALSE
 
 obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
+
+	if (portable)
+		if (istype(G, /obj/item/weapon/tool/screwdriver) || istype(G, /obj/item/weapon/tool/crowbar) )
+			default_deconstruction(G, user)
 
 	if(portable && istype(G, /obj/item/weapon/tool/wrench))
 		if(charging)
