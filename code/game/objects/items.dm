@@ -69,14 +69,7 @@
 /obj/item/Destroy()
 	QDEL_NULL(hidden_uplink)
 	QDEL_NULL(blood_overlay)
-	origin_tech = null
-	attack_verb = null
 	QDEL_NULL(action)
-	tool_qualities = null
-	armor = null
-	allowed = null
-	item_state_slots = null
-	item_icons = null
 	if(ismob(loc))
 		var/mob/m = loc
 		m.u_equip(src)

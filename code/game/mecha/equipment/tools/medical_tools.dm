@@ -403,9 +403,7 @@
 		synth = new (list(src),0)
 
 	Destroy()
-		syringes = null
-		known_reagents = null
-		processed_reagents = null
+		QDEL_NULL_LIST(syringes)
 		QDEL_NULL(synth)
 		return ..()
 

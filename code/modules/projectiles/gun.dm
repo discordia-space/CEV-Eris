@@ -27,7 +27,6 @@
 
 /datum/firemode/Destroy()
 	gun = null
-	settings = null
 	return ..()
 
 /datum/firemode/proc/apply_to(obj/item/weapon/gun/_gun)
