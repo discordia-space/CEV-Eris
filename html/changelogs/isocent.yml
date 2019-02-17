@@ -1,4 +1,5 @@
 author: Carbonhell
 delete-after: True
 changes: 
-  - bugfix: "Isolation centrifuges can now be dismantled properly with a screwdriver."
+  - bugfix: "Isolation centrifuge can now be dismantled properly with a screwdriver."
+  - rscadd: "The isolation centrifuge circuitboard can now be made through an autolathe, and is a part of the circuitpack autolathe disk."
