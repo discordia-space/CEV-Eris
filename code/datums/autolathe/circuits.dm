@@ -44,6 +44,10 @@
 	name = "medical records console"
 	path = /obj/item/weapon/circuitboard/med_data
 
+/datum/autolathe/recipe/circuit/recharger
+	name = "recharger"
+	path = /obj/item/weapon/circuitboard/recharger
+
 /datum/autolathe/recipe/circuit/secure_data
 	name = "security records console"
 	path = /obj/item/weapon/circuitboard/secure_data

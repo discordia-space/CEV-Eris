@@ -5,6 +5,7 @@ obj/machinery/recharger
 	anchored = 1
 	use_power = 1
 	idle_power_usage = 4
+	circuit = /obj/item/weapon/circuitboard/recharger
 	var/max_power_usage = 24000	//22 kW. This is the highest power the charger can draw and use,
 	//though it may draw less when charging weak cells due to their charging rate limits
 	active_power_usage = 24000//The actual power the charger uses right now. This is recalculated based on the cell when it's inserted
@@ -23,9 +24,10 @@ obj/machinery/recharger
 
 obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 
-	if (portable)
-		if (istype(G, /obj/item/weapon/tool/screwdriver) || istype(G, /obj/item/weapon/tool/crowbar) )
+	if(portable && !charging)
+		if(istype(G, /obj/item/weapon/tool/screwdriver) || istype(G, /obj/item/weapon/tool/crowbar) )
 			default_deconstruction(G, user)
+
 
 	if(portable && istype(G, /obj/item/weapon/tool/wrench))
 		if(charging)
