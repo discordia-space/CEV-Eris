@@ -35,6 +35,11 @@
 	var/auto_eject_sound = null
 	var/ammo_mag = "default" // magazines + gun itself. if set to default, then not used
 
+/obj/item/weapon/gun/projectile/Destroy()
+	QDEL_NULL(chambered)
+	QDEL_NULL(ammo_magazine)
+	return ..()
+
 /obj/item/weapon/gun/projectile/proc/cock_gun(mob/user)
 	set waitfor = 0
 	if(cocked_sound)
