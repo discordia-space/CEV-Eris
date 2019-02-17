@@ -279,10 +279,10 @@
 	..(user)
 	if(ammo_magazine)
 		user << "It has \a [ammo_magazine] loaded."
-	user << "Has [getAmmo()] round\s remaining."
+	user << "Has [get_ammo()] round\s remaining."
 	return
 
-/obj/item/weapon/gun/projectile/proc/getAmmo()
+/obj/item/weapon/gun/projectile/proc/get_ammo()
 	var/bullets = 0
 	if(loaded)
 		bullets += loaded.len

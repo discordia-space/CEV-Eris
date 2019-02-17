@@ -80,7 +80,6 @@
 	new /obj/item/weapon/gun/energy/gun/martin(src)
 	new /obj/item/clothing/accessory/holster/waist(src)
 	new /obj/item/weapon/melee/telebaton(src)
-	new /obj/item/clothing/head/beret/sec/navy/hos(src)
 	new /obj/item/clothing/accessory/badge/hos(src)
 	new /obj/item/weapon/storage/pouch/pistol_holster(src)
 	new /obj/item/weapon/storage/pouch/baton_holster(src)
