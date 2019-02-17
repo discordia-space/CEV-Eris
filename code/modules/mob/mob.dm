@@ -776,7 +776,7 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 	set_dir(ndir)
 	if(buckled && buckled.buckle_movable)
 		buckled.set_dir(ndir)
-	setMoveCooldown(movement_delay())
+	set_move_cooldown(movement_delay())
 	return 1
 
 

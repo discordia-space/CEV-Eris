@@ -81,7 +81,7 @@
 // Space movement
 /datum/movement_handler/mob/space/DoMove(var/direction, var/mob/mover)
 	if(!mob.check_solid_ground())
-		var/allowmove = mob.Allow_Spacemove(0)
+		var/allowmove = mob.allow_spacemove(0)
 		if(!allowmove)
 			return MOVEMENT_HANDLED
 		else if(allowmove == -1 && mob.handle_spaceslipping()) //Check to see if we slipped
@@ -94,7 +94,7 @@
 		return MOVEMENT_PROCEED
 
 	if(!mob.check_solid_ground())
-		if(!mob.Allow_Spacemove(0))
+		if(!mob.allow_spacemove(0))
 			return MOVEMENT_STOP
 	return MOVEMENT_PROCEED
 
@@ -118,10 +118,10 @@
 			. = MOVEMENT_HANDLED
 			if(ishuman(mob))
 				var/mob/living/carbon/human/driver = mob
-				var/obj/item/organ/external/l_hand = driver.get_organ(BP_L_HAND)
-				var/obj/item/organ/external/r_hand = driver.get_organ(BP_R_HAND)
-				if((!l_hand || l_hand.is_stump()) && (!r_hand || r_hand.is_stump()))
-					return // No hands to drive your chair? Tough luck!
+				var/obj/item/organ/external/l_arm = driver.get_organ(BP_L_ARM)
+				var/obj/item/organ/external/r_arm = driver.get_organ(BP_R_ARM)
+				if((!l_arm || l_arm.is_stump()) && (!r_arm || r_arm.is_stump()))
+					return // No arms to drive your chair? Tough luck!
 			//drunk wheelchair driving
 			direction = mob.AdjustMovementDirection(direction)
 			mob.buckled.DoMove(direction, mob)
@@ -192,7 +192,7 @@
 			to_chat(mob, "<span class='notice'>You're pinned down by \a [mob.pinned[1]]!</span>")
 		return MOVEMENT_STOP
 
-	for(var/obj/item/grab/G in mob.grabbed_by)
+	for(var/obj/item/weapon/grab/G in mob.grabbed_by)
 		if(G.stop_move())
 			if(mover == mob)
 				to_chat(mob, "<span class='notice'>You're stuck in a grab!</span>")
@@ -239,13 +239,13 @@
 
 	// Something with pulling things
 	var/extra_delay = HandleGrabs(direction, old_turf)
-	mob.ExtraMoveCooldown(extra_delay)
+	mob.add_move_cooldown(extra_delay)
 
-	for (var/obj/item/grab/G in mob)
+	for (var/obj/item/weapon/grab/G in mob)
 		if (G.assailant_reverse_facing())
 			mob.set_dir(GLOB.reverse_dir[direction])
 		G.assailant_moved()
-	for (var/obj/item/grab/G in mob.grabbed_by)
+	for (var/obj/item/weapon/grab/G in mob.grabbed_by)
 		G.adjust_position()
 
 	mob.moving = 0
@@ -256,7 +256,7 @@
 /datum/movement_handler/mob/movement/proc/HandleGrabs(var/direction, var/old_turf)
 	. = 0
 	// TODO: Look into making grabs use movement events instead, this is a mess.
-	for (var/obj/item/grab/G in mob)
+	for (var/obj/item/weapon/grab/G in mob)
 		. = max(., G.grab_slowdown())
 		var/list/L = mob.ret_grab()
 		if(istype(L, /list))

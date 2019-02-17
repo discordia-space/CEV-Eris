@@ -91,7 +91,7 @@
 			var/turf/location = get_turf(src)
 			if (location)
 				location.hotspot_expose(700, 5)
-		if(tool_in_use && sparks_on_use && !silenced && prob(50))
+		if(tool_in_use && sparks_on_use && !(item_flags & SILENT) && prob(50))
 			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 			sparks.set_up(3, 0, get_turf(src))
 			sparks.start()
@@ -264,7 +264,7 @@
 		var/volume = 70
 		var/extrarange = 0
 
-		if (T && T.silenced)
+		if (T && T.item_flags & SILENT)
 			volume = 3
 			extrarange = -6
 
@@ -639,7 +639,7 @@
 	if(eye_hazard)
 		eyecheck(user)
 
-	if(sparks_on_use && !silenced)
+	if(sparks_on_use && !(item_flags & SILENT))
 		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 		sparks.set_up(3, 0, get_turf(src))
 		sparks.start()
@@ -684,7 +684,7 @@
 	force = initial(force)
 	switched_on_force = initial(switched_on_force)
 	extra_bulk = initial(extra_bulk)
-	silenced = initial(silenced)
+	item_flags = initial(item_flags)
 	name = initial(name)
 	max_upgrades = initial(max_upgrades)
 	color = initial(color)

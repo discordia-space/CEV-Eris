@@ -12,6 +12,11 @@
 	var/moving           = FALSE
 
 
+/mob/proc/set_move_cooldown(var/timeout)
+	var/datum/movement_handler/mob/delay/delay = GetMovementHandler(/datum/movement_handler/mob/delay)
+	if(delay)
+		delay.SetDelay(timeout)
+
 /mob/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return 1
 
@@ -24,12 +29,7 @@
 		return (!mover.density || !density || lying)
 	return
 
-/mob/proc/SetMoveCooldown(var/timeout)
-	var/datum/movement_handler/mob/delay/delay = GetMovementHandler(/datum/movement_handler/mob/delay)
-	if(delay)
-		delay.SetDelay(timeout)
-
-/mob/proc/ExtraMoveCooldown(var/timeout)
+/mob/proc/add_move_cooldown(var/timeout)
 	var/datum/movement_handler/mob/delay/delay = GetMovementHandler(/datum/movement_handler/mob/delay)
 	if(delay)
 		delay.AddDelay(timeout)
@@ -259,3 +259,25 @@
 	DO_MOVE(WEST)
 
 #undef DO_MOVE
+
+//This is an atom proc for the sake of vehicles and mechas
+//Attempts to return the expected total time in deciseconds, between this atom making moves
+//TODO: Fix this shit
+/atom/movable/proc/total_movement_delay()
+	return 0
+
+/mob/total_movement_delay()
+	var/delay = 0
+
+	if (MOVING_QUICKLY(src))
+		if(drowsyness > 0)
+			delay += 6
+		delay += 1
+	else
+		delay += 7
+	delay += movement_delay()
+
+	if (speed_factor && speed_factor != 1.0)
+		delay /= speed_factor
+
+	return delay

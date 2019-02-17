@@ -10,11 +10,11 @@
 		return (!mover.density || !density || lying)
 	return
 
-/mob/proc/setMoveCooldown(var/timeout)
+/mob/proc/set_move_cooldown(var/timeout)
 	if(client)
-		client.setMoveCooldown(timeout)
+		client.set_move_cooldown(timeout)
 
-/client/proc/setMoveCooldown(var/timeout)
+/client/proc/set_move_cooldown(var/timeout)
 	return move_delayer.setDelayMin(timeout)
 
 /client/proc/isMovementBlocked()

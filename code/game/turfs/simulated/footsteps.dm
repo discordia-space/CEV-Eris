@@ -4,7 +4,6 @@
 		H.handle_footstep(src)
 		H.step_count++
 
-/datum/species/var/silent_steps
 
 
 /mob/living/carbon/human/proc/handle_footstep(var/turf/simulated/T)
@@ -19,8 +18,6 @@
 		if(step_count % 2) //every other turf makes a sound
 			return
 
-	//if(species.silent_steps)
-		//return //species is silent
 
 	if(shoes && (shoes.item_flags & SILENT))
 		return // quiet shoes
