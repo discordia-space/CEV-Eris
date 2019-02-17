@@ -1,0 +1,4 @@
+author: Carbonhell
+delete-after: True
+changes: 
+  - bugfix: "Isolation centrifuges can now be dismantled properly with a screwdriver."
