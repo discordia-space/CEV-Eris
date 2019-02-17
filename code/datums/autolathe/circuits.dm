@@ -87,3 +87,7 @@
 /datum/autolathe/recipe/circuit/turret_excelsior
 	name = "excelsior turret"
 	path = /obj/item/weapon/circuitboard/excelsior_turret
+
+/datum/autolathe/recipe/circuit/centrifuge
+	name = "isolation centrifuge"
+	path = /obj/item/weapon/circuitboard/centrifuge
