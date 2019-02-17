@@ -75,7 +75,7 @@
 	set_cooldown()
 
 
-/obj/structure/hivemind_machine/proc/use_ability(var/atom/target)
+/obj/structure/hivemind_machine/proc/use_ability(atom/target)
 	return
 
 
@@ -114,7 +114,7 @@
 		sparks.start()
 
 
-/obj/structure/hivemind_machine/proc/get_damage(var/amount)
+/obj/structure/hivemind_machine/proc/get_damaged(var/amount)
 	health -= amount
 	damage_reaction()
 	if(health <= 0)
@@ -141,15 +141,15 @@
 	update_icon()
 
 
-/obj/structure/hivemind_machine/bullet_act(var/obj/item/projectile/Proj)
-	get_damage(Proj.damage)
+/obj/structure/hivemind_machine/bullet_act(obj/item/projectile/Proj)
+	get_damaged(Proj.damage)
 	. = ..()
 
 
 /obj/structure/hivemind_machine/attackby(obj/item/I, mob/user)
 	if(I.force > 0)
 		. = ..()
-		get_damage(I.force)
+		get_damaged(I.force)
 	else
 		visible_message(SPAN_WARNING("[user] is trying to hit the [src] with [I], but it's seems useless."))
 
@@ -157,20 +157,20 @@
 /obj/structure/hivemind_machine/ex_act(severity)
 	switch(severity)
 		if(1)
-			get_damage(80)
+			get_damaged(80)
 		if(2)
-			get_damage(30)
+			get_damaged(30)
 		if(3)
-			get_damage(10)
+			get_damaged(10)
 
 
 /obj/structure/hivemind_machine/emp_act(severity)
 	switch(severity)
 		if(1)
-			get_damage(30)
+			get_damaged(30)
 			stun(10)
 		if(2)
-			get_damage(10)
+			get_damaged(10)
 			stun(5)
 
 
@@ -241,7 +241,7 @@
 		overlays += "core-smirk"
 
 
-/obj/structure/hivemind_machine/node/use_ability(var/atom/target)
+/obj/structure/hivemind_machine/node/use_ability(atom/target)
 	hive_mind_ai.get_points()
 
 
@@ -251,13 +251,13 @@
 
 //there we binding or un-binding hive with wire
 //in this way, when our node will be destroyed, wireweeds will die too
-/obj/structure/hivemind_machine/node/proc/add_wireweed(var/obj/effect/plant/hivemind/wireweed)
+/obj/structure/hivemind_machine/node/proc/add_wireweed(obj/effect/plant/hivemind/wireweed)
 	if(wireweed.master_node)
 		wireweed.master_node.remove_wireweed(wireweed)
 	wireweed.master_node = src
 	my_wireweeds.Add(wireweed)
 
-/obj/structure/hivemind_machine/node/proc/remove_wireweed(var/obj/effect/plant/hivemind/wireweed)
+/obj/structure/hivemind_machine/node/proc/remove_wireweed(obj/effect/plant/hivemind/wireweed)
 	my_wireweeds.Remove(wireweed)
 	wireweed.master_node = null
 
@@ -288,7 +288,7 @@
 			break
 
 
-/obj/structure/hivemind_machine/turret/use_ability(var/atom/target)
+/obj/structure/hivemind_machine/turret/use_ability(atom/target)
 	var/obj/item/projectile/proj = new proj_type(loc)
 	proj.launch(target)
 	playsound(src, 'sound/effects/blobattack.ogg', 70, 1)
@@ -421,7 +421,7 @@
 	set_cooldown()
 
 
-/obj/structure/hivemind_machine/screamer/use_ability(var/mob/living/target)
+/obj/structure/hivemind_machine/screamer/use_ability(mob/living/target)
 	target.Weaken(5)
 	target << SPAN_WARNING("You hear a terrible shriek, there are many voices, a male, a female, synthetic noise.")
 	flick("[icon_state]-anim", src)
@@ -457,7 +457,7 @@
 		set_cooldown()
 
 
-/obj/structure/hivemind_machine/supplicant/use_ability(var/mob/living/target)
+/obj/structure/hivemind_machine/supplicant/use_ability(mob/living/target)
 	target << SPAN_NOTICE("You hear a strange voice in your head: " + "\"<b>" + pick(join_quotes) + "</b>\"")
 
 
@@ -482,5 +482,5 @@
 	if(success)
 		set_cooldown()
 
-/obj/structure/hivemind_machine/distractor/use_ability(var/mob/living/target)
+/obj/structure/hivemind_machine/distractor/use_ability(mob/living/target)
 	target.hallucination = 90

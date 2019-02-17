@@ -45,7 +45,7 @@
 
 
 //simple shaking animation, this one move our target horizontally
-/mob/living/simple_animal/hostile/hivemind/proc/shake_the(var/atom/target)
+/mob/living/simple_animal/hostile/hivemind/proc/shake_the(atom/target)
 	var/init_px = target.pixel_x
 	animate(target, pixel_x=init_px + 10*pick(-1, 1), time=1)
 	animate(pixel_x=init_px, time=8, easing=BOUNCE_EASING)
@@ -153,7 +153,7 @@
 //this also should add random special abilities, so they can be more individual, but it's in future
 //how to use: Make hive mob, then just use this one and don't forget to delete victim
 
-/mob/living/simple_animal/hostile/hivemind/resurrected/proc/absorb_the(var/mob/living/victim)
+/mob/living/simple_animal/hostile/hivemind/resurrected/proc/absorb_the(mob/living/victim)
 	icon = victim.icon
 	icon_state = victim.icon_state
 	//simple_animal's change their icons to dead one after death, so we make special check
@@ -290,7 +290,7 @@
 /mob/living/simple_animal/hostile/hivemind/bomber/death()
 	..()
 	gibs(loc, null, /obj/effect/gibspawner/robot)
-	explosion(loc, 0, 0, 2)
+	explosion(get_turf(src), 0, 0, 2)
 	qdel(src)
 
 
@@ -658,7 +658,7 @@
 
 
 //picking up our victim for good 20 seconds of best road trip ever
-/mob/living/simple_animal/hostile/hivemind/mechiver/special_ability(var/mob/living/target)
+/mob/living/simple_animal/hostile/hivemind/mechiver/special_ability(mob/living/target)
 	if(!target_mob && hatch_closed) //when we picking up corpses
 		if(pilot)
 			flick("mechiver-opening", src)
@@ -702,7 +702,7 @@
 		playsound(src, 'sound/effects/blobattack.ogg', 70, 1)
 
 
-/mob/living/simple_animal/hostile/hivemind/mechiver/proc/dead_body_restoration(var/mob/living/corpse)
+/mob/living/simple_animal/hostile/hivemind/mechiver/proc/dead_body_restoration(mob/living/corpse)
 	var/picked_mob
 	if(passenger.mob_size <= MOB_SMALL && !client && prob(50))
 		picked_mob = pick(/mob/living/simple_animal/hostile/hivemind/stinger, /mob/living/simple_animal/hostile/hivemind/bomber)
@@ -807,7 +807,7 @@
 			stance = HOSTILE_STANCE_ATTACKING
 
 
-/mob/living/simple_animal/hostile/hivemind/phaser/proc/is_can_jump_on(var/turf/target)
+/mob/living/simple_animal/hostile/hivemind/phaser/proc/is_can_jump_on(turf/target)
 	if(!target || target.density || istype(target, /turf/space) || istype(target, /turf/simulated/open))
 		return FALSE
 
@@ -824,7 +824,7 @@
 
 
 //first part of phase moving is just preparation
-/mob/living/simple_animal/hostile/hivemind/phaser/proc/phase_move_to(var/atom/target, var/nearby = FALSE)
+/mob/living/simple_animal/hostile/hivemind/phaser/proc/phase_move_to(atom/target, var/nearby = FALSE)
 	var/turf/new_place
 	var/distance_to_target = get_dist(src, target)
 	var/turf/target_turf = get_turf(target)
@@ -861,7 +861,7 @@
 
 
 //second part - is jump to target
-/mob/living/simple_animal/hostile/hivemind/phaser/proc/phase_jump(var/turf/place)
+/mob/living/simple_animal/hostile/hivemind/phaser/proc/phase_jump(turf/place)
 	playsound(place, 'sound/effects/phasein.ogg', 60, 1)
 	//animate(filters[1], size = 5, time = 10)
 	animate(filters[1], size = 0, time = 5)

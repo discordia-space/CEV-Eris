@@ -25,7 +25,7 @@
 	return ..()
 
 
-/obj/effect/plant/hivemind/after_spread(var/obj/effect/plant/child, var/turf/target_turf)
+/obj/effect/plant/hivemind/after_spread(obj/effect/plant/child, turf/target_turf)
 	if(master_node)
 		master_node.add_wireweed(child)
 	spawn(1)
@@ -131,7 +131,7 @@
 
 //special check
 //machinery is allowed, door interaction also here
-/obj/effect/plant/hivemind/is_can_pass_special(var/turf/target)
+/obj/effect/plant/hivemind/is_can_pass_special(turf/target)
 	//density turf check
 	if(target.density)
 		return FALSE
@@ -171,7 +171,7 @@
 
 
 //What a pity that we haven't some kind proc as special library to use it somewhere
-/obj/effect/plant/hivemind/proc/shake_the(var/atom/thing)
+/obj/effect/plant/hivemind/proc/shake_the(atom/thing)
 	var/init_px = thing.pixel_x
 	var/shake_dir = pick(-1, 1)
 	animate(thing, transform=turn(matrix(), 8*shake_dir), pixel_x=init_px + 2*shake_dir, time=1)
@@ -243,7 +243,7 @@
 
 //in fact, this is some kind of reinforced wires, so we can't take samples from it and inject something too
 //but we still can slice it with something sharp
-/obj/effect/plant/hivemind/attackby(var/obj/item/weapon/W, var/mob/user)
+/obj/effect/plant/hivemind/attackby(obj/item/weapon/W, mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
 	var/weapon_type

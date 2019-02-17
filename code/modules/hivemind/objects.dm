@@ -12,7 +12,7 @@
 	step_delay = 2
 
 
-/obj/item/projectile/goo/on_hit(var/atom/target, var/blocked = 0)
+/obj/item/projectile/goo/on_hit(atom/target, var/blocked = 0)
 	. = ..()
 	if(!(locate(/obj/effect/decal/cleanable/spiderling_remains) in target.loc))
 		var/obj/effect/decal/cleanable/spiderling_remains/goo = new /obj/effect/decal/cleanable/spiderling_remains(target.loc)
