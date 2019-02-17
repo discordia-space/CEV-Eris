@@ -12,7 +12,7 @@
 	desc = "A large crushing machine which is used to grind lumps of trash down; there are lights on the side of it."
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "grinder-o0"
-	layer = MOB_LAYER + 1 // Overhead
+	layer = ABOVE_MOB_LAYER // Overhead
 	anchored = TRUE
 	density = TRUE
 	var/safety_mode = FALSE // Temporality stops the machine if it detects a mob
