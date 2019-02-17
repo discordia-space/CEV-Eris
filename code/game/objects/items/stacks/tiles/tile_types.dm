@@ -1,14 +1,18 @@
-/* Diffrent misc types of tiles
+/* Diffrent types of tiles
  * Contains:
- *		Prototype
  *		Grass
  *		Wood
  *		Carpet
+ *		Steel
+ *		Plastic
+ *		Plasteel
  */
 
 /obj/item/stack/tile
 	name = "tile"
 	singular_name = "tile"
+	icon = 'icons/obj/stack/tile.dmi'
+	icon_state = "tile"
 	desc = "A non-descript floor tile"
 	w_class = ITEM_SIZE_NORMAL
 	max_amount = 60
@@ -59,7 +63,7 @@
  * Carpets
  */
 /obj/item/stack/tile/carpet
-	name = "carpet"
+	name = "red carpet"
 	singular_name = "carpet"
 	desc = "A piece of carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-carpet"
@@ -70,24 +74,40 @@
 	flags = 0
 
 /obj/item/stack/tile/carpet/bcarpet
+	name = "black carpet"
 	icon_state = "tile-bcarpet"
+
 /obj/item/stack/tile/carpet/blucarpet
+	name = "blue carpet"
 	icon_state = "tile-blucarpet"
+
 /obj/item/stack/tile/carpet/turcarpet
+	name = "turqoise carpet"
 	icon_state = "tile-turcarpet"
+
 /obj/item/stack/tile/carpet/sblucarpet
+	name = "silver blue carpet"
 	icon_state = "tile-sblucarpet"
+
 /obj/item/stack/tile/carpet/gaycarpet
+	name = "clown carpet"
 	icon_state = "tile-gaycarpet"
+
 /obj/item/stack/tile/carpet/purcarpet
+	name = "purple carpet"
 	icon_state = "tile-purcarpet"
+
 /obj/item/stack/tile/carpet/oracarpet
+	name = "orange carpet"
 	icon_state = "tile-oracarpet"
 
+/*
+ * Flooring parent
+ */
 /obj/item/stack/tile/floor
 	name = "floor tile"
 	singular_name = "floor tile"
-	desc = "Those could work as a pretty decent throwing weapon" //why?
+	desc = "Could work as a pretty decent throwing weapon."
 	icon_state = "tile"
 	force = WEAPON_FORCE_NORMAL
 	matter = list(MATERIAL_STEEL = 1)
@@ -96,39 +116,39 @@
 	throw_range = 20
 	flags = CONDUCT
 
-
+// Cafe
 /obj/item/stack/tile/floor/cafe
 	name = "cafe floor tile"
 	singular_name = "cafe floor tile"
-	icon_state = "tile_steel"
-	matter = list(MATERIAL_STEEL = 1)
+	desc = "A chekered pattern, an ancient style for a familiar feeling."
+	icon_state = "tile_cafe"
+	matter = list(MATERIAL_PLASTIC = 1)
 
+// Techmaint
 /obj/item/stack/tile/floor/techmaint
 	name = "maint floor tile"
 	singular_name = "maint floor tile"
-	icon_state = "tile_steel"
+	icon_state = "tile_techmaint"
 	matter = list(MATERIAL_STEEL = 1)
 
-/obj/item/stack/tile/floor/techmaint_perforated
+/obj/item/stack/tile/floor/techmaint/perforated
 	name = "perforated maint floor tile"
 	singular_name = "perforated maint floor tile"
-	icon_state = "tile_steel"
-	matter = list(MATERIAL_STEEL = 1)
+	icon_state = "tile-techmaint-perforated"
 
-/obj/item/stack/tile/floor/techmaint_panels
+/obj/item/stack/tile/floor/techmaint/panels
 	name = "panel maint floor tile"
 	singular_name = "panel maint floor tile"
-	icon_state = "tile_steel"
-	matter = list(MATERIAL_STEEL = 1)
+	icon_state = "tile-techmaint-panels"
 
-/obj/item/stack/tile/floor/techmaint_cargo
+/obj/item/stack/tile/floor/techmaint/cargo
 	name = "cargo maint floor tile"
 	singular_name = "cargo maint floor tile"
-	icon_state = "tile_steel"
-	matter = list(MATERIAL_STEEL = 1)
+	icon_state = "tile-techmaint-cargo"
 
-
-
+/*
+ * Steel
+ */
 /obj/item/stack/tile/floor/steel
 	name = "steel floor tile"
 	singular_name = "steel floor tile"
@@ -138,10 +158,12 @@
 /obj/item/stack/tile/floor/steel/panels
 	name = "steel panel tile"
 	singular_name = "steel panel tile"
+	icon_state = "tile_steel_panels"
 
 /obj/item/stack/tile/floor/steel/techfloor
 	name = "steel techfloor tile"
 	singular_name = "steel techfloor tile"
+	icon_state = "tile_steel_techfloor"
 
 /obj/item/stack/tile/floor/steel/techfloor_grid
 	name = "steel techfloor tile with vents"
@@ -150,14 +172,17 @@
 /obj/item/stack/tile/floor/steel/brown_perforated
 	name = "steel brown perforated tile"
 	singular_name = "steel brown perforated tile"
+	icon_state = "tile_steel_brownperforated"
 
-/obj/item/stack/tile/floor/steel/gray_perforated
+/obj/item/stack/tile/floor/steel/gray_perforated //TODO: Turn all references of "gray_perforated" to "grey_perforated"
 	name = "steel gray perforated tile"
 	singular_name = "steel gray perforated tile"
+	icon_state = "tile_steel_grayperforated"
 
 /obj/item/stack/tile/floor/steel/cargo
 	name = "steel cargo tile"
 	singular_name = "steel cargo tile"
+	icon_state = "tile_steel_cargo"
 
 /obj/item/stack/tile/floor/steel/brown_platform
 	name = "steel brown platform tile"
@@ -195,23 +220,26 @@
 	name = "steel monofloor tile"
 	singular_name = "steel monofloor tile"
 
-
-
-
-
+/*
+ * Plastic
+ */
 /obj/item/stack/tile/floor/white
 	name = "white floor tile"
 	singular_name = "white floor tile"
+	desc = "Appears to be made out of a lighter material."
 	icon_state = "tile_white"
+	throwforce = WEAPON_FORCE_NORMAL
 	matter = list(MATERIAL_PLASTIC = 1)
 
 /obj/item/stack/tile/floor/white/panels
 	name = "white panel tile"
 	singular_name = "white panel tile"
+	icon_state = "tile-white-panels"
 
 /obj/item/stack/tile/floor/white/techfloor
 	name = "white techfloor tile"
 	singular_name = "white techfloor tile"
+	icon_state = "tile-white-techfloor"
 
 /obj/item/stack/tile/floor/white/techfloor_grid
 	name = "white techfloor tile with vents"
@@ -220,14 +248,17 @@
 /obj/item/stack/tile/floor/white/brown_perforated
 	name = "white brown perforated tile"
 	singular_name = "white brown perforated tile"
+	icon_state = "tile-white-brownperforated"
 
 /obj/item/stack/tile/floor/white/gray_perforated
 	name = "white gray perforated tile"
 	singular_name = "white gray perforated tile"
+	icon_state = "tile-white-grayperforated"
 
 /obj/item/stack/tile/floor/white/cargo
 	name = "white cargo tile"
 	singular_name = "white cargo tile"
+	icon_state = "tile-white-cargo"
 
 /obj/item/stack/tile/floor/white/brown_platform
 	name = "white brown platform tile"
@@ -265,24 +296,25 @@
 	name = "white monofloor tile"
 	singular_name = "white monofloor tile"
 
-
-
-
-
-
+/*
+ * Plasteel
+ */
 /obj/item/stack/tile/floor/dark
 	name = "dark floor tile"
 	singular_name = "dark floor tile"
+	desc = "Appears to be made out of a heavier material."
 	icon_state = "tile_dark"
-	matter = list(MATERIAL_dark = 1)
+	matter = list(MATERIAL_STEEL = 1) //TODO: Change to "MATERIAL_PLASTEEL" without allowing material swapping.
 
 /obj/item/stack/tile/floor/dark/panels
 	name = "dark panel tile"
 	singular_name = "dark panel tile"
+	icon_state = "tile_dark_panels"
 
 /obj/item/stack/tile/floor/dark/techfloor
 	name = "dark techfloor tile"
 	singular_name = "dark techfloor tile"
+	icon_state = "tile-dark-techfloor"
 
 /obj/item/stack/tile/floor/dark/techfloor_grid
 	name = "dark techfloor tile with vents"
@@ -291,14 +323,17 @@
 /obj/item/stack/tile/floor/dark/brown_perforated
 	name = "dark brown perforated tile"
 	singular_name = "dark brown perforated tile"
+	icon_state = "tile_dark_brownperforated"
 
 /obj/item/stack/tile/floor/dark/gray_perforated
 	name = "dark gray perforated tile"
 	singular_name = "dark gray perforated tile"
+	icon_state = "tile_dark_grayperforated"
 
 /obj/item/stack/tile/floor/dark/cargo
 	name = "dark cargo tile"
 	singular_name = "dark cargo tile"
+	icon_state = "tile_dark_cargo"
 
 /obj/item/stack/tile/floor/dark/brown_platform
 	name = "dark brown platform tile"
@@ -335,9 +370,6 @@
 /obj/item/stack/tile/floor/dark/monofloor
 	name = "dark monofloor tile"
 	singular_name = "dark monofloor tile"
-
-
-
 
 
 
