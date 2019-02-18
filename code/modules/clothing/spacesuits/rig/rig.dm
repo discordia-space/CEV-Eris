@@ -34,7 +34,10 @@
 	var/interface_path = "hardsuit.tmpl"
 	var/ai_interface_path = "hardsuit.tmpl"
 	var/interface_title = "Hardsuit Controller"
+	var/wearer_move_delay //Used for AI moving.
 	var/ai_controlled_move_delay = 10
+	var/aimove_power_usage = 200							  // Power usage per tile traveled when suit is moved by AI in IIS. In joules.
+
 
 	// Keeps track of what this rig should spawn with.
 	var/suit_type = "hardsuit"

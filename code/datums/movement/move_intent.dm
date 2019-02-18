@@ -16,7 +16,7 @@
 
 /decl/move_intent/walk/Initialize()
 	. = ..()
-	move_delay = config.walk_speed + 7
+	move_delay = 4 //Placeholder. TODO: Movespeed in species datums
 
 
 /decl/move_intent/run
@@ -26,4 +26,4 @@
 
 /decl/move_intent/run/Initialize()
 	. = ..()
-	move_delay = config.run_speed + 1
+	move_delay = 3

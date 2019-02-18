@@ -48,8 +48,6 @@
 	direction = mob.AdjustMovementDirection(direction)
 
 	var/turf/T = get_step(mob, direction)
-	if(!mob.MayEnterTurf(T))
-		return
 
 	if(!mob.forceMove(T))
 		return
@@ -80,7 +78,7 @@
 
 // Space movement
 /datum/movement_handler/mob/space/DoMove(var/direction, var/mob/mover)
-	if(!mob.check_solid_ground())
+	if(!mob.check_gravity())
 		var/allowmove = mob.allow_spacemove(0)
 		if(!allowmove)
 			return MOVEMENT_HANDLED
@@ -93,7 +91,7 @@
 	if(IS_NOT_SELF(mover) && is_external)
 		return MOVEMENT_PROCEED
 
-	if(!mob.check_solid_ground())
+	if(!mob.check_gravity())
 		if(!mob.allow_spacemove(0))
 			return MOVEMENT_STOP
 	return MOVEMENT_PROCEED
@@ -193,12 +191,14 @@
 		return MOVEMENT_STOP
 
 	for(var/obj/item/weapon/grab/G in mob.grabbed_by)
+		return MOVEMENT_STOP
+		/* TODO: Bay grab system
 		if(G.stop_move())
 			if(mover == mob)
 				to_chat(mob, "<span class='notice'>You're stuck in a grab!</span>")
 			mob.ProcessGrabs()
 			return MOVEMENT_STOP
-
+		*/
 	if(mob.restrained())
 		for(var/mob/M in range(mob, 1))
 			if(M.pulling == mob)
@@ -241,19 +241,21 @@
 	var/extra_delay = HandleGrabs(direction, old_turf)
 	mob.add_move_cooldown(extra_delay)
 
+	/* TODO: Bay grab system
 	for (var/obj/item/weapon/grab/G in mob)
 		if (G.assailant_reverse_facing())
 			mob.set_dir(GLOB.reverse_dir[direction])
 		G.assailant_moved()
 	for (var/obj/item/weapon/grab/G in mob.grabbed_by)
 		G.adjust_position()
-
+	*/
 	mob.moving = 0
 
 /datum/movement_handler/mob/movement/MayMove(var/mob/mover)
 	return IS_SELF(mover) &&  mob.moving ? MOVEMENT_STOP : MOVEMENT_PROCEED
 
 /datum/movement_handler/mob/movement/proc/HandleGrabs(var/direction, var/old_turf)
+	/* TODO: Bay grab system
 	. = 0
 	// TODO: Look into making grabs use movement events instead, this is a mess.
 	for (var/obj/item/weapon/grab/G in mob)
@@ -282,7 +284,7 @@
 						M.animate_movement = 2
 						return
 			G.adjust_position()
-
+	*/
 
 
 /mob/proc/AdjustMovementDirection(var/direction)

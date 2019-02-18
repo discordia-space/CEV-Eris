@@ -4,10 +4,11 @@
 		H.handle_footstep(src)
 		H.step_count++
 
+//Only humans make footstep sounds
+/mob/proc/handle_footstep(var/turf/simulated/T)
+	return
 
-
-/mob/living/carbon/human/proc/handle_footstep(var/turf/simulated/T)
-	var/turf/simulated/T = get_turf(src)
+/mob/living/carbon/human/handle_footstep(var/turf/simulated/T)
 	if(!istype(T))
 		return
 

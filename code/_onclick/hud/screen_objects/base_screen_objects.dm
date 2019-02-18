@@ -784,10 +784,10 @@ obj/screen/fire/DEADelize()
 
 /obj/screen/mov_intent/Click()
 	var/move_intent_type = next_in_list(usr.move_intent.type, usr.move_intents)
-	var/decl/newintent = decls_repository.get_decl(move_intent_type)
+	var/decl/move_intent/newintent = decls_repository.get_decl(move_intent_type)
 	if (newintent.can_enter(parentmob, TRUE))
 		parentmob.move_intent = newintent
-		parentmob.hud_used.move_intent.icon_state = usr.move_intent.hud_icon_state
+		update_icon()
 
 	update_icon()
 
@@ -796,7 +796,6 @@ obj/screen/fire/DEADelize()
 	update_icon()
 
 /obj/screen/mov_intent/update_icon()
-	var/mob/living/carbon/C = parentmob
 	icon_state = parentmob.move_intent.hud_icon_state
 
 //-----------------------mov_intent END------------------------------

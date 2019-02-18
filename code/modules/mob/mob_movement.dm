@@ -115,7 +115,7 @@
 /client/verb/drop_item()
 	set hidden = 1
 	if(!isrobot(mob) && mob.stat == CONSCIOUS && isturf(mob.loc))
-		return mob.unequip_item()
+		return mob.drop_item()
 	return
 
 
@@ -182,15 +182,17 @@
 	if(restrained()) //Check to see if we can do things
 		return 0
 
-	//Check to see if we slipped
-	if(prob(slip_chance(5)) && !buckled)
-		src << SPAN_WARNING("You slipped!")
+	return -1
+
+
+//return 1 if slipped, 0 otherwise
+/mob/proc/handle_spaceslipping()
+	if(prob(5)) //Todo: Factor in future agility stat here
+		to_chat(src, "<span class='warning'>You slipped!</span>")
 		src.inertia_dir = src.last_move
 		step(src, src.inertia_dir)
-		return 0
-	//If not then we can reset inertia and move
-	inertia_dir = 0
-	return 1
+		return 1
+	return 0
 
 //Checks if a mob has solid ground to stand on
 //If there's no gravity then there's no up or down so naturally you can't stand on anything.
