@@ -1,143 +1,143 @@
-/obj/item/ammo_casing/c9mm
-	desc = "A 9mm bullet casing."
-	caliber = "9mm"
-	projectile_type = /obj/item/projectile/bullet/c9mm
-
-/obj/item/ammo_casing/c9mmf
-	desc = "A 9mm flash shell casing."
-	caliber = "9mm"
-	projectile_type = /obj/item/projectile/energy/flash
-
-/obj/item/ammo_casing/c9mmr
-	desc = "A 9mm rubber bullet casing."
-	caliber = "9mm"
-	projectile_type = /obj/item/projectile/bullet/c9mmr
-
-/obj/item/ammo_casing/c9mmp
-	desc = "A 9mm practice bullet casing."
-	caliber = "9mm"
-	projectile_type = /obj/item/projectile/bullet/c9mmp
-
-/obj/item/ammo_casing/c9mmh
-	desc = "A 9mm high-velocity bullet casing."
-	caliber = "9mm"
-	projectile_type = /obj/item/projectile/bullet/hv/c9mm
-
 /obj/item/ammo_casing/a10mm
 	desc = "A 10mm bullet casing."
 	caliber = "10mm"
 	projectile_type = /obj/item/projectile/bullet/a10mm
 
-/obj/item/ammo_casing/a10mmh
+/obj/item/ammo_casing/a10mm/hv
 	desc = "A 10mm high-velocity bullet casing."
 	caliber = "10mm"
-	projectile_type = /obj/item/projectile/bullet/hv/a10mm
+	projectile_type = /obj/item/projectile/bullet/a10mm/hv
+
+/obj/item/ammo_casing/c9mm
+	desc = "A 9mm bullet casing."
+	caliber = "9mm"
+	projectile_type = /obj/item/projectile/bullet/c9mm
+
+/obj/item/ammo_casing/c9mm/flash
+	desc = "A 9mm flash shell casing."
+	caliber = "9mm"
+	projectile_type = /obj/item/projectile/energy/flash
+
+/obj/item/ammo_casing/c9mm/hv
+	desc = "A 9mm high-velocity bullet casing."
+	caliber = "9mm"
+	projectile_type = /obj/item/projectile/bullet/c9mm/hv
+
+/obj/item/ammo_casing/c9mm/practice
+	desc = "A 9mm practice bullet casing."
+	caliber = "9mm"
+	projectile_type = /obj/item/projectile/bullet/c9mm/practice
+
+/obj/item/ammo_casing/c9mm/rubber
+	desc = "A 9mm rubber bullet casing."
+	caliber = "9mm"
+	projectile_type = /obj/item/projectile/bullet/c9mm/rubber
 
 /obj/item/ammo_casing/cl32
 	desc = "A .32 FS hollow point bullet casing."
 	caliber = ".32"
 	projectile_type = /obj/item/projectile/bullet/cl32
 
-/obj/item/ammo_casing/cl32r
+/obj/item/ammo_casing/cl32/rubber
 	desc = "A .32 FS rubber bullet casing."
 	caliber = ".32"
-	projectile_type = /obj/item/projectile/bullet/cl32r
-
-/obj/item/ammo_casing/a357
-	desc = "A .357 bullet casing."
-	caliber = "357"
-	projectile_type = /obj/item/projectile/bullet/a357
-
-/obj/item/ammo_casing/a357h
-	desc = "A .357 high-velocity bullet casing."
-	caliber = "357"
-	projectile_type = /obj/item/projectile/bullet/hv/a357
-
-/obj/item/ammo_casing/c38
-	desc = "A .38 bullet casing."
-	caliber = ".38"
-	projectile_type = /obj/item/projectile/bullet/c38
-
-/obj/item/ammo_casing/c38r
-	desc = "A .38 rubber bullet casing."
-	caliber = ".38"
-	projectile_type = /obj/item/projectile/bullet/c38r
-
-/obj/item/ammo_casing/cl44
-	desc = "A .44 Frozen Star hollow point bullet casing."
-	caliber = ".44"
-	projectile_type = /obj/item/projectile/bullet/cl44
-
-/obj/item/ammo_casing/cl44r
-	desc = "A .44 Frozen Star rubber bullet casing."
-	caliber = ".44"
-	projectile_type = /obj/item/projectile/bullet/cl44r
+	projectile_type = /obj/item/projectile/bullet/cl32/rubber
 
 /obj/item/ammo_casing/c45
 	desc = "A .45 bullet casing."
 	caliber = ".45"
 	projectile_type = /obj/item/projectile/bullet/c45
 
-/obj/item/ammo_casing/c45p
-	desc = "A .45 practice bullet casing."
-	caliber = ".45"
-	projectile_type = /obj/item/projectile/bullet/c45p
-
-/obj/item/ammo_casing/c45r
-	desc = "A .45 rubber bullet casing."
-	caliber = ".45"
-	projectile_type = /obj/item/projectile/bullet/c45r
-
-/obj/item/ammo_casing/c45f
+/obj/item/ammo_casing/c45/flash
 	desc = "A .45 flash shell casing."
 	caliber = ".45"
 	projectile_type = /obj/item/projectile/energy/flash
 
-/obj/item/ammo_casing/a50
-	desc = "A .50AE bullet casing."
-	caliber = ".50"
-	projectile_type = /obj/item/projectile/bullet/a50
+/obj/item/ammo_casing/c45/practice
+	desc = "A .45 practice bullet casing."
+	caliber = ".45"
+	projectile_type = /obj/item/projectile/bullet/c45/practice
 
-/obj/item/ammo_casing/a50r
-	desc = "A .50AE rubber bullet casing."
-	caliber = ".50"
-	projectile_type = /obj/item/projectile/bullet/a50r
-
-/obj/item/ammo_casing/a762
-	desc = "A 7.62mm bullet casing."
-	caliber = "a762"
-	projectile_type = /obj/item/projectile/bullet/a762
-
-/obj/item/ammo_casing/a762h
-	desc = "A 7.62mm high-velocity bullet casing."
-	caliber = "a762"
-	projectile_type = /obj/item/projectile/bullet/hv/a762
-
-/obj/item/ammo_casing/a556
-	desc = "A 5.56mm bullet casing."
-	caliber = "a556"
-	projectile_type = /obj/item/projectile/bullet/a556
-
-/obj/item/ammo_casing/a556p
-	desc = "A 5.56mm practice bullet casing."
-	caliber = "a556"
-	projectile_type = /obj/item/projectile/bullet/a556p
-
-/obj/item/ammo_casing/c65
-	desc = "A 6.5mm bullet casing."
-	caliber = "6.5mm"
-	projectile_type = /obj/item/projectile/bullet/c65
-
-/obj/item/ammo_casing/c65r
-	desc = "A 6.5mm rubber bullet casing."
-	caliber = "6.5mm"
-	projectile_type = /obj/item/projectile/bullet/c65r
+/obj/item/ammo_casing/c45/rubber
+	desc = "A .45 rubber bullet casing."
+	caliber = ".45"
+	projectile_type = /obj/item/projectile/bullet/c45/rubber
 
 /obj/item/ammo_casing/c10x24
 	desc = "A 10mm x 24 caseless ammo."
 	caliber = "10x24"
 	projectile_type = /obj/item/projectile/bullet/c10x24
 	is_caseless = TRUE
+
+/obj/item/ammo_casing/a556
+	desc = "A 5.56mm bullet casing."
+	caliber = "a556"
+	projectile_type = /obj/item/projectile/bullet/a556
+
+/obj/item/ammo_casing/a556/practice
+	desc = "A 5.56mm practice bullet casing."
+	caliber = "a556"
+	projectile_type = /obj/item/projectile/bullet/a556/practice
+
+/obj/item/ammo_casing/c65
+	desc = "A 6.5mm bullet casing."
+	caliber = "6.5mm"
+	projectile_type = /obj/item/projectile/bullet/c65
+
+/obj/item/ammo_casing/c65/rubber
+	desc = "A 6.5mm rubber bullet casing."
+	caliber = "6.5mm"
+	projectile_type = /obj/item/projectile/bullet/c65/rubber
+
+/obj/item/ammo_casing/a762
+	desc = "A 7.62mm bullet casing."
+	caliber = "a762"
+	projectile_type = /obj/item/projectile/bullet/a762
+
+/obj/item/ammo_casing/a762/hv
+	desc = "A 7.62mm high-velocity bullet casing."
+	caliber = "a762"
+	projectile_type = /obj/item/projectile/bullet/a762/hv
+
+/obj/item/ammo_casing/a357
+	desc = "A .357 bullet casing."
+	caliber = "357"
+	projectile_type = /obj/item/projectile/bullet/a357
+
+/obj/item/ammo_casing/a357/hv
+	desc = "A .357 high-velocity bullet casing."
+	caliber = "357"
+	projectile_type = /obj/item/projectile/bullet/a357/hv
+
+/obj/item/ammo_casing/c38
+	desc = "A .38 bullet casing."
+	caliber = ".38"
+	projectile_type = /obj/item/projectile/bullet/c38
+
+/obj/item/ammo_casing/c38/rubber
+	desc = "A .38 rubber bullet casing."
+	caliber = ".38"
+	projectile_type = /obj/item/projectile/bullet/c38/rubber
+
+/obj/item/ammo_casing/cl44
+	desc = "A .44 Frozen Star hollow point bullet casing."
+	caliber = ".44"
+	projectile_type = /obj/item/projectile/bullet/cl44
+
+/obj/item/ammo_casing/cl44/rubber
+	desc = "A .44 Frozen Star rubber bullet casing."
+	caliber = ".44"
+	projectile_type = /obj/item/projectile/bullet/cl44/rubber
+
+/obj/item/ammo_casing/a50
+	desc = "A .50AE bullet casing."
+	caliber = ".50"
+	projectile_type = /obj/item/projectile/bullet/a50
+
+/obj/item/ammo_casing/a50/rubber
+	desc = "A .50AE rubber bullet casing."
+	caliber = ".50"
+	projectile_type = /obj/item/projectile/bullet/a50/rubber
 
 /obj/item/ammo_casing/a145
 	name = "shell casing"
@@ -162,6 +162,17 @@
 	maxamount = 5
 
 /obj/item/ammo_casing/shotgun/prespawned
+	amount = 5
+
+/obj/item/ammo_casing/shotgun/beanbag
+	name = "beanbag shell"
+	desc = "A beanbag shell."
+	icon_state = "bshell"
+	projectile_type = /obj/item/projectile/bullet/shotgun/beanbag
+	matter = list(MATERIAL_STEEL = 1)
+	maxamount = 5
+
+/obj/item/ammo_casing/shotgun/beanbag/prespawned
 	amount = 5
 
 /obj/item/ammo_casing/shotgun/pellet
@@ -195,17 +206,6 @@
 	maxamount = 5
 
 /obj/item/ammo_casing/shotgun/practice/prespawned
-	amount = 5
-
-/obj/item/ammo_casing/shotgun/beanbag
-	name = "beanbag shell"
-	desc = "A beanbag shell."
-	icon_state = "bshell"
-	projectile_type = /obj/item/projectile/bullet/shotgun/beanbag
-	matter = list(MATERIAL_STEEL = 1)
-	maxamount = 5
-
-/obj/item/ammo_casing/shotgun/beanbag/prespawned
 	amount = 5
 
 //Can stun in one hit if aimed at the head, but
