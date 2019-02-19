@@ -1,16 +1,63 @@
 /mob/living/carbon/human/movement_delay()
+	var/tally = ..()
+
+	if(species.slowdown)
+		tally += species.slowdown
+
+	if (istype(loc, /turf/space)) // It's hard to be slowed down in space by... anything
+		return -1
+
+	if(embedded_flag)
+		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
+
+	if(CE_SPEEDBOOST in chem_effects)
+		tally -= chem_effects[CE_SPEEDBOOST]
+
+	if(CE_SLOWDOWN in chem_effects)
+		tally += chem_effects[CE_SLOWDOWN]
+
+	var/health_deficiency = (maxHealth - health)
+	if(health_deficiency >= 40) tally += (health_deficiency / 25)
+
+	if (!(species && (species.flags & NO_PAIN)))
+		if(halloss >= 10) tally += (halloss / 10) //halloss shouldn't slow you down if you can't even feel it
+
+	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
+		//Not porting bay's silly organ checking code here
+	else
+		if(wear_suit)
+			tally += wear_suit.slowdown
+		if(shoes)
+			tally += shoes.slowdown
+
+	if(shock_stage >= 10) tally += 3
+
+	if(is_asystole()) tally += 10  //heart attacks are kinda distracting
+
+	if(aiming && aiming.aiming_at) tally += 5 // Iron sights make you slower, it's a well-known fact.
+
+	if(MUTATION_FAT in src.mutations)
+		tally += 1.5
+	if (bodytemperature < 283.222)
+		tally += (283.222 - bodytemperature) / 10 * 1.75
+
+	tally += max(2 * stance_damage, 0) //damaged/missing feet or legs is slow
+
+	if(mRun in mutations)
+		tally = 0
+
+	return (tally+config.human_delay)
+
+/mob/living/carbon/human/movement_delay_OLD()
 	if (istype(loc, /turf/space)) return MOVE_DELAY_BASE // It's hard to be slowed down in space by... anything
 
 	// Humans specifically are 1 delay unit SLOWER because shoes make them 1 delay unit FASTER.
 	var/tally = MOVE_DELAY_BASE+1
 
-	if(species.slowdown)
-		tally += species.slowdown
 
 
 
-	if(embedded_flag)
-		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
+
 
 	if(CE_SPEEDBOOST in chem_effects)
 		return 0
@@ -18,8 +65,7 @@
 	var/health_deficiency = (maxHealth - health)
 	if(health_deficiency >= 40) tally += (health_deficiency / 25)
 
-	if (!(species && (species.flags & NO_PAIN)))
-		if(halloss >= 10) tally += (halloss / 10) //halloss shouldn't slow you down if you can't even feel it
+
 
 	var/hungry = (500 - nutrition)/5 // So overeat would be 100 and default level would be 80
 	if (hungry >= 70) tally += hungry/50

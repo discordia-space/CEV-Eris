@@ -164,7 +164,14 @@
 	return 0
 
 /mob/proc/movement_delay()
-	return MOVE_DELAY_BASE
+	. = 0
+
+	if ((drowsyness > 0) && !MOVING_DELIBERATELY(src))
+		. += 6
+	if(lying) //Crawling, it's slower
+		. += 8 + (weakened * 2)
+	. += move_intent.move_delay
+
 
 /mob/proc/Life()
 //	if(organStructure)
