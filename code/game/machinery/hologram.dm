@@ -255,7 +255,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 		masters[A] = hologram
 	hologram.set_light(2, 2, "#00CCFF")	//hologram lighting
 	hologram.color = color //painted holopad gives coloured holograms
-	set_light(2, 2, "#00CCFF")			//pad lighting
+	set_light(2, 2, COLOR_LIGHTING_BLUE_BRIGHT)			//pad lighting
 	icon_state = "holopad1"
 	return 1
 

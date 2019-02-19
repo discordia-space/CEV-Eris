@@ -25,6 +25,10 @@
 		else
 			settings[propname] = propvalue
 
+/datum/firemode/Destroy()
+	gun = null
+	return ..()
+
 /datum/firemode/proc/apply_to(obj/item/weapon/gun/_gun)
 	gun = _gun
 	for(var/propname in settings)
@@ -111,6 +115,13 @@
 
 	if(!restrict_safety)
 		verbs += /obj/item/weapon/gun/proc/toggle_safety//addint it to all guns
+
+/obj/item/weapon/gun/Destroy()
+	for(var/i in firemodes)
+		qdel(i)
+	aim_targets = null
+	last_moved_mob = null
+	return ..()
 
 /obj/item/weapon/gun/update_wear_icon()
 	if(requires_two_hands)

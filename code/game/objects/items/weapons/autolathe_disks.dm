@@ -204,13 +204,14 @@
 		/datum/autolathe/recipe/circuit/powermodule,
 		/datum/autolathe/recipe/circuit/autolathe,
 		/datum/autolathe/recipe/circuit/autolathe_disk_cloner,
-		/datum/autolathe/recipe/circuit/autolathe,
+		/datum/autolathe/recipe/circuit/vending,
 		/datum/autolathe/recipe/circuit/arcade_battle,
 		/datum/autolathe/recipe/circuit/arcade_orion_trail,
 		/datum/autolathe/recipe/circuit/teleporter,
 		/datum/autolathe/recipe/circuit/operating,
 		/datum/autolathe/recipe/circuit/helm,
 		/datum/autolathe/recipe/circuit/nav,
+		/datum/autolathe/recipe/circuit/centrifuge,
 	)
 	..()
 

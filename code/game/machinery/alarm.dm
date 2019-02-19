@@ -281,13 +281,13 @@
 	switch(icon_level)
 		if (0)
 			icon_state = "alarm0"
-			new_color = "#03A728"
+			new_color = COLOR_LIGHTING_GREEN_BRIGHT
 		if (1)
 			icon_state = "alarm2" //yes, alarm2 is yellow alarm
-			new_color = COLOR_SUN
+			new_color = COLOR_LIGHTING_ORANGE_MACHINERY
 		if (2)
 			icon_state = "alarm1"
-			new_color = "#DA0205"
+			new_color = COLOR_LIGHTING_RED_MACHINERY
 
 	set_light(l_range = 1.5, l_power = 0.2, l_color = new_color)
 
@@ -915,7 +915,7 @@ FIRE ALARM
 		var/area/area = get_area(src)
 		if(area.fire)
 			icon_state = "fire1"
-			set_light(l_range = 1.5, l_power = 0.5, l_color = COLOR_RED)
+			set_light(l_range = 1.5, l_power = 0.5, l_color = COLOR_LIGHTING_RED_MACHINERY)
 		else
 			icon_state = "fire0"
 			var/decl/security_state/security_state = decls_repository.get_decl(maps_data.security_state)
