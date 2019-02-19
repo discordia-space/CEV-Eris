@@ -12,7 +12,7 @@
 	if (prob(80))
 		color = pick("#AA7744", "#774411", "#777777")
 	light_color = color
-	name = "[pick("old", "worn", "rusted", "weathered", "expired", "dirty", "frayed", "beaten", "ancient", "tarnished")] [initial(name)]"
+	name = "[pick("old", "worn", "rusted", "weathered", "expired", "dirty", "frayed", "beaten", "ancient", "tarnished")] [name]"
 	desc += "\n "
 	desc += pick("Its warranty has expired.",
 	 "The inscriptions on this thing have been erased by time.",
@@ -65,6 +65,22 @@
 			storage_slots = max(contents.len, max(0, storage_slots - pick(2, 2, 2, 3, 3, 4)))
 		if(max_storage_space && prob(75))
 			max_storage_space = max_storage_space / 2
+
+//Old pill bottles get a name that disguises their contents
+/obj/item/weapon/storage/pill_bottle/make_old()
+	if (prob(85))
+		name = "bottle of [pick("generic ", "unknown ", "")]pills"
+		desc = "Contains pills of some kind. The label has long since worn away"
+		for (var/obj/item/weapon/reagent_containers/pill/P in contents)
+			P.make_old()
+
+	.=..()
+
+//Make sure old pills always hide their contents too
+/obj/item/weapon/reagent_containers/pill/make_old()
+	name = "pill"
+	desc = "some kind of pill. The imprints have worn away"
+	.=..()
 
 /obj/structure/reagent_dispensers/make_old()
 	.=..()
@@ -157,7 +173,7 @@
 	if (.)
 		if(prob(30))
 			slowdown += pick(0.5, 0.5, 1, 1.5)
-		if(prob(50))
+		if(prob(40))
 			armor["melee"] = rand(0, armor["melee"])
 			armor["bullet"] = rand(0, armor["bullet"])
 			armor["laser"] = rand(0, armor["laser"])
@@ -165,13 +181,13 @@
 			armor["bomb"] = rand(0, armor["bomb"])
 			armor["bio"] = rand(0, armor["bio"])
 			armor["rad"] = rand(0, armor["rad"])
-		if(prob(50))
+		if(prob(40))
 			heat_protection = rand(0, round(heat_protection * 0.5))
-		if(prob(50))
+		if(prob(40))
 			cold_protection = rand(0, round(cold_protection * 0.5))
-		if(prob(50))
+		if(prob(20))
 			contaminate()
-		if(prob(60))
+		if(prob(15))
 			add_blood()
 		if(prob(60)) // I mean, the thing is ew gross.
 			equip_delay += rand(0, 6 SECONDS)

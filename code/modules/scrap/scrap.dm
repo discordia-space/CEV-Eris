@@ -265,8 +265,14 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 /obj/structure/scrap/proc/clear_if_empty()
 	if (dig_amount <= 0)
 		for (var/obj/item/i in contents)
-			if (i != big_item && i != loot) //These two dont stop the pile from being cleared
+			if ((i != big_item) && (i != loot)) //These two dont stop the pile from being cleared
 				return FALSE
+
+		//Anything in the internal storage prevents deletion
+		if (loot)
+			for (var/obj/item/i in loot.contents)
+				return FALSE
+
 		clear()
 		return TRUE
 	return FALSE
@@ -286,7 +292,8 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		user.do_attack_animation(src)
 		dig_out_lump(user.loc, 0)
 		shuffle_loot()
-		clear_if_empty()
+		var/i = clear_if_empty()
+		world << "Clear if empty returned: [i]"
 
 /obj/structure/scrap/large
 	name = "large scrap pile"

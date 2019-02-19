@@ -18,7 +18,9 @@
 	desc = "This is a random storagesuit."
 
 /obj/random/cloth/storagesuit/item_to_spawn()
-	return pick(subtypesof(/obj/item/clothing/suit/storage))
+	var/list/possibilities = subtypesof(/obj/item/clothing/suit/storage)
+	possibilities -= /obj/item/clothing/suit/storage/toggle
+	return pick(possibilities)
 
 /obj/random/cloth/hazmatsuit
 	name = "random hazmatsuit"
@@ -49,7 +51,14 @@
 	desc = "This is a random under."
 
 /obj/random/cloth/under/item_to_spawn()
-	return pick(subtypesof(/obj/item/clothing/under) - list(/obj/item/clothing/under/color, /obj/item/clothing/under/shorts, /obj/item/clothing/under/swimsuit, /obj/item/clothing/under/rank, /obj/item/clothing/under/pj, /obj/item/clothing/under/acj))
+	var/list/possibilities = subtypesof(/obj/item/clothing/under)
+	possibilities -= /obj/item/clothing/under/color
+	possibilities -= /obj/item/clothing/under/shorts
+	possibilities -= /obj/item/clothing/under/swimsuit
+	possibilities -= /obj/item/clothing/under/rank
+	possibilities -= /obj/item/clothing/under/pj
+	possibilities -= /obj/item/clothing/under/acj
+	return pick(possibilities)
 
 /obj/random/cloth/helmet
 	name = "random helmet"
@@ -63,14 +72,16 @@
 	desc = "This is a random head gear."
 
 /obj/random/cloth/head/item_to_spawn()
-	return pick(subtypesof(/obj/item/clothing/head) - (subtypesof(/obj/item/clothing/head/helmet) + subtypesof(/obj/item/clothing/head/helmet/space)))
+	return pick(subtypesof(/obj/item/clothing/head))
 
 /obj/random/cloth/gloves
 	name = "random gloves"
 	desc = "This is a random gloves."
 
 /obj/random/cloth/gloves/item_to_spawn()
-	return pick(subtypesof(/obj/item/clothing/gloves))
+	var/list/possibilities = subtypesof(/obj/item/clothing/gloves)
+	possibilities -= subtypesof(/obj/item/clothing/gloves/rig)
+	return pick(possibilities)
 
 /obj/random/cloth/glasses
 	name = "random glasses"
