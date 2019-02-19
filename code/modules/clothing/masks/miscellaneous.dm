@@ -86,10 +86,10 @@
 	gas_transfer_coefficient = 0.90
 
 /obj/item/clothing/mask/ninjascarf
-	name = "ninja scarf"
-	desc = "A stealthy, dark scarf."
-	icon_state = "ninja_scarf"
-	item_state = "ninja_scarf"
+	name = "ninja mask"
+	desc = "A stealthy, ominous mask."
+	icon_state = "s-ninja"
+	item_state = "s-ninja"
 	body_parts_covered = FACE
 	item_flags = FLEXIBLEMATERIAL
 	w_class = ITEM_SIZE_SMALL
