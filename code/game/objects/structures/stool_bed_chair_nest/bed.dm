@@ -239,9 +239,16 @@
 	var/structure_form_type = /obj/structure/bed/roller	//The deployed form path.
 
 /obj/item/roller/attack_self(mob/user)
-	var/obj/structure/bed/roller/R = new structure_form_type(user.loc)
-	R.add_fingerprint(user)
-	qdel(src)
+	deploy(user)
+
+
+
+/obj/item/roller/proc/deploy(var/mob/user)
+	var/turf/T = get_turf(src) //When held, this will still find the user's location
+	if (istype(T))
+		var/obj/structure/bed/roller/R = new structure_form_type(user.loc)
+		R.add_fingerprint(user)
+		qdel(src)
 
 /obj/structure/bed/roller/post_buckle_mob(mob/living/M as mob)
 	. = ..()
@@ -266,20 +273,40 @@
 	desc = "A rack for carrying a collapsed roller bed."
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "folded"
-	var/obj/item/roller/held
+	var/max_stored = 4
+	var/list/obj/item/roller/held = list()
 
 /obj/item/roller_holder/New()
 	..()
-	held = new /obj/item/roller(src)
+	held.Add(new /obj/item/roller(src))
+
+/obj/item/roller_holder/examine(var/mob/user)
+	.=..()
+	to_chat(user, SPAN_NOTICE("It contains [held.len] stored beds"))
 
 /obj/item/roller_holder/attack_self(mob/user as mob)
 
-	if(!held)
+	if(!held.len)
 		user << SPAN_NOTICE("The rack is empty.")
 		return
 
+	if (!isturf(user.loc) || (locate(/obj/structure/bed/roller) in user.loc))
+		to_chat(user, SPAN_WARNING("You can't deploy that here!"))
+		return
+
 	user << SPAN_NOTICE("You deploy the roller bed.")
-	var/obj/structure/bed/roller/R = new /obj/structure/bed/roller(user.loc)
-	R.add_fingerprint(user)
-	qdel(held)
-	held = null
+	var/obj/item/roller/r = pick_n_take(held)
+	r.forceMove(user.loc)
+	r.deploy(user)
+
+//Picking up rollerbeds
+/obj/item/roller_holder/afterattack(var/obj/target, var/mob/user, var/proximity)
+	.=..()
+	if (istype(target,/obj/item/roller))
+		if (held.len >= max_stored)
+			to_chat(user, SPAN_WARNING("You can't fit anymore rollerbeds in \the [src]!"))
+			return
+
+		to_chat(user, SPAN_NOTICE("You scoop up \the [target] and store it in \the [src]!"))
+		target.forceMove(src)
+		held.Add(target)
