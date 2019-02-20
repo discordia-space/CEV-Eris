@@ -1,4 +1,4 @@
-/proc/togglebuildmode(mob/M as mob in player_list)
+/proc/togglebuildmode(mob/M as mob in GLOB.player_list)
 	set name = "Toggle Build Mode"
 	set category = "Special Verbs"
 	if(M.client)
@@ -42,6 +42,12 @@
 	dir = NORTH
 	icon = 'icons/misc/buildmode.dmi'
 	var/obj/effect/bmode/buildholder/master = null
+
+/obj/effect/bmode/set_plane(var/np)
+	plane = np
+
+/obj/effect/bmode/update_plane()
+	return
 
 /obj/effect/bmode/Destroy()
 	if(master && master.cl)

@@ -100,9 +100,9 @@ var/list/global/organ_rel_size = list(
 /proc/check_zone(zone)
 	if(!zone)	return BP_CHEST
 	switch(zone)
-		if(O_EYES)
+		if(BP_EYES)
 			zone = BP_HEAD
-		if("mouth")
+		if(BP_MOUTH)
 			zone = BP_HEAD
 	return zone
 
@@ -406,7 +406,7 @@ proc/is_blind(A)
 			else
 				name = realname
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M.client && (isghost(M) || (M.client.holder && !is_mentor(M.client))) && M.get_preference_value(/datum/client_preference/show_dsay) == GLOB.PREF_SHOW)
 			var/follow
 			var/lname
@@ -605,7 +605,7 @@ proc/is_blind(A)
 
 //Tries to find the mob's email.
 /proc/find_email(real_name)
-	for(var/mob/mob in living_mob_list)
+	for(var/mob/mob in GLOB.living_mob_list)
 		if(mob.real_name == real_name)
 			if(!mob.mind)
 				return

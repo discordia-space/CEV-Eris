@@ -322,7 +322,7 @@ var/list/flooring_types
 
 //==========CARPET==============
 /decl/flooring/carpet
-	name = "carpet"
+	name = "red carpet"
 	desc = "Imported and comfy."
 	icon = 'icons/turf/flooring/carpet.dmi'
 	icon_base = "carpet"
@@ -345,7 +345,7 @@ var/list/flooring_types
 	build_type = /obj/item/stack/tile/carpet/blucarpet
 
 /decl/flooring/carpet/turcarpet
-	name = "tur carpet"
+	name = "turquoise carpet"
 	icon_base = "turcarpet"
 	build_type = /obj/item/stack/tile/carpet/turcarpet
 
@@ -631,7 +631,7 @@ var/list/flooring_types
 	name = "floor"
 	icon_base = "techmaint_perforated"
 	icon = 'icons/turf/flooring/tiles_maint.dmi'
-	build_type = /obj/item/stack/tile/floor/techmaint_perforated
+	build_type = /obj/item/stack/tile/floor/techmaint/perforated
 	footstep_sound = "floor"
 
 	floor_smooth = SMOOTH_WHITELIST
@@ -641,7 +641,7 @@ var/list/flooring_types
 	name = "floor"
 	icon_base = "techmaint_panels"
 	icon = 'icons/turf/flooring/tiles_maint.dmi'
-	build_type = /obj/item/stack/tile/floor/techmaint_panels
+	build_type = /obj/item/stack/tile/floor/techmaint/panels
 	footstep_sound = "floor"
 
 	floor_smooth = SMOOTH_WHITELIST
@@ -651,7 +651,7 @@ var/list/flooring_types
 	name = "floor"
 	icon_base = "techmaint_cargo"
 	icon = 'icons/turf/flooring/tiles_maint.dmi'
-	build_type = /obj/item/stack/tile/floor/techmaint_cargo
+	build_type = /obj/item/stack/tile/floor/techmaint/cargo
 	footstep_sound = "floor"
 
 

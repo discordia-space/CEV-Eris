@@ -40,7 +40,7 @@
 		/area/shuttle/escape_pod5/centcom
 		)
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M.client)
 			if(M.stat != DEAD)
 				surviving_total++

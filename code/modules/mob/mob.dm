@@ -1,7 +1,7 @@
 /mob/Destroy()//This makes sure that mobs with clients/keys are not just deleted from the game.
 	STOP_PROCESSING(SSmobs, src)
-	dead_mob_list -= src
-	living_mob_list -= src
+	GLOB.dead_mob_list -= src
+	GLOB.living_mob_list -= src
 	unset_machine()
 	qdel(hud_used)
 	if(client)
@@ -50,9 +50,9 @@
 /mob/Initialize()
 	START_PROCESSING(SSmobs, src)
 	if(stat == DEAD)
-		dead_mob_list += src
+		GLOB.dead_mob_list += src
 	else
-		living_mob_list += src
+		GLOB.living_mob_list += src
 	. = ..()
 
 /mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
@@ -94,10 +94,10 @@
 
 		messageturfs += turf
 
-	for(var/A in player_list)
+	for(var/A in GLOB.player_list)
 		var/mob/M = A
 		if (QDELETED(M))
-			player_list -= M
+			GLOB.player_list -= M
 			continue
 		if (!M.client || istype(M, /mob/new_player))
 			continue
@@ -707,9 +707,16 @@
 
 
 //Updates lying and icons
+/*
+Note from Nanako: 2019-02-01
+TODO: Bay Movement:
+All Canmove setting in this proc is temporary. This var should not be set from here, but from movement controllers
+*/
 /mob/proc/update_lying_buckled_and_verb_status()
+
 	if(!resting && cannot_stand() && can_stand_overridden())
 		lying = 0
+		canmove = TRUE //TODO: Remove this
 	else if(buckled)
 		anchored = 1
 		if(istype(buckled))
@@ -719,14 +726,17 @@
 				lying = buckled.buckle_lying
 			if(buckled.buckle_movable)
 				anchored = 0
+		canmove = FALSE //TODO: Remove this
 	else
 		lying = incapacitated(INCAPACITATION_KNOCKDOWN)
+		canmove = FALSE //TODO: Remove this
 
 	if(lying)
 		set_density(0)
 		if(l_hand) unEquip(l_hand)
 		if(r_hand) unEquip(r_hand)
 	else
+		canmove = TRUE
 		set_density(initial(density))
 	reset_layer()
 
@@ -745,7 +755,7 @@
 
 /mob/proc/reset_layer()
 	if(lying)
-		plane = LYING_MOB_PLANE
+		set_plane(LYING_MOB_PLANE)
 		layer = LYING_MOB_LAYER
 	else
 		reset_plane_and_layer()

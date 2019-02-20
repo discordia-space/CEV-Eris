@@ -35,6 +35,10 @@
 		START_PROCESSING(SSobj, src)
 	update_icon()
 
+/obj/item/weapon/gun/energy/Destroy()
+	QDEL_NULL(cell)
+	return ..()
+
 /obj/item/weapon/gun/energy/Process()
 	if(self_recharge) //Every [recharge_time] ticks, recharge a shot for the cyborg
 		charge_tick++
@@ -89,7 +93,7 @@
 		//make sure that rounding down will not give us the empty state even if we have charge for a shot left.
 		if(cell && cell.charge >= charge_cost)
 			ratio = cell.charge / cell.maxcharge
-			ratio = max(round(ratio, 0.25) * 100, 25)
+			ratio = min(max(round(ratio, 0.25) * 100, 25), 100)
 
 		if(modifystate)
 			icon_state = "[modifystate][ratio]"

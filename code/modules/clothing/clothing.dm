@@ -563,7 +563,7 @@ BLIND     // can't see anything
 	sensor_mode = 3
 	..()
 
-/obj/item/clothing/under/rank/attackby(var/obj/item/I, var/mob/U)
+/obj/item/clothing/under/attackby(var/obj/item/I, var/mob/U)
 	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING)) && ishuman(U))
 		set_sensors(U)
 	else

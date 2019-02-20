@@ -18,7 +18,7 @@ var/list/floor_light_cache = list()
 	var/damaged
 	var/default_light_range = 4
 	var/default_light_power = 2
-	var/default_light_colour = "#FFFFFF"
+	var/default_light_colour = COLOR_LIGHTING_DEFAULT_BRIGHT
 
 /obj/machinery/floor_light/prebuilt
 	anchored = 1

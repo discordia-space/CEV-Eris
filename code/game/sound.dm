@@ -209,6 +209,15 @@ var/list/footstep_wood = list(\
 		'sound/effects/footstep/wood5.ogg')
 
 
+var/list/rummage_sound = list(\
+		'sound/effects/interaction/rummage1.ogg',\
+		'sound/effects/interaction/rummage2.ogg',\
+		'sound/effects/interaction/rummage3.ogg',\
+		'sound/effects/interaction/rummage4.ogg',\
+		'sound/effects/interaction/rummage5.ogg',\
+		'sound/effects/interaction/rummage6.ogg')
+
+
 /proc/footstep_sound(var/sound)
 	var/toplay
 	switch (sound)
@@ -248,7 +257,7 @@ var/list/footstep_wood = list(\
 	var/turf/turf_source = get_turf(source)
 
  	// Looping through the player list has the added bonus of working for mobs inside containers
-	for (var/P in player_list)
+	for (var/P in GLOB.player_list)
 		var/mob/M = P
 		if(!M || !M.client)
 			continue
@@ -388,6 +397,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 			if ("crumble") soundin = pick(crumble_sound)
 			if ("thud") soundin = pick(thud_sound)
 			if ("weld") soundin = pick(weld_sound)
+			if ("rummage") soundin = pick(rummage_sound)
 			//if ("gunshot") soundin = pick(gun_sound)
 	return soundin
 

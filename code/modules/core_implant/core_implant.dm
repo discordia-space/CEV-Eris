@@ -27,9 +27,6 @@
 /obj/item/weapon/implant/core_implant/New()
 	..()
 
-/obj/item/weapon/implant/core_implant/install(var/mob/M)
-	if(ishuman(M))
-		..(M)
 
 /obj/item/weapon/implant/core_implant/uninstall()
 	if(active)

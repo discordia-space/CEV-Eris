@@ -4,7 +4,7 @@
 	brightness_on = 4 // Pretty bright.
 	light_power = 2
 	color = null
-	light_color = "#e58775"
+	light_color = COLOR_LIGHTING_RED_BRIGHT
 	icon_state = "flare"
 	max_fuel = 1000
 	var/on_damage = 7

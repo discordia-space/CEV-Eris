@@ -369,7 +369,7 @@ default behaviour is:
 /mob/living/proc/get_organ_target()
 	var/mob/shooter = src
 	var/t = shooter:targeted_organ
-	if(t in list(O_EYES, "mouth"))
+	if(t in list(BP_EYES, BP_MOUTH))
 		t = BP_HEAD
 	var/obj/item/organ/external/def_zone = ran_zone(t)
 	return def_zone
@@ -431,8 +431,8 @@ default behaviour is:
 
 	// remove the character from the list of the dead
 	if(stat == DEAD)
-		dead_mob_list -= src
-		living_mob_list += src
+		GLOB.dead_mob_list -= src
+		GLOB.living_mob_list += src
 		tod = null
 		timeofdeath = 0
 
@@ -763,7 +763,7 @@ default behaviour is:
 
 /mob/living/reset_layer()
 	if(hiding)
-		plane = HIDING_MOB_PLANE
+		set_plane(HIDING_MOB_PLANE)
 		layer = HIDING_MOB_LAYER
 	else
 		..()
@@ -877,7 +877,7 @@ default behaviour is:
 		stats = new /datum/stat_holder
 
 	generate_static_overlay()
-	for(var/mob/observer/eye/angel/A in player_list)
+	for(var/mob/observer/eye/angel/A in GLOB.player_list)
 		if(A)
 			A.static_overlays |= static_overlay
 			A.client.images |= static_overlay
