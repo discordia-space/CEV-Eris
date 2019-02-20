@@ -1,0 +1,4 @@
+author: Carbonhell
+delete-after: True
+changes: 
+  - bugfix: "Crew records now properly show the religion field."

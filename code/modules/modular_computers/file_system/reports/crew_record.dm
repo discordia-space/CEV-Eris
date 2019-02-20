@@ -93,7 +93,7 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 	// Misc cultural info.
 	//set_homeSystem(H ? html_decode(H.get_cultural_value(TAG_HOMEWORLD)) : "Unset")
 	//set_faction(H ? html_decode(H.get_cultural_value(TAG_FACTION)) : "Unset")
-	//set_religion(H ? html_decode(H.get_cultural_value(TAG_RELIGION)) : "Unset")
+	set_religion(H ? H.religion : "Unset")
 
 	if(H)
 		var/stats = list()
