@@ -216,15 +216,11 @@ FIELD_LONG("Exploitable Information", antagRecord, access_syndicate, access_synd
 
 /datum/report_field/options/crew_record/criminalStatus/set_value(given_value)
 	..()
-	for(var/a in data_core.security)
-		var/datum/data/record/E = a
-		var/datum/computer_file/report/crew_record/C = owner
-		if(E.fields["name"] == C.get_name())
-			E.fields["criminal"] = given_value
-			for(var/h in GLOB.human_mob_list)
-				var/mob/living/carbon/human/H = h
-				if(H.real_name == C.get_name())
-					BITSET(H.hud_updateflag, WANTED_HUD)
+	var/datum/computer_file/report/crew_record/C = owner
+	for(var/h in GLOB.human_mob_list)
+		var/mob/living/carbon/human/H = h
+		if(H.get_id_name(H.name) == C.get_name())
+			BITSET(H.hud_updateflag, WANTED_HUD)
 
 //Options builderes
 /datum/report_field/options/crew_record/rank/proc/record_ranks()
