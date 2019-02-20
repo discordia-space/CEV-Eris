@@ -2186,7 +2186,7 @@ assassination method if you time it right*/
 	if (prob(probability))
 		radio.listening = !radio.listening
 	if (prob(probability))
-		radio.set_frequency(rand(1200,1600))
+		radio.set_frequency(rand(PUBLIC_LOW_FREQ,PUBLIC_HIGH_FREQ))
 	if (prob(probability))
 		maint_access = 0 // Disallow maintenance mode
 	else
