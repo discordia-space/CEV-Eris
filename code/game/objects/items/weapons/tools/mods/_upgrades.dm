@@ -15,6 +15,7 @@
 	icon = 'icons/obj/tool_upgrades.dmi'
 	force = WEAPON_FORCE_HARMLESS
 	w_class = ITEM_SIZE_SMALL
+	price_tag = 200
 
 	var/prefix = "upgraded" //Added to the tool's name
 

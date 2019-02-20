@@ -213,6 +213,7 @@
 		/datum/autolathe/recipe/circuit/operating,
 		/datum/autolathe/recipe/circuit/helm,
 		/datum/autolathe/recipe/circuit/nav,
+		/datum/autolathe/recipe/circuit/centrifuge,
 	)
 	..()
 
