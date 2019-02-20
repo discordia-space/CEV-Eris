@@ -1,4 +1,4 @@
 author: TorinoFermic
 delete-after: True
 changes: 
-  - fix: "Added back missing required components for the excelsior autolathe circuit board."
+  - fix: "Added back missing required components for the excelsior autolathe circuit board after having built."
