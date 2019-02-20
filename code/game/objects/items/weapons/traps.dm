@@ -71,7 +71,7 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 		if (istype(I))
 			//Using a crowbar helps
 			user << SPAN_NOTICE("\The [I] gives you extra leverage")
-			var/reduction = I.get_tool_quality(QUALITY_PRYING)
+			var/reduction = I.get_tool_quality(QUALITY_PRYING)*0.5
 			if (user == buckled_mob)
 				reduction *= 0.66 //But it helps less if you don't have good leverage
 			difficulty -= reduction
@@ -130,6 +130,7 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 
 //Using a crowbar allows you to lever the trap open, better success rate
 /obj/item/weapon/beartrap/attackby(obj/item/C, mob/living/user)
+	world << "Attackby [C], [user]"
 	if (C.has_quality(QUALITY_PRYING))
 		attempt_release(user, C)
 		return
@@ -154,7 +155,7 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	.=..()
 
 /obj/item/weapon/beartrap/proc/can_use(mob/user)
-	return (user.IsAdvancedToolUser() && !user.stat && !user.restrained() && user.Adjacent(src))
+	return (user.IsAdvancedToolUser() && !user.stat && user.Adjacent(src))
 
 /obj/item/weapon/beartrap/proc/release_mob()
 	//user.visible_message("<span class='notice'>\The [buckled_mob] has been freed from \the [src] by \the [user].</span>")
