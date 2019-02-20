@@ -1,0 +1,6 @@
+author: Garen7
+
+delete-after: True
+
+changes: 
+  - bugfix: "You can remove light hardsuits by clickdragging them to your hand, so you can now remove light hardsuits with storage components."
