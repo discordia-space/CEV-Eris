@@ -53,7 +53,7 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	//Does the user have the dexterity to operate the trap?
 	if (!can_use(user))
 		//If they don't, then they're probably some kind of animal trapped in it
-		if (user != buckled_mob)
+		if (user != buckled_mob || user.client)
 			//Such a creature can't free someone else
 			return
 
@@ -77,6 +77,8 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 			difficulty -= reduction
 			I.consume_resources(time_to_escape*3, user)
 
+		if (issilicon(user))
+			difficulty += 5 //Robots are less dextrous
 
 		//How about your stats? Being strong or crafty helps.
 		//We'll subtract the highest of either robustness or mechanical, from the difficulty
@@ -145,9 +147,14 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 		return
 	.=..()
 
+/obj/item/weapon/beartrap/attack_robot(var/mob/user)
+	if (buckled_mob)
+		attempt_release(user)
+		return
+	.=..()
 
 /obj/item/weapon/beartrap/proc/can_use(mob/user)
-	return (user.IsAdvancedToolUser() && !issilicon(user) && !user.stat && !user.restrained())
+	return (user.IsAdvancedToolUser() && !user.stat && !user.restrained() && user.Adjacent(src))
 
 /obj/item/weapon/beartrap/proc/release_mob()
 	//user.visible_message("<span class='notice'>\The [buckled_mob] has been freed from \the [src] by \the [user].</span>")
@@ -212,7 +219,7 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	var/blocked = L.run_armor_check(target_zone, "melee")
 	if(blocked < 100)
 		L.apply_damage(fail_damage, BRUTE, target_zone, blocked, src)
-		L.Stun(6) //A short stun prevents spamming failure attempts
+		L.Stun(4) //A short stun prevents spamming failure attempts
 		shake_camera(user, 2, 1)
 
 	if (ishuman(L))
