@@ -131,23 +131,17 @@
 				..()
 		else
 			..()
-	else
-		var/item_allowed = FALSE
-		for (var/a in allowed_types)
-			if (istype(W, a))
-				item_allowed = TRUE
-		if (item_allowed)
-			if(contents.len < 10)
-				if ( state in list(1, 3) )
-					user.drop_item()
-					W.loc = src
-					state = 3
-				else
-					user << SPAN_NOTICE("You can't put the item in right now.")
+	else if(is_type_in_list(W, allowed_types))
+		if(contents.len < 10)
+			if ( state in list(1, 3) )
+				user.unEquip(W, src)
+				state = 3
 			else
-				user << SPAN_NOTICE("The washing machine is full.")
-			update_icon()
-			return
+				user << SPAN_NOTICE("You can't put the item in right now.")
+		else
+			user << SPAN_NOTICE("The washing machine is full.")
+		update_icon()
+		return
 	update_icon()
 	..()
 

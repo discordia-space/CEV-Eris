@@ -66,7 +66,6 @@
 				else if (response == "Carbon-Copy")
 					P = new /obj/item/weapon/paper/carbon
 
-			P.loc = user.loc
 			user.put_in_hands(P)
 			user << SPAN_NOTICE("You take [P] out of the [src].")
 		else
@@ -78,7 +77,7 @@
 
 //Pickup paperbins with drag n drop
 obj/item/weapon/paper_bin/MouseDrop(over_object)
-	if (usr == over_object)
+	if (usr == over_object && usr.Adjacent(src))
 		if(pre_pickup(usr))
 			pickup(usr)
 			return TRUE
