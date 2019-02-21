@@ -65,7 +65,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 		forceMove(T)
 	else
 		//Safety in case we cannot find the body's position
-		var/turf/T = pickSpawnLocation("Observer")
+		var/turf/T = pick_spawn_location("Observer")
 		if(istype(T))
 			src.forceMove(T)
 

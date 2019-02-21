@@ -81,18 +81,18 @@
 
 	if(move)
 		var/obj/new_location = null
-		for(var/turf/sloc in getSpawnLocations("AI"))
+		for(var/turf/sloc in get_datum_spawn_locations("AI"))
 			if(locate(/obj/structure/AIcore) in sloc)
 				continue
 			new_location = sloc
 		if (!new_location)
-			for(var/turf/sloc in getSpawnLocations("triai"))
+			for(var/turf/sloc in get_datum_spawn_locations("triai"))
 				if(locate(/obj/structure/AIcore) in sloc)
 					continue
 				new_location = sloc
 		if (!new_location)
 			O << "Oh god sorry we can't find an unoccupied AI spawn location, so we're spawning you on top of someone."
-			new_location = pickSpawnLocation("AI")
+			new_location = pick_spawn_location("AI")
 
 		O.forceMove(new_location)
 

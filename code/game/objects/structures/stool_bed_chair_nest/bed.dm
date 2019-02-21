@@ -152,6 +152,20 @@
 	if(Adjacent(user)) // Robots can buckle/unbuckle but not the AI.
 		attack_hand(user)
 
+//If there's blankets on the bed, got to roll them down before you can unbuckle the mob
+/obj/structure/bed/attack_hand(var/mob/user)
+	var/obj/item/weapon/bedsheet/blankets = (locate(/obj/item/weapon/bedsheet) in loc)
+	if (buckled_mob && blankets && !blankets.rolled && !blankets.folded)
+		if (!blankets.toggle_roll(user))
+			return
+
+	//Useability tweak. If you're lying on this bed, clicking it will make you get up
+	if (isliving(user) && user.loc == loc && user.resting)
+		var/mob/living/L = user
+		L.lay_down() //This verb toggles the resting state
+
+	.=..()
+
 /obj/structure/bed/Move()
 	. = ..()
 	if(buckled_mob)

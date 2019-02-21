@@ -681,21 +681,9 @@ default behaviour is:
 
 //used to push away bedsheets in order to stand up, only humans will roll them (see overriden human proc)
 /mob/living/proc/unblanket()
-	if((locate(/obj/item/weapon/bedsheet) in get_turf(src)) && do_after(src,10,incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_STUNNED))
-		var/quantity = 0
-		for (var/obj/item/weapon/bedsheet/BS in get_turf(src))
-			quantity++
-			if(prob(25))
-				BS.rolled = TRUE
-				BS.update_icon()
-			if(prob(85))
-				var/turf/T = get_offset_target_turf(get_turf(src),rand(-1,1),rand(-1,1))
-				step_towards(BS,T)
-		if(quantity)
-			src.visible_message(
-				SPAN_WARNING("\The [src] shoves aside \the [quantity > 1 ? "blankets" : "blanket"] as it stands up."),
-				SPAN_WARNING("You shove aside \the [quantity > 1 ? "blankets" : "blanket"] as you stand up.")
-			)
+	var/obj/item/weapon/bedsheet/blankets = (locate(/obj/item/weapon/bedsheet) in loc)
+	if (blankets && !blankets.rolled && !blankets.folded)
+		return blankets.toggle_roll(src)
 	return TRUE
 
 /mob/living/simple_animal/spiderbot/is_allowed_vent_crawl_item(var/obj/item/carried_item)
