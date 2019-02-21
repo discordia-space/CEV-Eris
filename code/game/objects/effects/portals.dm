@@ -40,7 +40,8 @@
 	..(loc)
 	birthtime = world.time
 	lifetime = _lifetime
-	addtimer(CALLBACK(src, .proc/close,), lifetime)
+	if(_lifetime)
+		QDEL_IN(src, _lifetime)
 
 var/list/portal_cache = list()
 
@@ -67,8 +68,6 @@ var/list/portal_cache = list()
 		var/dir = get_dir(origin, loc)
 		return get_step(T, dir)
 
-/obj/effect/portal/proc/close()
-
 /obj/effect/portal/proc/teleport(atom/movable/M as mob|obj)
 	if (world.time < next_teleport)
 		return
@@ -92,9 +91,6 @@ var/list/portal_cache = list()
 /obj/effect/portal/proc/on_fail(atom/movable/M as mob|obj)
 	src.icon_state = "portal1"
 	do_teleport(M, locate(rand(5, world.maxx - 5), rand(5, world.maxy -5), 3), 0)
-
-
-
 
 /*
 	Wormholes come in linked pairs and can be traversed freely from either end.
