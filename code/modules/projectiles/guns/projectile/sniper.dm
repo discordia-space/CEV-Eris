@@ -26,16 +26,6 @@
 		icon_state = "heavysniper"
 
 /obj/item/weapon/gun/projectile/heavysniper/attack_self(mob/user as mob)
-	if(zoom)
-		toggle_scope(2)
-	var/list/options = list("bolt" = image(icon = 'icons/mob/radial/guns.dmi', icon_state = "bolt"), "scope" = image(icon = 'icons/mob/radial/guns.dmi', icon_state = "zoom"))
-	var/option = show_radial_menu(user, src, options)
-	if(option == "bolt")
-		bolt(user)
-	else if(option == "scope")
-		toggle_scope(2)
-
-/obj/item/weapon/gun/projectile/heavysniper/proc/bolt(mob/user)
 	playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltback.ogg', 75, 1)
 	bolt_open = !bolt_open
 	if(bolt_open)
@@ -68,3 +58,10 @@
 	if(!bolt_open)
 		return
 	..()
+
+/obj/item/weapon/gun/projectile/heavysniper/verb/scope()
+	set category = "Object"
+	set name = "Use Scope"
+	set popup_menu = 1
+
+	toggle_scope(2.0)
