@@ -508,30 +508,45 @@ proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
 	var/pref_spawn = C.prefs.spawnpoint
 
 	var/datum/spawnpoint/SP
+
+
+
+	//First of all, lets try to get the "default" spawning point.
 	if(late)
-		if(!pref_spawn)
-			SP = getSpawnPoint(maps_data.default_spawn, late = TRUE)
-			H << SPAN_WARNING("You have not selected spawnpoint in preference menu, you will be assigned default one which is \"[SP.display_name]\".")
+		if(pref_spawn)
+			SP = get_spawn_point(pref_spawn, late = TRUE)
 		else
-			SP = getSpawnPoint(pref_spawn, late = TRUE)
-			if(SP && !SP.check_job_spawning(rank))
-				H << SPAN_WARNING("Your chosen spawnpoint ([SP.display_name]) is unavailable for your chosen job ([rank]). Spawning you at another spawn point instead.")
-				SP = null
-				for(var/spawntype in get_late_spawntypes())
-					var/datum/spawnpoint/candidate = get_late_spawntypes()[spawntype]
-					if(candidate.check_job_spawning(rank))
-						SP = candidate
-						break
-				if(!SP)
-					warning("Could not find an appropriate spawnpoint for job [rank] (latespawn).")
+			SP = get_spawn_point(maps_data.default_spawn, late = TRUE)
+			H << SPAN_WARNING("You have not selected spawnpoint in preference menu.")
 	else
-		SP = getSpawnPoint(rank)
-		if(!SP)
-			warning("Could not find an appropriate spawnpoint for job [rank] (roundstart).")
-	if(!SP)
-		// Pick default spawnpoint, just so we have one
-		SP = SP = getSpawnPoint(maps_data.default_spawn, late = TRUE)
-	return SP
+		SP = get_spawn_point(rank)
+
+	//Test the default spawn we just got
+	//Feeding true to the report var here will allow the user to choose to spawn anyway
+	if (SP && SP.can_spawn(H, rank, TRUE))
+		return SP
+
+	else
+		//The above didn't work, okay lets start testing spawnpoints at random until we find a place we can spawn
+		//Todo: Add in pref options to specify an ordered priority list for spawning locations
+		var/list/spawns = get_late_spawntypes()
+		var/list/possibilities = spawns.Copy() //The above proc returns a pointer to the list, we need to copy it so we dont modify the original
+		if (istype(SP))
+			possibilities -= SP.name //Lets subtract the one we already tested
+		SP = null
+
+		while (possibilities.len)
+			//Randomly pick things from our shortlist
+			var/spawn_name = pick(possibilities)
+			SP = possibilities[spawn_name]
+			possibilities -= spawn_name //Then remove them from that list of course
+
+			if(SP.can_spawn(H, rank))
+				return SP
+			else
+				H << SPAN_WARNING("Unable to spawn you at [SP.name].")// you will be assigned default one which is \"[SP.display_name]\".")
+
+
 
 /datum/controller/subsystem/job/proc/ShouldCreateRecords(var/title)
 	if(!title) return 0
