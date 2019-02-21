@@ -40,8 +40,7 @@
 	..(loc)
 	birthtime = world.time
 	lifetime = _lifetime
-	if(_lifetime)
-		QDEL_IN(src, _lifetime)
+	addtimer(CALLBACK(src, .proc/close,), lifetime)
 
 var/list/portal_cache = list()
 
@@ -67,6 +66,9 @@ var/list/portal_cache = list()
 	if (origin && Adjacent(origin))
 		var/dir = get_dir(origin, loc)
 		return get_step(T, dir)
+		
+/obj/effect/portal/proc/close()
+	qdel(src)
 
 /obj/effect/portal/proc/teleport(atom/movable/M as mob|obj)
 	if (world.time < next_teleport)
