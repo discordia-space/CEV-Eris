@@ -638,13 +638,13 @@
 		cmd_admin_mute(M, mute_type)
 	else if(href_list["check_antagonist"])
 		if(!check_rights(R_ADMIN))	return
-		storyteller.storyteller_panel()
+		GLOB.storyteller.storyteller_panel()
 
 	else if(href_list["c_mode"])
 		if(!check_rights(R_ADMIN))	return
 
-		if(get_storyteller())
-			return alert(usr, "The game has already started.", null, null, null, null)
+		/* if(get_storyteller())
+			return alert(usr, "The game has already started.", null, null, null, null) */ //this works fine even if the round has already started.
 		var/dat = {"<B>What storyteller do you wish to install?</B><HR>"}
 		for(var/mode in config.storytellers)
 			dat += {"<A href='?src=\ref[src];c_mode2=[mode]'>[config.storyteller_names[mode]]</A><br>"}
@@ -1073,7 +1073,7 @@
 	else if(href_list["traitor"])
 		if(!check_rights(R_ADMIN|R_MOD))	return
 
-		if(!storyteller)
+		if(!GLOB.storyteller)
 			alert("The game hasn't started yet!")
 			return
 
