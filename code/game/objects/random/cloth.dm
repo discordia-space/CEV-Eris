@@ -4,7 +4,9 @@
 	desc = "This is a random mask."
 
 /obj/random/cloth/masks/item_to_spawn()
-	return pick(subtypesof(/obj/item/clothing/mask/))
+	var/list/possibilities = subtypesof(/obj/item/clothing/mask)
+	possibilities -= /obj/item/clothing/mask/ai
+	return pick(possibilities)
 
 /obj/random/cloth/armor
 	name = "random armor"

@@ -18,6 +18,7 @@
 
 	for(var/shift in 1 to height)
 		var/z_level_r = original_level + shift - 1
+		z_level = z_level_r
 		name = "[original_name] stage [shift]"
 		maps_data.registrate(src)
 
