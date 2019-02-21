@@ -12,7 +12,7 @@
 			if("Yes")
 				if(!Adjacent(user))
 					return
-				user.forceMove(pickSpawnLocation())
+				user.forceMove(pick_spawn_location())
 			if("No")
 				return
 /* LETHALGHOSDT: WTF is this? Layer was set to 99
