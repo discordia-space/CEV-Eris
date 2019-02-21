@@ -1,0 +1,4 @@
+author: Carbonhell
+delete-after: True
+changes: 
+  - tweak: "Setting the criminal status on the crew records program will properly update security HUDs."
