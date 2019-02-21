@@ -75,7 +75,7 @@
 		if(S.votable)
 			choices.Insert(index, CS)
 		else
-			qdel(S)
+			qdel(CS)
 
 	//After everything else is in, the guide is inserted at the top,
 	//so it will always be the first option in the poll
