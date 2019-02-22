@@ -377,11 +377,12 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_tog_aliens, R_DEBUG, FALSE)
 
 
 ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
-/client/proc/cmd_admin_dress()
+/client/proc/cmd_admin_dress(mob/living/cabon/human/M in GLOB.human_mob_list)
 	set category = "Fun"
 	set name = "Select equipment"
 
-	var/mob/living/carbon/human/M = input("Select mob.", "Select equipment.") as null|anything in GLOB.human_mob_list
+	if(!M)
+		M = input("Select mob.", "Select equipment.") as null|anything in GLOB.human_mob_list
 	if(!M) return
 
 	var/list/dresspacks = outfits()
