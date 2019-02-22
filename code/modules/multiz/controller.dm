@@ -33,7 +33,7 @@ var/datum/controller/process/open_space/OS_controller = null
 			OD.up = levels[OD.z + 1]
 
 	var/datum/ospace_data/OD
-	for(var/turf/simulated/open/T in turfs)
+	for(var/turf/simulated/open/T in GLOB.turfs)
 		OD = levels[T.z]
 		if(OD)
 			OD.fast += T
@@ -109,13 +109,13 @@ var/datum/controller/process/open_space/OS_controller = null
 
 /datum/ospace_data/proc/calc_fast()
 #ifdef DEBUG_OPENSPACE
-	world << "Calc [z] fast. total: [fast.len] turfs."
+	world << "Calc [z] fast. total: [fast.len] GLOB.turfs."
 #endif
 	calc(fast)
 
 /datum/ospace_data/proc/calc_normal()
 #ifdef DEBUG_OPENSPACE
-	world << "Calc [z] normal. total: [normal.len] turfs."
+	world << "Calc [z] normal. total: [normal.len] GLOB.turfs."
 #endif
 	calc(normal)
 

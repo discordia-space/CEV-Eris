@@ -41,7 +41,7 @@
 	return
 
 /turf/Initialize()
-	turfs += src
+	GLOB.turfs += src
 	var/area/A = loc
 	if (!A.ship_area)
 		if (z in maps_data.station_levels)
@@ -50,7 +50,7 @@
 	. = ..()
 
 /turf/Destroy()
-	turfs -= src
+	GLOB.turfs -= src
 	..()
 	return QDEL_HINT_IWILLGC
 

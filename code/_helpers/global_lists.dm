@@ -30,7 +30,7 @@ GLOBAL_LIST_EMPTY(hearing_objects)			//list of all objects, that can hear mob sa
 //Jobs and economy
 GLOBAL_LIST_EMPTY(joblist)					//list of all jobstypes, minus borg and AI
 GLOBAL_LIST_EMPTY(all_departments)			//List of all department datums
-GLOBAL_LIST_INIT(department_IDs, list(DEPARTMENT_COMMAND, DEPARTMENT_MEDICAL, DEPARTMENT_ENGINEERING,
+GLOBAL_LIST_INIT(department_IDs, list(DEPARTMENT_COMMAND, DEPARTMENT_MEDICAL, DEPARTMENT_ENGINEERING, //Comment to remind me that this isn't used anywhere.
  DEPARTMENT_SCIENCE, DEPARTMENT_SECURITY, DEPARTMENT_GUILD, DEPARTMENT_CHURCH, DEPARTMENT_CIVILIAN))
 GLOBAL_LIST_EMPTY(global_corporations)
 
@@ -39,7 +39,7 @@ GLOBAL_LIST_EMPTY(HUDdatums)
 
 #define all_genders_define_list list(MALE, FEMALE, PLURAL, NEUTER)
 
-var/global/list/turfs = list()						//list of all turfs
+GLOBAL_LIST_EMPTY(turfs)						//list of all GLOB.turfs
 
 var/list/mannequins_
 

@@ -32,7 +32,7 @@ ADMIN_VERB_ADD(/client/proc/Jump, R_ADMIN|R_DEBUG, FALSE)
 
 ADMIN_VERB_ADD(/client/proc/jumptoturf, R_ADMIN, FALSE)
 //allows us to jump to a specific turf
-/client/proc/jumptoturf(var/turf/T in turfs)
+/client/proc/jumptoturf(var/turf/T in GLOB.turfs)
 	set name = "Jump to Turf"
 	set category = "Admin"
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))

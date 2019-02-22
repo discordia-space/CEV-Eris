@@ -44,7 +44,7 @@
 
 
 /turf/simulated/floor/Initialize()
-	turfs += src
+	GLOB.turfs += src
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
