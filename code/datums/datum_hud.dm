@@ -1,8 +1,8 @@
 /datum/hud
 	var/name
-	var/list/HUDneed//для "активных" элементов (прим. здоровье)
+	var/list/HUDneed//for "active" elements (health)
 //	var/list/HUDprocess = list()
-	var/list/slot_data//inventory styff (for mob variable HUDinventory)
+	var/list/slot_data//inventory stuff (for mob variable HUDinventory)
 	var/icon/icon = null //what dmi we use
 	var/list/HUDfrippery //for nice view
 	var/list/HUDoverlays //tech stuff (flash overlay, pain overlay, etc.)
@@ -12,17 +12,60 @@
 	var/list/IconUnderlays //underlays data for HUD objects
 	var/MinStyleFlag = FALSE //that HUD style have compact version?
 	var/list/obj/screen/plane_master/plane_masters = list() // see "appearance_flags" in the ref, assoc list of "[plane]" = object
+	var/list/obj/screen/openspace_overlay/openspace_overlays = list()
 
-/datum/hud/proc/buildPlaneMasters(mob/mymob)
-	for(var/mytype in subtypesof(/obj/screen/plane_master))
-		var/obj/screen/plane_master/instance = new mytype()
-		plane_masters["[instance.plane]"] = instance
-		mymob.client.screen += instance
-		instance.backdrop(mymob)
+/datum/hud/proc/updatePlaneMasters(mob/mymob)
+	var/turf/T = get_turf(mymob)
+	if(!T || !mymob || !mymob.client)
+		return
+
+	var/z = T.z
+
+	var/datum/level_data/LD = z_levels[z]
+
+	for(var/pmaster in plane_masters)
+		var/obj/screen/plane_master/instance = plane_masters[pmaster]
+		mymob.client.screen -= instance
+		qdel(instance)
+
+	plane_masters.Cut()
+
+	for(var/over in openspace_overlays)
+		var/obj/screen/openspace_overlay/instance = openspace_overlays[over]
+		mymob.client.screen -= instance
+		qdel(instance)
+
+	openspace_overlays.Cut()
+	var/local_z = z-(LD.original_level-1)
+	for(var/zi in 1 to local_z)
+		for(var/mytype in subtypesof(/obj/screen/plane_master))
+			var/obj/screen/plane_master/instance = new mytype()
+
+			instance.plane = calculate_plane(zi,instance.plane)
+
+			plane_masters["[zi]-[mytype]"] = instance
+			mymob.client.screen += instance
+			instance.backdrop(mymob)
+
+		for(var/pl in list(GAME_PLANE,FLOOR_PLANE))
+			if(zi < local_z)
+				var/zdiff = local_z-(zi-1)
+
+				var/obj/screen/openspace_overlay/oover = new
+				oover.plane = calculate_plane(zi,pl)
+				oover.alpha = min(255,zdiff*50 + 30)
+				openspace_overlays["[zi]-[oover.plane]"] = oover
+				mymob.client.screen += oover
+
+
+/mob/update_plane()
+	..()
+	if(hud_used)
+		hud_used.updatePlaneMasters(src)
 
 /datum/hud/New(mob/mymob)
 	if(mymob)
-		buildPlaneMasters(mymob)
+		updatePlaneMasters(mymob)
 
 /datum/hud/human
 	name = "ErisStyle"
@@ -170,6 +213,7 @@
 		"cell"      = list("type" = /obj/screen/silicon/cell,     "loc" = "15,14"),
 		"health"      = list("type" = /obj/screen/health/cyborg,     "loc" = "15,6"),
 		"damage zone" = list("type" = /obj/screen/zone_sel,   "loc" = "15,1"),
+		"pull"   = list("type" = /obj/screen/silicon/pull, "loc" = "12,1"),
 		"radio" = list("type" = /obj/screen/silicon/radio,   "loc" = "13,1"),
 		"store" = list("type" = /obj/screen/silicon/store,   "loc" = "9,1"),
 		"panel" = list("type" = /obj/screen/silicon/panel,   "loc" = "15,2"),

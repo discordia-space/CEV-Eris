@@ -49,7 +49,7 @@
 	if(chambered)
 		chambered.loc = get_turf(src)//Eject casing
 		chambered = null
-		if(reload == 0)
+		if(!reload)
 			if(loaded.len)
 				var/obj/item/ammo_casing/AC = loaded[1] //load next casing.
 				loaded -= AC //Remove casing from loaded list.
@@ -64,7 +64,7 @@
 	..(user, allow_dump=1)
 
 /obj/item/weapon/gun/projectile/shotgun/bull/attack_self(mob/user as mob)
-	if(reload == 1)
+	if(reload)
 		pump(user)
 	else
 		if(firemodes.len > 1)
@@ -73,9 +73,7 @@
 			unload_ammo(user)
 
 /obj/item/weapon/gun/projectile/shotgun/bull/proc/update_charge()
-	var/ratio = (loaded.len + (chambered? 1 : 0)) / max_shells
-	if(ratio < 0.25 && ratio != 0)
-		ratio = 0.25
+	var/ratio = get_ammo() / (max_shells + 1)//1 in the chamber
 	ratio = round(ratio, 0.25) * 100
 	overlays += "[ratio]_PW"
 

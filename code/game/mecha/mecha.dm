@@ -80,6 +80,7 @@
 
 
 	var/wreckage
+	var/noexplode = 0 // Used for cases where an exosuit is spawned and turned into wreckage
 
 	var/list/equipment = new
 	var/obj/item/mecha_parts/mecha_equipment/selected
@@ -135,7 +136,7 @@
 	if(loc)
 		loc.Exited(src)
 
-	if(prob(30))
+	if(prob(30) && !noexplode)
 		explosion(get_turf(loc), 0, 0, 1, 3)
 
 	if(wreckage)
@@ -2159,3 +2160,48 @@ assassination method if you time it right*/
 	//src.check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 	return
 */
+
+
+
+//Used for generating damaged exosuits.
+//This does an individual check for each piece of equipment on the exosuit, and removes it if
+//this probability passes a check
+/obj/mecha/proc/lose_equipment(var/probability)
+	for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
+		if (prob(probability))
+			E.detach(loc)
+			qdel(E)
+
+//Does a number of checks at probability, and alters some configuration values if succeeded
+/obj/mecha/proc/misconfigure_systems(var/probability)
+	if (prob(probability))
+		internal_tank_valve = rand(0,10000) // Screw up the cabin air pressure.
+		//This will probably kill the pilot if they dont check it before climbing in
+	if (prob(probability))
+		use_internal_tank = !use_internal_tank // Flip internal tank mode on or off
+	if (prob(probability))
+		toggle_lights() // toggle the lights
+	if (prob(probability)) // Some settings to screw up the radio
+		radio.broadcasting = !radio.broadcasting
+	if (prob(probability))
+		radio.listening = !radio.listening
+	if (prob(probability))
+		radio.set_frequency(rand(PUBLIC_LOW_FREQ,PUBLIC_HIGH_FREQ))
+	if (prob(probability))
+		maint_access = 0 // Disallow maintenance mode
+	else
+		maint_access = 1 // Explicitly allow maint_access -> Othwerwise we have a stuck mech, as you cant change the state back, if maint_access is 0
+		state = 1 // Enable maintenance mode. It won't move.
+
+//Does a random check for each possible type of internal damage, and adds it if it passes
+//The probability should be somewhat low unless you just want to saturate it with damage
+//Fire is excepted. We're not going to set the exosuit on fire while its in longterm storage
+/obj/mecha/proc/random_internal_damage(var/probability)
+	if (prob(probability))
+		setInternalDamage(MECHA_INT_TEMP_CONTROL)
+	if (prob(probability))
+		setInternalDamage(MECHA_INT_SHORT_CIRCUIT)
+	if (prob(probability))
+		setInternalDamage(MECHA_INT_TANK_BREACH)
+	if (prob(probability))
+		setInternalDamage(MECHA_INT_CONTROL_LOST)

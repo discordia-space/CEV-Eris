@@ -22,10 +22,37 @@
 	var/gibs_ready = 0
 	var/obj/crayon
 
+	var/list/allowed_types = list(/obj/item/clothing,
+	/obj/item/weapon/storage/pouch,
+	/obj/item/stack/material/hairlesshide,
+	/obj/item/weapon/bedsheet,
+	/obj/item/weapon/storage/belt,
+	/obj/item/weapon/storage/backpack)
+
 /obj/machinery/washing_machine/Destroy()
 	qdel(crayon)
 	crayon = null
 	. = ..()
+
+
+//A washing machine cleans away most of the bad effects of old clothes
+//Armor penalties and name/desc changes are left
+/obj/machinery/washing_machine/proc/wash(var/atom/A)
+	A.clean_blood()
+	if (istype(A, /obj/item))
+		var/obj/item/I = A
+		I.decontaminate()
+	if (A.oldified)
+		A.name = initial(A.name)
+		A.color = initial(A.color)
+		if (istype(A, /obj/item/clothing))
+			var/obj/item/clothing/C = A
+
+			C.slowdown = initial(C.slowdown)
+			C.heat_protection = initial(C.heat_protection)
+			C.cold_protection = initial(C.cold_protection)
+			C.equip_delay = initial(C.equip_delay)
+
 
 /obj/machinery/washing_machine/verb/start()
 	set name = "Start Washing"
@@ -44,12 +71,13 @@
 	else
 		state = 5
 	update_icon()
-	sleep(200)
+	sleep(600)
 	for(var/atom/A in contents)
-		A.clean_blood()
+		sleep(50)
+		wash(A)
 		if(istype(A, /obj/item))
 			var/obj/item/I = A
-			I.decontaminate()
+
 			if(istype(crayon,/obj/item/weapon/pen/crayon) && istype(I, /obj/item/clothing/gloves/color) || istype(I, /obj/item/clothing/head/soft) || istype(I, /obj/item/clothing/shoes/color) || istype(I, /obj/item/clothing/under/color))
 				var/obj/item/clothing/C = I
 				var/obj/item/weapon/pen/crayon/CR = crayon
@@ -103,65 +131,20 @@
 				..()
 		else
 			..()
-	else if(istype(W,/obj/item/stack/material/hairlesshide) || \
-		istype(W,/obj/item/clothing/under) || \
-		istype(W,/obj/item/clothing/mask) || \
-		istype(W,/obj/item/clothing/head) || \
-		istype(W,/obj/item/clothing/gloves) || \
-		istype(W,/obj/item/clothing/shoes) || \
-		istype(W,/obj/item/clothing/suit) || \
-		istype(W,/obj/item/weapon/bedsheet))
-
-		//YES, it's hardcoded... saves a var/can_be_washed for every single clothing item.
-		if ( istype(W,/obj/item/clothing/suit/space ) )
-			user << "This item does not fit."
-			return
-		if ( istype(W,/obj/item/clothing/suit/syndicatefake ) )
-			user << "This item does not fit."
-			return
-//		if ( istype(W,/obj/item/clothing/suit/powered ) )
-//			user << "This item does not fit."
-//			return
-		if ( istype(W,/obj/item/clothing/suit/cyborg_suit ) )
-			user << "This item does not fit."
-			return
-		if ( istype(W,/obj/item/clothing/suit/bomb_suit ) )
-			user << "This item does not fit."
-			return
-		if ( istype(W,/obj/item/clothing/suit/armor ) )
-			user << "This item does not fit."
-			return
-		if ( istype(W,/obj/item/clothing/suit/armor ) )
-			user << "This item does not fit."
-			return
-		if ( istype(W,/obj/item/clothing/mask/gas ) )
-			user << "This item does not fit."
-			return
-		if ( istype(W,/obj/item/clothing/mask/smokable/cigarette ) )
-			user << "This item does not fit."
-			return
-		if ( istype(W,/obj/item/clothing/head/syndicatefake ) )
-			user << "This item does not fit."
-			return
-//		if ( istype(W,/obj/item/clothing/head/powered ) )
-//			user << "This item does not fit."
-//			return
-		if ( istype(W,/obj/item/clothing/head/helmet ) )
-			user << "This item does not fit."
-			return
-
-		if(contents.len < 5)
+	else if(is_type_in_list(W, allowed_types))
+		if(contents.len < 10)
 			if ( state in list(1, 3) )
-				user.drop_item()
-				W.loc = src
+				user.unEquip(W, src)
 				state = 3
 			else
 				user << SPAN_NOTICE("You can't put the item in right now.")
 		else
 			user << SPAN_NOTICE("The washing machine is full.")
-	else
-		..()
+		update_icon()
+		return
 	update_icon()
+	..()
+
 
 /obj/machinery/washing_machine/attack_hand(mob/user as mob)
 	switch(state)

@@ -101,7 +101,7 @@
 
 		var/mutable_appearance/MA = new(scanned)
 		MA.appearance_flags = KEEP_APART | RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
-		MA.plane = GAME_PLANE
+		MA.plane = src.get_relative_plane(GAME_PLANE)
 		MA.layer = ABOVE_HUD_LAYER
 		MA.alpha = 128
 

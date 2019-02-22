@@ -154,7 +154,7 @@
 /datum/antagonist/proc/get_extra_panel_options()
 	return
 
-/* !TODO: This should be implemented in storyteller_print.dm (storyteller.antagonist_report())
+/* !TODO: This should be implemented in storyteller_print.dm (GLOB.storyteller.antagonist_report())
 /datum/antagonist/proc/get_check_antag_output(var/datum/admins/caller)
 
 	if(!current_antagonists || !current_antagonists.len)

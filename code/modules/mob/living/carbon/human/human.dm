@@ -347,38 +347,24 @@ var/list/rank_prefix = list(\
 	if (href_list["criminal"])
 		if(hasHUD(usr,"security"))
 
-			var/modified = 0
-			var/perpname = "wot"
-			if(wear_id)
-				var/obj/item/weapon/card/id/I = wear_id.GetIdCard()
-				if(I)
-					perpname = I.registered_name
-				else
-					perpname = name
-			else
-				perpname = name
+			var/modified = FALSE
+			var/perpname = get_id_name(name)
 
 			if(perpname)
-				for (var/datum/data/record/E in data_core.general)
-					if (E.fields["name"] == perpname)
-						for (var/datum/data/record/R in data_core.security)
-							if (R.fields["id"] == E.fields["id"])
-
-								var/setcriminal = input(usr, "Specify a new criminal status for this person.", "Security HUD", R.fields["criminal"]) in list("None", "*Arrest*", "Incarcerated", "Parolled", "Released", "Cancel")
-
-								if(hasHUD(usr, "security"))
-									if(setcriminal != "Cancel")
-										R.fields["criminal"] = setcriminal
-										modified = 1
-
-										spawn()
-											BITSET(hud_updateflag, WANTED_HUD)
-											if(ishuman(usr))
-												var/mob/living/carbon/human/U = usr
-												U.handle_regular_hud_updates()
-											if(isrobot(usr))
-												var/mob/living/silicon/robot/U = usr
-												U.handle_regular_hud_updates()
+				var/datum/computer_file/report/crew_record/R = get_crewmember_record(perpname)
+				if(R)
+					var/setcriminal = input(usr, "Specify a new criminal status for this person.", "Security HUD", R.get_criminalStatus()) in GLOB.security_statuses + "Cancel"
+					if(hasHUD(usr, "security"))
+						if(setcriminal != "Cancel")
+							R.set_criminalStatus(setcriminal)
+							modified = TRUE
+							BITSET(hud_updateflag, WANTED_HUD)
+							if(ishuman(usr))
+								var/mob/living/carbon/human/U = usr
+								U.handle_regular_hud_updates()
+							if(isrobot(usr))
+								var/mob/living/silicon/robot/U = usr
+								U.handle_regular_hud_updates()
 
 			if(!modified)
 				usr << "\red Unable to locate a data core entry for this person."
@@ -1488,22 +1474,3 @@ var/list/rank_prefix = list(\
 		else return TRUE
 	return FALSE
 
-//	If covered in blakets you wont get up while all blankets is unrolled
-/mob/living/carbon/human/unblanket()
-	if(!(locate(/obj/item/weapon/bedsheet) in get_turf(src)))
-		return TRUE
-	if(incapacitated(incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_STUNNED))
-		return FALSE
-	var/obj/item/weapon/bedsheet/unrolledBlanket
-	for (var/obj/item/weapon/bedsheet/BS in get_turf(src))
-		if(!BS.rolled && !BS.folded)
-			unrolledBlanket = BS
-			break
-	if(unrolledBlanket)
-		if(unrolledBlanket.toggle_roll(src))
-			if (unblanket())
-				return TRUE
-		else
-			return FALSE
-	else
-		return TRUE
