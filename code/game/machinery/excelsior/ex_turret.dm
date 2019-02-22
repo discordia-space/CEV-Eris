@@ -85,7 +85,8 @@
 		disabled = TRUE
 		popDown()
 		return
-	disabled = FALSE
+	if(anchored)
+		disabled = FALSE
 	..()
 
 /obj/machinery/porta_turret/excelsior/assess_living(mob/living/L)
