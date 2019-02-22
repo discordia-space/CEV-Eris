@@ -116,7 +116,7 @@
 
 			observer.started_as_observer = 1
 			close_spawn_windows()
-			var/turf/T = pickSpawnLocation("Observer")
+			var/turf/T = pick_spawn_location("Observer")
 			if(istype(T))
 				src << SPAN_NOTICE("You are observer now.")
 				observer.forceMove(T)
@@ -258,9 +258,7 @@
 		qdel(src)
 		return
 
-	var/datum/spawnpoint/spawnpoint = SSjob.get_spawnpoint_for(character.client, rank, late = TRUE)
-	if (!spawnpoint.put_mob(character))
-		return
+
 
 	character = SSjob.EquipRank(character, rank)					//equips the human
 	equip_custom_items(character)
@@ -277,8 +275,14 @@
 			//Grab some data from the character prefs for use in random news procs.
 
 
+	//Spawning happens at the end so things like name is populated
+	var/datum/spawnpoint/spawnpoint = SSjob.get_spawnpoint_for(character.client, rank, late = TRUE)
+	if (!spawnpoint.put_mob(character))
+		return
 
 	AnnounceArrival(character, character.mind.assigned_role, spawnpoint.message)	//will not broadcast if there is no message
+
+
 
 	qdel(src)
 

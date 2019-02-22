@@ -55,8 +55,9 @@
 	new /obj/item/weapon/tool/weldingtool(src)
 	new /obj/item/weapon/tool/crowbar(src)
 	new /obj/item/weapon/tool/wirecutters(src)
-	new /obj/item/stack/cable_coil(src,30,pick("red","yellow","orange"))
+	new /obj/item/stack/cable_coil/random(src)
 
+//Mostlyfull toolbelt has a high chance - but not guaranteed - to contain each common tool
 /obj/item/weapon/storage/belt/utility/mostlyfull/New()
 	..()
 	if (prob(65))
@@ -70,7 +71,7 @@
 	if (prob(65))
 		new /obj/item/weapon/tool/wirecutters(src)
 	if (prob(65))
-		new /obj/item/stack/cable_coil(src,30,pick("red","yellow","orange"))
+		new /obj/item/stack/cable_coil/random(src)
 
 
 /obj/item/weapon/storage/belt/utility/atmostech/New()
