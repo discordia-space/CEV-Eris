@@ -46,7 +46,7 @@ var/datum/maps_data/maps_data = new
 /proc/max_default_z_level()
 	return maps_data.all_levels.len
 
-/proc/is_on_same_plane_or_station(var/z1, var/z2)
+/proc/is_on_same_level_or_ship(var/z1, var/z2)
 	if(z1 == z2)
 		return TRUE
 	if(isStationLevel(z1) && isStationLevel(z2))
