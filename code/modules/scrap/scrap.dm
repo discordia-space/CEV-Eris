@@ -292,8 +292,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		user.do_attack_animation(src)
 		dig_out_lump(user.loc, 0)
 		shuffle_loot()
-		var/i = clear_if_empty()
-		world << "Clear if empty returned: [i]"
+		clear_if_empty()
 
 /obj/structure/scrap/large
 	name = "large scrap pile"
