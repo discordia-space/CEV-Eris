@@ -4,29 +4,29 @@
 #endif
 
 // Items that ask to be called every cycle.
-GOLBAL_DATUM(datacore, /datum/data_core)
-GLOBAL_LIST_EMPTY(all_areas)
-GLOBAL_LIST_EMPTY(ship_areas)
+var/global/datum/datacore/data_core = null
+var/global/list/all_areas                = list()
+var/global/list/ship_areas                = list()
 
-//var/global/list/machines                 = list()		//Removed I can delete these while i'm here, pls advise.
+//var/global/list/machines                 = list()		//Removed
 //var/global/list/processing_objects       = list()		//Removed
 //var/global/list/processing_power_items   = list()		//Removed
-GLOBAL_LIST_EMPTY(active_diseases)
-GLOBAL_LIST_EMPTY(med_hud_users) // List of all entities using a medical HUD.
-GLOBAL_LIST_EMPTY(sec_hud_users) // List of all entities using a security HUD.
-GLOBAL_LIST_EMPTY(hud_icon_reference)
+var/global/list/active_diseases          = list()
+var/global/list/med_hud_users            = list() // List of all entities using a medical HUD.
+var/global/list/sec_hud_users            = list() // List of all entities using a security HUD.
+var/global/list/hud_icon_reference       = list()
 
 
-GLOBAL_DATUM_INIT(universe, /datum/universal_state, new)
+var/global/datum/universal_state/universe = new
 
-GLOBAL_LIST_EMPTY(global_map)
+var/global/list/global_map = null
 
 // Noises made when hit while typing.
-GLOBAL_LIST_INIT(hit_appends, list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF"))
+var/list/hit_appends = list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")
 
 
-GLOBAL_VAR(runtime_diary)
-GLOBAL_VAR(diary)
+var/runtime_diary		= null
+var/diary               = null
 var/world_qdel_log		= null
 var/href_logfile        = null
 var/station_name        = "CEV Eris"

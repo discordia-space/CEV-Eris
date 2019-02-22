@@ -50,7 +50,7 @@
 			W.RemoveLattice()
 
 		if(tell_universe)
-			GLOB.universe.OnTurfChange(W)
+			universe.OnTurfChange(W)
 
 		SSair.mark_for_update(src) //handle the addition of the new turf.
 
@@ -65,7 +65,7 @@
 			old_fire.RemoveFire()
 
 		if(tell_universe)
-			GLOB.universe.OnTurfChange(T)
+			universe.OnTurfChange(T)
 
 		SSair.mark_for_update(src)
 

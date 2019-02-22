@@ -125,7 +125,7 @@
 
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
-			H.forcesay(GLOB.hit_appends)
+			H.forcesay(hit_appends)
 
 /obj/item/weapon/melee/baton/emp_act(severity)
 	if(cell)

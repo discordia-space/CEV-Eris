@@ -7,7 +7,7 @@ proc/process_med_hud(var/mob/M, var/local_scanner, var/mob/Alt)
 	if(!can_process_hud(M))
 		return
 
-	var/datum/arranged_hud_process/P = arrange_hud_process(M, Alt, GLOB.med_hud_users)
+	var/datum/arranged_hud_process/P = arrange_hud_process(M, Alt, med_hud_users)
 	for(var/mob/living/carbon/human/patient in P.Mob.in_view(P.Turf))
 		if(P.Mob.see_invisible < patient.invisibility)
 			continue
@@ -26,7 +26,7 @@ proc/process_med_hud(var/mob/M, var/local_scanner, var/mob/Alt)
 proc/process_sec_hud(var/mob/M, var/advanced_mode, var/mob/Alt)
 	if(!can_process_hud(M))
 		return
-	var/datum/arranged_hud_process/P = arrange_hud_process(M, Alt, GLOB.sec_hud_users)
+	var/datum/arranged_hud_process/P = arrange_hud_process(M, Alt, sec_hud_users)
 	for(var/mob/living/carbon/human/perp in P.Mob.in_view(P.Turf))
 		if(P.Mob.see_invisible < perp.invisibility)
 			continue
@@ -40,7 +40,7 @@ proc/process_sec_hud(var/mob/M, var/advanced_mode, var/mob/Alt)
 /proc/process_broken_hud(mob/M, advanced_mode, mob/Alt)
 	if(!can_process_hud(M))
 		return
-	var/datum/arranged_hud_process/P = arrange_hud_process(M, Alt, GLOB.sec_hud_users)
+	var/datum/arranged_hud_process/P = arrange_hud_process(M, Alt, sec_hud_users)
 	for(var/mob/living/carbon/human/perp in P.Mob.in_view(P.Turf))
 		if(P.Mob.see_invisible < perp.invisibility)
 			continue
@@ -74,8 +74,8 @@ mob/proc/handle_hud_glasses() //Used in the life.dm of mobs that can use HUDs.
 		for(var/image/hud in client.images)
 			if(copytext(hud.icon_state, 1, 4) == "hud")
 				client.images -= hud
-	GLOB.med_hud_users -= src
-	GLOB.sec_hud_users -= src
+	med_hud_users -= src
+	sec_hud_users -= src
 
 mob/proc/in_view(var/turf/T)
 	return view(T)

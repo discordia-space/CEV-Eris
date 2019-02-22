@@ -55,7 +55,7 @@
 		restricted_jobs |= protected_jobs
 
 	if(antaghud_indicator)
-		if(!GLOB.hud_icon_reference)
-			GLOB.hud_icon_reference = list()
+		if(!hud_icon_reference)
+			hud_icon_reference = list()
 		if(role_text)
-			GLOB.hud_icon_reference[role_text] = antaghud_indicator
+			hud_icon_reference[role_text] = antaghud_indicator

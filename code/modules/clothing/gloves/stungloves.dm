@@ -86,7 +86,7 @@
 
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		H.forcesay(GLOB.hit_appends)
+		H.forcesay(hit_appends)
 
 
 /obj/item/clothing/gloves/stungloves/emp_act(severity)
