@@ -116,8 +116,8 @@ SUBSYSTEM_DEF(ticker)
 				Master.SetRunLevel(RUNLEVEL_LOBBY)
 
 		if(GAME_STATE_PLAYING)
-			storyteller.Process()
-			storyteller.process_events()
+			GLOB.storyteller.Process()
+			GLOB.storyteller.process_events()
 
 			var/game_finished = (evacuation_controller.round_over() || ship_was_nuked  || universe_has_ended)
 
@@ -151,24 +151,24 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/setup()
 	//Create and announce mode
 
-	if(!storyteller)
+	if(!GLOB.storyteller)
 		set_storyteller(announce = FALSE)
 
-	if(!storyteller)
+	if(!GLOB.storyteller)
 		world << "<span class='danger'>Serious error storyteller system!</span> Reverting to pre-game lobby."
 		return FALSE
 
 	SSjob.ResetOccupations()
 	SSjob.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
 
-	if(!storyteller.can_start(TRUE))
+	if(!GLOB.storyteller.can_start(TRUE))
 		world << "<B>Unable to start game.</B> Reverting to pre-game lobby."
-		//storyteller = null //Possibly bring this back in future if we have storytellers with differing requirements
+		//GLOB.storyteller = null //Possibly bring this back in future if we have storytellers with differing requirements
 		//story_vote_ended = FALSE
 		SSjob.ResetOccupations()
 		return FALSE
 
-	storyteller.announce()
+	GLOB.storyteller.announce()
 
 	setup_economy()
 	newscaster_announcements = pick(newscaster_standard_feeds)
@@ -187,7 +187,7 @@ SUBSYSTEM_DEF(ticker)
 	callHook("roundstart")
 
 	spawn(0)//Forking here so we dont have to wait for this to finish
-		storyteller.set_up()
+		GLOB.storyteller.set_up()
 		world << "<FONT color='blue'><B>Enjoy the game!</B></FONT>"
 		world << sound('sound/AI/welcome.ogg') // Skie
 		//Holiday Round-start stuff	~Carn
@@ -398,7 +398,7 @@ SUBSYSTEM_DEF(ticker)
 	if(dronecount)
 		world << "<b>There [dronecount>1 ? "were" : "was"] [dronecount] industrious maintenance [dronecount>1 ? "drones" : "drone"] at the end of this round.</b>"
 
-	storyteller.declare_completion()//To declare normal completion.
+	GLOB.storyteller.declare_completion()//To declare normal completion.
 
 	//Ask the event manager to print round end information
 	SSevent.RoundEnd()
