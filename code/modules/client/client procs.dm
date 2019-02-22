@@ -129,7 +129,7 @@
 
 
 	GLOB.clients += src
-	directory[ckey] = src
+	GLOB.directory[ckey] = src
 
 	//Admin Authorisation
 	holder = admin_datums[ckey]
@@ -189,7 +189,7 @@
 		var/DBQuery/query = dbcon.NewQuery("UPDATE players SET last_seen = Now() WHERE id = [src.id]")
 		if(!query.Execute())
 			log_world("Failed to update players table for user with id [src.id]. Error message: [query.ErrorMsg()].")
-	directory -= ckey
+	GLOB.directory -= ckey
 	GLOB.clients -= src
 	return ..()
 /*

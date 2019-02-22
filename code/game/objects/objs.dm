@@ -25,8 +25,8 @@
 	..(user, distance, infix, suffix)
 	if(get_dist(user, src) <= 2)
 		if (corporation)
-			if (corporation in global.global_corporations)
-				var/datum/corporation/C = global_corporations[corporation]
+			if (corporation in global.GLOB.global_corporations)
+				var/datum/corporation/C = GLOB.global_corporations[corporation]
 				user << "<font color='[C.textcolor]'>You think this [src.name] create a \
 				<IMG CLASS=icon SRC=\ref[C.icon] ICONSTATE='[C.icon_state]'>\
 				[C.name]. [C.about]</font>"
@@ -194,10 +194,10 @@
 	return
 
 /obj/proc/add_hearing()
-	hearing_objects |= src
+	GLOB.hearing_objects |= src
 
 /obj/proc/remove_hearing()
-	hearing_objects.Remove(src)
+	GLOB.hearing_objects.Remove(src)
 
 /obj/proc/eject_item(var/obj/item/I, var/mob/living/M)
 	if(!I || !M.IsAdvancedToolUser())

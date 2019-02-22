@@ -101,7 +101,7 @@ GLOBAL_LIST_EMPTY(faction_types)
 		if(A.outer)
 			GLOB.outer_antag_types[A.id] = A
 			var/list/start_locs = list()
-			for(var/obj/landmark/L in landmarks_list)
+			for(var/obj/landmark/L in GLOB.landmarks_list)
 				if(L.name == A.landmark_id)
 					start_locs += get_turf(L)
 			GLOB.antag_starting_locations[A.id] = start_locs

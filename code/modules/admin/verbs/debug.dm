@@ -429,7 +429,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress_old, R_FUN, FALSE)
 		if ("strip")
 			//do nothing
 		if ("job")
-			var/selected_job = input("Select job", "Robust quick dress shop") as null|anything in joblist
+			var/selected_job = input("Select job", "Robust quick dress shop") as null|anything in GLOB.joblist
 			if (isnull(selected_job))
 				return
 

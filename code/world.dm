@@ -419,7 +419,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 				var/ckey = copytext(line, 1, length(line)+1)
 				var/datum/admins/D = new /datum/admins(title, rights, ckey)
-				D.associate(directory[ckey])
+				D.associate(GLOB.directory[ckey])
 
 /world/proc/load_mentors()
 	if(config.admin_legacy_system)
@@ -439,7 +439,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 				var/ckey = copytext(line, 1, length(line)+1)
 				var/datum/admins/D = new /datum/admins(title, rights, ckey)
-				D.associate(directory[ckey])
+				D.associate(GLOB.directory[ckey])
 
 /world/proc/update_status()
 	var/s = ""

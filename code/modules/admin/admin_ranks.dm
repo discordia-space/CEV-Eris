@@ -37,7 +37,7 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 		var/datum/admins/D = new /datum/admins(rank, rights, ckey)
 
 		//find the client for a ckey if they are connected and associate them with the new admin datum
-		D.associate(directory[ckey])
+		D.associate(GLOB.directory[ckey])
 
 
 // This proc is using only without database connection
@@ -135,7 +135,7 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 		var/datum/admins/D = new /datum/admins(rank, flags, ckey)
 
 		//find the client for a ckey if they are connected and associate them with the new admin datum
-		D.associate(directory[ckey])
+		D.associate(GLOB.directory[ckey])
 
 
 // TODO: finally rework database schema with separate permissions table

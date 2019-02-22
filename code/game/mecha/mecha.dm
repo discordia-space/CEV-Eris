@@ -124,7 +124,7 @@
 	removeVerb(/obj/mecha/verb/disconnect_from_port)
 	log_message("[src.name] created.")
 	loc.Entered(src)
-	mechas_list += src //global mech list
+	GLOB.mechas_list += src //global mech list
 	add_hearing()
 	return
 
@@ -178,7 +178,7 @@
 	pr_internal_damage = null
 	spark_system = null
 
-	mechas_list -= src //global mech list
+	GLOB.mechas_list -= src //global mech list
 	remove_hearing()
 	. = ..()
 

@@ -7,7 +7,7 @@
 	if(!H.client)
 		return
 
-//	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
+//	var/datum/hud/human/HUDdatum = GLOB.HUDdatums[H.defaultHUD]
 	var/recreate_flag = FALSE
 
 	if(!check_HUDdatum())
@@ -26,7 +26,7 @@
 	var/mob/living/silicon/robot/H = src
 
 	if (H.defaultHUD == "BorgStyle") //если у клиента моба прописан стиль\тип ХУДа
-		if(global.HUDdatums.Find(H.defaultHUD))//Если существует такой тип ХУДА
+		if(GLOB.HUDdatums.Find(H.defaultHUD))//Если существует такой тип ХУДА
 			return TRUE
 	return FALSE
 
@@ -35,7 +35,7 @@
 
 /mob/living/silicon/robot/create_HUD() //EKUDZA HAS HERE
 //	var/mob/living/silicon/robot/H = src
-//	var/datum/hud/cyborg/HUDdatum = global.HUDdatums[H.defaultHUD]
+//	var/datum/hud/cyborg/HUDdatum = GLOB.HUDdatums[H.defaultHUD]
 
 	create_HUDneed()
 	create_HUDinventory()
@@ -51,7 +51,7 @@
 
 /mob/living/silicon/robot/create_HUDinventory()
 	var/mob/living/silicon/robot/H = src
-	var/datum/hud/cyborg/HUDdatum = global.HUDdatums[H.defaultHUD]
+	var/datum/hud/cyborg/HUDdatum = GLOB.HUDdatums[H.defaultHUD]
 	for (var/HUDname in HUDdatum.slot_data)
 		var/HUDtype
 		HUDtype = HUDdatum.slot_data[HUDname]["type"]
@@ -69,7 +69,7 @@
 
 /mob/living/silicon/robot/create_HUDneed()
 	var/mob/living/silicon/robot/H = src
-	var/datum/hud/cyborg/HUDdatum = global.HUDdatums[H.defaultHUD]
+	var/datum/hud/cyborg/HUDdatum = GLOB.HUDdatums[H.defaultHUD]
 	for (var/HUDname in HUDdatum.HUDneed)
 		var/HUDtype = HUDdatum.HUDneed[HUDname]["type"]
 //		var/obj/screen/HUD = new HUDtype(HUDname, HUDdatum.HUDneed[HUDname]["loc"], H)
@@ -94,7 +94,7 @@
 
 /mob/living/silicon/robot/create_HUDfrippery()
 	var/mob/living/silicon/robot/H = src
-	var/datum/hud/cyborg/HUDdatum = global.HUDdatums[H.defaultHUD]
+	var/datum/hud/cyborg/HUDdatum = GLOB.HUDdatums[H.defaultHUD]
 	//Добавляем Элементы ХУДа (украшения)
 	for (var/list/whistle in HUDdatum.HUDfrippery)
 		var/obj/screen/frippery/perdelka = new (whistle["icon_state"],whistle["loc"], whistle["dir"],H)
@@ -106,7 +106,7 @@
 
 /mob/living/silicon/robot/create_HUDtech()
 	var/mob/living/silicon/robot/H = src
-	var/datum/hud/cyborg/HUDdatum = global.HUDdatums[H.defaultHUD]
+	var/datum/hud/cyborg/HUDdatum = GLOB.HUDdatums[H.defaultHUD]
 	//Добавляем технические элементы(damage,flash,pain... оверлеи)
 	for (var/techobject in HUDdatum.HUDoverlays)
 		var/HUDtype = HUDdatum.HUDoverlays[techobject]["type"]

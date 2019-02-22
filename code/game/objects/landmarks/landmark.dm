@@ -11,7 +11,7 @@
 
 /obj/landmark/New()
 	..()
-	landmarks_list += src
+	GLOB.landmarks_list += src
 
 /obj/landmark/proc/delete()
 	delete_me = TRUE
@@ -22,7 +22,7 @@
 		return INITIALIZE_HINT_QDEL
 
 /obj/landmark/Destroy()
-	landmarks_list -= src
+	GLOB.landmarks_list -= src
 	return ..()
 
 

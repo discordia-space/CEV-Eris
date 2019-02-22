@@ -150,7 +150,7 @@
 
 		RS = list()
 		for(var/reg in R.reagents)
-			var/datum/reagent/RG = chemical_reagents_list[reg]
+			var/datum/reagent/RG = GLOB.chemical_reagents_list[reg]
 			if(RG)
 				RS.Add(list(list("name" = RG.name, "req" = R.reagents[reg])))
 			else

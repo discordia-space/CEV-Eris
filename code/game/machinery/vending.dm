@@ -200,7 +200,7 @@
 		user << SPAN_WARNING("[src] flashes a message: Vendomat not registered to an account.")
 		return
 	if(vendor_department)
-		user << SPAN_WARNING("[src] flashes a message: Vendomat not authorized to accept sales. Please contact a member of [all_departments[vendor_department]].")
+		user << SPAN_WARNING("[src] flashes a message: Vendomat not authorized to accept sales. Please contact a member of [GLOB.all_departments[vendor_department]].")
 		return
 	if(buying_percentage <= 0)
 		user << SPAN_WARNING("[src] flashes a message: Vendomat not accepting sales.")
@@ -863,8 +863,8 @@
 
 /obj/machinery/vending/proc/set_department()
 	var/list/possible_departments = list("Privately Owned" = null)
-	for(var/d in all_departments)
-		possible_departments[all_departments[d]] = department_accounts[d]
+	for(var/d in GLOB.all_departments)
+		possible_departments[GLOB.all_departments[d]] = department_accounts[d]
 	var/newdepartment = input("Which organization should be considered the owner of this Vendomat? This will also allow members to manage it.", "Vendomat Department", null) in possible_departments
 	if(!newdepartment)
 		return

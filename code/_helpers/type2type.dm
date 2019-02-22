@@ -220,7 +220,7 @@
 
 //Takes a key and attempts to find the mob it currently belongs to
 /proc/key2mob(var/key)
-	var/client/C = directory[key]
+	var/client/C = GLOB.directory[key]
 	if (C)
 		//This should work if the mob is currently logged in
 		return C.mob

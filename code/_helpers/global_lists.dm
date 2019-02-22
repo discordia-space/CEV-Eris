@@ -1,6 +1,6 @@
 GLOBAL_LIST_EMPTY(clients)							//list of all GLOB.clients
 GLOBAL_LIST_EMPTY(admins)							//list of all GLOB.clients whom are GLOB.admins
-var/list/directory = list()							//list of all ckeys with associated client
+GLOBAL_LIST_EMPTY(directory)							//list of all ckeys with associated client
 
 //Since it didn't really belong in any other category, I'm putting this here
 //This is for procs to replace all the goddamn 'in world's that are chilling around the code
@@ -17,25 +17,25 @@ GLOBAL_LIST_EMPTY(antag_team_members)			//List of the people who are in antag te
 
 GLOBAL_LIST_EMPTY(cable_list)					//Index for all cables, so that powernets don't have to look through the entire world all the time
 GLOBAL_LIST_EMPTY(chemical_reactions_list)				//list of all /datum/chemical_reaction datums. Used during chemical reactions
-var/global/list/chemical_reagents_list				//list of all /datum/reagent datums indexed by reagent id. Used by chemistry stuff
-var/global/list/landmarks_list = list()				//list of all landmarks created
-var/global/list/shuttle_landmarks_list = list()		//list of all /obj/effect/shuttle_landmark.
-var/global/list/surgery_steps = list()				//list of all surgery steps  |BS12
-var/global/list/mechas_list = list()				//list of all mechs. Used by hostile mobs target tracking.
+GLOBAL_LIST_EMPTY(chemical_reagents_list)				//list of all /datum/reagent datums indexed by reagent id. Used by chemistry stuff
+GLOBAL_LIST_EMPTY(landmarks_list)				//list of all landmarks created
+GLOBAL_LIST_EMPTY(shuttle_landmarks_list)		//list of all /obj/effect/shuttle_landmark.
+GLOBAL_LIST_EMPTY(surgery_steps)				//list of all surgery steps  |BS12
+GLOBAL_LIST_EMPTY(mechas_list)				//list of all mechs. Used by hostile mobs target tracking.
 
 
 
-var/global/list/hearing_objects = list()			//list of all objects, that can hear mob say
+GLOBAL_LIST_EMPTY(hearing_objects)			//list of all objects, that can hear mob say
 
 //Jobs and economy
-var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
-var/global/list/all_departments = list()			//List of all department datums
-var/global/list/department_IDs = list(DEPARTMENT_COMMAND, DEPARTMENT_MEDICAL, DEPARTMENT_ENGINEERING,
- DEPARTMENT_SCIENCE, DEPARTMENT_SECURITY, DEPARTMENT_GUILD, DEPARTMENT_CHURCH, DEPARTMENT_CIVILIAN)
-var/global/list/global_corporations = list()
+GLOBAL_LIST_EMPTY(joblist)					//list of all jobstypes, minus borg and AI
+GLOBAL_LIST_EMPTY(all_departments)			//List of all department datums
+GLOBAL_LIST_INIT(department_IDs, list(DEPARTMENT_COMMAND, DEPARTMENT_MEDICAL, DEPARTMENT_ENGINEERING,
+ DEPARTMENT_SCIENCE, DEPARTMENT_SECURITY, DEPARTMENT_GUILD, DEPARTMENT_CHURCH, DEPARTMENT_CIVILIAN))
+GLOBAL_LIST_EMPTY(global_corporations)
 
 
-var/global/list/HUDdatums = list()
+GLOBAL_LIST_EMPTY(HUDdatums)
 
 #define all_genders_define_list list(MALE, FEMALE, PLURAL, NEUTER)
 
@@ -166,21 +166,21 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 	paths = typesof(/datum/surgery_step)-/datum/surgery_step
 	for(var/T in paths)
 		var/datum/surgery_step/S = new T
-		surgery_steps += S
+		GLOB.surgery_steps += S
 	sort_surgeries()
 
 	//List of job department datums
 	paths = subtypesof(/datum/department)
 	for(var/T in paths)
 		var/datum/department/D = new T
-		all_departments[D.id] = D
+		GLOB.all_departments[D.id] = D
 
 	//List of job datums
 	paths = typesof(/datum/job)-/datum/job
 	paths -= exclude_jobs
 	for(var/T in paths)
 		var/datum/job/J = new T
-		joblist[J.title] = J
+		GLOB.joblist[J.title] = J
 
 
 
@@ -218,12 +218,12 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 	paths = typesof(/datum/corporation) - /datum/corporation
 	for(var/T in paths)
 		var/datum/corporation/C = new T
-		global.global_corporations[C.name] = C
+		GLOB.global_corporations[C.name] = C
 
 	paths = typesof(/datum/hud) - /datum/hud
 	for(var/T in paths)
 		var/datum/hud/C = new T
-		global.HUDdatums[C.name] = C
+		GLOB.HUDdatums[C.name] = C
 
 	//Rituals
 	paths = typesof(/datum/ritual)

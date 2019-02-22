@@ -44,7 +44,7 @@
 
 
 	//handle automatic waypoints that spawned before us
-	for(var/obj/effect/shuttle_landmark/automatic/L in shuttle_landmarks_list)
+	for(var/obj/effect/shuttle_landmark/automatic/L in GLOB.shuttle_landmarks_list)
 		if(L.z in map_z)
 			L.add_to_sector(src, 1)
 

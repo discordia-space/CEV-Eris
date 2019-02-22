@@ -207,7 +207,7 @@ ADMIN_VERB_ADD(/client/proc/stealth, R_ADMIN, TRUE)
 		return
 
 	var/datum/preferences/D
-	var/client/C = directory[warned_ckey]
+	var/client/C = GLOB.directory[warned_ckey]
 	if(C)	D = C.prefs
 	else	D = SScharacter_setup.preferences_datums[warned_ckey]
 
