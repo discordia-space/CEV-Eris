@@ -106,8 +106,8 @@
 
 /datum/storyevent/proc/cancel(var/type, var/completion = 0.0)
 	//This proc refunds the cost of this event
-	if (storyteller)
-		storyteller.modify_points(get_cost(type)*(1 - completion), type)
+	if (GLOB.storyteller)
+		GLOB.storyteller.modify_points(get_cost(type)*(1 - completion), type)
 
 /datum/storyevent/proc/trigger_event(var/severity = EVENT_LEVEL_MUNDANE)
 	if (event_type)
@@ -131,17 +131,17 @@
 	return TRUE
 
 /datum/storyevent/proc/start_processing(var/announce = FALSE)
-	storyteller.add_processing(src)
+	GLOB.storyteller.add_processing(src)
 	if(announce)
 		announce()
 
 /datum/storyevent/proc/stop_processing(var/announce = FALSE)
-	storyteller.remove_processing(src)
+	GLOB.storyteller.remove_processing(src)
 	if(announce)
 		announce_end()
 
 /datum/storyevent/proc/is_processing()
-	return (src in storyteller.processing_events)
+	return (src in GLOB.storyteller.processing_events)
 
 /datum/storyevent/proc/announce()
 

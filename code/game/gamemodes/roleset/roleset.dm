@@ -62,7 +62,7 @@
 		if(!(temp.bantype in candidate.current.client.prefs.be_special_role))
 			if (report) report << SPAN_NOTICE("Failure: [candidate] has special role [temp.bantype] disabled")
 			continue
-		if(storyteller && storyteller.one_role_per_player && candidate.antagonist.len)
+		if(GLOB.storyteller && GLOB.storyteller.one_role_per_player && candidate.antagonist.len)
 			if (report) report << SPAN_NOTICE("Failure: [candidate] is already a [candidate.antagonist[1]] and can't be two antags")
 			continue
 		if(player_is_antag_id(candidate,antag))
