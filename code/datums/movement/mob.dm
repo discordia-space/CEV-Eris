@@ -133,10 +133,36 @@
 /datum/movement_handler/mob/delay
 	var/next_move
 
+
+
+//Several things happen in DoMove
 /datum/movement_handler/mob/delay/DoMove(var/direction, var/mover, var/is_external)
+	//Not sure wtf this is
 	if(is_external)
 		return
-	next_move = world.time + max(1, mob.movement_delay())
+
+	/*
+	Overflow is used to prevent rounding errors, caused by the world time overshooting the next time we're allowed to move. This is inevitable
+	because the server fires events 10x per second when the user is holding down a movement key, meaning that your movement is anywhere up to 0.1
+	seconds later than it should have been.
+	This doesn't sound like much, but it causes a lot of lost total time when moving across the whole ship.
+
+	Here, we store the overflow time and apply it as a discount to the next step's delay. This ensures that journey times are accurate over a distance
+	Any individual step can still be slightly slower than it should be, but the next one will compensate and errors won't compound
+	*/
+	overflow = next_move - world.time
+	if (overflow > 1)
+		overflow = 0
+
+	var/delay = mob.movement_delay() - overflow
+	SetDelay(delay)
+
+
+	/*
+	SMOOTH MOVEMENT
+	*/
+	mob.set_glide_size(DELAY2GLIDESIZE(delay))
+
 
 /datum/movement_handler/mob/delay/MayMove(var/mover, var/is_external)
 	if(IS_NOT_SELF(mover) && is_external)
