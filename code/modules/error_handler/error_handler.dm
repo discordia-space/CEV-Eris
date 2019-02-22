@@ -45,9 +45,9 @@ var/total_runtimes_skipped = 0
 	error_cooldown[erroruid] = cooldown
 	
 	//this is snowflake because of a byond bug (ID:2306577), do not attempt to call non-builtin procs in this if
-	if(copytext(E.name,1,32) == "Maximum recursion level reached")
+	if(copytext(e.name,1,32) == "Maximum recursion level reached")
 		//log to world while intentionally triggering the byond bug.
-		log_world("runtime error: [E.name]\n[E.desc]")
+		log_world("runtime error: [e.name]\n[e.desc]")
 		//if we got to here without silently ending, the byond bug has been fixed.
 		log_world("The bug with recursion runtimes has been fixed. Please remove the snowflake check from world/Error in [__FILE__]:[__LINE__]")
 		return
