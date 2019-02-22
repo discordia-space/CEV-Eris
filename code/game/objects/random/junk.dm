@@ -63,7 +63,7 @@
 		/obj/effect/spider/stickyweb = 10, //These are useful for tape crafting
 		/obj/random/pouch = 1,
 		/obj/random/lathe_disk = 2,
-		/obj/random/scrap/moderate_weighted = 10
+		/obj/random/scrap/moderate_weighted = 13
 	)
 
 /obj/random/junk/post_spawn(var/list/stuff)
