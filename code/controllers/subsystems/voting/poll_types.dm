@@ -59,9 +59,9 @@
 /datum/poll/storyteller/init_choices()
 	master_storyteller = null
 	var/datum/vote_choice/storyteller/base = null
-	for(var/ch in storyteller_cache)
+	for(var/ch in GLOB.storyteller_cache)
 		var/datum/vote_choice/storyteller/CS = new
-		var/datum/storyteller/S = storyteller_cache[ch]
+		var/datum/storyteller/S = GLOB.storyteller_cache[ch]
 		CS.text = S.name
 		CS.desc = S.description
 		CS.new_storyteller = ch
@@ -72,7 +72,10 @@
 			continue
 		//Storytellers are inserted at a random spot so they will be randomly sorted
 		var/index = rand(1, max(choices.len, 1))
-		choices.Insert(index, CS)
+		if(S.votable)
+			choices.Insert(index, CS)
+		else
+			qdel(CS)
 
 	//After everything else is in, the guide is inserted at the top,
 	//so it will always be the first option in the poll
