@@ -90,6 +90,8 @@
 	var/default_pixel_y = 0
 	var/old_x = 0
 	var/old_y = 0
+	var/nutrition = 400  //carbon
+	var/max_nutrition = 400
 
 	var/shakecamera = 0
 	var/a_intent = I_HELP//Living

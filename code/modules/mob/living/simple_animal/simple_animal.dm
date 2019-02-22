@@ -31,6 +31,8 @@
 	var/stop_automated_movement = FALSE //Use this to temporarely stop random movement or to if you write special movement code for animals.
 	var/wander = TRUE	// Does the mob wander around when idle?
 	var/stop_automated_movement_when_pulled = TRUE //When set to 1 this stops the animal from moving when someone is pulling it.
+	var/atom/movement_target = null//Thing we're moving towards
+	var/turns_since_scan = 0
 
 	//Interaction
 	var/response_help   = "tries to help"
@@ -70,7 +72,35 @@
 	var/supernatural = 0
 	var/purge = 0
 
+	//Hunger/feeding vars
+	var/hunger_enabled = 1//If set to 0, a creature ignores hunger
+	max_nutrition = 50
+	var/metabolic_factor = 1//A multiplier on how fast nutrition is lost. used to tweak the rates on a per-animal basis
+	var/nutrition_step = 0.2 //nutrition lost per tick and per step, calculated from mob_size, 0.2 is a fallback
+	var/bite_factor = 0.4
+	var/digest_factor = 0.2 //A multiplier on how quickly reagents are digested
+	var/stomach_size_mult = 5
+
+	//Food behaviour vars
+	var/autoseek_food = 1//If 0. this animal will not automatically eat
+	var/beg_for_food = 1//If 0, this animal will not show interest in food held by a person
+	var/min_scan_interval = 1//Minimum and maximum number of procs between a foodscan. Animals will slow down if there's no food around for a while
+	var/max_scan_interval = 15
+	var/scan_interval = 5//current scan interval, clamped between min and max
+	//It gradually increases up to max when its left alone, to save performance
+	//It will drop back to 1 if it spies any food.
+		//This short time makes animals more responsive to interactions and more fun to play with
+
+	var/seek_speed = 2//How many tiles per second the animal will move towards food
+	var/seek_move_delay
+	var/scan_range = 6//How far around the animal will look for food
+	var/foodtarget = 0
+	//Used to control how often ian scans for nearby food
+
 	mob_classification = CLASSIFICATION_ORGANIC
+
+/mob/living/simple_animal/proc/beg(var/atom/thing, var/atom/holder)
+	visible_emote("gazes longingly at [holder]'s [thing]")
 
 /mob/living/simple_animal/New()
 	..()
@@ -79,8 +109,32 @@
 	if(!icon_dead)
 		icon_dead = "[icon_state]_dead"
 
+	seek_move_delay = (1 / seek_speed) / (world.tick_lag / 10)//number of ticks between moves
+	turns_since_scan = rand(min_scan_interval, max_scan_interval)//Randomise this at the start so animals don't sync up
+
 	verbs -= /mob/verb/observe
 
+	if (mob_size)
+		nutrition_step = mob_size * 0.05
+		nutrition_step = mob_size * 0.03 * metabolic_factor
+		bite_factor = mob_size * 0.3
+		max_nutrition *= 1 + (nutrition_step*3)//Max nutrition scales faster than costs, so bigger creatures eat less often
+		max_nutrition *= 1 + (nutrition_step*4)//Max nutrition scales faster than costs, so bigger creatures eat less often
+		reagents = new/datum/reagents(stomach_size_mult*mob_size, src)
+	else
+		reagents = new/datum/reagents(20, src)
+
+/mob/living/simple_animal/Move(NewLoc, direct)
+	. = ..()
+	if(.)
+		if(src.nutrition && src.stat != DEAD)
+			src.nutrition -= nutrition_step
+
+/mob/living/simple_animal/Released()
+	//These will cause mobs to immediately do things when released.
+	scan_interval = min_scan_interval
+	turns_since_move = turns_per_move
+	..()
 
 /mob/living/simple_animal/Initialize(var/mapload)
 	.=..()
@@ -98,9 +152,25 @@
 	if (health <= 0)
 		death()
 
+/mob/living/simple_animal/examine(mob/user)
+	..()
+	if(hunger_enabled)
+		if (!nutrition)
+			user << SPAN_DANGER("It looks starving!")
+		else if (nutrition < max_nutrition *0.5)
+			user << SPAN_NOTICE("It looks hungry.")
+		else if ((reagents.total_volume > 0 && nutrition > max_nutrition *0.75) || nutrition > max_nutrition *0.9)
+			user << "It looks full and contented."
+	if (health < maxHealth * 0.5)
+		user << SPAN_DANGER("It looks badly wounded!")
+	else if (health < maxHealth)
+		user << SPAN_WARNING("It looks wounded.")
+
 /mob/living/simple_animal/Life()
 	..()
 
+	if(stat == DEAD)
+		return 0
 
 	if(health <= 0)
 		death()
@@ -114,10 +184,13 @@
 	handle_paralysed()
 	handle_supernatural()
 
+	process_food()
+	handle_foodscanning()
+
 	//Movement
+	turns_since_move++
 	if(!client && !stop_automated_movement && wander && !anchored)
 		if(isturf(src.loc) && !resting && !buckled && canmove)		//This is so it only moves if it's not inside a closet, gentics machine, etc.
-			turns_since_move++
 			if(turns_since_move >= turns_per_move)
 				if(!(stop_automated_movement_when_pulled && pulledby)) //Soma animals don't move when pulled
 					var/moving_to = 0 // otherwise it always picks 4, fuck if I know.   Did I mention fuck BYOND
@@ -196,6 +269,47 @@
 	if(purge)
 		purge -= 1
 
+//Simple reagent processing for simple animals
+//This allows animals to digest food, and only food
+//Most drugs, poisons etc, are designed to work on carbons and affect many values a simple animal doesnt have
+/mob/living/simple_animal/proc/process_food()
+	if (hunger_enabled)
+		if (nutrition)
+			nutrition -= nutrition_step//Bigger animals get hungry faster
+			nutrition = max(0,min(nutrition, max_nutrition))//clamp the value
+		else
+			if (prob(3))
+				src << "You feel hungry..."
+
+		if (!reagents || !reagents.total_volume)
+			return
+
+		for(var/datum/reagent/current in reagents.reagent_list)
+			var/removed = min(current.metabolism*digest_factor, current.volume)
+			if (istype(current, /datum/reagent/nutriment))//If its food, it feeds us
+				var/datum/reagent/nutriment/N = current
+				nutrition += removed*N.nutriment_factor
+				var/heal_amount = removed*N.regen_factor
+				if (bruteloss > 0)
+					var/n = min(heal_amount, bruteloss)
+					adjustBruteLoss(-n)
+					heal_amount -= n
+				if (fireloss && heal_amount)
+					var/n = min(heal_amount, fireloss)
+					adjustFireLoss(-n)
+					heal_amount -= n
+				updatehealth()
+			current.remove_self(removed)//If its not food, it just does nothing. no fancy effects
+
+/mob/living/simple_animal/can_eat()
+	if (!hunger_enabled || nutrition > max_nutrition * 0.9)
+		return 0//full
+
+	else if (nutrition > max_nutrition * 0.8)
+		return 1//content
+
+	else return 2//hungry
+
 /mob/living/simple_animal/gib()
 	..(icon_gib,1)
 
@@ -255,7 +369,10 @@
 	if(istype(O, /obj/item/weapon/gripper))
 		return ..(O, user)
 
-	if(meat_type && (stat == DEAD))	//if the animal has a meat, and if it is dead.
+	else if(istype(O, /obj/item/weapon/reagent_containers) || istype(O, /obj/item/stack/medical))
+		..()
+
+	else if(meat_type && (stat == DEAD))	//if the animal has a meat, and if it is dead.
 		if(QUALITY_CUTTING in O.tool_qualities)
 			if(O.use_tool(user, src, WORKTIME_NORMAL, QUALITY_CUTTING, FAILCHANCE_NORMAL, required_stat = STAT_BIO))
 				harvest(user)
@@ -279,6 +396,9 @@
 			tally = 1
 		tally *= purge
 
+	if (!nutrition)
+		tally += 4
+
 	return tally
 
 /mob/living/simple_animal/Stat()
@@ -288,6 +408,8 @@
 		stat(null, "Health: [round((health / maxHealth) * 100)]%")
 
 /mob/living/simple_animal/death(gibbed, deathmessage = "dies!")
+	walk_to(src,0)
+	movement_target = null
 	icon_state = icon_dead
 	density = 0
 	return ..(gibbed,deathmessage)
@@ -347,6 +469,80 @@
 		else
 			user.visible_message(SPAN_DANGER("[user] butchers \the [src] messily!"))
 			gib()
+
+//Code to handle finding and nomming nearby food items
+/mob/living/simple_animal/proc/handle_foodscanning()
+	if (client || !hunger_enabled || !autoseek_food)
+		return 0
+
+	//Feeding, chasing food, FOOOOODDDD
+	if(!stat && !resting && !buckled)
+
+		turns_since_scan++
+		if(turns_since_scan >= scan_interval)
+			turns_since_scan = 0
+			if((movement_target) && (!(isturf(movement_target.loc) || ishuman(movement_target.loc))) || (foodtarget && !can_eat() ))
+				movement_target = null
+				foodtarget = 0
+				stop_automated_movement = 0
+			if( !movement_target || !(movement_target.loc in oview(src, 7)) )
+				walk_to(src,0)
+				movement_target = null
+				foodtarget = 0
+				stop_automated_movement = 0
+				if (can_eat())
+					for(var/obj/item/weapon/reagent_containers/food/snacks/S in oview(src,7))
+						if(isturf(S.loc) || ishuman(S.loc))
+							movement_target = S
+							foodtarget = 1
+							break
+
+					//Look for food in people's hand
+					if (!movement_target && beg_for_food)
+						var/obj/item/weapon/reagent_containers/food/snacks/F = null
+						for(var/mob/living/carbon/human/H in oview(src,scan_range))
+							if(istype(H.l_hand, /obj/item/weapon/reagent_containers/food/snacks))
+								F = H.l_hand
+
+							if(istype(H.r_hand, /obj/item/weapon/reagent_containers/food/snacks))
+								F = H.r_hand
+
+							if (F)
+								movement_target = F
+								foodtarget = 1
+								break
+
+			if(movement_target)
+				scan_interval = min_scan_interval
+				stop_automated_movement = 1
+
+				if (istype(movement_target.loc, /turf))
+					walk_to(src,movement_target,0, seek_move_delay)//Stand ontop of food
+				else
+					walk_to(src,movement_target.loc,1, seek_move_delay)//Don't stand ontop of people
+
+
+
+				if(movement_target)		//Not redundant due to sleeps, Item can be gone in 6 decisecomds
+					if (movement_target.loc.x < src.x)
+						set_dir(WEST)
+					else if (movement_target.loc.x > src.x)
+						set_dir(EAST)
+					else if (movement_target.loc.y < src.y)
+						set_dir(SOUTH)
+					else if (movement_target.loc.y > src.y)
+						set_dir(NORTH)
+					else
+						set_dir(SOUTH)
+
+					if(isturf(movement_target.loc) && Adjacent(get_turf(movement_target), src))
+						UnarmedAttack(movement_target)
+						if (get_turf(movement_target) == src.loc)
+							set_dir(pick(1,2,4,8,1,1))//Face a random direction when eating, but mostly upwards
+					else if(ishuman(movement_target.loc) && Adjacent(src, get_turf(movement_target)) && prob(15))
+						beg(movement_target, movement_target.loc)
+			else
+				scan_interval = max(min_scan_interval, min(scan_interval+1, max_scan_interval))//If nothing is happening, ian's scanning frequency slows down to save processing
 
 //For picking up small animals
 /mob/living/simple_animal/MouseDrop(atom/over_object)
