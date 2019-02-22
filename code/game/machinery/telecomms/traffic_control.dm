@@ -150,8 +150,8 @@
 						temp = "<font color = #D70B00>- FAILED: CANNOT PROBE WHEN BUFFER FULL -</font>"
 
 					else
-						for(var/obj/machinery/telecomms/server/T in range(25, src))
-							if(T.network == network)
+						for(var/obj/machinery/telecomms/server/T in telecomms_list)
+							if(is_on_same_plane_or_station(z, T.z) && T.network == network)
 								servers.Add(T)
 
 						if(!servers.len)
