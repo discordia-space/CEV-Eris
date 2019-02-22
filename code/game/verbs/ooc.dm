@@ -146,7 +146,7 @@
 	for(var/client/t in listening)
 		var/admin_stuff = ""
 		var/prefix = ""
-		if(t in admins)
+		if(t in GLOB.admins)
 			admin_stuff += "/([key])"
 			if(t != src)
 				admin_stuff += "([admin_jump_link(mob, t.holder)])"
@@ -158,7 +158,7 @@
 		t << "<span class='ooc'><span class='looc'>" + create_text_tag("looc", "LOOC:", t) + " <span class='prefix'>[prefix]</span><EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span></span></span>"
 
 
-	for(var/client/adm in admins)	//Now send to all admins that weren't in range.
+	for(var/client/adm in GLOB.admins)	//Now send to all admins that weren't in range.
 		if(!(adm in listening) && adm.get_preference_value(/datum/client_preference/staff/show_rlooc) == GLOB.PREF_SHOW)
 			var/admin_stuff = "/([key])([admin_jump_link(mob, adm.holder)])"
 			var/prefix = "(R)"

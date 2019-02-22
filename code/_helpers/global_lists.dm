@@ -1,5 +1,5 @@
-GLOBAL_LIST_EMPTY(GLOB.clients)							//list of all GLOB.clients
-var/list/admins = list()							//list of all GLOB.clients whom are admins
+GLOBAL_LIST_EMPTY(clients)							//list of all GLOB.clients
+GLOBAL_LIST_EMPTY(admins)							//list of all GLOB.clients whom are GLOB.admins
 var/list/directory = list()							//list of all ckeys with associated client
 
 //Since it didn't really belong in any other category, I'm putting this here

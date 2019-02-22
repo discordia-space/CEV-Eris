@@ -1,5 +1,5 @@
 proc/sql_poll_population()
-	var/admincount = admins.len
+	var/admincount = GLOB.admins.len
 	var/playercount = 0
 	var/server = "[world.internet_address]:[world.port]"
 	for(var/mob/M in GLOB.player_list)

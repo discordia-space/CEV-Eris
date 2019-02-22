@@ -35,7 +35,7 @@
 	if (config.log_debug)
 		game_log("DEBUG", text)
 
-	for(var/client/C in admins)
+	for(var/client/C in GLOB.admins)
 		if(C.get_preference_value(/datum/client_preference/staff/show_debug_logs) == GLOB.PREF_SHOW)
 			C << "DEBUG: [text]"
 
