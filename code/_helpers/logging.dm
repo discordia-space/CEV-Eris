@@ -204,7 +204,7 @@
 
 /proc/log_world(text) //general logging; displayed both in DD and in the text file
 	if(config && config.log_runtime)
-		runtime_diary << text	//save to it
+		GLOB.runtime_diary << text	//save to it
 	world.log << text	//do that
 
 
