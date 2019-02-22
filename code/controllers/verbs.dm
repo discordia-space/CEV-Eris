@@ -36,7 +36,7 @@ ADMIN_VERB_ADD(/client/proc/debug_controller, R_DEBUG, null)
 			debug_variables(config)
 
 		if("Cameras")
-			debug_variables(cameranet)
+			debug_variables(GLOB.cameranet)
 
 		if("Gas Data")
 			debug_variables(gas_data)

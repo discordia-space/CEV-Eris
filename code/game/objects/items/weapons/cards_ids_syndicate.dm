@@ -8,7 +8,7 @@
 
 /obj/item/weapon/card/id/syndicate/New(mob/user as mob)
 	..()
-	access = syndicate_access.Copy()
+	access = GLOB.syndicate_access.Copy()
 
 /obj/item/weapon/card/id/syndicate/Destroy()
 	unset_registered_user(registered_user)
@@ -166,7 +166,7 @@
 			if("Factory Reset")
 				if(alert("This will factory reset the card, including access and owner. Continue?", "Factory Reset", "No", "Yes") == "Yes" && CanUseTopic(user, state))
 					age = initial(age)
-					access = syndicate_access.Copy()
+					access = GLOB.syndicate_access.Copy()
 					assignment = initial(assignment)
 					blood_type = initial(blood_type)
 					dna_hash = initial(dna_hash)

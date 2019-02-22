@@ -52,7 +52,7 @@ var/global/list/modifications_types = list(
 	if(!organ || !(organ in body_parts))
 		//usr << "[name] isn't useable for [organ]"
 		return FALSE
-	var/list/organ_data = organ_structure[organ]
+	var/list/organ_data = GLOB.organ_structure[organ]
 	if(organ_data)
 		var/parent_organ = organ_data["parent"]
 		if(parent_organ)
@@ -206,7 +206,7 @@ var/global/list/modifications_types = list(
 	replace_limb = /obj/item/organ/internal/eyes/oneeye
 
 /datum/body_modification/organ/oneeye/get_mob_icon(organ, body_build, color, gender, species)
-	var/datum/species/S = all_species[species]
+	var/datum/species/S = GLOB.all_species[species]
 	var/icon/I = new/icon(S.faceicobase, "eye_l[body_build]")
 	I.Blend(color, ICON_ADD)
 	return I
@@ -223,7 +223,7 @@ var/global/list/modifications_types = list(
 	replace_limb = /obj/item/organ/internal/eyes/oneeye/right
 
 /datum/body_modification/organ/oneeye/right/get_mob_icon(organ, body_build, color, gender, species)
-	var/datum/species/S = all_species[species]
+	var/datum/species/S = GLOB.all_species[species]
 	var/icon/I = new/icon(S.faceicobase, "eye_r[body_build]")
 	I.Blend(color, ICON_ADD)
 	return I
@@ -237,7 +237,7 @@ var/global/list/modifications_types = list(
 	hascolor = TRUE
 
 /datum/body_modification/organ/heterochromia/get_mob_icon(organ, body_build, color, gender, species)
-	var/datum/species/S = all_species[species]
+	var/datum/species/S = GLOB.all_species[species]
 	var/icon/I = new/icon(S.faceicobase, "eye_l[body_build]")
 	I.Blend(color, ICON_ADD)
 	return I

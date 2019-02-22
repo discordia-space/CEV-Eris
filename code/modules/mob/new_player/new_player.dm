@@ -149,7 +149,7 @@
 			return
 
 		if(!check_rights(R_ADMIN, 0))
-			var/datum/species/S = all_species[client.prefs.species]
+			var/datum/species/S = GLOB.all_species[client.prefs.species]
 			if((S.spawn_flags & IS_WHITELISTED) && !is_alien_whitelisted(src, client.prefs.species))
 				src << alert("You are currently not whitelisted to play [client.prefs.species].")
 				return 0
@@ -172,7 +172,7 @@
 			usr << "<span class='danger'>The station is currently exploding. Joining would go poorly.</span>"
 			return
 
-		var/datum/species/S = all_species[client.prefs.species]
+		var/datum/species/S = GLOB.all_species[client.prefs.species]
 		if((S.spawn_flags & IS_WHITELISTED) && !is_alien_whitelisted(src, client.prefs.species))
 			src << alert("You are currently not whitelisted to play [client.prefs.species].")
 			return 0
@@ -325,7 +325,7 @@
 	var/use_species_name
 	var/datum/species/chosen_species
 	if(client.prefs.species)
-		chosen_species = all_species[client.prefs.species]
+		chosen_species = GLOB.all_species[client.prefs.species]
 		use_species_name = chosen_species.get_station_variant() //Only used by pariahs atm.
 
 	if(chosen_species && use_species_name)
@@ -339,7 +339,7 @@
 	new_character.lastarea = get_area(loc)
 
 	for(var/lang in client.prefs.alternate_languages)
-		var/datum/language/chosen_language = all_languages[lang]
+		var/datum/language/chosen_language = GLOB.all_languages[lang]
 		if(chosen_language)
 			if(!(chosen_language.flags & WHITELISTED) || is_alien_whitelisted(src, lang) || has_admin_rights() \
 				|| (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
@@ -400,7 +400,7 @@
 /mob/new_player/get_species()
 	var/datum/species/chosen_species
 	if(client.prefs.species)
-		chosen_species = all_species[client.prefs.species]
+		chosen_species = GLOB.all_species[client.prefs.species]
 
 	if(!chosen_species)
 		return "Human"

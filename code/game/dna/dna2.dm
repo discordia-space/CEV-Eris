@@ -150,9 +150,9 @@ var/global/list/datum/dna/gene/dna_genes[0]
 
 	SetUIState(DNA_UI_GENDER,         character.gender!=MALE,        1)
 
-	var/list/body_builds = male_body_builds
+	var/list/body_builds = GLOB.male_body_builds
 	if(character.gender == FEMALE)
-		body_builds = female_body_builds
+		body_builds = GLOB.female_body_builds
 
 	var/bodybuildind = body_builds.Find(character.body_build.name)
 	SetUIValueRange(DNA_UI_BODYBUILD, bodybuildind, body_builds.len, 1)

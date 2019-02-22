@@ -149,10 +149,10 @@
 
 		//Body build
 		var/bodybuild = "Default"
-		var/list/body_builds = male_body_builds
+		var/list/body_builds = GLOB.male_body_builds
 
 		if(H.gender == FEMALE)
-			body_builds = female_body_builds
+			body_builds = GLOB.female_body_builds
 
 		var/bodybuildind = dna.GetUIValueRange(DNA_UI_BODYBUILD,body_builds.len)
 

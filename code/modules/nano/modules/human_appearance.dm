@@ -125,10 +125,10 @@
 	if(data["change_build"])
 		data["builds"] = list()
 		if (owner.gender == MALE)
-			for (var/a in male_body_builds)
+			for (var/a in GLOB.male_body_builds)
 				data["builds"] += a
 		else
-			for (var/a in female_body_builds)
+			for (var/a in GLOB.female_body_builds)
 				data["builds"] += a
 
 	data["change_skin_tone"] = can_change_skin_tone()

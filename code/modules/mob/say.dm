@@ -164,11 +164,11 @@
 /mob/proc/parse_language(var/message)
 	var/prefix = copytext(message, 1, 2)
 	if(length(message) >= 1 && prefix == get_prefix_key(/decl/prefix/audible_emote))
-		return all_languages["Noise"]
+		return GLOB.all_languages["Noise"]
 
 	if(length(message) >= 2 && is_language_prefix(prefix))
 		var/language_prefix = sanitize_key(copytext(message, 2, 3))
-		var/datum/language/L = language_keys[language_prefix]
+		var/datum/language/L = GLOB.language_keys[language_prefix]
 		if(can_speak(L))
 			return L
 

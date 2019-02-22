@@ -44,7 +44,7 @@
 /mob/living/simple_animal/spiderbot/New()
 	..()
 	add_language(LANGUAGE_COMMON)
-	default_language = all_languages[LANGUAGE_COMMON]
+	default_language = GLOB.all_languages[LANGUAGE_COMMON]
 	verbs |= /mob/living/proc/ventcrawl
 	verbs |= /mob/living/proc/hide
 

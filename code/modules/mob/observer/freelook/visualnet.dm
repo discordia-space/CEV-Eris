@@ -10,10 +10,10 @@
 
 /datum/visualnet/New()
 	..()
-	visual_nets += src
+	GLOB.visual_nets += src
 
 /datum/visualnet/Destroy()
-	visual_nets -= src
+	GLOB.visual_nets -= src
 	. = ..()
 
 // Checks if a chunk has been Generated in x, y, z.
@@ -125,8 +125,8 @@
 /turf/verb/view_chunk()
 	set src in world
 
-	if(cameranet.chunkGenerated(x, y, z))
-		var/datum/chunk/chunk = cameranet.getCameraChunk(x, y, z)
+	if(GLOB.cameranet.chunkGenerated(x, y, z))
+		var/datum/chunk/chunk = GLOB.cameranet.getCameraChunk(x, y, z)
 		usr.client.debug_variables(chunk)
 */
 

@@ -51,10 +51,10 @@
 		max_damage = min_broken_damage * 2
 	if(istype(holder))
 		src.owner = holder
-		species = all_species["Human"]
+		species = GLOB.all_species["Human"]
 		if(holder.dna)
 			dna = holder.dna.Clone()
-			species = all_species[dna.species]
+			species = GLOB.all_species[dna.species]
 		else
 			log_debug("[src] at [loc] spawned without a proper DNA.")
 		var/mob/living/carbon/human/H = holder
@@ -83,7 +83,7 @@
 			blood_DNA = list()
 		blood_DNA.Cut()
 		blood_DNA[dna.unique_enzymes] = dna.b_type
-		species = all_species[new_dna.species]
+		species = GLOB.all_species[new_dna.species]
 
 /obj/item/organ/proc/die()
 	if(robotic >= ORGAN_ROBOT)

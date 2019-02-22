@@ -413,7 +413,7 @@
 
 	if(!species)
 		return null
-	return species.default_language ? all_languages[species.default_language] : null
+	return species.default_language ? GLOB.all_languages[species.default_language] : null
 
 /mob/living/carbon/show_inv(mob/user as mob)
 	user.set_machine(src)

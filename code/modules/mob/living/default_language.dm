@@ -30,6 +30,6 @@
 	if (istype(langname, /datum/language))
 		L = langname
 	else
-		L = all_languages[langname]
+		L = GLOB.all_languages[langname]
 	languages |= L
 	default_language = L

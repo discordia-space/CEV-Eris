@@ -26,7 +26,7 @@
 /proc/random_hair_style(gender, species = "Human")
 	var/h_style = "Bald"
 
-	var/datum/species/mob_species = all_species[species]
+	var/datum/species/mob_species = GLOB.all_species[species]
 	var/list/valid_hairstyles = mob_species.get_hair_styles()
 	if(valid_hairstyles.len)
 		h_style = pick(valid_hairstyles)
@@ -35,7 +35,7 @@
 
 /proc/random_facial_hair_style(gender, species = "Human")
 	var/f_style = "Shaved"
-	var/datum/species/mob_species = all_species[species]
+	var/datum/species/mob_species = GLOB.all_species[species]
 	var/list/valid_facialhairstyles = mob_species.get_facial_hair_styles(gender)
 	if(valid_facialhairstyles.len)
 		f_style = pick(valid_facialhairstyles)
@@ -44,7 +44,7 @@
 /proc/sanitize_name(name, species = "Human")
 	var/datum/species/current_species
 	if(species)
-		current_species = all_species[species]
+		current_species = GLOB.all_species[species]
 
 	return current_species ? current_species.sanitize_name(name) : sanitizeName(name)
 
@@ -52,7 +52,7 @@
 
 	var/datum/species/current_species
 	if(species)
-		current_species = all_species[species]
+		current_species = GLOB.all_species[species]
 
 	if(!current_species || current_species.name_language == null)
 		if(gender==FEMALE)
@@ -99,15 +99,15 @@
 
 /proc/get_body_build(gender, body_build = "Default")
 	if(gender == MALE)
-		if(body_build in male_body_builds)
-			return male_body_builds[body_build]
+		if(body_build in GLOB.male_body_builds)
+			return GLOB.male_body_builds[body_build]
 		else
-			return male_body_builds["Default"]
+			return GLOB.male_body_builds["Default"]
 	else
-		if(body_build in female_body_builds)
-			return female_body_builds[body_build]
+		if(body_build in GLOB.female_body_builds)
+			return GLOB.female_body_builds[body_build]
 		else
-			return female_body_builds["Default"]
+			return GLOB.female_body_builds["Default"]
 
 /proc/RoundHealth(health)
 	switch(health)

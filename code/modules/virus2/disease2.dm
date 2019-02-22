@@ -37,14 +37,14 @@
 	antigen |= pick(ALL_ANTIGENS)
 	spreadtype = prob(70) ? "Airborne" : "Contact"
 
-	if(all_species.len)
+	if(GLOB.all_species.len)
 		affected_species = get_infectable_species()
 
 /proc/get_infectable_species()
 	var/list/meat = list()
 	var/list/res = list()
-	for (var/specie in all_species)
-		var/datum/species/S = all_species[specie]
+	for (var/specie in GLOB.all_species)
+		var/datum/species/S = GLOB.all_species[specie]
 		if(!S.virus_immune)
 			meat += S
 	if(meat.len)
@@ -140,7 +140,7 @@
 	if (prob(5))
 		antigen = list(pick(ALL_ANTIGENS))
 		antigen |= pick(ALL_ANTIGENS)
-	if (prob(5) && all_species.len)
+	if (prob(5) && GLOB.all_species.len)
 		affected_species = get_infectable_species()
 
 /datum/disease2/disease/proc/getcopy()

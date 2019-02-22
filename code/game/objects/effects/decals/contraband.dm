@@ -18,7 +18,7 @@
 
 /obj/item/weapon/contraband/poster/New(turf/loc, var/datum/poster/new_design = null)
 	if(!new_design)
-		design = pick(poster_designs)
+		design = pick(GLOB.poster_designs)
 	else
 		design = new_design
 	..(loc)
@@ -28,7 +28,7 @@
 	anchored = 1
 	New(turf/loc)
 		if(icon_state != "random")
-			for(var/datum/poster/new_design in poster_designs)
+			for(var/datum/poster/new_design in GLOB.poster_designs)
 				if(new_design.icon_state == icon_state)
 					return ..(loc, new_design)
 		..()
