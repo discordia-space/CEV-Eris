@@ -8,7 +8,7 @@ ADMIN_VERB_ADD(/client/proc/makePAI, R_ADMIN, FALSE)
 		return
 
 	if(!pai_key)
-		var/client/C = input("Select client") as null|anything in clients
+		var/client/C = input("Select client") as null|anything in GLOB.clients
 		if(!C) return
 		pai_key = C.key
 

@@ -29,7 +29,7 @@ ADMIN_VERB_ADD(/client/proc/giveruntimelog, R_ADMIN, FALSE)
 		src << "<font color='red'>Only Admins may use this command.</font>"
 		return
 
-	var/client/target = input(src,"Choose somebody to grant access to the server's runtime logs (permissions expire at the end of each round):","Grant Permissions",null) as null|anything in clients
+	var/client/target = input(src,"Choose somebody to grant access to the server's runtime logs (permissions expire at the end of each round):","Grant Permissions",null) as null|anything in GLOB.clients
 	if(!istype(target,/client))
 		src << "<font color='red'>Error: giveruntimelog(): Client not found.</font>"
 		return

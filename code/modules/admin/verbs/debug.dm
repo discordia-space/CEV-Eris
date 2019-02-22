@@ -802,8 +802,8 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_mob_lists, R_DEBUG, FALSE)
 			usr << jointext(GLOB.living_mob_list,",")
 		if("Dead Mobs")
 			usr << jointext(GLOB.dead_mob_list,",")
-		if("Clients")
-			usr << jointext(clients,",")
+		if("GLOB.clients")
+			usr << jointext(GLOB.clients,",")
 
 // DNA2 - Admin Hax
 /client/proc/cmd_admin_toggle_block(var/mob/M,var/block)

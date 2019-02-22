@@ -128,7 +128,7 @@
 	src << "\red If the title screen is black, resources are still downloading. Please be patient until the title screen appears."
 
 
-	clients += src
+	GLOB.clients += src
 	directory[ckey] = src
 
 	//Admin Authorisation
@@ -190,7 +190,7 @@
 		if(!query.Execute())
 			log_world("Failed to update players table for user with id [src.id]. Error message: [query.ErrorMsg()].")
 	directory -= ckey
-	clients -= src
+	GLOB.clients -= src
 	return ..()
 /*
 /client/Destroy()

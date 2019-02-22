@@ -1,22 +1,22 @@
-var/list/clients = list()							//list of all clients
-var/list/admins = list()							//list of all clients whom are admins
+GLOBAL_LIST_EMPTY(GLOB.clients)							//list of all GLOB.clients
+var/list/admins = list()							//list of all GLOB.clients whom are admins
 var/list/directory = list()							//list of all ckeys with associated client
 
 //Since it didn't really belong in any other category, I'm putting this here
 //This is for procs to replace all the goddamn 'in world's that are chilling around the code
 
-GLOBAL_LIST_EMPTY(player_list)				//List of all mobs **with clients attached**. Excludes /mob/new_player
+GLOBAL_LIST_EMPTY(player_list)				//List of all mobs **with GLOB.clients attached**. Excludes /mob/new_player
 GLOBAL_LIST_EMPTY(human_mob_list)				//List of all human mobs and sub-types, including clientless
 GLOBAL_LIST_EMPTY(silicon_mob_list)			//List of all silicon mobs, including clientless
 GLOBAL_LIST_EMPTY(living_mob_list)			//List of all alive mobs, including clientless. Excludes /mob/new_player
 GLOBAL_LIST_EMPTY(dead_mob_list)				//List of all dead mobs, including clientless. Excludes /mob/new_player
-var/global/list/current_antags = list()
-var/global/list/current_factions = list()
-var/global/list/antag_team_objectives = list()		//List of shared sets of objectives for antag teams
-var/global/list/antag_team_members = list()			//List of the people who are in antag teams
+GLOBAL_LIST_EMPTY(current_antags)
+GLOBAL_LIST_EMPTY(current_factions)
+GLOBAL_LIST_EMPTY(antag_team_objectives)		//List of shared sets of objectives for antag teams - Comment to remind myself that this is unused.
+GLOBAL_LIST_EMPTY(antag_team_members)			//List of the people who are in antag teams - Also unused.
 
-var/global/list/cable_list = list()					//Index for all cables, so that powernets don't have to look through the entire world all the time
-var/global/list/chemical_reactions_list				//list of all /datum/chemical_reaction datums. Used during chemical reactions
+GLOBAL_LIST_EMPTY(cable_list)					//Index for all cables, so that powernets don't have to look through the entire world all the time
+GLOBAL_LIST_EMPTY(chemical_reactions_list)				//list of all /datum/chemical_reaction datums. Used during chemical reactions
 var/global/list/chemical_reagents_list				//list of all /datum/reagent datums indexed by reagent id. Used by chemistry stuff
 var/global/list/landmarks_list = list()				//list of all landmarks created
 var/global/list/shuttle_landmarks_list = list()		//list of all /obj/effect/shuttle_landmark.

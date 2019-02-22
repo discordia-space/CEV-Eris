@@ -7,7 +7,7 @@ SUBSYSTEM_DEF(inactivity)
 
 /datum/controller/subsystem/inactivity/fire(resumed = FALSE)
 	if (!resumed)
-		client_list = clients.Copy()
+		client_list = GLOB.clients.Copy()
 
 	while(client_list.len)
 		var/client/C = client_list[client_list.len]

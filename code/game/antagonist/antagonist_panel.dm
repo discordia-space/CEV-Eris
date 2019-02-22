@@ -121,7 +121,7 @@
 
 	else if(href_list["add_faction"] && faction_id && !faction)
 		var/list/L = list()
-		for(var/datum/faction/F in current_factions)
+		for(var/datum/faction/F in GLOB.current_factions)
 			L["[F.name], faction of [F.antag] ([F.id])"] = F
 
 		L["CANCEL"] = null

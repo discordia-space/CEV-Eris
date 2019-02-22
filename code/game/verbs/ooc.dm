@@ -44,7 +44,7 @@
 		if(holder.rights & R_ADMIN)
 			ooc_style = "admin"
 
-	for(var/client/target in clients)
+	for(var/client/target in GLOB.clients)
 		if(target.get_preference_value(/datum/client_preference/show_ooc) == GLOB.PREF_SHOW)
 			var/display_name = src.key
 			if(holder)
