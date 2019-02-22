@@ -339,7 +339,7 @@ var/last_message_id = 0
 	if(isnull(emergency))
 		emergency = 1
 
-	if(universe.OnShuttleCall(usr))
+	if(GLOB.universe.OnShuttleCall(usr))
 		to_chat(user, "<span class='notice'>Cannot establish a bluespace connection.</span>")
 		return
 /*

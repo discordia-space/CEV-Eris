@@ -42,7 +42,7 @@
 Use department funds to purchase scientific curios, artefacts, and anything of interesting research value. As well as any equipment and supplies that would be useful for these ends<br>\
 Organise away missions to gather artefacts and research interesting environments. You have the right to request support from other factions as required"
 
-	loyalties = "As a scientist, your first loyalty is to knowledge, the ultimate good in the universe. Learning and developing new technologies is the greatest goal humanity can pursue, and no sacrifice is too great to achieve that end. Even the lives of others or yourself.<br>\
+	loyalties = "As a scientist, your first loyalty is to knowledge, the ultimate good in the GLOB.universe. Learning and developing new technologies is the greatest goal humanity can pursue, and no sacrifice is too great to achieve that end. Even the lives of others or yourself.<br>\
 <br>\
 Your second loyalty is to moebius corp. In order to ensure it can continue its mission of research, it must remain profitable. Ensure its interests are farthered, and take care of your colleagues in both research and medical wings"
 
@@ -98,7 +98,7 @@ There are a few specialist branches within the research wing that you may delve 
 	duties = "	Create unusual things and experiment with them<br>\
 	Explore, learn and adventure, do anything to advance the cause of knowledge"
 
-	loyalties = "As a scientist, your first loyalty is to knowledge, the ultimate good in the universe. Learning and developing new technologies is the greatest goal humanity can pursue, and no sacrifice is too great to achieve that end. Even the lives of others or yourself.<br>\
+	loyalties = "As a scientist, your first loyalty is to knowledge, the ultimate good in the GLOB.universe. Learning and developing new technologies is the greatest goal humanity can pursue, and no sacrifice is too great to achieve that end. Even the lives of others or yourself.<br>\
 
 Your second loyalty is to moebius corp. In order to ensure it can continue its mission of research, it must remain profitable. Ensure its interests are farthered, and take care of your colleagues in both research and medical wings"
 

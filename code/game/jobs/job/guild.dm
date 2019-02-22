@@ -97,7 +97,7 @@ Your main duties are to keep the local guild branch operational and profitable. 
 	-In quieter times, head into maintenance areas and scavenge for useful goods to resell"
 
 	loyalties = "		Your first loyalty is to yourself and survival. This ship is mostly just a paycheck to you<br>\
-		Your second loyalty is to the merchant, he ensures you're well paid and respected, in a universe where workers are often treated as interchangeable parts."
+		Your second loyalty is to the merchant, he ensures you're well paid and respected, in a GLOB.universe where workers are often treated as interchangeable parts."
 
 /obj/landmark/join/start/cargo_tech
 	name = "Guild Technician"
@@ -138,7 +138,7 @@ Character Expectations:<br>\
 	Protect the Guild wing and the merchant, from thieves and intruders."
 
 	loyalties = "	Your first loyalty is to yourself and survival. This ship is mostly just a paycheck to you<br>\
-	Your second loyalty is to the merchant, he ensures you're well paid and respected, in a universe where workers are often treated as interchangeable parts.	"
+	Your second loyalty is to the merchant, he ensures you're well paid and respected, in a GLOB.universe where workers are often treated as interchangeable parts.	"
 
 	access = list(
 		access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_mining,

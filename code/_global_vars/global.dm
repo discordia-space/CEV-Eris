@@ -11,13 +11,13 @@ GLOBAL_LIST_EMPTY(ship_areas)
 //var/global/list/machines                 = list()		//Removed
 //var/global/list/processing_objects       = list()		//Removed
 //var/global/list/processing_power_items   = list()		//Removed
-var/global/list/active_diseases          = list()
-var/global/list/med_hud_users            = list() // List of all entities using a medical HUD.
-var/global/list/sec_hud_users            = list() // List of all entities using a security HUD.
-var/global/list/hud_icon_reference       = list()
+GLOBAL_LIST_EMPTY(active_diseases)
+GLOBAL_LIST_EMPTY(med_hud_users)				 // List of all entities using a medical HUD.
+GLOBAL_LIST_EMPTY(sec_hud_users)				 // List of all entities using a security HUD.
+GLOBAL_LIST_EMPTY(hud_icon_reference)
 
 
-var/global/datum/universal_state/universe = new
+GLOBAL_DATUM_INIT(universe, /datum/universal_state, new)
 
 var/global/list/global_map = null
 
