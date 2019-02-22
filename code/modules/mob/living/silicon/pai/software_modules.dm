@@ -121,7 +121,7 @@
 	toggle = 0
 
 	on_ui_interact(mob/living/silicon/pai/user, datum/nanoui/ui=null, force_open=1)
-		data_core.get_manifest_json()
+		GLOB.data_core.get_manifest_json()
 
 		var/data[0]
 		// This is dumb, but NanoUI breaks if it has no data to send
@@ -145,7 +145,7 @@
 		var/data[0]
 
 		var/records[0]
-		for(var/datum/data/record/general in sortRecord(data_core.general))
+		for(var/datum/data/record/general in sortRecord(GLOB.data_core.general))
 			var/record[0]
 			record["name"] = general.fields["name"]
 			record["ref"] = "\ref[general]"
@@ -176,11 +176,11 @@
 			if(record)
 				var/datum/data/record/R = record
 				var/datum/data/record/M = null
-				if (!( data_core.general.Find(R) ))
+				if (!( GLOB.data_core.general.Find(R) ))
 					P.medical_cannotfind = 1
 				else
 					P.medical_cannotfind = 0
-					for(var/datum/data/record/E in data_core.medical)
+					for(var/datum/data/record/E in GLOB.data_core.medical)
 						if ((E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
 							M = E
 					P.medicalActive1 = R
@@ -199,7 +199,7 @@
 		var/data[0]
 
 		var/records[0]
-		for(var/datum/data/record/general in sortRecord(data_core.general))
+		for(var/datum/data/record/general in sortRecord(GLOB.data_core.general))
 			var/record[0]
 			record["name"] = general.fields["name"]
 			record["ref"] = "\ref[general]"
@@ -230,13 +230,13 @@
 			if(record)
 				var/datum/data/record/R = record
 				var/datum/data/record/S = null
-				if (!( data_core.general.Find(R) ))
+				if (!( GLOB.data_core.general.Find(R) ))
 					P.securityActive1 = null
 					P.securityActive2 = null
 					P.security_cannotfind = 1
 				else
 					P.security_cannotfind = 0
-					for(var/datum/data/record/E in data_core.security)
+					for(var/datum/data/record/E in GLOB.data_core.security)
 						if ((E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
 							S = E
 					P.securityActive1 = R

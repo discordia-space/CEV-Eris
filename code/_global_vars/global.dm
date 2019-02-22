@@ -4,9 +4,9 @@
 #endif
 
 // Items that ask to be called every cycle.
-var/global/datum/datacore/data_core = null
-var/global/list/all_areas                = list()
-var/global/list/ship_areas                = list()
+GLOBAL_DATUM(data_core, /datum/datacore)
+GLOBAL_LIST_EMPTY(all_areas)
+GLOBAL_LIST_EMPTY(ship_areas)
 
 //var/global/list/machines                 = list()		//Removed
 //var/global/list/processing_objects       = list()		//Removed

@@ -341,13 +341,13 @@
 
 	if(PDA_Manifest.len)
 		PDA_Manifest.Cut()
-	for(var/datum/data/record/R in data_core.medical)
+	for(var/datum/data/record/R in GLOB.data_core.medical)
 		if ((R.fields["name"] == occupant.real_name))
 			qdel(R)
-	for(var/datum/data/record/T in data_core.security)
+	for(var/datum/data/record/T in GLOB.data_core.security)
 		if ((T.fields["name"] == occupant.real_name))
 			qdel(T)
-	for(var/datum/data/record/G in data_core.general)
+	for(var/datum/data/record/G in GLOB.data_core.general)
 		if ((G.fields["name"] == occupant.real_name))
 			qdel(G)
 

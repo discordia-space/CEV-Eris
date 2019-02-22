@@ -178,13 +178,13 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 		nanoui_data["items"] = items
 	else if(nanoui_menu == 2)
 		var/permanentData[0]
-		for(var/datum/data/record/L in sortRecord(data_core.locked))
+		for(var/datum/data/record/L in sortRecord(GLOB.data_core.locked))
 			permanentData[++permanentData.len] = list(Name = L.fields["name"],"id" = L.fields["id"])
 		nanoui_data["exploit_records"] = permanentData
 	else if(nanoui_menu == 21)
 		nanoui_data["exploit_exists"] = 0
 
-		for(var/datum/data/record/L in data_core.locked)
+		for(var/datum/data/record/L in GLOB.data_core.locked)
 			if(L.fields["id"] == exploit_id)
 				nanoui_data["exploit"] = list()  // Setting this to equal L.fields passes it's variables that are lists as reference instead of value.
 								 // We trade off being able to automatically add shit for more control over what gets passed to json

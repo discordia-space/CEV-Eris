@@ -192,7 +192,7 @@ var/world_topic_spam_protect_time = world.timeofday
 				"bot" = nonhuman_positions
 			)
 
-		for(var/datum/data/record/t in data_core.general)
+		for(var/datum/data/record/t in GLOB.data_core.general)
 			var/name = t.fields["name"]
 			var/rank = t.fields["rank"]
 			var/real_rank = make_list_rank(t.fields["real_rank"])

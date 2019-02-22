@@ -268,7 +268,7 @@
 	if(SSjob.ShouldCreateRecords(job.title))
 		if(character.mind.assigned_role != "Robot")
 			CreateModularRecord(character)
-			data_core.manifest_inject(character)
+			GLOB.data_core.manifest_inject(character)
 			matchmaker.do_matchmaking()
 			SSticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 
