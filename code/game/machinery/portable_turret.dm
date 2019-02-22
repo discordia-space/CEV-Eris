@@ -248,7 +248,8 @@ var/list/turret_icons
 	if(href_list["command"] && href_list["value"])
 		var/value = text2num(href_list["value"])
 		if(href_list["command"] == "enable")
-			enabled = value
+			if(anchored)
+				enabled = value
 		else if(href_list["command"] == "lethal")
 			lethal = value
 		else if(href_list["command"] == "check_synth")
