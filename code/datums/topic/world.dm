@@ -1,6 +1,6 @@
 // SETUP
 
-/proc/TopicHandlers()
+/world/proc/TopicHandlers()
 	. = list()
 	var/list/all_handlers = subtypesof(/datum/world_topic)
 	for(var/I in all_handlers)
