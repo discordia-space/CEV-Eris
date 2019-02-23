@@ -844,9 +844,13 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 	return
 
 /mob/living/Paralyse(amount)
+	var/zero_before = FALSE
+	if (!paralysis)
+		zero_before = TRUE
 	.=..()
-	if (.)
+	if (. && zero_before)
 		//These three procs instantly create the blinding/sleep overlay
+		//We only call them if the mob has just become paralysed, to prevent an infinite loop
 		handle_regular_status_updates() //This checks paralysis and sets stat
 		handle_disabilities() //This checks stat and sets eye_blind
 		handle_regular_hud_updates() //This checks eye_blind and adds or removes the hud overlay
