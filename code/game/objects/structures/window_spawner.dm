@@ -48,12 +48,12 @@
 	return
 
 /obj/effect/window_lwall_spawn/reinforced
-	name = "reinforced window grille spawner"
+	name = "reinforced window low-wall spawner"
 	icon_state = "sp_full-window"
 	win_path = /obj/structure/window/reinforced/full
 
 /obj/effect/window_lwall_spawn/smartspawn
-	name = "reinforced window smart spawner"
+	name = "reinforced window low-wall smart spawner"
 	icon_state = "sp-smart_full-window"
 
 /obj/effect/window_lwall_spawn/smartspawn/handle_window_spawn(var/obj/structure/window/W)
@@ -71,12 +71,17 @@
 		return
 
 /obj/effect/window_lwall_spawn/plasma
-	name = "plasma window grille spawner"
+	name = "plasma window low-wall spawner"
 	icon_state = "sp_full-window-plasma"
 	win_path = /obj/structure/window/plasmabasic/full
 
+/obj/effect/window_lwall_spawn/plasma/reinforced
+	name = "reinforced plasma window low-wall spawner"
+	icon_state = "sp_full-window-plasma"
+	win_path = /obj/structure/window/reinforced/plasma/full
+
 /obj/effect/window_lwall_spawn/reinforced/polarized
-	name = "polarized window grille spawner"
+	name = "polarized window low-wall spawner"
 	icon_state = "sp_full-window-tinted"
 	win_path = /obj/structure/window/reinforced/polarized/full
 	var/id
