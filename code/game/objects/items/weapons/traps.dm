@@ -130,7 +130,6 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 
 //Using a crowbar allows you to lever the trap open, better success rate
 /obj/item/weapon/beartrap/attackby(obj/item/C, mob/living/user)
-	world << "Attackby [C], [user]"
 	if (C.has_quality(QUALITY_PRYING))
 		attempt_release(user, C)
 		return
