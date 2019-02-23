@@ -73,7 +73,7 @@
 	target = null
 	recieving = null
 	//Eject any mobs that tunnelled through us
-	for (var/atom/a in sending_mobs)
+	for (var/atom/movable/a in sending_mobs)
 		if (a.loc == src)
 			a.forceMove(loc)
 	population = list()
