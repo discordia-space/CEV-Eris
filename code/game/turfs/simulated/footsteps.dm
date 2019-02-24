@@ -17,7 +17,7 @@
 	if(shoes && (shoes.item_flags & SILENT))
 		return // quiet shoes
 
-	if(!has_gravity(src))
+	if(is_floating)
 		if(step_count % 3) // don't need to step as often when you hop around
 			return
 

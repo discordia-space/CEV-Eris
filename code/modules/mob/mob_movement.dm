@@ -173,7 +173,7 @@
 ///Return 1 for movement 0 for none
 /mob/proc/allow_spacemove(var/check_drift = 0)
 
-	if(!check_dense_object()) //Nothing to push off of so end here
+	if(!check_spacegrip()) //Nothing to push off of so end here
 		update_floating()
 		return 0
 
@@ -208,25 +208,46 @@
 
 	return 1
 
-/mob/proc/check_dense_object() //checks for anything to push off or grip in the vicinity. also handles magboots on gravity-less floors tiles
-
+//Attempts to check if the mob can move around safely in zero gravity
+/mob/proc/check_spacegrip()
+	//First up, check for magboots or other gripping capability
 	var/shoegrip = check_shoegrip()
 
+	//If we have some, then check the ground under us
+	if (shoegrip && check_solid_ground())
+		return TRUE
+	else
+		return check_dense_object()
+
+//This proc specifically checks the floor under us. Both floor turfs and walkable objects like catwalk
+//This proc is only called if we have grip, ie magboots
+/mob/proc/check_solid_ground()
+	.=FALSE
+	var/turf/simulated/T = loc
+	if (istype(T))
+		return TRUE //We're standing on a simulated floor
+	else
+		//We're probably in space
+		for(var/obj/O in T)
+			if(istype(O, /obj/structure/lattice))
+				return TRUE
+			if(istype(O, /obj/structure/catwalk))
+				return TRUE
+
+//This proc checks for dense, anchored atoms, or walls.
+//It checks all the adjacent tiles
+/mob/proc/check_dense_object()
+
 	for(var/turf/simulated/T in trange(1,src)) //we only care for non-space turfs
-		if(T.density)	//walls work
-			return 1
-		else
-			var/area/A = T.loc
-			if(A.has_gravity || shoegrip)
-				return 1
+		if(T.density)	//walls work when you're adjacent
+			return TRUE
+
 
 	for(var/obj/O in orange(1, src))
-		if(istype(O, /obj/structure/lattice))
-			return 1
-		if(O && O.density && O.anchored)
-			return 1
+		if(O.density && O.anchored)
+			return TRUE
 
-	return 0
+	return FALSE
 
 /mob/proc/check_shoegrip()
 	return 0

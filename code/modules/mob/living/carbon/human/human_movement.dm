@@ -4,7 +4,7 @@
 	if(species.slowdown)
 		tally += species.slowdown
 	if (istype(loc, /turf/space)) // It's hard to be slowed down in space by... anything
-		return -1
+		return tally
 
 	if(embedded_flag)
 		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
@@ -82,45 +82,3 @@
 		return 1
 	return 0
 
-/*
-/mob/living/carbon/human/handle_footstep(atom/T)
-	if(..())
-
-		if(MOVING_QUICKLY(src))
-			if(!(step_count % 2)) //every other turf makes a sound
-				return
-
-		if(istype(shoes, /obj/item/clothing/shoes))
-			var/obj/item/clothing/shoes/footwear = shoes
-			if(footwear.silence_steps)
-				return //silent
-
-		if(!has_organ(BP_L_LEG) && !has_organ(BP_R_LEG))
-			return //no feet no footsteps
-
-		if(buckled || lying || throwing)
-			return //people flying, lying down or sitting do not step
-
-		if(!has_gravity(src))
-			if(step_count % 3) //this basically says, every three moves make a noise
-				return //1st - none, 1%3==1, 2nd - none, 2%3==2, 3rd - noise, 3%3==0
-
-		if(species.silent_steps)
-			return //species is silent
-
-
-		var/S = T.get_footstep_sound("human")
-		if(S)
-			var/range = -(world.view - 2)
-			var/volume = 90
-
-			if(MOVING_DELIBERATELY(src))
-				volume -= 55
-				range -= 0.333
-			if(!shoes)
-				volume -= 70
-				range -= 0.333
-
-			playsound(T, S, volume, 1, range)
-			return
-*/
