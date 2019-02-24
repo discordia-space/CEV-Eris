@@ -21,11 +21,6 @@
 		if((locate(/obj/effect/plant) in zdest.contents) || (locate(/obj/effect/dead_plant) in zdest.contents) )
 			continue
 
-		//If our floor is open space, so let's check turf below
-		if(istype(floor, /turf/simulated/open))
-			if(locate(/obj/effect/plant) in GetBelow(floor))
-				continue
-
 		//We dont want to melt external walls and cause breaches
 		if(!near_external && floor.density)
 			if(!isnull(seed.chems["pacid"]))
@@ -38,8 +33,7 @@
 		//There also can be special conditions handling
 		if (!floor.Enter(src))
 
-			//special condition check
-			if(is_can_pass_special(floor))
+			if(CanPass(src, floor))
 				neighbors |= floor
 				continue
 
@@ -60,19 +54,10 @@
 				if (!found_door)
 					continue
 
-
-				//We have to make sure that nothing ELSE aside from the door is blocking us
-				var/blocked = FALSE
-				for (var/obj/O in floor)
-					if (O == found_door)
-						continue
-
-					if (!O.CanPass(src, floor))
-						blocked = TRUE
-						break
-
-				if (blocked)
+				var/can_pass = door_interaction(found_door, floor)
+				if(!can_pass)
 					continue
+
 
 		neighbors |= floor
 	// Update all of our friends.
@@ -80,8 +65,20 @@
 	for(var/obj/effect/plant/neighbor in range(1,src))
 		neighbor.neighbors -= T
 
-//special pass check
-/obj/effect/plant/proc/is_can_pass_special(var/turf/target)
+
+/obj/effect/plant/proc/door_interaction(obj/machinery/door/door, turf/simulated/floor)
+	//We have to make sure that nothing ELSE aside from the door is blocking us
+	var/blocked = FALSE
+	for (var/obj/O in floor)
+		if (O == door)
+			continue
+
+		if (!O.CanPass(src, floor))
+			blocked = TRUE
+			break
+
+	if (blocked)
+		return FALSE
 	return TRUE
 
 //This silly special case override is needed to make vines work with portals.
@@ -183,13 +180,9 @@
 			if(!neighbors.len)
 				break
 			var/turf/target_turf = pick(neighbors)
-			if(istype(target_turf, /turf/simulated/open)) //openspace handle
-				var/turf/simulated/open/turf_below = GetBelow(target_turf)
-				var/obj/effect/plant/child = new type(get_turf(src),seed,src)
-				after_spread(child, turf_below)
-			else
-				var/obj/effect/plant/child = new type(get_turf(src),seed,src)
-				after_spread(child, target_turf)
+			target_turf = get_connecting_turf(target_turf, loc)
+			var/obj/effect/plant/child = new type(get_turf(src),seed,src)
+			after_spread(child, target_turf)
 			// Update neighboring squares.
 			for(var/obj/effect/plant/neighbor in range(1,target_turf))
 				neighbor.neighbors -= target_turf

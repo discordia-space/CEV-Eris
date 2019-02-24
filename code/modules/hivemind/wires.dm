@@ -1,6 +1,5 @@
-//Wireweeds is an actually wires that covered with metal shell.
-//They are grow and spread under rogue AI control and with help of unknown, dangerous nano-tech
-//When they reach any machine, they annihilate them and rebuild into something horrible. This is 'hands' of our rogue AI
+//Wireweeds are created by the AI's nanites to spread its connectivity through the ship.
+//When they reach any machine, they annihilate them and re-purpose them to the AI's needs. They are the 'hands' of our rogue AI.
 
 /obj/effect/plant/hivemind
 	layer = 2
@@ -8,7 +7,7 @@
 	max_health = 80 //we are a little bit durable
 	var/list/killer_reagents = list("pacid", "sacid", "hclacid", "thermite")
 	//internals
-	var/obj/structure/hivemind_machine/node/master_node
+	var/obj/machinery/hivemind_machine/node/master_node
 	var/list/wires_connections = list("0", "0", "0", "0")
 
 
@@ -35,38 +34,38 @@
 		update_icon()
 
 
-/obj/effect/plant/hivemind/proc/try_to_annihilate()
+/obj/effect/plant/hivemind/proc/try_to_assimilate()
 	if(hive_mind_ai && master_node)
 		for(var/obj/machinery/machine_on_my_tile in loc)
-			var/can_annihilate = TRUE
+			var/can_assimilate = TRUE
 
 			//whitelist check
 			if(is_type_in_list(machine_on_my_tile, hive_mind_ai.restricted_machineries))
-				can_annihilate = FALSE
+				can_assimilate = FALSE
 
-			//annihilation is slow process, so it's take some time
-			//there we use our failure chance. Then it lower, then faster hivemind learn how to properly annihilate it
-			if(can_annihilate && prob(hive_mind_ai.failure_chance))
-				can_annihilate = FALSE
-				shake_the(machine_on_my_tile)
+			//assimilation is slow process, so it's take some time
+			//there we use our failure chance. Then it lower, then faster hivemind learn how to properly assimilate it
+			if(can_assimilate && prob(hive_mind_ai.failure_chance))
+				can_assimilate = FALSE
+				anim_shake(machine_on_my_tile)
 				return
 
 			 //only one machine per turf
-			if(can_annihilate && !locate(/obj/structure/hivemind_machine) in loc)
-				annihilate(machine_on_my_tile)
+			if(can_assimilate && !locate(/obj/machinery/hivemind_machine) in loc)
+				assimilate(machine_on_my_tile)
 			//other will be... merged
-			else if(can_annihilate)
+			else if(can_assimilate)
 				qdel(machine_on_my_tile)
 
 		//modular computers handling
 		var/obj/item/modular_computer/console/mod_comp = locate() in loc
 		if(mod_comp)
-			annihilate(mod_comp)
+			assimilate(mod_comp)
 
 		//dead bodies handling
 		for(var/mob/living/dead_body in loc)
 			if(dead_body.stat == DEAD)
-				annihilate(dead_body)
+				assimilate(dead_body)
 
 
 /obj/effect/plant/hivemind/update_neighbors()
@@ -83,7 +82,7 @@
 
 /obj/effect/plant/hivemind/life()
 	if(hive_mind_ai && master_node)
-		try_to_annihilate()
+		try_to_assimilate()
 		chem_handler()
 	else
 		//slow vanishing after node death
@@ -129,62 +128,70 @@
 	wires_connections = dirs_to_corner_states(dirs)
 
 
-//special check
-//machinery is allowed, door interaction also here
-/obj/effect/plant/hivemind/is_can_pass_special(turf/target)
-	//density turf check
-	if(target.density)
+/obj/effect/plant/hivemind/door_interaction(obj/machinery/door/airlock/door)
+	if(!door || !istype(door))
 		return FALSE
-	//custom door interaction
-	if(locate(/obj/machinery/door) in target)
-		var/obj/machinery/door/airlock/Door = locate() in target
-		if(Door)
-			//if our door isn't broken, we will try to break open. We can do only one action per call
-			if(!(Door.stat & BROKEN))
-				shake_the(Door)
-				//first, we open our panel to give our wireweeds access to exposed airlock's electronics
-				if(!Door.p_open)
-					if(prob(20))
-						Door.p_open = TRUE
-					return FALSE
-				//but if airlock is welded, we just shake it like we rummage inside
-				if(Door.welded)
-					return FALSE
-				//if panel opened, we begin to destruct it from inside of airlock
-				if(Door.p_open)
-					//bolts are down? Our wireweeds infest electronics, so this isn't a problem cause it part of us
-					if(Door.locked)
-						if(prob(50))
-							Door.unlock()
-						return FALSE
-					//and then, if airlock is closed, we begin destroy it electronics
-					if(Door.density)
-						Door.take_damage(rand(15, 50))
-						return FALSE
-		return FALSE
-	//structure density check
-	if(locate(/obj/structure) in target)
-		for(var/obj/structure/S in target)
-			if(S.density)
+
+	//if our door isn't broken, we will try to break open. We can do only one action per call
+	if(!(door.stat & BROKEN))
+		anim_shake(door)
+		//first, we open our panel to give our wireweeds access to exposed airlock's electronics
+		if(!door.p_open)
+			if(prob(20))
+				door.p_open = TRUE
+			return FALSE
+		//but if airlock is welded, we just shake it like we rummage inside
+		if(door.welded)
+			return FALSE
+		//if panel opened, we begin to destruct it from inside of airlock
+		if(door.p_open)
+			//bolts are down? Our wireweeds infest electronics, so this isn't a problem cause it part of us
+			if(door.locked)
+				if(prob(50))
+					door.unlock()
 				return FALSE
+			//and then, if airlock is closed, we begin destroy it electronics
+			if(door.density)
+				door.take_damage(rand(15, 50))
+				return FALSE
+
 	return TRUE
 
 
+/obj/effect/plant/hivemind/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	if(mover == src)
+		if(target.density)
+			return FALSE
+
+		if(locate(/obj/structure) in target)
+			for(var/obj/structure/S in target)
+				if(S.density)
+					return FALSE
+
+		if(locate(/obj/machinery/door) in target)
+			return FALSE
+
+		return TRUE
+	else
+		return ..()
+
+
+
 //What a pity that we haven't some kind proc as special library to use it somewhere
-/obj/effect/plant/hivemind/proc/shake_the(atom/thing)
+/obj/effect/plant/hivemind/proc/anim_shake(atom/thing)
 	var/init_px = thing.pixel_x
 	var/shake_dir = pick(-1, 1)
 	animate(thing, transform=turn(matrix(), 8*shake_dir), pixel_x=init_px + 2*shake_dir, time=1)
 	animate(transform=null, pixel_x=init_px, time=6, easing=ELASTIC_EASING)
 
 
-//annihilation process
-/obj/effect/plant/hivemind/proc/annihilate(var/atom/subject)
+//assimilation process
+/obj/effect/plant/hivemind/proc/assimilate(var/atom/subject)
 	if(istype(subject, /obj/machinery) || istype(subject, /obj/item/modular_computer/console))
 		if(prob(hive_mind_ai.failure_chance))
 			//critical failure! This machine would be a dummy, which means - without any ability
 			//let's make an infested sprite
-			var/obj/structure/hivemind_machine/new_machine = new (loc)
+			var/obj/machinery/hivemind_machine/new_machine = new (loc)
 			var/icon/infected_icon = new('icons/obj/hivemind_machines.dmi', icon_state = "wires-[rand(1, 3)]")
 			var/icon/new_icon = new(subject.icon, icon_state = subject.icon_state, dir = subject.dir)
 			new_icon.Blend(infected_icon, ICON_OVERLAY)
@@ -199,13 +206,14 @@
 				return
 			else
 				var/picked_machine
-				var/list/possible_machines = subtypesof(/obj/structure/hivemind_machine)
+				var/list/possible_machines = subtypesof(/obj/machinery/hivemind_machine)
+
 				if(hive_mind_ai.hives.len < 10)
 					if(hive_mind_ai.evo_points < (hive_mind_ai.hives.len * 100)) //one hive per 100 EP
-						possible_machines -= /obj/structure/hivemind_machine/node
+						possible_machines -= /obj/machinery/hivemind_machine/node
 					else
 						//we make new nodes asap, cause it has higher priority to survive, so we force it here
-						picked_machine = /obj/structure/hivemind_machine/node
+						picked_machine = /obj/machinery/hivemind_machine/node
 
 				//here we compare hivemind's EP with machine's required value
 				for(var/machine_path in possible_machines)
@@ -214,7 +222,7 @@
 
 				if(!picked_machine)
 					picked_machine = pick(possible_machines)
-				var/obj/structure/hivemind_machine/new_machine = new picked_machine(loc)
+				var/obj/machinery/hivemind_machine/new_machine = new picked_machine(loc)
 				new_machine.update_icon()
 
 	if(istype(subject, /mob/living) && !istype(subject, /mob/living/simple_animal/hostile/hivemind))
@@ -231,7 +239,7 @@
 		//other dead bodies
 		else
 			var/mob/living/simple_animal/hostile/hivemind/resurrected/transformed_mob =  new(loc)
-			transformed_mob.absorb_the(subject)
+			transformed_mob.take_appearance(subject)
 
 	qdel(subject)
 
@@ -253,7 +261,7 @@
 		weapon_type = QUALITY_WELDING
 
 	if(weapon_type)
-		if(W.use_tool(user, src, WORKTIME_FAST*0.30, weapon_type, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
+		if(W.use_tool(user, src, WORKTIME_FAST, weapon_type, FAILCHANCE_EASY, required_stat = STAT_ROB))
 			user.visible_message(SPAN_DANGER("[user] cuts down [src]."), SPAN_DANGER("You cut down [src]."))
 			die_off()
 			return
@@ -263,8 +271,8 @@
 			health -= rand(W.force/2, W.force) //hm, maybe make damage based on player's robust stat?
 			user.visible_message(SPAN_DANGER("[user] slices [src]."), SPAN_DANGER("You slice [src]."))
 		else
-			user.visible_message(SPAN_DANGER("[user] trying to slice [src] with [W], but it's seems useless."),
-								SPAN_DANGER("You trying to slice [src]. But it's useless!"))
+			user.visible_message(SPAN_DANGER("[user] tries to slice [src] with [W], but seems to do nothing."),
+								SPAN_DANGER("You try to slice [src], but it's useless!"))
 	check_health()
 
 

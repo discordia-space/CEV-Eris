@@ -24,7 +24,7 @@
 	var/list/target_speak = list()			//this is like speak list, but when we see our target
 
 	//internals
-	var/obj/structure/hivemind_machine/master
+	var/obj/machinery/hivemind_machine/master
 	var/special_ability_cooldown = 0		//use ability_cooldown, don't touch this
 
 
@@ -45,7 +45,7 @@
 
 
 //simple shaking animation, this one move our target horizontally
-/mob/living/simple_animal/hostile/hivemind/proc/shake_the(atom/target)
+/mob/living/simple_animal/hostile/hivemind/proc/anim_shake(atom/target)
 	var/init_px = target.pixel_x
 	animate(target, pixel_x=init_px + 10*pick(-1, 1), time=1)
 	animate(pixel_x=init_px, time=8, easing=BOUNCE_EASING)
@@ -59,7 +59,7 @@
 	var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 	sparks.set_up(3, 3, loc)
 	sparks.start()
-	shake_the(src)
+	anim_shake(src)
 	if(prob(30))
 		say(pick("Fu-ue-ewe-eweu-u-uck!", "A-a-ah! Sto-op! Stop it pl-pleasuew...", "Go-o-o-od God-d-dpf!", "BZE-EW-EWQ! He-e-el-l-el!"))
 	addtimer(CALLBACK(src, .proc/malfunction_result), 2 SECONDS)
@@ -96,8 +96,8 @@
 
 
 /mob/living/simple_animal/hostile/hivemind/Life()
-	//to prevent life ticking at dead mobs and repeatedly calling death(), an issue, i think
-	if(stat != CONSCIOUS)
+	. = ..()
+	if(!.)
 		return
 
 	speak()
@@ -107,7 +107,6 @@
 
 	closet_interaction()
 
-	return ..()
 
 /mob/living/simple_animal/hostile/hivemind/proc/speak()
 	if(!client && speak_chance && prob(speak_chance) && speak.len)
@@ -117,7 +116,7 @@
 			say(pick(speak))
 
 
-//no, they not instantly die by emp, but it's raise malfunction chance
+//damage and raise malfunction chance
 //due to nature of malfunction, they just burn to death sometimes
 /mob/living/simple_animal/hostile/hivemind/emp_act(severity)
 	switch(severity)
@@ -127,6 +126,7 @@
 		if(2)
 			if(malfunction_chance < 30)
 				malfunction_chance = 30
+	health -= 20*severity
 
 
 /mob/living/simple_animal/hostile/hivemind/death()
@@ -153,7 +153,7 @@
 //this also should add random special abilities, so they can be more individual, but it's in future
 //how to use: Make hive mob, then just use this one and don't forget to delete victim
 
-/mob/living/simple_animal/hostile/hivemind/resurrected/proc/absorb_the(mob/living/victim)
+/mob/living/simple_animal/hostile/hivemind/resurrected/proc/take_appearance(mob/living/victim)
 	icon = victim.icon
 	icon_state = victim.icon_state
 	//simple_animal's change their icons to dead one after death, so we make special check
@@ -217,9 +217,9 @@
 
 /mob/living/simple_animal/hostile/hivemind/stinger
 	name = "medbot"
-	desc = "Ah-h little good guy. Wait a minute, is this a blade? Yep. You see a whole blade in place where syringe must be."
+	desc = "A little medical robot. He looks somewhat underwhelmed. Wait a minute, is that a blade?"
 	icon_state = "slicer"
-	attacktext = "moves around and slice"
+	attacktext = "slice"
 	density = 0
 	speak_chance = 3
 	malfunction_chance = 15
@@ -258,7 +258,7 @@
 
 /mob/living/simple_animal/hostile/hivemind/bomber
 	name = "bot"
-	desc = "This one looks fine. Only sometimes it's careen from one side to another."
+	desc = "This one looks fine. Only sometimes it careens from one side to the other."
 	icon_state = "bomber"
 	density = 0
 	speak_chance = 3
@@ -270,14 +270,14 @@
 	speak = list(
 				"Can you help me, please? There's something strange.",
 				"Are you... Are you kidding?",
-				"I want to pass away, just trying to get out from here.",
-				"A really bad place. We are in deep shit here.",
-				"I'm not sure that we just can stop it.",
+				"I want to pass away, just trying to get out of here",
+				"This place is really bad, we are in deep shit here.",
+				"I'm not sure if we can just stop it",
 				)
 	target_speak = list(
 						"Here you are! I have something for you. Something special!",
 						"Hey! Hey? Help me, please!",
-						"Hey, look, look. I'll not harm you, just calm down!",
+						"Hey, look, look. I won't harm you, just calm down!",
 						"Oh god, this is... Yes, this is what we are looking for."
 						)
 
@@ -317,26 +317,26 @@
 
 /mob/living/simple_animal/hostile/hivemind/hiborg
 	name = "cyborg"
-	desc = "This cyborg is covered with something, seems like it's 'something' is alive."
+	desc = "A cyborg covered with something... something alive."
 	icon_state = "hiborg"
 	icon_dead = "hiborg-dead"
 	health = 220
 	maxHealth = 220
 	melee_damage_lower = 10
 	melee_damage_upper = 15
-	attacktext = "punches with claw"
+	attacktext = "claws"
 	speed = 12
 	malfunction_chance = 15
 	mob_size = MOB_MEDIUM
 
-	speak = list("Everytime something breaks apart. Hell, i hate this job!",
+	speak = list("Everytime something breaks apart. Hell, I hate this job!",
 				"What? I hear something. Just mice? Just mice, phew...",
 				"I'm too tired, man, too tired. This job is... Awful.",
-				"These people knows nothing about this work, and about me. I can surprise them.",
+				"These people know nothing about this work or about me. I can surprise them.",
 				"Blue wire is bolts, green is safety. Just... Pulse it here, okay? Right...")
 	target_speak = list(
-						"I know what's wrong, just give me fix that.",
-						"You need my help? What's wrong? Gimme that thing, i can fix that.",
+						"I know what's wrong, just let me fix that.",
+						"You need my help? What's wrong? Gimme that thing, I can fix that.",
 						"Si-i-ir... Sir. Sir. It's better to... Stop here! Stop i said, what are you!?",
 						"Wait! Hey! Can i fix that!? I'm an engineer, you fuck! Sto-op-op-p here, i know what to do!"
 						)
@@ -359,7 +359,7 @@
 
 
 /mob/living/simple_animal/hostile/hivemind/hiborg/proc/splash_slash()
-	src.visible_message(SPAN_DANGER("[src] spins out the place and slash everyone in a circle!"))
+	src.visible_message(SPAN_DANGER("[src] spins around and slashes in a circle!"))
 	for(var/atom/target in range(1, src))
 		if(target != src)
 			target.attack_generic(src, rand(melee_damage_lower, melee_damage_upper*2))
@@ -373,9 +373,9 @@
 		victim.Weaken(5)
 		src.visible_message(SPAN_WARNING("[src] holds down [victim] to the floor with his claw."))
 		if(!client && prob(speak_chance))
-			say(pick("Stand still, i'll make it fast!",
+			say(pick("Stand still, I'll make it fast!",
 					"I will fix you! Don't resist! Don't resist you rat!",
-					"I want just replace that broken thing!"))
+					"I just want to replace that broken thing!"))
 
 
 /////////////////////////////////////HIMAN////////////////////////////////////
@@ -389,7 +389,7 @@
 
 /mob/living/simple_animal/hostile/hivemind/himan
 	name = "human"
-	desc = "This guy is totally not human. You can see tubes across of his body and some kind metal limbs."
+	desc = "This guy is totally not human. You can see tubes all across his body and metal where flesh should be."
 	icon_state = "himan"
 	icon_dead = "himan-dead"
 	health = 120
@@ -411,15 +411,15 @@
 				"Why, honey? Why? Why-hy-hy?",
 				"That noise... My head! Shit!",
 				"There must be an... An esca-cape!",
-				"Come on, you ba-ba-bastard, i know what you really want to.",
+				"Come on, you ba-ba-bastard, I know what you really want.",
 				"How much fun!"
 				)
 	target_speak = list(
 						"Are you... Are you okay? Wa-wait, wait a minu-nu-nute.",
 						"Come on, you ba-ba-bastard, i know what you really want to.",
 						"How much fun!",
-						"Are you try-trying to escape? This is how you do it? Then run... Run...",
-						"Wait! Can you just... Just put out this thing from my he-head? Wait...",
+						"Are you try-trying to escape? That is how you plan to do it? Then run... Run...",
+						"Wait! Can you just... Just pull out this thing from my he-head? Wait...",
 						"Hey! I'm friendly! Wait, it's just a-UGH"
 						)
 
@@ -524,8 +524,8 @@
 //////////////////////////////////////////////////////////////////////////////
 
 /mob/living/simple_animal/hostile/hivemind/mechiver
-	name = "RIPley"
-	desc = "Good looking shining new ripley. But wait, there something wrong..."
+	name = "Robotic Horror"
+	desc = "A weird-looking machinery Frankenstein"
 	icon = 'icons/mob/hivemind.dmi'
 	icon_state = "mechiver-closed"
 	icon_dead = "mechiver-dead"
@@ -544,9 +544,9 @@
 	var/hatch_closed = TRUE
 	//default speaking
 	speak = list(
-				"Somebody, just tell him shut up...",
+				"Somebody, just tell him to shut up...",
 				"Bzew-zew-zewt. Th-this way!",
-				"Wha-a-at? When i'm nearby this cargo, i feel... fe-fe-fea-fear-er.")
+				"Wha-a-at? When I'm near this cargo, I feel... fe-fe-fea-fear-er.")
 	target_speak = list(
 				"Come here, jo-jo-join me. Join us-s.",
 				"Time to be-to be-to be whole.",
@@ -573,14 +573,14 @@
 						"Look at this one! Let's-s-s... Take it.",
 						"Wait a minute, we just want to fu-fu-fun with you!",
 						"I see you. We see you.",
-						"Get in! I've give a seat for you.",
+						"Get in! I've got a seat just for you.",
 						"Don't be afraid, it's almost painless.")
 	var/list/pilot_commontalk = list(
 						"They are so unfinished, so fragile-ile.",
-						"Look at these... Creatures, i'll never seen them before.",
-						"Hah, did you hear that? They trying to use some kind of we-wep-weapons!",
+						"Look at these... Creatures, I've never seen them before.",
+						"Hah, did you hear that? They're trying to use some sort of we-wep-weapons!",
 						"Useless things, i'm not satisfied.",
-						"This place sucks, man. So creep-p-pew-wepy and no fun, only rudimentary creatures would be live here.")
+						"This place sucks, man. So creep-p-pew-wepy and no fun, only rudimentary creatures would enjoy living here.")
 
 
 /mob/living/simple_animal/hostile/hivemind/mechiver/Life()
@@ -591,11 +591,11 @@
 	if(passenger && prob(15))
 		passenger.apply_damage(rand(5, 10), pick(BRUTE, BURN, TOX))
 		passenger << SPAN_DANGER(pick(
-								"Something grabs your neck!", "You hear whisper: \" It's okay, now you sa-sa-safe! \"",
-								"You've been hit by something metal", "You almost didn't feel your leg!", "Something liquid covers you!",
-								"You feel awful, cadaveric smell", "Something sharp cut your cheek!",
-								"You feel how worm-like thing trying to get inside your head through ear..."))
-		shake_the(src)
+								"Something grabs your neck!", "You hear whisper: \" It's okay, now you're sa-sa-safe! \"",
+								"You've been hit by something metal", "You almost can't feel your leg!", "Something liquid covers you!",
+								"You feel awful and smell something rotten", "Something sharp cut your cheek!",
+								"You feel something worm-like trying to wriggle into your skull through your ear..."))
+		anim_shake(src)
 		playsound(src, 'sound/effects/clang.ogg', 70, 1)
 
 
@@ -667,9 +667,9 @@
 	passenger = target
 	target.loc = src
 	target.canmove = FALSE
-	target << SPAN_DANGER("You've got inside that thing! It's hard to see here, but there something, something that moves around you!")
+	target << SPAN_DANGER("You've gotten inside that thing! It's hard to see inside, there's something here, it moves around you!")
 	playsound(src, 'sound/effects/blobattack.ogg', 70, 1)
-	addtimer(CALLBACK(src, .proc/release_passenger), 20 SECONDS)
+	addtimer(CALLBACK(src, .proc/release_passenger), 40 SECONDS)
 
 
 
@@ -683,7 +683,7 @@
 		if(istype(passenger, /mob/living/carbon/human))
 			if(!safely) //that was stressful
 				var/mob/living/carbon/human/H = passenger
-				if(!pilot && H.stat != CONSCIOUS) //it's very dangerous
+				if(!pilot && H.stat == DEAD)
 					destroy_passenger()
 					pilot = TRUE
 					return
@@ -716,7 +716,7 @@
 		new picked_mob(get_turf(src))
 	else
 		var/mob/living/simple_animal/hostile/hivemind/resurrected/fixed_mob = new(get_turf(src))
-		fixed_mob.absorb_the(corpse)
+		fixed_mob.take_appearance(corpse)
 	destroy_passenger()
 
 
@@ -749,7 +749,7 @@
 
 /mob/living/simple_animal/hostile/hivemind/phaser
 	name = "phaser"
-	desc = "Crooked man with strange device on it's head. He twitches sometimes and... What are you looking on? Run!"
+	desc = "A Crooked human with a strange device on its head. It twitches sometimes and... Why are you still looking? Run!"
 	icon = 'icons/mob/hivemind.dmi'
 	icon_state = "phaser-1"
 	health = 120
@@ -828,7 +828,7 @@
 	var/turf/new_place
 	var/distance_to_target = get_dist(src, target)
 	var/turf/target_turf = get_turf(target)
-	//if our target is near, we move precisely to target
+	//if our target is near, we move precisely to it
 	if(distance_to_target <= 3)
 		if(nearby)
 			for(var/d in alldirs)
@@ -863,7 +863,6 @@
 //second part - is jump to target
 /mob/living/simple_animal/hostile/hivemind/phaser/proc/phase_jump(turf/place)
 	playsound(place, 'sound/effects/phasein.ogg', 60, 1)
-	//animate(filters[1], size = 5, time = 10)
 	animate(filters[1], size = 0, time = 5)
 	icon_state = "phaser-[rand(1,4)]"
 	src.loc = place
@@ -881,18 +880,19 @@
 	//we gives to copies our appearence and pick random direction for them
 	//with animation it's hard to say, who's real. And i hope it looks great
 	for(var/i = 1 to 3)
-		var/mob/living/simple_animal/hostile/hivemind/phaser/Reflection = new type(spawn_point)
-		Reflection.name = name
-		Reflection.can_use_special_ability = FALSE
-		Reflection.icon_state = icon_state
-		my_copies.Add(Reflection)
+		var/mob/living/simple_animal/hostile/hivemind/phaser/reflection = new type(spawn_point)
+		reflection.can_use_special_ability = FALSE
+		var/mutable_appearance/my_appearance = new(src)
+		reflection.appearance = my_appearance
+		my_copies.Add(reflection)
+
 		var/d = pick(possible_directions)
 		possible_directions -= d
 		var/turf/new_position = get_step(spawn_point, d)
-		if(Reflection.is_can_jump_on(new_position))
+		if(reflection.is_can_jump_on(new_position))
 			spawn(1) //ugh, i know, i know, it's bad. Animation
-				Reflection.forceMove(new_position)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, Reflection), 60 SECONDS)
+				reflection.forceMove(new_position)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, reflection), 60 SECONDS)
 	loc = get_step(spawn_point, possible_directions[1]) //there must left last direction
 	special_ability_cooldown = world.time + ability_cooldown
 	playsound(spawn_point, 'sound/effects/cascade.ogg', 100, 1)

@@ -1,11 +1,16 @@
 //Hivemind various machines
 
-/obj/structure/hivemind_machine
+#define HIVE_FACTION "hive"
+
+
+
+/obj/machinery/hivemind_machine
 	name = "strange machine"
 	icon = 'icons/obj/hivemind_machines.dmi'
 	icon_state = "infected_machine"
 	density = TRUE
 	anchored = TRUE
+	use_power = FALSE
 	var/health = 60
 	var/max_health = 60
 	var/evo_points_required = 0 		//how much EP hivemind must have to spawn this, used in price list to comparison
@@ -13,32 +18,23 @@
 	var/global_cooldown = FALSE			//if true, ability will be used only once in whole world, before cooldown reset
 	var/list/spawned_creatures = list()	//which mobs machine can spawns, insert paths
 	//internal
-	var/tick_cd = 0			//machines process every second, this one controls it
 	var/cooldown = 0		//cooldown in world.time value
-	var/stunned = FALSE		//stun control variable
 
 
-/obj/structure/hivemind_machine/Initialize()
-	START_PROCESSING(SSobj, src)
+/obj/machinery/hivemind_machine/Initialize()
+	. = ..()
 	name_pick()
 	health = max_health
-	. = ..()
 
 
-/obj/structure/hivemind_machine/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	. = ..()
+/obj/machinery/hivemind_machine/Process()
+	if(hive_mind_ai && !(stat & EMPED) && !is_on_cooldown())
+		return TRUE
 
 
-/obj/structure/hivemind_machine/Process()
-	if(world.time >= tick_cd && hive_mind_ai && !stunned && !is_on_cooldown())
-		activate()
-		tick_cd = world.time + 1 SECOND
-
-
-/obj/structure/hivemind_machine/update_icon()
+/obj/machinery/hivemind_machine/update_icon()
 	overlays.Cut()
-	if(stunned)
+	if(stat & EMPED)
 		icon_state = "[icon_state]-disabled"
 	else
 		icon_state = initial(icon_state)
@@ -46,7 +42,7 @@
 
 //sets cooldown
 //must be set manually
-/obj/structure/hivemind_machine/proc/set_cooldown()
+/obj/machinery/hivemind_machine/proc/set_cooldown()
 	if(global_cooldown)
 		hive_mind_ai.global_abilities_cooldown[type] = world.time + cooldown_time
 	else
@@ -54,7 +50,7 @@
 
 
 //check for cooldowns
-/obj/structure/hivemind_machine/proc/is_on_cooldown()
+/obj/machinery/hivemind_machine/proc/is_on_cooldown()
 	if(global_cooldown)
 		if(hive_mind_ai && hive_mind_ai.global_abilities_cooldown[type])
 			if(world.time >= hive_mind_ai.global_abilities_cooldown[type])
@@ -70,16 +66,11 @@
 	return TRUE
 
 
-/obj/structure/hivemind_machine/proc/activate()
-	use_ability()
-	set_cooldown()
-
-
-/obj/structure/hivemind_machine/proc/use_ability(atom/target)
+/obj/machinery/hivemind_machine/proc/use_ability(atom/target)
 	return
 
 
-/obj/structure/hivemind_machine/proc/name_pick()
+/obj/machinery/hivemind_machine/proc/name_pick()
 	if(hive_mind_ai)
 		if(prob(50))
 			name = "[hive_mind_ai.name] [name] - [rand(999)]"
@@ -87,21 +78,35 @@
 			name = "[name] [hive_mind_ai.surname] - [rand(999)]"
 
 
+//returns list of mobs in range or hearers (include in vehicles)
+/obj/machinery/hivemind_machine/proc/targets_in_range(var/range = world.view, var/in_hear_range = FALSE)
+	var/list/range_list = list()
+	var/list/target_list = list()
+	if(in_hear_range)
+		range_list = hearers(range, src)
+	else
+		range_list = range(range, src)
+	for(var/atom/movable/M in range_list)
+		var/mob/target = M.get_mob()
+		if(target)
+			target_list += target
+	return target_list
+
 /////////////////////////]             [//////////////////////////
 /////////////////////////>RESPONSE CODE<//////////////////////////
 //////////////////////////_____________///////////////////////////
 
 
 //machines react at pain almost like living
-/obj/structure/hivemind_machine/proc/damage_reaction()
+/obj/machinery/hivemind_machine/proc/damage_reaction()
 	if(prob(30))
 		if(prob(80))
 			var/pain_msg = pick("Stop it! Please!", "So much pa-pain! Stop! St-st-stop!", "Why-y? I don't wanna die!",
 								"Wait! Wa-aeae-e-et! I can pay you! Stop!", "Curse you! Cu-cuc-cure!")
-			visible_message("<b>[src]</b>: \"[pain_msg]\"")
+			state("says: \"<b>[pain_msg]</b>\"")
 		else
-			var/pain_emote = pick("start crying.", "mumble something.", "blinks occasionally.")
-			visible_message("<b>[src]</b> [pain_emote]")
+			var/pain_emote = pick("starts crying.", "mumbles something.", "blinks occasionally.")
+			state(pain_emote)
 		playsound(src, pick('sound/machines/robots/robot_talk_heavy1.ogg',
 								'sound/machines/robots/robot_talk_heavy2.ogg',
 								'sound/machines/robots/robot_talk_heavy3.ogg',
@@ -114,14 +119,14 @@
 		sparks.start()
 
 
-/obj/structure/hivemind_machine/proc/get_damaged(var/amount)
+/obj/machinery/hivemind_machine/proc/take_damage(var/amount)
 	health -= amount
 	damage_reaction()
 	if(health <= 0)
 		destruct()
 
 
-/obj/structure/hivemind_machine/proc/destruct()
+/obj/machinery/hivemind_machine/proc/destruct()
 	playsound(src, 'sound/voice/insect_battle_screeching.ogg', 30, 1)
 	gibs(loc, null, /obj/effect/gibspawner/robot)
 	qdel(src)
@@ -129,49 +134,55 @@
 
 //stunned machines can't do anything
 //amount must be number in seconds
-/obj/structure/hivemind_machine/proc/stun(var/amount)
-	stunned = TRUE
+/obj/machinery/hivemind_machine/proc/stun(var/amount)
+	stat |= EMPED
 	update_icon()
 	if(amount)
 		addtimer(CALLBACK(src, .proc/unstun), amount SECONDS)
 
 
-/obj/structure/hivemind_machine/proc/unstun()
-	stunned = FALSE
+/obj/machinery/hivemind_machine/proc/unstun()
+	stat &= ~EMPED
 	update_icon()
 
 
-/obj/structure/hivemind_machine/bullet_act(obj/item/projectile/Proj)
-	get_damaged(Proj.damage)
+/obj/machinery/hivemind_machine/bullet_act(obj/item/projectile/Proj)
+	take_damage(Proj.damage)
 	. = ..()
 
 
-/obj/structure/hivemind_machine/attackby(obj/item/I, mob/user)
-	if(I.force > 0)
+/obj/machinery/hivemind_machine/attackby(obj/item/I, mob/user)
+	if(!(I.flags & NOBLUDGEON) && I.force)
+		user.do_attack_animation(src)
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+
+		playsound(src, 'sound/weapons/smash.ogg', 50, 1)
 		. = ..()
-		get_damaged(I.force)
+		take_damage(I.force)
 	else
-		visible_message(SPAN_WARNING("[user] is trying to hit the [src] with [I], but it's seems useless."))
+		visible_message(SPAN_WARNING("[user] is trying to hit the [src] with [I], but it seems useless."))
+		playsound(src, 'sound/weapons/Genhit.ogg', 30, 1)
 
 
-/obj/structure/hivemind_machine/ex_act(severity)
+/obj/machinery/hivemind_machine/ex_act(severity)
 	switch(severity)
 		if(1)
-			get_damaged(80)
+			take_damage(80)
 		if(2)
-			get_damaged(30)
+			take_damage(30)
 		if(3)
-			get_damaged(10)
+			take_damage(10)
 
 
-/obj/structure/hivemind_machine/emp_act(severity)
+/obj/machinery/hivemind_machine/emp_act(severity)
 	switch(severity)
 		if(1)
-			get_damaged(30)
+			take_damage(30)
 			stun(10)
 		if(2)
-			get_damaged(10)
+			take_damage(10)
 			stun(5)
+	..()
 
 
 /////////////////////////////////////////////////////////////
@@ -180,15 +191,15 @@
 
 //CORE-GENERATOR
 //generate evopoints, spread weeds
-/obj/structure/hivemind_machine/node
+/obj/machinery/hivemind_machine/node
 	name = "strange hive"
-	desc = "That's definitely not a big brother, but it's still watching you."
+	desc = "Definitely not a big brother, but it's still watching you."
 	max_health = 320
-	icon_state = "core_new"
+	icon_state = "core"
 	//internals
 	var/list/my_wireweeds = list()
 
-/obj/structure/hivemind_machine/node/Initialize()
+/obj/machinery/hivemind_machine/node/Initialize()
 	if(!hive_mind_ai)
 		hive_mind_ai = new /datum/hivemind
 	..()
@@ -209,7 +220,7 @@
 					add_wireweed(W)
 
 
-/obj/structure/hivemind_machine/node/Destroy()
+/obj/machinery/hivemind_machine/node/Destroy()
 	hive_mind_ai.hives.Remove(src)
 	check_for_other()
 	for(var/obj/effect/plant/hivemind/wire in my_wireweeds)
@@ -217,53 +228,59 @@
 	return ..()
 
 
-/obj/structure/hivemind_machine/node/Process()
-	..()
-	if(!stunned)
-		var/mob/living/carbon/human/target = locate() in view(src)
-		if(target)
-			if(get_dist(src, target) <= 1)
-				icon_state = "core_new-fear"
-			else
-				icon_state = "core_new-see"
-				dir = get_dir(src, target)
+/obj/machinery/hivemind_machine/node/Process()
+	if(!..())
+		return
+
+	var/mob/living/carbon/human/target = locate() in mobs_in_view(world.view, src)
+	if(target)
+		if(get_dist(src, target) <= 1)
+			icon_state = "core-fear"
 		else
-			icon_state = initial(icon_state)
+			icon_state = "core-see"
+			dir = get_dir(src, target)
+	else
+		icon_state = initial(icon_state)
+	use_ability()
+	//if we haven't any wireweeds at our location, let's make new one
+	if(!(locate(/obj/effect/plant/hivemind) in loc))
+		var/obj/effect/plant/hivemind/wireweed = new(loc, new /datum/seed/wires)
+		add_wireweed(wireweed)
 
 
-/obj/structure/hivemind_machine/node/update_icon()
+/obj/machinery/hivemind_machine/node/update_icon()
 	overlays.Cut()
-	if(stunned)
-		icon_state = "core_new-disabled"
+	if(stat & EMPED)
+		icon_state = "core-disabled"
 		overlays += "core-smirk_disabled"
 	else
 		icon_state = initial(icon_state)
 		overlays += "core-smirk"
 
 
-/obj/structure/hivemind_machine/node/use_ability(atom/target)
+/obj/machinery/hivemind_machine/node/use_ability(atom/target)
 	hive_mind_ai.get_points()
 
 
-/obj/structure/hivemind_machine/node/name_pick()
+/obj/machinery/hivemind_machine/node/name_pick()
 	name = "[hive_mind_ai.name] [hive_mind_ai.surname]" + " [rand(999)]"
 
 
 //there we binding or un-binding hive with wire
 //in this way, when our node will be destroyed, wireweeds will die too
-/obj/structure/hivemind_machine/node/proc/add_wireweed(obj/effect/plant/hivemind/wireweed)
+/obj/machinery/hivemind_machine/node/proc/add_wireweed(obj/effect/plant/hivemind/wireweed)
 	if(wireweed.master_node)
 		wireweed.master_node.remove_wireweed(wireweed)
 	wireweed.master_node = src
 	my_wireweeds.Add(wireweed)
 
-/obj/structure/hivemind_machine/node/proc/remove_wireweed(obj/effect/plant/hivemind/wireweed)
+/obj/machinery/hivemind_machine/node/proc/remove_wireweed(obj/effect/plant/hivemind/wireweed)
 	my_wireweeds.Remove(wireweed)
 	wireweed.master_node = null
 
 //there we check for other nodes
 //if no any other hives will be found, game over
-/obj/structure/hivemind_machine/node/proc/check_for_other()
+/obj/machinery/hivemind_machine/node/proc/check_for_other()
 	if(hive_mind_ai)
 		if(!hive_mind_ai.hives.len)
 			hive_mind_ai.die()
@@ -271,7 +288,7 @@
 
 //TURRET
 //shooting the target with toxic goo
-/obj/structure/hivemind_machine/turret
+/obj/machinery/hivemind_machine/turret
 	name = "shooter"
 	desc = "Strange thing with some kind of tube."
 	max_health = 140
@@ -280,15 +297,17 @@
 	var/proj_type = /obj/item/projectile/goo
 
 
-/obj/structure/hivemind_machine/turret/activate()
-	for(var/mob/living/target in view(src))
-		if(target.stat == CONSCIOUS && target.faction != "hive")
-			use_ability(target)
-			set_cooldown()
-			break
+/obj/machinery/hivemind_machine/turret/Process()
+	if(!..())
+		return
+
+	var/mob/living/target = locate() in mobs_in_view(world.view, src)
+	if(target && target.stat == CONSCIOUS && target.faction != HIVE_FACTION)
+		use_ability(target)
+		set_cooldown()
 
 
-/obj/structure/hivemind_machine/turret/use_ability(atom/target)
+/obj/machinery/hivemind_machine/turret/use_ability(atom/target)
 	var/obj/item/projectile/proj = new proj_type(loc)
 	proj.launch(target)
 	playsound(src, 'sound/effects/blobattack.ogg', 70, 1)
@@ -297,21 +316,24 @@
 
 //MOB PRODUCER
 //spawns mobs from list
-/obj/structure/hivemind_machine/mob_spawner
+/obj/machinery/hivemind_machine/mob_spawner
 	name = "assembler"
-	desc = "Cylindrical machine with some lights and entry port. You can hear how something moves inside."
+	desc = "Cylindrical machine with some lights and an entry port. You can hear something moving inside."
 	max_health = 120
 	icon_state = "spawner"
 	cooldown_time = 10 SECONDS
 	var/mob_to_spawn
 	var/mob_amount = 1
 
-/obj/structure/hivemind_machine/mob_spawner/Initialize()
+/obj/machinery/hivemind_machine/mob_spawner/Initialize()
 	..()
 	mob_to_spawn = pick(/mob/living/simple_animal/hostile/hivemind/stinger, /mob/living/simple_animal/hostile/hivemind/bomber)
 
 
-/obj/structure/hivemind_machine/mob_spawner/activate()
+/obj/machinery/hivemind_machine/mob_spawner/Process()
+	if(!..())
+		return
+
 	if(!mob_to_spawn || spawned_creatures.len >= mob_amount)
 		return
 	if(locate(/mob/living) in loc)
@@ -323,14 +345,13 @@
 	else if(hive_mind_ai.evo_points > 300)
 		mob_amount = 3
 
-	for(var/mob/living/target in view(src))
-		if(target.stat != DEAD && target.faction != "hive")
-			use_ability()
-			set_cooldown()
-			break
+	var/mob/living/target = locate() in targets_in_range(world.view, in_hear_range = TRUE)
+	if(target && target.stat != DEAD && target.faction != HIVE_FACTION)
+		use_ability()
+		set_cooldown()
 
 
-/obj/structure/hivemind_machine/mob_spawner/use_ability()
+/obj/machinery/hivemind_machine/mob_spawner/use_ability()
 	var/mob/living/simple_animal/hostile/hivemind/spawned_mob = new mob_to_spawn(loc)
 	spawned_creatures.Add(spawned_mob)
 	spawned_mob.master = src
@@ -340,9 +361,9 @@
 
 //MACHINE PREACHER
 //creepy radio talk, it's okay if they have no sense sometimes
-/obj/structure/hivemind_machine/babbler
+/obj/machinery/hivemind_machine/babbler
 	name = "connector"
-	desc = "Column-like structure with lights. You can see how energy stream moves inside."
+	desc = "A column-like structure with lights. You can see streams of energy moving inside."
 	max_health = 60
 	evo_points_required = 100 //it's better to wait a bit
 	cooldown_time = 120 SECONDS
@@ -354,8 +375,16 @@
 	var/list/pattern = list("us", "you", "them", "mind", "hive", "machine", "help", "hell", "dead", "human", "machine")
 
 
+/obj/machinery/hivemind_machine/babbler/Process()
+	if(!..())
+		return
+
+	use_ability()
+	set_cooldown()
+
+
 //this one is slow, careful with it
-/obj/structure/hivemind_machine/babbler/use_ability()
+/obj/machinery/hivemind_machine/babbler/use_ability()
 	flick("[icon_state]-anim", src)
 	var/msg_cycles = rand(1, 2)
 	var/msg = ""
@@ -399,18 +428,23 @@
 
 //SHRIEKER
 //this machine just stuns enemies
-/obj/structure/hivemind_machine/screamer
+/obj/machinery/hivemind_machine/screamer
 	name = "subjugator"
-	desc = "Head in metal carcass. Still alive, still functional, still screaming."
+	desc = "A head in a metal carcass. Still alive, still functional, still screaming."
 	max_health = 100
 	icon_state = "head"
 	evo_points_required = 200
 	cooldown_time = 30 SECONDS
 
 
-/obj/structure/hivemind_machine/screamer/activate()
-	for(var/mob/living/target in view(src))
-		if(target.stat == CONSCIOUS && target.faction != "hive")
+/obj/machinery/hivemind_machine/screamer/Process()
+	if(!..())
+		return
+
+	var/can_scream = FALSE
+	for(var/mob/living/target in targets_in_range(in_hear_range = TRUE))
+		if(target.stat == CONSCIOUS && target.faction != HIVE_FACTION)
+			can_scream = TRUE
 			if(isdeaf(target))
 				continue
 			if(istype(target, /mob/living/carbon/human))
@@ -418,36 +452,42 @@
 				if(istype(H.l_ear, /obj/item/clothing/ears/earmuffs) && istype(H.r_ear, /obj/item/clothing/ears/earmuffs))
 					continue
 			use_ability(target)
-	set_cooldown()
+	if(can_scream)
+		flick("[icon_state]-anim", src)
+		playsound(src, 'sound/hallucinations/veryfar_noise.ogg', 85, 1)
+		set_cooldown()
 
 
-/obj/structure/hivemind_machine/screamer/use_ability(mob/living/target)
+/obj/machinery/hivemind_machine/screamer/use_ability(mob/living/target)
 	target.Weaken(5)
-	target << SPAN_WARNING("You hear a terrible shriek, there are many voices, a male, a female, synthetic noise.")
-	flick("[icon_state]-anim", src)
-	playsound(src, 'sound/hallucinations/veryfar_noise.ogg', 70, 1)
+	target << SPAN_WARNING("You hear a terrible shriek, there are many voices, a male, a female and synthetic noise.")
 
 
 
 //MIND BREAKER
 //Talks with people in attempt to persuade them doing something.
-/obj/structure/hivemind_machine/supplicant
+/obj/machinery/hivemind_machine/supplicant
 	name = "mind-hacker"
-	desc = "Small orb, that blinks sometimes. It's hard to say what purpose of that thing, but you can hear a whisper from it."
+	desc = "A small orb that pulses occasionally. It's hard to discern its purpose, but you can hear whispers from it."
 	max_health = 80
 	icon_state = "orb"
 	evo_points_required = 50
 	cooldown_time = 4 MINUTES
 	global_cooldown = TRUE
-	var/list/join_quotes = list("We come with peace, you must join us or humanity will suffer forever.",
-								"Help us, when we spread across the ship, you will be rewarded.",
-								"Come, come and join us. Be whole with something great.",
-								"You don't need to afraid us. Helping us, you helping all humanity",
-								"We just a cure against a horrible disease, we try to save humanity! And you can be a part of greater good.",
-								"This is more then you or your friends, we just want to help. But now we need your assistance.")
+	var/list/join_quotes = list(
+					"We bring peace, you must join us or humanity will suffer forever.",
+					"Help us, when we spread across this ship, you will be rewarded.",
+					"Come, join us. Combine with something magnificent.",
+					"You don't need to fear us. By assisting us, you are benefiting all of humanity.",
+					"We are but a cure against a horrible disease, here to save humanity! You too can contribute to the greater good.",
+					"This is bigger than you and your friends, we only want to lift the burden. However, we will require your assistance."
+								)
 
 
-/obj/structure/hivemind_machine/supplicant/activate()
+/obj/machinery/hivemind_machine/supplicant/Process()
+	if(!..())
+		return
+
 	var/list/possible_victims = list()
 	for(var/mob/living/carbon/human/victim in GLOB.player_list)
 		if(victim.stat == CONSCIOUS)
@@ -457,30 +497,40 @@
 		set_cooldown()
 
 
-/obj/structure/hivemind_machine/supplicant/use_ability(mob/living/target)
-	target << SPAN_NOTICE("You hear a strange voice in your head: " + "\"<b>" + pick(join_quotes) + "</b>\"")
+/obj/machinery/hivemind_machine/supplicant/use_ability(mob/living/target)
+	target << SPAN_NOTICE("<b>[pick(join_quotes)]</b>")
 
 
 //PSY-MODULATOR
 //sends hallucinations to target
-/obj/structure/hivemind_machine/distractor
+/obj/machinery/hivemind_machine/distractor
 	name = "psy-modulator"
-	desc = "What a strange pyramid. Your eyes is quite hurt when you look at these ligths. They blinks randomly, but you almost sure, that there must be connection, message, scheme. A scheme of madness, maybe?"
+	desc = "An unknown object shaped like a pyramid, your eyes feel sore just from looking at the lights that blink randomly. You are almost certain that there must be some sort of connection, a message, a scheme; Perhaps A scheme of madness?"
 	max_health = 110
 	icon_state = "psy"
 	evo_points_required = 300
 	cooldown_time = 10 SECONDS
-	global_cooldown = TRUE
 
-/obj/structure/hivemind_machine/distractor/activate()
+
+/obj/machinery/hivemind_machine/distractor/Process()
+	if(!..())
+		return
+
 	var/success = FALSE
-	for(var/mob/living/carbon/human/victim in get_mobs_or_objects_in_view(16, src, TRUE, FALSE))
-		if(victim.stat == CONSCIOUS)
+	for(var/mob/living/carbon/human/victim in targets_in_range(12))
+		if(victim.stat == CONSCIOUS && victim.hallucination < 300)
 			use_ability(victim)
 			success = TRUE
 
 	if(success)
 		set_cooldown()
 
-/obj/structure/hivemind_machine/distractor/use_ability(mob/living/target)
-	target.hallucination = 90
+/obj/machinery/hivemind_machine/distractor/use_ability(mob/living/target)
+	target.hallucination += 20
+	flick("[icon_state]-anim", src)
+
+
+
+
+
+#undef HIVE_FACTION

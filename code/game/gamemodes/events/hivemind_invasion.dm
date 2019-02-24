@@ -7,7 +7,7 @@
 
 /datum/storyevent/hivemind
 	id = "hivemind"
-	name = "Hivemind invasion"
+	name = "Hivemind Invasion"
 
 
 	event_type = /datum/event/hivemind
@@ -16,7 +16,7 @@
 //============================================
 
 /datum/event/hivemind
-	announceWhen	= 32
+	announceWhen	= 300
 
 
 /datum/event/hivemind/announce()
@@ -24,12 +24,16 @@
 
 
 /datum/event/hivemind/start()
-	var/area/A = random_ship_area(filter_players = TRUE, filter_maintenance = TRUE, filter_critical = TRUE)
-	var/turf/T = A.random_space()
-	if(!T)
-		log_and_message_admins("Hivemind failed to find a viable turf.")
-		kill()
-		return
+	var/turf/start_location
+	for(var/i=1 to 100)
+		var/area/A = random_ship_area(filter_players = TRUE, filter_maintenance = TRUE, filter_critical = TRUE)
+		start_location = A.random_space()
+		if(!start_location && i == 100)
+			log_and_message_admins("Hivemind failed to find a viable turf.")
+			kill()
+			return
+		if(start_location)
+			break
 
-	message_admins("Hivemind spawned at \the [get_area(T)] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>)")
-	new /obj/structure/hivemind_machine/node(T)
+	message_admins("Hivemind spawned at \the [jumplink(start_location)]")
+	new /obj/machinery/hivemind_machine/node(start_location)

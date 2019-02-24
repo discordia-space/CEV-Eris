@@ -1,7 +1,5 @@
-//Hivemind - is rogue AI, that use unknown nanotech
-//Main goal of this machine is spread across the ship and annihilate so much stuff as he can
-//We are actually don't know who created this ai, how much time it wanders in space or, maybe, any other way?
-//We even don't know why this ai do it.
+//The Hivemind is a rogue AI using nanites.
+//The objective of this AI is to spread across the ship and destroy as much as possible.
 
 
 var/datum/hivemind/hive_mind_ai
@@ -24,24 +22,24 @@ var/datum/hivemind/hive_mind_ai
 											/obj/machinery/status_display,			/obj/machinery/requests_console,
 											/obj/machinery/newscaster,				/obj/machinery/floor_light,
 											/obj/machinery/nuclearbomb,				/obj/machinery/flasher,
-											/obj/machinery/filler_object)
+											/obj/machinery/filler_object,			/obj/machinery/hivemind_machine)
 	//internals
 	var/list/global_abilities_cooldown = list()
 	var/list/EP_price_list = list()
 
 /datum/hivemind/New()
 	..()
-	name = pick("Reworker", "Executor", "Annihilator",
-				"Bugmerger", "Exploiter", "Builder", "Maker",
-				"Connector", "Splicer", "Reproducer")
+	name = pick("Reclaimer", "Shaper", "Executor", "Assimilator",
+				"Exploiter", "Builder", "Creator",
+				"Connector", "Splicer", "Propagator")
 
 	surname = pick("ALPHA", "BETA", "GAMMA", "DELTA", "OMEGA", "UTOPIA",
 					"SALVATION-X", "CHORUS", "ICARUS", "HEGEMONY", "HARMONY")
-	var/list/all_machines = subtypesof(/obj/structure/hivemind_machine) - /obj/structure/hivemind_machine/node
+	var/list/all_machines = subtypesof(/obj/machinery/hivemind_machine) - /obj/machinery/hivemind_machine/node
 	//price list building
 	//here we create list with EP price to compare it at annihilation proc
 	for(var/machine_path in all_machines)
-		var/obj/structure/hivemind_machine/temporary_machine = new machine_path
+		var/obj/machinery/hivemind_machine/temporary_machine = new machine_path
 		EP_price_list[machine_path] = temporary_machine.evo_points_required
 		qdel(temporary_machine)
 	message_admins("Hivemind [name] [surname] has been created.")
