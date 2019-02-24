@@ -3,7 +3,8 @@
 //Glidesize
 #define FRACTIONAL_GLIDESIZES 1
 #ifdef FRACTIONAL_GLIDESIZES
-#define DELAY2GLIDESIZE(delay) (world.icon_size / max(Ceiling(delay / world.tick_lag), 1))
+#define DELAY2GLIDESIZE(delay) (world.icon_size / (delay / world.tick_lag))
+//#define DELAY2GLIDESIZE(delay) (world.icon_size / max(Ceiling(delay / world.tick_lag), 1))
 #else
 #define DELAY2GLIDESIZE(delay) (Ceiling(world.icon_size / max(Ceiling(delay / world.tick_lag), 1)))
 #endif
@@ -15,6 +16,7 @@
 #define HAS_TRANSFORMATION_MOVEMENT_HANDLER(X) X.HasMovementHandler(/datum/movement_handler/mob/transformation)
 #define ADD_TRANSFORMATION_MOVEMENT_HANDLER(X) X.AddMovementHandler(/datum/movement_handler/mob/transformation)
 #define DEL_TRANSFORMATION_MOVEMENT_HANDLER(X) X.RemoveMovementHandler(/datum/movement_handler/mob/transformation)
+
 
 // Quick and deliberate movements are not necessarily mutually exclusive
 #define MOVE_INTENT_DELIBERATE 0x0001

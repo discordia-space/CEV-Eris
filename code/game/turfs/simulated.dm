@@ -41,7 +41,13 @@
 		update_dirt()
 
 		if(ishuman(M))
+
+
 			var/mob/living/carbon/human/H = M
+
+			//Footstep sounds. This proc is in footsteps.dm
+			H.handle_footstep(src)
+
 			// Tracking blood
 			var/list/bloodDNA = null
 			var/bloodcolor=""

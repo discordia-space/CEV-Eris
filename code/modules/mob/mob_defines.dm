@@ -87,8 +87,17 @@
 	var/lying = 0
 	var/lying_prev = 0
 	var/canmove = 1
-	//Allows mobs to move through dense areas without restriction. For instance, in space or out of holder objects.
+
+
+	/*
+Allows mobs to move through dense areas without restriction. For instance, in space or out of holder objects.
+This var is no longer actually used for incorporeal moving, this is handled by /datum/movement_handler/mob/incorporeal
+However this var is still kept as a quick way to check if the mob is incorporeal. This is used in several performance intensive applications
+While it would be entirely possible to check the mob's move handlers list for the existence of the incorp handler, that is less optimal for intensive use
+*/
 	var/incorporeal_move = 0 //0 is off, 1 is normal, 2 is for ninjas.
+
+
 	var/unacidable = 0
 	var/list/pinned = list()            // List of things pinning this creature to walls (see living_defense.dm)
 	var/list/embedded = list()          // Embedded items, since simple mobs don't have organs.

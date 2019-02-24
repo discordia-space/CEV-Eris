@@ -20,6 +20,8 @@
 	LAZYREMOVE(allowed_movers, mover)
 
 // Admin object possession
+/datum/movement_handler/mob/admin_possess
+	var/nextmove = 0
 /datum/movement_handler/mob/admin_possess/DoMove(var/direction)
 	if(QDELETED(mob.control_object))
 		return MOVEMENT_REMOVE
@@ -32,6 +34,12 @@
 		. |= MOVEMENT_REMOVE
 	else
 		control_object.set_dir(direction)
+	nextmove = world.time + 2.5
+
+/datum/movement_handler/mob/admin_possess/MayMove(var/mob/mover, var/is_external)
+	if (world.time > nextmove)
+		return MOVEMENT_PROCEED
+	return MOVEMENT_STOP
 
 // Death handling
 /datum/movement_handler/mob/death/DoMove()
@@ -150,8 +158,8 @@
 	Here, we store the overflow time and apply it as a discount to the next step's delay. This ensures that journey times are accurate over a distance
 	Any individual step can still be slightly slower than it should be, but the next one will compensate and errors won't compound
 	*/
-	overflow = next_move - world.time
-	if (overflow > 1)
+	var/overflow = next_move - world.time
+	if (overflow > 1 || overflow < 0)
 		overflow = 0
 
 	var/delay = mob.movement_delay() - overflow
@@ -161,16 +169,19 @@
 	/*
 	SMOOTH MOVEMENT
 	*/
-	mob.set_glide_size(DELAY2GLIDESIZE(delay))
+	mob.set_glide_size(DELAY2GLIDESIZE(delay), 0, INFINITY)
 
 
 /datum/movement_handler/mob/delay/MayMove(var/mover, var/is_external)
 	if(IS_NOT_SELF(mover) && is_external)
 		return MOVEMENT_PROCEED
-	return ((mover && mover != mob) ||  world.time >= next_move) ? MOVEMENT_PROCEED : MOVEMENT_STOP
+	.= ((mover && mover != mob) ||  world.time >= next_move) ? MOVEMENT_PROCEED : MOVEMENT_STOP
+
+
 
 /datum/movement_handler/mob/delay/proc/SetDelay(var/delay)
 	next_move = max(next_move, world.time + delay)
+	world << "Set delay [delay] nextmove is [next_move]"
 
 /datum/movement_handler/mob/delay/proc/AddDelay(var/delay)
 	next_move += max(0, delay)

@@ -169,7 +169,7 @@
 	if ((drowsyness > 0) && !MOVING_DELIBERATELY(src))
 		. += 6
 	if(lying) //Crawling, it's slower
-		. += 8 + (weakened * 2)
+		. += 14 + (weakened)
 	. += move_intent.move_delay
 
 

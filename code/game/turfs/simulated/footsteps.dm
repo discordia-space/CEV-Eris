@@ -1,9 +1,3 @@
-/turf/simulated/Entered(var/mob/living/carbon/human/H)
-	..()
-	if(istype(H))
-		H.handle_footstep(src)
-		H.step_count++
-
 //Only humans make footstep sounds
 /mob/proc/handle_footstep(var/turf/simulated/T)
 	return
@@ -15,9 +9,9 @@
 	if(buckled || lying || throwing)
 		return //people flying, lying down or sitting do not step
 
-	if(MOVING_QUICKLY(src))
-		if(step_count % 2) //every other turf makes a sound
-			return
+	//Step count is iterated in living.dm, living/move
+	if(step_count % 2) //every other turf makes a sound
+		return
 
 
 	if(shoes && (shoes.item_flags & SILENT))
@@ -32,6 +26,7 @@
 
 	var/footsound = T.get_footstep_sound()
 	if(footsound)
+
 		var/range = -(world.view - 2)
 		var/volume = 70
 		if(MOVING_DELIBERATELY(src))
