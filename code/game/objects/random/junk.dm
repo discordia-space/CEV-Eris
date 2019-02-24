@@ -7,6 +7,7 @@
 		/obj/random/rare = 1, //A diamond in the rough
 		/obj/item/weapon/material/shard = 5,
 		/obj/item/weapon/material/shard/shrapnel = 8,
+		/obj/item/weapon/reagent_containers/pill/floorpill = 8,
 		/obj/item/stack/material/cardboard = 3,
 		/obj/item/weapon/storage/box/lights/mixed = 3,
 		/obj/item/weapon/storage/box/matches = 4,
