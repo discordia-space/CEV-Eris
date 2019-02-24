@@ -29,9 +29,6 @@
 /mob/living/simple_animal/cat/Life()
 	..()
 
-	if(incapacitated())
-		return
-
 	if (turns_since_move > 5 || (flee_target || mousetarget))
 		walk_to(src,0)
 		turns_since_move = 0
@@ -74,8 +71,8 @@
 		walk_to(src,movement_target,0,seek_move_delay)
 
 /mob/living/simple_animal/cat/proc/attack_mice()
-	if((src.loc) && isturf(src.loc))
-		if(!stat && !resting && !buckled)
+	if((loc) && isturf(loc))
+		if(!incapacitated())
 			for(var/mob/living/simple_animal/mouse/M in oview(src,1))
 				if(M.stat != DEAD)
 					M.splat()

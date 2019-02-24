@@ -14,6 +14,7 @@
 	speak_emote = list("squeeks","squeeks","squiks")
 	emote_hear = list("squeeks","squeaks","squiks")
 	emote_see = list("runs in a circle", "shakes", "scritches at something")
+	eat_sounds = list('sound/effects/creatures/nibble1.ogg','sound/effects/creatures/nibble2.ogg')
 	var/soft_squeaks = list('sound/effects/creatures/mouse_squeaks_1.ogg',
 	'sound/effects/creatures/mouse_squeaks_2.ogg',
 	'sound/effects/creatures/mouse_squeaks_3.ogg',

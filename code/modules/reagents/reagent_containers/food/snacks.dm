@@ -38,7 +38,10 @@
 		if(trash)
 			if(ispath(trash,/obj/item))
 				var/obj/item/TrashItem = new trash(feeder)
-				feeder.put_in_hands(TrashItem)
+				if(isanimal(feeder))
+					TrashItem.forceMove(loc)
+				else
+					feeder.put_in_hands(TrashItem)
 			else if(istype(trash,/obj/item))
 				feeder.put_in_hands(trash)
 		qdel(src)
@@ -100,7 +103,7 @@
 			user.visible_message(SPAN_DANGER("[user] feeds [M] [src]."))
 
 		if(reagents)			//Handle ingestion of the reagent.
-			playsound(M.loc,'sound/items/eatfood.ogg', rand(10,50), 1)
+			playsound(M.loc,pick(M.eat_sounds), rand(10,50), 1)
 			if(reagents.total_volume)
 				if(reagents.total_volume > bitesize)
 					reagents.trans_to_mob(M, bitesize, CHEM_INGEST)
@@ -128,11 +131,10 @@
 			return 0//The target creature can't eat
 
 		if (amount_eaten)
+			playsound(M.loc,pick(M.eat_sounds), rand(10,30), 1)
 			bitecount++
 			if (amount_eaten >= m_bitesize)
 				user.visible_message(SPAN_NOTICE("[user] feeds [src] to [M]."))
-				if (!istype(M.loc, /turf))//held mobs don't see visible messages
-					M << SPAN_NOTICE("[user] feeds you [src].")
 			else
 				user.visible_message(SPAN_NOTICE("[user] feeds [M] a tiny bit of [src]. <b>It looks full.</b>"))
 				if (!istype(M.loc, /turf))
@@ -240,8 +242,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/attack_generic(var/mob/living/user)
 	if(!isanimal(user) && !isalien(user))
 		return
-	user.visible_message("<b>[user]</b> nibbles away at \the [src].","You nibble away at \the [src].")
-	bitecount++
 
 	var/amount_eaten = bitesize
 	var/m_bitesize = bitesize
@@ -263,11 +263,13 @@
 		else
 			amount_eaten = reagents.trans_to_mob(user, m_bitesize, CHEM_INGEST)
 	if (amount_eaten)
+		playsound(user.loc,pick(user.eat_sounds), rand(10,30), 1)
+		shake_animation(5)
 		bitecount++
 		if (amount_eaten < m_bitesize)
-			user.visible_message("<span class='notice'><b>[user]</b> reluctantly nibbles a tiny part of \the [src].</span>","<span class='notice'>You reluctantly nibble a tiny part of \the [src]. <b>You can't stomach much more!</b>.</span>")
+			user << SPAN_NOTICE("You reluctantly nibble a tiny part of \the [src]. <b>You can't stomach much more!</b>.")
 		else
-			user.visible_message("<span class='notice'><b>[user]</b> nibbles away at \the [src].</span>","<span class='notice'>You nibble away at \the [src].</span>")
+			user << SPAN_NOTICE("You nibble away at \the [src].")
 	else
 		user << "<span class='danger'>You're too full to eat anymore!</span>"
 

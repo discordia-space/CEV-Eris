@@ -85,7 +85,7 @@
 	var/autoseek_food = 1//If 0. this animal will not automatically eat
 	var/beg_for_food = 1//If 0, this animal will not show interest in food held by a person
 	var/min_scan_interval = 1//Minimum and maximum number of procs between a foodscan. Animals will slow down if there's no food around for a while
-	var/max_scan_interval = 15
+	var/max_scan_interval = 30
 	var/scan_interval = 5//current scan interval, clamped between min and max
 	//It gradually increases up to max when its left alone, to save performance
 	//It will drop back to 1 if it spies any food.
@@ -115,10 +115,8 @@
 	verbs -= /mob/verb/observe
 
 	if (mob_size)
-		nutrition_step = mob_size * 0.05
 		nutrition_step = mob_size * 0.03 * metabolic_factor
-		bite_factor = mob_size * 0.3
-		max_nutrition *= 1 + (nutrition_step*3)//Max nutrition scales faster than costs, so bigger creatures eat less often
+		bite_factor = mob_size * 0.1
 		max_nutrition *= 1 + (nutrition_step*4)//Max nutrition scales faster than costs, so bigger creatures eat less often
 		reagents = new/datum/reagents(stomach_size_mult*mob_size, src)
 	else
@@ -187,28 +185,10 @@
 	process_food()
 	handle_foodscanning()
 
-	//Movement
-	turns_since_move++
-	if(!client && !stop_automated_movement && wander && !anchored)
-		if(isturf(src.loc) && !resting && !buckled && canmove)		//This is so it only moves if it's not inside a closet, gentics machine, etc.
-			if(turns_since_move >= turns_per_move)
-				if(!(stop_automated_movement_when_pulled && pulledby)) //Soma animals don't move when pulled
-					var/moving_to = 0 // otherwise it always picks 4, fuck if I know.   Did I mention fuck BYOND
-					moving_to = pick(cardinal)
-					set_dir(moving_to)			//How about we turn them the direction they are moving, yay.
-					step_glide(src, moving_to, DELAY2GLIDESIZE(0.5 SECONDS))
-					turns_since_move = 0
-
-	//Speaking
-	if(!client && speak_chance)
-		if(rand(0,200) < speak_chance)
-			visible_emote(emote_see)
-			speak_audio()
-
 	//Atmos
 	var/atmos_suitable = 1
 
-	var/atom/A = src.loc
+	var/atom/A = loc
 
 	if(istype(A,/turf))
 		var/turf/T = A
@@ -257,6 +237,28 @@
 
 	if(!atmos_suitable)
 		adjustBruteLoss(unsuitable_atoms_damage)
+
+	//Speaking
+	if(!client && speak_chance)
+		if(rand(0,200) < speak_chance)
+			visible_emote(emote_see)
+			speak_audio()
+
+	if(incapacitated())
+		return 1
+
+	//Movement
+	turns_since_move++
+	if(!client && !stop_automated_movement && wander && !anchored)
+		if(isturf(loc) && !incapacitated() && canmove)		//This is so it only moves if it's not inside a closet, gentics machine, etc.
+			if(turns_since_move >= turns_per_move)
+				if(!(stop_automated_movement_when_pulled && pulledby)) //Soma animals don't move when pulled
+					var/moving_to = 0 // otherwise it always picks 4, fuck if I know.   Did I mention fuck BYOND
+					moving_to = pick(cardinal)
+					set_dir(moving_to)			//How about we turn them the direction they are moving, yay.
+					step_glide(src, moving_to, DELAY2GLIDESIZE(0.5 SECONDS))
+					turns_since_move = 0
+
 	return 1
 
 /mob/living/simple_animal/proc/visible_emote(message)
@@ -476,12 +478,12 @@
 		return 0
 
 	//Feeding, chasing food, FOOOOODDDD
-	if(!stat && !resting && !buckled)
+	if(!incapacitated())
 
 		turns_since_scan++
 		if(turns_since_scan >= scan_interval)
 			turns_since_scan = 0
-			if((movement_target) && (!(isturf(movement_target.loc) || ishuman(movement_target.loc))) || (foodtarget && !can_eat() ))
+			if(movement_target && (!(isturf(movement_target.loc) || ishuman(movement_target.loc)) || (foodtarget && !can_eat()) ))
 				movement_target = null
 				foodtarget = 0
 				stop_automated_movement = 0
@@ -537,7 +539,7 @@
 
 					if(isturf(movement_target.loc) && Adjacent(get_turf(movement_target), src))
 						UnarmedAttack(movement_target)
-						if (get_turf(movement_target) == src.loc)
+						if (get_turf(movement_target) == loc)
 							set_dir(pick(1,2,4,8,1,1))//Face a random direction when eating, but mostly upwards
 					else if(ishuman(movement_target.loc) && Adjacent(src, get_turf(movement_target)) && prob(15))
 						beg(movement_target, movement_target.loc)

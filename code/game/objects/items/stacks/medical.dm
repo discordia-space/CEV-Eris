@@ -11,7 +11,8 @@
 	var/heal_burn = 0
 
 /obj/item/stack/medical/attack(mob/living/M, mob/living/user)
-	if (!istype(M) || istype(M, /mob/living/silicon))
+	var/types = M.get_classification()
+	if (!(types & CLASSIFICATION_ORGANIC))
 		user << SPAN_WARNING("\The [src] cannot be applied to [M]!")
 		return 1
 
@@ -51,13 +52,17 @@
 				SPAN_NOTICE("[user] starts applying [src] to [M]."), \
 				SPAN_NOTICE("You start applying [src] to [M].") \
 			)
+		var/med_skill = user.stats.getStat(STAT_BIO)
 		if (do_after(user, 30, M))
-			M.heal_organ_damage((src.heal_brute/2), (src.heal_burn/2))
+			M.heal_organ_damage((src.heal_brute * (1+med_skill/50)/2), (src.heal_burn * (1+med_skill/50)/2))
+			if(prob(10 + med_skill))
+				user << SPAN_NOTICE("You have managed to waste less [src].")
+			else
+				use(1)
 			user.visible_message( \
 				SPAN_NOTICE("[M] starts has been applied with [src] by [user]."), \
 				SPAN_NOTICE("You apply [src] to [M].") \
 			)
-			use(1)
 
 	M.updatehealth()
 

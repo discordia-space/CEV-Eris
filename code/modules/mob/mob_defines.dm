@@ -92,6 +92,7 @@
 	var/old_y = 0
 	var/nutrition = 400  //carbon
 	var/max_nutrition = 400
+	var/list/eat_sounds = list('sound/items/eatfood.ogg')
 
 	var/shakecamera = 0
 	var/a_intent = I_HELP//Living
