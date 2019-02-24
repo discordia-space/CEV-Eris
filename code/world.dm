@@ -116,13 +116,13 @@ var/world_topic_spam_protect_ip = "0.0.0.0"
 var/world_topic_spam_protect_time = world.timeofday
 
 /world/Topic(T, addr, master, key)
-	var/static/list/topic_handlers = TopicHandlers()
+	var/static/list/topic_handlers = WorldTopicHandlers()
 
 	var/list/input = params2list(T)
 	var/datum/world_topic/handler
 	for(var/I in topic_handlers)
-		if(input[I])
-			handler = I
+		if(I in input)
+			handler = topic_handlers[I]
 			break
 
 	if(!handler || initial(handler.log))
@@ -132,7 +132,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		return
 
 	handler = new handler()
-	return handler.Run(input)
+	return handler.TryRun(input)
 
 
 /world/Reboot(var/reason)

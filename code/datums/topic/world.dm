@@ -1,24 +1,3 @@
-// SETUP
-
-/world/proc/TopicHandlers()
-	. = list()
-	var/list/all_handlers = subtypesof(/datum/world_topic)
-	for(var/I in all_handlers)
-		var/datum/world_topic/WT = I
-		var/keyword = initial(WT.keyword)
-		if(!keyword)
-			warning("[WT] has no keyword! Ignoring...")
-			continue
-		var/existing_path = .[keyword]
-		if(existing_path)
-			warning("[existing_path] and [WT] have the same keyword! Ignoring [WT]...")
-		else if(keyword == "key")
-			warning("[WT] has keyword 'key'! Ignoring...")
-		else
-			.[keyword] = WT
-
-// DATUM
-
 /datum/world_topic
 	var/keyword
 	var/log = TRUE
@@ -100,7 +79,7 @@
 		s["players"] = n
 		s["admins"] = admins
 
-	return list2params(s)
+	return s
 
 
 /datum/world_topic/manifest
@@ -139,7 +118,7 @@
 	for(var/k in positions)
 		positions[k] = list2params(positions[k]) // converts positions["heads"] = list("Bob"="Captain", "Bill"="CMO") into positions["heads"] = "Bob=Captain&Bill=CMO"
 
-	return list2params(positions)
+	return positions
 
 
 /datum/world_topic/revision
@@ -147,7 +126,7 @@
 
 /datum/world_topic/revision/Run(list/input)
 	if(revdata.revision)
-		return list2params(list(branch = revdata.branch, date = revdata.date, revision = revdata.revision))
+		return list(branch = revdata.branch, date = revdata.date, revision = revdata.revision)
 	else
 		return "unknown"
 
