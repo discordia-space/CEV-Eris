@@ -11,9 +11,10 @@
 	density = TRUE
 	anchored = TRUE
 	use_power = FALSE
-	var/health = 60
-	var/max_health = 60
-	var/evo_points_required = 0 		//how much EP hivemind must have to spawn this, used in price list to comparison
+	var/illumination_color = 	COLOR_LIGHTING_CYAN_MACHINERY
+	var/health = 				60
+	var/max_health = 			60
+	var/evo_points_required = 	0 		//how much EP hivemind must have to spawn this, used in price list to comparison
 	var/cooldown_time = 10 SECONDS		//each machine have their ability, this is cooldown of them
 	var/global_cooldown = FALSE			//if true, ability will be used only once in whole world, before cooldown reset
 	var/list/spawned_creatures = list()	//which mobs machine can spawns, insert paths
@@ -25,6 +26,7 @@
 	. = ..()
 	name_pick()
 	health = max_health
+	set_light(2, 3, illumination_color)
 
 
 /obj/machinery/hivemind_machine/Process()
@@ -135,6 +137,7 @@
 //stunned machines can't do anything
 //amount must be number in seconds
 /obj/machinery/hivemind_machine/proc/stun(var/amount)
+	set_light(0)
 	stat |= EMPED
 	update_icon()
 	if(amount)
@@ -144,6 +147,7 @@
 /obj/machinery/hivemind_machine/proc/unstun()
 	stat &= ~EMPED
 	update_icon()
+	set_light(2, 3, illumination_color)
 
 
 /obj/machinery/hivemind_machine/bullet_act(obj/item/projectile/Proj)

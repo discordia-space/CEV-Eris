@@ -1275,8 +1275,6 @@
 	..()
 	set_trait(TRAIT_IMMUTABLE,1)
 	set_trait(TRAIT_PLANT_COLOUR,null)
-	set_trait(TRAIT_BIOLUM,1)
-	set_trait(TRAIT_BIOLUM_COLOUR,"#008080")
 	set_trait(TRAIT_YIELD,-1)
 	set_trait(TRAIT_SPREAD,3)
 	set_trait(TRAIT_POTENCY,50)
