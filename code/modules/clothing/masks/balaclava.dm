@@ -12,23 +12,28 @@
 	desc = "Designed to both hide identities and keep your face comfy and warm."
 	icon_state = "swatclava"
 	item_state = "balaclava"
-	flags_inv = HIDEFACE|BLOCKHAIR
-	w_class = ITEM_SIZE_SMALL
-	var/open = 0
+	var/open = 0 //0 = full, 1 = cover mouth, 2 = cover head
 
 /obj/item/clothing/mask/balaclava/tactical/proc/adjust_mask(mob/user)
 	if(!usr.incapacitated())
-		src.open = !src.open
-		if (src.open)
-			body_parts_covered = body_parts_covered & ~FACE
-			icon_state = initial(icon_state) + "_open"
-			user << "You open your face, putting the balaclava away."
-		else
-			gas_transfer_coefficient = initial(gas_transfer_coefficient)
-			body_parts_covered = initial(body_parts_covered)
-			icon_state = initial(icon_state)
-			user << "You pull balaclava up to cover your face."
-		update_wear_icon()
+		open = (open + 1) % 3
+		switch(open)
+			if (2)
+				flags_inv = BLOCKHEADHAIR
+				body_parts_covered = HEAD
+				icon_state = "swatclava_open"
+				user << "You put the balaclava away, revealing your face."
+			if (1)
+				flags_inv = HIDEFACE|BLOCKFACEHAIR
+				body_parts_covered = FACE
+				icon_state = "swatclava_mouth"
+				user << "You pull the balaclava up to cover your mouth."
+			if (0)
+				flags_inv = HIDEFACE|BLOCKHAIR
+				body_parts_covered = FACE|HEAD
+				icon_state = "swatclava"
+				user << "You pull the balaclava up to cover your head."
+		usr.update_inv_wear_mask()
 
 /obj/item/clothing/mask/balaclava/tactical/attack_self(mob/user)
 	adjust_mask(user)
