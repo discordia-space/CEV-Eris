@@ -6,7 +6,7 @@
 /obj/effect/window_lwall_spawn
 	name = "window spawner"
 	icon = 'icons/obj/structures.dmi'
-	icon_state = "sp_full-window"
+	icon_state = "sp_full_window"
 	density = 1
 	anchored = 1.0
 	var/win_path = /obj/structure/window/basic/full
@@ -49,12 +49,12 @@
 
 /obj/effect/window_lwall_spawn/reinforced
 	name = "reinforced window low-wall spawner"
-	icon_state = "sp_full-window"
+	icon_state = "sp_full_window"
 	win_path = /obj/structure/window/reinforced/full
 
 /obj/effect/window_lwall_spawn/smartspawn
 	name = "reinforced window low-wall smart spawner"
-	icon_state = "sp-smart_full-window"
+	icon_state = "sp_smart_full_window"
 
 /obj/effect/window_lwall_spawn/smartspawn/handle_window_spawn(var/obj/structure/window/W)
 	if (is_turf_near_space(loc))
@@ -72,17 +72,35 @@
 
 /obj/effect/window_lwall_spawn/plasma
 	name = "plasma window low-wall spawner"
-	icon_state = "sp_full-window-plasma"
+	icon_state = "sp_full_window_plasma"
 	win_path = /obj/structure/window/plasmabasic/full
 
 /obj/effect/window_lwall_spawn/plasma/reinforced
 	name = "reinforced plasma window low-wall spawner"
-	icon_state = "sp_full-window-plasma"
+	icon_state = "sp_full_window_plasma"
 	win_path = /obj/structure/window/reinforced/plasma/full
+
+/obj/effect/window_lwall_spawn/smartspawnplasma
+	name = "reinforced plasma window low-wall smart spawner"
+	icon_state = "sp_smart_full_window_plasma"
+
+/obj/effect/window_lwall_spawn/smartspawnplasma/handle_window_spawn(var/obj/structure/window/W)
+	if (is_turf_near_space(loc))
+		new /obj/structure/window/plasmabasic/full(loc)
+	else
+		for (var/a in cardinal_turfs(loc))
+			var/turf/T = a
+			if (is_turf_near_space(T))
+				if ((locate(/obj/structure/window/reinforced/plasma/full) in T) || (locate(/obj/effect/window_lwall_spawn/plasma/reinforced) in T))
+					new /obj/structure/window/plasmabasic/full(loc)
+					return
+
+		new /obj/structure/window/reinforced/plasma/full(loc)
+		return
 
 /obj/effect/window_lwall_spawn/reinforced/polarized
 	name = "polarized window low-wall spawner"
-	icon_state = "sp_full-window-tinted"
+	icon_state = "sp_full_window_tinted"
 	win_path = /obj/structure/window/reinforced/polarized/full
 	var/id
 
@@ -91,4 +109,3 @@
 	if(id)
 		P.id = id
 	return
-

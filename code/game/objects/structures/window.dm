@@ -571,20 +571,21 @@
 /obj/structure/window/reinforced/plasma
 	name = "reinforced plasma window"
 	desc = "A borosilicate alloy window, with rods supporting it. It seems to be very strong."
-	basestate = "plasmarwindow"
+	basestate = "rpwindow"
 	icon_state = "plasmarwindow"
 	shardtype = /obj/item/weapon/material/shard/plasma
 	glasstype = /obj/item/stack/material/glass/plasmarglass
 	maximal_heat = T0C + 5453 // Safe use temperature at 6000 kelvin.
 	damage_per_fire_tick = 1.5
-	maxhealth = 150
+	maxhealth = 200
 	resistance = 10
 
 /obj/structure/window/reinforced/plasma/full
 	dir = SOUTH|EAST
+	icon = 'icons/obj/structures/windows.dmi'
 	icon_state = "plasmarwindow_mask"
 	alpha = 150
-	maxhealth = 200
+	maxhealth = 250
 	resistance = 12
 
 /obj/structure/window/reinforced/tinted
