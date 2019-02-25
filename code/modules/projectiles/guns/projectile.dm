@@ -212,10 +212,10 @@
 //attempts to unload src. If allow_dump is set to 0, the speedloader unloading method will be disabled
 /obj/item/weapon/gun/projectile/proc/unload_ammo(mob/user, var/allow_dump=1)
 	if(ammo_magazine)
-		if(!user.put_in_hands(ammo_magazine))
-			return
+		user.put_in_hands(ammo_magazine)
 
-		if(unload_sound) playsound(src.loc, unload_sound, 75, 1)
+		if(unload_sound)
+			playsound(src.loc, unload_sound, 75, 1)
 		ammo_magazine.update_icon()
 		ammo_magazine = null
 	else if(loaded.len)

@@ -26,8 +26,12 @@
 	return
 
 /obj/machinery/shieldwallgen/excelsior/verb/toggle_stun()
+	set category = "Object"
 	set name = "Toggle stun mode"
-	set src in range(1)
+	set src in view(1)
+
+	if(usr.incapacitated())
+		return
 
 	stunmode = !stunmode
 

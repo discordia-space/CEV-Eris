@@ -12,7 +12,7 @@
 
 	var/speed = 1
 	var/mat_efficiency = 1
-	var/list/materials = list(MATERIAL_STEEL = 0, MATERIAL_GLASS = 0, MATERIAL_PLASTIC = 0, MATERIAL_GOLD = 0, MATERIAL_SILVER = 0, MATERIAL_DIAMOND = 0, MATERIAL_PLASMA = 0, MATERIAL_URANIUM = 0)
+	var/list/materials = list(MATERIAL_STEEL = 0, MATERIAL_GLASS = 0, MATERIAL_PLASTIC = 0)
 	var/res_max_amount = 240
 
 	var/datum/research/files
@@ -139,7 +139,7 @@
 
 	var/material = S.get_material_name()
 
-	if(!material || !(material in materials))
+	if(!material)
 		return ..()
 
 	if(materials[material] >= res_max_amount)
@@ -163,6 +163,8 @@
 		res_load(material)
 		if(S.use(amount))
 			user << SPAN_NOTICE("You add [amount] [material] sheet\s to \the [src].")
+			if(!(material in materials))
+				materials[material] = 0
 			materials[material] += amount
 	update_busy()
 	return TRUE

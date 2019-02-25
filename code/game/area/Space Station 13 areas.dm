@@ -42,6 +42,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	var/area_light_color = null		//Used by lights to create different light on different departments and locations
 
 	var/has_gravity = 1
+	var/cached_gravity = 1		//stores updated has_gravity even if it's blocked
+	var/atom/gravity_blocker = null	//ref to antigrav
 	var/obj/machinery/power/apc/apc = null
 	var/no_air = null
 	var/list/all_doors = list()		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
@@ -481,6 +483,12 @@ area/space/atmosalert()
 	icon_state = "Holodeck"
 	dynamic_lighting = 0
 	sound_env = LARGE_ENCLOSED
+
+//We'll assume holodecks have their own private gravity/antigrav generator, and are thus immune to any changes in gravity elsewhere
+//This proc checks and sets nothing. Gravity will be set directly on the area from a nearby holodeck console
+/area/holodeck/update_gravity()
+	//Always assume it changed whenever this is called
+	gravity_changed()
 
 /area/holodeck/alphadeck
 	name = "\improper Holodeck Alpha"
