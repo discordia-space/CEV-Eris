@@ -57,3 +57,6 @@
 	name = "Ironhammer tactical HUD"
 	desc = "Flash-resistant goggles with inbuilt combat and security information."
 	icon_state = "swatgoggles"
+
+/obj/item/clothing/glasses/hud/broken/process_hud(mob/M)
+	process_broken_hud(M, 1)

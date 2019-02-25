@@ -18,3 +18,8 @@
 
 	return null//If we get here, the holder must be buried many layers deep in nested containers, or else is somehow contained in nullspace
 
+/atom/proc/in_maintenance()
+	var/area/A = get_area(src)
+	if (A && A.is_maintenance)
+		return TRUE
+	return FALSE

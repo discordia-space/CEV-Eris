@@ -69,6 +69,9 @@
 		if(content_size > storage_capacity-5)
 			storage_capacity = content_size + 5
 
+	if (in_maintenance() && prob(20))
+		make_old()
+
 
 
 /obj/structure/closet/examine(mob/user)
