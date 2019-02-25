@@ -1,5 +1,5 @@
 /obj/machinery/antigrav
-	name = "antigrav generetor"
+	name = "antigrav generator"
 	desc = "It temporarily disables gravity around."
 	icon_state = "GraviMobile"
 	density = 1
@@ -9,18 +9,26 @@
 	active_power_usage = 10000
 	circuit = /obj/item/weapon/circuitboard/antigrav
 
+	var/power_usage_per_tile = 200
 	var/on = FALSE
 	var/image/ball = null
 	var/area/area = null
+	var/turfcount = 0
 
 /obj/machinery/antigrav/proc/start()
 	area = get_area(src)
 	if(area.gravity_blocker && area.gravity_blocker != src)
-		src.visible_message(SPAN_NOTICE("\The [src] failed to start."))
+		src.visible_message(SPAN_NOTICE("\The [src] failed to start. There may be interference from another generator."))
 		return
 
+	turfcount = 0
+	for (var/turf/simulated/S in area)
+		turfcount++
+
+	active_power_usage = 4000 + (turfcount * power_usage_per_tile)
+
 	area.gravity_blocker = src
-	area.has_gravity = FALSE
+	area.update_gravity()
 
 	if(!on)
 		start_anim()
@@ -29,11 +37,17 @@
 	use_power = 2
 	update_icon()
 
+/obj/machinery/antigrav/examine(var/mob/user)
+	.=..()
+	if (on)
+		user << SPAN_NOTICE("The display on the side indicates that it is currently providing null-gravity over an area of [turfcount] m<sup>2</sup> and consuming [active_power_usage * 0.001] kW of power")
+
 /obj/machinery/antigrav/proc/stop()
 	if(area)
 		area.gravity_blocker = null
-		area.gravitychange(area.cached_gravity, area)
+		area.update_gravity()
 		area = null
+		turfcount = 0
 
 	if(on)
 		stop_anim()
@@ -76,7 +90,7 @@
 			if (I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
 				user.visible_message( \
 					SPAN_NOTICE("\The [user] fastens \the [src]."), \
-					SPAN_NOTICE("You have fastened \the [src]. Now it can dispense pipes."), \
+					SPAN_NOTICE("You have fastened \the [src]. Now it can counteract gravity."), \
 					"You hear ratchet.")
 				src.anchored = 1
 		update_icon()

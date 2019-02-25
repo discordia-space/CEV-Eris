@@ -484,6 +484,12 @@ area/space/atmosalert()
 	dynamic_lighting = 0
 	sound_env = LARGE_ENCLOSED
 
+//We'll assume holodecks have their own private gravity/antigrav generator, and are thus immune to any changes in gravity elsewhere
+//This proc checks and sets nothing. Gravity will be set directly on the area from a nearby holodeck console
+/area/holodeck/update_gravity()
+	//Always assume it changed whenever this is called
+	gravity_changed()
+
 /area/holodeck/alphadeck
 	name = "\improper Holodeck Alpha"
 
