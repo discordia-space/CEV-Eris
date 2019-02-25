@@ -1174,3 +1174,161 @@
 
 /datum/admin_topic/create_object/Run(list/input)
 	return source.create_object(usr)
+
+
+/datum/admin_topic/quick_create_object
+	keyword = "quick_create_object"
+	require_perms = list(R_FUN)
+
+/datum/admin_topic/quick_create_object/Run(list/input)
+	return source.quick_create_object(usr)
+
+
+/datum/admin_topic/create_turf
+	keyword = "create_turf"
+	require_perms = list(R_FUN)
+
+/datum/admin_topic/create_turf/Run(list/input)
+	return source.create_turf(usr)
+
+
+/datum/admin_topic/create_mob
+	keyword = "create_mob"
+	require_perms = list(R_FUN)
+
+/datum/admin_topic/create_mob/Run(list/input)
+	return source.create_mob(usr)
+
+
+/datum/admin_topic/object_list
+	keyword = "object_list"
+	require_perms = list(R_FUN)
+
+/datum/admin_topic/object_list/Run(list/input)
+	if(!config.allow_admin_spawning)
+		usr << "Spawning of items is not allowed."
+		return
+
+	var/atom/loc = usr.loc
+
+	var/dirty_paths
+	if (istext(input["object_list"]))
+		dirty_paths = list(input["object_list"])
+	else if (istype(input["object_list"], /list))
+		dirty_paths = input["object_list"]
+
+	var/paths = list()
+
+	for(var/dirty_path in dirty_paths)
+		var/path = text2path(dirty_path)
+		if(!path)
+			continue
+		paths += path
+
+	if(!paths)
+		alert("The path list you sent is empty")
+		return
+	if(length(paths) > 5)
+		alert("Select fewer object types, (max 5)")
+		return
+
+	var/list/offset = splittext(input["offset"],",")
+	var/number = dd_range(1, 100, text2num(input["object_count"]))
+	var/X = offset.len > 0 ? text2num(offset[1]) : 0
+	var/Y = offset.len > 1 ? text2num(offset[2]) : 0
+	var/Z = offset.len > 2 ? text2num(offset[3]) : 0
+	var/tmp_dir = input["object_dir"]
+	var/obj_dir = tmp_dir ? text2num(tmp_dir) : 2
+	if(!obj_dir || !(obj_dir in list(1,2,4,8,5,6,9,10)))
+		obj_dir = 2
+	var/obj_name = sanitize(input["object_name"])
+
+
+	var/atom/target //Where the object will be spawned
+	var/where = input["object_where"]
+	if (!( where in list("onfloor","inhand","inmarked") ))
+		where = "onfloor"
+
+	switch(where)
+		if("inhand")
+			if (!iscarbon(usr) && !isrobot(usr))
+				usr << "Can only spawn in hand when you're a carbon mob or cyborg."
+				where = "onfloor"
+			target = usr
+
+		if("onfloor")
+			switch(input["offset_type"])
+				if ("absolute")
+					target = locate(0 + X,0 + Y,0 + Z)
+				if ("relative")
+					target = locate(loc.x + X,loc.y + Y,loc.z + Z)
+		if("inmarked")
+			if(!source.marked_datum())
+				usr << "You don't have any object marked. Abandoning spawn."
+				return
+			else if(!istype(source.marked_datum(),  /atom))
+				usr << "The object you have marked cannot be used as a target. Target must be of type /atom. Abandoning spawn."
+				return
+			else
+				target = source.marked_datum()
+
+	if(target)
+		for (var/path in paths)
+			for (var/i = 0; i < number; i++)
+				if(path in typesof(/turf))
+					var/turf/O = target
+					var/turf/N = O.ChangeTurf(path)
+					if(N && obj_name)
+						N.name = obj_name
+				else
+					var/atom/O = new path(target)
+					if(O)
+						O.set_dir(obj_dir)
+						if(obj_name)
+							O.name = obj_name
+							if(istype(O,/mob))
+								var/mob/M = O
+								M.real_name = obj_name
+						if(where == "inhand" && isliving(usr) && istype(O, /obj/item))
+							var/mob/living/L = usr
+							var/obj/item/I = O
+							L.put_in_hands(I)
+							if(isrobot(L))
+								var/mob/living/silicon/robot/R = L
+								if(R.module)
+									R.module.modules += I
+									I.loc = R.module
+									R.module.rebuild()
+									R.activate_module(I)
+
+	log_and_message_admins("created [number] [english_list(paths)]")
+
+
+/datum/admin_topic/admin_secrets
+	keyword = "admin_secrets"
+
+/datum/admin_topic/admin_secrets/Run(list/input)
+	var/datum/admin_secret_item/item = locate(input["admin_secrets"]) in admin_secrets.items
+	item.execute(usr)
+
+
+/datum/admin_topic/populate_inactive_customitems
+	keyword = "populate_inactive_customitems"
+	require_perms = list(R_ADMIN|R_SERVER)
+
+/datum/admin_topic/populate_inactive_customitems/Run(list/input)
+	populate_inactive_customitems_list(source.owner)
+
+
+/datum/admin_topic/vsc
+	keyword = "vsc"
+	require_perms = list(R_ADMIN|R_SERVER)
+
+/datum/admin_topic/vsc/Run(list/input)
+	switch(input["vsc"])
+		if("airflow")
+			vsc.ChangeSettingsDialog(usr,vsc.settings)
+		if("plasma")
+			vsc.ChangeSettingsDialog(usr,vsc.plc.settings)
+		if("default")
+			vsc.SetDefault(usr)

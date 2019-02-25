@@ -36,129 +36,7 @@
 	handler = new handler()
 	return handler.TryRun(href_list, src)
 
-	if(href_list["quick_create_object"])
-		if(!check_rights(R_FUN))
-			return
-		return quick_create_object(usr)
-
-	else if(href_list["create_turf"])
-		if(!check_rights(R_FUN))
-			return
-		return create_turf(usr)
-
-	else if(href_list["create_mob"])
-		if(!check_rights(R_FUN))
-			return
-		return create_mob(usr)
-
-	else if(href_list["object_list"])			//this is the laggiest thing ever
-		if(!check_rights(R_FUN))
-			return
-
-		if(!config.allow_admin_spawning)
-			usr << "Spawning of items is not allowed."
-			return
-
-		var/atom/loc = usr.loc
-
-		var/dirty_paths
-		if (istext(href_list["object_list"]))
-			dirty_paths = list(href_list["object_list"])
-		else if (istype(href_list["object_list"], /list))
-			dirty_paths = href_list["object_list"]
-
-		var/paths = list()
-
-		for(var/dirty_path in dirty_paths)
-			var/path = text2path(dirty_path)
-			if(!path)
-				continue
-			paths += path
-
-		if(!paths)
-			alert("The path list you sent is empty")
-			return
-		if(length(paths) > 5)
-			alert("Select fewer object types, (max 5)")
-			return
-
-		var/list/offset = splittext(href_list["offset"],",")
-		var/number = dd_range(1, 100, text2num(href_list["object_count"]))
-		var/X = offset.len > 0 ? text2num(offset[1]) : 0
-		var/Y = offset.len > 1 ? text2num(offset[2]) : 0
-		var/Z = offset.len > 2 ? text2num(offset[3]) : 0
-		var/tmp_dir = href_list["object_dir"]
-		var/obj_dir = tmp_dir ? text2num(tmp_dir) : 2
-		if(!obj_dir || !(obj_dir in list(1,2,4,8,5,6,9,10)))
-			obj_dir = 2
-		var/obj_name = sanitize(href_list["object_name"])
-
-
-		var/atom/target //Where the object will be spawned
-		var/where = href_list["object_where"]
-		if (!( where in list("onfloor","inhand","inmarked") ))
-			where = "onfloor"
-
-		switch(where)
-			if("inhand")
-				if (!iscarbon(usr) && !isrobot(usr))
-					usr << "Can only spawn in hand when you're a carbon mob or cyborg."
-					where = "onfloor"
-				target = usr
-
-			if("onfloor")
-				switch(href_list["offset_type"])
-					if ("absolute")
-						target = locate(0 + X,0 + Y,0 + Z)
-					if ("relative")
-						target = locate(loc.x + X,loc.y + Y,loc.z + Z)
-			if("inmarked")
-				if(!marked_datum())
-					usr << "You don't have any object marked. Abandoning spawn."
-					return
-				else if(!istype(marked_datum(),  /atom))
-					usr << "The object you have marked cannot be used as a target. Target must be of type /atom. Abandoning spawn."
-					return
-				else
-					target = marked_datum()
-
-		if(target)
-			for (var/path in paths)
-				for (var/i = 0; i < number; i++)
-					if(path in typesof(/turf))
-						var/turf/O = target
-						var/turf/N = O.ChangeTurf(path)
-						if(N && obj_name)
-							N.name = obj_name
-					else
-						var/atom/O = new path(target)
-						if(O)
-							O.set_dir(obj_dir)
-							if(obj_name)
-								O.name = obj_name
-								if(istype(O,/mob))
-									var/mob/M = O
-									M.real_name = obj_name
-							if(where == "inhand" && isliving(usr) && istype(O, /obj/item))
-								var/mob/living/L = usr
-								var/obj/item/I = O
-								L.put_in_hands(I)
-								if(isrobot(L))
-									var/mob/living/silicon/robot/R = L
-									if(R.module)
-										R.module.modules += I
-										I.loc = R.module
-										R.module.rebuild()
-										R.activate_module(I)
-
-		log_and_message_admins("created [number] [english_list(paths)]")
-		return
-
-	else if(href_list["admin_secrets"])
-		var/datum/admin_secret_item/item = locate(href_list["admin_secrets"]) in admin_secrets.items
-		item.execute(usr)
-
-	else if(href_list["ac_view_wanted"])            //Admin newscaster Topic() stuff be here
+	if(href_list["ac_view_wanted"])            //Admin newscaster Topic() stuff be here
 		src.admincaster_screen = 18                 //The ac_ prefix before the hrefs stands for AdminCaster.
 		src.access_news_network()
 
@@ -348,10 +226,6 @@
 	else if(href_list["ac_set_signature"])
 		src.admincaster_signature = sanitize(input(usr, "Provide your desired signature", "Network Identity Handler", ""))
 		src.access_news_network()
-
-	else if(href_list["populate_inactive_customitems"])
-		if(check_rights(R_ADMIN|R_SERVER))
-			populate_inactive_customitems_list(src.owner)
 
 	else if(href_list["vsc"])
 		if(check_rights(R_ADMIN|R_SERVER))
