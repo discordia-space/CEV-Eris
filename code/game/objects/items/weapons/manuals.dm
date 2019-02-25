@@ -20,12 +20,13 @@
 		</head>
 
 		<body>
-		<iframe width='100%' height='97%' src="[config.wikiurl]Guide_to_construction&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
+		<iframe width='100%' height='97%' src="http://wiki.syndi-cat.com/index.php?title=Guide_to_construction&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
 		</body>
 
 		</html>
 
 		"}
+
 
 /obj/item/weapon/book/manual/engineering_particle_accelerator
 	name = "Particle Accelerator User's Guide"
@@ -145,7 +146,9 @@
 				<li>In event of ejection failure, <i>pending</i></li>
 				</ol>
 				</body>
-			</html>"}
+			</html>
+			"}
+
 
 /obj/item/weapon/book/manual/engineering_hacking
 	name = "Hacking"
@@ -161,7 +164,7 @@
 		</head>
 
 		<body>
-		<iframe width='100%' height='97%' src="[config.wikiurl]Hacking&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
+		<iframe width='100%' height='97%' src="http://wiki.syndi-cat.com/index.php?title=Hacking&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
 		</body>
 
 		</html>
@@ -219,6 +222,7 @@
 				</body>
 			</html>
 			"}
+
 
 /obj/item/weapon/book/manual/medical_cloning
 	name = "Cloning Techniques of the 26th Century"
@@ -368,10 +372,10 @@
 					<li>Secure the mainboard with a screwdriver.</li>
 					<li>Install the peripherals control module (Not included. Use supplied datadisk to create one).</li>
 					<li>Secure the peripherals control module with a screwdriver.</li>
-					<li>Install the internal armor plating (Not included due to corporate regulations. Can be made using 5 metal sheets).</li>
+					<li>Install the internal armor plating (Can be made using 5 metal sheets).</li>
 					<li>Secure the internal armor plating with a wrench.</li>
 					<li>Weld the internal armor plating to the chassis.</li>
-					<li>Install the external reinforced armor plating (Not included due to corporate regulations. Can be made using 5 reinforced metal sheets).</li>
+					<li>Install the external reinforced armor plating (Can be made using 5 reinforced metal sheets).</li>
 					<li>Secure the external reinforced armor plating with a wrench.</li>
 					<li>Weld the external reinforced armor plating to the chassis.</li>
 				</ol>
@@ -665,11 +669,11 @@
 
 
 /obj/item/weapon/book/manual/security_space_law
-	name = "Corporate Regulations"
-	desc = "A set of corporate guidelines for keeping law and order on privately-owned space stations."
-	icon_state = "bookSpaceLaw"
-	author = "The Company"
-	title = "Corporate Regulations"
+	name = "Ironhammer Paragraphs"
+	desc = "A set of corporate guidelines for keeping law and order on privately-owned space assets."
+	icon_state = "book_ironparagraphs"
+	author = "Ironhammer Security"
+	title = "Ironhammer Paragraphs"
 
 /obj/item/weapon/book/manual/security_space_law/New()
 	..()
@@ -679,13 +683,12 @@
 		</head>
 
 		<body>
-		<iframe width='100%' height='97%' src="[config.wikiurl]Corporate_Regulations&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
+		<iframe width='100%' height='97%' src="http://wiki.syndi-cat.com/index.php?title=Ironhammer_Paragraphs&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
 		</body>
 
 		</html>
 
 		"}
-
 
 
 /obj/item/weapon/book/manual/medical_diagnostics_manual
@@ -750,7 +753,7 @@
 		</head>
 
 		<body>
-		<iframe width='100%' height='100%' src="[config.wikiurl]Guide_to_Engineering&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>		</body>
+		<iframe width='100%' height='100%' src="http://wiki.syndi-cat.com/index.php?title=Guide_to_Engineering&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>		</body>
 
 		</html>
 
@@ -912,7 +915,9 @@
 				It really is that easy! Good luck!
 
 				</body>
-			</html>"}
+			</html>
+			"}
+
 
 /obj/item/weapon/book/manual/nuclear
 	name = "Fission Mailed: Nuclear Sabotage 101"
@@ -965,11 +970,13 @@
 			</html>
 			"}
 
+
 /obj/item/weapon/book/manual/atmospipes
 	name = "Pipes and You: Getting To Know Your Scary Tools"
 	icon_state = "pipingbook"
 	author = "Maria Crash, Senior Atmospherics Technician"
 	title = "Pipes and You: Getting To Know Your Scary Tools"
+
 	dat = {"<html>
 				<head>
 				<style>
@@ -1073,11 +1080,13 @@
 			</html>
 			"}
 
+
 /obj/item/weapon/book/manual/evaguide
 	name = "EVA Gear and You: Not Spending All Day Inside"
 	icon_state = "evabook"
 	author = "Maria Crash, Senior Atmospherics Technician"
 	title = "EVA Gear and You: Not Spending All Day Inside"
+
 	dat = {"<html>
 				<head>
 				<style>
