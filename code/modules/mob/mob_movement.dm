@@ -167,22 +167,24 @@
 			src.last_move = get_dir(A, src.loc)
 
 
-///allow_spacemove
-///Called by /client/Move()
-///For moving in space
-///Return 1 for movement 0 for none
+//Called from space movement handler
+//Return true for safe movement
+//Return -1 for movement with possibility of slipping
+//Return false for no movement
 /mob/proc/allow_spacemove(var/check_drift = 0)
+	//First up, check for magboots or other gripping capability
+	var/shoegrip = check_shoegrip()
 
-	if(!check_spacegrip()) //Nothing to push off of so end here
-		update_floating()
-		return 0
+	//If we have some, then check the ground under us
+	if (shoegrip && check_solid_ground())
+		update_floating(FALSE)
+		return TRUE
+	else if(check_dense_object())
+		update_floating(TRUE)
+		return -1
 
 	update_floating()
-
-	if(restrained()) //Check to see if we can do things
-		return 0
-
-	return -1
+	return FALSE
 
 
 //return 1 if slipped, 0 otherwise
@@ -208,16 +210,6 @@
 
 	return 1
 
-//Attempts to check if the mob can move around safely in zero gravity
-/mob/proc/check_spacegrip()
-	//First up, check for magboots or other gripping capability
-	var/shoegrip = check_shoegrip()
-
-	//If we have some, then check the ground under us
-	if (shoegrip && check_solid_ground())
-		return TRUE
-	else
-		return check_dense_object()
 
 //This proc specifically checks the floor under us. Both floor turfs and walkable objects like catwalk
 //This proc is only called if we have grip, ie magboots
