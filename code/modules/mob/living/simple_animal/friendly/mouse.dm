@@ -14,6 +14,7 @@
 	speak_emote = list("squeeks","squeeks","squiks")
 	emote_hear = list("squeeks","squeaks","squiks")
 	emote_see = list("runs in a circle", "shakes", "scritches at something")
+	eat_sounds = list('sound/effects/creatures/nibble1.ogg','sound/effects/creatures/nibble2.ogg')
 	var/soft_squeaks = list('sound/effects/creatures/mouse_squeaks_1.ogg',
 	'sound/effects/creatures/mouse_squeaks_2.ogg',
 	'sound/effects/creatures/mouse_squeaks_3.ogg',
@@ -44,10 +45,10 @@
 	universal_speak = FALSE
 	universal_understand = TRUE
 	holder_type = /obj/item/weapon/holder/mouse
-	//digest_factor = 0.05 //These are for animal-eating code, not yet ported
-	//min_scan_interval = 2
-	//max_scan_interval = 20
-	//seek_speed = 1
+	digest_factor = 0.05
+	min_scan_interval = 2
+	max_scan_interval = 20
+	seek_speed = 1
 
 	can_pull_size = ITEM_SIZE_TINY
 	can_pull_mobs = MOB_PULL_NONE
@@ -56,6 +57,10 @@
 	can_burrow = TRUE
 
 	//kitchen_tag = "rodent" //This is part of cooking overhaul, not yet ported
+
+/mob/living/simple_animal/mouse/New()
+	..()
+	nutrition = rand(max_nutrition*0.25, max_nutrition*0.75)
 
 /mob/living/simple_animal/mouse/Life()
 	if(..())
@@ -98,8 +103,6 @@
 
 /mob/living/simple_animal/mouse/Initialize()
 	. = ..()
-
-	//nutrition = rand(max_nutrition*0.25, max_nutrition*0.75)	TODO: Animal eating code
 	verbs += /mob/living/proc/ventcrawl
 	verbs += /mob/living/proc/hide
 
@@ -129,11 +132,9 @@
 /mob/living/simple_animal/mouse/speak_audio()
 	squeak_soft(0)
 
-/*
 /mob/living/simple_animal/mouse/beg(var/atom/thing, var/atom/holder)
 	squeak_soft(0)
 	visible_emote("squeaks timidly, sniffs the air and gazes longingly up at \the [thing.name].",0)
-*/ //Part of animal eating work, not yet ported
 
 /mob/living/simple_animal/mouse/attack_hand(mob/living/carbon/human/M as mob)
 	if (src.stat == DEAD)//If the mouse is dead, we don't pet it, we just pickup the corpse on click

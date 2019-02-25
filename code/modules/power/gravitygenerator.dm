@@ -1,7 +1,7 @@
 //
 // Gravity Generator
 //
-
+GLOBAL_DATUM(active_gravity_generator, /obj/machinery/gravity_generator/main)
 var/const/POWER_IDLE = 0
 var/const/POWER_UP = 1
 var/const/POWER_DOWN = 2
@@ -82,6 +82,9 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	. = ..()
 	setup_parts()
 	middle.overlays += "activated"
+	//Set ourselves in the global var
+	if (!GLOB.active_gravity_generator)
+		GLOB.active_gravity_generator = src
 
 //
 // Generator an admin can spawn
@@ -335,7 +338,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 /obj/machinery/gravity_generator/main/proc/update_gravity(var/is_on)
 	for(var/area/A in world)
 		if(isStationLevel(A.z))
-			A.gravitychange(is_on,A)
+			A.update_gravity()
 
 // Charge/Discharge and turn on/off gravity when you reach 0/100 percent.
 // Also emit radiation and handle the overlays.

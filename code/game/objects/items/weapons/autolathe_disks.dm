@@ -118,6 +118,7 @@
 		/datum/autolathe/recipe/tool/shovel,
 		/datum/autolathe/recipe/tool/spade,
 		/datum/autolathe/recipe/device/t_scanner,
+		/datum/autolathe/recipe/tool/rcd_ammo,
 		/datum/autolathe/recipe/tool/weldertool,
 		/datum/autolathe/recipe/tool/weldinggoggles,
 		/datum/autolathe/recipe/tool/weldermask,
@@ -183,6 +184,7 @@
 		/datum/autolathe/recipe/tool/pickaxe_excavation,
 		/datum/autolathe/recipe/tool/circularsaw,
 		/datum/autolathe/recipe/tool/chainsaw,
+		/datum/autolathe/recipe/tool/rcd,
 		/datum/autolathe/recipe/tool/electric_screwdriver,
 		/datum/autolathe/recipe/tool/combi_driver,
 		/datum/autolathe/recipe/tool/armature_cutter,
@@ -191,7 +193,7 @@
 	..()
 
 /obj/item/weapon/disk/autolathe_disk/circuitpack
-	name = "Technomacers ESPO-830 Circuits"
+	name = "Technomancers ESPO-830 Circuits"
 	category = "Engineering"
 	icon_state = "technomancers"
 	license = 10
