@@ -1,19 +1,22 @@
 /datum/admin_topic
 	var/keyword
 	var/list/require_perms = list()
+	var/datum/admins/source
 	//The permissions needed to run the topic.
 	//If you want the user to need multiple perms, have each perm be an entry into the list, like this: list(R_ADMIN, R_MOD)
 	//If you want the user to need just one of multiple perms, have the perms be the same entry in the list using OR, like this: list(R_ADMIN|R_MOD)
 	//These can be combined, for example with: list(R_MOD|R_MENTOR, R_ADMIN) which would require you to have either R_MOD or R_MENTOR, as well as R_ADMIN
 
-/datum/admin_topic/proc/TryRun(list/input, datum/admins/source)
+/datum/admin_topic/proc/TryRun(list/input, datum/admins/owner)
 	if(require_perms.len)
 		for(var/i in require_perms)
 			if(!check_rights(i, TRUE))
 				return FALSE
-	. = Run(input, source)
+	source = owner
+	. = Run(input)
+	qdel(src)
 
-/datum/admin_topic/proc/Run(list/input, datum/admins/source) //use the source arg to access the admin datum.
+/datum/admin_topic/proc/Run(list/input) //use the source arg to access the admin datum.
 	CRASH("Run() not implemented for [type]!")
 
 
@@ -23,7 +26,7 @@
 /datum/admin_topic/dbsearchckey/dbsearchadmin //inherits the behaviour of dbsearchckey, but with a different keyword.
 	keyword = "dbsearchadmin"
 
-/datum/admin_topic/dbsearchckey/Run(list/input, datum/admins/source)
+/datum/admin_topic/dbsearchckey/Run(list/input)
 	var/adminckey = input["dbsearchadmin"]
 	var/playerckey = input["dbsearchckey"]
 	var/playerip = input["dbsearchip"]
@@ -40,7 +43,7 @@
 /datum/admin_topic/dbbanedit
 	keyword = "dbbanedit"
 
-/datum/admin_topic/dbbanedit/Run(list/input, datum/admins/source)
+/datum/admin_topic/dbbanedit/Run(list/input)
 	var/banedit = input["dbbanedit"]
 	var/banid = text2num(input["dbbanid"])
 	if(!banedit || !banid)
@@ -52,7 +55,7 @@
 /datum/admin_topic/dbbanaddtype
 	keyword = "dbbanaddtype"
 
-/datum/admin_topic/dbbanaddtype/Run(list/input, datum/admins/source)
+/datum/admin_topic/dbbanaddtype/Run(list/input)
 	var/bantype = text2num(input["dbbanaddtype"])
 	var/banckey = input["dbbanaddckey"]
 	var/banip = input["dbbanaddip"]
@@ -110,7 +113,7 @@
 	keyword = "editrights"
 	require_perms = list(R_PERMISSIONS)
 
-/datum/admin_topic/editrights/Run(list/input, datum/admins/source)
+/datum/admin_topic/editrights/Run(list/input)
 
 	var/adm_ckey
 
@@ -213,7 +216,7 @@
 	keyword = "simplemake"
 	require_perms = list(R_FUN)
 
-/datum/admin_topic/simplemake/Run(list/input, datum/admins/source)
+/datum/admin_topic/simplemake/Run(list/input)
 	var/mob/M = locate(input["mob"])
 	if(!ismob(M))
 		usr << "This can only be used on instances of type /mob"
@@ -266,7 +269,7 @@
 	keyword = "unbanf"
 	require_perms = list(R_MOD|R_ADMIN)
 
-/datum/admin_topic/unbanf/Run(list/input, datum/admins/source)
+/datum/admin_topic/unbanf/Run(list/input)
 	var/banfolder = input["unbanf"]
 	Banlist.cd = "/base/[banfolder]"
 	var/key = Banlist["key"]
@@ -281,7 +284,7 @@
 /datum/admin_topic/warn
 	keyword = "warn"
 
-/datum/admin_topic/warn/Run(list/input, datum/admins/source)
+/datum/admin_topic/warn/Run(list/input)
 	usr.client.warn(input["warn"])
 
 
@@ -289,7 +292,7 @@
 	keyword = "unbane"
 	require_perms = list(R_MOD|R_ADMIN)
 
-/datum/admin_topic/unbane/Run(list/input, datum/admins/source)
+/datum/admin_topic/unbane/Run(list/input)
 
 	UpdateTime()
 	var/reason
@@ -345,7 +348,7 @@
 	keyword = "jobban2"
 	require_perms = list(R_MOD|R_ADMIN)
 
-/datum/admin_topic/jobban2/Run(list/input, datum/admins/source)
+/datum/admin_topic/jobban2/Run(list/input)
 
 	var/mob/M = locate(input["jobban2"])
 	if(!ismob(M))
@@ -402,7 +405,7 @@
 	keyword = "jobban3"
 	require_perms = list(R_MOD|R_ADMIN)
 
-/datum/admin_topic/jobban3/Run(list/input, datum/admins/source)
+/datum/admin_topic/jobban3/Run(list/input)
 	if(check_rights(R_MOD, FALSE) && !check_rights(R_ADMIN, FALSE) && !config.mods_can_job_tempban) // If mod and tempban disabled
 		usr << SPAN_WARNING("Mod jobbanning is disabled!")
 		return
@@ -558,7 +561,7 @@
 /datum/admin_topic/boot2
 	keyword = "boot"
 
-/datum/admin_topic/boot2/Run(list/input, datum/admins/source)
+/datum/admin_topic/boot2/Run(list/input)
 	var/mob/M = locate(input["boot2"])
 	if (ismob(M))
 		if(!check_if_greater_rights_than(M.client))
@@ -578,7 +581,7 @@
 	keyword = "removejobban"
 	require_perms = list(R_MOD|R_ADMIN)
 
-/datum/admin_topic/removejobban/Run(list/input, datum/admins/source)
+/datum/admin_topic/removejobban/Run(list/input)
 	var/t = input["removejobban"]
 	if(t)
 		if((alert("Do you want to unjobban [t]?","Unjobban confirmation", "Yes", "No") == "Yes") && t) //No more misclicks! Unless you do it twice.
@@ -596,7 +599,7 @@
 	keyword = "newban"
 	require_perms = (R_MOD|R_ADMIN)
 
-/datum/admin_topic/newban/Run(list/input, datum/admins/source)
+/datum/admin_topic/newban/Run(list/input)
 	if(check_rights(R_MOD, FALSE) && !check_rights(R_ADMIN, FALSE) && !config.mods_can_job_tempban) // If mod and tempban disabled
 		usr << SPAN_WARNING("Mod jobbanning is disabled!")
 		return
@@ -667,7 +670,7 @@
 	keyword = "mute"
 	require_perms = list(R_MOD|R_ADMIN)
 
-/datum/admin_topic/mute/Run(list/input, datum/admins/source)
+/datum/admin_topic/mute/Run(list/input)
 	var/mob/M = locate(input["mute"])
 	if(!ismob(M))
 		return
@@ -687,7 +690,7 @@
 	keyword = "check_antagonist"
 	require_perms = list(R_ADMIN)
 
-/datum/admin_topic/check_antagonist/Run(list/input, datum/admins/source)
+/datum/admin_topic/check_antagonist/Run(list/input)
 	GLOB.storyteller.storyteller_panel()
 
 
@@ -695,7 +698,7 @@
 	keyword = "c_mode"
 	require_perms = list(R_ADMIN)
 
-/datum/admin_topic/c_mode/Run(list/input, datum/admins/source)
+/datum/admin_topic/c_mode/Run(list/input)
 	var/dat = {"<B>What storyteller do you wish to install?</B><HR>"}
 	for(var/mode in config.storytellers)
 		dat += {"<A href='?src=\ref[source];c_mode2=[mode]'>[config.storyteller_names[mode]]</A><br>"}
@@ -707,7 +710,7 @@
 	keyword = "c_mode2"
 	require_perms = list(R_ADMIN|R_SERVER)
 
-/datum/admin_topic/c_mode2/Run(list/input, datum/admins/source)
+/datum/admin_topic/c_mode2/Run(list/input)
 	master_storyteller = input["c_mode2"]
 	set_storyteller(master_storyteller) //This does the actual work
 	log_admin("[key_name(usr)] set the storyteller to [master_storyteller].")
@@ -721,7 +724,7 @@
 	keyword = "monkeyone"
 	require_perms = list(R_FUN)
 
-/datum/admin_topic/monkeyone/Run(list/input, datum/admins/source)
+/datum/admin_topic/monkeyone/Run(list/input)
 	var/mob/living/carbon/human/H = locate(input["monkeyone"])
 	if(!istype(H))
 		usr << "This can only be used on instances of type /mob/living/carbon/human"
@@ -736,7 +739,7 @@
 	keyword = "corgione"
 	require_perms = list(R_FUN)
 
-/datum/admin_topic/corgione/Run(list/input, datum/admins/source)
+/datum/admin_topic/corgione/Run(list/input)
 	var/mob/living/carbon/human/H = locate(input["corgione"])
 	if(!istype(H))
 		usr << "This can only be used on instances of type /mob/living/carbon/human"
@@ -751,7 +754,7 @@
 	keyword = "forcespeech"
 	require_perms = list(R_FUN)
 
-/datum/admin_topic/forcespeech/Run(list/input, datum/admins/source)
+/datum/admin_topic/forcespeech/Run(list/input)
 	var/mob/M = locate(input["forcespeech"])
 	if(!ismob(M))
 		usr << "this can only be used on instances of type /mob"
@@ -769,7 +772,7 @@
 	keyword = "revive"
 	require_perms = list(R_FUN)
 
-/datum/admin_topic/revive/Run(list/input, datum/admins/source)
+/datum/admin_topic/revive/Run(list/input)
 	var/mob/living/L = locate(input["revive"])
 	if(!istype(L))
 		usr << "This can only be used on instances of type /mob/living"
@@ -787,7 +790,7 @@
 	keyword = "makeai"
 	require_perms = list(R_FUN)
 
-/datum/admin_topic/makeai/Run(list/input, datum/admins/source)
+/datum/admin_topic/makeai/Run(list/input)
 	var/mob/living/L = locate(input["revive"])
 	if(!istype(L))
 		usr << "This can only be used on instances of type /mob/living"
@@ -805,7 +808,7 @@
 	keyword = "makeslime"
 	require_perms = list(R_FUN)
 
-/datum/admin_topic/makeslime/Run(list/input, datum/admins/source)
+/datum/admin_topic/makeslime/Run(list/input)
 	var/mob/living/carbon/human/H = locate(input["makeslime"])
 	if(!istype(H))
 		usr << "This can only be used on instances of type /mob/living/carbon/human"
@@ -818,7 +821,7 @@
 	keyword = "makerobot"
 	require_perms = list(R_FUN)
 
-/datum/admin_topic/makerobot/Run(list/input, datum/admins/source)
+/datum/admin_topic/makerobot/Run(list/input)
 	var/mob/living/carbon/human/H = locate(input["makerobot"])
 	if(!istype(H))
 		usr << "This can only be used on instances of type /mob/living/carbon/human"
@@ -831,7 +834,7 @@
 	keyword = "makeanimal"
 	require_perms = list(R_FUN)
 
-/datum/admin_topic/makeanimal/Run(list/input, datum/admins/source)
+/datum/admin_topic/makeanimal/Run(list/input)
 	var/mob/living/carbon/human/H = locate(input["makerobot"])
 	if(!istype(H))
 		usr << "This can only be used on instances of type /mob/living/carbon/human"
@@ -844,7 +847,7 @@
 	keyword = "togmutate"
 	require_perms = list(R_FUN)
 
-/datum/admin_topic/togmutate/Run(list/input, datum/admins/source)
+/datum/admin_topic/togmutate/Run(list/input)
 	var/mob/living/carbon/human/H = locate(input["togmutate"])
 	if(!istype(H))
 		usr << "This can only be used on instances of type /mob/living/carbon/human"
@@ -857,7 +860,7 @@
 /datum/admin_topic/adminplayeropts
 	keyword = "adminplayeropts"
 
-/datum/admin_topic/adminplayeropts/Run(list/input, datum/admins/source)
+/datum/admin_topic/adminplayeropts/Run(list/input)
 	var/mob/M = locate(input["adminplayeropts"])
 	source.show_player_panel(M)
 
@@ -866,7 +869,7 @@
 	keyword = "adminobservejump"
 	require_perms = list(R_MENTOR|R_MOD|R_ADMIN)
 
-/datum/admin_topic/adminobservejump/Run(list/input, datum/admins/source)
+/datum/admin_topic/adminobservejump/Run(list/input)
 	var/mob/M = locate(input["adminplayerobservejump"])
 
 	var/client/C = usr.client
@@ -880,7 +883,7 @@
 	keyword = "adminplayerobservecoodjump"
 	require_perms = (R_ADMIN)
 
-/datum/admin_topic/adminplayerobservecoodjump/Run(list/input, datum/admins/source)
+/datum/admin_topic/adminplayerobservecoodjump/Run(list/input)
 	var/x = text2num(input["X"])
 	var/y = text2num(input["Y"])
 	var/z = text2num(input["Z"])
@@ -894,14 +897,14 @@
 /datum/admin_topic/adminchecklaws
 	keyword = "adminchecklaws"
 
-/datum/admin_topic/adminchecklaws/Run(list/input, datum/admins/source)
+/datum/admin_topic/adminchecklaws/Run(list/input)
 	source.output_ai_laws()
 
 
 /datum/admin_topic/adminmoreinfo
 	keyword = "adminmoreinfo"
 
-/datum/admin_topic/adminmoreinfo/Run(list/input, datum/admins/source)
+/datum/admin_topic/adminmoreinfo/Run(list/input)
 	var/mob/M = locate(input["adminmoreinfo"])
 	if(!ismob(M))
 		usr << "This can only be used on instances of type /mob"
@@ -964,7 +967,7 @@
 	keyword = "adminspawncookie"
 	require_perms = list(R_ADMIN|R_FUN)
 
-/datum/admin_topic/adminspawncookie/Run(list/input, datum/admins/source)
+/datum/admin_topic/adminspawncookie/Run(list/input)
 	var/mob/living/carbon/human/H = locate(input["adminspawncookie"])
 	if(!ishuman(H))
 		usr << "This can only be used on instances of type /mob/living/carbon/human"
@@ -985,7 +988,7 @@
 	keyword = "BlueSpaceArtillery"
 	require_perms = list(R_ADMIN|R_FUN)
 
-/datum/admin_topic/bluespaceartillery/Run(list/input, datum/admins/source)
+/datum/admin_topic/bluespaceartillery/Run(list/input)
 	var/mob/living/M = locate(input["BlueSpaceArtillery"])
 	if(!isliving(M))
 		usr << "This can only be used on instances of type /mob/living"
@@ -1031,7 +1034,7 @@
 /datum/admin_topic/adminfaxview
 	keyword = "AdminFaxView"
 
-/datum/admin_topic/adminfaxview/Run(list/input, datum/admins/source)
+/datum/admin_topic/adminfaxview/Run(list/input)
 	var/obj/item/fax = locate(input["AdminFaxView"])
 
 	if (istype(fax, /obj/item/weapon/paper))
@@ -1057,7 +1060,7 @@
 /datum/admin_topic/adminfaxviewpage
 	keyword = "AdminFaxViewPage"
 
-/datum/admin_topic/adminfaxviewpage/Run(list/input, datum/admins/source)
+/datum/admin_topic/adminfaxviewpage/Run(list/input)
 	var/page = text2num(input["AdminFaxViewPage"])
 	var/obj/item/weapon/paper_bundle/bundle = locate(input["paper_bundle"])
 
@@ -1075,7 +1078,7 @@
 /datum/admin_topic/centcommfaxreply
 	keyword = "CentcommFaxReply"
 
-/datum/admin_topic/centcommfaxreply/Run(list/input, datum/admins/source)
+/datum/admin_topic/centcommfaxreply/Run(list/input)
 	var/mob/sender = locate(input["CentcommFaxReply"])
 	var/obj/machinery/photocopier/faxmachine/fax = locate(input["originfax"])
 
@@ -1109,3 +1112,65 @@
 		source.owner << "\red Message reply failed."
 
 	QDEL_IN(P, 100)
+
+
+/datum/admin_topic/jumpto
+	keyword = "jumpto"
+	require_perms = list(R_ADMIN)
+
+/datum/admin_topic/jumpto/Run(list/input)
+	var/mob/M = locate(input["jumpto"])
+	usr.client.jumptomob(M)
+
+
+/datum/admin_topic/getmob
+	keyword = "getmob"
+	require_perms = list(R_ADMIN)
+
+/datum/admin_topic/getmob/Run(list/input)
+	if(alert(usr, "Confirm?", "Message", "Yes", "No") != "Yes")
+		return
+	var/mob/M = locate(input["getmob"])
+	usr.client.Getmob(M)
+
+
+/datum/admin_topic/narrateto
+	keyword = "narrateto"
+	require_perms = list(R_ADMIN)
+
+/datum/admin_topic/narrateto/Run(list/input)
+	var/mob/M = locate(input["narrateto"])
+	usr.client.cmd_admin_direct_narrate(M)
+
+
+/datum/admin_topic/subtlemessage
+	keyword = "subtlemessage"
+	require_perms = list(R_MOD|R_ADMIN)
+
+/datum/admin_topic/subtlemessage/Run(list/input)
+	var/mob/M = locate(input["subtlemessage"])
+	usr.client.cmd_admin_subtle_message(M)
+
+
+/datum/admin_topic/traitor
+	keyword = "traitor"
+	require_perms = list(R_MOD|R_ADMIN)
+
+/datum/admin_topic/traitor/Run(list/input)
+	if(!GLOB.storyteller)
+		alert("The game hasn't started yet!")
+		return
+
+	var/mob/M = locate(input["traitor"])
+	if(!ismob(M))
+		usr << "This can only be used on instances of type /mob."
+		return
+	source.show_traitor_panel(M)
+
+
+/datum/admin_topic/create_object
+	keyword = "create_object"
+	require_perms = list(R_FUN)
+
+/datum/admin_topic/create_object/Run(list/input)
+	return source.create_object(usr)

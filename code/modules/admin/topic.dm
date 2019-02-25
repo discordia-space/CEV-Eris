@@ -34,52 +34,9 @@
 		return
 
 	handler = new handler()
-	handler.TryRun(href_list, src)
+	return handler.TryRun(href_list, src)
 
-	if(href_list["jumpto"])
-		if(!check_rights(R_ADMIN))	return
-
-		var/mob/M = locate(href_list["jumpto"])
-		usr.client.jumptomob(M)
-
-	else if(href_list["getmob"])
-		if(!check_rights(R_ADMIN))	return
-
-		if(alert(usr, "Confirm?", "Message", "Yes", "No") != "Yes")	return
-		var/mob/M = locate(href_list["getmob"])
-		usr.client.Getmob(M)
-
-	else if(href_list["narrateto"])
-		if(!check_rights(R_ADMIN))	return
-
-		var/mob/M = locate(href_list["narrateto"])
-		usr.client.cmd_admin_direct_narrate(M)
-
-	else if(href_list["subtlemessage"])
-		if(!check_rights(R_MOD,0) && !check_rights(R_ADMIN))  return
-
-		var/mob/M = locate(href_list["subtlemessage"])
-		usr.client.cmd_admin_subtle_message(M)
-
-	else if(href_list["traitor"])
-		if(!check_rights(R_ADMIN|R_MOD))	return
-
-		if(!GLOB.storyteller)
-			alert("The game hasn't started yet!")
-			return
-
-		var/mob/M = locate(href_list["traitor"])
-		if(!ismob(M))
-			usr << "This can only be used on instances of type /mob."
-			return
-		show_traitor_panel(M)
-
-	else if(href_list["create_object"])
-		if(!check_rights(R_FUN))
-			return
-		return create_object(usr)
-
-	else if(href_list["quick_create_object"])
+	if(href_list["quick_create_object"])
 		if(!check_rights(R_FUN))
 			return
 		return quick_create_object(usr)
