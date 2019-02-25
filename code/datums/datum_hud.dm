@@ -213,6 +213,7 @@
 		"cell"      = list("type" = /obj/screen/silicon/cell,     "loc" = "15,14"),
 		"health"      = list("type" = /obj/screen/health/cyborg,     "loc" = "15,6"),
 		"damage zone" = list("type" = /obj/screen/zone_sel,   "loc" = "15,1"),
+		"pull"   = list("type" = /obj/screen/silicon/pull, "loc" = "12,1"),
 		"radio" = list("type" = /obj/screen/silicon/radio,   "loc" = "13,1"),
 		"store" = list("type" = /obj/screen/silicon/store,   "loc" = "9,1"),
 		"panel" = list("type" = /obj/screen/silicon/panel,   "loc" = "15,2"),

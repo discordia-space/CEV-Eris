@@ -248,7 +248,8 @@ var/list/turret_icons
 	if(href_list["command"] && href_list["value"])
 		var/value = text2num(href_list["value"])
 		if(href_list["command"] == "enable")
-			enabled = value
+			if(anchored)
+				enabled = value
 		else if(href_list["command"] == "lethal")
 			lethal = value
 		else if(href_list["command"] == "check_synth")
@@ -299,7 +300,7 @@ var/list/turret_icons
 					qdel(src) // qdel
 
 		else if((istype(I, /obj/item/weapon/tool/wrench)))
-			if(enabled || raised)
+			if(enabled)
 				user << SPAN_WARNING("You cannot unsecure an active turret!")
 				return
 			if(wrenching)
@@ -319,12 +320,19 @@ var/list/turret_icons
 				//This code handles moving the turret around. After all, it's a portable turret!
 				if(!anchored)
 					playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
-					anchored = 1
+					anchored = TRUE
 					update_icon()
 					user << SPAN_NOTICE("You secure the exterior bolts on the turret.")
+					if(disabled)
+						spawn(200)
+							disabled = FALSE
 				else if(anchored)
+					if(disabled)
+						user << SPAN_NOTICE("The turret is still recalibrating. Wait some time before trying to move it.")
+						return
 					playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
 					anchored = 0
+					disabled = TRUE
 					user << SPAN_NOTICE("You unsecure the exterior bolts on the turret.")
 					update_icon()
 			wrenching = 0

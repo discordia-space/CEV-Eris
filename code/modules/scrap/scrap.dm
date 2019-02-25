@@ -20,8 +20,8 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/random/material,
 		/obj/item/stack/rods/random,
 		/obj/item/weapon/material/shard,
-		/obj/random/junk/nondense,
-		/obj/random/rare = 0.5
+		/obj/random/junk/nondense = 2,
+		/obj/random/rare = 0.4
 	)
 	var/dig_amount = 4
 	var/parts_icon = 'icons/obj/structures/scrap/trash.dmi'
@@ -42,7 +42,8 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 
 /obj/structure/scrap/examine(var/mob/user)
 	.=..()
-	try_make_loot() //Make the loot when examined so the big item check below will work
+	if (isliving(user))
+		try_make_loot() //Make the loot when examined so the big item check below will work
 	to_chat(user, SPAN_NOTICE("You could sift through it with a shoveling tool to uncover more contents"))
 	if (big_item && big_item.loc == src)
 		to_chat(user, SPAN_DANGER("You can make out the corners of something large buried in here. Keep digging and removing things to uncover it"))
@@ -251,7 +252,8 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	.=..()
 
 /obj/structure/scrap/attack_generic(mob/user)
-	loot.open(user)
+	if (isliving(user))
+		loot.open(user)
 	.=..()
 
 
@@ -292,8 +294,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		user.do_attack_animation(src)
 		dig_out_lump(user.loc, 0)
 		shuffle_loot()
-		var/i = clear_if_empty()
-		world << "Clear if empty returned: [i]"
+		clear_if_empty()
 
 /obj/structure/scrap/large
 	name = "large scrap pile"
@@ -317,6 +318,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/random/surgery_tool,
 		/obj/item/stack/rods/random,
 		/obj/item/weapon/material/shard,
+		/obj/random/junk/nondense,
 		/obj/random/rare = 0.3
 	)
 
@@ -333,8 +335,9 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/item/stack/material/steel/random,
 		/obj/item/stack/rods/random,
 		/obj/item/weapon/material/shard,
-		/obj/random/rare = 0.4,
-		/obj/random/tool_upgrade = 2
+		/obj/random/junk/nondense,
+		/obj/random/rare = 0.3,
+		/obj/random/tool_upgrade = 1
 	)
 
 /obj/structure/scrap/food
@@ -348,7 +351,8 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/random/booze,
 		/obj/item/stack/rods/random,
 		/obj/item/weapon/material/shard,
-		/obj/random/rare = 0.4
+		/obj/random/junk/nondense,
+		/obj/random/rare = 0.3
 	)
 
 /obj/structure/scrap/guns
@@ -365,7 +369,8 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/item/weapon/material/shard,
 		/obj/item/stack/material/steel/random,
 		/obj/item/stack/rods/random,
-		/obj/random/rare = 0.4
+		/obj/random/junk/nondense,
+		/obj/random/rare = 0.3
 	)
 
 /obj/structure/scrap/science
@@ -395,6 +400,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	parts_icon = 'icons/obj/structures/scrap/all_mixed.dmi'
 	loot_list = list(
 		/obj/random/lowkeyrandom = 4,
+		/obj/random/junk/nondense = 3,
 		/obj/item/stack/rods/random = 2,
 		/obj/item/weapon/material/shard,
 		/obj/random/rare = 0.3
