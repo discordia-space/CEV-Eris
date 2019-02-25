@@ -29,7 +29,7 @@
 
 /obj/item/clothing/head/helmet/handmade
 	name = "handmade combat helmet"
-	desc = "This one maden from bucket and some steel. Uncomfortable and heavy but better than nothing."
+	desc = "It looks like it was made from a bucket and some steel. Uncomfortable and heavy but better than nothing."
 	icon_state = "hm_helmet"
 	armor = list(melee = 35, bullet = 30, laser = 30,energy = 30, bomb = 0, bio = 0, rad = 0)
 	flags_inv = HIDEEARS
