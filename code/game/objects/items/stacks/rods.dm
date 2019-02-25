@@ -14,8 +14,8 @@
 	attack_verb = list("hit", "bludgeoned", "whacked")
 
 /obj/item/stack/rods/random
-	rand_min = 5
-	rand_max = 40
+	rand_min = 2
+	rand_max = 30
 
 /obj/item/stack/rods/cyborg
 	name = "metal rod synthesizer"

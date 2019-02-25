@@ -507,7 +507,7 @@
 	name = "RCD module"
 	desc = "A rapid construction device module for use during construction operations."
 	id = "borg_rcd_module"
-	materials = list(MATERIAL_STEEL = 25, MATERIAL_PLASMA = 10, MATERIAL_GOLD = 10, MATERIAL_SILVER = 10)
+	materials = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASMA = 10, MATERIAL_URANIUM = 10)
 	build_path = /obj/item/borg/upgrade/rcd
 
 /datum/design/item/robot_upgrade/syndicate
@@ -673,7 +673,7 @@
 	desc = "An exosuit-mounted rapid construction device."
 	id = "mech_rcd"
 	time = 120
-	materials = list(MATERIAL_STEEL = 30, MATERIAL_PLASMA = 25, MATERIAL_SILVER = 20, MATERIAL_GOLD = 20)
+	materials = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASMA = 15, MATERIAL_URANIUM = 15)
 	req_tech = list(TECH_MATERIAL = 4, TECH_BLUESPACE = 3, TECH_MAGNET = 4, TECH_POWER = 4, TECH_ENGINEERING = 4)
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/rcd
 
