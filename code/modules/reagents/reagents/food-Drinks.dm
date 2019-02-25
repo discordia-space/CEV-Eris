@@ -8,6 +8,7 @@
 	reagent_state = SOLID
 	metabolism = REM * 4
 	var/nutriment_factor = 30 // Per unit
+	var/regen_factor = 0.8 //Used for simple animal health regeneration
 	var/injectable = 0
 	color = "#664330"
 
