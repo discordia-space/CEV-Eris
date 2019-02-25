@@ -12,10 +12,13 @@
 	desc = "Designed to both hide identities and keep your face comfy and warm."
 	icon_state = "swatclava"
 	item_state = "balaclava"
+	action_button_name = "Adjust Balaclava"
 	var/open = 0 //0 = full, 1 = cover mouth, 2 = cover head
 
-/obj/item/clothing/mask/balaclava/tactical/proc/adjust_mask(mob/user)
-	if(!usr.incapacitated())
+/obj/item/clothing/mask/balaclava/tactical/proc/adjust_mask(mob/living/carbon/human/user)
+	if(!istype(user))
+		return
+	if(!user.incapacitated())
 		open = (open + 1) % 3
 		switch(open)
 			if (2)
@@ -33,7 +36,9 @@
 				body_parts_covered = FACE|HEAD
 				icon_state = "swatclava"
 				user << "You pull the balaclava up to cover your head."
-		usr.update_inv_wear_mask()
+		user.update_hair(0)
+		user.update_inv_ears(0)
+		user.update_inv_wear_mask()
 
 /obj/item/clothing/mask/balaclava/tactical/attack_self(mob/user)
 	adjust_mask(user)
