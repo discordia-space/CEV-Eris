@@ -206,7 +206,7 @@
 	name = "Floor pill"
 	desc = "Dare you?"
 
-/obj/item/weapon/reagent_containers/pill/floorpill/New()
+/obj/item/weapon/reagent_containers/pill/floorpill/Initialize()
 	. = ..()
 
 	var/random_reagent = pickweight(list(
