@@ -16,8 +16,8 @@
 		return
 
 	gravity_is_on = !gravity_is_on
-	for(var/area/A in world)
-		A.gravitychange(gravity_is_on,A)
+	if (GLOB.active_gravity_generator)
+		GLOB.active_gravity_generator.set_state(gravity_is_on)
 
 
 	if(gravity_is_on)
