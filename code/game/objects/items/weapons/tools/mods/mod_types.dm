@@ -14,6 +14,7 @@
 	prefix = "braced"
 	degradation_mult = 0.65
 	force_mod = 1
+	price_tag = 120
 
 
 //Heatsink can be attached to any tool that uses fuel or power
@@ -103,6 +104,7 @@
 	icon_state = "diamond_blade"
 	required_qualities = list(QUALITY_CUTTING,QUALITY_SAWING, QUALITY_WIRE_CUTTING, QUALITY_PRYING)
 	prefix = "diamond-edged"
+	price_tag = 300
 	workspeed = 0.25
 	degradation_mult = 0.85
 	force_mult = 1.10
@@ -281,7 +283,7 @@
 	precision = -5
 	degradation_mult = 1.15
 	workspeed = -0.15
-
+	price_tag = 100
 
 /obj/item/weapon/tool_upgrade/augment/spikes/apply_values()
 	if (..())

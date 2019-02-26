@@ -66,8 +66,9 @@ var/list/portal_cache = list()
 	if (origin && Adjacent(origin))
 		var/dir = get_dir(origin, loc)
 		return get_step(T, dir)
-
+		
 /obj/effect/portal/proc/close()
+	qdel(src)
 
 /obj/effect/portal/proc/teleport(atom/movable/M as mob|obj)
 	if (world.time < next_teleport)
@@ -92,9 +93,6 @@ var/list/portal_cache = list()
 /obj/effect/portal/proc/on_fail(atom/movable/M as mob|obj)
 	src.icon_state = "portal1"
 	do_teleport(M, locate(rand(5, world.maxx - 5), rand(5, world.maxy -5), 3), 0)
-
-
-
 
 /*
 	Wormholes come in linked pairs and can be traversed freely from either end.

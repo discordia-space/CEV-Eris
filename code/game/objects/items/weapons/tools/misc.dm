@@ -12,3 +12,4 @@
 	toggleable = TRUE
 	create_hot_spot = TRUE
 	glow_color = COLOR_ORANGE
+	max_upgrades = 5

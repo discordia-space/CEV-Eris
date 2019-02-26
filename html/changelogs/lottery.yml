@@ -1,4 +1,0 @@
-author: Carbonhell
-delete-after: True
-changes: 
-  - bugfix: "The lottery cannot be won by departments anymore, and the output message has been fixed."

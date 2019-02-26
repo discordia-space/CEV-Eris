@@ -37,7 +37,7 @@
 		<td valign='top'>
       <font size='2'><b>Project Head Developer:</b> Nanako<br></font>
       <font size='2'><b>Project Maintainers:</b> Clockrigger, Nanako, LethalGhost, Matt, joy ok_hand<br></font>
-			<font size='2'><b>Code:</b> Clockrigger, Nanako, LethalGhost, Matt, joy ok_hand, fluorescent, ITCups, Camper2012, silentenemy, EvenInDeathIStillServe, Boredone, JTB, Garen7, Kurgis, Nikov, Gray, hitsedesen, Luduk, Macleod962, TorinoFermic<br></font>
+			<font size='2'><b>Code:</b> Clockrigger, Nanako, LethalGhost, Matt, joy ok_hand, fluorescent, ITCups, Camper2012, silentenemy, EvenInDeathIStillServe, Boredone, JTB, Garen7, Kurgis, Nikov, Gray, hitsedesen, Luduk, Macleod962, TorinoFermic, nichlas0010, Cakey, Voldirs, Carbonhell<br></font>
 			<font size='2'><b>Sprites:</b> WatlerJe, Bloodpriest, Shazbot, Toriate, Venligen<br></font>
 			<font size='2'><b>Sounds and music:</b> Duke GNEISS<br></font>
       <font size='2'><b>Main Testers:</b> Anyone who has submitted a bug to the issue tracker<br></font>
@@ -46,6 +46,127 @@
 		</td>
 	</tr>
 </table>
+
+			<h2 class="date">22 February 2019</h2>
+			<h3 class="author">Cakey updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Cyborgs picking up items does now trigger the pick-up animation.</li>
+				<li class="bugfix">Cyborgs now have a button to stop pulling.</li>
+			</ul>
+			<h3 class="author">Camper2012 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Fixed many cases with robot items plane.</li>
+			</ul>
+			<h3 class="author">Carbonhell updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Beds, chairs and all subtypes can now be dismantled again.</li>
+				<li class="tweak">They can also be dismantled by any tool with the bolt turning quality, and the padding removed with the wirecutting quality.</li>
+				<li class="bugfix">Fixed station_levels list. With this fix, NTnet works again for PDAs.</li>
+				<li class="bugfix">Fixed blast door not opening when being drilled.</li>
+				<li class="bugfix">Fixed several GC failures.</li>
+				<li class="bugfix">Isolation centrifuge can now be dismantled properly with a screwdriver.</li>
+				<li class="rscadd">The isolation centrifuge circuitboard can now be made through an autolathe, and is a part of the circuitpack autolathe disk.</li>
+				<li class="bugfix">The lottery cannot be won by departments anymore, and the output message has been fixed.</li>
+				<li class="bugfix">Crew records now properly show the religion field.</li>
+				<li class="tweak">Setting the criminal status on the crew records program will properly update security HUDs.</li>
+			</ul>
+			<h3 class="author">Clockrigger updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rcsadd">Now areas have a specific var for color that lights should use. It allow us to more carefully and precisely create an atmosphere where we need it.</li>
+				<li class="imageadd">New sprites for three guns, default energy gun, and two versions of Mk58.</li>
+			</ul>
+			<h3 class="author">EvenInDeathIStillServe updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="experiment">You can now print a custom vendomat circuit board using the circuits autolathe disk, or buy one from the asters disk vendor.</li>
+				<li class="rcsadd">When the vendomat is unlocked, it can be stocked with any item. Once an item is added, the owner can change the price for it. Profits from sales go to the owner of the vendomat.</li>
+				<li class="rcsadd">The vendomat can be emagged in order to override current ownership, effectively unregistering the owner and allowing the next ID swiped to take his place.</li>
+				<li class="rcsadd">Added RCD to the advanced tools disk. Replaced the silver cost with 3 platinum.</li>
+				<li class="rcsadd">Added RCD ammo to the basic tool disk. 30 metal + 10 glass.</li>
+				<li class="tweak">Allowed setting suit sensors for non-ranked clothing.</li>
+				<li class="tweak">You can now hit security cameras with melee if your intent is set to harm.</li>
+				<li class="tweak">Exosuit fabricator now accepts plastic when it requires it for a few things.</li>
+				<li class="tweak">You could read an audio file's transcript without transcribing it by opening it in the file manager.</li>
+				<li class="tweak">Miller revolver has appropriate manufacturing requirements.</li>
+				<li class="bugfix">Fixed a runtime error when using the RCD on stuff that isn't a floor when not in deconstruction mode.</li>
+				<li class="bugfix">Fixed printing vendomat boards in autolathe.</li>
+				<li class="bugfix">Fixed supermatter monitor gasses.</li>
+				<li class="bugfix">Fixed input lag for hear_talk.</li>
+				<li class="bugfix">Fixed some Excelsior machinery issues.</li>
+				<li class="bugfix">Fixed bug with stopping and starting a recording a second time made the first recording get repeated in the transcript.</li>
+				<li class="spellcheck">Fixed a spelling mistake in the circuit disk. Technomacer > TechnomaNcer.</li>
+				<li class="spellcheck">Renamed Cyberchristianity to Neotheology in some cases.</li>
+			</ul>
+			<h3 class="author">Garen7 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">You can remove light hardsuits by clickdragging them to your hand, so you can now remove light hardsuits with storage components.</li>
+				<li class="rscdel">IH Commander no longer has 2 berets in his locker since there should only ever be one commander.</li>
+				<li class="bugfix">Bull shotguns ammo overlay no longer breaks when you have shots in the chamber and fully load the gun.</li>
+				<li class="spellcheck">Fixed toolset implant verb spelling error.</li>
+				<li class="spellcheck">Fixed Kalashnikov spelling error.</li>
+			</ul>
+			<h3 class="author">Kurgis updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Further refactors bullet-type ammo to use a set of defines for calling damage, and a set of defines for damage multipliers.</li>
+				<li class="imageadd">Added sprites to all the tile stack items, for when you pry up tiles, or craft them.</li>
+				<li class="imagedel">Deleted old tile stack sprites.</li>
+				<li class="bugfix">Floor tiles should no longer appear invisible when crafted or pried off.</li>
+				<li class="bugfix">Small fix to minor cell landmark.</li>
+			</ul>
+			<h3 class="author">MadmanMartian updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rcsadd">Portals now show a preview of the turf you will be arriving at.</li>
+			</ul>
+			<h3 class="author">MrStonedOne updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Fixed middle click drag aimbot exploit.</li>
+			</ul>
+			<h3 class="author">Nanako updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="experiment">More Baymed porting in progress, nothing to see here, move along.</li>
+				<li class="experiment">Added large searchable piles of random stuff, with dynamically generated sprites based on cobbling together many icons into a rather convincing pile. Some are just generic garbage, some are industrial, or medical, or full of broken science and tech.</li>
+				<li class="rcsadd">Directly adapted the sign language from William Gibson's Neuromancer. Jive is a method of communication involving gestures and signals to quietly and covertly conduct illicit trade and negotiating criminal stuff.</li>
+				<li class="rcsadd">Allowed users to choose one additional language to start with at character creation. Serbian, Techno Russian and Jive are the currently available choices.</li>
+				<li class="rcsadd">Real, true, fully functional full auto firing mode is here. It Just Works™.</li>
+				<li class="rcsadd">People spawning in cryo will now actually start INSIDE a cryobed, and asleep for a short time (15 seconds). They must wake up and climb out, or be autoejected after a minute.</li>
+				<li class="rcsadd">Added the Dormitory as a new alternate spawnpoint. Anyone spawning there will start off in a bed, asleep.</li>
+				<li class="rcsadd">Added Evac Vote, and reforked vote system in general with different vote power for different players.</li>
+				<li class="rcsadd">Added the PK machine gun to the serbian armoury, replacing the old L6 SAW.</li>
+				<li class="rcsadd">Added Storyteller Panel button to the Player Panel.</li>
+				<li class="tweak">Added the ability for admins to override vote cooldowns.</li>
+				<li class="tweak">Beartraps are now harder, and do some screenshake. Beartraps will now catch the victim even if their leg armor blocks the initial damage.</li>
+				<li class="bugfix">Admin ghosts now have up/down buttons.</li>
+				<li class="bugfix">The rescue cyborg's roller bed rack now can pick the bed back up.</li>
+				<li class="bugfix">Fixed resisting out of beartraps by adding a new permission proc.</li>
+				<li class="bugfix">Fixed tons of bugs in spawning code, so that it now properly uses fallback behaviour.</li>
+				<li class="bugfix">Fixed tons of bugs with beds and sheets, this feature should now work flawlessly, no more getting stuck in a bed.</li>
+				<li class="bugfix">Fixed floors being black after repair, and also removed some old obsolete vars.</li>
+				<li class="bugfix">Fixed issues where installing the cruciform would puncture the target's lungs.</li>
+				<li class="bugfix">Fixed evac vote time.</li>
+			</ul>
+			<h3 class="author">TorinoFermic updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="fix">Added back missing required components for the excelsior autolathe circuit board after having built.</li>
+				<li class="bugfix">Windoor construction can be completed now, also changed states from string to integer to make code clearer.</li>
+				<li class="bugfix">Bear traps can be picked again right now after a mob has gibbed on the trap.</li>
+				<li class="bugfix">Fixed bible crash.</li>
+			</ul>
+			<h3 class="author">Uvash updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Space cleaner can clean lube now.</li>
+			</ul>
+			<h3 class="author">Voldirs updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="imageadd">Colored stripes on rubber or high velocity mags. Blue stripe is for rubber ammo, red one is for high-velocity ammo.</li>
+				<li class="tweak">Firearm damage rebalance. Low damage smg/pistol rounds, medium damage rifle rounds, high damage revolver/rare pistol.</li>
+				<li class="tweak">New ammo type, high-velocity in Uplink.</li>
+			</ul>
+			<h3 class="author">nichlas0010 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Added an inactive storyteller, and let admins change storytellers midround.</li>
+				<li class="tweak">Added the globals stat entry to MC menu.</li>
+				<li class="bugfix">Fixed magazines not dropping to the ground properly.</li>
+				<li class="bugfix">Handteleporter portals and wormholes now delete themself.</li>
+			</ul>
 
 			<h2 class="date">04 February 2019</h2>
 			<h3 class="author">Boredone updated:</h3>
@@ -249,7 +370,7 @@
 <br>
 <b>CEV Eris Development Team</b>
 	<div class = "top">
-	<b>Coders:</b> Clockrigger, Nanako, LethalGhost, Matt, joy ok_hand, fluorescent, ITCups, Camper2012, silentenemy, EvenInDeathIStillServe, Boredone, JTB, Garen7, Kurgis, Nikov, Gray, hitsedesen, Luduk, Macleod962, TorinoFermic<br>
+	<b>Coders:</b> Clockrigger, Nanako, LethalGhost, Matt, joy ok_hand, fluorescent, ITCups, Camper2012, silentenemy, EvenInDeathIStillServe, Boredone, JTB, Garen7, Kurgis, Nikov, Gray, hitsedesen, Luduk, Macleod962, TorinoFermic, nichlas0010, Cakey, Voldirs, Carbonhell<br>
 	<b>Spriters:</b> WatlerJe, Bloodpriest, Shazbot, Toriate, Venligen<br>
 	<b>Sounds and music:</b> Duke GNEISS<br>
 	</div>

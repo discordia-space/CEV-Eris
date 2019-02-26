@@ -62,6 +62,7 @@
 		if(is_type_in_list(I,can_hold))
 			if (feedback)
 				user << "You collect \the [I]."
+			I.do_pickup_animation(user.loc, I.loc)
 			I.forceMove(src)
 			wrapped = I
 			update_icon()
@@ -80,7 +81,7 @@
 	if (wrapped && wrapped.icon)
 		var/mutable_appearance/MA = new(wrapped)
 		MA.layer = ABOVE_HUD_LAYER
-		MA.plane = ABOVE_HUD_PLANE
+		MA.plane = get_relative_plane(ABOVE_HUD_PLANE)
 
 		//Reset pixel offsets to initial values, incase being on a table messed them up
 		//And then subtract 8 from the Y value so it appears in the claw at the bottom
