@@ -1552,3 +1552,7 @@
 		if("set_signature")
 			source.admincaster_signature = sanitize(input(usr, "Provide your desired signature", "Network Identity Handler", ""))
 			source.access_news_network()
+
+		if("view")
+			source.admincaster_screen = 1
+			source.access_news_network()
