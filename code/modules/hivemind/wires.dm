@@ -188,16 +188,34 @@
 //assimilation process
 /obj/effect/plant/hivemind/proc/assimilate(var/atom/subject)
 	if(istype(subject, /obj/machinery) || istype(subject, /obj/item/modular_computer/console))
+		//new node creation
+		if(hive_mind_ai.hives.len < 10)
+			if(hive_mind_ai.evo_points > (hive_mind_ai.hives.len * 100)) //one hive per 100 EP
+				var/can_spawn_new_node = TRUE
+				for(var/obj/machinery/hivemind_machine/node/other_node in hive_mind_ai.hives)
+					if(get_dist(other_node, subject) < 10)
+						world << get_dist(other_node, subject)
+						can_spawn_new_node = FALSE
+						break
+				if(can_spawn_new_node)
+					new /obj/machinery/hivemind_machine/node(get_turf(subject))
+					qdel(subject)
+					return
+
 		if(prob(hive_mind_ai.failure_chance))
 			//critical failure! This machine would be a dummy, which means - without any ability
 			//let's make an infested sprite
-			var/obj/machinery/hivemind_machine/new_machine = new (loc)
+			var/obj/machinery/hivemind_machine/new_machine = new (get_turf(subject))
 			var/icon/infected_icon = new('icons/obj/hivemind_machines.dmi', icon_state = "wires-[rand(1, 3)]")
 			var/icon/new_icon = new(subject.icon, icon_state = subject.icon_state, dir = subject.dir)
 			new_icon.Blend(infected_icon, ICON_OVERLAY)
 			new_machine.icon = new_icon
 			var/prefix = pick("strange", "interesting", "marvelous", "unusual")
 			new_machine.name = "[prefix] [subject.name]"
+			new_machine.pixel_x = subject.pixel_x
+			new_machine.pixel_y = subject.pixel_y
+
+		//new hivemind machine creation
 		else
 			//of course, here we have a very little chance to spawn him, our mini-boss
 			if(prob(1))
@@ -205,26 +223,17 @@
 				qdel(subject)
 				return
 			else
-				var/picked_machine
-				var/list/possible_machines = subtypesof(/obj/machinery/hivemind_machine)
-
-				if(hive_mind_ai.hives.len < 10)
-					if(hive_mind_ai.evo_points < (hive_mind_ai.hives.len * 100)) //one hive per 100 EP
-						possible_machines -= /obj/machinery/hivemind_machine/node
-					else
-						//we make new nodes asap, cause it has higher priority to survive, so we force it here
-						picked_machine = /obj/machinery/hivemind_machine/node
-
+				var/list/possible_machines = subtypesof(/obj/machinery/hivemind_machine) - /obj/machinery/hivemind_machine/node
 				//here we compare hivemind's EP with machine's required value
 				for(var/machine_path in possible_machines)
 					if(hive_mind_ai.evo_points <= hive_mind_ai.EP_price_list[machine_path])
 						possible_machines.Remove(machine_path)
 
-				if(!picked_machine)
-					picked_machine = pick(possible_machines)
-				var/obj/machinery/hivemind_machine/new_machine = new picked_machine(loc)
+				var/picked_machine = pick(possible_machines)
+				var/obj/machinery/hivemind_machine/new_machine = new picked_machine(get_turf(subject))
 				new_machine.update_icon()
 
+	//corpse reanimation
 	if(istype(subject, /mob/living) && !istype(subject, /mob/living/simple_animal/hostile/hivemind))
 		//human bodies
 		if(istype(subject, /mob/living/carbon/human))

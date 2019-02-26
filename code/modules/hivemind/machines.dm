@@ -220,7 +220,7 @@
 	else
 		for(var/obj/effect/plant/hivemind/W in range(6, src))
 			if(W.master_node)
-				if(!(locate(type) in W.loc) && (get_dist(W, W.master_node) > 6) )
+				if(!(locate(type) in W.loc))
 					add_wireweed(W)
 
 
