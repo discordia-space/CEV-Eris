@@ -179,10 +179,10 @@ GUEST_BAN
 # LANGUAGE
 
 ## forum address
-# FORUMURL http://example.com
+# FORUMURL http://forum.syndi-cat.com
 
 ## Wiki address
-# WIKIURL http://example.com
+# WIKIURL http://wiki.syndi-cat.com/index.php
 
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
 # BANAPPEALS http://example.com
