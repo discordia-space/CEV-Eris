@@ -29,7 +29,7 @@
 
 
 	New()
-		..()
+		. = ..()
 		//here we change name, so design them according to this
 		name = pick("strange ", "unusual ", "odd ", "undiscovered ", "an interesting ") + name
 
@@ -96,9 +96,9 @@
 
 
 /mob/living/simple_animal/hostile/hivemind/Life()
-	. = ..()
-	if(!.)
+	if(stat == DEAD)
 		return
+	. = ..()
 
 	speak()
 
@@ -133,7 +133,6 @@
 	if(master) //for spawnable mobs
 		master.spawned_creatures.Remove(src)
 	. = ..()
-	gibs(loc, null, /obj/effect/gibspawner/robot)
 
 
 
@@ -728,11 +727,11 @@
 //we're not forgot to release our victim safely after death
 /mob/living/simple_animal/hostile/hivemind/mechiver/Destroy()
 	release_passenger(TRUE)
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/hivemind/mechiver/death()
 	release_passenger(TRUE)
-	..()
+	. = ..()
 	gibs(loc, null, /obj/effect/gibspawner/robot)
 	if(pilot)
 		gibs(loc, null, /obj/effect/gibspawner/human)
