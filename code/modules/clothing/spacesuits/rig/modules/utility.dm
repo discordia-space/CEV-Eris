@@ -47,7 +47,7 @@
 	suit_overlay_inactive = "mounted-drill"
 	use_power_cost = 0.1
 
-	device_type = /obj/item/weapon/tool/pickaxe/diamonddrill
+	device_type = /obj/item/weapon/tool/pickaxe/diamonddrill/nofuel
 
 /obj/item/rig_module/device/anomaly_scanner
 	name = "hardsuit anomaly scanner"

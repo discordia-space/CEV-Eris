@@ -55,6 +55,10 @@
 	use_fuel_cost = 0.15
 	max_fuel = 120
 
+/obj/item/weapon/tool/pickaxe/diamonddrill/nofuel
+	use_fuel_cost = 0
+	passive_fuel_cost = 0
+
 /obj/item/weapon/tool/pickaxe/excavation
 	name = "hand pickaxe"
 	icon_state = "pick_hand"
