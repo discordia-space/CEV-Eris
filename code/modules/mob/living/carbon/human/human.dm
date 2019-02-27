@@ -1438,7 +1438,7 @@ var/list/rank_prefix = list(\
 			if(client.eye == shadow)
 				reset_view(0)
 				return
-			if(istype(above, /turf/simulated/open))
+			if(istype(above, /turf/simulated/open) || istype(above, /turf/space))
 				src << SPAN_NOTICE("You look up.")
 				if(client)
 					reset_view(shadow)
