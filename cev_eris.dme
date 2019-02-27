@@ -2067,6 +2067,7 @@
 #include "code\modules\projectiles\guns\projectile\automatic\c20r.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\dallas.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\idaho.dm"
+#include "code\modules\projectiles\guns\projectile\automatic\IH_heavy.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\lmg.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\maxim.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\sol.dm"
