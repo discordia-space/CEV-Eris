@@ -110,11 +110,21 @@
 	desc = "Could work as a pretty decent throwing weapon."
 	icon_state = "tile"
 	force = WEAPON_FORCE_NORMAL
-	matter = list(MATERIAL_STEEL = 1)
+//	matter = list(MATERIAL_STEEL = 1) Prevents energy-to-matter conversion from cyborgs.
 	throwforce = WEAPON_FORCE_PAINFULL
 	throw_speed = 5
 	throw_range = 20
 	flags = CONDUCT
+
+/obj/item/stack/tile/floor/cyborg
+	name = "floor tile synthesizer"
+	desc = "A device that makes floor tiles."
+	gender = NEUTER
+	matter = null
+	uses_charge = 1
+	charge_costs = list(250)
+	stacktype = /obj/item/stack/tile/floor
+	build_type = /obj/item/stack/tile/floor
 
 // Cafe
 /obj/item/stack/tile/floor/cafe
@@ -122,6 +132,7 @@
 	singular_name = "cafe floor tile"
 	desc = "A chekered pattern, an ancient style for a familiar feeling."
 	icon_state = "tile_cafe"
+	throwforce = WEAPON_FORCE_NORMAL
 	matter = list(MATERIAL_PLASTIC = 1)
 
 // Techmaint
@@ -188,12 +199,12 @@
 /obj/item/stack/tile/floor/steel/brown_platform
 	name = "steel brown platform tile"
 	singular_name = "steel brown platform tile"
-	icon_state = "tile_steel_grayplatform"
+	icon_state = "tile_steel_brownplatform"
 
 /obj/item/stack/tile/floor/steel/gray_platform
 	name = "steel gray platform tile"
 	singular_name = "steel gray platform tile"
-	icon_state = "tile_steel_brownplatform"
+	icon_state = "tile_steel_grayplatform"
 
 /obj/item/stack/tile/floor/steel/danger
 	name = "steel danger tile"
@@ -279,7 +290,7 @@
 /obj/item/stack/tile/floor/white/gray_platform
 	name = "white gray platform tile"
 	singular_name = "white gray platform tile"
-	icon_state = "tile-white-grayplatform"
+	icon_state = "tile_white_grayplatform"
 
 /obj/item/stack/tile/floor/white/danger
 	name = "white danger tile"
@@ -400,15 +411,3 @@
 	singular_name = "dark monofloor tile"
 	icon_state = "tile_dark_monofloor"
 
-
-
-
-/obj/item/stack/tile/floor/cyborg
-	name = "floor tile synthesizer"
-	desc = "A device that makes floor tiles."
-	gender = NEUTER
-	matter = null
-	uses_charge = 1
-	charge_costs = list(250)
-	stacktype = /obj/item/stack/tile/floor
-	build_type = /obj/item/stack/tile/floor
