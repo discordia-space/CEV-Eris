@@ -57,15 +57,13 @@ particle whenever the target moves
 	//Ion trail, not used much now
 /////////////////////////////////////////////
 
-/obj/effect/effect/ion_trails
+/obj/effect/effect/trail_particle/ion_trails
 	name = "ion trails"
 	icon_state = "ion_trails"
 	anchored = 1.0
 
 /datum/effect/effect/system/trail/ion
-	trail_effect = /obj/effect/effect/ion_trails
-
-
+	trail_effect = /obj/effect/effect/trail_particle/ion_trails
 
 
 /////////////////////////////////////////////
