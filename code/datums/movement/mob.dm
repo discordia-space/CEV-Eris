@@ -181,7 +181,6 @@
 
 /datum/movement_handler/mob/delay/proc/SetDelay(var/delay)
 	next_move = max(next_move, world.time + delay)
-	world << "Set delay [delay] nextmove is [next_move]"
 
 /datum/movement_handler/mob/delay/proc/AddDelay(var/delay)
 	next_move += max(0, delay)

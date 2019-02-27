@@ -72,24 +72,23 @@
 /mob
 	var/mob/observer/eye/eyeobj
 
-/mob/proc/EyeMove(n, direct)
+/mob/proc/EyeMove(direct)
 	if(!eyeobj)
 		return
 
-	return eyeobj.EyeMove(n, direct)
+	return eyeobj.EyeMove(direct)
 
-/mob/observer/eye/EyeMove(n, direct)
+/mob/observer/eye/EyeMove(direct)
 	var/initial = initial(sprint)
-	var/max_sprint = 50
+	var/max_sprint = 70
 
 	var/delay = 0.5
 	set_glide_size(DELAY2GLIDESIZE(delay))
 
 	if (cooldown && cooldown < world.timeofday)
 		sprint = initial
-
-	for (var/i = 0; i < max(sprint, initial); i += 20)
-		var/turf/step = get_turf(get_step(src, direct))
+	for (var/i = 0; i < max(sprint, initial); i += 30)
+		var/turf/step = get_step(get_turf(src), direct)
 		if (step)
 			setLoc(step)
 
