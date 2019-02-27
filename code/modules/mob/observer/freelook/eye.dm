@@ -59,6 +59,10 @@
 
 			visualnet.visibility(src)
 			return 1
+
+		if(owner.hud_used)
+			owner.hud_used.updatePlaneMasters(owner)
+
 	return 0
 
 /mob/observer/eye/proc/getLoc()
@@ -100,4 +104,12 @@
 	else
 		sprint = initial
 
+	if(owner.hud_used)
+		owner.hud_used.updatePlaneMasters(owner)
+
 	return 1
+
+/mob/observer/eye/forceMove(atom/destination, var/special_event, glide_size_override=0)
+	. = ..()
+	if(owner && owner.hud_used)
+		owner.hud_used.updatePlaneMasters(owner)
