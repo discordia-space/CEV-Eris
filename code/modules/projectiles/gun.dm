@@ -95,6 +95,7 @@
 	var/tmp/mob/living/last_moved_mob //Used to fire faster at more than one person.
 	var/tmp/told_cant_shoot = 0 //So that it doesn't spam them with the fact they cannot hit them.
 	var/tmp/lock_time = -100
+	var/mouthshoot = FALSE //To stop people from suiciding twice... >.>
 
 /obj/item/weapon/gun/New()
 	..()
@@ -375,7 +376,6 @@
 	return !P.launch_from_gun(target, user, src, target_zone, x_offset, y_offset)
 
 //Suicide handling.
-/obj/item/weapon/gun/var/mouthshoot = FALSE //To stop people from suiciding twice... >.>
 /obj/item/weapon/gun/proc/handle_suicide(mob/living/user)
 	if(!ishuman(user))
 		return
@@ -387,6 +387,12 @@
 		M.visible_message(SPAN_NOTICE("[user] decided life was worth living"))
 		mouthshoot = FALSE
 		return
+
+	if(!restrict_safety)
+		if(safety)
+			handle_click_empty(user)
+			mouthshoot = FALSE
+			return
 	var/obj/item/projectile/in_chamber = consume_next_projectile()
 	if (istype(in_chamber))
 		user.visible_message(SPAN_WARNING("[user] pulls the trigger."))
