@@ -1,6 +1,8 @@
 //The Hivemind is a rogue AI using nanites.
 //The objective of this AI is to spread across the ship and destroy as much as possible.
 
+#define MAX_NODES_AMOUNT 	10
+#define MIN_NODES_RANGE		10
 
 var/datum/hivemind/hive_mind_ai
 
@@ -22,7 +24,8 @@ var/datum/hivemind/hive_mind_ai
 											/obj/machinery/status_display,			/obj/machinery/requests_console,
 											/obj/machinery/newscaster,				/obj/machinery/floor_light,
 											/obj/machinery/nuclearbomb,				/obj/machinery/flasher,
-											/obj/machinery/filler_object,			/obj/machinery/hivemind_machine)
+											/obj/machinery/filler_object,			/obj/machinery/hivemind_machine,
+											/obj/machinery/meter,					/obj/machinery/cryopod)
 	//internals
 	var/list/global_abilities_cooldown = list()
 	var/list/EP_price_list = list()
