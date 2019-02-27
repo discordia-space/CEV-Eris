@@ -13,32 +13,34 @@
 	icon_state = "swatclava"
 	item_state = "balaclava"
 	action_button_name = "Adjust Balaclava"
-	var/open = 0 //0 = full, 1 = cover mouth, 2 = cover head
+	var/open = 0 //0 = full, 1 = head only, 2 = face only
 
 /obj/item/clothing/mask/balaclava/tactical/proc/adjust_mask(mob/living/carbon/human/user)
 	if(!istype(user))
 		return
 	if(!user.incapacitated())
-		open = (open + 1) % 3
 		switch(open)
-			if (2)
+			if (0)
 				flags_inv = BLOCKHEADHAIR
 				body_parts_covered = HEAD
 				icon_state = "swatclava_open"
 				user << "You put the balaclava away, revealing your face."
+				open = 1
 			if (1)
 				flags_inv = HIDEFACE|BLOCKFACEHAIR
 				body_parts_covered = FACE
 				icon_state = "swatclava_mouth"
-				user << "You pull the balaclava up to cover your mouth."
-			if (0)
+				user << "You adjust the balaclava up to cover your mouth."
+				open = 2
+			else
 				flags_inv = HIDEFACE|BLOCKHAIR
 				body_parts_covered = FACE|HEAD
 				icon_state = "swatclava"
-				user << "You pull the balaclava up to cover your head."
+				user << "You pull the balaclava up to cover your whole head."
+				open = 0
 		user.update_hair(0)
 		user.update_inv_ears(0)
-		user.update_inv_wear_mask()
+		user.update_inv_wear_mask() //Updates mob icons
 
 /obj/item/clothing/mask/balaclava/tactical/attack_self(mob/user)
 	adjust_mask(user)
