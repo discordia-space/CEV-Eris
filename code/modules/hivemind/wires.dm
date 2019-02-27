@@ -187,53 +187,71 @@
 
 //assimilation process
 /obj/effect/plant/hivemind/proc/assimilate(var/atom/subject)
+	//Machinery infestation
 	if(istype(subject, /obj/machinery) || istype(subject, /obj/item/modular_computer/console))
-		//new node creation
-		if(hive_mind_ai.hives.len < 10)
-			if(hive_mind_ai.evo_points > (hive_mind_ai.hives.len * 100)) //one hive per 100 EP
+		var/obj/machinery/hivemind_machine/created_machine
+
+		//We also save subject's circuit if it possible
+		var/saved_circuit
+		if(istype(subject, /obj/machinery))
+			var/obj/machinery/victim = subject
+			if(victim.circuit)
+				saved_circuit = victim.circuit.type
+
+		//New node creation
+		if(hive_mind_ai.hives.len < MAX_NODES_AMOUNT)
+			var/EP_range = hive_mind_ai.hives.len * (hive_mind_ai.evo_points_max / MAX_NODES_AMOUNT)
+			if(hive_mind_ai.evo_points > EP_range) //one hive per: max_EP / max_nodes_amount
 				var/can_spawn_new_node = TRUE
 				for(var/obj/machinery/hivemind_machine/node/other_node in hive_mind_ai.hives)
-					if(get_dist(other_node, subject) < 10)
-						world << get_dist(other_node, subject)
+					if(get_dist(other_node, subject) < MIN_NODES_RANGE)
 						can_spawn_new_node = FALSE
 						break
 				if(can_spawn_new_node)
-					new /obj/machinery/hivemind_machine/node(get_turf(subject))
-					qdel(subject)
-					return
+					created_machine = new(get_turf(subject))
 
-		if(prob(hive_mind_ai.failure_chance))
-			//critical failure! This machine would be a dummy, which means - without any ability
+
+		//Critical failure chance! This machine would be a dummy, which means - without any ability
+		if(!created_machine && prob(hive_mind_ai.failure_chance))
 			//let's make an infested sprite
-			var/obj/machinery/hivemind_machine/new_machine = new (get_turf(subject))
+			created_machine = new (get_turf(subject))
 			var/icon/infected_icon = new('icons/obj/hivemind_machines.dmi', icon_state = "wires-[rand(1, 3)]")
 			var/icon/new_icon = new(subject.icon, icon_state = subject.icon_state, dir = subject.dir)
 			new_icon.Blend(infected_icon, ICON_OVERLAY)
-			new_machine.icon = new_icon
+			created_machine.icon = new_icon
 			var/prefix = pick("strange", "interesting", "marvelous", "unusual")
-			new_machine.name = "[prefix] [subject.name]"
-			new_machine.pixel_x = subject.pixel_x
-			new_machine.pixel_y = subject.pixel_y
+			created_machine.name = "[prefix] [subject.name]"
+			created_machine.pixel_x = subject.pixel_x
+			created_machine.pixel_y = subject.pixel_y
+
+		//Here we have a little chance to spawn our machinery horror
+		if(prob(5) && saved_circuit)
+			new /mob/living/simple_animal/hostile/hivemind/mechiver(get_turf(subject))
+			new saved_circuit(get_turf(subject))
+			qdel(subject)
+			return
 
 		//new hivemind machine creation
-		else
-			//of course, here we have a very little chance to spawn him, our mini-boss
-			if(prob(1))
-				new /mob/living/simple_animal/hostile/hivemind/mechiver(loc)
-				qdel(subject)
-				return
+		if(!created_machine)
+			var/list/possible_machines = subtypesof(/obj/machinery/hivemind_machine) - /obj/machinery/hivemind_machine/node
+			//here we compare hivemind's EP with machine's required value
+			for(var/machine_path in possible_machines)
+				if(hive_mind_ai.evo_points <= hive_mind_ai.EP_price_list[machine_path])
+					possible_machines.Remove(machine_path)
+
+			var/picked_machine = pick(possible_machines)
+			created_machine = new picked_machine(get_turf(subject))
+
+
+		if(created_machine)
+			if(saved_circuit)
+				new saved_circuit(created_machine)
 			else
-				var/list/possible_machines = subtypesof(/obj/machinery/hivemind_machine) - /obj/machinery/hivemind_machine/node
-				//here we compare hivemind's EP with machine's required value
-				for(var/machine_path in possible_machines)
-					if(hive_mind_ai.evo_points <= hive_mind_ai.EP_price_list[machine_path])
-						possible_machines.Remove(machine_path)
+				created_machine.assimilated_machinery_path 	= subject.type
+				created_machine.assimilated_machinery_dir 	= subject.dir
+			qdel(subject)
 
-				var/picked_machine = pick(possible_machines)
-				var/obj/machinery/hivemind_machine/new_machine = new picked_machine(get_turf(subject))
-				new_machine.update_icon()
-
-	//corpse reanimation
+	//Corpse reanimation
 	if(istype(subject, /mob/living) && !istype(subject, /mob/living/simple_animal/hostile/hivemind))
 		//human bodies
 		if(istype(subject, /mob/living/carbon/human))
@@ -305,3 +323,8 @@
 			if(smoke.reagents.has_reagent(lethal))
 				die_off()
 				return
+
+
+
+#undef MAX_NODES_AMOUNT
+#undef MIN_NODES_RANGE

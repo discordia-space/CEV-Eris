@@ -20,6 +20,8 @@
 	var/list/spawned_creatures = list()	//which mobs machine can spawns, insert paths
 	//internal
 	var/cooldown = 0		//cooldown in world.time value
+	var/assimilated_machinery_path
+	var/assimilated_machinery_dir
 
 
 /obj/machinery/hivemind_machine/Initialize()
@@ -131,6 +133,15 @@
 /obj/machinery/hivemind_machine/proc/destruct()
 	playsound(src, 'sound/voice/insect_battle_screeching.ogg', 30, 1)
 	gibs(loc, null, /obj/effect/gibspawner/robot)
+	//if assimilated machinery has circuit, let's find it and drop
+	var/obj/item/weapon/circuitboard/saved_circuit = locate() in src
+	if(saved_circuit)
+		saved_circuit.loc = loc
+	else
+		//but some of them haven't circuits, so we just spawn it back
+		if(assimilated_machinery_path)
+			var/obj/machinery/M = new assimilated_machinery_path(loc)
+			M.dir = assimilated_machinery_dir
 	qdel(src)
 
 
