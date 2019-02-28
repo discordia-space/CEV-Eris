@@ -1,7 +1,7 @@
 //Hivemind various machines
 
 #define HIVE_FACTION 			"hive"
-#define REGENERATION_SPEED 		10
+#define REGENERATION_SPEED 		4
 
 
 
@@ -43,7 +43,7 @@
 
 /obj/machinery/hivemind_machine/Process()
 	if(wireweeds_required && !locate(/obj/effect/plant/hivemind) in loc)
-		take_damage(20, on_damage_react = FALSE)
+		take_damage(5, on_damage_react = FALSE)
 
 	if(hive_mind_ai && !(stat & EMPED) && !is_on_cooldown())
 		//slow health regeneration
