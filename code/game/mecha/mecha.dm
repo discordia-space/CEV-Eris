@@ -894,7 +894,7 @@ assassination method if you time it right*/
 	if(state >= 3 && src.occupant)
 		usable_qualities.Add(QUALITY_PULSING)
 
-	var/tool_type = I.get_tool_type(user, usable_qualities)
+	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 
 		if(QUALITY_BOLT_TURNING)

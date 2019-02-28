@@ -93,7 +93,7 @@
 		user << SPAN_NOTICE("\icon[src]\The [src] is busy. Please wait for completion of previous operation.")
 		return TRUE
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING))
+	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING), src)
 	switch(tool_type)
 		if(QUALITY_PRYING)
 			if(!panel_open)

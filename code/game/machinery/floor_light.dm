@@ -29,7 +29,7 @@ var/list/floor_light_cache = list()
 	if((damaged || (stat & BROKEN)))
 		usable_qualities.Add(QUALITY_WELDING)
 
-	var/tool_type = I.get_tool_type(user, usable_qualities)
+	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 
 		if(QUALITY_PULSING)

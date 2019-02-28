@@ -112,7 +112,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 						possibleSteps[S.requedQuality] = S
 
 	if(!selectedStep && possibleSteps.len)
-		var/selected = tool.get_tool_type(user, possibleSteps)
+		var/selected = tool.get_tool_type(user, possibleSteps, M)
 		if(selected == ABORT_CHECK || !user.Adjacent(M))
 			return 1
 		selectedStep = possibleSteps[selected]

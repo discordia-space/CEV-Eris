@@ -253,7 +253,7 @@
 /obj/machinery/power/smes/attackby(var/obj/item/I, var/mob/user)
 	var/list/usable_qualities = list(QUALITY_SCREW_DRIVING,QUALITY_WIRE_CUTTING,QUALITY_PRYING,QUALITY_PULSING)
 
-	var/tool_type = I.get_tool_type(user, usable_qualities)
+	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	if(tool_type == QUALITY_SCREW_DRIVING)
 		if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			open_hatch = !open_hatch
