@@ -18,13 +18,13 @@
 		amount_per_transfer_from_this = N
 
 /obj/item/weapon/reagent_containers/New()
-	..()
 	if(!possible_transfer_amounts)
 		src.verbs -= /obj/item/weapon/reagent_containers/verb/set_APTFT
 	create_reagents(volume)
 	if(preloaded)
 		for(var/reagent in preloaded)
 			reagents.add_reagent(reagent, preloaded[reagent])
+	..()
 
 
 /obj/item/weapon/reagent_containers/attack_self(mob/user as mob)
