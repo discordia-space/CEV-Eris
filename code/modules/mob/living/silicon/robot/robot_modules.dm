@@ -105,7 +105,7 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/Initialize()
 	for(var/obj/item/I in modules)
 		I.canremove = 0
-		I.plane = ABOVE_HUD_PLANE
+		I.set_plane(ABOVE_HUD_PLANE)
 		I.layer = ABOVE_HUD_LAYER
 
 	for (var/obj/item/weapon/tool/T in modules)

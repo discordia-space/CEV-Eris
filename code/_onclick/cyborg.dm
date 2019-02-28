@@ -65,9 +65,6 @@
 		A.attack_robot(src)
 		return
 
-	// buckled cannot prevent machine interlinking but stops arm movement
-	if( buckled )
-		return
 
 	if(W == A)
 
@@ -240,13 +237,13 @@
 	AICtrlClick(user)
 
 //
-//	On Ctrl-Click will turn on or off SMES input 
+//	On Ctrl-Click will turn on or off SMES input
 //
 /obj/machinery/power/smes/BorgCtrlClick(var/mob/living/silicon/robot/user)
 	AICtrlClick(user)
 
 //
-//	On Alt-Click will turn on or off SMES output 
+//	On Alt-Click will turn on or off SMES output
 //
 /obj/machinery/power/smes/BorgAltClick(var/mob/living/silicon/robot/user)
 	AIAltClick(user)

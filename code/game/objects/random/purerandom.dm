@@ -136,7 +136,10 @@
 				/obj/random/junk = 20,
 				/obj/random/tool_upgrade = 10,
 				/obj/random/lathe_disk = 5,
-				/obj/random/rig_module = 4))
+				/obj/random/rig_module = 4,
+				/obj/random/medical = 10,
+				/obj/random/junkfood = 50,
+				/obj/random/cloth/random_cloth = 5))
 
 /obj/random/lowkeyrandom/low_chance
 	name = "low chance random stuff"

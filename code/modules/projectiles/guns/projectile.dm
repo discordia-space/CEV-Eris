@@ -35,6 +35,11 @@
 	var/auto_eject_sound = null
 	var/ammo_mag = "default" // magazines + gun itself. if set to default, then not used
 
+/obj/item/weapon/gun/projectile/Destroy()
+	QDEL_NULL(chambered)
+	QDEL_NULL(ammo_magazine)
+	return ..()
+
 /obj/item/weapon/gun/projectile/proc/cock_gun(mob/user)
 	set waitfor = 0
 	if(cocked_sound)
@@ -207,10 +212,10 @@
 //attempts to unload src. If allow_dump is set to 0, the speedloader unloading method will be disabled
 /obj/item/weapon/gun/projectile/proc/unload_ammo(mob/user, var/allow_dump=1)
 	if(ammo_magazine)
-		if(!user.put_in_hands(ammo_magazine))
-			return
+		user.put_in_hands(ammo_magazine)
 
-		if(unload_sound) playsound(src.loc, unload_sound, 75, 1)
+		if(unload_sound)
+			playsound(src.loc, unload_sound, 75, 1)
 		ammo_magazine.update_icon()
 		ammo_magazine = null
 	else if(loaded.len)
@@ -274,10 +279,10 @@
 	..(user)
 	if(ammo_magazine)
 		user << "It has \a [ammo_magazine] loaded."
-	user << "Has [getAmmo()] round\s remaining."
+	user << "Has [get_ammo()] round\s remaining."
 	return
 
-/obj/item/weapon/gun/projectile/proc/getAmmo()
+/obj/item/weapon/gun/projectile/proc/get_ammo()
 	var/bullets = 0
 	if(loaded)
 		bullets += loaded.len

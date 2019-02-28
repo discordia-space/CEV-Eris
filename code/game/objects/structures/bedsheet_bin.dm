@@ -35,7 +35,7 @@ LINEN BINS
 		user << "Someone already using \the [src]"
 		return FALSE
 	inuse = TRUE
-	if (do_after(user, 6, src, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_STUNNED))
+	if (do_after(user, 6, src, incapacitation_flags = INCAPACITATION_UNCONSCIOUS))
 		if(user.loc != loc)
 			user.do_attack_animation(src)
 		playsound(get_turf(loc), "rustle", 15, 1, -5)
@@ -49,7 +49,7 @@ LINEN BINS
 		else
 			rolled = FALSE
 			if(!user.resting && get_turf(src) == get_turf(user))
-				user.lay_down() 
+				user.lay_down()
 		inuse = FALSE
 		update_icon()
 		return TRUE
@@ -76,7 +76,7 @@ LINEN BINS
 		if(!folded)
 			folded = TRUE
 		else
-			
+
 			folded = FALSE
 		inuse = FALSE
 		update_icon()
@@ -121,12 +121,12 @@ LINEN BINS
 	..()
 
 /obj/item/weapon/bedsheet/attack_hand(mob/user as mob)
-	if(!user || user.incapacitated(incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_STUNNED))
+	if(!user || user.incapacitated(INCAPACITATION_UNCONSCIOUS))
 		return
 	if(!folded)
 		toggle_roll(user)
 	else
-		pickup(usr)
+		.=..()
 	add_fingerprint(user)
 
 /obj/item/weapon/bedsheet/MouseDrop(over_object, src_location, over_location)
@@ -138,7 +138,7 @@ LINEN BINS
 			toggle_fold(usr)
 		if(folded)
 			pickup(usr)
-			
+
 /obj/item/weapon/bedsheet/update_icon()
 	if (folded)
 		icon_state = "sheet-folded"

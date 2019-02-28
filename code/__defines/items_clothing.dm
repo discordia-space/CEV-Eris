@@ -101,6 +101,7 @@
 
 #define BLOCKHEADHAIR   0x20    // Hides the user's hair overlay. Leaves facial hair.
 #define BLOCKHAIR       0x40    // Hides the user's hair, facial and otherwise.
+#define BLOCKFACEHAIR   0x80    // Hides the user's facial hair. Leaves head hair
 
 
 
