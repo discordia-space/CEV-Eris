@@ -42,6 +42,7 @@
 	if(. && parallax)
 		parallax.update()
 
+
 /mob/Login()
 	if(!parallax)
 		parallax = new(src)
