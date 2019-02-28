@@ -306,7 +306,7 @@
 
 /obj/machinery/vending/attackby(obj/item/I, mob/user)
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_BOLT_TURNING, QUALITY_SCREW_DRIVING, QUALITY_WELDING))
+	var/tool_type = I.get_tool_type(user, list(QUALITY_BOLT_TURNING, QUALITY_SCREW_DRIVING, QUALITY_WELDING), src)
 	switch(tool_type)
 
 		if(QUALITY_BOLT_TURNING)

@@ -185,7 +185,7 @@
 		update_icon()
 		return
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_SHOVELING, QUALITY_CUTTING, QUALITY_BOLT_TURNING))
+	var/tool_type = I.get_tool_type(user, list(QUALITY_SHOVELING, QUALITY_CUTTING, QUALITY_BOLT_TURNING), src)
 	switch(tool_type)
 
 		if(QUALITY_SCREW_DRIVING)
