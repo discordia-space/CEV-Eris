@@ -14,6 +14,8 @@
 	for(var/t in organs)
 		qdel(t)
 	var/atom/movable/overlay/animation = new /atom/movable/overlay( loc )
+	animation.plane = plane
+	animation.layer = ABOVE_MOB_LAYER
 	animation.icon_state = "blank"
 	animation.icon = 'icons/mob/mob.dmi'
 	animation.master = src
