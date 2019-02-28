@@ -569,23 +569,24 @@
 	resistance = 6
 
 /obj/structure/window/reinforced/plasma
-	name = "reinforced borosilicate window"
+	name = "reinforced plasma window"
 	desc = "A borosilicate alloy window, with rods supporting it. It seems to be very strong."
-	basestate = "plasmarwindow"
+	basestate = "rpwindow"
 	icon_state = "plasmarwindow"
 	shardtype = /obj/item/weapon/material/shard/plasma
 	glasstype = /obj/item/stack/material/glass/plasmarglass
-	maximal_heat = T0C + 5227  // Matched to basic.
-	damage_per_fire_tick = 1.5 // This should last for 80 fire ticks if the window is not damaged at all. The idea is that borosilicate windows have something like ablative layer that protects them for a while.
-	maxhealth = 150
-	resistance = 8
+	maximal_heat = T0C + 5453 // Safe use temperature at 6000 kelvin.
+	damage_per_fire_tick = 1.5
+	maxhealth = 200
+	resistance = 10
 
 /obj/structure/window/reinforced/plasma/full
 	dir = SOUTH|EAST
+	icon = 'icons/obj/structures/windows.dmi'
 	icon_state = "plasmarwindow_mask"
 	alpha = 150
-	maxhealth = 200
-	resistance = 10
+	maxhealth = 250
+	resistance = 12
 
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
