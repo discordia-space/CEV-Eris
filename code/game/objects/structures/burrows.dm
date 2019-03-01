@@ -570,9 +570,10 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 		if(locate(/obj/effect/plant) in loc)
 			return
 
-		if(!hive_mind_ai || !hive_mind_ai.hives.len)
+		if(!hive_mind_ai || !hive_mind_ai.hives.len || maintenance)
 			return
 
+		break_open()
 		var/obj/machinery/hivemind_machine/node/hivemind_node = pick(hive_mind_ai.hives)
 		var/obj/effect/plant/hivemind/wire = new(loc, plant)
 		hivemind_node.add_wireweed(wire)
