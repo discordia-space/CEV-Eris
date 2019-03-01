@@ -894,7 +894,7 @@
 		wearer.lastarea = get_area(wearer.loc)
 
 	if((istype(wearer.loc, /turf/space)) || (wearer.lastarea.has_gravity == 0))
-		if(!wearer.Allow_Spacemove(0))
+		if(!wearer.allow_spacemove(0))
 			return 0
 
 	if(malfunctioning)

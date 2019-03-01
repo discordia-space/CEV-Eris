@@ -24,7 +24,7 @@
 	transforming = 0
 	stunned = 0
 
-	update_canmove()
+	update_lying_buckled_and_verb_status()
 	invisibility = initial(invisibility)
 
 	if(!species.primitive_form) //If the creature in question has no primitive set, this is going to be messy.
@@ -81,18 +81,18 @@
 
 	if(move)
 		var/obj/new_location = null
-		for(var/turf/sloc in getSpawnLocations("AI"))
+		for(var/turf/sloc in get_datum_spawn_locations("AI"))
 			if(locate(/obj/structure/AIcore) in sloc)
 				continue
 			new_location = sloc
 		if (!new_location)
-			for(var/turf/sloc in getSpawnLocations("triai"))
+			for(var/turf/sloc in get_datum_spawn_locations("triai"))
 				if(locate(/obj/structure/AIcore) in sloc)
 					continue
 				new_location = sloc
 		if (!new_location)
 			O << "Oh god sorry we can't find an unoccupied AI spawn location, so we're spawning you on top of someone."
-			new_location = pickSpawnLocation("AI")
+			new_location = pick_spawn_location("AI")
 
 		O.forceMove(new_location)
 
@@ -119,7 +119,7 @@
 	canmove = 0
 	icon = null
 	invisibility = 101
-	
+
 
 	var/mob/living/silicon/robot/O = new /mob/living/silicon/robot( loc )
 

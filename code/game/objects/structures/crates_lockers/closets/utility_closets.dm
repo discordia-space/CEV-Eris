@@ -113,7 +113,6 @@
 		new /obj/item/clothing/head/hardhat(src)
 	new /obj/random/tool_upgrade(src)
 	new /obj/random/tool_upgrade(src)
-	new /obj/random/tool_upgrade(src)
 	//Every tool closet contains a couple guaranteed toolmods
 
 /*

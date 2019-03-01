@@ -28,21 +28,21 @@
 
 /datum/craft_recipe/floor/techmaint_perforated
 	name = "perforated maint floor tile"
-	result = /obj/item/stack/tile/floor/techmaint_perforated
+	result = /obj/item/stack/tile/floor/techmaint/perforated
 	steps = list(
 		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL)
 	)
 
 /datum/craft_recipe/floor/techmaint_panels
 	name = "panels maint floor tile"
-	result = /obj/item/stack/tile/floor/techmaint_panels
+	result = /obj/item/stack/tile/floor/techmaint/panels
 	steps = list(
 		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL)
 	)
 
 /datum/craft_recipe/floor/techmaint_cargo
 	name = "cargo maint floor tile"
-	result = /obj/item/stack/tile/floor/techmaint_cargo
+	result = /obj/item/stack/tile/floor/techmaint/cargo
 	steps = list(
 		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL)
 	)

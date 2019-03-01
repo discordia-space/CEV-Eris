@@ -115,7 +115,7 @@
 //Not even going to touch this pile of spaghetti
 /turf/simulated/mineral/attackby(obj/item/I, mob/living/user)
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_DIGGING, QUALITY_EXCAVATION))
+	var/tool_type = I.get_tool_type(user, list(QUALITY_DIGGING, QUALITY_EXCAVATION), src)
 	switch(tool_type)
 
 		if(QUALITY_EXCAVATION)
@@ -402,10 +402,6 @@
 	name = "sand"
 	icon = 'icons/turf/flooring/asteroid.dmi'
 	icon_state = "asteroid"
-	base_name = "sand"
-	base_desc = "Gritty and unpleasant."
-	base_icon = 'icons/turf/flooring/asteroid.dmi'
-	base_icon_state = "asteroid"
 
 	initial_flooring = /decl/flooring/asteroid
 	oxygen = 0

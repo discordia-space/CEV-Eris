@@ -3,7 +3,7 @@
 		return 0
 	..(prob_slip)
 
-/mob/living/silicon/robot/Allow_Spacemove(var/check_drift = 0)
+/mob/living/silicon/robot/allow_spacemove(var/check_drift = 0)
 
 	//Do we have a working jetpack?
 	var/obj/item/weapon/tank/jetpack/thrust = get_jetpack()

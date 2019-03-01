@@ -27,7 +27,7 @@
 		deck_size += med+sci
 		return
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M.client && (M.mind && !M.mind.antagonist.len) && M.stat != DEAD && (ishuman(M) || isrobot(M) || isAI(M)))
 			var/datum/job/job = SSjob.GetJob(M.mind.assigned_role)
 			if(job)

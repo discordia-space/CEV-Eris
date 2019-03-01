@@ -35,12 +35,12 @@
 	loc = null
 	my_client = client
 	sight |= SEE_TURFS
-	player_list |= src
+	GLOB.player_list |= src
 
 	new_player_panel()
 	if(client)
 		client.playtitlemusic()
-	
+
 	if(!istype(lobby_image, /obj/effect/lobby_image))
 		var/the_type
 		if(isnull(lobby_image))

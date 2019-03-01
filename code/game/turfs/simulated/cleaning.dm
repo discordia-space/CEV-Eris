@@ -7,12 +7,13 @@
 	Wetness and slipping
 */
 
-/turf/simulated/proc/wet_floor(var/wet_val = 1)
-	if(wet_val < wet)
+/turf/simulated/proc/wet_floor(var/wet_val = 1, var/force_wet = FALSE)
+	if(wet_val < wet && !force_wet)
 		return
 
-	if(!wet)
+	if(force_wet || !wet)
 		wet = wet_val
+	if(!wet_overlay)
 		wet_overlay = image('icons/effects/water.dmi',src,"wet_floor")
 		overlays += wet_overlay
 

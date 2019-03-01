@@ -67,8 +67,9 @@
 	//Does not affect damage dealt to mobs
 
 /obj/item/Destroy()
-	qdel(hidden_uplink)
-	hidden_uplink = null
+	QDEL_NULL(hidden_uplink)
+	QDEL_NULL(blood_overlay)
+	QDEL_NULL(action)
 	if(ismob(loc))
 		var/mob/m = loc
 		m.u_equip(src)
@@ -266,7 +267,7 @@
 
 	if(istype(H))
 
-		var/obj/item/organ/internal/eyes/eyes = H.internal_organs_by_name[O_EYES]
+		var/obj/item/organ/internal/eyes/eyes = H.internal_organs_by_name[BP_EYES]
 
 		if(!eyes)
 			return
@@ -442,3 +443,11 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 /obj/item/device
 	icon = 'icons/obj/device.dmi'
+
+//Called when a human swaps hands to a hand which is holding this item
+/obj/item/proc/swapped_to(var/mob/user)
+	return
+
+//Called when a human swaps hands away from a hand which is holding this item
+/obj/item/proc/swapped_from(var/mob/user)
+	return

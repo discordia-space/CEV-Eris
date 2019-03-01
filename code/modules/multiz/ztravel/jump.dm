@@ -68,7 +68,7 @@
 
 		mat = M.transform
 		mat.Scale(0.9)
-		M.plane = FLOOR_PLANE
+		M.set_plane(FLOOR_PLANE)
 		M.layer = 1
 		animate(M, alpha = 100, pixel_y = -16, transform = mat,  time = duration*1.4, easing = BACK_EASING)
 	else

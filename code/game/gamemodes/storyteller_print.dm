@@ -40,7 +40,7 @@
 		/area/shuttle/escape_pod5/centcom
 		)
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M.client)
 			if(M.stat != DEAD)
 				surviving_total++
@@ -63,7 +63,7 @@
 
 	data += "<b><a href='?src=\ref[src];panel=1'>\[UPDATE\]</a></b>"
 	data += "<table><tr><td>"
-	data += "[src.name] ([src.config_tag])"
+	data += "[src.name] (<A href='?src=\ref[src];c_mode=1'>Change</A>)"
 	data += "<br>Round duration: <b>[round(world.time / 36000)]:[add_zero(world.time / 600 % 60, 2)]:[world.time / 100 % 6][world.time / 100 % 10]</b>"
 	data += "<br>Debug mode: <b><a href='?src=\ref[src];toggle_debug=1'>\[[debug_mode?"ON":"OFF"]\]</a></b>"
 	data += "<br>One role per player: <b><a href='?src=\ref[src];toggle_orpp=1'>\[[one_role_per_player?"YES":"NO"]\]</a></b>"
@@ -269,7 +269,13 @@
 		var/pooltype = href_list["modify_points"]
 		var/add_points = input("Pool [pooltype] currently has [round(points[pooltype], 0.01)]. How many do you wish to add? Enter a negative value to subtract points","Altering Points",eng) as num
 		modify_points(add_points, pooltype)
+
 	storyteller_panel()
+
+	//anything below is placed there so it triggers after the storytellerpanel updates.
+
+	if(href_list["c_mode"])
+		. = usr.client.holder.Topic(href, href_list)
 
 /datum/storyteller/proc/topic_extra(href,href_list)
 	return

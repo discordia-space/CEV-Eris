@@ -176,13 +176,11 @@ Frequency:
 		return
 	var/T = L[t1]
 	user << SPAN_NOTICE("Portal locked in.")
-	var/obj/effect/portal/P = new portal_type( get_turf(src) )
-	P.target = T
+	var/obj/effect/portal/P = new portal_type(get_turf(src))
+	P.set_target(T)
 	if(portal_fail_chance)
 		P.failchance = portal_fail_chance
 	src.add_fingerprint(user)
-
-	return
 
 /obj/item/weapon/hand_tele/MouseDrop(over_object)
 	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))

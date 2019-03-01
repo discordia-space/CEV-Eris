@@ -65,7 +65,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 		forceMove(T)
 	else
 		//Safety in case we cannot find the body's position
-		var/turf/T = pickSpawnLocation("Observer")
+		var/turf/T = pick_spawn_location("Observer")
 		if(istype(T))
 			src.forceMove(T)
 
@@ -108,13 +108,13 @@ Works together with spawning an observer, noted above.
 			if(copytext(hud.icon_state,1,4) == "hud")
 				client.images.Remove(hud)
 
-	/*if(antagHUD)
+	if(antagHUD)
 		var/list/target_list = list()
 		for(var/mob/living/target in oview(src, 14))
-			if(target.mind && target.mind.special_role)
+			if(target.mind && target.mind.antagonist.len != 0)
 				target_list += target
 		if(target_list.len)
-			assess_targets(target_list, src)*/
+			assess_targets(target_list, src)
 	if(medHUD)
 		process_medHUD(src)
 
@@ -211,7 +211,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Re-enter Corpse"
 	if(!client)	return
 	client.destroy_UI()
-	
+
 	if(!(mind && mind.current && can_reenter_corpse))
 		src << "<span class='warning'>You have no body.</span>"
 		return

@@ -8,6 +8,7 @@
 	reagent_state = SOLID
 	metabolism = REM * 4
 	var/nutriment_factor = 30 // Per unit
+	var/regen_factor = 0.8 //Used for simple animal health regeneration
 	var/injectable = 0
 	color = "#664330"
 
@@ -1877,7 +1878,7 @@
 		M.adjustToxLoss(2 * removed)
 	if(dose > 60 && ishuman(M) && prob(5))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/internal/heart/L = H.internal_organs_by_name[O_HEART]
+		var/obj/item/organ/internal/heart/L = H.internal_organs_by_name[BP_HEART]
 		if (L && istype(L))
 			if(dose < 120)
 				L.take_damage(10 * removed, 0)

@@ -57,7 +57,7 @@
 	playsound(loc, 'sound/machines/id_swipe.ogg', 100, 1)
 	proc_eject_id(usr)
 
-// Eject ID card from computer, if it has ID slot with card inside.
+// Eject USB from computer
 /obj/item/modular_computer/verb/eject_usb()
 	set name = "Eject Portable Storage"
 	set category = "Object"
@@ -124,7 +124,10 @@
 		to_chat(user, "There is no portable device connected to \the [src].")
 		return
 
+	var/obj/item/weapon/computer_hardware/hard_drive/portable/PD = portable_drive
+
 	uninstall_component(user, portable_drive)
+	user.put_in_hands(PD)
 	update_uis()
 
 /obj/item/modular_computer/proc/proc_eject_ai(mob/user)
@@ -220,7 +223,7 @@
 
 	var/list/usable_qualities = list(QUALITY_SCREW_DRIVING, QUALITY_WELDING, QUALITY_BOLT_TURNING)
 
-	var/tool_type = W.get_tool_type(user, usable_qualities)
+	var/tool_type = W.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 		if(QUALITY_BOLT_TURNING)
 			var/list/components = get_all_components()

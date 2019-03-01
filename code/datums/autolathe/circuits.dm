@@ -20,6 +20,10 @@
 	name = "autolathe"
 	path = /obj/item/weapon/circuitboard/autolathe
 
+/datum/autolathe/recipe/circuit/vending
+	name = "custom Vendomat"
+	path = /obj/item/weapon/circuitboard/vending
+
 /datum/autolathe/recipe/circuit/autolathe_excelsior
 	name = "excelsior autolathe"
 	path = /obj/item/weapon/circuitboard/excelsiorautolathe
@@ -87,3 +91,7 @@
 /datum/autolathe/recipe/circuit/turret_excelsior
 	name = "excelsior turret"
 	path = /obj/item/weapon/circuitboard/excelsior_turret
+
+/datum/autolathe/recipe/circuit/centrifuge
+	name = "isolation centrifuge"
+	path = /obj/item/weapon/circuitboard/centrifuge

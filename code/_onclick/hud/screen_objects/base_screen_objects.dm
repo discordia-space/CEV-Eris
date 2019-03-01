@@ -30,6 +30,7 @@
 		src.icon = _icon
 	if (_icon_state)
 		src.icon_state = _icon_state
+	..()
 
 
 /obj/screen/Process()
@@ -41,6 +42,13 @@
 /obj/screen/Destroy()
 	master = null
 	return ..()
+
+/obj/screen/update_plane()
+	return
+
+/obj/screen/set_plane(var/np)
+	plane = np
+
 
 /obj/screen/Click(location, control, params)
 	if(!usr)
@@ -170,10 +178,10 @@
 				switch(icon_y)
 					if(23 to 24)
 						if(icon_x in 15 to 17)
-							parentmob.targeted_organ = "mouth"
+							parentmob.targeted_organ = BP_MOUTH
 					if(25 to 27)
 						if(icon_x in 14 to 18)
-							parentmob.targeted_organ = O_EYES
+							parentmob.targeted_organ = BP_EYES
 
 	if(old_selecting != parentmob.targeted_organ)
 		update_icon()

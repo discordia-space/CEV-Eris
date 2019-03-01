@@ -344,7 +344,7 @@ var/global/list/damage_icon_parts = list()
 	//base icons
 	var/icon/face_standing = new /icon('icons/mob/hair.dmi',"bald")
 
-	if(f_style)
+	if(f_style && !(wear_mask && (wear_mask.flags_inv & BLOCKFACEHAIR)))
 		var/datum/sprite_accessory/facial_hair_style = GLOB.facial_hair_styles_list[f_style]
 		if(facial_hair_style && facial_hair_style.species_allowed && (src.species.get_bodytype() in facial_hair_style.species_allowed))
 			var/icon/facial_s = new/icon(facial_hair_style.icon, facial_hair_style.icon_state)

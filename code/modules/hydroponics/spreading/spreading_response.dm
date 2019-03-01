@@ -129,7 +129,7 @@
 		if(buckled_mob.buckled == src)
 			buckled_mob.buckled = null
 			buckled_mob.anchored = initial(buckled_mob.anchored)
-			buckled_mob.update_canmove()
+			buckled_mob.update_lying_buckled_and_verb_status()
 		buckled_mob = null
 	return
 

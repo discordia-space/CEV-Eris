@@ -39,7 +39,7 @@
 
 /obj/machinery/pipelayer/attackby(var/obj/item/I, var/mob/user)
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_SCREW_DRIVING, QUALITY_PRYING, QUALITY_BOLT_TURNING))
+	var/tool_type = I.get_tool_type(user, list(QUALITY_SCREW_DRIVING, QUALITY_PRYING, QUALITY_BOLT_TURNING), src)
 	switch(tool_type)
 
 		if(QUALITY_SCREW_DRIVING)

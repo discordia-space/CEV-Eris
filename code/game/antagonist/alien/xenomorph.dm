@@ -5,6 +5,7 @@
 	mob_path = /mob/living/carbon/alien/larva
 	bantype = ROLE_BANTYPE_XENOS
 	welcome_text = "Hiss! You are a larval alien. Hide and bide your time until you are ready to evolve."
+	antaghud_indicator = "hudalien"
 	faction_type = /datum/faction/xenomorph
 	outer = TRUE
 

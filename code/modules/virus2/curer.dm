@@ -3,7 +3,7 @@
 	icon = 'icons/obj/computer.dmi'
 	icon_keyboard = "med_key"
 	icon_screen = "dna"
-	light_color = COLOR_LIME
+	light_color = COLOR_LIGHTING_GREEN_MACHINERY
 	circuit = /obj/item/weapon/circuitboard/curefab
 	var/curing
 	var/virusing

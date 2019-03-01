@@ -2,7 +2,7 @@
 	name = "egg sac"
 	parent_organ = BP_GROIN
 	icon_state = "xgibmid1"
-	organ_tag = O_EGG
+	organ_tag = BP_EGG
 	owner_verbs = list(
 		/obj/item/organ/internal/xenos/eggsac/proc/lay_egg,
 		/obj/item/organ/internal/xenos/eggsac/proc/xeno_infest
@@ -40,7 +40,7 @@
 		owner << SPAN_WARNING("This mindless flesh adds nothing to the hive.")
 		return
 
-	if(M.species.get_bodytype() == "Xenomorph" || !isnull(M.internal_organs_by_name[O_HIVE]))
+	if(M.species.get_bodytype() == "Xenomorph" || !isnull(M.internal_organs_by_name[BP_HIVE]))
 		owner << SPAN_WARNING("They are already part of the hive.")
 		return
 
@@ -57,7 +57,7 @@
 		return
 
 	//TODO: instead affecting.robotic use M.isSyntetic()
-	if(M.species.get_bodytype() == "Xenomorph" || !isnull(M.internal_organs_by_name[O_HIVE]) || !affecting || (affecting.robotic >= ORGAN_ROBOT))
+	if(M.species.get_bodytype() == "Xenomorph" || !isnull(M.internal_organs_by_name[BP_HIVE]) || !affecting || (affecting.robotic >= ORGAN_ROBOT))
 		return
 
 	if(!check_alien_ability(500, TRUE))

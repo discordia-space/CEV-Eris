@@ -9,14 +9,14 @@
 	throwforce = 0
 	w_class = 3
 	origin_tech = list(TECH_MATERIAL = 1)
-	matter = list(DEFAULT_WALL_MATERIAL = 25)
+	matter = list(MATERIAL_STEEL = 25)
 	edge = TRUE
 	sharp = TRUE
 	var/deployed = 0
 
 	var/base_damage = 20
 	var/fail_damage = 5
-	var/base_difficulty = 80
+	var/base_difficulty = 85
 	var/time_to_escape = 40
 	var/target_zone
 	var/min_size = 5 //Mobs smaller than this won't trigger the trap
@@ -53,7 +53,7 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	//Does the user have the dexterity to operate the trap?
 	if (!can_use(user))
 		//If they don't, then they're probably some kind of animal trapped in it
-		if (user != buckled_mob)
+		if (user != buckled_mob || user.client)
 			//Such a creature can't free someone else
 			return
 
@@ -70,13 +70,15 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 		//Is there a tool involved?
 		if (istype(I))
 			//Using a crowbar helps
-			user << SPAN_NOTICE("The [I] gives you extra leverage")
-			var/reduction = I.get_tool_quality(QUALITY_PRYING)
+			user << SPAN_NOTICE("\The [I] gives you extra leverage")
+			var/reduction = I.get_tool_quality(QUALITY_PRYING)*0.5
 			if (user == buckled_mob)
 				reduction *= 0.66 //But it helps less if you don't have good leverage
 			difficulty -= reduction
 			I.consume_resources(time_to_escape*3, user)
 
+		if (issilicon(user))
+			difficulty += 5 //Robots are less dextrous
 
 		//How about your stats? Being strong or crafty helps.
 		//We'll subtract the highest of either robustness or mechanical, from the difficulty
@@ -145,9 +147,14 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 		return
 	.=..()
 
+/obj/item/weapon/beartrap/attack_robot(var/mob/user)
+	if (buckled_mob)
+		attempt_release(user)
+		return
+	.=..()
 
 /obj/item/weapon/beartrap/proc/can_use(mob/user)
-	return (user.IsAdvancedToolUser() && !issilicon(user) && !user.stat && !user.restrained())
+	return (user.IsAdvancedToolUser() && !user.stat && user.Adjacent(src))
 
 /obj/item/weapon/beartrap/proc/release_mob()
 	//user.visible_message("<span class='notice'>\The [buckled_mob] has been freed from \the [src] by \the [user].</span>")
@@ -157,8 +164,17 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	update_icon()
 	STOP_PROCESSING(SSobj, src)
 
-
-
+//Attempting to resist out of a beartrap will not work, and you'll get nothing but pain for trying
+/obj/item/weapon/beartrap/resist_buckle(var/mob/user)
+	if (user == buckled_mob && !user.stunned)
+		//We check stunned here, and a failure stuns the victim. This prevents someone from just spam-resisting and instantly killing themselves
+		if (user.client)
+			fail_attempt(user)
+			to_chat(user, SPAN_WARNING("Struggling out of this isn't going to work, you'll need to try to release \the [src] with your hands or a tool"))
+		else
+			//Fallback behaviour for possible future use of NPCs
+			attempt_release(user, null)
+	return FALSE //Returning false prevents the default resist behaviour of instantly releasing the trap
 
 /***********************************
 	Deployment
@@ -201,21 +217,25 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	var/mob/living/L = buckled_mob
 	//armour
 	var/blocked = L.run_armor_check(target_zone, "melee")
-	if(blocked >= 100)
-		return
+	if(blocked < 100)
+		L.apply_damage(fail_damage, BRUTE, target_zone, blocked, src)
+		L.Stun(4) //A short stun prevents spamming failure attempts
+		shake_camera(user, 2, 1)
 
 	if (ishuman(L))
 		var/mob/living/carbon/human/H = L
 		visible_message(SPAN_DANGER("\The [src] snaps back, digging deeper into [buckled_mob.name]'s [H.get_organ(target_zone).name]"))
 	else
 		visible_message(SPAN_DANGER("\The [src] snaps back, digging deeper into [buckled_mob.name]"))
-	L.apply_damage(fail_damage, BRUTE, target_zone, blocked, src)
+
 	playsound(src, 'sound/effects/impacts/beartrap_shut.ogg', 10, 1,-2,-2)//Fairly quiet snapping sound
 
 	if (difficulty)
 		user << SPAN_NOTICE("You failed to release the trap. There was a [round(100 - difficulty)]% chance of success")
 		if (user == buckled_mob)
 			user << SPAN_NOTICE("Freeing yourself is very difficult. Perhaps you should call for help?")
+
+
 
 /obj/item/weapon/beartrap/proc/attack_mob(mob/living/L)
 	//Small mobs won't trigger the trap
@@ -235,12 +255,11 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 
 	//armour
 	var/blocked = L.run_armor_check(target_zone, "melee")
-	if(blocked >= 100)
-		return
+	if(blocked < 100)
 
-	var/success = L.apply_damage(base_damage, BRUTE, target_zone, blocked, src)
-	if(!success)
-		return 0
+		var/success = L.apply_damage(base_damage, BRUTE, target_zone, blocked, src)
+		if(success)
+			shake_camera(L, 2, 1)
 
 	//trap the victim in place
 	set_dir(L.dir)
@@ -266,6 +285,7 @@ Very rarely it might escape
 	//If its dead or gone, stop processing
 	//Also stop if a player took control of it, they can try to free themselves
 	if (QDELETED(L) || L.stat == DEAD || L.loc != loc || L.client)
+		release_mob()		// Reset the trap properly if the roach was gibbed during the processing.
 		return PROCESS_KILL
 
 	if (L.incapacitated())
@@ -317,25 +337,27 @@ Very rarely it might escape
 /obj/item/weapon/beartrap/makeshift
 	base_damage = 16
 	fail_damage = 4
-	base_difficulty = 75
+	base_difficulty = 80
 	name = "jury-rigged mechanical trap"
 	desc = "A wicked looking construct of spiky bits of metal and wires. Will snap shut on anyone who steps in it. It'll do some nasty damage."
 	icon_state = "sawtrap"
-	matter = list(DEFAULT_WALL_MATERIAL = 15)
+	matter = list(MATERIAL_STEEL = 15)
 	var/integrity = 100
 
 
 //It takes 5 damage whenever it snaps onto a mob
 /obj/item/weapon/beartrap/makeshift/attack_mob(mob/living/L)
 	.=..()
-	integrity -= 5
-	check_integrity()
+	integrity -= 4
+	spawn(5)
+		check_integrity()
 
 //Takes 1 damage every time they fail to open it
 /obj/item/weapon/beartrap/makeshift/fail_attempt(var/user, var/difficulty)
 	.=..()
-	integrity -= 1
-	check_integrity()
+	integrity -= 0.8
+	spawn(5)
+		check_integrity()
 
 /obj/item/weapon/beartrap/makeshift/proc/check_integrity()
 	if (prob(integrity))

@@ -22,7 +22,7 @@ obj/structure/firedoor_assembly/attackby(obj/item/I, mob/user)
 	if(wired)
 		usable_qualities.Add(QUALITY_WIRE_CUTTING)
 
-	var/tool_type = I.get_tool_type(user, usable_qualities)
+	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 
 		if(QUALITY_BOLT_TURNING)

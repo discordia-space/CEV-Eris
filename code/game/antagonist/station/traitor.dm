@@ -3,6 +3,7 @@
 	id = ROLE_TRAITOR
 	protected_jobs = list(JOBS_SECURITY, JOBS_COMMAND)
 	bantype = ROLE_TRAITOR
+	antaghud_indicator = "hudtraitor"
 
 	objective_quantity = 3
 
