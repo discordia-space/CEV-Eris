@@ -31,7 +31,6 @@
 	var/icontype 				//Persistent icontype tracking allows for cleaner icon updates
 	var/list/module_sprites = list() 		//Used to store the associations between sprite names and sprite index.
 	var/icon_selected = 1		//If icon selection has been completed yet
-	var/icon_selection_tries = 0//Remaining attempts to select icon before a selection is forced
 
 //Hud stuff
 
@@ -528,7 +527,7 @@
 	if(wiresexposed)
 		usable_qualities.Add(QUALITY_WIRE_CUTTING)
 
-	var/tool_type = I.get_tool_type(user, usable_qualities)
+	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 
 		if(QUALITY_WELDING)
@@ -1020,12 +1019,9 @@
 	if(!module_sprites.len)
 		src << "Something is badly wrong with the sprite selection. Harass a coder."
 		return
-	if (icon_selected == 1)
+	if (icon_selected == TRUE)
 		verbs -= /mob/living/silicon/robot/proc/choose_icon
 		return
-
-	if (icon_selection_tries == -1)
-		icon_selection_tries = module_sprites.len+1
 
 
 	if(module_sprites.len == 1 || !client)
@@ -1034,19 +1030,19 @@
 		if (!client)
 			return
 	else
-		icontype = input("Select an icon! [icon_selection_tries ? "You have [icon_selection_tries] more chance\s." : "This is your last try."]", "Robot", icontype, null) in module_sprites
+		var/list/options = list()
+		for(var/i in module_sprites)
+			options[i] = image(icon = src.icon, icon_state = module_sprites[i])
+		icontype = show_radial_menu(src, src, options, radius = 42)
+	if(!icontype)
+		return
 	icon_state = module_sprites[icontype]
 	updateicon()
 
-	if (module_sprites.len > 1 && icon_selection_tries >= 0 && client)
-		icon_selection_tries--
-		var/choice = input("Look at your icon - is this what you want?") in list("Yes","No")
-		if(choice=="No")
-			choose_icon()
-			return
+	if(alert("Do you like this icon?",null, "No","Yes") == "No")
+		return choose_icon()
 
-	icon_selected = 1
-	icon_selection_tries = 0
+	icon_selected = TRUE
 	verbs -= /mob/living/silicon/robot/proc/choose_icon
 	src << "Your icon has been set. You now require a module reset to change it."
 

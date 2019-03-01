@@ -224,7 +224,7 @@
 		return
 
 	if(repairing)
-		var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_WELDING))
+		var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_WELDING), src)
 		switch(tool_type)
 
 			if(QUALITY_WELDING)

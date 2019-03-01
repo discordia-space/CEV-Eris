@@ -18,6 +18,12 @@
 	update_starlight()
 	..()
 
+/turf/space/update_plane()
+	return
+
+/turf/space/set_plane(var/np)
+	plane = np
+
 /turf/space/is_space()
 	return 1
 

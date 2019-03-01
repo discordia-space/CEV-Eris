@@ -15,6 +15,9 @@
 	var/salvageable = 1
 	var/required_type = /obj/mecha //may be either a type or a list of allowed types
 
+/obj/item/mecha_parts/mecha_equipment/Destroy()
+	chassis = null
+	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/proc/do_after_cooldown(target=1)
 	sleep(equip_cooldown)
@@ -22,10 +25,6 @@
 	if(target && chassis)
 		return 1
 	return 0
-
-/obj/item/mecha_parts/mecha_equipment/New()
-	..()
-	return
 
 /obj/item/mecha_parts/mecha_equipment/proc/update_chassis_page()
 	if(chassis)

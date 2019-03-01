@@ -2,7 +2,7 @@ GLOBAL_LIST_EMPTY(all_crew_records)
 GLOBAL_LIST_INIT(blood_types, list("A-", "A+", "B-", "B+", "AB-", "AB+", "O-", "O+"))
 GLOBAL_LIST_INIT(physical_statuses, list("Active", "Disabled", "SSD", "Deceased", "MIA"))
 GLOBAL_VAR_INIT(default_physical_status, "Active")
-GLOBAL_LIST_INIT(security_statuses, list("None", "Released", "Parolled", "Incarcerated", "Arrest"))
+GLOBAL_LIST_INIT(security_statuses, list("None", "Released", "Parolled", "Incarcerated", "*Arrest*"))
 GLOBAL_VAR_INIT(default_security_status, "None")
 GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 
@@ -93,7 +93,7 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 	// Misc cultural info.
 	//set_homeSystem(H ? html_decode(H.get_cultural_value(TAG_HOMEWORLD)) : "Unset")
 	//set_faction(H ? html_decode(H.get_cultural_value(TAG_FACTION)) : "Unset")
-	//set_religion(H ? html_decode(H.get_cultural_value(TAG_RELIGION)) : "Unset")
+	set_religion(H ? H.religion : "Unset")
 
 	if(H)
 		var/stats = list()
@@ -213,6 +213,14 @@ FIELD_LONG("Qualifications", skillset, access_heads, access_heads)
 
 // ANTAG RECORDS
 FIELD_LONG("Exploitable Information", antagRecord, access_syndicate, access_syndicate)
+
+/datum/report_field/options/crew_record/criminalStatus/set_value(given_value)
+	..()
+	var/datum/computer_file/report/crew_record/C = owner
+	for(var/h in GLOB.human_mob_list)
+		var/mob/living/carbon/human/H = h
+		if(H.get_id_name(H.name) == C.get_name())
+			BITSET(H.hud_updateflag, WANTED_HUD)
 
 //Options builderes
 /datum/report_field/options/crew_record/rank/proc/record_ranks()

@@ -57,7 +57,7 @@
 			//Projectile weapons need to have enough ammo to fire
 			if(istype(gun, /obj/item/weapon/gun/projectile))
 				var/obj/item/weapon/gun/projectile/P = gun
-				if (!P.getAmmo())
+				if (!P.get_ammo())
 					can_fire = FALSE
 
 			//TODO: Centralise all this into some can_fire proc

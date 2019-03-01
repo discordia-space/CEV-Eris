@@ -66,6 +66,7 @@
 
 
 /obj/structure/low_wall/Initialize()
+	..()
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/structure/low_wall/LateInitialize(var/list/args)
@@ -391,7 +392,7 @@
 			set_pixel_click_offset(I, params)
 			return
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_WELDING))
+	var/tool_type = I.get_tool_type(user, list(QUALITY_WELDING), src)
 	switch(tool_type)
 
 		if(QUALITY_WELDING)
