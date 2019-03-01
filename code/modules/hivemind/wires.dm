@@ -31,7 +31,8 @@
 		child.dir = get_dir(loc, target_turf) //actually this means nothing for wires, but need for animation
 		flick("spread_anim", child)
 		child.forceMove(target_turf)
-		update_icon()
+		for(var/obj/effect/plant/hivemind/neighbor in range(1, child))
+			neighbor.update_neighbors()
 
 
 /obj/effect/plant/hivemind/proc/try_to_assimilate()
@@ -53,9 +54,7 @@
 			 //only one machine per turf
 			if(can_assimilate && !locate(/obj/machinery/hivemind_machine) in loc)
 				assimilate(machine_on_my_tile)
-			//other will be... merged
-			else if(can_assimilate)
-				qdel(machine_on_my_tile)
+				return
 
 		//modular computers handling
 		var/obj/item/modular_computer/console/mod_comp = locate() in loc
@@ -129,7 +128,7 @@
 
 
 /obj/effect/plant/hivemind/door_interaction(obj/machinery/door/airlock/door)
-	if(!door || !istype(door))
+	if(!istype(door) || !hive_mind_ai || !master_node)
 		return FALSE
 
 	//if our door isn't broken, we will try to break open. We can do only one action per call
@@ -165,7 +164,7 @@
 
 		if(locate(/obj/structure) in target)
 			for(var/obj/structure/S in target)
-				if(S.density)
+				if(S.density && S.anchored)
 					return FALSE
 
 		if(locate(/obj/machinery/door) in target)
@@ -190,13 +189,6 @@
 	//Machinery infestation
 	if(istype(subject, /obj/machinery) || istype(subject, /obj/item/modular_computer/console))
 		var/obj/machinery/hivemind_machine/created_machine
-
-		//We also save subject's circuit if it possible
-		var/saved_circuit
-		if(istype(subject, /obj/machinery))
-			var/obj/machinery/victim = subject
-			if(victim.circuit)
-				saved_circuit = victim.circuit.type
 
 		//New node creation
 		if(hive_mind_ai.hives.len < MAX_NODES_AMOUNT)
@@ -225,13 +217,15 @@
 			created_machine.pixel_y = subject.pixel_y
 
 		//Here we have a little chance to spawn our machinery horror
-		if(prob(5) && saved_circuit)
-			new /mob/living/simple_animal/hostile/hivemind/mechiver(get_turf(subject))
-			new saved_circuit(get_turf(subject))
-			qdel(subject)
-			return
+		if(istype(subject, /obj/machinery))
+			var/obj/machinery/victim = subject
+			if(prob(5) && victim.circuit)
+				new /mob/living/simple_animal/hostile/hivemind/mechiver(get_turf(subject))
+				new victim.circuit.type(get_turf(subject))
+				qdel(subject)
+				return
 
-		//new hivemind machine creation
+		//New hivemind machine creation
 		if(!created_machine)
 			var/list/possible_machines = subtypesof(/obj/machinery/hivemind_machine) - /obj/machinery/hivemind_machine/node
 			//here we compare hivemind's EP with machine's required value
@@ -244,31 +238,29 @@
 
 
 		if(created_machine)
-			if(saved_circuit)
-				new saved_circuit(created_machine)
-			else
-				created_machine.assimilated_machinery_path 	= subject.type
-				created_machine.assimilated_machinery_dir 	= subject.dir
-			qdel(subject)
+			created_machine.consume(subject)
 
 	//Corpse reanimation
-	if(istype(subject, /mob/living) && !istype(subject, /mob/living/simple_animal/hostile/hivemind))
+	if(isliving(subject) && !ishivemindmob(subject))
 		//human bodies
-		if(istype(subject, /mob/living/carbon/human))
+		if(ishuman(subject))
 			var/mob/living/L = subject
+			//if our target has cruciform, let's just leave it
+			if(is_neotheology_disciple(L))
+				return
 			for(var/obj/item/W in L)
 				L.drop_from_inventory(W)
 			var/M = pick(/mob/living/simple_animal/hostile/hivemind/himan, /mob/living/simple_animal/hostile/hivemind/phaser)
 			new M(loc)
 		//robot corpses
-		else if(istype(subject, /mob/living/silicon))
+		else if(issilicon(subject))
 			new /mob/living/simple_animal/hostile/hivemind/hiborg(loc)
 		//other dead bodies
 		else
 			var/mob/living/simple_animal/hostile/hivemind/resurrected/transformed_mob =  new(loc)
 			transformed_mob.take_appearance(subject)
 
-	qdel(subject)
+		qdel(subject)
 
 
 //////////////////////////////////////////////////////////////////
@@ -328,3 +320,4 @@
 
 #undef MAX_NODES_AMOUNT
 #undef MIN_NODES_RANGE
+#undef ishivemindmob
