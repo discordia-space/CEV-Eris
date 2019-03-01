@@ -41,3 +41,33 @@ just stuff it here for now, and he can go stuff himself. %D"
 	  goes down and when it does i go down to better not write it i go down to here and these stupid \
 	  people will never find it either"
 	contents_list_extra = list(/obj/random/tool = 10)
+
+/datum/stash/junk/handoff
+	story_type = STORY_CRIME
+	lore = "Joe, and no that isn't your real name,<br>\
+ I don't know what in the hell you want all this stuff for but I'm not getting caught handing it to you.<br>\
+ So take your money, roll it all tight, stick it in a clean beer bottle and hand it to me in a box of recycling or something.<br>\
+ Once that's done I'll stick your things at %D. <br>\
+<br>\
+Signed your pal who isn't named Bob."
+
+/datum/stash/junk/guild
+	contents_list_extra = list(/obj/random/themed/astersguild = 6)
+	base_type = /datum/stash/junk/guild //Prevents this parent type being picked
+
+/datum/stash/junk/guild/crackdown
+	story_type = STORY_CRIME
+	lore = "Guildsman,<br>\
+ With the recent crackdown on what sorts of merchandise we can sell I am going to teach you a vital lesson in entrepreneurship.<br>\
+ Take all that stuff we aren't allowed to sell anymore and move it to a jurisdiction with a little less market regulation.<br>\
+ I even saw somewhere with a nice bit of curb appeal.<br>\
+%D"
+
+/datum/stash/junk/guild/protection
+	contents_list_external = list(/obj/item/remains/human = 1) //Corrupt security murdered this guy for not paying protection money
+	story_type = STORY_CRIME
+	lore = "Guild Master,<br>\
+ The current protection racket for our little lemonade stand is exceeding tolerable levels.<br>\
+ I have relocated to %D, just in case you'd think I made off with the lot.<br>\
+ Send people my way if they ask, but when those Ironhammers start bitching about where I went, get it on tape, would you?"
+

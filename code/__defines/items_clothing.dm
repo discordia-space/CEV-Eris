@@ -206,3 +206,5 @@
 
 //Stash storytypes
 #define STORY_CRIME	"Crime"
+#define STORY_MUTINY "Mutiny"
+#define STORY_MALFUNCTION "Malfunction"

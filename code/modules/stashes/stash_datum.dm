@@ -55,6 +55,9 @@ This file contains the underlying code for stash datums
 	//There's no quantity field, each item makes only a single instance, put several in if you want multiples
 	var/list/contents_list_random = list(/obj/random/rare = 30, /obj/random/rare = 30)
 
+	//Fourth list for things that will spawn outside of the stash container on the same tile. Commonly used to place remains/corpses
+	var/list/contents_list_external = list()
+
 	//The writing content! This lore blurb should be quite long, anywhere from 50-1000 words.
 	//Somewhere it must include the string "%D", this will be dynamically replaced with the directions to the stash
 	var/lore = "Our stuff %D"
@@ -90,6 +93,16 @@ This file contains the underlying code for stash datums
 	var/deferred = TRUE
 
 
+	/*
+		The weight var means one of two things:
+		If this datum's type is the same as its base type - ie, it is a parent category - then the weight is the weight for that category
+
+		Otherwise, it is the weight within its parent category.
+	*/
+	var/weight = 1
+
+
+
 
 //Runtime values
 //---------------------
@@ -120,17 +133,21 @@ This file contains the underlying code for stash datums
 		qdel(S)
 	else
 		//For any other spawning method, we pick our own location
-		//100 tries for sanity. Its very unlikely to fail even on the first try,
+		//200 tries for safety. It's quite likely to pick turfs without floor tiles
 		//but maybe the ship is rekt. Limiting attempts just prevents an infinite loop situation
 
-		for (var/i = 1; i <= 100; i++)
+		for (var/i = 1; i <= 200; i++)
 			//Can pick any area without players in it.
 			//This is overwhelmingly likely to be in maintenance and thats good.
 			var/area/A = random_ship_area(TRUE, FALSE, FALSE)
 			var/turf/T = A.random_space()
-			if(T)
-				stash_location = T
-				break
+
+			//We want the turf to have some sort of flooring which a stash could be hidden under. IE, not on plating
+			if(T && istype(T, /turf/simulated/floor))
+				var/turf/simulated/floor/F = T
+				if (F.flooring && F.flooring.flags & TURF_HIDES_THINGS)
+					stash_location = F
+					break
 
 	create_direction()
 
@@ -156,7 +173,7 @@ This file contains the underlying code for stash datums
 //This proc is called after location is set, it creates the necessary info to direct the user
 /datum/stash/proc/create_direction()
 	if (selected_direction == DIRECTION_IMAGE)
-		map_image = createpicture(stash_location, null, CAPTURE_MODE_HISTORICAL, radius = 5)
+		map_image = createpicture(stash_location, null, CAPTURE_MODE_HISTORICAL, radius = 4)
 		create_direction_string()
 	if (selected_direction == DIRECTION_COORDS)
 		create_direction_string(stash_location)
@@ -233,11 +250,25 @@ This file contains the underlying code for stash datums
 				//Spawn it in the thing
 				results += new a(spawning_loc)
 
+	var/turf/T = get_turf(spawning_loc)
 
 	//And finally lets make sure our container can fit the things we've stuffed into it
+	//And also that its hidden under the floor
 	if (istype(spawning_loc, /obj/item/weapon/storage))
 		var/obj/item/weapon/storage/S = spawning_loc
 		S.expand_to_fit()
+		S.level = 1
+		T.levelupdate()
+
+
+	//External spawning
+	for (var/a in contents_list_external)
+
+		//How many of each thing are we spawning, quantity is the value
+		var/num = contents_list_external[a]
+		for (var/i = 0; i < num;i++)
+			//Spawn it in the thing
+			results += new a(T)
 
 	return results //Aaaaand we're done
 
