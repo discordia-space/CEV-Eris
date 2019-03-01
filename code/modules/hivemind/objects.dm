@@ -14,7 +14,7 @@
 
 /obj/item/projectile/goo/on_hit(atom/target, var/blocked = 0)
 	. = ..()
-	if(istype(target, /mob/living) && !istype(target, /mob/living/silicon) && !blocked)
+	if(isliving(target) && !issilicon(target) && !blocked)
 		var/mob/living/L = target
 		L.apply_damage(10, TOX)
 	if(!(locate(/obj/effect/decal/cleanable/spiderling_remains) in target.loc))

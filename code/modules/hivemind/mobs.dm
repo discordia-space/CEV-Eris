@@ -107,6 +107,17 @@
 
 	closet_interaction()
 
+	//if somebody put us into disposal unit, let's go out
+	if(istype(loc, /obj/machinery/disposal))
+		var/obj/machinery/disposal/D = loc
+		D.go_out(src)
+
+	if(buckled)
+		var/obj/structure/bed/B = locate() in loc
+		if(B)
+			B.unbuckle_mob()
+
+
 
 /mob/living/simple_animal/hostile/hivemind/proc/speak()
 	if(!client && speak_chance && prob(speak_chance) && speak.len)
@@ -427,7 +438,7 @@
 	. = ..()
 
 	//shriek
-	if(target_mob && world.time > special_ability_cooldown && !fake_dead)
+	if(target_mob && !fake_dead && world.time > special_ability_cooldown)
 		special_ability()
 
 
@@ -479,19 +490,22 @@
 	for(var/mob/living/victim in view(src))
 		if(isdeaf(victim))
 			continue
-		if(istype(victim, /mob/living/carbon/human))
+
+		if(ishuman(victim))
 			var/mob/living/carbon/human/H = victim
 			if(istype(H.l_ear, /obj/item/clothing/ears/earmuffs) && istype(H.r_ear, /obj/item/clothing/ears/earmuffs))
 				continue
+
 		victim.Weaken(5)
 		victim.ear_deaf = 40
-		victim << SPAN_WARNING("You hear loud and terrible scream!")
+		to_chat(victim, SPAN_WARNING("You hear loud and terrible scream!"))
 	special_ability_cooldown = world.time + ability_cooldown
 
 
 //Insidiously
 /mob/living/simple_animal/hostile/hivemind/himan/proc/fake_death()
 	src.visible_message("<b>[src]</b> dies!")
+	destroy_surroundings = FALSE
 	fake_dead = TRUE
 	walk(src, FALSE)
 	icon_state = icon_dead
@@ -506,6 +520,7 @@
 		visible_emote("grabs [L]'s legs and force them down to the floor!")
 		var/msg = pick("SEU-EU-EURPRAI-AI-AIZ-ZT!", "I'M NOT DO-DONE!", "HELL-L-LO-O-OW!", "GOT-T YOU HA-HAH!")
 		say(msg)
+	destroy_surroundings = TRUE
 	icon_state = "himan-damaged"
 	fake_dead = FALSE
 	stance = HOSTILE_STANCE_IDLE
@@ -589,11 +604,11 @@
 	//when we have passenger, we torture him
 	if(passenger && prob(15))
 		passenger.apply_damage(rand(5, 10), pick(BRUTE, BURN, TOX))
-		passenger << SPAN_DANGER(pick(
+		to_chat(passenger, SPAN_DANGER(pick(
 								"Something grabs your neck!", "You hear whisper: \" It's okay, now you're sa-sa-safe! \"",
 								"You've been hit by something metal", "You almost can't feel your leg!", "Something liquid covers you!",
 								"You feel awful and smell something rotten", "Something sharp cut your cheek!",
-								"You feel something worm-like trying to wriggle into your skull through your ear..."))
+								"You feel something worm-like trying to wriggle into your skull through your ear...")))
 		anim_shake(src)
 		playsound(src, 'sound/effects/clang.ogg', 70, 1)
 
@@ -666,7 +681,7 @@
 	passenger = target
 	target.loc = src
 	target.canmove = FALSE
-	target << SPAN_DANGER("You've gotten inside that thing! It's hard to see inside, there's something here, it moves around you!")
+	to_chat(target, SPAN_DANGER("You've gotten inside that thing! It's hard to see inside, there's something here, it moves around you!"))
 	playsound(src, 'sound/effects/blobattack.ogg', 70, 1)
 	addtimer(CALLBACK(src, .proc/release_passenger), 40 SECONDS)
 
@@ -679,7 +694,7 @@
 		else
 			flick("mechiver-opening_wires", src)
 
-		if(istype(passenger, /mob/living/carbon/human))
+		if(ishuman(passenger))
 			if(!safely) //that was stressful
 				var/mob/living/carbon/human/H = passenger
 				if(!pilot && H.stat == DEAD)
@@ -693,7 +708,7 @@
 			dead_body_restoration(passenger)
 
 		if(passenger) //if passenger still here, then just release him
-			passenger << SPAN_DANGER("[src] released you!")
+			to_chat(passenger, SPAN_DANGER("[src] released you!"))
 			passenger.canmove = TRUE
 			passenger.loc = get_turf(src)
 			passenger = null
@@ -707,9 +722,9 @@
 		picked_mob = pick(/mob/living/simple_animal/hostile/hivemind/stinger, /mob/living/simple_animal/hostile/hivemind/bomber)
 	else
 		if(pilot)
-			if(istype(corpse, /mob/living/carbon/human))
+			if(ishuman(corpse))
 				picked_mob = /mob/living/simple_animal/hostile/hivemind/himan
-			else if(istype(corpse, /mob/living/silicon/robot))
+			else if(isrobot(corpse))
 				picked_mob = /mob/living/simple_animal/hostile/hivemind/hiborg
 	if(picked_mob)
 		new picked_mob(get_turf(src))

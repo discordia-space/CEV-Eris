@@ -1,6 +1,7 @@
 //Hivemind various machines
 
-#define HIVE_FACTION "hive"
+#define HIVE_FACTION 			"hive"
+#define REGENERATION_SPEED 		4
 
 
 
@@ -12,28 +13,26 @@
 	anchored = TRUE
 	use_power = FALSE
 	var/illumination_color = 	COLOR_LIGHTING_CYAN_MACHINERY
+	var/wireweeds_required =	TRUE		//machine got damage if there's no any wireweed on it's turf
 	var/health = 				60
 	var/max_health = 			60
-	var/evo_points_required = 	0 		//how much EP hivemind must have to spawn this, used in price list to comparison
-	var/cooldown_time = 10 SECONDS		//each machine have their ability, this is cooldown of them
-	var/global_cooldown = FALSE			//if true, ability will be used only once in whole world, before cooldown reset
-	var/list/spawned_creatures = list()	//which mobs machine can spawns, insert paths
+	var/can_regenerate =		TRUE
+	var/regen_cooldown_time = 	30 SECONDS	//min time to regeneration activation since last damage taken
+	var/resistance = 5						//reduction on incoming damage
+	var/evo_points_required = 	0 			//how much EP hivemind must have to spawn this, used in price list to comparison
+	var/cooldown_time = 10 SECONDS			//each machine have their ability, this is cooldown of them
+	var/global_cooldown = FALSE				//if true, ability will be used only once in whole world, before cooldown reset
+	var/list/spawned_creatures = list()		//which mobs machine can spawns, insert paths
 	//internal
-	var/cooldown = 0		//cooldown in world.time value
-	var/assimilated_machinery_path
-	var/assimilated_machinery_dir
-
+	var/cooldown = 0						//cooldown in world.time value
+	var/time_until_regen = 0
+	var/list/assimilated_machinery = list("path", "dir", "appearance")
 
 /obj/machinery/hivemind_machine/Initialize()
 	. = ..()
 	name_pick()
 	health = max_health
 	set_light(2, 3, illumination_color)
-
-
-/obj/machinery/hivemind_machine/Process()
-	if(hive_mind_ai && !(stat & EMPED) && !is_on_cooldown())
-		return TRUE
 
 
 /obj/machinery/hivemind_machine/update_icon()
@@ -44,8 +43,59 @@
 		icon_state = initial(icon_state)
 
 
-//sets cooldown
-//must be set manually
+/obj/machinery/hivemind_machine/Process()
+	if(wireweeds_required && !locate(/obj/effect/plant/hivemind) in loc)
+		take_damage(5, on_damage_react = FALSE)
+
+	if(hive_mind_ai && !(stat & EMPED) && !is_on_cooldown())
+		//slow health regeneration
+		if(can_regenerate && (health != max_health) && (world.time > time_until_regen))
+			health += REGENERATION_SPEED
+			if(health > max_health)
+				health = max_health
+
+		return TRUE
+
+
+//Machinery consumption
+//We don't want to ruin things by destroying important machines without circuits
+//So we store path, dir and appearance to use it later
+/obj/machinery/hivemind_machine/proc/consume(var/obj/victim)
+	if(istype(victim, /obj/machinery))
+		var/obj/machinery/target = victim
+		if(target.circuit)
+			new target.circuit.type(src)
+			qdel(victim)
+			return
+
+	assimilated_machinery["path"] 		= victim.type
+	assimilated_machinery["dir"]		= victim.dir
+	assimilated_machinery["appearance"] = victim.appearance
+	if(istype(victim, /obj/machinery/power/apc))
+		var/obj/machinery/power/apc/apc = victim
+		if(apc.cell)
+			qdel(apc.cell)
+			apc.cell = null
+	qdel(victim)
+
+
+/obj/machinery/hivemind_machine/proc/drop_assimilated()
+	var/obj/item/weapon/circuitboard/saved_circuit = locate() in src
+	if(saved_circuit)
+		saved_circuit.loc = loc
+
+	else
+		var/victim_path = assimilated_machinery["path"]
+		if(victim_path)
+			var/obj/victim = new victim_path(loc)
+			victim.dir = assimilated_machinery["dir"]
+			victim.appearance = assimilated_machinery["appearance"]
+			assimilated_machinery = initial(assimilated_machinery)
+
+
+
+//Sets ability cooldown
+//Must be set manually
 /obj/machinery/hivemind_machine/proc/set_cooldown()
 	if(global_cooldown)
 		hive_mind_ai.global_abilities_cooldown[type] = world.time + cooldown_time
@@ -53,7 +103,6 @@
 		cooldown = world.time + cooldown_time
 
 
-//check for cooldowns
 /obj/machinery/hivemind_machine/proc/is_on_cooldown()
 	if(global_cooldown)
 		if(hive_mind_ai && hive_mind_ai.global_abilities_cooldown[type])
@@ -70,6 +119,8 @@
 	return TRUE
 
 
+//Ability code goes here
+//Ability is a special act
 /obj/machinery/hivemind_machine/proc/use_ability(atom/target)
 	return
 
@@ -82,7 +133,7 @@
 			name = "[name] [hive_mind_ai.surname] - [rand(999)]"
 
 
-//returns list of mobs in range or hearers (include in vehicles)
+//Returns list of mobs in range or hearers (include in vehicles)
 /obj/machinery/hivemind_machine/proc/targets_in_range(var/range = world.view, var/in_hear_range = FALSE)
 	var/list/range_list = list()
 	var/list/target_list = list()
@@ -96,12 +147,13 @@
 			target_list += target
 	return target_list
 
+
 /////////////////////////]             [//////////////////////////
 /////////////////////////>RESPONSE CODE<//////////////////////////
 //////////////////////////_____________///////////////////////////
 
 
-//machines react at pain almost like living
+//When machine takes damage it can react somehow
 /obj/machinery/hivemind_machine/proc/damage_reaction()
 	if(prob(30))
 		if(prob(80))
@@ -123,9 +175,11 @@
 		sparks.start()
 
 
-/obj/machinery/hivemind_machine/proc/take_damage(var/amount)
+/obj/machinery/hivemind_machine/proc/take_damage(var/amount, var/on_damage_react = TRUE)
 	health -= amount
-	damage_reaction()
+	time_until_regen = world.time + regen_cooldown_time
+	if(on_damage_react)
+		damage_reaction()
 	if(health <= 0)
 		destruct()
 
@@ -133,23 +187,16 @@
 /obj/machinery/hivemind_machine/proc/destruct()
 	playsound(src, 'sound/voice/insect_battle_screeching.ogg', 30, 1)
 	gibs(loc, null, /obj/effect/gibspawner/robot)
-	//if assimilated machinery has circuit, let's find it and drop
-	var/obj/item/weapon/circuitboard/saved_circuit = locate() in src
-	if(saved_circuit)
-		saved_circuit.loc = loc
-	else
-		//but some of them haven't circuits, so we just spawn it back
-		if(assimilated_machinery_path)
-			var/obj/machinery/M = new assimilated_machinery_path(loc)
-			M.dir = assimilated_machinery_dir
+	drop_assimilated()
 	qdel(src)
 
 
-//stunned machines can't do anything
-//amount must be number in seconds
+//Stunned machines can't do anything
+//Amount must be a number in seconds
 /obj/machinery/hivemind_machine/proc/stun(var/amount)
 	set_light(0)
 	stat |= EMPED
+	can_regenerate = FALSE
 	update_icon()
 	if(amount)
 		addtimer(CALLBACK(src, .proc/unstun), amount SECONDS)
@@ -157,6 +204,7 @@
 
 /obj/machinery/hivemind_machine/proc/unstun()
 	stat &= ~EMPED
+	can_regenerate = initial(can_regenerate)
 	update_icon()
 	set_light(2, 3, illumination_color)
 
@@ -170,13 +218,14 @@
 	if(!(I.flags & NOBLUDGEON) && I.force)
 		user.do_attack_animation(src)
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		var/clear_damage = I.force - resistance
 
-		playsound(src, 'sound/weapons/smash.ogg', 50, 1)
-		. = ..()
-		take_damage(I.force)
-	else
-		visible_message(SPAN_WARNING("[user] is trying to hit the [src] with [I], but it seems useless."))
-		playsound(src, 'sound/weapons/Genhit.ogg', 30, 1)
+		if(clear_damage)
+			. = ..()
+			take_damage(clear_damage)
+		else
+			to_chat(user, SPAN_WARNING("You trying to hit the [src] with [I], but it seems useless."))
+			playsound(src, 'sound/weapons/Genhit.ogg', 30, 1)
 
 
 /obj/machinery/hivemind_machine/ex_act(severity)
@@ -209,8 +258,11 @@
 /obj/machinery/hivemind_machine/node
 	name = "strange hive"
 	desc = "Definitely not a big brother, but it's still watching you."
-	max_health = 320
 	icon_state = "core"
+	max_health = 360
+	resistance = 10
+	can_regenerate = FALSE
+	wireweeds_required = FALSE
 	//internals
 	var/list/my_wireweeds = list()
 
@@ -281,8 +333,8 @@
 	name = "[hive_mind_ai.name] [hive_mind_ai.surname]" + " [rand(999)]"
 
 
-//there we binding or un-binding hive with wire
-//in this way, when our node will be destroyed, wireweeds will die too
+//There we binding or un-binding hive with wire
+//In this way, when our node will be destroyed, wireweeds will die too
 /obj/machinery/hivemind_machine/node/proc/add_wireweed(obj/effect/plant/hivemind/wireweed)
 	if(wireweed.master_node)
 		wireweed.master_node.remove_wireweed(wireweed)
@@ -293,8 +345,8 @@
 	my_wireweeds.Remove(wireweed)
 	wireweed.master_node = null
 
-//there we check for other nodes
-//if no any other hives will be found, game over
+//There we check for other nodes
+//If no any other hives will be found, it's game over
 /obj/machinery/hivemind_machine/node/proc/check_for_other()
 	if(hive_mind_ai)
 		if(!hive_mind_ai.hives.len)
@@ -462,7 +514,7 @@
 			can_scream = TRUE
 			if(isdeaf(target))
 				continue
-			if(istype(target, /mob/living/carbon/human))
+			if(ishuman(target))
 				var/mob/living/carbon/human/H = target
 				if(istype(H.l_ear, /obj/item/clothing/ears/earmuffs) && istype(H.r_ear, /obj/item/clothing/ears/earmuffs))
 					continue
@@ -475,7 +527,7 @@
 
 /obj/machinery/hivemind_machine/screamer/use_ability(mob/living/target)
 	target.Weaken(5)
-	target << SPAN_WARNING("You hear a terrible shriek, there are many voices, a male, a female and synthetic noise.")
+	to_chat(target, SPAN_WARNING("You hear a terrible shriek, there are many voices, a male, a female and synthetic noise."))
 
 
 
@@ -513,7 +565,7 @@
 
 
 /obj/machinery/hivemind_machine/supplicant/use_ability(mob/living/target)
-	target << SPAN_NOTICE("<b>[pick(join_quotes)]</b>")
+	to_chat(target, SPAN_NOTICE("<b>[pick(join_quotes)]</b>"))
 
 
 //PSY-MODULATOR
@@ -549,3 +601,4 @@
 
 
 #undef HIVE_FACTION
+#undef REGENERATION_SPEED
