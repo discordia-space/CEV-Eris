@@ -241,7 +241,7 @@
 			created_machine.consume(subject)
 
 	//Corpse reanimation
-	if(isliving(subject) && !istype(subject, /mob/living/simple_animal/hostile/hivemind))
+	if(isliving(subject) && !ishivemindmob(subject))
 		//human bodies
 		if(ishuman(subject))
 			var/mob/living/L = subject
@@ -260,7 +260,7 @@
 			var/mob/living/simple_animal/hostile/hivemind/resurrected/transformed_mob =  new(loc)
 			transformed_mob.take_appearance(subject)
 
-	qdel(subject)
+		qdel(subject)
 
 
 //////////////////////////////////////////////////////////////////
@@ -320,3 +320,4 @@
 
 #undef MAX_NODES_AMOUNT
 #undef MIN_NODES_RANGE
+#undef ishivemindmob

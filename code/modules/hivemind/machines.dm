@@ -16,7 +16,9 @@
 	var/wireweeds_required =	TRUE		//machine got damage if there's no any wireweed on it's turf
 	var/health = 				60
 	var/max_health = 			60
+	var/can_regenerate =		TRUE
 	var/regen_cooldown_time = 	30 SECONDS	//min time to regeneration activation since last damage taken
+	var/resistance = 5						//reduction on incoming damage
 	var/evo_points_required = 	0 			//how much EP hivemind must have to spawn this, used in price list to comparison
 	var/cooldown_time = 10 SECONDS			//each machine have their ability, this is cooldown of them
 	var/global_cooldown = FALSE				//if true, ability will be used only once in whole world, before cooldown reset
@@ -47,7 +49,7 @@
 
 	if(hive_mind_ai && !(stat & EMPED) && !is_on_cooldown())
 		//slow health regeneration
-		if((health != max_health) && (world.time > time_until_regen))
+		if(can_regenerate && (health != max_health) && (world.time > time_until_regen))
 			health += REGENERATION_SPEED
 			if(health > max_health)
 				health = max_health
@@ -194,6 +196,7 @@
 /obj/machinery/hivemind_machine/proc/stun(var/amount)
 	set_light(0)
 	stat |= EMPED
+	can_regenerate = FALSE
 	update_icon()
 	if(amount)
 		addtimer(CALLBACK(src, .proc/unstun), amount SECONDS)
@@ -201,6 +204,7 @@
 
 /obj/machinery/hivemind_machine/proc/unstun()
 	stat &= ~EMPED
+	can_regenerate = initial(can_regenerate)
 	update_icon()
 	set_light(2, 3, illumination_color)
 
@@ -214,14 +218,14 @@
 	if(!(I.flags & NOBLUDGEON) && I.force)
 		user.do_attack_animation(src)
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		var/clear_damage = I.force - resistance
 
-		playsound(src, 'sound/weapons/smash.ogg', 50, 1)
-		. = ..()
-		take_damage(I.force)
-	else
-		if(prob(25))
-			visible_message(SPAN_WARNING("[user] is trying to hit the [src] with [I], but it seems useless."))
-		playsound(src, 'sound/weapons/Genhit.ogg', 30, 1)
+		if(clear_damage)
+			. = ..()
+			take_damage(clear_damage)
+		else
+			to_chat(user, SPAN_WARNING("You trying to hit the [src] with [I], but it seems useless."))
+			playsound(src, 'sound/weapons/Genhit.ogg', 30, 1)
 
 
 /obj/machinery/hivemind_machine/ex_act(severity)
@@ -255,7 +259,9 @@
 	name = "strange hive"
 	desc = "Definitely not a big brother, but it's still watching you."
 	icon_state = "core"
-	max_health = 320
+	max_health = 360
+	resistance = 10
+	can_regenerate = FALSE
 	wireweeds_required = FALSE
 	//internals
 	var/list/my_wireweeds = list()
