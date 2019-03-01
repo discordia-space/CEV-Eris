@@ -110,7 +110,7 @@
 	desc = "Could work as a pretty decent throwing weapon."
 	icon_state = "tile"
 	force = WEAPON_FORCE_NORMAL
-//	matter = list(MATERIAL_STEEL = 1) Prevents energy-to-matter conversion from cyborgs.
+	matter = list(MATERIAL_STEEL = 1)
 	throwforce = WEAPON_FORCE_PAINFULL
 	throw_speed = 5
 	throw_range = 20
@@ -410,4 +410,3 @@
 	name = "dark monofloor tile"
 	singular_name = "dark monofloor tile"
 	icon_state = "tile_dark_monofloor"
-
