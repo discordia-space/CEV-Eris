@@ -55,7 +55,7 @@
 	use_fuel_cost = 0.15
 	max_fuel = 120
 
-/obj/item/weapon/tool/pickaxe/diamonddrill/nofuel
+/obj/item/weapon/tool/pickaxe/diamonddrill/rig
 	use_fuel_cost = 0
 	passive_fuel_cost = 0
 
