@@ -49,6 +49,10 @@ This saves us from having to call add_fingerprint() any time something is put in
 	src << "Some problem hase accure, change UI style pls or call admins."
 	return "7,7"
 
+//Mannequins have no hud, this was causing a lot of spam in the logs
+/mob/living/carbon/human/dummy/mannequin/find_inv_position(var/slot_id)
+	return "7,7"
+
 /mob/living/carbon/human/proc/equip_in_one_of_slots(obj/item/W, list/slots, del_on_fail = 1)
 	for (var/slot in slots)
 		if (equip_to_slot_if_possible(W, slots[slot]))
