@@ -18,7 +18,7 @@
 	var/max_health = 			60
 	var/can_regenerate =		TRUE
 	var/regen_cooldown_time = 	30 SECONDS	//min time to regeneration activation since last damage taken
-	var/resistance = 5						//reduction on incoming damage
+	var/resistance = RESISTANCE_FRAGILE		//reduction on incoming damage
 	var/evo_points_required = 	0 			//how much EP hivemind must have to spawn this, used in price list to comparison
 	var/cooldown_time = 10 SECONDS			//each machine have their ability, this is cooldown of them
 	var/global_cooldown = FALSE				//if true, ability will be used only once in whole world, before cooldown reset
@@ -260,7 +260,7 @@
 	desc = "Definitely not a big brother, but it's still watching you."
 	icon_state = "core"
 	max_health = 360
-	resistance = 10
+	resistance = RESISTANCE_AVERAGE
 	can_regenerate = FALSE
 	wireweeds_required = FALSE
 	//internals

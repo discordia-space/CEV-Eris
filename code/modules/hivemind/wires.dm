@@ -127,7 +127,7 @@
 	wires_connections = dirs_to_corner_states(dirs)
 
 
-/obj/effect/plant/hivemind/door_interaction(obj/machinery/door/airlock/door)
+/obj/effect/plant/hivemind/door_interaction(obj/machinery/door/door)
 	if(!istype(door) || !hive_mind_ai || !master_node)
 		return FALSE
 
@@ -138,6 +138,7 @@
 		if(!door.p_open)
 			if(prob(20))
 				door.p_open = TRUE
+				door.update_icon()
 			return FALSE
 		//but if airlock is welded, we just shake it like we rummage inside
 		if(door.welded)
@@ -145,10 +146,12 @@
 		//if panel opened, we begin to destruct it from inside of airlock
 		if(door.p_open)
 			//bolts are down? Our wireweeds infest electronics, so this isn't a problem cause it part of us
-			if(door.locked)
-				if(prob(50))
-					door.unlock()
-				return FALSE
+			if(istype(door, /obj/machinery/door/airlock))
+				var/obj/machinery/door/airlock/A = door
+				if(A.locked)
+					if(prob(50))
+						A.unlock()
+					return FALSE
 			//and then, if airlock is closed, we begin destroy it electronics
 			if(door.density)
 				door.take_damage(rand(15, 50))
@@ -200,7 +203,7 @@
 						can_spawn_new_node = FALSE
 						break
 				if(can_spawn_new_node)
-					created_machine = new(get_turf(subject))
+					created_machine = new /obj/machinery/hivemind_machine/node(get_turf(subject))
 
 
 		//Critical failure chance! This machine would be a dummy, which means - without any ability
