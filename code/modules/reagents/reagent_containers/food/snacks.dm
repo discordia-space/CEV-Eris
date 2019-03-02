@@ -96,9 +96,9 @@
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			if(!do_mob(user, M)) return
 
-			M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been fed [src.name] by [user.name] ([user.ckey]) Reagents: [reagentlist(src)]</font>")
-			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Fed [src.name] by [M.name] ([M.ckey]) Reagents: [reagentlist(src)]</font>")
-			msg_admin_attack("[key_name(user)] fed [key_name(M)] with [src.name] Reagents: [reagentlist(src)] (INTENT: [uppertext(user.a_intent)])")
+			M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been fed [src.name] by [user.name] ([user.ckey]) Reagents: [reagents.log_list()]</font>")
+			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Fed [src.name] by [M.name] ([M.ckey]) Reagents: [reagents.log_list()]</font>")
+			msg_admin_attack("[key_name(user)] fed [key_name(M)] with [src.name] Reagents: [reagents.log_list()] (INTENT: [uppertext(user.a_intent)])")
 
 			user.visible_message(SPAN_DANGER("[user] feeds [M] [src]."))
 
@@ -543,7 +543,7 @@
 		if(!(clr in list("blue","green","mime","orange","purple","rainbow","red","yellow")))
 			usr << SPAN_NOTICE("The egg refuses to take on this color!")
 			return
-		usr << SPAN_NOTICE("You color \the [src] [clr]")
+		user << SPAN_NOTICE("You color \the [src] [clr]")
 		icon_state = "egg-[clr]"
 	else
 		..()

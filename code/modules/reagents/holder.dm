@@ -229,11 +229,15 @@
 			return current.get_data()
 	return 0
 
-/datum/reagents/proc/get_reagents()
-	. = list()
-	for(var/datum/reagent/current in reagent_list)
-		. += "[current.id] ([current.volume])"
-	return english_list(., "EMPTY", "", ", ", ", ")
+/datum/reagents/proc/log_list() // Used in attack logs
+	if(!length(reagent_list))
+		return "no reagents"
+	var/list/data = list()
+	for(var/r in reagent_list) //no reagents will be left behind
+		var/datum/reagent/R = r
+		data += "[R.id] ([round(R.volume, 0.1)]u)"
+		//Using IDs because SOME chemicals (I'm looking at you, chlorhydrate-beer) have the same names as other chemicals.
+	return english_list(data)
 
 /* Holder-to-holder and similar procs */
 

@@ -2,7 +2,7 @@
 /// Droppers.
 ////////////////////////////////////////////////////////////////////////////////
 /obj/item/weapon/reagent_containers/dropper
-	name = "Dropper"
+	name = "dropper"
 	desc = "A dropper. Transfers 5 units."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "dropper0"
@@ -58,7 +58,7 @@
 					return
 
 			var/mob/living/M = target
-			var/contained = reagentlist()
+			var/contained = reagents.log_list()
 			M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been squirted with [name] by [user.name] ([user.ckey]). Reagents: [contained]</font>")
 			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [name] to squirt [M.name] ([M.key]). Reagents: [contained]</font>")
 			msg_admin_attack("[user.name] ([user.ckey]) squirted [M.name] ([M.key]) with [name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
@@ -103,7 +103,7 @@
 		icon_state = "dropper0"
 
 /obj/item/weapon/reagent_containers/dropper/industrial
-	name = "Industrial Dropper"
+	name = "industrial dropper"
 	desc = "A larger dropper. Transfers 10 units."
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(1,2,3,4,5,6,7,8,9,10)

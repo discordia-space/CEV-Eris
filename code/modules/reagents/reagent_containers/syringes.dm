@@ -184,7 +184,7 @@
 
 			var/trans
 			if(ismob(target))
-				var/contained = reagentlist()
+				var/contained = reagents.log_list()
 				trans = reagents.trans_to_mob(target, amount_per_transfer_from_this, CHEM_BLOOD)
 				admin_inject_log(user, target, src, contained, trans)
 			else
@@ -261,7 +261,7 @@
 		target.take_organ_damage(3)// 7 is the same as crowbar punch
 
 	var/syringestab_amount_transferred = rand(0, (reagents.total_volume - 5)) //nerfed by popular demand
-	var/contained_reagents = reagents.get_reagents()
+	var/contained_reagents = reagents.log_list()
 	var/trans = reagents.trans_to_mob(target, syringestab_amount_transferred, CHEM_BLOOD)
 	if(isnull(trans)) trans = 0
 	admin_inject_log(user, target, src, contained_reagents, trans, violent=1)
