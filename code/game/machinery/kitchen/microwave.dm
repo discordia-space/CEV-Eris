@@ -9,7 +9,7 @@
 	use_power = 1
 	idle_power_usage = 5
 	active_power_usage = 100
-	flags = OPENCONTAINER | NOREACT
+	reagent_flags = OPENCONTAINER | NO_REACT
 	var/operating = 0 // Is it on?
 	var/dirty = 0 // = {0..100} Does it need cleaning?
 	var/broken = 0 // ={0,1,2} How broken is it???
@@ -94,7 +94,7 @@
 						src.icon_state = "mw"
 						src.broken = 0 // Fix it!
 						src.dirty = 0 // just to be sure
-						src.flags = OPENCONTAINER
+						src.reagent_flags = OPENCONTAINER
 						return
 					return
 
@@ -119,7 +119,7 @@
 				src.dirty = 0 // It's clean!
 				src.broken = 0 // just to be sure
 				src.icon_state = "mw"
-				src.flags = OPENCONTAINER
+				src.reagent_flags = OPENCONTAINER
 		else //Otherwise bad luck!!
 			user << SPAN_WARNING("It's dirty!")
 			return 1
@@ -363,7 +363,7 @@
 	playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
 	src.visible_message(SPAN_WARNING("The microwave gets covered in muck!"))
 	src.dirty = 100 // Make it dirty so it can't be used util cleaned
-	src.flags = null //So you can't add condiments
+	src.reagent_flags = NONE //So you can't add condiments
 	src.icon_state = "mwbloody" // Make it look dirty too
 	src.operating = 0 // Turn it off again aferwards
 	src.updateUsrDialog()
@@ -375,7 +375,7 @@
 	src.icon_state = "mwb" // Make it look all busted up and shit
 	src.visible_message(SPAN_WARNING("The microwave breaks!")) //Let them know they're stupid
 	src.broken = 2 // Make it broken so it can't be used util fixed
-	src.flags = null //So you can't add condiments
+	src.reagent_flags = NONE //So you can't add condiments
 	src.operating = 0 // Turn it off again aferwards
 	src.updateUsrDialog()
 

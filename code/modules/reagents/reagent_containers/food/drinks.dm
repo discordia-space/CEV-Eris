@@ -6,7 +6,7 @@
 	desc = "yummy"
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = null
-	flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER
 	amount_per_transfer_from_this = 5
 	volume = 50
 	var/filling_states   // List of percentages full that have icons
@@ -15,7 +15,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/Initialize()
 	. = ..()
-	if(is_open_container())
+	if(is_drainable())
 		verbs += /obj/item/weapon/reagent_containers/food/drinks/proc/gulp_whole
 
 /obj/item/weapon/reagent_containers/food/drinks/on_reagent_change()
@@ -29,7 +29,7 @@
 /obj/item/weapon/reagent_containers/food/drinks/proc/open(mob/user)
 	playsound(loc,'sound/effects/canopen.ogg', rand(10,50), 1)
 	user << SPAN_NOTICE("You open [src] with an audible pop!")
-	flags |= OPENCONTAINER
+	reagent_flags |= OPENCONTAINER
 	verbs += /obj/item/weapon/reagent_containers/food/drinks/proc/gulp_whole
 
 /obj/item/weapon/reagent_containers/food/drinks/attack(mob/M as mob, mob/user as mob, def_zone)
@@ -51,19 +51,19 @@
 	return ..()
 
 /obj/item/weapon/reagent_containers/food/drinks/standard_feed_mob(var/mob/user, var/mob/target)
-	if(!is_open_container())
+	if(!is_drainable())
 		user << SPAN_NOTICE("You need to open [src]!")
 		return 1
 	return ..()
 
 /obj/item/weapon/reagent_containers/food/drinks/standard_dispenser_refill(var/mob/user, var/obj/structure/reagent_dispensers/target)
-	if(!is_open_container())
+	if(!is_refillable())
 		user << SPAN_NOTICE("You need to open [src]!")
 		return 1
 	return ..()
 
 /obj/item/weapon/reagent_containers/food/drinks/standard_pour_into(var/mob/user, var/atom/target)
-	if(!is_open_container())
+	if(!is_drainable())
 		user << SPAN_NOTICE("You need to open [src]!")
 		return 1
 	return ..()
@@ -114,7 +114,7 @@
 	set name = "Gulp Down"
 	set src in view(1)
 
-	if(is_open_container())
+	if(is_drainable())
 		if(ishuman(usr))
 			var/mob/living/carbon/human/H = usr
 			if(!H.check_has_mouth())
@@ -156,7 +156,7 @@
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = null
 	volume = 150
-	flags = CONDUCT | OPENCONTAINER
+	flags = CONDUCT
 
 ///////////////////////////////////////////////Drinks
 //Notes by Darem: Drinks are simply containers that start preloaded. Unlike condiments, the contents can be ingested directly

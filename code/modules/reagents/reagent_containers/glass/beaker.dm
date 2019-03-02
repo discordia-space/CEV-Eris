@@ -10,7 +10,6 @@
 	volume = 120
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25,30,60,120)
-	flags = OPENCONTAINER
 
 /obj/item/weapon/reagent_containers/glass/beaker/noreact
 	name = "cryostasis beaker"
@@ -19,7 +18,7 @@
 	matter = list(MATERIAL_GLASS = 1, MATERIAL_STEEL = 2)
 	volume = 60
 	amount_per_transfer_from_this = 10
-	flags = OPENCONTAINER | NOREACT
+	reagent_flags = OPENCONTAINER | NO_REACT
 
 /obj/item/weapon/reagent_containers/glass/beaker/bluespace
 	name = "bluespace beaker"
@@ -29,7 +28,6 @@
 	volume = 300
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25,30,60,120,300)
-	flags = OPENCONTAINER
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial
 	name = "vial"
@@ -40,7 +38,6 @@
 	w_class = ITEM_SIZE_TINY
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25)
-	flags = OPENCONTAINER
 
 /obj/item/weapon/reagent_containers/glass/beaker/cryoxadone
 	preloaded = list("cryoxadone" = 30)
@@ -60,7 +57,6 @@
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = list(10,20,30,60,120)
 	volume = 120
-	flags = OPENCONTAINER
 	unacidable = 0
 
 /obj/item/weapon/reagent_containers/glass/bucket/attackby(var/obj/D, mob/user as mob)
@@ -81,7 +77,7 @@
 	overlays.Cut()
 	if(reagents.total_volume >= 1)
 		overlays += "water_bucket"
-	if (!is_open_container())
+	if(has_lid())
 		var/image/lid = image(icon, src, "lid_[initial(icon_state)]")
 		overlays += lid
 

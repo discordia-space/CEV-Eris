@@ -34,7 +34,7 @@
 	icon_state = "smoke"
 	extended_desc = "This smoke generator creates clouds of smoke on command.  It can also hold liquids inside, which will go \
 	into the smoke clouds when activated."
-	flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER
 	complexity = 20
 	cooldown_per_use = 30 SECONDS
 	inputs = list()
@@ -60,7 +60,7 @@
 	icon_state = "injector"
 	extended_desc = "This autoinjector can push reagents into another container or someone else outside of the machine.  The target \
 	must be adjacent to the machine, and if it is a person, they cannot be wearing thick clothing."
-	flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER
 	complexity = 20
 	cooldown_per_use = 6 SECONDS
 	inputs = list("\<REF\> target", "\<NUM\> injection amount" = 5)
@@ -91,7 +91,7 @@
 			sleep(3 SECONDS)
 			if(!L.can_be_injected_by(src))
 				return
-			var/contained = reagents.get_reagents()
+			var/contained = reagents.log_list()
 			var/trans = reagents.trans_to_mob(L, inject_amount(), CHEM_BLOOD)
 			message_admins("[src] injected \the [L] with [trans]u of [contained].")
 			AM << SPAN_NOTICE("You feel a tiny prick!")
@@ -106,7 +106,7 @@
 	extended_desc = "This is a pump, which will move liquids from the source ref to the target ref.  The third pin determines \
 	how much liquid is moved per pulse, between 0 and 50.  The pump can move reagents to any open container inside the machine, or \
 	outside the machine if it is next to the machine.  Note that this cannot be used on entities."
-	flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER
 	complexity = 8
 	inputs = list("\<REF\> source", "\<REF\> target", "\<NUM\> injection amount" = 10)
 	outputs = list()
@@ -147,7 +147,7 @@
 	desc = "Stores liquid inside, and away from electrical components.  Can store up to 60u."
 	icon_state = "reagent_storage"
 	extended_desc = "This is effectively an internal beaker."
-	flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER
 	complexity = 4
 	inputs = list()
 	outputs = list("volume used")
@@ -166,7 +166,7 @@
 	desc = "Stores liquid inside, and away from electrical components.  Can store up to 60u.  This will also suppress reactions."
 	icon_state = "reagent_storage_cryo"
 	extended_desc = "This is effectively an internal cryo beaker."
-	flags = OPENCONTAINER | NOREACT
+	reagent_flags = OPENCONTAINER | NO_REACT
 	complexity = 8
 	spawn_flags = IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_MATERIALS = 3, TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 2)

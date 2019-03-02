@@ -135,7 +135,7 @@
 			amount = 120
 
 	if(href_list["dispense"])
-		if (dispensable_reagents.Find(href_list["dispense"]) && beaker != null && beaker.is_open_container())
+		if (dispensable_reagents.Find(href_list["dispense"]) && beaker && beaker.is_refillable())
 			var/obj/item/weapon/reagent_containers/B = src.beaker
 			var/datum/reagents/R = B.reagents
 			var/space = R.maximum_volume - R.total_volume
@@ -270,7 +270,7 @@
 	var/pillsprite = "1"
 	var/client/has_sprites = list()
 	var/max_pill_count = 20
-	flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER
 
 /obj/machinery/chem_master/RefreshParts()
 	if(!reagents)

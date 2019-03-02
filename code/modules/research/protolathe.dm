@@ -1,7 +1,7 @@
 /obj/machinery/r_n_d/protolathe
 	name = "\improper Protolathe"
 	icon_state = "protolathe"
-	flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER
 	circuit = /obj/item/weapon/circuitboard/protolathe
 
 	use_power = TRUE

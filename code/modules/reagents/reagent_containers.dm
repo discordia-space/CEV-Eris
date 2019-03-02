@@ -143,11 +143,11 @@
 		return 0
 
 	// Ensure we don't splash beakers and similar containers.
-	if(!target.is_open_container() && istype(target, /obj/item/weapon/reagent_containers))
+	if(istype(target, /obj/item/weapon/reagent_containers) && !target.is_refillable())
 		user << SPAN_NOTICE("\The [target] is closed.")
 		return 1
 	// Otherwise don't care about splashing.
-	else if(!target.is_open_container())
+	else if(!target.is_refillable())
 		return 0
 
 	if(!reagents || !reagents.total_volume)

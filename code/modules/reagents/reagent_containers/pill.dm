@@ -37,7 +37,7 @@
 
 	..()
 
-	if(target.is_open_container() && target.reagents)
+	if(target.is_refillable())
 		if(!target.reagents.total_volume)
 			user << SPAN_NOTICE("[target] is empty. Can't dissolve \the [src].")
 			return

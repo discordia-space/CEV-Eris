@@ -95,7 +95,7 @@
 		return 0
 	if(!my_atom.loc) //No reactions inside GC'd containers
 		return 0
-	if(my_atom.flags & NOREACT) // No reactions here
+	if(my_atom.reagent_flags & NO_REACT) // No reactions here
 		return 0
 
 	var/reaction_occured
@@ -290,7 +290,7 @@
 		return splash_mob(target, amount, copy)
 	if(isturf(target))
 		return trans_to_turf(target, amount, multiplier, copy)
-	if(isobj(target) && target.is_open_container())
+	if(isobj(target) && target.is_refillable())
 		return trans_to_obj(target, amount, multiplier, copy)
 	return 0
 
