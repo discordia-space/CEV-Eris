@@ -12,7 +12,7 @@
 	unacidable = 1
 	volume = 30
 	possible_transfer_amounts = null
-	flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER
 	slot_flags = SLOT_BELT
 
 ///obj/item/weapon/reagent_containers/hypospray/New() //comment this to make hypos start off empty
@@ -43,7 +43,7 @@
 	M << SPAN_NOTICE("You feel a tiny prick!")
 
 	if(M.reagents)
-		var/contained = reagentlist()
+		var/contained = reagents.log_list()
 		var/trans = reagents.trans_to_mob(M, amount_per_transfer_from_this, CHEM_BLOOD)
 		admin_inject_log(user, M, src, contained, trans)
 		user << SPAN_NOTICE("[trans] units injected. [reagents.total_volume] units remaining in \the [src].")
@@ -57,6 +57,7 @@
 	item_state = "autoinjector"
 	amount_per_transfer_from_this = 5
 	volume = 5
+	reagent_flags = REFILLABLE | DRAINABLE | AMOUNT_VISIBLE
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/New()
 	..()
@@ -64,22 +65,13 @@
 	update_icon()
 	return
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/attack(mob/M as mob, mob/user as mob)
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/on_reagent_change()
 	..()
 	if(reagents.total_volume <= 0) //Prevents autoinjectors to be refilled.
-		flags &= ~OPENCONTAINER
-	update_icon()
-	return
+		reagent_flags &= ~REFILLABLE
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/update_icon()
 	if(reagents.total_volume > 0)
-		icon_state = "[initial(icon_state)]1"
+		icon_state = initial(icon_state)
 	else
 		icon_state = "[initial(icon_state)]0"
-
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/examine(mob/user)
-	..(user)
-	if(reagents && reagents.reagent_list.len)
-		user << SPAN_NOTICE("It is currently loaded.")
-	else
-		user << SPAN_NOTICE("It is spent.")
