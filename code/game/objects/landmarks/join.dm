@@ -4,11 +4,14 @@ GLOBAL_LIST_EMPTY(spawntypes)
 	delete_me = FALSE
 	var/join_tag = "latejoin"
 
+	var/spawn_datum_type = /datum/spawnpoint //What kind of datum we'll create for this landmark.
+	//Make sure all landmarks that share a name also share the same datum type!
+
 /obj/landmark/join/New()
 	if(join_tag)
-		var/datum/spawnpoint/SP = getSpawnPoint(name, silenced = TRUE)
+		var/datum/spawnpoint/SP = get_spawn_point(name)
 		if (!SP)
-			SP = createSpawnPoint(name)
+			SP = create_spawn_point(name)
 			SP.turfs += src.loc
 			SP.display_name = name
 		else
@@ -26,24 +29,24 @@ GLOBAL_LIST_EMPTY(spawntypes)
 
 /obj/landmark/join/late/New()
 	if(join_tag)
-		var/datum/spawnpoint/SP = getSpawnPoint(name, late = TRUE, silenced = TRUE)
-		if (!SP)
-			SP = createSpawnPoint(name, late = TRUE)
-			SP.turfs += src.loc
-			SP.display_name = name
-			SP.restrict_job = restrict_job
-			SP.disallow_job = disallow_job
-			SP.message = message
-		else
-			SP.turfs += src.loc
-		GLOB.late_spawntypes[name] = SP	
+		landmark_create_spawn_point(src, TRUE, TRUE)
 	..()
 
 /obj/landmark/join/late/cryo
-	name = "Cryogenic Storage"
+	name = "Aft Cryogenic Storage"
 	icon_state = "player-blue-cluster"
-	join_tag = "late_cryo"
+	join_tag = "aft_late_cryo"
 	message = "has completed cryogenic revival"
+	spawn_datum_type = /datum/spawnpoint/cryo
+	disallow_job = list("Robot")
+
+
+/obj/landmark/join/late/dormitory
+	name = "Dormitory"
+	icon_state = "player-blue-cluster"
+	join_tag = "late_dormitory"
+	message = "has awoken in the dormitory"
+	spawn_datum_type = /datum/spawnpoint/dormitory
 	disallow_job = list("Robot")
 
 /obj/landmark/join/late/cyborg

@@ -52,7 +52,7 @@
 		return ..()
 
 /obj/item/ammo_casing/attackby(obj/item/I, mob/user)
-	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING, QUALITY_CUTTING)))
+	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING, QUALITY_CUTTING), src))
 		if(!BB)
 			user << "\blue There is no bullet in the casing to inscribe anything into."
 			return

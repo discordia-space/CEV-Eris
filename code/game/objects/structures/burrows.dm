@@ -67,7 +67,19 @@
 	if (A && A.is_maintenance)
 		maintenance = TRUE
 
-
+//Lets remove ourselves from the global list and cleanup any held references
+/obj/structure/burrow/Destroy()
+	all_burrows.Remove(src)
+	target = null
+	recieving = null
+	//Eject any mobs that tunnelled through us
+	for (var/atom/movable/a in sending_mobs)
+		if (a.loc == src)
+			a.forceMove(loc)
+	population = list()
+	plantspread_burrows = list()
+	plant = null
+	.=..()
 
 //This is called from the migration subsystem. It scans for nearby creatures
 //Any kind of simple or superior animal is valid, all of them are treated as population for this burrow

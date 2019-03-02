@@ -105,7 +105,7 @@
 
 /obj/machinery/r_n_d/server/attackby(var/obj/item/I, var/mob/user as mob)
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING))
+	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING), src)
 	switch(tool_type)
 
 		if(QUALITY_PRYING)

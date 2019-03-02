@@ -39,7 +39,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 		user << SPAN_NOTICE("There is something already loaded into \the [src].")
 		return 1
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING))
+	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING), src)
 	switch(tool_type)
 
 		if(QUALITY_PRYING)

@@ -62,6 +62,7 @@
 		if(is_type_in_list(I,can_hold))
 			if (feedback)
 				user << "You collect \the [I]."
+			I.do_pickup_animation(user.loc, I.loc)
 			I.forceMove(src)
 			wrapped = I
 			update_icon()

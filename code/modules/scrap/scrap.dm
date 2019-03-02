@@ -14,14 +14,14 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	icon_state = "small"
 	icon = 'icons/obj/structures/scrap/base.dmi'
 	var/obj/item/weapon/storage/internal/updating/loot	//the visible loot
-	var/loot_min = 6
-	var/loot_max = 12
+	var/loot_min = 7
+	var/loot_max = 13
 	var/list/loot_list = list(
 		/obj/random/material,
 		/obj/item/stack/rods/random,
 		/obj/item/weapon/material/shard,
-		/obj/random/junk/nondense,
-		/obj/random/rare = 0.5
+		/obj/random/junk/nondense = 2,
+		/obj/random/rare = 0.4
 	)
 	var/dig_amount = 4
 	var/parts_icon = 'icons/obj/structures/scrap/trash.dmi'
@@ -42,7 +42,8 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 
 /obj/structure/scrap/examine(var/mob/user)
 	.=..()
-	try_make_loot() //Make the loot when examined so the big item check below will work
+	if (isliving(user))
+		try_make_loot() //Make the loot when examined so the big item check below will work
 	to_chat(user, SPAN_NOTICE("You could sift through it with a shoveling tool to uncover more contents"))
 	if (big_item && big_item.loc == src)
 		to_chat(user, SPAN_DANGER("You can make out the corners of something large buried in here. Keep digging and removing things to uncover it"))
@@ -251,7 +252,8 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	.=..()
 
 /obj/structure/scrap/attack_generic(mob/user)
-	loot.open(user)
+	if (isliving(user))
+		loot.open(user)
 	.=..()
 
 
@@ -292,8 +294,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		user.do_attack_animation(src)
 		dig_out_lump(user.loc, 0)
 		shuffle_loot()
-		var/i = clear_if_empty()
-		world << "Clear if empty returned: [i]"
+		clear_if_empty()
 
 /obj/structure/scrap/large
 	name = "large scrap pile"
@@ -317,6 +318,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/random/surgery_tool,
 		/obj/item/stack/rods/random,
 		/obj/item/weapon/material/shard,
+		/obj/random/junk/nondense,
 		/obj/random/rare = 0.3
 	)
 
@@ -333,8 +335,10 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/item/stack/material/steel/random,
 		/obj/item/stack/rods/random,
 		/obj/item/weapon/material/shard,
-		/obj/random/rare = 0.4,
-		/obj/random/tool_upgrade = 2
+		/obj/random/junk/nondense,
+		/obj/random/rare = 0.3,
+		/obj/random/tool_upgrade = 1,
+		/obj/random/mecha_equipment = 2
 	)
 
 /obj/structure/scrap/food
@@ -348,7 +352,8 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/random/booze,
 		/obj/item/stack/rods/random,
 		/obj/item/weapon/material/shard,
-		/obj/random/rare = 0.4
+		/obj/random/junk/nondense,
+		/obj/random/rare = 0.3
 	)
 
 /obj/structure/scrap/guns
@@ -356,16 +361,20 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	name = "gun refuse pile"
 	desc = "Pile of military supply refuse. Who thought it was a clever idea to throw that out?"
 	parts_icon = 'icons/obj/structures/scrap/guns_trash.dmi'
+	loot_min = 9
+	loot_max = 12
 	loot_list = list(
-		/obj/random/gun_cheap = 2,
-		/obj/random/gun_normal,
+		/obj/random/gun_cheap = 3,
+		/obj/random/gun_normal = 2,
 		/obj/random/powercell,
+		/obj/random/mecha_equipment = 2,
+		/obj/random/ammo = 4,
 		/obj/random/gun_energy_cheap,
 		/obj/item/toy/crossbow,
 		/obj/item/weapon/material/shard,
 		/obj/item/stack/material/steel/random,
-		/obj/item/stack/rods/random,
-		/obj/random/rare = 0.4
+		/obj/random/junk/nondense,
+		/obj/random/rare = 0.3
 	)
 
 /obj/structure/scrap/science
@@ -377,9 +386,9 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/random/techpart,
 		/obj/random/powercell,
 		/obj/random/circuitboard,
-		/obj/random/rare = 0.4,
-		/obj/random/tool_upgrade
-	)
+		/obj/random/rare,//No weight on this, rare loot is pretty likely to appear in scientific scrap
+		/obj/random/tool_upgrade,
+		/obj/random/mecha_equipment)
 
 /obj/structure/scrap/cloth
 	icontype = "cloth"
@@ -395,6 +404,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	parts_icon = 'icons/obj/structures/scrap/all_mixed.dmi'
 	loot_list = list(
 		/obj/random/lowkeyrandom = 4,
+		/obj/random/junk/nondense = 3,
 		/obj/item/stack/rods/random = 2,
 		/obj/item/weapon/material/shard,
 		/obj/random/rare = 0.3
@@ -453,7 +463,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	density = TRUE
 	icon_state = "big"
 	loot_min = 13
-	loot_max = 15
+	loot_max = 16
 	base_min = 9
 	base_max = 14
 	base_spread = 16

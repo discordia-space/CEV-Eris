@@ -341,7 +341,7 @@
 
 /obj/machinery/atmospherics/unary/vent_pump/attackby(obj/item/I, mob/user)
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_WELDING, QUALITY_BOLT_TURNING))
+	var/tool_type = I.get_tool_type(user, list(QUALITY_WELDING, QUALITY_BOLT_TURNING), src)
 	switch(tool_type)
 
 		if(QUALITY_WELDING)

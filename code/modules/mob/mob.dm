@@ -224,6 +224,10 @@
 			else
 				client.perspective = EYE_PERSPECTIVE
 				client.eye = loc
+
+	if(hud_used)
+		hud_used.updatePlaneMasters(src)
+
 	return
 
 
@@ -669,6 +673,10 @@
 					Failsafe.stat_entry()
 				else
 					stat("Failsafe Controller:", "ERROR")
+				if(GLOB)
+					GLOB.stat_entry()
+				else
+					stat("Globals:", "ERROR")
 				if(Master)
 					stat(null)
 					for(var/datum/controller/subsystem/SS in Master.subsystems)
@@ -836,7 +844,20 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 	if(status_flags & CANPARALYSE)
 		facing_dir = null
 		paralysis = max(max(paralysis,amount),0)
+		return TRUE
 	return
+
+/mob/living/Paralyse(amount)
+	var/zero_before = FALSE
+	if (!paralysis)
+		zero_before = TRUE
+	.=..()
+	if (. && zero_before)
+		//These three procs instantly create the blinding/sleep overlay
+		//We only call them if the mob has just become paralysed, to prevent an infinite loop
+		handle_regular_status_updates() //This checks paralysis and sets stat
+		handle_disabilities() //This checks stat and sets eye_blind
+		handle_regular_hud_updates() //This checks eye_blind and adds or removes the hud overlay
 
 /mob/proc/SetParalysis(amount)
 	if(status_flags & CANPARALYSE)

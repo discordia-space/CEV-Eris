@@ -24,6 +24,11 @@
 			return 0
 	return 1
 
+/proc/clear_interior(var/turf/T)
+	if (turf_clear(T))
+		if (!turf_is_external(T))
+			return TRUE
+
 // Picks a turf without a mob from the given list of turfs, if one exists.
 // If no such turf exists, picks any random turf from the given list of turfs.
 /proc/pick_mobless_turf_if_exists(var/list/start_turfs)
@@ -214,7 +219,7 @@
 
 	return FALSE
 
-/proc/IsTurfAtmosUnsafe(var/turf/T)
+/proc/is_turf_atmos_unsafe(var/turf/T)
 	if(istype(T, /turf/space)) // Space tiles
 		return "Spawn location is open to space."
 	var/datum/gas_mixture/air = T.return_air()

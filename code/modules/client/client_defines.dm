@@ -60,3 +60,6 @@
 	var/datum/delay_controller/move_delayer = new
 
 	var/datum/interface/UI	//interface for current mob
+
+	//datum that controls the displaying and hiding of tooltips
+	var/datum/tooltip/tooltips
