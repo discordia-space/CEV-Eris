@@ -154,7 +154,7 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 					L << "<span class='error'>You need something that can cut!</span>"
 
 			else if(href_list["pulse"])
-				if(I.get_tool_type(usr, list(QUALITY_PULSING)))
+				if(I.get_tool_type(usr, list(QUALITY_PULSING), holder))
 					if(I.use_tool(L, holder, WORKTIME_INSTANT, QUALITY_PULSING, FAILCHANCE_ZERO))
 						var/colour = href_list["pulse"]
 						add_log_entry(L, "has pulsed the <font color='[colour]'>[capitalize(colour)]</font> wire")

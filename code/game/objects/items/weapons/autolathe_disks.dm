@@ -204,6 +204,7 @@
 		/datum/autolathe/recipe/circuit/airalarm,
 		/datum/autolathe/recipe/circuit/firealarm,
 		/datum/autolathe/recipe/circuit/powermodule,
+		/datum/autolathe/recipe/circuit/recharger,
 		/datum/autolathe/recipe/circuit/autolathe,
 		/datum/autolathe/recipe/circuit/autolathe_disk_cloner,
 		/datum/autolathe/recipe/circuit/vending,

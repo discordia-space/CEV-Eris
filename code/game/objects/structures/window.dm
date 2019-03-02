@@ -282,7 +282,7 @@
 
 	//If you set intent to harm, you can hit the window with tools to break it. Set to any other intent to use tools on it
 	if (usr.a_intent != I_HURT)
-		var/tool_type = I.get_tool_type(user, usable_qualities)
+		var/tool_type = I.get_tool_type(user, usable_qualities, src)
 		switch(tool_type)
 			if(QUALITY_SEALING)
 				user.visible_message("[user] starts sealing up cracks in [src] with the [I]", "You start sealing up cracks in [src] with the [I]")

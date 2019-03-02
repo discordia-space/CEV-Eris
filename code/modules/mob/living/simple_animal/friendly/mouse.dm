@@ -58,6 +58,8 @@
 
 	//kitchen_tag = "rodent" //This is part of cooking overhaul, not yet ported
 
+
+
 /mob/living/simple_animal/mouse/New()
 	..()
 	nutrition = rand(max_nutrition*0.25, max_nutrition*0.75)
@@ -83,9 +85,6 @@
 		if ((world.time - timeofdeath) > decompose_time)
 			dust()
 
-/mob/living/simple_animal/mouse/Destroy()
-
-	return ..()
 
 //Pixel offsetting as they scamper around
 /mob/living/simple_animal/mouse/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
@@ -246,6 +245,14 @@
 /mob/living/simple_animal/mouse/dust()
 	..(anim = "dust_[body_color]", remains = /obj/item/remains/mouse, iconfile = 'icons/mob/mouse.dmi')
 
+
+/mob/living/simple_animal/mouse/AltClickOn(A)
+	if (istype(A, /mob/living) && Adjacent(A))
+		var/mob/living/L = A
+		face_atom(L)
+		L.attack_generic(src, 1, "bitten")
+		setClickCooldown(15)
+		setMoveCooldown(10)
 
 /*
  * Mouse types

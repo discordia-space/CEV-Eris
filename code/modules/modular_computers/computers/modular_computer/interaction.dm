@@ -223,7 +223,7 @@
 
 	var/list/usable_qualities = list(QUALITY_SCREW_DRIVING, QUALITY_WELDING, QUALITY_BOLT_TURNING)
 
-	var/tool_type = W.get_tool_type(user, usable_qualities)
+	var/tool_type = W.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 		if(QUALITY_BOLT_TURNING)
 			var/list/components = get_all_components()

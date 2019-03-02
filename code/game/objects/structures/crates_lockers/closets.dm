@@ -1,10 +1,3 @@
-/atom/proc/add_overlay(var/overlay)
-	ASSERT(overlay)
-	ASSERT(istext(overlay))
-
-	overlays.Add(image(icon,icon_state = overlay))
-
-
 /obj/structure/closet
 	name = "closet"
 	desc = "It's a basic storage unit."

@@ -167,7 +167,7 @@
 
 /obj/machinery/suspension_gen/attackby(obj/item/I, mob/user as mob)
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING, QUALITY_BOLT_TURNING))
+	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING, QUALITY_BOLT_TURNING), src)
 	switch(tool_type)
 
 		if(QUALITY_PRYING)
