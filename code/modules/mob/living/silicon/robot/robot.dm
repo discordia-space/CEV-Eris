@@ -279,6 +279,8 @@
 	"[modtype] module", "Yes", "No"))
 		if("No")
 			//They changed their mind, abort, abort!
+			if(module)
+				return
 			QDEL_NULL(RM)
 			modtype = null
 			spawn()
@@ -286,6 +288,8 @@
 			return //And abort out of this
 		if ("Yes")
 			//This time spawn the real module
+			if(module)
+				return
 			QDEL_NULL(RM)
 			new module_type(src)
 
