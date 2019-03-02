@@ -2150,6 +2150,7 @@
 #include "code\modules\random_map\noise\noise.dm"
 #include "code\modules\random_map\noise\ore.dm"
 #include "code\modules\random_map\noise\tundra.dm"
+#include "code\modules\reagents\chem_splash.dm"
 #include "code\modules\reagents\colours.dm"
 #include "code\modules\reagents\holder.dm"
 #include "code\modules\reagents\logging.dm"
