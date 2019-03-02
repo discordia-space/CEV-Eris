@@ -176,6 +176,9 @@
 		if(config.aggressive_changelog)
 			src.changes()
 
+	if(!tooltips)
+		tooltips = new /datum/tooltip(src)
+
 
 
 	//////////////

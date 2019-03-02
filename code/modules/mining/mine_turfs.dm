@@ -115,7 +115,7 @@
 //Not even going to touch this pile of spaghetti
 /turf/simulated/mineral/attackby(obj/item/I, mob/living/user)
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_DIGGING, QUALITY_EXCAVATION))
+	var/tool_type = I.get_tool_type(user, list(QUALITY_DIGGING, QUALITY_EXCAVATION), src)
 	switch(tool_type)
 
 		if(QUALITY_EXCAVATION)

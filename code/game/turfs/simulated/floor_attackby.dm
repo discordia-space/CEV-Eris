@@ -99,7 +99,7 @@
 			usable_qualities.Add(QUALITY_WELDING)
 		if(is_damaged())
 			usable_qualities.Add(QUALITY_SEALING)
-		var/tool_type = I.get_tool_type(user, usable_qualities)
+		var/tool_type = I.get_tool_type(user, usable_qualities, src)
 		switch(tool_type)
 			if(QUALITY_SEALING)
 				user.visible_message("[user] starts sealing up cracks in [src] with the [I]", "You start sealing up cracks in [src] with the [I]")

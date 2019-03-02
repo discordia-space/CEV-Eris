@@ -1881,6 +1881,14 @@ window "mainwindow"
 		is-checked = false
 		group = ""
 		button-type = pushbox
+	elem "tooltip"
+		type = BROWSER
+		pos = 0,0
+		size = 999x999
+		anchor1 = none
+		anchor2 = none
+		is-visible = false
+		saved-params = ""
 
 window "mapwindow"
 	elem "mapwindow"

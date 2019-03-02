@@ -437,7 +437,7 @@
 	if(c_mode == 1)
 		usable_qualities.Add(QUALITY_WELDING)
 
-	var/tool_type = I.get_tool_type(user, usable_qualities)
+	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 
 		if(QUALITY_SCREW_DRIVING)

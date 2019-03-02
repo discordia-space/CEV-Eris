@@ -97,7 +97,6 @@ var/global/list/robot_modules = list(
 
 	R.set_module_sprites(sprites)
 	R.icon_selected = 0
-	R.icon_selection_tries = -1
 	spawn()
 		R.choose_icon() //Choose icon recurses and blocks new from completing, so spawn it off
 
@@ -134,7 +133,6 @@ var/global/list/robot_modules = list(
 		R.radio.recalculateChannels()
 	R.set_module_sprites(list("Default" = "robot"))
 	R.icon_selected = 0
-	R.icon_selection_tries = -1
 	R.choose_icon()
 
 /obj/item/weapon/robot_module/Destroy()

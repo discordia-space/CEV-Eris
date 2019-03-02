@@ -14,7 +14,7 @@
 	return
 
 /obj/structure/salvageable/attackby(obj/item/I, mob/user)
-	if(I.get_tool_type(usr, list(QUALITY_PRYING)))
+	if(I.get_tool_type(usr, list(QUALITY_PRYING), src))
 		user << SPAN_NOTICE("You start salvage anything useful from \the [src].")
 		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_PRYING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 			dismantle()

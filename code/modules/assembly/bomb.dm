@@ -27,7 +27,7 @@
 
 	add_fingerprint(user)
 
-	var/tool_type = I.get_tool_type(user, QUALITY_BOLT_TURNING, QUALITY_WELDING)
+	var/tool_type = I.get_tool_type(user, QUALITY_BOLT_TURNING, QUALITY_WELDING, src)
 	switch(tool_type)
 
 		if(QUALITY_BOLT_TURNING)
