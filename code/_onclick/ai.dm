@@ -51,7 +51,7 @@
 		CtrlClickOn(A)
 		return
 
-	if(control_disabled || !canClick())
+	if(control_disabled || !can_click())
 		return
 
 	if(multitool_mode && isobj(A))
@@ -226,14 +226,14 @@
 	return 1
 
 //
-//	On Ctrl-Click will turn on or off SMES input 
+//	On Ctrl-Click will turn on or off SMES input
 //
 /obj/machinery/power/smes/AICtrlClick(var/mob/user)
 	Topic(src, list("cmode"="1"))
 	return 1
 
 //
-//	On Alt-Click will turn on or off SMES output 
+//	On Alt-Click will turn on or off SMES output
 //
 /obj/machinery/power/smes/AIAltClick(var/mob/user)
 	Topic(src, list("online"="1"))

@@ -2,7 +2,7 @@
 	set name = "Resist"
 	set category = "IC"
 
-	if(!stat && canClick())
+	if(!stat && can_click())
 		setClickCooldown(20)
 		resist_grab()
 		if(!weakened)
@@ -149,7 +149,7 @@
 		drop_from_inventory(handcuffed)
 
 /mob/living/carbon/proc/escape_legcuffs()
-	if(!canClick())
+	if(!can_click())
 		return
 
 	setClickCooldown(100)
