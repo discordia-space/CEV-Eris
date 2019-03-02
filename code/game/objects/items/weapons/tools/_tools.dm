@@ -690,7 +690,6 @@
 	color = initial(color)
 	sharp = initial(sharp)
 	prefixes = list()
-	item_flags = initial(item_flags)
 
 	//Now lets have each upgrade reapply its modifications
 	for (var/obj/item/weapon/tool_upgrade/T in upgrades)

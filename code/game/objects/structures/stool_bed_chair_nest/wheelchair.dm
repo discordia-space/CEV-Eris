@@ -103,7 +103,7 @@
 					unbuckle_mob()
 			if (pulling && (get_dist(src, pulling) > 1))
 				pulling.pulledby = null
-				to_chat(pulling, "<span class='warning'>You lost your grip!</span>")
+				to_chat(pulling,  SPAN_WARNING("You lost your grip!"))
 				pulling = null
 		else
 			if (occupant && (src.loc != occupant.loc))
