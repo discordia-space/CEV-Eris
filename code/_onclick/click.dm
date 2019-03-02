@@ -69,7 +69,7 @@
 */
 /mob/proc/ClickOn(var/atom/A, var/params)
 
-	if(world.time <= next_click) // Hard check, before anything else, to avoid crashing
+	if(!can_click())
 		return
 
 	next_click = world.time + 1
@@ -103,8 +103,7 @@
 
 	face_atom(A) // change direction to face what you clicked on
 
-	if(!canClick()) // in the year 2000...
-		return
+
 
 	if(istype(loc, /obj/mecha))
 		if(!locate(/turf) in list(A, A.loc)) // Prevents inventory from being drilled
@@ -172,7 +171,7 @@
 /mob/proc/setClickCooldown(var/timeout)
 	next_click = max(world.time + timeout, next_click)
 
-/mob/proc/canClick()
+/mob/proc/can_click()
 	if(config.no_click_cooldown || next_click <= world.time)
 		return 1
 	return 0
