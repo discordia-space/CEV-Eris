@@ -33,6 +33,7 @@
 
 /datum/world_topic/status
 	keyword = "status"
+	log = FALSE
 
 /datum/world_topic/status/Run(list/input)
 	var/list/s = list()
