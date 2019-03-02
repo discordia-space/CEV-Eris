@@ -705,7 +705,7 @@ var/list/turret_icons
 	if(build_step == 5 || build_step == 6)
 		usable_qualities.Add(QUALITY_SCREW_DRIVING)
 
-	var/tool_type = I.get_tool_type(user, usable_qualities)
+	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 
 		if(QUALITY_BOLT_TURNING)

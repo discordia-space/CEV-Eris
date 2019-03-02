@@ -32,7 +32,7 @@
 
 /obj/effect/decal/mecha_wreckage/attackby(obj/item/I, mob/user)
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_WIRE_CUTTING, QUALITY_WELDING, QUALITY_PRYING))
+	var/tool_type = I.get_tool_type(user, list(QUALITY_WIRE_CUTTING, QUALITY_WELDING, QUALITY_PRYING), src)
 	switch(tool_type)
 
 		if(QUALITY_WIRE_CUTTING)
