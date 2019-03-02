@@ -96,7 +96,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 		user << SPAN_NOTICE("\icon[src]\The [src] is busy. Please wait for completion of previous operation.")
 		return 1
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING))
+	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING), src)
 	switch(tool_type)
 
 		if(QUALITY_PRYING)
