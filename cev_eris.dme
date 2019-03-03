@@ -252,6 +252,7 @@
 #include "code\datums\mind.dm"
 #include "code\datums\mixed.dm"
 #include "code\datums\mob_stats.dm"
+#include "code\datums\mutable_appearance.dm"
 #include "code\datums\progressbar.dm"
 #include "code\datums\recipe.dm"
 #include "code\datums\security_state.dm"
