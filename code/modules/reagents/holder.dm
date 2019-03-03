@@ -257,8 +257,9 @@
 	handle_reactions()
 	return amount
 
-/datum/reagents/proc/trans_to_holder(var/datum/reagents/target, var/amount = 1, var/multiplier = 1, var/copy = 0) // Transfers [amount] reagents from [src] to [target], multiplying them by [multiplier]. Returns actual amount removed from [src] (not amount transferred to [target]).
-	if(!target || !istype(target))
+// Transfers [amount] reagents from [src] to [target], multiplying them by [multiplier]. Returns actual amount removed from [src] (not amount transferred to [target]).
+/datum/reagents/proc/trans_to_holder(datum/reagents/target, amount = 1, multiplier = 1, copy = 0)
+	if(!istype(target))
 		return
 
 	amount = max(0, min(amount, total_volume, target.get_free_space() / multiplier))
@@ -285,13 +286,18 @@
 //not directly injected into the contents. It first calls touch, then the appropriate trans_to_*() or splash_mob().
 //If for some reason touch effects are bypassed (e.g. injecting stuff directly into a reagent container or person),
 //call the appropriate trans_to_*() proc.
-/datum/reagents/proc/trans_to(var/atom/target, var/amount = 1, var/multiplier = 1, var/copy = 0)
-	if(ismob(target))
-		return splash_mob(target, amount, copy)
-	if(isturf(target))
-		return trans_to_turf(target, amount, multiplier, copy)
-	if(isobj(target) && target.is_refillable())
-		return trans_to_obj(target, amount, multiplier, copy)
+/datum/reagents/proc/trans_to(datum/target, amount = 1, multiplier = 1, copy = 0)
+	if(istype(target, /datum/reagents))
+		return trans_to_holder(target, amount, multiplier, copy)
+
+	else if(istype(target, /atom))
+		var/atom/A = target
+		if(ismob(target))
+			return splash_mob(target, amount, multiplier, copy)
+		if(isturf(target))
+			return trans_to_turf(target, amount, multiplier, copy)
+		if(isobj(target) && A.is_refillable())
+			return trans_to_obj(target, amount, multiplier, copy)
 	return 0
 
 //Splashing reagents is messier than trans_to, the target's loc gets some of the reagents as well.
@@ -368,13 +374,12 @@
 // Attempts to place a reagent on the mob's skin.
 // Reagents are not guaranteed to transfer to the target.
 // Do not call this directly, call trans_to() instead.
-/datum/reagents/proc/splash_mob(var/mob/target, var/amount = 1, var/copy = 0)
-	var/perm = 1
+/datum/reagents/proc/splash_mob(var/mob/target, var/amount = 1, var/multiplier = 1, var/copy = 0)
 	if(isliving(target)) //will we ever even need to tranfer reagents to non-living mobs?
 		var/mob/living/L = target
-		perm = L.reagent_permeability()
+		multiplier *= L.reagent_permeability()
 	touch_mob(target)
-	return trans_to_mob(target, amount, CHEM_TOUCH, perm, copy)
+	return trans_to_mob(target, amount, CHEM_TOUCH, multiplier, copy)
 
 /datum/reagents/proc/trans_to_mob(var/mob/target, var/amount = 1, var/type = CHEM_BLOOD, var/multiplier = 1, var/copy = 0) // Transfer after checking into which holder...
 	if(!target || !istype(target) || !target.simulated)
@@ -419,6 +424,7 @@
 		return
 
 	return trans_to_holder(target.reagents, amount, multiplier, copy)
+
 
 /* Atom reagent creation - use it all the time */
 

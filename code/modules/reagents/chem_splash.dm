@@ -6,7 +6,7 @@
 
 
 /proc/chem_splash(turf/epicenter, affected_range = 3, list/datum/reagents/reactants = list(), extra_heat = 0, threatscale = 1)
-	if(!isturf(epicenter) || !reactants.len || threatscale <= 0)
+	if(!isturf(epicenter) || !reactants.len || threatscale <= 0 || affected_range < 0)
 		return
 	var/has_reagents
 	var/total_reagents
@@ -23,12 +23,12 @@
 	//var/total_temp = 0
 
 	for(var/datum/reagents/R in reactants)
-		R.trans_to(splash_holder, R.total_volume, threatscale, 1, 1)
+		R.trans_to(splash_holder, R.total_volume, threatscale)
 		//total_temp += R.chem_temp
 	//splash_holder.chem_temp = (total_temp/reactants.len) + extra_heat // Average temperature of reagents + extra heat.
 	//splash_holder.handle_reactions() // React them now.
 
-	if(splash_holder.total_volume && affected_range >= 0)	//The possible reactions didnt use up all reagents, so we spread it around.
+	if(splash_holder.total_volume)	//The possible reactions didnt use up all reagents, so we spread it around.
 		var/datum/effect/effect/system/steam_spread/steam = new /datum/effect/effect/system/steam_spread()
 		steam.set_up(10, 0, epicenter)
 		steam.attach(epicenter)
@@ -48,7 +48,7 @@
 			for(var/turf/T in turflist)
 				if(accessible[T])
 					continue
-				for(var/thing in T.AdjacentTurfs())
+				for(var/thing in T.GetAtmosAdjacentTurfs(alldir = TRUE))
 					var/turf/NT = thing
 					if(!(NT in accessible))
 						continue
@@ -76,5 +76,3 @@
 
 	qdel(splash_holder)
 	return TRUE
-
-
