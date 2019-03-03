@@ -5,12 +5,13 @@
 	name = "dropper"
 	desc = "A dropper. Transfers 5 units."
 	icon = 'icons/obj/chemical.dmi'
-	icon_state = "dropper0"
+	icon_state = "dropper"
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = list(1,2,3,4,5)
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
 	volume = 5
+	reagent_flags = TRANSPARENT
 
 /obj/item/weapon/reagent_containers/dropper/afterattack(var/obj/target, var/mob/user, var/proximity)
 	if(!target.reagents || !proximity) return
@@ -93,14 +94,12 @@
 
 	return
 
-/obj/item/weapon/reagent_containers/dropper/on_reagent_change()
-	update_icon()
-
 /obj/item/weapon/reagent_containers/dropper/update_icon()
+	cut_overlays()
 	if(reagents.total_volume)
-		icon_state = "dropper1"
-	else
-		icon_state = "dropper0"
+		var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "dropper")
+		filling.color = reagents.get_color()
+		add_overlay(filling)
 
 /obj/item/weapon/reagent_containers/dropper/industrial
 	name = "industrial dropper"

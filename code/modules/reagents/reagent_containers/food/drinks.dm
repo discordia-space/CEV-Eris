@@ -9,7 +9,6 @@
 	reagent_flags = OPENCONTAINER
 	amount_per_transfer_from_this = 5
 	volume = 50
-	var/filling_states   // List of percentages full that have icons
 	var/base_name = null // Name to put in front of drinks, i.e. "[base_name] of [contents]"
 	var/base_icon = null // Base icon name for fill states
 
@@ -74,37 +73,17 @@
 /obj/item/weapon/reagent_containers/food/drinks/feed_sound(var/mob/user)
 	playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), 1)
 
-/obj/item/weapon/reagent_containers/food/drinks/examine(mob/user)
-	if(!..(user, 1))
-		return
-	if(!reagents || reagents.total_volume == 0)
-		user << SPAN_NOTICE("\The [src] is empty!")
-	else if (reagents.total_volume <= volume * 0.25)
-		user << SPAN_NOTICE("\The [src] is almost empty!")
-	else if (reagents.total_volume <= volume * 0.66)
-		user << SPAN_NOTICE("\The [src] is half full!")
-	else if (reagents.total_volume <= volume * 0.90)
-		user << SPAN_NOTICE("\The [src] is almost full!")
-	else
-		user << SPAN_NOTICE("\The [src] is full!")
-
-/obj/item/weapon/reagent_containers/food/drinks/proc/get_filling_state()
-	var/percent = round((reagents.total_volume / volume) * 100)
-	for(var/k in cached_number_list_decode(filling_states))
-		if(percent <= k)
-			return k
-
 /obj/item/weapon/reagent_containers/food/drinks/update_icon()
-	overlays.Cut()
-	if(reagents.reagent_list.len > 0)
+	cut_overlays()
+	if(reagents.total_volume)
 		if(base_name)
 			var/datum/reagent/R = reagents.get_master_reagent()
 			SetName("[base_name] of [R.glass_name ? R.glass_name : "something"]")
 			desc = R.glass_desc ? R.glass_desc : initial(desc)
 		if(filling_states)
-			var/image/filling = image(icon, src, "[base_icon][get_filling_state()]")
+			var/mutable_appearance/filling = mutable_appearance(icon, "[base_icon][get_filling_state()]")
 			filling.color = reagents.get_color()
-			overlays += filling
+			add_overlay(filling)
 	else
 		SetName(initial(name))
 		desc = initial(desc)
@@ -169,9 +148,7 @@
 	icon_state = "milk"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
-	New()
-		..()
-		reagents.add_reagent("milk", 50)
+	preloaded = list("milk" = 50)
 
 /obj/item/weapon/reagent_containers/food/drinks/soymilk
 	name = "SoyMilk"
@@ -179,9 +156,7 @@
 	icon_state = "soymilk"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
-	New()
-		..()
-		reagents.add_reagent("soymilk", 50)
+	preloaded = list("soymilk" = 50)
 
 /obj/item/weapon/reagent_containers/food/drinks/coffee
 	name = "Robust Coffee"
@@ -190,9 +165,7 @@
 	center_of_mass = list("x"=15, "y"=10)
 	base_icon = "cup"
 	filling_states = "100"
-	New()
-		..()
-		reagents.add_reagent("coffee", 30)
+	preloaded = list("coffee" = 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/ice
 	name = "Ice Cup"
@@ -201,9 +174,7 @@
 	center_of_mass = list("x"=15, "y"=10)
 	base_icon = "cup"
 	filling_states = "100"
-	New()
-		..()
-		reagents.add_reagent("ice", 30)
+	preloaded = list("ice" = 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/h_chocolate
 	name = "Dutch Hot Coco"
@@ -211,9 +182,7 @@
 	icon_state = "hot_coco"
 	item_state = "coffee"
 	center_of_mass = list("x"=15, "y"=13)
-	New()
-		..()
-		reagents.add_reagent("hot_coco", 30)
+	preloaded = list("hot_coco" = 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/dry_ramen
 	name = "Cup Ramen"
@@ -222,25 +191,22 @@
 	center_of_mass = list("x"=16, "y"=11)
 	base_icon = "cup"
 	filling_states = "100"
-	New()
-		..()
-		reagents.add_reagent("dry_ramen", 30)
+	preloaded = list("dry_ramen" = 30)
 
 
 /obj/item/weapon/reagent_containers/food/drinks/sillycup
-	name = "Paper Cup"
+	name = "paper cup"
 	desc = "A paper water cup."
 	icon_state = "water_cup_e"
 	possible_transfer_amounts = null
 	volume = 10
 	center_of_mass = list("x"=16, "y"=12)
-	New()
-		..()
-	on_reagent_change()
-		if(reagents.total_volume)
-			icon_state = "water_cup"
-		else
-			icon_state = "water_cup_e"
+
+/obj/item/weapon/reagent_containers/food/drinks/sillycup/update_icon()
+	if(reagents.total_volume)
+		icon_state = "water_cup"
+	else
+		icon_state = "water_cup_e"
 
 
 //////////////////////////pitchers, pots, flasks and cups//
@@ -249,7 +215,7 @@
 //	icon states.
 
 /obj/item/weapon/reagent_containers/food/drinks/shaker
-	name = "Shaker"
+	name = "shaker"
 	desc = "A metal shaker to mix drinks in."
 	icon_state = "shaker"
 	amount_per_transfer_from_this = 10
@@ -434,15 +400,9 @@
 /obj/item/weapon/reagent_containers/food/drinks/tea/black
 	name = "cup of black tea"
 	desc = "A tall plastic cup of hot black tea."
-
-/obj/item/weapon/reagent_containers/food/drinks/tea/black/New()
-	. = ..()
-	reagents.add_reagent("tea", 30)
+	preloaded = list("tea" = 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/tea/green
 	name = "cup of green tea"
 	desc = "A tall plastic cup of hot green tea."
-
-/obj/item/weapon/reagent_containers/food/drinks/tea/green/New()
-	. = ..()
-	reagents.add_reagent("greentea", 30)
+	preloaded = list("greentea" = 30)

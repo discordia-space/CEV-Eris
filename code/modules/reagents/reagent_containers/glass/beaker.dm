@@ -1,3 +1,35 @@
+/obj/item/weapon/reagent_containers/glass/beaker
+	name = "beaker"
+	desc = "A beaker."
+	icon_state = "beaker"
+	item_state = "beaker"
+	matter = list(MATERIAL_GLASS = 1)
+	filling_states = "-10;10;25;50;75;80;100"
+
+/obj/item/weapon/reagent_containers/glass/beaker/Initialize()
+	. = ..()
+	desc += " Can hold up to [volume] units."
+
+/obj/item/weapon/reagent_containers/glass/beaker/pickup(mob/user)
+	..()
+	playsound(src,'sound/items/Glass_Fragment_take.ogg',50,1)
+
+/obj/item/weapon/reagent_containers/glass/beaker/dropped(mob/user)
+	..()
+	playsound(src,'sound/items/Glass_Fragment_drop.ogg',50,1)
+
+/obj/item/weapon/reagent_containers/glass/beaker/update_icon()
+	cut_overlays()
+
+	if(has_lid())
+		var/lid_icon = lid_icon_state ? lid_icon_state : "lid_[icon_state]"
+		var/mutable_appearance/lid = mutable_appearance(icon, lid_icon)
+		add_overlay(lid)
+
+	if(reagents.total_volume)
+		var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[icon_state][get_filling_state()]")
+		filling.color = reagents.get_color()
+		add_overlay(filling)
 
 
 //// Subtypes ////
@@ -28,6 +60,7 @@
 	volume = 300
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25,30,60,120,300)
+	lid_icon_state = "lid_beakerlarge"
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial
 	name = "vial"

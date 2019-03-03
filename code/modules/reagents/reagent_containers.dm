@@ -7,6 +7,7 @@
 	var/amount_per_transfer_from_this = 5
 	var/possible_transfer_amounts = list(5,10,15,25,30)
 	var/volume = 30
+	var/filling_states				// List of percentages full that have icons
 	var/list/preloaded = null
 
 /obj/item/weapon/reagent_containers/verb/set_APTFT() //set amount_per_transfer_from_this
@@ -32,6 +33,21 @@
 
 /obj/item/weapon/reagent_containers/afterattack(obj/target, mob/user, flag)
 	return
+
+/obj/item/weapon/reagent_containers/on_reagent_change()
+	update_icon()
+
+/obj/item/weapon/reagent_containers/proc/get_filling_state()
+	var/percent = round((reagents.total_volume / volume) * 100)
+
+	var/last_increment
+	for(var/increment in cached_number_list_decode(filling_states))
+		if(percent < increment)
+			break
+
+		last_increment = increment
+
+	return last_increment
 
 /obj/item/weapon/reagent_containers/proc/standard_dispenser_refill(var/mob/user, var/obj/structure/reagent_dispensers/target) // This goes into afterattack
 	if(!istype(target))

@@ -15,6 +15,7 @@
 	w_class = ITEM_SIZE_SMALL
 	reagent_flags = OPENCONTAINER
 	unacidable = 1 //glass doesn't dissolve in acid
+	var/lid_icon_state = null
 
 	var/label_text = ""
 
@@ -64,19 +65,31 @@
 	if(!..(user, 2))
 		return
 	if(has_lid())
-		user << SPAN_NOTICE("Airtight lid seals it completely.")
+		to_chat(user, SPAN_NOTICE("Airtight lid seals it completely."))
 
 /obj/item/weapon/reagent_containers/glass/attack_self(mob/user)
 	..()
-	if(!toggle_lid())
-		return
-
-	if(has_lid())
+	if(toggle_lid())
 		playsound(src,'sound/effects/Lid_Removal_Bottle_mono.ogg',50,1)
-		user << SPAN_NOTICE("You put the lid on \the [src].")
-	else
-		user << SPAN_NOTICE("You take the lid off \the [src].")
+		if(has_lid())
+			to_chat(user, SPAN_NOTICE("You put the lid on \the [src]."))
+		else
+			to_chat(user, SPAN_NOTICE("You take the lid off \the [src]."))
 
+/obj/item/weapon/reagent_containers/glass/pre_attack(atom/A, mob/user, params)
+	if(user.a_intent == I_HURT)
+		if(standard_splash_mob(user, A))
+			return TRUE
+		if(is_drainable() && reagents.total_volume)
+			if(istype(A, /obj/structure/sink))
+				user << SPAN_NOTICE("You pour the solution into [A].")
+				reagents.remove_any(reagents.total_volume)
+			else
+				playsound(src,'sound/effects/Splash_Small_01_mono.ogg',50,1)
+				user << SPAN_NOTICE("You splash the solution onto [A].")
+				reagents.splash(A, reagents.total_volume)
+			return TRUE
+	return ..()
 
 /obj/item/weapon/reagent_containers/glass/afterattack(var/obj/target, var/mob/user, var/flag)
 	if(!is_open_container() || !flag)
@@ -105,65 +118,3 @@
 		name = base_name
 	else
 		name = "[base_name] ([label_text])"
-
-/obj/item/weapon/reagent_containers/glass/beaker/pre_attack(atom/A, mob/user, params)
-	if(user.a_intent == I_HURT)
-		if(standard_splash_mob(user, A))
-			return TRUE
-		if(is_drainable() && reagents.total_volume)
-			if(istype(A, /obj/structure/sink))
-				user << SPAN_NOTICE("You pour the solution into [A].")
-				reagents.remove_any(reagents.total_volume)
-			else
-				playsound(src,'sound/effects/Splash_Small_01_mono.ogg',50,1)
-				user << SPAN_NOTICE("You splash the solution onto [A].")
-				reagents.splash(A, reagents.total_volume)
-			return TRUE
-	return ..()
-
-/obj/item/weapon/reagent_containers/glass/beaker
-	name = "beaker"
-	desc = "A beaker."
-	icon = 'icons/obj/chemical.dmi'
-	icon_state = "beaker"
-	item_state = "beaker"
-	matter = list(MATERIAL_GLASS = 1)
-
-/obj/item/weapon/reagent_containers/glass/beaker/Initialize()
-	. = ..()
-	desc += " Can hold up to [volume] units."
-
-/obj/item/weapon/reagent_containers/glass/beaker/on_reagent_change()
-	update_icon()
-
-/obj/item/weapon/reagent_containers/glass/beaker/pickup(mob/user)
-	..()
-	playsound(src,'sound/items/Glass_Fragment_take.ogg',50,1)
-
-/obj/item/weapon/reagent_containers/glass/beaker/dropped(mob/user)
-	..()
-	playsound(src,'sound/items/Glass_Fragment_drop.ogg',50,1)
-
-/obj/item/weapon/reagent_containers/glass/beaker/update_icon()
-	overlays.Cut()
-
-	if(reagents.total_volume)
-		var/image/filling = image('icons/obj/reagentfillings.dmi', src, "[icon_state]10")
-
-		var/percent = round((reagents.total_volume / volume) * 100)
-		switch(percent)
-			if(0 to 9)		filling.icon_state = "[icon_state]-10"
-			if(10 to 24) 	filling.icon_state = "[icon_state]10"
-			if(25 to 49)	filling.icon_state = "[icon_state]25"
-			if(50 to 74)	filling.icon_state = "[icon_state]50"
-			if(75 to 79)	filling.icon_state = "[icon_state]75"
-			if(80 to 90)	filling.icon_state = "[icon_state]80"
-			if(91 to INFINITY)	filling.icon_state = "[icon_state]100"
-
-		filling.color = reagents.get_color()
-		overlays += filling
-
-	if(has_lid())
-		var/image/lid = image(icon, src, "lid_[initial(icon_state)]")
-		overlays += lid
-

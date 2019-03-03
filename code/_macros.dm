@@ -78,7 +78,6 @@
 // Overlays
 // (placeholders for if/when TG overlays system is ported)
 #define cut_overlays(...)			overlays.Cut()
-#define add_overlay(overlay)		overlays.Add(overlay)
 
 
 #define sequential_id(key) uniqueness_repository.Generate(/datum/uniqueness_generator/id_sequential, key)
@@ -139,6 +138,9 @@
 #define LAZYCLEARLIST(L) if(L) L.Cut()
 // Reads L or an empty list if L is not a list.  Note: Does NOT assign, L may be an expression.
 #define SANITIZE_LIST(L) ( islist(L) ? L : list() )
+
+
+#define CLAMP(CLVALUE,CLMIN,CLMAX) ( max( (CLMIN), min((CLVALUE), (CLMAX)) ) )
 
 
 #define sound_to(target, sound)                             target << sound
