@@ -87,6 +87,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/guests_allowed = 1
 	var/debugparanoid = 0
 
+	var/language
 	var/serverurl
 	var/server
 	var/banappeals
@@ -379,6 +380,9 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if ("serverurl")
 					config.serverurl = value
+
+				if ("language")
+					config.language = value
 
 				if ("server")
 					config.server = value
