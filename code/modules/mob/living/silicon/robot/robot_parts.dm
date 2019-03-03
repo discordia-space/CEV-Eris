@@ -260,7 +260,7 @@
 			src.wires = W.color
 			user << SPAN_NOTICE("You insert the wire!")
 
-	var/tool_type = W.get_tool_type(user, list(QUALITY_SCREW_DRIVING, QUALITY_WIRE_CUTTING))
+	var/tool_type = W.get_tool_type(user, list(QUALITY_SCREW_DRIVING, QUALITY_WIRE_CUTTING), src)
 	switch(tool_type)
 		if(QUALITY_SCREW_DRIVING)
 			if(cell)

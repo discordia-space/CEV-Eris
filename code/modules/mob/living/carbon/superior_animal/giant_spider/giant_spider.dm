@@ -3,6 +3,7 @@
 	name = "giant spider"
 	desc = "Furry and black, it makes you shudder to look at it. This one has deep red eyes."
 	icon_state = "guard"
+	icon_living = "guard"
 	pass_flags = PASSTABLE
 
 	mob_size = MOB_MEDIUM

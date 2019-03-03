@@ -1,4 +1,5 @@
-var/list/storyteller_cache = list()
+
+GLOBAL_LIST_EMPTY(storyteller_cache)
 
 /datum/configuration
 	var/server_name = null				// server name (for world name / status)
@@ -211,7 +212,7 @@ var/list/storyteller_cache = list()
 		// their information, but it is the only way (at least that I know of).
 		var/datum/storyteller/S = new T()
 		if (S.config_tag)
-			storyteller_cache[S.config_tag] = S // So we don't instantiate them repeatedly.
+			GLOB.storyteller_cache[S.config_tag] = S // So we don't instantiate them repeatedly.
 			if(!(S.config_tag in storytellers))		// ensure each mode is added only once
 				log_misc("Adding storyteller [S.name] ([S.config_tag]) to configuration.")
 				src.storytellers += S.config_tag
@@ -730,15 +731,15 @@ var/list/storyteller_cache = list()
 /datum/configuration/proc/pick_storyteller(story_name)
 	// I wish I didn't have to instance the game modes in order to look up
 	// their information, but it is the only way (at least that I know of).
-	if(story_name in storyteller_cache)
-		return storyteller_cache[story_name]
+	if(story_name in GLOB.storyteller_cache)
+		return GLOB.storyteller_cache[story_name]
 
-	return storyteller_cache[STORYTELLER_BASE]
+	return GLOB.storyteller_cache[STORYTELLER_BASE]
 
 /datum/configuration/proc/get_storytellers()
 	var/list/runnable_storytellers = list()
-	for(var/storyteller in storyteller_cache)
-		var/datum/storyteller/S = storyteller_cache[storyteller]
+	for(var/storyteller in GLOB.storyteller_cache)
+		var/datum/storyteller/S = GLOB.storyteller_cache[storyteller]
 		if(S)
 			runnable_storytellers |= S
 	return runnable_storytellers

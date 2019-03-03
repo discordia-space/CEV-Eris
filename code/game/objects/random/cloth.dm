@@ -60,6 +60,7 @@
 	possibilities -= /obj/item/clothing/under/rank
 	possibilities -= /obj/item/clothing/under/pj
 	possibilities -= /obj/item/clothing/under/acj
+	possibilities -= /obj/item/clothing/under/psyche
 	return pick(possibilities)
 
 /obj/random/cloth/helmet
@@ -74,7 +75,9 @@
 	desc = "This is a random head gear."
 
 /obj/random/cloth/head/item_to_spawn()
-	return pick(subtypesof(/obj/item/clothing/head))
+	var/list/possibilities = subtypesof(/obj/item/clothing/head)
+	possibilities -= /obj/item/clothing/head/collectable
+	return pick(possibilities)
 
 /obj/random/cloth/gloves
 	name = "random gloves"
