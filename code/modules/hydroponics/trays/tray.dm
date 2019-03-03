@@ -459,7 +459,7 @@
 		if(ABORT_CHECK)
 			return
 
-	if (I.is_open_container())
+	if (I.is_drainable())
 		return 0
 
 	else if(istype(I, /obj/item/weapon/reagent_containers/syringe))

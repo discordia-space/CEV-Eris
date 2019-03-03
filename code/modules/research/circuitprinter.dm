@@ -130,7 +130,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	if(!linked_console)
 		user << "\icon[src]\The [src] must be linked to an R&D console first."
 		return 1
-	if(I.is_open_container())
+	if(I.is_drainable())
 		return 0
 	if(is_robot_module(I))
 		return 0
@@ -153,7 +153,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 
 	if(TotalMaterials() + 1 > max_material_storage)
 		user << SPAN_NOTICE("\icon[src]\The [src]'s material bin is full. Please remove material before adding more.")
-		return 
+		return
 
 	var/amount = round(input("How many sheets do you want to add?") as num)
 

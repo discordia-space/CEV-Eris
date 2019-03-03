@@ -120,7 +120,7 @@
 
 	if(default_part_replacement(I, user))
 		return
-	if(I.is_open_container())
+	if(I.is_drainable())
 		return FALSE
 	if(panel_open)
 		user << SPAN_NOTICE("You can't load \the [src] while it's opened.")

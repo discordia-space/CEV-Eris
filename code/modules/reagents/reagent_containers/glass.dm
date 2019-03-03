@@ -63,7 +63,7 @@
 /obj/item/weapon/reagent_containers/glass/examine(mob/user)
 	if(!..(user, 2))
 		return
-	if(!is_open_container())
+	if(has_lid())
 		user << SPAN_NOTICE("Airtight lid seals it completely.")
 
 /obj/item/weapon/reagent_containers/glass/attack_self(mob/user)
