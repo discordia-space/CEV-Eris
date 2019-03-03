@@ -23,7 +23,7 @@
 
 
 /mob/living/silicon/ai/ClickOn(var/atom/A, params)
-	if(world.time <= next_click)
+	if(!can_click())
 		return
 	next_click = world.time + 1
 
@@ -51,8 +51,6 @@
 		CtrlClickOn(A)
 		return
 
-	if(control_disabled || !can_click())
-		return
 
 	if(multitool_mode && isobj(A))
 		var/obj/O = A
