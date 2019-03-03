@@ -87,37 +87,29 @@
 /obj/item/weapon/reagent_containers/glass/fertilizer
 	name = "fertilizer bottle"
 	desc = "A small glass bottle. Can hold up to 60 units."
-	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle16"
 	possible_transfer_amounts = null
 	w_class = ITEM_SIZE_SMALL
-
-	var/fertilizer //Reagent contained, if any.
-
-	//Like a shot glass!
 	amount_per_transfer_from_this = 2
 	volume = 60
 
-/obj/item/weapon/reagent_containers/glass/fertilizer/New()
-	..()
-
+/obj/item/weapon/reagent_containers/glass/fertilizer/Initialize()
+	. = ..()
 	src.pixel_x = rand(-5.0, 5)
 	src.pixel_y = rand(-5.0, 5)
 
-	if(fertilizer)
-		reagents.add_reagent(fertilizer,60)
 
 /obj/item/weapon/reagent_containers/glass/fertilizer/ez
 	name = "bottle of E-Z-Nutrient"
 	icon_state = "bottle16"
-	fertilizer = "eznutrient"
+	preloaded = list("eznutrient" = 60)
 
 /obj/item/weapon/reagent_containers/glass/fertilizer/l4z
 	name = "bottle of Left 4 Zed"
 	icon_state = "bottle18"
-	fertilizer = "left4zed"
+	preloaded = list("left4zed" = 60)
 
 /obj/item/weapon/reagent_containers/glass/fertilizer/rh
 	name = "bottle of Robust Harvest"
 	icon_state = "bottle15"
-	fertilizer = "robustharvest"
+	preloaded = list("robustharvest" = 60)

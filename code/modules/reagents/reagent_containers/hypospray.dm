@@ -53,17 +53,14 @@
 /obj/item/weapon/reagent_containers/hypospray/autoinjector
 	name = "autoinjector"
 	desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel."
+	w_class = ITEM_SIZE_TINY
+	slot_flags = SLOT_EARS
 	icon_state = "autoinjector"
 	item_state = "autoinjector"
 	amount_per_transfer_from_this = 5
-	volume = 5
 	reagent_flags = REFILLABLE | DRAINABLE | AMOUNT_VISIBLE
-
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/New()
-	..()
-	reagents.add_reagent("inaprovaline", 5)
-	update_icon()
-	return
+	volume = 5
+	preloaded = list("inaprovaline" = 5)
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/on_reagent_change()
 	..()

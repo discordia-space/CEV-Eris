@@ -25,7 +25,11 @@
 	var/time = 30
 
 /obj/item/weapon/reagent_containers/syringe/on_reagent_change()
-	update_icon()
+	if(mode == SYRINGE_INJECT && !reagents.total_volume)
+		mode = SYRINGE_DRAW
+	else if(mode == SYRINGE_DRAW && !reagents.get_free_space())
+		mode = SYRINGE_INJECT
+	..()
 
 /obj/item/weapon/reagent_containers/syringe/pickup(mob/user)
 	..()
@@ -121,11 +125,7 @@
 
 				var/trans = target.reagents.trans_to_obj(src, amount_per_transfer_from_this)
 				user << SPAN_NOTICE("You fill the syringe with [trans] units of the solution.")
-				update_icon()
 
-			if(!reagents.get_free_space())
-				mode = SYRINGE_INJECT
-				update_icon()
 
 		if(SYRINGE_INJECT)
 			if(!reagents.total_volume)
@@ -153,7 +153,6 @@
 					return
 
 			if(ismob(target) && target != user)
-
 				var/injtime = time //Injecting through a hardsuit takes longer due to needing to find a port.
 
 				if(istype(H))
@@ -190,9 +189,6 @@
 			else
 				trans = reagents.trans_to(target, amount_per_transfer_from_this)
 			user << SPAN_NOTICE("You inject [trans] units of the solution. The syringe now contains [src.reagents.total_volume] units.")
-			if (reagents.total_volume <= 0 && mode == SYRINGE_INJECT)
-				mode = SYRINGE_DRAW
-				update_icon()
 
 
 /obj/item/weapon/reagent_containers/syringe/update_icon()
@@ -277,7 +273,7 @@
 	update_icon()
 
 /obj/item/weapon/reagent_containers/syringe/ld50_syringe
-	name = "Lethal Injection Syringe"
+	name = "lethal injection syringe"
 	desc = "A syringe used for lethal injections."
 	amount_per_transfer_from_this = 60
 	volume = 60
@@ -298,29 +294,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 /obj/item/weapon/reagent_containers/syringe/inaprovaline
-	name = "Syringe (inaprovaline)"
+	name = "syringe (inaprovaline)"
 	desc = "Contains inaprovaline - used to stabilize patients."
-	mode = SYRINGE_INJECT
 	preloaded = list("inaprovaline" = 15)
 
 /obj/item/weapon/reagent_containers/syringe/antitoxin
-	name = "Syringe (anti-toxin)"
+	name = "syringe (anti-toxin)"
 	desc = "Contains anti-toxins."
 	preloaded = list("anti_toxin" = 15)
-	mode = SYRINGE_INJECT
 
 /obj/item/weapon/reagent_containers/syringe/antiviral
-	name = "Syringe (spaceacillin)"
+	name = "syringe (spaceacillin)"
 	desc = "Contains antiviral agents."
 	preloaded = list("spaceacillin" = 15)
-	mode = SYRINGE_INJECT
 
 /obj/item/weapon/reagent_containers/syringe/drugs
-	name = "Syringe (drugs)"
+	name = "syringe (drugs)"
 	desc = "Contains aggressive drugs meant for torture."
 	preloaded = list("space_drugs" = 5, "mindbreaker" = 5, "cryptobiolin" = 5)
-	mode = SYRINGE_INJECT
 
 /obj/item/weapon/reagent_containers/syringe/ld50_syringe/choral
 	preloaded = list("chloralhydrate" = 50)
-	mode = SYRINGE_INJECT
