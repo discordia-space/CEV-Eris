@@ -75,6 +75,12 @@
 
 #define isCrowbar(A) istype(A, /obj/item/weapon/tool/crowbar)
 
+// Overlays
+// (placeholders for if/when TG overlays system is ported)
+#define cut_overlays(...)			overlays.Cut()
+#define add_overlay(overlay)		overlays.Add(overlay)
+
+
 #define sequential_id(key) uniqueness_repository.Generate(/datum/uniqueness_generator/id_sequential, key)
 
 #define random_id(key,min_id,max_id) uniqueness_repository.Generate(/datum/uniqueness_generator/id_random, key, min_id, max_id)
