@@ -86,6 +86,7 @@ var/list/storyteller_cache = list()
 	var/guests_allowed = 1
 	var/debugparanoid = 0
 
+	var/language
 	var/serverurl
 	var/server
 	var/banappeals
@@ -378,6 +379,9 @@ var/list/storyteller_cache = list()
 
 				if ("serverurl")
 					config.serverurl = value
+
+				if ("language")
+					config.language = value
 
 				if ("server")
 					config.server = value
