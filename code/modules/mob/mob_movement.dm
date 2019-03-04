@@ -59,17 +59,17 @@
 				var/mob/living/carbon/C = usr
 				C.toggle_throw_mode()
 			else
-				to_chat(usr, "<span class='warning'>This mob type cannot throw items.</span>")
+				to_chat(usr, SPAN_WARNING("This mob type cannot throw items."))
 			return
 		if(NORTHWEST)
 			mob.hotkey_drop()
 
 /mob/proc/hotkey_drop()
-	to_chat(usr, "<span class='warning'>This mob type cannot drop items.</span>")
+	to_chat(usr, SPAN_WARNING("This mob type cannot drop items."))
 
 /mob/living/carbon/hotkey_drop()
 	if(!get_active_hand())
-		to_chat(usr, "<span class='warning'>You have nothing to drop in your hand.</span>")
+		to_chat(usr, SPAN_WARNING("You have nothing to drop in your hand."))
 	if (!isturf(loc))
 		return
 	else
@@ -80,7 +80,7 @@
 	set hidden = 1
 
 	if(!usr.pulling)
-		to_chat(usr, "<span class='notice'>You are not pulling anything.</span>")
+		to_chat(usr, SPAN_NOTICE("You are not pulling anything."))
 		return
 	usr.stop_pulling()
 
@@ -191,7 +191,7 @@
 //return 1 if slipped, 0 otherwise
 /mob/proc/handle_spaceslipping()
 	if(prob(5)) //Todo: Factor in future agility stat here
-		to_chat(src, "<span class='warning'>You slipped!</span>")
+		to_chat(src, SPAN_WARNING("You slipped!"))
 		src.inertia_dir = src.last_move
 		step(src, src.inertia_dir)
 		return 1
