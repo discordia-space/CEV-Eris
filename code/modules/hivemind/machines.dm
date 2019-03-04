@@ -1,6 +1,5 @@
 //Hivemind various machines
 
-#define HIVE_FACTION 			"hive"
 #define REGENERATION_SPEED 		4
 
 
@@ -22,6 +21,7 @@
 	var/evo_points_required = 	0 			//how much EP hivemind must have to spawn this, used in price list to comparison
 	var/cooldown_time = 10 SECONDS			//each machine have their ability, this is cooldown of them
 	var/global_cooldown = FALSE				//if true, ability will be used only once in whole world, before cooldown reset
+	var/datum/hivemind_sdp/SDP				//Self-Defense Protocol holder
 	var/list/spawned_creatures = list()		//which mobs machine can spawns, insert paths
 	//internal
 	var/cooldown = 0						//cooldown in world.time value
@@ -47,6 +47,9 @@
 	if(wireweeds_required && !locate(/obj/effect/plant/hivemind) in loc)
 		take_damage(5, on_damage_react = FALSE)
 
+	if(SDP)
+		SDP.check_conditions()
+
 	if(hive_mind_ai && !(stat & EMPED) && !is_on_cooldown())
 		//slow health regeneration
 		if(can_regenerate && (health != max_health) && (world.time > time_until_regen))
@@ -55,6 +58,15 @@
 				health = max_health
 
 		return TRUE
+
+
+/obj/machinery/hivemind_machine/state(var/msg)
+	. = ..()
+	playsound(src, pick('sound/machines/robots/robot_talk_heavy1.ogg',
+						'sound/machines/robots/robot_talk_heavy2.ogg',
+						'sound/machines/robots/robot_talk_heavy3.ogg',
+						'sound/machines/robots/robot_talk_heavy4.ogg'), 50, 1)
+
 
 
 //Machinery consumption
@@ -163,10 +175,6 @@
 		else
 			var/pain_emote = pick("starts crying.", "mumbles something.", "blinks occasionally.")
 			state(pain_emote)
-		playsound(src, pick('sound/machines/robots/robot_talk_heavy1.ogg',
-								'sound/machines/robots/robot_talk_heavy2.ogg',
-								'sound/machines/robots/robot_talk_heavy3.ogg',
-								'sound/machines/robots/robot_talk_heavy4.ogg'), 50, 1)
 
 	if(prob(40))
 		playsound(src, "sparks", 60, 1)
@@ -226,6 +234,17 @@
 		else
 			to_chat(user, SPAN_WARNING("You trying to hit the [src] with [I], but it seems useless."))
 			playsound(src, 'sound/weapons/Genhit.ogg', 30, 1)
+		return
+
+	if(istype(I, /obj/item/device/flash))
+		var/obj/item/device/flash/flash = I
+		if(!flash.broken)
+			playsound(user, 'sound/weapons/flash.ogg', 100, 1)
+			flick("flash2", flash)
+			flash.times_used++
+			flash.flash_recharge()
+			damage_reaction()
+			stun(10)
 
 
 /obj/machinery/hivemind_machine/ex_act(severity)
@@ -285,6 +304,10 @@
 			if(W.master_node)
 				if(!(locate(type) in W.loc))
 					add_wireweed(W)
+	//self-defense protocol setting
+	var/picked_sdp = pick(subtypesof(/datum/hivemind_sdp))
+	SDP = new picked_sdp(src)
+	SDP.set_master(src)
 
 
 /obj/machinery/hivemind_machine/node/Destroy()
@@ -353,6 +376,8 @@
 			hive_mind_ai.die()
 
 
+
+
 //TURRET
 //shooting the target with toxic goo
 /obj/machinery/hivemind_machine/turret
@@ -360,7 +385,7 @@
 	desc = "Strange thing with some kind of tube."
 	max_health = 140
 	icon_state = "turret"
-	cooldown_time = 5 SECONDS
+	cooldown_time = 3 SECONDS
 	var/proj_type = /obj/item/projectile/goo
 
 
@@ -390,7 +415,7 @@
 	icon_state = "spawner"
 	cooldown_time = 10 SECONDS
 	var/mob_to_spawn
-	var/mob_amount = 1
+	var/mob_amount = 2
 
 /obj/machinery/hivemind_machine/mob_spawner/Initialize()
 	..()
@@ -408,9 +433,9 @@
 
 	//here we upgrading our spawner and rise controled mob amount, based on EP
 	if(hive_mind_ai.evo_points > 100)
-		mob_amount = 2
-	else if(hive_mind_ai.evo_points > 300)
 		mob_amount = 3
+	else if(hive_mind_ai.evo_points > 300)
+		mob_amount = 4
 
 	var/mob/living/target = locate() in targets_in_range(world.view, in_hear_range = TRUE)
 	if(target && target.stat != DEAD && target.faction != HIVE_FACTION)
@@ -600,5 +625,4 @@
 
 
 
-#undef HIVE_FACTION
 #undef REGENERATION_SPEED

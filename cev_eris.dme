@@ -1454,6 +1454,7 @@
 #include "code\modules\hivemind\machines.dm"
 #include "code\modules\hivemind\mobs.dm"
 #include "code\modules\hivemind\objects.dm"
+#include "code\modules\hivemind\self_defense.dm"
 #include "code\modules\hivemind\wires.dm"
 #include "code\modules\holodeck\HolodeckControl.dm"
 #include "code\modules\holodeck\HolodeckObjects.dm"
