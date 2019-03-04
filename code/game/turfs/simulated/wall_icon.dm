@@ -50,7 +50,13 @@
 		icon_base = icon_base_override
 
 	if (icon_base_reinf_override)
-		icon_base_reinf = icon_base_override
+		icon_base_reinf = icon_base_reinf_override
+
+	if (base_color_override)
+		base_color = base_color_override
+
+	if (reinf_color_override)
+		reinf_color = reinf_color_override
 
 	//Update will be false at roundstart
 	if (update)
@@ -63,34 +69,50 @@
 	reinf_material = newrmaterial
 	update_material()
 
-/turf/simulated/wall/update_icon()
+/turf/simulated/wall/update_icon(var/debug = FALSE)
 	if(!icon_base)
 		return
 
 	overlays.Cut()
+	if (debug)
+		world << "Overlays len: [overlays.len]"
 	var/image/I
 	for(var/i = 1 to 4)
 		I = image('icons/turf/wall_masks.dmi', "[icon_base][wall_connections[i]]", dir = GLOB.cardinal[i])
-		I.color = (istype(material, /material/plasteel) || istype(material, /material/steel)) ? PLASTEEL_COLOUR : material.icon_colour
+
+		I.color = base_color
 		overlays += I
+		if (debug)
+			world << "Base overlay [icon_base][wall_connections[i]]"
+			world << "Overlays len: [overlays.len]"
 
 	if(icon_base_reinf)
 		if(construction_stage != null && construction_stage < 6)
 			I = image('icons/turf/wall_masks.dmi', "reinf_construct-[construction_stage]")
-			I.color = base_color
+			I.color = reinf_color
 			overlays += I
+			if (debug)
+				world << "CONSTRUCKOverlays len: [overlays.len]"
 		else
 			if("[icon_base_reinf]0" in icon_states('icons/turf/wall_masks.dmi'))
 				// Directional icon
 				for(var/i = 1 to 4)
 					I = image('icons/turf/wall_masks.dmi', "[icon_base_reinf][wall_connections[i]]", dir = 1<<(i-1))
+					if (debug)
+						world << "reinforced overlay [icon_base_reinf][wall_connections[i]]"
 					I.color = reinf_color
 					overlays += I
+					if (debug)
+						world << "directionalReinfOverlays len: [overlays.len]"
 			else
 				I = image('icons/turf/wall_masks.dmi', icon_base_reinf)
 				I.color = reinf_color
 				overlays += I
+				if (debug)
+					world << "flatReinOverlays len: [overlays.len]"
 
+	if (debug)
+		world << "done checking reinforce: [overlays.len]"
 	if(damage != 0)
 		var/integrity = material.integrity
 		if(reinf_material)
@@ -101,6 +123,8 @@
 			overlay = damage_overlays.len
 
 		overlays += damage_overlays[overlay]
+	if (debug)
+		world << "Done checking damage: [overlays.len]"
 	return
 
 /turf/simulated/wall/proc/update_connections(propagate = 0)
