@@ -146,6 +146,7 @@
 	var/always_open	=	FALSE  // If true, this machine allows products to be inserted without requirinf the maintenance hatch to be screwed open first
 	var/list/can_stock = list()	//A whitelist of objects which can be stocked into this vendor
 	//Note that a vendor can always accept restocks of things it has had in the past. This is in addition to that
+	var/no_criminals = FALSE //If true, the machine asks if you're wanted by security when you try to order.
 
 /obj/machinery/vending/New()
 	..()
@@ -674,6 +675,8 @@
 					src.status_error = 1
 				else
 					src.status_message = "Please swipe a card or insert cash to pay for the item."
+					if(no_criminals)
+						src.status_message += " We are legally required to ask if you are currently wanted by any law enforcement organizations. If so, please cancel the purchase, announce your location to local law enforcement and wait for them to collect you."
 					src.status_error = 0
 
 		else if (href_list["setprice"] && !locked)
@@ -982,6 +985,7 @@
 	product_slogans = "The best defense is good offense!;Buy for your whole family today!;Nobody can outsmart bullet!;God created man - Frozen Star made them EQUAL!;Stupidity can be cured! By LEAD.;Dead kids can't bully your children!"
 	product_ads = "Stunning!;Take justice in your own hands!;LEADearship!"
 	icon_state = "weapon"
+	no_criminals = TRUE
 	products = list(/obj/item/device/flash = 6,/obj/item/weapon/reagent_containers/spray/pepper = 6, /obj/item/weapon/gun/projectile/olivaw = 5, /obj/item/weapon/gun/projectile/giskard = 5, /obj/item/weapon/gun/projectile/revolver/detective = 5, /obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3,
 					/obj/item/weapon/gun/projectile/shotgun/pump = 5, /obj/item/ammo_magazine/cl32/rubber = 20, /obj/item/ammo_magazine/sl38/rubber = 20, /obj/item/ammo_magazine/ammobox/c38/rubber = 20, /obj/item/ammo_magazine/ammobox/cl32/rubber = 20,
 					/obj/item/weapon/storage/box/shotgunammo/beanbags = 10, /obj/item/weapon/storage/box/shotgunammo/flashshells = 10, /obj/item/weapon/storage/box/shotgunammo/blanks = 10, /obj/item/clothing/accessory/holster = 5)
