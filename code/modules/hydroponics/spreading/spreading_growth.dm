@@ -8,7 +8,7 @@
 			cardinal_neighbors |= T
 	return cardinal_neighbors
 
-/obj/effect/plant/proc/update_neighbors(var/debug = FALSE)
+/obj/effect/plant/proc/update_neighbors()
 	// Update our list of valid neighboring turfs.
 	neighbors = list()
 	var/list/tocheck = get_cardinal_neighbors()
@@ -89,7 +89,6 @@
 		A.Bumped(src)
 
 /obj/effect/plant/Process()
-
 	// Something is very wrong, kill ourselves.
 	if(!seed || !loc)
 		die_off()
@@ -119,7 +118,8 @@
 			sampled = 0
 
 	if(is_mature() && neighbors.len && prob(spread_chance))
-		spread()
+		spawn()
+			spread()
 
 	// We shouldn't have spawned if the controller doesn't exist.
 	check_health(FALSE)//Dont want to update the icon every process
@@ -173,19 +173,18 @@
 /obj/effect/plant/proc/spread()
 	//spread to 1-3 adjacent turfs depending on yield trait.
 	var/max_spread = between(1, round(seed.get_trait(TRAIT_YIELD)*3/14), 3)
-
+	max_spread = rand(1, max_spread)
 	for(var/i in 1 to max_spread)
-		if(prob(spread_chance))
-			sleep(rand(3,5))
-			if(!neighbors.len)
-				break
-			var/turf/target_turf = pick(neighbors)
-			target_turf = get_connecting_turf(target_turf, loc)
-			var/obj/effect/plant/child = new type(get_turf(src),seed,src)
-			after_spread(child, target_turf)
-			// Update neighboring squares.
-			for(var/obj/effect/plant/neighbor in range(1,target_turf))
-				neighbor.neighbors -= target_turf
+		sleep(rand(3,5))
+		if(!neighbors.len)
+			break
+		var/turf/target_turf = pick(neighbors)
+		target_turf = get_connecting_turf(target_turf, loc)
+		var/obj/effect/plant/child = new type(get_turf(src),seed,src)
+		after_spread(child, target_turf)
+		// Update neighboring squares.
+		for(var/obj/effect/plant/neighbor in range(1,target_turf))
+			neighbor.neighbors -= target_turf
 
 
 //after creation act
