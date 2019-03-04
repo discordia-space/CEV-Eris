@@ -3,8 +3,9 @@
 
 /obj/effect/plant/hivemind
 	layer = 2
-	health = 80
-	max_health = 80 //we are a little bit durable
+	health = 		80
+	max_health = 	80 		//we are a little bit durable
+	spread_chance = 85
 	var/list/killer_reagents = list("pacid", "sacid", "hclacid", "thermite")
 	//internals
 	var/obj/machinery/hivemind_machine/node/master_node
@@ -100,20 +101,32 @@
 	for(var/i = 1 to 4)
 		I = image(src.icon, "wires[wires_connections[i]]", dir = 1<<(i-1))
 		overlays += I
-	for(var/d in cardinal)
-		var/turf/T = get_step(loc, d)
-		if((locate(/obj/structure/window) in T) || istype(T, /turf/simulated/wall))
-			var/image/wall_hug_overlay = image(icon = src.icon, icon_state = "wall_hug", dir = d)
+	for(var/direction in cardinal + list(NORTHEAST, NORTHWEST)-SOUTH)
+		//corners
+		if(direction == NORTHEAST || direction == NORTHWEST)
+			if(!is_wall(get_step(loc, NORTH)) || !is_wall(get_step(loc, direction-NORTH)))
+				continue
+		//default
+		var/turf/T = get_step(loc, direction)
+		if(is_wall(T))
+			var/image/wall_hug_overlay = image(icon = src.icon, icon_state = "wall_hug", dir = direction)
 			if (T.x < x)
 				wall_hug_overlay.pixel_x -= 32
-			else if (T.x > x)
+			if (T.x > x)
 				wall_hug_overlay.pixel_x += 32
 			if (T.y < y)
 				wall_hug_overlay.pixel_y -= 32
-			else if (T.y > y)
+			if (T.y > y)
 				wall_hug_overlay.pixel_y += 32
 			wall_hug_overlay.layer = ABOVE_WINDOW_LAYER
 			overlays += wall_hug_overlay
+
+
+
+/obj/effect/plant/hivemind/proc/is_wall(turf/target)
+	if((locate(/obj/structure/window) in target) || istype(target, /turf/simulated/wall))
+		return TRUE
+	return FALSE
 
 
 /obj/effect/plant/hivemind/proc/update_connections(propagate = 0)
@@ -136,7 +149,7 @@
 		anim_shake(door)
 		//first, we open our panel to give our wireweeds access to exposed airlock's electronics
 		if(!door.p_open)
-			if(prob(20))
+			if(prob(40))
 				door.p_open = TRUE
 				door.update_icon()
 			return FALSE
@@ -154,7 +167,7 @@
 					return FALSE
 			//and then, if airlock is closed, we begin destroy it electronics
 			if(door.density)
-				door.take_damage(rand(15, 50))
+				door.take_damage(rand(25, 40))
 				return FALSE
 
 	return TRUE
@@ -293,8 +306,7 @@
 			health -= rand(W.force/2, W.force) //hm, maybe make damage based on player's robust stat?
 			user.visible_message(SPAN_DANGER("[user] slices [src]."), SPAN_DANGER("You slice [src]."))
 		else
-			user.visible_message(SPAN_DANGER("[user] tries to slice [src] with [W], but seems to do nothing."),
-								SPAN_DANGER("You try to slice [src], but it's useless!"))
+			to_chat(user, SPAN_DANGER("You try to slice [src], but it's useless!"))
 	check_health()
 
 
@@ -321,6 +333,7 @@
 
 
 
+#undef HIVE_FACTION
 #undef MAX_NODES_AMOUNT
 #undef MIN_NODES_RANGE
 #undef ishivemindmob
