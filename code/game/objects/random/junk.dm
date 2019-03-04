@@ -7,6 +7,7 @@
 		/obj/random/rare = 1, //A diamond in the rough
 		/obj/item/weapon/material/shard = 5,
 		/obj/item/weapon/material/shard/shrapnel = 8,
+		/obj/item/weapon/reagent_containers/pill/floorpill = 8,
 		/obj/item/stack/material/cardboard = 3,
 		/obj/item/weapon/storage/box/lights/mixed = 3,
 		/obj/item/weapon/storage/box/matches = 4,
@@ -63,7 +64,7 @@
 		/obj/effect/spider/stickyweb = 10, //These are useful for tape crafting
 		/obj/random/pouch = 1,
 		/obj/random/lathe_disk = 2,
-		/obj/random/scrap/moderate_weighted = 10
+		/obj/random/scrap/moderate_weighted = 13
 	)
 
 /obj/random/junk/post_spawn(var/list/stuff)

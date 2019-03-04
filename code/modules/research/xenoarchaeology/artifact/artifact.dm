@@ -45,7 +45,7 @@
 
 /obj/structure/boulder/attackby(obj/item/weapon/I, mob/user )
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_DIGGING, QUALITY_EXCAVATION))
+	var/tool_type = I.get_tool_type(user, list(QUALITY_DIGGING, QUALITY_EXCAVATION), src)
 	switch(tool_type)
 
 		if(QUALITY_EXCAVATION)

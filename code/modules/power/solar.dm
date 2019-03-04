@@ -223,7 +223,7 @@
 	if(tracker)
 		usable_qualities.Add(QUALITY_PRYING)
 
-	var/tool_type = I.get_tool_type(user, usable_qualities)
+	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 		if(QUALITY_PRYING)
 			if(tracker)
@@ -403,7 +403,7 @@
 	return
 
 /obj/machinery/power/solar_control/attackby(obj/item/I, mob/user)
-	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING)))
+	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING), src))
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 			if (src.stat & BROKEN)
 				user << SPAN_NOTICE("The broken glass falls out.")

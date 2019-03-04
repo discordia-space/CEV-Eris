@@ -77,7 +77,7 @@ obj/structure/windoor_assembly/Destroy()
 	if(state == 1 && !electronics)
 		usable_qualities.Add(QUALITY_WIRE_CUTTING)
 
-	var/tool_type = I.get_tool_type(user, usable_qualities)
+	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 
 		if(QUALITY_BOLT_TURNING)

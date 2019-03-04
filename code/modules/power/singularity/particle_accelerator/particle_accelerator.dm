@@ -137,7 +137,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	if(construction_state == 2 || construction_state == 3)
 		usable_qualities.Add(QUALITY_SCREW_DRIVING)
 
-	var/tool_type = I.get_tool_type(user, usable_qualities)
+	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 
 		if(QUALITY_BOLT_TURNING)
@@ -331,7 +331,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	if(construction_state == 2 || construction_state == 3)
 		usable_qualities.Add(QUALITY_SCREW_DRIVING)
 
-	var/tool_type = I.get_tool_type(user, usable_qualities)
+	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 
 		if(QUALITY_BOLT_TURNING)

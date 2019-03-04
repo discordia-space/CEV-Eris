@@ -175,6 +175,9 @@ GUEST_BAN
 ## set a server location for world reboot. Don't include the byond://, just give the address and port.
 #SERVER server.net:port
 
+## Language being used for the server, deals with external links. Use either "En" for ENGLISH, or "Ru" for RUSSIAN. Do not capitalize the second letter.
+# LANGUAGE
+
 ## forum address
 # FORUMURL http://example.com
 

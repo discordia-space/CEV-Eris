@@ -13,7 +13,7 @@
 		return
 	if(perm && (target_permissions & perm))
 		return
-	if(!owner.canClick())
+	if(!owner.can_click())
 		return
 	owner.setClickCooldown(5) // Spam prevention, essentially.
 	owner.visible_message(SPAN_DANGER("\The [owner] pulls the trigger reflexively!"))

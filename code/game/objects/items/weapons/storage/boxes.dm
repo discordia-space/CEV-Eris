@@ -25,6 +25,44 @@
 	icon_state = "box"
 	item_state = "syringe_kit"
 	var/foldable = /obj/item/stack/material/cardboard	// BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
+	var/maxHealth = 20	//health is already defined
+
+/obj/item/weapon/storage/box/Initialize()
+	health = maxHealth
+	.=..()
+
+/obj/item/weapon/storage/box/proc/damage(var/severity)
+	health -= severity
+	check_health()
+
+/obj/item/weapon/storage/box/proc/check_health()
+	if (health <= 0)
+		spill()
+		qdel(src)
+
+/obj/item/weapon/storage/box/attack_generic(var/mob/user)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*2)
+	if (istype(user, /mob/living))
+		var/mob/living/L = user
+		var/damage
+		if (!L.mob_size)
+			damage = 3//A safety incase i forgot to set a mob_size on something
+		else
+			damage = L.mob_size//he bigger you are, the faster it tears
+
+		if (!damage || damage <= 0)
+			return
+
+		user.do_attack_animation(src)
+
+		var/toplay = pick(list('sound/effects/creatures/nibble1.ogg','sound/effects/creatures/nibble2.ogg'))
+		playsound(loc, toplay, 50, 1, 2)
+		shake_animation()
+		sleep(5)
+		if ((health-damage) <= 0)
+			L.visible_message("<span class='danger'>[L] tears open the [src], spilling its contents everywhere!</span>", "<span class='danger'>You tear open the [src], spilling its contents everywhere!</span>")
+		damage(damage)
+	..()
 
 // BubbleWrap - A box can be folded up to make card
 /obj/item/weapon/storage/box/attack_self(mob/user as mob)
