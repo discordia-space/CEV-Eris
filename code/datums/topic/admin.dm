@@ -881,7 +881,7 @@
 
 /datum/admin_topic/adminplayerobservecoodjump
 	keyword = "adminplayerobservecoodjump"
-	require_perms = (R_ADMIN)
+	require_perms = list(R_ADMIN)
 
 /datum/admin_topic/adminplayerobservecoodjump/Run(list/input)
 	var/x = text2num(input["X"])
