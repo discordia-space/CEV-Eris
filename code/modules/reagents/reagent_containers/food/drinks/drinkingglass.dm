@@ -17,9 +17,9 @@
 			icon_state = "glass_brown"
 
 		if(R.glass_name)
-			name = R.glass_name
+			name = "glass of [R.glass_name]"
 		else
-			name = "Glass of.. what?"
+			name = "glass of.. what?"
 
 		if(R.glass_desc)
 			desc = R.glass_desc
