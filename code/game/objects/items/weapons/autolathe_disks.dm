@@ -249,7 +249,7 @@
 	name = "Moebius Computer Parts"
 	category = "Electronics"
 	icon_state = "moebius"
-	license = 40
+	license = 20
 
 /obj/item/weapon/disk/autolathe_disk/computer/New()
 	recipes = list(
