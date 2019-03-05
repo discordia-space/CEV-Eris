@@ -5,7 +5,7 @@
 	has_postspawn = TRUE
 
 /obj/random/tool/item_to_spawn()
-	return pickweight(list(/obj/random/rare = 1.5,
+	return pickweight(list(/obj/random/rare = 2,
 				/obj/item/weapon/tool/screwdriver = 8,
 				/obj/item/weapon/tool/screwdriver/electric = 2,
 				/obj/item/weapon/tool/screwdriver/combi_driver = 1,
@@ -61,9 +61,10 @@
 				/obj/random/voidsuit/damaged = 1.5,
 				/obj/random/voidsuit = 0.5,
 				/obj/random/pouch = 5,
-				/obj/random/tool_upgrade = 25,
+				/obj/random/tool_upgrade = 20,
 				/obj/random/rig_module = 5,
-				/obj/random/mecha_equipment = 5))
+				/obj/random/mecha_equipment = 5,
+				/obj/random/lowkeyrandom = 40))
 
 
 //Randomly spawned tools will often be in imperfect condition if they've been left lying out
@@ -94,7 +95,8 @@
 				/obj/item/weapon/tool/saw/advanced_circular = 2,
 				/obj/item/weapon/tool/saw/chain = 1,
 				/obj/item/weapon/tool/pickaxe/diamonddrill = 2,
-				/obj/item/weapon/tool/tape_roll/fiber = 2))
+				/obj/item/weapon/tool/tape_roll/fiber = 2,
+				/obj/item/weapon/material/twohanded/fireaxe = 1))
 
 /obj/random/toolbox
 	name = "random toolbox"

@@ -2294,7 +2294,6 @@
 #include "code\modules\stashes\stash_datum.dm"
 #include "code\modules\stashes\stash_items.dm"
 #include "code\modules\stashes\stash_spawner.dm"
-#include "code\modules\stashes\stash_types.dm"
 #include "code\modules\stashes\stash_types\booze.dm"
 #include "code\modules\stashes\stash_types\excelsior.dm"
 #include "code\modules\stashes\stash_types\junk.dm"

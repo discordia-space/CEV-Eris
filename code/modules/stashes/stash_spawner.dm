@@ -1,5 +1,7 @@
 //This is the object you put into the world to spawn a stash.
 //It picks a stash datum, spawns the note and stash, links them together, and then deletes itself
+var/total_stashes = 0
+
 /obj/item/stash_spawner
 	name = "Stash Spawner"
 	desc = "You shouldn't see this, report it!"
@@ -23,13 +25,38 @@
 	datum.spawn_stash()
 	datum.spawn_note(src)
 
+	total_stashes++
 	world << "Stash spawned at [jumplink(datum.stash_location)]"
 	world << "Stashnote spawned at [jumplink(src)]"
+	world << "Total [total_stashes]"
 
 
 	//Aaaand we are done
 	return INITIALIZE_HINT_QDEL
 
+
+//Selecting a datum is done in two pickweight stages
+//First, the categories are weighted against each other
+//Then everything within that category is weighted
 /obj/item/stash_spawner/proc/select_datum()
-	datum = pick_n_take(GLOB.all_stash_datums)
-	//We take the stash datum from the global list.This ensures the same one can never be picked twice
+	//First of all, we pick our category
+	var/list/possible_categories = GLOB.stash_categories.Copy()
+	var/category_resolved = FALSE
+	var/category = null
+	var/list/possible_stashes = list()
+	while (category_resolved == FALSE)
+		if (!possible_categories.len)
+			break
+
+		category = pickweight_n_take(possible_categories)
+
+		//Now lets check that this category actually has any stashes left in it
+		possible_stashes = GLOB.all_stash_datums[category]
+		if (possible_stashes.len)
+			category_resolved = TRUE
+		else
+			category = null //Go around again
+
+	//Now we pickweight our datum
+	if (category)
+		datum = pickweight_n_take(possible_stashes)

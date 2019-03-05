@@ -920,8 +920,9 @@ generate_image function generates image of specified range and location
 arguments tx, ty, tz are target coordinates (requred), range defines render distance to opposite corner (requred)
 cap_mode is capturing mode (optional), user is capturing mob (requred only wehen cap_mode = CAPTURE_MODE_REGULAR),
 lighting determines lighting capturing (optional), suppress_errors suppreses errors and continues to capture (optional).
+non_blocking var, if true, will allow sleeping to prevent server freeze, at the cost of taking longer
 */
-proc/generate_image(var/tx as num, var/ty as num, var/tz as num, var/range as num, var/cap_mode = CAPTURE_MODE_PARTIAL, var/mob/living/user, var/suppress_errors = 1)
+proc/generate_image(var/tx as num, var/ty as num, var/tz as num, var/range as num, var/cap_mode = CAPTURE_MODE_PARTIAL, var/mob/living/user, var/suppress_errors = 1, var/non_blocking = FALSE)
 	var/list/turfstocapture = list()
 	//Lines below determine what tiles will be rendered
 	for(var/xoff = 0 to range)
@@ -948,6 +949,8 @@ proc/generate_image(var/tx as num, var/ty as num, var/tz as num, var/range as nu
 			if (cap_mode == CAPTURE_MODE_HISTORICAL && !A.anchored)
 				continue
 			atoms.Add(A)
+		if (non_blocking)
+			CHECK_TICK
 	//Lines below actually render all colected data
 	atoms = sort_atoms_by_layer(atoms)
 	var/icon/cap = icon('icons/effects/96x96.dmi', "")
@@ -962,6 +965,8 @@ proc/generate_image(var/tx as num, var/ty as num, var/tz as num, var/range as nu
 				var/xoff = (A.x - tx) * 32
 				var/yoff = (A.y - ty) * 32
 				cap.Blend(img, blendMode2iconMode(A.blend_mode),  A.pixel_x + xoff, A.pixel_y + yoff)
+			if (non_blocking)
+				CHECK_TICK
 
 	return cap
 

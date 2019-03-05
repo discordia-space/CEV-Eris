@@ -57,7 +57,15 @@ var/global/list/poster_designs = list()
 var/list/obj/item/device/uplink/world_uplinks = list()
 
 // Loot stash datums
-GLOBAL_LIST_EMPTY(all_stash_datums) // WHY does this not work
+GLOBAL_LIST_EMPTY(stash_categories) //An associative list in the format category_type = weight
+
+GLOBAL_LIST_EMPTY(all_stash_datums)
+//An associative list of lists in the format:
+/*
+	category_type = list(
+	datum = weight)
+*/
+
 
 //Neotheology
 GLOBAL_LIST_EMPTY(all_rituals)//List of all rituals
@@ -188,10 +196,22 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 	paths = typesof(/datum/stash)-/datum/stash
 	for(var/T in paths)
 		var/datum/stash/L = new T
+		//First, make a sublist in the main list if we haven't already
+		//And make a sublist in the main list if we haven't already
+		if (!GLOB.all_stash_datums[L.base_type])
+			GLOB.all_stash_datums[L.base_type] = list()
+
 		if (L.type == L.base_type)
-			continue //Don't store abstract base types
-		world << "Storing [L] [L.type] in all stash datums"
-		GLOB.all_stash_datums += L
+			//This is a base category. Add it to the categories list with a weighting
+			GLOB.stash_categories[L.base_type] = L.weight
+
+
+
+
+		else
+			//This is a specific stash datum, add it to the appropriate sublist
+			world << "Storing [L] [L.type] in all stash datums"
+			GLOB.all_stash_datums[L.base_type][L] = L.weight
 
 
 	//Languages and species.
