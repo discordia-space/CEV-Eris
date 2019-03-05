@@ -140,14 +140,12 @@ This file contains the underlying code for stash datums
 			//Can pick any area without players in it.
 			//This is overwhelmingly likely to be in maintenance and thats good.
 			var/area/A = random_ship_area(TRUE, FALSE, FALSE)
-			var/turf/T = A.random_space()
+			var/turf/T = A.random_hideable_turf()
 
-			//We want the turf to have some sort of flooring which a stash could be hidden under. IE, not on plating
-			if(T && istype(T, /turf/simulated/floor))
-				var/turf/simulated/floor/F = T
-				if (F.flooring && F.flooring.flags & TURF_HIDES_THINGS)
-					stash_location = F
-					break
+			if(T)
+				stash_location = T
+				break
+
 
 	create_direction()
 
