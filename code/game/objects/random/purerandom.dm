@@ -135,7 +135,7 @@
 				/obj/random/junkfood = 10,
 				/obj/random/cloth/random_cloth = 5,
 				/obj/random/credits/c100 = 2,
-				/obj/item/stash_spawner = 9)
+				/obj/item/stash_spawner = 12)
 
 /obj/random/lowkeyrandom/item_to_spawn()
 	var/turf/T = get_turf(src)

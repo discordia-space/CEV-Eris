@@ -6,6 +6,7 @@
 	contents_list_base = list()
 	contents_list_extra = list()
 	contents_list_random = list()
+	weight = 0.5
 
 
 //Contains boomsticks, ie, shotguns
@@ -65,7 +66,7 @@
  sounds good but the core has turrets<br>\
  I CAN PRINT SOME GUNS FOR US<br>\
  we better not be seen together much longer<br>\
- OKAY JUST MEET ME AT D%"
+ OKAY JUST MEET ME AT %D"
 
 
 

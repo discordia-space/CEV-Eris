@@ -1,6 +1,5 @@
 //This is the object you put into the world to spawn a stash.
 //It picks a stash datum, spawns the note and stash, links them together, and then deletes itself
-var/total_stashes = 0
 
 /obj/item/stash_spawner
 	name = "Stash Spawner"
@@ -25,10 +24,6 @@ var/total_stashes = 0
 	datum.spawn_stash()
 	datum.spawn_note(src)
 
-	total_stashes++
-	world << "Stash spawned at [jumplink(datum.stash_location)]"
-	world << "Stashnote spawned at [jumplink(src)]"
-	world << "Total [total_stashes]"
 
 
 	//Aaaand we are done

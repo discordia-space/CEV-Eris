@@ -64,7 +64,7 @@
 				/obj/random/tool_upgrade = 20,
 				/obj/random/rig_module = 5,
 				/obj/random/mecha_equipment = 5,
-				/obj/random/lowkeyrandom = 40))
+				/obj/random/lowkeyrandom = 45))
 
 
 //Randomly spawned tools will often be in imperfect condition if they've been left lying out
