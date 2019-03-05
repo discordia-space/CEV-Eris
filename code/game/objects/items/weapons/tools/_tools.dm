@@ -535,7 +535,7 @@
 	return null
 
 //We are cheking if our item got required qualities. If we require several qualities, and item posses more than one of those, we ask user to choose how that item should be used
-/obj/item/proc/get_tool_type(var/mob/living/user, var/list/required_qualities, var/atom/use_on)
+/obj/item/proc/get_tool_type(var/mob/living/user, var/list/required_qualities, var/atom/use_on, var/datum/callback/CB)
 	var/list/L = required_qualities & tool_qualities
 
 	if(!L.len)
@@ -545,7 +545,7 @@
 	if(L.len > 1)
 		for(var/i in L)
 			L[i] = image(icon = 'icons/mob/radial/tools.dmi', icon_state = i)
-		return_quality = show_radial_menu(user, use_on ? use_on : user, L, tooltips = TRUE, require_near = TRUE)
+		return_quality = show_radial_menu(user, use_on ? use_on : user, L, tooltips = TRUE, require_near = TRUE, custom_check = CB)
 	else
 		return_quality = L[1]
 
