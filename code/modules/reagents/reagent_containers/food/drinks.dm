@@ -261,6 +261,7 @@
 	desc = "An elegant teapot. It simply oozes class."
 	icon_state = "teapot"
 	item_state = "teapot"
+	matter = list(MATERIAL_STEEL = 1)
 	amount_per_transfer_from_this = 10
 	volume = 120
 	center_of_mass = list("x"=17, "y"=7)
@@ -271,9 +272,24 @@
 	icon_state = "pitcher"
 	volume = 120
 	amount_per_transfer_from_this = 10
+	matter = list(MATERIAL_STEEL = 1)
+	possible_transfer_amounts = list(5,10,20,30,60,120)
 	center_of_mass = "x=16;y=9"
 	filling_states = "15;30;50;70;85;100"
 	base_icon = "pitcher"
+
+/obj/item/weapon/reagent_containers/food/drinks/carafe
+	name = "pitcher"
+	desc = "A handled glass pitcher."
+	icon_state = "carafe"
+	item_state = "beaker"
+	base_name = "pitcher"
+	base_icon = "carafe"
+	filling_states = "10;20;30;40;50;60;70;80;90;100"
+	volume = 120
+	matter = list(MATERIAL_GLASS = 1)
+	possible_transfer_amounts = list(5,10,20,30,60,120)
+	center_of_mass = "x=16;y=7"
 
 /obj/item/weapon/reagent_containers/food/drinks/flask
 	name = "Captain's Flask"

@@ -1,3 +1,15 @@
+/datum/autolathe/recipe/container/drinkingglass
+	name = "drinking glass"
+	path = /obj/item/weapon/reagent_containers/food/drinks/drinkingglass
+
+/datum/autolathe/recipe/container/carafe
+	name = "glass pitcher"
+	path = /obj/item/weapon/reagent_containers/food/drinks/carafe
+
+/datum/autolathe/recipe/container/insulated_pitcher
+	name = "insulated pitcher"
+	path = /obj/item/weapon/reagent_containers/food/drinks/pitcher
+
 /datum/autolathe/recipe/container/bucket
 	name = "bucket"
 	path = /obj/item/weapon/reagent_containers/glass/bucket
