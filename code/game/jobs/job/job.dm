@@ -17,6 +17,7 @@
 	var/req_admin_notify                  // If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
 	var/department = null                 // Does this position have a department tag?
 	var/head_position = 0                 // Is this position Command?
+	var/department_account_access = FALSE // Can this position access the department acount, even if they're not a head?
 	var/minimum_character_age = 0
 	var/ideal_character_age = 30
 	var/create_record = 1                 // Do we announce/make records for people who spawn on this job?
