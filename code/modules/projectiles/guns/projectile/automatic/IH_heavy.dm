@@ -1,5 +1,5 @@
 //The heavy rifle is ironhammer's go-to weapon for dealing with serious threats. It weighs a ton and hits hard
-/obj/item/weapon/gun/projectile/automatic/ih_heavyrifle
+/obj/item/weapon/gun/projectile/automatic/IH_heavyrifle
 	name = "heavy battle rifle"
 	desc = "A high end military grade automatic rifle, designed for use against armoured infantry. Has a slightly slower firing rate than its contemporaries, but hits like a truck."
 	icon_state = "IH_heavyrifle"
@@ -16,14 +16,15 @@
 	unload_sound 	= 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/ltrifle_cock.ogg'
-	damage_multiplier = 1.25
+	damage_multiplier = 1.3 //Significant power increase, but fires at a fairly slow rate
+	price_tag = 4000
 	firemodes = list(
 		FULL_AUTO_250,
 		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, dispersion=null),
 		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    dispersion=list(0.0, 0.6, 0.6)),
 		)
 
-/obj/item/weapon/gun/projectile/automatic/ih_heavyrifle/update_icon()
+/obj/item/weapon/gun/projectile/automatic/IH_heavyrifle/update_icon()
 	..()
 	if(ammo_magazine)
 		icon_state = "[initial(icon_state)]-full"
