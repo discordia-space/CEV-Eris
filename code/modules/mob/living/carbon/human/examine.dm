@@ -347,24 +347,12 @@
 		msg += "[T.He] [T.is] repulsively uncanny!\n"
 
 	if(hasHUD(usr,"security"))
-		var/perpname = "wot"
+		var/perpname = get_id_name(name)
 		var/criminal = "None"
 
-		if(wear_id)
-			var/obj/item/weapon/card/id/I = wear_id.GetIdCard()
-			if(I)
-				perpname = I.registered_name
-			else
-				perpname = name
-		else
-			perpname = name
-
 		if(perpname)
-			for (var/datum/data/record/E in data_core.general)
-				if(E.fields["name"] == perpname)
-					for (var/datum/data/record/R in data_core.security)
-						if(R.fields["id"] == E.fields["id"])
-							criminal = R.fields["criminal"]
+			var/datum/computer_file/report/crew_record/R = get_crewmember_record(perpname)
+			criminal = R ? R.get_criminalStatus() : "None"
 
 			msg += "<span class = 'deptradio'>Criminal status:</span> <a href='?src=\ref[src];criminal=1'>\[[criminal]\]</a>\n"
 			msg += "<span class = 'deptradio'>Security records:</span> <a href='?src=\ref[src];secrecord=`'>\[View\]</a>  <a href='?src=\ref[src];secrecordadd=`'>\[Add comment\]</a>\n"

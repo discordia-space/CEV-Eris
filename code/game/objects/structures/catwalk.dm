@@ -22,6 +22,9 @@
 			redraw_nearby_catwalks()
 
 /obj/structure/catwalk/Destroy()
+	if (istype(loc, /turf/simulated/open))
+		var/turf/simulated/open/T = loc
+		T.updateFallability()
 	redraw_nearby_catwalks()
 	. = ..()
 

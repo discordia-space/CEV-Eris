@@ -1,3 +1,5 @@
+//Don't needed because of vis_contents feature
+
 /mob  // TODO: rewrite as obj.
 	var/mob/shadow/shadow
 
@@ -8,6 +10,7 @@
 	anchored = 1
 	unacidable = 1
 	density = 0
+	alpha = 0
 	var/mob/owner = null
 
 /mob/shadow/can_fall()

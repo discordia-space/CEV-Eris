@@ -259,7 +259,7 @@
 
 	else if(href_list["job_wiki"])
 		var/rank = href_list["job_wiki"]
-		open_link(user,"[config.wikiurl][rank]")
+		open_link(user,"[config.wikiurl][rank]_Eris[config.language]")
 
 	return ..()
 

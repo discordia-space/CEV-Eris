@@ -281,7 +281,7 @@ Class Procs:
 //Tool qualities are stored in \code\__defines\tools_and_qualities.dm
 /obj/machinery/proc/default_deconstruction(var/obj/item/I, var/mob/user)
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING))
+	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING), src)
 	switch(tool_type)
 
 		if(QUALITY_PRYING)

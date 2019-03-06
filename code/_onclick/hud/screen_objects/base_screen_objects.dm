@@ -30,6 +30,7 @@
 		src.icon = _icon
 	if (_icon_state)
 		src.icon_state = _icon_state
+	..()
 
 
 /obj/screen/Process()
@@ -41,6 +42,13 @@
 /obj/screen/Destroy()
 	master = null
 	return ..()
+
+/obj/screen/update_plane()
+	return
+
+/obj/screen/set_plane(var/np)
+	plane = np
+
 
 /obj/screen/Click(location, control, params)
 	if(!usr)
@@ -108,7 +116,7 @@
 /obj/screen/item_action/Click()
 	if(!usr || !owner)
 		return TRUE
-	if(!usr.canClick())
+	if(!usr.can_click())
 		return
 
 	if(usr.stat || usr.restrained() || usr.stunned || usr.lying)
@@ -203,7 +211,7 @@
 	plane = HUD_PLANE
 
 /obj/screen/storage/Click()
-	if(!usr.canClick())
+	if(!usr.can_click())
 		return TRUE
 	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
 		return TRUE
@@ -233,7 +241,7 @@
 /obj/screen/inventory/Click()
 	// At this point in client Click() code we have passed the 1/10 sec check and little else
 	// We don't even know if it's a middle click
-	if(!usr.canClick())
+	if(!usr.can_click())
 		return TRUE
 	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
 		return TRUE

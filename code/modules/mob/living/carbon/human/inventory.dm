@@ -49,6 +49,10 @@ This saves us from having to call add_fingerprint() any time something is put in
 	src << "Some problem hase accure, change UI style pls or call admins."
 	return "7,7"
 
+//Mannequins have no hud, this was causing a lot of spam in the logs
+/mob/living/carbon/human/dummy/mannequin/find_inv_position(var/slot_id)
+	return "7,7"
+
 /mob/living/carbon/human/proc/equip_in_one_of_slots(obj/item/W, list/slots, del_on_fail = 1)
 	for (var/slot in slots)
 		if (equip_to_slot_if_possible(W, slots[slot]))
@@ -96,7 +100,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		head = null
 		if(istype(W, /obj/item))
 			var/obj/item/I = W
-			if(I.flags_inv & (HIDEMASK|BLOCKHAIR|BLOCKHEADHAIR))
+			if(I.flags_inv & (HIDEMASK|BLOCKHAIR|BLOCKHEADHAIR|BLOCKFACEHAIR))
 				update_hair(0)	//rebuild hair
 				update_inv_ears(0)
 				update_inv_wear_mask(0)
@@ -117,7 +121,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		wear_mask = null
 		if(istype(W, /obj/item))
 			var/obj/item/I = W
-			if(I.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR))
+			if(I.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR|BLOCKFACEHAIR))
 				update_hair(0)	//rebuild hair
 				update_inv_ears(0)
 		if(HUDneed.Find("internal"))
@@ -213,7 +217,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			src.back = W
 		if(slot_wear_mask)
 			src.wear_mask = W
-			if(wear_mask.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR))
+			if(wear_mask.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR|BLOCKFACEHAIR))
 				update_hair(redraw_mob)	//rebuild hair
 				update_inv_ears(0)
 		if(slot_handcuffed)
@@ -257,7 +261,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			src.gloves = W
 		if(slot_head)
 			src.head = W
-			if(head.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR|HIDEMASK))
+			if(head.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR|BLOCKFACEHAIR|HIDEMASK))
 				update_hair(redraw_mob)	//rebuild hair
 				update_inv_ears(0)
 				update_inv_wear_mask(0)

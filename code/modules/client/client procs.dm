@@ -137,6 +137,12 @@
 		admins += src
 		holder.owner = src
 
+	// Localhost connections get full admin rights and a special rank
+	else if(isnull(address) || (address in list("127.0.0.1", "::1")))
+		holder = new /datum/admins("!localhost!", R_HOST, ckey)
+		holder.associate(src)
+
+
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
 	prefs = SScharacter_setup.preferences_datums[ckey]
 	if(!prefs)
@@ -175,6 +181,9 @@
 		winset(src, "rpane.changelog", "background-color=#eaeaea;font-style=bold")
 		if(config.aggressive_changelog)
 			src.changes()
+
+	if(!tooltips)
+		tooltips = new /datum/tooltip(src)
 
 
 

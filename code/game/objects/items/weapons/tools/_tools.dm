@@ -535,21 +535,24 @@
 	return null
 
 //We are cheking if our item got required qualities. If we require several qualities, and item posses more than one of those, we ask user to choose how that item should be used
-/obj/item/proc/get_tool_type(var/mob/living/user, var/list/required_qualities)
-	var/start_loc = user.loc
+/obj/item/proc/get_tool_type(var/mob/living/user, var/list/required_qualities, var/atom/use_on, var/datum/callback/CB)
 	var/list/L = required_qualities & tool_qualities
 
 	if(!L.len)
 		return FALSE
 
-	var/return_quality = L[1]
+	var/return_quality
 	if(L.len > 1)
-		return_quality = input(user,"What quality you using?", "Tool options", ABORT_CHECK) in L
-	if(user.loc != start_loc)
-		user << SPAN_WARNING("You need to stand still!")
-		return ABORT_CHECK
+		for(var/i in L)
+			L[i] = image(icon = 'icons/mob/radial/tools.dmi', icon_state = i)
+		return_quality = show_radial_menu(user, use_on ? use_on : user, L, tooltips = TRUE, require_near = TRUE, custom_check = CB)
 	else
-		return return_quality
+		return_quality = L[1]
+
+	if(!return_quality)
+		return
+
+	return return_quality
 
 
 
@@ -855,7 +858,7 @@
 		if (!istype(S) || S.robotic < ORGAN_ROBOT)
 			return ..()
 
-		if (get_tool_type(user, list(QUALITY_WELDING))) //Prosthetic repair
+		if (get_tool_type(user, list(QUALITY_WELDING), H)) //Prosthetic repair
 			if (S.brute_dam)
 				if (S.brute_dam < ROBOLIMB_SELF_REPAIR_CAP)
 					if (use_tool(user, H, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))

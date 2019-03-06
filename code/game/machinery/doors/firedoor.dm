@@ -179,7 +179,7 @@
 		return ..()
 
 	var/list/usable_qualities = list(QUALITY_WELDING,QUALITY_SCREW_DRIVING,QUALITY_PRYING)
-	var/tool_type = I.get_tool_type(user, usable_qualities)
+	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 		if(QUALITY_WELDING)
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
