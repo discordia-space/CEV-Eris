@@ -73,7 +73,7 @@
 	ammo_type = /obj/item/ammo_casing/c9mm
 	matter = list(MATERIAL_STEEL = 4)
 	caliber = "9mm"
-	max_ammo = 25
+	max_ammo = 35
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/smg9mm/empty
@@ -133,7 +133,7 @@
 	ammo_type = /obj/item/ammo_casing/c45
 	matter = list(MATERIAL_STEEL = 4)
 	caliber = ".45"
-	max_ammo = 20
+	max_ammo = 30
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/c45smg/empty

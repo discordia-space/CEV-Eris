@@ -47,3 +47,15 @@
 	name = "low chance random cheap energy weapon"
 	icon_state = "gun-blue-low"
 	spawn_nothing_percentage = 80
+
+
+//Spawns a random ironhammer sidearm and ammo for it
+/obj/random/ironhammer_sidearm/spawn_item()
+	var/list/spawntypes = pickweight(list(list(/obj/item/weapon/cell/small/high, /obj/item/weapon/gun/energy/gun/martin) = 2,
+	list(/obj/item/weapon/gun/projectile/IH_sidearm, /obj/item/ammo_magazine/mc9mm/rubber) = 2,
+	list(/obj/item/weapon/gun/projectile/automatic/IH_machinepistol, /obj/item/ammo_magazine/smg9mm/rubber) = 1))
+
+
+	for (var/a in spawntypes)
+		. += new a(loc)
+

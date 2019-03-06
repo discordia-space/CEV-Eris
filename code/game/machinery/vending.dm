@@ -993,10 +993,38 @@
 	product_ads = "Stunning!;Take justice in your own hands!;LEADearship!"
 	icon_state = "weapon"
 	no_criminals = TRUE
-	products = list(/obj/item/device/flash = 6,/obj/item/weapon/reagent_containers/spray/pepper = 6, /obj/item/weapon/gun/projectile/olivaw = 5, /obj/item/weapon/gun/projectile/giskard = 5, /obj/item/weapon/gun/projectile/revolver/detective = 5, /obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3,
-					/obj/item/weapon/gun/projectile/shotgun/pump = 5, /obj/item/ammo_magazine/cl32/rubber = 20, /obj/item/ammo_magazine/sl38/rubber = 20, /obj/item/ammo_magazine/ammobox/c38/rubber = 20, /obj/item/ammo_magazine/ammobox/cl32/rubber = 20,
-					/obj/item/weapon/storage/box/shotgunammo/beanbags = 10, /obj/item/weapon/storage/box/shotgunammo/flashshells = 10, /obj/item/weapon/storage/box/shotgunammo/blanks = 10, /obj/item/clothing/accessory/holster = 5)
-	contraband = list(/obj/item/ammo_magazine/sl38 = 20, /obj/item/ammo_magazine/cl32 = 20, /obj/item/ammo_magazine/ammobox/cl32 = 20, /obj/item/ammo_magazine/ammobox/c38 = 20, /obj/item/weapon/storage/box/shotgunammo/slug = 10, /obj/item/weapon/storage/box/shotgunammo/buckshot = 10)
+	products = list(/obj/item/device/flash = 6,
+	/obj/item/weapon/silencer = 4,
+	/obj/item/weapon/reagent_containers/spray/pepper = 6,
+	/obj/item/weapon/gun/projectile/olivaw = 5,
+	/obj/item/weapon/gun/projectile/giskard = 5,
+	/obj/item/weapon/gun/projectile/revolver/detective = 5,
+	/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3,
+	/obj/item/weapon/gun/projectile/automatic/IH_smg = 3,
+	/obj/item/weapon/gun/projectile/automatic/IH_heavyrifle = 2,
+	/obj/item/weapon/gun/projectile/IH_sidearm = 4,
+	/obj/item/weapon/gun/projectile/automatic/IH_machinepistol = 2,
+	/obj/item/weapon/gun/projectile/shotgun/pump = 3,
+	/obj/item/ammo_magazine/cl32/rubber = 20,
+	/obj/item/ammo_magazine/sl38/rubber = 20,
+	/obj/item/ammo_magazine/ammobox/c38/rubber = 20,
+	/obj/item/ammo_magazine/ammobox/cl32/rubber = 20,
+	/obj/item/weapon/storage/box/shotgunammo/beanbags = 10,
+	/obj/item/weapon/storage/box/shotgunammo/flashshells = 10,
+	/obj/item/weapon/storage/box/shotgunammo/blanks = 10,
+	/obj/item/ammo_magazine/smg9mm/rubber = 10,
+	/obj/item/ammo_magazine/mc9mm/rubber = 10,
+	/obj/item/ammo_magazine/c762 = 10, //There's no rubber 762 ammo
+	/obj/item/clothing/accessory/holster = 5)
+
+	contraband = list(/obj/item/ammo_magazine/sl38 = 20,
+	/obj/item/ammo_magazine/cl32 = 20,
+	/obj/item/ammo_magazine/ammobox/cl32 = 20,
+	/obj/item/ammo_magazine/ammobox/c38 = 20,
+	/obj/item/weapon/storage/box/shotgunammo/slug = 10,
+	/obj/item/weapon/storage/box/shotgunammo/buckshot = 10,
+	/obj/item/ammo_magazine/smg9mm = 10,
+	/obj/item/ammo_magazine/mc9mm = 10)
 	prices = list(/obj/item/device/flash = 600,/obj/item/weapon/reagent_containers/spray/pepper = 800,  /obj/item/weapon/gun/projectile/olivaw = 1600, /obj/item/weapon/gun/projectile/giskard = 1200, /obj/item/weapon/gun/projectile/revolver/detective = 2500, /obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3700,
 					/obj/item/weapon/gun/projectile/shotgun/pump = 2000, /obj/item/ammo_magazine/cl32/rubber = 300, /obj/item/ammo_magazine/sl38/rubber = 400, /obj/item/ammo_magazine/ammobox/c38/rubber = 400, /obj/item/ammo_magazine/ammobox/cl32/rubber = 500,
 					/obj/item/weapon/storage/box/shotgunammo/beanbags = 300, /obj/item/weapon/storage/box/shotgunammo/flashshells = 300, /obj/item/weapon/storage/box/shotgunammo/blanks = 50, /obj/item/clothing/accessory/holster = 150,
