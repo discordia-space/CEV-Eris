@@ -20,7 +20,6 @@
 			active_program.computer_emagged = computer_emagged
 			active_program.process_tick()
 		else
-			world << "ERROR setting active_program to null because [active_program.program_state]"
 			active_program = null
 
 	for(var/datum/computer_file/program/P in idle_threads)
@@ -163,7 +162,6 @@
 
 // Relays kill program request to currently active program. Use this to quit current program.
 /obj/item/modular_computer/proc/kill_program(var/forced = FALSE)
-	world << "kill being called for unknown reasons"
 	if(active_program)
 		active_program.kill_program(forced)
 		active_program = null
@@ -212,7 +210,6 @@
 	// Autorun feature
 	var/datum/computer_file/data/autorun = hard_drive ? hard_drive.find_file_by_name("autorun") : null
 	if(istype(autorun))
-		world << "Attempting autorun of [autorun.stored_data]"
 		run_program(autorun.stored_data)
 
 	if(user)
@@ -263,9 +260,7 @@
 		minimize_program(user)
 
 	if(P.run_program(user))
-		world << "runprogram passed"
 		active_program = P
-		world << "Active_program [active_program ? "exists" : "doesn't exist"] and is [active_program]"
 		update_icon()
 	return TRUE
 

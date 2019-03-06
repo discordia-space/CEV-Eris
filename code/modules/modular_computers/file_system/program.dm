@@ -154,26 +154,19 @@
 // This is performed on program startup. May be overriden to add extra logic. Remember to include ..() call. Return 1 on success, 0 on failure.
 // When implementing new program based device, use this to run the program.
 /datum/computer_file/program/proc/run_program(var/mob/living/user)
-	world << "run1"
 	if(can_run(user, 1) || !requires_access_to_run)
-		world << "run2"
 		if(nanomodule_path)
-			world << "run3"
 			NM = new nanomodule_path(src, new /datum/topic_manager/program(src), src)
 			if(user)
-				world << "run4"
 				NM.using_access = user.GetAccess()
 		if(requires_ntnet && network_destination)
 			generate_network_log("Connection opened to [network_destination].")
-		world << "program state active"
 		program_state = PROGRAM_STATE_ACTIVE
 		return 1
 	return 0
 
 // Use this proc to kill the program. Designed to be implemented by each program if it requires on-quit logic, such as the NTNRC client.
 /datum/computer_file/program/proc/kill_program(var/forced = 0)
-	world << "program kill_program call"
-	CRASH("wtf")
 	program_state = PROGRAM_STATE_KILLED
 	if(network_destination)
 		generate_network_log("Connection to [network_destination] closed.")

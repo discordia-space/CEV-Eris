@@ -258,6 +258,12 @@
 		qdel(src)
 		return
 
+
+	var/datum/spawnpoint/spawnpoint = SSjob.get_spawnpoint_for(character.client, rank, late = TRUE)
+	if (!spawnpoint.put_mob(character))
+		return
+	character = SSjob.EquipRank(character, rank) //equips the human
+	equip_custom_items(character)
 	character.lastarea = get_area(loc)
 
 	if(SSjob.ShouldCreateRecords(job.title))
@@ -268,14 +274,6 @@
 			SSticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 
 			//Grab some data from the character prefs for use in random news procs.
-
-
-	//Spawning happens at the end so things like name is populated
-	var/datum/spawnpoint/spawnpoint = SSjob.get_spawnpoint_for(character.client, rank, late = TRUE)
-	if (!spawnpoint.put_mob(character))
-		return
-	character = SSjob.EquipRank(character, rank) //equips the human
-	equip_custom_items(character)
 
 	AnnounceArrival(character, character.mind.assigned_role, spawnpoint.message)	//will not broadcast if there is no message
 

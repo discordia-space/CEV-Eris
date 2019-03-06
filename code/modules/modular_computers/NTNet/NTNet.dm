@@ -228,7 +228,7 @@ var/global/datum/ntnet/ntnet_global = new()
 			my_client.stored_login = new_login
 			my_client.stored_password = account.password
 			my_client.log_in()
-	
+
 //Used for initial email generation.
 /datum/ntnet/proc/create_email(mob/user, desired_name, domain)
 	desired_name = sanitize_for_email(desired_name)
@@ -261,7 +261,7 @@ var/global/datum/ntnet/ntnet_global = new()
 						my_client.stored_login = EA.login
 						my_client.stored_password = EA.password
 						my_client.log_in()
-					P.kill_program()
+					C.minimize_program()
 		else if(issilicon(user))
 			var/mob/living/silicon/S = user
 			var/datum/nano_module/email_client/my_client = S.get_subsystem_from_path(/datum/nano_module/email_client)

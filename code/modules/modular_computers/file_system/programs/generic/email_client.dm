@@ -30,11 +30,9 @@
 	. = ..()
 
 /datum/computer_file/program/email_client/run_program()
-	world << "Running emailc"
 	. = ..()
 
 	if(NM)
-		world << "NM exists and . is [.]"
 		var/datum/nano_module/email_client/NME = NM
 		NME.stored_login = stored_login
 		NME.stored_password = stored_password

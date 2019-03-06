@@ -13,10 +13,6 @@
 	stored_pen = /obj/item/weapon/pen
 
 /obj/item/modular_computer/pda/Initialize()
-	..()
-	return INITIALIZE_HINT_LATELOAD
-
-/obj/item/modular_computer/pda/LateInitialize()
 	. = ..()
 	enable_computer()
 
