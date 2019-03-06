@@ -6,6 +6,7 @@
 /datum/stash/ninja
 	base_type = /datum/stash/ninja
 	weight = 0.2
+	nonmaint_reroll = 100
 	contents_list_base = list(/obj/item/weapon/rig/light/ninja = 1, /obj/item/weapon/material/star/ninja = 4)
 	contents_list_random = list(/obj/item/weapon/material/sword/katana = 75,
 		/obj/item/weapon/gun/energy/crossbow/ninja = 60,

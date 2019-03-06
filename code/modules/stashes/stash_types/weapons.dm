@@ -7,6 +7,7 @@
 	contents_list_extra = list()
 	contents_list_random = list()
 	weight = 0.5
+	nonmaint_reroll = 95
 
 
 //Contains boomsticks, ie, shotguns

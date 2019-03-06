@@ -193,7 +193,7 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 		joblist[J.title] = J
 
 	//Stashes
-	paths = typesof(/datum/stash)-/datum/stash
+	paths = subtypesof(/datum/stash)
 	for(var/T in paths)
 		var/datum/stash/L = new T
 		//First, make a sublist in the main list if we haven't already
@@ -205,12 +205,8 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 			//This is a base category. Add it to the categories list with a weighting
 			GLOB.stash_categories[L.base_type] = L.weight
 
-
-
-
 		else
 			//This is a specific stash datum, add it to the appropriate sublist
-			world << "Storing [L] [L.type] in all stash datums"
 			GLOB.all_stash_datums[L.base_type][L] = L.weight
 
 

@@ -436,7 +436,7 @@
 					src.loc = get_turf(h_user)
 					if(h_user.client)	h_user.client.screen -= src
 					h_user.put_in_hands(B)
-			user << "<span class='notice'>You clip the [P.name] to [(src.name == "paper") ? "the paper" : src.name].</span>"
+			user << SPAN_NOTICE("You clip the [P.name] to [(src.name == "paper") ? "the paper" : src.name].")
 		src.loc = B
 		P.loc = B
 

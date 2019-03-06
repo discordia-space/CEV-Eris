@@ -102,6 +102,13 @@ This file contains the underlying code for stash datums
 	var/weight = 1
 
 
+	/*
+		If a location for the stash is picked which isn't in maintenance, this is the chance that we will reroll it, done on each attempt.
+		Set it to 100 to entirely disable non-maintenance spawning
+	*/
+	var/nonmaint_reroll = 80
+
+
 
 
 //Runtime values
@@ -140,6 +147,11 @@ This file contains the underlying code for stash datums
 			//Can pick any area without players in it.
 			//This is overwhelmingly likely to be in maintenance and thats good.
 			var/area/A = random_ship_area(TRUE, FALSE, FALSE)
+
+			//If its not a maint area, we may reroll it
+			if (!A.is_maintenance && prob(nonmaint_reroll))
+				continue
+
 			var/turf/T = A.random_hideable_turf()
 
 			if(T)
@@ -171,7 +183,7 @@ This file contains the underlying code for stash datums
 //This proc is called after location is set, it creates the necessary info to direct the user
 /datum/stash/proc/create_direction()
 	if (selected_direction == DIRECTION_IMAGE)
-		map_image = createpicture(stash_location, null, CAPTURE_MODE_HISTORICAL, radius = 4)
+		map_image = createpicture(stash_location, null, CAPTURE_MODE_HISTORICAL, radius = 3)
 		create_direction_string()
 	if (selected_direction == DIRECTION_COORDS)
 		create_direction_string(stash_location)

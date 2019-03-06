@@ -35,6 +35,13 @@ var/global/photo_count = 0
 	var/icon/tiny
 	var/photo_size = 3
 
+/obj/item/weapon/photo/update_icon()
+	.=..()
+	//When the photo updates, update its container too. This will often be an album or paper bundle
+	if (istype(loc, /obj))
+		var/obj/O = loc
+		O.update_icon()
+
 /obj/item/weapon/photo/New()
 	id = photo_count++
 
@@ -238,9 +245,11 @@ var/global/photo_count = 0
 		tiny_img.Scale(4, 4)
 		ic.Blend(small_img,ICON_OVERLAY, 10, 13)
 		pc.Blend(tiny_img,ICON_OVERLAY, 12, 19)
-		p.img = photoimage
-		p.icon = ic
-		p.tiny = pc
+		if (!QDELETED(p))
+			p.img = photoimage
+			p.icon = ic
+			p.tiny = pc
+			p.update_icon()
 
 	//The photo object is returned immediately, but its image will only be added a couple seconds later
 	return p

@@ -6,6 +6,7 @@
 /datum/stash/excelsior
 	base_type = /datum/stash/excelsior
 	loot_type = "Excelsior"
+	nonmaint_reroll = 100
 	contents_list_base = list(/obj/item/weapon/disk/autolathe_disk/excelsior = 1,
 	 /obj/item/weapon/circuitboard/excelsiorautolathe = 1,
 	 /obj/item/weapon/circuitboard/excelsior_teleporter = 1,
