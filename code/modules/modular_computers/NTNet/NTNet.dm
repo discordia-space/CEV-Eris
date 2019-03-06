@@ -252,7 +252,7 @@ var/global/datum/ntnet/ntnet_global = new()
 			user.mind.store_memory("Your email account address is [EA.login] and the password is [EA.password].")
 
 		if(ishuman(user))
-			var/obj/item/modular_computer/C = locate(/obj/item/modular_computer) in user
+			var/obj/item/modular_computer/C = locate(/obj/item/modular_computer) in user.GetAllContents()
 			var/datum/computer_file/program/P = C.getProgramByType(/datum/computer_file/program/email_client)
 			if(P)
 				var/datum/nano_module/email_client/my_client = P.NM
