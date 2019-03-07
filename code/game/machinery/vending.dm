@@ -23,7 +23,7 @@
 	..()
 
 	product_path = path
-	var/atom/tmp = path
+	var/obj/tmp = path
 
 	if(!name)
 		product_name = initial(tmp.name)
@@ -36,6 +36,9 @@
 	display_color = color
 	src.category = category
 	src.vending_machine = vending_machine
+
+	if(!src.price && src.vending_machine.auto_price)
+		src.price = tmp.get_item_cost()
 
 /datum/data/vending_product/Destroy()
 	vending_machine.product_records.Remove(src)
@@ -141,6 +144,7 @@
 	var/vendor_department = null //If set, members can manage this vendomat. earnings_account is set to the department's account automatically.
 	var/buying_percentage = 0 //If set, the vendomat will accept people selling items to it, and in return will give (percentage * listed item price) in cash
 	var/scan_id = 1
+	var/auto_price = TRUE //The vendomat will automatically set prices on products if their price is not specified.
 	var/obj/item/weapon/coin/coin
 	var/datum/wires/vending/wires = null
 	var/always_open	=	FALSE  // If true, this machine allows products to be inserted without requirinf the maintenance hatch to be screwed open first
@@ -441,7 +445,7 @@
 
 	for(var/datum/data/vending_product/R in product_records)
 		if(I.type == R.product_path)
-			if (!locked || always_open)
+			if (!locked || always_open || (panel_open && !custom_vendor))
 				stock(I, R, user)
 				return 1
 			else if (custom_vendor)
@@ -946,6 +950,7 @@
 	)
 	contraband = list(/obj/item/device/lighting/toggleable/flashlight = 5,/obj/item/device/assembly/timer = 2)
 	product_ads = "Only the finest!;Have some tools.;The most robust equipment.;The finest gear in space!"
+	auto_price = FALSE
 
 /obj/machinery/vending/coffee
 	name = "Hot Drinks machine"
@@ -1008,6 +1013,7 @@
 					/obj/item/weapon/computer_hardware/scanner/reagent = 6,/obj/item/weapon/computer_hardware/scanner/atmos = 6,
 					/obj/item/weapon/computer_hardware/scanner/paper = 10,/obj/item/weapon/computer_hardware/nano_printer = 10,
 					/obj/item/weapon/computer_hardware/card_slot = 3,/obj/item/weapon/computer_hardware/ai_slot = 4)
+	auto_price = FALSE
 
 
 /obj/machinery/vending/cola
@@ -1056,6 +1062,7 @@
 					/obj/item/stack/medical/advanced/bruise_pack = 3, /obj/item/stack/medical/advanced/ointment = 3, /obj/item/stack/medical/splint = 2)
 	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 3,/obj/item/weapon/reagent_containers/pill/stox = 4,/obj/item/weapon/reagent_containers/pill/antitox = 6)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	auto_price = FALSE
 
 
 //This one's from bay12
@@ -1065,6 +1072,7 @@
 	products = list(/obj/item/clothing/under/rank/scientist = 6,/obj/item/clothing/suit/bio_suit = 6,/obj/item/clothing/head/bio_hood = 6,
 					/obj/item/device/transfer_valve = 6,/obj/item/device/assembly/timer = 6,/obj/item/device/assembly/signaler = 6,
 					/obj/item/device/assembly/prox_sensor = 6,/obj/item/device/assembly/igniter = 6)
+	auto_price = FALSE
 
 /obj/machinery/vending/wallmed1
 	name = "NanoMed"
@@ -1076,6 +1084,7 @@
 	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
 	products = list(/obj/item/stack/medical/bruise_pack = 2,/obj/item/stack/medical/ointment = 2,/obj/item/weapon/reagent_containers/hypospray/autoinjector = 4,/obj/item/device/scanner/healthanalyzer = 1)
 	contraband = list(/obj/item/weapon/reagent_containers/syringe/antitoxin = 4,/obj/item/weapon/reagent_containers/syringe/antiviral = 4,/obj/item/weapon/reagent_containers/pill/tox = 1)
+	auto_price = FALSE
 
 /obj/machinery/vending/wallmed2
 	name = "NanoMed"
@@ -1087,6 +1096,7 @@
 	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector = 5,/obj/item/weapon/reagent_containers/syringe/antitoxin = 3,/obj/item/stack/medical/bruise_pack = 3,
 					/obj/item/stack/medical/ointment =3,/obj/item/device/scanner/healthanalyzer = 3)
 	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 3)
+	auto_price = FALSE
 
 /obj/machinery/vending/security
 	name = "SecTech"
@@ -1098,6 +1108,7 @@
 	products = list(/obj/item/weapon/handcuffs = 8,/obj/item/weapon/grenade/flashbang = 4,/obj/item/weapon/grenade/chem_grenade/teargas = 4,/obj/item/device/flash = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/donut/normal = 12,/obj/item/weapon/storage/box/evidence = 6)
 	contraband = list(/obj/item/clothing/glasses/sunglasses = 2,/obj/item/weapon/storage/box/donut = 2)
+	auto_price = FALSE
 
 /obj/machinery/vending/hydronutrients
 	name = "NutriMax"
@@ -1110,6 +1121,7 @@
 					/obj/item/weapon/reagent_containers/syringe = 5,/obj/item/weapon/storage/bag/plants = 5)
 	premium = list(/obj/item/weapon/reagent_containers/glass/bottle/ammonia = 10,/obj/item/weapon/reagent_containers/glass/bottle/diethylamine = 5)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	auto_price = FALSE
 
 /obj/machinery/vending/hydroseeds
 	name = "MegaSeed Servitor"
@@ -1129,6 +1141,7 @@
 	contraband = list(/obj/item/seeds/amanitamycelium = 2,/obj/item/seeds/glowshroom = 2,/obj/item/seeds/libertymycelium = 2,/obj/item/seeds/mtearseed = 2,
 					  /obj/item/seeds/nettleseed = 2,/obj/item/seeds/reishimycelium = 2,/obj/item/seeds/reishimycelium = 2,/obj/item/seeds/shandseed = 2,)
 	premium = list(/obj/item/toy/waterflower = 1)
+	auto_price = FALSE
 
 /**
  *  Populate hydroseeds product_records
@@ -1168,6 +1181,7 @@
 					/obj/item/weapon/reagent_containers/food/drinks/mug/red = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/heart = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/one = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/metal = 3,
 					/obj/item/weapon/reagent_containers/food/drinks/mug/rainbow = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/brit = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/moebius = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/teacup = 10,)
 	contraband = list(/obj/item/weapon/material/kitchen/rollingpin = 2, /obj/item/weapon/material/knife/butch = 2)
+	auto_price = FALSE
 
 /obj/machinery/vending/sovietsoda
 	name = "BODA"
@@ -1177,6 +1191,7 @@
 	products = list(/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/soda = 30)
 	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/cola = 20)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	auto_price = FALSE
 
 /obj/machinery/vending/tool
 	name = "YouTool"
@@ -1198,6 +1213,7 @@
 	products = list(/obj/item/clothing/glasses/meson = 2,/obj/item/weapon/tool/multitool = 4,/obj/item/weapon/airlock_electronics = 10,/obj/item/weapon/circuitboard/apc = 10,/obj/item/weapon/airalarm_electronics = 10,/obj/item/weapon/cell/large/high = 10)
 	contraband = list(/obj/item/weapon/cell/large/potato = 3)
 	premium = list(/obj/item/weapon/storage/belt/utility = 3)
+	auto_price = FALSE
 
 //This one's from bay12
 /obj/machinery/vending/engineering
@@ -1228,6 +1244,7 @@
 					/obj/item/weapon/cell/large/high = 12, /obj/item/device/assembly/prox_sensor = 3,/obj/item/device/assembly/signaler = 3,/obj/item/device/scanner/healthanalyzer = 3,
 					/obj/item/weapon/tool/scalpel = 2,/obj/item/weapon/tool/saw/circular = 2,/obj/item/weapon/tank/anesthetic = 2,/obj/item/clothing/mask/breath/medical = 5,
 					/obj/item/weapon/tool/screwdriver = 5,/obj/item/weapon/tool/crowbar = 5)
+	auto_price = FALSE
 
 //FOR ACTORS GUILD - mainly props that cannot be spawned otherwise
 /obj/machinery/vending/props
@@ -1236,6 +1253,7 @@
 	icon_state = "Theater"
 	products = list(/obj/structure/flora/pottedplant = 2, /obj/item/device/lighting/toggleable/lamp = 2, /obj/item/device/lighting/toggleable/lamp/green = 2, /obj/item/weapon/reagent_containers/food/drinks/jar = 1,
 					/obj/item/toy/cultsword = 4, /obj/item/toy/katana = 2, /obj/item/weapon/phone = 3)
+	auto_price = FALSE
 
 //FOR ACTORS GUILD - Containers
 /obj/machinery/vending/containers
@@ -1243,7 +1261,7 @@
 	desc = "A container that dispenses containers."
 	icon_state = "robotics"
 	products = list(/obj/structure/closet/crate/freezer = 2, /obj/structure/closet = 3, /obj/structure/closet/crate = 3)
-
+	auto_price = FALSE
 
 /obj/machinery/vending/theomat
 	name = "NeoTheology Theo-Mat"
