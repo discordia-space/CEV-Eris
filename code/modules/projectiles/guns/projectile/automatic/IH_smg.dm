@@ -1,5 +1,5 @@
 /obj/item/weapon/gun/projectile/automatic/IH_smg
-	name = "Light SMG"
+	name = "FS SMG \"Straylight\""
 	desc = "A compact and lightweight submachinegun that sprays small rounds rapidly. Sacrifices a fire selector to cut mass, so it requires a careful hand."
 	icon_state = "IH_smg"
 	item_state = "IH_smg"
