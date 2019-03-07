@@ -37,8 +37,8 @@
 	src.category = category
 	src.vending_machine = vending_machine
 
-	if(!src.price && src.vending_machine.auto_price)
-		src.price = tmp.get_item_cost()
+	if(src.price <= 0 && src.vending_machine.auto_price)
+		src.price = initial(tmp.price_tag)
 
 /datum/data/vending_product/Destroy()
 	vending_machine.product_records.Remove(src)
@@ -250,7 +250,7 @@
 		for(var/entry in current_list[1])
 			var/datum/data/vending_product/product = new/datum/data/vending_product(src, entry)
 
-			product.price = (entry in prices) ? prices[entry] : 0
+			product.price = (entry in prices) ? prices[entry] : product.price
 			product.amount = (current_list[1][entry]) ? current_list[1][entry] : 1
 			product.category = category
 
@@ -1163,7 +1163,7 @@
 			var/name = S.name
 			var/datum/data/vending_product/product = new/datum/data/vending_product(src, entry, name)
 
-			product.price = (entry in prices) ? prices[entry] : 0
+			product.price = (entry in prices) ? prices[entry] : product.price
 			product.amount = (current_list[1][entry]) ? current_list[1][entry] : 1
 			product.category = category
 
