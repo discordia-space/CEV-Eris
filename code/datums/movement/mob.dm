@@ -51,6 +51,8 @@
 	mob.ghostize()
 
 // Incorporeal/Ghost movement
+/datum/movement_handler/mob/incorporeal
+	var/nextmove
 /datum/movement_handler/mob/incorporeal/DoMove(var/direction)
 	. = MOVEMENT_HANDLED
 	direction = mob.AdjustMovementDirection(direction)
@@ -62,6 +64,17 @@
 
 	mob.set_dir(direction)
 	mob.PostIncorporealMovement()
+
+	//Incorp movement needs a delay just to make it controllable
+	var/overflow = world.time - nextmove
+	if (overflow > 1)
+		overflow = 0
+	nextmove = (world.time + 0.5)-overflow
+
+/datum/movement_handler/mob/incorporeal/MayMove(var/mob/mover, var/is_external)
+	if (world.time > nextmove)
+		return MOVEMENT_PROCEED
+	return MOVEMENT_STOP
 
 /mob/proc/PostIncorporealMovement()
 	return

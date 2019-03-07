@@ -52,10 +52,10 @@
 		if(user==pulling)
 			return
 	if(pulling && (get_dir(src.loc, pulling.loc) == direction))
-		to_chat(user, "<span class='warning'>You cannot go there.</span>")
+		to_chat(user, SPAN_WARNING("You cannot go there."))
 		return
 	if(pulling && buckled_mob && (buckled_mob == user))
-		to_chat(user, "<span class='warning'>You cannot drive while being pushed.</span>")
+		to_chat(user, SPAN_WARNING("You cannot drive while being pushed."))
 		return
 
 	// Let's roll
