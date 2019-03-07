@@ -310,7 +310,7 @@
 /obj/item/weapon/gun/proc/handle_post_fire(mob/user, atom/target, var/pointblank=0, var/reflex=0)
 	if(silenced)
 		//Silenced shots have a lower range and volume
-		playsound(user, fire_sound_silenced, 30, 1, -3)
+		playsound(user, fire_sound_silenced, 15, 1, -3)
 	else
 		playsound(user, fire_sound, 60, 1)
 

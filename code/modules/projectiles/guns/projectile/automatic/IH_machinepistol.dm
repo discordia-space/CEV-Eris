@@ -1,5 +1,5 @@
 /obj/item/weapon/gun/projectile/automatic/IH_machinepistol
-	name = "Machine Pistol"
+	name = "FS MP \"Molly\""
 	desc = "An experimental fully automatic pistol. Compact and flexible, but somewhat underpowered"
 	icon_state = "IH_mp"
 	item_state = "IH_mp"
