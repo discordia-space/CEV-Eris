@@ -25,6 +25,7 @@
 	light_range = 3
 	light_color = COLOR_LIGHTING_BLUE_BRIGHT
 	mob_classification = CLASSIFICATION_SYNTHETIC
+	move_to_delay = 9
 
 /mob/living/simple_animal/hostile/hivebot/range
 	name = "Human Alliance Autonomous Sentinel"
