@@ -1,5 +1,5 @@
 /obj/item/weapon/gun/projectile/IH_sidearm
-	name = "Pistol"
+	name = "FS HG \"Paco\""
 	desc = "A modern and reliable sidearm for the soldier in the field"
 	icon_state = "IH_sidearm"
 	item_state = "IH_sidearm"
