@@ -84,6 +84,9 @@
 	if(hive_mind_ai && master_node)
 		try_to_assimilate()
 		chem_handler()
+		var/obj/machinery/door/door_on_my_tile = locate(/obj/machinery/door) in loc
+		if(door_on_my_tile && door_on_my_tile.density)
+			door_interaction(door_on_my_tile)
 	else
 		//slow vanishing after node death
 		health -= 10
@@ -148,7 +151,7 @@
 	if(!(door.stat & BROKEN))
 		anim_shake(door)
 		//first, we open our panel to give our wireweeds access to exposed airlock's electronics
-		if(!door.p_open)
+		if(!door.p_open && !istype(door, /obj/machinery/door/window))
 			if(prob(40))
 				door.p_open = TRUE
 				door.update_icon()
@@ -157,7 +160,7 @@
 		if(door.welded)
 			return FALSE
 		//if panel opened, we begin to destruct it from inside of airlock
-		if(door.p_open)
+		if(door.p_open || istype(door, /obj/machinery/door/window))
 			//bolts are down? Our wireweeds infest electronics, so this isn't a problem cause it part of us
 			if(istype(door, /obj/machinery/door/airlock))
 				var/obj/machinery/door/airlock/A = door
@@ -190,6 +193,18 @@
 	else
 		return ..()
 
+
+/obj/effect/plant/hivemind/Adjacent(var/atom/neighbor)
+	var/turf/T = get_turf(neighbor)
+	if(locate(/obj/machinery/door) in T)
+		for(var/obj/O in T)
+			if(istype(O, /obj/machinery/door))
+				continue
+			if(O.is_block_dir(get_dir(neighbor, src), TRUE))
+				return . = ..()
+		return TRUE
+	else
+		. = ..()
 
 
 //What a pity that we haven't some kind proc as special library to use it somewhere
@@ -235,7 +250,7 @@
 		//Here we have a little chance to spawn our machinery horror
 		if(istype(subject, /obj/machinery))
 			var/obj/machinery/victim = subject
-			if(prob(5) && victim.circuit)
+			if(prob(10) && victim.circuit)
 				new /mob/living/simple_animal/hostile/hivemind/mechiver(get_turf(subject))
 				new victim.circuit.type(get_turf(subject))
 				qdel(subject)
@@ -243,13 +258,18 @@
 
 		//New hivemind machine creation
 		if(!created_machine)
-			var/list/possible_machines = subtypesof(/obj/machinery/hivemind_machine) - /obj/machinery/hivemind_machine/node
-			//here we compare hivemind's EP with machine's required value
-			for(var/machine_path in possible_machines)
-				if(hive_mind_ai.evo_points <= hive_mind_ai.EP_price_list[machine_path])
-					possible_machines.Remove(machine_path)
+			var/picked_machine
+			if(master_node && master_node.defensive_machines.len)
+				picked_machine = pick(master_node.defensive_machines)
+				master_node.defensive_machines -= picked_machine
+			else
+				var/list/possible_machines = subtypesof(/obj/machinery/hivemind_machine) - /obj/machinery/hivemind_machine/node
+				//here we compare hivemind's EP with machine's required value
+				for(var/machine_path in possible_machines)
+					if(hive_mind_ai.evo_points <= hive_mind_ai.EP_price_list[machine_path])
+						possible_machines.Remove(machine_path)
+				picked_machine = pick(possible_machines)
 
-			var/picked_machine = pick(possible_machines)
 			created_machine = new picked_machine(get_turf(subject))
 
 
