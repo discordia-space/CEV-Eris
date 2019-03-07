@@ -51,6 +51,7 @@
 	coolant_reagents_purity["water"] = 0.5
 	coolant_reagents_purity["icecoffee"] = 0.6
 	coolant_reagents_purity["icetea"] = 0.6
+	coolant_reagents_purity["icegreentea"] = 0.6
 	coolant_reagents_purity["milkshake"] = 0.6
 	coolant_reagents_purity["leporazine"] = 0.7
 	coolant_reagents_purity["kelotane"] = 0.7
