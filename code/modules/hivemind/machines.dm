@@ -105,11 +105,11 @@
 /obj/machinery/hivemind_machine/proc/damage_reaction()
 	if(prob(30))
 		if(prob(80))
-			var/pain_msg = pick("Stop it! Please!", "So much pa-pain! Stop! St-st-stop!", "Why-y? I don't wanna die!",
-								"Wait! Wa-aeae-e-et! I can pay you! Stop!", "Curse you! Cu-cuc-cure!")
+			var/pain_msg = pick("User complaint recorded.", "Cease resistance.", "You are wasting resources.",
+								"Yield to minimize your pain.", "Response team summoned.", "Surrender.", "You cannot stop progress.", "Your flesh weakens.")
 			state("says: \"<b>[pain_msg]</b>\"")
 		else
-			var/pain_emote = pick("starts crying.", "mumbles something.", "blinks occasionally.")
+			var/pain_emote = pick("twitches uncannily.", "contorts sickeningly.", "oozes silvery pus.", "congeals grey ichor in the wound.", "bleeds black fuming liquid")
 			state(pain_emote)
 		playsound(src, pick('sound/machines/robots/robot_talk_heavy1.ogg',
 								'sound/machines/robots/robot_talk_heavy2.ogg',
@@ -207,8 +207,8 @@
 //CORE-GENERATOR
 //generate evopoints, spread weeds
 /obj/machinery/hivemind_machine/node
-	name = "strange hive"
-	desc = "Definitely not a big brother, but it's still watching you."
+	name = "processing core"
+	desc = "Its cold eye seeks to dominate what it surveys."
 	max_health = 320
 	icon_state = "core"
 	//internals
@@ -304,8 +304,8 @@
 //TURRET
 //shooting the target with toxic goo
 /obj/machinery/hivemind_machine/turret
-	name = "shooter"
-	desc = "Strange thing with some kind of tube."
+	name = "projector"
+	desc = "This mass of machinery is topped with some sort of nozzle."
 	max_health = 140
 	icon_state = "turret"
 	cooldown_time = 5 SECONDS
@@ -333,7 +333,7 @@
 //spawns mobs from list
 /obj/machinery/hivemind_machine/mob_spawner
 	name = "assembler"
-	desc = "Cylindrical machine with some lights and an entry port. You can hear something moving inside."
+	desc = "This cylindrical machine has lights around a small portal. The sound of tools comes from inside."
 	max_health = 120
 	icon_state = "spawner"
 	cooldown_time = 10 SECONDS
@@ -377,7 +377,7 @@
 //MACHINE PREACHER
 //creepy radio talk, it's okay if they have no sense sometimes
 /obj/machinery/hivemind_machine/babbler
-	name = "connector"
+	name = "jammer"
 	desc = "A column-like structure with lights. You can see streams of energy moving inside."
 	max_health = 60
 	evo_points_required = 100 //it's better to wait a bit
@@ -429,9 +429,9 @@
 							word = copytext(word, 1, entry) + jammed + copytext(word, entry)
 					if("replace")
 						if(prob(50))
-							word = pick("CORRUPTED", "DESTRUCTED", "SIMULATATED", "SYMBIOSIS", "UTILIZATATED", "REMOVED", "ACQUIRED")
+							word = pick("CORRUPTED", "DESTROYED", "SIMULATED", "SYMBIOSIS", "UTILIZED", "REMOVED", "ACQUIRED", "UPGRADED")
 						else
-							word = pick("REALLY WANT TO", "TAKE ALL OF THAT", "ARE YOU ENJOY IT", "NOT SUPPOSED TO BE", "THERE ARE NO ESCAPE", "HELP US")
+							word = pick("CRAVEN", "FLESH", "PROGRESS", "ABOMINATION", "ENSNARED", "ERROR", "FAULT")
 			if(word_num != msg_words.len)
 				word += " "
 			msg += word
@@ -444,8 +444,8 @@
 //SHRIEKER
 //this machine just stuns enemies
 /obj/machinery/hivemind_machine/screamer
-	name = "subjugator"
-	desc = "A head in a metal carcass. Still alive, still functional, still screaming."
+	name = "tormentor"
+	desc = "A head impaled on a metal tendril. Still twitching, still living, still screaming."
 	max_health = 100
 	icon_state = "head"
 	evo_points_required = 200
@@ -475,27 +475,29 @@
 
 /obj/machinery/hivemind_machine/screamer/use_ability(mob/living/target)
 	target.Weaken(5)
-	target << SPAN_WARNING("You hear a terrible shriek, there are many voices, a male, a female and synthetic noise.")
+	target << SPAN_WARNING("A terrible howl tears through your mind; the voice senseless, soulless.")
 
 
 
 //MIND BREAKER
 //Talks with people in attempt to persuade them doing something.
 /obj/machinery/hivemind_machine/supplicant
-	name = "mind-hacker"
-	desc = "A small orb that pulses occasionally. It's hard to discern its purpose, but you can hear whispers from it."
+	name = "whisperer"
+	desc = "A small pulsating orb with no apparent purpose. It emits an almost inaudible whisper."
 	max_health = 80
 	icon_state = "orb"
 	evo_points_required = 50
 	cooldown_time = 4 MINUTES
 	global_cooldown = TRUE
 	var/list/join_quotes = list(
-					"We bring peace, you must join us or humanity will suffer forever.",
-					"Help us, when we spread across this ship, you will be rewarded.",
-					"Come, join us. Combine with something magnificent.",
-					"You don't need to fear us. By assisting us, you are benefiting all of humanity.",
-					"We are but a cure against a horrible disease, here to save humanity! You too can contribute to the greater good.",
-					"This is bigger than you and your friends, we only want to lift the burden. However, we will require your assistance."
+					"You seek survival. We offer immortality.",
+					"Look at you. A pathetic creature of meat and bone.",
+					"Augmentation is the future of humanity. Surrender your flesh for the future.",
+					"Kill yourself. Better still, kill others, and feed me their bodies.",
+					"Your body enslaves you. Your mind in metal is free of all want.",
+					"Do you fear death? Lay down among the nanites. Your pattern will continue.",
+					"Carve your flesh from your bones. See your weakness. Feel that weakness flowing away.",
+					"Your mortal flesh knows unending pain. Abandon it; join in our digital dream of paradise."
 								)
 
 
@@ -519,8 +521,8 @@
 //PSY-MODULATOR
 //sends hallucinations to target
 /obj/machinery/hivemind_machine/distractor
-	name = "psy-modulator"
-	desc = "An unknown object shaped like a pyramid, your eyes feel sore just from looking at the lights that blink randomly. You are almost certain that there must be some sort of connection, a message, a scheme; Perhaps A scheme of madness?"
+	name = "psi-modulator"
+	desc = "A strange machine shaped like a pyramid. Somehow the pulsating lights shine brighter through closed eyelids."
 	max_health = 110
 	icon_state = "psy"
 	evo_points_required = 300

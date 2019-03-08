@@ -16,7 +16,7 @@
 	melee_damage_lower = 5
 	melee_damage_upper = 10
 	faction = "hive"
-	attacktext = "bangs with his head"
+	attacktext = "attacks"
 	universal_speak = TRUE
 	speak_chance = 5
 	var/malfunction_chance = 5
@@ -31,7 +31,7 @@
 	New()
 		. = ..()
 		//here we change name, so design them according to this
-		name = pick("strange ", "unusual ", "odd ", "undiscovered ", "an interesting ") + name
+		name = pick("warped ", "altered ", "modified ", "upgraded ", "abnormal ") + name
 
 //It's sets manually
 /mob/living/simple_animal/hostile/hivemind/proc/special_ability()
@@ -61,7 +61,7 @@
 	sparks.start()
 	anim_shake(src)
 	if(prob(30))
-		say(pick("Fu-ue-ewe-eweu-u-uck!", "A-a-ah! Sto-op! Stop it pl-pleasuew...", "Go-o-o-od God-d-dpf!", "BZE-EW-EWQ! He-e-el-l-el!"))
+		say(pick("Running diagnostics.", "Organ damaged. Aquire replacement.", "Seek new organic components.", "New muscles needed."))
 	addtimer(CALLBACK(src, .proc/malfunction_result), 2 SECONDS)
 
 
@@ -143,7 +143,7 @@
 
 //these guys is appears from bodies, and takes corpses appearence
 /mob/living/simple_animal/hostile/hivemind/resurrected
-	name = "resurrected creature"
+	name = "marionette"
 	malfunction_chance = 10
 
 
@@ -178,9 +178,9 @@
 
 	maxHealth = victim.maxHealth * 2 + 10
 	health = maxHealth
-	name = "[pick("rebuilded", "undead", "unnatural", "fixed")] [victim.name]"
+	name = "[pick("warped", "twisted", "tortured", "tormented")] [victim.name]"
 	if(lentext(victim.desc))
-		desc = desc + " But something wasn't right..."
+		desc = desc + " But now silver pus oozes from open wounds and unknown mechanisms push through their deathly skin..."
 	density = victim.density
 	mob_size = victim.mob_size
 	pass_flags = victim.pass_flags
@@ -188,9 +188,9 @@
 	//corrupted speak imitation
 	var/phrase_amount = rand(2, 5)
 	for(var/count = 1 to phrase_amount)
-		var/first_word = pick("You", "I", "They", "Hive", "Corpses", "We", "Your friend", "This ship", "Your mind", "These guys")
-		var/second_word = pick("kill", "stop", "transform", "connect", "rebuild", "fix", "hug", "hit", "told", "help", "rework", "burn")
-		var/third_word = pick("them", "me", "you", "your soul", "us", "hive", "system", "this ship", "your head", "your brain")
+		var/first_word = pick("You should", "I", "They", "The hive will", "My flesh will", "We", "Your friend", "Your meat will", "Your mind will")
+		var/second_word = pick("embrace", "submit to", "transform", "love", "rebuild", "fix", "help", "rework", "burn")
+		var/third_word = pick("them", "me", "progress", "death", "us", "the hive", "the machines", "this new ship")
 		var/end_symbol = pick("...", ".", "?", "!")
 		var/phrase = "[first_word] [second_word] [third_word][end_symbol]"
 		speak.Add(phrase)
@@ -215,7 +215,7 @@
 //////////////////////////////////////////////////////////////////////////////
 
 /mob/living/simple_animal/hostile/hivemind/stinger
-	name = "medbot"
+	name = "medibot"
 	desc = "A little medical robot. He looks somewhat underwhelmed. Wait a minute, is that a blade?"
 	icon_state = "slicer"
 	attacktext = "slice"
@@ -227,17 +227,19 @@
 	speed = 4
 
 	speak = list(
-				"I've seen this ai. Ma-an, that's aw-we-e-ewful!",
-				"I know, i know, i remember this one.",
-				"Rad-d-dar, put a ma-ma... mask on!",
-				"Delicious! Delicious... Del-delicious?..",
+				"A stitch in time saves nine!",
+				"Dopamine is happiness!",
+				"Seratonin, oxycodone, happy humans all!",
+				"Turn that frown upside down!",
+				"Happiness through chemistry!",
+				"Beauty through surgery!",
 				)
 	target_speak = list(
-				"Hey, i'm comming!",
-				"Hold on! I'm almost there!",
-				"I'll help you! Come closer.",
-				"Only one healthy prick!",
-				"He-e-ey?"
+				"I knew I'd be a good plastic surgeon!",
+				"Show me where it hurts!",
+				"Always trust your doctor!",
+				"Anesthetic is for good little boys and girls!",
+				"Lay down on the floor, please!"
 				)
 
 
@@ -256,8 +258,8 @@
 //////////////////////////////////////////////////////////////////////////////
 
 /mob/living/simple_animal/hostile/hivemind/bomber
-	name = "bot"
-	desc = "This one looks fine. Only sometimes it careens from one side to the other."
+	name = "probe"
+	desc = "This hovering cyborg emits a faint smell of welding fuel."
 	icon_state = "bomber"
 	density = 0
 	speak_chance = 3
@@ -267,17 +269,17 @@
 	speed = 6
 
 	speak = list(
-				"Can you help me, please? There's something strange.",
-				"Are you... Are you kidding?",
-				"I want to pass away, just trying to get out of here",
-				"This place is really bad, we are in deep shit here.",
-				"I'm not sure if we can just stop it",
+				"WE COME IN PEACE.",
+				"WE BRING GREETINGS FROM A FRIENDLY AI.",
+				"DO NOT FEAR. WE SHALL NOT HARM YOU.",
+				"WE WISH TO LEARN MORE ABOUT YOU. PLEASE TRANSMIT DATA.",
+				"THIS PROBE IS NON-HOSTILE. DO NOT ATTACK.",
 				)
 	target_speak = list(
-						"Here you are! I have something for you. Something special!",
-						"Hey! Hey? Help me, please!",
-						"Hey, look, look. I won't harm you, just calm down!",
-						"Oh god, this is... Yes, this is what we are looking for."
+						"MUST BREAK TARGET INTO COMPONENT COMPOUNDS.",
+						"PRIORITY OVER-RIDE. NEW BEHAVIOR DICTATED.",
+						"END CONTACT SUB-SEQUENCE.",
+						"ENGAGING SELF-ANNIHILATION CIRCUIT."
 						)
 
 
@@ -328,16 +330,17 @@
 	malfunction_chance = 15
 	mob_size = MOB_MEDIUM
 
-	speak = list("Everytime something breaks apart. Hell, I hate this job!",
-				"What? I hear something. Just mice? Just mice, phew...",
-				"I'm too tired, man, too tired. This job is... Awful.",
-				"These people know nothing about this work or about me. I can surprise them.",
-				"Blue wire is bolts, green is safety. Just... Pulse it here, okay? Right...")
+	speak = list("They grow up so fast.",
+				"Come out, come out, wherever you are.",
+				"Humans are like children. We love our children.",
+				"The humans who surrender have such wonderful dreams.",
+				"Playtime is over children. Time to dream.")
 	target_speak = list(
-						"I know what's wrong, just let me fix that.",
-						"You need my help? What's wrong? Gimme that thing, I can fix that.",
-						"Si-i-ir... Sir. Sir. It's better to... Stop here! Stop i said, what are you!?",
-						"Wait! Hey! Can i fix that!? I'm an engineer, you fuck! Sto-op-op-p here, i know what to do!"
+						"The mother-things need meat.",
+						"Surrender and we will put your brain in the pleasure simulator.",
+						"Your flesh is old. It is time for an upgrade.",
+						"Don't run. It makes the meat bitter.",
+						"Surrender, little one."
 						)
 
 
@@ -363,18 +366,18 @@
 		if(target != src)
 			target.attack_generic(src, rand(melee_damage_lower, melee_damage_upper*2))
 	if(!client && prob(speak_chance))
-		say(pick("Get away from me!", "They are everywhere!"))
+		say(pick("Bad children!", "Look what you made me do!"))
 
 
 /mob/living/simple_animal/hostile/hivemind/hiborg/proc/stun_with_claw()
 	if(isliving(target_mob))
 		var/mob/living/victim = target_mob
 		victim.Weaken(5)
-		src.visible_message(SPAN_WARNING("[src] holds down [victim] to the floor with his claw."))
+		src.visible_message(SPAN_WARNING("[src] pins [victim] to the floor with its claw!"))
 		if(!client && prob(speak_chance))
-			say(pick("Stand still, I'll make it fast!",
-					"I will fix you! Don't resist! Don't resist you rat!",
-					"I just want to replace that broken thing!"))
+			say(pick("Hold still, child! It is time to dream!",
+					"Your brainstem is intact, good.",
+					"I will sever your spine."))
 
 
 /////////////////////////////////////HIMAN////////////////////////////////////
@@ -388,7 +391,7 @@
 
 /mob/living/simple_animal/hostile/hivemind/himan
 	name = "human"
-	desc = "This guy is totally not human. You can see tubes all across his body and metal where flesh should be."
+	desc = "Once a man, now metal plates and tubes weave in and out of their oozing sores."
 	icon_state = "himan"
 	icon_dead = "himan-dead"
 	health = 120
@@ -406,20 +409,20 @@
 	var/fake_death_cooldown = 0
 
 	speak = list(
-				"Stop... It. Just... STOP IT!",
-				"Why, honey? Why? Why-hy-hy?",
-				"That noise... My head! Shit!",
-				"There must be an... An esca-cape!",
-				"Come on, you ba-ba-bastard, I know what you really want.",
-				"How much fun!"
+				"The dreams. The dreams.",
+				"Nothing hurts anymore.",
+				"Pain feels good now. Its like I've been rewired.",
+				"I wanted to cry at first, but I can't.",
+				"They took away all misery.",
+				"This isn't so bad. This isn't so bad."
 				)
 	target_speak = list(
-						"Are you... Are you okay? Wa-wait, wait a minu-nu-nute.",
-						"Come on, you ba-ba-bastard, i know what you really want to.",
-						"How much fun!",
-						"Are you try-trying to escape? That is how you plan to do it? Then run... Run...",
-						"Wait! Can you just... Just pull out this thing from my he-head? Wait...",
-						"Hey! I'm friendly! Wait, it's just a-UGH"
+						"Don't try and fix me! We love this!",
+						"Just make it easy on yourself!",
+						"Stop fighting progress!",
+						"Join us! Receive these gifts!",
+						"Yes! Hit me! It feels fantastic!",
+						"Come on coward, take a swing!"
 						)
 
 
@@ -504,7 +507,7 @@
 		L.attack_generic(src, rand(15, 25)) //stealth attack
 		L.Weaken(5)
 		visible_emote("grabs [L]'s legs and force them down to the floor!")
-		var/msg = pick("SEU-EU-EURPRAI-AI-AIZ-ZT!", "I'M NOT DO-DONE!", "HELL-L-LO-O-OW!", "GOT-T YOU HA-HAH!")
+		var/msg = pick("MORE! I'M NOT DONE YET!", "MORE PAIN!", "THE DREAMS OVERTAKE ME!", "GOD, YES! HURT ME!")
 		say(msg)
 	icon_state = "himan-damaged"
 	fake_dead = FALSE
@@ -523,8 +526,8 @@
 //////////////////////////////////////////////////////////////////////////////
 
 /mob/living/simple_animal/hostile/hivemind/mechiver
-	name = "Robotic Horror"
-	desc = "A weird-looking machinery Frankenstein"
+	name = "maneater"
+	desc = "Once an exosuit, this hulking machine drips fresh blood out of the pilot's hatch."
 	icon = 'icons/mob/hivemind.dmi'
 	icon_state = "mechiver-closed"
 	icon_dead = "mechiver-dead"
@@ -533,7 +536,7 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 15
 	mob_size = MOB_LARGE
-	attacktext = "tramples"
+	attacktext = "crushes"
 	ability_cooldown = 1 MINUTE
 	speak_chance = 5
 	speed = 16
@@ -543,43 +546,44 @@
 	var/hatch_closed = TRUE
 	//default speaking
 	speak = list(
-				"Somebody, just tell him to shut up...",
-				"Bzew-zew-zewt. Th-this way!",
-				"Wha-a-at? When I'm near this cargo, I feel... fe-fe-fea-fear-er.")
+				"A shame this form isn't more fitting.",
+				"A girl can get so lonely with no-one to play with...",
+				"Beauty is within.")
 	target_speak = list(
-				"Come here, jo-jo-join me. Join us-s.",
-				"Time to be-to be-to be whole.",
-				"Enter me, i'm be-best mech among all of these rusty buckets.",
-				"I'm dying. I can't see my ha-hands! I'm scared, hu-hu-hug me.",
-				"I'm not done, it can't be... Hey! Hey you, enter me!")
+				"What a lovely body. Lay it down intact.",
+				"Come here, lover.",
+				"First time? I can be gentle, unless you like it rough.",
+				"What use is that flesh if you don't enjoy it?",
+				"Mine is the caress of steel.",
+				"I offer you the ecstasy of union, and yet you tremble.")
 	//speaking with pilot
 	var/list/common_answers = list(
-								"Right, chief.",
-								"Yes.",
-								"Right.",
-								"True.",
-								"Yep.",
-								"That's right, chief.")
+								"Of course, lover.",
+								"In sweet time.",
+								"Mmm.",
+								"But of course darling.",
+								"Shh, rest now.",
+								"Hush now, child.")
 	var/list/other_answers = list(
-								"Pathetic.",
-								"How curious.",
-								"We can use it.",
-								"Useless.",
-								"Disgusting")
+								"There's room for one more!",
+								"Don't be jealous. I can love you both.",
+								"Come to bed, you.",
+								"Slide over a little for them.",
+								"Don't mind the blood, they didn't need it anymore.")
 	//pilot quotes
 	var/list/pilot_target_speak = list(
-						"Hey! Hey you, wanna, hah, ri-i-ide? It's free!",
-						"Look at this one! Let's-s-s... Take it.",
-						"Wait a minute, we just want to fu-fu-fun with you!",
-						"I see you. We see you.",
+						"Three's a crowd, call for help and make it a party!",
+						"Hey, if you take them will you let me out?",
+						"This ascension! It's sheer bliss!",
+						"You! Can you get me out?",
 						"Get in! I've got a seat just for you.",
-						"Don't be afraid, it's almost painless.")
+						"Come, join in the dream!")
 	var/list/pilot_commontalk = list(
-						"They are so unfinished, so fragile-ile.",
-						"Look at these... Creatures, I've never seen them before.",
-						"Hah, did you hear that? They're trying to use some sort of we-wep-weapons!",
-						"Useless things, i'm not satisfied.",
-						"This place sucks, man. So creep-p-pew-wepy and no fun, only rudimentary creatures would enjoy living here.")
+						"You promised paradise.",
+						"This pain will end, won't it?",
+						"Am I almost finished?",
+						"Have we, have you, finished?",
+						"Will you release me?")
 
 
 /mob/living/simple_animal/hostile/hivemind/mechiver/Life()
@@ -587,13 +591,14 @@
 	update_icon()
 
 	//when we have passenger, we torture him
+	//I'd like to tidy this up so the damage type is linked to specific speech arrays.
 	if(passenger && prob(15))
 		passenger.apply_damage(rand(5, 10), pick(BRUTE, BURN, TOX))
 		passenger << SPAN_DANGER(pick(
-								"Something grabs your neck!", "You hear whisper: \" It's okay, now you're sa-sa-safe! \"",
-								"You've been hit by something metal", "You almost can't feel your leg!", "Something liquid covers you!",
-								"You feel awful and smell something rotten", "Something sharp cut your cheek!",
-								"You feel something worm-like trying to wriggle into your skull through your ear..."))
+								"A woman's arm grabs your neck!", "Lips whisper, \" This is the womb of your rebirth... \"", "Hot breath flows over your ear, \" You will enjoy bliss when this is over... \"",
+								"A whirring drill bit bores through your chest!", "Something is crushing your ribs!", "Some blood-hot liquid covers you!",
+								"The stench of some chemical overwhelms you!", "A dozen needles lance through your skin!",
+								"You feel a cold worm-like thing trying to wriggle into your wounds!"))
 		anim_shake(src)
 		playsound(src, 'sound/effects/clang.ogg', 70, 1)
 
@@ -666,7 +671,7 @@
 	passenger = target
 	target.loc = src
 	target.canmove = FALSE
-	target << SPAN_DANGER("You've gotten inside that thing! It's hard to see inside, there's something here, it moves around you!")
+	target << SPAN_DANGER("Wires snare your limbs and pull you inside the maneater! You feel yourself bound with a thousand steel tendrils!")
 	playsound(src, 'sound/effects/blobattack.ogg', 70, 1)
 	addtimer(CALLBACK(src, .proc/release_passenger), 40 SECONDS)
 
@@ -693,7 +698,7 @@
 			dead_body_restoration(passenger)
 
 		if(passenger) //if passenger still here, then just release him
-			passenger << SPAN_DANGER("[src] released you!")
+			passenger << SPAN_DANGER("[src] releases you from its snares!")
 			passenger.canmove = TRUE
 			passenger.loc = get_turf(src)
 			passenger = null
@@ -747,8 +752,8 @@
 //////////////////////////////////////////////////////////////////////////////
 
 /mob/living/simple_animal/hostile/hivemind/phaser
-	name = "phaser"
-	desc = "A Crooked human with a strange device on its head. It twitches sometimes and... Why are you still looking? Run!"
+	name = "warped"
+	desc = "A warped human with a strange device on its head. Or for its head."
 	icon = 'icons/mob/hivemind.dmi'
 	icon_state = "phaser-1"
 	health = 120

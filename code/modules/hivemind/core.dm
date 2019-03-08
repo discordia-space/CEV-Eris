@@ -32,12 +32,13 @@ var/datum/hivemind/hive_mind_ai
 
 /datum/hivemind/New()
 	..()
-	name = pick("Reclaimer", "Shaper", "Executor", "Assimilator",
-				"Exploiter", "Builder", "Creator",
-				"Connector", "Splicer", "Propagator")
+	name = pick("Von Neumann", "Lazarus", "Abattoir", "Auto-Surgeon", "NanoTrasen",
+				"NanoNurse", "Vivisector", "Ex Costa", "Apostasy", "Gnosis", "Balaam", "Ophite",
+				"Sarif", "VersaLife", "Slylandro", "SHODAN")
 
-	surname = pick("ALPHA", "BETA", "GAMMA", "DELTA", "OMEGA", "UTOPIA",
-					"SALVATION-X", "CHORUS", "ICARUS", "HEGEMONY", "HARMONY")
+	surname = pick("Mk I", "Mk II", "Mk III", "Mk IV", "Mk V", "v0.9",
+					"v1.0", "v2.0", "2418-B", "Open Beta", "Pre-Release")
+
 	var/list/all_machines = subtypesof(/obj/machinery/hivemind_machine) - /obj/machinery/hivemind_machine/node
 	//price list building
 	//here we create list with EP price to compare it at annihilation proc
