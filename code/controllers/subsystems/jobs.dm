@@ -329,15 +329,16 @@ SUBSYSTEM_DEF(job)
 	H.job = rank
 
 	// If they're head, give them the account info for their department
-	if(H.mind && job.head_position)
+	if(H.mind && (job.head_position || job.department_account_access))
 		var/remembered_info = ""
 		var/datum/money_account/department_account = department_accounts[job.department]
-		department_account.owner_name = H.real_name //Register them as the point of contact for this account
 		if(department_account)
 			remembered_info += "<b>Your department's account number is:</b> #[department_account.account_number]<br>"
 			remembered_info += "<b>Your department's account pin is:</b> [department_account.remote_access_pin]<br>"
 			remembered_info += "<b>Your department's account funds are:</b> [CREDS][department_account.money]<br>"
-		remembered_info += "<b>Your part of nuke code:</b> [SSticker.get_next_nuke_code_part()]<br>"
+		if(job.head_position)
+			remembered_info += "<b>Your part of nuke code:</b> [SSticker.get_next_nuke_code_part()]<br>"
+			department_account.owner_name = H.real_name //Register them as the point of contact for this account
 
 		H.mind.store_memory(remembered_info)
 

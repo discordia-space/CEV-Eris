@@ -22,20 +22,23 @@
 /datum/data/vending_product/New(var/vending_machine, var/path, var/name = null, var/amount = 1, var/price = 0, var/color = null, var/category = CAT_NORMAL)
 	..()
 
-	src.product_path = path
-	var/atom/tmp = path
+	product_path = path
+	var/obj/tmp = path
 
 	if(!name)
-		src.product_name = initial(tmp.name)
+		product_name = initial(tmp.name)
 	else
-		src.product_name = name
+		product_name = name
 
-	src.product_desc = initial(tmp.desc)
+	product_desc = initial(tmp.desc)
 	src.amount = amount
 	src.price = price
-	src.display_color = color
+	display_color = color
 	src.category = category
 	src.vending_machine = vending_machine
+
+	if(src.price <= 0 && src.vending_machine.auto_price)
+		src.price = initial(tmp.price_tag)
 
 /datum/data/vending_product/Destroy()
 	vending_machine.product_records.Remove(src)
@@ -141,11 +144,13 @@
 	var/vendor_department = null //If set, members can manage this vendomat. earnings_account is set to the department's account automatically.
 	var/buying_percentage = 0 //If set, the vendomat will accept people selling items to it, and in return will give (percentage * listed item price) in cash
 	var/scan_id = 1
+	var/auto_price = TRUE //The vendomat will automatically set prices on products if their price is not specified.
 	var/obj/item/weapon/coin/coin
 	var/datum/wires/vending/wires = null
 	var/always_open	=	FALSE  // If true, this machine allows products to be inserted without requirinf the maintenance hatch to be screwed open first
 	var/list/can_stock = list()	//A whitelist of objects which can be stocked into this vendor
 	//Note that a vendor can always accept restocks of things it has had in the past. This is in addition to that
+	var/no_criminals = FALSE //If true, the machine asks if you're wanted by security when you try to order.
 
 /obj/machinery/vending/New()
 	..()
@@ -160,18 +165,18 @@
 
 /obj/machinery/vending/LateInitialize()
 	..()
-	if(src.product_slogans)
-		src.slogan_list += splittext(src.product_slogans, ";")
+	if(product_slogans)
+		slogan_list += splittext(product_slogans, ";")
 
 		// So not all machines speak at the exact same time.
 		// The first time this machine says something will be at slogantime + this random value,
 		// so if slogantime is 10 minutes, it will say it at somewhere between 10 and 20 minutes after the machine is crated.
-		src.last_slogan = world.time + rand(0, slogan_delay)
+		last_slogan = world.time + rand(0, slogan_delay)
 
-	if(src.product_ads)
-		src.ads_list += splittext(src.product_ads, ";")
+	if(product_ads)
+		ads_list += splittext(src.product_ads, ";")
 
-	src.build_inventory()
+	build_inventory()
 	power_change()
 
 
@@ -213,12 +218,12 @@
 	if(earnings_account.money < buying_price)
 		user << SPAN_WARNING("[src] flashes a message: Account is unable to make this purchase.")
 		return
-	var/datum/transaction/T = new(-buying_price, "[user.name] (via [src.name])", "Sale of [R.product_name]", name)
+	var/datum/transaction/T = new(-buying_price, "[user.name] (via [name])", "Sale of [R.product_name]", name)
 	T.apply_to(earnings_account)
 
 	R.add_product(W)
 
-	spawn_money(buying_price,src.loc,usr)
+	spawn_money(buying_price,loc,usr)
 
 	user << SPAN_NOTICE("[src] accepts the sale of [W] and dispenses [buying_price] credits.")
 
@@ -235,9 +240,9 @@
  */
 /obj/machinery/vending/proc/build_inventory()
 	var/list/all_products = list(
-		list(src.products, CAT_NORMAL),
-		list(src.contraband, CAT_HIDDEN),
-		list(src.premium, CAT_COIN))
+		list(products, CAT_NORMAL),
+		list(contraband, CAT_HIDDEN),
+		list(premium, CAT_COIN))
 
 	for(var/current_list in all_products)
 		var/category = current_list[2]
@@ -245,11 +250,11 @@
 		for(var/entry in current_list[1])
 			var/datum/data/vending_product/product = new/datum/data/vending_product(src, entry)
 
-			product.price = (entry in src.prices) ? src.prices[entry] : 0
+			product.price = (entry in prices) ? prices[entry] : product.price
 			product.amount = (current_list[1][entry]) ? current_list[1][entry] : 1
 			product.category = category
 
-			src.product_records.Add(product)
+			product_records.Add(product)
 
 
 //This is used when a user inserts something during the round which wasn't previously a product
@@ -258,7 +263,7 @@
 	product.amount = 1
 	product.price = I.get_item_cost()
 	playsound(loc, 'sound/machines/vending_drop.ogg', 100, 1)
-	src.product_records.Add(product)
+	product_records.Add(product)
 	product.instances.Add(I)
 	I.forceMove(src)
 	return product
@@ -286,7 +291,7 @@
 		if(3.0)
 			if (prob(25))
 				spawn(0)
-					src.malfunction()
+					malfunction()
 					return
 				return
 		else
@@ -300,7 +305,7 @@
 		earnings_account = null
 		return 1
 	if (!emagged)
-		src.emagged = 1
+		emagged = 1
 		user << "You short out the product lock on \the [src]"
 		return 1
 
@@ -319,10 +324,10 @@
 			var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
 				panel_open = !panel_open
-				user << SPAN_NOTICE("You [src.panel_open ? "open" : "close"] the maintenance panel.")
+				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance panel.")
 				overlays.Cut()
-				if(src.panel_open)
-					src.overlays += image(src.icon, "[icon_type]-panel")
+				if(panel_open)
+					overlays += image(icon, "[icon_type]-panel")
 				SSnano.update_uis(src)
 			return
 
@@ -332,12 +337,12 @@
 					usr << SPAN_WARNING("The maintenance panel on \the [src] needs to be open before deconstructing it.")
 					return
 				if(I.use_tool(user, src, WORKTIME_EXTREMELY_LONG, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					src.visible_message(SPAN_WARNING("\The [src] has been dismantled by [user]!"),"You hear welding.")
-					new /obj/item/stack/material/steel(src.loc, 8)
+					visible_message(SPAN_WARNING("\The [src] has been dismantled by [user]!"),"You hear welding.")
+					new /obj/item/stack/material/steel(loc, 8)
 					for(var/datum/data/vending_product/R in product_records)
 						for(var/obj/O in R.instances)
-							O.forceMove(src.loc)
-					new /obj/item/weapon/circuitboard/vending(src.loc)
+							O.forceMove(loc)
+					new /obj/item/weapon/circuitboard/vending(loc)
 					qdel(src)
 
 		if(ABORT_CHECK)
@@ -364,7 +369,7 @@
 			handled = 1
 
 		if(paid)
-			src.vend(currently_vending, usr)
+			vend(currently_vending, usr)
 			return
 		else if(handled)
 			SSnano.update_uis(src)
@@ -374,14 +379,14 @@
 		var/datum/money_account/user_account = get_account(ID.associated_account_number)
 		managing = 1
 		if (!user_account)
-			src.status_message = "Error: Unable to access account. Please contact technical support if problem persists."
-			src.status_error = 1
+			status_message = "Error: Unable to access account. Please contact technical support if problem persists."
+			status_error = 1
 			SSnano.update_uis(src)
 			return 0
 
 		if(user_account.suspended)
-			src.status_message = "Unable to access account: account suspended."
-			src.status_error = 1
+			status_message = "Unable to access account: account suspended."
+			status_error = 1
 			SSnano.update_uis(src)
 			return 0
 
@@ -392,11 +397,11 @@
 				var/datum/job/userjob = SSjob.GetJob(CR.get_job())
 				if(userjob.department == vendor_department)
 					locked = !locked
-					src.status_error = 0
-					src.status_message = "Affiliation confirmed. Vendor has been [locked ? "" : "un"]locked."
+					status_error = 0
+					status_message = "Affiliation confirmed. Vendor has been [locked ? "" : "un"]locked."
 				else
-					src.status_error = 1
-					src.status_message = "Error: You are not authorized to manage this Vendomat."
+					status_error = 1
+					status_message = "Error: You are not authorized to manage this Vendomat."
 				SSnano.update_uis(src)
 				return
 			// Enter PIN, so you can't loot a vending machine with only the owner's ID card (as long as they increased the sec level)
@@ -405,8 +410,8 @@
 				user_account = attempt_account_access(ID.associated_account_number, attempt_pin, 2)
 
 				if(!user_account)
-					src.status_message = "Unable to access account: incorrect credentials."
-					src.status_error = 1
+					status_message = "Unable to access account: incorrect credentials."
+					status_error = 1
 					SSnano.update_uis(src)
 					return 0
 			if(!machine_vendor_account)
@@ -414,8 +419,8 @@
 				earnings_account = user_account
 
 			locked = !locked
-			src.status_error = 0
-			src.status_message = "Owner confirmed. Vendor has been [locked ? "" : "un"]locked."
+			status_error = 0
+			status_message = "Owner confirmed. Vendor has been [locked ? "" : "un"]locked."
 			playsound(usr.loc, 'sound/machines/id_swipe.ogg', 60, 1)
 			visible_message("<span class='info'>\The [usr] swipes \the [ID] through \the [src], [locked ? "" : "un"]locking it.</span>")
 			SSnano.update_uis(src)
@@ -426,7 +431,7 @@
 		return
 
 	else if((QUALITY_CUTTING in I.tool_qualities) || (QUALITY_WIRE_CUTTING in I.tool_qualities) || (QUALITY_PULSING in I.tool_qualities))
-		if(src.panel_open)
+		if(panel_open)
 			attack_hand(user)
 		return
 	else if(istype(I, /obj/item/weapon/coin) && premium.len > 0)
@@ -440,7 +445,7 @@
 
 	for(var/datum/data/vending_product/R in product_records)
 		if(I.type == R.product_path)
-			if (!locked || always_open)
+			if (!locked || always_open || (panel_open && !custom_vendor))
 				stock(I, R, user)
 				return 1
 			else if (custom_vendor)
@@ -486,8 +491,8 @@
 /obj/machinery/vending/proc/pay_with_ewallet(var/obj/item/weapon/spacecash/ewallet/wallet)
 	visible_message("<span class='info'>\The [usr] swipes \the [wallet] through \the [src].</span>")
 	if(currently_vending.price > wallet.worth)
-		src.status_message = "Insufficient funds on chargecard."
-		src.status_error = 1
+		status_message = "Insufficient funds on chargecard."
+		status_error = 1
 		return 0
 	else
 		wallet.worth -= currently_vending.price
@@ -507,13 +512,13 @@
 		visible_message("<span class='info'>\The [usr] swipes \the [ID_container] through \the [src].</span>")
 	var/datum/money_account/customer_account = get_account(I.associated_account_number)
 	if (!customer_account)
-		src.status_message = "Error: Unable to access account. Please contact technical support if problem persists."
-		src.status_error = 1
+		status_message = "Error: Unable to access account. Please contact technical support if problem persists."
+		status_error = 1
 		return 0
 
 	if(customer_account.suspended)
-		src.status_message = "Unable to access account: account suspended."
-		src.status_error = 1
+		status_message = "Unable to access account: account suspended."
+		status_error = 1
 		return 0
 
 	// Have the customer punch in the PIN before checking if there's enough money. Prevents people from figuring out acct is
@@ -523,19 +528,19 @@
 		customer_account = attempt_account_access(I.associated_account_number, attempt_pin, 2)
 
 		if(!customer_account)
-			src.status_message = "Unable to access account: incorrect credentials."
-			src.status_error = 1
+			status_message = "Unable to access account: incorrect credentials."
+			status_error = 1
 			return 0
 
 	if(currently_vending.price > customer_account.money)
-		src.status_message = "Insufficient funds in account."
-		src.status_error = 1
+		status_message = "Insufficient funds in account."
+		status_error = 1
 		return 0
 	else
 		// Okay to move the money at this point
 
 		// create entry in the purchaser's account log
-		var/datum/transaction/T = new(-currently_vending.price, "[earnings_account.get_name()] (via [src.name])", "Purchase of [currently_vending.product_name]", name)
+		var/datum/transaction/T = new(-currently_vending.price, "[earnings_account.get_name()] (via [name])", "Purchase of [currently_vending.product_name]", name)
 		T.apply_to(customer_account)
 
 		// Give the vendor the money. We use the account owner name, which means
@@ -560,7 +565,7 @@
 	if(stat & (BROKEN|NOPOWER))
 		return
 
-	if(src.seconds_electrified != 0)
+	if(seconds_electrified != 0)
 		if(src.shock(user, 100))
 			return
 
@@ -584,26 +589,26 @@
 
 	if(managing)
 		data["mode"] = 2
-		data["message"] = src.status_message
-		data["message_err"] = src.status_error
+		data["message"] = status_message
+		data["message_err"] = status_error
 	else if(currently_vending)
 		data["mode"] = 1
 		data["product"] = currently_vending.product_name
 		data["description"] = currently_vending.product_desc
 		data["price"] = currently_vending.price
 		data["message_err"] = 0
-		data["message"] = src.status_message
-		data["message_err"] = src.status_error
+		data["message"] = status_message
+		data["message_err"] = status_error
 	else
 		data["advertisement"] = ads_list.len ? pick(ads_list) : null
 		data["markup"] = buying_percentage
 		data["mode"] = 0
 		var/list/listed_products = list()
 
-		for(var/key = 1 to src.product_records.len)
-			var/datum/data/vending_product/I = src.product_records[key]
+		for(var/key = 1 to product_records.len)
+			var/datum/data/vending_product/I = product_records[key]
 
-			if(!(I.category & src.categories))
+			if(!(I.category & categories))
 				continue
 
 			listed_products.Add(list(list(
@@ -615,18 +620,18 @@
 
 		data["products"] = listed_products
 
-	if(src.coin)
-		data["coin"] = src.coin.name
+	if(coin)
+		data["coin"] = coin.name
 
-	if(src.panel_open)
+	if(panel_open)
 		data["panel"] = 1
-		data["speaker"] = src.shut_up ? 0 : 1
+		data["speaker"] = shut_up ? 0 : 1
 	else
 		data["panel"] = 0
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "vending_machine.tmpl", src.name, 440, 600)
+		ui = new(user, src, ui_key, "vending_machine.tmpl", name, 440, 600)
 		ui.set_initial_data(data)
 		ui.open()
 
@@ -641,15 +646,15 @@
 			usr << "There is no coin in this machine."
 			return
 
-		coin.loc = src.loc
+		coin.loc = loc
 		if(!usr.get_active_hand())
 			usr.put_in_hands(coin)
 		usr << SPAN_NOTICE("You remove the [coin] from the [src]")
 		coin = null
 		categories &= ~CAT_COIN
 
-	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
-		if ((href_list["vend"]) && (src.vend_ready) && (!currently_vending))
+	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(loc, /turf))))
+		if ((href_list["vend"]) && (vend_ready) && (!currently_vending))
 			if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
 				usr << SPAN_WARNING("Access denied.")	//Unless emagged of course
 				flick(icon_deny,src)
@@ -659,22 +664,24 @@
 			var/datum/data/vending_product/R = product_records[key]
 
 			// This should not happen unless the request from NanoUI was bad
-			if(!(R.category & src.categories))
+			if(!(R.category & categories))
 				return
 
-			if(R.price <= 0 || !src.locked)
-				src.vend(R, usr)
+			if(R.price <= 0 || !locked)
+				vend(R, usr)
 			else if(issilicon(usr)) //If the item is not free, provide feedback if a synth is trying to buy something.
 				usr << SPAN_DANGER("Artificial unit recognized.  Artificial units cannot complete this transaction.  Purchase canceled.")
 				return
 			else
-				src.currently_vending = R
+				currently_vending = R
 				if(!earnings_account || earnings_account.suspended)
-					src.status_message = "This machine is currently unable to process payments due to problems with the associated account."
-					src.status_error = 1
+					status_message = "This machine is currently unable to process payments due to problems with the associated account."
+					status_error = 1
 				else
-					src.status_message = "Please swipe a card or insert cash to pay for the item."
-					src.status_error = 0
+					status_message = "Please swipe a card or insert cash to pay for the item."
+					if(no_criminals)
+						status_message += " We are legally required to ask if you are currently wanted by any law enforcement organizations. If so, please cancel the purchase, announce your location to local law enforcement and wait for them to collect you."
+					status_error = 0
 
 		else if (href_list["setprice"] && !locked)
 			var/key = text2num(href_list["setprice"])
@@ -689,31 +696,31 @@
 			qdel(R)
 
 		else if (href_list["return"])
-			src.managing = FALSE
+			managing = FALSE
 
 		else if (href_list["management"])
-			src.managing = TRUE
-			src.status_message = "Welcome to the management screen."
-			src.status_error = 0
+			managing = TRUE
+			status_message = "Welcome to the management screen."
+			status_error = 0
 
 		else if (href_list["setaccount"])
 			var/datum/money_account/newaccount = get_account(input("Please enter the number of the account that will handle transactions for this Vendomat.", "Vendomat Account", null) as num | null)
 			if(!newaccount)
-				src.status_message = "No account specified. No change to earnings account has been made."
+				status_message = "No account specified. No change to earnings account has been made."
 			else
 				var/input_pin = input("Please enter the PIN for this account.", "Account PIN", null) as num | null
 				if(input_pin == newaccount.remote_access_pin)
-					src.status_message = "This Vendomat will now use the specified account, owned by [newaccount.get_name()]."
-					src.status_error = 0
+					status_message = "This Vendomat will now use the specified account, owned by [newaccount.get_name()]."
+					status_error = 0
 					earnings_account = newaccount
 				else
-					src.status_message = "Error: PIN incorrect. No change to earnings account has been made."
-					src.status_error = 1
+					status_message = "Error: PIN incorrect. No change to earnings account has been made."
+					status_error = 1
 
 		else if (href_list["markup"])
 			if(vendor_department)
-				src.status_message = "Error: Department Vendomats are not authorized to buy items for fraud concerns."
-				src.status_error = 1
+				status_message = "Error: Department Vendomats are not authorized to buy items for fraud concerns."
+				status_error = 1
 			else
 				var/newpercent = input("Please enter the percentage of the sale value the Vendomat should offer when purchasing items. Set to 0 to deny sales.", "Markup", null) as num | null
 				if(newpercent)
@@ -723,27 +730,27 @@
 			set_department()
 
 		else if (href_list["unregister"])
-			src.machine_vendor_account = null
-			src.earnings_account = null
+			machine_vendor_account = null
+			earnings_account = null
 
 		else if (href_list["cancelpurchase"])
-			src.currently_vending = null
+			currently_vending = null
 
-		else if ((href_list["togglevoice"]) && (src.panel_open))
-			src.shut_up = !src.shut_up
+		else if ((href_list["togglevoice"]) && (panel_open))
+			shut_up = !shut_up
 
-		src.add_fingerprint(usr)
+		add_fingerprint(usr)
 		playsound(usr.loc, 'sound/machines/button.ogg', 100, 1)
 		SSnano.update_uis(src)
 
 /obj/machinery/vending/proc/vend(datum/data/vending_product/R, mob/user)
 	if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
 		usr << SPAN_WARNING("Access denied.")	//Unless emagged of course
-		flick(src.icon_deny,src)
+		flick(icon_deny,src)
 		return
-	src.vend_ready = 0 //One thing at a time!!
-	src.status_message = "Vending..."
-	src.status_error = 0
+	vend_ready = 0 //One thing at a time!!
+	status_message = "Vending..."
+	status_error = 0
 	SSnano.update_uis(src)
 
 	if (R.category & CAT_COIN)
@@ -761,20 +768,20 @@
 			qdel(coin)
 			categories &= ~CAT_COIN
 
-	if(((src.last_reply + (src.vend_delay + 200)) <= world.time) && src.vend_reply)
+	if(((last_reply + (vend_delay + 200)) <= world.time) && vend_reply)
 		spawn(0)
-			src.speak(src.vend_reply)
-			src.last_reply = world.time
+			speak(vend_reply)
+			last_reply = world.time
 
 	use_power(vend_power_usage)	//actuators and stuff
-	if (src.icon_vend) //Show the vending animation if needed
-		flick(src.icon_vend,src)
-	spawn(src.vend_delay)
+	if (icon_vend) //Show the vending animation if needed
+		flick(icon_vend,src)
+	spawn(vend_delay)
 		if (R.get_product(get_turf(src)))
-			playsound(src.loc, 'sound/machines/vending_drop.ogg', 100, 1)
-		src.status_message = ""
-		src.status_error = 0
-		src.vend_ready = 1
+			playsound(loc, 'sound/machines/vending_drop.ogg', 100, 1)
+		status_message = ""
+		status_error = 0
+		vend_ready = 1
 		currently_vending = null
 		SSnano.update_uis(src)
 
@@ -784,28 +791,28 @@
 	if(stat & (BROKEN|NOPOWER))
 		return
 
-	if(!src.active)
+	if(!active)
 		return
 
-	if(src.seconds_electrified > 0)
-		src.seconds_electrified--
+	if(seconds_electrified > 0)
+		seconds_electrified--
 
 	//Pitch to the people!  Really sell it!
-	if(((src.last_slogan + src.slogan_delay) <= world.time) && (src.slogan_list.len > 0 || src.custom_vendor) && (!src.shut_up) && prob(5))
+	if(((last_slogan + slogan_delay) <= world.time) && (slogan_list.len > 0 || custom_vendor) && (!shut_up) && prob(5))
 		if(custom_vendor && product_records.len)
 			var/datum/data/vending_product/advertised = pick(product_records)
 			if(advertised)
 				var/advertisement = "[pick("Come get","Come buy","Buy","Sale on","We have")] \an [advertised.product_name], [pick("for only","only","priced at")] [advertised.price] credits![pick(" What a deal!"," Can you believe it?","")]"
-				src.speak(advertisement)
-				src.last_slogan = world.time
+				speak(advertisement)
+				last_slogan = world.time
 		else
 			if(slogan_list.len)
-				var/slogan = pick(src.slogan_list)
-				src.speak(slogan)
-				src.last_slogan = world.time
+				var/slogan = pick(slogan_list)
+				speak(slogan)
+				last_slogan = world.time
 
-	if(src.shoot_inventory && prob(2))
-		src.throw_item()
+	if(shoot_inventory && prob(2))
+		throw_item()
 
 	return
 
@@ -829,17 +836,17 @@
 			icon_state = icon_type
 		else
 			spawn(rand(0, 15))
-				src.icon_state = "[icon_type]-off"
+				icon_state = "[icon_type]-off"
 
 //Oh no we're malfunctioning!  Dump out some product and break.
 /obj/machinery/vending/proc/malfunction()
-	for(var/datum/data/vending_product/R in src.product_records)
+	for(var/datum/data/vending_product/R in product_records)
 		while(R.get_amount()>0)
 			R.get_product(loc)
 		break
 
 	stat |= BROKEN
-	src.icon_state = "[icon_type]-broken"
+	icon_state = "[icon_type]-broken"
 	return
 
 //Somebody cut an important wire and now we're following a new definition of "pitch."
@@ -849,7 +856,7 @@
 	if(!target)
 		return 0
 
-	for(var/datum/data/vending_product/R in src.product_records)
+	for(var/datum/data/vending_product/R in product_records)
 		throw_item = R.get_product(loc)
 		if (!throw_item)
 			continue
@@ -858,7 +865,7 @@
 		return 0
 	spawn(0)
 		throw_item.throw_at(target, 16, 3, src)
-	src.visible_message(SPAN_WARNING("\The [src] launches \a [throw_item] at \the [target]!"))
+	visible_message(SPAN_WARNING("\The [src] launches \a [throw_item] at \the [target]!"))
 	return 1
 
 /obj/machinery/vending/proc/set_department()
@@ -869,17 +876,17 @@
 	if(!newdepartment)
 		return
 	if(newdepartment == "Privately Owned")
-		src.status_message = "This Vendomat now belongs only to you."
-		src.desc = "A custom Vendomat."
+		status_message = "This Vendomat now belongs only to you."
+		desc = "A custom Vendomat."
 		vendor_department = null
 		earnings_account = null
 	else
-		src.status_message = "This Vendomat is now property of \"[newdepartment]\"."
-		src.desc = "A custom Vendomat. It bears the logo of [newdepartment]."
+		status_message = "This Vendomat is now property of \"[newdepartment]\"."
+		desc = "A custom Vendomat. It bears the logo of [newdepartment]."
 		vendor_department = newdepartment:id
 		earnings_account = department_accounts[vendor_department]
 		buying_percentage = 0
-	src.status_error = 0
+	status_error = 0
 
 /*
  * Vending machine types
@@ -929,7 +936,7 @@
 					/obj/item/weapon/reagent_containers/food/drinks/drinkingglass = 30,/obj/item/weapon/reagent_containers/food/drinks/ice = 9,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/melonliquor = 2,/obj/item/weapon/reagent_containers/food/drinks/bottle/bluecuracao = 2,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe = 2,/obj/item/weapon/reagent_containers/food/drinks/bottle/grenadine = 5)
-	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/tea = 10)
+	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/tea/green = 10, /obj/item/weapon/reagent_containers/food/drinks/tea/black = 10)
 	vend_delay = 15
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 	product_slogans = "I hope nobody asks me for a bloody cup o' tea...;Alcohol is humanity's friend. Would you abandon a friend?;Quite delighted to serve you!;Is nobody thirsty on this station?"
@@ -943,26 +950,29 @@
 	)
 	contraband = list(/obj/item/device/lighting/toggleable/flashlight = 5,/obj/item/device/assembly/timer = 2)
 	product_ads = "Only the finest!;Have some tools.;The most robust equipment.;The finest gear in space!"
+	auto_price = FALSE
 
 /obj/machinery/vending/coffee
 	name = "Hot Drinks machine"
 	desc = "A vending machine which dispenses hot drinks."
-	product_ads = "Have a drink!;Drink up!;It's good for you!;Would you like a hot joe?;I'd kill for some coffee!;The best beans in the galaxy.;Only the finest brew for you.;Mmmm. Nothing like a coffee.;I like coffee, don't you?;Coffee helps you work!;Try some tea.;We hope you like the best!;Try our new chocolate!;Admin conspiracies"
+	product_ads = "Have a drink!;Drink up!;It's good for you!;Would you like a hot joe?;I'd kill for some coffee!;The best beans in the galaxy.;Only the finest brew for you.;Mmmm. Nothing like a coffee.;I like coffee, don't you?;Coffee helps you work!;Try some tea.;We hope you like the best!;Try our new chocolate!"
 	icon_state = "coffee"
 	icon_vend = "coffee-vend"
 	vend_delay = 34
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 	vend_power_usage = 85000 //85 kJ to heat a 250 mL cup of coffee
-	products = list(/obj/item/weapon/reagent_containers/food/drinks/coffee = 25,/obj/item/weapon/reagent_containers/food/drinks/tea = 25,/obj/item/weapon/reagent_containers/food/drinks/h_chocolate = 25)
+	products = list(/obj/item/weapon/reagent_containers/food/drinks/coffee = 25,/obj/item/weapon/reagent_containers/food/drinks/tea/black = 25,
+					/obj/item/weapon/reagent_containers/food/drinks/tea/green = 25,/obj/item/weapon/reagent_containers/food/drinks/h_chocolate = 25)
 	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/ice = 10)
-	prices = list(/obj/item/weapon/reagent_containers/food/drinks/coffee = 3, /obj/item/weapon/reagent_containers/food/drinks/tea = 3, /obj/item/weapon/reagent_containers/food/drinks/h_chocolate = 3)
+	prices = list(/obj/item/weapon/reagent_containers/food/drinks/coffee = 3, /obj/item/weapon/reagent_containers/food/drinks/tea/black = 3,
+					/obj/item/weapon/reagent_containers/food/drinks/tea/green = 3, /obj/item/weapon/reagent_containers/food/drinks/h_chocolate = 3)
 
 
 
 
 /obj/machinery/vending/snack
 	name = "Getmore Chocolate Corp"
-	desc = "A snack machine courtesy of the Getmore Chocolate Corporation, based out of Mars."
+	desc = "A snack machine courtesy of the Getmore Chocolate Corporation."
 	product_slogans = "Try our new nougat bar!;Twice the calories for half the price!"
 	product_ads = "The healthiest!;Award-winning chocolate bars!;Mmm! So good!;Oh my god it's so juicy!;Have a snack.;Snacks are good for you!;Have some more Getmore!;Best quality snacks straight from mars.;We love chocolate!;Try our new jerky!"
 	icon_state = "snack"
@@ -982,6 +992,7 @@
 	product_slogans = "The best defense is good offense!;Buy for your whole family today!;Nobody can outsmart bullet!;God created man - Frozen Star made them EQUAL!;Stupidity can be cured! By LEAD.;Dead kids can't bully your children!"
 	product_ads = "Stunning!;Take justice in your own hands!;LEADearship!"
 	icon_state = "weapon"
+	no_criminals = TRUE
 	products = list(/obj/item/device/flash = 6,/obj/item/weapon/reagent_containers/spray/pepper = 6, /obj/item/weapon/gun/projectile/olivaw = 5, /obj/item/weapon/gun/projectile/giskard = 5, /obj/item/weapon/gun/projectile/revolver/detective = 5, /obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3,
 					/obj/item/weapon/gun/projectile/shotgun/pump = 5, /obj/item/ammo_magazine/cl32/rubber = 20, /obj/item/ammo_magazine/sl38/rubber = 20, /obj/item/ammo_magazine/ammobox/c38/rubber = 20, /obj/item/ammo_magazine/ammobox/cl32/rubber = 20,
 					/obj/item/weapon/storage/box/shotgunammo/beanbags = 10, /obj/item/weapon/storage/box/shotgunammo/flashshells = 10, /obj/item/weapon/storage/box/shotgunammo/blanks = 10, /obj/item/clothing/accessory/holster = 5)
@@ -1002,6 +1013,7 @@
 					/obj/item/weapon/computer_hardware/scanner/reagent = 6,/obj/item/weapon/computer_hardware/scanner/atmos = 6,
 					/obj/item/weapon/computer_hardware/scanner/paper = 10,/obj/item/weapon/computer_hardware/nano_printer = 10,
 					/obj/item/weapon/computer_hardware/card_slot = 3,/obj/item/weapon/computer_hardware/ai_slot = 4)
+	auto_price = FALSE
 
 
 /obj/machinery/vending/cola
@@ -1050,6 +1062,7 @@
 					/obj/item/stack/medical/advanced/bruise_pack = 3, /obj/item/stack/medical/advanced/ointment = 3, /obj/item/stack/medical/splint = 2)
 	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 3,/obj/item/weapon/reagent_containers/pill/stox = 4,/obj/item/weapon/reagent_containers/pill/antitox = 6)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	auto_price = FALSE
 
 
 //This one's from bay12
@@ -1059,6 +1072,7 @@
 	products = list(/obj/item/clothing/under/rank/scientist = 6,/obj/item/clothing/suit/bio_suit = 6,/obj/item/clothing/head/bio_hood = 6,
 					/obj/item/device/transfer_valve = 6,/obj/item/device/assembly/timer = 6,/obj/item/device/assembly/signaler = 6,
 					/obj/item/device/assembly/prox_sensor = 6,/obj/item/device/assembly/igniter = 6)
+	auto_price = FALSE
 
 /obj/machinery/vending/wallmed1
 	name = "NanoMed"
@@ -1070,6 +1084,7 @@
 	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
 	products = list(/obj/item/stack/medical/bruise_pack = 2,/obj/item/stack/medical/ointment = 2,/obj/item/weapon/reagent_containers/hypospray/autoinjector = 4,/obj/item/device/scanner/healthanalyzer = 1)
 	contraband = list(/obj/item/weapon/reagent_containers/syringe/antitoxin = 4,/obj/item/weapon/reagent_containers/syringe/antiviral = 4,/obj/item/weapon/reagent_containers/pill/tox = 1)
+	auto_price = FALSE
 
 /obj/machinery/vending/wallmed2
 	name = "NanoMed"
@@ -1081,6 +1096,7 @@
 	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector = 5,/obj/item/weapon/reagent_containers/syringe/antitoxin = 3,/obj/item/stack/medical/bruise_pack = 3,
 					/obj/item/stack/medical/ointment =3,/obj/item/device/scanner/healthanalyzer = 3)
 	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 3)
+	auto_price = FALSE
 
 /obj/machinery/vending/security
 	name = "SecTech"
@@ -1092,6 +1108,7 @@
 	products = list(/obj/item/weapon/handcuffs = 8,/obj/item/weapon/grenade/flashbang = 4,/obj/item/weapon/grenade/chem_grenade/teargas = 4,/obj/item/device/flash = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/donut/normal = 12,/obj/item/weapon/storage/box/evidence = 6)
 	contraband = list(/obj/item/clothing/glasses/sunglasses = 2,/obj/item/weapon/storage/box/donut = 2)
+	auto_price = FALSE
 
 /obj/machinery/vending/hydronutrients
 	name = "NutriMax"
@@ -1104,6 +1121,7 @@
 					/obj/item/weapon/reagent_containers/syringe = 5,/obj/item/weapon/storage/bag/plants = 5)
 	premium = list(/obj/item/weapon/reagent_containers/glass/bottle/ammonia = 10,/obj/item/weapon/reagent_containers/glass/bottle/diethylamine = 5)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	auto_price = FALSE
 
 /obj/machinery/vending/hydroseeds
 	name = "MegaSeed Servitor"
@@ -1123,6 +1141,7 @@
 	contraband = list(/obj/item/seeds/amanitamycelium = 2,/obj/item/seeds/glowshroom = 2,/obj/item/seeds/libertymycelium = 2,/obj/item/seeds/mtearseed = 2,
 					  /obj/item/seeds/nettleseed = 2,/obj/item/seeds/reishimycelium = 2,/obj/item/seeds/reishimycelium = 2,/obj/item/seeds/shandseed = 2,)
 	premium = list(/obj/item/toy/waterflower = 1)
+	auto_price = FALSE
 
 /**
  *  Populate hydroseeds product_records
@@ -1132,9 +1151,9 @@
  */
 /obj/machinery/vending/hydroseeds/build_inventory()
 	var/list/all_products = list(
-		list(src.products, CAT_NORMAL),
-		list(src.contraband, CAT_HIDDEN),
-		list(src.premium, CAT_COIN))
+		list(products, CAT_NORMAL),
+		list(contraband, CAT_HIDDEN),
+		list(premium, CAT_COIN))
 
 	for(var/current_list in all_products)
 		var/category = current_list[2]
@@ -1144,11 +1163,11 @@
 			var/name = S.name
 			var/datum/data/vending_product/product = new/datum/data/vending_product(src, entry, name)
 
-			product.price = (entry in src.prices) ? src.prices[entry] : 0
+			product.price = (entry in prices) ? prices[entry] : product.price
 			product.amount = (current_list[1][entry]) ? current_list[1][entry] : 1
 			product.category = category
 
-			src.product_records.Add(product)
+			product_records.Add(product)
 			qdel(S)
 
 
@@ -1157,8 +1176,12 @@
 	desc = "A kitchen and restaurant equipment vendor."
 	product_ads = "Mm, food stuffs!;Food and food accessories.;Get your plates!;You like forks?;I like forks.;Woo, utensils.;You don't really need these..."
 	icon_state = "dinnerware"
-	products = list(/obj/item/weapon/tray = 8,/obj/item/weapon/material/kitchen/utensil/fork = 6, /obj/item/weapon/material/knife = 6, /obj/item/weapon/material/kitchen/utensil/spoon = 6, /obj/item/weapon/material/knife = 3,/obj/item/weapon/reagent_containers/food/drinks/drinkingglass = 8,/obj/item/clothing/suit/chef/classic = 2,/obj/item/weapon/storage/lunchbox = 3,/obj/item/weapon/storage/lunchbox/rainbow = 3,/obj/item/weapon/storage/lunchbox/cat = 3)
+	products = list(/obj/item/weapon/tray = 8,/obj/item/weapon/material/kitchen/utensil/fork = 6, /obj/item/weapon/material/knife = 6, /obj/item/weapon/material/kitchen/utensil/spoon = 6, /obj/item/weapon/material/knife = 3,/obj/item/weapon/reagent_containers/food/drinks/drinkingglass = 8,/obj/item/clothing/suit/chef/classic = 2,/obj/item/weapon/storage/lunchbox = 3,/obj/item/weapon/storage/lunchbox/rainbow = 3,/obj/item/weapon/storage/lunchbox/cat = 3,
+					/obj/item/weapon/reagent_containers/food/drinks/pitcher = 3,/obj/item/weapon/reagent_containers/food/drinks/teapot = 3,/obj/item/weapon/reagent_containers/food/drinks/mug = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/black = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/green = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/blue = 3,
+					/obj/item/weapon/reagent_containers/food/drinks/mug/red = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/heart = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/one = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/metal = 3,
+					/obj/item/weapon/reagent_containers/food/drinks/mug/rainbow = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/brit = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/moebius = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/teacup = 10,)
 	contraband = list(/obj/item/weapon/material/kitchen/rollingpin = 2, /obj/item/weapon/material/knife/butch = 2)
+	auto_price = FALSE
 
 /obj/machinery/vending/sovietsoda
 	name = "BODA"
@@ -1168,6 +1191,7 @@
 	products = list(/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/soda = 30)
 	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/cola = 20)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	auto_price = FALSE
 
 /obj/machinery/vending/tool
 	name = "YouTool"
@@ -1189,6 +1213,7 @@
 	products = list(/obj/item/clothing/glasses/meson = 2,/obj/item/weapon/tool/multitool = 4,/obj/item/weapon/airlock_electronics = 10,/obj/item/weapon/circuitboard/apc = 10,/obj/item/weapon/airalarm_electronics = 10,/obj/item/weapon/cell/large/high = 10)
 	contraband = list(/obj/item/weapon/cell/large/potato = 3)
 	premium = list(/obj/item/weapon/storage/belt/utility = 3)
+	auto_price = FALSE
 
 //This one's from bay12
 /obj/machinery/vending/engineering
@@ -1219,6 +1244,7 @@
 					/obj/item/weapon/cell/large/high = 12, /obj/item/device/assembly/prox_sensor = 3,/obj/item/device/assembly/signaler = 3,/obj/item/device/scanner/healthanalyzer = 3,
 					/obj/item/weapon/tool/scalpel = 2,/obj/item/weapon/tool/saw/circular = 2,/obj/item/weapon/tank/anesthetic = 2,/obj/item/clothing/mask/breath/medical = 5,
 					/obj/item/weapon/tool/screwdriver = 5,/obj/item/weapon/tool/crowbar = 5)
+	auto_price = FALSE
 
 //FOR ACTORS GUILD - mainly props that cannot be spawned otherwise
 /obj/machinery/vending/props
@@ -1227,6 +1253,7 @@
 	icon_state = "Theater"
 	products = list(/obj/structure/flora/pottedplant = 2, /obj/item/device/lighting/toggleable/lamp = 2, /obj/item/device/lighting/toggleable/lamp/green = 2, /obj/item/weapon/reagent_containers/food/drinks/jar = 1,
 					/obj/item/toy/cultsword = 4, /obj/item/toy/katana = 2, /obj/item/weapon/phone = 3)
+	auto_price = FALSE
 
 //FOR ACTORS GUILD - Containers
 /obj/machinery/vending/containers
@@ -1234,7 +1261,7 @@
 	desc = "A container that dispenses containers."
 	icon_state = "robotics"
 	products = list(/obj/structure/closet/crate/freezer = 2, /obj/structure/closet = 3, /obj/structure/closet/crate = 3)
-
+	auto_price = FALSE
 
 /obj/machinery/vending/theomat
 	name = "NeoTheology Theo-Mat"
@@ -1307,7 +1334,7 @@
 		usr << SPAN_WARNING("[src] needs to be unlocked to rename it.")
 		return
 
-	var/choice = sanitize(input("What do you want to name your Vendomat? You can rename it again later.", "Vendomat Renaming", src.name) as text|null, MAX_NAME_LEN)
+	var/choice = sanitize(input("What do you want to name your Vendomat? You can rename it again later.", "Vendomat Renaming", name) as text|null, MAX_NAME_LEN)
 	if(choice)
 		SetName(choice)
 

@@ -39,6 +39,15 @@
 	display_name = "Spaceball booster pack"
 	path = /obj/item/weapon/pack/spaceball
 
+/datum/gear/mug
+	display_name = "mug selection"
+	path = /obj/item/weapon/reagent_containers/food/drinks/mug
+	flags = GEAR_HAS_TYPE_SELECTION
+
+/datum/gear/pitcher
+	display_name = "insulated pitcher"
+	path = /obj/item/weapon/reagent_containers/food/drinks/pitcher
+
 /datum/gear/flask
 	display_name = "flask"
 	path = /obj/item/weapon/reagent_containers/food/drinks/flask/barflask
