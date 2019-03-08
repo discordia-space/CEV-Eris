@@ -25,9 +25,7 @@
 		var/obj/item/weapon/implanter/M = I
 		if(is_external())
 			return
-		if(!M.implant)
-			user.drop_from_inventory(src)
-			forceMove(M)
+		if(!M.implant && user.unEquip(src, M))
 			M.implant = src
 			M.update_icon()
 

@@ -66,8 +66,6 @@
 				implant = null
 				update_icon()
 				M.update_icon()
-	else if (istype(I, /obj/item/weapon/implant) && !implant)
-		user.drop_from_inventory(I)
-		I.forceMove(src)
+	else if (istype(I, /obj/item/weapon/implant) && !implant && user.unEquip(I, src))
 		implant = I
 		update_icon()
