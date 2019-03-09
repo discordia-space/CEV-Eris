@@ -325,10 +325,12 @@
 		fail_chance += T.unreliability
 		fail_chance -= T.precision
 
+	fail_chance = round(fail_chance) // Stops <1% failure chance tasks from faling. Also makes falure chance in failure message look less weird.
+
 	if (fail_chance < 0)
 		fail_chance = 0
 	if(prob(fail_chance))
-		user << SPAN_WARNING("You failed to finish your task with [src.name]! There was a [fail_chance]% chance to screw this up.")
+		to_chat(user, SPAN_WARNING("You failed to finish your task with [src.name]! There was a [fail_chance]% chance to screw this up."))
 		return TOOL_USE_FAIL
 
 	return TOOL_USE_SUCCESS

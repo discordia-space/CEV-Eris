@@ -5,6 +5,7 @@
 	hardware_flag = PROGRAM_LAPTOP
 	icon = 'icons/obj/modular_laptop.dmi'
 	icon_state = "laptop-open"
+	matter = list(MATERIAL_STEEL = 8, MATERIAL_GLASS = 4)
 	w_class = ITEM_SIZE_NORMAL
 	base_idle_power_usage = 25
 	base_active_power_usage = 200

@@ -3,6 +3,7 @@
 	desc = "A very compact computer, designed to keep its user always connected."
 	icon = 'icons/obj/modular_pda.dmi'
 	icon_state = "pda"
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_GLASS = 1)
 	hardware_flag = PROGRAM_PDA
 	max_hardware_size = 1
 	w_class = ITEM_SIZE_SMALL
@@ -98,7 +99,11 @@
 
 /obj/item/modular_computer/pda/Created()
 	qdel(processor_unit)
+	qdel(battery_module)
 	qdel(tesla_link)
 	qdel(hard_drive)
 	qdel(network_card)
 	qdel(scanner)
+	qdel(card_slot)
+	qdel(gps_sensor)
+	qdel(led)
