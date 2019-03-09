@@ -57,7 +57,7 @@
 	var/datum/dna/dna = null
 	var/age = 30
 	var/ckey = ""
-	var/mind = null
+	var/datum/mind/mind = null
 	var/languages = list()
 	var/flavor = ""
 
