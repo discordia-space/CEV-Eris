@@ -164,7 +164,7 @@
 		else
 			user << SPAN_NOTICE("[src] already has a cell installed.")
 
-	else if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING)))
+	else if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING), src))
 		if(cell)
 			var/obj/item/C = cell
 			C.loc = get_turf(user)
@@ -227,7 +227,7 @@
 	if(buildstate == 5)
 		usable_qualities.Add(QUALITY_SCREW_DRIVING)
 
-	var/tool_type = I.get_tool_type(user, usable_qualities)
+	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 
 		if(QUALITY_WELDING)

@@ -1320,7 +1320,7 @@ var/list/rank_prefix = list(\
 	set desc = "Pop a joint back into place. Extremely painful."
 	set src in view(1)
 
-	if(!isliving(usr) || !usr.canClick())
+	if(!isliving(usr) || !usr.can_click())
 		return
 
 	usr.setClickCooldown(20)
@@ -1438,7 +1438,7 @@ var/list/rank_prefix = list(\
 			if(client.eye == shadow)
 				reset_view(0)
 				return
-			if(istype(above, /turf/simulated/open))
+			if(above.is_hole)
 				src << SPAN_NOTICE("You look up.")
 				if(client)
 					reset_view(shadow)

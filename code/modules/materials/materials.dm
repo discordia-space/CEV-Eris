@@ -341,7 +341,7 @@ var/list/name_to_material
 	integrity = 150
 	icon_base = "solid"
 	icon_reinf = "reinf_over"
-	icon_colour = "#666666"
+	icon_colour = PLASTEEL_COLOUR
 	hitsound = 'sound/weapons/genhit.ogg'
 
 /material/steel/holographic
@@ -528,10 +528,9 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 5)
 	composite_material = list() //todo
 	created_window = /obj/structure/window/reinforced/plasma
-	created_window = /obj/structure/window/reinforced/plasma/full
+	created_window_full = /obj/structure/window/reinforced/plasma/full
 	hardness = 40
 	weight = 30
-	//stack_origin_tech = list(TECH_MATERIAL = 2)
 	//composite_material = list() //todo
 	rod_product = null
 

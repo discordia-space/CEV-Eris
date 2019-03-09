@@ -51,7 +51,7 @@ see multiz/movement.dm for some info.
 	var/tmp/list/climbers
 
 /turf/simulated/open/New()
-	icon_state = "transparent"
+	icon_state = "transparentclickable"
 	..()
 
 /turf/simulated/open/LateInitialize()

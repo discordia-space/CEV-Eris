@@ -18,7 +18,7 @@ SUBSYSTEM_DEF(migration)
 	wait = 300 //Ticks once per 30 seconds
 
 	var/burrow_scan_interval = 5 MINUTES //Every 5 minutes, they'll scan and catalogue the lifeforms around them
-	var/burrow_plantspread_interval = 1 MINUTES //Every 10 minutes, plants near burrows will spread through them
+	var/burrow_plantspread_interval = 10 MINUTES //Every 10 minutes, plants near burrows will spread through them
 	var/burrow_migrate_interval = 10 MINUTES //Every 10 minutes, some mobs will move from a populated burrow to a different place
 
 

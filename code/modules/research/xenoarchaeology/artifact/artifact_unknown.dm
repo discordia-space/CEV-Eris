@@ -241,7 +241,7 @@
 			secondary_effect.ToggleActivate(0)
 
 	else if (istype(W,/obj/item/weapon/flame) && W:lit ||\
-			W.get_tool_type(user, list(QUALITY_WELDING)))
+			W.get_tool_type(user, list(QUALITY_WELDING), src))
 		if(my_effect.trigger == TRIGGER_HEAT)
 			my_effect.ToggleActivate()
 		if(secondary_effect && secondary_effect.trigger == TRIGGER_HEAT && prob(25))

@@ -564,7 +564,7 @@ BLIND     // can't see anything
 	..()
 
 /obj/item/clothing/under/attackby(var/obj/item/I, var/mob/U)
-	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING)) && ishuman(U))
+	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING), src) && ishuman(U))
 		set_sensors(U)
 	else
 		return ..()

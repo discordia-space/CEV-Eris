@@ -7,7 +7,7 @@
 */
 
 /mob/living/silicon/robot/ClickOn(var/atom/A, var/params)
-	if(world.time <= next_click)
+	if(!can_click())
 		return
 	next_click = world.time + 1
 
@@ -35,8 +35,7 @@
 	if(stat || lockcharge || weakened || stunned || paralysis)
 		return
 
-	if(!canClick())
-		return
+
 
 	face_atom(A) // change direction to face what you clicked on
 

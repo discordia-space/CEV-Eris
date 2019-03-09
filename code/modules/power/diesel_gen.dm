@@ -185,7 +185,7 @@
 		if(open)
 			usable_qualities.Add(QUALITY_PRYING)
 
-		var/tool_type = I.get_tool_type(user, usable_qualities)
+		var/tool_type = I.get_tool_type(user, usable_qualities, src)
 		switch(tool_type)
 
 			if(QUALITY_PRYING)
