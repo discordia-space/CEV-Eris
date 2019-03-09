@@ -14,6 +14,7 @@
 	name = "advanced battery"
 	desc = "An advanced power cell, often used in most laptops. It is too large to be fitted into smaller devices. It's rating is 110 Wh."
 	icon_state = "battery_advanced"
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 0.5)
 	origin_tech = list(TECH_POWER = 2, TECH_ENGINEERING = 2)
 	hardware_size = 2
 	battery_rating = 110
