@@ -28,7 +28,7 @@
 	if(!istype(pref.laws))	pref.laws = list()
 
 	var/datum/species/species = all_species[pref.species]
-	if(!(species && species.has_organ[O_POSIBRAIN]))
+	if(!(species && species.has_organ[BP_POSIBRAIN]))
 		pref.is_shackled = initial(pref.is_shackled)
 	else
 		pref.is_shackled = sanitize_bool(pref.is_shackled, initial(pref.is_shackled))
@@ -37,7 +37,7 @@
 	. = list()
 	var/datum/species/species = all_species[pref.species]
 
-	if(!(species && species.has_organ[O_POSIBRAIN]))
+	if(!(species && species.has_organ[BP_POSIBRAIN]))
 		. += "<b>Your Species Has No Laws</b><br>"
 	else
 		. += "<b>Shackle: </b>"

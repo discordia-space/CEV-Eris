@@ -150,7 +150,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		update_wear_icon()
 		var/turf/T = get_turf(src)
 		T.visible_message(flavor_text)
-		set_light(2, 0.25, "#E38F46")
+		set_light(2, 0.25, COLOR_LIGHTING_ORANGE_DARK)
 		START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/mask/smokable/proc/die(var/nomessage = 0)
@@ -485,7 +485,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		return
 	M.IgniteMob()
 
-	if(istype(M.wear_mask, /obj/item/clothing/mask/smokable/cigarette) && user.targeted_organ == "mouth" && lit)
+	if(istype(M.wear_mask, /obj/item/clothing/mask/smokable/cigarette) && user.targeted_organ == BP_MOUTH && lit)
 		var/obj/item/clothing/mask/smokable/cigarette/cig = M.wear_mask
 		if(M == user)
 			cig.attackby(src, user)

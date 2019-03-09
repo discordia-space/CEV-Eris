@@ -44,7 +44,7 @@
 		return FALSE
 	W.forceMove(get_turf(src))
 	W.layer = initial(W.layer)
-	W.plane = initial(W.plane)
+	W.set_plane(initial(W.plane))
 	W.dropped()
 	return FALSE
 
@@ -134,7 +134,7 @@
 	if (src.client)
 		src.client.screen -= O
 	O.layer = initial(O.layer)
-	O.plane = initial(O.plane)
+	O.set_plane(initial(O.plane))
 	O.screen_loc = null
 	if(istype(O, /obj/item))
 		var/obj/item/I = O
@@ -149,7 +149,7 @@
 	if (src.client)
 		src.client.screen -= I
 	I.layer = initial(I.layer)
-	I.plane = initial(I.plane)
+	I.set_plane(initial(I.plane))
 	I.screen_loc = null
 	I.on_slotmove(src)
 	return 1

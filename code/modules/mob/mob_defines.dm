@@ -85,8 +85,14 @@
 	var/timeofdeath = 0.0
 
 	var/bodytemperature = 310.055	//98.7 F
+
+	var/default_pixel_x = 0
+	var/default_pixel_y = 0
 	var/old_x = 0
 	var/old_y = 0
+	var/nutrition = 400  //carbon
+	var/max_nutrition = 400
+	var/list/eat_sounds = list('sound/items/eatfood.ogg')
 
 	var/shakecamera = 0
 	var/a_intent = I_HELP//Living

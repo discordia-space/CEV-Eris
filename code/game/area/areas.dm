@@ -231,7 +231,7 @@ var/list/mob/living/forced_ambiance_list = new
 	var/area/oldarea = L.lastarea
 	if((oldarea.has_gravity == 0) && (newarea.has_gravity == 1) && (L.m_intent == "run")) // Being ready when you change areas gives you a chance to avoid falling all together.
 		thunk(L)
-		L.update_floating( L.Check_Dense_Object() )
+		L.update_floating( L.check_dense_object() )
 
 	L.lastarea = newarea
 	play_ambience(L)
@@ -266,14 +266,35 @@ var/list/mob/living/forced_ambiance_list = new
 		CL.ambience_playing = sound
 		sound_to(L, sound(sound, repeat = 1, wait = 0, volume = 30, channel = GLOB.ambience_sound_channel))
 
-/area/proc/gravitychange(var/gravitystate = 0, var/area/A)
-	A.has_gravity = gravitystate
 
-	for(var/mob/M in A)
+//Figures out what gravity should be and sets it appropriately
+/area/proc/update_gravity()
+	var/grav_before = has_gravity
+	if(gravity_blocker)
+		if(get_area(gravity_blocker) == src)
+			has_gravity = FALSE
+			if (grav_before != has_gravity)
+				gravity_changed()
+			return
+		else
+			gravity_blocker = null
+
+	if (GLOB.active_gravity_generator && gravity_is_on) //This is a global var
+		has_gravity = TRUE
+
+	if (grav_before != has_gravity)
+		gravity_changed()
+
+
+//Called when the gravity state changes
+/area/proc/gravity_changed()
+	for(var/mob/M in src)
 		if(has_gravity)
 			thunk(M)
-		M.update_floating( M.Check_Dense_Object() )
+		M.update_floating( M.check_dense_object() )
 
+//This thunk should probably not be an area proc.
+//TODO: Make it a mob proc
 /area/proc/thunk(mob)
 	if(istype(get_turf(mob), /turf/space)) // Can't fall onto nothing.
 		return

@@ -14,6 +14,10 @@ particle whenever the target moves
 	var/fromback = TRUE //The trail is being emitted from something on their back
 	//When the user is facing north, it will draw ontop of them
 
+/datum/effect/effect/system/trail/Destroy()
+	jetpack = null
+	return ..()
+
 /datum/effect/effect/system/trail/set_up(var/atom/_holder, var/obj/item/weapon/tank/jetpack/J)
 	attach(_holder)
 	if (J)
@@ -53,15 +57,13 @@ particle whenever the target moves
 	//Ion trail, not used much now
 /////////////////////////////////////////////
 
-/obj/effect/effect/ion_trails
+/obj/effect/effect/trail_particle/ion_trails
 	name = "ion trails"
 	icon_state = "ion_trails"
 	anchored = 1.0
 
 /datum/effect/effect/system/trail/ion
-	trail_effect = /obj/effect/effect/ion_trails
-
-
+	trail_effect = /obj/effect/effect/trail_particle/ion_trails
 
 
 /////////////////////////////////////////////

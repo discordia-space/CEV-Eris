@@ -118,19 +118,19 @@
 	if(incapacitated())
 		return FALSE
 
-	if(Allow_Spacemove())
+	if(allow_spacemove())
 		return TRUE
 
 	for(var/turf/simulated/T in trange(1,src))
 		if(T.density)
-			if(Check_Shoegrip(FALSE))
+			if(check_shoegrip(FALSE))
 				return TRUE
 
 /mob/living/silicon/robot/can_ztravel(var/direction)
 	if(incapacitated() || is_dead())
 		return FALSE
 
-	if(Allow_Spacemove()) //Checks for active jetpack
+	if(allow_spacemove()) //Checks for active jetpack
 		return TRUE
 
 	for(var/turf/simulated/T in trange(1,src)) //Robots get "magboots"

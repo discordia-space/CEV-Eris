@@ -62,7 +62,7 @@
 
 	return tally
 
-/mob/living/carbon/human/Allow_Spacemove(var/check_drift = 0)
+/mob/living/carbon/human/allow_spacemove(var/check_drift = 0)
 	//Can we act?
 	if(restrained())	return 0
 
@@ -101,7 +101,7 @@
 
 	return prob_slip
 
-/mob/living/carbon/human/Check_Shoegrip()
+/mob/living/carbon/human/check_shoegrip()
 	if(species.flags & NO_SLIP)
 		return 1
 	if(shoes && (shoes.item_flags & NOSLIP) && istype(shoes, /obj/item/clothing/shoes/magboots))  //magboots + dense_object = no floating

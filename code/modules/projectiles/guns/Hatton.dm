@@ -186,7 +186,8 @@
 		return TRUE
 	return FALSE
 
-
+/obj/item/weapon/hatton/robot/attack_self(mob/living/user as mob)
+	return
 
 
 //reactions

@@ -35,3 +35,19 @@
 	if(holder2 && (holder2.portable_drive == src))
 		holder2.portable_drive = null
 	return ..()
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/attackby(obj/item/I, mob/user, params)
+
+	if(istype(I, /obj/item/weapon/pen))
+		var/new_name = input(user, "What would you like to label the flash drive?", "Tape labeling") as null|text
+		if(isnull(new_name)) return
+		new_name = sanitizeSafe(new_name)
+		if(new_name)
+			SetName("[initial(name)] - '[new_name]'")
+			user << SPAN_NOTICE("You label the flash drive '[new_name]'.")
+		else
+			SetName("[initial(name)]")
+			user << SPAN_NOTICE("You scratch off the label.")
+		return
+
+	..()

@@ -2,7 +2,7 @@
 	name = "hive node"
 	parent_organ = BP_CHEST
 	icon_state = "xgibmid2"
-	organ_tag = O_HIVE
+	organ_tag = BP_HIVE
 
 /obj/item/organ/internal/xenos/hivenode/removed(var/mob/living/user)
 	if(owner && ishuman(owner))

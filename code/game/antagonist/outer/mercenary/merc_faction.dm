@@ -61,7 +61,7 @@ back to their ship counts for objectives.
 This could potentially return a list of thousands of atoms, but thats fine. Its not as much work as it sounds */
 /datum/faction/mercenary/get_inventory()
 	var/list/contents = ..()
-	var/list/search_areas = list(/area/shuttle/mercenary, /area/antag/merc_base)
+	var/list/search_areas = list(/area/shuttle/mercenary, /area/centcom/merc_base)
 	for (var/a in search_areas)
 		contents |= get_area_contents(a)
 

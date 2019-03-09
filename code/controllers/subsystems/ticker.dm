@@ -116,8 +116,8 @@ SUBSYSTEM_DEF(ticker)
 				Master.SetRunLevel(RUNLEVEL_LOBBY)
 
 		if(GAME_STATE_PLAYING)
-			storyteller.Process()
-			storyteller.process_events()
+			GLOB.storyteller.Process()
+			GLOB.storyteller.process_events()
 
 			var/game_finished = (evacuation_controller.round_over() || ship_was_nuked  || universe_has_ended)
 
@@ -151,24 +151,24 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/setup()
 	//Create and announce mode
 
-	if(!storyteller)
+	if(!GLOB.storyteller)
 		set_storyteller(announce = FALSE)
 
-	if(!storyteller)
+	if(!GLOB.storyteller)
 		world << "<span class='danger'>Serious error storyteller system!</span> Reverting to pre-game lobby."
 		return FALSE
 
 	SSjob.ResetOccupations()
 	SSjob.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
 
-	if(!storyteller.can_start(TRUE))
+	if(!GLOB.storyteller.can_start(TRUE))
 		world << "<B>Unable to start game.</B> Reverting to pre-game lobby."
-		//storyteller = null //Possibly bring this back in future if we have storytellers with differing requirements
+		//GLOB.storyteller = null //Possibly bring this back in future if we have storytellers with differing requirements
 		//story_vote_ended = FALSE
 		SSjob.ResetOccupations()
 		return FALSE
 
-	storyteller.announce()
+	GLOB.storyteller.announce()
 
 	setup_economy()
 	newscaster_announcements = pick(newscaster_standard_feeds)
@@ -178,7 +178,7 @@ SUBSYSTEM_DEF(ticker)
 	collect_minds()
 	move_characters_to_spawnpoints()
 	equip_characters()
-	for(var/mob/living/carbon/human/H in player_list)
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(!H.mind || player_is_antag(H.mind, only_offstation_roles = 1) || !SSjob.ShouldCreateRecords(H.mind.assigned_role))
 			continue
 		CreateModularRecord(H)
@@ -187,7 +187,7 @@ SUBSYSTEM_DEF(ticker)
 	callHook("roundstart")
 
 	spawn(0)//Forking here so we dont have to wait for this to finish
-		storyteller.set_up()
+		GLOB.storyteller.set_up()
 		world << "<FONT color='blue'><B>Enjoy the game!</B></FONT>"
 		world << sound('sound/AI/welcome.ogg') // Skie
 		//Holiday Round-start stuff	~Carn
@@ -301,7 +301,7 @@ SUBSYSTEM_DEF(ticker)
 		world << SPAN_NOTICE("<font color='purple'><b>Quote of the round: </b>[html_encode(message)]</font>")
 
 /datum/controller/subsystem/ticker/proc/create_characters()
-	for(var/mob/new_player/player in player_list)
+	for(var/mob/new_player/player in GLOB.player_list)
 		if(player && player.ready && player.mind)
 			if(player.mind.assigned_role == "AI")
 				player.close_spawn_windows()
@@ -314,14 +314,14 @@ SUBSYSTEM_DEF(ticker)
 
 
 /datum/controller/subsystem/ticker/proc/collect_minds()
-	for(var/mob/living/player in player_list)
+	for(var/mob/living/player in GLOB.player_list)
 		if(player.mind)
 			SSticker.minds |= player.mind
 
 
 /datum/controller/subsystem/ticker/proc/equip_characters()
 	var/captainless = TRUE
-	for(var/mob/living/carbon/human/player in player_list)
+	for(var/mob/living/carbon/human/player in GLOB.player_list)
 		if(player && player.mind && player.mind.assigned_role)
 			if(player.mind.assigned_role == "Captain")
 				captainless = FALSE
@@ -329,19 +329,19 @@ SUBSYSTEM_DEF(ticker)
 				SSjob.EquipRank(player, player.mind.assigned_role)
 				equip_custom_items(player)
 	if(captainless)
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			if(!isnewplayer(M))
 				M << "Captainship not forced on anyone."
 
 /datum/controller/subsystem/ticker/proc/move_characters_to_spawnpoints()
-	for(var/mob/living/carbon/human/player in player_list)
+	for(var/mob/living/carbon/human/player in GLOB.player_list)
 		var/datum/spawnpoint/SP = SSjob.get_spawnpoint_for(player.client, player.mind.assigned_role)
 		SP.put_mob(player)
 
 
 /datum/controller/subsystem/ticker/proc/declare_completion()
 	world << "<br><br><br><H1>A round has ended!</H1>"
-	for(var/mob/Player in player_list)
+	for(var/mob/Player in GLOB.player_list)
 		if(Player.mind && !isnewplayer(Player))
 			if(Player.stat != DEAD)
 				var/turf/playerTurf = get_turf(Player)
@@ -398,7 +398,7 @@ SUBSYSTEM_DEF(ticker)
 	if(dronecount)
 		world << "<b>There [dronecount>1 ? "were" : "was"] [dronecount] industrious maintenance [dronecount>1 ? "drones" : "drone"] at the end of this round.</b>"
 
-	storyteller.declare_completion()//To declare normal completion.
+	GLOB.storyteller.declare_completion()//To declare normal completion.
 
 	//Ask the event manager to print round end information
 	SSevent.RoundEnd()

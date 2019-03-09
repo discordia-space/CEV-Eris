@@ -62,49 +62,30 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 // Typo from the oriignal coder here, below lies the jitteriness process. So make of his code what you will, the previous comment here was just a copypaste of the above.
 /mob/living/carbon/human/proc/jittery_process()
-	//var/old_x = pixel_x
-	//var/old_y = pixel_y
 	is_jittery = 1
 	while(jitteriness > 100)
-//		var/amplitude = jitteriness*(sin(jitteriness * 0.044 * world.time) + 1) / 70
-//		pixel_x = amplitude * sin(0.008 * jitteriness * world.time)
-//		pixel_y = amplitude * cos(0.008 * jitteriness * world.time)
-
 		var/amplitude = min(4, jitteriness / 100)
-		pixel_x = old_x + rand(-amplitude, amplitude)
-		pixel_y = old_y + rand(-amplitude/3, amplitude/3)
+		pixel_x = default_pixel_x + rand(-amplitude, amplitude)
+		pixel_y = default_pixel_y + rand(-amplitude/3, amplitude/3)
 
 		sleep(1)
 	//endwhile - reset the pixel offsets to zero
 	is_jittery = 0
-	pixel_x = old_x
-	pixel_y = old_y
+	pixel_x = default_pixel_x
+	pixel_y = default_pixel_y
 
 
 //handles up-down floaty effect in space and zero-gravity
 /mob/var/is_floating = 0
 /mob/var/floatiness = 0
 
-/mob/proc/update_floating(var/dense_object=0)
+/mob/proc/update_floating()
 
-	if(anchored||buckled)
+	if(anchored || buckled || check_gravity())
 		make_floating(0)
 		return
 
-	var/turf/turf = get_turf(src)
-	if(!istype(turf,/turf/space))
-		var/area/A = turf.loc
-		if(istype(A) && A.has_gravity)
-			make_floating(0)
-			return
-		else if (Check_Shoegrip())
-			make_floating(0)
-			return
-		else
-			make_floating(1)
-			return
-
-	if(dense_object && Check_Shoegrip())
+	if(check_shoegrip() && check_dense_object())
 		make_floating(0)
 		return
 
@@ -112,10 +93,6 @@ note dizziness decrements automatically in the mob's Life() proc.
 	return
 
 /mob/proc/make_floating(var/n)
-	if(buckled)
-		if(is_floating)
-			stop_floating()
-		return
 	floatiness = n
 
 	if(floatiness && !is_floating)
@@ -130,17 +107,17 @@ note dizziness decrements automatically in the mob's Life() proc.
 	var/amplitude = 2 //maximum displacement from original position
 	var/period = 36 //time taken for the mob to go up >> down >> original position, in deciseconds. Should be multiple of 4
 
-	var/top = old_y + amplitude
-	var/bottom = old_y - amplitude
+	var/top = default_pixel_y + amplitude
+	var/bottom = default_pixel_y - amplitude
 	var/half_period = period / 2
 	var/quarter_period = period / 4
 
 	animate(src, pixel_y = top, time = quarter_period, easing = SINE_EASING | EASE_OUT, loop = -1)		//up
 	animate(pixel_y = bottom, time = half_period, easing = SINE_EASING, loop = -1)						//down
-	animate(pixel_y = old_y, time = quarter_period, easing = SINE_EASING | EASE_IN, loop = -1)			//back
+	animate(pixel_y = default_pixel_y, time = quarter_period, easing = SINE_EASING | EASE_IN, loop = -1)			//back
 
 /mob/proc/stop_floating()
-	animate(src, pixel_y = old_y, time = 5, easing = SINE_EASING | EASE_IN) //halt animation
+	animate(src, pixel_y = default_pixel_y, time = 5, easing = SINE_EASING | EASE_IN) //halt animation
 	//reset the pixel offsets to zero
 	is_floating = 0
 
@@ -306,7 +283,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 	var/turf/old_turf = get_turf(old_loc)
 	var/image/I = image(icon = src, loc = old_turf)
-	I.plane = GAME_PLANE
+	I.plane = plane
 	I.layer = ABOVE_MOB_LAYER
 	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	if (istype(target,/mob))
@@ -346,7 +323,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 		if (QDELETED(old_turf))
 			return
 		var/image/I = image(icon = src, loc = old_turf, layer = layer + 0.1)
-		I.plane = GAME_PLANE
+		I.plane = get_relative_plane(GAME_PLANE)
 		I.layer = ABOVE_MOB_LAYER
 		I.transform = matrix() * 0
 		I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
@@ -378,7 +355,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	invisibility = 100
 	var/turf/old_turf = get_turf(src)
 	var/image/I = image(icon = src, loc = src.loc, layer = layer + 0.1)
-	I.plane = GAME_PLANE
+	I.plane = get_relative_plane(GAME_PLANE)
 	I.layer = ABOVE_MOB_LAYER
 	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 

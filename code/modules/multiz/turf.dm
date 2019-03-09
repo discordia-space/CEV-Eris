@@ -50,6 +50,10 @@ see multiz/movement.dm for some info.
 
 	var/tmp/list/climbers
 
+/turf/simulated/open/New()
+	icon_state = "transparentclickable"
+	..()
+
 /turf/simulated/open/LateInitialize()
 	. = ..()
 	below = GetBelow(src)
@@ -229,3 +233,4 @@ see multiz/movement.dm for some info.
 		return footstep_sound("catwalk")
 	else
 		return null
+

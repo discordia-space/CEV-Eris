@@ -5,7 +5,7 @@
 	icon_state = "candle1"
 	item_state = "candle1"
 	w_class = ITEM_SIZE_TINY
-	light_color = "#E09D37"
+	light_color = COLOR_LIGHTING_ORANGE_DARK
 	var/wax = 2000
 
 /obj/item/weapon/flame/candle/New()

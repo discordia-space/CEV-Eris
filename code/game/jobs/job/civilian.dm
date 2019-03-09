@@ -18,6 +18,7 @@
 	stat_modifiers = list(
 		STAT_ROB = 10,
 	)
+	also_known_languages = list(LANGUAGE_JIVE = 80)
 
 	outfit_type = /decl/hierarchy/outfit/job/service/bartender
 
@@ -54,7 +55,7 @@
 	spawn_positions = 3
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_JIVE = 80)
 	access = list(access_hydroponics, access_bar, access_kitchen)
 
 	outfit_type = /decl/hierarchy/outfit/job/service/chef
@@ -89,7 +90,7 @@
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
 	//alt_titles = list("Hydroponicist")
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_JIVE = 80)
 	access = list(access_hydroponics, access_bar, access_kitchen)
 
 	outfit_type = /decl/hierarchy/outfit/job/service/gardener
@@ -132,7 +133,7 @@
 	spawn_positions = 2
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5, LANGUAGE_JIVE = 80)
 	access = list(access_maint_tunnels, access_theatre)
 
 	outfit_type = /decl/hierarchy/outfit/job/service/actor/clown
@@ -161,7 +162,7 @@
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
 	//alt_titles = list("Custodian","Sanitation Technician")
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_JIVE = 80)
 	access = list(access_janitor, access_maint_tunnels)
 	wage = WAGE_LABOUR_DUMB //Todo future: Give janitor bonus based on cleaning actually done
 	outfit_type = /decl/hierarchy/outfit/job/service/janitor

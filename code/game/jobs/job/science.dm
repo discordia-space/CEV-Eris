@@ -122,7 +122,7 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 	wage = WAGE_PROFESSIONAL
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 
-	outfit_type = /decl/hierarchy/outfit/job/science/scientist
+	outfit_type = /decl/hierarchy/outfit/job/science/roboticist
 
 	access = list(
 		access_robotics, access_tox, access_tox_storage, access_tech_storage, access_morgue, access_moebius

@@ -5,12 +5,11 @@ var/list/directory = list()							//list of all ckeys with associated client
 //Since it didn't really belong in any other category, I'm putting this here
 //This is for procs to replace all the goddamn 'in world's that are chilling around the code
 
-var/global/list/player_list = list()				//List of all mobs **with clients attached**. Excludes /mob/new_player
-//var/global/list/mob_list = list()					//List of all mobs, including clientless   --Removed
-var/global/list/human_mob_list = list()				//List of all human mobs and sub-types, including clientless
-var/global/list/silicon_mob_list = list()			//List of all silicon mobs, including clientless
-var/global/list/living_mob_list = list()			//List of all alive mobs, including clientless. Excludes /mob/new_player
-var/global/list/dead_mob_list = list()				//List of all dead mobs, including clientless. Excludes /mob/new_player
+GLOBAL_LIST_EMPTY(player_list)				//List of all mobs **with clients attached**. Excludes /mob/new_player
+GLOBAL_LIST_EMPTY(human_mob_list)				//List of all human mobs and sub-types, including clientless
+GLOBAL_LIST_EMPTY(silicon_mob_list)			//List of all silicon mobs, including clientless
+GLOBAL_LIST_EMPTY(living_mob_list)			//List of all alive mobs, including clientless. Excludes /mob/new_player
+GLOBAL_LIST_EMPTY(dead_mob_list)				//List of all dead mobs, including clientless. Excludes /mob/new_player
 var/global/list/current_antags = list()
 var/global/list/current_factions = list()
 var/global/list/antag_team_objectives = list()		//List of shared sets of objectives for antag teams
@@ -259,3 +258,33 @@ var/global/list/admin_permissions = list(
 		mannequins_[ckey] = .
 
 var/global/list/severity_to_string = list("[EVENT_LEVEL_MUNDANE]" = "Mundane", "[EVENT_LEVEL_MODERATE]" = "Moderate", "[EVENT_LEVEL_MAJOR]" = "Major", "[EVENT_LEVEL_ROLESET]" = "Roleset","[EVENT_LEVEL_ECONOMY]" = "Economy")
+
+
+
+//*** params cache
+/*
+	Ported from bay12, this seems to be used to store and retrieve 2D vectors as strings, as well as
+	decoding them into a number
+*/
+var/global/list/paramslist_cache = list()
+
+#define cached_key_number_decode(key_number_data) cached_params_decode(key_number_data, /proc/key_number_decode)
+#define cached_number_list_decode(number_list_data) cached_params_decode(number_list_data, /proc/number_list_decode)
+
+/proc/cached_params_decode(var/params_data, var/decode_proc)
+	. = paramslist_cache[params_data]
+	if(!.)
+		. = call(decode_proc)(params_data)
+		paramslist_cache[params_data] = .
+
+/proc/key_number_decode(var/key_number_data)
+	var/list/L = params2list(key_number_data)
+	for(var/key in L)
+		L[key] = text2num(L[key])
+	return L
+
+/proc/number_list_decode(var/number_list_data)
+	var/list/L = params2list(number_list_data)
+	for(var/i in 1 to L.len)
+		L[i] = text2num(L[i])
+	return L

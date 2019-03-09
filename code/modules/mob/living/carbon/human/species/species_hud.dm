@@ -61,6 +61,7 @@
 	gear = list(
 		"Left Hand" =       slot_l_hand,
 		"Right Hand" =       slot_r_hand,
+		"Hat" =          slot_head,
 		"Mask" =         slot_wear_mask,
 		"Back" =         slot_back
 		)

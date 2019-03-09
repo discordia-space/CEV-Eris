@@ -7,7 +7,7 @@
 
 	var/list/hud_list[10]
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
-	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_canmove() call.
+	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_lying_buckled_and_verb_status() call.
 
 /mob/living/carbon/human/New(var/new_loc, var/new_species = null)
 	body_build = get_body_build(gender)
@@ -40,7 +40,7 @@
 
 
 
-	human_mob_list |= src
+	GLOB.human_mob_list |= src
 	..()
 
 	if(dna)
@@ -50,7 +50,7 @@
 	make_blood()
 
 /mob/living/carbon/human/Destroy()
-	human_mob_list -= src
+	GLOB.human_mob_list -= src
 	for(var/organ in organs)
 		qdel(organ)
 	return ..()
@@ -73,7 +73,7 @@
 				stat("Tank Pressure", internal.air_contents.return_pressure())
 				stat("Distribution Pressure", internal.distribute_pressure)
 
-		var/obj/item/organ/internal/xenos/plasmavessel/P = internal_organs_by_name[O_PLASMA]
+		var/obj/item/organ/internal/xenos/plasmavessel/P = internal_organs_by_name[BP_PLASMA]
 		if(P)
 			stat(null, "Plasma Stored: [P.stored_plasma]/[P.max_plasma]")
 
@@ -347,38 +347,24 @@ var/list/rank_prefix = list(\
 	if (href_list["criminal"])
 		if(hasHUD(usr,"security"))
 
-			var/modified = 0
-			var/perpname = "wot"
-			if(wear_id)
-				var/obj/item/weapon/card/id/I = wear_id.GetIdCard()
-				if(I)
-					perpname = I.registered_name
-				else
-					perpname = name
-			else
-				perpname = name
+			var/modified = FALSE
+			var/perpname = get_id_name(name)
 
 			if(perpname)
-				for (var/datum/data/record/E in data_core.general)
-					if (E.fields["name"] == perpname)
-						for (var/datum/data/record/R in data_core.security)
-							if (R.fields["id"] == E.fields["id"])
-
-								var/setcriminal = input(usr, "Specify a new criminal status for this person.", "Security HUD", R.fields["criminal"]) in list("None", "*Arrest*", "Incarcerated", "Parolled", "Released", "Cancel")
-
-								if(hasHUD(usr, "security"))
-									if(setcriminal != "Cancel")
-										R.fields["criminal"] = setcriminal
-										modified = 1
-
-										spawn()
-											BITSET(hud_updateflag, WANTED_HUD)
-											if(ishuman(usr))
-												var/mob/living/carbon/human/U = usr
-												U.handle_regular_hud_updates()
-											if(isrobot(usr))
-												var/mob/living/silicon/robot/U = usr
-												U.handle_regular_hud_updates()
+				var/datum/computer_file/report/crew_record/R = get_crewmember_record(perpname)
+				if(R)
+					var/setcriminal = input(usr, "Specify a new criminal status for this person.", "Security HUD", R.get_criminalStatus()) in GLOB.security_statuses + "Cancel"
+					if(hasHUD(usr, "security"))
+						if(setcriminal != "Cancel")
+							R.set_criminalStatus(setcriminal)
+							modified = TRUE
+							BITSET(hud_updateflag, WANTED_HUD)
+							if(ishuman(usr))
+								var/mob/living/carbon/human/U = usr
+								U.handle_regular_hud_updates()
+							if(isrobot(usr))
+								var/mob/living/silicon/robot/U = usr
+								U.handle_regular_hud_updates()
 
 			if(!modified)
 				usr << "\red Unable to locate a data core entry for this person."
@@ -616,11 +602,11 @@ var/list/rank_prefix = list(\
 ///eyecheck()
 ///Returns a number between -1 to 2
 /mob/living/carbon/human/eyecheck()
-	if(!species.has_organ[O_EYES]) //No eyes, can't hurt them.
+	if(!species.has_organ[BP_EYES]) //No eyes, can't hurt them.
 		return FLASH_PROTECTION_MAJOR
 
-	if(internal_organs_by_name[O_EYES]) // Eyes are fucked, not a 'weak point'.
-		var/obj/item/organ/I = internal_organs_by_name[O_EYES]
+	if(internal_organs_by_name[BP_EYES]) // Eyes are fucked, not a 'weak point'.
+		var/obj/item/organ/I = internal_organs_by_name[BP_EYES]
 		if(I.status & ORGAN_CUT_AWAY)
 			return FLASH_PROTECTION_MAJOR
 
@@ -628,7 +614,7 @@ var/list/rank_prefix = list(\
 
 //Used by various things that knock people out by applying blunt trauma to the head.
 //Checks that the species has a "head" (brain containing organ) and that hit_zone refers to it.
-/mob/living/carbon/human/proc/headcheck(var/target_zone, var/brain_tag = O_BRAIN)
+/mob/living/carbon/human/proc/headcheck(var/target_zone, var/brain_tag = BP_BRAIN)
 	if(!species.has_organ[brain_tag])
 		return 0
 
@@ -896,11 +882,11 @@ var/list/rank_prefix = list(\
 	..()
 
 /mob/living/carbon/human/proc/is_lung_ruptured()
-	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
+	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[BP_LUNGS]
 	return L && L.is_bruised()
 
 /mob/living/carbon/human/proc/rupture_lung()
-	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
+	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[BP_LUNGS]
 
 	if(L && !L.is_bruised())
 		src.custom_pain("You feel a stabbing pain in your chest!", 1)
@@ -1258,7 +1244,7 @@ var/list/rank_prefix = list(\
 
 	if(!target_zone)
 		if(!user)
-			target_zone = pick(BP_ALL + BP_CHEST + BP_CHEST)
+			target_zone = pick(BP_ALL_LIMBS + BP_CHEST + BP_CHEST)
 		else
 			target_zone = user.targeted_organ
 
@@ -1290,7 +1276,7 @@ var/list/rank_prefix = list(\
 		if(C.body_parts_covered & FACE)
 			// Do not show flavor if face is hidden
 			return
-	
+
 	if(client)
 		flavor_text = client.prefs.flavor_text
 
@@ -1314,11 +1300,11 @@ var/list/rank_prefix = list(\
 	..()
 
 /mob/living/carbon/human/has_brain()
-	return istype(internal_organs_by_name[O_BRAIN], /obj/item/organ/internal/brain)
+	return istype(internal_organs_by_name[BP_BRAIN], /obj/item/organ/internal/brain)
 
 /mob/living/carbon/human/has_eyes()
-	if(internal_organs_by_name[O_EYES])
-		var/obj/item/organ/internal/eyes = internal_organs_by_name[O_EYES]
+	if(internal_organs_by_name[BP_EYES])
+		var/obj/item/organ/internal/eyes = internal_organs_by_name[BP_EYES]
 		if(eyes && istype(eyes) && !(eyes.status & ORGAN_CUT_AWAY))
 			return 1
 	return 0
@@ -1334,7 +1320,7 @@ var/list/rank_prefix = list(\
 	set desc = "Pop a joint back into place. Extremely painful."
 	set src in view(1)
 
-	if(!isliving(usr) || !usr.canClick())
+	if(!isliving(usr) || !usr.can_click())
 		return
 
 	usr.setClickCooldown(20)
@@ -1435,7 +1421,7 @@ var/list/rank_prefix = list(\
 //			output for machines^	^^^^^^^output for people^^^^^^^^^
 
 /mob/living/carbon/human/proc/pulse()
-	var/obj/item/organ/internal/heart/H = internal_organs_by_name[O_HEART]
+	var/obj/item/organ/internal/heart/H = internal_organs_by_name[BP_HEART]
 	if(!H)
 		return PULSE_NONE
 	else
@@ -1452,7 +1438,7 @@ var/list/rank_prefix = list(\
 			if(client.eye == shadow)
 				reset_view(0)
 				return
-			if(istype(above, /turf/simulated/open))
+			if(above.is_hole)
 				src << SPAN_NOTICE("You look up.")
 				if(client)
 					reset_view(shadow)
@@ -1465,9 +1451,9 @@ var/list/rank_prefix = list(\
 /mob/living/carbon/human/should_have_organ(var/organ_check)
 
 	var/obj/item/organ/external/affecting
-	if(organ_check in list(O_HEART, O_LUNGS))
+	if(organ_check in list(BP_HEART, BP_LUNGS))
 		affecting = organs_by_name[BP_CHEST]
-	else if(organ_check in list(O_LIVER, O_KIDNEYS))
+	else if(organ_check in list(BP_LIVER, BP_KIDNEYS))
 		affecting = organs_by_name[BP_GROIN]
 
 	if(affecting && (affecting.robotic >= ORGAN_ROBOT))
@@ -1488,20 +1474,3 @@ var/list/rank_prefix = list(\
 		else return TRUE
 	return FALSE
 
-//	If covered in blakets you wont get up while all blankets is unrolled
-/mob/living/carbon/human/unblanket()
-	if(incapacitated(incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_STUNNED))
-		return FALSE
-	var/obj/item/weapon/bedsheet/unrolledBlanket
-	for (var/obj/item/weapon/bedsheet/BS in get_turf(src))
-		if(!BS.rolled && !BS.folded)
-			unrolledBlanket = BS
-			break
-	if(unrolledBlanket)
-		if(unrolledBlanket.toggle_roll(src))
-			if (unblanket())
-				return TRUE
-		else
-			return FALSE
-	else
-		return TRUE

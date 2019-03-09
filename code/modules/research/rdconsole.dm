@@ -31,7 +31,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	name = "R&D control console"
 	icon_keyboard = "rd_key"
 	icon_screen = "rdcomp"
-	light_color = "#a97faa"
+	light_color = COLOR_LIGHTING_PURPLE_MACHINERY
 	circuit = /obj/item/weapon/circuitboard/rdconsole
 	var/datum/research/files							//Stores all the collected research data.
 	var/obj/item/weapon/disk/tech_disk/t_disk   = null	//Stores the technology disk.
@@ -666,7 +666,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					dat += "<LI><B>[D.name]</B><div style = 'float: right;'>[temp_dat]</div>"
 				dat += "</div>"
 
-				
+
 			dat += "</UL>"
 
 		if(3.2) //Protolathe Material Storage Sub-menu
@@ -754,9 +754,10 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A> || "
 			dat += "<A href='?src=\ref[src];menu=4.1'>Imprinter Menu</A><HR>"
 			dat += "Chemical Storage<BR><HR>"
-			for(var/datum/reagent/R in linked_imprinter.reagents.reagent_list)
-				dat += "Name: [R.name] | Units: [R.volume] "
-				dat += "<A href='?src=\ref[src];disposeI=[R.id]'>(Purge)</A><BR>"
+			if(linked_imprinter.reagents.reagent_list.len)
+				for(var/datum/reagent/R in linked_imprinter.reagents.reagent_list)
+					dat += "Name: [R.name] | Units: [R.volume] "
+					dat += "<A href='?src=\ref[src];disposeI=[R.id]'>(Purge)</A><BR>"
 				dat += "<A href='?src=\ref[src];disposeallI=1'><U>Disposal All Chemicals in Storage</U></A><BR>"
 
 		if(4.3)

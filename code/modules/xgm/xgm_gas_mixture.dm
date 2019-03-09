@@ -18,6 +18,11 @@
 /datum/gas_mixture/New(vol = CELL_VOLUME)
 	volume = vol
 
+/datum/gas_mixture/Destroy()
+	gas = null
+	graphic = null
+	return ..()
+
 /datum/gas_mixture/proc/get_total_moles()
 	return total_moles * group_multiplier
 

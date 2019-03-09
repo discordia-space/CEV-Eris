@@ -7,6 +7,7 @@
 /mob/living/carbon/superior_animal/giant_spider/nurse
 	desc = "Furry and black, it makes you shudder to look at it. This one has brilliant green eyes."
 	icon_state = "nurse"
+	icon_living = "nurse"
 	maxHealth = 40
 	health = 40
 	melee_damage_lower = 5

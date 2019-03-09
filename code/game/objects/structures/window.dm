@@ -282,7 +282,7 @@
 
 	//If you set intent to harm, you can hit the window with tools to break it. Set to any other intent to use tools on it
 	if (usr.a_intent != I_HURT)
-		var/tool_type = I.get_tool_type(user, usable_qualities)
+		var/tool_type = I.get_tool_type(user, usable_qualities, src)
 		switch(tool_type)
 			if(QUALITY_SEALING)
 				user.visible_message("[user] starts sealing up cracks in [src] with the [I]", "You start sealing up cracks in [src] with the [I]")
@@ -497,7 +497,7 @@
 
 /obj/structure/window/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature > maximal_heat)
-		hit(damage_per_fire_tick, 0)
+		hit(damage_per_fire_tick, TRUE, TRUE)
 	..()
 
 
@@ -507,8 +507,8 @@
 	icon_state = "window"
 	basestate = "window"
 	glasstype = /obj/item/stack/material/glass
-	maximal_heat = T0C + 100
-	damage_per_fire_tick = 2.0
+	maximal_heat = T0C + 200	// Was 100. Spaceship windows surely surpass coffee pots.
+	damage_per_fire_tick = 3.0	// Was 2. Made weaker than rglass per tick.
 	maxhealth = 15
 	resistance = 0
 
@@ -527,8 +527,8 @@
 	icon_state = "plasmawindow"
 	shardtype = /obj/item/weapon/material/shard/plasma
 	glasstype = /obj/item/stack/material/glass/plasmaglass
-	maximal_heat = T0C + 2000
-	damage_per_fire_tick = 1.0
+	maximal_heat = T0C + 5227  // Safe use temperature at 5500 kelvin. Easy to remember.
+	damage_per_fire_tick = 1.5 // Lowest per-tick damage so overheated supermatter chambers have some time to respond to it. Will still shatter before a delam.
 	maxhealth = 150
 	resistance = 8
 
@@ -546,7 +546,7 @@
 	icon_state = "rwindow"
 	basestate = "rwindow"
 	reinf = 1
-	maximal_heat = T0C + 750
+	maximal_heat = T0C + 750	// Fused quartz.
 	damage_per_fire_tick = 2.0
 	glasstype = /obj/item/stack/material/glass/reinforced
 
@@ -569,23 +569,24 @@
 	resistance = 6
 
 /obj/structure/window/reinforced/plasma
-	name = "reinforced borosilicate window"
+	name = "reinforced plasma window"
 	desc = "A borosilicate alloy window, with rods supporting it. It seems to be very strong."
-	basestate = "plasmarwindow"
+	basestate = "rpwindow"
 	icon_state = "plasmarwindow"
 	shardtype = /obj/item/weapon/material/shard/plasma
 	glasstype = /obj/item/stack/material/glass/plasmarglass
-	maximal_heat = T0C + 9000
-	damage_per_fire_tick = 1.0 // This should last for 80 fire ticks if the window is not damaged at all. The idea is that borosilicate windows have something like ablative layer that protects them for a while.
-	maxhealth = 150
-	resistance = 8
+	maximal_heat = T0C + 5453 // Safe use temperature at 6000 kelvin.
+	damage_per_fire_tick = 1.5
+	maxhealth = 200
+	resistance = 10
 
 /obj/structure/window/reinforced/plasma/full
 	dir = SOUTH|EAST
+	icon = 'icons/obj/structures/windows.dmi'
 	icon_state = "plasmarwindow_mask"
 	alpha = 150
-	maxhealth = 200
-	resistance = 10
+	maxhealth = 250
+	resistance = 12
 
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"

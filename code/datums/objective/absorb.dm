@@ -14,11 +14,11 @@
 
 	var/needed_count = 1 //autowin
 	if (SSticker.current_state == GAME_STATE_SETTING_UP)
-		for(var/mob/new_player/P in player_list)
+		for(var/mob/new_player/P in GLOB.player_list)
 			if(P.client && P.ready && P.mind!=owner)
 				needed_count ++
 	else if(SSticker.current_state == GAME_STATE_PLAYING)
-		for(var/mob/living/carbon/human/P in player_list)
+		for(var/mob/living/carbon/human/P in GLOB.player_list)
 			if(P.client && !(P.mind.changeling) && P.mind != owner)
 				needed_count ++
 	target_amount = min(target_amount, needed_count)

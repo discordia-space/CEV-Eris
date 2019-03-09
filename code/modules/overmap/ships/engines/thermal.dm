@@ -113,7 +113,7 @@
 	name = "engine exhaust"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smoke"
-	light_color = "#ed9200"
+	light_color = COLOR_LIGHTING_ORANGE_BRIGHT
 	anchored = 1
 
 /obj/effect/engine_exhaust/New(var/turf/nloc, var/ndir, var/flame)

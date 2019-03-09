@@ -13,7 +13,7 @@
 			user.visible_message(SPAN_DANGER("[user] butchers \the [src] messily!"))
 			gib()
 
-/mob/living/carbon/superior_animal/update_canmove()
+/mob/living/carbon/superior_animal/update_lying_buckled_and_verb_status()
 	..()
 
 	check_AI_act()

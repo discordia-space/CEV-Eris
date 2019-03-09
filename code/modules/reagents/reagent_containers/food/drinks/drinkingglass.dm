@@ -3,6 +3,7 @@
 	desc = "Your standard drinking glass."
 	icon_state = "glass_empty"
 	amount_per_transfer_from_this = 5
+	matter = list(MATERIAL_GLASS = 0.5)
 	volume = 30
 	unacidable = 1 //glass
 	center_of_mass = list("x"=16, "y"=10)
@@ -17,9 +18,9 @@
 			icon_state = "glass_brown"
 
 		if(R.glass_name)
-			name = R.glass_name
+			name = "glass of [R.glass_name]"
 		else
-			name = "Glass of.. what?"
+			name = "glass of.. what?"
 
 		if(R.glass_desc)
 			desc = R.glass_desc

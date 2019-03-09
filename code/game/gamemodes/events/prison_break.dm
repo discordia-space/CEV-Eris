@@ -14,25 +14,25 @@
 
 	var/eventDept = "Security"			//Department name in announcement
 	var/list/areaName = list("Brig")	//Names of areas mentioned in AI and Engineering announcements
-	var/list/areaType = list(/area/security/prison, /area/security/brig)	//Area types to include.
+	var/list/areaType = list(/area/eris/security/prison, /area/eris/security/brig)	//Area types to include.
 	var/list/areaNotType = list()		//Area types to specifically exclude.
 
 /datum/event/prison_break/virology
 	eventDept = "Medical"
 	areaName = list("Virology")
-	areaType = list(/area/medical/virology, /area/medical/virologyaccess)
+	areaType = list(/area/eris/medical/virology, /area/eris/medical/virologyaccess)
 
 /datum/event/prison_break/xenobiology
 	eventDept = "Science"
 	areaName = list("Xenobiology")
-	areaType = list(/area/rnd/xenobiology)
-	areaNotType = list(/area/rnd/xenobiology/xenoflora, /area/rnd/xenobiology/xenoflora_storage)
+	areaType = list(/area/eris/rnd/xenobiology)
+	areaNotType = list(/area/eris/rnd/xenobiology/xenoflora, /area/eris/rnd/xenobiology/xenoflora_storage)
 
 /datum/event/prison_break/station
 	eventDept = "Station"
 	areaName = list("Brig","Virology","Xenobiology")
-	areaType = list(/area/security/prison, /area/security/brig, /area/medical/virology, /area/medical/virologyaccess, /area/rnd/xenobiology)
-	areaNotType = list(/area/rnd/xenobiology/xenoflora, /area/rnd/xenobiology/xenoflora_storage)
+	areaType = list(/area/eris/security/prison, /area/eris/security/brig, /area/eris/medical/virology, /area/eris/medical/virologyaccess, /area/eris/rnd/xenobiology)
+	areaNotType = list(/area/eris/rnd/xenobiology/xenoflora, /area/eris/rnd/xenobiology/xenoflora_storage)
 
 
 /datum/event/prison_break/setup()
@@ -58,7 +58,7 @@
 		var/rc_message = "An unknown malicious program has been detected in the [english_list(areaName)] lighting and airlock control systems at [stationtime2text()]. Systems will be fully compromised within approximately three minutes. Direct intervention is required immediately.<br>"
 		for(var/obj/machinery/message_server/MS in world)
 			MS.send_rc_message("Engineering", my_department, rc_message, "", "", 2)
-		for(var/mob/living/silicon/ai/A in player_list)
+		for(var/mob/living/silicon/ai/A in GLOB.player_list)
 			A << SPAN_DANGER("Malicious program detected in the [english_list(areaName)] lighting and airlock control systems by [my_department].")
 
 	else

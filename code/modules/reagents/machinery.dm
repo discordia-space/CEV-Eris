@@ -185,7 +185,7 @@
 	accept_glass = 1
 	max_energy = 100
 	density = 0
-	dispensable_reagents = list("water","ice","coffee","cream","tea","icetea","cola","spacemountainwind","dr_gibb","space_up","tonic","sodawater","lemon_lime","sugar","orangejuice","limejuice","watermelonjuice")
+	dispensable_reagents = list("water","ice","coffee","cream","tea","greentea","icetea","icegreentea","cola","spacemountainwind","dr_gibb","space_up","tonic","sodawater","lemon_lime","sugar","orangejuice","limejuice","watermelonjuice")
 
 /obj/machinery/chemical_dispenser/soda/attackby(var/obj/item/weapon/B as obj, var/mob/user as mob)
 	..()
@@ -357,26 +357,21 @@
 			return
 
 		else if (href_list["add"])
-
 			if(href_list["amount"])
 				var/id = href_list["add"]
-				var/amount = Clamp((text2num(href_list["amount"])), 0, reagents.get_free_space())
+				var/amount = Clamp(text2num(href_list["amount"]), 0, reagents.get_free_space())
 				R.trans_id_to(src, id, amount)
 				if(reagents.get_free_space() < 1)
 					usr << SPAN_WARNING("The [name] is full!")
 
 		else if (href_list["addcustom"])
-
-			var/id = href_list["addcustom"]
 			useramount = input("Select the amount to transfer.", 30, useramount) as num
-			useramount = Clamp(useramount, 0, reagents.total_volume)
-			src.Topic(null, list("amount" = "[useramount]", "add" = "[id]"))
+			src.Topic(null, list("amount" = "[useramount]", "add" = href_list["addcustom"]))
 
 		else if (href_list["remove"])
-
 			if(href_list["amount"])
 				var/id = href_list["remove"]
-				var/amount = Clamp((text2num(href_list["amount"])), 0, beaker.reagents.get_free_space())
+				var/amount = Clamp(text2num(href_list["amount"]), 0, beaker.reagents.get_free_space())
 				if(mode)
 					reagents.trans_id_to(beaker, id, amount)
 					if(beaker.reagents.get_free_space() < 1)
@@ -386,11 +381,8 @@
 
 
 		else if (href_list["removecustom"])
-
-			var/id = href_list["removecustom"]
 			useramount = input("Select the amount to transfer.", 30, useramount) as num
-			useramount = Clamp(useramount, 0, 200)
-			src.Topic(null, list("amount" = "[useramount]", "remove" = "[id]"))
+			src.Topic(null, list("amount" = "[useramount]", "remove" = href_list["removecustom"]))
 
 		else if (href_list["toggle"])
 			mode = !mode

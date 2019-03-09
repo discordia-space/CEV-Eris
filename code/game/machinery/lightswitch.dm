@@ -15,7 +15,7 @@
 	var/on = 1
 	var/area/area = null
 	var/otherarea = null
-	var/check_time = 0 // A time at which another mob check will occure.
+	var/next_check = 0 // A time at which another mob check will occure.
 
 /obj/machinery/light_switch/New()
 	..()
@@ -35,15 +35,15 @@
 			set_on(TRUE)
 
 /obj/machinery/light_switch/Process()
-	if(check_time < world.time && !(round(world.time) % 10 SECONDS)) // Each 10 seconds it checks if anyone is in the area, but also whether the light wasn't switched on recently.
+	if(next_check <= world.time)
+		next_check = world.time + 10 SECONDS // Each 10 seconds it checks if anyone is in the area, but also whether the light wasn't switched on recently.
 		if(area.are_living_present())
 			if(!on)
 				spawn(0)
 					if(!on)
 						dramatic_turning()
-						set_on(TRUE)
 			else
-				check_time = world.time + 10 MINUTES
+				next_check = world.time + 10 MINUTES
 		else
 			set_on(FALSE, FALSE)
 
@@ -52,11 +52,11 @@
 		icon_state = "light-p"
 		set_light(0)
 		layer = initial(layer)
-		plane = initial(plane)
+		set_plane(initial(plane))
 	else
 		icon_state = "light[on]"
-		set_light(2, 1.5, on ? "#82FF4C" : "#F86060")
-		plane = ABOVE_LIGHTING_PLANE
+		set_light(2, 1.5, on ? COLOR_LIGHTING_GREEN_BRIGHT : COLOR_LIGHTING_RED_BRIGHT)
+		set_plane(ABOVE_LIGHTING_PLANE)
 		layer = ABOVE_LIGHTING_LAYER
 
 /obj/machinery/light_switch/examine(mob/user)
@@ -66,6 +66,8 @@
 /obj/machinery/light_switch/proc/dramatic_turning()
 	if(slow_turning_on) // Sanity check. So nothing can force this thing to run twice simultaneously.
 		return
+
+	set_on(TRUE, TRUE)
 
 	slow_turning_on = TRUE
 
@@ -94,7 +96,7 @@
 		L.update_icon()
 
 	if(on_)
-		check_time = world.time + 10 MINUTES
+		next_check = world.time + 10 MINUTES
 
 	area.power_change()
 
