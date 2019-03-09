@@ -159,7 +159,7 @@
 
 	firer = user
 	shot_from = launcher.name
-	silenced = launcher.silenced
+	silenced = launcher.item_flags & SILENT
 
 	return launch(target, target_zone, x_offset, y_offset)
 

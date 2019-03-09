@@ -273,8 +273,8 @@ var/list/flooring_types
 	//BSTs need this or they generate tons of soundspam while flying through the ship
 	if(!ishuman(M)|| M.incorporeal_move || !has_gravity(get_turf(M)))
 		return
-	if(M.m_intent == "run")
-		if(prob(40))
+	if(MOVING_QUICKLY(M))
+		if(prob(20))
 			M.adjustBruteLoss(5)
 			M.slip(null, 6)
 			playsound(M, 'sound/effects/bang.ogg', 50, 1)

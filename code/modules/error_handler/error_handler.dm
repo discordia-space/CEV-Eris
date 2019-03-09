@@ -24,7 +24,7 @@ var/total_runtimes_skipped = 0
 	if(cooldown < 0)
 		error_cooldown[erroruid]-- // Used to keep track of skip count for this error
 		total_runtimes_skipped++
-		return // Error is currently silenced, skip handling it
+		return // Error is currently item_flags & SILENT, skip handling it
 	// Handle cooldowns and silencing spammy errors
 	var/silencing = 0
 	// Each occurrence of a unique error adds to its "cooldown" time...
@@ -100,7 +100,7 @@ var/total_runtimes_skipped = 0
 	if(usrinfo)
 		desclines.Add(usrinfo)
 	if(silencing)
-		desclines += "  (This error will now be silenced for [ERROR_SILENCE_TIME / 600] minutes)"
+		desclines += "  (This error will now be item_flags & SILENT for [ERROR_SILENCE_TIME / 600] minutes)"
 	// Now to actually output the error info...
 	log_to_dd("\[[time_stamp()]] Runtime in [e.file],[e.line]: [e]")
 	for(var/line in desclines)
