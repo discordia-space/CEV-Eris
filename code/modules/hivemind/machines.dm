@@ -27,6 +27,7 @@
 	var/cooldown = 0						//cooldown in world.time value
 	var/time_until_regen = 0
 	var/list/assimilated_machinery = list("path", "dir", "appearance")
+	var/obj/item/weapon/circuitboard/saved_circuit
 
 /obj/machinery/hivemind_machine/Initialize()
 	. = ..()
@@ -76,7 +77,7 @@
 	if(istype(victim, /obj/machinery))
 		var/obj/machinery/target = victim
 		if(target.circuit)
-			new target.circuit.type(src)
+			saved_circuit = new target.circuit.type(src)
 			qdel(victim)
 			return
 
@@ -92,7 +93,6 @@
 
 
 /obj/machinery/hivemind_machine/proc/drop_assimilated()
-	var/obj/item/weapon/circuitboard/saved_circuit = locate() in src
 	if(saved_circuit)
 		saved_circuit.loc = loc
 
@@ -145,6 +145,28 @@
 			name = "[name] [hive_mind_ai.surname] - [rand(999)]"
 
 
+/obj/machinery/hivemind_machine/proc/start_rebuild(var/new_machine_path, var/time_in_seconds = 5)
+	stun()
+	var/obj/effect/overlay/rebuild_anim = new /obj/effect/overlay(loc)
+	rebuild_anim.icon = 'icons/obj/hivemind_machines.dmi'
+	rebuild_anim.icon_state = "rebuild"
+	rebuild_anim.anchored = TRUE
+	rebuild_anim.density = FALSE
+	addtimer(CALLBACK(src, .proc/finish_rebuild, new_machine_path), time_in_seconds SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, rebuild_anim), time_in_seconds SECONDS)
+
+
+/obj/machinery/hivemind_machine/proc/finish_rebuild(var/new_machine_path)
+	var/obj/machinery/hivemind_machine/new_machine = new new_machine_path(get_turf(loc))
+	if(assimilated_machinery["path"])
+		new_machine.assimilated_machinery = assimilated_machinery
+	if(saved_circuit)
+		saved_circuit.loc = new_machine
+		new_machine.saved_circuit = saved_circuit
+	qdel(src)
+
+
+
 //Returns list of mobs in range or hearers (include in vehicles)
 /obj/machinery/hivemind_machine/proc/targets_in_range(var/range = world.view, var/in_hear_range = FALSE)
 	var/list/range_list = list()
@@ -158,6 +180,12 @@
 		if(target)
 			target_list += target
 	return target_list
+
+
+/obj/machinery/hivemind_machine/proc/is_attackable(mob/living/target)
+	if(!target.stat || target.health >= (ishuman(target) ? HEALTH_THRESHOLD_CRIT : 0))
+		return TRUE
+	return FALSE
 
 
 /////////////////////////]             [//////////////////////////
@@ -196,6 +224,9 @@
 	playsound(src, 'sound/voice/insect_battle_screeching.ogg', 30, 1)
 	gibs(loc, null, /obj/effect/gibspawner/robot)
 	drop_assimilated()
+	var/obj/effect/plant/hivemind/wireweed = locate() in loc
+	if(wireweed)
+		wireweed.die_off()
 	qdel(src)
 
 
@@ -284,6 +315,8 @@
 	wireweeds_required = FALSE
 	//internals
 	var/list/my_wireweeds = list()
+	var/list/defensive_machines = list()
+
 
 /obj/machinery/hivemind_machine/node/Initialize()
 	if(!hive_mind_ai)
@@ -293,6 +326,10 @@
 	hive_mind_ai.hives.Add(src)
 
 	update_icon()
+
+	//defensive machines setup
+	for(var/i = 1 to 5)
+		defensive_machines += pick(/obj/machinery/hivemind_machine/turret, /obj/machinery/hivemind_machine/mob_spawner)
 
 	var/obj/effect/plant/hivemind/founded_wire = locate() in loc
 	if(!founded_wire)
@@ -304,6 +341,22 @@
 			if(W.master_node)
 				if(!(locate(type) in W.loc))
 					add_wireweed(W)
+
+		//rebuilding all our machines into defensive perimeter to protect the node
+		for(var/obj/machinery/hivemind_machine/M in range(6, src))
+			if(M.type == type)
+				continue
+			if(defensive_machines.len == 0)
+				break
+			var/new_machine
+			if(M.type in defensive_machines)
+				new_machine = M.type
+			else
+				new_machine = pick(defensive_machines)
+			defensive_machines -= new_machine
+			if(M.type != new_machine)
+				M.start_rebuild(new_machine, 5)
+
 	//self-defense protocol setting
 	var/picked_sdp = pick(subtypesof(/datum/hivemind_sdp))
 	SDP = new picked_sdp(src)
@@ -394,7 +447,7 @@
 		return
 
 	var/mob/living/target = locate() in mobs_in_view(world.view, src)
-	if(target && target.stat == CONSCIOUS && target.faction != HIVE_FACTION)
+	if(target && is_attackable(target) && target.faction != HIVE_FACTION)
 		use_ability(target)
 		set_cooldown()
 

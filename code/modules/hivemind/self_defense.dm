@@ -56,7 +56,7 @@
 /datum/hivemind_sdp/shockwave/check_conditions()
 	if(is_on_cooldown())
 		return
-	if(master.health <= (hp_percent * 50))
+	if(master.health <= (hp_percent * 60))
 		for(var/mob/living/T in mobs_in_view(attack_range, master))
 			if(T.stat == CONSCIOUS && T.faction != HIVE_FACTION)
 				execute()
@@ -84,7 +84,7 @@
 
 
 /datum/hivemind_sdp/champion/check_conditions()
-	if(master.health <= (hp_percent * 20))
+	if(master.health <= (hp_percent * 40))
 		execute()
 		turn_off()
 
@@ -149,7 +149,7 @@
 
 
 /datum/hivemind_sdp/emergency_jump/check_conditions()
-	if(master.health <= (hp_percent * 10))
+	if(master.health <= (hp_percent * 30))
 		execute()
 		turn_off()
 
@@ -171,3 +171,4 @@
 			master.forceMove(new_place)
 			master.visible_message("[master] appeared from an air!")
 			playsound(master, 'sound/effects/cascade.ogg', 50, 1)
+			message_admins("Hivemind node [master] emergency run at \the [jumplink(new_place)]")
