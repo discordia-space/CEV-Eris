@@ -3,12 +3,12 @@
 
 //toxic shot, turret's ability use it
 /obj/item/projectile/goo
-	name = "toxic goo"
+	name = "acrid goo"
 	icon = 'icons/obj/hivemind.dmi'
 	icon_state = "goo_proj"
 	damage = 15
 	damage_type = BURN
-	check_armour = "energy"
+	check_armour = "bio"
 	step_delay = 2
 
 
@@ -19,5 +19,5 @@
 		L.apply_damage(10, TOX)
 	if(!(locate(/obj/effect/decal/cleanable/spiderling_remains) in target.loc))
 		var/obj/effect/decal/cleanable/spiderling_remains/goo = new /obj/effect/decal/cleanable/spiderling_remains(target.loc)
-		goo.name = "green goo"
-		goo.desc = "An unidentifiable liquid. It smells awful."
+		goo.name = "acrid goo"
+		goo.desc = "An unknown, bubbling liquid. The fumes smell awful."
