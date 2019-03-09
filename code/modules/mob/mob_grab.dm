@@ -163,12 +163,12 @@
 	last_hit_zone = target_zone
 
 	switch(target_zone)
-		if(O_MOUTH)
+		if(BP_MOUTH)
 			if(announce)
 				user.visible_message(SPAN_WARNING("\The [user] covers [target]'s mouth!"))
 			if(target.silent < 3)
 				target.silent = 3
-		if(O_EYES)
+		if(BP_EYES)
 			if(announce)
 				assailant.visible_message(SPAN_WARNING("[assailant] covers [affecting]'s eyes!"))
 			if(affecting.eye_blind < 3)
@@ -231,7 +231,7 @@
 		return
 	if(state == GRAB_UPGRADING)
 		return
-	if(!assailant.canClick())
+	if(!assailant.can_click())
 		return
 	if(world.time < (last_action + max(0, UPGRADE_COOLDOWN - assailant.stats.getStat(STAT_ROB))))
 		return
@@ -326,7 +326,7 @@
 					jointlock(affecting, assailant, hit_zone)
 
 				if(I_HURT)
-					if(hit_zone == O_EYES)
+					if(hit_zone == BP_EYES)
 						attack_eye(affecting, assailant)
 					else if(hit_zone == BP_HEAD)
 						headbut(affecting, assailant)

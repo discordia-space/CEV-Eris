@@ -24,6 +24,11 @@
 			return 0
 	return 1
 
+/proc/clear_interior(var/turf/T)
+	if (turf_clear(T))
+		if (!turf_is_external(T))
+			return TRUE
+
 // Picks a turf without a mob from the given list of turfs, if one exists.
 // If no such turf exists, picks any random turf from the given list of turfs.
 /proc/pick_mobless_turf_if_exists(var/list/start_turfs)
@@ -214,7 +219,7 @@
 
 	return FALSE
 
-/proc/IsTurfAtmosUnsafe(var/turf/T)
+/proc/is_turf_atmos_unsafe(var/turf/T)
 	if(istype(T, /turf/space)) // Space tiles
 		return "Spawn location is open to space."
 	var/datum/gas_mixture/air = T.return_air()
@@ -231,3 +236,19 @@
 		return (dir & testdir)
 	return TRUE
 
+
+//Ported from bay, the supplied text is usually from click parameters.
+//Gets the turf under the screen coords where someone clicked
+//Used for clicks on blackspace
+/proc/screen_loc2turf(text, turf/origin)
+	if(!origin)
+		return null
+	var/tZ = splittext(text, ",")
+	var/tX = splittext(tZ[1], "-")
+	var/tY = text2num(tX[2])
+	tX = splittext(tZ[2], "-")
+	tX = text2num(tX[2])
+	tZ = origin.z
+	tX = max(1, min(origin.x + 7 - tX, world.maxx))
+	tY = max(1, min(origin.y + 7 - tY, world.maxy))
+	return locate(tX, tY, tZ)

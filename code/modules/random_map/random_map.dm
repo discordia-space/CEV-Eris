@@ -32,7 +32,6 @@ var/global/list/map_count = list()
 	var/priority_process
 
 /datum/random_map/New(var/seed, var/tx, var/ty, var/tz, var/tlx, var/tly, var/do_not_apply, var/do_not_announce)
-
 	// Store this for debugging.
 	if(!map_count[descriptor])
 		map_count[descriptor] = 1

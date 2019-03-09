@@ -7,7 +7,7 @@
 */
 
 /mob/living/silicon/robot/ClickOn(var/atom/A, var/params)
-	if(world.time <= next_click)
+	if(!can_click())
 		return
 	next_click = world.time + 1
 
@@ -35,8 +35,7 @@
 	if(stat || lockcharge || weakened || stunned || paralysis)
 		return
 
-	if(!canClick())
-		return
+
 
 	face_atom(A) // change direction to face what you clicked on
 
@@ -65,9 +64,6 @@
 		A.attack_robot(src)
 		return
 
-	// buckled cannot prevent machine interlinking but stops arm movement
-	if( buckled )
-		return
 
 	if(W == A)
 
@@ -240,13 +236,13 @@
 	AICtrlClick(user)
 
 //
-//	On Ctrl-Click will turn on or off SMES input 
+//	On Ctrl-Click will turn on or off SMES input
 //
 /obj/machinery/power/smes/BorgCtrlClick(var/mob/living/silicon/robot/user)
 	AICtrlClick(user)
 
 //
-//	On Alt-Click will turn on or off SMES output 
+//	On Alt-Click will turn on or off SMES output
 //
 /obj/machinery/power/smes/BorgAltClick(var/mob/living/silicon/robot/user)
 	AIAltClick(user)

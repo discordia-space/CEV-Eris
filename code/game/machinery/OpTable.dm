@@ -11,7 +11,7 @@
 	idle_power_usage = 1
 	active_power_usage = 5
 
-	var/mob/living/carbon/human/victim = null
+	var/mob/living/carbon/victim = null
 
 	var/obj/machinery/computer/operating/computer = null
 	can_buckle = TRUE
@@ -43,7 +43,7 @@
 				return
 		if(3.0)
 			if (prob(25))
-				src.density = 0
+				density = 0
 		else
 	return
 
@@ -55,7 +55,7 @@
 		return
 	if (HULK in usr.mutations)
 		visible_message(SPAN_DANGER("\The [usr] destroys \the [src]!"))
-		src.density = 0
+		density = 0
 		qdel(src)
 
 /obj/machinery/optable/unbuckle_mob()
@@ -71,13 +71,14 @@
 		return 0
 
 /obj/machinery/optable/proc/check_victim()
-	if (istype(buckled_mob,/mob/living/carbon/human))
-		var/mob/living/carbon/human/M = buckled_mob
-		src.victim = M
-		icon_state = M.pulse() ? "optable-active" : "optable-idle"
+	if (istype(buckled_mob,/mob/living/carbon))
+		victim = buckled_mob
+		if(ishuman(buckled_mob))
+			var/mob/living/carbon/human/M = buckled_mob
+			icon_state = M.pulse() ? "optable-active" : "optable-idle"
 		return 1
 
-	src.victim = null
+	victim = null
 	icon_state = "optable-idle"
 	return 0
 
@@ -94,10 +95,10 @@
 	if (C.client)
 		C.client.perspective = EYE_PERSPECTIVE
 		C.client.eye = src
-	C.loc = src.loc
+	C.loc = loc
 	for(var/obj/O in src)
-		O.loc = src.loc
-	src.add_fingerprint(user)
+		O.loc = loc
+	add_fingerprint(user)
 	buckle_mob(C)
 
 

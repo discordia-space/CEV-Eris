@@ -45,6 +45,9 @@
 	new /obj/item/clothing/head/that(src)
 	new /obj/item/clothing/head/that(src)
 	new /obj/item/clothing/head/that(src)
+	new /obj/item/clothing/mask/bandana(src)
+	new /obj/item/clothing/mask/bandana(src)
+	new /obj/item/clothing/mask/bandana/skull(src)
 
 /obj/structure/closet/wardrobe/chaplain_black
 	name = "chapel wardrobe"
@@ -75,6 +78,9 @@
 	new /obj/item/clothing/shoes/black(src)
 	new /obj/item/clothing/shoes/black(src)
 	new /obj/item/clothing/shoes/black(src)
+	new /obj/item/clothing/mask/bandana/green(src)
+	new /obj/item/clothing/mask/bandana/green(src)
+	new /obj/item/clothing/mask/bandana/green(src)
 
 /obj/structure/closet/wardrobe/orange
 	name = "prison wardrobe"
@@ -100,6 +106,9 @@
 	new /obj/item/clothing/shoes/color/orange(src)
 	new /obj/item/clothing/shoes/color/orange(src)
 	new /obj/item/clothing/shoes/color/orange(src)
+	new /obj/item/clothing/mask/bandana/orange(src)
+	new /obj/item/clothing/mask/bandana/orange(src)
+	new /obj/item/clothing/mask/bandana/orange(src)
 
 /obj/structure/closet/wardrobe/engineering_yellow
 	name = "engineering wardrobe"
@@ -254,6 +263,13 @@
 	new /obj/item/clothing/shoes/color/purple(src)
 	new /obj/item/clothing/shoes/color/red(src)
 	new /obj/item/clothing/shoes/leather(src)
+	new /obj/item/clothing/mask/bandana/orange(src)
+	new /obj/item/clothing/mask/bandana/blue(src)
+	new /obj/item/clothing/mask/bandana/red(src)
+	new /obj/item/clothing/mask/bandana/green(src)
+	new /obj/item/clothing/mask/bandana/gold(src)
+	new /obj/item/clothing/mask/bandana/purple(src)
+	new /obj/item/clothing/mask/bandana/camo(src)
 
 /obj/structure/closet/wardrobe/tactical
 	name = "tactical equipment"

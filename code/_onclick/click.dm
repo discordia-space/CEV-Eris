@@ -16,30 +16,39 @@
 	Note that this proc can be overridden, and is in the case of screen objects.
 */
 
-/client/Click(var/atom/target, location, control, params)
-//	if(world.time <= next_click) // Hard check, before anything else, to avoid crashing
-//		return
+/client/MouseDown(object,location,control,params)
 
-//	next_click = world.time + 1
-
-//	if(buildmode && !istype(target, /obj/screen))
-//		buildmode.build_click(src.mob, params, target)
-//		return
-	if(!isHUDobj(target) && CH)
-		if(CH.mob_check(mob))
-			if (CH.use_ability(mob,target) && CH.one_use_flag)
-				qdel(CH)// = null
-				return
-		else
-			src << "For some reason you can't use [CH.handler_name] ability"
-			qdel(CH)// = null
+	if (CH)
+		if (!CH.MouseDown(object,location,control,params))
 			return
+	.=..()
+
+/client/MouseUp(object,location,control,params)
+	if (CH)
+		if (!CH.MouseUp(object,location,control,params))
+			return
+	.=..()
+
+/client/MouseDrag(over_object,src_location,over_location,src_control,over_control,params)
+	if (CH)
+		if (!CH.MouseDrag(over_object,src_location,over_location,src_control,over_control,params))
+			return
+	.=..()
+
+
+/client/Click(var/atom/target, location, control, params)
+	var/list/L = params2list(params) //convert params into a list
+	var/dragged = L["drag"] //grab what mouse button they are dragging with, if any.
+	if(dragged && !L[dragged]) //check to ensure they aren't using drag clicks to aimbot
+		return //if they are dragging, and they clicked with a different mouse button, reject the click as it will always go the atom they are currently dragging, even if out of view and not under the mouse
+
+	if (CH)
+		if (!CH.Click(target, location, control, params))
+			return
+
 
 	if(!target.Click(location, control, params))
 		usr.ClickOn(target, params)
-
-/atom/Click(var/location, var/control, var/params) // This is their reaction to being clicked on (standard proc)
-	return
 
 /atom/DblClick(var/location, var/control, var/params)
 	if(src)
@@ -60,7 +69,7 @@
 */
 /mob/proc/ClickOn(var/atom/A, var/params)
 
-	if(world.time <= next_click) // Hard check, before anything else, to avoid crashing
+	if(!can_click())
 		return
 
 	next_click = world.time + 1
@@ -94,8 +103,7 @@
 
 	face_atom(A) // change direction to face what you clicked on
 
-	if(!canClick()) // in the year 2000...
-		return
+
 
 	if(istype(loc, /obj/mecha))
 		if(!locate(/turf) in list(A, A.loc)) // Prevents inventory from being drilled
@@ -161,10 +169,10 @@
 	return 1
 
 /mob/proc/setClickCooldown(var/timeout)
-	next_move = max(world.time + timeout, next_move)
+	next_click = max(world.time + timeout, next_click)
 
-/mob/proc/canClick()
-	if(config.no_click_cooldown || next_move <= world.time)
+/mob/proc/can_click()
+	if(next_click <= world.time)
 		return 1
 	return 0
 
@@ -348,3 +356,43 @@
 /atom/movable/proc/facedir(var/ndir)
 	set_dir(ndir)
 	return 1
+
+
+
+GLOBAL_LIST_INIT(click_catchers, create_click_catcher())
+
+/obj/screen/click_catcher
+	icon = 'icons/mob/screen_gen.dmi'
+	icon_state = "click_catcher"
+	plane = CLICKCATCHER_PLANE
+	mouse_opacity = 2
+	screen_loc = "CENTER-7,CENTER-7"
+
+/obj/screen/click_catcher/Destroy()
+	return QDEL_HINT_LETMELIVE
+
+/proc/create_click_catcher()
+	. = list()
+	for(var/i = 0, i<15, i++)
+		for(var/j = 0, j<15, j++)
+			var/obj/screen/click_catcher/CC = new()
+			CC.screen_loc = "NORTH-[i],EAST-[j]"
+			. += CC
+
+/obj/screen/click_catcher/Click(location, control, params)
+	var/list/modifiers = params2list(params)
+	if(modifiers["middle"] && istype(usr, /mob/living/carbon))
+		var/mob/living/carbon/C = usr
+		C.swap_hand()
+	else
+		var/turf/T = screen_loc2turf(screen_loc, get_turf(usr))
+		if(T)
+			usr.client.Click(T, location, control, params)
+			//T.Click(location, control, params)
+			//Bay system doesnt use client.click, not sure if better
+
+	. = 1
+
+/obj/screen/click_catcher/proc/resolve(var/mob/user)
+	var/turf/T = screen_loc2turf(screen_loc, get_turf(user))
+	return T

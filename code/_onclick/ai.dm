@@ -9,12 +9,15 @@
 
 	Note that AI have no need for the adjacency proc, and so this proc is a lot cleaner.
 */
+/mob/living/silicon/ai/can_click()
+	if (stat || control_disabled)
+		return FALSE
+	return ..()
+
 /mob/living/silicon/ai/DblClickOn(var/atom/A, params)
 	if(client.buildmode) // comes after object.Click to allow buildmode gui objects to be clicked
 		build_click(src, client.buildmode, params, A)
 		return
-
-	if(control_disabled || stat) return
 
 	if(ismob(A))
 		ai_actual_track(A)
@@ -23,7 +26,7 @@
 
 
 /mob/living/silicon/ai/ClickOn(var/atom/A, params)
-	if(world.time <= next_click)
+	if(!can_click())
 		return
 	next_click = world.time + 1
 
@@ -31,8 +34,6 @@
 		build_click(src, client.buildmode, params, A)
 		return
 
-	if(stat)
-		return
 
 	var/list/modifiers = params2list(params)
 	if(modifiers["shift"] && modifiers["ctrl"])
@@ -51,8 +52,6 @@
 		CtrlClickOn(A)
 		return
 
-	if(control_disabled || !canClick())
-		return
 
 	if(multitool_mode && isobj(A))
 		var/obj/O = A
@@ -98,22 +97,22 @@
 */
 
 /mob/living/silicon/ai/ShiftClickOn(var/atom/A)
-	if(!control_disabled && A.AIShiftClick(src))
+	if(A.AIShiftClick(src))
 		return
 	..()
 
 /mob/living/silicon/ai/CtrlClickOn(var/atom/A)
-	if(!control_disabled && A.AICtrlClick(src))
+	if(A.AICtrlClick(src))
 		return
 	..()
 
 /mob/living/silicon/ai/AltClickOn(var/atom/A)
-	if(!control_disabled && A.AIAltClick(src))
+	if(A.AIAltClick(src))
 		return
 	..()
 
 /mob/living/silicon/ai/MiddleClickOn(var/atom/A)
-	if(!control_disabled && A.AIMiddleClick(src))
+	if(A.AIMiddleClick(src))
 		return
 	..()
 
@@ -226,14 +225,14 @@
 	return 1
 
 //
-//	On Ctrl-Click will turn on or off SMES input 
+//	On Ctrl-Click will turn on or off SMES input
 //
 /obj/machinery/power/smes/AICtrlClick(var/mob/user)
 	Topic(src, list("cmode"="1"))
 	return 1
 
 //
-//	On Alt-Click will turn on or off SMES output 
+//	On Alt-Click will turn on or off SMES output
 //
 /obj/machinery/power/smes/AIAltClick(var/mob/user)
 	Topic(src, list("online"="1"))

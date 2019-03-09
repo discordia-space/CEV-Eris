@@ -99,7 +99,7 @@
 	var/halluci = 0
 
 	glass_icon_state = "glass_clear"
-	glass_name = "glass of ethanol"
+	glass_name = "ethanol"
 	glass_desc = "A well-known alcohol with a variety of applications."
 
 /datum/reagent/ethanol/touch_mob(var/mob/living/L, var/amount)
@@ -396,7 +396,7 @@
 	reagent_state = SOLID
 	color = "#FFFFFF"
 	glass_icon_state = "iceglass"
-	glass_name = "glass of sugar"
+	glass_name = "sugar"
 	glass_desc = "The organic compound commonly known as table sugar and sometimes called saccharose. This white, odorless, crystalline powder has a pleasing, sweet taste."
 
 /datum/reagent/sugar/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)

@@ -4,7 +4,6 @@
 	desc = "Language popular among Serbian mercenaries, pirates and habitants of Predstraza planet."
 	colour = "serbian"
 	key = "x"
-	flags = RESTRICTED
 	space_chance = 80
 	shorthand = "SB"
 	syllables = list("zena", "rob", "macka", "tvoj", "ruke", "jebote", "placenik", "tsatsh", "da", "zivim", "cich", "jovan", "be", "ot", \

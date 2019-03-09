@@ -62,16 +62,17 @@
 				/obj/random/voidsuit = 0.5,
 				/obj/random/pouch = 5,
 				/obj/random/tool_upgrade = 25,
-				/obj/random/rig_module = 5))
+				/obj/random/rig_module = 5,
+				/obj/random/mecha_equipment = 5))
 
 
-//Randomly spawned tools will often be in imperfect condition
+//Randomly spawned tools will often be in imperfect condition if they've been left lying out
 /obj/random/tool/post_spawn(var/list/spawns)
-	for (var/obj/item/weapon/tool/T in spawns)
-		if (T.degradation && prob(40))
-			T.unreliability += T.degradation * 25 //50 uses worth of damage, this is fairly mild
-			if (prob(30))
-				T.unreliability += T.degradation * 25 //Roughly 13% chance to be moderately damaged
+	if (isturf(loc))
+		for (var/obj/O in spawns)
+			if (!istype(O, /obj/random) && prob(20))
+				O.make_old()
+
 
 /obj/random/tool/low_chance
 	name = "low chance random tool"

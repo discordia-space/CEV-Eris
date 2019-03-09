@@ -83,7 +83,7 @@
 			stat("Players: [totalPlayers]", "Players Ready: [totalPlayersReady]")
 			totalPlayers = 0
 			totalPlayersReady = 0
-			for(var/mob/new_player/player in player_list)
+			for(var/mob/new_player/player in GLOB.player_list)
 				stat("[player.key]", (player.ready)?("(Playing)"):(null))
 				totalPlayers++
 				if(player.ready)totalPlayersReady++
@@ -116,7 +116,7 @@
 
 			observer.started_as_observer = 1
 			close_spawn_windows()
-			var/turf/T = pickSpawnLocation("Observer")
+			var/turf/T = pick_spawn_location("Observer")
 			if(istype(T))
 				src << SPAN_NOTICE("You are observer now.")
 				observer.forceMove(T)
@@ -258,13 +258,11 @@
 		qdel(src)
 		return
 
+
 	var/datum/spawnpoint/spawnpoint = SSjob.get_spawnpoint_for(character.client, rank, late = TRUE)
-	if (!spawnpoint.put_mob(character))
-		return
-
-	character = SSjob.EquipRank(character, rank)					//equips the human
+	spawnpoint.put_mob(character) // This can fail, and it'll result in the players being left in space and not being teleported to the station. But atleast they'll be equipped. Needs to be fixed so a default case for extreme situations is added.
+	character = SSjob.EquipRank(character, rank) //equips the human
 	equip_custom_items(character)
-
 	character.lastarea = get_area(loc)
 
 	if(SSjob.ShouldCreateRecords(job.title))
@@ -276,9 +274,9 @@
 
 			//Grab some data from the character prefs for use in random news procs.
 
-
-
 	AnnounceArrival(character, character.mind.assigned_role, spawnpoint.message)	//will not broadcast if there is no message
+
+
 
 	qdel(src)
 
@@ -304,7 +302,7 @@
 				continue
 			var/active = 0
 			// Only players with the job assigned and AFK for less than 10 minutes count as active
-			for(var/mob/M in player_list) if(M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 * 60 * 10)
+			for(var/mob/M in GLOB.player_list) if(M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 * 60 * 10)
 				active++
 			dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
 

@@ -11,7 +11,7 @@
 /datum/antagonist/rogue_ai/special_init()
 	var/mob/living/silicon/ai/master = owner.current
 
-	for(var/mob/living/silicon/robot/R in player_list)
+	for(var/mob/living/silicon/robot/R in GLOB.player_list)
 		if(R.connected_ai)
 			continue
 		R.connect_to_ai(master)

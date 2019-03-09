@@ -39,6 +39,13 @@
 	var/hitsound = 'sound/weapons/Genhit.ogg'
 	climbable = TRUE
 
+//Derelict tileset
+/obj/structure/low_wall/onestar
+	wall_color = "#FFFFFF"
+	icon_state = "onestar"
+
+
+
 
 //Low walls mark the turf they're on as a wall.  This is vital for floor icon updating code
 /obj/structure/low_wall/New()
@@ -66,6 +73,7 @@
 
 
 /obj/structure/low_wall/Initialize()
+	..()
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/structure/low_wall/LateInitialize(var/list/args)
@@ -251,7 +259,6 @@
 
 		var/T_dir = get_dir(src, T)
 		connection_dirs |= T_dir
-		if (debug)	world << "Connected to a low wall, [direction_to_text(T_dir)]"
 
 
 		if(propagate)
@@ -266,7 +273,6 @@
 			for (var/d in cardinal)
 				var/turf/t = get_step(T, d)
 				if (istype(t, /turf/simulated/wall))
-					if (debug)	world << "Wall added to candidates, Fromus: [direction_to_text(T_dir)] Fromthat: [direction_to_text(get_dir(T, t))]"
 					wall_candidates |= t
 
 	//We'll use this list in a moment to store diagonal tiles that might be candidates for rule 2C
@@ -284,22 +290,13 @@
 			connected_cardinals += T_dir
 			connection_dirs 	|= T_dir
 			wall_dirs 			|= T_dir
-			if (debug)
-				world << "Connected to a high wall, [direction_to_text(T_dir)]"
-				world << "Because it's cardinal to us"
 		//Alternatively if it's in the wall candidates list compiled above, then it meets condition 2b and passes
 		else if (T in wall_candidates)
 			connection_dirs 	|= T_dir
 			wall_dirs 			|= T_dir
-			if (debug)
-				world << "Connected to a high wall, [direction_to_text(T_dir)]"
-				world << "Because it was a wall candidate. Len: [wall_candidates.len]"
-				for (var/turf/F in wall_candidates)
-					world << "[F] [F.x], [F.y]"
 
 		//If neither of the above are true, it still has a chance to meet condition 2c
 		else
-			if (debug)	world << "Deferred a diagonal wall, [direction_to_text(T_dir)]"
 			deferred_diagonals |= T_dir
 
 		if(propagate)
@@ -391,7 +388,7 @@
 			set_pixel_click_offset(I, params)
 			return
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_WELDING))
+	var/tool_type = I.get_tool_type(user, list(QUALITY_WELDING), src)
 	switch(tool_type)
 
 		if(QUALITY_WELDING)
@@ -495,3 +492,5 @@
 		target.Weaken(5)
 		visible_message(SPAN_DANGER("[user] puts [target] on \the [src]."))
 	return TRUE
+
+

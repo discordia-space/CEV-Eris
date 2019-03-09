@@ -48,6 +48,9 @@
 		/datum/autolathe/recipe/misc/radio_headset,
 		/datum/autolathe/recipe/misc/radio_bounced,
 		/datum/autolathe/recipe/misc/ashtray,
+		/datum/autolathe/recipe/container/drinkingglass,
+		/datum/autolathe/recipe/container/carafe,
+		/datum/autolathe/recipe/container/insulated_pitcher,
 		/datum/autolathe/recipe/container/bucket,
 		/datum/autolathe/recipe/container/jar,
 		/datum/autolathe/recipe/container/syringe,
@@ -118,6 +121,7 @@
 		/datum/autolathe/recipe/tool/shovel,
 		/datum/autolathe/recipe/tool/spade,
 		/datum/autolathe/recipe/device/t_scanner,
+		/datum/autolathe/recipe/tool/rcd_ammo,
 		/datum/autolathe/recipe/tool/weldertool,
 		/datum/autolathe/recipe/tool/weldinggoggles,
 		/datum/autolathe/recipe/tool/weldermask,
@@ -125,6 +129,22 @@
 	)
 	..()
 
+/obj/item/weapon/disk/autolathe_disk/robustcells
+	name = "Asters Robustcells"
+	category = "Engineering"
+	icon_state = "guild"
+	license = 8
+
+/obj/item/weapon/disk/autolathe_disk/robustcells/New()
+	recipes = list(
+		/datum/autolathe/recipe/cell/large,
+		/datum/autolathe/recipe/cell/large/high,
+		/datum/autolathe/recipe/cell/medium,
+		/datum/autolathe/recipe/cell/medium/high,
+		/datum/autolathe/recipe/cell/small,
+		/datum/autolathe/recipe/cell/small/high,
+	)
+	..()
 
 /obj/item/weapon/disk/autolathe_disk/component
 	name = "Technomancers ARK-034 Components"
@@ -167,6 +187,7 @@
 		/datum/autolathe/recipe/tool/pickaxe_excavation,
 		/datum/autolathe/recipe/tool/circularsaw,
 		/datum/autolathe/recipe/tool/chainsaw,
+		/datum/autolathe/recipe/tool/rcd,
 		/datum/autolathe/recipe/tool/electric_screwdriver,
 		/datum/autolathe/recipe/tool/combi_driver,
 		/datum/autolathe/recipe/tool/armature_cutter,
@@ -175,7 +196,7 @@
 	..()
 
 /obj/item/weapon/disk/autolathe_disk/circuitpack
-	name = "Technomacers ESPO-830 Circuits"
+	name = "Technomancers ESPO-830 Circuits"
 	category = "Engineering"
 	icon_state = "technomancers"
 	license = 10
@@ -186,14 +207,17 @@
 		/datum/autolathe/recipe/circuit/airalarm,
 		/datum/autolathe/recipe/circuit/firealarm,
 		/datum/autolathe/recipe/circuit/powermodule,
+		/datum/autolathe/recipe/circuit/recharger,
 		/datum/autolathe/recipe/circuit/autolathe,
 		/datum/autolathe/recipe/circuit/autolathe_disk_cloner,
+		/datum/autolathe/recipe/circuit/vending,
 		/datum/autolathe/recipe/circuit/arcade_battle,
 		/datum/autolathe/recipe/circuit/arcade_orion_trail,
 		/datum/autolathe/recipe/circuit/teleporter,
 		/datum/autolathe/recipe/circuit/operating,
 		/datum/autolathe/recipe/circuit/helm,
 		/datum/autolathe/recipe/circuit/nav,
+		/datum/autolathe/recipe/circuit/centrifuge,
 	)
 	..()
 
@@ -375,6 +399,7 @@
 		/datum/autolathe/recipe/ammo/magazine_a556,
 		/datum/autolathe/recipe/ammo/shotgun,
 		/datum/autolathe/recipe/ammo/shotgun_pellet,
+		/datum/autolathe/recipe/ammo/mg_cl32_brute,
 		/datum/autolathe/recipe/ammo/sl_c138_brute,
 		/datum/autolathe/recipe/ammo/mg_cl44_brute,
 		/datum/autolathe/recipe/ammo/sl_cl44_brute,
@@ -413,6 +438,9 @@
 		/datum/autolathe/recipe/sec/beartrap,
 		/datum/autolathe/recipe/clothing/excelsior_armor,
 		/datum/autolathe/recipe/clothing/excelsior_helmet,
+		/datum/autolathe/recipe/cell/large/excelsior,
+		/datum/autolathe/recipe/cell/medium/excelsior,
+		/datum/autolathe/recipe/cell/small/excelsior,
 		/datum/autolathe/recipe/part/manipulator,
 		/datum/autolathe/recipe/part/subspace_amplifier,
 		/datum/autolathe/recipe/part/subspace_crystal,

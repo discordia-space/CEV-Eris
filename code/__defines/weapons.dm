@@ -33,3 +33,7 @@
 #define STRUCTURE_DAMAGE_HEAVY 			1.5
 #define STRUCTURE_DAMAGE_BREACHING 		1.8
 #define STRUCTURE_DAMAGE_BORING 		3
+
+//Quick defines for rapid fire
+#define FULL_AUTO_400	list(mode_name="full auto",  mode_type = /datum/firemode/automatic, fire_delay=1.5)
+#define FULL_AUTO_600	list(mode_name="full auto",  mode_type = /datum/firemode/automatic, fire_delay=1)

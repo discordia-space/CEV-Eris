@@ -138,6 +138,7 @@
 	hard_drive.store_file(new/datum/computer_file/program/camera_monitor())
 	hard_drive.store_file(new/datum/computer_file/program/records())
 	hard_drive.store_file(new/datum/computer_file/program/digitalwarrant())
+	hard_drive.store_file(new/datum/computer_file/program/audio())
 
 
 // Security cameras

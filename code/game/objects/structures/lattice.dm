@@ -50,7 +50,7 @@
 	return
 
 /obj/structure/lattice/attackby(obj/item/I, mob/user)
-	if(I.get_tool_type(user, list(QUALITY_WELDING)))
+	if(I.get_tool_type(user, list(QUALITY_WELDING), src))
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			user << SPAN_NOTICE("Slicing lattice joints ...")
 			new /obj/item/stack/rods(loc)

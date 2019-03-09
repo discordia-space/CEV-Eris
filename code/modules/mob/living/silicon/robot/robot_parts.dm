@@ -178,7 +178,7 @@
 		if(!M.brainmob.key)
 			var/ghost_can_reenter = 0
 			if(M.brainmob.mind)
-				for(var/mob/observer/ghost/G in player_list)
+				for(var/mob/observer/ghost/G in GLOB.player_list)
 					if(G.can_reenter_corpse && G.mind == M.brainmob.mind)
 						ghost_can_reenter = 1
 						break
@@ -260,7 +260,7 @@
 			src.wires = W.color
 			user << SPAN_NOTICE("You insert the wire!")
 
-	var/tool_type = W.get_tool_type(user, list(QUALITY_SCREW_DRIVING, QUALITY_WIRE_CUTTING))
+	var/tool_type = W.get_tool_type(user, list(QUALITY_SCREW_DRIVING, QUALITY_WIRE_CUTTING), src)
 	switch(tool_type)
 		if(QUALITY_SCREW_DRIVING)
 			if(cell)

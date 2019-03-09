@@ -7,7 +7,7 @@
 	armor = list(melee = 50, bullet = 35, laser = 35, energy = 30, bomb = 25, bio = 0, rad = 0)
 	emp_protection = 10
 	slowdown = 0
-	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL
+	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL | DRAG_AND_DROP_UNEQUIP | EQUIP_SOUNDS
 	offline_slowdown = 0
 	offline_vision_restriction = 0
 

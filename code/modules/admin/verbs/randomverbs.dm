@@ -321,7 +321,7 @@ ADMIN_VERB_ADD(/client/proc/respawn_character, R_FUN, FALSE)
 		return
 
 	var/mob/observer/ghost/G_found
-	for(var/mob/observer/ghost/G in player_list)
+	for(var/mob/observer/ghost/G in GLOB.player_list)
 		if(G.ckey == input)
 			G_found = G
 			break
