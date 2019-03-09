@@ -1,23 +1,3 @@
-/atom/movable/proc/can_be_injected_by(var/atom/injector)
-	if(!Adjacent(get_turf(injector)))
-		return FALSE
-	if(!reagents)
-		return FALSE
-	if(!reagents.get_free_space())
-		return FALSE
-	return TRUE
-
-/obj/can_be_injected_by(var/atom/injector)
-	return is_open_container() && ..()
-
-/mob/living/can_be_injected_by(var/atom/injector)
-	return ..() && (can_inject(null, 0, BP_CHEST) || can_inject(null, 0, BP_GROIN))
-
-
-
-
-
-
 /obj/item/integrated_circuit/reagent
 	category_text = "Reagent"
 	var/volume = 0
@@ -75,6 +55,18 @@
 	if(isnum(amount))
 		return Clamp(amount, 0, 30)
 
+/obj/item/integrated_circuit/reagent/injector/proc/inject_check(atom/movable/target)
+	if(!target.Adjacent(get_turf(src)))
+		return FALSE
+
+	if(!target.is_injectable(allowmobs = TRUE))
+		return FALSE
+
+	if(!target.reagents.get_free_space())
+		return FALSE
+
+	return TRUE
+
 /obj/item/integrated_circuit/reagent/injector/do_work()
 	set waitfor = 0 // Don't sleep in a proc that is called by a processor without this set, otherwise it'll delay the entire thing
 
@@ -83,18 +75,18 @@
 		return
 	if(!reagents.total_volume) // Empty
 		return
-	if(AM.can_be_injected_by(src))
+	if(inject_check(AM))
 		if(isliving(AM))
 			var/mob/living/L = AM
 			var/turf/T = get_turf(AM)
 			T.visible_message(SPAN_WARNING("[src] is trying to inject [L]!"))
 			sleep(3 SECONDS)
-			if(!L.can_be_injected_by(src))
+			if(!inject_check(L))
 				return
 			var/contained = reagents.log_list()
 			var/trans = reagents.trans_to_mob(L, inject_amount(), CHEM_BLOOD)
 			message_admins("[src] injected \the [L] with [trans]u of [contained].")
-			AM << SPAN_NOTICE("You feel a tiny prick!")
+			to_chat(L, SPAN_NOTICE("You feel a tiny prick!"))
 			visible_message(SPAN_WARNING("[src] injects [L]!"))
 		else
 			reagents.trans_to(AM, inject_amount())
@@ -134,7 +126,7 @@
 			return
 		if(ismob(source) || ismob(target))
 			return
-		if(!source.is_open_container() || !target.is_open_container())
+		if(!source.is_drainable() || !target.is_refillable())
 			return
 		if(!target.reagents.get_free_space())
 			return

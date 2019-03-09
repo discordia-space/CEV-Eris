@@ -296,7 +296,7 @@
 			return splash_mob(target, amount, multiplier, copy)
 		if(isturf(target))
 			return trans_to_turf(target, amount, multiplier, copy)
-		if(isobj(target) && A.is_refillable())
+		if(isobj(target) && A.is_injectable())
 			return trans_to_obj(target, amount, multiplier, copy)
 	return 0
 

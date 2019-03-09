@@ -13,23 +13,22 @@
 	volume = 5
 	reagent_flags = TRANSPARENT
 
-/obj/item/weapon/reagent_containers/dropper/afterattack(var/obj/target, var/mob/user, var/proximity)
-	if(!target.reagents || !proximity) return
+/obj/item/weapon/reagent_containers/dropper/afterattack(atom/target, mob/user, proximity)
+	if(!target.reagents || !proximity)
+		return
 
 	if(reagents.total_volume)
-
 		if(!target.reagents.get_free_space())
-			user << SPAN_NOTICE("[target] is full.")
+			to_chat(user, SPAN_NOTICE("[target] is full."))
 			return
 
-		if(!target.is_open_container() && !ismob(target) && !istype(target, /obj/item/weapon/reagent_containers/food) && !istype(target, /obj/item/clothing/mask/smokable/cigarette)) //You can inject humans and food but you cant remove the shit.
-			user << SPAN_NOTICE("You cannot directly fill this object.")
+		if(!ismob(target) && !target.is_injectable()) //You can inject humans and food but you cant remove the shit.
+			to_chat(user, SPAN_NOTICE("You cannot directly fill this object."))
 			return
 
 		var/trans = 0
 
 		if(ismob(target))
-
 			var/time = 20 //2/3rds the time of a syringe
 			user.visible_message(SPAN_WARNING("[user] is trying to squirt something into [target]'s eyes!"))
 
@@ -60,8 +59,8 @@
 
 			var/mob/living/M = target
 			var/contained = reagents.log_list()
-			M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been squirted with [name] by [user.name] ([user.ckey]). Reagents: [contained]</font>")
-			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [name] to squirt [M.name] ([M.key]). Reagents: [contained]</font>")
+			M.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been squirted with [name] by [user.name] ([user.ckey]). Reagents: [contained]</font>"
+			user.attack_log += "\[[time_stamp()]\] <font color='red'>Used the [name] to squirt [M.name] ([M.key]). Reagents: [contained]</font>"
 			msg_admin_attack("[user.name] ([user.ckey]) squirted [M.name] ([M.key]) with [name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
 			trans = reagents.trans_to_mob(target, reagents.total_volume, CHEM_INGEST)
@@ -70,27 +69,25 @@
 				SPAN_NOTICE("You transfer [trans] units of the solution.")
 			)
 
-
 			return
 
 		else
 			//sprinkling reagents on generic non-mobs
 			trans = reagents.trans_to(target, amount_per_transfer_from_this)
-			user << SPAN_NOTICE("You transfer [trans] units of the solution.")
+			to_chat(user, SPAN_NOTICE("You transfer [trans] units of the solution."))
 
 	else // Taking from something
-
-		if(!target.is_open_container() && !istype(target,/obj/structure/reagent_dispensers))
-			user << SPAN_NOTICE("You cannot directly remove reagents from [target].")
+		if(!target.is_drainable())
+			to_chat(user, SPAN_NOTICE("You cannot directly remove reagents from [target]."))
 			return
 
-		if(!target.reagents || !target.reagents.total_volume)
-			user << SPAN_NOTICE("[target] is empty.")
+		if(!target.reagents.total_volume)
+			to_chat(user, SPAN_NOTICE("[target] is empty."))
 			return
 
 		var/trans = target.reagents.trans_to_obj(src, amount_per_transfer_from_this)
 
-		user << SPAN_NOTICE("You fill the dropper with [trans] units of the solution.")
+		to_chat(user, SPAN_NOTICE("You fill the dropper with [trans] units of the solution."))
 
 	return
 
@@ -103,7 +100,7 @@
 
 /obj/item/weapon/reagent_containers/dropper/industrial
 	name = "industrial dropper"
-	desc = "A larger dropper. Transfers 10 units."
+	desc = "A large dropper. Transfers 10 units."
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(1,2,3,4,5,6,7,8,9,10)
 	volume = 10

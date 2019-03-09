@@ -26,8 +26,8 @@
 		open(user)
 
 /obj/item/weapon/reagent_containers/food/drinks/proc/open(mob/user)
-	playsound(loc,'sound/effects/canopen.ogg', rand(10,50), 1)
-	user << SPAN_NOTICE("You open [src] with an audible pop!")
+	playsound(loc, 'sound/effects/canopen.ogg', rand(10,50), 1)
+	to_chat(user, SPAN_NOTICE("You open [src] with an audible pop!"))
 	reagent_flags |= OPENCONTAINER
 	verbs += /obj/item/weapon/reagent_containers/food/drinks/proc/gulp_whole
 
@@ -43,32 +43,17 @@
 /obj/item/weapon/reagent_containers/food/drinks/afterattack(obj/target, mob/user, proximity)
 	if(!proximity) return
 
-	if(standard_dispenser_refill(user, target))
-		return
 	if(standard_pour_into(user, target))
 		return
+	if(standard_dispenser_refill(user, target))
+		return
 	return ..()
 
-/obj/item/weapon/reagent_containers/food/drinks/standard_feed_mob(var/mob/user, var/mob/target)
-	if(!is_drainable())
-		user << SPAN_NOTICE("You need to open [src]!")
-		return 1
-	return ..()
-
-/obj/item/weapon/reagent_containers/food/drinks/standard_dispenser_refill(var/mob/user, var/obj/structure/reagent_dispensers/target)
-	if(!is_refillable())
-		user << SPAN_NOTICE("You need to open [src]!")
-		return 1
-	return ..()
-
-/obj/item/weapon/reagent_containers/food/drinks/standard_pour_into(var/mob/user, var/atom/target)
-	if(!is_drainable())
-		user << SPAN_NOTICE("You need to open [src]!")
-		return 1
-	return ..()
+/obj/item/weapon/reagent_containers/food/drinks/is_closed_message(mob/user)
+	to_chat(user, SPAN_NOTICE("You need to open [src] first!"))
 
 /obj/item/weapon/reagent_containers/food/drinks/self_feed_message(var/mob/user)
-	user << SPAN_NOTICE("You swallow a gulp from \the [src].")
+	to_chat(user, SPAN_NOTICE("You swallow a gulp from \the [src]."))
 
 /obj/item/weapon/reagent_containers/food/drinks/feed_sound(var/mob/user)
 	playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), 1)
@@ -97,11 +82,11 @@
 		if(ishuman(usr))
 			var/mob/living/carbon/human/H = usr
 			if(!H.check_has_mouth())
-				H << "Where do you intend to put \the [src]? You don't have a mouth!"
+				to_chat(H, "Where do you intend to put \the [src]? You don't have a mouth!")
 				return
 			var/obj/item/blocked = H.check_mouth_coverage()
 			if(blocked)
-				H << SPAN_WARNING("\The [blocked] is in the way!")
+				to_chat(H, SPAN_WARNING("\The [blocked] is in the way!"))
 				return
 
 		if(reagents.total_volume > 30) // 30 equates to 3 SECONDS.
@@ -118,7 +103,7 @@
 		reagents.trans_to_mob(usr, reagents.total_volume, CHEM_INGEST)
 		feed_sound(usr)
 	else
-		usr << SPAN_NOTICE("You need to open [src]!")
+		is_closed_message(usr)
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Drinks. END

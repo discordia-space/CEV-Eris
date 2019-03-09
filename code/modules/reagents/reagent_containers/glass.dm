@@ -60,6 +60,15 @@
 	update_icon()
 	return TRUE
 
+/obj/item/weapon/reagent_containers/glass/is_closed_message(mob/user)
+	if(has_lid())
+		to_chat(user, SPAN_NOTICE("You need to take the lid off [src] first!"))
+
+/obj/item/weapon/reagent_containers/glass/self_feed_message(var/mob/user)
+	to_chat(user, SPAN_NOTICE("You swallow a gulp from \the [src]."))
+
+/obj/item/weapon/reagent_containers/glass/feed_sound(var/mob/user)
+	playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), 1)
 
 /obj/item/weapon/reagent_containers/glass/examine(mob/user)
 	if(!..(user, 2))
@@ -82,33 +91,42 @@
 			return TRUE
 		if(is_drainable() && reagents.total_volume)
 			if(istype(A, /obj/structure/sink))
-				user << SPAN_NOTICE("You pour the solution into [A].")
+				to_chat(user, SPAN_NOTICE("You pour the solution into [A]."))
 				reagents.remove_any(reagents.total_volume)
 			else
 				playsound(src,'sound/effects/Splash_Small_01_mono.ogg',50,1)
-				user << SPAN_NOTICE("You splash the solution onto [A].")
+				to_chat(user, SPAN_NOTICE("You splash the solution onto [A]."))
 				reagents.splash(A, reagents.total_volume)
 			return TRUE
 	return ..()
 
+/obj/item/weapon/reagent_containers/glass/attack(mob/M as mob, mob/user as mob, def_zone)
+	if(force && !(flags & NOBLUDGEON) && user.a_intent == I_HURT)
+		return ..()
+
+	if(standard_feed_mob(user, M))
+		return
+
+	return 0
+
 /obj/item/weapon/reagent_containers/glass/afterattack(var/obj/target, var/mob/user, var/flag)
-	if(!is_open_container() || !flag)
+	if(!flag)
 		return
 	for(var/type in can_be_placed_into)
 		if(istype(target, type))
 			return
-	if(standard_dispenser_refill(user, target))
-		return 1
 	if(standard_pour_into(user, target))
+		return 1
+	if(standard_dispenser_refill(user, target))
 		return 1
 
 /obj/item/weapon/reagent_containers/glass/attackby(obj/item/weapon/W, mob/user)
 	if(istype(W, /obj/item/weapon/pen) || istype(W, /obj/item/device/lighting/toggleable/flashlight/pen))
 		var/tmp_label = sanitizeSafe(input(user, "Enter a label for [name]", "Label", label_text), MAX_NAME_LEN)
 		if(length(tmp_label) > 10)
-			user << SPAN_NOTICE("The label can be at most 10 characters long.")
+			to_chat(user, SPAN_NOTICE("The label can be at most 10 characters long."))
 		else
-			user << "<span class='notice'>You set the label to \"[tmp_label]\".</span>"
+			to_chat(user, SPAN_NOTICE("You set the label to \"[tmp_label]\"."))
 			label_text = tmp_label
 			update_name_label()
 

@@ -91,10 +91,10 @@
 /obj/structure/reagent_dispensers/fueltank/examine(mob/user)
 	if(!..(user, 2))
 		return
-	if (modded)
-		user << "\red Fuel faucet is wrenched open, leaking the fuel!"
+	if(modded)
+		to_chat(user, SPAN_WARNING("Fuel faucet is wrenched open, leaking the fuel!"))
 	if(rig)
-		user << SPAN_NOTICE("There is some kind of device rigged to the tank.")
+		to_chat(user, SPAN_NOTICE("There is some kind of device rigged to the tank."))
 
 /obj/structure/reagent_dispensers/fueltank/attack_hand()
 	if (rig)
@@ -118,11 +118,11 @@
 				leak_fuel(amount_per_transfer_from_this)
 	if (istype(I,/obj/item/device/assembly_holder))
 		if (rig)
-			user << SPAN_WARNING("There is another device in the way.")
+			to_chat(user, SPAN_WARNING("There is another device in the way."))
 			return ..()
-		user.visible_message("\The [user] begins rigging [I] to \the [src].", "You begin rigging [I] to \the [src]")
+		user.visible_message(SPAN_DANGER("\The [user] begins rigging [I] to \the [src]."), SPAN_WARNING("You begin rigging [I] to \the [src]"))
 		if(do_after(user, 20, src))
-			user.visible_message("<span class='notice'>The [user] rigs [I] to \the [src].", "\blue  You rig [I] to \the [src].</span>")
+			user.visible_message(SPAN_DANGER("\The [user] rigs [I] to \the [src]."), SPAN_WARNING("You rig [I] to \the [src].</span>"))
 
 			var/obj/item/device/assembly_holder/H = I
 			if (istype(H.left_assembly,/obj/item/device/assembly/igniter) || istype(H.right_assembly,/obj/item/device/assembly/igniter))
@@ -219,7 +219,7 @@
 
 			if(do_after(user, 20, src))
 				if(!src) return
-				user << "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>"
+				to_chat(user, SPAN_NOTICE("You [anchored? "un" : ""]secured \the [src]!"))
 				anchored = !anchored
 			return
 	else

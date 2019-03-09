@@ -27,10 +27,10 @@
 	afterattack(var/obj/target, var/mob/user, var/proximity)
 		if(!proximity)
 			return
-	
-		if(standard_dispenser_refill(user, target))
-			return
+
 		if(standard_pour_into(user, target))
+			return
+		if(standard_dispenser_refill(user, target))
 			return
 
 		if(istype(target, /obj/item/weapon/reagent_containers/food/snacks)) // These are not opencontainers but we can transfer to them

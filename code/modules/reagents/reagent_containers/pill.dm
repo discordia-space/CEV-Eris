@@ -24,7 +24,7 @@
 	return 0
 
 /obj/item/weapon/reagent_containers/pill/self_feed_message(var/mob/user)
-	user << SPAN_NOTICE("You swallow \the [src].")
+	to_chat(user, SPAN_NOTICE("You swallow \the [src]."))
 
 /obj/item/weapon/reagent_containers/pill/other_feed_message_start(var/mob/user, var/mob/target)
 	user.visible_message("<span class='warning'>[user] attempts to force [target] to swallow \the [src].</span>")
@@ -39,9 +39,9 @@
 
 	if(target.is_refillable())
 		if(!target.reagents.total_volume)
-			user << SPAN_NOTICE("[target] is empty. Can't dissolve \the [src].")
+			to_chat(user, SPAN_NOTICE("[target] is empty. Can't dissolve \the [src]."))
 			return
-		user << SPAN_NOTICE("You dissolve \the [src] in [target].")
+		to_chat(user, SPAN_NOTICE("You dissolve \the [src] in [target]."))
 
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Spiked \a [target] with a pill. Reagents: [reagents.log_list()]</font>")
 		msg_admin_attack("[user.name] ([user.ckey]) spiked \a [target] with a pill. Reagents: [reagents.log_list()] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
@@ -52,7 +52,6 @@
 
 		qdel(src)
 
-	return
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Pills. END
@@ -203,7 +202,7 @@
 
 //Pills with random content
 /obj/item/weapon/reagent_containers/pill/floorpill
-	name = "Floor pill"
+	name = "floor pill"
 	desc = "Dare you?"
 
 /obj/item/weapon/reagent_containers/pill/floorpill/Initialize()
