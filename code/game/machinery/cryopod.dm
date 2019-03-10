@@ -502,6 +502,10 @@
 
 	return
 
+/obj/machinery/cryopod/relaymove(var/mob/user)
+	..()
+	go_out()
+
 /obj/machinery/cryopod/proc/go_out()
 
 	if(!occupant)
