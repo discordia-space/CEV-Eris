@@ -1,12 +1,13 @@
 //Wireweeds are created by the AI's nanites to spread its connectivity through the ship.
 //When they reach any machine, they annihilate them and re-purpose them to the AI's needs. They are the 'hands' of our rogue AI.
+//The three acids and chlorine, a strong oxidizer of metals, are killer reagents
 
 /obj/effect/plant/hivemind
 	layer = 2
 	health = 		80
 	max_health = 	80 		//we are a little bit durable
 	spread_chance = 85
-	var/list/killer_reagents = list("pacid", "sacid", "hclacid", "thermite")
+	var/list/killer_reagents = list("pacid", "sacid", "hclacid", "chlorine")
 	//internals
 	var/obj/machinery/hivemind_machine/node/master_node
 	var/list/wires_connections = list("0", "0", "0", "0")
@@ -242,7 +243,7 @@
 			var/icon/new_icon = new(subject.icon, icon_state = subject.icon_state, dir = subject.dir)
 			new_icon.Blend(infected_icon, ICON_OVERLAY)
 			created_machine.icon = new_icon
-			var/prefix = pick("strange", "interesting", "marvelous", "unusual")
+			var/prefix = pick("warped", "altered", "modified", "upgraded", "abnormal")
 			created_machine.name = "[prefix] [subject.name]"
 			created_machine.pixel_x = subject.pixel_x
 			created_machine.pixel_y = subject.pixel_y
