@@ -47,3 +47,12 @@
 	name = "low chance random cheap energy weapon"
 	icon_state = "gun-blue-low"
 	spawn_nothing_percentage = 80
+
+/obj/random/gun_shotgun/item_to_spawn()
+	return pickweight(list(
+				/obj/item/weapon/gun/projectile/shotgun/pump = 2,
+				/obj/item/weapon/gun/projectile/shotgun/bull = 2,
+				/obj/item/weapon/gun/projectile/shotgun/doublebarrel = 2,
+				/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn = 2,
+				/obj/item/weapon/gun/projectile/shotgun/pump/combat = 1,
+				/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 1))

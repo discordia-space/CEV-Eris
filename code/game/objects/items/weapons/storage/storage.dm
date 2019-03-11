@@ -542,6 +542,24 @@
 		max_w_class = max(I.w_class, max_w_class)
 		max_storage_space += I.get_storage_cost()
 
+//Variant of the above that makes sure nothing is lost
+/obj/item/weapon/storage/proc/expand_to_fit()
+	//Cache the old values
+	var/ospace = max_storage_space
+	var/omax = max_w_class
+	var/olimitedhold = can_hold.len
+
+	//Make fit
+	make_exact_fit()
+
+	//Then restore any values that are smaller than the original
+	max_w_class = max(omax, max_w_class)
+	max_storage_space = max(ospace, max_storage_space)
+
+	//Remove any specific limits that were placed, if we were originally unlimited
+	if (!olimitedhold)
+		can_hold.Cut()
+
 //Returns the storage depth of an atom. This is the number of storage items the atom is contained in before reaching toplevel (the area).
 //Returns -1 if the atom was not found on container.
 /atom/proc/storage_depth(atom/container)
