@@ -48,6 +48,9 @@
 		/datum/autolathe/recipe/misc/radio_headset,
 		/datum/autolathe/recipe/misc/radio_bounced,
 		/datum/autolathe/recipe/misc/ashtray,
+		/datum/autolathe/recipe/container/drinkingglass,
+		/datum/autolathe/recipe/container/carafe,
+		/datum/autolathe/recipe/container/insulated_pitcher,
 		/datum/autolathe/recipe/container/bucket,
 		/datum/autolathe/recipe/container/jar,
 		/datum/autolathe/recipe/container/syringe,
@@ -242,6 +245,42 @@
 		/datum/autolathe/recipe/container/spray,
 		/datum/autolathe/recipe/device/implanter,
 		/datum/autolathe/recipe/container/syringegun_ammo,
+	)
+	..()
+
+/obj/item/weapon/disk/autolathe_disk/computer
+	name = "Moebius Computer Parts"
+	category = "Electronics"
+	icon_state = "moebius"
+	license = 20
+
+/obj/item/weapon/disk/autolathe_disk/computer/New()
+	recipes = list(
+		/datum/autolathe/recipe/computer_part/frame_pda,
+		/datum/autolathe/recipe/computer_part/frame_tablet,
+		/datum/autolathe/recipe/computer_part/frame_laptop,
+		/datum/autolathe/recipe/computer_part/battery_nano,
+		/datum/autolathe/recipe/computer_part/battery_micro,
+		/datum/autolathe/recipe/computer_part/battery_standard,
+		/datum/autolathe/recipe/computer_part/battery_advanced,
+		/datum/autolathe/recipe/computer_part/hard_drive_micro,
+		/datum/autolathe/recipe/computer_part/hard_drive_small,
+		/datum/autolathe/recipe/computer_part/hard_drive_basic,
+		/datum/autolathe/recipe/computer_part/hard_drive_advanced,
+		/datum/autolathe/recipe/computer_part/processor_micro,
+		/datum/autolathe/recipe/computer_part/processor_standard,
+		/datum/autolathe/recipe/computer_part/network_card_basic,
+		/datum/autolathe/recipe/computer_part/network_card_advanced,
+		/datum/autolathe/recipe/computer_part/network_card_wired,
+		/datum/autolathe/recipe/computer_part/card_slot,
+		/datum/autolathe/recipe/computer_part/card_slot_broadcaster,
+		/datum/autolathe/recipe/computer_part/gps,
+		/datum/autolathe/recipe/computer_part/tesla_link,
+		/datum/autolathe/recipe/computer_part/led,
+		/datum/autolathe/recipe/computer_part/flash_drive_basic,
+		/datum/autolathe/recipe/computer_part/nano_printer,
+		/datum/autolathe/recipe/computer_part/scanner_paper,
+		/datum/autolathe/recipe/computer_part/scanner_atmos,
 	)
 	..()
 

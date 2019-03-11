@@ -262,6 +262,7 @@
 #include "code\datums\autolathe\cells.dm"
 #include "code\datums\autolathe\circuits.dm"
 #include "code\datums\autolathe\clothing.dm"
+#include "code\datums\autolathe\computer_parts.dm"
 #include "code\datums\autolathe\containers.dm"
 #include "code\datums\autolathe\devices.dm"
 #include "code\datums\autolathe\guns.dm"
