@@ -102,9 +102,14 @@
 /obj/effect/plant/hivemind/refresh_icon()
 	overlays.Cut()
 	var/image/I
-	for(var/i = 1 to 4)
-		I = image(src.icon, "wires[wires_connections[i]]", dir = 1<<(i-1))
-		overlays += I
+	if(locate(/obj/structure/burrow) in loc)
+		icon_state = "wires_burrow"
+	else
+		for(var/i = 1 to 4)
+			I = image(src.icon, "wires[wires_connections[i]]", dir = 1<<(i-1))
+			overlays += I
+
+	//wallhug
 	for(var/direction in cardinal + list(NORTHEAST, NORTHWEST)-SOUTH)
 		//corners
 		if(direction == NORTHEAST || direction == NORTHWEST)
@@ -259,20 +264,17 @@
 
 		//New hivemind machine creation
 		if(!created_machine)
-			var/picked_machine
-			if(master_node && master_node.defensive_machines.len)
-				picked_machine = pick(master_node.defensive_machines)
-				master_node.defensive_machines -= picked_machine
-			else
-				var/list/possible_machines = subtypesof(/obj/machinery/hivemind_machine) - /obj/machinery/hivemind_machine/node
-				//here we compare hivemind's EP with machine's required value
-				for(var/machine_path in possible_machines)
-					if(hive_mind_ai.evo_points <= hive_mind_ai.EP_price_list[machine_path])
-						possible_machines.Remove(machine_path)
-				picked_machine = pick(possible_machines)
+			var/list/possible_machines = list()
+			//here we compare hivemind's EP level with machine's required value
+			for(var/machine_path in hive_mind_ai.EP_price_list)
+				var/list/machine_list = hive_mind_ai.EP_price_list[machine_path]
+				if(hive_mind_ai.evo_level >= machine_list["level"])
+					possible_machines.Add(machine_path)
+					//setting of weight of machine
+					possible_machines[machine_path] = machine_list["weight"]
 
+			var/picked_machine = pickweight(possible_machines)
 			created_machine = new picked_machine(get_turf(subject))
-
 
 		if(created_machine)
 			created_machine.consume(subject)

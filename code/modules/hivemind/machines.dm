@@ -18,11 +18,12 @@
 	var/can_regenerate =		TRUE
 	var/regen_cooldown_time = 	30 SECONDS	//min time to regeneration activation since last damage taken
 	var/resistance = RESISTANCE_FRAGILE		//reduction on incoming damage
-	var/evo_points_required = 	0 			//how much EP hivemind must have to spawn this, used in price list to comparison
 	var/cooldown_time = 10 SECONDS			//each machine have their ability, this is cooldown of them
 	var/global_cooldown = FALSE				//if true, ability will be used only once in whole world, before cooldown reset
 	var/datum/hivemind_sdp/SDP				//Self-Defense Protocol holder
 	var/list/spawned_creatures = list()		//which mobs machine can spawns, insert paths
+	var/spawn_weight = 10					//weight of this machine, how frequently they will spawn
+	var/evo_level_required = 	0 			//how much EP hivemind must have to spawn this, used in price list to comparison
 	//internal
 	var/cooldown = 0						//cooldown in world.time value
 	var/time_until_regen = 0
@@ -315,7 +316,6 @@
 	wireweeds_required = FALSE
 	//internals
 	var/list/my_wireweeds = list()
-	var/list/defensive_machines = list()
 
 
 /obj/machinery/hivemind_machine/node/Initialize()
@@ -324,12 +324,10 @@
 	..()
 
 	hive_mind_ai.hives.Add(src)
+	hive_mind_ai.level_up()
 
 	update_icon()
 
-	//defensive machines setup
-	for(var/i = 1 to 5)
-		defensive_machines += pick(/obj/machinery/hivemind_machine/turret, /obj/machinery/hivemind_machine/mob_spawner)
 
 	var/obj/effect/plant/hivemind/founded_wire = locate() in loc
 	if(!founded_wire)
@@ -342,23 +340,11 @@
 				if(!(locate(type) in W.loc))
 					add_wireweed(W)
 
-		//rebuilding all our machines into defensive perimeter to protect the node
-		for(var/obj/machinery/hivemind_machine/M in range(6, src))
-			if(M.type == type)
-				continue
-			if(defensive_machines.len == 0)
-				break
-			var/new_machine
-			if(M.type in defensive_machines)
-				new_machine = M.type
-			else
-				new_machine = pick(defensive_machines)
-			defensive_machines -= new_machine
-			if(M.type != new_machine)
-				M.start_rebuild(new_machine, 5)
-
 	//self-defense protocol setting
-	var/picked_sdp = pick(subtypesof(/datum/hivemind_sdp))
+	var/list/possible_sdps = subtypesof(/datum/hivemind_sdp)
+	if(hive_mind_ai.evo_level > 3)
+		possible_sdps -= /datum/hivemind_sdp/emergency_jump
+	var/picked_sdp = pick(possible_sdps)
 	SDP = new picked_sdp(src)
 	SDP.set_master(src)
 
@@ -439,6 +425,7 @@
 	max_health = 140
 	icon_state = "turret"
 	cooldown_time = 3 SECONDS
+	spawn_weight  =	60
 	var/proj_type = /obj/item/projectile/goo
 
 
@@ -467,6 +454,7 @@
 	max_health = 120
 	icon_state = "spawner"
 	cooldown_time = 10 SECONDS
+	spawn_weight  =	45
 	var/mob_to_spawn
 	var/mob_amount = 2
 
@@ -485,10 +473,10 @@
 		return
 
 	//here we upgrading our spawner and rise controled mob amount, based on EP
-	if(hive_mind_ai.evo_points > 100)
-		mob_amount = 3
-	else if(hive_mind_ai.evo_points > 300)
+	if(hive_mind_ai.evo_level > 3)
 		mob_amount = 4
+	else if(hive_mind_ai.evo_level > 1)
+		mob_amount = 3
 
 	var/mob/living/target = locate() in targets_in_range(world.view, in_hear_range = TRUE)
 	if(target && target.stat != DEAD && target.faction != HIVE_FACTION)
@@ -510,8 +498,9 @@
 	name = "jammer"
 	desc = "A column-like structure with lights. You can see streams of energy moving inside."
 	max_health = 60
-	evo_points_required = 100 //it's better to wait a bit
+	evo_level_required = 2 //it's better to wait a bit
 	cooldown_time = 120 SECONDS
+	spawn_weight  =	20
 	global_cooldown = TRUE
 	icon_state = "antenna"
 	var/list/appeal = list("They are", "He is", "All of them are", "I'm")
@@ -576,10 +565,11 @@
 /obj/machinery/hivemind_machine/screamer
 	name = "tormentor"
 	desc = "A head impaled on a metal tendril. Still twitching, still living, still screaming."
-	max_health = 100
 	icon_state = "head"
-	evo_points_required = 200
+	max_health = 100
+	evo_level_required = 2
 	cooldown_time = 30 SECONDS
+	spawn_weight  =	35
 
 
 /obj/machinery/hivemind_machine/screamer/Process()
@@ -616,9 +606,10 @@
 	desc = "A small pulsating orb with no apparent purpose. It emits an almost inaudible whisper."
 	max_health = 80
 	icon_state = "orb"
-	evo_points_required = 50
+	evo_level_required = 2
 	cooldown_time = 4 MINUTES
 	global_cooldown = TRUE
+	spawn_weight  =	20
 	var/list/join_quotes = list(
 					"You seek survival. We offer immortality.",
 					"Look at you. A pathetic creature of meat and bone.",
@@ -648,15 +639,16 @@
 	to_chat(target, SPAN_NOTICE("<b>[pick(join_quotes)]</b>"))
 
 
-//PSY-MODULATOR
+//PSI-MODULATOR
 //sends hallucinations to target
 /obj/machinery/hivemind_machine/distractor
 	name = "psi-modulator"
 	desc = "A strange machine shaped like a pyramid. Somehow the pulsating lights shine brighter through closed eyelids."
 	max_health = 110
 	icon_state = "psy"
-	evo_points_required = 300
+	evo_level_required = 3
 	cooldown_time = 10 SECONDS
+	spawn_weight  =	30
 
 
 /obj/machinery/hivemind_machine/distractor/Process()
