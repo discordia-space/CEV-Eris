@@ -152,10 +152,13 @@
 		R.volume = amount
 		R.initialize_data(data)
 		update_total()
+		if(my_atom)
+			if(isliving(my_atom))
+				R.on_mob_add(my_atom) //Must occur befor it could posibly run on_mob_delete
+			my_atom.on_reagent_change()
+
 		if(!safety)
 			handle_reactions()
-		if(my_atom)
-			my_atom.on_reagent_change()
 		return 1
 	else
 		warning("[my_atom] attempted to add a reagent called '[id]' which doesn't exist. ([usr])")
@@ -183,6 +186,9 @@
 			update_total()
 			if(my_atom)
 				my_atom.on_reagent_change()
+				if(isliving(my_atom))
+					current.on_mob_delete(my_atom)
+
 			return 0
 
 /datum/reagents/proc/has_reagent(var/id, var/amount = 0)

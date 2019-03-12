@@ -39,17 +39,27 @@
 /datum/reagent/proc/remove_self(var/amount) // Shortcut
 	holder.remove_reagent(id, amount)
 
-// This doesn't apply to skin contact - this is for, e.g. extinguishers and sprays. The difference is that reagent is not directly on the mob's skin - it might just be on their clothing.
-/datum/reagent/proc/touch_mob(var/mob/M, var/amount)
+// This doesn't apply to skin contact - this is for, e.g. extinguishers and sprays.
+// The difference is that reagent is not directly on the mob's skin - it might just be on their clothing.
+/datum/reagent/proc/touch_mob(mob/M, var/amount)
 	return
 
-/datum/reagent/proc/touch_obj(var/obj/O, var/amount) // Acid melting, cleaner cleaning, etc
+/datum/reagent/proc/touch_obj(obj/O, var/amount) // Acid melting, cleaner cleaning, etc
 	return
 
-/datum/reagent/proc/touch_turf(var/turf/T, var/amount) // Cleaner cleaning, lube lubbing, etc, all go here
+/datum/reagent/proc/touch_turf(turf/T, var/amount) // Cleaner cleaning, lube lubbing, etc, all go here
 	return
 
-/datum/reagent/proc/on_mob_life(var/mob/living/carbon/M, var/alien, var/location) // Currently, on_mob_life is called on carbons. Any interaction with non-carbon mobs (lube) will need to be done in touch_mob.
+// Called when this reagent is first added to a mob
+/datum/reagent/proc/on_mob_add(mob/living/L)
+	return
+
+// Called when this reagent is removed while inside a mob
+/datum/reagent/proc/on_mob_delete(mob/living/L)
+	return
+
+// Currently, on_mob_life is only called on carbons. Any interaction with non-carbon mobs (lube) will need to be done in touch_mob.
+/datum/reagent/proc/on_mob_life(mob/living/carbon/M, var/alien, var/location)
 	if(!istype(M))
 		return
 	if(!affects_dead && M.stat == DEAD)
