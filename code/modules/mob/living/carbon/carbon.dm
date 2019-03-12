@@ -1,8 +1,9 @@
 /mob/living/carbon/New()
 	//setup reagent holders
-	bloodstr = new/datum/reagents/metabolism(1000, src, CHEM_BLOOD)
-	ingested = new/datum/reagents/metabolism(1000, src, CHEM_INGEST)
-	touching = new/datum/reagents/metabolism(1000, src, CHEM_TOUCH)
+	bloodstr = new /datum/reagents/metabolism(1000, src, CHEM_BLOOD)
+	ingested = new /datum/reagents/metabolism(1000, src, CHEM_INGEST)
+	touching = new /datum/reagents/metabolism(1000, src, CHEM_TOUCH)
+	metabolism_effects = new /datum/metabolism_effects(src)
 	reagents = bloodstr
 	..()
 
@@ -29,6 +30,7 @@
 	bloodstr.clear_reagents()
 	ingested.clear_reagents()
 	touching.clear_reagents()
+	metabolism_effects.clear_effects()
 	nutrition = 400
 	shock_stage = 0
 	..()

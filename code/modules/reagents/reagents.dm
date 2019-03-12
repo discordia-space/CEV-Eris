@@ -26,6 +26,7 @@
 	var/dose = 0
 	var/max_dose = 0
 	var/overdose = 0
+	var/addiction_threshold = 0
 	var/scannable = 0 // Shows up on health analyzers.
 	var/affects_dead = 0
 	var/glass_icon_state = null
@@ -102,6 +103,26 @@
 	else if(data)
 		return data
 	return null
+
+// Addiction
+/datum/reagent/proc/addiction_act_stage1(mob/living/M)
+	if(prob(30))
+		to_chat(M, SPAN_NOTICE("You feel like having some [name] right about now."))
+
+/datum/reagent/proc/addiction_act_stage2(mob/living/M)
+	if(prob(30))
+		to_chat(M, SPAN_NOTICE("You feel like you need [name]. You just can't get enough."))
+
+/datum/reagent/proc/addiction_act_stage3(mob/living/M)
+	if(prob(30))
+		to_chat(M, SPAN_DANGER("You have an intense craving for [name]."))
+
+/datum/reagent/proc/addiction_act_stage4(mob/living/M)
+	if(prob(30))
+		to_chat(M, SPAN_DANGER("You're not feeling good at all! You really need some [name]."))
+
+/datum/reagent/proc/addiction_end(mob/living/M)
+	to_chat(M, SPAN_NOTICE("You feel like you've gotten over your need for [name]."))
 
 /datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references
 	. = ..()
