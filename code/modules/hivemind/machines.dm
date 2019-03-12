@@ -27,7 +27,7 @@
 	//internal
 	var/cooldown = 0						//cooldown in world.time value
 	var/time_until_regen = 0
-	var/list/assimilated_machinery = list("path", "dir", "appearance")
+	var/obj/assimilated_machinery
 	var/obj/item/weapon/circuitboard/saved_circuit
 
 /obj/machinery/hivemind_machine/Initialize()
@@ -72,38 +72,30 @@
 
 
 //Machinery consumption
-//We don't want to ruin things by destroying important machines without circuits
-//So we store path, dir and appearance to use it later
+//Deleting things is a bad idea and cause lot of problems
+//So, now we just hide our assimilated machine and make it broken (temporary)
+//When our machine dies, assimilated machinery just unhide back
 /obj/machinery/hivemind_machine/proc/consume(var/obj/victim)
+	assimilated_machinery = victim
+	victim.alpha = 0
+	victim.anchored = TRUE
+	victim.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	if(istype(victim, /obj/machinery))
 		var/obj/machinery/target = victim
-		if(target.circuit)
-			saved_circuit = new target.circuit.type(src)
+		target.stat |= BROKEN
+		if(istype(victim, /obj/machinery/power/apc)) //APCs would be deleted
+			assimilated_machinery = null
 			qdel(victim)
-			return
-
-	assimilated_machinery["path"] 		= victim.type
-	assimilated_machinery["dir"]		= victim.dir
-	assimilated_machinery["appearance"] = victim.appearance
-	if(istype(victim, /obj/machinery/power/apc))
-		var/obj/machinery/power/apc/apc = victim
-		if(apc.cell)
-			qdel(apc.cell)
-			apc.cell = null
-	qdel(victim)
 
 
 /obj/machinery/hivemind_machine/proc/drop_assimilated()
-	if(saved_circuit)
-		saved_circuit.loc = loc
-
-	else
-		var/victim_path = assimilated_machinery["path"]
-		if(victim_path)
-			var/obj/victim = new victim_path(loc)
-			victim.dir = assimilated_machinery["dir"]
-			victim.appearance = assimilated_machinery["appearance"]
-			assimilated_machinery = initial(assimilated_machinery)
+	if(assimilated_machinery)
+		assimilated_machinery.alpha 		= 	initial(assimilated_machinery.alpha)
+		assimilated_machinery.mouse_opacity = 	initial(assimilated_machinery.mouse_opacity)
+		assimilated_machinery.anchored 		= 	initial(assimilated_machinery.anchored)
+		if(istype(assimilated_machinery, /obj/machinery))
+			var/obj/machinery/consumed = assimilated_machinery
+			consumed.stat &= ~BROKEN
 
 
 

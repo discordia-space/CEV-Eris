@@ -38,35 +38,36 @@
 
 
 /obj/effect/plant/hivemind/proc/try_to_assimilate()
-	if(hive_mind_ai && master_node)
-		for(var/obj/machinery/machine_on_my_tile in loc)
-			var/can_assimilate = TRUE
+	for(var/obj/machinery/machine_on_my_tile in loc)
+		var/can_assimilate = TRUE
+		if(machine_on_my_tile.alpha == 0) //which mean that machine is already assimilated
+			continue
 
-			//whitelist check
-			if(is_type_in_list(machine_on_my_tile, hive_mind_ai.restricted_machineries))
-				can_assimilate = FALSE
+		//whitelist check
+		if(is_type_in_list(machine_on_my_tile, hive_mind_ai.restricted_machineries))
+			can_assimilate = FALSE
 
-			//assimilation is slow process, so it's take some time
-			//there we use our failure chance. Then it lower, then faster hivemind learn how to properly assimilate it
-			if(can_assimilate && prob(hive_mind_ai.failure_chance))
-				can_assimilate = FALSE
-				anim_shake(machine_on_my_tile)
-				return
+		//assimilation is slow process, so it's take some time
+		//there we use our failure chance. Then it lower, then faster hivemind learn how to properly assimilate it
+		if(can_assimilate && prob(hive_mind_ai.failure_chance))
+			can_assimilate = FALSE
+			anim_shake(machine_on_my_tile)
+			return
 
-			 //only one machine per turf
-			if(can_assimilate && !locate(/obj/machinery/hivemind_machine) in loc)
-				assimilate(machine_on_my_tile)
-				return
+		 //only one machine per turf
+		if(can_assimilate && !locate(/obj/machinery/hivemind_machine) in loc)
+			assimilate(machine_on_my_tile)
+			return
 
-		//modular computers handling
-		var/obj/item/modular_computer/console/mod_comp = locate() in loc
-		if(mod_comp)
-			assimilate(mod_comp)
+	//modular computers handling
+	var/obj/item/modular_computer/console/mod_comp = locate() in loc
+	if(mod_comp && mod_comp.alpha != 0)
+		assimilate(mod_comp)
 
-		//dead bodies handling
-		for(var/mob/living/dead_body in loc)
-			if(dead_body.stat == DEAD)
-				assimilate(dead_body)
+	//dead bodies handling
+	for(var/mob/living/dead_body in loc)
+		if(dead_body.stat == DEAD)
+			assimilate(dead_body)
 
 
 /obj/effect/plant/hivemind/update_neighbors()
@@ -102,7 +103,8 @@
 /obj/effect/plant/hivemind/refresh_icon()
 	overlays.Cut()
 	var/image/I
-	if(locate(/obj/structure/burrow) in loc)
+	var/turf/simulated/floor/F = loc
+	if((locate(/obj/structure/burrow) in loc) && F.flooring.is_plating)
 		icon_state = "wires_burrow"
 	else
 		for(var/i = 1 to 4)
