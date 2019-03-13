@@ -257,6 +257,7 @@
 
 	New()
 		icon_state = pick("cocoon1","cocoon2","cocoon3")
+		..()
 
 	proc/becomeLarge()
 		health = 20
