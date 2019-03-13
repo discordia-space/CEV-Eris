@@ -49,7 +49,8 @@
 //Emmits an energy wave, that short stuns the enemies and damage them
 /datum/hivemind_sdp/shockwave
 	name = "Shockwave v0.3"
-	cooldown = 15 SECONDS
+	cooldown = 5 SECONDS
+	silent = TRUE
 	var/attack_range = 3
 
 
@@ -125,8 +126,8 @@
 	for(var/i = 1 to amount)
 		var/turf/spawn_loc = pick(places_to_spawn)
 		champion = new champion_path(spawn_loc)
-		champion.maxHealth += 50
-		champion.health += 50
+		champion.maxHealth += 150
+		champion.health += 150
 		champion.malfunction_chance = 0
 		champion.name = "Champion "
 		if(i > champ_names.len)
