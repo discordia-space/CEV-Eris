@@ -10,6 +10,8 @@
 	w_class = ITEM_SIZE_LARGE
 
 /obj/item/weapon/moneybag/attack_hand(user as mob)
+	if (!is_held())
+		return ..()
 	var/amt_gold = 0
 	var/amt_silver = 0
 	var/amt_diamond = 0

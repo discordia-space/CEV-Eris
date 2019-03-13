@@ -4,10 +4,7 @@
 
 /obj/random/ammo/item_to_spawn()
 	return pickweight(list(
-				/obj/item/weapon/storage/box/shotgunammo/beanbags = 6,
-				/obj/item/weapon/storage/box/shotgunammo = 2,
-				/obj/item/weapon/storage/box/shotgunammo/slug = 4,
-				/obj/item/weapon/storage/box/shotgunammo/stunshells = 1,
+				/obj/random/ammo/shotgun = 4,
 				/obj/item/ammo_magazine/ammobox/c357 = 1,
 				/obj/item/ammo_magazine/ammobox/c65mm = 1,
 				/obj/item/ammo_magazine/ammobox/c65mm/rubber = 2,
@@ -29,6 +26,14 @@
 				/obj/item/ammo_magazine/sl38/rubber = 4,
 				/obj/item/ammo_magazine/mc9mmt = 2,
 				/obj/item/ammo_magazine/mc9mmt/rubber = 6))
+
+/obj/random/ammo/shotgun/item_to_spawn()
+	return pickweight(list(
+				/obj/item/weapon/storage/box/shotgunammo/beanbags = 4,
+				/obj/item/weapon/storage/box/shotgunammo/slug = 2,
+				/obj/item/weapon/storage/box/shotgunammo/stunshells = 0.5,
+				/obj/item/weapon/storage/box/shotgunammo/buckshot = 3))
+
 
 /obj/random/ammo/low_chance
 	name = "low chance random random ammunition"

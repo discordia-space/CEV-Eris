@@ -66,6 +66,7 @@
 	spawn_positions = 1
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#a7bbc6"
+	department_account_access = TRUE
 	wage = WAGE_LABOUR_HAZARD
 	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 25)
 

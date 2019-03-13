@@ -3,6 +3,7 @@
 	desc = "A small, portable microcomputer."
 	icon = 'icons/obj/modular_tablet.dmi'
 	icon_state = "tablet"
+	matter = list(MATERIAL_STEEL = 5, MATERIAL_GLASS = 2)
 
 	icon_state_menu = "menu"
 	hardware_flag = PROGRAM_TABLET

@@ -161,7 +161,7 @@
 #define CAPTURE_MODE_REGULAR 0 //Regular polaroid camera mode
 #define CAPTURE_MODE_ALL 1 //Admin camera mode
 #define CAPTURE_MODE_PARTIAL 3 //Simular to regular mode, but does not do dummy check
-
+#define CAPTURE_MODE_HISTORICAL 4 //Only turfs and anchored atoms. Attempts to simulate a historical photo
 
 //HUD element hidings flags
 #define F12_FLAG 1 // 0001
