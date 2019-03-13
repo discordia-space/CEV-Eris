@@ -27,6 +27,8 @@
 	var/max_dose = 0
 	var/overdose = 0
 	var/addiction_threshold = 0
+	var/withdrawal_threshold = 0
+	var/withdrawal_rate = REM * 2
 	var/scannable = 0 // Shows up on health analyzers.
 	var/affects_dead = 0
 	var/glass_icon_state = null
@@ -64,6 +66,7 @@
 		return
 	if(!affects_dead && M.stat == DEAD)
 		return
+
 	if(overdose && (dose > overdose) && (location != CHEM_TOUCH))
 		overdose(M, alien)
 	var/removed = metabolism
@@ -133,6 +136,17 @@
 
 /datum/reagent/proc/addiction_end(mob/living/M)
 	to_chat(M, SPAN_NOTICE("You feel like you've gotten over your need for [name]."))
+
+// Withdrawal
+/datum/reagent/proc/withdrawal_start(mob/living/M)
+	return
+
+/datum/reagent/proc/withdrawal_act(mob/living/M)
+	return
+
+/datum/reagent/proc/withdrawal_end(mob/living/M)
+	return
+
 
 /datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references
 	. = ..()

@@ -29,6 +29,10 @@
 // Lasting side effects from reagents: addictions, withdrawals.
 /datum/metabolism_effects
 	var/mob/living/carbon/parent
+	var/list/present_reagent_ids = list()
+
+	var/list/datum/reagent/withdrawal_list = list()
+	var/list/datum/reagent/active_withdrawals = list()
 	var/list/datum/reagent/addiction_list = list()
 	var/addiction_tick = 1
 
@@ -38,9 +42,27 @@
 		parent = parent_mob
 
 /datum/metabolism_effects/proc/check_reagent(datum/reagent/R)
+	present_reagent_ids += R.id
+
+	// Withdrawals
+	if(R.withdrawal_threshold && R.volume >= R.addiction_threshold && !is_type_in_list(R, withdrawal_list))
+		if(R.volume >= R.withdrawal_threshold)
+			var/datum/reagent/new_reagent = new R.type()
+			new_reagent.max_dose = R.max_dose
+			withdrawal_list.Add(new_reagent)
+			withdrawal_list[new_reagent] = R.max_dose
+
+	if(is_type_in_list(R, withdrawal_list))
+		for(var/withdrawal in withdrawal_list)
+			var/datum/reagent/A = withdrawal
+			if(istype(R, A))
+				withdrawal_list[A] = max(withdrawal_list[A], A.max_dose)
+
+	// Addictions
 	if(R.addiction_threshold)
 		if(R.volume >= R.addiction_threshold && !is_type_in_list(R, addiction_list))
 			var/datum/reagent/new_reagent = new R.type()
+			new_reagent.max_dose = R.max_dose
 			addiction_list.Add(new_reagent)
 			addiction_list[new_reagent] = 0
 
@@ -52,11 +74,43 @@
 
 
 /datum/metabolism_effects/proc/process()
+	process_withdrawals()
 
 	if(addiction_tick == 6)
 		addiction_tick = 1
 		process_addictions()
 	addiction_tick++
+
+	present_reagent_ids.Cut()
+
+/datum/metabolism_effects/proc/process_withdrawals()
+	for(var/withdrawal in withdrawal_list - active_withdrawals)
+		var/datum/reagent/R = withdrawal
+		if(!(R.id in present_reagent_ids))
+			start_withdrawal(R)
+
+	for(var/withdrawal in active_withdrawals)
+		var/datum/reagent/R = withdrawal
+		if((R.id in present_reagent_ids))
+			stop_withdrawal(R)
+			continue
+
+		if(withdrawal_list[R] <= 0)
+			stop_withdrawal(R)
+			withdrawal_list.Remove(R)
+			continue
+
+		R.withdrawal_act(parent)
+		withdrawal_list[R] -= R.withdrawal_rate
+
+/datum/metabolism_effects/proc/start_withdrawal(datum/reagent/R)
+	active_withdrawals += R
+	R.withdrawal_start(parent)
+
+/datum/metabolism_effects/proc/stop_withdrawal(datum/reagent/R)
+	active_withdrawals -= R
+	R.withdrawal_end(parent)
+
 
 /datum/metabolism_effects/proc/process_addictions()
 	for(var/addiction in addiction_list)
@@ -81,4 +135,9 @@
 				addiction_list.Remove(R)
 
 /datum/metabolism_effects/proc/clear_effects()
+	for(var/withdrawal in active_withdrawals)
+		stop_withdrawal(withdrawal)
+
+	active_withdrawals.Cut()
+	withdrawal_list.Cut()
 	addiction_list.Cut()
