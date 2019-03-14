@@ -38,18 +38,28 @@
 	var/color = "#000000"
 	var/color_weight = 1
 
-/datum/reagent/proc/remove_self(var/amount) // Shortcut
+	var/chilling_point
+	var/chilling_message = "crackles and freezes!"
+	var/chilling_sound = 'sound/effects/bubbles.ogg'
+	var/list/chilling_products
+
+	var/heating_point
+	var/heating_message = "begins to boil!"
+	var/heating_sound = 'sound/effects/bubbles.ogg'
+	var/list/heating_products
+
+/datum/reagent/proc/remove_self(amount) // Shortcut
 	holder.remove_reagent(id, amount)
 
 // This doesn't apply to skin contact - this is for, e.g. extinguishers and sprays.
 // The difference is that reagent is not directly on the mob's skin - it might just be on their clothing.
-/datum/reagent/proc/touch_mob(mob/M, var/amount)
+/datum/reagent/proc/touch_mob(mob/M, amount)
 	return
 
-/datum/reagent/proc/touch_obj(obj/O, var/amount) // Acid melting, cleaner cleaning, etc
+/datum/reagent/proc/touch_obj(obj/O, amount) // Acid melting, cleaner cleaning, etc
 	return
 
-/datum/reagent/proc/touch_turf(turf/T, var/amount) // Cleaner cleaning, lube lubbing, etc, all go here
+/datum/reagent/proc/touch_turf(turf/T, amount) // Cleaner cleaning, lube lubbing, etc, all go here
 	return
 
 // Called when this reagent is first added to a mob
@@ -154,11 +164,15 @@
 
 /* DEPRECATED - TODO: REMOVE EVERYWHERE */
 
-/datum/reagent/proc/reaction_turf(var/turf/target)
+/datum/reagent/proc/reaction_turf(turf/target)
 	touch_turf(target)
 
-/datum/reagent/proc/reaction_obj(var/obj/target)
+/datum/reagent/proc/reaction_obj(obj/target)
 	touch_obj(target)
 
-/datum/reagent/proc/reaction_mob(var/mob/target)
+/datum/reagent/proc/reaction_mob(mob/target)
 	touch_mob(target)
+
+/datum/reagent/proc/custom_temperature_effects(temperature)
+	return
+

@@ -20,13 +20,13 @@
 
 	var/datum/reagents/splash_holder = new/datum/reagents(total_reagents*threatscale)
 	splash_holder.my_atom = epicenter // For some reason this is setting my_atom to null, and causing runtime errors.
-	//var/total_temp = 0
 
+	var/total_temp = 0
 	for(var/datum/reagents/R in reactants)
 		R.trans_to(splash_holder, R.total_volume, threatscale)
-		//total_temp += R.chem_temp
-	//splash_holder.chem_temp = (total_temp/reactants.len) + extra_heat // Average temperature of reagents + extra heat.
-	//splash_holder.handle_reactions() // React them now.
+		total_temp += R.chem_temp
+	splash_holder.chem_temp = (total_temp/reactants.len) + extra_heat // Average temperature of reagents + extra heat.
+	splash_holder.handle_reactions() // React them now.
 
 	if(splash_holder.total_volume)	//The possible reactions didnt use up all reagents, so we spread it around.
 		var/datum/effect/effect/system/steam_spread/steam = new /datum/effect/effect/system/steam_spread()

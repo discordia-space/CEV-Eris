@@ -4,6 +4,7 @@
 	var/list/datum/reagent/reagent_list = list()
 	var/total_volume = 0
 	var/maximum_volume = 100
+	var/chem_temp = T20C
 	var/atom/my_atom = null
 
 /datum/reagents/New(var/max = 100, atom/A = null)
@@ -89,36 +90,88 @@
 	if(SSchemistry)
 		SSchemistry.chem_mark_for_update(src)
 
-//returns 1 if the holder should continue reactiong, 0 otherwise.
+//returns TRUE if the holder should continue reactiong, FALSE otherwise.
 /datum/reagents/proc/process_reactions()
 	if(!my_atom) // No reactions in temporary holders
-		return 0
+		return FALSE
 	if(!my_atom.loc) //No reactions inside GC'd containers
-		return 0
+		return FALSE
 	if(my_atom.reagent_flags & NO_REACT) // No reactions here
-		return 0
+		return FALSE
 
-	var/reaction_occured
-	var/list/effect_reactions = list()
+	var/reaction_occured = FALSE
 	var/list/eligible_reactions = list()
-	for(var/i in 1 to PROCESS_REACTION_ITER)
-		reaction_occured = 0
 
-		//need to rebuild this to account for chain reactions
-		for(var/datum/reagent/R in reagent_list)
-			eligible_reactions |= chemical_reactions_list[R.id]
+	var/temperature = chem_temp
+	for(var/thing in reagent_list)
+		var/datum/reagent/R = thing
+		if(R.custom_temperature_effects(temperature))
+			reaction_occured = TRUE
+			continue
 
-		for(var/datum/chemical_reaction/C in eligible_reactions)
-			if(C.can_happen(src) && C.Process(src))
-				effect_reactions |= C
-				reaction_occured = 1
+		// Check if the reagent is decaying or not.
+		var/list/replace_self_with
+		var/replace_message
+		var/replace_sound
 
-		eligible_reactions.Cut()
+		if(LAZYLEN(R.chilling_products) && temperature <= R.chilling_point)
+			replace_self_with = R.chilling_products
+			replace_message =   "\The [lowertext(R.name)] [R.chilling_message]"
+			replace_sound =     R.chilling_sound
 
-		if(!reaction_occured)
-			break
+		else if(LAZYLEN(R.heating_products) && temperature >= R.heating_point)
+			replace_self_with = R.heating_products
+			replace_message =   "\The [lowertext(R.name)] [R.heating_message]"
+			replace_sound =     R.heating_sound
 
-	for(var/datum/chemical_reaction/C in effect_reactions)
+		// If it is, handle replacing it with the decay product.
+		if(replace_self_with)
+			var/replace_amount = R.volume / LAZYLEN(replace_self_with)
+			del_reagent(R.id)
+			for(var/product in replace_self_with)
+				add_reagent(product, replace_amount)
+			reaction_occured = TRUE
+
+			if(my_atom)
+				if(replace_message)
+					my_atom.visible_message("<span class='notice'>\icon[my_atom] [replace_message]</span>")
+				if(replace_sound)
+					playsound(my_atom, replace_sound, 80, 1)
+
+		else // Otherwise, collect all possible reactions.
+			eligible_reactions |= chemical_reactions_list[R.type]
+
+	var/list/active_reactions = list()
+
+	for(var/datum/chemical_reaction/C in eligible_reactions)
+		if(C.can_happen(src))
+			active_reactions[C] = 1 // The number is going to be 1/(fraction of remaining reagents we are allowed to use), computed below
+			reaction_occured = TRUE
+
+	var/list/used_reagents = list()
+	// if two reactions share a reagent, each is allocated half of it, so we compute this here
+	for(var/datum/chemical_reaction/C in active_reactions)
+		var/list/adding = C.get_used_reagents()
+		for(var/R in adding)
+			LAZYADD(used_reagents[R], C)
+
+	for(var/R in used_reagents)
+		var/counter = length(used_reagents[R])
+		if(counter <= 1)
+			continue // Only used by one reaction, so nothing we need to do.
+		for(var/datum/chemical_reaction/C in used_reagents[R])
+			active_reactions[C] = max(counter, active_reactions[C])
+			counter-- //so the next reaction we execute uses more of the remaining reagents
+			// Note: this is not guaranteed to maximize the size of the reactions we do (if one reaction is limited by reagent A, we may be over-allocating reagent B to it)
+			// However, we are guaranteed to fully use up the most profligate reagent if possible.
+			// Further reactions may occur on the next tick, when this runs again.
+
+	for(var/thing in active_reactions)
+		var/datum/chemical_reaction/C = thing
+		C.process(src, active_reactions[C])
+
+	for(var/thing in active_reactions)
+		var/datum/chemical_reaction/C = thing
 		C.post_reaction(src)
 
 	update_total()
@@ -430,6 +483,15 @@
 		return
 
 	return trans_to_holder(target.reagents, amount, multiplier, copy)
+
+/datum/reagents/proc/expose_temperature(temperature, coeff=0.02)
+	var/temp_delta = (temperature - chem_temp) * coeff
+	if(temp_delta > 0)
+		chem_temp = min(chem_temp + max(temp_delta, 1), temperature)
+	else
+		chem_temp = max(chem_temp + min(temp_delta, -1), temperature)
+	chem_temp = round(chem_temp)
+	handle_reactions()
 
 
 /* Atom reagent creation - use it all the time */

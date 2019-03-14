@@ -120,8 +120,8 @@
 	if(standard_dispenser_refill(user, target))
 		return 1
 
-/obj/item/weapon/reagent_containers/glass/attackby(obj/item/weapon/W, mob/user)
-	if(istype(W, /obj/item/weapon/pen) || istype(W, /obj/item/device/lighting/toggleable/flashlight/pen))
+/obj/item/weapon/reagent_containers/glass/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/weapon/pen) || istype(I, /obj/item/device/lighting/toggleable/flashlight/pen))
 		var/tmp_label = sanitizeSafe(input(user, "Enter a label for [name]", "Label", label_text), MAX_NAME_LEN)
 		if(length(tmp_label) > 10)
 			to_chat(user, SPAN_NOTICE("The label can be at most 10 characters long."))
@@ -129,6 +129,13 @@
 			to_chat(user, SPAN_NOTICE("You set the label to \"[tmp_label]\"."))
 			label_text = tmp_label
 			update_name_label()
+
+	var/hotness = I.is_hot()
+	if(hotness && reagents)
+		reagents.expose_temperature(hotness)
+		to_chat(user, SPAN_NOTICE("You heat [name] with [I]!"))
+
+	..()
 
 /obj/item/weapon/reagent_containers/glass/proc/update_name_label()
 	playsound(src,'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.ogg',40,1)

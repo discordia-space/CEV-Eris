@@ -10,7 +10,8 @@
 		parent = parent_mob
 
 /datum/reagents/metabolism/proc/metabolize()
-	
+	expose_temperature(parent.bodytemperature, 0.25)
+
 	var/metabolism_type = 0 //non-human mobs
 	if(ishuman(parent))
 		var/mob/living/carbon/human/H = parent
