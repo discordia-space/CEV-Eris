@@ -304,11 +304,11 @@
 	return IS_SELF(mover) &&  mob.moving ? MOVEMENT_STOP : MOVEMENT_PROCEED
 
 /datum/movement_handler/mob/movement/proc/HandleGrabs(var/direction, var/old_turf)
-	/* TODO: Bay grab system
 	. = 0
 	// TODO: Look into making grabs use movement events instead, this is a mess.
 	for (var/obj/item/weapon/grab/G in mob)
-		. = max(., G.grab_slowdown())
+		//. = max(., G.grab_slowdown())	// TODO: Bay grab system
+		. = max(., G.slowdown)
 		var/list/L = mob.ret_grab()
 		if(istype(L, /list))
 			if(L.len == 2)
@@ -333,8 +333,6 @@
 						M.animate_movement = 2
 						return
 			G.adjust_position()
-	*/
-
 
 /mob/proc/AdjustMovementDirection(var/direction)
 	. = direction
