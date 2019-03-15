@@ -57,13 +57,8 @@ particle whenever the target moves
 	//Ion trail, not used much now
 /////////////////////////////////////////////
 
-/obj/effect/effect/trail_particle/ion_trails
-	name = "ion trails"
-	icon_state = "ion_trails"
-	anchored = 1.0
-
 /datum/effect/effect/system/trail/ion
-	trail_effect = /obj/effect/effect/trail_particle/ion_trails
+	trail_effect = /obj/effect/trail_particle/ion_trails
 
 
 /////////////////////////////////////////////
@@ -115,3 +110,8 @@ Their only special behaviour atm is to delete themselves shortly after creation
 /obj/effect/trail_particle/gasjet
 	name = "pressurised gas"
 	icon_state = "jet"
+
+/obj/effect/trail_particle/ion_trails
+	name = "ion trails"
+	icon_state = "ion_fade"
+	anchored = 1.0
