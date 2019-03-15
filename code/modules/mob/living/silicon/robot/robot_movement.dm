@@ -23,16 +23,16 @@
 	if (is_component_functioning("actuator"))
 		. = ..()
 
- //No longer needed, but I'll leave it here incase we plan to re-use it.
+
+
 /mob/living/silicon/robot/movement_delay()
-	var/tally = MOVE_DELAY_BASE //Incase I need to add stuff other than "speed" later
-
-	tally += speed
-
-	if(module_active && istype(module_active,/obj/item/borg/combat/mobility))
+	var/tally = ..()
+	tally += speed //This var is a placeholder
+	if(module_active && istype(module_active,/obj/item/borg/combat/mobility)) //And so is this silly check
 		tally-=1
-
+	tally /= speed_factor
 	return tally
+
 
 /mob/living/silicon/robot/SelfMove(turf/n, direct)
 	if (!is_component_functioning("actuator"))

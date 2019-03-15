@@ -41,14 +41,20 @@
 		update_dirt()
 
 		if(ishuman(M))
+
+
 			var/mob/living/carbon/human/H = M
+
+			//Footstep sounds. This proc is in footsteps.dm
+			H.handle_footstep(src)
+
 			// Tracking blood
 			var/list/bloodDNA = null
 			var/bloodcolor=""
 			if(H.shoes)
 				var/obj/item/clothing/shoes/S = H.shoes
 				if(istype(S))
-					S.handle_movement(src,(H.m_intent == "run" ? 1 : 0))
+					S.handle_movement(src,(MOVING_QUICKLY(H) ? 1 : 0))
 					if(S.track_blood && S.blood_DNA)
 						bloodDNA = S.blood_DNA
 						bloodcolor=S.blood_color
@@ -69,7 +75,7 @@
 
 		if(src.wet)
 
-			if(M.buckled || (src.wet == 1 && M.m_intent == "walk"))
+			if(M.buckled || (src.wet == 1 && MOVING_DELIBERATELY(M)))
 				return
 
 			var/slip_dist = 1

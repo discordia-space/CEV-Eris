@@ -417,8 +417,8 @@ var/global/list/damage_icon_parts = list()
 //For legacy support.
 /mob/living/carbon/human/regenerate_icons()
 	..()
-	if(transforming)
-		return
+	if(HasMovementHandler(/datum/movement_handler/mob/transformation) || QDELETED(src))		return
+
 	update_mutations(0)
 	update_implants(0)
 	update_body(0)
@@ -847,10 +847,6 @@ var/global/list/damage_icon_parts = list()
 			standing = image(icon = body_build.misk_icon, icon_state = "legcuff1")
 		overlays_standing[LEGCUFF_LAYER] = standing
 
-		if(src.m_intent != "walk")
-			src.m_intent = "walk"
-			//if(src.hud_used && src.hud_used.move_intent)
-			//	src.hud_used.move_intent.icon_state = "walking"
 
 	else
 		overlays_standing[LEGCUFF_LAYER]	= null

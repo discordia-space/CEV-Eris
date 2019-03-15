@@ -49,6 +49,7 @@
 	min_scan_interval = 2
 	max_scan_interval = 20
 	seek_speed = 1
+	speed = 1
 
 	can_pull_size = ITEM_SIZE_TINY
 	can_pull_mobs = MOB_PULL_NONE
@@ -252,7 +253,7 @@
 		face_atom(L)
 		L.attack_generic(src, 1, "bitten")
 		setClickCooldown(15)
-		setMoveCooldown(10)
+		set_move_cooldown(10)
 
 /*
  * Mouse types

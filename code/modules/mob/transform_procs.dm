@@ -1,12 +1,12 @@
 /mob/living/carbon/human/proc/monkeyize()
-	if (transforming)
+	if (HAS_TRANSFORMATION_MOVEMENT_HANDLER(src))
 		return
 	for(var/obj/item/W in src)
 		if (W==w_uniform) // will be torn
 			continue
 		drop_from_inventory(W)
 	regenerate_icons()
-	transforming = 1
+	ADD_TRANSFORMATION_MOVEMENT_HANDLER(src)
 	canmove = 0
 	stunned = 1
 	icon = null
@@ -14,6 +14,8 @@
 	for(var/t in organs)
 		qdel(t)
 	var/atom/movable/overlay/animation = new /atom/movable/overlay( loc )
+	animation.plane = plane
+	animation.layer = ABOVE_MOB_LAYER
 	animation.icon_state = "blank"
 	animation.icon = 'icons/mob/mob.dmi'
 	animation.master = src
@@ -21,7 +23,7 @@
 	sleep(48)
 	//animation = null
 
-	transforming = 0
+	DEL_TRANSFORMATION_MOVEMENT_HANDLER(src)
 	stunned = 0
 
 	update_lying_buckled_and_verb_status()
@@ -47,7 +49,7 @@
 	return ..()
 
 /mob/living/carbon/human/AIize(move=1) // 'move' argument needs defining here too because BYOND is dumb
-	if (transforming)
+	if (HAS_TRANSFORMATION_MOVEMENT_HANDLER(src))
 		return
 	for(var/t in organs)
 		qdel(t)
@@ -55,11 +57,11 @@
 	return ..(move)
 
 /mob/living/carbon/AIize()
-	if (transforming)
+	if (HAS_TRANSFORMATION_MOVEMENT_HANDLER(src))
 		return
 	for(var/obj/item/W in src)
 		drop_from_inventory(W)
-	transforming = 1
+	ADD_TRANSFORMATION_MOVEMENT_HANDLER(src)
 	canmove = 0
 	icon = null
 	invisibility = 101
@@ -107,7 +109,7 @@
 
 //human -> robot
 /mob/living/carbon/human/proc/Robotize()
-	if (transforming)
+	if (HAS_TRANSFORMATION_MOVEMENT_HANDLER(src))
 		return
 	for(var/t in organs)
 		qdel(t)
@@ -115,7 +117,7 @@
 		drop_from_inventory(W)
 		qdel(W)
 	regenerate_icons()
-	transforming = 1
+	ADD_TRANSFORMATION_MOVEMENT_HANDLER(src)
 	canmove = 0
 	icon = null
 	invisibility = 101
@@ -155,12 +157,12 @@
 	return O
 
 /mob/living/carbon/human/proc/slimeize(adult as num, reproduce as num)
-	if (transforming)
+	if (HAS_TRANSFORMATION_MOVEMENT_HANDLER(src))
 		return
 	for(var/obj/item/W in src)
 		drop_from_inventory(W)
 	regenerate_icons()
-	transforming = 1
+	ADD_TRANSFORMATION_MOVEMENT_HANDLER(src)
 	canmove = 0
 	icon = null
 	invisibility = 101
@@ -189,12 +191,12 @@
 	return
 
 /mob/living/carbon/human/proc/corgize()
-	if (transforming)
+	if (HAS_TRANSFORMATION_MOVEMENT_HANDLER(src))
 		return
 	for(var/obj/item/W in src)
 		drop_from_inventory(W)
 	regenerate_icons()
-	transforming = 1
+	ADD_TRANSFORMATION_MOVEMENT_HANDLER(src)
 	canmove = 0
 	icon = null
 	invisibility = 101
@@ -224,7 +226,7 @@
 		drop_from_inventory(W)
 
 	regenerate_icons()
-	transforming = 1
+	ADD_TRANSFORMATION_MOVEMENT_HANDLER(src)
 	canmove = 0
 	icon = null
 	invisibility = 101

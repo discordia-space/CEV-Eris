@@ -12,7 +12,7 @@
 
 	density = 0
 	stat = DEAD
-	canmove = 0
+	movement_handlers = list()
 
 	anchored = 1	//  don't get pushed around
 /*

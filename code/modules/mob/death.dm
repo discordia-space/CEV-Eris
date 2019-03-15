@@ -2,7 +2,7 @@
 //added different sort of gibs and animations. N
 /mob/proc/gib(anim="gibbed-m",do_gibs)
 	death(1)
-	transforming = 1 //TODO: Replace this with the define from bay, after porting their movement system
+	ADD_TRANSFORMATION_MOVEMENT_HANDLER(src)
 	canmove = 0
 	icon = null
 	invisibility = 101
@@ -36,7 +36,7 @@
 		H.release_mob()
 
 	var/atom/movable/overlay/animation = null
-	transforming = 1
+	ADD_TRANSFORMATION_MOVEMENT_HANDLER(src)
 	canmove = 0
 	icon = null
 	invisibility = 101
