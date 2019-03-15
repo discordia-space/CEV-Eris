@@ -2184,6 +2184,7 @@
 #include "code\modules\reagents\reagent_containers\glass\bottle\robot.dm"
 #include "code\modules\reagents\reagents\core.dm"
 #include "code\modules\reagents\reagents\dispenser.dm"
+#include "code\modules\reagents\reagents\drugs.dm"
 #include "code\modules\reagents\reagents\food-Drinks.dm"
 #include "code\modules\reagents\reagents\medicine.dm"
 #include "code\modules\reagents\reagents\other.dm"
