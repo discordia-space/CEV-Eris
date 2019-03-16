@@ -100,7 +100,7 @@
 			possibleWays[L["backkey"]] = BACKWARD
 		if(istype(used_atom, /obj/item))
 			var/obj/item/I = used_atom
-			var/selected = I.get_tool_type(user, possibleWays)
+			var/selected = I.get_tool_type(user, possibleWays, holder)
 			return selected && possibleWays[selected]
 		return FALSE
 

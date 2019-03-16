@@ -344,7 +344,7 @@ var/global/list/damage_icon_parts = list()
 	//base icons
 	var/icon/face_standing = new /icon('icons/mob/hair.dmi',"bald")
 
-	if(f_style)
+	if(f_style && !(wear_mask && (wear_mask.flags_inv & BLOCKFACEHAIR)))
 		var/datum/sprite_accessory/facial_hair_style = GLOB.facial_hair_styles_list[f_style]
 		if(facial_hair_style && facial_hair_style.species_allowed && (src.species.get_bodytype() in facial_hair_style.species_allowed))
 			var/icon/facial_s = new/icon(facial_hair_style.icon, facial_hair_style.icon_state)
@@ -417,8 +417,8 @@ var/global/list/damage_icon_parts = list()
 //For legacy support.
 /mob/living/carbon/human/regenerate_icons()
 	..()
-	if(transforming)
-		return
+	if(HasMovementHandler(/datum/movement_handler/mob/transformation) || QDELETED(src))		return
+
 	update_mutations(0)
 	update_implants(0)
 	update_body(0)
@@ -847,10 +847,6 @@ var/global/list/damage_icon_parts = list()
 			standing = image(icon = body_build.misk_icon, icon_state = "legcuff1")
 		overlays_standing[LEGCUFF_LAYER] = standing
 
-		if(src.m_intent != "walk")
-			src.m_intent = "walk"
-			//if(src.hud_used && src.hud_used.move_intent)
-			//	src.hud_used.move_intent.icon_state = "walking"
 
 	else
 		overlays_standing[LEGCUFF_LAYER]	= null

@@ -1,13 +1,13 @@
 // Xenoarch aliens.
 /mob/living/simple_animal/hostile/samak
 	name = "samak"
-	desc = "A fast, armoured predator accustomed to hiding and ambushing in cold terrain."
+	desc = "A tough, armoured predator accustomed to hiding and ambushing in cold terrain."
 	faction = "samak"
 	icon_state = "samak"
 	icon_living = "samak"
 	icon_dead = "samak_dead"
 	icon = 'icons/jungle.dmi'
-	move_to_delay = 2
+	move_to_delay = 5
 	maxHealth = 130
 	health = 130
 	speed = 2
@@ -30,7 +30,7 @@
 	icon_living = "diyaab"
 	icon_dead = "diyaab_dead"
 	icon = 'icons/jungle.dmi'
-	move_to_delay = 1
+	move_to_delay = 2
 	maxHealth = 25
 	health = 25
 	speed = 1
@@ -54,7 +54,7 @@
 	icon_living = "shantak"
 	icon_dead = "shantak_dead"
 	icon = 'icons/jungle.dmi'
-	move_to_delay = 1
+	move_to_delay = 2.5
 	maxHealth = 55
 	health = 55
 	speed = 1

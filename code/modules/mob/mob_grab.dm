@@ -231,7 +231,7 @@
 		return
 	if(state == GRAB_UPGRADING)
 		return
-	if(!assailant.canClick())
+	if(!assailant.can_click())
 		return
 	if(world.time < (last_action + max(0, UPGRADE_COOLDOWN - assailant.stats.getStat(STAT_ROB))))
 		return

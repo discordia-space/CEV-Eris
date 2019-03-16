@@ -963,7 +963,7 @@ There are 9 wires.
 		hit(user, I)
 		return
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING, QUALITY_WELDING))
+	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING, QUALITY_WELDING), src)
 	switch(tool_type)
 		if(QUALITY_PRYING)
 			if(!repairing)
@@ -1082,7 +1082,7 @@ There are 9 wires.
 		playsound(src.loc, open_sound_powered, 70, 1, -2)
 	else
 		var/obj/item/weapon/tool/T = forced
-		if (istype(T) && T.silenced)
+		if (istype(T) && T.item_flags & SILENT)
 			playsound(src.loc, open_sound_unpowered, 3, 1, -5) //Silenced tools can force open airlocks silently
 		else
 			playsound(src.loc, open_sound_unpowered, 70, 1, -1)
@@ -1216,7 +1216,7 @@ There are 9 wires.
 		playsound(src.loc, close_sound, 70, 1, -2)
 	else
 		var/obj/item/weapon/tool/T = forced
-		if (istype(T) && T.silenced)
+		if (istype(T) && T.item_flags & SILENT)
 			playsound(src.loc, open_sound_unpowered, 3, 1, -5) //Silenced tools can force airlocks silently
 		else
 			playsound(src.loc, open_sound_unpowered, 70, 1, -2)
@@ -1360,7 +1360,7 @@ There are 9 wires.
 	var/quiet = FALSE
 	if (istool(I))
 		var/obj/item/weapon/tool/T = I
-		quiet = T.silenced
+		quiet = T.item_flags & SILENT
 
 	if (locked)
 		calc_damage *= 0.66

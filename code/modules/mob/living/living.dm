@@ -466,7 +466,7 @@ default behaviour is:
 		for(var/mob/living/M in range(src, 1))
 			if ((M.pulling == src && M.stat == 0 && !( M.restrained() )))
 				t7 = null
-	if ((t7 && (pulling && ((get_dist(src, pulling) <= 1 || pulling.loc == loc) && (client && client.moving)))))
+	if ((t7 && (pulling && ((get_dist(src, pulling) <= 1 || pulling.loc == loc) && (moving)))))
 		var/turf/T = loc
 		. = ..()
 
@@ -556,90 +556,8 @@ default behaviour is:
 		for(var/mob/living/carbon/slime/M in view(1,src))
 			M.UpdateFeed(src)
 
-/mob/living/proc/handle_footstep(turf/T)
-	if(istype(T))
-		return TRUE
-	return FALSE
 
-/mob/living/verb/resist()
-	set name = "Resist"
-	set category = "IC"
 
-	if(!stat && canClick())
-		setClickCooldown(20)
-		resist_grab()
-		if(!weakened)
-			process_resist()
-
-/mob/living/proc/process_resist()
-	//Getting out of someone's inventory.
-	if(istype(src.loc, /obj/item/weapon/holder))
-		escape_inventory(src.loc)
-		return
-
-	//unbuckling yourself
-	if(buckled)
-		spawn() escape_buckle()
-		return TRUE
-
-	//Breaking out of a locker?
-	if( src.loc && (istype(src.loc, /obj/structure/closet)) )
-		var/obj/structure/closet/C = loc
-		spawn() C.mob_breakout(src)
-		return TRUE
-
-/mob/living/proc/escape_inventory(obj/item/weapon/holder/H)
-	if(H != src.loc) return
-
-	var/mob/M = H.loc //Get our mob holder (if any).
-
-	if(istype(M))
-		M.drop_from_inventory(H)
-		M << "<span class='warning'>\The [H] wriggles out of your grip!</span>"
-		src << "<span class='warning'>You wriggle out of \the [M]'s grip!</span>"
-
-		// Update whether or not this mob needs to pass emotes to contents.
-		for(var/atom/A in M.contents)
-			if(istype(A,/mob/living/simple_animal/borer) || istype(A,/obj/item/weapon/holder))
-				return
-		M.status_flags &= ~PASSEMOTES
-
-	else if(istype(H.loc,/obj/item/clothing/accessory/holster))
-		var/obj/item/clothing/accessory/holster/holster = H.loc
-		if(holster.holstered == H)
-			holster.clear_holster()
-		src << "<span class='warning'>You extricate yourself from \the [holster].</span>"
-		H.forceMove(get_turf(H))
-	else if(istype(H.loc,/obj/item))
-		src << "<span class='warning'>You struggle free of \the [H.loc].</span>"
-		H.forceMove(get_turf(H))
-
-/mob/living/proc/escape_buckle()
-	if(buckled)
-		buckled.user_unbuckle_mob(src)
-
-/mob/living/proc/resist_grab()
-	var/resisting = 0
-	for(var/obj/O in requests)
-		requests.Remove(O)
-		qdel(O)
-		resisting++
-	for(var/obj/item/weapon/grab/G in grabbed_by)
-		resisting++
-		switch(G.state)
-			if(GRAB_PASSIVE)
-				qdel(G)
-			if(GRAB_AGGRESSIVE)
-				if(prob(60)) //same chance of breaking the grab as disarm
-					visible_message("<span class='warning'>[src] has broken free of [G.assailant]'s grip!</span>")
-					qdel(G)
-			if(GRAB_NECK)
-				//If the you move when grabbing someone then it's easier for them to break free. Same if the affected mob is immune to stun.
-				if (((world.time - G.assailant.l_move_time < 30 || !stunned) && prob(15)) || prob(3))
-					visible_message("<span class='warning'>[src] has broken free of [G.assailant]'s headlock!</span>")
-					qdel(G)
-	if(resisting)
-		visible_message("<span class='danger'>[src] resists!</span>")
 
 /mob/living/verb/lay_down()
 	set name = "Rest"
@@ -681,21 +599,9 @@ default behaviour is:
 
 //used to push away bedsheets in order to stand up, only humans will roll them (see overriden human proc)
 /mob/living/proc/unblanket()
-	if((locate(/obj/item/weapon/bedsheet) in get_turf(src)) && do_after(src,10,incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_STUNNED))
-		var/quantity = 0
-		for (var/obj/item/weapon/bedsheet/BS in get_turf(src))
-			quantity++
-			if(prob(25))
-				BS.rolled = TRUE
-				BS.update_icon()
-			if(prob(85))
-				var/turf/T = get_offset_target_turf(get_turf(src),rand(-1,1),rand(-1,1))
-				step_towards(BS,T)
-		if(quantity)
-			src.visible_message(
-				SPAN_WARNING("\The [src] shoves aside \the [quantity > 1 ? "blankets" : "blanket"] as it stands up."),
-				SPAN_WARNING("You shove aside \the [quantity > 1 ? "blankets" : "blanket"] as you stand up.")
-			)
+	var/obj/item/weapon/bedsheet/blankets = (locate(/obj/item/weapon/bedsheet) in loc)
+	if (blankets && !blankets.rolled && !blankets.folded)
+		return blankets.toggle_roll(src)
 	return TRUE
 
 /mob/living/simple_animal/spiderbot/is_allowed_vent_crawl_item(var/obj/item/carried_item)
@@ -763,7 +669,7 @@ default behaviour is:
 
 /mob/living/reset_layer()
 	if(hiding)
-		plane = HIDING_MOB_PLANE
+		set_plane(HIDING_MOB_PLANE)
 		layer = HIDING_MOB_LAYER
 	else
 		..()

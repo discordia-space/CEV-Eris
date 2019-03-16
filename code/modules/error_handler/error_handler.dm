@@ -13,6 +13,7 @@ var/total_runtimes_skipped = 0
 		return ..()
 	if(!error_last_seen) // A runtime is occurring too early in start-up initialization
 		return ..()
+	
 	total_runtimes++
 	var/erroruid = "[e.file][e.line]"
 	var/last_seen = error_last_seen[erroruid]
@@ -23,7 +24,7 @@ var/total_runtimes_skipped = 0
 	if(cooldown < 0)
 		error_cooldown[erroruid]-- // Used to keep track of skip count for this error
 		total_runtimes_skipped++
-		return // Error is currently silenced, skip handling it
+		return // Error is currently item_flags & SILENT, skip handling it
 	// Handle cooldowns and silencing spammy errors
 	var/silencing = 0
 	// Each occurrence of a unique error adds to its "cooldown" time...
@@ -42,6 +43,15 @@ var/total_runtimes_skipped = 0
 				error_cache.logError(e, skipCount = skipcount)
 	error_last_seen[erroruid] = world.time
 	error_cooldown[erroruid] = cooldown
+	
+	//this is snowflake because of a byond bug (ID:2306577), do not attempt to call non-builtin procs in this if
+	if(copytext(e.name,1,32) == "Maximum recursion level reached")
+		//log to world while intentionally triggering the byond bug.
+		log_world("runtime error: [e.name]\n[e.desc]")
+		//if we got to here without silently ending, the byond bug has been fixed.
+		log_world("The bug with recursion runtimes has been fixed. Please remove the snowflake check from world/Error in [__FILE__]:[__LINE__]")
+		return
+	
 	// The detailed error info needs some tweaking to make it look nice
 	var/list/srcinfo = null
 	var/list/usrinfo = null
@@ -90,7 +100,7 @@ var/total_runtimes_skipped = 0
 	if(usrinfo)
 		desclines.Add(usrinfo)
 	if(silencing)
-		desclines += "  (This error will now be silenced for [ERROR_SILENCE_TIME / 600] minutes)"
+		desclines += "  (This error will now be item_flags & SILENT for [ERROR_SILENCE_TIME / 600] minutes)"
 	// Now to actually output the error info...
 	log_to_dd("\[[time_stamp()]] Runtime in [e.file],[e.line]: [e]")
 	for(var/line in desclines)

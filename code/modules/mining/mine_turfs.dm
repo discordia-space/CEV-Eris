@@ -115,7 +115,7 @@
 //Not even going to touch this pile of spaghetti
 /turf/simulated/mineral/attackby(obj/item/I, mob/living/user)
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_DIGGING, QUALITY_EXCAVATION))
+	var/tool_type = I.get_tool_type(user, list(QUALITY_DIGGING, QUALITY_EXCAVATION), src, CB = CALLBACK(src,.proc/check_radial_dig))
 	switch(tool_type)
 
 		if(QUALITY_EXCAVATION)
@@ -389,6 +389,9 @@
 
 	. = ..()
 
+/turf/simulated/mineral/proc/check_radial_dig()
+	return TRUE
+
 /turf/simulated/mineral/random/high_chance
 	mineralChance = 100 //25
 	mineralSpawnChanceList = list("Uranium" = 10, "Platinum" = 10, "Iron" = 20, "Coal" = 20, "Diamond" = 2, "Gold" = 10, "Silver" = 10, "Plasma" = 20)
@@ -491,3 +494,6 @@
 				attackby(R.module_state_3,R)
 			else
 				return
+
+/turf/simulated/floor/asteroid/proc/check_radial_dig()
+	return FALSE

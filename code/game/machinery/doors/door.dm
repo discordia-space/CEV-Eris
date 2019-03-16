@@ -42,11 +42,13 @@
 	return density
 
 /obj/machinery/door/attack_generic(var/mob/user, var/damage)
-	if(damage >= 10)
+	if(damage >= resistance)
 		visible_message(SPAN_DANGER("\The [user] smashes into \the [src]!"))
 		take_damage(damage)
 	else
 		visible_message(SPAN_NOTICE("\The [user] bonks \the [src] harmlessly."))
+		playsound(src, 'sound/weapons/Genhit.ogg', 15, 1,-1)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.5)
 	attack_animation(user)
 
 /obj/machinery/door/New()
@@ -224,7 +226,7 @@
 		return
 
 	if(repairing)
-		var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_WELDING))
+		var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_WELDING), src)
 		switch(tool_type)
 
 			if(QUALITY_WELDING)

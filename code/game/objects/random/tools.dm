@@ -5,7 +5,7 @@
 	has_postspawn = TRUE
 
 /obj/random/tool/item_to_spawn()
-	return pickweight(list(/obj/random/rare = 1,
+	return pickweight(list(/obj/random/rare = 2,
 				/obj/item/weapon/tool/screwdriver = 8,
 				/obj/item/weapon/tool/screwdriver/electric = 2,
 				/obj/item/weapon/tool/screwdriver/combi_driver = 1,
@@ -61,17 +61,19 @@
 				/obj/random/voidsuit/damaged = 1.5,
 				/obj/random/voidsuit = 0.5,
 				/obj/random/pouch = 5,
-				/obj/random/tool_upgrade = 25,
-				/obj/random/rig_module = 5))
+				/obj/random/tool_upgrade = 20,
+				/obj/random/rig_module = 5,
+				/obj/random/mecha_equipment = 5,
+				/obj/random/lowkeyrandom = 45))
 
 
-//Randomly spawned tools will often be in imperfect condition
+//Randomly spawned tools will often be in imperfect condition if they've been left lying out
 /obj/random/tool/post_spawn(var/list/spawns)
-	for (var/obj/item/weapon/tool/T in spawns)
-		if (T.degradation && prob(40))
-			T.unreliability += T.degradation * 25 //50 uses worth of damage, this is fairly mild
-			if (prob(30))
-				T.unreliability += T.degradation * 25 //Roughly 13% chance to be moderately damaged
+	if (isturf(loc))
+		for (var/obj/O in spawns)
+			if (!istype(O, /obj/random) && prob(20))
+				O.make_old()
+
 
 /obj/random/tool/low_chance
 	name = "low chance random tool"
@@ -93,7 +95,8 @@
 				/obj/item/weapon/tool/saw/advanced_circular = 2,
 				/obj/item/weapon/tool/saw/chain = 1,
 				/obj/item/weapon/tool/pickaxe/diamonddrill = 2,
-				/obj/item/weapon/tool/tape_roll/fiber = 2))
+				/obj/item/weapon/tool/tape_roll/fiber = 2,
+				/obj/item/weapon/material/twohanded/fireaxe = 1))
 
 /obj/random/toolbox
 	name = "random toolbox"

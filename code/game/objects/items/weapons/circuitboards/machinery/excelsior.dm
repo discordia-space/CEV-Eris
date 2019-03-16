@@ -27,6 +27,8 @@
 		M.component_parts += new /obj/item/weapon/stock_parts/matter_bin(M)
 		M.component_parts += new /obj/item/weapon/stock_parts/matter_bin(M)
 		M.component_parts += new /obj/item/weapon/stock_parts/manipulator(M)
+		M.circuit.req_components[/obj/item/weapon/stock_parts/matter_bin] = 3
+		M.circuit.req_components[/obj/item/weapon/stock_parts/manipulator] = 1
 
 /obj/item/weapon/circuitboard/excelsiorreconstructor
 	name = T_BOARD("excelsior implant reconstructor")

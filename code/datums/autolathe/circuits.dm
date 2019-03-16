@@ -48,6 +48,10 @@
 	name = "medical records console"
 	path = /obj/item/weapon/circuitboard/med_data
 
+/datum/autolathe/recipe/circuit/recharger
+	name = "recharger"
+	path = /obj/item/weapon/circuitboard/recharger
+
 /datum/autolathe/recipe/circuit/secure_data
 	name = "security records console"
 	path = /obj/item/weapon/circuitboard/secure_data
@@ -87,3 +91,7 @@
 /datum/autolathe/recipe/circuit/turret_excelsior
 	name = "excelsior turret"
 	path = /obj/item/weapon/circuitboard/excelsior_turret
+
+/datum/autolathe/recipe/circuit/centrifuge
+	name = "isolation centrifuge"
+	path = /obj/item/weapon/circuitboard/centrifuge

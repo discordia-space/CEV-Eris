@@ -1,10 +1,3 @@
-/atom/proc/add_overlay(var/overlay)
-	ASSERT(overlay)
-	ASSERT(istext(overlay))
-
-	overlays.Add(image(icon,icon_state = overlay))
-
-
 /obj/structure/closet
 	name = "closet"
 	desc = "It's a basic storage unit."
@@ -68,6 +61,9 @@
 			content_size += Ceiling(I.w_class/2)
 		if(content_size > storage_capacity-5)
 			storage_capacity = content_size + 5
+
+	if (in_maintenance() && prob(20))
+		make_old()
 
 
 
@@ -385,7 +381,7 @@
 			if(hack_stage < hack_require)
 
 				var/obj/item/weapon/tool/T = I
-				if (istype(T) && T.silenced)
+				if (istype(T) && T.item_flags & SILENT)
 					playsound(src.loc, 'sound/items/glitch.ogg', 3, 1, -5) //Silenced tools can hack it silently
 				else
 					playsound(src.loc, 'sound/items/glitch.ogg', 70, 1, -1)

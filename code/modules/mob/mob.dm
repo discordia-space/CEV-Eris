@@ -53,7 +53,9 @@
 		GLOB.dead_mob_list += src
 	else
 		GLOB.living_mob_list += src
+	move_intent = decls_repository.get_decl(move_intent)
 	. = ..()
+
 
 /mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
 
@@ -162,7 +164,14 @@
 	return 0
 
 /mob/proc/movement_delay()
-	return MOVE_DELAY_BASE
+	. = 0
+
+	if ((drowsyness > 0) && !MOVING_DELIBERATELY(src))
+		. += 6
+	if(lying) //Crawling, it's slower
+		. += 14 + (weakened)
+	. += move_intent.move_delay
+
 
 /mob/proc/Life()
 //	if(organStructure)
@@ -224,6 +233,10 @@
 			else
 				client.perspective = EYE_PERSPECTIVE
 				client.eye = loc
+
+	if(hud_used)
+		hud_used.updatePlaneMasters(src)
+
 	return
 
 
@@ -669,6 +682,10 @@
 					Failsafe.stat_entry()
 				else
 					stat("Failsafe Controller:", "ERROR")
+				if(GLOB)
+					GLOB.stat_entry()
+				else
+					stat("Globals:", "ERROR")
 				if(Master)
 					stat(null)
 					for(var/datum/controller/subsystem/SS in Master.subsystems)
@@ -755,18 +772,18 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 
 /mob/proc/reset_layer()
 	if(lying)
-		plane = LYING_MOB_PLANE
+		set_plane(LYING_MOB_PLANE)
 		layer = LYING_MOB_LAYER
 	else
 		reset_plane_and_layer()
 
 /mob/facedir(var/ndir)
-	if(!canface() || client.moving || client.isMovementBlocked())
+	if(!canface() || client.moving)
 		return 0
 	set_dir(ndir)
 	if(buckled && buckled.buckle_movable)
 		buckled.set_dir(ndir)
-	setMoveCooldown(movement_delay())
+	set_move_cooldown(movement_delay())
 	return 1
 
 
@@ -836,7 +853,20 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 	if(status_flags & CANPARALYSE)
 		facing_dir = null
 		paralysis = max(max(paralysis,amount),0)
+		return TRUE
 	return
+
+/mob/living/Paralyse(amount)
+	var/zero_before = FALSE
+	if (!paralysis)
+		zero_before = TRUE
+	.=..()
+	if (. && zero_before)
+		//These three procs instantly create the blinding/sleep overlay
+		//We only call them if the mob has just become paralysed, to prevent an infinite loop
+		handle_regular_status_updates() //This checks paralysis and sets stat
+		handle_disabilities() //This checks stat and sets eye_blind
+		handle_regular_hud_updates() //This checks eye_blind and adds or removes the hud overlay
 
 /mob/proc/SetParalysis(amount)
 	if(status_flags & CANPARALYSE)
@@ -902,7 +932,7 @@ mob/proc/yank_out_object()
 	set desc = "Remove an embedded item at the cost of bleeding and pain."
 	set src in view(1)
 
-	if(!isliving(usr) || !usr.canClick())
+	if(!isliving(usr) || !usr.can_click())
 		return
 	usr.setClickCooldown(20)
 

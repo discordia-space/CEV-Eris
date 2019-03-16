@@ -67,8 +67,9 @@
 	//Does not affect damage dealt to mobs
 
 /obj/item/Destroy()
-	qdel(hidden_uplink)
-	hidden_uplink = null
+	QDEL_NULL(hidden_uplink)
+	QDEL_NULL(blood_overlay)
+	QDEL_NULL(action)
 	if(ismob(loc))
 		var/mob/m = loc
 		m.u_equip(src)

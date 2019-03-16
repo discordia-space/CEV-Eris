@@ -334,7 +334,7 @@
 	color = "#664300"
 
 	glass_icon_state = "beerglass"
-	glass_name = "glass of beer"
+	glass_name = "beer"
 	glass_desc = "A freezing pint of beer"
 	glass_center_of_mass = list("x"=16, "y"=8)
 
@@ -491,10 +491,10 @@
 	color = "#13BC5E"
 
 /datum/reagent/aslimetoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed) // TODO: check if there's similar code anywhere else
-	if(M.transforming)
+	if(HAS_TRANSFORMATION_MOVEMENT_HANDLER(M))
 		return
 	M << SPAN_DANGER("Your flesh rapidly mutates!")
-	M.transforming = 1
+	ADD_TRANSFORMATION_MOVEMENT_HANDLER(M)
 	M.canmove = 0
 	M.icon = null
 	M.overlays.Cut()

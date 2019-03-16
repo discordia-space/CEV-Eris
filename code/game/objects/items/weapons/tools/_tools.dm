@@ -48,7 +48,6 @@
 	var/precision = 0	//Subtracted from failure rates
 	var/workspeed = 1	//Worktimes are divided by this
 	var/extra_bulk = 0 	//Extra physicial volume added by certain mods
-	var/silenced = FALSE //If true the tool makes far less noise when used
 	var/list/prefixes = list()
 
 /******************************
@@ -92,7 +91,7 @@
 			var/turf/location = get_turf(src)
 			if (location)
 				location.hotspot_expose(700, 5)
-		if(tool_in_use && sparks_on_use && !silenced && prob(50))
+		if(tool_in_use && sparks_on_use && !(item_flags & SILENT) && prob(50))
 			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 			sparks.set_up(3, 0, get_turf(src))
 			sparks.start()
@@ -265,7 +264,7 @@
 		var/volume = 70
 		var/extrarange = 0
 
-		if (T && T.silenced)
+		if (T && T.item_flags & SILENT)
 			volume = 3
 			extrarange = -6
 
@@ -325,10 +324,12 @@
 		fail_chance += T.unreliability
 		fail_chance -= T.precision
 
+	fail_chance = round(fail_chance) // Stops <1% failure chance tasks from faling. Also makes falure chance in failure message look less weird.
+
 	if (fail_chance < 0)
 		fail_chance = 0
 	if(prob(fail_chance))
-		user << SPAN_WARNING("You failed to finish your task with [src.name]! There was a [fail_chance]% chance to screw this up.")
+		to_chat(user, SPAN_WARNING("You failed to finish your task with [src.name]! There was a [fail_chance]% chance to screw this up."))
 		return TOOL_USE_FAIL
 
 	return TOOL_USE_SUCCESS
@@ -535,21 +536,24 @@
 	return null
 
 //We are cheking if our item got required qualities. If we require several qualities, and item posses more than one of those, we ask user to choose how that item should be used
-/obj/item/proc/get_tool_type(var/mob/living/user, var/list/required_qualities)
-	var/start_loc = user.loc
+/obj/item/proc/get_tool_type(var/mob/living/user, var/list/required_qualities, var/atom/use_on, var/datum/callback/CB)
 	var/list/L = required_qualities & tool_qualities
 
 	if(!L.len)
 		return FALSE
 
-	var/return_quality = L[1]
+	var/return_quality
 	if(L.len > 1)
-		return_quality = input(user,"What quality you using?", "Tool options", ABORT_CHECK) in L
-	if(user.loc != start_loc)
-		user << SPAN_WARNING("You need to stand still!")
-		return ABORT_CHECK
+		for(var/i in L)
+			L[i] = image(icon = 'icons/mob/radial/tools.dmi', icon_state = i)
+		return_quality = show_radial_menu(user, use_on ? use_on : user, L, tooltips = TRUE, require_near = TRUE, custom_check = CB)
 	else
-		return return_quality
+		return_quality = L[1]
+
+	if(!return_quality)
+		return
+
+	return return_quality
 
 
 
@@ -637,7 +641,7 @@
 	if(eye_hazard)
 		eyecheck(user)
 
-	if(sparks_on_use && !silenced)
+	if(sparks_on_use && !(item_flags & SILENT))
 		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 		sparks.set_up(3, 0, get_turf(src))
 		sparks.start()
@@ -682,7 +686,7 @@
 	force = initial(force)
 	switched_on_force = initial(switched_on_force)
 	extra_bulk = initial(extra_bulk)
-	silenced = initial(silenced)
+	item_flags = initial(item_flags)
 	name = initial(name)
 	max_upgrades = initial(max_upgrades)
 	color = initial(color)
@@ -855,7 +859,7 @@
 		if (!istype(S) || S.robotic < ORGAN_ROBOT)
 			return ..()
 
-		if (get_tool_type(user, list(QUALITY_WELDING))) //Prosthetic repair
+		if (get_tool_type(user, list(QUALITY_WELDING), H)) //Prosthetic repair
 			if (S.brute_dam)
 				if (S.brute_dam < ROBOLIMB_SELF_REPAIR_CAP)
 					if (use_tool(user, H, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))

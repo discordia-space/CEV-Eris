@@ -10,6 +10,7 @@
 				/obj/item/weapon/disk/autolathe_disk/advtoolpack = 2,
 				/obj/item/weapon/disk/autolathe_disk/circuitpack = 3,
 				/obj/item/weapon/disk/autolathe_disk/medical = 4,
+				/obj/item/weapon/disk/autolathe_disk/computer = 4,
 				/obj/item/weapon/disk/autolathe_disk/security = 3,
 				/obj/item/weapon/disk/autolathe_disk/fs_cheap_guns = 2,
 				/obj/item/weapon/disk/autolathe_disk/fs_kinetic_guns = 1,

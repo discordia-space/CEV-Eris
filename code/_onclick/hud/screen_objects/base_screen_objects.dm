@@ -30,6 +30,7 @@
 		src.icon = _icon
 	if (_icon_state)
 		src.icon_state = _icon_state
+	..()
 
 
 /obj/screen/Process()
@@ -41,6 +42,13 @@
 /obj/screen/Destroy()
 	master = null
 	return ..()
+
+/obj/screen/update_plane()
+	return
+
+/obj/screen/set_plane(var/np)
+	plane = np
+
 
 /obj/screen/Click(location, control, params)
 	if(!usr)
@@ -108,7 +116,7 @@
 /obj/screen/item_action/Click()
 	if(!usr || !owner)
 		return TRUE
-	if(!usr.canClick())
+	if(!usr.can_click())
 		return
 
 	if(usr.stat || usr.restrained() || usr.stunned || usr.lying)
@@ -203,7 +211,7 @@
 	plane = HUD_PLANE
 
 /obj/screen/storage/Click()
-	if(!usr.canClick())
+	if(!usr.can_click())
 		return TRUE
 	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
 		return TRUE
@@ -233,7 +241,7 @@
 /obj/screen/inventory/Click()
 	// At this point in client Click() code we have passed the 1/10 sec check and little else
 	// We don't even know if it's a middle click
-	if(!usr.canClick())
+	if(!usr.can_click())
 		return TRUE
 	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
 		return TRUE
@@ -775,18 +783,12 @@ obj/screen/fire/DEADelize()
 
 
 /obj/screen/mov_intent/Click()
-//	if(iscarbon(parentmob))
-	var/mob/living/carbon/C = parentmob
-	if(C.legcuffed)
-		C << SPAN_NOTICE("You are legcuffed! You cannot run until you get [C.legcuffed] removed!")
-		C.m_intent = "walk"	//Just incase
+	var/move_intent_type = next_in_list(usr.move_intent.type, usr.move_intents)
+	var/decl/move_intent/newintent = decls_repository.get_decl(move_intent_type)
+	if (newintent.can_enter(parentmob, TRUE))
+		parentmob.move_intent = newintent
 		update_icon()
-		return TRUE
-	switch(C.m_intent)
-		if("run")
-			C.m_intent = "walk"
-		if("walk")
-			C.m_intent = "run"
+
 	update_icon()
 
 /obj/screen/mov_intent/New()
@@ -794,12 +796,7 @@ obj/screen/fire/DEADelize()
 	update_icon()
 
 /obj/screen/mov_intent/update_icon()
-	var/mob/living/carbon/C = parentmob
-	switch(C.m_intent)
-		if("run")
-			icon_state = "running"
-		if("walk")
-			icon_state = "walking"
+	icon_state = parentmob.move_intent.hud_icon_state
 
 //-----------------------mov_intent END------------------------------
 /obj/screen/equip

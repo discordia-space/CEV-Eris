@@ -1,8 +1,8 @@
-/obj/item/weapon/computer_hardware/
+/obj/item/weapon/computer_hardware
 	name = "Hardware"
 	desc = "Unknown Hardware."
 	icon = 'icons/obj/modular_components.dmi'
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1)
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 0.25)
 	matter_reagents = list("silicon" = 5)
 	var/obj/item/modular_computer/holder2 = null
 	var/power_usage = 0 			// If the hardware uses extra power, change this.

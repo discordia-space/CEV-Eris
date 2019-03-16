@@ -1,12 +1,13 @@
 /obj/random/junk //Broken items, or stuff that could be picked up
+	has_postspawn = TRUE
 	name = "random junk"
 	icon_state = "junk-black"
-
-/obj/random/junk/item_to_spawn()
-	return pickweight(list(
+	var/list/exclusions = list()
+	var/list/items = list(
 		/obj/random/rare = 1, //A diamond in the rough
 		/obj/item/weapon/material/shard = 5,
 		/obj/item/weapon/material/shard/shrapnel = 8,
+		/obj/item/weapon/reagent_containers/pill/floorpill = 8,
 		/obj/item/stack/material/cardboard = 3,
 		/obj/item/weapon/storage/box/lights/mixed = 3,
 		/obj/item/weapon/storage/box/matches = 4,
@@ -62,8 +63,21 @@
 		/obj/effect/decal/cleanable/blood/splatter = 1,
 		/obj/effect/spider/stickyweb = 10, //These are useful for tape crafting
 		/obj/random/pouch = 1,
-		/obj/random/lathe_disk = 2
-	))
+		/obj/random/lathe_disk = 2,
+		/obj/random/scrap/moderate_weighted = 13,
+		/obj/random/credits/c50 = 2 //Loose change
+	)
+
+/obj/random/junk/post_spawn(var/list/stuff)
+	for (var/atom/thing in stuff)
+		if (prob(30))
+			thing.make_old()
+
+/obj/random/junk/item_to_spawn()
+	return pickweight(items - exclusions)
+
+/obj/random/junk/nondense
+	exclusions = list(/obj/random/scrap/moderate_weighted)
 
 /obj/random/junk/low_chance
 	name = "low chance random junk"

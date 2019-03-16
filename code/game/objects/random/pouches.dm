@@ -14,3 +14,7 @@
 	/obj/item/weapon/storage/pouch/pistol_holster = 3,
 	/obj/item/weapon/storage/pouch/baton_holster = 3
 	))
+
+/obj/random/pouch/rare/item_to_spawn()
+	return pickweight(list(	/obj/item/weapon/storage/pouch/medium_generic = 1,
+	/obj/item/weapon/storage/pouch/large_generic = 1))
