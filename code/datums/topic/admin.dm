@@ -1151,6 +1151,14 @@
 	var/mob/M = locate(input["subtlemessage"])
 	usr.client.cmd_admin_subtle_message(M)
 
+/datum/admin_topic/viewlogs
+	keyword = "viewlogs"
+	require_perms = list(R_MOD|R_ADMIN)
+
+/datum/admin_topic/viewlogs/Run(list/input)
+	var/mob/M = locate(input["viewlogs"])
+	source.view_log_panel(M)
+
 
 /datum/admin_topic/traitor
 	keyword = "traitor"
