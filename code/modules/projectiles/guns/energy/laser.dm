@@ -23,10 +23,10 @@
 	projectile_type = /obj/item/projectile/beam/practice
 
 obj/item/weapon/gun/energy/retro
-	name = "Alliance LG \"Cog\""
+	name = "One Star LG \"Cog\""
 	icon_state = "retro"
 	item_state = "retro"
-	desc = "Alliance cheap laser gun. In the distant past - this was the main weapon of low-rank police forces across all the Milky Way, billions of copies of this gun were made. They are ubiquitous."
+	desc = "One Star cheap laser gun. In the distant past - this was the main weapon of low-rank police forces, billions of copies of this gun were made. They are ubiquitous."
 	fire_sound = 'sound/weapons/Laser.ogg'
 	slot_flags = SLOT_BELT
 	w_class = ITEM_SIZE_NORMAL
