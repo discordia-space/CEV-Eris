@@ -61,7 +61,17 @@
 
 	// Addictions
 	if(R.addiction_threshold)
-		if(R.volume >= R.addiction_threshold && !is_type_in_list(R, addiction_list))
+		var/add_addiction = R.volume >= R.addiction_threshold
+
+		if(!add_addiction && R.addiction_chance && R.volume >= R.addiction_chance)
+			// At 40 STAT_TGH, there is no chance of getting addicted by addiction_chance.
+
+			var/percent = (R.volume - R.addiction_chance) / (R.addiction_threshold - R.addiction_chance) * 20
+			percent = CLAMP(percent, 1, 20) - (parent.stats.getStat(STAT_TGH) / 2)
+			add_addiction = prob(percent)
+
+
+		if(add_addiction && !is_type_in_list(R, addiction_list))
 			var/datum/reagent/new_reagent = new R.type()
 			new_reagent.max_dose = R.max_dose
 			addiction_list.Add(new_reagent)

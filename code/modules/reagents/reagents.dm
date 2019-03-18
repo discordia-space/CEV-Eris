@@ -27,6 +27,7 @@
 	var/max_dose = 0
 	var/overdose = 0
 	var/addiction_threshold = 0
+	var/addiction_chance = 0
 	var/withdrawal_threshold = 0
 	var/withdrawal_rate = REM * 2
 	var/scannable = 0 // Shows up on health analyzers.
