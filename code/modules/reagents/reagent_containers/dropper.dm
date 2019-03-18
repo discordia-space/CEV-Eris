@@ -30,10 +30,12 @@
 
 		if(ismob(target))
 			var/time = 20 //2/3rds the time of a syringe
-			user.visible_message(SPAN_WARNING("[user] is trying to squirt something into [target]'s eyes!"))
 
-			if(!do_mob(user, target, time))
-				return
+			if(target != user)
+				user.visible_message(SPAN_WARNING("[user] is trying to squirt something into [target]'s eyes!"))
+
+				if(!do_mob(user, target, time))
+					return
 
 			if(ishuman(target))
 				var/mob/living/carbon/human/victim = target
@@ -63,7 +65,7 @@
 			user.attack_log += "\[[time_stamp()]\] <font color='red'>Used the [name] to squirt [M.name] ([M.key]). Reagents: [contained]</font>"
 			msg_admin_attack("[user.name] ([user.ckey]) squirted [M.name] ([M.key]) with [name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
-			trans = reagents.trans_to_mob(target, reagents.total_volume, CHEM_INGEST)
+			trans = reagents.trans_to_mob(target, reagents.total_volume, CHEM_BLOOD)
 			user.visible_message(
 				SPAN_WARNING("[user] squirts something into [target]'s eyes!"),
 				SPAN_NOTICE("You transfer [trans] units of the solution.")

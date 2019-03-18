@@ -128,33 +128,33 @@
 	return null
 
 // Addiction
-/datum/reagent/proc/addiction_act_stage1(mob/living/M)
+/datum/reagent/proc/addiction_act_stage1(mob/living/carbon/M)
 	if(prob(30))
 		to_chat(M, SPAN_NOTICE("You feel like having some [name] right about now."))
 
-/datum/reagent/proc/addiction_act_stage2(mob/living/M)
+/datum/reagent/proc/addiction_act_stage2(mob/living/carbon/M)
 	if(prob(30))
 		to_chat(M, SPAN_NOTICE("You feel like you need [name]. You just can't get enough."))
 
-/datum/reagent/proc/addiction_act_stage3(mob/living/M)
+/datum/reagent/proc/addiction_act_stage3(mob/living/carbon/M)
 	if(prob(30))
 		to_chat(M, SPAN_DANGER("You have an intense craving for [name]."))
 
-/datum/reagent/proc/addiction_act_stage4(mob/living/M)
+/datum/reagent/proc/addiction_act_stage4(mob/living/carbon/M)
 	if(prob(30))
 		to_chat(M, SPAN_DANGER("You're not feeling good at all! You really need some [name]."))
 
-/datum/reagent/proc/addiction_end(mob/living/M)
+/datum/reagent/proc/addiction_end(mob/living/carbon/M)
 	to_chat(M, SPAN_NOTICE("You feel like you've gotten over your need for [name]."))
 
 // Withdrawal
-/datum/reagent/proc/withdrawal_start(mob/living/M)
+/datum/reagent/proc/withdrawal_start(mob/living/carbon/M)
 	return
 
-/datum/reagent/proc/withdrawal_act(mob/living/M)
+/datum/reagent/proc/withdrawal_act(mob/living/carbon/M)
 	return
 
-/datum/reagent/proc/withdrawal_end(mob/living/M)
+/datum/reagent/proc/withdrawal_end(mob/living/carbon/M)
 	return
 
 
