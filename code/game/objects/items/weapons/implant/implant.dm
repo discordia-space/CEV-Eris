@@ -19,6 +19,16 @@
 	var/position_flag = 0
 	var/external = FALSE
 
+/obj/item/weapon/implant/attackby(obj/item/weapon/I as obj, mob/user as mob)
+	..()
+	if (istype(I, /obj/item/weapon/implanter))
+		var/obj/item/weapon/implanter/M = I
+		if(is_external())
+			return
+		if(!M.implant && user.unEquip(src, M))
+			M.implant = src
+			M.update_icon()
+
 
 /obj/item/weapon/implant/proc/trigger(emote, mob/living/source)
 /obj/item/weapon/implant/proc/activate()
