@@ -109,22 +109,23 @@
 
 /obj/item/examine(mob/user, var/distance = -1)
 	var/message
-	for(var/Q in tool_qualities)
-		message += "\n<blue>This item posses [tool_qualities[Q]] tier of [Q] quality.<blue>"
-
 	var/size
 	switch(w_class)
-		if(1.0)
+		if(1)
 			size = "tiny"
-		if(2.0)
+		if(2)
 			size = "small"
-		if(3.0)
+		if(3)
 			size = "normal-sized"
-		if(4.0)
+		if(4)
 			size = "bulky"
-		if(5.0)
+		if(5)
 			size = "huge"
 	message += "\nIt is a [size] item."
+
+	for(var/Q in tool_qualities)
+		message += "\n<blue>It possesses [tool_qualities[Q]] tier of [Q] quality.<blue>"
+
 	return ..(user, distance, "", message)
 
 /obj/item/attack_hand(mob/user as mob)
