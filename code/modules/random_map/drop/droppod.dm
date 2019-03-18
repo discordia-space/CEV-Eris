@@ -11,7 +11,7 @@
 	limit_y = 3
 	preserve_map = 0
 
-	wall_type = /turf/simulated/wall/titanium
+	wall_type = /turf/simulated/wall/untinted/onestar_reinforced
 	floor_type = /turf/simulated/floor/reinforced
 	var/list/supplied_drop_types = list()
 	var/door_type = /obj/structure/droppod_door

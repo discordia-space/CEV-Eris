@@ -305,7 +305,7 @@
 	return text2num(pickweight(candidates))
 
 
-/atom/movable/proc/set_glide_size(glide_size_override = 0, var/min = 0.9, var/max = world.icon_size/2)
+/atom/movable/proc/set_glide_size(glide_size_override = 0, var/min = 0.2, var/max = world.icon_size/2)
 	if (!glide_size_override || glide_size_override > max)
 		glide_size = 0
 	else

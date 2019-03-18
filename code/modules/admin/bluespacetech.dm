@@ -131,12 +131,14 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	set category = "BST"
 	set popup_menu = 0
 
-	if(!src.incorporeal_move)
-		src.incorporeal_move = 2
+	if(!HasMovementHandler(/datum/movement_handler/mob/incorporeal))
 		src << SPAN_NOTICE("You will now phase through solid matter.")
+		incorporeal_move = TRUE
+		ReplaceMovementHandler(/datum/movement_handler/mob/incorporeal)
 	else
-		src.incorporeal_move = 0
 		src << SPAN_NOTICE("You will no-longer phase through solid matter.")
+		incorporeal_move = FALSE
+		RemoveMovementHandler(/datum/movement_handler/mob/incorporeal)
 
 /mob/living/carbon/human/bst/verb/bstrecover()
 	set name = "Rejuv"

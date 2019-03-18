@@ -36,12 +36,11 @@
 /mob/living/carbon/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	. = ..()
 	if(.)
-		if(src.nutrition && src.stat != 2)
+		if (src.nutrition && src.stat != 2)
 			src.nutrition -= DEFAULT_HUNGER_FACTOR/10
-			if(src.m_intent == "run")
+			if (move_intent.flags & MOVE_INTENT_EXERTIVE)
 				src.nutrition -= DEFAULT_HUNGER_FACTOR/10
-		if((FAT in src.mutations) && src.m_intent == "run" && src.bodytemperature <= 360)
-			src.bodytemperature += 2
+
 
 		// Moving around increases germ_level faster
 		if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
@@ -163,10 +162,7 @@
 	if (src.health >= HEALTH_THRESHOLD_CRIT)
 		if(src == M && ishuman(src))
 			var/mob/living/carbon/human/H = src
-			src.visible_message(
-				text("\blue [src] examines [].",src.gender==MALE?"himself":"herself"),
-				"\blue You check yourself for injuries."
-			)
+			to_chat(H, SPAN_NOTICE("You check yourself for injuries."))
 
 			for(var/obj/item/organ/external/org in H.organs)
 				var/list/status = list()
@@ -205,10 +201,12 @@
 					status += "is bruised and necrotic"
 				if(!org.is_usable())
 					status += "dangling uselessly"
+
+				var/status_text = SPAN_NOTICE("OK")
 				if(status.len)
-					src.show_message("My [org.name] is <span class='warning'> [english_list(status)].</span>",1)
-				else
-					src.show_message("My [org.name] is <span class='notice'> OK.</span>",1)
+					status_text = SPAN_WARNING(english_list(status))
+
+				src.show_message("My [org.name] is [status_text].",1)
 
 			if((SKELETON in H.mutations) && (!H.w_uniform) && (!H.wear_suit))
 				H.play_xylophone()

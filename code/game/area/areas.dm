@@ -229,9 +229,10 @@ var/list/mob/living/forced_ambiance_list = new
 		L.lastarea = get_area(L.loc)
 	var/area/newarea = get_area(L.loc)
 	var/area/oldarea = L.lastarea
-	if((oldarea.has_gravity == 0) && (newarea.has_gravity == 1) && (L.m_intent == "run")) // Being ready when you change areas gives you a chance to avoid falling all together.
-		thunk(L)
-		L.update_floating( L.check_dense_object() )
+	if(oldarea.has_gravity != newarea.has_gravity)
+		if(newarea.has_gravity == 1 && !MOVING_DELIBERATELY(L)) // Being ready when you change areas allows you to avoid falling.
+			thunk(L)
+		L.update_floating()
 
 	L.lastarea = newarea
 	play_ambience(L)
@@ -304,7 +305,7 @@ var/list/mob/living/forced_ambiance_list = new
 		if(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.item_flags & NOSLIP))
 			return
 
-		if(H.m_intent == "run")
+		if(MOVING_QUICKLY(H))
 			H.AdjustStunned(2)
 			H.AdjustWeakened(2)
 		else

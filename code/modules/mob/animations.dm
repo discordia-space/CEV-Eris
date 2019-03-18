@@ -79,13 +79,18 @@ note dizziness decrements automatically in the mob's Life() proc.
 /mob/var/is_floating = 0
 /mob/var/floatiness = 0
 
-/mob/proc/update_floating()
+//You can pass in true or false in a case where you've already done the calculations and can skip some checking here
+//Its perfectly fine to call this proc with no input, it will figure out what it needs to do
+/mob/proc/update_floating(var/setstate = null)
+	if (!isnull(setstate))
+		make_floating(setstate)
+		return
 
 	if(anchored || buckled || check_gravity())
 		make_floating(0)
 		return
 
-	if(check_shoegrip() && check_dense_object())
+	if(check_shoegrip() && check_solid_ground())
 		make_floating(0)
 		return
 

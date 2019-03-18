@@ -381,7 +381,7 @@
 			if(hack_stage < hack_require)
 
 				var/obj/item/weapon/tool/T = I
-				if (istype(T) && T.silenced)
+				if (istype(T) && T.item_flags & SILENT)
 					playsound(src.loc, 'sound/items/glitch.ogg', 3, 1, -5) //Silenced tools can hack it silently
 				else
 					playsound(src.loc, 'sound/items/glitch.ogg', 70, 1, -1)
