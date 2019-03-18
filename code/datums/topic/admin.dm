@@ -597,7 +597,7 @@
 
 /datum/admin_topic/newban
 	keyword = "newban"
-	require_perms = (R_MOD|R_ADMIN)
+	require_perms = list(R_MOD|R_ADMIN)
 
 /datum/admin_topic/newban/Run(list/input)
 	if(check_rights(R_MOD, FALSE) && !check_rights(R_ADMIN, FALSE) && !config.mods_can_job_tempban) // If mod and tempban disabled
