@@ -17,9 +17,6 @@
 
 /obj/effect/decal/cleanable/ash/attack_hand(mob/user as mob)
 	user << SPAN_NOTICE("[src] sifts through your fingers.")
-	var/turf/simulated/floor/F = get_turf(src)
-	if (istype(F))
-		F.dirt += 4
 	qdel(src)
 
 /obj/effect/decal/cleanable/greenglow

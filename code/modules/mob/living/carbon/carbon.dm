@@ -162,10 +162,7 @@
 	if (src.health >= HEALTH_THRESHOLD_CRIT)
 		if(src == M && ishuman(src))
 			var/mob/living/carbon/human/H = src
-			src.visible_message(
-				text("\blue [src] examines [].",src.gender==MALE?"himself":"herself"),
-				"\blue You check yourself for injuries."
-			)
+			to_chat(H, SPAN_NOTICE("You check yourself for injuries."))
 
 			for(var/obj/item/organ/external/org in H.organs)
 				var/list/status = list()
@@ -204,10 +201,12 @@
 					status += "is bruised and necrotic"
 				if(!org.is_usable())
 					status += "dangling uselessly"
+
+				var/status_text = SPAN_NOTICE("OK")
 				if(status.len)
-					src.show_message("My [org.name] is <span class='warning'> [english_list(status)].</span>",1)
-				else
-					src.show_message("My [org.name] is <span class='notice'> OK.</span>",1)
+					status_text = SPAN_WARNING(english_list(status))
+
+				src.show_message("My [org.name] is [status_text].",1)
 
 			if((SKELETON in H.mutations) && (!H.w_uniform) && (!H.wear_suit))
 				H.play_xylophone()
