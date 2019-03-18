@@ -870,7 +870,7 @@
 	require_perms = list(R_MENTOR|R_MOD|R_ADMIN)
 
 /datum/admin_topic/adminobservejump/Run(list/input)
-	var/mob/M = locate(input["adminplayerobservejump"])
+	var/mob/M = locate(input["adminobservejump"])
 
 	var/client/C = usr.client
 	if(!isghost(usr))
