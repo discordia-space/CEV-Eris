@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/hivebot
-	name = "Human Alliance Autonomous Drone"
+	name = "One Star Autonomous Drone"
 	desc = "Old machine of long time fallen empire. Looks like its just attack everything on sight."
 	icon = 'icons/mob/hivebot.dmi'
 	icon_state = "melee"
@@ -28,7 +28,7 @@
 	move_to_delay = 9
 
 /mob/living/simple_animal/hostile/hivebot/range
-	name = "Human Alliance Autonomous Sentinel"
+	name = "One Star Autonomous Sentinel"
 	icon_state = "range"
 	icon_dead = "range_broken"
 	health = 60

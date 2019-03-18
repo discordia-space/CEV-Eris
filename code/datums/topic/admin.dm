@@ -597,7 +597,7 @@
 
 /datum/admin_topic/newban
 	keyword = "newban"
-	require_perms = (R_MOD|R_ADMIN)
+	require_perms = list(R_MOD|R_ADMIN)
 
 /datum/admin_topic/newban/Run(list/input)
 	if(check_rights(R_MOD, FALSE) && !check_rights(R_ADMIN, FALSE) && !config.mods_can_job_tempban) // If mod and tempban disabled
@@ -1150,6 +1150,14 @@
 /datum/admin_topic/subtlemessage/Run(list/input)
 	var/mob/M = locate(input["subtlemessage"])
 	usr.client.cmd_admin_subtle_message(M)
+
+/datum/admin_topic/viewlogs
+	keyword = "viewlogs"
+	require_perms = list(R_MOD|R_ADMIN)
+
+/datum/admin_topic/viewlogs/Run(list/input)
+	var/mob/M = locate(input["viewlogs"])
+	source.view_log_panel(M)
 
 
 /datum/admin_topic/traitor
