@@ -8,6 +8,9 @@
 	strength = 5
 	metabolism = REM * 0.1
 
+	heating_point = T0C + 260
+	heating_products = list("carbon", "protein")
+
 /datum/reagent/toxin/blattedin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(istype(M, /mob/living/carbon/superior_animal/roach))
 		var/mob/living/carbon/superior_animal/roach/bug = M

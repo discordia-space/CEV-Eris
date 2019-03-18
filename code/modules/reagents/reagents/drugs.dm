@@ -29,11 +29,12 @@
 	color = "#202040"
 	metabolism = REM * 0.25
 	overdose = REAGENTS_OVERDOSE
+	addiction_threshold = 20
+	addiction_chance = 10
 
 /datum/reagent/serotrotium/affect_blood(mob/living/carbon/M, alien, removed)
 	if(prob(7))
 		M.emote(pick("twitch", "drool", "moan", "gasp"))
-	return
 
 
 /datum/reagent/cryptobiolin
@@ -141,9 +142,14 @@
 	color = "#FF3300"
 	metabolism = REM * 0.15
 	overdose = REAGENTS_OVERDOSE * 0.5
+	withdrawal_threshold = 10
 
 /datum/reagent/hyperzine/affect_blood(mob/living/carbon/M, alien, removed)
 	if(prob(5))
 		M.emote(pick("twitch", "blink_r", "shiver"))
 	M.add_chemical_effect(CE_SPEEDBOOST, 1)
 	M.add_chemical_effect(CE_PULSE, 2)
+
+/datum/reagent/hyperzine/withdrawal_act(mob/living/carbon/M)
+	M.add_chemical_effect(CE_SPEEDBOOST, -1)
+	M.add_chemical_effect(CE_PULSE, 1)
