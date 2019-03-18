@@ -1,7 +1,4 @@
 //Procs and vars related to dirt, cleaning, and mopping
-/turf/simulated
-	var/dirt = 0
-
 
 /*
 	Wetness and slipping
@@ -42,9 +39,6 @@
 /turf/proc/clean(atom/source, mob/user)
 	if(source.reagents.has_reagent("water", 1) || source.reagents.has_reagent("cleaner", 1))
 		clean_blood()
-		if(istype(src, /turf/simulated))
-			var/turf/simulated/T = src
-			T.dirt = 0
 		for(var/obj/effect/O in src)
 			if(istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
 				qdel(O)
@@ -75,30 +69,9 @@
 
 		for(var/obj/effect/O in src)
 			if(istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
-
-				if (istype(O, /obj/effect/decal/cleanable/dirt)) //Dirt overlays are handled in update_dirt
-					continue
 				qdel(O)
 				cleanedsomething = TRUE
 				break //Only clean one per loop iteration
-
-		if (cleanedsomething)
-			continue
-
-		//Clean normal dirt
-		if(istype(src, /turf/simulated))
-			var/turf/simulated/T = src
-			var/max = T.max_dirt()
-			if (T.dirt)
-				T.dirt -= max*0.2 //We remove 20% of the max dirt with each sweep
-				var/percent = T.dirt / max
-				if (percent < 0.5) //If it drops below half of max, then we remove all remaining
-					T.dirt = 0
-				cleanedsomething = TRUE
-				T.update_dirt()
-				continue
-
-
 
 		//If the tile is clean, don't keep looping
 		if (!cleanedsomething)
@@ -119,29 +92,6 @@
 	if(!tracks)
 		tracks = new typepath(src)
 	tracks.AddTracks(bloodDNA,comingdir,goingdir,bloodcolor)
-
-
-/*
-	Dirt
-*/
-/turf/simulated/proc/update_dirt()
-	var/max = max_dirt()
-	var/percent = dirt / max
-	dirt = min(dirt+1, max_dirt())
-	var/obj/effect/decal/cleanable/dirt/dirtoverlay = locate(/obj/effect/decal/cleanable/dirt, src)
-	if (percent > 0.5)
-		if (!dirtoverlay)
-			dirtoverlay = new/obj/effect/decal/cleanable/dirt(src)
-		dirtoverlay.alpha = (155 * ((percent - 0.5)*2))+100
-	else if (dirtoverlay) //It was just cleaned, get rid of the overlay
-		qdel(dirtoverlay)
-
-//How much dirt can this floor hold?
-/turf/proc/max_dirt()
-	return 100
-
-/turf/simulated/floor/max_dirt()
-	return flooring.dirt_resistance
 
 
 //returns 1 if made bloody, returns 0 otherwise

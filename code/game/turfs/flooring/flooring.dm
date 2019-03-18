@@ -110,9 +110,6 @@ var/list/flooring_types
 	var/list/movable_atom_whitelist = list()
 	var/list/movable_atom_blacklist = list()
 
-	//How much dirt this floor can hold. This affects when dirt overlays start to appear
-	var/dirt_resistance = 100
-
 
 //Flooring Procs
 /decl/flooring/proc/get_plating_type(var/turf/location)
@@ -332,7 +329,6 @@ var/list/flooring_types
 	flags = TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BURN | TURF_HIDES_THINGS
 	floor_smooth = SMOOTH_NONE
 	wall_smooth = SMOOTH_NONE
-	dirt_resistance = 75 //Carpets get dirty faster
 
 /decl/flooring/carpet/bcarpet
 	name = "black carpet"
@@ -400,7 +396,6 @@ var/list/flooring_types
 	icon = 'icons/turf/flooring/tiles_steel.dmi'
 	build_type = /obj/item/stack/tile/floor/steel
 	footstep_sound = "floor"
-	dirt_resistance = 200 //These are used in the main hallways, high traffic
 
 /decl/flooring/tiling/steel/panels
 	icon_base = "panels"
@@ -462,7 +457,6 @@ var/list/flooring_types
 	icon_base = "monofloor"
 	build_type = /obj/item/stack/tile/floor/steel/monofloor
 	has_base_range = 15
-	dirt_resistance = 250 //These are used in the centre of main halls
 
 
 

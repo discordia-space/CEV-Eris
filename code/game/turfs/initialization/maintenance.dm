@@ -7,13 +7,6 @@
 
 	var/cardinal_turfs = T.CardinalTurfs()
 
-	T.dirt = rand(10, 50) + rand(0, 50)
-	// If a neighbor is dirty, then we get dirtier.
-	var/how_dirty = dirty_neighbors(cardinal_turfs)
-	for(var/i = 0; i < how_dirty; i++)
-		T.dirt += rand(0,10)
-	T.update_dirt()
-
 	if(prob(2))
 		var/path = junk()
 		new path(T)
@@ -37,14 +30,6 @@ var/global/list/random_junk
 		random_junk -= /obj/item/trash/syndi_cakes
 		random_junk -= /obj/item/trash/tray
 	return pick(random_junk)
-
-/datum/turf_initializer/maintenance/proc/dirty_neighbors(var/list/cardinal_turfs)
-	var/how_dirty = 0
-	for(var/turf/simulated/T in cardinal_turfs)
-		// Considered dirty if more than halfway to visible dirt
-		if(T.dirt > 25)
-			how_dirty++
-	return how_dirty
 
 /datum/turf_initializer/maintenance/proc/attempt_web(var/turf/simulated/T)
 	var/turf/north_turf = get_step(T, NORTH)
