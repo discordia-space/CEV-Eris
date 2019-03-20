@@ -2,7 +2,6 @@
 	name = "railing"
 	desc = "A standard steel railing. Prevents stupid people from falling to their doom."
 	icon = 'icons/obj/railing.dmi'
-	w_class = ITEM_SIZE_LARGE
 	density = 1
 	throwpass = 1
 	climbable = 1
@@ -317,3 +316,11 @@
 	usr.visible_message(SPAN_WARNING("[user] climbed over \the [src]!"))
 	if(!anchored)	take_damage(maxhealth) // Fatboy
 	climbers -= user
+
+/obj/structure/railing/get_fall_damage(var/turf/from, var/turf/dest)
+	var/damage = health * 0.4
+
+	if (from && dest)
+		damage *= abs(from.z - dest.z)
+
+	return damage
