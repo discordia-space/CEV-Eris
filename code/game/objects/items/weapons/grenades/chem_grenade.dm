@@ -8,7 +8,7 @@
 	det_time = null
 	unacidable = 1
 	matter = list(MATERIAL_STEEL = 3)
-	variance = 0.5
+	variance = 0.25
 
 	var/can_be_modified = TRUE
 	var/stage = 0

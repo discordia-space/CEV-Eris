@@ -59,7 +59,9 @@
 	active = 1
 	playsound(loc, 'sound/weapons/armbomb.ogg', 75, 1, -3)
 
-	det_time *= rand_between(1-variance, 1+variance)
+	if(variance)
+		det_time *= rand_between(1-variance, 1+variance)
+
 	spawn(det_time)
 		prime()
 		return
