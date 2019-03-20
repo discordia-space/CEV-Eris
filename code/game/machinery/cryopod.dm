@@ -144,6 +144,7 @@
 	desc = "A bewildering tangle of machinery and pipes."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "cryo_rear"
+	density = 1
 	anchored = 1
 	dir = WEST
 
