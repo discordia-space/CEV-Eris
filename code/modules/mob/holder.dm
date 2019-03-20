@@ -471,7 +471,7 @@ var/list/holder_mob_icon_cache = list()
 	item_state = "drone"
 	origin_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 5)
 	slot_flags = SLOT_HEAD
-	w_class = 4
+	w_class = ITEM_SIZE_LARGE
 	//contained_sprite = 1 //Part of contained sprite overhaul, not yet ported
 
 /obj/item/weapon/holder/drone/heavy
@@ -479,7 +479,7 @@ var/list/holder_mob_icon_cache = list()
 	desc = "It's a really big maintenance robot."
 	icon_state = "constructiondrone"
 	item_state = "constructiondrone"
-	w_class = 6//You're not fitting this thing in a backpack
+	w_class = ITEM_SIZE_GARGANTUAN//You're not fitting this thing in a backpack
 
 
 /obj/item/weapon/holder/cat
@@ -492,7 +492,7 @@ var/list/holder_mob_icon_cache = list()
 //Setting item state to cat saves on some duplication for the in-hand versions, but we cant use it for head.
 //Instead, the head versions are done by duplicating the cat
 	slot_flags = SLOT_HEAD
-	w_class = 3
+	w_class = ITEM_SIZE_NORMAL
 
 /obj/item/weapon/holder/cat/black
 	icon_state = "cat_black"
@@ -505,7 +505,7 @@ var/list/holder_mob_icon_cache = list()
 	icon_state = "cat_kitten"
 	icon_state_dead = "cat_kitten_dead"
 	slot_flags = SLOT_HEAD
-	w_class = 1
+	w_class = ITEM_SIZE_TINY
 	item_state = "cat"
 
 /obj/item/weapon/holder/cat/penny
@@ -514,7 +514,7 @@ var/list/holder_mob_icon_cache = list()
 	icon_state = "penny"
 	icon_state_dead = "penny_dead"
 	slot_flags = SLOT_HEAD
-	w_class = 1
+	w_class = ITEM_SIZE_TINY
 	item_state = "penny"
 	//contained_sprite = 1 //Part of contained sprite overhaul, not yet ported
 
@@ -524,14 +524,14 @@ var/list/holder_mob_icon_cache = list()
 	icon_state = "corgi"
 	item_state = "corgi"
 	//contained_sprite = 1 //Part of contained sprite overhaul, not yet ported
-	w_class = 3
+	w_class = ITEM_SIZE_NORMAL
 
 /obj/item/weapon/holder/borer
 	name = "cortical borer"
 	desc = "It's a slimy brain slug. Gross."
 	icon_state = "brainslug"
 	origin_tech = list(TECH_BIO = 6)
-	w_class = 1
+	w_class = ITEM_SIZE_TINY
 
 /obj/item/weapon/holder/monkey
 	name = "monkey"
@@ -540,7 +540,7 @@ var/list/holder_mob_icon_cache = list()
 	item_state = "monkey"
 	slot_flags = SLOT_HEAD
 	//contained_sprite = 1 //Part of contained sprite overhaul, not yet ported
-	w_class = 3
+	w_class = ITEM_SIZE_NORMAL
 
 
 //Holders for mice
@@ -555,7 +555,7 @@ var/list/holder_mob_icon_cache = list()
 	slot_flags = SLOT_EARS | SLOT_HEAD
 	//contained_sprite = 1 //Part of contained sprite overhaul, not yet ported
 	origin_tech = list(TECH_BIO = 2)
-	w_class = 1
+	w_class = ITEM_SIZE_TINY
 
 /obj/item/weapon/holder/mouse/white
 	icon_state = "mouse_white_sleep"
@@ -591,7 +591,7 @@ var/list/holder_mob_icon_cache = list()
 	icon_state = "lizard"
 
 	slot_flags = 0
-	w_class = 1
+	w_class = ITEM_SIZE_TINY
 
 //Chicks and chickens
 /obj/item/weapon/holder/chick
@@ -601,7 +601,7 @@ var/list/holder_mob_icon_cache = list()
 	icon_state_dead = "chick_dead"
 	slot_flags = 0
 	icon_state = "chick"
-	w_class = 1
+	w_class = ITEM_SIZE_TINY
 
 
 /obj/item/weapon/holder/chicken
@@ -611,7 +611,7 @@ var/list/holder_mob_icon_cache = list()
 	icon_state = "chicken_brown"
 	icon_state_dead = "chicken_brown_dead"
 	slot_flags = 0
-	w_class = 2
+	w_class = ITEM_SIZE_SMALL
 
 /obj/item/weapon/holder/chicken/brown
 	icon_state = "chicken_brown"
@@ -636,7 +636,7 @@ var/list/holder_mob_icon_cache = list()
 	icon_state = "mushroom"
 	icon_state_dead = "mushroom_dead"
 	slot_flags = SLOT_HEAD
-	w_class = 2
+	w_class = ITEM_SIZE_SMALL
 
 
 
@@ -679,7 +679,7 @@ var/list/holder_mob_icon_cache = list()
 	icon_state = "farwa"
 	item_state = "farwa"
 	slot_flags = SLOT_HEAD
-	w_class = 3
+	w_class = ITEM_SIZE_NORMAL
 
 /obj/item/weapon/holder/monkey/stok
 	name = "stok"
@@ -687,7 +687,7 @@ var/list/holder_mob_icon_cache = list()
 	icon_state = "stok"
 	item_state = "stok"
 	slot_flags = SLOT_HEAD
-	w_class = 3
+	w_class = ITEM_SIZE_NORMAL
 
 /obj/item/weapon/holder/monkey/neaera
 	name = "neaera"
@@ -695,7 +695,7 @@ var/list/holder_mob_icon_cache = list()
 	icon_state = "neaera"
 	item_state = "neaera"
 	slot_flags = SLOT_HEAD
-	w_class = 3
+	w_class = ITEM_SIZE_NORMAL
 
 
 /obj/item/weapon/holder/diona
@@ -707,7 +707,7 @@ var/list/holder_mob_icon_cache = list()
 	icon_state_dead = "nymph_dead"
 	origin_tech = list(TECH_MAGNET = 3, TECH_BIO = 5)
 	slot_flags = SLOT_HEAD | SLOT_OCLOTHING
-	w_class = 2
+	w_class = ITEM_SIZE_SMALL
 */
 
 //The block below is for resomi, not currently relevant

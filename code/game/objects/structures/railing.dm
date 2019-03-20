@@ -2,6 +2,7 @@
 	name = "railing"
 	desc = "A standard steel railing. Prevents stupid people from falling to their doom."
 	icon = 'icons/obj/railing.dmi'
+	w_class = ITEM_SIZE_LARGE
 	density = 1
 	throwpass = 1
 	climbable = 1
