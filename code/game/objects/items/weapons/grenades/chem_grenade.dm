@@ -7,11 +7,13 @@
 	force = WEAPON_FORCE_HARMLESS
 	det_time = null
 	unacidable = 1
+	matter = list(MATERIAL_STEEL = 3)
+	variance = 0.5
+
 	var/can_be_modified = TRUE
 	var/stage = 0
 	var/state = 0
 	var/path = 0
-	matter = list(MATERIAL_STEEL = 3)
 	var/obj/item/device/assembly_holder/detonator = null
 	var/list/beakers = new/list()
 	var/list/allowed_containers = list(/obj/item/weapon/reagent_containers/glass/beaker, /obj/item/weapon/reagent_containers/glass/bottle)
