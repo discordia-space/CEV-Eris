@@ -315,7 +315,7 @@
 	if(ValidBatteries[metadata[2]])
 		var/t = ValidBatteries[metadata[2]]
 		I.battery_module = new t(I)
-		I.battery_module.charge_to_full()
+		I.battery_module.charge = I.battery_module.maxcharge
 	if(ValidHardDrives[metadata[3]])
 		var/t = ValidHardDrives[metadata[3]]
 		I.hard_drive = new t(I)
