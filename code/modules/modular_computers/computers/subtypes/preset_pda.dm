@@ -11,6 +11,11 @@
 	//tesla_link = new /obj/item/weapon/computer_hardware/tesla_link(src)
 	led = new /obj/item/weapon/computer_hardware/led(src)
 
+/obj/item/modular_computer/pda/handle_power()
+	if(!battery_module)
+		power_failure()
+	return
+
 /obj/item/modular_computer/pda/install_default_programs()
 	..()
 
