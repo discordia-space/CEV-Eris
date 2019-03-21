@@ -1,4 +1,5 @@
 #define NEIGHBOR_REFRESH_TIME 100
+#define MIN_LIGHT_LIMIT 0.5
 
 /obj/effect/plant/proc/get_cardinal_neighbors()
 	var/list/cardinal_neighbors = list()
@@ -148,6 +149,11 @@
 	var/turf/simulated/T = get_turf(src)
 	if(istype(T))
 		health -= seed.handle_environment(T,T.return_air(),null,1)
+
+	// Maintshrooms will not grow in the light
+	if(seed.type == /datum/seed/mushroom/maintshroom && T.get_lumcount() > MIN_LIGHT_LIMIT)
+		return
+
 	if(health < max_health)
 		//Plants can grow through closed airlocks, but more slowly, since they have to force metal to make space
 		var/obj/machinery/door/D = (locate(/obj/machinery/door) in loc)
@@ -267,4 +273,5 @@
 	spawn(1)
 		qdel(src)
 
+#undef MIN_LIGHT_LIMIT
 #undef NEIGHBOR_REFRESH_TIME
