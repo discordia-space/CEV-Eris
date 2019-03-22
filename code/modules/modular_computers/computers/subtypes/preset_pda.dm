@@ -5,8 +5,8 @@
 	hard_drive = new /obj/item/weapon/computer_hardware/hard_drive/small(src)
 	processor_unit = new /obj/item/weapon/computer_hardware/processor_unit/small(src)
 	card_slot = new /obj/item/weapon/computer_hardware/card_slot/broadcaster(src)
-	battery_module = new /obj/item/weapon/computer_hardware/battery_module(src)
-	battery_module.charge_to_full()
+	battery_module = new/obj/item/weapon/cell/small(src)
+	battery_type = /obj/item/weapon/cell/small
 	gps_sensor	= new /obj/item/weapon/computer_hardware/gps_sensor(src)
 	//tesla_link = new /obj/item/weapon/computer_hardware/tesla_link(src)
 	led = new /obj/item/weapon/computer_hardware/led(src)
