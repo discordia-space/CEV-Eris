@@ -10,11 +10,11 @@
 // Tries to use power from battery. Passing 0 as parameter results in this proc returning whether battery is functional or not.
 /obj/item/modular_computer/proc/battery_power(var/power_usage = 0)
 	apc_powered = FALSE
-	if(!battery_module || !battery_module.check_functionality() || battery_module.battery.charge <= 0)
+	if(!battery_module || battery_module.charge <= 0)
 		return FALSE
 	/*TODO: Unfuck this CELLRATE. Eris has 10x bay's cellrate for no goddamn reason and some of our stuff
 	 is already balanced around it. Too large a scope to fix now*/
-	if(battery_module.battery.use(power_usage * CELLRATE * 0.1) || ((power_usage == 0) && battery_module.battery.charge))
+	if(battery_module.use(power_usage * CELLRATE * 0.1) || ((power_usage == 0) && battery_module.charge))
 		return TRUE
 	return FALSE
 
@@ -30,12 +30,12 @@
 		return FALSE
 
 	// At this point, we know that APC can power us for this tick. Check if we also need to charge our battery, and then actually use the power.
-	if(battery_module && (battery_module.battery.charge < battery_module.battery.maxcharge) && (power_usage > 0))
+	if(battery_module && (battery_module.charge < battery_module.maxcharge) && (power_usage > 0))
 		power_usage += tesla_link.passive_charging_rate
 
 		/*TODO: Unfuck this CELLRATE. Eris has 10x bay's cellrate for no goddamn reason and some of our stuff
 	 is already balanced around it. Too large a scope to fix now*/
-		battery_module.battery.give(tesla_link.passive_charging_rate * CELLRATE * 0.1)
+		battery_module.give(tesla_link.passive_charging_rate * CELLRATE * 0.1)
 	apc_powered = TRUE
 	A.use_power(power_usage, EQUIP)
 	return TRUE
