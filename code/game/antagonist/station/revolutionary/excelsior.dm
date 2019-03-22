@@ -12,7 +12,7 @@
 /datum/antagonist/excelsior/equip()
 	.=..()
 
-	// Makes sures to exclude the normal implant when used with implanter
+	// Makes sures to exclude the leader implant when used with implanter
 	for(var/obj/O in owner.current)
 		if(istype(O, /obj/item/weapon/implant/excelsior))
 			return
