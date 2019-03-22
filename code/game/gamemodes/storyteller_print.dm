@@ -32,19 +32,11 @@
 
 	var/escaped_total = 0
 
-
-	var/list/area/escape_locations = list(
-		/area/shuttle/escape_pod1/centcom,
-		/area/shuttle/escape_pod2/centcom,
-		/area/shuttle/escape_pod3/centcom,
-		/area/shuttle/escape_pod5/centcom
-		)
-
 	for(var/mob/M in GLOB.player_list)
 		if(M.client)
 			if(M.stat != DEAD)
 				surviving_total++
-				if(M.loc && M.loc.loc && M.loc.loc.type in escape_locations)
+				if(isOnAdminLevel(M))
 					escaped_total++
 			if(isghost(M))
 				ghosts++

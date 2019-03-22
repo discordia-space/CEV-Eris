@@ -37,8 +37,6 @@
 		var/obj/effect/plant/plant = locate() in contents
 		if(plant) plant.trodden_on(M)
 
-		// Dirt overlays.
-		update_dirt()
 
 		if(ishuman(M))
 

@@ -11,6 +11,9 @@
 	var/list/StorageData //for storage bags
 	var/list/IconUnderlays //underlays data for HUD objects
 	var/MinStyleFlag = FALSE //that HUD style have compact version?
+
+	// plane master / openspace overlay vars
+	var/old_z
 	var/list/obj/screen/plane_master/plane_masters = list() // see "appearance_flags" in the ref, assoc list of "[plane]" = object
 	var/list/obj/screen/openspace_overlay/openspace_overlays = list()
 
@@ -27,6 +30,11 @@
 		return
 
 	var/z = T.z
+
+	if(z == old_z)
+		return
+
+	old_z = z
 
 	var/datum/level_data/LD = z_levels[z]
 
