@@ -1,8 +1,11 @@
 // Attempts to install the hardware into apropriate slot.
-/obj/item/modular_computer/proc/try_install_component(var/mob/living/user, var/obj/item/weapon/computer_hardware/H, var/found = 0)
-	if(!(H.usage_flags & hardware_flag))
-		to_chat(user, "This computer isn't compatible with [H].")
-		return
+/obj/item/modular_computer/proc/try_install_component(var/mob/living/user, var/obj/item/weapon/H, var/found = 0)
+	var/obj/item/weapon/computer_hardware/CH //if it's anything other than a battery, then we need to set its holder2 var whatever the fuck that is
+	if(istype(H, /obj/item/weapon/computer_hardware))
+		CH = H
+		if(!(CH.usage_flags & hardware_flag))
+			to_chat(user, "This computer isn't compatible with [CH].")
+			return
 
 	// "USB" flash drive.
 	if(istype(H, /obj/item/weapon/computer_hardware/hard_drive/portable))
@@ -41,7 +44,7 @@
 			return
 		found = 1
 		card_slot = H
-	else if(istype(H, /obj/item/weapon/computer_hardware/battery_module))
+	else if(istype(H, /obj/item/weapon/cell))
 		if(battery_module)
 			to_chat(user, "This computer's battery slot is already occupied by \the [battery_module].")
 			return
@@ -80,13 +83,14 @@
 		gps_sensor = H
 	if(found && user.unEquip(H, src))
 		to_chat(user, "You install \the [H] into \the [src]")
-		H.holder2 = src
-		if (H.enabled)
-			H.enabled()
+		if(CH)
+			CH.holder2 = src
+			if (CH.enabled)
+				CH.enabled()
 		update_verbs()
 
 // Uninstalls component. Found and Critical vars may be passed by parent types, if they have additional hardware.
-/obj/item/modular_computer/proc/uninstall_component(var/mob/living/user, var/obj/item/weapon/computer_hardware/H, var/found = 0, var/critical = 0, var/delete = FALSE)
+/obj/item/modular_computer/proc/uninstall_component(var/mob/living/user, var/obj/item/weapon/H, var/found = 0, var/critical = 0, var/delete = FALSE)
 	if(portable_drive == H)
 		portable_drive = null
 		found = 1
@@ -128,8 +132,12 @@
 		found = 1
 
 	//Delete var means this computer is being deleted. Skip extra processing and messages below. Delete the component and return
+	var/obj/item/weapon/computer_hardware/to_remove //If it's not a battery, don't delete the snowflake vars
+	if(istype(H, /obj/item/weapon/computer_hardware))
+		to_remove = H
 	if (delete)
-		H.holder2 = null
+		if(to_remove)
+			to_remove.holder2 = null
 		qdel(H)
 		return
 
@@ -137,9 +145,10 @@
 		if(user)
 			to_chat(user, "You remove \the [H] from \the [src].")
 		H.forceMove(get_turf(src))
-		H.holder2 = null
-		if (H.enabled)
-			H.disabled()
+		if(to_remove)
+			to_remove.holder2 = null
+			if (to_remove.enabled)
+				to_remove.disabled()
 		update_verbs()
 	if(critical && enabled)
 		if(user)
