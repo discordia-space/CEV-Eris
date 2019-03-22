@@ -297,3 +297,10 @@
 			take_damage(rand(60,180))
 
 
+/obj/structure/girder/get_fall_damage(var/turf/from, var/turf/dest)
+	var/damage = health * 0.4
+
+	if (from && dest)
+		damage *= abs(from.z - dest.z)
+
+	return damage

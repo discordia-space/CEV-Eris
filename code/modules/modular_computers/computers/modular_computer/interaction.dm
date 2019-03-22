@@ -214,6 +214,9 @@
 	if(!modifiable)
 		return ..()
 
+	if(istype(W, battery_type))//Only takes the same kinda battery
+		try_install_component(user, W)
+
 	if(istype(W, /obj/item/weapon/computer_hardware))
 		var/obj/item/weapon/computer_hardware/C = W
 		if(C.hardware_size <= max_hardware_size)
@@ -251,9 +254,16 @@
 				to_chat(user, "This device doesn't have any components installed.")
 				return
 			var/list/component_names = list()
-			for(var/obj/item/weapon/computer_hardware/H in all_components)
+			for(var/obj/item/weapon/H in all_components)
 				component_names.Add(H.name)
-			var/choice = input(usr, "Which component do you want to uninstall?", "Computer maintenance", null) as null|anything in component_names
+			var/list/options = list()
+			for(var/i in component_names)
+				for(var/X in all_components)
+					var/obj/item/weapon/TT = X
+					if(TT.name == i)
+						options[i] = image(icon = TT.icon, icon_state = TT.icon_state)
+			var/choice
+			choice = show_radial_menu(user, src, options, radius = 32)
 			if(!choice)
 				return
 			if(!Adjacent(usr))

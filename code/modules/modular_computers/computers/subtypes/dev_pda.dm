@@ -12,6 +12,7 @@
 	slot_flags = SLOT_ID | SLOT_BELT
 	stores_pen = TRUE
 	stored_pen = /obj/item/weapon/pen
+	battery_type = /obj/item/weapon/cell/small //We take small battery
 
 /obj/item/modular_computer/pda/Initialize()
 	. = ..()
