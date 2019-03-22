@@ -40,6 +40,7 @@
 
 // Used to perform preset-specific hardware changes.
 /obj/item/modular_computer/proc/install_default_hardware()
+	battery_module = new battery_type(src)
 	return TRUE
 
 // Used to install preset-specific programs
@@ -284,7 +285,7 @@
 /obj/item/modular_computer/proc/check_update_ui_need()
 	var/ui_update_needed = FALSE
 	if(battery_module)
-		var/batery_percent = battery_module.battery.percent()
+		var/batery_percent = battery_module.percent()
 		if(last_battery_percent != batery_percent) //Let's update UI on percent change
 			ui_update_needed = TRUE
 			last_battery_percent = batery_percent
