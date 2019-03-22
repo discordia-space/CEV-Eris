@@ -167,8 +167,14 @@ see multiz/movement.dm for some info.
 			if(fall_damage >= FALL_GIB_DAMAGE)
 				M.gib()
 			else
-				for(var/organ in list(BP_HEAD, BP_CHEST, BP_R_ARM, BP_L_ARM))
-					M.apply_damage(rand(0, fall_damage), BRUTE, organ)
+				var/tmp_damage	// Tmp variable to give the highest possible dmg on the head and less on the rest
+				var/organ = BP_HEAD
+
+				while(fall_damage > 0)
+					fall_damage -= tmp_damage = rand(0, fall_damage)
+					M.apply_damage(tmp_damage, BRUTE, organ)
+					organ = pickweight(list(BP_HEAD = 0.3, BP_CHEST = 0.8, BP_R_ARM = 0.6, BP_L_ARM = 0.6))
+
 
 // override to make sure nothing is hidden
 /turf/simulated/open/levelupdate()

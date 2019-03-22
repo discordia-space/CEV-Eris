@@ -302,7 +302,7 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 	This proc allows plants like maintshrooms to spread through burrows
 	Run every 10 minutes
 */
-#define TRAIT_SPREAD               30
+#define TRAIT_SPREAD			30
 //I don't know why plant traits are defined only inside their specific folder
 //Moving them out to main defines doesn't seem necessary for now
 
@@ -395,16 +395,6 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 		C.plantspread_burrows.Add("\ref[B]")
 		C.plant = B.plant //Make them share the same seed
 		C.spread_plants() //And make some plants at the new burrow
-
-
-
-
-
-
-
-
-
-
 
 
 #undef TRAIT_SPREAD
