@@ -81,14 +81,14 @@ obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 				user << "There's no battery in it!"
 				return
 			else
-				cell = L.battery_module.battery
+				cell = L.battery_module
 		if(istype(G, /obj/item/modular_computer))
 			var/obj/item/modular_computer/C = G
 			if(!C.battery_module)
 				user << "This device does not have a battery installed."
 				return
 			else
-				src.cell = C.battery_module.battery
+				src.cell = C.battery_module
 
 		if (!cell)
 			return //We don't want to go any farther if we failed to find a cell
