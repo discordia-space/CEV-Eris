@@ -1,3 +1,28 @@
+GLOBAL_DATUM_INIT(bounty_master, /datum/bounty_master, new)
+
+
+/datum/bounty_master
+	var/list/bounties = list()
+	var/list/bounty_boards = list() //For craptain to set fees / withdraw fee cash.
+
+/datum/bounty_master/proc/register_bounty(var/datum/bounty/F)
+	if(!F)
+		return
+	bounties += F
+	log_game("Bounty: [F.name] created by [F.owner]")
+	for(var/X in bounty_boards) //Typeless loops are faster
+		var/obj/structure/bounty_board/target = X
+		playsound(target, 'sound/machines/buzz-two.ogg', 50, 1)
+		target.visible_message("New bounty posted by [F.owner]!")
+		target.icon_state = "bountyboard-alert"
+
+/datum/bounty_master/proc/remove_bounty(var/datum/bounty/F)
+	if(!F)
+		return
+	bounties -= F
+	log_game("Bounty: [F.name] claimed by [F.claimedby]")
+	qdel(F)
+
 /datum/bounty
 	var/name = "Kill clowns"
 	var/desc = "Nothing"
@@ -53,15 +78,15 @@ Upon claiming, the claimant gets the bounty money
 				if("raise_fee")
 					var/inflation = input("Enter a new transaction fee (max 100%)", "Enter Fee") as num
 					if(inflation > 100)
-						user << "<span_class='warning'>You cannot set a fee above 100%</span>"
+						user << "<span class='warning'>You cannot set a fee above 100%</span>"
 						return
-					for(var/X in SSbounty.bounty_boards)
+					for(var/X in GLOB.bounty_master.bounty_boards)
 						var/obj/structure/bounty_board/bb = X
 						bb.fee_multiplier = (inflation / 100)
-					user << "<span_class='warning'>Global bounty fee set to [inflation]%</span>"
+					user << "<span class='warning'>Global bounty fee set to [inflation]%</span>"
 				if("withdraw")
 					var/money = 0
-					for(var/X in SSbounty.bounty_boards)
+					for(var/X in GLOB.bounty_master.bounty_boards)
 						var/obj/structure/bounty_board/bb = X
 						if(bb.stored_credits > 0)
 							money += bb.stored_credits
@@ -78,20 +103,20 @@ Upon claiming, the claimant gets the bounty money
 						var/datum/money_account/authenticated_account = attempt_account_access(tried_account_num, tried_pin, held_card && held_card.associated_account_number == tried_account_num ? 2 : 1)
 						if(authenticated_account)
 							playsound(src, 'sound/machines/buzz-two.ogg', 50, 1)
-							user << "<span_class='warning'>Fee takings withdrawn.</span>"
+							user << "<span class='warning'>Fee takings withdrawn.</span>"
 							var/obj/item/weapon/spacecash/ewallet/E = new /obj/item/weapon/spacecash/ewallet(loc)
 							if(ishuman(human_user) && !human_user.get_active_hand())
 								human_user.put_in_hands(E)
 							E.worth = money
 							E.owner_name = authenticated_account.owner_name
 					else
-						user << "<span_class='warning'>No machines have collected any fees.</span>"
+						user << "<span class='warning'>No machines have collected any fees.</span>"
 	else
 		. = ..()
 
 /obj/structure/bounty_board/Initialize()
 	. = ..()
-	SSbounty.bounty_boards += src
+	GLOB.bounty_master.bounty_boards += src
 
 /obj/structure/bounty_board/attack_hand(mob/theuser)
 	if(!ishuman(theuser))
@@ -100,7 +125,7 @@ Upon claiming, the claimant gets the bounty money
 	var/mob/living/carbon/human/user = theuser
 	var/list/options = list("read", "create", "claim")
 	var/owns_bounty = FALSE //Do they own a bounty? used to avoid spamming their radial with buttons.
-	for(var/datum/bounty/F in SSbounty.bounties)
+	for(var/datum/bounty/F in GLOB.bounty_master.bounties)
 		if(F.owner == user && !owns_bounty)
 			options += "confirm_bounty"
 			owns_bounty = TRUE
@@ -116,13 +141,13 @@ Upon claiming, the claimant gets the bounty money
 			var/datum/money_account/authenticated_account = attempt_account_access(tried_account_num, tried_pin, held_card && held_card.associated_account_number == tried_account_num ? 2 : 1)
 			if(authenticated_account)
 				playsound(src, 'sound/machines/buzz-two.ogg', 50, 1)
-				user << "<span_class='warning'>Bounty reward claimed.</span>"
+				user << "<span class='warning'>Bounty reward claimed.</span>"
 				var/obj/item/weapon/spacecash/ewallet/E = new /obj/item/weapon/spacecash/ewallet(loc)
 				if(!user.get_active_hand())
 					user.put_in_hands(E)
 				E.worth = F.reward
 				E.owner_name = authenticated_account.owner_name
-				SSbounty.remove_bounty(F)
+				GLOB.bounty_master.remove_bounty(F)
 	var/selected
 	for(var/option in options)
 		options[option] = image(icon = icon, icon_state = "[option]")
@@ -131,9 +156,9 @@ Upon claiming, the claimant gets the bounty money
 		return
 	switch(selected)
 		if("read")
-			if(!SSbounty.bounties.len)
-				user << "<span_class='warning'>There are no bounties listed at the moment.</span>"
-			var/datum/bounty/A = input(user,"Bounties:", "[name]", null) as anything in SSbounty.bounties
+			if(!GLOB.bounty_master.bounties.len)
+				user << "<span class='warning'>There are no bounties listed at the moment.</span>"
+			var/datum/bounty/A = input(user,"Bounties:", "[name]", null) as anything in GLOB.bounty_master.bounties
 			if(A)
 				view_bounty(A)
 		if("create")
@@ -152,7 +177,7 @@ Upon claiming, the claimant gets the bounty money
 				return
 			var/obj/item/weapon/card/id/held_card = user.get_idcard()
 			if(!held_card)
-				user << "<span_class='warning'>You don't seem to be wearing an ID. Bounty creation cancelled.</span>"
+				user << "<span class='warning'>You don't seem to be wearing an ID. Bounty creation cancelled.</span>"
 			var/tried_account_num = input("Enter account number", "[name]") as num
 			var/tried_pin = input("Enter PIN number", "[name]") as num
 			if(!tried_account_num || !tried_pin)
@@ -175,24 +200,24 @@ Upon claiming, the claimant gets the bounty money
 				thebounty.desc = new_desc
 				thebounty.reward = reward
 				thebounty.owner = user
-				SSbounty.register_bounty(thebounty)
+				GLOB.bounty_master.register_bounty(thebounty)
 			else
 				user << "<span class='warning'>You need to have a bank account to do that!</span>"
 		if("claim")
-			if(!SSbounty.bounties.len)
-				user << "<span_class='warning'>There are no bounties listed at the moment.</span>"
-			var/datum/bounty/A = input(user,"Which bounty would you like to claim? (Sponsor must confirm before you are rewarded):", "[name]", null) as anything in SSbounty.bounties
+			if(!GLOB.bounty_master.bounties.len)
+				user << "<span class='warning'>There are no bounties listed at the moment.</span>"
+			var/datum/bounty/A = input(user,"Which bounty would you like to claim? (Sponsor must confirm before you are rewarded):", "[name]", null) as anything in GLOB.bounty_master.bounties
 			if(A)
 				claim_bounty(A, user)
 			return
 		if("confirm_bounty")
-			var/datum/bounty/A = input(user,"Bounties you own:", "[name]", null) as anything in SSbounty.bounties
+			var/datum/bounty/A = input(user,"Bounties you own:", "[name]", null) as anything in GLOB.bounty_master.bounties
 			if(A)
 				if(A.claimedby)
-					user << "<span_class='warning'>This bounty was already claimed.</span>"
+					user << "<span class='warning'>This bounty was already claimed.</span>"
 					return
 				if(!A.claimants.len)
-					user << "<span_class='warning'>Nobody has submitted a claim for this bounty.</span>"
+					user << "<span class='warning'>Nobody has submitted a claim for this bounty.</span>"
 					return
 				if(A.claimants.len == 1) //Just one person. If we had an input list here it'd just insta accept.
 					var/mob/living/carbon/human/X = locate(/mob/living/carbon/human) in A.claimants
@@ -201,14 +226,14 @@ Upon claiming, the claimant gets the bounty money
 						X << "<span class='warning'>Your bounty claim for [A.name] was rejected.</span>"
 						return
 					else
-						X << "<span_class='warning'>Your bounty claim for [A.name] was accepted! Find a bounty console to claim your reward.</span>"
+						X << "<span class='warning'>Your bounty claim for [A.name] was accepted! Find a bounty console to claim your reward.</span>"
 						A.claimedby = X
 				else
 					var/mob/living/carbon/human/H = input(user,"There are several claimants, whose claim would you like to accept?", "[name]", null) as anything in A.claimants
 					for(var/XD in A.claimants)
-						XD << "<span_class='warning'>Your bounty claim for [A.name] was rejected.</span>"
+						XD << "<span class='warning'>Your bounty claim for [A.name] was rejected.</span>"
 						A.claimants -= XD
-					H << "<span_class='warning'>Your bounty claim for [A.name] was accepted! Find a bounty console to claim your reward.</span>"
+					H << "<span class='warning'>Your bounty claim for [A.name] was accepted! Find a bounty console to claim your reward.</span>"
 					A.claimedby = H
 
 /obj/structure/bounty_board/proc/claim_bounty(var/datum/bounty/target,var/mob/user)
@@ -218,7 +243,7 @@ Upon claiming, the claimant gets the bounty money
 	if(!target.owner) //Welp. That shouldn't happen
 		message_admins("Someone tried to claim bounty: [target] but it had no owner.")
 		return
-	target.owner << "<span_class='warning'>[user] has submitted a claim for your bounty! ([target.name]). Please visit a bounty board to reject or confirm this claim.</span>"
+	target.owner << "<span class='warning'>[user] has submitted a claim for your bounty! ([target.name]). Please visit a bounty board to reject or confirm this claim.</span>"
 
 /obj/structure/bounty_board/proc/view_bounty(var/datum/bounty/target)
 	if(target) //Theyve clicked our bounty. Nice.
