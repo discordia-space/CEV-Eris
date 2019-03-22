@@ -524,15 +524,15 @@
 	desc = "Sign depicts the symbolic of Ironhammer Security, the largest security provider within Trade Union of Hansa."
 	icon_state = "ironhammer"
 
-/obj/structure/sign/faction/alliance
-	name = "Mankind Alliance"
-	desc = "Alliance's all-seeing eye, banner of now fallen empire. Once they were owning all the Milky Way. Now it's just dust, forgotten derelicts and automated ships."
-	icon_state = "alliance"
+/obj/structure/sign/faction/one_star
+	name = "One Star"
+	desc = "One Star's all-seeing eye, banner of now fallen empire. Once they were controling this sector from their capital Earth. Now it's just dust, forgotten derelicts and automated ships."
+	icon_state = "one_star"
 
-/obj/structure/sign/faction/alliance_old
-	name = "Mankind Alliance"
-	desc = "Alliance's all-seeing eye, banner of now fallen empire. Once they were owning all the Milky Way. Now it's just dust, forgotten derelicts and automated ships."
-	icon_state = "alliance-old"
+/obj/structure/sign/faction/one_star_old
+	name = "One Star"
+	desc = "One Star's all-seeing eye, banner of now fallen empire. Once they were controling this sector from their capital Earth. Now it's just dust, forgotten derelicts and automated ships."
+	icon_state = "one_star_old"
 
 /obj/structure/sign/faction/frozenstar
 	name = "Frozen Star"

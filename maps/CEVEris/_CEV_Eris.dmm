@@ -2215,7 +2215,7 @@
 "aQE" = (/obj/machinery/airlock_sensor{frequency = 1379; id_tag = "atmos_airlock_sensor"; name = "Atmospherics Airlock Sensor"; pixel_x = 25; pixel_y = -10},/obj/machinery/camera/network/engineering{dir = 4},/turf/simulated/floor/tiled/steel/techfloor,/area/eris/maintenance/section4deck5port)
 "aQF" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/tiled/steel/brown_perforated,/area/eris/crew_quarters/janitor)
 "aQG" = (/obj/machinery/access_button{command = "cycle_exterior"; frequency = 1379; master_tag = "atmos_access_console"; name = "Atmospherics External Access Button"; pixel_x = 25; pixel_y = 25},/turf/simulated/floor/hull,/area/space)
-"aQH" = (/obj/map_data/multiz/station{height = 5},/turf/space,/area/space)
+"aQH" = (/obj/map_data/eris{height = 5},/turf/space,/area/space)
 "aQI" = (/obj/effect/overmap/ship/eris,/turf/space,/area/space)
 "aQJ" = (/obj/structure/catwalk,/turf/simulated/open,/area/eris/security/main)
 "aQK" = (/obj/structure/multiz/ladder,/obj/structure/catwalk,/turf/simulated/open,/area/eris/security/main)

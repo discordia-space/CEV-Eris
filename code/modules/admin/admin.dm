@@ -31,6 +31,32 @@ proc/admin_notice(var/message, var/rights)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
+/datum/admins/proc/view_log_panel(mob/M)
+	if(!M)
+		to_chat(usr, "That mob doesn't seem to exist! Something went wrong.")
+		return 
+
+	if (!istype(src, /datum/admins))
+		src = usr.client.holder
+	if (!istype(src, /datum/admins))
+		usr << "Error: you are not an admin!"
+		return
+
+	var/body = "<html><head><title>Log Panel of [M.real_name]</title></head>"
+	body += "<body><center>Logs of <b>[M]</b><br>"
+	body += "<a href='?src=\ref[src];viewlogs=\ref[M]'>REFRESH</a></center><br>"
+
+
+	var/i = length(M.attack_log)
+	while(i > 0)
+		body += M.attack_log[i] + "<br>"
+		i--
+
+	usr << browse(body, "window=\ref[M]logs;size=500x500")
+
+	
+
+
 ADMIN_VERB_ADD(/datum/admins/proc/show_player_panel, null, TRUE)
 //shows an interface for individual players, with various links (links require additional flags
 /datum/admins/proc/show_player_panel(var/mob/M in SSmobs.mob_list)
@@ -76,7 +102,8 @@ ADMIN_VERB_ADD(/datum/admins/proc/show_player_panel, null, TRUE)
 		<a href='?src=\ref[src];traitor=\ref[M]'>TP</a> -
 		<a href='?src=\ref[usr];priv_msg=\ref[M]'>PM</a> -
 		<a href='?src=\ref[src];subtlemessage=\ref[M]'>SM</a> -
-		[admin_jump_link(M, src)]\] <br>
+		[admin_jump_link(M, src)] - 
+		<a href='?src=\ref[src];viewlogs=\ref[M]'>LOGS</a>\] <br>
 		<b>Mob type</b> = [M.type]<br><br>
 		<A href='?src=\ref[src];boot2=\ref[M]'>Kick</A> |
 		<A href='?_src_=holder;warn=[M.ckey]'>Warn</A> |

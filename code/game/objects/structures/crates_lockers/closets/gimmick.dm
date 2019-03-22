@@ -107,7 +107,7 @@
 
 /obj/structure/closet/oldstyle
 	name = "\improper Old closet"
-	desc = "Old and rusty closet, maybe even Alliance production."
+	desc = "Old and rusty closet, probably older than you."
 	icon_state = "oldstyle"
 
 

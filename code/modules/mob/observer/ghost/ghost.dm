@@ -335,6 +335,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		GLOB.destroyed_event.unregister(following, src)
 		following = null
 
+// Makes the ghost cease following if the user has moved
+/mob/observer/ghost/PostIncorporealMovement()
+	stop_following()
+
 /mob/observer/ghost/move_to_turf(var/atom/movable/am, var/old_loc, var/new_loc)
 	var/turf/T = get_turf(new_loc)
 	if(check_holy(T))
