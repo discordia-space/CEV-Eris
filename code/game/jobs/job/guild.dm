@@ -40,6 +40,11 @@ Counsel the captain on directing the ship towards profitable opportunities"
 	loyalties = "As a merchant, your first loyalty is to money. You should be unscrupulous, willing to sell anything to anyone if they can pay your prices. Direct the ship towards profitable endeavours, and press the captain to make choices that will be financially lucrative<br>\
 Your second loyalty is to the guild. Ensure it retains good relations with privateers like the captain of Eris, and don't embarass it. This means limiting your price gouging to only moderate levels. If you make an enemy of everyone, it may prove a costly mistake"
 
+	stat_modifiers = list(
+		STAT_MEC = 20,
+		STAT_COG = 15,
+	)
+
 	software_on_spawn = list(///datum/computer_file/program/supply,
 							 ///datum/computer_file/program/deck_management,
 							 /datum/computer_file/program/scanner,
