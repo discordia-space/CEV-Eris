@@ -997,10 +997,10 @@
 					/obj/item/weapon/gun/projectile/shotgun/pump = 5, /obj/item/ammo_magazine/cl32/rubber = 20, /obj/item/ammo_magazine/sl38/rubber = 20, /obj/item/ammo_magazine/ammobox/c38/rubber = 20, /obj/item/ammo_magazine/ammobox/cl32/rubber = 20,
 					/obj/item/weapon/storage/box/shotgunammo/beanbags = 10, /obj/item/weapon/storage/box/shotgunammo/flashshells = 10, /obj/item/weapon/storage/box/shotgunammo/blanks = 10, /obj/item/clothing/accessory/holster = 5)
 	contraband = list(/obj/item/ammo_magazine/sl38 = 20, /obj/item/ammo_magazine/cl32 = 20, /obj/item/ammo_magazine/ammobox/cl32 = 20, /obj/item/ammo_magazine/ammobox/c38 = 20, /obj/item/weapon/storage/box/shotgunammo/slug = 10, /obj/item/weapon/storage/box/shotgunammo/buckshot = 10)
-	prices = list(/obj/item/device/flash = 600,/obj/item/weapon/reagent_containers/spray/pepper = 800,  /obj/item/weapon/gun/projectile/olivaw = 1600, /obj/item/weapon/gun/projectile/giskard = 1200, /obj/item/weapon/gun/projectile/revolver/detective = 2500, /obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3700,
-					/obj/item/weapon/gun/projectile/shotgun/pump = 2000, /obj/item/ammo_magazine/cl32/rubber = 300, /obj/item/ammo_magazine/sl38/rubber = 400, /obj/item/ammo_magazine/ammobox/c38/rubber = 400, /obj/item/ammo_magazine/ammobox/cl32/rubber = 500,
-					/obj/item/weapon/storage/box/shotgunammo/beanbags = 300, /obj/item/weapon/storage/box/shotgunammo/flashshells = 300, /obj/item/weapon/storage/box/shotgunammo/blanks = 50, /obj/item/clothing/accessory/holster = 150,
-					/obj/item/ammo_magazine/sl38 = 400, /obj/item/ammo_magazine/cl32 = 300, /obj/item/ammo_magazine/ammobox/cl32 = 500, /obj/item/ammo_magazine/ammobox/c38 = 400, /obj/item/weapon/storage/box/shotgunammo/slug = 300, /obj/item/weapon/storage/box/shotgunammo/buckshot = 300)
+	prices = list(/obj/item/device/flash = 200,/obj/item/weapon/reagent_containers/spray/pepper = 150,  /obj/item/weapon/gun/projectile/olivaw = 450, /obj/item/weapon/gun/projectile/giskard = 500, /obj/item/weapon/gun/projectile/revolver/detective = 550, /obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 1000,
+					/obj/item/weapon/gun/projectile/shotgun/pump = 1000, /obj/item/ammo_magazine/cl32/rubber = 40, /obj/item/ammo_magazine/sl38/rubber = 35, /obj/item/ammo_magazine/ammobox/c38/rubber = 50, /obj/item/ammo_magazine/ammobox/cl32/rubber = 40,
+					/obj/item/weapon/storage/box/shotgunammo/beanbags = 250, /obj/item/weapon/storage/box/shotgunammo/flashshells = 125, /obj/item/weapon/storage/box/shotgunammo/blanks = 100, /obj/item/clothing/accessory/holster = 150,
+					/obj/item/ammo_magazine/sl38 = 50, /obj/item/ammo_magazine/cl32 = 30, /obj/item/ammo_magazine/ammobox/cl32 = 40, /obj/item/ammo_magazine/ammobox/c38 = 50, /obj/item/weapon/storage/box/shotgunammo/slug = 300, /obj/item/weapon/storage/box/shotgunammo/buckshot = 300)
 
 //This one's from bay12
 /obj/machinery/vending/cart
@@ -1201,9 +1201,9 @@
 	products = list(/obj/item/stack/cable_coil/random = 10,/obj/item/weapon/tool/crowbar = 5,/obj/item/weapon/tool/weldingtool = 5,/obj/item/weapon/tool/wirecutters = 5,
 					/obj/item/weapon/tool/wrench = 5,/obj/item/device/scanner/analyzer = 5,/obj/item/device/t_scanner = 5, /obj/item/weapon/tool/screwdriver = 5, /obj/item/clothing/gloves/insulated/cheap  = 2, /obj/item/clothing/gloves/insulated = 1,
 					/obj/item/weapon/storage/pouch/engineering_tools = 2, /obj/item/weapon/storage/pouch/engineering_supply = 2)
-	prices = list(/obj/item/stack/cable_coil/random = 100,/obj/item/weapon/tool/crowbar = 30,/obj/item/weapon/tool/weldingtool = 30,/obj/item/weapon/tool/wirecutters = 30,
-					/obj/item/weapon/tool/wrench = 30,/obj/item/device/scanner/analyzer = 50,/obj/item/device/t_scanner = 50, /obj/item/weapon/tool/screwdriver = 30, /obj/item/clothing/gloves/insulated/cheap  = 80, /obj/item/clothing/gloves/insulated = 600,
-					/obj/item/weapon/storage/pouch/engineering_tools = 300, /obj/item/weapon/storage/pouch/engineering_supply = 600)
+	prices = list(/obj/item/stack/cable_coil/random = 15,/obj/item/weapon/tool/crowbar = 30,/obj/item/weapon/tool/weldingtool = 40,/obj/item/weapon/tool/wirecutters = 25,
+					/obj/item/weapon/tool/wrench = 25,/obj/item/device/scanner/analyzer = 50,/obj/item/device/t_scanner = 50, /obj/item/weapon/tool/screwdriver = 15, /obj/item/clothing/gloves/insulated/cheap  = 90, /obj/item/clothing/gloves/insulated = 245,
+					/obj/item/weapon/storage/pouch/engineering_tools = 140, /obj/item/weapon/storage/pouch/engineering_supply = 190)
 
 /obj/machinery/vending/engivend
 	name = "Engi-Vend"
@@ -1227,12 +1227,12 @@
 					/obj/item/weapon/cell/large = 8, /obj/item/weapon/tool/weldingtool = 8,/obj/item/clothing/head/welding = 8,
 					/obj/item/weapon/light/tube = 10,/obj/item/clothing/suit/fire = 4, /obj/item/weapon/stock_parts/scanning_module = 5,/obj/item/weapon/stock_parts/micro_laser = 5,
 					/obj/item/weapon/stock_parts/matter_bin = 5,/obj/item/weapon/stock_parts/manipulator = 5,/obj/item/weapon/stock_parts/console_screen = 5)
-	prices = list(/obj/item/clothing/head/hardhat = 4,
-					/obj/item/weapon/storage/belt/utility = 150,/obj/item/clothing/glasses/meson = 300,/obj/item/clothing/gloves/insulated = 600, /obj/item/weapon/tool/screwdriver = 30,
-					/obj/item/weapon/tool/crowbar = 30,/obj/item/weapon/tool/wirecutters = 30,/obj/item/weapon/tool/multitool = 40,/obj/item/weapon/tool/wrench = 40,/obj/item/device/t_scanner = 50,
-					/obj/item/weapon/cell/large = 500, /obj/item/weapon/tool/weldingtool = 40,/obj/item/clothing/head/welding = 80,
-					/obj/item/weapon/light/tube = 10,/obj/item/clothing/suit/fire = 150, /obj/item/weapon/stock_parts/scanning_module = 40,/obj/item/weapon/stock_parts/micro_laser = 40,
-					/obj/item/weapon/stock_parts/matter_bin = 40,/obj/item/weapon/stock_parts/manipulator = 40,/obj/item/weapon/stock_parts/console_screen = 40)
+	prices = list(/obj/item/clothing/head/hardhat = 10,
+					/obj/item/weapon/storage/belt/utility = 100,/obj/item/clothing/glasses/meson = 150,/obj/item/clothing/gloves/insulated = 245, /obj/item/weapon/tool/screwdriver = 15,
+					/obj/item/weapon/tool/crowbar = 30,/obj/item/weapon/tool/wirecutters = 25,/obj/item/weapon/tool/multitool = 40,/obj/item/weapon/tool/wrench = 25,/obj/item/device/t_scanner = 50,
+					/obj/item/weapon/cell/large = 180, /obj/item/weapon/tool/weldingtool = 40,/obj/item/clothing/head/welding = 30,
+					/obj/item/weapon/light/tube = 5,/obj/item/clothing/suit/fire = 150, /obj/item/weapon/stock_parts/scanning_module = 20,/obj/item/weapon/stock_parts/micro_laser = 20,
+					/obj/item/weapon/stock_parts/matter_bin = 20,/obj/item/weapon/stock_parts/manipulator = 20,/obj/item/weapon/stock_parts/console_screen = 25)
 
 //This one's from bay12
 /obj/machinery/vending/robotics
