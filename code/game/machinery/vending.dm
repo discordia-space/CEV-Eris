@@ -1297,12 +1297,12 @@
 					/obj/item/weapon/disk/autolathe_disk/computer = 10, /obj/item/weapon/disk/autolathe_disk/security = 5, /obj/item/weapon/disk/autolathe_disk/fs_cheap_guns = 5,
 					/obj/item/weapon/disk/autolathe_disk/nonlethal_ammo = 10, /obj/item/weapon/circuitboard/autolathe = 3, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 3, /obj/item/weapon/circuitboard/vending = 10)
 	contraband = list(/obj/item/weapon/disk/autolathe_disk/lethal_ammo = 3, /obj/item/weapon/disk/autolathe_disk/fs_energy_guns = 2)
-	prices = list(/obj/item/weapon/disk/autolathe_disk/blank = 150, /obj/item/weapon/disk/autolathe_disk/basic = 300,
-					/obj/item/weapon/disk/autolathe_disk/devices = 400, /obj/item/weapon/disk/autolathe_disk/toolpack = 400, /obj/item/weapon/disk/autolathe_disk/component = 500,
-					/obj/item/weapon/disk/autolathe_disk/advtoolpack = 1800, /obj/item/weapon/disk/autolathe_disk/circuitpack = 600, /obj/item/weapon/disk/autolathe_disk/medical = 400,
-					/obj/item/weapon/disk/autolathe_disk/computer = 500, /obj/item/weapon/disk/autolathe_disk/security = 600, /obj/item/weapon/disk/autolathe_disk/fs_cheap_guns = 3000,
-					/obj/item/weapon/disk/autolathe_disk/nonlethal_ammo = 700, /obj/item/weapon/circuitboard/autolathe = 700, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 1000,
-					/obj/item/weapon/circuitboard/vending = 500, /obj/item/weapon/disk/autolathe_disk/lethal_ammo = 1200, /obj/item/weapon/disk/autolathe_disk/fs_energy_guns = 4000)
+	prices = list(/obj/item/weapon/disk/autolathe_disk/blank = 50, /obj/item/weapon/disk/autolathe_disk/basic = 250,
+					/obj/item/weapon/disk/autolathe_disk/devices = 100, /obj/item/weapon/disk/autolathe_disk/toolpack = 300, /obj/item/weapon/disk/autolathe_disk/component = 400,
+					/obj/item/weapon/disk/autolathe_disk/advtoolpack = 450, /obj/item/weapon/disk/autolathe_disk/circuitpack = 300, /obj/item/weapon/disk/autolathe_disk/medical = 250,
+					/obj/item/weapon/disk/autolathe_disk/computer = 250, /obj/item/weapon/disk/autolathe_disk/security = 550, /obj/item/weapon/disk/autolathe_disk/fs_cheap_guns = 2500,
+					/obj/item/weapon/disk/autolathe_disk/nonlethal_ammo = 500, /obj/item/weapon/circuitboard/autolathe = 700, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 1000,
+					/obj/item/weapon/circuitboard/vending = 300, /obj/item/weapon/disk/autolathe_disk/lethal_ammo = 800, /obj/item/weapon/disk/autolathe_disk/fs_energy_guns = 1700)
 
 /obj/machinery/vending/custom
 	name = "Custom Vendomat"
