@@ -32,7 +32,7 @@
 
 /datum/uplink_item/item/ammo/sniperammo
 	name = "14.5mm"
-	item_cost = 4
+	item_cost = 3
 	path = /obj/item/weapon/storage/box/sniperammo
 
 
