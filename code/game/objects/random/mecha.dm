@@ -1,6 +1,6 @@
 /obj/random/mecha
 	name = "random mecha"
-	icon_state = "machine-black"
+	icon_state = "machine-red"
 	var/list/randsuits = list(
 		/obj/mecha/working/hoverpod = 5,
 		/obj/mecha/working/hoverpod/combatpod = 0.5,//Comes with weapons
@@ -22,17 +22,34 @@
 /obj/random/mecha/item_to_spawn()
 	return pickweight(randsuits)
 
+/obj/random/mecha/low_chance
+	name = "low chance random lathe disk"
+	icon_state = "machine-red-low"
+	spawn_nothing_percentage = 90
+
+
+
 /obj/random/mecha/damaged
+	name = "random damaged mecha"
+	icon_state = "machine-red"
 	has_postspawn = TRUE
 
 /obj/random/mecha/damaged/post_spawn(var/list/things)
 	for (var/obj/a in things)
 		a.make_old()
 
+/obj/random/mecha/damaged/low_chance
+	name = "low chance random damaged mecha"
+	icon_state = "machine-red-low"
+	spawn_nothing_percentage = 90
+
+
+
+
 
 /obj/random/mecha_equipment
 	name = "random mecha equipment"
-	icon_state = "machine-black"
+	icon_state = "tech-red"
 
 /obj/random/mecha_equipment/item_to_spawn()
 	return pickweight(list(/obj/item/mecha_parts/mecha_equipment/tool/ai_holder,
@@ -69,3 +86,8 @@
 		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flare,
 		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive,
 		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang))
+
+/obj/random/mecha/mecha_equipment/low_chance
+	name = "low chance random mecha equipment"
+	icon_state = "tech-red-low"
+	spawn_nothing_percentage = 80

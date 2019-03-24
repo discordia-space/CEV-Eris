@@ -55,7 +55,7 @@ just stuff it here for now, and he can go stuff himself. %D"
 Signed your pal who isn't named Bob."
 
 /datum/stash/junk/guild
-	contents_list_extra = list(/obj/random/themed/astersguild = 6)
+	contents_list_extra = list(/obj/random/contraband = 6)
 	base_type = /datum/stash/junk/guild //Prevents this parent type being picked
 
 /datum/stash/junk/guild/crackdown

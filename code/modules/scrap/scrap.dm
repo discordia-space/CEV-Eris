@@ -94,7 +94,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		if (prob(33))
 			big_item = CATCH.get_item(/obj/random/structures/rare)
 		else
-			big_item = CATCH.get_item(/obj/random/structure_pack)
+			big_item = CATCH.get_item(/obj/random/pack/structure)
 		big_item.forceMove(src)
 		if(prob(66))
 			big_item.make_old()
@@ -395,7 +395,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	name = "cloth pile"
 	desc = "Pile of second hand clothing for charity."
 	parts_icon = 'icons/obj/structures/scrap/cloth.dmi'
-	loot_list = list(/obj/random/cloth/random_cloth,/obj/random/rare = 0.2)
+	loot_list = list(/obj/random/pack/cloth,/obj/random/rare = 0.2)
 
 /obj/structure/scrap/poor
 	icontype = "poor"

@@ -16,8 +16,6 @@
 				/obj/structure/largecrate = 2,\
 				/obj/structure/ore_box = 2,\
 				/obj/structure/dispenser/oxygen = 1,
-				/obj/random/mecha = 0.01,
-				/obj/random/mecha/damaged = 0.4,
 				/obj/random/scrap/moderate_weighted = 8))
 
 /obj/random/structures/rare/item_to_spawn()
@@ -30,10 +28,3 @@
 	icon_state = "machine-black-low"
 	spawn_nothing_percentage = 60
 
-/obj/random/structure_pack
-	name = "truly random structure"
-	icon_state = "machine-blank"
-
-/obj/random/structure_pack/item_to_spawn()
-	return pick(/obj/random/structures,
-				/obj/random/closet)

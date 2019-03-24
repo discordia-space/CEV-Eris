@@ -15,7 +15,7 @@
 	/obj/random/rig = 1.5,
 	/obj/random/rig/damaged = 1.5,
 	/obj/random/voidsuit = 4,
-	/obj/random/pouch/rare = 4,
+	/obj/random/pouch = 2,
 	/obj/random/tool_upgrade/rare = 4,
 	/obj/random/rig_module/rare = 4,
 	/obj/random/credits/c5000 = 4,
