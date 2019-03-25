@@ -368,3 +368,17 @@
 		if(target.wearer && (target.loc && target.locs[1] in view()))
 			return target
 
+
+/datum/ritual/cruciform/priest/records
+	name = "Baptismal Record"
+	phrase = "Memento nomina..."
+	desc = "Provides you with a list of the active disciples of NeoTheology."
+	power = 30
+	success_message = "On the verge of audibility you hear pleasant music, a piece of paper materializes on the floor before you."
+
+
+/datum/ritual/cruciform/priest/records/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
+
+	new /obj/item/weapon/paper(H.loc, disciples.Join("\n"), "Church Record")
+
+	return TRUE
