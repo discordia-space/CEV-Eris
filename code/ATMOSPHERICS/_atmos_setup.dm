@@ -6,13 +6,13 @@
 //  atmospherics devices.
 //--------------------------------------------
 
-#define	PIPE_COLOR_GREY		"#ffffff"	//yes white is grey
-#define	PIPE_COLOR_RED		"#ff0000"
-#define	PIPE_COLOR_BLUE		"#0000ff"
-#define	PIPE_COLOR_CYAN		"#00ffff"
-#define	PIPE_COLOR_GREEN	"#00ff00"
-#define	PIPE_COLOR_YELLOW	"#ffcc00"
-#define	PIPE_COLOR_BLACK	"#444444"
+#define	PIPE_COLOR_GREY		"#e4e7ea"	//yes white is grey
+#define	PIPE_COLOR_RED		"#c1293f"
+#define	PIPE_COLOR_BLUE		"#1f92c2"
+#define	PIPE_COLOR_CYAN		"#0C9d98"
+#define	PIPE_COLOR_GREEN	"#8ad55d"
+#define	PIPE_COLOR_YELLOW	"#deb63d"
+#define	PIPE_COLOR_BLACK	"#34383d"
 
 #define CONNECT_TYPE_REGULAR	1
 #define CONNECT_TYPE_SUPPLY		2
