@@ -369,17 +369,22 @@
 		if(target.wearer && (target.loc && target.locs[1] in view()))
 			return target
 
-
 /datum/ritual/cruciform/priest/records
 	name = "Baptismal Record"
 	phrase = "Memento nomina..."
-	desc = "Provides you with a list of the active disciples of NeoTheology."
+	desc = "Requests a copy of the Church's local parishoner records from your altar."
 	power = 30
-	success_message = "On the verge of audibility you hear pleasant music, a piece of paper materializes on the floor before you."
+	success_message = "On the verge of audibility you hear pleasant music, a piece of paper slides out from a slit in the altar."
 
+/datum/ritual/cruciform/priest/records/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
+	var/list/OBJS = get_front(user)
 
-/datum/ritual/cruciform/priest/records/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
+	var/obj/machinery/optable/altar = locate(/obj/machinery/optable/altar) in OBJS
 
-	new /obj/item/weapon/paper(H.loc, disciples.Join("\n"), "Church Record")
+	if(!altar)
+		fail("This is not your altar, the litany is useless.", user, C)
+		return FALSE
 
+	if(altar)
+		new /obj/item/weapon/paper/neopaper(altar.loc, disciples.Join("\n"), "Church Record")
 	return TRUE
