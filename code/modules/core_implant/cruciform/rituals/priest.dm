@@ -332,9 +332,9 @@
 
 
 /datum/ritual/targeted/cruciform/priest/atonement
-	name = "Atonment"
+	name = "Atonement"
 	phrase = "Piaculo sit \[Target human]!"
-	desc = "Imparts extreme pain on the target disciple, but does not actual harm. Use this to enforce Church doctrine on your flock."
+	desc = "Imparts extreme pain on the target disciple, but does no actual harm. Use this to enforce Church doctrine on your flock."
 	power = 45
 
 /datum/ritual/targeted/cruciform/priest/atonement/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
