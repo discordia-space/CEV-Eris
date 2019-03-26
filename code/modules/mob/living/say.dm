@@ -236,6 +236,7 @@ proc/get_radio_key_from_channel(var/channel)
 			var/mob/M = X
 			if(M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
 				listening |= M
+				continue
 			if(M.locs.len && M.locs[1] in hear)
 				listening |= M
 				continue //To avoid seeing BOTH normal message and quiet message
