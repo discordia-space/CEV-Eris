@@ -82,10 +82,9 @@ Your second loyalty is to the guild. Ensure it retains good relations with priva
 	)
 
 	stat_modifiers = list(
-		STAT_ROB = 5,
-		STAT_TGH = 5,
+		STAT_ROB = 10,
+		STAT_TGH = 10,
 		STAT_MEC = 15,
-		STAT_COG = 10
 	)
 
 	software_on_spawn = list(///datum/computer_file/program/supply,
