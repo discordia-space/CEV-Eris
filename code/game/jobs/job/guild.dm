@@ -18,7 +18,11 @@
 		access_eva, access_external_airlocks
 	)
 	ideal_character_age = 40
-
+	stat_modifiers = list(
+		STAT_ROB = 10,
+		STAT_COG = 20,
+		STAT_MEC = 15
+	)
 	description = "You are the head of the local branch of Asters Merchant Guild, and eris' guild representative<br>\
 A staunch entrepreneur, you are motivated by profit, for the guild and especially for yourself. You are here firstly to make as much money as you can, and secondly to keep the crew supplied. You can order things at cargo using the local guild funds, these will not magically replenish so you will run out of money quickly if you don't charge. Take payments by card or cash, and deposit them into the guild account to enable more purchases.<br>\
 <br>\
@@ -147,7 +151,7 @@ Character Expectations:<br>\
 
 
 	stat_modifiers = list(
-		STAT_ROB = 20,
+		STAT_ROB = 15,
 		STAT_TGH = 15,
 		STAT_MEC = 15
 	)

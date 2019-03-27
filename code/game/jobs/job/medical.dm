@@ -179,7 +179,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 	)
 
 	stat_modifiers = list(
-		STAT_BIO = 15,
+		STAT_BIO = 25,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/suit_sensors,

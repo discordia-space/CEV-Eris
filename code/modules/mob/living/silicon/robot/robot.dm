@@ -219,7 +219,8 @@
 /mob/living/silicon/robot/Destroy()
 	if(mmi && mind)//Safety for when a cyborg gets dust()ed. Or there is no MMI inside.
 		var/turf/T = get_turf(loc)//To hopefully prevent run time errors.
-		if(T)	mmi.loc = T
+		if(T)
+			mmi.forceMove(T)
 		if(mmi.brainmob)
 			mind.transfer_to(mmi.brainmob)
 		else
@@ -596,7 +597,7 @@
 							RC.brute = C.brute_damage
 							RC.burn = C.electronics_damage
 
-						RC.loc = src.loc
+						RC.forceMove(get_turf(src))
 
 						if(C.installed == 1)
 							C.uninstall()
