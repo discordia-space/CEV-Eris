@@ -545,3 +545,8 @@
 
 /obj/item/weapon/paper/crumpled/bloody
 	icon_state = "scrap_bloodied"
+
+/obj/item/weapon/paper/neopaper
+	name = "sheet of odd paper"
+	icon_state = "neopaper"
+

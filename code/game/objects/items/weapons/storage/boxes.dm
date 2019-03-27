@@ -303,12 +303,6 @@
 	New()
 		..()
 		new /obj/item/ammo_casing/a145/prespawned(src)
-		new /obj/item/ammo_casing/a145/prespawned(src)
-		new /obj/item/ammo_casing/a145/prespawned(src)
-		new /obj/item/ammo_casing/a145/prespawned(src)
-		new /obj/item/ammo_casing/a145/prespawned(src)
-		new /obj/item/ammo_casing/a145/prespawned(src)
-		new /obj/item/ammo_casing/a145/prespawned(src)
 		for(var/obj/item/ammo_casing/temp_casing in src)
 			temp_casing.update_icon()
 

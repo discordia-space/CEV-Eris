@@ -26,7 +26,7 @@
 
 /obj/item/weapon/tool/wirecutters/armature
 	name = "armature cutter"
-	desc = "Bigger brother of wirecutter. Can't do much in terms of emergency surgery, but dose its main job better."
+	desc = "Bigger brother of wirecutter. Can't do much in terms of emergency surgery, but does its main job better."
 	icon_state = "arm-cutter"
 	force = WEAPON_FORCE_NORMAL
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 1)
