@@ -24,9 +24,11 @@
 	)
 
 	stat_modifiers = list(
+		STAT_ROB = 10,
+		STAT_TGH = 10,
 		STAT_MEC = 40,
-		STAT_COG = 20,
 	)
+
 
 	software_on_spawn = list(/datum/computer_file/program/comm,
 							 /datum/computer_file/program/ntnetmonitor,
@@ -72,9 +74,11 @@ Your second loyalty is to your clan. Ensure they are paid, fed and safe. Don't r
 	)
 
 	stat_modifiers = list(
+		STAT_ROB = 5,
+		STAT_TGH = 10,
 		STAT_MEC = 30,
-		STAT_COG = 15,
 	)
+
 
 	software_on_spawn = list(/datum/computer_file/program/power_monitor,
 							 /datum/computer_file/program/supermatter_monitor,
