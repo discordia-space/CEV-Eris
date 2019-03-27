@@ -211,7 +211,8 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/E = H.organs_by_name[BP_CHEST]
 		E.take_damage(15)
-		H.custom_pain("You feel cruciform rips out of your chest!",1)
+		H.custom_pain("You feel the cruciform ripping out of your chest!",1)
+		CI.name = "[M]'s Cruciform"
 
 	CI.uninstall()
 	return TRUE
@@ -332,9 +333,9 @@
 
 
 /datum/ritual/targeted/cruciform/priest/atonement
-	name = "Atonment"
+	name = "Atonement"
 	phrase = "Piaculo sit \[Target human]!"
-	desc = "Imparts extreme pain on the target disciple, but does not actual harm. Use this to enforce Church doctrine on your flock."
+	desc = "Imparts extreme pain on the target disciple, but does no actual harm. Use this to enforce Church doctrine on your flock."
 	power = 45
 
 /datum/ritual/targeted/cruciform/priest/atonement/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
@@ -368,3 +369,22 @@
 		if(target.wearer && (target.loc && target.locs[1] in view()))
 			return target
 
+/datum/ritual/cruciform/priest/records
+	name = "Baptismal Record"
+	phrase = "Memento nomina..."
+	desc = "Requests a copy of the Church's local parishoner records from your altar."
+	power = 30
+	success_message = "On the verge of audibility you hear pleasant music, a piece of paper slides out from a slit in the altar."
+
+/datum/ritual/cruciform/priest/records/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
+	var/list/OBJS = get_front(user)
+
+	var/obj/machinery/optable/altar = locate(/obj/machinery/optable/altar) in OBJS
+
+	if(!altar)
+		fail("This is not your altar, the litany is useless.", user, C)
+		return FALSE
+
+	if(altar)
+		new /obj/item/weapon/paper/neopaper(altar.loc, disciples.Join("\n"), "Church Record")
+	return TRUE

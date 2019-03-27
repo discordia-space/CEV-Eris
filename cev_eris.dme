@@ -1255,6 +1255,7 @@
 #include "code\modules\assembly\signaler.dm"
 #include "code\modules\assembly\timer.dm"
 #include "code\modules\assembly\voice.dm"
+#include "code\modules\bounty\bounties.dm"
 #include "code\modules\cargo\export_scanner.dm"
 #include "code\modules\cargo\exports.dm"
 #include "code\modules\cargo\order.dm"
