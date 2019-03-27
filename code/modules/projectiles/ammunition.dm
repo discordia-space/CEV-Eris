@@ -126,11 +126,13 @@
 	if(amount > 1)
 		src.pixel_x = 0
 		src.pixel_y = 0
-	var/icon_amount
-	for(icon_amount = 1; icon_amount < src.amount, icon_amount++)
+
+	for(var/icon_amount = 1; icon_amount < src.amount, icon_amount++)
 		var/image/temp_image = image(src.icon, src.icon_state)
-		temp_image.pixel_x = (-1) ** round(icon_amount/2) * round(11 * icon_amount/src.maxamount) + pick(-1, 0, 1)
-		temp_image.pixel_y = (-1) ** round((icon_amount + 1)/2) * round(11 * icon_amount/src.maxamount) + pick(-1, 0, 1)
+		var/coef = round(14 * icon_amount/src.maxamount)
+
+		temp_image.pixel_x = rand(coef, -coef)
+		temp_image.pixel_y = rand(coef, -coef)
 		var/matrix/temp_image_matrix = matrix()
 		temp_image_matrix.Turn(round(45 * rand(0, 16) / 2))
 		temp_image.transform = temp_image_matrix
@@ -218,7 +220,7 @@
 				break
 		user << SPAN_NOTICE("You're done here")
 
-/obj/item/ammo_magazine/attack_hand(mob/user)	
+/obj/item/ammo_magazine/attack_hand(mob/user)
 	if(user.get_inactive_hand() == src && stored_ammo.len)
 		var/obj/item/ammo_casing/stack = removeCasing()
 		if(stack)
@@ -282,7 +284,7 @@
 		if(istype(C.loc,/mob))
 			var/mob/M = C.loc
 			M.remove_from_mob(C)
-		C.loc = src
+		C.forceMove(src)
 		stored_ammo.Insert(1, C) //add to the head of the list
 	update_icon()
 	return TRUE
@@ -325,7 +327,7 @@
 	usr << SPAN_NOTICE("You take out ammo from [src].")
 	for(var/i=1 to stored_ammo.len)
 		var/obj/item/ammo_casing/C = removeCasing()
-		C.loc = T
+		C.forceMove(T)
 		C.set_dir(pick(cardinal))
 	update_icon()
 

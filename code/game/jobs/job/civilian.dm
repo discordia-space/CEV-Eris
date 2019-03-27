@@ -16,7 +16,8 @@
 	initial_balance	= 1600
 	wage = WAGE_NONE	//Bartender is unpaid, they make money selling drinks
 	stat_modifiers = list(
-		STAT_ROB = 10,
+		STAT_ROB = 15,
+		STAT_TGH = 15,
 	)
 	also_known_languages = list(LANGUAGE_JIVE = 80)
 
@@ -57,7 +58,10 @@
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_JIVE = 80)
 	access = list(access_hydroponics, access_bar, access_kitchen)
-
+	stat_modifiers = list(
+		STAT_ROB = 10,
+		STAT_TGH = 10,
+	)
 	outfit_type = /decl/hierarchy/outfit/job/service/chef
 
 	loyalties = LOYALTY_CIVILIAN
@@ -96,8 +100,8 @@
 	outfit_type = /decl/hierarchy/outfit/job/service/gardener
 	stat_modifiers = list(
 		STAT_BIO = 10,
-		STAT_TGH = 10,
-		STAT_ROB = 20,
+		STAT_TGH = 15,
+		STAT_ROB = 10,
 	)
 
 	description = "The green-fingered gnome working in the glorious viridian basement of Eris. You are the gardener, tender of plants.<br>\
@@ -140,7 +144,7 @@
 	wage = WAGE_LABOUR_DUMB	//Barely a retaining fee. Actor can busk for credits to keep themselves fed
 	stat_modifiers = list(
 		STAT_TGH = 10,
-		STAT_ROB = 20,
+		STAT_ROB = 15,
 	)
 
 	loyalties = LOYALTY_CIVILIAN
@@ -169,6 +173,7 @@
 
 	stat_modifiers = list(
 		STAT_ROB = 10,
+		STAT_BIO = 10,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/camera_monitor)
