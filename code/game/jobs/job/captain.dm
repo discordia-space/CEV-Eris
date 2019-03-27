@@ -39,7 +39,6 @@ Your second loyalty is to your command officers. The heads of each faction. List
 		STAT_TGH = 15,
 		STAT_BIO = 15,
 		STAT_MEC = 15,
-		STAT_COG = 15
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/comm,
@@ -117,10 +116,9 @@ Act as the captain's sidekick, bodyguard, and last line of defense in a crisis o
 
 	stat_modifiers = list(
 		STAT_ROB = 10,
-		STAT_TGH = 10,
+		STAT_TGH = 15,
 		STAT_BIO = 10,
 		STAT_MEC = 10,
-		STAT_COG = 10
 	)
 
 /obj/landmark/join/start/hop
