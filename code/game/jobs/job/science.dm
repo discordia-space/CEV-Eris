@@ -25,10 +25,12 @@
 	ideal_character_age = 50
 
 	stat_modifiers = list(
-		STAT_MEC = 30,
-		STAT_COG = 40,
+		STAT_TGH = 10,
+		STAT_ROB = 10,
 		STAT_BIO = 30,
+		STAT_MEC = 30,
 	)
+
 
 	// TODO: enable after baymed
 	software_on_spawn = list(/datum/computer_file/program/comm,
@@ -75,9 +77,9 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 	)
 
 	stat_modifiers = list(
-		STAT_MEC = 20,
-		STAT_COG = 30,
+		STAT_TGH = 10,
 		STAT_BIO = 20,
+		STAT_MEC = 20,
 	)
 
 	description = "You are a scientist, standing at the frontier of human advancement. Here representing Moebius corp, to find new research opportunities in deep space. The science wing is located in the second section, starboard side, opposite medical, and your medical colleagues should be fast friends. The medical wing is part of Moebius too, and so you fully share access with each other, and are free to use each others' supplies.<br>\
@@ -129,9 +131,9 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 	) //As a job that handles so many corpses, it makes sense for them to have morgue access.
 
 	stat_modifiers = list(
+		STAT_TGH = 10,
 		STAT_MEC = 30,
-		STAT_COG = 20,
-		STAT_BIO = 30,
+		STAT_BIO = 10,
 	)
 
 
