@@ -179,7 +179,7 @@
 
 	stat_modifiers = list(
 		STAT_BIO = 20,
-		STAT_TGH = 15,
+		STAT_TGH = 5,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
@@ -230,7 +230,7 @@
 
 	stat_modifiers = list(
 		STAT_ROB = 25,
-		STAT_TGH = 25,
+		STAT_TGH = 20,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
