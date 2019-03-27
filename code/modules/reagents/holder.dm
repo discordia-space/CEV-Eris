@@ -139,7 +139,7 @@
 					playsound(my_atom, replace_sound, 80, 1)
 
 		else // Otherwise, collect all possible reactions.
-			eligible_reactions |= chemical_reactions_list[R.type]
+			eligible_reactions |= chemical_reactions_list[R.id]
 
 	var/list/active_reactions = list()
 

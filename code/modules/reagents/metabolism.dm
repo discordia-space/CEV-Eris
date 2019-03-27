@@ -46,18 +46,17 @@
 	present_reagent_ids += R.id
 
 	// Withdrawals
-	if(R.withdrawal_threshold && R.volume >= R.addiction_threshold && !is_type_in_list(R, withdrawal_list))
+	if(R.withdrawal_threshold && R.volume >= R.withdrawal_threshold && !is_type_in_list(R, withdrawal_list))
 		if(R.volume >= R.withdrawal_threshold)
 			var/datum/reagent/new_reagent = new R.type()
 			new_reagent.max_dose = R.max_dose
-			withdrawal_list.Add(new_reagent)
 			withdrawal_list[new_reagent] = R.max_dose
 
 	if(is_type_in_list(R, withdrawal_list))
 		for(var/withdrawal in withdrawal_list)
 			var/datum/reagent/A = withdrawal
 			if(istype(R, A))
-				withdrawal_list[A] = max(withdrawal_list[A], A.max_dose)
+				withdrawal_list[A] = max(withdrawal_list[A], R.max_dose)
 
 	// Addictions
 	if(R.addiction_threshold)
