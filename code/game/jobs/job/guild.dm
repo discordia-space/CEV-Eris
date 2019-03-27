@@ -17,6 +17,13 @@
 		access_heads, access_mining_station, access_RC_announce, access_keycard_auth, access_sec_doors,
 		access_eva, access_external_airlocks
 	)
+	stat_modifiers = list(
+		STAT_ROB = 15,
+		STAT_TGH = 15,
+		STAT_MEC = 10,
+		STAT_BIO = 10,
+
+	)
 	ideal_character_age = 40
 
 	description = "You are the head of the local branch of Asters Merchant Guild, and eris' guild representative<br>\
@@ -77,7 +84,9 @@ Your second loyalty is to the guild. Ensure it retains good relations with priva
 	stat_modifiers = list(
 		STAT_ROB = 10,
 		STAT_TGH = 10,
+		STAT_MEC = 20,
 	)
+
 
 	software_on_spawn = list(///datum/computer_file/program/supply,
 							 ///datum/computer_file/program/deck_management,
@@ -147,9 +156,10 @@ Character Expectations:<br>\
 
 
 	stat_modifiers = list(
-		STAT_ROB = 20,
+		STAT_ROB = 10,
 		STAT_TGH = 15,
-		STAT_MEC = 15
+		STAT_MEC = 10,
+		STAT_BIO = 5
 	)
 
 	software_on_spawn = list(///datum/computer_file/program/supply,
