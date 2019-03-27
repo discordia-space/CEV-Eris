@@ -16,8 +16,12 @@
 	initial_balance	= 1600
 	wage = WAGE_NONE	//Bartender is unpaid, they make money selling drinks
 	stat_modifiers = list(
-		STAT_ROB = 10,
+		STAT_ROB = 15,
+		STAT_TGH = 10,
+		STAT_BIO = 5,
+		STAT_MEC = 10,
 	)
+
 	also_known_languages = list(LANGUAGE_JIVE = 80)
 
 	outfit_type = /decl/hierarchy/outfit/job/service/bartender
@@ -63,6 +67,12 @@
 	loyalties = LOYALTY_CIVILIAN
 	wage = WAGE_NONE	//Chef is unpaid, they make money selling food
 	initial_balance	= 1600
+		stat_modifiers = list(
+		STAT_ROB = 15,
+		STAT_TGH = 10,
+		STAT_BIO = 15,
+	)
+
 	description = "	Everyone's favourite person when they're hungry, you are the chef, maker of food and slayer of hunger. Everyone needs to eat, and you make sure they can. Your job is fairly simple, cook food for the crew. Your primary source of raw materials is the garden downstairs, you and the gardener should work closely together. <br>\
 	<br>\
 	You are a sole trader trying to make a profit here, so giving away your food for free is not adviseable unless times are desperate<br>\
@@ -95,9 +105,10 @@
 
 	outfit_type = /decl/hierarchy/outfit/job/service/gardener
 	stat_modifiers = list(
-		STAT_BIO = 10,
+		STAT_ROB = 10,
 		STAT_TGH = 10,
-		STAT_ROB = 20,
+		STAT_BIO = 20,
+		STAT_MEC = 5,
 	)
 
 	description = "The green-fingered gnome working in the glorious viridian basement of Eris. You are the gardener, tender of plants.<br>\
@@ -139,9 +150,11 @@
 	outfit_type = /decl/hierarchy/outfit/job/service/actor/clown
 	wage = WAGE_LABOUR_DUMB	//Barely a retaining fee. Actor can busk for credits to keep themselves fed
 	stat_modifiers = list(
-		STAT_TGH = 10,
-		STAT_ROB = 20,
+		STAT_ROB = 10,
+		STAT_TGH = 20,
+		STAT-MECH = 5,
 	)
+
 
 	loyalties = LOYALTY_CIVILIAN
 
@@ -169,6 +182,9 @@
 
 	stat_modifiers = list(
 		STAT_ROB = 10,
+		STAT_TGH = 10,
+		STAT_BIO = 10,
+		STAT_MEC = 10,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/camera_monitor)
