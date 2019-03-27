@@ -23,8 +23,11 @@
 	ideal_character_age = 50
 
 	stat_modifiers = list(
+		STAT_ROB = 10,
+		STAT_TGH = 10,
 		STAT_BIO = 40,
 	)
+
 
 	software_on_spawn = list(/datum/computer_file/program/comm,
 							 /datum/computer_file/program/suit_sensors,
@@ -74,8 +77,11 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 	)
 
 	stat_modifiers = list(
+		STAT_ROB = 10,
+		STAT_TGH = 5,
 		STAT_BIO = 30,
 	)
+
 
 	software_on_spawn = list(/datum/computer_file/program/suit_sensors,
 							 /datum/computer_file/program/camera_monitor)
@@ -130,9 +136,11 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 	)
 
 	stat_modifiers = list(
-		STAT_COG = 10,
+		STAT_ROB = 10,
+		STAT_TGH = 5,
 		STAT_BIO = 30,
 	)
+
 
 	software_on_spawn = list(/datum/computer_file/program/scanner)
 
@@ -179,8 +187,11 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 	)
 
 	stat_modifiers = list(
-		STAT_BIO = 15,
+		STAT_ROB = 5,
+		STAT_TGH = 15,
+		STAT_BIO = 20,
 	)
+
 
 	software_on_spawn = list(/datum/computer_file/program/suit_sensors,
 							 /datum/computer_file/program/camera_monitor)
@@ -212,9 +223,9 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 	)
 
 	stat_modifiers = list(
+		STAT_ROB = 5,
+		STAT_TGH = 15,
 		STAT_BIO = 20,
-		STAT_ROB = 10,
-		STAT_TGH = 10,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/suit_sensors,
