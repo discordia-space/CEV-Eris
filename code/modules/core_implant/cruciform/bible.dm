@@ -1,6 +1,6 @@
 /obj/item/weapon/book/ritual/cruciform
-	name = "Neotheology ritual book"
-	desc = "Contains holy litany and chants."
+	name = "NeoTheology ritual book"
+	desc = "Contains holy litany and religious prayers."
 	icon_state = "bible"
 
 /*
@@ -13,9 +13,12 @@
 	return data
 */
 
-/obj/item/weapon/book/ritual/cruciform/inquisitor
+/*/obj/item/weapon/book/ritual/cruciform/inquisitor
 	name = "Inquisitor ritual book"
-	desc = "Contains holy litany and chants of inquisitor."
-	icon_state = "bible"
+	desc = "Contains holy litany and prayers only for the Inquisitor."
+	icon_state = "biblep"*/
 
-
+/obj/item/weapon/book/ritual/cruciform/priest
+	name = "clergy ritual book"
+	desc = "Contains holy litany and prayers only for the Clergy."
+	icon_state = "biblep"
