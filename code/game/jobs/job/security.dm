@@ -24,9 +24,12 @@
 	)
 
 	stat_modifiers = list(
-		STAT_ROB = 30,
-		STAT_TGH = 20,
+		STAT_ROB = 20,
+		STAT_TGH = 25,
+		STAT_BIO = 10,
+		STAT_MEC = 10,
 	)
+
 
 	software_on_spawn = list(/datum/computer_file/program/comm,
 							 /datum/computer_file/program/digitalwarrant,
@@ -81,7 +84,9 @@
 	stat_modifiers = list(
 		STAT_ROB = 20,
 		STAT_TGH = 20,
+		STAT_BIO = 10,
 	)
+
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
 							 /datum/computer_file/program/camera_monitor)
@@ -128,10 +133,12 @@
 	outfit_type = /decl/hierarchy/outfit/job/security/inspector
 
 	stat_modifiers = list(
+		STAT_ROB = 15,
+		STAT_TGH = 15,
 		STAT_BIO = 10,
-		STAT_ROB = 10,
-		STAT_TGH = 10,
+		STAT_MEC = 10,
 	)
+
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
 							 /datum/computer_file/program/audio,
@@ -178,8 +185,11 @@
 	)
 
 	stat_modifiers = list(
+		STAT_ROB = 15,
+		STAT_TGH = 15,
 		STAT_BIO = 20,
 	)
+
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
 							 /datum/computer_file/program/suit_sensors,
@@ -228,9 +238,11 @@
 	)
 
 	stat_modifiers = list(
-		STAT_ROB = 10,
+		STAT_ROB = 15,
 		STAT_TGH = 20,
+		STAT_BIO = 10,
 	)
+
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
 							 /datum/computer_file/program/camera_monitor)
