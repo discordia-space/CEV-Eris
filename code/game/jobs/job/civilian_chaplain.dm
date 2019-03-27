@@ -16,8 +16,11 @@
 	outfit_type = /decl/hierarchy/outfit/job/chaplain
 
 	stat_modifiers = list(
-		STAT_TGH = 10,
+		STAT_ROB = 15,
+		STAT_TGH = 15,
+		STAT_MEC = 10,
 	)
+
 
 	software_on_spawn = list(/datum/computer_file/program/records,
 							 /datum/computer_file/program/reports)
