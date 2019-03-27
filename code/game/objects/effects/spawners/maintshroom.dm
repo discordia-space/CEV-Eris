@@ -8,6 +8,11 @@
 
 
 /obj/effect/spawner/maintshroom/proc/spawn_shroom()
+	// Skip the spawning if the burrow is in a well lit places.
+	var/turf/T = get_turf(src)
+	if(T.get_lumcount() > min_light_limit)
+		return
+
 	new /obj/effect/plant(get_turf(src), new /datum/seed/mushroom/maintshroom)
 	find_or_create_burrow(get_turf(src))
 
@@ -43,7 +48,7 @@
 		return
 
 	// Skip the spawning if the burrow is in a well lit places.
-	var/turf/T = B.loc
+	var/turf/T = get_turf(B)
 	if(T.get_lumcount() > min_light_limit)
 		return
 
