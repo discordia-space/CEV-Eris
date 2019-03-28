@@ -1015,7 +1015,6 @@ CIRCUITS BELOW
 	build_path = /obj/item/weapon/circuitboard/clonescanner
 	sort_string = "FAGAG"
 
-
 /datum/design/circuit/chemmaster
 	name = "ChemMaster 3000"
 	id = "ChemMaster"
