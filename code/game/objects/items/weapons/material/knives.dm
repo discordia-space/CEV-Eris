@@ -20,7 +20,7 @@
 		hitsound = 'sound/weapons/bladeslice.ogg'
 		icon_state += "_open"
 		w_class = ITEM_SIZE_NORMAL
-		tool_qualities = list(QUALITY_CUTTING = 20, QUALITY_WIRE_CUTTING = 10)
+		tool_qualities = list(QUALITY_CUTTING = 20, QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
 		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	else
 		force = WEAPON_FORCE_WEAK
@@ -65,7 +65,7 @@
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	unbreakable = 1
 	slot_flags = SLOT_BELT
-	tool_qualities = list(QUALITY_CUTTING = 20,  QUALITY_WIRE_CUTTING = 10)
+	tool_qualities = list(QUALITY_CUTTING = 20,  QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
 	structure_damage_factor = STRUCTURE_DAMAGE_BLADE
 
 /obj/item/weapon/material/knife/boot
@@ -75,6 +75,7 @@
 	icon_state = "tacknife"
 	item_state = "knife"
 	applies_material_colour = 0
+	tool_qualities = list(QUALITY_CUTTING = 20,  QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 15)
 
 /obj/item/weapon/material/knife/hook
 	name = "meat hook"
@@ -96,6 +97,7 @@
 	desc = "A huge thing used for chopping and chopping up meat. This includes clowns and clown-by-products."
 	force_divisor = 0.4 // 24 when wielded with hardness 60 (steel)
 	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	tool_qualities = list(QUALITY_CUTTING = 20,  QUALITY_WIRE_CUTTING = 10)
 
 /obj/item/weapon/material/knife/neotritual
 	name = "NeoTheology ritual knife"
