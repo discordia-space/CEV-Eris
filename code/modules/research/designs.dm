@@ -1016,7 +1016,7 @@ CIRCUITS BELOW
 	sort_string = "FAGAG"
 
 
-/datum/design/circuit/clonescanner
+/datum/design/circuit/chemmaster
 	name = "ChemMaster 3000"
 	id = "ChemMaster"
 	req_tech = list(TECH_DATA = 2, TECH_BIO = 2)
