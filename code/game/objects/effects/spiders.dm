@@ -255,17 +255,17 @@
 
 	var/is_large_cocoon
 
-	New()
-		icon_state = pick("cocoon1","cocoon2","cocoon3")
-		..()
+/obj/effect/spider/cocoon/Initialize()
+	. = ..()
+	icon_state = pick("cocoon1","cocoon2","cocoon3")
 
-	proc/becomeLarge()
-		health = 20
-		is_large_cocoon = 1
-		icon_state = pick("cocoon_large1","cocoon_large2","cocoon_large3")
+/obj/effect/spider/cocoon/proc/becomeLarge()
+	health = 20
+	is_large_cocoon = 1
+	icon_state = pick("cocoon_large1","cocoon_large2","cocoon_large3")
 
 /obj/effect/spider/cocoon/Destroy()
 	src.visible_message(SPAN_WARNING("\The [src] splits open."))
 	for(var/atom/movable/A in contents)
-		A.loc = src.loc
+		A.forceMove(get_turf(src))
 	return ..()

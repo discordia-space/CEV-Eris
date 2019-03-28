@@ -45,18 +45,15 @@
 	joint = "jaw"
 	amputation_point = "neck"
 	encased = "skull"
+	drop_on_remove = list(slot_head, slot_glasses, slot_l_ear, slot_r_ear, slot_wear_mask)
 	var/can_intake_reagents = 1
 
 /obj/item/organ/external/head/removed()
 	if(owner)
 		name = "[owner.real_name]'s head"
-		owner.u_equip(owner.glasses)
-		owner.u_equip(owner.head)
-		owner.u_equip(owner.l_ear)
-		owner.u_equip(owner.r_ear)
-		owner.u_equip(owner.wear_mask)
 		spawn(1)
-			owner.update_hair()
+			if(owner) // In case owner was destroyed already - gibbed, for example
+				owner.update_hair()
 	..()
 
 /obj/item/organ/external/head/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list())
