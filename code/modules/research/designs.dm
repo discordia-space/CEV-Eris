@@ -1017,7 +1017,7 @@ CIRCUITS BELOW
 
 /datum/design/circuit/chemmaster
 	name = "ChemMaster 3000"
-	id = "ChemMaster"
+	id = "chemmaster"
 	req_tech = list(TECH_DATA = 2, TECH_BIO = 2)
 	build_path = /obj/item/weapon/circuitboard/chemmaster
 	sort_string = "FAHAA"
