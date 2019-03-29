@@ -12,7 +12,6 @@
 	slot_flags = SLOT_BELT
 	//m_amt = 2000
 	w_class = ITEM_SIZE_NORMAL
-	origin_tech = "combat=2"
 	attack_verb = list("struck", "hit", "bashed")
 	var/obj/item/weapon/hatton_magazine/magazine = new()
 	var/fire_sound = 'sound/weapons/pulse.ogg'
