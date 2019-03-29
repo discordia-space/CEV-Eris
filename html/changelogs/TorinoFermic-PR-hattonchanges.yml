@@ -35,3 +35,4 @@ delete-after: True
 changes: 
  - tweak: "Hatton code is ordered with additions of research nodes and bugfixing the variable."
  - tweak: "Hatton tubes sprites are oriented in addition with changing sizes to match with RCD ammo."
+ - tweak: "Flare pouches will now carry Hatton tubes"
