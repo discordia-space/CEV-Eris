@@ -39,6 +39,7 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 	// We go backwards, so it'll be innermost objects sold first
 	for(var/i in reverseRange(contents))
 		var/atom/movable/thing = i
+		var/found_export
 		for(var/datum/export/E in exports_list)
 			if(!E)
 				continue
@@ -48,7 +49,13 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 				else
 					E.sell_object(thing, contraband, hacked)
 					sold_str += " [thing.name]"
+				found_export = TRUE
 				break
+		if(!found_export)
+			var/item_value = thing.get_item_cost()
+			cost += item_value
+			sold_str += " [thing.name]"
+			SSsupply.assorted_exports_value += item_value
 		if(!dry_run)
 			qdel(thing)
 
