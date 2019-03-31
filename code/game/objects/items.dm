@@ -435,7 +435,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 		if(!cannotzoom)
 			usr.visible_message("[zoomdevicename ? "[usr] looks up from the [name]" : "[usr] lowers the [name]"].")
-
+	usr.parallax.update()
 	return
 
 /obj/item/proc/pwr_drain()
