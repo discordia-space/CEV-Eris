@@ -126,16 +126,6 @@
 				/obj/item/weapon/gun/projectile/revolver/deckard = 1,
 				/obj/item/weapon/gun/projectile/revolver/detective = 1,
 				/obj/item/clothing/accessory/badge/marshal = 0.1, //Antag item
-				/obj/random/rig/damaged = 0.1,
-				/obj/random/voidsuit/damaged = 0.5,
-				/obj/random/pouch = 3,
-				/obj/random/junk = 25,
-				/obj/random/lathe_disk = 5,
-				/obj/random/rig_module = 4,
-				/obj/random/medical = 10,
-				/obj/random/junkfood = 10,
-				/obj/random/pack/cloth = 5,
-				/obj/random/credits/c100 = 2,
 				/obj/item/stash_spawner = 12)
 
 /obj/random/lowkeyrandom/item_to_spawn()

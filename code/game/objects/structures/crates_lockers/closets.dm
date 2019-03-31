@@ -35,6 +35,7 @@
 	var/store_misc = 1
 	var/store_items = 1
 	var/store_mobs = 1
+	var/old_chance = 0 //Chance to have rusted closet content in it, from 0 to 100. Keep in mind that chance increases in maints
 
 	var/dismantle_material = /obj/item/stack/material/steel
 
@@ -62,8 +63,24 @@
 		if(content_size > storage_capacity-5)
 			storage_capacity = content_size + 5
 
-	if (in_maintenance() && prob(20))
+	world << "0 [old_chance]"
+
+	//If closet is spawned in maints, chance of getting rusty content is increased.
+	if (in_maintenance())
+		world << "[old_chance]"
+		old_chance = old_chance + 20
+		world << "[old_chance]"
+
+	if (prob(old_chance))
+		world << "1 [old_chance]"
 		make_old()
+
+	if (old_chance)
+		world << "2 [old_chance]"
+		for (var/atom/thing in contents)
+			if (prob(old_chance))
+				thing.make_old()
+
 
 
 

@@ -291,80 +291,100 @@
 
 
 /obj/random/cloth/glasses
-	name = "random gloves"
-	desc = "This is a random gloves."
+	name = "random glasses"
+	desc = "This is a random glasses."
 	icon_state = "armor-grey"
 
 /obj/random/cloth/glasses/item_to_spawn()
-	return pickweight(list(/obj/item/clothing/gloves/botanic_leather = 3,
-				/obj/item/clothing/gloves/boxing = 2,
-				/obj/item/clothing/gloves/boxing/blue = 5,
-
-
-
-
-
-
-				/obj/item/clothing/gloves/stungloves = 1))
+	return pickweight(list(/obj/item/clothing/glasses/eyepatch = 4,
+				/obj/item/clothing/glasses/gglasses = 2,
+				/obj/item/clothing/glasses/hud/health = 2,
+				/obj/item/clothing/glasses/hud/security = 2,
+				/obj/item/clothing/glasses/sunglasses/sechud/tactical = 2,
+				/obj/item/clothing/glasses/threedglasses = 4,
+				/obj/item/clothing/glasses/welding = 4))
 
 /obj/random/cloth/glasses/low_chance
-	name = "low chance random gloves"
+	name = "low chance random glasses"
 	icon_state = "armor-grey-low"
 	spawn_nothing_percentage = 60
 
 
 
 
-
-/obj/random/cloth/glasses
-	name = "random glasses"
-	desc = "This is a random glasses."
-
-/obj/random/cloth/glasses/item_to_spawn()
-	return pick(subtypesof(/obj/item/clothing/glasses) - subtypesof(/obj/item/clothing/glasses/thermal))
-
 /obj/random/cloth/shoes
 	name = "random shoes"
-	desc = "This is a random shoes."
+	desc = "This is a random shoes"
+	icon_state = "armor-grey"
 
 /obj/random/cloth/shoes/item_to_spawn()
-	return pick(subtypesof(/obj/item/clothing/shoes))
+	return pickweight(list(/obj/item/clothing/shoes/black = 14,
+				/obj/item/clothing/shoes/clown_shoes = 14,
+				/obj/item/clothing/shoes/color/blue = 1,   //Those are ugly, so they are rare
+				/obj/item/clothing/shoes/color/brown = 1,
+				/obj/item/clothing/shoes/color/green = 1,
+				/obj/item/clothing/shoes/color/orange = 1,
+				/obj/item/clothing/shoes/color/purple = 1,
+				/obj/item/clothing/shoes/color/rainbow = 1,
+				/obj/item/clothing/shoes/color/white = 1,
+				/obj/item/clothing/shoes/color/red = 1,
+				/obj/item/clothing/shoes/color/yellow = 1,
+				/obj/item/clothing/shoes/combat = 2,  //No slip
+				/obj/item/clothing/shoes/galoshes = 8,
+				/obj/item/clothing/shoes/jackboots = 14,
+				/obj/item/clothing/shoes/leather = 14,
+				/obj/item/clothing/shoes/reinforced = 14,
+				/obj/item/clothing/shoes/swat = 14,
+				/obj/item/clothing/shoes/workboots = 4))
+
+/obj/random/cloth/shoes/low_chance
+	name = "low chance random shoes"
+	icon_state = "armor-grey-low"
+	spawn_nothing_percentage = 60
 
 
 
-/obj/random/cloth/storage
-	name = "random storage"
-	desc = "This is a random storage."
-
-/obj/random/cloth/storage/item_to_spawn()
-	return pickweight(list(
-			/obj/random/cloth/backpack = 69,
-			/obj/random/cloth/belt = 34,
-			/obj/random/pouch = 12
-			))
 
 /obj/random/cloth/backpack
-	name = "random storage"
-	desc = "This is a random storage."
+	name = "random backpack"
+	desc = "This is a random backpack"
+	icon_state = "armor-grey"
 
 /obj/random/cloth/backpack/item_to_spawn()
-	return pickweight(list(
-			/obj/item/weapon/storage/backpack/clown = 10,
-			/obj/item/weapon/storage/backpack/medic = 10,
-			/obj/item/weapon/storage/backpack/industrial = 10,
-			/obj/item/weapon/storage/backpack/security = 8
-			))
+	return pickweight(list(/obj/item/weapon/storage/backpack = 18,
+				/obj/item/weapon/storage/backpack/captain = 1,
+				/obj/item/weapon/storage/backpack/clown = 4,
+				/obj/item/weapon/storage/backpack/industrial = 6,
+				/obj/item/weapon/storage/backpack/medic = 6,
+				/obj/item/weapon/storage/backpack/military = 6,
+				/obj/item/weapon/storage/backpack/security = 6,
+				/obj/item/weapon/storage/backpack/satchel/cap = 1,
+				/obj/item/weapon/storage/backpack/satchel/eng = 6,
+				/obj/item/weapon/storage/backpack/satchel/med = 6,
+				/obj/item/weapon/storage/backpack/satchel/norm = 6,
+				/obj/item/weapon/storage/backpack/satchel/sec = 6,
+				/obj/item/weapon/storage/backpack/satchel/withwallet = 18))
+
+/obj/random/cloth/backpack/low_chance
+	name = "low chance random backpack"
+	icon_state = "armor-grey-low"
+	spawn_nothing_percentage = 60
+
+
+
 
 /obj/random/cloth/belt
-	name = "random storage"
-	desc = "This is a random storage."
+	name = "random belt"
+	desc = "This is a random belt"
+	icon_state = "armor-grey"
 
 /obj/random/cloth/belt/item_to_spawn()
-	return pickweight(list(
-			/obj/item/weapon/storage/belt/security = 8,
-			/obj/item/weapon/storage/belt/medical = 8,
-			/obj/item/weapon/storage/belt/utility = 8,
-			/obj/item/weapon/storage/belt/archaeology = 8
-			))
+	return pickweight(list(/obj/item/weapon/storage/belt/medical = 8,
+				/obj/item/weapon/storage/belt/medical/emt = 8,
+				/obj/item/weapon/storage/belt/security = 4,
+				/obj/item/weapon/storage/belt/utility = 8,))
 
-
+/obj/random/cloth/belt/low_chance
+	name = "low chance random belt"
+	icon_state = "armor-grey-low"
+	spawn_nothing_percentage = 60

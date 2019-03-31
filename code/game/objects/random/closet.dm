@@ -4,12 +4,6 @@
 	alpha = 128
 	has_postspawn = TRUE
 
-//Closets in maint may be old
-/obj/random/closet/post_spawn(var/list/things)
-	for (var/atom/thing in things)
-		if (thing.in_maintenance() && prob(40))
-			thing.make_old()
-
 /obj/random/closet/item_to_spawn()
 	return pickweight(list(/obj/structure/closet = 4,
 				/obj/structure/closet/firecloset = 8,
@@ -33,6 +27,39 @@
 				/obj/structure/closet/bombcloset = 0.5,
 				/obj/structure/closet/bombclosetsecurity = 0.4))
 
+/obj/random/closet/low_chance
+	name = "low chance random closet"
+	icon_state = "closet-grey-low"
+	spawn_nothing_percentage = 60
+
+
+
+
+
+/obj/random/closet_tech
+	name = "random technical closet"
+	icon_state = "closet-orange"
+	has_postspawn = TRUE
+
+
+/obj/random/closet_tech/item_to_spawn()
+	return pickweight(list(/obj/structure/closet/firecloset = 4,
+				/obj/structure/closet/emcloset = 2,
+				/obj/structure/closet/toolcloset = 4))
+
+/obj/random/closet_tech/low_chance
+	name = "low chance random technical closet"
+	icon_state = "closet-orange-low"
+	spawn_nothing_percentage = 60
+
+
+
+
+/obj/random/closet/rare
+	name = "random rare closet"
+	icon_state = "closet-red"
+	has_postspawn = TRUE
+
 //Fancy closets containing interesting or gimmicky things
 /obj/random/closet/rare/item_to_spawn()
 	return pickweight(list(/obj/structure/closet/toolcloset = 1,
@@ -46,42 +73,19 @@
 				/obj/structure/closet/bombcloset = 0.5,
 				/obj/structure/closet/bombclosetsecurity = 0.4))
 
-/obj/random/closet/low_chance
-	name = "low chance random closet"
-	icon_state = "closet-grey-low"
+/obj/random/closet/rare/low_chance
+	name = "low chance random rare closet"
+	icon_state = "closet-red-low"
 	spawn_nothing_percentage = 60
 
-/obj/random/closet_tech
-	name = "random technical closet"
-	icon_state = "closet-orange"
-	has_postspawn = TRUE
 
-//Closets in maint may be old
-/obj/random/closet_tech/post_spawn(var/list/things)
-	for (var/atom/thing in things)
-		if (thing.in_maintenance() && prob(40))
-			thing.make_old()
 
-/obj/random/closet_tech/item_to_spawn()
-	return pickweight(list(/obj/structure/closet/firecloset = 4,
-				/obj/structure/closet/emcloset = 2,
-				/obj/structure/closet/toolcloset = 4))
-
-/obj/random/closet_tech/low_chance
-	name = "low chance random technical closet"
-	icon_state = "closet-orange-low"
-	spawn_nothing_percentage = 60
 
 /obj/random/closet_wardrobe
 	name = "random wardrobe closet"
 	icon_state = "closet-blue"
 	has_postspawn = TRUE
 
-//Closets in maint may be old
-/obj/random/closet_wardrobe/post_spawn(var/list/things)
-	for (var/atom/thing in things)
-		if (thing.in_maintenance() && prob(40))
-			thing.make_old()
 
 /obj/random/closet_wardrobe/item_to_spawn()
 	return pick(/obj/structure/closet/wardrobe/black,
