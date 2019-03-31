@@ -25,9 +25,9 @@
 	ideal_character_age = 50
 
 	stat_modifiers = list(
-		STAT_MEC = 30,
+		STAT_MEC = 25,
 		STAT_COG = 40,
-		STAT_BIO = 30,
+		STAT_BIO = 25,
 	)
 
 	// TODO: enable after baymed
@@ -131,7 +131,7 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 	stat_modifiers = list(
 		STAT_MEC = 30,
 		STAT_COG = 20,
-		STAT_BIO = 30,
+		STAT_BIO = 25,
 	)
 
 

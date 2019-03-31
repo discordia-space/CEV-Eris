@@ -47,5 +47,5 @@
 
 /datum/uplink_item/item/visible_weapons/heavysniper
 	name = "Anti-materiel Rifle"
-	item_cost = 8
+	item_cost = 20
 	path = /obj/item/weapon/gun/projectile/heavysniper

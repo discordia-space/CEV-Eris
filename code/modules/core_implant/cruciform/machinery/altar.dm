@@ -13,7 +13,7 @@
 	available_slots += list(list("offset" = list("x" = -8 , "y" = -3), "item" = null))
 	//bottom right
 	available_slots += list(list("offset" = list("x" = 8 , "y" = -3), "item" = null))
-
+	..()
 /obj/machinery/optable/altar/attackby(obj/item/I, mob/user)
 	if(!istype(I) || !(I.type in acceptable_items))
 		return
@@ -25,7 +25,7 @@
 		if (slot["item"] == null)
 			break
 		slot = null
-		
+
 	if(!slot)
 		to_chat(user, "<span class='notice'>There is no free space on \the [src] to place \the [I]!</span>")
 		return
@@ -37,7 +37,7 @@
 
 /obj/machinery/optable/altar/proc/item_cleanup()
 	var/turf/T = get_turf(src)
-	
+
 	for(var/j = 1, j <= available_slots.len, j++)
 		if(!(available_slots[j]["item"] in T.contents))
 			available_slots[j]["item"] = null

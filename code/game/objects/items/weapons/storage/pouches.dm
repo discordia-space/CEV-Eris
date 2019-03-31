@@ -166,7 +166,8 @@
 		/obj/item/weapon/reagent_containers/glass/beaker/vial,
 		/obj/item/weapon/reagent_containers/hypospray,
 		/obj/item/weapon/pen,
-		/obj/item/weapon/storage/pill_bottle
+		/obj/item/weapon/storage/pill_bottle,
+		/obj/item/weapon/hatton_magazine
 		)
 
 /obj/item/weapon/storage/pouch/flare/vial
