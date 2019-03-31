@@ -1,17 +1,16 @@
 /obj/item/weapon/gun/projectile/automatic/IH_machinepistol
 	name = "FS MP \"Molly\""
-	desc = "An experimental fully automatic pistol. Compact and flexible, but somewhat underpowered"
+	desc = "An experimental fully automatic pistol. Compact and flexible, but somewhat underpowered. Uses 9mm rounds."
 	icon_state = "IH_mp"
 	item_state = "IH_mp"
-	w_class = ITEM_SIZE_SMALL
+	w_class = ITEM_SIZE_NORMAL
 	caliber = "9mm"
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
-	slot_flags = SLOT_BELT
+	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	ammo_type = "/obj/item/ammo_casing/c9mm"
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/smg9mm
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 3)
-	price_tag = 1250
 	silencer_type = /obj/item/weapon/silencer
 	damage_multiplier = 0.55
 	firemodes = list(
