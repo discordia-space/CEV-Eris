@@ -995,16 +995,11 @@
 	icon_state = "weapon"
 	no_criminals = TRUE
 	products = list(/obj/item/device/flash = 6,
-	/obj/item/weapon/silencer = 4,
 	/obj/item/weapon/reagent_containers/spray/pepper = 6,
 	/obj/item/weapon/gun/projectile/olivaw = 5,
 	/obj/item/weapon/gun/projectile/giskard = 5,
 	/obj/item/weapon/gun/projectile/revolver/detective = 5,
 	/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3,
-	/obj/item/weapon/gun/projectile/automatic/IH_smg = 3,
-	/obj/item/weapon/gun/projectile/automatic/IH_heavyrifle = 2,
-	/obj/item/weapon/gun/projectile/IH_sidearm = 4,
-	/obj/item/weapon/gun/projectile/automatic/IH_machinepistol = 2,
 	/obj/item/weapon/gun/projectile/shotgun/pump = 3,
 	/obj/item/ammo_magazine/cl32/rubber = 20,
 	/obj/item/ammo_magazine/sl38/rubber = 20,
@@ -1013,9 +1008,6 @@
 	/obj/item/weapon/storage/box/shotgunammo/beanbags = 10,
 	/obj/item/weapon/storage/box/shotgunammo/flashshells = 10,
 	/obj/item/weapon/storage/box/shotgunammo/blanks = 10,
-	/obj/item/ammo_magazine/smg9mm/rubber = 10,
-	/obj/item/ammo_magazine/mc9mm/rubber = 10,
-	/obj/item/ammo_magazine/c762 = 10, //There's no rubber 762 ammo
 	/obj/item/clothing/accessory/holster = 5)
 
 	contraband = list(/obj/item/ammo_magazine/sl38 = 20,
@@ -1023,9 +1015,7 @@
 	/obj/item/ammo_magazine/ammobox/cl32 = 20,
 	/obj/item/ammo_magazine/ammobox/c38 = 20,
 	/obj/item/weapon/storage/box/shotgunammo/slug = 10,
-	/obj/item/weapon/storage/box/shotgunammo/buckshot = 10,
-	/obj/item/ammo_magazine/smg9mm = 10,
-	/obj/item/ammo_magazine/mc9mm = 10)
+	/obj/item/weapon/storage/box/shotgunammo/buckshot = 10,)
 	prices = list(/obj/item/device/flash = 600,/obj/item/weapon/reagent_containers/spray/pepper = 800,  /obj/item/weapon/gun/projectile/olivaw = 1600, /obj/item/weapon/gun/projectile/giskard = 1200, /obj/item/weapon/gun/projectile/revolver/detective = 2500, /obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3700,
 					/obj/item/weapon/gun/projectile/shotgun/pump = 2000, /obj/item/ammo_magazine/cl32/rubber = 300, /obj/item/ammo_magazine/sl38/rubber = 400, /obj/item/ammo_magazine/ammobox/c38/rubber = 400, /obj/item/ammo_magazine/ammobox/cl32/rubber = 500,
 					/obj/item/weapon/storage/box/shotgunammo/beanbags = 300, /obj/item/weapon/storage/box/shotgunammo/flashshells = 300, /obj/item/weapon/storage/box/shotgunammo/blanks = 50, /obj/item/clothing/accessory/holster = 150,
@@ -1134,9 +1124,19 @@
 	icon_state = "sec"
 	icon_deny = "sec-deny"
 	req_access = list(access_security)
-	products = list(/obj/item/weapon/handcuffs = 8,/obj/item/weapon/grenade/flashbang = 4,/obj/item/weapon/grenade/chem_grenade/teargas = 4,/obj/item/device/flash = 5,
-					/obj/item/weapon/reagent_containers/food/snacks/donut/normal = 12,/obj/item/weapon/storage/box/evidence = 6)
-	contraband = list(/obj/item/clothing/glasses/sunglasses = 2,/obj/item/weapon/storage/box/donut = 2)
+	products = list(/obj/item/weapon/handcuffs = 8,
+					/obj/item/weapon/grenade/flashbang = 8,
+					/obj/item/weapon/grenade/chem_grenade/teargas = 8,
+					/obj/item/device/flash = 8,
+					/obj/item/weapon/reagent_containers/spray/pepper = 8,
+					/obj/item/ammo_magazine/mc9mm/rubber = 8,
+					/obj/item/ammo_magazine/smg9mm/rubber = 4,
+					/obj/item/ammo_magazine/sl44/rubber = 4,
+					/obj/item/ammo_magazine/cl44/rubber = 4,
+					/obj/item/device/hailer = 8,
+					/obj/item/taperoll/police = 8,
+					/obj/item/weapon/storage/box/evidence = 2)
+	contraband = list(/obj/item/clothing/glasses/sunglasses = 2,/obj/item/weapon/reagent_containers/food/snacks/donut/normal = 12)
 	auto_price = FALSE
 
 /obj/machinery/vending/hydronutrients
@@ -1317,7 +1317,7 @@
 /obj/machinery/vending/printomat
 	name = "Asters Guild Print-o-Mat"
 	desc = "Everything you can imagine (not really) on a disc! Print your own gun TODAY."
-	product_slogans = "Print your own gun TODAY!; The future is NOW!; Can't stop the industrial revolution!"
+	product_slogans = "Print your own gun TODAY!;The future is NOW!;Can't stop the industrial revolution!"
 	product_ads = "Almost free!;Print it yourself!;Don't copy that floppy!"
 	icon_state = "discomat"
 	products = list(/obj/item/weapon/disk/autolathe_disk/blank = 20, /obj/item/weapon/disk/autolathe_disk/basic = 10,

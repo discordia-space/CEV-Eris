@@ -44,11 +44,11 @@
 	gloves = /obj/item/clothing/gloves/stungloves
 	l_pocket = /obj/item/weapon/flame/lighter/zippo
 	shoes = /obj/item/clothing/shoes/reinforced
-	belt = /obj/item/weapon/gun/projectile/revolver/consul
+	belt = /obj/item/weapon/gun/energy/gun/martin
 	r_hand = /obj/item/weapon/storage/briefcase/crimekit
 	id_type = /obj/item/weapon/card/id/det
 	pda_type = /obj/item/modular_computer/pda/forensics
-	backpack_contents = list(/obj/item/weapon/handcuffs = 1, /obj/item/ammo_magazine/sl44/rubber = 2, /obj/item/device/lighting/toggleable/flashlight/seclite = 1, /obj/item/weapon/cell/small/high = 1, /obj/random/ironhammer_sidearm = 1, /obj/item/weapon/storage/box/evidence = 1)
+	backpack_contents = list(/obj/item/weapon/handcuffs = 1, /obj/item/ammo_magazine/sl44/rubber = 2, /obj/item/device/lighting/toggleable/flashlight/seclite = 1, /obj/item/weapon/cell/small/high = 2, /obj/item/weapon/storage/box/evidence = 1)
 
 /decl/hierarchy/outfit/job/security/detective/New()
 	..()
@@ -60,9 +60,9 @@
 	uniform = /obj/item/clothing/under/rank/medspec
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/medspec
 	pda_type = /obj/item/modular_computer/pda/forensics
-	belt = /obj/item/weapon/gun/projectile/olivaw
+	belt = /obj/item/weapon/storage/belt/medical
 	l_hand = /obj/item/weapon/storage/briefcase/crimekit
-	backpack_contents = list(/obj/item/ammo_magazine/cl32/rubber = 2, /obj/item/weapon/storage/box/evidence = 1)
+	backpack_contents = list(/obj/item/weapon/storage/box/evidence = 1, /obj/item/weapon/gun/energy/gun/martin = 1, /obj/item/weapon/cell/small/high = 1)
 
 
 /decl/hierarchy/outfit/job/security/ihoper
