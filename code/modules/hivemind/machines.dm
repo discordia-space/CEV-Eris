@@ -64,10 +64,7 @@
 
 /obj/machinery/hivemind_machine/state(var/msg)
 	. = ..()
-	playsound(src, pick('sound/machines/robots/robot_talk_heavy1.ogg',
-						'sound/machines/robots/robot_talk_heavy2.ogg',
-						'sound/machines/robots/robot_talk_heavy3.ogg',
-						'sound/machines/robots/robot_talk_heavy4.ogg'), 50, 1)
+	playsound(src, "robot_talk_heavy", 50, 1)
 
 
 
