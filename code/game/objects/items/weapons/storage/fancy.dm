@@ -206,6 +206,7 @@
 	for(var/i = 1 to storage_slots)
 		new /obj/item/clothing/mask/smokable/cigarette/cigar(src)
 	create_reagents(15 * storage_slots)
+	update_icon()
 
 /obj/item/weapon/storage/fancy/cigar/update_icon()
 	icon_state = "[initial(icon_state)][contents.len]"

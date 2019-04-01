@@ -259,7 +259,7 @@
 		if (3)
 			take_damage(1)
 
-/obj/item/organ/proc/removed(var/mob/living/user)
+/obj/item/organ/proc/removed(mob/living/user)
 
 	if(!istype(owner))
 		return
@@ -272,7 +272,7 @@
 	var/obj/item/organ/external/affected = owner.get_organ(parent_organ)
 	if(affected) affected.internal_organs -= src
 
-	loc = get_turf(owner)
+	forceMove(get_turf(owner))
 	START_PROCESSING(SSobj, src)
 	rejecting = null
 	var/datum/reagent/blood/organ_blood = locate(/datum/reagent/blood) in reagents.reagent_list
