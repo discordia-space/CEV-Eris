@@ -75,6 +75,11 @@
 
 #define isCrowbar(A) istype(A, /obj/item/weapon/tool/crowbar)
 
+// Overlays
+// (placeholders for if/when TG overlays system is ported)
+#define cut_overlays(...)			overlays.Cut()
+
+
 #define sequential_id(key) uniqueness_repository.Generate(/datum/uniqueness_generator/id_sequential, key)
 
 #define random_id(key,min_id,max_id) uniqueness_repository.Generate(/datum/uniqueness_generator/id_random, key, min_id, max_id)
@@ -135,6 +140,9 @@
 #define SANITIZE_LIST(L) ( islist(L) ? L : list() )
 
 
+#define CLAMP(CLVALUE,CLMIN,CLMAX) ( max( (CLMIN), min((CLVALUE), (CLMAX)) ) )
+
+
 #define sound_to(target, sound)                             target << sound
 #define to_chat(target, message)                            target << message
 #define to_world(message)                                   world << message
@@ -173,4 +181,3 @@
 // Insert an object A into a sorted list using cmp_proc (/code/_helpers/cmp.dm) for comparison.
 #define ADD_SORTED(list, A, cmp_proc) if(!list.len) {list.Add(A)} else {list.Insert(FindElementIndex(A, list, cmp_proc), A)}
 
-#define FLAGS_EQUALS(flag, flags) ((flag & (flags)) == (flags))

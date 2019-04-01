@@ -1,90 +1,79 @@
-
-
 /obj/structure/reagent_dispensers
-	name = "Dispenser"
+	name = "dispenser"
 	desc = "..."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "watertank"
-	density = 1
-	anchored = 0
+	density = TRUE
+	anchored = FALSE
+	reagent_flags = DRAINABLE | AMOUNT_VISIBLE
 	var/volume = 1500
 	var/starting_reagent = null
 	var/amount_per_transfer_from_this = 10
 	var/possible_transfer_amounts = list(10,25,50,100)
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
-		return
+/obj/structure/reagent_dispensers/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(W.is_refillable())
+		return 0 //so we can refill them via their afterattack.
+	else
+		return ..()
 
-	New()
-		create_reagents(volume)
+/obj/structure/reagent_dispensers/New()
+	create_reagents(volume)
 
-		if (starting_reagent)
-			reagents.add_reagent(starting_reagent, volume)
-		if (!possible_transfer_amounts)
-			src.verbs -= /obj/structure/reagent_dispensers/verb/set_APTFT
-		..()
+	if (starting_reagent)
+		reagents.add_reagent(starting_reagent, volume)
+	if (!possible_transfer_amounts)
+		src.verbs -= /obj/structure/reagent_dispensers/verb/set_APTFT
+	..()
 
-	examine(mob/user)
-		if(!..(user, 2))
+/obj/structure/reagent_dispensers/verb/set_APTFT() //set amount_per_transfer_from_this
+	set name = "Set transfer amount"
+	set category = "Object"
+	set src in view(1)
+	var/N = input("Amount per transfer from this:","[src]") as null|anything in possible_transfer_amounts
+	if (N)
+		amount_per_transfer_from_this = N
+
+/obj/structure/reagent_dispensers/proc/explode()
+	visible_message(SPAN_DANGER("\The [src] ruptures!"))
+	chem_splash(loc, 5, list(reagents))
+	qdel(src)
+
+/obj/structure/reagent_dispensers/ex_act(severity)
+	switch(severity)
+		if(1)
+			explode()
 			return
-		user << "\blue It contains:"
-		if(reagents && reagents.reagent_list.len)
-			for(var/datum/reagent/R in reagents.reagent_list)
-				user << "\blue [R.volume] units of [R.name]"
-		else
-			user << "\blue Nothing."
-
-	verb/set_APTFT() //set amount_per_transfer_from_this
-		set name = "Set transfer amount"
-		set category = "Object"
-		set src in view(1)
-		var/N = input("Amount per transfer from this:","[src]") as null|anything in possible_transfer_amounts
-		if (N)
-			amount_per_transfer_from_this = N
-
-	ex_act(severity)
-		switch(severity)
-			if(1.0)
-				qdel(src)
+		if(2)
+			if (prob(50))
+				explode()
 				return
-			if(2.0)
-				if (prob(50))
-					new /obj/effect/effect/water(src.loc)
-					qdel(src)
-					return
-			if(3.0)
-				if (prob(5))
-					new /obj/effect/effect/water(src.loc)
-					qdel(src)
-					return
-			else
-		return
-
-
-
+		if(3)
+			if (prob(5))
+				explode()
+				return
 
 
 
 
 //Dispensers
 /obj/structure/reagent_dispensers/watertank
-	name = "watertank"
-	desc = "A watertank. It is used to store high amounts of water."
-	icon = 'icons/obj/objects.dmi'
+	name = "water tank"
+	desc = "A water tank. It is used to store high amounts of water."
 	icon_state = "watertank"
 	amount_per_transfer_from_this = 10
 	volume = 1500
 	starting_reagent = "water"
 
 /obj/structure/reagent_dispensers/watertank/huge
-	name = "high-volume watertank"
-	desc = "A high-volume watertank. It is used to store HUGE amounts of water."
+	name = "high-capacity water tank"
+	desc = "A high-capacity water tank. It is used to store HUGE amounts of water."
 	icon_state = "hvwatertank"
 	volume = 3000
 
 /obj/structure/reagent_dispensers/fueltank
-	name = "fueltank"
-	desc = "A fueltank. It is used to store high amounts of fuel."
+	name = "fuel tank"
+	desc = "A tank full of industrial welding fuel. Do not consume."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "weldtank"
 	amount_per_transfer_from_this = 10
@@ -94,18 +83,18 @@
 	starting_reagent = "fuel"
 
 /obj/structure/reagent_dispensers/fueltank/huge
-	name = "high-volume fueltank"
-	desc = "A high-volume fueltank. It is used to store HUGE amounts of fuel."
+	name = "high-capacity fuel tank"
+	desc = "A high-capacity tank full of industrial welding fuel. Do not consume."
 	icon_state = "hvweldtank"
 	volume = 1000
 
 /obj/structure/reagent_dispensers/fueltank/examine(mob/user)
 	if(!..(user, 2))
 		return
-	if (modded)
-		user << "\red Fuel faucet is wrenched open, leaking the fuel!"
+	if(modded)
+		to_chat(user, SPAN_WARNING("Fuel faucet is wrenched open, leaking the fuel!"))
 	if(rig)
-		user << SPAN_NOTICE("There is some kind of device rigged to the tank.")
+		to_chat(user, SPAN_NOTICE("There is some kind of device rigged to the tank."))
 
 /obj/structure/reagent_dispensers/fueltank/attack_hand()
 	if (rig)
@@ -129,11 +118,11 @@
 				leak_fuel(amount_per_transfer_from_this)
 	if (istype(I,/obj/item/device/assembly_holder))
 		if (rig)
-			user << SPAN_WARNING("There is another device in the way.")
+			to_chat(user, SPAN_WARNING("There is another device in the way."))
 			return ..()
-		user.visible_message("\The [user] begins rigging [I] to \the [src].", "You begin rigging [I] to \the [src]")
+		user.visible_message(SPAN_DANGER("\The [user] begins rigging [I] to \the [src]."), SPAN_WARNING("You begin rigging [I] to \the [src]"))
 		if(do_after(user, 20, src))
-			user.visible_message("<span class='notice'>The [user] rigs [I] to \the [src].", "\blue  You rig [I] to \the [src].</span>")
+			user.visible_message(SPAN_DANGER("\The [user] rigs [I] to \the [src]."), SPAN_WARNING("You rig [I] to \the [src].</span>"))
 
 			var/obj/item/device/assembly_holder/H = I
 			if (istype(H.left_assembly,/obj/item/device/assembly/igniter) || istype(H.right_assembly,/obj/item/device/assembly/igniter))
@@ -168,7 +157,7 @@
 	if(modded)
 		explode()
 
-/obj/structure/reagent_dispensers/fueltank/proc/explode()
+/obj/structure/reagent_dispensers/fueltank/explode()
 	if (reagents.total_volume > 500)
 		explosion(src.loc,1,2,4)
 	else if (reagents.total_volume > 100)
@@ -198,9 +187,8 @@
 	new /obj/effect/decal/cleanable/liquid_fuel(src.loc, amount,1)
 
 /obj/structure/reagent_dispensers/peppertank
-	name = "Pepper Spray Refiller"
-	desc = "Refill pepper spray canisters."
-	icon = 'icons/obj/objects.dmi'
+	name = "pepper spray refiller"
+	desc = "Contains condensed capsaicin for use in law \"enforcement.\""
 	icon_state = "peppertank"
 	anchored = 1
 	density = 0
@@ -210,7 +198,7 @@
 
 
 /obj/structure/reagent_dispensers/water_cooler
-	name = "Water-Cooler"
+	name = "water cooler"
 	desc = "A machine that dispenses water to drink."
 	amount_per_transfer_from_this = 5
 	icon = 'icons/obj/vending.dmi'
@@ -231,7 +219,7 @@
 
 			if(do_after(user, 20, src))
 				if(!src) return
-				user << "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>"
+				to_chat(user, SPAN_NOTICE("You [anchored? "un" : ""]secured \the [src]!"))
 				anchored = !anchored
 			return
 	else
@@ -240,7 +228,6 @@
 /obj/structure/reagent_dispensers/beerkeg
 	name = "beer keg"
 	desc = "A beer keg"
-	icon = 'icons/obj/objects.dmi'
 	icon_state = "beertankTEMP"
 	amount_per_transfer_from_this = 10
 	volume = 1000
@@ -249,15 +236,13 @@
 /obj/structure/reagent_dispensers/cahorsbarrel
 	name = "NeoTheology Cahors barrel"
 	desc = "Barrel a day - keeps liver away."
-	icon = 'icons/obj/objects.dmi'
 	icon_state = "barrel"
 	volume = 1000
 	starting_reagent = "ntcahors"
 
 /obj/structure/reagent_dispensers/virusfood
-	name = "Virus Food Dispenser"
+	name = "virus food dispenser"
 	desc = "A dispenser of virus food."
-	icon = 'icons/obj/objects.dmi'
 	icon_state = "virusfoodtank"
 	amount_per_transfer_from_this = 10
 	anchored = 1
@@ -266,9 +251,8 @@
 	starting_reagent = "virusfood"
 
 /obj/structure/reagent_dispensers/acid
-	name = "Sulphuric Acid Dispenser"
+	name = "sulphuric acid dispenser"
 	desc = "A dispenser of acid for industrial processes."
-	icon = 'icons/obj/objects.dmi'
 	icon_state = "acidtank"
 	amount_per_transfer_from_this = 10
 	anchored = 1

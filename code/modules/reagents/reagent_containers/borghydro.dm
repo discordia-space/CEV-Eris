@@ -120,7 +120,7 @@
 	if(!proximity)
 		return
 
-	if(!target.is_open_container() || !target.reagents)
+	if(!target.is_refillable())
 		return
 
 	if(!reagent_volumes[reagent_ids[mode]])
