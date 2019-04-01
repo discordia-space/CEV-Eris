@@ -12,10 +12,10 @@
 
 //Low-caliber pistols and SMGs
 #define ARMOR_PENETRATION_LOW_CALIBER_PISTOL 5
-#define DAMAGE_10MM 21.5
+#define DAMAGE_10MM 23
 #define DAMAGE_9MM 19
 #define DAMAGE_32 17
-#define DAMAGE_45 22
+#define DAMAGE_45 21.5
 
 //Carbines and rifles
 #define DAMAGE_10X24 30
