@@ -17,9 +17,15 @@
 		FULL_AUTO_600)
 
 /obj/item/weapon/gun/projectile/automatic/IH_smg/update_icon()
-	..()
-	var/string = initial(icon_state)
-	if(ammo_magazine)
-		string += "-full"
-	icon_state = string
-	item_state = string
+	var/iconstring = initial(icon_state)
+	var/itemstring = initial(item_state)
+
+	if (ammo_magazine)
+		iconstring += "_mag"
+
+	if (silenced)
+		iconstring += "_s"
+		itemstring += "_s"
+
+	icon_state = iconstring
+	item_state = itemstring
