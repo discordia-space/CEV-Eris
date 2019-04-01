@@ -182,7 +182,7 @@
 
 /obj/item/weapon/storage/pouch/pistol_holster
 	name = "pistol holster"
-	desc = "Can hold a pistol in."
+	desc = "Can hold a handgun in."
 	icon_state = "pistol_holster"
 	item_state = "pistol_holster"
 
