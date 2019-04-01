@@ -27,7 +27,11 @@
 				/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 2,\
 				/obj/item/weapon/gun/projectile/colt = 4,\
 				/obj/item/weapon/gun/projectile/revolver/consul = 4,\
-				/obj/item/weapon/gun/projectile/revolver = 4))
+				/obj/item/weapon/gun/projectile/revolver = 4,\
+				/obj/item/weapon/gun/projectile/automatic/IH_heavyrifle = 1,\
+				/obj/item/weapon/gun/projectile/IH_sidearm = 2,\
+				/obj/item/weapon/gun/projectile/automatic/IH_machinepistol = 2,\
+				/obj/item/weapon/gun/projectile/automatic/IH_smg = 1))
 
 /obj/random/gun_normal/low_chance
 	name = "low chance random normal gun"
@@ -49,10 +53,8 @@
 	spawn_nothing_percentage = 80
 
 /obj/random/gun_shotgun/item_to_spawn()
-	return pickweight(list(
-				/obj/item/weapon/gun/projectile/shotgun/pump = 2,
-				/obj/item/weapon/gun/projectile/shotgun/bull = 2,
-				/obj/item/weapon/gun/projectile/shotgun/doublebarrel = 2,
-				/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn = 2,
-				/obj/item/weapon/gun/projectile/shotgun/pump/combat = 1,
-				/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 1))
+	return pickweight(list(/obj/item/weapon/gun/projectile/shotgun/pump = 2,\
+				/obj/item/weapon/gun/projectile/shotgun/bull = 2,\
+				/obj/item/weapon/gun/projectile/shotgun/doublebarrel = 2,\
+				/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn = 2,\
+				/obj/item/weapon/gun/projectile/shotgun/pump/combat = 1,))

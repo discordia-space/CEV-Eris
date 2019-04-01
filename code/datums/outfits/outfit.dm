@@ -88,6 +88,7 @@ var/list/outfits_decls_by_type_
 	for(var/path in backpack_contents)
 		var/number = backpack_contents[path]
 		for(var/i=0,i<number,i++)
+			//spawn_in_backpack(H, path)
 			H.equip_to_slot_or_store_or_drop(new path(H), slot_in_backpack)
 
 	if(!(OUTFIT_ADJUSTMENT_SKIP_POST_EQUIP & equip_adjustments))
