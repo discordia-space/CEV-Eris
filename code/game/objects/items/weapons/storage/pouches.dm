@@ -182,7 +182,7 @@
 
 /obj/item/weapon/storage/pouch/pistol_holster
 	name = "pistol holster"
-	desc = "Can hold a pistol in."
+	desc = "Can hold a handgun in."
 	icon_state = "pistol_holster"
 	item_state = "pistol_holster"
 
@@ -206,7 +206,9 @@
 		/obj/item/weapon/gun/energy/chameleon,
 		/obj/item/weapon/gun/energy/captain,
 		/obj/item/weapon/gun/energy/stunrevolver,
-		/obj/item/weapon/gun/projectile/revolver)
+		/obj/item/weapon/gun/projectile/revolver,
+		/obj/item/weapon/gun/projectile/automatic/IH_machinepistol,
+		/obj/item/weapon/gun/projectile/IH_sidearm)
 
 	sliding_behavior = TRUE
 
