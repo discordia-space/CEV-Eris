@@ -10,6 +10,7 @@
 	ammo_type = "/obj/item/ammo_casing/c9mmr"
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/mc9mmt/rubber
+	zoom_factor = 2.0
 
 /obj/item/weapon/gun/projectile/automatic/wt550/update_icon()
 	..()

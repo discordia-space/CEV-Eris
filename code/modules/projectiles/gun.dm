@@ -76,6 +76,7 @@
 	var/list/dispersion = list(0)
 	var/requires_two_hands
 	var/wielded_icon = "gun_wielded"
+	var/zoom_factor = 0 //How much to scope in when using weapon
 
 	var/suppress_delay_warning = FALSE
 
@@ -424,6 +425,9 @@
 /obj/item/weapon/gun/proc/toggle_scope(var/zoom_amount=2.0)
 	//looking through a scope limits your periphereal vision
 	//still, increase the view size by a tiny amount so that sniping isn't too restricted to NSEW
+	if(!zoom_factor)
+		zoom = FALSE
+		return
 	var/zoom_offset = round(world.view * zoom_amount)
 	var/view_size = round(world.view + zoom_amount)
 
@@ -461,10 +465,26 @@
 	return new_mode
 
 /obj/item/weapon/gun/attack_self(mob/user)
-	var/datum/firemode/new_mode = switch_firemodes(user)
-	if(new_mode)
-		playsound(src.loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
-		user << SPAN_NOTICE("\The [src] is now set to [new_mode.name].")
+	if(zoom)
+		toggle_scope(zoom_factor)
+		return
+	var/list/options = list("firemode", "scope", "safety")
+	for(var/option in options)
+		options[option] = image(icon = 'icons/obj/gun_actions.dmi', icon_state = "[option]")
+	var/selected
+	selected = show_radial_menu(user, src, options, radius = 42)
+	if(!selected)
+		return
+	switch(selected)
+		if("firemode")
+			var/datum/firemode/new_mode = switch_firemodes(user)
+			if(new_mode)
+				playsound(src.loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
+				user << SPAN_NOTICE("\The [src] is now set to [new_mode.name].")
+		if("scope")
+			toggle_scope(zoom_factor)
+		if("safety")
+			check_safety(user)
 
 /obj/item/weapon/gun/proc/check_safety(mob/user)
 	if(!restrict_safety)
