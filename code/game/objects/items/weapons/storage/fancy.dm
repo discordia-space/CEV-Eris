@@ -136,14 +136,13 @@
 	storage_slots = 6
 	can_hold = list(/obj/item/clothing/mask/smokable/cigarette, /obj/item/weapon/flame/lighter)
 	icon_type = "cigarette"
+	reagent_flags = REFILLABLE | NO_REACT
 
 /obj/item/weapon/storage/fancy/cigarettes/New()
 	..()
-	flags |= NOREACT
 	for(var/i = 1 to storage_slots)
 		new /obj/item/clothing/mask/smokable/cigarette(src)
 	create_reagents(15 * storage_slots)//so people can inject cigarettes without opening a packet, now with being able to inject the whole one
-	flags |= OPENCONTAINER
 
 /obj/item/weapon/storage/fancy/cigarettes/update_icon()
 	icon_state = "[initial(icon_state)][contents.len]"
@@ -200,10 +199,10 @@
 	storage_slots = 7
 	can_hold = list(/obj/item/clothing/mask/smokable/cigarette/cigar)
 	icon_type = "cigar"
+	reagent_flags = REFILLABLE | NO_REACT
 
 /obj/item/weapon/storage/fancy/cigar/New()
 	..()
-	flags |= NOREACT
 	for(var/i = 1 to storage_slots)
 		new /obj/item/clothing/mask/smokable/cigarette/cigar(src)
 	create_reagents(15 * storage_slots)

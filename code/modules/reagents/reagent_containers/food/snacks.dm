@@ -96,9 +96,9 @@
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			if(!do_mob(user, M)) return
 
-			M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been fed [src.name] by [user.name] ([user.ckey]) Reagents: [reagentlist(src)]</font>")
-			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Fed [src.name] by [M.name] ([M.ckey]) Reagents: [reagentlist(src)]</font>")
-			msg_admin_attack("[key_name(user)] fed [key_name(M)] with [src.name] Reagents: [reagentlist(src)] (INTENT: [uppertext(user.a_intent)])")
+			M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been fed [src.name] by [user.name] ([user.ckey]) Reagents: [reagents.log_list()]</font>")
+			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Fed [src.name] by [M.name] ([M.ckey]) Reagents: [reagents.log_list()]</font>")
+			msg_admin_attack("[key_name(user)] fed [key_name(M)] with [src.name] Reagents: [reagents.log_list()] (INTENT: [uppertext(user.a_intent)])")
 
 			user.visible_message(SPAN_DANGER("[user] feeds [M] [src]."))
 
@@ -519,7 +519,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/egg/afterattack(obj/O as obj, mob/user as mob, proximity)
 	if(istype(O,/obj/machinery/microwave))
 		return ..()
-	if(!(proximity && O.is_open_container()))
+	if(!proximity || !O.is_refillable())
 		return
 	user << "You crack \the [src] into \the [O]."
 	reagents.trans_to(O, reagents.total_volume)
@@ -543,7 +543,7 @@
 		if(!(clr in list("blue","green","mime","orange","purple","rainbow","red","yellow")))
 			usr << SPAN_NOTICE("The egg refuses to take on this color!")
 			return
-		usr << SPAN_NOTICE("You color \the [src] [clr]")
+		user << SPAN_NOTICE("You color \the [src] [clr]")
 		icon_state = "egg-[clr]"
 	else
 		..()
@@ -1414,13 +1414,13 @@
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube
 	name = "monkey cube"
 	desc = "Just add water!"
-	flags = OPENCONTAINER
+	reagent_flags = REFILLABLE
 	icon_state = "monkeycube"
 	bitesize = 12
 	filling_color = "#ADAC7F"
 	center_of_mass = list("x"=16, "y"=14)
 
-	var/wrapped = 0
+	var/wrapped = FALSE
 	var/monkey_type = "Monkey"
 	preloaded = list("protein" = 10)
 
@@ -1444,8 +1444,8 @@
 	icon_state = "monkeycube"
 	desc = "Just add water!"
 	user << "You unwrap the cube."
-	wrapped = 0
-	flags |= OPENCONTAINER
+	wrapped = FALSE
+	reagent_flags |= REFILLABLE
 
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/on_reagent_change()
 	if(reagents.has_reagent("water"))
@@ -1454,8 +1454,8 @@
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped
 	desc = "Still wrapped in some paper."
 	icon_state = "monkeycubewrap"
-	flags = 0
-	wrapped = 1
+	reagent_flags = NONE
+	wrapped = TRUE
 
 /obj/item/weapon/reagent_containers/food/snacks/spellburger
 	name = "Spell Burger"

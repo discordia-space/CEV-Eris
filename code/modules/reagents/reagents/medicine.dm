@@ -302,22 +302,6 @@
 		var/mob/living/carbon/human/H = M
 		H.update_mutations()
 
-/datum/reagent/hyperzine
-	name = "Hyperzine"
-	id = "hyperzine"
-	description = "Hyperzine is a highly effective, long lasting, muscle stimulant."
-	taste_description = "acid"
-	reagent_state = LIQUID
-	color = "#FF3300"
-	metabolism = REM * 0.15
-	overdose = REAGENTS_OVERDOSE * 0.5
-
-/datum/reagent/hyperzine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(prob(5))
-		M.emote(pick("twitch", "blink_r", "shiver"))
-	M.add_chemical_effect(CE_SPEEDBOOST, 1)
-	M.add_chemical_effect(CE_PULSE, 2)
-
 /datum/reagent/ethylredoxrazine
 	name = "Ethylredoxrazine"
 	id = "ethylredoxrazine"

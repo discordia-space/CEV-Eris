@@ -20,11 +20,8 @@
 	var/used_now = FALSE //For tools system, check for it should forbid to work on atom for more than one user at time
 
 	///Chemistry.
+	var/reagent_flags = NONE
 	var/datum/reagents/reagents = null
-
-	//var/chem_is_open_container = 0
-	// replaced by OPENCONTAINER flags and atom/proc/is_open_container()
-	///Chemistry.
 
 	//Detective Work, used for the duplicate data points kept in the scanners
 	var/list/original_atom
@@ -105,20 +102,22 @@
 /atom/proc/Bumped(AM as mob|obj)
 	return
 
-// Convenience proc to see if a container is open for chemistry handling
-// returns true if open
-// false if closed
+// Convenience procs to see if a container is open for chemistry handling
 /atom/proc/is_open_container()
-	return flags & OPENCONTAINER
+	return is_refillable() && is_drainable()
 
-/*//Convenience proc to see whether a container can be accessed in a certain way.
+/atom/proc/is_injectable(allowmobs = TRUE)
+	return reagents && (reagent_flags & (INJECTABLE | REFILLABLE))
 
-	proc/can_subract_container()
-		return flags & EXTRACT_CONTAINER
+/atom/proc/is_drawable(allowmobs = TRUE)
+	return reagents && (reagent_flags & (DRAWABLE | DRAINABLE))
 
-	proc/can_add_container()
-		return flags & INSERT_CONTAINER
-*/
+/atom/proc/is_refillable()
+	return reagents && (reagent_flags & REFILLABLE)
+
+/atom/proc/is_drainable()
+	return reagents && (reagent_flags & DRAINABLE)
+
 
 /atom/proc/CheckExit()
 	return TRUE
@@ -263,7 +262,33 @@ its easier to just keep the beam vertical.
 	if(desc)
 		user << desc
 
-	return distance == -1 || (get_dist(src, user) <= distance)
+	if(reagents)
+		if(reagent_flags & TRANSPARENT)
+			to_chat(user, "<span class='notice'>It contains:</span>")
+			if(reagents.reagent_list.len)
+				for(var/I in reagents.reagent_list)
+					var/datum/reagent/R = I
+					to_chat(user, "<span class='notice'>[R.volume] units of [R.name]</span>")
+
+				// TODO: reagent vision googles? code below:
+				/*
+				if(user.can_see_reagents()) //Show each individual reagent
+					for(var/I in reagents.reagent_list)
+						var/datum/reagent/R = I
+						to_chat(user, "<span class='notice'>[R.volume] units of [R.name]</span>")
+				else //Otherwise, just show the total volume
+					if(reagents && reagents.reagent_list.len)
+						to_chat(user, "<span class='notice'>[reagents.total_volume] units of various reagents.</span>")
+				*/
+			else
+				to_chat(user, "<span class='notice'>Nothing.</span>	")
+		else if(reagent_flags & AMOUNT_VISIBLE)
+			if(reagents.total_volume)
+				to_chat(user, "<span class='notice'>It has [reagents.total_volume] unit\s left.</span>")
+			else
+				to_chat(user, "<span class='danger'>It's empty.</span>")
+
+	return distance == -1 || (get_dist(src, user) <= distance) || isobserver(user)
 
 // called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
 // see code/modules/mob/mob_movement.dm for more.
