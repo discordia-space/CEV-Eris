@@ -74,6 +74,7 @@ var/game_id = null
 		// dumb and hardcoded but I don't care~
 		config.server_name += " #[(world.port % 1000) / 100]"
 
+	TgsNew(minimum_required_security_level = TGS_SECURITY_TRUSTED)
 	callHook("startup")
 	//Emergency Fix
 	load_mods()
@@ -116,6 +117,8 @@ var/world_topic_spam_protect_ip = "0.0.0.0"
 var/world_topic_spam_protect_time = world.timeofday
 
 /world/Topic(T, addr, master, key)
+	TGS_TOPIC	//redirect to server tools if necessary
+
 	var/list/topic_handlers = WorldTopicHandlers()
 
 	var/list/input = params2list(T)
@@ -139,6 +142,8 @@ var/world_topic_spam_protect_time = world.timeofday
 	/*spawn(0)
 		world << sound(pick('sound/AI/newroundsexy.ogg','sound/misc/apcdestroyed.ogg','sound/misc/bangindonk.ogg')) // random end sounds!! - LastyBatsy
 		*/
+
+	TgsReboot()
 
 	for(var/client/C in clients)
 		if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite

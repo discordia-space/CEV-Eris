@@ -200,6 +200,7 @@
 			log_world("Failed to update players table for user with id [src.id]. Error message: [query.ErrorMsg()].")
 	directory -= ckey
 	clients -= src
+	--global.client_count
 	return ..()
 /*
 /client/Destroy()
@@ -413,3 +414,7 @@
 /client/proc/recreate_UI()
 	destroy_UI()
 	create_UI(mob.type)
+
+/client/New()
+    src.tooltips = new /datum/tooltip(src)
+    ++global.client_count

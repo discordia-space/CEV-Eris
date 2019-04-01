@@ -13,6 +13,8 @@ var/list/admin_datums = list()
 	var/datum/feed_channel/admincaster_feed_channel = new /datum/feed_channel
 	var/admincaster_signature	//What you'll sign the newsfeeds as
 
+	var/href_token
+
 /datum/admins/proc/marked_datum()
 	if(marked_datum_weak)
 		return marked_datum_weak.resolve()
@@ -26,6 +28,7 @@ var/list/admin_datums = list()
 	rank = initial_rank
 	rights = initial_rights
 	admin_datums[ckey] = src
+	href_token = GenerateToken()
 
 /datum/admins/proc/associate(client/C)
 	if(istype(C))
