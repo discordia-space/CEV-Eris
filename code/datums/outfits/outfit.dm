@@ -88,8 +88,8 @@ var/list/outfits_decls_by_type_
 	for(var/path in backpack_contents)
 		var/number = backpack_contents[path]
 		for(var/i=0,i<number,i++)
-			spawn_in_backpack(H, path)
-			//H.equip_to_slot_or_store_or_drop(new path(H), slot_in_backpack)
+			//spawn_in_backpack(H, path)
+			H.equip_to_slot_or_store_or_drop(new path(H), slot_in_backpack)
 
 	if(!(OUTFIT_ADJUSTMENT_SKIP_POST_EQUIP & equip_adjustments))
 		post_equip(H)
@@ -190,21 +190,3 @@ var/list/outfits_decls_by_type_
 
 /decl/hierarchy/outfit/dd_SortValue()
 	return name
-
-//Some wrapper code to allow outfits to spawn random objects
-/proc/spawn_in_backpack(var/mob/M, var/newtype)
-	world << "Attempting backpack spawn [M] [newtype]"
-	var/list/atoms = list()
-	if (ispath(newtype, /obj/random))
-		var/obj/randomcatcher/R = new
-		//We make a randomcatcher and use it to get the results of the random thing
-		atoms = R.get_items(newtype)
-	else
-		atoms += new newtype
-
-	for (var/atom/movable/a in atoms)
-		world << "Moving and storing [a]"
-		a.forceMove(M.loc)
-		M.equip_to_slot_or_store_or_drop(a, slot_in_backpack)
-
-
