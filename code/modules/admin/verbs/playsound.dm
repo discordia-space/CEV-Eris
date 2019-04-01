@@ -79,6 +79,6 @@ ADMIN_VERB_ADD(/client/proc/stop_sounds_admin, R_ADMIN, FALSE)
 
 /client/verb/stop_client_sounds()
 	set name = "Stop Sounds"
-	set category = "Preferences"
+	set category = "OOC"
 	set desc = "Stop Current Sounds"
 	sound_to(src, sound(null, repeat = 0, wait = 0, volume = 100))
