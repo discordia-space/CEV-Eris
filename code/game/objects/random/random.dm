@@ -69,3 +69,10 @@
 		. = pick(contents)
 	else
 		return null
+
+/obj/randomcatcher/proc/get_items(type)
+	new type(src)
+	if (contents.len)
+		return contents
+	else
+		return null

@@ -1243,10 +1243,15 @@ var/list/rank_prefix = list(\
 	. = 1
 
 	if(!target_zone)
-		if(!user)
-			target_zone = pick(BP_ALL_LIMBS + BP_CHEST + BP_CHEST)
-		else
+		if(user)
 			target_zone = user.targeted_organ
+		else
+			// Pick an existing non-robotic limb, if possible.
+			for(target_zone in BP_ALL_LIMBS)
+				var/obj/item/organ/external/affecting = get_organ(target_zone)
+				if(affecting && affecting.robotic < ORGAN_ROBOT)
+					break
+
 
 	var/obj/item/organ/external/affecting = get_organ(target_zone)
 	var/fail_msg
@@ -1267,7 +1272,7 @@ var/list/rank_prefix = list(\
 	if(!. && error_msg && user)
 		if(!fail_msg)
 			fail_msg = "There is no exposed flesh or thin material [target_zone == BP_HEAD ? "on their head" : "on their body"] to inject into."
-		user << "<span class='alert'>[fail_msg]</span>"
+		to_chat(user, SPAN_WARNING(fail_msg))
 
 /mob/living/carbon/human/print_flavor_text(var/shrink = 1)
 	var/list/equipment = list(src.head,src.wear_mask,src.glasses,src.w_uniform,src.wear_suit,src.gloves,src.shoes)

@@ -1,23 +1,3 @@
-/atom/movable/proc/can_be_injected_by(var/atom/injector)
-	if(!Adjacent(get_turf(injector)))
-		return FALSE
-	if(!reagents)
-		return FALSE
-	if(!reagents.get_free_space())
-		return FALSE
-	return TRUE
-
-/obj/can_be_injected_by(var/atom/injector)
-	return is_open_container() && ..()
-
-/mob/living/can_be_injected_by(var/atom/injector)
-	return ..() && (can_inject(null, 0, BP_CHEST) || can_inject(null, 0, BP_GROIN))
-
-
-
-
-
-
 /obj/item/integrated_circuit/reagent
 	category_text = "Reagent"
 	var/volume = 0
@@ -34,7 +14,7 @@
 	icon_state = "smoke"
 	extended_desc = "This smoke generator creates clouds of smoke on command.  It can also hold liquids inside, which will go \
 	into the smoke clouds when activated."
-	flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER
 	complexity = 20
 	cooldown_per_use = 30 SECONDS
 	inputs = list()
@@ -60,7 +40,7 @@
 	icon_state = "injector"
 	extended_desc = "This autoinjector can push reagents into another container or someone else outside of the machine.  The target \
 	must be adjacent to the machine, and if it is a person, they cannot be wearing thick clothing."
-	flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER
 	complexity = 20
 	cooldown_per_use = 6 SECONDS
 	inputs = list("\<REF\> target", "\<NUM\> injection amount" = 5)
@@ -75,6 +55,18 @@
 	if(isnum(amount))
 		return Clamp(amount, 0, 30)
 
+/obj/item/integrated_circuit/reagent/injector/proc/inject_check(atom/movable/target)
+	if(!target.Adjacent(get_turf(src)))
+		return FALSE
+
+	if(!target.is_injectable(allowmobs = TRUE))
+		return FALSE
+
+	if(!target.reagents.get_free_space())
+		return FALSE
+
+	return TRUE
+
 /obj/item/integrated_circuit/reagent/injector/do_work()
 	set waitfor = 0 // Don't sleep in a proc that is called by a processor without this set, otherwise it'll delay the entire thing
 
@@ -83,18 +75,18 @@
 		return
 	if(!reagents.total_volume) // Empty
 		return
-	if(AM.can_be_injected_by(src))
+	if(inject_check(AM))
 		if(isliving(AM))
 			var/mob/living/L = AM
 			var/turf/T = get_turf(AM)
 			T.visible_message(SPAN_WARNING("[src] is trying to inject [L]!"))
 			sleep(3 SECONDS)
-			if(!L.can_be_injected_by(src))
+			if(!inject_check(L))
 				return
-			var/contained = reagents.get_reagents()
+			var/contained = reagents.log_list()
 			var/trans = reagents.trans_to_mob(L, inject_amount(), CHEM_BLOOD)
 			message_admins("[src] injected \the [L] with [trans]u of [contained].")
-			AM << SPAN_NOTICE("You feel a tiny prick!")
+			to_chat(L, SPAN_NOTICE("You feel a tiny prick!"))
 			visible_message(SPAN_WARNING("[src] injects [L]!"))
 		else
 			reagents.trans_to(AM, inject_amount())
@@ -106,7 +98,7 @@
 	extended_desc = "This is a pump, which will move liquids from the source ref to the target ref.  The third pin determines \
 	how much liquid is moved per pulse, between 0 and 50.  The pump can move reagents to any open container inside the machine, or \
 	outside the machine if it is next to the machine.  Note that this cannot be used on entities."
-	flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER
 	complexity = 8
 	inputs = list("\<REF\> source", "\<REF\> target", "\<NUM\> injection amount" = 10)
 	outputs = list()
@@ -134,7 +126,7 @@
 			return
 		if(ismob(source) || ismob(target))
 			return
-		if(!source.is_open_container() || !target.is_open_container())
+		if(!source.is_drainable() || !target.is_refillable())
 			return
 		if(!target.reagents.get_free_space())
 			return
@@ -147,7 +139,7 @@
 	desc = "Stores liquid inside, and away from electrical components.  Can store up to 60u."
 	icon_state = "reagent_storage"
 	extended_desc = "This is effectively an internal beaker."
-	flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER
 	complexity = 4
 	inputs = list()
 	outputs = list("volume used")
@@ -166,7 +158,7 @@
 	desc = "Stores liquid inside, and away from electrical components.  Can store up to 60u.  This will also suppress reactions."
 	icon_state = "reagent_storage_cryo"
 	extended_desc = "This is effectively an internal cryo beaker."
-	flags = OPENCONTAINER | NOREACT
+	reagent_flags = OPENCONTAINER | NO_REACT
 	complexity = 8
 	spawn_flags = IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_MATERIALS = 3, TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 2)
