@@ -1,5 +1,31 @@
 /obj/item/ammo_magazine/a10mm
 	name = "magazine (10mm)"
+	icon_state = "10mm"
+	origin_tech = list(TECH_COMBAT = 2)
+	mag_type = MAGAZINE
+	caliber = "10mm"
+	matter = list(MATERIAL_STEEL = 2)
+	ammo_type = /obj/item/ammo_casing/a10mm
+	max_ammo = 8
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/a10mm/empty
+	initial_ammo = 0
+
+/obj/item/ammo_magazine/a10mm/rubber
+	name = "magazine (10mm rubber)"
+	icon_state = "10mm_r"
+	ammo_type = /obj/item/ammo_casing/a10mm/rubber
+
+/obj/item/ammo_magazine/a10mm/hv
+	name = "magazine (10mm high-velocity)"
+	icon_state = "10mm_hv"
+	ammo_type = /obj/item/ammo_casing/a10mm/hv
+
+///////////////////////////////////////////////////////////////////////////////////
+
+/obj/item/ammo_magazine/smg10mm
+	name = "smg magazine (10mm)"
 	icon_state = "12mm"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
@@ -9,13 +35,15 @@
 	max_ammo = 20
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/a10mm/empty
+/obj/item/ammo_magazine/smg10mm/empty
 	initial_ammo = 0
 
-/obj/item/ammo_magazine/a10mm/highvelocity
-	name = "magazine (10mm high-velocity)"
+/obj/item/ammo_magazine/smg10mm/hv
+	name = "smg magazine (10mm high-velocity)"
 	icon_state = "12mmh"
 	ammo_type = /obj/item/ammo_casing/a10mm/hv
+
+//////////////////////////////////////////////////////////
 
 /obj/item/ammo_magazine/mc9mm
 	name = "magazine (9mm)"
