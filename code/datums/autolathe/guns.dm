@@ -107,7 +107,7 @@
 	path = /obj/item/weapon/gun/projectile/automatic/IH_machinepistol
 
 /datum/autolathe/recipe/gun/IH_heavyrifle
-	name = "FS Battle Rifle 7.62x39 \"Wintermute\""
+	name = "FS BR 7.62x39 \"Wintermute\""
 	path = /obj/item/weapon/gun/projectile/automatic/IH_heavyrifle
 
 /datum/autolathe/recipe/gun/grenade_launcher
