@@ -95,7 +95,7 @@
 	path = /obj/item/weapon/gun/projectile/heavysniper
 
 /datum/autolathe/recipe/gun/IH_sidearm
-	name = "FS HG 9x19 \"Paco\""
+	name = "FS HG 10mm \"Paco\""
 	path = /obj/item/weapon/gun/projectile/IH_sidearm
 
 /datum/autolathe/recipe/gun/IH_smg
