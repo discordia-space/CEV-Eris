@@ -21,6 +21,7 @@
 //Add skillchecks
 //Rename capsules to platforms, since it's not capsules anymore
 //Add activation/deactivation lithanies
+//Add circuits
 
 
 
@@ -97,4 +98,4 @@
 
 /obj/structure/reagent_dispensers/biomatter/Initialize()
 	. = ..()
-	reagents.add_reagent("biomatter", amount)
+	reagents.add_reagent("biomatter", 300)

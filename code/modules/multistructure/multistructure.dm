@@ -90,6 +90,12 @@
 	return nearest_machine
 
 
+/datum/multistructure/proc/is_operational()
+	for(var/obj/machinery/multistructure/part in elements)
+		if((part.stat & BROKEN) || (part.stat & EMPED) || (part.stat & NOPOWER))
+			return FALSE
+	return TRUE
+
 //#########################################
 
 /obj/machinery/multistructure
