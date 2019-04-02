@@ -22,8 +22,6 @@
 	icon_state = "10mm_hv"
 	ammo_type = /obj/item/ammo_casing/a10mm/hv
 
-///////////////////////////////////////////////////////////////////////////////////
-
 /obj/item/ammo_magazine/smg10mm
 	name = "smg magazine (10mm)"
 	icon_state = "12mm"
@@ -42,8 +40,6 @@
 	name = "smg magazine (10mm high-velocity)"
 	icon_state = "12mmh"
 	ammo_type = /obj/item/ammo_casing/a10mm/hv
-
-//////////////////////////////////////////////////////////
 
 /obj/item/ammo_magazine/mc9mm
 	name = "magazine (9mm)"

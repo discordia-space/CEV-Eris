@@ -1,13 +1,13 @@
 /obj/item/weapon/gun/projectile/IH_sidearm
 	name = "FS HG \"Paco\""
-	desc = "A modern and reliable sidearm for the soldier in the field. Uses 10mm rounds."
+	desc = "A modern and reliable sidearm for the soldier in the field. Commonly issued as a sidearm to Ironhammer members. Uses 10mm rounds."
 	icon_state = "IH_sidearm"
 	item_state = "IH_sidearm"
 	w_class = ITEM_SIZE_NORMAL
 	caliber = "10mm"
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
-	ammo_type = "/obj/item/ammo_casing/c9mm"
+	ammo_type = "/obj/item/ammo_casing/a10mm"
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/a10mm
 	auto_eject = 1
