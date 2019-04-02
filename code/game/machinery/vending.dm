@@ -1009,15 +1009,16 @@
 	/obj/item/weapon/storage/box/shotgunammo/flashshells = 10,
 	/obj/item/weapon/storage/box/shotgunammo/blanks = 10,
 	/obj/item/clothing/accessory/holster = 5,
-	/obj/item/weapon/storage/pouch/pistol_holster = 5)
-
-	contraband = list(/obj/item/ammo_magazine/sl38 = 20,
+	/obj/item/weapon/storage/pouch/pistol_holster = 5,
+	/obj/item/ammo_magazine/sl38 = 20,
 	/obj/item/ammo_magazine/cl32 = 20,
 	/obj/item/ammo_magazine/ammobox/cl32 = 20,
 	/obj/item/ammo_magazine/ammobox/c38 = 20,
 	/obj/item/weapon/storage/box/shotgunammo/slug = 10,
 	/obj/item/weapon/storage/box/shotgunammo/buckshot = 10,
 	/datum/autolathe/recipe/tool/tacknife = 6)
+
+	contraband = list()
 	prices = list(/obj/item/device/flash = 600,/obj/item/weapon/reagent_containers/spray/pepper = 800,  /obj/item/weapon/gun/projectile/olivaw = 1600, /obj/item/weapon/gun/projectile/giskard = 1200, /obj/item/weapon/gun/projectile/revolver/detective = 2500, /obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3700,
 					/obj/item/weapon/gun/projectile/shotgun/pump = 2000, /obj/item/ammo_magazine/cl32/rubber = 300, /obj/item/ammo_magazine/sl38/rubber = 400, /obj/item/ammo_magazine/ammobox/c38/rubber = 400, /obj/item/ammo_magazine/ammobox/cl32/rubber = 500,
 					/obj/item/weapon/storage/box/shotgunammo/beanbags = 300, /obj/item/weapon/storage/box/shotgunammo/flashshells = 300, /obj/item/weapon/storage/box/shotgunammo/blanks = 50, /obj/item/clothing/accessory/holster = 150, /obj/item/weapon/storage/pouch/pistol_holster =150,
@@ -1103,8 +1104,7 @@
 	light_color = COLOR_LIGHTING_GREEN_BRIGHT
 	icon_deny = "wallmed-deny"
 	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
-	products = list(/obj/item/stack/medical/bruise_pack = 2,/obj/item/stack/medical/ointment = 2,/obj/item/weapon/reagent_containers/hypospray/autoinjector = 4,/obj/item/device/scanner/healthanalyzer = 1)
-	contraband = list(/obj/item/weapon/reagent_containers/syringe/antitoxin = 4,/obj/item/weapon/reagent_containers/syringe/antiviral = 4,/obj/item/weapon/reagent_containers/pill/tox = 1)
+	products = list(/obj/item/stack/medical/bruise_pack = 2,/obj/item/stack/medical/ointment = 2,/obj/item/weapon/reagent_containers/hypospray/autoinjector = 4,/obj/item/device/scanner/healthanalyzer = 1,/obj/item/weapon/reagent_containers/syringe/antitoxin = 4,/obj/item/weapon/reagent_containers/syringe/antiviral = 4,/obj/item/weapon/reagent_containers/pill/tox = 1)
 	auto_price = FALSE
 
 /obj/machinery/vending/wallmed2
@@ -1115,8 +1115,7 @@
 	icon_deny = "wallmed-deny"
 	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
 	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector = 5,/obj/item/weapon/reagent_containers/syringe/antitoxin = 3,/obj/item/stack/medical/bruise_pack = 3,
-					/obj/item/stack/medical/ointment =3,/obj/item/device/scanner/healthanalyzer = 3)
-	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 3)
+					/obj/item/stack/medical/ointment =3,/obj/item/device/scanner/healthanalyzer = 3,/obj/item/weapon/reagent_containers/pill/tox = 3)
 	auto_price = FALSE
 
 /obj/machinery/vending/security
@@ -1311,12 +1310,12 @@
 
 /obj/machinery/vending/powermat
 	name = "Asters Guild Power-Mat"
-	desc = "Trust is power, and there’s no power you can trust like Robustcell."
-	product_slogans = "Trust is power, and there’s no cell you can trust like Robustcell.;No battery is stronger nor lasts longer.;One that Lasts!;You can't top the copper top!"
+	desc = "Trust is power, and thereÂ’s no power you can trust like Robustcell."
+	product_slogans = "Trust is power, and thereÂ’s no cell you can trust like Robustcell.;No battery is stronger nor lasts longer.;One that Lasts!;You can't top the copper top!"
 	product_ads = "Robust!;Trustworthy!;Durable!"
 	icon_state = "powermat"
-	products = list(/obj/item/weapon/cell/large = 10, /obj/item/weapon/cell/large/high = 10, /obj/item/weapon/cell/medium = 15, /obj/item/weapon/cell/medium/high = 15, /obj/item/weapon/cell/small = 20, /obj/item/weapon/cell/small/high = 20)
-	contraband = list(/obj/item/weapon/cell/large/super = 5, /obj/item/weapon/cell/medium/super = 5, /obj/item/weapon/cell/small/super = 5)
+	products = list(/obj/item/weapon/cell/large = 10, /obj/item/weapon/cell/large/high = 10, /obj/item/weapon/cell/medium = 15, /obj/item/weapon/cell/medium/high = 15, /obj/item/weapon/cell/small = 20, /obj/item/weapon/cell/small/high = 20,
+	/obj/item/weapon/cell/large/super = 5, /obj/item/weapon/cell/medium/super = 5, /obj/item/weapon/cell/small/super = 5)
 	prices = list(/obj/item/weapon/cell/large = 500, /obj/item/weapon/cell/large/high = 700, /obj/item/weapon/cell/medium = 300, /obj/item/weapon/cell/medium/high = 400, /obj/item/weapon/cell/small = 100, /obj/item/weapon/cell/small/high = 200,
 				/obj/item/weapon/cell/large/super = 1200, /obj/item/weapon/cell/medium/super = 700, /obj/item/weapon/cell/small/super = 350)
 
@@ -1330,8 +1329,8 @@
 					/obj/item/weapon/disk/autolathe_disk/devices = 10, /obj/item/weapon/disk/autolathe_disk/toolpack = 10, /obj/item/weapon/disk/autolathe_disk/component = 10,
 					/obj/item/weapon/disk/autolathe_disk/advtoolpack = 5, /obj/item/weapon/disk/autolathe_disk/circuitpack = 5, /obj/item/weapon/disk/autolathe_disk/medical = 20,
 					/obj/item/weapon/disk/autolathe_disk/computer = 10, /obj/item/weapon/disk/autolathe_disk/security = 5, /obj/item/weapon/disk/autolathe_disk/fs_cheap_guns = 5,
-					/obj/item/weapon/disk/autolathe_disk/nonlethal_ammo = 10, /obj/item/weapon/circuitboard/autolathe = 3, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 3, /obj/item/weapon/circuitboard/vending = 10)
-	contraband = list(/obj/item/weapon/disk/autolathe_disk/lethal_ammo = 3, /obj/item/weapon/disk/autolathe_disk/fs_energy_guns = 2)
+					/obj/item/weapon/disk/autolathe_disk/nonlethal_ammo = 10, /obj/item/weapon/circuitboard/autolathe = 3, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 3,
+					/obj/item/weapon/circuitboard/vending = 10,/obj/item/weapon/disk/autolathe_disk/lethal_ammo = 3, /obj/item/weapon/disk/autolathe_disk/fs_energy_guns = 2)
 	prices = list(/obj/item/weapon/disk/autolathe_disk/blank = 150, /obj/item/weapon/disk/autolathe_disk/basic = 300,
 					/obj/item/weapon/disk/autolathe_disk/devices = 400, /obj/item/weapon/disk/autolathe_disk/toolpack = 400, /obj/item/weapon/disk/autolathe_disk/component = 500,
 					/obj/item/weapon/disk/autolathe_disk/advtoolpack = 1800, /obj/item/weapon/disk/autolathe_disk/circuitpack = 600, /obj/item/weapon/disk/autolathe_disk/medical = 400,
