@@ -120,7 +120,7 @@
 	if(!istype(target))
 		return FALSE
 
-	if(!is_drainable())
+	if(!is_drainable() && !istype(src, /obj/item/weapon/reagent_containers/pill)) // Pills are swallowed whole
 		is_closed_message(user)
 		return TRUE
 
