@@ -12,10 +12,11 @@
 	slot_flags = SLOT_EARS
 	volume = 60
 
-/obj/item/weapon/reagent_containers/pill/New()
-	..()
+/obj/item/weapon/reagent_containers/pill/Initialize()
+	. = ..()
 	if(!icon_state)
 		icon_state = "pill[rand(1, 20)]"
+
 
 /obj/item/weapon/reagent_containers/pill/attack(mob/M as mob, mob/user as mob, def_zone)
 	if(standard_feed_mob(user, M))

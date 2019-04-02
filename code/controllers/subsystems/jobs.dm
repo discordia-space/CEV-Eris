@@ -518,7 +518,7 @@ proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
 			SP = get_spawn_point(pref_spawn, late = TRUE)
 		else
 			SP = get_spawn_point(maps_data.default_spawn, late = TRUE)
-			H << SPAN_WARNING("You have not selected spawnpoint in preference menu.")
+			to_chat(H, SPAN_WARNING("You have not selected spawnpoint in preference menu."))
 	else
 		SP = get_spawn_point(rank)
 
@@ -545,7 +545,19 @@ proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
 			if(SP.can_spawn(H, rank))
 				return SP
 			else
-				H << SPAN_WARNING("Unable to spawn you at [SP.name].")// you will be assigned default one which is \"[SP.display_name]\".")
+				to_chat(H, SPAN_WARNING("Unable to spawn you at [SP.name]."))// you will be assigned default one which is \"[SP.display_name]\".")
+
+	// No spawn point? Something is fucked.
+	// Pick the default one.
+	to_chat(H, SPAN_WARNING("Unable to locate any safe spawn point. Have fun!"))
+	SP = get_spawn_point("Aft Cryogenic Storage")
+
+	// Still no spawn point? Return the first spawn point on the list.
+	if(!SP)
+		var/list/possibilities = get_late_spawntypes()
+		SP = possibilities[possibilities[1]]
+
+	return SP
 
 
 
