@@ -328,11 +328,12 @@
 /obj/screen/health/DEADelize()
 	overlays.Cut()
 	overlays += ovrls["health7"]
-/*/obj/screen/health/New()
-	if(usr.client)
-		usr.client.screen += src
-		parentmob = usr
-*/
+
+/obj/screen/health/Click()
+	if(ishuman(parentmob))
+		var/mob/living/carbon/human/H = parentmob
+		H.check_self_for_injuries()
+
 //--------------------------------------------------health end---------------------------------------------------------
 
 //--------------------------------------------------nutrition---------------------------------------------------------
