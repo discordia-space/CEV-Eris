@@ -18,14 +18,16 @@
 	//damage_multiplier = 1.1
 
 /obj/item/weapon/gun/projectile/IH_sidearm/update_icon()
+	..()
+
 	var/iconstring = initial(icon_state)
 	var/itemstring = initial(item_state)
 
 	if (ammo_magazine)
 		iconstring += "_mag"
 
-		if(!ammo_magazine.stored_ammo.len)
-			iconstring += "_slide"
+	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
+		iconstring += "_slide"
 
 	if (silenced)
 		iconstring += "_s"
@@ -33,3 +35,7 @@
 
 	icon_state = iconstring
 	item_state = itemstring
+
+/obj/item/weapon/gun/projectile/IH_sidearm/Initialize()
+	. = ..()
+	update_icon()
