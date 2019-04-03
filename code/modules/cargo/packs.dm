@@ -154,7 +154,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 /datum/supply_pack/fsassault
 	name = "FS Assault Pack"
 	contains = list(/obj/item/weapon/gun/projectile/automatic/ak47/fs,
-			/obj/item/weapon/gun/projectile/automatic/wt550
+			/obj/item/weapon/gun/projectile/automatic/wt550,
 			/obj/item/weapon/gun/projectile/automatic/wt550)
 	cost = 5000
 	containertype = /obj/structure/closet/crate/secure/weapon
@@ -165,7 +165,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	name = "NT Energy Weapons"
 	contains = list(/obj/item/weapon/gun/energy/laser,
 				/obj/item/weapon/gun/energy/laser,
-				/obj/item/weapon/gun/energy/taser
+				/obj/item/weapon/gun/energy/taser,
 				/obj/item/weapon/gun/energy/taser)
 	cost = 3500
 	containertype = /obj/structure/closet/crate/secure/weapon
@@ -497,7 +497,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	crate_name = "Metal sheets crate"
 	group = "Engineering"
 
-
 /datum/supply_pack/metal480
 	name = "Bulk metal crate"
 	contains = list(/obj/item/stack/material/steel/full,
@@ -508,8 +507,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containertype = /obj/structure/largecrate
 	crate_name = "Bulk metal crate"
 	group = "Engineering"
-
-
 
 /datum/supply_pack/glass50
 	name = "120 glass sheets"
@@ -1388,7 +1385,7 @@ datum/supply_pack/randomised/voidsuit
 datum/supply_pack/randomised/rig
 	num_contained = 1
 	contains = list(/obj/random/rig,
-					/obj/random/rig/damaged,)
+					/obj/random/rig/damaged)
 	name = "Surplus Rig Suit"
 	cost = 1500
 	crate_name = "Surplus Rig Crate"
