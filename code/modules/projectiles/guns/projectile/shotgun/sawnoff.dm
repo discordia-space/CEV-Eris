@@ -7,4 +7,4 @@
 	ammo_type = /obj/item/ammo_casing/shotgun/pellet
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_PAINFULL
-	damage_multiplier = 0.6
+	damage_multiplier = 0.8 //slightly weaker due to sawn-off barrels
