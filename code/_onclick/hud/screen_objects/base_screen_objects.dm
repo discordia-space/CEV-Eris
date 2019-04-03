@@ -871,68 +871,41 @@ obj/screen/fire/DEADelize()
 	name = "fastintent"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "blank"
-//update in a_intent_change, because macro
-/*/obj/screen/fastintent/Click()
-	if (parentmob.HUDneed.Find("intent"))
-		var/obj/screen/intent/I = parentmob.HUDneed["intent"]
-		I.update_icon()*/
+	var/target_intent
+
 /obj/screen/fastintent/New()
 	..()
+	src.overlays += new /image/no_recolor(icon = src.icon, icon_state = src.icon_state)
 
-
+/obj/screen/fastintent/Click()
+	parentmob.a_intent_change(target_intent)
 
 /obj/screen/fastintent/help
-//	icon_state = "intent_help"
-
-/obj/screen/fastintent/help/New()
-	..()
-	src.overlays += new /image/no_recolor (icon = src.icon, icon_state ="intent_help")
-
-/obj/screen/fastintent/help/Click()
-	parentmob.a_intent_change(I_HELP)
-//	..()
+	target_intent = I_HELP
+	icon_state = "intent_help"
 
 /obj/screen/fastintent/harm
+	target_intent = I_HURT
 	icon_state = "intent_harm"
 
-/obj/screen/fastintent/harm/New()
-	..()
-	src.overlays += new /image/no_recolor (icon = src.icon, icon_state ="intent_harm")
-
-/obj/screen/fastintent/harm/Click()
-	parentmob.a_intent_change(I_HURT)
-//	..()
-
 /obj/screen/fastintent/grab
+	target_intent = I_GRAB
 	icon_state = "intent_grab"
 
-/obj/screen/fastintent/grab/New()
-	..()
-	src.overlays += new /image/no_recolor (icon = src.icon, icon_state ="intent_grab")
-
-/obj/screen/fastintent/grab/Click()
-	parentmob.a_intent_change(I_GRAB)
-//	..()
-
 /obj/screen/fastintent/disarm
+	target_intent = I_DISARM
 	icon_state = "intent_disarm"
 
-/obj/screen/fastintent/disarm/New()
-	..()
-	src.overlays += new /image/no_recolor (icon = src.icon, icon_state ="intent_disarm")
 
-/obj/screen/fastintent/disarm/Click()
-	parentmob.a_intent_change(I_DISARM)
-//	..()
 
 /obj/screen/drugoverlay
-	icon = 'icons/mob/screen1_full.dmi'
 	icon_state = "blank"
 	name = "drugs"
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	mouse_opacity = 0
 	process_flag = TRUE
 	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
+	plane = HUD_PLANE
 //	var/global/image/blind_icon = image('icons/mob/screen1_full.dmi', "blackimageoverlay")
 
 /obj/screen/drugoverlay/Process()
@@ -953,7 +926,9 @@ obj/screen/fire/DEADelize()
 /obj/screen/full_1_tile_overlay
 	name = "full_1_tile_overlay"
 	icon_state = "blank"
+	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	layer = 21
+	plane = HUD_PLANE
 	mouse_opacity = 0
 
 /obj/screen/damageoverlay
@@ -964,12 +939,12 @@ obj/screen/fire/DEADelize()
 	mouse_opacity = 0
 	process_flag = TRUE
 	layer = UI_DAMAGE_LAYER
+	plane = HUD_PLANE
 	var/global/image/blind_icon = image('icons/mob/screen1_full.dmi', "blackimageoverlay")
 
 
 /obj/screen/damageoverlay/Process()
 	update_icon()
-	return
 
 /obj/screen/damageoverlay/update_icon()
 	overlays.Cut()
@@ -977,7 +952,6 @@ obj/screen/fire/DEADelize()
 
 	underlays.Cut()
 	UpdateVisionState()
-	return
 
 /obj/screen/damageoverlay/proc/UpdateHealthState()
 	var/mob/living/carbon/human/H = parentmob
@@ -1071,6 +1045,7 @@ obj/screen/fire/DEADelize()
 	mouse_opacity = 0
 	process_flag = TRUE
 	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
+	plane = HUD_PLANE
 
 
 /obj/screen/glasses_overlay/Process()
