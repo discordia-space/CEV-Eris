@@ -12,7 +12,7 @@
 	slot_flags = SLOT_ID | SLOT_BELT
 	stores_pen = TRUE
 	stored_pen = /obj/item/weapon/pen
-	battery_type = /obj/item/weapon/cell/small //We take small battery
+	suitable_cell = /obj/item/weapon/cell/small //We take small battery
 
 /obj/item/modular_computer/pda/Initialize()
 	. = ..()
@@ -100,7 +100,7 @@
 
 /obj/item/modular_computer/pda/Created()
 	qdel(processor_unit)
-	qdel(battery_module)
+	qdel(cell)
 	qdel(tesla_link)
 	qdel(hard_drive)
 	qdel(network_card)

@@ -26,13 +26,10 @@
 	var/charge_tick = 0
 	var/last_charge_status = -1 //used in update_icon optimization
 
-/obj/item/weapon/cell/New()
-	..()
-	charge = maxcharge
-	update_icon()
-
 /obj/item/weapon/cell/Initialize()
 	. = ..()
+	charge = maxcharge
+	update_icon()
 	if(autorecharging)
 		START_PROCESSING(SSobj, src)
 
@@ -243,3 +240,6 @@
 			return min(rand(10,20),rand(10,20))
 		else
 			return 0
+
+/obj/item/weapon/cell/get_cell()
+	return src
