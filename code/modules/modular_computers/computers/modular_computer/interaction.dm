@@ -283,6 +283,9 @@
 	if(!istype(over_object, /obj/screen) && can_interact(M))
 		return attack_self(M)
 
+	if((src.loc == M) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, M))
+		cell = null
+
 /obj/item/modular_computer/afterattack(atom/target, mob/user, proximity)
 	. = ..()
 	if(scanner)
