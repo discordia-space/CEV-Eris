@@ -1,7 +1,7 @@
 /obj/machinery/r_n_d/protolathe
 	name = "\improper Protolathe"
 	icon_state = "protolathe"
-	flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER
 	circuit = /obj/item/weapon/circuitboard/protolathe
 
 	use_power = TRUE
@@ -120,7 +120,7 @@
 
 	if(default_part_replacement(I, user))
 		return
-	if(I.is_open_container())
+	if(I.is_drainable())
 		return FALSE
 	if(panel_open)
 		user << SPAN_NOTICE("You can't load \the [src] while it's opened.")

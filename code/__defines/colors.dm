@@ -85,7 +85,7 @@
 #define	COMMS_COLOR_SYNDICATE  "#6d3f40"
 
 #define GLASS_COLOR            "#74b1ee"
-#define GLASS_COLOR_PHORON     "#7c3a9a"
+#define GLASS_COLOR_PLASMA     "#7c3a9a"
 #define GLASS_COLOR_TINTED     "#222222"
 #define GLASS_COLOR_FROSTED    "#ffffff"
 

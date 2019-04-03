@@ -527,7 +527,7 @@
 				return ERR_NOMATERIAL
 
 		if(R.reagents.len)
-			if(!container || !container.reagents || !container.is_open_container())
+			if(!container || !container.is_drawable())
 				return ERR_NOREAGENT
 			else
 				for(var/rgn in R.reagents)

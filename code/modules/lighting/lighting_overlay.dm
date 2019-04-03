@@ -11,7 +11,6 @@
 
 	simulated = 0
 	anchored = 1
-	flags = NOREACT
 
 	blend_mode       = BLEND_OVERLAY
 

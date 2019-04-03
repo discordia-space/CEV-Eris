@@ -149,7 +149,7 @@
 
 /obj/item/rig_module/chem_dispenser/accepts_item(var/obj/item/input_item, var/mob/living/user)
 
-	if(!input_item.is_open_container())
+	if(!input_item.is_drainable())
 		return 0
 
 	if(!input_item.reagents || !input_item.reagents.total_volume)

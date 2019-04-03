@@ -10,7 +10,7 @@
 	desc = "Just your average condiment container."
 	icon = 'icons/obj/food.dmi'
 	icon_state = "emptycondiment"
-	flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER
 	possible_transfer_amounts = list(1,5,10)
 	center_of_mass = list("x"=16, "y"=6)
 	volume = 50
@@ -27,10 +27,10 @@
 	afterattack(var/obj/target, var/mob/user, var/proximity)
 		if(!proximity)
 			return
-	
-		if(standard_dispenser_refill(user, target))
-			return
+
 		if(standard_pour_into(user, target))
+			return
+		if(standard_dispenser_refill(user, target))
 			return
 
 		if(istype(target, /obj/item/weapon/reagent_containers/food/snacks)) // These are not opencontainers but we can transfer to them

@@ -123,7 +123,7 @@
 	density = max(1, targetTurfs.len / 4) //clamp the cloud density minimum to 1 so it cant multiply the reagents
 
 	//Admin messaging
-	var/contained = carry.get_reagents()
+	var/contained = carry.log_list()
 	var/area/A = get_area(location)
 
 	var/where = "[A.name] | [location.x], [location.y]"
