@@ -28,6 +28,7 @@
 
 	var/use_launcher = 0
 	var/obj/item/weapon/gun/launcher/grenade/underslung/launcher
+	zoom_factor = 2.0
 
 /obj/item/weapon/gun/projectile/automatic/z8/New()
 	..()
