@@ -5,9 +5,8 @@
 	hard_drive = new /obj/item/weapon/computer_hardware/hard_drive/small(src)
 	processor_unit = new /obj/item/weapon/computer_hardware/processor_unit/small(src)
 	card_slot = new /obj/item/weapon/computer_hardware/card_slot/broadcaster(src)
-	cell = new /obj/item/weapon/cell/small(src)
+	cell = new /obj/item/weapon/cell/small/moebius/pda(src)
 	gps_sensor	= new /obj/item/weapon/computer_hardware/gps_sensor(src)
-	//tesla_link = new /obj/item/weapon/computer_hardware/tesla_link(src)
 	led = new /obj/item/weapon/computer_hardware/led(src)
 
 /obj/item/modular_computer/pda/install_default_programs()
