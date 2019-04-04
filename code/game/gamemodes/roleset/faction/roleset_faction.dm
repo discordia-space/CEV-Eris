@@ -9,6 +9,9 @@
 	//The type of the faction we'll create if we can't find one
 	var/faction_type = null
 
+	//Denies the role from being picked by the storyteller
+	var/story_ineligible = list()
+
 
 //This is a copypaste of roleset/trigger_event, with some new features added
 /datum/storyevent/roleset/faction/trigger_event()

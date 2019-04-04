@@ -1,6 +1,5 @@
 /datum/antagonist/excelsior
 	id = ROLE_EXCELSIOR_REV
-	protected_jobs = list(JOBS_SECURITY, JOBS_COMMAND)
 	role_text = "Excelsior Infiltrator"
 	role_text_plural = "Infiltrators"
 	bantype = ROLE_BANTYPE_EXCELSIOR
