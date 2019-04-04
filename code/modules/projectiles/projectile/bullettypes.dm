@@ -242,11 +242,13 @@
 //Shotguns
 /obj/item/projectile/bullet/shotgun
 	name = "slug"
+	icon_state = "slug"
 	damage = DAMAGE_SLUG
 	armor_penetration = ARMOR_PENETRATION_SLUG
 
 /obj/item/projectile/bullet/shotgun/beanbag		//because beanbags are not bullets
 	name = "beanbag"
+	icon_state = "buckshot"
 	check_armour = "melee"
 	damage = DAMAGE_BEANBAG
 	agony = AGONY_BEANBAG
@@ -265,10 +267,15 @@
 //Overall less damage than slugs in exchange for more damage at very close range and more embedding
 /obj/item/projectile/bullet/pellet/shotgun
 	name = "shrapnel"
+	icon_state = "birdshot-1"
 	damage = 12
 	pellets = 6
 	range_step = 1
 	spread_step = 10
+
+/obj/item/projectile/bullet/pellet/shotgun/Initialize()
+	. = ..()
+	icon_state = "birdshot-[rand(1,4)]"
 
 //Miscellaneous
 /obj/item/projectile/bullet/blank
