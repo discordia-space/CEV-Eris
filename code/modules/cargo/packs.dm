@@ -156,7 +156,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	contains = list(/obj/item/weapon/gun/projectile/automatic/ak47/fs,
 			/obj/item/weapon/gun/projectile/automatic/wt550,
 			/obj/item/weapon/gun/projectile/automatic/wt550)
-	cost = 5000
+	cost = 6000
 	containertype = /obj/structure/closet/crate/secure/weapon
 	crate_name = "FS Assault Pack"
 	group = "Security"
@@ -278,26 +278,16 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	crate_name = "FS Shotgun shells (buckshot)"
 	group = "Security"
 
-/datum/supply_pack/expenergy
-	name = "Experimental energy gear crate"
-	contains = list(/obj/item/clothing/suit/armor/laserproof,
-					/obj/item/clothing/suit/armor/laserproof,
-					/obj/item/weapon/gun/energy/gun,
-					/obj/item/weapon/gun/energy/gun)
-	cost = 5000
-	containertype = /obj/structure/closet/crate/secure
-	crate_name = "Experimental energy gear crate"
-	group = "Security"
 
 /datum/supply_pack/energyarmor
-	name = "IH Energy Armor"
+	name = "IH Ablative Armor"
 	contains = list(/obj/item/clothing/suit/armor/laserproof,
 					/obj/item/clothing/suit/armor/laserproof,
 					/obj/item/clothing/head/helmet,
 					/obj/item/clothing/head/helmet)
 	cost = 3500
 	containertype = /obj/structure/closet/crate/secure
-	crate_name = "IH Energy Armor crate"
+	crate_name = "IH Ablative Armor crate"
 	group = "Security"
 
 /datum/supply_pack/securitybarriers
@@ -503,7 +493,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	/obj/item/stack/material/steel/full,
 	/obj/item/stack/material/steel/full,
 	/obj/item/stack/material/steel/full)
-	cost = 1000
+	cost = 1200
 	containertype = /obj/structure/largecrate
 	crate_name = "Bulk metal crate"
 	group = "Engineering"
@@ -521,7 +511,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	name = "120 wooden planks"
 	contains = list(/obj/item/stack/material/wood)
 	amount = 120
-	cost = 1200
+	cost = 500
 	containertype = /obj/structure/closet/crate
 	crate_name = "Wooden planks crate"
 	group = "Engineering"
@@ -530,7 +520,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	name = "50 Plasteel Sheets"
 	contains = list(/obj/item/stack/material/plasteel)
 	amount = 50
-	cost = 2000
+	cost = 2500
 	containertype = /obj/structure/closet/crate/secure
 	crate_name = "Plasteel sheets crate"
 	group = "Engineering"
@@ -1013,7 +1003,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/grenade/chem_grenade/antiweed,
 					/obj/item/weapon/grenade/chem_grenade/antiweed,
 					/obj/item/weapon/grenade/chem_grenade/antiweed)
-	cost = 2000
+	cost = 1000
 	containertype = /obj/structure/closet/crate/secure/hydrosec
 	crate_name = "Weed control crate"
 	group = "Hydroponics"
@@ -1048,7 +1038,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/bee_net,
 					/obj/item/apiary,
 					/obj/item/queen_bee)
-	cost = 4000
+	cost = 2000
 	contraband = TRUE
 	containertype = /obj/structure/closet/crate/hydroponics
 	crate_name = "Beekeeping crate"
@@ -1347,7 +1337,11 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/gun/energy/taser,
 					/obj/item/weapon/gun/energy/stunrevolver,
 					/obj/item/weapon/gun/energy/temperature,
-					/obj/item/weapon/gun/energy/xray)
+					/obj/item/weapon/gun/energy/xray,
+					/obj/item/weapon/gun/projectile/automatic/IH_smg,
+					/obj/item/weapon/gun/projectile/IH_sidearm,
+					/obj/item/weapon/gun/projectile/automatic/IH_heavyrifle,
+					/obj/item/weapon/gun/projectile/automatic/IH_machinepistol)
 	name = "Surplus Weaponry"
 	cost = 2000
 	crate_name = "Surplus Weapons Crate"
@@ -1369,6 +1363,19 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	crate_name = "Surplus Ammo Crate"
 	containertype = /obj/structure/closet/crate/secure/weapon
 	group = "Security"
+	
+/datum/supply_pack/randomised/pouches
+	num_contained = 5
+	contains = list(/obj/random/pouch,
+				/obj/random/pouch,
+				/obj/random/pouch,
+				/obj/random/pouch,
+				/obj/random/pouch)
+	name = "Surplus Storage Pouches"
+	cost = 1500
+	crate_name = "Surplus Pouches Crate"
+	containertype = /obj/structure/closet/crate
+	group = "Operations"
 
 
 
@@ -1387,7 +1394,7 @@ datum/supply_pack/randomised/rig
 	contains = list(/obj/random/rig,
 					/obj/random/rig/damaged)
 	name = "Surplus Rig Suit"
-	cost = 1500
+	cost = 5000
 	crate_name = "Surplus Rig Crate"
 	containertype = /obj/structure/closet/crate
 	group = "Operations"
