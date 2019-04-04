@@ -150,7 +150,7 @@
 
 	var/mob/living/M = user
 	if(HULK in M.mutations)
-		M << SPAN_DANGER("Your fingers are much too large for the trigger guard!")
+		to_chat(user, SPAN_DANGER("Your fingers are much too large for the trigger guard!"))
 		return FALSE
 	if((CLUMSY in M.mutations) && prob(40)) //Clumsy handling
 		var/obj/P = consume_next_projectile()
@@ -162,12 +162,12 @@
 					SPAN_DANGER("You shoot yourself in the foot with \the [src]!")
 					)
 				M.drop_item()
-		else
+		elsef
 			handle_click_empty(user)
 		return FALSE
 	if(!restrict_safety)
 		if(safety)
-			user << SPAN_DANGER("The gun's safety is on!")
+			to_chat(user, SPAN_DANGER("The gun's safety is on!"))
 			handle_click_empty(user)
 			return FALSE
 	return TRUE
@@ -217,7 +217,7 @@
 
 	if(world.time < next_fire_time)
 		if (!suppress_delay_warning && world.time % 3) //to prevent spam
-			user << SPAN_WARNING("[src] is not ready to fire again!")
+			to_chat(user, SPAN_WARNING("[src] is not ready to fire again!"))
 		return
 
 
@@ -412,7 +412,7 @@
 			user.apply_damage(in_chamber.damage*2.5, in_chamber.damage_type, BP_HEAD, used_weapon = "Point blank shot in the mouth with \a [in_chamber]", sharp=1)
 			user.death()
 		else
-			user << SPAN_NOTICE("Ow...")
+			to_chat(user, SPAN_NOTICE("Ow..."))
 			user.apply_effect(110,AGONY,0)
 		qdel(in_chamber)
 		mouthshoot = FALSE
@@ -446,11 +446,11 @@
 	..()
 	if(firemodes.len > 1)
 		var/datum/firemode/current_mode = firemodes[sel_mode]
-		user << SPAN_NOTICE("The fire selector is set to [current_mode.name].")
+		to_chat(user, SPAN_NOTICE("The fire selector is set to [current_mode.name]."))
 	if(safety)
-		user << SPAN_NOTICE("The safety is on.")
+		to_chat(user, SPAN_NOTICE("The safety is on."))
 	else
-		user << SPAN_NOTICE("The safety is off.")
+		to_chat(user, SPAN_NOTICE("The safety is off."))
 
 /obj/item/weapon/gun/proc/switch_firemodes()
 	if(firemodes.len <= 1)
@@ -480,7 +480,7 @@
 			var/datum/firemode/new_mode = switch_firemodes(user)
 			if(new_mode)
 				playsound(src.loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
-				user << SPAN_NOTICE("\The [src] is now set to [new_mode.name].")
+				to_chat(user, SPAN_NOTICE("\The [src] is now set to [new_mode.name]."))
 		if("scope")
 			toggle_scope(zoom_factor)
 		if("safety")
@@ -491,7 +491,7 @@
 		if(src == user.get_active_hand())//returns the thing in our active hand
 			safety = !safety
 			playsound(user, 'sound/weapons/selector.ogg', 50, 1)
-			user << SPAN_NOTICE("You toggle the safety [safety ? "on":"off"].")
+			to_chat(user, SPAN_NOTICE("You toggle the safety [safety ? "on":"off"]."))
 			//Update firemode when safeties are toggled
 			update_firemode()
 
@@ -509,7 +509,7 @@
 /obj/item/weapon/gun/AltClick(mob/user)
 	if(!restrict_safety)
 		if(user.incapacitated())
-			user << SPAN_WARNING("You can't do that right now!")
+			to_chat(user, SPAN_WARNING("You can't do that right now!"))
 			return
 
 		check_safety(user)
