@@ -162,7 +162,7 @@
 					SPAN_DANGER("You shoot yourself in the foot with \the [src]!")
 					)
 				M.drop_item()
-		elsef
+		else
 			handle_click_empty(user)
 		return FALSE
 	if(!restrict_safety)
