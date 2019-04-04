@@ -51,8 +51,16 @@
 	path = /obj/item/ammo_magazine/mc9mm/flash
 
 /datum/autolathe/recipe/ammo/magazine_a10mm
-	name = "ammunition (10mm)"
+	name = "magazine (10mm)"
 	path = /obj/item/ammo_magazine/a10mm
+
+/datum/autolathe/recipe/ammo/magazine_a10mm_rubber
+	name = "magazine (10mm rubber)"
+	path = /obj/item/ammo_magazine/a10mm/rubber
+
+/datum/autolathe/recipe/ammo/magazine_smg10mm
+	name = "smg magazine (10mm)"
+	path = /obj/item/ammo_magazine/smg10mm
 
 /datum/autolathe/recipe/ammo/magazine_c762
 	name = "ammunition (7.62mm)"

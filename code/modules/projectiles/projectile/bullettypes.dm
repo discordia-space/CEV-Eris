@@ -80,6 +80,14 @@
 	armor_penetration = ARMOR_PENETRATION_LOW_CALIBER_PISTOL
 	can_ricochet = TRUE
 
+/obj/item/projectile/bullet/a10mm/rubber
+	name = "rubber bullet"
+	damage = DAMAGE_10MM * RUBBER_DAMAGE_MULTIPLIER
+	agony = DAMAGE_10MM * RUBBER_AGONY_MULTIPLIER
+	armor_penetration = ARMOR_PENETRATION_LOW_CALIBER_PISTOL * RUBBER_PENETRATION_MULTIPLIER
+	embed = FALSE
+	sharp = FALSE
+
 /obj/item/projectile/bullet/a10mm/hv
 	damage = DAMAGE_10MM * HIGH_VELOCITY_MULTIPLIER
 	armor_penetration = ARMOR_PENETRATION_LOW_CALIBER_PISTOL * HIGH_VELOCITY_MULTIPLIER
