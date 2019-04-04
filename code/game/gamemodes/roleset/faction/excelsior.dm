@@ -12,11 +12,3 @@
 
 	req_crew = 6
 	leaders = -1 //Every excelsior spawned directly is a leader. Non leaders are those recruited during gameplay
-
-	story_ineligible = list(JOBS_SECURITY, JOBS_COMMAND)
-
-// Code to prevent a role from being picked by the storyteller.
-/datum/storyevent/roleset/faction/excelsior/antagonist_suitable(var/datum/mind/player, var/datum/antagonist/antag)
-	if(player.assigned_role in story_ineligible)
-		return FALSE
-	return TRUE

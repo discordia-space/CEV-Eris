@@ -10,7 +10,7 @@
 	var/faction_type = null
 
 	//Denies the role from being picked by the storyteller
-	var/story_ineligible = list()
+	var/story_ineligible = list(JOBS_SECURITY, JOBS_COMMAND)
 
 
 //This is a copypaste of roleset/trigger_event, with some new features added
@@ -86,3 +86,9 @@
 		if (success_quantity > 1)
 			success_percent = success_quantity / target_quantity
 		cancel(severity, success_percent)
+
+// Code to prevent a role from being picked by the storyteller.
+/datum/storyevent/roleset/faction/antagonist_suitable(var/datum/mind/player, var/datum/antagonist/antag)
+	if(player.assigned_role in story_ineligible)
+		return FALSE
+	return TRUE
