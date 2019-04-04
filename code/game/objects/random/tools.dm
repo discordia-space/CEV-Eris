@@ -5,7 +5,7 @@
 	has_postspawn = TRUE
 
 /obj/random/tool/item_to_spawn()
-	return pickweight(list(/obj/random/rare = 2,
+	return pickweight(list(/obj/random/pack/rare = 2,
 				/obj/item/weapon/tool/screwdriver = 8,
 				/obj/item/weapon/tool/screwdriver/electric = 2,
 				/obj/item/weapon/tool/screwdriver/combi_driver = 1,
@@ -34,6 +34,7 @@
 				/obj/item/weapon/storage/belt/utility = 5,
 				/obj/item/weapon/storage/belt/utility/full = 1,
 				/obj/item/clothing/gloves/insulated/cheap = 5,
+				/obj/item/clothing/gloves/insulated = 2,
 				/obj/item/clothing/head/welding = 5,
 				/obj/item/weapon/extinguisher = 5,
 				/obj/item/device/t_scanner = 2,
@@ -57,14 +58,7 @@
 				/obj/item/device/lighting/toggleable/flashlight = 10,
 				/obj/item/weapon/tank/jetpack/carbondioxide = 1.5,
 				/obj/item/weapon/tank/jetpack/oxygen = 1,
-				/obj/item/robot_parts/robot_component/jetpack = 0.75,
-				/obj/random/voidsuit/damaged = 1.5,
-				/obj/random/voidsuit = 0.5,
-				/obj/random/pouch = 5,
-				/obj/random/tool_upgrade = 20,
-				/obj/random/rig_module = 5,
-				/obj/random/mecha_equipment = 5,
-				/obj/random/lowkeyrandom = 45))
+				/obj/item/robot_parts/robot_component/jetpack = 0.75,))
 
 
 //Randomly spawned tools will often be in imperfect condition if they've been left lying out
@@ -81,8 +75,11 @@
 	spawn_nothing_percentage = 60
 
 
+
+
 /obj/random/tool/advanced
 	name = "random advanced tool"
+	icon_state = "tool-orange-low"
 
 /obj/random/tool/advanced/item_to_spawn()
 	return pickweight(list(
@@ -97,6 +94,14 @@
 				/obj/item/weapon/tool/pickaxe/diamonddrill = 2,
 				/obj/item/weapon/tool/tape_roll/fiber = 2,
 				/obj/item/weapon/material/twohanded/fireaxe = 1))
+
+/obj/random/tool/advanced/low_chance
+	name = "low chance advanced tool"
+	icon_state = "tool-orange-low"
+	spawn_nothing_percentage = 60
+
+
+
 
 /obj/random/toolbox
 	name = "random toolbox"

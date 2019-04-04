@@ -13,11 +13,8 @@
 		/obj/mecha/medical/odysseus/loaded = 5,
 		/obj/mecha/combat/durand = 1,//comes unarmed
 		/obj/mecha/combat/gygax = 1.5,//comes unarmed
-		/obj/mecha/combat/gygax/dark = 0.5,//has weapons
-		/obj/mecha/combat/marauder = 0.6,
-		/obj/mecha/combat/marauder/seraph = 0.3,
-		/obj/mecha/combat/marauder/mauler = 0.4,
-		/obj/mecha/combat/phazon = 0.1)
+		/obj/mecha/combat/marauder = 0.1,
+		/obj/mecha/combat/phazon = 0.6)
 
 /obj/random/mecha/item_to_spawn()
 	return pickweight(randsuits)

@@ -33,7 +33,7 @@
 
 /obj/random/ammo/low_chance
 	name = "low chance random ammunition"
-	icon_state = "ammo-orange-low"
+	icon_state = "ammo-green-low"
 	spawn_nothing_percentage = 60
 
 

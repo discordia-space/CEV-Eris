@@ -79,6 +79,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/random/gun_normal = 1,
 					/obj/random/gun_energy_cheap = 3,
 					/obj/random/gun_shotgun = 2,
+					/obj/random/knife = 3,
 					/obj/random/ammo = 8,
 					/obj/random/ammo/shotgun = 8,
 					/obj/random/ammo_ihs = 8,
@@ -92,12 +93,49 @@ They generally give more random result and can provide more divercity in spawn.
 
 
 
+
+//Rare loot, where we need to be sure that reward is worth it
+/obj/random/pack/rare
+	name = "rare loot"
+	icon_state = "box-orange"
+
+/obj/random/pack/rare/item_to_spawn()
+	return pickweight(list(
+					/obj/random/material_rare = 3,
+					/obj/random/tool/advanced = 5,
+					/obj/random/gun_normal = 2,
+					/obj/random/lathe_disk/advanced = 3,
+					/obj/item/weapon/cell/small/moebius/nuclear = 1,
+					/obj/item/weapon/cell/medium/moebius/hyper = 1,
+					/obj/random/rig = 1.5,
+					/obj/random/rig/damaged = 1.5,
+					/obj/random/voidsuit = 4,
+					/obj/random/pouch = 2,
+					/obj/random/tool_upgrade/rare = 4,
+					/obj/random/rig_module/rare = 4,
+					/obj/random/credits/c5000 = 4,
+					/obj/random/mecha_equipment = 3,
+					/obj/item/stash_spawner = 4 //Creates a stash of goodies for a scavenger hunt
+	))
+
+/obj/random/pack/rare/low_chance
+	name = "low chance rare loot"
+	icon_state = "box-orange-low"
+	spawn_nothing_percentage = 70
+
+
+//The pack to surpass them all. This pack goes to junk code AND placed on map as well. It meant to spawn any large structure, machine or container.
+//Those sctuctures can contain more loot or even mobs. Keep that in mind, because I feel it can break in the future
 /obj/random/pack/structure/item_to_spawn()
 	return pickweight(list(
+					/obj/random/structures = 24, //That one have MUCH MORE important objects for maints inside, that's why the number is hight
+					/obj/random/closet_maintloot = 16, //That one is also important part of the maints
+					/obj/random/closet_tech = 6,
+					/obj/random/closet_tech = 4,
+					/obj/random/mecha/damaged = 1, //Some dangerous shit can be found there
 
 
-					/obj/random/cloth/glasses = 4,
-					/obj/random/cloth/gloves = 12,
+
 
 				))
 

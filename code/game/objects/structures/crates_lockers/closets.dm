@@ -44,13 +44,28 @@
 
 /obj/structure/closet/Initialize(mapload)
 	..()
+
 	populate_contents()
+	update_icon()
+	hack_require = rand(6,8)
+
+	//If closet is spawned in maints, chance of getting rusty content is increased.
+	if (in_maintenance())
+		old_chance = old_chance + 20
+
+	if (prob(old_chance))
+		make_old()
+
+	if (old_chance)
+		for (var/atom/thing in contents)
+			if (prob(old_chance))
+				thing.make_old()
+
 	return mapload ? INITIALIZE_HINT_LATELOAD : INITIALIZE_HINT_NORMAL
 
 /obj/structure/closet/LateInitialize()
 	. = ..()
-	update_icon()
-	hack_require = rand(6,8)
+
 	if(!opened) // if closed, any item at the crate's loc is put in the contents
 		var/obj/item/I
 		for(I in src.loc)
@@ -63,23 +78,7 @@
 		if(content_size > storage_capacity-5)
 			storage_capacity = content_size + 5
 
-	world << "0 [old_chance]"
 
-	//If closet is spawned in maints, chance of getting rusty content is increased.
-	if (in_maintenance())
-		world << "[old_chance]"
-		old_chance = old_chance + 20
-		world << "[old_chance]"
-
-	if (prob(old_chance))
-		world << "1 [old_chance]"
-		make_old()
-
-	if (old_chance)
-		world << "2 [old_chance]"
-		for (var/atom/thing in contents)
-			if (prob(old_chance))
-				thing.make_old()
 
 
 

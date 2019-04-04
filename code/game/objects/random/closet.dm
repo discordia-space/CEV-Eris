@@ -55,32 +55,6 @@
 
 
 
-/obj/random/closet/rare
-	name = "random rare closet"
-	icon_state = "closet-red"
-	has_postspawn = TRUE
-
-//Fancy closets containing interesting or gimmicky things
-/obj/random/closet/rare/item_to_spawn()
-	return pickweight(list(/obj/structure/closet/toolcloset = 1,
-				/obj/structure/closet/gimmick/russian = 0.5,
-				/obj/structure/closet/gimmick/tacticool = 0.1,
-				/obj/structure/closet/thunderdome/tdred = 0.4,
-				/obj/structure/closet/thunderdome/tdgreen = 0.4,
-				/obj/structure/closet/jcloset = 1,
-				/obj/structure/closet/malf/suits =  0.5,
-				/obj/structure/closet/syndicate/personal = 0.1,
-				/obj/structure/closet/bombcloset = 0.5,
-				/obj/structure/closet/bombclosetsecurity = 0.4))
-
-/obj/random/closet/rare/low_chance
-	name = "low chance random rare closet"
-	icon_state = "closet-red-low"
-	spawn_nothing_percentage = 60
-
-
-
-
 /obj/random/closet_wardrobe
 	name = "random wardrobe closet"
 	icon_state = "closet-blue"
@@ -98,4 +72,25 @@
 /obj/random/closet_wardrobe/low_chance
 	name = "low chance random wardrobe closet"
 	icon_state = "closet-blue-low"
+	spawn_nothing_percentage = 60
+
+
+
+
+/obj/random/closet_maintloot
+	name = "random maint loot closet"
+	icon_state = "closet-black"
+	has_postspawn = TRUE
+
+
+/obj/random/closet_maintloot/item_to_spawn()
+	return pickweight(list(/obj/structure/closet/random_miscellaneous = 10,
+				/obj/structure/closet/random_tech = 6,
+				/obj/structure/closet/random_milsupply = 2,
+				/obj/structure/closet/random_medsupply = 6,
+				/obj/structure/closet/random_hostilemobs = 8))
+
+/obj/random/closet_maintloot/low_chance
+	name = "low chance random maint loot closet"
+	icon_state = "closet-black-low"
 	spawn_nothing_percentage = 60
