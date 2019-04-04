@@ -2,6 +2,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable
 	name = "data disk"
 	desc = "Removable disk used to store data."
+	w_class = ITEM_SIZE_SMALL
 	power_usage = 30
 	icon = 'icons/obj/discs.dmi'
 	icon_state = "yellow"
