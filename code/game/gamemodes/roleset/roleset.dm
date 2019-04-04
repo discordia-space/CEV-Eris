@@ -56,7 +56,7 @@
 		if(!temp.can_become_antag(candidate, report))
 			if (report) report << SPAN_NOTICE("Failure: [candidate] can't become this antag")
 			continue
-		if(!antagonist_suitable(candidate,temp))
+		if(!antagonist_suitable(candidate, temp))
 			if (report) report << SPAN_NOTICE("Failure: [candidate] is not antagonist suitable")
 			continue
 		if(!(temp.bantype in candidate.current.client.prefs.be_special_role))

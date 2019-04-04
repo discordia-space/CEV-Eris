@@ -9,10 +9,6 @@
 	//The type of the faction we'll create if we can't find one
 	var/faction_type = null
 
-	//Denies the role from being picked by the storyteller
-	var/story_ineligible = list(JOBS_SECURITY, JOBS_COMMAND)
-
-
 //This is a copypaste of roleset/trigger_event, with some new features added
 /datum/storyevent/roleset/faction/trigger_event()
 	calc_target_quantity()
@@ -89,6 +85,6 @@
 
 // Code to prevent a role from being picked by the storyteller.
 /datum/storyevent/roleset/faction/antagonist_suitable(var/datum/mind/player, var/datum/antagonist/antag)
-	if(player.assigned_role in story_ineligible)
+	if(player.assigned_role in antag.story_ineligible)
 		return FALSE
 	return TRUE
