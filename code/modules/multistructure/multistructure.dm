@@ -49,7 +49,7 @@
 
 /datum/multistructure
 	var/list/structure = list()
-	var/list/obj/machinery/multistructure/elements = list()
+	var/list/elements = list()
 
 
 /datum/multistructure/Destroy()
@@ -149,3 +149,9 @@
 				else
 					qdel(MS_temp)
 					return FALSE
+
+
+/obj/machinery/multistructure/Destroy()
+	if(MS)
+		qdel(MS)
+	return ..()
