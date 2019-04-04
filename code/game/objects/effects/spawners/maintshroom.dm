@@ -3,10 +3,16 @@
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x2"
 	var/instant = TRUE
+	var/min_light_limit = 0.5
 	mouse_opacity = 0
 
 
 /obj/effect/spawner/maintshroom/proc/spawn_shroom()
+	// Skip the spawning if the burrow is in a well lit places.
+	var/turf/T = get_turf(src)
+	if(T.get_lumcount() > min_light_limit)
+		return
+
 	new /obj/effect/plant(get_turf(src), new /datum/seed/mushroom/maintshroom)
 	find_or_create_burrow(get_turf(src))
 
@@ -15,9 +21,6 @@
 	if (instant)
 		spawn_shroom()
 		return INITIALIZE_HINT_QDEL
-
-
-
 
 //New maintshroom spawner
 //Delay on spawning. The object may wait up to 2 hours before spawning the shrooms
@@ -42,6 +45,11 @@
 	//If all the burrows in the area were destroyed before we spawned, then our spawning is cancelled
 	var/obj/structure/burrow/B = find_visible_burrow(src)
 	if (!B)
+		return
+
+	// Skip the spawning if the burrow is in a well lit places.
+	var/turf/T = get_turf(B)
+	if(T.get_lumcount() > min_light_limit)
 		return
 
 	new /obj/effect/plant(get_turf(B), new /datum/seed/mushroom/maintshroom)

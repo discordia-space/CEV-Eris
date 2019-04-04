@@ -212,6 +212,7 @@ proc/get_radio_key_from_channel(var/channel)
 
 	var/list/listening = list()
 	var/list/listening_obj = list()
+	var/list/listening_falloff = list() //People that are quite far away from the person speaking, who just get a _quiet_ version of whatever's being said.
 
 	if(T)
 		//make sure the air can transmit speech - speaker's side
@@ -224,17 +225,28 @@ proc/get_radio_key_from_channel(var/channel)
 		if(pressure < ONE_ATMOSPHERE * 0.4)
 			italics = TRUE
 			sound_vol *= 0.5 //muffle the sound a bit, so it's like we're actually talking through contact
-
+		var/falloff = (message_range+3) //A wider radius where you're heard, but only quietly. This means you can hear people offscreen.
 		//DO NOT FUCKING CHANGE THIS TO GET_OBJ_OR_MOB_AND_BULLSHIT() -- Hugs and Kisses ~Ccomp
 		var/list/hear = hear(message_range, T)
+		var/list/hear_falloff = hear(falloff, T)
 
-		for(var/mob/M in SSmobs.mob_list)
+		for(var/X in SSmobs.mob_list)
+			if(!ismob(X))
+				continue
+			var/mob/M = X
+			if(M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
+				listening |= M
+				continue
 			if(M.locs.len && M.locs[1] in hear)
 				listening |= M
-			else if(M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
-				listening |= M
+				continue //To avoid seeing BOTH normal message and quiet message
+			else if(M.locs.len && M.locs[1] in hear_falloff)
+				listening_falloff |= M
 
-		for(var/obj/O in hearing_objects)
+		for(var/X in hearing_objects)
+			if(!isobj(X))
+				continue
+			var/obj/O = X
 			if(O.locs.len && O.locs[1] in hear)
 				listening_obj |= O
 
@@ -244,10 +256,21 @@ proc/get_radio_key_from_channel(var/channel)
 	QDEL_IN(speech_bubble, 30)
 
 	var/list/speech_bubble_recipients = list()
-	for(var/mob/M in listening)
+	for(var/X in listening) //Again, as we're dealing with a lot of mobs, typeless gives us a tangible speed boost.
+		if(!ismob(X))
+			continue
+		var/mob/M = X
 		if(M.client)
 			speech_bubble_recipients += M.client
 		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
+	for(var/X in listening_falloff)
+		if(!ismob(X))
+			continue
+		var/mob/M = X
+		var/falloff_message = "<font size='0.2'>[message]</font>" //make font fucking small
+		if(M.client)
+			speech_bubble_recipients += M.client
+		M.hear_say(falloff_message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
 
 	animate_speechbubble(speech_bubble, speech_bubble_recipients, 30)
 
@@ -255,6 +278,7 @@ proc/get_radio_key_from_channel(var/channel)
 		spawn(0)
 			if(O) //It's possible that it could be deleted in the meantime.
 				O.hear_talk(src, message, verb, speaking)
+
 
 	log_say("[name]/[key] : [message]")
 	return TRUE
@@ -330,7 +354,8 @@ proc/get_radio_key_from_channel(var/channel)
 		if(!say_understands(speaker, language))
 			if(isanimal(speaker))
 				var/mob/living/simple_animal/S = speaker
-				message = pick(S.speak)
+				if(S.speak.len)
+					message = pick(S.speak)
 			else
 				if(language)
 					message = language.scramble(message)

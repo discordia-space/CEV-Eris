@@ -60,14 +60,14 @@
 	var/list/mixing = list() //Containers being used for mixing.
 	var/max_beakers = 3
 	var/dart_reagent_amount = 15
-	var/container_type = /obj/item/weapon/reagent_containers/glass/beaker
+	var/beaker_type = /obj/item/weapon/reagent_containers/glass/beaker
 	var/list/starting_chems = null
 
 /obj/item/weapon/gun/projectile/dartgun/dartgun/New()
 	..()
 	if(starting_chems)
 		for(var/chem in starting_chems)
-			var/obj/B = new container_type(src)
+			var/obj/B = new beaker_type(src)
 			B.reagents.add_reagent(chem, 60)
 			beakers += B
 	update_icon()
@@ -105,7 +105,7 @@
 
 /obj/item/weapon/gun/projectile/dartgun/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/weapon/reagent_containers/glass))
-		if(!istype(I, container_type))
+		if(!istype(I, beaker_type))
 			user << "\blue [I] doesn't seem to fit into [src]."
 			return
 		if(beakers.len >= max_beakers)

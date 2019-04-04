@@ -102,7 +102,7 @@
 		user << SPAN_NOTICE("You stuff [R] into [src].")
 		rag = R
 		rag.forceMove(src)
-		flags &= ~OPENCONTAINER
+		reagent_flags &= ~OPENCONTAINER
 		verbs -= /obj/item/weapon/reagent_containers/food/drinks/proc/gulp_whole
 		update_icon()
 
@@ -110,9 +110,9 @@
 	if(!rag) return
 	user.put_in_hands(rag)
 	rag = null
-	var/is_open_container = initial(flags) & OPENCONTAINER
-	if(is_open_container)
-		flags |= OPENCONTAINER
+	var/was_open_container = initial(reagent_flags) & OPENCONTAINER
+	if(was_open_container)
+		reagent_flags |= OPENCONTAINER
 		verbs += /obj/item/weapon/reagent_containers/food/drinks/proc/gulp_whole
 	update_icon()
 
@@ -166,8 +166,7 @@
 
 //Keeping this here for now, I'll ask if I should keep it here.
 /obj/item/weapon/broken_bottle
-
-	name = "Broken Bottle"
+	name = "broken bottle"
 	desc = "A bottle with a sharp broken bottom."
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "broken_bottle"

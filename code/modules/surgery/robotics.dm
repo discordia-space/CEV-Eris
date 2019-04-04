@@ -262,8 +262,12 @@
 			var/obj/item/organ/I = target.internal_organs_by_name[organ]
 			if(I && !(I.status & ORGAN_CUT_AWAY) && I.parent_organ == target_zone)
 				attached_organs |= organ
-
-		var/organ_to_remove = input(user, "Which organ do you want to prepare for removal?") as null|anything in attached_organs
+		var/list/options = list()
+		for(var/i in attached_organs)
+			var/obj/item/organ/I = target.internal_organs_by_name[i]
+			options[i] = image(icon = I.icon, icon_state = I.icon_state)
+		var/organ_to_remove
+		organ_to_remove = show_radial_menu(user, target, options, radius = 32)
 		if(!organ_to_remove)
 			return 0
 

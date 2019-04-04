@@ -2,55 +2,55 @@
 	name = "blood packs bags"
 	desc = "This box contains blood packs."
 	icon_state = "sterile"
-	New()
-		..()
-		new /obj/item/weapon/reagent_containers/blood/empty(src)
-		new /obj/item/weapon/reagent_containers/blood/empty(src)
-		new /obj/item/weapon/reagent_containers/blood/empty(src)
-		new /obj/item/weapon/reagent_containers/blood/empty(src)
-		new /obj/item/weapon/reagent_containers/blood/empty(src)
-		new /obj/item/weapon/reagent_containers/blood/empty(src)
-		new /obj/item/weapon/reagent_containers/blood/empty(src)
+
+/obj/item/weapon/storage/box/bloodpacks/Initialize()
+	. = ..()
+	new /obj/item/weapon/reagent_containers/blood(src)
+	new /obj/item/weapon/reagent_containers/blood(src)
+	new /obj/item/weapon/reagent_containers/blood(src)
+	new /obj/item/weapon/reagent_containers/blood(src)
+	new /obj/item/weapon/reagent_containers/blood(src)
+	new /obj/item/weapon/reagent_containers/blood(src)
+	new /obj/item/weapon/reagent_containers/blood(src)
 
 /obj/item/weapon/reagent_containers/blood
-	name = "BloodPack"
+	name = "blood pack"
 	desc = "Contains blood used for transfusion."
 	icon = 'icons/obj/bloodpack.dmi'
-	icon_state = "empty"
+	icon_state = "bloodpack"
 	volume = 200
-
+	reagent_flags = OPENCONTAINER
+	filling_states = "-10;10;25;50;75;80;100"
 	var/blood_type = null
 
 /obj/item/weapon/reagent_containers/blood/New()
 	..()
-	if(blood_type != null)
+	if(blood_type)
 		reagents.add_reagent("blood", 200, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"=blood_type,"resistances"=null,"trace_chem"=null))
-		update()
+
 
 /obj/item/weapon/reagent_containers/blood/on_reagent_change()
-	update()
-
-/obj/item/weapon/reagent_containers/blood/proc/update()
+	..()
 	update_name()
-	update_icon()
-		
+
 
 /obj/item/weapon/reagent_containers/blood/update_icon()
-	var/percent = round((reagents.total_volume / volume) * 100)
-	switch(percent)
-		if(0 to 9)			icon_state = "empty"
-		if(10 to 50) 		icon_state = "half"
-		if(51 to INFINITY)	icon_state = "full"
+	cut_overlays()
+
+	if(!reagents.total_volume)
+		return
+
+	var/mutable_appearance/filling = mutable_appearance(icon, "[icon_state][get_filling_state()]")
+	filling.color = reagents.get_color()
+	add_overlay(filling)
 
 /obj/item/weapon/reagent_containers/blood/proc/update_name()
 	var/list/data = reagents.get_data("blood")
 	if(data)
 		blood_type = data["blood_type"]
-		name = "BloodPack [blood_type]"
-		desc = "Contains blood used for transfusion."
-		return
-	name = "Empty BloodPack"
-	desc = "Seems pretty useless... Maybe if there were a way to fill it?"
+		name = "blood pack ([blood_type])"
+	else
+		name = "blood pack"
 
 
 /obj/item/weapon/reagent_containers/blood/APlus
@@ -72,6 +72,3 @@
 	blood_type = "O-"
 
 /obj/item/weapon/reagent_containers/blood/empty
-	name = "Empty BloodPack"
-	desc = "Seems pretty useless... Maybe if there were a way to fill it?"
-	icon_state = "empty"

@@ -226,12 +226,16 @@
 /datum/movement_handler/mob/physically_restrained/MayMove(var/mob/mover)
 	if(mob.anchored)
 		if(mover == mob)
-			to_chat(mob, "<span class='notice'>You're anchored down!</span>")
+//			to_chat(mob, "<span class='notice'>You're anchored down!</span>")
+			if(isliving(mob))
+				mob:resist()
 		return MOVEMENT_STOP
 
 	if(istype(mob.buckled) && !mob.buckled.buckle_movable)
 		if(mover == mob)
-			to_chat(mob, "<span class='notice'>You're buckled to \the [mob.buckled]!</span>")
+//			to_chat(mob, "<span class='notice'>You're buckled to \the [mob.buckled]!</span>")
+			if(isliving(mob))
+				mob:resist()
 		return MOVEMENT_STOP
 
 	if(LAZYLEN(mob.pinned))

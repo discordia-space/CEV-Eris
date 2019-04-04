@@ -42,8 +42,6 @@
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial/random/New()
 	..()
-	if(is_open_container())
-		flags ^= OPENCONTAINER
 
 	var/list/picked_reagents = pickweight(random_reagent_list)
 	for(var/reagent in picked_reagents)
@@ -54,4 +52,6 @@
 		names += R.name
 
 	desc = "Contains [english_list(names)]."
-	update_icon()
+
+	if(!has_lid())
+		toggle_lid()

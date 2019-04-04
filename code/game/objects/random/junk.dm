@@ -71,7 +71,7 @@
 	return pickweight(items - exclusions)
 
 /obj/random/junk/nondense
-	exclusions = list(/obj/random/scrap/moderate_weighted)
+	exclusions = list(/obj/random/scrap/moderate_weighted, /obj/item/remains/robot)
 
 /obj/random/junk/low_chance
 	name = "low chance random junk"

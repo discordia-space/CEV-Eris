@@ -6,6 +6,7 @@
 	item_state = "fire_extinguisher"
 	hitsound = 'sound/weapons/smash.ogg'
 	flags = CONDUCT
+	reagent_flags = AMOUNT_VISIBLE
 	throwforce = WEAPON_FORCE_DANGEROUS
 	w_class = ITEM_SIZE_NORMAL
 	throw_speed = 2
@@ -39,11 +40,6 @@
 	create_reagents(max_water)
 	reagents.add_reagent("water", max_water)
 	..()
-
-/obj/item/weapon/extinguisher/examine(mob/user)
-	if(..(user, 0))
-		user << text("\icon[] [] contains [] units of water left!", src, src.name, src.reagents.total_volume)
-	return
 
 /obj/item/weapon/extinguisher/attack_self(mob/user as mob)
 	safety = !safety

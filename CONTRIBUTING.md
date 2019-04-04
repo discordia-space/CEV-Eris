@@ -171,13 +171,13 @@ if(hasvar(obj, "count"))
 ```
 ***
 
-Colorized text outputs should use html tags instead of magic color symbols. Make use of our span defines when possible.
+Colorized text outputs should use `to_chat(target, text)` and html tags instead of `<<` and magic color symbols. Make use of our span defines when possible.
 
 ***Good:***
 ```
-player << SPAN_NOTICE("Everything is OK.")
-player << SPAN_WARNING("There's something wrong...")
-player << SPAN_DANGER("Everything is fucked up!")
+to_chat(player, SPAN_NOTICE("Everything is OK."))
+to_chat(player, SPAN_WARNING("There's something wrong..."))
+to_chat(player, SPAN_DANGER("Everything is fucked up!"))
 ```
 ***Bad:***
 ```
