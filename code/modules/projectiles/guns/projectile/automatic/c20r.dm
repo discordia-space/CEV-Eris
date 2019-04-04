@@ -16,6 +16,7 @@
 	unload_sound 	= 'sound/weapons/guns/interact/sfrifle_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/sfrifle_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/sfrifle_cock.ogg'
+	zoom_factor = 2.0
 
 /obj/item/weapon/gun/projectile/automatic/c20r/update_icon()
 	..()

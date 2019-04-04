@@ -18,6 +18,7 @@
 	var/use_external_power = 0 //if set, the weapon will look for an external power source to draw from, otherwise it recharges magically
 	var/recharge_time = 4
 	var/charge_tick = 0
+	zoom_factor = 2.0
 
 /obj/item/weapon/gun/energy/switch_firemodes()
 	. = ..()
