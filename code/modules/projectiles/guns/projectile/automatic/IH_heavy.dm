@@ -1,7 +1,7 @@
 //The heavy rifle is ironhammer's go-to weapon for dealing with serious threats. It weighs a ton and hits hard
 /obj/item/weapon/gun/projectile/automatic/IH_heavyrifle
-	name = "FS Battle Rifle \"Wintermute\""
-	desc = "A high end military grade automatic rifle, designed for use against armoured infantry. Has a slightly slower firing rate than its contemporaries, but hits like a truck. Uses 7.62mm rounds."
+	name = "FS BR \"Wintermute\""
+	desc = "A high end military grade automatic battle rifle, designed for use against armoured infantry. Has a slightly slower firing rate than its contemporaries, but hits like a truck. Uses 7.62mm rounds."
 	icon_state = "IH_heavyrifle"
 	item_state = "IH_heavyrifle"
 	w_class = ITEM_SIZE_HUGE

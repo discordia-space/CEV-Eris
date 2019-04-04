@@ -9,7 +9,7 @@
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
 	slot_flags = SLOT_BELT|SLOT_BACK
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/a10mm
+	magazine_type = /obj/item/ammo_magazine/smg10mm
 	auto_eject = TRUE
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
