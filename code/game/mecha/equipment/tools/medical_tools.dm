@@ -395,7 +395,7 @@
 
 	New()
 		..()
-		flags |= NOREACT
+		reagent_flags |= NO_REACT
 		syringes = new
 		known_reagents = list("inaprovaline"="Inaprovaline","anti_toxin"="Dylovene")
 		processed_reagents = new
@@ -413,7 +413,7 @@
 
 	critfail()
 		..()
-		flags &= ~NOREACT
+		reagent_flags &= ~NO_REACT
 		return
 
 	get_equip_info()

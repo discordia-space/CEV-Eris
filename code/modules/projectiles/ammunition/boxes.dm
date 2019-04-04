@@ -41,7 +41,17 @@
 	matter = list(MATERIAL_STEEL = 6)
 	caliber = "10mm"
 	ammo_type = /obj/item/ammo_casing/a10mm
-	max_ammo = 30
+	max_ammo = 32
+
+/obj/item/ammo_magazine/ammobox/a10mm/rubber
+	name = "ammunition box (10mm rubber)"
+	icon_state = "box10mm-rubber"
+	ammo_type = /obj/item/ammo_casing/a10mm/rubber
+
+//obj/item/ammo_magazine/ammobox/a10mm/hv
+	//name = "ammunition box (10mm high velocity)"
+	//icon_state = "box10mm-hv"
+	//ammo_type = /obj/item/ammo_casing/a10mm/hv
 
 /obj/item/ammo_magazine/ammobox/c9mm
 	name = "ammunition box (9mm)"

@@ -69,9 +69,10 @@
 	var/burst_delay = 2	//delay between shots, if firing in bursts
 	var/move_delay = 1
 	var/fire_sound = 'sound/weapons/Gunshot.ogg'
+
 	var/fire_sound_text = "gunshot"
 	var/recoil = 0		//screen shake
-	var/silenced = 0
+
 	var/muzzle_flash = 3
 	var/list/dispersion = list(0)
 	var/requires_two_hands
@@ -97,6 +98,11 @@
 	var/tmp/told_cant_shoot = 0 //So that it doesn't spam them with the fact they cannot hit them.
 	var/tmp/lock_time = -100
 	var/mouthshoot = FALSE //To stop people from suiciding twice... >.>
+
+	/*	SILENCER HANDLING */
+	var/obj/item/weapon/silencer/silenced = null //The installed silencer, if any
+	var/silencer_type = null //The type of silencer that could be installed in us, if we don't have one
+	var/fire_sound_silenced = 'sound/weapons/Gunshot_silenced.wav' //Firing sound used when silenced
 
 /obj/item/weapon/gun/New()
 	..()
@@ -212,6 +218,14 @@
 	else
 		return ..() //Pistolwhippin'
 
+
+/obj/item/weapon/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)
+	.=..()
+	if (!.)
+		if (silencer_type && istype(A, silencer_type))
+			apply_silencer(A, user)
+
+
 /obj/item/weapon/gun/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
 	if(!user || !target) return
 
@@ -296,7 +310,8 @@
 //called after successfully firing
 /obj/item/weapon/gun/proc/handle_post_fire(mob/user, atom/target, var/pointblank=0, var/reflex=0)
 	if(silenced)
-		playsound(user, fire_sound, 10, 1)
+		//Silenced shots have a lower range and volume
+		playsound(user, fire_sound_silenced, 15, 1, -3)
 	else
 		playsound(user, fire_sound, 60, 1)
 
@@ -318,7 +333,10 @@
 
 	if(recoil)
 		spawn()
-			shake_camera(user, recoil+1, recoil)
+			if (silenced)
+				shake_camera(user, (recoil+1*0.5), (recoil*0.5))
+			else
+				shake_camera(user, recoil+1, recoil)
 	update_icon()
 
 
@@ -452,6 +470,10 @@
 	else
 		to_chat(user, SPAN_NOTICE("The safety is off."))
 
+	//Tell the user if they could fit a silencer on
+	if (silencer_type && !silenced)
+		to_chat(user, SPAN_NOTICE("You could attach a silencer to this."))
+
 /obj/item/weapon/gun/proc/switch_firemodes()
 	if(firemodes.len <= 1)
 		return null
@@ -538,3 +560,52 @@
 	set src in view(1)
 
 	check_safety(usr)
+
+
+
+/*
+	Gun Modding
+*/
+/obj/item/weapon/gun/proc/apply_silencer(var/obj/item/weapon/silencer/A, var/mob/user)
+	if (silenced)
+		to_chat(user, "\The [src] already has a silencer installed!")
+		return
+
+	if (istype(A, silencer_type))
+
+		if (user)
+			playsound(src, WORKSOUND_SCREW_DRIVING, 50, 1)
+			if (!do_after(user, 40, src))
+				return
+			if (!user.unEquip(A))
+				return
+			to_chat(user, SPAN_NOTICE("You install \the [A] in \the [src]"))
+
+		//Here's the code where we actually install it
+		A.forceMove(src)//Silencer goes inside us
+		silenced = A
+		damage_multiplier -= A.damage_mod //Silencers make the weapon slightly weaker
+		update_icon() //Guns that support silencers are responsible for setting their own icon appropriately
+		if (silenced.can_remove)
+			verbs += /obj/item/weapon/gun/proc/remove_silencer //Give us a verb to remove it
+
+
+/obj/item/weapon/gun/proc/remove_silencer(var/mob/user)
+	if (!silenced || !silenced.can_remove)
+		to_chat(user, "No silencer is installed on \the [src]")
+		verbs -= /obj/item/weapon/gun/proc/remove_silencer
+		return
+
+	if (user)
+		playsound(src, WORKSOUND_SCREW_DRIVING, 50, 1)
+		if (!do_after(user, 40, src))
+			return
+		//Drop it in their hands
+		user.put_in_hands(silenced)
+	.=silenced //Set return value to the silencer incase caller wants to do something with it
+	if (silenced.loc == src)
+		silenced.forceMove(loc) //Move it out if a user didn't take it
+
+	damage_multiplier += silenced.damage_mod
+	silenced = null
+	update_icon()

@@ -295,3 +295,23 @@
 	if(!air) air = new/datum/gas_mixture
 	air.copy_from(zone.air)
 	air.group_multiplier = 1
+
+
+// LINDA proc placeholder, used for compatibility with some tgstation code
+/turf/proc/GetAtmosAdjacentTurfs(alldir = FALSE)
+	var/check_dirs
+	if(alldir)
+		check_dirs = alldirs
+	else
+		check_dirs = cardinal
+
+	var/list/adjacent_turfs = list()
+
+	for(var/direction in check_dirs)
+		var/turf/T = get_step(src, direction)
+		if(!T)
+			continue
+		if(src.CanPass(null, T, 1.5, TRUE))
+			adjacent_turfs += T
+
+	return adjacent_turfs

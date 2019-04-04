@@ -73,7 +73,7 @@
  */
 
 /obj/item/weapon/pen/reagent
-	flags = OPENCONTAINER
+	reagent_flags = REFILLABLE | DRAINABLE
 	slot_flags = SLOT_BELT
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 
@@ -91,7 +91,7 @@
 	if(M.can_inject(user,1))
 		if(reagents.total_volume)
 			if(M.reagents)
-				var/contained_reagents = reagents.get_reagents()
+				var/contained_reagents = reagents.log_list()
 				var/trans = reagents.trans_to_mob(M, 30, CHEM_BLOOD)
 				admin_inject_log(user, M, src, contained_reagents, trans)
 

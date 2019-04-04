@@ -94,6 +94,22 @@
 	name = "NT AMR \"Penetrator\""
 	path = /obj/item/weapon/gun/projectile/heavysniper
 
+/datum/autolathe/recipe/gun/IH_sidearm
+	name = "FS HG 10mm \"Paco\""
+	path = /obj/item/weapon/gun/projectile/IH_sidearm
+
+/datum/autolathe/recipe/gun/IH_smg
+	name = "FS SMG 9x19 \"Straylight\""
+	path = /obj/item/weapon/gun/projectile/automatic/IH_smg
+
+/datum/autolathe/recipe/gun/IH_machinepistol
+	name = "FS MP 9x19 \"Molly\""
+	path = /obj/item/weapon/gun/projectile/automatic/IH_machinepistol
+
+/datum/autolathe/recipe/gun/IH_heavyrifle
+	name = "FS BR 7.62x39 \"Wintermute\""
+	path = /obj/item/weapon/gun/projectile/automatic/IH_heavyrifle
+
 /datum/autolathe/recipe/gun/grenade_launcher
 	name = "NT GL \"Protector\""
 	path = /obj/item/weapon/gun/launcher/grenade

@@ -270,7 +270,8 @@ REAGENT SCANNER
 	desc = "A hand-held mass spectrometer which identifies trace chemicals in a blood sample."
 	icon_state = "spectrometer"
 	item_state = "analyzer"
-	flags = CONDUCT | OPENCONTAINER
+	flags = CONDUCT
+	reagent_flags = OPENCONTAINER
 
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)

@@ -36,6 +36,7 @@
 	can_hold = list(
 		/obj/item/weapon/tool,
 		/obj/item/device/lighting/toggleable/flashlight,
+		/obj/item/device/radio/headset,
 		/obj/item/stack/cable_coil,
 		/obj/item/device/t_scanner,
 		/obj/item/device/scanner/analyzer,
@@ -44,7 +45,13 @@
 		/obj/item/weapon/material/minihoe,
 		/obj/item/weapon/material/hatchet,
 		/obj/item/device/scanner/analyzer/plant_analyzer,
-		/obj/item/weapon/extinguisher/mini
+		/obj/item/weapon/extinguisher/mini,
+		/obj/item/weapon/hand_labeler,
+		/obj/item/clothing/gloves,
+		/obj/item/clothing/glasses,
+		/obj/item/weapon/flame/lighter,
+		/obj/item/weapon/cell/small,
+		/obj/item/weapon/cell/medium
 		)
 
 
@@ -93,20 +100,22 @@
 	can_hold = list(
 		/obj/item/device/scanner/healthanalyzer,
 		/obj/item/weapon/dnainjector,
+		/obj/item/device/radio/headset,
 		/obj/item/weapon/reagent_containers/dropper,
 		/obj/item/weapon/reagent_containers/glass/beaker,
 		/obj/item/weapon/reagent_containers/glass/bottle,
 		/obj/item/weapon/reagent_containers/pill,
 		/obj/item/weapon/reagent_containers/syringe,
-		/obj/item/weapon/flame/lighter/zippo,
+		/obj/item/weapon/flame/lighter,
+		/obj/item/weapon/cell/small,
 		/obj/item/weapon/storage/fancy/cigarettes,
 		/obj/item/weapon/storage/pill_bottle,
 		/obj/item/stack/medical,
 		/obj/item/clothing/mask/surgical,
 		/obj/item/clothing/head/surgery,
-		/obj/item/clothing/gloves/latex,
+		/obj/item/clothing/gloves,
 		/obj/item/weapon/reagent_containers/hypospray,
-		/obj/item/clothing/glasses/hud/health,
+		/obj/item/clothing/glasses,
 		/obj/item/weapon/tool/crowbar,
 		/obj/item/device/lighting/toggleable/flashlight,
 		/obj/item/weapon/extinguisher/mini
@@ -128,27 +137,28 @@
 		/obj/item/weapon/reagent_containers/spray/pepper,
 		/obj/item/weapon/handcuffs,
 		/obj/item/device/flash,
+		/obj/item/clothing/gloves,
 		/obj/item/clothing/glasses,
 		/obj/item/ammo_casing,
 		/obj/item/ammo_magazine,
 		/obj/item/weapon/cell/small,
-		/obj/item/weapon/reagent_containers/food/snacks/donut,
+		/obj/item/weapon/cell/medium,
+		/obj/item/weapon/reagent_containers/food/snacks/donut, //meme, but fine
 		/obj/item/weapon/flame/lighter,
-		/obj/item/clothing/glasses/hud/security,
 		/obj/item/device/lighting/toggleable/flashlight,
 		/obj/item/modular_computer/pda,
 		/obj/item/device/radio/headset,
 		/obj/item/device/hailer,
 		/obj/item/device/megaphone,
 		/obj/item/weapon/melee,
-		/obj/item/weapon/gun/projectile/mk58,
+		//obj/item/weapon/gun/projectile/mk58, //too big, use holster
 		/obj/item/weapon/gun/projectile/clarissa,
 		/obj/item/weapon/gun/projectile/giskard,
-		/obj/item/weapon/gun/projectile/olivaw,
-		/obj/item/weapon/gun/projectile/revolver/detective,
+		//obj/item/weapon/gun/projectile/olivaw, //too big, use holster
+		//obj/item/weapon/gun/projectile/revolver/detective, //too big, use holster
 		/obj/item/weapon/gun/energy/gun/martin,
-		/obj/item/weapon/gun/energy/taser,
-		/obj/item/taperoll/police
+		//obj/item/weapon/gun/energy/taser, //too big, use holster
+		/obj/item/taperoll
 		)
 
 /obj/item/weapon/storage/belt/champion

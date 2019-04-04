@@ -12,10 +12,11 @@
 	slot_flags = SLOT_EARS
 	volume = 60
 
-/obj/item/weapon/reagent_containers/pill/New()
-	..()
+/obj/item/weapon/reagent_containers/pill/Initialize()
+	. = ..()
 	if(!icon_state)
 		icon_state = "pill[rand(1, 20)]"
+
 
 /obj/item/weapon/reagent_containers/pill/attack(mob/M as mob, mob/user as mob, def_zone)
 	if(standard_feed_mob(user, M))
@@ -24,7 +25,7 @@
 	return 0
 
 /obj/item/weapon/reagent_containers/pill/self_feed_message(var/mob/user)
-	user << SPAN_NOTICE("You swallow \the [src].")
+	to_chat(user, SPAN_NOTICE("You swallow \the [src]."))
 
 /obj/item/weapon/reagent_containers/pill/other_feed_message_start(var/mob/user, var/mob/target)
 	user.visible_message("<span class='warning'>[user] attempts to force [target] to swallow \the [src].</span>")
@@ -37,14 +38,14 @@
 
 	..()
 
-	if(target.is_open_container() && target.reagents)
+	if(target.is_refillable())
 		if(!target.reagents.total_volume)
-			user << SPAN_NOTICE("[target] is empty. Can't dissolve \the [src].")
+			to_chat(user, SPAN_NOTICE("[target] is empty. Can't dissolve \the [src]."))
 			return
-		user << SPAN_NOTICE("You dissolve \the [src] in [target].")
+		to_chat(user, SPAN_NOTICE("You dissolve \the [src] in [target]."))
 
-		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Spiked \a [target] with a pill. Reagents: [reagentlist()]</font>")
-		msg_admin_attack("[user.name] ([user.ckey]) spiked \a [target] with a pill. Reagents: [reagentlist()] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Spiked \a [target] with a pill. Reagents: [reagents.log_list()]</font>")
+		msg_admin_attack("[user.name] ([user.ckey]) spiked \a [target] with a pill. Reagents: [reagents.log_list()] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
 		reagents.trans_to(target, reagents.total_volume)
 		for(var/mob/O in viewers(2, user))
@@ -52,7 +53,6 @@
 
 		qdel(src)
 
-	return
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Pills. END
@@ -203,7 +203,7 @@
 
 //Pills with random content
 /obj/item/weapon/reagent_containers/pill/floorpill
-	name = "Floor pill"
+	name = "floor pill"
 	desc = "Dare you?"
 
 /obj/item/weapon/reagent_containers/pill/floorpill/Initialize()
