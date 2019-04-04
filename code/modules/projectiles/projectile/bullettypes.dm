@@ -273,9 +273,9 @@
 	range_step = 1
 	spread_step = 10
 
-	New()
-		icon_state = "birdshot-[rand(1,4)]"
-		. = ..()
+/obj/item/projectile/bullet/pellet/shotgun/Initialize()
+	. = ..()
+	icon_state = "birdshot-[rand(1,4)]"
 
 //Miscellaneous
 /obj/item/projectile/bullet/blank
