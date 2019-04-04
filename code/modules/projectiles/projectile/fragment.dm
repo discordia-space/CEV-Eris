@@ -14,3 +14,7 @@
 
 /obj/item/projectile/bullet/pellet/fragment/weak
 	damage = 5
+
+/obj/item/projectile/bullet/pellet/fragment/invisible
+	icon_state = "invisible"
+	damage = 20

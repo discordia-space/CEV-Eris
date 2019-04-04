@@ -51,8 +51,13 @@
 	desc = "A military-grade offensive blast grenade, designed to be thrown by assaulting troops."
 	icon_state = "explosive"
 
+	fragment_type = /obj/item/projectile/bullet/pellet/fragment/invisible
+	spread_range = 1
+	num_fragments = 1
+	fragment_damage = 20
+	damage_step = 20
+
 	devastation_range = -1
 	heavy_range = 1
 	weak_range = 4
 	flash_range = 10
-	num_fragments = 10
