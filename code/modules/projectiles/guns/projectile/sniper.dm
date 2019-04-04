@@ -42,7 +42,7 @@
 			var/datum/firemode/new_mode = switch_firemodes(user)
 			if(new_mode)
 				playsound(src.loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
-				user << SPAN_NOTICE("\The [src] is now set to [new_mode.name].")
+				to_chat(user, SPAN_NOTICE("\The [src] is now set to [new_mode.name]."))
 		if("scope")
 			toggle_scope(zoom_factor)
 		if("safety")
@@ -53,14 +53,14 @@
 	bolt_open = !bolt_open
 	if(bolt_open)
 		if(chambered)
-			user << SPAN_NOTICE("You work the bolt open, ejecting [chambered]!")
+			to_chat(user, SPAN_NOTICE("You work the bolt open, ejecting [chambered]!"))
 			chambered.loc = get_turf(src)
 			loaded -= chambered
 			chambered = null
 		else
-			user << SPAN_NOTICE("You work the bolt open.")
+			to_chat(user, SPAN_NOTICE("You work the bolt open."))
 	else
-		user << SPAN_NOTICE("You work the bolt closed.")
+		to_chat(user, SPAN_NOTICE("You work the bolt closed."))
 		playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltforward.ogg', 75, 1)
 		bolt_open = 0
 	add_fingerprint(user)
@@ -68,7 +68,7 @@
 
 /obj/item/weapon/gun/projectile/heavysniper/special_check(mob/user)
 	if(bolt_open)
-		user << SPAN_WARNING("You can't fire [src] while the bolt is open!")
+		to_chat(user, SPAN_WARNING("You can't fire [src] while the bolt is open!"))
 		return 0
 	return ..()
 
