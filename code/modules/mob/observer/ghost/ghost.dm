@@ -151,7 +151,7 @@ Works together with spawning an observer, noted above.
 			else if (ispAI(src) || isdrone(src))
 				set_death_time(MINISYNTH, world.time)
 			else
-			set_death_time(CREW, world.time)//Crew is the fallback
+				set_death_time(CREW, world.time)//Crew is the fallback
 
 		//Set the respawn bonus from ghosting while in cryosleep.
 		//This is duplicated in the cryopod code for robustness. The message will not display twice
