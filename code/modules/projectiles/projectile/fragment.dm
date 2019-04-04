@@ -14,3 +14,9 @@
 
 /obj/item/projectile/bullet/pellet/fragment/weak
 	damage = 5
+
+/obj/item/projectile/bullet/pellet/fragment/invisible
+	name = "explosion"
+	icon_state = "invisible"
+	embed = 0
+	damage = 20
