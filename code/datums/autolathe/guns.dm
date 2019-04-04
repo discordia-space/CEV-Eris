@@ -95,7 +95,7 @@
 	path = /obj/item/weapon/gun/projectile/heavysniper
 
 /datum/autolathe/recipe/gun/IH_sidearm
-	name = "FS HG 9x19 \"Paco\""
+	name = "FS HG 10mm \"Paco\""
 	path = /obj/item/weapon/gun/projectile/IH_sidearm
 
 /datum/autolathe/recipe/gun/IH_smg
@@ -107,7 +107,7 @@
 	path = /obj/item/weapon/gun/projectile/automatic/IH_machinepistol
 
 /datum/autolathe/recipe/gun/IH_heavyrifle
-	name = "FS Battle Rifle 7.62x39 \"Wintermute\""
+	name = "FS BR 7.62x39 \"Wintermute\""
 	path = /obj/item/weapon/gun/projectile/automatic/IH_heavyrifle
 
 /datum/autolathe/recipe/gun/grenade_launcher

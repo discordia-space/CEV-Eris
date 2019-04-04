@@ -14,6 +14,8 @@
 				/obj/item/ammo_magazine/ammobox/cl32/rubber = 2,
 				/obj/item/ammo_magazine/ammobox/c9mm = 1,
 				/obj/item/ammo_magazine/ammobox/c9mm/rubber = 2,
+				/obj/item/ammo_magazine/a10mm = 2,
+				/obj/item/ammo_magazine/a10mm/rubber = 2,
 				/obj/item/ammo_magazine/c45smg = 1,
 				/obj/item/ammo_magazine/c45smg/rubber = 1,
 				/obj/item/ammo_magazine/smg9mm = 1,
