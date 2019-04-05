@@ -15,6 +15,7 @@
 	unload_sound = 'sound/weapons/guns/interact/smg_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/smg_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/smg_cock.ogg'
+	zoom_factor = 1.4
 
 	firemodes = list(
 		FULL_AUTO_400,

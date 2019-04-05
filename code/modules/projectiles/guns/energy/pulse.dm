@@ -11,6 +11,7 @@
 	sel_mode = 2
 	charge_cost = 200
 	cell_type = /obj/item/weapon/cell/medium
+	zoom_factor = 2.0
 
 	firemodes = list(
 		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun, fire_sound='sound/weapons/Taser.ogg', fire_delay=null, charge_cost=null),
