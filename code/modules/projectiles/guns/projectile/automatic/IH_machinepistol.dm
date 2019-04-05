@@ -11,6 +11,7 @@
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/smg9mm
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 3)
+	price_tag = 1700
 	silencer_type = /obj/item/weapon/silencer
 	damage_multiplier = 0.55
 	firemodes = list(
