@@ -29,8 +29,8 @@
 	..()
 	update_icon()
 
-/obj/item/weapon/gun/energy/New()
-	..()
+/obj/item/weapon/gun/energy/Initialize()
+	. = ..()
 	if(self_recharge)
 		cell = new cell_type(src)
 		START_PROCESSING(SSobj, src)
@@ -123,3 +123,6 @@
 	if(istype(C, suitable_cell) && insert_item(C, user))
 		cell = C
 		update_icon()
+
+/obj/item/weapon/gun/energy/get_cell()
+	return cell

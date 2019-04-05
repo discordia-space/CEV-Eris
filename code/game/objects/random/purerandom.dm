@@ -97,7 +97,6 @@
 				/obj/item/rig_module/device/drill = 1,
 				/obj/item/clothing/glasses/meson = 1,
 				/obj/item/clothing/glasses/night = 1,
-				/obj/item/weapon/computer_hardware/battery_module = 2,
 				/obj/item/weapon/computer_hardware/card_slot = 2,
 				/obj/item/weapon/computer_hardware/hard_drive = 2,
 				/obj/item/weapon/computer_hardware/network_card = 2,

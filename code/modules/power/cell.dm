@@ -22,17 +22,15 @@
 	var/rigged = 0		// true if rigged to explode
 	var/minor_fault = 0 //If not 100% reliable, it will build up faults.
 	var/autorecharging = FALSE //For nucclear cells
+	var/autorecharge_rate = 0.03
 	var/recharge_time = 4 //How often nuclear cells will recharge
 	var/charge_tick = 0
 	var/last_charge_status = -1 //used in update_icon optimization
 
-/obj/item/weapon/cell/New()
-	..()
-	charge = maxcharge
-	update_icon()
-
 /obj/item/weapon/cell/Initialize()
 	. = ..()
+	charge = maxcharge
+	update_icon()
 	if(autorecharging)
 		START_PROCESSING(SSobj, src)
 
@@ -40,7 +38,7 @@
 	charge_tick++
 	if(charge_tick < recharge_time) return 0
 	charge_tick = 0
-	give(maxcharge * 0.03)
+	give(maxcharge * autorecharge_rate)
 	return 1
 
 //Newly manufactured cells start off empty. You can't create energy
@@ -128,17 +126,15 @@
 	if(!..(user,2))
 		return
 
-	if(maxcharge <= 2500)
-		user << "The manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.\nThe charge meter reads [round(src.percent() )]%."
-	else
-		user << "This power cell has an exciting chrome finish, as it is an uber-capacity cell type! It has a power rating of [maxcharge]!\nThe charge meter reads [round(src.percent() )]%."
+	to_chat(user, "The manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.")
+	to_chat(user, "The charge meter reads [round(src.percent() )]%.")
 
 /obj/item/weapon/cell/attackby(obj/item/W, mob/user)
 	..()
 	if(istype(W, /obj/item/weapon/reagent_containers/syringe))
 		var/obj/item/weapon/reagent_containers/syringe/S = W
 
-		user << "You inject the solution into the power cell."
+		to_chat(user, "You inject the solution into the power cell.")
 
 		if(S.reagents.has_reagent("plasma", 5))
 
@@ -243,3 +239,6 @@
 			return min(rand(10,20),rand(10,20))
 		else
 			return 0
+
+/obj/item/weapon/cell/get_cell()
+	return src
