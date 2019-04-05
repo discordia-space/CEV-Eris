@@ -49,11 +49,11 @@ This file contains the underlying code for stash datums
 	//This is made of two lists which are added together. Key is object type, value is quantity
 	//Generally, its intended that one list is used for a base type, and one for subtypes, to reduce duplication
 	var/list/contents_list_base = list()
-	var/list/contents_list_extra = list(/obj/random/rare = 1)
+	var/list/contents_list_extra = list(/obj/random/pack/rare = 1)
 
 	//Third list for random content. In this list, the value is a probability in the range 0-100
 	//There's no quantity field, each item makes only a single instance, put several in if you want multiples
-	var/list/contents_list_random = list(/obj/random/rare = 30, /obj/random/rare = 30)
+	var/list/contents_list_random = list(/obj/random/pack/rare = 30, /obj/random/pack/rare = 30)
 
 	//Fourth list for things that will spawn outside of the stash container on the same tile. Commonly used to place remains/corpses
 	var/list/contents_list_external = list()

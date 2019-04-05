@@ -7,8 +7,8 @@
 /datum/stash/booze/distillers
 	story_type = STORY_CRIME
 	directions = DIRECTION_IMAGE
-	contents_list_random = list(/obj/random/rare = 30,
-	/obj/random/rare = 30,
+	contents_list_random = list(/obj/random/pack/rare = 30,
+	/obj/random/pack/rare = 30,
 	/obj/random/lowkeyrandom = 40,
 	/obj/random/lowkeyrandom = 40,
 	/obj/random/lowkeyrandom = 40,

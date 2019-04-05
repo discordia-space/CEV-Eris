@@ -1,7 +1,10 @@
 /obj/random/lowkeyrandom //Absolutly random things
 	name = "random stuff"
 	icon_state = "radnomstuff-green"
-	var/list/possibilities = list(/obj/random/rare = 1.5,
+
+
+/obj/random/lowkeyrandom/item_to_spawn()
+	return pickweight(list(
 				/obj/item/weapon/storage/box/shotgunammo/beanbags = 1,
 				/obj/item/ammo_magazine/mc9mmt/rubber = 1,
 				/obj/item/weapon/storage/box/matches = 3,
@@ -125,25 +128,8 @@
 				/obj/item/weapon/gun/projectile/giskard = 1,
 				/obj/item/weapon/gun/projectile/revolver/deckard = 1,
 				/obj/item/weapon/gun/projectile/revolver/detective = 1,
-				/obj/random/rig/damaged = 0.1,
-				/obj/random/voidsuit/damaged = 0.5,
-				/obj/random/pouch = 3,
-				/obj/random/junk = 25,
-				/obj/random/lathe_disk = 5,
-				/obj/random/rig_module = 4,
-				/obj/random/medical = 10,
-				/obj/random/junkfood = 10,
-				/obj/random/cloth/random_cloth = 5,
-				/obj/random/credits/c100 = 2,
-				/obj/item/stash_spawner = 12)
-
-/obj/random/lowkeyrandom/item_to_spawn()
-	var/turf/T = get_turf(src)
-	if (!isStationLevel(T.z))
-		//We don't want stashnotes spawning on the abandoned fortress, for now at least
-		possibilities.Remove(/obj/item/stash_spawner)
-
-	return pickweight(possibilities)
+				/obj/item/clothing/accessory/badge/marshal = 0.1, //Antag item
+				/obj/item/stash_spawner = 12))
 
 /obj/random/lowkeyrandom/low_chance
 	name = "low chance random stuff"
