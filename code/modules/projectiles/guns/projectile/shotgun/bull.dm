@@ -13,6 +13,8 @@
 	caliber = "shotgun"
 	var/reload = 1
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
+	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 6)
+	price_tag = 2500
 	damage_multiplier = 0.75
 	burst_delay = null
 	fire_delay = null

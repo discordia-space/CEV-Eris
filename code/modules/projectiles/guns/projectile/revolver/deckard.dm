@@ -8,3 +8,4 @@
 	ammo_type = /obj/item/ammo_casing/cl44/rubber
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
 	damage_multiplier = 1.1 //slightly more damaging because only 5 shots
+	price_tag = 1600

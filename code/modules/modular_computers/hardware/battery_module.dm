@@ -18,6 +18,7 @@
 	origin_tech = list(TECH_POWER = 2, TECH_ENGINEERING = 2)
 	hardware_size = 2
 	battery_rating = 110
+	price_tag = 15
 
 /obj/item/weapon/computer_hardware/battery_module/super
 	name = "super battery"
@@ -26,6 +27,7 @@
 	origin_tech = list(TECH_POWER = 3, TECH_ENGINEERING = 3)
 	hardware_size = 2
 	battery_rating = 150
+	price_tag = 20
 
 /obj/item/weapon/computer_hardware/battery_module/ultra
 	name = "ultra battery"
@@ -34,6 +36,7 @@
 	origin_tech = list(TECH_POWER = 5, TECH_ENGINEERING = 4)
 	hardware_size = 3
 	battery_rating = 200
+	price_tag = 25
 
 /obj/item/weapon/computer_hardware/battery_module/micro
 	name = "micro battery"

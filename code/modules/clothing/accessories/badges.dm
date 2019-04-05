@@ -10,6 +10,7 @@
 	icon_state = "badge"
 	item_state = "marshalbadge"
 	slot_flags = SLOT_BELT | SLOT_ACCESSORY_BUFFER
+	price_tag = 200
 
 	var/stored_name
 	var/badge_string = "Ironhammer Security"

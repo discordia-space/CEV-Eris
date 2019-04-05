@@ -11,6 +11,7 @@
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	off_state = "denight"
 	active = FALSE
+	price_tag = 500
 	var/tick_cost = 1
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/small

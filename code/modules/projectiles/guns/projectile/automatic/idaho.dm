@@ -11,6 +11,7 @@
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/smg9mm
 	matter = list(MATERIAL_PLASTEEL = 16, MATERIAL_WOOD = 4)
+	price_tag = 2500
 	damage_multiplier = 0.75
 
 	firemodes = list(

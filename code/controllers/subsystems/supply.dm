@@ -7,7 +7,7 @@ SUBSYSTEM_DEF(supply)
 /datum/controller/subsystem/supply
 	//supply points
 	var/centcom_message = ""
-	var/assorted_exports_value = 0 //Total value of exports that don't have a defined export datum, only a price_tag.
+	var/list/exports = list() //List of export datums
 	var/contraband = 0
 	var/hacked = 0
 	//control
@@ -61,7 +61,7 @@ SUBSYSTEM_DEF(supply)
 
 			sold_atoms += export_item_and_contents(AM, contraband, hacked, dry_run = FALSE)
 
-	for(var/a in exports_list)
+	for(var/a in exports)
 		var/datum/export/E = a
 		var/export_text = E.total_printout()
 		if(!export_text)
@@ -70,10 +70,6 @@ SUBSYSTEM_DEF(supply)
 		msg += "[export_text]<br>"
 		points += E.total_cost
 		E.export_end()
-	if(assorted_exports_value)
-		msg += "Earned [assorted_exports_value] credits from assorted exports.<br>"
-		points += assorted_exports_value
-		assorted_exports_value = 0
 
 	msg += "<br>Total exports value: [points] credits.<br>"
 

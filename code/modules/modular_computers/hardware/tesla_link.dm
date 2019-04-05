@@ -7,6 +7,7 @@
 	hardware_size = 1
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GOLD = 1)
 	origin_tech = list(TECH_DATA = 2, TECH_POWER = 3, TECH_ENGINEERING = 2)
+	price_tag = 30
 	var/passive_charging_rate = 250			// W
 
 /obj/item/weapon/computer_hardware/tesla_link/Destroy()
