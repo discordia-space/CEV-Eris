@@ -1,7 +1,7 @@
 //RANDOM SCRAP PILE GENERATOR
 /obj/random/scrap
 	name = "Random trash"
-	icon_state = "junk-grey"
+	icon_state = "junk-red"
 	desc = "This is a random trash."
 
 /obj/random/scrap/dense_even
@@ -21,7 +21,7 @@
 
 /obj/random/scrap/dense_weighted/low_chance
 	name = "low chance random trash"
-	icon_state = "junk-grey-low"
+	icon_state = "junk-red-low"
 	spawn_nothing_percentage = 70
 
 
@@ -46,7 +46,7 @@
 
 /obj/random/scrap/dense_weighted/low_chance
 	name = "low chance random trash"
-	icon_state = "junk-grey-low"
+	icon_state = "junk-red-low"
 	spawn_nothing_percentage = 70
 
 
@@ -69,7 +69,7 @@
 
 /obj/random/scrap/sparse_even/low_chance
 	name = "low chance random trash"
-	icon_state = "junk-grey-low"
+	icon_state = "junk-red-low"
 	spawn_nothing_percentage = 70
 
 
@@ -93,7 +93,7 @@
 
 /obj/random/scrap/sparse_weighted/low_chance
 	name = "low chance random trash"
-	icon_state = "junk-grey-low"
+	icon_state = "junk-red-low"
 	spawn_nothing_percentage = 70
 
 
@@ -110,5 +110,5 @@
 
 /obj/random/scrap/moderate_weighted/low_chance
 	name = "low chance random trash"
-	icon_state = "junk-grey-low"
+	icon_state = "junk-red-low"
 	spawn_nothing_percentage = 70

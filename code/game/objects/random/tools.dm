@@ -79,7 +79,7 @@
 
 /obj/random/tool/advanced
 	name = "random advanced tool"
-	icon_state = "tool-orange-low"
+	icon_state = "tool-orange"
 
 /obj/random/tool/advanced/item_to_spawn()
 	return pickweight(list(

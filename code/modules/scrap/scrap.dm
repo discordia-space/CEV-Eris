@@ -91,10 +91,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 /obj/structure/scrap/proc/make_big_loot()
 	if(prob(big_item_chance))
 		var/obj/randomcatcher/CATCH = new /obj/randomcatcher(src)
-		if (prob(33))
-			big_item = CATCH.get_item(/obj/random/structures/rare)
-		else
-			big_item = CATCH.get_item(/obj/random/pack/structure)
+		big_item = CATCH.get_item(/obj/random/pack/junk_machine)
 		big_item.forceMove(src)
 		if(prob(66))
 			big_item.make_old()
@@ -328,9 +325,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	desc = "Pile of used machinery. You could use tools from this to build something."
 	parts_icon = 'icons/obj/structures/scrap/vehicle.dmi'
 	loot_list = list(
-		/obj/random/techpart = 2,
-		/obj/random/powercell,
-		/obj/random/tool = 2,
+		/obj/random/pack/tech_loot = 3,
 		/obj/random/pouch,
 		/obj/item/stack/material/steel/random,
 		/obj/item/stack/rods/random,
@@ -364,12 +359,9 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	loot_min = 9
 	loot_max = 12
 	loot_list = list(
-		/obj/random/gun_cheap = 3,
-		/obj/random/gun_normal = 2,
+		/obj/random/pack/gun_loot = 8,
 		/obj/random/powercell,
 		/obj/random/mecha_equipment = 2,
-		/obj/random/ammo = 4,
-		/obj/random/gun_energy_cheap,
 		/obj/item/toy/crossbow,
 		/obj/item/weapon/material/shard,
 		/obj/item/stack/material/steel/random,
@@ -383,7 +375,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	desc = "Pile of refuse from research department."
 	parts_icon = 'icons/obj/structures/scrap/science.dmi'
 	loot_list = list(
-		/obj/random/techpart,
+		/obj/random/pack/tech_loot = 3,
 		/obj/random/powercell,
 		/obj/random/circuitboard,
 		/obj/random/pack/rare,//No weight on this, rare loot is pretty likely to appear in scientific scrap

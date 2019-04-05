@@ -15,8 +15,7 @@
 				/obj/structure/reagent_dispensers/watertank = 6,\
 				/obj/structure/largecrate = 2,\
 				/obj/structure/ore_box = 2,\
-				/obj/structure/dispenser/oxygen = 1,
-				/obj/random/scrap/moderate_weighted = 8))
+				/obj/structure/dispenser/oxygen = 1))
 
 /obj/random/structures/low_chance
 	name = "low chance random structures"

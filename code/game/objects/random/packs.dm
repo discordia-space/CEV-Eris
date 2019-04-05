@@ -124,18 +124,52 @@ They generally give more random result and can provide more divercity in spawn.
 	spawn_nothing_percentage = 70
 
 
-//The pack to surpass them all. This pack goes to junk code AND placed on map as well. It meant to spawn any large structure, machine or container.
-//Those sctuctures can contain more loot or even mobs. Keep that in mind, because I feel it can break in the future
-/obj/random/pack/structure/item_to_spawn()
+
+
+//The pack to surpass them all. This pack is meant to be PLACED ON MAP. Not in JUNK CODE, because it CONTAINS JUNK SPAWNER.
+//It meant to spawn any large structure, machine or container.
+/obj/random/pack/machine
+	name = "random machine"
+	icon_state = "machine-orange"
+
+
+/obj/random/pack/machine/item_to_spawn()
 	return pickweight(list(
-					/obj/random/structures = 24, //That one have MUCH MORE important objects for maints inside, that's why the number is hight
-					/obj/random/closet_maintloot = 16, //That one is also important part of the maints
+					/obj/random/structures = 28, //That one have MUCH MORE important objects for maints inside, that's why the number is hight
+					/obj/random/closet_maintloot = 18, //That one is also important part of the maints
 					/obj/random/closet_tech = 6,
-					/obj/random/closet_tech = 4,
+					/obj/random/closet = 4,
+					/obj/random/closet_wardrobe = 2,
+					/obj/random/scrap/moderate_weighted = 12, //Our scrap pile. This is basically just a huge spawner.
 					/obj/random/mecha/damaged = 1, //Some dangerous shit can be found there
-
-
-
-
 				))
 
+/obj/random/pack/machine/low_chance
+	name = "low chance random structure"
+	icon_state = "machine-orange-low"
+	spawn_nothing_percentage = 70
+
+
+
+
+//Same pack as above, but it meant to be PLACED TO JUNK CODE. Numbers are a bit different as well
+//Those sctuctures can contain more loot or even mobs. Keep that in mind, because I feel it can break in the future
+/obj/random/pack/junk_machine
+	name = "random junk machine"
+	icon_state = "machine-grey"
+
+
+/obj/random/pack/junk_machine/item_to_spawn()
+	return pickweight(list(
+					/obj/random/structures = 14, //That one have MUCH MORE important objects for maints inside, that's why the number is hight
+					/obj/random/closet_maintloot = 18, //That one is also important part of the maints
+					/obj/random/closet_tech = 6,
+					/obj/random/closet = 4,
+					/obj/random/closet_wardrobe = 2,
+					/obj/random/mecha/damaged = 1, //Some dangerous shit can be found there
+				))
+
+/obj/random/pack/junk_machine/low_chance
+	name = "low chance random junk structure"
+	icon_state = "machine-grey-low"
+	spawn_nothing_percentage = 70

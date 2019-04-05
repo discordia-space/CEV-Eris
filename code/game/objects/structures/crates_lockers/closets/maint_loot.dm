@@ -133,6 +133,25 @@
 
 
 
+/obj/structure/closet/secure_closet/rare_loot
+	name = "\improper sealed military supply closet"
+	desc = "The access pannel looks old. There is probably no ID's around that can open it."
+	req_access = list(access_cent_specops) //You are suppose to hack it
+	icon_state = "syndicate"
+
+/obj/structure/closet/secure_closet/rare_loot/populate_contents()
+	new /obj/random/pack/rare(src)
+	new /obj/random/pack/rare(src)
+	new /obj/random/pack/rare(src)
+	new /obj/random/pack/rare(src)
+	new /obj/random/pack/gun_loot(src)
+	new /obj/random/pack/gun_loot(src)
+	new /obj/random/pack/gun_loot(src)
+	new /obj/random/pack/gun_loot(src)
+	new /obj/random/pack/gun_loot(src)
+
+
+
 //Closet with unfair bullshit inside
 /obj/structure/closet/random_hostilemobs
 	name = "\improper forgotten closet"
