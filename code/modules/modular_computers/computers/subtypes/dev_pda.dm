@@ -13,6 +13,7 @@
 	stores_pen = TRUE
 	stored_pen = /obj/item/weapon/pen
 	battery_type = /obj/item/weapon/cell/small //We take small battery
+	price_tag = 50
 
 /obj/item/modular_computer/pda/Initialize()
 	. = ..()

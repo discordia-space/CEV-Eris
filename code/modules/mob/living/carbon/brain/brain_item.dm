@@ -14,6 +14,7 @@
 	layer = ABOVE_MOB_LAYER
 	origin_tech = list(TECH_BIO = 3)
 	attack_verb = list("attacked", "slapped", "whacked")
+	price_tag = 900
 	var/mob/living/carbon/brain/brainmob = null
 
 /obj/item/organ/internal/brain/xeno

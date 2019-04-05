@@ -16,6 +16,7 @@
 	max_heat_protection_temperature = HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.7
 	w_class = ITEM_SIZE_NORMAL
+	price_tag = 100
 
 /obj/item/clothing/head/helmet/swat
 	name = "\improper SWAT helmet"
@@ -26,6 +27,7 @@
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.5
+	price_tag = 250
 
 /obj/item/clothing/head/helmet/handmade
 	name = "handmade combat helmet"
@@ -36,6 +38,7 @@
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.5
+	price_tag = 75
 
 /obj/item/clothing/head/helmet/thunderdome
 	name = "\improper Thunderdome helmet"
@@ -63,6 +66,7 @@
 	armor = list(melee = 62, bullet = 50, laser = 50,energy = 35, bomb = 10, bio = 2, rad = 0)
 	flags_inv = HIDEEARS
 	siemens_coefficient = 0.7
+	price_tag = 250
 
 /obj/item/clothing/head/helmet/augment
 	name = "Augment Array"
@@ -74,10 +78,11 @@
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.5
+	price_tag = 300
 
 /obj/item/clothing/head/helmet/riot
 	name = "riot helmet"
-	desc = "Standart issue Ironhammer helmet. Basic hud and targeting system included."
+	desc = "Standard-issue Ironhammer helmet with a basic HUD and targeting system included."
 	icon_state = "light_riot"
 	body_parts_covered = HEAD|FACE|EARS
 	armor = list(melee = 60, bullet = 35, laser = 35,energy = 5, bomb = 5, bio = 2, rad = 0)
@@ -87,6 +92,7 @@
 	flash_protection = FLASH_PROTECTION_MAJOR
 	action_button_name = "Toggle Security Hud"
 	var/obj/item/clothing/glasses/hud/security/hud
+	price_tag = 150
 
 /obj/item/clothing/head/helmet/riot/New()
 	..()

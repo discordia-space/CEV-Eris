@@ -16,6 +16,7 @@
 	hardware_size = 1
 	max_capacity = 64
 	origin_tech = list(TECH_DATA = 2)
+	price_tag = 15
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/super
 	name = "super data crystal"
@@ -25,6 +26,7 @@
 	hardware_size = 1
 	max_capacity = 256
 	origin_tech = list(TECH_DATA = 4)
+	price_tag = 20
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/New()
 	..()

@@ -143,11 +143,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	src.updateUsrDialog()
 	return
 
-/obj/machinery/computer/rdconsole/emp_act(var/remaining_charges, var/mob/user)
+/obj/machinery/computer/rdconsole/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
-		user << SPAN_NOTICE("You you disable the security protocols.")
+		user << SPAN_NOTICE("You disable the security protocols.")
 		return 1
 
 /obj/machinery/computer/rdconsole/Topic(href, href_list)

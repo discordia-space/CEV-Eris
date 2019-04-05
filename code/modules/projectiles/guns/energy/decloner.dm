@@ -8,3 +8,4 @@
 	projectile_type = /obj/item/projectile/energy/declone
 	charge_cost = 100
 	matter = list(MATERIAL_STEEL = 20)
+	price_tag = 2000

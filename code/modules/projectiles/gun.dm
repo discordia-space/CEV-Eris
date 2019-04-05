@@ -104,6 +104,11 @@
 	var/silencer_type = null //The type of silencer that could be installed in us, if we don't have one
 	var/fire_sound_silenced = 'sound/weapons/Gunshot_silenced.wav' //Firing sound used when silenced
 
+/obj/item/weapon/gun/get_item_cost(export)
+	if(export)
+		return ..() * 0.5 //Guns should be sold in the player market.
+	..()
+
 /obj/item/weapon/gun/New()
 	..()
 	for(var/i in 1 to firemodes.len)

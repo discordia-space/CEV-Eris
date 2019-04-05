@@ -10,6 +10,7 @@
 	modifystate = "floramut"
 	self_recharge = 1
 	matter = list(MATERIAL_STEEL = 20)
+	price_tag = 1000
 	firemodes = list(
 		list(mode_name="induce mutations", projectile_type=/obj/item/projectile/energy/floramut, modifystate="floramut"),
 		list(mode_name="increase yield", projectile_type=/obj/item/projectile/energy/florayield, modifystate="florayield"),
