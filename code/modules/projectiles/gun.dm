@@ -211,6 +211,8 @@
 			if(off_hand && off_hand.can_hit(user))
 				spawn(1)
 				off_hand.Fire(A,user,params)
+		else
+			dual_wielding = FALSE
 
 		Fire(A,user,params) //Otherwise, fire normally.
 
