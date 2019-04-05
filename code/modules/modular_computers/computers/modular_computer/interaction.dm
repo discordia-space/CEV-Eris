@@ -166,7 +166,7 @@
 	else if(!enabled && screen_on)
 		turn_on(user)
 
-/obj/item/modular_computer/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/item/modular_computer/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weapon/card/id)) // ID Card, try to insert it.
 		var/obj/item/weapon/card/id/I = W
 		if(!card_slot)
@@ -192,12 +192,12 @@
 		if(istype(stored_pen))
 			to_chat(user, "<span class='notice'>There is already a pen in [src].</span>")
 			return
-		if(!user.unEquip(W, src))
+		if(!insert_item(W, user))
 			return
 		stored_pen = W
 		update_verbs()
-		to_chat(user, "<span class='notice'>You insert [W] into [src].</span>")
 		return
+
 	if(istype(W, /obj/item/weapon/paper))
 		var/obj/item/weapon/paper/paper = W
 		if(scanner && paper.info)
@@ -214,15 +214,8 @@
 	if(!modifiable)
 		return ..()
 
-	if(istype(W, battery_type))//Only takes the same kinda battery
+	if(istype(W, suitable_cell) || istype(W, /obj/item/weapon/computer_hardware))
 		try_install_component(user, W)
-
-	if(istype(W, /obj/item/weapon/computer_hardware))
-		var/obj/item/weapon/computer_hardware/C = W
-		if(C.hardware_size <= max_hardware_size)
-			try_install_component(user, C)
-		else
-			to_chat(user, "This component is too large for \the [src].")
 
 	var/list/usable_qualities = list(QUALITY_SCREW_DRIVING, QUALITY_WELDING, QUALITY_BOLT_TURNING)
 
@@ -285,10 +278,13 @@
 	if(card_slot && card_slot.stored_card)
 		to_chat(user, "The [card_slot.stored_card] is inserted into it.")
 
-/obj/item/modular_computer/MouseDrop(var/atom/over_object)
+/obj/item/modular_computer/MouseDrop(atom/over_object)
 	var/mob/M = usr
 	if(!istype(over_object, /obj/screen) && can_interact(M))
 		return attack_self(M)
+
+	if((src.loc == M) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, M))
+		cell = null
 
 /obj/item/modular_computer/afterattack(atom/target, mob/user, proximity)
 	. = ..()

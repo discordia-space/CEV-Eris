@@ -39,8 +39,7 @@
 	network_card = new/obj/item/weapon/computer_hardware/network_card/advanced(src)
 	nano_printer = new/obj/item/weapon/computer_hardware/nano_printer(src)
 	card_slot = new/obj/item/weapon/computer_hardware/card_slot(src)
-	battery_module = new/obj/item/weapon/cell/small(src)
-	battery_type = /obj/item/weapon/cell/small
+	cell = new/obj/item/weapon/cell/small(src)
 	scanner = new /obj/item/weapon/computer_hardware/scanner/paper(src)
 
 /obj/item/modular_computer/tablet/lease/preset/command/install_default_programs()
@@ -59,8 +58,7 @@
 	hard_drive = new/obj/item/weapon/computer_hardware/hard_drive(src)
 	network_card = new/obj/item/weapon/computer_hardware/network_card(src)
 	nano_printer = new/obj/item/weapon/computer_hardware/nano_printer(src)
-	battery_module = new/obj/item/weapon/cell/small(src)
-	battery_type = /obj/item/weapon/cell/small
+	cell = new /obj/item/weapon/cell/small(src)
 	scanner = new /obj/item/weapon/computer_hardware/scanner/paper(src)
 	gps_sensor = new /obj/item/weapon/computer_hardware/gps_sensor(src)
 

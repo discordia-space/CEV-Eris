@@ -215,7 +215,7 @@
 		return FALSE
 	I.forceMove(src)
 	playsound(src.loc, 'sound/weapons/guns/interact/pistol_magout.ogg', 75, 1)
-	M << SPAN_NOTICE("You insert [I] into [src].")
+	to_chat(M, SPAN_NOTICE("You insert [I] into [src]."))
 	return TRUE
 
 
