@@ -144,12 +144,14 @@ Works together with spawning an observer, noted above.
 		ghost.timeofdeath = src.stat == DEAD ? src.timeofdeath : world.time
 			//This is duplicated for robustness in cases where death might not be called.
 		//It is also set in the mob/death proc
-		if (isanimal(src))
-			set_death_time(ANIMAL, world.time)
-		else if (ispAI(src) || isdrone(src))
-			set_death_time(MINISYNTH, world.time)
-		else
-			set_death_time(CREW, world.time)//Crew is the fallback
+		// One more if to get rid off re-enter timer resets.
+		if(stat != DEAD)
+			if (isanimal(src))
+				set_death_time(ANIMAL, world.time)
+			else if (ispAI(src) || isdrone(src))
+				set_death_time(MINISYNTH, world.time)
+			else
+				set_death_time(CREW, world.time)//Crew is the fallback
 
 		//Set the respawn bonus from ghosting while in cryosleep.
 		//This is duplicated in the cryopod code for robustness. The message will not display twice
