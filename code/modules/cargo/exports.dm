@@ -53,7 +53,7 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 				found_export = TRUE
 				break
 		if(!found_export)
-			var/item_value = thing.get_item_cost()
+			var/item_value = thing.get_item_cost(TRUE)
 			if(item_value)
 				cost += item_value
 				sold_str += " [thing.name]"
