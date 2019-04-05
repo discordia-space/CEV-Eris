@@ -9,6 +9,8 @@
 	faction_id = FACTION_EXCELSIOR
 	allow_neotheology = FALSE //Implant causes head asplode
 
+	story_ineligible = list(JOBS_SECURITY, JOBS_COMMAND)
+
 /datum/antagonist/excelsior/equip()
 	.=..()
 
