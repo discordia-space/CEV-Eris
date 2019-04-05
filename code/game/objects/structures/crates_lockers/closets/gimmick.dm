@@ -109,11 +109,3 @@
 	name = "\improper Old closet"
 	desc = "Old and rusty closet, probably older than you."
 	icon_state = "oldstyle"
-
-
-//These old and rusty closets contain old and rusty things
-/obj/structure/closet/oldstyle/LateInitialize()
-	.=..()
-	for (var/atom/thing in contents)
-		if (prob(66))
-			thing.make_old()
