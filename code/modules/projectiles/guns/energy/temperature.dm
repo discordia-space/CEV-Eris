@@ -10,6 +10,7 @@
 	slot_flags = SLOT_BELT|SLOT_BACK
 	matter = list(MATERIAL_STEEL = 20)
 	projectile_type = /obj/item/projectile/temp
+	zoom_factor = 2.0
 
 
 /obj/item/weapon/gun/energy/temperature/New()
