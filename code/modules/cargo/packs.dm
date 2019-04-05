@@ -515,7 +515,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	crate_name = "Wooden planks crate"
 	group = "Engineering"
 
-/datum/supply_pack/plasteel50
+/datum/supply_pack/plasteel60
 	name = "60 Plasteel Sheets"
 	contains = list(/obj/item/stack/material/plasteel)
 	amount = 60
