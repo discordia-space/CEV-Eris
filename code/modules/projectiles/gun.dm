@@ -76,6 +76,7 @@
 	var/muzzle_flash = 3
 	var/list/dispersion = list(0)
 	var/requires_two_hands
+	var/dual_wielding
 	var/wielded_icon = "gun_wielded"
 	var/zoom_factor = 0 //How much to scope in when using weapon
 
@@ -199,19 +200,24 @@
 
 	else
 
-
 		var/obj/item/weapon/gun/off_hand   //DUAL WIELDING
 		if(ishuman(user) && user.a_intent == "harm")
 			var/mob/living/carbon/human/H = user
 			if(H.r_hand == src && istype(H.l_hand, /obj/item/weapon/gun))
 				off_hand = H.l_hand
+				dual_wielding = TRUE
 
 			else if(H.l_hand == src && istype(H.r_hand, /obj/item/weapon/gun))
 				off_hand = H.r_hand
+				dual_wielding = TRUE
+			else
+				dual_wielding = FALSE
 
 			if(off_hand && off_hand.can_hit(user))
 				spawn(1)
 				off_hand.Fire(A,user,params)
+		else
+			dual_wielding = FALSE
 
 		Fire(A,user,params) //Otherwise, fire normally.
 
@@ -255,6 +261,9 @@
 	if(requires_two_hands)
 		if((user.l_hand == src && user.r_hand) || (user.r_hand == src && user.l_hand))
 			held_disp_mod = 3
+
+	if(dual_wielding)
+		held_disp_mod = 6
 
 	//actually attempt to shoot
 	var/turf/targloc = get_turf(target) //cache this in case target gets deleted during shooting, e.g. if it was a securitron that got destroyed.
@@ -340,6 +349,8 @@
 		spawn()
 			if (silenced)
 				shake_camera(user, (recoil+1*0.5), (recoil*0.5))
+			else if(dual_wielding)
+				shake_camera(user, recoil+2, recoil)
 			else
 				shake_camera(user, recoil+1, recoil)
 	update_icon()
