@@ -39,6 +39,12 @@
 	if(charge_tick < recharge_time) return 0
 	charge_tick = 0
 	give(maxcharge * autorecharge_rate)
+
+	// If installed in a gun, update gun icon to reflect new charge level.
+	if(istype(loc, /obj/item/weapon/gun/energy))
+		var/obj/item/weapon/gun/energy/I = loc
+		I.update_icon()
+
 	return 1
 
 //Newly manufactured cells start off empty. You can't create energy

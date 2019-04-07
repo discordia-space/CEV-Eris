@@ -39,6 +39,7 @@
 	..()
 	if(zoom) //binoculars, scope, etc
 		zoom()
+	remove_hud_actions(user)
 
 
 /obj/item/proc/can_be_equipped(mob/Mob, slot, disable_warning = FALSE)

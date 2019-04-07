@@ -22,9 +22,9 @@ obj/item/weapon/gun/projectile/automatic/maxim
 
 	firemodes = list(
 		FULL_AUTO_600,
-		list(mode_name="short bursts", burst=5,    burst_delay=1, move_delay=6, dispersion=list(0.0, 0.6, 0.6, 0.8, 1.0)),
-		list(mode_name="long bursts",  burst=8, burst_delay=1, move_delay=8, dispersion=list(0.0, 0.6, 0.6, 0.8, 1.0, 1.2, 1.2, 1.2)),
-		list(mode_name="suppressing fire",  burst=16, burst_delay=1, move_delay=11, dispersion=list(1.0, 1.2, 1.2, 1.2, 1.4, 1.4, 1.4, 1.4, 1.4, 1.4, 1.4, 1.6, 1.6, 2.0, 2.0, 2.2))
+		list(mode_name="short bursts", burst=5,    burst_delay=1, move_delay=6, dispersion=list(0.0, 0.6, 0.6, 0.8, 1.0), icon="burst"),
+		list(mode_name="long bursts",  burst=8, burst_delay=1, move_delay=8, dispersion=list(0.0, 0.6, 0.6, 0.8, 1.0, 1.2, 1.2, 1.2), icon="burst"),
+		list(mode_name="suppressing fire",  burst=16, burst_delay=1, move_delay=11, dispersion=list(1.0, 1.2, 1.2, 1.2, 1.4, 1.4, 1.4, 1.4, 1.4, 1.4, 1.4, 1.6, 1.6, 2.0, 2.0, 2.2), icon="burst")
 		)
 
 

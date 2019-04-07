@@ -135,7 +135,7 @@
 		)
 
 	slot_data = list (
-		"Uniform" =   list("loc" = "2,1", "minloc" = "1,2",            "state" = "center",  "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
+		"Uniform" =   list("loc" = "2,1", "minloc" = "1,2",           "state" = "center",  "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
 		"Suit" =   list("loc" = "3,1", "minloc" = "2,2",              "state" = "equip",   "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
 		"Mask" =         list("loc" = "3,2", "minloc" = "2,3",        "state" = "mask",    "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
 		"Gloves" =       list("loc" = "4,1", "minloc" = "3,2",        "state" = "gloves",  "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),

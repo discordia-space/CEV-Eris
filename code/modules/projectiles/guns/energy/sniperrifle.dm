@@ -14,10 +14,4 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 8, MATERIAL_SILVER = 9, MATERIAL_URANIUM = 6)
 	price_tag = 5000
 	cell_type = /obj/item/weapon/cell/medium
-
-/obj/item/weapon/gun/energy/sniperrifle/verb/scope()
-	set category = "Object"
-	set name = "Use Scope"
-	set popup_menu = 1
-
-	toggle_scope(2.0)
+	zoom_factor = 2.0

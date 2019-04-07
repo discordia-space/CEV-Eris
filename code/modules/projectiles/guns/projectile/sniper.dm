@@ -29,27 +29,11 @@
 
 /obj/item/weapon/gun/projectile/heavysniper/attack_self(mob/user) //Someone overrode attackself for this class, soooo.
 	if(zoom)
-		toggle_scope(zoom_factor)
+		toggle_scope(user)
 		return
-	var/list/options = list("firemode", "scope", "safety")
-	for(var/option in options)
-		options[option] = image(icon = 'icons/obj/gun_actions.dmi', icon_state = "[option]")
-	var/selected
-	selected = show_radial_menu(user, src, options, radius = 42)
-	if(!selected)
-		return
-	switch(selected)
-		if("firemode")
-			var/datum/firemode/new_mode = switch_firemodes(user)
-			if(new_mode)
-				playsound(src.loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
-				to_chat(user, SPAN_NOTICE("\The [src] is now set to [new_mode.name]."))
-		if("scope")
-			toggle_scope(zoom_factor)
-		if("safety")
-			check_safety(user)
+	bolt_act(user)
 
-/obj/item/weapon/gun/projectile/heavysniper/AltClick(mob/user as mob)
+/obj/item/weapon/gun/projectile/heavysniper/proc/bolt_act(mob/living/user)
 	playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltback.ogg', 75, 1)
 	bolt_open = !bolt_open
 	if(bolt_open)
@@ -82,10 +66,3 @@
 	if(!bolt_open)
 		return
 	..()
-
-/obj/item/weapon/gun/projectile/heavysniper/verb/scope()
-	set category = "Object"
-	set name = "Use Scope"
-	set popup_menu = 1
-
-	toggle_scope(zoom_factor)

@@ -1,45 +1,3 @@
-/*
-	Defines a firing mode for a gun.
-
-	A firemode is created from a list of fire mode settings. Each setting modifies the value of the gun var with the same name.
-	If the fire mode value for a setting is null, it will be replaced with the initial value of that gun's variable when the firemode is created.
-	Obviously not compatible with variables that take a null value. If a setting is not present, then the corresponding var will not be modified.
-*/
-/datum/firemode
-	var/name = "default"
-	var/list/settings = list()
-	var/obj/item/weapon/gun/gun = null
-
-/datum/firemode/New(obj/item/weapon/gun/_gun, list/properties = null)
-	..()
-	if(!properties) return
-
-	gun = _gun
-	for(var/propname in properties)
-		var/propvalue = properties[propname]
-
-		if(propname == "mode_name")
-			name = propvalue
-		else if(isnull(propvalue))
-			settings[propname] = gun.vars[propname] //better than initial() as it handles list vars like dispersion
-		else
-			settings[propname] = propvalue
-
-/datum/firemode/Destroy()
-	gun = null
-	return ..()
-
-/datum/firemode/proc/apply_to(obj/item/weapon/gun/_gun)
-	gun = _gun
-	for(var/propname in settings)
-		if (propname in gun.vars)
-			gun.vars[propname] = settings[propname]
-
-//Called whenever the firemode is switched to, or the gun is picked up while its active
-/datum/firemode/proc/update()
-	return
-
-
 //Parent gun type. Guns are weapons that can be aimed at mobs and act over a distance
 /obj/item/weapon/gun
 	name = "gun"
@@ -62,6 +20,7 @@
 	origin_tech = list(TECH_COMBAT = 1)
 	attack_verb = list("struck", "hit", "bashed")
 	zoomdevicename = "scope"
+	hud_actions = list()
 
 	var/damage_multiplier = 1 //Multiplies damage of projectiles fired from this gun
 	var/burst = 1
@@ -110,8 +69,8 @@
 		return ..() * 0.5 //Guns should be sold in the player market.
 	..()
 
-/obj/item/weapon/gun/New()
-	..()
+/obj/item/weapon/gun/Initialize()
+	. = ..()
 	for(var/i in 1 to firemodes.len)
 		var/list/L = firemodes[i]
 
@@ -128,11 +87,28 @@
 		F.apply_to(src)
 
 	if(!restrict_safety)
-		verbs += /obj/item/weapon/gun/proc/toggle_safety//addint it to all guns
+		verbs += /obj/item/weapon/gun/proc/toggle_safety_verb//addint it to all guns
+
+		var/obj/screen/item_action/action = new /obj/screen/item_action/top_bar/gun/safety
+		action.owner = src
+		hud_actions += action
+
+	if(firemodes.len > 1)
+		var/obj/screen/item_action/action = new /obj/screen/item_action/top_bar/gun/fire_mode
+		action.owner = src
+		hud_actions += action
+
+	if(zoom_factor)
+		var/obj/screen/item_action/action = new /obj/screen/item_action/top_bar/gun/scope
+		action.owner = src
+		hud_actions += action
+
 
 /obj/item/weapon/gun/Destroy()
 	for(var/i in firemodes)
-		qdel(i)
+		if(!islist(i))
+			qdel(i)
+	firemodes = null
 	aim_targets = null
 	last_moved_mob = null
 	return ..()
@@ -456,19 +432,20 @@
 		mouthshoot = FALSE
 		return
 
-/obj/item/weapon/gun/proc/toggle_scope(var/zoom_amount=2.0)
+/obj/item/weapon/gun/proc/toggle_scope(mob/living/user)
 	//looking through a scope limits your periphereal vision
 	//still, increase the view size by a tiny amount so that sniping isn't too restricted to NSEW
 	if(!zoom_factor)
 		zoom = FALSE
 		return
-	var/zoom_offset = round(world.view * zoom_amount)
-	var/view_size = round(world.view + zoom_amount)
+	var/zoom_offset = round(world.view * zoom_factor)
+	var/view_size = round(world.view + zoom_factor)
 
 	zoom(zoom_offset, view_size)
 	if(zoom)
 		if(recoil)
-			recoil = round(recoil*zoom_amount+1) //recoil is worse when looking through a scope
+			recoil = round(recoil*zoom_factor+1) //recoil is worse when looking through a scope
+	update_hud_actions()
 
 //make sure accuracy and recoil are reset regardless of how the item is unzoomed.
 /obj/item/weapon/gun/zoom()
@@ -481,10 +458,12 @@
 	if(firemodes.len > 1)
 		var/datum/firemode/current_mode = firemodes[sel_mode]
 		to_chat(user, SPAN_NOTICE("The fire selector is set to [current_mode.name]."))
-	if(safety)
-		to_chat(user, SPAN_NOTICE("The safety is on."))
-	else
-		to_chat(user, SPAN_NOTICE("The safety is off."))
+
+	if(!restrict_safety)
+		if(safety)
+			to_chat(user, SPAN_NOTICE("The safety is on."))
+		else
+			to_chat(user, SPAN_NOTICE("The safety is off."))
 
 	//Tell the user if they could fit a silencer on
 	if (silencer_type && !silenced)
@@ -500,38 +479,41 @@
 	var/datum/firemode/new_mode = firemodes[sel_mode]
 	new_mode.apply_to(src)
 	new_mode.update()
+	update_hud_actions()
 	return new_mode
 
 /obj/item/weapon/gun/attack_self(mob/user)
 	if(zoom)
-		toggle_scope(zoom_factor)
+		toggle_scope(user)
 		return
-	var/list/options = list("firemode", "scope", "safety")
-	for(var/option in options)
-		options[option] = image(icon = 'icons/obj/gun_actions.dmi', icon_state = "[option]")
-	var/selected
-	selected = show_radial_menu(user, src, options, radius = 42)
-	if(!selected)
-		return
-	switch(selected)
-		if("firemode")
-			var/datum/firemode/new_mode = switch_firemodes(user)
-			if(new_mode)
-				playsound(src.loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
-				to_chat(user, SPAN_NOTICE("\The [src] is now set to [new_mode.name]."))
-		if("scope")
-			toggle_scope(zoom_factor)
-		if("safety")
-			check_safety(user)
 
-/obj/item/weapon/gun/proc/check_safety(mob/user)
-	if(!restrict_safety)
-		if(src == user.get_active_hand())//returns the thing in our active hand
-			safety = !safety
-			playsound(user, 'sound/weapons/selector.ogg', 50, 1)
-			to_chat(user, SPAN_NOTICE("You toggle the safety [safety ? "on":"off"]."))
-			//Update firemode when safeties are toggled
-			update_firemode()
+	toggle_firemode(user)
+
+/obj/item/weapon/gun/ui_action_click(mob/living/user, action_name)
+	switch(action_name)
+		if("fire mode")
+			toggle_firemode(user)
+		if("scope")
+			toggle_scope(user)
+		if("safety")
+			toggle_safety(user)
+
+/obj/item/weapon/gun/proc/toggle_firemode(mob/living/user)
+	var/datum/firemode/new_mode = switch_firemodes()
+	if(new_mode)
+		playsound(src.loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
+		to_chat(user, SPAN_NOTICE("\The [src] is now set to [new_mode.name]."))
+
+/obj/item/weapon/gun/proc/toggle_safety(mob/living/user)
+	if(restrict_safety || src != user.get_active_hand())
+		return
+
+	safety = !safety
+	playsound(user, 'sound/weapons/selector.ogg', 50, 1)
+	to_chat(user, SPAN_NOTICE("You toggle the safety [safety ? "on":"off"]."))
+	//Update firemode when safeties are toggled
+	update_firemode()
+	update_hud_actions()
 
 
 //Finds the current firemode and calls update on it. This is called from a few places:
@@ -550,7 +532,7 @@
 			to_chat(user, SPAN_WARNING("You can't do that right now!"))
 			return
 
-		check_safety(user)
+		toggle_safety(user)
 
 
 //Updating firing modes at appropriate times
@@ -570,12 +552,12 @@
 	.=..()
 	update_firemode()
 
-/obj/item/weapon/gun/proc/toggle_safety()
+/obj/item/weapon/gun/proc/toggle_safety_verb()
 	set name = "Toggle gun's safety"
 	set category = "Object"
 	set src in view(1)
 
-	check_safety(usr)
+	toggle_safety(usr)
 
 
 
