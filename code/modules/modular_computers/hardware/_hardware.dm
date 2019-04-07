@@ -4,6 +4,7 @@
 	icon = 'icons/obj/modular_components.dmi'
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 0.25)
 	matter_reagents = list("silicon" = 5)
+	price_tag = 10
 	var/obj/item/modular_computer/holder2 = null
 	var/power_usage = 0 			// If the hardware uses extra power, change this.
 	var/enabled = 1					// If the hardware is turned off set this to 0.

@@ -10,6 +10,7 @@ var/list/disciples = list()
 	power = 50
 	max_power = 50
 	power_regen = 0.5
+	price_tag = 500
 
 /obj/item/weapon/implant/core_implant/cruciform/get_mob_overlay(gender, body_build)
 	gender = (gender == MALE) ? "m" : "f"

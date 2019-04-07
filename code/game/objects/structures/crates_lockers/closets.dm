@@ -42,6 +42,10 @@
 /obj/structure/closet/can_prevent_fall()
 	return TRUE
 
+/obj/structure/closet/New()
+	..()
+	update_icon()
+
 /obj/structure/closet/Initialize(mapload)
 	..()
 

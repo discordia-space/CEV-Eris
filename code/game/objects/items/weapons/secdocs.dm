@@ -3,6 +3,7 @@
 	desc = "Folder contains some papers with important science data."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "scifolder0"
+	price_tag = 5000
 	var/obj/landmark/storyevent/midgame_stash_spawn/landmark = null
 
 /obj/item/weapon/secdocs/New()

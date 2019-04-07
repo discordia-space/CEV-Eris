@@ -7,3 +7,4 @@
 	max_shells = 7
 	ammo_type = /obj/item/ammo_casing/shotgun
 	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 12)
+	price_tag = 2750

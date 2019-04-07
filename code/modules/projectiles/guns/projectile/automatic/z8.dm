@@ -7,6 +7,8 @@
 	force = WEAPON_FORCE_PAINFULL
 	caliber = "a556"
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 3)
+	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 6)
+	price_tag = 3500
 	ammo_type = "/obj/item/ammo_casing/a556"
 	fire_sound = 'sound/weapons/guns/fire/batrifle_fire.ogg'
 	slot_flags = SLOT_BACK

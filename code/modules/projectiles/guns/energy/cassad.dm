@@ -10,3 +10,4 @@
 	projectile_type = /obj/item/projectile/beam/pulse
 	charge_cost = 75
 	fire_delay = 15
+	price_tag = 3000

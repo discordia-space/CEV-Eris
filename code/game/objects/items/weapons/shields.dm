@@ -62,6 +62,7 @@
 	w_class = ITEM_SIZE_LARGE
 	origin_tech = list(TECH_MATERIAL = 2)
 	matter = list(MATERIAL_GLASS = 3, MATERIAL_STEEL = 10)
+	price_tag = 500
 	attack_verb = list("shoved", "bashed")
 	var/cooldown = 0 //shield bash cooldown. based on world.time
 

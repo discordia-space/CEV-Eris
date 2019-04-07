@@ -8,6 +8,7 @@
 	load_method = MAGAZINE
 	auto_eject = 1
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 8)
+	price_tag = 1800
 	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'
 	unload_sound 	= 'sound/weapons/guns/interact/hpistol_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/hpistol_magin.ogg'

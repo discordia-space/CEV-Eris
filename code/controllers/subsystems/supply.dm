@@ -7,6 +7,7 @@ SUBSYSTEM_DEF(supply)
 /datum/controller/subsystem/supply
 	//supply points
 	var/centcom_message = ""
+	var/list/exports = list() //List of export datums
 	var/contraband = 0
 	var/hacked = 0
 	//control
@@ -49,10 +50,9 @@ SUBSYSTEM_DEF(supply)
 
 //Sellin
 /datum/controller/subsystem/supply/proc/sell()
-	//Selling things to centcom removed, will replace in future with a system of npc traders
-	/*
 	var/msg = ""
 	var/sold_atoms = ""
+	var/points = 0
 
 	for(var/area/subarea in shuttle.shuttle_area)
 		for(var/atom/movable/AM in subarea)
@@ -61,18 +61,24 @@ SUBSYSTEM_DEF(supply)
 
 			sold_atoms += export_item_and_contents(AM, contraband, hacked, dry_run = FALSE)
 
-	for(var/a in exports_list)
+	for(var/a in exports)
 		var/datum/export/E = a
 		var/export_text = E.total_printout()
 		if(!export_text)
 			continue
 
-		msg += "\n" + export_text + "\n"
+		msg += "[export_text]<br>"
 		points += E.total_cost
 		E.export_end()
 
+	msg += "<br>Total exports value: [points] credits.<br>"
+
+	var/datum/money_account/GA = department_accounts["Guild"]
+	var/datum/transaction/T = new(points, "Asters Guild", "Exports", "Asters Automated Trading System")
+	T.apply_to(GA)
+
 	centcom_message = msg
-	*/
+
 
 //Buyin
 /datum/controller/subsystem/supply/proc/buy()
