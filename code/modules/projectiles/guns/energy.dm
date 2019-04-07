@@ -18,7 +18,6 @@
 	var/use_external_power = 0 //if set, the weapon will look for an external power source to draw from, otherwise it recharges magically
 	var/recharge_time = 4
 	var/charge_tick = 0
-	zoom_factor = 2.0
 
 /obj/item/weapon/gun/energy/switch_firemodes()
 	. = ..()
@@ -81,10 +80,10 @@
 /obj/item/weapon/gun/energy/examine(mob/user)
 	..(user)
 	if(!cell)
-		user << SPAN_NOTICE("Has no battery cell inserted.")
+		to_chat(user, SPAN_NOTICE("Has no battery cell inserted."))
 		return
 	var/shots_remaining = round(cell.charge / charge_cost)
-	user << "Has [shots_remaining] shot\s remaining."
+	to_chat(user, "Has [shots_remaining] shot\s remaining.")
 	return
 
 /obj/item/weapon/gun/energy/update_icon(var/ignore_inhands)
