@@ -1,10 +1,11 @@
 /obj/machinery/door/blast/shutters/glass
 	name = "showcase"
+	desc = "Made from ultra-reinforced glass to withstand even most powerful gunshots, so looks like it doesn't open easily."
 	icon = 'icons/obj/doors/showcase.dmi'
 	icon_state = "closed"
-	health = 100
-	maxhealth = 100
-	resistance = 0
+	health = 1000
+	maxhealth = 1000
+	resistance = RESISTANCE_ARMOURED //may be broken by prolonged gunfire, melee weapon or explosion. It's guns, after all. Easier to snatch access.
 	opacity = 0
 	layer = 4.2
 	var/have_glass = TRUE
