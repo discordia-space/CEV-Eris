@@ -12,8 +12,8 @@
 	damage_multiplier = 1.15
 
 	firemodes = list(
-		list(mode_name="semiauto",       burst=1, fire_delay=1.2, move_delay=null, dispersion=null),
-		list(mode_name="2-round bursts", burst=2, fire_delay=0.2, move_delay=4,    dispersion=list(1.2, 1.8)),
+		list(mode_name="semiauto",       burst=1, fire_delay=1.2, move_delay=null, dispersion=null,				icon="semi"),
+		list(mode_name="2-round bursts", burst=2, fire_delay=0.2, move_delay=4,    dispersion=list(1.2, 1.8),	icon="burst"),
 		)
 
 /obj/item/weapon/gun/projectile/olivaw/update_icon()
