@@ -13,8 +13,8 @@
 	zoom_factor = 2.0
 
 
-/obj/item/weapon/gun/energy/temperature/New()
-	..()
+/obj/item/weapon/gun/energy/temperature/Initialize()
+	. = ..()
 	START_PROCESSING(SSobj, src)
 
 
