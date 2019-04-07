@@ -41,5 +41,3 @@
 		if (locate(/obj/structure/cable) in dview(3, T))
 			return TRUE
 		return FALSE
-
-

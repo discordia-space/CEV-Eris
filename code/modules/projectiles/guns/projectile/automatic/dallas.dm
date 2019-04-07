@@ -20,8 +20,8 @@
 
 	firemodes = list(
 		FULL_AUTO_400,
-		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, dispersion=null),
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=3,    dispersion=list(0.0, 0.4, 0.6)),
+		SEMI_AUTO_NODELAY,
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=3,    dispersion=list(0.0, 0.4, 0.6), icon="burst"),
 		)
 
 /obj/item/weapon/gun/projectile/automatic/dallas/update_icon()

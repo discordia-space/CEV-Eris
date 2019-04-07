@@ -91,7 +91,7 @@
 	name = "sharpening block"
 	desc = "A rough single-use block to sharpen a blade. The honed edge cuts smoothly"
 	icon_state = "whetstone"
-	required_qualities = list(QUALITY_CUTTING,QUALITY_SAWING, QUALITY_WIRE_CUTTING)
+	required_qualities = list(QUALITY_CUTTING,QUALITY_SAWING, QUALITY_SHOVELING, QUALITY_WIRE_CUTTING)
 	prefix = "sharpened"
 	workspeed = 0.15
 	precision = 5
@@ -102,7 +102,7 @@
 	name = "Asters \"Gleaming Edge\": Diamond blade"
 	desc = "An adaptable industrial grade cutting disc, with diamond dust worked into the metal. Exceptionally durable"
 	icon_state = "diamond_blade"
-	required_qualities = list(QUALITY_CUTTING,QUALITY_SAWING, QUALITY_WIRE_CUTTING, QUALITY_PRYING)
+	required_qualities = list(QUALITY_CUTTING, QUALITY_SHOVELING, QUALITY_SAWING, QUALITY_WIRE_CUTTING, QUALITY_PRYING)
 	prefix = "diamond-edged"
 	price_tag = 300
 	workspeed = 0.25

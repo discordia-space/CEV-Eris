@@ -87,7 +87,7 @@
 
 	//Secondly, some rare items, to bring all the boys to the yard
 	for (var/i = 0; i < 10; i++)
-		pod_contents.Add(/obj/random/rare)
+		pod_contents.Add(/obj/random/pack/rare)
 
 	//Aaand thirdly a bunch of random stuff just to fill out space
 	for (var/i = 0; i < 20; i++)
