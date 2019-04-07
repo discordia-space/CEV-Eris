@@ -22,7 +22,7 @@
 	var/obj/item/weapon/gun/G = owner
 	if(G.sel_mode <= length(G.firemodes))
 		var/datum/firemode/cur_mode = G.firemodes[G.sel_mode]
-		icon_state = "mode_[cur_mode.settings["icon"]]"
+		icon_state = "mode_[cur_mode.icon_state]"
 
 
 /obj/screen/item_action/top_bar/gun/scope

@@ -7,12 +7,18 @@
 */
 /datum/firemode
 	var/name = "default"
+	var/icon_state
 	var/list/settings = list()
 	var/obj/item/weapon/gun/gun = null
 
 /datum/firemode/New(obj/item/weapon/gun/_gun, list/properties = null)
 	..()
 	if(!properties) return
+
+	// Special var, controls mode button icon_state
+	if(properties["icon"])
+		icon_state = properties["icon"]
+		properties -= "icon"
 
 	gun = _gun
 	for(var/propname in properties)
@@ -31,10 +37,9 @@
 
 /datum/firemode/proc/apply_to(obj/item/weapon/gun/_gun)
 	gun = _gun
-	var/list/no_apply = list("icon")
 
 	for(var/propname in settings)
-		if(!(propname in no_apply) && (propname in gun.vars))
+		if(propname in gun.vars)
 			gun.vars[propname] = settings[propname]
 
 //Called whenever the firemode is switched to, or the gun is picked up while its active
