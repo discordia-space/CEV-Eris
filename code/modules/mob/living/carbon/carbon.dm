@@ -280,7 +280,7 @@
 
 		if(!src.lastarea)
 			src.lastarea = get_area(src.loc)
-		if((istype(src.loc, /turf/space)) || (src.lastarea.has_gravity == 0))
+		if((istype(src.loc, /turf/space)) || (src.lastarea.has_gravity == 0 && !check_shoegrip()))
 			src.inertia_dir = get_dir(target, src)
 			step(src, inertia_dir)
 
