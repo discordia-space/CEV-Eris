@@ -21,6 +21,15 @@
 	tool_qualities = list(QUALITY_PRYING = 10, QUALITY_DIGGING = 10)
 	degradation = 5 //This one breaks REALLY fast
 
+/obj/item/weapon/tool/crowbar/onestar
+	name = "-One Star- crowbar"
+	desc = "Looks like a classic one, but more durable."
+	icon_state = "one_star_crowbar"
+	item_state = "crowbar"
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLATINUM = 1)
+	tool_qualities = list(QUALITY_PRYING = 30, QUALITY_DIGGING = 15)
+	origin_tech = list(TECH_ENGINEERING = 1, TECH_MATERIAL = 2)
+
 /obj/item/weapon/tool/crowbar/pneumatic
 	name = "pneumatic crowbar"
 	desc = "When you realy need to crack open something."

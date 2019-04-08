@@ -51,3 +51,17 @@
 	if((CLUMSY in user.mutations) && prob(50))
 		M = user
 	return eyestab(M,user)
+
+
+/obj/item/weapon/tool/screwdriver/combi_driver/onestar
+	name = "-One Star- combi driver"
+	desc = "A bulky \"One Star\" combi driver, that works just like standard one, but do it much better."
+	icon_state = "one_star_combidriver"
+	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLATINUM = 2)
+	tool_qualities = list(QUALITY_SCREW_DRIVING = 65, QUALITY_BOLT_TURNING = 60, QUALITY_DRILLING = 30)
+	origin_tech = list(TECH_ENGINEERING = 3, TECH_MATERIAL = 2)
+	degradation = 0.03
+	workspeed = 1.6
+	use_power_cost = 0.3
+	suitable_cell = /obj/item/weapon/cell/small
+	max_upgrades = 2
