@@ -18,3 +18,12 @@
 
 /datum/species/human/get_bodytype()
 	return "Human"
+
+/datum/species/human/sanitize_name(var/name)
+	var/sanitized_name = sanitizeName(name)
+
+	var/firstspace = findtext(sanitized_name, " ")
+	if(!firstspace)	//we need a surname
+		sanitized_name += " [pick(GLOB.last_names)]"
+
+	return sanitized_name
