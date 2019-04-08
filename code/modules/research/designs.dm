@@ -1547,16 +1547,6 @@ CIRCUITS BELOW
 	build_path = /obj/item/weapon/aiModule/tyrant
 	sort_string = "XACAD"
 
-/datum/design/item/pda
-	name = "PDA design"
-	desc = "Cheaper than whiny non-digital assistants."
-	id = "pda"
-	req_tech = list(TECH_ENGINEERING = 2, TECH_POWER = 3)
-	materials = list(MATERIAL_STEEL = 2, MATERIAL_GLASS = 2)
-	build_path = /obj/item/device/pda
-	sort_string = "VAAAA"
-
-
 
 /datum/design/item/wirer
 	name = "Custom wirer tool"
