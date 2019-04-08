@@ -84,7 +84,7 @@
 			totalPlayers = 0
 			totalPlayersReady = 0
 			for(var/mob/new_player/player in GLOB.player_list)
-				stat("[player.key]", (player.ready)?("(Playing)"):(null))
+				stat("[player.key]", (player.ready)?("(Playing: [player.client.prefs.job_high])"):(null))
 				totalPlayers++
 				if(player.ready)totalPlayersReady++
 
