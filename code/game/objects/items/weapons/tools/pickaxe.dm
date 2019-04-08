@@ -26,28 +26,11 @@
 	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 2, TECH_POWER = 3)
 	switched_on_force = WEAPON_FORCE_ROBUST
 	switched_off_qualities = list(QUALITY_DIGGING = 30, QUALITY_PRYING = 20, QUALITY_EXCAVATION = 10)
-	switched_on_qualities = list(QUALITY_DIGGING = 35, QUALITY_PRYING = 25, QUALITY_EXCAVATION = 15)
+	switched_on_qualities = list(QUALITY_DIGGING = 40, QUALITY_PRYING = 30, QUALITY_EXCAVATION = 15)
 	toggleable = TRUE
 	degradation = 0.06
 	max_upgrades = 1
-
-/obj/item/weapon/tool/pickaxe/onestar/turn_on(mob/user)
-	. = ..()
-	playsound(loc, 'sound/items/multitool_pulse.ogg', 80, 1)
-	icon_state 				= "one_star_pickaxe_active"
-	workspeed 				= 1.4
-	degradation 			= 0.2
-	embed_mult 				= 1.8
-	structure_damage_factor = 5
-
-/obj/item/weapon/tool/pickaxe/onestar/turn_off(mob/user)
-	. = ..()
-	playsound(loc, 'sound/items/multitool_pulse.ogg', 80, 1)
-	icon_state 				= initial(icon_state)
-	workspeed 				= initial(workspeed)
-	degradation 			= initial(degradation)
-	embed_mult 				= initial(embed_mult)
-	structure_damage_factor = initial(structure_damage_factor)
+	workspeed = 1.2
 
 
 /obj/item/weapon/tool/pickaxe/jackhammer
