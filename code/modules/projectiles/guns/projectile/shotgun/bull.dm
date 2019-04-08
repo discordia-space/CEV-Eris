@@ -13,6 +13,8 @@
 	caliber = "shotgun"
 	var/reload = 1
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
+	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 6)
+	price_tag = 2500
 	damage_multiplier = 0.75
 	burst_delay = null
 	fire_delay = null
@@ -20,8 +22,8 @@
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	move_delay = null
 	firemodes = list(
-		list(mode_name="fire one barrel at a time", burst=1),
-		list(mode_name="fire both barrels at once", burst=2),
+		list(mode_name="fire one barrel at a time", burst=1, icon="semi"),
+		list(mode_name="fire both barrels at once", burst=2, icon="burst"),
 		)
 
 /obj/item/weapon/gun/projectile/shotgun/bull/proc/pump(mob/M as mob)

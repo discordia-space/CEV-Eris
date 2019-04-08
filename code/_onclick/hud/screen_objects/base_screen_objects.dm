@@ -125,8 +125,53 @@
 	if(!(owner in usr))
 		return TRUE
 
-	owner.ui_action_click()
+	owner.ui_action_click(usr, name)
+	update_icon()
 	return TRUE
+
+/obj/screen/item_action/top_bar
+	name = "actionA"
+	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon_state = "actionA"
+	screen_loc = "8,1:13"
+	var/minloc = "7,2:13"
+	layer = ABOVE_HUD_LAYER
+	plane = ABOVE_HUD_PLANE
+
+/obj/screen/item_action/top_bar/Initialize()
+	. = ..()
+	name = initial(name)
+
+/obj/screen/item_action/top_bar/update_icon()
+	..()
+	if(!ismob(owner.loc))
+		return
+
+	var/mob/living/M = owner.loc
+	if(M.client && M.get_active_hand() == owner)
+		if(M.client.prefs.UI_compact_style)
+			screen_loc = minloc
+		else
+			screen_loc = initial(screen_loc)
+
+
+/obj/screen/item_action/top_bar/A
+	icon_state = "actionA"
+	screen_loc = "8,1:13"
+
+/obj/screen/item_action/top_bar/B
+	icon_state = "actionB"
+	screen_loc = "8,1:13"
+
+/obj/screen/item_action/top_bar/C
+	icon_state = "actionC"
+	screen_loc = "9,1:13"
+
+/obj/screen/item_action/top_bar/D
+	icon_state = "actionD"
+	screen_loc = "9,1:13"
+
+
 //-----------------------------------------------ITEM ACTION END---------------------------------------------------------
 
 
@@ -270,9 +315,9 @@
 		C.activate_hand("r")
 
 /obj/screen/inventory/hand/update_icon()
-	src.underlays.Cut()
+	src.overlays -= ovrls["act_hand"]
 	if (src.slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand))
-		src.underlays += ovrls["act_hand"]
+		src.overlays += ovrls["act_hand"]
 /*	if (src.slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand)) //Если данный элемент ХУДа отображает левую
 		src.icon_state = "act_hand[src.slot_id==slot_l_hand ? "-l" : "-r"]"
 	else
@@ -328,11 +373,12 @@
 /obj/screen/health/DEADelize()
 	overlays.Cut()
 	overlays += ovrls["health7"]
-/*/obj/screen/health/New()
-	if(usr.client)
-		usr.client.screen += src
-		parentmob = usr
-*/
+
+/obj/screen/health/Click()
+	if(ishuman(parentmob))
+		var/mob/living/carbon/human/H = parentmob
+		H.check_self_for_injuries()
+
 //--------------------------------------------------health end---------------------------------------------------------
 
 //--------------------------------------------------nutrition---------------------------------------------------------
@@ -772,6 +818,8 @@ obj/screen/fire/DEADelize()
 	if(isliving(parentmob))
 		var/mob/living/L = parentmob
 		L.resist()
+
+
 //-----------------------resist END------------------------------
 
 //-----------------------mov_intent------------------------------
@@ -871,68 +919,41 @@ obj/screen/fire/DEADelize()
 	name = "fastintent"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "blank"
-//update in a_intent_change, because macro
-/*/obj/screen/fastintent/Click()
-	if (parentmob.HUDneed.Find("intent"))
-		var/obj/screen/intent/I = parentmob.HUDneed["intent"]
-		I.update_icon()*/
+	var/target_intent
+
 /obj/screen/fastintent/New()
 	..()
+	src.overlays += new /image/no_recolor(icon = src.icon, icon_state = src.icon_state)
 
-
+/obj/screen/fastintent/Click()
+	parentmob.a_intent_change(target_intent)
 
 /obj/screen/fastintent/help
-//	icon_state = "intent_help"
-
-/obj/screen/fastintent/help/New()
-	..()
-	src.overlays += new /image/no_recolor (icon = src.icon, icon_state ="intent_help")
-
-/obj/screen/fastintent/help/Click()
-	parentmob.a_intent_change(I_HELP)
-//	..()
+	target_intent = I_HELP
+	icon_state = "intent_help"
 
 /obj/screen/fastintent/harm
+	target_intent = I_HURT
 	icon_state = "intent_harm"
 
-/obj/screen/fastintent/harm/New()
-	..()
-	src.overlays += new /image/no_recolor (icon = src.icon, icon_state ="intent_harm")
-
-/obj/screen/fastintent/harm/Click()
-	parentmob.a_intent_change(I_HURT)
-//	..()
-
 /obj/screen/fastintent/grab
+	target_intent = I_GRAB
 	icon_state = "intent_grab"
 
-/obj/screen/fastintent/grab/New()
-	..()
-	src.overlays += new /image/no_recolor (icon = src.icon, icon_state ="intent_grab")
-
-/obj/screen/fastintent/grab/Click()
-	parentmob.a_intent_change(I_GRAB)
-//	..()
-
 /obj/screen/fastintent/disarm
+	target_intent = I_DISARM
 	icon_state = "intent_disarm"
 
-/obj/screen/fastintent/disarm/New()
-	..()
-	src.overlays += new /image/no_recolor (icon = src.icon, icon_state ="intent_disarm")
 
-/obj/screen/fastintent/disarm/Click()
-	parentmob.a_intent_change(I_DISARM)
-//	..()
 
 /obj/screen/drugoverlay
-	icon = 'icons/mob/screen1_full.dmi'
 	icon_state = "blank"
 	name = "drugs"
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	mouse_opacity = 0
 	process_flag = TRUE
 	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
+	plane = HUD_PLANE
 //	var/global/image/blind_icon = image('icons/mob/screen1_full.dmi', "blackimageoverlay")
 
 /obj/screen/drugoverlay/Process()
@@ -953,7 +974,9 @@ obj/screen/fire/DEADelize()
 /obj/screen/full_1_tile_overlay
 	name = "full_1_tile_overlay"
 	icon_state = "blank"
+	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	layer = 21
+	plane = HUD_PLANE
 	mouse_opacity = 0
 
 /obj/screen/damageoverlay
@@ -964,12 +987,12 @@ obj/screen/fire/DEADelize()
 	mouse_opacity = 0
 	process_flag = TRUE
 	layer = UI_DAMAGE_LAYER
+	plane = HUD_PLANE
 	var/global/image/blind_icon = image('icons/mob/screen1_full.dmi', "blackimageoverlay")
 
 
 /obj/screen/damageoverlay/Process()
 	update_icon()
-	return
 
 /obj/screen/damageoverlay/update_icon()
 	overlays.Cut()
@@ -977,7 +1000,6 @@ obj/screen/fire/DEADelize()
 
 	underlays.Cut()
 	UpdateVisionState()
-	return
 
 /obj/screen/damageoverlay/proc/UpdateHealthState()
 	var/mob/living/carbon/human/H = parentmob
@@ -1058,6 +1080,7 @@ obj/screen/fire/DEADelize()
 
 /obj/screen/frippery
 	name = ""
+	layer = HUD_LAYER
 
 /obj/screen/frippery/New(_icon_state,_screen_loc = "7,7", mob/living/_parentmob)
 	src.parentmob = _parentmob
@@ -1071,6 +1094,7 @@ obj/screen/fire/DEADelize()
 	mouse_opacity = 0
 	process_flag = TRUE
 	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
+	plane = HUD_PLANE
 
 
 /obj/screen/glasses_overlay/Process()

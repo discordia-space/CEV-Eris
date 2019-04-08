@@ -66,7 +66,7 @@ var/list/portal_cache = list()
 	if (origin && Adjacent(origin))
 		var/dir = get_dir(origin, loc)
 		return get_step(T, dir)
-		
+
 /obj/effect/portal/proc/close()
 	qdel(src)
 
@@ -76,6 +76,8 @@ var/list/portal_cache = list()
 	if (M == src)
 		return
 	if (istype(M, /obj/effect/sparks)) //sparks don't teleport
+		return
+	if (istype(M, /obj/effect/effect/light)) //lights from flashlights too.
 		return
 	if (M.anchored && !istype(M, /obj/mecha))
 		return

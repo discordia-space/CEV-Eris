@@ -2,24 +2,6 @@
 //The gas is supplied in expendable tubes, magazines essentially
 //There's also a robot version which uses power instead of gas tubes.
 
-/obj/item/weapon/hatton_magazine
-	name="Excelsior BD \"Hatton\" gas tube"
-	icon_state="Hatton_box1"
-	icon='icons/obj/Hatton.dmi'
-	var/charge=3
-	//m_amt = 15
-
-/obj/item/weapon/hatton_magazine/New()
-	update_icon()
-
-/obj/item/weapon/hatton_magazine/update_icon()
-	if(charge)
-		icon_state="Hatton_box1"
-	else
-		icon_state="Hatton_box0"
-
-
-
 /obj/item/weapon/hatton
 	name = "Excelsior BD \"Hatton\""
 	desc = "More an instrument than a weapon, this breaching device was designed for emergency situations."
@@ -30,16 +12,18 @@
 	slot_flags = SLOT_BELT
 	//m_amt = 2000
 	w_class = ITEM_SIZE_NORMAL
-	origin_tech = "combat=2"
 	attack_verb = list("struck", "hit", "bashed")
-	var/obj/item/weapon/hatton_magazine/magazine=new()
+	price_tag = 1000
+	var/obj/item/weapon/hatton_magazine/magazine = new()
 	var/fire_sound = 'sound/weapons/pulse.ogg'
 	var/fire_cooldown = 0
 	var/last_fired = 0
+	origin_tech = list(TECH_COMBAT = 2)
+	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 2)
 
 
-
-/obj/item/weapon/hatton/New()
+/obj/item/weapon/hatton/Initialize()
+	. = ..()
 	update_icon()
 
 /obj/item/weapon/hatton/update_icon()
@@ -53,7 +37,6 @@
 			overlays += icon(icon, "1/3")
 	else
 		icon_state="Hatton_Hammer_0"
-
 
 
 /obj/item/weapon/hatton/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -78,18 +61,12 @@
 	return
 
 
-
-
-
-
 /obj/item/weapon/hatton/afterattack(atom/A as mob|obj|turf, mob/living/user as mob|obj, flag, params)
 	if(!flag)
 		return
 	if(A.loc==user || istype(A, /obj/structure/closet) || istype(A,/obj/structure/table) || istype(A,/obj/item/weapon/storage))
 		return
 	Fire(A,user,params)
-
-
 
 
 /obj/item/weapon/hatton/proc/click_empty(mob/user = null)
@@ -165,6 +142,27 @@
 		click_empty()
 
 
+// Magazine
+/obj/item/weapon/hatton_magazine
+	name="Excelsior BD \"Hatton\" gas tube"
+	icon='icons/obj/Hatton.dmi'
+	icon_state="Hatton_box1"
+	w_class = ITEM_SIZE_SMALL
+	var/charge=3
+	//m_amt = 15
+	origin_tech = list(TECH_MATERIAL = 2)
+	matter = list(MATERIAL_PLASMA=10, MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 2)
+	price_tag = 100
+
+/obj/item/weapon/hatton_magazine/Initialize()
+	. = ..()
+	update_icon()
+
+/obj/item/weapon/hatton_magazine/update_icon()
+	if(charge)
+		icon_state="Hatton_box1"
+	else
+		icon_state="Hatton_box0"
 
 
 

@@ -4,7 +4,6 @@
 	icon_state = "junk-black"
 	var/list/exclusions = list()
 	var/list/items = list(
-		/obj/random/rare = 1, //A diamond in the rough
 		/obj/item/weapon/material/shard = 5,
 		/obj/item/weapon/material/shard/shrapnel = 8,
 		/obj/item/weapon/reagent_containers/pill/floorpill = 8,
@@ -17,7 +16,6 @@
 		/obj/item/weapon/folder/yellow = 2,
 		/obj/item/weapon/folder/white = 2,
 		/obj/item/weapon/circuitboard/broken = 5,
-		/obj/random/tool = 2,
 		/obj/item/weapon/tool/tape_roll = 3,
 		/obj/item/trash/candle = 1,
 		/obj/item/trash/candy = 1,
@@ -61,11 +59,7 @@
 		/obj/effect/decal/cleanable/spiderling_remains = 1,
 		/obj/effect/decal/cleanable/vomit = 1,
 		/obj/effect/decal/cleanable/blood/splatter = 1,
-		/obj/effect/spider/stickyweb = 10, //These are useful for tape crafting
-		/obj/random/pouch = 1,
-		/obj/random/lathe_disk = 2,
-		/obj/random/scrap/moderate_weighted = 13,
-		/obj/random/credits/c50 = 2 //Loose change
+		/obj/effect/spider/stickyweb = 2, //These are useful for tape crafting
 	)
 
 /obj/random/junk/post_spawn(var/list/stuff)
@@ -77,7 +71,7 @@
 	return pickweight(items - exclusions)
 
 /obj/random/junk/nondense
-	exclusions = list(/obj/random/scrap/moderate_weighted)
+	exclusions = list(/obj/random/scrap/moderate_weighted, /obj/item/remains/robot)
 
 /obj/random/junk/low_chance
 	name = "low chance random junk"

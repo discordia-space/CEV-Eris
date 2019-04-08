@@ -9,11 +9,13 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 4, TECH_POWER = 3, TECH_MAGNET = 2)
 	slot_flags = SLOT_BELT|SLOT_BACK
 	matter = list(MATERIAL_STEEL = 20)
+	price_tag = 1500
 	projectile_type = /obj/item/projectile/temp
+	zoom_factor = 2.0
 
 
-/obj/item/weapon/gun/energy/temperature/New()
-	..()
+/obj/item/weapon/gun/energy/temperature/Initialize()
+	. = ..()
 	START_PROCESSING(SSobj, src)
 
 

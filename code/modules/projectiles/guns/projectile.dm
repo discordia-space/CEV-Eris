@@ -89,7 +89,7 @@
 
 	switch(handle_casings)
 		if(EJECT_CASINGS) //eject casing onto ground.
-			chambered.loc = get_turf(src)
+			chambered.forceMove(get_turf(src))
 			for(var/obj/item/ammo_casing/temp_casing in chambered.loc)
 				if(temp_casing == chambered)
 					continue
@@ -167,7 +167,7 @@
 						if(loaded.len >= max_shells)
 							break
 						if(C.caliber == caliber)
-							C.loc = src
+							C.forceMove(src)
 							loaded += C
 							AM.stored_ammo -= C //should probably go inside an ammo_magazine proc, but I guess less proc calls this way...
 							count++
@@ -201,7 +201,7 @@
 			loaded.Insert(1, inserted_casing)
 		else
 			user.remove_from_mob(C)
-			C.loc = src
+			C.forceMove(src)
 			loaded.Insert(1, C) //add to the head of the list
 		update_firemode()
 		user.visible_message("[user] inserts \a [C] into [src].", SPAN_NOTICE("You insert \a [C] into [src]."))
@@ -225,7 +225,7 @@
 			var/turf/T = get_turf(user)
 			if(T)
 				for(var/obj/item/ammo_casing/C in loaded)
-					C.loc = T
+					C.forceMove(T)
 					count++
 				loaded.Cut()
 			if(count)
@@ -242,7 +242,9 @@
 	update_icon()
 
 /obj/item/weapon/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)
-	load_ammo(A, user)
+	.=..()
+	if (!.) //Parent returns true if attackby is handled
+		load_ammo(A, user)
 
 /obj/item/weapon/gun/projectile/attack_self(mob/user as mob)
 	if(firemodes.len > 1)
@@ -264,7 +266,7 @@
 /obj/item/weapon/gun/projectile/afterattack(atom/A, mob/living/user)
 	..()
 	if(auto_eject && ammo_magazine && ammo_magazine.stored_ammo && !ammo_magazine.stored_ammo.len)
-		ammo_magazine.loc = get_turf(src.loc)
+		ammo_magazine.forceMove(get_turf(src.loc))
 		user.visible_message(
 			"[ammo_magazine] falls out and clatters on the floor!",
 			SPAN_NOTICE("[ammo_magazine] falls out and clatters on the floor!")

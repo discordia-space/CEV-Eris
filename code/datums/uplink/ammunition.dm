@@ -12,8 +12,13 @@
 
 /datum/uplink_item/item/ammo/a10mm
 	name = "10mm"
+	item_cost = 1
+	path = /obj/item/ammo_magazine/a10mm/hv
+
+/datum/uplink_item/item/ammo/smg10mm
+	name = "smg 10mm"
 	item_cost = 2
-	path = /obj/item/ammo_magazine/a10mm/highvelocity
+	path = /obj/item/ammo_magazine/smg10mm/hv
 
 /datum/uplink_item/item/ammo/darts
 	name = "Darts"
@@ -32,7 +37,7 @@
 
 /datum/uplink_item/item/ammo/sniperammo
 	name = "14.5mm"
-	item_cost = 4
+	item_cost = 3
 	path = /obj/item/weapon/storage/box/sniperammo
 
 

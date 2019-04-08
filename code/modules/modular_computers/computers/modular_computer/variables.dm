@@ -47,7 +47,8 @@
 	var/obj/item/weapon/computer_hardware/hard_drive/hard_drive						// Hard Drive component of this computer. Stores programs and files.
 
 	// Optional hardware (improves functionality, but is not critical for computer to work in most cases)
-	var/obj/item/weapon/computer_hardware/battery_module/battery_module				// An internal power source for this computer. Can be recharged.
+	var/obj/item/weapon/cell/cell													// An internal power source for this computer. Can be recharged.
+	var/suitable_cell = /obj/item/weapon/cell/medium								//What type of battery do we take?
 	var/obj/item/weapon/computer_hardware/card_slot/card_slot						// ID Card slot component of this computer. Mostly for HoP modification console that needs ID slot for modification.
 	var/obj/item/weapon/computer_hardware/nano_printer/nano_printer					// Nano Printer component of this computer, for your everyday paperwork needs.
 	var/obj/item/weapon/computer_hardware/hard_drive/portable/portable_drive		// Portable data storage

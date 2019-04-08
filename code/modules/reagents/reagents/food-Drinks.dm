@@ -52,14 +52,14 @@
 	injectable = 1
 
 /datum/reagent/nutriment/protein
-	name = "animal protein"
+	name = "Animal Protein"
 	taste_description = "some sort of protein"
 	id = "protein"
 	color = "#440000"
 
 
 /datum/reagent/nutriment/protein/egg
-	name = "egg yolk"
+	name = "Egg Yolk"
 	taste_description = "egg"
 	id = "egg"
 	color = "#FFFFAA"

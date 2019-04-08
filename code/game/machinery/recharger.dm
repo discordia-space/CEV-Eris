@@ -13,8 +13,7 @@ obj/machinery/recharger
 	var/obj/item/charging = null
 	var/obj/item/weapon/cell/cell = null
 	var/list/allowed_devices = list(
-		/obj/item/weapon/gun/energy, /obj/item/weapon/melee/baton, /obj/item/modular_computer/laptop,
-		/obj/item/weapon/cell, /obj/item/modular_computer,
+		/obj/item/weapon/gun/energy, /obj/item/weapon/melee/baton, /obj/item/weapon/cell, /obj/item/modular_computer,
 	)
 	var/icon_state_charged = "recharger2"
 	var/icon_state_charging = "recharger1"
@@ -30,10 +29,10 @@ obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 
 	if(portable && istype(G, /obj/item/weapon/tool/wrench))
 		if(charging)
-			user << SPAN_WARNING("Remove [charging] first!")
+			to_chat(user, SPAN_WARNING("Remove [charging] first!"))
 			return
 		anchored = !anchored
-		user << "You [anchored ? "attached" : "detached"] the recharger."
+		to_chat(user, "You [anchored ? "attached" : "detached"] the recharger.")
 		playsound(loc, 'sound/items/Ratchet.ogg', 75, 1)
 
 	else if (istype(G, /obj/item/weapon/gripper))//Code for allowing cyborgs to use rechargers
@@ -43,54 +42,28 @@ obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 				charging = null
 				update_icon()
 			else
-				user << "<span class='danger'>Your gripper cannot hold \the [charging].</span>"
+				to_chat(user, "<span class='danger'>Your gripper cannot hold \the [charging].</span>")
 
 	if(!user.canUnEquip(G))
 		return
 
-	var/allowed = 0
-	for (var/allowed_type in allowed_devices)
-		if (istype(G, allowed_type))
-			allowed = 1
-			break
-
-	if(allowed)
+	if(is_type_in_list(G, allowed_devices))
 		if(charging)
-			user << SPAN_WARNING("\A [charging] is already charging here.")
+			to_chat(user, SPAN_WARNING("\A [charging] is already charging here."))
 			return
 		// Checks to make sure he's not in space doing it, and that the area got proper power.
 		if(!powered())
-			user << SPAN_WARNING("The [name] blinks red as you try to insert the item!")
+			to_chat(user, SPAN_WARNING("The [name] blinks red as you try to insert the item!"))
 			return
 
 		if(istype(G, /obj/item/weapon/gun/energy/gun/nuclear) || istype(G, /obj/item/weapon/gun/energy/crossbow))
-			user << SPAN_NOTICE("Your gun's recharge port was removed to make room for a miniaturized reactor.")
+			to_chat(user, SPAN_NOTICE("Your gun's recharge port was removed to make room for a miniaturized reactor."))
 			return
 
-		if(istype(G, /obj/item/weapon/melee/baton))
-			var/obj/item/weapon/melee/baton/B = G
-			cell = B.cell
-		else if(istype(G, /obj/item/weapon/gun/energy))
-			var/obj/item/weapon/gun/energy/E = G
-			cell = E.cell
-		else if(istype(G, /obj/item/weapon/cell))
-			cell = G
-		else if(istype(G, /obj/item/modular_computer/laptop))
-			var/obj/item/modular_computer/laptop/L = G
-			if(!L.battery_module)
-				user << "There's no battery in it!"
-				return
-			else
-				cell = L.battery_module.battery
-		if(istype(G, /obj/item/modular_computer))
-			var/obj/item/modular_computer/C = G
-			if(!C.battery_module)
-				user << "This device does not have a battery installed."
-				return
-			else
-				src.cell = C.battery_module.battery
+		cell = G.get_cell()
 
 		if (!cell)
+			to_chat(user, "This device does not have a battery installed.")
 			return //We don't want to go any farther if we failed to find a cell
 		else
 			active_power_usage = min(max_power_usage, (cell.maxcharge*cell.max_chargerate)/CELLRATE)

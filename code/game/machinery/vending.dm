@@ -941,6 +941,7 @@
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 	product_slogans = "I hope nobody asks me for a bloody cup o' tea...;Alcohol is humanity's friend. Would you abandon a friend?;Quite delighted to serve you!;Is nobody thirsty on this station?"
 	product_ads = "Drink up!;Booze is good for you!;Alcohol is humanity's best friend.;Quite delighted to serve you!;Care for a nice, cold beer?;Nothing cures you like booze!;Have a sip!;Have a drink!;Have a beer!;Beer is good for you!;Only the finest alcohol!;Best quality booze since 2053!;Award-winning wine!;Maximum alcohol!;Man loves beer.;A toast for progress!"
+	auto_price = FALSE
 
 /obj/machinery/vending/assist
 	products = list(
@@ -993,14 +994,34 @@
 	product_ads = "Stunning!;Take justice in your own hands!;LEADearship!"
 	icon_state = "weapon"
 	no_criminals = TRUE
-	products = list(/obj/item/device/flash = 6,/obj/item/weapon/reagent_containers/spray/pepper = 6, /obj/item/weapon/gun/projectile/olivaw = 5, /obj/item/weapon/gun/projectile/giskard = 5, /obj/item/weapon/gun/projectile/revolver/detective = 5, /obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3,
-					/obj/item/weapon/gun/projectile/shotgun/pump = 5, /obj/item/ammo_magazine/cl32/rubber = 20, /obj/item/ammo_magazine/sl38/rubber = 20, /obj/item/ammo_magazine/ammobox/c38/rubber = 20, /obj/item/ammo_magazine/ammobox/cl32/rubber = 20,
-					/obj/item/weapon/storage/box/shotgunammo/beanbags = 10, /obj/item/weapon/storage/box/shotgunammo/flashshells = 10, /obj/item/weapon/storage/box/shotgunammo/blanks = 10, /obj/item/clothing/accessory/holster = 5)
-	contraband = list(/obj/item/ammo_magazine/sl38 = 20, /obj/item/ammo_magazine/cl32 = 20, /obj/item/ammo_magazine/ammobox/cl32 = 20, /obj/item/ammo_magazine/ammobox/c38 = 20, /obj/item/weapon/storage/box/shotgunammo/slug = 10, /obj/item/weapon/storage/box/shotgunammo/buckshot = 10)
+	products = list(/obj/item/device/flash = 6,
+	/obj/item/weapon/reagent_containers/spray/pepper = 6,
+	/obj/item/weapon/gun/projectile/olivaw = 5,
+	/obj/item/weapon/gun/projectile/giskard = 5,
+	/obj/item/weapon/gun/projectile/revolver/detective = 5,
+	/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3,
+	/obj/item/weapon/gun/projectile/shotgun/pump = 3,
+	/obj/item/ammo_magazine/cl32/rubber = 20,
+	/obj/item/ammo_magazine/sl38/rubber = 20,
+	/obj/item/ammo_magazine/ammobox/c38/rubber = 20,
+	/obj/item/ammo_magazine/ammobox/cl32/rubber = 20,
+	/obj/item/weapon/storage/box/shotgunammo/beanbags = 10,
+	/obj/item/weapon/storage/box/shotgunammo/flashshells = 10,
+	/obj/item/weapon/storage/box/shotgunammo/blanks = 10,
+	/obj/item/clothing/accessory/holster = 5,
+	/obj/item/weapon/storage/pouch/pistol_holster = 5)
+
+	contraband = list(/obj/item/ammo_magazine/sl38 = 20,
+	/obj/item/ammo_magazine/cl32 = 20,
+	/obj/item/ammo_magazine/ammobox/cl32 = 20,
+	/obj/item/ammo_magazine/ammobox/c38 = 20,
+	/obj/item/weapon/storage/box/shotgunammo/slug = 10,
+	/obj/item/weapon/storage/box/shotgunammo/buckshot = 10,
+	/datum/autolathe/recipe/tool/tacknife = 6)
 	prices = list(/obj/item/device/flash = 600,/obj/item/weapon/reagent_containers/spray/pepper = 800,  /obj/item/weapon/gun/projectile/olivaw = 1600, /obj/item/weapon/gun/projectile/giskard = 1200, /obj/item/weapon/gun/projectile/revolver/detective = 2500, /obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3700,
 					/obj/item/weapon/gun/projectile/shotgun/pump = 2000, /obj/item/ammo_magazine/cl32/rubber = 300, /obj/item/ammo_magazine/sl38/rubber = 400, /obj/item/ammo_magazine/ammobox/c38/rubber = 400, /obj/item/ammo_magazine/ammobox/cl32/rubber = 500,
-					/obj/item/weapon/storage/box/shotgunammo/beanbags = 300, /obj/item/weapon/storage/box/shotgunammo/flashshells = 300, /obj/item/weapon/storage/box/shotgunammo/blanks = 50, /obj/item/clothing/accessory/holster = 150,
-					/obj/item/ammo_magazine/sl38 = 400, /obj/item/ammo_magazine/cl32 = 300, /obj/item/ammo_magazine/ammobox/cl32 = 500, /obj/item/ammo_magazine/ammobox/c38 = 400, /obj/item/weapon/storage/box/shotgunammo/slug = 300, /obj/item/weapon/storage/box/shotgunammo/buckshot = 300)
+					/obj/item/weapon/storage/box/shotgunammo/beanbags = 300, /obj/item/weapon/storage/box/shotgunammo/flashshells = 300, /obj/item/weapon/storage/box/shotgunammo/blanks = 50, /obj/item/clothing/accessory/holster = 150, /obj/item/weapon/storage/pouch/pistol_holster =150,
+					/obj/item/ammo_magazine/sl38 = 400, /obj/item/ammo_magazine/cl32 = 300, /obj/item/ammo_magazine/ammobox/cl32 = 500, /obj/item/ammo_magazine/ammobox/c38 = 400, /obj/item/weapon/storage/box/shotgunammo/slug = 300, /obj/item/weapon/storage/box/shotgunammo/buckshot = 300, /datum/autolathe/recipe/tool/tacknife = 600)
 
 //This one's from bay12
 /obj/machinery/vending/cart
@@ -1105,9 +1126,21 @@
 	icon_state = "sec"
 	icon_deny = "sec-deny"
 	req_access = list(access_security)
-	products = list(/obj/item/weapon/handcuffs = 8,/obj/item/weapon/grenade/flashbang = 4,/obj/item/weapon/grenade/chem_grenade/teargas = 4,/obj/item/device/flash = 5,
-					/obj/item/weapon/reagent_containers/food/snacks/donut/normal = 12,/obj/item/weapon/storage/box/evidence = 6)
-	contraband = list(/obj/item/clothing/glasses/sunglasses = 2,/obj/item/weapon/storage/box/donut = 2)
+	products = list(/obj/item/weapon/handcuffs = 8,
+					/obj/item/weapon/grenade/flashbang = 8,
+					/obj/item/weapon/grenade/chem_grenade/teargas = 8,
+					/obj/item/device/flash = 8,
+					/obj/item/weapon/reagent_containers/spray/pepper = 8,
+					/obj/item/ammo_magazine/sol65/rubber = 8,
+					/obj/item/ammo_magazine/a10mm/rubber = 8,
+					/obj/item/ammo_magazine/smg9mm/rubber = 4,
+					/obj/item/ammo_magazine/sl44/rubber = 4,
+					/obj/item/ammo_magazine/cl44/rubber = 4,
+					/obj/item/weapon/storage/box/shotgunammo/beanbags = 2,
+					/obj/item/device/hailer = 8,
+					/obj/item/taperoll/police = 8,
+					/obj/item/weapon/storage/box/evidence = 2)
+	contraband = list(/datum/autolathe/recipe/tool/tacknife = 4,/obj/item/weapon/reagent_containers/food/snacks/donut/normal = 12)
 	auto_price = FALSE
 
 /obj/machinery/vending/hydronutrients
@@ -1288,7 +1321,7 @@
 /obj/machinery/vending/printomat
 	name = "Asters Guild Print-o-Mat"
 	desc = "Everything you can imagine (not really) on a disc! Print your own gun TODAY."
-	product_slogans = "Print your own gun TODAY!; The future is NOW!; Can't stop the industrial revolution!"
+	product_slogans = "Print your own gun TODAY!;The future is NOW!;Can't stop the industrial revolution!"
 	product_ads = "Almost free!;Print it yourself!;Don't copy that floppy!"
 	icon_state = "discomat"
 	products = list(/obj/item/weapon/disk/autolathe_disk/blank = 20, /obj/item/weapon/disk/autolathe_disk/basic = 10,

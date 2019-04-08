@@ -19,7 +19,8 @@
 	var/mopmode = MOPMODE_TILE
 	var/sweep_time = 7
 
-/obj/item/weapon/mop/New()
+/obj/item/weapon/mop/Initialize()
+	. = ..()
 	create_reagents(30)
 
 /obj/item/weapon/mop/attack_self(var/mob/user)

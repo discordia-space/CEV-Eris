@@ -8,6 +8,7 @@
 	action_button_name = "Toggle UV light"
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
+	price_tag = 50
 
 	var/list/scanned = list()
 	var/list/stored_alpha = list()

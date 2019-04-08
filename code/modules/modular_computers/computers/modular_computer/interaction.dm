@@ -166,7 +166,7 @@
 	else if(!enabled && screen_on)
 		turn_on(user)
 
-/obj/item/modular_computer/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/item/modular_computer/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weapon/card/id)) // ID Card, try to insert it.
 		var/obj/item/weapon/card/id/I = W
 		if(!card_slot)
@@ -192,12 +192,12 @@
 		if(istype(stored_pen))
 			to_chat(user, "<span class='notice'>There is already a pen in [src].</span>")
 			return
-		if(!user.unEquip(W, src))
+		if(!insert_item(W, user))
 			return
 		stored_pen = W
 		update_verbs()
-		to_chat(user, "<span class='notice'>You insert [W] into [src].</span>")
 		return
+
 	if(istype(W, /obj/item/weapon/paper))
 		var/obj/item/weapon/paper/paper = W
 		if(scanner && paper.info)
@@ -214,12 +214,8 @@
 	if(!modifiable)
 		return ..()
 
-	if(istype(W, /obj/item/weapon/computer_hardware))
-		var/obj/item/weapon/computer_hardware/C = W
-		if(C.hardware_size <= max_hardware_size)
-			try_install_component(user, C)
-		else
-			to_chat(user, "This component is too large for \the [src].")
+	if(istype(W, suitable_cell) || istype(W, /obj/item/weapon/computer_hardware))
+		try_install_component(user, W)
 
 	var/list/usable_qualities = list(QUALITY_SCREW_DRIVING, QUALITY_WELDING, QUALITY_BOLT_TURNING)
 
@@ -251,9 +247,16 @@
 				to_chat(user, "This device doesn't have any components installed.")
 				return
 			var/list/component_names = list()
-			for(var/obj/item/weapon/computer_hardware/H in all_components)
+			for(var/obj/item/weapon/H in all_components)
 				component_names.Add(H.name)
-			var/choice = input(usr, "Which component do you want to uninstall?", "Computer maintenance", null) as null|anything in component_names
+			var/list/options = list()
+			for(var/i in component_names)
+				for(var/X in all_components)
+					var/obj/item/weapon/TT = X
+					if(TT.name == i)
+						options[i] = image(icon = TT.icon, icon_state = TT.icon_state)
+			var/choice
+			choice = show_radial_menu(user, src, options, radius = 32)
 			if(!choice)
 				return
 			if(!Adjacent(usr))
@@ -275,10 +278,13 @@
 	if(card_slot && card_slot.stored_card)
 		to_chat(user, "The [card_slot.stored_card] is inserted into it.")
 
-/obj/item/modular_computer/MouseDrop(var/atom/over_object)
+/obj/item/modular_computer/MouseDrop(atom/over_object)
 	var/mob/M = usr
 	if(!istype(over_object, /obj/screen) && can_interact(M))
 		return attack_self(M)
+
+	if((src.loc == M) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, M))
+		cell = null
 
 /obj/item/modular_computer/afterattack(atom/target, mob/user, proximity)
 	. = ..()

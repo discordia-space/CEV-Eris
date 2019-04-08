@@ -13,14 +13,15 @@
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/ak47
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
+	price_tag = 3500
 	fire_sound = 'sound/weapons/guns/fire/ltrifle_fire.ogg'
 	unload_sound 	= 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 
 	firemodes = list(
-		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, dispersion=null),
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    dispersion=list(0.0, 0.6, 0.6)),
+		SEMI_AUTO_NODELAY,
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    dispersion=list(0.0, 0.6, 0.6), icon="burst"),
 		)
 
 /obj/item/weapon/gun/projectile/automatic/ak47/update_icon()
@@ -35,10 +36,7 @@
 
 /obj/item/weapon/gun/projectile/automatic/ak47/fs
 	name = "FS AR 7.62x39 \"Kalashnikov\""
-	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
-		 This is an ancient semi-automatic rifle, chambered in 7.62x39. If it won't fire, percussive maintenance should get it working again. \
-		 It is known for its easy maintenance, and low price. This gun is not in active military service anymore, but has become ubiquitous among criminals and insurgents."
 	icon_state = "AK"
 	item_state = "AK"
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
-	force = 20
+	force = WEAPON_FORCE_DANGEROUS

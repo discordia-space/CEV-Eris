@@ -31,8 +31,8 @@
 	if(computer.hard_drive)
 		qdel(computer.hard_drive)
 
-	if(computer.battery_module && prob(25))
-		qdel(computer.battery_module)
+	if(computer.cell && prob(25))
+		qdel(computer.cell)
 
 	if(computer.tesla_link && prob(50))
 		qdel(computer.tesla_link)

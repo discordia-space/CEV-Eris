@@ -11,12 +11,13 @@
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/smg9mm
 	matter = list(MATERIAL_PLASTEEL = 16, MATERIAL_WOOD = 4)
+	price_tag = 2500
 	damage_multiplier = 0.75
 
 	firemodes = list(
 		FULL_AUTO_400,
-		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, dispersion=null),
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    dispersion=list(0.0, 0.6, 0.6)),
+		SEMI_AUTO_NODELAY,
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    dispersion=list(0.0, 0.6, 0.6), icon="burst"),
 		)
 
 /obj/item/weapon/gun/projectile/automatic/idaho/update_icon()

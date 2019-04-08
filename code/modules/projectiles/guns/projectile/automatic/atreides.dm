@@ -11,12 +11,13 @@
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/c45smg
 	matter = list(MATERIAL_PLASTEEL = 16, MATERIAL_PLASTIC = 4)
-	damage_multiplier = 0.75
+	price_tag = 2000
+	damage_multiplier = 0.65
 
 	firemodes = list(
 		FULL_AUTO_400,
-		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, dispersion=null),
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    dispersion=list(0.0, 0.6, 0.6)),
+		SEMI_AUTO_NODELAY,
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    dispersion=list(0.0, 0.6, 0.6), icon="burst"),
 		)
 
 /obj/item/weapon/gun/projectile/automatic/atreides/update_icon()

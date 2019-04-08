@@ -10,6 +10,7 @@
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 3)
 	load_method = MAGAZINE
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_WOOD = 4)
+	price_tag = 700
 
 /obj/item/weapon/gun/projectile/giskard/update_icon()
 	..()
