@@ -75,10 +75,9 @@
 /mob/new_player/Stat()
 	. = ..()
 
-	if(statpanel("Lobby"))
-		stat("Storyteller:", "[master_storyteller]") // Old setting for showing the game mode
-
+	if(statpanel("Status"))
 		if(SSticker.current_state == GAME_STATE_PREGAME)
+			stat("Storyteller:", "[master_storyteller]") // Old setting for showing the game mode
 			stat("Time To Start:", "[SSticker.pregame_timeleft][round_progressing ? "" : " (DELAYED)"]")
 			stat("Players: [totalPlayers]", "Players Ready: [totalPlayersReady]")
 			totalPlayers = 0
