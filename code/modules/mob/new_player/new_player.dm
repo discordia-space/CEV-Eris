@@ -75,16 +75,16 @@
 /mob/new_player/Stat()
 	. = ..()
 
-	if(statpanel("Lobby"))
-		stat("Storyteller:", "[master_storyteller]") // Old setting for showing the game mode
-
+	if(statpanel("Status"))
 		if(SSticker.current_state == GAME_STATE_PREGAME)
+			stat("Storyteller:", "[master_storyteller]") // Old setting for showing the game mode
 			stat("Time To Start:", "[SSticker.pregame_timeleft][round_progressing ? "" : " (DELAYED)"]")
 			stat("Players: [totalPlayers]", "Players Ready: [totalPlayersReady]")
 			totalPlayers = 0
 			totalPlayersReady = 0
 			for(var/mob/new_player/player in GLOB.player_list)
-				stat("[player.key]", (player.ready)?("(Playing)"):(null))
+				if(player.ready)
+					stat("[player.client.prefs.real_name]", (player.ready)?("[player.client.prefs.job_high]"):(null))
 				totalPlayers++
 				if(player.ready)totalPlayersReady++
 
