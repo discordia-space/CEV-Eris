@@ -278,8 +278,8 @@
 	if(item && src.unEquip(item, loc))
 		src.visible_message("\red [src] has thrown [item].")
 
-		if(!src.lastarea)
-			src.lastarea = get_area(src.loc)
+		//if(!src.lastarea) // this check would break inertia movement
+		src.lastarea = get_area(src.loc)
 		if((istype(src.loc, /turf/space)) || (src.lastarea.has_gravity == 0 && !check_shoegrip()))
 			src.inertia_dir = get_dir(target, src)
 			step(src, inertia_dir)
