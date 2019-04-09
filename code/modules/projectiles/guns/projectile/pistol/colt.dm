@@ -8,4 +8,4 @@
 	price_tag = 1500
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	load_method = MAGAZINE
-	mag_well = list("pistol")
+	mag_well = MAG_WELL_PISTOL

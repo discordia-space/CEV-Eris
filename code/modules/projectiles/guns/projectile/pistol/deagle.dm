@@ -6,7 +6,7 @@
 	force = WEAPON_FORCE_PAINFULL
 	caliber = ".50"
 	load_method = MAGAZINE
-	mag_well = list("pistol")
+	mag_well = MAG_WELL_PISTOL
 	auto_eject = 1
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 8)
 	price_tag = 1800

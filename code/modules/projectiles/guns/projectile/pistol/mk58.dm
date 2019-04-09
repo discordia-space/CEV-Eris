@@ -8,7 +8,7 @@
 	price_tag = 1400
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	load_method = MAGAZINE
-	mag_well = list("pistol")
+	mag_well = MAG_WELL_PISTOL
 
 /obj/item/weapon/gun/projectile/mk58/update_icon()
 	..()

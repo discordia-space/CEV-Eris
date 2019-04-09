@@ -6,7 +6,7 @@
 	w_class = ITEM_SIZE_LARGE
 	ammo_mag = "ih_sol"
 	load_method = MAGAZINE
-	mag_well = list("ih_rifle")
+	mag_well = MAG_WELL_IH
 	max_shells = 30
 	caliber = "6.5mm"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)

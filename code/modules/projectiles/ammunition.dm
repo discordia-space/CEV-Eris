@@ -149,6 +149,15 @@
 #define SPEEDLOADER 	2	//Transfers casings from the mag to the gun when used.
 #define MAGAZINE 		4	//The magazine item itself goes inside the gun
 
+#define MAG_WELL_GENERIC	0	//Guns without special magwells
+#define MAG_WELL_PISTOL		1	//Pistols
+#define MAG_WELL_SMG		2	//smgs
+#define MAG_WELL_CIVI_RIFLE	4	//Normal non IH or AK rifles
+#define MAG_WELL_IH			8	//IH guns
+#define MAG_WELL_AK			16	//AKs
+#define MAG_WELL_BOX		32	//Lmgs with box mags
+#define MAG_WELL_PAN		64	//Lmgs with pan mags
+
 //An item that holds casings and can be used to put them inside guns
 /obj/item/ammo_magazine
 	name = "magazine"
@@ -166,7 +175,7 @@
 
 	var/list/stored_ammo = list()
 	var/mag_type = SPEEDLOADER //ammo_magazines can only be used with compatible guns. This is not a bitflag, the load_method var on guns is.
-	var/mag_well = "generic"
+	var/mag_well = MAG_WELL_GENERIC
 	var/caliber = "357"
 	var/ammo_mag = "default"
 	var/max_ammo = 7

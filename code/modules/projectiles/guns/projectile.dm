@@ -3,6 +3,7 @@
 #define EJECT_CASINGS	1 //drop spent casings on the ground after firing
 #define CYCLE_CASINGS 	2 //experimental: cycle casings, like a revolver. Also works for multibarrelled guns
 
+
 /obj/item/weapon/gun/projectile
 	name = "gun"
 	desc = "A gun that fires bullets."
@@ -31,7 +32,7 @@
 	//For MAGAZINE guns
 	var/magazine_type = null	//the type of magazine that the gun comes preloaded with
 	var/obj/item/ammo_magazine/ammo_magazine = null //stored magazine
-	var/list/mag_well = list("generic")	//What kind of magazines the gun can load
+	var/mag_well = MAG_WELL_GENERIC	//What kind of magazines the gun can load
 	var/auto_eject = FALSE			//if the magazine should automatically eject itself when empty.
 	var/auto_eject_sound = null
 	var/ammo_mag = "default" // magazines + gun itself. if set to default, then not used
@@ -149,7 +150,7 @@
 				if(ammo_magazine)
 					user << SPAN_WARNING("[src] already has a magazine loaded.") //already a magazine here
 					return
-				if(!(AM.mag_well in mag_well))
+				if(!(AM.mag_well & mag_well))
 					user << SPAN_WARNING("[src] won't fit into the magwell.") //wrong magazine
 					return
 				user.remove_from_mob(AM)
