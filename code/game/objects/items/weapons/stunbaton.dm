@@ -12,6 +12,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 2)
 	attack_verb = list("beaten")
+	price_tag = 500
 	var/stunforce = 0
 	var/agonyforce = 60
 	var/status = FALSE		//whether the thing is on or not
@@ -20,12 +21,18 @@
 	var/suitable_cell = /obj/item/weapon/cell/medium
 	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
 
-/obj/item/weapon/melee/baton/New()
-	..()
+/obj/item/weapon/melee/baton/Initialize()
+	. = ..()
 	if(!cell && suitable_cell)
 		cell = new suitable_cell(src)
 	update_icon()
-	return
+
+/obj/item/weapon/melee/baton/Destroy()
+	QDEL_NULL(cell)
+	return ..()
+
+/obj/item/weapon/melee/baton/get_cell()
+	return cell
 
 /obj/item/weapon/melee/baton/proc/deductcharge(var/power_drain)
 	if(cell)

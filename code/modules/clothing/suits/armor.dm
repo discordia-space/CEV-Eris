@@ -8,6 +8,7 @@
 	heat_protection = UPPER_TORSO|LOWER_TORSO
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.6
+	price_tag = 200
 
 
 /obj/item/clothing/suit/armor/vest
@@ -30,6 +31,7 @@
 	icon_state = "hm_armorvest"
 	item_state = "hm_armorvest"
 	armor = list(melee = 40, bullet = 35, laser = 30, energy = 15, bomb = 15, bio = 0, rad = 0)
+	price_tag = 150
 
 
 /obj/item/clothing/suit/armor/riot
@@ -43,6 +45,7 @@
 	armor = list(melee = 75, bullet = 35, laser = 35, energy = 20, bomb = 35, bio = 0, rad = 0)
 	flags_inv = HIDEJUMPSUIT
 	siemens_coefficient = 0.5
+	price_tag = 500
 
 
 /obj/item/clothing/suit/armor/bulletproof
@@ -54,6 +57,7 @@
 	slowdown = 0.5
 	armor = list(melee = 35, bullet = 75, laser = 35, energy = 10, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
+	price_tag = 500
 
 /obj/item/clothing/suit/armor/laserproof
 	name = "ablative armor vest"
@@ -64,6 +68,7 @@
 	slowdown = 0.5
 	armor = list(melee = 35, bullet = 35, laser = 75, energy = 50, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0
+	price_tag = 650
 
 /obj/item/clothing/suit/armor/laserproof/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(istype(damage_source, /obj/item/projectile/energy) || istype(damage_source, /obj/item/projectile/beam))
@@ -101,6 +106,7 @@
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.6
+	price_tag = 500
 
 
 /obj/item/clothing/suit/armor/swat/officer
@@ -215,7 +221,7 @@
 	desc = "A synthetic armor vest. This one has added webbing and ballistic plates."
 	icon_state = "webvest"
 	armor = list(melee = 50, bullet = 45, laser = 50, energy = 25, bomb = 30, bio = 0, rad = 0)
-	
+
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS|THICKMATERIAL
 

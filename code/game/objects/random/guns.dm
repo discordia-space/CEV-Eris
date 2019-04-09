@@ -15,6 +15,9 @@
 	icon_state = "gun-grey-low"
 	spawn_nothing_percentage = 80
 
+
+
+
 /obj/random/gun_normal
 	name = "random normal gun"
 	icon_state = "gun-green"
@@ -38,6 +41,9 @@
 	icon_state = "gun-green-low"
 	spawn_nothing_percentage = 80
 
+
+
+
 /obj/random/gun_energy_cheap
 	name = "random cheap energy weapon"
 	icon_state = "gun-blue"
@@ -52,9 +58,23 @@
 	icon_state = "gun-blue-low"
 	spawn_nothing_percentage = 80
 
+
+
+
+/obj/random/gun_shotgun
+	name = "random shotgun"
+	icon_state = "gun-red"
+
 /obj/random/gun_shotgun/item_to_spawn()
-	return pickweight(list(/obj/item/weapon/gun/projectile/shotgun/pump = 2,\
-				/obj/item/weapon/gun/projectile/shotgun/bull = 2,\
-				/obj/item/weapon/gun/projectile/shotgun/doublebarrel = 2,\
-				/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn = 2,\
-				/obj/item/weapon/gun/projectile/shotgun/pump/combat = 1,))
+	return pickweight(list(
+				/obj/item/weapon/gun/projectile/shotgun/pump = 2,
+				/obj/item/weapon/gun/projectile/shotgun/bull = 2,
+				/obj/item/weapon/gun/projectile/shotgun/doublebarrel = 2,
+				/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn = 2,
+				/obj/item/weapon/gun/projectile/shotgun/pump/combat = 1,
+				/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 1))
+
+/obj/random/gun_shotgun/low_chance
+	name = "low chance random shotgun"
+	icon_state = "gun-red-low"
+	spawn_nothing_percentage = 80

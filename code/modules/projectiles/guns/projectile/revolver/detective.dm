@@ -10,3 +10,4 @@
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
 	ammo_type = /obj/item/ammo_casing/c38
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
+	price_tag = 1000

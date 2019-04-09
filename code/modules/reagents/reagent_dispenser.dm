@@ -10,6 +10,12 @@
 	var/starting_reagent = null
 	var/amount_per_transfer_from_this = 10
 	var/possible_transfer_amounts = list(10,25,50,100)
+	var/contents_cost
+
+/obj/structure/reagent_dispensers/get_item_cost()
+	var/ratio = reagents.total_volume / reagents.maximum_volume
+
+	return ..() + round(contents_cost * ratio)
 
 /obj/structure/reagent_dispensers/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(W.is_refillable())
@@ -64,12 +70,16 @@
 	amount_per_transfer_from_this = 10
 	volume = 1500
 	starting_reagent = "water"
+	price_tag = 50
+	contents_cost = 150
 
 /obj/structure/reagent_dispensers/watertank/huge
 	name = "high-capacity water tank"
 	desc = "A high-capacity water tank. It is used to store HUGE amounts of water."
 	icon_state = "hvwatertank"
 	volume = 3000
+	price_tag = 100
+	contents_cost = 300
 
 /obj/structure/reagent_dispensers/fueltank
 	name = "fuel tank"
@@ -81,12 +91,16 @@
 	var/obj/item/device/assembly_holder/rig = null
 	volume = 500
 	starting_reagent = "fuel"
+	price_tag = 50
+	contents_cost = 750
 
 /obj/structure/reagent_dispensers/fueltank/huge
 	name = "high-capacity fuel tank"
 	desc = "A high-capacity tank full of industrial welding fuel. Do not consume."
 	icon_state = "hvweldtank"
 	volume = 1000
+	price_tag = 100
+	contents_cost = 1500
 
 /obj/structure/reagent_dispensers/fueltank/examine(mob/user)
 	if(!..(user, 2))
@@ -232,6 +246,8 @@
 	amount_per_transfer_from_this = 10
 	volume = 1000
 	starting_reagent = "beer"
+	price_tag = 50
+	contents_cost = 700
 
 /obj/structure/reagent_dispensers/cahorsbarrel
 	name = "NeoTheology Cahors barrel"
@@ -239,6 +255,8 @@
 	icon_state = "barrel"
 	volume = 1000
 	starting_reagent = "ntcahors"
+	price_tag = 50
+	contents_cost = 950
 
 /obj/structure/reagent_dispensers/virusfood
 	name = "virus food dispenser"

@@ -12,6 +12,7 @@
 	mag_well = list("pistol")
 	mag_well = list("pistol")
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_WOOD = 4)
+	price_tag = 700
 
 /obj/item/weapon/gun/projectile/giskard/update_icon()
 	..()

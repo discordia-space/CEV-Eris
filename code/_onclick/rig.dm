@@ -1,8 +1,7 @@
+/*
 
-#define MIDDLE_CLICK 0
-#define ALT_CLICK 1
-#define CTRL_CLICK 2
-#define MAX_HARDSUIT_CLICK_MODE 2
+// Already in /code/modules/client/preference_setup/global/preferences.dm
+// This var not even used.
 
 /client
 	var/hardsuit_click_mode = MIDDLE_CLICK
@@ -28,6 +27,7 @@
 			soft_assert(0, "Bad hardsuit click mode: [hardsuit_click_mode] - expected 0 to [MAX_HARDSUIT_CLICK_MODE]")
 			src << "Somehow you bugged the system. Setting your hardsuit mode to middle-click."
 			hardsuit_click_mode = MIDDLE_CLICK
+*/
 
 /mob/living/MiddleClickOn(atom/A)
 	if(get_preference_value(/datum/client_preference/hardsuit_activation) == GLOB.PREF_MIDDLE_CLICK)
@@ -69,7 +69,7 @@
 	return loc == card
 
 /mob/living/proc/HardsuitClickOn(var/atom/A, var/alert_ai = 0)
-	if(!can_use_rig() || !can_click())
+	if(!can_use_rig())// || !can_click())  // This check is already done in mob/proc/ClickOn()
 		return 0
 	var/obj/item/weapon/rig/rig = get_rig()
 	if(istype(rig) && !rig.offline && rig.selected_module)
@@ -83,8 +83,3 @@
 			setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		return 1
 	return 0
-
-#undef MIDDLE_CLICK
-#undef ALT_CLICK
-#undef CTRL_CLICK
-#undef MAX_HARDSUIT_CLICK_MODE

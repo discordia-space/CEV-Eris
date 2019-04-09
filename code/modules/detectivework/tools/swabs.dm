@@ -2,6 +2,7 @@
 	name = "swab kit"
 	desc = "A sterilized cotton swab and vial used to take forensic samples."
 	icon_state = "swab"
+	price_tag = 5
 	var/gsr = 0
 	var/list/dna
 	var/used

@@ -280,11 +280,12 @@ var/list/mob/living/forced_ambiance_list = new
 		else
 			gravity_blocker = null
 
-	if (GLOB.active_gravity_generator && gravity_is_on) //This is a global var
-		has_gravity = TRUE
+	if (GLOB.active_gravity_generator)
+		has_gravity = gravity_is_on
 
 	if (grav_before != has_gravity)
 		gravity_changed()
+
 
 
 //Called when the gravity state changes

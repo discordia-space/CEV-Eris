@@ -8,6 +8,7 @@
 	item_state = ""
 	w_class = ITEM_SIZE_SMALL
 	var/obj/item/stored_item = null
+	price_tag = 5
 
 /obj/item/weapon/evidencebag/MouseDrop(var/obj/item/I as obj)
 	if (!ishuman(usr))
