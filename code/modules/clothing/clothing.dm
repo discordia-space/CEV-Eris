@@ -30,6 +30,7 @@
 
 //Delayed equipping
 /obj/item/clothing/pre_equip(var/mob/user, var/slot)
+	..(user, slot)
 	if (equip_delay > 0)
 		//If its currently worn, we must be taking it off
 		if (is_worn())
@@ -113,7 +114,7 @@
 	var/other_slot = (slot == slot_l_ear) ? slot_r_ear : slot_l_ear
 	if(user.get_equipped_item(other_slot) != master_item || user.get_equipped_item(slot))
 		return FALSE
-	return TRUE
+	return ..()
 
 /obj/item/clothing/ears/earmuffs
 	name = "earmuffs"
