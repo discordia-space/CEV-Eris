@@ -7,6 +7,7 @@
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	load_method = MAGAZINE
+	mag_well = list("pistol")
 
 /obj/item/weapon/gun/projectile/mk58/update_icon()
 	..()

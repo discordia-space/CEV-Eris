@@ -7,6 +7,7 @@
 	silencer_type = /obj/item/weapon/silencer/integrated
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
 	load_method = MAGAZINE
+	mag_well = list("pistol")
 	magazine_type = /obj/item/ammo_magazine/c45m
 
 //This comes with a preinstalled silencer

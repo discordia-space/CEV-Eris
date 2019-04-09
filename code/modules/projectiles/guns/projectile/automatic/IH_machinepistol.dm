@@ -9,6 +9,7 @@
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	ammo_type = "/obj/item/ammo_casing/c9mm"
 	load_method = MAGAZINE
+	mag_well = list("pistol","smg")
 	magazine_type = /obj/item/ammo_magazine/smg9mm
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 3)
 	silencer_type = /obj/item/weapon/silencer

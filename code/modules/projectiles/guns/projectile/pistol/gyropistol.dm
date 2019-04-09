@@ -8,6 +8,7 @@
 	origin_tech = list(TECH_COMBAT = 3)
 	ammo_type = "/obj/item/ammo_casing/a75"
 	load_method = MAGAZINE
+	mag_well = list("pistol")
 	magazine_type = /obj/item/ammo_magazine/a75
 	auto_eject = 1
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'

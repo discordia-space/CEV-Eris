@@ -9,6 +9,7 @@
 	slot_flags = SLOT_BELT
 	ammo_type = "/obj/item/ammo_casing/c9mmr"
 	load_method = MAGAZINE
+	mag_well = list("pistol")
 	magazine_type = /obj/item/ammo_magazine/mc9mmt/rubber
 	zoom_factor = 2.0
 

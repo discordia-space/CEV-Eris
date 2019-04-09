@@ -9,6 +9,7 @@
 	slot_flags = SLOT_BELT
 	ammo_type = "/obj/item/ammo_casing/c9mmr"
 	load_method = MAGAZINE
+	mag_well = list("smg")
 	magazine_type = /obj/item/ammo_magazine/smg9mm
 	matter = list(MATERIAL_PLASTEEL = 16, MATERIAL_WOOD = 4)
 	damage_multiplier = 0.75

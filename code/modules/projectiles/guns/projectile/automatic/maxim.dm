@@ -11,6 +11,7 @@ obj/item/weapon/gun/projectile/automatic/maxim
 	origin_tech = list(TECH_COMBAT = 7, TECH_MATERIAL = 2, TECH_ILLEGAL = 2)
 	ammo_type = "/obj/item/ammo_casing/a762"
 	load_method = MAGAZINE
+	mag_well = list("pan")
 	magazine_type = /obj/item/ammo_magazine/maxim
 	matter = list(MATERIAL_PLASTEEL = 42, MATERIAL_PLASTIC = 15, MATERIAL_WOOD = 5)
 	unload_sound 	= 'sound/weapons/guns/interact/lmg_magout.ogg'
