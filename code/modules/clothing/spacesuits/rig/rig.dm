@@ -351,47 +351,58 @@
 				M = piece.loc
 				M.drop_from_inventory(piece)
 			piece.forceMove(src)
+	//checks for aviability, proper user and place, proper cell.
+	if(!istype(wearer))
+		return 0
+	if(loc != wearer)
+		return 0
+	if(wearer.back != src)
+		return 0
+	if(canremove)
+		return 0
+	if(!cell)
+		return 0
 
-	if(!istype(wearer) || loc != wearer || wearer.back != src || canremove || !cell || cell.charge <= 0)
-		if(!cell || cell.charge <= 0)
-			if(electrified > 0)
-				electrified = 0
-			if(!offline)
-				if(istype(wearer))
-					if(!canremove)
-						if (offline_slowdown < 3)
-							wearer << SPAN_DANGER("Your suit beeps stridently, and suddenly goes dead.")
-						else
-							wearer << SPAN_DANGER("Your suit beeps stridently, and suddenly you're wearing a leaden mass of metal and plastic composites instead of a powered suit.")
-					if(offline_vision_restriction == 1)
-						wearer << SPAN_DANGER("The suit optics flicker and die, leaving you with restricted vision.")
-					else if(offline_vision_restriction == 2)
-						wearer << SPAN_DANGER("The suit optics drop out completely, drowning you in darkness.")
+	if(cell.charge <= 0)
+		cell.charge = 0
+		if(electrified > 0)
+			electrified = 0
+		if(!offline)
+			if(!canremove)
+				if (offline_slowdown < 3)
+					wearer << SPAN_DANGER("Your suit beeps stridently, and suddenly goes dead.")
+				else
+					wearer << SPAN_DANGER("Your suit beeps stridently, and suddenly you're wearing a leaden mass of metal and plastic composites instead of a powered suit.")
+			if(offline_vision_restriction == 1)
+				wearer << SPAN_DANGER("The suit optics flicker and die, leaving you with restricted vision.")
+			else if(offline_vision_restriction == 2)
+				wearer << SPAN_DANGER("The suit optics drop out completely, drowning you in darkness.")
 		if(!offline)
 			offline = 1
 	else
 		if(offline)
 			offline = 0
-			if(istype(wearer) && !wearer.wearing_rig)
+			if(!wearer.wearing_rig)
 				wearer.wearing_rig = src
 			chest.slowdown = initial(slowdown)
 
 	if(offline)
 		if(offline == 1)
 			for(var/obj/item/rig_module/module in installed_modules)
-				module.deactivate()
+				if(!istype(module, /obj/item/rig_module/power_sink))
+					module.deactivate()
 			offline = 2
 			chest.slowdown = offline_slowdown
-		return
+		//return
+	else
+		if(cell && cell.charge > 0 && electrified > 0)
+			electrified--
 
-	if(cell && cell.charge > 0 && electrified > 0)
-		electrified--
-
-	if(malfunction_delay > 0)
-		malfunction_delay--
-	else if(malfunctioning)
-		malfunctioning--
-		malfunction()
+		if(malfunction_delay > 0)
+			malfunction_delay--
+		else if(malfunctioning)
+			malfunctioning--
+			malfunction()
 
 	for(var/obj/item/rig_module/module in installed_modules)
 		cell.use(module.Process()*10)
@@ -567,7 +578,10 @@
 			var/obj/item/rig_module/module = installed_modules[module_index]
 			switch(href_list["module_mode"])
 				if("activate")
-					module.activate()
+					if(cell.charge >= module.use_power_cost)
+						module.activate()
+					else
+						to_chat(usr, SPAN_WARNING("Not enough power."))
 				if("deactivate")
 					module.deactivate()
 				if("engage")
@@ -681,7 +695,7 @@
 					if(use_obj && check_slot == use_obj)
 						use_obj.canremove = 1
 						if (wearer.unEquip(use_obj, src))
-							wearer << "<font color='blue'><b>Your [use_obj.name] [use_obj.gender == PLURAL ? "retract" : "retracts"] swiftly.</b></font>"
+							wearer << SPAN_NOTICE("Your [use_obj.name] [use_obj.gender == PLURAL ? "retract" : "retracts"] swiftly.")
 						use_obj.canremove = 0
 
 
@@ -692,10 +706,10 @@
 			if(!wearer.equip_to_slot_if_possible(use_obj, equip_to, TRUE)) //Disable_warning
 				use_obj.forceMove(src)
 				if(check_slot)
-					initiator << "<span class='danger'>You are unable to deploy \the [piece] as \the [check_slot] [check_slot.gender == PLURAL ? "are" : "is"] in the way.</span>"
+					initiator << SPAN_DANGER("You are unable to deploy \the [piece] as \the [check_slot] [check_slot.gender == PLURAL ? "are" : "is"] in the way.")
 					return
 			else
-				wearer << "<span class='notice'>Your [use_obj.name] [use_obj.gender == PLURAL ? "deploy" : "deploys"] swiftly.</span>"
+				wearer << SPAN_NOTICE("Your [use_obj.name] [use_obj.gender == PLURAL ? "deploy" : "deploys"] swiftly")
 
 	if(piece == "helmet" && helmet)
 		helmet.update_light(wearer)

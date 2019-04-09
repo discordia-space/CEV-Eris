@@ -6,6 +6,7 @@
 	icon_state = "b_st"
 	maxcharge = 1000
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 3, MATERIAL_SILVER = 3)
+	price_tag = 200
 
 /obj/item/weapon/cell/large/high
 	name = "Asters \"Robustcell 5000L\""
@@ -105,6 +106,7 @@
 	throw_range = 7
 	maxcharge = 600
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_SILVER = 2)
+	price_tag = 100
 
 /obj/item/weapon/cell/medium/high
 	name = "Asters \"Robustcell 800M\""
@@ -183,6 +185,7 @@
 	throw_range = 7
 	maxcharge = 100
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 1)
+	price_tag = 50
 
 /obj/item/weapon/cell/small/high
 	name = "Asters \"Robustcell 200S\""

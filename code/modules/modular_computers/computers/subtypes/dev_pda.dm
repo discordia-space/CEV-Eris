@@ -12,6 +12,7 @@
 	slot_flags = SLOT_ID | SLOT_BELT
 	stores_pen = TRUE
 	stored_pen = /obj/item/weapon/pen
+	price_tag = 50
 	suitable_cell = /obj/item/weapon/cell/small //We take small battery
 	var/scanner_type = null
 

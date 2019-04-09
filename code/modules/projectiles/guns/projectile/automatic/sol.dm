@@ -13,6 +13,7 @@
 	multi_aim = 1
 	burst_delay = 2
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)
+	price_tag = 2500
 
 	firemodes = list(
 		SEMI_AUTO_NODELAY,
