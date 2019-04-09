@@ -53,7 +53,7 @@
 	if(CR)
 		data["cur_item"] = list(
 			"name" = CR.name,
-			"icon" = SSdynamic_cache.getCacheFilename(CR.result),
+			"icon" = getAtomCacheFilename(CR.result),
 			"ref"  = "\ref[CR]",
 			"desc" = CR.get_description(),
 		)

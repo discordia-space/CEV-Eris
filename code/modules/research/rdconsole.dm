@@ -653,7 +653,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					temp_dat += ", [D.chemicals[T]] [CallReagentName(T)]"
 				if(temp_dat)
 					temp_dat = " \[[copytext(temp_dat, 3)]\]"
-				var/iconName = SSdynamic_cache.getCacheFilename(D.build_path)
+				var/iconName = getAtomCacheFilename(D.build_path)
 				dat += "<div style ='float: left; margin-left:0px; max-height:24px; max-width:24px; height:24px;width:24px;' class='statusDisplayItem'><img src= [iconName] height=24 width=24></div>"
 				if(linked_lathe.canBuild(D))
 					dat += "<LI><B><A href='?src=\ref[src];build=[D.id]'>[D.name]</A></B><div style = 'float: right;'>[temp_dat]</div>"
@@ -735,7 +735,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					temp_dat += ", [D.chemicals[T]] [CallReagentName(T)]"
 				if(temp_dat)
 					temp_dat = " \[[copytext(temp_dat,3)]\]"
-				var/iconName = SSdynamic_cache.getCacheFilename(D.build_path)
+				var/iconName = getAtomCacheFilename(D.build_path)
 				dat += "<div style ='float: left; margin-left:0px; max-height:24px; max-width:24px; height:24px;width:24px;' class='statusDisplayItem'><img src= [iconName] height=24 width=24></div>"
 
 				if(linked_imprinter.canBuild(D))
