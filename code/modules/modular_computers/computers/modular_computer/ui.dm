@@ -4,7 +4,7 @@
 		if(ui)
 			ui.close()
 		return 0
-	if(!apc_power(0) && !battery_power(0))
+	if(!try_use_power(0))
 		if(ui)
 			ui.close()
 		return 0
