@@ -9,6 +9,7 @@
 	throw_range = 20
 	var/heal_brute = 0
 	var/heal_burn = 0
+	price_tag = 10
 
 /obj/item/stack/medical/attack(mob/living/M, mob/living/user)
 	var/types = M.get_classification()

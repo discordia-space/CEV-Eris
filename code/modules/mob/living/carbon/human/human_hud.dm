@@ -95,6 +95,10 @@
 	for(var/obj/item/I in get_equipped_items(1))
 		var/slotID = get_inventory_slot(I)
 		I.screen_loc = find_inv_position(slotID)
+
+	var/obj/item/I = get_active_hand()
+	if(I)
+		I.update_hud_actions()
 /*	update_inv_w_uniform(0)
 	update_inv_wear_id(0)
 	update_inv_gloves(0)

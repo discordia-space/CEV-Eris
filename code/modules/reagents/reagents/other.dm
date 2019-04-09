@@ -261,6 +261,7 @@
 
 /datum/reagent/space_cleaner/touch_obj(var/obj/O)
 	O.clean_blood()
+	O.color = "white"
 
 /datum/reagent/space_cleaner/touch_turf(var/turf/T)
 	if(volume >= 1)
@@ -272,6 +273,8 @@
 
 		for(var/mob/living/carbon/slime/M in T)
 			M.adjustToxLoss(rand(5, 10))
+
+	T.color = "white"
 
 /datum/reagent/space_cleaner/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	if(M.r_hand)
@@ -299,6 +302,7 @@
 			H.clean_blood(1)
 			return
 	M.clean_blood()
+	M.color = "white"
 
 /datum/reagent/lube // TODO: spraying on borgs speeds them up
 	name = "Space Lube"

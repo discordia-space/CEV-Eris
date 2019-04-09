@@ -39,6 +39,7 @@ var/global/ntnet_card_uid = 1
 	power_usage = 30 // Better range but higher power usage.
 	icon_state = "netcard_advanced"
 	hardware_size = 1
+	price_tag = 15
 
 /obj/item/weapon/computer_hardware/network_card/wired
 	name = "wired NTNet network card"
@@ -48,6 +49,7 @@ var/global/ntnet_card_uid = 1
 	power_usage = 100 // Better range but higher power usage.
 	icon_state = "netcard_ethernet"
 	hardware_size = 3
+	price_tag = 15
 
 /obj/item/weapon/computer_hardware/network_card/Destroy()
 	if(holder2 && (holder2.network_card == src))

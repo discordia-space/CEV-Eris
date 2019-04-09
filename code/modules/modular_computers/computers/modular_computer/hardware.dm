@@ -45,11 +45,11 @@
 		found = 1
 		card_slot = H
 	else if(istype(H, /obj/item/weapon/cell))
-		if(battery_module)
-			to_chat(user, "This computer's battery slot is already occupied by \the [battery_module].")
+		if(cell)
+			to_chat(user, "This computer's battery slot is already occupied by \the [cell].")
 			return
 		found = 1
-		battery_module = H
+		cell = H
 	else if(istype(H, /obj/item/weapon/computer_hardware/processor_unit))
 		if(processor_unit)
 			to_chat(user, "This computer's processor slot is already occupied by \the [processor_unit].")
@@ -81,8 +81,15 @@
 			return
 		found = 1
 		gps_sensor = H
-	if(found && user.unEquip(H, src))
-		to_chat(user, "You install \the [H] into \the [src]")
+
+	if(!found)
+		return
+
+	if(CH && CH.hardware_size > max_hardware_size)
+		to_chat(user, "This component is too large for \the [src].")
+		return
+
+	if(insert_item(H, user))
 		if(CH)
 			CH.holder2 = src
 			if (CH.enabled)
@@ -107,8 +114,8 @@
 	if(card_slot == H)
 		card_slot = null
 		found = 1
-	if(battery_module == H)
-		battery_module = null
+	if(cell == H)
+		cell = null
 		found = 1
 	if(processor_unit == H)
 		processor_unit = null
@@ -169,8 +176,8 @@
 		return nano_printer
 	if(card_slot && (card_slot.name == name))
 		return card_slot
-	if(battery_module && (battery_module.name == name))
-		return battery_module
+	if(cell && (cell.name == name))
+		return cell
 	if(processor_unit && (processor_unit.name == name))
 		return processor_unit
 	if(ai_slot && (ai_slot.name == name))
@@ -198,8 +205,8 @@
 		all_components.Add(nano_printer)
 	if(card_slot)
 		all_components.Add(card_slot)
-	if(battery_module)
-		all_components.Add(battery_module)
+	if(cell)
+		all_components.Add(cell)
 	if(processor_unit)
 		all_components.Add(processor_unit)
 	if(ai_slot)

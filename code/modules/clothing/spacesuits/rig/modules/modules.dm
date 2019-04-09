@@ -180,7 +180,7 @@
 		usr << SPAN_WARNING("The suit is not initialized.")
 		return 0
 
-	if(usr.lying || usr.stat || usr.stunned || usr.paralysis || usr.weakened)
+	if(holder.wearer.lying || holder.wearer.stat || holder.wearer.stunned || holder.wearer.paralysis || holder.wearer.weakened)
 		usr << SPAN_WARNING("You cannot use the suit in this state.")
 		return 0
 

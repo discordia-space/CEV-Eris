@@ -7,6 +7,7 @@
 	dense_when_open = TRUE
 	var/rigged = FALSE
 	dismantle_material = /obj/item/stack/material/plasteel
+	price_tag = 200
 
 
 /obj/structure/closet/crate/open()

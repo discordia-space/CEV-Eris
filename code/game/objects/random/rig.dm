@@ -1,37 +1,47 @@
 /obj/random/rig
-	name = "Random Rig suit"
+	name = "random rig suit"
+	icon_state = "armor-blue"
 
 /obj/random/rig/item_to_spawn()
 	return pickweight(list(
 	//Uncommon/civilian ones. These should make up most of the rig spawns
-	/obj/item/weapon/rig/eva = 16,
-	/obj/item/weapon/rig/eva/equipped = 4,
-	/obj/item/weapon/rig/medical = 10,
-	/obj/item/weapon/rig/medical/equipped = 2,
+	/obj/item/weapon/rig/eva = 20,
+	/obj/item/weapon/rig/eva/equipped = 10,
+	/obj/item/weapon/rig/medical = 20,
+	/obj/item/weapon/rig/medical/equipped = 10,
 	/obj/item/weapon/rig/light = 20,
-	/obj/item/weapon/rig/industrial = 10,
-	/obj/item/weapon/rig/industrial/equipped = 2,
+	/obj/item/weapon/rig/industrial = 20,
+	/obj/item/weapon/rig/industrial/equipped = 10,
 
 	//Head of staff
-	/obj/item/weapon/rig/ce = 1,
-	/obj/item/weapon/rig/ce/equipped = 0.2,
-	/obj/item/weapon/rig/hazmat = 1,
-	/obj/item/weapon/rig/hazmat/equipped = 1,
+	/obj/item/weapon/rig/ce = 10,
+	/obj/item/weapon/rig/ce/equipped = 5,
+	/obj/item/weapon/rig/hazmat = 10,
+	/obj/item/weapon/rig/hazmat/equipped = 5,
 
 	//Heavy armor
-	/obj/item/weapon/rig/combat = 1,
-	/obj/item/weapon/rig/ihs_combat = 1,
-	/obj/item/weapon/rig/hazard = 1,
+	/obj/item/weapon/rig/combat = 10,
+	/obj/item/weapon/rig/ihs_combat = 10,
+	/obj/item/weapon/rig/hazard = 10,
 
 	//The ones below here come with built in weapons
-	/obj/item/weapon/rig/combat/equipped = 0.2,
-	/obj/item/weapon/rig/ihs_combat/equipped = 0.2,
-	/obj/item/weapon/rig/hazard/equipped = 0.2,
+	/obj/item/weapon/rig/combat/equipped = 4,
+	/obj/item/weapon/rig/ihs_combat/equipped = 4,
+	/obj/item/weapon/rig/hazard/equipped = 4,
 	))
+
+/obj/random/rig/low_chance
+	name = "low chance random rig suit"
+	icon_state = "armor-blue-low"
+	spawn_nothing_percentage = 80
+
+
+
 
 
 /obj/random/rig/damaged
-	name = "Random damaged Rig suit"
+	name = "random damaged rig suit"
+	icon_state = "armor-red"
 	has_postspawn = TRUE
 
 /obj/random/rig/damaged/post_spawn(var/list/spawns)
@@ -43,12 +53,19 @@
 		module.sabotage_cell()
 		module.sabotage_tank()
 
+/obj/random/rig/damaged/low_chance
+	name = "low chance random rig suit"
+	icon_state = "armor-red-low"
+	spawn_nothing_percentage = 80
+
+
 
 
 //Installable modules!
 
 /obj/random/rig_module
 	name = "random hardsuit module"
+	icon_state = "box-orange"
 
 /obj/random/rig_module/item_to_spawn()
 	return pickweight(list(
@@ -100,10 +117,18 @@
 
 	))
 
+/obj/random/rig_module/low_chance
+	name = "low chance random hardsuit module"
+	icon_state = "box-orange-low"
+	spawn_nothing_percentage = 80
+
+
+
 
 //Special variant that has less of the mundane junk and all the really desireable ones
 /obj/random/rig_module/rare
 	name = "random rare hardsuit module"
+	icon_state = "box-red"
 
 /obj/random/rig_module/rare/item_to_spawn()
 	return pickweight(list(
@@ -138,3 +163,8 @@
 	/obj/item/rig_module/vision/thermal = 1, //Thermal is very strong
 	/obj/item/rig_module/vision/nvg = 1
 	))
+
+/obj/random/rig_module/rare/low_chance
+	name = "low chance random rare hardsuit module"
+	icon_state = "box-red-low"
+	spawn_nothing_percentage = 80

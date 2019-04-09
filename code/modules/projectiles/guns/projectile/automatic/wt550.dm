@@ -10,6 +10,8 @@
 	ammo_type = "/obj/item/ammo_casing/c9mmr"
 	load_method = MAGAZINE
 	mag_well = list("pistol")
+	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)
+	price_tag = 2500
 	magazine_type = /obj/item/ammo_magazine/mc9mmt/rubber
 	zoom_factor = 2.0
 

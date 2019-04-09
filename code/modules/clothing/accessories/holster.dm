@@ -3,6 +3,7 @@
 	desc = "A handgun holster."
 	icon_state = "holster"
 	slot = "utility"
+	price_tag = 100
 	var/obj/item/holstered = null
 
 /obj/item/clothing/accessory/holster/proc/holster(var/obj/item/I, var/mob/living/user)

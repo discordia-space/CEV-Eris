@@ -89,6 +89,7 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
 	armor = list(melee = 50, bullet = 10, laser = 25, energy = 10, bomb = 0, bio = 0, rad = 0)
+	price_tag = 250
 
 /obj/item/clothing/suit/storage/det_trench
 	name = "brown trenchcoat"
@@ -98,6 +99,7 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
 	armor = list(melee = 50, bullet = 10, laser = 25, energy = 10, bomb = 0, bio = 0, rad = 0)
+	price_tag = 250
 
 //Engineering
 /obj/item/clothing/suit/storage/hazardvest
@@ -108,6 +110,7 @@
 	blood_overlay_type = "armor"
 	extra_allowed = list(/obj/item/weapon/tool)
 	body_parts_covered = UPPER_TORSO
+	price_tag = 50
 
 //Roboticist
 /obj/item/clothing/suit/storage/robotech_jacket
@@ -117,10 +120,11 @@
 	item_state = "robotech_jacket"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
+	price_tag = 50
 
 /obj/item/clothing/suit/storage/surgical_apron
 	name = "surgical apron"
-	desc = "Excelent blood collector."
+	desc = "Excellent blood collector."
 	icon_state = "surgeon"
 	item_state = "surgeon"
 	blood_overlay_type = "armor"
@@ -135,3 +139,4 @@
 		/obj/item/stack/medical/advanced/bruise_pack
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	price_tag = 50

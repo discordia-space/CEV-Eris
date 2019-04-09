@@ -1,6 +1,6 @@
 /obj/item/weapon/computer_hardware/hard_drive
 	name = "basic hard drive"
-	desc = "A small power efficient solid state drive, with 128GQ of storage capacity for use in basic computers where power efficiency is desired."
+	desc = "A small power efficient solid state drive for use in basic computers where power efficiency is desired."
 	power_usage = 25					// SSD or something with low power usage
 	icon_state = "hdd_normal"
 	hardware_size = 1
@@ -11,7 +11,7 @@
 
 /obj/item/weapon/computer_hardware/hard_drive/advanced
 	name = "advanced hard drive"
-	desc = "A small hybrid hard drive with 256GQ of storage capacity for use in higher grade computers where balance between power efficiency and capacity is desired."
+	desc = "A small hybrid hard drive for use in higher grade computers where balance between power efficiency and capacity is desired."
 	max_capacity = 256
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 0.5)
 	origin_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
@@ -21,7 +21,7 @@
 
 /obj/item/weapon/computer_hardware/hard_drive/super
 	name = "super hard drive"
-	desc = "A small hard drive with 512GQ of storage capacity for use in cluster storage solutions where capacity is more important than power efficiency."
+	desc = "A small hard drive for use in cluster storage solutions where capacity is more important than power efficiency."
 	max_capacity = 512
 	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
 	power_usage = 100					// High-capacity but uses lots of power, shortening battery life. Best used with APC link.
@@ -30,7 +30,7 @@
 
 /obj/item/weapon/computer_hardware/hard_drive/cluster
 	name = "cluster hard drive"
-	desc = "A large storage cluster consisting of multiple hard drives for usage in high capacity storage systems. Has capacity of 2048 GQ."
+	desc = "A large storage cluster consisting of multiple hard drives for usage in high capacity storage systems."
 	power_usage = 500
 	origin_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4)
 	max_capacity = 2048
@@ -55,6 +55,10 @@
 	max_capacity = 32
 	icon_state = "hdd_micro"
 	hardware_size = 1
+
+/obj/item/weapon/computer_hardware/hard_drive/examine(mob/user)
+	. = ..()
+	to_chat(user, SPAN_NOTICE("It can store up to [max_capacity] GQ."))
 
 /obj/item/weapon/computer_hardware/hard_drive/diagnostics(var/mob/user)
 	..()
@@ -163,6 +167,6 @@
 	stored_files = null
 	return ..()
 
-/obj/item/weapon/computer_hardware/hard_drive/New()
+/obj/item/weapon/computer_hardware/hard_drive/Initialize()
+	. = ..()
 	install_default_programs()
-	..()

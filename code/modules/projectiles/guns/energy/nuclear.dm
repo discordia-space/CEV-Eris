@@ -8,10 +8,11 @@
 	self_recharge = 1
 	modifystate = null
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_URANIUM = 10)
+	price_tag = 4000
 
 	firemodes = list(
-		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun, fire_sound='sound/weapons/Taser.ogg'),
-		list(mode_name="lethal", projectile_type=/obj/item/projectile/beam, fire_sound='sound/weapons/Laser.ogg'),
+		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun, fire_sound='sound/weapons/Taser.ogg', icon="stun"),
+		list(mode_name="kill", projectile_type=/obj/item/projectile/beam, fire_sound='sound/weapons/Laser.ogg', icon="kill"),
 		)
 
 	var/lightfail = 0
