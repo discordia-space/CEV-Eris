@@ -14,6 +14,7 @@
 /obj/item/clothing/gloves/rig
 	name = "gauntlets"
 	item_flags = THICKMATERIAL
+	overslot = 1
 	body_parts_covered = ARMS
 	heat_protection =    ARMS
 	cold_protection =    ARMS
