@@ -87,7 +87,7 @@
 	for(var/rtype in recipe_list())
 		var/datum/autolathe/recipe/R = autolathe_recipes[rtype]
 		var/list/LE = list("name" = capitalize(R.name), "type" = "[rtype]", "time" = R.time)
-		LE["icon"] = cacheAtomIcon(R.path, user, TRUE)
+		LE["icon"] = SSdynamic_cache.getCacheFilename(R.path)
 
 		if(unfolded == "[rtype]")
 			LE["unfolded"] = TRUE
@@ -141,6 +141,7 @@
 		if(R)
 			data["current"] = R.name
 			data["current_time"] = R.time
+			data["icon"] = SSdynamic_cache.getCacheFilename(R.path)
 
 		var/list/RS = list()
 		for(var/mat in R.resources)
@@ -169,9 +170,8 @@
 		if(!R)
 			Q.Add(list(list("name" = "ERROR", "ind" = i, "error" = 2)))
 
-		var/list/QR = list("name" = R.name, "ind" = i)
+		var/list/QR = list("name" = R.name, "ind" = i, "icon" = SSdynamic_cache.getCacheFilename(R.path))
 		QR["error"] = 0
-
 		if(disk_uses() >= 0 && disk_uses() <= i)
 			QR["error"] = 1
 

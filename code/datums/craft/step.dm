@@ -68,13 +68,14 @@
 			start_msg = "%USER% starts use %ITEM% on %TARGET%"
 			end_msg = "%USER% applied %ITEM% to %TARGET%"
 		if(1)
-			desc = "Attach [tool_name]"
 			if (reqed_material)
-				desc = "Attach [req_amount] [tool_name]"
+				desc = "Attach [req_amount] [tool_name] <img style='margin-bottom:-8px' src= [sanitizeFileName("[material_stack_type(reqed_material)].png")] height=24 width=24>"
+			else
+				desc = "Attach [tool_name] <img style='margin-bottom:-8px' src= [sanitizeFileName("[reqed_type].png")] height=24 width=24>"
 			start_msg = "%USER% starts attaching %ITEM% to %TARGET%"
 			end_msg = "%USER% attached %ITEM% to %TARGET%"
 		else
-			desc = "Attach [req_amount] [tool_name]"
+			desc = "Attach [req_amount] [tool_name] <img style='margin-bottom:-8px' src= [reqed_type ? sanitizeFileName("[reqed_type].png") : sanitizeFileName("[material_stack_type(reqed_material)].png")] height=24 width=24>"
 			start_msg = "%USER% starts attaching %ITEM% to %TARGET%"
 			end_msg = "%USER% attached %ITEM% to %TARGET%"
 

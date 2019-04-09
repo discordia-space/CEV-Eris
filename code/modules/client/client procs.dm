@@ -166,8 +166,6 @@
 		if(config.aggressive_changelog)
 			src.changes()
 
-
-
 	//////////////
 	//DISCONNECT//
 	//////////////
@@ -395,3 +393,27 @@
 /client/proc/recreate_UI()
 	destroy_UI()
 	create_UI(mob.type)
+
+// Sends icon as png to client cache folder
+/client/proc/sendCache(var/filename, var/icon/I)
+	if(!filename || !I)
+		return
+	filename = sanitizeFileName(filename)
+	// for some reason browse_rsc() doesnt register file in client cache so we need to handle it manualy
+	if(!cache.Find(filename))
+		src << browse_rsc(I, filename)
+		cache.Add(filename)
+
+// Loads all precached at roundstart icons to client
+	/*/client/proc/loadCache()
+if(!SSdynamic_cache.initialized)
+		return
+	if(!GLOB.cacheToClient.len)
+		error("No cache was created for client.")
+		return
+	world <<"loading cache client"
+	spawn()
+		for(var/filename in GLOB.cacheToClient)
+			sendCache(filename, GLOB.cacheToClient[filename])
+			world << "loading [filename]"
+			sleep(2)*/
