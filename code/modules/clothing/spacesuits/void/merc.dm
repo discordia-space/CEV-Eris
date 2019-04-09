@@ -5,11 +5,11 @@
 	item_state = "scaf"
 	//Headshots OP so these have tons of head protection. Aim for the body or suffer
 	//These helmets are essentially an impenetrable fortress for the head
-	armor = list(melee = 65, bullet = 78, laser = 65,energy = 45, bomb = 55, bio = 100, rad = 80)
+	armor = list(melee = 65, bullet = 80, laser = 65,energy = 45, bomb = 55, bio = 100, rad = 80)
 	siemens_coefficient = 0.35
 	species_restricted = list("Human")
 	camera_networks = list(NETWORK_MERCENARY)
-	light_overlay = "helmet_light_green" //todo: species-specific light overlays
+	light_overlay = "helmet_light_green"
 
 /obj/item/clothing/suit/space/void/SCAF
 	icon_state = "scaf"
@@ -21,7 +21,7 @@
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 	w_class = ITEM_SIZE_NORMAL
 	//Melee attacks to the torso are the weakness of this armor.  It's optimised for ballistic resistance
-	armor = list(melee = 45, bullet = 72, laser = 55, energy = 45, bomb = 55, bio = 100, rad = 80)
+	armor = list(melee = 45, bullet = 70, laser = 55, energy = 45, bomb = 55, bio = 100, rad = 80)
 	siemens_coefficient = 0.35
 	species_restricted = list("Human")
 
@@ -37,7 +37,7 @@
 	siemens_coefficient = 0.35
 	species_restricted = list("Human")
 	camera_networks = list(NETWORK_MERCENARY)
-	light_overlay = "helmet_light_green" //todo: species-specific light overlays
+	light_overlay = "helmet_light_green"
 
 /obj/item/clothing/suit/space/void/merc
 	icon_state = "rig-syndie"
@@ -45,7 +45,6 @@
 	desc = "An advanced suit that protects against injuries during special operations. Property of Gorlex Marauders."
 	item_state = "syndie_voidsuit"
 	slowdown = 1
-	w_class = ITEM_SIZE_NORMAL
 	armor = list(melee = 60, bullet = 50, laser = 40, energy = 15, bomb = 35, bio = 100, rad = 60)
 	siemens_coefficient = 0.35
 	species_restricted = list("Human")

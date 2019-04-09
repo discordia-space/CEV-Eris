@@ -42,7 +42,7 @@
 	helm_type = /obj/item/clothing/head/helmet/space/rig/ihs_combat
 	suit_type = "ironhammer hardsuit"
 	armor = list(melee = 65, bullet = 60, laser = 60, energy = 55, bomb = 45, bio = 100, rad = 70)
-	slowdown = 1.2
+	slowdown = 1 //was 1.2 but why the fuck use magical numbers?
 	offline_slowdown = 3
 	offline_vision_restriction = 0
 
@@ -52,8 +52,9 @@
 
 
 	initial_modules = list(
-		/obj/item/rig_module/vision/thermal,
+		//obj/item/rig_module/vision/thermal, //no
 		/obj/item/rig_module/ai_container,
 		/obj/item/rig_module/maneuvering_jets,
-		/obj/item/rig_module/chem_dispenser/combat
+		//obj/item/rig_module/chem_dispenser/combat //no
+		/obj/item/rig_module/storage //why not?
 		)
