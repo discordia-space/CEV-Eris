@@ -87,7 +87,7 @@
 		return
 
 	if(istype(stored_pen))
-		to_chat(usr, "<span class='notice'>You remove [stored_pen] from [src].</span>")
+		to_chat(usr, SPAN_NOTICE("You remove [stored_pen] from [src]."))
 		stored_pen.forceMove(get_turf(src))
 		if(!issilicon(usr))
 			usr.put_in_hands(stored_pen)
@@ -285,6 +285,7 @@
 
 	if((src.loc == M) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, M))
 		cell = null
+		update_icon()
 
 /obj/item/modular_computer/afterattack(atom/target, mob/user, proximity)
 	. = ..()
