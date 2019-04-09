@@ -149,7 +149,7 @@
 				if(ammo_magazine)
 					user << SPAN_WARNING("[src] already has a magazine loaded.") //already a magazine here
 					return
-				if(AM.mag_well in mag_well)
+				if(!(AM.mag_well in mag_well))
 					user << SPAN_WARNING("[src] won't fit into the magwell.") //wrong magazine
 					return
 				user.remove_from_mob(AM)
