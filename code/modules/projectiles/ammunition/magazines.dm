@@ -239,7 +239,7 @@
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/c762
-	name = "magazine (7.62mm)"
+	name = "civilian magazine (7.62mm)"
 	icon_state = "c762"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_CIVI_RIFLE
@@ -250,7 +250,7 @@
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/ak47
-	name = "magazine (7.62mm)"
+	name = "AK magazine (7.62mm)"
 	icon_state = "AKMag"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_AK
@@ -261,12 +261,12 @@
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/ak47/highvelocity
-	name = "magazine (7.62mm high-velocity)"
+	name = "AK magazine (7.62mm high-velocity)"
 	icon_state = "AKMag_h"
 	ammo_type = /obj/item/ammo_casing/a762/hv
 
 /obj/item/ammo_magazine/ih762
-	name = "magazine (7.62mm)"
+	name = "IH magazine (7.62mm)"
 	icon_state = "WinMag"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_IH
@@ -277,7 +277,7 @@
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/ih762/highvelocity
-	name = "magazine (7.62mm high-velocity)"
+	name = "IH magazine (7.62mm high-velocity)"
 	icon_state = "WinMag_h"
 	ammo_type = /obj/item/ammo_casing/a762/hv
 
