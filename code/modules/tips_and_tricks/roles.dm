@@ -23,5 +23,20 @@
     roles_list = list(/datum/antagonist)
     tipText = "Being an antagonist is no excuse for not roleplaying."
 
+/tipsAndTricks/roles/bombs
+    roles_list = list(/datum/antagonist)
+    tipText = "You can create very potent bombs in Moebius chemistry or toxins. You also have various activation methods to chose from."
+
+/tipsAndTricks/roles/computerPrograms
+    roles_list = list(/datum/antagonist/traitor)
+    tipText = "When you emag a computer it unlocks access to some unique programs. Access decipher is one of them. Note that most of the programs depends on computer processing power."
+
+/tipsAndTricks/roles/borgEmag
+    roles_list = list(/datum/antagonist/traitor)
+    tipText = "By emaging a cyborg you obtain a powerful ally with full access. Dont forget to open it panel first."
+
+/tipsAndTricks/roles/siliconLaws
+    roles_list = list(/datum/antagonist)
+    tipText = "AI of the ship can do your bidding if you update it laws accordingly. It can also affect cyborgs if they are in sync with AI."
 
 

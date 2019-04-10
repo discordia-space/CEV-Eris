@@ -19,3 +19,15 @@
 
 /tipsAndTricks/gameplay/modifyTools
     tipText = "You can find or buy many modifications to improve your tools, and turn them into effective weapons."
+
+/tipsAndTricks/gameplay/spiderslip
+    tipText = "Spiders and roaches can be stunned and slipped like humans, when facing off against either, try to even the fight by either flashing them with a flash or leading them to slip on some spilled water."
+
+/tipsAndTricks/gameplay/retreatFool
+    tipText = "It's better to retreat from a fight and only suffer mild injuries than to win a fight and suffer a mortal wound, pick and choose your battles carefully."
+
+/tipsAndTricks/gameplay/pdaCoords
+    tipText = "Your PDA has GPS system and can show you your current location. If you are in trouble and seek help while dont know your location, tell your coordinates to your potential rescuers."
+
+/tipsAndTricks/gameplay/walkOnUnderplatin
+    tipText = "If you walk instead of run on underplating you wont trip."

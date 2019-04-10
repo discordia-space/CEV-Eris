@@ -93,10 +93,10 @@ SUBSYSTEM_DEF(tips)
 	if(mobType)
 		var/tipsAndTricks/T = getMobTip(mobType)
 		if(T)
-			options[T] = 20
+			options[T] = 10
 	var/tipsAndTricks/T = getGameplayTip()
 	if(T)
-		options[T] = 10
+		options[T] = 20
 	var/tipsAndTricks/result = pickweight(options)
 	return result
 

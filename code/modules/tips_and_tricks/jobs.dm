@@ -74,3 +74,91 @@
 /tipsAndTricks/jobs/engies_firespacesuit
     jobs_list = list(/datum/job/chief_engineer, /datum/job/technomancer)
     tipText = "No technomancer lives long without learning that firesuits are not space suits, and vice versa."
+
+/tipsAndTricks/jobs/tric
+    jobs_list = list(/datum/job/cmo, /datum/job/doctor, /datum/job/chemist, /datum/job/psychiatrist, /datum/job/paramedic)
+    tipText = "Inaprovaline and dylovene can be mixed together in a container to produce tricordazine - a mild regenerative compound that can treat brute/burns/toxin damage and even suffocation, best of all, it has no overdose risk."
+
+/tipsAndTricks/jobs/carbonPills
+    jobs_list = list(/datum/job/cmo, /datum/job/doctor, /datum/job/chemist, /datum/job/psychiatrist, /datum/job/paramedic)
+    tipText = "Pills containing pure carbon can be ingested to treat cases of poisoning and accidental overdoes, 1u of carbon will remove 1u of anything in the stomach. This will not, however, purge chemicals in the bloodstream, nor will injecting carbon have the same effect."
+
+/tipsAndTricks/jobs/inabicaInternal
+    jobs_list = list(/datum/job/cmo, /datum/job/doctor, /datum/job/chemist, /datum/job/psychiatrist, /datum/job/paramedic)
+    tipText = "Inaprovaline and bicardine can be used to stem the effects of internal bleeding."
+
+/tipsAndTricks/jobs/crewMonitorHelp
+    jobs_list = list(/datum/job/cmo, /datum/job/doctor, /datum/job/paramedic)
+    tipText = "You can use crew monitoring programm on computers to locate injured crew member. It can be downloaded on tablet or laptop for portable solution. Medical storage always has one tablet for this purpose on roundstart."
+
+/tipsAndTricks/jobs/thermite
+    jobs_list = list(/datum/job/chemist)
+    tipText = "Thermite is a great way to take down walls."
+
+/tipsAndTricks/jobs/grenades
+    jobs_list = list(/datum/job/chemist)
+    tipText = "You can make grenades for various of purposes. From harmful like explosion or emp to helful like cleaning and weed killing."
+
+/tipsAndTricks/jobs/acidForNerds
+    jobs_list = list(/datum/job/chemist)
+    tipText = "Your collegues from science wing will often need more sulphuric acid for their circuits."
+
+/tipsAndTricks/jobs/cyborgsDontBreathe
+    jobs_list = list(/datum/job/cyborg)
+    tipText = "As a cyborg you dont need oxygen/pressure to survive. You also quite resistant to heat. Use it to your advantage."
+
+/tipsAndTricks/jobs/siliconRemoteControl
+    jobs_list = list(/datum/job/cyborg, /datum/job/ai)
+    tipText = "Silicons have ability to remotely control machinery. You can open airlocks for you without bumping into them."
+
+/tipsAndTricks/jobs/siliconShortcuts
+    jobs_list = list(/datum/job/cyborg, /datum/job/ai)
+    tipText = "Many machinery has keyboard shortcuts. Try alt/shift/ctrl clicking on some. For example airlocks, air/fire alarms, apc etc."
+
+/tipsAndTricks/jobs/siliconRemoteControlTwo
+    jobs_list = list(/datum/job/cyborg, /datum/job/ai)
+    tipText = "You can access some computer programs without interacting with actual computers using your \"Subsystems\" located in silicon tab."
+
+/tipsAndTricks/jobs/changeAILaws
+    jobs_list = list(/datum/job/captain, /datum/job/cmo, /datum/job/chief_engineer, /datum/job/ihc, /datum/job/hop, /datum/job/rd)
+    tipText = "As one of command you have access to change AI laws. Dont be afraid to add custom laws to guide AI in certain direction."
+
+/tipsAndTricks/jobs/aiCanBeMoved
+    jobs_list = list(/datum/job/ai)
+    tipText = "AI core can be unwrenched and moved to safer location, but its trackable by power consumption."
+
+/tipsAndTricks/jobs/expeditionsAreFUN
+    jobs_list = list(/datum/job/rd, /datum/job/scientist, /datum/job/roboticist)
+    tipText = "Expeditions are FUN, try to participating in one."
+
+/tipsAndTricks/jobs/prostheticsForTheMeek
+    jobs_list = list(/datum/job/roboticist)
+    tipText = "You can enhance human body by installing prosthetics and modifications."
+
+/tipsAndTricks/jobs/moreAcidForAnCircuitPrinting
+    jobs_list = list(/datum/job/rd, /datum/job/scientist, /datum/job/roboticist)
+    tipText = "You can get more sulphuric acid for circuits from chemist."
+
+/tipsAndTricks/jobs/bots
+    jobs_list = list(/datum/job/rd, /datum/job/scientist, /datum/job/roboticist)
+    tipText = "Bots are tireless servants that you can create. No janitor? CleanBot to the rescue! Not enough medical staff? MedBot will solve that."
+
+/tipsAndTricks/jobs/ripley
+    jobs_list = list(/datum/job/rd, /datum/job/scientist, /datum/job/roboticist)
+    tipText = "Ripley mech is an universal tool for various of tasks, be that mining, building or deconstructing. It also has rather strong melee attack."
+
+/tipsAndTricks/jobs/odysseus
+    jobs_list = list(/datum/job/rd, /datum/job/scientist, /datum/job/roboticist)
+    tipText = "Odysseus is a reliable medical mech that can be used as paramedic vehicle or mobile medical treatment machine."
+
+/tipsAndTricks/jobs/gygax
+    jobs_list = list(/datum/job/rd, /datum/job/scientist, /datum/job/roboticist)
+    tipText = "Gygax is a combat mech. It is lighly armored but rather mobile threat to any antagonist."
+
+/tipsAndTricks/jobs/durand
+    jobs_list = list(/datum/job/rd, /datum/job/scientist, /datum/job/roboticist)
+    tipText = "Durand is a combat mech. It is heavely armored and extra scary in confined spaces due to its punches and defense mode."
+
+/tipsAndTricks/jobs/phazon
+    jobs_list = list(/datum/job/rd, /datum/job/scientist, /datum/job/roboticist)
+    tipText = "Phazon is a combat mech. It has the highest base movespeed, good armor and can phase through anything thanks to bluespace technology."
