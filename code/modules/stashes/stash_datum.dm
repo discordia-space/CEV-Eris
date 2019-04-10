@@ -281,8 +281,8 @@ This file contains the underlying code for stash datums
 			results += new a(T)
 
 	// Better hide remains under the tile.
-	if (istype(T, /obj/item/remains/human))
-		var/obj/item/remains/human/R = T
+	if (istype(T, /obj/item/remains))
+		var/obj/item/remainslighting_turf.dm/R = T
 		R.level = 1
 		T.levelupdate()
 
