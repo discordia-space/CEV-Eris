@@ -280,11 +280,15 @@ This file contains the underlying code for stash datums
 			//Spawn it in the thing
 			results += new a(T)
 
-	// Better hide remains under the tile.
-	if (istype(T, /obj/item/remains))
-		var/obj/item/remains/R = T
-		R.level = 1
-		T.levelupdate()
+	// Going thru the list to hide under the floor
+	for(var/h in results)
+		// Better hide remains under the tile.
+		if (istype(h, /obj/item/remains))
+			var/obj/item/remains/R = h
+			R.level = 1
+			T.levelupdate()
+
+
 
 	return results //Aaaaand we're done
 
