@@ -4,6 +4,7 @@
 	icon_state = "taser"
 	item_state = null	//so the human update icon uses the icon_state instead.
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6, MATERIAL_SILVER = 3)
+	price_tag = 2000
 	fire_sound = 'sound/weapons/Taser.ogg'
 	projectile_type = /obj/item/projectile/beam/stun
 
@@ -11,6 +12,7 @@
 	name = "mounted taser gun"
 	self_recharge = 1
 	use_external_power = 1
+	restrict_safety = TRUE
 
 /obj/item/weapon/gun/energy/taser/mounted/cyborg
 	name = "taser gun"
@@ -26,6 +28,7 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
 	charge_cost = 50
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6, MATERIAL_SILVER = 2)
+	price_tag = 1500
 	suitable_cell = /obj/item/weapon/cell/small
 	cell_type = /obj/item/weapon/cell/small
 	projectile_type = /obj/item/projectile/energy/electrode

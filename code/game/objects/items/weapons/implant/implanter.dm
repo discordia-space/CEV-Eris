@@ -33,7 +33,7 @@
 		icon_state = "implanter0"
 	return
 
-/obj/item/weapon/implanter/attack(mob/living/carbon/M, mob/living/user)
+/obj/item/weapon/implanter/attack(mob/living/M, mob/living/user)
 	if(!istype(M) || !implant)
 		return
 	if(!implant.is_external())
@@ -52,17 +52,18 @@
 	user.do_attack_animation(M)
 
 	if(do_mob(user, M, 50) && src && implant)
-		M.visible_message(
+
+
+		if(implant.install(M, user.targeted_organ, user))
+			M.visible_message(
 			SPAN_WARNING("[user] has implanted [M] in [affected]."),
 			SPAN_NOTICE("You implanted \the [implant] into [M]'s [affected].")
-		)
+			)
 
-		admin_attack_log(user, M,
+			admin_attack_log(user, M,
 			"Implanted using \the [src.name] ([implant.name])",
 			"Implanted with \the [src.name] ([implant.name])",
 			"used an implanter, [src.name] ([implant.name]), on"
-		)
-
-		if(implant.install(M, user.targeted_organ, user))
+			)
 			implant = null
 			update_icon()

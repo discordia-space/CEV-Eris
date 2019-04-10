@@ -182,7 +182,7 @@
 
 /datum/gear_tweak/tablet
 	var/list/ValidProcessors = list(/obj/item/weapon/computer_hardware/processor_unit/small)
-	var/list/ValidBatteries = list(/obj/item/weapon/computer_hardware/battery_module/nano, /obj/item/weapon/computer_hardware/battery_module/micro, /obj/item/weapon/computer_hardware/battery_module)
+	var/list/ValidBatteries = list(/obj/item/weapon/cell/small, /obj/item/weapon/cell/small/high, /obj/item/weapon/cell/small/super)
 	var/list/ValidHardDrives = list(/obj/item/weapon/computer_hardware/hard_drive/micro, /obj/item/weapon/computer_hardware/hard_drive/small, /obj/item/weapon/computer_hardware/hard_drive)
 	var/list/ValidNetworkCards = list(/obj/item/weapon/computer_hardware/network_card, /obj/item/weapon/computer_hardware/network_card/advanced)
 	var/list/ValidNanoPrinters = list(null, /obj/item/weapon/computer_hardware/nano_printer)
@@ -314,8 +314,8 @@
 		I.processor_unit = new t(I)
 	if(ValidBatteries[metadata[2]])
 		var/t = ValidBatteries[metadata[2]]
-		I.battery_module = new t(I)
-		I.battery_module.charge_to_full()
+		I.cell = new t(I)
+		I.cell.charge = I.cell.maxcharge
 	if(ValidHardDrives[metadata[3]])
 		var/t = ValidHardDrives[metadata[3]]
 		I.hard_drive = new t(I)

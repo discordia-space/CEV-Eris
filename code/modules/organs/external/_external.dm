@@ -88,10 +88,12 @@
 	if(children)
 		for(var/obj/item/organ/external/C in children)
 			qdel(C)
+		children = null
 
 	if(internal_organs)
 		for(var/obj/item/organ/O in internal_organs)
 			qdel(O)
+		internal_organs = null
 
 	if(owner)
 		owner.organs -= src
@@ -758,7 +760,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 				if(I.w_class <= ITEM_SIZE_SMALL)
 					qdel(I)
 					continue
-				I.loc = get_turf(src)
+				I.forceMove(get_turf(src))
 				I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
 
 			qdel(src)

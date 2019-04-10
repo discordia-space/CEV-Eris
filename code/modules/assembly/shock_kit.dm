@@ -14,7 +14,7 @@
 	. = ..()
 
 /obj/item/assembly/shock_kit/attackby(obj/item/weapon/I, mob/user)
-	if(I.get_tool_type(usr, list(QUALITY_BOLT_TURNING)) && !status)
+	if(I.get_tool_type(usr, list(QUALITY_BOLT_TURNING), src) && !status)
 		var/turf/T = loc
 		if(ismob(T))
 			T = T.loc
@@ -26,7 +26,7 @@
 		part2 = null
 		qdel(src)
 		return
-	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING)))
+	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING), src))
 		status = !status
 		user << SPAN_NOTICE("[src] is now [status ? "secured" : "unsecured"]!")
 	add_fingerprint(user)

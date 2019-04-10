@@ -1,8 +1,9 @@
 /obj/item/organ/internal/liver
 	name = "liver"
 	icon_state = "liver"
-	organ_tag = O_LIVER
+	organ_tag = BP_LIVER
 	parent_organ = BP_GROIN
+	price_tag = 900
 
 /obj/item/organ/internal/liver/Process()
 

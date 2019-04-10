@@ -61,6 +61,22 @@ What is the naming convention for planes or layers?
 
 #define FLOOR_PLANE -2
 #define GAME_PLANE -1
+
+
+//Partial porting of bay defines, with our own values reinserted as placeholder
+//The full list of planes and layers needs ported
+#define HIDING_MOB_PLANE              -1//-16 on bay.
+
+	#define HIDING_MOB_LAYER    2.54	//-0 on bay
+
+#define LYING_MOB_PLANE               -1 //-14 on bay// other mobs that are lying down.
+
+	#define LYING_MOB_LAYER 3.8 //0 on bay
+
+#define LYING_HUMAN_PLANE             -1 //-13 on bay// humans that are lying down
+
+	#define LYING_HUMAN_LAYER 3.8 //0 on bay
+
 #define BLACKNESS_PLANE 0 //To keep from conflicts with SEE_BLACKNESS internals
 #define SPACE_LAYER 1.8
 //#define TURF_LAYER 2 //For easy recordkeeping; this is a byond define
@@ -136,16 +152,20 @@ What is the naming convention for planes or layers?
 
 //HUD layer defines
 
-#define FULLSCREEN_PLANE 18
+#define FULLSCREEN_PLANE 32000
 #define FLASH_LAYER 18
 #define FULLSCREEN_LAYER 18.1
 #define UI_DAMAGE_LAYER 18.2
 
-#define HUD_PLANE 19
+#define HUD_PLANE 32680
 #define HUD_LAYER 19
-#define ABOVE_HUD_PLANE 20
+#define ABOVE_HUD_PLANE 32690
 #define ABOVE_HUD_LAYER 20
 
-#define CINEMATIC_PLANE 21
+#define CINEMATIC_PLANE 32700
 #define CINEMATIC_LAYER 21
 
+
+/atom/proc/reset_plane_and_layer()
+	set_plane(original_plane)
+	layer = initial(layer)

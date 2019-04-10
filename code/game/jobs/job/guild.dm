@@ -2,7 +2,7 @@
 /datum/job/merchant
 	title = "Guild Merchant"
 	flag = MERCHANT
-	department = "Guild"
+	department = DEPARTMENT_GUILD
 	head_position = 1
 	department_flag = GUILD | COMMAND
 	faction = "CEV Eris"
@@ -10,17 +10,19 @@
 	spawn_positions = 1
 	supervisors = "your greed"
 	selection_color = "#b3a68c"
-	economic_modifier = 0
-	//The merchant gets no personal salary, but he's free to pay himself as much as he likes from the guild account
-
-	also_known_languages = list(LANGUAGE_CYRILLIC = 100, LANGUAGE_SERBIAN = 100)
+	wage = WAGE_NONE	//Guild merchant draws a salary from the guild account
+	also_known_languages = list(LANGUAGE_CYRILLIC = 80, LANGUAGE_SERBIAN = 100, LANGUAGE_JIVE = 80)
 	access = list(
 		access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_merchant, access_mining,
 		access_heads, access_mining_station, access_RC_announce, access_keycard_auth, access_sec_doors,
 		access_eva, access_external_airlocks
 	)
 	ideal_character_age = 40
-
+	stat_modifiers = list(
+		STAT_ROB = 10,
+		STAT_COG = 20,
+		STAT_MEC = 15
+	)
 	description = "You are the head of the local branch of Asters Merchant Guild, and eris' guild representative<br>\
 A staunch entrepreneur, you are motivated by profit, for the guild and especially for yourself. You are here firstly to make as much money as you can, and secondly to keep the crew supplied. You can order things at cargo using the local guild funds, these will not magically replenish so you will run out of money quickly if you don't charge. Take payments by card or cash, and deposit them into the guild account to enable more purchases.<br>\
 <br>\
@@ -60,15 +62,15 @@ Your second loyalty is to the guild. Ensure it retains good relations with priva
 /datum/job/cargo_tech
 	title = "Guild Technician"
 	flag = GUILDTECH
-	department = "Guild"
+	department = DEPARTMENT_GUILD
 	department_flag = GUILD
 	faction = "CEV Eris"
 	total_positions = 3
 	spawn_positions = 3
 	supervisors = "the Guild Merchant"
 	selection_color = "#c3b9a6"
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5)
-
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5, LANGUAGE_JIVE = 80)
+	wage = WAGE_LABOUR_DUMB
 	outfit_type = /decl/hierarchy/outfit/job/cargo/cargo_tech
 
 	access = list(
@@ -109,15 +111,15 @@ Your main duties are to keep the local guild branch operational and profitable. 
 /datum/job/mining
 	title = "Guild Miner"
 	flag = MINER
-	department = "Guild"
+	department = DEPARTMENT_GUILD
 	department_flag = GUILD
 	faction = "CEV Eris"
 	total_positions = 4
 	spawn_positions = 4
 	supervisors = "the Guild Merchant"
 	selection_color = "#c3b9a6"
-	economic_modifier = 5
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5)
+	wage = WAGE_LABOUR_HAZARD //The miners union is stubborn
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5, LANGUAGE_JIVE = 80)
 
 	outfit_type = /decl/hierarchy/outfit/job/cargo/mining
 
@@ -149,7 +151,7 @@ Character Expectations:<br>\
 
 
 	stat_modifiers = list(
-		STAT_ROB = 20,
+		STAT_ROB = 15,
 		STAT_TGH = 15,
 		STAT_MEC = 15
 	)

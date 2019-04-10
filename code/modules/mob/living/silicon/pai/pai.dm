@@ -46,7 +46,7 @@
 	var/pai_law0 = "Serve your master."
 	var/pai_laws				// String for additional operating instructions our master might give us
 
-	var/silence_time			// Timestamp when we were silenced (normally via EMP burst), set to null after silence has faded
+	var/silence_time			// Timestamp when we were item_flags & SILENT (normally via EMP burst), set to null after silence has faded
 
 // Various software-specific vars
 
@@ -94,7 +94,7 @@
 	..()
 
 
-// this function shows the information about being silenced as a pAI in the Status panel
+// this function shows the information about being item_flags & SILENT as a pAI in the Status panel
 /mob/living/silicon/pai/proc/show_silenced()
 	if(src.silence_time)
 		var/timeleft = round((silence_time - world.timeofday)/10 ,1)

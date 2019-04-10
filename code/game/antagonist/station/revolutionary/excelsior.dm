@@ -1,41 +1,23 @@
-/datum/antagonist/revolutionary/excelsior
+/datum/antagonist/excelsior
 	id = ROLE_EXCELSIOR_REV
 	role_text = "Excelsior Infiltrator"
 	role_text_plural = "Infiltrators"
 	bantype = ROLE_BANTYPE_EXCELSIOR
 	welcome_text = "Viva la revolution!"
+	antaghud_indicator = "hudexcelsior"
 
 	faction_id = FACTION_EXCELSIOR
 	allow_neotheology = FALSE //Implant causes head asplode
 
-/datum/antagonist/revolutionary/excelsior/equip()
+	story_ineligible = list(JOBS_SECURITY, JOBS_COMMAND)
+
+/datum/antagonist/excelsior/equip()
 	.=..()
-	var/obj/item/weapon/implant/revolution/excelsior/implant = new(owner.current)
-	implant.install(owner.current)
 
-/datum/faction/revolutionary/excelsior
-	id = FACTION_EXCELSIOR
-	name = "Excelsior"
-	antag = "infiltrator"
-	antag_plural = "infiltrators"
-	welcome_text = ""
+	// Makes sures to exclude the leader implant when used with implanter
+	for(var/obj/O in owner.current)
+		if(istype(O, /obj/item/weapon/implant/excelsior))
+			return
 
-	hud_indicator = "hudexcelsior"
-
-	possible_antags = list(ROLE_EXCELSIOR_REV)
-	verbs = list(/datum/faction/revolutioanry/excelsior/proc/communicate_verb)
-
-/datum/faction/revolutioanry/excelsior/proc/communicate_verb()
-
-	set name = "Excelsior comms"
-	set category = "Cybernetics"
-
-	if(!ishuman(usr))
-		return
-
-	var/datum/faction/F = get_faction_by_id(FACTION_EXCELSIOR)
-
-	if(!F)
-		return
-
-	F.communicate(usr)
+	var/obj/item/weapon/implant/excelsior/leader/implant = new(owner.current)
+	implant.install(owner.current, BP_HEAD)

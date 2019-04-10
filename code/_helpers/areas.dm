@@ -71,7 +71,7 @@
 
 		if(filter_players)
 			var/should_continue = FALSE
-			for(var/mob/living/carbon/human/H in human_mob_list)
+			for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
 				if(!H.client)
 					continue
 				if(A == get_area(H))
@@ -90,6 +90,17 @@
 	for(var/turf/simulated/floor/F in src.contents)
 		if(turf_clear(F))
 			turfs += F
+	if (turfs.len)
+		return pick(turfs)
+	else return null
+
+
+/area/proc/random_hideable_turf()
+	var/list/turfs = list()
+	for(var/turf/simulated/floor/F in src.contents)
+		if(turf_clear(F))
+			if (F.flooring && (F.flooring.flags & TURF_HIDES_THINGS))
+				turfs += F
 	if (turfs.len)
 		return pick(turfs)
 	else return null

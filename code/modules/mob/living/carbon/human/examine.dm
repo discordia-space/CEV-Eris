@@ -163,16 +163,6 @@
 
 	//ID
 	if(wear_id)
-		/*var/id
-		if(istype(wear_id, /obj/item/device/pda))
-			var/obj/item/device/pda/pda = wear_id
-			id = pda.owner
-		else if(istype(wear_id, /obj/item/weapon/card/id)) //just in case something other than a PDA/ID card somehow gets in the ID slot :[
-			var/obj/item/weapon/card/id/idcard = wear_id
-			id = idcard.registered_name
-		if(id && (id != real_name) && (get_dist(src, usr) <= 1) && prob(10))
-			msg += "<span class='warning'>[T.He] [T.is] wearing \icon[wear_id] \a [wear_id] yet something doesn't seem right...</span>\n"
-		else*/
 		msg += "[T.He] [T.is] wearing \icon[wear_id] \a [wear_id].\n"
 
 	//Jitters
@@ -226,7 +216,7 @@
 
 	msg += "</span>"
 
-	if(species.show_ssd && (!species.has_organ[O_BRAIN] || has_brain()) && stat != DEAD)
+	if(species.show_ssd && (!species.has_organ[BP_BRAIN] || has_brain()) && stat != DEAD)
 		if(!key)
 			msg += "<span class='deadsay'>[T.He] [T.is] [species.show_ssd]. It doesn't look like [T.he] [T.is] waking up anytime soon.</span>\n"
 		else if(!client)
@@ -347,24 +337,12 @@
 		msg += "[T.He] [T.is] repulsively uncanny!\n"
 
 	if(hasHUD(usr,"security"))
-		var/perpname = "wot"
+		var/perpname = get_id_name(name)
 		var/criminal = "None"
 
-		if(wear_id)
-			var/obj/item/weapon/card/id/I = wear_id.GetIdCard()
-			if(I)
-				perpname = I.registered_name
-			else
-				perpname = name
-		else
-			perpname = name
-
 		if(perpname)
-			for (var/datum/data/record/E in data_core.general)
-				if(E.fields["name"] == perpname)
-					for (var/datum/data/record/R in data_core.security)
-						if(R.fields["id"] == E.fields["id"])
-							criminal = R.fields["criminal"]
+			var/datum/computer_file/report/crew_record/R = get_crewmember_record(perpname)
+			criminal = R ? R.get_criminalStatus() : "None"
 
 			msg += "<span class = 'deptradio'>Criminal status:</span> <a href='?src=\ref[src];criminal=1'>\[[criminal]\]</a>\n"
 			msg += "<span class = 'deptradio'>Security records:</span> <a href='?src=\ref[src];secrecord=`'>\[View\]</a>  <a href='?src=\ref[src];secrecordadd=`'>\[Add comment\]</a>\n"

@@ -9,7 +9,7 @@
 	supervisors = "your laws"
 	req_admin_notify = 1
 	account_allowed = 0
-	economic_modifier = 0
+	wage = WAGE_NONE
 	outfit_type = /decl/hierarchy/outfit/job/silicon/ai
 
 /datum/job/ai/equip(var/mob/living/carbon/human/H, var/alt_title)
@@ -40,7 +40,7 @@
 	supervisors = "your laws and the AI"
 	selection_color = "#cdcfe0"
 	account_allowed = 0
-	economic_modifier = 0
+	wage = WAGE_NONE
 
 	outfit_type = /decl/hierarchy/outfit/job/silicon/cyborg
 

@@ -258,7 +258,7 @@
 	M.eye_blind = max(M.eye_blind - 5, 0)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
+		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[BP_EYES]
 		if(E && istype(E))
 			if(E.damage > 0)
 				E.damage = max(E.damage - 5 * removed, 0)
@@ -301,22 +301,6 @@
 	if(needs_update && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		H.update_mutations()
-
-/datum/reagent/hyperzine
-	name = "Hyperzine"
-	id = "hyperzine"
-	description = "Hyperzine is a highly effective, long lasting, muscle stimulant."
-	taste_description = "acid"
-	reagent_state = LIQUID
-	color = "#FF3300"
-	metabolism = REM * 0.15
-	overdose = REAGENTS_OVERDOSE * 0.5
-
-/datum/reagent/hyperzine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(prob(5))
-		M.emote(pick("twitch", "blink_r", "shiver"))
-	M.add_chemical_effect(CE_SPEEDBOOST, 1)
-	M.add_chemical_effect(CE_PULSE, 2)
 
 /datum/reagent/ethylredoxrazine
 	name = "Ethylredoxrazine"

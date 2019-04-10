@@ -36,6 +36,8 @@
 	var/mob/living/original	//TODO: remove.not used in any meaningful way ~Carn. First I'll need to tweak the way silicon-mobs handle minds.
 	var/active = FALSE
 
+
+
 	var/memory
 
 	var/assigned_role
@@ -62,6 +64,7 @@
 
 	var/list/initial_email_login = list("login" = "", "password" = "")
 
+	var/datum/stat_holder/stats = null
 
 	var/last_activity = 0
 	/*
@@ -70,8 +73,11 @@
 		If this is 0, the mind has never had a cliented mob
 	*/
 
+	var/creation_time = 0 //World time when this datum was New'd. Useful to tell how long since a character spawned
+
 /datum/mind/New(var/key)
 	src.key = key
+	creation_time = world.time
 	..()
 
 /datum/mind/proc/transfer_to(mob/living/new_character)
@@ -271,7 +277,7 @@
 		brigged_since = -1
 		return 0
 	var/is_currently_brigged = 0
-	if(istype(T.loc,/area/security/brig))
+	if(istype(T.loc,/area/eris/security/brig))
 		is_currently_brigged = 1
 		if(current.GetIdCard())
 			is_currently_brigged = 0
@@ -315,6 +321,7 @@
 		SSticker.minds += mind
 	if(!mind.name)	mind.name = real_name
 	mind.current = src
+	mind.stats = src.stats
 
 //HUMAN
 /mob/living/carbon/human/mind_initialize()

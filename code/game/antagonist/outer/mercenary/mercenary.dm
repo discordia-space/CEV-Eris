@@ -4,6 +4,7 @@
 	faction_id = FACTION_SERBS
 	role_text = "Serbian Mercenary"
 	welcome_text = WELCOME_SERBS
+	antaghud_indicator = "hudoperative"
 	landmark_id = "mercenary-spawn"
 	outer = TRUE
 
@@ -20,7 +21,12 @@
 	possible_objectives = list()
 	survive_objective = null
 
-
+	stat_modifiers = list(
+		STAT_ROB = 30,
+		STAT_TGH = 30,
+		STAT_BIO = 10,
+		STAT_MEC = 20
+	)
 
 
 
@@ -41,6 +47,9 @@
 	var/datum/language/lang = all_languages[LANGUAGE_SERBIAN]
 	lang.set_random_name(L)
 
+	//the missingg parrt was antag's stats!
+	for(var/name in stat_modifiers)
+		L.stats.changeStat(name, stat_modifiers[name])
 
 	create_id("Soldier")
 	..()

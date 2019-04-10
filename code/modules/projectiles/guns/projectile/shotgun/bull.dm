@@ -13,14 +13,17 @@
 	caliber = "shotgun"
 	var/reload = 1
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
+	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 6)
+	price_tag = 2500
+	damage_multiplier = 0.75
 	burst_delay = null
 	fire_delay = null
 	bulletinsert_sound = 'sound/weapons/guns/interact/shotgun_insert.ogg'
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	move_delay = null
 	firemodes = list(
-		list(mode_name="fire one barrel at a time", burst=1),
-		list(mode_name="fire both barrels at once", burst=2),
+		list(mode_name="fire one barrel at a time", burst=1, icon="semi"),
+		list(mode_name="fire both barrels at once", burst=2, icon="burst"),
 		)
 
 /obj/item/weapon/gun/projectile/shotgun/bull/proc/pump(mob/M as mob)
@@ -48,7 +51,7 @@
 	if(chambered)
 		chambered.loc = get_turf(src)//Eject casing
 		chambered = null
-		if(reload == 0)
+		if(!reload)
 			if(loaded.len)
 				var/obj/item/ammo_casing/AC = loaded[1] //load next casing.
 				loaded -= AC //Remove casing from loaded list.
@@ -63,7 +66,7 @@
 	..(user, allow_dump=1)
 
 /obj/item/weapon/gun/projectile/shotgun/bull/attack_self(mob/user as mob)
-	if(reload == 1)
+	if(reload)
 		pump(user)
 	else
 		if(firemodes.len > 1)
@@ -72,9 +75,7 @@
 			unload_ammo(user)
 
 /obj/item/weapon/gun/projectile/shotgun/bull/proc/update_charge()
-	var/ratio = (loaded.len + (chambered? 1 : 0)) / max_shells
-	if(ratio < 0.25 && ratio != 0)
-		ratio = 0.25
+	var/ratio = get_ammo() / (max_shells + 1)//1 in the chamber
 	ratio = round(ratio, 0.25) * 100
 	overlays += "[ratio]_PW"
 

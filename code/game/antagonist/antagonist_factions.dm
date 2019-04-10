@@ -141,14 +141,24 @@
 		return
 
 	usr = user
-	var/text = input("Type message","[name] communication")
+	var/message = input("Type message","[name] communication")
 
-	if(!text || !is_member(user))
+	if(!message || !is_member(user))
 		return
 
-	text = capitalize_cp1251(sanitize(text))
+	message = capitalize_cp1251(sanitize(message))
+	var/text = "<span class='revolution'>[name] member, [user]: \"[message]\"</span>"
 	for(var/datum/antagonist/A in members)
-		A.owner.current << "<span class='revolution'>[name] member, [user]: \"[text]\"</span>"
+		A.owner.current << text
+
+	//ghosts
+	for (var/mob/observer/ghost/M in GLOB.dead_mob_list)	//does this include players who joined as observers as well?
+		if (!(M.client))
+			continue
+		if((M.has_enabled_antagHUD && M.antagHUD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH) || is_admin(M.client))
+			M << "[text] ([ghost_follow_link(user, M)])"
+
+	log_say("[user.name]/[user.key] (REV [name]) : [message]")
 
 /datum/faction/proc/is_member(var/mob/user)
 	for(var/datum/antagonist/A in members)

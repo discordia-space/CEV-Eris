@@ -211,7 +211,7 @@
 
 	if(istype(I, /obj/item/weapon/disk/autolathe_disk))
 		insert_disk(user)
-	
+
 	if(istype(I,/obj/item/stack))
 		eat(user)
 
@@ -436,7 +436,7 @@
 		if(O.reagents && container)
 			O.reagents.trans_to(container, O.reagents.total_volume)
 
-	if(!filltype)
+	if(!filltype && !reagents_filltype)
 		user << SPAN_NOTICE("\The [src] is full. Please remove material from the autolathe in order to insert more.")
 		return
 	else if(filltype == 1)
@@ -527,7 +527,7 @@
 				return ERR_NOMATERIAL
 
 		if(R.reagents.len)
-			if(!container || !container.reagents || !container.is_open_container())
+			if(!container || !container.is_drawable())
 				return ERR_NOREAGENT
 			else
 				for(var/rgn in R.reagents)

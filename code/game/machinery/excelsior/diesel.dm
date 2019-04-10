@@ -5,11 +5,11 @@
 	icon = 'icons/obj/machines/excelsior/generator.dmi'
 	icon_state = "base"
 	circuit = /obj/item/weapon/circuitboard/diesel
-
+	max_fuel_volume = 300
 	power_gen = 16000 // produces 20% less watts output per power level setting.
-	time_per_fuel_unit = 8
+	time_per_fuel_unit = 12
 
-	flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER
 	use_reagents_as_fuel = TRUE
 
 /obj/machinery/power/port_gen/pacman/diesel/update_icon()

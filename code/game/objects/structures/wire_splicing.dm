@@ -77,7 +77,7 @@
 		var/mob/living/L = AM
 		var/turf/T = get_turf(src)
 		var/chance_to_shock = messiness * 10
-		if(L.m_intent == "walk")
+		if(MOVING_DELIBERATELY(L))
 			chance_to_shock = chance_to_shock - 30
 		if(locate(/obj/structure/catwalk) in T)
 			chance_to_shock = chance_to_shock - 20

@@ -37,7 +37,7 @@
 	if(client.buildmode)
 		build_click(src, client.buildmode, params, A)
 		return
-	if(!canClick()) return
+	if(!can_click()) return
 	setClickCooldown(4)
 	// You are responsible for checking config.ghost_interaction when you override this function
 	// Not all of them require checking, see below
@@ -57,11 +57,11 @@
 	var/atom/l = loc
 	var/obj/machinery/computer/teleporter/com = locate(/obj/machinery/computer/teleporter, locate(l.x - 2, l.y, l.z))
 	if(com.locked)
-		user.loc = get_turf(com.locked)
+		user.forceMove(get_turf(com.locked))
 
 /obj/effect/portal/attack_ghost(mob/user as mob)
 	if(target)
-		user.loc = get_turf(target)
+		user.forceMove(get_turf(target))
 
 /*
 /obj/machinery/gateway/centerstation/attack_ghost(mob/user as mob)

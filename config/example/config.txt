@@ -175,6 +175,9 @@ GUEST_BAN
 ## set a server location for world reboot. Don't include the byond://, just give the address and port.
 #SERVER server.net:port
 
+## Language being used for the server, deals with external links. Use either "En" for ENGLISH, or "Ru" for RUSSIAN. Do not capitalize the second letter.
+# LANGUAGE
+
 ## forum address
 # FORUMURL http://example.com
 
@@ -294,3 +297,8 @@ JOIN_UNASSIGNED
 ## Uncomment to use overmap system for zlevel travel
 #USE_OVERMAP
 
+##Clients will be unable to connect unless their version is equal to or higher than this (a number, e.g. 511)
+#MINIMUM_BYOND_VERSION
+
+## Clients will be unable to connect unless their build is equal to or higher than this (a number, e.g. 1000)
+#MINIMUM_BYOND_BUILD

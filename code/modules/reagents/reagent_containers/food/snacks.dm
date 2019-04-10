@@ -24,20 +24,26 @@
 		reagents.add_reagent("nutriment", nutriment_amt, nutriment_desc)
 
 	//Placeholder for effect that trigger on eating that aren't tied to reagents.
-/obj/item/weapon/reagent_containers/food/snacks/proc/On_Consume(var/mob/M)
+/obj/item/weapon/reagent_containers/food/snacks/proc/On_Consume(var/mob/eater, var/mob/feeder = null)
 	if(!reagents.total_volume)
-		M.visible_message(
-			SPAN_NOTICE("[M] finishes eating \the [src]."),
+		eater.visible_message(
+			SPAN_NOTICE("[eater] finishes eating \the [src]."),
 			SPAN_NOTICE("You finish eating \the [src].")
 		)
-		usr.drop_from_inventory(src)	//so icons update :[
+		if (!feeder)
+			feeder = eater
+
+		feeder.drop_from_inventory(src)	//so icons update :[
 
 		if(trash)
 			if(ispath(trash,/obj/item))
-				var/obj/item/TrashItem = new trash(usr)
-				usr.put_in_hands(TrashItem)
+				var/obj/item/TrashItem = new trash(feeder)
+				if(isanimal(feeder))
+					TrashItem.forceMove(loc)
+				else
+					feeder.put_in_hands(TrashItem)
 			else if(istype(trash,/obj/item))
-				usr.put_in_hands(trash)
+				feeder.put_in_hands(trash)
 		qdel(src)
 
 /obj/item/weapon/reagent_containers/food/snacks/attack_self(mob/user as mob)
@@ -90,22 +96,53 @@
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			if(!do_mob(user, M)) return
 
-			M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been fed [src.name] by [user.name] ([user.ckey]) Reagents: [reagentlist(src)]</font>")
-			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Fed [src.name] by [M.name] ([M.ckey]) Reagents: [reagentlist(src)]</font>")
-			msg_admin_attack("[key_name(user)] fed [key_name(M)] with [src.name] Reagents: [reagentlist(src)] (INTENT: [uppertext(user.a_intent)])")
+			M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been fed [src.name] by [user.name] ([user.ckey]) Reagents: [reagents.log_list()]</font>")
+			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Fed [src.name] by [M.name] ([M.ckey]) Reagents: [reagents.log_list()]</font>")
+			msg_admin_attack("[key_name(user)] fed [key_name(M)] with [src.name] Reagents: [reagents.log_list()] (INTENT: [uppertext(user.a_intent)])")
 
 			user.visible_message(SPAN_DANGER("[user] feeds [M] [src]."))
 
 		if(reagents)			//Handle ingestion of the reagent.
-			playsound(M.loc,'sound/items/eatfood.ogg', rand(10,50), 1)
+			playsound(M.loc,pick(M.eat_sounds), rand(10,50), 1)
 			if(reagents.total_volume)
 				if(reagents.total_volume > bitesize)
 					reagents.trans_to_mob(M, bitesize, CHEM_INGEST)
 				else
 					reagents.trans_to_mob(M, reagents.total_volume, CHEM_INGEST)
 				bitecount++
-				On_Consume(M)
+				On_Consume(M, user)
 			return 1
+
+	else if (isanimal(M))
+		var/mob/living/simple_animal/SA = M
+		SA.scan_interval = SA.min_scan_interval//Feeding an animal will make it suddenly care about food
+
+		var/m_bitesize = bitesize * SA.bite_factor//Modified bitesize based on creature size
+		var/amount_eaten = m_bitesize
+
+		if(reagents && SA.reagents)
+			m_bitesize = min(m_bitesize, reagents.total_volume)
+			//If the creature can't even stomach half a bite, then it eats nothing
+			if (!SA.can_eat() || ((user.reagents.maximum_volume - user.reagents.total_volume) < m_bitesize * 0.5))
+				amount_eaten = 0
+			else
+				amount_eaten = reagents.trans_to_mob(SA, m_bitesize, CHEM_INGEST)
+		else
+			return 0//The target creature can't eat
+
+		if (amount_eaten)
+			playsound(M.loc,pick(M.eat_sounds), rand(10,30), 1)
+			bitecount++
+			if (amount_eaten >= m_bitesize)
+				user.visible_message(SPAN_NOTICE("[user] feeds [src] to [M]."))
+			else
+				user.visible_message(SPAN_NOTICE("[user] feeds [M] a tiny bit of [src]. <b>It looks full.</b>"))
+				if (!istype(M.loc, /turf))
+					M << SPAN_NOTICE("[user] feeds you a tiny bit of [src]. <b>You feel pretty full!</b>")
+			On_Consume(M, user)
+			return 1
+		else
+			user << SPAN_WARNING("[M.name] can't stomach anymore food!")
 
 	return 0
 
@@ -205,13 +242,37 @@
 /obj/item/weapon/reagent_containers/food/snacks/attack_generic(var/mob/living/user)
 	if(!isanimal(user) && !isalien(user))
 		return
-	user.visible_message(
-		"<b>[user]</b> nibbles away at \the [src].",
-		"You nibble away at \the [src]."
-	)
-	bitecount++
+
+	var/amount_eaten = bitesize
+	var/m_bitesize = bitesize
+
+	if (isanimal(user))
+		var/mob/living/simple_animal/SA = user
+		m_bitesize = bitesize * SA.bite_factor//Modified bitesize based on creature size
+		amount_eaten = m_bitesize
+		if (!SA.can_eat())
+			user << "<span class='danger'>You're too full to eat anymore!</span>"
+			return
+
 	if(reagents && user.reagents)
 		reagents.trans_to_mob(user, bitesize, CHEM_INGEST)
+		m_bitesize = min(m_bitesize, reagents.total_volume)
+		//If the creature can't even stomach half a bite, then it eats nothing
+		if (((user.reagents.maximum_volume - user.reagents.total_volume) < m_bitesize * 0.5))
+			amount_eaten = 0
+		else
+			amount_eaten = reagents.trans_to_mob(user, m_bitesize, CHEM_INGEST)
+	if (amount_eaten)
+		playsound(user.loc,pick(user.eat_sounds), rand(10,30), 1)
+		shake_animation(5)
+		bitecount++
+		if (amount_eaten < m_bitesize)
+			user << SPAN_NOTICE("You reluctantly nibble a tiny part of \the [src]. <b>You can't stomach much more!</b>.")
+		else
+			user << SPAN_NOTICE("You nibble away at \the [src].")
+	else
+		user << "<span class='danger'>You're too full to eat anymore!</span>"
+
 	spawn(5)
 		if(!src && !user.client)
 			user.custom_emote(1,"[pick("burps", "cries for more", "burps twice", "looks at the area where the food was")]")
@@ -458,7 +519,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/egg/afterattack(obj/O as obj, mob/user as mob, proximity)
 	if(istype(O,/obj/machinery/microwave))
 		return ..()
-	if(!(proximity && O.is_open_container()))
+	if(!proximity || !O.is_refillable())
 		return
 	user << "You crack \the [src] into \the [O]."
 	reagents.trans_to(O, reagents.total_volume)
@@ -482,7 +543,7 @@
 		if(!(clr in list("blue","green","mime","orange","purple","rainbow","red","yellow")))
 			usr << SPAN_NOTICE("The egg refuses to take on this color!")
 			return
-		usr << SPAN_NOTICE("You color \the [src] [clr]")
+		user << SPAN_NOTICE("You color \the [src] [clr]")
 		icon_state = "egg-[clr]"
 	else
 		..()
@@ -1353,13 +1414,13 @@
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube
 	name = "monkey cube"
 	desc = "Just add water!"
-	flags = OPENCONTAINER
+	reagent_flags = REFILLABLE
 	icon_state = "monkeycube"
 	bitesize = 12
 	filling_color = "#ADAC7F"
 	center_of_mass = list("x"=16, "y"=14)
 
-	var/wrapped = 0
+	var/wrapped = FALSE
 	var/monkey_type = "Monkey"
 	preloaded = list("protein" = 10)
 
@@ -1383,8 +1444,8 @@
 	icon_state = "monkeycube"
 	desc = "Just add water!"
 	user << "You unwrap the cube."
-	wrapped = 0
-	flags |= OPENCONTAINER
+	wrapped = FALSE
+	reagent_flags |= REFILLABLE
 
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/on_reagent_change()
 	if(reagents.has_reagent("water"))
@@ -1393,8 +1454,8 @@
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped
 	desc = "Still wrapped in some paper."
 	icon_state = "monkeycubewrap"
-	flags = 0
-	wrapped = 1
+	reagent_flags = NONE
+	wrapped = TRUE
 
 /obj/item/weapon/reagent_containers/food/snacks/spellburger
 	name = "Spell Burger"

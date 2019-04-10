@@ -5,7 +5,7 @@
 	has_postspawn = TRUE
 
 /obj/random/tool/item_to_spawn()
-	return pickweight(list(/obj/random/rare = 1,
+	return pickweight(list(/obj/random/pack/rare = 2,
 				/obj/item/weapon/tool/screwdriver = 8,
 				/obj/item/weapon/tool/screwdriver/electric = 2,
 				/obj/item/weapon/tool/screwdriver/combi_driver = 1,
@@ -34,6 +34,7 @@
 				/obj/item/weapon/storage/belt/utility = 5,
 				/obj/item/weapon/storage/belt/utility/full = 1,
 				/obj/item/clothing/gloves/insulated/cheap = 5,
+				/obj/item/clothing/gloves/insulated = 2,
 				/obj/item/clothing/head/welding = 5,
 				/obj/item/weapon/extinguisher = 5,
 				/obj/item/device/t_scanner = 2,
@@ -57,21 +58,16 @@
 				/obj/item/device/lighting/toggleable/flashlight = 10,
 				/obj/item/weapon/tank/jetpack/carbondioxide = 1.5,
 				/obj/item/weapon/tank/jetpack/oxygen = 1,
-				/obj/item/robot_parts/robot_component/jetpack = 0.75,
-				/obj/random/voidsuit/damaged = 1.5,
-				/obj/random/voidsuit = 0.5,
-				/obj/random/pouch = 5,
-				/obj/random/tool_upgrade = 25,
-				/obj/random/rig_module = 5))
+				/obj/item/robot_parts/robot_component/jetpack = 0.75,))
 
 
-//Randomly spawned tools will often be in imperfect condition
+//Randomly spawned tools will often be in imperfect condition if they've been left lying out
 /obj/random/tool/post_spawn(var/list/spawns)
-	for (var/obj/item/weapon/tool/T in spawns)
-		if (T.degradation && prob(40))
-			T.unreliability += T.degradation * 25 //50 uses worth of damage, this is fairly mild
-			if (prob(30))
-				T.unreliability += T.degradation * 25 //Roughly 13% chance to be moderately damaged
+	if (isturf(loc))
+		for (var/obj/O in spawns)
+			if (!istype(O, /obj/random) && prob(20))
+				O.make_old()
+
 
 /obj/random/tool/low_chance
 	name = "low chance random tool"
@@ -79,8 +75,11 @@
 	spawn_nothing_percentage = 60
 
 
+
+
 /obj/random/tool/advanced
 	name = "random advanced tool"
+	icon_state = "tool-orange"
 
 /obj/random/tool/advanced/item_to_spawn()
 	return pickweight(list(
@@ -93,7 +92,16 @@
 				/obj/item/weapon/tool/saw/advanced_circular = 2,
 				/obj/item/weapon/tool/saw/chain = 1,
 				/obj/item/weapon/tool/pickaxe/diamonddrill = 2,
-				/obj/item/weapon/tool/tape_roll/fiber = 2))
+				/obj/item/weapon/tool/tape_roll/fiber = 2,
+				/obj/item/weapon/material/twohanded/fireaxe = 1))
+
+/obj/random/tool/advanced/low_chance
+	name = "low chance advanced tool"
+	icon_state = "tool-orange-low"
+	spawn_nothing_percentage = 60
+
+
+
 
 /obj/random/toolbox
 	name = "random toolbox"
@@ -108,45 +116,3 @@
 	name = "low chance random toolbox"
 	icon_state = "box-green-low"
 	spawn_nothing_percentage = 60
-
-
-
-//Random tool upgrades
-/obj/random/tool_upgrade
-	name = "random tool upgrade"
-/obj/random/tool_upgrade/item_to_spawn()
-	return pickweight(list(
-	/obj/item/weapon/tool_upgrade/reinforcement/stick = 1,
-	/obj/item/weapon/tool_upgrade/reinforcement/heatsink = 1,
-	/obj/item/weapon/tool_upgrade/reinforcement/plating = 1.5,
-	/obj/item/weapon/tool_upgrade/reinforcement/guard = 0.75,
-	/obj/item/weapon/tool_upgrade/productivity/ergonomic_grip = 1,
-	/obj/item/weapon/tool_upgrade/productivity/ratchet = 1,
-	/obj/item/weapon/tool_upgrade/productivity/red_paint = 0.75,
-	/obj/item/weapon/tool_upgrade/productivity/whetstone = 0.5,
-	/obj/item/weapon/tool_upgrade/productivity/diamond_blade = 0.25,
-	/obj/item/weapon/tool_upgrade/productivity/oxyjet = 0.75,
-	/obj/item/weapon/tool_upgrade/productivity/motor = 0.75,
-	/obj/item/weapon/tool_upgrade/refinement/laserguide = 1,
-	/obj/item/weapon/tool_upgrade/refinement/stabilized_grip = 1,
-	/obj/item/weapon/tool_upgrade/refinement/magbit = 0.75,
-	/obj/item/weapon/tool_upgrade/refinement/ported_barrel = 0.5,
-	/obj/item/weapon/tool_upgrade/augment/cell_mount = 0.75,
-	/obj/item/weapon/tool_upgrade/augment/fuel_tank = 1,
-	/obj/item/weapon/tool_upgrade/augment/expansion = 0.25,
-	/obj/item/weapon/tool_upgrade/augment/spikes = 1,
-	/obj/item/weapon/tool_upgrade/augment/dampener = 0.5))
-
-
-//A fancier subset of the most desireable upgrades
-/obj/random/tool_upgrade/rare/item_to_spawn()
-	return pickweight(list(
-	/obj/item/weapon/tool_upgrade/reinforcement/guard = 1,
-	/obj/item/weapon/tool_upgrade/productivity/ergonomic_grip = 1,
-	/obj/item/weapon/tool_upgrade/productivity/red_paint = 1,
-	/obj/item/weapon/tool_upgrade/productivity/diamond_blade = 1,
-	/obj/item/weapon/tool_upgrade/productivity/motor = 1,
-	/obj/item/weapon/tool_upgrade/refinement/laserguide = 1,
-	/obj/item/weapon/tool_upgrade/refinement/stabilized_grip = 1,
-	/obj/item/weapon/tool_upgrade/augment/expansion = 1,
-	/obj/item/weapon/tool_upgrade/augment/dampener = 0.5))

@@ -34,8 +34,10 @@
 	var/interface_path = "hardsuit.tmpl"
 	var/ai_interface_path = "hardsuit.tmpl"
 	var/interface_title = "Hardsuit Controller"
-	var/datum/delay_controller/wearer_move_delayer = new
+	var/wearer_move_delay //Used for AI moving.
 	var/ai_controlled_move_delay = 10
+	var/aimove_power_usage = 200							  // Power usage per tile traveled when suit is moved by AI in IIS. In joules.
+
 
 	// Keeps track of what this rig should spawn with.
 	var/suit_type = "hardsuit"
@@ -94,19 +96,6 @@
 
 
 	//Stuff rigs can store
-	allowed = list(
-	/obj/item/weapon/storage/pouch/,
-	/obj/item/weapon/gun,
-	/obj/item/weapon/melee/baton,
-	/obj/item/weapon/melee/energy/sword,
-	/obj/item/ammo_magazine,
-	/obj/item/ammo_casing,
-	/obj/item/weapon/melee/baton,
-	/obj/item/weapon/handcuffs,
-	/obj/item/weapon/tank,
-	/obj/item/device/suit_cooling_unit,
-	/obj/item/weapon/cell,
-	/obj/item/weapon/handcuffs)
 
 	var/list/extra_allowed = list()
 
@@ -167,7 +156,7 @@
 		chest = new chest_type(src)
 		chest.equip_delay = 0
 		if(allowed)
-			chest.allowed = allowed
+			chest.allowed |= allowed
 		chest.slowdown = offline_slowdown
 		verbs |= /obj/item/weapon/rig/proc/toggle_chest
 
@@ -233,7 +222,7 @@
 
 	// Seal toggling can be initiated by the suit AI, too
 	if(!wearer)
-		initiator << SPAN_DANGER("Cannot toggle suit: The suit is currently not being worn by anyone.")
+		to_chat(initiator, SPAN_DANGER("Cannot toggle suit: The suit is currently not being worn by anyone."))
 		return 0
 
 	if(!check_power_cost(wearer))
@@ -261,7 +250,7 @@
 		if(!instant)
 			wearer.visible_message("<font color='blue'>[wearer]'s suit emits a quiet hum as it begins to adjust its seals.</font>","<font color='blue'>With a quiet hum, the suit begins running checks and adjusting components.</font>")
 			if(seal_delay && !do_after(wearer,seal_delay, src))
-				if(wearer) wearer << SPAN_WARNING("You must remain still while the suit is adjusting the components.")
+				if(wearer) to_chat(wearer, SPAN_WARNING("You must remain still while the suit is adjusting the components."))
 				failed_to_seal = 1
 
 		if(!wearer)
@@ -278,7 +267,7 @@
 					continue
 
 				if(!istype(wearer) || !istype(piece) || !istype(compare_piece) || !msg_type)
-					if(wearer) wearer << SPAN_WARNING("You must remain still while the suit is adjusting the components.")
+					if(wearer) to_chat(wearer, SPAN_WARNING("You must remain still while the suit is adjusting the components."))
 					failed_to_seal = 1
 					break
 
@@ -290,16 +279,16 @@
 					piece.icon_state = "[initial(icon_state)][seal_target ? "_sealed" : ""]"
 					switch(msg_type)
 						if("boots")
-							wearer << "<font color='blue'>\The [piece] [seal_target ? "seal around your feet" : "relax their grip on your legs"].</font>"
+							to_chat(wearer, "<font color='blue'>\The [piece] [seal_target ? "seal around your feet" : "relax their grip on your legs"].</font>")
 							wearer.update_inv_shoes()
 						if("gloves")
-							wearer << "<font color='blue'>\The [piece] [seal_target ? "tighten around your fingers and wrists" : "become loose around your fingers"].</font>"
+							to_chat(wearer, "<font color='blue'>\The [piece] [seal_target ? "tighten around your fingers and wrists" : "become loose around your fingers"].</font>")
 							wearer.update_inv_gloves()
 						if("chest")
-							wearer << "<font color='blue'>\The [piece] [seal_target ? "cinches tight again your chest" : "releases your chest"].</font>"
+							to_chat(wearer, "<font color='blue'>\The [piece] [seal_target ? "cinches tight again your chest" : "releases your chest"].</font>")
 							wearer.update_inv_wear_suit()
 						if("helmet")
-							wearer << "<font color='blue'>\The [piece] hisses [seal_target ? "closed" : "open"].</font>"
+							to_chat(wearer, "<font color='blue'>\The [piece] hisses [seal_target ? "closed" : "open"].</font>")
 							wearer.update_inv_head()
 							if(helmet)
 								helmet.update_light(wearer)
@@ -332,10 +321,10 @@
 	// Success!
 	active = seal_target
 	canremove = !active
-	wearer << "<font color='blue'><b>Your entire suit [active ? "tightens around you as the components lock into place" : "loosens as the components relax"].</b></font>"
+	to_chat(wearer, "<font color='blue'><b>Your entire suit [active ? "tightens around you as the components lock into place" : "loosens as the components relax"].</b></font>")
 
 	if(wearer != initiator)
-		initiator << "<font color='blue'>Suit adjustment complete. Suit is now [active ? "unsealed" : "sealed"].</font>"
+		to_chat(initiator, "<font color='blue'>Suit adjustment complete. Suit is now [active ? "unsealed" : "sealed"].</font>")
 
 	if(canremove)
 		for(var/obj/item/rig_module/module in installed_modules)
@@ -371,13 +360,13 @@
 				if(istype(wearer))
 					if(!canremove)
 						if (offline_slowdown < 3)
-							wearer << SPAN_DANGER("Your suit beeps stridently, and suddenly goes dead.")
+							to_chat(wearer, SPAN_DANGER("Your suit beeps stridently, and suddenly goes dead."))
 						else
-							wearer << SPAN_DANGER("Your suit beeps stridently, and suddenly you're wearing a leaden mass of metal and plastic composites instead of a powered suit.")
+							to_chat(wearer, SPAN_DANGER("Your suit beeps stridently, and suddenly you're wearing a leaden mass of metal and plastic composites instead of a powered suit."))
 					if(offline_vision_restriction == 1)
-						wearer << SPAN_DANGER("The suit optics flicker and die, leaving you with restricted vision.")
+						to_chat(wearer, SPAN_DANGER("The suit optics flicker and die, leaving you with restricted vision."))
 					else if(offline_vision_restriction == 2)
-						wearer << SPAN_DANGER("The suit optics drop out completely, drowning you in darkness.")
+						to_chat(wearer, SPAN_DANGER("The suit optics drop out completely, drowning you in darkness."))
 		if(!offline)
 			offline = 1
 	else
@@ -430,7 +419,7 @@
 		fail_msg = SPAN_WARNING("Not enough stored power.")
 
 	if(fail_msg)
-		user << "[fail_msg]"
+		to_chat(user, fail_msg)
 		return 0
 
 	// This is largely for cancelling stealth and whatever.
@@ -550,11 +539,11 @@
 		if(user.back != src)
 			return 0
 		else if(!src.allowed(user))
-			user << SPAN_DANGER("Unauthorized user. Access denied.")
+			to_chat(user, SPAN_DANGER("Unauthorized user. Access denied."))
 			return 0
 
 	else if(!ai_override_enabled)
-		user << SPAN_DANGER("Synthetic access disabled. Please consult hardware provider.")
+		to_chat(user, SPAN_DANGER("Synthetic access disabled. Please consult hardware provider."))
 		return 0
 
 	return 1
@@ -681,7 +670,7 @@
 	if(use_obj)
 		if(check_slot == use_obj && deploy_mode != ONLY_DEPLOY)
 			if (active && !(use_obj.retract_while_active))
-				wearer << SPAN_DANGER("The [use_obj] is locked in place while [src] is active. You must deactivate it first!")
+				to_chat(wearer, SPAN_DANGER("The [use_obj] is locked in place while [src] is active. You must deactivate it first!"))
 				return
 
 			var/mob/living/carbon/human/holder
@@ -692,7 +681,9 @@
 					if(use_obj && check_slot == use_obj)
 						use_obj.canremove = 1
 						if (wearer.unEquip(use_obj, src))
-							wearer << "<font color='blue'><b>Your [use_obj.name] [use_obj.gender == PLURAL ? "retract" : "retracts"] swiftly.</b></font>"
+							if(use_obj.overslot)
+								use_obj.remove_overslot_contents(wearer)
+							to_chat(wearer, "<font color='blue'><b>Your [use_obj.name] [use_obj.gender == PLURAL ? "retract" : "retracts"] swiftly.</b></font>")
 						use_obj.canremove = 0
 
 
@@ -703,10 +694,10 @@
 			if(!wearer.equip_to_slot_if_possible(use_obj, equip_to, TRUE)) //Disable_warning
 				use_obj.forceMove(src)
 				if(check_slot)
-					initiator << "<span class='danger'>You are unable to deploy \the [piece] as \the [check_slot] [check_slot.gender == PLURAL ? "are" : "is"] in the way.</span>"
+					to_chat(initiator, SPAN_DANGER("You are unable to deploy \the [piece] as \the [check_slot] [check_slot.gender == PLURAL ? "are" : "is"] in the way."))
 					return
 			else
-				wearer << "<span class='notice'>Your [use_obj.name] [use_obj.gender == PLURAL ? "deploy" : "deploys"] swiftly.</span>"
+				to_chat(wearer, SPAN_NOTICE("Your [use_obj.name] [use_obj.gender == PLURAL ? "deploy" : "deploys"] swiftly."))
 
 	if(piece == "helmet" && helmet)
 		helmet.update_light(wearer)
@@ -886,81 +877,20 @@
 	user << "<span class='notice'>\The [wearer] is now [wearer.resting ? "resting" : "getting up"].</span>"
 
 /obj/item/weapon/rig/proc/forced_move(var/direction, var/mob/user)
+	if(malfunctioning)
+		direction = pick(GLOB.cardinal)
 
-	// Why is all this shit in client/Move()? Who knows?
-	if (wearer_move_delayer.isBlocked())
+	if(world.time < wearer_move_delay)
 		return
 
 	if(!wearer || !wearer.loc || !ai_can_move_suit(user, check_user_module = 1))
 		return
 
-	//This is sota the goto stop mobs from moving var
-	if(wearer.transforming || !wearer.canmove)
-		return
+	// AIs are a bit slower than regular and ignore move intent.
+	wearer_move_delay = world.time + ai_controlled_move_delay
 
-	if(locate(/obj/effect/stop/, wearer.loc))
-		for(var/obj/effect/stop/S in wearer.loc)
-			if(S.victim == wearer)
-				return
-
-	if(!wearer.lastarea)
-		wearer.lastarea = get_area(wearer.loc)
-
-	if((istype(wearer.loc, /turf/space)) || (wearer.lastarea.has_gravity == 0))
-		if(!wearer.Allow_Spacemove(0))
-			return 0
-
-	if(malfunctioning)
-		direction = pick(cardinal)
-
-	// Inside an object, tell it we moved.
-	if(isobj(wearer.loc) || ismob(wearer.loc))
-		var/atom/O = wearer.loc
-		return O.relaymove(wearer, direction)
-
-	if(isturf(wearer.loc))
-		if(wearer.restrained())//Why being pulled while cuffed prevents you from moving
-			for(var/mob/M in range(wearer, 1))
-				if(M.pulling == wearer)
-					if(!M.restrained() && M.stat == 0 && M.canmove && wearer.Adjacent(M))
-						user << SPAN_NOTICE("Your host is restrained! They can't move!")
-						return 0
-					else
-						M.stop_pulling()
-
-	if(wearer.pinned.len)
-		src << "<span class='notice'>Your host is pinned to a wall by [wearer.pinned[1]]</span>!"
-		return 0
-
-	if(istype(wearer.buckled, /obj/vehicle))
-		// manually set move_delay for vehicles so we don't inherit any mob movement penalties
-		// specific vehicle move delays are set in code\modules\vehicles\vehicle.dm
-		wearer_move_delayer.setDelayMin(1)
-		return wearer.buckled.relaymove(wearer, direction)
-
-	var/delay = ai_controlled_move_delay
-	wearer_move_delayer.setDelayMin(delay)
-
-	if(istype(wearer.machine, /obj/machinery))
-		if(wearer.machine.relaymove(wearer, direction))
-			return
-
-	if(wearer.pulledby || wearer.buckled) // Wheelchair driving!
-		if(istype(wearer.loc, /turf/space))
-			return // No wheelchair driving in space
-		if(istype(wearer.pulledby, /obj/structure/bed/chair/wheelchair))
-			return wearer.pulledby.relaymove(wearer, direction)
-		else if(istype(wearer.buckled, /obj/structure/bed/chair/wheelchair))
-			if(ishuman(wearer.buckled))
-				var/obj/item/organ/external/l_hand = wearer.get_organ(BP_L_ARM)
-				var/obj/item/organ/external/r_hand = wearer.get_organ(BP_R_ARM)
-				if((!l_hand || (l_hand.status & ORGAN_DESTROYED)) && (!r_hand || (r_hand.status & ORGAN_DESTROYED)))
-					return // No hands to drive your chair? Tough luck!
-			wearer_move_delayer.addDelay(2)
-			return wearer.buckled.relaymove(wearer,direction)
-
-	cell.use(200) //Arbitrary, TODO
-	step_glide(wearer, direction, DELAY2GLIDESIZE(delay))
+	cell.use(aimove_power_usage * CELLRATE)
+	wearer.DoMove(direction, user)
 
 // This returns the rig if you are contained inside one, but not if you are wearing it
 /atom/proc/get_rig()

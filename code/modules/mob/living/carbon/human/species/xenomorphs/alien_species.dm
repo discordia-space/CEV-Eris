@@ -46,10 +46,10 @@
 	vision_flags = SEE_SELF|SEE_MOBS
 
 	has_organ = list(
-		O_HEART =  /obj/item/organ/internal/heart,
-		O_BRAIN =  /obj/item/organ/internal/brain/xeno,
-		O_PLASMA = /obj/item/organ/internal/xenos/plasmavessel,
-		O_HIVE =   /obj/item/organ/internal/xenos/hivenode,
+		BP_HEART =  /obj/item/organ/internal/heart,
+		BP_BRAIN =  /obj/item/organ/internal/brain/xeno,
+		BP_PLASMA = /obj/item/organ/internal/xenos/plasmavessel,
+		BP_HIVE =   /obj/item/organ/internal/xenos/hivenode,
 	)
 
 	bump_flag = ALIEN
@@ -96,7 +96,7 @@
 
 	var/obj/effect/plant/plant = locate() in T
 	if((environment.gas["plasma"] > 0 || (plant && plant.seed && plant.seed.name == "xenomorph")) && !regenerate(H))
-		var/obj/item/organ/internal/xenos/plasmavessel/P = H.internal_organs_by_name[O_PLASMA]
+		var/obj/item/organ/internal/xenos/plasmavessel/P = H.internal_organs_by_name[BP_PLASMA]
 		P.stored_plasma += weeds_plasma_rate
 		P.stored_plasma = min(max(P.stored_plasma,0),P.max_plasma)
 	..()
@@ -148,11 +148,11 @@
 	deform =  'icons/mob/human_races/xenos/r_xenos_drone.dmi'
 
 	has_organ = list(
-		O_HEART =  /obj/item/organ/internal/heart,
-		O_BRAIN =  /obj/item/organ/internal/brain/xeno,
-		O_PLASMA = /obj/item/organ/internal/xenos/plasmavessel/drone,
+		BP_HEART =  /obj/item/organ/internal/heart,
+		BP_BRAIN =  /obj/item/organ/internal/brain/xeno,
+		BP_PLASMA = /obj/item/organ/internal/xenos/plasmavessel/drone,
 		O_ACID =   /obj/item/organ/internal/xenos/acidgland/drone,
-		O_HIVE =   /obj/item/organ/internal/xenos/hivenode,
+		BP_HIVE =   /obj/item/organ/internal/xenos/hivenode,
 		O_RESIN =  /obj/item/organ/internal/xenos/resinspinner,
 	)
 
@@ -181,10 +181,10 @@
 	deform =  'icons/mob/human_races/xenos/r_xenos_hunter.dmi'
 
 	has_organ = list(
-		O_HEART =  /obj/item/organ/internal/heart,
-		O_BRAIN =  /obj/item/organ/internal/brain/xeno,
-		O_PLASMA = /obj/item/organ/internal/xenos/plasmavessel/hunter,
-		O_HIVE =   /obj/item/organ/internal/xenos/hivenode,
+		BP_HEART =  /obj/item/organ/internal/heart,
+		BP_BRAIN =  /obj/item/organ/internal/brain/xeno,
+		BP_PLASMA = /obj/item/organ/internal/xenos/plasmavessel/hunter,
+		BP_HIVE =   /obj/item/organ/internal/xenos/hivenode,
 	)
 
 	inherent_verbs = list(
@@ -208,11 +208,11 @@
 	deform =  'icons/mob/human_races/xenos/r_xenos_sentinel.dmi'
 
 	has_organ = list(
-		O_HEART =  /obj/item/organ/internal/heart,
-		O_BRAIN =  /obj/item/organ/internal/brain/xeno,
-		O_PLASMA = /obj/item/organ/internal/xenos/plasmavessel/sentinel,
+		BP_HEART =  /obj/item/organ/internal/heart,
+		BP_BRAIN =  /obj/item/organ/internal/brain/xeno,
+		BP_PLASMA = /obj/item/organ/internal/xenos/plasmavessel/sentinel,
 		O_ACID =   /obj/item/organ/internal/xenos/acidgland,
-		O_HIVE =   /obj/item/organ/internal/xenos/hivenode,
+		BP_HIVE =   /obj/item/organ/internal/xenos/hivenode,
 	)
 
 	inherent_verbs = list(
@@ -236,12 +236,12 @@
 	deform =  'icons/mob/human_races/xenos/r_xenos_queen.dmi'
 
 	has_organ = list(
-		O_HEART =  /obj/item/organ/internal/heart,
-		O_BRAIN =  /obj/item/organ/internal/brain/xeno,
+		BP_HEART =  /obj/item/organ/internal/heart,
+		BP_BRAIN =  /obj/item/organ/internal/brain/xeno,
 		O_EGG =    /obj/item/organ/internal/xenos/eggsac,
-		O_PLASMA = /obj/item/organ/internal/xenos/plasmavessel/queen,
+		BP_PLASMA = /obj/item/organ/internal/xenos/plasmavessel/queen,
 		O_ACID =   /obj/item/organ/internal/xenos/acidgland,
-		O_HIVE =   /obj/item/organ/internal/xenos/hivenode,
+		BP_HIVE =   /obj/item/organ/internal/xenos/hivenode,
 		O_RESIN =  /obj/item/organ/internal/xenos/resinspinner,
 	)
 

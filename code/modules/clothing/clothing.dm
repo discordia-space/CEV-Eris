@@ -30,6 +30,7 @@
 
 //Delayed equipping
 /obj/item/clothing/pre_equip(var/mob/user, var/slot)
+	..(user, slot)
 	if (equip_delay > 0)
 		//If its currently worn, we must be taking it off
 		if (is_worn())
@@ -113,7 +114,7 @@
 	var/other_slot = (slot == slot_l_ear) ? slot_r_ear : slot_l_ear
 	if(user.get_equipped_item(other_slot) != master_item || user.get_equipped_item(slot))
 		return FALSE
-	return TRUE
+	return ..()
 
 /obj/item/clothing/ears/earmuffs
 	name = "earmuffs"
@@ -353,7 +354,6 @@ BLIND     // can't see anything
 	var/can_hold_knife
 	var/obj/item/holding
 
-	var/silence_steps = FALSE
 
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
@@ -438,7 +438,24 @@ BLIND     // can't see anything
 	name = "suit"
 	var/fire_resist = T0C+100
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	allowed = list(/obj/item/weapon/tank/emergency_oxygen)
+	allowed = list(
+		/obj/item/weapon/storage/pouch/,
+		/obj/item/weapon/gun,
+		/obj/item/weapon/melee,
+		/obj/item/weapon/material,
+		/obj/item/ammo_magazine,
+		/obj/item/ammo_casing,
+		/obj/item/weapon/handcuffs,
+		/obj/item/weapon/tank,
+		/obj/item/device/suit_cooling_unit,
+		/obj/item/weapon/cell,
+		/obj/item/weapon/storage/fancy,
+		/obj/item/weapon/flame,
+		/obj/item/device/lighting,
+		/obj/item/device/scanner,
+		/obj/item/weapon/reagent_containers/spray,
+		/obj/item/device/radio,
+		/obj/item/clothing/mask)
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	slot_flags = SLOT_OCLOTHING
 	var/blood_overlay_type = "suit"
@@ -546,8 +563,8 @@ BLIND     // can't see anything
 	sensor_mode = 3
 	..()
 
-/obj/item/clothing/under/rank/attackby(var/obj/item/I, var/mob/U)
-	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING)) && ishuman(U))
+/obj/item/clothing/under/attackby(var/obj/item/I, var/mob/U)
+	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING), src) && ishuman(U))
 		set_sensors(U)
 	else
 		return ..()

@@ -101,7 +101,7 @@
 
 		var/mutable_appearance/MA = new(scanned)
 		MA.appearance_flags = KEEP_APART | RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
-		MA.plane = GAME_PLANE
+		MA.plane = current_user.get_relative_plane(GAME_PLANE)
 		MA.layer = ABOVE_HUD_LAYER
 		MA.alpha = 128
 
@@ -313,7 +313,7 @@ are technically visible but obscured, for example by catwalks or trash sitting o
 
 
 	for(var/scanned in active_scanned)
-		user_client += active_scanned[scanned]
+		user_client.images += active_scanned[scanned]
 
 
 

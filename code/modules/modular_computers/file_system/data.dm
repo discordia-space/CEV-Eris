@@ -20,3 +20,20 @@
 
 /datum/computer_file/data/text
 	filetype = "TXT"
+
+/datum/computer_file/data/audio
+	filetype = "AUD"
+	var/transcribed = FALSE
+	var/max_capacity = 600
+	var/used_capacity = 0
+	var/list/storedinfo = list()
+	var/list/timestamp = list()
+
+/datum/computer_file/data/audio/clone()
+	var/datum/computer_file/data/audio/A = ..()
+	A.max_capacity = max_capacity
+	A.used_capacity = used_capacity
+	A.storedinfo = storedinfo
+	A.timestamp = timestamp
+	A.transcribed = transcribed
+	return A

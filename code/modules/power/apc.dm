@@ -320,18 +320,18 @@
 			icon_state = "apcemag"
 		else if(update_state & UPDATE_WIREEXP)
 			icon_state = "apcewires"
-			
+
 		if(update_state & UPDATE_BLUESCREEN)
 			set_light(l_range = 2, l_power = 0.6, l_color = "#0000FF")
 		else if(!(stat & (BROKEN|MAINT)) && update_state & UPDATE_ALLGOOD)
 			var/color
 			switch(charging)
 				if(0)
-					color = "#F86060"
+					color = COLOR_LIGHTING_RED_MACHINERY
 				if(1)
-					color = "#A8B0F8"
+					color = COLOR_LIGHTING_BLUE_BRIGHT
 				if(2)
-					color = "#82FF4C"
+					color = COLOR_LIGHTING_GREEN_BRIGHT
 			set_light(l_range = 2, l_power = 0.6, l_color = color)
 		else
 			set_light(0)
@@ -351,7 +351,7 @@
 				overlays += status_overlays_equipment[equipment+1]
 				overlays += status_overlays_lighting[lighting+1]
 				overlays += status_overlays_environ[environ+1]
-		
+
 
 /obj/machinery/power/apc/proc/check_updates()
 
@@ -448,7 +448,7 @@
 	if(opened && has_electronics==0 && !terminal)
 		usable_qualities.Add(QUALITY_WELDING)
 
-	var/tool_type = I.get_tool_type(user, usable_qualities)
+	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 
 		if(QUALITY_PRYING)

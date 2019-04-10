@@ -111,7 +111,7 @@
 	recharge_time = 3
 	volume = 60
 	possible_transfer_amounts = list(5, 10, 20, 30)
-	reagent_ids = list("beer", "kahlua", "whiskey", "wine", "vodka", "gin", "rum", "tequilla", "vermouth", "cognac", "ale", "mead", "water", "sugar", "ice", "tea", "icetea", "cola", "spacemountainwind", "dr_gibb", "space_up", "tonic", "sodawater", "lemon_lime", "orangejuice", "limejuice", "watermelonjuice")
+	reagent_ids = list("beer", "kahlua", "whiskey", "wine", "vodka", "gin", "rum", "tequilla", "vermouth", "cognac", "ale", "mead", "water", "sugar", "ice", "tea", "greentea", "icetea", "icegreentea", "cola", "spacemountainwind", "dr_gibb", "space_up", "tonic", "sodawater", "lemon_lime", "orangejuice", "limejuice", "watermelonjuice")
 
 /obj/item/weapon/reagent_containers/borghypo/service/attack(var/mob/M, var/mob/user)
 	return
@@ -120,7 +120,7 @@
 	if(!proximity)
 		return
 
-	if(!target.is_open_container() || !target.reagents)
+	if(!target.is_refillable())
 		return
 
 	if(!reagent_volumes[reagent_ids[mode]])

@@ -1,8 +1,9 @@
 /mob/living/carbon/New()
 	//setup reagent holders
-	bloodstr = new/datum/reagents/metabolism(1000, src, CHEM_BLOOD)
-	ingested = new/datum/reagents/metabolism(1000, src, CHEM_INGEST)
-	touching = new/datum/reagents/metabolism(1000, src, CHEM_TOUCH)
+	bloodstr = new /datum/reagents/metabolism(1000, src, CHEM_BLOOD)
+	ingested = new /datum/reagents/metabolism(1000, src, CHEM_INGEST)
+	touching = new /datum/reagents/metabolism(1000, src, CHEM_TOUCH)
+	metabolism_effects = new /datum/metabolism_effects(src)
 	reagents = bloodstr
 	..()
 
@@ -29,6 +30,7 @@
 	bloodstr.clear_reagents()
 	ingested.clear_reagents()
 	touching.clear_reagents()
+	metabolism_effects.clear_effects()
 	nutrition = 400
 	shock_stage = 0
 	..()
@@ -36,12 +38,11 @@
 /mob/living/carbon/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	. = ..()
 	if(.)
-		if(src.nutrition && src.stat != 2)
+		if (src.nutrition && src.stat != 2)
 			src.nutrition -= DEFAULT_HUNGER_FACTOR/10
-			if(src.m_intent == "run")
+			if (move_intent.flags & MOVE_INTENT_EXERTIVE)
 				src.nutrition -= DEFAULT_HUNGER_FACTOR/10
-		if((FAT in src.mutations) && src.m_intent == "run" && src.bodytemperature <= 360)
-			src.bodytemperature += 2
+
 
 		// Moving around increases germ_level faster
 		if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
@@ -124,9 +125,26 @@
 	return shock_damage
 
 /mob/living/carbon/swap_hand()
+
+	//We cache the held items before and after swapping using get active hand.
+	//This approach is future proof and will support people who possibly have >2 hands
+	var/obj/item/prev_held = get_active_hand()
+
+	//Now we do the hand swapping
 	src.hand = !( src.hand )
 	for (var/obj/screen/inventory/hand/H in src.HUDinventory)
 		H.update_icon()
+
+	var/obj/item/new_held = get_active_hand()
+
+	//Tell the old and new held items that they've been swapped
+
+	if (prev_held != new_held)
+		if (istype(prev_held))
+			prev_held.swapped_from(src)
+		if (istype(new_held))
+			new_held.swapped_to(src)
+
 	return TRUE
 
 /mob/living/carbon/proc/activate_hand(var/selhand) //0 or "r" or "right" for right hand; 1 or "l" or "left" for left hand.
@@ -146,52 +164,7 @@
 	if (src.health >= HEALTH_THRESHOLD_CRIT)
 		if(src == M && ishuman(src))
 			var/mob/living/carbon/human/H = src
-			src.visible_message(
-				text("\blue [src] examines [].",src.gender==MALE?"himself":"herself"),
-				"\blue You check yourself for injuries."
-			)
-
-			for(var/obj/item/organ/external/org in H.organs)
-				var/list/status = list()
-				var/brutedamage = org.brute_dam
-				var/burndamage = org.burn_dam
-				if(halloss > 0)
-					if(prob(30))
-						brutedamage += halloss
-					if(prob(30))
-						burndamage += halloss
-				switch(brutedamage)
-					if(1 to 20)
-						status += "bruised"
-					if(20 to 40)
-						status += "wounded"
-					if(40 to INFINITY)
-						status += "mangled"
-
-				switch(burndamage)
-					if(1 to 10)
-						status += "numb"
-					if(10 to 40)
-						status += "blistered"
-					if(40 to INFINITY)
-						status += "peeling away"
-
-				if(org.is_stump())
-					status += "MISSING"
-				if(org.status & ORGAN_MUTATED)
-					status += "weirdly shapen"
-				if(org.dislocated == 2)
-					status += "dislocated"
-				if(org.status & ORGAN_BROKEN)
-					status += "hurts when touched"
-				if(org.status & ORGAN_DEAD)
-					status += "is bruised and necrotic"
-				if(!org.is_usable())
-					status += "dangling uselessly"
-				if(status.len)
-					src.show_message("My [org.name] is <span class='warning'> [english_list(status)].</span>",1)
-				else
-					src.show_message("My [org.name] is <span class='notice'> OK.</span>",1)
+			H.check_self_for_injuries()
 
 			if((SKELETON in H.mutations) && (!H.w_uniform) && (!H.wear_suit))
 				H.play_xylophone()
@@ -305,9 +278,9 @@
 	if(item && src.unEquip(item, loc))
 		src.visible_message("\red [src] has thrown [item].")
 
-		if(!src.lastarea)
-			src.lastarea = get_area(src.loc)
-		if((istype(src.loc, /turf/space)) || (src.lastarea.has_gravity == 0))
+		//if(!src.lastarea) // this check would break inertia movement
+		src.lastarea = get_area(src.loc)
+		if((istype(src.loc, /turf/space)) || (src.lastarea.has_gravity == 0 && !check_shoegrip()))
 			src.inertia_dir = get_dir(target, src)
 			step(src, inertia_dir)
 

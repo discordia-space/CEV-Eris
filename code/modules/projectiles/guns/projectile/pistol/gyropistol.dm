@@ -6,6 +6,8 @@
 	caliber = "75"
 	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'
 	origin_tech = list(TECH_COMBAT = 3)
+	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)
+	price_tag = 1500
 	ammo_type = "/obj/item/ammo_casing/a75"
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/a75

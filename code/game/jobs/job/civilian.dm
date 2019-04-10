@@ -4,7 +4,7 @@
 /datum/job/bartender
 	title = "Bartender"
 	flag = BARTENDER
-	department = "Civilian"
+	department = DEPARTMENT_CIVILIAN
 	department_flag = SERVICE
 	faction = "CEV Eris"
 	total_positions = 2
@@ -13,10 +13,13 @@
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 15)
 	access = list(access_hydroponics, access_bar, access_kitchen)
-
+	initial_balance	= 1600
+	wage = WAGE_NONE	//Bartender is unpaid, they make money selling drinks
 	stat_modifiers = list(
-		STAT_ROB = 10,
+		STAT_ROB = 15,
+		STAT_TGH = 15,
 	)
+	also_known_languages = list(LANGUAGE_JIVE = 80)
 
 	outfit_type = /decl/hierarchy/outfit/job/service/bartender
 
@@ -46,20 +49,24 @@
 /datum/job/chef
 	title = "Chef"
 	flag = CHEF
-	department = "Civilian"
+	department = DEPARTMENT_CIVILIAN
 	department_flag = SERVICE
 	faction = "CEV Eris"
 	total_positions = 3
 	spawn_positions = 3
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_JIVE = 80)
 	access = list(access_hydroponics, access_bar, access_kitchen)
-
+	stat_modifiers = list(
+		STAT_ROB = 10,
+		STAT_TGH = 10,
+	)
 	outfit_type = /decl/hierarchy/outfit/job/service/chef
 
 	loyalties = LOYALTY_CIVILIAN
-
+	wage = WAGE_NONE	//Chef is unpaid, they make money selling food
+	initial_balance	= 1600
 	description = "	Everyone's favourite person when they're hungry, you are the chef, maker of food and slayer of hunger. Everyone needs to eat, and you make sure they can. Your job is fairly simple, cook food for the crew. Your primary source of raw materials is the garden downstairs, you and the gardener should work closely together. <br>\
 	<br>\
 	You are a sole trader trying to make a profit here, so giving away your food for free is not adviseable unless times are desperate<br>\
@@ -79,7 +86,7 @@
 /datum/job/hydro
 	title = "Gardener"
 	flag = BOTANIST
-	department = "Civilian"
+	department = DEPARTMENT_CIVILIAN
 	department_flag = SERVICE
 	faction = "CEV Eris"
 	total_positions = 3
@@ -87,15 +94,14 @@
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
 	//alt_titles = list("Hydroponicist")
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_JIVE = 80)
 	access = list(access_hydroponics, access_bar, access_kitchen)
 
 	outfit_type = /decl/hierarchy/outfit/job/service/gardener
-
 	stat_modifiers = list(
 		STAT_BIO = 10,
-		STAT_TGH = 10,
-		STAT_ROB = 20,
+		STAT_TGH = 15,
+		STAT_ROB = 10,
 	)
 
 	description = "The green-fingered gnome working in the glorious viridian basement of Eris. You are the gardener, tender of plants.<br>\
@@ -124,21 +130,21 @@
 /datum/job/actor
 	title = "Actor"
 	flag = ACTOR
-	department = "Civilian"
+	department = DEPARTMENT_CIVILIAN
 	department_flag = SERVICE
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5, LANGUAGE_JIVE = 80)
 	access = list(access_maint_tunnels, access_theatre)
 
 	outfit_type = /decl/hierarchy/outfit/job/service/actor/clown
-
+	wage = WAGE_LABOUR_DUMB	//Barely a retaining fee. Actor can busk for credits to keep themselves fed
 	stat_modifiers = list(
 		STAT_TGH = 10,
-		STAT_ROB = 20,
+		STAT_ROB = 15,
 	)
 
 	loyalties = LOYALTY_CIVILIAN
@@ -152,7 +158,7 @@
 /datum/job/janitor
 	title = "Janitor"
 	flag = JANITOR
-	department = "Civilian"
+	department = DEPARTMENT_CIVILIAN
 	department_flag = SERVICE
 	faction = "CEV Eris"
 	total_positions = 3
@@ -160,13 +166,14 @@
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
 	//alt_titles = list("Custodian","Sanitation Technician")
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_JIVE = 80)
 	access = list(access_janitor, access_maint_tunnels)
-
+	wage = WAGE_LABOUR_DUMB //Todo future: Give janitor bonus based on cleaning actually done
 	outfit_type = /decl/hierarchy/outfit/job/service/janitor
 
 	stat_modifiers = list(
 		STAT_ROB = 10,
+		STAT_BIO = 10,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/camera_monitor)

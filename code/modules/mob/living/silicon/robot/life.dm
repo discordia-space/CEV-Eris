@@ -2,7 +2,7 @@
 	set invisibility = 0
 	set background = 1
 
-	if (src.transforming)
+	if (HAS_TRANSFORMATION_MOVEMENT_HANDLER(src))
 		return
 
 	src.blinded = null
@@ -24,7 +24,7 @@
 		if (!src.death_notified && src.connected_ai)
 			src.notify_ai(ROBOT_NOTIFICATION_SIGNAL_LOST)
 			src.death_notified = TRUE
-	update_canmove()
+	update_lying_buckled_and_verb_status()
 
 /mob/living/silicon/robot/proc/clamp_values()
 
@@ -266,7 +266,7 @@
 			weapon_lock = 0
 			weaponlock_time = 120
 
-/mob/living/silicon/robot/update_canmove()
+/mob/living/silicon/robot/update_lying_buckled_and_verb_status()
 	if(paralysis || stunned || weakened || buckled || lockcharge || !is_component_functioning("actuator")) canmove = 0
 	else canmove = 1
 	return canmove

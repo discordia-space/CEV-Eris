@@ -3,6 +3,7 @@
 	desc = "One of those famous Aster's holoplants! Add to your Space a bit of the comfort from old Earth, by buying this blue buddy. A nuclear battery and a rugged case guarantee that your flower will survive journey to another galaxy, and variety of plant types won't let you to get bored along the way!"
 	icon = 'icons/obj/cyberplants.dmi'
 	icon_state = "holopot"
+	w_class = ITEM_SIZE_TINY
 	var/brightness_on = 4
 	var/emaged = FALSE
 	var/interference = FALSE
@@ -19,46 +20,12 @@
 		"plant-xmas",
 	)
 	var/global/list/possible_colors = list(
-		rgb(60, 148, 197),
-		COLOR_NAVY_BLUE,
-		COLOR_GREEN,
-		COLOR_MAROON,
-		COLOR_PURPLE,
-		COLOR_VIOLET,
-		COLOR_OLIVE,
-		COLOR_BROWN_ORANGE,
-		COLOR_DARK_ORANGE,
-		COLOR_SEDONA,
-		COLOR_DARK_BROWN,
-		COLOR_BLUE,
-		COLOR_DEEP_SKY_BLUE,
-		COLOR_LIME,
-		COLOR_CYAN,
-		COLOR_TEAL,
-		COLOR_RED,
-		COLOR_PINK,
-		COLOR_ORANGE,
-		COLOR_YELLOW,
-		COLOR_SUN,
-		COLOR_BLUE_LIGHT,
-		COLOR_RED_LIGHT,
-		COLOR_BEIGE,
-		COLOR_LUMINOL,
-		COLOR_SILVER,
-		COLOR_WHITE,
-		COLOR_NT_RED,
-		COLOR_BOTTLE_GREEN,
-		COLOR_CHESTNUT,
-		COLOR_BEASTY_BROWN,
-		COLOR_WHEAT,
-		COLOR_CYAN_BLUE,
-		COLOR_LIGHT_CYAN,
-		COLOR_PAKISTAN_GREEN,
-		COLOR_HULL,
-		COLOR_AMBER,
-		COLOR_SKY_BLUE,
-		COLOR_CIVIE_GREEN,
-		COLOR_DARK_GUNMETAL,
+		COLOR_LIGHTING_RED_BRIGHT,
+		COLOR_LIGHTING_BLUE_BRIGHT,
+		COLOR_LIGHTING_GREEN_BRIGHT,
+		COLOR_LIGHTING_ORANGE_BRIGHT,
+		COLOR_LIGHTING_PURPLE_BRIGHT,
+		COLOR_LIGHTING_CYAN_BRIGHT
 	)
 
 /obj/structure/cyberplant/Initialize()

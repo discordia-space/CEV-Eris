@@ -18,11 +18,12 @@
 	bulletinsert_sound 	= 'sound/weapons/guns/interact/shotgun_insert.ogg'
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
+	price_tag = 1800
 
 	burst_delay = 0
 	firemodes = list(
-		list(mode_name="fire one barrel at a time", burst=1),
-		list(mode_name="fire both barrels at once", burst=2),
+		list(mode_name="fire one barrel at a time", burst=1, icon="semi"),
+		list(mode_name="fire both barrels at once", burst=2, icon="burst"),
 		)
 
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/pellet

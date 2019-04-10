@@ -81,7 +81,8 @@
 					body += "<a href='?src=\ref[src];traitor="+ref+"'>TP</a> - "
 					body += "<a href='?src=\ref[usr];priv_msg=\ref"+ref+"'>PM</a> - "
 					body += "<a href='?src=\ref[src];subtlemessage="+ref+"'>SM</a> - "
-					body += "<a href='?src=\ref[src];adminplayerobservejump="+ref+"'>JMP</a><br>"
+					body += "<a href='?src=\ref[src];viewlogs="+ref+"'>LOGS</a> - "
+					body += "<a href='?src=\ref[src];adminobservejump="+ref+"'>JMP</a><br>"
 					if(antagonist > 0)
 						body += "<font size='2'><a href='?src=\ref[src];check_antagonist=1'><font color='red'><b>Antagonist</b></font></a></font>";
 
@@ -194,7 +195,7 @@
 			<tr id='title_tr'>
 				<td align='center'>
 					<font size='5'><b>Player panel</b></font><br>
-					Hover over a line to see more information - <a href='?src=\ref[src];check_antagonist=1'>Check antagonists</a>
+					Hover over a line to see more information - <a href='?src=\ref[src];check_antagonist=1'>Storyteller Panel</a>
 					<p>
 				</td>
 			</tr>

@@ -2,7 +2,7 @@
 	title = "Moebius Expedition Overseer"
 	flag = MEO
 	head_position = 1
-	department = "Science"
+	department = DEPARTMENT_SCIENCE
 	department_flag = SCIENCE | COMMAND
 	faction = "CEV Eris"
 	total_positions = 1
@@ -10,7 +10,7 @@
 	supervisors = "Moebius Corporation"
 	selection_color = "#b39aaf"
 	req_admin_notify = 1
-	economic_modifier = 15
+	wage = WAGE_COMMAND
 	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 25)
 
 	outfit_type = /decl/hierarchy/outfit/job/science/rd
@@ -25,9 +25,9 @@
 	ideal_character_age = 50
 
 	stat_modifiers = list(
-		STAT_MEC = 30,
+		STAT_MEC = 25,
 		STAT_COG = 40,
-		STAT_BIO = 30,
+		STAT_BIO = 25,
 	)
 
 	// TODO: enable after baymed
@@ -56,14 +56,14 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 /datum/job/scientist
 	title = "Moebius Scientist"
 	flag = SCIENTIST
-	department = "Science"
+	department = DEPARTMENT_SCIENCE
 	department_flag = SCIENCE
 	faction = "CEV Eris"
 	total_positions = 5
 	spawn_positions = 5
 	supervisors = "the Moebius Expedition Overseer"
 	selection_color = "#bdb1bb"
-	economic_modifier = 7
+	wage = WAGE_PROFESSIONAL
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 
 	//alt_titles = list("Moebius Xenobiologist")
@@ -112,17 +112,17 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 /datum/job/roboticist
 	title = "Moebius Roboticist"
 	flag = ROBOTICIST
-	department = "Science"
+	department = DEPARTMENT_SCIENCE
 	department_flag = SCIENCE
 	faction = "CEV Eris"
 	total_positions = 3
 	spawn_positions = 3
 	supervisors = "the Moebius Expedition Overseer"
 	selection_color = "#bdb1bb"
-	economic_modifier = 5
+	wage = WAGE_PROFESSIONAL
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 
-	outfit_type = /decl/hierarchy/outfit/job/science/scientist
+	outfit_type = /decl/hierarchy/outfit/job/science/roboticist
 
 	access = list(
 		access_robotics, access_tox, access_tox_storage, access_tech_storage, access_morgue, access_moebius
@@ -131,7 +131,7 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 	stat_modifiers = list(
 		STAT_MEC = 30,
 		STAT_COG = 20,
-		STAT_BIO = 30,
+		STAT_BIO = 25,
 	)
 
 

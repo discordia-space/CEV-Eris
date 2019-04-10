@@ -119,7 +119,7 @@ SUBSYSTEM_DEF(job)
 			break
 
 /datum/controller/subsystem/job/proc/ResetOccupations()
-	for(var/mob/new_player/player in player_list)
+	for(var/mob/new_player/player in GLOB.player_list)
 		if((player) && (player.mind))
 			player.mind.assigned_role = null
 			player.mind.assigned_job = null
@@ -202,7 +202,7 @@ SUBSYSTEM_DEF(job)
 				break
 
 	//Get the players who are ready
-	for(var/mob/new_player/player in player_list)
+	for(var/mob/new_player/player in GLOB.player_list)
 		if(player.ready && player.mind && !player.mind.assigned_role)
 			unassigned += player
 
@@ -329,15 +329,16 @@ SUBSYSTEM_DEF(job)
 	H.job = rank
 
 	// If they're head, give them the account info for their department
-	if(H.mind && job.head_position)
+	if(H.mind && (job.head_position || job.department_account_access))
 		var/remembered_info = ""
 		var/datum/money_account/department_account = department_accounts[job.department]
-
 		if(department_account)
 			remembered_info += "<b>Your department's account number is:</b> #[department_account.account_number]<br>"
 			remembered_info += "<b>Your department's account pin is:</b> [department_account.remote_access_pin]<br>"
 			remembered_info += "<b>Your department's account funds are:</b> [CREDS][department_account.money]<br>"
-		remembered_info += "<b>Your part of nuke code:</b> [SSticker.get_next_nuke_code_part()]<br>"
+		if(job.head_position)
+			remembered_info += "<b>Your part of nuke code:</b> [SSticker.get_next_nuke_code_part()]<br>"
+			department_account.owner_name = H.real_name //Register them as the point of contact for this account
 
 		H.mind.store_memory(remembered_info)
 
@@ -366,7 +367,7 @@ SUBSYSTEM_DEF(job)
 		if(!l_leg || !r_leg)
 			var/obj/structure/bed/chair/wheelchair/W = new /obj/structure/bed/chair/wheelchair(H.loc)
 			H.buckled = W
-			H.update_canmove()
+			H.update_lying_buckled_and_verb_status()
 			W.set_dir(H.dir)
 			W.buckled_mob = H
 			W.add_fingerprint(H)
@@ -410,7 +411,7 @@ proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
 				var/permitted = 1
 				if(permitted)
 					if(G.allowed_roles)
-						if(job.type in G.allowed_roles)
+						if(job.title in G.allowed_roles)
 							permitted = 1
 						else
 							permitted = 0
@@ -475,7 +476,7 @@ proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
 		var/level4 = 0 //never
 		var/level5 = 0 //banned
 		var/level6 = 0 //account too young
-		for(var/mob/new_player/player in player_list)
+		for(var/mob/new_player/player in GLOB.player_list)
 			if(!(player.ready && player.mind && !player.mind.assigned_role))
 				continue //This player is not ready
 			if(jobban_isbanned(player, job.title))
@@ -508,30 +509,57 @@ proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
 	var/pref_spawn = C.prefs.spawnpoint
 
 	var/datum/spawnpoint/SP
+
+
+
+	//First of all, lets try to get the "default" spawning point.
 	if(late)
-		if(!pref_spawn)
-			SP = getSpawnPoint(maps_data.default_spawn, late = TRUE)
-			H << SPAN_WARNING("You have not selected spawnpoint in preference menu, you will be assigned default one which is \"[SP.display_name]\".")
+		if(pref_spawn)
+			SP = get_spawn_point(pref_spawn, late = TRUE)
 		else
-			SP = getSpawnPoint(pref_spawn, late = TRUE)
-			if(SP && !SP.check_job_spawning(rank))
-				H << SPAN_WARNING("Your chosen spawnpoint ([SP.display_name]) is unavailable for your chosen job ([rank]). Spawning you at another spawn point instead.")
-				SP = null
-				for(var/spawntype in get_late_spawntypes())
-					var/datum/spawnpoint/candidate = get_late_spawntypes()[spawntype]
-					if(candidate.check_job_spawning(rank))
-						SP = candidate
-						break
-				if(!SP)
-					warning("Could not find an appropriate spawnpoint for job [rank] (latespawn).")
+			SP = get_spawn_point(maps_data.default_spawn, late = TRUE)
+			to_chat(H, SPAN_WARNING("You have not selected spawnpoint in preference menu."))
 	else
-		SP = getSpawnPoint(rank)
-		if(!SP)
-			warning("Could not find an appropriate spawnpoint for job [rank] (roundstart).")
+		SP = get_spawn_point(rank)
+
+	//Test the default spawn we just got
+	//Feeding true to the report var here will allow the user to choose to spawn anyway
+	if (SP && SP.can_spawn(H, rank, TRUE))
+		return SP
+
+	else
+		//The above didn't work, okay lets start testing spawnpoints at random until we find a place we can spawn
+		//Todo: Add in pref options to specify an ordered priority list for spawning locations
+		var/list/spawns = get_late_spawntypes()
+		var/list/possibilities = spawns.Copy() //The above proc returns a pointer to the list, we need to copy it so we dont modify the original
+		if (istype(SP))
+			possibilities -= SP.name //Lets subtract the one we already tested
+		SP = null
+
+		while (possibilities.len)
+			//Randomly pick things from our shortlist
+			var/spawn_name = pick(possibilities)
+			SP = possibilities[spawn_name]
+			possibilities -= spawn_name //Then remove them from that list of course
+
+			if(SP.can_spawn(H, rank))
+				return SP
+			else
+				to_chat(H, SPAN_WARNING("Unable to spawn you at [SP.name]."))// you will be assigned default one which is \"[SP.display_name]\".")
+
+	// No spawn point? Something is fucked.
+	// Pick the default one.
+	to_chat(H, SPAN_WARNING("Unable to locate any safe spawn point. Have fun!"))
+	SP = get_spawn_point("Aft Cryogenic Storage")
+
+	// Still no spawn point? Return the first spawn point on the list.
 	if(!SP)
-		// Pick default spawnpoint, just so we have one
-		SP = SP = getSpawnPoint(maps_data.default_spawn, late = TRUE)
+		var/list/possibilities = get_late_spawntypes()
+		SP = possibilities[possibilities[1]]
+
 	return SP
+
+
 
 /datum/controller/subsystem/job/proc/ShouldCreateRecords(var/title)
 	if(!title) return 0

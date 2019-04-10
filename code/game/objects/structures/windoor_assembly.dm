@@ -5,14 +5,14 @@
  * Step 4: Wrench the assembly in place
  * Step 5: Add cables to the assembly
  * Step 6: Set access for the door.
- * Step 7: Screwdriver the door to complete
+ * Step 7: Crowbar the door to complete
  */
 
 
 obj/structure/windoor_assembly
 	name = "windoor assembly"
 	icon = 'icons/obj/doors/windoor.dmi'
-	icon_state = "l_windoor_assembly01"
+	icon_state = "l_windoor_assembly0"
 	anchored = 0
 	density = 0
 	dir = NORTH
@@ -23,12 +23,12 @@ obj/structure/windoor_assembly
 	//Vars to help with the icon's name
 	var/facing = "l"	//Does the windoor open to the left or right?
 	var/secure = ""		//Whether or not this creates a secure windoor
-	var/state = "01"	//How far the door assembly has progressed in terms of sprites
+	var/state = 0		//How far the door assembly has progressed in terms of sprites
 
 obj/structure/windoor_assembly/New(Loc, start_dir=NORTH, constructed=0)
 	..()
 	if(constructed)
-		state = "01"
+		state = 0
 		anchored = 0
 	switch(start_dir)
 		if(NORTH, SOUTH, EAST, WEST)
@@ -68,20 +68,20 @@ obj/structure/windoor_assembly/Destroy()
 	//I really should have spread this out across more states but thin little windoors are hard to sprite.
 
 	var/list/usable_qualities = list()
-	if((state == "01" && !anchored) || (state == "01" && anchored))
+	if((state == 0 && !anchored) || (state == 0 && anchored))
 		usable_qualities.Add(QUALITY_BOLT_TURNING)
-	if(state == "01" && !anchored)
+	if(state == 0 && !anchored)
 		usable_qualities.Add(QUALITY_WELDING)
-	if(state == "02" && electronics)
+	if(state == 1 && electronics)
 		usable_qualities.Add(QUALITY_PRYING, QUALITY_SCREW_DRIVING)
-	if(state == "02" && !electronics)
+	if(state == 1 && !electronics)
 		usable_qualities.Add(QUALITY_WIRE_CUTTING)
 
-	var/tool_type = I.get_tool_type(user, usable_qualities)
+	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 
 		if(QUALITY_BOLT_TURNING)
-			if(state == "01" && !anchored)
+			if(state == 0 && !anchored)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user << SPAN_NOTICE("You've secured the windoor assembly!")
 					src.anchored = 1
@@ -90,7 +90,7 @@ obj/structure/windoor_assembly/Destroy()
 					else
 						src.name = "Anchored Windoor Assembly"
 					return
-			if(state == "01" && anchored)
+			if(state == 0 && anchored)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user << SPAN_NOTICE("You've unsecured the windoor assembly!")
 					anchored = 0
@@ -102,7 +102,7 @@ obj/structure/windoor_assembly/Destroy()
 			return
 
 		if(QUALITY_WELDING)
-			if(state == "01" && !anchored)
+			if(state == 0 && !anchored)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user << SPAN_NOTICE("You dissasembled the windoor assembly!")
 					new /obj/item/stack/material/glass/reinforced(get_turf(src), 5)
@@ -113,7 +113,7 @@ obj/structure/windoor_assembly/Destroy()
 			return
 
 		if(QUALITY_PRYING)
-			if(state == "02" && !electronics)
+			if(state == 1 && electronics)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					usr << browse(null, "window=windoor_access")
 					density = 1 //Shouldn't matter but just incase
@@ -161,11 +161,11 @@ obj/structure/windoor_assembly/Destroy()
 			return
 
 		if(QUALITY_WIRE_CUTTING)
-			if(state == "02" && !src.electronics)
+			if(state == 1 && !electronics)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user << SPAN_NOTICE("You remove the windoor wires.!")
 					new/obj/item/stack/cable_coil(get_turf(user), 1)
-					src.state = "01"
+					src.state = 0
 					if(src.secure)
 						src.name = "Secure Anchored Windoor Assembly"
 					else
@@ -174,7 +174,7 @@ obj/structure/windoor_assembly/Destroy()
 			return
 
 		if(QUALITY_SCREW_DRIVING)
-			if(state == "02" && !electronics)
+			if(state == 1 && electronics)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user << SPAN_NOTICE("You've removed the airlock electronics!")
 					if(src.secure)
@@ -191,8 +191,8 @@ obj/structure/windoor_assembly/Destroy()
 			return
 
 	switch(state)
-		if("01")
-			//Adding plasteel makes the assembly a secure windoor assembly. Step 2 (optional) complete.
+		if(0)
+			//Adding rods makes the assembly a secure windoor assembly. Step 2 (optional) complete.
 			if(istype(I, /obj/item/stack/rods) && !secure)
 				var/obj/item/stack/rods/R = I
 				if(R.get_amount() < 4)
@@ -217,7 +217,7 @@ obj/structure/windoor_assembly/Destroy()
 				if(do_after(user, 40,src))
 					if (CC.use(1))
 						user << SPAN_NOTICE("You wire the windoor!")
-						src.state = "02"
+						src.state = 1
 						if(src.secure)
 							src.name = "Secure Wired Windoor Assembly"
 						else
@@ -225,7 +225,7 @@ obj/structure/windoor_assembly/Destroy()
 			else
 				..()
 
-		if("02")
+		if(1)
 
 			//Adding airlock electronics for access. Step 6 complete.
 			if(istype(I, /obj/item/weapon/airlock_electronics) && I:icon_state != "door_electronics_smoked")
@@ -259,12 +259,12 @@ obj/structure/windoor_assembly/Destroy()
 	if (src.anchored)
 		usr << "It is fastened to the floor; therefore, you can't rotate it!"
 		return 0
-	if(src.state != "01")
+	if(src.state != 0)
 		update_nearby_tiles(need_rebuild=1) //Compel updates before
 
 	src.set_dir(turn(src.dir, 270))
 
-	if(src.state != "01")
+	if(src.state != 0)
 		update_nearby_tiles(need_rebuild=1)
 
 	update_icon()

@@ -270,8 +270,8 @@ var/list/flooring_types
 	//BSTs need this or they generate tons of soundspam while flying through the ship
 	if(!ishuman(M)|| M.incorporeal_move || !has_gravity(get_turf(M)))
 		return
-	if(M.m_intent == "run")
-		if(prob(40))
+	if(MOVING_QUICKLY(M))
+		if(prob(20))
 			M.adjustBruteLoss(5)
 			M.slip(null, 6)
 			playsound(M, 'sound/effects/bang.ogg', 50, 1)
@@ -319,7 +319,7 @@ var/list/flooring_types
 
 //==========CARPET==============
 /decl/flooring/carpet
-	name = "carpet"
+	name = "red carpet"
 	desc = "Imported and comfy."
 	icon = 'icons/turf/flooring/carpet.dmi'
 	icon_base = "carpet"
@@ -341,7 +341,7 @@ var/list/flooring_types
 	build_type = /obj/item/stack/tile/carpet/blucarpet
 
 /decl/flooring/carpet/turcarpet
-	name = "tur carpet"
+	name = "turquoise carpet"
 	icon_base = "turcarpet"
 	build_type = /obj/item/stack/tile/carpet/turcarpet
 
@@ -384,6 +384,8 @@ var/list/flooring_types
 	floor_smooth = SMOOTH_NONE
 	wall_smooth = SMOOTH_NONE
 	space_smooth = SMOOTH_NONE
+
+
 
 
 
@@ -623,7 +625,7 @@ var/list/flooring_types
 	name = "floor"
 	icon_base = "techmaint_perforated"
 	icon = 'icons/turf/flooring/tiles_maint.dmi'
-	build_type = /obj/item/stack/tile/floor/techmaint_perforated
+	build_type = /obj/item/stack/tile/floor/techmaint/perforated
 	footstep_sound = "floor"
 
 	floor_smooth = SMOOTH_WHITELIST
@@ -633,7 +635,7 @@ var/list/flooring_types
 	name = "floor"
 	icon_base = "techmaint_panels"
 	icon = 'icons/turf/flooring/tiles_maint.dmi'
-	build_type = /obj/item/stack/tile/floor/techmaint_panels
+	build_type = /obj/item/stack/tile/floor/techmaint/panels
 	footstep_sound = "floor"
 
 	floor_smooth = SMOOTH_WHITELIST
@@ -643,7 +645,7 @@ var/list/flooring_types
 	name = "floor"
 	icon_base = "techmaint_cargo"
 	icon = 'icons/turf/flooring/tiles_maint.dmi'
-	build_type = /obj/item/stack/tile/floor/techmaint_cargo
+	build_type = /obj/item/stack/tile/floor/techmaint/cargo
 	footstep_sound = "floor"
 
 

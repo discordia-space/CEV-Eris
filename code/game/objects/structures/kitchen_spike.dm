@@ -59,7 +59,7 @@
 
 /obj/structure/kitchenspike/attackby(obj/item/I, mob/user)
 	var/list/usable_qualities = list(QUALITY_BOLT_TURNING)
-	var/tool_type = I.get_tool_type(user, usable_qualities)
+	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 
 	if (tool_type == QUALITY_BOLT_TURNING)
 		if (!occupied)

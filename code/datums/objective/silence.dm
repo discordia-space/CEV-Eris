@@ -7,7 +7,7 @@
 	if(!evacuation_controller.has_evacuated())
 		return FALSE
 
-	for(var/mob/living/player in player_list)
+	for(var/mob/living/player in GLOB.player_list)
 		if(player == owner.current)
 			continue
 		if(player.mind)

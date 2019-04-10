@@ -2,6 +2,7 @@
 /mob/living/carbon/superior_animal/giant_spider/hunter
 	desc = "Furry and black, it makes you shudder to look at it. This one has sparkling purple eyes."
 	icon_state = "hunter"
+	icon_living = "hunter"
 	maxHealth = 90
 	health = 90
 	melee_damage_lower = 10

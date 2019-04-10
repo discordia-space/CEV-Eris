@@ -960,7 +960,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 		tnote.Add(list(list("sent" = 1, "owner" = "[P.owner]", "job" = "[P.ownjob]", "message" = "[t]", "target" = "\ref[P]")))
 		P.tnote.Add(list(list("sent" = 0, "owner" = "[owner]", "job" = "[ownjob]", "message" = "[t]", "target" = "\ref[src]")))
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			if((M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH) || isangel(M)) // src.client is so that ghosts don't have to listen to mice
 				if(isnewplayer(M))
 					continue
@@ -1370,29 +1370,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 		plist[text("[name]")] = P
 	return plist
-
-
-//Some spare PDAs in a box
-/obj/item/weapon/storage/box/PDAs
-	name = "box of spare PDAs"
-	desc = "A box of spare PDA microcomputers."
-	icon = 'icons/obj/pda.dmi'
-	icon_state = "pdabox"
-
-	New()
-		..()
-		new /obj/item/device/pda(src)
-		new /obj/item/device/pda(src)
-		new /obj/item/device/pda(src)
-		new /obj/item/device/pda(src)
-		new /obj/item/weapon/cartridge/head(src)
-
-		var/newcart = pick(	/obj/item/weapon/cartridge/engineering,
-							/obj/item/weapon/cartridge/security,
-							/obj/item/weapon/cartridge/medical,
-							/obj/item/weapon/cartridge/signal/science,
-							/obj/item/weapon/cartridge/quartermaster)
-		new newcart(src)
 
 // Pass along the pulse to atoms in contents, largely added so pAIs are vulnerable to EMP
 /obj/item/device/pda/emp_act(severity)

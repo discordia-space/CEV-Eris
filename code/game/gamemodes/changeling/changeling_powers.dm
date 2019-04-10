@@ -291,7 +291,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 
 		H.transforming = 0
 		H.stunned = 0
-		H.update_canmove()
+		H.update_lying_buckled_and_verb_status()
 		H.invisibility = initial(invisibility)
 
 		for(var/obj/item/W in src)
@@ -315,7 +315,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	set category = "Changeling"
 	set name = "Lesser Form (1)"
 
-	if (transforming)
+	if(HAS_TRANSFORMATION_MOVEMENT_HANDLER(src))
 		return
 
 	var/datum/changeling/changeling = changeling_power(1,0,0)
@@ -330,6 +330,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	if(!istype(H) || !H.species.primitive_form)
 		src << SPAN_WARNING("We cannot perform this ability in this form!")
 		return
+
 
 	changeling.chem_charges--
 	H.remove_changeling_powers()
@@ -438,7 +439,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	C << SPAN_NOTICE("We will attempt to regenerate our form.")
 
 	C.status_flags |= FAKEDEATH		//play dead
-	C.update_canmove()
+	C.update_lying_buckled_and_verb_status()
 	C.remove_changeling_powers()
 
 	C.emote("gasp")
@@ -456,7 +457,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 			C.status_flags &= ~(FAKEDEATH)
 
 			// let us move again
-			C.update_canmove()
+			C.update_lying_buckled_and_verb_status()
 
 			// re-add out changeling powers
 			C.make_changeling()
@@ -501,7 +502,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	C.SetStunned(0)
 	C.SetWeakened(0)
 	C.lying = 0
-	C.update_canmove()
+	C.update_lying_buckled_and_verb_status()
 
 	src.verbs -= /mob/proc/changeling_unstun
 	spawn(5)	src.verbs += /mob/proc/changeling_unstun

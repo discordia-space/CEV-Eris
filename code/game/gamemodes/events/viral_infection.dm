@@ -51,7 +51,7 @@ datum/event/viral_infection/start()
 	if(!viruses.len) return
 
 	var/list/candidates = list()	//list of candidate keys
-	for(var/mob/living/carbon/human/G in player_list)
+	for(var/mob/living/carbon/human/G in GLOB.player_list)
 		if(G.mind && G.stat != DEAD && G.is_client_active(5) && !player_is_antag(G.mind))
 			if(isOnStationLevel(G))
 				candidates += G

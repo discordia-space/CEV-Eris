@@ -85,7 +85,7 @@
 			if(!H.eyecheck() <= 0)
 				continue
 			flash_time *= H.species.flash_mod
-			var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
+			var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[BP_EYES]
 			if(!E)
 				return
 			if(E.is_bruised() && prob(E.damage + 50))
@@ -114,7 +114,7 @@
 
 	if(iscarbon(AM))
 		var/mob/living/carbon/M = AM
-		if ((M.m_intent != "walk") && (src.anchored))
+		if ((MOVING_DELIBERATELY(M)) && (src.anchored))
 			src.flash()
 
 /obj/machinery/flasher/portable/attackby(obj/item/weapon/W as obj, mob/user as mob)

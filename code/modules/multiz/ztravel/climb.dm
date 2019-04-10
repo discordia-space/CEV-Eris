@@ -60,7 +60,7 @@
 	if (direction == DOWN)
 		var/matrix/mat = matrix()
 		mat.Scale(0.9)
-		M.plane = FLOOR_PLANE
+		M.set_plane(FLOOR_PLANE)
 		M.layer = 1
 		animate(M, alpha = 100, pixel_y = -16, transform = mat,  time = duration*1.2, easing = LINEAR_EASING)
 	else
@@ -86,7 +86,7 @@
 		if (!ishuman(M))
 			return FALSE
 		var/mob/living/carbon/human/H = M
-		if (H.Check_Shoegrip()) //This checks for magboots
+		if (H.check_shoegrip()) //This checks for magboots
 			return TRUE
 
 		else

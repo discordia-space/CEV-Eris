@@ -96,6 +96,11 @@
 	if(owner && vital)
 		owner.death()
 
+/obj/item/organ/get_item_cost()
+	if((status & ORGAN_DEAD) || species != all_species["Human"]) //No dead or monkey organs!
+		return 0
+	..()
+
 /obj/item/organ/Process()
 
 	if(loc != owner)
@@ -259,7 +264,7 @@
 		if (3)
 			take_damage(1)
 
-/obj/item/organ/proc/removed(var/mob/living/user)
+/obj/item/organ/proc/removed(mob/living/user)
 
 	if(!istype(owner))
 		return
@@ -272,7 +277,7 @@
 	var/obj/item/organ/external/affected = owner.get_organ(parent_organ)
 	if(affected) affected.internal_organs -= src
 
-	loc = get_turf(owner)
+	forceMove(get_turf(owner))
 	START_PROCESSING(SSobj, src)
 	rejecting = null
 	var/datum/reagent/blood/organ_blood = locate(/datum/reagent/blood) in reagents.reagent_list

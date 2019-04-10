@@ -18,7 +18,7 @@
 
 /obj/random/traps/low_chance
 	icon_state = "trap-orange-low"
-	spawn_nothing_percentage = 82
+	spawn_nothing_percentage = 80
 
 /obj/random/traps/wire_splicing
 	name = "wire splicing"
@@ -41,5 +41,3 @@
 		if (locate(/obj/structure/cable) in dview(3, T))
 			return TRUE
 		return FALSE
-
-

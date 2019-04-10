@@ -2,8 +2,7 @@
 	//SECURITY//
 	////////////
 #define UPLOAD_LIMIT		10485760	//Restricts client uploads to the server to 10MB //Boosted this thing. What's the worst that can happen?
-#define MIN_CLIENT_VERSION	0		//Just an ambiguously low version for now, I don't want to suddenly stop people playing.
-									//I would just like the code ready should it ever need to be used.
+
 	/*
 	When somebody clicks a link in game, this Topic is called first.
 	It does the stuff in this proc and  then is redirected to the Topic() proc for the src=[0xWhatever]
@@ -102,8 +101,19 @@
 
 	if(!(connection in list("seeker", "web")))					//Invalid connection type.
 		return null
-	if(byond_version < MIN_CLIENT_VERSION)		//Out of date client.
-		return null
+
+	#if DM_VERSION >= 512
+	if(byond_version < config.minimum_byond_version || byond_build < config.minimum_byond_build)		//BYOND out of date.
+		to_chat(src, "You are attempting to connect with a out of date version of BYOND. Please update to the latest version at http://www.byond.com/ before trying again.")
+		qdel(src)
+		return
+
+	if("[byond_version].[byond_build]" in config.forbidden_versions)
+		log_and_message_admins("[ckey] Tried to connect with broken and possibly exploitable BYOND build.")
+		to_chat(src, "You are attempting to connect with a broken and possibly exploitable BYOND build. Please update to the latest version at http://www.byond.com/ before trying again.")
+		qdel(src)
+		return
+	#endif
 
 	if(!config.guests_allowed && IsGuestKey(key))
 		alert(src,"This server doesn't allow guest accounts to play. Please go to http://www.byond.com/ and register for a key.","Guest","OK")
@@ -126,6 +136,12 @@
 	if(holder)
 		admins += src
 		holder.owner = src
+
+	// Localhost connections get full admin rights and a special rank
+	else if(isnull(address) || (address in list("127.0.0.1", "::1")))
+		holder = new /datum/admins("!localhost!", R_HOST, ckey)
+		holder.associate(src)
+
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
 	prefs = SScharacter_setup.preferences_datums[ckey]
@@ -165,6 +181,9 @@
 		winset(src, "rpane.changelog", "background-color=#eaeaea;font-style=bold")
 		if(config.aggressive_changelog)
 			src.changes()
+
+	if(!tooltips)
+		tooltips = new /datum/tooltip(src)
 
 	//////////////
 	//DISCONNECT//
@@ -301,7 +320,6 @@
 
 #undef TOPIC_SPAM_DELAY
 #undef UPLOAD_LIMIT
-#undef MIN_CLIENT_VERSION
 
 //checks if a client is afk
 //3000 frames = 5 minutes
@@ -381,7 +399,7 @@
 				break
 		if(!success)
 			log_debug("Could not find style \"[prefs.UI_style]\" for [mob_type].")
-				
+
 	if(UI)
 		UI.show()
 

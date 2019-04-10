@@ -4,7 +4,7 @@
 		if(ui)
 			ui.close()
 		return 0
-	if(!apc_power(0) && !battery_power(0))
+	if(!try_use_power(0))
 		if(ui)
 			ui.close()
 		return 0
@@ -104,8 +104,8 @@
 /obj/item/modular_computer/proc/get_header_data()
 	var/list/data = list()
 
-	if(battery_module)
-		switch(battery_module.battery.percent())
+	if(cell)
+		switch(cell.percent())
 			if(80 to 200) // 100 should be maximal but just in case..
 				data["PC_batteryicon"] = "batt_100.gif"
 			if(60 to 80)
@@ -118,12 +118,12 @@
 				data["PC_batteryicon"] = "batt_20.gif"
 			else
 				data["PC_batteryicon"] = "batt_5.gif"
-		data["PC_batterypercent"] = "[round(battery_module.battery.percent())] %"
+		data["PC_batterypercent"] = "[round(cell.percent())] %"
 		data["PC_showbatteryicon"] = 1
 	else
 		data["PC_batteryicon"] = "batt_5.gif"
 		data["PC_batterypercent"] = "N/C"
-		data["PC_showbatteryicon"] = battery_module ? 1 : 0
+		data["PC_showbatteryicon"] = cell ? 1 : 0
 
 	if(tesla_link && tesla_link.enabled && apc_powered)
 		data["PC_apclinkicon"] = "charging.gif"

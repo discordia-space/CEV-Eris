@@ -30,6 +30,7 @@
 	power_usage = 250
 	max_idle_programs = 4
 	origin_tech = list(TECH_DATA = 5, TECH_ENGINEERING = 4)
+	price_tag = 20
 
 /obj/item/weapon/computer_hardware/processor_unit/photonic/small
 	name = "photonic microprocessor"

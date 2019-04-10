@@ -44,12 +44,12 @@
 		else if(istype(tank,/obj/item/weapon/tank/oxygen))
 			overlays += "tank_oxyg"
 		else if(istype(tank,/obj/item/weapon/tank/plasma))
-			overlays += "tank_phoron"
+			overlays += "tank_plasma"
 		//else if(istype(tank,/obj/item/weapon/tank/hydrogen))
 		//	overlays += "tank_hydro"
 		else
 			overlays += "tank_other"
-			
+
 	if(beaker)
 		overlays += "beaker"
 		if(attached)
@@ -99,7 +99,7 @@
 /obj/structure/medical_stand/MouseDrop(var/mob/living/carbon/human/target, src_location, over_location)
 	..()
 	if(istype(target))
-		if(usr.stat == DEAD || !CanMouseDrop(src,target))
+		if(usr.stat == DEAD || !CanMouseDrop(target))
 			return
 		var/list/available_options = list()
 		if (tank)
@@ -110,9 +110,9 @@
 		var/action_type
 		if(available_options.len > 1)
 			action_type = input(usr, "What do you want to attach/detach?") as null|anything in available_options
-		else
+		else if(available_options.len)
 			action_type = available_options[1]
-		if(usr.stat == DEAD || !CanMouseDrop(src,target))
+		if(usr.stat == DEAD || !CanMouseDrop(target))
 			return
 		switch (action_type)
 			if("Gas mask")
@@ -165,7 +165,7 @@
 					attached = target
 					START_PROCESSING(SSobj,src)
 				update_icon()
-		
+
 
 /obj/structure/medical_stand/attack_hand(mob/user as mob)
 	var/list/available_options = list()
@@ -178,7 +178,7 @@
 	var/action_type
 	if(available_options.len > 1)
 		action_type = input(user, "What do you want to do?") as null|anything in available_options
-	else
+	else if(available_options.len)
 		action_type = available_options[1]
 	switch (action_type)
 		if ("Remove tank")
@@ -194,7 +194,7 @@
 			else if (!is_loosen)
 				user.visible_message("<span class='notice'>\The [user] tries to removes \the [tank] from \the [src] but it won't budge.</span>", "<span class='warning'>You try to removes \the [tank] from \the [src] but it won't budge.</span>")
 				return
-		if ("Toggle valve")	
+		if ("Toggle valve")
 			if (!tank)
 				to_chat(user, "<span class='warning'>There is no tank in \the [src]!</span>")
 				return
@@ -215,7 +215,7 @@
 						breather.internal = tank
 						if(internalsHud)
 							internalsHud.icon_state = "internal1"
-					valve_opened = TRUE	
+					valve_opened = TRUE
 					playsound(get_turf(src), 'sound/effects/internals.ogg', 100, 1)
 					update_icon()
 					START_PROCESSING(SSobj,src)
@@ -341,7 +341,7 @@
 /obj/structure/medical_stand/examine(var/mob/user)
 	. = ..()
 
-	if (get_dist(src, user) > 2) 
+	if (get_dist(src, user) > 2)
 		return
 
 	if(beaker)
@@ -410,13 +410,13 @@
 		else // Take blood
 			var/amount = beaker.reagents.maximum_volume - beaker.reagents.total_volume
 			amount = min(amount, 4)
-			
+
 			if(amount == 0) // If the beaker is full, ping
 				if(prob(5)) visible_message("\The [src] pings.")
 				return
 
 			var/mob/living/carbon/human/H = attached
-			if(!istype(H)) 
+			if(!istype(H))
 				return
 			if(!H.dna)
 				return
@@ -424,7 +424,7 @@
 				return
 			if(H.species.flags & NO_BLOOD)
 				return
-			if(!H.should_have_organ(O_HEART))
+			if(!H.should_have_organ(BP_HEART))
 				return
 
 			// If the human is losing too much blood, beep.

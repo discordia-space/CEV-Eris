@@ -76,6 +76,9 @@
 	if (damage_type == BURN)
 		return damage*heat
 
+/obj/item/projectile/multiply_projectile_damage(var/newmult)
+	damage = initial(damage)*newmult
+
 /obj/item/projectile/proc/on_hit(var/atom/target, var/blocked = 0, var/def_zone = null)
 	if(blocked >= 2)		return 0//Full block
 	if(!isliving(target))	return 0
@@ -156,7 +159,7 @@
 
 	firer = user
 	shot_from = launcher.name
-	silenced = launcher.silenced
+	silenced = launcher.item_flags & SILENT
 
 	return launch(target, target_zone, x_offset, y_offset)
 

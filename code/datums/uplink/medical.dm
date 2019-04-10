@@ -11,10 +11,10 @@
 
 /datum/uplink_item/item/medical/surgery
 	name = "Surgery kit"
-	item_cost = 10
+	item_cost = 5
 	path = /obj/item/weapon/storage/firstaid/surgery
 
 /datum/uplink_item/item/medical/combat
 	name = "Combat medical kit"
-	item_cost = 12
+	item_cost = 5
 	path = /obj/item/weapon/storage/firstaid/combat

@@ -200,8 +200,8 @@
 	light_inner_range = 0.1
 	light_outer_range = 1
 
-	light_color_alarm = COLOR_GREEN
-	light_color_status_display = COLOR_GREEN
+	light_color_alarm = COLOR_LIGHTING_GREEN_MACHINERY
+	light_color_status_display = COLOR_LIGHTING_GREEN_MACHINERY
 
 	overlay_alarm = "alarm_green"
 	overlay_firealarm = "overlay_green"
@@ -216,8 +216,8 @@
 	light_max_bright = 0.5
 	light_inner_range = 0.1
 	light_outer_range = 2
-	light_color_alarm = COLOR_BLUE
-	light_color_status_display = COLOR_BLUE
+	light_color_alarm = COLOR_LIGHTING_BLUE_MACHINERY
+	light_color_status_display = COLOR_LIGHTING_BLUE_MACHINERY
 
 	overlay_alarm = "alarm_blue"
 	overlay_firealarm = "overlay_blue"
@@ -233,8 +233,8 @@
 	light_max_bright = 0.5
 	light_inner_range = 0.1
 	light_outer_range = 2
-	light_color_alarm = COLOR_RED
-	light_color_status_display = COLOR_RED
+	light_color_alarm = COLOR_LIGHTING_RED_MACHINERY
+	light_color_status_display = COLOR_LIGHTING_RED_MACHINERY
 
 	overlay_alarm = "alarm_red"
 	overlay_firealarm = "overlay_red"
@@ -250,12 +250,12 @@
 	light_max_bright = 0.75
 	light_inner_range = 0.1
 	light_outer_range = 3
-	light_color_alarm = COLOR_RED
-	light_color_status_display = COLOR_NAVY_BLUE
+	light_color_alarm = COLOR_LIGHTING_RED_MACHINERY
+	light_color_status_display = COLOR_LIGHTING_BLUE_MACHINERY
 
 	overlay_alarm = "alarm_delta"
 	overlay_firealarm = "overlay_delta"
-	
+
 	overlay_status_display = "status_display_delta"
 
 	var/static/datum/announcement/priority/security/security_announcement_delta = new(do_log = 0, do_newscast = 1, new_sound = sound('sound/effects/siren.ogg'))

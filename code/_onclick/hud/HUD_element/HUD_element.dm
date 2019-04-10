@@ -67,7 +67,7 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 	var/_onClickedInteraction = FALSE
 	var/_onClickedHighlightDuration
 	var/_onClickedState = FALSE
-	
+
 	var/_onHoveredInteraction = FALSE
 	var/_onHoveredState = FALSE
 
@@ -96,7 +96,7 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 	if (parent)
 		parent.getElements().Remove(src)
 		_setParent()
-	
+
 	for(var/name in _iconsBuffer)
 		qdel(_iconsBuffer[name])
 
@@ -127,3 +127,10 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 // override if needed
 /HUD_element/DblClick(var/location, var/control, var/params)
 	return
+
+/HUD_element/update_plane()
+	return
+
+/HUD_element/set_plane(var/np)
+	plane = np
+

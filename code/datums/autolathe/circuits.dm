@@ -1,5 +1,4 @@
 /datum/autolathe/recipe/circuit
-	reagents = list("silicon" = 10)
 
 /datum/autolathe/recipe/circuit/airlockmodule
 	name = "airlock electronics"
@@ -20,6 +19,10 @@
 /datum/autolathe/recipe/circuit/autolathe
 	name = "autolathe"
 	path = /obj/item/weapon/circuitboard/autolathe
+
+/datum/autolathe/recipe/circuit/vending
+	name = "custom Vendomat"
+	path = /obj/item/weapon/circuitboard/vending
 
 /datum/autolathe/recipe/circuit/autolathe_excelsior
 	name = "excelsior autolathe"
@@ -44,6 +47,10 @@
 /datum/autolathe/recipe/circuit/med_data
 	name = "medical records console"
 	path = /obj/item/weapon/circuitboard/med_data
+
+/datum/autolathe/recipe/circuit/recharger
+	name = "recharger"
+	path = /obj/item/weapon/circuitboard/recharger
 
 /datum/autolathe/recipe/circuit/secure_data
 	name = "security records console"
@@ -84,3 +91,7 @@
 /datum/autolathe/recipe/circuit/turret_excelsior
 	name = "excelsior turret"
 	path = /obj/item/weapon/circuitboard/excelsior_turret
+
+/datum/autolathe/recipe/circuit/centrifuge
+	name = "isolation centrifuge"
+	path = /obj/item/weapon/circuitboard/centrifuge

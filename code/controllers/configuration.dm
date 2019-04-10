@@ -1,4 +1,5 @@
-var/list/storyteller_cache = list()
+
+GLOBAL_LIST_EMPTY(storyteller_cache)
 
 /datum/configuration
 	var/server_name = null				// server name (for world name / status)
@@ -86,6 +87,7 @@ var/list/storyteller_cache = list()
 	var/guests_allowed = 1
 	var/debugparanoid = 0
 
+	var/language
 	var/serverurl
 	var/server
 	var/banappeals
@@ -135,6 +137,10 @@ var/list/storyteller_cache = list()
 	var/ghost_interaction = 0
 
 	var/comms_password = ""
+
+	var/list/forbidden_versions = list() // Clients with these byond versions will be autobanned. Format: string "byond_version.byond_build"; separate with ; in config, e.g. 512.1234;512.1235
+	var/minimum_byond_version
+	var/minimum_byond_build
 
 	var/enter_allowed = 1
 
@@ -206,7 +212,7 @@ var/list/storyteller_cache = list()
 		// their information, but it is the only way (at least that I know of).
 		var/datum/storyteller/S = new T()
 		if (S.config_tag)
-			storyteller_cache[S.config_tag] = S // So we don't instantiate them repeatedly.
+			GLOB.storyteller_cache[S.config_tag] = S // So we don't instantiate them repeatedly.
 			if(!(S.config_tag in storytellers))		// ensure each mode is added only once
 				log_misc("Adding storyteller [S.name] ([S.config_tag]) to configuration.")
 				src.storytellers += S.config_tag
@@ -375,6 +381,9 @@ var/list/storyteller_cache = list()
 				if ("serverurl")
 					config.serverurl = value
 
+				if ("language")
+					config.language = value
+
 				if ("server")
 					config.server = value
 
@@ -530,6 +539,15 @@ var/list/storyteller_cache = list()
 
 				if("comms_password")
 					config.comms_password = value
+
+				if("forbidden_versions")
+					config.forbidden_versions = splittext(value, ";")
+
+				if("minimum_byond_version")
+					config.minimum_byond_version = text2num(value)
+
+				if("minimum_byond_build")
+					config.minimum_byond_build = text2num(value)
 
 				if("irc_bot_host")
 					config.irc_bot_host = value
@@ -713,15 +731,15 @@ var/list/storyteller_cache = list()
 /datum/configuration/proc/pick_storyteller(story_name)
 	// I wish I didn't have to instance the game modes in order to look up
 	// their information, but it is the only way (at least that I know of).
-	if(story_name in storyteller_cache)
-		return storyteller_cache[story_name]
+	if(story_name in GLOB.storyteller_cache)
+		return GLOB.storyteller_cache[story_name]
 
-	return storyteller_cache[STORYTELLER_BASE]
+	return GLOB.storyteller_cache[STORYTELLER_BASE]
 
 /datum/configuration/proc/get_storytellers()
 	var/list/runnable_storytellers = list()
-	for(var/storyteller in storyteller_cache)
-		var/datum/storyteller/S = storyteller_cache[storyteller]
+	for(var/storyteller in GLOB.storyteller_cache)
+		var/datum/storyteller/S = GLOB.storyteller_cache[storyteller]
 		if(S)
 			runnable_storytellers |= S
 	return runnable_storytellers

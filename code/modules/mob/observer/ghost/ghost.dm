@@ -10,6 +10,8 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 	blinded = 0
 	anchored = 1	//  don't get pushed around
 	layer = GHOST_LAYER
+	movement_handlers = list(/datum/movement_handler/mob/incorporeal)
+
 	var/can_reenter_corpse
 	var/datum/hud/living/carbon/hud = null // hud
 	var/bootime = 0
@@ -65,7 +67,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 		forceMove(T)
 	else
 		//Safety in case we cannot find the body's position
-		var/turf/T = pickSpawnLocation("Observer")
+		var/turf/T = pick_spawn_location("Observer")
 		if(istype(T))
 			src.forceMove(T)
 
@@ -108,13 +110,13 @@ Works together with spawning an observer, noted above.
 			if(copytext(hud.icon_state,1,4) == "hud")
 				client.images.Remove(hud)
 
-	/*if(antagHUD)
+	if(antagHUD)
 		var/list/target_list = list()
 		for(var/mob/living/target in oview(src, 14))
-			if(target.mind && target.mind.special_role)
+			if(target.mind && target.mind.antagonist.len != 0)
 				target_list += target
 		if(target_list.len)
-			assess_targets(target_list, src)*/
+			assess_targets(target_list, src)
 	if(medHUD)
 		process_medHUD(src)
 
@@ -142,12 +144,14 @@ Works together with spawning an observer, noted above.
 		ghost.timeofdeath = src.stat == DEAD ? src.timeofdeath : world.time
 			//This is duplicated for robustness in cases where death might not be called.
 		//It is also set in the mob/death proc
-		if (isanimal(src))
-			set_death_time(ANIMAL, world.time)
-		else if (ispAI(src) || isdrone(src))
-			set_death_time(MINISYNTH, world.time)
-		else
-			set_death_time(CREW, world.time)//Crew is the fallback
+		// One more if to get rid off re-enter timer resets.
+		if(stat != DEAD)
+			if (isanimal(src))
+				set_death_time(ANIMAL, world.time)
+			else if (ispAI(src) || isdrone(src))
+				set_death_time(MINISYNTH, world.time)
+			else
+				set_death_time(CREW, world.time)//Crew is the fallback
 
 		//Set the respawn bonus from ghosting while in cryosleep.
 		//This is duplicated in the cryopod code for robustness. The message will not display twice
@@ -211,7 +215,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Re-enter Corpse"
 	if(!client)	return
 	client.destroy_UI()
-	
+
 	if(!(mind && mind.current && can_reenter_corpse))
 		src << "<span class='warning'>You have no body.</span>"
 		return
@@ -333,6 +337,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		GLOB.destroyed_event.unregister(following, src)
 		following = null
 
+// Makes the ghost cease following if the user has moved
+/mob/observer/ghost/PostIncorporealMovement()
+	stop_following()
+
 /mob/observer/ghost/move_to_turf(var/atom/movable/am, var/old_loc, var/new_loc)
 	var/turf/T = get_turf(new_loc)
 	if(check_holy(T))
@@ -390,8 +398,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set hidden = 1
 	src << "\red You are dead! You have no mind to store memory!"
 
-/mob/observer/ghost/Post_Incorpmove()
-	stop_following()
 
 /mob/observer/ghost/verb/analyze_air()
 	set name = "Analyze Air"
@@ -433,13 +439,17 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		src << "<span class='warning'>You may not spawn as a mouse on this Z-level.</span>"
 		return
 
-	var/response = alert(src, "Are you -sure- you want to become a mouse? This will not affect your crew or drone respawn time.","Are you sure you want to squeek?","Squeek!","Nope!")
-	if(response != "Squeek!") return  //Hit the wrong key...again.
+	var/response = alert(src, "Are you -sure- you want to become a mouse? This will not affect your crew or drone respawn time. You can choose to spawn near your ghost or at a random vent on this deck.","Are you sure you want to squeek?","Near Ghost", "Random","Cancel")
+	if(response == "Cancel") return  //Hit the wrong key...again.
 
 
 	//find a viable mouse candidate
 	var/mob/living/simple_animal/mouse/host
-	var/obj/machinery/atmospherics/unary/vent_pump/spawnpoint = find_mouse_spawnpoint(T.z)
+	var/obj/machinery/atmospherics/unary/vent_pump/spawnpoint
+	if (response == "Random")
+		spawnpoint = find_mouse_random_spawnpoint(T.z)
+	else if (response == "Near Ghost")
+		spawnpoint = find_mouse_near_spawnpoint(T)
 
 	if (spawnpoint)
 		host = new /mob/living/simple_animal/mouse(spawnpoint.loc)
@@ -451,9 +461,23 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			host.universal_understand = 0
 		announce_ghost_joinleave(src, 0, "They are now a mouse.")
 		host.ckey = src.ckey
-		host << "<span class='info'>You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent.</span>"
+		host << "<span class='info'>You are now a mouse. Interact with players, cause mischief, avoid cats, find food, and try to survive!</span>"
 
-/proc/find_mouse_spawnpoint(var/ZLevel)
+
+//Given an origin point to search around, attempts to find a safe vent as close as possible to that point
+/proc/find_mouse_near_spawnpoint(var/turf/T)
+	var/obj/machinery/atmospherics/unary/vent_pump/nearest_safe_vent = null
+	var/nearest_dist = 999999
+	for(var/obj/machinery/atmospherics/unary/vent_pump/v in SSmachines.machinery)
+		if(!v.welded && v.z == T.z && !(is_turf_atmos_unsafe(get_turf(v))))
+			var/distance = dist3D(v, T)
+			if (distance < nearest_dist)
+				nearest_safe_vent = v
+				nearest_dist = distance
+
+	return nearest_safe_vent
+
+/proc/find_mouse_random_spawnpoint(var/ZLevel)
 	//This function will attempt to find a good spawnpoint for mice, and prevent them from spawning in closed vent systems with no escape
 	//It does this by bruteforce: Picks a random vent, tests if it has enough connections, if not, repeat
 	//Continues either until a valid one is found (in which case we return it), or until we hit a limit on attempts..
@@ -483,37 +507,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/turf/T = get_turf(testvent)
 
 
-
-		//We test the environment of the tile, to see if its habitable for a mouse
-		//-----------------------------------
-		var/atmos_suitable = 1
-
-		var/maxtemp = 390
-		var/mintemp = 210
-		var/min_oxy = 5
-		var/max_phoron = 1
-		var/max_co2 = 5
-		var/min_pressure = 80
-
-		var/datum/gas_mixture/Environment = T.return_air()
-		if(Environment)
-
-			if(Environment.temperature > maxtemp)
-				atmos_suitable = 0
-			else if (Environment.temperature < mintemp)
-				atmos_suitable = 0
-			else if(Environment.gas["oxygen"] < min_oxy)
-				atmos_suitable = 0
-			else if(Environment.gas["phoron"] > max_phoron)
-				atmos_suitable = 0
-			else if(Environment.gas["carbon_dioxide"] > max_co2)
-				atmos_suitable = 0
-			else if(Environment.return_pressure() < min_pressure)
-				atmos_suitable = 0
-		else
-			atmos_suitable = 0
-
-		if (!atmos_suitable)
+		if (is_turf_atmos_unsafe(T))
 			continue
 		//----------------------
 

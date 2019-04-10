@@ -46,7 +46,7 @@ var/global/ManifestJSON
 
 		if(OOC)
 			var/active = 0
-			for(var/mob/M in player_list)
+			for(var/mob/M in GLOB.player_list)
 				if(M.real_name == name && M.client && M.client.inactivity <= 10 * 60 * 10)
 					active = 1
 					break
@@ -145,7 +145,7 @@ var/global/ManifestJSON
 
 /datum/datacore/proc/manifest()
 	spawn()
-		for(var/mob/living/carbon/human/H in player_list)
+		for(var/mob/living/carbon/human/H in GLOB.player_list)
 			manifest_inject(H)
 		return
 
@@ -177,6 +177,7 @@ var/global/ManifestJSON
 		G.fields["age"]			= H.age
 		G.fields["fingerprint"]	= md5(H.dna.uni_identity)
 		G.fields["pay_account"]	= H.mind.initial_account.account_number
+		G.fields["email"]		= H.mind.initial_email_login["login"]
 		G.fields["p_stat"]		= "Active"
 		G.fields["m_stat"]		= "Stable"
 		G.fields["sex"]			= H.gender

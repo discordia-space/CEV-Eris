@@ -12,10 +12,11 @@
 	slot_flags = SLOT_EARS
 	volume = 60
 
-/obj/item/weapon/reagent_containers/pill/New()
-	..()
+/obj/item/weapon/reagent_containers/pill/Initialize()
+	. = ..()
 	if(!icon_state)
 		icon_state = "pill[rand(1, 20)]"
+
 
 /obj/item/weapon/reagent_containers/pill/attack(mob/M as mob, mob/user as mob, def_zone)
 	if(standard_feed_mob(user, M))
@@ -24,7 +25,7 @@
 	return 0
 
 /obj/item/weapon/reagent_containers/pill/self_feed_message(var/mob/user)
-	user << SPAN_NOTICE("You swallow \the [src].")
+	to_chat(user, SPAN_NOTICE("You swallow \the [src]."))
 
 /obj/item/weapon/reagent_containers/pill/other_feed_message_start(var/mob/user, var/mob/target)
 	user.visible_message("<span class='warning'>[user] attempts to force [target] to swallow \the [src].</span>")
@@ -37,14 +38,14 @@
 
 	..()
 
-	if(target.is_open_container() && target.reagents)
+	if(target.is_refillable())
 		if(!target.reagents.total_volume)
-			user << SPAN_NOTICE("[target] is empty. Can't dissolve \the [src].")
+			to_chat(user, SPAN_NOTICE("[target] is empty. Can't dissolve \the [src]."))
 			return
-		user << SPAN_NOTICE("You dissolve \the [src] in [target].")
+		to_chat(user, SPAN_NOTICE("You dissolve \the [src] in [target]."))
 
-		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Spiked \a [target] with a pill. Reagents: [reagentlist()]</font>")
-		msg_admin_attack("[user.name] ([user.ckey]) spiked \a [target] with a pill. Reagents: [reagentlist()] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Spiked \a [target] with a pill. Reagents: [reagents.log_list()]</font>")
+		msg_admin_attack("[user.name] ([user.ckey]) spiked \a [target] with a pill. Reagents: [reagents.log_list()] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
 		reagents.trans_to(target, reagents.total_volume)
 		for(var/mob/O in viewers(2, user))
@@ -52,7 +53,6 @@
 
 		qdel(src)
 
-	return
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Pills. END
@@ -196,3 +196,53 @@
 	desc = "Contains antiviral agents."
 	icon_state = "pill19"
 	preloaded = list("spaceacillin" = 15)
+
+
+
+
+
+//Pills with random content
+/obj/item/weapon/reagent_containers/pill/floorpill
+	name = "floor pill"
+	desc = "Dare you?"
+
+/obj/item/weapon/reagent_containers/pill/floorpill/Initialize()
+	. = ..()
+
+	var/random_reagent = pickweight(list(
+					list("spaceacillin" = 15) = 2,\
+					list("inaprovaline" = 30) = 2,\
+					list("anti_toxin" = 15) = 2,\
+					list("methylphenidate" = 15) = 2,\
+					list("paracetamol" = 15) = 2,\
+					list("dexalin" = 15) = 2,\
+					list("dexalinp" = 15) = 2,\
+					list("impedrezene" = 10, "synaptizine" = 5, "hyperzine" = 5, "citalopram" = 15) = 1,\
+					list("space_drugs" = 15, "sugar" = 15) = 1,\
+					list("dermaline" = 15, "citalopram" = 15) = 1,\
+					list("tramadol" = 15, "spaceacillin" = 15) = 1,\
+					list("blattedin" = 15) = 1,\
+					list("imidazoline" = 15, "space_drugs" = 15) = 1,\
+					list("ethylredoxrazine" = 15, "hyperzine" = 35) = 1,\
+					list("potassium_chlorophoride" = 15) = 1,\
+					list("mindbreaker" = 15, "synaptizine" = 5) = 1,\
+					list("plantbgone" = 15, "cleaner" = 15) = 1,\
+					list("coolant" = 50) = 1,\
+					list("fuel" = 50) = 1,\
+					list("water" = 15) = 1,\
+					list("sterilizine" = 50) = 1,\
+					list("tramadol" = 15, "sugar" = 15) = 1,\
+					list("thermite" = 15) = 1,\
+					list("lube" = 50) = 1,\
+					list("pacid" = 15) = 1,\
+					list("sacid" = 15) = 1,\
+					list("hclacid" = 15) = 1,\
+					list("impedrezene" = 15, "dexalinp" = 35) = 1,\
+					list("virusfood" = 15) = 1,\
+					list("leporazine" = 15) = 1,\
+					list("anti_toxin" = 15, "zombiepowder" = 10) = 0.5,\
+					list("dexalinp" = 35, "cyanide" = 15) = 0.5,\
+					list("toxin" = 40, "cyanide" = 10) = 0.5))
+
+	for(var/reagent in random_reagent)
+		reagents.add_reagent(reagent, random_reagent[reagent])

@@ -3,6 +3,7 @@
 	desc = "Looks unstable. Best to test it with the clown."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "portal"
+	var/mask = "portal_mask"
 	density = 1
 	unacidable = 1//Can't destroy energy portals.
 	var/failchance = 5
@@ -30,11 +31,28 @@
 	origin_turf = get_turf(user)
 	src.teleport(user)
 
+/obj/effect/portal/proc/set_target(var/atom/A)
+	target = A
+	if(mask)
+		blend_icon(get_turf(target))
+
 /obj/effect/portal/New(loc, _lifetime = 300)
 	..(loc)
 	birthtime = world.time
 	lifetime = _lifetime
 	addtimer(CALLBACK(src, .proc/close,), lifetime)
+
+var/list/portal_cache = list()
+
+/obj/effect/portal/proc/blend_icon(var/turf/T)
+	if(!("icon[initial(T.icon)]_iconstate[T.icon_state]_[type]" in portal_cache))//If the icon has not been added yet
+		var/icon/I1 = icon(icon,mask)//Generate it.
+		var/icon/I2 = icon(initial(T.icon),T.icon_state)
+		I1.Blend(I2,ICON_MULTIPLY)
+		portal_cache["icon[initial(T.icon)]_iconstate[T.icon_state]_[type]"] = I1 //And cache it!
+
+	overlays += portal_cache["icon[initial(T.icon)]_iconstate[T.icon_state]_[type]"]
+
 
 
 //Given an adjacent origin tile, finds a destination which is the opposite side of the target
@@ -50,6 +68,7 @@
 		return get_step(T, dir)
 
 /obj/effect/portal/proc/close()
+	qdel(src)
 
 /obj/effect/portal/proc/teleport(atom/movable/M as mob|obj)
 	if (world.time < next_teleport)
@@ -57,6 +76,8 @@
 	if (M == src)
 		return
 	if (istype(M, /obj/effect/sparks)) //sparks don't teleport
+		return
+	if (istype(M, /obj/effect/effect/light)) //lights from flashlights too.
 		return
 	if (M.anchored && !istype(M, /obj/mecha))
 		return
@@ -75,9 +96,6 @@
 	src.icon_state = "portal1"
 	do_teleport(M, locate(rand(5, world.maxx - 5), rand(5, world.maxy -5), 3), 0)
 
-
-
-
 /*
 	Wormholes come in linked pairs and can be traversed freely from either end.
 	They gain some instability after being used, and should be left to settle or risk mishaps
@@ -86,6 +104,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "wormhole"
 	name = "wormhole"
+	mask = null
 	failchance = 0
 	var/obj/effect/portal/wormhole/partner
 	var/processing = FALSE
@@ -93,7 +112,7 @@
 /obj/effect/portal/wormhole/New(loc, lifetime, exit)
 	message_admins("Wormhole with lifetime [time2text(lifetime, "hh hours, mm minutes and ss seconds")] created at ([jumplink(src)])", 0, 1)
 	..(loc, lifetime)
-	target = exit
+	set_target(exit)
 	pair()
 
 /obj/effect/portal/wormhole/teleport(atom/movable/M as mob|obj)

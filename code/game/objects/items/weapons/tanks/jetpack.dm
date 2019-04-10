@@ -32,6 +32,11 @@
 	//Used for normal jet thrust effects
 	var/thrust_fx_done = FALSE
 
+/obj/item/weapon/tank/jetpack/Destroy()
+	QDEL_NULL(trail)
+	gastank = null // this is usually src, better to not call qdel infinitely
+	return ..()
+
 /*****************************
 	Jetpack Types
 *****************************/

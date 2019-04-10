@@ -5,8 +5,8 @@
 	restricted_jobs = list("AI", "Robot")
 	protected_jobs = list(JOBS_SECURITY, JOBS_COMMAND)
 	bantype = ROLE_BANTYPE_CHANGELING
-
 	welcome_text = "Use say \"#g message\" to communicate with your fellow changelings. Remember: you get all of their absorbed DNA if you absorb them."
+	antaghud_indicator = "hudchangeling"
 
 	possible_objectives = list(
 	/datum/objective/absorb = 60,

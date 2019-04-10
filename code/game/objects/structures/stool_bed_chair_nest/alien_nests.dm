@@ -64,7 +64,7 @@
 	M.buckled = src
 	M.loc = src.loc
 	M.set_dir(src.dir)
-	M.update_canmove()
+	M.update_lying_buckled_and_verb_status()
 	M.pixel_y = 6
 	M.old_y = 6
 	src.buckled_mob = M

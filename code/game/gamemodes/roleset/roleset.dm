@@ -56,13 +56,13 @@
 		if(!temp.can_become_antag(candidate, report))
 			if (report) report << SPAN_NOTICE("Failure: [candidate] can't become this antag")
 			continue
-		if(!antagonist_suitable(candidate,temp))
+		if(!antagonist_suitable(candidate, temp))
 			if (report) report << SPAN_NOTICE("Failure: [candidate] is not antagonist suitable")
 			continue
 		if(!(temp.bantype in candidate.current.client.prefs.be_special_role))
 			if (report) report << SPAN_NOTICE("Failure: [candidate] has special role [temp.bantype] disabled")
 			continue
-		if(storyteller && storyteller.one_role_per_player && candidate.antagonist.len)
+		if(GLOB.storyteller && GLOB.storyteller.one_role_per_player && candidate.antagonist.len)
 			if (report) report << SPAN_NOTICE("Failure: [candidate] is already a [candidate.antagonist[1]] and can't be two antags")
 			continue
 		if(player_is_antag_id(candidate,antag))
@@ -82,7 +82,7 @@
 	var/any_candidates = FALSE
 
 	if(temp.outer)
-		for(var/mob/observer/candidate in player_list)
+		for(var/mob/observer/candidate in GLOB.player_list)
 			if(!candidate.client)
 				if (report) report << SPAN_NOTICE("Failure: [candidate] is disconnected")
 				continue

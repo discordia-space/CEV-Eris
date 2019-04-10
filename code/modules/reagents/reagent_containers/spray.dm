@@ -4,7 +4,8 @@
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "cleaner"
 	item_state = "cleaner"
-	flags = OPENCONTAINER|NOBLUDGEON
+	flags = NOBLUDGEON
+	reagent_flags = OPENCONTAINER
 	slot_flags = SLOT_BELT
 	throwforce = 3
 	w_class = ITEM_SIZE_SMALL
@@ -154,6 +155,7 @@
 	item_state = "chemsprayer"
 	throwforce = 3
 	w_class = ITEM_SIZE_NORMAL
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 4)
 	possible_transfer_amounts = null
 	volume = 600
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_ENGINEERING = 3)

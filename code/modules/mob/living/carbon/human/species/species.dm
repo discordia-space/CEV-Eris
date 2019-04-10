@@ -126,7 +126,6 @@
 	var/appearance_flags = 0      // Appearance/display related features.
 	var/spawn_flags = 0           // Flags that specify who can spawn as this species
 	var/slowdown = 0              // Passive movement speed malus (or boost, if negative)
-	var/silent_steps = 0          // Stops step noises
 	var/primitive_form            // Lesser form, if any (ie. monkey for humans)
 	var/greater_form              // Greater form, if any, ie. human for monkeys.
 	var/holder_type
@@ -134,13 +133,13 @@
 	var/rarity_value = 1          // Relative rarity/collector value for this species.
 	                              // Determines the organs that the species spawns with and
 	var/list/has_organ = list(    // which required-organ checks are conducted.
-		O_HEART =    /obj/item/organ/internal/heart,
-		O_LUNGS =    /obj/item/organ/internal/lungs,
-		O_LIVER =    /obj/item/organ/internal/liver,
-		O_KIDNEYS =  /obj/item/organ/internal/kidneys,
-		O_BRAIN =    /obj/item/organ/internal/brain,
-		O_APPENDIX = /obj/item/organ/internal/appendix,
-		O_EYES =     /obj/item/organ/internal/eyes
+		BP_HEART =    /obj/item/organ/internal/heart,
+		BP_LUNGS =    /obj/item/organ/internal/lungs,
+		BP_LIVER =    /obj/item/organ/internal/liver,
+		BP_KIDNEYS =  /obj/item/organ/internal/kidneys,
+		BP_BRAIN =    /obj/item/organ/internal/brain,
+		BP_APPENDIX = /obj/item/organ/internal/appendix,
+		BP_EYES =     /obj/item/organ/internal/eyes
 		)
 	var/vision_organ              // If set, this organ is required for vision. Defaults to "eyes" if the species has them.
 
@@ -174,8 +173,8 @@
 		hud = new()
 
 	//If the species has eyes, they are the default vision organ
-	if(!vision_organ && has_organ[O_EYES])
-		vision_organ = O_EYES
+	if(!vision_organ && has_organ[BP_EYES])
+		vision_organ = BP_EYES
 
 	unarmed_attacks = list()
 	for(var/u_type in unarmed_types)

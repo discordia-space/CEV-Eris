@@ -2,7 +2,7 @@
 	title = "Ironhammer Commander"
 	flag = IHC
 	head_position = 1
-	department = "Ironhammer"
+	department = DEPARTMENT_SECURITY
 	department_flag = IRONHAMMER | COMMAND
 	faction = "CEV Eris"
 	total_positions = 1
@@ -10,7 +10,7 @@
 	supervisors = "the Captain"
 	selection_color = "#97b0be"
 	req_admin_notify = 1
-	economic_modifier = 10
+	wage = WAGE_COMMAND
 	also_known_languages = list(LANGUAGE_CYRILLIC = 60, LANGUAGE_SERBIAN = 60)
 
 	outfit_type = /decl/hierarchy/outfit/job/security/ihc
@@ -24,8 +24,8 @@
 	)
 
 	stat_modifiers = list(
-		STAT_ROB = 30,
-		STAT_TGH = 20,
+		STAT_ROB = 40,
+		STAT_TGH = 30,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/comm,
@@ -59,14 +59,15 @@
 /datum/job/gunserg
 	title = "Ironhammer Gunnery Sergeant"
 	flag = GUNSERG
-	department = "Ironhammer"
+	department = DEPARTMENT_SECURITY
 	department_flag = IRONHAMMER
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#a7bbc6"
-	economic_modifier = 5
+	department_account_access = TRUE
+	wage = WAGE_LABOUR_HAZARD
 	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 25)
 
 	outfit_type = /decl/hierarchy/outfit/job/security/gunserg
@@ -78,8 +79,8 @@
 	)
 
 	stat_modifiers = list(
-		STAT_ROB = 20,
-		STAT_TGH = 20,
+		STAT_ROB = 25,
+		STAT_TGH = 25,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
@@ -109,14 +110,14 @@
 /datum/job/inspector
 	title = "Ironhammer Inspector"
 	flag = INSPECTOR
-	department = "Ironhammer"
+	department = DEPARTMENT_SECURITY
 	department_flag = IRONHAMMER
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#a7bbc6"
-	economic_modifier = 5
+	wage = WAGE_PROFESSIONAL
 	also_known_languages = list(LANGUAGE_CYRILLIC = 50, LANGUAGE_SERBIAN = 50)
 	access = list(
 		access_security, access_moebius, access_moebius, access_engine, access_mailsorting,
@@ -127,12 +128,13 @@
 	outfit_type = /decl/hierarchy/outfit/job/security/inspector
 
 	stat_modifiers = list(
-		STAT_BIO = 10,
-		STAT_ROB = 10,
-		STAT_TGH = 10,
+		STAT_BIO = 20,
+		STAT_ROB = 15,
+		STAT_TGH = 15,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
+							 /datum/computer_file/program/audio,
 							 /datum/computer_file/program/camera_monitor)
 
 	description = "You are the ship's detective, here to take care of the cases that aren't always what they seem, and suspects that aren't always caught red handed or ready to confess.<br>\
@@ -160,14 +162,14 @@
 /datum/job/medspec
 	title = "Ironhammer Medical Specialist"
 	flag = MEDSPEC
-	department = "Ironhammer"
+	department = DEPARTMENT_SECURITY
 	department_flag = IRONHAMMER
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#a7bbc6"
-	economic_modifier = 5
+	wage = WAGE_PROFESSIONAL
 	also_known_languages = list(LANGUAGE_CYRILLIC = 5)
 
 	outfit_type = /decl/hierarchy/outfit/job/security/medspec
@@ -177,6 +179,7 @@
 
 	stat_modifiers = list(
 		STAT_BIO = 20,
+		STAT_TGH = 5,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
@@ -207,7 +210,7 @@
 /datum/job/ihoper
 	title = "Ironhammer Operative"
 	flag = IHOPER
-	department = "Ironhammer"
+	department = DEPARTMENT_SECURITY
 	department_flag = IRONHAMMER
 	faction = "CEV Eris"
 	total_positions = 6
@@ -215,7 +218,7 @@
 	supervisors = "the Ironhammer Commander"
 	//alt_titles = list("Ironhammer Junior Operative")
 	selection_color = "#a7bbc6"
-	economic_modifier = 4
+	wage = WAGE_LABOUR_HAZARD
 	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 25)
 
 	outfit_type = /decl/hierarchy/outfit/job/security/ihoper
@@ -226,7 +229,7 @@
 	)
 
 	stat_modifiers = list(
-		STAT_ROB = 10,
+		STAT_ROB = 25,
 		STAT_TGH = 20,
 	)
 

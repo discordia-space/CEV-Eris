@@ -69,7 +69,7 @@
 					create_antagonist(M)
 			else
 				var/list/CD = list()
-				for(var/mob/observer/M in player_list)
+				for(var/mob/observer/M in GLOB.player_list)
 					if(can_become_antag_ghost(M))
 						CD[M.name] = M
 				CD["CANCEL"] = null
@@ -154,7 +154,7 @@
 /datum/antagonist/proc/get_extra_panel_options()
 	return
 
-/* !TODO: This should be implemented in storyteller_print.dm (storyteller.antagonist_report())
+/* !TODO: This should be implemented in storyteller_print.dm (GLOB.storyteller.antagonist_report())
 /datum/antagonist/proc/get_check_antag_output(var/datum/admins/caller)
 
 	if(!current_antagonists || !current_antagonists.len)

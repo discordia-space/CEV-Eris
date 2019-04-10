@@ -40,6 +40,7 @@
 
 // Used to perform preset-specific hardware changes.
 /obj/item/modular_computer/proc/install_default_hardware()
+	cell = new suitable_cell(src)
 	return TRUE
 
 // Used to install preset-specific programs
@@ -75,7 +76,10 @@
 	kill_program(1)
 	QDEL_NULL_LIST(terminals)
 	STOP_PROCESSING(SSobj, src)
-	QDEL_NULL(stored_pen)
+
+	if(stored_pen && !ispath(stored_pen))
+		QDEL_NULL(stored_pen)
+
 	for(var/obj/item/weapon/computer_hardware/CH in src.get_all_components())
 		uninstall_component(null, CH, delete = TRUE)
 	return ..()
@@ -97,7 +101,7 @@
 			set_light(screen_light_range, screen_light_strength, get_average_color(icon,"bsod"), skip_screen_check = TRUE)
 			return
 		if(!enabled)
-			if(icon_state_screensaver)
+			if(icon_state_screensaver && try_use_power(0))
 				overlays.Add(icon_state_screensaver)
 			set_light(0, skip_screen_check = TRUE)
 			return
@@ -147,7 +151,7 @@
 		else
 			to_chat(user, "You press the power button, but the computer fails to boot up, displaying variety of errors before shutting down again.")
 		return
-	if(processor_unit && (apc_power(0) || battery_power(0))) // Battery-run and charged or non-battery but powered by APC.
+	if(processor_unit && try_use_power(0)) // Battery-run and charged or non-battery but powered by APC.
 		if(issynth)
 			to_chat(user, "You send an activation signal to \the [src], turning it on")
 		else
@@ -283,8 +287,8 @@
 
 /obj/item/modular_computer/proc/check_update_ui_need()
 	var/ui_update_needed = FALSE
-	if(battery_module)
-		var/batery_percent = battery_module.battery.percent()
+	if(cell)
+		var/batery_percent = cell.percent()
 		if(last_battery_percent != batery_percent) //Let's update UI on percent change
 			ui_update_needed = TRUE
 			last_battery_percent = batery_percent
@@ -339,8 +343,7 @@
 /obj/item/modular_computer/proc/update_name()
 
 /obj/item/modular_computer/get_cell()
-	if(battery_module)
-		return battery_module.get_cell()
+	return cell
 
 /obj/item/modular_computer/proc/has_terminal(mob/user)
 	for(var/datum/terminal/terminal in terminals)

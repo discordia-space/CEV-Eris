@@ -15,7 +15,7 @@
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "cellconsole"
 	light_power = 1.5
-	light_color = COLOR_BLUE_LIGHT
+	light_color = COLOR_LIGHTING_BLUE_MACHINERY
 	circuit = /obj/item/weapon/circuitboard/cryopodcontrol
 	density = 0
 	interact_offline = 1
@@ -144,6 +144,7 @@
 	desc = "A bewildering tangle of machinery and pipes."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "cryo_rear"
+	density = 1
 	anchored = 1
 	dir = WEST
 
@@ -390,14 +391,14 @@
 
 
 /obj/machinery/cryopod/affect_grab(var/mob/user, var/mob/target)
-	put_inside(target, user)
+	try_put_inside(target, user)
 	return TRUE
 
 /obj/machinery/cryopod/MouseDrop_T(var/mob/living/L, mob/living/user)
 	if(istype(L) && istype(user))
-		put_inside(L, user)
+		try_put_inside(L, user)
 
-/obj/machinery/cryopod/proc/put_inside(var/mob/living/affecting, var/mob/living/user)
+/obj/machinery/cryopod/proc/try_put_inside(var/mob/living/affecting, var/mob/living/user)
 	if(occupant)
 		user << "<span class='notice'>\The [src] is in use.</span>"
 		return
@@ -441,6 +442,8 @@
 
 		//Despawning occurs when process() is called with an occupant without a client.
 		src.add_fingerprint(user)
+
+
 
 /obj/machinery/cryopod/verb/eject()
 	set name = "Eject Pod"
@@ -500,6 +503,10 @@
 
 	return
 
+/obj/machinery/cryopod/relaymove(var/mob/user)
+	..()
+	eject()
+
 /obj/machinery/cryopod/proc/go_out()
 
 	if(!occupant)
@@ -507,12 +514,21 @@
 
 	set_occupant(null)
 
+	spawn(30)
+		state("Please remember to check inside the cryopod if any belongings are missing.")
+		playsound(loc, "robot_talk_light", 100, 0, 0)
 
-/obj/machinery/cryopod/proc/set_occupant(var/mob/living/new_occupant)
+//Notifications is set false when someone spawns in here
+/obj/machinery/cryopod/proc/set_occupant(var/mob/living/new_occupant, var/notifications = TRUE)
 	name = initial(name)
 	if(new_occupant)
 		occupant = new_occupant
-		name = "[name] ([occupant])"
+		if (occupant.name)
+			name = "[name] ([occupant.name])"
+		else
+			//Name isn't set during spawning, but real_name is. This is used for people spawning in cryopods
+			name = "[name] ([occupant.real_name])"
+
 		time_entered = world.time
 		if(ishuman(occupant) && applies_stasis)
 			var/mob/living/carbon/human/H = occupant
@@ -520,11 +536,13 @@
 		new_occupant.forceMove(src)
 		icon_state = occupied_icon_state
 
-		occupant << SPAN_NOTICE("[on_enter_occupant_message]")
-		occupant << SPAN_NOTICE("<b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b>")
-		if (occupant.in_perfect_health())
+
+		if (notifications)
+			occupant << SPAN_NOTICE("[on_enter_occupant_message]")
+			occupant << SPAN_NOTICE("<b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b>")
+		if (occupant.in_perfect_health() && notifications)
 			occupant << SPAN_NOTICE("<b>Your respawn time will be reduced by 20 minutes, allowing you to respawn as a crewmember much more quickly.</b>")
-		else
+		else if (notifications)
 			occupant << SPAN_DANGER("<b>Because you are not in perfect health, going into cryosleep will not reduce your crew respawn time. \
 			If you wish to respawn as a different crewmember, you should treat your injuries at medical first</b>")
 

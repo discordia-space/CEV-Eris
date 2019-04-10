@@ -9,28 +9,32 @@
 	force = WEAPON_FORCE_NORMAL
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 5)
+	price_tag = 2500
 	projectile_type = /obj/item/projectile/beam/midlaser
 
 /obj/item/weapon/gun/energy/laser/mounted
 	self_recharge = 1
 	use_external_power = 1
+	restrict_safety = TRUE
 
 /obj/item/weapon/gun/energy/laser/practice
 	name = "NT LG \"Lightfall\" - P"
 	desc = "A modified version of \"NeoTheology\" brand laser carbine, this one fires less concentrated energy bolts, designed for target practice."
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 2)
+	price_tag = 1000
 	projectile_type = /obj/item/projectile/beam/practice
 
 obj/item/weapon/gun/energy/retro
-	name = "Alliance LG \"Cog\""
+	name = "One Star LG \"Cog\""
 	icon_state = "retro"
 	item_state = "retro"
-	desc = "Alliance cheap laser gun. In the distant past - this was the main weapon of low-rank police forces across all the Milky Way, billions of copies of this gun were made. They are ubiquitous."
+	desc = "One Star cheap laser gun. In the distant past - this was the main weapon of low-rank police forces, billions of copies of this gun were made. They are ubiquitous."
 	fire_sound = 'sound/weapons/Laser.ogg'
 	slot_flags = SLOT_BELT
 	w_class = ITEM_SIZE_NORMAL
 	projectile_type = /obj/item/projectile/beam
 	fire_delay = 10 //old technology
+	price_tag = 2000
 
 /obj/item/weapon/gun/energy/captain
 	name = "NT LG \"Destiny\""
@@ -44,6 +48,7 @@ obj/item/weapon/gun/energy/retro
 	projectile_type = /obj/item/projectile/beam
 	origin_tech = null
 	self_recharge = 1
+	price_tag = 4500
 
 /obj/item/weapon/gun/energy/lasercannon
 	name = "Prototype: laser cannon"
@@ -56,9 +61,12 @@ obj/item/weapon/gun/energy/retro
 	projectile_type = /obj/item/projectile/beam/heavylaser
 	charge_cost = 250
 	fire_delay = 20
+	matter = list(MATERIAL_STEEL = 20)
+	price_tag = 3000
 
 /obj/item/weapon/gun/energy/lasercannon/mounted
 	name = "mounted laser cannon"
 	self_recharge = 1
 	use_external_power = 1
 	recharge_time = 10
+	restrict_safety = TRUE

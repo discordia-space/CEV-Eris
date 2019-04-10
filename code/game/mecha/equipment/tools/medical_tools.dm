@@ -30,6 +30,7 @@
 		qdel(pr_mech_sleeper)
 		for(var/atom/movable/AM in src)
 			AM.forceMove(get_turf(src))
+		occupant = null
 		return ..()
 
 	Exit(atom/movable/O)
@@ -394,12 +395,17 @@
 
 	New()
 		..()
-		flags |= NOREACT
+		reagent_flags |= NO_REACT
 		syringes = new
 		known_reagents = list("inaprovaline"="Inaprovaline","anti_toxin"="Dylovene")
 		processed_reagents = new
 		create_reagents(max_volume)
 		synth = new (list(src),0)
+
+	Destroy()
+		QDEL_NULL_LIST(syringes)
+		QDEL_NULL(synth)
+		return ..()
 
 	detach()
 		synth.stop()
@@ -407,7 +413,7 @@
 
 	critfail()
 		..()
-		flags &= ~NOREACT
+		reagent_flags &= ~NO_REACT
 		return
 
 	get_equip_info()

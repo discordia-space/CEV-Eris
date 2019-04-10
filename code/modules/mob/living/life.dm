@@ -4,7 +4,7 @@
 
 	..()
 
-	if (transforming)
+	if (HasMovementHandler(/datum/movement_handler/mob/transformation/))
 		return
 	if(!loc)
 		return
@@ -51,7 +51,7 @@
 
 	handle_actions()
 
-	update_canmove()
+	update_lying_buckled_and_verb_status()
 
 	handle_regular_hud_updates()
 

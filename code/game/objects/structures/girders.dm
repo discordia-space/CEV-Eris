@@ -89,7 +89,7 @@
 	if(state == 1)
 		usable_qualities.Add(QUALITY_WIRE_CUTTING)
 
-	var/tool_type = I.get_tool_type(user, usable_qualities)
+	var/tool_type = I.get_tool_type(user, usable_qualities,src)
 	switch(tool_type)
 
 		if(QUALITY_BOLT_TURNING)
@@ -297,3 +297,10 @@
 			take_damage(rand(60,180))
 
 
+/obj/structure/girder/get_fall_damage(var/turf/from, var/turf/dest)
+	var/damage = health * 0.4
+
+	if (from && dest)
+		damage *= abs(from.z - dest.z)
+
+	return damage
