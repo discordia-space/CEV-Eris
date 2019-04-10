@@ -174,7 +174,9 @@
 
 	log_client_to_db()
 
-	send_resources()
+	// Should fix templates downloading after resources
+	spawn(5)
+		send_resources()
 
 	if(prefs.lastchangelog != changelog_hash) //bolds the changelog button on the interface so we know there are updates.
 		src << "<span class='info'>You have unread updates in the changelog.</span>"
