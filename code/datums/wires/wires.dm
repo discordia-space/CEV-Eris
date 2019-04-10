@@ -237,7 +237,7 @@ var/const/POWER = 8
 /datum/wires/proc/PulseIndex(var/index)
 	if(IsIndexCut(index))
 		return
-	playsound(holder.loc, 'sound/items/multitool_pulse.ogg', 100, 1)
+	//playsound(holder.loc, 'sound/items/multitool_pulse.ogg', 100, 1) //dampener pls
 	UpdatePulsed(index)
 
 /datum/wires/proc/GetIndex(var/colour)

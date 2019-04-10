@@ -438,7 +438,9 @@ Buildable meters
 /obj/item/pipe/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
 	..()
 	//*
-	if (!istype(W, /obj/item/weapon/tool/wrench))
+	if (!istype(W, /obj/item/weapon/tool))
+		return ..()
+	if (!I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
 		return ..()
 	if (!isturf(src.loc))
 		return 1
@@ -453,7 +455,7 @@ Buildable meters
 
 	for(var/obj/machinery/atmospherics/M in src.loc)
 		if((M.initialize_directions & pipe_dir) && M.check_connect_types_construction(M,src))	// matches at least one direction on either type of pipe & same connection type
-			user << SPAN_WARNING("There is already a pipe of the same type at this location.")
+			to_chat(user, SPAN_WARNING("There is already a pipe of the same type at this location."))
 			return 1
 	// no conflicts found
 
@@ -470,7 +472,7 @@ Buildable meters
 			P.level = !T.is_plating() ? 2 : 1
 			P.atmos_init()
 			if (QDELETED(P))
-				usr << pipefailtext
+				to_chat(usr, pipefailtext)
 				return 1
 			P.build_network()
 			if (P.node1)
@@ -489,7 +491,7 @@ Buildable meters
 			P.level = !T.is_plating() ? 2 : 1
 			P.atmos_init()
 			if (QDELETED(P))
-				usr << pipefailtext
+				to_chat(usr, pipefailtext)
 				return 1
 			P.build_network()
 			if (P.node1)
@@ -508,7 +510,7 @@ Buildable meters
 			P.level = !T.is_plating() ? 2 : 1
 			P.atmos_init()
 			if (QDELETED(P))
-				usr << pipefailtext
+				to_chat(usr, pipefailtext)
 				return 1
 			P.build_network()
 			if (P.node1)
@@ -527,7 +529,7 @@ Buildable meters
 			P.level = !T.is_plating() ? 2 : 1
 			P.atmos_init()
 			if (QDELETED(P))
-				usr << pipefailtext
+				to_chat(usr, pipefailtext)
 				return 1
 			P.build_network()
 			if (P.node1)
@@ -544,7 +546,7 @@ Buildable meters
 			P.initialize_directions_he = pipe_dir
 			P.atmos_init()
 			if (QDELETED(P))
-				usr << pipefailtext
+				to_chat(usr, pipefailtext)
 				return 1
 			P.build_network()
 			if (P.node1)
@@ -579,7 +581,7 @@ Buildable meters
 			M.level = !T.is_plating() ? 2 : 1
 			M.atmos_init()
 			if (QDELETED(M))
-				usr << pipefailtext
+				to_chat(usr, pipefailtext)
 				return 1
 			M.build_network()
 			if (M.node1)
@@ -602,7 +604,7 @@ Buildable meters
 			M.level = !T.is_plating() ? 2 : 1
 			M.atmos_init()
 			if (!M)
-				usr << "There's nothing to connect this manifold to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)"
+				to_chat(usr, "There's nothing to connect this manifold to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)")
 				return 1
 			M.build_network()
 			if (M.node1)
@@ -625,7 +627,7 @@ Buildable meters
 			M.level = !T.is_plating() ? 2 : 1
 			M.atmos_init()
 			if (!M)
-				usr << "There's nothing to connect this manifold to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)"
+				to_chat(usr, "There's nothing to connect this manifold to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)"
 				return 1
 			M.build_network()
 			if (M.node1)
@@ -648,7 +650,7 @@ Buildable meters
 			M.level = !T.is_plating() ? 2 : 1
 			M.atmos_init()
 			if (QDELETED(M))
-				usr << pipefailtext
+				to_chat(usr, pipefailtext)
 				return 1
 			M.build_network()
 			if (M.node1)
@@ -675,7 +677,7 @@ Buildable meters
 			M.level = !T.is_plating() ? 2 : 1
 			M.atmos_init()
 			if (!M)
-				usr << "There's nothing to connect this manifold to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)"
+				to_chat(usr, "There's nothing to connect this manifold to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)")
 				return 1
 			M.build_network()
 			if (M.node1)
@@ -702,7 +704,7 @@ Buildable meters
 			M.level = !T.is_plating() ? 2 : 1
 			M.atmos_init()
 			if (!M)
-				usr << "There's nothing to connect this manifold to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)"
+				to_chat(usr, "There's nothing to connect this manifold to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)")
 				return 1
 			M.build_network()
 			if (M.node1)
@@ -725,7 +727,7 @@ Buildable meters
 			P.initialize_directions_he = src.get_hdir()
 			P.atmos_init()
 			if (QDELETED(P))
-				usr << pipefailtext //"There's nothing to connect this pipe to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)"
+				to_chat(usr, pipefailtext) //"There's nothing to connect this pipe to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)")
 				return 1
 			P.build_network()
 			if (P.node1)
@@ -908,7 +910,7 @@ Buildable meters
 			P.level = !T.is_plating() ? 2 : 1
 			P.atmos_init()
 			if (QDELETED(P))
-				usr << pipefailtext
+				to_chat(usr, pipefailtext)
 				return 1
 			P.build_network()
 			if (P.node1)
@@ -1145,12 +1147,7 @@ Buildable meters
 			P.level = !T.is_plating() ? 2 : 1
 			P.atmos_init()
 			P.build_network()
-
-	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-	user.visible_message( \
-		"[user] fastens the [src].", \
-		SPAN_NOTICE("You have fastened the [src]."), \
-		"You hear ratchet.")
+	// there was some code, but it is handled in ../tool/ now.
 	qdel(src)	// remove the pipe item
 
 	return
@@ -1174,11 +1171,11 @@ Buildable meters
 	if (!istype(W, /obj/item/weapon/tool/wrench))
 		return ..()
 	if(!locate(/obj/machinery/atmospherics/pipe, src.loc))
-		user << SPAN_WARNING("You need to fasten it to a pipe")
+		to_chat(user, SPAN_WARNING("You need to fasten it to a pipe"))
 		return 1
 	new/obj/machinery/meter( src.loc )
 	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-	user << SPAN_NOTICE("You have fastened the meter to the pipe")
+	to_chat(user, SPAN_NOTICE("You have fastened the meter to the pipe"))
 	qdel(src)
 //not sure why these are necessary
 #undef PIPE_SIMPLE_STRAIGHT
