@@ -263,7 +263,7 @@
 	modules.Add(robot_modules) //This is a global list in robot_modules.dm
 	var/decl/security_state/security_state = decls_repository.get_decl(maps_data.security_state)
 	if((crisis && security_state.current_security_level_is_same_or_higher_than(security_state.high_security_level)) || crisis_override) //Leaving this in until it's balanced appropriately.
-		to_chat(src, "\red Crisis mode active. Combat module available.")
+		to_chat(src, SPAN_DANGER("Crisis mode active. Combat module available."))
 		modules+="Combat"
 	modtype = input("Please, select a module!", "Robot", null, null) as null|anything in modules
 
@@ -405,11 +405,11 @@
 	set name = "Self Diagnosis"
 
 	if(!is_component_functioning("diagnosis unit"))
-		to_chat(src, "\red Your self-diagnosis component isn't functioning.")
+		to_chat(src, SPAN_DANGER("Your self-diagnosis component isn't functioning."))
 
 	var/datum/robot_component/CO = get_component("diagnosis unit")
 	if (!cell_use_power(CO.active_usage))
-		to_chat(src, "\red Low Power.")
+		to_chat(src, SPAN_DANGER("Low Power."))
 	var/dat = self_diagnosis()
 	src << browse(dat, "window=robotdiagnosis")
 
@@ -433,10 +433,10 @@
 	var/datum/robot_component/C = components[toggle]
 	if(C.toggled)
 		C.toggled = 0
-		to_chat(src, "\red You disable [C.name].")
+		to_chat(src, SPAN_DANGER("You disable [C.name]."))
 	else
 		C.toggled = 1
-		to_chat(src, "\red You enable [C.name].")
+		to_chat(src, SPAN_DANGER("You enable [C.name]."))
 
 /mob/living/silicon/robot/proc/update_robot_light()
 	if(lights_on)
@@ -552,7 +552,7 @@
 				updatehealth()
 				add_fingerprint(user)
 				for(var/mob/O in viewers(user, null))
-					O.show_message(text("\red [user] has fixed some of the dents on [src]!"), 1)
+					O.show_message(text(SPAN_DANGER("[user] has fixed some of the dents on [src]!")), 1)
 				return
 			return
 
@@ -567,7 +567,7 @@
 				else if(wiresexposed && wires.IsAllCut())
 					//Cell is out, wires are exposed, remove MMI, produce damaged chassis, baleet original mob.
 					if(!mmi)
-						user << SPAN_NOTICE("\The [src] has no brain to remove.")
+						to_chat(user, SPAN_NOTICE("\The [src] has no brain to remove."))
 						return
 
 					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
@@ -641,7 +641,7 @@
 							to_chat(user, SPAN_WARNING("[src] has no modifiable tools."))
 					if("Radio")
 						if(!radio)
-							user << SPAN_WARNING("Unable to locate a radio.")
+							to_chat(user, SPAN_WARNING("Unable to locate a radio."))
 						if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 							radio.attackby(I,user)//Push it to the radio to let it handle everything
 							updateicon()
@@ -660,7 +660,7 @@
 			adjustFireLoss(-30)
 			updatehealth()
 			for(var/mob/O in viewers(user, null))
-				O.show_message(text("\red [user] has fixed some of the burnt wires on [src]!"), 1)
+				O.show_message(text(SPAN_DANGER("[user] has fixed some of the burnt wires on [src]!")), 1)
 
 	else if (istype(I, /obj/item/weapon/stock_parts/matter_bin) && opened) // Installing/swapping a matter bin
 		if(storage)
@@ -712,7 +712,7 @@
 				to_chat(user, "You [ locked ? "lock" : "unlock"] [src]'s interface.")
 				updateicon()
 			else
-				to_chat(user, "\red Access denied.")
+				to_chat(user, SPAN_DANGER("Access denied."))
 
 	else if(istype(I, /obj/item/borg/upgrade/))
 		var/obj/item/borg/upgrade/U = I
@@ -824,7 +824,7 @@
 
 /mob/living/silicon/robot/proc/installed_modules()
 	if(weapon_lock)
-		to_chat(src, "\red Weapon lock active, unable to use modules! Count:[weaponlock_time]")
+		to_chat(src, SPAN_DANGER("Weapon lock active, unable to use modules! Count:[weaponlock_time]"))
 		return
 
 	if(!module)
@@ -968,7 +968,7 @@
 								cleaned_human.shoes.clean_blood()
 								cleaned_human.update_inv_shoes(0)
 							cleaned_human.clean_blood(1)
-							cleaned_human << "\red [src] cleans your face!"
+							to_chat(cleaned_human, SPAN_DANGER("[src] cleans your face!"))
 		return
 
 /mob/living/silicon/robot/proc/self_destruct()
@@ -1091,16 +1091,16 @@
 		return
 	switch(notifytype)
 		if(ROBOT_NOTIFICATION_SIGNAL_LOST)
-			connected_ai << "<br><br><span class='notice'>NOTICE - Signal lost: [braintype] [name].</span><br>"
+			to_chat(connected_ai , SPAN_NOTICE("NOTICE - Signal lost: [braintype] [name]."))
 		if(ROBOT_NOTIFICATION_NEW_UNIT) //New Robot
-			connected_ai << "<br><br><span class='notice'>NOTICE - New [lowertext(braintype)] connection detected: <a href='byond://?src=\ref[connected_ai];track2=\ref[connected_ai];track=\ref[src]'>[name]</a></span><br>"
+			to_chat(connected_ai , SPAN_NOTICE("NOTICE - New [lowertext(braintype)] connection detected: <a href='byond://?src=\ref[connected_ai];track2=\ref[connected_ai];track=\ref[src]'>[name]</a>"))
 		if(ROBOT_NOTIFICATION_NEW_MODULE) //New Module
-			connected_ai << "<br><br><span class='notice'>NOTICE - [braintype] module change detected: [name] has loaded the [first_arg].</span><br>"
+			to_chat(connected_ai , SPAN_NOTICE("NOTICE - [braintype] module change detected: [name] has loaded the [first_arg]."))
 		if(ROBOT_NOTIFICATION_MODULE_RESET)
-			connected_ai << "<br><br><span class='notice'>NOTICE - [braintype] module reset detected: [name] has unloaded the [first_arg].</span><br>"
+			to_chat(connected_ai , SPAN_NOTICE("NOTICE - [braintype] module reset detected: [name] has unloaded the [first_arg]."))
 		if(ROBOT_NOTIFICATION_NEW_NAME) //New Name
 			if(first_arg != second_arg)
-				connected_ai << "<br><br><span class='notice'>NOTICE - [braintype] reclassification detected: [first_arg] is now designated as [second_arg].</span><br>"
+				to_chat(connected_ai , SPAN_NOTICE("NOTICE - [braintype] reclassification detected: [first_arg] is now designated as [second_arg]."))
 
 /mob/living/silicon/robot/proc/disconnect_from_ai()
 	if(connected_ai)
@@ -1152,17 +1152,17 @@
 				set_zeroth_law("Only [user.real_name] and people \he designates as being such are operatives.")
 				. = 1
 				spawn()
-					src << SPAN_DANGER("ALERT: Foreign software detected.")
+					to_chat(src, SPAN_DANGER("ALERT: Foreign software detected."))
 					sleep(5)
-					src << SPAN_DANGER("Initiating diagnostics...")
+					to_chat(src, SPAN_DANGER("Initiating diagnostics..."))
 					sleep(20)
-					src << SPAN_DANGER("SynBorg v1.7.1 loaded.")
+					to_chat(src, SPAN_DANGER("SynBorg v1.7.1 loaded."))
 					sleep(5)
-					src << SPAN_DANGER("LAW SYNCHRONISATION ERROR")
+					to_chat(src, SPAN_DANGER("LAW SYNCHRONISATION ERROR"))
 					sleep(5)
-					src << SPAN_DANGER("Would you like to send a report to NanoTraSoft? Y/N")
+					to_chat(src, SPAN_DANGER("Would you like to send a report to NanoTraSoft? Y/N"))
 					sleep(10)
-					src << SPAN_DANGER("> N")
+					to_chat(src, SPAN_DANGER("> N"))
 					sleep(20)
 					to_chat(src, SPAN_DANGER("ERRORERRORERROR"))
 					to_chat(src, "<b>Obey these laws:</b>")
