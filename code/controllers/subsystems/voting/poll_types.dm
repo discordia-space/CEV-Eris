@@ -110,6 +110,10 @@
 	if (pregame)
 		round_progressing = TRUE
 		world << "<b>The game will start in [SSticker.pregame_timeleft] seconds.</b>"
+			spawn(10 SECONDS)
+			var/tipsAndTricks/T = SStips.getRandomTip()
+			if(T)
+				to_chat(world, SStips.formatTip(T, "Random Tip: "))
 	pregame = FALSE
 
 /datum/vote_choice/storyteller
