@@ -14,7 +14,7 @@ SUBSYSTEM_DEF(tips)
 		if(mob)
 			var/tipsAndTricks/T = SStips.getRandomTip()
 			if(T)
-				mob << SStips.formatTip(T, "Random Tip: ")
+				to_chat(mob, SStips.formatTip(T, "Random Tip: "))
 
 /client/verb/showSmartTip()
 	set name = "Show Smart Tip"
@@ -23,7 +23,7 @@ SUBSYSTEM_DEF(tips)
 		if(mob)
 			var/tipsAndTricks/T = SStips.getSmartTip(mob)
 			if(T)
-				mob << SStips.formatTip(T, "Tip for your character: ")
+				to_chat(mob, SStips.formatTip(T, "Tip for your character: "))
 
 /datum/controller/subsystem/tips/fire()
 	for(var/mob/living/L in SSmobs.mob_list)
@@ -31,28 +31,28 @@ SUBSYSTEM_DEF(tips)
 			L.client.showSmartTip()
 
 /datum/controller/subsystem/tips/Initialize(start_timeofday)
-	for(var/path in typesof(/tipsAndTricks/mobs) - /tipsAndTricks/mobs)
+	for(var/path in subtypesof(/tipsAndTricks/mobs)
 		var/tipsAndTricks/mobs/T = new path()
 		for(var/mob in T.mobs_list)
 			if(!GLOB.mobsTips[mob])
 				GLOB.mobsTips[mob] = list()
 			if(!GLOB.mobsTips[mob].Find(T))
 				GLOB.mobsTips[mob] += T
-	for(var/path in typesof(/tipsAndTricks/roles) - /tipsAndTricks/roles)
+	for(var/path in subtypesof(/tipsAndTricks/roles)
 		var/tipsAndTricks/roles/T = new path()
 		for(var/role in T.roles_list)
 			if(!GLOB.rolesTips[role])
 				GLOB.rolesTips[role] = list()
 			if(!GLOB.rolesTips[role].Find(T))
 				GLOB.rolesTips[role] += T
-	for(var/path in typesof(/tipsAndTricks/jobs) - /tipsAndTricks/jobs)
+	for(var/path in subtypesof(/tipsAndTricks/jobs)
 		var/tipsAndTricks/jobs/T = new path()
 		for(var/job in T.jobs_list)
 			if(!GLOB.jobsTips[job])
 				GLOB.jobsTips[job] = list()
 			if(!GLOB.jobsTips[job].Find(T))
 				GLOB.jobsTips[job] += T
-	for(var/path in typesof(/tipsAndTricks/gameplay) - /tipsAndTricks/gameplay)
+	for(var/path in subtypesof(/tipsAndTricks/gameplay)
 		var/tipsAndTricks/gameplay/T = new path()
 		GLOB.gameplayTips += T
 	return ..()
@@ -77,8 +77,8 @@ SUBSYSTEM_DEF(tips)
 	var/datum/job/jobType
 	if(target.mind)
 		roleType = target.mind.antagonist.len ? pick(target.mind.antagonist) : null	//pick random role cuz its a list
-		jobType = target.mind.assigned_job ? target.mind.assigned_job : null
-	var/mob/mobType = target ? target : null
+		jobType = target.mind.assigned_job
+	var/mob/mobType = target
 
 	var/list/options = list()
 	// Returning tip based on weight, we want more specific tips for player based on its character
@@ -115,9 +115,7 @@ SUBSYSTEM_DEF(tips)
 	if(!istype(role))
 		error("Not role type variable was passed to tips subsystem. No tips for you.")
 	var/list/tipsAndTricks/candidates = list()
-	log_world("giving tip for [role.id]")
 	for(var/type in GLOB.rolesTips)
-		log_world("type [type]")
 		if(istype(role, type))
 			candidates += GLOB.rolesTips[type]
 	if(candidates.len)
