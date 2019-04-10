@@ -282,7 +282,7 @@ This file contains the underlying code for stash datums
 
 	// Better hide remains under the tile.
 	if (istype(T, /obj/item/remains))
-		var/obj/item/remainslighting_turf.dm/R = T
+		var/obj/item/remains/R = T
 		R.level = 1
 		T.levelupdate()
 
