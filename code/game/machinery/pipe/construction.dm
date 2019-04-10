@@ -627,7 +627,7 @@ Buildable meters
 			M.level = !T.is_plating() ? 2 : 1
 			M.atmos_init()
 			if (!M)
-				to_chat(usr, "There's nothing to connect this manifold to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)"
+				to_chat(usr, "There's nothing to connect this manifold to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)")
 				return 1
 			M.build_network()
 			if (M.node1)
