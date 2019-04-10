@@ -151,7 +151,7 @@
 					user << SPAN_WARNING("[src] already has a magazine loaded.") //already a magazine here
 					return
 				if(!(AM.mag_well & mag_well))
-					user << SPAN_WARNING("[src] won't fit into the magwell.") //wrong magazine
+					user << SPAN_WARNING("[src] can't fit this type of magazine.") //wrong magazine
 					return
 				user.remove_from_mob(AM)
 				AM.loc = src
