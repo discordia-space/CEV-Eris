@@ -19,7 +19,7 @@
 	l_pocket = /obj/item/device/flash
 	gloves = /obj/item/clothing/gloves/stungloves
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud/tactical
-	suit_store = /obj/item/weapon/gun/projectile/lamia
+	belt = /obj/item/weapon/gun/projectile/lamia
 	id_type = /obj/item/weapon/card/id/hos
 	head = /obj/item/clothing/head/HoS
 	pda_type = /obj/item/modular_computer/pda/heads/hos
