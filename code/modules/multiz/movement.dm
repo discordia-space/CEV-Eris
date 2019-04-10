@@ -16,7 +16,7 @@
 	set category = "IC"
 
 	if(zMove(UP))
-		to_chat(usr, "<span class='notice'>You move upwards.</span>")
+		to_chat(usr, SPAN_NOTICE("You move upwards."))
 
 /**
  * Verb for the mob to move down a z-level if possible.
@@ -26,7 +26,7 @@
 	set category = "IC"
 
 	if(zMove(DOWN))
-		to_chat(usr, "<span class='notice'>You move down.</span>")
+		to_chat(usr, SPAN_NOTICE("You move down."))
 
 /**
  * Used to check if a mob can move up or down a Z-level and to then actually do the move.
@@ -51,7 +51,7 @@
 	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
 	var/turf/start = get_turf(src)
 	if(!destination)
-		to_chat(src, "<span class='notice'>There is nothing of interest in this direction.</span>")
+		to_chat(src, SPAN_NOTICE("There is nothing of interest in this direction"))
 		return FALSE
 
 	//After checking that there's a valid destination, we'll first attempt phase movement as a shortcut.
@@ -69,17 +69,17 @@
 	)
 
 	if(!start.CanZPass(mover, direction))
-		to_chat(src, "<span class='warning'>\The [start] under you is in the way.</span>")
+		to_chat(src, SPAN_WARNING("\The [start] under you is in the way."))
 		return FALSE
 
 	if(!destination.CanZPass(mover, direction))
-		to_chat(src, "<span class='warning'>The ceiling above you is in the way.</span>")
+		to_chat(src, SPAN_WARNING("The ceiling above you is in the way."))
 		return FALSE
 
 	// Check for blocking atoms at the destination.
 	for (var/atom/A in destination)
 		if (!A.CanPass(mover, start, 1.5, 0))
-			to_chat(src, "<span class='warning'>\The [A] blocks you.</span>")
+			to_chat(src, SPAN_WARNING("\The [A] blocks you."))
 			return FALSE
 
 	for (var/a in possible_methods)
@@ -87,7 +87,7 @@
 		if (VTM.attempt(direction))
 			return TRUE
 
-	to_chat(src, "<span class='notice'>You lack a means of z-travel in that direction.</span>")
+	to_chat(src, SPAN_NOTICE("You lack a means of z-travel in that direction."))
 	return FALSE
 
 /mob/living/zMove(direction)
