@@ -440,7 +440,7 @@ Buildable meters
 	//*
 	if (!istype(W, /obj/item/weapon/tool))
 		return ..()
-	if (!I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
+	if (!W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
 		return ..()
 	if (!isturf(src.loc))
 		return 1
