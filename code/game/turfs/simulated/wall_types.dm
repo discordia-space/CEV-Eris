@@ -99,3 +99,29 @@
 	return
 /turf/simulated/wall/titanium/New(var/newloc)
 	..(newloc,"titanium")
+
+
+//Untinted walls have white color, all their coloring is built into their sprite and they should really not be given a tint, it'd look awful
+/turf/simulated/wall/untinted
+	base_color_override = "#FFFFFF"
+	reinf_color_override = "#FFFFFF"
+
+/*
+	One Star/Alliance walls, for use on derelict stuff
+*/
+/turf/simulated/wall/untinted/onestar
+	icon_state = "onestar_standard"
+	icon_base_override = "onestar_standard"
+
+
+/turf/simulated/wall/untinted/onestar/New(var/newloc)
+	..(newloc, MATERIAL_STEEL)
+
+
+/turf/simulated/wall/untinted/onestar_reinforced
+	icon_state = "onestar_reinforced"
+	icon_base_override = "onestar_standard"
+	icon_base_reinf_override = "onestar_reinforced"
+
+/turf/simulated/wall/untinted/onestar_reinforced/New(var/newloc)
+	..(newloc, MATERIAL_STEEL,MATERIAL_STEEL)

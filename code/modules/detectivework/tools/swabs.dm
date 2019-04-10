@@ -2,6 +2,7 @@
 	name = "swab kit"
 	desc = "A sterilized cotton swab and vial used to take forensic samples."
 	icon_state = "swab"
+	price_tag = 5
 	var/gsr = 0
 	var/list/dna
 	var/used
@@ -32,7 +33,7 @@
 		user.visible_message(SPAN_DANGER("\The [user] tries to take a swab sample from \the [H], but they move away."))
 		return
 
-	if(user.targeted_organ == "mouth")
+	if(user.targeted_organ == BP_MOUTH)
 		if(!H.organs_by_name[BP_HEAD])
 			user << SPAN_WARNING("They don't have a head.")
 			return

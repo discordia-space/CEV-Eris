@@ -25,6 +25,44 @@
 	icon_state = "box"
 	item_state = "syringe_kit"
 	var/foldable = /obj/item/stack/material/cardboard	// BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
+	var/maxHealth = 20	//health is already defined
+
+/obj/item/weapon/storage/box/Initialize()
+	health = maxHealth
+	.=..()
+
+/obj/item/weapon/storage/box/proc/damage(var/severity)
+	health -= severity
+	check_health()
+
+/obj/item/weapon/storage/box/proc/check_health()
+	if (health <= 0)
+		spill()
+		qdel(src)
+
+/obj/item/weapon/storage/box/attack_generic(var/mob/user)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*2)
+	if (istype(user, /mob/living))
+		var/mob/living/L = user
+		var/damage
+		if (!L.mob_size)
+			damage = 3//A safety incase i forgot to set a mob_size on something
+		else
+			damage = L.mob_size//he bigger you are, the faster it tears
+
+		if (!damage || damage <= 0)
+			return
+
+		user.do_attack_animation(src)
+
+		var/toplay = pick(list('sound/effects/creatures/nibble1.ogg','sound/effects/creatures/nibble2.ogg'))
+		playsound(loc, toplay, 50, 1, 2)
+		shake_animation()
+		sleep(5)
+		if ((health-damage) <= 0)
+			L.visible_message("<span class='danger'>[L] tears open the [src], spilling its contents everywhere!</span>", "<span class='danger'>You tear open the [src], spilling its contents everywhere!</span>")
+		damage(damage)
+	..()
 
 // BubbleWrap - A box can be folded up to make card
 /obj/item/weapon/storage/box/attack_self(mob/user as mob)
@@ -265,12 +303,6 @@
 	New()
 		..()
 		new /obj/item/ammo_casing/a145/prespawned(src)
-		new /obj/item/ammo_casing/a145/prespawned(src)
-		new /obj/item/ammo_casing/a145/prespawned(src)
-		new /obj/item/ammo_casing/a145/prespawned(src)
-		new /obj/item/ammo_casing/a145/prespawned(src)
-		new /obj/item/ammo_casing/a145/prespawned(src)
-		new /obj/item/ammo_casing/a145/prespawned(src)
 		for(var/obj/item/ammo_casing/temp_casing in src)
 			temp_casing.update_icon()
 
@@ -291,7 +323,7 @@
 
 /obj/item/weapon/storage/box/teargas
 	name = "box of pepperspray grenades"
-	desc = "A box containing 7 tear gas grenades. A gas mask is printed on the label.<br> WARNING: Exposure carries risk of serious injury or death. Keep away from persons with lung conditions."
+	desc = "A box containing 6 tear gas grenades. A gas mask is printed on the label.<br> WARNING: Exposure carries risk of serious injury or death. Keep away from persons with lung conditions."
 	icon_state = "flashbang"
 
 	New()
@@ -317,6 +349,31 @@
 		new /obj/item/weapon/grenade/empgrenade(src)
 		new /obj/item/weapon/grenade/empgrenade(src)
 		new /obj/item/weapon/grenade/empgrenade(src)
+
+/obj/item/weapon/storage/box/frag
+	name = "box of fragmentation grenades"
+	desc = "A box containing 4 fragmentation grenades. Designed for use on enemies in the open."
+	icon_state = "flashbang"
+
+	New()
+		..()
+		new /obj/item/weapon/grenade/frag(src)
+		new /obj/item/weapon/grenade/frag(src)
+		new /obj/item/weapon/grenade/frag(src)
+		new /obj/item/weapon/grenade/frag(src)
+
+/obj/item/weapon/storage/box/explosive
+	name = "box of blast grenades"
+	desc = "A box containing 4 blast grenades. Designed for assaulting strongpoints."
+	icon_state = "flashbang"
+
+	New()
+		..()
+		new /obj/item/weapon/grenade/frag/explosive(src)
+		new /obj/item/weapon/grenade/frag/explosive(src)
+		new /obj/item/weapon/grenade/frag/explosive(src)
+		new /obj/item/weapon/grenade/frag/explosive(src)
+
 
 /obj/item/weapon/storage/box/smokes
 	name = "box of smoke bombs"

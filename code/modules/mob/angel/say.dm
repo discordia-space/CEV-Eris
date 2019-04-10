@@ -89,7 +89,7 @@
 			log_world("DEBUG: say_angel_direct() invoked when client has no .mob property")
 			log_debug("say_angel_direct() invoked when client has no .mob property")
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M.client && ((!istype(M, /mob/new_player) && M.stat == DEAD) || (M.client.holder && !is_mentor(M.client))) && M.get_preference_value(/datum/client_preference/show_dsay) == GLOB.PREF_SHOW)
 			var/lname
 			if(subject)

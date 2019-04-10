@@ -281,13 +281,13 @@
 	switch(icon_level)
 		if (0)
 			icon_state = "alarm0"
-			new_color = "#03A728"
+			new_color = COLOR_LIGHTING_GREEN_BRIGHT
 		if (1)
 			icon_state = "alarm2" //yes, alarm2 is yellow alarm
-			new_color = COLOR_SUN
+			new_color = COLOR_LIGHTING_ORANGE_MACHINERY
 		if (2)
 			icon_state = "alarm1"
-			new_color = "#DA0205"
+			new_color = COLOR_LIGHTING_RED_MACHINERY
 
 	set_light(l_range = 1.5, l_power = 0.2, l_color = new_color)
 
@@ -764,7 +764,7 @@
 		usable_qualities.Add(QUALITY_BOLT_TURNING)
 
 
-	var/tool_type = I.get_tool_type(user, usable_qualities)
+	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 
 		if(QUALITY_SCREW_DRIVING)
@@ -778,7 +778,7 @@
 			return
 
 		if(QUALITY_WIRE_CUTTING)
-			if(wiresexposed)
+			if(wiresexposed && buildstage == 2)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					user.visible_message(SPAN_WARNING("[user] removed the wires from \the [src]!"), "You have removed the wires from \the [src].")
 					new/obj/item/stack/cable_coil(get_turf(user), 5)
@@ -915,7 +915,7 @@ FIRE ALARM
 		var/area/area = get_area(src)
 		if(area.fire)
 			icon_state = "fire1"
-			set_light(l_range = 1.5, l_power = 0.5, l_color = COLOR_RED)
+			set_light(l_range = 1.5, l_power = 0.5, l_color = COLOR_LIGHTING_RED_MACHINERY)
 		else
 			icon_state = "fire0"
 			var/decl/security_state/security_state = decls_repository.get_decl(maps_data.security_state)
@@ -961,7 +961,7 @@ FIRE ALARM
 		usable_qualities.Add(QUALITY_BOLT_TURNING)
 
 
-	var/tool_type = I.get_tool_type(user, usable_qualities)
+	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 
 		if(QUALITY_SCREW_DRIVING)
@@ -975,9 +975,9 @@ FIRE ALARM
 			return
 
 		if(QUALITY_WIRE_CUTTING)
-			if(wiresexposed)
+			if(wiresexposed && buildstage == 2)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					user.visible_message(SPAN_WARNING("[user] has remove the wires from \the [src]!"), "You have removed the wires from \the [src].")
+					user.visible_message(SPAN_WARNING("[user] has removed the wires from \the [src]!"), "You have removed the wires from \the [src].")
 					new/obj/item/stack/cable_coil(get_turf(user), 5)
 					buildstage = 1
 					update_icon()

@@ -2,6 +2,8 @@
 	icon = 'icons/turf/floors.dmi'
 	level = 1
 	var/holy = 0
+	var/diffused = 0 //If above zero, shields can't be on this turf. Set by floor diffusers only
+	//This is not a boolean. Multiple diffusers can stack and set it to 2, 3, etc
 
 	// Initial air contents (in moles)
 	var/oxygen = 0
@@ -65,12 +67,21 @@
 	return 0
 
 /turf/attack_hand(mob/user)
+	//QOL feature, clicking on turf can toogle doors
+	var/obj/machinery/door/airlock/AL = locate(/obj/machinery/door/airlock) in src.contents
+	if(AL)
+		AL.attack_hand(user)
+		return TRUE
+	var/obj/machinery/door/firedoor/FD = locate(/obj/machinery/door/firedoor) in src.contents
+	if(FD)
+		FD.attack_hand(user)
+		return TRUE
 	if(!(user.canmove) || user.restrained() || !(user.pulling))
-		return 0
+		return FALSE
 	if(user.pulling.anchored || !isturf(user.pulling.loc))
-		return 0
+		return FALSE
 	if(user.pulling.loc != user.loc && get_dist(user, user.pulling) > 1)
-		return 0
+		return FALSE
 	if(ismob(user.pulling))
 		var/mob/M = user.pulling
 		var/atom/movable/t = M.pulling
@@ -79,7 +90,7 @@
 		M.start_pulling(t)
 	else
 		step(user.pulling, get_dir(user.pulling.loc, src))
-	return 1
+	return TRUE
 
 /turf/Enter(atom/movable/mover as mob|obj, atom/forget as mob|obj|turf|area)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
@@ -146,7 +157,7 @@ var/const/enterloopsanity = 100
 			inertial_drift(M)
 		else if(is_space())
 			M.inertia_dir = 0
-		M.update_floating(TRUE) // no Check_Dense_Object() proc in arg because it will make this line more costly for almost zero reward in my opinion.
+		M.update_floating() // no check_dense_object() proc in arg because it will make this line more costly for almost zero reward in my opinion.
 		if(isliving(M))
 			var/mob/living/L = M
 			L.handle_footstep(src)
@@ -173,7 +184,7 @@ var/const/enterloopsanity = 100
 	if(!(A.last_move))	return
 	if((istype(A, /mob/) && src.x > 2 && src.x < (world.maxx - 1) && src.y > 2 && src.y < (world.maxy-1)))
 		var/mob/M = A
-		if(M.Allow_Spacemove(1))
+		if(M.allow_spacemove(1))
 			M.inertia_dir  = 0
 			return
 		spawn(5)
@@ -228,65 +239,7 @@ var/const/enterloopsanity = 100
 			return 1
 	return 0
 
-//expects an atom containing the reagents used to clean the turf
-/turf/proc/clean(atom/source, mob/user)
-	if(source.reagents.has_reagent("water", 1) || source.reagents.has_reagent("cleaner", 1))
-		clean_blood()
-		if(istype(src, /turf/simulated))
-			var/turf/simulated/T = src
-			T.dirt = 0
-		for(var/obj/effect/O in src)
-			if(istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
-				qdel(O)
-	else
-		user << SPAN_WARNING("\The [source] is too dry to wash that.")
-	source.reagents.trans_to_turf(src, 1, 10)	//10 is the multiplier for the reaction effect. probably needed to wet the floor properly.
 
-
-//As above, but has limitations. Instead of cleaning the tile completely, it just cleans [count] number of things
-/turf/proc/clean_partial(atom/source, mob/user, var/count = 1)
-	if (!count)
-		return
-
-	//A negative value can mean infinite cleaning, but in that case just call the unlimited version
-	if (!isnum(count) || count < 0)
-		clean(source, user)
-		return
-
-	if(source.reagents.has_reagent("water", 1) || source.reagents.has_reagent("cleaner", 1))
-		source.reagents.trans_to_turf(src, 1, 10)
-	else
-		user << SPAN_WARNING("\The [source] is too dry to wash that.")
-		return
-
-	for (count;count > 0;count--)
-		var/cleanedsomething = FALSE
-
-
-		for(var/obj/effect/O in src)
-			if(istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
-				qdel(O)
-				cleanedsomething = TRUE
-				break //Only clean one per loop iteration
-
-		if (cleanedsomething)
-			continue
-
-		//Clean normal dirt
-		if(istype(src, /turf/simulated))
-			var/turf/simulated/T = src
-			if (T.dirt)
-				T.dirt -= 36 //At the dirtiest level, three uses to clean it
-				T.update_dirt()
-				T.dirt = max(T.dirt, 0)
-				continue
-
-		//If the tile is clean, don't keep looping
-		if (!cleanedsomething)
-			break
-
-/turf/proc/update_blood_overlays()
-	return
 
 /turf/get_footstep_sound(var/mobtype)
 

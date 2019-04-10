@@ -6,7 +6,7 @@
 
 /datum/objective/abduct/update_explanation()
 	if(target && target.current)
-		explanation_text = "Capture [target.current.real_name], he [target.assigned_role], alive; and take them away from the ship."
+		explanation_text = "Capture [target.current.real_name], the [target.assigned_role], alive; and take them away from the ship."
 	else
 		explanation_text = "Target has not arrived today. Is it a coincidence?"
 

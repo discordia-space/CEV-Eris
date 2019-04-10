@@ -10,8 +10,9 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT|SLOT_MASK
 	var/active = 0
-	var/det_time = 50
+	var/det_time = 40
 	var/loadable = TRUE
+	var/variance = 0 //How much the fuse time varies up or down. Punishes cooking with makeshift nades, proper ones should have 0
 
 /obj/item/weapon/grenade/proc/clown_check(var/mob/living/user)
 	if((CLUMSY in user.mutations) && prob(50))
@@ -57,6 +58,9 @@
 	icon_state = initial(icon_state) + "_active"
 	active = 1
 	playsound(loc, 'sound/weapons/armbomb.ogg', 75, 1, -3)
+
+	if(variance)
+		det_time *= rand_between(1-variance, 1+variance)
 
 	spawn(det_time)
 		prime()

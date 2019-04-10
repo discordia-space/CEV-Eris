@@ -165,9 +165,6 @@
 	update_icons()
 	var/cleantime = istype(D, /obj/effect/decal/cleanable/dirt) ? 10 : 50
 	if(do_after(src, cleantime, progress = 0))
-		if(istype(loc, /turf/simulated))
-			var/turf/simulated/f = loc
-			f.dirt = 0
 		if(!D)
 			return
 		qdel(D)
@@ -271,6 +268,7 @@
 	target_types += /obj/effect/decal/cleanable/liquid_fuel
 	target_types += /obj/effect/decal/cleanable/mucus
 	target_types += /obj/effect/decal/cleanable/dirt
+	target_types += /obj/effect/decal/cleanable/rubble
 
 	if(blood)
 		target_types += /obj/effect/decal/cleanable/blood

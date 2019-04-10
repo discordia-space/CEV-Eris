@@ -8,18 +8,16 @@
 		shutdown_computer(0)
 
 // Tries to use power from battery. Passing 0 as parameter results in this proc returning whether battery is functional or not.
-/obj/item/modular_computer/proc/battery_power(var/power_usage = 0)
+/obj/item/modular_computer/proc/battery_power(power_usage = 0)
 	apc_powered = FALSE
-	if(!battery_module || !battery_module.check_functionality() || battery_module.battery.charge <= 0)
+	if(!cell || cell.charge <= 0)
 		return FALSE
-	/*TODO: Unfuck this CELLRATE. Eris has 10x bay's cellrate for no goddamn reason and some of our stuff
-	 is already balanced around it. Too large a scope to fix now*/
-	if(battery_module.battery.use(power_usage * CELLRATE * 0.1) || ((power_usage == 0) && battery_module.battery.charge))
+	if(cell.use(power_usage * CELLRATE * 0.1) || ((power_usage == 0) && cell.charge))
 		return TRUE
 	return FALSE
 
 // Tries to use power from APC, if present.
-/obj/item/modular_computer/proc/apc_power(var/power_usage = 0)
+/obj/item/modular_computer/proc/apc_power(power_usage = 0)
 
 	// Tesla link was originally limited to machinery only, but this probably works too, and the benefit of being able to power all devices from an APC outweights
 	// the possible minor performance loss.
@@ -30,15 +28,16 @@
 		return FALSE
 
 	// At this point, we know that APC can power us for this tick. Check if we also need to charge our battery, and then actually use the power.
-	if(battery_module && (battery_module.battery.charge < battery_module.battery.maxcharge) && (power_usage > 0))
+	if(cell && (cell.charge < cell.maxcharge) && (power_usage > 0))
 		power_usage += tesla_link.passive_charging_rate
-
-		/*TODO: Unfuck this CELLRATE. Eris has 10x bay's cellrate for no goddamn reason and some of our stuff
-	 is already balanced around it. Too large a scope to fix now*/
-		battery_module.battery.give(tesla_link.passive_charging_rate * CELLRATE * 0.1)
+		cell.give(tesla_link.passive_charging_rate * CELLRATE * 0.1)
 	apc_powered = TRUE
 	A.use_power(power_usage, EQUIP)
 	return TRUE
+
+// First tries to charge from an APC, if APC is unavailable switches to battery power. If neither works, fails.
+/obj/item/modular_computer/proc/try_use_power(power_usage = 0)
+	return apc_power(power_usage) || battery_power(power_usage)
 
 // Handles power-related things, such as battery interaction, recharging, shutdown when it's discharged
 /obj/item/modular_computer/proc/handle_power()
@@ -48,9 +47,6 @@
 			power_usage += H.power_usage
 	last_power_usage = power_usage
 
-	// First tries to charge from an APC, if APC is unavailable switches to battery power. If neither works the computer fails.
-	if(apc_power(power_usage))
-		return
-	if(battery_power(power_usage))
-		return
-	power_failure()
+	if(!try_use_power(power_usage))
+		power_failure()
+

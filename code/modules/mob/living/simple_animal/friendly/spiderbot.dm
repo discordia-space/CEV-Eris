@@ -25,6 +25,7 @@
 
 	health = 10
 	maxHealth = 10
+	hunger_enabled = 0
 
 	attacktext = "shocked"
 	melee_damage_lower = 1
@@ -61,7 +62,7 @@
 		if(!B.brainmob.key)
 			var/ghost_can_reenter = 0
 			if(B.brainmob.mind)
-				for(var/mob/observer/ghost/G in player_list)
+				for(var/mob/observer/ghost/G in GLOB.player_list)
 					if(G.can_reenter_corpse && G.mind == B.brainmob.mind)
 						ghost_can_reenter = 1
 						break
@@ -192,8 +193,8 @@
 
 /mob/living/simple_animal/spiderbot/death()
 
-	living_mob_list -= src
-	dead_mob_list += src
+	GLOB.living_mob_list -= src
+	GLOB.dead_mob_list += src
 
 	if(camera)
 		camera.status = 0

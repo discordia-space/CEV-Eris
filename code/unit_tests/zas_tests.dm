@@ -113,55 +113,25 @@ datum/unit_test/zas_area_test/ai_chamber
 	name = "ZAS: AI Chamber"
 	area_path = /area/turret_protected/ai
 
-datum/unit_test/zas_area_test/arrival_maint
-	name = "ZAS: Arrival Maintenance"
-	area_path = /area/maintenance/arrivals
-
 datum/unit_test/zas_area_test/mining_shuttle_at_station
 	name = "ZAS: Mining Shuttle (Station)"
 	area_path = /area/shuttle/mining/station
 
-datum/unit_test/zas_area_test/
-	name = "ZAS: Cargo Maintenance"
-	area_path = /area/maintenance/cargo
-
-datum/unit_test/zas_area_test/eng_shuttle
-	name = "ZAS: Construction Site Shuttle (Station)"
-	area_path = /area/shuttle/constructionsite/station
-
-datum/unit_test/zas_area_test/incinerator
-	name = "ZAS: Incinerator"
-	area_path = /area/maintenance/incinerator
-	disabled = 1
-	why_disabled = "Scrubber pulls air, this area cannot be tested."
-
 datum/unit_test/zas_area_test/virology
 	name = "ZAS: Virology"
-	area_path = /area/medical/virology
+	area_path = /area/eris/medical/virology
 
 datum/unit_test/zas_area_test/xenobio
 	name = "ZAS: Xenobiology"
-	area_path = /area/rnd/xenobiology
-
-datum/unit_test/zas_area_test/research_maint_starboard
-	name = "ZAS: Research Starboard Maintenance"
-	area_path = /area/maintenance/research_starboard
+	area_path = /area/eris/rnd/xenobiology
 
 datum/unit_test/zas_area_test/west_hall_mining_outpost
 	name = "ZAS: Mining outpost West Hallway"
 	area_path = /area/outpost/mining_main/west_hall
 
-/*
-datum/unit_test/zas_area_test/mining_area
-	name = "ZAS: Mining Area (Vacuum)"
-	area_path = /area/mine/explored
-	expectation = UT_VACUUM
-	disabled = 1
-	why_disabled = "Asteroid Generation disabled"
- */
 datum/unit_test/zas_area_test/
 	name = "ZAS: Cargo Bay"
-	area_path = /area/quartermaster/storage
+	area_path = /area/eris/quartermaster/storage
 
 
 // ==================================================================================================

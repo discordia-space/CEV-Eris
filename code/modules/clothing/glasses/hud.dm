@@ -5,6 +5,8 @@
 	prescription = TRUE
 	origin_tech = list(TECH_MAGNET = 3, TECH_BIO = 2)
 	var/list/icon/current = list() //the current hud icons
+	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1, MATERIAL_SILVER = 0.5)
+	price_tag = 200
 
 /obj/item/clothing/glasses/proc/process_hud(var/mob/M)
 	if(hud)
@@ -56,3 +58,6 @@
 	name = "Ironhammer tactical HUD"
 	desc = "Flash-resistant goggles with inbuilt combat and security information."
 	icon_state = "swatgoggles"
+
+/obj/item/clothing/glasses/hud/broken/process_hud(mob/M)
+	process_broken_hud(M, 1)

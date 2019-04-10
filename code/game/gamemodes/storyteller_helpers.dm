@@ -6,8 +6,13 @@
 		newST = config.pick_storyteller(STORYTELLER_BASE) //This function is in code/controllers/configuration.dm
 
 	if (!istype(newST))
-		//Welp that failed
-		return
+		if(!istext(newST)) //Welp that failed
+			return
+
+		if(!GLOB.storyteller_cache[newST])
+			return
+		else
+			newST = GLOB.storyteller_cache[newST]
 
 	if (get_storyteller() == newST)
 		return //Nothing happens if we try to set to the storyteller we already have
@@ -16,23 +21,22 @@
 	//we cache it now so we can do that soon
 	var/datum/storyteller/oldST = get_storyteller()
 
-	//Finally, we set the new one
-	storyteller = newST
+	//Finally, we set the new one //and it's set globally.
+	GLOB.storyteller = newST
 
 	if (oldST != null)
-		storyteller.points.Cut()
-		storyteller.points.Add(oldST.points.Copy())//Transfer over points
+		GLOB.storyteller.points = oldST.points.Copy()//Transfer over points
 		//TODO: Cleanup and handover
 
 	//Configure the new storyteller
-	storyteller.set_up()
+	GLOB.storyteller.set_up()
 
 	if (announce)
-		storyteller.announce()
+		GLOB.storyteller.announce()
 
 
 /proc/get_storyteller()
-	return storyteller
+	return GLOB.storyteller
 
 /datum/storyteller/proc/update_crew_count()
 	if(debug_mode)
@@ -45,7 +49,7 @@
 	med = 0
 	sci = 0
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M.client && (M.mind && !M.mind.antagonist.len) && M.stat != DEAD && (ishuman(M) || isrobot(M) || isAI(M)))
 			var/datum/job/job = SSjob.GetJob(M.mind.assigned_role)
 			if(job)
@@ -132,7 +136,7 @@ var/list/event_last_fired = list()
 	active_with_role["Janitor"] = 0
 	active_with_role["Gardener"] = 0
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		// longer than 10 minutes AFK counts them as inactive
 		if(!M.mind || !M.client || M.client.is_afk(10 MINUTES))
 			continue

@@ -18,3 +18,17 @@
 
 	return null//If we get here, the holder must be buried many layers deep in nested containers, or else is somehow contained in nullspace
 
+/atom/proc/add_overlay(var/overlay)
+	ASSERT(overlay)
+
+	if(istext(overlay))
+		overlays.Add(image(icon,icon_state = overlay))
+	else
+		overlays.Add(overlay)
+
+/atom/proc/in_maintenance()
+	var/area/A = get_area(src)
+	if (A && A.is_maintenance)
+		return TRUE
+	return FALSE
+

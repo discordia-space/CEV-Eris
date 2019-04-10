@@ -12,6 +12,10 @@
 
 	storage_capacity = 150
 
+/obj/machinery/autolathe/excelsior/New()
+	..()
+	container = new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
+
 /obj/machinery/autolathe/excelsior/update_icon()
 	overlays.Cut()
 

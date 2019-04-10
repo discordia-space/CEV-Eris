@@ -3,7 +3,7 @@
 	icon_state = "thick"
 	icon_keyboard = "teleport_key"
 	icon_screen = "teleport"
-	light_color = "#77fff8"
+	light_color = COLOR_LIGHTING_CYAN_MACHINERY
 	//circuit = /obj/item/weapon/circuitboard/sensors
 	var/obj/effect/overmap/ship/linked
 	var/obj/machinery/shipsensors/sensors

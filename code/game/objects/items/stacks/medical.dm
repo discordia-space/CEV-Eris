@@ -9,9 +9,11 @@
 	throw_range = 20
 	var/heal_brute = 0
 	var/heal_burn = 0
+	price_tag = 10
 
-/obj/item/stack/medical/attack(mob/living/carbon/M, mob/living/user)
-	if (!istype(M))
+/obj/item/stack/medical/attack(mob/living/M, mob/living/user)
+	var/types = M.get_classification()
+	if (!(types & CLASSIFICATION_ORGANIC))
 		user << SPAN_WARNING("\The [src] cannot be applied to [M]!")
 		return 1
 
@@ -43,16 +45,25 @@
 		H.UpdateDamageIcon()
 
 	else
+		if (!M.bruteloss && !M.fireloss)
+			user << "<span class='notice'> [M] seems healthy, there are no wounds to treat! </span>"
+			return 1
 
-		M.heal_organ_damage((src.heal_brute/2), (src.heal_burn/2))
-		user.visible_message(
-			SPAN_NOTICE("[M] has been applied with [src] by [user]."),
-			SPAN_NOTICE("You apply \the [src] to [M].")
-		)
-		if(prob(10 + user.stats.getStat(STAT_BIO)))
-			user << SPAN_NOTICE("You have managed to waste less [src].")
-		else
-			use(1)
+		user.visible_message( \
+				SPAN_NOTICE("[user] starts applying [src] to [M]."), \
+				SPAN_NOTICE("You start applying [src] to [M].") \
+			)
+		var/med_skill = user.stats.getStat(STAT_BIO)
+		if (do_after(user, 30, M))
+			M.heal_organ_damage((src.heal_brute * (1+med_skill/50)/2), (src.heal_burn * (1+med_skill/50)/2))
+			if(prob(10 + med_skill))
+				user << SPAN_NOTICE("You have managed to waste less [src].")
+			else
+				use(1)
+			user.visible_message( \
+				SPAN_NOTICE("[M] starts has been applied with [src] by [user]."), \
+				SPAN_NOTICE("You apply [src] to [M].") \
+			)
 
 	M.updatehealth()
 
@@ -62,6 +73,7 @@
 	desc = "Some sterile gauze to wrap around bloody stumps."
 	icon_state = "brutepack"
 	origin_tech = list(TECH_BIO = 1)
+	heal_brute = 4
 
 /obj/item/stack/medical/bruise_pack/attack(mob/living/carbon/M, mob/living/user)
 	if(..())
@@ -143,7 +155,7 @@
 	gender = PLURAL
 	singular_name = "ointment"
 	icon_state = "ointment"
-	heal_burn = 1
+	heal_burn = 4
 	origin_tech = list(TECH_BIO = 1)
 
 /obj/item/stack/medical/ointment/attack(mob/living/carbon/M, mob/living/user)
@@ -191,7 +203,7 @@
 	singular_name = "advanced trauma kit"
 	desc = "An advanced trauma kit for severe injuries."
 	icon_state = "traumakit"
-	heal_brute = 1
+	heal_brute = 8
 	origin_tech = list(TECH_BIO = 2)
 
 /obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M, mob/living/user)
@@ -269,7 +281,7 @@
 	singular_name = "advanced burn kit"
 	desc = "An advanced treatment kit for severe burns."
 	icon_state = "burnkit"
-	heal_burn = 1
+	heal_burn = 8
 	origin_tech = list(TECH_BIO = 2)
 
 

@@ -9,17 +9,17 @@
 	export_types = list(/obj/item/weapon/melee/baton)
 
 /datum/export/weapon/knife
-	cost = 750
+	cost = 300
 	unit_name = "combat knife"
 	export_types = list(/obj/item/weapon/material/knife)
 
 /datum/export/weapon/taser
-	cost = 250
+	cost = 350
 	unit_name = "taser"
 	export_types = list(/obj/item/weapon/gun/energy/taser)
 
 /datum/export/weapon/laser
-	cost = 250
+	cost = 500
 	unit_name = "laser gun"
 	export_types = list(/obj/item/weapon/gun/energy/laser)
 
@@ -53,7 +53,7 @@
 	include_subtypes = TRUE
 
 /datum/export/weapon/handcuffs
-	cost = 3
+	cost = 5
 	unit_name = "pair"
 	message = "of handcuffs"
 	export_types = list(/obj/item/weapon/handcuffs)

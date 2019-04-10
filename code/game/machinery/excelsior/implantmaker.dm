@@ -1,6 +1,6 @@
 /obj/machinery/complant_maker
 	name = "implant reconstructor"
-	desc = "Thic machine exist to reconstruct implants to another implants."
+	desc = "This machine repurposes implants, robot components and bionics, reworking their circuitry into the Excelsior implant pattern which allows recruitment."
 	icon = 'icons/obj/machines/excelsior/reconstructor.dmi'
 	icon_state = "idle"
 	circuit = /obj/item/weapon/circuitboard/excelsiorreconstructor
@@ -19,6 +19,9 @@
 	build_time = max(10, 70-total)
 
 /obj/machinery/complant_maker/attackby(var/obj/item/I, var/mob/user)
+	if(working)
+		user << SPAN_WARNING("[src] is active. Wait for it to finish.")
+
 	if(default_deconstruction(I, user))
 		return
 

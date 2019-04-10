@@ -13,7 +13,11 @@ var/global/list/storyevents = list()
 var/global/list/scheduled_events = list()
 
 /proc/fill_storyevents_list()
-	for(var/type in typesof(/datum/storyevent)-/datum/storyevent-/datum/storyevent/roleset)
+	var/list/base_types = list(/datum/storyevent,
+	/datum/storyevent/roleset,
+	/datum/storyevent/roleset/faction)
+
+	for(var/type in typesof(/datum/storyevent)-base_types)
 		storyevents.Add(new type)
 
 

@@ -5,14 +5,6 @@
 	item_state = "bl_suit"
 
 
-/obj/item/clothing/under/color/blackf
-	name = "feminine black jumpsuit"
-	initial_name = "feminine black jumpsuit"
-	desc = "It's very smart and in a ladies-size!"
-	icon_state = "black"
-	item_state = "bl_suit"
-
-
 /obj/item/clothing/under/color/blue
 	name = "blue jumpsuit"
 	initial_name = "blue jumpsuit"

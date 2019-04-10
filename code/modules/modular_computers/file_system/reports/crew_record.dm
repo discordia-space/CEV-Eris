@@ -2,7 +2,7 @@ GLOBAL_LIST_EMPTY(all_crew_records)
 GLOBAL_LIST_INIT(blood_types, list("A-", "A+", "B-", "B+", "AB-", "AB+", "O-", "O+"))
 GLOBAL_LIST_INIT(physical_statuses, list("Active", "Disabled", "SSD", "Deceased", "MIA"))
 GLOBAL_VAR_INIT(default_physical_status, "Active")
-GLOBAL_LIST_INIT(security_statuses, list("None", "Released", "Parolled", "Incarcerated", "Arrest"))
+GLOBAL_LIST_INIT(security_statuses, list("None", "Released", "Parolled", "Incarcerated", "*Arrest*"))
 GLOBAL_VAR_INIT(default_security_status, "None")
 GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 
@@ -23,6 +23,7 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 	GLOB.all_crew_records.Remove(src)
 
 /datum/computer_file/report/crew_record/proc/load_from_mob(var/mob/living/carbon/human/H)
+
 	if(istype(H))
 		photo_front = getFlatIcon(H, SOUTH, always_use_defdir = 1)
 		photo_side = getFlatIcon(H, WEST, always_use_defdir = 1)
@@ -47,10 +48,15 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 	*/
 	// Generic record
 	set_name(H ? H.real_name : "")
+	set_department(H ? GetDepartment(H) : "Unset")
 	set_job(H ? GetAssignment(H) : "Unset")
 	set_sex(H ? gender2text(H.get_sex()) : "Unset")
 	set_age(H ? H.age : 30)
 	set_status(GLOB.default_physical_status)
+
+	set_email((H && H.mind) ? H.mind.initial_email_login["login"] : "none")
+	set_account((H && H.mind) ? H.mind.initial_account.account_number : "000000")
+
 	// TODO: enable after baymed
 	//set_species(H ? H.get_species() : SPECIES_HUMAN)
 
@@ -87,7 +93,7 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 	// Misc cultural info.
 	//set_homeSystem(H ? html_decode(H.get_cultural_value(TAG_HOMEWORLD)) : "Unset")
 	//set_faction(H ? html_decode(H.get_cultural_value(TAG_FACTION)) : "Unset")
-	//set_religion(H ? html_decode(H.get_cultural_value(TAG_RELIGION)) : "Unset")
+	set_religion(H ? H.religion : "Unset")
 
 	if(H)
 		var/stats = list()
@@ -142,6 +148,11 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 			return CR
 	return null
 
+/proc/GetDepartment(var/mob/living/carbon/human/H)
+	if(H && H.mind && H.mind.assigned_job)
+		return H.mind.assigned_job.department
+	return "Unassigned"
+
 /proc/GetAssignment(var/mob/living/carbon/human/H)
 	if(!H)
 		return "Unassigned"
@@ -150,6 +161,10 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 	if(H.mind.role_alt_title)
 		return H.mind.role_alt_title
 	return H.mind.assigned_role
+
+
+
+
 
 #define GETTER_SETTER(PATH, KEY) /datum/computer_file/report/crew_record/proc/get_##KEY(){var/datum/report_field/F = locate(/datum/report_field/##PATH/##KEY) in fields; if(F) return F.get_value()} \
 /datum/computer_file/report/crew_record/proc/set_##KEY(given_value){var/datum/report_field/F = locate(/datum/report_field/##PATH/##KEY) in fields; if(F) F.set_value(given_value)}
@@ -169,12 +184,15 @@ KEY.set_access(ACCESS, ACCESS_EDIT || ACCESS || access_heads)}
 
 // GENERIC RECORDS
 FIELD_SHORT("Name", name, null, access_change_ids)
+FIELD_SHORT("Department", department, null, access_change_ids)
 FIELD_SHORT("Job", job, null, access_change_ids)
 FIELD_LIST("Sex", sex, record_genders(), null, access_change_ids)
 FIELD_NUM("Age", age, null, access_change_ids)
 FIELD_LIST_EDIT("Status", status, GLOB.physical_statuses, null, access_moebius)
 
 FIELD_SHORT("Species",species, null, access_change_ids)
+FIELD_SHORT("Email",email, null, access_change_ids)
+FIELD_NUM("Account",account, null, access_change_ids)
 
 // MEDICAL RECORDS
 FIELD_LIST("Blood Type", bloodtype, GLOB.blood_types, access_moebius, access_moebius)
@@ -195,6 +213,14 @@ FIELD_LONG("Qualifications", skillset, access_heads, access_heads)
 
 // ANTAG RECORDS
 FIELD_LONG("Exploitable Information", antagRecord, access_syndicate, access_syndicate)
+
+/datum/report_field/options/crew_record/criminalStatus/set_value(given_value)
+	..()
+	var/datum/computer_file/report/crew_record/C = owner
+	for(var/h in GLOB.human_mob_list)
+		var/mob/living/carbon/human/H = h
+		if(H.get_id_name(H.name) == C.get_name())
+			BITSET(H.hud_updateflag, WANTED_HUD)
 
 //Options builderes
 /datum/report_field/options/crew_record/rank/proc/record_ranks()

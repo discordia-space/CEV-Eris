@@ -13,7 +13,6 @@
 	var/cooldown = 0
 	var/acceleration = 1
 	var/owner_follows_eye = 0
-	var/datum/delay_controller/move_delayer = new(0)
 
 	see_in_dark = 7
 	invisibility = INVISIBILITY_EYE
@@ -59,6 +58,10 @@
 
 			visualnet.visibility(src)
 			return 1
+
+		if(owner.hud_used)
+			owner.hud_used.updatePlaneMasters(owner)
+
 	return 0
 
 /mob/observer/eye/proc/getLoc()
@@ -69,28 +72,23 @@
 /mob
 	var/mob/observer/eye/eyeobj
 
-/mob/proc/EyeMove(n, direct)
+/mob/proc/EyeMove(direct)
 	if(!eyeobj)
 		return
 
-	return eyeobj.EyeMove(n, direct)
+	return eyeobj.EyeMove(direct)
 
-/mob/observer/eye/EyeMove(n, direct)
-	if (move_delayer.isBlocked())
-		return 0
-
+/mob/observer/eye/EyeMove(direct)
 	var/initial = initial(sprint)
-	var/max_sprint = 50
+	var/max_sprint = 70
 
 	var/delay = 0.5
 	set_glide_size(DELAY2GLIDESIZE(delay))
-	move_delayer.setDelay(delay)
 
 	if (cooldown && cooldown < world.timeofday)
 		sprint = initial
-
-	for (var/i = 0; i < max(sprint, initial); i += 20)
-		var/turf/step = get_turf(get_step(src, direct))
+	for (var/i = 0; i < max(sprint, initial); i += 30)
+		var/turf/step = get_step(get_turf(src), direct)
 		if (step)
 			setLoc(step)
 
@@ -100,4 +98,12 @@
 	else
 		sprint = initial
 
+	if(owner.hud_used)
+		owner.hud_used.updatePlaneMasters(owner)
+
 	return 1
+
+/mob/observer/eye/forceMove(atom/destination, var/special_event, glide_size_override=0)
+	. = ..()
+	if(owner && owner.hud_used)
+		owner.hud_used.updatePlaneMasters(owner)

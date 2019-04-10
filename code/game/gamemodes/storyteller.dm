@@ -1,7 +1,4 @@
-var/datum/storyteller/storyteller = null
-
-
-
+GLOBAL_DATUM(storyteller, /datum/storyteller)
 
 /datum/storyteller
 	//Strings
@@ -22,7 +19,7 @@ var/datum/storyteller/storyteller = null
 	var/list/processing_events = list()
 	var/last_tick = 0
 	var/next_tick = 0
-	var/tick_interval = 60 SECONDS //Ticks once per second
+	var/tick_interval = 60 SECONDS //Ticks once per minute.
 
 	var/crew = 0
 	var/heads = 0
@@ -67,46 +64,49 @@ var/datum/storyteller/storyteller = null
 	//The maximum time between scheduling and firing an event
 	//Time is random between 1 decisecond to this
 
+	var/votable = TRUE
+	//whether or not the players can vote for it. If this is set to false, it can only be activated by being forced by admins.
+
 
 
 /********************************
 	ROUNDSTART AND SETUP
 *********************************/
 /datum/storyteller/proc/can_start(var/announce = FALSE)	//when TRUE, proc should output reason, by which it can't start, to world
-	if(debug_mode)
+	if(debug_mode || SSticker.start_immediately)
 		return TRUE
 
 	var/engineer = FALSE
-	var/captain = FALSE
-	for(var/mob/new_player/player in player_list)
+	var/command = FALSE
+	for(var/mob/new_player/player in GLOB.player_list)
 		if(player.ready && player.mind)
-			if(player.mind.assigned_role == "Captain")
-				captain = TRUE
-			if(player.mind.assigned_role in list("Technomancer Exultant","Technomancer"))
+			if(player.mind.assigned_role in list(JOBS_COMMAND))
+				command = TRUE
+			if(player.mind.assigned_role in list(JOBS_ENGINEERING))
 				engineer = TRUE
-			if(captain && engineer)
+			if(command && engineer)
 				return TRUE
 
 	var/tcol = "red"
-	if(player_list.len <= 10)
+	if(GLOB.player_list.len <= 10)
 		tcol = "black"
 
 	if(announce)
-		if(!engineer && !captain)
-			world << "<b><font color='[tcol]'>Captain and technomancer are required to start round.</font></b>"
+		if(!engineer && !command)
+			world << "<b><font color='[tcol]'>A command officer and technomancer are required to start round.</font></b>"
 		else if(!engineer)
 			world << "<b><font color='[tcol]'>Technomancer is required to start round.</font></b>"
-		else if(!captain)
-			world << "<b><font color='[tcol]'>Captain is required to start round.</font></b>"
+		else if(!command)
+			world << "<b><font color='[tcol]'>A command officer is required to start round.</font></b>"
 
-	if(player_list.len <= 10)
+	if(GLOB.player_list.len <= 10)
 		world << "<i>But there's less than 10 players, so this requirement will be ignored.</i>"
 		return TRUE
 
 	return FALSE
 
 /datum/storyteller/proc/announce()
-	world << "<b><font size=3>Storyteller is [src.name].</font> <br>[welcome]</b>"
+	world << "<b><font size=3>Storyteller is [name].</font> <br>[welcome]</b>"
 
 /datum/storyteller/proc/set_up()
 	build_event_pools()
@@ -199,8 +199,8 @@ var/datum/storyteller/storyteller = null
 
 
 /proc/storyteller_button()
-	if(storyteller)
-		return "<a href='?src=\ref[storyteller];panel=1'>\[STORY\]</a>"
+	if(GLOB.storyteller)
+		return "<a href='?src=\ref[GLOB.storyteller];panel=1'>\[STORY\]</a>"
 	else
 		return "<s>\[STORY\]</s>"
 

@@ -71,6 +71,7 @@
 
 	var/list/operation_req_access = list()//required access level for mecha operation
 	var/list/internals_req_access = list(access_engine,access_robotics)//required access level to open cell compartment
+	var/list/dna_req_access = list(access_heads)
 
 	var/datum/global_iterator/pr_int_temp_processor //normalizes internal air mixture temperature
 	var/datum/global_iterator/pr_inertial_movement //controls intertial movement in spesss
@@ -79,6 +80,7 @@
 
 
 	var/wreckage
+	var/noexplode = 0 // Used for cases where an exosuit is spawned and turned into wreckage
 
 	var/list/equipment = new
 	var/obj/item/mecha_parts/mecha_equipment/selected
@@ -134,7 +136,7 @@
 	if(loc)
 		loc.Exited(src)
 
-	if(prob(30))
+	if(prob(30) && !noexplode)
 		explosion(get_turf(loc), 0, 0, 1, 3)
 
 	if(wreckage)
@@ -892,7 +894,7 @@ assassination method if you time it right*/
 	if(state >= 3 && src.occupant)
 		usable_qualities.Add(QUALITY_PULSING)
 
-	var/tool_type = I.get_tool_type(user, usable_qualities)
+	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 
 		if(QUALITY_BOLT_TURNING)
@@ -1412,37 +1414,42 @@ assassination method if you time it right*/
 
 /obj/mecha/proc/operation_allowed(mob/living/carbon/human/H)
 	for(var/ID in list(H.get_active_hand(), H.wear_id, H.belt))
-		if(src.check_access(ID,src.operation_req_access))
-			return 1
-	return 0
+		if(src.check_access(ID, operation_req_access))
+			return TRUE
+	return FALSE
 
 
 /obj/mecha/proc/internals_access_allowed(mob/living/carbon/human/H)
 	for(var/atom/ID in list(H.get_active_hand(), H.wear_id, H.belt))
-		if(src.check_access(ID,src.internals_req_access))
-			return 1
-	return 0
+		if(src.check_access(ID, internals_req_access))
+			return TRUE
+	return FALSE
+
+/obj/mecha/proc/dna_reset_allowed(mob/living/carbon/human/H)
+	for(var/atom/ID in list(H.get_active_hand(), H.wear_id, H.belt))
+		if(src.check_access(ID, dna_req_access))
+			return TRUE
+	return FALSE
 
 
 /obj/mecha/check_access(obj/item/weapon/card/id/I, list/access_list)
 	if(!istype(access_list))
-		return 1
+		return TRUE
 	if(!access_list.len) //no requirements
-		return 1
-	if(istype(I, /obj/item/modular_computer))
-		var/obj/item/device/pda/pda = I
-		I = pda.id
-	if(!istype(I) || !I.access) //not ID or no access
-		return 0
+		return TRUE
+
+	var/list/user_access = I ? I.GetAccess() : list()
+
 	if(access_list==src.operation_req_access)
 		for(var/req in access_list)
-			if(!(req in I.access)) //doesn't have this access
-				return 0
-	else if(access_list==src.internals_req_access)
+			if(!(req in user_access)) //doesn't have this access
+				return FALSE
+	else if(access_list == src.internals_req_access || access_list == src.dna_req_access)
 		for(var/req in access_list)
-			if(req in I.access)
-				return 1
-	return 1
+			if(req in user_access)
+				return TRUE
+		return FALSE
+	return TRUE
 
 
 ////////////////////////////////////
@@ -1563,7 +1570,7 @@ assassination method if you time it right*/
 						<div class='links'>
 						<a href='?src=\ref[src];toggle_id_upload=1'><span id='t_id_upload'>[add_req_access?"L":"Unl"]ock ID upload panel</span></a><br>
 						<a href='?src=\ref[src];toggle_maint_access=1'><span id='t_maint_access'>[maint_access?"Forbid":"Permit"] maintenance protocols</span></a><br>
-						<a href='?src=\ref[src];dna_lock=1'>DNA-lock</a><br>
+						<a href='?src=\ref[src];dna_lock=1'>DNA-Lock</a><br>
 						<a href='?src=\ref[src];view_log=1'>View internal log</a><br>
 						<a href='?src=\ref[src];change_name=1'>Change exosuit name</a><br>
 						</div>
@@ -1637,6 +1644,8 @@ assassination method if you time it right*/
 	var/maint_options = "<a href='?src=\ref[src];set_internal_tank_valve=1;user=\ref[user]'>Set Cabin Air Pressure</a>"
 	if (locate(/obj/item/mecha_parts/mecha_equipment/tool/passenger) in contents)
 		maint_options += "<a href='?src=\ref[src];remove_passenger=1;user=\ref[user]'>Remove Passenger</a>"
+	if (src.dna)
+		maint_options += "<a href='?src=\ref[src];maint_reset_dna=1;user=\ref[user]'>Revert DNA-Lock</a>"
 
 	var/output = {"<html>
 						<head>
@@ -1870,6 +1879,16 @@ assassination method if you time it right*/
 			return
 		usr << sound('sound/mecha/UI_SCI-FI_Tone_10_stereo.ogg',channel=4, volume=100)
 		src.dna = null
+		src.occupant_message("DNA-Lock disengaged.")
+	if(href_list["maint_reset_dna"])
+		if(src.dna_reset_allowed(usr))
+			usr << sound('sound/mecha/UI_SCI-FI_Tone_10_stereo.ogg',channel=4, volume=100)
+			usr << SPAN_NOTICE("DNA-Lock has been reverted.")
+			src.dna = null
+		else
+			usr << sound('sound/mecha/UI_SCI-FI_Tone_Deep_Wet_15_stereo_error.ogg',channel=4, volume=100)
+			usr << SPAN_WARNING("Invalid ID: Higher clearance is required.")
+			return
 	if(href_list["repair_int_control_lost"])
 		if(usr != src.occupant)
 			return
@@ -2139,3 +2158,48 @@ assassination method if you time it right*/
 	//src.check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 	return
 */
+
+
+
+//Used for generating damaged exosuits.
+//This does an individual check for each piece of equipment on the exosuit, and removes it if
+//this probability passes a check
+/obj/mecha/proc/lose_equipment(var/probability)
+	for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
+		if (prob(probability))
+			E.detach(loc)
+			qdel(E)
+
+//Does a number of checks at probability, and alters some configuration values if succeeded
+/obj/mecha/proc/misconfigure_systems(var/probability)
+	if (prob(probability))
+		internal_tank_valve = rand(0,10000) // Screw up the cabin air pressure.
+		//This will probably kill the pilot if they dont check it before climbing in
+	if (prob(probability))
+		use_internal_tank = !use_internal_tank // Flip internal tank mode on or off
+	if (prob(probability))
+		toggle_lights() // toggle the lights
+	if (prob(probability)) // Some settings to screw up the radio
+		radio.broadcasting = !radio.broadcasting
+	if (prob(probability))
+		radio.listening = !radio.listening
+	if (prob(probability))
+		radio.set_frequency(rand(PUBLIC_LOW_FREQ,PUBLIC_HIGH_FREQ))
+	if (prob(probability))
+		maint_access = 0 // Disallow maintenance mode
+	else
+		maint_access = 1 // Explicitly allow maint_access -> Othwerwise we have a stuck mech, as you cant change the state back, if maint_access is 0
+		state = 1 // Enable maintenance mode. It won't move.
+
+//Does a random check for each possible type of internal damage, and adds it if it passes
+//The probability should be somewhat low unless you just want to saturate it with damage
+//Fire is excepted. We're not going to set the exosuit on fire while its in longterm storage
+/obj/mecha/proc/random_internal_damage(var/probability)
+	if (prob(probability))
+		setInternalDamage(MECHA_INT_TEMP_CONTROL)
+	if (prob(probability))
+		setInternalDamage(MECHA_INT_SHORT_CIRCUIT)
+	if (prob(probability))
+		setInternalDamage(MECHA_INT_TANK_BREACH)
+	if (prob(probability))
+		setInternalDamage(MECHA_INT_CONTROL_LOST)

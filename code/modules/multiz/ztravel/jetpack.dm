@@ -18,7 +18,7 @@
 		M.pixel_y += 8
 		var/matrix/mat = matrix()
 		mat.Scale(0.9)
-		M.plane = FLOOR_PLANE
+		M.set_plane(FLOOR_PLANE)
 		M.layer = 1
 		animate(M, alpha = 50, pixel_y = -16, transform = mat,  time = duration*1.2, easing = SINE_EASING)
 	else

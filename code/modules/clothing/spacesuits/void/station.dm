@@ -72,25 +72,26 @@
 
 	//Security
 /obj/item/clothing/head/helmet/space/void/security
-	name = "security voidsuit helmet"
+	name = "ironhammer voidsuit helmet"
 	desc = "A special helmet designed for work in a hazardous, low pressure environment. Has an additional layer of armor."
-	icon_state = "rig0-sec"
-	item_state = "sec_helm"
+	icon_state = "ihsvoidhelm"
+	item_state = "ihsvoidhelm"
 	item_state_slots = list(
 		slot_l_hand_str = "sec_helm",
 		slot_r_hand_str = "sec_helm",
 		)
-	armor = list(melee = 50, bullet = 45, laser = 45,energy = 35, bomb = 35, bio = 100, rad = 60)
+
+	armor = list(melee = 45, bullet = 50, laser = 50,energy = 20, bomb = 35, bio = 100, rad = 60)
 	siemens_coefficient = 0.7
-	light_overlay = "helmet_light_dual"
+	light_overlay = "helmet_light_ihs"
 
 /obj/item/clothing/suit/space/void/security
-	icon_state = "rig-sec"
-	name = "security voidsuit"
-	desc = "A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor."
-	item_state = "sec_voidsuit"
-	armor = list(melee = 50, bullet = 45, laser = 45,energy = 35, bomb = 35, bio = 100, rad = 60)
-
+	name = "ironhammer voidsuit"
+	icon_state = "ihvoidsuit"
+	desc = "A bulky suit that protects against hazardous, low pressure environments. Sacrifices mobility for protection"
+	item_state = "ihvoidsuit"
+	armor = list(melee = 60, bullet = 50, laser = 50,energy = 40, bomb = 35, bio = 100, rad = 60)
+	slowdown = 1.5
 	siemens_coefficient = 0.7
 
 //Atmospherics Rig (BS12)

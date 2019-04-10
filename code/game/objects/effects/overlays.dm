@@ -53,7 +53,7 @@
 	icon_state = "bluespacify"
 	layer = 10
 
-/obj/effect/overlay/bmark 
+/obj/effect/overlay/bmark
 	name = "bullet hole"
 	desc = "Well someone shot something."
 	icon = 'icons/effects/effects.dmi'

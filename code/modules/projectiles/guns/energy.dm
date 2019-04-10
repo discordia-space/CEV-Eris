@@ -28,12 +28,16 @@
 	..()
 	update_icon()
 
-/obj/item/weapon/gun/energy/New()
-	..()
+/obj/item/weapon/gun/energy/Initialize()
+	. = ..()
 	if(self_recharge)
 		cell = new cell_type(src)
 		START_PROCESSING(SSobj, src)
 	update_icon()
+
+/obj/item/weapon/gun/energy/Destroy()
+	QDEL_NULL(cell)
+	return ..()
 
 /obj/item/weapon/gun/energy/Process()
 	if(self_recharge) //Every [recharge_time] ticks, recharge a shot for the cyborg
@@ -76,10 +80,10 @@
 /obj/item/weapon/gun/energy/examine(mob/user)
 	..(user)
 	if(!cell)
-		user << SPAN_NOTICE("Has no battery cell inserted.")
+		to_chat(user, SPAN_NOTICE("Has no battery cell inserted."))
 		return
 	var/shots_remaining = round(cell.charge / charge_cost)
-	user << "Has [shots_remaining] shot\s remaining."
+	to_chat(user, "Has [shots_remaining] shot\s remaining.")
 	return
 
 /obj/item/weapon/gun/energy/update_icon(var/ignore_inhands)
@@ -89,7 +93,7 @@
 		//make sure that rounding down will not give us the empty state even if we have charge for a shot left.
 		if(cell && cell.charge >= charge_cost)
 			ratio = cell.charge / cell.maxcharge
-			ratio = max(round(ratio, 0.25) * 100, 25)
+			ratio = min(max(round(ratio, 0.25) * 100, 25), 100)
 
 		if(modifystate)
 			icon_state = "[modifystate][ratio]"
@@ -118,3 +122,6 @@
 	if(istype(C, suitable_cell) && insert_item(C, user))
 		cell = C
 		update_icon()
+
+/obj/item/weapon/gun/energy/get_cell()
+	return cell

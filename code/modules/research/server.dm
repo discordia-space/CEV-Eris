@@ -105,7 +105,7 @@
 
 /obj/machinery/r_n_d/server/attackby(var/obj/item/I, var/mob/user as mob)
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING))
+	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING), src)
 	switch(tool_type)
 
 		if(QUALITY_PRYING)
@@ -165,7 +165,7 @@
 	name = "R&D Server Controller"
 	icon_keyboard = "rd_key"
 	icon_screen = "rdcomp"
-	light_color = "#a97faa"
+	light_color = COLOR_LIGHTING_PURPLE_MACHINERY
 	circuit = /obj/item/weapon/circuitboard/rdservercontrol
 	var/screen = 0
 	var/obj/machinery/r_n_d/server/temp_server

@@ -199,6 +199,8 @@
 
 /obj/machinery/power/apc/proc/energy_fail(var/duration)
 	failure_timer = max(failure_timer, duration)
+	update_icon()
+	update()
 
 /obj/machinery/power/apc/proc/make_terminal()
 	// create a terminal object at the same position as original turf loc
@@ -300,7 +302,7 @@
 	if(!update)
 		return
 
-	if(update & 1) // Updating the icon state
+	if(update > 0) // Updating the icon state
 		if(update_state & UPDATE_ALLGOOD)
 			icon_state = "apc0"
 		else if(update_state & (UPDATE_OPENED1|UPDATE_OPENED2))
@@ -319,12 +321,27 @@
 		else if(update_state & UPDATE_WIREEXP)
 			icon_state = "apcewires"
 
+		if(update_state & UPDATE_BLUESCREEN)
+			set_light(l_range = 2, l_power = 0.6, l_color = "#0000FF")
+		else if(!(stat & (BROKEN|MAINT)) && update_state & UPDATE_ALLGOOD)
+			var/color
+			switch(charging)
+				if(0)
+					color = COLOR_LIGHTING_RED_MACHINERY
+				if(1)
+					color = COLOR_LIGHTING_BLUE_BRIGHT
+				if(2)
+					color = COLOR_LIGHTING_GREEN_BRIGHT
+			set_light(l_range = 2, l_power = 0.6, l_color = color)
+		else
+			set_light(0)
+
 	if(!(update_state & UPDATE_ALLGOOD))
 		if(overlays.len)
 			overlays = 0
 			return
 
-	if(update & 2)
+	if(update > 1)
 		if(overlays.len)
 			overlays.len = 0
 		if(!(stat & (BROKEN|MAINT)) && update_state & UPDATE_ALLGOOD)
@@ -335,21 +352,6 @@
 				overlays += status_overlays_lighting[lighting+1]
 				overlays += status_overlays_environ[environ+1]
 
-	if(update & 3)
-		if(update_state & UPDATE_BLUESCREEN)
-			set_light(l_range = 1.5, l_power = 0.2, l_color = "#0000FF")
-		else if(!(stat & (BROKEN|MAINT)) && update_state & UPDATE_ALLGOOD)
-			var/color
-			switch(charging)
-				if(0)
-					color = "#F86060"
-				if(1)
-					color = "#A8B0F8"
-				if(2)
-					color = "#82FF4C"
-			set_light(l_range = 1.5, l_power = 0.2, l_color = color)
-		else
-			set_light(0)
 
 /obj/machinery/power/apc/proc/check_updates()
 
@@ -369,10 +371,10 @@
 			update_state |= UPDATE_OPENED1
 		if(opened==2)
 			update_state |= UPDATE_OPENED2
-	else if(emagged || hacker || failure_timer)
-		update_state |= UPDATE_BLUESCREEN
 	else if(wiresexposed)
 		update_state |= UPDATE_WIREEXP
+	if(emagged || hacker || failure_timer)
+		update_state |= UPDATE_BLUESCREEN
 	if(update_state <= 1)
 		update_state |= UPDATE_ALLGOOD
 
@@ -446,7 +448,7 @@
 	if(opened && has_electronics==0 && !terminal)
 		usable_qualities.Add(QUALITY_WELDING)
 
-	var/tool_type = I.get_tool_type(user, usable_qualities)
+	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 
 		if(QUALITY_PRYING)

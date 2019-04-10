@@ -8,7 +8,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if (isslime(target))
 			return 0
-		if (target_zone == O_EYES)	//there are specific steps for eye surgery
+		if (target_zone == BP_EYES)	//there are specific steps for eye surgery
 			return 0
 		if (!hasorgans(target))
 			return 0
@@ -30,7 +30,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			return affected && affected.open == 0 && target_zone != "mouth"
+			return affected && affected.open == 0 && target_zone != BP_MOUTH
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -86,7 +86,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			return affected && affected.open && target_zone != "mouth"
+			return affected && affected.open && target_zone != BP_MOUTH
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -117,7 +117,7 @@
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
 			if(!istype(tool,/obj/item/weapon/tool/weldingtool))
 				return 0
-			return affected && affected.brute_dam > 0 && target_zone != "mouth"
+			return affected && affected.brute_dam > 0 && target_zone != BP_MOUTH
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -149,7 +149,7 @@
 		if(..())
 			var/obj/item/stack/cable_coil/C = tool
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			var/limb_can_operate = (affected && affected.open == 2 && affected.burn_dam > 0 && target_zone != "mouth")
+			var/limb_can_operate = (affected && affected.open == 2 && affected.burn_dam > 0 && target_zone != BP_MOUTH)
 			if(limb_can_operate)
 				if(istype(C))
 					if(!C.get_amount() >= 3)
@@ -262,8 +262,12 @@
 			var/obj/item/organ/I = target.internal_organs_by_name[organ]
 			if(I && !(I.status & ORGAN_CUT_AWAY) && I.parent_organ == target_zone)
 				attached_organs |= organ
-
-		var/organ_to_remove = input(user, "Which organ do you want to prepare for removal?") as null|anything in attached_organs
+		var/list/options = list()
+		for(var/i in attached_organs)
+			var/obj/item/organ/I = target.internal_organs_by_name[i]
+			options[i] = image(icon = I.icon, icon_state = I.icon_state)
+		var/organ_to_remove
+		organ_to_remove = show_radial_menu(user, target, options, radius = 32)
 		if(!organ_to_remove)
 			return 0
 
@@ -367,11 +371,11 @@
 			user << SPAN_DANGER("You have no idea what species this person is. Report this on the bug tracker.")
 			return SURGERY_FAILURE
 
-		if(!target.species.has_organ[O_BRAIN])
+		if(!target.species.has_organ[BP_BRAIN])
 			user << SPAN_DANGER("You're pretty sure [target.species.name_plural] don't normally have a brain.")
 			return SURGERY_FAILURE
 
-		if(!isnull(target.internal_organs[O_BRAIN]))
+		if(!isnull(target.internal_organs[BP_BRAIN]))
 			user << SPAN_DANGER("Your subject already has a brain.")
 			return SURGERY_FAILURE
 
@@ -390,7 +394,7 @@
 
 		var/obj/item/device/mmi/M = tool
 		var/obj/item/organ/mmi_holder/holder = new(target, 1)
-		target.internal_organs_by_name[O_BRAIN] = holder
+		target.internal_organs_by_name[BP_BRAIN] = holder
 		user.drop_from_inventory(tool)
 		tool.loc = holder
 		holder.stored_mmi = tool

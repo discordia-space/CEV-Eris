@@ -2,7 +2,7 @@
 	name = "brain"
 	health = 400 //They need to live awhile longer than other organs. Is this even used by organ code anymore?
 	desc = "A piece of juicy meat found in a person's head."
-	organ_tag = O_BRAIN
+	organ_tag = BP_BRAIN
 	parent_organ = BP_HEAD
 	vital = 1
 	icon_state = "brain2"
@@ -14,6 +14,7 @@
 	layer = ABOVE_MOB_LAYER
 	origin_tech = list(TECH_BIO = 3)
 	attack_verb = list("attacked", "slapped", "whacked")
+	price_tag = 900
 	var/mob/living/carbon/brain/brainmob = null
 
 /obj/item/organ/internal/brain/xeno

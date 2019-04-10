@@ -229,16 +229,17 @@ var/list/mob/living/forced_ambiance_list = new
 		L.lastarea = get_area(L.loc)
 	var/area/newarea = get_area(L.loc)
 	var/area/oldarea = L.lastarea
-	if((oldarea.has_gravity == 0) && (newarea.has_gravity == 1) && (L.m_intent == "run")) // Being ready when you change areas gives you a chance to avoid falling all together.
-		thunk(L)
-		L.update_floating( L.Check_Dense_Object() )
+	if(oldarea.has_gravity != newarea.has_gravity)
+		if(newarea.has_gravity == 1 && !MOVING_DELIBERATELY(L)) // Being ready when you change areas allows you to avoid falling.
+			thunk(L)
+		L.update_floating()
 
 	L.lastarea = newarea
 	play_ambience(L)
 
 /area/proc/play_ambience(var/mob/living/L)
     // Ambience goes down here -- make sure to list each area seperately for ease of adding things in later, thanks! Note: areas adjacent to each other should have the same sounds to prevent cutoff when possible.- LastyScratch
-	if(!(L && L.get_preference_value(/datum/client_preference/play_ambiance) == GLOB.PREF_YES))    return
+	if(!(L && L.client && L.get_preference_value(/datum/client_preference/play_ambiance) == GLOB.PREF_YES))    return
 
 	var/client/CL = L.client
 
@@ -266,14 +267,36 @@ var/list/mob/living/forced_ambiance_list = new
 		CL.ambience_playing = sound
 		sound_to(L, sound(sound, repeat = 1, wait = 0, volume = 30, channel = GLOB.ambience_sound_channel))
 
-/area/proc/gravitychange(var/gravitystate = 0, var/area/A)
-	A.has_gravity = gravitystate
 
-	for(var/mob/M in A)
+//Figures out what gravity should be and sets it appropriately
+/area/proc/update_gravity()
+	var/grav_before = has_gravity
+	if(gravity_blocker)
+		if(get_area(gravity_blocker) == src)
+			has_gravity = FALSE
+			if (grav_before != has_gravity)
+				gravity_changed()
+			return
+		else
+			gravity_blocker = null
+
+	if (GLOB.active_gravity_generator)
+		has_gravity = gravity_is_on
+
+	if (grav_before != has_gravity)
+		gravity_changed()
+
+
+
+//Called when the gravity state changes
+/area/proc/gravity_changed()
+	for(var/mob/M in src)
 		if(has_gravity)
 			thunk(M)
-		M.update_floating( M.Check_Dense_Object() )
+		M.update_floating( M.check_dense_object() )
 
+//This thunk should probably not be an area proc.
+//TODO: Make it a mob proc
 /area/proc/thunk(mob)
 	if(istype(get_turf(mob), /turf/space)) // Can't fall onto nothing.
 		return
@@ -283,7 +306,7 @@ var/list/mob/living/forced_ambiance_list = new
 		if(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.item_flags & NOSLIP))
 			return
 
-		if(H.m_intent == "run")
+		if(MOVING_QUICKLY(H))
 			H.AdjustStunned(2)
 			H.AdjustWeakened(2)
 		else

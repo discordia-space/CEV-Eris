@@ -1,19 +1,34 @@
 var/list/department_radio_keys = list(
-	"r" = "right ear",
-	"l" = "left ear",
-	"i" = "intercom",
-	"h" = "department",
-	"+" = "special",		//activate radio-specific special functions
-	"c" = "Command",
-	"n" = "Science",
-	"m" = "Medical",
-	"e" = "Engineering",
-	"s" = "Security",
-	"w" = "whisper",
-	"t" = "Mercenary",
-	"u" = "Supply",
-	"v" = "Service",
-	"p" = "AI Private"
+	":r" = "right ear",	".r" = "right ear",
+	":l" = "left ear",	".l" = "left ear",
+	":i" = "intercom",	".i" = "intercom",
+	":h" = "department",	".h" = "department",
+	":+" = "special",		".+" = "special", //activate radio-specific special functions
+	":c" = "Command",		".c" = "Command",
+	":n" = "Science",		".n" = "Science",
+	":m" = "Medical",		".m" = "Medical",
+	":e" = "Engineering", ".e" = "Engineering",
+	":s" = "Security",	".s" = "Security",
+	":w" = "whisper",		".w" = "whisper",
+	":t" = "Mercenary",	".t" = "Mercenary",
+	":u" = "Supply",		".u" = "Supply",
+	":v" = "Service",		".v" = "Service",
+	":p" = "AI Private",	".p" = "AI Private",
+
+	//kinda localization -- rastaf0
+	//same keys as above, but on russian keyboard layout. This file uses cp1251 as encoding.
+	":ê" = "right ear",	".ê" = "right ear",
+	":ä" = "left ear",	".ä" = "left ear",
+	":ø" = "intercom",	".ø" = "intercom",
+	":ð" = "department",	".ð" = "department",
+	":ñ" = "Command",		".ñ" = "Command",
+	":ò" = "Science",		".ò" = "Science",
+	":ü" = "Medical",		".ü" = "Medical",
+	":ó" = "Engineering",	".ó" = "Engineering",
+	":û" = "Security",	".û" = "Security",
+	":ö" = "whisper",		".ö" = "whisper",
+	":å" = "Mercenary",	".å" = "Mercenary",
+	":é" = "Supply",	".é" = "Supply"
 )
 
 
@@ -197,6 +212,7 @@ proc/get_radio_key_from_channel(var/channel)
 
 	var/list/listening = list()
 	var/list/listening_obj = list()
+	var/list/listening_falloff = list() //People that are quite far away from the person speaking, who just get a _quiet_ version of whatever's being said.
 
 	if(T)
 		//make sure the air can transmit speech - speaker's side
@@ -209,41 +225,78 @@ proc/get_radio_key_from_channel(var/channel)
 		if(pressure < ONE_ATMOSPHERE * 0.4)
 			italics = TRUE
 			sound_vol *= 0.5 //muffle the sound a bit, so it's like we're actually talking through contact
-
+		var/falloff = (message_range+3) //A wider radius where you're heard, but only quietly. This means you can hear people offscreen.
 		//DO NOT FUCKING CHANGE THIS TO GET_OBJ_OR_MOB_AND_BULLSHIT() -- Hugs and Kisses ~Ccomp
 		var/list/hear = hear(message_range, T)
+		var/list/hear_falloff = hear(falloff, T)
 
-		for(var/mob/M in SSmobs.mob_list)
+		for(var/X in SSmobs.mob_list)
+			if(!ismob(X))
+				continue
+			var/mob/M = X
+			if(M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
+				listening |= M
+				continue
 			if(M.locs.len && M.locs[1] in hear)
 				listening |= M
-			else if(M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
-				listening |= M
+				continue //To avoid seeing BOTH normal message and quiet message
+			else if(M.locs.len && M.locs[1] in hear_falloff)
+				listening_falloff |= M
 
-		for(var/obj/O in hearing_objects)
+		for(var/X in hearing_objects)
+			if(!isobj(X))
+				continue
+			var/obj/O = X
 			if(O.locs.len && O.locs[1] in hear)
 				listening_obj |= O
 
 	var/speech_bubble_test = say_test(message)
 	var/image/speech_bubble = image('icons/mob/talk.dmi', src, "h[speech_bubble_test]")
 	speech_bubble.layer = ABOVE_MOB_LAYER
-	spawn(30)
-		qdel(speech_bubble)
+	QDEL_IN(speech_bubble, 30)
 
 	var/list/speech_bubble_recipients = list()
-	for(var/mob/M in listening)
+	for(var/X in listening) //Again, as we're dealing with a lot of mobs, typeless gives us a tangible speed boost.
+		if(!ismob(X))
+			continue
+		var/mob/M = X
 		if(M.client)
 			speech_bubble_recipients += M.client
 		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
+	for(var/X in listening_falloff)
+		if(!ismob(X))
+			continue
+		var/mob/M = X
+		var/falloff_message = "<font size='0.2'>[message]</font>" //make font fucking small
+		if(M.client)
+			speech_bubble_recipients += M.client
+		M.hear_say(falloff_message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
 
-	flick_overlay(speech_bubble, speech_bubble_recipients, 30)
+	animate_speechbubble(speech_bubble, speech_bubble_recipients, 30)
 
 	for(var/obj/O in listening_obj)
 		spawn(0)
 			if(O) //It's possible that it could be deleted in the meantime.
 				O.hear_talk(src, message, verb, speaking)
 
+
 	log_say("[name]/[key] : [message]")
 	return TRUE
+
+
+/proc/animate_speechbubble(image/I, list/show_to, duration)
+	var/matrix/M = matrix()
+	M.Scale(0,0)
+	I.transform = M
+	I.alpha = 0
+	for(var/client/C in show_to)
+		C.images += I
+	animate(I, transform = 0, alpha = 255, time = 5, easing = ELASTIC_EASING)
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/fade_speechbubble, I), duration-5)
+
+/proc/fade_speechbubble(image/I)
+	animate(I, alpha = 0, time = 5, easing = EASE_IN)
+
 
 /mob/living/proc/say_signlang(var/message, var/verb="gestures", var/datum/language/language)
 	for (var/mob/O in viewers(src, null))
@@ -271,7 +324,7 @@ proc/get_radio_key_from_channel(var/channel)
 				if(ishuman(speaker))
 					var/mob/living/carbon/human/H = speaker
 					speaker_name = H.rank_prefix_name(speaker_name)
-				src << "<span class='name'>[speaker_name]</span>[alt_name] talks but you cannot hear \him."
+				to_chat(src,"<span class='name'>[speaker_name]</span>[alt_name] talks but you cannot hear \him.")
 		return
 
 	//make sure the air can transmit speech - hearer's side
@@ -301,7 +354,8 @@ proc/get_radio_key_from_channel(var/channel)
 		if(!say_understands(speaker, language))
 			if(isanimal(speaker))
 				var/mob/living/simple_animal/S = speaker
-				message = pick(S.speak)
+				if(S.speak.len)
+					message = pick(S.speak)
 			else
 				if(language)
 					message = language.scramble(message)
@@ -317,7 +371,7 @@ proc/get_radio_key_from_channel(var/channel)
 
 	if(sdisabilities&DEAF || ear_deaf)
 		if(prob(20))
-			src << SPAN_WARNING("You feel your headset vibrate but can hear nothing from it!")
+			to_chat(src, SPAN_WARNING("You feel your headset vibrate but can hear nothing from it!"))
 		return
 
 	if(sleeping || stat == UNCONSCIOUS) //If unconscious or sleeping
@@ -365,4 +419,4 @@ proc/get_radio_key_from_channel(var/channel)
 	else
 		heard = "<span class = 'game_say'>...<i>You almost hear someone talking</i>...</span>"
 
-	src << heard
+	to_chat(src, heard)

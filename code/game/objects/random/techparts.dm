@@ -3,8 +3,7 @@
 	icon_state = "tech-orange"
 
 /obj/random/techpart/item_to_spawn()
-	return pickweight(list(/obj/item/weapon/computer_hardware/battery_module = 9,\
-				/obj/item/weapon/computer_hardware/battery_module/advanced = 3,\
+	return pickweight(list(
 				/obj/item/weapon/computer_hardware/card_slot = 9,\
 				/obj/item/weapon/computer_hardware/hard_drive = 9,\
 				/obj/item/weapon/computer_hardware/hard_drive/advanced = 3,\
@@ -44,7 +43,9 @@
 				/obj/item/weapon/disk/autolathe_disk/component = 3,\
 				/obj/item/weapon/disk/autolathe_disk/advtoolpack = 2,\
 				/obj/item/weapon/disk/autolathe_disk/circuitpack = 2,\
+				/obj/item/weapon/disk/autolathe_disk/robustcells = 2,\
 				/obj/item/weapon/disk/autolathe_disk/medical = 2,\
+				/obj/item/weapon/disk/autolathe_disk/computer = 2,\
 				/obj/item/weapon/disk/autolathe_disk/fs_cheap_guns = 2,\
 				/obj/item/weapon/disk/autolathe_disk/fs_kinetic_guns = 1,\
 				/obj/item/weapon/disk/autolathe_disk/fs_energy_guns = 1,\

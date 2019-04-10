@@ -15,6 +15,7 @@
 	var/destroy_surroundings = 1
 	a_intent = I_HURT
 	can_burrow = TRUE
+	hunger_enabled = 0//Until automated eating mechanics are enabled, disable hunger for hostile mobs
 
 /mob/living/simple_animal/hostile/proc/FindTarget()
 
@@ -37,7 +38,7 @@
 			else if(L in friends)
 				continue
 			else
-				if(!L.stat)
+				if(!SA_attackable(L))
 					stance = HOSTILE_STANCE_ATTACK
 					T = L
 					break

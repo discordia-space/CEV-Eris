@@ -45,11 +45,11 @@
 		src.playsound_local(source, speech_sound, sound_vol, 1)
 
 /mob/proc/on_hear_say(var/message)
-	src << message
+	to_chat(src, message)
 
 /mob/living/silicon/on_hear_say(var/message)
 	var/time = say_timestamp()
-	src << "[time] [message]"
+	to_chat(src,"[time] [message]")
 
 /mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language=null,\
 		var/part_a, var/part_b, var/mob/speaker = null, var/hard_to_hear = 0, var/voice_name ="")
@@ -158,12 +158,12 @@
 	return "<span class='say_quote'>\[[stationtime2text()]\]</span>"
 
 /mob/proc/on_hear_radio(part_a, speaker_name, part_b, message)
-	src << "[part_a][speaker_name][part_b][message]"
+	to_chat(src,"[part_a][speaker_name][part_b][message]")
 
 
 /mob/living/silicon/on_hear_radio(part_a, speaker_name, part_b, message)
 	var/time = say_timestamp()
-	src << "[time][part_a][speaker_name][part_b][message]"
+	to_chat(src,"[time][part_a][speaker_name][part_b][message]")
 
 
 /mob/proc/hear_signlang(var/message, var/verb = "gestures", var/datum/language/language, var/mob/speaker = null)
@@ -171,7 +171,7 @@
 		return
 
 	if(say_understands(speaker, language))
-		message = "<B>[src]</B> [verb], \"[message]\""
+		message = "<B>[src]</B> [language.format_message(message, verb)]"
 	else
 		message = "<B>[src]</B> [verb]."
 

@@ -5,9 +5,9 @@
 /obj/random/structures/item_to_spawn()
 	return pickweight(list(/obj/structure/salvageable/machine = 10,\
 				/obj/structure/salvageable/autolathe = 10,\
-				/obj/structure/salvageable/implant_container = 1,\
-				/obj/structure/salvageable/data = 5,\
-				/obj/structure/salvageable/server = 5,\
+				/obj/structure/salvageable/implant_container = 3,\
+				/obj/structure/salvageable/data = 6,\
+				/obj/structure/salvageable/server = 6,\
 				/obj/structure/computerframe = 5,\
 				/obj/machinery/constructable_frame/machine_frame = 4,\
 				/obj/structure/reagent_dispensers/fueltank = 6,\

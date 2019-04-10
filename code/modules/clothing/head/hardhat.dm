@@ -8,6 +8,8 @@
 	armor = list(melee = 30, bullet = 15, laser = 20,energy = 10, bomb = 20, bio = 10, rad = 20)
 	flags_inv = 0
 	siemens_coefficient = 0.9
+	w_class = ITEM_SIZE_NORMAL
+	price_tag = 30
 
 /obj/item/clothing/head/hardhat/orange
 	icon_state = "hardhat0_orange"

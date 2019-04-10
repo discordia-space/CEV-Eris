@@ -6,6 +6,7 @@
 	icon_state = "b_st"
 	maxcharge = 1000
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 3, MATERIAL_SILVER = 3)
+	price_tag = 200
 
 /obj/item/weapon/cell/large/high
 	name = "Asters \"Robustcell 5000L\""
@@ -61,7 +62,16 @@
 	icon_state = "meb_b_nu"
 	autorecharging = TRUE
 	origin_tech = list(TECH_POWER = 6)
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 3, MATERIAL_SILVER = 3, MATERIAL_URANIUM = 6)
 	maxcharge = 13000
+
+/obj/item/weapon/cell/large/excelsior
+	name = "Excelsior \"Zarya 8000L\""
+	desc = "Commie rechargeable L-standardized power cell. Power to the people!"
+	icon_state = "exs_l"
+	origin_tech = list(TECH_POWER = 3)
+	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 2, MATERIAL_SILVER = 3)
+	maxcharge = 8000
 
 //Meme cells - for fun and cancer
 
@@ -96,6 +106,7 @@
 	throw_range = 7
 	maxcharge = 600
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_SILVER = 2)
+	price_tag = 100
 
 /obj/item/weapon/cell/medium/high
 	name = "Asters \"Robustcell 800M\""
@@ -150,8 +161,17 @@
 	desc = "Moebius Laboratories branded rechargeable M-standardized power cell. This version able to recharge itself over time."
 	icon_state = "meb_m_nu"
 	autorecharging = TRUE
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_SILVER = 2, MATERIAL_URANIUM = 4)
 	origin_tech = list(TECH_POWER = 6)
 	maxcharge = 1000
+
+/obj/item/weapon/cell/medium/excelsior
+	name = "Excelsior \"Zarya 800M\""
+	desc = "Commie rechargeable M-standardized power cell. Power to the people!"
+	icon_state = "exs_m"
+	origin_tech = list(TECH_POWER = 3)
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 2)
+	maxcharge = 800
 
 //SMALL CELLS - for small devices, such as flashlights, analyzers and HUDs.
 
@@ -165,6 +185,7 @@
 	throw_range = 7
 	maxcharge = 100
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 1)
+	price_tag = 50
 
 /obj/item/weapon/cell/small/high
 	name = "Asters \"Robustcell 200S\""
@@ -216,8 +237,29 @@
 
 /obj/item/weapon/cell/small/moebius/nuclear
 	name = "Moebius \"Atomcell 300S\""
-	desc = "Moebius Laboratories branded rechargeable S-standardized power cell. This version able to recharge itself over time."
+	desc = "Moebius Laboratories branded rechargeable S-standardized microreactor cell. Recharges itself over time."
 	icon_state = "meb_s_nu"
 	autorecharging = TRUE
 	origin_tech = list(TECH_POWER = 6)
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 1, MATERIAL_URANIUM = 2)
 	maxcharge = 300
+
+/obj/item/weapon/cell/small/moebius/pda
+	name = "Moebius \"Atomcell 50S\""
+	desc = "Moebius Laboratories branded S-standardized microreactor cell. Recharges itself over time."
+	icon_state = "meb_pda"
+	origin_tech = list(TECH_POWER = 4)
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_URANIUM = 1)
+	maxcharge = 50
+	// Autorecharge rate is calculated for PDA power consumption: enough to offset it, unless PDA light is on.
+	autorecharging = TRUE
+	autorecharge_rate = 0.0005
+	recharge_time = 1
+
+/obj/item/weapon/cell/small/excelsior
+	name = "Excelsior \"Zarya 250S\""
+	desc = "Commie rechargeable S-standardized power cell. Power to the people!"
+	icon_state = "exs_s"
+	origin_tech = list(TECH_POWER = 3)
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 1)
+	maxcharge = 250

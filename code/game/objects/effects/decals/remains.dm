@@ -6,7 +6,7 @@
 	anchored = 0
 
 /obj/item/remains/human
-	desc = "They look like human remains. They have a strange aura about them."
+	desc = "They look like human remains. Some poor soul expired here, a million miles from home."
 
 /obj/item/remains/xeno
 	desc = "They look like the remains of something... alien. They have a strange aura about them."

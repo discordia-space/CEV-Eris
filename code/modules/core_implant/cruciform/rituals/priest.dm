@@ -123,6 +123,7 @@
 		fail("Soul transfer failed.", user, C)
 		return FALSE
 
+
 	return TRUE
 
 
@@ -168,17 +169,20 @@
 		fail("[H] must be undressed.", user, C)
 		return FALSE
 
-	CI.install(H)
 
-	if(CI.wearer != H)
+
+	if(!CI.install(H, BP_CHEST, user) || CI.wearer != H)
 		fail("Commitment failed.", user, C)
 		return FALSE
 
 	if(ishuman(H))
 		var/mob/living/carbon/human/M = H
 		var/obj/item/organ/external/E = M.organs_by_name[BP_CHEST]
-		E.take_damage(25, sharp = FALSE)
-		M.custom_pain("You feel cruciform rips into your chest!",1)
+		for (var/i = 0; i < 5;i++)
+			E.take_damage(5, sharp = FALSE)
+			//Deal 25 damage in five hits. Using multiple small hits mostly prevents internal damage
+
+		M.custom_pain("You feel the nails of the cruciform drive into your ribs!",1)
 		M.update_implants()
 		M.updatehealth()
 
@@ -207,7 +211,8 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/E = H.organs_by_name[BP_CHEST]
 		E.take_damage(15)
-		H.custom_pain("You feel cruciform rips out of your chest!",1)
+		H.custom_pain("You feel the cruciform ripping out of your chest!",1)
+		CI.name = "[M]'s Cruciform"
 
 	CI.uninstall()
 	return TRUE
@@ -325,3 +330,61 @@
 	name = "Canto of Courage"
 	phrase = "Huic David ad te Domine clamabo Deus meus ne sileas a me nequando taceas a me et adsimilabor descendentibus in lacum"
 	stats_to_boost = list(STAT_ROB = 10, STAT_TGH = 10)
+
+
+/datum/ritual/targeted/cruciform/priest/atonement
+	name = "Atonement"
+	phrase = "Piaculo sit \[Target human]!"
+	desc = "Imparts extreme pain on the target disciple, but does no actual harm. Use this to enforce Church doctrine on your flock."
+	power = 45
+
+/datum/ritual/targeted/cruciform/priest/atonement/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
+	if(!targets.len)
+		fail("Target not found.",user,C,targets)
+		return FALSE
+
+	var/obj/item/weapon/implant/core_implant/CI = targets[1]
+
+	if(!CI.active || !CI.wearer)
+
+		fail("Cruciform not found.", user, C)
+		return FALSE
+
+	var/mob/living/M = CI.wearer
+
+	M << SPAN_DANGER("A wave of agony washes over you, the cruciform in your chest searing like a star for a few moments of eternity.")
+
+
+	var/datum/effect/effect/system/spark_spread/s = new
+	s.set_up(1, 1, M.loc)
+	s.start()
+
+	M.apply_effect(50, AGONY, 0)
+
+	return TRUE
+
+/datum/ritual/targeted/cruciform/priest/atonement/process_target(var/index, var/obj/item/weapon/implant/core_implant/target, var/text)
+	target.update_address()
+	if(index == 1 && target.address == text)
+		if(target.wearer && (target.loc && target.locs[1] in view()))
+			return target
+
+/datum/ritual/cruciform/priest/records
+	name = "Baptismal Record"
+	phrase = "Memento nomina..."
+	desc = "Requests a copy of the Church's local parishoner records from your altar."
+	power = 30
+	success_message = "On the verge of audibility you hear pleasant music, a piece of paper slides out from a slit in the altar."
+
+/datum/ritual/cruciform/priest/records/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
+	var/list/OBJS = get_front(user)
+
+	var/obj/machinery/optable/altar = locate(/obj/machinery/optable/altar) in OBJS
+
+	if(!altar)
+		fail("This is not your altar, the litany is useless.", user, C)
+		return FALSE
+
+	if(altar)
+		new /obj/item/weapon/paper/neopaper(altar.loc, disciples.Join("\n"), "Church Record")
+	return TRUE

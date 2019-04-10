@@ -47,7 +47,7 @@
 	suit_overlay_inactive = "mounted-drill"
 	use_power_cost = 0.1
 
-	device_type = /obj/item/weapon/tool/pickaxe/diamonddrill
+	device_type = /obj/item/weapon/tool/pickaxe/diamonddrill/rig
 
 /obj/item/rig_module/device/anomaly_scanner
 	name = "hardsuit anomaly scanner"
@@ -149,7 +149,7 @@
 
 /obj/item/rig_module/chem_dispenser/accepts_item(var/obj/item/input_item, var/mob/living/user)
 
-	if(!input_item.is_open_container())
+	if(!input_item.is_drainable())
 		return 0
 
 	if(!input_item.reagents || !input_item.reagents.total_volume)

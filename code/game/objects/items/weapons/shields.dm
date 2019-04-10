@@ -62,6 +62,7 @@
 	w_class = ITEM_SIZE_LARGE
 	origin_tech = list(TECH_MATERIAL = 2)
 	matter = list(MATERIAL_GLASS = 3, MATERIAL_STEEL = 10)
+	price_tag = 500
 	attack_verb = list("shoved", "bashed")
 	var/cooldown = 0 //shield bash cooldown. based on world.time
 
@@ -195,7 +196,7 @@
 	icon_state = "eshield[active]"
 	update_wear_icon()
 	if(active)
-		set_light(1.5, 1.5, "#006AFF")
+		set_light(1.5, 1.5, COLOR_LIGHTING_BLUE_BRIGHT)
 	else
 		set_light(0)
 

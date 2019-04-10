@@ -302,7 +302,7 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 	This proc allows plants like maintshrooms to spread through burrows
 	Run every 10 minutes
 */
-#define TRAIT_SPREAD               30
+#define TRAIT_SPREAD			30
 //I don't know why plant traits are defined only inside their specific folder
 //Moving them out to main defines doesn't seem necessary for now
 
@@ -375,6 +375,7 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 		var/obj/structure/burrow/C = sorted[1] //Grab the first element
 		sorted.Cut(1,2)//And remove it from the list
 
+
 		//It already has plants, no good
 		if (C.plant)
 			continue
@@ -394,16 +395,6 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 		C.plantspread_burrows.Add("\ref[B]")
 		C.plant = B.plant //Make them share the same seed
 		C.spread_plants() //And make some plants at the new burrow
-
-
-
-
-
-
-
-
-
-
 
 
 #undef TRAIT_SPREAD
@@ -462,14 +453,16 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 
 		//Now lets scroll through the list of sorted burrows and find where to insert it
 		var/index = 0
+		var/inserted = FALSE
 		for (var/a in sorted)
 			index++
 			//When we find one that is farther away than us, we will insert ourselves before it
 			if (dist <= distances[a])
 				sorted.Insert(index, B)
+				inserted = TRUE
 				break
 
-		if (index)
+		if (inserted)
 			continue
 
 		//If we get here then sorted was empty. just add the first element

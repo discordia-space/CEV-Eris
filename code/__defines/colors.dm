@@ -85,7 +85,7 @@
 #define	COMMS_COLOR_SYNDICATE  "#6d3f40"
 
 #define GLASS_COLOR            "#74b1ee"
-#define GLASS_COLOR_PHORON     "#7c3a9a"
+#define GLASS_COLOR_PLASMA     "#7c3a9a"
 #define GLASS_COLOR_TINTED     "#222222"
 #define GLASS_COLOR_FROSTED    "#ffffff"
 
@@ -110,5 +110,39 @@
 
 // Used by fluid system.
 #define COLOR_OCEAN "#99f5ff"
+
+//Light color
+
+#define COLOR_LIGHTING_DEFAULT_BRIGHT					"#999999"
+#define COLOR_LIGHTING_DEFAULT_DARK						"#444444"
+
+#define COLOR_LIGHTING_RED_MACHINERY					"#dd081b"
+#define COLOR_LIGHTING_RED_BRIGHT						"#aa2733"
+#define COLOR_LIGHTING_RED_DARK							"#6d030c"
+#define COLOR_LIGHTING_GREEN_MACHINERY					"#16ca2c"
+#define COLOR_LIGHTING_GREEN_BRIGHT						"#8aa88a"
+#define COLOR_LIGHTING_GREEN_DARK						"#3a5f3a"
+#define COLOR_LIGHTING_BLUE_MACHINERY					"#162cca"
+#define COLOR_LIGHTING_BLUE_BRIGHT						"#8a95a8"
+#define COLOR_LIGHTING_BLUE_DARK						"#3a4b5f"
+#define COLOR_LIGHTING_ORANGE_MACHINERY					"#e0900b"
+#define COLOR_LIGHTING_ORANGE_BRIGHT					"#d7be93"
+#define COLOR_LIGHTING_ORANGE_DARK						"#684e22"
+#define COLOR_LIGHTING_PURPLE_MACHINERY					"#e614d3"
+#define COLOR_LIGHTING_PURPLE_BRIGHT					"#aa2799"
+#define COLOR_LIGHTING_PURPLE_DARK						"#752f6e"
+#define COLOR_LIGHTING_CYAN_MACHINERY					"#50edd9"
+#define COLOR_LIGHTING_CYAN_BRIGHT						"#67c1b6"
+#define COLOR_LIGHTING_CYAN_DARK						"#28766c"
+
+#define COLOR_LIGHTING_MAINT_DARK						"#55493f"
+#define COLOR_LIGHTING_NEOTHEOLOGY_BRIGHT				"#e2e0b6"
+#define COLOR_LIGHTING_NEOTHEOLOGY_DARK					"#797358"
+#define COLOR_LIGHTING_CREW_SOFT						"#fef9e7"
+#define COLOR_LIGHTING_SCI_BRIGHT						"#6a6c71"
+#define COLOR_LIGHTING_SCI_DARK							"#4f535f"
+
+
+
 
 #define RANDOM_RGB rgb(rand(0,255), rand(0,255), rand(0,255))

@@ -15,6 +15,7 @@
 	sharp = 1
 	structure_damage_factor = 3 //Drills and picks are made for getting through hard materials
 	//They are the best anti-structure melee weapons
+	embed_mult = 1.2 //Digs deep
 
 /obj/item/weapon/tool/pickaxe/jackhammer
 	name = "jackhammer"
@@ -53,6 +54,10 @@
 	degradation = 0.01
 	use_fuel_cost = 0.15
 	max_fuel = 120
+
+/obj/item/weapon/tool/pickaxe/diamonddrill/rig
+	use_fuel_cost = 0
+	passive_fuel_cost = 0
 
 /obj/item/weapon/tool/pickaxe/excavation
 	name = "hand pickaxe"

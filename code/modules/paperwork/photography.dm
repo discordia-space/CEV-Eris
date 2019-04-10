@@ -35,6 +35,13 @@ var/global/photo_count = 0
 	var/icon/tiny
 	var/photo_size = 3
 
+/obj/item/weapon/photo/update_icon()
+	.=..()
+	//When the photo updates, update its container too. This will often be an album or paper bundle
+	if (istype(loc, /obj))
+		var/obj/O = loc
+		O.update_icon()
+
 /obj/item/weapon/photo/New()
 	id = photo_count++
 
@@ -107,16 +114,16 @@ var/global/photo_count = 0
 	var/on = 1
 	var/icon_on = "camera"
 	var/icon_off = "camera_off"
-	var/size = 3
+	var/radius = 2
 	var/flash_power = 6
 
 /obj/item/device/camera/verb/change_size()
 	set name = "Set Photo Focus"
 	set category = "Object"
-	var/nsize = input("Photo Size","Pick a size of resulting photo.") as null|anything in list(1,3)
+	var/nsize = input("Photo Size","Pick a size of resulting photo.") as null|anything in list(3,5,7,9)
 	if(nsize)
-		size = nsize
-		usr << SPAN_NOTICE("Camera will now take [size]x[size] photos.")
+		radius = (nsize - 1) * 0.5
+		usr << SPAN_NOTICE("Camera will now take [(radius*2)+1]x[(radius*2)+1] photos.")
 
 /obj/item/device/camera/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	return
@@ -167,7 +174,7 @@ var/global/photo_count = 0
 	set_light(light_range + flash_power)
 	spawn(3)
 		set_light(light_range - flash_power)
-	captureimage(target, user, flag)
+	captureimage(target, user)
 
 	playsound(loc, pick('sound/items/polaroid1.ogg', 'sound/items/polaroid2.ogg'), 75, 1, -3)
 
@@ -191,11 +198,12 @@ var/global/photo_count = 0
 	qdel(dummy)
 	return can_see
 
-/obj/item/device/camera/proc/captureimage(atom/target, mob/living/user, flag)
-	var/x_c = target.x - (size-1)/2
-	var/y_c = target.y + (size-1)/2
+/obj/item/device/camera/proc/captureimage(atom/target, mob/living/user, capturemode = CAPTURE_MODE_REGULAR)
+	var/x_c = target.x - radius
+	var/y_c = target.y + radius
 	var/z_c	= target.z
 	var/mobs = ""
+	var/size = (radius*2)+1
 	for(var/i = 1; i <= size; i++)
 		for(var/j = 1; j <= size; j++)
 			var/turf/T = locate(x_c, y_c, z_c)
@@ -205,40 +213,52 @@ var/global/photo_count = 0
 		y_c--
 		x_c = x_c - size
 
-	var/obj/item/weapon/photo/p = createpicture(target, user, mobs, flag)
+	var/obj/item/weapon/photo/p = createpicture(target, user, capturemode, radius)
+	p.desc = mobs
 	printpicture(user, p)
 
-/obj/item/device/camera/proc/createpicture(atom/target, mob/user, mobs, flag)
-	var/x_c = target.x - (size-1)/2
-	var/y_c = target.y - (size-1)/2
+/proc/createpicture(atom/target, mob/user, var/capturemode = CAPTURE_MODE_REGULAR, var/radius = 3)
+	var/x_c = target.x - radius
+	var/y_c = target.y - radius
 	var/z_c	= target.z
-	var/icon/photoimage = generate_image(x_c, y_c, z_c, size, CAPTURE_MODE_REGULAR, user)
 
-	var/icon/small_img = icon(photoimage)
-	var/icon/tiny_img = icon(photoimage)
-	var/icon/ic = icon('icons/obj/items.dmi',"photo")
-	var/icon/pc = icon('icons/obj/bureaucracy.dmi', "photo")
-	small_img.Scale(8, 8)
-	tiny_img.Scale(4, 4)
-	ic.Blend(small_img,ICON_OVERLAY, 10, 13)
-	pc.Blend(tiny_img,ICON_OVERLAY, 12, 19)
 
 	var/obj/item/weapon/photo/p = new()
 	p.name = "photo"
-	p.icon = ic
-	p.tiny = pc
-	p.img = photoimage
-	p.desc = mobs
+
+
+
 	p.pixel_x = rand(-10, 10)
 	p.pixel_y = rand(-10, 10)
-	p.photo_size = size
+	p.photo_size = (radius*2)+1
 
+
+	spawn()
+		//We spawn off the actual generation of the image because it is a verrry slow process that takes multiple seconds
+		var/icon/photoimage = generate_image(x_c, y_c, z_c, (radius*2)+1, capturemode, user, non_blocking = TRUE)
+
+		var/icon/small_img = icon(photoimage)
+		var/icon/tiny_img = icon(photoimage)
+		var/icon/ic = icon('icons/obj/items.dmi',"photo")
+		var/icon/pc = icon('icons/obj/bureaucracy.dmi', "photo")
+		small_img.Scale(8, 8)
+		tiny_img.Scale(4, 4)
+		ic.Blend(small_img,ICON_OVERLAY, 10, 13)
+		pc.Blend(tiny_img,ICON_OVERLAY, 12, 19)
+		if (!QDELETED(p))
+			p.img = photoimage
+			p.icon = ic
+			p.tiny = pc
+			p.update_icon()
+
+	//The photo object is returned immediately, but its image will only be added a couple seconds later
 	return p
 
 /obj/item/device/camera/proc/printpicture(mob/user, obj/item/weapon/photo/p)
-	p.loc = user.loc
-	if(!user.get_inactive_hand())
-		user.put_in_inactive_hand(p)
+	if (user)
+		user.put_in_hands(p)
+	else
+		p.forceMove(get_turf(src))
 
 /obj/item/weapon/photo/proc/copy(var/copy_id = 0)
 	var/obj/item/weapon/photo/p = new/obj/item/weapon/photo()

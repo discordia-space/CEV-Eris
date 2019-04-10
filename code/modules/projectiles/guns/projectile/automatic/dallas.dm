@@ -13,14 +13,16 @@
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/c10x24
 	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 15)
+	price_tag = 4500
 	fire_sound = 'sound/weapons/guns/fire/m41_shoot.ogg'
 	unload_sound 	= 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/m41_reload.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/m41_cocked.ogg'
 
 	firemodes = list(
-		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, dispersion=null),
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=3,    dispersion=list(0.0, 0.4, 0.6)),
+		FULL_AUTO_400,
+		SEMI_AUTO_NODELAY,
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=3,    dispersion=list(0.0, 0.4, 0.6), icon="burst"),
 		)
 
 /obj/item/weapon/gun/projectile/automatic/dallas/update_icon()

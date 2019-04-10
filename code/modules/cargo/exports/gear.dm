@@ -10,7 +10,7 @@
 	export_types = list(/obj/item/clothing/head/helmet)
 
 /datum/export/gear/sec_armor
-	cost = 100
+	cost = 200
 	include_subtypes = FALSE
 	unit_name = "armor vest"
 	export_types = list(/obj/item/clothing/suit/armor/vest)
@@ -23,12 +23,12 @@
 	export_types = list(/obj/item/clothing/head/helmet/riot)
 
 /datum/export/gear/riot_armor
-	cost = 250
+	cost = 500
 	unit_name = "riot armor suit"
 	export_types = list(/obj/item/clothing/suit/armor/riot)
 
 /datum/export/gear/bulletproof_armor
-	cost = 250
+	cost = 500
 	unit_name = "bulletproof armor vest"
 	export_types = list(/obj/item/clothing/suit/armor/bulletproof)
 
@@ -46,14 +46,14 @@
 
 // Masks
 /datum/export/gear/mask/breath
-	cost = 2
+	cost = 20
 	unit_name = "breath mask"
 	export_types = list(/obj/item/clothing/mask/breath)
 
 /datum/export/gear/mask/gas
-	cost = 10
+	cost = 50
 	unit_name = "gas mask"
-	export_types = list(/obj/item/clothing/mask/gas/coloured)
+	export_types = list(/obj/item/clothing/mask/gas)
 	include_subtypes = FALSE
 
 
@@ -63,7 +63,7 @@
 	include_subtypes = TRUE
 
 /datum/export/gear/space/helmet
-	cost = 500
+	cost = 400
 	unit_name = "space helmet"
 	export_types = list(/obj/item/clothing/head/helmet/space/void)
 
@@ -152,18 +152,18 @@
 	export_types = list(/obj/item/clothing/glasses/meson)
 
 /datum/export/gear/glasses/night
-	cost = 2700
+	cost = 2000
 	unit_name = "night vision glasses"
 	export_types = list(/obj/item/clothing/glasses/night)
 
 /datum/export/gear/glasses/thermal
-	cost = 6000
+	cost = 3000
 	include_subtypes = TRUE
 	unit_name = "thermal vision glasses"
 	export_types = list(/obj/item/clothing/glasses/thermal)
 
 /datum/export/gear/glasses/welding
-	cost = 200
+	cost = 100
 	include_subtypes = TRUE
 	unit_name = "welding glasses"
 	export_types = list(/obj/item/clothing/glasses/welding)
@@ -174,17 +174,17 @@
 //--------------------------------------------
 
 /datum/export/gear/shoes/combat
-	cost = 1000
+	cost = 500
 	unit_name = "combat boots"
 	export_types = list(/obj/item/clothing/shoes/combat,
 									/obj/item/clothing/shoes/swat)
 
 /datum/export/gear/shoes/jackboots
-	cost = 200
+	cost = 100
 	unit_name = "jackboots"
 	export_types = list(/obj/item/clothing/shoes/jackboots)
 
 /datum/export/gear/shoes/magboots
-	cost = 3000
+	cost = 500
 	unit_name = "magboots"
 	export_types = list(/obj/item/clothing/shoes/magboots)

@@ -7,7 +7,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 /obj/machinery/r_n_d/circuit_imprinter
 	name = "\improper Circuit Imprinter"
 	icon_state = "circuit_imprinter"
-	flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER
 	var/list/datum/design/queue = list()
 	var/progress = 0
 	circuit = /obj/item/weapon/circuitboard/circuit_imprinter
@@ -34,6 +34,8 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 		return
 	var/datum/design/D = queue[1]
 	if(canBuild(D))
+		if(progress == 0)
+			print_pre(D)
 		busy = 1
 		progress += speed
 		if(progress >= D.time)
@@ -42,10 +44,11 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 			removeFromQueue(1)
 			if(linked_console)
 				linked_console.updateUsrDialog()
+			print_post(D)
 		update_icon()
 	else
 		if(busy)
-			visible_message(SPAN_NOTICE("\icon [src] flashes: insufficient materials: [getLackingMaterials(D)]."))
+			visible_message(SPAN_NOTICE("\icon[src]\The [src] flashes: insufficient materials: [getLackingMaterials(D)]."))
 			busy = 0
 			update_icon()
 
@@ -90,10 +93,10 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 
 /obj/machinery/r_n_d/circuit_imprinter/attackby(var/obj/item/I, var/mob/user as mob)
 	if(busy)
-		user << SPAN_NOTICE("\The [src] is busy. Please wait for completion of previous operation.")
+		user << SPAN_NOTICE("\icon[src]\The [src] is busy. Please wait for completion of previous operation.")
 		return 1
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING))
+	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING), src)
 	switch(tool_type)
 
 		if(QUALITY_PRYING)
@@ -125,45 +128,66 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 		user << SPAN_NOTICE("You can't load \the [src] while it's opened.")
 		return 1
 	if(!linked_console)
-		user << "\The [src] must be linked to an R&D console first."
+		user << "\icon[src]\The [src] must be linked to an R&D console first."
 		return 1
-	if(I.is_open_container())
+	if(I.is_drainable())
 		return 0
 	if(is_robot_module(I))
 		return 0
-	if(!istype(I, /obj/item/stack/material))
-		user << SPAN_NOTICE("You cannot insert this item into \the [src]!")
-		return 0
+	
 	if(stat)
 		return 1
 
-	if(TotalMaterials() + 1 > max_material_storage)
-		user << SPAN_NOTICE("\The [src]'s material bin is full. Please remove material before adding more.")
-		return 1
+	if (user.a_intent != I_HURT)
+		loadMaterials(I, user)
+	else
+		return ..()
 
-	var/obj/item/stack/material/stack = I
+/obj/machinery/r_n_d/circuit_imprinter/proc/loadMaterials(var/obj/item/stack/material/S, var/mob/user)
+	if(!istype(user))
+		return
+
+	if(!istype(S, /obj/item/stack/material))
+		user << SPAN_NOTICE("You cannot insert this item into \the [src]!")
+		return
+
+	if(TotalMaterials() + 1 > max_material_storage)
+		user << SPAN_NOTICE("\icon[src]\The [src]'s material bin is full. Please remove material before adding more.")
+		return
+
 	var/amount = round(input("How many sheets do you want to add?") as num)
+
 	if(!Adjacent(user))
 		return
-	if(!I)
+	if(!S)
 		return
 	if(amount <= 0)//No negative numbers
 		return
-	if(amount > stack.get_amount())
-		amount = stack.get_amount()
+	if(amount > S.get_amount())
+		amount = S.get_amount()
 	if(max_material_storage - TotalMaterials() < amount) //Can't overfill
-		amount = min(stack.get_amount(), max_material_storage - TotalMaterials())
+		amount = min(S.get_amount(), max_material_storage - TotalMaterials())
 
 	busy = 1
 	use_power(1000)
-	var/t = stack.get_material_name()
-	if(t)
+	var/material = S.get_material_name()
+	if(material)
+		res_load(material)
 		if(do_after(usr, 16, src))
-			if(stack.use(amount))
-				user << SPAN_NOTICE("You add [amount] sheet\s to \the [src].")
-				materials[t] += amount
+			if(S.use(amount))
+				materials[material] += amount
+				user << SPAN_NOTICE("You add [amount] [material] sheet\s to \the [src]. Material storage is [TotalMaterials()]/[max_material_storage] full.")
 	busy = 0
-	updateUsrDialog()
+	linked_console.updateUsrDialog()
+	return TRUE
+
+/obj/machinery/r_n_d/circuit_imprinter/examine(mob/user)
+	..()
+	user << "Material storage is [TotalMaterials()]/[max_material_storage] full."
+
+/obj/machinery/r_n_d/circuit_imprinter/proc/res_load(var/name)
+	// Will be here untill someone decided to draw insert animation
+	//flick("protolathe_[]", src)
 
 /obj/machinery/r_n_d/circuit_imprinter/proc/addToQueue(var/datum/design/D)
 	queue += D
@@ -210,3 +234,13 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	if(D.build_path)
 		var/obj/new_item = D.Fabricate(src, src)
 		new_item.loc = loc
+
+/obj/machinery/r_n_d/circuit_imprinter/proc/print_pre(var/datum/design/D)
+	return
+
+/obj/machinery/r_n_d/circuit_imprinter/proc/print_post(var/datum/design/D)
+	visible_message("\icon[src]\The [src] flashes, indicating that \the [D] is complete.", range = 3)
+	if(!queue.len)
+		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1 -3)
+		visible_message("\icon[src]\The [src] pings indicating that queue is complete.")
+	return

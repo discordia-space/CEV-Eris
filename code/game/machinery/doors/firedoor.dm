@@ -13,7 +13,7 @@
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas."
 	icon = 'icons/obj/doors/DoorHazard.dmi'
 	icon_state = "door_open"
-	req_one_access = list(access_atmospherics, access_engine_equip)
+	req_one_access = list(access_atmospherics, access_engine_equip, access_medical_equip)
 	opacity = 0
 	density = 0
 	layer = BELOW_OPEN_DOOR_LAYER
@@ -179,7 +179,7 @@
 		return ..()
 
 	var/list/usable_qualities = list(QUALITY_WELDING,QUALITY_SCREW_DRIVING,QUALITY_PRYING)
-	var/tool_type = I.get_tool_type(user, usable_qualities)
+	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 		if(QUALITY_WELDING)
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
@@ -225,7 +225,7 @@
 				user << SPAN_DANGER("\The [src] is welded shut!")
 				return
 			if(!operating)
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					user.visible_message("<span class='danger'>\The [user] forces \the [src] [density ? "open" : "closed"] with \a [I]!</span>",\
 					"You force \the [src] [density ? "open" : "closed"] with \the [I]!",\
 					"You hear metal strain, and a door [density ? "open" : "close"].")
@@ -320,7 +320,7 @@
 		message_admins("[usr]([usr.ckey]) has forced open an emergency shutter.")
 
 	if(checkAlarmed())
-		spawn(50)
+		spawn(150)
 			if(checkAlarmed())
 				close()
 

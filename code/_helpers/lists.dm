@@ -197,6 +197,15 @@ proc/listclearnulls(list/list)
 		return picked
 	return null
 
+//Pick a random element from the list by weight and remove it from the list.
+//Result is returned as a list in the format list(key, value)
+/proc/pickweight_n_take(list/listfrom)
+	if (listfrom.len > 0)
+		var/picked = pickweight(listfrom)
+		listfrom -= picked
+		return picked
+	return null
+
 //Returns the top(last) element from the list and removes it from the list (typical stack function)
 /proc/pop(list/listfrom)
 	if (listfrom.len > 0)
@@ -204,6 +213,12 @@ proc/listclearnulls(list/list)
 		listfrom.len--
 		return picked
 	return null
+
+//Returns the first element from the list and removes it from the list
+/proc/popleft(list/L)
+	if(L.len)
+		. = L[1]
+		L.Cut(1,2)
 
 //Returns the next element in parameter list after first appearance of parameter element. If it is the last element of the list or not present in list, returns first element.
 /proc/next_in_list(element, list/L)

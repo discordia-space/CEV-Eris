@@ -123,6 +123,7 @@
 	if(anchored)
 		connect_to_network()
 	if(use_reagents_as_fuel)
+		create_reagents(max_fuel_volume)
 		fuel_name = chemical_reagents_list[fuel_reagent_id]
 		desc = "A power generator that runs on [fuel_name]. Rated for [(power_gen * max_safe_output) / 1000] kW max safe output."
 
@@ -149,8 +150,7 @@
 	user << "\The [src] appears to be producing [power_gen*power_output] W."
 	if(!use_reagents_as_fuel)
 		user << "There [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper."
-	else
-		user << "The fuel counter reports [reagents.total_volume] units of reagents in the hopper."
+
 	if(IsBroken())
 		user << SPAN_WARNING("\The [src] seems to have broken down.")
 	if(overheating)
@@ -301,7 +301,7 @@
 		if(open)
 			usable_qualities.Add(QUALITY_PRYING)
 
-		var/tool_type = I.get_tool_type(user, usable_qualities)
+		var/tool_type = I.get_tool_type(user, usable_qualities, src)
 		switch(tool_type)
 
 			if(QUALITY_PRYING)

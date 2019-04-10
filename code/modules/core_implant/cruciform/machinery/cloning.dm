@@ -9,7 +9,7 @@
 #define ANIM_CLOSE -1
 
 /obj/machinery/neotheology/cloner
-	name = "NeoTheology's clonpod"
+	name = "NeoTheology's clonepod"
 	desc = "The newest design and God's gift from NeoTheology, this automatic machine will return the flesh to the spirit in no time."
 	icon = 'icons/obj/neotheology_pod.dmi'
 	icon_state = "preview"
@@ -226,6 +226,7 @@
 
 			occupant = new/mob/living/carbon/human(src)
 			occupant.dna = R.dna.Clone()
+			occupant.stats = R.mind.stats.Clone()
 			occupant.set_species()
 			occupant.real_name = R.dna.real_name
 			occupant.age = R.age

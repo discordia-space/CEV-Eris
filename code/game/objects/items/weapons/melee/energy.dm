@@ -9,6 +9,7 @@
 	flags = NOBLOODY
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
 	heat = 3800
+	embed_mult = 0 //No physical matter to catch onto things
 
 /obj/item/weapon/melee/energy/is_hot()
 	if (active)

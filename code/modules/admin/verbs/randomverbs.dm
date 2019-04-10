@@ -321,7 +321,7 @@ ADMIN_VERB_ADD(/client/proc/respawn_character, R_FUN, FALSE)
 		return
 
 	var/mob/observer/ghost/G_found
-	for(var/mob/observer/ghost/G in player_list)
+	for(var/mob/observer/ghost/G in GLOB.player_list)
 		if(G.ckey == input)
 			G_found = G
 			break
@@ -723,7 +723,8 @@ ADMIN_VERB_ADD(/client/proc/toggle_view_range, R_ADMIN, FALSE)
 		view = input("Select view range:", "FUCK YE", 7) in list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,128)
 	else
 		view = world.view
-
+	if(mob)
+		mob.parallax.update()
 	log_admin("[key_name(usr)] changed their view range to [view].")
 	//message_admins("\blue [key_name_admin(usr)] changed their view range to [view].", 1)	//why? removed by order of XSI
 

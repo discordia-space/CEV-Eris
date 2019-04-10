@@ -44,7 +44,7 @@
 	if(do_newscast)
 		NewsCast(message, message_title)
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if((M.z in (zlevels | maps_data.admin_levels)) && !istype(M,/mob/new_player) && !isdeaf(M) && message_sound)
 			sound_to(M, message_sound)
 	Log(message, message_title)
@@ -79,7 +79,7 @@ datum/announcement/proc/NewsCast(message as text, message_title as text)
 datum/announcement/proc/PlaySound(var/message_sound)
 	if(!message_sound)
 		return
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(!isnewplayer(M) && !isdeaf(M))
 			M << message_sound
 

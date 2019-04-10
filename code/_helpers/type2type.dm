@@ -226,7 +226,7 @@
 		return C.mob
 	else
 		//This is a fallback for if they're not logged in
-		for (var/mob/M in player_list)
+		for (var/mob/M in GLOB.player_list)
 			if (M.key == key)
 				return M
 		return null

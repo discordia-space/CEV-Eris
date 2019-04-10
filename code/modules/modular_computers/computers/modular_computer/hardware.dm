@@ -1,8 +1,11 @@
 // Attempts to install the hardware into apropriate slot.
-/obj/item/modular_computer/proc/try_install_component(var/mob/living/user, var/obj/item/weapon/computer_hardware/H, var/found = 0)
-	if(!(H.usage_flags & hardware_flag))
-		to_chat(user, "This computer isn't compatible with [H].")
-		return
+/obj/item/modular_computer/proc/try_install_component(var/mob/living/user, var/obj/item/weapon/H, var/found = 0)
+	var/obj/item/weapon/computer_hardware/CH //if it's anything other than a battery, then we need to set its holder2 var whatever the fuck that is
+	if(istype(H, /obj/item/weapon/computer_hardware))
+		CH = H
+		if(!(CH.usage_flags & hardware_flag))
+			to_chat(user, "This computer isn't compatible with [CH].")
+			return
 
 	// "USB" flash drive.
 	if(istype(H, /obj/item/weapon/computer_hardware/hard_drive/portable))
@@ -41,12 +44,12 @@
 			return
 		found = 1
 		card_slot = H
-	else if(istype(H, /obj/item/weapon/computer_hardware/battery_module))
-		if(battery_module)
-			to_chat(user, "This computer's battery slot is already occupied by \the [battery_module].")
+	else if(istype(H, /obj/item/weapon/cell))
+		if(cell)
+			to_chat(user, "This computer's battery slot is already occupied by \the [cell].")
 			return
 		found = 1
-		battery_module = H
+		cell = H
 	else if(istype(H, /obj/item/weapon/computer_hardware/processor_unit))
 		if(processor_unit)
 			to_chat(user, "This computer's processor slot is already occupied by \the [processor_unit].")
@@ -78,15 +81,23 @@
 			return
 		found = 1
 		gps_sensor = H
-	if(found && user.unEquip(H, src))
-		to_chat(user, "You install \the [H] into \the [src]")
-		H.holder2 = src
-		if (H.enabled)
-			H.enabled()
+
+	if(!found)
+		return
+
+	if(CH && CH.hardware_size > max_hardware_size)
+		to_chat(user, "This component is too large for \the [src].")
+		return
+
+	if(insert_item(H, user))
+		if(CH)
+			CH.holder2 = src
+			if (CH.enabled)
+				CH.enabled()
 		update_verbs()
 
 // Uninstalls component. Found and Critical vars may be passed by parent types, if they have additional hardware.
-/obj/item/modular_computer/proc/uninstall_component(var/mob/living/user, var/obj/item/weapon/computer_hardware/H, var/found = 0, var/critical = 0, var/delete = FALSE)
+/obj/item/modular_computer/proc/uninstall_component(var/mob/living/user, var/obj/item/weapon/H, var/found = 0, var/critical = 0, var/delete = FALSE)
 	if(portable_drive == H)
 		portable_drive = null
 		found = 1
@@ -103,8 +114,8 @@
 	if(card_slot == H)
 		card_slot = null
 		found = 1
-	if(battery_module == H)
-		battery_module = null
+	if(cell == H)
+		cell = null
 		found = 1
 	if(processor_unit == H)
 		processor_unit = null
@@ -128,24 +139,30 @@
 		found = 1
 
 	//Delete var means this computer is being deleted. Skip extra processing and messages below. Delete the component and return
+	var/obj/item/weapon/computer_hardware/to_remove //If it's not a battery, don't delete the snowflake vars
+	if(istype(H, /obj/item/weapon/computer_hardware))
+		to_remove = H
 	if (delete)
-		H.holder2 = null
+		if(to_remove)
+			to_remove.holder2 = null
 		qdel(H)
+		update_icon()
 		return
 
 	if(found)
 		if(user)
 			to_chat(user, "You remove \the [H] from \the [src].")
 		H.forceMove(get_turf(src))
-		H.holder2 = null
-		if (H.enabled)
-			H.disabled()
+		if(to_remove)
+			to_remove.holder2 = null
+			if (to_remove.enabled)
+				to_remove.disabled()
 		update_verbs()
 	if(critical && enabled)
 		if(user)
 			to_chat(user, "<span class='danger'>\The [src]'s screen freezes for few seconds and then displays an \"HARDWARE ERROR: Critical component disconnected. Please verify component connection and reboot the device. If the problem persists contact technical support for assistance.\" warning.</span>")
 		shutdown_computer()
-		update_icon()
+	update_icon()
 
 
 // Checks all hardware pieces to determine if name matches, if yes, returns the hardware piece, otherwise returns null
@@ -160,8 +177,8 @@
 		return nano_printer
 	if(card_slot && (card_slot.name == name))
 		return card_slot
-	if(battery_module && (battery_module.name == name))
-		return battery_module
+	if(cell && (cell.name == name))
+		return cell
 	if(processor_unit && (processor_unit.name == name))
 		return processor_unit
 	if(ai_slot && (ai_slot.name == name))
@@ -189,8 +206,8 @@
 		all_components.Add(nano_printer)
 	if(card_slot)
 		all_components.Add(card_slot)
-	if(battery_module)
-		all_components.Add(battery_module)
+	if(cell)
+		all_components.Add(cell)
 	if(processor_unit)
 		all_components.Add(processor_unit)
 	if(ai_slot)

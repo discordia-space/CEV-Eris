@@ -164,7 +164,7 @@
 		else
 			user << SPAN_NOTICE("[src] already has a cell installed.")
 
-	else if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING)))
+	else if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING), src))
 		if(cell)
 			var/obj/item/C = cell
 			C.loc = get_turf(user)
@@ -211,11 +211,12 @@
 /obj/item/weapon/crossbowframe/examine(mob/user)
 	..(user)
 	switch(buildstate)
-		if(1) user << "It has a loose rod frame in place."
-		if(2) user << "It has a steel backbone welded in place."
-		if(3) user << "It has a steel backbone and a cell mount installed."
-		if(4) user << "It has a steel backbone, plastic lath and a cell mount installed."
-		if(5) user << "It has a steel cable loosely strung across the lath."
+		if(0) user << "Some rods should work for a frame." 
+		if(1) user << "It has a loose rod frame in place. Welding it should secure it."
+		if(2) user << "It has a steel backbone welded in place. Will need some cables to attach the cell to."
+		if(3) user << "It has a steel backbone and a cell mount installed. Some plastic should flex enough for the lath."
+		if(4) user << "It has a steel backbone, plastic lath and a cell mount installed. Now some cables for the string."
+		if(5) user << "It has a steel cable loosely strung across the lath. And now to tighten it up with a screwdriver!"
 
 /obj/item/weapon/crossbowframe/attackby(obj/item/I, mob/user)
 
@@ -223,10 +224,10 @@
 	var/list/usable_qualities = list()
 	if(buildstate == 1)
 		usable_qualities.Add(QUALITY_WELDING)
-	if(buildstate == 3)
+	if(buildstate == 5)
 		usable_qualities.Add(QUALITY_SCREW_DRIVING)
 
-	var/tool_type = I.get_tool_type(user, usable_qualities)
+	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 
 		if(QUALITY_WELDING)
@@ -239,7 +240,7 @@
 			return
 
 		if(QUALITY_SCREW_DRIVING)
-			if(buildstate == 3)
+			if(buildstate == 5)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					user << SPAN_NOTICE("You secure the crossbow's various parts.")
 					new /obj/item/weapon/gun/launcher/crossbow(get_turf(src))

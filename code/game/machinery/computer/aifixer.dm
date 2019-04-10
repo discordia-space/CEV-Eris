@@ -3,7 +3,7 @@
 	icon = 'icons/obj/computer.dmi'
 	icon_keyboard = "rd_key"
 	icon_screen = "ai-fixer"
-	light_color = "#a97faa"
+	light_color = COLOR_LIGHTING_PURPLE_MACHINERY
 	circuit = /obj/item/weapon/circuitboard/aifixer
 	req_one_access = list(access_robotics, access_heads)
 	var/mob/living/silicon/ai/occupant = null
@@ -112,8 +112,8 @@
 			if (src.occupant.health >= 0 && src.occupant.stat == DEAD)
 				src.occupant.stat = CONSCIOUS
 				src.occupant.lying = 0
-				dead_mob_list -= src.occupant
-				living_mob_list += src.occupant
+				GLOB.dead_mob_list -= src.occupant
+				GLOB.living_mob_list += src.occupant
 				src.overlays -= image('icons/obj/computer.dmi', "ai-fixer-404")
 				src.overlays += image('icons/obj/computer.dmi', "ai-fixer-full")
 				src.occupant.add_ai_verbs()

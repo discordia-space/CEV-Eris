@@ -101,13 +101,22 @@
 	can_hold = list(
 		/obj/item/weapon/tool,
 		/obj/item/device/lighting/toggleable/flashlight,
+		/obj/item/device/radio/headset,
 		/obj/item/stack/cable_coil,
 		/obj/item/device/t_scanner,
 		/obj/item/device/scanner/analyzer,
 		/obj/item/taperoll/engineering,
 		/obj/item/device/robotanalyzer,
+		/obj/item/weapon/material/minihoe,
+		/obj/item/weapon/material/hatchet,
 		/obj/item/device/scanner/analyzer/plant_analyzer,
-		/obj/item/weapon/extinguisher/mini
+		/obj/item/weapon/extinguisher/mini,
+		/obj/item/weapon/hand_labeler,
+		/obj/item/clothing/gloves,
+		/obj/item/clothing/glasses,
+		/obj/item/weapon/flame/lighter,
+		/obj/item/weapon/cell/small,
+		/obj/item/weapon/cell/medium
 		)
 
 /obj/item/weapon/storage/pouch/engineering_supply
@@ -153,7 +162,7 @@
 
 /obj/item/weapon/storage/pouch/flare
 	name = "flares pouch"
-	desc = "Can hold about five flares in. In fact, anything cylindrical and small... Makes you think."
+	desc = "Can hold five cylindrical and small items, including but not limiting to flares, glowsticks, syringes and even hatton tubes."
 	icon_state = "flare"
 	item_state = "flare"
 
@@ -166,7 +175,8 @@
 		/obj/item/weapon/reagent_containers/glass/beaker/vial,
 		/obj/item/weapon/reagent_containers/hypospray,
 		/obj/item/weapon/pen,
-		/obj/item/weapon/storage/pill_bottle
+		/obj/item/weapon/storage/pill_bottle,
+		/obj/item/weapon/hatton_magazine
 		)
 
 /obj/item/weapon/storage/pouch/flare/vial
@@ -181,7 +191,7 @@
 
 /obj/item/weapon/storage/pouch/pistol_holster
 	name = "pistol holster"
-	desc = "Can hold a pistol in."
+	desc = "Can hold a handgun in."
 	icon_state = "pistol_holster"
 	item_state = "pistol_holster"
 
@@ -203,9 +213,14 @@
 		/obj/item/weapon/gun/energy/gun,
 		/obj/item/weapon/gun/energy/retro,
 		/obj/item/weapon/gun/energy/chameleon,
-		/obj/item/weapon/gun/energy/captain,
+		//obj/item/weapon/gun/energy/captain, //too unwieldy, use belt/suit slot or other storage
 		/obj/item/weapon/gun/energy/stunrevolver,
-		/obj/item/weapon/gun/projectile/revolver)
+		/obj/item/weapon/gun/projectile/revolver,
+		/obj/item/weapon/gun/projectile/automatic/IH_machinepistol,
+		/obj/item/weapon/gun/projectile/IH_sidearm,
+		/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn, //short enough to fit in
+		/obj/item/weapon/gun/launcher/syringe
+		)
 
 	sliding_behavior = TRUE
 

@@ -10,6 +10,7 @@ var/list/disciples = list()
 	power = 50
 	max_power = 50
 	power_regen = 0.5
+	price_tag = 500
 
 /obj/item/weapon/implant/core_implant/cruciform/get_mob_overlay(gender, body_build)
 	gender = (gender == MALE) ? "m" : "f"
@@ -42,6 +43,7 @@ var/list/disciples = list()
 	add_module(new CRUCIFORM_COMMON)
 	update_data()
 	disciples |= wearer
+	return TRUE
 
 
 /obj/item/weapon/implant/core_implant/cruciform/deactivate()
@@ -63,7 +65,7 @@ var/list/disciples = list()
 		return FALSE
 	var/datum/core_module/cruciform/cloning/data = get_module(CRUCIFORM_CLONING)
 	if(wearer.dna.unique_enzymes == data.dna.unique_enzymes)
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			if(M.ckey == data.ckey)
 				if(!isghost(M) && !isangel(M))
 					return FALSE
@@ -75,7 +77,8 @@ var/list/disciples = list()
 		for(var/datum/language/L in data.languages)
 			wearer.add_language(L.name)
 		update_data()
-		return TRUE
+		if (activate())
+			return TRUE
 
 /obj/item/weapon/implant/core_implant/cruciform/proc/remove_cyber()
 	if(!wearer)
