@@ -153,6 +153,10 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 //all of our asset datums, used for referring to these later
 /var/global/list/asset_datums = list()
 
+/datum/asset
+	// If asset is trivial it's download will be transfered to end of queue
+	var/isTrivial = TRUE
+
 //get a assetdatum or make a new one
 /proc/get_asset_datum(var/type)
 	if (!(type in asset_datums))
@@ -224,6 +228,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 		assets[filename] = I
 
 /datum/asset/simple/tgui
+	isTrivial = FALSE
 	assets = list(
 		"tgui.css"	= 'tgui/assets/tgui.css',
 		"tgui.js"	= 'tgui/assets/tgui.js'
@@ -259,6 +264,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 	)
 
 /datum/asset/nanoui
+	isTrivial = FALSE
 	var/list/common = list()
 
 	var/list/common_dirs = list(
@@ -321,8 +327,14 @@ var/decl/asset_cache/asset_cache = new()
 	cache = new
 
 /proc/send_assets()
+	var/list/datum/asset/trivialAssets = list()
 	for(var/type in typesof(/datum/asset) - list(/datum/asset, /datum/asset/simple))
 		var/datum/asset/A = new type()
+		if(A.isTrivial)
+			trivialAssets += A
+		else
+			A.register()
+	for(var/datum/asset/A in trivialAssets)
 		A.register()
 
 	for(var/client/C in clients)
