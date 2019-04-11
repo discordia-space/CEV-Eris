@@ -186,17 +186,8 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 
 
 //DEFINITIONS FOR ASSET DATUMS START HERE.
-/datum/asset/simple/autolathe/register()
-	for(var/type in typesof(/datum/autolathe/recipe)-/datum/autolathe/recipe)
-		var/datum/autolathe/recipe/R = type
-		if(initial(R.path))
-			var/filename = sanitizeFileName("[initial(R.path)].png")
-			var/icon/I = getFlatTypeIcon(initial(R.path))
-			register_asset(filename, I)
-			assets[filename] = I
-
-/datum/asset/simple/rnd/register()
-	for(var/type in typesof(/datum/design) - /datum/design)
+/datum/asset/simple/design_icons/register()
+	for(var/type in subtypesof(/datum/design))
 		var/datum/design/D = type
 		if(initial(D.build_path))
 			var/filename = sanitizeFileName("[initial(D.build_path)].png")
@@ -221,7 +212,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 					assets[filename] = I
 
 /datum/asset/simple/materials/register()
-	for(var/type in typesof(/obj/item/stack/material)-/obj/item/stack/material - typesof(/obj/item/stack/material/cyborg))
+	for(var/type in subtypesof(/obj/item/stack/material) - typesof(/obj/item/stack/material/cyborg))
 		var/filename = sanitizeFileName("[type].png")
 		var/icon/I = getFlatTypeIcon(type)
 		register_asset(filename, I)

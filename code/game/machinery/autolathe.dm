@@ -141,7 +141,7 @@
 		if(R)
 			data["current"] = R.name
 			data["current_time"] = R.time
-			data["icon"] = getAtomCacheFilename(R.path)
+			data["icon"] = getAtomCacheFilename(R.build_path)
 
 		var/list/RS = list()
 		for(var/mat in R.materials)
@@ -170,7 +170,7 @@
 		if(!R)
 			Q.Add(list(list("name" = "ERROR", "ind" = i, "error" = 2)))
 
-		var/list/QR = list("name" = R.name, "ind" = i, "icon" = getAtomCacheFilename(R.path))
+		var/list/QR = list("name" = R.name, "ind" = i, "icon" = getAtomCacheFilename(R.build_path))
 		QR["error"] = 0
 		if(disk_uses() >= 0 && disk_uses() <= i)
 			QR["error"] = 1
