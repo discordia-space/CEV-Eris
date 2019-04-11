@@ -155,7 +155,7 @@
 	for (var/mob/observer/ghost/M in GLOB.dead_mob_list)	//does this include players who joined as observers as well?
 		if (!(M.client))
 			continue
-		if((M.has_enabled_antagHUD && M.antagHUD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH) || is_admin(M.client))
+		if((M.antagHUD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH) || is_admin(M))
 			M << "[text] ([ghost_follow_link(user, M)])"
 
 	log_say("[user.name]/[user.key] (REV [name]) : [message]")
