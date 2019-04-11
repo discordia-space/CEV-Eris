@@ -1,6 +1,6 @@
 /obj/item/organ_module/active/multitool
 	name = "multitool embed module"
-	desc = "A surgical multitool designed by Moebius to be embedded into an arm. One of the most popular modules among Moebius scientists and doctors, and sometimes used by criminal types for the array of potential weapons it holds."
+	desc = "An augment designed to hold multiple tools for swift deployment."
 	verb_name = "Deploy tool"
 	icon_state = "multitool"
 	allowed_organs = list(BP_R_ARM, BP_L_ARM)
