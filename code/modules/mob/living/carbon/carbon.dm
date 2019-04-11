@@ -278,7 +278,7 @@
 	if(item && src.unEquip(item, loc))
 		src.visible_message("\red [src] has thrown [item].")
 
-		if(!check_gravity() && src.allow_spacemove() != 1) // spacemove would return one with magboots, -1 with adjacent tiles
+		if(!incorporeal_move && !check_gravity() && src.allow_spacemove() != 1) // spacemove would return one with magboots, -1 with adjacent tiles
 			src.inertia_dir = get_dir(target, src)
 			step(src, inertia_dir)
 
