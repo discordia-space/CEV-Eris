@@ -10,6 +10,7 @@
 	price_tag = 1500
 	ammo_type = "/obj/item/ammo_casing/a75"
 	load_method = MAGAZINE
+	mag_well = MAG_WELL_PISTOL
 	magazine_type = /obj/item/ammo_magazine/a75
 	auto_eject = 1
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'

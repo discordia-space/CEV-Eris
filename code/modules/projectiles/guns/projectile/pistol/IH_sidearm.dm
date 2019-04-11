@@ -9,6 +9,7 @@
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	ammo_type = "/obj/item/ammo_casing/a10mm"
 	load_method = MAGAZINE
+	mag_well = MAG_WELL_PISTOL
 	magazine_type = /obj/item/ammo_magazine/a10mm
 	auto_eject = 1
 	matter = list(MATERIAL_PLASTEEL = 14, MATERIAL_PLASTIC = 4)

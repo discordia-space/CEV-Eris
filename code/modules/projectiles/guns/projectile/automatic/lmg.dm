@@ -25,6 +25,7 @@
 	ammo_type = "/obj/item/ammo_casing/a762"
 	ammo_mag = "box"
 	load_method = MAGAZINE
+	mag_well = MAG_WELL_BOX
 	magazine_type = null //Magazine type is for preloaded spawning. This spawns empty
 	matter = list(MATERIAL_PLASTEEL = 40, MATERIAL_PLASTIC = 15, MATERIAL_WOOD = 5)
 	price_tag = 5000
