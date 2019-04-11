@@ -4,7 +4,7 @@
 	board_type = "machine"
 	origin_tech = list(TECH_DATA = 3, TECH_PLASMA = 5, TECH_ENGINEERING = 5)
 
-/datum/design/circuit/pacman
+/datum/design/research/circuit/pacman
 	name = "PACMAN-type generator"
 	id = "pacman"
 	req_tech = list(TECH_DATA = 3, TECH_POWER = 5, TECH_ENGINEERING = 5)

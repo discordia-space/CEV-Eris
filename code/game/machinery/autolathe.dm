@@ -85,21 +85,21 @@
 
 	var/list/L = list()
 	for(var/rtype in recipe_list())
-		var/datum/autolathe/recipe/R = autolathe_recipes[rtype]
+		var/datum/design/R = autolathe_recipes[rtype]
 		var/list/LE = list("name" = capitalize(R.name), "type" = "[rtype]", "time" = R.time)
-		LE["icon"] = getAtomCacheFilename(R.path)
+		LE["icon"] = getAtomCacheFilename(R.build_path)
 
 		if(unfolded == "[rtype]")
 			LE["unfolded"] = TRUE
 
 			var/text = ""
-			for(var/m in R.resources)
-				text += "[m]: [SANITIZE_LATHE_COST(R.resources[m])]<br>"
+			for(var/m in R.materials)
+				text += "[m]: [SANITIZE_LATHE_COST(R.materials[m])]<br>"
 			LE["resources"] = text == "" ? "None" : text
 
 			text = ""
-			for(var/m in R.reagents)
-				text += "[m]: [R.reagents[m]]<br>"
+			for(var/m in R.chemicals)
+				text += "[m]: [R.chemicals[m]]<br>"
 			LE["reagents"] = text == "" ? "None" : text
 
 		L.Add(list(LE))
@@ -137,25 +137,25 @@
 	data["current"] = null
 	data["progress"] = progress
 	if(current)
-		var/datum/autolathe/recipe/R = autolathe_recipes[current]
+		var/datum/design/R = autolathe_recipes[current]
 		if(R)
 			data["current"] = R.name
 			data["current_time"] = R.time
 			data["icon"] = getAtomCacheFilename(R.path)
 
 		var/list/RS = list()
-		for(var/mat in R.resources)
-			RS.Add(list(list("name" = mat, "req" = SANITIZE_LATHE_COST(R.resources[mat]))))
+		for(var/mat in R.materials)
+			RS.Add(list(list("name" = mat, "req" = SANITIZE_LATHE_COST(R.materials[mat]))))
 
 		data["req_materials"] = RS
 
 		RS = list()
-		for(var/reg in R.reagents)
+		for(var/reg in R.chemicals)
 			var/datum/reagent/RG = chemical_reagents_list[reg]
 			if(RG)
-				RS.Add(list(list("name" = RG.name, "req" = R.reagents[reg])))
+				RS.Add(list(list("name" = RG.name, "req" = R.chemicals[reg])))
 			else
-				RS.Add(list(list("name" = "UNKNOWN", "req" = R.reagents[reg])))
+				RS.Add(list(list("name" = "UNKNOWN", "req" = R.chemicals[reg])))
 
 		data["req_reagents"] = RS
 
@@ -166,7 +166,7 @@
 		if(!queue[i])
 			continue
 
-		var/datum/autolathe/recipe/R = autolathe_recipes[queue[i]]
+		var/datum/design/R = autolathe_recipes[queue[i]]
 		if(!R)
 			Q.Add(list(list("name" = "ERROR", "ind" = i, "error" = 2)))
 
@@ -175,11 +175,11 @@
 		if(disk_uses() >= 0 && disk_uses() <= i)
 			QR["error"] = 1
 
-		for(var/rmat in R.resources)
+		for(var/rmat in R.materials)
 			if(!(rmat in qmats))
 				qmats[rmat] = 0
 
-			qmats[rmat] -= R.resources[rmat]
+			qmats[rmat] -= R.materials[rmat]
 			if(qmats[rmat] < 0)
 				QR["error"] = 1
 
@@ -282,7 +282,7 @@
 	if(href_list["add_to_queue_several"])
 		var/recipe = text2path(href_list["add_to_queue_several"])
 		if(recipe)
-			var/datum/autolathe/recipe/R = recipe
+			var/datum/design/R = recipe
 			var/amount = input("How many \"[initial(R.name)]\" you want to print ?", "Print several") as null|num
 			if(amount && (queue.len + amount) < queue_max)
 				for(var/i = 1, i <= amount, i++)
@@ -512,26 +512,26 @@
 
 /obj/machinery/autolathe/proc/cannot_print(var/recipe)
 	if(progress <= 0)
-		var/datum/autolathe/recipe/R = autolathe_recipes[recipe]
+		var/datum/design/R = autolathe_recipes[recipe]
 		if(!R)
 			return ERR_NOTFOUND
 
 		if(disk_uses() == 0 )
 			return ERR_NOLICENSE
 
-		for(var/rmat in R.resources)
+		for(var/rmat in R.materials)
 			if(!(rmat in stored_material))
 				return ERR_NOMATERIAL
 
-			if(stored_material[rmat] < SANITIZE_LATHE_COST(R.resources[rmat]))
+			if(stored_material[rmat] < SANITIZE_LATHE_COST(R.materials[rmat]))
 				return ERR_NOMATERIAL
 
-		if(R.reagents.len)
+		if(R.chemicals.len)
 			if(!container || !container.is_drawable())
 				return ERR_NOREAGENT
 			else
-				for(var/rgn in R.reagents)
-					if(!container.reagents.has_reagent(rgn, R.reagents[rgn]))
+				for(var/rgn in R.chemicals)
+					if(!container.reagents.has_reagent(rgn, R.chemicals[rgn]))
 						return ERR_NOREAGENT
 
 
@@ -551,7 +551,7 @@
 
 	if(anim < world.time)
 		if(current)
-			var/datum/autolathe/recipe/R = autolathe_recipes[current]
+			var/datum/design/R = autolathe_recipes[current]
 			var/err = cannot_print(current)
 			if(err == ERR_NOLICENSE)
 				error = message_nolicense
@@ -602,15 +602,15 @@
 		icon_state = "autolathe_n"
 
 /obj/machinery/autolathe/proc/consume_materials(var/recipe)
-	var/datum/autolathe/recipe/R = autolathe_recipes[recipe]
+	var/datum/design/R = autolathe_recipes[recipe]
 	if(!R)
 		return FALSE
 
-	for(var/material in R.resources)
-		stored_material[material] = max(0, stored_material[material] - SANITIZE_LATHE_COST(R.resources[material]))
+	for(var/material in R.materials)
+		stored_material[material] = max(0, stored_material[material] - SANITIZE_LATHE_COST(R.materials[material]))
 
-	for(var/reagent in R.reagents)
-		container.reagents.remove_reagent(reagent, R.reagents[reagent])
+	for(var/reagent in R.chemicals)
+		container.reagents.remove_reagent(reagent, R.chemicals[reagent])
 
 	return TRUE
 
@@ -725,14 +725,14 @@
 
 //Finishing current construction
 /obj/machinery/autolathe/proc/finish_construction()
-	var/datum/autolathe/recipe/R = autolathe_recipes[current]
+	var/datum/design/D = autolathe_recipes[current]
 	//First of all, we check whether our current thing came from the disk which is currently inserted
 	if (locate(current) in recipe_list())
 		//It did, in that case we need to consume a license from the current disk.
 		if (disk_use_license()) //In the case of an unlimited disk, this will always be true
 			//We consumed a license, or the disk was infinite. Either way we're clear to proceed
-			var/atom/A = new R.path(src.loc)
-			A.Created()
+			D.Fabricate(get_turf(src), src)
+
 			working = FALSE
 			current = null
 			print_post()
@@ -743,8 +743,8 @@
 	else
 		//If we get here, we're working on a recipe that was queued up from a previous unlimited disk which is now ejected
 		//This is fine, just complete it
-		var/atom/A = new R.path(src.loc)
-		A.Created()
+		D.Fabricate(get_turf(src), src)
+
 		working = FALSE
 		current = null
 		print_post()

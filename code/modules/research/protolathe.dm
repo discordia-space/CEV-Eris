@@ -10,7 +10,7 @@
 
 	var/max_material_storage = 120
 
-	var/list/datum/design/queue = list()
+	var/list/datum/design/research/queue = list()
 	var/progress = 0
 
 	var/speed = 1
@@ -28,7 +28,7 @@
 		busy = FALSE
 		update_icon()
 		return
-	var/datum/design/D = queue[1]
+	var/datum/design/research/D = queue[1]
 	if(canBuild(D))
 		if(progress == 0)
 			print_pre(D)
@@ -182,7 +182,7 @@
 	var/obj/effect/temp_visual/resourceInsertion/protolathe/effect = new(src.loc)
 	effect.setMaterial(name)
 
-/obj/machinery/r_n_d/protolathe/proc/addToQueue(var/datum/design/D)
+/obj/machinery/r_n_d/protolathe/proc/addToQueue(datum/design/D)
 	queue += D
 	return
 
@@ -190,7 +190,7 @@
 	queue.Cut(index, index + 1)
 	return
 
-/obj/machinery/r_n_d/protolathe/proc/canBuild(var/datum/design/D)
+/obj/machinery/r_n_d/protolathe/proc/canBuild(datum/design/D)
 	for(var/M in D.materials)
 		if(materials[M] < D.materials[M])
 			return FALSE
@@ -199,7 +199,7 @@
 			return FALSE
 	return TRUE
 
-/obj/machinery/r_n_d/protolathe/proc/getLackingMaterials(var/datum/design/D)
+/obj/machinery/r_n_d/protolathe/proc/getLackingMaterials(datum/design/D)
 	var/ret = ""
 	for(var/M in D.materials)
 		if(materials[M] < D.materials[M])
@@ -213,7 +213,7 @@
 			ret += C
 	return ret
 
-/obj/machinery/r_n_d/protolathe/proc/build(var/datum/design/D)
+/obj/machinery/r_n_d/protolathe/proc/build(datum/design/D)
 	var/power = active_power_usage
 	for(var/M in D.materials)
 		power += round(D.materials[M] / 5, 0.01)
@@ -225,14 +225,12 @@
 		reagents.remove_reagent(C, D.chemicals[C])
 
 	if(D.build_path)
-		var/obj/new_item = D.Fabricate(src, src)
-		new_item.loc = loc
-		new_item.Created()
+		D.Fabricate(get_turf(src), src)
 
-/obj/machinery/r_n_d/protolathe/proc/print_pre(var/datum/design/D)
+/obj/machinery/r_n_d/protolathe/proc/print_pre(datum/design/D)
 	return
 
-/obj/machinery/r_n_d/protolathe/proc/print_post(var/datum/design/D)
+/obj/machinery/r_n_d/protolathe/proc/print_post(datum/design/D)
 	visible_message("\icon[src]\The [src] flashes, indicating that \the [D] is complete.", range = 3)
 	if(!queue.len)
 		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1 -3)

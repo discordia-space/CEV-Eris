@@ -11,17 +11,17 @@ with these since they should be the default version of the datums. They're actua
 refer to them since it makes it a bit easier to search through them for specific information.
 - know_tech is the companion list to possible_tech. It's the tech you can actually research and improve. Until it's added to this
 list, it can't be improved. All the tech in this list are visible to the player.
-- possible_designs is functionally identical to possbile_tech except it's for /datum/design.
-- known_designs is functionally identical to known_tech except it's for /datum/design
+- possible_designs is functionally identical to possbile_tech except it's for /datum/design/research.
+- known_designs is functionally identical to known_tech except it's for /datum/design/research
 
 Procs:
 - TechHasReqs: Used by other procs (specifically RefreshResearch) to see whether all of a tech's requirements are currently in
 known_tech and at a high enough level.
-- DesignHasReqs: Same as TechHasReqs but for /datum/design and known_design.
+- DesignHasReqs: Same as TechHasReqs but for /datum/design/research and known_design.
 - AddTech2Known: Adds a /datum/tech to known_tech. It checks to see whether it already has that tech (if so, it just replaces it). If
 it doesn't have it, it adds it. Note: It does NOT check possible_tech at all. So if you want to add something strange to it (like
 a player made tech?) you can.
-- AddDesign2Known: Same as AddTech2Known except for /datum/design and known_designs.
+- AddDesign2Known: Same as AddTech2Known except for /datum/design/research and known_designs.
 - RefreshResearch: This is the workhorse of the R&D system. It updates the /datum/research holder and adds any unlocked tech paths
 and designs you have reached the requirements for. It only checks through possible_tech and possible_designs, however, so it won't
 accidentally add "secret" tech to it.
@@ -50,9 +50,9 @@ research holder datum.
 	var/list/known_designs = list()			//List of available designs.
 
 /datum/research/New()		//Insert techs into possible_tech here. Known_tech automatically updated.
-	for(var/T in typesof(/datum/tech) - /datum/tech)
+	for(var/T in subtypesof(/datum/tech))
 		known_tech += new T(src)
-	for(var/D in typesof(/datum/design) - /datum/design)
+	for(var/D in subtypesof(/datum/design/research))
 		possible_designs += new D(src)
 	generate_integrated_circuit_designs()
 	RefreshResearch()
@@ -82,7 +82,7 @@ research holder datum.
 
 //Checks to see if design has all the required pre-reqs.
 //Input: datum/design; Output: 0/1 (false/true)
-/datum/research/proc/DesignHasReqs(var/datum/design/D)
+/datum/research/proc/DesignHasReqs(var/datum/design/research/D)
 	if(D.req_tech.len == 0)
 		return 1
 
@@ -107,12 +107,12 @@ research holder datum.
 			return
 	return
 
-/datum/research/proc/AddDesign2Known(var/datum/design/D)
+/datum/research/proc/AddDesign2Known(var/datum/design/research/D)
 	if(!known_designs.len) // Special case
 		known_designs.Add(D)
 		return
 	for(var/i = 1 to known_designs.len)
-		var/datum/design/A = known_designs[i]
+		var/datum/design/research/A = known_designs[i]
 		if(A.id == D.id) // We are guaranteed to reach this if the ids are the same, because sort_string will also be the same
 			return
 		if(A.sort_string > D.sort_string)
@@ -124,7 +124,7 @@ research holder datum.
 //Refreshes known_tech and known_designs list
 //Input/Output: n/a
 /datum/research/proc/RefreshResearch()
-	for(var/datum/design/PD in possible_designs)
+	for(var/datum/design/research/PD in possible_designs)
 		if(DesignHasReqs(PD))
 			AddDesign2Known(PD)
 	for(var/datum/tech/T in known_tech)
@@ -150,7 +150,7 @@ research holder datum.
 	spawn(2 SECONDS) // So the list has time to initialize.
 		for(var/obj/item/integrated_circuit/IC in all_integrated_circuits)
 			if(IC.spawn_flags & IC_SPAWN_RESEARCH)
-				var/datum/design/D = new /datum/design/circuit(src)
+				var/datum/design/research/D = new /datum/design/research/circuit(src)
 				D.name = "Custom circuitry \[[IC.category_text]\] ([IC.name])"
 				D.id = "ic-[lowertext(IC.name)]"
 				if(IC.origin_tech && IC.origin_tech.len)
@@ -260,7 +260,7 @@ research holder datum.
 	icon_state = "yellow"
 	item_state = "card-id"
 	w_class = ITEM_SIZE_SMALL
-	var/datum/design/blueprint
+	var/datum/design/research/blueprint
 
 /obj/item/weapon/disk/design_disk/New()
 	pixel_x = rand(-5.0, 5)

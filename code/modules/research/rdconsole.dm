@@ -103,7 +103,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	for(var/obj/machinery/r_n_d/server/centcom/C in SSmachines.machinery)
 		for(var/datum/tech/T in files.known_tech)
 			C.files.AddTech2Known(T)
-		for(var/datum/design/D in files.known_designs)
+		for(var/datum/design/research/D in files.known_designs)
 			C.files.AddDesign2Known(D)
 		C.files.RefreshResearch()
 
@@ -208,7 +208,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		screen = 1.0
 
 	else if(href_list["copy_design"]) //Copy design data from the research holder to the design disk.
-		for(var/datum/design/D in files.known_designs)
+		for(var/datum/design/research/D in files.known_designs)
 			if(href_list["copy_design_ID"] == D.id)
 				d_disk.blueprint = D
 				break
@@ -291,14 +291,14 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 						if((id in S.id_with_upload) || istype(S, /obj/machinery/r_n_d/server/centcom))
 							for(var/datum/tech/T in files.known_tech)
 								S.files.AddTech2Known(T)
-							for(var/datum/design/D in files.known_designs)
+							for(var/datum/design/research/D in files.known_designs)
 								S.files.AddDesign2Known(D)
 							S.files.RefreshResearch()
 							server_processed = 1
 						if((id in S.id_with_download) && !istype(S, /obj/machinery/r_n_d/server/centcom))
 							for(var/datum/tech/T in S.files.known_tech)
 								files.AddTech2Known(T)
-							for(var/datum/design/D in S.files.known_designs)
+							for(var/datum/design/research/D in S.files.known_designs)
 								files.AddDesign2Known(D)
 							files.RefreshResearch()
 							server_processed = 1
@@ -312,8 +312,8 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 	else if(href_list["build"]) //Causes the Protolathe to build something.
 		if(linked_lathe)
-			var/datum/design/being_built = null
-			for(var/datum/design/D in files.known_designs)
+			var/datum/design/research/being_built = null
+			for(var/datum/design/research/D in files.known_designs)
 				if(D.id == href_list["build"])
 					being_built = D
 					break
@@ -325,8 +325,8 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 	else if(href_list["imprint"]) //Causes the Circuit Imprinter to build something.
 		if(linked_imprinter)
-			var/datum/design/being_built = null
-			for(var/datum/design/D in files.known_designs)
+			var/datum/design/research/being_built = null
+			for(var/datum/design/research/D in files.known_designs)
 				if(D.id == href_list["imprint"])
 					being_built = D
 					break
@@ -562,7 +562,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "<A href='?src=\ref[src];menu=1.4'>Return to Disk Operations</A><HR>"
 			dat += "Load Design to Disk:<BR><BR>"
 			dat += "<UL>"
-			for(var/datum/design/D in files.known_designs)
+			for(var/datum/design/research/D in files.known_designs)
 				if(D.build_path)
 					dat += "<LI>[D.name] "
 					dat += "<A href='?src=\ref[src];copy_design=1;copy_design_ID=[D.id]'>\[copy to disk\]</A>"
@@ -642,7 +642,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "<B>Material Amount:</B> [linked_lathe.TotalMaterials()] cm<sup>3</sup> (MAX: [linked_lathe.max_material_storage])<BR>"
 			dat += "<B>Chemical Volume:</B> [linked_lathe.reagents.total_volume] (MAX: [linked_lathe.reagents.maximum_volume])<HR>"
 			dat += "<UL>"
-			for(var/datum/design/D in files.known_designs)
+			for(var/datum/design/research/D in files.known_designs)
 				if(!D.build_path || !(D.build_type & PROTOLATHE))
 					continue
 				var/temp_dat
@@ -700,7 +700,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				dat += "Empty"
 			else
 				var/tmp = 1
-				for(var/datum/design/D in linked_lathe.queue)
+				for(var/datum/design/research/D in linked_lathe.queue)
 					if(tmp == 1)
 						if(linked_lathe.busy)
 							dat += "<B>1: [D.name]</B><BR>"
@@ -724,7 +724,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "Material Amount: [linked_imprinter.TotalMaterials()] cm<sup>3</sup><BR>"
 			dat += "Chemical Volume: [linked_imprinter.reagents.total_volume]<HR>"
 			dat += "<UL>"
-			for(var/datum/design/D in files.known_designs)
+			for(var/datum/design/research/D in files.known_designs)
 				if(!D.build_path || !(D.build_type & IMPRINTER))
 					continue
 				dat += "<div class='block' style ='padding: 0px; overflow: auto; margin-left:-2px'>"
@@ -782,7 +782,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				dat += "Empty"
 			else
 				var/tmp = 1
-				for(var/datum/design/D in linked_imprinter.queue)
+				for(var/datum/design/research/D in linked_imprinter.queue)
 					if(tmp == 1)
 						dat += "<B>1: [D.name]</B><BR>"
 					else
