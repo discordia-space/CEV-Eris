@@ -175,6 +175,9 @@
 /mob/proc/allow_spacemove(var/check_drift = 0)
 	//First up, check for magboots or other gripping capability
 	//If we have some, then check the ground under us
+	if(incorporeal_move)
+		update_floating(!check_gravity())
+		return TRUE
 	if (check_shoegrip() && check_solid_ground())
 		update_floating(FALSE)
 		return TRUE
@@ -202,8 +205,7 @@
 	if(istype(loc, /turf/space))
 		return 0
 
-	if(!lastarea)
-		lastarea = get_area(src)
+	lastarea = get_area(src)
 	if(!lastarea || !lastarea.has_gravity)
 		return 0
 
