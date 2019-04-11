@@ -10,7 +10,7 @@
 	var/askDelay = 10 * 60 * 1
 	req_access = list(access_robotics)
 	locked = 0
-	mecha = null//This does not appear to be used outside of reference in mecha.dm.
+	mecha = null//This does not appear to be used outside oft reference in mecha.dm.
 
 
 /obj/item/device/mmi/digital/posibrain/attack_self(mob/user as mob)
@@ -20,7 +20,7 @@
 		icon_state = "posibrain-searching"
 		src.searching = 1
 		var/datum/ghosttrap/G = get_ghost_trap("positronic brain")
-		G.request_player(brainmob, "Someone is requesting a personality for a positronic brain.", 60 SECONDS)
+		G.request_player(brainmob, "Someone is requesting a personality for a positronic brain.", MINISYNTH, 60 SECONDS)
 		spawn(600) reset_search()
 
 /obj/item/device/mmi/digital/posibrain/proc/reset_search() //We give the players sixty seconds to decide, then reset the timer.

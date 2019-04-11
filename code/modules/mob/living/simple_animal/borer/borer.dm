@@ -171,7 +171,7 @@
 //Procs for grabbing players.
 /mob/living/simple_animal/borer/proc/request_player()
 	var/datum/ghosttrap/G = get_ghost_trap("cortical borer")
-	G.request_player(src, "A cortical borer needs a player.")
+	G.request_player(src, "A cortical borer needs a player.", ANIMAL)
 
 /mob/living/simple_animal/borer/cannot_use_vents()
 	return
