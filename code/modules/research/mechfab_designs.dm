@@ -743,11 +743,10 @@
 	materials = list(MATERIAL_STEEL = 10, MATERIAL_SILVER = 5, MATERIAL_GLASS = 10)
 	build_path = /obj/item/mecha_parts/mecha_equipment/generator/nuclear
 
-/datum/design/item/synthetic_flash
-	name = "Synthetic flash"
-	id = "sflash"
+/datum/design/research/item/flash
+	name = "flash"
+	id = "flash"
 	req_tech = list(TECH_MAGNET = 3, TECH_COMBAT = 2)
 	build_type = MECHFAB
-	materials = list(MATERIAL_STEEL = 2, MATERIAL_GLASS = 1)
-	build_path = /obj/item/device/flash/synthetic
+	build_path = /obj/item/device/flash
 	category = "Misc"
