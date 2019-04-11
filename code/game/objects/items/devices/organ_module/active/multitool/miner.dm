@@ -8,5 +8,6 @@
 		/obj/item/weapon/tool/pickaxe/excavation,
 		/obj/item/weapon/mining_scanner,
 		/obj/item/weapon/tool/shovel,
-		/obj/item/device/radio/off
+		/obj/item/device/radio/off,
+		/obj/item/weapon/tool/screwdriver
 	)
