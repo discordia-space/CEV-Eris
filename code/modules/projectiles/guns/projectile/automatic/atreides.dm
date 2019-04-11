@@ -9,6 +9,7 @@
 	slot_flags = SLOT_BELT
 	ammo_type = "/obj/item/ammo_casing/c45"
 	load_method = MAGAZINE
+	mag_well = MAG_WELL_SMG
 	magazine_type = /obj/item/ammo_magazine/c45smg
 	matter = list(MATERIAL_PLASTEEL = 16, MATERIAL_PLASTIC = 4)
 	price_tag = 2000

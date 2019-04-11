@@ -123,8 +123,12 @@
 	path = /obj/item/ammo_magazine/cl32
 
 /datum/autolathe/recipe/ammo/ak47
-	name = "magazine (7.62mm)"
+	name = "AK magazine (7.62mm)"
 	path = /obj/item/ammo_magazine/ak47
+
+/datum/autolathe/recipe/ammo/ih762
+	name = "IH magazine (7.62mm)"
+	path = /obj/item/ammo_magazine/ih762
 
 /datum/autolathe/recipe/ammo/box_a762
 	name = "ammunition box (7.62mm)"

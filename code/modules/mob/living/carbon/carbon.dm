@@ -280,7 +280,7 @@
 
 		//if(!src.lastarea) // this check would break inertia movement
 		src.lastarea = get_area(src.loc)
-		if((istype(src.loc, /turf/space)) || (src.lastarea.has_gravity == 0 && !check_shoegrip()))
+		if(!src.allow_spacemove())
 			src.inertia_dir = get_dir(target, src)
 			step(src, inertia_dir)
 

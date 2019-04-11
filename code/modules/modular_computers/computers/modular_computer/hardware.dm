@@ -146,6 +146,7 @@
 		if(to_remove)
 			to_remove.holder2 = null
 		qdel(H)
+		update_icon()
 		return
 
 	if(found)
@@ -161,7 +162,7 @@
 		if(user)
 			to_chat(user, "<span class='danger'>\The [src]'s screen freezes for few seconds and then displays an \"HARDWARE ERROR: Critical component disconnected. Please verify component connection and reboot the device. If the problem persists contact technical support for assistance.\" warning.</span>")
 		shutdown_computer()
-		update_icon()
+	update_icon()
 
 
 // Checks all hardware pieces to determine if name matches, if yes, returns the hardware piece, otherwise returns null
