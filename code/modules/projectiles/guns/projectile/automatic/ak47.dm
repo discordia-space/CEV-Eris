@@ -22,7 +22,7 @@
 
 	firemodes = list(
 		SEMI_AUTO_NODELAY,
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    dispersion=list(0.0, 0.6, 0.6), icon="burst"),
+		FULL_AUTO_400,
 		)
 
 /obj/item/weapon/gun/projectile/automatic/ak47/update_icon()
