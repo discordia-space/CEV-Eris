@@ -1,6 +1,6 @@
 /obj/item/ammo_magazine/a10mm
 	name = "magazine (10mm)"
-	icon_state = "10mm"
+	icon_state = "10l"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	caliber = "10mm"
@@ -10,21 +10,22 @@
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/a10mm/empty
+	icon_state = "10"
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/a10mm/rubber
 	name = "magazine (10mm rubber)"
-	icon_state = "10mm_r"
+	icon_state = "10r"
 	ammo_type = /obj/item/ammo_casing/a10mm/rubber
 
 /obj/item/ammo_magazine/a10mm/hv
 	name = "magazine (10mm high-velocity)"
-	icon_state = "10mm_hv"
+	icon_state = "10hv"
 	ammo_type = /obj/item/ammo_casing/a10mm/hv
 
 /obj/item/ammo_magazine/smg10mm
 	name = "smg magazine (10mm)"
-	icon_state = "12mm"
+	icon_state = "12mml"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	caliber = "10mm"
@@ -34,16 +35,17 @@
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/smg10mm/empty
+	icon_state = "12mm"
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/smg10mm/hv
 	name = "smg magazine (10mm high-velocity)"
-	icon_state = "12mmh"
+	icon_state = "12mmhv"
 	ammo_type = /obj/item/ammo_casing/a10mm/hv
 
 /obj/item/ammo_magazine/mc9mm
 	name = "magazine (9mm)"
-	icon_state = "9x19p"
+	icon_state = "9x19pl"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	matter = list(MATERIAL_STEEL = 3)
@@ -53,15 +55,17 @@
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/mc9mm/empty
+	icon_state = "9x19p"
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/mc9mm/flash
 	name = "magazine (9mm flash)"
+	icon_state = "9x19pf"
 	ammo_type = /obj/item/ammo_casing/c9mm/flash
 
 /obj/item/ammo_magazine/mc9mm/highvelocity
 	name = "magazine (9mm high-velocity)"
-	icon_state = "9x19ph"
+	icon_state = "9x19phv"
 	ammo_type = /obj/item/ammo_casing/c9mm/hv
 
 /obj/item/ammo_magazine/mc9mm/rubber
@@ -92,7 +96,7 @@
 
 /obj/item/ammo_magazine/smg9mm
 	name = "smg magazine (9mm)"
-	icon_state = "smg9mm"
+	icon_state = "smg9mml"
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/c9mm
 	matter = list(MATERIAL_STEEL = 4)
@@ -101,6 +105,7 @@
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/smg9mm/empty
+	icon_state = "smg9mm"
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/smg9mm/rubber
@@ -110,7 +115,7 @@
 
 /obj/item/ammo_magazine/cl32
 	name = "magazine (.32)"
-	icon_state = "32trauma"
+	icon_state = "32trauma_l"
 	mag_type = MAGAZINE
 	ammo_mag = "mag_cl32"
 	ammo_type = /obj/item/ammo_casing/cl32
@@ -119,6 +124,10 @@
 	max_ammo = 7
 	multiple_sprites = 1
 
+/obj/item/ammo_magazine/cl32/empty
+	icon_state = "32trauma"
+	initial_ammo = 0
+
 /obj/item/ammo_magazine/cl32/rubber
 	name = "magazine (.32 rubber)"
 	icon_state = "32trauma_r"
@@ -126,7 +135,7 @@
 
 /obj/item/ammo_magazine/c45m
 	name = "magazine (.45)"
-	icon_state = "45"
+	icon_state = "45l"
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/c45
 	matter = list(MATERIAL_STEEL = 3)
@@ -135,14 +144,17 @@
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/c45m/empty
+	icon_state = "45"
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/c45m/flash
 	name = "magazine (.45 flash)"
+	icon_state = "45f"
 	ammo_type = /obj/item/ammo_casing/c45/flash
 
 /obj/item/ammo_magazine/c45m/practice
 	name = "magazine (.45 practice)"
+	icon_state = "45p"
 	ammo_type = /obj/item/ammo_casing/c45/practice
 
 /obj/item/ammo_magazine/c45m/rubber
@@ -152,7 +164,7 @@
 
 /obj/item/ammo_magazine/c45smg
 	name = "smg magazine (.45)"
-	icon_state = "smg45"
+	icon_state = "smg45l"
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/c45
 	matter = list(MATERIAL_STEEL = 4)
@@ -161,6 +173,7 @@
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/c45smg/empty
+	icon_state = "smg45"
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/c45smg/rubber
@@ -198,14 +211,18 @@
 
 /obj/item/ammo_magazine/sol65
 	name = "magazine (6.5mm)"
-	icon_state = "mg_ih_sol"
+	icon_state = "mg_ih_sol_l"
 	mag_type = MAGAZINE
-	ammo_mag = "ih_sol"
+	ammo_mag = "ih_sol_l"
 	ammo_type = /obj/item/ammo_casing/c65
 	matter = list(MATERIAL_STEEL = 4)
 	caliber = "6.5mm"
 	max_ammo = 30
 	multiple_sprites = 1
+
+/obj/item/ammo_magazine/sol65/empty
+	icon_state = "mg_ih_sol"
+	initial_ammo = 0
 
 /obj/item/ammo_magazine/sol65/rubber
 	name = "magazine (6.5mm rubber)"
@@ -228,7 +245,7 @@
 
 /obj/item/ammo_magazine/c762
 	name = "magazine (7.62mm)"
-	icon_state = "c762"
+	icon_state = "c762l"
 	mag_type = MAGAZINE
 	caliber = "a762"
 	matter = list(MATERIAL_STEEL = 4)
@@ -236,9 +253,13 @@
 	max_ammo = 20
 	multiple_sprites = 1
 
+/obj/item/ammo_magazine/c762/empty
+	icon_state = "c762"
+	initial_ammo = 0
+
 /obj/item/ammo_magazine/ak47
 	name = "magazine (7.62mm)"
-	icon_state = "AKMag"
+	icon_state = "AKMag_l"
 	mag_type = MAGAZINE
 	caliber = "a762"
 	matter = list(MATERIAL_STEEL = 5)
@@ -248,8 +269,12 @@
 
 /obj/item/ammo_magazine/ak47/highvelocity
 	name = "magazine (7.62mm high-velocity)"
-	icon_state = "AKMag_h"
+	icon_state = "AKMag_hv"
 	ammo_type = /obj/item/ammo_casing/a762/hv
+
+/obj/item/ammo_magazine/ak47/empty
+	icon_state = "AKMag"
+	initial_ammo = 0
 
 /obj/item/ammo_magazine/maxim
 	name = "pan magazine (7.62mm)"
@@ -263,7 +288,8 @@
 
 /obj/item/ammo_magazine/sl357
 	name = "speed loader (.357)"
-	icon_state = "357"
+	icon_state = "357l"
+	icon = 'icons/obj/ammo_speed.dmi'
 	caliber = "357"
 	ammo_type = /obj/item/ammo_casing/a357
 	matter = list(MATERIAL_STEEL = 3)
@@ -272,12 +298,13 @@
 
 /obj/item/ammo_magazine/sl357/highvelocity
 	name = "speed loader (.357 high-velocity)"
-	icon_state = "357h"
+	icon_state = "357hv"
 	ammo_type = /obj/item/ammo_casing/a357/hv
 
 /obj/item/ammo_magazine/sl38
 	name = "speed loader (.38)"
-	icon_state = "38"
+	icon_state = "38l"
+	icon = 'icons/obj/ammo_speed.dmi'
 	caliber = ".38"
 	matter = list(MATERIAL_STEEL = 3)
 	ammo_type = /obj/item/ammo_casing/c38
@@ -291,7 +318,8 @@
 
 /obj/item/ammo_magazine/sl44
 	name = "speed loader (.44)"
-	icon_state = "44"
+	icon_state = "44l"
+	icon = 'icons/obj/ammo_speed.dmi'
 	caliber = ".44"
 	ammo_type = /obj/item/ammo_casing/cl44
 	matter = list(MATERIAL_STEEL = 3)
@@ -305,7 +333,7 @@
 
 /obj/item/ammo_magazine/cl44
 	name = "magazine (.44)"
-	icon_state = "mg_ih_pst_44"
+	icon_state = "mg_ih_pst_44l"
 	mag_type = MAGAZINE
 	ammo_mag = "mag_cl44"
 	ammo_type = /obj/item/ammo_casing/cl44
@@ -319,9 +347,13 @@
 	icon_state = "mg_ih_pst_44r"
 	ammo_type = /obj/item/ammo_casing/cl44/rubber
 
+/obj/item/ammo_magazine/cl44/empty
+	icon_state = "mg_ih_pst_44"
+	initial_ammo = 0
+
 /obj/item/ammo_magazine/a50
 	name = "magazine (.50)"
-	icon_state = "50ae"
+	icon_state = "50ael"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	caliber = ".50"
@@ -331,6 +363,7 @@
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/a50/empty
+	icon_state = "50ae"
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/a50/rubber
@@ -341,6 +374,7 @@
 /obj/item/ammo_magazine/caps
 	name = "speed loader (caps)"
 	icon_state = "38r"
+	icon = 'icons/obj/ammo_speed.dmi'
 	caliber = "caps"
 	color = "#FF0000"
 	ammo_type = /obj/item/ammo_casing/cap

@@ -154,7 +154,7 @@
 	name = "magazine"
 	desc = "A magazine for some kind of gun."
 	icon_state = "place-holder-box"
-	icon = 'icons/obj/ammo.dmi'
+	icon = 'icons/obj/ammo_mags.dmi'
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	item_state = "syringe_kit"
