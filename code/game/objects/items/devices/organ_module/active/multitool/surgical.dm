@@ -1,6 +1,6 @@
-/obj/item/organ_module/active/multitool/surgial
-	name = "surgial embed module"
-	verb_name = "Deploy surgial tool"
+/obj/item/organ_module/active/multitool/surgical
+	name = "embedded surgical multitool"
+	verb_name = "Deploy surgical tool"
 	items = list(
 		/obj/item/weapon/tool/bonesetter,
 		/obj/item/weapon/tool/cautery,
