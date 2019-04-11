@@ -12,6 +12,7 @@
 	desc = "A mechanical blade designed to be inserted into an arm. Gives you a nice advantage in a brawl."
 	verb_name = "Deploy armblade"
 	icon_state = "armblade"
+	matter = list(MATERIAL_STEEL = 16)
 	allowed_organs = list(BP_R_ARM, BP_L_ARM)
 	holding_type = /obj/item/weapon/material/hatchet/tacknife/armblade
 

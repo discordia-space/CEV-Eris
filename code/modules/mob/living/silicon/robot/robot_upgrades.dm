@@ -6,8 +6,9 @@
 	desc = "Protected by FRM."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "cyborg_upgrade"
+	matter = list(MATERIAL_STEEL = 10)
 	var/locked = 0
-	var/require_module = 0
+	var/require_module = FALSE
 	var/installed = 0
 
 /obj/item/borg/upgrade/proc/action(var/mob/living/silicon/robot/R)
@@ -21,7 +22,7 @@
 	name = "robotic module reset board"
 	desc = "Used to reset a cyborg's module. Destroys any other upgrades applied to the robot."
 	icon_state = "cyborg_upgrade1"
-	require_module = 1
+	require_module = TRUE
 
 /obj/item/borg/upgrade/reset/action(var/mob/living/silicon/robot/R)
 	if(..()) return 0
@@ -75,6 +76,7 @@
 	name = "robot emergency restart module"
 	desc = "Used to force a restart of a disabled-but-repaired robot, bringing it back online."
 	icon_state = "cyborg_upgrade1"
+	matter = list(MATERIAL_STEEL = 6, MATERIAL_GLASS = 5)
 
 
 /obj/item/borg/upgrade/restart/action(var/mob/living/silicon/robot/R)
@@ -99,7 +101,8 @@
 	name = "robotic VTEC Module"
 	desc = "Used to kick in a robot's VTEC systems, increasing their speed."
 	icon_state = "cyborg_upgrade2"
-	require_module = 1
+	matter = list(MATERIAL_STEEL = 8, MATERIAL_GLASS = 6, MATERIAL_GOLD = 5)
+	require_module = TRUE
 
 /obj/item/borg/upgrade/vtec/action(var/mob/living/silicon/robot/R)
 	if(..())
@@ -113,7 +116,8 @@
 	name = "robotic Rapid Taser Cooling Module"
 	desc = "Used to cool a mounted taser, increasing the potential current in it and thus its recharge rate."
 	icon_state = "cyborg_upgrade3"
-	require_module = 1
+	matter = list(MATERIAL_STEEL = 8, MATERIAL_GLASS = 6, MATERIAL_GOLD = 2, MATERIAL_DIAMOND = 2)
+	require_module = TRUE
 
 
 /obj/item/borg/upgrade/tasercooler/action(var/mob/living/silicon/robot/R)
@@ -147,7 +151,7 @@
 	name = "mining robot jetpack"
 	desc = "A carbon dioxide jetpack suitable for low-gravity mining operations."
 	icon_state = "cyborg_upgrade3"
-	require_module = 1
+	require_module = TRUE
 
 /obj/item/borg/upgrade/jetpack/action(var/mob/living/silicon/robot/R)
 	if(..()) return 0
@@ -168,7 +172,8 @@
 	name = "engineering robot RCD"
 	desc = "A rapid construction device module for use during construction operations."
 	icon_state = "cyborg_upgrade3"
-	require_module = 1
+	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASMA = 10, MATERIAL_URANIUM = 10)
+	require_module = TRUE
 
 /obj/item/borg/upgrade/rcd/action(var/mob/living/silicon/robot/R)
 	if(..()) return 0
@@ -186,7 +191,8 @@
 	name = "illegal equipment module"
 	desc = "Unlocks the hidden, deadlier functions of a robot"
 	icon_state = "cyborg_upgrade3"
-	require_module = 1
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_GLASS = 15, MATERIAL_DIAMOND = 10)
+	require_module = TRUE
 
 /obj/item/borg/upgrade/syndicate/action(var/mob/living/silicon/robot/R)
 	if(..()) return 0

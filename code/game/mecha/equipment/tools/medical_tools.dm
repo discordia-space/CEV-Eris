@@ -11,6 +11,7 @@
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sleeper_0"
 	origin_tech = list(TECH_DATA = 2, TECH_BIO = 3)
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_GLASS = 10)
 	energy_drain = 20
 	range = MELEE
 	equip_cooldown = 20
@@ -391,6 +392,7 @@
 	range = MELEE|RANGED
 	equip_cooldown = 10
 	origin_tech = list(TECH_MATERIAL = 3, TECH_BIO = 4, TECH_MAGNET = 4, TECH_DATA = 3)
+	matter = list(MATERIAL_STEEL = 15, MATERIAL_GLASS = 20)
 	required_type = /obj/mecha/medical
 
 	New()
