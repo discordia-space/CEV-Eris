@@ -216,6 +216,7 @@
 #include "code\controllers\subsystems\migration.dm"
 #include "code\controllers\subsystems\pai.dm"
 #include "code\controllers\subsystems\radio.dm"
+#include "code\controllers\subsystems\research.dm"
 #include "code\controllers\subsystems\shuttle.dm"
 #include "code\controllers\subsystems\sun.dm"
 #include "code\controllers\subsystems\supply.dm"

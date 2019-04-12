@@ -85,7 +85,7 @@
 
 	var/list/L = list()
 	for(var/rtype in recipe_list())
-		var/datum/design/R = autolathe_recipes[rtype]
+		var/datum/design/R = SSresearch.design_ids[rtype]
 		var/list/LE = list("name" = capitalize(R.name), "type" = "[rtype]", "time" = R.time)
 		LE["icon"] = getAtomCacheFilename(R.build_path)
 
@@ -137,7 +137,7 @@
 	data["current"] = null
 	data["progress"] = progress
 	if(current)
-		var/datum/design/R = autolathe_recipes[current]
+		var/datum/design/R = SSresearch.design_ids[current]
 		if(R)
 			data["current"] = R.name
 			data["current_time"] = R.time
@@ -166,7 +166,7 @@
 		if(!queue[i])
 			continue
 
-		var/datum/design/R = autolathe_recipes[queue[i]]
+		var/datum/design/R = SSresearch.design_ids[queue[i]]
 		if(!R)
 			Q.Add(list(list("name" = "ERROR", "ind" = i, "error" = 2)))
 
@@ -502,7 +502,7 @@
 /obj/machinery/autolathe/proc/print_post()
 	if(!queue.len)
 		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1 -3)
-		visible_message("\icon[src]\The [src] pings indicating that queue is complete.")
+		visible_message("\The [src] pings, indicating that queue is complete.")
 	return
 
 
@@ -512,7 +512,7 @@
 
 /obj/machinery/autolathe/proc/cannot_print(var/recipe)
 	if(progress <= 0)
-		var/datum/design/R = autolathe_recipes[recipe]
+		var/datum/design/R = SSresearch.design_ids[recipe]
 		if(!R)
 			return ERR_NOTFOUND
 
@@ -551,7 +551,7 @@
 
 	if(anim < world.time)
 		if(current)
-			var/datum/design/R = autolathe_recipes[current]
+			var/datum/design/design = SSresearch.design_ids[current]
 			var/err = cannot_print(current)
 			if(err == ERR_NOLICENSE)
 				error = message_nolicense
@@ -567,16 +567,12 @@
 				error = null
 
 				working = TRUE
-
-				if(progress <= 0)
-					consume_materials(current)
-
 				progress += speed
 
 			else
 				error = "Unknown error."
 
-			if(R && progress >= R.time)
+			if(design && progress >= design.time)
 				finish_construction()
 
 		else
@@ -601,16 +597,12 @@
 	if(working && !error) // if error, work animation looks awkward.
 		icon_state = "autolathe_n"
 
-/obj/machinery/autolathe/proc/consume_materials(var/recipe)
-	var/datum/design/R = autolathe_recipes[recipe]
-	if(!R)
-		return FALSE
+/obj/machinery/autolathe/proc/consume_materials(datum/design/design)
+	for(var/material in design.materials)
+		stored_material[material] = max(0, stored_material[material] - SANITIZE_LATHE_COST(design.materials[material]))
 
-	for(var/material in R.materials)
-		stored_material[material] = max(0, stored_material[material] - SANITIZE_LATHE_COST(R.materials[material]))
-
-	for(var/reagent in R.chemicals)
-		container.reagents.remove_reagent(reagent, R.chemicals[reagent])
+	for(var/reagent in design.chemicals)
+		container.reagents.remove_reagent(reagent, design.chemicals[reagent])
 
 	return TRUE
 
@@ -725,17 +717,13 @@
 
 //Finishing current construction
 /obj/machinery/autolathe/proc/finish_construction()
-	var/datum/design/D = autolathe_recipes[current]
+	var/datum/design/design = SSresearch.design_ids[current]
 	//First of all, we check whether our current thing came from the disk which is currently inserted
 	if (locate(current) in recipe_list())
 		//It did, in that case we need to consume a license from the current disk.
 		if (disk_use_license()) //In the case of an unlimited disk, this will always be true
 			//We consumed a license, or the disk was infinite. Either way we're clear to proceed
-			D.Fabricate(get_turf(src), src)
-
-			working = FALSE
-			current = null
-			print_post()
+			fabricate_design(design)
 		else
 			//If we get here, then the user attempted to print something but the disk had run out of its limited licenses
 			//Those dirty cheaters will not get their item. It is aborted before it finishes
@@ -743,11 +731,16 @@
 	else
 		//If we get here, we're working on a recipe that was queued up from a previous unlimited disk which is now ejected
 		//This is fine, just complete it
-		D.Fabricate(get_turf(src), src)
+		fabricate_design(design)
 
-		working = FALSE
-		current = null
-		print_post()
+
+/obj/machinery/autolathe/proc/fabricate_design(datum/design/design)
+	consume_materials(design)
+	design.Fabricate(get_turf(src), src)
+
+	working = FALSE
+	current = null
+	print_post()
 
 //This proc ejects the autolathe disk, but it also does some DRM fuckery to prevent exploits
 /obj/machinery/autolathe/proc/eject_disk()

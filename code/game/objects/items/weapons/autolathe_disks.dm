@@ -1,6 +1,3 @@
-/obj/item/weapon/disk
-	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_STEEL = 1)
-
 /obj/item/weapon/disk/autolathe_disk
 	name = "design disk"
 	desc = "Autolathe-compatible design disk."

@@ -112,8 +112,8 @@
 		var/list/R = list()
 
 		for(var/r in original.recipes)
-			var/datum/design/recipe = autolathe_recipes[r]
-			R.Add(recipe.name)
+			var/datum/design/design = SSresearch.design_ids[r]
+			R.Add(design.name)
 
 		data["disk1recipes"] = R
 
@@ -125,8 +125,8 @@
 		var/list/R = list()
 
 		for(var/r in copy.recipes)
-			var/datum/design/recipe = autolathe_recipes[r]
-			R.Add(recipe.name)
+			var/datum/design/design = SSresearch.design_ids[r]
+			R.Add(design.name)
 
 		data["disk2recipes"] = R
 

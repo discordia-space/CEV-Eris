@@ -47,15 +47,16 @@ research holder datum.
 /datum/research								//Holder for all the existing, archived, and known tech. Individual to console.
 	var/list/known_tech = list()			//List of locally known tech. Datum/tech go here.
 	var/list/possible_designs = list()		//List of all designs.
+	var/list/possible_design_ids = list()	//List of all designs.
 	var/list/known_designs = list()			//List of available designs.
 
-/datum/research/New()		//Insert techs into possible_tech here. Known_tech automatically updated.
+//Insert techs into possible_tech here. Known_tech automatically updated.
+/datum/research/New()
+	..()
 	for(var/T in subtypesof(/datum/tech))
 		known_tech += new T(src)
-	for(var/D in subtypesof(/datum/design/research))
-		possible_designs += new D(src)
-	generate_integrated_circuit_designs()
-	RefreshResearch()
+
+	SSresearch.initialize_designs(src)
 
 /datum/tech/proc/getCost(current_level = null)
 	// Calculates tech disk's supply points sell cost
@@ -76,13 +77,13 @@ research holder datum.
 /datum/research/techonly
 
 /datum/research/techonly/New()
-	for(var/T in typesof(/datum/tech) - /datum/tech)
+	for(var/T in subtypesof(/datum/tech))
 		known_tech += new T(src)
 	RefreshResearch()
 
 //Checks to see if design has all the required pre-reqs.
 //Input: datum/design; Output: 0/1 (false/true)
-/datum/research/proc/DesignHasReqs(var/datum/design/research/D)
+/datum/research/proc/DesignHasReqs(datum/design/research/D)
 	if(D.req_tech.len == 0)
 		return 1
 
@@ -107,19 +108,18 @@ research holder datum.
 			return
 	return
 
-/datum/research/proc/AddDesign2Known(var/datum/design/research/D)
+/datum/research/proc/AddDesign2Known(datum/design/D)
 	if(!known_designs.len) // Special case
 		known_designs.Add(D)
 		return
 	for(var/i = 1 to known_designs.len)
-		var/datum/design/research/A = known_designs[i]
+		var/datum/design/A = known_designs[i]
 		if(A.id == D.id) // We are guaranteed to reach this if the ids are the same, because sort_string will also be the same
 			return
 		if(A.sort_string > D.sort_string)
 			known_designs.Insert(i, D)
 			return
 	known_designs.Add(D)
-	return
 
 //Refreshes known_tech and known_designs list
 //Input/Output: n/a
@@ -129,7 +129,6 @@ research holder datum.
 			AddDesign2Known(PD)
 	for(var/datum/tech/T in known_tech)
 		T = between(0, T.level, 20)
-	return
 
 //Refreshes the levels of a given tech.
 //Input: Tech's ID and Level; Output: null

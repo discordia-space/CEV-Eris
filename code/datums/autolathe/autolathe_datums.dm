@@ -1,23 +1,15 @@
-/var/global/list/autolathe_recipes
-
-/proc/populate_lathe_recipes()
-
-	//Create global autolathe recipe list if it hasn't been made already.
-	autolathe_recipes = list()
-	for(var/R in subtypesof(/datum/design/autolathe))
-		var/datum/design/autolathe/recipe = new R
-		autolathe_recipes[recipe.type] = recipe
-		recipe.AssembleDesignInfo()
-
-
 /datum/design						//Datum for object designs, used in construction
 	var/name = null					//Name of the created object. If null, it will be 'guessed' from build_path if possible.
 	var/item_name = null			//An item name before it is modified by various name-modifying procs
+	var/name_category = null		//If set, name is modified into "[name_category] ([item_name])"
 	var/desc = null					//Description of the created object. If null, it will use group_desc and name where applicable.
-	var/build_type = null			//Flag as to what kind machine the design is built in. See defines.
+	var/id = null					//ID of the created object for easy refernece. If null, uses typepath instead.
+	var/sort_string = "ZZZZZ"		//Sorting order
+
 	var/list/materials = list()		//List of materials. Format: "id" = amount.
 	var/list/chemicals = list()		//List of reagents. Format: "id" = amount.
 	var/build_path = null			//The path of the object that gets created.
+	var/build_type = NONE			//Flag as to what kind machine the design is built in. See defines.
 	var/category = null 			//Primarily used for Mech Fabricators, but can be used for anything.
 	var/time = 0					//How many ticks it requires to build. If 0, calculated from the amount of materials used.
 
@@ -30,20 +22,29 @@
 		AssembleDesignMaterials(temp_atom)
 		qdel(temp_atom)
 
-	if(!time)
-		AssembleDesignTime()
-
+	AssembleDesignTime()
 	AssembleDesignDesc()
+	AssembleDesignId()
 
 //Get name from build path if possible
 /datum/design/proc/AssembleDesignName(atom/temp_atom)
 	if(!name && temp_atom)
-		name = initial(temp_atom.name)
-		item_name = name
+		name = temp_atom.name
+
+	item_name = name
+
+	if(name_category)
+		name = "[name_category] ([item_name])"
+
+	name = capitalize(name)
 
 //Try to make up a nice description if we don't have one
 /datum/design/proc/AssembleDesignDesc()
-	if(!desc)
+	if(desc)
+		return
+	if(name_category)
+		desc = "Allows for the construction of \a [item_name] [name_category]."
+	else
 		desc = "Allows for the construction of \a [item_name]."
 
 //Extract matter and reagent requirements from the target object and any objects inside it.
@@ -73,6 +74,9 @@
 
 //Calculate design time from the amount of materials and chemicals used.
 /datum/design/proc/AssembleDesignTime()
+	if(time)
+		return
+
 	var/total_materials = 0
 	var/total_reagents = 0
 
@@ -84,6 +88,12 @@
 
 	time = total_materials * 2 + total_reagents // 5
 	time = max(time, 10)
+
+// By default, ID is just design's type.
+/datum/design/proc/AssembleDesignId()
+	if(id)
+		return
+	id = type
 
 //Returns a new instance of the item for this design
 //This is to allow additional initialization to be performed, including possibly additional contructor arguments.

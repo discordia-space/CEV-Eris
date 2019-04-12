@@ -109,11 +109,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 /obj/machinery/computer/rdconsole/Initialize()
 	..()
+	files = new /datum/research(src) //Setup the research data holder.
 	SyncRDevices()
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/computer/rdconsole/LateInitialize()
-	files = new /datum/research(src) //Setup the research data holder.
 	if(!id)
 		for(var/obj/machinery/r_n_d/server/centcom/S in SSmachines.machinery)
 			S.Initialize()
@@ -168,50 +168,47 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		else
 			usr << "Unauthorized Access."
 
-	else if(href_list["updt_tech"]) //Update the research holder with information from the technology disk.
-		screen = 0.0
-		spawn(50)
-			screen = 1.2
-			files.AddTech2Known(t_disk.stored)
-			updateUsrDialog()
-			griefProtection() //Update centcomm too
+	else if(href_list["updt_tech"] && t_disk && t_disk.stored) //Update the research holder with information from the technology disk.
+		screen = 1.2
+		files.AddTech2Known(t_disk.stored)
+		updateUsrDialog()
+		griefProtection() //Update centcomm too
 
-	else if(href_list["clear_tech"]) //Erase data on the technology disk.
+	else if(href_list["clear_tech"] && t_disk) //Erase data on the technology disk.
 		t_disk.stored = null
 
-	else if(href_list["eject_tech"]) //Eject the technology disk.
-		t_disk.loc = loc
+	else if(href_list["eject_tech"] && t_disk) //Eject the technology disk.
+		t_disk.forceMove(get_turf(src))
 		t_disk = null
 		screen = 1.0
 
-	else if(href_list["copy_tech"]) //Copys some technology data from the research holder to the disk.
+	else if(href_list["copy_tech"] && t_disk) //Copys some technology data from the research holder to the disk.
 		for(var/datum/tech/T in files.known_tech)
 			if(href_list["copy_tech_ID"] == T.id)
 				t_disk.stored = T
 				break
 		screen = 1.2
 
-	else if(href_list["updt_design"]) //Updates the research holder with design data from the design disk.
-		screen = 0.0
-		spawn(50)
-			screen = 1.4
-			files.AddDesign2Known(d_disk.blueprint)
-			updateUsrDialog()
-			griefProtection() //Update centcomm too
+	else if(href_list["updt_design"] && d_disk && d_disk.blueprint) //Updates the research holder with design data from the design disk.
+		screen = 1.4
+		files.AddDesign2Known(d_disk.blueprint)
+		updateUsrDialog()
+		griefProtection() //Update centcomm too
 
-	else if(href_list["clear_design"]) //Erases data on the design disk.
+	else if(href_list["clear_design"] && d_disk) //Erases data on the design disk.
 		d_disk.blueprint = null
 
-	else if(href_list["eject_design"]) //Eject the design disk.
-		d_disk.loc = loc
+	else if(href_list["eject_design"] && d_disk) //Eject the design disk.
+		d_disk.forceMove(get_turf(src))
 		d_disk = null
 		screen = 1.0
 
-	else if(href_list["copy_design"]) //Copy design data from the research holder to the design disk.
-		for(var/datum/design/research/D in files.known_designs)
-			if(href_list["copy_design_ID"] == D.id)
-				d_disk.blueprint = D
-				break
+	else if(href_list["copy_design"] && d_disk) //Copy design data from the research holder to the design disk.
+		var/datum/design/research/D = files.possible_design_ids[href_list["copy_design_ID"]]
+
+		if(D in files.known_designs)
+			d_disk.blueprint = D
+
 		screen = 1.4
 
 	else if(href_list["eject_item"]) //Eject the item inside the destructive analyzer.
@@ -220,7 +217,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				usr << SPAN_NOTICE("The destructive analyzer is busy at the moment.")
 
 			else if(linked_destroy.loaded_item)
-				linked_destroy.loaded_item.loc = linked_destroy.loc
+				linked_destroy.loaded_item.forceMove(get_turf(linked_destroy))
 				linked_destroy.loaded_item = null
 				linked_destroy.icon_state = "d_analyzer"
 				screen = 2.1
@@ -291,14 +288,14 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 						if((id in S.id_with_upload) || istype(S, /obj/machinery/r_n_d/server/centcom))
 							for(var/datum/tech/T in files.known_tech)
 								S.files.AddTech2Known(T)
-							for(var/datum/design/research/D in files.known_designs)
+							for(var/datum/design/D in files.known_designs)
 								S.files.AddDesign2Known(D)
 							S.files.RefreshResearch()
 							server_processed = 1
 						if((id in S.id_with_download) && !istype(S, /obj/machinery/r_n_d/server/centcom))
 							for(var/datum/tech/T in S.files.known_tech)
 								files.AddTech2Known(T)
-							for(var/datum/design/research/D in S.files.known_designs)
+							for(var/datum/design/D in S.files.known_designs)
 								files.AddDesign2Known(D)
 							files.RefreshResearch()
 							server_processed = 1
@@ -312,12 +309,9 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 	else if(href_list["build"]) //Causes the Protolathe to build something.
 		if(linked_lathe)
-			var/datum/design/research/being_built = null
-			for(var/datum/design/research/D in files.known_designs)
-				if(D.id == href_list["build"])
-					being_built = D
-					break
-			if(being_built)
+			var/datum/design/research/being_built = files.possible_design_ids[href_list["build"]]
+
+			if(being_built in files.known_designs)
 				linked_lathe.addToQueue(being_built)
 
 		screen = 3.1
@@ -325,13 +319,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 	else if(href_list["imprint"]) //Causes the Circuit Imprinter to build something.
 		if(linked_imprinter)
-			var/datum/design/research/being_built = null
-			for(var/datum/design/research/D in files.known_designs)
-				if(D.id == href_list["imprint"])
-					being_built = D
-					break
-			if(being_built)
+			var/datum/design/research/being_built = files.possible_design_ids[href_list["imprint"]]
+
+			if(being_built in files.known_designs)
 				linked_imprinter.addToQueue(being_built)
+
 		screen = 4.1
 		updateUsrDialog()
 
@@ -429,8 +421,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	var/dat
 	dat += "<UL>"
 	for(var/datum/design/D in files.known_designs)
-		if(D.build_path)
-			dat += "<LI><B>[D.name]</B>: [D.desc]"
+		dat += "<LI><B>[D.name]</B>: [D.desc]"
 	dat += "</UL>"
 	return dat
 
@@ -562,10 +553,9 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "<A href='?src=\ref[src];menu=1.4'>Return to Disk Operations</A><HR>"
 			dat += "Load Design to Disk:<BR><BR>"
 			dat += "<UL>"
-			for(var/datum/design/research/D in files.known_designs)
-				if(D.build_path)
-					dat += "<LI>[D.name] "
-					dat += "<A href='?src=\ref[src];copy_design=1;copy_design_ID=[D.id]'>\[copy to disk\]</A>"
+			for(var/datum/design/D in files.known_designs)
+				dat += "<LI>[D.name] "
+				dat += "<A href='?src=\ref[src];copy_design=1;copy_design_ID=[D.id]'>\[copy to disk\]</A>"
 			dat += "</UL>"
 
 		if(1.6) //R&D console settings
@@ -643,7 +633,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "<B>Chemical Volume:</B> [linked_lathe.reagents.total_volume] (MAX: [linked_lathe.reagents.maximum_volume])<HR>"
 			dat += "<UL>"
 			for(var/datum/design/research/D in files.known_designs)
-				if(!D.build_path || !(D.build_type & PROTOLATHE))
+				if(!(D.build_type & PROTOLATHE))
 					continue
 				var/temp_dat
 				dat += "<div class='block' style ='padding: 0px; overflow: auto; margin-left:-2px'>"
@@ -724,8 +714,8 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "Material Amount: [linked_imprinter.TotalMaterials()] cm<sup>3</sup><BR>"
 			dat += "Chemical Volume: [linked_imprinter.reagents.total_volume]<HR>"
 			dat += "<UL>"
-			for(var/datum/design/research/D in files.known_designs)
-				if(!D.build_path || !(D.build_type & IMPRINTER))
+			for(var/datum/design/D in files.known_designs)
+				if(!(D.build_type & IMPRINTER))
 					continue
 				dat += "<div class='block' style ='padding: 0px; overflow: auto; margin-left:-2px'>"
 				var/temp_dat

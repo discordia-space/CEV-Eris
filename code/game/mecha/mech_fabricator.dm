@@ -24,13 +24,9 @@
 	var/category = null
 	var/sync_message = ""
 
-/obj/machinery/mecha_part_fabricator/New()
-	..()
-	files = new /datum/research(src) //Setup the research data holder.
-
 /obj/machinery/mecha_part_fabricator/Initialize()
 	. = ..()
-	update_categories()
+	files = new /datum/research(src)
 
 /obj/machinery/mecha_part_fabricator/Process()
 	..()
@@ -68,6 +64,9 @@
 
 /obj/machinery/mecha_part_fabricator/ui_interact(var/mob/user, var/ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	var/data[0]
+
+	if(!length(categories))
+		update_categories()
 
 	var/datum/design/research/current = queue.len ? queue[1] : null
 	if(current)
@@ -238,8 +237,8 @@
 /obj/machinery/mecha_part_fabricator/proc/get_build_options(var/mob/user)
 	. = list()
 	for(var/i = 1 to files.known_designs.len)
-		var/datum/design/research/D = files.known_designs[i]
-		if(!D.build_path || !(D.build_type & MECHFAB))
+		var/datum/design/D = files.known_designs[i]
+		if(!(D.build_type & MECHFAB))
 			continue
 		. += list(list("name" = D.name, "id" = i, "category" = D.category, "resources" = get_design_resources(D), "time" = get_design_time(D), "icon" = getAtomCacheFilename(D.build_path)))
 
@@ -249,16 +248,17 @@
 		F += "[capitalize(T)]: [D.materials[T] * mat_efficiency]"
 	return english_list(F, and_text = ", ")
 
-/obj/machinery/mecha_part_fabricator/proc/get_design_time(var/datum/design/research/D)
+/obj/machinery/mecha_part_fabricator/proc/get_design_time(datum/design/D)
 	return time2text(round(10 * D.time / speed), "mm:ss")
 
 /obj/machinery/mecha_part_fabricator/proc/update_categories()
 	categories = list()
 	for(var/datum/design/research/D in files.known_designs)
-		if(!D.build_path || !(D.build_type & MECHFAB))
+		if(!(D.build_type & MECHFAB))
 			continue
 		categories |= D.category
-	if(!category || !(category in categories))
+
+	if((!category || !(category in categories)) && length(categories))
 		category = categories[1]
 
 /obj/machinery/mecha_part_fabricator/proc/get_materials()
@@ -297,10 +297,10 @@
 		sync_message = "Sync complete."
 	update_categories()
 
-/obj/machinery/mecha_part_fabricator/proc/print_pre(var/datum/design/research/D)
+/obj/machinery/mecha_part_fabricator/proc/print_pre(datum/design/D)
 	return
 
-/obj/machinery/mecha_part_fabricator/proc/print_post(var/datum/design/research/D)
+/obj/machinery/mecha_part_fabricator/proc/print_post(datum/design/D)
 	visible_message("\icon[src]\The [src] flashes, indicating that \the [D] is complete.", range = 3)
 	if(!queue.len)
 		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1 -3)
