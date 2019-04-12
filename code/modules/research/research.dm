@@ -242,25 +242,21 @@ research holder datum.
 /obj/item/weapon/disk/tech_disk
 	name = "technology disk"
 	desc = "A disk for storing technology data for further research."
-	icon = 'icons/obj/discs.dmi'
 	icon_state = "blue"
-	item_state = "card-id"
-	w_class = ITEM_SIZE_SMALL
 	var/datum/tech/stored
 
-/obj/item/weapon/disk/tech_disk/New()
-	pixel_x = rand(-5.0, 5)
-	pixel_y = rand(-5.0, 5)
+/obj/item/weapon/disk/tech_disk/Initialize()
+	. = ..()
+	pixel_x = rand(-5, 5)
+	pixel_y = rand(-5, 5)
 
 /obj/item/weapon/disk/design_disk
 	name = "component design disk"
 	desc = "A disk for storing device design data for construction in lathes."
-	icon = 'icons/obj/discs.dmi'
 	icon_state = "yellow"
-	item_state = "card-id"
-	w_class = ITEM_SIZE_SMALL
-	var/datum/design/research/blueprint
+	var/datum/design/blueprint
 
-/obj/item/weapon/disk/design_disk/New()
-	pixel_x = rand(-5.0, 5)
-	pixel_y = rand(-5.0, 5)
+/obj/item/weapon/disk/design_disk/Initialize()
+	. = ..()
+	pixel_x = rand(-5, 5)
+	pixel_y = rand(-5, 5)
