@@ -58,10 +58,8 @@
 								user << "You detatch \the [cell] from \the [src]'s battery mount."
 								for(var/obj/item/rig_module/module in installed_modules)
 									module.deactivate()
-								if(user.r_hand && user.l_hand)
+								if(!user.put_in_hands(cell))
 									cell.forceMove(get_turf(user))
-								else
-									cell.forceMove(user.put_in_hands(cell))
 								cell = null
 							else
 								user << "There is nothing loaded in that mount."
@@ -133,10 +131,8 @@
 					return 1
 
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					if(user.l_hand && user.r_hand)
+					if(!user.put_in_hands())
 						air_supply.forceMove(get_turf(user))
-					else
-						user.put_in_hands(air_supply)
 					user << "You detach and remove \the [air_supply]."
 					air_supply = null
 					return
