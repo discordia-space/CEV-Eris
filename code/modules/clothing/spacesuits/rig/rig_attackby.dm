@@ -131,7 +131,7 @@
 					return 1
 
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					if(!user.put_in_hands())
+					if(!user.put_in_hands(air_supply))
 						air_supply.forceMove(get_turf(user))
 					user << "You detach and remove \the [air_supply]."
 					air_supply = null
