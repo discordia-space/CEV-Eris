@@ -8,8 +8,8 @@
 	density = 0
 	anchored = 0.0
 	flags = CONDUCT
-	force = WEAPON_FORCE_PAINFULL
-	throwforce = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_PAINFUL
+	throwforce = WEAPON_FORCE_PAINFUL
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEM_SIZE_NORMAL
