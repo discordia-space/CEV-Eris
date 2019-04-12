@@ -1,8 +1,8 @@
 /obj/item/weapon/gun/projectile/automatic/sts35
 	name = "STS-35"
 	desc = "The rugged STS-35 is a durable automatic weapon, popular on frontier worlds. Uses 7.62mm rounds. This one is unmarked."
-	icon_state = "arifle"
-	item_state = null
+	icon_state = "sts"
+	item_state = "sts"
 	w_class = ITEM_SIZE_LARGE
 	force = 10
 	caliber = "a762"

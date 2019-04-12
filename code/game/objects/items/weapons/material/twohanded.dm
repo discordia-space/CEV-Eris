@@ -106,7 +106,7 @@
 	base_icon = "spearglass"
 	name = "spear"
 	desc = "A haphazardly-constructed yet still deadly weapon of ancient design."
-	force = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_PAINFUL
 	w_class = ITEM_SIZE_LARGE
 	slot_flags = SLOT_BACK
 	force_wielded = 0.75           // 22 when wielded with hardness 15 (glass)

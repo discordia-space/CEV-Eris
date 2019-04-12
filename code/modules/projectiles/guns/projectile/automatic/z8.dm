@@ -4,7 +4,7 @@
 	icon_state = "carbine"
 	item_state = "z8carbine"
 	w_class = ITEM_SIZE_LARGE
-	force = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_PAINFUL
 	caliber = "a556"
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 3)
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 6)

@@ -4,7 +4,7 @@
 	item_state = "welder"
 	flags = CONDUCT
 	force = WEAPON_FORCE_WEAK
-	switched_on_force = WEAPON_FORCE_PAINFULL
+	switched_on_force = WEAPON_FORCE_PAINFUL
 	throwforce = WEAPON_FORCE_WEAK
 	worksound = WORKSOUND_WELDING
 	throw_speed = 1
@@ -31,7 +31,7 @@
 	desc = "An assembly of pipes attached to a little gas tank. Serves capably as a welder, though a bit risky"
 	icon_state = "welder"
 	item_state = "welder"
-	switched_on_force = WEAPON_FORCE_PAINFULL * 0.8
+	switched_on_force = WEAPON_FORCE_PAINFUL * 0.8
 	max_fuel = 15
 	switched_on_qualities = list(QUALITY_WELDING = 15, QUALITY_CAUTERIZING = 10, QUALITY_WIRE_CUTTING = 10)
 	degradation = 1.5
@@ -74,7 +74,7 @@
 	glow_color = COLOR_BLUE_LIGHT
 	switched_on_qualities = list(QUALITY_WELDING = 40, QUALITY_CAUTERIZING = 15, QUALITY_WIRE_CUTTING = 15)
 	max_fuel = 40
-	switched_on_force = WEAPON_FORCE_PAINFULL*1.15 //Slightly more powerful, not much more so
+	switched_on_force = WEAPON_FORCE_PAINFUL*1.15 //Slightly more powerful, not much more so
 	heat = 3773
 	degradation = 0.07
 	max_upgrades = 4

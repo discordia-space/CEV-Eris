@@ -4,7 +4,7 @@
 	icon_state = "heavysniper"
 	item_state = "heavysniper"
 	w_class = ITEM_SIZE_HUGE
-	force = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_PAINFUL
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
 	caliber = "14.5mm"

@@ -4,7 +4,7 @@
 	icon_state = "c20r"
 	item_state = "c20r"
 	w_class = ITEM_SIZE_NORMAL
-	force = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_PAINFUL
 	caliber = "10mm"
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
 	slot_flags = SLOT_BELT|SLOT_BACK

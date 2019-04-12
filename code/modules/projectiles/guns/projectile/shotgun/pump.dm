@@ -5,7 +5,7 @@
 	item_state = "shotgun"
 	max_shells = 4
 	w_class = ITEM_SIZE_LARGE
-	force = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_PAINFUL
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
 	caliber = "shotgun"
