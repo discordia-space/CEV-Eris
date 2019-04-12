@@ -6,7 +6,6 @@
 
 /datum/design/research/circuit/pacman
 	name = "PACMAN-type generator"
-	id = "pacman"
 	req_tech = list(TECH_DATA = 3, TECH_POWER = 5, TECH_ENGINEERING = 5)
 	build_path = /obj/item/weapon/circuitboard/pacman/scrap
 	sort_string = "JBAAD"
