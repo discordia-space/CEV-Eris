@@ -151,7 +151,7 @@
 					user << SPAN_WARNING("[src] already has a magazine loaded.") //already a magazine here
 					return
 				if(!(AM.mag_well & mag_well))
-					to_chat(user, SPAN_WARNING("[src] won't fit into the magwell.")) //wrong magazine
+					to_chat(user, SPAN_WARNING("[AM] won't fit into the magwell.")) //wrong magazine
 					return
 				user.remove_from_mob(AM)
 				AM.loc = src
