@@ -7,7 +7,7 @@
 	handle_casings = HOLD_CASINGS
 	max_shells = 6
 	w_class = ITEM_SIZE_LARGE
-	force = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_PAINFUL
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
 	caliber = "shotgun"
