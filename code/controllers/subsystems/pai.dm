@@ -216,7 +216,7 @@ SUBSYSTEM_DEF(pai)
 		if(c.ready)
 			var/found = 0
 			for(var/mob/observer/ghost/o in GLOB.player_list)
-				if(o.key == c.key && o.MayRespawn())
+				if(o.key == c.key && o.MayRespawn(0,ANIMAL))
 					found = 1
 			if(found)
 				available.Add(c)
@@ -329,7 +329,7 @@ SUBSYSTEM_DEF(pai)
 /datum/controller/subsystem/pai/proc/requestRecruits(mob/user)
 	inquirer = user
 	for(var/mob/observer/ghost/O in GLOB.player_list)
-		if(!O.MayRespawn())
+		if(!O.MayRespawn(0,ANIMAL))
 			continue
 		if(jobban_isbanned(O, "pAI"))
 			continue
