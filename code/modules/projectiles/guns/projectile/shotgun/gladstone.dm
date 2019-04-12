@@ -8,3 +8,4 @@
 	recoil = 0.4
 	ammo_type = /obj/item/ammo_casing/shotgun
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 6)
+	price_tag = 3000

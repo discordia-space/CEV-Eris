@@ -143,11 +143,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	src.updateUsrDialog()
 	return
 
-/obj/machinery/computer/rdconsole/emp_act(var/remaining_charges, var/mob/user)
+/obj/machinery/computer/rdconsole/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
-		user << SPAN_NOTICE("You you disable the security protocols.")
+		user << SPAN_NOTICE("You disable the security protocols.")
 		return 1
 
 /obj/machinery/computer/rdconsole/Topic(href, href_list)
@@ -653,12 +653,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					temp_dat += ", [D.chemicals[T]] [CallReagentName(T)]"
 				if(temp_dat)
 					temp_dat = " \[[copytext(temp_dat, 3)]\]"
-				var/iconName = "[D.type].png"
-				iconName = sanitizeFileName(iconName)
-				// byond rewrites cache every time despite saying its not in documentation
-				if(user && user.client && !user.client.cache.Find(iconName))
-					user << browse_rsc(getFlatTypeIcon(D.build_path), iconName)
-					user.client.cache.Add(iconName)
+				var/iconName = getAtomCacheFilename(D.build_path)
 				dat += "<div style ='float: left; margin-left:0px; max-height:24px; max-width:24px; height:24px;width:24px;' class='statusDisplayItem'><img src= [iconName] height=24 width=24></div>"
 				if(linked_lathe.canBuild(D))
 					dat += "<LI><B><A href='?src=\ref[src];build=[D.id]'>[D.name]</A></B><div style = 'float: right;'>[temp_dat]</div>"
@@ -740,7 +735,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					temp_dat += ", [D.chemicals[T]] [CallReagentName(T)]"
 				if(temp_dat)
 					temp_dat = " \[[copytext(temp_dat,3)]\]"
-				var/iconName = cacheAtomIcon(D.build_path, user, TRUE)
+				var/iconName = getAtomCacheFilename(D.build_path)
 				dat += "<div style ='float: left; margin-left:0px; max-height:24px; max-width:24px; height:24px;width:24px;' class='statusDisplayItem'><img src= [iconName] height=24 width=24></div>"
 
 				if(linked_imprinter.canBuild(D))

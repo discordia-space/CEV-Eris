@@ -16,6 +16,7 @@
 	broken_damage = 100
 	screen_on = FALSE
 	w_class = ITEM_SIZE_NORMAL
+	price_tag = 200
 	var/icon_state_closed = "laptop-closed"
 
 /obj/item/modular_computer/laptop/AltClick(var/mob/user)

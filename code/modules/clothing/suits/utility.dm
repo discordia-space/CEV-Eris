@@ -25,6 +25,7 @@
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS
+	price_tag = 50
 
 
 /obj/item/clothing/suit/fire/firefighter
@@ -55,6 +56,7 @@
 	equip_delay = 50
 	flash_protection = FLASH_PROTECTION_MAJOR
 	tint = TINT_HEAVY
+	price_tag = 100
 
 /obj/item/clothing/suit/bomb_suit
 	name = "bomb suit"
@@ -72,6 +74,7 @@
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0
 	equip_delay = 200
+	price_tag = 300
 
 
 /obj/item/clothing/head/bomb_hood/security
@@ -93,6 +96,7 @@
 	flags_inv = BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 60, rad = 100)
+	price_tag = 50
 
 
 /obj/item/clothing/suit/radiation
@@ -108,3 +112,4 @@
 	slowdown = 1.5
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 60, rad = 100)
 	flags_inv = HIDEJUMPSUIT|HIDETAIL
+	price_tag = 100

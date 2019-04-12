@@ -14,7 +14,7 @@
 	icon_state = "baton"
 	item_state = "classic_baton"
 	slot_flags = SLOT_BELT
-	force = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_PAINFUL
 	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
 
 /obj/item/weapon/melee/classic_baton/attack(mob/M as mob, mob/living/user as mob)
@@ -55,7 +55,7 @@
 		item_state = "telebaton_1"
 		update_wear_icon()
 		w_class = ITEM_SIZE_NORMAL
-		force = WEAPON_FORCE_PAINFULL//quite robust
+		force = WEAPON_FORCE_PAINFUL//quite robust
 		attack_verb = list("smacked", "struck", "slapped")
 	else
 		user.visible_message(

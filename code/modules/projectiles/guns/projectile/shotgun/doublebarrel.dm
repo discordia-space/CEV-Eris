@@ -9,7 +9,7 @@
 	handle_casings = CYCLE_CASINGS
 	max_shells = 2
 	w_class = ITEM_SIZE_LARGE
-	force = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_PAINFUL
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
 	caliber = "shotgun"
@@ -18,11 +18,12 @@
 	bulletinsert_sound 	= 'sound/weapons/guns/interact/shotgun_insert.ogg'
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
+	price_tag = 1800
 
 	burst_delay = 0
 	firemodes = list(
-		list(mode_name="fire one barrel at a time", burst=1),
-		list(mode_name="fire both barrels at once", burst=2),
+		list(mode_name="fire one barrel at a time", burst=1, icon="semi"),
+		list(mode_name="fire both barrels at once", burst=2, icon="burst"),
 		)
 
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/pellet
@@ -50,7 +51,7 @@
 			icon_state = "sawnshotgun"
 			item_state = "sawnshotgun"
 			w_class = ITEM_SIZE_NORMAL
-			force = WEAPON_FORCE_PAINFULL
+			force = WEAPON_FORCE_PAINFUL
 			slot_flags &= ~SLOT_BACK	//you can't sling it on your back
 			slot_flags |= (SLOT_BELT|SLOT_HOLSTER) //but you can wear it on your belt (poorly concealed under a trenchcoat, ideally) - or in a holster, why not.
 			name = "sawn-off shotgun"

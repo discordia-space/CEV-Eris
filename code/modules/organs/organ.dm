@@ -96,6 +96,11 @@
 	if(owner && vital)
 		owner.death()
 
+/obj/item/organ/get_item_cost()
+	if((status & ORGAN_DEAD) || species != all_species["Human"]) //No dead or monkey organs!
+		return 0
+	..()
+
 /obj/item/organ/Process()
 
 	if(loc != owner)

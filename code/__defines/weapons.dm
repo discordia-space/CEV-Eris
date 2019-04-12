@@ -5,7 +5,7 @@
 #define WEAPON_FORCE_HARMLESS    3
 #define WEAPON_FORCE_WEAK        7
 #define WEAPON_FORCE_NORMAL      10
-#define WEAPON_FORCE_PAINFULL    15
+#define WEAPON_FORCE_PAINFUL    15
 #define WEAPON_FORCE_DANGEROUS   20
 #define WEAPON_FORCE_ROBUST      26
 #define WEAPON_FORCE_LETHAL      51
@@ -34,7 +34,10 @@
 #define STRUCTURE_DAMAGE_BREACHING 		1.8
 #define STRUCTURE_DAMAGE_BORING 		3
 
-//Quick defines for rapid fire
-#define FULL_AUTO_250	list(mode_name="full auto",  mode_type = /datum/firemode/automatic, fire_delay=2.4)
-#define FULL_AUTO_400	list(mode_name="full auto",  mode_type = /datum/firemode/automatic, fire_delay=1.5)
-#define FULL_AUTO_600	list(mode_name="full auto",  mode_type = /datum/firemode/automatic, fire_delay=1)
+//Quick defines for fire modes
+#define FULL_AUTO_250		list(mode_name="full auto",  mode_type = /datum/firemode/automatic, fire_delay=2.4, icon="auto")
+#define FULL_AUTO_400		list(mode_name="full auto",  mode_type = /datum/firemode/automatic, fire_delay=1.5, icon="auto")
+#define FULL_AUTO_600		list(mode_name="full auto",  mode_type = /datum/firemode/automatic, fire_delay=1  , icon="auto")
+
+#define SEMI_AUTO_NODELAY	list(mode_name="semiauto", burst=1, fire_delay=0, move_delay=null, icon="semi")
+

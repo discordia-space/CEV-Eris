@@ -4,14 +4,15 @@
 	icon_state = "nucgun"
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 5, TECH_POWER = 3)
 	slot_flags = SLOT_BELT
-	force = WEAPON_FORCE_PAINFULL //looks heavier than a pistol
+	force = WEAPON_FORCE_PAINFUL //looks heavier than a pistol
 	self_recharge = 1
 	modifystate = null
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_URANIUM = 10)
+	price_tag = 4000
 
 	firemodes = list(
-		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun, fire_sound='sound/weapons/Taser.ogg'),
-		list(mode_name="lethal", projectile_type=/obj/item/projectile/beam, fire_sound='sound/weapons/Laser.ogg'),
+		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun, fire_sound='sound/weapons/Taser.ogg', icon="stun"),
+		list(mode_name="kill", projectile_type=/obj/item/projectile/beam, fire_sound='sound/weapons/Laser.ogg', icon="kill"),
 		)
 
 	var/lightfail = 0

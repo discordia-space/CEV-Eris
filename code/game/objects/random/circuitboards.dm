@@ -3,7 +3,7 @@
 	icon_state = "tech-blue"
 
 /obj/random/circuitboard/item_to_spawn()
-	return pickweight(list(/obj/random/rare = 1,
+	return pickweight(list(/obj/random/pack/rare = 1,
 				/obj/item/weapon/circuitboard/autolathe = 8,
 				/obj/item/weapon/circuitboard/aifixer = 1,
 				/obj/item/weapon/circuitboard/air_management = 1,

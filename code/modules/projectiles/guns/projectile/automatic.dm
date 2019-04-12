@@ -19,9 +19,9 @@
 
 	firemodes = list(
 		FULL_AUTO_400,
-		list(mode_name="semiauto",       burst=1, fire_delay=0,     dispersion=null),
-		list(mode_name="3-round bursts", burst=3, fire_delay=null,     dispersion=list(0.0, 0.6, 1.0)),
-		list(mode_name="short bursts",   burst=5, fire_delay=null,     dispersion=list(0.6, 1.0, 1.0, 1.0, 1.2)),
+		SEMI_AUTO_NODELAY,
+		list(mode_name="3-round bursts", burst=3, fire_delay=null,     dispersion=list(0.0, 0.6, 1.0), icon="burst"),
+		list(mode_name="short bursts",   burst=5, fire_delay=null,     dispersion=list(0.6, 1.0, 1.0, 1.0, 1.2), icon="burst"),
 		)
 
 

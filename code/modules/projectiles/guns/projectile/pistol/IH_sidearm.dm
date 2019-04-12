@@ -9,9 +9,11 @@
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	ammo_type = "/obj/item/ammo_casing/a10mm"
 	load_method = MAGAZINE
+	mag_well = MAG_WELL_PISTOL
 	magazine_type = /obj/item/ammo_magazine/a10mm
 	auto_eject = 1
 	matter = list(MATERIAL_PLASTEEL = 14, MATERIAL_PLASTIC = 4)
+	price_tag = 1450
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	silencer_type = /obj/item/weapon/silencer

@@ -4,7 +4,7 @@
 	icon_state = "crowbar"
 	item_state = "crowbar"
 	flags = CONDUCT
-	force = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_PAINFUL
 	worksound = WORKSOUND_EASY_CROWBAR
 	w_class = ITEM_SIZE_NORMAL
 	storage_cost = ITEM_SIZE_NORMAL //It's long and thin so it doesn't grow exponentially

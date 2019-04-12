@@ -38,6 +38,7 @@
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.01
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 60, rad = 0)
+	price_tag = 10
 
 /obj/item/clothing/mask/fakemoustache
 	name = "fake moustache"
@@ -63,6 +64,7 @@
 	item_flags = FLEXIBLEMATERIAL
 	w_class = ITEM_SIZE_SMALL
 	gas_transfer_coefficient = 0.90
+	price_tag = 50
 
 /obj/item/clothing/mask/scarf/stripedblue
 	name = "striped blue scarf"
@@ -175,6 +177,7 @@
 	item_state = "bandblack"
 	item_flags = FLEXIBLEMATERIAL
 	w_class = ITEM_SIZE_SMALL
+	price_tag = 20
 
 /obj/item/clothing/mask/bandana/equipped(var/mob/user, var/slot)
 	switch(slot)

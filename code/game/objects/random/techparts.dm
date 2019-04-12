@@ -3,8 +3,7 @@
 	icon_state = "tech-orange"
 
 /obj/random/techpart/item_to_spawn()
-	return pickweight(list(/obj/item/weapon/computer_hardware/battery_module = 9,\
-				/obj/item/weapon/computer_hardware/battery_module/advanced = 3,\
+	return pickweight(list(
 				/obj/item/weapon/computer_hardware/card_slot = 9,\
 				/obj/item/weapon/computer_hardware/hard_drive = 9,\
 				/obj/item/weapon/computer_hardware/hard_drive/advanced = 3,\

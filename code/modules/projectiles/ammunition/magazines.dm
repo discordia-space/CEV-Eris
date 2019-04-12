@@ -3,6 +3,7 @@
 	icon_state = "10l"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
+	mag_well = MAG_WELL_PISTOL
 	caliber = "10mm"
 	matter = list(MATERIAL_STEEL = 2)
 	ammo_type = /obj/item/ammo_casing/a10mm
@@ -28,6 +29,7 @@
 	icon_state = "12mml"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
+	mag_well = MAG_WELL_SMG
 	caliber = "10mm"
 	matter = list(MATERIAL_STEEL = 4)
 	ammo_type = /obj/item/ammo_casing/a10mm
@@ -48,6 +50,7 @@
 	icon_state = "9x19pl"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
+	mag_well = MAG_WELL_PISTOL
 	matter = list(MATERIAL_STEEL = 3)
 	caliber = "9mm"
 	ammo_type = /obj/item/ammo_casing/c9mm
@@ -77,6 +80,7 @@
 	name = "top mounted magazine (9mm)"
 	icon_state = "9mmt"
 	mag_type = MAGAZINE
+	mag_well = MAG_WELL_SMG
 	ammo_type = /obj/item/ammo_casing/c9mm
 	matter = list(MATERIAL_STEEL = 3)
 	caliber = "9mm"
@@ -98,6 +102,7 @@
 	name = "smg magazine (9mm)"
 	icon_state = "smg9mml"
 	mag_type = MAGAZINE
+	mag_well = MAG_WELL_SMG
 	ammo_type = /obj/item/ammo_casing/c9mm
 	matter = list(MATERIAL_STEEL = 4)
 	caliber = "9mm"
@@ -117,6 +122,7 @@
 	name = "magazine (.32)"
 	icon_state = "32trauma_l"
 	mag_type = MAGAZINE
+	mag_well = MAG_WELL_PISTOL
 	ammo_mag = "mag_cl32"
 	ammo_type = /obj/item/ammo_casing/cl32
 	matter = list(MATERIAL_STEEL = 4)
@@ -137,6 +143,7 @@
 	name = "magazine (.45)"
 	icon_state = "45l"
 	mag_type = MAGAZINE
+	mag_well = MAG_WELL_PISTOL
 	ammo_type = /obj/item/ammo_casing/c45
 	matter = list(MATERIAL_STEEL = 3)
 	caliber = ".45"
@@ -166,6 +173,7 @@
 	name = "smg magazine (.45)"
 	icon_state = "smg45l"
 	mag_type = MAGAZINE
+	mag_well = MAG_WELL_SMG
 	ammo_type = /obj/item/ammo_casing/c45
 	matter = list(MATERIAL_STEEL = 4)
 	caliber = ".45"
@@ -185,6 +193,7 @@
 	name = "magazine (10mm x 24 caseless)"
 	icon_state = "10x24"
 	mag_type = MAGAZINE
+	mag_well = MAG_WELL_SMG
 	caliber = "10x24"
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 1)
 	ammo_type = /obj/item/ammo_casing/c10x24
@@ -196,6 +205,7 @@
 	icon_state = "5.56"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
+	mag_well = MAG_WELL_CIVI_RIFLE
 	caliber = "a556"
 	matter = list(MATERIAL_STEEL = 3)
 	ammo_type = /obj/item/ammo_casing/a556
@@ -214,6 +224,7 @@
 	icon_state = "mg_ih_sol_l"
 	mag_type = MAGAZINE
 	ammo_mag = "ih_sol_l"
+	ammo_mag = "ih_sol"
 	ammo_type = /obj/item/ammo_casing/c65
 	matter = list(MATERIAL_STEEL = 4)
 	caliber = "6.5mm"
@@ -234,6 +245,7 @@
 	icon_state = "a762"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
+	mag_well = MAG_WELL_BOX
 	caliber = "a762"
 	matter = list(MATERIAL_STEEL = 8)
 	ammo_type = /obj/item/ammo_casing/a762
@@ -244,9 +256,10 @@
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/c762
-	name = "magazine (7.62mm)"
+	name = "civilian magazine (7.62mm)"
 	icon_state = "c762l"
 	mag_type = MAGAZINE
+	mag_well = MAG_WELL_CIVI_RIFLE
 	caliber = "a762"
 	matter = list(MATERIAL_STEEL = 4)
 	ammo_type = /obj/item/ammo_casing/a762
@@ -258,9 +271,10 @@
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/ak47
-	name = "magazine (7.62mm)"
+	name = "AK magazine (7.62mm)"
 	icon_state = "AKMag_l"
 	mag_type = MAGAZINE
+	mag_well = MAG_WELL_AK
 	caliber = "a762"
 	matter = list(MATERIAL_STEEL = 5)
 	ammo_type = /obj/item/ammo_casing/a762
@@ -268,7 +282,7 @@
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/ak47/highvelocity
-	name = "magazine (7.62mm high-velocity)"
+	name = "AK magazine (7.62mm high-velocity)"
 	icon_state = "AKMag_hv"
 	ammo_type = /obj/item/ammo_casing/a762/hv
 
@@ -276,10 +290,31 @@
 	icon_state = "AKMag"
 	initial_ammo = 0
 
+/obj/item/ammo_magazine/ih762
+	name = "IH magazine (7.62mm)"
+	icon_state = "WinMag_l"
+	mag_type = MAGAZINE
+	mag_well = MAG_WELL_IH
+	caliber = "a762"
+	matter = list(MATERIAL_STEEL = 5)
+	ammo_type = /obj/item/ammo_casing/a762
+	max_ammo = 30
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/ih762/empty
+	icon_state = "WinMag"
+	initial_ammo = 0
+
+/obj/item/ammo_magazine/ih762/highvelocity
+	name = "IH magazine (7.62mm high-velocity)"
+	icon_state = "WinMag_h"
+	ammo_type = /obj/item/ammo_casing/a762/hv
+
 /obj/item/ammo_magazine/maxim
 	name = "pan magazine (7.62mm)"
 	icon_state = "maxim"
 	mag_type = MAGAZINE
+	mag_well = MAG_WELL_PAN
 	caliber = "a762"
 	matter = list(MATERIAL_STEEL = 10)
 	ammo_type = /obj/item/ammo_casing/a762
@@ -335,6 +370,7 @@
 	name = "magazine (.44)"
 	icon_state = "mg_ih_pst_44l"
 	mag_type = MAGAZINE
+	mag_well = MAG_WELL_PISTOL
 	ammo_mag = "mag_cl44"
 	ammo_type = /obj/item/ammo_casing/cl44
 	matter = list(MATERIAL_STEEL = 4)
@@ -356,6 +392,7 @@
 	icon_state = "50ael"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
+	mag_well = MAG_WELL_PISTOL
 	caliber = ".50"
 	matter = list(MATERIAL_STEEL = 4)
 	ammo_type = /obj/item/ammo_casing/a50
@@ -386,6 +423,7 @@
 	name = "ammo magazine (20mm)"
 	icon_state = "75"
 	mag_type = MAGAZINE
+	mag_well = MAG_WELL_PISTOL
 	caliber = "75"
 	ammo_type = /obj/item/ammo_casing/a75
 	multiple_sprites = 1
