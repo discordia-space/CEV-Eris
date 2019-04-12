@@ -151,7 +151,7 @@ var/const/enterloopsanity = 100
 
 	if(ismob(A))
 		var/mob/M = A
-		if(M.check_gravity())
+		if(M.check_gravity() || M.incorporeal_move)
 			M.inertia_dir = 0
 		else
 			if(!M.allow_spacemove())

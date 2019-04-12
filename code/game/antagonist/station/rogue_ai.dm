@@ -67,6 +67,7 @@
 		malf << "For basic information about your abilities use command display-help"
 		malf << "You may choose one special hardware piece to help you. This cannot be undone."
 		malf << "Good luck!"
+		printTip()
 
 
 /datum/antagonist/rogue_ai/can_become_antag(var/datum/mind/player)

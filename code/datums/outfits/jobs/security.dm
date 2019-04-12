@@ -65,7 +65,6 @@
 	l_hand = /obj/item/weapon/storage/briefcase/crimekit
 	backpack_contents = list(/obj/item/weapon/gun/energy/gun/martin = 1, /obj/item/weapon/cell/small/high = 1)
 
-
 /decl/hierarchy/outfit/job/security/ihoper
 	name = OUTFIT_JOB_NAME("Ironhammer Operative")
 	l_pocket = /obj/item/device/flash

@@ -7,3 +7,4 @@
 
 	if (client)
 		client.CAN_MOVE_DIAGONALLY = TRUE
+		client.showSmartTip()

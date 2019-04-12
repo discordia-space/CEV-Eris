@@ -111,15 +111,15 @@
 	req_tech = list(TECH_BIO = 3, TECH_MATERIAL = 3)
 
 /datum/design/item/mechfab/modules/armblade
-	name = "embed handblade"
+	name = "Embedded armblade"
 	build_path = /obj/item/organ_module/active/simple/armblade
 	id = "organ_mod_armblade"
 	materials = list(MATERIAL_STEEL = 16)
 	req_tech = list(TECH_BIO = 3, TECH_MATERIAL = 3)
 
 /datum/design/item/mechfab/modules/runner
-	name = "Mechanical muscules"
-	build_path = /obj/item/organ_module/muscule
+	name = "Mechanical muscles"
+	build_path = /obj/item/organ_module/muscle
 	id = "organ_mod_runner"
 	req_tech = list(TECH_BIO = 4)
 
@@ -127,17 +127,23 @@
 /datum/design/item/mechfab/modules/multitool
 	materials = list(MATERIAL_STEEL = 5)
 
-/datum/design/item/mechfab/modules/multitool/surgial
-	build_path = /obj/item/organ_module/active/multitool/surgial
-	name = "Surgial organ module"
-	id = "organ_mod_surgial"
+/datum/design/item/mechfab/modules/multitool/surgical
+	build_path = /obj/item/organ_module/active/multitool/surgical
+	name = "Embedded surgical multitool"
+	id = "organ_mod_surgical"
 	req_tech = list(TECH_BIO = 4)
 
 /datum/design/item/mechfab/modules/multitool/engineer
 	build_path = /obj/item/organ_module/active/multitool/engineer
-	name = "Technomancer organ module"
+	name = "Embedded Technomancer multitool"
 	id = "organ_mod_eng"
 	req_tech = list(TECH_BIO = 3, TECH_ENGINEERING = 3)
+
+/datum/design/item/mechfab/modules/multitool/miner
+	build_path = /obj/item/organ_module/active/multitool/miner
+	name = "Embedded mining multitool"
+	id = "organ_mod_min"
+	req_tech = list(TECH_BIO = 3, TECH_ENGINEERING = 3, TECH_MATERIAL = 4)
 
 //Prosthesis ====================================
 
@@ -146,22 +152,22 @@
 	materials = list(MATERIAL_STEEL = 18)
 
 /datum/design/item/mechfab/prosthesis/r_arm
-	name = "right arm"
+	name = "Right arm"
 	id = "prosthesis_simple_r_arm"
 	build_path = /obj/item/prosthesis/r_arm
 
 /datum/design/item/mechfab/prosthesis/l_arm
-	name = "left arm"
+	name = "Left arm"
 	id = "prosthesis_simple_l_arm"
 	build_path = /obj/item/prosthesis/l_arm
 
 /datum/design/item/mechfab/prosthesis/r_leg
-	name = "right leg"
+	name = "Right leg"
 	id = "prosthesis_simple_r_leg"
 	build_path = /obj/item/prosthesis/r_leg
 
 /datum/design/item/mechfab/prosthesis/l_leg
-	name = "left leg"
+	name = "Left leg"
 	id = "prosthesis_simple_l_leg"
 	build_path = /obj/item/prosthesis/l_leg
 

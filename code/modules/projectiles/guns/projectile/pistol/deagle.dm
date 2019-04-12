@@ -3,7 +3,7 @@
 	desc = "An obvious replica of an old Earth \"Desert Eagle\". Robust and straight, this is a gun for a leader, not just an officer."
 	icon_state = "deagle"
 	item_state = "revolver"
-	force = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_PAINFUL
 	caliber = ".50"
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL
