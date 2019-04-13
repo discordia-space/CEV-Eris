@@ -3,7 +3,7 @@
 	build_path = /obj/item/weapon/stock_parts/console_screen
 
 /datum/design/autolathe/part/smes_coil
-	name = "smes coil"
+	name = "SMES coil"
 	build_path = /obj/item/weapon/smes_coil
 
 /datum/design/autolathe/part/capacitor

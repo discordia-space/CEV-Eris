@@ -11,7 +11,6 @@ SUBSYSTEM_DEF(research)
 	var/list/research_holders_to_init = list()
 
 /datum/controller/subsystem/research/Initialize()
-
 	for(var/R in subtypesof(/datum/design))
 		var/datum/design/design = new R
 		design.AssembleDesignInfo()
@@ -25,6 +24,8 @@ SUBSYSTEM_DEF(research)
 		design_ids[design.id] = design
 		design_ids["[design.id]"] = design
 
+	generate_integrated_circuit_designs()
+
 	// Initialize research holders that were created before
 	for(var/R in research_holders_to_init)
 		var/datum/research/research = R
@@ -35,7 +36,34 @@ SUBSYSTEM_DEF(research)
 	return ..()
 
 
+/datum/controller/subsystem/research/proc/generate_integrated_circuit_designs()
+	for(var/obj/item/integrated_circuit/IC in all_integrated_circuits)
+		if(!(IC.spawn_flags & IC_SPAWN_RESEARCH))
+			continue
+		var/datum/design/research/design = new /datum/design/research/circuit(src)
+		design.name = "Custom circuitry \[[IC.category_text]\] ([IC.name])"
+		design.id = "ic-[lowertext(IC.name)]"
+		design.build_path = IC.type
+
+		if(length(IC.origin_tech))
+			design.req_tech = IC.origin_tech.Copy()
+		else
+			design.req_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2)
+
+		design.AssembleDesignInfo()
+
+
+		all_designs += design
+
+		// Design ID is string or path.
+		// If path, make it accessible in both path and text form.
+		design_ids[design.id] = design
+		design_ids["[design.id]"] = design
+
+
 /datum/controller/subsystem/research/proc/initialize_designs(datum/research/research)
+	// If designs are already generated, initialized right away.
+	// If not, add them to the list to be initialized later.
 	if(length(all_designs))
 		for(var/datum/design/research/D in all_designs)
 			research.possible_designs += D

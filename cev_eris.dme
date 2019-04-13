@@ -35,6 +35,7 @@
 #include "code\__defines\error_handler.dm"
 #include "code\__defines\flags.dm"
 #include "code\__defines\gamemode.dm"
+#include "code\__defines\integrated_circuit.dm"
 #include "code\__defines\inventory_sizes.dm"
 #include "code\__defines\items_clothing.dm"
 #include "code\__defines\jobs.dm"
