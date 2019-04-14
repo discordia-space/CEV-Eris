@@ -52,10 +52,10 @@
 	icon_state = "explosive"
 
 	fragment_type = /obj/item/projectile/bullet/pellet/fragment/invisible
-	spread_range = 1
-	num_fragments = 2
-	fragment_damage = 40
-	damage_step = 30
+	spread_range = 4
+	num_fragments = 4
+	fragment_damage = 30
+	damage_step = 20
 
 	devastation_range = -1
 	heavy_range = 1
