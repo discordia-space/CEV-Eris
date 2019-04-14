@@ -44,14 +44,14 @@
 	name = "supermatter supply beacon"
 	drop_type = "supermatter"
 
-/obj/machinery/power/supply_beacon/attackby(var/obj/item/weapon/W, var/mob/user)
-	if(!use_power && istype(W, /obj/item/weapon/tool/wrench))
+/obj/machinery/power/supply_beacon/attackby(var/obj/item/weapon/tool/W, var/mob/user)
+	if(!use_power)
 		if(!anchored && !connect_to_network())
 			user << SPAN_WARNING("This device must be placed over an exposed cable.")
 			return
-		anchored = !anchored
-		user.visible_message("<span class='notice'>\The [user] [anchored ? "secures" : "unsecures"] \the [src].</span>")
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		if(W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_ZERO, required_stat = STAT_MEC))
+			anchored = anchored ? FALSE : TRUE
+			user.visible_message(SPAN_NOTICE("\The [user] [anchored ? "secures" : "unsecures"] \the [src]."))
 		return
 	return ..()
 

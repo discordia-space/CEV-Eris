@@ -178,9 +178,13 @@
 	if(incorporeal_move)
 		update_floating(!check_gravity())
 		return TRUE
-	if (check_shoegrip() && check_solid_ground())
-		update_floating(FALSE)
-		return TRUE
+	if (check_solid_ground())
+		if(check_shoegrip())
+			update_floating(FALSE)
+			return TRUE
+		else
+			update_floating()
+			return -1
 	else if(check_dense_object())
 		update_floating(TRUE)
 		return -1

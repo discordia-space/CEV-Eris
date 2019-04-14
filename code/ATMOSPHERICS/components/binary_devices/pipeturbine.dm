@@ -85,38 +85,37 @@
 		if (kin_energy > 1000000)
 			overlays += image('icons/obj/pipeturbine.dmi', "hi-turb")
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
-		if(istype(W, /obj/item/weapon/tool/wrench))
-			anchored = !anchored
-			user << "<span class='notice'>You [anchored ? "secure" : "unsecure"] the bolts holding \the [src] to the floor.</span>"
+	attackby(obj/item/weapon/tool/W as obj, mob/user as mob)
+		if (!W.has_quality(QUALITY_BOLT_TURNING))
+			return ..()
+		if (!W.check_tool_effects(WORKTIME_NEAR_INSTANT))
+			return ..()
+		W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_ZERO, required_stat = STAT_MEC)
+		anchored = !anchored
+		user << "<span class='notice'>You [anchored ? "secure" : "unsecure"] the bolts holding \the [src] to the floor.</span>"
 
-			if(anchored)
-				if(dir & (NORTH|SOUTH))
-					initialize_directions = EAST|WEST
-				else if(dir & (EAST|WEST))
-					initialize_directions = NORTH|SOUTH
-
+		if(anchored)
+			if(dir & (NORTH|SOUTH))
+				initialize_directions = EAST|WEST
+			else if(dir & (EAST|WEST))
+				initialize_directions = NORTH|SOUTH
 				atmos_init()
-				build_network()
-				if (node1)
-					node1.atmos_init()
-					node1.build_network()
-				if (node2)
-					node2.atmos_init()
-					node2.build_network()
-			else
-				if(node1)
-					node1.disconnect(src)
-					qdel(network1)
-				if(node2)
-					node2.disconnect(src)
-					qdel(network2)
-
-				node1 = null
-				node2 = null
-
+			build_network()
+			if (node1)
+				node1.atmos_init()
+				node1.build_network()
+			if (node2)
+				node2.atmos_init()
+				node2.build_network()
 		else
-			..()
+			if(node1)
+				node1.disconnect(src)
+				qdel(network1)
+			if(node2)
+				node2.disconnect(src)
+				qdel(network2)
+				node1 = null
+			node2 = null
 
 	verb/rotate_clockwise()
 		set category = "Object"
@@ -256,14 +255,16 @@
 		add_avail(power_generated)
 
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
-		if(istype(W, /obj/item/weapon/tool/wrench))
-			anchored = !anchored
-			turbine = null
-			user << "<span class='notice'>You [anchored ? "secure" : "unsecure"] the bolts holding \the [src] to the floor.</span>"
-			updateConnection()
-		else
-			..()
+	attackby(obj/item/weapon/tool/W as obj, mob/user as mob)
+		if (!W.has_quality(QUALITY_BOLT_TURNING))
+			return ..()
+		if (!W.check_tool_effects(WORKTIME_NEAR_INSTANT))
+			return ..()
+		W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_ZERO, required_stat = STAT_MEC)
+		anchored = !anchored
+		turbine = null
+		user << "<span class='notice'>You [anchored ? "secure" : "unsecure"] the bolts holding \the [src] to the floor.</span>"
+		updateConnection()
 
 	verb/rotate_clock()
 		set category = "Object"
