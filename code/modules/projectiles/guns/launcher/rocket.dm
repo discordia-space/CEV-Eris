@@ -28,8 +28,8 @@
 			user.drop_item()
 			I.loc = src
 			rockets += I
-			to_chat(user, "\blue You put the rocket in [src].")
-			to_chat(user, "\blue [rockets.len] / [max_rockets] rockets.")
+			to_chat(user, SPAN_NOTICE("You put the rocket in [src]."))
+			to_chat(user, SPAN_NOTICE("[rockets.len] / [max_rockets] rockets."))
 		else
 			to_chat(user, SPAN_WARNING("[src] cannot hold more rockets."))
 

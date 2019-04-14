@@ -95,7 +95,7 @@
 			to_chat(M, SPAN_WARNING("Your meaty finger is much too large for the trigger guard!"))
 			return
 	if (!Adjacent(loc, target))
-		to_chat(user, SPAN_WARNING("\red You're too far away to breach that!"))
+		to_chat(user, SPAN_WARNING("You're too far away to breach that!"))
 		return
 	/*if(ishuman(user))
 		if(user.dna && user.dna.mutantrace == "adamantine")

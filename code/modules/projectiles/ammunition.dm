@@ -54,18 +54,18 @@
 /obj/item/ammo_casing/attackby(obj/item/I, mob/user)
 	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING, QUALITY_CUTTING), src))
 		if(!BB)
-			to_chat(user, "\blue There is no bullet in the casing to inscribe anything into.")
+			to_chat(user, SPAN_NOTICE("There is no bullet in the casing to inscribe anything into."))
 			return
 
 		var/tmp_label = ""
 		var/label_text = sanitizeSafe(input(user, "Inscribe some text into \the [initial(BB.name)]","Inscription",tmp_label), MAX_NAME_LEN)
 		if(length(label_text) > 20)
-			to_chat(user, "\red The inscription can be at most 20 characters long.")
+			to_chat(user, SPAN_WARNING("The inscription can be at most 20 characters long."))
 		else if(!label_text)
-			to_chat(user, "\blue You scratch the inscription off of [initial(BB)].")
+			to_chat(user, SPAN_NOTICE("You scratch the inscription off of [initial(BB)]."))
 			BB.name = initial(BB.name)
 		else
-			to_chat(user, "\blue You inscribe \"[label_text]\" into \the [initial(BB.name)].")
+			to_chat(user, SPAN_NOTICE("You inscribe \"[label_text]\" into \the [initial(BB.name)]."))
 			BB.name = "[initial(BB.name)] (\"[label_text]\")"
 		return TRUE
 	else if(istype(I, /obj/item/ammo_casing))
