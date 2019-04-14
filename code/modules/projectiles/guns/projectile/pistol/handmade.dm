@@ -18,13 +18,13 @@
 
 /obj/item/weapon/gun/projectile/handmade_pistol/special_check(mob/user)
 	if(jammed)
-		user << SPAN_WARNING("[src] is jammed!")
+		to_chat(user, SPAN_WARNING("[src] is jammed!"))
 		return 0
 	else
 		if(loaded.len && prob(jam_chance)) //you know, when you try to shot and "aaaaawwwww fuk"
 			jammed = TRUE
 			playsound(src.loc, 'sound/weapons/guns/interact/hpistol_cock.ogg', 70, 1)
-			user << SPAN_DANGER("[src] is jammed!")
+			to_chat(user, SPAN_DANGER("[src] is jammed!"))
 			return 0
 	return ..()
 
@@ -32,7 +32,7 @@
 	if(!chamber_open)
 		if(istype(W, /obj/item/weapon/tool/screwdriver) || istype(W, /obj/item/weapon/material/kitchen/utensil) || W.sharp)
 			open_chamber()
-			user << SPAN_NOTICE("You force open chamber with [W].")
+			to_chat(user, SPAN_NOTICE("You force open chamber with [W]."))
 	..()
 
 /obj/item/weapon/gun/projectile/handmade_pistol/handle_post_fire(mob/user, atom/target, var/pointblank=0, var/reflex=0)
@@ -42,7 +42,7 @@
 /obj/item/weapon/gun/projectile/handmade_pistol/load_ammo(var/obj/item/A, mob/user)
 	if(istype(A, /obj/item/ammo_casing))
 		if(!chamber_open)
-			user << SPAN_WARNING("You need to open chamber first.")
+			to_chat(user, SPAN_WARNING("You need to open chamber first."))
 			return
 		..()
 		chamber_open = FALSE
