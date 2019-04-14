@@ -11,7 +11,6 @@
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_CIVI_RIFLE
 	magazine_type = /obj/item/ammo_magazine/c762
-	auto_eject = 1
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)
 	price_tag = 3500
 	fire_sound = 'sound/weapons/guns/fire/ltrifle_fire.ogg'
