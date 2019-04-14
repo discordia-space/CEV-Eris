@@ -108,15 +108,15 @@
 			cell = null
 			update_icon()
 	else
-		usr << SPAN_WARNING("[src] is a self-charging gun, its batteries cannot be removed!.")
+		to_chat(usr, SPAN_WARNING("[src] is a self-charging gun, its batteries cannot be removed!."))
 
 /obj/item/weapon/gun/energy/attackby(obj/item/C, mob/living/user)
 	if(self_recharge)
-		usr << SPAN_WARNING("[src] is a self-charging gun, it doesn't need more batteries.")
+		to_chat(usr, SPAN_WARNING("[src] is a self-charging gun, it doesn't need more batteries."))
 		return
 
 	if(cell)
-		usr << SPAN_WARNING("[src] is already loaded.")
+		to_chat(usr, SPAN_WARNING("[src] is already loaded."))
 		return
 
 	if(istype(C, suitable_cell) && insert_item(C, user))

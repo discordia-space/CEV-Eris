@@ -36,6 +36,7 @@
 	var/auto_eject = FALSE			//if the magazine should automatically eject itself when empty.
 	var/auto_eject_sound = null
 	var/ammo_mag = "default" // magazines + gun itself. if set to default, then not used
+	var/tac_reloads = TRUE	// Enables guns to eject mag and insert new magazine.
 
 /obj/item/weapon/gun/projectile/Destroy()
 	QDEL_NULL(chambered)
@@ -145,10 +146,13 @@
 		switch(method_for_this_load)
 			if(MAGAZINE)
 				if(AM.ammo_mag != ammo_mag && ammo_mag != "default")
-					user << SPAN_WARNING("[src] requires another magazine.") //wrong magazine
+					to_chat(user, SPAN_WARNING("[src] requires another magazine.")) //wrong magazine
 					return
-				if(ammo_magazine)
-					user << SPAN_WARNING("[src] already has a magazine loaded.") //already a magazine here
+				if(tac_reloads)
+					unload_ammo(user)	// ejects the magazine before inserting the new one.
+					to_chat(user, SPAN_NOTICE("You tactically reload your [src] with [AM]!"))
+				else if(ammo_magazine)
+					to_chat(user, SPAN_WARNING("[src] already has a magazine loaded.")) //already a magazine here
 					return
 				if(!(AM.mag_well & mag_well))
 					to_chat(user, SPAN_WARNING("[AM] won't fit into the magwell.")) //wrong magazine
@@ -162,11 +166,11 @@
 				update_firemode()
 			if(SPEEDLOADER)
 				if(loaded.len >= max_shells)
-					user << SPAN_WARNING("[src] is full!")
+					to_chat(user, SPAN_WARNING("[src] is full!"))
 					return
 				var/count = 0
 				if(AM.reload_delay)
-					user << SPAN_NOTICE("It takes some time to reload [src] with [AM]...")
+					to_chat(user, SPAN_NOTICE("It takes some time to reload [src] with [AM]..."))
 				if (do_after(user, AM.reload_delay, user))
 					for(var/obj/item/ammo_casing/C in AM.stored_ammo)
 						if(loaded.len >= max_shells)
@@ -187,7 +191,7 @@
 		if(!(load_method & SINGLE_CASING) || caliber != C.caliber)
 			return //incompatible
 		if(loaded.len >= max_shells)
-			user << SPAN_WARNING("[src] is full.")
+			to_chat(user, SPAN_WARNING("[src] is full."))
 			return
 
 		if(C.amount > 1)
@@ -243,7 +247,7 @@
 			user.visible_message("[user] removes \a [C] from [src].", SPAN_NOTICE("You remove \a [C] from [src]."))
 			if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, 1)
 	else
-		user << SPAN_WARNING("[src] is empty.")
+		to_chat(user, SPAN_WARNING("[src] is empty."))
 	update_icon()
 
 /obj/item/weapon/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)
@@ -285,8 +289,8 @@
 /obj/item/weapon/gun/projectile/examine(mob/user)
 	..(user)
 	if(ammo_magazine)
-		user << "It has \a [ammo_magazine] loaded."
-	user << "Has [get_ammo()] round\s remaining."
+		to_chat(user, "It has \a [ammo_magazine] loaded.")
+	to_chat(user, "Has [get_ammo()] round\s remaining.")
 	return
 
 /obj/item/weapon/gun/projectile/proc/get_ammo()

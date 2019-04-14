@@ -12,6 +12,7 @@
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_IH
 	magazine_type = /obj/item/ammo_magazine/ih762
+	tac_reloads = FALSE
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
 	price_tag = 4000
 	fire_sound = 'sound/weapons/guns/fire/ltrifle_fire.ogg'

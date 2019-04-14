@@ -42,6 +42,6 @@ obj/item/weapon/gun/projectile/automatic/maxim
 
 /obj/item/weapon/gun/projectile/automatic/maxim/special_check(mob/user)
 	if(!(user.get_active_hand() == src && user.get_inactive_hand() == null))
-		user << SPAN_WARNING("You can't fire \the [src] with [user.get_inactive_hand()] in the other hand.")
+		to_chat(user, SPAN_WARNING("You can't fire \the [src] with [user.get_inactive_hand()] in the other hand."))
 		return FALSE
 	return ..()
