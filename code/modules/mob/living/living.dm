@@ -366,6 +366,13 @@ default behaviour is:
 /mob/living/proc/can_inject()
 	return TRUE
 
+/mob/living/is_injectable(allowmobs = TRUE)
+	return (allowmobs && reagents && can_inject())
+
+/mob/living/is_drawable(allowmobs = TRUE)
+	return (allowmobs && reagents && can_inject())
+
+
 /mob/living/proc/get_organ_target()
 	var/mob/shooter = src
 	var/t = shooter:targeted_organ
@@ -645,7 +652,7 @@ default behaviour is:
 	if(jobban_isbanned(possessor, "Animal"))
 		possessor << "<span class='warning'>You are banned from animal roles.</span>"
 		return FALSE
-	if(!possessor.MayRespawn(1,ANIMAL_SPAWN_DELAY))
+	if(!possessor.MayRespawn(0 ,ANIMAL))
 		return FALSE
 	return TRUE
 

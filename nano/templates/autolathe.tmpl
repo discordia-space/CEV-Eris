@@ -146,7 +146,7 @@ Used In File(s): \code\game\machinery\autolathe.dm
 </div>
 
 <div class="fixedLeftWider" style="width:50%">
-	<div class="statusDisplay">
+	<div class="statusDisplay" style ='position: relative;'>
 		<div class="item">
 			<div class="item">
 				{{if data.paused}}
@@ -156,6 +156,7 @@ Used In File(s): \code\game\machinery\autolathe.dm
 				{{/if}}
 			</div>
 			{{if data.current}}
+				<div style ='position: absolute; top: 10px; right: 10px; max-height:64px; max-width:64px; height:64px; width:64px; margin-left:0px' class='statusDisplayItem'><img src= {{:data.icon}} height=64 width=64></div>
 				<div class="itemLabelWidest">Printing {{:data.current}}</div>
 				{{if data.error}}
 					<div class="itemLabelWidest"><div class="bad">{{:data.error}}</div></div>
@@ -193,7 +194,8 @@ Used In File(s): \code\game\machinery\autolathe.dm
 				<div class="itemLabelWidest">Queue: {{:data.queue_len}}/{{:data.queue_max}} </div>
 				{{for data.queue}}
 					<div class="item">
-						<div class="itemContentWidest">
+						<div class="itemContentWidest" style ='position: relative;'>
+							<div style ='position: absolute; top: 10px; right: 10px; max-height:24px; max-width:24px; height:24px; width:24px; margin-left:0px' class='statusDisplayItem'><img src= {{:value.icon}} height=24 width=24></div>
 							{{if value.error >= 2}}
 								<div class="bad">{{:value.name}}</div>
 							{{else}}

@@ -10,22 +10,6 @@
 	name = "laptop frame"
 	path = /obj/item/modular_computer/laptop
 
-/datum/autolathe/recipe/computer_part/battery_nano
-	name = "nano battery"
-	path = /obj/item/weapon/computer_hardware/battery_module/nano
-
-/datum/autolathe/recipe/computer_part/battery_micro
-	name = "micro battery"
-	path = /obj/item/weapon/computer_hardware/battery_module/micro
-
-/datum/autolathe/recipe/computer_part/battery_standard
-	name = "standard battery"
-	path = /obj/item/weapon/computer_hardware/battery_module
-
-/datum/autolathe/recipe/computer_part/battery_advanced
-	name = "advanced battery"
-	path = /obj/item/weapon/computer_hardware/battery_module/advanced
-
 /datum/autolathe/recipe/computer_part/hard_drive_micro
 	name = "micro hard drive"
 	path = /obj/item/weapon/computer_hardware/hard_drive/micro

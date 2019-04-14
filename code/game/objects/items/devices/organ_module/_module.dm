@@ -1,6 +1,6 @@
 /obj/item/organ_module
 	name = "embedded organ module"
-	desc = "Embedded organ module."
+	desc = "A mechanical augment designed for implantation into a human's flesh or prosthetics."
 	icon = 'icons/obj/surgery.dmi'
 	var/list/allowed_organs = list() // Surgery. list of organ_tags. BP_R_ARM, BP_L_ARM, BP_HEAD, etc.
 

@@ -51,8 +51,16 @@
 	path = /obj/item/ammo_magazine/mc9mm/flash
 
 /datum/autolathe/recipe/ammo/magazine_a10mm
-	name = "ammunition (10mm)"
+	name = "magazine (10mm)"
 	path = /obj/item/ammo_magazine/a10mm
+
+/datum/autolathe/recipe/ammo/magazine_a10mm_rubber
+	name = "magazine (10mm rubber)"
+	path = /obj/item/ammo_magazine/a10mm/rubber
+
+/datum/autolathe/recipe/ammo/magazine_smg10mm
+	name = "smg magazine (10mm)"
+	path = /obj/item/ammo_magazine/smg10mm
 
 /datum/autolathe/recipe/ammo/magazine_c762
 	name = "ammunition (7.62mm)"
@@ -115,8 +123,12 @@
 	path = /obj/item/ammo_magazine/cl32
 
 /datum/autolathe/recipe/ammo/ak47
-	name = "magazine (7.62mm)"
+	name = "AK magazine (7.62mm)"
 	path = /obj/item/ammo_magazine/ak47
+
+/datum/autolathe/recipe/ammo/ih762
+	name = "IH magazine (7.62mm)"
+	path = /obj/item/ammo_magazine/ih762
 
 /datum/autolathe/recipe/ammo/box_a762
 	name = "ammunition box (7.62mm)"

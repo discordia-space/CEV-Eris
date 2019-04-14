@@ -27,3 +27,10 @@
 	icon_state = "katana"
 	item_state = "katana"
 	slot_flags = SLOT_BELT | SLOT_BACK
+
+/obj/item/weapon/material/sword/katana/update_icon()
+    ..()
+    overlays.Cut()
+    var/image/I = image(icon, icon_state = "katana_handle")
+    I.appearance_flags = RESET_COLOR
+    overlays += I

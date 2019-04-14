@@ -848,55 +848,6 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/weapon/computer_hardware/tesla_link
 	sort_string = "VBAAP"
 
-// Batteries
-/datum/design/item/modularcomponent/battery/normal
-	name = "standard battery module"
-	id = "bat_normal"
-	req_tech = list(TECH_POWER = 1, TECH_ENGINEERING = 1)
-	build_type = PROTOLATHE
-	build_path = /obj/item/weapon/computer_hardware/battery_module
-	sort_string = "VBAAQ"
-
-/datum/design/item/modularcomponent/battery/advanced
-	name = "advanced battery module"
-	id = "bat_advanced"
-	req_tech = list(TECH_POWER = 2, TECH_ENGINEERING = 2)
-	build_type = PROTOLATHE
-	build_path = /obj/item/weapon/computer_hardware/battery_module/advanced
-	sort_string = "VBAAR"
-
-/datum/design/item/modularcomponent/battery/super
-	name = "super battery module"
-	id = "bat_super"
-	req_tech = list(TECH_POWER = 3, TECH_ENGINEERING = 3)
-	build_type = PROTOLATHE
-	build_path = /obj/item/weapon/computer_hardware/battery_module/super
-	sort_string = "VBAAS"
-
-/datum/design/item/modularcomponent/battery/ultra
-	name = "ultra battery module"
-	id = "bat_ultra"
-	req_tech = list(TECH_POWER = 5, TECH_ENGINEERING = 4)
-	build_type = PROTOLATHE
-	build_path = /obj/item/weapon/computer_hardware/battery_module/ultra
-	sort_string = "VBAAT"
-
-/datum/design/item/modularcomponent/battery/nano
-	name = "nano battery module"
-	id = "bat_nano"
-	req_tech = list(TECH_POWER = 1, TECH_ENGINEERING = 1)
-	build_type = PROTOLATHE
-	build_path = /obj/item/weapon/computer_hardware/battery_module/nano
-	sort_string = "VBAAU"
-
-/datum/design/item/modularcomponent/battery/micro
-	name = "micro battery module"
-	id = "bat_micro"
-	req_tech = list(TECH_POWER = 2, TECH_ENGINEERING = 2)
-	build_type = PROTOLATHE
-	build_path = /obj/item/weapon/computer_hardware/battery_module/micro
-	sort_string = "VBAAV"
-
 /datum/design/item/modularcomponent/cpu
 	name = "computer processor unit"
 	id = "cpu_normal"
@@ -1595,16 +1546,6 @@ CIRCUITS BELOW
 	req_tech = list(TECH_DATA = 4, TECH_ILLEGAL = 2, TECH_MATERIAL = 6)
 	build_path = /obj/item/weapon/aiModule/tyrant
 	sort_string = "XACAD"
-
-/datum/design/item/pda
-	name = "PDA design"
-	desc = "Cheaper than whiny non-digital assistants."
-	id = "pda"
-	req_tech = list(TECH_ENGINEERING = 2, TECH_POWER = 3)
-	materials = list(MATERIAL_STEEL = 2, MATERIAL_GLASS = 2)
-	build_path = /obj/item/device/pda
-	sort_string = "VAAAA"
-
 
 
 /datum/design/item/wirer

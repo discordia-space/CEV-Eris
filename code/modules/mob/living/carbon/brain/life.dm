@@ -76,6 +76,7 @@
 	if(touching) touching.metabolize()
 	if(ingested) ingested.metabolize()
 	if(bloodstr) bloodstr.metabolize()
+	metabolism_effects.process()
 
 	if(CE_PAINKILLER in chem_effects)
 		analgesic = chem_effects[CE_PAINKILLER]

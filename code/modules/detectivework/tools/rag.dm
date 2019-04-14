@@ -23,7 +23,8 @@
 	possible_transfer_amounts = list(5)
 	volume = 10
 	can_be_placed_into = null
-	flags = OPENCONTAINER | NOBLUDGEON
+	flags = NOBLUDGEON
+	reagent_flags = REFILLABLE | DRAINABLE | AMOUNT_VISIBLE
 	unacidable = 0
 
 	var/on_fire = 0

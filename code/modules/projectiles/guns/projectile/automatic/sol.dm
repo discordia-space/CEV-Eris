@@ -6,6 +6,7 @@
 	w_class = ITEM_SIZE_LARGE
 	ammo_mag = "ih_sol"
 	load_method = MAGAZINE
+	mag_well = MAG_WELL_IH
 	max_shells = 30
 	caliber = "6.5mm"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
@@ -13,10 +14,11 @@
 	multi_aim = 1
 	burst_delay = 2
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)
+	price_tag = 2500
 
 	firemodes = list(
-		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, dispersion=null),
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    dispersion=list(0.0, 0.6, 1.0)),
+		SEMI_AUTO_NODELAY,
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    dispersion=list(0.0, 0.6, 1.0), icon="burst"),
 		)
 
 /obj/item/weapon/gun/projectile/automatic/sol/proc/update_charge()

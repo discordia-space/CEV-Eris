@@ -5,7 +5,7 @@
 	item_state = "shotgun"
 	max_shells = 4
 	w_class = ITEM_SIZE_LARGE
-	force = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_PAINFUL
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
 	caliber = "shotgun"
@@ -17,6 +17,7 @@
 	bulletinsert_sound 	= 'sound/weapons/guns/interact/shotgun_insert.ogg'
 	var/recentpump = 0 // to prevent spammage
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
+	price_tag = 2250
 
 /obj/item/weapon/gun/projectile/shotgun/pump/consume_next_projectile()
 	if(chambered)

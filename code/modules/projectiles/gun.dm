@@ -1,45 +1,3 @@
-/*
-	Defines a firing mode for a gun.
-
-	A firemode is created from a list of fire mode settings. Each setting modifies the value of the gun var with the same name.
-	If the fire mode value for a setting is null, it will be replaced with the initial value of that gun's variable when the firemode is created.
-	Obviously not compatible with variables that take a null value. If a setting is not present, then the corresponding var will not be modified.
-*/
-/datum/firemode
-	var/name = "default"
-	var/list/settings = list()
-	var/obj/item/weapon/gun/gun = null
-
-/datum/firemode/New(obj/item/weapon/gun/_gun, list/properties = null)
-	..()
-	if(!properties) return
-
-	gun = _gun
-	for(var/propname in properties)
-		var/propvalue = properties[propname]
-
-		if(propname == "mode_name")
-			name = propvalue
-		else if(isnull(propvalue))
-			settings[propname] = gun.vars[propname] //better than initial() as it handles list vars like dispersion
-		else
-			settings[propname] = propvalue
-
-/datum/firemode/Destroy()
-	gun = null
-	return ..()
-
-/datum/firemode/proc/apply_to(obj/item/weapon/gun/_gun)
-	gun = _gun
-	for(var/propname in settings)
-		if (propname in gun.vars)
-			gun.vars[propname] = settings[propname]
-
-//Called whenever the firemode is switched to, or the gun is picked up while its active
-/datum/firemode/proc/update()
-	return
-
-
 //Parent gun type. Guns are weapons that can be aimed at mobs and act over a distance
 /obj/item/weapon/gun
 	name = "gun"
@@ -62,6 +20,7 @@
 	origin_tech = list(TECH_COMBAT = 1)
 	attack_verb = list("struck", "hit", "bashed")
 	zoomdevicename = "scope"
+	hud_actions = list()
 
 	var/damage_multiplier = 1 //Multiplies damage of projectiles fired from this gun
 	var/burst = 1
@@ -69,13 +28,16 @@
 	var/burst_delay = 2	//delay between shots, if firing in bursts
 	var/move_delay = 1
 	var/fire_sound = 'sound/weapons/Gunshot.ogg'
+
 	var/fire_sound_text = "gunshot"
 	var/recoil = 0		//screen shake
-	var/silenced = 0
+
 	var/muzzle_flash = 3
 	var/list/dispersion = list(0)
 	var/requires_two_hands
+	var/dual_wielding
 	var/wielded_icon = "gun_wielded"
+	var/zoom_factor = 0 //How much to scope in when using weapon
 
 	var/suppress_delay_warning = FALSE
 
@@ -97,8 +59,18 @@
 	var/tmp/lock_time = -100
 	var/mouthshoot = FALSE //To stop people from suiciding twice... >.>
 
-/obj/item/weapon/gun/New()
+	/*	SILENCER HANDLING */
+	var/obj/item/weapon/silencer/silenced = null //The installed silencer, if any
+	var/silencer_type = null //The type of silencer that could be installed in us, if we don't have one
+	var/fire_sound_silenced = 'sound/weapons/Gunshot_silenced.wav' //Firing sound used when silenced
+
+/obj/item/weapon/gun/get_item_cost(export)
+	if(export)
+		return ..() * 0.5 //Guns should be sold in the player market.
 	..()
+
+/obj/item/weapon/gun/Initialize()
+	. = ..()
 	for(var/i in 1 to firemodes.len)
 		var/list/L = firemodes[i]
 
@@ -115,11 +87,28 @@
 		F.apply_to(src)
 
 	if(!restrict_safety)
-		verbs += /obj/item/weapon/gun/proc/toggle_safety//addint it to all guns
+		verbs += /obj/item/weapon/gun/proc/toggle_safety_verb//addint it to all guns
+
+		var/obj/screen/item_action/action = new /obj/screen/item_action/top_bar/gun/safety
+		action.owner = src
+		hud_actions += action
+
+	if(firemodes.len > 1)
+		var/obj/screen/item_action/action = new /obj/screen/item_action/top_bar/gun/fire_mode
+		action.owner = src
+		hud_actions += action
+
+	if(zoom_factor)
+		var/obj/screen/item_action/action = new /obj/screen/item_action/top_bar/gun/scope
+		action.owner = src
+		hud_actions += action
+
 
 /obj/item/weapon/gun/Destroy()
 	for(var/i in firemodes)
-		qdel(i)
+		if(!islist(i))
+			qdel(i)
+	firemodes = null
 	aim_targets = null
 	last_moved_mob = null
 	return ..()
@@ -149,7 +138,7 @@
 
 	var/mob/living/M = user
 	if(HULK in M.mutations)
-		M << SPAN_DANGER("Your fingers are much too large for the trigger guard!")
+		to_chat(user, SPAN_DANGER("Your fingers are much too large for the trigger guard!"))
 		return FALSE
 	if((CLUMSY in M.mutations) && prob(40)) //Clumsy handling
 		var/obj/P = consume_next_projectile()
@@ -166,7 +155,7 @@
 		return FALSE
 	if(!restrict_safety)
 		if(safety)
-			user << SPAN_DANGER("The gun's safety is on!")
+			to_chat(user, SPAN_DANGER("The gun's safety is on!"))
 			handle_click_empty(user)
 			return FALSE
 	return TRUE
@@ -187,19 +176,24 @@
 
 	else
 
-
 		var/obj/item/weapon/gun/off_hand   //DUAL WIELDING
 		if(ishuman(user) && user.a_intent == "harm")
 			var/mob/living/carbon/human/H = user
 			if(H.r_hand == src && istype(H.l_hand, /obj/item/weapon/gun))
 				off_hand = H.l_hand
+				dual_wielding = TRUE
 
 			else if(H.l_hand == src && istype(H.r_hand, /obj/item/weapon/gun))
 				off_hand = H.r_hand
+				dual_wielding = TRUE
+			else
+				dual_wielding = FALSE
 
 			if(off_hand && off_hand.can_hit(user))
 				spawn(1)
 				off_hand.Fire(A,user,params)
+		else
+			dual_wielding = FALSE
 
 		Fire(A,user,params) //Otherwise, fire normally.
 
@@ -211,12 +205,20 @@
 	else
 		return ..() //Pistolwhippin'
 
+
+/obj/item/weapon/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)
+	.=..()
+	if (!.)
+		if (silencer_type && istype(A, silencer_type))
+			apply_silencer(A, user)
+
+
 /obj/item/weapon/gun/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
 	if(!user || !target) return
 
 	if(world.time < next_fire_time)
 		if (!suppress_delay_warning && world.time % 3) //to prevent spam
-			user << SPAN_WARNING("[src] is not ready to fire again!")
+			to_chat(user, SPAN_WARNING("[src] is not ready to fire again!"))
 		return
 
 
@@ -235,6 +237,9 @@
 	if(requires_two_hands)
 		if((user.l_hand == src && user.r_hand) || (user.r_hand == src && user.l_hand))
 			held_disp_mod = 3
+
+	if(dual_wielding)
+		held_disp_mod = 6
 
 	//actually attempt to shoot
 	var/turf/targloc = get_turf(target) //cache this in case target gets deleted during shooting, e.g. if it was a securitron that got destroyed.
@@ -295,7 +300,8 @@
 //called after successfully firing
 /obj/item/weapon/gun/proc/handle_post_fire(mob/user, atom/target, var/pointblank=0, var/reflex=0)
 	if(silenced)
-		playsound(user, fire_sound, 10, 1)
+		//Silenced shots have a lower range and volume
+		playsound(user, fire_sound_silenced, 15, 1, -3)
 	else
 		playsound(user, fire_sound, 60, 1)
 
@@ -317,7 +323,12 @@
 
 	if(recoil)
 		spawn()
-			shake_camera(user, recoil+1, recoil)
+			if (silenced)
+				shake_camera(user, (recoil+1*0.5), (recoil*0.5))
+			else if(dual_wielding)
+				shake_camera(user, recoil+2, recoil)
+			else
+				shake_camera(user, recoil+1, recoil)
 	update_icon()
 
 
@@ -411,7 +422,7 @@
 			user.apply_damage(in_chamber.damage*2.5, in_chamber.damage_type, BP_HEAD, used_weapon = "Point blank shot in the mouth with \a [in_chamber]", sharp=1)
 			user.death()
 		else
-			user << SPAN_NOTICE("Ow...")
+			to_chat(user, SPAN_NOTICE("Ow..."))
 			user.apply_effect(110,AGONY,0)
 		qdel(in_chamber)
 		mouthshoot = FALSE
@@ -421,16 +432,20 @@
 		mouthshoot = FALSE
 		return
 
-/obj/item/weapon/gun/proc/toggle_scope(var/zoom_amount=2.0)
+/obj/item/weapon/gun/proc/toggle_scope(mob/living/user)
 	//looking through a scope limits your periphereal vision
 	//still, increase the view size by a tiny amount so that sniping isn't too restricted to NSEW
-	var/zoom_offset = round(world.view * zoom_amount)
-	var/view_size = round(world.view + zoom_amount)
+	if(!zoom_factor)
+		zoom = FALSE
+		return
+	var/zoom_offset = round(world.view * zoom_factor)
+	var/view_size = round(world.view + zoom_factor)
 
 	zoom(zoom_offset, view_size)
 	if(zoom)
 		if(recoil)
-			recoil = round(recoil*zoom_amount+1) //recoil is worse when looking through a scope
+			recoil = round(recoil*zoom_factor+1) //recoil is worse when looking through a scope
+	update_hud_actions()
 
 //make sure accuracy and recoil are reset regardless of how the item is unzoomed.
 /obj/item/weapon/gun/zoom()
@@ -442,11 +457,17 @@
 	..()
 	if(firemodes.len > 1)
 		var/datum/firemode/current_mode = firemodes[sel_mode]
-		user << SPAN_NOTICE("The fire selector is set to [current_mode.name].")
-	if(safety)
-		user << SPAN_NOTICE("The safety is on.")
-	else
-		user << SPAN_NOTICE("The safety is off.")
+		to_chat(user, SPAN_NOTICE("The fire selector is set to [current_mode.name]."))
+
+	if(!restrict_safety)
+		if(safety)
+			to_chat(user, SPAN_NOTICE("The safety is on."))
+		else
+			to_chat(user, SPAN_NOTICE("The safety is off."))
+
+	//Tell the user if they could fit a silencer on
+	if (silencer_type && !silenced)
+		to_chat(user, SPAN_NOTICE("You could attach a silencer to this."))
 
 /obj/item/weapon/gun/proc/switch_firemodes()
 	if(firemodes.len <= 1)
@@ -458,22 +479,41 @@
 	var/datum/firemode/new_mode = firemodes[sel_mode]
 	new_mode.apply_to(src)
 	new_mode.update()
+	update_hud_actions()
 	return new_mode
 
 /obj/item/weapon/gun/attack_self(mob/user)
-	var/datum/firemode/new_mode = switch_firemodes(user)
+	if(zoom)
+		toggle_scope(user)
+		return
+
+	toggle_firemode(user)
+
+/obj/item/weapon/gun/ui_action_click(mob/living/user, action_name)
+	switch(action_name)
+		if("fire mode")
+			toggle_firemode(user)
+		if("scope")
+			toggle_scope(user)
+		if("safety")
+			toggle_safety(user)
+
+/obj/item/weapon/gun/proc/toggle_firemode(mob/living/user)
+	var/datum/firemode/new_mode = switch_firemodes()
 	if(new_mode)
 		playsound(src.loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
-		user << SPAN_NOTICE("\The [src] is now set to [new_mode.name].")
+		to_chat(user, SPAN_NOTICE("\The [src] is now set to [new_mode.name]."))
 
-/obj/item/weapon/gun/proc/check_safety(mob/user)
-	if(!restrict_safety)
-		if(src == user.get_active_hand())//returns the thing in our active hand
-			safety = !safety
-			playsound(user, 'sound/weapons/selector.ogg', 50, 1)
-			user << SPAN_NOTICE("You toggle the safety [safety ? "on":"off"].")
-			//Update firemode when safeties are toggled
-			update_firemode()
+/obj/item/weapon/gun/proc/toggle_safety(mob/living/user)
+	if(restrict_safety || src != user.get_active_hand())
+		return
+
+	safety = !safety
+	playsound(user, 'sound/weapons/selector.ogg', 50, 1)
+	to_chat(user, SPAN_NOTICE("You toggle the safety [safety ? "on":"off"]."))
+	//Update firemode when safeties are toggled
+	update_firemode()
+	update_hud_actions()
 
 
 //Finds the current firemode and calls update on it. This is called from a few places:
@@ -489,10 +529,10 @@
 /obj/item/weapon/gun/AltClick(mob/user)
 	if(!restrict_safety)
 		if(user.incapacitated())
-			user << SPAN_WARNING("You can't do that right now!")
+			to_chat(user, SPAN_WARNING("You can't do that right now!"))
 			return
 
-		check_safety(user)
+		toggle_safety(user)
 
 
 //Updating firing modes at appropriate times
@@ -512,9 +552,58 @@
 	.=..()
 	update_firemode()
 
-/obj/item/weapon/gun/proc/toggle_safety()
+/obj/item/weapon/gun/proc/toggle_safety_verb()
 	set name = "Toggle gun's safety"
 	set category = "Object"
 	set src in view(1)
 
-	check_safety(usr)
+	toggle_safety(usr)
+
+
+
+/*
+	Gun Modding
+*/
+/obj/item/weapon/gun/proc/apply_silencer(var/obj/item/weapon/silencer/A, var/mob/user)
+	if (silenced)
+		to_chat(user, "\The [src] already has a silencer installed!")
+		return
+
+	if (istype(A, silencer_type))
+
+		if (user)
+			playsound(src, WORKSOUND_SCREW_DRIVING, 50, 1)
+			if (!do_after(user, 40, src))
+				return
+			if (!user.unEquip(A))
+				return
+			to_chat(user, SPAN_NOTICE("You install \the [A] in \the [src]"))
+
+		//Here's the code where we actually install it
+		A.forceMove(src)//Silencer goes inside us
+		silenced = A
+		damage_multiplier -= A.damage_mod //Silencers make the weapon slightly weaker
+		update_icon() //Guns that support silencers are responsible for setting their own icon appropriately
+		if (silenced.can_remove)
+			verbs += /obj/item/weapon/gun/proc/remove_silencer //Give us a verb to remove it
+
+
+/obj/item/weapon/gun/proc/remove_silencer(var/mob/user)
+	if (!silenced || !silenced.can_remove)
+		to_chat(user, "No silencer is installed on \the [src]")
+		verbs -= /obj/item/weapon/gun/proc/remove_silencer
+		return
+
+	if (user)
+		playsound(src, WORKSOUND_SCREW_DRIVING, 50, 1)
+		if (!do_after(user, 40, src))
+			return
+		//Drop it in their hands
+		user.put_in_hands(silenced)
+	.=silenced //Set return value to the silencer incase caller wants to do something with it
+	if (silenced.loc == src)
+		silenced.forceMove(loc) //Move it out if a user didn't take it
+
+	damage_multiplier += silenced.damage_mod
+	silenced = null
+	update_icon()

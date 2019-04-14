@@ -5,6 +5,7 @@
 	item_state = "xray"
 	fire_sound = 'sound/weapons/laser3.ogg'
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 3, TECH_MAGNET = 2, TECH_ILLEGAL = 2)
+	price_tag = 4000
 	projectile_type = /obj/item/projectile/beam/xray
 	charge_cost = 100
 	fire_delay = 1

@@ -13,6 +13,7 @@
 	//m_amt = 2000
 	w_class = ITEM_SIZE_NORMAL
 	attack_verb = list("struck", "hit", "bashed")
+	price_tag = 1000
 	var/obj/item/weapon/hatton_magazine/magazine = new()
 	var/fire_sound = 'sound/weapons/pulse.ogg'
 	var/fire_cooldown = 0
@@ -21,7 +22,8 @@
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 2)
 
 
-/obj/item/weapon/hatton/New()
+/obj/item/weapon/hatton/Initialize()
+	. = ..()
 	update_icon()
 
 /obj/item/weapon/hatton/update_icon()
@@ -54,7 +56,7 @@
 		user.put_in_hands(magazine)
 		magazine.update_icon()
 		magazine = null
-		user << SPAN_NOTICE("You pull the magazine out of \the [src]!")
+		to_chat(user, SPAN_NOTICE("You pull the magazine out of \the [src]!"))
 	update_icon()
 	return
 
@@ -83,21 +85,21 @@
 
 /obj/item/weapon/hatton/proc/Fire(atom/target as mob|obj|turf, mob/living/user as mob|obj, params)
 	if (world.time < last_fired + fire_cooldown)
-		user << SPAN_WARNING("[src] is still cooling down, wait for [((last_fired + fire_cooldown) - world.time)*0.1] seconds")
+		to_chat(user, SPAN_WARNING("[src] is still cooling down, wait for [((last_fired + fire_cooldown) - world.time)*0.1] seconds"))
 		click_empty()
 		return
 
 	if(isliving(user))
 		var/mob/living/M = user
 		if (HULK in M.mutations)
-			M << SPAN_WARNING("Your meaty finger is much too large for the trigger guard!")
+			to_chat(M, SPAN_WARNING("Your meaty finger is much too large for the trigger guard!"))
 			return
 	if (!Adjacent(loc, target))
-		user << SPAN_WARNING("\red You're too far away to breach that!")
+		to_chat(user, SPAN_WARNING("You're too far away to breach that!"))
 		return
 	/*if(ishuman(user))
 		if(user.dna && user.dna.mutantrace == "adamantine")
-			user << "\red Your metal fingers don't fit in the trigger guard!"
+			to_chat(user, "\red Your metal fingers don't fit in the trigger guard!")
 			return*/
 
 	add_fingerprint(user)
@@ -107,7 +109,7 @@
 	if(isliving(user))
 		var/mob/living/M = user
 		if ((CLUMSY in M.mutations) && prob(50))
-			M << SPAN_DANGER("[src] blows up in your face.")
+			to_chat(user, SPAN_DANGER("[src] blows up in your face."))
 			M.drop_item()
 			Fire(get_turf(M))
 			del(src)
@@ -150,8 +152,10 @@
 	//m_amt = 15
 	origin_tech = list(TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASMA=10, MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 2)
+	price_tag = 100
 
-/obj/item/weapon/hatton_magazine/New()
+/obj/item/weapon/hatton_magazine/Initialize()
+	. = ..()
 	update_icon()
 
 /obj/item/weapon/hatton_magazine/update_icon()

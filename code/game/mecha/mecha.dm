@@ -1414,44 +1414,42 @@ assassination method if you time it right*/
 
 /obj/mecha/proc/operation_allowed(mob/living/carbon/human/H)
 	for(var/ID in list(H.get_active_hand(), H.wear_id, H.belt))
-		if(src.check_access(ID,src.operation_req_access))
-			return 1
-	return 0
+		if(src.check_access(ID, operation_req_access))
+			return TRUE
+	return FALSE
 
 
 /obj/mecha/proc/internals_access_allowed(mob/living/carbon/human/H)
 	for(var/atom/ID in list(H.get_active_hand(), H.wear_id, H.belt))
-		if(src.check_access(ID,src.internals_req_access))
-			return 1
-	return 0
+		if(src.check_access(ID, internals_req_access))
+			return TRUE
+	return FALSE
 
 /obj/mecha/proc/dna_reset_allowed(mob/living/carbon/human/H)
 	for(var/atom/ID in list(H.get_active_hand(), H.wear_id, H.belt))
-		if(src.check_access(ID,src.dna_req_access))
-			return 1
-	return 0
+		if(src.check_access(ID, dna_req_access))
+			return TRUE
+	return FALSE
 
 
 /obj/mecha/check_access(obj/item/weapon/card/id/I, list/access_list)
 	if(!istype(access_list))
-		return 1
+		return TRUE
 	if(!access_list.len) //no requirements
-		return 1
-	if(istype(I, /obj/item/modular_computer))
-		var/obj/item/device/pda/pda = I
-		I = pda.id
-	if(!istype(I) || !I.access) //not ID or no access
-		return 0
+		return TRUE
+
+	var/list/user_access = I ? I.GetAccess() : list()
+
 	if(access_list==src.operation_req_access)
 		for(var/req in access_list)
-			if(!(req in I.access)) //doesn't have this access
-				return 0
+			if(!(req in user_access)) //doesn't have this access
+				return FALSE
 	else if(access_list == src.internals_req_access || access_list == src.dna_req_access)
 		for(var/req in access_list)
-			if(req in I.access)
-				return 1
-		return 0
-	return 1
+			if(req in user_access)
+				return TRUE
+		return FALSE
+	return TRUE
 
 
 ////////////////////////////////////

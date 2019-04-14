@@ -53,10 +53,10 @@
 	if(CR)
 		data["cur_item"] = list(
 			"name" = CR.name,
+			"icon" = getAtomCacheFilename(CR.result),
 			"ref"  = "\ref[CR]",
 			"desc" = CR.get_description(),
 		)
-
 	var/list/items = list()
 	for(var/datum/craft_recipe/recipe in SScraft.categories[curr_category])
 		items += list(list(

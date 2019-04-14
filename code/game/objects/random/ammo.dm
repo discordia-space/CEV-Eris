@@ -4,7 +4,10 @@
 
 /obj/random/ammo/item_to_spawn()
 	return pickweight(list(
-				/obj/random/ammo/shotgun = 4,
+				/obj/item/weapon/storage/box/shotgunammo/beanbags = 3,
+				/obj/item/weapon/storage/box/shotgunammo/slug = 2,
+				/obj/item/weapon/storage/box/shotgunammo/stunshells = 1,
+				/obj/item/weapon/storage/box/shotgunammo/buckshot = 3,
 				/obj/item/ammo_magazine/ammobox/c357 = 1,
 				/obj/item/ammo_magazine/ammobox/c65mm = 1,
 				/obj/item/ammo_magazine/ammobox/c65mm/rubber = 2,
@@ -14,6 +17,8 @@
 				/obj/item/ammo_magazine/ammobox/cl32/rubber = 2,
 				/obj/item/ammo_magazine/ammobox/c9mm = 1,
 				/obj/item/ammo_magazine/ammobox/c9mm/rubber = 2,
+				/obj/item/ammo_magazine/a10mm = 2,
+				/obj/item/ammo_magazine/a10mm/rubber = 2,
 				/obj/item/ammo_magazine/c45smg = 1,
 				/obj/item/ammo_magazine/c45smg/rubber = 1,
 				/obj/item/ammo_magazine/smg9mm = 1,
@@ -27,18 +32,33 @@
 				/obj/item/ammo_magazine/mc9mmt = 2,
 				/obj/item/ammo_magazine/mc9mmt/rubber = 6))
 
+
+/obj/random/ammo/low_chance
+	name = "low chance random ammunition"
+	icon_state = "ammo-green-low"
+	spawn_nothing_percentage = 60
+
+
+
+
+/obj/random/ammo/shotgun
+	name = "random shotgun ammunition"
+	icon_state = "ammo-orange"
+
 /obj/random/ammo/shotgun/item_to_spawn()
 	return pickweight(list(
 				/obj/item/weapon/storage/box/shotgunammo/beanbags = 4,
 				/obj/item/weapon/storage/box/shotgunammo/slug = 2,
-				/obj/item/weapon/storage/box/shotgunammo/stunshells = 0.5,
+				/obj/item/weapon/storage/box/shotgunammo/stunshells = 1,
 				/obj/item/weapon/storage/box/shotgunammo/buckshot = 3))
 
-
-/obj/random/ammo/low_chance
-	name = "low chance random random ammunition"
-	icon_state = "ammo-green-low"
+/obj/random/ammo/shotgun/low_chance
+	name = "low chance random shotgun ammunition"
+	icon_state = "ammo-orange-low"
 	spawn_nothing_percentage = 60
+
+
+
 
 /obj/random/ammo_ihs
 	name = "random ironhammer ammunition"
@@ -59,6 +79,9 @@
 	name = "low chance random random ironhammer ammunition"
 	icon_state = "ammo-blue-low"
 	spawn_nothing_percentage = 60
+
+
+
 
 /obj/random/ammo_lowcost
 	name = "random low tier ammunition"

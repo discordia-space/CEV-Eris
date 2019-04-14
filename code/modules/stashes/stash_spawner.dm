@@ -21,6 +21,10 @@
 		//We require a found location
 		return INITIALIZE_HINT_QDEL
 
+	if (!isStationLevel(src.z))
+		//We wont spawn that on derelicts, because it makes no sense to spawn those notes there
+		return INITIALIZE_HINT_QDEL
+
 	datum.spawn_stash()
 	datum.spawn_note(src)
 

@@ -4,7 +4,7 @@
 	icon_state = "hydrotray3"
 	density = 1
 	anchored = 1
-	flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER
 	volume = 100
 
 	var/mechanical = 1         // Set to 0 to stop it from drawing the alert lights.
@@ -133,7 +133,7 @@
 	..()
 	temp_chem_holder = new()
 	temp_chem_holder.create_reagents(10)
-	temp_chem_holder.flags |= OPENCONTAINER
+	temp_chem_holder.reagent_flags |= OPENCONTAINER
 	create_reagents(200)
 	if(mechanical)
 		connect()
@@ -459,7 +459,7 @@
 		if(ABORT_CHECK)
 			return
 
-	if (I.is_open_container())
+	if (I.is_drainable())
 		return 0
 
 	else if(istype(I, /obj/item/weapon/reagent_containers/syringe))

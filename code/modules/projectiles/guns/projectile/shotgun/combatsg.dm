@@ -4,6 +4,7 @@
 	icon_state = "cshotgun"
 	item_state = "cshotgun"
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
-	max_shells = 7 //match the ammo box capacity, also it can hold a round in the chamber anyways, for a total of 8.
+	max_shells = 7
 	ammo_type = /obj/item/ammo_casing/shotgun
 	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 12)
+	price_tag = 2750

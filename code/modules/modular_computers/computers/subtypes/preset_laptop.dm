@@ -36,13 +36,6 @@
 	install_default_programs_by_job(H)
 
 //Map presets
-
-/obj/item/modular_computer/laptop/preset/records
-	battery_type = /obj/item/weapon/cell/small
-
-/obj/item/modular_computer/laptop/preset/atmos
-	battery_type = /obj/item/weapon/cell/small
-
 /obj/item/modular_computer/laptop/preset/records/install_default_hardware()
 	..()
 	processor_unit = new/obj/item/weapon/computer_hardware/processor_unit/small(src)

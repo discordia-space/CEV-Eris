@@ -3,3 +3,7 @@
 [![discord](https://discordapp.com/api/guilds/255035529085583360/widget.png)](https://discord.gg/QfEg7K7)
 
 Корабль, который должен умирать.
+
+## CONTRIBUTING
+
+Please see [CONTRIBUTING.md](.github/CONTRIBUTING.md)
