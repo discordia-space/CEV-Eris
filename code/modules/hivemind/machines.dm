@@ -463,9 +463,9 @@
 
 	//here we upgrading our spawner and rise controled mob amount, based on EP
 	if(hive_mind_ai.evo_level > 3)
-		mob_amount = 4
+		mob_amount = 5
 	else if(hive_mind_ai.evo_level > 1)
-		mob_amount = 3
+		mob_amount = 4
 
 	var/mob/living/target = locate() in targets_in_range(world.view, in_hear_range = TRUE)
 	if(target && target.stat != DEAD && target.faction != HIVE_FACTION)
