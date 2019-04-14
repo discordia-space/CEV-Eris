@@ -4,7 +4,7 @@ see multiz/movement.dm for some info.
 /turf/proc/CanZPass(atom/A, direction)
 	if(z == A.z) //moving FROM this turf
 		return direction == UP //can't go below
-	elsew
+	else
 		return !density
 
 /turf/simulated/open/CanZPass(atom/A, direction)
