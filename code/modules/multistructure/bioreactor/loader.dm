@@ -5,27 +5,33 @@
 	name = "input"
 	icon = 'icons/obj/machines/bioreactor.dmi'
 	icon_state = "loader"
+	pixel_x = -8
 	var/dir_input = WEST
+	var/dir_output = NORTH
 
 
 /obj/machinery/multistructure/bioreactor_part/loader/Process()
-	if(!MS)
+	if(!MS || !MS_bioreactor.is_operational() || !MS_bioreactor.chamber_solution)
 		return
 	if(contents.len)
-		for(var/object in contents)
-			var/obj/machinery/multistructure/bioreactor_part/capsule/free_capsule = MS_bioreactor.get_unoccupied_capsule()
-			if(free_capsule)
-				free_capsule.take_obj(object)
+		for(var/obj/object in contents)
+			var/obj/machinery/multistructure/bioreactor_part/platform/empty_platform = MS_bioreactor.get_unoccupied_platform()
+			if(empty_platform)
+				object.forceMove(get_step(src, dir_output))
 	else
 		grab()
 
 
 /obj/machinery/multistructure/bioreactor_part/loader/proc/grab()
-	var/atom/movable/target = locate() in loc
-	if(target)
-		target.forceMove(src)
-	var/atom/movable/M = locate() in get_step(src, dir_input)
-	if(M)
-		if(isliving(M) || istype(M, /obj/item) && !M.anchored)
-			spawn(1)
-				M.forceMove(get_turf(src))
+	var/obj/item/target = locate() in get_step(src, dir_input)
+	if(target && !target.anchored && contents.len <= 10)
+		target.forceMove(loc)
+		spawn(1)
+			target.forceMove(src)
+
+
+/obj/machinery/multistructure/bioreactor_part/loader/attack_hand(mob/user)
+	if(MS_bioreactor.chamber_closed && MS_bioreactor.is_operational())
+		MS_bioreactor.pump_solution()
+	else
+		world << "nope"

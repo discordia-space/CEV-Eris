@@ -107,7 +107,6 @@
 	. = ..()
 	// Will attempt to create MS on spawn
 	check_MS()
-	return .
 
 
 /obj/machinery/multistructure/attackby(var/obj/item/I, var/mob/user)

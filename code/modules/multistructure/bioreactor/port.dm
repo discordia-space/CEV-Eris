@@ -8,6 +8,9 @@
 	density = FALSE
 
 
-/obj/machinery/multistructure/bioreactor_part/bioport/MouseDrop_T(obj/structure/bioreactor_connector/connector, mob/user as mob)
-	if(istype(connector))
-		connector.move_on()
+//TEMPORARY
+/obj/machinery/multistructure/bioreactor_part/bioport/attack_hand(mob/user)
+	if(MS_bioreactor.chamber_solution && MS_bioreactor.is_operational())
+		world << "nope"
+	else
+		MS_bioreactor.toggle_platform_door()

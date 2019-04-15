@@ -251,6 +251,9 @@
 			pipes_dirtiness--
 			if(pipes_dirtiness < 0)
 				pipes_dirtiness = 0
+			if(pipes_dirtiness >= 4)
+				spill_biomass(loc, cardinal)
+				toxin_attack(user, rand(20, 30))
 			to_chat(user, SPAN_NOTICE("You clean the pipes."))
 			if(!pipes_dirtiness)
 				working_cycles = 0
