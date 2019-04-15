@@ -181,11 +181,10 @@
 	if (check_shoegrip() && check_solid_ground())
 		update_floating(FALSE)
 		return TRUE
-	else if(check_dense_object())
-		update_floating(TRUE)
-		return -1
 
-	update_floating()
+	update_floating(TRUE)
+	if(check_dense_object())
+		return -1
 	return FALSE
 
 

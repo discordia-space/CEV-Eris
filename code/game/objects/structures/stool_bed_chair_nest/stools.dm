@@ -106,13 +106,17 @@ var/global/list/stool_cache = list() //haha stool
 	qdel(src)
 
 /obj/item/weapon/stool/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/tool/wrench))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-		dismantle()
-		qdel(src)
+	if(istype(W, /obj/item/weapon/tool))
+		if(W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+			dismantle()
+			qdel(src)
+		if(padding_material)
+			if(W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_CUTTING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+				to_chat(user, "You remove the padding from \the [src].")
+				remove_padding()
 	else if(istype(W,/obj/item/stack))
 		if(padding_material)
-			user << "\The [src] is already padded."
+			to_chat(user, "\The [src] is already padded.")
 			return
 		var/obj/item/stack/C = W
 		if(C.get_amount() < 1) // How??
@@ -127,21 +131,14 @@ var/global/list/stool_cache = list() //haha stool
 			if(M.material && (M.material.flags & MATERIAL_PADDING))
 				padding_type = "[M.material.name]"
 		if(!padding_type)
-			user << "You cannot pad \the [src] with that."
+			to_chat(user, "You cannot pad \the [src] with that.")
 			return
 		C.use(1)
 		if(!istype(src.loc, /turf))
 			user.drop_from_inventory(src)
 			src.loc = get_turf(src)
-		user << "You add padding to \the [src]."
+		to_chat(user, "You add padding to \the [src].")
 		add_padding(padding_type)
 		return
-	else if (istype(W, /obj/item/weapon/tool/wirecutters))
-		if(!padding_material)
-			user << "\The [src] has no padding to remove."
-			return
-		user << "You remove the padding from \the [src]."
-		playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
-		remove_padding()
 	else
 		..()

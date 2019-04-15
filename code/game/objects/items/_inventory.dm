@@ -26,7 +26,7 @@
 	var/obj/item/equipped = user.get_equipped_item(slot)
 	if(equipped && equipped.overslot)
 		if (!disable_warning)
-			to_chat(user, "You are unable to wear \the [src] as [overslot_contents] in the way.")
+			to_chat(user, "You are unable to wear \the [src] as [equipped] in the way.")
 		return FALSE
 	return TRUE
 
