@@ -9,6 +9,7 @@
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL
+	auto_eject = 1
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 8)
 	price_tag = 1800
 	unload_sound 	= 'sound/weapons/guns/interact/hpistol_magout.ogg'

@@ -12,6 +12,7 @@
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1)
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_CIVI_RIFLE
+	auto_eject = 1
 	magazine_type = /obj/item/ammo_magazine/c10x24
 	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 15)
 	price_tag = 4500

@@ -113,7 +113,26 @@
 		spawn(10 SECONDS)
 			var/tipsAndTricks/T = SStips.getRandomTip()
 			if(T)
-				to_chat(world, SStips.formatTip(T, "Random Tip: "))
+				var/typeText = ""
+				if(istype(T, /tipsAndTricks/gameplay))
+					typeText = "Gameplay"
+				else if(istype(T, /tipsAndTricks/mobs))
+					var/tipsAndTricks/mobs/MT = T
+					var/mob/M = pick(MT.mobs_list)
+					// I suppose this will be obsolete someday
+					if(M == /mob/living/carbon/human)
+						typeText = "Human"
+					else
+						typeText = initial(M.name)
+				else if(istype(T, /tipsAndTricks/roles))
+					var/tipsAndTricks/roles/RT = T
+					var/datum/antagonist/A = pick(RT.roles_list)
+					typeText = initial(A.role_text)
+				else if(istype(T, /tipsAndTricks/jobs))
+					var/tipsAndTricks/jobs/JT = T
+					var/datum/job/J = pick(JT.jobs_list)
+					typeText = initial(J.title)
+				to_chat(world, SStips.formatTip(T, "Random Tip \[[typeText]\]: "))
 	pregame = FALSE
 
 /datum/vote_choice/storyteller
