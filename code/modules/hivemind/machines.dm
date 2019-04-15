@@ -440,12 +440,12 @@
 /obj/machinery/hivemind_machine/mob_spawner
 	name = "assembler"
 	desc = "This cylindrical machine has lights around a small portal. The sound of tools comes from inside."
-	max_health = 120
+	max_health = 160
 	icon_state = "spawner"
-	cooldown_time = 10 SECONDS
+	cooldown_time = 30 SECONDS
 	spawn_weight  =	45
 	var/mob_to_spawn
-	var/mob_amount = 2
+	var/mob_amount = 3
 
 /obj/machinery/hivemind_machine/mob_spawner/Initialize()
 	..()
@@ -463,9 +463,9 @@
 
 	//here we upgrading our spawner and rise controled mob amount, based on EP
 	if(hive_mind_ai.evo_level > 3)
-		mob_amount = 4
+		mob_amount = 5
 	else if(hive_mind_ai.evo_level > 1)
-		mob_amount = 3
+		mob_amount = 4
 
 	var/mob/living/target = locate() in targets_in_range(world.view, in_hear_range = TRUE)
 	if(target && target.stat != DEAD && target.faction != HIVE_FACTION)
