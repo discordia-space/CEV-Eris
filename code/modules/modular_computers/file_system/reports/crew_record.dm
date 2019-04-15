@@ -192,7 +192,7 @@ FIELD_LIST_EDIT("Status", status, GLOB.physical_statuses, null, access_moebius)
 
 FIELD_SHORT("Species",species, null, access_change_ids)
 FIELD_SHORT("Email",email, null, access_change_ids)
-FIELD_NUM("Account",account, null, access_change_ids)
+FIELD_NUM("Account",account, access_hop, access_change_ids)
 
 // MEDICAL RECORDS
 FIELD_LIST("Blood Type", bloodtype, GLOB.blood_types, access_moebius, access_moebius)
