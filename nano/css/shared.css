@@ -403,21 +403,23 @@ div.notice {
 
 .displayBar {
     position: relative;
-    width: 236px;
+    width: 100%;
     height: 16px;
-    border: 1px solid #666666;
+    border: 1px solid #40628a;
     float: left;
     margin: 0 5px 0 0;
     overflow: hidden;
     background: #000000;
+	line-height: 17px;
+	padding: 1px;
+	border: 1px solid #40628a;
+	background: #272727;
 }
 
 .displayBarText, .displayBarVerticalText, .displayBarBeakerText{
     position: absolute;
-    top: -2px;
-    left: 5px;
-    width: 100%;
-    height: 100%;
+	top: 0;
+	right: 3px;
     color: #ffffff;
     font-weight: normal;
 }
