@@ -416,7 +416,7 @@
 
 /obj/structure/device/piano/attackby(var/obj/item/weapon/tool/tool, mob/user)
 	if (tool.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-		anchored = anchored ? FALSE : TRUE
+		anchored = !anchored
 		user.visible_message( \
 					"[user] [anchored ? "tightens" : "loosens"] \the [src]'s casters.", \
 					SPAN_NOTICE("You have [anchored ? "tightened" : "loosened"] \the [src]."), \

@@ -50,7 +50,7 @@
 			user << SPAN_WARNING("This device must be placed over an exposed cable.")
 			return
 		if(W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_ZERO, required_stat = STAT_MEC))
-			anchored = anchored ? FALSE : TRUE
+			anchored = !anchored
 			user.visible_message(SPAN_NOTICE("\The [user] [anchored ? "secures" : "unsecures"] \the [src]."))
 		return
 	return ..()
