@@ -233,7 +233,7 @@
 	else if(href_list["reset_design"])
 		var/choice = alert("Design Data Deletion", "Are you sure you want to delete this design? If you still have the prerequisites for the design, it'll reset to its base reliability. Data lost cannot be recovered.", "Continue", "Cancel")
 		if(choice == "Continue")
-			var/datum/design/research/D = temp_server.files.possible_design_ids[href_list["reset_design"]]
+			var/datum/design/D = temp_server.files.possible_design_ids[href_list["reset_design"]]
 			if(D in temp_server.files.known_designs)
 				temp_server.files.known_designs -= D
 				temp_server.files.RefreshResearch()

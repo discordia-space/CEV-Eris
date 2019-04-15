@@ -5,7 +5,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 */
 
 /obj/machinery/r_n_d/circuit_imprinter
-	name = "\improper Circuit Imprinter"
+	name = "circuit imprinter"
 	icon_state = "circuit_imprinter"
 	reagent_flags = OPENCONTAINER
 	var/list/datum/design/queue = list()
@@ -32,7 +32,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 		busy = FALSE
 		update_icon()
 		return
-	var/datum/design/research/D = queue[1]
+	var/datum/design/D = queue[1]
 	if(canBuild(D))
 		if(progress == 0)
 			print_pre(D)
@@ -189,7 +189,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	// Will be here untill someone decided to draw insert animation
 	//flick("protolathe_[]", src)
 
-/obj/machinery/r_n_d/circuit_imprinter/proc/addToQueue(var/datum/design/research/D)
+/obj/machinery/r_n_d/circuit_imprinter/proc/addToQueue(datum/design/D)
 	queue += D
 	return
 
@@ -231,7 +231,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	for(var/C in D.chemicals)
 		reagents.remove_reagent(C, D.chemicals[C])
 
-	D.Fabricate(get_turf(src), src)
+	D.Fabricate(get_turf(src), 1, src)
 
 /obj/machinery/r_n_d/circuit_imprinter/proc/print_pre(datum/design/D)
 	return

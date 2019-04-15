@@ -690,7 +690,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				dat += "Empty"
 			else
 				var/tmp = 1
-				for(var/datum/design/research/D in linked_lathe.queue)
+				for(var/datum/design/D in linked_lathe.queue)
 					if(tmp == 1)
 						if(linked_lathe.busy)
 							dat += "<B>1: [D.name]</B><BR>"
@@ -772,7 +772,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				dat += "Empty"
 			else
 				var/tmp = 1
-				for(var/datum/design/research/D in linked_imprinter.queue)
+				for(var/datum/design/D in linked_imprinter.queue)
 					if(tmp == 1)
 						dat += "<B>1: [D.name]</B><BR>"
 					else

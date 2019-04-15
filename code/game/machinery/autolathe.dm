@@ -3,11 +3,11 @@
 
 
 #define ERR_OK 0
-#define ERR_NOTFOUND 1
-#define ERR_NOMATERIAL 2
-#define ERR_NOREAGENT 3
-#define ERR_NOLICENSE 4
-#define ERR_PAUSED 5
+#define ERR_NOTFOUND "not found"
+#define ERR_NOMATERIAL "no material"
+#define ERR_NOREAGENT "no reagent"
+#define ERR_NOLICENSE "no license"
+#define ERR_PAUSED "paused"
 
 
 /obj/machinery/autolathe
@@ -54,53 +54,50 @@
 
 	var/have_disk = TRUE
 
-	var/message_nolicense = "Disk licenses have been exhausted."
-	var/message_notfound = "Design data not found."
-	var/message_nomaterial = "Not enough materials."
-	var/message_noreagent = "Not enough reagents."
-	var/message_paused = "***Construction Paused***"
+	var/list/error_messages = list(
+		ERR_NOLICENSE = "Disk licenses have been exhausted.",
+		ERR_NOTFOUND = "Design data not found.",
+		ERR_NOMATERIAL = "Not enough materials.",
+		ERR_NOREAGENT = "Not enough reagents.",
+		ERR_PAUSED = "**Construction Paused**"
+	)
 
 	var/tmp/datum/wires/autolathe/wires = null
 
 
-/obj/machinery/autolathe/New()
-	..()
+/obj/machinery/autolathe/Initialize()
+	. = ..()
 	wires = new(src)
 
 /obj/machinery/autolathe/Destroy()
 	if(wires)
-		qdel(wires)
-		wires = null
+		QDEL_NULL(wires)
 	return ..()
 
 
-/obj/machinery/autolathe/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = 0)
+/obj/machinery/autolathe/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 0)
 	var/list/data = list()
 
 	data["disk"] = disk_name()
-	data["paused"] = paused
 	data["uses"] = disk_uses()
-	data["error"] = error
 	data["have_disk"] = have_disk
+
+	data["error"] = error
+	data["paused"] = paused
+
+	data["mat_efficiency"] = mat_efficiency
+	data["speed"] = speed
 
 	var/list/L = list()
 	for(var/rtype in recipe_list())
-		var/datum/design/R = SSresearch.design_ids[rtype]
-		var/list/LE = list("name" = capitalize(R.name), "type" = "[rtype]", "time" = R.time)
-		LE["icon"] = getAtomCacheFilename(R.build_path)
+		var/datum/design/design = SSresearch.design_ids[rtype]
+
+		var/list/LE = design.ui_data.Copy()
+
+		LE["type"] = "[rtype]"
 
 		if(unfolded == "[rtype]")
 			LE["unfolded"] = TRUE
-
-			var/text = ""
-			for(var/m in R.materials)
-				text += "[m]: [SANITIZE_LATHE_COST(R.materials[m])]<br>"
-			LE["resources"] = text == "" ? "None" : text
-
-			text = ""
-			for(var/m in R.chemicals)
-				text += "[m]: [R.chemicals[m]]<br>"
-			LE["reagents"] = text == "" ? "None" : text
 
 		L.Add(list(LE))
 
@@ -119,6 +116,7 @@
 			data["reagents"] = L
 
 	data["mat_capacity"] = storage_capacity
+
 	var/list/M = list()
 	for(var/mtype in stored_material)
 		if(stored_material[mtype] <= 0)
@@ -134,30 +132,11 @@
 
 	data["materials"] = M
 
-	data["current"] = null
-	data["progress"] = progress
+
 	if(current)
-		var/datum/design/R = SSresearch.design_ids[current]
-		if(R)
-			data["current"] = R.name
-			data["current_time"] = R.time
-			data["icon"] = getAtomCacheFilename(R.build_path)
-
-		var/list/RS = list()
-		for(var/mat in R.materials)
-			RS.Add(list(list("name" = mat, "req" = SANITIZE_LATHE_COST(R.materials[mat]))))
-
-		data["req_materials"] = RS
-
-		RS = list()
-		for(var/reg in R.chemicals)
-			var/datum/reagent/RG = chemical_reagents_list[reg]
-			if(RG)
-				RS.Add(list(list("name" = RG.name, "req" = R.chemicals[reg])))
-			else
-				RS.Add(list(list("name" = "UNKNOWN", "req" = R.chemicals[reg])))
-
-		data["req_reagents"] = RS
+		var/datum/design/design = SSresearch.design_ids[current]
+		data["current"] = design.ui_data.Copy()
+		data["progress"] = progress
 
 	var/list/Q = list()
 	var/list/qmats = stored_material.Copy()
@@ -166,24 +145,30 @@
 		if(!queue[i])
 			continue
 
-		var/datum/design/R = SSresearch.design_ids[queue[i]]
-		if(!R)
+		var/datum/design/design = SSresearch.design_ids[queue[i]]
+		if(!design)
 			Q.Add(list(list("name" = "ERROR", "ind" = i, "error" = 2)))
+			continue
 
-		var/list/QR = list("name" = R.name, "ind" = i, "icon" = getAtomCacheFilename(R.build_path))
+		design.ui_data.Copy()
+
+		var/list/QR = design.ui_data.Copy()
+
+		QR["ind"] = i
+
 		QR["error"] = 0
 		if(disk_uses() >= 0 && disk_uses() <= i)
 			QR["error"] = 1
 
-		for(var/rmat in R.materials)
+		for(var/rmat in design.materials)
 			if(!(rmat in qmats))
 				qmats[rmat] = 0
 
-			qmats[rmat] -= R.materials[rmat]
+			qmats[rmat] -= design.materials[rmat]
 			if(qmats[rmat] < 0)
 				QR["error"] = 1
 
-		if(cannot_print(queue[i]) != ERR_OK)
+		if(can_print(design) != ERR_OK)
 			QR["error"] = 2
 
 		Q.Add(list(QR))
@@ -510,29 +495,28 @@
 	flick("autolathe_o", src)
 
 
-/obj/machinery/autolathe/proc/cannot_print(var/recipe)
+/obj/machinery/autolathe/proc/can_print(datum/design/design)
 	if(progress <= 0)
-		var/datum/design/R = SSresearch.design_ids[recipe]
-		if(!R)
+		if(!design)
 			return ERR_NOTFOUND
 
 		if(disk_uses() == 0 )
 			return ERR_NOLICENSE
 
-		for(var/rmat in R.materials)
+		for(var/rmat in design.materials)
 			if(!(rmat in stored_material))
 				return ERR_NOMATERIAL
 
-			if(stored_material[rmat] < SANITIZE_LATHE_COST(R.materials[rmat]))
+			if(stored_material[rmat] < SANITIZE_LATHE_COST(design.materials[rmat]))
 				return ERR_NOMATERIAL
 
-		if(R.chemicals.len)
+		if(design.chemicals.len)
 			if(!container || !container.is_drawable())
 				return ERR_NOREAGENT
-			else
-				for(var/rgn in R.chemicals)
-					if(!container.reagents.has_reagent(rgn, R.chemicals[rgn]))
-						return ERR_NOREAGENT
+
+			for(var/rgn in design.chemicals)
+				if(!container.reagents.has_reagent(rgn, design.chemicals[rgn]))
+					return ERR_NOREAGENT
 
 
 	if (paused)
@@ -552,23 +536,16 @@
 	if(anim < world.time)
 		if(current)
 			var/datum/design/design = SSresearch.design_ids[current]
-			var/err = cannot_print(current)
-			if(err == ERR_NOLICENSE)
-				error = message_nolicense
-			else if(err == ERR_NOMATERIAL)
-				error = message_nomaterial
-			else if(err == ERR_NOREAGENT)
-				error = message_noreagent
-			else if(err == ERR_NOTFOUND)
-				error = message_notfound
-			else if(err == ERR_PAUSED)
-				error = message_paused
-			else if(err == ERR_OK)
+			var/err = can_print(design)
+
+			if(err == ERR_OK)
 				error = null
 
 				working = TRUE
 				progress += speed
 
+			else if(err in error_messages)
+				error = error_messages[err]
 			else
 				error = "Unknown error."
 
@@ -641,7 +618,6 @@
 	if(!(material in stored_material))
 		return
 
-
 	if (!amount)
 		return
 
@@ -681,7 +657,6 @@
 
 
 /obj/machinery/autolathe/dismantle()
-
 	for(var/mat in stored_material)
 		eject(mat, stored_material[mat])
 
@@ -701,7 +676,7 @@
 	storage_capacity = round(initial(storage_capacity)*(mb_rating/3))
 
 	speed = man_rating*3
-	mat_efficiency = 1.1 - man_rating * 0.1// Normally, price is 1.25 the amount of material, so this shouldn't go higher than 0.8. Maximum rating of parts is 3
+	mat_efficiency = 1.1 - man_rating * 0.1
 
 
 
@@ -736,7 +711,7 @@
 
 /obj/machinery/autolathe/proc/fabricate_design(datum/design/design)
 	consume_materials(design)
-	design.Fabricate(get_turf(src), src)
+	design.Fabricate(get_turf(src), mat_efficiency, src)
 
 	working = FALSE
 	current = null
@@ -750,18 +725,18 @@
 
 		//If we are, then we'll go through the queue and remove any recipes we find which came from this disk
 		for(var/rtype in queue)
-			if (locate(rtype) in recipe_list())
+			if(rtype in recipe_list())
 				queue -= rtype
 
 		//Check the current too
-		if (locate(current) in recipe_list())
+		if(current in recipe_list())
 			//And abort it if it came from this disk
 			abort()
 
 
 	//Digital Rights have been successfully managed. The corporations win again.
 	//Now they will graciously allow you to eject the disk
-	disk.forceMove(src.loc)
+	disk.forceMove(get_turf(src))
 
 	if(isliving(usr))
 		var/mob/living/L = usr

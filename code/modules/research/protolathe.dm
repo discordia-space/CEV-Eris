@@ -1,5 +1,5 @@
 /obj/machinery/r_n_d/protolathe
-	name = "\improper Protolathe"
+	name = "protolathe"
 	icon_state = "protolathe"
 	reagent_flags = OPENCONTAINER
 	circuit = /obj/item/weapon/circuitboard/protolathe
@@ -10,7 +10,7 @@
 
 	var/max_material_storage = 120
 
-	var/list/datum/design/research/queue = list()
+	var/list/datum/design/queue = list()
 	var/progress = 0
 
 	var/speed = 1
@@ -28,7 +28,7 @@
 		busy = FALSE
 		update_icon()
 		return
-	var/datum/design/research/D = queue[1]
+	var/datum/design/D = queue[1]
 	if(canBuild(D))
 		if(progress == 0)
 			print_pre(D)
@@ -224,8 +224,7 @@
 	for(var/C in D.chemicals)
 		reagents.remove_reagent(C, D.chemicals[C])
 
-	if(D.build_path)
-		D.Fabricate(get_turf(src), src)
+	D.Fabricate(get_turf(src), 1, src)
 
 /obj/machinery/r_n_d/protolathe/proc/print_pre(datum/design/D)
 	return

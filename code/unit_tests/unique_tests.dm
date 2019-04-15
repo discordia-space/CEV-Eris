@@ -6,7 +6,7 @@
 	var/list/build_paths = list()
 
 	for(var/D in SSresearch.all_designs)
-		var/datum/design/research/design = D
+		var/datum/design/design = D
 		group_by(ids, design, design.id)
 		group_by(build_paths, design, design.build_path)
 
@@ -38,7 +38,7 @@
 	return 1
 
 
-/datum/unit_test/proc/group_by(var/list/entries, var/datum/design/research/entry, var/value)
+/datum/unit_test/proc/group_by(var/list/entries, var/datum/design/entry, var/value)
 	var/designs = entries[value]
 	if(!designs)
 		designs = list()

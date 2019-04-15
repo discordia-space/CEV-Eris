@@ -187,13 +187,16 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 
 //DEFINITIONS FOR ASSET DATUMS START HERE.
 /datum/asset/simple/design_icons/register()
-	for(var/type in subtypesof(/datum/design))
-		var/datum/design/D = type
-		if(initial(D.build_path))
-			var/filename = sanitizeFileName("[initial(D.build_path)].png")
-			var/icon/I = getFlatTypeIcon(initial(D.build_path))
-			register_asset(filename, I)
-			assets[filename] = I
+	for(var/D in SSresearch.all_designs)
+		var/datum/design/design = D
+
+		var/filename = sanitizeFileName("[design.build_path].png")
+		var/icon/I = getFlatTypeIcon(design.build_path)
+		register_asset(filename, I)
+		assets[filename] = I
+
+		design.ui_data["icon"] = filename
+
 
 /datum/asset/simple/craft/register()
 	for(var/name in SScraft.categories)

@@ -218,12 +218,8 @@
 		return
 	for(var/M in D.materials)
 		materials[M] = max(0, round(materials[M] - D.materials[M] * mat_efficiency, 0.01))
-	if(D.build_path)
-		var/obj/new_item = D.Fabricate(get_turf(src), src)
-		if(mat_efficiency != 1)
-			if(new_item.matter && new_item.matter.len > 0)
-				for(var/i in new_item.matter)
-					new_item.matter[i] = round(new_item.matter[i] * mat_efficiency, 0.01)
+
+	D.Fabricate(get_turf(src), mat_efficiency, src)
 
 	remove_from_queue(1)
 	print_post(D)

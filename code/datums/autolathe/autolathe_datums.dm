@@ -13,11 +13,13 @@
 	var/category = null 			//Primarily used for Mech Fabricators, but can be used for anything.
 	var/time = 0					//How many ticks it requires to build. If 0, calculated from the amount of materials used.
 
+	var/list/ui_data = null			//Pre-generated UI data, to be sent into NanoUI/TGUI interfaces.
+
 
 //These procs are used in subtypes for assigning names and descriptions dynamically
 /datum/design/proc/AssembleDesignInfo()
 	if(build_path)
-		var/atom/temp_atom = Fabricate(null, null)
+		var/atom/temp_atom = Fabricate(null, 1, null)
 		AssembleDesignName(temp_atom)
 		AssembleDesignMaterials(temp_atom)
 		qdel(temp_atom)
@@ -25,6 +27,7 @@
 	AssembleDesignTime()
 	AssembleDesignDesc()
 	AssembleDesignId()
+	AssembleDesignUIData()
 
 //Get name from build path if possible
 /datum/design/proc/AssembleDesignName(atom/temp_atom)
@@ -86,8 +89,8 @@
 	for(var/c in chemicals)
 		total_reagents += chemicals[c]
 
-	time = total_materials * 2 + total_reagents // 5
-	time = max(time, 10)
+	time = (total_materials * 2) + (total_reagents / 5)
+	time = max(round(time), 10)
 
 // By default, ID is just design's type.
 /datum/design/proc/AssembleDesignId()
@@ -95,14 +98,46 @@
 		return
 	id = type
 
+/datum/design/proc/AssembleDesignUIData()
+	ui_data = list("id" = "[id]", "name" = name, "desc" = desc, "time" = time, "category" = category)
+
+	// ui_data["icon"] is set in asset code.
+
+	if(length(materials))
+		var/list/RS = list()
+		for(var/mat in materials)
+			RS.Add(list(list("name" = mat, "req" = materials[mat])))
+		ui_data["materials"] = RS
+
+	if(length(chemicals))
+		var/list/RS = list()
+
+		for(var/reagent in chemicals)
+			var/datum/reagent/RG = chemical_reagents_list[reagent]
+			var/chemical_name = "UNKNOWN"
+			if(RG)
+				chemical_name = RG.name
+
+			RS.Add(list(list("id" = reagent, "name" = chemical_name, "req" = chemicals[reagent])))
+
+		ui_data["chemicals"] = RS
+
+
 //Returns a new instance of the item for this design
 //This is to allow additional initialization to be performed, including possibly additional contructor arguments.
-/datum/design/proc/Fabricate(newloc, fabricator)
+/datum/design/proc/Fabricate(newloc, mat_efficiency, fabricator)
 	if(!build_path)
 		return
 
 	var/atom/A = new build_path(newloc)
 	A.Created()
+
+	if(mat_efficiency != 1 && isobj(A))
+		var/obj/O = A
+		if(length(O.matter))
+			for(var/i in O.matter)
+				O.matter[i] = round(O.matter[i] * mat_efficiency, 0.01)
+
 	return A
 
 /datum/design/autolathe
