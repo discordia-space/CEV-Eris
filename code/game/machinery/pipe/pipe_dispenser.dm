@@ -100,27 +100,27 @@
 /obj/machinery/pipedispenser/attackby(var/obj/item/I, var/mob/user)
 	src.add_fingerprint(usr)
 	if (istype(I, /obj/item/pipe) || istype(I, /obj/item/pipe_meter))
-		usr << SPAN_NOTICE("You put [I] back to [src].")
+		to_chat(usr, SPAN_NOTICE("You put [I] back to [src]."))
 		user.drop_item()
 		qdel(I)
 		return
+	var/obj/item/weapon/tool/tool = I
+	if (!tool)
+		return ..()
+	if (!tool.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+		return ..()
+	anchored = !src.anchored
+	anchored ? (src.stat &= ~MAINT) : (src.stat |= MAINT)
+	if(anchored)
+		power_change()
 	else
-		var/obj/item/weapon/tool/T = I
-		if (T.has_quality(QUALITY_BOLT_TURNING))
-			if(T.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-				anchored = !src.anchored
-				anchored ? (src.stat &= ~MAINT) : (src.stat |= MAINT)
-				if(anchored)
-					power_change()
-				else
-					if (usr.machine==src)
-						usr << browse(null, "window=pipedispenser")
-				user.visible_message( \
-						SPAN_NOTICE("\The [user] [anchored ? "":"un"]fastens \the [src]."), \
-						SPAN_NOTICE("You have [anchored ? "":"un"]fastened \the [src]."), \
-						"You hear ratchet.")
-		else
-			return ..()
+		if (usr.machine==src)
+			usr << browse(null, "window=pipedispenser")
+	user.visible_message( \
+		SPAN_NOTICE("\The [user] [anchored ? "":"un"]fastens \the [src]."), \
+		SPAN_NOTICE("You have [anchored ? "":"un"]fastened \the [src]."), \
+		"You hear ratchet.")
+
 
 /obj/machinery/pipedispenser/disposal
 	name = "Disposal Pipe Dispenser"

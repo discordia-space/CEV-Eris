@@ -258,7 +258,7 @@
 				internalsHud = breather.HUDneed["internal"]
 			return TRUE
 
-/obj/structure/medical_stand/proc/can_apply_to_target(var/mob/living/carbon/human/target, mob/user as mob)
+/obj/structure/medical_stand/proc/can_apply_to_target(var/mob/living/carbon/human/target, var/mob/user)
 	if(!user)
 		user = target
 	// Check target validity
@@ -296,27 +296,26 @@
 	return 1
 
 /obj/structure/medical_stand/attackby(var/obj/item/weapon/W, var/mob/user)
-	if(istype (W, /obj/item/weapon/tool) && W.has_quality(QUALITY_BOLT_TURNING))
+	if(istype (W, /obj/item/weapon/tool))
 		if (valve_opened)
 			to_chat(user, SPAN_WARNING("Close the valve first."))
 			return
-		if(W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-			if (tank)
-				if (!is_loosen)
-					is_loosen = TRUE
-				else
-					is_loosen = FALSE
-					if (valve_opened)
-						START_PROCESSING(SSobj,src)
-				user.visible_message(
-					SPAN_NOTICE("The [user] [is_loosen == TRUE ? "loosen" : "tighten"] \
-					the nut holding [tank] in place."),
-					SPAN_NOTICE("You [is_loosen == TRUE ? "loosen" : "tighten"] \
-					the nut holding [tank] in place."))
+		if (tank)
+			if(!W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				return
+			if (!is_loosen)
+				is_loosen = TRUE
 			else
-				to_chat(user, SPAN_WARNING("There is no tank in \the [src]."))
-				return
+				is_loosen = FALSE
+				if (valve_opened)
+					START_PROCESSING(SSobj,src)
+			user.visible_message(
+			SPAN_NOTICE("The [user] [is_loosen == TRUE ? "loosen" : "tighten"] the nut holding [tank] in place."),
+			SPAN_NOTICE("You [is_loosen == TRUE ? "loosen" : "tighten"] the nut holding [tank] in place."))
+
+		else
+			to_chat(user, SPAN_WARNING("There is no tank in \the [src]."))
+
 	else if(istype(W, /obj/item/weapon/tank))
 		if(tank)
 			to_chat(user, SPAN_WARNING("\The [src] already has a tank installed!"))

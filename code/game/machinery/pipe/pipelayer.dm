@@ -42,41 +42,41 @@
 	var/tool_type = I.get_tool_type(user, list(QUALITY_SCREW_DRIVING, QUALITY_PRYING, QUALITY_BOLT_TURNING), src)
 	switch(tool_type)
 		if(QUALITY_SCREW_DRIVING)
-			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-				if(metal)
-					var/m = round(input(usr,"Please specify the amount of metal to remove","Remove metal",min(round(metal),50)) as num, 1)
-					m = min(m, 50)
-					m = min(m, round(metal))
-					m = round(m)
-					if(m)
-						use_metal(m)
-						var/obj/item/stack/material/steel/MM = new (get_turf(src))
-						MM.amount = m
-						user.visible_message(
-							SPAN_NOTICE("[user] removes [m] sheet\s of metal from the \the [src]."),
-							SPAN_NOTICE("You remove [m] sheet\s of metal from \the [src]"))
-				else
-					to_chat(user, "\The [src] is empty.")
+			if(!I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				return
+			if(metal)
+				var/m = round(input(usr,"Please specify the amount of metal to remove","Remove metal",min(round(metal),50)) as num, 1)
+				m = min(m, 50)
+				m = min(m, round(metal))
+				m = round(m)
+				if(m)
+					use_metal(m)
+					var/obj/item/stack/material/steel/MM = new (get_turf(src))
+					MM.amount = m
+					user.visible_message(
+						SPAN_NOTICE("[user] removes [m] sheet\s of metal from the \the [src]."),
+						SPAN_NOTICE("You remove [m] sheet\s of metal from \the [src]"))
+			else
+				to_chat(user, "\The [src] is empty.")
 			return
 
 		if(QUALITY_PRYING)
-			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-				a_dis=!a_dis
-				user.visible_message(
-					SPAN_NOTICE("[user] has [!a_dis?"de":""]activated auto-dismantling."),
-					SPAN_NOTICE("You [!a_dis?"de":""]activate auto-dismantling."))
+			if(!I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				return
+			a_dis=!a_dis
+			user.visible_message(
+				SPAN_NOTICE("[user] has [!a_dis?"de":""]activated auto-dismantling."),
+				SPAN_NOTICE("You [!a_dis?"de":""]activate auto-dismantling."))
 			return
 
 		if(QUALITY_BOLT_TURNING)
-			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-				P_type_t = input("Choose pipe type", "Pipe type") as null|anything in Pipes
-				P_type = Pipes[P_type_t]
-				user.visible_message(
-					SPAN_NOTICE("[user] has set \the [src] to manufacture [P_type_t]."),
-					SPAN_NOTICE("You set \the [src] to manufacture [P_type_t]."))
+			if(!I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				return
+			P_type_t = input("Choose pipe type", "Pipe type") as null|anything in Pipes
+			P_type = Pipes[P_type_t]
+			user.visible_message(
+				SPAN_NOTICE("[user] has set \the [src] to manufacture [P_type_t]."),
+				SPAN_NOTICE("You set \the [src] to manufacture [P_type_t]."))
 			return
 
 		if(ABORT_CHECK)

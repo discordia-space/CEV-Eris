@@ -86,13 +86,10 @@
 			overlays += image('icons/obj/pipeturbine.dmi', "hi-turb")
 
 	attackby(obj/item/weapon/tool/W as obj, mob/user as mob)
-		if (!W.has_quality(QUALITY_BOLT_TURNING))
+		if(!W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_ZERO, required_stat = STAT_MEC))
 			return ..()
-		if (!W.check_tool_effects(WORKTIME_NEAR_INSTANT))
-			return ..()
-		W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_ZERO, required_stat = STAT_MEC)
 		anchored = !anchored
-		user << "<span class='notice'>You [anchored ? "secure" : "unsecure"] the bolts holding \the [src] to the floor.</span>"
+		to_chat(user, SPAN_NOTICE("You [anchored ? "secure" : "unsecure"] the bolts holding \the [src] to the floor."))
 
 		if(anchored)
 			if(dir & (NORTH|SOUTH))
@@ -256,14 +253,11 @@
 
 
 	attackby(obj/item/weapon/tool/W as obj, mob/user as mob)
-		if (!W.has_quality(QUALITY_BOLT_TURNING))
+		if (!W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_ZERO, required_stat = STAT_MEC))
 			return ..()
-		if (!W.check_tool_effects(WORKTIME_NEAR_INSTANT))
-			return ..()
-		W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_ZERO, required_stat = STAT_MEC)
 		anchored = !anchored
 		turbine = null
-		user << "<span class='notice'>You [anchored ? "secure" : "unsecure"] the bolts holding \the [src] to the floor.</span>"
+		to_chat(user, SPAN_NOTICE("You [anchored ? "secure" : "unsecure"] the bolts holding \the [src] to the floor."))
 		updateConnection()
 
 	verb/rotate_clock()

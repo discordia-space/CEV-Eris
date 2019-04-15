@@ -66,18 +66,18 @@
 
 		return 1
 
-	attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+	attackby(var/obj/item/weapon/tool/tool, var/mob/user)
 		var/datum/gas_mixture/int_air = return_air()
 		var/datum/gas_mixture/env_air = loc.return_air()
 		if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
-			user << SPAN_WARNING("You cannot unwrench \the [src], it is too exerted due to internal pressure.")
+			to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], it is too exerted due to internal pressure."))
 			add_fingerprint(user)
 			return 1
 		var/turf/T = src.loc
 		if (level==1 && isturf(T) && !T.is_plating())
-			user << SPAN_WARNING("You must remove the plating first.")
+			to_chat(user, SPAN_WARNING("You must remove the plating first."))
 			return 1
-		if (!W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_ZERO, required_stat = STAT_MEC))
+		if (!tool.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_ZERO, required_stat = STAT_MEC))
 			return ..()
 		user.visible_message( \
 			SPAN_NOTICE("\The [user] unfastens \the [src]."), \

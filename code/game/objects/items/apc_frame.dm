@@ -7,12 +7,12 @@
 	icon_state = "frame"
 	flags = CONDUCT
 
-/obj/item/frame/apc/attackby(obj/item/weapon/tool/tool as obj, mob/user as mob)
+/obj/item/frame/apc/attackby(obj/item/weapon/tool/tool, mob/user)
 	..()
-	if (tool.has_quality(QUALITY_BOLT_TURNING))
-		if (tool.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-			new /obj/item/stack/material/steel( get_turf(src.loc), 2 )
-			qdel(src)
+	if (!tool.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+		return
+	new /obj/item/stack/material/steel( get_turf(src.loc), 2 )
+	qdel(src)
 
 /obj/item/frame/apc/try_build(turf/on_wall)
 	if (get_dist(on_wall,usr)>1)

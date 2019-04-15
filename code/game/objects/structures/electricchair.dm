@@ -12,13 +12,14 @@
 	return
 
 /obj/structure/bed/chair/e_chair/attackby(var/obj/item/weapon/tool/tool, var/mob/user)
-	if(tool.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-		var/obj/structure/bed/chair/C = new /obj/structure/bed/chair(loc)
-		C.set_dir(dir)
-		part.loc = loc
-		part.master = null
-		part = null
-		qdel(src)
+	if(!tool.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+		return
+	var/obj/structure/bed/chair/C = new /obj/structure/bed/chair(loc)
+	C.set_dir(dir)
+	part.loc = loc
+	part.master = null
+	part = null
+	qdel(src)
 
 /obj/structure/bed/chair/e_chair/verb/toggle()
 	set name = "Toggle Electric Chair"
@@ -31,7 +32,7 @@
 	else
 		on = 1
 		icon_state = "echair1"
-	usr << "<span class='notice'>You switch [on ? "on" : "off"] [src].</span>"
+	to_chat(usr, SPAN_NOTICE("You switch [on ? "on" : "off"] [src]."))
 	return
 
 /obj/structure/bed/chair/e_chair/rotate()
@@ -63,7 +64,7 @@
 	s.start()
 	if(buckled_mob)
 		buckled_mob.burn_skin(85)
-		buckled_mob << SPAN_DANGER("You feel a deep shock course through your body!")
+		to_chat(buckled_mob, SPAN_DANGER("You feel a deep shock course through your body!"))
 		sleep(1)
 		buckled_mob.burn_skin(85)
 		buckled_mob.Stun(600)
