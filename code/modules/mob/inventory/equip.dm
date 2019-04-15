@@ -32,7 +32,7 @@
 //	proc will return TRUE if we succeded to equip item and FALSE otherwise
 //	put_in_storage - if TRUE will put replaced item into available storage or hands or drop if 'drop_if_unable_to_store' flag is TRUE, otherwise will delete it
 //	drop_if_unable_to_store - if TRUE will drop item on turf if failed to store it, otherwise will delete it
-//	skip_covering_check - if TRUE will ignore slot inaccessibleness for example helmet will prevent equip cause it covering slot 
+//	skip_covering_check - if TRUE will ignore slot inaccessibleness for example helmet will prevent equip cause it covering slot
 //	del_if_failed_to_equip - if TRUE will delete the item we attempting to replace with
 /mob/proc/replace_in_slot(obj/item/Item, slot, put_in_storage = FALSE, drop_if_unable_to_store = FALSE, skip_covering_check = FALSE, del_if_failed_to_equip = FALSE)
 	var/failed = FALSE
@@ -43,11 +43,11 @@
 			if(put_in_storage)	//trying to store item, if failed we delete it
 				var/obj/item/weapon/storage/S = equip_to_storage(old_item)
 				if(S)
-					src << SPAN_NOTICE("Storing your \the [old_item] into \the [S]!")
+					to_chat(src, SPAN_NOTICE("Storing your \the [old_item] into \the [S]!"))
 				else if (equip_to_slot_if_possible(old_item, slot_l_hand, disable_warning = TRUE))
-					src << SPAN_NOTICE("Putting your \the [old_item] into your left hand!")
+					to_chat(src, SPAN_NOTICE("Putting your \the [old_item] into your left hand!"))
 				else if (equip_to_slot_if_possible(old_item, slot_r_hand, disable_warning = TRUE))
-					src << SPAN_NOTICE("Putting your \the [old_item] into your right hand!")
+					to_chat(src, SPAN_NOTICE("Putting your \the [old_item] into your right hand!"))
 				else if (drop_if_unable_to_store)
 					var/turf/T = get_turf(src)
 					Item.forceMove(T)

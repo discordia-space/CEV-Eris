@@ -3,6 +3,7 @@
 	name = "ammunition box"
 	desc = "Gun ammunition stored in a shiny new box. You can see caliber information on the label."
 	mag_type = SPEEDLOADER	//To prevent load in magazine filled guns
+	icon = 'icons/obj/ammo.dmi'
 	multiple_sprites = 1
 	reload_delay = 30
 	ammo_mag = "box"

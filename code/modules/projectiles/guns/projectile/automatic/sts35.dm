@@ -1,14 +1,15 @@
 /obj/item/weapon/gun/projectile/automatic/sts35
 	name = "STS-35"
 	desc = "The rugged STS-35 is a durable automatic weapon, popular on frontier worlds. Uses 7.62mm rounds. This one is unmarked."
-	icon_state = "arifle"
-	item_state = null
+	icon_state = "sts"
+	item_state = "sts"
 	w_class = ITEM_SIZE_LARGE
 	force = 10
 	caliber = "a762"
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 4)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
+	mag_well = MAG_WELL_CIVI_RIFLE
 	magazine_type = /obj/item/ammo_magazine/c762
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)
 	price_tag = 3500
@@ -26,6 +27,6 @@
 
 /obj/item/weapon/gun/projectile/automatic/sts35/update_icon(var/ignore_inhands)
 	..()
-	icon_state = (ammo_magazine)? "arifle" : "arifle-empty"
+	icon_state = (ammo_magazine)? "sts" : "sts-empty"
 	if(!ignore_inhands)
 		update_wear_icon()

@@ -125,6 +125,14 @@
 	name = "light office chair"
 	result = /obj/structure/bed/chair/office/light
 
+// Wheelchairs
+/datum/craft_recipe/furniture/wheelchair
+	name = "wheelchair"
+	result = /obj/structure/bed/chair/wheelchair
+	steps = list(
+		list(CRAFT_MATERIAL, 8, MATERIAL_STEEL),
+	)
+
 // Comfy chairs
 /datum/craft_recipe/furniture/comfy_chair
 	name = "beige comfy chair"

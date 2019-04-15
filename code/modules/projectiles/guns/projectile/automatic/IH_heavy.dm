@@ -5,12 +5,14 @@
 	icon_state = "IH_heavyrifle"
 	item_state = "IH_heavyrifle"
 	w_class = ITEM_SIZE_HUGE
-	force = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_PAINFUL
 	caliber = "a762"
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/ak47
+	mag_well = MAG_WELL_IH
+	magazine_type = /obj/item/ammo_magazine/ih762
+	tac_reloads = FALSE
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
 	price_tag = 4000
 	fire_sound = 'sound/weapons/guns/fire/ltrifle_fire.ogg'

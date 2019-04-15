@@ -1,18 +1,3 @@
-/obj/item/weapon/gun/projectile/automatic/lmg/l6_saw
-	name = "L6 SAW"
-	desc = "A rather traditionally made L6 SAW with a pleasantly lacquered wooden pistol grip. This one is unmarked."
-	icon_base = "l6"
-	icon_state = "l6closed-empty"
-	item_state = "l6closedmag"
-
-
-/obj/item/weapon/gun/projectile/automatic/lmg/pk
-	name = "Pulemyot Kalashnikova"
-	desc = "\"Kalashnikov's Machinegun\", a well preserved and maintained antique weapon of war."
-	icon_base = "pk"
-	icon_state = "pkclosed-empty"
-	item_state = "pkclosedmag"
-
 /obj/item/weapon/gun/projectile/automatic/lmg
 	w_class = ITEM_SIZE_HUGE
 	icon = 'icons/obj/weapons/lmg.dmi'
@@ -25,7 +10,9 @@
 	ammo_type = "/obj/item/ammo_casing/a762"
 	ammo_mag = "box"
 	load_method = MAGAZINE
+	mag_well = MAG_WELL_BOX
 	magazine_type = null //Magazine type is for preloaded spawning. This spawns empty
+	tac_reloads = FALSE
 	matter = list(MATERIAL_PLASTEEL = 40, MATERIAL_PLASTIC = 15, MATERIAL_WOOD = 5)
 	price_tag = 5000
 	unload_sound 	= 'sound/weapons/guns/interact/lmg_magout.ogg'
@@ -41,15 +28,31 @@
 
 	var/cover_open = 0
 
+/obj/item/weapon/gun/projectile/automatic/lmg/l6_saw
+	name = "L6 SAW"
+	desc = "A rather traditionally made L6 SAW with a pleasantly lacquered wooden pistol grip. This one is unmarked."
+	icon_base = "l6"
+	icon_state = "l6closed-empty"
+	item_state = "l6closedmag"
+
+
+/obj/item/weapon/gun/projectile/automatic/lmg/pk
+	name = "Pulemyot Kalashnikova"
+	desc = "\"Kalashnikov's Machinegun\", a well preserved and maintained antique weapon of war."
+	icon_base = "pk"
+	icon_state = "pkclosed-empty"
+	item_state = "pkclosedmag"
+
+
 /obj/item/weapon/gun/projectile/automatic/lmg/special_check(mob/user)
 	if(cover_open)
-		user << SPAN_WARNING("[src]'s cover is open! Close it before firing!")
+		to_chat(user, SPAN_WARNING("[src]'s cover is open! Close it before firing!"))
 		return 0
 	return ..()
 
 /obj/item/weapon/gun/projectile/automatic/lmg/proc/toggle_cover(mob/user)
 	cover_open = !cover_open
-	user << "<span class='notice'>You [cover_open ? "open" : "close"] [src]'s cover.</span>"
+	to_chat(user, SPAN_NOTICE("You [cover_open ? "open" : "close"] [src]'s cover."))
 	update_icon()
 
 /obj/item/weapon/gun/projectile/automatic/lmg/attack_self(mob/user as mob)
@@ -77,12 +80,12 @@
 
 /obj/item/weapon/gun/projectile/automatic/lmg/load_ammo(var/obj/item/A, mob/user)
 	if(!cover_open)
-		user << SPAN_WARNING("You need to open the cover to load [src].")
+		to_chat(user, SPAN_WARNING("You need to open the cover to load [src]."))
 		return
 	..()
 
 /obj/item/weapon/gun/projectile/automatic/lmg/unload_ammo(mob/user, var/allow_dump=1)
 	if(!cover_open)
-		user << SPAN_WARNING("You need to open the cover to unload [src].")
+		to_chat(user, SPAN_WARNING("You need to open the cover to unload [src]."))
 		return
 	..()

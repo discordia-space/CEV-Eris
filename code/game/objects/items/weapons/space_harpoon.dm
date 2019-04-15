@@ -26,7 +26,7 @@
 /obj/item/weapon/bluespace_harpoon/afterattack(atom/A, mob/user as mob)
 	if(istype(A, /obj/item/weapon/storage/))
 		return
-	else if(istype(A, /obj/structure/table/))
+	else if(istype(A, /obj/structure/table/) && (get_dist(A, user) <= 1))
 		return
 
 	if(!cell || !cell.checked_use(100))
