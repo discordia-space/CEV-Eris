@@ -78,15 +78,21 @@
 /obj/machinery/autolathe/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 0)
 	var/list/data = list()
 
-	data["disk"] = disk_name()
-	data["uses"] = disk_uses()
 	data["have_disk"] = have_disk
 
 	data["error"] = error
 	data["paused"] = paused
 
+	data["have_disk"] = have_disk
 	data["mat_efficiency"] = mat_efficiency
 	data["speed"] = speed
+
+	if(disk)
+		var/list/D = list()
+		D["name"] = disk_name()
+		D["uses"] = disk_uses()
+
+		data["disk"] = D
 
 	var/list/L = list()
 	for(var/rtype in recipe_list())
@@ -142,9 +148,6 @@
 	var/list/qmats = stored_material.Copy()
 
 	for(var/i = 1; i <= queue.len; i++)
-		if(!queue[i])
-			continue
-
 		var/datum/design/design = SSresearch.design_ids[queue[i]]
 		if(!design)
 			Q.Add(list(list("name" = "ERROR", "ind" = i, "error" = 2)))
@@ -216,14 +219,14 @@
 
 	usr.set_machine(src)
 
-	if(href_list["eject_disk"] && disk)
-		eject_disk()
-
 	if(href_list["insert"])
 		eat(usr)
 
-	if(href_list["insert_disk"])
-		insert_disk(usr)
+	if(href_list["disk"])
+		if(disk)
+			eject_disk()
+		else
+			insert_disk(usr)
 
 	if(href_list["insert_beaker"])
 		insert_beaker(usr)
@@ -261,6 +264,8 @@
 		if(recipe)
 			if(queue.len < queue_max)
 				queue.Add(recipe)
+				if(!current)
+					next_recipe()
 			else
 				usr << SPAN_NOTICE(" \The [src]'s queue is full.")
 
@@ -272,24 +277,27 @@
 			if(amount && (queue.len + amount) < queue_max)
 				for(var/i = 1, i <= amount, i++)
 					queue.Add(recipe)
+
+				if(!current)
+					next_recipe()
+
 			else if (amount)
 				usr << SPAN_NOTICE("Not enough free postions in \the [src]'s queue.")
 
 	if(href_list["remove_from_queue"])
 		var/ind = text2num(href_list["remove_from_queue"])
-		if(ind != null && ind >= 1 && ind <= queue.len)
-			queue[ind] = null
-			fix_queue()
+		if(ind >= 1 && ind <= queue.len)
+			queue.Cut(ind, ind + 1)
 
 	if(href_list["move_up_queue"])
 		var/ind = text2num(href_list["move_up_queue"])
-		if(ind != null && ind >= 2 && ind <= queue.len)
-			queue.Swap(ind,ind-1)
+		if(ind >= 2 && ind <= queue.len)
+			queue.Swap(ind, ind - 1)
 
 	if(href_list["move_down_queue"])
 		var/ind = text2num(href_list["move_down_queue"])
-		if(ind != null && ind >= 1 && ind <= queue.len-1)
-			queue.Swap(ind,ind+1)
+		if(ind >= 1 && ind <= queue.len-1)
+			queue.Swap(ind, ind + 1)
 
 
 	if(href_list["abort_print"])
@@ -468,7 +476,7 @@
 //Returns true if success or disk is infinite
 //Returns false if disk is missing or doesnt have enough licenses
 /obj/machinery/autolathe/proc/disk_use_license()
-	if (!disk)
+	if(!disk)
 		return FALSE
 
 	if(disk_uses() == -1)
@@ -485,10 +493,9 @@
 	return
 
 /obj/machinery/autolathe/proc/print_post()
-	if(!queue.len)
+	if(!current && !queue.len)
 		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1 -3)
 		visible_message("\The [src] pings, indicating that queue is complete.")
-	return
 
 
 /obj/machinery/autolathe/proc/res_load()
@@ -557,7 +564,6 @@
 			working = FALSE
 			next_recipe()
 
-	fix_queue()
 	special_process()
 	update_icon()
 	SSnano.update_uis(src)
@@ -591,27 +597,12 @@
 		current = queue[1]
 		print_pre()
 		working = TRUE
-		queue[1] = null
-		fix_queue()
+		queue.Cut(1, 2) // Cut queue[1]
 	else
-		current = null
 		working = FALSE
 
 /obj/machinery/autolathe/proc/special_process()
 	queue_max = hacked ? 16 : 8
-
-/obj/machinery/autolathe/proc/fix_queue()
-	var/list/Q = list()
-	var/cnt = 0
-	for(var/r in queue)
-		if(ispath(r))
-			Q.Add(r)
-			cnt++
-			if(cnt > queue_max)
-				break
-
-	queue = Q
-
 
 //Autolathes can eject decimal quantities of material as a shard
 /obj/machinery/autolathe/proc/eject(var/material, var/amount)
@@ -716,6 +707,7 @@
 	working = FALSE
 	current = null
 	print_post()
+	next_recipe()
 
 //This proc ejects the autolathe disk, but it also does some DRM fuckery to prevent exploits
 /obj/machinery/autolathe/proc/eject_disk()
