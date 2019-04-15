@@ -19,7 +19,7 @@ other types of metals and chemistry for reagents).
 //Note: More then one of these can be added to a design.
 
 /datum/design/research				//Datum for object designs, used in construction
-	var/list/req_tech = list()		//IDs of that techs the object originated from and the minimum level requirements.
+	req_tech = list()				//IDs of that techs the object originated from and the minimum level requirements.
 
 /datum/design/research/item
 	build_type = PROTOLATHE

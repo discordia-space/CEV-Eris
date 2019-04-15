@@ -13,6 +13,9 @@
 	var/category = null 			//Primarily used for Mech Fabricators, but can be used for anything.
 	var/time = 0					//How many ticks it requires to build. If 0, calculated from the amount of materials used.
 
+	var/list/req_tech = null		//IDs of that techs the object originated from and the minimum level requirements.
+									//Use null to make design undiscoverable in R&D.
+
 	var/list/ui_data = null			//Pre-generated UI data, to be sent into NanoUI/TGUI interfaces.
 
 

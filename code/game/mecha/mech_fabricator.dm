@@ -16,7 +16,7 @@
 	var/res_max_amount = 240
 
 	var/datum/research/files
-	var/list/datum/design/research/queue = list()
+	var/list/datum/design/queue = list()
 	var/progress = 0
 	var/busy = 0
 
@@ -68,7 +68,7 @@
 	if(!length(categories))
 		update_categories()
 
-	var/datum/design/research/current = queue.len ? queue[1] : null
+	var/datum/design/current = queue.len ? queue[1] : null
 	if(current)
 		data["current"] = current.name
 	data["queue"] = get_queue_names()
@@ -188,7 +188,7 @@
 		busy = FALSE
 
 /obj/machinery/mecha_part_fabricator/proc/add_to_queue(var/index)
-	var/datum/design/research/D = files.known_designs[index]
+	var/datum/design/D = files.known_designs[index]
 	queue += D
 	update_busy()
 
@@ -227,7 +227,7 @@
 /obj/machinery/mecha_part_fabricator/proc/get_queue_names()
 	. = list()
 	for(var/i = 2 to queue.len)
-		var/datum/design/research/D = queue[i]
+		var/datum/design/D = queue[i]
 		. += D.name
 
 /obj/machinery/mecha_part_fabricator/proc/get_build_options(var/mob/user)
@@ -249,7 +249,7 @@
 
 /obj/machinery/mecha_part_fabricator/proc/update_categories()
 	categories = list()
-	for(var/datum/design/research/D in files.known_designs)
+	for(var/datum/design/D in files.known_designs)
 		if(!(D.build_type & MECHFAB))
 			continue
 		categories |= D.category
@@ -287,7 +287,7 @@
 			continue
 		for(var/datum/tech/T in RDC.files.known_tech)
 			files.AddTech2Known(T)
-		for(var/datum/design/research/D in RDC.files.known_designs)
+		for(var/datum/design/D in RDC.files.known_designs)
 			files.AddDesign2Known(D)
 		files.RefreshResearch()
 		sync_message = "Sync complete."

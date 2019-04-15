@@ -17,11 +17,11 @@ list, it can't be improved. All the tech in this list are visible to the player.
 Procs:
 - TechHasReqs: Used by other procs (specifically RefreshResearch) to see whether all of a tech's requirements are currently in
 known_tech and at a high enough level.
-- DesignHasReqs: Same as TechHasReqs but for /datum/design/research and known_design.
+- DesignHasReqs: Same as TechHasReqs but for /datum/design and known_design.
 - AddTech2Known: Adds a /datum/tech to known_tech. It checks to see whether it already has that tech (if so, it just replaces it). If
 it doesn't have it, it adds it. Note: It does NOT check possible_tech at all. So if you want to add something strange to it (like
 a player made tech?) you can.
-- AddDesign2Known: Same as AddTech2Known except for /datum/design/research and known_designs.
+- AddDesign2Known: Same as AddTech2Known except for /datum/design and known_designs.
 - RefreshResearch: This is the workhorse of the R&D system. It updates the /datum/research holder and adds any unlocked tech paths
 and designs you have reached the requirements for. It only checks through possible_tech and possible_designs, however, so it won't
 accidentally add "secret" tech to it.
@@ -83,9 +83,12 @@ research holder datum.
 
 //Checks to see if design has all the required pre-reqs.
 //Input: datum/design; Output: 0/1 (false/true)
-/datum/research/proc/DesignHasReqs(datum/design/research/D)
-	if(D.req_tech.len == 0)
-		return 1
+/datum/research/proc/DesignHasReqs(datum/design/D)
+	if(!D.req_tech) // Not discoverable in R&D.
+		return FALSE
+
+	if(!D.req_tech.len)
+		return TRUE
 
 	var/list/k_tech = list()
 
@@ -94,9 +97,9 @@ research holder datum.
 
 	for(var/req in D.req_tech)
 		if(isnull(k_tech[req]) || k_tech[req] < D.req_tech[req])
-			return 0
+			return FALSE
 
-	return 1
+	return TRUE
 
 //Adds a tech to known_tech list. Checks to make sure there aren't duplicates and updates existing tech's levels if needed.
 //Input: datum/tech; Output: Null
@@ -124,7 +127,7 @@ research holder datum.
 //Refreshes known_tech and known_designs list
 //Input/Output: n/a
 /datum/research/proc/RefreshResearch()
-	for(var/datum/design/research/PD in possible_designs)
+	for(var/datum/design/PD in possible_designs)
 		if(DesignHasReqs(PD))
 			AddDesign2Known(PD)
 	for(var/datum/tech/T in known_tech)

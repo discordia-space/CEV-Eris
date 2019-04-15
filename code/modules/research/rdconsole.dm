@@ -103,7 +103,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	for(var/obj/machinery/r_n_d/server/centcom/C in SSmachines.machinery)
 		for(var/datum/tech/T in files.known_tech)
 			C.files.AddTech2Known(T)
-		for(var/datum/design/research/D in files.known_designs)
+		for(var/datum/design/D in files.known_designs)
 			C.files.AddDesign2Known(D)
 		C.files.RefreshResearch()
 
@@ -320,7 +320,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 	else if(href_list["build"]) //Causes the Protolathe to build something.
 		if(linked_lathe)
-			var/datum/design/research/being_built = files.possible_design_ids[href_list["build"]]
+			var/datum/design/being_built = files.possible_design_ids[href_list["build"]]
 
 			if(being_built in files.known_designs)
 				linked_lathe.addToQueue(being_built)
@@ -330,7 +330,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 	else if(href_list["imprint"]) //Causes the Circuit Imprinter to build something.
 		if(linked_imprinter)
-			var/datum/design/research/being_built = files.possible_design_ids[href_list["imprint"]]
+			var/datum/design/being_built = files.possible_design_ids[href_list["imprint"]]
 
 			if(being_built in files.known_designs)
 				linked_imprinter.addToQueue(being_built)
@@ -643,7 +643,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "<B>Material Amount:</B> [linked_lathe.TotalMaterials()] cm<sup>3</sup> (MAX: [linked_lathe.max_material_storage])<BR>"
 			dat += "<B>Chemical Volume:</B> [linked_lathe.reagents.total_volume] (MAX: [linked_lathe.reagents.maximum_volume])<HR>"
 			dat += "<UL>"
-			for(var/datum/design/research/D in files.known_designs)
+			for(var/datum/design/D in files.known_designs)
 				if(!(D.build_type & PROTOLATHE))
 					continue
 				var/temp_dat

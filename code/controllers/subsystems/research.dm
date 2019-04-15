@@ -40,7 +40,7 @@ SUBSYSTEM_DEF(research)
 	for(var/obj/item/integrated_circuit/IC in all_integrated_circuits)
 		if(!(IC.spawn_flags & IC_SPAWN_RESEARCH))
 			continue
-		var/datum/design/research/design = new /datum/design/research/circuit(src)
+		var/datum/design/design = new /datum/design/research/circuit(src)
 		design.name = "Custom circuitry \[[IC.category_text]\] ([IC.name])"
 		design.id = "ic-[lowertext(IC.name)]"
 		design.build_path = IC.type
@@ -65,7 +65,10 @@ SUBSYSTEM_DEF(research)
 	// If designs are already generated, initialized right away.
 	// If not, add them to the list to be initialized later.
 	if(length(all_designs))
-		for(var/datum/design/research/D in all_designs)
+		for(var/datum/design/D in all_designs)
+			if(!D.req_tech)
+				continue
+
 			research.possible_designs += D
 			research.possible_design_ids[D.id] = D
 			research.possible_design_ids["[D.id]"] = D
