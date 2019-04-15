@@ -227,14 +227,3 @@ research holder datum.
 	. = ..()
 	pixel_x = rand(-5, 5)
 	pixel_y = rand(-5, 5)
-
-/obj/item/weapon/disk/design_disk
-	name = "component design disk"
-	desc = "A disk for storing device design data for construction in lathes."
-	icon_state = "yellow"
-	var/datum/design/blueprint
-
-/obj/item/weapon/disk/design_disk/Initialize()
-	. = ..()
-	pixel_x = rand(-5, 5)
-	pixel_y = rand(-5, 5)

@@ -4,6 +4,9 @@
 	icon_state = "blue"
 	item_state = "card-id"
 	w_class = ITEM_SIZE_SMALL
+	flags = CONDUCT
+	force = WEAPON_FORCE_WEAK
+	throwforce = WEAPON_FORCE_WEAK
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_STEEL = 1)
 
 //The return of data disks?? Just for transferring between genetics machine/cloning machine.

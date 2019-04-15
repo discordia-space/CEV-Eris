@@ -28,7 +28,7 @@ other types of metals and chemistry for reagents).
 	name = "Design Storage Disk"
 	desc = "Produce additional disks for storing device designs."
 	req_tech = list(TECH_DATA = 1)
-	build_path = /obj/item/weapon/disk/design_disk
+	build_path = /obj/item/weapon/disk/autolathe_disk/blank
 	sort_string = "GAAAA"
 
 /datum/design/research/item/tech_disk

@@ -1,13 +1,8 @@
 /obj/item/weapon/disk/autolathe_disk
 	name = "design disk"
 	desc = "Autolathe-compatible design disk."
-	icon = 'icons/obj/discs.dmi'
 	icon_state = "yellow"
-	w_class = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_DATA = 2)
-	flags = CONDUCT
-	force = WEAPON_FORCE_WEAK
-	throwforce = WEAPON_FORCE_WEAK
 
 	var/list/recipes = list()
 
@@ -25,7 +20,6 @@
 	return FALSE
 
 /obj/item/weapon/disk/autolathe_disk/blank
-	name = "blank disk"
 	category = "Blank"
 	license = -1
 

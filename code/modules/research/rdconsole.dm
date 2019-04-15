@@ -33,9 +33,9 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	icon_screen = "rdcomp"
 	light_color = COLOR_LIGHTING_PURPLE_MACHINERY
 	circuit = /obj/item/weapon/circuitboard/rdconsole
-	var/datum/research/files							//Stores all the collected research data.
-	var/obj/item/weapon/disk/tech_disk/t_disk   = null	//Stores the technology disk.
-	var/obj/item/weapon/disk/design_disk/d_disk = null	//Stores the design disk.
+	var/datum/research/files								//Stores all the collected research data.
+	var/obj/item/weapon/disk/tech_disk/t_disk = null		//Stores the technology disk.
+	var/obj/item/weapon/disk/autolathe_disk/d_disk = null	//Stores the design disk.
 
 	var/obj/machinery/r_n_d/destructive_analyzer/linked_destroy = null	//Linked Destructive Analyzer
 	var/obj/machinery/r_n_d/protolathe/linked_lathe             = null	//Linked Protolathe
@@ -128,8 +128,13 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 		if(istype(D, /obj/item/weapon/disk/tech_disk))
 			t_disk = D
-		else if (istype(D, /obj/item/weapon/disk/design_disk))
+		else if (istype(D, /obj/item/weapon/disk/autolathe_disk))
 			d_disk = D
+			if(d_disk.license != -1)
+				d_disk = null
+				to_chat(user, SPAN_WARNING("\The [D] is DRM-protected!"))
+				return
+
 		else
 			user << SPAN_NOTICE("Machine cannot accept disks in that format.")
 			return
@@ -189,14 +194,18 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				break
 		screen = 1.2
 
-	else if(href_list["updt_design"] && d_disk && d_disk.blueprint) //Updates the research holder with design data from the design disk.
+	else if(href_list["updt_design"] && d_disk && length(d_disk.recipes)) //Updates the research holder with design data from the design disk.
 		screen = 1.4
-		files.AddDesign2Known(d_disk.blueprint)
+
+		for(var/d in d_disk.recipes)
+			var/datum/design/design = files.possible_design_ids[d]
+			if(!design)
+				continue
+
+			files.AddDesign2Known(design)
+
 		updateUsrDialog()
 		griefProtection() //Update centcomm too
-
-	else if(href_list["clear_design"] && d_disk) //Erases data on the design disk.
-		d_disk.blueprint = null
 
 	else if(href_list["eject_design"] && d_disk) //Eject the design disk.
 		d_disk.forceMove(get_turf(src))
@@ -204,10 +213,12 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		screen = 1.0
 
 	else if(href_list["copy_design"] && d_disk) //Copy design data from the research holder to the design disk.
-		var/datum/design/research/D = files.possible_design_ids[href_list["copy_design_ID"]]
+		var/datum/design/design = files.possible_design_ids[href_list["copy_design_ID"]]
 
-		if(D in files.known_designs)
-			d_disk.blueprint = D
+		if(length(d_disk.recipes) < 10)
+			if(design in files.known_designs)
+				d_disk.recipes |= design.id
+				d_disk.category = "Research Designs"
 
 		screen = 1.4
 
@@ -530,22 +541,22 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 		if(1.4) //Design Disk menu.
 			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A><HR>"
-			if(isnull(d_disk.blueprint))
+			if(!length(d_disk.recipes))
 				dat += "The disk has no data stored on it.<HR>"
 				dat += "Operations: "
-				dat += "<A href='?src=\ref[src];menu=1.5'>Load Design to Disk</A> || "
 			else
-				dat += "Name: [d_disk.blueprint.name]<BR>"
-				switch(d_disk.blueprint.build_type)
-					if(IMPRINTER) dat += "Lathe Type: Circuit Imprinter<BR>"
-					if(PROTOLATHE) dat += "Lathe Type: Proto-lathe<BR>"
-				dat += "Required Materials:<BR>"
-				for(var/M in d_disk.blueprint.materials)
-					if(copytext(M, 1, 2) == "$") dat += "* [copytext(M, 2)] x [d_disk.blueprint.materials[M]]<BR>"
-					else dat += "* [M] x [d_disk.blueprint.materials[M]]<BR>"
+				for(var/d in d_disk.recipes)
+					var/datum/design/design = files.possible_design_ids[d]
+					if(!design)
+						continue
+					dat += "Name: [design.name]<BR>"
+
 				dat += "<HR>Operations: "
 				dat += "<A href='?src=\ref[src];updt_design=1'>Upload to Database</A> || "
-				dat += "<A href='?src=\ref[src];clear_design=1'>Clear Disk</A> || "
+
+			if(length(d_disk.recipes) < 10)
+				dat += "<A href='?src=\ref[src];menu=1.5'>Load Design to Disk</A> || "
+
 			dat += "<A href='?src=\ref[src];eject_design=1'>Eject Disk</A>"
 
 		if(1.5) //Technology disk submenu
