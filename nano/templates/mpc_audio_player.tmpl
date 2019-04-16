@@ -35,8 +35,7 @@ Additional information: {{:data.error}}<br>
 			Progress:
 		</div>
 		<div class='itemContent'>
-			{{:helper.displayBar(data.transcribe_progress, 0, data.transcribe_maxprogress, 'good')}}
-			{{:data.transcribe_progress}} / {{:data.transcribe_maxprogress}} GQ
+			{{:helper.displayBar(data.transcribe_progress, 0, data.transcribe_maxprogress, 'good', data.transcribe_progress + " / " + data.transcribe_maxprogress + "  GQ")}}
 		</div>
 		<div class='itemLabel'>
 			Transcription speed:

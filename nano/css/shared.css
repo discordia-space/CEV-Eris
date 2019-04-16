@@ -774,7 +774,7 @@ div.display header .buttonRight {
 	right: 4px;
 }
 
-div.display h1, h2, h3, h4, h5, h6 {
+div.display h1, div.display h2, div.display h3, div.display h4, div.display h5, div.display h6 {
     display: inline-block;
     margin: 0;
     padding: 6px 0;

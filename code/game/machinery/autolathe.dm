@@ -75,7 +75,8 @@
 	return ..()
 
 
-/obj/machinery/autolathe/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 0)
+
+/obj/machinery/autolathe/ui_data()
 	var/list/data = list()
 
 	data["have_disk"] = have_disk
@@ -85,6 +86,7 @@
 
 	data["have_disk"] = have_disk
 	data["mat_efficiency"] = mat_efficiency
+	data["mat_capacity"] = storage_capacity
 	data["speed"] = speed
 
 	if(disk)
@@ -121,8 +123,6 @@
 
 			data["reagents"] = L
 
-	data["mat_capacity"] = storage_capacity
-
 	var/list/M = list()
 	for(var/mtype in stored_material)
 		if(stored_material[mtype] <= 0)
@@ -137,7 +137,6 @@
 		M.Add(list(ME))
 
 	data["materials"] = M
-
 
 	if(current)
 		var/datum/design/design = SSresearch.design_ids[current]
@@ -179,6 +178,12 @@
 	data["queue"] = Q
 	data["queue_len"] = queue.len
 	data["queue_max"] = queue_max
+
+	return data
+
+
+/obj/machinery/autolathe/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 0)
+	var/list/data = ui_data(user, ui_key)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
