@@ -3,7 +3,7 @@
 /obj/item/weapon/gun/projectile/automatic/dallas
 	name = "PAR 10mm x 24 \"Dallas\""
 	desc = "Dallas is a pulse-action air-cooled automatic assault rifle made by unknown manufacturer. This weapon is very rare, but deadly efficient. \
-		It's used by elite mercenaries, assassins or bald marines."
+		It's used by elite mercenaries, assassins or bald marines. Makes you feel like a space marine when you hold it."
 	icon_state = "dallas"
 	item_state = "dallas"
 	w_class = ITEM_SIZE_LARGE
@@ -11,7 +11,7 @@
 	caliber = "10x24"
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1)
 	load_method = MAGAZINE
-	mag_well = MAG_WELL_SMG
+	mag_well = MAG_WELL_CIVI_RIFLE
 	auto_eject = 1
 	magazine_type = /obj/item/ammo_magazine/c10x24
 	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 15)

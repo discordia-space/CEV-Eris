@@ -126,9 +126,9 @@
 	name = "AK magazine (7.62mm)"
 	path = /obj/item/ammo_magazine/ak47
 
-/datum/autolathe/recipe/ammo/ih762
-	name = "IH magazine (7.62mm)"
-	path = /obj/item/ammo_magazine/ih762
+/datum/autolathe/recipe/ammo/ih556
+	name = "IH magazine (5.56mm)"
+	path = /obj/item/ammo_magazine/ih556
 
 /datum/autolathe/recipe/ammo/box_a762
 	name = "ammunition box (7.62mm)"
