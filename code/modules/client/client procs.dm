@@ -391,6 +391,8 @@
 	sleep(1)
 
 /client/proc/create_UI(var/mob_type)
+	if(!mob_type)
+		mob_type = mob.type
 	if(!UI)
 		var/success = FALSE
 		for(var/S in GLOB.ui_styles[mob_type])

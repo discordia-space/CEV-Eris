@@ -358,18 +358,6 @@ var/const/FALLOFF_SOUNDS = 0.5
 
 	src << S
 
-/client/proc/playtitlemusic()
-	if(!SSticker.login_music)
-		return
-	if(get_preference_value(/datum/client_preference/play_lobby_music) == GLOB.PREF_YES)
-		sound_to(src, sound(SSticker.login_music, repeat = 0, wait = 0, volume = 85, channel = GLOB.lobby_sound_channel))
-
-/client/proc/stoptitlemusic()
-	if(!SSticker.login_music)
-		return
-	sound_to(src, sound(null, repeat = 0, wait = 0, volume = 85, channel = GLOB.lobby_sound_channel))
-
-
 /proc/get_rand_frequency()
 	return rand(32000, 55000) //Frequency stuff only works with 45kbps oggs.
 
