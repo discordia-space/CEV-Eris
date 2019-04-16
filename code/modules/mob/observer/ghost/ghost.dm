@@ -796,4 +796,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	M.key = key
 	if(M.mind)
 		M.mind.reset()
+	/*if(client)
+		if(client.UI)
+			client.destroy_UI()
+			client.create_UI(M.type)
+		else
+			client.create_UI(M.type)*/
 	return
