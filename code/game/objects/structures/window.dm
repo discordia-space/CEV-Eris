@@ -283,7 +283,7 @@
 		usable_qualities.Add(QUALITY_BOLT_TURNING)
 	if((reinf && state >= 1) || (reinf && state == 0) || (!reinf))
 		usable_qualities.Add(QUALITY_SCREW_DRIVING)
-	if(reinf && state >= 1)
+	if(reinf && state <= 1)
 		usable_qualities.Add(QUALITY_PRYING)
 	if (health < maxhealth)
 		usable_qualities.Add(QUALITY_SEALING)

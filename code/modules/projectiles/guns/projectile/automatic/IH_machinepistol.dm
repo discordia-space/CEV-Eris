@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/automatic/IH_machinepistol
 	name = "FS MP \"Molly\""
-	desc = "An experimental fully automatic pistol. Compact and flexible, but somewhat underpowered. Issued to non-combatants among Ironhammer as powerful self-protection sidearm. Uses 9mm rounds."
+	desc = "An experimental fully automatic pistol. Compact and flexible, but somewhat underpowered. Issued to non-combatants among Ironhammer as powerful self-protection sidearm. Custom magwell allows it to feed both from pistol and SMG magazines. Uses 9mm rounds."
 	icon_state = "IH_mp"
 	item_state = "IH_mp"
 	w_class = ITEM_SIZE_NORMAL
@@ -10,6 +10,7 @@
 	ammo_type = "/obj/item/ammo_casing/c9mm"
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_SMG
+	auto_eject = 1
 	magazine_type = /obj/item/ammo_magazine/smg9mm
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 3)
 	price_tag = 1700

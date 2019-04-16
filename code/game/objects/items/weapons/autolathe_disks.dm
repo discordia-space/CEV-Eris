@@ -443,6 +443,7 @@
 		/datum/autolathe/recipe/ammo/sl_cl44_brute,
 		/datum/autolathe/recipe/ammo/mg_a50,
 		/datum/autolathe/recipe/ammo/SMG_sol_brute,
+		/datum/autolathe/recipe/ammo/ih556,
 		/datum/autolathe/recipe/ammo/ak47,
 		/datum/autolathe/recipe/ammo/smg9mm_brute,
 		/datum/autolathe/recipe/ammo/c45smg_brute,

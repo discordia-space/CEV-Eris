@@ -193,7 +193,7 @@
 	name = "magazine (10mm x 24 caseless)"
 	icon_state = "10x24"
 	mag_type = MAGAZINE
-	mag_well = MAG_WELL_SMG
+	mag_well = MAG_WELL_CIVI_RIFLE
 	caliber = "10x24"
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 1)
 	ammo_type = /obj/item/ammo_casing/c10x24
@@ -218,6 +218,22 @@
 /obj/item/ammo_magazine/a556/practice
 	name = "magazine (5.56mm practice)"
 	ammo_type = /obj/item/ammo_casing/a556/practice
+
+/obj/item/ammo_magazine/ih556
+	name = "IH magazine (5.56mm)"
+	icon_state = "WinMag"
+	mag_type = MAGAZINE
+	mag_well = MAG_WELL_IH
+	caliber = "a556"
+	matter = list(MATERIAL_STEEL = 5)
+	ammo_type = /obj/item/ammo_casing/a556
+	max_ammo = 30
+	multiple_sprites = 1
+
+//obj/item/ammo_magazine/ih556/highvelocity
+//	name = "IH magazine (5.56mm high-velocity)"
+//	icon_state = "WinMag_h"
+//	ammo_type = /obj/item/ammo_casing/a556/hv
 
 /obj/item/ammo_magazine/sol65
 	name = "magazine (6.5mm)"
@@ -256,6 +272,35 @@
 /obj/item/ammo_magazine/a762/empty
 	initial_ammo = 0
 
+/obj/item/ammo_magazine/a762/pk
+	name = "PK munitions box (7.62mm)"
+	icon_state = "pk_box"
+	origin_tech = list(TECH_COMBAT = 2)
+	mag_type = MAGAZINE
+	mag_well = MAG_WELL_BOX
+	caliber = "a762"
+	matter = list(MATERIAL_STEEL = 8)
+	ammo_type = /obj/item/ammo_casing/a762
+	max_ammo = 80
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/ammobox/a762/pk/update_icon()
+	if (!stored_ammo.len)
+		icon_state = "pk_box-0"
+		return
+	if (stored_ammo.len == max_ammo)
+		icon_state = "pk_box"
+		return
+
+	var/number = 0
+	if (stored_ammo.len && max_ammo)
+		var/percent = (stored_ammo.len / max_ammo) * 100
+		number = round(percent, 25)
+	icon_state = "pk_box-[number]"
+
+/obj/item/ammo_magazine/a762/pk/empty
+	initial_ammo = 0
+
 /obj/item/ammo_magazine/c762
 	name = "civilian magazine (7.62mm)"
 	icon_state = "c762l"
@@ -290,26 +335,6 @@
 /obj/item/ammo_magazine/ak47/empty
 	icon_state = "AKMag"
 	initial_ammo = 0
-
-/obj/item/ammo_magazine/ih762
-	name = "IH magazine (7.62mm)"
-	icon_state = "WinMag_l"
-	mag_type = MAGAZINE
-	mag_well = MAG_WELL_IH
-	caliber = "a762"
-	matter = list(MATERIAL_STEEL = 5)
-	ammo_type = /obj/item/ammo_casing/a762
-	max_ammo = 30
-	multiple_sprites = 1
-
-/obj/item/ammo_magazine/ih762/empty
-	icon_state = "WinMag"
-	initial_ammo = 0
-
-/obj/item/ammo_magazine/ih762/highvelocity
-	name = "IH magazine (7.62mm high-velocity)"
-	icon_state = "WinMag_h"
-	ammo_type = /obj/item/ammo_casing/a762/hv
 
 /obj/item/ammo_magazine/maxim
 	name = "pan magazine (7.62mm)"
