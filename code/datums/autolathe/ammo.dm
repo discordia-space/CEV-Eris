@@ -130,7 +130,7 @@
 	name = "IH magazine (5.56mm)"
 	build_path = /obj/item/ammo_magazine/ih556
 
-/datum/autolathe/recipe/ammo/box_a762
+/datum/design/autolathe/ammo/box_a762
 	name = "ammunition box (7.62mm)"
 	build_path = /obj/item/ammo_magazine/ammobox/a762
 
