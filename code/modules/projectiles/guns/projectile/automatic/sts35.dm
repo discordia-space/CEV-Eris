@@ -6,7 +6,7 @@
 	w_class = ITEM_SIZE_LARGE
 	force = 10
 	caliber = "a762"
-	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 4)
+	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_CIVI_RIFLE
