@@ -322,13 +322,7 @@
 			set_light(muzzle_flash)
 
 	if(recoil)
-		spawn()
-			if (silenced)
-				shake_camera(user, (recoil+1*0.5), (recoil*0.5))
-			else if(dual_wielding)
-				shake_camera(user, recoil+2, recoil)
-			else
-				shake_camera(user, recoil+1, recoil)
+		update_cursor(user)
 	update_icon()
 
 
@@ -445,6 +439,7 @@
 	if(zoom)
 		if(recoil)
 			recoil = round(recoil*zoom_factor+1) //recoil is worse when looking through a scope
+	update_cursor(user)
 	update_hud_actions()
 
 //make sure accuracy and recoil are reset regardless of how the item is unzoomed.
@@ -452,6 +447,7 @@
 	..()
 	if(!zoom)
 		recoil = initial(recoil)
+	update_cursor(usr)
 
 /obj/item/weapon/gun/examine(mob/user)
 	..()
@@ -558,8 +554,6 @@
 	set src in view(1)
 
 	toggle_safety(usr)
-
-
 
 /*
 	Gun Modding
