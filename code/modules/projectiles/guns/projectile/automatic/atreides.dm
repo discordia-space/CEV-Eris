@@ -14,7 +14,7 @@
 	matter = list(MATERIAL_PLASTEEL = 16, MATERIAL_PLASTIC = 4)
 	price_tag = 2000
 	damage_multiplier = 0.75 //unnerfed it up from 0.65 because 45 and 10 got swapped
-	recoil = 1.1 //it's widely aviable and basically are copy of UZI. Have fun dealing with recoil.
+	recoil = 1.2 //will be op if less than this, also it's fucking .45 UZI
 
 	firemodes = list(
 		FULL_AUTO_400,

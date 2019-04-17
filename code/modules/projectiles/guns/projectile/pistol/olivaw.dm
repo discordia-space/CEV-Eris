@@ -5,7 +5,6 @@
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	caliber = ".32"
 	ammo_mag = "mag_cl32"
-	fire_delay = 1.2
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL
