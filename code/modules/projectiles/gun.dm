@@ -351,7 +351,8 @@
 	var/obj/item/projectile/P = projectile
 	if(!istype(P))
 		return
-
+	if(recoil)
+		dispersion += recoil/2
 	P.dispersion = dispersion
 
 	if (aim_targets && (target in aim_targets))
@@ -365,8 +366,11 @@
 
 	if(params)
 		P.set_clickpoint(params)
-	var/lower_offset = 0-recoil
-	var/upper_offset = recoil
+	var/lower_offset = 0
+	var/upper_offset = 0
+	if(recoil)
+		lower_offset = -recoil
+		upper_offset = recoil
 	var/x_offset = 0
 	var/y_offset = 0
 	x_offset = rand(lower_offset, upper_offset) //Recoil fucks up the spread of your bullets
