@@ -4,9 +4,9 @@
 	icon_state = "gladstone"
 	item_state = "gladstone"
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
-	max_shells = 9 //more shells
-	recoil = 0.8 //less recoil
-	damage_multiplier = 0.9 //less damage
+	max_shells = 9 //more shells, but
+	recoil = 0.8 //less recoil and
+	damage_multiplier = 0.9 //slightly less damage
 	ammo_type = /obj/item/ammo_casing/shotgun
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 6)
-	price_tag = 3000 //since Regulator and Gladstone are competitors, they will get same price, but player must choose between capacity and reduced recoil
+	price_tag = 3000

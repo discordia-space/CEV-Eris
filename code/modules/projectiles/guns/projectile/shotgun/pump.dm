@@ -18,7 +18,7 @@
 	var/recentpump = 0 // to prevent spammage
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
 	price_tag = 2200
-	recoil = 0.8 //gladstone will be straight-up upgrade for those
+	recoil = 0.9 //gladstone will be straight-up upgrade for those
 
 /obj/item/weapon/gun/projectile/shotgun/pump/consume_next_projectile()
 	if(chambered)
