@@ -12,7 +12,7 @@
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_IH
 	magazine_type = /obj/item/ammo_magazine/ih556
-	tac_reloads = FALSE
+	tac_reloads = FALSE //if we have autoeject - we don't want tactical reload and vice-versa
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
 	price_tag = 3500
 	fire_sound = 'sound/weapons/guns/fire/ltrifle_fire.ogg'

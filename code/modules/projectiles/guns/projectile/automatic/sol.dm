@@ -11,7 +11,7 @@
 	caliber = "6.5mm"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
-	burst_delay = 2
+	tac_reloads = FALSE //if we have autoeject - we don't want tactical reload and vice-versa
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)
 	price_tag = 2300
 	recoil = 0.8 //still carbine, but unlike AK don't possess high caliber nor auto-fire, so it will be same as smg
