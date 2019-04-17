@@ -12,7 +12,6 @@
 	mag_well = MAG_WELL_PISTOL
 	magazine_type = /obj/item/ammo_magazine/a10mm
 	auto_eject = 1
-	tac_reloads = FALSE //if we have autoeject - we don't want tactical reload and vice-versa
 	matter = list(MATERIAL_PLASTEEL = 14, MATERIAL_PLASTIC = 4)
 	price_tag = 1500
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'

@@ -12,7 +12,6 @@
 	mag_well = MAG_WELL_PISTOL
 	magazine_type = /obj/item/ammo_magazine/a75
 	auto_eject = 1
-	tac_reloads = FALSE //if we have autoeject - we don't want tactical reload and vice-versa
 	recoil = 0.1 //self-propelled rounds, basically almost no recoil
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	unload_sound 	= 'sound/weapons/guns/interact/hpistol_magout.ogg'
