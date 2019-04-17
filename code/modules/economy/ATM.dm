@@ -12,14 +12,12 @@ log transactions
 #define TRANSFER_FUNDS 2
 #define VIEW_TRANSACTION_LOGS 3
 
-/obj/item/weapon/card/id/var/money = 2000
-
 /obj/machinery/atm
 	name = "Automatic Teller Machine"
 	desc = "For all your monetary needs!"
 	icon = 'icons/obj/terminals.dmi'
 	icon_state = "atm"
-	anchored = 1
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 10
 	var/datum/money_account/authenticated_account
@@ -34,8 +32,9 @@ log transactions
 	var/view_screen = NO_SCREEN
 	var/datum/effect/effect/system/spark_spread/spark_system
 	var/updateflag = 0
-/obj/machinery/atm/New()
-	..()
+
+/obj/machinery/atm/Initialize()
+	. = ..()
 	machine_id = "[station_name()] RT #[num_financial_terminals++]"
 	spark_system = new /datum/effect/effect/system/spark_spread
 	spark_system.set_up(5, 0, src)
@@ -56,7 +55,7 @@ log transactions
 			number_incorrect_tries = 0
 
 	for(var/obj/item/weapon/spacecash/S in src)
-		S.loc = src.loc
+		S.forceMove(get_turf(src))
 		playsound(loc, pick('sound/items/polaroid1.ogg','sound/items/polaroid2.ogg'), 50, 1)
 		break
 	update_icon()
@@ -160,11 +159,13 @@ log transactions
 					switch(view_screen)
 						if(CHANGE_SECURITY_LEVEL)
 							dat += "Select a new security level for this account:<br><hr>"
-							var/text = "Zero - Either the account number or card is required to access this account. EFTPOS transactions will require a card and ask for a pin, but not verify the pin is correct."
+							var/text = "Zero - Either the account number and pin, or card and pin are required to access this account. "
+							text += "Vending machine transactions will only require a card. EFTPOS transactions will require a card and ask for a pin, but not verify the pin is correct."
+
 							if(authenticated_account.security_level != 0)
 								text = "<A href='?src=\ref[src];choice=change_security_level;new_security_level=0'>[text]</a>"
 							dat += "[text]<hr>"
-							text = "One - An account number and pin must be manually entered to access this account and process transactions."
+							text = "One - An account number and pin must be manually entered to access this account and process transactions. Vending machine transactions will require card and pin."
 							if(authenticated_account.security_level != 1)
 								text = "<A href='?src=\ref[src];choice=change_security_level;new_security_level=1'>[text]</a>"
 							dat += "[text]<hr>"
@@ -224,8 +225,15 @@ log transactions
 				dat += "<form name='atm_auth' action='?src=\ref[src]' method='get'>"
 				dat += "<input type='hidden' name='src' value='\ref[src]'>"
 				dat += "<input type='hidden' name='choice' value='attempt_auth'>"
-				dat += "<b>Account:</b> <input type='text' id='account_num' name='account_num' style='width:250px; background-color:white;'><br>"
-				dat += "<b>PIN:</b> <input type='text' id='account_pin' name='account_pin' style='width:250px; background-color:white;'><br>"
+				dat += "<b>Account:</b> "
+
+
+				if(held_card && held_card.associated_account_number)
+					dat += "<input type='text' id='account_num' name='account_num' style='width:250px; background-color:white;' readonly=1 value='[held_card.associated_account_number]'>"
+				else
+					dat += "<input type='text' id='account_num' name='account_num' style='width:250px; background-color:white;'>"
+
+				dat += "<br><b>PIN:</b> <input type='text' id='account_pin' name='account_pin' style='width:250px; background-color:white;'><br>"
 				dat += "<input type='submit' value='Submit'><br>"
 				dat += "</form>"
 
@@ -253,7 +261,7 @@ log transactions
 							usr << "\icon[src]<span class='warning'>Funds transfer failed.</span>"
 
 					else
-						usr << "\icon[src]<span class='warning'>You don't have enough funds to do that!</span>"
+						to_chat(usr, SPAN_WARNING("You don't have enough funds to do that!"))
 			if("view_screen")
 				view_screen = text2num(href_list["view_screen"])
 			if("change_security_level")
@@ -261,17 +269,13 @@ log transactions
 					var/new_sec_level = max( min(text2num(href_list["new_security_level"]), 2), 0)
 					authenticated_account.security_level = new_sec_level
 			if("attempt_auth")
-
-				// check if they have low security enabled
-				scan_user(usr)
-
-				if(!ticks_left_locked_down && held_card)
+				if(!ticks_left_locked_down)
 					var/tried_account_num = text2num(href_list["account_num"])
-					if(!tried_account_num)
-						tried_account_num = held_card.associated_account_number
 					var/tried_pin = text2num(href_list["account_pin"])
 
-					authenticated_account = attempt_account_access(tried_account_num, tried_pin, held_card && held_card.associated_account_number == tried_account_num ? 2 : 1)
+					var/card_match_check = held_card && held_card.associated_account_number == tried_account_num ? 2 : 1
+
+					authenticated_account = attempt_account_access(tried_account_num, tried_pin, card_match_check, force_security = TRUE)
 					if(!authenticated_account)
 						number_incorrect_tries++
 						if(previous_account_number == tried_account_num)
@@ -302,7 +306,7 @@ log transactions
 						var/datum/transaction/T = new(0, authenticated_account.owner_name, "Remote terminal access", machine_id)
 						T.apply_to(authenticated_account)
 
-						usr << "\blue \icon[src] Access granted. Welcome user '[authenticated_account.owner_name].'"
+						to_chat(usr, SPAN_NOTICE("Access granted. Welcome, '[authenticated_account.owner_name].'"))
 
 					previous_account_number = tried_account_num
 			if("e_withdrawal")
@@ -322,7 +326,7 @@ log transactions
 							//	spawn_money(amount,src.loc)
 							spawn_ewallet(amount,src.loc,usr)
 					else
-						usr << "\icon[src]<span class='warning'>You don't have enough funds to do that!</span>"
+						to_chat(usr, SPAN_WARNING("You don't have enough funds to do that!"))
 			if("withdrawal")
 				var/amount = max(text2num(href_list["funds_amount"]),0)
 				amount = round(amount, 0.01)
@@ -339,12 +343,12 @@ log transactions
 							spawn_money(amount,src.loc,usr)
 
 					else
-						usr << "\icon[src]<span class='warning'>You don't have enough funds to do that!</span>"
+						to_chat(usr, SPAN_WARNING("You don't have enough funds to do that!"))
 			if("balance_statement")
 				if(authenticated_account)
 					var/obj/item/weapon/paper/R = new(src.loc)
 					R.name = "Account balance: [authenticated_account.owner_name]"
-					R.info = "<b>NT Automated Teller Account Statement</b><br><br>"
+					R.info = "<b>Automated Teller Account Statement</b><br><br>"
 					R.info += "<i>Account holder:</i> [authenticated_account.owner_name]<br>"
 					R.info += "<i>Account number:</i> [authenticated_account.account_number]<br>"
 					R.info += "<i>Balance:</i> [CREDS][authenticated_account.money]<br>"
@@ -420,32 +424,12 @@ log transactions
 	playsound(loc, 'sound/machines/button.ogg', 100, 1)
 	src.attack_hand(usr)
 
-//stolen wholesale and then edited a bit from newscasters, which are awesome and by Agouri
-/obj/machinery/atm/proc/scan_user(mob/living/carbon/human/human_user as mob)
-	if(!authenticated_account)
-		if(human_user.wear_id)
-			var/obj/item/weapon/card/id/I
-			if(istype(human_user.wear_id, /obj/item/weapon/card/id) )
-				I = human_user.wear_id
-			else if(istype(human_user.wear_id, /obj/item/modular_computer/pda) )
-				I = I.GetIdCard()
-			if(I)
-				authenticated_account = attempt_account_access(I.associated_account_number)
-				if(authenticated_account)
-					human_user << "\blue \icon[src] Access granted. Welcome user '[authenticated_account.owner_name].'"
-
-					//create a transaction log entry
-					var/datum/transaction/T = new(0, authenticated_account.owner_name, "Remote terminal access", machine_id)
-					T.apply_to(authenticated_account)
-
-					view_screen = NO_SCREEN
-
 // put the currently held id on the ground or in the hand of the user
 /obj/machinery/atm/proc/release_held_id(mob/living/carbon/human/human_user as mob)
 	if(!held_card)
 		return
 
-	held_card.loc = src.loc
+	held_card.forceMove(get_turf(src))
 	authenticated_account = null
 
 	if(ishuman(human_user) && !human_user.get_active_hand())
