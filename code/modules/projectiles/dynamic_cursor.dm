@@ -5,7 +5,6 @@
 	update_cursor(H)
 
 /obj/item/weapon/gun/proc/update_cursor(mob/living/H)
-	world << "AAA"
 	if(H.client)
 		H.client.mouse_pointer_icon = initial(H.client.mouse_pointer_icon)
 		var/icon/scaled
@@ -26,6 +25,5 @@
 	. = ..()
 
 /obj/item/weapon/gun/afterattack(atom/A, mob/living/user, adjacent, params)
-	world << "AAABBB"
 	update_cursor(user)
 	. = ..()
