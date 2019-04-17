@@ -15,6 +15,7 @@
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_BOX
 	magazine_type = /obj/item/ammo_magazine/a762
+	tac_reloads = FALSE
 	matter = list(MATERIAL_PLASTEEL = 40, MATERIAL_PLASTIC = 15, MATERIAL_WOOD = 5)
 	price_tag = 5000
 	unload_sound 	= 'sound/weapons/guns/interact/lmg_magout.ogg'
@@ -33,13 +34,13 @@
 
 /obj/item/weapon/gun/projectile/automatic/lmg/special_check(mob/user)
 	if(cover_open)
-		user << SPAN_WARNING("[src]'s cover is open! Close it before firing!")
+		to_chat(user, SPAN_WARNING("[src]'s cover is open! Close it before firing!"))
 		return 0
 	return ..()
 
 /obj/item/weapon/gun/projectile/automatic/lmg/proc/toggle_cover(mob/user)
 	cover_open = !cover_open
-	user << "<span class='notice'>You [cover_open ? "open" : "close"] [src]'s cover.</span>"
+	to_chat(user, SPAN_NOTICE("You [cover_open ? "open" : "close"] [src]'s cover."))
 	update_icon()
 
 /obj/item/weapon/gun/projectile/automatic/lmg/attack_self(mob/user as mob)
@@ -67,13 +68,13 @@
 
 /obj/item/weapon/gun/projectile/automatic/lmg/load_ammo(var/obj/item/A, mob/user)
 	if(!cover_open)
-		user << SPAN_WARNING("You need to open the cover to load [src].")
+		to_chat(user, SPAN_WARNING("You need to open the cover to load [src]."))
 		return
 	..()
 
 /obj/item/weapon/gun/projectile/automatic/lmg/unload_ammo(mob/user, var/allow_dump=1)
 	if(!cover_open)
-		user << SPAN_WARNING("You need to open the cover to unload [src].")
+		to_chat(user, SPAN_WARNING("You need to open the cover to unload [src]."))
 		return
 	..()
 

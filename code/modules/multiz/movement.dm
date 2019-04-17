@@ -69,11 +69,10 @@
 	)
 
 	if(!start.CanZPass(mover, direction))
-		to_chat(src, SPAN_WARNING("\The [start] under you is in the way."))
+		to_chat(src, SPAN_WARNING("You can't leave this place in this direction."))
 		return FALSE
-
-	if(!destination.CanZPass(mover, direction))
-		to_chat(src, SPAN_WARNING("The ceiling above you is in the way."))
+	if(!destination.CanZPass(mover, (direction == UP ? DOWN : UP) ))
+		to_chat(src, SPAN_WARNING("\The [destination] has something on your way."))
 		return FALSE
 
 	// Check for blocking atoms at the destination.

@@ -51,7 +51,7 @@
 		user << "\The [src] has not yet matured."
 		return
 
-	if(!user.MayRespawn(1))
+	if(!user.MayRespawn(1, ANIMAL))
 		return
 
 	// Check for bans properly.

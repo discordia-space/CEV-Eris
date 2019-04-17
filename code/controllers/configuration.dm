@@ -54,7 +54,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/list/storytellers = list()				// allowed modes
 	var/humans_need_surnames = 0
 	var/allow_random_events = 0			// enables random events mid-round when set to 1
-	var/allow_ai = 1					// allow ai job
+	var/allow_ai = 0					// allow ai job
 	var/hostedby = null
 	var/respawn_delay = 30
 	var/guest_jobban = 1

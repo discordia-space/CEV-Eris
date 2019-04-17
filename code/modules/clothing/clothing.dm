@@ -49,7 +49,12 @@
 			if(!do_after(user,equip_delay,src))
 				return TRUE //A nonzero return value will cause the equipping operation to fail
 
-
+// To catch MouseDrop on clothing
+/obj/item/clothing/MouseDrop(over_object)
+	if(!(item_flags & DRAG_AND_DROP_UNEQUIP))
+		return ..()
+	if(!pre_equip(usr, over_object))
+		..()
 
 ///////////////////////////////////////////////////////////////////////
 // Ears: headsets, earmuffs and tiny objects
