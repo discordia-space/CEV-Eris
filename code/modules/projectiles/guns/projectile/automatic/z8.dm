@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/automatic/z8
-	name = "FS AR 5.56x45mm \"Z8 Bulldog\""
-	desc = "The Z8 Bulldog is an older model bullpup carbine, made by \"Frozen Star\". Uses 5.56mm rounds."
+	name = "FS CAR 5.56x45mm \"Z8 Bulldog\""
+	desc = "The Z8 Bulldog is an older model bullpup carbine, made by \"Frozen Star\". Has underbarrel grenade launcher which are compitable with most modern grenade types. Uses 5.56mm rounds."
 	icon_state = "carbine"
 	item_state = "z8carbine"
 	w_class = ITEM_SIZE_LARGE
@@ -8,29 +8,27 @@
 	caliber = "a556"
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 3)
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 6)
-	price_tag = 3500
+	price_tag = 3200 //old but gold, decent AP caliber, underbarrel GL, mild recoil and 20-round mags. Better than FS AK.
 	ammo_type = "/obj/item/ammo_casing/a556"
 	fire_sound = 'sound/weapons/guns/fire/batrifle_fire.ogg'
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_CIVI_RIFLE
 	magazine_type = /obj/item/ammo_magazine/a556
-	auto_eject = 1
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	unload_sound 	= 'sound/weapons/guns/interact/batrifle_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/batrifle_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/batrifle_cock.ogg'
+	recoil = 0.8 //it's carbine plus not 7.62
+	zoom_factor = 1.2
 
-	burst_delay = 4
 	firemodes = list(
-		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
-		list(mode_name="3-round bursts", burst=3,    fire_delay=null, move_delay=6,    dispersion=list(0.0, 0.6, 0.6), icon="burst"),
+		list(mode_name="3-round bursts", burst=3,    fire_delay=null, move_delay=4,    dispersion=list(0.0, 0.6, 0.6), icon="burst"),
 		list(mode_name="fire grenades",  burst=null, fire_delay=null, move_delay=null, dispersion=null, icon="grenade", use_launcher=1)
 		)
 
 	var/obj/item/weapon/gun/launcher/grenade/underslung/launcher
-	zoom_factor = 2.0
 
 /obj/item/weapon/gun/projectile/automatic/z8/Initialize()
 	. = ..()

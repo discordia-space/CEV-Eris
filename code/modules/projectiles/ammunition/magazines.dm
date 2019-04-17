@@ -209,7 +209,7 @@
 	caliber = "a556"
 	matter = list(MATERIAL_STEEL = 3)
 	ammo_type = /obj/item/ammo_casing/a556
-	max_ammo = 10
+	max_ammo = 20
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/a556/empty
