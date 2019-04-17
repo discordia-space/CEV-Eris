@@ -365,10 +365,12 @@
 
 	if(params)
 		P.set_clickpoint(params)
-	var/lower_offset = 0-recoil //0-3 = -3.
-	var/upper_offset = recoil/2 //3/2 = 1.5
-	var/x_offset = rand(lower_offset, upper_offset) //Recoil fucks up the spread of your bullets
-	var/y_offset = rand(lower_offset, upper_offset) //Eg. HIGH recoil of 4 means 2 extra dispersion, which is bad.
+	var/lower_offset = 0-recoil
+	var/upper_offset = recoil
+	var/x_offset = 0
+	var/y_offset = 0
+	x_offset = rand(lower_offset, upper_offset) //Recoil fucks up the spread of your bullets
+	y_offset = rand(lower_offset, upper_offset)
 	if(iscarbon(user))
 		var/mob/living/carbon/mob = user
 		if(mob.shock_stage > 120)	//shooting while in shock
