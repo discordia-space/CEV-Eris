@@ -15,6 +15,7 @@
 	tac_reloads = FALSE //if we have autoeject - we don't want tactical reload and vice-versa
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 3)
 	price_tag = 1700
+	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	silencer_type = /obj/item/weapon/silencer
 	damage_multiplier = 0.6
 	recoil = 0.7 //slightly more than a standart pistol due to auto-firing mode

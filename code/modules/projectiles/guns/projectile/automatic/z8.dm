@@ -15,7 +15,6 @@
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_CIVI_RIFLE
 	magazine_type = /obj/item/ammo_magazine/a556
-	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	unload_sound 	= 'sound/weapons/guns/interact/batrifle_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/batrifle_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/batrifle_cock.ogg'
