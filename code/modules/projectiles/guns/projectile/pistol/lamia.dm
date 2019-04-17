@@ -10,6 +10,7 @@
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL
 	auto_eject = 1
+	tac_reloads = FALSE //if we have autoeject - we don't want tactical reload and vice-versa
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 8)
 	price_tag = 1800
 	unload_sound 	= 'sound/weapons/guns/interact/hpistol_magout.ogg'
