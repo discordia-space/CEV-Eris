@@ -4,7 +4,7 @@ obj/item/weapon/gun/projectile/automatic/maxim
 	icon_state = "maxim"
 	item_state = "maxim"
 	w_class = ITEM_SIZE_HUGE
-	force = 10
+	force = WEAPON_FORCE_PAINFUL
 	slot_flags = 0
 	max_shells = 96
 	caliber = "a762"

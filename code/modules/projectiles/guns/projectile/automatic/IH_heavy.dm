@@ -1,6 +1,6 @@
 //Primary AR of IH. Has supreme AP to deal with those pesky Serbs (guildsmans actually) in armored hardsuits.
 /obj/item/weapon/gun/projectile/automatic/IH_heavyrifle
-	name = "FS AR \"Wintermute\""
+	name = "FS AR 5.56x45mm \"Wintermute\""
 	desc = "A high end military grade assault rifle, designed as a modern ballistic infantry weapon. Primarily used by and produced for IH troops. Uses 5.56mm rounds."
 	icon_state = "IH_heavyrifle"
 	item_state = "IH_heavyrifle"
@@ -18,12 +18,13 @@
 	unload_sound 	= 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/ltrifle_cock.ogg'
-	zoom_factor = 2.0
+	zoom_factor = 1.2
+	recoil = 1.1 //slightly lower due to firing 5.56, not 7.62
 
 	firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    dispersion=list(0.0, 0.6, 0.6), icon="burst"),
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    dispersion=list(0.0, 0.6, 0.6), icon="burst"),
 		list(mode_name="short bursts",   burst=5, fire_delay=null, move_delay=6,    dispersion=list(0.6, 1.0, 1.0, 1.0, 1.2), icon="burst"),
 		)
 
