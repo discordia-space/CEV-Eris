@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/revolver/mateba
 	name = "FS REV .357 \"Mateba\""
-	desc = "Old, reliable and robust designed hand-cannon, this is a gun for a real officer, not just self-proclaimed \"leader\". Revolver of choice when you not just need to make a hole in someone, but to tore their limbs off. Uses old school .357 ammo."
+desc = "Old, reliable, hand-cannon with a robust design. This is a gun for a real officer, not just a self-proclaimed \"leader\". Revolver of choice when you want to put someone down. Permanently. Uses old school .357 ammo."
 	icon_state = "mateba"
 	drawChargeMeter = FALSE
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
