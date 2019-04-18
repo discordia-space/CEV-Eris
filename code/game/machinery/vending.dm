@@ -444,7 +444,7 @@
 		return
 
 	for(var/datum/data/vending_product/R in product_records)
-		if(I.type == R.product_path)
+		if(I.type == R.product_path && I.name == R.product_name)
 			if (!locked || always_open || (panel_open && !custom_vendor))
 				stock(I, R, user)
 				return 1
