@@ -151,7 +151,7 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 						add_log_entry(L, "has [IsColourCut(colour) ? "mended" : "cut"] the <font color='[colour]'>[capitalize(colour)]</font> wire")
 						CutWireColour(colour)
 				else
-					to_chat(L, SPAN_ERROR("You need something that can cut!"))
+					to_chat(L, SPAN_WARNING("You need something that can cut!"))
 
 			else if(href_list["pulse"])
 				if (!istype(I))
@@ -162,7 +162,7 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 						add_log_entry(L, "has pulsed the <font color='[colour]'>[capitalize(colour)]</font> wire")
 						PulseColour(colour)
 				else
-					to_chat(L, SPAN_ERROR("You need a multitool!"))
+					to_chat(L, SPAN_WARNING("You need a multitool!"))
 
 			else if(href_list["attach"])
 				var/colour = href_list["attach"]
@@ -180,7 +180,7 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 						add_log_entry(L, "has attached [I] to the <font color='[colour]'>[capitalize(colour)]</font> wire")
 						Attach(colour, I)
 					else
-						to_chat(L, SPAN_ERROR("You need a remote signaller!"))
+						to_chat(L, SPAN_WARNING("You need a remote signaller!"))
 
 
 
