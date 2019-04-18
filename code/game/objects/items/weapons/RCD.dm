@@ -85,7 +85,7 @@
 		update_icon()	//Updates the ammo counter if ammo is succesfully used
 	return 1
 
-/obj/item/weapon/rcd/proc/alter_turf(var/T,var/mob/user,var/deconstruct)
+/obj/item/weapon/rcd/proc/alter_turf(var/T,var/mob/user)
 
 	var/build_cost = 0
 	var/build_type
@@ -138,7 +138,7 @@
 					build_delay = 40
 
 		if(4)
-			build_type =  "destroy"
+			build_type =  "deconstruct"
 			if(gotFloor)
 				build_cost =  10
 				build_delay = 50
@@ -148,7 +148,7 @@
 				build_cost =  5
 			if(istype(T,/turf/simulated/wall))
 				var/turf/simulated/wall/W = T
-				build_delay = deconstruct ? (W.reinf_material) ? 150 : 50 : 40
+				build_delay = 40
 				build_cost =  (W.reinf_material) ? 10 : 5
 				build_type =  (!canRwall && W.reinf_material) ? null : "destroy"
 				build_turf =  /turf/simulated/floor
@@ -188,7 +188,7 @@
 	if(build_object)
 		new build_object(local_turf)
 
-	if(build_type == "destroy")
+	if(build_type == "deconstruct")
 		qdel(T)
 
 	playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
