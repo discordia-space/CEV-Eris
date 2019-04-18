@@ -117,6 +117,8 @@
 	var/obj/item/weapon/card/id/id_card
 	if (computer.card_slot)
 		id_card = computer.card_slot.stored_card
+	if (!user_id_card)
+		return
 
 	var/datum/nano_module/program/card_mod/module = NM
 	switch(href_list["action"])
