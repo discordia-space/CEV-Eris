@@ -10,6 +10,8 @@
 		return
 	if(!Adjacent(usr) || !over.Adjacent(usr)) // should stop you from dragging through windows
 		return
+	if(usr.stat == DEAD)
+		return
 
 	spawn(0)
 		over.MouseDrop_T(src, usr, src_location, over_location, src_control, over_control, params)
