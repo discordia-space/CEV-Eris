@@ -15,11 +15,8 @@ SUBSYSTEM_DEF(ticker)
 	var/first_start_trying = TRUE
 	var/story_vote_ended = FALSE
 
-
 	var/event_time = null
 	var/event = 0
-
-	var/login_music			// music played in pregame lobby
 
 	var/list/datum/mind/minds = list()//The people in the game. Used for objective tracking.
 
@@ -49,15 +46,6 @@ SUBSYSTEM_DEF(ticker)
 	//station_explosion used to be a variable for every mob's hud. Which was a waste!
 	//Now we have a general cinematic centrally held within the gameticker....far more efficient!
 	var/obj/screen/cinematic = null
-
-/datum/controller/subsystem/ticker/PreInit()
-	login_music = pick(list(
-		'sound/music/tonspender_irritations.ogg',
-		'sound/music/i_am_waiting_for_you_last_summer_neon_fever.ogg',
-		'sound/music/paradise_cracked_skytown.ogg',
-		'sound/music/nervous_testpilot _my_beautiful_escape.ogg',
-		'sound/music/deus_ex_unatco_nervous_testpilot_remix.ogg',
-		'sound/music/paradise_cracked_title03.ogg'))
 
 /datum/controller/subsystem/ticker/Initialize(start_timeofday)
 	if(!syndicate_code_phrase)

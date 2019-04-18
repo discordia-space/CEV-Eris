@@ -391,6 +391,9 @@
 	sleep(1)
 
 /client/proc/create_UI(var/mob_type)
+	destroy_UI()
+	if(!mob_type)
+		mob_type = mob.type
 	if(!UI)
 		var/success = FALSE
 		for(var/S in GLOB.ui_styles[mob_type])
@@ -409,7 +412,3 @@
 	if(UI)
 		qdel(UI)
 		UI = null
-
-/client/proc/recreate_UI()
-	destroy_UI()
-	create_UI(mob.type)

@@ -14,4 +14,8 @@ SUBSYSTEM_DEF(character_setup)
 		prefs_awaiting_setup.len--
 		prefs.setup()
 	initialized = TRUE
+	// Start playing music for clients
+	for(var/client/C in clients)
+		GLOB.lobbyScreen.playMusic(C)
+
 	. = ..()
