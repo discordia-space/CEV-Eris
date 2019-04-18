@@ -1,0 +1,63 @@
+
+
+<div class="itemLabel"> Status: </div>
+<div class="itemContent"> {{:data.status}} </div>
+
+Biomatter tank:
+<hr> </hr>
+<div class="itemLabel">
+	Biomatter:
+</div>
+<div class="itemContent">
+	{{:helper.displayBar(data.progress, 0, 100, 'highlight', showText = data.biotank_occupancy/data.biotank_max_capacity)}}
+</div>
+
+<div class="itemLabel">
+	Status:
+</div>
+<div class="itemContent">
+	{{if data.biotank_status}}
+		disconnected from bioreactor
+	{{else}}
+		connected to bioreactor
+	{{/if}}
+</div>
+
+<div class="itemLabel">
+	Canister:
+</div>
+<div class="itemContent">
+	{{if data.canister}}
+		connected with {{:data.canister}}
+	{{else}}
+		not connected
+	{{/if}}
+</div>
+
+<hr> </hr>
+
+<div class="itemLabel"> Pipes condition:  </div>
+<div class="itemContent">
+	{{if data.pipes_condition > 60 && data.pipes_condition <= 90}}
+		<div class="good">
+			SLIGHTLY DIRTY
+		</div>
+	{{else data.pipes_condition <= 60 && data.pipes_condition > 20}}
+		<div class="average">
+			DIRTY
+		</div>
+	{{else data.pipes_condition <= 20}}
+		<div class="bad">
+			CRITICAL DIRTY
+		</div>
+	{{else data.pipes_condition <= 0}}
+		<div class="bad">
+			BLOCKAGE
+		</div>
+	{{else}}
+		<div class="good">
+			CLEAN
+		</div>
+	{{/if}}
+</div>
+
