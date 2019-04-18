@@ -48,11 +48,9 @@
 		//The cost for stabilization is paid later
 		if (check_drift)
 			if (thrust.stabilization_on)
-				inertia_dir = 0
 				return TRUE
 			return FALSE
 		else if(thrust.allow_thrust(JETPACK_MOVE_COST, src))
-			inertia_dir = 0
 			return TRUE
 
 	//If no working jetpack then use the other checks
