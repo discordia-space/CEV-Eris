@@ -1203,4 +1203,4 @@ mob/proc/yank_out_object()
 	if(!check_has_body_select())
 		return
 	var/obj/screen/zone_sel/selector = mob.HUDneed["damage zone"]
-	selector.set_selected_zone(next_in_list(selector.selecting,zones))
+	selector.set_selected_zone(next_in_list(mob.targeted_organ,zones))

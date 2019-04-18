@@ -181,13 +181,12 @@
 	name = "damage zone"
 	icon_state = "zone_sel"
 	screen_loc = ui_zonesel
-	var/selecting = BP_CHEST
 
 /obj/screen/zone_sel/Click(location, control, params)
 	var/list/PL = params2list(params)
 	var/icon_x = text2num(PL["icon-x"])
 	var/icon_y = text2num(PL["icon-y"])
-	var/old_selecting = selecting //We're only going to update_icon() if there's been a change
+	var/selecting
 
 	switch(icon_y)
 		if(1 to 9) //Legs
@@ -229,9 +228,7 @@
 						if(icon_x in 14 to 18)
 							selecting = BP_EYES
 
-	if(old_selecting != selecting)
-		set_selected_zone(selecting)
-		update_icon()
+	set_selected_zone(selecting)
 	return TRUE
 
 /obj/screen/zone_sel/New()
@@ -240,18 +237,13 @@
 
 /obj/screen/zone_sel/update_icon()
 	overlays.Cut()
-	overlays += image('icons/mob/zone_sel.dmi', "[selecting]")
+	overlays += image('icons/mob/zone_sel.dmi', "[parentmob.targeted_organ]")
 
 /obj/screen/zone_sel/proc/set_selected_zone(bodypart)
-	var/old_selecting = selecting
-	selecting = bodypart
-	if(old_selecting != selecting)
-		parentmob.targeted_organ = selecting
+	var/old_selecting = parentmob.targeted_organ
+	if(old_selecting != bodypart)
+		parentmob.targeted_organ = bodypart
 		update_icon()
-
-/obj/screen/zone_sel/update_icon()
-	overlays.Cut()
-	overlays += image('icons/mob/zone_sel.dmi', "[selecting]")
 //--------------------------------------------------ZONE SELECT END---------------------------------------------------------
 
 /obj/screen/text
