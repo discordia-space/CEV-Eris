@@ -190,7 +190,11 @@
 	var/uses = 30 //0 for unlimited uses
 	var/instant = 0
 	var/colourName = "red" //for updateIcon purposes
+	var/grindable = TRUE //normal crayons are grindable, rainbow and mime aren't
 
 	New()
 		name = "[colourName] crayon"
+		if(grindable)
+			create_reagents(20)
+			reagents.add_reagent("crayon_dust_[colourName]", 20)
 		..()

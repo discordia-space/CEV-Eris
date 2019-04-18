@@ -7,7 +7,7 @@
 	item_state = "l6closedmag"
 	w_class = ITEM_SIZE_HUGE
 	icon = 'icons/obj/weapons/lmg.dmi'
-	force = 10
+	force = WEAPON_FORCE_PAINFUL
 	slot_flags = 0
 	caliber = "a762"
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 2)
@@ -22,6 +22,8 @@
 	reload_sound 	= 'sound/weapons/guns/interact/lmg_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/lmg_cock.ogg'
 	fire_sound = 'sound/weapons/guns/fire/lmg_fire.ogg'
+	recoil = 1.2 //it's basically 600 RPM of 7.62
+
 	firemodes = list(
 		FULL_AUTO_600,
 		list(mode_name="short bursts",	burst=5, move_delay=6, dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2), icon="burst"),
