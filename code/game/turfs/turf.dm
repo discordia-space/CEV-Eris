@@ -151,15 +151,17 @@ var/const/enterloopsanity = 100
 
 	if(ismob(A))
 		var/mob/M = A
+
+		M.update_floating()
 		if(M.check_gravity() || M.incorporeal_move)
 			M.inertia_dir = 0
 		else
-			if(!M.allow_spacemove())
-				inertial_drift(M)
-			else
+			var/allow_spacemove = M.allow_spacemove(1)
+			if(allow_spacemove == TRUE)
 				M.inertia_dir = 0
-
-		M.update_floating() // no check_dense_object() proc in arg because it will make this line more costly for almost zero reward in my opinion.
+				M.update_floating(FALSE)
+			else if(!M.check_dense_object())
+				inertial_drift(M)
 		if(isliving(M))
 			var/mob/living/L = M
 			L.handle_footstep(src)
