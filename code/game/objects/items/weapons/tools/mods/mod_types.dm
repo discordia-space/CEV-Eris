@@ -328,3 +328,13 @@
 		powercost_mult = 1.20
 		precision = 14
 		workspeed = 14
+
+/obj/item/weapon/tool_upgrade/augment/repair_nano
+	name = "repair nano"
+	desc = "Very rare tool mod from OneStar powered by their nanomachines. It repairs the tool while in use and makes it near unbreakable."
+	icon_state = "repair_nano"
+	prefix = "self-healing"
+
+/obj/item/weapon/tool_upgrade/augment/repair_nano/apply_values()
+	if (..())
+		degradation_mult = 0.01
