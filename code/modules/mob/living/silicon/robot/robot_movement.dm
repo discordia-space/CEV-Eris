@@ -10,14 +10,10 @@
 
 	if(thrust)
 		//The cost for stabilization is paid later
-		if (check_drift)
-			if (thrust.stabilization_on)
-				inertia_dir = 0
-				return TRUE
-			return FALSE
-		else if(thrust.allow_thrust(JETPACK_MOVE_COST, src))
-			inertia_dir = 0
+		if (thrust.stabilization_on)
 			return TRUE
+		if(thrust.allow_thrust(JETPACK_MOVE_COST, src))
+			return -1
 
 	//If no working jetpack then use the other checks
 	if (is_component_functioning("actuator"))
