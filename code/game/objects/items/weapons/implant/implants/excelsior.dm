@@ -20,12 +20,12 @@
 	malfunction = MALFUNCTION_PERMANENT
 
 /obj/item/weapon/implantcase/excelsior/broken
-	name = "glass case - 'complant'"
+	name = "glass case - 'broken complant'"
 	desc = "A case containing an broken excelsior complant."
 	implant = /obj/item/weapon/implant/excelsior/broken
 
 /obj/item/weapon/implanter/excelsior/broken
-	name = "implanter-complant"
+	name = "broken implanter-complant"
 	implant = /obj/item/weapon/implant/excelsior/broken
 
 //The excelsior implant converts humans into antags, but it also protects mobs from excelsior turrets and shields
