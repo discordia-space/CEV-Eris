@@ -49,9 +49,8 @@
 		if (check_drift)
 			if (thrust.stabilization_on)
 				return TRUE
-			return FALSE
-		else if(thrust.allow_thrust(JETPACK_MOVE_COST, src))
-			return TRUE
+		if(thrust.allow_thrust(JETPACK_MOVE_COST, src))
+			return -1
 
 	//If no working jetpack then use the other checks
 	. = ..()
