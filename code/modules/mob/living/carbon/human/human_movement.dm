@@ -37,7 +37,7 @@
 	return tally
 
 
-/mob/living/carbon/human/allow_spacemove(var/check_drift = 0)
+/mob/living/carbon/human/allow_spacemove()
 	//Can we act?
 	if(restrained())	return 0
 
@@ -45,11 +45,9 @@
 	var/obj/item/weapon/tank/jetpack/thrust = get_jetpack()
 
 	if(thrust)
-		//The cost for stabilization is paid later
-		if (check_drift)
+		if(thrust.allow_thrust(JETPACK_MOVE_COST, src))
 			if (thrust.stabilization_on)
 				return TRUE
-		if(thrust.allow_thrust(JETPACK_MOVE_COST, src))
 			return -1
 
 	//If no working jetpack then use the other checks

@@ -172,7 +172,7 @@
 //Return true for safe movement
 //Return -1 for movement with possibility of slipping
 //Return false for no movement
-/mob/proc/allow_spacemove(var/check_drift = 0)
+/mob/proc/allow_spacemove()
 	//First up, check for magboots or other gripping capability
 	//If we have some, then check the ground under us
 	if (incorporeal_move)

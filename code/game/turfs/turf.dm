@@ -156,7 +156,7 @@ var/const/enterloopsanity = 100
 		if(M.check_gravity() || M.incorporeal_move)
 			M.inertia_dir = 0
 		else
-			var/allow_spacemove = M.allow_spacemove(1)
+			var/allow_spacemove = M.allow_spacemove()
 			if(allow_spacemove == TRUE)
 				M.inertia_dir = 0
 				M.update_floating(FALSE)

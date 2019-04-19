@@ -3,16 +3,17 @@
 		return 0
 	..(prob_slip)
 
-/mob/living/silicon/robot/allow_spacemove(var/check_drift = 0)
+/mob/living/silicon/robot/allow_spacemove()
 
 	//Do we have a working jetpack?
 	var/obj/item/weapon/tank/jetpack/thrust = get_jetpack()
 
 	if(thrust)
 		//The cost for stabilization is paid later
-		if (thrust.stabilization_on)
-			return TRUE
+
 		if(thrust.allow_thrust(JETPACK_MOVE_COST, src))
+			if (thrust.stabilization_on)
+				return TRUE
 			return -1
 
 	//If no working jetpack then use the other checks
