@@ -9,8 +9,6 @@
 	var/obj/item/weapon/tank/jetpack/thrust = get_jetpack()
 
 	if(thrust)
-		//The cost for stabilization is paid later
-
 		if(thrust.allow_thrust(JETPACK_MOVE_COST, src))
 			if (thrust.stabilization_on)
 				return TRUE
@@ -18,7 +16,7 @@
 
 	//If no working jetpack then use the other checks
 	if (is_component_functioning("actuator"))
-		. = ..()
+		return ..()
 
 
 
