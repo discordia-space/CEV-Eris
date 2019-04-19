@@ -644,7 +644,22 @@
 	return 0
 
 /obj/machinery/reagentgrinder/attack_hand(mob/user as mob)
-	interact(user)
+	var/list/options = list("grind", "eject", "detach", "menu")
+	for(var/option in options)
+		options[option] = image(icon = 'icons/obj/chemical.dmi', icon_state = "[option]")
+	var/selected
+	selected = show_radial_menu(user, src, options, radius = 42)
+	if(!selected)
+		return
+	switch(selected)
+		if ("grind")
+			grind()
+		if("eject")
+			eject()
+		if ("detach")
+			detach()
+		if("menu")
+			interact(user)
 
 /obj/machinery/reagentgrinder/interact(mob/user as mob) // The microwave Menu
 	if(inoperable())
