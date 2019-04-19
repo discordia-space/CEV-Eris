@@ -1,4 +1,4 @@
-var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","Epsilon","Zeta","Eta","Theta","Iota","Kappa","Lambda","Mu","Nu","Xi","Omicron","Pi","Rho","Sigma","Tau","Upsilon","Phi","Chi","Psi","Omega")
+ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","Epsilon","Zeta","Eta","Theta","Iota","Kappa","Lambda","Mu","Nu","Xi","Omicron","Pi","Rho","Sigma","Tau","Upsilon","Phi","Chi","Psi","Omega")
 
 /datum/changeling //stores changeling powers, changeling recharge thingie, changeling absorbed DNA and changeling ID (for changeling hivemind)
 	var/list/absorbed_dna = list()
@@ -784,7 +784,7 @@ var/list/datum/dna/hivemind_bank = list()
 
 /mob/proc/changeling_prepare_paralysis_sting()
 	set category = "Changeling"
-	set name = "Paralysis Sting (30)"
+	set name = "Paralysis Sting (40)"
 	set desc="Sting target"
 
 	check_CH("Paralysis Sting",/datum/click_handler/changeling/changeling_paralysis_sting)
@@ -792,7 +792,7 @@ var/list/datum/dna/hivemind_bank = list()
 
 
 /mob/proc/changeling_paralysis_sting(atom/A)
-	var/mob/living/carbon/T = changeling_sting(30,A)
+	var/mob/living/carbon/T = changeling_sting(40,A)
 	if(!T)	return 0
 	T << SPAN_DANGER("Your muscles begin to painfully tighten.")
 	T.Weaken(20)
@@ -917,7 +917,7 @@ var/list/datum/dna/hivemind_bank = list()
 /mob/proc/changeling_prepare_DEATHsting()
 	set category = "Changeling"
 	set name = "Death Sting (50)"
-	set desc = "Causes the prey's nervous system to slowly dissolve into nothing"
+	set desc = "Causes the prey's blood to freeze into ice."
 
 	check_CH("Death Sting",/datum/click_handler/changeling/changeling_DEATHsting)
 	return
@@ -925,12 +925,9 @@ var/list/datum/dna/hivemind_bank = list()
 /mob/proc/changeling_DEATHsting(atom/A)
 	var/mob/living/carbon/T = changeling_sting(50,A)
 	if(!T)	return 0
-	T << SPAN_DANGER("You feel a small prick and your body is flooded with excruciating pain!")
-	T.silent = 25
-	T.Paralyse(25)
+	T << SPAN_DANGER("You feel a small prick and you feel your blood beginning to freeze.")
 	T.make_jittery(25)
-	T.Weaken(40)
-	if(T.reagents)	T.reagents.add_reagent("carpotoxin", 40)
+	if(T.reagents)	T.reagents.add_reagent("frostoil", 50)
 	return 1
 
 
