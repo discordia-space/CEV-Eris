@@ -315,3 +315,16 @@
 	if (..())
 		holder.item_flags |= SILENT
 		holder.color = "#AAAAAA"
+
+/obj/item/weapon/tool_upgrade/augment/ai_tool
+	name = "ai tool"
+	desc = "A tool mod from OneStar is deemed heretic by the clan of Technomancers. It enhances the tool by the micro-ai at cost of increased power usage."
+	icon_state = "ai_tool"
+	req_cell = TRUE
+	prefix = "intelligent"
+
+/obj/item/weapon/tool_upgrade/augment/ai_tool/apply_values()
+	if (..())
+		powercost_mult = 1.20
+		precision = 14
+		workspeed = 14
