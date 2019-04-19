@@ -669,7 +669,7 @@ var/list/datum/dna/hivemind_bank = list()
 	if(M.loc == src.loc)
 		return 1 //target and source are in the same thing
 	if(!isturf(src.loc) || !isturf(M.loc))
-		src << SPAN_WARNING("We cannot reach \the [M] with a sting!")
+		//src << SPAN_WARNING("We cannot reach \the [M] with a sting!") This breaks the stings that are supposed to be undetected or have delayed effect. Removed accordingly
 		return 0 //One is inside, the other is outside something.
 	// Maximum queued turfs set to 25; I don't *think* anything raises sting_range above 2, but if it does the 25 may need raising
 	if(!AStar(src.loc, M.loc, /turf/proc/AdjacentTurfs, /turf/proc/Distance, max_nodes=25, max_node_depth=sting_range)) //If we can't find a path, fail
@@ -916,20 +916,21 @@ var/list/datum/dna/hivemind_bank = list()
 
 /mob/proc/changeling_prepare_DEATHsting()
 	set category = "Changeling"
-	set name = "Death Sting (40)"
-	set desc = "Causes spasms onto death."
+	set name = "Death Sting (50)"
+	set desc = "Causes the prey's nervous system to slowly dissolve into nothing"
 
 	check_CH("Death Sting",/datum/click_handler/changeling/changeling_DEATHsting)
 	return
 
 /mob/proc/changeling_DEATHsting(atom/A)
-	var/mob/living/carbon/T = changeling_sting(40,A)
+	var/mob/living/carbon/T = changeling_sting(50,A)
 	if(!T)	return 0
-	T << SPAN_DANGER("You feel a small prick and your chest becomes tight.")
-	T.silent = 10
-	T.Paralyse(10)
-	T.make_jittery(1000)
-	if(T.reagents)	T.reagents.add_reagent("lexorin", 40)
+	T << SPAN_DANGER("You feel a small prick and your body is flooded with excruciating pain!")
+	T.silent = 25
+	T.Paralyse(25)
+	T.make_jittery(25)
+	T.Weaken(40)
+	if(T.reagents)	T.reagents.add_reagent("carpotoxin", 40)
 	return 1
 
 
