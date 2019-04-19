@@ -156,12 +156,15 @@ var/const/enterloopsanity = 100
 		if(M.check_gravity() || M.incorporeal_move)
 			M.inertia_dir = 0
 		else
-			var/allow_spacemove = M.allow_spacemove()
-			if(allow_spacemove == TRUE)
-				M.inertia_dir = 0
-				M.update_floating(FALSE)
-			else if(!M.check_dense_object())
+			if(!M.allow_spacemove())
 				inertial_drift(M)
+			else
+				if(M.allow_spacemove() == TRUE)
+					M.update_floating(FALSE)
+					M.inertia_dir = 0
+				else if(M.check_dense_object())
+					M.inertia_dir = 0
+
 		if(isliving(M))
 			var/mob/living/L = M
 			L.handle_footstep(src)

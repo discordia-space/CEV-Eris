@@ -97,7 +97,7 @@
 	speed = 0
 
 /mob/living/simple_animal/hostile/syndicate/melee/space/allow_spacemove()
-	return
+	return ..()
 
 /mob/living/simple_animal/hostile/syndicate/ranged
 	ranged = 1
@@ -125,7 +125,7 @@
 	speed = 0
 
 /mob/living/simple_animal/hostile/syndicate/ranged/space/allow_spacemove()
-	return
+	return ..()
 
 
 

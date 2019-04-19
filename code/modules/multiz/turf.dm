@@ -13,7 +13,7 @@ see multiz/movement.dm for some info.
 		if(z == A.z)
 			if(direction == DOWN)
 				return 0
-		if(direction == UP)
+		else if(direction == UP)
 			return 0
 	return 1
 
@@ -23,9 +23,12 @@ see multiz/movement.dm for some info.
 		if(z == A.z)
 			if(direction == DOWN)
 				return 0
-		if(direction == UP)
+		else if(direction == UP)
 			return 0
 	return 1
+
+/turf/simulated/floor/CanZPass(atom/A, direction)
+	return direction != DOWN
 /////////////////////////////////////
 
 /turf/simulated/open
