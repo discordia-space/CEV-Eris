@@ -166,9 +166,9 @@
 
 /obj/item/weapon/storage/deferred/crate/antiarmor
 	name = "anti-armor crate"
-	desc = "a crate containing one \"RPG-7\" launcher, and twenty 40mm PG-7VL warheads"
+	desc = "a crate containing one \"RPG-7\" launcher, and ten 40mm PG-7VL warheads"
 	icon_state = "old_weaponcrate"
-	initial_contents = list(/obj/item/ammo_casing/rocket = 20,
+	initial_contents = list(/obj/item/ammo_casing/rocket = 10,
 	/obj/item/weapon/gun/projectile/rpg = 1)
 
 
@@ -184,7 +184,7 @@
 
 /obj/item/weapon/storage/deferred/crate/marksman
 	name = "marksman crate"
-	desc = "a crate containing one \"Penetrator\" rifle, and seventy 14.5mm AP shells"
+	desc = "a crate containing one \"Penetrator\" rifle, and ten 14.5mm AP shells"
 	icon_state = "old_weaponcrate"
 	initial_contents = list(/obj/item/weapon/gun/projectile/heavysniper = 1,
 	/obj/item/weapon/storage/box/sniperammo = 2)

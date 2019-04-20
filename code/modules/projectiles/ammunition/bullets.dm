@@ -245,7 +245,7 @@
 
 /obj/item/ammo_casing/rocket
 	name = "PG-7VL grenade"
-	desc = "A 40mm warhead designed for the RPG-7 launcher."
+	desc = "A 40mm warhead designed for the RPG-7 launcher. Has tubular shape."
 	icon_state = "rocketshell"
 	projectile_type = /obj/item/projectile/bullet/rocket
 	caliber = "rocket"
