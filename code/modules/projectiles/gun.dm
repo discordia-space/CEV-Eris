@@ -369,20 +369,26 @@
 	var/lower_offset = 0
 	var/upper_offset = 0
 	if(recoil)
-		lower_offset = -recoil
-		upper_offset = recoil
+		lower_offset = -recoil*20
+		upper_offset = recoil*20
+	if(iscarbon(user))
+		var/mob/living/carbon/mob = user
+		var/aim_coeff = mob.stats.getStat(STAT_AIM)/10 //Allows for security to be better at aiming
+		if(aim_coeff > 0)//EG. 60 which is the max, turns into 6. Giving a sizeable accuracy bonus.
+			lower_offset += aim_coeff
+			upper_offset -= aim_coeff
+		if(mob.shock_stage > 120)	//shooting while in shock
+			lower_offset *= 15 //A - * a - is a +
+			upper_offset *= 15
+		else if(mob.shock_stage > 70)
+			lower_offset *= 10 //A - * a - is a +
+			upper_offset *= 10
+
 	var/x_offset = 0
 	var/y_offset = 0
 	x_offset = rand(lower_offset, upper_offset) //Recoil fucks up the spread of your bullets
 	y_offset = rand(lower_offset, upper_offset)
-	if(iscarbon(user))
-		var/mob/living/carbon/mob = user
-		if(mob.shock_stage > 120)	//shooting while in shock
-			y_offset = rand(-2,recoil)
-			x_offset = rand(-2,recoil)
-		else if(mob.shock_stage > 70)
-			y_offset = rand(-1,recoil)
-			x_offset = rand(-1,recoil)
+
 
 	return !P.launch_from_gun(target, user, src, target_zone, x_offset, y_offset)
 
