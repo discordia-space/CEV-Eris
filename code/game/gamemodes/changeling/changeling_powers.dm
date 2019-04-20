@@ -702,7 +702,7 @@ var/list/datum/dna/hivemind_bank = list()
 //	spawn(10)	src.verbs += verb_path
 
 	src << SPAN_NOTICE("We stealthily sting [T].")
-	T << SPAN_WARNING("You feel a tiny prick.")
+//	T << SPAN_WARNING("You feel a tiny prick.")
 	log_attack("[src] use [src.client.CH.handler_name] on [T]")
 	if(!T.mind || !T.mind.changeling)
 		return T //T will be affected by the sting
@@ -784,7 +784,7 @@ var/list/datum/dna/hivemind_bank = list()
 
 /mob/proc/changeling_prepare_paralysis_sting()
 	set category = "Changeling"
-	set name = "Paralysis Sting (30)"
+	set name = "Paralysis Sting (40)"
 	set desc="Sting target"
 
 	check_CH("Paralysis Sting",/datum/click_handler/changeling/changeling_paralysis_sting)
@@ -792,7 +792,7 @@ var/list/datum/dna/hivemind_bank = list()
 
 
 /mob/proc/changeling_paralysis_sting(atom/A)
-	var/mob/living/carbon/T = changeling_sting(30,A)
+	var/mob/living/carbon/T = changeling_sting(40,A)
 	if(!T)	return 0
 	T << SPAN_DANGER("Your muscles begin to painfully tighten.")
 	T.Weaken(20)
@@ -916,20 +916,18 @@ var/list/datum/dna/hivemind_bank = list()
 
 /mob/proc/changeling_prepare_DEATHsting()
 	set category = "Changeling"
-	set name = "Death Sting (40)"
+	set name = "Cryo Sting (50)"
 	set desc = "Causes spasms onto death."
 
-	check_CH("Death Sting",/datum/click_handler/changeling/changeling_DEATHsting)
+	check_CH("Cryo Sting",/datum/click_handler/changeling/changeling_DEATHsting)
 	return
 
 /mob/proc/changeling_DEATHsting(atom/A)
-	var/mob/living/carbon/T = changeling_sting(40,A)
+	var/mob/living/carbon/T = changeling_sting(50,A)
 	if(!T)	return 0
-	T << SPAN_DANGER("You feel a small prick and your chest becomes tight.")
-	T.silent = 10
-	T.Paralyse(10)
-	T.make_jittery(1000)
-	if(T.reagents)	T.reagents.add_reagent("lexorin", 40)
+	T << SPAN_DANGER("You feel a small prick and your blood begins to freeze in your veins.")
+	T.make_jittery(25)
+	if(T.reagents)	T.reagents.add_reagent("frost oil", 40)
 	return 1
 
 
