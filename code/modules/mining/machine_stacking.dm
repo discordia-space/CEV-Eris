@@ -68,7 +68,7 @@
 	var/input_dir = null
 	var/output_dir = null
 	var/list/stack_storage
-	var/stack_amt = 120; // Amount to stack before releassing
+	var/stack_amt = 120 // Amount to stack before releassing
 
 /obj/machinery/mineral/stacking_machine/New()
 	stack_storage = new
