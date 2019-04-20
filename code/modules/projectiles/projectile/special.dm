@@ -31,7 +31,7 @@
 	check_armour = "explosive"
 
 /obj/item/projectile/bullet/rocket/launch(atom/target, var/target_zone, var/x_offset, var/y_offset, angle_offset)
-	set_light(1, 50, "#dddd00")
+	set_light(1, 0.5, "#dddd00")
 	..(target, target_zone, x_offset, y_offset, angle_offset)
 
 /obj/item/projectile/bullet/rocket/on_hit(var/atom/target, var/blocked = 0)
