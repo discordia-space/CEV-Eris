@@ -173,17 +173,17 @@
 	icon_state = "old_weaponcrate"
 	initial_contents = list(/obj/item/ammo_casing/rocket = 12,
 	/obj/item/weapon/storage/pouch/tubular = 1,
-	/obj/item/weapon/gun/projectile/rpg = 1)
-
+	/obj/item/weapon/gun/projectile/rpg = 1,
+	/obj/item/weapon/storage/pouch/tubular = 1)
 
 /obj/item/weapon/storage/deferred/crate/demolition
 	name = "breaching crate"
 	desc = "A crate of tools to deal with stationary hard targets, and remove obstacles."
 	icon_state = "old_weaponcrate"
 	initial_contents = list(/obj/item/weapon/plastique = 13,
+	/obj/item/weapon/storage/pouch/tubular = 1,
 	/obj/item/weapon/hatton = 1,
 	/obj/item/weapon/hatton_magazine = 5,
-	/obj/item/weapon/storage/pouch/tubular = 1,
 	/obj/item/weapon/tool/pickaxe/diamonddrill = 1)
 
 

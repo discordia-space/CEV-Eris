@@ -168,6 +168,7 @@
 
 	storage_slots = 5
 	w_class = ITEM_SIZE_NORMAL
+	max_w_class = ITEM_SIZE_NORMAL
 
 	can_hold = list(
 		/obj/item/device/lighting/glowstick,
