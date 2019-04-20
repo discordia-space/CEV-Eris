@@ -1,19 +1,13 @@
+//Polish'n'fixing stage
 //TODO:
-//Add nanoUI metrics to console and rename it into screens --sunday
 
-//Add activation/deactivation litanies --polish
-//Add power usage to all parts --polish
-//Add circuits --polish
-//Move it to fresh branch --polish
-//Animations for pipes --polish
-//Animations for all elements --polish
-//Add sounds --polish
-//Layers fuckery --polish
-//Add comments where it needed --polish
-//Check all code and tinker all stuff before code review --polish
-//Add biomatter to organs --polish
-//Make cloners to accept the biomatter reagent --polish
+//Add comments where it needed
+//Check all code and tinker all stuff before code review
+//Make cloners to accept the biomatter reagent
 
+//Final things (they should be done last):
+//Add activation/deactivation litanies
+//Make glassless platform at construction
 
 
 #define CLEANING_TIME 2 SECONDS
@@ -29,7 +23,7 @@
 	var/obj/machinery/multistructure/bioreactor_part/biotank_platform/biotank_platform
 	var/obj/machinery/multistructure/bioreactor_part/unloader/misc_output
 	var/obj/machinery/multistructure/bioreactor_part/bioport/output_port
-	var/obj/machinery/multistructure/bioreactor_part/console/control_panel
+	var/obj/machinery/multistructure/bioreactor_part/console/metrics_screen
 
 	var/list/platforms = list()
 	var/platform_enter_side = WEST
@@ -44,7 +38,7 @@
 	item_loader = locate() in elements
 	biotank_platform = locate() in elements
 	output_port = locate() in elements
-	control_panel = locate() in elements
+	metrics_screen = locate() in elements
 	misc_output = locate() in elements
 	for(var/obj/machinery/multistructure/bioreactor_part/part in elements)
 		part.MS_bioreactor = src
@@ -55,13 +49,15 @@
 			platforms += part
 	solution = new(platforms[1].loc)
 	solution.icon_state = ""
-	solution.pixel_y = -16
+	solution.pixel_y = -26
 
 
 /datum/multistructure/bioreactor/disconnect_elements()
 	for(var/obj/machinery/multistructure/bioreactor_part/element in elements)
 		element.MS = null
 		element.MS_bioreactor = null
+	qdel(solution)
+	solution = null
 
 
 /datum/multistructure/bioreactor/is_operational()
@@ -101,6 +97,7 @@
 					glass.icon_state = "platform_door"
 					glass.density = initial(glass.density)
 					flick("glassdoor_close", glass)
+				playsound(glass.loc, 'sound/machines/windowdoor.ogg', 100, 1)
 	chamber_closed = !chamber_closed
 
 
@@ -108,10 +105,15 @@
 	if(chamber_solution)
 		solution.icon_state = ""
 		flick("solution_pump_out", solution)
+		for(var/obj/machinery/multistructure/bioreactor_part/platform/platform in platforms)
+			platform.set_light(0)
 	else
 		solution.icon_state = initial(solution.icon_state)
 		flick("solution_pump_in", solution)
+		for(var/obj/machinery/multistructure/bioreactor_part/platform/platform in platforms)
+			platform.set_light(1, 3, COLOR_LIGHTING_ORANGE_DARK)
 	chamber_solution = !chamber_solution
+	playsound(solution.loc, 'sound/effects/slosh.ogg', 100, 1)
 
 
 /obj/machinery/multistructure/bioreactor_part
@@ -125,22 +127,26 @@
 
 
 
+
 //#####################################
 /obj/structure/reagent_dispensers/biomatter
-	name = "biomatter canister"
+	name = "medium biomatter canister"
 	desc = "A biomatter canister. It is used to store high amounts of biomatter."
-	icon = 'icons/obj/objects.dmi'
-	icon_state = "weldtank"
+	icon = 'icons/obj/bioreactor_misc.dmi'
+	icon_state = "biomatter_tank_medium"
 	amount_per_transfer_from_this = 50
-	volume = 500
+	volume = 400
 
 
-/obj/structure/reagent_dispensers/biomatter/Initialize()
-	. = ..()
-	reagents.add_reagent("biomatter", 300)
+/obj/structure/reagent_dispensers/biomatter/large
+	name = "large biomatter canister"
+	icon_state = "biomatter_tank_large"
+	volume = 800
 
 
 /obj/effect/overlay/bioreactor_solution
 	name = "solution"
 	icon = 'icons/obj/machines/bioreactor.dmi'
 	icon_state = "solution"
+	layer = ABOVE_MOB_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT

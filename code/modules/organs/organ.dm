@@ -28,6 +28,7 @@
 	var/min_broken_damage = 30        // Damage before becoming broken
 	var/max_damage                    // Damage cap
 	var/rejecting                     // Is this organ already being rejected?
+	matter = list(MATERIAL_BIOMATTER = 20)
 
 /obj/item/organ/Destroy()
 	if(owner)

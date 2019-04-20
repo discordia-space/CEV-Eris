@@ -3,6 +3,8 @@
 	name = "biomatter tank platform"
 	icon = 'icons/obj/machines/bioreactor.dmi'
 	icon_state = "tank_platform"
+	layer = LOW_OBJ_LAYER
+	idle_power_usage = 120
 	pixel_y = -4
 	var/obj/structure/biomatter_tank/biotank
 	var/obj/canister
@@ -82,6 +84,7 @@
 	icon_state = "biotank"
 	anchored = TRUE
 	density = TRUE
+	layer = ABOVE_MOB_LAYER + 0.05 //biotank should be a 'higher' then unloader to display it korrekt
 	pixel_y = 16
 	var/max_capacity = 1000
 	var/obj/machinery/multistructure/bioreactor_part/biotank_platform/platform
@@ -121,10 +124,12 @@
 		animate(src, pixel_y = to_port_position, 12, easing = CUBIC_EASING)
 		platform.pipes_opened = TRUE
 		to_chat(user, SPAN_NOTICE("You move [src] directly to port. Platform pipes now opened."))
+		playsound(loc, 'sound/machines/Custom_blastdooropen.ogg', 100, 1)
 	else
 		animate(src, pixel_y = default_position, 12, easing = CUBIC_EASING)
 		platform.pipes_opened = FALSE
 		to_chat(user, SPAN_NOTICE("You move [src] back to it's default location. Platform pipes are closed."))
+		playsound(loc, 'sound/machines/Custom_blastdoorclose.ogg', 100, 1)
 
 
 /obj/structure/biomatter_tank/attackby(var/obj/item/I, var/mob/user)
@@ -155,9 +160,14 @@
 /obj/structure/biomatter_tank/proc/set_canister(obj/target_tank)
 	target_tank.anchored = TRUE
 	canister = target_tank
+	platform.MS_bioreactor.metrics_screen.icon_state = "screen_process"
+	flick("screen_activation", platform.MS_bioreactor.metrics_screen)
+	playsound(platform.MS_bioreactor.output_port.loc, 'sound/machines/Custom_extin.ogg', 100, 1)
 
 
 /obj/structure/biomatter_tank/proc/unset_canister(obj/target_tank)
 	target_tank.anchored = FALSE
 	canister = null
+	platform.MS_bioreactor.metrics_screen.icon_state = initial(platform.MS_bioreactor.metrics_screen.icon_state)
+	playsound(platform.MS_bioreactor.output_port.loc, 'sound/machines/Custom_extout.ogg', 100, 1)
 

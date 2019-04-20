@@ -9,9 +9,10 @@ Biomatter tank:
 	Biomatter:
 </div>
 <div class="itemContent">
-	{{:helper.displayBar(data.progress, 0, 100, 'highlight', showText = data.biotank_occupancy/data.biotank_max_capacity)}}
+	{{:helper.displayBar(data.biotank_occupancy, 0, data.biotank_max_capacity, 'highlight', showText = data.biotank_occupancy + '/' + data.biotank_max_capacity)}}
 </div>
 
+<br>
 <div class="itemLabel">
 	Status:
 </div>

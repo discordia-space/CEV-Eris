@@ -152,5 +152,5 @@
 
 /obj/machinery/multistructure/Destroy()
 	if(MS)
-		qdel(MS)
+		MS.Destroy()
 	return ..()

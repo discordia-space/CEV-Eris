@@ -6,6 +6,8 @@
 	icon_state = "platform_5"
 	density = FALSE
 	layer = LOW_OBJ_LAYER
+	idle_power_usage = 200
+	active_power_usage = 400
 
 
 /obj/machinery/multistructure/bioreactor_part/platform/Initialize()
@@ -15,8 +17,10 @@
 
 /obj/machinery/multistructure/bioreactor_part/platform/Process()
 	if(!MS)
+		use_power(1)
 		return
 	if((!is_breached() || MS_bioreactor.is_operational()) && MS_bioreactor.chamber_solution)
+		use_power(2)
 		for(var/atom/movable/M in loc)
 			if(isliving(M))
 				var/mob/living/victim = M
@@ -26,7 +30,9 @@
 				var/hazard_protection = victim.run_armor_check(null, "bio", silent = TRUE)
 				if(!hazard_protection)
 					victim.apply_damage(5, CLONE)
-					if(victim.health >= victim.maxHealth*2)
+					if(prob(10))
+						playsound(loc, 'sound/effects/bubbles.ogg', 45, 1)
+					if(victim.health <= -victim.maxHealth)
 						MS_bioreactor.biotank_platform.take_amount(victim.mob_size*5)
 						MS_bioreactor.biotank_platform.pipes_wearout(victim.mob_size/5, forced = TRUE)
 						consume(victim)
@@ -60,6 +66,7 @@
 				else
 					target.forceMove(MS_bioreactor.misc_output)
 	else
+		use_power(1)
 		if(MS_bioreactor.chamber_solution)
 			MS_bioreactor.pump_solution()
 
@@ -75,8 +82,8 @@
 				if(istype(organ, /obj/item/organ/external) && !organ.robotic)
 					continue
 				//this should make a lil smooth spreading with moving animation
-				for(var/obj/machinery/multistructure/bioreactor_part/platform/P in MS_bioreactor.platforms)
-					organ.forceMove(H.loc)
+				var/obj/machinery/multistructure/bioreactor_part/platform/neighbor_platform = pick(MS_bioreactor.platforms)
+				organ.forceMove(neighbor_platform)
 				organ.removed()
 				continue
 			H.drop_from_inventory(item)
@@ -84,6 +91,8 @@
 	for(var/obj/structure/window/reinforced/bioreactor/glass in loc)
 		if(glass.dir != MS_bioreactor.platform_enter_side)
 			glass.apply_dirt(1)
+	if(prob(30))
+		playsound(loc, 'sound/effects/bubbles.ogg', 50, 1)
 
 
 /obj/machinery/multistructure/bioreactor_part/platform/update_icon()
@@ -142,6 +151,7 @@
 /obj/structure/window/reinforced/bioreactor
 	name = "bioreactor glass"
 	icon = 'icons/obj/machines/bioreactor.dmi'
+	layer = ABOVE_MOB_LAYER
 	var/dirty_level = 0
 	var/max_dirty_lvl = 5
 
@@ -160,7 +170,7 @@
 		if(5)
 			to_chat(user, SPAN_WARNING("Now it's hard to see what inside. Better to clean this [src]."))
 		else
-			to_chat(user, SPAN_NOTICE("This [src] so clean, that you can see your reflection. Is that something green at your teeth?"))
+			to_chat(user, SPAN_NOTICE("This [src] is so clean, that you can see your reflection. Is that something green at your teeth?"))
 
 
 /obj/structure/window/reinforced/bioreactor/update_icon()
@@ -189,6 +199,10 @@
 
 /obj/structure/window/reinforced/bioreactor/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/weapon/mop) || istype(I, /obj/item/weapon/soap))
+		if(istype(I, /obj/item/weapon/mop))
+			if(I.reagents && !I.reagents.total_volume)
+				to_chat(user, SPAN_WARNING("Your [I] is dry!"))
+				return
 		if(user.loc != loc)
 			to_chat(user, SPAN_WARNING("You need to come inside to clean it."))
 			return

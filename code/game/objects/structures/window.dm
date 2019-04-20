@@ -184,7 +184,7 @@
 	if(istype(O) && O.checkpass(PASSGLASS))
 		return 1
 	if(get_dir(O.loc, target) == dir)
-		return 0
+		return !density
 	return 1
 
 
