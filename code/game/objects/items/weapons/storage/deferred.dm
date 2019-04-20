@@ -169,7 +169,7 @@
 	desc = "a crate containing one \"RPG-7\" launcher, and twenty 40mm PG-7VL warheads"
 	icon_state = "old_weaponcrate"
 	initial_contents = list(/obj/item/ammo_casing/rocket = 20,
-	/obj/item/weapon/gun/launcher/rocket = 1)
+	/obj/item/weapon/gun/projectile/rpg = 1)
 
 
 /obj/item/weapon/storage/deferred/crate/demolition

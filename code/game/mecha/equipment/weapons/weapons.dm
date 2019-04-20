@@ -274,7 +274,7 @@
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "missile"
 	var/primed = null
-	throwforce = 15
+	throwforce = 5
 	allow_spin = 0
 
 	throw_impact(atom/hit_atom)

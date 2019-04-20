@@ -194,6 +194,11 @@
 			to_chat(user, SPAN_WARNING("[src] is full."))
 			return
 
+		if(C.reload_delay)
+			to_chat(user, SPAN_NOTICE("It takes some time to reload [src] with [C]..."))
+		if (!do_after(user, C.reload_delay, user))
+			return
+
 		if(C.amount > 1)
 			C.amount -= 1
 			var/obj/item/ammo_casing/inserted_casing = new /obj/item/ammo_casing(src)

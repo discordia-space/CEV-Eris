@@ -24,6 +24,16 @@
 		explosion(target, -1, 0, 2)
 		return 1
 
+/obj/item/projectile/bullet/rocket
+	name ="high explosive rocket"
+	icon_state= "missile"
+	damage = 50
+	check_armour = "explosive"
+
+	on_hit(var/atom/target, var/blocked = 0)
+		explosion(target, 0, 1, 2, 4)
+		return 1
+
 /obj/item/projectile/temp
 	name = "freeze beam"
 	icon_state = "ice_2"
