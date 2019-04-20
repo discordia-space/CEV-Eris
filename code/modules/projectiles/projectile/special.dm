@@ -30,9 +30,14 @@
 	damage = 50
 	check_armour = "explosive"
 
-	on_hit(var/atom/target, var/blocked = 0)
-		explosion(target, 0, 1, 2, 4)
-		return 1
+/obj/item/projectile/bullet/rocket/launch(atom/target, var/target_zone, var/x_offset, var/y_offset, angle_offset)
+	set_light(1, 50, "#dddd00")
+	..(target, target_zone, x_offset, y_offset, angle_offset)
+
+/obj/item/projectile/bullet/rocket/on_hit(var/atom/target, var/blocked = 0)
+	explosion(target, 0, 1, 2, 4)
+	set_light(0)
+	return 1
 
 /obj/item/projectile/temp
 	name = "freeze beam"
