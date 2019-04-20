@@ -8142,7 +8142,7 @@
 "daD" = (/obj/structure/shuttle_part/mining{icon_state = "1,4"},/turf/space,/area/shuttle/mining/station)
 "daE" = (/turf/simulated/shuttle/wall/mining{icon_state = "2,4"},/area/shuttle/mining/station)
 "daF" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/structure/cable/yellow{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/simulated/shuttle/floor/mining{icon_state = "4,4"},/area/shuttle/mining/station)
-"daG" = (/obj/machinery/power/terminal{icon_state = "term"; dir = 1},/obj/structure/cable/yellow{d2 = 8; icon_state = "0-8"},/obj/structure/ore_box,/turf/simulated/floor,/area/shuttle/mining/station)
+"daG" = (/obj/structure/reagent_dispensers/fueltank,/turf/simulated/floor,/area/shuttle/mining/station)
 "daH" = (/turf/simulated/shuttle/wall/mining{icon_state = "6,4"},/area/shuttle/mining/station)
 "daI" = (/obj/structure/table/steel,/obj/machinery/microwave,/turf/simulated/shuttle/floor/mining{icon_state = "7,4"},/area/shuttle/mining/station)
 "daJ" = (/obj/machinery/atmospherics/unary/vent_pump/on{dir = 1},/turf/simulated/shuttle/floor/mining{icon_state = "8,4"},/area/shuttle/mining/station)
