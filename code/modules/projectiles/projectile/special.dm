@@ -25,8 +25,8 @@
 		return 1
 
 /obj/item/projectile/bullet/rocket
-	name ="high explosive rocket"
-	icon_state= "missile"
+	name = "high explosive rocket"
+	icon_state= "rocket"
 	damage = 50
 	check_armour = "explosive"
 
