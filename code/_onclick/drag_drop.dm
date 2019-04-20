@@ -10,7 +10,7 @@
 		return
 	if(!Adjacent(usr) || !over.Adjacent(usr)) // should stop you from dragging through windows
 		return
-	if(usr.stat == DEAD)
+	if(usr.stat == DEAD || usr.stat == UNCONSCIOUS)
 		return
 
 	spawn(0)
