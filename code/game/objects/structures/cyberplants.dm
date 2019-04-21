@@ -64,11 +64,14 @@
 
 /obj/structure/cyberplant/attack_hand(var/mob/user)
 	if(!interference)
-		if (prob(1))
-			change_plant("emaged")
-		else
-			change_plant()
+		change_plant()
 		update_icon()
+
+/obj/structure/cyberplant/attackby(obj/item/weapon/I, mob/user )
+	if(!emaged && istype(I, /obj/item/weapon/card/id))
+		if(prob(10))
+			to_chat(user, "You hear soft whisper, <i>Welcome back, honey...</i>")
+		emag_act()
 
 /obj/structure/cyberplant/proc/prepare_icon(var/state)
 	if(!state)
@@ -82,8 +85,20 @@
 		return
 
 	emaged = TRUE
-	plant = change_plant("emaged")
-
+	hologram_opacity = 0.95
+	possible_plants = list("emaged2-orange", "emaged2-blue")
+	plant = change_plant("emaged2-orange")
+	possible_colors = list(
+		COLOR_LIGHTING_RED_DARK,
+		COLOR_LIGHTING_RED_BRIGHT,
+		COLOR_LIGHTING_BLUE_DARK,
+		COLOR_LIGHTING_BLUE_BRIGHT,
+		COLOR_LIGHTING_GREEN_BRIGHT,
+		COLOR_LIGHTING_ORANGE_BRIGHT,
+		COLOR_LIGHTING_PURPLE_DARK,
+		COLOR_LIGHTING_PURPLE_BRIGHT,
+		COLOR_LIGHTING_CYAN_BRIGHT
+	)
 	update_icon()
 
 /obj/structure/cyberplant/proc/doInterference()
