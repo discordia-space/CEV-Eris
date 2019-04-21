@@ -16,7 +16,6 @@
 	build_path = /obj/machinery/autolathe/excelsior
 	board_type = "machine"
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_ILLEGAL = 2)
-	req_components = list() //To help them get started. the excelsior autolathe requires no extra components
 	req_components = list(
 		/obj/item/weapon/stock_parts/matter_bin = 3,
 		/obj/item/weapon/stock_parts/manipulator = 1,
