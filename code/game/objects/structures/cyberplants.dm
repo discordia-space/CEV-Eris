@@ -76,7 +76,7 @@
 		else
 			if(prob(10))
 				to_chat(user, "<i>You hear soft giggle</i>")
-			roll_back()
+			rollback()
 
 /obj/structure/cyberplant/proc/prepare_icon(var/state)
 	if(!state)
@@ -88,6 +88,7 @@
 /obj/structure/cyberplant/proc/rollback()
 	emaged = FALSE
 	hologram_opacity = 0.85
+	plant = change_plant("plant-1")
 	possible_plants = list(
 		"plant-1",
 		"plant-10",
