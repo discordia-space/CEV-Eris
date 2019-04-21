@@ -13,11 +13,13 @@
 		else
 			remove_cursor(H)
 
-/mob/living/carbon/human/swap_hand()
-	var/obj/item/weapon/gun/thegun = get_active_hand()
-	if(istype(thegun))
-		thegun.cursor_check(src)
-	. = ..()
+/obj/item/weapon/gun/swapped_from()
+	if(ismob(loc))
+		cursor_check(loc)
+
+/obj/item/weapon/gun/swapped_to()
+	if(ismob(loc))
+		cursor_check(loc)
 
 /obj/item/weapon/gun/proc/update_cursor(mob/living/H)
 	if(!H || !istype(H))
