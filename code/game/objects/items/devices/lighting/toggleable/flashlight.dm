@@ -17,14 +17,23 @@
 	var/light_direction
 	var/lightspot_hitObstacle = FALSE
 
-/obj/item/device/lighting/toggleable/flashlight/New()
-	..()
+/obj/item/device/lighting/toggleable/flashlight/Initialize()
+	. = ..()
 	if(!cell && suitable_cell)
 		cell = new suitable_cell(src)
 
 /obj/item/device/lighting/toggleable/flashlight/Destroy()
 	qdel(light_spot)
 	return ..()
+
+/obj/item/device/lighting/toggleable/flashlight/get_cell()
+	return cell
+
+/obj/item/device/lighting/toggleable/flashlight/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+		update_icon()
 
 /obj/item/device/lighting/toggleable/flashlight/proc/calculate_dir(var/turf/old_loc)
 	if (istype(src.loc,/obj/item/weapon/storage) || istype(src.loc,/obj/structure/closet))

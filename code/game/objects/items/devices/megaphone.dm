@@ -13,10 +13,19 @@
 	var/insults = 0
 	var/list/insultmsg = list("FUCK EVERYONE!", "I'M A TATER!", "ALL SECURITY TO SHOOT ME ON SIGHT!", "I HAVE A BOMB!", "CAPTAIN IS A COMDOM!")
 
-/obj/item/device/megaphone/New()
-	..()
+/obj/item/device/megaphone/Initialize()
+	. = ..()
 	if(!cell && suitable_cell)
 		cell = new suitable_cell(src)
+
+/obj/item/device/megaphone/get_cell()
+	return cell
+
+/obj/item/device/megaphone/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+		update_icon()
 
 /obj/item/device/megaphone/attack_self(mob/living/user as mob)
 	if (user.client)
