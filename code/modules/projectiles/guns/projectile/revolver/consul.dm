@@ -9,3 +9,5 @@
 	max_shells = 6
 	ammo_type = /obj/item/ammo_casing/cl44/rubber
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 8)
+	price_tag = 1700
+	recoil = 0.8 //high caliber revolver recoil

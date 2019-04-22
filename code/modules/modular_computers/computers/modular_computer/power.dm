@@ -8,7 +8,7 @@
 		shutdown_computer(0)
 
 // Tries to use power from battery. Passing 0 as parameter results in this proc returning whether battery is functional or not.
-/obj/item/modular_computer/proc/battery_power(var/power_usage = 0)
+/obj/item/modular_computer/proc/battery_power(power_usage = 0)
 	apc_powered = FALSE
 	if(!cell || cell.charge <= 0)
 		return FALSE
@@ -17,7 +17,7 @@
 	return FALSE
 
 // Tries to use power from APC, if present.
-/obj/item/modular_computer/proc/apc_power(var/power_usage = 0)
+/obj/item/modular_computer/proc/apc_power(power_usage = 0)
 
 	// Tesla link was originally limited to machinery only, but this probably works too, and the benefit of being able to power all devices from an APC outweights
 	// the possible minor performance loss.
@@ -35,6 +35,10 @@
 	A.use_power(power_usage, EQUIP)
 	return TRUE
 
+// First tries to charge from an APC, if APC is unavailable switches to battery power. If neither works, fails.
+/obj/item/modular_computer/proc/try_use_power(power_usage = 0)
+	return apc_power(power_usage) || battery_power(power_usage)
+
 // Handles power-related things, such as battery interaction, recharging, shutdown when it's discharged
 /obj/item/modular_computer/proc/handle_power()
 	var/power_usage = screen_on ? base_active_power_usage : base_idle_power_usage
@@ -43,9 +47,6 @@
 			power_usage += H.power_usage
 	last_power_usage = power_usage
 
-	// First tries to charge from an APC, if APC is unavailable switches to battery power. If neither works the computer fails.
-	if(apc_power(power_usage))
-		return
-	if(battery_power(power_usage))
-		return
-	power_failure()
+	if(!try_use_power(power_usage))
+		power_failure()
+

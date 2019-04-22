@@ -9,8 +9,10 @@
 	fire_delay = 0.6
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 3)
 	load_method = MAGAZINE
+	mag_well = MAG_WELL_PISTOL
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_WOOD = 4)
-	price_tag = 700
+	price_tag = 600
+	recoil = 0.2 //peashooter tier gun
 
 /obj/item/weapon/gun/projectile/giskard/update_icon()
 	..()

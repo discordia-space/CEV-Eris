@@ -5,14 +5,11 @@ see multiz/movement.dm for some info.
 	if(z == A.z) //moving FROM this turf
 		return direction == UP //can't go below
 	else
-		if(direction == UP) //on a turf below, trying to enter
-			return 0
-		if(direction == DOWN) //on a turf above, trying to enter
-			return !density
+		return !density
 
 /turf/simulated/open/CanZPass(atom/A, direction)
 	var/obj/effect/shield/turf_shield = getEffectShield()
-	if(locate(/obj/structure/catwalk, src) || (turf_shield && turf_shield.CanPass(A)))
+	if(locate(/obj/structure/catwalk, src) || (turf_shield && !turf_shield.CanPass(A)))
 		if(z == A.z)
 			if(direction == DOWN)
 				return 0
@@ -22,13 +19,16 @@ see multiz/movement.dm for some info.
 
 /turf/space/CanZPass(atom/A, direction)
 	var/obj/effect/shield/turf_shield = getEffectShield()
-	if(locate(/obj/structure/catwalk, src) || (turf_shield && turf_shield.CanPass(A)))
+	if(locate(/obj/structure/catwalk, src) || (turf_shield && !turf_shield.CanPass(A)))
 		if(z == A.z)
 			if(direction == DOWN)
 				return 0
 		else if(direction == UP)
 			return 0
 	return 1
+
+/turf/simulated/floor/CanZPass(atom/A, direction)
+	return direction != DOWN
 /////////////////////////////////////
 
 /turf/simulated/open

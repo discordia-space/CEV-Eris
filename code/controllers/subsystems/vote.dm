@@ -185,16 +185,8 @@ SUBSYSTEM_DEF(vote)
 
 	usr.vote()
 
-
-
-
-
-
-
-
 /mob/verb/vote()
 	set category = "OOC"
 	set name = "Vote"
 
 	SSvote.interface_client(client)
-

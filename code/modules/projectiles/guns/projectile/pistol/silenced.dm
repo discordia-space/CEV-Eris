@@ -9,7 +9,9 @@
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)
 	price_tag = 1500
 	load_method = MAGAZINE
+	mag_well = MAG_WELL_PISTOL
 	magazine_type = /obj/item/ammo_magazine/c45m
+	recoil = 0.4 //less than regular pistol because of integrated silencer
 
 //This comes with a preinstalled silencer
 /obj/item/weapon/gun/projectile/silenced/Initialize()

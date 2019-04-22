@@ -5,6 +5,9 @@
 	caliber = ".45"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)
-	price_tag = 1500
+	price_tag = 1200
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	load_method = MAGAZINE
+	mag_well = MAG_WELL_PISTOL
+	recoil = 0.5 //regular pistol kick
+	damage_multiplier = 0.8 //cheap knock-off shit tier

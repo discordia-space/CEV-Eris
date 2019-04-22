@@ -706,8 +706,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(respawn_time &&  timedifference > respawn_time)
 		return TRUE
 	else
-		var/timedifference_text = time2text(respawn_time  - timedifference,"mm:ss")
-		src << "<span class='warning'>You must have been dead for [respawn_time / 600] minute\s to respawn. You have [timedifference_text] left.</span>"
+		if(feedback)
+			var/timedifference_text = time2text(respawn_time  - timedifference,"mm:ss")
+			src << "<span class='warning'>You must have been dead for [respawn_time / 600] minute\s to respawn. You have [timedifference_text] left.</span>"
 		return 0
 
 	return 1

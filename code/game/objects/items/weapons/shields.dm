@@ -55,8 +55,8 @@
 	icon_state = "riot"
 	flags = CONDUCT
 	slot_flags = SLOT_BACK
-	force = WEAPON_FORCE_PAINFULL
-	throwforce = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_PAINFUL
+	throwforce = WEAPON_FORCE_PAINFUL
 	throw_speed = 1
 	throw_range = 4
 	w_class = ITEM_SIZE_LARGE
@@ -176,7 +176,7 @@
 		user.take_organ_damage(5)
 	active = !active
 	if (active)
-		force = WEAPON_FORCE_PAINFULL
+		force = WEAPON_FORCE_PAINFUL
 		update_icon()
 		w_class = ITEM_SIZE_LARGE
 		playsound(user, 'sound/weapons/saberon.ogg', 50, 1)

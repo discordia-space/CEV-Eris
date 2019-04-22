@@ -145,7 +145,7 @@
 	name = "infantry support crate"
 	desc = "a crate containing two Pulemyot Kalashnikova light machine guns, and 640 rounds of 7.62mm ammunition"
 	icon_state = "old_weaponcrate"
-	initial_contents = list(/obj/item/weapon/gun/projectile/automatic/lmg/pk = 2, /obj/item/ammo_magazine/ammobox/a762/pk = 8)
+	initial_contents = list(/obj/item/weapon/gun/projectile/automatic/lmg/pk = 2, /obj/item/ammo_magazine/a762/pk = 8)
 
 
 /obj/item/weapon/storage/deferred/crate/ak
