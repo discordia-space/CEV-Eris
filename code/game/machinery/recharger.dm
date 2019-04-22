@@ -1,4 +1,4 @@
-obj/machinery/recharger
+/obj/machinery/recharger
 	name = "recharger"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "recharger0"
@@ -11,7 +11,6 @@ obj/machinery/recharger
 	active_power_usage = 24000//The actual power the charger uses right now. This is recalculated based on the cell when it's inserted
 	var/efficiency = 0.85
 	var/obj/item/charging = null
-	var/obj/item/weapon/cell/cell = null
 	var/list/allowed_devices = list(
 		/obj/item/weapon/gun/energy, /obj/item/weapon/melee/baton, /obj/item/weapon/cell, /obj/item/modular_computer,
 	)
@@ -20,7 +19,7 @@ obj/machinery/recharger
 	var/icon_state_idle = "recharger0" //also when unpowered
 	var/portable = 1
 
-obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
+/obj/machinery/recharger/attackby(obj/item/G, mob/user)
 
 	if(portable && !charging)
 		if(istype(G, /obj/item/weapon/tool/screwdriver) || istype(G, /obj/item/weapon/tool/crowbar) )
@@ -60,7 +59,7 @@ obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 			to_chat(user, SPAN_NOTICE("Your gun's recharge port was removed to make room for a miniaturized reactor."))
 			return
 
-		cell = G.get_cell()
+		var/obj/item/weapon/cell/cell = G.get_cell()
 
 		if (!cell)
 			to_chat(user, "This device does not have a battery installed.")
@@ -78,7 +77,7 @@ obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 
 
 
-obj/machinery/recharger/attack_hand(mob/user as mob)
+/obj/machinery/recharger/attack_hand(mob/user as mob)
 	if(issilicon(user))
 		return
 
@@ -90,7 +89,7 @@ obj/machinery/recharger/attack_hand(mob/user as mob)
 		charging = null
 		update_icon()
 
-obj/machinery/recharger/Process()
+/obj/machinery/recharger/Process()
 	if(stat & (NOPOWER|BROKEN) || !anchored)
 		update_use_power(0)
 		icon_state = icon_state_idle
@@ -99,43 +98,47 @@ obj/machinery/recharger/Process()
 	if(!charging)
 		update_use_power(1)
 		icon_state = icon_state_idle
-	else
-		if(cell)
-			if(!cell.fully_charged())
-				icon_state = icon_state_charging
-				cell.give((active_power_usage*CELLRATE)*efficiency)
-				update_use_power(2)
-			else
-				icon_state = icon_state_charged
-				update_use_power(1)
-		else
-			icon_state = icon_state_idle
-			update_use_power(1)
+		return
 
-obj/machinery/recharger/emp_act(severity)
+	var/obj/item/weapon/cell/cell = charging.get_cell()
+
+	if(cell)
+		if(!cell.fully_charged())
+			icon_state = icon_state_charging
+			cell.give((active_power_usage*CELLRATE)*efficiency)
+			update_use_power(2)
+		else
+			icon_state = icon_state_charged
+			update_use_power(1)
+	else
+		icon_state = icon_state_idle
+		update_use_power(1)
+
+/obj/machinery/recharger/emp_act(severity)
 	if(stat & (NOPOWER|BROKEN) || !anchored)
 		..(severity)
 		return
 
-	if(istype(charging,  /obj/item/weapon/gun/energy))
-		var/obj/item/weapon/gun/energy/E = charging
-		if(E.cell)
-			E.cell.emp_act(severity)
+	if(charging)
+		var/obj/item/weapon/cell/cell = charging.get_cell()
+		if(cell)
+			cell.emp_act(severity)
 
-	else if(istype(charging, /obj/item/weapon/melee/baton))
-		var/obj/item/weapon/melee/baton/B = charging
-		if(B.cell)
-			B.cell.charge = 0
 	..(severity)
 
-obj/machinery/recharger/update_icon()	//we have an update_icon() in addition to the stuff in process to make it feel a tiny bit snappier.
+/obj/machinery/recharger/handle_atom_del(atom/A)
+	..()
+	if(A == charging)
+		charging = null
+		update_icon()
+
+/obj/machinery/recharger/update_icon()	//we have an update_icon() in addition to the stuff in process to make it feel a tiny bit snappier.
 	if(charging)
 		icon_state = icon_state_charging
 	else
 		icon_state = icon_state_idle
 
-
-obj/machinery/recharger/wallcharger
+/obj/machinery/recharger/wallcharger
 	name = "wall recharger"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "wrecharger0"

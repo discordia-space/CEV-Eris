@@ -124,6 +124,16 @@
 		return
 	..()
 
+/obj/machinery/power/apc/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+		update_icon()
+		updateUsrDialog()
+
+/obj/machinery/power/apc/get_cell()
+	return cell
+
 /obj/machinery/power/apc/connect_to_network()
 	//Override because the APC does not directly connect to the network; it goes through a terminal.
 	//The terminal is what the power computer looks for anyway.

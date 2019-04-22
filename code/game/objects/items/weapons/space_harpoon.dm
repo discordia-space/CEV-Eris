@@ -18,10 +18,19 @@
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/medium
 
-/obj/item/weapon/bluespace_harpoon/New()
-	..()
+/obj/item/weapon/bluespace_harpoon/Initialize()
+	. = ..()
 	if(!cell && suitable_cell)
 		cell = new suitable_cell(src)
+
+/obj/item/weapon/bluespace_harpoon/get_cell()
+	return cell
+
+/obj/item/weapon/bluespace_harpoon/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+		update_icon()
 
 /obj/item/weapon/bluespace_harpoon/afterattack(atom/A, mob/user as mob)
 	if(istype(A, /obj/item/weapon/storage/))
