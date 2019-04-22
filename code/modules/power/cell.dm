@@ -50,6 +50,7 @@
 //Newly manufactured cells start off empty. You can't create energy
 /obj/item/weapon/cell/Created()
 	charge = 0
+	update_icon()
 
 /obj/item/weapon/cell/drain_power(var/drain_check, var/surge, var/power = 0)
 

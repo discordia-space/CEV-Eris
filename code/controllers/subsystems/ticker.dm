@@ -71,7 +71,6 @@ SUBSYSTEM_DEF(ticker)
 	return ..()
 
 /datum/controller/subsystem/ticker/proc/setup_objects()
-	populate_lathe_recipes()
 	populate_antag_type_list() // Set up antagonists. Do these first since character setup will rely on them
 
 /datum/controller/subsystem/ticker/fire()
