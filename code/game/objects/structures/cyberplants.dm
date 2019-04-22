@@ -5,7 +5,7 @@
 	icon_state = "holopot"
 	w_class = ITEM_SIZE_TINY
 	var/brightness_on = 4
-	var/emaged = FALSE
+	var/emagged = FALSE
 	var/interference = FALSE
 	var/icon/plant = null
 	var/plant_color
@@ -69,7 +69,7 @@
 
 /obj/structure/cyberplant/attackby(obj/item/weapon/I, mob/user )
 	if(istype(I, /obj/item/weapon/card/id))
-		if(!emaged)
+		if(!emagged)
 			if(prob(10))
 				to_chat(user, "You hear soft whisper, <i>Welcome back, honey...</i>")
 			emag_act()
@@ -86,7 +86,7 @@
 	return getHologramIcon(plant_icon, 0, hologram_opacity)
 
 /obj/structure/cyberplant/proc/rollback()
-	emaged = FALSE
+	emagged = FALSE
 	hologram_opacity = 0.85
 	plant = change_plant("plant-1")
 	possible_plants = list(
@@ -107,13 +107,13 @@
 	)
 	update_icon()
 /obj/structure/cyberplant/emag_act()
-	if(emaged)
+	if(emagged)
 		return
 
-	emaged = TRUE
+	emagged = TRUE
 	hologram_opacity = 0.95
-	possible_plants = list("emaged2-orange", "emaged2-blue")
-	plant = change_plant("emaged2-orange")
+	possible_plants = list("emagged2-orange", "emagged2-blue")
+	plant = change_plant("emagged2-orange")
 	possible_colors = list(
 		COLOR_LIGHTING_RED_DARK,
 		COLOR_LIGHTING_RED_BRIGHT,
