@@ -39,6 +39,7 @@ Your second loyalty is to your command officers. The heads of each faction. List
 		STAT_TGH = 15,
 		STAT_BIO = 15,
 		STAT_MEC = 15,
+		STAT_AIM = 25,
 		STAT_COG = 15
 	)
 
