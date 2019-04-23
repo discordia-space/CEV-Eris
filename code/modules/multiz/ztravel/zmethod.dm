@@ -192,11 +192,19 @@
 /datum/vertical_travel_method/proc/finish()
 	animating = FALSE
 	reset_values()
+
+	//this is bullshit, but animation is always halted on z change. Vars such as floating remain the same
+	//So we gotta "prepare" it right after successful zmove
+	var/mob/mob = M
+	if(mob)
+		mob.stop_floating()
+		mob.update_floating()
+	// end_of_dirty_bullshit.dm
+
 	M.forceMove(destination)
 	if (prob(slip_chance))
 		slip()
 	announce_end()
-
 
 /datum/vertical_travel_method/proc/get_destination()
 	destination = (direction == UP) ? GetAbove(origin) : GetBelow(origin)

@@ -25,6 +25,7 @@
 	layer = LOW_WALL_LAYER
 	icon = 'icons/obj/structures/low_wall.dmi'
 	icon_state = "metal"
+	throwpass = TRUE
 	var/connected = TRUE
 	var/wall_color = PLASTEEL_COLOUR
 	var/roundstart = FALSE
