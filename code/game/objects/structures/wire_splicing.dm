@@ -109,3 +109,8 @@
 			if(!shock(user, 100))
 				user << SPAN_NOTICE("You remove the splicing.")
 				qdel(src)
+
+	if(istype(I, /obj/item/stack/cable_coil))
+		var/obj/item/stack/cable_coil/coil = I
+		if(coil.amount >= 1)
+			world << "TODO: ADD DEM MOAR WIRES"

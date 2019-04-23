@@ -7,7 +7,7 @@
 	item_flags = NOSLIP | SILENT
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/list/clothing_choices = list()
-	siemens_coefficient = 0.8
+	siemens_coefficient = 0 // DAMN BOI
 	species_restricted = null
 
 /obj/item/clothing/shoes/mime
@@ -40,7 +40,7 @@
 	force = WEAPON_FORCE_WEAK
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = 0)
 	item_flags = NOSLIP
-	siemens_coefficient = 0.6
+	siemens_coefficient = 0.4
 
 	cold_protection = LEGS
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
