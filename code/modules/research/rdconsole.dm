@@ -259,8 +259,14 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 								if(t in linked_lathe.materials)
 									linked_lathe.materials[t] += min(linked_lathe.max_material_storage - linked_lathe.TotalMaterials(), linked_destroy.loaded_item.matter[t] * linked_destroy.decon_mod)
 
+
 						linked_destroy.loaded_item = null
 						for(var/obj/I in linked_destroy.contents)
+							if(istype(I, /mob))
+								var/mob/M = I
+								M.death()
+								qdel(M)
+								linked_destroy.icon_state = "d_analyzer"
 							for(var/mob/M in I.contents)
 								M.death()
 							if(istype(I,/obj/item/stack/material))//Only deconsturcts one sheet at a time instead of the entire stack
