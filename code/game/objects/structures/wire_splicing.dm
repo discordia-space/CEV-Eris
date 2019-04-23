@@ -69,8 +69,7 @@
 	//At messiness of 2 or below, triggering when walking on a catwalk is impossible
 	//Above that it becomes possible, so we will change the layer to make it poke through catwalks
 	if (messiness > 2)
-		layer = LOW_OBJ_LAYER
-
+		layer = LOW_OBJ_LAYER  // I wont do such stuff on splicing "reinforcement". Take it as nasty feature
 
 /obj/structure/wire_splicing/Crossed(AM as mob|obj)
 	if(isliving(AM))
@@ -110,7 +109,30 @@
 				user << SPAN_NOTICE("You remove the splicing.")
 				qdel(src)
 
-	if(istype(I, /obj/item/stack/cable_coil))
+	if(istype(I, /obj/item/stack/cable_coil) && user.a_intent == I_HURT)
+		if(messiness >= 10)
+			messiness = 10
+			to_chat(user, SPAN_WARNING("Enough."))
+			return
+		// keep goin!
 		var/obj/item/stack/cable_coil/coil = I
-		if(coil.amount >= 1)
-			world << "TODO: ADD DEM MOAR WIRES"
+		if(coil.get_amount() >= 1)
+			to_chat(user, SPAN_NOTICE("You started to adding more to this pile of wires..."))
+			if(shock(user)) //check if he got his insulation gloves
+				return 		//he didn't
+			if(do_after(user, 20))
+				if(shock(user)) //check if he got his insulation gloves. Again.
+					return
+				var/fail_chance = FAILCHANCE_NORMAL - user.stats.getStat(STAT_MEC)
+				if(prob(fail_chance))
+					to_chat(user, SPAN_WARNING("You failed to finish your task with [src.name]!"))
+					shock(user, FALSE) //why not
+					return
+
+				//all safe
+				coil.use(1)
+				if(coil.get_amount() == 0)
+					qdel(coil)
+				messiness += 1
+				icon_state = "wire_splicing[messiness]"
+				to_chat(user, SPAN_NOTICE("You added one more to this pile of wires."))
