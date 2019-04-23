@@ -22,6 +22,7 @@
 	var/weld_power_use = 2300	// power used per point of brute damage repaired. 2.3 kW ~ about the same power usage of a handheld arc welder
 	var/wire_power_use = 500	// power used per point of burn damage repaired.
 
+	var/exit_timer
 /obj/machinery/recharge_station/New()
 	..()
 
@@ -109,7 +110,9 @@
 	return cell.percent()
 
 /obj/machinery/recharge_station/relaymove(mob/user as mob)
-	if(user.stat)
+	if(user.incapacitated())
+		return
+	if(world.time < exit_timer)
 		return
 	go_out()
 	return
@@ -207,6 +210,7 @@
 	M.forceMove(src)
 	occupant = M
 	update_icon()
+	exit_timer = world.time + 10 //magik numbers, yey
 	return 1
 
 /obj/machinery/recharge_station/proc/hascell(var/mob/M)
