@@ -53,12 +53,14 @@
 	icon_state = "wizard"
 	species_restricted = null
 	body_parts_covered = 0
+	siemens_coefficient = 0
 
 /obj/item/clothing/shoes/sandal/marisa
 	desc = "A pair of magic, black shoes."
 	name = "magic shoes"
 	icon_state = "black"
 	body_parts_covered = LEGS
+	siemens_coefficient = 0
 
 /obj/item/clothing/shoes/clown_shoes
 	desc = "The prankster's standard-issue clowning shoes. Damn they're huge!"

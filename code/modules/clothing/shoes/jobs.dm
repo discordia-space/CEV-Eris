@@ -16,7 +16,7 @@
 	item_state = "jackboots"
 	force = WEAPON_FORCE_WEAK
 	armor = list(melee = 30, bullet = 20, laser = 20, energy = 15, bomb = 20, bio = 0, rad = 0)
-	siemens_coefficient = 0.7
+	siemens_coefficient = 0.6
 	can_hold_knife = 1
 
 /obj/item/clothing/shoes/reinforced
@@ -26,7 +26,7 @@
 	item_state = "reinforced"
 	force = 2
 	armor = list(melee = 30, bullet = 25, laser = 25, energy = 5, bomb = 0, bio = 0, rad = 0)
-	siemens_coefficient = 0.7
+	siemens_coefficient = 0.5
 
 /obj/item/clothing/shoes/workboots
 	name = "workboots"
@@ -34,5 +34,5 @@
 	icon_state = "workboots"
 	item_state = "workboots"
 	armor = list(melee = 40, bullet = 25, laser = 25, energy = 15, bomb = 20, bio = 0, rad = 20)
-	siemens_coefficient = 0.7
+	siemens_coefficient = 0
 	can_hold_knife = 1
