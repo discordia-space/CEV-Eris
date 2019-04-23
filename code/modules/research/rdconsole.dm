@@ -262,14 +262,14 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 						linked_destroy.loaded_item = null
 						for(var/obj/I in linked_destroy.contents)
+							for(var/mob/M in I.contents)
+								M.death()
 							if(istype(I, /mob))
 								var/mob/M = I
 								M.death()
-								qdel(M)
+								qdel(I)
 								linked_destroy.icon_state = "d_analyzer"
-							for(var/mob/M in I.contents)
-								M.death()
-							if(istype(I,/obj/item/stack/material))//Only deconsturcts one sheet at a time instead of the entire stack
+							if(I && istype(I,/obj/item/stack/material))//Only deconsturcts one sheet at a time instead of the entire stack
 								var/obj/item/stack/material/S = I
 								if(S.get_amount() > 1)
 									S.use(1)
