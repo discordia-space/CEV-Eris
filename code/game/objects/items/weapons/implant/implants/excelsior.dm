@@ -5,6 +5,20 @@
 	origin_tech = list(TECH_ILLEGAL = 2)
 	var/antag_id = ROLE_EXCELSIOR_REV
 	var/faction_id = FACTION_EXCELSIOR
+	var/global/possible_disguises = list(
+		/obj/item/weapon/implant/chem,
+		/obj/item/weapon/implant/death_alarm
+	)
+	var/disguise
+
+/obj/item/weapon/implant/excelsior/Initialize()
+	. = ..()
+	if(length(possible_disguises))
+		var/obj/item/weapon/implant/I = pick(possible_disguises)
+		disguise = initial(I.name)
+
+/obj/item/weapon/implant/excelsior/get_scanner_name()
+	return disguise
 
 /obj/item/weapon/implantcase/excelsior
 	name = "glass case - 'complant'"
