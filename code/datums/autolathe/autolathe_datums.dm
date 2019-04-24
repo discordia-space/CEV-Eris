@@ -64,19 +64,25 @@
 /datum/design/proc/AddObjectMaterials(obj/O)
 	var/multiplier = 1
 
+	// If stackable, we want to multiply materials by amount
 	if(istype(O, /obj/item/stack))
 		var/obj/item/stack/stack = O
 		multiplier = stack.get_amount()
 
 	var/list/mats = O.matter
 	if (mats && mats.len)
-		for (var/a in mats)
-			LAZYAPLUS(materials, a, mats[a] * multiplier)
+		for(var/a in mats)
+			var/amount = mats[a] * multiplier
+			if(amount)
+				LAZYAPLUS(materials, a, amount)
 
 	mats = O.matter_reagents
 	if (mats && mats.len)
-		for (var/a in mats)
-			LAZYAPLUS(chemicals, a, mats[a] * multiplier)
+		for(var/a in mats)
+			var/amount = mats[a] * multiplier
+			if(amount)
+				LAZYAPLUS(chemicals, a, amount)
+
 
 //Calculate design time from the amount of materials and chemicals used.
 /datum/design/proc/AssembleDesignTime()
@@ -92,8 +98,8 @@
 	for(var/c in chemicals)
 		total_reagents += chemicals[c]
 
-	time = (total_materials * 2) + (total_reagents / 5)
-	time = max(round(time), 10)
+	time = 5 + total_materials + (total_reagents / 5)
+	time = max(round(time), 5)
 
 // By default, ID is just design's type.
 /datum/design/proc/AssembleDesignId()
