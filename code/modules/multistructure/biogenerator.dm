@@ -1,8 +1,15 @@
 //TODO
 //Add activation/deactivation litanies
-//Rework shitty port sprite
+//Change sprites to new ones
 
+//Component upgrades
 
+//Power biomatter generator
+//This machine use biomatter reagent and some of O2 to produce power (it also produce CO2)
+//It has a few components that can be weared out, so operator should check this machine from time o time and tinker it
+//In this case, our multistructure datum not just holder, but core of our machine and process by its own
+
+#define WEAROUT_CHANCE 10
 
 /datum/multistructure/biogenerator
 	structure = list(
@@ -13,8 +20,7 @@
 	var/obj/machinery/multistructure/biogenerator_part/generator/generator
 
 	var/working = FALSE
-	var/last_output_power = 0
-	var/wearout_chance = 10
+	var/last_output_power = 0		//used at UI
 
 
 /datum/multistructure/biogenerator/init()
@@ -59,6 +65,8 @@
 	if(!is_operational() && working)
 		deactivate()
 	if(working)
+		//amount of removed biomatter depends on how our pipes clean
+		//amount of produced power is also depends on how many biomatter we got
 		var/biomatter_amount = 1/max(1, port.pipes_dirtiness)
 		port.tank.reagents.remove_reagent("biomatter", biomatter_amount)
 		generator.chamber.consume_and_produce()
@@ -66,18 +74,18 @@
 
 		//port wearout
 		port.working_cycles++
-		if(port.working_cycles >= port.wearout_cycle && prob(wearout_chance))
+		if(port.working_cycles >= port.wearout_cycle && prob(WEAROUT_CHANCE))
 			port.pipes_dirtiness++
 
 		//chamber wearout
 		generator.chamber.working_cycles++
-		if(generator.chamber.working_cycles >= generator.chamber.wearout_cycle && prob(wearout_chance))
+		if(generator.chamber.working_cycles >= generator.chamber.wearout_cycle && prob(WEAROUT_CHANCE))
 			generator.chamber.wires_integrity--
 
 		//core wearout
 		//water consumption
 		generator.core.working_cycles++
-		if(generator.core.working_cycles >= generator.core.wearout_cycle && prob(wearout_chance))
+		if(generator.core.working_cycles >= generator.core.wearout_cycle && prob(WEAROUT_CHANCE))
 			generator.core.coil_condition--
 
 
@@ -104,6 +112,7 @@
 	last_output_power = 0
 
 
+
 /obj/machinery/multistructure/biogenerator_part
 	name = "biogenerator part"
 	icon = 'icons/obj/machines/biogenerator.dmi'
@@ -112,17 +121,12 @@
 	MS_type = /datum/multistructure/biogenerator
 
 
-/obj/machinery/multistructure/biogenerator_part/dismantle()
-	if(MS)
-		qdel(MS)
-	. = ..()
-
-
-//console
+//Our console. Displays metrics
 /obj/machinery/multistructure/biogenerator_part/console
 	name = "biogenerator screen"
 	icon_state = "screen-working"
 
+	//we store it here and update with special proc
 	var/list/metrics = list("operational" = FALSE,
 							"output_power" = 0,
 							"O2_input" = FALSE,
@@ -164,7 +168,8 @@
 
 
 /obj/machinery/multistructure/biogenerator_part/console/attack_hand(mob/user as mob)
-	return ui_interact(user)
+	if(MS)
+		return ui_interact(user)
 
 //UI
 /obj/machinery/multistructure/biogenerator_part/console/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = GLOB.default_state)
@@ -179,7 +184,7 @@
 		ui.set_auto_update(1)
 
 
-//port
+//Port. Here we connect any biomatter tanks
 /obj/machinery/multistructure/biogenerator_part/port
 	name = "biogenerator port"
 	icon_state = "port"
@@ -263,9 +268,11 @@
 
 
 
-//generator
+//Generator. Just a dummy, cause all magic do it's chamber and core
+//We use two various machines. Chamber from atmospherics (because it's has all gas manipulation dark magic)
+//And core from power. (Same for power)
 /obj/machinery/multistructure/biogenerator_part/generator
-	name = "generator"
+	name = "biogenerator"
 	icon_state = "generator"
 	layer = LOW_OBJ_LAYER
 	var/obj/machinery/atmospherics/binary/biogen_chamber/chamber
@@ -290,15 +297,6 @@
 		qdel(core)
 		core = null
 	return ..()
-
-
-//TEMPORARY (UNTIL LITANIES IS STILL WIP)
-/obj/machinery/multistructure/biogenerator_part/generator/attack_hand(mob/user as mob)
-	var/datum/multistructure/biogenerator/b = MS
-	if(b.working)
-		b.deactivate()
-	else
-		b.activate()
 
 
 /obj/machinery/atmospherics/binary/biogen_chamber
@@ -391,6 +389,7 @@
 	update_icon()
 
 
+//in this proc we consume O2 and produce CO2
 /obj/machinery/atmospherics/binary/biogen_chamber/proc/consume_and_produce()
 	var/gas_output_temperature = 0
 	if(air1 && air2)
@@ -485,3 +484,6 @@
 	var/datum/multistructure/biogenerator/biogenerator = generator.MS
 	if(biogenerator.working)
 		shock(user, 100)
+
+
+#undef WEAROUT_CHANCE

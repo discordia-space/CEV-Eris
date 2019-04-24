@@ -2,7 +2,6 @@
 
 /obj/machinery/multistructure/bioreactor_part/unloader
 	name = "unloader"
-	icon = 'icons/obj/machines/bioreactor.dmi'
 	icon_state = "unloader"
 	layer = ABOVE_MOB_LAYER
 	idle_power_usage = 120
@@ -36,3 +35,4 @@
 
 
 #undef CLEANING_TIME
+#undef CLONE_DAMAGE_PER_TICK

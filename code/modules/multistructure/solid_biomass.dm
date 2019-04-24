@@ -1,6 +1,7 @@
+//Solid biomass and a few procs used by biomatter manipulation machines
 
 
-
+//toxin attack proc, it's used for attacking people with checking their armor
 /proc/toxin_attack(mob/living/victim, var/damage = rand(2, 4))
 	if(istype(victim))
 		var/hazard_protection = victim.run_armor_check(null, "bio", silent = TRUE)
@@ -8,7 +9,7 @@
 			victim.apply_damage(damage, TOX)
 
 
-//This proc spill some biomass on the floor
+//this proc spill some biomass on the floor
 //dirs_to_spread - list with dirs where biomass should expand after creation
 /proc/spill_biomass(turf/target_location, var/dirs_to_spread = null)
 	if(locate(/obj/effect/decal/cleanable/solid_biomass) in target_location)
@@ -33,7 +34,7 @@
 
 /obj/effect/decal/cleanable/solid_biomass
 	name = "solid biomass"
-	desc = "It's good to do not touch this. But better to kill it with fire."
+	desc = "It's good to do not touch this. And better to kill it with fire."
 	icon = 'icons/obj/bioreactor_misc.dmi'
 	icon_state = "biomass-1"
 	anchored = TRUE

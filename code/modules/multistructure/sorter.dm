@@ -35,7 +35,8 @@
 	var/speed = 8
 	// based on levels of scanners
 	var/number_of_settings = 2
-	var/output_side = EAST
+	var/accept_output_side = EAST
+	var/refuse_output_side = null		//by default it will be reversed sorter's dir
 
 	var/progress = 0
 
@@ -111,13 +112,17 @@
 /obj/machinery/sorter/proc/eject(var/sorted = FALSE)
 	if(!current_item)
 		return
-	var/default_output_side = reverse_direction(dir)
+	var/output_dir
+	if(refuse_output_side)
+		output_dir = refuse_output_side
+	else
+		output_dir = reverse_direction(dir)
 	var/turf/T
 	if(sorted)
-		T = get_step(src, output_side)
+		T = get_step(src, accept_output_side)
 		state("[current_item] accepted.")
 	else
-		T = get_step(src, default_output_side)
+		T = get_step(src, output_dir)
 		state("[current_item] refused.")
 	if(T)
 		current_item.forceMove(T)

@@ -1,16 +1,18 @@
 //Polish'n'fixing stage
 //TODO:
 
-//Add comments where it needed
 //Check all code and tinker all stuff before code review
-//Make cloners to accept the biomatter reagent
 
 //Final things (they should be done last):
 //Add activation/deactivation litanies
-//Make glassless platform at construction
 
+
+//Bioreactor
+//This huge multistructure takes objects with biomatter and carbon mobs to dissolve them into usable liquid biomatter
+//There are six various machines where multistructure datum is just a holder, each part proccess almost independently
 
 #define CLEANING_TIME 2 SECONDS
+#define CLONE_DAMAGE_PER_TICK 5
 
 
 /datum/multistructure/bioreactor
@@ -25,8 +27,9 @@
 	var/obj/machinery/multistructure/bioreactor_part/bioport/output_port
 	var/obj/machinery/multistructure/bioreactor_part/console/metrics_screen
 
+
 	var/list/platforms = list()
-	var/platform_enter_side = WEST
+	var/platform_enter_side = WEST		//this one represent 'door' side, used by various checks
 	var/chamber_closed = TRUE
 	var/chamber_solution = FALSE
 	var/chamber_breached = FALSE
@@ -45,7 +48,8 @@
 		if(istype(part, /obj/machinery/multistructure/bioreactor_part/platform))
 			var/obj/machinery/multistructure/bioreactor_part/platform/C = part
 			C.update_icon()
-			C.make_windows()
+			if(C.make_glasswalls_after_creation)
+				C.make_windows()
 			platforms += part
 	solution = new(platforms[1].loc)
 	solution.icon_state = ""
@@ -53,6 +57,7 @@
 
 
 /datum/multistructure/bioreactor/disconnect_elements()
+	toggle_platform_door()
 	for(var/obj/machinery/multistructure/bioreactor_part/element in elements)
 		element.MS = null
 		element.MS_bioreactor = null
@@ -86,6 +91,8 @@
 
 
 /datum/multistructure/bioreactor/proc/toggle_platform_door()
+	if(chamber_solution && is_operational())
+		return
 	for(var/obj/machinery/multistructure/bioreactor_part/platform/platform in platforms)
 		for(var/obj/structure/window/reinforced/glass in platform.loc)
 			if(glass.dir == platform_enter_side)
@@ -102,6 +109,8 @@
 
 
 /datum/multistructure/bioreactor/proc/pump_solution()
+	if(chamber_closed && is_operational())
+		return
 	if(chamber_solution)
 		solution.icon_state = ""
 		flick("solution_pump_out", solution)

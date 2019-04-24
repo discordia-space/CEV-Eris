@@ -1,8 +1,9 @@
+//Bioreactor console
+//In fact, this is not a console. Just metrics
 
 
 /obj/machinery/multistructure/bioreactor_part/console
 	name = "bioreactor metrics"
-	icon = 'icons/obj/machines/bioreactor.dmi'
 	icon_state = "screen"
 	layer = ABOVE_MOB_LAYER + 0.1
 	idle_power_usage = 350
@@ -21,20 +22,28 @@
 	var/list/data = list()
 	if(MS_bioreactor.is_operational())
 		if(MS_bioreactor.chamber_solution)
-			data["status"] = "operational"
+			//operational
+			data["status"] = 1
 		else
-			data["status"] = "solution required"
+			//solution required
+			data["status"] = 2
 	else
 		if(MS_bioreactor.chamber_breached)
-			data["status"] = "chamber breached"
+			//breach
+			data["status"] = 3
 		else if(!MS_bioreactor.chamber_closed)
-			data["status"] = "chamber opened"
+			//chamber opened
+			data["status"] = 4
 		else if(MS_bioreactor.biotank_platform.pipes_opened)
-			data["status"] = "pipes opened"
+			//tank at to-port position
+			data["status"] = 5
 		else if(!MS_bioreactor.biotank_platform.pipes_cleanness)
-			data["status"] = "major pipes issue detected"
+			//pipes issue
+			data["status"] = 6
 		else
-			data["status"] = "non operational"
+			//non operational
+			data["status"] = 0
+
 	data["biotank_occupancy"] = MS_bioreactor.biotank_platform.biotank.reagents.total_volume || 0
 	data["biotank_max_capacity"] = MS_bioreactor.biotank_platform.biotank.max_capacity
 	data["biotank_status"] = MS_bioreactor.biotank_platform.pipes_opened

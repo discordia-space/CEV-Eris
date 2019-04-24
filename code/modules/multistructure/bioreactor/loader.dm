@@ -1,9 +1,10 @@
-
+//Bioreactor loader
+//This part will take little objects (items) and put it into the chamber
+//Useful, if you work with conveyor or just want to put things in process
 
 
 /obj/machinery/multistructure/bioreactor_part/loader
-	name = "input"
-	icon = 'icons/obj/machines/bioreactor.dmi'
+	name = "bioreactor input"
 	icon_state = "loader"
 	idle_power_usage = 120
 	active_power_usage = 300
@@ -16,6 +17,13 @@
 /obj/machinery/multistructure/bioreactor_part/loader/Initialize()
 	..()
 	set_light(1, 1, COLOR_LIGHTING_BLUE_MACHINERY)
+
+
+/obj/machinery/multistructure/bioreactor_part/loader/Destroy()
+	if(contents.len)
+		for(var/obj/object_inside_me in contents)
+			object_inside_me.forceMove(get_turf(src))
+	return ..()
 
 
 /obj/machinery/multistructure/bioreactor_part/loader/Process()
@@ -39,10 +47,3 @@
 		spawn(1)
 			target.forceMove(src)
 			flick("loader_take", src)
-
-
-/obj/machinery/multistructure/bioreactor_part/loader/attack_hand(mob/user)
-	if(MS_bioreactor.chamber_closed && MS_bioreactor.is_operational())
-		MS_bioreactor.pump_solution()
-	else
-		world << "nope"
