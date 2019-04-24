@@ -22,6 +22,26 @@
 		message_admins("[usr.key] has attempted to override the admin panel!")
 		return
 
+	//Player Notes
+	if(href_list["notes"])
+		var/ckey = href_list["ckey"]
+		if(!ckey)
+			var/mob/M = locate(href_list["mob"])
+			if(ismob(M))
+				ckey = M.ckey
+
+		switch(href_list["notes"])
+			if("show")
+				notes_show(ckey)
+			if("add")
+				notes_add(ckey,href_list["text"])
+				notes_show(ckey)
+			if("remove")
+				notes_remove(ckey,text2num(href_list["from"]),text2num(href_list["to"]))
+				notes_show(ckey)
+		return
+
+
 	var/static/list/topic_handlers = AdminTopicHandlers()
 	var/datum/world_topic/handler
 
@@ -35,6 +55,8 @@
 
 	handler = new handler()
 	return handler.TryRun(href_list, src)
+
+
 
 mob/living/proc/can_centcom_reply()
 	return 0
