@@ -160,14 +160,15 @@
 		/obj/item/ammo_casing
 		)
 
-/obj/item/weapon/storage/pouch/flare
-	name = "flares pouch"
-	desc = "Can hold five cylindrical and small items, including but not limiting to flares, glowsticks, syringes and even hatton tubes."
+/obj/item/weapon/storage/pouch/tubular
+	name = "tubular pouch"
+	desc = "Can hold five cylindrical and small items, including but not limiting to flares, glowsticks, syringes and even hatton tubes or rockets."
 	icon_state = "flare"
 	item_state = "flare"
 
 	storage_slots = 5
 	w_class = ITEM_SIZE_NORMAL
+	max_w_class = ITEM_SIZE_NORMAL
 
 	can_hold = list(
 		/obj/item/device/lighting/glowstick,
@@ -176,14 +177,15 @@
 		/obj/item/weapon/reagent_containers/hypospray,
 		/obj/item/weapon/pen,
 		/obj/item/weapon/storage/pill_bottle,
-		/obj/item/weapon/hatton_magazine
+		/obj/item/weapon/hatton_magazine,
+		/obj/item/ammo_casing/rocket
 		)
 
-/obj/item/weapon/storage/pouch/flare/vial
+/obj/item/weapon/storage/pouch/tubular/vial
 	name = "vial pouch"
 	desc = "Can hold about five vials. Rebranding!"
 
-/obj/item/weapon/storage/pouch/flare/update_icon()
+/obj/item/weapon/storage/pouch/tubular/update_icon()
 	..()
 	overlays.Cut()
 	if(contents.len)
