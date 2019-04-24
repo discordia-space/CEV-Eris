@@ -17,7 +17,7 @@
 /obj/structure/bed/chair/wheelchair/set_dir()
 	..()
 	overlays.Cut()
-	var/image/O = image(icon = 'icons/obj/furniture.dmi', icon_state = "w_overlay", dir = src.dir)
+	var/image/O = image(icon = src.icon, icon_state = "w_overlay", dir = src.dir) //Needed for roach wheelchairs
 	O.layer = ABOVE_MOB_LAYER
 	overlays += O
 	if(buckled_mob)
