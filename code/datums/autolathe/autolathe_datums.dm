@@ -154,3 +154,4 @@
 
 /datum/design/autolathe/corrupted
 	name = "ERROR"
+	build_path = /obj/item/weapon/material/shard/shrapnel/scrap
