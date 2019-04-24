@@ -29,31 +29,6 @@ proc/admin_notice(var/message, var/rights)
 /datum/admins/SDQL_update(var/const/var_name, var/new_value)
 	return 0
 
-/datum/admins/Topic(href, href_list)
-	..()
-	if (usr.client != src.owner)
-		world << "\blue [usr.key] has attempted to override the admin panel!"
-		log_admin("[key_name(usr)] tried to use the admin panel without authorization.")
-		return
-
-	//Player Notes
-	if(href_list["notes"])
-		var/ckey = href_list["ckey"]
-		if(!ckey)
-			var/mob/M = locate(href_list["mob"])
-			if(ismob(M))
-				ckey = M.ckey
-
-		switch(href_list["notes"])
-			if("show")
-				notes_show(ckey)
-			if("add")
-				notes_add(ckey,href_list["text"])
-				notes_show(ckey)
-			if("remove")
-				notes_remove(ckey,text2num(href_list["from"]),text2num(href_list["to"]))
-				notes_show(ckey)
-		return
 
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
