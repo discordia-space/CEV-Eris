@@ -293,7 +293,7 @@ var/list/mob/living/forced_ambiance_list = new
 	for(var/mob/M in src)
 		if(has_gravity)
 			thunk(M)
-		M.update_floating( M.check_dense_object() )
+		M.update_floating()
 
 //This thunk should probably not be an area proc.
 //TODO: Make it a mob proc

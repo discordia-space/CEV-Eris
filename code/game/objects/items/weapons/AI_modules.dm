@@ -19,6 +19,7 @@ AI MODULES
 	throw_speed = 3
 	throw_range = 15
 	origin_tech = list(TECH_DATA = 3)
+	matter = list(MATERIAL_GLASS = 2, MATERIAL_GOLD = 1)
 	var/datum/ai_laws/laws = null
 
 /obj/item/weapon/aiModule/proc/install(var/obj/machinery/computer/C)

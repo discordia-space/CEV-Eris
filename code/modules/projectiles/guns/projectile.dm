@@ -148,7 +148,7 @@
 				if(AM.ammo_mag != ammo_mag && ammo_mag != "default")
 					to_chat(user, SPAN_WARNING("[src] requires another magazine.")) //wrong magazine
 					return
-				if(tac_reloads)
+				if(tac_reloads && ammo_magazine)
 					unload_ammo(user)	// ejects the magazine before inserting the new one.
 					to_chat(user, SPAN_NOTICE("You tactically reload your [src] with [AM]!"))
 				else if(ammo_magazine)
@@ -192,6 +192,11 @@
 			return //incompatible
 		if(loaded.len >= max_shells)
 			to_chat(user, SPAN_WARNING("[src] is full."))
+			return
+
+		if(C.reload_delay)
+			to_chat(user, SPAN_NOTICE("It takes some time to reload [src] with [C]..."))
+		if (!do_after(user, C.reload_delay, user))
 			return
 
 		if(C.amount > 1)

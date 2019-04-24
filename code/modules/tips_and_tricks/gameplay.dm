@@ -31,3 +31,6 @@
 
 /tipsAndTricks/gameplay/walkOnUnderplatin
     tipText = "If you walk instead of run on underplating you wont trip."
+
+/tipsAndTricks/gameplay/zoneTargetingNum
+    tipText = " You can target specific damage zones by using the Numpad Keys."

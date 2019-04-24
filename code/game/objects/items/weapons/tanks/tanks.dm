@@ -8,7 +8,7 @@ var/list/global/tank_gauge_cache = list()
 	name = "tank"
 	icon = 'icons/obj/tank.dmi'
 
-	var/gauge_icon = "indicator_tank"
+	var/gauge_icon = "indicator-tank-big"
 	var/last_gauge_pressure
 	var/gauge_cap = 6
 
@@ -243,7 +243,7 @@ var/list/global/tank_gauge_cache = list()
 
 	last_gauge_pressure = gauge_pressure
 	overlays.Cut()
-	var/indicator = "[gauge_icon][(gauge_pressure == -1) ? "overload" : gauge_pressure]"
+	var/indicator = "[gauge_icon]-[(gauge_pressure == -1) ? "overload" : gauge_pressure]"
 	if(!tank_gauge_cache[indicator])
 		tank_gauge_cache[indicator] = image(icon, indicator)
 	overlays += tank_gauge_cache[indicator]

@@ -36,7 +36,7 @@
 
 	faction = "carp"
 
-/mob/living/simple_animal/hostile/carp/allow_spacemove(var/check_drift = 0)
+/mob/living/simple_animal/hostile/carp/allow_spacemove()
 	return 1	//No drifting in space for space carp!	//original comments do not steal
 
 /mob/living/simple_animal/hostile/carp/FindTarget()

@@ -18,6 +18,7 @@
 	stat_modifiers = list(
 		STAT_ROB = 15,
 		STAT_TGH = 15,
+		STAT_AIM = 25,
 	)
 	also_known_languages = list(LANGUAGE_JIVE = 80)
 

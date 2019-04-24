@@ -21,6 +21,7 @@
 		STAT_TGH = 8,
 		STAT_BIO = 8,
 		STAT_MEC = 8,
+		STAT_AIM = 8,
 		STAT_COG = 8
 	)
 

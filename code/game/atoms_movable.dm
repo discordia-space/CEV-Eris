@@ -30,6 +30,10 @@
 	. = ..()
 	for(var/atom/movable/AM in contents)
 		qdel(AM)
+
+	if(loc)
+		loc.handle_atom_del(src)
+
 	forceMove(null)
 	if (pulledby)
 		if (pulledby.pulling == src)

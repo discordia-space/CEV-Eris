@@ -337,7 +337,7 @@
 		hard_drive.store_file(autorun)
 
 /obj/item/modular_computer/GetIdCard()
-	if(card_slot && card_slot.can_broadcast && istype(card_slot.stored_card))
+	if(card_slot && istype(card_slot.stored_card))
 		return card_slot.stored_card
 
 /obj/item/modular_computer/proc/update_name()

@@ -67,7 +67,7 @@ var/list/disciples = list()
 	if(wearer.dna.unique_enzymes == data.dna.unique_enzymes)
 		for(var/mob/M in GLOB.player_list)
 			if(M.ckey == data.ckey)
-				if(!isghost(M) && !isangel(M))
+				if(M.stat != DEAD)
 					return FALSE
 		var/datum/mind/MN = data.mind
 		if(!istype(MN, /datum/mind))
