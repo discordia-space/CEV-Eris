@@ -141,12 +141,22 @@ var/list/possible_cable_coil_colours = list(
 		if(I.use_tool(user, src, WORKTIME_INSTANT, QUALITY_WIRE_CUTTING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			if(!shock(user, 50))
 				cutting(user)
+				return
+		var/fail_chance = FAILCHANCE_NORMAL - user.stats.getStat(STAT_MEC)
+		if(prob(fail_chance))
+			to_chat(user, SPAN_NOTICE("Oh God, what a mess!"))
+			spawnSplicing()
 		return
 
 	if(QUALITY_CUTTING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_INSTANT, QUALITY_CUTTING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			if(!shock(user, 50))
 				cutting(user)
+				return
+		var/fail_chance = FAILCHANCE_NORMAL - user.stats.getStat(STAT_MEC)
+		if(prob(fail_chance))
+			to_chat(user, SPAN_NOTICE("Oh God, what a mess!"))
+			spawnSplicing()
 		return
 
 	else if(istype(I, /obj/item/stack/cable_coil))
@@ -154,7 +164,26 @@ var/list/possible_cable_coil_colours = list(
 		if (coil.get_amount() < 1)
 			user << "Not enough cable"
 			return
-		coil.cable_join(src, user)
+		if(user.a_intent == I_HURT)
+			if(locate(/obj/structure/wire_splicing) in T)
+				to_chat(user, SPAN_WARNING("There is splicing already!"))
+				return
+			to_chat(user, SPAN_NOTICE("You started messsing with wires..."))
+			if(shock(user, 100)) //check if he got his insulation gloves
+				return 		//he didn't
+			if(do_after(user, 20))
+				var/fail_chance = FAILCHANCE_HARD - user.stats.getStat(STAT_MEC) // 72 for assistant
+				if(prob(fail_chance))
+					if(!shock(user, 100)) //why not
+						to_chat(user, SPAN_WARNING("You failed to finish your task with [src.name]! There was a [fail_chance]% chance to screw this up."))
+					return
+
+				//all clear, update things
+				coil.use(1)
+				spawnSplicing()
+				to_chat(user, SPAN_NOTICE("You have created such a mess. Shame."))
+		else
+			coil.cable_join(src, user)
 
 	else if(istype(I, /obj/item/weapon/tool/multitool))
 
@@ -170,6 +199,18 @@ var/list/possible_cable_coil_colours = list(
 		if (I.flags & CONDUCT)
 			shock(user, 50, 0.7)
 
+/obj/structure/cable/proc/spawnSplicing(var/messiness = 1)
+	var/obj/structure/wire_splicing/splicing = new (src.loc)
+	splicing.messiness = messiness
+	splicing.icon_state = "wire_splicing[messiness]"
+
+	//sparks!
+	var/datum/effect/effect/system/spark_spread/spark_system = new ()
+	spark_system.set_up(5, 0, src)
+	spark_system.attach(src)
+	spark_system.start()
+	spawn(10)
+		qdel(spark_system)
 
 /obj/structure/cable/proc/cutting(mob/user)
 
