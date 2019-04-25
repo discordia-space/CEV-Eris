@@ -2,10 +2,6 @@
 	name = "security flashlight"
 	build_path = /obj/item/device/lighting/toggleable/flashlight/seclite
 
-/datum/design/autolathe/sec/flash
-	name = "flash"
-	build_path = /obj/item/device/flash
-
 /datum/design/autolathe/sec/handcuffs
 	name = "handcuffs"
 	build_path = /obj/item/weapon/handcuffs

@@ -16,10 +16,6 @@
 	name = "power control module"
 	build_path = /obj/item/weapon/circuitboard/apc
 
-/datum/design/autolathe/circuit/autolathe
-	name = "autolathe"
-	build_path = /obj/item/weapon/circuitboard/autolathe
-
 /datum/design/autolathe/circuit/vending
 	name = "custom Vendomat"
 	build_path = /obj/item/weapon/circuitboard/vending
@@ -32,37 +28,9 @@
 	name = "autolathe disk cloner"
 	build_path = /obj/item/weapon/circuitboard/autolathe_disk_cloner
 
-/datum/design/autolathe/circuit/arcade_battle
-	name = "battle arcade machine"
-	build_path = /obj/item/weapon/circuitboard/arcade/battle
-
-/datum/design/autolathe/circuit/arcade_orion_trail
-	name = "orion trail arcade machine"
-	build_path = /obj/item/weapon/circuitboard/arcade/orion_trail
-
-/datum/design/autolathe/circuit/communications
-	name = "command and communications console"
-	build_path = /obj/item/weapon/circuitboard/communications
-
-/datum/design/autolathe/circuit/med_data
-	name = "medical records console"
-	build_path = /obj/item/weapon/circuitboard/med_data
-
 /datum/design/autolathe/circuit/recharger
 	name = "recharger"
 	build_path = /obj/item/weapon/circuitboard/recharger
-
-/datum/design/autolathe/circuit/secure_data
-	name = "security records console"
-	build_path = /obj/item/weapon/circuitboard/secure_data
-
-/datum/design/autolathe/circuit/teleporter
-	name = "teleporter control console"
-	build_path = /obj/item/weapon/circuitboard/teleporter
-
-/datum/design/autolathe/circuit/operating
-	name = "patient monitoring console"
-	build_path = /obj/item/weapon/circuitboard/operating
 
 /datum/design/autolathe/circuit/helm
 	name = "helm control console"

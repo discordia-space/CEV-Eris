@@ -45,8 +45,8 @@ meteor_act
 	agony_amount *= siemens_coeff
 
 	switch (def_zone)
-		if(BP_HEAD)
-			agony_amount *= 1.50
+		if(BP_CHEST)
+			agony_amount *= 0.80
 		if(BP_L_ARM, BP_R_ARM)
 			var/c_hand
 			if (def_zone == BP_L_ARM)

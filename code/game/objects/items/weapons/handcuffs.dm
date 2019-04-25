@@ -28,27 +28,27 @@
 		place_handcuffs(user, user)
 		return
 
-	if(!C.handcuffed)
-		if (C == user)
-			place_handcuffs(user, user)
-			return
+	if(C.handcuffed)
+		return
 
-		//check for an aggressive grab (or robutts)
-		var/can_place
-		if(isrobot(user))
-			can_place = 1
-		else
-			for (var/obj/item/weapon/grab/G in C.grabbed_by)
-				if (G.loc == user && G.state >= GRAB_AGGRESSIVE)
-					can_place = 1
-					break
+	if (C == user) //cool shit bro
+		place_handcuffs(user, user)
+		return
 
-		if(can_place)
-			place_handcuffs(C, user)
-		else
-			user << SPAN_DANGER("You need to have a firm grip on [C] before you can put \the [src] on!")
+	var/cuff_delay = 4 SECONDS
+	for (var/obj/item/weapon/grab/G in C.grabbed_by)
+		if (G.loc == user)
+			if(G.state >= GRAB_PASSIVE)
+				cuff_delay -= 1 SECONDS //3
+			if(G.state >= GRAB_AGGRESSIVE)
+				cuff_delay /= 2 //1.5
+			if(G.state >= GRAB_NECK)
+				cuff_delay /= 2 //0.75
+			if(G.state >= GRAB_KILL)
+				cuff_delay = 0
+	place_handcuffs(C, user, cuff_delay)
 
-/obj/item/weapon/handcuffs/proc/place_handcuffs(var/mob/living/carbon/target, var/mob/user)
+/obj/item/weapon/handcuffs/proc/place_handcuffs(var/mob/living/carbon/target, var/mob/user, var/delay)
 	playsound(src.loc, cuff_sound, 30, 1, -2)
 
 	var/mob/living/carbon/human/H = target
@@ -56,20 +56,16 @@
 		return 0
 
 	if(!mob_can_equip(H, src, slot_handcuffed))
-		user << SPAN_DANGER("\The [H] needs at least two wrists before you can cuff them together!")
+		to_chat(user, SPAN_DANGER("\The [H] needs at least two wrists before you can cuff them together!"))
 		return 0
 
 	if(istype(H.gloves,/obj/item/clothing/gloves/rig) && !elastic) // Can't cuff someone who's in a deployed hardsuit.
-		user << SPAN_DANGER("\The [src] won't fit around \the [H.gloves]!")
+		to_chat(user, SPAN_DANGER("\The [src] won't fit around \the [H.gloves]!"))
 		return 0
 
 	//user.visible_message(SPAN_DANGER("\The [user] is attempting to put [cuff_type] on \the [H]!"))
 
-	if(istype(user, /mob/living/silicon/robot))
-		if(!do_after(user, 30, target))
-			return 0
-
-	else if(!do_after(user, 0, target))
+	if(!do_after(user, delay, target))
 		return 0
 
 	H.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been handcuffed by [user.name] ([user.ckey])</font>")

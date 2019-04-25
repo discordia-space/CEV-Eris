@@ -144,7 +144,8 @@
 		/obj/item/weapon/implant/chem,
 		/obj/item/weapon/implant/death_alarm,
 		/obj/item/weapon/implant/tracking,
-		/obj/item/weapon/implant/core_implant/cruciform
+		/obj/item/weapon/implant/core_implant/cruciform,
+		/obj/item/weapon/implant/excelsior
 	)
 	var/delete
 	var/temphtml
@@ -346,7 +347,8 @@
 			var/unknown_body = 0
 			for(var/I in e.implants)
 				if(is_type_in_list(I,known_implants))
-					imp += "[I] implanted:"
+					var/obj/item/weapon/implant/device = I
+					imp += "[device.get_scanner_name()] implanted:"
 				else
 					unknown_body++
 			if(unknown_body)
