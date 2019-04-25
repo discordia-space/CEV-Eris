@@ -79,17 +79,17 @@ Used In File(s): \code\game\machinery\autolathe.dm
 
 <div class="fixedLeftWider" style="width:50%">
 	<div class="item">
-		<div class="itemContent" style="width:95%">
+		<div class="itemContent" style="width:100%">
 			{{if data.disk}}
 				{{for data.recipes}}
 					<div class="item">
-						<div class="block" style ='padding: 0px; overflow: auto'>
-							<div class="item">
-								<div style ='float: left; max-height:24px; max-width:24px; height:24px; width:24px; margin-left:0px' class='statusDisplayItem'><img src= {{:value.icon}} height=24 width=24></div>
+						<div class="block" style='padding: 0px; overflow: auto'>
+							<div class="item" style="margin: 0px">
+								<div style ='float: left; height: 24px; width: 24px; margin: 4px' class='statusDisplayItem'><img src= {{:value.icon}} height=24 width=24></div>
 								<div class="itemContentWidest">{{:value.name}}</div>
 							</div>
 							{{if value.unfolded}}
-								<div class="statusDisplay">
+								<div class="statusDisplay" style="margin: 0px 4px 4px 4px">
 									{{if value.materials}}
 									<div class="item">
 										<div class="itemLabelWidest">Materials</div>

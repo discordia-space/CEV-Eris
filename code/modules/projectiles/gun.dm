@@ -373,7 +373,7 @@
 		upper_offset = recoil*20
 	if(iscarbon(user))
 		var/mob/living/carbon/mob = user
-		var/aim_coeff = mob.stats.getStat(STAT_AIM)/10 //Allows for security to be better at aiming
+		var/aim_coeff = mob.stats.getStat(STAT_VIG)/10 //Allows for security to be better at aiming
 		if(aim_coeff > 0)//EG. 60 which is the max, turns into 6. Giving a sizeable accuracy bonus.
 			lower_offset += aim_coeff
 			upper_offset -= aim_coeff
@@ -522,6 +522,7 @@
 	//Update firemode when safeties are toggled
 	update_firemode()
 	update_hud_actions()
+	update_cursor(user)
 
 
 //Finds the current firemode and calls update on it. This is called from a few places:

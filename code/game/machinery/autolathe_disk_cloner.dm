@@ -19,8 +19,8 @@
 	var/copying = FALSE
 
 
-/obj/machinery/autolathe_disk_cloner/New()
-	..()
+/obj/machinery/autolathe_disk_cloner/Initialize()
+	. = ..()
 	update_icon()
 
 /obj/machinery/autolathe_disk_cloner/RefreshParts()
