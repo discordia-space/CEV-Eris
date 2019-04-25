@@ -34,6 +34,6 @@
 	icon_state = iconstring
 	item_state = itemstring
 
-/obj/item/weapon/gun/projectile/IH_sidearm/Initialize()
+/obj/item/weapon/gun/projectile/giskard/Initialize()
 	. = ..()
 	update_icon()
