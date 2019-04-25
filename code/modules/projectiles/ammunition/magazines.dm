@@ -317,7 +317,7 @@
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/ak47
-	name = "AK magazine (7.62mm)"
+	name = "curved magazine (7.62mm)"
 	icon_state = "AKMag_l"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_AK
@@ -328,7 +328,7 @@
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/ak47/highvelocity
-	name = "AK magazine (7.62mm high-velocity)"
+	name = "curved magazine (7.62mm high-velocity)"
 	icon_state = "AKMag_hv"
 	ammo_type = /obj/item/ammo_casing/a762/hv
 

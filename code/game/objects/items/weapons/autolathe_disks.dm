@@ -316,6 +316,7 @@
 		/datum/design/autolathe/gun/combat_shotgun,
 		/datum/design/autolathe/gun/heavysniper,
 		/datum/design/autolathe/gun/grenade_launcher,
+		/datum/design/research/item/weapon/stunrevolver,
 		/datum/design/autolathe/gun/taser,
 		/datum/design/autolathe/gun/sniperrifle
 	)
@@ -326,7 +327,6 @@
 	category = "Security"
 	icon_state = "neotheology"
 	recipes = list(
-		/datum/design/research/item/weapon/stunrevolver,
 		/datum/design/autolathe/gun/energy_crossbow,
 		/datum/design/autolathe/gun/large_energy_crossbow,
 		/datum/design/autolathe/gun/laser,

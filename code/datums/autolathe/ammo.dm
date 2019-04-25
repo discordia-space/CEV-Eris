@@ -131,7 +131,7 @@
 	build_path = /obj/item/ammo_magazine/c762
 
 /datum/design/autolathe/ammo/ak47
-	name = "AK magazine (7.62mm)"
+	name = "curved magazine (7.62mm)"
 	build_path = /obj/item/ammo_magazine/ak47
 
 /datum/design/autolathe/ammo/a556
