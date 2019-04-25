@@ -5,38 +5,44 @@
 // This is subtype of SMES that should be normally used. It can be constructed, deconstructed and hacked.
 // It also supports RCON System which allows you to operate it remotely, if properly set.
 
-//MAGNETIC COILS - These things actually store and transmit power within the SMES. Different types have different
+//MAGNETIC COILS - These things actually store and transmit power within the SMES. Different types have different properties
 /obj/item/weapon/smes_coil
-	name = "superconductive magnetic coil"
+	name = "SMES coil"
 	desc = "Standard superconductive magnetic coil with average capacity and I/O rating."
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "smes_coil"			// Just few icons patched together. If someone wants to make better icon, feel free to do so!
 	w_class = ITEM_SIZE_LARGE 						// It's LARGE (backpack size)
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 4, MATERIAL_GLASS = 4)
+	origin_tech = list(TECH_MAGNET = 2, TECH_POWER = 3, TECH_MATERIAL = 2)
 	var/ChargeCapacity = 10000000
 	var/IOCapacity = 750000
 
 // 20% Charge Capacity, 60% I/O Capacity. Used for substation/outpost SMESs.
 /obj/item/weapon/smes_coil/weak
-	name = "basic superconductive magnetic coil"
+	name = "basic SMES coil"
 	desc = "Cheaper model of standard superconductive magnetic coil. It's capacity and I/O rating are considerably lower."
+	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 2)
+	origin_tech = list(TECH_MAGNET = 2, TECH_POWER = 2, TECH_MATERIAL = 1)
 	ChargeCapacity = 2000000
 	IOCapacity = 600000
 
 // 1000% Charge Capacity, 20% I/O Capacity
 /obj/item/weapon/smes_coil/super_capacity
-	name = "superconductive capacitance coil"
+	name = "capacitance SMES coil"
 	desc = "Specialised version of standard superconductive magnetic coil. This one has significantly stronger containment field, allowing for significantly larger power storage. It's IO rating is much lower, however."
+	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 4, MATERIAL_GLASS = 4, MATERIAL_URANIUM = 4)
+	origin_tech = list(TECH_MAGNET = 3, TECH_POWER = 4, TECH_MATERIAL = 3)
 	ChargeCapacity = 100000000
 	IOCapacity = 150000
 
 // 10% Charge Capacity, 400% I/O Capacity. Technically turns SMES into large super capacitor.Ideal for shields.
 /obj/item/weapon/smes_coil/super_io
-	name = "superconductive transmission coil"
+	name = "transmission SMES coil"
 	desc = "Specialised version of standard superconductive magnetic coil. While this one won't store almost any power, it rapidly transfers power, making it useful in systems which require large throughput."
+	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 4, MATERIAL_GLASS = 4, MATERIAL_GOLD = 4)
+	origin_tech = list(TECH_MAGNET = 3, TECH_POWER = 4, TECH_MATERIAL = 3)
 	ChargeCapacity = 1000000
 	IOCapacity = 3000000
-
 
 
 // SMES itself

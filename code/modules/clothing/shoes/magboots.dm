@@ -10,6 +10,7 @@
 	var/icon_base = "magboots"
 	action_button_name = "Toggle Magboots"
 	armor = list(melee = 40, bullet = 30, laser = 30,energy = 25, bomb = 50, bio = 100, rad = 70)
+	siemens_coefficient = 0 // DAMN BOI
 	//This armor only applies to legs
 
 /obj/item/clothing/shoes/magboots/proc/set_slowdown()

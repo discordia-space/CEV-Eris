@@ -29,12 +29,13 @@ proc/admin_notice(var/message, var/rights)
 /datum/admins/SDQL_update(var/const/var_name, var/new_value)
 	return 0
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
 /datum/admins/proc/view_log_panel(mob/M)
 	if(!M)
 		to_chat(usr, "That mob doesn't seem to exist! Something went wrong.")
-		return 
+		return
 
 	if (!istype(src, /datum/admins))
 		src = usr.client.holder
@@ -54,7 +55,7 @@ proc/admin_notice(var/message, var/rights)
 
 	usr << browse(body, "window=\ref[M]logs;size=500x500")
 
-	
+
 
 
 ADMIN_VERB_ADD(/datum/admins/proc/show_player_panel, null, TRUE)
@@ -102,13 +103,15 @@ ADMIN_VERB_ADD(/datum/admins/proc/show_player_panel, null, TRUE)
 		<a href='?src=\ref[src];traitor=\ref[M]'>TP</a> -
 		<a href='?src=\ref[usr];priv_msg=\ref[M]'>PM</a> -
 		<a href='?src=\ref[src];subtlemessage=\ref[M]'>SM</a> -
-		[admin_jump_link(M, src)] - 
+		[admin_jump_link(M, src)] -
 		<a href='?src=\ref[src];viewlogs=\ref[M]'>LOGS</a>\] <br>
 		<b>Mob type</b> = [M.type]<br><br>
 		<A href='?src=\ref[src];boot2=\ref[M]'>Kick</A> |
 		<A href='?_src_=holder;warn=[M.ckey]'>Warn</A> |
 		<A href='?src=\ref[src];newban=\ref[M]'>Ban</A> |
 		<A href='?src=\ref[src];jobban2=\ref[M]'>Jobban</A> |
+		<A href='?src=\ref[src];notes=show;mob=\ref[M]'>Notes</A>
+
 	"}
 
 	if(M.client)

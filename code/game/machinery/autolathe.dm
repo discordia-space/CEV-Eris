@@ -490,9 +490,6 @@
 	return disk.use_license()
 
 
-	return FALSE
-
-
 //Procs for handling print animation
 /obj/machinery/autolathe/proc/print_pre()
 	return

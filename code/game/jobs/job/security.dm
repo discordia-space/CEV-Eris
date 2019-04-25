@@ -26,7 +26,7 @@
 	stat_modifiers = list(
 		STAT_ROB = 40,
 		STAT_TGH = 30,
-		STAT_AIM = 40,
+		STAT_VIG = 40,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/comm,
@@ -82,7 +82,7 @@
 	stat_modifiers = list(
 		STAT_ROB = 25,
 		STAT_TGH = 25,
-		STAT_AIM = 25,
+		STAT_VIG = 25,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
@@ -133,7 +133,7 @@
 		STAT_BIO = 20,
 		STAT_ROB = 15,
 		STAT_TGH = 15,
-		STAT_AIM = 25,
+		STAT_VIG = 25,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
@@ -183,7 +183,7 @@
 	stat_modifiers = list(
 		STAT_BIO = 20,
 		STAT_TGH = 5,
-		STAT_AIM = 15,
+		STAT_VIG = 30,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
@@ -235,7 +235,7 @@
 	stat_modifiers = list(
 		STAT_ROB = 25,
 		STAT_TGH = 20,
-		STAT_AIM = 25,
+		STAT_VIG = 25,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,

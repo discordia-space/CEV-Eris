@@ -2,7 +2,10 @@
 
 /obj/item/weapon/gun/equipped(mob/living/H)
 	. = ..()
-	update_cursor(H)
+	if(is_held())
+		update_cursor(H)
+	else
+		remove_cursor(H)
 
 /obj/item/weapon/gun/proc/cursor_check()
 	if(ismob(loc))
@@ -21,22 +24,32 @@
 	if(ismob(loc))
 		cursor_check(loc)
 
+/obj/item/weapon/gun/afterattack(obj/target, mob/user, flag)
+	. = ..()
+	if(!is_held())
+		remove_cursor(user)
+
 /obj/item/weapon/gun/proc/update_cursor(mob/living/H)
 	if(!H || !istype(H))
 		return
 	if(H.client)
 		H.client.mouse_pointer_icon = initial(H.client.mouse_pointer_icon)
-		var/icon/scaled
-		scaled = 'icons/obj/gun_cursors/example/huge.dmi' //Default. If we're above these numbers of recoil
+		var/icon/scaled = 'icons/obj/gun_cursors/example/standard.dmi' //Default cursor
 		switch(recoil)
-			if(0)
+			if(0 to 0.9)
 				scaled = 'icons/obj/gun_cursors/example/standard.dmi'
-			if(1)
+			if(1 to 1.9)
 				scaled = 'icons/obj/gun_cursors/example/medium.dmi'
-			if(2 to 3)
+			if(2 to 3.9)
 				scaled = 'icons/obj/gun_cursors/example/large.dmi'
+			else
+				scaled = 'icons/obj/gun_cursors/example/huge.dmi' //Catch. If we're above these numbers of recoil
 		if(scaled)
 			H.client.mouse_pointer_icon = scaled
+
+/obj/item/weapon/gun/try_uneqip(target, mob/living/user)
+	. = ..()
+	remove_cursor(user)
 
 /obj/item/weapon/gun/dropped(var/mob/living/user)
 	remove_cursor(user)
