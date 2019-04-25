@@ -12,11 +12,28 @@
 	mag_well = MAG_WELL_PISTOL
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_WOOD = 4)
 	price_tag = 600
+	silencer_type = /obj/item/weapon/silencer
 	recoil = 0.2 //peashooter tier gun
 
 /obj/item/weapon/gun/projectile/giskard/update_icon()
 	..()
-	if(ammo_magazine && ammo_magazine.stored_ammo.len)
-		icon_state = "giskardcivil"
-	else
-		icon_state = "giskardcivil_empty"
+
+	var/iconstring = initial(icon_state)
+	var/itemstring = initial(item_state)
+
+	if (ammo_magazine)
+		iconstring += "_mag"
+
+	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
+		iconstring += "_slide"
+
+	if (silenced)
+		iconstring += "_s"
+		itemstring += "_s"
+
+	icon_state = iconstring
+	item_state = itemstring
+
+/obj/item/weapon/gun/projectile/IH_sidearm/Initialize()
+	. = ..()
+	update_icon()
