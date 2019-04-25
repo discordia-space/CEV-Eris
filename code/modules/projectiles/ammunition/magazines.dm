@@ -201,7 +201,7 @@
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/a556
-	name = "civilian magazine (5.56mm)"
+	name = "straight magazine (5.56mm)"
 	icon_state = "5.56"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
@@ -216,7 +216,7 @@
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/a556/practice
-	name = "magazine (5.56mm practice)"
+	name = "straight magazine (5.56mm practice)"
 	ammo_type = /obj/item/ammo_casing/a556/practice
 
 /obj/item/ammo_magazine/ih556
@@ -302,7 +302,7 @@
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/c762
-	name = "civilian magazine (7.62mm)"
+	name = "straight magazine (7.62mm)"
 	icon_state = "c762l"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_CIVI_RIFLE
