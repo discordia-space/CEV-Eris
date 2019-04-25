@@ -122,10 +122,6 @@
 	name = "NT SP \"Counselor\""
 	build_path = /obj/item/weapon/gun/energy/taser
 
-/datum/design/autolathe/gun/stunrevolver
-	name = "NT SP \"Zeus\""
-	build_path = /obj/item/weapon/gun/energy/stunrevolver
-
 /datum/design/autolathe/gun/energygun
 	name = "FS PDW E \"Spider Rose\""
 	build_path = /obj/item/weapon/gun/energy/gun

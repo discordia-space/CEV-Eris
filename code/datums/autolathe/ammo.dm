@@ -1,14 +1,10 @@
 /datum/design/autolathe/ammo/shotgun
-	name = "ammunition (slug, shotgun)"
+	name = "ammunition (shotgun, slug)"
 	build_path = /obj/item/ammo_casing/shotgun
 
 /datum/design/autolathe/ammo/shotgun_pellet
-	name = "ammunition (shell, shotgun)"
+	name = "ammunition (shotgun, shell)"
 	build_path = /obj/item/ammo_casing/shotgun/pellet
-
-/datum/design/autolathe/ammo/stunshell
-	name = "ammunition (stun cartridge, shotgun)"
-	build_path = /obj/item/ammo_casing/shotgun/stunshell
 
 /datum/design/autolathe/ammo/shotgun_blanks
 	name = "ammunition (shotgun, blank)"
