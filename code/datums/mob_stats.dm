@@ -112,9 +112,6 @@
 				qdel(SM)
 			. += SM.value
 
-
-
-
 /datum/stat/productivity
 	name = STAT_MEC
 	desc = "The world hadn't ever had so many moving parts or so few labels. Character's ability in building and using various tools.."
@@ -137,7 +134,7 @@
 
 /datum/stat/aiming
 	name = STAT_VIG
-	desc = "Here, paranoia is nothing but a useful trait. Improves your ability to control recoil on guns, helps you resist insanity."
+	desc = "Here, paranoia is nothing but a useful trait. Improves your ability to control recoil on guns, helps you resist insanity and you'll also net a bonus when trying to tame roaches."
 
 // Use to perform stat checks
 /mob/proc/stat_check(stat_path, needed)
