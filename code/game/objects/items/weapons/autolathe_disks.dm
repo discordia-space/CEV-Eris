@@ -262,7 +262,7 @@
 	icon_state = "frozenstar"
 	recipes = list(
 		/datum/design/autolathe/gun/giskard,
-		/datum/design/autolathe/gun/olivav,
+		/datum/design/autolathe/gun/olivaw,
 		/datum/design/autolathe/gun/clarissa,
 		/datum/design/autolathe/gun/revolver_detective,
 		/datum/design/autolathe/gun/doublebarrel,
@@ -316,7 +316,6 @@
 		/datum/design/autolathe/gun/combat_shotgun,
 		/datum/design/autolathe/gun/heavysniper,
 		/datum/design/autolathe/gun/grenade_launcher,
-		/datum/design/autolathe/gun/stunrevolver,
 		/datum/design/autolathe/gun/taser,
 		/datum/design/autolathe/gun/sniperrifle
 	)
@@ -327,6 +326,7 @@
 	category = "Security"
 	icon_state = "neotheology"
 	recipes = list(
+		/datum/design/autolathe/gun/stunrevolver,
 		/datum/design/autolathe/gun/energy_crossbow,
 		/datum/design/autolathe/gun/large_energy_crossbow,
 		/datum/design/autolathe/gun/laser,

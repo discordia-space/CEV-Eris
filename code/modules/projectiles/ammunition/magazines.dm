@@ -357,7 +357,7 @@
 	max_ammo = 7
 	multiple_sprites = 1
 
-/obj/item/ammo_speedloader/sl357/highvelocity
+/obj/item/ammo_magazine/sl357/highvelocity
 	name = "speed loader (.357 high-velocity)"
 	icon_state = "357hv"
 	ammo_type = /obj/item/ammo_casing/a357/hv
