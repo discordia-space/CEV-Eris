@@ -326,7 +326,7 @@
 	category = "Security"
 	icon_state = "neotheology"
 	recipes = list(
-		/datum/design/autolathe/gun/stunrevolver,
+		/datum/design/research/item/weapon/stunrevolver,
 		/datum/design/autolathe/gun/energy_crossbow,
 		/datum/design/autolathe/gun/large_energy_crossbow,
 		/datum/design/autolathe/gun/laser,
