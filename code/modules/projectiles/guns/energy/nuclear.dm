@@ -49,6 +49,7 @@
 
 /obj/item/weapon/gun/energy/gun/nuclear/update_icon()
 	overlays.Cut()
-	update_charge()
-	update_reactor()
+	if(cell)
+		update_charge()
+		update_reactor()
 	update_mode()

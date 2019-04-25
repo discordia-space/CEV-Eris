@@ -153,34 +153,39 @@
 			WR.crowbar_salvage += cell
 			cell.forceMove(WR)
 			cell.charge = rand(0, cell.charge)
+			cell = null
+
 		if(internal_tank)
 			WR.crowbar_salvage += internal_tank
 			internal_tank.forceMove(WR)
+			internal_tank = null
 	else
 		for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
 			E.detach(loc)
 			E.destroy()
-		if(cell)
-			qdel(cell)
-		if(internal_tank)
-			qdel(internal_tank)
-	equipment.Cut()
-	cell = null
-	internal_tank = null
 
-	qdel(pr_int_temp_processor)
-	qdel(pr_inertial_movement)
-	qdel(pr_give_air)
-	qdel(pr_internal_damage)
-	qdel(spark_system)
-	pr_int_temp_processor = null
-	pr_give_air = null
-	pr_internal_damage = null
-	spark_system = null
+		QDEL_NULL(cell)
+		QDEL_NULL(internal_tank)
+
+	equipment.Cut()
+
+	QDEL_NULL(pr_int_temp_processor)
+	QDEL_NULL(pr_inertial_movement)
+	QDEL_NULL(pr_give_air)
+	QDEL_NULL(pr_internal_damage)
+	QDEL_NULL(spark_system)
 
 	mechas_list -= src //global mech list
 	remove_hearing()
 	. = ..()
+
+/obj/mecha/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+
+/obj/mecha/get_cell()
+	return cell
 
 /obj/mecha/update_icon()
 	if (initial_icon)

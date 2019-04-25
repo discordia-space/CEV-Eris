@@ -27,8 +27,7 @@
 
 /obj/machinery/r_n_d/server/Initialize()
 	. = ..()
-	if(!files)
-		files = new /datum/research(src)
+	files = new /datum/research(src)
 	var/list/temp_list
 	if(!id_with_upload.len)
 		temp_list = list()
@@ -234,11 +233,10 @@
 	else if(href_list["reset_design"])
 		var/choice = alert("Design Data Deletion", "Are you sure you want to delete this design? If you still have the prerequisites for the design, it'll reset to its base reliability. Data lost cannot be recovered.", "Continue", "Cancel")
 		if(choice == "Continue")
-			for(var/datum/design/D in temp_server.files.known_designs)
-				if(D.id == href_list["reset_design"])
-					temp_server.files.known_designs -= D
-					break
-		temp_server.files.RefreshResearch()
+			var/datum/design/D = temp_server.files.possible_design_ids[href_list["reset_design"]]
+			if(D in temp_server.files.known_designs)
+				temp_server.files.known_designs -= D
+				temp_server.files.RefreshResearch()
 
 	updateUsrDialog()
 	return

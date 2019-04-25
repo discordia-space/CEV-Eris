@@ -13,7 +13,7 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)
 	price_tag = 2500
 	magazine_type = /obj/item/ammo_magazine/mc9mmt/rubber
-	zoom_factor = 2.0
+	recoil = 0.8
 
 /obj/item/weapon/gun/projectile/automatic/wt550/update_icon()
 	..()

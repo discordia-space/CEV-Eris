@@ -57,6 +57,15 @@
 		update_icon()
 	return 1
 
+/obj/item/weapon/gun/energy/get_cell()
+	return cell
+
+/obj/item/weapon/gun/energy/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+		update_icon()
+
 /obj/item/weapon/gun/energy/consume_next_projectile()
 	if(!cell) return null
 	if(!ispath(projectile_type)) return null
@@ -122,6 +131,3 @@
 	if(istype(C, suitable_cell) && insert_item(C, user))
 		cell = C
 		update_icon()
-
-/obj/item/weapon/gun/energy/get_cell()
-	return cell

@@ -214,11 +214,10 @@
 
 	var/obj/item/weapon/tool/T
 	if(istool(src))
-
 		T = src
 		T.last_tooluse = world.time
 
-	if(!T.has_quality(required_quality))
+	if(!has_quality(required_quality))
 		return TOOL_USE_CANCEL
 
 	if (is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
@@ -229,7 +228,6 @@
 	if(target.used_now)
 		to_chat(user, SPAN_WARNING("[target.name] is used by someone. Wait for them to finish."))
 		return TOOL_USE_CANCEL
-
 
 
 	if(ishuman(user))
@@ -256,9 +254,8 @@
 	if((instant_finish_tier < get_tool_quality(required_quality)) || time_to_finish < 0)
 		time_to_finish = 0
 
-	if (T)
-		if(!T.check_tool_effects(user, time_to_finish))
-			return TOOL_USE_CANCEL
+	if(T && !T.check_tool_effects(user, time_to_finish))
+		return TOOL_USE_CANCEL
 
 	//Repeating sound code!
 	//A datum/repeating_sound is a little object we can use to make a sound repeat a few times
@@ -523,7 +520,7 @@
 	/* Data and Checking */
 *******************************/
 /obj/item/proc/has_quality(quality_id)
-	return quality_id in tool_qualities
+	return !quality_id || (quality_id in tool_qualities)
 
 //A special version of the above that also checks the switched on list
 //As a result, it checks what qualities the tool is ever capable of having, not just those it has right now

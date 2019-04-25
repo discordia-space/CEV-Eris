@@ -34,6 +34,12 @@
 /obj/item/weapon/melee/baton/get_cell()
 	return cell
 
+/obj/item/weapon/melee/baton/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+		update_icon()
+
 /obj/item/weapon/melee/baton/proc/deductcharge(var/power_drain)
 	if(cell)
 		if(cell.checked_use(power_drain))

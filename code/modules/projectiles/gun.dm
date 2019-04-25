@@ -322,13 +322,7 @@
 			set_light(muzzle_flash)
 
 	if(recoil)
-		spawn()
-			if (silenced)
-				shake_camera(user, (recoil+1*0.5), (recoil*0.5))
-			else if(dual_wielding)
-				shake_camera(user, recoil+2, recoil)
-			else
-				shake_camera(user, recoil+1, recoil)
+		update_cursor(user)
 	update_icon()
 
 
@@ -357,7 +351,8 @@
 	var/obj/item/projectile/P = projectile
 	if(!istype(P))
 		return
-
+	if(recoil)
+		dispersion += recoil/2
 	P.dispersion = dispersion
 
 	if (aim_targets && (target in aim_targets))
@@ -371,18 +366,29 @@
 
 	if(params)
 		P.set_clickpoint(params)
-
-	//shooting while in shock
-	var/x_offset = 0
-	var/y_offset = 0
+	var/lower_offset = 0
+	var/upper_offset = 0
+	if(recoil)
+		lower_offset = -recoil*20
+		upper_offset = recoil*20
 	if(iscarbon(user))
 		var/mob/living/carbon/mob = user
-		if(mob.shock_stage > 120)
-			y_offset = rand(-2,2)
-			x_offset = rand(-2,2)
+		var/aim_coeff = mob.stats.getStat(STAT_AIM)/10 //Allows for security to be better at aiming
+		if(aim_coeff > 0)//EG. 60 which is the max, turns into 6. Giving a sizeable accuracy bonus.
+			lower_offset += aim_coeff
+			upper_offset -= aim_coeff
+		if(mob.shock_stage > 120)	//shooting while in shock
+			lower_offset *= 15 //A - * a - is a +
+			upper_offset *= 15
 		else if(mob.shock_stage > 70)
-			y_offset = rand(-1,1)
-			x_offset = rand(-1,1)
+			lower_offset *= 10 //A - * a - is a +
+			upper_offset *= 10
+
+	var/x_offset = 0
+	var/y_offset = 0
+	x_offset = rand(lower_offset, upper_offset) //Recoil fucks up the spread of your bullets
+	y_offset = rand(lower_offset, upper_offset)
+
 
 	return !P.launch_from_gun(target, user, src, target_zone, x_offset, y_offset)
 
@@ -445,6 +451,7 @@
 	if(zoom)
 		if(recoil)
 			recoil = round(recoil*zoom_factor+1) //recoil is worse when looking through a scope
+	update_cursor(user)
 	update_hud_actions()
 
 //make sure accuracy and recoil are reset regardless of how the item is unzoomed.
@@ -452,6 +459,7 @@
 	..()
 	if(!zoom)
 		recoil = initial(recoil)
+	update_cursor(usr)
 
 /obj/item/weapon/gun/examine(mob/user)
 	..()
@@ -558,8 +566,6 @@
 	set src in view(1)
 
 	toggle_safety(usr)
-
-
 
 /*
 	Gun Modding
