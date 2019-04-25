@@ -27,6 +27,7 @@
 		STAT_MEC = 40,
 		STAT_COG = 20,
 		STAT_TGH = 15,
+		STAT_VIG = 10,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/comm,

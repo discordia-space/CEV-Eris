@@ -18,7 +18,7 @@
 	stat_modifiers = list(
 		STAT_ROB = 15,
 		STAT_TGH = 15,
-		STAT_AIM = 25,
+		STAT_VIG = 5,
 	)
 	also_known_languages = list(LANGUAGE_JIVE = 80)
 
@@ -146,6 +146,7 @@
 	stat_modifiers = list(
 		STAT_TGH = 10,
 		STAT_ROB = 15,
+		STAT_VIG = 10,
 	)
 
 	loyalties = LOYALTY_CIVILIAN
