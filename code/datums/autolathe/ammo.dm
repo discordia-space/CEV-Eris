@@ -127,7 +127,7 @@
 	build_path = /obj/item/ammo_magazine/cl32
 
 /datum/design/autolathe/ammo/c762
-	name = "civilian magazine (7.62mm)"
+	name = "straight magazine (7.62mm)"
 	build_path = /obj/item/ammo_magazine/c762
 
 /datum/design/autolathe/ammo/ak47
@@ -135,11 +135,11 @@
 	build_path = /obj/item/ammo_magazine/ak47
 
 /datum/design/autolathe/ammo/a556
-	name = "civilian magazine (5.56mm)"
+	name = "straight magazine (5.56mm)"
 	build_path = /obj/item/ammo_magazine/a556
 
 /datum/design/autolathe/ammo/a556_practice
-	name = "civilian magazine (5.56mm practice)"
+	name = "straight magazine (5.56mm practice)"
 	build_path = /obj/item/ammo_magazine/a556/practice
 
 /datum/design/autolathe/ammo/ih556
