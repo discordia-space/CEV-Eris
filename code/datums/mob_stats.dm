@@ -136,8 +136,8 @@
 	desc = "You're a tough guy, but I'm a nightmare wrapped in the apocalypse. Enhances your resistance to poisons and also raises your speed in uncomfortable clothes."
 
 /datum/stat/aiming
-	name = STAT_AIM
-	desc = "'Y'all couldn't hit the broad side of a barn!'. Years of experience have taught you to handle firearms like a true American. Improves your ability to control recoil on guns."
+	name = STAT_VIG
+	desc = "Here, paranoia is nothing but a useful trait. Improves your ability to control recoil on guns, helps you resist insanity."
 
 // Use to perform stat checks
 /mob/proc/stat_check(stat_path, needed)
