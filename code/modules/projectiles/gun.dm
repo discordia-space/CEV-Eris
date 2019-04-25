@@ -522,6 +522,7 @@
 	//Update firemode when safeties are toggled
 	update_firemode()
 	update_hud_actions()
+	update_cursor(user)
 
 
 //Finds the current firemode and calls update on it. This is called from a few places:

@@ -142,6 +142,14 @@
 	name = "short magazine (5.56mm practice)"
 	build_path = /obj/item/ammo_magazine/a556/practice
 
+/datum/design/autolathe/ammo/a556
+	name = "straight magazine (5.56mm)"
+	build_path = /obj/item/ammo_magazine/a556
+
+/datum/design/autolathe/ammo/a556_practice
+	name = "straight magazine (5.56mm practice)"
+	build_path = /obj/item/ammo_magazine/a556/practice
+
 /datum/design/autolathe/ammo/ih556
 	name = "long magazine (5.56mm)"
 	build_path = /obj/item/ammo_magazine/ih556
