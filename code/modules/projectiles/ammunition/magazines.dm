@@ -190,7 +190,7 @@
 	ammo_type = /obj/item/ammo_casing/c45/rubber
 
 /obj/item/ammo_magazine/c10x24
-	name = "magazine (10mm x 24 caseless)"
+	name = "magazine (10x24mm caseless)"
 	icon_state = "10x24"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_CIVI_RIFLE
@@ -357,7 +357,7 @@
 	max_ammo = 7
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/sl357/highvelocity
+/obj/item/ammo_speedloader/sl357/highvelocity
 	name = "speed loader (.357 high-velocity)"
 	icon_state = "357hv"
 	ammo_type = /obj/item/ammo_casing/a357/hv

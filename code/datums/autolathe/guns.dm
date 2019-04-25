@@ -86,6 +86,10 @@
 	name = "FS SMG 9x19 \"Idaho\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/idaho
 
+/datum/design/autolathe/gun/wt550
+	name = "FS SMG 9x19 \"W-T Saber\""
+	build_path = /obj/item/weapon/gun/projectile/automatic/wt550
+
 /datum/design/autolathe/gun/atreides
 	name = "FS SMG .45 \"Atreides\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/atreides
@@ -106,8 +110,12 @@
 	name = "FS MP 9x19 \"Molly\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/IH_machinepistol
 
+/datum/design/autolathe/gun/z8
+	name = "FS CAR 5.56x45mm \"Z8 Bulldog\""
+	build_path = /obj/item/weapon/gun/projectile/automatic/z8
+
 /datum/design/autolathe/gun/IH_heavyrifle
-	name = "FS BR 7.62x39 \"Wintermute\""
+	name = "FS BR 5.56x45 \"Wintermute\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/IH_heavyrifle
 
 /datum/design/autolathe/gun/grenade_launcher

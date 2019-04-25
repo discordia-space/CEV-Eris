@@ -252,6 +252,7 @@
 		/datum/design/autolathe/misc/taperecorder,
 		/datum/design/autolathe/tool/tacknife,
 		/datum/design/autolathe/sec/beartrap,
+		/datum/design/autolathe/sec/silencer,
 	)
 	license = 20
 
@@ -260,8 +261,8 @@
 	category = "Security"
 	icon_state = "frozenstar"
 	recipes = list(
-		/datum/design/autolathe/gun/olivaw,
 		/datum/design/autolathe/gun/giskard,
+		/datum/design/autolathe/gun/olivav,
 		/datum/design/autolathe/gun/clarissa,
 		/datum/design/autolathe/gun/revolver_detective,
 		/datum/design/autolathe/gun/doublebarrel,
@@ -269,27 +270,28 @@
 	)
 	license = 7
 
-/obj/item/weapon/disk/autolathe_disk/fs_kinetic_guns
+/obj/item/weapon/disk/autolathe_disk/fs_kinetic_guns //please, maintain general order (pistol>revolver>SMG>Other>Shotgun>GLs)+(smaller/less damaging caliber>bigger/more damaging caliber)
 	name = "Frozen Star Ultimate Protection Pack"
 	category = "Security"
 	icon_state = "frozenstar"
 	recipes = list(
-		/datum/design/autolathe/gun/revolver,
-		/datum/design/autolathe/gun/revolver_consul,
-		/datum/design/autolathe/gun/revolver_deckard,
-		/datum/design/autolathe/gun/gladstone,
+		/datum/design/autolathe/gun/IH_sidearm, //pistols
+		/datum/design/autolathe/gun/IH_machinepistol,
 		/datum/design/autolathe/gun/lamia,
 		/datum/design/autolathe/gun/deagle,
-		/datum/design/autolathe/gun/IH_sidearm,
-		/datum/design/autolathe/gun/IH_machinepistol,
+		/datum/design/autolathe/gun/revolver_consul, //revolvers
+		/datum/design/autolathe/gun/revolver_deckard,
+		/datum/design/autolathe/gun/revolver,
+		/datum/design/autolathe/gun/idaho, //smgs
+		/datum/design/autolathe/gun/wt550,
 		/datum/design/autolathe/gun/IH_smg,
-		/datum/design/autolathe/gun/IH_heavyrifle,
-		/datum/design/autolathe/gun/smg_sol,
-		/datum/design/autolathe/gun/smg_sol_rds,
-		/datum/design/autolathe/gun/idaho,
 		/datum/design/autolathe/gun/atreides,
+		/datum/design/autolathe/gun/smg_sol, //other
+		/datum/design/autolathe/gun/smg_sol_rds,
+		/datum/design/autolathe/gun/z8,
+		/datum/design/autolathe/gun/IH_heavyrifle,
 		/datum/design/autolathe/gun/ak47_fs,
-		/datum/design/autolathe/gun/grenade_launcher_lenar,
+		/datum/design/autolathe/gun/grenade_launcher_lenar, //GLs
 	)
 	license = 5
 
@@ -298,8 +300,8 @@
 	category = "Security"
 	icon_state = "frozenstar"
 	recipes = list(
-		/datum/design/autolathe/gun/energygun,
 		/datum/design/autolathe/gun/energygun_martin,
+		/datum/design/autolathe/gun/energygun,
 		/datum/design/autolathe/gun/pulse_rifle_cassad,
 	)
 	license = 3
@@ -313,10 +315,10 @@
 		/datum/design/autolathe/gun/mk58_wood,
 		/datum/design/autolathe/gun/combat_shotgun,
 		/datum/design/autolathe/gun/heavysniper,
-		/datum/design/autolathe/gun/sniperrifle,
-		/datum/design/autolathe/gun/taser,
-		/datum/design/autolathe/gun/stunrevolver,
 		/datum/design/autolathe/gun/grenade_launcher,
+		/datum/design/autolathe/gun/stunrevolver,
+		/datum/design/autolathe/gun/taser,
+		/datum/design/autolathe/gun/sniperrifle
 	)
 	license = 3
 
@@ -325,66 +327,66 @@
 	category = "Security"
 	icon_state = "neotheology"
 	recipes = list(
-		/datum/design/autolathe/gun/laser,
-		/datum/design/autolathe/gun/ionrifle,
 		/datum/design/autolathe/gun/energy_crossbow,
 		/datum/design/autolathe/gun/large_energy_crossbow,
+		/datum/design/autolathe/gun/laser,
 		/datum/design/autolathe/gun/pulse_rifle,
 		/datum/design/autolathe/gun/pulse_rifle_destroyer,
+		/datum/design/autolathe/gun/ionrifle,
 	)
 	license = 3
 
-/obj/item/weapon/disk/autolathe_disk/nonlethal_ammo
+/obj/item/weapon/disk/autolathe_disk/nonlethal_ammo //please, maintain general order (pistol>speedloaders>smg>other>shells)+(smaller/less damaging caliber>bigger/more damaging caliber)
 	name = "Frozen Star Nonlethal Ammo Pack"
 	category = "Ammo"
 	icon_state = "frozenstar"
 	recipes = list(
-		/datum/design/autolathe/ammo/shotgun_blanks,
-		/datum/design/autolathe/ammo/shotgun_beanbag,
-		/datum/design/autolathe/ammo/shotgun_flash,
-		/datum/design/autolathe/ammo/stunshell,
+		/datum/design/autolathe/ammo/mg_cl32_rubber, //pistol mags
+		/datum/design/autolathe/ammo/magazine_mc9mm_rubber,
 		/datum/design/autolathe/ammo/magazine_c45m_rubber,
-		/datum/design/autolathe/ammo/magazine_mc9mmt_rubber,
-		/datum/design/autolathe/ammo/magazine_c45m_flash,
-		/datum/design/autolathe/ammo/magazine_mc9mm_flash,
-		/datum/design/autolathe/ammo/sl_c138_rubber,
-		/datum/design/autolathe/ammo/mg_cl32_rubber,
 		/datum/design/autolathe/ammo/magazine_a10mm_rubber,
 		/datum/design/autolathe/ammo/mg_cl44_rubber,
-		/datum/design/autolathe/ammo/sl_cl44_rubber,
 		/datum/design/autolathe/ammo/mg_a50_rubber,
-		/datum/design/autolathe/ammo/SMG_sol_rubber,
-		/datum/design/autolathe/ammo/smg9mm_rubber,
+		/datum/design/autolathe/ammo/sl_c138_rubber, //speed loaders
+		/datum/design/autolathe/ammo/sl_cl44_rubber,
+		/datum/design/autolathe/ammo/smg9mm_rubber, //smg mags
+		/datum/design/autolathe/ammo/magazine_mc9mmt_rubber,
 		/datum/design/autolathe/ammo/c45smg_rubber,
+		/datum/design/autolathe/ammo/SMG_sol_rubber, //other mags
+		/datum/design/autolathe/ammo/a556_practice,
+		/datum/design/autolathe/ammo/shotgun_blanks, //shells
+		/datum/design/autolathe/ammo/shotgun_flash,
+		/datum/design/autolathe/ammo/stunshell,
+		/datum/design/autolathe/ammo/shotgun_beanbag
 	)
 	license = 20
 
 
-/obj/item/weapon/disk/autolathe_disk/lethal_ammo
+/obj/item/weapon/disk/autolathe_disk/lethal_ammo //please, maintain general order (pistol>speedloaders>smg>other>shells)+(smaller/less damaging caliber>bigger/more damaging caliber)
 	name = "Frozen Star Lethal Ammo Pack"
 	category = "Ammo"
 	icon_state = "frozenstar"
 	recipes = list(
-		/datum/design/autolathe/ammo/magazine_sl357,
-		/datum/design/autolathe/ammo/magazine_c45m,
+		/datum/design/autolathe/ammo/mg_cl32_brute, //pistol mags
 		/datum/design/autolathe/ammo/magazine_mc9mm,
-		/datum/design/autolathe/ammo/magazine_smg10mm,
-		/datum/design/autolathe/ammo/magazine_c762,
-		/datum/design/autolathe/ammo/magazine_mc9mmt,
-		/datum/design/autolathe/ammo/magazine_a556,
-		/datum/design/autolathe/ammo/shotgun,
-		/datum/design/autolathe/ammo/shotgun_pellet,
-		/datum/design/autolathe/ammo/mg_cl32_brute,
+		/datum/design/autolathe/ammo/magazine_c45m,
 		/datum/design/autolathe/ammo/magazine_a10mm,
-		/datum/design/autolathe/ammo/sl_c138_brute,
 		/datum/design/autolathe/ammo/mg_cl44_brute,
-		/datum/design/autolathe/ammo/sl_cl44_brute,
 		/datum/design/autolathe/ammo/mg_a50,
-		/datum/design/autolathe/ammo/SMG_sol_brute,
-		/datum/design/autolathe/ammo/ih556,
-		/datum/design/autolathe/ammo/ak47,
-		/datum/design/autolathe/ammo/smg9mm_brute,
+		/datum/design/autolathe/ammo/sl_c138_brute, //speed loaders
+		/datum/design/autolathe/ammo/sl_cl44_brute,
+		/datum/design/autolathe/ammo/magazine_sl357,
+		/datum/design/autolathe/ammo/smg9mm_brute, //smg mags
+		/datum/design/autolathe/ammo/magazine_mc9mmt,
 		/datum/design/autolathe/ammo/c45smg_brute,
+		/datum/design/autolathe/ammo/magazine_smg10mm,
+		/datum/design/autolathe/ammo/SMG_sol_brute, //other mags
+		/datum/design/autolathe/ammo/a556,
+		/datum/design/autolathe/ammo/ih556,
+		/datum/design/autolathe/ammo/c762,
+		/datum/design/autolathe/ammo/ak47,
+		/datum/design/autolathe/ammo/shotgun_pellet, //shells
+		/datum/design/autolathe/ammo/shotgun
 	)
 	license = 20
 
