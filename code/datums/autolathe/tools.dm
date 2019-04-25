@@ -54,18 +54,6 @@
 	name = "pickaxe"
 	build_path = /obj/item/weapon/tool/pickaxe
 
-/datum/design/autolathe/tool/jackhammer
-	name = "jackhammer"
-	build_path = /obj/item/weapon/tool/pickaxe/jackhammer
-
-/datum/design/autolathe/tool/mining_drill
-	name = "mining drill"
-	build_path = /obj/item/weapon/tool/pickaxe/drill
-
-/datum/design/autolathe/tool/diamonddrill
-	name = "diamond-point mining drill"
-	build_path = /obj/item/weapon/tool/pickaxe/diamonddrill
-
 /datum/design/autolathe/tool/pickaxe_excavation
 	name = "excavation pick"
 	build_path = /obj/item/weapon/tool/pickaxe/excavation
