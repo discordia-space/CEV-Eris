@@ -18,26 +18,25 @@
 		return FALSE
 	if(thefood.reagents.has_reagent("sugar") || thefood.reagents.has_reagent("space_drugs") || thefood.reagents.has_reagent("vodka"))
 		if(prob(40))
-			visible_message("[src] hesitates for a moment...and then charges at [user]!")
+			visible_message("<span class='warning'>[src] hesitates for a moment...and then charges at [user]!</span>")
 			return FALSE //Sometimes roach just be like that
-		visible_message("[src] scuttles towards [user], examining the [thefood] they have in their hand.")
+		visible_message("<span class='notice'>[src] scuttles towards [user], examining the [thefood] they have in their hand.</span>")
 		can_buckle = TRUE
 		if(do_after(src, taming_window, src)) //Here's your window to climb onto it.
 			if(!buckled_mob || user != buckled_mob) //They need to be riding us
 				can_buckle = FALSE
 				visible_message("[src] snaps out of its trance and rushes at [user]!")
 				return FALSE
-			visible_message("[src] bucks around wildly, trying to shake [user] off!") //YEEEHAW
+			visible_message("<span class='warning'>[src] bucks around wildly, trying to shake [user] off!</span>") //YEEEHAW
 			if(prob(40 + user.stats.getStat(STAT_VIG)))
-				visible_message("[src] thrashes around and, throws [user] clean off!")
+				visible_message("<span class='warning'>[src] thrashes around and, throws [user] clean off!</span>")
 				user.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
 				unbuckle_mob()
 				can_buckle = FALSE
 				return FALSE
-			visible_message("[src] chomps [thefood] and slurps it down whole!.")
+			visible_message("<span class='notice'>[src] chomps [thefood] and slurps it down whole!.</span>")
 			qdel(thefood)
-			visible_message("[src] looks slightly stoned.")
-			AddMovementHandler(/datum/movement_handler/move_relay_self)
+			visible_message("<span class='notice'>[src] looks slightly stoned.</span>")
 			friends += user
 			animate_movement = 3 //So the riding doesnt look all fucky
 			pixel_y = 0
@@ -66,7 +65,7 @@
 	var/mob/living/carbon/superior_animal/roach/horse = locate(/mob/living/carbon/superior_animal/roach) in get_turf(user)
 	if(horse && istype(horse) && user.buckled == horse)
 		visible_message("<span class='notice'>[user] dangles [src] in front of [horse].</span>")
-		visible_message("<span class = 'warning'>[horse] hungrily gnashes at [src].</span>")
+		visible_message("<span class ='warning'>[horse] hungrily gnashes at [src].</span>")
 		walk_to(horse, target, 1, horse.move_to_delay)
 		if(prob(2)) //Really low chance, but prevents you from having free roach riding powers :)
 			visible_message("<span class = 'warning'>[src] snaps at [src] and swallows it whole!</span>")
