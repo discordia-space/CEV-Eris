@@ -216,7 +216,7 @@
 //Can stun in one hit if aimed at the head, but
 //is blocked by clothing that stops tasers and is vulnerable to EMP
 /obj/item/ammo_casing/shotgun/stunshell
-	name = "stun shell"
+	name = "taser shell"
 	desc = "A 12 gauge taser cartridge."
 	icon_state = "stunshell"
 	spent_icon = "stunshell-spent"

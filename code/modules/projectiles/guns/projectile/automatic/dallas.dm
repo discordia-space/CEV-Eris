@@ -1,7 +1,7 @@
 //It's a good day to die
 
 /obj/item/weapon/gun/projectile/automatic/dallas
-	name = "PAR 10mm x 24 \"Dallas\""
+	name = "PAR 10x24 \"Dallas\""
 	desc = "Dallas is a pulse-action air-cooled automatic assault rifle made by unknown manufacturer. This weapon is very rare, but deadly efficient. \
 		It's used by elite mercenaries, assassins or bald marines. Makes you feel like a space marine when you hold it."
 	icon_state = "dallas"
