@@ -201,7 +201,7 @@
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/a556
-	name = "magazine (5.56mm)"
+	name = "civilian magazine (5.56mm)"
 	icon_state = "5.56"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
