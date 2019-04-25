@@ -138,6 +138,10 @@
 	name = "civilian magazine (5.56mm)"
 	build_path = /obj/item/ammo_magazine/a556
 
+/datum/design/autolathe/ammo/a556_practice
+	name = "civilian magazine (5.56mm practice)"
+	build_path = /obj/item/ammo_magazine/a556/practice
+
 /datum/design/autolathe/ammo/ih556
 	name = "IH magazine (5.56mm)"
 	build_path = /obj/item/ammo_magazine/ih556
