@@ -7,7 +7,7 @@
 	force = WEAPON_FORCE_PAINFUL
 	caliber = "a556"
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 3)
-	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 6)
+	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_STEEL = 10)
 	price_tag = 3200 //old but gold, decent AP caliber, underbarrel GL, mild recoil and 20-round mags. Better than FS AK.
 	ammo_type = "/obj/item/ammo_casing/a556"
 	fire_sound = 'sound/weapons/guns/fire/batrifle_fire.ogg'
@@ -60,7 +60,7 @@
 /obj/item/weapon/gun/projectile/automatic/z8/update_icon()
 	..()
 	if(ammo_magazine)
-		icon_state = "carbine-[round(ammo_magazine.stored_ammo.len,2)]"
+		icon_state = "carbine-[round(ammo_magazine.stored_ammo.len,4)]"
 	else
 		icon_state = "carbine"
 
