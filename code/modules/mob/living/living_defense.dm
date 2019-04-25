@@ -64,7 +64,7 @@
 	//Stun Beams
 	if(P.taser_effect)
 		stun_effect_act(0, P.agony, def_zone, P)
-		src << SPAN_WARNING(" You have been hit by [P]!")
+		src << SPAN_WARNING("You have been hit by [P]!")
 		qdel(P)
 		return
 

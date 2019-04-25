@@ -100,6 +100,7 @@
 	name = "underslung grenade launcher"
 	desc = "Not much more than a tube and a firing mechanism, this grenade launcher is designed to be fitted to a rifle."
 	w_class = ITEM_SIZE_NORMAL
+	matter = null
 	force = 5
 	max_grenades = 0
 	safety = FALSE

@@ -190,7 +190,7 @@
 	ammo_type = /obj/item/ammo_casing/c45/rubber
 
 /obj/item/ammo_magazine/c10x24
-	name = "magazine (10mm x 24 caseless)"
+	name = "magazine (10x24mm caseless)"
 	icon_state = "10x24"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_CIVI_RIFLE
@@ -201,7 +201,7 @@
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/a556
-	name = "magazine (5.56mm)"
+	name = "straight magazine (5.56mm)"
 	icon_state = "5.56"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
@@ -216,7 +216,7 @@
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/a556/practice
-	name = "magazine (5.56mm practice)"
+	name = "straight magazine (5.56mm practice)"
 	ammo_type = /obj/item/ammo_casing/a556/practice
 
 /obj/item/ammo_magazine/ih556
@@ -302,7 +302,7 @@
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/c762
-	name = "civilian magazine (7.62mm)"
+	name = "straight magazine (7.62mm)"
 	icon_state = "c762l"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_CIVI_RIFLE
@@ -317,7 +317,7 @@
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/ak47
-	name = "AK magazine (7.62mm)"
+	name = "curved magazine (7.62mm)"
 	icon_state = "AKMag_l"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_AK
@@ -328,7 +328,7 @@
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/ak47/highvelocity
-	name = "AK magazine (7.62mm high-velocity)"
+	name = "curved magazine (7.62mm high-velocity)"
 	icon_state = "AKMag_hv"
 	ammo_type = /obj/item/ammo_casing/a762/hv
 
