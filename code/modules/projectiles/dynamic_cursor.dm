@@ -47,6 +47,8 @@
 			if(1 to 1.9)
 				scaled = 'icons/obj/gun_cursors/example/medium.dmi'
 			if(2 to 3.9)
+				scaled = 'icons/obj/gun_cursors/example/mediumlarge.dmi'
+			if(4 to 4.9)
 				scaled = 'icons/obj/gun_cursors/example/large.dmi'
 			else
 				scaled = 'icons/obj/gun_cursors/example/huge.dmi' //Catch. If we're above these numbers of recoil
