@@ -1,6 +1,6 @@
 /*
 	Excelsior Stashes:
-	Contain a wide variety of excelsior gear, allowing people to organically find them and join the cause
+	Contain a wide variety of excelsior gear, allowing people to organically find them and play on IH nerves
 	Also useful to established excelsior for more stuff
 */
 /datum/stash/excelsior
@@ -17,10 +17,10 @@
 	/obj/item/clothing/head/helmet/space/void/excelsior = 70,
 	/obj/item/weapon/gun/projectile/automatic/ak47 = 30,
 	/obj/item/weapon/gun/projectile/automatic/ak47 = 30,
-	/obj/item/ammo_magazine/ak47 = 50,
-	/obj/item/ammo_magazine/ak47 = 50,
-	/obj/item/ammo_magazine/ak47 = 50,
-	/obj/item/ammo_magazine/ak47 = 50)
+	/obj/item/ammo_magazine/c762_long = 50,
+	/obj/item/ammo_magazine/c762_long = 50,
+	/obj/item/ammo_magazine/c762_short = 70,
+	/obj/item/ammo_magazine/c762_short = 70)
 	weight = 0.5
 
 /datum/stash/excelsior/shipyard

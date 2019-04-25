@@ -12,8 +12,8 @@
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 4)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
-	mag_well = MAG_WELL_AK
-	magazine_type = /obj/item/ammo_magazine/ak47
+	mag_well = MAG_WELL_AK|MAG_WELL_CIVI_RIFLE
+	magazine_type = /obj/item/ammo_magazine/c762_long
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
 	price_tag = 3500
 	recoil = 1.2 //auto-fire on AK would bring a lot of salt, recoil is a way to reduce it for now
@@ -28,15 +28,20 @@
 		list(mode_name="short bursts",   burst=5, fire_delay=null, move_delay=6,    dispersion=list(0.6, 1.0, 1.0, 1.0, 1.2), icon="burst"),
 		)
 
-/obj/item/weapon/gun/projectile/automatic/ak47/update_icon()
+//obj/item/weapon/gun/projectile/automatic/ak47/update_icon()
+//	..()
+//	if(ammo_magazine)
+//		icon_state = "[initial(icon_state)]-full"
+//		item_state = "[initial(item_state)]-full"
+//	else
+//		icon_state = initial(icon_state)
+//		item_state = initial(item_state)
+//	return
+
+obj/item/weapon/gun/projectile/automatic/ak47/update_icon()
 	..()
-	if(ammo_magazine)
-		icon_state = "[initial(icon_state)]-full"
-		item_state = "[initial(item_state)]-full"
-	else
-		icon_state = initial(icon_state)
-		item_state = initial(item_state)
-	return
+	item_state = (ammo_magazine)? "ak-full" : "ak"
+	icon_state = "[initial(icon_state)][ammo_magazine? "-[ammo_magazine.max_ammo]": ""]"
 
 /obj/item/weapon/gun/projectile/automatic/ak47/fs
 	name = "FS AR 7.62x39 \"Kalashnikov\""
