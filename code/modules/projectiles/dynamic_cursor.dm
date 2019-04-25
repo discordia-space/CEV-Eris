@@ -32,6 +32,12 @@
 /obj/item/weapon/gun/proc/update_cursor(mob/living/H)
 	if(!H || !istype(H))
 		return
+	if(H.get_preference_value(/datum/client_preference/gun_cursor) != GLOB.PREF_YES)
+		remove_cursor(H)
+		return
+	if(safety)
+		remove_cursor(H)
+		return
 	if(H.client)
 		H.client.mouse_pointer_icon = initial(H.client.mouse_pointer_icon)
 		var/icon/scaled = 'icons/obj/gun_cursors/example/standard.dmi' //Default cursor
