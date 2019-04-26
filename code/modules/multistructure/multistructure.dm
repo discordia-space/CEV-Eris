@@ -17,7 +17,7 @@
 //	It will check if all those elements in right order and return true
 /proc/is_multistructure(var/x, var/y, var/z, var/list/structure)
 	if(!x || !y || !z || !structure)
-		error("Passed wrong arguments to isMultistructure()")
+		error("Passed wrong arguments to is_multistructure()")
 		return FALSE
 	for(var/i = 1 to structure.len)
 		var/list/row = structure[i]
@@ -29,10 +29,10 @@
 
 //	Creates multistructure datum and connects it to all elements mentioned in multistructure
 //	You pass coords of where should be top-left element of MS structure matrix
-//	It will check if all those elements in right order using isMultistructure() and then proceed to create multistructure
+//	It will check if all those elements in right order using is_multistructure() and then proceed to create multistructure
 /proc/create_multistructure(var/x, var/y, var/z, var/datum/multistructure/MS)
 	if(!x || !y || !z || !istype(MS))
-		error("Passed wrong arguments to createMultistructure()")
+		error("Passed wrong arguments to create_multistructure()")
 		return FALSE
 	if(!is_multistructure(x, y, z, MS.structure))
 		return FALSE
@@ -120,13 +120,6 @@
 	return
 
 
-//TODO: add construction steps check
-/obj/machinery/multistructure/proc/checkFunctionality()
-	if(stat & BROKEN)
-		return FALSE
-	return TRUE
-
-
 //	This proc will check and attpemt to create MS
 //	first it tries to find any element mentioned in MS structure and if finds any it will pass coords of where top-left element of a structure matrix should be to createMultistructure()
 //	which will check if all structure elements of MStype in right place then it will create MS and connects all
@@ -135,8 +128,6 @@
 		return
 	if(!MS_type)
 		error("No assigned multistructure type.")
-		return FALSE
-	if(!checkFunctionality())
 		return FALSE
 	var/datum/multistructure/MS_temp = new MS_type()
 	for(var/i = 1 to MS_temp.structure.len)

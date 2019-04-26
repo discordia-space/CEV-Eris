@@ -41,6 +41,21 @@
 	return ..()
 
 
+/obj/machinery/multistructure/bioreactor_part/biotank_platform/examine(mob/user)
+	..()
+	if(!pipes_opened)
+		return
+	switch(get_dirtiness_level())
+		if(DIRT_LVL_LOW)
+			to_chat(user, SPAN_NOTICE("Pipes are weared a bit, it's slightly dirty. You see a signs of biomattir inside these pipes."))
+		if(DIRT_LVL_MEDIUM)
+			to_chat(user, SPAN_WARNING("It's very dirty. Solid biomass block atleast half of space inside the pipes. Better to clean it up."))
+		if(DIRT_LVL_HIGH)
+			to_chat(user, SPAN_WARNING("You see a high amount of biomass. Pipes are fully blocked. You need to clean this first if you want bioreactor to work."))
+		else
+			to_chat(user, SPAN_NOTICE("Pipes looks clean."))
+
+
 /obj/machinery/multistructure/bioreactor_part/biotank_platform/update_icon()
 	overlays.Cut()
 	if(pipes_cleanness <= 90)
@@ -164,6 +179,7 @@
 			if(!possible_canister)
 				to_chat(user, SPAN_WARNING("Nothing to connect to!"))
 				return
+			var/turf/user_interaction_loc = user.loc
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY,  required_stat = STAT_MEC))
 				if(canister)
 					unset_canister(canister)
@@ -176,7 +192,7 @@
 				shake_animation()
 				if(reagents.total_volume)
 					toxin_attack(user, rand(15, 25))
-					spill_biomass(get_turf(user))
+					spill_biomass(user_interaction_loc)
 			update_icon()
 
 

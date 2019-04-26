@@ -11,7 +11,7 @@
 	layer = LOW_OBJ_LAYER
 	idle_power_usage = 200
 	active_power_usage = 400
-	var/make_glasswalls_after_creation = TRUE
+	var/make_glasswalls_after_creation = FALSE
 
 
 /obj/machinery/multistructure/bioreactor_part/platform/Initialize()
@@ -240,7 +240,7 @@
 			toxin_attack(user, 5*contamination_level)
 			apply_dirt(-contamination_level)
 			if(contamination_level >= 4)
-				spill_biomass(user, cardinal)
+				spill_biomass(user.loc, cardinal)
 		else
 			to_chat(user, SPAN_WARNING("You need to stand still to clean it properly."))
 	else

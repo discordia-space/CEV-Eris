@@ -47,7 +47,7 @@
 
 	if(!generator.core || !generator.chamber)
 		return FALSE
-	if(!generator.core.coil_condition || !generator.chamber.wires || !generator.chamber.wires_integrity)
+	if(!generator.core.coil_condition || !generator.core.powernet || !generator.chamber.wires || !generator.chamber.wires_integrity)
 		return FALSE
 
 	if(!generator.chamber.network1 || !generator.chamber.network2 || !generator.chamber.air1 || !generator.chamber.air2)
@@ -55,7 +55,7 @@
 	if(generator.chamber.air1.gas["oxygen"] < 1)
 		return FALSE
 
-	if(port.pipes_dirtiness == 5 || !port.tank || port.tank.reagents.has_reagent("biomatter", 1))
+	if(port.pipes_dirtiness == 5 || !port.tank || !port.tank.reagents.has_reagent("biomatter", 1))
 		return FALSE
 
 	return TRUE
@@ -135,6 +135,7 @@
 							"tank_bio_amount" = 0,
 							"pipes_condition" = 0,
 							"coil_condition" = 0,
+							"powernet_detected" = FALSE,
 							"wires" = FALSE,
 							"wires_integrity" = 0)
 
@@ -159,6 +160,10 @@
 		metrics["pipes_condition"] = master.port.pipes_dirtiness
 	if(master.generator && master.generator.core)
 		metrics["coil_condition"] = master.generator.core.coil_condition
+		if(master.generator.core.powernet)
+			metrics["powernet_detected"] = TRUE
+		else
+			metrics["powernet_detected"] = FALSE
 	if(master.generator && master.generator.chamber)
 		if(master.generator.chamber.wires)
 			metrics["wires"] = TRUE
@@ -274,7 +279,7 @@
 /obj/machinery/multistructure/biogenerator_part/generator
 	name = "biogenerator"
 	icon_state = "generator"
-	layer = LOW_OBJ_LAYER
+	layer = BELOW_OBJ_LAYER
 	var/obj/machinery/atmospherics/binary/biogen_chamber/chamber
 	var/obj/machinery/power/biogenerator_core/core
 
@@ -304,7 +309,7 @@
 	icon = 'icons/obj/machines/biogenerator.dmi'
 	icon_state = "chambers"
 	anchored = TRUE
-	layer = BELOW_OBJ_LAYER
+	layer = LOW_OBJ_LAYER
 	var/obj/machinery/multistructure/biogenerator_part/generator/generator
 	var/working_cycles = 0
 	var/wearout_cycle = 500
@@ -407,7 +412,7 @@
 	icon = 'icons/obj/machines/biogenerator.dmi'
 	icon_state = "core"
 	anchored = TRUE
-	layer = BELOW_OBJ_LAYER
+	layer = LOW_OBJ_LAYER
 	var/obj/machinery/multistructure/biogenerator_part/generator/generator
 	var/coil_condition = 100
 	var/working_cycles = 0

@@ -85,10 +85,21 @@
 		<div class="itemContent"> DAMAGED SECTORS DETECTED </div>
 	</div>
 {{/if}}
+
+<div class="itemLabel"> Powernet: </div>
+{{if data.powernet_detected}}
+	<div class="good">
+		<div class="itemContent"> DETECTED </div>
+	</div>
+{{else}}
+	<div class="bad">
+		<div class="itemContent"> UNDETECTED </div>
+	</div>
+{{/if}}
 	
 {{if data.wires}}
 	<div class="itemLabel"> Wires integrity: </div>
-	{{if !data.wires_integrity > 0}}
+	{{if data.wires_integrity > 0}}
 		<div class="itemContent"> {{:data.wires_integrity}} % </div>
 	{{else}}
 		<div class="bad">

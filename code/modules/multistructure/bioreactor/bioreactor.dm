@@ -1,10 +1,3 @@
-//Polish'n'fixing stage
-//TODO:
-
-//Check all code and tinker all stuff before code review
-
-//Final things (they should be done last):
-//Add activation/deactivation litanies
 
 
 //Bioreactor
@@ -109,7 +102,7 @@
 
 
 /datum/multistructure/bioreactor/proc/pump_solution()
-	if(chamber_closed && is_operational())
+	if(!chamber_closed || !is_operational())
 		return
 	if(chamber_solution)
 		solution.icon_state = ""

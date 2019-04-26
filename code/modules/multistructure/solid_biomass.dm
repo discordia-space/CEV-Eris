@@ -15,6 +15,7 @@
 	if(locate(/obj/effect/decal/cleanable/solid_biomass) in target_location)
 		return
 	new /obj/effect/decal/cleanable/solid_biomass(target_location)
+	playsound(target_location, 'sound/effects/blobattack.ogg', 70, 1)
 	if(dirs_to_spread)
 		for(var/direction in dirs_to_spread)
 			var/blocked = FALSE
