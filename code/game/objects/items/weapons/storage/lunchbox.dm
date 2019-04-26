@@ -28,3 +28,9 @@
 	desc = "Meowbox."
 	icon_state = "lunchbox_cat"
 	item_state = "lunchbox_cat"
+
+/obj/item/weapon/storage/lunchbox/roach
+	name = "roach lunchbox"
+	desc = "Gigant'sky' bylat tarakan pi-et vodku."
+	icon_state = "lunchbox_roach"
+	item_state = "lunchbox_roach"

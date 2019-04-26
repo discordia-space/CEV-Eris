@@ -520,3 +520,8 @@
 /mob/living/silicon/robot/get_jetpack(var/mob/user)
 	return jetpack
 
+/obj/item/weapon/tank/jetpack/roach
+	name = "roach jetpack"
+	desc = "A jetpack fashioned from the wings of dead roaches with an air tank stapled to the middle of it."
+	icon_state = "roach_jetpack"
+	item_state = "roach_jetpack"

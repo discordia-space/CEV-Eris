@@ -26,6 +26,7 @@ var/list/global/tank_gauge_cache = list()
 	var/integrity = 3
 	var/volume = 70
 	var/manipulated_by = null		//Used by _onclick/hud/screen_objects.dm internals to determine if someone has messed with our tank or not.
+	var/roachpieces = 0 //How many roach gibs needed to make roach jetpack
 						//If they have and we haven't scanned it with the PDA or gas analyzer then we might just breath whatever they put in it.
 /obj/item/weapon/tank/New()
 	..()
@@ -84,6 +85,8 @@ var/list/global/tank_gauge_cache = list()
 
 	if(istype(W, /obj/item/device/assembly_holder))
 		bomb_assemble(W,user)
+	if(istype(W, /obj/item/weapon/reagent_containers/food/snacks/roachmeat))
+		roachify(W, user)
 
 /obj/item/weapon/tank/attack_self(mob/user as mob)
 	if (!(src.air_contents))
@@ -248,6 +251,10 @@ var/list/global/tank_gauge_cache = list()
 		tank_gauge_cache[indicator] = image(icon, indicator)
 	overlays += tank_gauge_cache[indicator]
 
+/obj/item/weapon/tank/proc/add_roach_overlay()
+	if(roachpieces > 0)
+		overlays += image(src.icon, "roachtank[roachpieces]")
+
 /obj/item/weapon/tank/proc/check_status()
 	//Handle exploding, leaking, and rupturing of the tank
 
@@ -308,3 +315,20 @@ var/list/global/tank_gauge_cache = list()
 
 	else if(integrity < 3)
 		integrity++
+
+/obj/item/weapon/tank/proc/roachify(obj/item/weapon/W as obj, mob/user as mob)
+	if(roachpieces >= 5)
+		if(do_after(user, 70) && W.loc == user)
+			user.emote("grins")
+			to_chat(user, "You finish stapling roach pieces to [src], making a jetpack..")
+			playsound(user, 'sound/voice/insect_battle_screeching.ogg', 30, 1, -3)
+			new /obj/item/weapon/tank/jetpack/roach(get_turf(user))
+			qdel(W)
+			qdel(src)
+	to_chat(user, "You start to haphazardly duct-tape [W] onto [src]...")
+	if(do_after(user, 50) && W.loc == user)
+		var/remaining = 5 - roachpieces
+		to_chat(user, "You take the mutilated roach meat and duct-tape it to [src]. You need [remaining] more parts to create a roach jetpack.")
+		qdel(W)
+		roachpieces ++
+		add_roach_overlay()

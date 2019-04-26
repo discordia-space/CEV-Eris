@@ -209,6 +209,13 @@
 	center_of_mass = list("x"=17, "y"=3)
 	preloaded = list("vodka" = 100)
 
+/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka/roach
+	name = "Tarakaniskaya Triple Distilled"
+	desc = "Tarakan's choice of vodka."
+	icon_state = "roachvodka"
+	center_of_mass = list("x"=17, "y"=3)
+	preloaded = list("vodka" = 100)
+
 /obj/item/weapon/reagent_containers/food/drinks/bottle/tequilla
 	name = "Caccavo Guaranteed Quality Tequilla"
 	desc = "Made from premium petroleum distillates, pure thalidomide and other fine quality ingredients!"
