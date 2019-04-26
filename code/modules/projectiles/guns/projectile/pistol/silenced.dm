@@ -2,6 +2,7 @@
 	name = "FS HG .45 \"Mandella\""
 	desc = "A small, quiet,  easily concealable gun. Uses .45 rounds. Has an integrated silencer which can't be removed."
 	icon_state = "silenced_pistol"
+	item_state = "pistol_s"
 	w_class = ITEM_SIZE_NORMAL
 	caliber = ".45"
 	silencer_type = /obj/item/weapon/silencer/integrated

@@ -2,6 +2,7 @@
 	name = "FS HG .32 \"Giskard\""
 	desc = "That's the \"Frozen Star\" popular non-lethal pistol. Can even fit into the pocket! Uses .32 rounds."
 	icon_state = "giskardcivil"
+	item_state = "pistol"
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	caliber = ".32"
 	ammo_mag = "mag_cl32"
