@@ -40,18 +40,20 @@
 		return
 	if(H.client)
 		H.client.mouse_pointer_icon = initial(H.client.mouse_pointer_icon)
-		var/icon/scaled = 'icons/obj/gun_cursors/example/standard.dmi' //Default cursor
+		var/icon/scaled = 'icons/obj/gun_cursors/example/1.dmi' //Default cursor
 		switch(recoil)
-			if(0 to 0.9)
-				scaled = 'icons/obj/gun_cursors/example/standard.dmi'
-			if(1 to 1.9)
-				scaled = 'icons/obj/gun_cursors/example/medium.dmi'
-			if(2 to 3.9)
-				scaled = 'icons/obj/gun_cursors/example/mediumlarge.dmi'
-			if(4 to 4.9)
-				scaled = 'icons/obj/gun_cursors/example/large.dmi'
-			else
-				scaled = 'icons/obj/gun_cursors/example/huge.dmi' //Catch. If we're above these numbers of recoil
+			if(0 to 0.5)
+				scaled = 'icons/obj/gun_cursors/example/1.dmi'
+			if(0.5 to 0.9)
+				scaled = 'icons/obj/gun_cursors/example/2.dmi'
+			if(1 to 1.5)
+				scaled = 'icons/obj/gun_cursors/example/3.dmi'
+			if(1.6 to 1.9)
+				scaled = 'icons/obj/gun_cursors/example/4.dmi'
+			if(2 to 3)
+				scaled = 'icons/obj/gun_cursors/example/5.dmi'
+			if(3.1 to INFINITY)
+				scaled = 'icons/obj/gun_cursors/example/6.dmi' //Catch. If we're above these numbers of recoil
 		if(scaled)
 			H.client.mouse_pointer_icon = scaled
 
