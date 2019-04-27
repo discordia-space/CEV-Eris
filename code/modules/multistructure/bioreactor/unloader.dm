@@ -15,19 +15,20 @@
 		return
 	use_power(2)
 	if(contents.len)
-		var/atom/movable/misc = locate() in contents
+		var/obj/item/misc = locate() in contents
 		if(misc)
 			unload(misc)
 
 /obj/machinery/multistructure/bioreactor_part/unloader/Destroy()
-	for(var/atom/movable/misc in contents)
-		unload(misc)
+	for(var/obj/item/misc in contents)
+		unload(misc, silent = TRUE)
 	return ..()
 
 
-/obj/machinery/multistructure/bioreactor_part/unloader/proc/unload(atom/movable/waste)
+/obj/machinery/multistructure/bioreactor_part/unloader/proc/unload(atom/movable/waste, var/silent = FALSE)
 	waste.forceMove(get_turf(src))
-	playsound(loc, 'sound/machines/vending_drop.ogg', 100, 1)
+	if(!silent)
+		playsound(loc, 'sound/machines/vending_drop.ogg', 100, 1)
 	spawn(1)
 		waste.forceMove(get_step(src, dir_output))
 		if((MS_bioreactor.biotank_platform.pipes_cleanness <= 20) && prob(15))

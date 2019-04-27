@@ -136,9 +136,9 @@
 			if(row[j] == src.type)
 				if(create_multistructure(src.x - (j-1), src.y + (i-1), src.z, MS_temp))
 					return TRUE
-				else
-					qdel(MS_temp)
-					return FALSE
+
+	qdel(MS_temp)
+	return FALSE
 
 
 /obj/machinery/multistructure/Destroy()

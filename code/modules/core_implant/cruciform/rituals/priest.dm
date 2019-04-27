@@ -50,31 +50,6 @@
 	phrase = "Et ne inducas nos in tentationem, sed libera nos a malo"
 */
 
-/datum/ritual/cruciform/priest/resurrection
-	name = "Resurrection"
-	phrase = "Qui fuit, et crediderunt in me non morietur in aeternum"
-	desc = "A ritual of formation of a new body in a speclially designed machine.  Deceased person's cruciform has to be placed on the scanner then a prayer is to be uttered over the apparatus."
-
-/datum/ritual/cruciform/priest/resurrection/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
-	var/list/OBJS = get_front(user)
-
-	var/obj/machinery/neotheology/cloner/pod = locate(/obj/machinery/neotheology/cloner) in OBJS
-
-	if(!pod)
-		fail("You fail to find any cloner here.", user, C)
-		return FALSE
-
-	if(pod.cloning)
-		fail("Cloner is already cloning.", user, C)
-		return FALSE
-
-	if(pod.stat & NOPOWER)
-		fail("Cloner is off.", user, C)
-		return FALSE
-
-	pod.start()
-	return TRUE
-
 /datum/ritual/cruciform/priest/reincarnation
 	name = "Reincarnation"
 	phrase = "Vetus moritur et onus hoc levaverit"

@@ -1,5 +1,5 @@
 //Bioreactor console
-//In fact, this is not a console. Just metrics
+//In fact, this is not a console. Just metrics screen
 
 
 /obj/machinery/multistructure/bioreactor_part/console

@@ -15,7 +15,7 @@
 
 
 /obj/machinery/multistructure/bioreactor_part/platform/Initialize()
-	. = ..()
+	..()
 	update_icon()
 
 
@@ -104,9 +104,8 @@
 				var/obj/item/organ/organ = item
 				if(istype(organ, /obj/item/organ/external) && !organ.robotic)
 					continue
-				//this should make a lil smooth spreading with moving animation
 				var/obj/machinery/multistructure/bioreactor_part/platform/neighbor_platform = pick(MS_bioreactor.platforms)
-				organ.forceMove(neighbor_platform)
+				organ.forceMove(get_turf(neighbor_platform))
 				organ.removed()
 				continue
 	qdel(object)

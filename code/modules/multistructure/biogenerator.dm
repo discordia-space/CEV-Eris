@@ -1,8 +1,4 @@
-//TODO
-//Add activation/deactivation litanies
-//Change sprites to new ones
 
-//Component upgrades
 
 //Power biomatter generator
 //This machine use biomatter reagent and some of O2 to produce power (it also produce CO2)

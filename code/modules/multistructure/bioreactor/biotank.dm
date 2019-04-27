@@ -151,6 +151,8 @@
 
 /obj/structure/biomatter_tank/attack_hand(mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*2)
+	if(!platform.MS)
+		return
 	if(canister)
 		to_chat(user, SPAN_WARNING("You should disconnect it from the canister first!"))
 		return

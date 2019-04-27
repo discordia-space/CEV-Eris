@@ -22,8 +22,8 @@
 
 /obj/machinery/sorter
 	name = "sorter"
-	icon = 'icons/obj/kitchen.dmi'
-	icon_state = "mw"
+	icon = 'icons/obj/machines/sorter.dmi'
+	icon_state = "sorter"
 	density = 1
 	anchored = 1
 	use_power = 1
@@ -54,6 +54,14 @@
 	return ..()
 
 
+/obj/machinery/sorter/update_icon()
+	..()
+	if(progress)
+		icon_state = "sorter-process"
+	else
+		icon_state = "sorter"
+
+
 /obj/machinery/sorter/Process()
 	if(stat & BROKEN || stat & NOPOWER)
 		progress = 0
@@ -71,6 +79,7 @@
 			sort(current_item)
 			progress = 0
 			use_power(1)
+		update_icon()
 	else
 		grab()
 
@@ -246,7 +255,6 @@
 /obj/machinery/sorter/biomatter/Initialize()
 	. = ..()
 	sort_settings += new /datum/sort_rule(SORT_INCLUDE, SORT_TYPE_MATERIAL, MATERIAL_BIOMATTER, 1)
-	sort_settings += new /datum/sort_rule(SORT_INCLUDE, SORT_TYPE_REAGENT, "protein", 5)
 
 
 #undef SORT_EXCLUDE
