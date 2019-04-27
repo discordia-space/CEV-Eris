@@ -66,6 +66,10 @@
 	name = "SMG magazine (10mm)"
 	build_path = /obj/item/ammo_magazine/smg10mm
 
+/datum/design/autolathe/ammo/magazine_c762
+	name = "magazine (7.62mm)"
+	build_path = /obj/item/ammo_magazine/c762
+
 /datum/design/autolathe/ammo/magazine_mc9mmt
 	name = "top mounted magazine (9mm)"
 	build_path = /obj/item/ammo_magazine/mc9mmt
@@ -122,20 +126,20 @@
 	name = "magazine (.32 hollow point)"
 	build_path = /obj/item/ammo_magazine/cl32
 
-/datum/design/autolathe/ammo/c762_short
-	name = "short magazine (7.62mm)"
-	build_path = /obj/item/ammo_magazine/c762_short
+/datum/design/autolathe/ammo/c762
+	name = "straight magazine (7.62mm)"
+	build_path = /obj/item/ammo_magazine/c762
 
-/datum/design/autolathe/ammo/c762_long
-	name = "long magazine (7.62mm)"
-	build_path = /obj/item/ammo_magazine/c762_long
+/datum/design/autolathe/ammo/ak47
+	name = "curved magazine (7.62mm)"
+	build_path = /obj/item/ammo_magazine/ak47
 
 /datum/design/autolathe/ammo/a556
-	name = "magazine (5.56mm)"
+	name = "straight magazine (5.56mm)"
 	build_path = /obj/item/ammo_magazine/a556
 
 /datum/design/autolathe/ammo/a556_practice
-	name = "magazine (5.56mm practice)"
+	name = "straight magazine (5.56mm practice)"
 	build_path = /obj/item/ammo_magazine/a556/practice
 
 /datum/design/autolathe/ammo/ih556

@@ -383,8 +383,8 @@
 		/datum/design/autolathe/ammo/SMG_sol_brute, //other mags
 		/datum/design/autolathe/ammo/a556,
 		/datum/design/autolathe/ammo/ih556,
-		/datum/design/autolathe/ammo/c762_short,
-		/datum/design/autolathe/ammo/c762_long,
+		/datum/design/autolathe/ammo/c762,
+		/datum/design/autolathe/ammo/ak47,
 		/datum/design/autolathe/ammo/shotgun_pellet, //shells
 		/datum/design/autolathe/ammo/shotgun
 	)
@@ -408,7 +408,7 @@
 		/datum/design/autolathe/sec/silencer,
 		/datum/design/autolathe/ammo/magazine_mc9mm,
 		/datum/design/autolathe/gun/ak47,
-		/datum/design/autolathe/ammo/c762_long,
+		/datum/design/autolathe/ammo/ak47,
 		/datum/design/autolathe/ammo/box_a762,
 		/datum/design/autolathe/device/excelsiormine,
 		/datum/design/autolathe/sec/beartrap,
