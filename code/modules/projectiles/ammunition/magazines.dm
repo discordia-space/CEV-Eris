@@ -201,7 +201,7 @@
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/a556
-	name = "straight magazine (5.56mm)"
+	name = "magazine (5.56mm)"
 	icon_state = "5.56"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
@@ -216,7 +216,7 @@
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/a556/practice
-	name = "straight magazine (5.56mm practice)"
+	name = "magazine (5.56mm practice)"
 	ammo_type = /obj/item/ammo_casing/a556/practice
 
 /obj/item/ammo_magazine/ih556
@@ -301,8 +301,8 @@
 /obj/item/ammo_magazine/a762/pk/empty
 	initial_ammo = 0
 
-/obj/item/ammo_magazine/c762
-	name = "straight magazine (7.62mm)"
+/obj/item/ammo_magazine/c762_short
+	name = "short magazine (7.62mm)"
 	icon_state = "c762l"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_CIVI_RIFLE
@@ -312,12 +312,12 @@
 	max_ammo = 20
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/c762/empty
+/obj/item/ammo_magazine/c762_short/empty
 	icon_state = "c762"
 	initial_ammo = 0
 
-/obj/item/ammo_magazine/ak47
-	name = "curved magazine (7.62mm)"
+/obj/item/ammo_magazine/c762_long
+	name = "long magazine (7.62mm)"
 	icon_state = "AKMag_l"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_AK
@@ -327,12 +327,12 @@
 	max_ammo = 30
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/ak47/highvelocity
-	name = "curved magazine (7.62mm high-velocity)"
+/obj/item/ammo_magazine/c762_long/highvelocity
+	name = "long magazine (7.62mm high-velocity)"
 	icon_state = "AKMag_hv"
 	ammo_type = /obj/item/ammo_casing/a762/hv
 
-/obj/item/ammo_magazine/ak47/empty
+/obj/item/ammo_magazine/c762_long/empty
 	icon_state = "AKMag"
 	initial_ammo = 0
 

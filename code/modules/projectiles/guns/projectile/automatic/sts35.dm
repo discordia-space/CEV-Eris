@@ -9,8 +9,8 @@
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
-	mag_well = MAG_WELL_CIVI_RIFLE
-	magazine_type = /obj/item/ammo_magazine/c762
+	mag_well = MAG_WELL_CIVI_RIFLE|MAG_WELL_AK
+	magazine_type = /obj/item/ammo_magazine/c762_short
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)
 	price_tag = 3300
 	fire_sound = 'sound/weapons/guns/fire/ltrifle_fire.ogg'
@@ -28,6 +28,6 @@
 
 /obj/item/weapon/gun/projectile/automatic/sts35/update_icon(var/ignore_inhands)
 	..()
-	icon_state = (ammo_magazine)? "sts" : "sts-empty"
+	icon_state = "[initial(icon_state)][ammo_magazine? "-[ammo_magazine.max_ammo]": ""]"
 	if(!ignore_inhands)
 		update_wear_icon()
