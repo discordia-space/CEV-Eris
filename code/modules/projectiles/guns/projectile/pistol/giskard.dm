@@ -1,8 +1,10 @@
 /obj/item/weapon/gun/projectile/giskard
 	name = "FS HG .32 \"Giskard\""
 	desc = "That's the \"Frozen Star\" popular non-lethal pistol. Can even fit into the pocket! Uses .32 rounds."
-	icon_state = "giskardcivil"
+	icon_state = "giskard"
+	item_state = "pistol"
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
+	silencer_type = /obj/item/weapon/silencer
 	caliber = ".32"
 	ammo_mag = "mag_cl32"
 	w_class = ITEM_SIZE_SMALL
@@ -16,7 +18,23 @@
 
 /obj/item/weapon/gun/projectile/giskard/update_icon()
 	..()
-	if(ammo_magazine && ammo_magazine.stored_ammo.len)
-		icon_state = "giskardcivil"
-	else
-		icon_state = "giskardcivil_empty"
+
+	var/iconstring = initial(icon_state)
+	var/itemstring = initial(item_state)
+
+	if (ammo_magazine)
+		iconstring += "_mag"
+
+	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
+		iconstring += "_slide"
+
+	if (silenced)
+		iconstring += "_s"
+		itemstring += "_s"
+
+	icon_state = iconstring
+	item_state = itemstring
+
+/obj/item/weapon/gun/projectile/giskard/Initialize()
+	. = ..()
+	update_icon()
