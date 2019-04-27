@@ -36,6 +36,8 @@
 //When roaches die near a leader, the leader may call for reinforcements
 /mob/living/carbon/superior_animal/roach/death()
 	.=..()
+	var/sound/death_sound = pick('sound/effects/creatures/roachdeath1.ogg','sound/effects/creatures/roachdeath2.ogg','sound/effects/creatures/roachdeath3.ogg')
+	playsound(src,death_sound, 100, 1, -3)
 	if (.)
 		for (var/mob/living/carbon/superior_animal/roach/fuhrer/F in range(src,8))
 			F.distress_call()
