@@ -86,5 +86,5 @@
 
 /datum/uplink_item/item/visible_weapons/roachgun
 	name = "Roach mounted minigun"
-	item_cost = 10 //Almost same as an AR, because good lord it's fucking strong
+	item_cost = 20 //Almost same as an AR, because good lord it's fucking strong
 	path = /obj/item/roach_minigun
