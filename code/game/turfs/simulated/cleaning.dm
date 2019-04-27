@@ -17,9 +17,6 @@
 	addtimer(CALLBACK(src, .proc/unwet_floor, TRUE), rand(1 MINUTES, 1.5 MINUTES), TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /turf/simulated/proc/unwet_floor(var/check_very_wet)
-	if(check_very_wet && wet >= 2)
-		return
-
 	wet = 0
 	if(wet_overlay)
 		overlays -= wet_overlay
