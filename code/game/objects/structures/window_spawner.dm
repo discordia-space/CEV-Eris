@@ -84,7 +84,7 @@
 	icon_state = "sp_full_window_plasma"
 	win_path = /obj/structure/window/reinforced/plasma/full
 
-/obj/effect/window_lwall_spawn/smartspawnplasma
+/obj/effect/window_lwall_spawn/smartspawnplasma //Regular plasma glass is adjacent to space so that burn chambers blow outwards.
 	name = "reinforced plasma window low-wall smart spawner"
 	icon_state = "sp_smart_full_window_plasma"
 

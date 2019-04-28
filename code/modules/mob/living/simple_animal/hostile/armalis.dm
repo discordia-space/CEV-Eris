@@ -7,7 +7,7 @@
 
 	health = 125
 	maxHealth = 125
-	resistance = 5
+	resistance = RESISTANCE_FRAGILE
 
 	response_help   = "pats"
 	response_disarm = "pushes"
@@ -32,5 +32,5 @@
 
 	health = 175
 	maxHealth = 175
-	resistance = 8
+	resistance = RESISTANCE_AVERAGE
 	speed = 3

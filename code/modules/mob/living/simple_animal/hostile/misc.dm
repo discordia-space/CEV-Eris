@@ -20,7 +20,7 @@
 	emote_see = list("paws the ground","shakes its mane","stomps")
 	emote_hear = list("snuffles")
 	mob_size = 10
-	resistance = 8
+	resistance = RESISTANCE_AVERAGE
 
 /mob/living/simple_animal/hostile/diyaab
 	name = "diyaab"
@@ -66,7 +66,7 @@
 	speak = list("Shuhn","Shrunnph?","Shunpf")
 	emote_see = list("scratches the ground","shakes out it's mane","tinkles gently")
 	mob_size = 5
-	resistance = 3
+	resistance = RESISTANCE_FRAGILE
 
 /mob/living/simple_animal/yithian
 	name = "yithian"

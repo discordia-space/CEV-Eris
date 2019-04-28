@@ -136,7 +136,7 @@ var/list/flooring_types
 	icon = 'icons/turf/flooring/grass.dmi'
 	icon_base = "grass"
 	has_base_range = 3
-	damage_temperature = T0C+80
+	damage_temperature = T0C + 80
 	flags = TURF_REMOVE_SHOVEL | TURF_EDGES_EXTERNAL | TURF_HAS_CORNERS
 	build_type = /obj/item/stack/tile/grass
 	plating_type = /decl/flooring/dirt
@@ -325,7 +325,7 @@ var/list/flooring_types
 	icon_base = "carpet"
 	footstep_sound = "carpet"
 	build_type = /obj/item/stack/tile/carpet
-	damage_temperature = T0C+200
+	damage_temperature = T0C + 200
 	flags = TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BURN | TURF_HIDES_THINGS
 	floor_smooth = SMOOTH_NONE
 	wall_smooth = SMOOTH_NONE
@@ -375,7 +375,7 @@ var/list/flooring_types
 	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_base = "tiles"
 	has_damage_range = 2 //RECHECK THIS. MAYBE MISTAKE
-	damage_temperature = T0C+1400
+	damage_temperature = T0C + 1400
 	flags = TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_CAN_BURN | TURF_HIDES_THINGS
 	build_type = /obj/item/stack/tile/floor
 	can_paint = 1
@@ -657,7 +657,7 @@ var/list/flooring_types
 	icon = 'icons/turf/flooring/wood.dmi'
 	icon_base = "wood"
 	has_damage_range = 6
-	damage_temperature = T0C+200
+	damage_temperature = T0C + 200
 	descriptor = "planks"
 	build_type = /obj/item/stack/tile/wood
 	smooth_nothing = TRUE
