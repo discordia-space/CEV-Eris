@@ -329,15 +329,16 @@ SUBSYSTEM_DEF(job)
 	H.job = rank
 
 	// If they're head, give them the account info for their department
-	if(H.mind && job.head_position)
+	if(H.mind && (job.head_position || job.department_account_access))
 		var/remembered_info = ""
 		var/datum/money_account/department_account = department_accounts[job.department]
-		department_account.owner_name = H.real_name //Register them as the point of contact for this account
 		if(department_account)
 			remembered_info += "<b>Your department's account number is:</b> #[department_account.account_number]<br>"
 			remembered_info += "<b>Your department's account pin is:</b> [department_account.remote_access_pin]<br>"
 			remembered_info += "<b>Your department's account funds are:</b> [CREDS][department_account.money]<br>"
-		remembered_info += "<b>Your part of nuke code:</b> [SSticker.get_next_nuke_code_part()]<br>"
+		if(job.head_position)
+			remembered_info += "<b>Your part of nuke code:</b> [SSticker.get_next_nuke_code_part()]<br>"
+			department_account.owner_name = H.real_name //Register them as the point of contact for this account
 
 		H.mind.store_memory(remembered_info)
 
@@ -517,7 +518,7 @@ proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
 			SP = get_spawn_point(pref_spawn, late = TRUE)
 		else
 			SP = get_spawn_point(maps_data.default_spawn, late = TRUE)
-			H << SPAN_WARNING("You have not selected spawnpoint in preference menu.")
+			to_chat(H, SPAN_WARNING("You have not selected spawnpoint in preference menu."))
 	else
 		SP = get_spawn_point(rank)
 
@@ -544,7 +545,19 @@ proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
 			if(SP.can_spawn(H, rank))
 				return SP
 			else
-				H << SPAN_WARNING("Unable to spawn you at [SP.name].")// you will be assigned default one which is \"[SP.display_name]\".")
+				to_chat(H, SPAN_WARNING("Unable to spawn you at [SP.name]."))// you will be assigned default one which is \"[SP.display_name]\".")
+
+	// No spawn point? Something is fucked.
+	// Pick the default one.
+	to_chat(H, SPAN_WARNING("Unable to locate any safe spawn point. Have fun!"))
+	SP = get_spawn_point("Aft Cryogenic Storage")
+
+	// Still no spawn point? Return the first spawn point on the list.
+	if(!SP)
+		var/list/possibilities = get_late_spawntypes()
+		SP = possibilities[possibilities[1]]
+
+	return SP
 
 
 

@@ -159,7 +159,7 @@
 
 	firer = user
 	shot_from = launcher.name
-	silenced = launcher.silenced
+	silenced = launcher.item_flags & SILENT
 
 	return launch(target, target_zone, x_offset, y_offset)
 
@@ -194,7 +194,7 @@
 
 	//hit messages
 	if(silenced)
-		target_mob << SPAN_DANGER("You've been hit in the [parse_zone(def_zone)] by \the [src]!")
+		to_chat(target_mob, SPAN_DANGER("You've been hit in the [parse_zone(def_zone)] by \the [src]!"))
 	else
 		visible_message(SPAN_DANGER("\The [target_mob] is hit by \the [src] in the [parse_zone(def_zone)]!"))//X has fired Y is now given by the guns so you cant tell who shot you if you could not see the shooter
 

@@ -19,8 +19,8 @@
 	var/copying = FALSE
 
 
-/obj/machinery/autolathe_disk_cloner/New()
-	..()
+/obj/machinery/autolathe_disk_cloner/Initialize()
+	. = ..()
 	update_icon()
 
 /obj/machinery/autolathe_disk_cloner/RefreshParts()
@@ -112,8 +112,8 @@
 		var/list/R = list()
 
 		for(var/r in original.recipes)
-			var/datum/autolathe/recipe/recipe = autolathe_recipes[r]
-			R.Add(recipe.name)
+			var/datum/design/design = SSresearch.design_ids[r]
+			R.Add(design.name)
 
 		data["disk1recipes"] = R
 
@@ -125,8 +125,8 @@
 		var/list/R = list()
 
 		for(var/r in copy.recipes)
-			var/datum/autolathe/recipe/recipe = autolathe_recipes[r]
-			R.Add(recipe.name)
+			var/datum/design/design = SSresearch.design_ids[r]
+			R.Add(design.name)
 
 		data["disk2recipes"] = R
 
@@ -209,7 +209,7 @@
 			else
 				if(hacked)
 					if(prob(hack_fail_chance))
-						copy.recipes.Add(/datum/autolathe/recipe/corrupted)
+						copy.recipes.Add(/datum/design/autolathe/corrupted)
 					else
 						copy.recipes.Add(r)
 				else

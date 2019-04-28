@@ -51,7 +51,7 @@
 		var/datum/shuttle/autodock/ferry/supply/shuttle = SSsupply.shuttle
 		if (shuttle)
 			dat += {"<BR><B>Supply shuttle</B><HR>
-			Location: [shuttle.has_arrive_time() ? "Moving to station ([shuttle.eta_minutes()] Mins.)":shuttle.at_station() ? "Docked":"Away"]<BR>
+			Location: [shuttle.has_arrive_time() ? "Moving to vessel ([shuttle.eta_minutes()] Mins.)":shuttle.at_station() ? "Docked":"Away"]<BR>
 
 		<BR>\n<A href='?src=\ref[src];order=categories'>Request items</A><BR><BR>
 		<A href='?src=\ref[src];vieworders=1'>View approved orders</A><BR><BR>
@@ -187,7 +187,7 @@
 					if (!shuttle.can_launch())
 						dat += "Docking/Undocking<BR>"
 					else
-						dat += "Station<BR>"
+						dat += "Vessel<BR>"
 					if (shuttle.can_launch())
 						dat += "<A href='?src=\ref[src];send=1'>Send away</A>"
 					else if (shuttle.can_cancel())

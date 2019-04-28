@@ -6,6 +6,7 @@
 	name = "gas thruster system"
 	desc = "Uses highly pressurised gas to allow movement in zero G, and limited flight capabilities in a gravity environment."
 	icon_state = "jetpack"
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_GLASS = 5)
 	equip_cooldown = 5
 	energy_drain = 50
 	var/wait = 0

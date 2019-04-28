@@ -125,8 +125,53 @@
 	if(!(owner in usr))
 		return TRUE
 
-	owner.ui_action_click()
+	owner.ui_action_click(usr, name)
+	update_icon()
 	return TRUE
+
+/obj/screen/item_action/top_bar
+	name = "actionA"
+	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon_state = "actionA"
+	screen_loc = "8,1:13"
+	var/minloc = "7,2:13"
+	layer = ABOVE_HUD_LAYER
+	plane = ABOVE_HUD_PLANE
+
+/obj/screen/item_action/top_bar/Initialize()
+	. = ..()
+	name = initial(name)
+
+/obj/screen/item_action/top_bar/update_icon()
+	..()
+	if(!ismob(owner.loc))
+		return
+
+	var/mob/living/M = owner.loc
+	if(M.client && M.get_active_hand() == owner)
+		if(M.client.prefs.UI_compact_style)
+			screen_loc = minloc
+		else
+			screen_loc = initial(screen_loc)
+
+
+/obj/screen/item_action/top_bar/A
+	icon_state = "actionA"
+	screen_loc = "8,1:13"
+
+/obj/screen/item_action/top_bar/B
+	icon_state = "actionB"
+	screen_loc = "8,1:13"
+
+/obj/screen/item_action/top_bar/C
+	icon_state = "actionC"
+	screen_loc = "9,1:13"
+
+/obj/screen/item_action/top_bar/D
+	icon_state = "actionD"
+	screen_loc = "9,1:13"
+
+
 //-----------------------------------------------ITEM ACTION END---------------------------------------------------------
 
 
@@ -141,50 +186,49 @@
 	var/list/PL = params2list(params)
 	var/icon_x = text2num(PL["icon-x"])
 	var/icon_y = text2num(PL["icon-y"])
-	var/old_selecting = parentmob.targeted_organ //We're only going to update_icon() if there's been a change
+	var/selecting
 
 	switch(icon_y)
 		if(1 to 9) //Legs
 			switch(icon_x)
 				if(10 to 15)
-					parentmob.targeted_organ = BP_R_LEG
+					selecting = BP_R_LEG
 				if(17 to 22)
-					parentmob.targeted_organ = BP_L_LEG
+					selecting = BP_L_LEG
 				else
 					return TRUE
 		if(10 to 13) //Arms and groin
 			switch(icon_x)
 				if(8 to 11)
-					parentmob.targeted_organ = BP_R_ARM
+					selecting = BP_R_ARM
 				if(12 to 20)
-					parentmob.targeted_organ = BP_GROIN
+					selecting = BP_GROIN
 				if(21 to 24)
-					parentmob.targeted_organ = BP_L_ARM
+					selecting = BP_L_ARM
 				else
 					return TRUE
 		if(14 to 22) //Chest and arms to shoulders
 			switch(icon_x)
 				if(8 to 11)
-					parentmob.targeted_organ = BP_R_ARM
+					selecting = BP_R_ARM
 				if(12 to 20)
-					parentmob.targeted_organ = BP_CHEST
+					selecting = BP_CHEST
 				if(21 to 24)
-					parentmob.targeted_organ = BP_L_ARM
+					selecting = BP_L_ARM
 				else
 					return TRUE
 		if(23 to 30) //Head, but we need to check for eye or mouth
 			if(icon_x in 12 to 20)
-				parentmob.targeted_organ = BP_HEAD
+				selecting = BP_HEAD
 				switch(icon_y)
 					if(23 to 24)
 						if(icon_x in 15 to 17)
-							parentmob.targeted_organ = BP_MOUTH
+							selecting = BP_MOUTH
 					if(25 to 27)
 						if(icon_x in 14 to 18)
-							parentmob.targeted_organ = BP_EYES
+							selecting = BP_EYES
 
-	if(old_selecting != parentmob.targeted_organ)
-		update_icon()
+	set_selected_zone(selecting)
 	return TRUE
 
 /obj/screen/zone_sel/New()
@@ -194,6 +238,12 @@
 /obj/screen/zone_sel/update_icon()
 	overlays.Cut()
 	overlays += image('icons/mob/zone_sel.dmi', "[parentmob.targeted_organ]")
+
+/obj/screen/zone_sel/proc/set_selected_zone(bodypart)
+	var/old_selecting = parentmob.targeted_organ
+	if(old_selecting != bodypart)
+		parentmob.targeted_organ = bodypart
+		update_icon()
 //--------------------------------------------------ZONE SELECT END---------------------------------------------------------
 
 /obj/screen/text
@@ -270,10 +320,10 @@
 		C.activate_hand("r")
 
 /obj/screen/inventory/hand/update_icon()
-	src.underlays.Cut()
+	src.overlays -= ovrls["act_hand"]
 	if (src.slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand))
-		src.underlays += ovrls["act_hand"]
-/*	if (src.slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand)) //Если данный элемент ХУДа отображает левую
+		src.overlays += ovrls["act_hand"]
+/*	if (src.slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand)) // if display left
 		src.icon_state = "act_hand[src.slot_id==slot_l_hand ? "-l" : "-r"]"
 	else
 		src.icon_state = "hand[src.slot_id==slot_l_hand ? "-l" : "-r"]"*/
@@ -328,11 +378,12 @@
 /obj/screen/health/DEADelize()
 	overlays.Cut()
 	overlays += ovrls["health7"]
-/*/obj/screen/health/New()
-	if(usr.client)
-		usr.client.screen += src
-		parentmob = usr
-*/
+
+/obj/screen/health/Click()
+	if(ishuman(parentmob))
+		var/mob/living/carbon/human/H = parentmob
+		H.check_self_for_injuries()
+
 //--------------------------------------------------health end---------------------------------------------------------
 
 //--------------------------------------------------nutrition---------------------------------------------------------
@@ -772,6 +823,8 @@ obj/screen/fire/DEADelize()
 	if(isliving(parentmob))
 		var/mob/living/L = parentmob
 		L.resist()
+
+
 //-----------------------resist END------------------------------
 
 //-----------------------mov_intent------------------------------
@@ -783,18 +836,12 @@ obj/screen/fire/DEADelize()
 
 
 /obj/screen/mov_intent/Click()
-//	if(iscarbon(parentmob))
-	var/mob/living/carbon/C = parentmob
-	if(C.legcuffed)
-		C << SPAN_NOTICE("You are legcuffed! You cannot run until you get [C.legcuffed] removed!")
-		C.m_intent = "walk"	//Just incase
+	var/move_intent_type = next_in_list(usr.move_intent.type, usr.move_intents)
+	var/decl/move_intent/newintent = decls_repository.get_decl(move_intent_type)
+	if (newintent.can_enter(parentmob, TRUE))
+		parentmob.move_intent = newintent
 		update_icon()
-		return TRUE
-	switch(C.m_intent)
-		if("run")
-			C.m_intent = "walk"
-		if("walk")
-			C.m_intent = "run"
+
 	update_icon()
 
 /obj/screen/mov_intent/New()
@@ -802,12 +849,7 @@ obj/screen/fire/DEADelize()
 	update_icon()
 
 /obj/screen/mov_intent/update_icon()
-	var/mob/living/carbon/C = parentmob
-	switch(C.m_intent)
-		if("run")
-			icon_state = "running"
-		if("walk")
-			icon_state = "walking"
+	icon_state = parentmob.move_intent.hud_icon_state
 
 //-----------------------mov_intent END------------------------------
 /obj/screen/equip
@@ -882,68 +924,41 @@ obj/screen/fire/DEADelize()
 	name = "fastintent"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "blank"
-//update in a_intent_change, because macro
-/*/obj/screen/fastintent/Click()
-	if (parentmob.HUDneed.Find("intent"))
-		var/obj/screen/intent/I = parentmob.HUDneed["intent"]
-		I.update_icon()*/
+	var/target_intent
+
 /obj/screen/fastintent/New()
 	..()
+	src.overlays += new /image/no_recolor(icon = src.icon, icon_state = src.icon_state)
 
-
+/obj/screen/fastintent/Click()
+	parentmob.a_intent_change(target_intent)
 
 /obj/screen/fastintent/help
-//	icon_state = "intent_help"
-
-/obj/screen/fastintent/help/New()
-	..()
-	src.overlays += new /image/no_recolor (icon = src.icon, icon_state ="intent_help")
-
-/obj/screen/fastintent/help/Click()
-	parentmob.a_intent_change(I_HELP)
-//	..()
+	target_intent = I_HELP
+	icon_state = "intent_help"
 
 /obj/screen/fastintent/harm
+	target_intent = I_HURT
 	icon_state = "intent_harm"
 
-/obj/screen/fastintent/harm/New()
-	..()
-	src.overlays += new /image/no_recolor (icon = src.icon, icon_state ="intent_harm")
-
-/obj/screen/fastintent/harm/Click()
-	parentmob.a_intent_change(I_HURT)
-//	..()
-
 /obj/screen/fastintent/grab
+	target_intent = I_GRAB
 	icon_state = "intent_grab"
 
-/obj/screen/fastintent/grab/New()
-	..()
-	src.overlays += new /image/no_recolor (icon = src.icon, icon_state ="intent_grab")
-
-/obj/screen/fastintent/grab/Click()
-	parentmob.a_intent_change(I_GRAB)
-//	..()
-
 /obj/screen/fastintent/disarm
+	target_intent = I_DISARM
 	icon_state = "intent_disarm"
 
-/obj/screen/fastintent/disarm/New()
-	..()
-	src.overlays += new /image/no_recolor (icon = src.icon, icon_state ="intent_disarm")
 
-/obj/screen/fastintent/disarm/Click()
-	parentmob.a_intent_change(I_DISARM)
-//	..()
 
 /obj/screen/drugoverlay
-	icon = 'icons/mob/screen1_full.dmi'
 	icon_state = "blank"
 	name = "drugs"
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	mouse_opacity = 0
 	process_flag = TRUE
 	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
+	plane = HUD_PLANE
 //	var/global/image/blind_icon = image('icons/mob/screen1_full.dmi', "blackimageoverlay")
 
 /obj/screen/drugoverlay/Process()
@@ -964,7 +979,9 @@ obj/screen/fire/DEADelize()
 /obj/screen/full_1_tile_overlay
 	name = "full_1_tile_overlay"
 	icon_state = "blank"
+	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	layer = 21
+	plane = HUD_PLANE
 	mouse_opacity = 0
 
 /obj/screen/damageoverlay
@@ -975,12 +992,12 @@ obj/screen/fire/DEADelize()
 	mouse_opacity = 0
 	process_flag = TRUE
 	layer = UI_DAMAGE_LAYER
+	plane = HUD_PLANE
 	var/global/image/blind_icon = image('icons/mob/screen1_full.dmi', "blackimageoverlay")
 
 
 /obj/screen/damageoverlay/Process()
 	update_icon()
-	return
 
 /obj/screen/damageoverlay/update_icon()
 	overlays.Cut()
@@ -988,7 +1005,6 @@ obj/screen/fire/DEADelize()
 
 	underlays.Cut()
 	UpdateVisionState()
-	return
 
 /obj/screen/damageoverlay/proc/UpdateHealthState()
 	var/mob/living/carbon/human/H = parentmob
@@ -1069,6 +1085,7 @@ obj/screen/fire/DEADelize()
 
 /obj/screen/frippery
 	name = ""
+	layer = HUD_LAYER
 
 /obj/screen/frippery/New(_icon_state,_screen_loc = "7,7", mob/living/_parentmob)
 	src.parentmob = _parentmob
@@ -1082,6 +1099,7 @@ obj/screen/fire/DEADelize()
 	mouse_opacity = 0
 	process_flag = TRUE
 	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
+	plane = HUD_PLANE
 
 
 /obj/screen/glasses_overlay/Process()

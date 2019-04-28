@@ -32,24 +32,11 @@
 	var/heartbeat = 0
 	var/global/list/overlays_cache = null
 
-
-
-
-/*
-				if(HUDdatum.HUDneed[HUDelement.name]["icon"])
-					HUDelement.icon = HUDdatum.HUDneed[HUDelement.name]["icon"]
-				else
-					HUDelement.icon = HUDdatum.icon
-				HUDelement.screen_loc = HUDdatum.HUDneed[HUDelement.name]["loc"]
-*/
-
-
-
 /mob/living/carbon/human/Life()
 	set invisibility = 0
 	set background = BACKGROUND_ENABLED
 
-	if (transforming)
+	if (HAS_TRANSFORMATION_MOVEMENT_HANDLER(src))
 		return
 
 	fire_alert = 0 //Reset this here, because both breathe() and handle_environment() have a chance to set it.
@@ -569,6 +556,7 @@
 		if(touching) touching.metabolize()
 		if(ingested) ingested.metabolize()
 		if(bloodstr) bloodstr.metabolize()
+		metabolism_effects.process()
 
 		if(CE_PAINKILLER in chem_effects)
 			analgesic = chem_effects[CE_PAINKILLER]

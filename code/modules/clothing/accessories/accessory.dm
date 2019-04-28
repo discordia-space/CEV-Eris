@@ -148,6 +148,7 @@
 	name = "bronze medal"
 	desc = "A bronze medal."
 	icon_state = "bronze"
+	price_tag = 250
 
 /obj/item/clothing/accessory/medal/conduct
 	name = "distinguished conduct medal"
@@ -166,6 +167,7 @@
 	name = "silver medal"
 	desc = "A silver medal."
 	icon_state = "silver"
+	price_tag = 500
 
 /obj/item/clothing/accessory/medal/silver/valor
 	name = "medal of valor"
@@ -179,6 +181,7 @@
 	name = "gold medal"
 	desc = "A prestigious golden medal."
 	icon_state = "gold"
+	price_tag = 1000
 
 /obj/item/clothing/accessory/medal/gold/captain
 	name = "medal of captaincy"

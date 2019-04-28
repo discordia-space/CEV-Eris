@@ -39,6 +39,7 @@ Your second loyalty is to your command officers. The heads of each faction. List
 		STAT_TGH = 15,
 		STAT_BIO = 15,
 		STAT_MEC = 15,
+		STAT_VIG = 25,
 		STAT_COG = 15
 	)
 
@@ -116,10 +117,11 @@ Act as the captain's sidekick, bodyguard, and last line of defense in a crisis o
 		return get_all_station_access()
 
 	stat_modifiers = list(
-		STAT_ROB = 10,
-		STAT_TGH = 10,
+		STAT_ROB = 15,
+		STAT_TGH = 15,
 		STAT_BIO = 10,
 		STAT_MEC = 10,
+		STAT_VIG = 20,
 		STAT_COG = 10
 	)
 

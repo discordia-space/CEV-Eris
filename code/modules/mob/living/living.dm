@@ -366,6 +366,13 @@ default behaviour is:
 /mob/living/proc/can_inject()
 	return TRUE
 
+/mob/living/is_injectable(allowmobs = TRUE)
+	return (allowmobs && reagents && can_inject())
+
+/mob/living/is_drawable(allowmobs = TRUE)
+	return (allowmobs && reagents && can_inject())
+
+
 /mob/living/proc/get_organ_target()
 	var/mob/shooter = src
 	var/t = shooter:targeted_organ
@@ -466,7 +473,7 @@ default behaviour is:
 		for(var/mob/living/M in range(src, 1))
 			if ((M.pulling == src && M.stat == 0 && !( M.restrained() )))
 				t7 = null
-	if ((t7 && (pulling && ((get_dist(src, pulling) <= 1 || pulling.loc == loc) && (client && client.moving)))))
+	if ((t7 && (pulling && ((get_dist(src, pulling) <= 1 || pulling.loc == loc) && (moving)))))
 		var/turf/T = loc
 		. = ..()
 
@@ -556,10 +563,6 @@ default behaviour is:
 		for(var/mob/living/carbon/slime/M in view(1,src))
 			M.UpdateFeed(src)
 
-/mob/living/proc/handle_footstep(turf/T)
-	if(istype(T))
-		return TRUE
-	return FALSE
 
 
 
@@ -649,7 +652,7 @@ default behaviour is:
 	if(jobban_isbanned(possessor, "Animal"))
 		possessor << "<span class='warning'>You are banned from animal roles.</span>"
 		return FALSE
-	if(!possessor.MayRespawn(1,ANIMAL_SPAWN_DELAY))
+	if(!possessor.MayRespawn(0 ,ANIMAL))
 		return FALSE
 	return TRUE
 

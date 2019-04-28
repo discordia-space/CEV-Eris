@@ -65,6 +65,12 @@
 			else
 				return 0
 
+/datum/stat_holder/proc/Clone()
+	var/datum/stat_holder/new_stat = new()
+	for (var/S in stat_list)
+		new_stat.changeStat(S, src.getStat(S))
+	return new_stat
+
 /datum/stat_mod
 	var/time = 0
 	var/value = 0
@@ -111,7 +117,7 @@
 
 /datum/stat/productivity
 	name = STAT_MEC
-	desc = "The world hadn’t ever had so many moving parts or so few labels. Character's ability in building and using various tools.."
+	desc = "The world hadn't ever had so many moving parts or so few labels. Character's ability in building and using various tools.."
 
 /datum/stat/cognition
 	name = STAT_COG
@@ -119,7 +125,7 @@
 
 /datum/stat/biology
 	name = STAT_BIO
-	desc = "What’s the difference between being dead, and just not knowing you’re alive? Competence in physiology and chemistry."
+	desc = "What's the difference between being dead, and just not knowing you're alive? Competence in physiology and chemistry."
 
 /datum/stat/physique
 	name = STAT_ROB
@@ -127,7 +133,11 @@
 
 /datum/stat/robustness
 	name = STAT_TGH
-	desc = "You’re a tough guy, but I’m a nightmare wrapped in the apocalypse. Enhances your resistance to poisons and also raises your speed in uncomfortable clothes."
+	desc = "You're a tough guy, but I'm a nightmare wrapped in the apocalypse. Enhances your resistance to poisons and also raises your speed in uncomfortable clothes."
+
+/datum/stat/aiming
+	name = STAT_VIG
+	desc = "Here, paranoia is nothing but a useful trait. Improves your ability to control recoil on guns, helps you resist insanity."
 
 // Use to perform stat checks
 /mob/proc/stat_check(stat_path, needed)

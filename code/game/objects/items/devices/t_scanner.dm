@@ -51,6 +51,16 @@
 	var/datum/event_source //When listening for movement, this is the source we're listening to
 	var/mob/current_user //The last mob who interacted with us. We'll try to fetch the client from them
 
+
+/obj/item/device/t_scanner/get_cell()
+	return cell
+
+/obj/item/device/t_scanner/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+		update_icon()
+
 /obj/item/device/t_scanner/update_icon()
 	icon_state = "t-ray[enabled]"
 

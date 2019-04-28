@@ -150,8 +150,7 @@
 	user << "\The [src] appears to be producing [power_gen*power_output] W."
 	if(!use_reagents_as_fuel)
 		user << "There [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper."
-	else
-		user << "The fuel counter reports [reagents.total_volume] units of reagents in the hopper."
+
 	if(IsBroken())
 		user << SPAN_WARNING("\The [src] seems to have broken down.")
 	if(overheating)

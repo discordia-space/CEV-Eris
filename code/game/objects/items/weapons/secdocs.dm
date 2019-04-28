@@ -3,6 +3,7 @@
 	desc = "Folder contains some papers with important science data."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "scifolder0"
+	price_tag = 5000
 	var/obj/landmark/storyevent/midgame_stash_spawn/landmark = null
 
 /obj/item/weapon/secdocs/New()
@@ -20,8 +21,8 @@
 				"Paralell world related mutations",
 				"Mass hallucinations or a breach from another world?",
 				"Ironhammer budget: evidence of S.A.U. overfund",
-				"Real reason of Alliance fall",
-				"Connection between Alliance and dead alien civilizations, are we next?",
+				"Real reason of One Star fall",
+				"Connection between One Star and dead alien civilizations, are we next?",
 				"Unknown device blueprints")
 
 /obj/item/weapon/secdocs/proc/place_docs()

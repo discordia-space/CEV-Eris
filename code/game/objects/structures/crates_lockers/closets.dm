@@ -35,21 +35,41 @@
 	var/store_misc = 1
 	var/store_items = 1
 	var/store_mobs = 1
+	var/old_chance = 0 //Chance to have rusted closet content in it, from 0 to 100. Keep in mind that chance increases in maints
 
 	var/dismantle_material = /obj/item/stack/material/steel
 
 /obj/structure/closet/can_prevent_fall()
 	return TRUE
 
+/obj/structure/closet/New()
+	..()
+	update_icon()
+
 /obj/structure/closet/Initialize(mapload)
 	..()
+
 	populate_contents()
+	update_icon()
+	hack_require = rand(6,8)
+
+	//If closet is spawned in maints, chance of getting rusty content is increased.
+	if (in_maintenance())
+		old_chance = old_chance + 20
+
+	if (prob(old_chance))
+		make_old()
+
+	if (old_chance)
+		for (var/atom/thing in contents)
+			if (prob(old_chance))
+				thing.make_old()
+
 	return mapload ? INITIALIZE_HINT_LATELOAD : INITIALIZE_HINT_NORMAL
 
 /obj/structure/closet/LateInitialize()
 	. = ..()
-	update_icon()
-	hack_require = rand(6,8)
+
 	if(!opened) // if closed, any item at the crate's loc is put in the contents
 		var/obj/item/I
 		for(I in src.loc)
@@ -62,8 +82,8 @@
 		if(content_size > storage_capacity-5)
 			storage_capacity = content_size + 5
 
-	if (in_maintenance() && prob(20))
-		make_old()
+
+
 
 
 
@@ -381,7 +401,7 @@
 			if(hack_stage < hack_require)
 
 				var/obj/item/weapon/tool/T = I
-				if (istype(T) && T.silenced)
+				if (istype(T) && T.item_flags & SILENT)
 					playsound(src.loc, 'sound/items/glitch.ogg', 3, 1, -5) //Silenced tools can hack it silently
 				else
 					playsound(src.loc, 'sound/items/glitch.ogg', 70, 1, -1)

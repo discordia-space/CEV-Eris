@@ -19,7 +19,8 @@
 	var/mopmode = MOPMODE_TILE
 	var/sweep_time = 7
 
-/obj/item/weapon/mop/New()
+/obj/item/weapon/mop/Initialize()
+	. = ..()
 	create_reagents(30)
 
 /obj/item/weapon/mop/attack_self(var/mob/user)
@@ -107,7 +108,7 @@
 		else if (user)
 			//You hit a wall!
 			user.setClickCooldown(30)
-			user.setMoveCooldown(30)
+			user.set_move_cooldown(30)
 			shake_camera(user, 1, 1)
 			playsound(T,"thud", 20, 1, -3)
 			user << SPAN_DANGER("There's not enough space for broad sweeps here!")

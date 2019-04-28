@@ -12,10 +12,14 @@
 	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 25)
 	access = list(access_morgue, access_chapel_office, access_crematorium, access_maint_tunnels)
 	wage = WAGE_PROFESSIONAL //The church has deep pockets
+	department_account_access = TRUE
 	outfit_type = /decl/hierarchy/outfit/job/chaplain
 
 	stat_modifiers = list(
 		STAT_TGH = 10,
+		STAT_BIO = 15,
+		STAT_VIG = 15,
+		STAT_COG = 10,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/records,

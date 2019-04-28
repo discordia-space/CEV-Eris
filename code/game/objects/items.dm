@@ -15,7 +15,7 @@
 	var/storage_cost = null
 	var/no_attack_log = 0			//If it's an item we don't want to log attack_logs with, set this to 1
 	pass_flags = PASSTABLE
-//	causeerrorheresoifixthis
+
 	var/obj/item/master = null
 	var/list/origin_tech = list()	//Used by R&D to determine what research bonuses it grants.
 	var/list/attack_verb = list() //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
@@ -59,6 +59,8 @@
 	// Only slot_l_hand/slot_r_hand are implemented at the moment. Others to be implemented as needed.
 	var/list/item_icons = list()
 
+	// HUD action buttons. Only used by guns atm.
+	var/list/hud_actions
 
 	//Damage vars
 	var/force = 0	//How much damage the weapon deals
@@ -73,7 +75,13 @@
 	if(ismob(loc))
 		var/mob/m = loc
 		m.u_equip(src)
+		remove_hud_actions(m)
 		loc = null
+	if(hud_actions)
+		for(var/action in hud_actions)
+			qdel(action)
+		hud_actions = null
+
 	return ..()
 
 /obj/item/get_fall_damage()
@@ -109,22 +117,23 @@
 
 /obj/item/examine(mob/user, var/distance = -1)
 	var/message
-	for(var/Q in tool_qualities)
-		message += "\n<blue>This item posses [tool_qualities[Q]] tier of [Q] quality.<blue>"
-
 	var/size
 	switch(w_class)
-		if(1.0)
+		if(1)
 			size = "tiny"
-		if(2.0)
+		if(2)
 			size = "small"
-		if(3.0)
+		if(3)
 			size = "normal-sized"
-		if(4.0)
+		if(4)
 			size = "bulky"
-		if(5.0)
+		if(5)
 			size = "huge"
 	message += "\nIt is a [size] item."
+
+	for(var/Q in tool_qualities)
+		message += "\n<blue>It possesses [tool_qualities[Q]] tier of [Q] quality.<blue>"
+
 	return ..(user, distance, "", message)
 
 /obj/item/attack_hand(mob/user as mob)
@@ -142,6 +151,7 @@
 	if(target.put_in_active_hand(src) && old_loc )
 		if ((target != old_loc) && (target != old_loc.get_holding_mob()))
 			do_pickup_animation(target,old_loc)
+	add_hud_actions(target)
 
 /obj/item/attack_ai(mob/user as mob)
 	if (istype(loc, /obj/item/weapon/robot_module))
@@ -217,7 +227,7 @@
 //This proc is executed when someone clicks the on-screen UI button. To make the UI button show, set the 'icon_action_button' to the icon_state of the image of the button in screen1_action.dmi
 //The default action is attack_self().
 //Checks before we get to here are: mob is alive, mob is not restrained, paralyzed, asleep, resting, laying, item is on the mob.
-/obj/item/proc/ui_action_click()
+/obj/item/proc/ui_action_click(mob/living/user, action_name)
 	attack_self(usr)
 
 //RETURN VALUES
@@ -434,20 +444,46 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 		if(!cannotzoom)
 			usr.visible_message("[zoomdevicename ? "[usr] looks up from the [name]" : "[usr] lowers the [name]"].")
-
+	usr.parallax.update()
 	return
 
 /obj/item/proc/pwr_drain()
 	return 0 // Process Kill
 
 
+//Called when a human swaps hands to a hand which is holding this item
+/obj/item/proc/swapped_to(mob/user)
+	add_hud_actions(user)
+
+//Called when a human swaps hands away from a hand which is holding this item
+/obj/item/proc/swapped_from(mob/user)
+	remove_hud_actions(user)
+
+/obj/item/proc/add_hud_actions(mob/user)
+	if(!hud_actions || !user.client)
+		return
+
+	update_hud_actions()
+
+	for(var/action in hud_actions)
+		user.client.screen |= action
+
+/obj/item/proc/remove_hud_actions(mob/user)
+	if(!hud_actions || !user.client)
+		return
+
+	for(var/action in hud_actions)
+		user.client.screen -= action
+
+/obj/item/proc/update_hud_actions()
+	if(!hud_actions)
+		return
+
+	for(var/A in hud_actions)
+		var/obj/item/action = A
+		action.update_icon()
+
+
 /obj/item/device
 	icon = 'icons/obj/device.dmi'
 
-//Called when a human swaps hands to a hand which is holding this item
-/obj/item/proc/swapped_to(var/mob/user)
-	return
-
-//Called when a human swaps hands away from a hand which is holding this item
-/obj/item/proc/swapped_from(var/mob/user)
-	return

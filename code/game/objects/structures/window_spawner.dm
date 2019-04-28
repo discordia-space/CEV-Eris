@@ -13,6 +13,10 @@
 	var/wall_path = /obj/structure/low_wall
 	var/activated = FALSE
 
+
+/obj/effect/window_lwall_spawn/smartspawn/onestar
+	wall_path = /obj/structure/low_wall/onestar
+
 // stops ZAS expanding zones past us, the windows will block the zone anyway
 /obj/effect/window_lwall_spawn/CanPass()
 	return FALSE

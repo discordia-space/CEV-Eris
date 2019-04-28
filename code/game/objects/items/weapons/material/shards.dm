@@ -29,7 +29,7 @@
 
 	//Shards must be made of some matter
 	if (!amount)
-		amount = rand_between(0.1, 1)
+		amount = round(rand_between(0.1, 1), 0.1)
 
 	//Overwrite whatever was populated before. A shard contains <1 unit of a single material
 	matter = list(material.name = amount)
@@ -180,6 +180,10 @@
 /obj/item/weapon/material/shard/shrapnel/New(loc)
 
 	..(loc, MATERIAL_STEEL)
+
+/obj/item/weapon/material/shard/shrapnel/scrap
+	name = "scrap metal"
+	amount = 1
 
 /obj/item/weapon/material/shard/plasma/New(loc)
 	..(loc, MATERIAL_PLASMAGLASS)

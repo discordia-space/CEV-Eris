@@ -10,6 +10,7 @@
 	icon = 'icons/obj/stairs.dmi'
 	var/istop = TRUE
 	var/obj/structure/multiz/target
+	var/obj/structure/multiz/targeted_by
 
 /obj/structure/multiz/New()
 	. = ..()
@@ -24,18 +25,32 @@
 	return airflow || !density
 
 /obj/structure/multiz/proc/find_target()
-	return
+	if(target)
+		target.targeted_by = src
 
 /obj/structure/multiz/Initialize()
 	. = ..()
 	find_target()
+
+/obj/structure/multiz/Destroy()
+	if(target)
+		target.targeted_by = null
+		target = null
+
+	if(targeted_by)
+		targeted_by.target = null
+		targeted_by = null
+
+	return ..()
+
 
 /obj/structure/multiz/attack_tk(mob/user)
 	return
 
 /obj/structure/multiz/attack_ghost(mob/user)
 	. = ..()
-	user.Move(get_turf(target))
+	if(target)
+		user.Move(get_turf(target))
 
 /obj/structure/multiz/attack_ai(mob/living/silicon/user)
 	if(target)
@@ -60,6 +75,7 @@
 /obj/structure/multiz/ladder/find_target()
 	var/turf/targetTurf = istop ? GetBelow(src) : GetAbove(src)
 	target = locate(/obj/structure/multiz/ladder) in targetTurf
+	..()
 
 /obj/structure/multiz/ladder/up
 	//Ladders which go up use a tall 32x64 sprite, in a seperate dmi
@@ -153,8 +169,8 @@
 ////STAIRS////
 
 /obj/structure/multiz/stairs
-	name = "Stairs"
-	desc = "Stairs leading to another deck.  Not too useful if the gravity goes out."
+	name = "stairs"
+	desc = "Stairs leading to another deck. Not too useful if the gravity goes out."
 	icon_state = "ramptop"
 	layer = 2.4
 
@@ -176,6 +192,7 @@
 /obj/structure/multiz/stairs/active/find_target()
 	var/turf/targetTurf = istop ? GetBelow(src) : GetAbove(src)
 	target = locate(/obj/structure/multiz/stairs/enter) in targetTurf
+	..()
 
 /obj/structure/multiz/stairs/active/Bumped(var/atom/movable/AM)
 	if(isnull(AM))
@@ -183,8 +200,9 @@
 
 	if(!target)
 		if(ismob(AM))
-			AM << SPAN_NOTICE("There are no stairs above.")
+			to_chat(AM, SPAN_WARNING("There are no stairs above."))
 		log_debug("[src.type] at [src.x], [src.y], [src.z] have non-existant target")
+		target = null
 		return
 
 	var/obj/structure/multiz/stairs/enter/ES = locate(/obj/structure/multiz/stairs/enter) in get_turf(AM)
@@ -203,7 +221,7 @@
 /obj/structure/multiz/stairs/active/attack_ai(mob/living/silicon/ai/user)
 	. = ..()
 	if(!target)
-		user << SPAN_NOTICE("There are no stairs above.")
+		to_chat(user, SPAN_WARNING("There are no stairs above."))
 		log_debug("[src.type] at [src.x], [src.y], [src.z] have non-existant target")
 
 /obj/structure/multiz/stairs/active/attack_robot(mob/user)

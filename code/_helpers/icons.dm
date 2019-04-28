@@ -296,7 +296,7 @@ icon
 		M.Blend("#ffffff", ICON_SUBTRACT)
 		// apply mask
 		Blend(M, ICON_ADD)
-	
+
 	//	paints all non transparent pixels into color
 	proc/PlainPaint(var/color)
 		var/list/rgb = ReadRGB(color)
@@ -646,7 +646,7 @@ as a single icon. Useful for when you want to manipulate an icon via the above a
 The _flatIcons list is a cache for generated icon files.
 */
 
-proc 
+proc
 	// Creates a single icon from a given /atom type and store it for future use.  Only the first argument is required.
 	getFlatTypeIcon(var/path, defdir=2, deficon=null, defstate="", defblend=BLEND_DEFAULT, always_use_defdir = 0)
 		if(GLOB.initialTypeIcon[path])
@@ -920,8 +920,9 @@ generate_image function generates image of specified range and location
 arguments tx, ty, tz are target coordinates (requred), range defines render distance to opposite corner (requred)
 cap_mode is capturing mode (optional), user is capturing mob (requred only wehen cap_mode = CAPTURE_MODE_REGULAR),
 lighting determines lighting capturing (optional), suppress_errors suppreses errors and continues to capture (optional).
+non_blocking var, if true, will allow sleeping to prevent server freeze, at the cost of taking longer
 */
-proc/generate_image(var/tx as num, var/ty as num, var/tz as num, var/range as num, var/cap_mode = CAPTURE_MODE_PARTIAL, var/mob/living/user, var/suppress_errors = 1)
+proc/generate_image(var/tx as num, var/ty as num, var/tz as num, var/range as num, var/cap_mode = CAPTURE_MODE_PARTIAL, var/mob/living/user, var/suppress_errors = 1, var/non_blocking = FALSE)
 	var/list/turfstocapture = list()
 	//Lines below determine what tiles will be rendered
 	for(var/xoff = 0 to range)
@@ -942,10 +943,14 @@ proc/generate_image(var/tx as num, var/ty as num, var/tz as num, var/range as nu
 	var/list/atoms = list()
 	for(var/turf/T in turfstocapture)
 		atoms.Add(T)
-		for(var/atom/A in T)
+		for(var/atom/movable/A in T)
 			if(A.invisibility)
 				continue
+			if (cap_mode == CAPTURE_MODE_HISTORICAL && !A.anchored)
+				continue
 			atoms.Add(A)
+		if (non_blocking)
+			CHECK_TICK
 	//Lines below actually render all colected data
 	atoms = sort_atoms_by_layer(atoms)
 	var/icon/cap = icon('icons/effects/96x96.dmi', "")
@@ -960,6 +965,8 @@ proc/generate_image(var/tx as num, var/ty as num, var/tz as num, var/range as nu
 				var/xoff = (A.x - tx) * 32
 				var/yoff = (A.y - ty) * 32
 				cap.Blend(img, blendMode2iconMode(A.blend_mode),  A.pixel_x + xoff, A.pixel_y + yoff)
+			if (non_blocking)
+				CHECK_TICK
 
 	return cap
 
@@ -1024,21 +1031,3 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 
 	GLOB.average_icon_color["[icon]:[icon_state]:[image_dir]"] = rgb(average_rgb[1],average_rgb[2],average_rgb[3])
 	return GLOB.average_icon_color["[icon]:[icon_state]:[image_dir]"]
-
-// Will cache atom icon and return filename
-// can accept either object or path
-proc/cacheAtomIcon(var/atom/A, var/mob/user, var/inBackground = FALSE)
-	if(!A || (!istype(A) && !ispath(A)) || !user || !user.client)
-		return
-	var/iconName = "[ispath(A) ? A : A.type].png"
-	iconName = sanitizeFileName(iconName)
-	// for some reason browse_rsc() doesnt register file in client cache so we need to handle it manualy
-	if(!user.client.cache.Find(iconName))
-		if(inBackground)
-			spawn()
-				user << browse_rsc(ispath(A) ? getFlatTypeIcon(A) : getFlatTypeIcon(A), iconName)
-				user.client.cache.Add(iconName)
-		else
-			user << browse_rsc(ispath(A) ? getFlatTypeIcon(A) : getFlatTypeIcon(A), iconName)
-			user.client.cache.Add(iconName)
-	return iconName

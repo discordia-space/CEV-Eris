@@ -144,6 +144,7 @@
 	desc = "A bewildering tangle of machinery and pipes."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "cryo_rear"
+	density = 1
 	anchored = 1
 	dir = WEST
 
@@ -502,12 +503,20 @@
 
 	return
 
+/obj/machinery/cryopod/relaymove(var/mob/user)
+	..()
+	eject()
+
 /obj/machinery/cryopod/proc/go_out()
 
 	if(!occupant)
 		return
 
 	set_occupant(null)
+
+	spawn(30)
+		state("Please remember to check inside the cryopod if any belongings are missing.")
+		playsound(loc, "robot_talk_light", 100, 0, 0)
 
 //Notifications is set false when someone spawns in here
 /obj/machinery/cryopod/proc/set_occupant(var/mob/living/new_occupant, var/notifications = TRUE)

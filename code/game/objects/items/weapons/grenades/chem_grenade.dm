@@ -7,11 +7,13 @@
 	force = WEAPON_FORCE_HARMLESS
 	det_time = null
 	unacidable = 1
+	matter = list(MATERIAL_STEEL = 3)
+	variance = 0.25
+
 	var/can_be_modified = TRUE
 	var/stage = 0
 	var/state = 0
 	var/path = 0
-	matter = list(MATERIAL_STEEL = 3)
 	var/obj/item/device/assembly_holder/detonator = null
 	var/list/beakers = new/list()
 	var/list/allowed_containers = list(/obj/item/weapon/reagent_containers/glass/beaker, /obj/item/weapon/reagent_containers/glass/bottle)
@@ -167,15 +169,8 @@
 	for(var/obj/item/weapon/reagent_containers/glass/G in beakers)
 		G.reagents.trans_to_obj(src, G.reagents.total_volume)
 
-	if(src.reagents.total_volume) //The possible reactions didnt use up all reagents.
-		var/datum/effect/effect/system/steam_spread/steam = new /datum/effect/effect/system/steam_spread()
-		steam.set_up(10, 0, get_turf(src))
-		steam.attach(src)
-		steam.start()
-
-		for(var/atom/A in view(affected_area, src.loc))
-			if( A == src ) continue
-			src.reagents.touch(A)
+	if(reagents.total_volume) //The possible reactions didnt use up all reagents.
+		chem_splash(get_turf(src), affected_area, list(reagents), extra_heat=10)
 
 	if(iscarbon(loc))		//drop dat grenade if it goes off in your hand
 		var/mob/living/carbon/C = loc

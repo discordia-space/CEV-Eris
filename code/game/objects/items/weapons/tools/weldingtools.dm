@@ -4,7 +4,7 @@
 	item_state = "welder"
 	flags = CONDUCT
 	force = WEAPON_FORCE_WEAK
-	switched_on_force = WEAPON_FORCE_PAINFULL
+	switched_on_force = WEAPON_FORCE_PAINFUL
 	throwforce = WEAPON_FORCE_WEAK
 	worksound = WORKSOUND_WELDING
 	throw_speed = 1
@@ -31,7 +31,7 @@
 	desc = "An assembly of pipes attached to a little gas tank. Serves capably as a welder, though a bit risky"
 	icon_state = "welder"
 	item_state = "welder"
-	switched_on_force = WEAPON_FORCE_PAINFULL * 0.8
+	switched_on_force = WEAPON_FORCE_PAINFUL * 0.8
 	max_fuel = 15
 	switched_on_qualities = list(QUALITY_WELDING = 15, QUALITY_CAUTERIZING = 10, QUALITY_WIRE_CUTTING = 10)
 	degradation = 1.5
@@ -74,7 +74,7 @@
 	glow_color = COLOR_BLUE_LIGHT
 	switched_on_qualities = list(QUALITY_WELDING = 40, QUALITY_CAUTERIZING = 15, QUALITY_WIRE_CUTTING = 15)
 	max_fuel = 40
-	switched_on_force = WEAPON_FORCE_PAINFULL*1.15 //Slightly more powerful, not much more so
+	switched_on_force = WEAPON_FORCE_PAINFUL*1.15 //Slightly more powerful, not much more so
 	heat = 3773
 	degradation = 0.07
 	max_upgrades = 4
@@ -82,3 +82,20 @@
 /obj/item/weapon/tool/weldingtool/is_hot()
 	if (damtype == BURN)
 		return heat
+
+
+/obj/item/weapon/tool/weldingtool/onestar
+	name = "-One Star- welding tool"
+	desc = "An old and legendary \"One Star\" welding tool. It's bulky and consume too much fuel, but very powerful and reliable."
+	icon_state = "one_star_welder"
+	item_state = "welder"
+	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLATINUM = 2)
+	origin_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 3)
+	switched_on_qualities = list(QUALITY_WELDING = 30, QUALITY_CAUTERIZING = 10, QUALITY_WIRE_CUTTING = 10)
+
+	use_fuel_cost = 0.3
+	max_fuel = 40
+
+	heat = 2750
+	max_upgrades = 2
+	workspeed = 1.7

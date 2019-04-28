@@ -4,7 +4,7 @@
 	desc = "A specialised, complex scanner for gleaning information on all manner of small things."
 	anchored = 1
 	density = 1
-	flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER
 	icon = 'icons/obj/virology.dmi'
 	icon_state = "analyser"
 
@@ -51,6 +51,7 @@
 	coolant_reagents_purity["water"] = 0.5
 	coolant_reagents_purity["icecoffee"] = 0.6
 	coolant_reagents_purity["icetea"] = 0.6
+	coolant_reagents_purity["icegreentea"] = 0.6
 	coolant_reagents_purity["milkshake"] = 0.6
 	coolant_reagents_purity["leporazine"] = 0.7
 	coolant_reagents_purity["kelotane"] = 0.7

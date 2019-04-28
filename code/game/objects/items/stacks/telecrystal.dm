@@ -8,6 +8,11 @@
 	max_amount = 50
 	flags = NOBLUDGEON
 	origin_tech = list(TECH_MATERIAL = 6, TECH_BLUESPACE = 4)
+	price_tag = 50
+
+/obj/item/stack/telecrystal/random
+	rand_min = 3
+	rand_max = 15
 
 /obj/item/stack/telecrystal/afterattack(var/obj/item/I as obj, mob/user as mob, proximity)
 	if(!proximity)

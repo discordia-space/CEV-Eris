@@ -10,6 +10,7 @@ var/list/disciples = list()
 	power = 50
 	max_power = 50
 	power_regen = 0.5
+	price_tag = 500
 
 /obj/item/weapon/implant/core_implant/cruciform/get_mob_overlay(gender, body_build)
 	gender = (gender == MALE) ? "m" : "f"
@@ -66,7 +67,7 @@ var/list/disciples = list()
 	if(wearer.dna.unique_enzymes == data.dna.unique_enzymes)
 		for(var/mob/M in GLOB.player_list)
 			if(M.ckey == data.ckey)
-				if(!isghost(M) && !isangel(M))
+				if(M.stat != DEAD)
 					return FALSE
 		var/datum/mind/MN = data.mind
 		if(!istype(MN, /datum/mind))

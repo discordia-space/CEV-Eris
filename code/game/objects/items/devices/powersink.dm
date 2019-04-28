@@ -7,7 +7,7 @@
 	item_state = "electronic"
 	w_class = ITEM_SIZE_LARGE
 	flags = CONDUCT
-	throwforce = WEAPON_FORCE_PAINFULL
+	throwforce = WEAPON_FORCE_PAINFUL
 	throw_speed = 1
 	throw_range = 2
 

@@ -26,7 +26,7 @@
 		data["have_id_slot"] = !!program.computer.card_slot
 		data["have_printer"] = !!program.computer.nano_printer
 		data["authenticated"] = program.can_run(user)
-		if(!program.computer.card_slot || !program.computer.card_slot.can_write)
+		if(!program.computer.card_slot)
 			mod_mode = 0 //We can't modify IDs when there is no card reader
 	else
 		data["have_id_slot"] = 0
@@ -117,6 +117,8 @@
 	var/obj/item/weapon/card/id/id_card
 	if (computer.card_slot)
 		id_card = computer.card_slot.stored_card
+	if (!user_id_card)
+		return
 
 	var/datum/nano_module/program/card_mod/module = NM
 	switch(href_list["action"])

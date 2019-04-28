@@ -18,7 +18,7 @@
 	stop_automated_movement_when_pulled = 0
 	health = 150
 	maxHealth = 150
-	speed = 8
+	speed = 4
 	projectiletype = /obj/item/projectile/beam/drone
 	projectilesound = 'sound/weapons/laser3.ogg'
 	destroy_surroundings = 0
@@ -59,7 +59,7 @@
 	trail.set_up(src)
 	trail.start()
 
-/mob/living/simple_animal/hostile/retaliate/malf_drone/allow_spacemove(var/check_drift = 0)
+/mob/living/simple_animal/hostile/retaliate/malf_drone/allow_spacemove()
 	return 1
 
 /mob/living/simple_animal/hostile/retaliate/malf_drone/ListTargets()

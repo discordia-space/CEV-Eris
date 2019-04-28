@@ -28,8 +28,8 @@
 	..()
 	update_icon()
 
-/obj/item/weapon/gun/energy/New()
-	..()
+/obj/item/weapon/gun/energy/Initialize()
+	. = ..()
 	if(self_recharge)
 		cell = new cell_type(src)
 		START_PROCESSING(SSobj, src)
@@ -57,6 +57,15 @@
 		update_icon()
 	return 1
 
+/obj/item/weapon/gun/energy/get_cell()
+	return cell
+
+/obj/item/weapon/gun/energy/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+		update_icon()
+
 /obj/item/weapon/gun/energy/consume_next_projectile()
 	if(!cell) return null
 	if(!ispath(projectile_type)) return null
@@ -80,10 +89,10 @@
 /obj/item/weapon/gun/energy/examine(mob/user)
 	..(user)
 	if(!cell)
-		user << SPAN_NOTICE("Has no battery cell inserted.")
+		to_chat(user, SPAN_NOTICE("Has no battery cell inserted."))
 		return
 	var/shots_remaining = round(cell.charge / charge_cost)
-	user << "Has [shots_remaining] shot\s remaining."
+	to_chat(user, "Has [shots_remaining] shot\s remaining.")
 	return
 
 /obj/item/weapon/gun/energy/update_icon(var/ignore_inhands)
@@ -108,15 +117,15 @@
 			cell = null
 			update_icon()
 	else
-		usr << SPAN_WARNING("[src] is a self-charging gun, its batteries cannot be removed!.")
+		to_chat(usr, SPAN_WARNING("[src] is a self-charging gun, its batteries cannot be removed!."))
 
 /obj/item/weapon/gun/energy/attackby(obj/item/C, mob/living/user)
 	if(self_recharge)
-		usr << SPAN_WARNING("[src] is a self-charging gun, it doesn't need more batteries.")
+		to_chat(usr, SPAN_WARNING("[src] is a self-charging gun, it doesn't need more batteries."))
 		return
 
 	if(cell)
-		usr << SPAN_WARNING("[src] is already loaded.")
+		to_chat(usr, SPAN_WARNING("[src] is already loaded."))
 		return
 
 	if(istype(C, suitable_cell) && insert_item(C, user))

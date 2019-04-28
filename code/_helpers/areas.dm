@@ -94,3 +94,14 @@
 		return pick(turfs)
 	else return null
 
+
+/area/proc/random_hideable_turf()
+	var/list/turfs = list()
+	for(var/turf/simulated/floor/F in src.contents)
+		if(turf_clear(F))
+			if (F.flooring && (F.flooring.flags & TURF_HIDES_THINGS))
+				turfs += F
+	if (turfs.len)
+		return pick(turfs)
+	else return null
+

@@ -37,6 +37,7 @@ var/list/mob_hat_cache = list()
 	integrated_light_power = 3
 	local_transmit = 1
 	possession_candidate = 1
+	speed = -0.25
 
 	can_pull_size = ITEM_SIZE_NORMAL
 	can_pull_mobs = MOB_PULL_SMALLER
@@ -72,7 +73,7 @@ var/list/mob_hat_cache = list()
 	if(jobban_isbanned(possessor,"Robot"))
 		usr << SPAN_DANGER("You are banned from playing synthetics and cannot spawn as a drone.")
 		return 0
-	if(!possessor.MayRespawn(1,DRONE_SPAWN_DELAY))
+	if(!possessor.MayRespawn(0,MINISYNTH))
 		return 0
 	return 1
 
@@ -305,7 +306,7 @@ var/list/mob_hat_cache = list()
 	if(too_many_active_drones())
 		return
 	var/datum/ghosttrap/G = get_ghost_trap("maintenance drone")
-	G.request_player(src, "Someone is attempting to reboot a maintenance drone.", 30 SECONDS)
+	G.request_player(src, "Someone is attempting to reboot a maintenance drone.", MINISYNTH, 30 SECONDS)
 
 /mob/living/silicon/robot/drone/proc/transfer_personality(var/client/player)
 	if(!player) return

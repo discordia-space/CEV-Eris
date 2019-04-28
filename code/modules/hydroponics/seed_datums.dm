@@ -563,7 +563,6 @@
 		"cryptobiolin",
 		"dermaline",
 		"dexalin",
-		"plasma",
 		"synaptizine",
 		"impedrezene",
 		"hyronalin",
@@ -582,7 +581,6 @@
 		"frostoil",
 		"capsaicin",
 		"banana",
-		"pacid",
 		"mutagen",
 		"chloralhydrate"
 		)
@@ -1257,6 +1255,24 @@
 	set_trait(TRAIT_FLESH_COLOUR,"#3D1934")
 	set_trait(TRAIT_PLANT_COLOUR,"#3D1934")
 	set_trait(TRAIT_PRODUCTION,1)
+	set_trait(TRAIT_YIELD,-1)
+	set_trait(TRAIT_SPREAD,3)
+	set_trait(TRAIT_POTENCY,50)
+
+
+// Hivemind wireweeds
+/datum/seed/wires
+	name = "wires"
+	seed_name = "strange wires"
+	display_name = "strange wires"
+	seed_noun = "wires"
+	force_layer = 3
+	chems = list("fuel" = list(1,5))
+
+/datum/seed/wires/New()
+	..()
+	set_trait(TRAIT_IMMUTABLE,1)
+	set_trait(TRAIT_PLANT_COLOUR,null)
 	set_trait(TRAIT_YIELD,-1)
 	set_trait(TRAIT_SPREAD,3)
 	set_trait(TRAIT_POTENCY,50)

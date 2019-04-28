@@ -12,7 +12,7 @@
 
 	density = 0
 	stat = DEAD
-	canmove = 0
+	movement_handlers = list()
 
 	anchored = 1	//  don't get pushed around
 /*
@@ -75,16 +75,16 @@
 /mob/new_player/Stat()
 	. = ..()
 
-	if(statpanel("Lobby"))
-		stat("Storyteller:", "[master_storyteller]") // Old setting for showing the game mode
-
+	if(statpanel("Status"))
 		if(SSticker.current_state == GAME_STATE_PREGAME)
+			stat("Storyteller:", "[master_storyteller]") // Old setting for showing the game mode
 			stat("Time To Start:", "[SSticker.pregame_timeleft][round_progressing ? "" : " (DELAYED)"]")
 			stat("Players: [totalPlayers]", "Players Ready: [totalPlayersReady]")
 			totalPlayers = 0
 			totalPlayersReady = 0
 			for(var/mob/new_player/player in GLOB.player_list)
-				stat("[player.key]", (player.ready)?("(Playing)"):(null))
+				if(player.ready)
+					stat("[player.client.prefs.real_name]", (player.ready)?("[player.client.prefs.job_high]"):(null))
 				totalPlayers++
 				if(player.ready)totalPlayersReady++
 
@@ -259,10 +259,10 @@
 		return
 
 
-
-	character = SSjob.EquipRank(character, rank)					//equips the human
+	var/datum/spawnpoint/spawnpoint = SSjob.get_spawnpoint_for(character.client, rank, late = TRUE)
+	spawnpoint.put_mob(character) // This can fail, and it'll result in the players being left in space and not being teleported to the station. But atleast they'll be equipped. Needs to be fixed so a default case for extreme situations is added.
+	character = SSjob.EquipRank(character, rank) //equips the human
 	equip_custom_items(character)
-
 	character.lastarea = get_area(loc)
 
 	if(SSjob.ShouldCreateRecords(job.title))
@@ -273,12 +273,6 @@
 			SSticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 
 			//Grab some data from the character prefs for use in random news procs.
-
-
-	//Spawning happens at the end so things like name is populated
-	var/datum/spawnpoint/spawnpoint = SSjob.get_spawnpoint_for(character.client, rank, late = TRUE)
-	if (!spawnpoint.put_mob(character))
-		return
 
 	AnnounceArrival(character, character.mind.assigned_role, spawnpoint.message)	//will not broadcast if there is no message
 

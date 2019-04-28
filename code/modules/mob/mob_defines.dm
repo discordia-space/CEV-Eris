@@ -5,37 +5,25 @@
 	flags = PROXMOVE
 	var/datum/mind/mind
 
+	movement_handlers = list(
+	/datum/movement_handler/mob/relayed_movement,
+	/datum/movement_handler/mob/death,
+	/datum/movement_handler/mob/conscious,
+	/datum/movement_handler/mob/eye,
+	/datum/movement_handler/move_relay,
+	/datum/movement_handler/mob/buckle_relay,
+	/datum/movement_handler/mob/delay,
+	/datum/movement_handler/mob/stop_effect,
+	/datum/movement_handler/mob/physically_capable,
+	/datum/movement_handler/mob/physically_restrained,
+	/datum/movement_handler/mob/space,
+	/datum/movement_handler/mob/movement
+	)
+
 	var/lastKnownIP = null
 	var/computer_id = null
 
 	var/stat = 0 //Whether a mob is alive or dead. TODO: Move this to living - Nodrak
-
-//	var/obj/screen/flash = null
-//	var/obj/screen/blind = null
-	var/obj/screen/hands = null
-	var/obj/screen/pullin = null
-	var/obj/screen/purged = null
-//	var/obj/screen/internals = null
-//	var/obj/screen/oxygen = null
-	var/obj/screen/i_select = null
-	var/obj/screen/m_select = null
-//	var/obj/screen/toxin = null
-//	var/obj/screen/fire = null
-/*	var/obj/screen/bodytemp = null
-	var/obj/screen/healths = null
-	var/obj/screen/throw_icon = null
-	var/obj/screen/nutrition_icon = null
-	var/obj/screen/pressure = null
-	//var/obj/screen/damageoverlay = null
-	var/obj/screen/pain = null
-	var/obj/screen/gun/item/item_use_icon = null
-	var/obj/screen/gun/radio/radio_use_icon = null
-	var/obj/screen/gun/move/gun_move_icon = null
-	var/obj/screen/gun/run/gun_run_icon = null
-	var/obj/screen/gun/mode/gun_setting_icon = null*/
-
-	//spells hud icons - this interacts with add_spell and remove_spell
-	//var/list/obj/screen/movable/spell_master/spell_masters = null
 
 	/*A bunch of this stuff really needs to go under their own defines instead of being globally attached to mob.
 	A variable should only be globally attached to turfs/objects/whatever, when it is in fact needed as such.
@@ -43,7 +31,7 @@
 	I'll make some notes on where certain variable defines should probably go.
 	Changing this around would probably require a good look-over the pre-existing code.
 	*/
-	var/obj/screen/zone_sel/zone_sel = null
+
 
 	var/use_me = 1 //Allows all mobs to use the me verb by default, will have to manually specify they cannot
 	var/damageoverlaytemp = 0
@@ -52,6 +40,8 @@
 	var/sdisabilities = 0	//Carbon
 	var/disabilities = 0	//Carbon
 
+
+	var/last_move_attempt = 0 //Last time the mob attempted to move, successful or not
 	var/atom/movable/pulling = null
 	var/other_mobs = null
 	var/next_move = null
@@ -70,8 +60,17 @@
 	var/lying = 0
 	var/lying_prev = 0
 	var/canmove = 1
-	//Allows mobs to move through dense areas without restriction. For instance, in space or out of holder objects.
+
+
+	/*
+Allows mobs to move through dense areas without restriction. For instance, in space or out of holder objects.
+This var is no longer actually used for incorporeal moving, this is handled by /datum/movement_handler/mob/incorporeal
+However this var is still kept as a quick way to check if the mob is incorporeal. This is used in several performance intensive applications
+While it would be entirely possible to check the mob's move handlers list for the existence of the incorp handler, that is less optimal for intensive use
+*/
 	var/incorporeal_move = 0 //0 is off, 1 is normal, 2 is for ninjas.
+
+
 	var/unacidable = 0
 	var/list/pinned = list()            // List of things pinning this creature to walls (see living_defense.dm)
 	var/list/embedded = list()          // Embedded items, since simple mobs don't have organs.
@@ -96,7 +95,10 @@
 
 	var/shakecamera = 0
 	var/a_intent = I_HELP//Living
-	var/m_intent = "run"//Living
+
+	var/decl/move_intent/move_intent = /decl/move_intent/run
+	var/move_intents = list(/decl/move_intent/run, /decl/move_intent/walk)
+
 	var/obj/buckled = null//Living
 	var/obj/item/l_hand = null//Living
 	var/obj/item/r_hand = null//Living

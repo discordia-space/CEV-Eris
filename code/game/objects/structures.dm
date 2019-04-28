@@ -7,8 +7,22 @@
 	var/parts
 	var/list/climbers = list()
 
-/obj/structure/get_fall_damage()
-	return w_class * 3
+/**
+ * An overridable proc used by SSfalling to determine whether if the object deals
+ * mimimal dmg or their w_class * 10
+ *
+ * @return	ITEM_SIZE_TINY * 10 	if w_class is not defined in subtypes structures
+ *			w_class * 10 			if w_class is set
+ *
+ * Values are found in code/__defines/inventory_sizes.dm
+ */
+/obj/structure/get_fall_damage(var/turf/from, var/turf/dest)
+	var/damage = (w_class == ITEM_SIZE_NO_CONTAINER ? ITEM_SIZE_LARGE : w_class) * 10
+
+	if (from && dest)
+		damage *= abs(from.z - dest.z)
+
+	return damage
 
 /obj/structure/Destroy()
 	if(parts)

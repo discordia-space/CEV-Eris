@@ -11,10 +11,19 @@
 	var/heating_power = 40000
 
 
-/obj/machinery/space_heater/New()
-	..()
+/obj/machinery/space_heater/Initialize()
+	. = ..()
 	cell = new /obj/item/weapon/cell/large/high(src)
 	update_icon()
+
+/obj/machinery/space_heater/get_cell()
+	return cell
+
+/obj/machinery/space_heater/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+		update_icon()
 
 /obj/machinery/space_heater/update_icon()
 	overlays.Cut()
@@ -140,7 +149,7 @@
 					if(istype(C))
 						usr.drop_item()
 						src.cell = C
-						C.loc = src
+						C.forceMove(src)
 						C.add_fingerprint(usr)
 						power_change()
 						usr.visible_message(SPAN_NOTICE("[usr] inserts \the [C] into \the [src]."), SPAN_NOTICE("You insert \the [C] into \the [src]."))

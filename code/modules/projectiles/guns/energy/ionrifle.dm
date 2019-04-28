@@ -6,11 +6,12 @@
 	fire_sound = 'sound/weapons/Laser.ogg'
 	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 4)
 	w_class = ITEM_SIZE_LARGE
-	force = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_PAINFUL
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
 	charge_cost = 200
 	matter = list(MATERIAL_PLASTEEL = 24, MATERIAL_WOOD = 8, MATERIAL_SILVER = 10)
+	price_tag = 3000
 	projectile_type = /obj/item/projectile/ion
 
 /obj/item/weapon/gun/energy/ionrifle/emp_act(severity)

@@ -73,7 +73,7 @@
  */
 
 /obj/item/weapon/pen/reagent
-	flags = OPENCONTAINER
+	reagent_flags = REFILLABLE | DRAINABLE
 	slot_flags = SLOT_BELT
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 
@@ -91,7 +91,7 @@
 	if(M.can_inject(user,1))
 		if(reagents.total_volume)
 			if(M.reagents)
-				var/contained_reagents = reagents.get_reagents()
+				var/contained_reagents = reagents.log_list()
 				var/trans = reagents.trans_to_mob(M, 30, CHEM_BLOOD)
 				admin_inject_log(user, M, src, contained_reagents, trans)
 
@@ -190,7 +190,11 @@
 	var/uses = 30 //0 for unlimited uses
 	var/instant = 0
 	var/colourName = "red" //for updateIcon purposes
+	var/grindable = TRUE //normal crayons are grindable, rainbow and mime aren't
 
 	New()
 		name = "[colourName] crayon"
+		if(grindable)
+			create_reagents(20)
+			reagents.add_reagent("crayon_dust_[colourName]", 20)
 		..()

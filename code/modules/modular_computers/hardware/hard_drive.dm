@@ -1,18 +1,20 @@
-/obj/item/weapon/computer_hardware/hard_drive/
+/obj/item/weapon/computer_hardware/hard_drive
 	name = "basic hard drive"
-	desc = "A small power efficient solid state drive, with 128GQ of storage capacity for use in basic computers where power efficiency is desired."
+	desc = "A small power efficient solid state drive for use in basic computers where power efficiency is desired."
 	power_usage = 25					// SSD or something with low power usage
 	icon_state = "hdd_normal"
 	hardware_size = 1
 	origin_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1)
 	var/max_capacity = 128
 	var/used_capacity = 0
+	var/read_only = FALSE
 	var/list/stored_files = list()		// List of stored files on this drive. DO NOT MODIFY DIRECTLY!
 
 /obj/item/weapon/computer_hardware/hard_drive/advanced
 	name = "advanced hard drive"
-	desc = "A small hybrid hard drive with 256GQ of storage capacity for use in higher grade computers where balance between power efficiency and capacity is desired."
+	desc = "A small hybrid hard drive for use in higher grade computers where balance between power efficiency and capacity is desired."
 	max_capacity = 256
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 0.5)
 	origin_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
 	power_usage = 50 					// Hybrid, medium capacity and medium power storage
 	icon_state = "hdd_advanced"
@@ -20,7 +22,7 @@
 
 /obj/item/weapon/computer_hardware/hard_drive/super
 	name = "super hard drive"
-	desc = "A small hard drive with 512GQ of storage capacity for use in cluster storage solutions where capacity is more important than power efficiency."
+	desc = "A small hard drive for use in cluster storage solutions where capacity is more important than power efficiency."
 	max_capacity = 512
 	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
 	power_usage = 100					// High-capacity but uses lots of power, shortening battery life. Best used with APC link.
@@ -29,7 +31,7 @@
 
 /obj/item/weapon/computer_hardware/hard_drive/cluster
 	name = "cluster hard drive"
-	desc = "A large storage cluster consisting of multiple hard drives for usage in high capacity storage systems. Has capacity of 2048 GQ."
+	desc = "A large storage cluster consisting of multiple hard drives for usage in high capacity storage systems."
 	power_usage = 500
 	origin_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4)
 	max_capacity = 2048
@@ -55,6 +57,10 @@
 	icon_state = "hdd_micro"
 	hardware_size = 1
 
+/obj/item/weapon/computer_hardware/hard_drive/examine(mob/user)
+	. = ..()
+	to_chat(user, SPAN_NOTICE("It can store up to [max_capacity] GQ."))
+
 /obj/item/weapon/computer_hardware/hard_drive/diagnostics(var/mob/user)
 	..()
 	// 999 is a byond limit that is in place. It's unlikely someone will reach that many files anyway, since you would sooner run out of space.
@@ -78,22 +84,25 @@
 
 
 // Use this proc to remove file from the drive. Returns 1 on success and 0 on failure. Contains necessary sanity checks.
-/obj/item/weapon/computer_hardware/hard_drive/proc/remove_file(var/datum/computer_file/F)
+/obj/item/weapon/computer_hardware/hard_drive/proc/remove_file(datum/computer_file/F)
 	if(!F || !istype(F))
-		return 0
+		return FALSE
 
 	if(!stored_files)
-		return 0
+		return FALSE
+
+	if(read_only)
+		return FALSE
 
 	if(!check_functionality())
-		return 0
+		return FALSE
 
 	if(F in stored_files)
 		stored_files -= F
 		recalculate_size()
-		return 1
-	else
-		return 0
+		return TRUE
+
+	return FALSE
 
 // Loops through all stored files and recalculates used_capacity of this drive
 /obj/item/weapon/computer_hardware/hard_drive/proc/recalculate_size()
@@ -104,25 +113,28 @@
 	used_capacity = total_size
 
 // Checks whether file can be stored on the hard drive.
-/obj/item/weapon/computer_hardware/hard_drive/proc/can_store_file(var/size = 1)
+/obj/item/weapon/computer_hardware/hard_drive/proc/can_store_file(size = 1)
 	// In the unlikely event someone manages to create that many files.
 	// BYOND is acting weird with numbers above 999 in loops (infinite loop prevention)
+
+	if(!stored_files)
+		return FALSE
+
+	if(read_only || !check_functionality())
+		return FALSE
+
 	if(stored_files.len >= 999)
-		return 0
+		return FALSE
 	if(used_capacity + size > max_capacity)
-		return 0
-	else
-		return 1
+		return FALSE
+
+	return TRUE
 
 // Checks whether we can store the file. We can only store unique files, so this checks whether we wouldn't get a duplicity by adding a file.
-/obj/item/weapon/computer_hardware/hard_drive/proc/try_store_file(var/datum/computer_file/F)
+/obj/item/weapon/computer_hardware/hard_drive/proc/try_store_file(datum/computer_file/F)
 	if(!F || !istype(F))
 		return 0
 	if(!can_store_file(F.size))
-		return 0
-	if(!check_functionality())
-		return 0
-	if(!stored_files)
 		return 0
 
 	var/list/badchars = list("/",":","*","?","<",">","|", ".")
@@ -141,7 +153,7 @@
 	return 1
 
 // Tries to find the file by filename. Returns null on failure
-/obj/item/weapon/computer_hardware/hard_drive/proc/find_file_by_name(var/filename)
+/obj/item/weapon/computer_hardware/hard_drive/proc/find_file_by_name(filename)
 	if(!check_functionality())
 		return null
 
@@ -162,6 +174,6 @@
 	stored_files = null
 	return ..()
 
-/obj/item/weapon/computer_hardware/hard_drive/New()
+/obj/item/weapon/computer_hardware/hard_drive/Initialize()
+	. = ..()
 	install_default_programs()
-	..()

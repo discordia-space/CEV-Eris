@@ -839,3 +839,21 @@ ADMIN_VERB_ADD(/client/proc/spawn_disciple, R_DEBUG, FALSE)
 
 	C.install(H)
 	C.activate()
+
+
+ADMIN_VERB_ADD(/client/proc/delete_npcs, R_DEBUG, FALSE)
+/client/proc/delete_npcs()
+	set category = "Debug"
+	set name = "Delete NPC mobs"
+	set desc = "Deletes every mob that isn't a player"
+
+	if(alert("Are you sure you want to delete all nonplayer mobs?",,"Yes", "No") == "No")
+		return
+
+	var/total = 0
+	for (var/mob/living/L in world)
+		if ((L in GLOB.player_list))
+			continue
+		qdel(L)
+		total++
+	world << "Deleted [total] mobs"

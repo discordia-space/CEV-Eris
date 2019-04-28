@@ -69,11 +69,10 @@
 				Power cell removed.
 			</div>
 		{{else}}
-			
-			{{:helper.displayBar(data.powerCellStatus, 0, 100, (data.powerCellStatus >= 50) ? 'good' : (data.powerCellStatus >= 25) ? 'average' : 'bad')}}
-			<div class="itemContent" style="width: 60px">		
-				{{:helper.round(data.powerCellStatus*10)/10}}%
-			</div>	
+			<div class="itemContent">
+			{{:helper.displayBar(data.powerCellStatus, 0, 100, (data.powerCellStatus >= 50) ? 'good' : (data.powerCellStatus >= 25) ? 'average' : 'bad', helper.round(data.powerCellStatus*10)/10 + "%" )}}
+			</div>
+			<br>
 		{{/if}}
 	</div>
 

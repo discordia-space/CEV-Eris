@@ -439,9 +439,6 @@
 	name = "water"
 	icon_state = "water"
 
-/turf/simulated/floor/beach/water/update_dirt()
-	return	// Water doesn't become dirty
-
 /turf/simulated/floor/beach/water/ocean
 	icon_state = "seadeep"
 

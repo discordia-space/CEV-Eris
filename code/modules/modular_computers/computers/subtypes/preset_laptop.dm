@@ -7,8 +7,6 @@
 	network_card = new/obj/item/weapon/computer_hardware/network_card/(src)
 	nano_printer = new/obj/item/weapon/computer_hardware/nano_printer(src)
 	card_slot = new/obj/item/weapon/computer_hardware/card_slot(src)
-	battery_module = new/obj/item/weapon/computer_hardware/battery_module/advanced(src)
-	battery_module.charge_to_full()
 
 /obj/item/modular_computer/laptop/preset/custom_loadout/advanced/install_default_hardware()
 	..()
@@ -18,8 +16,6 @@
 	network_card = new/obj/item/weapon/computer_hardware/network_card/advanced(src)
 	nano_printer = new/obj/item/weapon/computer_hardware/nano_printer(src)
 	card_slot = new/obj/item/weapon/computer_hardware/card_slot(src)
-	battery_module = new/obj/item/weapon/computer_hardware/battery_module/advanced(src)
-	battery_module.charge_to_full()
 
 /obj/item/modular_computer/laptop/preset/custom_loadout/standard/install_default_hardware()
 	..()
@@ -28,8 +24,6 @@
 	network_card = new/obj/item/weapon/computer_hardware/network_card/(src)
 	nano_printer = new/obj/item/weapon/computer_hardware/nano_printer(src)
 	card_slot = new/obj/item/weapon/computer_hardware/card_slot(src)
-	battery_module = new/obj/item/weapon/computer_hardware/battery_module/advanced(src)
-	battery_module.charge_to_full()
 
 /obj/item/modular_computer/laptop/preset/custom_loadout/install_default_programs()
 	..()
@@ -42,7 +36,6 @@
 	install_default_programs_by_job(H)
 
 //Map presets
-
 /obj/item/modular_computer/laptop/preset/records/install_default_hardware()
 	..()
 	processor_unit = new/obj/item/weapon/computer_hardware/processor_unit/small(src)
@@ -50,8 +43,6 @@
 	hard_drive = new/obj/item/weapon/computer_hardware/hard_drive/(src)
 	network_card = new/obj/item/weapon/computer_hardware/network_card/(src)
 	nano_printer = new/obj/item/weapon/computer_hardware/nano_printer(src)
-	battery_module = new/obj/item/weapon/computer_hardware/battery_module/nano(src)
-	battery_module.charge_to_full()
 	scanner = new /obj/item/weapon/computer_hardware/scanner/paper(src)
 
 /obj/item/modular_computer/laptop/preset/records/install_default_programs()
@@ -69,8 +60,6 @@
 	tesla_link = new/obj/item/weapon/computer_hardware/tesla_link(src)
 	hard_drive = new/obj/item/weapon/computer_hardware/hard_drive/(src)
 	network_card = new/obj/item/weapon/computer_hardware/network_card/(src)
-	battery_module = new/obj/item/weapon/computer_hardware/battery_module/nano(src)
-	battery_module.charge_to_full()
 
 /obj/item/modular_computer/laptop/preset/atmos/install_default_programs()
 	..()
@@ -85,8 +74,6 @@
 /obj/item/modular_computer/laptop/preset/debug/install_default_hardware()
 	..()
 	nano_printer = new/obj/item/weapon/computer_hardware/nano_printer(src)
-	battery_module = new/obj/item/weapon/computer_hardware/battery_module/advanced(src)
-	battery_module.charge_to_full()
 	processor_unit = new/obj/item/weapon/computer_hardware/processor_unit/photonic/small(src)
 	tesla_link = new/obj/item/weapon/computer_hardware/tesla_link(src)
 	hard_drive = new/obj/item/weapon/computer_hardware/hard_drive/cluster(src)

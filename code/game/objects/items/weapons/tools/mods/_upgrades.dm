@@ -146,7 +146,7 @@
 /obj/item/weapon/tool_upgrade/proc/apply(var/obj/item/weapon/tool/T, var/mob/user)
 
 	if (user)
-		user.visible_message(SPAN_NOTICE("[user] starts applying the [src] to [T]"), SPAN_NOTICE("You start applying the [src] to [T]"))
+		user.visible_message(SPAN_NOTICE("[user] starts applying [src] to [T]"), SPAN_NOTICE("You start applying [src] to [T]"))
 		if (!use_tool(user = user, target =  T, base_time = WORKTIME_NORMAL, required_quality = null, fail_chance = FAILCHANCE_EASY+T.unreliability, required_stat = STAT_MEC, forced_sound = WORKSOUND_WRENCHING))
 			return
 		user << SPAN_NOTICE("You have successfully installed [src] in [T]")

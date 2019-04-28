@@ -2,8 +2,8 @@
 	name = "window"
 	desc = "A window."
 	icon = 'icons/obj/structures.dmi'
-	density = 1
 
+	density = 1
 	layer = ABOVE_OBJ_LAYER //Just above doors
 	anchored = 1.0
 	flags = ON_BORDER
@@ -23,6 +23,14 @@
 
 /obj/structure/window/can_prevent_fall()
 	return !is_fulltile()
+
+/obj/structure/window/get_fall_damage(var/turf/from, var/turf/dest)
+	var/damage = health * 0.4
+
+	if (from && dest)
+		damage *= abs(from.z - dest.z)
+
+	return damage
 
 /obj/structure/window/examine(mob/user)
 	. = ..(user)
@@ -275,7 +283,7 @@
 		usable_qualities.Add(QUALITY_BOLT_TURNING)
 	if((reinf && state >= 1) || (reinf && state == 0) || (!reinf))
 		usable_qualities.Add(QUALITY_SCREW_DRIVING)
-	if(reinf && state >= 1)
+	if(reinf && state <= 1)
 		usable_qualities.Add(QUALITY_PRYING)
 	if (health < maxhealth)
 		usable_qualities.Add(QUALITY_SEALING)

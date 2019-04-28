@@ -111,7 +111,7 @@
 	icon_state = "tile"
 	force = WEAPON_FORCE_NORMAL
 	matter = list(MATERIAL_STEEL = 1)
-	throwforce = WEAPON_FORCE_PAINFULL
+	throwforce = WEAPON_FORCE_PAINFUL
 	throw_speed = 5
 	throw_range = 20
 	flags = CONDUCT

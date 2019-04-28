@@ -43,9 +43,18 @@ REAGENT SCANNER
 		usr << SPAN_WARNING("[src] battery is dead or missing.")
 		. = FALSE
 
-/obj/item/device/scanner/New()
-	..()
+/obj/item/device/scanner/Initialize()
+	. = ..()
 	cell_check()
+
+/obj/item/device/scanner/get_cell()
+	return cell
+
+/obj/item/device/scanner/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+		update_icon()
 
 /obj/item/device/scanner/healthanalyzer
 	name = "health analyzer"
@@ -270,7 +279,8 @@ REAGENT SCANNER
 	desc = "A hand-held mass spectrometer which identifies trace chemicals in a blood sample."
 	icon_state = "spectrometer"
 	item_state = "analyzer"
-	flags = CONDUCT | OPENCONTAINER
+	flags = CONDUCT
+	reagent_flags = OPENCONTAINER
 
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)

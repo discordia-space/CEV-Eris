@@ -7,6 +7,7 @@
 	matter = list(MATERIAL_PLASTIC = 10)
 	origin_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
 	amount = 10
+	price_tag = 15
 
 
 /obj/item/stack/nanopaste/attack(mob/living/M as mob, mob/user as mob)

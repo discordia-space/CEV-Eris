@@ -366,22 +366,21 @@
 	icon_state = "sink"
 	desc = "A sink used for washing one's hands and face."
 	anchored = 1
-	flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER
 	var/busy = 0 	//Something's being washed at the moment
 
 /obj/structure/sink/MouseDrop_T(var/obj/item/thing, var/mob/user)
-	..()
-	if(!istype(thing) || !thing.is_open_container())
-		return ..()
+	. = ..()
+	if(!istype(thing) || !thing.is_drainable())
+		return
 	if(!usr.Adjacent(src))
-		return ..()
+		return
 	if(!thing.reagents || thing.reagents.total_volume == 0)
 		usr << SPAN_WARNING("\The [thing] is empty.")
-		return
+		return 0
 	// Clear the vessel.
 	visible_message(SPAN_NOTICE("\The [usr] tips the contents of \the [thing] into \the [src]."))
 	thing.reagents.clear_reagents()
-	thing.update_icon()
 
 /obj/structure/sink/attack_hand(mob/user as mob)
 	if (ishuman(user))
@@ -426,7 +425,7 @@
 		return
 
 	var/obj/item/weapon/reagent_containers/RG = O
-	if (istype(RG) && RG.is_open_container())
+	if (istype(RG) && RG.is_refillable())
 		RG.reagents.add_reagent("water", min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
 		user.visible_message(SPAN_NOTICE("[user] fills \the [RG] using \the [src]."),SPAN_NOTICE("You fill \the [RG] using \the [src]."))
 		playsound(loc, 'sound/effects/watersplash.ogg', 100, 1)

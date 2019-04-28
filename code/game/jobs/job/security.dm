@@ -24,8 +24,9 @@
 	)
 
 	stat_modifiers = list(
-		STAT_ROB = 30,
-		STAT_TGH = 20,
+		STAT_ROB = 40,
+		STAT_TGH = 30,
+		STAT_VIG = 40,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/comm,
@@ -66,6 +67,7 @@
 	spawn_positions = 1
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#a7bbc6"
+	department_account_access = TRUE
 	wage = WAGE_LABOUR_HAZARD
 	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 25)
 
@@ -78,8 +80,9 @@
 	)
 
 	stat_modifiers = list(
-		STAT_ROB = 20,
-		STAT_TGH = 20,
+		STAT_ROB = 25,
+		STAT_TGH = 25,
+		STAT_VIG = 25,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
@@ -127,9 +130,10 @@
 	outfit_type = /decl/hierarchy/outfit/job/security/inspector
 
 	stat_modifiers = list(
-		STAT_BIO = 10,
-		STAT_ROB = 10,
-		STAT_TGH = 10,
+		STAT_BIO = 20,
+		STAT_ROB = 15,
+		STAT_TGH = 15,
+		STAT_VIG = 25,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
@@ -178,6 +182,8 @@
 
 	stat_modifiers = list(
 		STAT_BIO = 20,
+		STAT_TGH = 5,
+		STAT_VIG = 30,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
@@ -227,8 +233,9 @@
 	)
 
 	stat_modifiers = list(
-		STAT_ROB = 10,
+		STAT_ROB = 25,
 		STAT_TGH = 20,
+		STAT_VIG = 25,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,

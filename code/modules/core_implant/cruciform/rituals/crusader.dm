@@ -56,12 +56,18 @@
 	cooldown_category = "flash"
 
 /datum/ritual/cruciform/crusader/flash/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
-	user.Weaken(10)
-	user << SPAN_WARNING("The flux of psy-energy knocks over you!")
+	if(prob(100 - user.stats.getStat(STAT_VIG)))
+		user.Weaken(10)
+		user << SPAN_WARNING("The flux of psy-energy knocks over you!")
+	else
+		user << SPAN_NOTICE("The flux of psy-energy washed your mind, but you managed to keep focused!")
 	playsound(user.loc, 'sound/effects/cascade.ogg', 65, 1)
 	for(var/mob/living/carbon/human/victim in view(user))
 		if(!victim.get_cruciform())
-			victim << SPAN_WARNING("You feel that your knees bends!")
-			victim.Weaken(5)
+			if(prob(100 - victim.stats.getStat(STAT_VIG)))
+				victim << SPAN_WARNING("You feel that your knees bends!")
+				victim.Weaken(5)
+			else
+				victim << SPAN_NOTICE("Your legs feel numb, but you managed to stay on your feet!")
 	set_personal_cooldown(user)
 	return TRUE

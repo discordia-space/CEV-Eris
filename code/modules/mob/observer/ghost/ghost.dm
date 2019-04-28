@@ -10,6 +10,8 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 	blinded = 0
 	anchored = 1	//  don't get pushed around
 	layer = GHOST_LAYER
+	movement_handlers = list(/datum/movement_handler/mob/incorporeal)
+
 	var/can_reenter_corpse
 	var/datum/hud/living/carbon/hud = null // hud
 	var/bootime = 0
@@ -142,12 +144,14 @@ Works together with spawning an observer, noted above.
 		ghost.timeofdeath = src.stat == DEAD ? src.timeofdeath : world.time
 			//This is duplicated for robustness in cases where death might not be called.
 		//It is also set in the mob/death proc
-		if (isanimal(src))
-			set_death_time(ANIMAL, world.time)
-		else if (ispAI(src) || isdrone(src))
-			set_death_time(MINISYNTH, world.time)
-		else
-			set_death_time(CREW, world.time)//Crew is the fallback
+		// One more if to get rid off re-enter timer resets.
+		if(stat != DEAD)
+			if (isanimal(src))
+				set_death_time(ANIMAL, world.time)
+			else if (ispAI(src) || isdrone(src))
+				set_death_time(MINISYNTH, world.time)
+			else
+				set_death_time(CREW, world.time)//Crew is the fallback
 
 		//Set the respawn bonus from ghosting while in cryosleep.
 		//This is duplicated in the cryopod code for robustness. The message will not display twice
@@ -333,6 +337,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		GLOB.destroyed_event.unregister(following, src)
 		following = null
 
+// Makes the ghost cease following if the user has moved
+/mob/observer/ghost/PostIncorporealMovement()
+	stop_following()
+
 /mob/observer/ghost/move_to_turf(var/atom/movable/am, var/old_loc, var/new_loc)
 	var/turf/T = get_turf(new_loc)
 	if(check_holy(T))
@@ -390,8 +398,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set hidden = 1
 	src << "\red You are dead! You have no mind to store memory!"
 
-/mob/observer/ghost/Post_Incorpmove()
-	stop_following()
 
 /mob/observer/ghost/verb/analyze_air()
 	set name = "Analyze Air"
@@ -700,8 +706,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(respawn_time &&  timedifference > respawn_time)
 		return TRUE
 	else
-		var/timedifference_text = time2text(respawn_time  - timedifference,"mm:ss")
-		src << "<span class='warning'>You must have been dead for [respawn_time / 600] minute\s to respawn. You have [timedifference_text] left.</span>"
+		if(feedback)
+			var/timedifference_text = time2text(respawn_time  - timedifference,"mm:ss")
+			src << "<span class='warning'>You must have been dead for [respawn_time / 600] minute\s to respawn. You have [timedifference_text] left.</span>"
 		return 0
 
 	return 1
