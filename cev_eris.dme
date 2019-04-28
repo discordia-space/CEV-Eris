@@ -602,6 +602,7 @@
 #include "code\game\machinery\flasher.dm"
 #include "code\game\machinery\floodlight.dm"
 #include "code\game\machinery\floor_light.dm"
+#include "code\game\machinery\floor_shocker.dm"
 #include "code\game\machinery\floorlayer.dm"
 #include "code\game\machinery\hologram.dm"
 #include "code\game\machinery\holoposter.dm"
