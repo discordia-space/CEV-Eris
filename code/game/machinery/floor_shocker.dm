@@ -33,9 +33,11 @@
 		return
 	if(!anchored)
 		explosion(get_turf(src), 0,1,2)
+		if(src)
+			qdel(src)
 
 	for(var/mob/living/mob in range(src, radius))
-		fire(mob)
+		if(bresenhem_line_check(get_turf(src), get_turf(mob))) fire(mob)
 
 /obj/item/weapon/floor_shocker/attackby(var/obj/item/I, var/mob/living/user, var/params)
 	if(!Adjacent(user))
@@ -137,7 +139,7 @@
 	if(!cell && !powernet)
 		to_chat(user, "Device is unpowered.")
 		return FALSE
-	if(!fire(user, TRUE))
+	if(fire(user, TRUE))
 		active = !active
 		update_icon()
 		var/datum/effect/effect/system/spark_spread/spark_system = new ()
