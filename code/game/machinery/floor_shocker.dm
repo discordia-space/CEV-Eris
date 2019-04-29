@@ -134,24 +134,24 @@
 /obj/item/weapon/floor_shocker/attack_hand(var/mob/living/carbon/human/user)
 	if(!anchored)
 		return ..()
-	if(!Adjacent(user))
-		return FALSE
 	if(!cell && !powernet)
 		to_chat(user, "Device is unpowered.")
 		return FALSE
 	if(fire(user, TRUE))
-		active = !active
-		update_icon()
-		var/datum/effect/effect/system/spark_spread/spark_system = new ()
-		spark_system.set_up(5, 0, src)
-		spark_system.attach(src)
-		spark_system.start()
-		spawn(fire_delay)
-			qdel(spark_system)
-			while(active)
-				Process()
-				sleep(fire_delay)
-		return TRUE
+		return FALSE
+
+	active = !active
+	update_icon()
+	var/datum/effect/effect/system/spark_spread/spark_system = new ()
+	spark_system.set_up(5, 0, src)
+	spark_system.attach(src)
+	spark_system.start()
+	spawn(fire_delay)
+		qdel(spark_system)
+		while(active)
+			Process()
+			sleep(fire_delay)
+	return TRUE
 
 /obj/item/weapon/floor_shocker/update_icon()
 	overlays.Cut()
