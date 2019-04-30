@@ -30,7 +30,7 @@
 
 /obj/item/weapon/gun/projectile/automatic/ak47/update_icon()
 	..()
-	item_state = (ammo_magazine)? "ak-full" : "ak"
+	item_state = (ammo_magazine)? "[icon_state]-full" : icon_state
 	icon_state = "[initial(icon_state)][ammo_magazine? "-[ammo_magazine.max_ammo]": ""]"
 
 /obj/item/weapon/gun/projectile/automatic/ak47/fs
