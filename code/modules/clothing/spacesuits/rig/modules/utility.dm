@@ -163,16 +163,12 @@
 		for(var/chargetype in charges)
 			var/datum/rig_charge/charge = charges[chargetype]
 			if(charge.display_name == R.id)
-
 				var/chems_to_transfer = R.volume
-
 				if((charge.charges + chems_to_transfer) > max_reagent_volume)
 					chems_to_transfer = max_reagent_volume - charge.charges
-
 				charge.charges += chems_to_transfer
 				input_item.reagents.remove_reagent(R.id, chems_to_transfer)
 				total_transferred += chems_to_transfer
-
 				break
 
 	if(total_transferred)
@@ -382,17 +378,101 @@
 	jets.trail.set_up(jets)
 
 /obj/item/rig_module/autodoc
-	name = "mounted autodoc Jr."
-	desc = "A complex syrgery system for almost all your needs. Can't treat organ damage, but capable to fix inernal bleeding."
+	name = "mounted autodoc"
+	desc = "A complex surgery system for almost all your needs. Can't treat organ damage, but capable to fix internal bleeding."
 	icon_state = "autodoc"
-	usable = 1
-	selectable = 0
-	toggleable = 0
+	toggleable = 1
 	disruptive = 1
 
-	engage_string = "Configure"
+	active_power_cost = 50
+
+	activate_string = "Activate autodoc"
+	deactivate_string = "Deactivate autodoc"
 
 	interface_name = "Autodoc"
-	interface_desc = "Module with set of instruments that is capable to preform basic syrgery on user"
+	interface_desc = "Module with set of instruments that is capable to preform basic surgery on user"
+
+	var/list/surgery_list = new()
+
+#define DR_RIG_BRUTE 0x1
+#define DR_RIG_BURN 0x2
+#define DR_RIG_BROKEN 0x4
+#define DR_RIG_IB 0x8
+/datum/rig_surgery
+	var/surgery_type = 0
+	var/obj/item/organ/external/ex_organ = null
+
+/obj/item/rig_module/autodoc/activate()
+	. = ..()
+	if(!.)
+		return
+	to_chat(holder.wearer, SPAN_NOTICE("With quiet hum internal machinery starts checking your body..."))
+	var/mob/living/carbon/human/H = holder.wearer
+
+	for(var/obj/item/organ/external/E in H.bad_external_organs)
+		to_chat(holder.wearer, "Found wounded organ: "+SPAN_WARNING("[E]"))
+		var/datum/rig_surgery/patchnote = new()
+		for(var/datum/wound/internal_bleeding/IB in E.wounds)
+			patchnote.surgery_type += DR_RIG_IB
+			to_chat(holder.wearer, SPAN_WARNING("| Internal bleeding"))
+			break
+		if (E.status & ORGAN_BROKEN)
+			patchnote.surgery_type += DR_RIG_BROKEN
+			to_chat(holder.wearer, SPAN_WARNING("| Bone fractures"))
+		if (E.brute_dam)
+			patchnote.surgery_type += DR_RIG_BRUTE
+			to_chat(holder.wearer, SPAN_WARNING("| Brute damage"))
+		if (E.burn_dam)
+			patchnote.surgery_type += DR_RIG_BURN
+			to_chat(holder.wearer, SPAN_WARNING("| Burn damage"))
+		if(patchnote.surgery_type)
+			patchnote.ex_organ = E
+			surgery_list.Add(patchnote)
+	if(!surgery_list.len)
+		to_chat(holder.wearer, SPAN_WARNING("No brute, burn damage, internal bleeding or fracture was found."))
+		deactivate()
+
+/obj/item/rig_module/autodoc/deactivate()
+	. = ..()
+	if(!.)
+		return
+	surgery_list.Cut()
+
+/obj/item/rig_module/autodoc/Process()
+	. = ..()
+	for(var/datum/rig_surgery/patchnote in surgery_list)
+		var/obj/item/organ/external/ex_organ = patchnote.ex_organ
+		if(!ex_organ)
+			CRASH()
+		if(patchnote.surgery_type & DR_RIG_IB)
+			for(var/datum/wound/IB in ex_organ.wounds)
+				if(prob(50) && IB.internal)
+					ex_organ.wounds -= IB
+					ex_organ.update_damages()
+					patchnote.surgery_type -= DR_RIG_IB
+					to_chat(holder.wearer, SPAN_NOTICE("You feel as your [ex_organ] stops bleeding."))
+		if(patchnote.surgery_type & DR_RIG_BROKEN)
+			if(prob(50))
+				ex_organ.mend_fracture()
+				patchnote.surgery_type -= DR_RIG_BROKEN
+				to_chat(holder.wearer, SPAN_NOTICE("You feel as bones in your [ex_organ] mend back."))
+		if(patchnote.surgery_type & DR_RIG_BRUTE)
+			ex_organ.heal_damage(5,0)
+			if(!ex_organ.brute_dam)
+				patchnote.surgery_type -= DR_RIG_BRUTE
+				to_chat(holder.wearer, SPAN_NOTICE("You feel as your [ex_organ] get its stiches."))
+		if(patchnote.surgery_type & DR_RIG_BURN)
+			ex_organ.heal_damage(0,5)
+			if(!ex_organ.burn_dam)
+				patchnote.surgery_type -= DR_RIG_BURN
+				to_chat(holder.wearer, SPAN_NOTICE("You feel as skin on your [ex_organ] get mended."))
+		ex_organ.update_health()
+
+		if(!patchnote.surgery_type)
+			holder.wearer.bad_external_organs -= ex_organ
+			surgery_list -= patchnote
+		if(!surgery_list.len)
+			to_chat(holder.wearer, "Inner surgery system reports: "+ SPAN_NOTICE("All possible surgery was done. Have a nice day!"))
+			deactivate()
 
 
