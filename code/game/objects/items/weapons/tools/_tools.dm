@@ -33,7 +33,7 @@
 	var/unreliability = 0 //This is added to the failure rate of operations with this tool
 	var/repair_frequency = 0 //How many times this tool has been repaired
 
-	var/toggleable = FALSE	//Determinze if it can be switched ON or OFF, for example, if you need a tool that will consume power/fuel upon turning it ON only. Such as welder.
+	var/toggleable = FALSE	//Determines if it can be switched ON or OFF, for example, if you need a tool that will consume power/fuel upon turning it ON only. Such as welder.
 	var/switched_on = FALSE	//Curent status of tool. Dont edit this in subtypes vars, its for procs only.
 	var/switched_on_qualities = null	//This var will REPLACE tool_qualities when tool will be toggled on.
 	var/switched_on_force = null

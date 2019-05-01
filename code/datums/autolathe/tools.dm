@@ -2,6 +2,10 @@
 	name = "crowbar"
 	build_path = /obj/item/weapon/tool/crowbar
 
+/datum/design/autolathe/tool/crowbar_onestar
+	name = "one star crowbar"
+	build_path = /obj/item/weapon/tool/crowbar/onestar
+
 /datum/design/autolathe/tool/multitool
 	name = "multitool"
 	build_path = /obj/item/weapon/tool/multitool
@@ -9,6 +13,10 @@
 /datum/design/autolathe/tool/weldertool
 	name = "welding tool"
 	build_path = /obj/item/weapon/tool/weldingtool
+
+/datum/design/autolathe/tool/weldertool_onestar
+	name = "one star welding tool"
+	build_path = /obj/item/weapon/tool/weldingtool/onestar
 
 /datum/design/autolathe/tool/weldermask
 	name = "welding mask"
@@ -29,6 +37,10 @@
 /datum/design/autolathe/tool/combi_driver
 	name = "combi driver"
 	build_path = /obj/item/weapon/tool/screwdriver/combi_driver
+
+/datum/design/autolathe/tool/combi_driver_onestar
+	name = "one star combi driver"
+	build_path = /obj/item/weapon/tool/screwdriver/combi_driver/onestar
 
 /datum/design/autolathe/tool/wirecutters
 	name = "wirecutters"
@@ -53,6 +65,14 @@
 /datum/design/autolathe/tool/pickaxe
 	name = "pickaxe"
 	build_path = /obj/item/weapon/tool/pickaxe
+
+/datum/design/autolathe/tool/jackhammer_onestar
+	name = "one star jackhammer"
+	build_path = /obj/item/weapon/tool/pickaxe/jackhammer/onestar
+
+/datum/design/autolathe/tool/drill_onestar
+	name = "one star drill"
+	build_path = /obj/item/weapon/tool/pickaxe/drill/onestar
 
 /datum/design/autolathe/tool/pickaxe_excavation
 	name = "excavation pick"
