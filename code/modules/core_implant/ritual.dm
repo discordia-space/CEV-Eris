@@ -77,26 +77,21 @@
 /datum/ritual/proc/set_global_cooldown()
 	if(src.cooldown)
 		GLOB.global_ritual_cooldowns[src.cooldown_category] = TRUE
-		addtimer(CALLBACK(src, .proc/reset_cooldown), src.cooldown_time)
+		addtimer(CALLBACK(src, .proc/reset_global_cooldown), src.cooldown_time)
+//resets personal cooldown for user if he's not nil or resets global cooldown, internal proc
+/datum/ritual/proc/reset_global_cooldown()
+	GLOB.global_ritual_cooldowns[src.cooldown_category] = FALSE
 
 //sets personal cooldown for user of ritual's cooldown category
 /datum/ritual/proc/set_personal_cooldown(mob/living/carbon/human/user)
 	if(src.cooldown)
-		user.personal_ritual_cooldowns[src.cooldown_category] = TRUE
-		addtimer(CALLBACK(src, .proc/reset_cooldown, user), src.cooldown_time)
-
-//resets personal cooldown for user if he's not nil or resets global cooldown, internal proc
-/datum/ritual/proc/reset_cooldown(mob/living/carbon/human/user)
-	if(user)
-		user.personal_ritual_cooldowns[src.cooldown_category] = FALSE
-	else
-		GLOB.global_ritual_cooldowns[src.cooldown_category] = FALSE
+		user.personal_ritual_cooldowns[src.cooldown_category] = world.time + src.cooldown_time
 
 //check's if ritual at personal or global cooldown
 /datum/ritual/proc/is_on_cooldown(mob/living/carbon/human/user)
 	if(GLOB.global_ritual_cooldowns[src.cooldown_category])
 		return TRUE
-	if(user.personal_ritual_cooldowns[src.cooldown_category])
+	if(user.personal_ritual_cooldowns[src.cooldown_category] > world.time)
 		return TRUE
 	return FALSE
 
