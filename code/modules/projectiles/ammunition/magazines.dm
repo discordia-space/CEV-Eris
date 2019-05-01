@@ -303,7 +303,7 @@
 
 /obj/item/ammo_magazine/c762_short
 	name = "short magazine (7.62mm)"
-	icon_state = "c762l"
+	icon_state = "ak_short"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_CIVI_RIFLE
 	caliber = "a762"

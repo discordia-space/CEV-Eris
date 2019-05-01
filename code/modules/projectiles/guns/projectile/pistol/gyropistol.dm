@@ -2,6 +2,7 @@
 	name = "NT GP \"Zeus\""
 	desc = "A bulky pistol designed to fire self-propelled rounds."
 	icon_state = "gyropistol"
+	item_state = "pistol"
 	caliber = "75"
 	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'
 	origin_tech = list(TECH_COMBAT = 3)
