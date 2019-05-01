@@ -303,7 +303,7 @@
 
 /obj/item/ammo_magazine/c762_short
 	name = "short magazine (7.62mm)"
-	icon_state = "ak_short"
+	icon_state = "AK_short-20"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_CIVI_RIFLE
 	caliber = "a762"
@@ -313,7 +313,7 @@
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/c762_short/empty
-	icon_state = "c762"
+	icon_state = "AK_short"
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/c762_long
