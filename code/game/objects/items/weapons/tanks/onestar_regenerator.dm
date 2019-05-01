@@ -1,6 +1,6 @@
 /obj/item/weapon/tank/onestar_regenerator
-	name = "Onestar regenerator"
-	desc = "Onestar regenerator desc."
+	name = "OS Type - 13 \"Tiantipenquan\""
+	desc = "This oxygen regenerator can provide seemingly endless supply for one human to breathe."
 	icon_state = "onestar_regenerator"
 	item_state = "onestar_regenerator"
 	gauge_icon = null

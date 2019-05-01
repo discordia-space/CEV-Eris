@@ -66,8 +66,8 @@
 
 
 /obj/item/clothing/glasses/thermal/onestar
-	name = "Onestar thermal glasses"
-	desc = "Onestar thermal glasses description"
+	name = "OS Type - 73 \"Zhenchayuan\""
+	desc = "Chinise thermals in the shape of goggles."
 	icon_state = "onestar_thermal"
 	off_state = "onestar_thermal"
 
