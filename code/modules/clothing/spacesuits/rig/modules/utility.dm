@@ -82,6 +82,7 @@
 
 	device_type = /obj/item/weapon/rcd/mounted
 
+
 /obj/item/rig_module/device/New()
 	..()
 	if(device_type) device = new device_type(src)
@@ -380,4 +381,18 @@
 	jets.holder = null
 	jets.trail.set_up(jets)
 
-/obj/item/rig_module/foam_sprayer
+/obj/item/rig_module/autodoc
+	name = "mounted autodoc Jr."
+	desc = "A complex syrgery system for almost all your needs. Can't treat organ damage, but capable to fix inernal bleeding."
+	icon_state = "autodoc"
+	usable = 1
+	selectable = 0
+	toggleable = 0
+	disruptive = 1
+
+	engage_string = "Configure"
+
+	interface_name = "Autodoc"
+	interface_desc = "Module with set of instruments that is capable to preform basic syrgery on user"
+
+
