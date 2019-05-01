@@ -572,7 +572,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 				W.damage = max(0, W.damage - 0.2)
 
 			//line should possibly be moved to handle_blood, so all the bleeding stuff is in one place.
-			owner.vessel.remove_reagent("blood", wound_update_accuracy * W.damage/60)
+			owner.vessel.remove_reagent("blood", wound_update_accuracy * W.damage/75)
 			if(prob(1 * wound_update_accuracy))
 				owner.custom_pain("You feel a stabbing pain in your [name]!",1)
 
