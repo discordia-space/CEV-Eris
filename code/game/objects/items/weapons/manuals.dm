@@ -3,12 +3,12 @@
 /obj/item/weapon/book/manual
 	icon = 'icons/obj/library.dmi'
 	due_date = 0 // Game time in 1/10th seconds
-	unique = 1   // 0 - Normal book, 1 - Should not be treated as normal book, unable to be copied, unable to be modified
+	unique = TRUE   // FALSE - Normal book, TRUE - Should not be treated as normal book, unable to be copied, unable to be modified
 
 
 /obj/item/weapon/book/manual/engineering_construction
 	name = "Station Repairs and Construction"
-	icon_state ="bookEngineering"
+	icon_state ="book_construction"
 	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Station Repairs and Construction"
 
@@ -76,7 +76,7 @@
 
 /obj/item/weapon/book/manual/supermatter_engine
 	name = "Supermatter Engine Operating Manual"
-	icon_state = "bookSupermatter"
+	icon_state = "book_supermatter"
 	author = "Central Engineering Division"
 	title = "Supermatter Engine Operating Manual"
 
@@ -149,7 +149,7 @@
 
 /obj/item/weapon/book/manual/engineering_hacking
 	name = "Hacking"
-	icon_state ="bookHacking"
+	icon_state ="book_hacking"
 	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Hacking"
 
@@ -171,7 +171,7 @@
 
 /obj/item/weapon/book/manual/engineering_singularity_safety
 	name = "Singularity Safety in Special Circumstances"
-	icon_state ="bookEngineeringSingularitySafety"
+	icon_state ="book_singularity"
 	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Singularity Safety in Special Circumstances"
 
@@ -222,7 +222,7 @@
 
 /obj/item/weapon/book/manual/medical_cloning
 	name = "Cloning Techniques of the 26th Century"
-	icon_state ="bookCloning"
+	icon_state ="book_cloning"
 	author = "Medical Journal, volume 3"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Cloning Techniques of the 26th Century"
 
@@ -392,7 +392,7 @@
 
 /obj/item/weapon/book/manual/research_and_development
 	name = "Research and Development 101"
-	icon_state = "rdbook"
+	icon_state = "book_research"
 	author = "Dr. L. Ight"
 	title = "Research and Development 101"
 
@@ -461,7 +461,7 @@
 
 /obj/item/weapon/book/manual/robotics_cyborgs
 	name = "Cyborgs for Dummies"
-	icon_state = "borgbook"
+	icon_state = "book_robotics"
 	author = "XISC"
 	title = "Cyborgs for Dummies"
 
@@ -691,7 +691,7 @@
 /obj/item/weapon/book/manual/medical_diagnostics_manual
 	name = "Medical Diagnostics Manual"
 	desc = "First, do no harm. A detailed medical practitioner's guide."
-	icon_state = "bookMedical"
+	icon_state = "book_medical"
 	author = "Medical Department"
 	title = "Medical Diagnostics Manual"
 
@@ -738,7 +738,7 @@
 
 /obj/item/weapon/book/manual/engineering_guide
 	name = "Engineering Textbook"
-	icon_state ="bookEngineering2"
+	icon_state ="book_engineering"
 	author = "Engineering Encyclopedia"
 	title = "Engineering Textbook"
 
@@ -873,7 +873,7 @@
 
 /obj/item/weapon/book/manual/detective
 	name = "The Film Noir: Proper Procedures for Investigations"
-	icon_state ="bookDetective"
+	icon_state ="book_forensics"
 	author = "The Company"
 	title = "The Film Noir: Proper Procedures for Investigations"
 
@@ -916,7 +916,7 @@
 
 /obj/item/weapon/book/manual/nuclear
 	name = "Fission Mailed: Nuclear Sabotage 101"
-	icon_state ="bookNuclear"
+	icon_state ="book_nuclear"
 	author = "Syndicate"
 	title = "Fission Mailed: Nuclear Sabotage 101"
 
@@ -967,7 +967,7 @@
 
 /obj/item/weapon/book/manual/atmospipes
 	name = "Pipes and You: Getting To Know Your Scary Tools"
-	icon_state = "pipingbook"
+	icon_state = "book_atmos"
 	author = "Maria Crash, Senior Atmospherics Technician"
 	title = "Pipes and You: Getting To Know Your Scary Tools"
 	dat = {"<html>
@@ -1075,7 +1075,7 @@
 
 /obj/item/weapon/book/manual/evaguide
 	name = "EVA Gear and You: Not Spending All Day Inside"
-	icon_state = "evabook"
+	icon_state = "book_eva"
 	author = "Maria Crash, Senior Atmospherics Technician"
 	title = "EVA Gear and You: Not Spending All Day Inside"
 	dat = {"<html>
@@ -1159,3 +1159,148 @@
 				</body>
 			</html>
 			"}
+
+/obj/item/weapon/book/manual/wiki
+	var/page_link = ""
+	window_size = "970x710"
+
+/obj/item/weapon/book/manual/wiki/attack_self()
+	if(!dat)
+		initialize_wikibook()
+	return ..()
+
+/obj/item/weapon/book/manual/wiki/proc/initialize_wikibook()
+	if(config.wikiurl)
+		dat = {"
+			<html><head>
+			<style>
+				iframe {
+					display: none;
+				}
+			</style>
+			</head>
+			<body>
+			<script type="text/javascript">
+				function pageloaded(myframe) {
+					document.getElementById("loading").style.display = "none";
+					myframe.style.display = "inline";
+    			}
+			</script>
+			<p id='loading'>You start skimming through the manual...</p>
+			<iframe width='100%' height='97%' onload="pageloaded(this)" src="[config.wikiurl]/[page_link]_Eris[config.language]?printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
+			</body>
+			</html>
+			"}
+
+//engineering
+/obj/item/weapon/book/manual/wiki/engineering_guide
+	name = "Engineering Textbook"
+	icon_state = "book_engineering"
+	author = "Engineering Encyclopedia"
+	title = "Engineering Textbook"
+	page_link = "Guide_to_Engineering"
+
+/obj/item/weapon/book/manual/wiki/engineering_construction
+	name = "Station Repairs and Construction"
+	icon_state ="book_construction"
+	author = "Engineering Encyclopedia"
+	title = "Station Repairs and Construction"
+	page_link = "Guide_to_Construction"
+
+/obj/item/weapon/book/manual/wiki/engineering_atmos
+	name = "Pipes and You: Getting To Know Your Scary Tools"
+	icon_state = "book_atmos"
+	author = "Maria Crash, Senior Atmospherics Technician"
+	title = "Pipes and You: Getting To Know Your Scary Tools"
+	page_link = "Guide_to_Atmospherics"
+
+/obj/item/weapon/book/manual/wiki/engineering_hacking
+	name = "Hacking"
+	icon_state ="book_hacking"
+	author = "Engineering Encyclopedia"
+	title = "Hacking"
+	page_link = "Guide_to_Hacking"
+
+/obj/item/weapon/book/manual/wiki/engineering_singularity
+	name = "Singularity Safety in Special Circumstances"
+	icon_state ="book_singularity"
+	author = "Engineering Encyclopedia"
+	title = "Singularity Safety in Special Circumstances"
+	page_link = "Guide_to_Singularity"
+
+/obj/item/weapon/book/manual/wiki/engineering_supermatter
+	name = "Supermatter Engine Operating Manual"
+	icon_state = "book_supermatter"
+	author = "Central Engineering Division"
+	title = "Supermatter Engine Operating Manual"
+	page_link = "Guide_to_Supermatter"
+
+//science
+/obj/item/weapon/book/manual/wiki/science_research
+	name = "Research and Development 101"
+	icon_state = "book_rnd"
+	author = "Dr. L. Ight"
+	title = "Research and Development 101"
+	page_link = "Guide_to_Research_and_Development"
+
+/obj/item/weapon/book/manual/wiki/science_robotics
+	name = "Cyborgs for Dummies"
+	icon_state = "book_borg"
+	author = "XISC"
+	title = "Cyborgs for Dummies"
+	page_link = "Guide_to_Robotics"
+
+//security
+/obj/item/weapon/book/manual/wiki/security_ironparagraphs
+	name = "Ironhammer Paragraphs"
+	desc = "A set of corporate guidelines for keeping order on privately-owned space assets."
+	icon_state = "book_ironparagraphs"
+	author = "Ironhammer Security"
+	title = "Ironhammer Paragraphs"
+	page_link = "Ironhammer_Paragraphs"
+
+/obj/item/weapon/book/manual/wiki/security_detective
+	name = "The Film Noir: Proper Procedures for Investigations"
+	icon_state = "book_forensics"
+	author = "Ironhammer Security"
+	title = "The Film Noir: Proper Procedures for Investigations"
+	page_link = "Guide_to_Forensics"
+
+//medical
+/obj/item/weapon/book/manual/wiki/medical_guide
+	name = "Medical Diagnostics Manual"
+	desc = "First, do no harm. A detailed medical practitioner's guide."
+	icon_state = "book_medical"
+	author = "Medical Journal, volume 1"
+	title = "Medical Diagnostics Manual"
+	page_link = "Guide_to_Medical"
+
+/obj/item/weapon/book/manual/wiki/medical_chemistry
+	name = "Chemistry Textbook"
+	icon_state = "book"//TODO: Add icon
+	author = "Medical Journal, volume 2"
+	title = "Chemistry"
+	page_link = "Guide_to_Chemistry"
+
+//neotheology
+/obj/item/weapon/book/manual/wiki/neotheology_cloning //TODO: Completely change this to be NT-oriented.
+	name = "Cloning Rituals"
+	icon_state = "book"//TODO: Add icon
+	author = "The Church"
+	title = "Cloning Rituals"
+	page_link = "Guide_to_Cloning"
+
+//service
+/obj/item/weapon/book/manual/wiki/barman_recipes
+	name = "Barman Recipes"
+	icon_state = "book"
+	author = "Sir John Rose"
+	title = "Barman Recipes"
+	page_link = "Guide_to_Food_and_Drinks"
+
+/obj/item/weapon/book/manual/wiki/chef_recipes
+	name = "Chef Recipes"
+	icon_state = "chefbook"
+	author = "Victoria Ponsonby"
+	title = "Chef Recipes"
+	page_link = "Guide_to_Food_and_Drinks"
