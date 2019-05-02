@@ -1,6 +1,6 @@
 /obj/item/weapon/tool/pickaxe
 	name = "pickaxe"
-	desc = "The most basic of mining tools, for short excavations and small mineral extractions. Use in-hand to toggle between both digging and excavating."
+	desc = "The most basic of mining tools, for short excavations and small mineral extractions."
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	force = WEAPON_FORCE_DANGEROUS
@@ -19,19 +19,30 @@
 	structure_damage_factor = STRUCTURE_DAMAGE_BORING //Drills and picks are made for getting through hard materials
 	//They are the best anti-structure melee weapons
 	embed_mult = 1.2 //Digs deep
+	mode = EXCAVATE //Mode should be whatever is the starting tool and off quality.
+
+/obj/item/weapon/tool/pickaxe/pickup(mob/user)
+	..()
+	update_icon()
+
+/obj/item/weapon/tool/pickaxe/dropped(mob/user)
+	..()
+	update_icon()
 
 /obj/item/weapon/tool/pickaxe/turn_on(mob/user)
 
+	mode = DIG
 	user << SPAN_NOTICE("You tighten your grip on [src], and ready yourself to strike earth.")
 	..()
 
 /obj/item/weapon/tool/pickaxe/turn_off(mob/user)
 
+	mode = EXCAVATE
 	user << SPAN_NOTICE("You loosen your grip on [src], and prepare to remove debris.")
 	..()
 
 
-/obj/item/weapon/tool/pickaxe/onestar //TODO: Add sound
+/obj/item/weapon/tool/pickaxe/onestar //TODO: Add sound to /turn_on proc
 	name = "One Star pickaxe"
 	desc = "A standard One Star basic tool. There used energy technologies what makes it enough powerful and cheap at the same time."
 	icon_state = "one_star_pickaxe"

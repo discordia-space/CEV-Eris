@@ -1,3 +1,7 @@
+#define NOMODE null
+#define EXCAVATE 0
+#define DIG 1
+
 /obj/item/weapon/tool
 	name = "tool"
 	icon = 'icons/obj/tools.dmi'
@@ -18,6 +22,8 @@
 	var/use_fuel_cost = 0	//Same, only for fuel. And for the sake of God, DONT USE CELLS AND FUEL SIMULTANEOUSLY.
 	var/passive_fuel_cost = 0.03 //Fuel consumed per process tick while active
 	var/max_fuel = 0
+
+	var/mode = NOMODE //For various tool icon updates.
 
 	//Third type of resource, stock. A tool that uses physical objects (or itself) in order to work
 	//Currently used for tape roll
@@ -897,6 +903,16 @@
 			ratio = get_fuel() / max_fuel
 			ratio = max(round(ratio, 0.25) * 100, 25)
 			overlays += "[icon_state]-[ratio]"
+
+	if(ismob(loc))
+		var/tooloverlay
+		switch(mode)
+			if (EXCAVATE)
+				tooloverlay = "excavate"
+			if (DIG)
+				tooloverlay = "dig"
+		overlays += (tooloverlay)
+		update_wear_icon()
 
 /***************************
 	Misc/utility procs

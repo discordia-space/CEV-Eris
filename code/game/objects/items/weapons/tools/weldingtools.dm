@@ -26,6 +26,34 @@
 	heat = 2250
 
 
+/obj/item/weapon/tool/weldingtool/turn_on(mob/user)
+
+	if (get_fuel() > passive_fuel_cost)
+		item_state = "[initial(item_state)]_on"
+		user << SPAN_NOTICE("You switch [src] on.")
+		playsound(loc, 'sound/items/welderactivate.ogg', 50, 1)
+		..()
+		damtype = BURN
+		START_PROCESSING(SSobj, src)
+	else
+		item_state = initial(item_state)
+		user << SPAN_WARNING("[src] has no fuel!")
+
+	//Todo: Add a better hit sound for a turned_on welder
+
+/obj/item/weapon/tool/weldingtool/turn_off(mob/user)
+	item_state = initial(item_state)
+	playsound(loc, 'sound/items/welderdeactivate.ogg', 50, 1)
+	user << SPAN_NOTICE("You switch [src] off.")
+	..()
+	damtype = initial(damtype)
+
+
+/obj/item/weapon/tool/weldingtool/is_hot()
+	if (damtype == BURN)
+		return heat
+
+
 /obj/item/weapon/tool/weldingtool/improvised
 	name = "jury-rigged torch"
 	desc = "An assembly of pipes attached to a little gas tank. Serves capably as a welder, though a bit risky."
@@ -41,31 +69,6 @@
 /obj/item/weapon/tool/weldingtool/improvised/Created()
 	return
 
-/obj/item/weapon/tool/weldingtool/turn_on(mob/user)
-
-	if (get_fuel() > passive_fuel_cost)
-		item_state = "[initial(item_state)]_on"
-		user << SPAN_NOTICE("You switch [src] on.")
-		playsound(loc, 'sound/items/welderactivate.ogg', 50, 1)
-		..()
-		damtype = BURN
-		START_PROCESSING(SSobj, src)
-	else
-		item_state = initial(item_state)
-		user << SPAN_WARNING("[src] has no fuel!")
-
-
-	//Todo: Add a better hit sound for a turned_on welder
-
-
-
-/obj/item/weapon/tool/weldingtool/turn_off(mob/user)
-	item_state = initial(item_state)
-	playsound(loc, 'sound/items/welderdeactivate.ogg', 50, 1)
-	user << SPAN_NOTICE("You switch [src] off.")
-	..()
-	damtype = initial(damtype)
-
 
 /obj/item/weapon/tool/weldingtool/advanced
 	name = "advanced welding tool"
@@ -78,11 +81,6 @@
 	heat = 3773
 	degradation = 0.07
 	max_upgrades = 4
-
-/obj/item/weapon/tool/weldingtool/is_hot()
-	if (damtype == BURN)
-		return heat
-
 
 /obj/item/weapon/tool/weldingtool/onestar
 	name = "One Star welding tool"
