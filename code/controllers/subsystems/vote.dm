@@ -19,7 +19,7 @@ SUBSYSTEM_DEF(vote)
 		interface_client(C)
 
 /datum/controller/subsystem/vote/proc/interface_client(client/C)
-	var/datum/browser/panel = new(C.mob, "Vote","Vote", 500, 600)
+	var/datum/browser/panel = new(C.mob, "Vote","Vote", 500, 650)
 	panel.set_content(interface(C))
 	panel.open()
 
