@@ -455,7 +455,7 @@
 	//Eject any items that aren't meant to be in the pod.
 	var/list/items = src.contents
 	if(occupant)
-		if(usr != occupant)
+		if(usr != occupant && !occupant.client)
 			to_chat(usr, SPAN_WARNING("It's locked inside!"))
 			return
 		items -= occupant
