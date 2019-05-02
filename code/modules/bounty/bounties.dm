@@ -1,3 +1,4 @@
+//TODO remove all this later
 GLOBAL_DATUM_INIT(bounty_master, /datum/bounty_master, new)
 
 
