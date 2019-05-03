@@ -107,6 +107,7 @@
 	name = "spear"
 	desc = "A haphazardly-constructed yet still deadly weapon of ancient design."
 	force = WEAPON_FORCE_PAINFUL
+	structure_damage_factor = STRUCTURE_DAMAGE_WEAK
 	w_class = ITEM_SIZE_LARGE
 	slot_flags = SLOT_BACK
 	force_divisor = 0.33          // 22 when wielded with hardness 15 (glass)
