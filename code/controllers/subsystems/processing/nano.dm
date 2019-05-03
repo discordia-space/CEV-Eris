@@ -28,9 +28,12 @@ PROCESSING_SUBSYSTEM_DEF(nano)
 		// Close it so it will be re-opened.
 		ui.close()
 		return null
-		
+
 	else if (force_open == NANOUI_FOCUS)
 		ui.focus()
+
+	else if (force_open == NANOUI_REINITIALIZE)
+		ui.reinitialise(new_initial_data=data)
 
 	return ui
 
