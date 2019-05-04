@@ -21,7 +21,7 @@
 	embed_mult = 1.2 //Digs deep
 	mode = EXCAVATE //Mode should be whatever is the starting tool and off quality.
 
-/obj/item/weapon/tool/pickaxe/pickup(mob/user)
+/obj/item/weapon/tool/pickaxe/equipped(mob/user)
 	..()
 	update_icon()
 

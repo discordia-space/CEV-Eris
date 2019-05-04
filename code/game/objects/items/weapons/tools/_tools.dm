@@ -912,7 +912,6 @@
 			if (DIG)
 				tooloverlay = "dig"
 		overlays += (tooloverlay)
-		update_wear_icon()
 
 /***************************
 	Misc/utility procs
