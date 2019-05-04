@@ -31,6 +31,7 @@
 
 	var/fire_sound_text = "gunshot"
 	var/recoil = 0		//screen shake
+	var/recoil_buildup = 0.2 //How quickly recoil builds up
 
 	var/muzzle_flash = 3
 	var/list/dispersion = list(0)
