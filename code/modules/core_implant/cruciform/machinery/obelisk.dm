@@ -2,15 +2,13 @@
 	name = "NeoTheology's obelisk"
 	desc = "The obelisk."
 	icon = 'icons/obj/neotheology_machinery.dmi'
-	icon_state = "nt_obelisk_base"
+	icon_state = "nt_obelisk"
 	//TODO:
 	//circuit = /obj/item/weapon/circuitboard/nt_obelisk
 
 	density = TRUE
 	anchored = TRUE
 	layer = 2.8
-
-	frame_type = FRAME_VERTICAL
 
 	use_power = 1
 	idle_power_usage = 30
@@ -26,8 +24,6 @@
 
 /obj/machinery/power/nt_obelisk/New()
 	..()
-	update_icon(active)
-	Initialize()
 
 /obj/machinery/attack_hand(mob/user as mob)
 	return
@@ -36,9 +32,8 @@
 	..()
 	if(stat)
 		return
-	var/new_state = check_for_faithful()
-	update_icon(new_state)
-	active = new_state
+	active = check_for_faithful()
+	update_icon()
 	if(!active)
 		use_power = 1
 		for(var/obj/structure/burrow/burrow in range(area_radius, src))
@@ -81,22 +76,5 @@
 	return got_neoteo
 
 
-/obj/machinery/power/nt_obelisk/update_icon(var/state)
-	if(state == active)
-		return
-
-	overlays.Cut()
-
-	icon_state = "nt_obelisk_base[state?"_on":""]"
-	var/image/I = image(icon, "nt_obelisk_top[state?"_on":""]")
-	I.layer = 5.021
-	I.pixel_z = 32
-	overlays.Add(I)
-
-	I = image(icon, "nt_obelisk_base_effect[state?"_pup":"_pdown"]")
-	I.layer = 5
-	overlays.Add(I)
-	I = image(icon, "nt_obelisk_top_effect[state?"_pup":"_pdown"]")
-	I.layer = 5.021
-	I.pixel_z = 32
-	overlays.Add(I)
+/obj/machinery/power/nt_obelisk/update_icon()
+	icon_state = "nt_obelisk[active?"_on":""]"
