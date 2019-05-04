@@ -145,8 +145,7 @@
 	wage = WAGE_LABOUR_DUMB	//Barely a retaining fee. Actor can busk for credits to keep themselves fed
 	stat_modifiers = list(
 		STAT_TGH = 10,
-		STAT_ROB = 15,
-		STAT_VIG = 10,
+		STAT_ROB = 10,
 	)
 
 	loyalties = LOYALTY_CIVILIAN
