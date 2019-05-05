@@ -36,7 +36,7 @@
 		my_log.unregister(src)
 	. = ..()
 
-/datum/nano_module/deck_management/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = GLOB.default_state)
+/datum/nano_module/deck_management/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, state = GLOB.default_state)
 	var/list/data = host.initial_data()
 	var/logs = SSshuttle.shuttle_logs
 

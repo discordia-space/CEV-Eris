@@ -18,7 +18,7 @@
 		return
 	ui_interact(user)
 
-/obj/machinery/computer/robotics/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/computer/robotics/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/data[0]
 	data["robots"] = get_cyborgs(user)
 	data["safety"] = safety

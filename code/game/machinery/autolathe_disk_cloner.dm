@@ -97,7 +97,7 @@
 	ui_interact(user)
 	update_icon()
 
-/obj/machinery/autolathe_disk_cloner/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/autolathe_disk_cloner/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/list/data = list()
 
 	data["disk1"] = null
