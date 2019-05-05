@@ -20,8 +20,8 @@
 
 	// Role data.
 	var/id = null                      		// Unique type identifier.
-	var/role_text = "Traitor"               // special_role text.
-	var/role_text_plural = "Traitors"       // As above but plural.
+	var/role_text = "Antagonist"               // special_role text.
+	var/role_text_plural = "Antagonists"       // As above but plural.
 	var/selectable = TRUE
 
 	// Faction data.

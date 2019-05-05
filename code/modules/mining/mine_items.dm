@@ -16,19 +16,19 @@
 	new /obj/item/device/radio/headset/headset_cargo(src)
 	new /obj/item/clothing/under/rank/miner(src)
 	new /obj/item/clothing/gloves/thick(src)
+	new /obj/item/clothing/glasses/meson(src)
 	new /obj/item/clothing/shoes/black(src)
 	new /obj/item/weapon/cell/medium(src)
 	new /obj/item/weapon/cell/medium(src)
-	new /obj/item/weapon/tool_upgrade/augment/fuel_tank(src)
+	new /obj/item/weapon/cell/small(src)
 	new /obj/item/weapon/tool_upgrade/augment/fuel_tank(src)
 	new /obj/item/device/scanner/analyzer(src)
 	new /obj/item/weapon/storage/bag/ore(src)
-	new /obj/item/device/lighting/toggleable/lantern(src)
+	new /obj/item/device/lighting/toggleable/flashlight/heavy(src)
 	new /obj/item/weapon/tool/shovel(src)
 	new /obj/item/weapon/tool/pickaxe(src)
-	new /obj/item/weapon/tool/pickaxe/jackhammer(src)
+	new /obj/item/weapon/tool/pickaxe/drill(src)
 	new /obj/item/device/t_scanner(src)
-	new /obj/random/tool_upgrade(src)
 
 /******************************Lantern*******************************/
 

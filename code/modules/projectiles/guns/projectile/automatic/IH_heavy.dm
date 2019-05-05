@@ -1,27 +1,33 @@
-//The heavy rifle is ironhammer's go-to weapon for dealing with serious threats. It weighs a ton and hits hard
+//Primary AR of IH. Has supreme AP to deal with those pesky Serbs (guildsmans actually) in armored hardsuits.
 /obj/item/weapon/gun/projectile/automatic/IH_heavyrifle
-	name = "FS BR \"Wintermute\""
-	desc = "A high end military grade automatic battle rifle, designed for use against armoured infantry. Has a slightly slower firing rate than its contemporaries, but hits like a truck. Uses 7.62mm rounds."
+	name = "FS AR 5.56x45 \"Wintermute\""
+	desc = "A high end military grade assault rifle, designed as a modern ballistic infantry weapon. Primarily used by and produced for IH troops. Uses 5.56mm rounds."
 	icon_state = "IH_heavyrifle"
 	item_state = "IH_heavyrifle"
-	w_class = ITEM_SIZE_HUGE
-	force = WEAPON_FORCE_PAINFULL
-	caliber = "a762"
+	w_class = ITEM_SIZE_LARGE
+	force = WEAPON_FORCE_PAINFUL
+	caliber = "a556"
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/ak47
+	mag_well = MAG_WELL_IH
+	magazine_type = /obj/item/ammo_magazine/ih556
+	auto_eject = 1
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
-	price_tag = 4000
+	price_tag = 3500
 	fire_sound = 'sound/weapons/guns/fire/ltrifle_fire.ogg'
+	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	unload_sound 	= 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/ltrifle_cock.ogg'
-	damage_multiplier = 1.3 //Significant power increase, but fires at a fairly slow rate
+	zoom_factor = 1.2
+	recoil = 1.1 //slightly lower due to firing 5.56, not 7.62
+
 	firemodes = list(
-		FULL_AUTO_250,
+		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    dispersion=list(0.0, 0.6, 0.6), icon="burst"),
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    dispersion=list(0.0, 0.6, 0.6), icon="burst"),
+		list(mode_name="short bursts",   burst=5, fire_delay=null, move_delay=6,    dispersion=list(0.6, 1.0, 1.0, 1.0, 1.2), icon="burst"),
 		)
 
 /obj/item/weapon/gun/projectile/automatic/IH_heavyrifle/update_icon()

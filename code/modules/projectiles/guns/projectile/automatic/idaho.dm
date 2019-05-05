@@ -9,15 +9,17 @@
 	slot_flags = SLOT_BELT
 	ammo_type = "/obj/item/ammo_casing/c9mmr"
 	load_method = MAGAZINE
+	mag_well = MAG_WELL_SMG
 	magazine_type = /obj/item/ammo_magazine/smg9mm
 	matter = list(MATERIAL_PLASTEEL = 16, MATERIAL_WOOD = 4)
-	price_tag = 2500
+	price_tag = 1600
 	damage_multiplier = 0.75
+	recoil = 0.8
 
 	firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    dispersion=list(0.0, 0.6, 0.6), icon="burst"),
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    dispersion=list(0.0, 0.6, 0.6), icon="burst"),
 		)
 
 /obj/item/weapon/gun/projectile/automatic/idaho/update_icon()

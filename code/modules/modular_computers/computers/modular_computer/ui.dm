@@ -1,10 +1,10 @@
 // Operates NanoUI
-/obj/item/modular_computer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/modular_computer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	if(!screen_on || !enabled || bsod)
 		if(ui)
 			ui.close()
 		return 0
-	if(!apc_power(0) && !battery_power(0))
+	if(!try_use_power(0))
 		if(ui)
 			ui.close()
 		return 0

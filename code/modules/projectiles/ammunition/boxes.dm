@@ -3,6 +3,7 @@
 	name = "ammunition box"
 	desc = "Gun ammunition stored in a shiny new box. You can see caliber information on the label."
 	mag_type = SPEEDLOADER	//To prevent load in magazine filled guns
+	icon = 'icons/obj/ammo.dmi'
 	multiple_sprites = 1
 	reload_delay = 30
 	ammo_mag = "box"
@@ -157,27 +158,6 @@
 	ammo_type = /obj/item/ammo_casing/a762
 	mag_type = SPEEDLOADER | MAGAZINE
 	max_ammo = 80
-
-//Special appearance for serb ammobox. Identical functionality though
-/obj/item/ammo_magazine/ammobox/a762/pk
-	name = "PK munitions box (7.62mm)"
-	desc = "An off brand box of 7.62mm rounds, designed to be shipped with the PK machine gun"
-	icon_state = "pk_box"
-
-/obj/item/ammo_magazine/ammobox/a762/pk/update_icon()
-	if (!stored_ammo.len)
-		icon_state = "pk_box-0"
-		return
-	if (stored_ammo.len == max_ammo)
-		icon_state = "pk_box"
-		return
-
-	var/number = 0
-	if (stored_ammo.len && max_ammo)
-		var/percent = (stored_ammo.len / max_ammo) * 100
-		number = round(percent, 25)
-	icon_state = "pk_box-[number]"
-
 
 /obj/item/ammo_magazine/ammobox/c357
 	name = "ammunition box (.357)"

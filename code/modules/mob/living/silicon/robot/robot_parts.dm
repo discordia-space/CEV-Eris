@@ -7,6 +7,7 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	dir = SOUTH
+	matter = list(MATERIAL_STEEL = 15)
 	var/body_part = "part"
 
 /obj/item/robot_parts/set_dir()
@@ -44,15 +45,16 @@
 	desc = "A heavily reinforced case containing cyborg logic boards, with space for a standard power cell."
 	icon_state = "chest"
 	body_part = "chest"
+	matter = list(MATERIAL_STEEL = 25)
 	var/wires = 0.0
 	var/obj/item/weapon/cell/large/cell = null
 
 /obj/item/robot_parts/chest/is_ready(var/mob/living/user)
 	if(!wires)
-		user << SPAN_WARNING("You need to attach wires to it first!")
+		to_chat(user, SPAN_WARNING("You need to attach wires to it first!"))
 		return FALSE
 	else if(!cell)
-		user << SPAN_WARNING("You need to attach a cell to it first!")
+		to_chat(user, SPAN_WARNING("You need to attach a cell to it first!"))
 		return FALSE
 	return TRUE
 
@@ -66,7 +68,7 @@
 
 /obj/item/robot_parts/head/is_ready(var/mob/living/user)
 	if(!flash1 || !flash2)
-		user << SPAN_WARNING("You need to attach a flash to it first!")
+		to_chat(user, SPAN_WARNING("You need to attach a flash to it first!"))
 		return FALSE
 	return TRUE
 
@@ -74,6 +76,7 @@
 	name = "endoskeleton"
 	desc = "A complex metal backbone with standard limb sockets and pseudomuscle anchors."
 	icon_state = "robo_suit"
+	matter = list(MATERIAL_STEEL = 20)
 	var/list/req_parts = list(
 		"chest",
 		"head",

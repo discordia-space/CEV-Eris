@@ -10,4 +10,5 @@
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
 	ammo_type = /obj/item/ammo_casing/c38
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
-	price_tag = 1000
+	price_tag = 800 //cheap civ peashooter revolver, something similar to olivav
+	recoil = 0.4 //peashooter tier revolver

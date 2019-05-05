@@ -146,7 +146,7 @@ Advanced Voidsuit: Technomancer Exultant
 /obj/item/clothing/shoes/magboots/rig/ce
 	name = "Advanced Magboots"
 	desc = "Advanced magnetic boots that have a lighter magnetic pull, placing less burden on the wearer."
-	mag_slow = 2
+	mag_slow = 1
 
 /***************************************
 	Hazmat: Moebius Overseer

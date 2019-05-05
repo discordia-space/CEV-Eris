@@ -16,6 +16,7 @@
 	var/spent_icon = null
 	var/amount = 1
 	var/maxamount = 15
+	var/reload_delay = 0
 
 /obj/item/ammo_casing/New()
 	..()
@@ -54,25 +55,25 @@
 /obj/item/ammo_casing/attackby(obj/item/I, mob/user)
 	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING, QUALITY_CUTTING), src))
 		if(!BB)
-			user << "\blue There is no bullet in the casing to inscribe anything into."
+			to_chat(user, SPAN_NOTICE("There is no bullet in the casing to inscribe anything into."))
 			return
 
 		var/tmp_label = ""
 		var/label_text = sanitizeSafe(input(user, "Inscribe some text into \the [initial(BB.name)]","Inscription",tmp_label), MAX_NAME_LEN)
 		if(length(label_text) > 20)
-			user << "\red The inscription can be at most 20 characters long."
+			to_chat(user, SPAN_WARNING("The inscription can be at most 20 characters long."))
 		else if(!label_text)
-			user << "\blue You scratch the inscription off of [initial(BB)]."
+			to_chat(user, SPAN_NOTICE("You scratch the inscription off of [initial(BB)]."))
 			BB.name = initial(BB.name)
 		else
-			user << "\blue You inscribe \"[label_text]\" into \the [initial(BB.name)]."
+			to_chat(user, SPAN_NOTICE("You inscribe \"[label_text]\" into \the [initial(BB.name)]."))
 			BB.name = "[initial(BB.name)] (\"[label_text]\")"
 		return TRUE
 	else if(istype(I, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/merging_casing = I
 		if(isturf(src.loc))
 			if(merging_casing.amount == merging_casing.maxamount)
-				user << SPAN_WARNING("[merging_casing] is fully stacked!")
+				to_chat(user, SPAN_WARNING("[merging_casing] is fully stacked!"))
 				return FALSE
 			if(merging_casing.mergeCasing(src, null, user))
 				return TRUE
@@ -86,19 +87,19 @@
 		error("Passed no user to mergeCasing() when output messages is active.")
 	if(src.caliber != AC.caliber)
 		if(!noMessage)
-			user << SPAN_WARNING("Ammo are different calibers.")
+			to_chat(user, SPAN_WARNING("Ammo are different calibers."))
 		return FALSE
 	if(src.projectile_type != AC.projectile_type)
 		if(!noMessage)
-			user << SPAN_WARNING("Ammo are different types.")
+			to_chat(user, SPAN_WARNING("Ammo are different types."))
 		return FALSE
 	if(src.amount == src.maxamount)
 		if(!noMessage)
-			user << SPAN_WARNING("[src] is fully stacked!")
+			to_chat(user, SPAN_WARNING("[src] is fully stacked!"))
 		return FALSE
 	if((!src.BB && AC.BB) || (src.BB && !AC.BB))
 		if(!noMessage)
-			user << SPAN_WARNING("Fired and non-fired ammo wont stack.")
+			to_chat(user, SPAN_WARNING("Fired and non-fired ammo wont stack."))
 		return FALSE
 
 	var/mergedAmount
@@ -140,21 +141,30 @@
 
 /obj/item/ammo_casing/examine(mob/user)
 	..()
-	user << "There [(amount == 1)? "is" : "are"] [amount] round\s left!"
+	to_chat(user, "There [(amount == 1)? "is" : "are"] [amount] round\s left!")
 	if (!BB)
-		user << "[(amount == 1)? "This one is" : "These ones are"] spent."
+		to_chat(user, "[(amount == 1)? "This one is" : "These ones are"] spent.")
 
 //Gun loading types
 #define SINGLE_CASING 	1	//The gun only accepts ammo_casings. ammo_magazines should never have this as their mag_type.
 #define SPEEDLOADER 	2	//Transfers casings from the mag to the gun when used.
 #define MAGAZINE 		4	//The magazine item itself goes inside the gun
 
+#define MAG_WELL_GENERIC	0	//Guns without special magwells
+#define MAG_WELL_PISTOL		1	//Pistols
+#define MAG_WELL_SMG		2	//smgs
+#define MAG_WELL_CIVI_RIFLE	4	//Normal non IH or AK rifles
+#define MAG_WELL_IH			8	//IH guns
+#define MAG_WELL_AK			16	//AKs
+#define MAG_WELL_BOX		32	//Lmgs with box mags
+#define MAG_WELL_PAN		64	//Lmgs with pan mags
+
 //An item that holds casings and can be used to put them inside guns
 /obj/item/ammo_magazine
 	name = "magazine"
 	desc = "A magazine for some kind of gun."
 	icon_state = "place-holder-box"
-	icon = 'icons/obj/ammo.dmi'
+	icon = 'icons/obj/ammo_mags.dmi'
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	item_state = "syringe_kit"
@@ -166,6 +176,7 @@
 
 	var/list/stored_ammo = list()
 	var/mag_type = SPEEDLOADER //ammo_magazines can only be used with compatible guns. This is not a bitflag, the load_method var on guns is.
+	var/mag_well = MAG_WELL_GENERIC
 	var/caliber = "357"
 	var/ammo_mag = "default"
 	var/max_ammo = 7
@@ -196,19 +207,19 @@
 	if(istype(W, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = W
 		if(stored_ammo.len >= max_ammo)
-			user << SPAN_WARNING("[src] is full!")
+			to_chat(user, SPAN_WARNING("[src] is full!"))
 			return
 		if(C.caliber != caliber)
-			user << SPAN_WARNING("[C] does not fit into [src].")
+			to_chat(user, SPAN_WARNING("[C] does not fit into [src]."))
 			return
 		insertCasing(C)
 	else if(istype(W, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/other = W
 		if(!src.stored_ammo.len)
-			user << SPAN_WARNING("There is no ammo in [src]!")
+			to_chat(user, SPAN_WARNING("There is no ammo in [src]!"))
 			return
 		if(!do_after(user, src.reload_delay, src))
-			user << SPAN_WARNING("You stop loading ammo into [other]")
+			to_chat(user, SPAN_WARNING("You stop loading ammo into [other]"))
 			return
 		for(var/obj/item/ammo in src.stored_ammo)
 			if(other.stored_ammo.len >= other.max_ammo)
@@ -218,7 +229,7 @@
 				other.insertCasing(T)
 			else
 				break
-		user << SPAN_NOTICE("You're done here")
+		to_chat(user, SPAN_NOTICE("You're done here"))
 
 /obj/item/ammo_magazine/attack_hand(mob/user)
 	if(user.get_inactive_hand() == src && stored_ammo.len)
@@ -243,10 +254,10 @@
 	if(istype(W, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = W
 		if(stored_ammo.len >= max_ammo)
-			user << SPAN_WARNING("[src] is full!")
+			to_chat(user, SPAN_WARNING("[src] is full!"))
 			return
 		if(C.caliber != caliber)
-			user << SPAN_WARNING("[C] does not fit into [src].")
+			to_chat(user, SPAN_WARNING("[C] does not fit into [src]."))
 			return
 		if(stored_ammo.len)
 			var/obj/item/ammo_casing/T = removeCasing()
@@ -322,9 +333,9 @@
 		return
 
 	if(!stored_ammo.len)
-		usr << SPAN_NOTICE("[src] is already empty!")
+		to_chat(usr, SPAN_NOTICE("[src] is already empty!"))
 		return
-	usr << SPAN_NOTICE("You take out ammo from [src].")
+	to_chat(usr, SPAN_NOTICE("You take out ammo from [src]."))
 	for(var/i=1 to stored_ammo.len)
 		var/obj/item/ammo_casing/C = removeCasing()
 		C.forceMove(T)
@@ -344,7 +355,7 @@
 
 /obj/item/ammo_magazine/examine(mob/user)
 	..()
-	user << "There [(stored_ammo.len == 1)? "is" : "are"] [stored_ammo.len] round\s left!"
+	to_chat(user, "There [(stored_ammo.len == 1)? "is" : "are"] [stored_ammo.len] round\s left!")
 
 //magazine icon state caching
 /var/global/list/magazine_icondata_keys = list()

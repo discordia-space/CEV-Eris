@@ -14,8 +14,3 @@
 
 	use_power_cost = 0.24
 	suitable_cell = /obj/item/weapon/cell/small
-
-
-/obj/item/weapon/tool/shiv
-	name = "sharv"
-	desc = "A pointy piece of glass, abraded to an edge and wrapped in tape for a handle."

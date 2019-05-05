@@ -403,21 +403,23 @@ div.notice {
 
 .displayBar {
     position: relative;
-    width: 236px;
+    width: 100%;
     height: 16px;
-    border: 1px solid #666666;
+    border: 1px solid #40628a;
     float: left;
     margin: 0 5px 0 0;
     overflow: hidden;
     background: #000000;
+	line-height: 17px;
+	padding: 1px;
+	border: 1px solid #40628a;
+	background: #272727;
 }
 
 .displayBarText, .displayBarVerticalText, .displayBarBeakerText{
     position: absolute;
-    top: -2px;
-    left: 5px;
-    width: 100%;
-    height: 100%;
+	top: 0;
+	right: 3px;
     color: #ffffff;
     font-weight: normal;
 }
@@ -743,3 +745,49 @@ th.bot {
 .candystripe:nth-child(odd) {
 	background-color: rgba(0, 0, 0, 0.16);
 }
+
+div.display {
+	width: 100%;
+	padding: 4px;
+	margin: 6px 0;
+	box-sizing: border-box;
+
+	background-color: rgba(0,0,0,.33);
+	box-shadow: inset 0 0 5px rgba(0,0,0,.5);
+}
+
+div.display header {
+    display: block;
+    position: relative;
+    width: 100%;
+    padding: 0 4px;
+    margin-bottom: 6px;
+	line-height: 100%;
+
+	color: #fff;
+	border-bottom: 2px solid #40628a;
+}
+
+div.display header .buttonRight {
+	position: absolute;
+	bottom: 6px;
+	right: 4px;
+}
+
+div.display h1, div.display h2, div.display h3, div.display h4, div.display h5, div.display h6 {
+    display: inline-block;
+    margin: 0;
+    padding: 6px 0;
+}
+
+div.display article {
+	display: table;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+section {
+    display: table-row;
+    width: 100%;
+}
+

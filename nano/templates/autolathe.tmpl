@@ -4,7 +4,7 @@ Used In File(s): \code\game\machinery\autolathe.dm
  -->
 <div class="statusDisplay">
 	<div class="item">
-		<div class="floatLeft" style="width:59%; border-right:1px solid #40628a;  margin-right:-1px">
+		<div class="floatLeft" style="width:50%; border-right:1px solid #40628a">
 			<div class="item">
 				<div class="itemLabelWidest"><b>Loaded materials</b></div>
 			</div>
@@ -19,8 +19,12 @@ Used In File(s): \code\game\machinery\autolathe.dm
 					<div class="itemLabelNarrow">empty</div> 
 				</div>
 			{{/for}}
+			<div class="item">
+				{{:helper.link('INSERT MATERIALS', '', {'insert' : 1}, null, 'bigButton')}}
+			</div>
 		</div>
-		<div class="floatLeft" style="width:39%; border-left:1px solid #40628a; padding-left:5px;">
+
+		<div class="floatLeft" style="width:48%; padding-left:5px;">
 			<div class="item">
 				<div class="itemLabelWidest"><b>Inserted beaker</b></div>
 			</div>
@@ -49,75 +53,61 @@ Used In File(s): \code\game\machinery\autolathe.dm
 		</div>
 	</div>
 </div>
-<div class="statusDisplay">
-	<div class="item">
-		{{:helper.link('INSERT MATERIALS', '', {'insert' : 1}, null, 'bigButton')}}
-	</div>
-</div>
 
-{{if data.has_disk}}
-	<div class="statusDisplay">
-		<div class="item">
-			{{if data.disk}}
-				{{if data.uses == -1}}
-					<div class="itemContentWide"><b>{{:data.disk}}. Disk is unlimited.</b></div>
-				{{else}}
-					{{if data.uses < -1}}
-						<div class="itemContentWide"><b>{{:data.disk}}</b></div>
-					{{else}}
-						<div class="itemContentWide"><b>{{:data.disk}}. {{:data.uses}} uses left.</b></div>
-					{{/if}}
-				{{/if}}
-				<div class="itemlabelNarrow">{{:helper.link('', 'eject', {'eject_disk' : 1}, null, 'statusValue')}}</b></div>
-			{{else}}
-				<div class="itemContentWide"><b>Disk: not inserted.</b></div>
-				<div class="itemlabelNarrow">{{:helper.link('insert', 'eject', {'insert_disk' : 1}, null, 'statusValue')}}</b></div>
-			{{/if}}
-		</div>
-	</div>
-{{/if}}
-
+{{if data.have_disk}}
 <div class="statusDisplay">
 	<div class="item">
 		{{if data.disk}}
-			{{if data.uses == -1}}
-				<div class="itemContentWide"><b>{{:data.disk}}. Disk is unlimited.</b></div>
+			<div class="itemContentWide"><b>
+			{{if data.disk.uses == -1}}
+				{{:data.disk.name}}. Disk is unlimited.
 			{{else}}
-				{{if data.uses < -1}}
-					<div class="itemContentWide"><b>{{:data.disk}}</b></div>
+				{{if data.disk.uses < -1}}
+					{{:data.disk.name}}
 				{{else}}
-					<div class="itemContentWide"><b>{{:data.disk}}. {{:data.uses}} uses left.</b></div>
+					{{:data.disk.name}}. {{:data.disk.uses}} uses left.
 				{{/if}}
 			{{/if}}
-			<div class="itemlabelNarrow">{{:helper.link('', 'eject', {'eject_disk' : 1}, null, 'statusValue')}}</b></div>
+			</b></div>
 		{{else}}
 			<div class="itemContentWide"><b>Disk: not inserted.</b></div>
-			<div class="itemlabelNarrow">{{:helper.link('insert', 'eject', {'insert_disk' : 1}, null, 'statusValue')}}</b></div>
 		{{/if}}
+		<div class="itemlabelNarrow">{{:helper.link(data.disk ? 'eject' : 'insert', 'eject', {'disk' : 1}, null, 'statusValue')}}</div>
 	</div>
 </div>
+{{/if}}
 
-<div class="fixedLeftWider" style="width:49%">
+<div class="fixedLeftWider" style="width:50%">
 	<div class="item">
-		<div class="itemContent" style="width:95%">
+		<div class="itemContent" style="width:100%">
 			{{if data.disk}}
 				{{for data.recipes}}
 					<div class="item">
-						<div class="block" style ='padding: 0px; overflow: auto'>
-								<div style ='float: left; max-height:24px; max-width:24px; height:24px; width:24px; margin-left:0px' class='statusDisplayItem'><img src= {{:value.icon}} height=24 width=24></div>
+						<div class="block" style='padding: 0px; overflow: auto'>
+							<div class="item" style="margin: 0px">
+								<div style ='float: left; height: 24px; width: 24px; margin: 4px' class='statusDisplayItem'><img src= {{:value.icon}} height=24 width=24></div>
 								<div class="itemContentWidest">{{:value.name}}</div>
+							</div>
 							{{if value.unfolded}}
-								<div class="statusDisplay">
-									<div class="item">
-										<div style="margin-top:8px" class="itemLabelWidest"><b>Build time:</b> {{:value.time}}</div>
-									</div>
+								<div class="statusDisplay" style="margin: 0px 4px 4px 4px">
+									{{if value.materials}}
 									<div class="item">
 										<div class="itemLabelWidest">Materials</div>
-										<div class="itemContentWidest">{{:value.resources}}</div>
+										{{for value.materials :material:material_i}}
+											<div class="itemContentWidest">{{:material.name}}: {{:material.req}}</div>
+										{{/for}}
 									</div>
+									{{/if}}
+									{{if value.chemicals}}
 									<div class="item">
 										<div class="itemLabelWidest">Reagents</div>
-										<div class="itemContentWidest">{{:value.reagents}}</div>
+										{{for value.chemicals :chemical:chemical_i}}
+											<div class="itemContentWidest">{{:chemical.name}}: {{:chemical.req}}</div>
+										{{/for}}
+									</div>
+									{{/if}}
+									<div class="item">
+										<div style="margin-top:8px" class="itemLabelWidest"><b>Build time:</b> {{:value.time}}</div>
 									</div>
 								</div>
 							{{/if}}
@@ -146,7 +136,7 @@ Used In File(s): \code\game\machinery\autolathe.dm
 </div>
 
 <div class="fixedLeftWider" style="width:50%">
-	<div class="statusDisplay">
+	<div class="statusDisplay" style ='position: relative;'>
 		<div class="item">
 			<div class="item">
 				{{if data.paused}}
@@ -156,33 +146,40 @@ Used In File(s): \code\game\machinery\autolathe.dm
 				{{/if}}
 			</div>
 			{{if data.current}}
-				<div class="itemLabelWidest">Printing {{:data.current}}</div>
+				<div style ='position: absolute; top: 8px; right: 8px; max-height:48px; max-width:48px; height:48px; width:48px; margin-left:0px' class='statusDisplayItem'><img src= {{:data.current.icon}} height=48 width=48></div>
+				<div class="itemLabelwidest">Printing {{:data.current.name}}</div>
+				<div class="itemLabel">
 				{{if data.error}}
-					<div class="itemLabelWidest"><div class="bad">{{:data.error}}</div></div>
+					<div class="bad">{{:data.error}}</div>
 				{{else}}
-					<div class="itemLabelWidest">{{:data.progress}}/{{:data.current_time}}</div>
+					{{:helper.displayBar(data.progress / data.current.time, 0, 1, 'good', data.progress + "/" + data.current.time)}}
+					<br>
 				{{/if}}
+				</div>
 				<div class="item">
 					{{:helper.link('ABORT', '', {'abort_print' : 1}, null, 'bigButton')}}
 				</div>
 				<div class="statusDisplay">
-					<div class="itemLabelWidest"><b>Build time:</b> {{:data.current_time}}</div>
+					{{if data.current.materials}}
 					<div class="item">
 						<div class="itemLabelWidest">Materials</div>
-						{{for data.req_materials}}
-							<div class="itemContentWidest">{{:value.name}}: {{:value.req}}</div>
-						{{empty}}
-							<div class="itemContentWidest">None</div>
+						{{for data.current.materials :material:material_i}}
+							<div class="itemContentWidest">{{:material.name}}: {{:material.req}}</div>
 						{{/for}}
 					</div>
+					{{/if}}
+					{{if data.current.chemicals}}
 					<div class="item">
 						<div class="itemLabelWidest">Reagents</div>
-						{{for data.req_reagents}}
-							<div class="itemContentWidest">{{:value.name}}: {{:value.req}}</div>
-						{{empty}}
-							<div class="itemContentWidest">None</div>
+						{{for data.current.chemicals :chemical:chemical_i}}
+							<div class="itemContentWidest">{{:chemical.name}}: {{:chemical.req}}</div>
 						{{/for}}
 					</div>
+					{{/if}}
+					<div class="item">
+						<div style="margin-top:8px" class="itemLabelWidest"><b>Build time:</b> {{:data.current.time}}</div>
+					</div>
+
 				</div>
 			{{else}}
 				<div class="itemLabelWidest"><div class="average">Idle</div></div>
@@ -193,7 +190,8 @@ Used In File(s): \code\game\machinery\autolathe.dm
 				<div class="itemLabelWidest">Queue: {{:data.queue_len}}/{{:data.queue_max}} </div>
 				{{for data.queue}}
 					<div class="item">
-						<div class="itemContentWidest">
+						<div class="itemContentWidest" style ='position: relative;'>
+							<div style ='position: absolute; top: 10px; right: 10px; max-height:24px; max-width:24px; height:24px; width:24px; margin-left:0px' class='statusDisplayItem'><img src= {{:value.icon}} height=24 width=24></div>
 							{{if value.error >= 2}}
 								<div class="bad">{{:value.name}}</div>
 							{{else}}

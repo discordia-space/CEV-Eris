@@ -140,10 +140,19 @@ Frequency:
 	var/portal_fail_chance = null
 	var/cell_charge_per_attempt = 33
 
-/obj/item/weapon/hand_tele/New()
-	..()
+/obj/item/weapon/hand_tele/Initialize()
+	. = ..()
 	if(!cell && suitable_cell)
 		cell = new suitable_cell(src)
+
+/obj/item/weapon/hand_tele/get_cell()
+	return cell
+
+/obj/item/weapon/hand_tele/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+		update_icon()
 
 /obj/item/weapon/hand_tele/attack_self(mob/user)
 	if(!cell || !cell.checked_use( cell_charge_per_attempt ))

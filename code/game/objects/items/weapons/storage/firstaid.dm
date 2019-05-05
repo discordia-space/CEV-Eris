@@ -173,6 +173,7 @@
 	use_to_pickup = 1
 	use_sound = null
 	matter = list(MATERIAL_PLASTIC = 1)
+	max_storage_space = 12
 
 /obj/item/weapon/storage/pill_bottle/antitox
 	name = "bottle of Dylovene pills"

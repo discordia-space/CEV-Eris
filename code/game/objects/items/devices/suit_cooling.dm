@@ -24,11 +24,20 @@
 
 	//TODO: make it heat up the surroundings when not in space
 
-/obj/item/device/suit_cooling_unit/New()
+/obj/item/device/suit_cooling_unit/Initialize()
+	. = ..()
 	START_PROCESSING(SSobj, src)
 
-	cell = new/obj/item/weapon/cell/large()	//comes with the crappy default power cell - high-capacity ones shouldn't be hard to find
-	cell.loc = src
+	cell = new /obj/item/weapon/cell/large(src)	//comes with the crappy default power cell - high-capacity ones shouldn't be hard to find
+
+/obj/item/device/suit_cooling_unit/get_cell()
+	return cell
+
+/obj/item/device/suit_cooling_unit/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+		update_icon()
 
 /obj/item/device/suit_cooling_unit/Process()
 	if (!on || !cell)

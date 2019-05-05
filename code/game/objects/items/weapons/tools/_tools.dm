@@ -1,3 +1,7 @@
+#define NOMODE null
+#define EXCAVATE 0
+#define DIG 1
+
 /obj/item/weapon/tool
 	name = "tool"
 	icon = 'icons/obj/tools.dmi'
@@ -19,6 +23,8 @@
 	var/passive_fuel_cost = 0.03 //Fuel consumed per process tick while active
 	var/max_fuel = 0
 
+	var/mode = NOMODE //For various tool icon updates.
+
 	//Third type of resource, stock. A tool that uses physical objects (or itself) in order to work
 	//Currently used for tape roll
 	var/use_stock_cost = 0
@@ -33,7 +39,7 @@
 	var/unreliability = 0 //This is added to the failure rate of operations with this tool
 	var/repair_frequency = 0 //How many times this tool has been repaired
 
-	var/toggleable = FALSE	//Determinze if it can be switched ON or OFF, for example, if you need a tool that will consume power/fuel upon turning it ON only. Such as welder.
+	var/toggleable = FALSE	//Determines if it can be switched ON or OFF, for example, if you need a tool that will consume power/fuel upon turning it ON only. Such as welder.
 	var/switched_on = FALSE	//Curent status of tool. Dont edit this in subtypes vars, its for procs only.
 	var/switched_on_qualities = null	//This var will REPLACE tool_qualities when tool will be toggled on.
 	var/switched_on_force = null
@@ -127,7 +133,7 @@
 
 		if (C.use_tool(user = user, target =  src, base_time = WORKTIME_SLOW, required_quality = QUALITY_SCREW_DRIVING, fail_chance = FAILCHANCE_CHALLENGING, required_stat = STAT_MEC))
 			//If you pass the check, then you manage to remove the upgrade intact
-			user << SPAN_NOTICE("You successfully remove [toremove] while leaving it intact.")
+			to_chat(user, SPAN_NOTICE("You successfully remove [toremove] while leaving it intact."))
 			upgrades -= toremove
 			toremove.forceMove(get_turf(src))
 			toremove.holder = null
@@ -137,7 +143,7 @@
 			//You failed the check, lets see what happens
 			if (prob(50))
 				//50% chance to break the upgrade and remove it
-				user << SPAN_DANGER("You successfully remove [toremove], but destroy it in the process.")
+				to_chat(user, SPAN_DANGER("You successfully remove [toremove], but destroy it in the process."))
 				upgrades -= toremove
 				toremove.forceMove(get_turf(src))
 				toremove.holder = null
@@ -147,7 +153,7 @@
 				return 1
 			else if (degradation) //Because robot tools are unbreakable
 				//otherwise, damage the host tool a bit, and give you another try
-				user << SPAN_DANGER("You only managed to damage [src], but you can retry.")
+				to_chat(user, SPAN_DANGER("You only managed to damage [src], but you can retry."))
 				unreliability += 10*degradation
 				refresh_upgrades()
 				return 1
@@ -214,9 +220,11 @@
 
 	var/obj/item/weapon/tool/T
 	if(istool(src))
-
 		T = src
 		T.last_tooluse = world.time
+
+	if(!has_quality(required_quality))
+		return TOOL_USE_CANCEL
 
 	if (is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		if (isliving(target))
@@ -224,15 +232,14 @@
 			L.IgniteMob()
 
 	if(target.used_now)
-		user << SPAN_WARNING("[target.name] is used by someone. Wait for them to finish.")
+		to_chat(user, SPAN_WARNING("[target.name] is used by someone. Wait for them to finish."))
 		return TOOL_USE_CANCEL
-
 
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.shock_stage >= 30)
-			user << SPAN_WARNING("Pain distracts you from your task.")
+			to_chat(user, SPAN_WARNING("Pain distracts you from your task."))
 			fail_chance += round(H.shock_stage/120 * 40)
 			base_time += round(H.shock_stage/120 * 40)
 
@@ -253,9 +260,8 @@
 	if((instant_finish_tier < get_tool_quality(required_quality)) || time_to_finish < 0)
 		time_to_finish = 0
 
-	if (T)
-		if(!T.check_tool_effects(user, time_to_finish))
-			return TOOL_USE_CANCEL
+	if(T && !T.check_tool_effects(user, time_to_finish))
+		return TOOL_USE_CANCEL
 
 	//Repeating sound code!
 	//A datum/repeating_sound is a little object we can use to make a sound repeat a few times
@@ -286,7 +292,7 @@
 
 		if(!do_after(user, time_to_finish, target))
 			//If the doafter fails
-			user << SPAN_WARNING("You need to stand still to finish the task properly!")
+			to_chat(user, SPAN_WARNING("You need to stand still to finish the task properly!"))
 			target.used_now = FALSE
 			time_spent = world.time - start_time //We failed, spent only part of the time working
 			if (T)
@@ -398,14 +404,14 @@
 			//Drop the tool on the floor
 			if("damage")
 				if(user)
-					user << SPAN_DANGER("Your hand slips and you damage [src] a bit.")
+					to_chat(user, SPAN_DANGER("Your hand slips and you damage [src] a bit."))
 				T.unreliability += 5
 				return
 
 			//Drop the tool on the floor
 			if("drop")
 				if(user)
-					user << SPAN_DANGER("You drop [src] on the floor.")
+					to_chat(user, SPAN_DANGER("You drop [src] on the floor."))
 					user.drop_from_inventory(src)
 				else if(istype(loc, /obj/machinery/door/airlock))
 					var/obj/machinery/door/airlock/AD = loc
@@ -417,7 +423,7 @@
 			//Hit yourself
 			if("slip")
 				var/mob/living/carbon/human/H = user
-				user << SPAN_DANGER("Your hand slips while working with [src]!")
+				to_chat(user, SPAN_DANGER("Your hand slips while working with [src]!"))
 				attack(H, H, H.get_holding_hand(src))
 				return
 
@@ -432,7 +438,7 @@
 				var/newtarget = pick(targets)
 				var/mob/living/carbon/human/H = user
 
-				user << SPAN_DANGER("Your hand slips and you hit [target] with [src]!")
+				to_chat(user, SPAN_DANGER("Your hand slips and you hit [target] with [src]!"))
 				spawn()
 					H.ClickOn(newtarget)
 				return
@@ -442,7 +448,7 @@
 				if(user)
 					var/mob/living/carbon/human/H = user
 					var/throw_target = pick(trange(6, user))
-					user << SPAN_DANGER("Your [src] flies away!")
+					to_chat(user, SPAN_DANGER("Your [src] flies away!"))
 					H.unEquip(src)
 					throw_at(throw_target, src.throw_range, src.throw_speed, H)
 					return
@@ -458,14 +464,14 @@
 			//Stab yourself in the hand so hard your tool embeds
 			if("stab")
 				var/mob/living/carbon/human/H = user
-				user << SPAN_DANGER("You accidentally stuck [src] in your hand!")
+				to_chat(user, SPAN_DANGER("You accidentally stuck [src] in your hand!"))
 				H.get_organ(H.get_holding_hand(src)).embed(src)
 				return
 
 			//The tool completely breaks, permanantly gone
 			if("break")
 				if(user)
-					user << SPAN_DANGER("Your [src] broke beyond repair!")
+					to_chat(user, SPAN_DANGER("Your [src] broke beyond repair!"))
 					new /obj/item/weapon/material/shard/shrapnel(user.loc)
 				else
 					new /obj/item/weapon/material/shard/shrapnel(get_turf(src))
@@ -485,7 +491,7 @@
 
 			//The fuel in the tool ignites and sets you aflame
 			if("burn")
-				user << SPAN_DANGER("You ignite the fuel of the [src]!")
+				to_chat(user, SPAN_DANGER("You ignite the fuel of the [src]!"))
 				var/fuel = T.get_fuel()
 				T.consume_fuel(fuel)
 				user.adjust_fire_stacks(fuel/10)
@@ -504,7 +510,7 @@
 
 
 				if(user)
-					user << SPAN_DANGER("You overload the cell in the [src]!")
+					to_chat(user, SPAN_DANGER("You overload the cell in the [src]!"))
 				C.explode()
 				if (T)
 					T.cell = null
@@ -520,7 +526,7 @@
 	/* Data and Checking */
 *******************************/
 /obj/item/proc/has_quality(quality_id)
-	return quality_id in tool_qualities
+	return !quality_id || (quality_id in tool_qualities)
 
 //A special version of the above that also checks the switched on list
 //As a result, it checks what qualities the tool is ever capable of having, not just those it has right now
@@ -562,7 +568,7 @@
 
 
 
-/obj/item/weapon/tool/proc/turn_on(mob/user)
+/obj/item/weapon/tool/proc/turn_on(var/mob/user)
 	switched_on = TRUE
 	tool_qualities = switched_on_qualities
 	if (!isnull(switched_on_force))
@@ -572,7 +578,7 @@
 	update_icon()
 	update_wear_icon()
 
-/obj/item/weapon/tool/proc/turn_off(mob/user)
+/obj/item/weapon/tool/proc/turn_off(var/mob/user)
 	switched_on = FALSE
 	STOP_PROCESSING(SSobj, src)
 	tool_qualities = switched_off_qualities
@@ -602,12 +608,12 @@
 
 	if(use_power_cost)
 		if (!cell.checked_use(use_power_cost*timespent))
-			user << SPAN_WARNING("[src] battery is dead or missing.")
+			to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
 			return FALSE
 
 	if(use_fuel_cost)
 		if(!consume_fuel(use_fuel_cost*timespent))
-			user << SPAN_NOTICE("You need more welding fuel to complete this task.")
+			to_chat(user, SPAN_NOTICE("You need more welding fuel to complete this task."))
 			return FALSE
 
 	if(use_stock_cost)
@@ -621,21 +627,21 @@
 		unreliability += rand_between(0, degradation)
 
 //Power and fuel drain, sparks spawn
-/obj/item/weapon/tool/proc/check_tool_effects(mob/living/user, var/time)
+/obj/item/weapon/tool/proc/check_tool_effects(var/mob/living/user, var/time)
 
 	if(use_power_cost)
 		if(!cell || !cell.check_charge(use_power_cost*time))
-			user << SPAN_WARNING("[src] battery is dead or missing.")
+			to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
 			return FALSE
 
 	if(use_fuel_cost)
 		if(get_fuel() < (use_fuel_cost*time))
-			user << SPAN_NOTICE("You need more welding fuel to complete this task.")
+			to_chat(user, SPAN_NOTICE("You need more welding fuel to complete this task."))
 			return FALSE
 
 	if (use_stock_cost)
 		if(stock < (use_stock_cost*time))
-			user << SPAN_NOTICE("There is not enough left in [src] to complete this task.")
+			to_chat(user, SPAN_NOTICE("There is not enough left in [src] to complete this task."))
 			return FALSE
 
 	if(eye_hazard)
@@ -711,43 +717,43 @@
 
 	if(use_power_cost)
 		if(!cell)
-			user << SPAN_WARNING("There is no cell inside to power the tool")
+			to_chat(user, SPAN_WARNING("There is no cell inside to power the tool"))
 		else
-			user << "The charge meter reads [round(cell.percent() )]%."
+			to_chat(user, "The charge meter reads [round(cell.percent() )]%.")
 
 	if(use_fuel_cost)
-		user << text("\icon[] [] contains []/[] units of fuel!", src, src.name, get_fuel(),src.max_fuel )
+		to_chat(user, text("\icon[] [] contains []/[] units of fuel!", src, src.name, get_fuel(),src.max_fuel ))
 
 	if (use_stock_cost)
-		user << SPAN_NOTICE("it has [stock] / [max_stock] units remaining.")
+		to_chat(user, SPAN_NOTICE("it has [stock] / [max_stock] units remaining."))
 
 	//Display a bunch of stats but only if they're nondefault values
 	if (precision != 0)
-		user << "Precision: [SPAN_NOTICE("[precision]")]"
+		to_chat(user, "Precision: [SPAN_NOTICE("[precision]")]")
 
 	if (workspeed != 1)
-		user << "Work Speed: [SPAN_NOTICE("[workspeed*100]%")]"
+		to_chat(user, "Work Speed: [SPAN_NOTICE("[workspeed*100]%")]")
 
 	if (upgrades.len)
-		user << "It has the following upgrades installed:"
+		to_chat(user, "It has the following upgrades installed:")
 		for (var/obj/item/weapon/tool_upgrade/TU in upgrades)
-			user << SPAN_NOTICE(TU.name)
+			to_chat(user, SPAN_NOTICE(TU.name))
 
 	if (unreliability)
 		if (unreliability < 2)
 			return
 		else if (unreliability < 4)
-			user << "It has a few light scratches."
+			to_chat(user, "It has a few light scratches.")
 		else if (unreliability < 8)
-			user << SPAN_NOTICE("It shows minor signs of stress and wear.")
+			to_chat(user, SPAN_NOTICE("It shows minor signs of stress and wear."))
 		else if (unreliability < 12)
-			user << SPAN_WARNING("It looks a bit cracked and worn.")
+			to_chat(user, SPAN_WARNING("It looks a bit cracked and worn."))
 		else if (unreliability < 25)
-			user << SPAN_WARNING("Whatever use this tool once had is fading fast.")
+			to_chat(user, SPAN_WARNING("Whatever use this tool once had is fading fast."))
 		else if (unreliability < 40)
-			user << SPAN_WARNING("Attempting to use this thing as a tool is probably not going to work out well.")
+			to_chat(user, SPAN_WARNING("Attempting to use this thing as a tool is probably not going to work out well."))
 		else
-			user << SPAN_DANGER("It's falling apart. This is one slip away from just being a pile of assorted trash.")
+			to_chat(user, SPAN_DANGER("It's falling apart. This is one slip away from just being a pile of assorted trash."))
 
 
 //Recharge the fuel at fueltank, also explode if switched on
@@ -756,13 +762,13 @@
 		if(!proximity) return
 		if ((istype(O, /obj/structure/reagent_dispensers/fueltank) || istype(O, /obj/item/weapon/weldpack)) && get_dist(src,O) <= 1 && !switched_on)
 			O.reagents.trans_to_obj(src, max_fuel)
-			user << SPAN_NOTICE("[src] refueled")
+			to_chat(user, SPAN_NOTICE("[src] refueled"))
 			playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
 			return
 		else if ((istype(O, /obj/structure/reagent_dispensers/fueltank) || istype(O, /obj/item/weapon/weldpack)) && get_dist(src,O) <= 1 && switched_on)
 			message_admins("[key_name_admin(user)] triggered a fueltank explosion with a welding tool.")
 			log_game("[key_name(user)] triggered a fueltank explosion with a welding tool.")
-			user << SPAN_DANGER("You begin welding on the [O] and with a moment of lucidity you realize, this might not have been the smartest thing you've ever done.")
+			to_chat(user, SPAN_DANGER("You begin welding on the [O] and with a moment of lucidity you realize, this might not have been the smartest thing you've ever done."))
 			var/obj/structure/reagent_dispensers/fueltank/tank = O
 			tank.explode()
 			return
@@ -811,7 +817,7 @@
 
 //Decides whether or not to damage a player's eyes based on what they're wearing as protection
 //Note: This should probably be moved to mob
-/obj/item/weapon/tool/proc/eyecheck(mob/user as mob)
+/obj/item/weapon/tool/proc/eyecheck(var/mob/user)
 	if(!iscarbon(user))
 		return TRUE
 	if(ishuman(user))
@@ -822,28 +828,28 @@
 		var/safety = H.eyecheck()
 		switch(safety)
 			if(FLASH_PROTECTION_MODERATE)
-				H << SPAN_WARNING("Your eyes sting a little.")
+				to_chat(H, SPAN_WARNING("Your eyes sting a little."))
 				E.damage += rand(1, 2)
 				if(E.damage > 12)
 					H.eye_blurry += rand(3,6)
 			if(FLASH_PROTECTION_NONE)
-				H << SPAN_WARNING("Your eyes burn.")
+				to_chat(H, SPAN_WARNING("Your eyes burn."))
 				E.damage += rand(2, 4)
 				if(E.damage > 10)
 					E.damage += rand(4,10)
 			if(FLASH_PROTECTION_REDUCED)
-				H << SPAN_DANGER("Your equipment intensify the welder's glow. Your eyes itch and burn severely.")
+				to_chat(H, SPAN_DANGER("Your equipment intensify the welder's glow. Your eyes itch and burn severely."))
 				H.eye_blurry += rand(12,20)
 				E.damage += rand(12, 16)
 		if(safety<FLASH_PROTECTION_MAJOR)
 			if(E.damage > 10)
-				user << SPAN_WARNING("Your eyes are really starting to hurt. This can't be good for you!")
+				to_chat(user, SPAN_WARNING("Your eyes are really starting to hurt. This can't be good for you!"))
 
 			if (E.damage >= E.min_broken_damage)
-				H << SPAN_DANGER("You go blind!")
+				to_chat(H, SPAN_DANGER("You go blind!"))
 				H.sdisabilities |= BLIND
 			else if (E.damage >= E.min_bruised_damage)
-				H << SPAN_DANGER("You go blind!")
+				to_chat(H, SPAN_DANGER("You go blind!"))
 				H.eye_blind = 5
 				H.eye_blurry = 5
 				H.disabilities |= NEARSIGHTED
@@ -868,10 +874,10 @@
 						user.visible_message(SPAN_NOTICE("\The [user] patches some dents on \the [H]'s [S.name] with \the [src]."))
 						return 1
 				else if (S.open != 2)
-					user << SPAN_DANGER("The damage is far too severe to patch over externally.")
+					to_chat(user, SPAN_DANGER("The damage is far too severe to patch over externally."))
 					return 1
 			else if (S.open != 2) // For surgery.
-				user << SPAN_NOTICE("Nothing to fix!")
+				to_chat(user, SPAN_NOTICE("Nothing to fix!"))
 				return 1
 
 	return ..()
@@ -897,6 +903,15 @@
 			ratio = get_fuel() / max_fuel
 			ratio = max(round(ratio, 0.25) * 100, 25)
 			overlays += "[icon_state]-[ratio]"
+
+	if(ismob(loc))
+		var/tooloverlay
+		switch(mode)
+			if (EXCAVATE)
+				tooloverlay = "excavate"
+			if (DIG)
+				tooloverlay = "dig"
+		overlays += (tooloverlay)
 
 /***************************
 	Misc/utility procs
