@@ -14,6 +14,7 @@
 	price_tag = 2500
 	magazine_type = /obj/item/ammo_magazine/mc9mmt/rubber
 	recoil = 0.8
+	recoil_buildup = 0.1 //smg level
 
 /obj/item/weapon/gun/projectile/automatic/wt550/update_icon()
 	..()

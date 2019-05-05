@@ -18,6 +18,6 @@
 	load_method = SINGLE_CASING
 	handle_casings = EJECT_CASINGS
 	max_shells = 1
-	recoil = 1.5 //balance concerns i kinda tried to explain by lore
+	recoil = 0.2 //with new system it gives slight chance to miss but not really
 	fire_sound = 'sound/effects/bang.ogg'
 	bulletinsert_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg' //placeholder, needs new sound
