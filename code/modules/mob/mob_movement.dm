@@ -172,21 +172,16 @@
 //Return true for safe movement
 //Return -1 for movement with possibility of slipping
 //Return false for no movement
-/mob/proc/allow_spacemove(var/check_drift = 0)
+/mob/proc/allow_spacemove()
 	//First up, check for magboots or other gripping capability
 	//If we have some, then check the ground under us
-	if(incorporeal_move)
-		update_floating(!check_gravity())
+	if (incorporeal_move)
 		return TRUE
 	if (check_shoegrip() && check_solid_ground())
-		update_floating(FALSE)
 		return TRUE
-
-	update_floating(TRUE)
-	if(check_dense_object())
+	if (check_dense_object())
 		return -1
 	return FALSE
-
 
 //return 1 if slipped, 0 otherwise
 /mob/proc/handle_spaceslipping()
@@ -215,6 +210,8 @@
 //This proc is only called if we have grip, ie magboots
 /mob/proc/check_solid_ground()
 	if (istype(loc, /turf/simulated))
+		if(istype(loc, /turf/simulated/open))
+			return FALSE //open spess was fogotten
 		return TRUE //We're standing on a simulated floor
 	else
 		//We're probably in space

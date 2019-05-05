@@ -99,11 +99,11 @@
 	..()
 	if ((!(A) || src != A.loc))	return
 
-	inertial_drift(A)
-
 	// Okay, so let's make it so that people can travel z levels
 	if (A.x <= TRANSITIONEDGE || A.x >= (world.maxx - TRANSITIONEDGE + 1) || A.y <= TRANSITIONEDGE || A.y >= (world.maxy - TRANSITIONEDGE + 1))
 		A.touch_map_edge()
+
+	..()
 
 /turf/space/proc/Sandbox_Spacemove(atom/movable/A as mob|obj)
 	var/cur_x

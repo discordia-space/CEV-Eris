@@ -2,6 +2,7 @@
 	name = "NT HG .45 \"Mk58\""
 	desc = "The NT Mk58 is a cheap, ubiquitous sidearm, that was produced by a NanoTrasen subsidiary. Uses .45 rounds."
 	icon_state = "mk58"
+	item_state = "pistol"
 	caliber = ".45"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)

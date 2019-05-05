@@ -697,6 +697,8 @@ obj/screen/fire/DEADelize()
 								if ("oxygen")
 									if(t.air_contents.gas["oxygen"] && !t.air_contents.gas["plasma"])
 										contents.Add(t.air_contents.gas["oxygen"])
+									else if(istype(t, /obj/item/weapon/tank/onestar_regenerator))
+										contents.Add(BREATH_MOLES*2)
 									else
 										contents.Add(0)
 

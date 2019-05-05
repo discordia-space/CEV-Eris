@@ -57,7 +57,8 @@
 /obj/item/rig_module/Destroy()
 	if (holder)
 		holder.uninstall(src)
-	.=..()
+		holder = null
+	return ..()
 
 
 
@@ -273,6 +274,12 @@
 /stat_rig_module/New(var/obj/item/rig_module/module)
 	..()
 	src.module = module
+
+/stat_rig_module/Destroy()
+	if(module)
+		module.stat_modules -= src
+		module = null
+	return ..()
 
 /stat_rig_module/proc/AddHref(var/list/href_list)
 	return

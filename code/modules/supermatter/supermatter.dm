@@ -303,7 +303,7 @@
 	Consume(user)
 
 // This is purely informational UI that may be accessed by AIs or robots
-/obj/machinery/power/supermatter/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/power/supermatter/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/data[0]
 
 	data["integrity_percentage"] = round(get_integrity())

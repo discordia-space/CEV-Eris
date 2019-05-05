@@ -16,6 +16,7 @@
 	var/spent_icon = null
 	var/amount = 1
 	var/maxamount = 15
+	var/reload_delay = 0
 
 /obj/item/ammo_casing/New()
 	..()

@@ -583,8 +583,17 @@
 
 
 /obj/machinery/hivemind_machine/screamer/use_ability(mob/living/target)
-	target.Weaken(5)
-	to_chat(target, SPAN_WARNING("A terrible howl tears through your mind; the voice senseless, soulless."))
+
+	var/mob/living/carbon/human/H = target
+	if(istype(H))
+		if(prob(100 - H.stats.getStat(STAT_VIG)))
+			H.Weaken(8)
+			to_chat(H, SPAN_WARNING("A terrible howl tears through your mind, the voice senseless, soulless."))
+		else
+			to_chat(H, SPAN_NOTICE("A terrible howl tears through your mind, but you refuse to listen to it!"))
+	else
+		target.Weaken(8)
+		to_chat(target, SPAN_WARNING("A terrible howl tears through your mind, the voice senseless, soulless."))
 
 
 
@@ -637,7 +646,7 @@
 	icon_state = "psy"
 	evo_level_required = 3
 	cooldown_time = 10 SECONDS
-	spawn_weight  =	30
+	spawn_weight  = 30
 
 
 /obj/machinery/hivemind_machine/distractor/Process()
@@ -654,7 +663,15 @@
 		set_cooldown()
 
 /obj/machinery/hivemind_machine/distractor/use_ability(mob/living/target)
-	target.hallucination += 20
+
+	var/mob/living/carbon/human/H = target
+	if(istype(H))
+		if(prob(100 - H.stats.getStat(STAT_VIG)))
+			H.hallucination += 20
+		else
+			to_chat(H, SPAN_NOTICE("Reality flikers for a second, but you manage to focus!"))
+	else
+		target.hallucination += 20
 	flick("[icon_state]-anim", src)
 
 

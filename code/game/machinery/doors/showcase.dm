@@ -4,7 +4,7 @@
 	icon_state = "closed"
 	health = 100
 	maxhealth = 100
-	resistance = 0
+	resistance = RESISTANCE_NONE
 	opacity = 0
 	layer = 4.2
 	var/have_glass = TRUE

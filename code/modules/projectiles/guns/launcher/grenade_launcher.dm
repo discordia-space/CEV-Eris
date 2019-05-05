@@ -4,8 +4,8 @@
 	icon_state = "riotgun"
 	item_state = "riotgun"
 	w_class = ITEM_SIZE_LARGE
-	force = WEAPON_FORCE_NORMAL
-	matter = list(MATERIAL_PLASTEEL = 30, MATERIAL_PLASTIC = 20)
+	force = WEAPON_FORCE_PAINFUL
+	matter = list(MATERIAL_PLASTEEL = 30, MATERIAL_WOOD = 10)
 
 	fire_sound = 'sound/weapons/empty.ogg'
 	fire_sound_text = "a metallic thunk"
@@ -100,6 +100,7 @@
 	name = "underslung grenade launcher"
 	desc = "Not much more than a tube and a firing mechanism, this grenade launcher is designed to be fitted to a rifle."
 	w_class = ITEM_SIZE_NORMAL
+	matter = null
 	force = 5
 	max_grenades = 0
 	safety = FALSE
@@ -133,16 +134,15 @@
 
 /obj/item/weapon/gun/launcher/grenade/lenar
 	name = "FS GL \"Lenar\""
-	desc = "A bulky pump-action grenade launcher. Holds up to 6 grenades in a revolving magazine."
+	desc = "A more than bulky pump-action grenade launcher. Holds up to 6 grenades in a revolving magazine."
 	icon_state = "Grenadelauncher_PMC"
 	item_state = "pneumatic"
 	item_state_slots = list(slot_back_str = "pneumatic")
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
-	force = 10
+	matter = list(MATERIAL_PLASTEEL = 30, MATERIAL_PLASTIC = 10)
 	fire_sound = 'sound/weapons/empty.ogg'
 	fire_sound_text = "a metallic thunk"
-	recoil = 0
 	throw_distance = 10
 	release_force = 5
 
@@ -155,5 +155,4 @@
 
 /obj/item/weapon/gun/launcher/grenade/lenar/update_icon()
 	overlays.Cut()
-
 	update_charge()

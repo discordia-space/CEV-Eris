@@ -100,10 +100,9 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	name = "Glass Airlock"
 	icon = 'icons/obj/doors/Doorglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
-
 	maxhealth = 300
-	explosion_resistance = 5
 	resistance = RESISTANCE_AVERAGE
+	explosion_resistance = 5
 	opacity = 0
 	glass = 1
 
@@ -152,6 +151,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	icon = 'icons/obj/doors/Doorcomglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 300
+	resistance = RESISTANCE_AVERAGE
 	explosion_resistance = 5
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_com
@@ -162,6 +162,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	icon = 'icons/obj/doors/Doorengglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 300
+	resistance = RESISTANCE_AVERAGE
 	explosion_resistance = 5
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_eng
@@ -172,6 +173,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	icon = 'icons/obj/doors/Doorsecglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 300
+	resistance = RESISTANCE_AVERAGE
 	explosion_resistance = 5
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_sec
@@ -182,6 +184,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	icon = 'icons/obj/doors/Doormedglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 300
+	resistance = RESISTANCE_AVERAGE
 	explosion_resistance = 5
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_med
@@ -207,6 +210,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	icon = 'icons/obj/doors/Doorresearchglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 300
+	resistance = RESISTANCE_AVERAGE
 	explosion_resistance = 5
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_research
@@ -218,6 +222,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	icon = 'icons/obj/doors/Doorminingglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 300
+	resistance = RESISTANCE_AVERAGE
 	explosion_resistance = 5
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_min
@@ -228,6 +233,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	icon = 'icons/obj/doors/Dooratmoglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 300
+	resistance = RESISTANCE_AVERAGE
 	explosion_resistance = 5
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_atmo
@@ -363,6 +369,8 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 /obj/machinery/door/airlock/glass_science
 	name = "Glass Airlocks"
 	icon = 'icons/obj/doors/Doorsciglass.dmi'
+	maxhealth = 300
+	resistance = RESISTANCE_AVERAGE
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_science
 	glass = 1
@@ -709,7 +717,7 @@ There are 9 wires.
 /obj/machinery/door/airlock/attack_ai(mob/user as mob)
 	ui_interact(user)
 
-/obj/machinery/door/airlock/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = GLOB.default_state)
+/obj/machinery/door/airlock/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
 	var/data[0]
 
 	data["main_power_loss"]		= round(main_power_lost_until 	> 0 ? max(main_power_lost_until - world.time,	0) / 10 : main_power_lost_until,	1)

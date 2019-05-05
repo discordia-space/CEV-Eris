@@ -23,7 +23,7 @@
 	var/raising= 0			//if the turret is currently opening or closing its cover
 	var/health = 80			//the turret's health
 	var/maxhealth = 80		//turrets maximal health.
-	var/resistance = 5 		//reduction on incoming damage
+	var/resistance = RESISTANCE_FRAGILE 		//reduction on incoming damage
 	var/auto_repair = 0		//if 1 the turret slowly repairs itself.
 	var/locked = 1			//if the turret's behaviour control access is locked
 	var/controllock = 0		//if the turret responds to control panels
@@ -197,7 +197,7 @@ var/list/turret_icons
 
 	ui_interact(user)
 
-/obj/machinery/porta_turret/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/porta_turret/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/data[0]
 	data["access"] = !isLocked(user)
 	data["locked"] = locked

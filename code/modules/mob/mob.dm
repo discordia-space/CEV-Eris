@@ -1164,39 +1164,39 @@ mob/proc/yank_out_object()
 
 /client/verb/body_toggle_head()
 	set name = "body-toggle-head"
-	set hidden = 0
+	set hidden = TRUE
 	set category = "OOC"
 	toggle_zone_sel(list(BP_HEAD,BP_EYES,BP_MOUTH))
 
 /client/verb/body_r_arm()
 	set name = "body-r-arm"
-	set hidden = 0
+	set hidden = TRUE
 	set category = "OOC"
 	toggle_zone_sel(list(BP_R_ARM))
 
 /client/verb/body_l_arm()
 	set name = "body-l-arm"
-	set hidden = 1
+	set hidden = TRUE
 	toggle_zone_sel(list(BP_L_ARM))
 
 /client/verb/body_chest()
 	set name = "body-chest"
-	set hidden = 1
+	set hidden = TRUE
 	toggle_zone_sel(list(BP_CHEST))
 
 /client/verb/body_groin()
 	set name = "body-groin"
-	set hidden = 1
+	set hidden = TRUE
 	toggle_zone_sel(list(BP_GROIN))
 
 /client/verb/body_r_leg()
 	set name = "body-r-leg"
-	set hidden = 1
+	set hidden = TRUE
 	toggle_zone_sel(list(BP_R_LEG))
 
 /client/verb/body_l_leg()
 	set name = "body-l-leg"
-	set hidden = 1
+	set hidden = TRUE
 	toggle_zone_sel(list(BP_L_LEG))
 
 /client/proc/toggle_zone_sel(list/zones)

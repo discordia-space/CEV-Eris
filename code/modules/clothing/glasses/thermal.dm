@@ -64,6 +64,13 @@
 	icon_state = "meson"
 	origin_tech = list(TECH_MAGNET = 3, TECH_ILLEGAL = 4)
 
+
+/obj/item/clothing/glasses/thermal/onestar
+	name = "OS Type - 73 \"Zhenchayuan\""
+	desc = "Chinese thermals in the shape of goggles."
+	icon_state = "onestar_thermal"
+	off_state = "onestar_thermal"
+
 /obj/item/clothing/glasses/thermal/plain
 	toggleable = FALSE
 	activation_sound = null
@@ -89,3 +96,4 @@
 	desc = "A set of implantable lenses designed to augment your vision"
 	icon_state = "thermalimplants"
 	item_state = "syringe_kit"
+
