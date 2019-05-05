@@ -34,6 +34,9 @@ PROCESSING_SUBSYSTEM_DEF(nano)
 
 	else if (force_open == NANOUI_REINITIALIZE)
 		ui.reinitialise(new_initial_data=data)
+		return ui;
+	
+	ui.push_data(data)
 
 	return ui
 
