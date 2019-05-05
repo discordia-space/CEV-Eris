@@ -25,6 +25,9 @@
 		list(MATERIAL_STEEL, 100, 15),
 		list(MATERIAL_STEEL, 50, 10),
 		list(MATERIAL_STEEL, 10, 20),
+		list(MATERIAL_PLASTEEL, 10, 5),
+		list(MATERIAL_PLASTEEL, 5, 10),
+		list(MATERIAL_PLATINUM, 4, 2),
 	)
 
 /obj/item/weapon/material_trash/metal/New()
