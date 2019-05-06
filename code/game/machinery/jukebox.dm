@@ -36,14 +36,11 @@
 	var/datum/track/current_track
 	var/list/datum/track/tracks
 
-/obj/machinery/media/jukebox/New()
-	..()
-	update_icon()
-	sound_id = "[/obj/machinery/media/jukebox]_[sequential_id(/obj/machinery/media/jukebox)]"
-
 /obj/machinery/media/jukebox/Initialize()
 	. = ..()
+	sound_id = "[/obj/machinery/media/jukebox]_[sequential_id(/obj/machinery/media/jukebox)]"
 	tracks = setup_music_tracks(tracks)
+	update_icon()
 
 /obj/machinery/media/jukebox/Destroy()
 	stop_playing()
@@ -136,12 +133,7 @@
 
 	ui_interact(user)
 
-/obj/machinery/media/jukebox/ui_status(mob/user, datum/ui_state/state)
-	if(!anchored || inoperable())
-		return UI_CLOSE
-	return ..()
-
-/obj/machinery/media/jukebox/ui_interact(mob/user, ui_key = "jukebox", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/media/jukebox/ui_interact(mob/user, ui_key = "jukebox", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	var/title = "RetroBox - Space Style"
 	var/data[0]
 

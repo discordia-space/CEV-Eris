@@ -97,7 +97,7 @@
 	ui_interact(user)
 	update_icon()
 
-/obj/machinery/autolathe_disk_cloner/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/autolathe_disk_cloner/ui_data()
 	var/list/data = list()
 
 	data["disk1"] = null
@@ -131,6 +131,11 @@
 		data["disk2recipes"] = R
 
 		data["copyingnow"] = copy.recipes.len
+	return data
+
+
+/obj/machinery/autolathe_disk_cloner/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
+	var/list/data = ui_data()
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)

@@ -220,6 +220,9 @@
 	ui_interact(user)
 
 /obj/machinery/autolathe/Topic(href, href_list)
+	if(..())
+		return
+
 	add_fingerprint(usr)
 
 	usr.set_machine(src)
@@ -317,7 +320,7 @@
 		else
 			unfolded = href_list["unfold"]
 
-	SSnano.update_uis(src)
+	return 1
 
 /obj/machinery/autolathe/proc/insert_disk(var/mob/living/user)
 	if(!istype(user))
