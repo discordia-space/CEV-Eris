@@ -10,21 +10,54 @@
 	throw_range = 20
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	var/obj/item/weapon/disk/nuclear/the_disk = null
+	var/obj/item/weapon/disk/nuclear/slot = null
+	var/obj/machinery/nuclearbomb/pointbomb = null
 	var/active = FALSE
 
 
 /obj/item/weapon/pinpointer/attack_self()
 	if(!active)
 		active = TRUE
-		workdisk()
+		if(!slot)
+			workdisk()
+		else
+			worknuclear()
 		to_chat(usr, SPAN_NOTICE("You activate the pinpointer"))
 	else
 		active = FALSE
 		icon_state = "pinoff"
 		to_chat(usr, SPAN_NOTICE("You deactivate the pinpointer"))
 
+/obj/item/weapon/pinpointer/attackby(obj/item/I, mob/user, params)
+	if (!slot && istype(I, /obj/item/weapon/disk/nuclear))
+		usr.drop_item()
+		I.loc = src
+		src.slot = I
+		update_icon()
+
+/obj/item/weapon/pinpointer/MouseDrop(over_object)
+	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(slot, usr))
+		slot = null
+		update_icon()
+	else
+		..()
+
+/obj/item/weapon/pinpointer/update_icon()
+	overlays.Cut()
+
+	if (slot)
+		var/tooloverlay = "disknukeloaded"
+		overlays += (tooloverlay)
+
+
 /obj/item/weapon/pinpointer/proc/workdisk()
 	if(!active) return
+	
+	if(slot)
+		worknuclear()
+		playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)	//Plays a beep
+		return
+	
 	if(!the_disk)
 		the_disk = locate()
 		if(!the_disk)
@@ -42,8 +75,35 @@
 			icon_state = "pinonfar"
 	spawn(5) .()
 
+/obj/item/weapon/pinpointer/proc/worknuclear()
+	if(!active) return
+
+	if(!slot)
+		workdisk()
+		playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)	//Plays a beep
+		return
+
+	for(var/obj/machinery/nuclearbomb/bomb in world)
+		pointbomb = bomb
+		if(pointbomb.timing)
+			break
+
+	set_dir(get_dir(src, pointbomb))
+	switch(get_dist(src, pointbomb))
+		if(0)
+			icon_state = "pinondirect"
+		if(1 to 8)
+			icon_state = "pinonclose"
+		if(9 to 16)
+			icon_state = "pinonmedium"
+		if(16 to INFINITY)
+			icon_state = "pinonfar"
+	spawn(5) .()
+
 /obj/item/weapon/pinpointer/examine(mob/user)
 	..(user)
+	if(slot)
+		to_chat(user, "Nuclear disk is loaded inside [src].")
 	for(var/obj/machinery/nuclearbomb/bomb in world)
 		if(bomb.timing)
 			to_chat(user, SPAN_WARNING("Extreme danger.  Arming signal detected.   Time remaining: [bomb.timeleft]"))
