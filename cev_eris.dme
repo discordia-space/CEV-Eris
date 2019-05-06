@@ -2475,6 +2475,7 @@
 #include "interface\skin.dmf"
 #include "maps\CEVEris\_Eris_areas.dm"
 #include "maps\CEVEris\_map_data_Eris.dm"
+#include "maps\CEVEris\_map_shims.dm"
 #include "maps\CEVEris\datums\reports.dm"
 #include "maps\encounters\asteroid\asteroid.dm"
 #include "maps\encounters\spacefortress\spacefortress.dm"
