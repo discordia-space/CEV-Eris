@@ -18,7 +18,7 @@ GLOBAL_LIST_EMPTY(all_bounty_entries)
 	..()
 	add_field(/datum/report_field/simple_text, "Title")
 	add_field(/datum/report_field/pencode_text, "Job description")
-	add_field(/datum/report_field/number, "Reward")
+	add_field(/datum/report_field/number/module, "Reward")
 
 	add_field(/datum/report_field/signature/anon, "Employer")
 	add_field(/datum/report_field/array/signed_people, "People who signed for job")
@@ -68,7 +68,8 @@ GLOBAL_LIST_EMPTY(all_bounty_entries)
 
 
 /datum/computer_file/report/bounty_entry/proc/remove(var/mob/living/carbon/human/contractor)
-	if(contractor)
+	var/destroy = FALSE
+	if(istype(contractor))
 		claimedby_id_card = contractor.GetIdCard()
 		if(!claimedby_id_card)
 			return
@@ -76,24 +77,34 @@ GLOBAL_LIST_EMPTY(all_bounty_entries)
 		if(authenticated_account)
 			var/datum/transaction/T = new(field_from_name("Reward").get_value(), authenticated_account.owner_name, "Bounty Claimed", "Bounty board system")
 			T.apply_to(authenticated_account)
-		for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
-			if(ishuman(H))
-				var/obj/item/modular_computer/C = locate(/obj/item/modular_computer) in H.GetAllContents()
-				if(C)
-					var/datum/computer_file/program/P = C.getProgramByType(/datum/computer_file/program/bounty_board_app)
-					if(P)
-						if (H == contractor)
-							playsound(src, 'sound/machines/buzz-two.ogg', 50, 1)
-							C.visible_message("\The [C] buzz softly and states \"Bounty reward was transfered to your account\".")
-						else
-							var/datum/report_field/array/signed_people/SP = field_from_name("People who signed for job")
-							if(H in SP.get_raw())
+	else
+		if(owner_id_card)
+			var/datum/money_account/authenticated_account = get_account(owner_id_card.associated_account_number)
+			if(authenticated_account)
+				var/datum/transaction/T = new(field_from_name("Reward").get_value(), authenticated_account.owner_name, "Bounty Claimed", "Bounty board system")
+				T.apply_to(authenticated_account)
+		destroy = TRUE
+	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
+		if(ishuman(H))
+			var/obj/item/modular_computer/C = locate(/obj/item/modular_computer) in H.GetAllContents()
+			if(C)
+				var/datum/computer_file/program/P = C.getProgramByType(/datum/computer_file/program/bounty_board_app)
+				if(P)
+					if (H == contractor)
+						playsound(src, 'sound/machines/buzz-two.ogg', 50, 1)
+						C.visible_message("\The [C] buzz softly and states \"Bounty reward was transfered to your account\".")
+					else
+						var/datum/report_field/array/signed_people/SP = field_from_name("People who signed for job")
+						if(H in SP.get_raw())
+							if(istype(contractor))
 								C.visible_message("\The [C] buzz loudly and states \"Bounty reward that you signed for was claimed by someone else\".", 1)
 								playsound(C, 'sound/machines/buzz-two.ogg', 50, 1)
-		return TRUE
-	else
-		Destroy()
-		return TRUE
+							else
+								C.visible_message("\The [C] buzz loudly and states \"Bounty reward that you signed for was removed\".", 1)
+								playsound(C, 'sound/machines/buzz-two.ogg', 50, 1)
+	if(destroy)
+		qdel(src)
+	return TRUE
 
 /datum/report_field/array/signed_people
 	can_edit = FALSE

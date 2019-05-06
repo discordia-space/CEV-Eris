@@ -1,8 +1,4 @@
 /*
-	annonce on creating and deleting
-	money transfer
-	get money from ID or account
-	tweak design a little
 
 */
 
@@ -34,16 +30,27 @@
 			data["can_edit"] = TRUE
 	data["created"] = GLOB.all_bounty_entries.Find(selectedEntry)
 
-	var/list/all_bounties = list()
+	var/list/not_claimed_bounties = list()
+	var/list/claimed_bounties = list()
 	for(var/datum/computer_file/report/bounty_entry/R in GLOB.all_bounty_entries)
-		all_bounties.Add(list(list(
-			"name" = R.field_from_name("Title").get_value(),
-			"desc" = R.field_from_name("Job description").get_value(),
-			"reward" = R.field_from_name("Reward").get_value(),
-			"status" = R.claimedby_id_card ? "Claimed" : "Not claimed",
-			"id" = R.uid
-		)))
-	data["all_bounties"] = all_bounties
+		if(!R.claimedby_id_card)
+			not_claimed_bounties.Add(list(list(
+				"name" = R.field_from_name("Title").get_value(),
+				"desc" = R.field_from_name("Job description").get_value(),
+				"reward" = R.field_from_name("Reward").get_value(),
+				"status" = R.claimedby_id_card ? "Claimed" : "Not claimed",
+				"id" = R.uid
+			)))
+		else
+			claimed_bounties.Add(list(list(
+				"name" = R.field_from_name("Title").get_value(),
+				"desc" = R.field_from_name("Job description").get_value(),
+				"reward" = R.field_from_name("Reward").get_value(),
+				"status" = R.claimedby_id_card ? "Claimed" : "Not claimed",
+				"id" = R.uid
+			)))
+	data["not_claimed_bounties"] = not_claimed_bounties
+	data["claimed_bounties"] = claimed_bounties
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)

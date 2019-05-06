@@ -89,7 +89,7 @@ Basic field subtypes.
 
 /datum/report_field/pencode_text/set_value(given_value)
 	if(istext(given_value))
-		value = sanitize(replacetext(given_value, "\n", "\[br\]"), MAX_PAPER_MESSAGE_LEN) || ""
+		value = sanitize(replacetext(rhtml_encode(given_value), "\n", "\[br\]"), MAX_PAPER_MESSAGE_LEN) || ""
 
 /datum/report_field/pencode_text/ask_value(mob/user)
 	set_value(cyrillic_to_unicode(input(user, "[display_name()] (You may use HTML paper formatting tags):", "Form Input", replacetext(html_decode(value), "\[br\]", "\n")) as null|message))
@@ -120,6 +120,17 @@ Basic field subtypes.
 	value = 0
 
 /datum/report_field/number/set_value(given_value)
+	if(isnum(given_value))
+		value = abs(given_value)
+
+/datum/report_field/number/module/ask_value(mob/user)
+	var/value = input(user, "[display_name()]:", "Form Input", get_value()) as null|num
+	if(value >= 0)
+		set_value(value)
+	else
+		to_chat(user,SPAN_WARNING("Value has to be positive."))
+
+/datum/report_field/number/module/set_value(given_value)
 	if(isnum(given_value))
 		value = given_value
 

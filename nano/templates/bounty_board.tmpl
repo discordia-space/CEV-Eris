@@ -43,16 +43,27 @@
 <h2>Available bounties:</h2>
 <table style="width:100%">
 <tr><td>Title<th style="width:50%">Description<th style="width:12%">Reward<th style="width:18%">Status
-{{for data.all_bounties}}
+{{for data.not_claimed_bounties}}
 	<tr class="candystripe">
 	{{if value.status == "Not claimed"}}
-		<td>{{:helper.link(value.name, '', {'set_active' : value.id})}}
+		<td style="background-color: #8daf6a;">{{:helper.link(value.name, '', {'set_active' : value.id})}}
 	{{else}}
-		<td>{{:value.name}}
+		<td style="background-color: #8daf6a;">{{:value.name}}
 	{{/if}}
-	<td>{{:value.desc}}
-	<td>{{:value.reward}}
-	<td>{{:value.status}}
+	<td style="background-color: #8daf6a;">{{:value.desc}}
+	<td style="background-color: #8daf6a;">{{:value.reward}}
+	<td style="background-color: #8daf6a;">{{:value.status}}
+{{/for}}
+{{for data.claimed_bounties}}
+	<tr class="candystripe">
+	{{if value.status == "Not claimed"}}
+		<td style="background-color: #aa5f61;">{{:helper.link(value.name, '', {'set_active' : value.id})}}
+	{{else}}
+		<td style="background-color: #aa5f61;">{{:value.name}}
+	{{/if}}
+	<td style="background-color: #aa5f61;">{{:value.desc}}
+	<td style="background-color: #aa5f61;">{{:value.reward}}
+	<td style="background-color: #aa5f61;">{{:value.status}}
 {{/for}}
 </table>
 {{/if}}
