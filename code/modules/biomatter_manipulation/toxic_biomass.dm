@@ -1,4 +1,4 @@
-//Solid biomass and a few procs used by biomatter manipulation machines
+//Toxic biomass and a few procs used by biomatter manipulation machines
 
 
 //toxin attack proc, it's used for attacking people with checking their armor
@@ -35,16 +35,16 @@
 
 /obj/effect/decal/cleanable/solid_biomass
 	name = "solid biomass"
-	desc = "It's good to do not touch this. And better to kill it with fire."
+	desc = "It's good to do not touch this. And better to kill it with fire. Very toxic."
 	icon = 'icons/obj/bioreactor_misc.dmi'
 	icon_state = "biomass-1"
 	anchored = TRUE
 
 
 /obj/effect/decal/cleanable/solid_biomass/Initialize()
+	. = ..()
 	icon_state = "biomass-[rand(1, 3)]"
 	START_PROCESSING(SSprocessing, src)
-	return ..()
 
 /obj/effect/decal/cleanable/solid_biomass/Destroy()
 	STOP_PROCESSING(SSprocessing, src)

@@ -94,16 +94,17 @@
 
 
 /datum/multistructure/biogenerator/proc/activate()
-	generator.icon_state 		= "generator-working"
 	generator.core.icon_state 	= "core-working"
-	port.icon_state 			= "port-working"
+	flick("core-starting", generator.core)
+	screen.icon_state 			= "screen-working"
+	flick("screen-starting", screen)
 	working = TRUE
 
 
 /datum/multistructure/biogenerator/proc/deactivate()
-	generator.icon_state 		= initial(generator.icon_state)
-	generator.core.icon_state 	= initial(generator.core.icon_state)
-	port.icon_state 			= initial(port.icon_state)
+	generator.core.icon_state 		= initial(generator.core.icon_state)
+	flick("core-finishing", generator.core)
+	screen.icon_state 	= initial(screen.icon_state)
 	working = FALSE
 	last_output_power = 0
 
@@ -190,6 +191,7 @@
 	name = "biogenerator port"
 	icon_state = "port"
 	density = FALSE
+	layer = LOW_OBJ_LAYER
 	var/obj/structure/reagent_dispensers/tank
 	var/working_cycles = 0
 	var/wearout_cycle = 1200
@@ -228,6 +230,7 @@
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY,  required_stat = STAT_MEC))
 				if(tank)
 					tank.anchored = FALSE
+					tank.pixel_x = initial(tank.pixel_x)
 					tank = null
 					playsound(src, 'sound/machines/airlock_ext_open.ogg', 60, 1)
 					to_chat(user, SPAN_NOTICE("You detached [tank] from [src]."))
@@ -235,6 +238,7 @@
 					tank = locate(/obj/structure/reagent_dispensers) in get_turf(src)
 					if(tank)
 						tank.anchored = TRUE
+						tank.pixel_x = 8
 						playsound(src, 'sound/machines/airlock_ext_close.ogg', 60, 1)
 						to_chat(user, SPAN_NOTICE("You attached [tank] to [src]."))
 
@@ -274,8 +278,7 @@
 //And core from power. (Same for power)
 /obj/machinery/multistructure/biogenerator_part/generator
 	name = "biogenerator"
-	icon_state = "generator"
-	layer = BELOW_OBJ_LAYER
+	icon = null
 	var/obj/machinery/atmospherics/binary/biogen_chamber/chamber
 	var/obj/machinery/power/biogenerator_core/core
 
@@ -408,7 +411,6 @@
 	icon = 'icons/obj/machines/biogenerator.dmi'
 	icon_state = "core"
 	anchored = TRUE
-	layer = LOW_OBJ_LAYER
 	var/obj/machinery/multistructure/biogenerator_part/generator/generator
 	var/coil_condition = 100
 	var/working_cycles = 0
@@ -419,6 +421,7 @@
 /obj/machinery/power/biogenerator_core/Initialize()
 	. = ..()
 	connect_to_network()
+	update_icon()
 
 
 /obj/machinery/power/biogenerator_core/Destroy()
@@ -432,29 +435,30 @@
 
 
 /obj/machinery/power/biogenerator_core/update_icon()
+	overlays.Cut()
+	overlays += "core-pipe"
 	if(!coil_frame)
-		icon_state = "core-frameless"
-		return
-	icon_state = initial(icon_state)
+		overlays += "core-coil"
 
 
 /obj/machinery/power/biogenerator_core/examine(mob/user)
 	. = ..()
-	if(!coil_condition)
-		to_chat(user, SPAN_WARNING("Coil is completly burnt."))
-	else if(coil_condition < 30)
-		to_chat(user, SPAN_WARNING("Most of coil's sectors are burnt, but it's still functional."))
-	else if(coil_condition < 50)
-		to_chat(user, SPAN_WARNING("Half of coil's sectors are damaged."))
-	else if(coil_condition < 80)
-		to_chat(user, SPAN_NOTICE("You can see damaged sectors at [src]'s coil."))
-	else
-		to_chat(user, SPAN_NOTICE("Coil looks like new."))
+	if(!coil_frame)
+		if(!coil_condition)
+			to_chat(user, SPAN_WARNING("Coil is completly burnt."))
+		else if(coil_condition < 30)
+			to_chat(user, SPAN_WARNING("Most of coil's sectors are burnt, but it's still functional."))
+		else if(coil_condition < 50)
+			to_chat(user, SPAN_WARNING("Half of coil's sectors are damaged."))
+		else if(coil_condition < 80)
+			to_chat(user, SPAN_NOTICE("You can see damaged sectors at [src]'s coil."))
+		else
+			to_chat(user, SPAN_NOTICE("Coil looks like new."))
 
 
 /obj/machinery/power/biogenerator_core/attackby(var/obj/item/I, var/mob/user)
 	var/datum/multistructure/biogenerator/biogenerator = generator.MS
-	if(biogenerator.working)
+	if(biogenerator.working && !coil_frame)
 		shock(user, 100)
 		return
 
@@ -464,14 +468,14 @@
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC, forced_sound = WORKSOUND_SCREW_DRIVING))
 				if(coil_frame)
 					coil_frame = FALSE
-					to_chat(user, SPAN_NOTICE("You carefully unfasten frame of [src]."))
+					to_chat(user, SPAN_NOTICE("You carefully open frame of [src]."))
 				else
 					coil_frame = TRUE
-					to_chat(user, SPAN_NOTICE("You fastened frame of [src] back."))
+					to_chat(user, SPAN_NOTICE("You closed frame of [src] back."))
 
 		if(QUALITY_WELDING)
 			if(coil_frame)
-				to_chat(user, SPAN_WARNING("You need to remove that frame first!"))
+				to_chat(user, SPAN_WARNING("You need to remove coil frame first!"))
 				return
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL,  required_stat = STAT_MEC))
 				to_chat(user, SPAN_NOTICE("You fixed damaged sectors of [src]'s coil."))
@@ -483,7 +487,7 @@
 
 /obj/machinery/power/biogenerator_core/attack_hand(mob/user as mob)
 	var/datum/multistructure/biogenerator/biogenerator = generator.MS
-	if(biogenerator.working)
+	if(biogenerator.working && !coil_frame)
 		shock(user, 100)
 
 

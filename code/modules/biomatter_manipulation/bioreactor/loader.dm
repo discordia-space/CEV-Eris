@@ -15,7 +15,7 @@
 
 
 /obj/machinery/multistructure/bioreactor_part/loader/Initialize()
-	..()
+	. = ..()
 	set_light(1, 1, COLOR_LIGHTING_BLUE_MACHINERY)
 
 

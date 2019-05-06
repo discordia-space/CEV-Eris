@@ -9,7 +9,7 @@
 	idle_power_usage = 350
 
 /obj/machinery/multistructure/bioreactor_part/console/Initialize()
-	..()
+	. = ..()
 	set_light(1, 2, COLOR_LIGHTING_BLUE_MACHINERY)
 
 

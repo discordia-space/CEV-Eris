@@ -15,7 +15,7 @@
 
 
 /obj/machinery/multistructure/bioreactor_part/platform/Initialize()
-	..()
+	. = ..()
 	update_icon()
 
 

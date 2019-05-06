@@ -29,7 +29,7 @@
 
 
 /obj/machinery/multistructure/bioreactor_part/biotank_platform/Initialize()
-	..()
+	. = ..()
 	biotank = new(get_turf(src))
 	biotank.platform = src
 
@@ -129,7 +129,7 @@
 
 
 /obj/structure/biomatter_tank/Initialize()
-	..()
+	. = ..()
 	create_reagents(max_capacity)
 
 

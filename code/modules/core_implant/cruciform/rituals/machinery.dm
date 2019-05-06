@@ -41,9 +41,8 @@
 ///////////////>Biogenerator manipulation rite</////////////////
 /datum/ritual/cruciform/machines/power_biogen_awake
 	name = "Power biogenerator song"
-	phrase = "Such wow, how meow, there's no banana, only nanaban"
+	phrase = "Dixitque Deus: Fiat lux. Et facta est lux.  Et lux in tenebris lucet, et renebrae eam non comprehenderunt."
 	desc = "A ritual, that can activate or deactivate power biogenerator machine. You should be nearby its metrics screen."
-	power = 10
 
 
 /datum/ritual/cruciform/machines/power_biogen_awake/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
@@ -65,7 +64,6 @@
 
 /datum/ritual/cruciform/machines/bioreactor
 	name = "Bioreactor command"
-	power = 10
 
 
 /datum/ritual/cruciform/machines/bioreactor/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
@@ -92,7 +90,7 @@
 
 /datum/ritual/cruciform/machines/bioreactor/solution
 	name = "Bioreactor solution pump's lullaby"
-	phrase = "Cheeki-breeki i v damke op-pa-pa, vodka, balalaika, babushka, pushkin"
+	phrase = "Nihil igitur fieri de nihilo posse putandum est."
 	desc = "This ritual pump in or pump out solution of bioreactor's chamber. You should stay nearby its screen."
 
 
@@ -111,7 +109,7 @@
 
 /datum/ritual/cruciform/machines/bioreactor/chamber_doors
 	name = "Bioreactor chamber's words"
-	phrase = "Sim-salabim, sizam-otkroysya, cheort vozmi"
+	phrase = "Constituit quoque ianitores in portis domus Domini ut non ingrederetur eam inmundus in omni."
 	desc = "This ritual open or close bioreactor chamber. You should stay nearby its screen."
 
 
