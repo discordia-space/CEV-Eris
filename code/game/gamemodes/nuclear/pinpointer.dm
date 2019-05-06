@@ -10,16 +10,16 @@
 	throw_range = 20
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	var/obj/item/weapon/disk/nuclear/the_disk = null
-	var/active = 0
+	var/active = FALSE
 
 
 /obj/item/weapon/pinpointer/attack_self()
 	if(!active)
-		active = 1
+		active = TRUE
 		workdisk()
 		to_chat(usr, SPAN_NOTICE("You activate the pinpointer"))
 	else
-		active = 0
+		active = FALSE
 		icon_state = "pinoff"
 		to_chat(usr, SPAN_NOTICE("You deactivate the pinpointer"))
 
@@ -49,7 +49,7 @@
 			to_chat(user, SPAN_WARNING("Extreme danger.  Arming signal detected.   Time remaining: [bomb.timeleft]"))
 
 /obj/item/weapon/pinpointer/Destroy()
-	active = 0
+	active = FALSE
 	. = ..()
 
 /obj/item/weapon/pinpointer/advpinpointer
@@ -62,7 +62,7 @@
 
 /obj/item/weapon/pinpointer/advpinpointer/attack_self()
 	if(!active)
-		active = 1
+		active = TRUE
 		if(mode == 0)
 			workdisk()
 		if(mode == 1)
@@ -117,9 +117,9 @@
 	set name = "Toggle Pinpointer Mode"
 	set src in view(1)
 
-	active = 0
+	active = FALSE
 	icon_state = "pinoff"
-	target=null
+	target = null
 	location = null
 
 	switch(alert("Please select the mode you want to put the pinpointer in.", "Pinpointer Mode Select", "Location", "Disk Recovery", "Other Signature"))
@@ -185,7 +185,7 @@
 
 /obj/item/weapon/pinpointer/nukeop/attack_self(mob/user as mob)
 	if(!active)
-		active = 1
+		active = TRUE
 		if(!mode)
 			workdisk()
 			to_chat(user, SPAN_NOTICE("Authentication Disk Locator active."))
