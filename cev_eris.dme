@@ -48,6 +48,7 @@
 #include "code\__defines\mob_stats.dm"
 #include "code\__defines\mobs.dm"
 #include "code\__defines\movement.dm"
+#include "code\__defines\nanoui.dm"
 #include "code\__defines\process_scheduler.dm"
 #include "code\__defines\qdel.dm"
 #include "code\__defines\reagents.dm"

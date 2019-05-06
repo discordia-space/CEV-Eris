@@ -577,7 +577,7 @@
  *
  *  See NanoUI documentation for details.
  */
-/obj/machinery/vending/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/vending/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	user.set_machine(src)
 
 	var/list/data = list()
@@ -1309,8 +1309,8 @@
 
 /obj/machinery/vending/powermat
 	name = "Asters Guild Power-Mat"
-	desc = "Trust is power, and there’s no power you can trust like Robustcell."
-	product_slogans = "Trust is power, and there’s no cell you can trust like Robustcell.;No battery is stronger nor lasts longer.;One that Lasts!;You can't top the copper top!"
+	desc = "Trust is power, and there's no power you can trust like Robustcell."
+	product_slogans = "Trust is power, and there's no cell you can trust like Robustcell.;No battery is stronger nor lasts longer.;One that Lasts!;You can't top the copper top!"
 	product_ads = "Robust!;Trustworthy!;Durable!"
 	icon_state = "powermat"
 	products = list(/obj/item/weapon/cell/large = 10, /obj/item/weapon/cell/large/high = 10, /obj/item/weapon/cell/medium = 15, /obj/item/weapon/cell/medium/high = 15, /obj/item/weapon/cell/small = 20, /obj/item/weapon/cell/small/high = 20)

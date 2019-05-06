@@ -168,7 +168,7 @@ are technically visible but obscured, for example by catwalks or trash sitting o
 	if (loc == M)
 		set_enabled(!enabled)
 
-/obj/item/device/t_scanner/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/device/t_scanner/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	// this is the data which will be sent to the ui
 	var/data[0]
 	data["enabled"] = enabled ? 1 : 0
