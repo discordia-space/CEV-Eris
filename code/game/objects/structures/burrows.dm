@@ -100,8 +100,8 @@
 /*
 	Returns true/false to indicate if the passed mob is valid to be considered population for this burrow
 */
-/obj/structure/burrow/proc/is_valid(var/mob/living/L)
-	if (QDELETED(L))
+/obj/structure/burrow/proc/is_valid(mob/living/L)
+	if(QDELETED(L) || !istype(L))
 		return FALSE
 
 	//Dead mobs don't count
@@ -186,7 +186,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 		var/mob/living/L = locate(v) //Resolve the hex reference into a mob
 
 		//Check that it's still valid. Hasn't been deleted, etc
-		if (!is_valid(L))
+		if(!is_valid(L))
 			continue
 
 
@@ -547,12 +547,12 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 
 //Mobs that are summoned will walk up and attack this burrow
 //This will suck them in
-/obj/structure/burrow/attack_generic(var/mob/L)
+/obj/structure/burrow/attack_generic(mob/living/L)
 	if (is_valid(L))
 		enter_burrow(L)
 
 
-/obj/structure/burrow/proc/pull_mob(var/mob/living/L)
+/obj/structure/burrow/proc/pull_mob(mob/living/L)
 	if (!L.incapacitated())//Can't flee if you're stunned
 		walk_to(L, src, 1, L.move_to_delay*rand_between(1,1.5))
 //We randomise the move delay a bit so that mobs don't just move in sync like particles of dust being sucked up
