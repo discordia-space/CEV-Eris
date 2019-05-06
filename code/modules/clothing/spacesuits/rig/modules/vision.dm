@@ -16,17 +16,17 @@
 /datum/rig_vision/nvg
 	mode = "night vision"
 /datum/rig_vision/nvg/New()
-	glasses = new /obj/item/clothing/glasses/night
+	glasses = new /obj/item/clothing/glasses/powered/night
 
 /datum/rig_vision/thermal
 	mode = "thermal scanner"
 /datum/rig_vision/thermal/New()
-	glasses = new /obj/item/clothing/glasses/thermal
+	glasses = new /obj/item/clothing/glasses/powered/thermal
 
 /datum/rig_vision/meson
 	mode = "meson scanner"
 /datum/rig_vision/meson/New()
-	glasses = new /obj/item/clothing/glasses/meson
+	glasses = new /obj/item/clothing/glasses/powered/meson
 
 /datum/rig_vision/sechud
 	mode = "security HUD"

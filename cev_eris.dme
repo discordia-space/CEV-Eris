@@ -1347,6 +1347,7 @@
 #include "code\modules\clothing\glasses\meson.dm"
 #include "code\modules\clothing\glasses\misc.dm"
 #include "code\modules\clothing\glasses\night.dm"
+#include "code\modules\clothing\glasses\powered.dm"
 #include "code\modules\clothing\glasses\science.dm"
 #include "code\modules\clothing\glasses\thermal.dm"
 #include "code\modules\clothing\glasses\welding.dm"

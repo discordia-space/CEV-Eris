@@ -70,10 +70,10 @@ other types of metals and chemistry for reagents).
 	sort_string = "GAAAB"
 
 /datum/design/research/item/mesons
-	name = "Optical meson scanners design"
+	name = "Optical meson scanners"
 	desc = "Using the meson-scanning technology those glasses allow you to see through walls, floor or anything else."
 	req_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2)
-	build_path = /obj/item/clothing/glasses/meson
+	build_path = /obj/item/clothing/glasses/powered/meson
 	sort_string = "GAAAC"
 
 

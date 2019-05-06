@@ -7,3 +7,12 @@
 /obj/old_path
 	parent_type = /obj/new_path
 */
+
+/obj/item/clothing/glasses/science
+	parent_type = /obj/item/clothing/glasses/powered/science
+
+/obj/item/clothing/glasses/meson
+	parent_type = /obj/item/clothing/glasses/powered/meson
+
+/obj/item/clothing/glasses/thermal/plain/monocle
+	parent_type = /obj/item/clothing/glasses/powered/thermal/plain/monocle
