@@ -29,11 +29,11 @@
 		reagents.maximum_volume += G.volume
 		G.reagents.trans_to_holder(reagents, G.volume)
 
-/obj/machinery/chem_master/dismantle()
+/obj/machinery/chem_master/on_deconstruction()
 	for(var/obj/item/weapon/reagent_containers/glass/G in component_parts)
 		var/amount = G.reagents.get_free_space()
 		reagents.trans_to_holder(G, amount)
-	. = ..()
+	..()
 
 /obj/machinery/chem_master/ex_act(severity)
 	switch(severity)

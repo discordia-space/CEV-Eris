@@ -69,7 +69,7 @@
 	update_icon()
 
 
-/obj/machinery/autolathe_disk_cloner/dismantle()
+/obj/machinery/autolathe_disk_cloner/on_deconstruction()
 	if(original)
 		original.forceMove(src.loc)
 		original = null
@@ -77,7 +77,6 @@
 		copy.forceMove(src.loc)
 		copy = null
 	..()
-	return TRUE
 
 /obj/machinery/autolathe_disk_cloner/Process()
 	update_icon()
