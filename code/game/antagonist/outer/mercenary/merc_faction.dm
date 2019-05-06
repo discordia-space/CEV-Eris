@@ -21,12 +21,9 @@
 
 	var/objectives_num
 	var/list/possible_objectives = list(
-	// /datum/objective/download = 30,
-	/datum/objective/debrain = 10,
 	/datum/objective/harm = 20,
 	/datum/objective/steal = 55,
 	/datum/objective/assassinate = 35,
-	/datum/objective/protect = 15,
 	/datum/objective/abduct = 15)
 	var/objective_quantity = 6
 
