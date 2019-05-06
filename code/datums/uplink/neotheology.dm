@@ -41,14 +41,14 @@ A small pool of thematically appropriate religious items that are generally chea
 //A single blank cruciform implant, nothing special about it. Useful for field baptism
 /datum/uplink_item/item/neotheology/cruciform
 	name = "Cruciform Implant"
-	item_cost = 1
+	item_cost = 10
 	path = /obj/item/weapon/implant/core_implant/cruciform
 
 
 //A ritual book, for if you lose your own. Note that all books are the same, the rituals are stored in the cruciform implant
 /datum/uplink_item/item/neotheology/bible
 	name = "Ritual Book"
-	item_cost = 1
+	item_cost = 10
 	path = /obj/item/weapon/book/ritual/cruciform
 
 
@@ -58,20 +58,20 @@ A small pool of thematically appropriate religious items that are generally chea
 //This also requires an inquisitor ritual to complete the process, so it can't be done by anyone else
 /datum/uplink_item/item/neotheology/priest
 	name = "Preacher Ascension Kit"
-	item_cost = 3
+	item_cost = 30
 	path = /obj/item/weapon/coreimplant_upgrade/cruciform/priest
 
 
 //Ritual blade, for if you need a competent weapon, or for replacing one the preacher lost
 /datum/uplink_item/item/neotheology/knife
 	name = "Ritual Blade"
-	item_cost = 2
+	item_cost = 20
 	path = /obj/item/weapon/material/knife/neotritual
 
 
 /datum/uplink_item/item/neotheology/coat
 	name = "Preacher Coat"
-	item_cost = 3
+	item_cost = 30
 	path = /obj/item/clothing/suit/chaplain_hoodie
 
 /*
@@ -79,41 +79,41 @@ A small pool of thematically appropriate religious items that are generally chea
 	All guns are 1 TC cheaper than the closest equivilant in normal traitor gear
 */
 /datum/uplink_item/item/neotheology/laser
-	item_cost = 10
+	item_cost = 100
 	name = "NT LG \"Lightfall\""
 	path = /obj/item/weapon/gun/energy/laser
 
 /datum/uplink_item/item/neotheology/ion
-	item_cost = 8
+	item_cost = 80
 	name = "NT IR \"Halicon\""
 	path = /obj/item/weapon/gun/energy/ionrifle
 
 
 /datum/uplink_item/item/neotheology/pulse
-	item_cost = 10
+	item_cost = 100
 	name = "NT PR \"Dominion\""
 	path = /obj/item/weapon/gun/energy/pulse_rifle
 
 /datum/uplink_item/item/neotheology/pulse_rifle_destroyer
-	item_cost = 10
+	item_cost = 100
 	name = "NT PR \"Purger\""
 	path = /obj/item/weapon/gun/energy/pulse_rifle/destroyer
 
 
 
 /datum/uplink_item/item/neotheology/xbow
-	item_cost = 5
+	item_cost = 50
 	name = "NT EC \"Nemesis\""
 	path = /obj/item/weapon/gun/energy/crossbow
 
 /datum/uplink_item/item/neotheology/xbow_heavy
-	item_cost = 8
+	item_cost = 80
 	name = "NT EC \"Themis\""
 	path = /obj/item/weapon/gun/energy/crossbow/largecrossbow
 
 
 /datum/uplink_item/item/neotheology/sniper
-	item_cost = 13
+	item_cost = 130
 	name = "NT MER \"Valkyrie\""
 	path = /obj/item/weapon/gun/energy/sniperrifle
 

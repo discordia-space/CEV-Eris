@@ -24,6 +24,14 @@
 	name = "Telecrystals - 25"
 	item_cost = 25
 
+/datum/uplink_item/item/telecrystal/fifty
+	name = "Telecrystals - 50"
+	item_cost = 50
+
+/datum/uplink_item/item/telecrystal/hundred
+	name = "Telecrystals - 100"
+	item_cost = 100
+
 /datum/uplink_item/item/telecrystal/all
 	name = "Telecrystals - Empty Uplink"
 
