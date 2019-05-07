@@ -40,6 +40,10 @@
 		user << SPAN_NOTICE("You add [src.worth] credits worth of money to the bundles.<br>It holds [bundle.worth] credits now.")
 		qdel(src)
 
+	else if(istype(W, /obj/item/weapon/gun/launcher/money))
+		var/obj/item/weapon/gun/launcher/money/L = W
+		L.absorb_cash(src, user)
+
 /obj/item/weapon/spacecash/bundle
 	name = "pile of credits"
 	icon_state = ""

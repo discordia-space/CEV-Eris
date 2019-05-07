@@ -48,7 +48,7 @@ A small pool of thematically appropriate religious items that are generally chea
 //A ritual book, for if you lose your own. Note that all books are the same, the rituals are stored in the cruciform implant
 /datum/uplink_item/item/neotheology/bible
 	name = "Ritual Book"
-	item_cost = 4
+	item_cost = 10
 	path = /obj/item/weapon/book/ritual/cruciform
 
 
@@ -79,41 +79,41 @@ A small pool of thematically appropriate religious items that are generally chea
 	All guns are 1 TC cheaper than the closest equivilant in normal traitor gear
 */
 /datum/uplink_item/item/neotheology/laser
-	item_cost = 84
+	item_cost = 100
 	name = "NT LG \"Lightfall\""
 	path = /obj/item/weapon/gun/energy/laser
 
 /datum/uplink_item/item/neotheology/ion
-	item_cost = 84
+	item_cost = 80
 	name = "NT IR \"Halicon\""
 	path = /obj/item/weapon/gun/energy/ionrifle
 
 
 /datum/uplink_item/item/neotheology/pulse
-	item_cost = 98
+	item_cost = 100
 	name = "NT PR \"Dominion\""
 	path = /obj/item/weapon/gun/energy/pulse_rifle
 
 /datum/uplink_item/item/neotheology/pulse_rifle_destroyer
-	item_cost = 108
+	item_cost = 100
 	name = "NT PR \"Purger\""
 	path = /obj/item/weapon/gun/energy/pulse_rifle/destroyer
 
 
 
 /datum/uplink_item/item/neotheology/xbow
-	item_cost = 48
+	item_cost = 50
 	name = "NT EC \"Nemesis\""
 	path = /obj/item/weapon/gun/energy/crossbow
 
 /datum/uplink_item/item/neotheology/xbow_heavy
-	item_cost = 68
+	item_cost = 80
 	name = "NT EC \"Themis\""
 	path = /obj/item/weapon/gun/energy/crossbow/largecrossbow
 
 
 /datum/uplink_item/item/neotheology/sniper
-	item_cost = 138
+	item_cost = 130
 	name = "NT MER \"Valkyrie\""
 	path = /obj/item/weapon/gun/energy/sniperrifle
 

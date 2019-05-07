@@ -2095,6 +2095,7 @@
 #include "code\modules\projectiles\guns\energy\xray.dm"
 #include "code\modules\projectiles\guns\launcher\crossbow.dm"
 #include "code\modules\projectiles\guns\launcher\grenade_launcher.dm"
+#include "code\modules\projectiles\guns\launcher\money_cannon.dm"
 #include "code\modules\projectiles\guns\launcher\pneumatic.dm"
 #include "code\modules\projectiles\guns\launcher\syringe_gun.dm"
 #include "code\modules\projectiles\guns\mods\silencer.dm"

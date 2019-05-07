@@ -4,6 +4,12 @@
 /datum/uplink_item/item/badassery
 	category = /datum/uplink_category/badassery
 
+/datum/uplink_item/item/badassery/money_cannon
+	name = "Modified Money Cannon"
+	item_cost = 40
+	path = /obj/item/weapon/gun/launcher/money/hacked
+	desc = "Too much money? Not enough screaming? Try the Money Cannon."
+
 /**************
 * Random Item *
 **************/
