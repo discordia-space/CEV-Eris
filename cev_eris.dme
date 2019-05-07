@@ -409,6 +409,7 @@
 #include "code\datums\underwear\underwear.dm"
 #include "code\datums\uplink\ammunition.dm"
 #include "code\datums\uplink\announcements.dm"
+#include "code\datums\uplink\armor and apparel.dm"
 #include "code\datums\uplink\badassery.dm"
 #include "code\datums\uplink\devices and tools.dm"
 #include "code\datums\uplink\grenades.dm"
