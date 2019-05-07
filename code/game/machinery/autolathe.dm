@@ -652,7 +652,8 @@
 /obj/machinery/autolathe/dismantle()
 	for(var/mat in stored_material)
 		eject(mat, stored_material[mat])
-
+		
+	eject_disk()
 	..()
 	return 1
 
