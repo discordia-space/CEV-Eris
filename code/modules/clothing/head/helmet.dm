@@ -62,11 +62,17 @@
 	name = "tactical helmet"
 	desc = "An armored helmet capable of being fitted with a multitude of attachments."
 	icon_state = "swathelm"
-
 	armor = list(melee = 62, bullet = 50, laser = 50,energy = 35, bomb = 10, bio = 2, rad = 0)
 	flags_inv = HIDEEARS
 	siemens_coefficient = 0.7
 	price_tag = 250
+
+/obj/item/clothing/head/helmet/merc
+	name = "tan helmet"
+	desc = "A tan helmet made from advanced ceramic. Comfortable and robust."
+	icon_state = "merchelm"
+	armor = list(melee = 65, bullet = 70, laser = 70, energy = 45, bomb = 40, bio = 0, rad = 0)
+	siemens_coefficient = 0.6
 
 /obj/item/clothing/head/helmet/augment
 	name = "Augment Array"

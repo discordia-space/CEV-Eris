@@ -12,7 +12,7 @@
 
 /datum/uplink_item/item/ammo/mc9mm/highvelocity
 	name = "Magazine (9mm high velocity)"
-	item_cost = 8
+	item_cost = 6
 	path = /obj/item/ammo_magazine/mc9mm/highvelocity
 
 /datum/uplink_item/item/ammo/a357
@@ -22,7 +22,7 @@
 
 /datum/uplink_item/item/ammo/a357/highvelocity
 	name = "Speed Loader (.357 high velocity)"
-	item_cost = 20
+	item_cost = 15
 	path = /obj/item/ammo_magazine/sl357/highvelocity
 
 /datum/uplink_item/item/ammo/smg10mm
@@ -32,7 +32,7 @@
 
 /datum/uplink_item/item/ammo/smg10mm/highvelocity
 	name = "SMG Magazine (10mm high velocity)"
-	item_cost = 28
+	item_cost = 20
 	path = /obj/item/ammo_magazine/smg10mm/hv
 
 /datum/uplink_item/item/ammo/a762
@@ -42,7 +42,7 @@
 
 /datum/uplink_item/item/ammo/a762/highvelocity
 	name = "Long Magazine (7.62 high velocity)"
-	item_cost = 36
+	item_cost = 26
 	path = /obj/item/ammo_magazine/c762_long/highvelocity
 
 /datum/uplink_item/item/ammo/sniperammo
