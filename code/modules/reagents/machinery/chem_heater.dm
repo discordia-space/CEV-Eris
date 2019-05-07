@@ -10,7 +10,7 @@
 	circuit = /obj/item/weapon/circuitboard/chem_heater
 	var/obj/item/weapon/reagent_containers/beaker = null
 	var/target_temperature = 300
-	var/heater_coefficient = 1
+	var/heater_coefficient = 0.2
 	var/on = FALSE
 
 /obj/machinery/chem_heater/Destroy()
@@ -51,7 +51,7 @@
 	return TRUE
 
 /obj/machinery/chem_heater/RefreshParts()
-	heater_coefficient = 0.1
+	heater_coefficient = initial(heater_coefficient)
 	for(var/obj/item/weapon/stock_parts/micro_laser/M in component_parts)
 		heater_coefficient *= M.rating
 
@@ -65,6 +65,13 @@
 		SSnano.update_uis(src)
 
 /obj/machinery/chem_heater/attackby(obj/item/I, mob/user, params)
+	if(default_deconstruction(I, user))
+		return
+
+	if(default_part_replacement(I, user))
+		return
+
+
 	if(istype(I, /obj/item/weapon/reagent_containers) && I.is_open_container())
 		. = TRUE //no afterattack
 		var/obj/item/weapon/reagent_containers/B = I
