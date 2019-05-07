@@ -65,14 +65,6 @@
 		SSnano.update_uis(src)
 
 /obj/machinery/chem_heater/attackby(obj/item/I, mob/user, params)
-	/*
-	if(default_deconstruction_screwdriver(user, "mixer0b", "mixer0b", I))
-		return
-
-	if(default_deconstruction_crowbar(I))
-		return
-	*/
-
 	if(istype(I, /obj/item/weapon/reagent_containers) && I.is_open_container())
 		. = TRUE //no afterattack
 		var/obj/item/weapon/reagent_containers/B = I
@@ -89,7 +81,7 @@
 	replace_beaker()
 	..()
 
-/obj/machinery/chem_heater/attack_hand(mob/user as mob)
+/obj/machinery/chem_heater/attack_hand(mob/user)
 	if(..())
 		return TRUE
 

@@ -363,17 +363,16 @@ Class Procs:
 
 /obj/machinery/proc/spawn_frame(disassembled=TRUE)
 	var/obj/machinery/constructable_frame/machine_frame/M = create_frame(frame_type)
-	. = M
+
+	transfer_fingerprints_to(M)
 	M.anchored = anchored
 	M.set_dir(src.dir)
-	/*
-	if(!disassembled)
-		M.obj_integrity = M.max_integrity * 0.5 //the frame is already half broken
-	*/
-	transfer_fingerprints_to(M)
+
 	M.state = 2
 	M.icon_state = "[M.base_state]_1"
 	M.update_icon()
+
+	return M
 
 
 /datum/proc/remove_visual(mob/M)
