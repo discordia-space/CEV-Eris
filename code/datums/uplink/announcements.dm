@@ -12,7 +12,7 @@
 /datum/uplink_item/abstract/announcements/announce/New()
 	..()
 	name = "Shipwide Announcement"
-	item_cost = 20
+	item_cost = 10
 	desc = "Broadcasts a message anonymously to the entire vessel. Triggers immediately after supplying additional data."
 
 /datum/uplink_item/abstract/announcements/announce/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/user, var/list/args)
@@ -25,7 +25,7 @@
 /datum/uplink_item/abstract/announcements/fake_crew_arrival
 	name = "Crew Arrival Announcement/Records"
 	desc = "Creates a fake crew arrival announcement as well as fake crew records, using your current appearance (including held items!) and worn id card. Trigger with care!"
-	item_cost = 80
+	item_cost = 10
 
 /datum/uplink_item/abstract/announcements/fake_crew_arrival/New()
 	..()
@@ -92,7 +92,7 @@
 /datum/uplink_item/abstract/announcements/fake_radiation
 	name = "Radiation Storm Announcement"
 	desc = "Interferes with the station's radiation sensors. Triggers immediately upon investment."
-	item_cost = 70
+	item_cost = 48
 
 /datum/uplink_item/abstract/announcements/fake_radiation/get_goods(var/obj/item/device/uplink/U, var/loc)
 	var/datum/event/radiation_storm/syndicate/S =  new(null, EVENT_LEVEL_MODERATE)

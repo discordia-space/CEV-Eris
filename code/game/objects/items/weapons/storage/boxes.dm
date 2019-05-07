@@ -308,12 +308,11 @@
 
 /obj/item/weapon/storage/box/flashbangs
 	name = "box of flashbangs"
-	desc = "A box containing 7 antipersonnel flashbang grenades.<br> WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use."
+	desc = "A box containing 6 antipersonnel flashbang grenades.<br> WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use."
 	icon_state = "flashbang"
 
 	New()
 		..()
-		new /obj/item/weapon/grenade/flashbang(src)
 		new /obj/item/weapon/grenade/flashbang(src)
 		new /obj/item/weapon/grenade/flashbang(src)
 		new /obj/item/weapon/grenade/flashbang(src)
@@ -339,7 +338,7 @@
 
 /obj/item/weapon/storage/box/emps
 	name = "box of emp grenades"
-	desc = "A box containing 5 military grade EMP grenades.<br> WARNING: Do not use near unshielded electronics or biomechanical augmentations, death or permanent paralysis may occur."
+	desc = "A box containing 6 FS EMPG \"Frye\" grenades.<br> WARNING: Do not use near unshielded electronics or biomechanical augmentations, death or permanent paralysis may occur."
 	icon_state = "flashbang"
 
 	New()
@@ -349,14 +348,31 @@
 		new /obj/item/weapon/grenade/empgrenade(src)
 		new /obj/item/weapon/grenade/empgrenade(src)
 		new /obj/item/weapon/grenade/empgrenade(src)
+		new /obj/item/weapon/grenade/empgrenade(src)
+
+/obj/item/weapon/storage/box/emps/weak
+	name = "box of low-yield emp grenades"
+	desc = "A box containing 6 FS EMPG \"Frye\" - C grenades, which are weaker versions of original \"Frye\" grenades. These are cheap, weak versions.<br> WARNING: Do not use near unshielded electronics or biomechanical augmentations, death or permanent paralysis may occur."
+	icon_state = "flashbang"
+
+	New()
+		..()
+		new /obj/item/weapon/grenade/empgrenade/low_yield(src)
+		new /obj/item/weapon/grenade/empgrenade/low_yield(src)
+		new /obj/item/weapon/grenade/empgrenade/low_yield(src)
+		new /obj/item/weapon/grenade/empgrenade/low_yield(src)
+		new /obj/item/weapon/grenade/empgrenade/low_yield(src)
+		new /obj/item/weapon/grenade/empgrenade/low_yield(src)
 
 /obj/item/weapon/storage/box/frag
 	name = "box of fragmentation grenades"
-	desc = "A box containing 4 fragmentation grenades. Designed for use on enemies in the open."
+	desc = "A box containing 6 defensive fragmentation grenades. Designed for use on enemies in the open."
 	icon_state = "flashbang"
 
 	New()
 		..()
+		new /obj/item/weapon/grenade/frag(src)
+		new /obj/item/weapon/grenade/frag(src)
 		new /obj/item/weapon/grenade/frag(src)
 		new /obj/item/weapon/grenade/frag(src)
 		new /obj/item/weapon/grenade/frag(src)
@@ -364,11 +380,13 @@
 
 /obj/item/weapon/storage/box/explosive
 	name = "box of blast grenades"
-	desc = "A box containing 4 blast grenades. Designed for assaulting strongpoints."
+	desc = "A box containing 6 offensive blast grenades. Designed for assaulting strongpoints."
 	icon_state = "flashbang"
 
 	New()
 		..()
+		new /obj/item/weapon/grenade/frag/explosive(src)
+		new /obj/item/weapon/grenade/frag/explosive(src)
 		new /obj/item/weapon/grenade/frag/explosive(src)
 		new /obj/item/weapon/grenade/frag/explosive(src)
 		new /obj/item/weapon/grenade/frag/explosive(src)
@@ -377,7 +395,7 @@
 
 /obj/item/weapon/storage/box/smokes
 	name = "box of smoke bombs"
-	desc = "A box containing 5 smoke bombs."
+	desc = "A box containing 6 smoke bombs."
 	icon_state = "flashbang"
 
 /obj/item/weapon/storage/box/smokes/New()
@@ -387,14 +405,16 @@
 		new /obj/item/weapon/grenade/smokebomb(src)
 		new /obj/item/weapon/grenade/smokebomb(src)
 		new /obj/item/weapon/grenade/smokebomb(src)
+		new /obj/item/weapon/grenade/smokebomb(src)
 
 /obj/item/weapon/storage/box/anti_photons
 	name = "box of anti-photon grenades"
-	desc = "A box containing 5 experimental photon disruption grenades."
+	desc = "A box containing 6 experimental photon disruption grenades."
 	icon_state = "flashbang"
 
 /obj/item/weapon/storage/box/anti_photons/New()
 		..()
+		new /obj/item/weapon/grenade/anti_photon(src)
 		new /obj/item/weapon/grenade/anti_photon(src)
 		new /obj/item/weapon/grenade/anti_photon(src)
 		new /obj/item/weapon/grenade/anti_photon(src)

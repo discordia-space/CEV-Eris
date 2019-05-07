@@ -255,7 +255,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	desc = "A bulky machine used for teleporting in supplies from a benefactor."
 	icon_state = "beacon"
 	var/obj/item/device/uplink/hidden/uplink
-	var/telecrystals = 100
+	var/telecrystals = 500
 	density = TRUE
 	anchored = TRUE
 
