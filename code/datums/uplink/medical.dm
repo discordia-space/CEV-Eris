@@ -4,6 +4,11 @@
 /datum/uplink_item/item/medical
 	category = /datum/uplink_category/medical
 
+/datum/uplink_item/item/medical/onegativeblood
+	name = "O- Blood Pack"
+	item_cost = 10
+	path = /obj/item/weapon/reagent_containers/blood/OMinus
+
 /datum/uplink_item/item/medical/sinpockets
 	name = "Box of Sin-Pockets"
 	item_cost = 20

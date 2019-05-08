@@ -24,10 +24,10 @@
 	item_cost = 20
 	path = /obj/item/weapon/storage/box/syndie_kit/toxin
 
-/datum/uplink_item/item/stealthy_weapons/detomatix
-	name = "Detomatix PDA Cartridge"
+/datum/uplink_item/item/stealthy_weapons/disguised_syringe_gun
+	name = "Disguised Syringe Gun"
 	item_cost = 40
-	path = /obj/item/weapon/cartridge/syndicate
+	path = /obj/item/weapon/gun/launcher/syringe/disguised
 
 /datum/uplink_item/item/stealthy_weapons/parapen
 	name = "Paralysis Pen"

@@ -4,7 +4,7 @@
 		switch (pickweight(list("bloodyspai" = 1, "stealth" = 1, "screwed" = 1, "guns" = 1, "murder" = 1, "freedom" = 1, "hacker" = 1, "lordsingulo" = 1, "smoothoperator" = 1)))
 			if("bloodyspai")
 				new /obj/item/clothing/under/chameleon(src)
-				new /obj/item/clothing/mask/gas/voice(src)
+				new /obj/item/clothing/mask/chameleon/voice(src)
 				new /obj/item/weapon/card/id/syndicate(src)
 				new /obj/item/clothing/shoes/syndigaloshes(src)
 				return

@@ -23,7 +23,7 @@
 				/obj/item/clothing/mask/gas/clown_hat = 10,
 				/obj/item/clothing/mask/gas/ihs = 10,
 				/obj/item/clothing/mask/gas/swat = 2,
-				/obj/item/clothing/mask/gas/voice = 2,
+				/obj/item/clothing/mask/chameleon/voice = 2,
 				/obj/item/clothing/mask/luchador = 2,
 				/obj/item/clothing/mask/luchador/rudos = 2,
 				/obj/item/clothing/mask/luchador/tecnicos = 2,

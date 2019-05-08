@@ -142,3 +142,18 @@
 	icon_state = "rapidsyringegun"
 	item_state = "rapidsyringegun"
 	max_darts = 5
+
+/obj/item/weapon/gun/launcher/syringe/disguised
+	name = "cigarette"
+	desc = "A roll of tobacco and nicotine."
+	icon = 'icons/inventory/face/icon.dmi'
+	icon_state = "cigoff"
+	item_state = "cigoff"
+	w_class = ITEM_SIZE_TINY
+	force = 3
+	throw_distance = 7
+	release_force = 7
+
+/obj/item/weapon/gun/launcher/syringe/disguised/examine(mob/user)
+	if(( . = ..(user, 0)))
+		to_chat(user, "You notice that bottom of a filter replaced with small button.")

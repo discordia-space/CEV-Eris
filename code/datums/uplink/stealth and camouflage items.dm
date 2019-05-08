@@ -20,9 +20,10 @@
 	path = /obj/item/weapon/storage/box/syndie_kit/chameleon
 
 /datum/uplink_item/item/stealth_items/voice
-	name = "Voice Changer"
+	name = "Chameleon Voice Changer"
 	item_cost = 50
-	path = /obj/item/clothing/mask/gas/voice
+	path = /obj/item/clothing/mask/chameleon/voice
+	desc = "Mask with voice changer which also doubles as chameleon mask to keep suspicions at bay."
 
 /datum/uplink_item/item/stealth_items/chameleon_projector
 	name = "Chameleon-Projector"
