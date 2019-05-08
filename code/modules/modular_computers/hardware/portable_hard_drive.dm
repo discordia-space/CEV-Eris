@@ -3,19 +3,23 @@
 	name = "data disk"
 	desc = "Removable disk used to store data."
 	w_class = ITEM_SIZE_SMALL
-	power_usage = 30
 	icon = 'icons/obj/discs.dmi'
 	icon_state = "yellow"
 	hardware_size = 1
+	power_usage = 30
 	max_capacity = 16
+	default_files = list()
 	origin_tech = list(TECH_DATA = 1)
+	price_tag = 10
+	var/disk_name
+	var/license = 0
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/advanced
 	name = "advanced data disk"
 	icon_state = "blue"
 	max_capacity = 64
 	origin_tech = list(TECH_DATA = 2)
-	price_tag = 15
+	price_tag = 20
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/super
 	name = "super data disk"
@@ -23,12 +27,13 @@
 	icon_state = "black"
 	max_capacity = 256
 	origin_tech = list(TECH_DATA = 4)
-	price_tag = 20
+	price_tag = 50
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/Initialize()
 	. = ..()
-	stored_files = list()
-	recalculate_size()
+	w_class = ITEM_SIZE_SMALL
+	if(disk_name)
+		SetName("[initial(name)] - '[disk_name]'")
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/Destroy()
 	if(holder2 && (holder2.portable_drive == src))
