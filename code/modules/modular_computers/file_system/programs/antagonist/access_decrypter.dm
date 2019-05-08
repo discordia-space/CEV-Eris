@@ -94,7 +94,7 @@
 	return max(operator_skill - STAT_LEVEL_ADEPT, 0) * 30
 
 /datum/computer_file/program/access_decrypter/proc/get_speed()
-	var/skill_speed_modifier = 1 + (operator_skill - STAT_LEVEL_BASIC)/2
+	var/skill_speed_modifier = 1 + (operator_skill - STAT_LEVEL_BASIC)/3
 	return computer.processor_unit.max_idle_programs * skill_speed_modifier
 
 /datum/nano_module/program/access_decrypter

@@ -145,15 +145,10 @@
 
 /obj/item/weapon/gun/launcher/syringe/disguised
 	name = "cigarette"
-	desc = "A roll of tobacco and nicotine."
-	icon = 'icons/inventory/face/icon.dmi'
-	icon_state = "cigoff"
-	item_state = "cigoff"
+	desc = "A roll of tobacco and nicotine. Something looks not right about this one."
+	icon_state = "cig"
+	item_state = "cig"
 	w_class = ITEM_SIZE_TINY
 	force = 3
 	throw_distance = 7
 	release_force = 7
-
-/obj/item/weapon/gun/launcher/syringe/disguised/examine(mob/user)
-	if(( . = ..(user, 0)))
-		to_chat(user, "You notice that bottom of a filter replaced with small button.")
