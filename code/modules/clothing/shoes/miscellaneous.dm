@@ -25,22 +25,22 @@
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/shoes/swat
-	name = "\improper SWAT shoes"
-	desc = "When you want to turn up the heat."
-	icon_state = "swat"
-	force = WEAPON_FORCE_WEAK
-	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = 0)
-	item_flags = NOSLIP
-	siemens_coefficient = 0.6
-
-/obj/item/clothing/shoes/combat //Basically SWAT shoes combined with galoshes.
-	name = "combat boots"
-	desc = "When you REALLY want to turn up the heat"
+	name = "tactical boots"
+	desc = "When you want to turn up the heat. Comes with reinforced soles with extra grip."
 	icon_state = "swat"
 	force = WEAPON_FORCE_WEAK
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = 0)
 	item_flags = NOSLIP
 	siemens_coefficient = 0.4
+	can_hold_knife = 1
+
+/obj/item/clothing/shoes/swat/combat
+	name = "combat boots"
+	desc = "When you REALLY want to turn up the heat. Comes with reinforced soles with extra grip."
+	icon_state = "swat"
+	force = WEAPON_FORCE_WEAK
+	item_flags = NOSLIP
+	siemens_coefficient = 0.2
 
 	cold_protection = LEGS
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE

@@ -6,7 +6,7 @@
 	siemens_coefficient = 0 // DAMN BOI
 	item_flags = NOSLIP
 	slowdown = SHOES_SLOWDOWN+1
-	species_restricted = null
+	can_hold_knife = 1
 
 /obj/item/clothing/shoes/jackboots
 	name = "jackboots"

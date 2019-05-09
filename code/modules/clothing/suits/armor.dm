@@ -173,27 +173,27 @@
 	src.item_state = "reactiveoff"
 	..()
 
-/obj/item/clothing/suit/armor/tactical
-	name = "tactical armor"
+/obj/item/clothing/suit/armor/NT
+	name = "\improper NT armor"
 	desc = "A suit of armor most often used by Special Weapons and Tactics squads. Includes padded vest with pockets along with shoulder and kneeguards."
 	icon_state = "swatarmor"
 	item_state = "armor"
 	var/obj/item/weapon/gun/holstered = null
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	slowdown = 1
+	slowdown = 0.5
 	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 20, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
 	var/obj/item/clothing/accessory/holster/holster
 
-/obj/item/clothing/suit/armor/tactical/New()
+/obj/item/clothing/suit/armor/NT/New()
 	..()
 	holster = new(src)
 
-/obj/item/clothing/suit/armor/tactical/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/clothing/suit/armor/NT/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	holster.attackby(W, user)
 
-/obj/item/clothing/suit/armor/tactical/verb/holster()
+/obj/item/clothing/suit/armor/NT/verb/holster()
 	set name = "Holster"
 	set category = "Object"
 	set src in usr
@@ -233,7 +233,7 @@
 
 //Provides the protection of a merc voidsuit, but only covers the chest/groin, and also takes up a suit slot. In exchange it has no slowdown and provides storage.
 /obj/item/clothing/suit/storage/vest/merc
-	name = "tan armor vest"
+	name = "tactical armor vest"
 	desc = "A high-quality armor vest in a fetching tan. It is surprisingly flexible and light, even with the added webbing and armor plating."
 	icon_state = "mercwebvest"
 	item_state = "mercwebvest"

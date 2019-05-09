@@ -145,14 +145,22 @@
 	name = "black shoes"
 	icon_state = "black"
 	item_state = "black"
-	desc = "They're comfy black shoes, with clever cloaking technology built in. It seems to have a small dial on the back of each shoe."
+	desc = "Comfy black shoes with clever cloaking technology built in. It seems to have a small dial on the back of each shoe."
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
+
+/obj/item/clothing/shoes/chameleon/syndigaloshes
+	name = "black shoes"
+	desc = "A pair of black shoes. They seem to have extra grip and small dial on the back of each shoe."
+	permeability_coefficient = 0.05
+	item_flags = NOSLIP | SILENT
+	origin_tech = list(TECH_ILLEGAL = 4)
+	siemens_coefficient = 0
 
 /obj/item/clothing/shoes/chameleon/New()
 	..()
 	if(!clothing_choices)
-		var/blocked = list(src.type, /obj/item/clothing/shoes/syndigaloshes, /obj/item/clothing/shoes/cyborg)//prevent infinite loops and bad shoes.
+		var/blocked = list(src.type, /obj/item/clothing/shoes/cyborg)//prevent infinite loops and bad shoes.
 		clothing_choices = generate_chameleon_choices(/obj/item/clothing/shoes, blocked)
 
 /obj/item/clothing/shoes/chameleon/emp_act(severity) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
