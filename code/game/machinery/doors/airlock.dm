@@ -1092,16 +1092,19 @@ There are 9 wires.
 	else
 		spawn(0)	close(tool)
 
-/obj/machinery/door/airlock/open(var/forced=0)
+/obj/machinery/door/airlock/open(var/forced = 0)
 	if(!can_open(forced))
 		return 0
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
 
 	//if the door is unpowered then it doesn't make sense to hear the woosh of a pneumatic actuator
+	var/obj/item/weapon/tool/T = forced
 	if(arePowerSystemsOn())
+		if(istype(T) && T.item_flags && T.open_powered)
+			for(var/mob/M in range(1,src))
+				M.show_message(SPAN_WARNING("You hear grinding noises from the door."), 2)
 		playsound(src.loc, open_sound_powered, 70, 1, -2)
 	else
-		var/obj/item/weapon/tool/T = forced
 		if (istype(T) && T.item_flags & SILENT)
 			playsound(src.loc, open_sound_unpowered, 3, 1, -5) //Silenced tools can force open airlocks silently
 		else
@@ -1120,7 +1123,7 @@ There are 9 wires.
 		return 0
 	return ..()
 
-/obj/machinery/door/airlock/can_close(var/forced=0)
+/obj/machinery/door/airlock/can_close(var/forced = 0)
 	if(locked || welded)
 		return FALSE
 
