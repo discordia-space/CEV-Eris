@@ -1100,9 +1100,9 @@ There are 9 wires.
 	//if the door is unpowered then it doesn't make sense to hear the woosh of a pneumatic actuator
 	var/obj/item/weapon/tool/T = forced
 	if(arePowerSystemsOn())
-		if(istype(T) && T.item_flags && T.open_powered)
+		if(istype(T) && T.open_powered)
 			for(var/mob/M in range(1,src))
-				M.show_message(SPAN_WARNING("You hear grinding noises from the door."), 2)
+				M.show_message(SPAN_WARNING("You hear groaning noises from the door."), 2)
 		playsound(src.loc, open_sound_powered, 70, 1, -2)
 	else
 		if (istype(T) && T.item_flags & SILENT)
