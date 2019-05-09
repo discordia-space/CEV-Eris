@@ -68,7 +68,7 @@
 
 /datum/reagent/dylovene/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.drowsyness = max(0, M.drowsyness - 6 * removed)
-	M.hallucination = max(0, M.hallucination - 9 * removed)
+	M.adjust_hallucination(-9 * removed)
 	M.adjustToxLoss(-4 * removed)
 
 /datum/reagent/dexalin
@@ -167,7 +167,7 @@
 
 /datum/reagent/paracetamol/overdose(var/mob/living/carbon/M, var/alien)
 	..()
-	M.hallucination = max(M.hallucination, 2)
+	M.druggy = max(M.druggy, 2)
 
 /datum/reagent/tramadol
 	name = "Tramadol"
@@ -185,7 +185,7 @@
 
 /datum/reagent/tramadol/overdose(var/mob/living/carbon/M, var/alien)
 	..()
-	M.hallucination = max(M.hallucination, 2)
+	M.hallucination(120, 30)
 
 /datum/reagent/oxycodone
 	name = "Oxycodone"
@@ -203,7 +203,6 @@
 /datum/reagent/oxycodone/overdose(var/mob/living/carbon/M, var/alien)
 	..()
 	M.druggy = max(M.druggy, 10)
-	M.hallucination = max(M.hallucination, 3)
 
 /* Other medicine */
 
@@ -224,7 +223,8 @@
 	M.AdjustStunned(-1)
 	M.AdjustWeakened(-1)
 	holder.remove_reagent("mindbreaker", 5)
-	M.hallucination = max(0, M.hallucination - 10)
+	M.adjust_hallucination(-10)
+	M.add_chemical_effect(CE_MIND, 2)
 	M.adjustToxLoss(5 * removed) // It used to be incredibly deadly due to an oversight. Not anymore!
 	M.add_chemical_effect(CE_PAINKILLER, 40)
 
@@ -441,6 +441,7 @@
 		data = -1
 		M << SPAN_WARNING("Your mind feels a little less stable...")
 	else
+		M.add_chemical_effect(CE_MIND, 1)
 		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 			data = world.time
 			M << SPAN_NOTICE("Your mind feels stable... a little stable.")
@@ -459,13 +460,14 @@
 		data = -1
 		M << SPAN_WARNING("Your mind feels much less stable...")
 	else
+		M.add_chemical_effect(CE_MIND, 2)
 		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 			data = world.time
 			if(prob(90))
 				M << SPAN_NOTICE("Your mind feels much more stable.")
 			else
 				M << SPAN_WARNING("Your mind breaks apart...")
-				M.hallucination += 200
+				M.hallucination(200, 100)
 
 /datum/reagent/rezadone
 	name = "Rezadone"

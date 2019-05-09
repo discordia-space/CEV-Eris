@@ -655,23 +655,23 @@
 
 	var/success = FALSE
 	for(var/mob/living/carbon/human/victim in targets_in_range(12))
-		if(victim.stat == CONSCIOUS && victim.hallucination < 300)
+		if(victim.stat == CONSCIOUS && victim.hallucination_duration < 300)
 			use_ability(victim)
 			success = TRUE
 
 	if(success)
 		set_cooldown()
 
-/obj/machinery/hivemind_machine/distractor/use_ability(mob/living/target)
+/obj/machinery/hivemind_machine/distractor/use_ability(mob/living/carbon/target)
 
 	var/mob/living/carbon/human/H = target
 	if(istype(H))
 		if(prob(100 - H.stats.getStat(STAT_VIG)))
-			H.hallucination += 20
+			H.adjust_hallucination(20, 20)
 		else
-			to_chat(H, SPAN_NOTICE("Reality flikers for a second, but you manage to focus!"))
-	else
-		target.hallucination += 20
+			to_chat(H, SPAN_NOTICE("Reality flickers for a second, but you manage to focus!"))
+	else if (istype(target))
+		target.adjust_hallucination(20, 20)
 	flick("[icon_state]-anim", src)
 
 

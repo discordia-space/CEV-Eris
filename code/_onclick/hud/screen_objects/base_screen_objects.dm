@@ -360,20 +360,14 @@
 //			icon_state = "health_numb"
 			overlays += ovrls["health0"]
 		else
-			switch(parentmob:hal_screwyhud)
-				if(1)	overlays += ovrls["health6"]
-				if(2)	overlays += ovrls["health7"]
-				else
-				//switch(health - halloss)
-					switch(100 - ((parentmob:species.flags & NO_PAIN) ? 0 : parentmob:traumatic_shock))
-					//switch(100 - parentmob.traumatic_shock)
-						if(100 to INFINITY)		overlays += ovrls["health0"]
-						if(80 to 100)			overlays += ovrls["health1"]
-						if(60 to 80)			overlays += ovrls["health2"]
-						if(40 to 60)			overlays += ovrls["health3"]
-						if(20 to 40)			overlays += ovrls["health4"]
-						if(0 to 20)				overlays += ovrls["health5"]
-						else					overlays += ovrls["health6"]
+			switch(100 - ((parentmob:species.flags & NO_PAIN) ? 0 : parentmob:traumatic_shock))
+				if(100 to INFINITY)		overlays += ovrls["health0"]
+				if(80 to 100)			overlays += ovrls["health1"]
+				if(60 to 80)			overlays += ovrls["health2"]
+				if(40 to 60)			overlays += ovrls["health3"]
+				if(20 to 40)			overlays += ovrls["health4"]
+				if(0 to 20)				overlays += ovrls["health5"]
+				else					overlays += ovrls["health6"]
 
 /obj/screen/health/DEADelize()
 	overlays.Cut()
@@ -542,7 +536,7 @@
 /obj/screen/toxin/update_icon()
 	var/mob/living/carbon/human/H = parentmob
 	overlays.Cut()
-	if(H.hal_screwyhud == 4 || H.plasma_alert)
+	if(H.plasma_alert)
 		overlays += ovrls["tox1"]
 //		icon_state = "tox1"
 //	else
@@ -574,7 +568,7 @@
 /obj/screen/oxygen/update_icon()
 	var/mob/living/carbon/human/H = parentmob
 	overlays.Cut()
-	if(H.hal_screwyhud == 3 || H.oxygen_alert)
+	if(H.oxygen_alert)
 		overlays += ovrls["oxy1"]
 //		icon_state = "oxy1"
 //	else
