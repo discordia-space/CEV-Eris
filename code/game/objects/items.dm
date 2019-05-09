@@ -37,6 +37,7 @@
 	var/body_parts_covered = 0 //see setup.dm for appropriate bit flags
 
 	var/list/tool_qualities = null// List of item qualities for tools system. See qualities.dm.
+	var/open_powered = FALSE	// Used by tools to open powered airlocks.
 
 	//var/heat_transfer_coefficient = 1 //0 prevents all transfers, 1 is invisible
 	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)

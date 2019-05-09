@@ -1005,17 +1005,17 @@ There are 9 wires.
 
 						qdel(src)
 						return
-					else if(arePowerSystemsOn())
-						to_chat(user, SPAN_NOTICE("The airlock's motors resist your efforts to force it."))
 					else if(locked)
-						to_chat(user, SPAN_NOTICE("The airlock's bolts prevent it from being forced."))
-					else
-						if(density)
-							spawn(0)	open(I)
+						user << SPAN_NOTICE("The airlock's bolts prevent it from being forced.")
+					else if(arePowerSystemsOn())
+						if(I.open_powered)
+							if(I.use_tool(user, src, WORKTIME_LONG, tool_type, FAILCHANCE_ZERO,  required_stat = STAT_ROB))
+								toggle(I)
 						else
-							spawn(0)	close(I)
-			else
-				..()
+							user << SPAN_NOTICE("The airlock's motors resist your efforts to force it.")
+					else
+						toggle(I)
+
 			return
 
 		if(QUALITY_SCREW_DRIVING)
@@ -1085,6 +1085,12 @@ There are 9 wires.
 
 	update_icon()
 	return
+
+/obj/machinery/door/airlock/proc/toggle(var/tool)
+	if(density)
+		spawn(0)	open(tool)
+	else
+		spawn(0)	close(tool)
 
 /obj/machinery/door/airlock/open(var/forced=0)
 	if(!can_open(forced))

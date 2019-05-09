@@ -230,6 +230,8 @@
 				new_item = new /obj/item/weapon/tool/wrench(src.loc)
 			else if(prob(25))
 				new_item = new /obj/item/weapon/tool/crowbar(src.loc)
+			else if(prob(25))
+				new_item = new /obj/item/weapon/tool/crowbar/halligan(src.loc)
 			else
 				new_item = new /obj/item/weapon/tool/screwdriver(src.loc)
 			additional_desc = "[pick("It doesn't look safe.",\

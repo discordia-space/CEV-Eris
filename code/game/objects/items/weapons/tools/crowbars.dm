@@ -35,12 +35,26 @@
 
 /obj/item/weapon/tool/crowbar/pneumatic
 	name = "pneumatic crowbar"
-	desc = "When you really need to crack open something."
+	desc = "When you really need to crack open something. Also opens powered airlocks."
 	icon_state = "pneumo_crowbar"
 	item_state = "jackhammer"
 	matter = list(MATERIAL_STEEL = 6, MATERIAL_PLASTIC = 2)
 	tool_qualities = list(QUALITY_PRYING = 40, QUALITY_DIGGING = 35)
-	degradation = 0.7
+	open_powered = TRUE
+	degradation = 0.07
 	use_power_cost = 0.8
 	max_upgrades = 4
 	suitable_cell = /obj/item/weapon/cell/medium
+
+/obj/item/weapon/tool/crowbar/halligan
+	name = "halligan bar"
+	desc = "Firefighting tool when you really want open doors in the darkness. Also opens powered airlocks."
+	icon_state = "halligan"
+	item_state = "crowbar"
+	force = WEAPON_FORCE_DANGEROUS
+	matter = list(MATERIAL_STEEL = 6, MATERIAL_PLASTEEL = 2)
+	tool_qualities = list(QUALITY_PRYING = 20, QUALITY_DIGGING = 35)
+	open_powered = TRUE
+	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked", "pierced")
+	degradation = 0.05
+	max_upgrades = 3
