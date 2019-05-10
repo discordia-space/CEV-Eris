@@ -69,7 +69,7 @@
 /datum/uplink_item/item/tools/thermal
 	name = "Thermal Imaging Glasses"
 	item_cost = 60
-	path = /obj/item/clothing/glasses/thermal/syndi
+	path = /obj/item/clothing/glasses/powered/thermal/syndi
 
 /datum/uplink_item/item/tools/powersink
 	name = "Powersink (DANGER!)"
