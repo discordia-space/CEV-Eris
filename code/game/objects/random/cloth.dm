@@ -328,7 +328,7 @@
 				/obj/item/clothing/shoes/color/white = 1,
 				/obj/item/clothing/shoes/color/red = 1,
 				/obj/item/clothing/shoes/color/yellow = 1,
-				/obj/item/clothing/shoes/combat = 2,  //No slip
+				/obj/item/clothing/shoes/swat/combat = 2,  //No slip
 				/obj/item/clothing/shoes/galoshes = 8,
 				/obj/item/clothing/shoes/jackboots = 14,
 				/obj/item/clothing/shoes/leather = 14,

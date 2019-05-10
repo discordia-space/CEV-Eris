@@ -37,7 +37,7 @@
 	name = "No-Slip Chameleon Shoes"
 	item_cost = 10
 	path = /obj/item/clothing/shoes/chameleon/syndigaloshes
-	desc = "This shoes have special gripped soils which prevent slipping and also can change their appearance.
+	desc = "This shoes have special gripped soils which prevent slipping and also can change their appearance."
 
 /datum/uplink_item/item/apparel/smallpouch
 	name = "Small Generic Pouch"
@@ -77,5 +77,10 @@
 	name = "Pistol Pouch"
 	item_cost = 8
 	path = /obj/item/weapon/storage/pouch/pistol_holster
+
+/datum/uplink_item/item/apparel/shoulderholster
+	name = "Shoulder Holster"
+	item_cost = 10
+	path = /obj/item/clothing/accessory/holster
 
 

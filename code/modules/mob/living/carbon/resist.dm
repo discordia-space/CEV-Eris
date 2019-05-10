@@ -245,7 +245,6 @@
 		buckled.user_unbuckle_mob(src)
 
 /mob/living/carbon/escape_buckle()
-	setClickCooldown(100)
 	if(!buckled) return
 
 	if(!restrained())

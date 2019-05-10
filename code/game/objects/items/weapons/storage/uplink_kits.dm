@@ -169,6 +169,22 @@
 	new /obj/item/weapon/gun/projectile/clarissa(src)
 	new /obj/item/weapon/silencer(src)
 
+/obj/item/weapon/storage/box/syndie_kit/disguised_syringe_gun
+	name = "disguised syringe gun kit"
+	desc = "Contains disguised as cigarette syringe gun, four darts and four syringes."
+
+/obj/item/weapon/storage/box/syndie_kit/disguised_syringe_gun/New()
+	..()
+	new /obj/item/weapon/gun/launcher/syringe/disguised(src)
+	new /obj/item/weapon/syringe_cartridge(src)
+	new /obj/item/weapon/syringe_cartridge(src)
+	new /obj/item/weapon/syringe_cartridge(src)
+	new /obj/item/weapon/syringe_cartridge(src)
+	new /obj/item/weapon/reagent_containers/syringe(src)
+	new /obj/item/weapon/reagent_containers/syringe(src)
+	new /obj/item/weapon/reagent_containers/syringe(src)
+	new /obj/item/weapon/reagent_containers/syringe(src)
+
 /obj/item/weapon/storage/box/syndie_kit/toxin
 	name = "toxin kit"
 	desc = "An apple will not be enough to keep the doctor away after this."

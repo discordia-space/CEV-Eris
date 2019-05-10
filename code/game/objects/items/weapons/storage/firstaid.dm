@@ -111,8 +111,8 @@
 	return
 
 /obj/item/weapon/storage/firstaid/combat
-	name = "combat medical kit"
-	desc = "Contains advanced medical treatments."
+	name = "drug medical kit"
+	desc = "Contains selection of almost all common medical drugs."
 	icon_state = "bezerk"
 	item_state = "firstaid-advanced"
 
@@ -125,7 +125,28 @@
 	new /obj/item/weapon/storage/pill_bottle/dylovene(src)
 	new /obj/item/weapon/storage/pill_bottle/tramadol(src)
 	new /obj/item/weapon/storage/pill_bottle/spaceacillin(src)
-	new /obj/item/stack/medical/splint(src)
+	new /obj/item/weapon/reagent_containers/hypospray/cheap(src)
+	return
+
+/obj/item/weapon/storage/firstaid/injectors
+	name = "combat medical kit"
+	desc = "Contains advanced medical treatments that can be used on go or in the middle of a combat."
+	icon_state = "bezerk"
+	item_state = "firstaid-advanced"
+
+/obj/item/weapon/storage/firstaid/injectors/New()
+	..()
+	if (empty) return
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/bicaridine(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/bicaridine(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/dermaline(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/dermaline(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexalinplus(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector(src)
+	new /obj/item/weapon/reagent_containers/hypospray/combat(src)
 	return
 
 /obj/item/weapon/storage/firstaid/surgery

@@ -156,6 +156,22 @@
 		new /obj/item/weapon/syringe_cartridge( src )
 		new /obj/item/weapon/syringe_cartridge( src )
 
+/obj/item/weapon/storage/box/syringegun_and_syringes
+	name = "box of syringe gun cartridges"
+	desc = "A box full of compressed gas cartridges. Syringes included."
+	icon_state = "syringe"
+
+	New()
+		..()
+		new /obj/item/weapon/syringe_cartridge( src )
+		new /obj/item/weapon/syringe_cartridge( src )
+		new /obj/item/weapon/syringe_cartridge( src )
+		new /obj/item/weapon/syringe_cartridge( src )
+		new /obj/item/weapon/reagent_containers/syringe( src )
+		new /obj/item/weapon/reagent_containers/syringe( src )
+		new /obj/item/weapon/reagent_containers/syringe( src )
+		new /obj/item/weapon/reagent_containers/syringe( src )
+
 
 /obj/item/weapon/storage/box/beakers
 	name = "box of beakers"

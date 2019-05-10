@@ -6,7 +6,7 @@
 
 /datum/uplink_item/item/stealthy_weapons/soap
 	name = "Subversive Soap"
-	item_cost = 10
+	item_cost = 4
 	path = /obj/item/weapon/soap/syndie
 
 /datum/uplink_item/item/stealthy_weapons/cigarette_kit
@@ -25,9 +25,10 @@
 	path = /obj/item/weapon/storage/box/syndie_kit/toxin
 
 /datum/uplink_item/item/stealthy_weapons/disguised_syringe_gun
-	name = "Disguised Syringe Gun"
-	item_cost = 40
-	path = /obj/item/weapon/gun/launcher/syringe/disguised
+	name = "Disguised Syringe Gun Kit"
+	item_cost = 60
+	path = /obj/item/weapon/storage/box/syndie_kit/disguised_syringe_gun
+	desc = "Comes with syringe gun, disguised as regular cigarette, four syringe gun cartridges and four syringes."
 
 /datum/uplink_item/item/stealthy_weapons/parapen
 	name = "Paralysis Pen"

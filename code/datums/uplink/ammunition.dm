@@ -51,24 +51,27 @@
 	path = /obj/item/ammo_casing/a145/prespawned
 
 /datum/uplink_item/item/ammo/darts
-	name = "Darts"
+	name = "Dart Magazine"
 	item_cost = 20
 	path = /obj/item/ammo_magazine/chemdart
 
-//Super-class cells, better than what you'll find in a vendor,
-//but not as good as the best maint loot, so scavenging is still encouraged
-//keep in mind you can buy them from hacked vendor, so they should be cheap in general
-/datum/uplink_item/item/ammo/cell/small
+/datum/uplink_item/item/ammo/cell_small
 	name = "Small Power Cell (300)"
 	item_cost = 10
 	path = /obj/item/weapon/cell/small/super
 
-/datum/uplink_item/item/ammo/cell/medium
+/datum/uplink_item/item/ammo/cell_medium
 	name = "Medium Power Cell (1000)"
 	item_cost = 20
 	path = /obj/item/weapon/cell/medium/super
 
-/datum/uplink_item/item/ammo/cell/large
+/datum/uplink_item/item/ammo/cell_large
 	name = "Large Power Cell (15000)"
 	item_cost = 30
 	path = /obj/item/weapon/cell/large/super
+
+/datum/uplink_item/item/ammo/syringegun_cartridges
+	name = "Four Syringe Gun Cartridges"
+	item_cost = 15
+	path = /obj/item/weapon/storage/box/syringegun_and_syringes
+	desc = "Comes in a box. Syringes included."
