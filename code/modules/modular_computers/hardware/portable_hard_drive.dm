@@ -67,3 +67,8 @@
 
 		store_file(D)
 	..()
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/ui_data()
+	var/list/data = ..()
+	data["license"] = license
+	return data
