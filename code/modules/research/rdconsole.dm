@@ -35,7 +35,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	circuit = /obj/item/weapon/circuitboard/rdconsole
 	var/datum/research/files								//Stores all the collected research data.
 	var/obj/item/weapon/disk/tech_disk/t_disk = null		//Stores the technology disk.
-	var/obj/item/weapon/disk/autolathe_disk/d_disk = null	//Stores the design disk.
+	var/obj/item/weapon/computer_hardware/hard_drive/portable/disk = null	//Stores the design disk.
 
 	var/obj/machinery/r_n_d/destructive_analyzer/linked_destroy = null	//Linked Destructive Analyzer
 	var/obj/machinery/r_n_d/protolathe/linked_lathe             = null	//Linked Protolathe
@@ -121,20 +121,15 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 /obj/machinery/computer/rdconsole/attackby(var/obj/item/weapon/D as obj, var/mob/user as mob)
 	//Loading a disk into it.
-	if(istype(D, /obj/item/weapon/disk))
-		if(t_disk || d_disk)
+	if(istype(D, /obj/item/weapon/disk) || istype(D, /obj/item/weapon/computer_hardware/hard_drive/portable))
+		if(t_disk || disk)
 			user << SPAN_NOTICE("A disk is already loaded into the machine.")
 			return
 
 		if(istype(D, /obj/item/weapon/disk/tech_disk))
 			t_disk = D
-		else if (istype(D, /obj/item/weapon/disk/autolathe_disk))
-			d_disk = D
-			if(d_disk.license != -1)
-				d_disk = null
-				to_chat(user, SPAN_WARNING("\The [D] is DRM-protected!"))
-				return
-
+		else if (istype(D, /obj/item/weapon/computer_hardware/hard_drive/portable))
+			disk = D
 		else
 			user << SPAN_NOTICE("Machine cannot accept disks in that format.")
 			return
@@ -194,31 +189,34 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				break
 		screen = 1.2
 
-	else if(href_list["updt_design"] && d_disk && length(d_disk.recipes)) //Updates the research holder with design data from the design disk.
+	else if(href_list["updt_design"] && disk) //Updates the research holder with design data from the design disk.
 		screen = 1.4
 
-		for(var/d in d_disk.recipes)
-			var/datum/design/design = files.possible_design_ids[d]
-			if(!design)
+		var/list/disk_designs = disk.find_files_by_type(/datum/computer_file/binary/design)
+
+		for(var/f in disk_designs)
+			var/datum/computer_file/binary/design/design_file = f
+
+			if(design_file.copy_protected)
+				continue
+			if(!(design_file.design in files.possible_designs))
 				continue
 
-			files.AddDesign2Known(design)
+			files.AddDesign2Known(design_file.design)
 
 		updateUsrDialog()
 		griefProtection() //Update centcomm too
 
-	else if(href_list["eject_design"] && d_disk) //Eject the design disk.
-		d_disk.forceMove(get_turf(src))
-		d_disk = null
+	else if(href_list["eject_disk"] && disk) //Eject the design disk.
+		disk.forceMove(get_turf(src))
+		disk = null
 		screen = 1.0
 
-	else if(href_list["copy_design"] && d_disk) //Copy design data from the research holder to the design disk.
+	else if(href_list["copy_design"] && disk) //Copy design data from the research holder to the design disk.
 		var/datum/design/design = files.possible_design_ids[href_list["copy_design_ID"]]
 
-		if(length(d_disk.recipes) < 10)
-			if(design in files.known_designs)
-				d_disk.recipes |= design.id
-				d_disk.category = "Research Designs"
+		if(design)
+			disk.store_file(design.file.clone())
 
 		screen = 1.4
 
@@ -257,7 +255,8 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 						if(linked_lathe && linked_destroy.loaded_item.matter) // Also sends salvaged materials to a linked protolathe, if any.
 							for(var/t in linked_destroy.loaded_item.matter)
 								if(t in linked_lathe.materials)
-									linked_lathe.materials[t] += min(linked_lathe.max_material_storage - linked_lathe.TotalMaterials(), linked_destroy.loaded_item.matter[t] * linked_destroy.decon_mod)
+									linked_lathe.materials[t] += linked_destroy.loaded_item.matter[t] * linked_destroy.decon_mod
+									linked_lathe.materials[t] = min(linked_lathe.materials[t], linked_lathe.max_material_storage)
 
 
 						linked_destroy.loaded_item = null
@@ -389,7 +388,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 	else if(href_list["reset"]) //Reset the R&D console's database.
 		griefProtection()
-		var/choice = alert("R&D Console Database Reset", "Are you sure you want to reset the R&D console's database? Data lost cannot be recovered.", "Continue", "Cancel")
+		var/choice = alert("Database Reset", "Are you sure you want to reset the R&D console database? Data lost cannot be recovered.", "Continue", "Cancel")
 		if(choice == "Continue")
 			screen = 0.0
 			qdel(files)
@@ -492,13 +491,24 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		if(1.0) //Main Menu
 			dat += "Main Menu:<BR><BR>"
 			dat += "Loaded disk: "
-			dat += (t_disk || d_disk) ? (t_disk ? "technology storage disk" : "design storage disk") : "none"
+			if(disk)
+				var/disk_name = disk.get_disk_name()
+
+				if(!disk_name)
+					disk_name = "data disk"
+
+				dat += disk_name
+			else if(t_disk)
+				dat += "technology storage disk"
+			else
+				dat += "none"
+
 			dat += "<HR><UL>"
 			dat += "<LI><A href='?src=\ref[src];menu=1.1'>Current Research Levels</A>"
 			dat += "<LI><A href='?src=\ref[src];menu=5.0'>View Researched Technologies</A>"
 			if(t_disk)
 				dat += "<LI><A href='?src=\ref[src];menu=1.2'>Disk Operations</A>"
-			else if(d_disk)
+			else if(disk)
 				dat += "<LI><A href='?src=\ref[src];menu=1.4'>Disk Operations</A>"
 			else
 				dat += "<LI>Disk Operations"
@@ -547,23 +557,31 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 		if(1.4) //Design Disk menu.
 			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A><HR>"
-			if(!length(d_disk.recipes))
-				dat += "The disk has no data stored on it.<HR>"
-				dat += "Operations: "
-			else
-				for(var/d in d_disk.recipes)
-					var/datum/design/design = files.possible_design_ids[d]
-					if(!design)
-						continue
-					dat += "Name: [design.name]<BR>"
 
-				dat += "<HR>Operations: "
-				dat += "<A href='?src=\ref[src];updt_design=1'>Upload to Database</A> || "
+			if(disk)
+				var/list/disk_designs = disk.find_files_by_type(/datum/computer_file/binary/design)
 
-			if(length(d_disk.recipes) < 10)
-				dat += "<A href='?src=\ref[src];menu=1.5'>Load Design to Disk</A> || "
+				if(!length(disk_designs))
+					dat += "The disk has no design files stored on it.<HR>"
+					dat += "Operations: "
+				else
+					for(var/f in disk_designs)
+						var/datum/computer_file/binary/design/design_file = f
 
-			dat += "<A href='?src=\ref[src];eject_design=1'>Eject Disk</A>"
+						if(design_file.copy_protected)
+							continue
+						if(!(design_file.design in files.possible_designs))
+							continue
+
+						dat += "Name: [design_file.design.name]<BR>"
+
+					dat += "<HR>Operations: "
+					dat += "<A href='?src=\ref[src];updt_design=1'>Upload to Database</A> || "
+
+				if(disk.can_store_file(size = 4))
+					dat += "<A href='?src=\ref[src];menu=1.5'>Load Design to Disk</A> || "
+
+				dat += "<A href='?src=\ref[src];eject_disk=1'>Eject Disk</A>"
 
 		if(1.5) //Technology disk submenu
 			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A> || "
@@ -661,7 +679,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				if(temp_dat)
 					temp_dat = " \[[copytext(temp_dat, 3)]\]"
 				var/iconName = getAtomCacheFilename(D.build_path)
-				dat += "<div style ='float: left; margin-left:0px; max-height:24px; max-width:24px; height:24px;width:24px;' class='statusDisplayItem'><img src= [iconName] height=24 width=24></div>"
+				dat += "<div style ='float: left; margin-left:0px; height:24px;width:24px;' class='statusDisplayItem'><img src= [iconName] height=24 width=24></div>"
 				if(linked_lathe.canBuild(D))
 					dat += "<LI><B><A href='?src=\ref[src];build=[D.id]'>[D.name]</A></B><div style = 'float: right;'>[temp_dat]</div>"
 				else
@@ -743,7 +761,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				if(temp_dat)
 					temp_dat = " \[[copytext(temp_dat,3)]\]"
 				var/iconName = getAtomCacheFilename(D.build_path)
-				dat += "<div style ='float: left; margin-left:0px; max-height:24px; max-width:24px; height:24px;width:24px;' class='statusDisplayItem'><img src= [iconName] height=24 width=24></div>"
+				dat += "<div style ='float: left; margin-left:0px; height:24px;width:24px;' class='statusDisplayItem'><img src= [iconName] height=24 width=24></div>"
 
 				if(linked_imprinter.canBuild(D))
 					dat += "<LI><B><A href='?src=\ref[src];imprint=[D.id]'>[D.name]</A></B><div style = 'float: right;'>[temp_dat]</div>"

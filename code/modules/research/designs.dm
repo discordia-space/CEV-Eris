@@ -30,21 +30,6 @@ other types of metals and chemistry for reagents).
 	req_tech = list(TECH_MATERIAL = 1)
 
 
-/datum/design/research/item/design_disk
-	name = "Design Storage Disk"
-	desc = "Produce additional disks for storing device designs."
-	req_tech = list(TECH_DATA = 1)
-	build_path = /obj/item/weapon/disk/autolathe_disk/blank
-	sort_string = "GAAAA"
-
-/datum/design/research/item/tech_disk
-	name = "Technology Data Storage Disk"
-	desc = "Produce additional disks for storing technology data."
-	req_tech = list(TECH_DATA = 1)
-	build_path = /obj/item/weapon/disk/tech_disk
-	sort_string = "GAAAB"
-
-
 /datum/design/research/item/flash
 	name = "flash"
 	req_tech = list(TECH_MAGNET = 3, TECH_COMBAT = 2)
