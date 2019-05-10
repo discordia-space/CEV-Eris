@@ -129,12 +129,12 @@
 	icon_state = "technomancers"
 	recipes = list(
 		/datum/design/autolathe/part/consolescreen,
-		/datum/design/research/item/stock_part/smes_coil,
-		/datum/design/research/item/stock_part/basic_capacitor,
-		/datum/design/research/item/stock_part/basic_sensor,
-		/datum/design/research/item/stock_part/micro_mani,
-		/datum/design/research/item/stock_part/basic_micro_laser,
-		/datum/design/research/item/stock_part/basic_matter_bin,
+		/datum/design/research/item/part/smes_coil,
+		/datum/design/research/item/part/basic_capacitor,
+		/datum/design/research/item/part/basic_sensor,
+		/datum/design/research/item/part/micro_mani,
+		/datum/design/research/item/part/basic_micro_laser,
+		/datum/design/research/item/part/basic_matter_bin,
 		/datum/design/autolathe/part/igniter,
 		/datum/design/autolathe/part/signaler,
 		/datum/design/autolathe/part/sensor_infra,
@@ -417,14 +417,14 @@
 		/datum/design/autolathe/cell/large/excelsior,
 		/datum/design/autolathe/cell/medium/excelsior,
 		/datum/design/autolathe/cell/small/excelsior,
-		/datum/design/research/item/stock_part/micro_mani,
-		/datum/design/research/item/stock_part/subspace_amplifier,
-		/datum/design/research/item/stock_part/subspace_crystal,
-		/datum/design/research/item/stock_part/subspace_transmitter,
+		/datum/design/research/item/part/micro_mani,
+		/datum/design/research/item/part/subspace_amplifier,
+		/datum/design/research/item/part/subspace_crystal,
+		/datum/design/research/item/part/subspace_transmitter,
 		/datum/design/autolathe/part/igniter,
 		/datum/design/autolathe/part/signaler,
 		/datum/design/autolathe/part/sensor_prox,
-		/datum/design/research/item/stock_part/basic_capacitor,
+		/datum/design/research/item/part/basic_capacitor,
 		/datum/design/autolathe/part/camera_assembly
 	)
 	license = -1
