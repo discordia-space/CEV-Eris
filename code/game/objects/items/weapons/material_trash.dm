@@ -4,7 +4,7 @@
 	var/matter_chances = list()	//List of lists: list(material_name, chance, amount)
 
 
-/obj/item/weapon/material_trash/New()
+/obj/item/weapon/material_trash/Initialize()
 	. = ..()
 	if(!matter)
 		matter = list()
@@ -30,10 +30,9 @@
 		list(MATERIAL_PLATINUM, 4, 2),
 	)
 
-/obj/item/weapon/material_trash/metal/New()
-	icon_state = "metal[rand(4)]"
+/obj/item/weapon/material_trash/metal/Initialize()
 	. = ..()
-
+	icon_state = "metal[rand(4)]"
 
 
 /obj/item/weapon/material_trash/circuit
@@ -49,9 +48,9 @@
 		list(MATERIAL_DIAMOND, 4, 2),
 	)
 
-/obj/item/weapon/material_trash/circuit/New()
-	icon_state = "circuit[rand(3)]"
+/obj/item/weapon/material_trash/circuit/Initialize()
 	. = ..()
+	icon_state = "circuit[rand(3)]"
 
 
 /obj/item/weapon/material_trash/device
@@ -67,6 +66,7 @@
 		list(MATERIAL_DIAMOND, 5, 2),
 	)
 
-/obj/item/weapon/material_trash/device/New()
-	icon_state = "device[rand(3)]"
+/obj/item/weapon/material_trash/device/Initialize()
 	. = ..()
+	icon_state = "device[rand(3)]"
+
