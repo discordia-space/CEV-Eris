@@ -58,3 +58,12 @@
 		return
 
 	..()
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/install_default_files()
+	if(disk_name)
+		var/datum/computer_file/data/text/D = new
+		D.filename = "DISK_NAME"
+		D.stored_data = disk_name
+
+		store_file(D)
+	..()
