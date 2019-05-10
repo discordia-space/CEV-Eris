@@ -27,7 +27,7 @@
 
 /datum/gear/eyes/sciencegoggles
 	display_name = "Science Goggles"
-	path = /obj/item/clothing/glasses/science
+	path = /obj/item/clothing/glasses/powered/science
 
 /datum/gear/eyes/security
 	display_name = "Security HUD"

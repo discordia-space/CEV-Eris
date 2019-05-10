@@ -221,13 +221,6 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 		register_asset(filename, I)
 		assets[filename] = I
 
-/datum/asset/simple/tgui
-	isTrivial = FALSE
-	assets = list(
-		"tgui.css"	= 'tgui/assets/tgui.css',
-		"tgui.js"	= 'tgui/assets/tgui.js'
-	)
-
 /datum/asset/simple/pda
 	assets = list(
 		"pda_atmos.png"			= 'icons/pda_icons/pda_atmos.png',

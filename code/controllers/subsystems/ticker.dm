@@ -67,11 +67,24 @@ SUBSYSTEM_DEF(ticker)
 
 	setup_objects()
 	setup_genetics()
+	setup_huds()
 
 	return ..()
 
 /datum/controller/subsystem/ticker/proc/setup_objects()
 	populate_antag_type_list() // Set up antagonists. Do these first since character setup will rely on them
+
+/datum/controller/subsystem/ticker/proc/setup_huds()
+	global_hud = new()
+	global_huds = list(
+		global_hud.druggy,
+		global_hud.blurry,
+		global_hud.vimpaired,
+		global_hud.darkMask,
+		global_hud.nvg,
+		global_hud.thermal,
+		global_hud.meson,
+		global_hud.science)
 
 /datum/controller/subsystem/ticker/fire()
 	switch(current_state)
