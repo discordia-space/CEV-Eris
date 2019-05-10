@@ -46,7 +46,7 @@ datum/uplink_item/item/medical/autoinjector_derma
 datum/uplink_item/item/medical/autoinjector_dexplus
 	name = "Dexaline Plus Autoinjector"
 	item_cost = 6
-	path = /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexalineplus
+	path = /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexalinplus
 
 datum/uplink_item/item/medical/autoinjector_dylo
 	name = "Dylovene Autoinjector"
@@ -56,7 +56,7 @@ datum/uplink_item/item/medical/autoinjector_dylo
 datum/uplink_item/item/medical/autoinjector_space
 	name = "Spaceacilline Autoinjector"
 	item_cost = 6
-	path = /obj/item/weapon/reagent_containers/hypospray/autoinjector/spaceacilline
+	path = /obj/item/weapon/reagent_containers/hypospray/autoinjector/spaceacillin
 
 datum/uplink_item/item/medical/autoinjector_tram
 	name = "Tramadol Autoinjector"
