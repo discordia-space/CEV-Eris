@@ -34,8 +34,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	light_color = COLOR_LIGHTING_PURPLE_MACHINERY
 	circuit = /obj/item/weapon/circuitboard/rdconsole
 	var/datum/research/files								//Stores all the collected research data.
-	var/obj/item/weapon/disk/tech_disk/t_disk = null		//Stores the technology disk.
-	var/obj/item/weapon/computer_hardware/hard_drive/portable/disk = null	//Stores the design disk.
+	var/obj/item/weapon/computer_hardware/hard_drive/portable/disk = null	//Stores the data disk.
 
 	var/obj/machinery/r_n_d/destructive_analyzer/linked_destroy = null	//Linked Destructive Analyzer
 	var/obj/machinery/r_n_d/protolathe/linked_lathe             = null	//Linked Protolathe
@@ -121,21 +120,15 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 /obj/machinery/computer/rdconsole/attackby(var/obj/item/weapon/D as obj, var/mob/user as mob)
 	//Loading a disk into it.
-	if(istype(D, /obj/item/weapon/disk) || istype(D, /obj/item/weapon/computer_hardware/hard_drive/portable))
-		if(t_disk || disk)
-			user << SPAN_NOTICE("A disk is already loaded into the machine.")
+	if(istype(D, /obj/item/weapon/computer_hardware/hard_drive/portable))
+		if(disk)
+			to_chat(user, SPAN_NOTICE("A disk is already loaded into the machine."))
 			return
 
-		if(istype(D, /obj/item/weapon/disk/tech_disk))
-			t_disk = D
-		else if (istype(D, /obj/item/weapon/computer_hardware/hard_drive/portable))
-			disk = D
-		else
-			user << SPAN_NOTICE("Machine cannot accept disks in that format.")
-			return
 		user.drop_item()
 		D.loc = src
-		user << SPAN_NOTICE("You add \the [D] to the machine.")
+		disk = D
+		to_chat(user, SPAN_NOTICE("You add \the [D] to the machine."))
 	else
 		//The construction/deconstruction of the console code.
 		..()
@@ -161,64 +154,65 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		return
 
 	usr.set_machine(src)
+
+
+	// Disk operations
+	if(disk)
+		screen = 1.2
+		if(href_list["eject_disk"]) //Eject the data disk.
+			disk.forceMove(get_turf(src))
+			disk = null
+			screen = 1.0
+
+		else if(href_list["disk_upload"]) //Updates the research holder with design data from the design disk.
+			var/list/disk_designs = disk.find_files_by_type(/datum/computer_file/binary/design)
+
+			for(var/f in disk_designs)
+				var/datum/computer_file/binary/design/design_file = f
+
+				if(design_file.copy_protected)
+					continue
+				if(!(design_file.design in files.possible_designs))
+					continue
+
+				files.AddDesign2Known(design_file.design)
+
+
+			var/list/disk_technologies = disk.find_files_by_type(/datum/computer_file/binary/tech)
+
+			for(var/f in disk_technologies)
+				var/datum/computer_file/binary/tech/technology_file = f
+				files.AddTech2Known(technology_file.tech)
+
+			updateUsrDialog()
+			griefProtection() //Update centcomm too
+
+		else if(href_list["copy_tech"]) //Copys some technology data from the research holder to the disk.
+			var/datum/tech/tech
+			for(var/datum/tech/T in files.known_tech)
+				if(href_list["copy_tech"] == T.id)
+					tech = T
+					break
+
+			if(tech)
+				var/datum/computer_file/binary/tech/tech_file = new
+				tech_file.set_tech(tech.Copy())
+				disk.store_file(tech_file)
+
+
+		else if(href_list["copy_design"]) //Copy design data from the research holder to the design disk.
+			var/datum/design/design = files.possible_design_ids[href_list["copy_design"]]
+
+			if(design)
+				disk.store_file(design.file.clone())
+
+
 	if(href_list["menu"]) //Switches menu screens. Converts a sent text string into a number. Saves a LOT of code.
 		var/temp_screen = text2num(href_list["menu"])
 		if(temp_screen <= 1.1 || (3 <= temp_screen && 4.9 >= temp_screen) || allowed(usr) || emagged) //Unless you are making something, you need access.
 			screen = temp_screen
 		else
 			usr << "Unauthorized Access."
-
-	else if(href_list["updt_tech"] && t_disk && t_disk.stored) //Update the research holder with information from the technology disk.
-		screen = 1.2
-		files.AddTech2Known(t_disk.stored)
-		updateUsrDialog()
-		griefProtection() //Update centcomm too
-
-	else if(href_list["clear_tech"] && t_disk) //Erase data on the technology disk.
-		t_disk.stored = null
-
-	else if(href_list["eject_tech"] && t_disk) //Eject the technology disk.
-		t_disk.forceMove(get_turf(src))
-		t_disk = null
-		screen = 1.0
-
-	else if(href_list["copy_tech"] && t_disk) //Copys some technology data from the research holder to the disk.
-		for(var/datum/tech/T in files.known_tech)
-			if(href_list["copy_tech_ID"] == T.id)
-				t_disk.stored = T
-				break
-		screen = 1.2
-
-	else if(href_list["updt_design"] && disk) //Updates the research holder with design data from the design disk.
-		screen = 1.4
-
-		var/list/disk_designs = disk.find_files_by_type(/datum/computer_file/binary/design)
-
-		for(var/f in disk_designs)
-			var/datum/computer_file/binary/design/design_file = f
-
-			if(design_file.copy_protected)
-				continue
-			if(!(design_file.design in files.possible_designs))
-				continue
-
-			files.AddDesign2Known(design_file.design)
-
-		updateUsrDialog()
-		griefProtection() //Update centcomm too
-
-	else if(href_list["eject_disk"] && disk) //Eject the design disk.
-		disk.forceMove(get_turf(src))
-		disk = null
-		screen = 1.0
-
-	else if(href_list["copy_design"] && disk) //Copy design data from the research holder to the design disk.
-		var/datum/design/design = files.possible_design_ids[href_list["copy_design_ID"]]
-
-		if(design)
-			disk.store_file(design.file.clone())
-
-		screen = 1.4
 
 	else if(href_list["eject_item"]) //Eject the item inside the destructive analyzer.
 		if(linked_destroy)
@@ -498,18 +492,14 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					disk_name = "data disk"
 
 				dat += disk_name
-			else if(t_disk)
-				dat += "technology storage disk"
 			else
 				dat += "none"
 
 			dat += "<HR><UL>"
 			dat += "<LI><A href='?src=\ref[src];menu=1.1'>Current Research Levels</A>"
 			dat += "<LI><A href='?src=\ref[src];menu=5.0'>View Researched Technologies</A>"
-			if(t_disk)
+			if(disk)
 				dat += "<LI><A href='?src=\ref[src];menu=1.2'>Disk Operations</A>"
-			else if(disk)
-				dat += "<LI><A href='?src=\ref[src];menu=1.4'>Disk Operations</A>"
 			else
 				dat += "<LI>Disk Operations"
 			if(linked_destroy)
@@ -528,69 +518,68 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += GetResearchLevelsInfo()
 			dat += "</UL>"
 
-		if(1.2) //Technology Disk Menu
-
+		if(1.2) // Disk menu
 			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A><HR>"
-			dat += "Disk Contents: (Technology Data Disk)<BR><BR>"
-			if(isnull(t_disk.stored))
-				dat += "The disk has no data stored on it.<HR>"
-				dat += "Operations: "
-				dat += "<A href='?src=\ref[src];menu=1.3'>Load Tech to Disk</A> || "
-			else
-				dat += "Name: [t_disk.stored.name]<BR>"
-				dat += "Level: [t_disk.stored.level]<BR>"
-				dat += "Description: [t_disk.stored.desc]<HR>"
-				dat += "Operations: "
-				dat += "<A href='?src=\ref[src];updt_tech=1'>Upload to Database</A> || "
-				dat += "<A href='?src=\ref[src];clear_tech=1'>Clear Disk</A> || "
-			dat += "<A href='?src=\ref[src];eject_tech=1'>Eject Disk</A>"
 
-		if(1.3) //Technology Disk submenu
+			if(disk)
+				var/list/disk_designs = disk.find_files_by_type(/datum/computer_file/binary/design)
+				var/list/disk_technologies = disk.find_files_by_type(/datum/computer_file/binary/tech)
+
+				// Filter disk designs
+				for(var/f in disk_designs)
+					var/datum/computer_file/binary/design/design_file = f
+					if(design_file.copy_protected)
+						disk_designs -= design_file
+					if(!(design_file.design in files.possible_designs))
+						disk_designs -= design_file
+
+				if(!length(disk_designs))
+					dat += "The disk has no accessible design files stored on it."
+				else
+					dat += "Design files:<BR>"
+					for(var/f in disk_designs)
+						var/datum/computer_file/binary/design/design_file = f
+						dat += "[design_file.design.name]<BR>"
+
+				if(!length(disk_technologies))
+					dat += "The disk has no accessible technology files stored on it."
+				else
+					dat += "<BR>Technology files:<BR>"
+					for(var/f in disk_technologies)
+						var/datum/computer_file/binary/tech/tech_file = f
+						dat += "[tech_file.tech.name] (level [tech_file.tech.level])<BR>"
+
+				dat += "<HR>Operations: "
+
+				if(length(disk_designs) || length(disk_technologies))
+					dat += "<A href='?src=\ref[src];disk_upload=1'>Upload to Database</A> || "
+
+				if(disk.can_store_file(size = 4))
+					dat += "<A href='?src=\ref[src];menu=1.3'>Load Design to Disk</A> || "
+
+				if(disk.can_store_file(size = 8))
+					dat += "<A href='?src=\ref[src];menu=1.4'>Load Technology to Disk</A> || "
+
+				dat += "<A href='?src=\ref[src];eject_disk=1'>Eject Disk</A>"
+
+		if(1.3) // Disk design copy submenu
+			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A> || "
+			dat += "<A href='?src=\ref[src];menu=1.2'>Return to Disk Operations</A><HR>"
+			dat += "Load Design to Disk:<BR><BR>"
+			dat += "<UL>"
+			for(var/datum/design/D in files.known_designs)
+				dat += "<LI>[D.name] "
+				dat += "<A href='?src=\ref[src];copy_design=[D.id]'>\[copy to disk\]</A>"
+			dat += "</UL>"
+
+		if(1.4) // Disk technology copy submenu
 			dat += "<BR><A href='?src=\ref[src];menu=1.0'>Main Menu</A> || "
 			dat += "<A href='?src=\ref[src];menu=1.2'>Return to Disk Operations</A><HR>"
 			dat += "Load Technology to Disk:<BR><BR>"
 			dat += "<UL>"
 			for(var/datum/tech/T in files.known_tech)
 				dat += "<LI>[T.name] "
-				dat += "\[<A href='?src=\ref[src];copy_tech=1;copy_tech_ID=[T.id]'>copy to disk</A>\]"
-			dat += "</UL>"
-
-		if(1.4) //Design Disk menu.
-			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A><HR>"
-
-			if(disk)
-				var/list/disk_designs = disk.find_files_by_type(/datum/computer_file/binary/design)
-
-				if(!length(disk_designs))
-					dat += "The disk has no design files stored on it.<HR>"
-					dat += "Operations: "
-				else
-					for(var/f in disk_designs)
-						var/datum/computer_file/binary/design/design_file = f
-
-						if(design_file.copy_protected)
-							continue
-						if(!(design_file.design in files.possible_designs))
-							continue
-
-						dat += "Name: [design_file.design.name]<BR>"
-
-					dat += "<HR>Operations: "
-					dat += "<A href='?src=\ref[src];updt_design=1'>Upload to Database</A> || "
-
-				if(disk.can_store_file(size = 4))
-					dat += "<A href='?src=\ref[src];menu=1.5'>Load Design to Disk</A> || "
-
-				dat += "<A href='?src=\ref[src];eject_disk=1'>Eject Disk</A>"
-
-		if(1.5) //Technology disk submenu
-			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A> || "
-			dat += "<A href='?src=\ref[src];menu=1.4'>Return to Disk Operations</A><HR>"
-			dat += "Load Design to Disk:<BR><BR>"
-			dat += "<UL>"
-			for(var/datum/design/D in files.known_designs)
-				dat += "<LI>[D.name] "
-				dat += "<A href='?src=\ref[src];copy_design=1;copy_design_ID=[D.id]'>\[copy to disk\]</A>"
+				dat += "\[<A href='?src=\ref[src];copy_tech=[T.id]'>copy to disk</A>\]"
 			dat += "</UL>"
 
 		if(1.6) //R&D console settings
