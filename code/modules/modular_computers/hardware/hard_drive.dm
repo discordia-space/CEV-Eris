@@ -175,15 +175,27 @@
 	if(!filename)
 		return null
 
-	if(!stored_files)
-		return null
-
 	for(var/f in stored_files)
 		var/datum/computer_file/F = f
 		if(F.filename == filename)
 			return F
 	return null
 
+
+/obj/item/weapon/computer_hardware/hard_drive/proc/find_files_by_type(typepath)
+	var/list/files = list()
+
+	if(!check_functionality())
+		return files
+
+	if(!typepath)
+		return files
+
+	for(var/f in stored_files)
+		if(istype(f, typepath))
+			files += f
+
+	return files
 
 /obj/item/weapon/computer_hardware/hard_drive/proc/get_disk_name()
 	var/datum/computer_file/data/D = find_file_by_name("DISK_NAME")
