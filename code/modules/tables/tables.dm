@@ -26,6 +26,24 @@
 
 	var/list/connections = list("nw0", "ne0", "sw0", "se0")
 
+/mob/living/Move()
+	. = ..()
+	on_table_offset()
+
+/mob/living/forceMove()
+	. = ..()
+	on_table_offset()
+
+/mob/living/proc/on_table_offset()
+	var/obj/structure/table/T = (locate() in get_turf(src))
+	var/check = initial(default_pixel_y) + 12
+	if(T && !T.flipped)
+		if(!(pixel_y == check))
+			animate(src, pixel_y = initial(default_pixel_y) + 12, time = 2, easing = SINE_EASING)
+	else
+		if(check && pixel_y != initial(default_pixel_y))
+			animate(src, pixel_y = initial(default_pixel_y), time = 2, easing = SINE_EASING)
+
 /obj/structure/table/proc/update_material()
 	var/old_maxhealth = maxhealth
 	if(!material)
