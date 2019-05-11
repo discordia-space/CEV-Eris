@@ -139,6 +139,17 @@
 	icon_state = "monofloor"
 	initial_flooring = /decl/flooring/tiling/steel/monofloor
 
+/turf/simulated/floor/tiled/steel/bar_flat
+	icon_state = "bar_flat"
+	initial_flooring = /decl/flooring/tiling/steel/bar_flat
+
+/turf/simulated/floor/tiled/steel/bar_dance
+	icon_state = "bar_dance"
+	initial_flooring = /decl/flooring/tiling/steel/bar_dance
+
+/turf/simulated/floor/tiled/steel/bar_light
+	icon_state = "bar_light"
+	initial_flooring = /decl/flooring/tiling/steel/bar_light
 
 
 
