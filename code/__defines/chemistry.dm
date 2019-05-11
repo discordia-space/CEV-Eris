@@ -45,3 +45,4 @@
 #define CE_SPEEDBOOST "gofast" // Hyperzine
 #define CE_PULSE      "xcardic" // increases or decreases heart rate
 #define CE_NOPULSE    "heartstop" // stops heartbeat
+#define CE_MIND    		 "mindbending"  // Stabilizes or wrecks mind. Used for hallucinations
