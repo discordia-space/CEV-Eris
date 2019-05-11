@@ -55,9 +55,10 @@
 /obj/random/cloth/armor/item_to_spawn()
 	return pickweight(list(/obj/item/clothing/suit/armor/bulletproof = 10,
 				/obj/item/clothing/suit/armor/captain = 1,
-				/obj/item/clothing/suit/armor/heavy = 2,
+				/obj/item/clothing/suit/armor/NT = 4,
 				/obj/item/clothing/suit/armor/riot = 4,
 				/obj/item/clothing/suit/armor/laserproof = 2,
+				/obj/item/clothing/suit/storage/vest/merc = 2,
 				/obj/item/clothing/suit/armor/vest/detective  = 10,
 				/obj/item/clothing/suit/armor/vest/handmade = 20,
 				/obj/item/clothing/suit/space/void/SCAF = 1,
@@ -187,6 +188,9 @@
 
 /obj/random/cloth/helmet/item_to_spawn()
 	return pickweight(list(/obj/item/clothing/head/helmet = 5,
+				/obj/item/clothing/head/helmet/handmade = 10,
+				/obj/item/clothing/head/helmet/NT = 4,
+				/obj/item/clothing/head/helmet/merc = 3,
 				/obj/item/clothing/head/helmet/riot = 5,
 				/obj/item/clothing/head/helmet/swat = 3,
 				/obj/item/clothing/head/helmet/space/void/SCAF = 1))
