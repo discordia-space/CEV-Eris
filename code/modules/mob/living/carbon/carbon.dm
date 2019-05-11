@@ -20,10 +20,9 @@
 	qdel(ingested)
 	qdel(touching)
 	// We don't qdel(bloodstr) because it's the same as qdel(reagents)
-	for(var/guts in internal_organs)
-		qdel(guts)
-	for(var/food in stomach_contents)
-		qdel(food)
+	QDEL_NULL_LIST(internal_organs)
+	QDEL_NULL_LIST(stomach_contents)
+	QDEL_NULL_LIST(hallucinations)
 	return ..()
 
 /mob/living/carbon/rejuvenate()

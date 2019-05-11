@@ -616,27 +616,14 @@
 		if((getOxyLoss() > (species.total_health/2)) || (health <= (HEALTH_THRESHOLD_CRIT - src.stats.getStat(STAT_TGH))))
 			Paralyse(3)
 
-		if(hallucination)
-			if(hallucination >= 20)
-				if(prob(1))
-					fake_attack(src)
-				if(!handling_hal)
-					spawn handle_hallucinations() //The not boring kind!
-/*				if(client && prob(5))
-					client.dir = pick(2,4,8)
-					spawn(rand(20,50))
-						client.dir = 1*/
+		if(hallucination_power)
+			handle_hallucinations()
 
-			hallucination = max(0, hallucination - 2)
-		else
-			for(var/atom/a in hallucinations)
-				qdel(a)
-
-			if(halloss >= species.total_health)
-				src << SPAN_WARNING("[species.halloss_message_self]")
-				src.visible_message("<B>[src]</B> [species.halloss_message].")
-				Paralyse(10)
-				setHalLoss(species.total_health-1)
+		if(halloss >= species.total_health)
+			src << SPAN_WARNING("[species.halloss_message_self]")
+			src.visible_message("<B>[src]</B> [species.halloss_message].")
+			Paralyse(10)
+			setHalLoss(species.total_health-1)
 
 		if(paralysis || sleeping)
 			blinded = 1
@@ -653,7 +640,7 @@
 				//Are they SSD? If so we'll keep them asleep but work off some of that sleep var in case of stoxin or similar.
 				if(client || sleeping > 3)
 					AdjustSleeping(-1)
-			if( prob(2) && health && !hal_crit )
+			if( prob(2) && health)
 				spawn(0)
 					emote("snore")
 		//CONSCIOUS
