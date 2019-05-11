@@ -8,7 +8,8 @@
 				/obj/item/weapon/gun/projectile/revolver/detective = 1,\
 				/obj/item/weapon/gun/projectile/giskard = 4,\
 				/obj/item/weapon/gun/projectile/shotgun/pump = 2,\
-				/obj/item/weapon/gun/projectile/olivaw = 2))
+				/obj/item/weapon/gun/projectile/olivaw = 2,\
+				/obj/item/weapon/gun/launcher/money = 1))
 
 /obj/random/gun_cheap/low_chance
 	name = "low chance random cheap gun"
@@ -34,7 +35,8 @@
 				/obj/item/weapon/gun/projectile/automatic/IH_heavyrifle = 1,\
 				/obj/item/weapon/gun/projectile/IH_sidearm = 2,\
 				/obj/item/weapon/gun/projectile/automatic/IH_machinepistol = 2,\
-				/obj/item/weapon/gun/projectile/automatic/IH_smg = 1))
+				/obj/item/weapon/gun/projectile/automatic/IH_smg = 1, \
+				/obj/item/weapon/gun/launcher/money= 1))
 
 /obj/random/gun_normal/low_chance
 	name = "low chance random normal gun"
