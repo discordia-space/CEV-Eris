@@ -164,6 +164,8 @@
 			return "Station General"
 		if(ACCESS_REGION_SUPPLY) //supply
 			return "Supply"
+		if(ACCESS_REGION_CHURCH) //Neotheo
+			return "NeoTheology"
 
 /proc/get_access_desc(id)
 	var/list/AS = get_all_access_datums_by_id()

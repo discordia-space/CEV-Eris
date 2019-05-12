@@ -7,6 +7,7 @@ var/list/disciples = list()
 	allowed_organs = list(BP_CHEST)
 	implant_type = /obj/item/weapon/implant/core_implant/cruciform
 	layer = ABOVE_MOB_LAYER
+	access = list(access_nt_disciple)
 	power = 50
 	max_power = 50
 	power_regen = 0.5

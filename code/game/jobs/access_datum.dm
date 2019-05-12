@@ -383,6 +383,49 @@
 	desc = "Medical Specialist"
 	region = ACCESS_REGION_SECURITY
 
+// /var/const/free_access_id = 68
+// /var/const/free_access_id = 69
+
+/**************
+* NeoTheology *
+***************/
+/var/const/access_nt_disciple = 70
+/datum/access/nt_disciple
+	id = access_nt_disciple
+	desc = "NeoTheology Disciple"
+	region = ACCESS_REGION_CHURCH
+
+/var/const/access_nt_acolyte = 71
+/datum/access/nt_acolyte
+	id = access_nt_acolyte
+	desc = "NeoTheology Acolyte"
+	region = ACCESS_REGION_CHURCH
+
+/var/const/access_nt_custodian = 72
+/datum/access/nt_custodian
+	id = access_nt_custodian
+	desc = "NeoTheology Custodian"
+	region = ACCESS_REGION_CHURCH
+
+/var/const/access_nt_agrolyte = 73
+/datum/access/nt_agrolyte
+	id = access_nt_agrolyte
+	desc = "NeoTheology Agrolyte"
+	region = ACCESS_REGION_CHURCH
+
+/var/const/access_nt_preacher = 74
+/datum/access/nt_preacher
+	id = access_nt_preacher
+	desc = "NeoTheology Preacher"
+	region = ACCESS_REGION_CHURCH
+
+/var/const/access_nt_inquisitor = 75
+/datum/access/nt_inquisitor
+	id = access_nt_inquisitor
+	desc = "NeoTheology Inquisitor"
+	region = ACCESS_REGION_CHURCH
+
+
 /******************
 * Central Command *
 ******************/
