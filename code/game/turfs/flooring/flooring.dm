@@ -458,6 +458,18 @@ var/list/flooring_types
 	build_type = /obj/item/stack/tile/floor/steel/monofloor
 	has_base_range = 15
 
+/decl/flooring/tiling/steel/bar_flat
+	icon_base = "bar_flat"
+	build_type = /obj/item/stack/tile/floor/steel/bar_flat
+
+/decl/flooring/tiling/steel/bar_dance
+	icon_base = "bar_dance"
+	build_type = /obj/item/stack/tile/floor/steel/bar_dance
+
+/decl/flooring/tiling/steel/bar_light
+	icon_base = "bar_light"
+	build_type = /obj/item/stack/tile/floor/steel/bar_light
+
 
 
 
