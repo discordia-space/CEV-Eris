@@ -387,7 +387,7 @@ SUBSYSTEM_DEF(job)
 			var/obj/item/clothing/glasses/G = H.glasses
 			G.prescription = 1
 
-	if(lowertext(H.religion) == "neotheology" && !H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
+	if(H.religion == "NeoTheology" && !H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
 		var/obj/item/weapon/implant/core_implant/cruciform/C = new /obj/item/weapon/implant/core_implant/cruciform(H)
 
 		C.install(H)

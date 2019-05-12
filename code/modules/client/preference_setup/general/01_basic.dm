@@ -36,7 +36,11 @@ datum/preferences
 	pref.spawnpoint         = sanitize_inlist(pref.spawnpoint, get_late_spawntypes(), initial(pref.spawnpoint))
 	pref.be_random_name     = sanitize_integer(pref.be_random_name, 0, 1, initial(pref.be_random_name))
 	if(!pref.religion)
-		pref.religion =    "None"
+		pref.religion = "None"
+
+	else if(pref.religion == "Neotheology")
+		pref.religion = "NeoTheology"	// Replace old spelling with new spelling
+
 	// This is a bit noodly. If pref.cultural_info[TAG_CULTURE] is null, then we haven't finished loading/sanitizing, which means we might purge
 	// numbers or w/e from someone's name by comparing them to the map default. So we just don't bother sanitizing at this point otherwise.
 	/*
