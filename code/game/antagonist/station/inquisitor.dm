@@ -16,12 +16,14 @@
 	survive_objective = /datum/objective/escape
 	var/was_priest = FALSE
 
-/datum/antagonist/inquisitor/can_become_antag(var/datum/mind/M, var/mob/report)
+/datum/antagonist/inquisitor/can_become_antag(datum/mind/M, mob/report)
 	if(!..())
-		if (report) report << SPAN_NOTICE("Failure: Parent can_become_antag returned false")
+		if (report)
+			to_chat(report, SPAN_NOTICE("Failure: Parent can_become_antag returned false"))
 		return FALSE
-	if(!M.current.get_cruciform())
-		if (report) report << SPAN_NOTICE("Failure: [M] does not have a cruciform and this antag requires it")
+	if(!M.current.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
+		if (report)
+			to_chat(report, SPAN_NOTICE("Failure: [M] does not have a cruciform and this antag requires it"))
 		return FALSE
 	return TRUE
 
@@ -29,7 +31,7 @@
 	if(!owner.current)
 		return FALSE
 
-	var/obj/item/weapon/implant/core_implant/cruciform/C = owner.current.get_cruciform()
+	var/obj/item/weapon/implant/core_implant/cruciform/C = owner.current.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 
 	if(!C)
 		return FALSE
@@ -82,7 +84,7 @@
 		return FALSE
 
 	//We will get their cruciform implant, assuming they have one
-	var/obj/item/weapon/implant/core_implant/cruciform/C = get_coreimplant(/obj/item/weapon/implant/core_implant/cruciform, H)
+	var/obj/item/weapon/implant/core_implant/cruciform/C = H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 	if (!C)
 		return FALSE
 

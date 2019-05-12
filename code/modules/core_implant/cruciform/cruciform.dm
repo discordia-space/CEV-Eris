@@ -130,7 +130,3 @@ var/list/disciples = list()
 	add_module(new CRUCIFORM_INQUISITOR)
 	add_module(new /datum/core_module/cruciform/uplink())
 	remove_modules(/datum/core_module/cruciform/red_light)
-
-/mob/proc/get_cruciform()
-	var/obj/item/weapon/implant/core_implant/C = locate(/obj/item/weapon/implant/core_implant/cruciform, src)
-	return C

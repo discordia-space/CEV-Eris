@@ -272,9 +272,8 @@ Proc for attack log creation, because really why not
 	return FALSE
 
 
-/proc/is_neotheology_disciple(var/mob/M)
-	var/obj/item/weapon/implant/core_implant/cruciform/C = M.get_cruciform()
-	if (C && C.active)
+/proc/is_neotheology_disciple(mob/living/L)
+	if(istype(L) && L.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
 		return TRUE
 
 	return FALSE

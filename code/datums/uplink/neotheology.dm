@@ -16,7 +16,7 @@ A small pool of thematically appropriate religious items that are generally chea
 
 	//Get the mob and their cruciform implant
 	var/mob/living/L = U.uplink_owner.current
-	var/obj/item/weapon/implant/core_implant/cruciform/C = L.get_cruciform()
+	var/obj/item/weapon/implant/core_implant/cruciform/C = L.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 
 	if (!C)
 		return FALSE

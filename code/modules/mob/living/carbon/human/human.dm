@@ -88,7 +88,7 @@
 				stat("Chemical Storage", mind.changeling.chem_charges)
 				stat("Genetic Damage Time", mind.changeling.geneticdamage)
 
-		var/obj/item/weapon/implant/core_implant/cruciform/C = get_cruciform()
+		var/obj/item/weapon/implant/core_implant/cruciform/C = get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 		if (C)
 			stat("Cruciform", "[C.power]/[C.max_power]")
 
