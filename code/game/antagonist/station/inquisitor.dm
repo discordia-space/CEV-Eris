@@ -53,7 +53,7 @@
 	// Basic intro text.
 	player << "<span class='danger'><font size=3>You are a [role_text]!</font></span>"
 
-	player << "Inquisitor is a higher ranking officer in the Church of Neotheology.<br>\
+	player << "Inquisitor is a higher ranking officer in the Church of NeoTheology.<br>\
 	You are here to promote the Church's interests and protect disciples, but more importantly, you are also here to \
 	track down criminals, spies and saboteurs within the church's ranks. Interrogate NT followers, and deal with those \
 	who would tarnish the public image of the Church or betray its principles.<br>\

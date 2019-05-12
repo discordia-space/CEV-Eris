@@ -1,5 +1,5 @@
 /decl/hierarchy/outfit/job/chaplain
-	name = OUTFIT_JOB_NAME("Neotheology Preacher")
+	name = OUTFIT_JOB_NAME("NeoTheology Preacher")
 	id_type = /obj/item/weapon/card/id/chaplain
 	uniform = /obj/item/clothing/under/rank/chaplain
 	suit = /obj/item/clothing/suit/chaplain_hoodie

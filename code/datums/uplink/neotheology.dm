@@ -1,5 +1,5 @@
 /*******************************
-* Neotheology: Religious items *
+* NeoTheology: Religious items *
 *******************************/
 /*
 Intended for inquisitors and maybe future crusaders
@@ -75,7 +75,7 @@ A small pool of thematically appropriate religious items that are generally chea
 	path = /obj/item/clothing/suit/chaplain_hoodie
 
 /*
-	Guns: All taken from the Neotheology Armoury of the New Testament
+	Guns: All taken from the NeoTheology Armory of the New Testament
 	All guns are 1 TC cheaper than the closest equivilant in normal traitor gear
 */
 /datum/uplink_item/item/neotheology/laser

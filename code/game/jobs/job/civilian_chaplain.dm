@@ -1,6 +1,6 @@
 //Due to how large this one is it gets its own file
 /datum/job/chaplain
-	title = "Neotheology Preacher"
+	title = "NeoTheology Preacher"
 	flag = CHAPLAIN
 	department = DEPARTMENT_CHURCH
 	department_flag = CHURCH
@@ -25,9 +25,9 @@
 	software_on_spawn = list(/datum/computer_file/program/records,
 							 /datum/computer_file/program/reports)
 
-	description = "You are the head of a local branch of the Church of Neotheology. You represent the church's interests aboard Eris, as well as the interests of the NT disciples among the crew, who can be identified by the Cruciform implant upon their breast. The church is a major contributor to the funding of Eris' mission, and demands respect<br>\
+	description = "You are the head of a local branch of the Church of NeoTheology. You represent the church's interests aboard Eris, as well as the interests of the NT disciples among the crew, who can be identified by the Cruciform implant upon their breast. The church is a major contributor to the funding of Eris' mission, and demands respect<br>\
 	<br>\
-	Your duties aboard the ship may not seem so important to its mission, but they have greater significance in the galaxy as a whole. As well as a more immediate significance to the morale of the crew, especially the followers of Neotheology.<br>\
+	Your duties aboard the ship may not seem so important to its mission, but they have greater significance in the galaxy as a whole. As well as a more immediate significance to the morale of the crew, especially the followers of NeoTheology.<br>\
 	<br>\
 	Sometimes the Church will deploy Inquisitors to remote outposts like this, to serve its interests. When one is on Eris, you will generally be their point of contact. Inquisitors outrank you and you should follow all of their instructions without question. Inquisitors work in secret, and so you should not discuss their presence with anyone unless they permit it.<br>\
 	<br>\
@@ -47,6 +47,6 @@
 		Hold funerals for the heathen dead"
 
 /obj/landmark/join/start/chaplain
-	name = "Neotheology Preacher"
+	name = "NeoTheology Preacher"
 	icon_state = "player-black"
 	join_tag = /datum/job/chaplain
