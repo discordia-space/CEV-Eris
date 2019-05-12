@@ -1,4 +1,3 @@
-//Due to how large this one is it gets its own file
 /datum/job/chaplain
 	title = "NeoTheology Preacher"
 	flag = CHAPLAIN
@@ -43,8 +42,8 @@
 
 	duties = "Represent the interests of NT disciples aboard Eris. Protect them from persecution and speak for them.<br>\
 		Hold mass, give sermons, preach to the faithful, and lead group ritual sessions.<br>\
-		Recover and clone the faithful dead<br>\
-		Hold funerals for the heathen dead"
+		Recover and clone the faithful dead.<br>\
+		Hold funerals for the dead heathens."
 
 /obj/landmark/join/start/chaplain
 	name = "NeoTheology Preacher"
