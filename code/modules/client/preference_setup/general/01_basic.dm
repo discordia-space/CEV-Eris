@@ -112,6 +112,7 @@ datum/preferences
 
 	else if(href_list["religion"])
 		pref.religion = input("Religion") in list("None", "NeoTheology")
+		prune_occupation_prefs()
 		return TOPIC_REFRESH
 
 	return ..()

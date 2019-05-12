@@ -140,11 +140,21 @@
 /datum/job/proc/is_position_available()
 	return (current_positions < total_positions) || (total_positions == -1)
 
-/datum/job/proc/is_restricted(var/datum/preferences/prefs, var/feedback)
+/datum/job/proc/is_restricted(datum/preferences/prefs, feedback)
+	if(is_religion_restricted(prefs.religion))
+		to_chat(feedback, "<span class='boldannounce'>NT is restricted from command and security roles due to conflict of intertest.</span>")
+		return TRUE
 
 	if(minimum_character_age && (prefs.age < minimum_character_age))
 		to_chat(feedback, "<span class='boldannounce'>Not old enough. Minimum character age is [minimum_character_age].</span>")
 		return TRUE
+
+	return FALSE
+
+/datum/job/proc/is_religion_restricted(religion)
+	if(religion == "NeoTheology")
+		if((department_flag & (IRONHAMMER | COMMAND)) && department != DEPARTMENT_CHURCH)
+			return TRUE
 
 	return FALSE
 
