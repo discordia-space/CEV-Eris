@@ -191,7 +191,7 @@ var/list/mob_hat_cache = list()
 
 		if(stat == 2)
 
-			if(!config.allow_drone_spawn || emagged || health < -35) //It's dead, Dave.
+			if(!config.allow_drone_spawn || health < -35) //It's dead, Dave.
 				user << SPAN_DANGER("The interface is fried, and a distressing burned smell wafts from the robot's interior. You're not rebooting this one.")
 				return
 
@@ -206,9 +206,6 @@ var/list/mob_hat_cache = list()
 		else
 			user.visible_message(SPAN_DANGER("\The [user] swipes \his ID card through \the [src], attempting to shut it down."), SPAN_DANGER("You swipe your ID card through \the [src], attempting to shut it down."))
 
-			if(emagged)
-				return
-
 			if(allowed(usr))
 				shut_down()
 			else
@@ -219,35 +216,8 @@ var/list/mob_hat_cache = list()
 	..()
 
 /mob/living/silicon/robot/drone/emag_act(var/remaining_charges, var/mob/user)
-	if(!client || stat == 2)
-		user << SPAN_DANGER("There's not much point subverting this heap of junk.")
-		return
-
-	if(emagged)
-		src << SPAN_DANGER("\The [user] attempts to load subversive software into you, but your hacked subroutines ignore the attempt.")
-		user << SPAN_DANGER("You attempt to subvert [src], but the sequencer has no effect.")
-		return
-
-	user << SPAN_DANGER("You swipe the sequencer across [src]'s interface and watch its eyes flicker.")
-	src << SPAN_DANGER("You feel a sudden burst of malware loaded into your execute-as-root buffer. Your tiny brain methodically parses, loads and executes the script.")
-
-	message_admins("[key_name_admin(user)] emagged drone [key_name_admin(src)].  Laws overridden.")
-	log_game("[key_name(user)] emagged drone [key_name(src)].  Laws overridden.")
-	var/time = time2text(world.realtime,"hh:mm:ss")
-	lawchanges.Add("[time] <B>:</B> [user.name]([user.key]) emagged [name]([key])")
-
-	emagged = 1
-	lawupdate = 0
-	connected_ai = null
-	clear_supplied_laws()
-	clear_inherent_laws()
-	laws = new /datum/ai_laws/syndicate_override
-	set_zeroth_law("Only [user.real_name] and people \he designates as being such are operatives.")
-
-	src << "<b>Obey these laws:</b>"
-	laws.show_laws(src)
-	src << SPAN_DANGER("ALERT: [user.real_name] is your new master. Obey your new laws and \his commands.")
-	return 1
+	user << SPAN_DANGER("You can't subvert a drone...")
+	return
 
 //DRONE LIFE/DEATH
 
@@ -279,20 +249,14 @@ var/list/mob_hat_cache = list()
 //CONSOLE PROCS
 /mob/living/silicon/robot/drone/proc/law_resync()
 	if(stat != 2)
-		if(emagged)
-			src << SPAN_DANGER("You feel something attempting to modify your programming, but your hacked subroutines are unaffected.")
-		else
-			src << SPAN_DANGER("A reset-to-factory directive packet filters through your data connection, and you obediently modify your programming to suit it.")
-			full_law_reset()
-			show_laws()
+		src << SPAN_DANGER("A reset-to-factory directive packet filters through your data connection, and you obediently modify your programming to suit it.")
+		full_law_reset()
+		show_laws()
 
 /mob/living/silicon/robot/drone/proc/shut_down()
 	if(stat != 2)
-		if(emagged)
-			src << SPAN_DANGER("You feel a system kill order percolate through your tiny brain, but it doesn't seem like a good idea to you.")
-		else
-			src << SPAN_DANGER("You feel a system kill order percolate through your tiny brain, and you obediently destroy yourself.")
-			death()
+		src << SPAN_DANGER("You feel a system kill order percolate through your tiny brain, and you obediently destroy yourself.")
+		death()
 
 /mob/living/silicon/robot/drone/proc/full_law_reset()
 	clear_supplied_laws(1)
