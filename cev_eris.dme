@@ -932,6 +932,7 @@
 #include "code\game\objects\items\weapons\circuitboards\machinery\recharger.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\research.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\shieldgen.dm"
+#include "code\game\objects\items\weapons\circuitboards\machinery\sorter.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\telecomms.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\unary_atmos.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\vending.dm"

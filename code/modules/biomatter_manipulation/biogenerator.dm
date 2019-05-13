@@ -41,6 +41,10 @@
 	if(!.)
 		return FALSE
 
+	if(!screen || !port || !generator)
+		Destroy()
+		return FALSE
+
 	if(!generator.core || !generator.chamber)
 		return FALSE
 	if(!generator.core.coil_condition || !generator.core.powernet || !generator.chamber.wires || !generator.chamber.wires_integrity)
@@ -174,9 +178,13 @@
 		return ui_interact(user)
 
 //UI
-/obj/machinery/multistructure/biogenerator_part/console/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = GLOB.default_state)
-	var/list/data = metrics
 
+/obj/machinery/multistructure/biogenerator_part/console/ui_data()
+	return metrics
+
+
+/obj/machinery/multistructure/biogenerator_part/console/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/topic_state/state = GLOB.default_state)
+	var/list/data = ui_data()
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
@@ -354,7 +362,7 @@
 
 
 /obj/machinery/atmospherics/binary/biogen_chamber/attackby(var/obj/item/I, var/mob/user)
-	var/tool_type = I.get_tool_type(user, list(QUALITY_SCREW_DRIVING, QUALITY_WIRE_CUTTING), src)
+	var/tool_type = I.get_tool_type(user, list(QUALITY_SCREW_DRIVING, QUALITY_WIRE_CUTTING, QUALITY_PRYING), src)
 	switch(tool_type)
 		if(QUALITY_SCREW_DRIVING)
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC, forced_sound = WORKSOUND_SCREW_DRIVING))
@@ -375,6 +383,15 @@
 					to_chat(user, SPAN_WARNING("There are no wires here."))
 			else
 				to_chat(user, SPAN_WARNING("You need open cover first."))
+
+		if(QUALITY_PRYING)
+			if(panel_open && !generator.core.coil_frame)
+				to_chat(user, SPAN_NOTICE("You begin deconstructing [generator]..."))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC, forced_sound = WORKSOUND_REMOVING))
+					to_chat(user, SPAN_NOTICE("You deconstructed [generator]."))
+					generator.dismantle()
+			else
+				to_chat(user, SPAN_WARNING("You need to open chamber panel and remove core's coil frame first!"))
 
 	if(istype(I, /obj/item/stack/cable_coil))
 		if(!panel_open)
@@ -462,7 +479,7 @@
 		shock(user, 100)
 		return
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_SCREW_DRIVING, QUALITY_WELDING), src)
+	var/tool_type = I.get_tool_type(user, list(QUALITY_SCREW_DRIVING, QUALITY_WELDING, QUALITY_PRYING), src)
 	switch(tool_type)
 		if(QUALITY_SCREW_DRIVING)
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC, forced_sound = WORKSOUND_SCREW_DRIVING))
@@ -481,6 +498,15 @@
 				to_chat(user, SPAN_NOTICE("You fixed damaged sectors of [src]'s coil."))
 				coil_condition = 100
 				working_cycles = 0
+
+		if(QUALITY_PRYING)
+			if(generator.chamber.panel_open && !coil_frame)
+				to_chat(user, SPAN_NOTICE("You begin deconstructing [generator]..."))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC, forced_sound = WORKSOUND_REMOVING))
+					to_chat(user, SPAN_NOTICE("You deconstructed [generator]."))
+					generator.dismantle()
+			else
+				to_chat(user, SPAN_WARNING("You need to open chamber panel and remove core's coil frame first!"))
 
 	update_icon()
 

@@ -63,6 +63,10 @@
 	if(!.)
 		return FALSE
 
+	if(!item_loader || !biotank_platform || !misc_output || !output_port || !metrics_screen)
+		Destroy()
+		return FALSE
+
 	if(!chamber_closed || chamber_breached)
 		return FALSE
 

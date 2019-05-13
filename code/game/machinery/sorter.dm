@@ -24,13 +24,13 @@
 	name = "sorter"
 	icon = 'icons/obj/machines/sorter.dmi'
 	icon_state = "sorter"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 10
 	active_power_usage = 200
 
-//	circuit = /obj/item/weapon/circuitboard/sorter
+	circuit = /obj/item/weapon/circuitboard/sorter
 	// based on levels of manipulators
 	var/speed = 8
 	// based on levels of scanners
