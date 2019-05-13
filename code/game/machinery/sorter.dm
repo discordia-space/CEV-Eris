@@ -164,7 +164,8 @@
 
 
 //UI
-/obj/machinery/sorter/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = GLOB.default_state)
+
+/obj/machinery/sorter/ui_data()
 	var/list/data = list()
 	data["currentItem"] = null
 	if(current_item)
@@ -187,6 +188,12 @@
 	data["new_rule_sort"] = custom_rule["sort_type"]
 	data["new_rule_value"] = custom_rule["value"]
 	data["new_rule_amount"] = custom_rule["amount"]
+
+	return data
+
+
+/obj/machinery/sorter/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/topic_state/state = GLOB.default_state)
+	var/list/data = ui_data()
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
