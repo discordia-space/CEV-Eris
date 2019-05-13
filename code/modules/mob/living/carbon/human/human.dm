@@ -1118,7 +1118,7 @@ var/list/rank_prefix = list(\
 #define MODIFICATION_REMOVED 3
 
 //Needed for augmentation
-/mob/living/carbon/human/proc/rebuild_organs(var/from_preference = 0)
+/mob/living/carbon/human/proc/rebuild_organs(from_preference)
 	if(!species)
 		return 0
 
@@ -1144,6 +1144,12 @@ var/list/rank_prefix = list(\
 		else
 			return
 
+		// Qualifies for a cruciform: spawn it and install it
+		if(Pref.religion == "NeoTheology" || (mind && mind.assigned_job && mind.assigned_job.department == DEPARTMENT_CHURCH))
+			var/obj/item/weapon/implant/core_implant/cruciform/C = new /obj/item/weapon/implant/core_implant/cruciform(src)
+			C.install(src)
+			C.activate()
+
 		var/datum/body_modification/BM = null
 
 		for(var/tag in species.has_limbs)
@@ -1152,14 +1158,14 @@ var/list/rank_prefix = list(\
 			var/datum/body_modification/PBM = Pref.get_modification(OD.parent_organ)
 			if(PBM && (PBM.nature == MODIFICATION_SILICON || PBM.nature == MODIFICATION_REMOVED))
 				BM = PBM
-			if(BM.is_allowed(tag, Pref))
+			if(BM.is_allowed(tag, Pref, src))
 				BM.create_organ(src, OD, Pref.modifications_colors[tag])
 			else
 				OD.create_organ(src)
 
 		for(var/tag in species.has_organ)
 			BM = Pref.get_modification(tag)
-			if(BM.is_allowed(tag, Pref))
+			if(BM.is_allowed(tag, Pref, src))
 				BM.create_organ(src, species.has_organ[tag], Pref.modifications_colors[tag])
 			else
 				var/organ_type = species.has_organ[tag]

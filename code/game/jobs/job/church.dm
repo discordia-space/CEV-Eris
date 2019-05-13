@@ -24,6 +24,11 @@
 	software_on_spawn = list(/datum/computer_file/program/records,
 							 /datum/computer_file/program/reports)
 
+	core_upgrades = list(
+		CRUCIFORM_PRIEST,
+		CRUCIFORM_REDLIGHT
+	)
+
 	description = "You are the head of a local branch of the Church of NeoTheology. You represent the church's interests aboard Eris, as well as the interests of the NT disciples among the crew, who can be identified by the Cruciform implant upon their breast. The church is a major contributor to the funding of Eris' mission, and demands respect<br>\
 	<br>\
 	Your duties aboard the ship may not seem so important to its mission, but they have greater significance in the galaxy as a whole. As well as a more immediate significance to the morale of the crew, especially the followers of NeoTheology.<br>\
