@@ -60,9 +60,7 @@
 	wires = new(src)
 	botcard = new(src)
 	botcard.access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_merchant, access_mining, access_mining_station)
-	cell = new(src)
-	cell.charge = 2000
-	cell.maxcharge = 2000
+	cell = new /obj/item/weapon/cell/large/high(src)
 
 	spawn(5)	// must wait for map loading to finish
 		SSradio.add_object(src, control_freq, filter = RADIO_MULEBOT)
@@ -82,6 +80,15 @@
 	SSradio.remove_object(src,beacon_freq)
 	SSradio.remove_object(src,control_freq)
 	return ..()
+
+/obj/machinery/bot/mulebot/get_cell()
+	return cell
+
+/obj/machinery/bot/mulebot/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+		update_icon()
 
 // attack by item
 // emag : lock/unlock,

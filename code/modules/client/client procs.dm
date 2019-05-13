@@ -185,8 +185,6 @@
 	if(!tooltips)
 		tooltips = new /datum/tooltip(src)
 
-
-
 	//////////////
 	//DISCONNECT//
 	//////////////

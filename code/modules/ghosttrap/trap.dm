@@ -28,6 +28,7 @@ var/list/ghost_traps
 	var/ghost_trap_role = "Positronic Brain"
 	var/can_set_own_name = TRUE
 	var/list_as_special_role = TRUE	// If true, this entry will be listed as a special role in the character setup
+	var/respawn_type = CREW
 
 	var/list/request_timeouts
 
@@ -38,7 +39,7 @@ var/list/ghost_traps
 // Check for bans, proper atom types, etc.
 /datum/ghosttrap/proc/assess_candidate(var/mob/observer/ghost/candidate, var/mob/target, check_respawn_timer=TRUE)
 	if(check_respawn_timer)
-		if(!candidate.MayRespawn(1, respawn_type=CREW))
+		if(!candidate.MayRespawn(0, respawn_type ? respawn_type : CREW))
 			return 0
 	if(islist(ban_checks))
 		for(var/bantype in ban_checks)
@@ -48,7 +49,7 @@ var/list/ghost_traps
 	return 1
 
 // Print a message to all ghosts with the right prefs/lack of bans.
-/datum/ghosttrap/proc/request_player(var/mob/target, var/request_string, var/request_timeout)
+/datum/ghosttrap/proc/request_player(var/mob/target, var/request_string, var/respawn_type, var/request_timeout)
 	if(request_timeout)
 		request_timeouts[target] = world.time + request_timeout
 		GLOB.destroyed_event.register(target, src, /datum/ghosttrap/proc/target_destroyed)
@@ -56,7 +57,8 @@ var/list/ghost_traps
 		request_timeouts -= target
 
 	for(var/mob/observer/ghost/O in GLOB.player_list)
-		if(!O.MayRespawn())
+		src.respawn_type = respawn_type
+		if(!O.MayRespawn(0, respawn_type))
 			continue
 		if(islist(ban_checks))
 			for(var/bantype in ban_checks)
@@ -93,7 +95,7 @@ var/list/ghost_traps
 
 // Shunts the ckey/mind into the target mob.
 /datum/ghosttrap/proc/transfer_personality(var/mob/candidate, var/mob/target, check_respawn_timer=TRUE)
-	if(!assess_candidate(candidate, check_respawn_timer=check_respawn_timer))
+	if(!assess_candidate(candidate, target))
 		return 0
 	target.ckey = candidate.ckey
 	if(target.mind)

@@ -93,10 +93,6 @@
 				for(var/i = 0;i<slip_dist;i++)
 					step(M, M.dir)
 					sleep(1)
-			else
-				M.inertia_dir = 0
-		else
-			M.inertia_dir = 0
 
 	..()
 

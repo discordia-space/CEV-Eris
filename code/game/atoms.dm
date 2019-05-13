@@ -168,6 +168,9 @@
 			found += A.search_contents_for(path, filter_path)
 	return found
 
+//This proc is called on the location of an atom when the atom is Destroy()'d
+/atom/proc/handle_atom_del(atom/A)
+	return
 
 
 

@@ -211,6 +211,10 @@ var/list/_client_preferences_by_type
 	description ="Play instruments"
 	key = "SOUND_INSTRUMENTS"
 
+/datum/client_preference/gun_cursor
+	description = "Enable gun crosshair"
+	key = "GUN_CURSOR"
+
 /********************
 * General Staff Preferences *
 ********************/

@@ -21,7 +21,7 @@
 /obj/item/weapon/syringe_cartridge/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/reagent_containers/syringe))
 		syringe = I
-		user << SPAN_NOTICE("You carefully insert [syringe] into [src].")
+		to_chat(user, SPAN_NOTICE("You carefully insert [syringe] into [src]."))
 		user.remove_from_mob(syringe)
 		syringe.loc = src
 		sharp = 1
@@ -30,7 +30,7 @@
 
 /obj/item/weapon/syringe_cartridge/attack_self(mob/user)
 	if(syringe)
-		user << SPAN_NOTICE("You remove [syringe] from [src].")
+		to_chat(user, SPAN_NOTICE("You remove [syringe] from [src]."))
 		user.put_in_hands(syringe)
 		syringe = null
 		sharp = initial(sharp)
@@ -111,10 +111,10 @@
 /obj/item/weapon/gun/launcher/syringe/attack_hand(mob/living/user as mob)
 	if(user.get_inactive_hand() == src)
 		if(!darts.len)
-			user << SPAN_WARNING("[src] is empty.")
+			to_chat(user, SPAN_WARNING("[src] is empty."))
 			return
 		if(next)
-			user << SPAN_WARNING("[src]'s cover is locked shut.")
+			to_chat(user, SPAN_WARNING("[src]'s cover is locked shut."))
 			return
 		var/obj/item/weapon/syringe_cartridge/C = darts[1]
 		darts -= C
@@ -127,7 +127,7 @@
 	if(istype(A, /obj/item/weapon/syringe_cartridge))
 		var/obj/item/weapon/syringe_cartridge/C = A
 		if(darts.len >= max_darts)
-			user << SPAN_WARNING("[src] is full!")
+			to_chat(user, SPAN_WARNING("[src] is full!"))
 			return
 		user.remove_from_mob(C)
 		C.loc = src

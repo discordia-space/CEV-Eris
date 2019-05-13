@@ -22,9 +22,19 @@ PROCESSING_SUBSYSTEM_DEF(nano)
 	if (!ui) // no ui has been passed, so we'll search for one
 		ui = get_open_ui(user, src_object, ui_key)
 	if (!ui)
-		return
+		return null
 	// The UI is already open
-	force_open ? ui.reinitialise(new_initial_data=data) : ui.push_data(data)
+	if (force_open == NANOUI_FORCE_OPEN)
+		// Close it so it will be re-opened.
+		ui.close()
+		return null
+
+	else if (force_open == NANOUI_FOCUS)
+		ui.focus()
+
+	else if (force_open == NANOUI_REINITIALIZE)
+		ui.reinitialise(new_initial_data=data)
+
 	return ui
 
  /**

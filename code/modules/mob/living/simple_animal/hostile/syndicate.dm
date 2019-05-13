@@ -96,8 +96,8 @@
 	corpse = /obj/landmark/corpse/syndicatecommando
 	speed = 0
 
-/mob/living/simple_animal/hostile/syndicate/melee/space/allow_spacemove(var/check_drift = 0)
-	return
+/mob/living/simple_animal/hostile/syndicate/melee/space/allow_spacemove()
+	return ..()
 
 /mob/living/simple_animal/hostile/syndicate/ranged
 	ranged = 1
@@ -124,8 +124,8 @@
 	corpse = /obj/landmark/corpse/syndicatecommando
 	speed = 0
 
-/mob/living/simple_animal/hostile/syndicate/ranged/space/allow_spacemove(var/check_drift = 0)
-	return
+/mob/living/simple_animal/hostile/syndicate/ranged/space/allow_spacemove()
+	return ..()
 
 
 

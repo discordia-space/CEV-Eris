@@ -1,35 +1,35 @@
-/datum/autolathe/recipe/cell/large
+/datum/design/autolathe/cell/large
 	name = "Asters \"Robustcell 1000L\""
-	path = /obj/item/weapon/cell/large
+	build_path = /obj/item/weapon/cell/large
 
-/datum/autolathe/recipe/cell/large/high
+/datum/design/autolathe/cell/large/high
 	name = "Asters \"Robustcell 5000L\""
-	path = /obj/item/weapon/cell/large/high
+	build_path = /obj/item/weapon/cell/large/high
 
-/datum/autolathe/recipe/cell/large/excelsior
+/datum/design/autolathe/cell/large/excelsior
 	name = "Excelsior \"Zarya 8000L\""
-	path = /obj/item/weapon/cell/large/excelsior
+	build_path = /obj/item/weapon/cell/large/excelsior
 
-/datum/autolathe/recipe/cell/medium
+/datum/design/autolathe/cell/medium
 	name = "Asters \"Robustcell 600M\""
-	path = /obj/item/weapon/cell/medium
+	build_path = /obj/item/weapon/cell/medium
 
-/datum/autolathe/recipe/cell/medium/high
+/datum/design/autolathe/cell/medium/high
 	name = "Asters \"Robustcell 800M\""
-	path = /obj/item/weapon/cell/medium/high
+	build_path = /obj/item/weapon/cell/medium/high
 
-/datum/autolathe/recipe/cell/medium/excelsior
+/datum/design/autolathe/cell/medium/excelsior
 	name = "Excelsior \"Zarya 800M\""
-	path = /obj/item/weapon/cell/medium/excelsior
+	build_path = /obj/item/weapon/cell/medium/excelsior
 
-/datum/autolathe/recipe/cell/small
+/datum/design/autolathe/cell/small
 	name = "Asters \"Robustcell 100S\""
-	path = /obj/item/weapon/cell/small
+	build_path = /obj/item/weapon/cell/small
 
-/datum/autolathe/recipe/cell/small/high
+/datum/design/autolathe/cell/small/high
 	name = "Asters \"Robustcell 200S\""
-	path = /obj/item/weapon/cell/small/high
+	build_path = /obj/item/weapon/cell/small/high
 
-/datum/autolathe/recipe/cell/small/excelsior
+/datum/design/autolathe/cell/small/excelsior
 	name = "Excelsior \"Zarya 250S\""
-	path = /obj/item/weapon/cell/small/excelsior
+	build_path = /obj/item/weapon/cell/small/excelsior

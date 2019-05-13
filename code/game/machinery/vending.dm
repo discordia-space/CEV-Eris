@@ -444,7 +444,7 @@
 		return
 
 	for(var/datum/data/vending_product/R in product_records)
-		if(I.type == R.product_path)
+		if(I.type == R.product_path && I.name == R.product_name)
 			if (!locked || always_open || (panel_open && !custom_vendor))
 				stock(I, R, user)
 				return 1
@@ -577,7 +577,7 @@
  *
  *  See NanoUI documentation for details.
  */
-/obj/machinery/vending/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/vending/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	user.set_machine(src)
 
 	var/list/data = list()
@@ -1017,11 +1017,11 @@
 	/obj/item/ammo_magazine/ammobox/c38 = 20,
 	/obj/item/weapon/storage/box/shotgunammo/slug = 10,
 	/obj/item/weapon/storage/box/shotgunammo/buckshot = 10,
-	/datum/autolathe/recipe/tool/tacknife = 6)
+	/obj/item/weapon/material/hatchet/tacknife = 6)
 	prices = list(/obj/item/device/flash = 600,/obj/item/weapon/reagent_containers/spray/pepper = 800,  /obj/item/weapon/gun/projectile/olivaw = 1600, /obj/item/weapon/gun/projectile/giskard = 1200, /obj/item/weapon/gun/projectile/revolver/detective = 2500, /obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3700,
 					/obj/item/weapon/gun/projectile/shotgun/pump = 2000, /obj/item/ammo_magazine/cl32/rubber = 300, /obj/item/ammo_magazine/sl38/rubber = 400, /obj/item/ammo_magazine/ammobox/c38/rubber = 400, /obj/item/ammo_magazine/ammobox/cl32/rubber = 500,
 					/obj/item/weapon/storage/box/shotgunammo/beanbags = 300, /obj/item/weapon/storage/box/shotgunammo/flashshells = 300, /obj/item/weapon/storage/box/shotgunammo/blanks = 50, /obj/item/clothing/accessory/holster = 150, /obj/item/weapon/storage/pouch/pistol_holster =150,
-					/obj/item/ammo_magazine/sl38 = 400, /obj/item/ammo_magazine/cl32 = 300, /obj/item/ammo_magazine/ammobox/cl32 = 500, /obj/item/ammo_magazine/ammobox/c38 = 400, /obj/item/weapon/storage/box/shotgunammo/slug = 300, /obj/item/weapon/storage/box/shotgunammo/buckshot = 300, /datum/autolathe/recipe/tool/tacknife = 600)
+					/obj/item/ammo_magazine/sl38 = 400, /obj/item/ammo_magazine/cl32 = 300, /obj/item/ammo_magazine/ammobox/cl32 = 500, /obj/item/ammo_magazine/ammobox/c38 = 400, /obj/item/weapon/storage/box/shotgunammo/slug = 300, /obj/item/weapon/storage/box/shotgunammo/buckshot = 300, /obj/item/weapon/material/hatchet/tacknife = 600)
 
 //This one's from bay12
 /obj/machinery/vending/cart
@@ -1140,7 +1140,7 @@
 					/obj/item/device/hailer = 8,
 					/obj/item/taperoll/police = 8,
 					/obj/item/weapon/storage/box/evidence = 2)
-	contraband = list(/datum/autolathe/recipe/tool/tacknife = 4,/obj/item/weapon/reagent_containers/food/snacks/donut/normal = 12)
+	contraband = list(/obj/item/weapon/material/hatchet/tacknife = 4,/obj/item/weapon/reagent_containers/food/snacks/donut/normal = 12)
 	auto_price = FALSE
 
 /obj/machinery/vending/hydronutrients
@@ -1309,8 +1309,8 @@
 
 /obj/machinery/vending/powermat
 	name = "Asters Guild Power-Mat"
-	desc = "Trust is power, and there’s no power you can trust like Robustcell."
-	product_slogans = "Trust is power, and there’s no cell you can trust like Robustcell.;No battery is stronger nor lasts longer.;One that Lasts!;You can't top the copper top!"
+	desc = "Trust is power, and there's no power you can trust like Robustcell."
+	product_slogans = "Trust is power, and there's no cell you can trust like Robustcell.;No battery is stronger nor lasts longer.;One that Lasts!;You can't top the copper top!"
 	product_ads = "Robust!;Trustworthy!;Durable!"
 	icon_state = "powermat"
 	products = list(/obj/item/weapon/cell/large = 10, /obj/item/weapon/cell/large/high = 10, /obj/item/weapon/cell/medium = 15, /obj/item/weapon/cell/medium/high = 15, /obj/item/weapon/cell/small = 20, /obj/item/weapon/cell/small/high = 20)

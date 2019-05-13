@@ -151,7 +151,7 @@
 		other_feed_message_start(user, target)
 
 		if(!do_mob(user, target, 15))
-			return TRUE
+			return FALSE
 
 		other_feed_message_finish(user, target)
 

@@ -5,7 +5,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 */
 
 /obj/machinery/r_n_d/circuit_imprinter
-	name = "\improper Circuit Imprinter"
+	name = "circuit imprinter"
 	icon_state = "circuit_imprinter"
 	reagent_flags = OPENCONTAINER
 	var/list/datum/design/queue = list()
@@ -29,7 +29,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 		update_icon()
 		return
 	if(queue.len == 0)
-		busy = 0
+		busy = FALSE
 		update_icon()
 		return
 	var/datum/design/D = queue[1]
@@ -49,7 +49,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	else
 		if(busy)
 			visible_message(SPAN_NOTICE("\icon[src]\The [src] flashes: insufficient materials: [getLackingMaterials(D)]."))
-			busy = 0
+			busy = FALSE
 			update_icon()
 
 /obj/machinery/r_n_d/circuit_imprinter/RefreshParts()
@@ -93,7 +93,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 
 /obj/machinery/r_n_d/circuit_imprinter/attackby(var/obj/item/I, var/mob/user as mob)
 	if(busy)
-		user << SPAN_NOTICE("\icon[src]\The [src] is busy. Please wait for completion of previous operation.")
+		to_chat(user, SPAN_NOTICE("\The [src] is busy. Please wait for completion of previous operation."))
 		return 1
 
 	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING), src)
@@ -125,16 +125,16 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	if(default_part_replacement(I, user))
 		return
 	if(panel_open)
-		user << SPAN_NOTICE("You can't load \the [src] while it's opened.")
+		to_chat(user, SPAN_WARNING("You can't load \the [src] while it's opened."))
 		return 1
 	if(!linked_console)
-		user << "\icon[src]\The [src] must be linked to an R&D console first."
+		to_chat(user, SPAN_WARNING("\The [src] must be linked to an R&D console first."))
 		return 1
 	if(I.is_drainable())
 		return 0
 	if(is_robot_module(I))
 		return 0
-	
+
 	if(stat)
 		return 1
 
@@ -148,11 +148,11 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 		return
 
 	if(!istype(S, /obj/item/stack/material))
-		user << SPAN_NOTICE("You cannot insert this item into \the [src]!")
+		user << SPAN_WARNING("You cannot insert this item into \the [src]!")
 		return
 
 	if(TotalMaterials() + 1 > max_material_storage)
-		user << SPAN_NOTICE("\icon[src]\The [src]'s material bin is full. Please remove material before adding more.")
+		user << SPAN_WARNING("\The [src]'s material bin is full. Please remove material before adding more.")
 		return
 
 	var/amount = round(input("How many sheets do you want to add?") as num)
@@ -176,20 +176,20 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 		if(do_after(usr, 16, src))
 			if(S.use(amount))
 				materials[material] += amount
-				user << SPAN_NOTICE("You add [amount] [material] sheet\s to \the [src]. Material storage is [TotalMaterials()]/[max_material_storage] full.")
+				user << SPAN_NOTICE("You add [amount] [material] sheet\s to \the [src]. Material storage is [TotalMaterials()]/[max_material_storage].")
 	busy = 0
 	linked_console.updateUsrDialog()
 	return TRUE
 
 /obj/machinery/r_n_d/circuit_imprinter/examine(mob/user)
 	..()
-	user << "Material storage is [TotalMaterials()]/[max_material_storage] full."
+	user << "Material storage is [TotalMaterials()]/[max_material_storage]."
 
 /obj/machinery/r_n_d/circuit_imprinter/proc/res_load(var/name)
 	// Will be here untill someone decided to draw insert animation
 	//flick("protolathe_[]", src)
 
-/obj/machinery/r_n_d/circuit_imprinter/proc/addToQueue(var/datum/design/D)
+/obj/machinery/r_n_d/circuit_imprinter/proc/addToQueue(datum/design/D)
 	queue += D
 	return
 
@@ -197,7 +197,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	queue.Cut(index, index + 1)
 	return
 
-/obj/machinery/r_n_d/circuit_imprinter/proc/canBuild(var/datum/design/D)
+/obj/machinery/r_n_d/circuit_imprinter/proc/canBuild(datum/design/D)
 	for(var/M in D.materials)
 		if(materials[M] < D.materials[M])
 			return 0
@@ -206,7 +206,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 			return 0
 	return 1
 
-/obj/machinery/r_n_d/circuit_imprinter/proc/getLackingMaterials(var/datum/design/D)
+/obj/machinery/r_n_d/circuit_imprinter/proc/getLackingMaterials(datum/design/D)
 	var/ret = ""
 	for(var/M in D.materials)
 		if(materials[M] < D.materials[M])
@@ -220,7 +220,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 			ret += C
 	return ret
 
-/obj/machinery/r_n_d/circuit_imprinter/proc/build(var/datum/design/D)
+/obj/machinery/r_n_d/circuit_imprinter/proc/build(datum/design/D)
 	var/power = active_power_usage
 	for(var/M in D.materials)
 		power += round(D.materials[M] / 5)
@@ -231,16 +231,14 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	for(var/C in D.chemicals)
 		reagents.remove_reagent(C, D.chemicals[C])
 
-	if(D.build_path)
-		var/obj/new_item = D.Fabricate(src, src)
-		new_item.loc = loc
+	D.Fabricate(get_turf(src), 1, src)
 
-/obj/machinery/r_n_d/circuit_imprinter/proc/print_pre(var/datum/design/D)
+/obj/machinery/r_n_d/circuit_imprinter/proc/print_pre(datum/design/D)
 	return
 
-/obj/machinery/r_n_d/circuit_imprinter/proc/print_post(var/datum/design/D)
-	visible_message("\icon[src]\The [src] flashes, indicating that \the [D] is complete.", range = 3)
+/obj/machinery/r_n_d/circuit_imprinter/proc/print_post(datum/design/D)
+	visible_message("\The [src] flashes, indicating that \the [D] is complete.", range = 3)
 	if(!queue.len)
 		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1 -3)
-		visible_message("\icon[src]\The [src] pings indicating that queue is complete.")
+		visible_message("\The [src] pings indicating that queue is complete.")
 	return

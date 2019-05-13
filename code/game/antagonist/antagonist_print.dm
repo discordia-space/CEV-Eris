@@ -29,8 +29,14 @@
 		player << "[welcome_text]"
 
 	show_objectives()
-
+	printTip()
 	return TRUE
+
+/datum/antagonist/proc/printTip()
+	var/tipsAndTricks/T = SStips.getRoleTip(src)
+	if(T)
+		var/mob/player = owner.current
+		to_chat(player, SStips.formatTip(T, "Tip for \a [src.id]: "))
 
 /datum/antagonist/proc/get_special_objective_text()
 	return ""

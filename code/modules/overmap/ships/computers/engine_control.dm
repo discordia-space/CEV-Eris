@@ -23,7 +23,7 @@
 
 	ui_interact(user)
 
-/obj/machinery/computer/engines/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/computer/engines/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	if(!linked)
 		user << "<span class='warning'>Unable to connect to ship control systems.</span>"
 		return

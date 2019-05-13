@@ -1,31 +1,27 @@
-/datum/autolathe/recipe/sec/secflashlight
+/datum/design/autolathe/sec/secflashlight
 	name = "security flashlight"
-	path = /obj/item/device/lighting/toggleable/flashlight/seclite
+	build_path = /obj/item/device/lighting/toggleable/flashlight/seclite
 
-/datum/autolathe/recipe/sec/flash
-	name = "flash"
-	path = /obj/item/device/flash
-
-/datum/autolathe/recipe/sec/handcuffs
+/datum/design/autolathe/sec/handcuffs
 	name = "handcuffs"
-	path = /obj/item/weapon/handcuffs
+	build_path = /obj/item/weapon/handcuffs
 
-/datum/autolathe/recipe/sec/electropack
+/datum/design/autolathe/sec/electropack
 	name = "electropack"
-	path = /obj/item/device/radio/electropack
+	build_path = /obj/item/device/radio/electropack
 
-/datum/autolathe/recipe/sec/binoculars
+/datum/design/autolathe/sec/binoculars
 	name = "binoculars"
-	path = /obj/item/device/binoculars
+	build_path = /obj/item/device/binoculars
 
-/datum/autolathe/recipe/sec/shield_riot
+/datum/design/autolathe/sec/shield_riot
 	name = "riot shield"
-	path = /obj/item/weapon/shield/riot
+	build_path = /obj/item/weapon/shield/riot
 
-/datum/autolathe/recipe/sec/beartrap
+/datum/design/autolathe/sec/beartrap
 	name = "beartrap"
-	path = /obj/item/weapon/beartrap
+	build_path = /obj/item/weapon/beartrap
 
-/datum/autolathe/recipe/sec/silencer
+/datum/design/autolathe/sec/silencer
 	name = "silencer"
-	path = /obj/item/weapon/silencer
+	build_path = /obj/item/weapon/silencer

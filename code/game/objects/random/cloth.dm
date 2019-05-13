@@ -272,7 +272,6 @@
 				/obj/item/clothing/gloves/color/purple = 3,
 				/obj/item/clothing/gloves/color/rainbow = 3,
 				/obj/item/clothing/gloves/color/red = 3,
-				/obj/item/clothing/gloves/color/white/bst = 3,
 				/obj/item/clothing/gloves/color/yellow = 3,
 				/obj/item/clothing/gloves/insulated = 6,
 				/obj/item/clothing/gloves/insulated/cheap = 7,

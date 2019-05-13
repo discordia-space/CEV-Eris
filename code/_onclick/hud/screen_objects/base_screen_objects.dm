@@ -186,50 +186,49 @@
 	var/list/PL = params2list(params)
 	var/icon_x = text2num(PL["icon-x"])
 	var/icon_y = text2num(PL["icon-y"])
-	var/old_selecting = parentmob.targeted_organ //We're only going to update_icon() if there's been a change
+	var/selecting
 
 	switch(icon_y)
 		if(1 to 9) //Legs
 			switch(icon_x)
 				if(10 to 15)
-					parentmob.targeted_organ = BP_R_LEG
+					selecting = BP_R_LEG
 				if(17 to 22)
-					parentmob.targeted_organ = BP_L_LEG
+					selecting = BP_L_LEG
 				else
 					return TRUE
 		if(10 to 13) //Arms and groin
 			switch(icon_x)
 				if(8 to 11)
-					parentmob.targeted_organ = BP_R_ARM
+					selecting = BP_R_ARM
 				if(12 to 20)
-					parentmob.targeted_organ = BP_GROIN
+					selecting = BP_GROIN
 				if(21 to 24)
-					parentmob.targeted_organ = BP_L_ARM
+					selecting = BP_L_ARM
 				else
 					return TRUE
 		if(14 to 22) //Chest and arms to shoulders
 			switch(icon_x)
 				if(8 to 11)
-					parentmob.targeted_organ = BP_R_ARM
+					selecting = BP_R_ARM
 				if(12 to 20)
-					parentmob.targeted_organ = BP_CHEST
+					selecting = BP_CHEST
 				if(21 to 24)
-					parentmob.targeted_organ = BP_L_ARM
+					selecting = BP_L_ARM
 				else
 					return TRUE
 		if(23 to 30) //Head, but we need to check for eye or mouth
 			if(icon_x in 12 to 20)
-				parentmob.targeted_organ = BP_HEAD
+				selecting = BP_HEAD
 				switch(icon_y)
 					if(23 to 24)
 						if(icon_x in 15 to 17)
-							parentmob.targeted_organ = BP_MOUTH
+							selecting = BP_MOUTH
 					if(25 to 27)
 						if(icon_x in 14 to 18)
-							parentmob.targeted_organ = BP_EYES
+							selecting = BP_EYES
 
-	if(old_selecting != parentmob.targeted_organ)
-		update_icon()
+	set_selected_zone(selecting)
 	return TRUE
 
 /obj/screen/zone_sel/New()
@@ -239,6 +238,12 @@
 /obj/screen/zone_sel/update_icon()
 	overlays.Cut()
 	overlays += image('icons/mob/zone_sel.dmi', "[parentmob.targeted_organ]")
+
+/obj/screen/zone_sel/proc/set_selected_zone(bodypart)
+	var/old_selecting = parentmob.targeted_organ
+	if(old_selecting != bodypart)
+		parentmob.targeted_organ = bodypart
+		update_icon()
 //--------------------------------------------------ZONE SELECT END---------------------------------------------------------
 
 /obj/screen/text
@@ -318,7 +323,7 @@
 	src.overlays -= ovrls["act_hand"]
 	if (src.slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand))
 		src.overlays += ovrls["act_hand"]
-/*	if (src.slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand)) //Если данный элемент ХУДа отображает левую
+/*	if (src.slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand)) // if display left
 		src.icon_state = "act_hand[src.slot_id==slot_l_hand ? "-l" : "-r"]"
 	else
 		src.icon_state = "hand[src.slot_id==slot_l_hand ? "-l" : "-r"]"*/
@@ -692,6 +697,8 @@ obj/screen/fire/DEADelize()
 								if ("oxygen")
 									if(t.air_contents.gas["oxygen"] && !t.air_contents.gas["plasma"])
 										contents.Add(t.air_contents.gas["oxygen"])
+									else if(istype(t, /obj/item/weapon/tank/onestar_regenerator))
+										contents.Add(BREATH_MOLES*2)
 									else
 										contents.Add(0)
 

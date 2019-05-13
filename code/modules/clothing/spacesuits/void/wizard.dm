@@ -17,7 +17,6 @@
 	desc = "A bizarre gem-encrusted suit that radiates strange energy readings."
 	item_state = "wiz_voidsuit"
 	slowdown = 1
-	w_class = ITEM_SIZE_NORMAL
 	unacidable = 1
 	armor = list(melee = 40, bullet = 55, laser = 55,energy = 5, bomb = 35, bio = 100, rad = 90)
 	siemens_coefficient = 0.7

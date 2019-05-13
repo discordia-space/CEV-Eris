@@ -87,7 +87,7 @@
 		return
 
 	if(istype(stored_pen))
-		to_chat(usr, "<span class='notice'>You remove [stored_pen] from [src].</span>")
+		to_chat(usr, SPAN_NOTICE("You remove [stored_pen] from [src]."))
 		stored_pen.forceMove(get_turf(src))
 		if(!issilicon(usr))
 			usr.put_in_hands(stored_pen)
@@ -217,56 +217,59 @@
 	if(istype(W, suitable_cell) || istype(W, /obj/item/weapon/computer_hardware))
 		try_install_component(user, W)
 
-	var/list/usable_qualities = list(QUALITY_SCREW_DRIVING, QUALITY_WELDING, QUALITY_BOLT_TURNING)
 
-	var/tool_type = W.get_tool_type(user, usable_qualities, src)
-	switch(tool_type)
-		if(QUALITY_BOLT_TURNING)
-			var/list/components = get_all_components()
-			if(components.len)
-				to_chat(user, "Remove all components from \the [src] before disassembling it.")
-				return
-			if(W.use_tool(user, src, WORKTIME_SLOW, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_COG))
-				new /obj/item/stack/material/steel( get_turf(src.loc), steel_sheet_cost )
-				src.visible_message("\The [src] has been disassembled by [user].")
-				qdel(src)
-				return
 
-		if(QUALITY_WELDING)
-			if(!damage)
-				to_chat(user, "\The [src] does not require repairs.")
-				return
-			if(W.use_tool(user, src, WORKTIME_SLOW, QUALITY_WELDING, FAILCHANCE_HARD, required_stat = STAT_COG))
-				damage = 0
-				to_chat(user, "You repair \the [src].")
-				return
-
-		if(QUALITY_SCREW_DRIVING)
-			var/list/all_components = get_all_components()
-			if(!all_components.len)
-				to_chat(user, "This device doesn't have any components installed.")
-				return
-			var/list/component_names = list()
-			for(var/obj/item/weapon/H in all_components)
-				component_names.Add(H.name)
-			var/list/options = list()
-			for(var/i in component_names)
-				for(var/X in all_components)
-					var/obj/item/weapon/TT = X
-					if(TT.name == i)
-						options[i] = image(icon = TT.icon, icon_state = TT.icon_state)
-			var/choice
-			choice = show_radial_menu(user, src, options, radius = 32)
-			if(!choice)
-				return
-			if(!Adjacent(usr))
-				return
-			if(W.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, required_stat = STAT_COG))
-				var/obj/item/weapon/computer_hardware/H = find_hardware_by_name(choice)
-				if(!H)
+	var/obj/item/weapon/tool/tool = W
+	if(tool)
+		var/list/usable_qualities = list(QUALITY_SCREW_DRIVING, QUALITY_WELDING, QUALITY_BOLT_TURNING)
+		var/tool_type = tool.get_tool_type(user, usable_qualities, src)
+		switch(tool_type)
+			if(QUALITY_BOLT_TURNING)
+				var/list/components = get_all_components()
+				if(components.len)
+					to_chat(user, "Remove all components from \the [src] before disassembling it.")
 					return
-				uninstall_component(user, H)
-				return
+				if(tool.use_tool(user, src, WORKTIME_SLOW, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_COG))
+					new /obj/item/stack/material/steel( get_turf(src.loc), steel_sheet_cost )
+					src.visible_message("\The [src] has been disassembled by [user].")
+					qdel(src)
+					return
+
+			if(QUALITY_WELDING)
+				if(!damage)
+					to_chat(user, "\The [src] does not require repairs.")
+					return
+				if(tool.use_tool(user, src, WORKTIME_SLOW, QUALITY_WELDING, FAILCHANCE_HARD, required_stat = STAT_COG))
+					damage = 0
+					to_chat(user, "You repair \the [src].")
+					return
+
+			if(QUALITY_SCREW_DRIVING)
+				var/list/all_components = get_all_components()
+				if(!all_components.len)
+					to_chat(user, "This device doesn't have any components installed.")
+					return
+				var/list/component_names = list()
+				for(var/obj/item/weapon/H in all_components)
+					component_names.Add(H.name)
+				var/list/options = list()
+				for(var/i in component_names)
+					for(var/X in all_components)
+						var/obj/item/weapon/TT = X
+						if(TT.name == i)
+							options[i] = image(icon = TT.icon, icon_state = TT.icon_state)
+				var/choice
+				choice = show_radial_menu(user, src, options, radius = 32)
+				if(!choice)
+					return
+				if(!Adjacent(usr))
+					return
+				if(tool.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, required_stat = STAT_COG))
+					var/obj/item/weapon/computer_hardware/H = find_hardware_by_name(choice)
+					if(!H)
+						return
+					uninstall_component(user, H)
+					return
 	..()
 
 /obj/item/modular_computer/examine(var/mob/user)
@@ -285,6 +288,7 @@
 
 	if((src.loc == M) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, M))
 		cell = null
+		update_icon()
 
 /obj/item/modular_computer/afterattack(atom/target, mob/user, proximity)
 	. = ..()

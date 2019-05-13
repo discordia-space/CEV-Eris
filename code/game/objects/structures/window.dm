@@ -8,7 +8,7 @@
 	anchored = 1.0
 	flags = ON_BORDER
 	var/maxhealth = 20
-	var/resistance = 0	//Incoming damage is reduced by this flat amount before being subtracted from health
+	var/resistance = RESISTANCE_NONE	//Incoming damage is reduced by this flat amount before being subtracted from health. Defines found in code\__defines\weapons.dm
 	var/maximal_heat = T0C + 100 		// Maximal heat before this window begins taking damage from fire
 	var/damage_per_fire_tick = 2.0 		// Amount of damage per fire tick. Regular windows are not fireproof so they might as well break quickly.
 	var/health
@@ -283,7 +283,7 @@
 		usable_qualities.Add(QUALITY_BOLT_TURNING)
 	if((reinf && state >= 1) || (reinf && state == 0) || (!reinf))
 		usable_qualities.Add(QUALITY_SCREW_DRIVING)
-	if(reinf && state >= 1)
+	if(reinf && state <= 1)
 		usable_qualities.Add(QUALITY_PRYING)
 	if (health < maxhealth)
 		usable_qualities.Add(QUALITY_SEALING)
@@ -518,7 +518,7 @@
 	maximal_heat = T0C + 200	// Was 100. Spaceship windows surely surpass coffee pots.
 	damage_per_fire_tick = 3.0	// Was 2. Made weaker than rglass per tick.
 	maxhealth = 15
-	resistance = 0
+	resistance = RESISTANCE_NONE
 
 /obj/structure/window/basic/full
 	dir = SOUTH|EAST
@@ -526,7 +526,7 @@
 	icon_state = "fwindow"
 	alpha = 120
 	maxhealth = 40
-	resistance = 2
+	resistance = RESISTANCE_NONE
 
 /obj/structure/window/plasmabasic
 	name = "plasma window"
@@ -538,7 +538,7 @@
 	maximal_heat = T0C + 5227  // Safe use temperature at 5500 kelvin. Easy to remember.
 	damage_per_fire_tick = 1.5 // Lowest per-tick damage so overheated supermatter chambers have some time to respond to it. Will still shatter before a delam.
 	maxhealth = 150
-	resistance = 8
+	resistance = RESISTANCE_AVERAGE
 
 /obj/structure/window/plasmabasic/full
 	dir = SOUTH|EAST
@@ -546,7 +546,7 @@
 	icon_state = "plasmawindow_mask"
 	alpha = 150
 	maxhealth = 200
-	resistance = 10
+	resistance = RESISTANCE_AVERAGE
 
 /obj/structure/window/reinforced
 	name = "reinforced window"
@@ -559,7 +559,7 @@
 	glasstype = /obj/item/stack/material/glass/reinforced
 
 	maxhealth = 50
-	resistance = 4
+	resistance = RESISTANCE_FRAGILE
 
 /obj/structure/window/New(Loc, constructed=0)
 	..()
@@ -574,7 +574,7 @@
 	icon_state = "fwindow"
 	alpha = 150
 	maxhealth = 80
-	resistance = 6
+	resistance = RESISTANCE_FRAGILE
 
 /obj/structure/window/reinforced/plasma
 	name = "reinforced plasma window"
@@ -586,7 +586,7 @@
 	maximal_heat = T0C + 5453 // Safe use temperature at 6000 kelvin.
 	damage_per_fire_tick = 1.5
 	maxhealth = 200
-	resistance = 10
+	resistance = RESISTANCE_IMPROVED
 
 /obj/structure/window/reinforced/plasma/full
 	dir = SOUTH|EAST
@@ -594,7 +594,7 @@
 	icon_state = "plasmarwindow_mask"
 	alpha = 150
 	maxhealth = 250
-	resistance = 12
+	resistance = RESISTANCE_IMPROVED
 
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
@@ -616,7 +616,7 @@
 	icon_state = "window"
 	basestate = "window"
 	maxhealth = 300
-	resistance = 12
+	resistance = RESISTANCE_IMPROVED
 	reinf = 1
 	basestate = "w"
 	dir = 5
