@@ -98,6 +98,71 @@
 			if(I && I.damage > 0)
 				I.take_damage(dam_amt,0)
 
+/datum/surgery_step/internal/fix_organ_rob
+	allowed_tools = list(
+	/obj/item/stack/nanopaste = 100
+	)
+
+	min_duration = 70
+	max_duration = 90
+
+	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+
+		if (!hasorgans(target))
+			return
+		var/obj/item/organ/external/affected = target.get_organ(target_zone)
+		if(!affected)
+			return
+		var/is_organ_damaged = 0
+		for(var/obj/item/organ/I in affected.internal_organs)
+			if(I.robotic >= 2)
+				is_organ_damaged = 1
+				break
+		return ..() && is_organ_damaged
+
+	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		var/tool_name = "\the [tool]"
+		if (istype(tool, /obj/item/stack/nanopaste))
+			tool_name = "nanite swarm"
+
+		if (!hasorgans(target))
+			return
+
+		var/obj/item/organ/external/affected = target.get_organ(target_zone)
+		for(var/obj/item/organ/I in affected.internal_organs)
+			if(I.damage > 0)
+				user.visible_message("[user] starts treating damage to [target]'s [I.name] with [tool_name].", \
+				"You start treating damage to [target]'s [I.name] with [tool_name]." )
+		target.custom_pain("The pain in your [affected.name] is going away!",1)
+		..()
+
+	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		var/tool_name = "\the [tool]"
+		if (istype(tool, /obj/item/stack/nanopaste))
+			tool_name = "nanite swarm"
+
+		if (!hasorgans(target))
+			return
+		var/obj/item/organ/external/affected = target.get_organ(target_zone)
+		for(var/obj/item/organ/I in affected.internal_organs)
+			if(I.damage > 0)
+				user.visible_message(SPAN_NOTICE("[user] treats damage to [target]'s [I.name] with [tool_name]."), \
+				SPAN_NOTICE("You treat damage to [target]'s [I.name] with [tool_name].") )
+				I.damage= 0
+
+	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		if (!hasorgans(target))
+			return
+		var/obj/item/organ/external/affected = target.get_organ(target_zone)
+		user.visible_message(SPAN_WARNING("[user]'s hand slips, getting mess and tearing the inside of [target]'s [affected.name] with \the [tool]!"), \
+		SPAN_WARNING("Your hand slips, getting mess and tearing the inside of [target]'s [affected.name] with \the [tool]!"))
+		var/dam_amt = 2
+		if (istype(tool, /obj/item/stack/nanopaste))
+			target.adjustToxLoss(10)
+		for(var/obj/item/organ/I in affected.internal_organs)
+			if(I && I.robotic > 0)
+				I.take_damage(dam_amt,0)
+
 /datum/surgery_step/internal/detatch_organ
 
 	requedQuality = QUALITY_CUTTING

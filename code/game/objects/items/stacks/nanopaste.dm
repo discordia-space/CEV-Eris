@@ -7,10 +7,15 @@
 	matter = list(MATERIAL_PLASTIC = 10)
 	origin_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
 	amount = 10
+	w_class = ITEM_SIZE_SMALL
+	var/heal_brute = 0
+	var/heal_burn = 0
 	price_tag = 15
 
 
 /obj/item/stack/nanopaste/attack(mob/living/M as mob, mob/user as mob)
+	if(..())
+		return 1
 	if (!istype(M) || !istype(user))
 		return 0
 	if (isrobot(M))	//Repairing cyborgs
@@ -44,8 +49,8 @@
 				else
 					user << SPAN_NOTICE("Nothing to fix here.")
 		else
-			if (can_operate(H))
+			if (can_operate(H))        //Checks if mob is lying down on table for surgery
 				if (do_surgery(H,user,src))
 					return
 			else
-				user << SPAN_NOTICE("Nothing to fix in here.")
+				user << SPAN_NOTICE("The [S.name] is badly damaged, you'll need more than a nanopaste!")
