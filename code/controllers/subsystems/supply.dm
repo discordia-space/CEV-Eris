@@ -69,9 +69,9 @@ SUBSYSTEM_DEF(supply)
 
 		msg += "[export_text]<br>"
 		points += E.total_cost
-		E.export_end()
 
 	msg += "<br>Total exports value: [points] credits.<br>"
+	exports.Cut()
 
 	var/datum/money_account/GA = department_accounts["Guild"]
 	var/datum/transaction/T = new(points, "Asters Guild", "Exports", "Asters Automated Trading System")
