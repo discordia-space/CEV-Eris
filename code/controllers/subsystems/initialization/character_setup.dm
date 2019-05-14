@@ -15,7 +15,7 @@ SUBSYSTEM_DEF(character_setup)
 	for(var/d in preferences_datums)
 		var/datum/preferences/prefs = d
 		if(istype(prefs) && !prefs.path)
-			log_debug("INVESTIGATE: Prefs failed to setup: [prefs.client_ckey]")
+			error("Prefs failed to setup (SS): [prefs.client_ckey]")
 			prefs.setup()
 
 	. = ..()

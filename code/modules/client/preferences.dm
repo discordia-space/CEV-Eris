@@ -79,6 +79,12 @@
 		close_load_dialog(user)
 		return
 
+	if(!path && !IsGuestKey(user.client.key))
+		error("Prefs failed to setup (datum): [user.client.ckey]")
+		load_path(user.client.ckey)
+		load_preferences()
+		load_and_update_character()
+
 	var/dat = "<html><body><center>"
 
 	if(path)
