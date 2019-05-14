@@ -69,7 +69,7 @@ SUBSYSTEM_DEF(supply)
 
 		msg += "[export_text]<br>"
 		points += E.total_cost
-		E.export_end()
+		exports.Cut()
 
 	msg += "<br>Total exports value: [points] credits.<br>"
 
