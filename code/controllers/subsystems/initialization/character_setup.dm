@@ -11,4 +11,11 @@ SUBSYSTEM_DEF(character_setup)
 		var/datum/preferences/prefs = prefs_awaiting_setup[prefs_awaiting_setup.len]
 		prefs_awaiting_setup.len--
 		prefs.setup()
+
+	for(var/d in preferences_datums)
+		var/datum/preferences/prefs = d
+		if(istype(prefs) && !prefs.path)
+			log_debug("INVESTIGATE: Prefs failed to setup: [prefs.client_ckey]")
+			prefs.setup()
+
 	. = ..()
