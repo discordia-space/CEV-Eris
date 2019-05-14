@@ -7,9 +7,7 @@
 	matter = list(MATERIAL_PLASTIC = 10)
 	origin_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
 	amount = 10
-	w_class = ITEM_SIZE_SMALL
-	var/heal_brute = 0
-	var/heal_burn = 0
+	w_class = ITEM_SIZE_SMALL //just so you can place same places that a brute pack would be
 	price_tag = 15
 
 
@@ -53,4 +51,4 @@
 				if (do_surgery(H,user,src))
 					return
 			else
-				user << SPAN_NOTICE("The [S.name] is badly damaged, you'll need more than a nanopaste!")
+				user << SPAN_NOTICE("Nothing to fix in here.") //back to the original
