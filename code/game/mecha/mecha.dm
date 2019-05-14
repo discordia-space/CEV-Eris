@@ -935,6 +935,8 @@ assassination method if you time it right*/
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user << SPAN_NOTICE("You open the hatch to the power unit.")
 					state = 3
+					if(!cell)
+						state = 4
 					return
 			if(state == 3)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
@@ -1012,13 +1014,14 @@ assassination method if you time it right*/
 		return
 
 	else if(istype(I, /obj/item/weapon/cell/large))
-		if(state==4)
+		if(state == 4 || (state == 3 && !cell))
 			if(!src.cell)
-				user << "You install the powercell"
+				to_chat(user, "You install the powercell")
 				user.drop_item()
 				I.forceMove(src)
 				src.cell = I
 				src.log_message("Powercell installed")
+				state = 4
 			else
 				user << "There's already a powercell installed."
 		return
