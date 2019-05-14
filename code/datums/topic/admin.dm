@@ -1564,3 +1564,23 @@
 		if("view")
 			source.admincaster_screen = 1
 			source.access_news_network()
+
+
+//Player Notes
+/datum/admin_topic/notes
+	keyword = "notes"
+
+/datum/admin_topic/notes/Run(list/input)
+	var/ckey = input["ckey"]
+	if(!ckey)
+		var/mob/M = locate(input["mob"])
+		if(ismob(M))
+			ckey = M.ckey
+
+	switch(input[keyword])
+		if("add")
+			notes_add(ckey, input["text"])
+		if("remove")
+			notes_remove(ckey, text2num(input["from"]), text2num(input["to"]))
+
+	source.notes_show(ckey)

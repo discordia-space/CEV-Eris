@@ -699,7 +699,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/gun/energy/taser/mounted/cyborg(src)
 	src.modules += new /obj/item/taperoll/police(src)
 	//src.modules += new /obj/item/device/holowarrant(src)
-	src.modules += new /obj/item/weapon/book/manual/security_space_law(src) // book of security space law
+	src.modules += new /obj/item/weapon/book/manual/wiki/security_ironparagraphs(src) // book of ironhammer paragraphs
 	src.emag = new /obj/item/weapon/gun/energy/laser/mounted(src)
 	..(R)
 

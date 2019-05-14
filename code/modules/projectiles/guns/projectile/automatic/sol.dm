@@ -2,7 +2,7 @@
 	name = "FS CAR 6.5x39 \"Sol\""
 	desc = "A standard-issue weapon used by Ironhammer operatives. Compact and reliable. Uses 6.5x39 rounds."
 	icon_state = "sol-para"
-	item_state = "c24"
+	item_state = "sol"
 	w_class = ITEM_SIZE_LARGE
 	ammo_mag = "ih_sol"
 	load_method = MAGAZINE
@@ -39,4 +39,4 @@
 	desc = "A standard-issue weapon used by Ironhammer operatives. Compact and reliable. Uses 6.5x39 rounds. This one comes with red dot sight."
 	icon_state = "sol-eot"
 	price_tag = 2350
-	zoom_factor = 1.2
+	zoom_factor = 0.2

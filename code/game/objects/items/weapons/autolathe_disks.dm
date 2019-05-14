@@ -383,8 +383,8 @@
 		/datum/design/autolathe/ammo/SMG_sol_brute, //other mags
 		/datum/design/autolathe/ammo/a556,
 		/datum/design/autolathe/ammo/ih556,
-		/datum/design/autolathe/ammo/c762,
-		/datum/design/autolathe/ammo/ak47,
+		/datum/design/autolathe/ammo/c762_short,
+		/datum/design/autolathe/ammo/c762_long,
 		/datum/design/autolathe/ammo/shotgun_pellet, //shells
 		/datum/design/autolathe/ammo/shotgun
 	)
@@ -408,7 +408,7 @@
 		/datum/design/autolathe/sec/silencer,
 		/datum/design/autolathe/ammo/magazine_mc9mm,
 		/datum/design/autolathe/gun/ak47,
-		/datum/design/autolathe/ammo/ak47,
+		/datum/design/autolathe/ammo/c762_long,
 		/datum/design/autolathe/ammo/box_a762,
 		/datum/design/autolathe/device/excelsiormine,
 		/datum/design/autolathe/sec/beartrap,
@@ -428,3 +428,35 @@
 		/datum/design/autolathe/part/camera_assembly
 	)
 	license = -1
+
+/obj/item/weapon/disk/autolathe_disk/excelsior_weapons
+	name = "Excelsior Means of Revolution"
+	category = "Excelsior"
+	desc = "The back has a machine etching: \"We stand for organized terror - this should be frankly admitted. Terror is an absolute necessity during times of revolution.\""
+	icon_state = "excelsior"
+	recipes = list(
+		/datum/design/autolathe/gun/makarov,
+		/datum/design/autolathe/sec/silencer,
+		/datum/design/autolathe/ammo/magazine_mc9mm,
+		/datum/design/autolathe/gun/ak47,
+		/datum/design/autolathe/ammo/c762_long,
+		/datum/design/autolathe/ammo/box_a762,
+		/datum/design/autolathe/device/excelsiormine,
+		/datum/design/autolathe/sec/beartrap,
+		/datum/design/autolathe/clothing/excelsior_armor,
+		/datum/design/autolathe/clothing/excelsior_helmet
+	)
+	license = -1
+
+/obj/item/weapon/disk/autolathe_disk/onestar
+	name = "One Star Tool Pack"
+	category = "Engineering"
+	icon_state = "onestar"
+	recipes = list(
+		/datum/design/autolathe/tool/crowbar_onestar,
+		/datum/design/autolathe/tool/combi_driver_onestar,
+		/datum/design/autolathe/tool/jackhammer_onestar,
+		/datum/design/autolathe/tool/drill_onestar,
+		/datum/design/autolathe/tool/weldertool_onestar
+	)
+	license = 2

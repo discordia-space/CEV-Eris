@@ -6,6 +6,7 @@
 	item_state = "toolbox_red"
 	flags = CONDUCT
 	force = WEAPON_FORCE_PAINFUL
+	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
 	throwforce = WEAPON_FORCE_NORMAL
 	throw_speed = 1
 	throw_range = 7

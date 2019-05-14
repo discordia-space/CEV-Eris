@@ -1,3 +1,7 @@
+#define NOMODE null
+#define EXCAVATE 0
+#define DIG 1
+
 /obj/item/weapon/tool
 	name = "tool"
 	icon = 'icons/obj/tools.dmi'
@@ -19,6 +23,8 @@
 	var/passive_fuel_cost = 0.03 //Fuel consumed per process tick while active
 	var/max_fuel = 0
 
+	var/mode = NOMODE //For various tool icon updates.
+
 	//Third type of resource, stock. A tool that uses physical objects (or itself) in order to work
 	//Currently used for tape roll
 	var/use_stock_cost = 0
@@ -33,7 +39,7 @@
 	var/unreliability = 0 //This is added to the failure rate of operations with this tool
 	var/repair_frequency = 0 //How many times this tool has been repaired
 
-	var/toggleable = FALSE	//Determinze if it can be switched ON or OFF, for example, if you need a tool that will consume power/fuel upon turning it ON only. Such as welder.
+	var/toggleable = FALSE	//Determines if it can be switched ON or OFF, for example, if you need a tool that will consume power/fuel upon turning it ON only. Such as welder.
 	var/switched_on = FALSE	//Curent status of tool. Dont edit this in subtypes vars, its for procs only.
 	var/switched_on_qualities = null	//This var will REPLACE tool_qualities when tool will be toggled on.
 	var/switched_on_force = null
@@ -754,12 +760,12 @@
 /obj/item/weapon/tool/afterattack(obj/O, mob/user, proximity)
 	if(use_fuel_cost)
 		if(!proximity) return
-		if ((istype(O, /obj/structure/reagent_dispensers/fueltank) || istype(O, /obj/item/weapon/weldpack)) && get_dist(src,O) <= 1 && !switched_on)
+		if ((istype(O, /obj/structure/reagent_dispensers/fueltank) || istype(O, /obj/item/weapon/weldpack)) && get_dist(src,O) <= 1 && !has_quality(QUALITY_WELDING))
 			O.reagents.trans_to_obj(src, max_fuel)
 			to_chat(user, SPAN_NOTICE("[src] refueled"))
 			playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
 			return
-		else if ((istype(O, /obj/structure/reagent_dispensers/fueltank) || istype(O, /obj/item/weapon/weldpack)) && get_dist(src,O) <= 1 && switched_on)
+		else if ((istype(O, /obj/structure/reagent_dispensers/fueltank) || istype(O, /obj/item/weapon/weldpack)) && get_dist(src,O) <= 1 && has_quality(QUALITY_WELDING))
 			message_admins("[key_name_admin(user)] triggered a fueltank explosion with a welding tool.")
 			log_game("[key_name(user)] triggered a fueltank explosion with a welding tool.")
 			to_chat(user, SPAN_DANGER("You begin welding on the [O] and with a moment of lucidity you realize, this might not have been the smartest thing you've ever done."))
@@ -897,6 +903,15 @@
 			ratio = get_fuel() / max_fuel
 			ratio = max(round(ratio, 0.25) * 100, 25)
 			overlays += "[icon_state]-[ratio]"
+
+	if(ismob(loc))
+		var/tooloverlay
+		switch(mode)
+			if (EXCAVATE)
+				tooloverlay = "excavate"
+			if (DIG)
+				tooloverlay = "dig"
+		overlays += (tooloverlay)
 
 /***************************
 	Misc/utility procs

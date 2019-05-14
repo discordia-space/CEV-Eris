@@ -18,6 +18,7 @@
 	silencer_type = /obj/item/weapon/silencer
 	damage_multiplier = 0.6
 	recoil = 0.7 //slightly more than a standart pistol due to auto-firing mode
+	recoil_buildup = 0.1 //smg level
 
 	firemodes = list(
 		FULL_AUTO_400,

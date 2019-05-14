@@ -14,10 +14,9 @@
 	glow_color = COLOR_ORANGE
 	max_upgrades = 5
 
-
 /obj/item/weapon/tool/medmultitool
-	name = "-One Star- medmultitool"
-	desc = "A compact \"One Star\" medical multitool. It has all surgery tools."
+	name = "One Star medmultitool"
+	desc = "A compact One Star medical multitool. It has all surgery tools."
 	icon_state = "medmulti"
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_GLASS = 2, MATERIAL_PLATINUM = 2)
 	flags = CONDUCT
@@ -25,4 +24,4 @@
 	tool_qualities = list(QUALITY_CLAMPING = 30, QUALITY_RETRACTING = 30, QUALITY_BONE_SETTING = 30, QUALITY_CAUTERIZING = 30, QUALITY_SAWING = 15, QUALITY_CUTTING = 30, QUALITY_WIRE_CUTTING = 25)
 
 	max_upgrades = 2
-	workspeed = 1.8
+	workspeed = 1.2

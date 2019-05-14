@@ -216,7 +216,7 @@
 	character.gen_record = gen_record
 	character.exploit_record = exploit_record
 	if(!character.isSynthetic())
-		character.nutrition = rand(140,360)
+		character.nutrition = rand(250, 450)
 
 
 
