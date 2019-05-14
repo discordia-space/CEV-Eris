@@ -33,7 +33,7 @@
 			return
 		var/is_organ_damaged = 0
 		for(var/obj/item/organ/I in affected.internal_organs)
-			if(I.damage > 0)
+			if(I.damage > 0 && I.robotic <= 1)
 				is_organ_damaged = 1
 				break
 		return ..() && is_organ_damaged
@@ -115,7 +115,7 @@
 			return
 		var/is_organ_damaged = 0
 		for(var/obj/item/organ/I in affected.internal_organs)
-			if(I.robotic >= 2)
+			if(I.damage > 0 && I.robotic >= 1)
 				is_organ_damaged = 1
 				break
 		return ..() && is_organ_damaged
