@@ -50,6 +50,9 @@ GLOBAL_LIST_EMPTY(all_bounty_entries)
 				else
 					user << "<span class='warning'>You don't have enough funds to do that!</span>"
 					return
+			else
+				user << "<span class='warning'>You must enter a valid bank account + PIN to create a bounty!</span>"
+				return
 			GLOB.all_bounty_entries += src
 			log_game("Bounty: [field_from_name("Title").get_value()] created by [user]")
 			for(var/mob/living/carbon/human/H in GLOB.human_mob_list)

@@ -18,23 +18,15 @@
 /datum/nano_module/bounty_board
 	name = "Bounty board"
 	var/datum/computer_file/report/bounty_entry/selectedEntry
-	var/candit = FALSE
-	var/userr = null
 
 /datum/nano_module/bounty_board/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = GLOB.default_state)
 	var/list/data = host.initial_data()
 	var/list/user_access = get_record_access(user)
-	userr = user
 	if(selectedEntry)
 		data += selectedEntry.generate_nano_data(user_access)
-		if((selectedEntry.owner_id_card && selectedEntry.owner_id_card == user.GetIdCard()) || access_change_ids in user.GetIdCard().access)
-			data["can_edit"] = TRUE
-			candit = TRUE
-			
-
-		else
-			candit = FALSE
-			userr = null
+		if(selectedEntry.owner_id_card)
+			if(selectedEntry.owner_id_card == user.GetIdCard() || (access_change_ids in user.GetIdCard().access))
+				data["can_edit"] = TRUE
 	data["created"] = GLOB.all_bounty_entries.Find(selectedEntry)
 
 	var/list/not_claimed_bounties = list()
