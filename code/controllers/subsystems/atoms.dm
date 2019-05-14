@@ -103,7 +103,7 @@ SUBSYSTEM_DEF(atoms)
 
 /datum/controller/subsystem/atoms/proc/map_loader_begin()
 	old_init_state = init_state
-	initialized = INITIALIZATION_INSSATOMS
+	init_state = INITIALIZATION_INSSATOMS
 
 /datum/controller/subsystem/atoms/proc/map_loader_stop()
 	init_state = old_init_state
