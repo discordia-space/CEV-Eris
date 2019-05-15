@@ -82,7 +82,7 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/mindbreaker/affect_blood(mob/living/carbon/M, alien, removed)
-	M.hallucination = max(M.hallucination, 100)
+	M.hallucination(50, 50)
 
 
 /datum/reagent/psilocybin

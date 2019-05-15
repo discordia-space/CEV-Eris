@@ -1063,9 +1063,9 @@
 	vend_delay = 34
 	icon_state = "cigs"
 	products = list(/obj/item/weapon/storage/fancy/cigarettes = 10,/obj/item/weapon/storage/box/matches = 10,/obj/item/weapon/flame/lighter/random = 4)
-	contraband = list(/obj/item/weapon/flame/lighter/zippo = 4)
+	contraband = list(/obj/item/clothing/mask/smokable/cigarette/cigar = 4, /obj/item/weapon/flame/lighter/zippo = 4,)
 	premium = list(/obj/item/weapon/storage/fancy/cigar = 5,/obj/item/weapon/storage/fancy/cigarettes/killthroat = 5 )
-	prices = list(/obj/item/weapon/storage/fancy/cigarettes = 300,/obj/item/weapon/storage/box/matches = 100,/obj/item/weapon/flame/lighter/random = 150,
+	prices = list(/obj/item/clothing/mask/smokable/cigarette/cigar = 200, /obj/item/weapon/storage/fancy/cigarettes = 100 ,/obj/item/weapon/storage/box/matches = 10,/obj/item/weapon/flame/lighter/random = 5,
 				/obj/item/weapon/flame/lighter/zippo = 250)
 
 
@@ -1243,7 +1243,7 @@
 	desc = "Spare tool vending. What? Did you expect some witty description?"
 	icon_state = "engivend"
 	icon_deny = "engivend-deny"
-	products = list(/obj/item/clothing/glasses/meson = 2,/obj/item/weapon/tool/multitool = 4,/obj/item/weapon/airlock_electronics = 10,/obj/item/weapon/circuitboard/apc = 10,/obj/item/weapon/airalarm_electronics = 10,/obj/item/weapon/cell/large/high = 10)
+	products = list(/obj/item/clothing/glasses/powered/meson = 2,/obj/item/weapon/tool/multitool = 4,/obj/item/weapon/airlock_electronics = 10,/obj/item/weapon/circuitboard/apc = 10,/obj/item/weapon/airalarm_electronics = 10,/obj/item/weapon/cell/large/high = 10)
 	contraband = list(/obj/item/weapon/cell/large/potato = 3)
 	premium = list(/obj/item/weapon/storage/belt/utility = 3)
 	auto_price = FALSE
@@ -1255,13 +1255,13 @@
 	icon_state = "engi"
 	icon_deny = "engi-deny"
 	products = list(/obj/item/clothing/head/hardhat = 4,
-					/obj/item/weapon/storage/belt/utility = 4,/obj/item/clothing/glasses/meson = 4,/obj/item/clothing/gloves/insulated = 4, /obj/item/weapon/tool/screwdriver = 12,
+					/obj/item/weapon/storage/belt/utility = 4,/obj/item/clothing/glasses/powered/meson = 4,/obj/item/clothing/gloves/insulated = 4, /obj/item/weapon/tool/screwdriver = 12,
 					/obj/item/weapon/tool/crowbar = 12,/obj/item/weapon/tool/wirecutters = 12,/obj/item/weapon/tool/multitool = 12,/obj/item/weapon/tool/wrench = 12,/obj/item/device/t_scanner = 12,
 					/obj/item/weapon/cell/large = 8, /obj/item/weapon/tool/weldingtool = 8,/obj/item/clothing/head/welding = 8,
 					/obj/item/weapon/light/tube = 10,/obj/item/clothing/suit/fire = 4, /obj/item/weapon/stock_parts/scanning_module = 5,/obj/item/weapon/stock_parts/micro_laser = 5,
 					/obj/item/weapon/stock_parts/matter_bin = 5,/obj/item/weapon/stock_parts/manipulator = 5,/obj/item/weapon/stock_parts/console_screen = 5)
 	prices = list(/obj/item/clothing/head/hardhat = 4,
-					/obj/item/weapon/storage/belt/utility = 150,/obj/item/clothing/glasses/meson = 300,/obj/item/clothing/gloves/insulated = 600, /obj/item/weapon/tool/screwdriver = 30,
+					/obj/item/weapon/storage/belt/utility = 150,/obj/item/clothing/glasses/powered/meson = 300,/obj/item/clothing/gloves/insulated = 600, /obj/item/weapon/tool/screwdriver = 30,
 					/obj/item/weapon/tool/crowbar = 30,/obj/item/weapon/tool/wirecutters = 30,/obj/item/weapon/tool/multitool = 40,/obj/item/weapon/tool/wrench = 40,/obj/item/device/t_scanner = 50,
 					/obj/item/weapon/cell/large = 500, /obj/item/weapon/tool/weldingtool = 40,/obj/item/clothing/head/welding = 80,
 					/obj/item/weapon/light/tube = 10,/obj/item/clothing/suit/fire = 150, /obj/item/weapon/stock_parts/scanning_module = 40,/obj/item/weapon/stock_parts/micro_laser = 40,

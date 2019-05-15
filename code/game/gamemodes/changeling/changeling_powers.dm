@@ -721,7 +721,7 @@ var/list/datum/dna/hivemind_bank = list()
 	var/mob/living/carbon/T = changeling_sting(15, A)
 	if(!T)	return 0
 	spawn(rand(300,600))
-		if(T)	T.hallucination += 400
+		if(T)	T.hallucination(400, 80)
 	return 1
 
 
