@@ -685,3 +685,12 @@ its easier to just keep the beam vertical.
 		result += a
 		result |= a.get_recursive_contents()
 	return result
+
+/atom/proc/AllowDrop()
+	return FALSE
+
+/atom/proc/drop_location()
+	var/atom/L = loc
+	if(!L)
+		return null
+	return L.AllowDrop() ? L : L.drop_location()

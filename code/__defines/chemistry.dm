@@ -46,3 +46,6 @@
 #define CE_PULSE      "xcardic" // increases or decreases heart rate
 #define CE_NOPULSE    "heartstop" // stops heartbeat
 #define CE_MIND    		 "mindbending"  // Stabilizes or wrecks mind. Used for hallucinations
+
+// Reagent specific heat is not yet implemented, this is here for compatibility reasons
+#define SPECIFIC_HEAT_DEFAULT			200

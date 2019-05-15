@@ -652,13 +652,12 @@
 	stored_material[material] -= amount
 
 
-/obj/machinery/autolathe/dismantle()
+/obj/machinery/autolathe/on_deconstruction()
 	for(var/mat in stored_material)
 		eject(mat, stored_material[mat])
 		
 	eject_disk()
 	..()
-	return 1
 
 //Updates overall lathe storage size.
 /obj/machinery/autolathe/RefreshParts()
