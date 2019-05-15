@@ -135,7 +135,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 				/obj/item/weapon/gun/energy/gun,
 				/obj/item/weapon/gun/energy/gun/martin,
 				/obj/item/weapon/gun/energy/gun/martin)
-	cost = 3500
+	cost = 6000
 	containertype = /obj/structure/closet/crate/secure/weapon
 	crate_name = "FS Energy Weapons"
 	group = "Security"
@@ -167,7 +167,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 				/obj/item/weapon/gun/energy/laser,
 				/obj/item/weapon/gun/energy/taser,
 				/obj/item/weapon/gun/energy/taser)
-	cost = 3500
+	cost = 5000
 	containertype = /obj/structure/closet/crate/secure/weapon
 	crate_name = "FS Energy Weapons"
 	group = "Security"
@@ -219,7 +219,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/suit/armor/riot,
 					/obj/item/clothing/head/helmet/riot,
 					/obj/item/clothing/suit/armor/riot)
-	cost = 6000
+	cost = 6100
 	containertype = /obj/structure/closet/crate/secure
 	crate_name = "IH Riot gear crate"
 	group = "Security"
@@ -510,7 +510,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	name = "120 wooden planks"
 	contains = list(/obj/item/stack/material/wood)
 	amount = 120
-	cost = 500
+	cost = 2500
 	containertype = /obj/structure/closet/crate
 	crate_name = "Wooden planks crate"
 	group = "Engineering"
