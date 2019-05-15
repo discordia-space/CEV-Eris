@@ -142,14 +142,14 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 		return
 	if (deployed)
 		user.visible_message(
-			"<span class='danger'>[user] starts to carefully disarm \the [src].</span>",
-			"<span class='danger'>You begin to carefully disarm \the [src].</span>"
+			SPAN_DANGER("[user] starts to carefully disarm \the [src]."),
+			SPAN_DANGER("You begin to carefully disarm \the [src].")
 			)
 
 		if (do_after(user, 25))
 			user.visible_message(
-				"<span class='danger'>[user] has disarmed \the [src].</span>",
-				"<span class='danger'>You have disarmed \the [src]!</span>"
+				SPAN_DANGER("[user] has disarmed \the [src]."),
+				SPAN_DANGER("You have disarmed \the [src]!")
 				)
 			deployed = FALSE
 			anchored = FALSE
@@ -335,7 +335,7 @@ Very rarely it might escape
 /obj/item/weapon/beartrap/examine(mob/user)
 	..()
 	if(deployed && isliving(user) && !("\ref[user]" in aware_mobs))
-		user << SPAN_NOTICE("You're aware of this trap, now. You won't set it off when walking carefully.")
+		to_chat(user, SPAN_NOTICE("You're aware of this trap, now. You won't set it off when walking carefully."))
 		aware_mobs |= "\ref[user]"
 
 
