@@ -141,7 +141,7 @@
 	min_duration = 80
 	max_duration = 100
 
-	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	/datum/surgery_step/cavity/implant_removal/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 		//A somewhat hacky solution
 		//Disallow this if the target has internal bleeding, so that can be fixed first instead
@@ -154,14 +154,14 @@
 		var/obj/item/organ/internal/brain/sponge = target.internal_organs_by_name[BP_BRAIN]
 		return ..() && (!sponge || !sponge.damage)
 
-	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	/datum/surgery_step/cavity/implant_removal/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		user.visible_message("[user] starts poking around inside [target]'s [affected.name] with \the [tool].", \
 		"You start poking around inside [target]'s [affected.name] with \the [tool]" )
 		target.custom_pain("The pain in your [affected.name] is living hell!",1)
 		..()
 
-	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	/datum/surgery_step/cavity/implant_removal/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/chest/affected = target.get_organ(target_zone)
 
 		var/find_prob = 0
@@ -221,7 +221,7 @@
 			user.visible_message("\blue [user] could not find anything inside [target]'s [affected.name], and pulls \the [tool] out.", \
 			"\blue You could not find anything inside [target]'s [affected.name]." )
 
-	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	/datum/surgery_step/cavity/implant_removal/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		..()
 		var/obj/item/organ/external/chest/affected = target.get_organ(target_zone)
 		if (affected.implants.len)

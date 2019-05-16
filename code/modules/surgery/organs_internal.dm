@@ -24,7 +24,7 @@
 	min_duration = 70
 	max_duration = 90
 
-	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	/datum/surgery_step/internal/fix_organ/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 		if (!hasorgans(target))
 			return
@@ -38,7 +38,7 @@
 				break
 		return ..() && is_organ_damaged
 
-	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	/datum/surgery_step/internal/fix_organ/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/tool_name = "\the [tool]"
 		if (istype(tool, /obj/item/stack/medical/advanced/bruise_pack))
 			tool_name = "regenerative membrane"
@@ -58,7 +58,7 @@
 		target.custom_pain("The pain in your [affected.name] is living hell!",1)
 		..()
 
-	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	/datum/surgery_step/internal/fix_organ/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/tool_name = "\the [tool]"
 		if (istype(tool, /obj/item/stack/medical/advanced/bruise_pack))
 			tool_name = "regenerative membrane"
@@ -76,7 +76,7 @@
 					SPAN_NOTICE("You treat damage to [target]'s [I.name] with [tool_name].") )
 					I.damage = 0
 
-	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	/datum/surgery_step/internal/fix_organ/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 		if (!hasorgans(target))
 			return
@@ -106,7 +106,7 @@
 	min_duration = 70
 	max_duration = 90
 
-	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	/datum/surgery_step/internal/fix_organ_rob/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 		if (!hasorgans(target))
 			return
@@ -120,7 +120,7 @@
 				break
 		return ..() && is_organ_damaged
 
-	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	/datum/surgery_step/internal/fix_organ_rob/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/tool_name = "\the [tool]"
 		if (istype(tool, /obj/item/stack/nanopaste))
 			tool_name = "nanite swarm"
@@ -136,7 +136,7 @@
 		target.custom_pain("The pain in your [affected.name] is going away!",1)
 		..()
 
-	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	/datum/surgery_step/internal/fix_organ_rob/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/tool_name = "\the [tool]"
 		if (istype(tool, /obj/item/stack/nanopaste))
 			tool_name = "nanite swarm"
@@ -150,7 +150,7 @@
 				SPAN_NOTICE("You treat damage to [target]'s [I.name] with [tool_name].") )
 				I.damage= 0
 
-	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	/datum/surgery_step/internal/fix_organ_rob/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if (!hasorgans(target))
 			return
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -170,7 +170,7 @@
 	min_duration = 90
 	max_duration = 110
 
-	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	/datum/surgery_step/internal/detatch_organ/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 		if (!..())
 			return 0
@@ -195,7 +195,7 @@
 		return ..()
 
 
-	prepare_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	/datum/surgery_step/internal/detatch_organ/prepare_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/list/attached_organs = list()
 		for(var/organ in target.internal_organs_by_name)
 			var/obj/item/organ/I = target.internal_organs_by_name[organ]
@@ -213,7 +213,7 @@
 		target.op_stage.current_organ = organ_to_remove
 		return TRUE
 
-	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	/datum/surgery_step/internal/detatch_organ/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
@@ -222,7 +222,7 @@
 		target.custom_pain("The pain in your [affected.name] is living hell!",1)
 		..()
 
-	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	/datum/surgery_step/internal/detatch_organ/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		user.visible_message(SPAN_NOTICE("[user] has separated [target]'s [target.op_stage.current_organ] with \the [tool].") , \
 		SPAN_NOTICE("You have separated [target]'s [target.op_stage.current_organ] with \the [tool]."))
 
@@ -230,7 +230,7 @@
 		if(I && istype(I))
 			I.status |= ORGAN_CUT_AWAY
 
-	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	/datum/surgery_step/internal/detatch_organ/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		user.visible_message(SPAN_WARNING("[user]'s hand slips, slicing an artery inside [target]'s [affected.name] with \the [tool]!"), \
 		SPAN_WARNING("Your hand slips, slicing an artery inside [target]'s [affected.name] with \the [tool]!"))
@@ -242,26 +242,21 @@
 	min_duration = 60
 	max_duration = 80
 
-	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-
+	/datum/surgery_step/internal/remove_organ/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if (!..())
 			return 0
-
 		target.op_stage.current_organ = null
-
 		var/list/removable_organs = list()
 		for(var/organ in target.internal_organs_by_name)
 			var/obj/item/organ/I = target.internal_organs_by_name[organ]
 			if((I.status & ORGAN_CUT_AWAY) && I.parent_organ == target_zone)
 				removable_organs |= organ
-
 		if(!removable_organs.len)
 			return 0
-
 		return ..()
 
 
-	prepare_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	/datum/surgery_step/internal/remove_organ/prepare_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/list/attached_organs = list()
 		for(var/organ in target.internal_organs_by_name)
 			var/obj/item/organ/I = target.internal_organs_by_name[organ]
@@ -280,13 +275,13 @@
 		return TRUE
 
 
-	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	/datum/surgery_step/internal/remove_organ/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		user.visible_message("[user] starts removing [target]'s [target.op_stage.current_organ] with \the [tool].", \
 		"You start removing [target]'s [target.op_stage.current_organ] with \the [tool].")
 		target.custom_pain("Someone's ripping out your [target.op_stage.current_organ]!",1)
 		..()
 
-	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	/datum/surgery_step/internal/remove_organ/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		user.visible_message(SPAN_NOTICE("[user] has removed [target]'s [target.op_stage.current_organ] with \the [tool]."), \
 		SPAN_NOTICE("You have removed [target]'s [target.op_stage.current_organ] with \the [tool]."))
 
@@ -298,7 +293,7 @@
 			target.op_stage.current_organ = null
 			playsound(target.loc, 'sound/effects/squelch1.ogg', 50, 1)
 
-	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	/datum/surgery_step/internal/remove_organ/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		user.visible_message(SPAN_WARNING("[user]'s hand slips, damaging [target]'s [affected.name] with \the [tool]!"), \
 		SPAN_WARNING("Your hand slips, damaging [target]'s [affected.name] with \the [tool]!"))
@@ -312,7 +307,7 @@
 	min_duration = 60
 	max_duration = 80
 
-	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	/datum/surgery_step/internal/replace_organ/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 		var/obj/item/organ/O = tool
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -357,14 +352,14 @@
 
 		return ..() && organ_missing && organ_compatible
 
-	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	/datum/surgery_step/internal/replace_organ/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		user.visible_message("[user] starts transplanting \the [tool] into [target]'s [affected.name].", \
 		"You start transplanting \the [tool] into [target]'s [affected.name].")
 		target.custom_pain("Someone's rooting around in your [affected.name]!",1)
 		..()
 
-	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	/datum/surgery_step/internal/replace_organ/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		user.visible_message(SPAN_NOTICE("[user] has transplanted \the [tool] into [target]'s [affected.name]."), \
 		SPAN_NOTICE("You have transplanted \the [tool] into [target]'s [affected.name]."))
@@ -374,7 +369,7 @@
 			O.replaced(target,affected)
 			playsound(target.loc, 'sound/effects/squelch1.ogg', 50, 1)
 
-	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	/datum/surgery_step/internal/replace_organ/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		user.visible_message(SPAN_WARNING("[user]'s hand slips, damaging \the [tool]!"), \
 		SPAN_WARNING("Your hand slips, damaging \the [tool]!"))
 		var/obj/item/organ/I = tool
@@ -387,7 +382,7 @@
 	min_duration = 100
 	max_duration = 120
 
-	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	/datum/surgery_step/internal/attach_organ/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 		if (!..())
 			return 0
@@ -405,7 +400,7 @@
 
 		return ..()
 
-	prepare_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	/datum/surgery_step/internal/attach_organ/prepare_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/list/removable_organs = list()
 		for(var/organ in target.internal_organs_by_name)
 			var/obj/item/organ/I = target.internal_organs_by_name[organ]
@@ -419,13 +414,13 @@
 		target.op_stage.current_organ = organ_to_replace
 		return TRUE
 
-	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	/datum/surgery_step/internal/attach_organ/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		user.visible_message("[user] begins reattaching [target]'s [target.op_stage.current_organ] with \the [tool].", \
 		"You start reattaching [target]'s [target.op_stage.current_organ] with \the [tool].")
 		target.custom_pain("Someone's digging needles into your [target.op_stage.current_organ]!",1)
 		..()
 
-	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	/datum/surgery_step/internal/attach_organ/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		user.visible_message(SPAN_NOTICE("[user] has reattached [target]'s [target.op_stage.current_organ] with \the [tool].") , \
 		SPAN_NOTICE("You have reattached [target]'s [target.op_stage.current_organ] with \the [tool]."))
 
@@ -433,7 +428,7 @@
 		if(I && istype(I))
 			I.status &= ~ORGAN_CUT_AWAY
 
-	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	/datum/surgery_step/internal/attach_organ/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		user.visible_message(SPAN_WARNING("[user]'s hand slips, damaging the flesh in [target]'s [affected.name] with \the [tool]!"), \
 		SPAN_WARNING("Your hand slips, damaging the flesh in [target]'s [affected.name] with \the [tool]!"))
