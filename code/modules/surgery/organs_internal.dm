@@ -242,62 +242,62 @@
 	min_duration = 60
 	max_duration = 80
 
-	/datum/surgery_step/internal/remove_organ/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		if (!..())
-			return 0
+/datum/surgery_step/internal/remove_organ/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if (!..())
+		return 0
+	target.op_stage.current_organ = null
+	var/list/removable_organs = list()
+	for(var/organ in target.internal_organs_by_name)
+		var/obj/item/organ/I = target.internal_organs_by_name[organ]
+		if((I.status & ORGAN_CUT_AWAY) && I.parent_organ == target_zone)
+			removable_organs |= organ
+	if(!removable_organs.len)
+		return 0
+	return ..()
+
+
+/datum/surgery_step/internal/remove_organ/prepare_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/list/attached_organs = list()
+	for(var/organ in target.internal_organs_by_name)
+		var/obj/item/organ/I = target.internal_organs_by_name[organ]
+		if(I && I.status & ORGAN_CUT_AWAY && I.parent_organ == target_zone)
+			attached_organs |= organ
+	var/list/options = list()
+	for(var/i in attached_organs)
+		var/obj/item/organ/I = target.internal_organs_by_name[i]
+		options[i] = image(icon = I.icon, icon_state = I.icon_state)
+	var/organ_to_remove
+	organ_to_remove = show_radial_menu(user, target, options, radius = 32)
+	if(!organ_to_remove)
+		return FALSE
+
+	target.op_stage.current_organ = organ_to_remove
+	return TRUE
+
+
+/datum/surgery_step/internal/remove_organ/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	user.visible_message("[user] starts removing [target]'s [target.op_stage.current_organ] with \the [tool].", \
+	"You start removing [target]'s [target.op_stage.current_organ] with \the [tool].")
+	target.custom_pain("Someone's ripping out your [target.op_stage.current_organ]!",1)
+	..()
+
+/datum/surgery_step/internal/remove_organ/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	user.visible_message(SPAN_NOTICE("[user] has removed [target]'s [target.op_stage.current_organ] with \the [tool]."), \
+	SPAN_NOTICE("You have removed [target]'s [target.op_stage.current_organ] with \the [tool]."))
+
+	// Extract the organ!
+	if(target.op_stage.current_organ)
+		var/obj/item/organ/O = target.internal_organs_by_name[target.op_stage.current_organ]
+		if(O && istype(O))
+			O.removed(user)
 		target.op_stage.current_organ = null
-		var/list/removable_organs = list()
-		for(var/organ in target.internal_organs_by_name)
-			var/obj/item/organ/I = target.internal_organs_by_name[organ]
-			if((I.status & ORGAN_CUT_AWAY) && I.parent_organ == target_zone)
-				removable_organs |= organ
-		if(!removable_organs.len)
-			return 0
-		return ..()
+		playsound(target.loc, 'sound/effects/squelch1.ogg', 50, 1)
 
-
-	/datum/surgery_step/internal/remove_organ/prepare_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		var/list/attached_organs = list()
-		for(var/organ in target.internal_organs_by_name)
-			var/obj/item/organ/I = target.internal_organs_by_name[organ]
-			if(I && I.status & ORGAN_CUT_AWAY && I.parent_organ == target_zone)
-				attached_organs |= organ
-		var/list/options = list()
-		for(var/i in attached_organs)
-			var/obj/item/organ/I = target.internal_organs_by_name[i]
-			options[i] = image(icon = I.icon, icon_state = I.icon_state)
-		var/organ_to_remove
-		organ_to_remove = show_radial_menu(user, target, options, radius = 32)
-		if(!organ_to_remove)
-			return FALSE
-
-		target.op_stage.current_organ = organ_to_remove
-		return TRUE
-
-
-	/datum/surgery_step/internal/remove_organ/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		user.visible_message("[user] starts removing [target]'s [target.op_stage.current_organ] with \the [tool].", \
-		"You start removing [target]'s [target.op_stage.current_organ] with \the [tool].")
-		target.custom_pain("Someone's ripping out your [target.op_stage.current_organ]!",1)
-		..()
-
-	/datum/surgery_step/internal/remove_organ/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		user.visible_message(SPAN_NOTICE("[user] has removed [target]'s [target.op_stage.current_organ] with \the [tool]."), \
-		SPAN_NOTICE("You have removed [target]'s [target.op_stage.current_organ] with \the [tool]."))
-
-		// Extract the organ!
-		if(target.op_stage.current_organ)
-			var/obj/item/organ/O = target.internal_organs_by_name[target.op_stage.current_organ]
-			if(O && istype(O))
-				O.removed(user)
-			target.op_stage.current_organ = null
-			playsound(target.loc, 'sound/effects/squelch1.ogg', 50, 1)
-
-	/datum/surgery_step/internal/remove_organ/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message(SPAN_WARNING("[user]'s hand slips, damaging [target]'s [affected.name] with \the [tool]!"), \
-		SPAN_WARNING("Your hand slips, damaging [target]'s [affected.name] with \the [tool]!"))
-		affected.createwound(BRUISE, 20)
+/datum/surgery_step/internal/remove_organ/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	user.visible_message(SPAN_WARNING("[user]'s hand slips, damaging [target]'s [affected.name] with \the [tool]!"), \
+	SPAN_WARNING("Your hand slips, damaging [target]'s [affected.name] with \the [tool]!"))
+	affected.createwound(BRUISE, 20)
 
 /datum/surgery_step/internal/replace_organ
 	allowed_tools = list(
@@ -307,74 +307,74 @@
 	min_duration = 60
 	max_duration = 80
 
-	/datum/surgery_step/internal/replace_organ/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/internal/replace_organ/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
-		var/obj/item/organ/O = tool
-		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		if(!affected) return
-		var/organ_compatible
-		var/organ_missing
+	var/obj/item/organ/O = tool
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	if(!affected) return
+	var/organ_compatible
+	var/organ_missing
 
-		if(!istype(O))
-			return 0
+	if(!istype(O))
+		return 0
 
-		if((affected.robotic >= ORGAN_ROBOT) && !(O.robotic >= ORGAN_ROBOT))
-			user << SPAN_DANGER("You cannot install a naked organ into a robotic body.")
+	if((affected.robotic >= ORGAN_ROBOT) && !(O.robotic >= ORGAN_ROBOT))
+		user << SPAN_DANGER("You cannot install a naked organ into a robotic body.")
+		return SURGERY_FAILURE
+
+	if(!target.species)
+		user << SPAN_DANGER("You have no idea what species this person is. Report this on the bug tracker.")
+		return SURGERY_FAILURE
+
+	var/o_is = (O.gender == PLURAL) ? "are" : "is"
+	var/o_a =  (O.gender == PLURAL) ? "" : "a "
+	var/o_do = (O.gender == PLURAL) ? "don't" : "doesn't"
+
+	if(target.species.has_organ[O.organ_tag])
+		if(O.damage > (O.max_damage * 0.75))
+			user << SPAN_WARNING("\The [O.organ_tag] [o_is] in no state to be transplanted.")
 			return SURGERY_FAILURE
 
-		if(!target.species)
-			user << SPAN_DANGER("You have no idea what species this person is. Report this on the bug tracker.")
-			return SURGERY_FAILURE
-
-		var/o_is = (O.gender == PLURAL) ? "are" : "is"
-		var/o_a =  (O.gender == PLURAL) ? "" : "a "
-		var/o_do = (O.gender == PLURAL) ? "don't" : "doesn't"
-
-		if(target.species.has_organ[O.organ_tag])
-			if(O.damage > (O.max_damage * 0.75))
-				user << SPAN_WARNING("\The [O.organ_tag] [o_is] in no state to be transplanted.")
-				return SURGERY_FAILURE
-
-			if(!target.internal_organs_by_name[O.organ_tag])
-				organ_missing = 1
-			else
-				user << SPAN_WARNING("\The [target] already has [o_a][O.organ_tag].")
-				return SURGERY_FAILURE
-
-			if(O && affected.organ_tag == O.parent_organ)
-				organ_compatible = 1
-			else
-				user << SPAN_WARNING("\The [O.organ_tag] [o_do] normally go in \the [affected.name].")
-				return SURGERY_FAILURE
+		if(!target.internal_organs_by_name[O.organ_tag])
+			organ_missing = 1
 		else
-			user << SPAN_WARNING("You're pretty sure [target.species.name_plural] don't normally have [o_a][O.organ_tag].")
+			user << SPAN_WARNING("\The [target] already has [o_a][O.organ_tag].")
 			return SURGERY_FAILURE
 
-		return ..() && organ_missing && organ_compatible
+		if(O && affected.organ_tag == O.parent_organ)
+			organ_compatible = 1
+		else
+			user << SPAN_WARNING("\The [O.organ_tag] [o_do] normally go in \the [affected.name].")
+			return SURGERY_FAILURE
+	else
+		user << SPAN_WARNING("You're pretty sure [target.species.name_plural] don't normally have [o_a][O.organ_tag].")
+		return SURGERY_FAILURE
 
-	/datum/surgery_step/internal/replace_organ/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message("[user] starts transplanting \the [tool] into [target]'s [affected.name].", \
-		"You start transplanting \the [tool] into [target]'s [affected.name].")
-		target.custom_pain("Someone's rooting around in your [affected.name]!",1)
-		..()
+	return ..() && organ_missing && organ_compatible
 
-	/datum/surgery_step/internal/replace_organ/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message(SPAN_NOTICE("[user] has transplanted \the [tool] into [target]'s [affected.name]."), \
-		SPAN_NOTICE("You have transplanted \the [tool] into [target]'s [affected.name]."))
-		var/obj/item/organ/O = tool
-		if(istype(O))
-			user.remove_from_mob(O)
-			O.replaced(target,affected)
-			playsound(target.loc, 'sound/effects/squelch1.ogg', 50, 1)
+/datum/surgery_step/internal/replace_organ/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	user.visible_message("[user] starts transplanting \the [tool] into [target]'s [affected.name].", \
+	"You start transplanting \the [tool] into [target]'s [affected.name].")
+	target.custom_pain("Someone's rooting around in your [affected.name]!",1)
+	..()
 
-	/datum/surgery_step/internal/replace_organ/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		user.visible_message(SPAN_WARNING("[user]'s hand slips, damaging \the [tool]!"), \
-		SPAN_WARNING("Your hand slips, damaging \the [tool]!"))
-		var/obj/item/organ/I = tool
-		if(istype(I))
-			I.take_damage(rand(3,5),0)
+/datum/surgery_step/internal/replace_organ/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	user.visible_message(SPAN_NOTICE("[user] has transplanted \the [tool] into [target]'s [affected.name]."), \
+	SPAN_NOTICE("You have transplanted \the [tool] into [target]'s [affected.name]."))
+	var/obj/item/organ/O = tool
+	if(istype(O))
+		user.remove_from_mob(O)
+		O.replaced(target,affected)
+		playsound(target.loc, 'sound/effects/squelch1.ogg', 50, 1)
+
+/datum/surgery_step/internal/replace_organ/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	user.visible_message(SPAN_WARNING("[user]'s hand slips, damaging \the [tool]!"), \
+	SPAN_WARNING("Your hand slips, damaging \the [tool]!"))
+	var/obj/item/organ/I = tool
+	if(istype(I))
+		I.take_damage(rand(3,5),0)
 
 /datum/surgery_step/internal/attach_organ
 	requedQuality = QUALITY_CAUTERIZING
@@ -382,57 +382,57 @@
 	min_duration = 100
 	max_duration = 120
 
-	/datum/surgery_step/internal/attach_organ/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/internal/attach_organ/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
-		if (!..())
-			return 0
+	if (!..())
+		return 0
 
-		target.op_stage.current_organ = null
+	target.op_stage.current_organ = null
 
-		var/list/removable_organs = list()
-		for(var/organ in target.internal_organs_by_name)
-			var/obj/item/organ/I = target.internal_organs_by_name[organ]
-			if(I && (I.status & ORGAN_CUT_AWAY) && !(I.robotic >= ORGAN_ROBOT) && I.parent_organ == target_zone)
-				removable_organs |= organ
+	var/list/removable_organs = list()
+	for(var/organ in target.internal_organs_by_name)
+		var/obj/item/organ/I = target.internal_organs_by_name[organ]
+		if(I && (I.status & ORGAN_CUT_AWAY) && !(I.robotic >= ORGAN_ROBOT) && I.parent_organ == target_zone)
+			removable_organs |= organ
 
-		if(!removable_organs.len)
-			return 0
+	if(!removable_organs.len)
+		return 0
 
-		return ..()
+	return ..()
 
-	/datum/surgery_step/internal/attach_organ/prepare_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		var/list/removable_organs = list()
-		for(var/organ in target.internal_organs_by_name)
-			var/obj/item/organ/I = target.internal_organs_by_name[organ]
-			if(I && (I.status & ORGAN_CUT_AWAY) && !(I.robotic >= ORGAN_ROBOT) && I.parent_organ == target_zone)
-				removable_organs |= organ
+/datum/surgery_step/internal/attach_organ/prepare_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/list/removable_organs = list()
+	for(var/organ in target.internal_organs_by_name)
+		var/obj/item/organ/I = target.internal_organs_by_name[organ]
+		if(I && (I.status & ORGAN_CUT_AWAY) && !(I.robotic >= ORGAN_ROBOT) && I.parent_organ == target_zone)
+			removable_organs |= organ
 
-		var/organ_to_replace = input(user, "Which organ do you want to reattach?") as null|anything in removable_organs
-		if(!organ_to_replace)
-			return FALSE
+	var/organ_to_replace = input(user, "Which organ do you want to reattach?") as null|anything in removable_organs
+	if(!organ_to_replace)
+		return FALSE
 
-		target.op_stage.current_organ = organ_to_replace
-		return TRUE
+	target.op_stage.current_organ = organ_to_replace
+	return TRUE
 
-	/datum/surgery_step/internal/attach_organ/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		user.visible_message("[user] begins reattaching [target]'s [target.op_stage.current_organ] with \the [tool].", \
-		"You start reattaching [target]'s [target.op_stage.current_organ] with \the [tool].")
-		target.custom_pain("Someone's digging needles into your [target.op_stage.current_organ]!",1)
-		..()
+/datum/surgery_step/internal/attach_organ/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	user.visible_message("[user] begins reattaching [target]'s [target.op_stage.current_organ] with \the [tool].", \
+	"You start reattaching [target]'s [target.op_stage.current_organ] with \the [tool].")
+	target.custom_pain("Someone's digging needles into your [target.op_stage.current_organ]!",1)
+	..()
 
-	/datum/surgery_step/internal/attach_organ/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		user.visible_message(SPAN_NOTICE("[user] has reattached [target]'s [target.op_stage.current_organ] with \the [tool].") , \
-		SPAN_NOTICE("You have reattached [target]'s [target.op_stage.current_organ] with \the [tool]."))
+/datum/surgery_step/internal/attach_organ/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	user.visible_message(SPAN_NOTICE("[user] has reattached [target]'s [target.op_stage.current_organ] with \the [tool].") , \
+	SPAN_NOTICE("You have reattached [target]'s [target.op_stage.current_organ] with \the [tool]."))
 
-		var/obj/item/organ/I = target.internal_organs_by_name[target.op_stage.current_organ]
-		if(I && istype(I))
-			I.status &= ~ORGAN_CUT_AWAY
+	var/obj/item/organ/I = target.internal_organs_by_name[target.op_stage.current_organ]
+	if(I && istype(I))
+		I.status &= ~ORGAN_CUT_AWAY
 
-	/datum/surgery_step/internal/attach_organ/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message(SPAN_WARNING("[user]'s hand slips, damaging the flesh in [target]'s [affected.name] with \the [tool]!"), \
-		SPAN_WARNING("Your hand slips, damaging the flesh in [target]'s [affected.name] with \the [tool]!"))
-		affected.createwound(BRUISE, 20)
+/datum/surgery_step/internal/attach_organ/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	user.visible_message(SPAN_WARNING("[user]'s hand slips, damaging the flesh in [target]'s [affected.name] with \the [tool]!"), \
+	SPAN_WARNING("Your hand slips, damaging the flesh in [target]'s [affected.name] with \the [tool]!"))
+	affected.createwound(BRUISE, 20)
 
 //////////////////////////////////////////////////////////////////
 //						HEART SURGERY							//
