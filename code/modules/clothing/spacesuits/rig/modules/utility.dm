@@ -383,6 +383,7 @@
 	icon_state = "autodoc"
 	use_power_cost = 10
 	selectable = 0
+	usable = 1
 
 	engage_string = "Activate autodoc"
 
@@ -391,20 +392,15 @@
 
 	var/datum/autodoc/inner_machine = new()
 
-	var/list/processing_patchnotes = new()
-
 /obj/item/rig_module/autodoc/engage()
-	. = ..()
-	if(!.)
-		return
+	if(!..())
+		return 0
 	inner_machine.scan_user(holder.wearer)
 	inner_machine.ui_interact(holder.wearer)
+	return 1
 
-/obj/item/rig_module/autodoc/Process()
-	inner_machine.process_first_one()
+/obj/item/rig_module/autodoc/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null)
+	inner_machine.ui_interact(user, ui_key, ui)
 
-/obj/item/rig_module/autodoc/ui_interact(var/mob/user, var/ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state =GLOB.outside_state)
-	inner_machine.ui_interact(user, ui_key, ui, force_open, state)
-
-/obj/item/rig_module/autodoc/proc/Topic(href, href_list)
+/obj/item/rig_module/autodoc/Topic(href, href_list)
 	inner_machine.Topic(href, href_list)
