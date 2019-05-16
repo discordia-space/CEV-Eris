@@ -2364,6 +2364,7 @@
 #include "code\modules\stashes\stash_types\weapons.dm"
 #include "code\modules\supermatter\supermatter.dm"
 #include "code\modules\surgery\_defines.dm"
+#include "code\modules\surgery\autodoc.dm"
 #include "code\modules\surgery\bones.dm"
 #include "code\modules\surgery\encased.dm"
 #include "code\modules\surgery\face.dm"
