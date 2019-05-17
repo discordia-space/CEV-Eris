@@ -149,7 +149,8 @@
 /datum/core_module/rituals/cruciform/base
 	ritual_types = list(/datum/ritual/cruciform/base,
 	/datum/ritual/targeted/cruciform/base,
-	/datum/ritual/group/cruciform)
+	/datum/ritual/group/cruciform,
+	/datum/ritual/cruciform/machines)
 
 
 /datum/core_module/rituals/cruciform/priest

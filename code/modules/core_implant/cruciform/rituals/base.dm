@@ -91,3 +91,5 @@
 	if (!was_triggired)
 		H << SPAN_NOTICE("There is nothing there. You feel safe.")
 	return TRUE
+
+
