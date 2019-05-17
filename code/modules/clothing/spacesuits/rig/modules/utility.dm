@@ -395,9 +395,9 @@
 /obj/item/rig_module/autodoc/engage()
 	if(!..())
 		return 0
-	if(!autodoc_processor.holder) autodoc_processor.holder = holder
+	if(!autodoc_processor.holder || autodoc_processor.holder != src) autodoc_processor.holder = src
 	autodoc_processor.scan_user(holder.wearer)
-	autodoc_processor.ui_interact(usr)
+	autodoc_processor.ui_interact(usr, state = GLOB.deep_inventory_state)
 	return 1
 /obj/item/rig_module/autodoc/Topic(href, href_list)
 	autodoc_processor.Topic(href, href_list)
