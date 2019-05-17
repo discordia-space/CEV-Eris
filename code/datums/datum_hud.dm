@@ -127,12 +127,12 @@
 		"damage zone" = list("type" = /obj/screen/zone_sel,   "loc" = "EAST+1,BOTTOM-1", "minloc" = "RIGHT,1", "background" = "back1"),
 		"internal"    = list("type" = /obj/screen/internal,   "loc" = "EAST+1,BOTTOM+13", "minloc" = "RIGHT,15", "background" = "back1"),
 		"swap hand"   = list("type" = /obj/screen/swap,       "loc" = "8,1", "minloc" = "7,2"),
-		"toggle gun mode"   = list("type" = /obj/screen/gun/mode,      "loc" = "EAST+1,BOTTOM+1", "minloc" = "RIGHT,3", "background" = "back1"),
-		"allow movement"   = list("type" = /obj/screen/gun/move,       "loc" = "EAST+1,BOTTOM+2", "minloc" = "RIGHT,4", "background" = "back1"),
-		"allow item use"   = list("type" = /obj/screen/gun/item,       "loc" = "EAST,BOTTOM+1", "minloc" = "RIGHT-1,3", "background" = "back1"),
-		"allow radio use"   = list("type" = /obj/screen/gun/radio,      "loc" = "EAST,BOTTOM+2", "minloc" = "RIGHT-1,4", "background" = "back1"),
 		"toggle invetory"   = list("type" = /obj/screen/toggle_invetory,       "loc" = "2,0", "minloc" = "1,1", "background" = "back1")
 		)
+		//"toggle gun mode"   = list("type" = /obj/screen/gun/mode,      "loc" = "EAST+1,BOTTOM+1", "minloc" = "RIGHT,3", "background" = "back1"),
+		//"allow movement"   = list("type" = /obj/screen/gun/move,       "loc" = "EAST+1,BOTTOM+2", "minloc" = "RIGHT,4", "background" = "back1"),
+		//"allow item use"   = list("type" = /obj/screen/gun/item,       "loc" = "EAST,BOTTOM+1", "minloc" = "RIGHT-1,3", "background" = "back1"),
+		//"allow radio use"   = list("type" = /obj/screen/gun/radio,      "loc" = "EAST,BOTTOM+2", "minloc" = "RIGHT-1,4", "background" = "back1"),
 
 	slot_data = list (
 		"Uniform" =   list("loc" = "2,1", "minloc" = "1,2",           "state" = "center",  "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
@@ -171,7 +171,6 @@
 		list("loc" = "12,0", "icon_state" = "frame3-2"),
 		list("loc" = "12,0", "icon_state" = "frame0-2"),
 		list("loc" = "12,0", "icon_state" = "frame0-3"),
-		list("loc" = "EAST,BOTTOM+3", "icon_state" = "frame1-8"),
 		list("loc" = "EAST+1,BOTTOM+3", "icon_state" = "frame1-1"),
 		list("loc" = "EAST+1,BOTTOM+3", "icon_state" = "frame3-3"),
 		list("loc" = "EAST+1,BOTTOM+3", "icon_state" = "frame0-4"),
@@ -184,6 +183,7 @@
 		list("loc" = "EAST+1,BOTTOM+14", "icon_state" = "frame0-1"),
 		list("loc" = "EAST+1,BOTTOM+14", "icon_state" = "frame3-1")
 		)
+		//list("loc" = "EAST,BOTTOM+3", "icon_state" = "frame1-8"),
 		//list("loc" = "2,3", "icon_state" = "block",  "hideflag" = TOGGLE_INVENTORY_FLAG),
 
 
