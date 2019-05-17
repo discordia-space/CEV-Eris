@@ -59,7 +59,6 @@
 #include "code\__defines\subsystems-priority.dm"
 #include "code\__defines\subsystems.dm"
 #include "code\__defines\targeting.dm"
-#include "code\__defines\tgui.dm"
 #include "code\__defines\tick.dm"
 #include "code\__defines\time.dm"
 #include "code\__defines\tools_and_qualities.dm"
