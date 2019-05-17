@@ -1,58 +1,57 @@
 {{if data.locked}}
 <div class='notice'>
-	<b><h3>SURGERY IN PROCESS</h3></b>
+	<h3><b>SURGERY IN PROCESS</b></h3>
 	<i>Wait until all operations done</i><br>
 </div>
 {{/if}}
 <div style="min-width: 480px">
 	<h3>Overall Status</h3>
 	<table>
-		<tr><td colspan=2>
-			<div class="statusValue">
-				Brute damage: {{:data.over_brute}}
-			</div>
-			<div class="statusValue">
-				Brute damage: {{:data.over_burn}}
-			</div>
-			<div class="statusValue">
-				Toxin contents: {{:data.over_tox}}
-			</div>
-			<div class="statusValue">
-				Respiratory damage: {{:data.over_oxy}}
-			</div>
+		<tr>
+			<td><div class="statusValue" style="color:red">
+				<b>Brute: {{:data.over_brute}}</b></div></td>
+			<td><div class="statusValue" style="color:yellow">
+				<b>Burn: {{:data.over_burn}}</b></div></td>
+			<td><div class="statusValue" style="color:green">
+				<b>Toxin: {{:data.over_tox}}</b></div></td>
+			<td><div class="statusValue" style="color:DeepSkyBlue">
+				<b>Respiratory: {{:data.over_oxy}}</b></div></td>
+		</tr>
 	</table>
-	{{:helper.link('Toxin Kelation', 'biohazard', {'toggle' : 'surgery_antitox'}, data.surgery_antitox ? null:'disabled')}}
-	{{:helper.link('Dialysis', 'flask', {'toggle' : 'surgery_dialysis'}, data.surgery_dialysis ? null:'disabled')}}
-
+	{{:helper.link('Toxin Kelation', '', {'toggle' : 'antitox'}, data.antitox ? null:'disabled', data.antitox_picked ? 'redButton' : null)}}
+	{{:helper.link('Dialysis', '', {'toggle' : 'dialysis'}, data.dialysis ? null:'disabled', data.dialysis_picked ? 'redButton' : null)}}
+	<br>
+	<h3>Organ Status</h3>
+	{{:helper.link('Rescan', '', {'rescan':1}, data.active? 'disabled':null)}}
+	{{:helper.link('Process all', '', {'full':1}, data.active? 'disabled':null)}}
 	{{for data.organs}}
-		<div class = "item">
-			<div class="itemLabel">
-				{{:value.name}}
+	<div class="item">
+		<div class="itemLabel">{{:value.name}}</div>
+		<div class="itemContent">
+			{{if value.internal}}
+			<div class="statusValue">
+				Internal damage: {{:value.inner_damage}}
 			</div>
-			<div class="itemContent">
-				{{if value.internal}}
-					<div class="statusValue">
-						Internal damage: {{:value.inner_damage}}
-					</div>
-					{{:helper.link('Fix internal damage', 'first-aid', {'toggle' : 'surgery_damage', 'id':value.id}, data.surgery_damage ? null:'disabled')}}
-				{{else}}
-					<table>
-						<tr><td colspan=2>
-						<div class="statusValue">
-								Brute damage: {{:value.brute_damage}}
-						</div>
-						<div class="statusValue">
-								Burn damage: {{:value.burn_damage}}
-						</div>
-					</table>
-					{{:helper.link('Fix damage', 'first-aid', {'toggle' : 'surgery_damage', 'id' : value.id}, data.surgery_damage ? null:'disabled')}}
-					{{:helper.link('Mend Fracture', 'bone', {'toggle' : 'surgery_fracture', 'id' : value.id}, data.surgery_fracture ? null:'disabled')}}
-					{{:helper.link('Remove Shrapnel', 'star-of-life', {'toggle' : 'surgery_shrapnel', 'id' : value.id}, data.surgery_shrapnel ? null:'disabled')}}
-					{{:helper.link('Close wounds', 'band-aid', {'toggle' : 'surgery_wound', 'id' : value.id}, data.surgery_wound ? null:'disabled')}}
-				{{/if}}
-			</div>
+			{{:helper.link('Fix internal damage', 'first-aid', {'toggle' : 'damage', 'id':value.id}, value.damage ? null:'disabled', value.damage_picked ? 'redButton' : null)}}
+			{{else}}
+			<table>
+				<tr>
+					<td><div class="statusValue" style="color:red">
+						<b>Brute damage: {{:value.brute_damage}}</b></div></td>
+					<td><div class="statusValue" style="color:yellow">
+						<b>Burn damage: {{:value.burn_damage}}</b></div></td>
+				</tr>
+				<tr>
+					<td>{{:helper.link('Fix damage', 'first-aid', {'toggle' : 'damage', 'id' : value.id}, value.damage ? null:'disabled', value.damage_picked ? 'redButton' : null)}}</td>
+					<td>{{:helper.link('Mend Fracture', 'bone', {'toggle' : 'fracture', 'id' : value.id}, value.fracture ? null:'disabled', value.fracture_picked ? 'redButton' : null)}}</td>
+					<td>{{:helper.link('Remove Shrapnel', 'star', {'toggle' : 'shrapnel', 'id' : value.id}, value.shrapnel ? null:'disabled', value.shrapnel_picked ? 'redButton' : null)}}</td>
+					<td>{{:helper.link('Close wounds', 'band-aid', {'toggle' : 'wound', 'id' : value.id}, value.wound ? null:'disabled', value.wound_picked ? 'redButton' : null)}}</td>
+				</tr>
+			</table>
+			{{/if}}
 		</div>
+	</div>
 	{{empty}}
-		No injuries found!<br>
+	<br><br><b>No injuries found!</b>
 	{{/for}}
 </div>

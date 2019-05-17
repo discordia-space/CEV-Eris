@@ -378,7 +378,7 @@
 	jets.trail.set_up(jets)
 
 /obj/item/rig_module/autodoc
-	name = "mounted autodoc"
+	name = "autodoc module"
 	desc = "A complex surgery system for almost all your needs."
 	icon_state = "autodoc"
 	use_power_cost = 10
@@ -390,17 +390,14 @@
 	interface_name = "Autodoc"
 	interface_desc = "Module with set of instruments that is capable to preform surgery on user"
 
-	var/datum/autodoc/inner_machine = new()
+	var/datum/autodoc/autodoc_processor = new()
 
 /obj/item/rig_module/autodoc/engage()
 	if(!..())
 		return 0
-	inner_machine.scan_user(holder.wearer)
-	inner_machine.ui_interact(holder.wearer)
+	if(!autodoc_processor.holder) autodoc_processor.holder = holder
+	autodoc_processor.scan_user(holder.wearer)
+	autodoc_processor.ui_interact(usr)
 	return 1
-
-/obj/item/rig_module/autodoc/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null)
-	inner_machine.ui_interact(user, ui_key, ui)
-
 /obj/item/rig_module/autodoc/Topic(href, href_list)
-	inner_machine.Topic(href, href_list)
+	autodoc_processor.Topic(href, href_list)

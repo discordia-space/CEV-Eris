@@ -1,21 +1,31 @@
 /datum/autodoc_patchnote
 	var/surgery_operations = 0
 	var/obj/item/organ/organ = null
-
+/datum/autodoc_patchnote/proc/Copy(var/blank = TRUE)
+	var/datum/autodoc_patchnote/copy = new()
+	copy.organ = organ
+	if(!blank)
+		copy.surgery_operations = surgery_operations
+	return copy
 /datum/autodoc
-	var/list/patchnotes = list()
+	var/list/scanned_patchnotes = list()
 	var/list/picked_patchnotes = list()
+	var/obj/holder
 	var/active = 0
 	var/damage_heal_amount = 30
+	var/processing_speed = 30
 	var/current_step = null
 	var/mob/living/carbon/human/patient = null
 	var/list/possible_operations = list(AUTODOC_DAMAGE, AUTODOC_EMBED_OBJECT, AUTODOC_FRACTURE, AUTODOC_OPEN_WOUNDS, AUTODOC_TOXIN, AUTODOC_DIALYSIS)
+
 /datum/autodoc/proc/scan_user(var/mob/living/carbon/human/human)
 	if(active)
 		to_chat(usr, SPAN_WARNING("Autodoc already in use"))
+		return
 	active = 1
 	patient = human
-	patchnotes = new()
+	scanned_patchnotes = new()
+	picked_patchnotes = new()
 
 	var/datum/autodoc_patchnote/toxnote = new()
 	if(patient.getToxLoss())
@@ -23,7 +33,8 @@
 	if(patient.reagents.reagent_list.len)
 		toxnote.surgery_operations |= AUTODOC_DIALYSIS
 	if(toxnote.surgery_operations)
-		patchnotes.Add(toxnote)
+		scanned_patchnotes.Add(toxnote)
+		picked_patchnotes.Add(toxnote.Copy())
 
 	if(AUTODOC_DAMAGE in possible_operations)
 		world << "AUTODOC_DAMAGE"
@@ -33,7 +44,8 @@
 				var/datum/autodoc_patchnote/patchnote = new()
 				patchnote.organ = internal
 				patchnote.surgery_operations |= AUTODOC_DAMAGE
-				patchnotes.Add(patchnote)
+				scanned_patchnotes.Add(patchnote)
+				picked_patchnotes.Add(patchnote.Copy())
 
 	for(var/obj/item/organ/external/external in patient.bad_external_organs)
 		world << "BAD EXTERNAL"
@@ -73,26 +85,28 @@
 					if(AUTODOC_OPEN_WOUNDS in possible_operations)
 						world << "WOUND OP READY"
 						patchnote.surgery_operations |= AUTODOC_OPEN_WOUNDS
-		patchnotes.Add(patchnote)
+		if(patchnote.surgery_operations)
+			scanned_patchnotes.Add(patchnote)
+			picked_patchnotes.Add(patchnote.Copy())
 	active = 0
 
 /datum/autodoc/proc/process(var/datum/autodoc_patchnote/patchnote)
 	var/obj/item/organ/internal/internal = patchnote.organ
 	var/obj/item/organ/external/external = patchnote.organ
-	if(patchnote.surgery_operations & AUTODOC_TOXIN)
-		patient.adjustToxLoss(-damage_heal_amount)
-		if(!patient.getToxLoss())patchnotes -= patchnote
-		return
+	if(!patchnote.organ)
+		if(patchnote.surgery_operations & AUTODOC_TOXIN)
+			patient.adjustToxLoss(-damage_heal_amount)
+			if(!patient.getToxLoss())
+				patchnote.surgery_operations &= ~AUTODOC_TOXIN
 
-	if(patchnote.surgery_operations & AUTODOC_DIALYSIS)
-		var/pumped = 0
-		for(var/datum/reagent/x in patient.reagents.reagent_list)
-			patient.reagents.remove_any(AUTODOC_DIALYSIS_AMOUNT)
-			pumped+=AUTODOC_DIALYSIS_AMOUNT
-		patient.vessel.remove_any(pumped + 1)
-		if(!pumped)
-			patchnotes -= patchnote
-		return
+		if(patchnote.surgery_operations & AUTODOC_DIALYSIS)
+			var/pumped = 0
+			for(var/datum/reagent/x in patient.reagents.reagent_list)
+				patient.reagents.remove_any(AUTODOC_DIALYSIS_AMOUNT)
+				pumped+=AUTODOC_DIALYSIS_AMOUNT
+			patient.vessel.remove_any(pumped + 1)
+			if(!pumped)
+				patchnote.surgery_operations &= ~AUTODOC_DIALYSIS
 
 	if(patchnote.surgery_operations & AUTODOC_DAMAGE)
 		if(internal)
@@ -134,28 +148,21 @@
 	if(!patchnote.surgery_operations)
 		picked_patchnotes -= patchnote
 
-/datum/autodoc/proc/process_first_one(var/process_timer = 30)
+/datum/autodoc/proc/process_full_queue()
 	if(active)
-		return 0
-	if(!picked_patchnotes.len)
-		to_chat(usr, SPAN_NOTICE("No operations picked"))
-	active = 1
-	if( do_after(patient, process_timer, src, FALSE, 0) )
-		process(picked_patchnotes[1])
-	else
-		world << "Failure"
-		return -1
-	return 1
-
-/datum/autodoc/proc/process_full_queue(var/process_timer = 30)
-	if(active)
-		return 0
-	picked_patchnotes = patchnotes.Copy()
-	active = 1
+		return FALSE
+	picked_patchnotes = scanned_patchnotes.Copy()
+	active = TRUE
 	for(var/datum/autodoc_patchnote/note in picked_patchnotes)
-		process_first_one(process_timer)
-	return 1
-/datum/autodoc/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null)
+		if( do_after(patient, processing_speed, holder, incapacitation_flags = 0) )
+			process(picked_patchnotes[1])
+		else
+			world << "Failure"
+			active = FALSE
+			return
+	active = FALSE
+
+/datum/autodoc/ui_interact(mob/user, ui_key = "autodoc", var/datum/nanoui/ui = null)
 	var/list/data = new()
 
 	data["locked"] = active
@@ -164,50 +171,77 @@
 	data["over_oxy"] = patient.getOxyLoss()
 	data["over_tox"] = patient.getToxLoss()
 
-	var/list/organs[0]
+	var/list/organs = new()
 	var/i = 0
-	for(var/datum/autodoc_patchnote/note in patchnotes)
+	for(var/datum/autodoc_patchnote/note in scanned_patchnotes)
 		i++
-		var/organ[0]
+		var/list/organ = new()
 		var/obj/item/organ/internal/internal = note.organ
 		var/obj/item/organ/external/external = note.organ
 		organ["id"] = i
 		if(!note.organ)
-			data["surgery_antitox"] = note.surgery_operations & AUTODOC_TOXIN
-			data["surgery_dialysis"] = note.surgery_operations & AUTODOC_DIALYSIS
+			data["antitox"] = note.surgery_operations & AUTODOC_TOXIN
+			data["antitox_picked"] = picked_patchnotes[i].surgery_operations & AUTODOC_TOXIN
+			data["dialysis"] = note.surgery_operations & AUTODOC_DIALYSIS
+			data["dialysis_picked"] = picked_patchnotes[i].surgery_operations & AUTODOC_DIALYSIS
 			continue		
 		if(internal)
 			organ["name"] = internal.name
 			organ["internal"] = TRUE
 			organ["inner_damage"] = internal.damage
-			organ["surgery_damage"] = note.surgery_operations & AUTODOC_DAMAGE
+			organ["damage"] = note.surgery_operations & AUTODOC_DAMAGE
+			organ["damage_picked"] = picked_patchnotes[i].surgery_operations & AUTODOC_DAMAGE
 		else
 			organ["name"] = external.name
 			organ["brute_damage"] = external.brute_dam
 			organ["burn_damage"] = external.burn_dam
-			organ["surgery_fracture"] = note.surgery_operations & AUTODOC_FRACTURE
-			organ["surgery_shrapnel"] = note.surgery_operations & AUTODOC_EMBED_OBJECT
-			organ["surgery_damage"] = note.surgery_operations & AUTODOC_DAMAGE
-			organ["surgery_wound"] = note.surgery_operations & AUTODOC_OPEN_WOUNDS
+			organ["fracture"] = note.surgery_operations & AUTODOC_FRACTURE
+			organ["fracture_picked"] = picked_patchnotes[i].surgery_operations & AUTODOC_FRACTURE
+			organ["shrapnel"] = note.surgery_operations & AUTODOC_EMBED_OBJECT
+			organ["shrapnel_picked"] = picked_patchnotes[i].surgery_operations & AUTODOC_EMBED_OBJECT
+			organ["damage"] = note.surgery_operations & AUTODOC_DAMAGE
+			organ["damage_picked"] = picked_patchnotes[i].surgery_operations & AUTODOC_DAMAGE
+			organ["wound"] = note.surgery_operations & AUTODOC_OPEN_WOUNDS
+			organ["wound_picked"] = picked_patchnotes[i].surgery_operations & AUTODOC_OPEN_WOUNDS
 		organs.Add(organ)
 
 	data["organs"] = organs
 
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, 2)
+	world << data
+	ui = SSnano.try_update_ui(user, holder, ui_key, ui, data)
 	if (!ui)
-		ui = new(user, src, ui_key, "autodoc.tmpl", "Autodoc", 470, 290)
+		ui = new(user, holder, ui_key, "autodoc.tmpl", "Autodoc", 600, 480, state = GLOB.default_state)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
 
 /datum/autodoc/Topic(href, href_list)
+	world << href_list
 	if(href_list["rescan"])
 		scan_user(patient)
-
-	if(href_list["toggle"])
-		world << href_list
-		world << "////////"
 	if(href_list["start"])
-		process_first_one()
-	if(href_list["full"])
 		process_full_queue()
+	if(href_list["full"])
+		scan_user(patient)
+		picked_patchnotes = scanned_patchnotes.Copy()
+		process_full_queue()
+	if(href_list["toggle"])
+		var/op = 0
+		switch(href_list["toggle"])
+			if("damage")
+				op = AUTODOC_DAMAGE
+			if("wound")
+				op = AUTODOC_OPEN_WOUNDS
+			if("fracture")
+				op = AUTODOC_FRACTURE
+			if("shrapnel")
+				op = AUTODOC_EMBED_OBJECT
+			if("dialysis")
+				op = AUTODOC_DIALYSIS
+			if("antitox")
+				op = AUTODOC_TOXIN
+		if(picked_patchnotes[href_list["id"]].possible_operations & op)
+			picked_patchnotes[href_list["id"]].possible_operations &= ~op
+		else
+			picked_patchnotes[href_list["id"]].possible_operations |= op
+	
