@@ -18,7 +18,7 @@
 		), rand(40,80), 1)
 	interact(H)
 
-/obj/item/weapon/book/ritual/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/weapon/book/ritual/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/obj/item/weapon/implant/core_implant/cruciform/CI = user.get_cruciform()
 
 	var/data = list()

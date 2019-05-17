@@ -5,7 +5,6 @@
 	unset_machine()
 	qdel(hud_used)
 	if(client)
-		remove_screen_obj_references()
 		for(var/atom/movable/AM in client.screen)
 			qdel(AM)
 		client.screen = list()
@@ -21,31 +20,7 @@
 	return
 
 /mob/proc/take_overall_damage(var/brute, var/burn, var/used_weapon = null)
-
-/mob/proc/remove_screen_obj_references()//FIX THIS SHIT
-//	flash = null
-//	blind = null
-	hands = null
-	pullin = null
-	purged = null
-//	internals = null
-//	oxygen = null
-	i_select = null
-	m_select = null
-//	toxin = null
-//	fire = null
-//	bodytemp = null
-//	healths = null
-//	throw_icon = null
-//	nutrition_icon = null
-//	pressure = null
-//	damageoverlay = null
-//	pain = null
-//	item_use_icon = null
-//	gun_move_icon = null
-//	gun_setting_icon = null
-//	spell_masters = null
-	zone_sel = null
+	return
 
 /mob/Initialize()
 	START_PROCESSING(SSmobs, src)
@@ -55,7 +30,6 @@
 		GLOB.living_mob_list += src
 	move_intent = decls_repository.get_decl(move_intent)
 	. = ..()
-
 
 /mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
 
@@ -664,6 +638,7 @@
 
 	if(.)
 		if(statpanel("Status") && SSticker.current_state != GAME_STATE_PREGAME)
+			stat("Storyteller", "[master_storyteller]")
 			stat("Station Time", stationtime2text())
 			stat("Round Duration", roundduration2text())
 
@@ -1183,3 +1158,49 @@ mob/proc/yank_out_object()
 
 /mob/proc/get_face_name()
 	return name
+
+/client/proc/check_has_body_select()
+	return mob && mob.HUDneed && mob.HUDneed["damage zone"]
+
+/client/verb/body_toggle_head()
+	set name = "body-toggle-head"
+	set hidden = TRUE
+	set category = "OOC"
+	toggle_zone_sel(list(BP_HEAD,BP_EYES,BP_MOUTH))
+
+/client/verb/body_r_arm()
+	set name = "body-r-arm"
+	set hidden = TRUE
+	set category = "OOC"
+	toggle_zone_sel(list(BP_R_ARM))
+
+/client/verb/body_l_arm()
+	set name = "body-l-arm"
+	set hidden = TRUE
+	toggle_zone_sel(list(BP_L_ARM))
+
+/client/verb/body_chest()
+	set name = "body-chest"
+	set hidden = TRUE
+	toggle_zone_sel(list(BP_CHEST))
+
+/client/verb/body_groin()
+	set name = "body-groin"
+	set hidden = TRUE
+	toggle_zone_sel(list(BP_GROIN))
+
+/client/verb/body_r_leg()
+	set name = "body-r-leg"
+	set hidden = TRUE
+	toggle_zone_sel(list(BP_R_LEG))
+
+/client/verb/body_l_leg()
+	set name = "body-l-leg"
+	set hidden = TRUE
+	toggle_zone_sel(list(BP_L_LEG))
+
+/client/proc/toggle_zone_sel(list/zones)
+	if(!check_has_body_select())
+		return
+	var/obj/screen/zone_sel/selector = mob.HUDneed["damage zone"]
+	selector.set_selected_zone(next_in_list(mob.targeted_organ,zones))

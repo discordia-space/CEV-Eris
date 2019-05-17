@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/automatic/IH_machinepistol
-	name = "FS MP \"Molly\""
-	desc = "An experimental fully automatic pistol. Compact and flexible, but somewhat underpowered. Issued to non-combatants among Ironhammer as powerful self-protection sidearm. Uses 9mm rounds."
+	name = "FS MP 9x19 \"Molly\""
+	desc = "An experimental fully automatic pistol. Compact and flexible, but somewhat underpowered. Issued to non-combatants among Ironhammer as powerful self-protection sidearm. Custom magwell allows it to feed both from pistol and SMG magazines. Uses 9mm rounds."
 	icon_state = "IH_mp"
 	item_state = "IH_mp"
 	w_class = ITEM_SIZE_NORMAL
@@ -9,15 +9,20 @@
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	ammo_type = "/obj/item/ammo_casing/c9mm"
 	load_method = MAGAZINE
+	mag_well = MAG_WELL_PISTOL|MAG_WELL_SMG
 	magazine_type = /obj/item/ammo_magazine/smg9mm
+	auto_eject = 1
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 3)
 	price_tag = 1700
+	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	silencer_type = /obj/item/weapon/silencer
-	damage_multiplier = 0.55
+	damage_multiplier = 0.6
+	recoil = 0.7 //slightly more than a standart pistol due to auto-firing mode
+
 	firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    dispersion=list(0.0, 0.6, 0.6), icon="burst"),
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    dispersion=list(0.0, 0.6, 0.6), icon="burst"),
 		)
 
 /obj/item/weapon/gun/projectile/automatic/IH_machinepistol/update_icon()

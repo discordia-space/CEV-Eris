@@ -136,10 +136,10 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 		var/mob/living/L = usr
 		if(CanUse(L) && href_list["action"])
 			var/obj/item/I = L.get_active_hand()
-			if (!istype(I))
-				return
 			holder.add_hiddenprint(L)
 			if(href_list["cut"]) // Toggles the cut/mend status
+				if (!istype(I))
+					return
 				var/tool_type = null
 				if(QUALITY_CUTTING in I.tool_qualities)
 					tool_type = QUALITY_CUTTING
@@ -151,23 +151,25 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 						add_log_entry(L, "has [IsColourCut(colour) ? "mended" : "cut"] the <font color='[colour]'>[capitalize(colour)]</font> wire")
 						CutWireColour(colour)
 				else
-					L << "<span class='error'>You need something that can cut!</span>"
+					to_chat(L, SPAN_WARNING("You need something that can cut!"))
 
 			else if(href_list["pulse"])
+				if (!istype(I))
+					return
 				if(I.get_tool_type(usr, list(QUALITY_PULSING), holder))
 					if(I.use_tool(L, holder, WORKTIME_INSTANT, QUALITY_PULSING, FAILCHANCE_ZERO))
 						var/colour = href_list["pulse"]
 						add_log_entry(L, "has pulsed the <font color='[colour]'>[capitalize(colour)]</font> wire")
 						PulseColour(colour)
 				else
-					L << "<span class='error'>You need a multitool!</span>"
+					to_chat(L, SPAN_WARNING("You need a multitool!"))
 
 			else if(href_list["attach"])
 				var/colour = href_list["attach"]
 				// Detach
 				if(IsAttached(colour))
 					var/obj/item/O = Detach(colour)
-					add_log_entry(L, "has detched [O] from the <font color='[colour]'>[capitalize(colour)]</font> wire")
+					add_log_entry(L, "has detached [O] from the <font color='[colour]'>[capitalize(colour)]</font> wire")
 					if(O)
 						L.put_in_hands(O)
 
@@ -178,7 +180,7 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 						add_log_entry(L, "has attached [I] to the <font color='[colour]'>[capitalize(colour)]</font> wire")
 						Attach(colour, I)
 					else
-						L << "<span class='error'>You need a remote signaller!</span>"
+						to_chat(L, SPAN_WARNING("You need a remote signaller!"))
 
 
 
@@ -237,7 +239,6 @@ var/const/POWER = 8
 /datum/wires/proc/PulseIndex(var/index)
 	if(IsIndexCut(index))
 		return
-	playsound(holder.loc, 'sound/items/multitool_pulse.ogg', 100, 1)
 	UpdatePulsed(index)
 
 /datum/wires/proc/GetIndex(var/colour)

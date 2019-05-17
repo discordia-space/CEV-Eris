@@ -1,167 +1,171 @@
-/datum/autolathe/recipe/gun/syringe_gun
+/datum/design/autolathe/gun/syringe_gun
 	name = "syringe gun"
-	path = /obj/item/weapon/gun/launcher/syringe
+	build_path = /obj/item/weapon/gun/launcher/syringe
 
-/datum/autolathe/recipe/gun/olivaw
+/datum/design/autolathe/gun/olivaw
 	name = "FS HG .32 \"Olivaw\""
-	path = /obj/item/weapon/gun/projectile/olivaw
+	build_path = /obj/item/weapon/gun/projectile/olivaw
 
-/datum/autolathe/recipe/gun/giskard
+/datum/design/autolathe/gun/giskard
 	name = "FS HG .32 \"Giskard\""
-	path = /obj/item/weapon/gun/projectile/giskard
+	build_path = /obj/item/weapon/gun/projectile/giskard
 
-/datum/autolathe/recipe/gun/clarissa
+/datum/design/autolathe/gun/clarissa
 	name = "FS HG 9x19 \"Clarissa\""
-	path = /obj/item/weapon/gun/projectile/clarissa
+	build_path = /obj/item/weapon/gun/projectile/clarissa
 
-/datum/autolathe/recipe/gun/makarov
+/datum/design/autolathe/gun/makarov
 	name = "Excelsior 9x19 \"Makarov\""
-	path = /obj/item/weapon/gun/projectile/clarissa/makarov
+	build_path = /obj/item/weapon/gun/projectile/clarissa/makarov
 
-/datum/autolathe/recipe/gun/mk58
+/datum/design/autolathe/gun/mk58
 	name = "NT HG .45 \"Mk58\""
-	path = /obj/item/weapon/gun/projectile/mk58
+	build_path = /obj/item/weapon/gun/projectile/mk58
 
-/datum/autolathe/recipe/gun/mk58_wood
+/datum/design/autolathe/gun/mk58_wood
 	name = "NT HG .45 \"Mk58\""
-	path = /obj/item/weapon/gun/projectile/mk58/wood
+	build_path = /obj/item/weapon/gun/projectile/mk58/wood
 
-/datum/autolathe/recipe/gun/revolver_detective
+/datum/design/autolathe/gun/revolver_detective
 	name = "FS REV .38 \"Havelock\""
-	path = /obj/item/weapon/gun/projectile/revolver/detective
+	build_path = /obj/item/weapon/gun/projectile/revolver/detective
 
-/datum/autolathe/recipe/gun/doublebarrel
+/datum/design/autolathe/gun/doublebarrel
 	name = "double-barreled shotgun"
-	path = /obj/item/weapon/gun/projectile/shotgun/doublebarrel
+	build_path = /obj/item/weapon/gun/projectile/shotgun/doublebarrel
 
-/datum/autolathe/recipe/gun/pump_shotgun
+/datum/design/autolathe/gun/pump_shotgun
 	name = "FS SG \"Kammerer\""
-	path = /obj/item/weapon/gun/projectile/shotgun/pump
+	build_path = /obj/item/weapon/gun/projectile/shotgun/pump
 
-/datum/autolathe/recipe/gun/combat_shotgun
+/datum/design/autolathe/gun/combat_shotgun
 	name = "NT SG \"Regulator 1000\""
-	path = /obj/item/weapon/gun/projectile/shotgun/pump/combat
+	build_path = /obj/item/weapon/gun/projectile/shotgun/pump/combat
 
-/datum/autolathe/recipe/gun/gladstone
+/datum/design/autolathe/gun/gladstone
 	name = "FS SG \"Gladstone\""
-	path = /obj/item/weapon/gun/projectile/shotgun/pump/gladstone
+	build_path = /obj/item/weapon/gun/projectile/shotgun/pump/gladstone
 
-/datum/autolathe/recipe/gun/revolver
+/datum/design/autolathe/gun/revolver
 	name = "FS REV .357 \"Miller\""
-	path = /obj/item/weapon/gun/projectile/revolver
+	build_path = /obj/item/weapon/gun/projectile/revolver
 
-/datum/autolathe/recipe/gun/revolver_consul
+/datum/design/autolathe/gun/revolver_consul
 	name = "FS REV .44 \"Consul\""
-	path = /obj/item/weapon/gun/projectile/revolver/consul
+	build_path = /obj/item/weapon/gun/projectile/revolver/consul
 
-/datum/autolathe/recipe/gun/revolver_deckard
+/datum/design/autolathe/gun/revolver_deckard
 	name = "FS REV .44 \"Deckard\""
-	path = /obj/item/weapon/gun/projectile/revolver/deckard
+	build_path = /obj/item/weapon/gun/projectile/revolver/deckard
 
-/datum/autolathe/recipe/gun/lamia
+/datum/design/autolathe/gun/lamia
 	name = "FS HG .44 \"Lamia\""
-	path = /obj/item/weapon/gun/projectile/lamia
+	build_path = /obj/item/weapon/gun/projectile/lamia
 
-/datum/autolathe/recipe/gun/deagle
+/datum/design/autolathe/gun/deagle
 	name = "FS HG .50 \"Avasarala\""
-	path = /obj/item/weapon/gun/projectile/deagle
+	build_path = /obj/item/weapon/gun/projectile/deagle
 
-/datum/autolathe/recipe/gun/smg_sol
+/datum/design/autolathe/gun/smg_sol
 	name = "FS CAR 6.5x39 \"Sol\""
-	path = /obj/item/weapon/gun/projectile/automatic/sol
+	build_path = /obj/item/weapon/gun/projectile/automatic/sol
 
-/datum/autolathe/recipe/gun/smg_sol_rds
+/datum/design/autolathe/gun/smg_sol_rds
 	name = "FS CAR 6.5x39 \"Sol\""
-	path = /obj/item/weapon/gun/projectile/automatic/sol/rds
+	build_path = /obj/item/weapon/gun/projectile/automatic/sol/rds
 
-/datum/autolathe/recipe/gun/ak47
+/datum/design/autolathe/gun/ak47
 	name = "Excelsior 7.62x39 AK-47"
-	path = /obj/item/weapon/gun/projectile/automatic/ak47
+	build_path = /obj/item/weapon/gun/projectile/automatic/ak47
 
-/datum/autolathe/recipe/gun/ak47_fs
+/datum/design/autolathe/gun/ak47_fs
 	name = "FS AR 7.62x39 \"Kalashnikov\""
-	path = /obj/item/weapon/gun/projectile/automatic/ak47/fs
+	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/fs
 
-/datum/autolathe/recipe/gun/idaho
+/datum/design/autolathe/gun/idaho
 	name = "FS SMG 9x19 \"Idaho\""
-	path = /obj/item/weapon/gun/projectile/automatic/idaho
+	build_path = /obj/item/weapon/gun/projectile/automatic/idaho
 
-/datum/autolathe/recipe/gun/atreides
+/datum/design/autolathe/gun/wt550
+	name = "FS SMG 9x19 \"W-T Saber\""
+	build_path = /obj/item/weapon/gun/projectile/automatic/wt550
+
+/datum/design/autolathe/gun/atreides
 	name = "FS SMG .45 \"Atreides\""
-	path = /obj/item/weapon/gun/projectile/automatic/atreides
+	build_path = /obj/item/weapon/gun/projectile/automatic/atreides
 
-/datum/autolathe/recipe/gun/heavysniper
+/datum/design/autolathe/gun/heavysniper
 	name = "NT AMR \"Penetrator\""
-	path = /obj/item/weapon/gun/projectile/heavysniper
+	build_path = /obj/item/weapon/gun/projectile/heavysniper
 
-/datum/autolathe/recipe/gun/IH_sidearm
+/datum/design/autolathe/gun/IH_sidearm
 	name = "FS HG 10mm \"Paco\""
-	path = /obj/item/weapon/gun/projectile/IH_sidearm
+	build_path = /obj/item/weapon/gun/projectile/IH_sidearm
 
-/datum/autolathe/recipe/gun/IH_smg
+/datum/design/autolathe/gun/IH_smg
 	name = "FS SMG 9x19 \"Straylight\""
-	path = /obj/item/weapon/gun/projectile/automatic/IH_smg
+	build_path = /obj/item/weapon/gun/projectile/automatic/IH_smg
 
-/datum/autolathe/recipe/gun/IH_machinepistol
+/datum/design/autolathe/gun/IH_machinepistol
 	name = "FS MP 9x19 \"Molly\""
-	path = /obj/item/weapon/gun/projectile/automatic/IH_machinepistol
+	build_path = /obj/item/weapon/gun/projectile/automatic/IH_machinepistol
 
-/datum/autolathe/recipe/gun/IH_heavyrifle
-	name = "FS BR 7.62x39 \"Wintermute\""
-	path = /obj/item/weapon/gun/projectile/automatic/IH_heavyrifle
+/datum/design/autolathe/gun/z8
+	name = "FS CAR 5.56x45mm \"Z8 Bulldog\""
+	build_path = /obj/item/weapon/gun/projectile/automatic/z8
 
-/datum/autolathe/recipe/gun/grenade_launcher
+/datum/design/autolathe/gun/IH_heavyrifle
+	name = "FS BR 5.56x45 \"Wintermute\""
+	build_path = /obj/item/weapon/gun/projectile/automatic/IH_heavyrifle
+
+/datum/design/autolathe/gun/grenade_launcher
 	name = "NT GL \"Protector\""
-	path = /obj/item/weapon/gun/launcher/grenade
+	build_path = /obj/item/weapon/gun/launcher/grenade
 
-/datum/autolathe/recipe/gun/grenade_launcher_lenar
+/datum/design/autolathe/gun/grenade_launcher_lenar
 	name = "FS GL \"Lenar\""
-	path = /obj/item/weapon/gun/launcher/grenade/lenar
+	build_path = /obj/item/weapon/gun/launcher/grenade/lenar
 
-/datum/autolathe/recipe/gun/taser
+/datum/design/autolathe/gun/taser
 	name = "NT SP \"Counselor\""
-	path = /obj/item/weapon/gun/energy/taser
+	build_path = /obj/item/weapon/gun/energy/taser
 
-/datum/autolathe/recipe/gun/stunrevolver
-	name = "NT SP \"Zeus\""
-	path = /obj/item/weapon/gun/energy/stunrevolver
-
-/datum/autolathe/recipe/gun/energygun
+/datum/design/autolathe/gun/energygun
 	name = "FS PDW E \"Spider Rose\""
-	path = /obj/item/weapon/gun/energy/gun
+	build_path = /obj/item/weapon/gun/energy/gun
 
-/datum/autolathe/recipe/gun/energygun_martin
+/datum/design/autolathe/gun/energygun_martin
 	name = "FS PDW E \"Martin\""
-	path = /obj/item/weapon/gun/energy/gun/martin
+	build_path = /obj/item/weapon/gun/energy/gun/martin
 
-/datum/autolathe/recipe/gun/energy_crossbow
+/datum/design/autolathe/gun/energy_crossbow
 	name = "NT EC \"Nemesis\""
-	path = /obj/item/weapon/gun/energy/crossbow
+	build_path = /obj/item/weapon/gun/energy/crossbow
 
-/datum/autolathe/recipe/gun/large_energy_crossbow
+/datum/design/autolathe/gun/large_energy_crossbow
 	name = "NT EC \"Themis\""
-	path = /obj/item/weapon/gun/energy/crossbow/largecrossbow
+	build_path = /obj/item/weapon/gun/energy/crossbow/largecrossbow
 
-/datum/autolathe/recipe/gun/laser
+/datum/design/autolathe/gun/laser
 	name = "NT LG \"Lightfall\""
-	path = /obj/item/weapon/gun/energy/laser
+	build_path = /obj/item/weapon/gun/energy/laser
 
-/datum/autolathe/recipe/gun/ionrifle
+/datum/design/autolathe/gun/ionrifle
 	name = "NT IR \"Halicon\""
-	path = /obj/item/weapon/gun/energy/ionrifle
+	build_path = /obj/item/weapon/gun/energy/ionrifle
 
-/datum/autolathe/recipe/gun/pulse_rifle
+/datum/design/autolathe/gun/pulse_rifle
 	name = "NT PR \"Dominion\""
-	path = /obj/item/weapon/gun/energy/pulse_rifle
+	build_path = /obj/item/weapon/gun/energy/pulse_rifle
 
-/datum/autolathe/recipe/gun/pulse_rifle_destroyer
+/datum/design/autolathe/gun/pulse_rifle_destroyer
 	name = "NT PR \"Purger\""
-	path = /obj/item/weapon/gun/energy/pulse_rifle/destroyer
+	build_path = /obj/item/weapon/gun/energy/pulse_rifle/destroyer
 
-/datum/autolathe/recipe/gun/pulse_rifle_cassad
+/datum/design/autolathe/gun/pulse_rifle_cassad
 	name = "FS PR \"Cassad\""
-	path = /obj/item/weapon/gun/energy/cassad
+	build_path = /obj/item/weapon/gun/energy/cassad
 
-/datum/autolathe/recipe/gun/sniperrifle
+/datum/design/autolathe/gun/sniperrifle
 	name = "NT MER \"Valkyrie\""
-	path = /obj/item/weapon/gun/energy/sniperrifle
+	build_path = /obj/item/weapon/gun/energy/sniperrifle

@@ -440,12 +440,12 @@
 /obj/machinery/hivemind_machine/mob_spawner
 	name = "assembler"
 	desc = "This cylindrical machine has lights around a small portal. The sound of tools comes from inside."
-	max_health = 120
+	max_health = 160
 	icon_state = "spawner"
-	cooldown_time = 10 SECONDS
+	cooldown_time = 30 SECONDS
 	spawn_weight  =	45
 	var/mob_to_spawn
-	var/mob_amount = 2
+	var/mob_amount = 3
 
 /obj/machinery/hivemind_machine/mob_spawner/Initialize()
 	..()
@@ -463,9 +463,9 @@
 
 	//here we upgrading our spawner and rise controled mob amount, based on EP
 	if(hive_mind_ai.evo_level > 3)
-		mob_amount = 4
+		mob_amount = 5
 	else if(hive_mind_ai.evo_level > 1)
-		mob_amount = 3
+		mob_amount = 4
 
 	var/mob/living/target = locate() in targets_in_range(world.view, in_hear_range = TRUE)
 	if(target && target.stat != DEAD && target.faction != HIVE_FACTION)
@@ -583,8 +583,17 @@
 
 
 /obj/machinery/hivemind_machine/screamer/use_ability(mob/living/target)
-	target.Weaken(5)
-	to_chat(target, SPAN_WARNING("A terrible howl tears through your mind; the voice senseless, soulless."))
+
+	var/mob/living/carbon/human/H = target
+	if(istype(H))
+		if(prob(100 - H.stats.getStat(STAT_VIG)))
+			H.Weaken(8)
+			to_chat(H, SPAN_WARNING("A terrible howl tears through your mind, the voice senseless, soulless."))
+		else
+			to_chat(H, SPAN_NOTICE("A terrible howl tears through your mind, but you refuse to listen to it!"))
+	else
+		target.Weaken(8)
+		to_chat(target, SPAN_WARNING("A terrible howl tears through your mind, the voice senseless, soulless."))
 
 
 
@@ -637,7 +646,7 @@
 	icon_state = "psy"
 	evo_level_required = 3
 	cooldown_time = 10 SECONDS
-	spawn_weight  =	30
+	spawn_weight  = 30
 
 
 /obj/machinery/hivemind_machine/distractor/Process()
@@ -654,7 +663,15 @@
 		set_cooldown()
 
 /obj/machinery/hivemind_machine/distractor/use_ability(mob/living/target)
-	target.hallucination += 20
+
+	var/mob/living/carbon/human/H = target
+	if(istype(H))
+		if(prob(100 - H.stats.getStat(STAT_VIG)))
+			H.hallucination += 20
+		else
+			to_chat(H, SPAN_NOTICE("Reality flikers for a second, but you manage to focus!"))
+	else
+		target.hallucination += 20
 	flick("[icon_state]-anim", src)
 
 

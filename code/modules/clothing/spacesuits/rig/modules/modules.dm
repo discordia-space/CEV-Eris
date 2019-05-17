@@ -57,7 +57,8 @@
 /obj/item/rig_module/Destroy()
 	if (holder)
 		holder.uninstall(src)
-	.=..()
+		holder = null
+	return ..()
 
 
 
@@ -180,7 +181,7 @@
 		usr << SPAN_WARNING("The suit is not initialized.")
 		return 0
 
-	if(usr.lying || usr.stat || usr.stunned || usr.paralysis || usr.weakened)
+	if(holder.wearer.lying || holder.wearer.stat || holder.wearer.stunned || holder.wearer.paralysis || holder.wearer.weakened)
 		usr << SPAN_WARNING("You cannot use the suit in this state.")
 		return 0
 
@@ -273,6 +274,12 @@
 /stat_rig_module/New(var/obj/item/rig_module/module)
 	..()
 	src.module = module
+
+/stat_rig_module/Destroy()
+	if(module)
+		module.stat_modules -= src
+		module = null
+	return ..()
 
 /stat_rig_module/proc/AddHref(var/list/href_list)
 	return

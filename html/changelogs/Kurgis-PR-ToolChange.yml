@@ -22,7 +22,7 @@
 #################################
 
 # Your name.  
-author: TorinoFermic 
+author: Kurgis
 
 # Optional: Remove this file after generating master changelog.  Useful for PR changelogs that won't get used again.
 delete-after: True
@@ -33,6 +33,9 @@ delete-after: True
 # Also, all entries are changed into a single [] after a master changelog generation. Just remove the brackets when you add new entries.
 # Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
 changes: 
- - tweak: "Hatton code is ordered with additions of research nodes and bugfixing the variable."
- - tweak: "Hatton tubes sprites are oriented in addition with changing sizes to match with RCD ammo."
- - tweak: "Flare pouches will now carry Hatton tubes"
+  - rscadd: "Adds a One Star autolathe disk for the new tools to be placed on, will be expanded upon as One Star gets more content."
+  - rscadd: "You can now change between digging and excavating with a pickaxe by using it in-hand."
+  - imagedel: "Deletes old advanced welder sprites."
+  - spellcheck: "Fixes some spelling with tool descriptions."
+  - tweak: "One Star tool stats have been re-adjusted."
+  - tweak: "Excavation pickaxe and the spade no longer do as much damage as their larger counterparts."

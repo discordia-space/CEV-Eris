@@ -6,7 +6,7 @@
 	name = T_BOARD("advanced shield generator")
 	board_type = "machine"
 	build_path = /obj/machinery/power/shield_generator
-	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GOLD = 1)
+	matter = list(MATERIAL_GLASS = 2, MATERIAL_GOLD = 1)
 	origin_tech = list(TECH_MAGNET = 3, TECH_POWER = 4)
 	req_components = list(
 							/obj/item/weapon/stock_parts/capacitor = 1,
@@ -27,7 +27,7 @@
 /obj/item/weapon/circuitboard/shieldwallgen
 	name = T_BOARD("shield wall generator")
 	board_type = "machine"
-	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GOLD = 1)
+	matter = list(MATERIAL_GLASS = 2, MATERIAL_GOLD = 1)
 	build_path = /obj/machinery/shieldwallgen
 	origin_tech = list(TECH_BLUESPACE = 3, TECH_MAGNET = 3)
 	req_components = list(

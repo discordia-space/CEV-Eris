@@ -1,147 +1,155 @@
-/datum/autolathe/recipe/tool/crowbar
+/datum/design/autolathe/tool/crowbar
 	name = "crowbar"
-	path = /obj/item/weapon/tool/crowbar
+	build_path = /obj/item/weapon/tool/crowbar
 
-/datum/autolathe/recipe/tool/multitool
+/datum/design/autolathe/tool/crowbar_onestar
+	name = "one star crowbar"
+	build_path = /obj/item/weapon/tool/crowbar/onestar
+
+/datum/design/autolathe/tool/multitool
 	name = "multitool"
-	path = /obj/item/weapon/tool/multitool
+	build_path = /obj/item/weapon/tool/multitool
 
-/datum/autolathe/recipe/tool/weldertool
+/datum/design/autolathe/tool/weldertool
 	name = "welding tool"
-	path = /obj/item/weapon/tool/weldingtool
+	build_path = /obj/item/weapon/tool/weldingtool
 
-/datum/autolathe/recipe/tool/weldermask
+/datum/design/autolathe/tool/weldertool_onestar
+	name = "one star welding tool"
+	build_path = /obj/item/weapon/tool/weldingtool/onestar
+
+/datum/design/autolathe/tool/weldermask
 	name = "welding mask"
-	path = /obj/item/clothing/head/welding
+	build_path = /obj/item/clothing/head/welding
 
-/datum/autolathe/recipe/tool/weldinggoggles
+/datum/design/autolathe/tool/weldinggoggles
 	name = "welding goggles"
-	path = /obj/item/clothing/glasses/welding
+	build_path = /obj/item/clothing/glasses/welding
 
-/datum/autolathe/recipe/tool/screwdriver
+/datum/design/autolathe/tool/screwdriver
 	name = "screwdriver"
-	path = /obj/item/weapon/tool/screwdriver
+	build_path = /obj/item/weapon/tool/screwdriver
 
-/datum/autolathe/recipe/tool/electric_screwdriver
+/datum/design/autolathe/tool/electric_screwdriver
 	name = "electric screwdriver"
-	path = /obj/item/weapon/tool/screwdriver/electric
+	build_path = /obj/item/weapon/tool/screwdriver/electric
 
-/datum/autolathe/recipe/tool/combi_driver
+/datum/design/autolathe/tool/combi_driver
 	name = "combi driver"
-	path = /obj/item/weapon/tool/screwdriver/combi_driver
+	build_path = /obj/item/weapon/tool/screwdriver/combi_driver
 
-/datum/autolathe/recipe/tool/wirecutters
+/datum/design/autolathe/tool/combi_driver_onestar
+	name = "one star combi driver"
+	build_path = /obj/item/weapon/tool/screwdriver/combi_driver/onestar
+
+/datum/design/autolathe/tool/wirecutters
 	name = "wirecutters"
-	path = /obj/item/weapon/tool/wirecutters
+	build_path = /obj/item/weapon/tool/wirecutters
 
-/datum/autolathe/recipe/tool/ducttape
+/datum/design/autolathe/tool/ducttape
 	name = "roll of duct tape"
-	path = /obj/item/weapon/tool/tape_roll
+	build_path = /obj/item/weapon/tool/tape_roll
 
-/datum/autolathe/recipe/tool/armature_cutter
+/datum/design/autolathe/tool/armature_cutter
 	name = "armature cutter"
-	path = /obj/item/weapon/tool/wirecutters/armature
+	build_path = /obj/item/weapon/tool/wirecutters/armature
 
-/datum/autolathe/recipe/tool/wrench
+/datum/design/autolathe/tool/wrench
 	name = "wrench"
-	path = /obj/item/weapon/tool/wrench
+	build_path = /obj/item/weapon/tool/wrench
 
-/datum/autolathe/recipe/tool/big_wrench
+/datum/design/autolathe/tool/big_wrench
 	name = "big wrench"
-	path = /obj/item/weapon/tool/wrench/big_wrench
+	build_path = /obj/item/weapon/tool/wrench/big_wrench
 
-/datum/autolathe/recipe/tool/pickaxe
+/datum/design/autolathe/tool/pickaxe
 	name = "pickaxe"
-	path = /obj/item/weapon/tool/pickaxe
+	build_path = /obj/item/weapon/tool/pickaxe
 
-/datum/autolathe/recipe/tool/jackhammer
-	name = "jackhammer"
-	path = /obj/item/weapon/tool/pickaxe/jackhammer
+/datum/design/autolathe/tool/jackhammer_onestar
+	name = "one star jackhammer"
+	build_path = /obj/item/weapon/tool/pickaxe/jackhammer/onestar
 
-/datum/autolathe/recipe/tool/mining_drill
-	name = "mining drill"
-	path = /obj/item/weapon/tool/pickaxe/drill
+/datum/design/autolathe/tool/drill_onestar
+	name = "one star drill"
+	build_path = /obj/item/weapon/tool/pickaxe/drill/onestar
 
-/datum/autolathe/recipe/tool/diamonddrill
-	name = "diamond-point mining drill"
-	path = /obj/item/weapon/tool/pickaxe/diamonddrill
-
-/datum/autolathe/recipe/tool/pickaxe_excavation
+/datum/design/autolathe/tool/pickaxe_excavation
 	name = "excavation pick"
-	path = /obj/item/weapon/tool/pickaxe/excavation
+	build_path = /obj/item/weapon/tool/pickaxe/excavation
 
-/datum/autolathe/recipe/tool/knife
+/datum/design/autolathe/tool/knife
 	name = "kitchen knife"
-	path = /obj/item/weapon/material/knife
+	build_path = /obj/item/weapon/material/knife
 
-/datum/autolathe/recipe/tool/tacknife
+/datum/design/autolathe/tool/tacknife
 	name = "tactical knife"
-	path = /obj/item/weapon/material/hatchet/tacknife
+	build_path = /obj/item/weapon/material/hatchet/tacknife
 
-/datum/autolathe/recipe/tool/hatchet
+/datum/design/autolathe/tool/hatchet
 	name = "hatchet"
-	path = /obj/item/weapon/material/hatchet
+	build_path = /obj/item/weapon/material/hatchet
 
-/datum/autolathe/recipe/tool/minihoe
+/datum/design/autolathe/tool/minihoe
 	name = "mini hoe"
-	path = /obj/item/weapon/material/minihoe
+	build_path = /obj/item/weapon/material/minihoe
 
-/datum/autolathe/recipe/tool/shovel
+/datum/design/autolathe/tool/shovel
 	name = "shovel"
-	path = /obj/item/weapon/tool/shovel
+	build_path = /obj/item/weapon/tool/shovel
 
-/datum/autolathe/recipe/tool/spade
+/datum/design/autolathe/tool/spade
 	name = "spade"
-	path = /obj/item/weapon/tool/shovel/spade
+	build_path = /obj/item/weapon/tool/shovel/spade
 
-/datum/autolathe/recipe/tool/mop
+/datum/design/autolathe/tool/mop
 	name = "janitor's mop"
-	path = /obj/item/weapon/mop
+	build_path = /obj/item/weapon/mop
 
-/datum/autolathe/recipe/tool/scalpel
+/datum/design/autolathe/tool/scalpel
 	name = "scalpel"
-	path = /obj/item/weapon/tool/scalpel
+	build_path = /obj/item/weapon/tool/scalpel
 
-/datum/autolathe/recipe/tool/saw
+/datum/design/autolathe/tool/saw
 	name = "saw"
-	path = /obj/item/weapon/tool/saw
+	build_path = /obj/item/weapon/tool/saw
 
-/datum/autolathe/recipe/tool/circularsaw
+/datum/design/autolathe/tool/circularsaw
 	name = "circular saw"
-	path = /obj/item/weapon/tool/saw/circular
+	build_path = /obj/item/weapon/tool/saw/circular
 
-/datum/autolathe/recipe/tool/advanced_circularsaw
+/datum/design/autolathe/tool/advanced_circularsaw
 	name = "advanced circular saw"
-	path = /obj/item/weapon/tool/saw/advanced_circular
+	build_path = /obj/item/weapon/tool/saw/advanced_circular
 
-/datum/autolathe/recipe/tool/chainsaw
+/datum/design/autolathe/tool/chainsaw
 	name = "chainsaw"
-	path = /obj/item/weapon/tool/saw/chain
+	build_path = /obj/item/weapon/tool/saw/chain
 
-/datum/autolathe/recipe/tool/surgicaldrill
+/datum/design/autolathe/tool/surgicaldrill
 	name = "surgical drill"
-	path = /obj/item/weapon/tool/surgicaldrill
+	build_path = /obj/item/weapon/tool/surgicaldrill
 
-/datum/autolathe/recipe/tool/retractor
+/datum/design/autolathe/tool/retractor
 	name = "retractor"
-	path = /obj/item/weapon/tool/retractor
+	build_path = /obj/item/weapon/tool/retractor
 
-/datum/autolathe/recipe/tool/cautery
+/datum/design/autolathe/tool/cautery
 	name = "cautery"
-	path = /obj/item/weapon/tool/cautery
+	build_path = /obj/item/weapon/tool/cautery
 
-/datum/autolathe/recipe/tool/hemostat
+/datum/design/autolathe/tool/hemostat
 	name = "hemostat"
-	path = /obj/item/weapon/tool/hemostat
+	build_path = /obj/item/weapon/tool/hemostat
 
-/datum/autolathe/recipe/tool/rcd
+/datum/design/autolathe/tool/rcd
 	name = "rapid construction device"
-	path = /obj/item/weapon/rcd
+	build_path = /obj/item/weapon/rcd
 
-/datum/autolathe/recipe/tool/rcd_ammo
+/datum/design/autolathe/tool/rcd_ammo
 	name = "matter cartridge"
-	path = /obj/item/weapon/rcd_ammo
+	build_path = /obj/item/weapon/rcd_ammo
 
-/datum/autolathe/recipe/tool/pneumatic_crowbar
+/datum/design/autolathe/tool/pneumatic_crowbar
 	name = "pneumatic crowbar"
-	path = /obj/item/weapon/tool/crowbar/pneumatic
+	build_path = /obj/item/weapon/tool/crowbar/pneumatic

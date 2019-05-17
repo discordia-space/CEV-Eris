@@ -563,7 +563,6 @@
 		"cryptobiolin",
 		"dermaline",
 		"dexalin",
-		"plasma",
 		"synaptizine",
 		"impedrezene",
 		"hyronalin",
@@ -582,7 +581,6 @@
 		"frostoil",
 		"capsaicin",
 		"banana",
-		"pacid",
 		"mutagen",
 		"chloralhydrate"
 		)

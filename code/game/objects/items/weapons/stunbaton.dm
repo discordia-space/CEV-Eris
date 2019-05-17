@@ -5,16 +5,16 @@
 	icon_state = "stunbaton"
 	item_state = "baton"
 	slot_flags = SLOT_BELT
-	force = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_PAINFUL
 	sharp = 0
 	edge = 0
-	throwforce = WEAPON_FORCE_PAINFULL
+	throwforce = WEAPON_FORCE_PAINFUL
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 2)
 	attack_verb = list("beaten")
 	price_tag = 500
-	var/stunforce = 0
-	var/agonyforce = 60
+	var/stunforce = 10
+	var/agonyforce = 30
 	var/status = FALSE		//whether the thing is on or not
 	var/hitcost = 100
 	var/obj/item/weapon/cell/cell = null
@@ -33,6 +33,12 @@
 
 /obj/item/weapon/melee/baton/get_cell()
 	return cell
+
+/obj/item/weapon/melee/baton/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+		update_icon()
 
 /obj/item/weapon/melee/baton/proc/deductcharge(var/power_drain)
 	if(cell)

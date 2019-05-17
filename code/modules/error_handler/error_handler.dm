@@ -7,15 +7,15 @@ var/total_runtimes_skipped = 0
 // The ifdef needs to be down here, since the error viewer references total_runtimes
 
 #ifdef DEBUG
-/world/Error(var/exception/e, var/datum/e_src)
+/world/Error(exception/e, datum/e_src)
 	if(!istype(e)) // Something threw an unusual exception
 		log_to_dd("\[[time_stamp()]] Uncaught exception: [e]")
 		return ..()
-	if(!error_last_seen) // A runtime is occurring too early in start-up initialization
+	if(!islist(error_last_seen)) // A runtime is occurring too early in start-up initialization
 		return ..()
-	
+
 	total_runtimes++
-	var/erroruid = "[e.file][e.line]"
+	var/erroruid = "[e.file]:[e.line]"
 	var/last_seen = error_last_seen[erroruid]
 	var/cooldown = error_cooldown[erroruid] || 0
 	if(last_seen == null) // A new error!
@@ -43,7 +43,7 @@ var/total_runtimes_skipped = 0
 				error_cache.logError(e, skipCount = skipcount)
 	error_last_seen[erroruid] = world.time
 	error_cooldown[erroruid] = cooldown
-	
+
 	//this is snowflake because of a byond bug (ID:2306577), do not attempt to call non-builtin procs in this if
 	if(copytext(e.name,1,32) == "Maximum recursion level reached")
 		//log to world while intentionally triggering the byond bug.
@@ -51,7 +51,7 @@ var/total_runtimes_skipped = 0
 		//if we got to here without silently ending, the byond bug has been fixed.
 		log_world("The bug with recursion runtimes has been fixed. Please remove the snowflake check from world/Error in [__FILE__]:[__LINE__]")
 		return
-	
+
 	// The detailed error info needs some tweaking to make it look nice
 	var/list/srcinfo = null
 	var/list/usrinfo = null

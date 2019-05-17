@@ -8,8 +8,8 @@
 	density = 0
 	anchored = 0.0
 	flags = CONDUCT
-	force = WEAPON_FORCE_PAINFULL
-	throwforce = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_PAINFUL
+	throwforce = WEAPON_FORCE_PAINFUL
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEM_SIZE_NORMAL
@@ -20,7 +20,7 @@
 	var/stored_matter = 0
 	var/working = 0
 	var/mode = 1
-	var/list/modes = list("Floor & Walls","Airlock","Deconstruct")
+	var/list/modes = list("Floor & Walls","Low wall", "Airlock","Deconstruct")
 	var/canRwall = 1
 	var/disabled = 0
 
@@ -64,8 +64,8 @@
 
 /obj/item/weapon/rcd/attack_self(mob/user)
 	//Change the mode
-	if(++mode > 3) mode = 1
-	user << SPAN_NOTICE("Changed mode to '[modes[mode]]'")
+	if(++mode > modes.len) mode = 1
+	to_chat(user, SPAN_NOTICE("Changed mode to '[modes[mode]]'"))
 	playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
 	if(prob(20)) src.spark_system.start()
 
@@ -75,7 +75,7 @@
 		return 0
 	if(istype(get_area(A),/area/shuttle)||istype(get_area(A),/turf/space/transit))
 		return 0
-	return alter_turf(A,user,(mode == 3))
+	return alter_turf(A,user)
 
 /obj/item/weapon/rcd/proc/useResource(var/amount, var/mob/user, var/checkOnly)
 	if(stored_matter < amount)
@@ -85,57 +85,90 @@
 		update_icon()	//Updates the ammo counter if ammo is succesfully used
 	return 1
 
-/obj/item/weapon/rcd/proc/alter_turf(var/turf/T,var/mob/user,var/deconstruct)
+/obj/item/weapon/rcd/proc/alter_turf(var/T,var/mob/user)
 
 	var/build_cost = 0
 	var/build_type
 	var/build_turf
+	var/build_object
 	var/build_delay
-	var/build_other
 
 	if(working == 1)
 		return 0
+	var/turf/local_turf = T
+	if(!T)
+		local_turf = get_turf(T)
+	var/gotFloor = istype(local_turf,/turf/simulated/floor)
+	var/gotSpace = (istype(local_turf,/turf/space) || istype(local_turf,get_base_turf(local_turf.z)))
+	var/gotBlocked = (istype(T, /obj/machinery/door/airlock) || istype(T, /obj/structure/low_wall))
 
-	if(mode == 3 && istype(T,/obj/machinery/door/airlock))
-		build_cost =  10
-		build_delay = 50
-		build_type = "airlock"
-	else if(mode == 2 && !deconstruct && istype(T,/turf/simulated/floor))
-		build_cost =  10
-		build_delay = 50
-		build_type = "airlock"
-		build_other = /obj/machinery/door/airlock
-	else if(!deconstruct && (istype(T,/turf/space) || istype(T,get_base_turf(T.z))))
-		build_cost =  1
-		build_type =  "floor"
-		build_turf =  /turf/simulated/floor/airless
-	else if(deconstruct && istype(T,/turf/simulated/wall))
-		var/turf/simulated/wall/W = T
-		build_delay = deconstruct ? (W.reinf_material) ? 150 : 50 : 40
-		build_cost =  (W.reinf_material) ? 10 : 5
-		build_type =  (!canRwall && W.reinf_material) ? null : "wall"
-		build_turf =  /turf/simulated/floor
-	else if(istype(T,/turf/simulated/floor))
-		build_delay = deconstruct ? 50 : 20
-		build_cost =  deconstruct ? 10 : 3
-		build_type =  deconstruct ? "floor" : "wall"
-		build_turf =  deconstruct ? get_base_turf(T.z) : /turf/simulated/wall
-	else
-		return 0
+	switch(mode)
+		if(1)
+			if(gotSpace)
+				build_cost =  1
+				build_type =  "floor"
+				build_turf =  /turf/simulated/floor/airless
+			if(gotFloor)
+				build_delay = 40
+				build_cost =  5
+				build_type =  "wall"
+				build_turf =  /turf/simulated/wall
+		if(2)
+			if(!gotBlocked)
+				build_type = "low wall"
+				build_object = /obj/structure/low_wall
+				if(gotSpace)
+					build_delay = 30
+					build_cost = 6
+					build_turf = /turf/simulated/floor/airless //there is always floor under low wall
+				if(gotFloor)
+					build_delay = 30
+					build_cost =  5
+
+		if(3)
+			if(!gotBlocked)
+				build_type = "airlock"
+				build_object = /obj/machinery/door/airlock
+				if(gotSpace)
+					build_cost =  11
+					build_delay = 50
+					build_turf =  /turf/simulated/floor/airless
+				if(gotFloor)
+					build_cost =  10
+					build_delay = 40
+
+		if(4)
+			build_type =  "deconstruct"
+			if(gotFloor)
+				build_cost =  10
+				build_delay = 50
+				build_turf = get_base_turf(local_turf.z)
+			if(istype(T,/obj/structure/low_wall))
+				build_delay = 40
+				build_cost =  5
+			if(istype(T,/turf/simulated/wall))
+				var/turf/simulated/wall/W = T
+				build_delay = 40
+				build_cost =  (W.reinf_material) ? 10 : 5
+				build_type =  (!canRwall && W.reinf_material) ? null : "destroy"
+				build_turf =  /turf/simulated/floor
+			if(istype(T,/obj/machinery/door/airlock))
+				build_cost =  10
+				build_delay = 50
 
 	if(!build_type)
 		working = 0
 		return 0
 
 	if(!useResource(build_cost, user, 1))
-		user << "The \'Low Ammo\' light on the device blinks yellow."
+		to_chat(user, "The \'Low Ammo\' light on the device blinks yellow.")
 		flick("[icon_state]-empty", src)
 		return 0
 
 	playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 
 	working = 1
-	user << "[(deconstruct ? "Deconstructing" : "Building")] [build_type]..."
+	to_chat(user, "[(mode==modes.len ? "Deconstructing" : "Building [build_type]")]...")
 
 	if(build_delay && !do_after(user, build_delay, src))
 		working = 0
@@ -146,15 +179,16 @@
 		return 0
 
 	if(!useResource(build_cost, user))
-		user << "The \'Low Ammo\' light on the device blinks yellow."
+		to_chat(user, "The \'Low Ammo\' light on the device blinks yellow.")
 		flick("[icon_state]-empty", src)
 		return 0
 
 	if(build_turf)
-		T.ChangeTurf(build_turf)
-	else if(build_other)
-		new build_other(T)
-	else
+		local_turf.ChangeTurf(build_turf)
+	if(build_object)
+		new build_object(local_turf)
+
+	if(build_type == "deconstruct")
 		qdel(T)
 
 	playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)

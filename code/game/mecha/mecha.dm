@@ -153,34 +153,39 @@
 			WR.crowbar_salvage += cell
 			cell.forceMove(WR)
 			cell.charge = rand(0, cell.charge)
+			cell = null
+
 		if(internal_tank)
 			WR.crowbar_salvage += internal_tank
 			internal_tank.forceMove(WR)
+			internal_tank = null
 	else
 		for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
 			E.detach(loc)
 			E.destroy()
-		if(cell)
-			qdel(cell)
-		if(internal_tank)
-			qdel(internal_tank)
-	equipment.Cut()
-	cell = null
-	internal_tank = null
 
-	qdel(pr_int_temp_processor)
-	qdel(pr_inertial_movement)
-	qdel(pr_give_air)
-	qdel(pr_internal_damage)
-	qdel(spark_system)
-	pr_int_temp_processor = null
-	pr_give_air = null
-	pr_internal_damage = null
-	spark_system = null
+		QDEL_NULL(cell)
+		QDEL_NULL(internal_tank)
+
+	equipment.Cut()
+
+	QDEL_NULL(pr_int_temp_processor)
+	QDEL_NULL(pr_inertial_movement)
+	QDEL_NULL(pr_give_air)
+	QDEL_NULL(pr_internal_damage)
+	QDEL_NULL(spark_system)
 
 	mechas_list -= src //global mech list
 	remove_hearing()
 	. = ..()
+
+/obj/mecha/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+
+/obj/mecha/get_cell()
+	return cell
 
 /obj/mecha/update_icon()
 	if (initial_icon)
@@ -1414,44 +1419,42 @@ assassination method if you time it right*/
 
 /obj/mecha/proc/operation_allowed(mob/living/carbon/human/H)
 	for(var/ID in list(H.get_active_hand(), H.wear_id, H.belt))
-		if(src.check_access(ID,src.operation_req_access))
-			return 1
-	return 0
+		if(src.check_access(ID, operation_req_access))
+			return TRUE
+	return FALSE
 
 
 /obj/mecha/proc/internals_access_allowed(mob/living/carbon/human/H)
 	for(var/atom/ID in list(H.get_active_hand(), H.wear_id, H.belt))
-		if(src.check_access(ID,src.internals_req_access))
-			return 1
-	return 0
+		if(src.check_access(ID, internals_req_access))
+			return TRUE
+	return FALSE
 
 /obj/mecha/proc/dna_reset_allowed(mob/living/carbon/human/H)
 	for(var/atom/ID in list(H.get_active_hand(), H.wear_id, H.belt))
-		if(src.check_access(ID,src.dna_req_access))
-			return 1
-	return 0
+		if(src.check_access(ID, dna_req_access))
+			return TRUE
+	return FALSE
 
 
 /obj/mecha/check_access(obj/item/weapon/card/id/I, list/access_list)
 	if(!istype(access_list))
-		return 1
+		return TRUE
 	if(!access_list.len) //no requirements
-		return 1
-	if(istype(I, /obj/item/modular_computer))
-		var/obj/item/device/pda/pda = I
-		I = pda.id
-	if(!istype(I) || !I.access) //not ID or no access
-		return 0
+		return TRUE
+
+	var/list/user_access = I ? I.GetAccess() : list()
+
 	if(access_list==src.operation_req_access)
 		for(var/req in access_list)
-			if(!(req in I.access)) //doesn't have this access
-				return 0
+			if(!(req in user_access)) //doesn't have this access
+				return FALSE
 	else if(access_list == src.internals_req_access || access_list == src.dna_req_access)
 		for(var/req in access_list)
-			if(req in I.access)
-				return 1
-		return 0
-	return 1
+			if(req in user_access)
+				return TRUE
+		return FALSE
+	return TRUE
 
 
 ////////////////////////////////////
