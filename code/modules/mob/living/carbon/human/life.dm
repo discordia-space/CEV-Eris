@@ -730,7 +730,7 @@
 
 	// now handle what we see on our screen
 
-	var/obj/item/weapon/implant/core_implant/cruciform/C = get_cruciform() //ugh, we need more flexible hud
+	var/obj/item/weapon/implant/core_implant/cruciform/C = get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 	if(C)
 		var/datum/core_module/cruciform/neotheologyhud/NT_hud = C.get_module(/datum/core_module/cruciform/neotheologyhud)
 		if(NT_hud)

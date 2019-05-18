@@ -164,6 +164,8 @@
 			return "Station General"
 		if(ACCESS_REGION_SUPPLY) //supply
 			return "Supply"
+		if(ACCESS_REGION_CHURCH) //Neotheo
+			return "NeoTheology"
 
 /proc/get_access_desc(id)
 	var/list/AS = get_all_access_datums_by_id()
@@ -221,6 +223,10 @@ var/obj/item/weapon/card/id/all_access/ghost_all_access
 	. = list()
 	for(var/obj/item/I in HUMAN_ID_CARDS)
 		. |= I.GetAccess()
+
+	var/obj/item/weapon/implant/core_implant/C = get_core_implant()
+	if(C)
+		. |= C.GetAccess()
 
 #undef HUMAN_ID_CARDS
 

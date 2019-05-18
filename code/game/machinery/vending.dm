@@ -1298,7 +1298,7 @@
 
 /obj/machinery/vending/theomat
 	name = "NeoTheology Theo-Mat"
-	desc = "A Neotheology dispensary for disciples and new converts."
+	desc = "A NeoTheology dispensary for disciples and new converts."
 	product_slogans = "Immortality is the reward of the faithful.; Help humanity ascend, join your brethren today!; Come and seek a new life!"
 	product_ads = "Praise!;Pray!;Obey!"
 	icon_state = "teomat"

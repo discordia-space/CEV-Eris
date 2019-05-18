@@ -130,7 +130,8 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 		ACCESS_REGION_ENGINEERING = list(access_ce, access_change_ids),
 		ACCESS_REGION_COMMAND = list(access_change_ids),
 		ACCESS_REGION_GENERAL = list(access_change_ids),
-		ACCESS_REGION_SUPPLY = list(access_change_ids)
+		ACCESS_REGION_SUPPLY = list(access_change_ids),
+		ACCESS_REGION_CHURCH = list(access_nt_preacher, access_change_ids)
 	)
 
 /datum/maps_data/proc/character_save_path(var/slot)

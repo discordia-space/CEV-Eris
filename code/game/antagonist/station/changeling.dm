@@ -24,16 +24,12 @@
 /datum/antagonist/changeling/special_init()
 	owner.current.make_changeling()
 
-/datum/antagonist/changeling/can_become_antag(var/datum/mind/player)
-	if(..())
-		if(player.current)
-			if(ishuman(player.current))
-				var/mob/living/carbon/human/H = player.current
-				if(H.isSynthetic())
-					return FALSE
-				if(H.species.flags & NO_SCAN)
-					return FALSE
-				if(H.get_cruciform())
-					return FALSE
-				return TRUE
+/datum/antagonist/changeling/can_become_antag(datum/mind/player)
+	if(..() && ishuman(player.current))
+		var/mob/living/carbon/human/H = player.current
+		if(H.isSynthetic())
+			return FALSE
+		if(H.species.flags & NO_SCAN)
+			return FALSE
+		return TRUE
 	return FALSE

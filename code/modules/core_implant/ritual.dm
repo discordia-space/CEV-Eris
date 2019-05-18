@@ -118,14 +118,22 @@
 	return L
 
 
-//Getting implants (from mobs usually)
-/proc/get_coreimplant(var/ctype = /obj/item/weapon/implant/core_implant, var/mob/living/H)
-	var/obj/item/weapon/implant/core_implant/CI = locate(ctype) in H
-	return CI
+//Getting implants
+/mob/living/proc/get_core_implant(ctype = null)
+	for(var/obj/item/weapon/implant/core_implant/I in src)
+		if(ctype && !istype(I, ctype))
+			continue
 
-/proc/get_implant_from_victim(var/mob/living/carbon/human/user, var/ctype = /obj/item/weapon/implant/core_implant)
+		if(!I.active || I.wearer != src)
+			continue
+
+		return I
+
+	return null
+
+/proc/get_implant_from_victim(mob/living/carbon/human/user, ctype = null)
 	var/mob/living/L = get_victim(user)
-	return get_coreimplant(ctype, L)
+	return L.get_core_implant(ctype)
 
 
 //Getting other objects
