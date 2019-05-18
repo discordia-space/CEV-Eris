@@ -1,60 +1,54 @@
-{{if data.locked}}
-<div class='notice'>
+{{if data.active}}
+<div class='notice' style="min-width: 480px; min-height: 80px">
 	<h3><b>SURGERY IN PROCESS</b></h3>
-	<i>Wait until all operations done</i><br>
+	{{:helper.displayBar(data.progress, 0, 1)}}
 </div>
 {{/if}}
 <div style="min-width: 480px">
+		{{:helper.link('Scan', '', {'scan':1}, data.active? 'disabled':null)}}
+		{{:helper.link('Process all', '', {'full':1}, data.active? 'disabled':null)}}
+		{{:helper.link('Process picked', '', {'picked':1}, data.active? 'disabled':null,'redButton')}}
+		{{:helper.link('Abort', '', {'stop':1}, data.active? 'disabled':null,'redButton')}}
+		<br>
+	<div class="item">
 	<h3>Overall Status</h3>
-	<table>
-		<tr>
-			<td><div class="statusValue" style="color:red">
-				<b>Brute: {{:data.over_brute}}</b></div></td>
-			<td><div class="statusValue" style="color:yellow">
-				<b>Burn: {{:data.over_burn}}</b></div></td>
-			<td><div class="statusValue" style="color:green">
-				<b>Toxin: {{:data.over_tox}}</b></div></td>
-			<td><div class="statusValue" style="color:DeepSkyBlue">
-				<b>Respiratory: {{:data.over_oxy}}</b></div></td>
-		</tr>
-	</table>
+	<div class="itemLabel">Brute damage: <div style="float:right; margin-right:6px"><b>{{:helper.round(data.over_brute)}}</b></div></div>
+	<div class="itemContent">
+	{{:helper.displayBar(data.over_brute, 0, 100, (data.over_brute <= 25) ? 'good' : (data.over_brute <= 50) ? 'average' : 'bad')}}</div>
+	<div class="itemLabel">Burn severity: <div style="float:right; margin-right:6px"><b>{{:helper.round(data.over_burn)}}</b></div></div>
+	<div class="itemContent">
+	{{:helper.displayBar(data.over_burn, 0, 100, (data.over_burn <= 25) ? 'good' : (data.over_burn <= 50) ? 'average' : 'bad')}}</div>
+	<div class="itemLabel">Toxin content: <div style="float:right; margin-right:6px"><b>{{:helper.round(data.over_tox)}}</b></div></div>
+	<div class="itemContent">
+	{{:helper.displayBar(data.over_tox, 0, 100, (data.over_tox <= 25) ? 'good' : (data.over_tox <= 50) ? 'average' : 'bad')}}</div>
+	<div class="itemLabel">Respiratory damage: <div style="float:right; margin-right:6px"><b>{{:helper.round(data.over_oxy)}}</b></div></div>
+	<div class="itemContent">
+	{{:helper.displayBar(data.over_oxy, 0, 100, (data.over_oxy <= 25) ? 'good' : (data.over_oxy <= 50) ? 'average' : 'bad')}}</div>
+	
 	{{:helper.link('Toxin Kelation', '', {'toggle' : 'antitox'}, data.antitox ? null:'disabled', data.antitox_picked ? 'redButton' : null)}}
 	{{:helper.link('Dialysis', '', {'toggle' : 'dialysis'}, data.dialysis ? null:'disabled', data.dialysis_picked ? 'redButton' : null)}}
-	<br>
+	</div>
 	<h3>Organ Status</h3>
-	{{:helper.link('Scan', '', {'scan':1}, data.active? 'disabled':null)}}
-	{{:helper.link('Process all', '', {'full':1}, data.active? 'disabled':null)}}
-	{{:helper.link('Process picked', '', {'picked':1}, data.active? 'disabled':null)}}
 	{{for data.organs}}
 	<div class="item">
-		<div class="itemLabel"><b>{{:value.name}}</b></div><br>
-		<div class="itemContent">
-			{{if value.internal}}
-			<table>
-				<tr><div class="statusValue"><b>Internal damage: {{:value.inner_damage}}</b></div></tr>
-				<tr>{{:helper.link('Fix internal damage', '', {'toggle' : 'damage', 'id':value.id}, value.damage ? null:'disabled', value.damage_picked ? 'redButton' : null)}}</tr>
-			</table>
-			{{else}}
-			<table>
-				<tr>
-					<td><div class="statusValue" style="color:red">
-						<b>Brute damage: {{:value.brute_damage}}</b></div></td>
-					<td><div class="statusValue" style="color:yellow">
-						<b>Burn damage: {{:value.burn_damage}}</b></div></td>
-				</tr>
-			</table>
-			<table>
-				<tr>
-					<td>{{:helper.link('Fix damage', '', {'toggle' : 'damage', 'id' : value.id}, value.damage ? null:'disabled', value.damage_picked ? 'redButton' : null)}}</td>
-					<td>{{:helper.link('Mend Fracture', '', {'toggle' : 'fracture', 'id' : value.id}, value.fracture ? null:'disabled', value.fracture_picked ? 'redButton' : null)}}</td>
-					<td>{{:helper.link('Remove Shrapnel', '', {'toggle' : 'shrapnel', 'id' : value.id}, value.shrapnel ? null:'disabled', value.shrapnel_picked ? 'redButton' : null)}}</td>
-					<td>{{:helper.link('Close wounds', '', {'toggle' : 'wound', 'id' : value.id}, value.wound ? null:'disabled', value.wound_picked ? 'redButton' : null)}}</td>
-				</tr>
-			</table>
-			{{/if}}
-		</div><br>
+		{{if value.internal}}
+			<div class="itemLabel"><b>{{:value.name}}</b></div>
+			<div class="itemContent" style="color:red"><b>Organ damage: {{:value.inner_damage}}</b></div><br>
+			{{:helper.link('Fix internal damage', '', {'toggle' : 'damage', 'id':value.id}, value.damage ? null:'disabled', value.damage_picked ? 'redButton' : null)}}
+		{{else}}
+			<div class="itemLabel"><b>{{:value.name}}</b></div>
+			<div class="itemContent">
+				<b style="color:red">Brute damage: {{:value.brute_damage}} </b>
+				<b style="color:orange">Burn damage: {{:value.burn_damage}} </b>
+			</div><br>
+			{{:helper.link('Fix damage','',{'toggle':'damage','id':value.id}, value.damage?null:'disabled',value.damage_picked?'redButton':null)}}
+			{{:helper.link('Close wounds','',{'toggle':'wound','id':value.id}, value.wound?null:'disabled',value.wound_picked?'redButton':null)}}
+			{{:helper.link('Fix internal bleeding','',{'toggle':'ib','id':value.id}, value.ib?null:'disabled',value.ib_picked?'redButton':null)}}
+			{{:helper.link('Remove Shrapnel','',{'toggle':'shrapnel','id':value.id}, value.shrapnel?null:'disabled',value.shrapnel_picked?'redButton':null)}}
+			{{:helper.link('Mend Fracture','',{'toggle':'fracture','id':value.id}, value.fracture?null:'disabled',value.fracture_picked?'redButton':null)}}
+		{{/if}}
 	</div>
 	{{empty}}
-	<br><br><b>No injuries found!</b>
+	<div class="item"><b>No injuries found!</b></div>
 	{{/for}}
 </div>

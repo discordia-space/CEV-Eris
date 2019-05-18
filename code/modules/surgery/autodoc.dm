@@ -11,12 +11,12 @@
 	var/list/scanned_patchnotes = list()
 	var/list/picked_patchnotes = list()
 	var/obj/holder
-	var/list/debug_data
 
 	var/active = 0
 	var/damage_heal_amount = 30
 	var/processing_speed = 30
 	var/current_step = null
+	var/start_op_time
 	var/mob/living/carbon/human/patient = null
 	var/list/possible_operations = list(AUTODOC_DAMAGE, AUTODOC_EMBED_OBJECT, AUTODOC_FRACTURE, AUTODOC_OPEN_WOUNDS, AUTODOC_TOXIN, AUTODOC_DIALYSIS)
 
@@ -24,6 +24,7 @@
 	if(active)
 		to_chat(usr, SPAN_WARNING("Autodoc already in use"))
 		return
+	start_op_time = world.time
 	active = 1
 	patient = human
 	scanned_patchnotes = new()
@@ -78,7 +79,6 @@
 	active = 0
 
 /datum/autodoc/proc/process_note(var/datum/autodoc_patchnote/patchnote)
-	var/obj/item/organ/internal/internal = patchnote.organ
 	var/obj/item/organ/external/external = patchnote.organ
 	if(!patchnote.organ)
 		if(patchnote.surgery_operations & AUTODOC_TOXIN)
@@ -86,7 +86,7 @@
 			if(!patient.getToxLoss())
 				patchnote.surgery_operations &= ~AUTODOC_TOXIN
 
-		if(patchnote.surgery_operations & AUTODOC_DIALYSIS)
+		else if(patchnote.surgery_operations & AUTODOC_DIALYSIS)
 			var/pumped = 0
 			for(var/datum/reagent/x in patient.reagents.reagent_list)
 				patient.reagents.remove_any(AUTODOC_DIALYSIS_AMOUNT)
@@ -95,58 +95,67 @@
 			if(!pumped)
 				patchnote.surgery_operations &= ~AUTODOC_DIALYSIS
 
-	if(patchnote.surgery_operations & AUTODOC_DAMAGE)
-		if(internal)
+	else if(patchnote.surgery_operations & AUTODOC_DAMAGE)
+		world<<"damage"
+		if(istype(patchnote.organ, /obj/item/organ/internal))
+			world<<"internal"
+			var/obj/item/organ/internal/internal = patchnote.organ
 			internal.damage -= damage_heal_amount
 			if(internal.damage < 0) internal.damage = 0
 			if(!internal.damage) patchnote.surgery_operations &= ~AUTODOC_DAMAGE
-		if(external)
-			external.heal_damage(damage_heal_amount, damage_heal_amount)
-			if(!external.brute_dam && !external.burn_dam) patchnote.surgery_operations &= ~AUTODOC_DAMAGE
+			return !internal.damage
+		
+		external.heal_damage(damage_heal_amount, damage_heal_amount)
+		if(!external.brute_dam && !external.burn_dam) patchnote.surgery_operations &= ~AUTODOC_DAMAGE
 
-	if(patchnote.surgery_operations & AUTODOC_EMBED_OBJECT)
+	else if(patchnote.surgery_operations & AUTODOC_EMBED_OBJECT)
 		for(var/obj/item/weapon/material/shard/shrapnel/shrapnel in external.implants)
 			external.implants -= shrapnel
 			shrapnel.loc = get_turf(patient)
 		patchnote.surgery_operations &= ~AUTODOC_EMBED_OBJECT
 
-	if(patchnote.surgery_operations & AUTODOC_OPEN_WOUNDS)
+	else if(patchnote.surgery_operations & AUTODOC_OPEN_WOUNDS)
 		for(var/datum/wound/wound in external.wounds)
 			if(!wound.internal)
-				wound.heal_damage(damage_heal_amount)
+				//wound.heal_damage(damage_heal_amount)
 				wound.bandaged = 1
 				wound.clamped = 1
 				wound.salved = 1
 				wound.disinfected = 1
 				wound.germ_level = 0
+		patchnote.surgery_operations &= ~AUTODOC_OPEN_WOUNDS
 
-	if(patchnote.surgery_operations & AUTODOC_FRACTURE)
+	else if(patchnote.surgery_operations & AUTODOC_FRACTURE)
 		external.mend_fracture()
 		patchnote.surgery_operations &= ~AUTODOC_FRACTURE
 
-	if(patchnote.surgery_operations & AUTODOC_IB) //because it needs its own job, yes.
+	else if(patchnote.surgery_operations & AUTODOC_IB)
 		for(var/datum/wound/wound in external.wounds)
 			if(wound.internal)
 				external.wounds -= wound
 				qdel(wound)
 				external.update_damages()
 		patchnote.surgery_operations &= ~AUTODOC_IB
+	return patchnote.surgery_operations == 0
 
-/datum/autodoc/proc/Process()
+/datum/autodoc/Process()
 	if(!active)
 		return FALSE
-	if(current_step > picked_patchnotes.len)
+	if( current_step > picked_patchnotes.len )
 		active = FALSE
 		//TODO: report task is done
 		return
-	if(!picked_patchnotes[current_step].surgery_operations)
-		current_step++
-	process_note(picked_patchnotes[current_step])
+	if( start_op_time + processing_speed < world.time )
+		if(process_note(picked_patchnotes[current_step]))
+			current_step++
+		start_op_time = world.time
+		patient.updatehealth()
 
-/datum/autodoc/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 2, var/datum/topic_state/state = GLOB.default_state)
+/datum/autodoc/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = GLOB.default_state)
 	var/list/data = list()
 
-	data["locked"] = active
+	data["active"] = active
+	data["progress"] = (world.time - start_op_time) / processing_speed
 	data["over_brute"] = patient.getBruteLoss()
 	data["over_burn"] = patient.getFireLoss()
 	data["over_oxy"] = patient.getOxyLoss()
@@ -192,10 +201,11 @@
 
 			organ["wound"] = note.surgery_operations & AUTODOC_OPEN_WOUNDS
 			organ["wound_picked"] = picked_patchnotes[i].surgery_operations & AUTODOC_OPEN_WOUNDS
+
+			organ["ib"] = note.surgery_operations & AUTODOC_IB
+			organ["ib_picked"] = picked_patchnotes[i].surgery_operations & AUTODOC_IB
 		organs+= list(organ)
 	data["organs"] = organs
-
-	debug_data = organs
 
 	ui = SSnano.try_update_ui(user, holder, ui_key, ui, data, force_open)
 	if (!ui)
@@ -216,14 +226,20 @@
 		current_step = 1
 		active = TRUE
 		picked_patchnotes = scanned_patchnotes.Copy()
-	
+	if(href_list["stop"])
+		active = 0
+		picked_patchnotes = list()
 	if(href_list["toggle"])
+		if(active)
+			return
 		var/op = 0
 		var/id = text2num(href_list["id"])
 		switch(href_list["toggle"])
 			if("damage")
 				op = AUTODOC_DAMAGE
 			if("wound")
+				op = AUTODOC_OPEN_WOUNDS
+			if("ib")
 				op = AUTODOC_OPEN_WOUNDS
 			if("fracture")
 				op = AUTODOC_FRACTURE

@@ -108,6 +108,11 @@
 	set_occupant(target)
 	src.add_fingerprint(user)
 	return
+/obj/machinery/autodoc/Process()
+	. = ..()
+	autodoc_processor.Process()
+/obj/machinery/autodoc/Topic(href, href_list)
+	autodoc_processor.Topic(href, href_list)
 
 /obj/machinery/autodoc/ex_act(severity)
 	switch(severity)

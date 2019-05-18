@@ -398,6 +398,12 @@
 	if(!autodoc_processor.holder || autodoc_processor.holder != src) autodoc_processor.holder = src
 	autodoc_processor.scan_user(holder.wearer)
 	autodoc_processor.ui_interact(usr, state = GLOB.deep_inventory_state)
+	active = TRUE
 	return 1
 /obj/item/rig_module/autodoc/Topic(href, href_list)
 	autodoc_processor.Topic(href, href_list)
+/obj/item/rig_module/autodoc/Process()
+	. = ..()
+	active = autodoc_processor.active
+	if(active)
+		autodoc_processor.Process()
