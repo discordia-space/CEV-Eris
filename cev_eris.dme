@@ -1277,7 +1277,6 @@
 #include "code\modules\biomatter_manipulation\bioreactor\platform.dm"
 #include "code\modules\biomatter_manipulation\bioreactor\port.dm"
 #include "code\modules\biomatter_manipulation\bioreactor\unloader.dm"
-#include "code\modules\bounty\bounties.dm"
 #include "code\modules\cargo\export_scanner.dm"
 #include "code\modules\cargo\exports.dm"
 #include "code\modules\cargo\order.dm"
