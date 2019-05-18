@@ -40,7 +40,7 @@
 
 	var/turf/LM = landmark.get_loc()
 
-	new /obj/item/weapon/disk/autolathe_disk/excelsior(LM)
+	new /obj/item/weapon/computer_hardware/hard_drive/portable/design/excelsior(LM)
 	new /obj/item/weapon/circuitboard/excelsiorautolathe(LM)
 	new /obj/item/weapon/circuitboard/excelsior_teleporter(LM)
 

@@ -7,8 +7,11 @@ SUBSYSTEM_DEF(research)
 	var/list/design_ids = list()	// id = datum
 	var/list/all_designs = list()	// just datums
 
-	// If a research holder is created before SS is initialized, put it here and
+	var/designs_initialized = FALSE
+
+	// If a research holder or a design file is created before SS is initialized, put it here and initialize it later.
 	var/list/research_holders_to_init = list()
+	var/list/design_files_to_init = list()
 
 /datum/controller/subsystem/research/Initialize()
 	for(var/R in subtypesof(/datum/design))
@@ -26,12 +29,24 @@ SUBSYSTEM_DEF(research)
 
 	generate_integrated_circuit_designs()
 
-	// Initialize research holders that were created before
-	for(var/R in research_holders_to_init)
-		var/datum/research/research = R
-		initialize_designs(research)
+	for(var/d in all_designs)
+		var/datum/design/design = d
+		var/datum/computer_file/binary/design/design_file = new
+		design_file.design = design
+		design_file.on_design_set()
+		design.file = design_file
 
+	designs_initialized = TRUE
+
+	// Initialize research holders that were created before
+	for(var/research in research_holders_to_init)
+		initialize_designs(research)
 	research_holders_to_init = list()
+
+	// Initialize design files that were created before
+	for(var/file in design_files_to_init)
+		initialize_design_file(file)
+	design_files_to_init = list()
 
 	return ..()
 
@@ -64,7 +79,7 @@ SUBSYSTEM_DEF(research)
 /datum/controller/subsystem/research/proc/initialize_designs(datum/research/research)
 	// If designs are already generated, initialized right away.
 	// If not, add them to the list to be initialized later.
-	if(length(all_designs))
+	if(designs_initialized)
 		for(var/datum/design/D in all_designs)
 			if(!D.req_tech)
 				continue
@@ -75,3 +90,17 @@ SUBSYSTEM_DEF(research)
 		research.RefreshResearch()
 	else
 		research_holders_to_init += research
+
+/datum/controller/subsystem/research/proc/initialize_design_file(datum/computer_file/binary/design/design_file)
+	// If designs are already generated, initialized right away.
+	// If not, add them to the list to be initialized later.
+	if(designs_initialized)
+		var/datum/design/design = design_ids[design_file.design]
+		if(design)
+			design_file.design = design
+			design_file.on_design_set()
+		else
+			error("Incorrect design ID or path: [design_file.design]")
+
+	else
+		design_files_to_init += design_file

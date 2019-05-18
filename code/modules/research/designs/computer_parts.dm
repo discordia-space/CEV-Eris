@@ -6,18 +6,18 @@
 
 /datum/design/research/item/modularcomponent/portabledrive/basic
 	req_tech = list(TECH_DATA = 1)
+	build_path = /obj/item/weapon/computer_hardware/hard_drive/portable/basic
+	sort_string = "GAAAA"
+
+/datum/design/research/item/modularcomponent/portabledrive/normal
+	req_tech = list(TECH_DATA = 2)
 	build_path = /obj/item/weapon/computer_hardware/hard_drive/portable
-	sort_string = "VBAAJ"
+	sort_string = "GAAAB"
 
 /datum/design/research/item/modularcomponent/portabledrive/advanced
-	req_tech = list(TECH_DATA = 2)
-	build_path = /obj/item/weapon/computer_hardware/hard_drive/portable/advanced
-	sort_string = "VBAAK"
-
-/datum/design/research/item/modularcomponent/portabledrive/super
 	req_tech = list(TECH_DATA = 4)
-	build_path = /obj/item/weapon/computer_hardware/hard_drive/portable/super
-	sort_string = "VBAAL"
+	build_path = /obj/item/weapon/computer_hardware/hard_drive/portable/advanced
+	sort_string = "GAAAC"
 
 
 // Hard drives

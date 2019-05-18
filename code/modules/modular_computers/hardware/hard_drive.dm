@@ -9,6 +9,12 @@
 	var/used_capacity = 0
 	var/read_only = FALSE
 	var/list/stored_files = list()		// List of stored files on this drive. DO NOT MODIFY DIRECTLY!
+	var/list/default_files = list(		// List of files stored on this drive when spawned.
+		/datum/computer_file/program/computerconfig,
+		/datum/computer_file/program/ntnetdownload,
+		/datum/computer_file/program/filemanager
+	)
+
 
 /obj/item/weapon/computer_hardware/hard_drive/advanced
 	name = "advanced hard drive"
@@ -57,6 +63,16 @@
 	icon_state = "hdd_micro"
 	hardware_size = 1
 
+/obj/item/weapon/computer_hardware/hard_drive/Initialize()
+	. = ..()
+	install_default_files()
+
+/obj/item/weapon/computer_hardware/hard_drive/Destroy()
+	if(holder2 && (holder2.hard_drive == src))
+		holder2.hard_drive = null
+	stored_files = null
+	return ..()
+
 /obj/item/weapon/computer_hardware/hard_drive/examine(mob/user)
 	. = ..()
 	to_chat(user, SPAN_NOTICE("It can store up to [max_capacity] GQ."))
@@ -68,20 +84,19 @@
 	to_chat(user, "Storage capacity: [used_capacity]/[max_capacity]GQ")
 
 // Use this proc to add file to the drive. Returns 1 on success and 0 on failure. Contains necessary sanity checks.
-/obj/item/weapon/computer_hardware/hard_drive/proc/store_file(var/datum/computer_file/F)
+/obj/item/weapon/computer_hardware/hard_drive/proc/store_file(datum/computer_file/F)
 	if(!try_store_file(F))
-		return 0
+		return FALSE
 	F.holder = src
 	stored_files.Add(F)
 	recalculate_size()
-	return 1
+	return TRUE
 
-// Use this proc to add file to the drive. Returns 1 on success and 0 on failure. Contains necessary sanity checks.
-/obj/item/weapon/computer_hardware/hard_drive/proc/install_default_programs()
-	store_file(new/datum/computer_file/program/computerconfig(src)) 		// Computer configuration utility, allows hardware control and displays more info than status bar
-	store_file(new/datum/computer_file/program/ntnetdownload(src))			// NTNet Downloader Utility, allows users to download more software from NTNet repository
-	store_file(new/datum/computer_file/program/filemanager(src))			// File manager, allows text editor functions and basic file manipulation.
-
+// Adds default files to the drive.
+/obj/item/weapon/computer_hardware/hard_drive/proc/install_default_files()
+	for(var/file_typepath in default_files)
+		store_file(new file_typepath)
+	return TRUE
 
 // Use this proc to remove file from the drive. Returns 1 on success and 0 on failure. Contains necessary sanity checks.
 /obj/item/weapon/computer_hardware/hard_drive/proc/remove_file(datum/computer_file/F)
@@ -160,20 +175,52 @@
 	if(!filename)
 		return null
 
-	if(!stored_files)
-		return null
-
-	for(var/datum/computer_file/F in stored_files)
+	for(var/f in stored_files)
+		var/datum/computer_file/F = f
 		if(F.filename == filename)
 			return F
 	return null
 
-/obj/item/weapon/computer_hardware/hard_drive/Destroy()
-	if(holder2 && (holder2.hard_drive == src))
-		holder2.hard_drive = null
-	stored_files = null
-	return ..()
 
-/obj/item/weapon/computer_hardware/hard_drive/Initialize()
-	. = ..()
-	install_default_programs()
+/obj/item/weapon/computer_hardware/hard_drive/proc/find_files_by_type(typepath)
+	var/list/files = list()
+
+	if(!check_functionality())
+		return files
+
+	if(!typepath)
+		return files
+
+	for(var/f in stored_files)
+		if(istype(f, typepath))
+			files += f
+
+	return files
+
+/obj/item/weapon/computer_hardware/hard_drive/proc/get_disk_name()
+	var/datum/computer_file/data/D = find_file_by_name("DISK_NAME")
+	if(!istype(D))
+		return null
+
+	return sanitizeSafe(D.stored_data, max_length = MAX_LNAME_LEN)
+
+
+// Disk UI data, used by file browser UI
+/obj/item/weapon/computer_hardware/hard_drive/ui_data()
+	var/list/data = list(
+		"read_only" = read_only,
+		"disk_name" = get_disk_name(),
+		"max_capacity" = max_capacity,
+		"used_capacity" = used_capacity
+	)
+
+	var/list/files = list()
+	for(var/datum/computer_file/F in stored_files)
+		files.Add(list(list(
+			"filename" = cyrillic_to_unicode(F.filename),
+			"filetype" = F.filetype,
+			"size" = F.size,
+			"undeletable" = F.undeletable
+		)))
+	data["files"] = files
+	return data
