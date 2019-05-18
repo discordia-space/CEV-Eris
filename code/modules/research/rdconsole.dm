@@ -212,7 +212,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		if(temp_screen <= 1.1 || (3 <= temp_screen && 4.9 >= temp_screen) || allowed(usr) || emagged) //Unless you are making something, you need access.
 			screen = temp_screen
 		else
-			usr << "Unauthorized Access."
+			to_chat(usr, "Unauthorized Access.")
 
 	else if(href_list["eject_item"]) //Eject the item inside the destructive analyzer.
 		if(linked_destroy)
