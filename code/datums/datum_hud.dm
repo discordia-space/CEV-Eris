@@ -129,10 +129,6 @@
 		"swap hand"   = list("type" = /obj/screen/swap,       "loc" = "8,1", "minloc" = "7,2"),
 		"toggle invetory"   = list("type" = /obj/screen/toggle_invetory,       "loc" = "2,0", "minloc" = "1,1", "background" = "back1")
 		)
-		//"toggle gun mode"   = list("type" = /obj/screen/gun/mode,      "loc" = "EAST+1,BOTTOM+1", "minloc" = "RIGHT,3", "background" = "back1"),
-		//"allow movement"   = list("type" = /obj/screen/gun/move,       "loc" = "EAST+1,BOTTOM+2", "minloc" = "RIGHT,4", "background" = "back1"),
-		//"allow item use"   = list("type" = /obj/screen/gun/item,       "loc" = "EAST,BOTTOM+1", "minloc" = "RIGHT-1,3", "background" = "back1"),
-		//"allow radio use"   = list("type" = /obj/screen/gun/radio,      "loc" = "EAST,BOTTOM+2", "minloc" = "RIGHT-1,4", "background" = "back1"),
 
 	slot_data = list (
 		"Uniform" =   list("loc" = "2,1", "minloc" = "1,2",           "state" = "center",  "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
