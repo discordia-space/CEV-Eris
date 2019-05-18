@@ -182,5 +182,7 @@
 		to_chat(user, SPAN_WARNING("This device can only operate on compatible lifeforms."))
 		return
 	autodoc_processor.ui_interact(user)
+/obj/machinery/autodoc_console/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 2, var/datum/topic_state/state = GLOB.default_state)
+	return autodoc_processor.ui_interact(user, ui_key, ui, force_open, state) 
 /obj/machinery/autodoc_console/Topic(href, href_list)
 	return autodoc_processor.Topic(href, href_list)

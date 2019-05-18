@@ -23,7 +23,7 @@
 /datum/autodoc/proc/scan_user(var/mob/living/carbon/human/human)
 	if(active)
 		to_chat(usr, SPAN_WARNING("Autodoc already in use"))
-		return
+		return FALSE
 	start_op_time = world.time
 	active = 1
 	patient = human
@@ -212,13 +212,15 @@
 		ui = new(user, holder, ui_key, "autodoc.tmpl", "Autodoc", 600, 480, state=state)
 		ui.set_initial_data(data)
 		ui.open()
-		ui.set_auto_update(1)
+		ui.set_auto_update(TRUE)
+		ui.set_auto_update_layout(TRUE)
 
 /datum/autodoc/proc/stop()
 	active = 0
 	picked_patchnotes = list()
 
 /datum/autodoc/Topic(href, href_list)
+	if(..()) return TRUE
 	if(href_list["scan"])
 		scan_user(patient)
 	if(href_list["picked"])
@@ -232,8 +234,6 @@
 	if(href_list["stop"])
 		stop()
 	if(href_list["toggle"])
-		if(active)
-			return
 		var/op = 0
 		var/id = text2num(href_list["id"])
 		switch(href_list["toggle"])
