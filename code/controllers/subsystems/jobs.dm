@@ -308,13 +308,6 @@ SUBSYSTEM_DEF(job)
 
 		//Equip job items and language stuff
 		job.setup_account(H)
-		job.equip(H, H.mind ? H.mind.role_alt_title : "")
-		job.add_stats(H)
-		job.add_additiional_language(H)
-
-
-		job.apply_fingerprints(H)
-		spawn_in_storage = EquipCustomLoadout(H, job)
 		// EMAIL GENERATION
 		if(rank != "Robot" && rank != "AI")		//These guys get their emails later.
 			var/domain
@@ -323,6 +316,14 @@ SUBSYSTEM_DEF(job)
 			desired_name = H.real_name
 			ntnet_global.create_email(H, desired_name, domain)
 		// END EMAIL GENERATION
+		job.equip(H, H.mind ? H.mind.role_alt_title : "")
+		job.add_stats(H)
+		job.add_additiional_language(H)
+
+
+		job.apply_fingerprints(H)
+		spawn_in_storage = EquipCustomLoadout(H, job)
+
 	else
 		H << "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator."
 

@@ -140,7 +140,7 @@
 			return 1
 
 		var/complete_login = "[newlogin]@[newdomain]"
-		if(ntnet_global.find_email_by_name(complete_login))
+		if(ntnet_global.find_email_by_login(complete_login))
 			error = "Error creating account: An account with same address already exists."
 			return 1
 
