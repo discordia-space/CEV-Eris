@@ -389,21 +389,28 @@
 
 	interface_name = "Autodoc"
 	interface_desc = "Module with set of instruments that is capable to preform surgery on user"
+	var/datum/autodoc/autodoc_processor
 
-	var/datum/autodoc/autodoc_processor = new()
+/obj/item/rig_module/autodoc/New()
+	autodoc_processor = new()
+	autodoc_processor.holder = src
+	autodoc_processor.processing_speed *= 2
 
 /obj/item/rig_module/autodoc/engage()
 	if(!..())
 		return 0
-	if(!autodoc_processor.holder || autodoc_processor.holder != src) autodoc_processor.holder = src
 	autodoc_processor.scan_user(holder.wearer)
-	autodoc_processor.ui_interact(usr, state = GLOB.deep_inventory_state)
-	active = TRUE
+	ui_interact(usr)
 	return 1
 /obj/item/rig_module/autodoc/Topic(href, href_list)
-	autodoc_processor.Topic(href, href_list)
+	return autodoc_processor.Topic(href, href_list)
 /obj/item/rig_module/autodoc/Process()
-	. = ..()
+	if(..())
+		autodoc_processor.stop()
 	active = autodoc_processor.active
 	if(active)
 		autodoc_processor.Process()
+	
+/obj/item/rig_module/autodoc/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nano_ui/master_ui, datum/topic_state/state = GLOB.deep_inventory_state)
+	autodoc_processor.ui_interact(user, ui_key, ui, force_open, state = GLOB.deep_inventory_state)
+	

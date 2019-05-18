@@ -112,7 +112,7 @@
 	. = ..()
 	autodoc_processor.Process()
 /obj/machinery/autodoc/Topic(href, href_list)
-	autodoc_processor.Topic(href, href_list)
+	return autodoc_processor.Topic(href, href_list)
 
 /obj/machinery/autodoc/ex_act(severity)
 	switch(severity)
@@ -164,7 +164,7 @@
 			connected = locate(/obj/machinery/autodoc) in get_step(src, dir)
 			if(connected)
 				autodoc_processor = connected.autodoc_processor
-				autodoc_processor.holder = src
+				autodoc_processor.holder = connected
 				return
 
 /obj/machinery/autodoc_console/attack_ai(user as mob)
@@ -183,4 +183,4 @@
 		return
 	autodoc_processor.ui_interact(user)
 /obj/machinery/autodoc_console/Topic(href, href_list)
-	autodoc_processor.Topic(href, href_list)
+	return autodoc_processor.Topic(href, href_list)

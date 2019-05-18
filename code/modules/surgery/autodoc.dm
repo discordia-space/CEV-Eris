@@ -14,7 +14,7 @@
 
 	var/active = 0
 	var/damage_heal_amount = 30
-	var/processing_speed = 30
+	var/processing_speed = 30 SECONDS
 	var/current_step = null
 	var/start_op_time
 	var/mob/living/carbon/human/patient = null
@@ -117,7 +117,6 @@
 	else if(patchnote.surgery_operations & AUTODOC_OPEN_WOUNDS)
 		for(var/datum/wound/wound in external.wounds)
 			if(!wound.internal)
-				//wound.heal_damage(damage_heal_amount)
 				wound.bandaged = 1
 				wound.clamped = 1
 				wound.salved = 1
@@ -143,6 +142,7 @@
 		return FALSE
 	if( current_step > picked_patchnotes.len )
 		active = FALSE
+		scan_user(patient)
 		//TODO: report task is done
 		return
 	if( start_op_time + processing_speed < world.time )
@@ -151,7 +151,7 @@
 		start_op_time = world.time
 		patient.updatehealth()
 
-/datum/autodoc/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = GLOB.default_state)
+/datum/autodoc/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 2, var/datum/topic_state/state = GLOB.default_state)
 	var/list/data = list()
 
 	data["active"] = active
@@ -209,11 +209,14 @@
 
 	ui = SSnano.try_update_ui(user, holder, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, holder, ui_key, "autodoc.tmpl", "Autodoc", 600, 480, state)
+		ui = new(user, holder, ui_key, "autodoc.tmpl", "Autodoc", 600, 480, state=state)
 		ui.set_initial_data(data)
-		ui.set_auto_update(1)
 		ui.open()
-		
+		ui.set_auto_update(1)
+
+/datum/autodoc/proc/stop()
+	active = 0
+	picked_patchnotes = list()
 
 /datum/autodoc/Topic(href, href_list)
 	if(href_list["scan"])
@@ -227,8 +230,7 @@
 		active = TRUE
 		picked_patchnotes = scanned_patchnotes.Copy()
 	if(href_list["stop"])
-		active = 0
-		picked_patchnotes = list()
+		stop()
 	if(href_list["toggle"])
 		if(active)
 			return
@@ -240,7 +242,7 @@
 			if("wound")
 				op = AUTODOC_OPEN_WOUNDS
 			if("ib")
-				op = AUTODOC_OPEN_WOUNDS
+				op = AUTODOC_IB
 			if("fracture")
 				op = AUTODOC_FRACTURE
 			if("shrapnel")
@@ -253,4 +255,5 @@
 			picked_patchnotes[id].surgery_operations &= ~op
 		else
 			picked_patchnotes[id].surgery_operations |= op
+	return TRUE
 	
