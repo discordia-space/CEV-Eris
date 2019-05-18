@@ -2,34 +2,35 @@
 
 	//The name of the job
 	var/title = "NOPE"
-	var/list/access = list()              // Useful for servers which either have fewer players, so each person needs to fill more than one role, or servers which like to give more access, so players can't hide forever in their super secure departments (I'm looking at you, chemistry!)
-	var/list/software_on_spawn = list()   // Defines the software files that spawn on tablets and labtops
-	var/flag = 0 	                      // Bitflags for the job
-	var/department_flag = 0
-	var/faction = "None"	              // Players will be allowed to spawn in as jobs that are set to "Station"
-	var/total_positions = 0               // How many players can be this job
-	var/spawn_positions = 0               // How many players can spawn in as this job
-	var/current_positions = 0             // How many players have this job
-	var/supervisors = null                // Supervisors, who this person answers to directly
-	var/selection_color = "#ffffff"       // Selection screen color
+	var/list/access = list()				// Useful for servers which either have fewer players, so each person needs to fill more than one role, or servers which like to give more access, so players can't hide forever in their super secure departments (I'm looking at you, chemistry!)
+	var/list/software_on_spawn = list()		// Defines the software files that spawn on tablets and labtops
+	var/list/core_upgrades = list()			// Defines the upgrades that would be installed into core implant on spawn, if any.
+	var/flag = NONE							// Bitflags for the job
+	var/department_flag = NONE
+	var/faction = "None"					// Players will be allowed to spawn in as jobs that are set to "Station"
+	var/total_positions = 0					// How many players can be this job
+	var/spawn_positions = 0					// How many players can spawn in as this job
+	var/current_positions = 0				// How many players have this job
+	var/supervisors = null					// Supervisors, who this person answers to directly
+	var/selection_color = "#ffffff"			// Selection screen color
 	var/list/alt_titles
 
-	var/req_admin_notify                  // If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
-	var/department = null                 // Does this position have a department tag?
-	var/head_position = 0                 // Is this position Command?
-	var/department_account_access = FALSE // Can this position access the department acount, even if they're not a head?
+	var/req_admin_notify					// If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
+	var/department = null					// Does this position have a department tag?
+	var/head_position = FALSE				// Is this position Command?
+	var/department_account_access = FALSE	// Can this position access the department acount, even if they're not a head?
 	var/minimum_character_age = 0
 	var/ideal_character_age = 30
-	var/create_record = 1                 // Do we announce/make records for people who spawn on this job?
-	var/list/also_known_languages = list()// additional chance based languages to all jobs.
+	var/create_record = 1					// Do we announce/make records for people who spawn on this job?
+	var/list/also_known_languages = list()	// additional chance based languages to all jobs.
 
-	var/account_allowed = 1				  // Does this job type come with a station account?
-	var/wage	=	WAGE_LABOUR			  // How much base wage does this job recieve per payday
-	var/initial_balance	=	-1		  // If set to a value other than -1, overrides the wage based initial balance calculation
+	var/account_allowed = 1					// Does this job type come with a station account?
+	var/wage = WAGE_LABOUR					// How much base wage does this job recieve per payday
+	var/initial_balance	=	-1				// If set to a value other than -1, overrides the wage based initial balance calculation
 
-	var/outfit_type                       // The outfit the employee will be dressed in, if any
+	var/outfit_type							// The outfit the employee will be dressed in, if any
 
-	var/loadout_allowed = TRUE			  // Does this job allows loadout ?
+	var/loadout_allowed = TRUE				// Does this job allows loadout ?
 	var/description = ""
 	var/duties = ""
 	var/loyalties = ""
@@ -140,11 +141,21 @@
 /datum/job/proc/is_position_available()
 	return (current_positions < total_positions) || (total_positions == -1)
 
-/datum/job/proc/is_restricted(var/datum/preferences/prefs, var/feedback)
+/datum/job/proc/is_restricted(datum/preferences/prefs, feedback)
+	if(is_religion_restricted(prefs.religion))
+		to_chat(feedback, "<span class='boldannounce'>NT is restricted from command and security roles due to conflict of intertest.</span>")
+		return TRUE
 
 	if(minimum_character_age && (prefs.age < minimum_character_age))
 		to_chat(feedback, "<span class='boldannounce'>Not old enough. Minimum character age is [minimum_character_age].</span>")
 		return TRUE
+
+	return FALSE
+
+/datum/job/proc/is_religion_restricted(religion)
+	if(religion == "NeoTheology")
+		if((department_flag & (IRONHAMMER | COMMAND)) && department != DEPARTMENT_CHURCH)
+			return TRUE
 
 	return FALSE
 

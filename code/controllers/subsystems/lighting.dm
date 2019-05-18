@@ -17,15 +17,13 @@ SUBSYSTEM_DEF(lighting)
 	var/list/currentrun_overlays
 
 	var/resuming_stage = 0
-	var/initialized = FALSE
 
 /datum/controller/subsystem/lighting/stat_entry()
 	..("L:[lighting_update_lights.len]|C:[lighting_update_corners.len]|O:[lighting_update_overlays.len]")
 
 /datum/controller/subsystem/lighting/Initialize(timeofday)
 	create_all_lighting_overlays()
-	..()
-	initialized = TRUE
+	. = ..()
 
 /datum/controller/subsystem/lighting/fire(resumed=FALSE)
 	if (resuming_stage == 0 || !resumed)

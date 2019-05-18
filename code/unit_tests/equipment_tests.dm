@@ -32,7 +32,7 @@ datum/unit_test/vision_glasses/start_test()
 datum/unit_test/vision_glasses/check_result()
 
 	if(isnull(H) || H.life_tick < 2)
-		return 0       
+		return 0
 
 	if(isnull(H.glasses))
 		fail("Mob doesn't have glasses on")
@@ -48,11 +48,11 @@ datum/unit_test/vision_glasses/check_result()
 
 datum/unit_test/vision_glasses/NVG
 	name = "EQUIPMENT: NVG see_invis"
-	glasses_type = /obj/item/clothing/glasses/night
+	glasses_type = /obj/item/clothing/glasses/powered/night
 
 datum/unit_test/vision_glasses/mesons
 	name = "EQUIPMENT: Mesons see_invis"
-	glasses_type = /obj/item/clothing/glasses/meson
+	glasses_type = /obj/item/clothing/glasses/powered/meson
 
 datum/unit_test/vision_glasses/plain
 	name = "EQUIPMENT: Plain glasses. see_invis"

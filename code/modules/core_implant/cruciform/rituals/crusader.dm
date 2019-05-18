@@ -32,7 +32,7 @@
 /datum/ritual/cruciform/crusader/battle_call/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
 	var/count = 0
 	for(var/mob/living/carbon/human/brother in view(user))
-		if(brother.get_cruciform())
+		if(brother.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
 			count += 2
 
 	user.stats.changeStat(STAT_TGH, count)
@@ -63,7 +63,7 @@
 		user << SPAN_NOTICE("The flux of psy-energy washed your mind, but you managed to keep focused!")
 	playsound(user.loc, 'sound/effects/cascade.ogg', 65, 1)
 	for(var/mob/living/carbon/human/victim in view(user))
-		if(!victim.get_cruciform())
+		if(!victim.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
 			if(prob(100 - victim.stats.getStat(STAT_VIG)))
 				victim << SPAN_WARNING("You feel that your knees bends!")
 				victim.Weaken(5)

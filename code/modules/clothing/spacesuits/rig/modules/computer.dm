@@ -247,7 +247,6 @@
 	stored_research = list()
 
 /obj/item/rig_module/datajack/engage(atom/target)
-
 	if(!..())
 		return 0
 
@@ -257,19 +256,18 @@
 			return 0
 	return 1
 
-/obj/item/rig_module/datajack/accepts_item(var/obj/item/input_device, var/mob/living/user)
+/obj/item/rig_module/datajack/accepts_item(obj/item/input_device, mob/living/user)
 
-	if(istype(input_device,/obj/item/weapon/disk/tech_disk))
-		user << "You slot the disk into [src]."
-		var/obj/item/weapon/disk/tech_disk/disk = input_device
-		if(disk.stored)
-			if(load_data(disk.stored))
-				user << "<font color='blue'>Download successful; disk erased.</font>"
-				disk.stored = null
+	if(istype(input_device, /obj/item/weapon/computer_hardware/hard_drive))
+		to_chat(user, "You connect the disk to [src].")
+		var/obj/item/weapon/computer_hardware/hard_drive/disk = input_device
+		if(disk.used_capacity)
+			if(load_data(disk))
+				to_chat(user, SPAN_NOTICE("Download successful."))
 			else
-				user << SPAN_WARNING("The disk is corrupt. It is useless to you.")
+				to_chat(user, SPAN_WARNING("The disk does not contain any new research data. It is useless to you."))
 		else
-			user << SPAN_WARNING("The disk is blank. It is useless to you.")
+			to_chat(user, SPAN_WARNING("The disk is blank. It is useless to you."))
 		return 1
 
 	// I fucking hate R&D code. This typecheck spam would be totally unnecessary in a sane setup.
@@ -296,26 +294,31 @@
 		return 1
 	return 0
 
-/obj/item/rig_module/datajack/proc/load_data(var/incoming_data)
-
+/obj/item/rig_module/datajack/proc/load_data(incoming_data)
 	if(islist(incoming_data))
 		for(var/entry in incoming_data)
-			load_data(entry)
-		return 1
+			. += load_data(entry)
+		return
+
+	if(istype(incoming_data, /obj/item/weapon/computer_hardware/hard_drive))
+		var/obj/item/weapon/computer_hardware/hard_drive/disk = incoming_data
+		for(var/f in disk.find_files_by_type(/datum/computer_file/binary/tech))
+			var/datum/computer_file/binary/tech/tech_file = f
+			. += load_data(tech_file.tech)
+		return
 
 	if(istype(incoming_data, /datum/tech))
-		var/data_found
 		var/datum/tech/new_data = incoming_data
 		for(var/datum/tech/current_data in stored_research)
 			if(current_data.id == new_data.id)
-				data_found = 1
 				if(current_data.level < new_data.level)
 					current_data.level = new_data.level
-				break
-		if(!data_found)
-			stored_research += incoming_data
-		return 1
-	return 0
+					return TRUE
+				return FALSE
+
+		stored_research += new_data.Copy()
+		return TRUE
+	return FALSE
 
 /obj/item/rig_module/electrowarfare_suite
 

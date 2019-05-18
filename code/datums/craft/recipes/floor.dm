@@ -111,6 +111,17 @@
 	name = "steel monofloor tile"
 	result = /obj/item/stack/tile/floor/steel/monofloor
 
+/datum/craft_recipe/floor/steel/bar_flat
+	name = "steel bar flat tile"
+	result = /obj/item/stack/tile/floor/steel/bar_flat
+
+/datum/craft_recipe/floor/steel/bar_dance
+	name = "steel bar dance tile"
+	result = /obj/item/stack/tile/floor/steel/bar_dance
+
+/datum/craft_recipe/floor/steel/bar_light
+	name = "steel bar light tile"
+	result = /obj/item/stack/tile/floor/steel/bar_light
 
 
 

@@ -641,6 +641,9 @@
 	active = 0
 	return ..()
 
+/obj/structure/disposalholder/AllowDrop()
+	return TRUE
+
 // Disposal pipes
 
 /obj/structure/disposalpipe

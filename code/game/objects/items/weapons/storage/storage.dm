@@ -611,3 +611,6 @@
 	for (var/obj/O in contents)
 		remove_from_storage(O, T)
 		O.tumble(2)
+
+/obj/item/weapon/storage/AllowDrop()
+	return TRUE

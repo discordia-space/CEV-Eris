@@ -10,4 +10,3 @@
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL
 	recoil = 0.5 //regular pistol kick
-	damage_multiplier = 0.8 //cheap knock-off shit tier

@@ -234,7 +234,7 @@
 	name = "Hallucinational Syndrome"
 	stage = 3
 	activate(var/mob/living/carbon/mob,var/multiplier)
-		mob.hallucination += 25
+		mob.hallucination(25, 25)
 
 /datum/disease2/effect/deaf
 	name = "Hard of Hearing Syndrome"

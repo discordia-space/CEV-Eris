@@ -1063,9 +1063,9 @@
 	vend_delay = 34
 	icon_state = "cigs"
 	products = list(/obj/item/weapon/storage/fancy/cigarettes = 10,/obj/item/weapon/storage/box/matches = 10,/obj/item/weapon/flame/lighter/random = 4)
-	contraband = list(/obj/item/weapon/flame/lighter/zippo = 4)
+	contraband = list(/obj/item/clothing/mask/smokable/cigarette/cigar = 4, /obj/item/weapon/flame/lighter/zippo = 4,)
 	premium = list(/obj/item/weapon/storage/fancy/cigar = 5,/obj/item/weapon/storage/fancy/cigarettes/killthroat = 5 )
-	prices = list(/obj/item/weapon/storage/fancy/cigarettes = 300,/obj/item/weapon/storage/box/matches = 100,/obj/item/weapon/flame/lighter/random = 150,
+	prices = list(/obj/item/clothing/mask/smokable/cigarette/cigar = 200, /obj/item/weapon/storage/fancy/cigarettes = 100 ,/obj/item/weapon/storage/box/matches = 10,/obj/item/weapon/flame/lighter/random = 5,
 				/obj/item/weapon/flame/lighter/zippo = 250)
 
 
@@ -1243,7 +1243,7 @@
 	desc = "Spare tool vending. What? Did you expect some witty description?"
 	icon_state = "engivend"
 	icon_deny = "engivend-deny"
-	products = list(/obj/item/clothing/glasses/meson = 2,/obj/item/weapon/tool/multitool = 4,/obj/item/weapon/airlock_electronics = 10,/obj/item/weapon/circuitboard/apc = 10,/obj/item/weapon/airalarm_electronics = 10,/obj/item/weapon/cell/large/high = 10)
+	products = list(/obj/item/clothing/glasses/powered/meson = 2,/obj/item/weapon/tool/multitool = 4,/obj/item/weapon/airlock_electronics = 10,/obj/item/weapon/circuitboard/apc = 10,/obj/item/weapon/airalarm_electronics = 10,/obj/item/weapon/cell/large/high = 10)
 	contraband = list(/obj/item/weapon/cell/large/potato = 3)
 	premium = list(/obj/item/weapon/storage/belt/utility = 3)
 	auto_price = FALSE
@@ -1255,13 +1255,13 @@
 	icon_state = "engi"
 	icon_deny = "engi-deny"
 	products = list(/obj/item/clothing/head/hardhat = 4,
-					/obj/item/weapon/storage/belt/utility = 4,/obj/item/clothing/glasses/meson = 4,/obj/item/clothing/gloves/insulated = 4, /obj/item/weapon/tool/screwdriver = 12,
+					/obj/item/weapon/storage/belt/utility = 4,/obj/item/clothing/glasses/powered/meson = 4,/obj/item/clothing/gloves/insulated = 4, /obj/item/weapon/tool/screwdriver = 12,
 					/obj/item/weapon/tool/crowbar = 12,/obj/item/weapon/tool/wirecutters = 12,/obj/item/weapon/tool/multitool = 12,/obj/item/weapon/tool/wrench = 12,/obj/item/device/t_scanner = 12,
 					/obj/item/weapon/cell/large = 8, /obj/item/weapon/tool/weldingtool = 8,/obj/item/clothing/head/welding = 8,
 					/obj/item/weapon/light/tube = 10,/obj/item/clothing/suit/fire = 4, /obj/item/weapon/stock_parts/scanning_module = 5,/obj/item/weapon/stock_parts/micro_laser = 5,
 					/obj/item/weapon/stock_parts/matter_bin = 5,/obj/item/weapon/stock_parts/manipulator = 5,/obj/item/weapon/stock_parts/console_screen = 5)
 	prices = list(/obj/item/clothing/head/hardhat = 4,
-					/obj/item/weapon/storage/belt/utility = 150,/obj/item/clothing/glasses/meson = 300,/obj/item/clothing/gloves/insulated = 600, /obj/item/weapon/tool/screwdriver = 30,
+					/obj/item/weapon/storage/belt/utility = 150,/obj/item/clothing/glasses/powered/meson = 300,/obj/item/clothing/gloves/insulated = 600, /obj/item/weapon/tool/screwdriver = 30,
 					/obj/item/weapon/tool/crowbar = 30,/obj/item/weapon/tool/wirecutters = 30,/obj/item/weapon/tool/multitool = 40,/obj/item/weapon/tool/wrench = 40,/obj/item/device/t_scanner = 50,
 					/obj/item/weapon/cell/large = 500, /obj/item/weapon/tool/weldingtool = 40,/obj/item/clothing/head/welding = 80,
 					/obj/item/weapon/light/tube = 10,/obj/item/clothing/suit/fire = 150, /obj/item/weapon/stock_parts/scanning_module = 40,/obj/item/weapon/stock_parts/micro_laser = 40,
@@ -1298,7 +1298,7 @@
 
 /obj/machinery/vending/theomat
 	name = "NeoTheology Theo-Mat"
-	desc = "A Neotheology dispensary for disciples and new converts."
+	desc = "A NeoTheology dispensary for disciples and new converts."
 	product_slogans = "Immortality is the reward of the faithful.; Help humanity ascend, join your brethren today!; Come and seek a new life!"
 	product_ads = "Praise!;Pray!;Obey!"
 	icon_state = "teomat"
@@ -1324,18 +1324,18 @@
 	product_slogans = "Print your own gun TODAY!;The future is NOW!;Can't stop the industrial revolution!"
 	product_ads = "Almost free!;Print it yourself!;Don't copy that floppy!"
 	icon_state = "discomat"
-	products = list(/obj/item/weapon/disk/autolathe_disk/blank = 20, /obj/item/weapon/disk/autolathe_disk/basic = 10,
-					/obj/item/weapon/disk/autolathe_disk/devices = 10, /obj/item/weapon/disk/autolathe_disk/toolpack = 10, /obj/item/weapon/disk/autolathe_disk/component = 10,
-					/obj/item/weapon/disk/autolathe_disk/advtoolpack = 5, /obj/item/weapon/disk/autolathe_disk/circuitpack = 5, /obj/item/weapon/disk/autolathe_disk/medical = 20,
-					/obj/item/weapon/disk/autolathe_disk/computer = 10, /obj/item/weapon/disk/autolathe_disk/security = 5, /obj/item/weapon/disk/autolathe_disk/fs_cheap_guns = 5,
-					/obj/item/weapon/disk/autolathe_disk/nonlethal_ammo = 10, /obj/item/weapon/circuitboard/autolathe = 3, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 3, /obj/item/weapon/circuitboard/vending = 10)
-	contraband = list(/obj/item/weapon/disk/autolathe_disk/lethal_ammo = 3, /obj/item/weapon/disk/autolathe_disk/fs_energy_guns = 2)
-	prices = list(/obj/item/weapon/disk/autolathe_disk/blank = 150, /obj/item/weapon/disk/autolathe_disk/basic = 300,
-					/obj/item/weapon/disk/autolathe_disk/devices = 400, /obj/item/weapon/disk/autolathe_disk/toolpack = 400, /obj/item/weapon/disk/autolathe_disk/component = 500,
-					/obj/item/weapon/disk/autolathe_disk/advtoolpack = 1800, /obj/item/weapon/disk/autolathe_disk/circuitpack = 600, /obj/item/weapon/disk/autolathe_disk/medical = 400,
-					/obj/item/weapon/disk/autolathe_disk/computer = 500, /obj/item/weapon/disk/autolathe_disk/security = 600, /obj/item/weapon/disk/autolathe_disk/fs_cheap_guns = 3000,
-					/obj/item/weapon/disk/autolathe_disk/nonlethal_ammo = 700, /obj/item/weapon/circuitboard/autolathe = 700, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 1000,
-					/obj/item/weapon/circuitboard/vending = 500, /obj/item/weapon/disk/autolathe_disk/lethal_ammo = 1200, /obj/item/weapon/disk/autolathe_disk/fs_energy_guns = 4000)
+	products = list(/obj/item/weapon/computer_hardware/hard_drive/portable = 20, /obj/item/weapon/computer_hardware/hard_drive/portable/design/misc = 10,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/devices = 10, /obj/item/weapon/computer_hardware/hard_drive/portable/design/tools = 10, /obj/item/weapon/computer_hardware/hard_drive/portable/design/components = 10,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/adv_tools = 5, /obj/item/weapon/computer_hardware/hard_drive/portable/design/circuits = 5, /obj/item/weapon/computer_hardware/hard_drive/portable/design/medical = 20,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/computer = 10, /obj/item/weapon/computer_hardware/hard_drive/portable/design/security = 5, /obj/item/weapon/computer_hardware/hard_drive/portable/design/fs_cheap_guns = 5,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 10, /obj/item/weapon/circuitboard/autolathe = 3, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 3, /obj/item/weapon/circuitboard/vending = 10)
+	contraband = list(/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 3, /obj/item/weapon/computer_hardware/hard_drive/portable/design/fs_energy_guns = 2)
+	prices = list(/obj/item/weapon/computer_hardware/hard_drive/portable = 50, /obj/item/weapon/computer_hardware/hard_drive/portable/design/misc = 300,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/devices = 400, /obj/item/weapon/computer_hardware/hard_drive/portable/design/tools = 400, /obj/item/weapon/computer_hardware/hard_drive/portable/design/components = 500,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/adv_tools = 1800, /obj/item/weapon/computer_hardware/hard_drive/portable/design/circuits = 600, /obj/item/weapon/computer_hardware/hard_drive/portable/design/medical = 400,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/computer = 500, /obj/item/weapon/computer_hardware/hard_drive/portable/design/security = 600, /obj/item/weapon/computer_hardware/hard_drive/portable/design/fs_cheap_guns = 3000,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 700, /obj/item/weapon/circuitboard/autolathe = 700, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 1000,
+					/obj/item/weapon/circuitboard/vending = 500, /obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 1200, /obj/item/weapon/computer_hardware/hard_drive/portable/design/fs_energy_guns = 4000)
 
 /obj/machinery/vending/custom
 	name = "Custom Vendomat"

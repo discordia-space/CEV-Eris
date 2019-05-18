@@ -20,7 +20,7 @@ obj/item/weapon/gun/projectile/automatic/maxim
 	reload_sound 	= 'sound/weapons/guns/interact/lmg_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/lmg_cock.ogg'
 	fire_sound = 'sound/weapons/guns/fire/lmg_fire.ogg'
-	burst_delay = 2
+	recoil_buildup = 0.3 //machinegun level
 
 	firemodes = list(
 		FULL_AUTO_600,

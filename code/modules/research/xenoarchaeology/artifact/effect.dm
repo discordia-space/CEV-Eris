@@ -104,7 +104,7 @@ proc/GetAnomalySusceptibility(var/mob/living/carbon/human/H)
 	if(istype(H.gloves,/obj/item/clothing/gloves/latex))
 		protected += 0.1
 
-	if(istype(H.glasses,/obj/item/clothing/glasses/science))
+	if(istype(H.glasses,/obj/item/clothing/glasses/powered/science))
 		protected += 0.1
 
 	return 1 - protected
