@@ -168,35 +168,26 @@
 /obj/item/weapon/gun/afterattack(atom/A, mob/living/user, adjacent, params)
 	if(adjacent) return //A is adjacent, is the user, or is on the user's person
 
-	if(!user.aiming)
-		user.aiming = new(user)
+	var/obj/item/weapon/gun/off_hand   //DUAL WIELDING
+	if(ishuman(user) && user.a_intent == "harm")
+		var/mob/living/carbon/human/H = user
+		if(H.r_hand == src && istype(H.l_hand, /obj/item/weapon/gun))
+			off_hand = H.l_hand
+			dual_wielding = TRUE
 
-	if(user && user.client && user.aiming && user.aiming.active && user.aiming.aiming_at != A)
-		PreFire(A,user,params) //They're using the new gun system, locate what they're aiming at.
-		return
-
-	else
-
-		var/obj/item/weapon/gun/off_hand   //DUAL WIELDING
-		if(ishuman(user) && user.a_intent == "harm")
-			var/mob/living/carbon/human/H = user
-			if(H.r_hand == src && istype(H.l_hand, /obj/item/weapon/gun))
-				off_hand = H.l_hand
-				dual_wielding = TRUE
-
-			else if(H.l_hand == src && istype(H.r_hand, /obj/item/weapon/gun))
-				off_hand = H.r_hand
-				dual_wielding = TRUE
-			else
-				dual_wielding = FALSE
-
-			if(off_hand && off_hand.can_hit(user))
-				spawn(1)
-				off_hand.Fire(A,user,params)
+		else if(H.l_hand == src && istype(H.r_hand, /obj/item/weapon/gun))
+			off_hand = H.r_hand
+			dual_wielding = TRUE
 		else
 			dual_wielding = FALSE
 
-		Fire(A,user,params) //Otherwise, fire normally.
+		if(off_hand && off_hand.can_hit(user))
+			spawn(1)
+			off_hand.Fire(A,user,params)
+	else
+		dual_wielding = FALSE
+
+	Fire(A,user,params) //Otherwise, fire normally.
 
 /obj/item/weapon/gun/attack(atom/A, mob/living/user, def_zone)
 	if (A == user && user.targeted_organ == BP_MOUTH && !mouthshoot)

@@ -183,7 +183,6 @@
 		list("loc" = "EAST+1,BOTTOM+14", "icon_state" = "frame0-1"),
 		list("loc" = "EAST+1,BOTTOM+14", "icon_state" = "frame3-1")
 		)
-		//list("loc" = "EAST,BOTTOM+3", "icon_state" = "frame1-8"),
 		//list("loc" = "2,3", "icon_state" = "block",  "hideflag" = TOGGLE_INVENTORY_FLAG),
 
 
@@ -274,11 +273,7 @@
 		"grab"        = list("type" = /obj/screen/fastintent/grab,     "loc" = "14,0"),
 		"damage zone" = list("type" = /obj/screen/zone_sel,   "loc" = "16,0"),
 		"internal"    = list("type" = /obj/screen/internal,   "loc" = "16,14"),
-		"swap hand"   = list("type" = /obj/screen/swap,       "loc" = "8,1"),
-		"toggle gun mode"   = list("type" = /obj/screen/gun/mode,       "loc" = "16,2"),
-		"allow movement"   = list("type" = /obj/screen/gun/move,       "loc" = "16,3"),
-		"allow item use"   = list("type" = /obj/screen/gun/item,       "loc" = "15,2"),
-		"allow radio use"   = list("type" = /obj/screen/gun/radio,       "loc" = "15,3"),
+		"swap hand"   = list("type" = /obj/screen/swap,       "loc" = "8,1")
 		)
 
 	slot_data = list (
