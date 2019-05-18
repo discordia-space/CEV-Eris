@@ -1,0 +1,69 @@
+
+<div class='statusDisplay'>
+	{{if data.currentItem}}
+		<center><b><h2>SCANNING...</h2></b>
+		<hr></hr>
+		<h3>Loaded item: {{:data.currentItem}}</h3></center><br>
+		<div class="itemLabel">
+			Progress:
+		</div>
+		<div class="itemContent">
+			{{:helper.displayBar(data.progress, 0, 100, 'highlight')}}
+		</div>
+
+	{{else}}
+		<center><b><h2>NO ITEM TO SCAN</h2></b></center>
+	{{/if}}
+</div>
+
+<hr>
+</hr>
+
+<center><h3>RULES ({{:data.current_rule_num}}/{{:data.max_rule_num}})</h3></center>
+<hr>
+</hr>
+
+{{for data.rules}}
+	<div class="item">
+		{{if value.accept}}
+			Accept 
+		{{else}}
+			Refuse 
+		{{/if}}
+		the {{:value.sort_type}}: {{:value.amount}} amount of {{:value.value}}
+		{{:helper.link('Remove', 'angle-up', {'remove' : index+1})}}
+	</div>
+{{/for}}
+
+<hr>
+</hr>
+
+{{if data.add_new_rule}}
+	<center><h4>RULE MANAGER</h4></center>
+	<div class="itemLabel"> Sort how: </div>
+	<div class="itemContent">
+		{{:helper.link('Accept', null, {'filter' : 1}, data.new_rule_accept == 1 ? 'disabled' : null)}}
+		{{:helper.link('Refuse', null, {'filter' : 0}, data.new_rule_accept == 0 ? 'disabled' : null)}}
+	</div>
+	<div class="itemLabel"> Sort by: </div>
+	<div class="itemContent">
+		{{:helper.link('Material', null, {'sort_type' : "material"}, data.new_rule_sort == "material" ? 'disabled' : null)}}
+		{{:helper.link('Reagent', null, {'sort_type' : "reagent"}, data.new_rule_sort == "reagent" ? 'disabled' : null)}}
+	</div>
+	<div class="itemLabel"> Sort what: </div>
+	<div class="itemContent">
+		{{:helper.link(!data.new_rule_value ? "empty" : data.new_rule_value, null, {'type_input' : 1})}}
+	</div>
+	<div class="itemLabel"> Sort by amount: </div>
+	<div class="itemContent">
+		{{:helper.link(!data.new_rule_amount ? "none" : data.new_rule_amount, null, {'amount_input' : 1})}}
+	</div>
+	<br>
+	{{:helper.link('Add this rule', 'angle-down', {'add' : 1})}}
+	<br>
+	{{:helper.link('Close', null, {'cancel' : 1})}}
+{{else}}
+	{{:helper.link('Open rule manager', null, {'add_new' : 1})}}
+{{/if}}
+
+
