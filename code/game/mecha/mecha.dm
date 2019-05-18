@@ -1688,10 +1688,12 @@ assassination method if you time it right*/
 	log[log.len] = list("time"=world.timeofday,"message"="[red?"<font color='red'>":null][message][red?"</font>":null]")
 	return log.len
 
-/obj/mecha/proc/log_append_to_last(message as text,red=null)
+/obj/mecha/proc/log_append_to_last(message, red=null)
+	if(!length(log))
+		return
+
 	var/list/last_entry = src.log[src.log.len]
 	last_entry["message"] += "<br>[red?"<font color='red'>":null][message][red?"</font>":null]"
-	return
 
 
 /////////////////
