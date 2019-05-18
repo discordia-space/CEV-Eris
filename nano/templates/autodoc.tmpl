@@ -34,13 +34,13 @@
 	<div class="item">
 		{{if value.internal}}
 			<div class="itemLabel"><b>{{:value.name}}</b></div>
-			<div class="itemContent" style="color:red"><b>Organ damage: {{:value.inner_damage}}</b></div><br>
+			<div class="itemContent" style="color:red"><b>Organ damage: {{:helper.round(value.inner_damage)}}</b></div><br>
 			{{:helper.link(value.damage_picked?'<b>Fix internal damage</b>':'Fix internal damage','', {'toggle' : 'damage', 'id':value.id}, (value.damage && !data.active)  ? null:'disabled')}}
 		{{else}}
 			<div class="itemLabel"><b>{{:value.name}}</b></div>
 			<div class="itemContent">
-				<b style="color:red">Brute damage: {{:value.brute_damage}} </b>
-				<b style="color:orange">Burn damage: {{:value.burn_damage}} </b>
+				<b style="color:red">Brute damage: {{:helper.round(value.brute_damage)}} </b>
+				<b style="color:orange">Burn damage: {{:helper.round(value.burn_damage)}} </b>
 			</div><br>
 			{{:helper.link(value.damage_picked?'<b>Fix damage</b>':'Fix damage','',{'toggle':'damage','id':value.id}, (value.damage && !data.active) ?null:'disabled')}}
 			{{:helper.link(value.wound_picked?'<b>Treat wounds</b>':'Treat wounds','',{'toggle':'wound','id':value.id}, (value.wound && !data.active) ?null:'disabled')}}

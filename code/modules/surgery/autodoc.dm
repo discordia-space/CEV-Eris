@@ -12,10 +12,10 @@
 	var/list/picked_patchnotes = list()
 	var/obj/holder
 
-	var/active = 0
+	var/active = FALSE
 	var/damage_heal_amount = 30
 	var/processing_speed = 30 SECONDS
-	var/current_step = null
+	var/current_step = 1
 	var/start_op_time
 	var/mob/living/carbon/human/patient = null
 	var/list/possible_operations = list(AUTODOC_DAMAGE, AUTODOC_EMBED_OBJECT, AUTODOC_FRACTURE, AUTODOC_OPEN_WOUNDS, AUTODOC_TOXIN, AUTODOC_DIALYSIS)
@@ -24,8 +24,6 @@
 	if(active)
 		to_chat(usr, SPAN_WARNING("Autodoc already in use"))
 		return FALSE
-	start_op_time = world.time
-	active = 1
 	patient = human
 	scanned_patchnotes = new()
 	picked_patchnotes = new()
@@ -72,13 +70,15 @@
 						patchnote.surgery_operations |= AUTODOC_IB
 				else 
 					if(AUTODOC_OPEN_WOUNDS in possible_operations)
-						patchnote.surgery_operations |= AUTODOC_OPEN_WOUNDS
+						if(!wound.is_treated())
+							patchnote.surgery_operations |= AUTODOC_OPEN_WOUNDS
 		if(patchnote.surgery_operations)
 			scanned_patchnotes.Add(patchnote)
 			picked_patchnotes.Add(patchnote.Copy())
-	active = 0
 
 /datum/autodoc/proc/process_note(var/datum/autodoc_patchnote/patchnote)
+	if(!patchnote.surgery_operations)
+		return TRUE
 	var/obj/item/organ/external/external = patchnote.organ
 	if(!patchnote.organ)
 		if(patchnote.surgery_operations & AUTODOC_TOXIN)
@@ -96,9 +96,7 @@
 				patchnote.surgery_operations &= ~AUTODOC_DIALYSIS
 
 	else if(patchnote.surgery_operations & AUTODOC_DAMAGE)
-		world<<"damage"
 		if(istype(patchnote.organ, /obj/item/organ/internal))
-			world<<"internal"
 			var/obj/item/organ/internal/internal = patchnote.organ
 			internal.damage -= damage_heal_amount
 			if(internal.damage < 0) internal.damage = 0
@@ -135,23 +133,30 @@
 				qdel(wound)
 				external.update_damages()
 		patchnote.surgery_operations &= ~AUTODOC_IB
-	return patchnote.surgery_operations == 0
+	return !patchnote.surgery_operations
 
 /datum/autodoc/Process()
 	if(!active)
 		return FALSE
-	if( current_step > picked_patchnotes.len )
+	if(!patient)
 		active = FALSE
+		return FALSE
+	if( current_step > picked_patchnotes.len )
+		stop()
 		scan_user(patient)
-		//TODO: report task is done
-		return
-	if( start_op_time + processing_speed < world.time )
-		if(process_note(picked_patchnotes[current_step]))
-			current_step++
+		return FALSE
+	if(world.time > (start_op_time + processing_speed))
 		start_op_time = world.time
 		patient.updatehealth()
+		if(process_note(picked_patchnotes[current_step]))
+			current_step++
+	return TRUE
 
-/datum/autodoc/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 2, var/datum/topic_state/state = GLOB.default_state)
+/datum/autodoc/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 2, var/datum/topic_state/state)
+	if(!patient)
+		if(ui)
+			ui.close()
+		return
 	var/list/data = list()
 
 	data["active"] = active
@@ -216,21 +221,24 @@
 		ui.set_auto_update_layout(TRUE)
 
 /datum/autodoc/proc/stop()
-	active = 0
-	picked_patchnotes = list()
+	patient.UpdateDamageIcon()
+	active = FALSE
 
 /datum/autodoc/Topic(href, href_list)
 	if(..()) return TRUE
 	if(href_list["scan"])
 		scan_user(patient)
+		start_op_time = world.time
+		current_step = 1
 	if(href_list["picked"])
 		current_step = 1
 		active = TRUE
 	if(href_list["full"])
 		scan_user(patient)
-		current_step = 1
-		active = TRUE
 		picked_patchnotes = scanned_patchnotes.Copy()
+		current_step = 1
+		start_op_time = world.time
+		active = TRUE
 	if(href_list["stop"])
 		stop()
 	if(href_list["toggle"])
