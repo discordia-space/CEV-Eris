@@ -1,9 +1,6 @@
-// Pretty much everything here is stolen from the dna scanner FYI
-
-
-/obj/machinery/autodoc
+obj/machinery/autodoc
 	var/mob/living/carbon/occupant
-	var/datum/autodoc/autodoc_processor
+	var/datum/autodoc/capitalist_autodoc/autodoc_processor
 	var/locked
 	name = "Autodoc"
 	icon = 'icons/obj/Cryogenic2.dmi'
@@ -31,9 +28,6 @@
 
 	if (usr.incapacitated())
 		return
-	if (locked)
-		to_chat(usr, SPAN_WARNING("Autodoc is locked down!"))
-		return
 	src.go_out()
 	add_fingerprint(usr)
 	return
@@ -58,14 +52,16 @@
 /obj/machinery/autodoc/proc/go_out()
 	if (!occupant || locked)
 		return
+	if(autodoc_processor.active)
+		to_chat(usr, SPAN_WARNING("Autodoc is locked down! Abort all oberations if you need to go out or wait untill all operations would be done."))
+		return
 	for(var/obj/O in src)
 		O.forceMove(loc)
 	occupant.forceMove(loc)
 	occupant.reset_view()
 	occupant.unset_machine()
 	occupant = null
-	autodoc_processor.stop()
-	autodoc_processor.patient = null
+	autodoc_processor.set_patient(null)
 	update_use_power(1)
 	update_icon()
 
@@ -74,8 +70,7 @@
 	src.occupant = L
 	update_icon()
 	src.add_fingerprint(usr)
-	autodoc_processor.patient = L
-	autodoc_processor.scan_user(L)
+	autodoc_processor.set_patient(L)
 	ui_interact(L)
 	update_use_power(2)
 	L.set_machine(src)
@@ -117,10 +112,10 @@
 	return
 /obj/machinery/autodoc/Process()
 	if(stat & (NOPOWER|BROKEN))
+		autodoc_processor.stop()
 		return
 	if(occupant)
-		ui_interact(occupant)
-		locked = autodoc_processor.Process()
+		locked = autodoc_processor.active
 
 /obj/machinery/autodoc/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open = 2, datum/topic_state/state =  GLOB.default_state)
 	return autodoc_processor.ui_interact(user, ui_key, ui, force_open, state)

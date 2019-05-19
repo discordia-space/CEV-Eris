@@ -399,7 +399,7 @@
 /obj/item/rig_module/autodoc/engage()
 	if(!..())
 		return 0
-	autodoc_processor.scan_user(holder.wearer)
+	autodoc_processor.set_patient(holder.wearer)
 	ui_interact(usr)
 	return 1
 /obj/item/rig_module/autodoc/Topic(href, href_list)
@@ -407,9 +407,6 @@
 /obj/item/rig_module/autodoc/Process()
 	if(..())
 		autodoc_processor.stop()
-	active = autodoc_processor.active
-	if(active)
-		autodoc_processor.Process()
 	
 /obj/item/rig_module/autodoc/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nano_ui/master_ui, datum/topic_state/state = GLOB.deep_inventory_state)
 	autodoc_processor.ui_interact(user, ui_key, ui, force_open, state = GLOB.deep_inventory_state)
