@@ -123,6 +123,7 @@ obj/machinery/autodoc
 		return
 	if(occupant)
 		locked = autodoc_processor.active
+		ui_interact(occupant)
 
 /obj/machinery/autodoc/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open = 2, datum/topic_state/state =  GLOB.default_state)
 	return autodoc_processor.ui_interact(user, ui_key, ui, force_open, state)

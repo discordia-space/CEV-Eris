@@ -42,8 +42,7 @@
 	var/start_op_time
 	var/mob/living/carbon/human/patient = null
 	var/list/possible_operations = list(AUTODOC_DAMAGE, AUTODOC_EMBED_OBJECT, AUTODOC_FRACTURE, AUTODOC_OPEN_WOUNDS, AUTODOC_TOXIN, AUTODOC_DIALYSIS, AUTODOC_BLOOD)
-/datum/autodoc/proc/surgery_check()
-	return TRUE
+
 /datum/autodoc/proc/set_patient(var/mob/living/carbon/human/human = null)
 	patient = human
 /datum/autodoc/proc/scan_user()
@@ -182,12 +181,10 @@
 			current_step++
 		else if(process_note(picked_patchnotes[current_step]))
 			current_step++
-	else
-		if(!surgery_check())
-			current_step++
-			world << "autodoc failure"
-			//there goes some failure
-
+	
+/datum/autodoc/proc/fail()
+	current_step++
+	
 /datum/autodoc/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 2, var/datum/topic_state/state)
 	if(!patient)
 		if(ui)
@@ -292,7 +289,6 @@
 			while(active)
 				sleep(1 SECOND)
 				Process()
-				ui_interact(patient)
 	
 
 /datum/autodoc/Topic(href, href_list)
