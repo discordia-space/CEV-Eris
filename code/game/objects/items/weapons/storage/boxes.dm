@@ -719,10 +719,10 @@
 	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
 
 /obj/item/weapon/storage/box/autolathe_blank
-	name = "Autolathe Diskette Box"
+	name = "data disk box"
 	icon_state = "disk_kit"
 
-/obj/item/weapon/storage/box/autolathe_blank/New()
-	..()
+/obj/item/weapon/storage/box/autolathe_blank/Initialize()
+	. = ..()
 	for(var/i in 1 to 7)
-		new /obj/item/weapon/disk/autolathe_disk/blank(src)
+		new /obj/item/weapon/computer_hardware/hard_drive/portable(src)

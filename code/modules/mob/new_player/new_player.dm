@@ -300,6 +300,8 @@
 		if(job && IsJobAvailable(job.title))
 			if(job.minimum_character_age && (client.prefs.age < job.minimum_character_age))
 				continue
+			if(job.is_religion_restricted(client.prefs.religion))
+				continue
 			var/active = 0
 			// Only players with the job assigned and AFK for less than 10 minutes count as active
 			for(var/mob/M in GLOB.player_list) if(M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 * 60 * 10)
@@ -339,15 +341,6 @@
 				|| (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
 				new_character.add_language(lang)
 
-	if(SSticker.random_players)
-		new_character.gender = pick(MALE, FEMALE)
-		client.prefs.real_name = random_name(new_character.gender)
-		client.prefs.randomize_appearance_and_body_for(new_character)
-	else
-		client.prefs.copy_to(new_character)
-
-	sound_to(src, sound(null, repeat = 0, wait = 0, volume = 85, channel = GLOB.lobby_sound_channel))
-
 	if(mind)
 		mind.active = 0//we wish to transfer the key manually
 		mind.original = new_character
@@ -359,6 +352,15 @@
 				R.info = client.prefs.relations_info[T]
 			mind.gen_relations_info = client.prefs.relations_info["general"]
 		mind.transfer_to(new_character)					//won't transfer key since the mind is not active
+
+	if(SSticker.random_players)
+		new_character.gender = pick(MALE, FEMALE)
+		client.prefs.real_name = random_name(new_character.gender)
+		client.prefs.randomize_appearance_and_body_for(new_character)
+	else
+		client.prefs.copy_to(new_character)
+
+	sound_to(src, sound(null, repeat = 0, wait = 0, volume = 85, channel = GLOB.lobby_sound_channel))
 
 	new_character.name = real_name
 	new_character.dna.ready_dna(new_character)

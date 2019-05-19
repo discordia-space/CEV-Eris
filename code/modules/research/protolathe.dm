@@ -67,7 +67,7 @@
 		T += M.rating
 	speed = T / 2
 
-/obj/machinery/r_n_d/protolathe/dismantle()
+/obj/machinery/r_n_d/protolathe/on_deconstruction()
 	for(var/obj/I in component_parts)
 		if(istype(I, /obj/item/weapon/reagent_containers/glass/beaker))
 			reagents.trans_to_obj(I, reagents.total_volume)

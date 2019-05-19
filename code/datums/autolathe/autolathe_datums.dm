@@ -18,6 +18,9 @@
 
 	var/list/ui_data = null			//Pre-generated UI data, to be sent into NanoUI/TGUI interfaces.
 
+	// An MPC file containing this design. You can use it directly, but only if it doesn't interact with the rest of MPC system. If it does, use copies.
+	var/datum/computer_file/binary/design/file
+
 
 //These procs are used in subtypes for assigning names and descriptions dynamically
 /datum/design/proc/AssembleDesignInfo()
@@ -131,6 +134,9 @@
 
 		ui_data["chemicals"] = RS
 
+
+/datum/design/ui_data()
+	return ui_data
 
 //Returns a new instance of the item for this design
 //This is to allow additional initialization to be performed, including possibly additional contructor arguments.

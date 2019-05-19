@@ -79,7 +79,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 		t += materials[f]
 	return t
 
-/obj/machinery/r_n_d/circuit_imprinter/dismantle()
+/obj/machinery/r_n_d/circuit_imprinter/on_deconstruction()
 	for(var/obj/I in component_parts)
 		if(istype(I, /obj/item/weapon/reagent_containers/glass/beaker))
 			reagents.trans_to_obj(I, reagents.total_volume)

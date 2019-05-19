@@ -40,7 +40,7 @@
 		use_power = 1
 	update_icon()
 
-/obj/machinery/mecha_part_fabricator/dismantle()
+/obj/machinery/mecha_part_fabricator/on_deconstruction()
 	for(var/f in materials)
 		eject_materials(f, -1)
 	..()

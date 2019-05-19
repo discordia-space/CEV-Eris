@@ -1,0 +1,51 @@
+<!-- 
+Title: Chemical Heater 
+Used In File(s): \code\modules\reagents\machinery\chem_heater.dm
+ -->
+<div class="item">
+	<div class="itemLabel">
+		Power:
+	</div>
+	<div class="itemContent">
+		{{:helper.link("On", 'power-off', {'power' : 1}, data.on ? 'selected' : null)}}
+		{{:helper.link("Off", 'close', {'power' : 1}, !data.on ? 'selected' : null)}}
+	</div>
+</div>
+<div class="item">
+	<div class="itemLabel">
+		Target:
+	</div>
+	<div class="itemContent">
+		{{:helper.link(helper.fixed(data.target_temperature) + ' K', 'pencil', {'temperature' : 1, 'target' : 'input'})}}
+	</div>
+</div>
+<div class="item">&nbsp;</div>
+<div class="item">
+	<div class="itemLabel">
+		Beaker
+	</div>
+	<div class="itemContent">
+		{{:helper.link('Eject Beaker', 'eject', {'eject' : 1}, data.beaker ? null : 'disabled', 'floatRight')}}
+	</div>
+</div>
+<div class="statusDisplay" style="min-height: 180px;">
+	<div class="item">
+		<div class="itemContent" style="width: 100%;">
+			{{if data.beaker}}
+				Volume:&nbsp;{{:helper.fixed(data.beaker.total_volume)}}&nbsp;/&nbsp;{{:data.beaker.maximum_volume}}<br>
+				Temperature:&nbsp;{{:helper.fixed(data.beaker.chem_temp)}} K<br>
+				{{for data.beaker.contents}}
+					<span class="highlight">{{:helper.fixed(value.volume)}} units of {{:value.name}}</span><br>
+				{{empty}}
+					<span class="bad">
+						Beaker is empty
+					</span>
+				{{/for}}
+			{{else}}
+				<span class="average"><i>
+					No beaker loaded
+				</i></span>
+			{{/if}}
+		</div>
+	</div>
+</div>
