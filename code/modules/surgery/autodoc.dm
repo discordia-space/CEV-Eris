@@ -332,16 +332,12 @@
 	data["blood_cost"] = AUTODOC_BLOOD_COST
 
 	return data
-/datum/autodoc/capitalist_autodoc/set_patient(var/mob/living/carbon/human/human = null)
-	..()
-	login()
-
 /datum/autodoc/capitalist_autodoc/proc/charge(var/amount = 100)
 	if(linked_account && !linked_account.is_valid())
 		to_chat(patient, "Autodoc is out of service. Error code: #0x09")
 		return FALSE
 	if(!patient_account || !patient_account.is_valid())
-		to_chat(patient, SPAN_WARNING("Need your account, you injured piece of shit."))
+		to_chat(patient, SPAN_WARNING("Proper banking account is needed."))
 		return
 	if(amount > patient_account.money)
 		to_chat(patient, SPAN_WARNING("Insufficient funds."))
@@ -391,12 +387,10 @@
 			patient_account = attempt_account_access(id_card.associated_account_number, attempt_pin, 2)
 /datum/autodoc/capitalist_autodoc/start()
 	if(!charge(processing_cost))
-		to_chat(patient, SPAN_WARNING("Get me more money, peasant."))
 		return
 	..()
 /datum/autodoc/capitalist_autodoc/scan_user(mob/living/carbon/human/human)
 	if(!charge(AUTODOC_SCAN_COST))
-		to_chat(patient, SPAN_WARNING("Need your account, you injured piece of shit."))
 		return
 	. = ..()
 

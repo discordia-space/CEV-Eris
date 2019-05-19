@@ -6,14 +6,13 @@
 	{{/if}}
     {{if data.active}}
     <div class='notice'>SURGERY IN PROCESS</div>
-	<div class="itemContent" style="margin-left:6px">{{:helper.displayBar(data.progress, 0, 1)}}</div>
-	<br>
     {{/if}}
 	{{:helper.link('Scan: '+data.scan_cost,            '',		{'scan':1},		data.active? 'disabled':null)}}
 	{{:helper.link('Process all: '+data.total_cost,    '',		{'full':1},     data.active? 'disabled':null)}}
 	{{:helper.link('Process picked: '+data.custom_cost,'check',	{'picked':1},   data.active? 'disabled':null, 'greenButton')}}
 	{{:helper.link('Abort',                            '',		{'stop':1},     data.active? null:'disabled', data.active?'redButton':null)}}
 	<br>
+	{{if data.active}}{{:helper.displayBar(data.progress, 0, 1)}}<br>{{/if}}
 	<div class="item">
         <h3>Overall Status</h3>
         <div class="itemLabel">Brute damage: <div style="float:right; margin-right:6px"><b>{{:helper.round(data.over_brute)}}</b></div></div>
