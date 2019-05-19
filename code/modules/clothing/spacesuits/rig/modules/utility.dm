@@ -380,7 +380,6 @@
 /obj/item/rig_module/autodoc
 	name = "autodoc module"
 	desc = "A complex surgery system for almost all your needs."
-	icon_state = "autodoc"
 	use_power_cost = 10
 	selectable = 0
 	usable = 1

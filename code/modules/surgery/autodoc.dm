@@ -1,3 +1,24 @@
+#define AUTODOC_DAMAGE          1
+#define AUTODOC_EMBED_OBJECT	1 << 1
+#define AUTODOC_FRACTURE 		1 << 2
+#define AUTODOC_IB				1 << 3
+#define AUTODOC_OPEN_WOUNDS		1 << 4
+
+#define AUTODOC_BLOOD			1 << 5
+#define AUTODOC_TOXIN			1 << 6
+#define AUTODOC_DIALYSIS		1 << 7
+#define AUTODOC_DIALYSIS_AMOUNT 5
+
+#define AUTODOC_SCAN_COST           200
+#define AUTODOC_DAMAGE_COST         800
+#define AUTODOC_EMBED_OBJECT_COST	1000
+#define AUTODOC_FRACTURE_COST       1200
+#define AUTODOC_IB_COST				1200
+#define AUTODOC_OPEN_WOUNDS_COST    600
+#define AUTODOC_BLOOD_COST          800
+#define AUTODOC_TOXIN_COST			600
+#define AUTODOC_DIALYSIS_COST		1000
+
 /datum/autodoc_patchnote
 	var/surgery_operations = 0
 	var/obj/item/organ/organ = null
@@ -14,13 +35,15 @@
 	var/template_name = "autodoc.tmpl"
 
 	var/active = FALSE
+	var/one_op_run = FALSE
 	var/damage_heal_amount = 30
 	var/processing_speed = 30 SECONDS
 	var/current_step = 1
 	var/start_op_time
 	var/mob/living/carbon/human/patient = null
 	var/list/possible_operations = list(AUTODOC_DAMAGE, AUTODOC_EMBED_OBJECT, AUTODOC_FRACTURE, AUTODOC_OPEN_WOUNDS, AUTODOC_TOXIN, AUTODOC_DIALYSIS, AUTODOC_BLOOD)
-
+/datum/autodoc/proc/surgery_check()
+	return TRUE
 /datum/autodoc/proc/set_patient(var/mob/living/carbon/human/human = null)
 	patient = human
 /datum/autodoc/proc/scan_user()
@@ -144,7 +167,7 @@
 				qdel(wound)
 				external.update_damages()
 		patchnote.surgery_operations &= ~AUTODOC_IB
-	return !patchnote.surgery_operations
+	return (one_op_run || !patchnote.surgery_operations)
 
 /datum/autodoc/Process()
 	if(!patient)
@@ -155,8 +178,15 @@
 	if(world.time > (start_op_time + processing_speed))
 		start_op_time = world.time
 		patient.updatehealth()
-		if(process_note(picked_patchnotes[current_step]))
+		if(one_op_run)
 			current_step++
+		else if(process_note(picked_patchnotes[current_step]))
+			current_step++
+	else
+		if(!surgery_check())
+			current_step++
+			world << "autodoc failure"
+			//there goes some failure
 
 /datum/autodoc/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 2, var/datum/topic_state/state)
 	if(!patient)
@@ -302,12 +332,17 @@
 			picked_patchnotes[id].surgery_operations |= op
 	return TRUE
 	
+
+
 /datum/autodoc/capitalist_autodoc
 	var/datum/money_account/linked_account
 	var/datum/money_account/patient_account
 	var/total_cost = 0
 	var/custom_cost = 0
 	var/processing_cost = 0
+
+	processing_speed = 20 SECONDS
+	one_op_run = TRUE
 /datum/autodoc/capitalist_autodoc/New()
 	. = ..()
 	linked_account = department_accounts[DEPARTMENT_MEDICAL]
@@ -405,3 +440,24 @@
 	if(href_list["login"])
 		login()
 		. = TRUE
+
+#undef AUTODOC_DAMAGE
+#undef AUTODOC_EMBED_OBJECT
+#undef AUTODOC_FRACTURE
+#undef AUTODOC_IB
+#undef AUTODOC_OPEN_WOUNDS
+
+#undef AUTODOC_BLOOD
+#undef AUTODOC_TOXIN
+#undef AUTODOC_DIALYSIS
+#undef AUTODOC_DIALYSIS_AMOUNT
+
+#undef AUTODOC_SCAN_COST
+#undef AUTODOC_DAMAGE_COST
+#undef AUTODOC_EMBED_OBJECT_COST
+#undef AUTODOC_FRACTURE_COST
+#undef AUTODOC_IB_COST
+#undef AUTODOC_OPEN_WOUNDS_COST
+#undef AUTODOC_BLOOD_COST
+#undef AUTODOC_TOXIN_COST
+#undef AUTODOC_DIALYSIS_COST

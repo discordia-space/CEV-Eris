@@ -1,6 +1,6 @@
 obj/machinery/autodoc
 	var/mob/living/carbon/occupant
-	var/datum/autodoc/capitalist_autodoc/autodoc_processor
+	var/datum/autodoc/autodoc_processor
 	var/locked
 	name = "Autodoc"
 	icon = 'icons/obj/Cryogenic2.dmi'
@@ -8,18 +8,25 @@ obj/machinery/autodoc
 	density = 1
 	anchored = 1
 
+	circuit = /obj/item/weapon/circuitboard/autodoc
 	use_power = 1
 	idle_power_usage = 60
 	active_power_usage = 10000
 /obj/machinery/autodoc/New()
 	. = ..()
-	autodoc_processor = new()
+	autodoc_processor = new/datum/autodoc/capitalist_autodoc()
 	autodoc_processor.holder = src
 /obj/machinery/autodoc/relaymove(mob/user as mob)
 	if (user.stat)
 		return
 	src.go_out()
 	return
+/obj/machinery/autodoc/attackby(obj/item/I, mob/living/user)
+	if(default_deconstruction(I, user))
+		return
+	if(default_part_replacement(I, user))
+		return
+	..()
 
 /obj/machinery/autodoc/verb/eject()
 	set src in oview(1)
@@ -121,3 +128,10 @@ obj/machinery/autodoc
 	return autodoc_processor.ui_interact(user, ui_key, ui, force_open, state)
 /obj/machinery/autodoc/Topic(href, href_list)
 	return autodoc_processor.Topic(href, href_list)
+
+/obj/machinery/autodoc/RefreshParts()
+	..()
+	var/new_speed = 30 SECONDS
+	for(var/obj/item/weapon/stock_parts/P in component_parts)
+		new_speed -= 1 SECOND
+	if(autodoc_processor) autodoc_processor.processing_speed = new_speed
