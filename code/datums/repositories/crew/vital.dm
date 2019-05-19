@@ -67,6 +67,10 @@
 					crew_data["pulse_span"] = "average"
 				if(PULSE_THREADY)
 					crew_data["pulse_span"] = "bad"
+		else if(BP_IS_ROBOTIC(O))
+			crew_data["true_pulse"] = -1
+			crew_data["pulse_span"] = "highlight"
+			crew_data["pulse"] = "synthetic"
 
 	crew_data["pressure"] = "N/A"
 	crew_data["true_oxygenation"] = -1
