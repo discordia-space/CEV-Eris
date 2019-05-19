@@ -2,8 +2,7 @@
 
 	var/list/equip_slots = list() // Checked by mob_can_equip().
 	var/list/ProcessHUD = list("health","nutrition","bodytemp","pressure","toxin","oxygen","fire", "throw","pull",
-	"resist","drop","m_intent","equip","intent","help","harm","grab","disarm","damage zone", "internal","swap hand",
-	"toggle gun mode","allow movement","allow item use","allow radio use","toggle invetory")
+	"resist","drop","m_intent","equip","intent","help","harm","grab","disarm","damage zone", "internal","swap hand","toggle invetory")
 	var/icon              // If set, overrides ui_style.
 	//var/has_a_intent = 1  // Set to draw intent box.
 	//var/has_m_intent = 1  // Set to draw move intent box.
