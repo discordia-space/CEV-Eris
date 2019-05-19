@@ -127,10 +127,6 @@
 		"damage zone" = list("type" = /obj/screen/zone_sel,   "loc" = "EAST+1,BOTTOM-1", "minloc" = "RIGHT,1", "background" = "back1"),
 		"internal"    = list("type" = /obj/screen/internal,   "loc" = "EAST+1,BOTTOM+13", "minloc" = "RIGHT,15", "background" = "back1"),
 		"swap hand"   = list("type" = /obj/screen/swap,       "loc" = "8,1", "minloc" = "7,2"),
-		"toggle gun mode"   = list("type" = /obj/screen/gun/mode,      "loc" = "EAST+1,BOTTOM+1", "minloc" = "RIGHT,3", "background" = "back1"),
-		"allow movement"   = list("type" = /obj/screen/gun/move,       "loc" = "EAST+1,BOTTOM+2", "minloc" = "RIGHT,4", "background" = "back1"),
-		"allow item use"   = list("type" = /obj/screen/gun/item,       "loc" = "EAST,BOTTOM+1", "minloc" = "RIGHT-1,3", "background" = "back1"),
-		"allow radio use"   = list("type" = /obj/screen/gun/radio,      "loc" = "EAST,BOTTOM+2", "minloc" = "RIGHT-1,4", "background" = "back1"),
 		"toggle invetory"   = list("type" = /obj/screen/toggle_invetory,       "loc" = "2,0", "minloc" = "1,1", "background" = "back1")
 		)
 
@@ -171,7 +167,6 @@
 		list("loc" = "12,0", "icon_state" = "frame3-2"),
 		list("loc" = "12,0", "icon_state" = "frame0-2"),
 		list("loc" = "12,0", "icon_state" = "frame0-3"),
-		list("loc" = "EAST,BOTTOM+3", "icon_state" = "frame1-8"),
 		list("loc" = "EAST+1,BOTTOM+3", "icon_state" = "frame1-1"),
 		list("loc" = "EAST+1,BOTTOM+3", "icon_state" = "frame3-3"),
 		list("loc" = "EAST+1,BOTTOM+3", "icon_state" = "frame0-4"),
@@ -274,11 +269,7 @@
 		"grab"        = list("type" = /obj/screen/fastintent/grab,     "loc" = "14,0"),
 		"damage zone" = list("type" = /obj/screen/zone_sel,   "loc" = "16,0"),
 		"internal"    = list("type" = /obj/screen/internal,   "loc" = "16,14"),
-		"swap hand"   = list("type" = /obj/screen/swap,       "loc" = "8,1"),
-		"toggle gun mode"   = list("type" = /obj/screen/gun/mode,       "loc" = "16,2"),
-		"allow movement"   = list("type" = /obj/screen/gun/move,       "loc" = "16,3"),
-		"allow item use"   = list("type" = /obj/screen/gun/item,       "loc" = "15,2"),
-		"allow radio use"   = list("type" = /obj/screen/gun/radio,       "loc" = "15,3"),
+		"swap hand"   = list("type" = /obj/screen/swap,       "loc" = "8,1")
 		)
 
 	slot_data = list (
