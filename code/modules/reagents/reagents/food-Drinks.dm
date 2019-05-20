@@ -1573,8 +1573,8 @@ datum/reagent/ethanol/Gut_Punch
 	reagent_state = LIQUID
 	color = "#d3ba47"
 	strength = 12
-	agony_dose = 15
-	agony_amount = 2
+	var/agony_dose = 5
+	var/agony_amount = 2
 
 	glass_icon_state = "Gut_Punchglass"
 	glass_name = "Gut Punch"
@@ -1595,8 +1595,8 @@ datum/reagent/ethanol/Strong_Gut_Punch
 	reagent_state = LIQUID
 	color = "#d3ba47"
 	strength = 24
-	agony_dose = 10
-	agony_amount = 4
+	var/agony_dose = 5
+	var/agony_amount = 2
 
 	glass_icon_state = "Gut_Punchglass"
 	glass_name = "Gut Punch"
@@ -1617,8 +1617,8 @@ datum/reagent/ethanol/Very_Strong_Gut_Punch
 	reagent_state = LIQUID
 	color = "#d3ba47"
 	strength = 36
-	agony_dose = 5
-	agony_amount = 6
+	var/agony_dose = 5
+	var/agony_amount = 2
 
 
 	glass_icon_state = "Gut_Punchglass"
@@ -1840,10 +1840,10 @@ datum/reagent/ethanol/Suplex
 	reagent_state = LIQUID
 	color = "#dda430"
 	strength = 60
-	agony_dose = 5
-	agony_amount = 2
-	discomfort_message = "<span class='danger'>Your insides feel uncomfortably hot!</span>"
-	slime_temp_adj = 10
+	var/agony_dose = 5
+	var/agony_amount = 2
+	var/discomfort_message = "<span class='danger'>Your insides feel uncomfortably hot!</span>"
+	var/slime_temp_adj = 10
 
 	glass_icon_state = "Suplexglass"
 	glass_name = "Suplex"
