@@ -1485,7 +1485,7 @@ datum/reagent/ethanol/Cobalt_Velvet
 	glass_center_of_mass = list("x"=16, "y"=7)
 
 datum/reagent/ethanol/Virgin_Crevice_Spike
-	name = "Vrgin Crevice Spike"
+	name = "Virgin Crevice Spike"
 	id = "Virgin_Crevice_Spike"
 	description = "It will knock the drunkenness out of you or knock you out cold."
 	taste_description = "sour and manly"
