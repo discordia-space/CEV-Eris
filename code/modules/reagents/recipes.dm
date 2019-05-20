@@ -2079,3 +2079,241 @@
 	result = "luminol"
 	required_reagents = list("hydrogen" = 2, "carbon" = 2, "ammonia" = 2)
 	result_amount = 6
+
+/datum/chemical_reaction/Bad_Touch
+	name = "Bad Touch"
+	id = "Bad_Touch"
+	result = "Bad_Touch"
+	required_reagents = list("Bronson_Extract" = 1, "Powdered_Delta" = 1, "Flanergide" = 2, "Karmotrine" = 1, "ice" = 1)
+	result_amount = 6
+
+/datum/chemical_reaction/SynthBeer 
+	name = "SynthBeer"
+	id = "SynthBeer"
+	result = "SynthBeer"
+	required_reagents = list("Adelhyde" = 1, "Bronson_Extract" = 2, "Powdered_Delta" = 1, "Karmotrine" = 4, "Flanergide" = 1)
+	result_amount = 9
+
+/datum/chemical_reaction/Bleeding_Jane
+	name = "Bleeding Jane"
+	id = "Bleeding_Jane"
+	result = "Bleeding_Jane"
+	required_reagents = list( "Bronson_Extract" = 1, "Powdered_Delta" = 3, "Flanergide" = 3)
+	result_amount = 7
+
+/datum/chemical_reaction/Bloom_Light
+	name = "Bloom Light"
+	id = "Bloom_Light"
+	result = "Bloom_Light"
+	required_reagents = list("Adelhyde" = 4, "Powdered_Delta" = 1, "Karmotrine" = 3, "Flanergide" = 2, "ice" = 1)
+	result_amount = 11
+
+/datum/chemical_reaction/Brandtini
+	name = "Brandtini"
+	id = "Brandtini"
+	result = "Brandtini"
+	required_reagents = list("Adelhyde" = 6, "Powdered_Delta" = 3, "Karmotrine" = 1)
+	result_amount = 10
+
+/datum/chemical_reaction/Virgin_Blue_Fairy
+	name = "Virgin Blue Fairy"
+	id = "Virgin_Blue_Fairy"
+	result = "Virgin_Blue_Fairy"
+	required_reagents = list("Adelhyde" = 4, "Flanergide" = 1)
+	result_amount = 5
+
+/datum/chemical_reaction/Blue_Fairy
+	name = "Blue Fairy"
+	id = "Strong_Blue_Fairy"
+	result = "Strong_Blue_Fairy"
+	required_reagents = list("Virgin_Blue_Fairy" = 3, "Karmotrine" = 1,)
+	result_amount = 4
+
+/datum/chemical_reaction/Strong_Blue_Fairy
+	name = "Strong Blue Fairy"
+	id = "Strong_Blue_Fairy"
+	result = "Strong_Blue_Fairy"
+	required_reagents = list("Blue_Fairy" = 3, "Karmotrine" = 1,)
+	result_amount = 4
+
+/datum/chemical_reaction/Cobalt_Velvet
+	name = "Cobalt Velvet"
+	id = "Cobalt_Velvet"
+	result = "Cobalt_Velvet"
+	required_reagents = list("Adelhyde" = 2, "ice" = 2, "Karmotrine" = 5, "Flanergide" = 3)
+	result_amount = 12
+
+/datum/chemical_reaction/Virgin_Crevice_Spike
+	name = "Virgin Crevice Spike"
+	id = "Virgin_Crevice_Spike"
+	result = "Virgin_Crevice_Spike"
+	required_reagents = list("Powdered_Delta" = 1, "Flanergide" = 2)
+	result_amount = 6
+
+/datum/chemical_reaction/Crevice_Spike
+	name = "Crevice Spike"
+	id = "Crevice_Spike"
+	result = "Crevice_Spike"
+	required_reagents = list("Virgin_Crevice_Spike" = 3, "Karmotrine" = 1)
+	result_amount = 4
+
+/datum/chemical_reaction/Strong_Crevice_Spike
+	name = "Strong Crevice Spike"
+	id = "Strong_Crevice_Spike"
+	result = "Strong_Crevice_Spike"
+	required_reagents = list("Crevice_Spike" = 3, "Karmotrine" = 1)
+	result_amount = 4
+
+/datum/chemical_reaction/Fringe_Weaver
+	name = "Fringe Weaver"
+	id = "Fringe_Weaver"
+	result = "Fringe_Weaver"
+	required_reagents = list("Adelhyde" = 9, "Karmotrine" = 1)
+	result_amount = 10
+
+/datum/chemical_reaction/Frothy_Water
+	name = "Frothy Water"
+	id = "Frothy_Water"
+	result = "Frothy_Water"
+	required_reagents = list("Adelhyde" = 1, "Bronson_Extract" = 1, "Powdered_Delta" = 1, "Flanergide" = 1)
+	result_amount = 4
+
+/datum/chemical_reaction/Grizzly_Temple
+	name = "Grizzly Temple"
+	id = "Grizzly_Temple"
+	result = "Grizzly_Temple"
+	required_reagents = list("Adelhyde" = 3, "Bronson_Extract" = 3, "Powdered_Delta" = 3, "Karmotrine" = 1)
+	result_amount = 10
+
+/datum/chemical_reaction/Gut_Punch
+	name = "Gut Punch"
+	id = "Gut_Punch"
+	result = "Gut_Punch"
+	required_reagents = list("Bronson_Extract" = 5, "Flanergide" = 1)
+	result_amount = 6
+
+/datum/chemical_reaction/Strong_Gut_Punch
+	name = "Strong Gut Punch"
+	id = "Strong_Gut_Punch"
+	result = "Strong_Gut_Punch"
+	required_reagents = list("Gut_Punch" = 3, "Karmotrine" = 1)
+	result_amount = 4
+
+/datum/chemical_reaction/Very_Strong_Gut_Punch
+	name = "Very Strong Gut Punch"
+	id = "Very_Strong_Gut_Punch"
+	result = "Very_Strong_Gut_Punch"
+	required_reagents = list("Strong_Gut_Punch" = 3, "Karmotrine" = 1)
+	result_amount = 4
+
+/datum/chemical_reaction/Marsblast
+	name = "Marsblast"
+	id = "Marsblast"
+	result = "Marsblast"
+	required_reagents = list("Bronson_Extract" = 6, "Powdered_Delta" = 1, "Karmotrine" = 2, "Flanergide" = 4)
+	result_amount = 13
+
+/datum/chemical_reaction/Mercuryblast
+	name = "Mercuryblast"
+	id = "Mercuryblast"
+	result = "Mercuryblast"
+	required_reagents = list("Adelhyde" = 1, "Bronson_Extract" = 6, "Powdered_Delta" = 1, "Karmotrine" = 2, "ice" = 2)
+	result_amount = 11
+
+/datum/chemical_reaction/Piano_Man
+	name = "Piano Man"
+	id = "Piano_Man"
+	result = "Piano_Man"
+	required_reagents = list("Adelhyde" = 2, "Bronson_Extract" = 3, "Powdered_Delta" = 5, "Karmotrine" = 3, "Flanergide" = 5, "ice" = 1)
+	result_amount = 14
+
+/datum/chemical_reaction/Piano_Woman
+	name = "Piano Woman"
+	id = "Piano_Woman"
+	result = "Piano_Woman"
+	required_reagents = list("Adelhyde" = 5, "Bronson_Extract" = 5, "Powdered_Delta" = 2, "Karmotrine" = 3, "Flanergide" = 3)
+	result_amount = 18
+
+/datum/chemical_reaction/Pile_Driver
+	name = "Pile Driver"
+	id = "Pile_Driver"
+	result = "Pile_Driver"
+	required_reagents = list("Bronson_Extract" = 3, "Karmotrine" = 4, "Flanergide" = 3)
+	result_amount = 10
+
+/datum/chemical_reaction/Virgin_Sparkle_Star
+	name = "Virgin Sparkle Star"
+	id = "Virgin_Sparkle_Star"
+	result = "Virgin_Sparkle_Star"
+	required_reagents = list("Adelhyde" = 2, "Powdered_Delta" = 1)
+	result_amount = 3
+
+/datum/chemical_reaction/Sparkle_Star
+	name = "Sparkle Star"
+	id = "Sparkle_Star"
+	result = "Sparkle_Star"
+	required_reagents = list("Virgin_Sparkle_Star" = 3, "Karmotrine" = 1)
+	result_amount = 4
+
+/datum/chemical_reaction/Strong_Sparkle_Star
+	name = "Strong Sparkle Star"
+	id = "Strong_Sparkle_Star"
+	result = "Strong Sparkle Star"
+	required_reagents = list("Sparkle_Star" = 3,"Karmotrine" = 1)
+	result_amount = 4
+
+/datum/chemical_reaction/Sugar_Rush
+	name = "Sugar Rush"
+	id = "Sugar_Rush"
+	result = "Sugar_Rush"
+	required_reagents = list("Adelhyde" = 2, "Powdered_Delta" = 1)
+	result_amount = 3
+
+/datum/chemical_reaction/Strong_Sugar_Rush
+	name = "Strong Sugar Rush"
+	id = "Strong_Sugar_Rush"
+	result = "Strong_Sugar_Rush"
+	required_reagents = list("Sugar_Rush" = 3, "Karmotrine" = 1)
+	result_amount = 4
+
+/datum/chemical_reaction/Real_Sugar_Rush
+	name = "Real Sugar Rush"
+	id = "Real_Sugar_Rush"
+	result = "Real_Sugar_Rush"
+	required_reagents = list("Strong_Sugar_Rush" = 3, "Karmotrine" = 1)
+	result_amount = 4
+
+/datum/chemical_reaction/Virgin_Sunshine_Cloud
+	name = "Virgin Sunshine Cloud"
+	id = "Virgin_Sunshine_Cloud"
+	result = "Virgin_Sunshine_Cloud"
+	required_reagents = list("Adelhyde" = 2, "Bronson_Extract" = 2)
+	result_amount = 6
+
+/datum/chemical_reaction/Sunshine_Cloud
+	name = "Sunshine Cloud"
+	id = "Sunshine_Cloud"
+	result = "Sunshine_Cloud"
+	required_reagents = list("Virgin_Sunshine_Cloud" = 1,"Karmotrine" = 1)
+	result_amount = 4
+
+/datum/chemical_reaction/Strong_Sunshine_Cloud
+	name = "Strong Sunshine Cloud"
+	id = "Strong_Sunshine_Cloud"
+	result = "Strong_Sunshine_Cloud"
+	required_reagents = list("Sunshine_Cloud" = 1,"Karmotrine" = 1)
+	result_amount = 4
+
+/datum/chemical_reaction/Suplex
+	name = "Suplex"
+	id = "Suplex"
+	result = "Suplex"
+	required_reagents = list("Bronson_Extract" = 5, "Karmotrine" = 3, "Flanergide" = 3, "ice" = 2)
+	result_amount = 13
+
+/datum/chemical_reaction/Zen_Star
+	name = "Zen Star"
+	id = "Zen_Star"
+	result = "Zen_Star"
+	required_reagents = list("Adelhyde" = 1, "Bronson_Extract" = 1, "Powdered_Delta" = 1, "Karmotrine" = 1, "Flanergide" = 1, "ice" = 1)
+	result_amount = 6

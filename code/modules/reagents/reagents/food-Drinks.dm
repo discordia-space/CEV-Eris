@@ -368,7 +368,7 @@
 	var/adj_temp = 0
 
 /datum/reagent/drink/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.adjustToxLoss(removed) // Probably not a good idea; not very deadly though
+	M.adjustToxLoss(removed) // Probably not a good idea; not very deadly though< IRC OVERDOSE FOR ALCOHOOL ON BLOOD IS VERY DEADLY just saying
 	return
 
 /datum/reagent/drink/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
@@ -1021,6 +1021,10 @@
 	glass_name = "Bronson Extract"
 	glass_desc = "Strong, looks like it could fall without breaking."
 
+/datum/reagent/drink/Bronson_Extract/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	M.adjustOxyLoss(-2 * removed)
+
 /datum/reagent/drink/Powdered_Delta
 	name = "Powdered Delta"
 	id = "Powdered_Delta"
@@ -1031,6 +1035,11 @@
 	glass_icon_state = "Powdered_Deltaglass"
 	glass_name = "Powdered Delta"
 	glass_desc = "just by looking you can see it deserves power"
+
+/datum/reagent/drink/Powdered_Delta/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	M.adjustToxLoss(-0.5 * removed)
+
 /* Alcohol */
 
 // Basic
@@ -1344,6 +1353,536 @@
 	glass_icon_state = "acidspitglass"
 	glass_name = "Acid Spit"
 	glass_desc = "A drink from the company archives. Made from live aliens."
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+/datum/reagent/ethanol/Bad_Touch
+	name = "Bad Touch"
+	id = "Bad_Touch"
+	description = "We're nothing but mammals after all (Monkey costume not included)"
+	taste_description = "have a slightly bad aftertaste"
+	reagent_state = LIQUID
+	color = "#70a503"
+	strength = 6
+
+	glass_icon_state = "Bad_Touchglass"
+	glass_name = "Bad Touch"
+	glass_desc = "We're nothing but mammals after all (Monkey costume not included)"
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+/datum/reagent/ethanol/SynthBeer
+	name = "SynthBeer"
+	id = "SynthBeer"
+	description = "Traditionally brewed beer has become a luxury, but this one's pretty close to the real deal..."
+	taste_description = "you can ALMOST taste the hops... almost"
+	reagent_state = LIQUID
+	color = "cc9737"
+	strength = 48
+
+	glass_icon_state = "SynthBeerglass"
+	glass_name = "SynthBeer"
+	glass_desc = "Traditionally brewed beer has become a luxury, but this one's pretty close to the real deal..."
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+/datum/reagent/ethanol/Bleeding_Jane
+	name = "Bleeding Jane"
+	id = "Bleeding_Jane"
+	description = "Say the name of this drink three times in front of a mirror and you'll look like a fool"
+	taste_description = "its spicy and classic "
+	reagent_state = LIQUID
+	color = "cc5737"
+	strength = 1 //simbolic
+
+	glass_icon_state = "Bleeding_Janeglass"
+	glass_name = "Bleeding Jane"
+	glass_desc = "Say the name of this drink three times in front of a mirror and you'll look like a fool"
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+datum/reagent/ethanol/Bloom_Light
+	name = "Bloom Light"
+	id = "Bloom_Light"
+	description = "It's so unnecessarily brown..."
+	taste_description = "the more you drink it the more it tastes like sand."
+	reagent_state = LIQUID
+	color = "#5e3e23"
+	strength = 12
+
+	glass_icon_state = "Bloom_Lightglass"
+	glass_name = "Bloom Light"
+	glass_desc = "It's so unnecessarily brown..."
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+datum/reagent/ethanol/Brandtini
+	name = "Brandtini"
+	id = "Brandtini"
+	description = "8 out of 10 smug assholes would recommend it but they're too busy being smug assholes."
+	taste_description = "sweet dry class"
+	reagent_state = LIQUID
+	color = "#5e3e23"
+	strength = 24
+
+	glass_icon_state = "Brandtiniglass"
+	glass_name = "Brandtini"
+	glass_desc = "8 out of 10 smug assholes would recommend it but they're too busy being smug assholes."
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+datum/reagent/ethanol/Virgin_Blue_Fairy
+	name = "Strong Blue Fairy"
+	id = "Virgin_Blue_Fairy"
+	description = "One of these will make all your teeth turn blue. Hope you brushed them well."
+	taste_description = "girly and soft drink."
+	reagent_state = LIQUID
+	color = "#4880a0"
+	strength = 1 //simbolic
+
+	glass_icon_state = "Blue_Fairyglass"
+	glass_name = "Blue_Fairy"
+	glass_desc = "One of these will make all your teeth turn blue. Hope you brushed them well."
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+datum/reagent/ethanol/Blue_Fairy
+	name = "Blue Fairy"
+	id = "Blue_Fairy"
+	description = "One of these will make all your teeth turn blue. Hope you brushed them well."
+	taste_description = "girly and soft drink, with some fresh burning"
+	reagent_state = LIQUID
+	color = "#4880a0"
+	strength = 12
+
+	glass_icon_state = "Blue_Fairyglass"
+	glass_name = "Blue_Fairy"
+	glass_desc = "One of these will make all your teeth turn blue. Hope you brushed them well."
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+datum/reagent/ethanol/Strong_Blue_Fairy
+	name = "Strong Blue Fairy"
+	id = "Strong_Blue_Fairy"
+	description = "One of these will make all your teeth turn blue. Hope you brushed them well."
+	taste_description = "girly and soft drink, packing quite a punch"
+	reagent_state = LIQUID
+	color = "#4880a0"
+	strength = 24
+
+	glass_icon_state = "Blue_Fairyglass"
+	glass_name = "Blue_Fairy"
+	glass_desc = "One of these will make all your teeth turn blue. Hope you brushed them well."
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+datum/reagent/ethanol/Cobalt_Velvet
+	name = "Cobalt Velvet"
+	id = "Cobalt_Velvet"
+	description = "It's like champaigne served on a cup that had a bit of cola left."
+	taste_description = "Bubbly and Classy, you can feel the burning"
+	reagent_state = LIQUID
+	color = "#c2f9f3"
+	strength = 46
+
+	glass_icon_state = "Cobalt_Velvetglass"
+	glass_name = "Cobalt Velvet"
+	glass_desc = "cup that had a bit of cola left"
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+datum/reagent/ethanol/Virgin_Crevice_Spike
+	name = "Vrgin Crevice Spike"
+	id = "Virgin_Crevice_Spike"
+	description = "It will knock the drunkenness out of you or knock you out cold."
+	taste_description = "sour and manly"
+	reagent_state = LIQUID
+	color = "6dc478"
+	strength = 1 //simbolic
+
+	glass_icon_state = "Crevice_Spikeglass"
+	glass_name = "Crevice Spike"
+	glass_desc = "Underappreciated Drink"
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+datum/reagent/ethanol/Crevice_Spike
+	name = "Crevice Spike"
+	id = "Crevice_Spike"
+	description = "It will knock the drunkenness out of you or knock you out cold."
+	taste_description = "sour and manly, you feel some burning"
+	reagent_state = LIQUID
+	color = "6dc478"
+	strength = 48
+
+	glass_icon_state = "Crevice_Spikeglass"
+	glass_name = "Crevice Spike"
+	glass_desc = "Underappreciated Drink"
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+datum/reagent/ethanol/Strong_Crevice_Spike
+	name = "Strong Crevice Spike"
+	id = "Strong_Crevice_Spike"
+	description = "It will knock the drunkenness out of you or knock you out cold."
+	taste_description = "sour and manly, packing quite a punch"
+	reagent_state = LIQUID
+	color = "6dc478"
+	strength = 60
+
+	glass_icon_state = "Crevice_Spikeglass"
+	glass_name = "Crevice Spike"
+	glass_desc = "Underappreciated Drink"
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+datum/reagent/ethanol/Fringe_Weaver
+	name = "Fringe Weaver"
+	id = "Fringe_Weaver"
+	description = "It's like drinking ethylic alcohol with a spoonful of sugar. Gaskin favorite!"
+	taste_description = "ethylic alcohol with a spoonful of sugar"
+	reagent_state = LIQUID
+	color = "#f7addf"
+	strength = 90
+
+	glass_icon_state = "Fringe_Weaverglass"
+	glass_name = "Fringe Weaver"
+	glass_desc = "is that welder fuel?"
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+datum/reagent/ethanol/Frothy_Water
+	name = "Frothy Water"
+	id = "Frothy_Water"
+	description = "PG-rated shows' favorite Beer ersatz since 2040."
+	taste_description = "a lot LIKE beer"
+	reagent_state = LIQUID
+	color = "#c48c4c"
+	strength = 1 //simbolic
+
+	glass_icon_state = "Frothy_Waterglass"
+	glass_name = "Frothy Water"
+	glass_desc = "favorite Beer ersatz since 2040"
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+datum/reagent/ethanol/Grizzly_Temple
+	name = "Grizzly Temple"
+	id = "Grizzly_Temple"
+	description = "This one's kinda unbearable. It's mostly for fans of the movie it was used on"
+	taste_description = "a lot LIKE beer"
+	reagent_state = LIQUID
+	color = "#b4e86d"
+	strength = 12
+
+	glass_icon_state = "Grizzly_Templeglass"
+	glass_name = "Grizzly Temple"
+	glass_desc = "Just like in the movie"
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+datum/reagent/ethanol/Gut_Punch
+	name = "Gut Punch"
+	id = "Gut_Punch"
+	description = "It's supposed to mean a punch made of innards, but the name actually described what you feel while drinking it."
+	taste_description = "you feel a punch in your lower body"
+	reagent_state = LIQUID
+	color = "#d3ba47"
+	strength = 12
+	agony_dose = 15
+	agony_amount = 2
+
+	glass_icon_state = "Gut_Punchglass"
+	glass_name = "Gut Punch"
+	glass_desc = "the cheapest you can get"
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+datum/reagent/ethanol/Gut_Punch/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	if(dose > agony_dose)
+		M.apply_effect(agony_amount, AGONY, 0)
+		M.custom_emote(2, "[pick("dry heaves!","coughs!","splutters!")]")
+		M << SPAN_DANGER("You feel like a punch in your guts!")
+
+datum/reagent/ethanol/Strong_Gut_Punch
+	name = "Strong Gut Punch"
+	id = "Strong_Gut_Punch"
+	description = "It's supposed to mean a punch made of innards, but the name actually described what you feel while drinking it."
+	taste_description = "you feel a punch in your lower body"
+	reagent_state = LIQUID
+	color = "#d3ba47"
+	strength = 24
+	agony_dose = 10
+	agony_amount = 4
+
+	glass_icon_state = "Gut_Punchglass"
+	glass_name = "Gut Punch"
+	glass_desc = "the cheapest you can get"
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+datum/reagent/ethanol/Strong_Gut_Punch/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	if(dose > agony_dose)
+		M.apply_effect(agony_amount, AGONY, 0)
+		M.custom_emote(2, "[pick("dry heaves!","coughs!","splutters!")]")
+		M << SPAN_DANGER("You feel like a punch in your guts!")
+
+datum/reagent/ethanol/Very_Strong_Gut_Punch
+	name = "Very Strong Gut Punch"
+	id = "Very_Strong_Gut_Punch"
+	description = "It's supposed to mean a punch made of innards, but the name actually described what you feel while drinking it."
+	taste_description = "you feel a punch in your lower body"
+	reagent_state = LIQUID
+	color = "#d3ba47"
+	strength = 36
+	agony_dose = 5
+	agony_amount = 6
+
+
+	glass_icon_state = "Gut_Punchglass"
+	glass_name = "Gut Punch"
+	glass_desc = "the cheapest you can get"
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+datum/reagent/ethanol/Very_Strong_Gut_Punch/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	if(dose > agony_dose)
+		M.apply_effect(agony_amount, AGONY, 0)
+		M.custom_emote(2, "[pick("dry heaves!","coughs!","splutters!")]")
+		M << SPAN_DANGER("You feel like a punch in your guts!")
+
+datum/reagent/ethanol/Marsblast
+	name = "Marsblast"
+	id = "Marsblast"
+	description = "One of these is enough to leave your face red like the actual planet."
+	taste_description = "you feel warmth"
+	reagent_state = LIQUID
+	color = "#e5a134"
+	strength = 24
+
+	glass_icon_state = "Marsblastglass"
+	glass_name = "Marsblast"
+	glass_desc = "Mars, the planet? really?"
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+datum/reagent/ethanol/Mercuryblast
+	name = "Mercuryblast"
+	id = "Mercuryblast"
+	description = "No thermometer was harmed in the creation of this drink."
+	taste_description = "sour, burning, and nonetheless classy"
+	reagent_state = LIQUID
+	color = "#f4d53a"
+	strength = 16
+
+	glass_icon_state = "Mercuryblastglass"
+	glass_name = "Mercuryblast"
+	glass_desc = "No thermometer was harmed in the creation of this glass either."
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+datum/reagent/ethanol/Piano_Man
+	name = "Piano Man"
+	id = "Piano_Man"
+	description = "This drink does not represent the opinions of the Bar Pianists Union or its associates."
+	taste_description = "sour"
+	reagent_state = LIQUID
+	color = "#79d0d8"
+	strength = 26
+
+	glass_icon_state = "Piano_Manglass"
+	glass_name = "Piano Man"
+	glass_desc = "This drink does not represent the opinions of the Bar Pianists Union or its associates."
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+datum/reagent/ethanol/Piano_Woman
+	name = "Piano Woman"
+	id = "Piano_Woman"
+	description = "It was originally called Pretty Woman, but too many people complained there should be a Piano Woman if there was a Piano Man."
+	taste_description = "sweet, and classy"
+	reagent_state = LIQUID
+	color = "#79c7ce"
+	strength = 26
+
+	glass_icon_state = "Piano_Womanglass"
+	glass_name = "Piano Woman"
+	glass_desc = "It was originally called Pretty Woman, but too many people complained there should be a Piano Woman if there was a Piano Man."
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+datum/reagent/ethanol/Pile_Driver
+	name = "Pile Driver"
+	id = "Pile_Driver"
+	description = "It doesn't burn as hard on the tongue but you better not have a sore throat when drinking it..."
+	taste_description = "like a sore throat"
+	reagent_state = LIQUID
+	color = "#ffd000"
+	strength = 46
+
+	glass_icon_state = "Pile_Driverglass"
+	glass_name = "Pile Driver"
+	glass_desc = "where is the pile?"
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+
+datum/reagent/ethanol/Virgin_Sparkle_Star
+	name = "Virgin Sparkle Star"
+	id = "Virgin_Sparkle_Star"
+	description = "They used to actually sparkle, but too many complaints about skin problem made them redesign the drink without sparkling."
+	taste_description = "sparkly"
+	reagent_state = LIQUID
+	color = "#4e8cba"
+	strength = 1 //simbolic
+
+	glass_icon_state = "Sparkle_Starglass"
+	glass_name = "Sparkle Star"
+	glass_desc = "They used to actually sparkle, not anymore"
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+
+datum/reagent/ethanol/Sparkle_Star
+	name = "Sparkle Star"
+	id = "Sparkle_Star"
+	description = "They used to actually sparkle, but too many complaints about skin problem made them redesign the drink without sparkling."
+	taste_description = "sparkly"
+	reagent_state = LIQUID
+	color = "#4e8cba"
+	strength = 24
+
+	glass_icon_state = "Sparkle_Starglass"
+	glass_name = "Sparkle Star"
+	glass_desc = "They used to actually sparkle, not anymore"
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+datum/reagent/ethanol/Strong_Sparkle_Star
+	name = "Strong Sparkle Star"
+	id = "Strong_Sparkle_Star"
+	description = "They used to actually sparkle, but too many complaints about skin problem made them redesign the drink without sparkling."
+	taste_description = "sparkly"
+	reagent_state = LIQUID
+	color = "#4e8cba"
+	strength = 24
+
+	glass_icon_state = "Sparkle_Starglass"
+	glass_name = "Sparkle Star"
+	glass_desc = "They used to actually sparkle, not anymore"
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+datum/reagent/ethanol/Sugar_Rush
+	name = "Sugar Rush"
+	id = "Sugar_Rush"
+	description = "Sweet, light and fruity. As girly as it gets."
+	taste_description = "Sweet, light and fruity"
+	reagent_state = LIQUID
+	color = "#d66531"
+	strength = 1 //simbolic
+
+	glass_icon_state = "Sugar_Rushglass"
+	glass_name = "Sugar Rush"
+	glass_desc = "Girly like the drink it holds"
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+datum/reagent/ethanol/Strong_Sugar_Rush
+	name = "Strong Sugar Rush"
+	id = "Strong_Sugar_Rush"
+	description = "Sweet, light and fruity. As girly as it gets."
+	taste_description = "Sweet, light and fruity"
+	reagent_state = LIQUID
+	color = "#d66531"
+	strength = 24
+
+	glass_icon_state = "Sugar_Rushglass"
+	glass_name = "Sugar Rush"
+	glass_desc = "Girly like the drink it holds"
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+datum/reagent/ethanol/Real_Sugar_Rush
+	name = "Real Sugar Rush"
+	id = "Real_Sugar_Rush"
+	description = "Sweet, light and fruity. As girly as it gets."
+	taste_description = "Sweet, light and fruity"
+	reagent_state = LIQUID
+	color = "#d66531"
+	strength = 48
+
+	glass_icon_state = "Sugar_Rushglass"
+	glass_name = "Real Sugar Rush"
+	glass_desc = "Girly like the drink it holds"
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+datum/reagent/ethanol/Virgin_Sunshine_Cloud
+	name = "Virgin Sunshine Cloud"
+	id = "Virgin_Sunshine_Cloud"
+	description = "Tastes like old chocolate milk with its good smell intact. Some say it tastes like caramel too..."
+	taste_description = "just like caramel"
+	reagent_state = LIQUID
+	color = "#995130"
+	strength = 1 //simbolic
+
+	glass_icon_state = "Sunshine_Cloudglass"
+	glass_name = "Sunshine Cloud"
+	glass_desc = "sunshine in a glass"
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+
+datum/reagent/ethanol/Sunshine_Cloud
+	name = "Sunshine Cloud"
+	id = "Sunshine_Cloud"
+	description = "Tastes like old chocolate milk with its good smell intact. Some say it tastes like caramel too..."
+	taste_description = "just like caramel"
+	reagent_state = LIQUID
+	color = "#995130"
+	strength = 24
+
+	glass_icon_state = "Sunshine_Cloudglass"
+	glass_name = "Sunshine Cloud"
+	glass_desc = "sunshine in a glass"
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+datum/reagent/ethanol/Strong_Sunshine_Cloud
+	name = "Strong Sunshine Cloud"
+	id = "Strong_Sunshine_Cloud"
+	description = "Tastes like old chocolate milk with its good smell intact. Some say it tastes like caramel too..."
+	taste_description = "just like caramel"
+	reagent_state = LIQUID
+	color = "#995130"
+	strength = 46
+
+	glass_icon_state = "Sunshine_Cloudglass"
+	glass_name = "Sunshine Cloud"
+	glass_desc = "sunshine in a glass"
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+
+datum/reagent/ethanol/Suplex
+	name = "Suplex"
+	id = "Suplex"
+	description = "A small twist on the Pile Driver, putting more emphasis on the tongue burning and less on the throat burning."
+	taste_description = "your tongue is melting"
+	reagent_state = LIQUID
+	color = "#dda430"
+	strength = 60
+	agony_dose = 5
+	agony_amount = 2
+	discomfort_message = "<span class='danger'>Your insides feel uncomfortably hot!</span>"
+	slime_temp_adj = 10
+
+	glass_icon_state = "Suplexglass"
+	glass_name = "Suplex"
+	glass_desc = "i would not advise filling it up"
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+datum/reagent/ethanol/Suplex/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	M.adjustToxLoss(0.5 * removed)
+
+datum/reagent/ethanol/Suplex/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(H.species && (H.species.flags & (NO_PAIN)))
+			return
+	if(dose < agony_dose)
+		if(prob(5) || dose == metabolism) //dose == metabolism is a very hacky way of forcing the message the first time this procs
+			M << discomfort_message
+	else
+		M.apply_effect(agony_amount, AGONY, 0)
+		if(prob(5))
+			M.custom_emote(2, "[pick("dry heaves!","coughs!","splutters!")]")
+			M << SPAN_DANGER("You feel like your insides are burning!")
+	if(isslime(M))
+		M.bodytemperature += rand(0, 15) + slime_temp_adj
+	holder.remove_reagent("frostoil", 5)
+
+
+/datum/reagent/ethanol/Zen_Star
+	name = "Zen Star"
+	id = "Zen_Star"
+	description = "You'd think something so balanced would actually taste nice... you'd be dead wrong."
+	taste_description = "well balanced.... way to well"
+	reagent_state = LIQUID
+	color = "#14527f"
+	strength = 12
+
+	glass_icon_state = "Zen_Starglass"
+	glass_name = "Zen Star"
+	glass_desc = "Wow it can stand even tho its round"
 	glass_center_of_mass = list("x"=16, "y"=7)
 
 /datum/reagent/ethanol/alliescocktail
