@@ -103,18 +103,21 @@ research holder datum.
 
 //Adds a tech to known_tech list. Checks to make sure there aren't duplicates and updates existing tech's levels if needed.
 //Input: datum/tech; Output: Null
-/datum/research/proc/AddTech2Known(var/datum/tech/T)
+/datum/research/proc/AddTech2Known(datum/tech/T)
 	for(var/datum/tech/known in known_tech)
 		if(T.id == known.id)
 			if(T.level > known.level)
 				known.level = T.level
 			return
-	return
 
 /datum/research/proc/AddDesign2Known(datum/design/D)
+	if(D in known_designs)
+		return
+
 	if(!known_designs.len) // Special case
 		known_designs.Add(D)
 		return
+
 	for(var/i = 1 to known_designs.len)
 		var/datum/design/A = known_designs[i]
 		if(A.id == D.id) // We are guaranteed to reach this if the ids are the same, because sort_string will also be the same
@@ -160,6 +163,11 @@ research holder datum.
 	var/id = "id"						//An easily referenced ID. Must be alphanumeric, lower-case, and no symbols.
 	var/level = 1						//A simple number scale of the research level. Level 0 = Secret tech.
 	var/rare = 1						//How much CentCom wants to get that tech. Used in supply shuttle tech cost calculation.
+
+/datum/tech/proc/Copy()
+	var/datum/tech/new_tech = new type
+	new_tech.level = level
+	return new_tech
 
 /datum/tech/materials
 	name = "Materials Research"
@@ -219,14 +227,3 @@ research holder datum.
 	desc = "Research into the occult and arcane field for use in practical science"
 	id = TECH_ARCANE
 	level = 0
-
-/obj/item/weapon/disk/tech_disk
-	name = "technology disk"
-	desc = "A disk for storing technology data for further research."
-	icon_state = "blue"
-	var/datum/tech/stored
-
-/obj/item/weapon/disk/tech_disk/Initialize()
-	. = ..()
-	pixel_x = rand(-5, 5)
-	pixel_y = rand(-5, 5)

@@ -1,5 +1,5 @@
 /*******************************
-* Neotheology: Religious items *
+* NeoTheology: Religious items *
 *******************************/
 /*
 Intended for inquisitors and maybe future crusaders
@@ -16,7 +16,7 @@ A small pool of thematically appropriate religious items that are generally chea
 
 	//Get the mob and their cruciform implant
 	var/mob/living/L = U.uplink_owner.current
-	var/obj/item/weapon/implant/core_implant/cruciform/C = L.get_cruciform()
+	var/obj/item/weapon/implant/core_implant/cruciform/C = L.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 
 	if (!C)
 		return FALSE
@@ -75,7 +75,7 @@ A small pool of thematically appropriate religious items that are generally chea
 	path = /obj/item/clothing/suit/chaplain_hoodie
 
 /*
-	Guns: All taken from the Neotheology Armoury of the New Testament
+	Guns: All taken from the NeoTheology Armory of the New Testament
 	All guns are 1 TC cheaper than the closest equivilant in normal traitor gear
 */
 /datum/uplink_item/item/neotheology/laser

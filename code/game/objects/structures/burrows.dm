@@ -25,6 +25,9 @@
 	//If true, this burrow is located in a maintenance tunnel. Most of them will be
 	//Ones located outside of maint are much less likely to be picked for migration
 	var/maintenance = FALSE
+	//If true, this burrow is located near NT obelisk.
+	//those are much less likely to be picked for migration due cool NT magic
+	var/obelisk_around = null
 
 
 	//Vars for migration

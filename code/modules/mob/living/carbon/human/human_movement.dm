@@ -32,7 +32,6 @@
 
 	if(shock_stage >= 10) tally += 3
 
-	if(aiming && aiming.aiming_at) tally += 5 // Iron sights make you slower, it's a well-known fact.
 	if (bodytemperature < 283.222)
 		tally += (283.222 - bodytemperature) / 10 * 1.75
 	tally += max(2 * stance_damage, 0) //damaged/missing feet or legs is slow

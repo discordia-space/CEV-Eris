@@ -707,7 +707,7 @@
 					pilot = TRUE
 					return
 
-				H.hallucination = rand(30, 90)
+				H.hallucination(rand(30, 90), 100)
 		//if mob is dead, we just rebuild it
 		if(passenger.stat == DEAD && !safely)
 			dead_body_restoration(passenger)

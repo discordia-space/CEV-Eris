@@ -31,7 +31,7 @@
 
 
 /obj/item/clothing/under/rank/chaplain
-	desc = "Ceremonial robe of Neotheology preacher."
+	desc = "Ceremonial robe of NeoTheology preacher."
 	name = "preacher's robe"
 	icon_state = "preacher"
 	item_state = "w_suit"

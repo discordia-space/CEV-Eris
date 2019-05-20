@@ -6,6 +6,7 @@
 	This subsystem also handles spreading plants through burrows
 
 */
+
 var/list/global/all_burrows = list()
 var/list/global/populated_burrows = list()
 var/list/global/unpopulated_burrows = list()
@@ -227,6 +228,9 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 		if (candidate.target || candidate.recieving)
 			continue
 
+		// just nop.
+		if (candidate.obelisk_around)
+			continue
 		//And a high chance to reroll it if its not what we want in terms of being in/out of maintenance
 		if ((candidate.maintenance != reroll_type) && prob(reroll_prob))
 			continue

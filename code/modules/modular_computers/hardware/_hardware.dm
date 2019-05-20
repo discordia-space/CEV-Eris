@@ -51,12 +51,11 @@
 /obj/item/weapon/computer_hardware/proc/diagnostics(var/mob/user)
 	to_chat(user, "Hardware Integrity Test... (Corruption: [damage]/[max_damage]) [damage > damage_failure ? "FAIL" : damage > damage_malfunction ? "WARN" : "PASS"]")
 
-/obj/item/weapon/computer_hardware/New(var/obj/L)
-	.=..()
+/obj/item/weapon/computer_hardware/Initialize()
+	. = ..()
 	w_class = hardware_size
-	if(istype(L, /obj/item/modular_computer))
-		holder2 = L
-		return
+	if(istype(loc, /obj/item/modular_computer))
+		holder2 = loc
 
 /obj/item/weapon/computer_hardware/Destroy()
 	holder2 = null
@@ -80,14 +79,14 @@
 /obj/item/weapon/computer_hardware/examine(var/mob/user)
 	. = ..()
 	if(damage > damage_failure)
-		to_chat(user, "<span class='danger'>It seems to be severely damaged!</span>")
+		to_chat(user, SPAN_WARNING("It seems to be severely damaged!"))
 	else if(damage > damage_malfunction)
-		to_chat(user, "<span class='notice'>It seems to be damaged!</span>")
+		to_chat(user, SPAN_WARNING("It seems to be damaged!"))
 	else if(damage)
-		to_chat(user, "It seems to be slightly damaged.")
+		to_chat(user, SPAN_NOTICE("It seems to be slightly damaged."))
 
 // Damages the component. Contains necessary checks. Negative damage "heals" the component.
-/obj/item/weapon/computer_hardware/proc/take_damage(var/amount)
+/obj/item/weapon/computer_hardware/proc/take_damage(amount)
 	damage += round(amount) 					// We want nice rounded numbers here.
 	damage = between(0, damage, max_damage)		// Clamp the value.
 

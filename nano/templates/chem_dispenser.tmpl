@@ -1,6 +1,6 @@
 <!-- 
 Title: Chem Dispenser 5000 UI 
-Used In File(s): \code\modules\reagents\Chemistry-Machinery.dm
+Used In File(s): \code\modules\reagents\machinery\chem_dispenser.dm
  -->
 <div class="item">
 	<div class="itemLabel">
@@ -25,18 +25,9 @@ Used In File(s): \code\modules\reagents\Chemistry-Machinery.dm
 </div>
 <div class="item">&nbsp;</div>
 <div class="item">
-	<div class="itemLabel" style="width: 100%;">
-		{{if data.glass}}
-			Drink Dispenser
-		{{else}}
-			Chemical Dispenser
-		{{/if}}
-	</div>
-</div>
-<div class="item">
 	<div class="itemContentWide" style="width: 100%;">
 		{{for data.chemicals}}
-			{{:helper.link(value.title, 'circle-arrow-s', value.commands, null, data.glass ? 'fixedLeftWide' : 'fixedLeft')}}
+			{{:helper.link(value.title, 'circle-arrow-s', value.commands, null, data.accept_beaker ? 'fixedLeft' : 'fixedLeftWide')}}
 		{{/for}}
 		
 	</div>
@@ -51,35 +42,24 @@ Used In File(s): \code\modules\reagents\Chemistry-Machinery.dm
 		{{/if}} Contents
 	</div>
 	<div class="itemContent">
-		{{:helper.link(data.glass ? 'Eject Glass' : 'Eject Beaker', 'eject', {'ejectBeaker' : 1}, data.isBeakerLoaded ? null : 'disabled', 'floatRight')}}
+		{{:helper.link(data.accept_beaker ? 'Eject Beaker' : 'Eject Container', 'eject', {'ejectBeaker' : 1}, data.beaker ? null : 'disabled', 'floatRight')}}
 	</div>
 </div>
 <div class="statusDisplay" style="min-height: 180px;">
 	<div class="item">
 		<div class="itemContent" style="width: 100%;">
-			{{if data.isBeakerLoaded}}
-				<b>Volume:&nbsp;{{:data.beakerCurrentVolume}}&nbsp;/&nbsp;{{:data.beakerMaxVolume}}</b><br>
-				{{for data.beakerContents}}
+			{{if data.beaker}}
+				<b>Volume:&nbsp;{{:data.beaker.total_volume}}&nbsp;/&nbsp;{{:data.beaker.maximum_volume}}</b><br>
+				{{for data.beaker.contents}}
 					<span class="highlight">{{:value.volume}} units of {{:value.name}}</span><br>
 				{{empty}}
 					<span class="bad">
-						{{if data.glass}}
-							Glass
-						{{else}}
-							Beaker
-						{{/if}}
-						is empty
+						{{:data.accept_beaker ? "Beaker" : "Container"}} is empty
 					</span>
 				{{/for}}
 			{{else}}
 				<span class="average"><i>
-					No 
-					{{if data.glass}}
-						Glass
-					{{else}}
-						Beaker
-					{{/if}} 
-					loaded
+					No {{:data.accept_beaker ? "beaker" : "container"}} loaded
 				</i></span>
 			{{/if}}
 		</div>

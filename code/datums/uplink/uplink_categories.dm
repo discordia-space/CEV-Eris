@@ -49,7 +49,7 @@
 	name = "Badassery"
 
 /datum/uplink_category/neotheology
-	name = "Neotheology"
+	name = "NeoTheology"
 
 /datum/uplink_category/telecrystals
 	name = "Telecrystals"
