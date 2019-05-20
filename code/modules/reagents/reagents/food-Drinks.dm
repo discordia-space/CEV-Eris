@@ -1429,7 +1429,7 @@ datum/reagent/ethanol/Brandtini
 	glass_center_of_mass = list("x"=16, "y"=7)
 
 datum/reagent/ethanol/Virgin_Blue_Fairy
-	name = "Strong Blue Fairy"
+	name = "Virgin Blue Fairy"
 	id = "Virgin_Blue_Fairy"
 	description = "One of these will make all your teeth turn blue. Hope you brushed them well."
 	taste_description = "girly and soft drink."
