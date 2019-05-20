@@ -1004,7 +1004,7 @@
 	description = "Presumed to be the component that makes Vall drinks taste spicy."
 	taste_description = "spicy, in a good way"
 	color = "#66872C"
-	adj_temp = +3
+	adj_temp = 3
 
 	glass_icon_state = "Flanergideglass"
 	glass_name = "Flanergide"
