@@ -1667,7 +1667,7 @@ datum/reagent/ethanol/Piano_Man
 	name = "Piano Man"
 	id = "Piano_Man"
 	description = "This drink does not represent the opinions of the Bar Pianists Union or its associates."
-	taste_description = "sour"
+	taste_description = "sour and loss of friend"
 	reagent_state = LIQUID
 	color = "#79d0d8"
 	strength = 26
@@ -1681,7 +1681,7 @@ datum/reagent/ethanol/Piano_Woman
 	name = "Piano Woman"
 	id = "Piano_Woman"
 	description = "It was originally called Pretty Woman, but too many people complained there should be a Piano Woman if there was a Piano Man."
-	taste_description = "sweet, and classy"
+	taste_description = "sweet, and classy and a bit of sexism"
 	reagent_state = LIQUID
 	color = "#79c7ce"
 	strength = 26
@@ -1824,7 +1824,7 @@ datum/reagent/ethanol/Strong_Sunshine_Cloud
 	name = "Strong Sunshine Cloud"
 	id = "Strong_Sunshine_Cloud"
 	description = "Tastes like old chocolate milk with its good smell intact. Some say it tastes like caramel too..."
-	taste_description = "just like caramel"
+	taste_description = "old chocolate milk"
 	reagent_state = LIQUID
 	color = "#995130"
 	strength = 46
