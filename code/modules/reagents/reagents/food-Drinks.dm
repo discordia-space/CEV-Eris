@@ -1558,7 +1558,7 @@ datum/reagent/ethanol/Grizzly_Temple
 	name = "Grizzly Temple"
 	id = "Grizzly_Temple"
 	description = "This one's kinda unbearable. It's mostly for fans of the movie it was used on"
-	taste_description = "a lot LIKE beer"
+	taste_description = "kinda unbearable, but reminds you of the movie"
 	reagent_state = LIQUID
 	color = "#b4e86d"
 	strength = 12
