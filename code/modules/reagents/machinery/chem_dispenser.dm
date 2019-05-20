@@ -170,6 +170,16 @@
 	dispensable_reagents = list("water","ice","coffee","cream","tea","greentea","icetea","icegreentea","cola","spacemountainwind","dr_gibb","space_up","tonic","sodawater","lemon_lime","sugar","orangejuice","limejuice","watermelonjuice")
 	hacked_reagents = list("thirteenloko","grapesoda")
 
+/obj/machinery/chemical_dispenser/calicomp
+	icon_state = "calicomp"
+	name = "viking fountain"
+	desc = "A drink fabricating machine, capable of producing any of the nord gods beverages."
+	layer = OBJ_LAYER
+	ui_title = "C.A.L.I.C.O.M.P."
+	accept_beaker = TRUE
+	density = FALSE
+	dispensable_reagents = list("Adelhyde","Flanergide","Bronson_Extract","Karmotrine","Powdered_Delta")
+
 /obj/machinery/chemical_dispenser/soda/attackby(obj/item/I, mob/living/user)
 	..()
 	if(istype(I, /obj/item/weapon/tool/multitool) && length(hacked_reagents))

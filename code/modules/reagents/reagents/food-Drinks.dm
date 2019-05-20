@@ -987,6 +987,50 @@
 	glass_name = "nothing"
 	glass_desc = "Absolutely nothing."
 
+/datum/reagent/drink/Adelhyde
+	name = "Adelhyde"
+	id = "Adelhyde"
+	description = "Sweet component in Vall drinks."
+	taste_description = "Sugary"
+	color = "#E1442A"
+
+	glass_icon_state = "Adelhydeglass"
+	glass_name = "Adelhyde"
+	glass_desc = "Sweet glass for a sweet drink"
+
+/datum/reagent/drink/Flanergide
+	name = "Flanergide"
+	id = "Flanergide"
+	description = "Presumed to be the component that makes Vall drinks taste spicy."
+	taste_description = "spicy, in a good way"
+	color = "#66872C"
+	adj_temp = +3
+
+	glass_icon_state = "Flanergideglass"
+	glass_name = "Flanergide"
+	glass_desc = "Looks robust, and slightly tempting"
+
+/datum/reagent/drink/Bronson_Extract
+	name = "Bronson Extract"
+	id = "Bronson_Extract"
+	description = "Presumably made from Bronson roots, which are briefly mentioned by Jill."
+	taste_description = "Strong and bitter"
+	color = "d8d121"
+
+	glass_icon_state = "Bronson_Extractglass"
+	glass_name = "Bronson Extract"
+	glass_desc = "Strong, looks like it could fall without breaking."
+
+/datum/reagent/drink/Powdered_Delta
+	name = "Powdered Delta"
+	id = "Powdered_Delta"
+	description = "It is believed to be the ingredient that makes Vall drinks taste sour."
+	taste_description = "kinda sour."
+	color = "71b2e3"
+
+	glass_icon_state = "Powdered_Deltaglass"
+	glass_name = "Powdered Delta"
+	glass_desc = "just by looking you can see it deserves power"
 /* Alcohol */
 
 // Basic
@@ -1003,6 +1047,20 @@
 	glass_icon_state = "absintheglass"
 	glass_name = "absinthe"
 	glass_desc = "Wormwood, anise, oh my."
+	glass_center_of_mass = list("x"=16, "y"=5)
+
+/datum/reagent/ethanol/Karmotrine
+	name = "Karmotrine"
+	id = "Karmotrine"
+	description = "Karmotrine is an alcoholic component and can make clients drunk if served on big amounts."
+	taste_description = "Pure strong alcohool"
+	taste_mult = 1.5
+	color = "#B1CDCF"
+	strength = 12
+
+	glass_icon_state = "Karmotrineglass"
+	glass_name = "Karmotrine"
+	glass_desc = "Basic as any good glass"
 	glass_center_of_mass = list("x"=16, "y"=5)
 
 /datum/reagent/ethanol/ale
