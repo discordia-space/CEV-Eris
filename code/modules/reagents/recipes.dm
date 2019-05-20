@@ -2127,14 +2127,14 @@
 	id = "Strong_Blue_Fairy"
 	result = "Strong_Blue_Fairy"
 	required_reagents = list("Virgin_Blue_Fairy" = 3, "Karmotrine" = 1,)
-	result_amount = 4
+	result_amount = 3
 
 /datum/chemical_reaction/Strong_Blue_Fairy
 	name = "Strong Blue Fairy"
 	id = "Strong_Blue_Fairy"
 	result = "Strong_Blue_Fairy"
 	required_reagents = list("Blue_Fairy" = 3, "Karmotrine" = 1,)
-	result_amount = 4
+	result_amount = 3
 
 /datum/chemical_reaction/Cobalt_Velvet
 	name = "Cobalt Velvet"
@@ -2155,14 +2155,14 @@
 	id = "Crevice_Spike"
 	result = "Crevice_Spike"
 	required_reagents = list("Virgin_Crevice_Spike" = 3, "Karmotrine" = 1)
-	result_amount = 4
+	result_amount = 3
 
 /datum/chemical_reaction/Strong_Crevice_Spike
 	name = "Strong Crevice Spike"
 	id = "Strong_Crevice_Spike"
 	result = "Strong_Crevice_Spike"
 	required_reagents = list("Crevice_Spike" = 3, "Karmotrine" = 1)
-	result_amount = 4
+	result_amount = 3
 
 /datum/chemical_reaction/Fringe_Weaver
 	name = "Fringe Weaver"
@@ -2197,14 +2197,14 @@
 	id = "Strong_Gut_Punch"
 	result = "Strong_Gut_Punch"
 	required_reagents = list("Gut_Punch" = 3, "Karmotrine" = 1)
-	result_amount = 4
+	result_amount = 5
 
 /datum/chemical_reaction/Very_Strong_Gut_Punch
 	name = "Very Strong Gut Punch"
 	id = "Very_Strong_Gut_Punch"
 	result = "Very_Strong_Gut_Punch"
 	required_reagents = list("Strong_Gut_Punch" = 3, "Karmotrine" = 1)
-	result_amount = 4
+	result_amount = 5
 
 /datum/chemical_reaction/Marsblast
 	name = "Marsblast"
@@ -2253,14 +2253,14 @@
 	id = "Sparkle_Star"
 	result = "Sparkle_Star"
 	required_reagents = list("Virgin_Sparkle_Star" = 3, "Karmotrine" = 1)
-	result_amount = 4
+	result_amount = 3
 
 /datum/chemical_reaction/Strong_Sparkle_Star
 	name = "Strong Sparkle Star"
 	id = "Strong_Sparkle_Star"
 	result = "Strong Sparkle Star"
 	required_reagents = list("Sparkle_Star" = 3,"Karmotrine" = 1)
-	result_amount = 4
+	result_amount = 3
 
 /datum/chemical_reaction/Sugar_Rush
 	name = "Sugar Rush"
@@ -2274,14 +2274,14 @@
 	id = "Strong_Sugar_Rush"
 	result = "Strong_Sugar_Rush"
 	required_reagents = list("Sugar_Rush" = 3, "Karmotrine" = 1)
-	result_amount = 4
+	result_amount = 3
 
 /datum/chemical_reaction/Real_Sugar_Rush
 	name = "Real Sugar Rush"
 	id = "Real_Sugar_Rush"
 	result = "Real_Sugar_Rush"
 	required_reagents = list("Strong_Sugar_Rush" = 3, "Karmotrine" = 1)
-	result_amount = 4
+	result_amount = 3
 
 /datum/chemical_reaction/Virgin_Sunshine_Cloud
 	name = "Virgin Sunshine Cloud"
@@ -2294,15 +2294,15 @@
 	name = "Sunshine Cloud"
 	id = "Sunshine_Cloud"
 	result = "Sunshine_Cloud"
-	required_reagents = list("Virgin_Sunshine_Cloud" = 1,"Karmotrine" = 1)
-	result_amount = 4
+	required_reagents = list("Virgin_Sunshine_Cloud" = 3,"Karmotrine" = 1)
+	result_amount = 3
 
 /datum/chemical_reaction/Strong_Sunshine_Cloud
 	name = "Strong Sunshine Cloud"
 	id = "Strong_Sunshine_Cloud"
 	result = "Strong_Sunshine_Cloud"
-	required_reagents = list("Sunshine_Cloud" = 1,"Karmotrine" = 1)
-	result_amount = 4
+	required_reagents = list("Sunshine_Cloud" = 3,"Karmotrine" = 1)
+	result_amount = 3
 
 /datum/chemical_reaction/Suplex
 	name = "Suplex"

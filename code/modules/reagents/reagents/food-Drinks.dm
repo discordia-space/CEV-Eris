@@ -1004,11 +1004,14 @@
 	description = "Presumed to be the component that makes Vall drinks taste spicy."
 	taste_description = "spicy, in a good way"
 	color = "#66872C"
-	adj_temp = 3
 
 	glass_icon_state = "Flanergideglass"
 	glass_name = "Flanergide"
 	glass_desc = "Looks robust, and slightly tempting"
+
+/datum/reagent/drink/Flanergide/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	M.bodytemperature += 10 * TEMPERATURE_DAMAGE_COEFFICIENT
 
 /datum/reagent/drink/Bronson_Extract
 	name = "Bronson Extract"
