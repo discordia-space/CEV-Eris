@@ -1255,7 +1255,7 @@ var/list/rank_prefix = list(\
 			// Pick an existing non-robotic limb, if possible.
 			for(target_zone in BP_ALL_LIMBS)
 				var/obj/item/organ/external/affecting = get_organ(target_zone)
-				if(affecting && affecting.robotic < ORGAN_ROBOT)
+				if(affecting && BP_IS_ORGANIC(affecting) || BP_IS_ASSISTED(affecting))
 					break
 
 
@@ -1264,7 +1264,7 @@ var/list/rank_prefix = list(\
 	if(!affecting)
 		. = 0
 		fail_msg = "They are missing that limb."
-	else if (affecting.robotic >= ORGAN_ROBOT)
+	else if (BP_IS_ROBOTIC(affecting) || BP_IS_LIFELIKE(affecting))
 		. = 0
 		fail_msg = "That limb is robotic."
 	else
@@ -1467,7 +1467,7 @@ var/list/rank_prefix = list(\
 	else if(organ_check in list(BP_LIVER, BP_KIDNEYS))
 		affecting = organs_by_name[BP_GROIN]
 
-	if(affecting && (affecting.robotic >= ORGAN_ROBOT))
+	if(affecting && (BP_IS_ROBOTIC(affecting) || BP_IS_LIFELIKE(affecting)))
 		return FALSE
 	return (species && species.has_organ[organ_check])
 
@@ -1480,8 +1480,9 @@ var/list/rank_prefix = list(\
 	appendage = organs_by_name[appendage_check]
 
 	if(appendage && !appendage.is_stump())
-		if(appendage.robotic >= ORGAN_ROBOT)
-			return appendage.robotic
+		if(BP_IS_ROBOTIC(appendage) || BP_IS_LIFELIKE(appendage))
+			// CHECK THIS RETURN
+			return appendage.nature
 		else return TRUE
 	return FALSE
 

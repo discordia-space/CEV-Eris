@@ -5,7 +5,7 @@
 	icon_state = "scell"
 	organ_tag = BP_CELL
 	parent_organ = BP_CHEST
-	robotic = ORGAN_ROBOT
+	nature = MODIFICATION_SILICON
 	vital = TRUE
 
 /obj/item/organ/cell/replaced()
@@ -19,7 +19,7 @@
 	name = "optical sensor"
 	organ_tag = "optics"
 	parent_organ = BP_HEAD
-	robotic = ORGAN_ROBOT
+	nature = MODIFICATION_SILICON
 	icon = 'icons/obj/robot_component.dmi'
 	icon_state = "camera"
 	dead_icon = "camera_broken"
@@ -62,7 +62,7 @@
 			owner.visible_message(SPAN_DANGER("\The [owner] twitches visibly!"))
 
 /obj/item/organ/mmi_holder/posibrain
-	robotic = ORGAN_ROBOT
+	nature = MODIFICATION_SILICON
 
 /obj/item/organ/mmi_holder/posibrain/New()
 	stored_mmi = new /obj/item/device/mmi/digital/posibrain(src)

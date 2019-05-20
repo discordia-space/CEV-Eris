@@ -18,8 +18,11 @@ Used In File(s): code\modules\modular_computers\file_system\programs\medical\sui
 <table class='wideTable'><tbody>
 	{{for data.crewmembers}}
 		<tr class="candystripe">
-			<td>{{:value.name}} ({{:value.assignment}}): </td>
-
+			<td>{{:value.name}} ({{:value.assignment}}): 
+			{{if value.isCriminal}}
+			<span class='average'> [Criminal]</span>
+			{{/if}}
+			</td>
 			{{if value.sensor_type >= 2}}
 				{{if value.true_pulse == -1}}
 					<td><span class="white">Heart: </span> <span class='{{:value.pulse_span}}'>{{:value.pulse}}</span></td>

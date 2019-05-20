@@ -32,6 +32,8 @@
 
 /datum/nano_module/crew_monitor
 	name = "Crew monitor"
+	var/list/ddata
+	var/list/crew
 
 /datum/nano_module/crew_monitor/proc/has_alerts()
 	for(var/z_level in maps_data.station_levels)
@@ -54,10 +56,27 @@
 	var/list/data = host.initial_data()
 
 	data["isAI"] = isAI(user)
-	data["crewmembers"] = list()
+	var/list/crewmembers = list()
 	for(var/z_level in maps_data.station_levels)
-		data["crewmembers"] += crew_repository.health_data(z_level)
-	data["crewmembers"] = sortByKey(data["crewmembers"], "name")
+		crewmembers += crew_repository.health_data(z_level)
+	crewmembers = sortByKey(crewmembers, "name")
+	//now lets get problematic crewmembers in separate list so they could be shown first
+	var/list/crewmembers_problematic = list()
+	var/list/crewmembers_goodbois = list()
+	
+	for(var/i = 1, i <=crewmembers.len, i++)
+		var/list/entry = crewmembers[i]
+		if(entry["alert"] || entry["isCriminal"])
+			crewmembers_problematic += list(entry)
+		else
+			crewmembers_goodbois += list(entry)
+	data["crewmembers"] = list()
+	if(crewmembers_problematic.len)
+		data["crewmembers"] += crewmembers_problematic
+	if(crewmembers_goodbois.len)
+		data["crewmembers"] += crewmembers_goodbois
+	ddata = data
+	crew = crewmembers_problematic
 	return data
 
 /datum/nano_module/crew_monitor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)

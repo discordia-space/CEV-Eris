@@ -149,7 +149,7 @@
 				if(!affected)
 					to_chat(user, SPAN_DANGER("\The [H] is missing that limb!"))
 					return
-				else if(affected.robotic >= ORGAN_ROBOT)
+				else if(BP_IS_ROBOTIC(affected) || BP_IS_LIFELIKE(affected))
 					to_chat(user, SPAN_DANGER("You cannot inject a robotic limb."))
 					return
 

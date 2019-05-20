@@ -88,11 +88,12 @@
 #define BP_ALL_LIMBS list(BP_CHEST, BP_GROIN, BP_HEAD, BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG)
 #define BP_BY_DEPTH list(BP_HEAD, BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_CHEST)
 
-// Prosthetic helpers.
-#define BP_IS_ROBOTIC(org)  (org.status & ORGAN_ROBOTIC)
-#define BP_IS_ASSISTED(org) (org.status & ORGAN_ASSISTED)
-#define BP_IS_BRITTLE(org)  (org.status & ORGAN_BRITTLE)
-#define BP_IS_CRYSTAL(org)  (org.status & ORGAN_CRYSTAL)
+// Organs helpers.
+#define BP_IS_ORGANIC(org)  (org.nature & MODIFICATION_ORGANIC)
+#define BP_IS_ROBOTIC(org) (org.nature & MODIFICATION_SILICON)
+#define BP_IS_REMOVED(org) (org.nature & MODIFICATION_REMOVED)
+#define BP_IS_ASSISTED(org) (org.nature & MODIFICATION_ASSISTED)
+#define BP_IS_LIFELIKE(org) (org.nature & MODIFICATION_LIFELIKE)
 
 
 // Organ defines.
@@ -108,9 +109,11 @@
 #define DROPLIMB_BLUNT 1
 #define DROPLIMB_BURN 2
 
-#define ORGAN_ASSISTED 1 // Like pacemakers, not robotic
-#define ORGAN_ROBOT    2 // Fully robotic, no organic parts
-#define ORGAN_LIFELIKE 3 // Robotic, made to appear organic
+#define MODIFICATION_ORGANIC 0	// Organic
+#define MODIFICATION_ASSISTED 1 // Like pacemakers, not robotic
+#define MODIFICATION_SILICON 2	// Fully robotic, no organic parts
+#define MODIFICATION_LIFELIKE 3	// Robotic, made to appear organic
+#define MODIFICATION_REMOVED 4	// Removed completly
 
 #define ORGAN_PROCESS_ACCURACY 10
 
@@ -124,6 +127,3 @@
 #define INFECTION_LEVEL_ONE   100
 #define INFECTION_LEVEL_TWO   500
 #define INFECTION_LEVEL_THREE 1000
-
-//plug before baymed
-#define BP_IS_ROBOTIC(org)  (org.status & ORGAN_ROBOT)

@@ -12,7 +12,9 @@
 	var/status = 0                    // Various status flags
 	var/vital                         // Lose a vital limb, die immediately.
 	var/damage = 0                    // Current damage to the organ
-	var/robotic = 0
+
+	// Type of modification, (If you ever need to apply several types make this a bit flag)
+	var/nature = MODIFICATION_ORGANIC 
 
 	// Reference data.
 	var/mob/living/carbon/human/owner // Current mob owning the organ.
@@ -86,7 +88,7 @@
 		species = all_species[new_dna.species]
 
 /obj/item/organ/proc/die()
-	if(robotic >= ORGAN_ROBOT)
+	if(BP_IS_ROBOTIC(src) || BP_IS_LIFELIKE(src))
 		return
 	damage = max_damage
 	status |= ORGAN_DEAD
@@ -115,7 +117,7 @@
 	if(istype(loc,/obj/structure/closet/body_bag/cryobag) || istype(loc,/obj/structure/closet/crate/freezer) || istype(loc,/obj/item/weapon/storage/box/freezer))
 		return
 	//Process infections
-	if ((robotic >= ORGAN_ROBOT) || (owner && owner.species && (owner.species.flags & IS_PLANT)))
+	if ((BP_IS_ROBOTIC(src) || BP_IS_LIFELIKE(src)) || (owner && owner.species && (owner.species.flags & IS_PLANT)))
 		germ_level = 0
 		return
 
@@ -239,7 +241,7 @@
 
 //Note: external organs have their own version of this proc
 /obj/item/organ/proc/take_damage(amount, var/silent=0)
-	if(src.robotic >= ORGAN_ROBOT)
+	if(BP_IS_ROBOTIC(src) || BP_IS_LIFELIKE(src))
 		src.damage = between(0, src.damage + (amount * 0.8), max_damage)
 	else
 		src.damage = between(0, src.damage + amount, max_damage)
@@ -254,7 +256,7 @@
 	damage = max(damage, min_bruised_damage)
 
 /obj/item/organ/emp_act(severity)
-	if(robotic < ORGAN_ROBOT)
+	if(!(BP_IS_ROBOTIC(src) || BP_IS_LIFELIKE(src)))
 		return
 	switch (severity)
 		if (1)

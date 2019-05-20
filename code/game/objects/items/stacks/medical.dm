@@ -38,7 +38,7 @@
 				user << SPAN_WARNING("You can't apply [src] through [H.wear_suit]!")
 				return 1
 
-		if(affecting.robotic >= ORGAN_ROBOT)
+		if(BP_IS_ROBOTIC(affecting) || BP_IS_LIFELIKE(affecting))
 			user << SPAN_WARNING("This isn't useful at all on a robotic limb.")
 			return 1
 

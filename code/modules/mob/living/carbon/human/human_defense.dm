@@ -58,7 +58,7 @@ meteor_act
 				msg_admin_attack("[src.name] ([src.ckey]) was disarmed by a stun effect")
 
 				drop_from_inventory(c_hand)
-				if (affected.robotic >= ORGAN_ROBOT)
+				if (BP_IS_ROBOTIC(affected) || BP_IS_LIFELIKE(affected))
 					emote("pain", 1, "drops what they were holding, their [affected.name] malfunctioning!")
 				else
 					var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
