@@ -6,7 +6,7 @@
 // Variables not to expand the lists of. Vars is pointless to expand, and overlays/underlays cannot be expanded.
 /var/list/view_variables_dont_expand = list("overlays", "underlays", "vars")
 // Variables that runtime if you try to test associativity of the lists they contain by indexing
-/var/list/view_variables_no_assoc = list("verbs", "contents","screen","images")
+/var/list/view_variables_no_assoc = list("verbs", "contents","screen","images", "vis_contents", "vis_locs")
 
 // Acceptable 'in world', as VV would be incredibly hampered otherwise
 ADMIN_VERB_ADD(/client/proc/debug_variables, R_ADMIN | R_MOD, FALSE)
