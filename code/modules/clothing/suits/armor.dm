@@ -234,10 +234,10 @@
 //Provides the protection of a merc voidsuit, but only covers the chest/groin, and also takes up a suit slot. In exchange it has no slowdown and provides storage.
 /obj/item/clothing/suit/storage/vest/merc
 	name = "tactical armor vest"
-	desc = "A high-quality armor vest in a fetching tan. It is surprisingly flexible and light, even with the added webbing and armor plating."
+	desc = "An armored vest that protects against some damage. This one doesn't have any signs, but painted in fetching tan and has webbing vest strapped to it. Not designed for serious operations."
 	icon_state = "mercwebvest"
 	item_state = "mercwebvest"
-	armor = list(melee = 60, bullet = 65, laser = 65, energy = 40, bomb = 40, bio = 0, rad = 0)
+	armor = list(melee = 50, bullet = 40, laser = 40, energy = 30, bomb = 15, bio = 0, rad = 0)
 
 
 //All of the armor below is mostly unused

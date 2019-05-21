@@ -8,7 +8,7 @@
 		)
 	item_flags = THICKMATERIAL
 	body_parts_covered = HEAD | EARS
-	armor = list(melee = 35, bullet = 40, laser = 40,energy = 10, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 50, bullet = 40, laser = 40,energy = 30, bomb = 15, bio = 0, rad = 0)
 	flags_inv = HIDEEARS
 	cold_protection = HEAD
 	min_cold_protection_temperature = HELMET_MIN_COLD_PROTECTION_TEMPERATURE
@@ -69,12 +69,14 @@
 
 /obj/item/clothing/head/helmet/merc
 	name = "tactical helmet"
-	desc = "A tan helmet made from advanced ceramic. Comfortable and robust."
+	desc = "A generic, tan helmet with rugged visor. Somewhat heavy, but protects the head, face and eyes from impacts."
 	icon_state = "merchelm"
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	flags_inv = HIDEEARS|HIDEEYES|BLOCKHAIR
-	armor = list(melee = 65, bullet = 70, laser = 70, energy = 45, bomb = 40, bio = 0, rad = 0)
+	body_parts_covered = HEAD|FACE|EARS|EYES
+	armor = list(melee = 50, bullet = 50, laser = 40, energy = 40, bomb = 15, bio = 0, rad = 0)
 	siemens_coefficient = 0.6
+	price_tag = 200
 
 /obj/item/clothing/head/helmet/augment
 	name = "Augment Array"
