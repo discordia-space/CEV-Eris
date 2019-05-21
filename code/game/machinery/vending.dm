@@ -19,22 +19,27 @@
 	var/list/instances = list()		   // Stores inserted items. Instances are only used for things added during the round, and not for things spawned at initialize
 
 
-/datum/data/vending_product/New(var/vending_machine, var/path, var/name = null, var/amount = 1, var/price = 0, var/color = null, var/category = CAT_NORMAL)
+/datum/data/vending_product/New(vending_machine, path, name = null, amount = 1, price = 0, color = null, category = CAT_NORMAL)
 	..()
 
 	product_path = path
-	var/obj/tmp = path
-
-	if(!name)
-		product_name = initial(tmp.name)
-	else
-		product_name = name
-
-	product_desc = initial(tmp.desc)
-	src.amount = amount
+	product_name = name
 	src.price = price
+	src.amount = amount
 	display_color = color
 	src.category = category
+
+	var/obj/tmp = path
+
+	if(!product_name)
+		product_name = initial(tmp.name)
+		if(ispath(tmp, /obj/item/weapon/computer_hardware/hard_drive/portable))
+			var/obj/item/weapon/computer_hardware/hard_drive/portable/tmp_disk = tmp
+			if(initial(tmp_disk.disk_name))
+				product_name = initial(tmp_disk.disk_name)
+
+	product_desc = initial(tmp.desc)
+
 	src.vending_machine = vending_machine
 
 	if(src.price <= 0 && src.vending_machine.auto_price)
