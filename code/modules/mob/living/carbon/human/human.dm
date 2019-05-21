@@ -1144,12 +1144,6 @@ var/list/rank_prefix = list(\
 		else
 			return
 
-		// Qualifies for a cruciform: spawn it and install it
-		if(Pref.religion == "NeoTheology" || (mind && mind.assigned_job && mind.assigned_job.department == DEPARTMENT_CHURCH))
-			var/obj/item/weapon/implant/core_implant/cruciform/C = new /obj/item/weapon/implant/core_implant/cruciform(src)
-			C.install(src)
-			C.activate()
-
 		var/datum/body_modification/BM = null
 
 		for(var/tag in species.has_limbs)
@@ -1170,6 +1164,12 @@ var/list/rank_prefix = list(\
 			else
 				var/organ_type = species.has_organ[tag]
 				new organ_type(src)
+
+		// Qualifies for a cruciform: spawn it and install it
+		if(Pref.religion == "NeoTheology" || (mind && mind.assigned_job && mind.assigned_job.department == DEPARTMENT_CHURCH))
+			var/obj/item/weapon/implant/core_implant/cruciform/C = new /obj/item/weapon/implant/core_implant/cruciform
+			C.install(src)
+			C.activate()
 
 	else
 		var/organ_type = null
