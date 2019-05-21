@@ -134,7 +134,7 @@
 	throwforce = WEAPON_FORCE_HARMLESS
 	slot_flags = SLOT_BELT
 	storage_slots = 6
-	can_hold = list(/obj/item/clothing/mask/smokable/cigarette, /obj/item/weapon/flame/lighter)
+	can_hold = list(/obj/item/clothing/mask/smokable/cigarette, /obj/item/weapon/gun/launcher/syringe/disguised, /obj/item/weapon/flame/lighter)
 	icon_type = "cigarette"
 	reagent_flags = REFILLABLE | NO_REACT
 
