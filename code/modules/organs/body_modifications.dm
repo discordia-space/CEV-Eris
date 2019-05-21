@@ -65,7 +65,7 @@ var/global/list/modifications_types = list(
 	if(!allow_nt)
 		if(P.religion == "NeoTheology")
 			return FALSE
-		if(H && H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
+		if(H?.mind?.assigned_job.department == DEPARTMENT_CHURCH)
 			return FALSE
 
 	return TRUE
