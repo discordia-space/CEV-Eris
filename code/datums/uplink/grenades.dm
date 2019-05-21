@@ -88,11 +88,6 @@
 	item_cost = 140
 	path = /obj/item/weapon/storage/box/explosive
 
-/datum/uplink_item/item/grenades/viscerator
-	name = "Viscerator Grenade"
-	item_cost = 20
-	path = /obj/item/weapon/grenade/spawnergrenade/manhacks
-
 /datum/uplink_item/item/grenades/blob
 	name = "Bioweapon Sample"
 	item_cost = DEFAULT_TELECRYSTAL_AMOUNT
