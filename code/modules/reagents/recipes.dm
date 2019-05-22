@@ -2317,3 +2317,24 @@
 	result = "Zen_Star"
 	required_reagents = list("Adelhyde" = 1, "Bronson_Extract" = 1, "Powdered_Delta" = 1, "Karmotrine" = 1, "Flanergide" = 1, "ice" = 1)
 	result_amount = 6
+
+/datum/chemical_reaction/Virgin_Fluffy_Dream
+	name = "Virgin_Fluffy_Dream"
+	id = "Virgin_Fluffy_Dream"
+	result = "Virgin_Fluffy_Dream"
+	required_reagents = list("Adelhyde" = 1, "Powdered_Delta" = 1)
+	result_amount = 2
+
+/datum/chemical_reaction/Fluffy_Dream
+	name = "Fluffy_Dream"
+	id = "Fluffy_Dream"
+	result = "Fluffy_Dream"
+	required_reagents = list("Virgin_Fluffy_Dream" = 3, "Karmotrine" = 1)
+	result_amount = 3
+
+/datum/chemical_reaction/Strong_Fluffy_Dream
+	name = "Strong_Fluffy_Dream"
+	id = "Strong_Fluffy_Dream"
+	result = "Strong_Fluffy_Dream"
+	required_reagents = list("Fluffy_Dream" = 3, "Karmotrine" = 1)
+	result_amount = 3

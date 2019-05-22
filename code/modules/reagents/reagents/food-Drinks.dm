@@ -1888,6 +1888,106 @@ datum/reagent/ethanol/Suplex/affect_ingest(var/mob/living/carbon/M, var/alien, v
 	glass_desc = "Wow it can stand even tho its round"
 	glass_center_of_mass = list("x"=16, "y"=7)
 
+/datum/reagent/ethanol/Virgin_Fluffy_Dream
+	name = "Virgin Fluffy Dream"
+	id = "Virgin_Fluffy_Dream"
+	description = "A couple of these will make your tongue feel velvet-y. More of them and you'll be sleeping soundly."
+	taste_description = "soft... soft like a pillow..."
+	reagent_state = LIQUID
+	color = "#14527f"
+	strength = 1 //simbolic
+
+	glass_icon_state = "Fluffy_Dreamglass"
+	glass_name = "Fluffy Dream"
+	glass_desc = "you could sleep just by looking at it"
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+/datum/reagent/ethanol/Virgin_Fluffy_Dream/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	var/effective_dose = dose
+	if(issmall(M))
+		effective_dose *= 2
+
+	if(effective_dose < 30)
+		if(effective_dose == metabolism * 2 || prob(5))
+			M.emote("yawn")
+	else if(effective_dose < 45)
+		M.eye_blurry = max(M.eye_blurry, 10)
+	else if(effective_dose < 60)
+		if(prob(50))
+			M.Weaken(2)
+		M.drowsyness = max(M.drowsyness, 20)
+	else
+		M.sleeping = max(M.sleeping, 20)
+		M.drowsyness = max(M.drowsyness, 60)
+	M.add_chemical_effect(CE_PULSE, -1)
+
+/datum/reagent/ethanol/Fluffy_Dream
+	name = "Fluffy Dream"
+	id = "Fluffy_Dream"
+	description = "A couple of these will make your tongue feel velvet-y. More of them and you'll be sleeping soundly."
+	taste_description = "soft... soft like a pillow..."
+	reagent_state = LIQUID
+	color = "#14527f"
+	strength = 12
+
+	glass_icon_state = "Fluffy_Dreamglass"
+	glass_name = "Fluffy Dream"
+	glass_desc = "you could sleep just by looking at it"
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+/datum/reagent/ethanol/Fluffy_Dream/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	var/effective_dose = dose
+	if(issmall(M))
+		effective_dose *= 2
+
+	if(effective_dose < 15)
+		if(effective_dose == metabolism * 2 || prob(5))
+			M.emote("yawn")
+	else if(effective_dose < 25)
+		M.eye_blurry = max(M.eye_blurry, 10)
+	else if(effective_dose < 30)
+		if(prob(50))
+			M.Weaken(2)
+		M.drowsyness = max(M.drowsyness, 20)
+	else
+		M.sleeping = max(M.sleeping, 20)
+		M.drowsyness = max(M.drowsyness, 60)
+	M.add_chemical_effect(CE_PULSE, -1)
+
+
+/datum/reagent/ethanol/Strong_Fluffy_Dream
+	name = "Strong Fluffy Dream"
+	id = "Strong_Fluffy_Dream"
+	description = "is it drink only memory?"
+	taste_description = "soft... soft like a pillow..."
+	reagent_state = LIQUID
+	color = "#14527f"
+	strength = 24
+	
+	glass_icon_state = "Fluffy_Dreamglass"
+	glass_name = "Fluffy Dream"
+	glass_desc = "no idea why but remembers you of R.O.M"
+	glass_center_of_mass = list("x"=16, "y"=7)
+
+/datum/reagent/ethanol/Strong_Fluffy_Dream/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	var/effective_dose = dose
+	if(issmall(M))
+		effective_dose *= 2
+
+	if(effective_dose < 10)
+		if(effective_dose == metabolism * 2 || prob(5))
+			M.emote("yawn")
+	else if(effective_dose < 15)
+		M.eye_blurry = max(M.eye_blurry, 10)
+	else if(effective_dose < 30)
+		if(prob(50))
+			M.Weaken(2)
+		M.drowsyness = max(M.drowsyness, 20)
+	else
+		M.sleeping = max(M.sleeping, 20)
+		M.drowsyness = max(M.drowsyness, 60)
+	M.add_chemical_effect(CE_PULSE, -1)
+
 /datum/reagent/ethanol/alliescocktail
 	name = "Allies Cocktail"
 	id = "alliescocktail"
