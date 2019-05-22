@@ -119,21 +119,25 @@
 
 
 //Getting implants
-/mob/living/proc/get_core_implant(ctype = null)
+/mob/living/proc/get_core_implant(ctype = null, req_activated = TRUE)
 	for(var/obj/item/weapon/implant/core_implant/I in src)
 		if(ctype && !istype(I, ctype))
 			continue
 
-		if(!I.active || I.wearer != src)
+		if(I.wearer != src)
+			continue
+
+		if(req_activated && !I.active)
 			continue
 
 		return I
 
 	return null
 
-/proc/get_implant_from_victim(mob/living/carbon/human/user, ctype = null)
+/proc/get_implant_from_victim(mob/living/carbon/human/user, ctype = null, req_activated = TRUE)
 	var/mob/living/L = get_victim(user)
-	return L.get_core_implant(ctype)
+	if(L)
+		return L.get_core_implant(ctype, req_activated)
 
 
 //Getting other objects
