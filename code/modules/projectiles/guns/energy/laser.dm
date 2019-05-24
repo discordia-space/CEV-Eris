@@ -25,13 +25,14 @@
 	projectile_type = /obj/item/projectile/beam/practice
 
 obj/item/weapon/gun/energy/retro
-	name = "One Star LG \"Cog\""
+	name = "OS LG \"Cog\""
 	icon_state = "retro"
 	item_state = "retro"
-	desc = "One Star cheap laser gun. In the distant past - this was the main weapon of low-rank police forces, billions of copies of this gun were made. They are ubiquitous."
+	desc = "A One Star cheaply designed laser gun. In the distant past - this was the main weapon of low-rank police forces, billions of copies of this gun were made. They are ubiquitous."
 	fire_sound = 'sound/weapons/Laser.ogg'
 	slot_flags = SLOT_BELT
 	w_class = ITEM_SIZE_NORMAL
+	matter = list(MATERIAL_STEEL = 12)
 	projectile_type = /obj/item/projectile/beam
 	fire_delay = 10 //old technology
 	price_tag = 2000
