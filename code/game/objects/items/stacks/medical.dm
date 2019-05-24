@@ -38,7 +38,25 @@
 				user << SPAN_WARNING("You can't apply [src] through [H.wear_suit]!")
 				return 1
 
-		if(BP_IS_ROBOTIC(affecting) || BP_IS_LIFELIKE(affecting))
+		if(BP_IS_ROBOTIC(affecting))
+			// user is clueless
+			if(BP_IS_LIFELIKE(affecting) && user.stats.getStat(STAT_BIO) < STAT_LEVEL_BASIC)
+				user.visible_message( \
+				SPAN_NOTICE("[user] starts applying [src] to [M]."), \
+				SPAN_NOTICE("You start applying [src] to [M].") \
+				)
+				if (do_after(user, 30, M))
+					if(prob(10 + user.stats.getStat(STAT_BIO)))
+						user << SPAN_NOTICE("You have managed to waste less [src].")
+					else
+						use(1)
+					user.visible_message( \
+						SPAN_NOTICE("[M] starts has been applied with [src] by [user]."), \
+						SPAN_NOTICE("You apply [src] to [M].") \
+					)
+				M.updatehealth()
+				return 1
+				
 			user << SPAN_WARNING("This isn't useful at all on a robotic limb.")
 			return 1
 
@@ -107,7 +125,6 @@
 					if(!do_mob(user, M, W.damage/5))
 						user << SPAN_NOTICE("You must stand still to bandage wounds.")
 						break
-
 					if (W.current_stage <= W.max_bleeding_stage)
 						user.visible_message(
 							SPAN_NOTICE("\The [user] bandages \a [W.desc] on [M]'s [affecting.name]."),
@@ -125,6 +142,16 @@
 							SPAN_NOTICE("You place a bandaid over \a [W.desc] on [M]'s [affecting.name].")
 						)
 					W.bandage()
+					// user's stat check that causing pain if they are amateurs
+					if(user && user.stats.getStat(STAT_BIO) < STAT_LEVEL_BASIC)
+						if(prob(affecting.get_damage() - user.stats.getStat(STAT_BIO)))
+							var/pain = rand(min(30,affecting.get_damage()), max(affecting.get_damage() + 30,60) - user.stats.getStat(STAT_BIO))
+							H.pain(affecting, pain)
+							if(user != H)
+								to_chat(H, "<span class='[pain > 50 ? "danger" : "warning"]'>\The [user]'s amateur actions caused you [pain > 50 ? "alot of " : ""]pain.</span>")
+								to_chat(user, SPAN_WARNING("Your amateur actions caused [H] [pain > 50 ? "alot of " : ""]pain."))
+							else
+								to_chat(user, "<span class='[pain > 50 ? "danger" : "warning"]'>Your amateur actions caused you [pain > 50 ? "alot of " : ""]pain.</span>")
 					if(prob(10 + user.stats.getStat(STAT_BIO)))
 						user << SPAN_NOTICE("You have managed to waste less [src].")
 					else
@@ -191,6 +218,16 @@
 				else
 					use(1)
 				affecting.salve()
+				// user's stat check that causing pain if they are amateurs
+				if(user && user.stats.getStat(STAT_BIO) < STAT_LEVEL_BASIC)
+					if(prob(affecting.get_damage() - user.stats.getStat(STAT_BIO)))
+						var/pain = rand(min(30,affecting.get_damage()), max(affecting.get_damage() + 30,60) - user.stats.getStat(STAT_BIO))
+						H.pain(affecting, pain)
+						if(user != H)
+							to_chat(H, "<span class='[pain > 50 ? "danger" : "warning"]'>\The [user]'s amateur actions caused you [pain > 50 ? "alot of " : ""]pain.</span>")
+							to_chat(user, SPAN_WARNING("Your amateur actions caused [H] [pain > 50 ? "alot of " : ""]pain."))
+						else
+							to_chat(user, "<span class='[pain > 50 ? "danger" : "warning"]'>Your amateur actions caused you [pain > 50 ? "alot of " : ""]pain.</span>")
 		else
 			if (can_operate(H))        //Checks if mob is lying down on table for surgery
 				if (do_surgery(H,user,src))
@@ -263,6 +300,16 @@
 				else
 					used++
 			affecting.update_damages()
+			// user's stat check that causing pain if they are amateurs
+			if(user && user.stats.getStat(STAT_BIO) < STAT_LEVEL_BASIC)
+				if(prob(affecting.get_damage() - user.stats.getStat(STAT_BIO)))
+					var/pain = rand(min(30,affecting.get_damage()), max(affecting.get_damage() + 30,60) - user.stats.getStat(STAT_BIO))
+					H.pain(affecting, pain)
+					if(user != H)
+						to_chat(H, "<span class='[pain > 50 ? "danger" : "warning"]'>\The [user]'s amateur actions caused you [pain > 50 ? "alot of " : ""]pain.</span>")
+						to_chat(user, SPAN_WARNING("Your amateur actions caused [H] [pain > 50 ? "alot of " : ""]pain."))
+					else
+						to_chat(user, "<span class='[pain > 50 ? "danger" : "warning"]'>Your amateur actions caused you [pain > 50 ? "alot of " : ""]pain.</span>")
 			if(used == amount)
 				if(affecting.is_bandaged())
 					user << SPAN_WARNING("\The [src] is used up.")
@@ -319,6 +366,16 @@
 				else
 					use(1)
 				affecting.salve()
+				// user's stat check that causing pain if they are amateurs
+				if(user && user.stats.getStat(STAT_BIO) < STAT_LEVEL_BASIC)
+					if(prob(affecting.get_damage() - user.stats.getStat(STAT_BIO)))
+						var/pain = rand(min(30,affecting.get_damage()), max(affecting.get_damage() + 30,60) - user.stats.getStat(STAT_BIO))
+						H.pain(affecting, pain)
+						if(user != H)
+							to_chat(H, "<span class='[pain > 50 ? "danger" : "warning"]'>\The [user]'s amateur actions caused you [pain > 50 ? "alot of " : ""]pain.</span>")
+							to_chat(user, SPAN_WARNING("Your amateur actions caused [H] [pain > 50 ? "alot of " : ""]pain."))
+						else
+							to_chat(user, "<span class='[pain > 50 ? "danger" : "warning"]'>Your amateur actions caused you [pain > 50 ? "alot of " : ""]pain.</span>")
 		else
 			if (can_operate(H))        //Checks if mob is lying down on table for surgery
 				if (do_surgery(H,user,src))

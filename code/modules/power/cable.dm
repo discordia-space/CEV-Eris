@@ -550,7 +550,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		var/obj/item/organ/external/S = H.organs_by_name[user.targeted_organ]
 
 		if (!S) return
-		if(!(BP_IS_ROBOTIC(S) || BP_IS_LIFELIKE(S)) || user.a_intent != I_HELP)
+		if(!BP_IS_ROBOTIC(S) || user.a_intent != I_HELP)
 			return ..()
 
 		if(S.burn_dam)

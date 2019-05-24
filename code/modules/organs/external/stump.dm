@@ -14,7 +14,7 @@
 	..(holder, null)
 	if(istype(limb))
 		max_damage = limb.max_damage
-		if((BP_IS_ROBOTIC(limb) || BP_IS_LIFELIKE(limb)) && (!parent || (BP_IS_ROBOTIC(parent) || BP_IS_LIFELIKE(parent))))
+		if(BP_IS_ROBOTIC(limb) && (!parent || BP_IS_ROBOTIC(parent)))
 			nature = MODIFICATION_SILICON
 
 /obj/item/organ/external/stump/get_tally()

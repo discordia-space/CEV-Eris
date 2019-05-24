@@ -151,7 +151,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 				var/picked = pick(check)
 				var/obj/item/organ/external/affecting = H.get_organ(picked)
 				if(affecting)
-					if(BP_IS_ROBOTIC(affecting) || BP_IS_LIFELIKE(affecting))
+					if(BP_IS_ROBOTIC(affecting))
 						return
 					if(affecting.take_damage(5, 0))
 						H.UpdateDamageIcon()
@@ -229,7 +229,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		var/obj/item/organ/external/BP = victim.get_organ(victim.hand ? BP_L_ARM : BP_R_ARM)
 		if(!BP)
 			return FALSE
-		if(BP_IS_ROBOTIC(BP) || BP_IS_LIFELIKE(BP))
+		if(BP_IS_ROBOTIC(BP))
 			return FALSE
 		to_chat(user, "<span class='danger'>Ouch! You cut yourself while picking through \the [src].</span>")
 		BP.take_damage(5, null, TRUE, TRUE, "Sharp debris")

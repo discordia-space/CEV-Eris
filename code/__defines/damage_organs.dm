@@ -89,11 +89,12 @@
 #define BP_BY_DEPTH list(BP_HEAD, BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_CHEST)
 
 // Organs helpers.
-#define BP_IS_ORGANIC(org)  (org.nature & MODIFICATION_ORGANIC)
-#define BP_IS_ROBOTIC(org) (org.nature & MODIFICATION_SILICON)
-#define BP_IS_REMOVED(org) (org.nature & MODIFICATION_REMOVED)
-#define BP_IS_ASSISTED(org) (org.nature & MODIFICATION_ASSISTED)
-#define BP_IS_LIFELIKE(org) (org.nature & MODIFICATION_LIFELIKE)
+#define BP_IS_ORGANIC(org)  (org.nature == MODIFICATION_ORGANIC)
+#define BP_IS_ROBOTIC(org) (org.nature == MODIFICATION_SILICON || org.nature == MODIFICATION_LIFELIKE)
+#define BP_IS_SILICON(org) (org.nature == MODIFICATION_SILICON)	// Prothetics that are obvious
+#define BP_IS_REMOVED(org) (org.nature == MODIFICATION_REMOVED)
+#define BP_IS_ASSISTED(org) (org.nature == MODIFICATION_ASSISTED)
+#define BP_IS_LIFELIKE(org) (org.nature == MODIFICATION_LIFELIKE)
 
 
 // Organ defines.

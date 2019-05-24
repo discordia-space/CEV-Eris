@@ -1247,7 +1247,6 @@ var/list/rank_prefix = list(\
 
 /mob/living/carbon/human/can_inject(var/mob/user, var/error_msg, var/target_zone)
 	. = 1
-
 	if(!target_zone)
 		if(user)
 			target_zone = user.targeted_organ
@@ -1264,7 +1263,7 @@ var/list/rank_prefix = list(\
 	if(!affecting)
 		. = 0
 		fail_msg = "They are missing that limb."
-	else if (BP_IS_ROBOTIC(affecting) || BP_IS_LIFELIKE(affecting))
+	else if (BP_IS_ROBOTIC(affecting))
 		. = 0
 		fail_msg = "That limb is robotic."
 	else
@@ -1276,7 +1275,9 @@ var/list/rank_prefix = list(\
 				if(wear_suit && wear_suit.item_flags & THICKMATERIAL)
 					. = 0
 	if(!. && error_msg && user)
-		if(!fail_msg)
+		if(BP_IS_LIFELIKE(affecting) && user.stats.getStat(STAT_BIO) < STAT_LEVEL_BASIC)
+			fail_msg = "Skin is tough and inelastic."
+		else if(!fail_msg)
 			fail_msg = "There is no exposed flesh or thin material [target_zone == BP_HEAD ? "on their head" : "on their body"] to inject into."
 		to_chat(user, SPAN_WARNING(fail_msg))
 
@@ -1467,11 +1468,11 @@ var/list/rank_prefix = list(\
 	else if(organ_check in list(BP_LIVER, BP_KIDNEYS))
 		affecting = organs_by_name[BP_GROIN]
 
-	if(affecting && (BP_IS_ROBOTIC(affecting) || BP_IS_LIFELIKE(affecting)))
+	if(affecting && (BP_IS_ROBOTIC(affecting)))
 		return FALSE
 	return (species && species.has_organ[organ_check])
 
-/mob/living/carbon/human/has_appendage(var/appendage_check)	//returns TRUE if found, 2 or 3 if limb is robotic, FALSE if not found
+/mob/living/carbon/human/has_appendage(var/appendage_check)	//returns TRUE if found, type of organ modification if limb is robotic, FALSE if not found
 
 	if (appendage_check == BP_CHEST)
 		return TRUE
@@ -1480,8 +1481,7 @@ var/list/rank_prefix = list(\
 	appendage = organs_by_name[appendage_check]
 
 	if(appendage && !appendage.is_stump())
-		if(BP_IS_ROBOTIC(appendage) || BP_IS_LIFELIKE(appendage))
-			// CHECK THIS RETURN
+		if(BP_IS_ROBOTIC(appendage))
 			return appendage.nature
 		else return TRUE
 	return FALSE

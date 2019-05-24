@@ -17,7 +17,7 @@
 		return 0
 	if (affected.is_stump())
 		return 0
-	if (BP_IS_ROBOTIC(affected) || BP_IS_LIFELIKE(affected))
+	if (BP_IS_ROBOTIC(affected))
 		return 0
 	return 1
 
