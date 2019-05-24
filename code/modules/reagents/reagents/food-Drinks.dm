@@ -987,6 +987,28 @@
 	glass_name = "nothing"
 	glass_desc = "Absolutely nothing."
 
+/datum/reagent/drink/Adelbron
+	name = "Adelbron"
+	id = "Adelbron"
+	description = "Mix for a (mix)ture"
+	taste_description = "wrong"
+	color = "#E1442A"
+
+	glass_icon_state = "Adelhydeglass"
+	glass_name = "Adelhyde"
+	glass_desc = "No don`t drink that"
+
+/datum/reagent/drink/Deltabron
+	name = "Deltabron"
+	id = "Deltabron"
+	description = "Mix for a (mix)ture"
+	taste_description = "wrong"
+	color = "#E1442A"
+
+	glass_icon_state = "Adelhydeglass"
+	glass_name = "Adelhyde"
+	glass_desc = "No don`t drink that"
+
 /datum/reagent/drink/Adelhyde
 	name = "Adelhyde"
 	id = "Adelhyde"

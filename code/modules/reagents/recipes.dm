@@ -2091,7 +2091,7 @@
 	name = "SynthBeer"
 	id = "SynthBeer"
 	result = "SynthBeer"
-	required_reagents = list("Adelhyde" = 1, "Bronson_Extract" = 2, "Powdered_Delta" = 1, "Karmotrine" = 4, "Flanergide" = 1)
+	required_reagents = list("Adelbron" = 1, "DeltaBron" = 1, "Karmotrine" = 4, "Flanergide" = 2)
 	result_amount = 9
 
 /datum/chemical_reaction/Bleeding_Jane
@@ -2338,3 +2338,17 @@
 	result = "Strong_Fluffy_Dream"
 	required_reagents = list("Fluffy_Dream" = 3, "Karmotrine" = 1)
 	result_amount = 3
+
+/datum/chemical_reaction/Adelbron
+	name = "Adelbron"
+	id = "Adelbron"
+	result = "Adelbron"
+	required_reagents = list("Adelhyde" = 1, "Bronson_Extract" = 1)
+	result_amount = 2
+
+/datum/chemical_reaction/Deltabron
+	name = "Deltabron"
+	id = "Deltabron"
+	result = "Deltabron"
+	required_reagents = list("Powdered_Delta" = 1, "Bronson_Extract" = 1)
+	result_amount = 2
