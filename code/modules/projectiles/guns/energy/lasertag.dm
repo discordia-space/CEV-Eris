@@ -1,7 +1,8 @@
 /obj/item/weapon/gun/energy/lasertag
 	name = "laser tag gun"
 	item_state = "laser"
-	desc = "Standard-issue weapon of the Imperial Guard"
+	desc = "Standard-issue weapon of the Imperial Guard."
+	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 1, TECH_MAGNET = 2)
 	self_recharge = 1
 	matter = list(MATERIAL_PLASTIC = 6)
