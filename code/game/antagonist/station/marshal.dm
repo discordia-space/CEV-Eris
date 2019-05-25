@@ -38,9 +38,3 @@
 	spawn_uplink(owner.current)
 
 	return TRUE
-
-/datum/antagonist/marshal/unequip() //Placeholder code
-	var/mob/living/L = owner.current
-
-	for(var/name in stat_modifiers)
-		L.stats.changeStat(name, stat_modifiers[name])
