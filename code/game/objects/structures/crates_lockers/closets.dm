@@ -82,11 +82,6 @@
 		if(content_size > storage_capacity-5)
 			storage_capacity = content_size + 5
 
-
-
-
-
-
 /obj/structure/closet/examine(mob/user)
 	if(..(user, 1) && !opened)
 		var/content_size = 0
