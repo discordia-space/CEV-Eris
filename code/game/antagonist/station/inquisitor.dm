@@ -16,7 +16,12 @@
 	survive_objective = /datum/objective/escape
 	var/was_priest = FALSE
 
+
 /datum/antagonist/inquisitor/can_become_antag(datum/mind/M, mob/report)
+
+
+/datum/antagonist/inquisitor/can_become_antag(var/datum/mind/M, var/mob/report)
+
 	if(!..())
 		if (report)
 			to_chat(report, SPAN_NOTICE("Failure: Parent can_become_antag returned false"))
@@ -28,6 +33,11 @@
 	return TRUE
 
 /datum/antagonist/inquisitor/equip()
+	var/mob/living/L = owner.current
+
+	for(var/name in stat_modifiers)
+		L.stats.changeStat(name, stat_modifiers[name])
+
 	if(!owner.current)
 		return FALSE
 
