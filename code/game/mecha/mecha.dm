@@ -179,6 +179,9 @@
 	remove_hearing()
 	. = ..()
 
+/obj/mecha/lost_in_space()
+	return occupant.lost_in_space()
+
 /obj/mecha/handle_atom_del(atom/A)
 	..()
 	if(A == cell)
