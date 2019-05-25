@@ -19,7 +19,7 @@
 	reload_sound 	= 'sound/weapons/guns/interact/batrifle_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/batrifle_cock.ogg'
 	recoil = 0.8 //it's carbine plus not 7.62
-	zoom_factor = 1.2
+	zoom_factor = 0.2
 
 	firemodes = list(
 		SEMI_AUTO_NODELAY,

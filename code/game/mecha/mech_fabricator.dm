@@ -40,7 +40,7 @@
 		use_power = 1
 	update_icon()
 
-/obj/machinery/mecha_part_fabricator/dismantle()
+/obj/machinery/mecha_part_fabricator/on_deconstruction()
 	for(var/f in materials)
 		eject_materials(f, -1)
 	..()
@@ -62,7 +62,7 @@
 		return
 	ui_interact(user)
 
-/obj/machinery/mecha_part_fabricator/ui_interact(var/mob/user, var/ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/mecha_part_fabricator/ui_interact(var/mob/user, var/ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/data[0]
 
 	if(!length(categories))

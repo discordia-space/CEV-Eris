@@ -12,6 +12,8 @@
 	var/last_ip
 	var/last_id
 
+	var/save_load_cooldown
+
 	//game-preferences
 	var/lastchangelog = ""				//Saved changlog filesize to detect if there was a change
 
@@ -54,6 +56,7 @@
 		load_path(client.ckey)
 		load_preferences()
 		load_and_update_character()
+
 	sanitize_preferences()
 	if(client && istype(client.mob, /mob/new_player))
 		var/mob/new_player/np = client.mob
@@ -75,6 +78,12 @@
 		user << SPAN_DANGER("No mob exists for the given client!")
 		close_load_dialog(user)
 		return
+
+	if(!path && !IsGuestKey(user.client.key))
+		error("Prefs failed to setup (datum): [user.client.ckey]")
+		load_path(user.client.ckey)
+		load_preferences()
+		load_and_update_character()
 
 	var/dat = "<html><body><center>"
 
@@ -111,6 +120,14 @@
 			return
 	ShowChoices(usr)
 	return 1
+
+/datum/preferences/proc/check_cooldown()
+	if(save_load_cooldown != world.time && (save_load_cooldown + PREF_SAVELOAD_COOLDOWN > world.time))
+		return FALSE
+
+	save_load_cooldown = world.time
+	return TRUE
+
 
 /datum/preferences/Topic(href, list/href_list)
 	if(..())
@@ -216,7 +233,7 @@
 	character.gen_record = gen_record
 	character.exploit_record = exploit_record
 	if(!character.isSynthetic())
-		character.nutrition = rand(140,360)
+		character.nutrition = rand(250, 450)
 
 
 

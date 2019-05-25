@@ -103,9 +103,9 @@
 	New()
 		..()
 		new /obj/item/weapon/book/manual/medical_cloning(src)
-		new /obj/item/weapon/book/manual/medical_diagnostics_manual(src)
-		new /obj/item/weapon/book/manual/medical_diagnostics_manual(src)
-		new /obj/item/weapon/book/manual/medical_diagnostics_manual(src)
+		new /obj/item/weapon/book/manual/wiki/medical_guide(src)
+		new /obj/item/weapon/book/manual/wiki/medical_guide(src)
+		new /obj/item/weapon/book/manual/wiki/medical_guide(src)
 		update_icon()
 
 
@@ -114,12 +114,11 @@
 
 	New()
 		..()
-		new /obj/item/weapon/book/manual/engineering_construction(src)
-		new /obj/item/weapon/book/manual/engineering_particle_accelerator(src)
-		new /obj/item/weapon/book/manual/engineering_hacking(src)
-		new /obj/item/weapon/book/manual/engineering_guide(src)
-		new /obj/item/weapon/book/manual/atmospipes(src)
-		new /obj/item/weapon/book/manual/engineering_singularity_safety(src)
+		new /obj/item/weapon/book/manual/wiki/engineering_construction(src)
+		new /obj/item/weapon/book/manual/wiki/engineering_hacking(src)
+		new /obj/item/weapon/book/manual/wiki/engineering_guide(src)
+		new /obj/item/weapon/book/manual/wiki/engineering_atmos(src)
+		new /obj/item/weapon/book/manual/wiki/engineering_singularity(src)
 		new /obj/item/weapon/book/manual/evaguide(src)
 		update_icon()
 
@@ -146,10 +145,11 @@
 	var/dat			 // Actual page content
 	var/due_date = 0 // Game time in 1/10th seconds
 	var/author		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
-	var/unique = 0   // 0 - Normal book, 1 - Should not be treated as normal book, unable to be copied, unable to be modified
+	var/unique = FALSE // FALSE - Normal book, TRUE - Should not be treated as normal book, unable to be copied, unable to be modified
 	var/title		 // The real name of the book.
 	var/carved = 0	 // Has the book been hollowed out for use as a secret storage item?
 	var/obj/item/store	//What's in the book?
+	var/window_size = null // Specific window size for the book, i.e: "1920x1080", Size x Width
 
 /obj/item/weapon/book/attack_self(var/mob/user as mob)
 	playsound(src.loc, pick('sound/items/BOOK_Turn_Page_1.ogg',\
@@ -167,7 +167,7 @@
 			user << SPAN_NOTICE("The pages of [title] have been cut out!")
 			return
 	if(src.dat)
-		user << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book")
+		user << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book[window_size != null ? ";size=[window_size]" : ""]")
 		user.visible_message("[user] opens a book titled \"[src.title]\" and begins reading intently.")
 		onclose(user, "book")
 	else

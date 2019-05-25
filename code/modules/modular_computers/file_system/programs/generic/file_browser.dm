@@ -151,23 +151,29 @@
 /datum/nano_module/program/computer_filemanager
 	name = "NTOS File Manager"
 
-/datum/nano_module/program/computer_filemanager/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = GLOB.default_state)
+/datum/nano_module/program/computer_filemanager/ui_data()
 	var/list/data = host.initial_data()
+
 	var/datum/computer_file/program/filemanager/PRG
 	PRG = program
 
-	var/obj/item/weapon/computer_hardware/hard_drive/HDD
-	var/obj/item/weapon/computer_hardware/hard_drive/portable/RHDD
 	if(PRG.error)
 		data["error"] = PRG.error
-	if(PRG.open_file)
-		var/datum/computer_file/data/file
 
-		if(!PRG.computer || !PRG.computer.hard_drive)
-			data["error"] = "I/O ERROR: Unable to access hard drive."
-		else
-			HDD = PRG.computer.hard_drive
-			file = HDD.find_file_by_name(PRG.open_file)
+	if(!PRG.computer || !PRG.computer.hard_drive)
+		data["error"] = "I/O ERROR: Unable to access hard drive."
+
+	else
+		if(PRG.computer.hard_drive)
+			data["internal_disk"] = PRG.computer.hard_drive.ui_data()
+
+		if(PRG.computer.portable_drive)
+			data["portable_disk"] = PRG.computer.portable_drive.ui_data()
+
+		if(PRG.open_file)
+			var/datum/computer_file/data/file
+
+			file = PRG.computer.hard_drive.find_file_by_name(PRG.open_file)
 			if(file.filetype == "AUD")
 				data["error"] = "Software error: Please use a dedicated Audio Player program to read audio files."
 			else if(!istype(file))
@@ -175,36 +181,15 @@
 			else
 				data["filedata"] = pencode2html(file.stored_data)
 				data["filename"] = cyrillic_to_unicode("[file.filename].[file.filetype]")
-	else
-		if(!PRG.computer || !PRG.computer.hard_drive)
-			data["error"] = "I/O ERROR: Unable to access hard drive."
-		else
-			HDD = PRG.computer.hard_drive
-			RHDD = PRG.computer.portable_drive
-			var/list/files[0]
-			for(var/datum/computer_file/F in HDD.stored_files)
-				files.Add(list(list(
-					"name" = cyrillic_to_unicode(F.filename),
-					"type" = F.filetype,
-					"size" = F.size,
-					"undeletable" = F.undeletable
-				)))
-			data["files"] = files
-			if(RHDD)
-				data["usbconnected"] = 1
-				var/list/usbfiles[0]
-				for(var/datum/computer_file/F in RHDD.stored_files)
-					usbfiles.Add(list(list(
-						"name" = cyrillic_to_unicode(F.filename),
-						"type" = F.filetype,
-						"size" = F.size,
-						"undeletable" = F.undeletable
-					)))
-				data["usbfiles"] = usbfiles
+
+	return data
+
+/datum/nano_module/program/computer_filemanager/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/topic_state/state = GLOB.default_state)
+	var/list/data = ui_data()
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "file_manager.tmpl", "NTOS File Manager", 575, 700, state = state)
+		ui = new(user, src, ui_key, "mpc_file_manager.tmpl", "NTOS File Manager", 575, 700, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)
 		ui.open()

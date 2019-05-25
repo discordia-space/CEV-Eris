@@ -26,7 +26,7 @@
 	implant = /obj/item/weapon/implant/excelsior
 
 /obj/item/weapon/implanter/excelsior
-	name = "broken implanter-complant"
+	name = "implanter-complant"
 	implant = /obj/item/weapon/implant/excelsior
 
 /obj/item/weapon/implant/excelsior/broken

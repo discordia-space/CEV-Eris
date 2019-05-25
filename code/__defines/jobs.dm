@@ -6,7 +6,7 @@
 #define JOBS_SCIENCE "Moebius Expedition Overseer","Moebius Scientist","Moebius Roboticist"
 #define JOBS_CARGO "Guild Merchant","Guild Technician","Guild Miner"
 #define JOBS_CIVILIAN "Bartender","Gardener","Chef","Janitor","Assistant"
-#define JOBS_CHURCH	"Neotheology Preacher"
+#define JOBS_CHURCH	"NeoTheology Preacher"
 #define JOBS_NONHUMAN "AI","Robot","pAI"
 
 #define CREDITS "&cent;"

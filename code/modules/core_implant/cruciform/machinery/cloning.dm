@@ -408,7 +408,7 @@
 			biomass += BIOMASS_TYPES[type]
 			user.drop_item()
 			qdel(I)
-	
+
 
 /obj/machinery/neotheology/biomass_container/update_icon()
 	overlays.Cut()
@@ -467,7 +467,7 @@
 	src.add_fingerprint(user)
 	update_icon()
 
-/obj/machinery/neotheology/reader/dismantle()
+/obj/machinery/neotheology/reader/on_deconstruction()
 	if(implant)
 		implant.forceMove(loc)
 		implant = null

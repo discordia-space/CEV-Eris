@@ -360,20 +360,14 @@
 //			icon_state = "health_numb"
 			overlays += ovrls["health0"]
 		else
-			switch(parentmob:hal_screwyhud)
-				if(1)	overlays += ovrls["health6"]
-				if(2)	overlays += ovrls["health7"]
-				else
-				//switch(health - halloss)
-					switch(100 - ((parentmob:species.flags & NO_PAIN) ? 0 : parentmob:traumatic_shock))
-					//switch(100 - parentmob.traumatic_shock)
-						if(100 to INFINITY)		overlays += ovrls["health0"]
-						if(80 to 100)			overlays += ovrls["health1"]
-						if(60 to 80)			overlays += ovrls["health2"]
-						if(40 to 60)			overlays += ovrls["health3"]
-						if(20 to 40)			overlays += ovrls["health4"]
-						if(0 to 20)				overlays += ovrls["health5"]
-						else					overlays += ovrls["health6"]
+			switch(100 - ((parentmob:species.flags & NO_PAIN) ? 0 : parentmob:traumatic_shock))
+				if(100 to INFINITY)		overlays += ovrls["health0"]
+				if(80 to 100)			overlays += ovrls["health1"]
+				if(60 to 80)			overlays += ovrls["health2"]
+				if(40 to 60)			overlays += ovrls["health3"]
+				if(20 to 40)			overlays += ovrls["health4"]
+				if(0 to 20)				overlays += ovrls["health5"]
+				else					overlays += ovrls["health6"]
 
 /obj/screen/health/DEADelize()
 	overlays.Cut()
@@ -542,7 +536,7 @@
 /obj/screen/toxin/update_icon()
 	var/mob/living/carbon/human/H = parentmob
 	overlays.Cut()
-	if(H.hal_screwyhud == 4 || H.plasma_alert)
+	if(H.plasma_alert)
 		overlays += ovrls["tox1"]
 //		icon_state = "tox1"
 //	else
@@ -574,7 +568,7 @@
 /obj/screen/oxygen/update_icon()
 	var/mob/living/carbon/human/H = parentmob
 	overlays.Cut()
-	if(H.hal_screwyhud == 3 || H.oxygen_alert)
+	if(H.oxygen_alert)
 		overlays += ovrls["oxy1"]
 //		icon_state = "oxy1"
 //	else
@@ -697,6 +691,8 @@ obj/screen/fire/DEADelize()
 								if ("oxygen")
 									if(t.air_contents.gas["oxygen"] && !t.air_contents.gas["plasma"])
 										contents.Add(t.air_contents.gas["oxygen"])
+									else if(istype(t, /obj/item/weapon/tank/onestar_regenerator))
+										contents.Add(BREATH_MOLES*2)
 									else
 										contents.Add(0)
 
@@ -1118,137 +1114,6 @@ obj/screen/fire/DEADelize()
 		var/obj/item/clothing/glasses/G = H.wearing_rig.getCurrentGlasses()
 		if (G && H.wearing_rig.visor.active)
 			overlays |= G.overlay
-
-
-/*	if(owner.gun_move_icon)
-		if(!(target_permissions & TARGET_CAN_MOVE))
-			owner.gun_move_icon.icon_state = "no_walk0"
-			owner.gun_move_icon.name = "Allow Movement"
-		else
-			owner.gun_move_icon.icon_state = "no_walk1"
-			owner.gun_move_icon.name = "Disallow Movement"
-
-	if(owner.item_use_icon)
-		if(!(target_permissions & TARGET_CAN_CLICK))
-			owner.item_use_icon.icon_state = "no_item0"
-			owner.item_use_icon.name = "Allow Item Use"
-		else
-			owner.item_use_icon.icon_state = "no_item1"
-			owner.item_use_icon.name = "Disallow Item Use"
-
-	if(owner.radio_use_icon)
-		if(!(target_permissions & TARGET_CAN_RADIO))
-			owner.radio_use_icon.icon_state = "no_radio0"
-			owner.radio_use_icon.name = "Allow Radio Use"
-		else
-			owner.radio_use_icon.icon_state = "no_radio1"
-			owner.radio_use_icon.name = "Disallow Radio Use"*/
-//-----------------------Gun Mod------------------------------
-/obj/screen/gun
-	name = "gun"
-	icon = 'icons/mob/screen/ErisStyle.dmi'
-	master = null
-	dir = 2
-
-/obj/screen/gun/Click(location, control, params)
-	if(!usr)
-		return
-	return TRUE
-
-/obj/screen/gun/New()
-	..()
-	if(!parentmob.aiming)
-		parentmob.aiming = new(parentmob)
-	update_icon()
-
-/obj/screen/gun/mode
-	name = "Toggle Gun Mode"
-	icon_state = "gun0"
-	screen_loc = "15,2"
-
-
-/obj/screen/gun/mode/Click(location, control, params)
-	if(..())
-		var/mob/living/user = parentmob
-		if(istype(user))
-			if(!user.aiming) user.aiming = new(user)
-			user.aiming.toggle_active()
-			update_icon()
-		return TRUE
-	return FALSE
-
-/obj/screen/gun/mode/update_icon()
-	icon_state = "gun[parentmob.aiming.active]"
-
-/obj/screen/gun/move
-	name = "Allow Movement"
-	icon_state = "no_walk0"
-	screen_loc = "15,3"
-
-/obj/screen/gun/move/Click(location, control, params)
-	if(..())
-		var/mob/living/user = parentmob
-		if(istype(user))
-			if(!user.aiming) user.aiming = new(user)
-			user.aiming.toggle_permission(TARGET_CAN_MOVE)
-			update_icon()
-		return TRUE
-	return FALSE
-
-/obj/screen/gun/move/update_icon()
-	if(!(parentmob.aiming.target_permissions & TARGET_CAN_MOVE))
-		icon_state = "no_walk0"
-//			owner.gun_move_icon.name = "Allow Movement"
-	else
-		icon_state = "no_walk1"
-//			owner.gun_move_icon.name = "Disallow Movement"
-
-/obj/screen/gun/item
-	name = "Allow Item Use"
-	icon_state = "no_items0"
-	screen_loc = "14,2"
-
-/obj/screen/gun/item/Click(location, control, params)
-	if(..())
-		var/mob/living/user = parentmob
-		if(istype(user))
-			if(!user.aiming) user.aiming = new(user)
-			user.aiming.toggle_permission(TARGET_CAN_CLICK)
-			update_icon()
-		return TRUE
-	return FALSE
-
-/obj/screen/gun/item/update_icon()
-	if(!(parentmob.aiming.target_permissions & TARGET_CAN_CLICK))
-		icon_state = "no_items0"
-//			owner.item_use_icon.name = "Allow Item Use"
-	else
-		icon_state = "no_items1"
-//			owner.item_use_icon.name = "Disallow Item Use"
-
-/obj/screen/gun/radio
-	name = "Allow Radio Use"
-	icon_state = "no_radio0"
-	screen_loc = "14,3"
-
-/obj/screen/gun/radio/Click(location, control, params)
-	if(..())
-		var/mob/living/user = parentmob
-		if(istype(user))
-			if(!user.aiming) user.aiming = new(user)
-			user.aiming.toggle_permission(TARGET_CAN_RADIO)
-			update_icon()
-		return TRUE
-	return FALSE
-
-/obj/screen/gun/radio/update_icon()
-	if(!(parentmob.aiming.target_permissions & TARGET_CAN_RADIO))
-		icon_state = "no_radio0"
-//			owner.radio_use_icon.name = "Allow Radio Use"
-	else
-		icon_state = "no_radio1"
-//			owner.radio_use_icon.name = "Disallow Radio Use"
-//-----------------------Gun Mod End------------------------------
 
 //-----------------------toggle_invetory------------------------------
 /obj/screen/toggle_invetory

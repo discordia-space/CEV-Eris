@@ -21,6 +21,7 @@
 	reload_sound 	= 'sound/weapons/guns/interact/m41_reload.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/m41_cocked.ogg'
 	recoil = 0.8 //advanced pulse rifle will have lower recoil for sure
+	recoil_buildup = 0.1 //advanced pulse weapon
 
 	firemodes = list(
 		FULL_AUTO_400,

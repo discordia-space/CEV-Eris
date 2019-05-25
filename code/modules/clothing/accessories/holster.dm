@@ -15,8 +15,6 @@
 		user << SPAN_WARNING("[I] won't fit in [src]!")
 		return
 
-	if(istype(user))
-		user.stop_aiming(no_message=1)
 	holstered = I
 	user.drop_from_inventory(holstered)
 	holstered.loc = src

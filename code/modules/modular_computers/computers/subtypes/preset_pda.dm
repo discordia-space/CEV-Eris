@@ -20,6 +20,7 @@
 	hard_drive.store_file(new /datum/computer_file/program/crew_manifest())
 	hard_drive.store_file(new /datum/computer_file/program/wordprocessor())
 	hard_drive.store_file(new /datum/computer_file/program/records())
+	hard_drive.store_file(new /datum/computer_file/program/bounty_board_app())
 	if(prob(50)) //harmless tax software
 		hard_drive.store_file(new /datum/computer_file/program/uplink())
 

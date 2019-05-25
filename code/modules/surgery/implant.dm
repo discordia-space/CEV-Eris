@@ -141,96 +141,96 @@
 	min_duration = 80
 	max_duration = 100
 
-	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/cavity/implant_removal/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
-		//A somewhat hacky solution
-		//Disallow this if the target has internal bleeding, so that can be fixed first instead
-		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		if(!affected)
-			return FALSE
-		for(var/datum/wound/W in affected.wounds) if(W.internal)
-			return FALSE
+	//A somewhat hacky solution
+	//Disallow this if the target has internal bleeding, so that can be fixed first instead
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	if(!affected)
+		return FALSE
+	for(var/datum/wound/W in affected.wounds) if(W.internal)
+		return FALSE
 
-		var/obj/item/organ/internal/brain/sponge = target.internal_organs_by_name[BP_BRAIN]
-		return ..() && (!sponge || !sponge.damage)
+	var/obj/item/organ/internal/brain/sponge = target.internal_organs_by_name[BP_BRAIN]
+	return ..() && (!sponge || !sponge.damage)
 
-	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message("[user] starts poking around inside [target]'s [affected.name] with \the [tool].", \
-		"You start poking around inside [target]'s [affected.name] with \the [tool]" )
-		target.custom_pain("The pain in your [affected.name] is living hell!",1)
-		..()
+/datum/surgery_step/cavity/implant_removal/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	user.visible_message("[user] starts poking around inside [target]'s [affected.name] with \the [tool].", \
+	"You start poking around inside [target]'s [affected.name] with \the [tool]" )
+	target.custom_pain("The pain in your [affected.name] is living hell!",1)
+	..()
 
-	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		var/obj/item/organ/external/chest/affected = target.get_organ(target_zone)
+/datum/surgery_step/cavity/implant_removal/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/chest/affected = target.get_organ(target_zone)
 
-		var/find_prob = 0
+	var/find_prob = 0
 
-		if (affected.implants.len)
-			var/list/implants = list()
+	if (affected.implants.len)
+		var/list/implants = list()
 
-			for(var/obj/item/I in affected.implants)
-				if(istype(I,/obj/item/weapon/implant))
-					var/obj/item/weapon/implant/IM = I
-					if(IM.is_external())
-						continue
-				implants.Add(I)
+		for(var/obj/item/I in affected.implants)
+			if(istype(I,/obj/item/weapon/implant))
+				var/obj/item/weapon/implant/IM = I
+				if(IM.is_external())
+					continue
+			implants.Add(I)
 
-			if(!implants.len)
-				user.visible_message("\blue [user] could not find anything inside [target]'s [affected.name], and pulls \the [tool] out.", \
-				"\blue You could not find anything inside [target]'s [affected.name]." )
-				return
-
-			var/obj/item/obj = pick(implants)
-
-			if(istype(obj,/obj/item/weapon/implant))
-				var/obj/item/weapon/implant/implant = obj
-				if (implant.is_legal)
-					find_prob +=60
-				else
-					find_prob +=40
-			else
-				find_prob +=50
-
-			if (prob(find_prob))
-				user.visible_message("\blue [user] takes something out of incision on [target]'s [affected.name] with \the [tool].", \
-				"\blue You take [obj] out of incision on [target]'s [affected.name]s with \the [tool]." )
-				affected.implants -= obj
-				target.update_implants()
-
-				//Handle possessive brain borers.
-				if(istype(obj,/mob/living/simple_animal/borer))
-					var/mob/living/simple_animal/borer/worm = obj
-					if(worm.controlling)
-						target.release_control()
-					worm.detatch()
-					worm.leave_host()
-				else
-					obj.loc = get_turf(target)
-					obj.add_blood(target)
-					obj.update_icon()
-					if(istype(obj,/obj/item/weapon/implant))
-						var/obj/item/weapon/implant/imp = obj
-						imp.wearer = null
-						imp.implanted = 0
-				playsound(target.loc, 'sound/effects/squelch1.ogg', 50, 1)
-			else
-				user.visible_message("\blue [user] removes \the [tool] from [target]'s [affected.name].", \
-				"\blue There's something inside [target]'s [affected.name], but you just missed it this time." )
-		else
+		if(!implants.len)
 			user.visible_message("\blue [user] could not find anything inside [target]'s [affected.name], and pulls \the [tool] out.", \
 			"\blue You could not find anything inside [target]'s [affected.name]." )
+			return
 
-	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		..()
-		var/obj/item/organ/external/chest/affected = target.get_organ(target_zone)
-		if (affected.implants.len)
-			var/fail_prob = 10
-			fail_prob += 100 - tool_quality(tool)
-			if (prob(fail_prob))
-				user.visible_message("\red You scrape something inside [target]'s [affected.name]." )
-				var/obj/item/weapon/implant/imp = affected.implants[1]
-				spawn(25)
-					if (QDELETED(imp))
-						return
-					imp.malfunction(1)
+		var/obj/item/obj = pick(implants)
+
+		if(istype(obj,/obj/item/weapon/implant))
+			var/obj/item/weapon/implant/implant = obj
+			if (implant.is_legal)
+				find_prob +=60
+			else
+				find_prob +=40
+		else
+			find_prob +=50
+
+		if (prob(find_prob))
+			user.visible_message("\blue [user] takes something out of incision on [target]'s [affected.name] with \the [tool].", \
+			"\blue You take [obj] out of incision on [target]'s [affected.name]s with \the [tool]." )
+			affected.implants -= obj
+			target.update_implants()
+
+			//Handle possessive brain borers.
+			if(istype(obj,/mob/living/simple_animal/borer))
+				var/mob/living/simple_animal/borer/worm = obj
+				if(worm.controlling)
+					target.release_control()
+				worm.detatch()
+				worm.leave_host()
+			else
+				obj.loc = get_turf(target)
+				obj.add_blood(target)
+				obj.update_icon()
+				if(istype(obj,/obj/item/weapon/implant))
+					var/obj/item/weapon/implant/imp = obj
+					imp.uninstall()
+					
+			playsound(target.loc, 'sound/effects/squelch1.ogg', 50, 1)
+		else
+			user.visible_message("\blue [user] removes \the [tool] from [target]'s [affected.name].", \
+			"\blue There's something inside [target]'s [affected.name], but you just missed it this time." )
+	else
+		user.visible_message("\blue [user] could not find anything inside [target]'s [affected.name], and pulls \the [tool] out.", \
+		"\blue You could not find anything inside [target]'s [affected.name]." )
+
+/datum/surgery_step/cavity/implant_removal/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	..()
+	var/obj/item/organ/external/chest/affected = target.get_organ(target_zone)
+	if (affected.implants.len)
+		var/fail_prob = 10
+		fail_prob += 100 - tool_quality(tool)
+		if (prob(fail_prob))
+			user.visible_message("\red You scrape something inside [target]'s [affected.name]." )
+			var/obj/item/weapon/implant/imp = affected.implants[1]
+			spawn(25)
+				if (QDELETED(imp))
+					return
+				imp.malfunction(1)

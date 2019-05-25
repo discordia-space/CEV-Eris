@@ -1,5 +1,5 @@
 // Operates NanoUI
-/obj/item/modular_computer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/modular_computer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	if(!screen_on || !enabled || bsod)
 		if(ui)
 			ui.close()
@@ -40,7 +40,7 @@
 	data["programs"] = programs
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "laptop_mainscreen.tmpl", "NTOS Main Menu", 400, 500)
+		ui = new(user, src, ui_key, "mpc_mainscreen.tmpl", "NTOS Main Menu", 400, 500)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)
 		ui.open()

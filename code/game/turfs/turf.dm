@@ -272,3 +272,6 @@ var/const/enterloopsanity = 100
 		sound =  footstep_sound(flooring.footstep_sound)
 
 	return sound
+
+/turf/AllowDrop()
+	return TRUE

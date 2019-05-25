@@ -16,7 +16,6 @@
 	magazine_type = /obj/item/ammo_magazine/c762_long
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
 	price_tag = 3500
-	recoil = 1.2 //auto-fire on AK would bring a lot of salt, recoil is a way to reduce it for now
 	fire_sound = 'sound/weapons/guns/fire/ltrifle_fire.ogg'
 	unload_sound 	= 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/ltrifle_magin.ogg'
@@ -30,7 +29,7 @@
 
 /obj/item/weapon/gun/projectile/automatic/ak47/update_icon()
 	..()
-	item_state = (ammo_magazine)? "ak-full" : "ak"
+	item_state = (ammo_magazine)? "[icon_state]-full" : icon_state
 	icon_state = "[initial(icon_state)][ammo_magazine? "-[ammo_magazine.max_ammo]": ""]"
 
 /obj/item/weapon/gun/projectile/automatic/ak47/fs

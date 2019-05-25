@@ -253,7 +253,7 @@ var/global/datum/ntnet/ntnet_global = new()
 
 		if(ishuman(user))
 			var/obj/item/modular_computer/C = locate(/obj/item/modular_computer) in user.GetAllContents()
-			var/datum/computer_file/program/P = C?.getProgramByType(/datum/computer_file/program/email_client)
+			var/datum/computer_file/program/P = C.getProgramByType(/datum/computer_file/program/email_client)
 			if(P)
 				var/datum/nano_module/email_client/my_client = P.NM
 				if(my_client && istype(my_client, /datum/nano_module/email_client))

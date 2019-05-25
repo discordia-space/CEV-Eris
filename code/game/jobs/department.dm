@@ -103,10 +103,10 @@
 	funding_source = "Moebius Corp."
 
 /datum/department/church
-	name = "Church of Neotheology"
+	name = "Church of NeoTheology"
 	id = DEPARTMENT_CHURCH
 	funding_type = FUNDING_EXTERNAL
-	funding_source = "Church of Neotheology"
+	funding_source = "Church of NeoTheology"
 
 
 

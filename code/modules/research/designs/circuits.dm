@@ -75,6 +75,12 @@
 	build_path = /obj/item/weapon/circuitboard/chemmaster
 	sort_string = "FAHAA"
 
+/datum/design/research/circuit/chem_heater
+	name = "Chemical Heater"
+	req_tech = list(TECH_DATA = 2, TECH_BIO = 2)
+	build_path = /obj/item/weapon/circuitboard/chem_heater
+	sort_string = "FAHAB"
+
 /datum/design/research/circuit/teleconsole
 	name = "teleporter control console"
 	req_tech = list(TECH_DATA = 3, TECH_BLUESPACE = 2)
