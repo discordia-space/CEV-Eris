@@ -20,7 +20,7 @@
 		STAT_BIO = 5,
 		STAT_MEC = 5,
 		STAT_COG = 5,
-		STAT_VIG = 20
+		STAT_VIG = 15
 	)
 
 

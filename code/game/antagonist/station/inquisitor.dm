@@ -16,9 +16,10 @@
 	survive_objective = /datum/objective/escape
 	var/was_priest = FALSE
 
-
-/datum/antagonist/inquisitor/can_become_antag(datum/mind/M, mob/report)
-
+	stat_modifiers = list(
+		STAT_TGH = 10,
+		STAT_VIG = 10
+	)
 
 /datum/antagonist/inquisitor/can_become_antag(var/datum/mind/M, var/mob/report)
 
