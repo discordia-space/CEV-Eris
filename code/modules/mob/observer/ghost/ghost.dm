@@ -157,9 +157,9 @@ Works together with spawning an observer, noted above.
 		//This is duplicated in the cryopod code for robustness. The message will not display twice
 		if (istype(loc, /obj/machinery/cryopod) && in_perfect_health())
 			if (!get_respawn_bonus("CRYOSLEEP"))
-				src << SPAN_NOTICE("Because you ghosted from a cryopod in good health, your crew respawn time has been reduced by 20 minutes.")
+				src << SPAN_NOTICE("Because you ghosted from a cryopod in good health, your crew respawn time has been reduced by [CRYOPOD_SPAWN_BONUS] minutes.")
 				src << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
-			set_respawn_bonus("CRYOSLEEP", CRYOPOD_SPAWN_BONUS)
+			set_respawn_bonus("CRYOSLEEP", CRYOPOD_SPAWN_BONUS MINUTES)
 
 		ghost.ckey = ckey
 		ghost.client = client

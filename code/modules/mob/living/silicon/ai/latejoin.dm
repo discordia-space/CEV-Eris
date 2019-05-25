@@ -26,6 +26,17 @@ var/global/list/empty_playable_ai_cores = list()
 	empty_playable_ai_cores += new /obj/structure/AIcore/deactivated(loc)
 	global_announcer.autosay("[src] has been moved to intelligence storage.", "Artificial Intelligence Oversight")
 
+
+	//Handle respawn bonus for entering storage.
+	var/mob/M = key2mob(mind.key)
+
+	//We send a message to the occupant's current mob - probably a ghost, but who knows.
+	to_chat(M, SPAN_NOTICE("You have been entered intelligence storage. Your crew respawn time has been reduced by [CRYOPOD_SPAWN_BONUS] minutes."))
+	M << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
+
+	M.set_respawn_bonus("Core Wipe", CRYOPOD_SPAWN_BONUS MINUTES)
+
+
 	//Handle job slot/tater cleanup.
 	var/job = mind.assigned_role
 
