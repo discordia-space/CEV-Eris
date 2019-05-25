@@ -4,6 +4,15 @@
 	icon_state = "coffin"
 	var/mob/living/occupant = null
 
+/obj/structure/closet/coffin/close(mob/living/user)
+	..()
+	for (var/mob/living/L in contents)
+		//When the coffin is closed we check for mobs in it.
+		if (L.mind && L.mind.key)
+			//We won't check if the mob is dead yet, maybe being spaced in a coffin is an execution method
+			occupant = L
+			break
+
 //The coffin processes when there's a mob inside
 /obj/structure/closet/coffin/lost_in_space()
 	//The coffin has left the ship. Burial at space
