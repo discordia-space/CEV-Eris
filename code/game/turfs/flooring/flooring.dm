@@ -329,6 +329,8 @@ var/list/flooring_types
 	flags = TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BURN | TURF_HIDES_THINGS
 	floor_smooth = SMOOTH_NONE
 	wall_smooth = SMOOTH_NONE
+	space_smooth = SMOOTH_NONE
+	smooth_movable_atom = SMOOTH_NONE
 
 /decl/flooring/carpet/bcarpet
 	name = "black carpet"
