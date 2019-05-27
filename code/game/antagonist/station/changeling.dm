@@ -17,6 +17,11 @@
 	survive_objective = /datum/objective/escape
 	allow_neotheology = FALSE
 
+	stat_modifiers = list(
+		STAT_TGH = 5,
+		STAT_VIG = 15
+	)
+
 /datum/antagonist/changeling/get_special_objective_text()
 	if(owner && owner.changeling)
 		return "<br><b>Changeling ID:</b> [owner.changeling.changelingID].<br><b>Genomes Absorbed:</b> [owner.changeling.absorbedcount]"
@@ -33,3 +38,9 @@
 			return FALSE
 		return TRUE
 	return FALSE
+
+/datum/antagonist/changeling/equip()
+	var/mob/living/L = owner.current
+
+	for(var/name in stat_modifiers)
+		L.stats.changeStat(name, stat_modifiers[name])

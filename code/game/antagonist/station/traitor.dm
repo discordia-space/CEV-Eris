@@ -14,6 +14,15 @@
 
 	survive_objective = /datum/objective/escape
 
+	stat_modifiers = list(
+		STAT_ROB = 5,
+		STAT_TGH = 5,
+		STAT_BIO = 5,
+		STAT_MEC = 5,
+		STAT_COG = 5,
+		STAT_VIG = 15
+	)
+
 
 /datum/antagonist/traitor/get_extra_panel_options()
 	if(owner && owner.current)
@@ -28,6 +37,11 @@
 	return ishuman(player.current) && ..(player)
 
 /datum/antagonist/traitor/equip()
+	var/mob/living/L = owner.current
+
+	for(var/name in stat_modifiers)
+		L.stats.changeStat(name, stat_modifiers[name])
+
 	if(!owner.current)
 		return FALSE
 
@@ -38,6 +52,7 @@
 	give_codewords()
 
 	return TRUE
+
 
 /datum/antagonist/traitor/proc/give_codewords()
 	if(!owner.current)

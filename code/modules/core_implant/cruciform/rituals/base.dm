@@ -86,7 +86,7 @@
 	if (prob(20))
 		for(var/mob/living/carbon/human/target in range(14, H))
 			if(target.mind && target.mind.changeling)
-				H << SPAN_DANGER("Something ire is upon you! Twisted and evil mind touches you for a moment, leaving you in cold sweat.")
+				H << SPAN_DANGER("Something's ire is upon you! Twisted and evil mind touches you for a moment, leaving you in cold sweat.")
 				was_triggired = TRUE
 	if (!was_triggired)
 		H << SPAN_NOTICE("There is nothing there. You feel safe.")
