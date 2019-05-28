@@ -119,7 +119,6 @@
 
 // Buckle movement
 /datum/movement_handler/mob/buckle_relay/DoMove(var/direction, var/mover)
-	world << "buckle move"
 	// TODO: Datumlize buckle-handling
 	if(istype(mob.buckled, /obj/vehicle))
 		//drunk driving
@@ -145,10 +144,10 @@
 			//drunk wheelchair driving
 			direction = mob.AdjustMovementDirection(direction)
 			mob.buckled.DoMove(direction, mob)
-		// you wont be able normally buckle to mobs to i guess this is alright
-		else if(isliving(mob.buckled))
-			mob.buckled.relaymove(mob, direction)
-			return MOVEMENT_HANDLED
+	// you wont be able normally buckle to mobs to i guess this is alright
+	else if(isliving(mob.buckled))
+		mob.buckled.relaymove(mob, direction)
+		return MOVEMENT_HANDLED
 
 /datum/movement_handler/mob/buckle_relay/MayMove(var/mover)
 	if(mob.buckled)

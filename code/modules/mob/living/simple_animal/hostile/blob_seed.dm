@@ -22,6 +22,7 @@
 
 	max_nutrition = 120
 	nutrition_step = 1
+	digest_factor = 0.1
 	var/last_message = 0
 
 /mob/living/simple_animal/blob_seed/New()
@@ -31,12 +32,12 @@
 /mob/living/simple_animal/blob_seed/Life()
 	..()
 	if(nutrition > 0)
+		if(nutrition > max_nutrition * 0.95)
+			new /obj/effect/blob/core(get_turf(src))
+			log_and_message_admins("Blob was spawned form bloob_seed.")
+			Destroy()
+			return
 		if(buckled)
-			if(nutrition > max_nutrition * 0.95)
-				new /obj/effect/blob/core(get_turf(src))
-				log_and_message_admins("Blob was spawned form bloob_seed.")
-				Destroy()
-				return
 			if(isliving(buckled))
 				if(last_message > world.time + 10 SECONDS)
 					last_message = world.time
