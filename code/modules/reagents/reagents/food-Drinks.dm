@@ -998,9 +998,31 @@
 	glass_name = "Adelhyde"
 	glass_desc = "No don`t drink that"
 
+/datum/reagent/drink/Adelflan
+	name = "Adelflan"
+	id = "Adelflan"
+	description = "Mix for a (mix)ture"
+	taste_description = "wrong"
+	color = "#E1442A"
+
+	glass_icon_state = "Adelhydeglass"
+	glass_name = "Adelhyde"
+	glass_desc = "No don`t drink that"
+
 /datum/reagent/drink/Deltabron
 	name = "Deltabron"
 	id = "Deltabron"
+	description = "Mix for a (mix)ture"
+	taste_description = "wrong"
+	color = "#E1442A"
+
+	glass_icon_state = "Adelhydeglass"
+	glass_name = "Adelhyde"
+	glass_desc = "No don`t drink that"
+
+/datum/reagent/drink/Deltaflan
+	name = "Deltaflan"
+	id = "Deltaflan"
 	description = "Mix for a (mix)ture"
 	taste_description = "wrong"
 	color = "#E1442A"
@@ -1044,7 +1066,7 @@
 
 	glass_icon_state = "Bronson_Extractglass"
 	glass_name = "Bronson Extract"
-	glass_desc = "Strong, looks like it could fall without breaking."
+	glass_desc = "Robust, looks like it could fall without breaking."
 
 /datum/reagent/drink/Bronson_Extract/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -1513,7 +1535,7 @@ datum/reagent/ethanol/Virgin_Crevice_Spike
 	taste_description = "sour and manly"
 	reagent_state = LIQUID
 	color = "6dc478"
-	strength = 1 //simbolic
+	strength = 24
 
 	glass_icon_state = "Crevice_Spikeglass"
 	glass_name = "Crevice Spike"
@@ -1670,6 +1692,20 @@ datum/reagent/ethanol/Marsblast
 	glass_name = "Marsblast"
 	glass_desc = "Mars, the planet? really?"
 	glass_center_of_mass = list("x"=16, "y"=7)
+
+/datum/reagent/ethanol/Moon_Blast
+	name = "Moon Blast"
+	id = "Moon_Blast"
+	description = "No relation to the Hadron cannon you can see on the moon for one week every month."
+	taste_description = "Sweet, and out of this world."
+	taste_mult = 1.5
+	color = "#9eaaaa"
+	strength = 12
+
+	glass_icon_state = "Moon_Blastglass"
+	glass_name = "Moon_Blast"
+	glass_desc = "shouldn't it be round as the moon, oh yeah.. the moon craters"
+	glass_center_of_mass = list("x"=16, "y"=5)
 
 datum/reagent/ethanol/Mercuryblast
 	name = "Mercuryblast"
@@ -1988,7 +2024,7 @@ datum/reagent/ethanol/Suplex/affect_ingest(var/mob/living/carbon/M, var/alien, v
 	
 	glass_icon_state = "Fluffy_Dreamglass"
 	glass_name = "Fluffy Dream"
-	glass_desc = "no idea why but remembers you of R.O.M"
+	glass_desc = "no idea why but reminds you of R.O.M"
 	glass_center_of_mass = list("x"=16, "y"=7)
 
 /datum/reagent/ethanol/Strong_Fluffy_Dream/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
