@@ -3,8 +3,8 @@ var/list/flooring_types
 /proc/get_flooring_data(var/flooring_path)
 	if(!flooring_types)
 		flooring_types = list()
-	if(!flooring_types["[flooring_path]"])
-		flooring_types["[flooring_path]"] = new flooring_path
+		for(var/path in typesof(/decl/flooring))
+			flooring_types["[path]"] = new path
 	return flooring_types["[flooring_path]"]
 
 // State values:
@@ -329,6 +329,8 @@ var/list/flooring_types
 	flags = TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BURN | TURF_HIDES_THINGS
 	floor_smooth = SMOOTH_NONE
 	wall_smooth = SMOOTH_NONE
+	space_smooth = SMOOTH_NONE
+	smooth_movable_atom = SMOOTH_NONE
 
 /decl/flooring/carpet/bcarpet
 	name = "black carpet"

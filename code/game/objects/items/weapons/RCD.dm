@@ -143,18 +143,20 @@
 				build_cost =  10
 				build_delay = 50
 				build_turf = get_base_turf(local_turf.z)
-			if(istype(T,/obj/structure/low_wall))
+			else if(istype(T,/obj/structure/low_wall))
 				build_delay = 40
 				build_cost =  5
-			if(istype(T,/turf/simulated/wall))
+			else if(istype(T,/turf/simulated/wall))
 				var/turf/simulated/wall/W = T
 				build_delay = 40
 				build_cost =  (W.reinf_material) ? 10 : 5
-				build_type =  (!canRwall && W.reinf_material) ? null : "destroy"
+				build_type =  (!canRwall && W.reinf_material) ? null : "deconstruct"
 				build_turf =  /turf/simulated/floor
-			if(istype(T,/obj/machinery/door/airlock))
+			else if(istype(T,/obj/machinery/door/airlock))
 				build_cost =  10
 				build_delay = 50
+			else
+				build_type =  ""
 
 	if(!build_type)
 		working = 0

@@ -10,7 +10,6 @@
 /turf/space
 	isTransparent = TRUE
 
-
 /turf/simulated/open/update_icon(var/update_neighbors, var/roundstart_update = FALSE)
 	if (SSticker.current_state != GAME_STATE_PLAYING)
 		return
@@ -28,7 +27,8 @@
 		return
 
 	vis_contents.Cut()
-	vis_contents.Add(GetBelow(src))
+	if (below)
+		vis_contents.Add(below)
 
 	updateFallability()
 
@@ -52,8 +52,8 @@
 		ChangeTurf(/turf/simulated/open)
 		return
 
+	vis_contents.Cut()
 	if (below)
-		vis_contents.Cut()
 		vis_contents.Add(below)
 
 	_initialized_transparency = TRUE

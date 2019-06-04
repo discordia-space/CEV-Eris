@@ -79,7 +79,7 @@
 	desc = "Bound believer to your will."
 
 /datum/ritual/cruciform/inquisitor/obey/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
-	var/obj/item/weapon/implant/core_implant/CI = get_implant_from_victim(user)
+	var/obj/item/weapon/implant/core_implant/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform)
 
 	if(!CI || !CI.wearer || !ishuman(CI.wearer) || !CI.active)
 
@@ -142,7 +142,7 @@
 	power = 35
 
 /datum/ritual/cruciform/inquisitor/heal_other/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
-	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user)
+	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform)
 
 	if(!CI || !CI.active || !CI.wearer)
 		fail("Cruciform not found.", user, C)
@@ -259,7 +259,7 @@
 	power = 100
 
 /datum/ritual/cruciform/inquisitor/initiation/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
-	var/obj/item/weapon/implant/core_implant/CI = get_implant_from_victim(user)
+	var/obj/item/weapon/implant/core_implant/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform)
 
 	if(!CI || !CI.wearer || !ishuman(CI.wearer) || !CI.active)
 		fail("Cruciform not found",user,C)

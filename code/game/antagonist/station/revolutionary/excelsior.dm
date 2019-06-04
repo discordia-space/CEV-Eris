@@ -11,6 +11,14 @@
 
 	story_ineligible = list(JOBS_SECURITY, JOBS_COMMAND)
 
+	stat_modifiers = list(
+		STAT_ROB = 5,
+		STAT_TGH = 5,
+		STAT_MEC = 10,
+		STAT_COG = 5,
+		STAT_VIG = 15
+	)
+
 /datum/antagonist/excelsior/equip()
 	.=..()
 
@@ -21,3 +29,8 @@
 
 	var/obj/item/weapon/implant/excelsior/leader/implant = new(owner.current)
 	implant.install(owner.current, BP_HEAD)
+
+	var/mob/living/L = owner.current
+
+	for(var/name in stat_modifiers)
+		L.stats.changeStat(name, stat_modifiers[name])
