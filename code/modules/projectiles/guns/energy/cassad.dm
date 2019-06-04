@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/energy/cassad
+/obj/item/weapon/gun/energy/cassad //TODO: Replace all in-game instances with "/obj/item/weapon/gun/energy/pulse/cassad" once mapmerger is available, and then delete.
 	name = "FS PR \"Cassad\""
 	desc = "\"Frozen Star\" brand energy assault rifle, capable of prolonged combat. When surrender is not an option."
 	icon_state = "cassad"
