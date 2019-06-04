@@ -64,6 +64,7 @@
 	var/obj/item/weapon/silencer/silenced = null //The installed silencer, if any
 	var/silencer_type = null //The type of silencer that could be installed in us, if we don't have one
 	var/fire_sound_silenced = 'sound/weapons/Gunshot_silenced.wav' //Firing sound used when silenced
+	var/datum/timedevent/recoil_timer //Allows for recoil buildup, this is reset when you don't fire your gun for N seconds (affected by vig)
 
 /obj/item/weapon/gun/get_item_cost(export)
 	if(export)
@@ -312,11 +313,28 @@
 
 		if(muzzle_flash)
 			set_light(muzzle_flash)
+	//We've successfully fired a shot! Now we add recoil, and add a delay to remove the recoil (2s, affected by vig)
+	recoil += recoil_buildup*10 //Course wanted noticeable recoil. EX: 0.2 buildup * 10 = 2
+	var/skill_offset = user.stats.getStat(STAT_VIG)/50 //For example, IH have 40 VIG so this translates into a 0.8s cooldown reduction,meaning they can fire double as fast. Feel free to change this, Course!
+	var/recoil_reset_time = 20 //After you fire your shot, you must wait 2 seconds for it to become accurate again
+	if(skill_offset > 0) //Fuck negative numbers
+		recoil_reset_time -= skill_offset
+		recoil -= skill_offset //People with VIG are better at controlling sprays
 
+	if(!recoil_timer || QDELETED(recoil_timer)) //If there is not already an active recoil timer, make a new one
+		addtimer(CALLBACK(src, .proc/reset_recoil), recoil_reset_time)
+	else //There is already a recoil timer, so add onto its reset time.
+		recoil_timer.timeToRun += recoil_reset_time
 	if(recoil)
 		update_cursor(user)
 	update_icon()
 
+/obj/item/weapon/gun/proc/reset_recoil() //Clear all our recoil, CSGO style
+	var/mob/living/M = loc
+	if(istype(M) && recoil)
+		update_cursor(M) //Show that their recoil has diminished
+	recoil = 0
+	recoil_timer = null //Remove the timer object's reference to avoid null pointer
 
 /obj/item/weapon/gun/proc/process_point_blank(obj/projectile, mob/user, atom/target)
 	var/obj/item/projectile/P = projectile
