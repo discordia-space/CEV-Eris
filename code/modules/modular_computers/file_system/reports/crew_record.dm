@@ -113,7 +113,22 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 	var/datum/computer_file/report/crew_record/CR = new/datum/computer_file/report/crew_record()
 	GLOB.all_crew_records.Add(CR)
 	CR.load_from_mob(H)
+	SortModularRecords()
 	return CR
+
+/proc/SortModularRecords()
+	// improved bubble sort
+	if(GLOB.all_crew_records.len > 1)
+		for(var/i = 1, i <= GLOB.all_crew_records.len, i++)
+			var/flag = FALSE
+			for(var/j = 1, j <= GLOB.all_crew_records.len - 1, j++)
+				var/datum/computer_file/report/crew_record/CR = GLOB.all_crew_records[j]
+				var/datum/computer_file/report/crew_record/CR_NEXT = GLOB.all_crew_records[j+1]
+				if(sorttext(CR.get_name(), CR_NEXT.get_name()) == -1)
+					flag = TRUE
+					GLOB.all_crew_records.Swap(j,j+1)
+			if(!flag)
+				break
 
 // Gets crew records filtered by set of positions
 /proc/department_crew_manifest(var/list/filter_positions, var/blacklist = FALSE)

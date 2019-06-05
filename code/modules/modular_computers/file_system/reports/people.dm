@@ -15,7 +15,7 @@
 	return
 
 /datum/report_field/people/proc/send_to_recipient(subject, body, attach_report, recipient)
-	var/datum/computer_file/data/email_account/server = ntnet_global.find_email_by_name(EMAIL_DOCUMENTS)
+	var/datum/computer_file/data/email_account/server = ntnet_global.find_email_by_login(EMAIL_DOCUMENTS)
 	var/datum/computer_file/data/email_message/message = new()
 	message.title = subject
 	message.stored_data = body
