@@ -8,6 +8,7 @@
 	size = 7
 	requires_ntnet = 1
 	available_on_ntnet = 1
+	//Those needed to restore data when programm is killed 
 	var/stored_login = ""
 	var/stored_password = ""
 	usage_flags = PROGRAM_ALL
@@ -78,6 +79,9 @@
 
 	var/datum/computer_file/data/email_account/current_account = null
 	var/datum/computer_file/data/email_message/current_message = null
+
+	//for search
+	var/search = ""
 
 
 /datum/nano_module/email_client/proc/mail_received(var/datum/computer_file/data/email_message/received_message)
@@ -185,9 +189,8 @@
 	last_message_count = 0
 	read_message_count = 0
 
-/datum/nano_module/email_client/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
+/datum/nano_module/email_client/ui_data(mob/user)
 	var/list/data = host.initial_data()
-
 	// Password has been changed by other client connected to this email account
 	if(current_account)
 		if(current_account.password != stored_password)
@@ -224,9 +227,12 @@
 			for(var/datum/computer_file/data/email_account/account in ntnet_global.email_accounts)
 				if(!account.can_login)
 					continue
-				all_accounts.Add(list(list(
-					"login" = account.login
-				)))
+				if(!search || findtext(account.ownerName,search) || findtext(account.login,search))
+					all_accounts.Add(list(list(
+						"name" = account.ownerName,
+						"login" = account.login
+					)))
+			data["search"] = search ? search : "Search"
 			data["addressbook"] = 1
 			data["accounts"] = all_accounts
 		else if(new_message)
@@ -279,6 +285,10 @@
 	else
 		data["stored_login"] = stored_login
 		data["stored_password"] = stars(stored_password, 0)
+	return data
+
+/datum/nano_module/email_client/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
+	var/list/data = ui_data(user)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
@@ -483,6 +493,14 @@
 		var/datum/computer_file/data/email_message/M = find_message_by_fuid(href_list["view"])
 		if(istype(M))
 			current_message = M
+		return 1
+
+	if(href_list["search"])
+		var/new_search = sanitize(input("Enter the value for search for.") as null|text)
+		if(!new_search || new_search == "")
+			search = ""
+			return
+		search = new_search
 		return 1
 
 	if(href_list["changepassword"])
