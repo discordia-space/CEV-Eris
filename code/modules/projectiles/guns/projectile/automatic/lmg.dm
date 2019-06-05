@@ -6,7 +6,7 @@
 	icon_state = "l6closed-empty"
 	item_state = "l6closedmag"
 	w_class = ITEM_SIZE_HUGE
-	icon = 'icons/obj/weapons/lmg.dmi'
+	icon = 'icons/obj/guns/lmg.dmi'
 	force = WEAPON_FORCE_PAINFUL
 	slot_flags = 0
 	caliber = "a762"
@@ -77,6 +77,7 @@
 		to_chat(user, SPAN_WARNING("You need to open the cover to unload [src]."))
 		return
 	..()
+
 
 /obj/item/weapon/gun/projectile/automatic/lmg/pk
 	name = "Pulemyot Kalashnikova"

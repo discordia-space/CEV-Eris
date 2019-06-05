@@ -8,7 +8,7 @@
 	var/max_spikes = 3
 	var/spikes = 3
 	release_force = 30
-	icon = 'icons/obj/gun.dmi'
+	icon = 'icons/obj/guns/launcher.dmi'
 	icon_state = "spikethrower3"
 	item_state = "spikethrower"
 	fire_sound_text = "a strange noise"

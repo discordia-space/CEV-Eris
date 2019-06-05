@@ -5,7 +5,7 @@
 /obj/item/weapon/hatton
 	name = "Excelsior BD \"Hatton\""
 	desc = "More an instrument than a weapon, this breaching device was designed for emergency situations."
-	icon = 'icons/obj/Hatton.dmi'
+	icon = 'icons/obj/guns/hatton.dmi'
 	icon_state = "Hatton_Hammer_1"
 	item_state = "Hatton_Hammer_1"
 	flags = PASSTABLE | CONDUCT
@@ -144,15 +144,16 @@
 
 // Magazine
 /obj/item/weapon/hatton_magazine
-	name="Excelsior BD \"Hatton\" gas tube"
-	icon='icons/obj/Hatton.dmi'
-	icon_state="Hatton_box1"
+	name = "Excelsior BD \"Hatton\" gas tube"
+	icon = 'icons/obj/guns/hatton.dmi'
+	icon_state = "Hatton_box1"
 	w_class = ITEM_SIZE_SMALL
-	var/charge=3
 	//m_amt = 15
 	origin_tech = list(TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASMA=10, MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 2)
 	price_tag = 100
+
+	var/charge=3
 
 /obj/item/weapon/hatton_magazine/Initialize()
 	. = ..()
