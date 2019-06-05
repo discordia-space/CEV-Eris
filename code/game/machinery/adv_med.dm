@@ -318,11 +318,10 @@
 			bled = "Bleeding:"
 		if(e.status & ORGAN_BROKEN)
 			AN = "[e.broken_description]:"
-		switch(e.robotic)
-			if(ORGAN_ASSISTED)
-				robot = "Assisted:"
-			if(ORGAN_ROBOT)
-				robot = "Prosthetic:"
+		if(BP_IS_ASSISTED(e))
+			robot = "Assisted:"
+		if(BP_IS_ROBOTIC(e))
+			robot = "Prosthetic:"
 		if(e.open)
 			open = "Open:"
 
@@ -365,11 +364,10 @@
 	for(var/obj/item/organ/I in occ["internal_organs"])
 
 		var/mech = ""
-		switch(I.robotic)
-			if(ORGAN_ASSISTED)
-				mech = "Assisted:"
-			if(ORGAN_ROBOT)
-				mech = "Mechanical:"
+		if(BP_IS_ASSISTED(I))
+			mech = "Assisted:"
+		if(BP_IS_ROBOTIC(I))
+			mech = "Prosthetic:"
 
 		var/infection = "None"
 		switch (I.germ_level)

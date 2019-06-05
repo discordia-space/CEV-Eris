@@ -296,7 +296,7 @@
 		eyes.damage += rand(3,4)
 		if(eyes.damage >= eyes.min_bruised_damage)
 			if(M.stat != DEAD)
-				if(eyes.robotic <= ORGAN_ASSISTED) //robot eyes bleeding might be a bit silly
+				if(BP_IS_ORGANIC(eyes) || BP_IS_ASSISTED(eyes)) //robot eyes bleeding might be a bit silly
 					M << SPAN_DANGER("Your eyes start to bleed profusely!")
 			if(prob(50))
 				if(M.stat != DEAD)
