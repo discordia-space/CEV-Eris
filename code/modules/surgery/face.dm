@@ -10,7 +10,7 @@
 	if (!hasorgans(target))
 		return 0
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	if (!affected || (affected.robotic >= ORGAN_ROBOT))
+	if (!affected || BP_IS_ROBOTIC(affected))
 		return 0
 	return target_zone == BP_MOUTH
 

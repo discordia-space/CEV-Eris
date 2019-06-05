@@ -56,6 +56,7 @@
 			crew_data["pulse"] = H.get_pulse(1)
 			switch(crew_data["true_pulse"])
 				if(PULSE_NONE)
+					crew_data["alert"] = TRUE
 					crew_data["pulse_span"] = "bad"
 				if(PULSE_SLOW)
 					crew_data["pulse_span"] = "average"
@@ -66,7 +67,14 @@
 				if(PULSE_2FAST)
 					crew_data["pulse_span"] = "average"
 				if(PULSE_THREADY)
+					crew_data["alert"] = TRUE
 					crew_data["pulse_span"] = "bad"
+		else if(BP_IS_ROBOTIC(O))
+			crew_data["pulse_span"] = "highlight"
+			crew_data["pulse"] = "synthetic"
+	else
+		crew_data["pulse_span"] = "highlight"
+		crew_data["pulse"] = "synthetic"
 
 	crew_data["pressure"] = "N/A"
 	crew_data["true_oxygenation"] = -1
@@ -77,9 +85,11 @@
 		crew_data["true_oxygenation"] = H.getOxyLoss()
 		switch (crew_data["true_oxygenation"])
 			if(40 to INFINITY)
+				crew_data["alert"] = TRUE
 				crew_data["oxygenation"] = "extremely low"
 				crew_data["oxygenation_span"] = "bad"
 			if(20 to 40)
+				crew_data["alert"] = TRUE
 				crew_data["oxygenation"] = "very low"
 				crew_data["oxygenation_span"] = "bad"
 			if(10 to 20)
