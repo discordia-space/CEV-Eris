@@ -164,7 +164,7 @@
 
 /datum/design/autolathe/gun/pulse_cassad
 	name = "FS PR \"Cassad\""
-	build_path = /obj/item/weapon/gun/energy/cassad //TODO: Change to "/obj/item/weapon/gun/energy/pulse/cassad" once mapmerger is available
+	build_path = /obj/item/weapon/gun/energy/pulse/cassad
 
 /datum/design/autolathe/gun/sniperrifle
 	name = "NT MER \"Valkyrie\""
