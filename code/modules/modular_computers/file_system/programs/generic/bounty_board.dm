@@ -130,6 +130,9 @@
 	if(href_list["remove"])
 		if(!selectedEntry)
 			return
+		if(selectedEntry.claimedby_id_card)
+			selectedEntry = null
+			return 1
 		var/datum/report_field/array/signed_people/SP = selectedEntry.field_from_name("People who signed for job")
 		var/mob/living/carbon/human/H = input(usr, "Select value", "Give reward to ?", SP.get_raw()) as null|anything in SP.get_raw()
 		if(selectedEntry.remove(H))
