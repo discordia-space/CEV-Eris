@@ -6,7 +6,6 @@ GLOBAL_DATUM_INIT(hands_state, /datum/topic_state/hands, new)
 /datum/topic_state/hands/can_use_topic(src_object, mob/user)
 	. = user.shared_nano_interaction(src_object)
 	if(. > STATUS_CLOSE)
-		. = min(., user.incapacitated())
 		. = min(., user.hands_can_use_topic(src_object))
 
 /mob/proc/hands_can_use_topic(src_object)
