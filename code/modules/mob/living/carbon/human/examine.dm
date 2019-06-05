@@ -240,7 +240,7 @@
 
 	for(var/obj/item/organ/external/temp in organs)
 		if(temp)
-			if(temp.robotic >= ORGAN_ROBOT)
+			if(BP_IS_SILICON(temp))
 				if(!(temp.brute_dam + temp.burn_dam))
 					wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] [T.has] a robot [temp.name]!</span>\n"
 					continue
