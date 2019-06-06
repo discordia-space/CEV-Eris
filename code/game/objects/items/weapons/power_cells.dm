@@ -244,18 +244,6 @@
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 1, MATERIAL_URANIUM = 2)
 	maxcharge = 300
 
-/obj/item/weapon/cell/small/moebius/pda
-	name = "Moebius \"Atomcell 50S\""
-	desc = "Moebius Laboratories branded S-standardized microreactor cell. Recharges itself over time."
-	icon_state = "meb_pda"
-	origin_tech = list(TECH_POWER = 4)
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_URANIUM = 1)
-	maxcharge = 50
-	// Autorecharge rate is calculated for PDA power consumption: enough to offset it, unless PDA light is on.
-	autorecharging = TRUE
-	autorecharge_rate = 0.0006
-	recharge_time = 1
-
 /obj/item/weapon/cell/small/excelsior
 	name = "Excelsior \"Zarya 250S\""
 	desc = "Commie rechargeable S-standardized power cell. Power to the people!"
