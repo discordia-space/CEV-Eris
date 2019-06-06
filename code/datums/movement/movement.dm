@@ -86,6 +86,8 @@ if(LAZYLEN(movement_handlers) && ispath(movement_handlers[1])) { \
 	for(var/mh in movement_handlers)
 		var/datum/movement_handler/movement_handler = mh
 		if(movement_handler.MayMove(mover, is_external) & MOVEMENT_STOP)
+			if(istype(src,/mob/living/simple_animal/blob_seed) || ishuman(src))
+				world << "STOPED [src] [movement_handler.type]"
 			return MOVEMENT_HANDLED
 
 		. = movement_handler.DoMove(direction, mover, is_external)

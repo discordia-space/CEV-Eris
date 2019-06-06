@@ -117,7 +117,7 @@
 			return MOVEMENT_STOP
 	return MOVEMENT_PROCEED
 
-// Buckle movement
+// Buckle movement (when you are trying to move when buckled to something)
 /datum/movement_handler/mob/buckle_relay/DoMove(var/direction, var/mover)
 	// TODO: Datumlize buckle-handling
 	if(istype(mob.buckled, /obj/vehicle))
@@ -144,14 +144,44 @@
 			//drunk wheelchair driving
 			direction = mob.AdjustMovementDirection(direction)
 			mob.buckled.DoMove(direction, mob)
-	// you wont be able normally buckle to mobs to i guess this is alright
-	else if(isliving(mob.buckled))
-		mob.buckled.relaymove(mob, direction)
-		return MOVEMENT_HANDLED
+		// YEEEHHAAAA, we are riding this badboy
+		else if (isliving(mob.buckled))
+			world << "++++++++++++++"
+			world << "BUCKLED MOVE"
+			world << mob
+			. = MOVEMENT_PROCEED
+			var/dismount = FALSE
+			if(get_turf(mob) != get_turf(mob.buckled))
+				dismount = TRUE
+			else if(ishuman(mob))
+				var/mob/living/carbon/human/driver = mob
+				var/obj/item/organ/external/l_arm = driver.get_organ(BP_L_ARM)
+				var/obj/item/organ/external/r_arm = driver.get_organ(BP_R_ARM)
+				var/obj/item/organ/external/l_leg = driver.get_organ(BP_L_LEG)
+				var/obj/item/organ/external/r_leg = driver.get_organ(BP_R_LEG)
+				if((!l_arm || l_arm.is_stump()) && (!r_arm || r_arm.is_stump()) || !(l_leg && r_leg))
+					dismount = TRUE // if no arms or no legs we cant hold onto mob
+			if(dismount)
+				mob.buckled.unbuckle_mob(mob)
+				return
 
 /datum/movement_handler/mob/buckle_relay/MayMove(var/mover)
 	if(mob.buckled)
 		return mob.buckled.MayMove(mover, FALSE) ? (MOVEMENT_PROCEED|MOVEMENT_HANDLED) : MOVEMENT_STOP
+	return MOVEMENT_PROCEED
+
+// Movement of a mob mounted by other mob (basically movement of the horse)
+/datum/movement_handler/mob/mount/DoMove(var/direction, var/mover)
+	if(mob.buckled_mob)
+		world << "++++++++++++++"
+		world << "mount MOVE"
+		world << mob
+
+		mob.buckled_mob.DoMove(direction, mob)
+	return MOVEMENT_PROCEED
+
+/datum/movement_handler/mob/mount/MayMove(var/mover)
+//grabed by rider
 	return MOVEMENT_PROCEED
 
 // Movement delay
@@ -230,6 +260,8 @@
 /datum/movement_handler/mob/physically_restrained/MayMove(var/mob/mover)
 	if(mob.anchored)
 		if(mover == mob)
+			world << "-rest_anchord MOVE"
+			world << mob
 //			to_chat(mob, "<span class='notice'>You're anchored down!</span>")
 			if(isliving(mob))
 				mob:resist()
@@ -239,6 +271,8 @@
 		if(mover == mob)
 //			to_chat(mob, "<span class='notice'>You're buckled to \the [mob.buckled]!</span>")
 			if(isliving(mob))
+				world << "-rest_buckled MOVE"
+				world << mob
 				mob:resist()
 		return MOVEMENT_STOP
 

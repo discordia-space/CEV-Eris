@@ -710,7 +710,7 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 		lying = 0
 		canmove = TRUE //TODO: Remove this
 	else if(buckled)
-		anchored = 1
+		anchored = 0
 		if(istype(buckled))
 			if(buckled.buckle_lying == -1)
 				lying = incapacitated(INCAPACITATION_KNOCKDOWN)
