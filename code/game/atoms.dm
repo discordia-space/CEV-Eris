@@ -622,7 +622,7 @@ its easier to just keep the beam vertical.
 
 //This proc is called when objects are created during the round by players.
 //This allows them to behave differently from objects that are mapped in, adminspawned, or purchased
-/atom/proc/Created()
+/atom/proc/Created(var/mob/user)
 	return
 	//Should be called when:
 		//An item is printed at an autolathe or protolathe **COMPLETE**

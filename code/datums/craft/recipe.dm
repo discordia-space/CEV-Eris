@@ -21,13 +21,12 @@
 
 /datum/craft_recipe/proc/spawn_result(obj/item/craft/C, mob/living/user)
 	var/atom/movable/M = new result(get_turf(C))
-	M.Created()
+	M.Created(user)
 	M.dir = user.dir
 	var/slot = user.get_inventory_slot(C)
 	qdel(C)
 	if(! (flags & CRAFT_ON_FLOOR) && (slot in list(slot_r_hand, slot_l_hand)))
 		user.put_in_hands(M)
-
 
 /datum/craft_recipe/proc/get_description(pass_steps)
 	. = list()
@@ -91,6 +90,7 @@
 	var/obj/item/CR
 	if(steps.len <= 1)
 		CR = new result(null)
+		CR.Created(user)
 	else
 		CR = new /obj/item/craft (null, src)
 	if(flags & CRAFT_ON_FLOOR)

@@ -1,31 +1,39 @@
 /obj/structure/railing
-	name = "railing"
-	desc = "A standard steel railing. Prevents stupid people from falling to their doom."
+	name = "orange railing"
+	desc = "A standard steel railing painted in copper color. Prevents stupid people from falling to their doom."
 	icon = 'icons/obj/railing.dmi'
 	density = 1
 	throwpass = 1
 	climbable = 1
-	layer = 3.2//Just above doors
-	//pressure_resistance = 4*ONE_ATMOSPHERE
+	layer = 3.2	//Just above doors
 	anchored = 1
 	flags = ON_BORDER
 	icon_state = "railing0"
 	var/broken = 0
 	var/health=70
 	var/maxhealth=70
-	//var/LeftSide = list(0,0,0)// Нужны для хранения данных
-	//var/RightSide = list(0,0,0)
 	var/check = 0
+	var/icon_modifier = ""	//adds string to icon path for color variations
+
+/obj/structure/railing/grey
+	name = "grey railing"
+	desc = "A standard steel railing. Prevents stupid people from falling to their doom."
+	icon_modifier = "grey_"
+	icon_state = "grey_railing0"
 
 /obj/structure/railing/New(loc, constructed=0)
 	..()
-	if (constructed)	//player-constructed railings
-		anchored = 0
 	if(climbable)
 		verbs += /obj/structure/proc/climb_on
-	if(src.anchored)
-		spawn(5)
-			update_icon(0)
+	update_icon(FALSE)
+
+/obj/structure/railing/Created(var/mob/user)
+	anchored = FALSE
+	dir = user.dir
+	// this way its much easier to build it, and there is no need to update_icon after that, flip will take care of that
+	src.loc = get_step(src, src.dir)
+	set_dir(turn(dir, 180))
+	update_icon()
 
 /obj/structure/railing/Destroy()
 	anchored = null
@@ -45,7 +53,7 @@
 		return !density
 	else
 		return 1
-//32 и 4 - в той же клетке
+//32 and 4 - in the same turf
 
 /obj/structure/railing/examine(mob/user)
 	. = ..()
@@ -68,85 +76,65 @@
 
 /obj/structure/railing/proc/NeighborsCheck(var/UpdateNeighbors = 1)
 	check = 0
-	//if (!anchored) return
 	var/Rturn = turn(src.dir, -90)
 	var/Lturn = turn(src.dir, 90)
 
-	for(var/obj/structure/railing/R in src.loc)// Анализ клетки, где находится сам объект
-		if ((R.dir == Lturn) && R.anchored)//Проверка левой стороны
-			//src.LeftSide[1] = 1
+	for(var/obj/structure/railing/R in src.loc)	// analyzing turf
+		if ((R.dir == Lturn) && R.anchored)	//checking left side
 			check |= 32
 			if (UpdateNeighbors)
 				R.update_icon(0)
-		if ((R.dir == Rturn) && R.anchored)//Проверка правой стороны
-			//src.RightSide[1] = 1
+		if ((R.dir == Rturn) && R.anchored)	//checking right side
 			check |= 2
 			if (UpdateNeighbors)
 				R.update_icon(0)
 
-	for (var/obj/structure/railing/R in get_step(src, Lturn))//Анализ левой клетки от направления объекта
+	for (var/obj/structure/railing/R in get_step(src, Lturn))	//analysing left turf
 		if ((R.dir == src.dir) && R.anchored)
-			//src.LeftSide[2] = 1
 			check |= 16
 			if (UpdateNeighbors)
 				R.update_icon(0)
-	for (var/obj/structure/railing/R in get_step(src, Rturn))//Анализ правой клетки от направления объекта
+	for (var/obj/structure/railing/R in get_step(src, Rturn))	//analysing right turf
 		if ((R.dir == src.dir) && R.anchored)
-			//src.RightSide[2] = 1
 			check |= 1
 			if (UpdateNeighbors)
 				R.update_icon(0)
 
-	for (var/obj/structure/railing/R in get_step(src, (Lturn + src.dir)))//Анализ передней-левой диагонали относительно направления объекта.
+	for (var/obj/structure/railing/R in get_step(src, (Lturn + src.dir)))	//analysing upper-left turf from src direction
 		if ((R.dir == Rturn) && R.anchored)
 			check |= 64
 			if (UpdateNeighbors)
 				R.update_icon(0)
-	for (var/obj/structure/railing/R in get_step(src, (Rturn + src.dir)))//Анализ передней-правой диагонали относительно направления объекта.
+	for (var/obj/structure/railing/R in get_step(src, (Rturn + src.dir)))	//analysing upper-right turf from src direction
 		if ((R.dir == Lturn) && R.anchored)
 			check |= 4
 			if (UpdateNeighbors)
 				R.update_icon(0)
 
-/*	for(var/obj/structure/railing/R in get_step(src, src.dir))
-		if ((R.dir == Lturn) && R.anchored)//Проверка левой стороны
-			src.LeftSide[3] = 1
-		if ((R.dir == Rturn) && R.anchored)//Проверка правой стороны
-			src.RightSide[3] = 1*/
-	//check <<"check: [check]"
-	//world << "dir = [src.dir]"
-	//world << "railing[LeftSide[1]][LeftSide[2]][LeftSide[3]]-[RightSide[1]][RightSide[2]][RightSide[3]]"
-
 /obj/structure/railing/update_icon(var/UpdateNeighgors = 1)
 	NeighborsCheck(UpdateNeighgors)
-	//icon_state = "railing[LeftSide[1]][LeftSide[2]][LeftSide[3]]-[RightSide[1]][RightSide[2]][RightSide[3]]"
 	overlays.Cut()
-	if (!check || !anchored)//|| !anchored
-		icon_state = "railing0"
+	if (!check || !anchored)
+		icon_state = "[icon_modifier]railing0"
 	else
-		icon_state = "railing1"
-		//левая сторона
+		icon_state = "[icon_modifier]railing1"
+		//left side
 		if (check & 32)
-			overlays += image ('icons/obj/railing.dmi', src, "corneroverlay")
-			//world << "32 check"
+			overlays += image ('icons/obj/railing.dmi', src, "[icon_modifier]corneroverlay")
 		if ((check & 16) || !(check & 32) || (check & 64))
-			overlays += image ('icons/obj/railing.dmi', src, "frontoverlay_l")
-			//world << "16 check"
+			overlays += image ('icons/obj/railing.dmi', src, "[icon_modifier]frontoverlay_l")
 		if (!(check & 2) || (check & 1) || (check & 4))
-			overlays += image ('icons/obj/railing.dmi', src, "frontoverlay_r")
-			//world << "no 4 or 2 check"
+			overlays += image ('icons/obj/railing.dmi', src, "[icon_modifier]frontoverlay_r")
 			if(check & 4)
 				switch (src.dir)
 					if (NORTH)
-						overlays += image ('icons/obj/railing.dmi', src, "mcorneroverlay", pixel_x = 32)
+						overlays += image ('icons/obj/railing.dmi', src, "[icon_modifier]mcorneroverlay", pixel_x = 32)
 					if (SOUTH)
-						overlays += image ('icons/obj/railing.dmi', src, "mcorneroverlay", pixel_x = -32)
+						overlays += image ('icons/obj/railing.dmi', src, "[icon_modifier]mcorneroverlay", pixel_x = -32)
 					if (EAST)
-						overlays += image ('icons/obj/railing.dmi', src, "mcorneroverlay", pixel_y = -32)
+						overlays += image ('icons/obj/railing.dmi', src, "[icon_modifier]mcorneroverlay", pixel_y = -32)
 					if (WEST)
-						overlays += image ('icons/obj/railing.dmi', src, "mcorneroverlay", pixel_y = 32)
-
-//obj/structure/railing/proc/NeighborsCheck2()
+						overlays += image ('icons/obj/railing.dmi', src, "[icon_modifier]mcorneroverlay", pixel_y = 32)
 
 /obj/structure/railing/verb/rotate()
 	set name = "Rotate Railing Counter-Clockwise"
@@ -157,7 +145,7 @@
 		return 0
 
 	if(anchored)
-		usr << "It is fastened to the floor therefore you can't rotate it!"
+		to_chat(usr, SPAN_NOTICE("It is fastened to the floor therefore you can't rotate it!"))
 		return 0
 
 	set_dir(turn(dir, 90))
@@ -173,7 +161,7 @@
 		return 0
 
 	if(anchored)
-		usr << "It is fastened to the floor therefore you can't rotate it!"
+		to_chat(usr, SPAN_NOTICE("It is fastened to the floor therefore you can't rotate it!"))
 		return 0
 
 	set_dir(turn(dir, -90))
@@ -189,17 +177,19 @@
 		return 0
 
 	if(anchored)
-		usr << "It is fastened to the floor therefore you can't flip it!"
+		to_chat(usr, SPAN_NOTICE("It is fastened to the floor therefore you can't flip it!"))
 		return 0
 
 	if(!neighbor_turf_passable())
-		usr << "You can't flip the [src] because something blocking it."
+		to_chat(usr, SPAN_NOTICE("You can't flip the [src] because something blocking it."))
 		return 0
 
 	src.loc = get_step(src, src.dir)
 	set_dir(turn(dir, 180))
 	update_icon()
 	return
+
+
 
 /obj/structure/railing/CheckExit(atom/movable/O as mob|obj, target as turf)
 	if(istype(O) && O.checkpass(PASSTABLE))
