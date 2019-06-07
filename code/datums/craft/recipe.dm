@@ -14,7 +14,6 @@
 	for(var/i in step_definations)
 		steps += new /datum/craft_step(i, src)
 
-
 /datum/craft_recipe/proc/is_compelete(step)
 	return steps.len < step
 
@@ -90,6 +89,7 @@
 	var/obj/item/CR
 	if(steps.len <= 1)
 		CR = new result(null)
+		CR.dir = user.dir
 		CR.Created(user)
 	else
 		CR = new /obj/item/craft (null, src)

@@ -21,19 +21,17 @@
 	icon_modifier = "grey_"
 	icon_state = "grey_railing0"
 
-/obj/structure/railing/New(loc, constructed=0)
+/obj/structure/railing/New(loc)
 	..()
 	if(climbable)
 		verbs += /obj/structure/proc/climb_on
 	update_icon(FALSE)
-
+	
 /obj/structure/railing/Created(var/mob/user)
 	anchored = FALSE
-	dir = user.dir
 	// this way its much easier to build it, and there is no need to update_icon after that, flip will take care of that
-	src.loc = get_step(src, src.dir)
-	set_dir(turn(dir, 180))
-	update_icon()
+	spawn()
+		flip(user)
 
 /obj/structure/railing/Destroy()
 	anchored = null
@@ -168,20 +166,20 @@
 	update_icon()
 	return
 
-/obj/structure/railing/verb/flip() // This will help push railing to remote places, such as open space turfs
+/obj/structure/railing/verb/flip(var/mob/living/user as mob) // This will help push railing to remote places, such as open space turfs
 	set name = "Flip Railing"
 	set category = "Object"
 	set src in oview(1)
 
-	if(usr.incapacitated())
+	if(user.incapacitated())
 		return 0
 
 	if(anchored)
-		to_chat(usr, SPAN_NOTICE("It is fastened to the floor therefore you can't flip it!"))
+		to_chat(user, SPAN_NOTICE("It is fastened to the floor therefore you can't flip it!"))
 		return 0
 
 	if(!neighbor_turf_passable())
-		to_chat(usr, SPAN_NOTICE("You can't flip the [src] because something blocking it."))
+		to_chat(user, SPAN_NOTICE("You can't flip the [src] because something blocking it."))
 		return 0
 
 	src.loc = get_step(src, src.dir)
