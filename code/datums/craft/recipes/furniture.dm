@@ -1,12 +1,20 @@
 /datum/craft_recipe/furniture
 	category = "Furniture"
 	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
+	related_stats = list(STAT_MEC)
 	time = 80
 
 
 /datum/craft_recipe/furniture/railing
 	name = "railing"
 	result = /obj/structure/railing
+	steps = list(
+		list(CRAFT_MATERIAL, 4, MATERIAL_STEEL),
+	)
+
+/datum/craft_recipe/furniture/railing_grey
+	name = "grey railing"
+	result = /obj/structure/railing/grey
 	steps = list(
 		list(CRAFT_MATERIAL, 4, MATERIAL_STEEL),
 	)
