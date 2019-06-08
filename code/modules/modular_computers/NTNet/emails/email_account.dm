@@ -4,6 +4,7 @@
 	var/list/spam = list()
 	var/list/deleted = list()
 
+	var/ownerName = ""
 	var/login = ""
 	var/password = ""
 	var/can_login = TRUE	// Whether you can log in with this account. Set to false for system accounts

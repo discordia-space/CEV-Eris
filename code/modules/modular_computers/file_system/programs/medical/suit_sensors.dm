@@ -32,6 +32,10 @@
 
 /datum/nano_module/crew_monitor
 	name = "Crew monitor"
+	var/list/ddata
+	var/list/crew
+	//for search
+	var/search = ""
 
 /datum/nano_module/crew_monitor/proc/has_alerts()
 	for(var/z_level in maps_data.station_levels)
@@ -49,14 +53,47 @@
 			if(hassensorlevel(H, SUIT_SENSOR_TRACKING))
 				AI.ai_actual_track(H)
 		return 1
+	if(href_list["search"])
+		var/new_search = sanitize(input("Enter the value for search for.") as null|text)
+		if(!new_search || new_search == "")
+			search = ""
+			return
+		search = new_search
+		return 1
 
-/datum/nano_module/crew_monitor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
+
+
+/datum/nano_module/crew_monitor/ui_data(mob/user)
 	var/list/data = host.initial_data()
 
 	data["isAI"] = isAI(user)
-	data["crewmembers"] = list()
+	var/list/crewmembers = list()
 	for(var/z_level in maps_data.station_levels)
-		data["crewmembers"] += crew_repository.health_data(z_level)
+		crewmembers += crew_repository.health_data(z_level)
+	crewmembers = sortByKey(crewmembers, "name")
+	//now lets get problematic crewmembers in separate list so they could be shown first
+	var/list/crewmembers_problematic = list()
+	var/list/crewmembers_goodbois = list()
+	
+	for(var/i = 1, i <=crewmembers.len, i++)
+		var/list/entry = crewmembers[i]
+		if(!search || findtext(entry["name"],search))
+			if(entry["alert"] || entry["isCriminal"])
+				crewmembers_problematic += list(entry)
+			else
+				crewmembers_goodbois += list(entry)
+	data["crewmembers"] = list()
+	if(crewmembers_problematic.len)
+		data["crewmembers"] += crewmembers_problematic
+	if(crewmembers_goodbois.len)
+		data["crewmembers"] += crewmembers_goodbois
+	ddata = data
+	crew = crewmembers_problematic
+	data["search"] = search ? search : "Search"
+	return data
+
+/datum/nano_module/crew_monitor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
+	var/list/data = ui_data(user)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
