@@ -185,8 +185,7 @@
 		if (success_quantity > 1)
 			success_percent = success_quantity / target_quantity
 		cancel(severity, success_percent)
-	
-	return TRUE
+		return FALSE
 
 //Tests if its possible for us to trigger, by compiling candidate lists but doing nothing with them
 /datum/storyevent/roleset/can_trigger(var/severity = EVENT_LEVEL_ROLESET, var/report)
