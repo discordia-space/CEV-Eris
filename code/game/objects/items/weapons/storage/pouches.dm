@@ -213,7 +213,6 @@
 		/obj/item/weapon/gun/projectile/olivaw,
 		/obj/item/weapon/gun/projectile/silenced,
 		/obj/item/weapon/gun/energy/gun,
-		/obj/item/weapon/gun/energy/retro,
 		/obj/item/weapon/gun/energy/chameleon,
 		//obj/item/weapon/gun/energy/captain, //too unwieldy, use belt/suit slot or other storage
 		/obj/item/weapon/gun/energy/stunrevolver,

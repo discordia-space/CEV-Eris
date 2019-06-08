@@ -13,8 +13,8 @@
 	projectile_type = /obj/item/projectile/beam/midlaser
 
 /obj/item/weapon/gun/energy/laser/mounted
-	self_recharge = 1
-	use_external_power = 1
+	self_recharge = TRUE
+	use_external_power = TRUE
 	restrict_safety = TRUE
 
 /obj/item/weapon/gun/energy/laser/practice
@@ -25,13 +25,14 @@
 	projectile_type = /obj/item/projectile/beam/practice
 
 obj/item/weapon/gun/energy/retro
-	name = "One Star LG \"Cog\""
+	name = "OS LG \"Cog\""
 	icon_state = "retro"
 	item_state = "retro"
-	desc = "One Star cheap laser gun. In the distant past - this was the main weapon of low-rank police forces, billions of copies of this gun were made. They are ubiquitous."
+	desc = "A One Star cheaply produced laser gun. In the distant past - this was the main weapon of low-rank police forces, billions of copies of this gun were made. They are ubiquitous."
 	fire_sound = 'sound/weapons/Laser.ogg'
 	slot_flags = SLOT_BELT
 	w_class = ITEM_SIZE_NORMAL
+	matter = list(MATERIAL_STEEL = 12)
 	projectile_type = /obj/item/projectile/beam
 	fire_delay = 10 //old technology
 	price_tag = 2000
@@ -47,7 +48,7 @@ obj/item/weapon/gun/energy/retro
 	w_class = ITEM_SIZE_NORMAL
 	projectile_type = /obj/item/projectile/beam
 	origin_tech = null
-	self_recharge = 1
+	self_recharge = TRUE
 	price_tag = 4500
 
 /obj/item/weapon/gun/energy/lasercannon
@@ -57,16 +58,17 @@ obj/item/weapon/gun/energy/retro
 	item_state = "lasercannon"
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3)
+	w_class = ITEM_SIZE_LARGE
 	slot_flags = SLOT_BELT|SLOT_BACK
 	projectile_type = /obj/item/projectile/beam/heavylaser
 	charge_cost = 250
 	fire_delay = 20
-	matter = list(MATERIAL_STEEL = 20)
+	matter = list(MATERIAL_STEEL = 25, MATERIAL_SILVER = 4, MATERIAL_URANIUM = 1)
 	price_tag = 3000
 
 /obj/item/weapon/gun/energy/lasercannon/mounted
 	name = "mounted laser cannon"
-	self_recharge = 1
-	use_external_power = 1
+	self_recharge = TRUE
+	use_external_power = TRUE
 	recharge_time = 10
 	restrict_safety = TRUE
