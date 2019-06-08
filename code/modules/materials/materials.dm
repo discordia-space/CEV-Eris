@@ -482,7 +482,7 @@ var/list/name_to_material
 	// Build the structure and update sheet count etc.
 	used_stack.use(sheets_needed)
 	var/obj/O = new build_path(T, build_dir)
-	O.Created()
+	O.Created(user)
 	return 1
 
 /material/glass/proc/is_reinforced()
