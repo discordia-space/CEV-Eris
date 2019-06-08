@@ -82,8 +82,7 @@
 		if (success_quantity > 1)
 			success_percent = success_quantity / target_quantity
 		cancel(severity, success_percent)
-	
-	return TRUE
+		return FALSE
 
 // Code to prevent a role from being picked by the storyteller.
 /datum/storyevent/roleset/faction/antagonist_suitable(var/datum/mind/player, var/datum/antagonist/antag)
