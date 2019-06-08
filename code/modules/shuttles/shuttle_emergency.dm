@@ -108,7 +108,6 @@
 
 /obj/machinery/computer/shuttle_control/emergency
 	shuttle_tag = "Escape"
-	var/debug = 0
 	var/req_authorizations = 2
 	var/list/authorized = list()
 

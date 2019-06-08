@@ -29,6 +29,10 @@
 	var/auto_init = TRUE
 
 	var/initialized = FALSE
+	
+	// Use this variable for debug purposes, for example showing debug messages only to atoms that has this as TRUE
+	// Dont remove this please
+	var/debug = FALSE
 
 /atom/New(loc, ...)
 	init_plane()

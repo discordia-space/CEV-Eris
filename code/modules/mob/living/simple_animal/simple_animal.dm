@@ -249,16 +249,14 @@
 
 	//Movement
 	turns_since_move++
-	if(!client && !stop_automated_movement && wander && !anchored)
-		if(isturf(loc) && !incapacitated() && canmove)		//This is so it only moves if it's not inside a closet, gentics machine, etc.
+	if(!client && !stop_automated_movement && wander)
+		if(isturf(loc))		//This is so it only moves if it's not inside a closet, gentics machine, etc.
 			if(turns_since_move >= turns_per_move)
 				if(!(stop_automated_movement_when_pulled && pulledby)) //Soma animals don't move when pulled
 					var/moving_to = 0 // otherwise it always picks 4, fuck if I know.   Did I mention fuck BYOND
 					moving_to = pick(cardinal)
-					set_dir(moving_to)			//How about we turn them the direction they are moving, yay.
-					step_glide(src, moving_to, DELAY2GLIDESIZE(0.5 SECONDS))
+					DoMove(moving_to)
 					turns_since_move = 0
-
 	return 1
 
 /mob/living/simple_animal/proc/visible_emote(message)
@@ -290,7 +288,7 @@
 			var/removed = min(current.metabolism*digest_factor, current.volume)
 			if (istype(current, /datum/reagent/nutriment))//If its food, it feeds us
 				var/datum/reagent/nutriment/N = current
-				nutrition += removed*N.nutriment_factor
+				adjustNutrition(removed*N.nutriment_factor)
 				var/heal_amount = removed*N.regen_factor
 				if (bruteloss > 0)
 					var/n = min(heal_amount, bruteloss)

@@ -50,9 +50,10 @@
 				var/mob/living/M = buckled
 				M.apply_damage(rand(5,15),TOX)
 				if(M.stat == DEAD)
-					nutrition += 2
+					adjustNutrition(2)
 				else
-					nutrition += 1
+					M.adjustNutrition(-1)
+					adjustNutrition(1)
 			return
 		else
 			if(last_message > world.time + 10 SECONDS)
@@ -75,6 +76,7 @@
 			visible_message(SPAN_WARNING("[src] latches onto \the [poor_soul]!"))
 			last_message = world.time
 			if(poor_soul.client && poor_soul.stat != DEAD)
+				poor_soul.flash_pain()
 				to_chat(poor_soul, SPAN_DANGER("You feel something burrowing under your skin."))
 	else
 		death()

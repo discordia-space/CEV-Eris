@@ -119,83 +119,51 @@
 
 // Buckle movement (when you are trying to move when buckled to something)
 /datum/movement_handler/mob/buckle_relay/DoMove(var/direction, var/mover)
-	// TODO: Datumlize buckle-handling
-	if(istype(mob.buckled, /obj/vehicle))
-		//drunk driving
-		if(mob.confused && prob(20)) //vehicles tend to keep moving in the same direction
-			direction = turn(direction, pick(90, -90))
-		mob.buckled.relaymove(mob, direction)
-		return MOVEMENT_HANDLED
-
-	if(mob.pulledby || mob.buckled) // Wheelchair driving!
-		if(istype(mob.loc, /turf/space))
-			return // No wheelchair driving in space
-		if(istype(mob.pulledby, /obj/structure/bed/chair/wheelchair))
-			. = MOVEMENT_HANDLED
-			mob.pulledby.DoMove(direction, mob)
-		else if(istype(mob.buckled, /obj/structure/bed/chair/wheelchair))
-			. = MOVEMENT_HANDLED
-			if(ishuman(mob))
-				var/mob/living/carbon/human/driver = mob
-				var/obj/item/organ/external/l_arm = driver.get_organ(BP_L_ARM)
-				var/obj/item/organ/external/r_arm = driver.get_organ(BP_R_ARM)
-				if((!l_arm || l_arm.is_stump()) && (!r_arm || r_arm.is_stump()))
-					return // No arms to drive your chair? Tough luck!
-			//drunk wheelchair driving
+	if(mob.buckled) // Wheelchair driving!
+		if(!handleDismount())
 			direction = mob.AdjustMovementDirection(direction)
 			mob.buckled.DoMove(direction, mob)
-		// YEEEHHAAAA, we are riding this badboy
-		else if (isliving(mob.buckled))
-			world << "++++++++++++++"
-			world << "BUCKLED MOVE"
-			world << mob
-			. = MOVEMENT_PROCEED
-			var/dismount = FALSE
-			if(get_turf(mob) != get_turf(mob.buckled))
-				dismount = TRUE
-			else if(ishuman(mob))
-				var/mob/living/carbon/human/driver = mob
-				var/obj/item/organ/external/l_arm = driver.get_organ(BP_L_ARM)
-				var/obj/item/organ/external/r_arm = driver.get_organ(BP_R_ARM)
-				var/obj/item/organ/external/l_leg = driver.get_organ(BP_L_LEG)
-				var/obj/item/organ/external/r_leg = driver.get_organ(BP_R_LEG)
-				if((!l_arm || l_arm.is_stump()) && (!r_arm || r_arm.is_stump()) || !(l_leg && r_leg))
-					dismount = TRUE // if no arms or no legs we cant hold onto mob
-			if(dismount)
-				mob.buckled.unbuckle_mob(mob)
-				return
+		else
+			return MOVEMENT_STOP
+	return MOVEMENT_PROCEED
 
 /datum/movement_handler/mob/buckle_relay/MayMove(var/mover)
 	if(mob.buckled)
-		return mob.buckled.MayMove(mover, FALSE) ? (MOVEMENT_PROCEED|MOVEMENT_HANDLED) : MOVEMENT_STOP
+		if(!mob.buckled.buckle_movable)
+			// TODO ADD MESSAGE THAT YOU ARE BUCKLED
+			return MOVEMENT_STOP
+		if(mob.buckled.buckle_drivable)
+			return mob.buckled.MayMove(mob, TRUE) ? (MOVEMENT_PROCEED|MOVEMENT_HANDLED) : MOVEMENT_STOP
+		else
+			return mob.buckled.MayMove(mover, FALSE) ? (MOVEMENT_PROCEED|MOVEMENT_HANDLED) : MOVEMENT_STOP
 	return MOVEMENT_PROCEED
 
-// Movement of a mob mounted by other mob (basically movement of the horse)
-/datum/movement_handler/mob/mount/DoMove(var/direction, var/mover)
-	if(mob.buckled_mob)
-		world << "++++++++++++++"
-		world << "mount MOVE"
-		world << mob
-
-		mob.buckled_mob.DoMove(direction, mob)
-	return MOVEMENT_PROCEED
-
-/datum/movement_handler/mob/mount/MayMove(var/mover)
-//grabed by rider
-	return MOVEMENT_PROCEED
+/datum/movement_handler/mob/buckle_relay/proc/handleDismount()
+	var/dismount = FALSE
+	if (isliving(mob.buckled))
+		if(get_turf(mob) != get_turf(mob.buckled))
+			dismount = TRUE
+		else if(ishuman(mob))
+			var/mob/living/carbon/human/driver = mob
+			var/obj/item/organ/external/l_arm = driver.get_organ(BP_L_ARM)
+			var/obj/item/organ/external/r_arm = driver.get_organ(BP_R_ARM)
+			var/obj/item/organ/external/l_leg = driver.get_organ(BP_L_LEG)
+			var/obj/item/organ/external/r_leg = driver.get_organ(BP_R_LEG)
+			if((!l_arm || l_arm.is_stump()) && (!r_arm || r_arm.is_stump()) || !(l_leg && r_leg))
+				dismount = TRUE // if no arms or no legs we cant hold onto mob
+	if(dismount)
+		mob.visible_message(SPAN_WARNING("[mob] has fallen of \the [mob.buckled]!"), SPAN_WARNING("You have fallen of \the [mob.buckled]!"))
+		mob.buckled.unbuckle_mob(mob)
+		step(mob, pick(cardinal))
+		return TRUE
+	return FALSE
 
 // Movement delay
 /datum/movement_handler/mob/delay
 	var/next_move
 
-
-
 //Several things happen in DoMove
 /datum/movement_handler/mob/delay/DoMove(var/direction, var/mover, var/is_external)
-	//Not sure wtf this is
-	if(is_external)
-		return
-
 	/*
 	Overflow is used to prevent rounding errors, caused by the world time overshooting the next time we're allowed to move. This is inevitable
 	because the server fires events 10x per second when the user is holding down a movement key, meaning that your movement is anywhere up to 0.1
@@ -212,19 +180,16 @@
 	var/delay = mob.movement_delay() - overflow
 	SetDelay(delay)
 
-
 	/*
 	SMOOTH MOVEMENT
 	*/
-	mob.set_glide_size(DELAY2GLIDESIZE(delay), 0, INFINITY)
+	mob.set_glide_size(DELAY2GLIDESIZE(delay), 0)
 
 
 /datum/movement_handler/mob/delay/MayMove(var/mover, var/is_external)
 	if(IS_NOT_SELF(mover) && is_external)
 		return MOVEMENT_PROCEED
 	.= ((mover && mover != mob) ||  world.time >= next_move) ? MOVEMENT_PROCEED : MOVEMENT_STOP
-
-
 
 /datum/movement_handler/mob/delay/proc/SetDelay(var/delay)
 	next_move = max(next_move, world.time + delay)
@@ -326,6 +291,7 @@
 
 	direction = mob.AdjustMovementDirection(direction)
 	var/old_turf = get_turf(mob)
+	
 	step(mob, direction)
 
 	// Something with pulling things

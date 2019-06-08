@@ -113,7 +113,7 @@
 
 /datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(issmall(M)) removed *= 2
-	M.nutrition += nutriment_factor * removed
+	M.adjustNutrition(nutriment_factor * removed)
 	var/strength_mod = 1
 
 	M.add_chemical_effect(CE_ALCOHOL, 1)
@@ -400,7 +400,7 @@
 	glass_desc = "The organic compound commonly known as table sugar and sometimes called saccharose. This white, odorless, crystalline powder has a pleasing, sweet taste."
 
 /datum/reagent/sugar/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.nutrition += removed * 3
+	M.adjustNutrition(removed * 3)
 
 /datum/reagent/sulfur
 	name = "Sulfur"

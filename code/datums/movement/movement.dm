@@ -80,21 +80,33 @@ if(LAZYLEN(movement_handlers) && ispath(movement_handlers[1])) { \
 #define SET_IS_EXTERNAL(X) is_external = isnull(is_external) ? (mover != src) : is_external
 
 /atom/movable/proc/DoMove(var/direction, var/mob/mover, var/is_external)
+	
 	INIT_MOVEMENT_HANDLERS
 	SET_MOVER(mover)
 	SET_IS_EXTERNAL(mover)
+	if(debug)
+		world << "+++++++++++++"
 	for(var/mh in movement_handlers)
 		var/datum/movement_handler/movement_handler = mh
+		if(debug)
+			world << "[src] : [movement_handler.type] : mover [mover] : is_ext [is_external]"
 		if(movement_handler.MayMove(mover, is_external) & MOVEMENT_STOP)
-			if(istype(src,/mob/living/simple_animal/blob_seed) || ishuman(src))
-				world << "STOPED [src] [movement_handler.type]"
+			if(debug)
+				world << "STOPED : [src] : [movement_handler.type]"
+				world << "-------------"
 			return MOVEMENT_HANDLED
 
 		. = movement_handler.DoMove(direction, mover, is_external)
 		if(. & MOVEMENT_REMOVE)
 			REMOVE_AND_QDEL(movement_handler)
 		if(. & MOVEMENT_HANDLED)
+			if(debug)
+				world << "HANDLED : [src] : [movement_handler.type]"
+				world << "-------------"
 			return
+	if(debug)
+		world << "NOTHING : [src]"
+		world << "-------------"
 
 // is_external means that something else (not inside us) is asking if we may move
 // This for example includes mobs bumping into each other

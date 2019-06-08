@@ -382,7 +382,7 @@
 mob/living/carbon/slime/toggle_throw_mode()
 	return
 
-/mob/living/carbon/slime/proc/gain_nutrition(var/amount)
+/mob/living/carbon/slime/adjustNutrition(var/amount)
 	nutrition += amount
 	if(prob(amount * 2)) // Gain around one level per 50 nutrition
 		powerlevel++

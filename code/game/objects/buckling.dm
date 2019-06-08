@@ -1,6 +1,7 @@
 /atom
 	var/can_buckle = 0
 	var/buckle_movable = 0
+	var/buckle_drivable = FALSE	// if mob that buckled to this can somehow push it
 	var/buckle_dir = 0
 	var/buckle_lying = -1 //bed-like behavior, forces mob.lying = buckle_lying if != -1
 	var/buckle_pixel_shift = "x=0;y=0" //where the buckled mob should be pixel shifted to, or null for no pixel shift control

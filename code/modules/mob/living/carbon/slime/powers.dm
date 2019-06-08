@@ -66,7 +66,7 @@
 					if (!(C.species && (C.species.flags & NO_PAIN)))
 						M << SPAN_DANGER("[painMes]")
 
-			gain_nutrition(rand(20,25))
+			adjustNutrition(rand(20,25))
 
 			adjustOxyLoss(-8) //Heal yourself
 			adjustBruteLoss(-8)

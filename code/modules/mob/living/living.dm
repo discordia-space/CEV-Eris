@@ -461,12 +461,8 @@ default behaviour is:
 	return
 
 /mob/living/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
-	if (buckled)
-		return
-
 	if (restrained())
 		stop_pulling()
-
 
 	var/t7 = 1
 	if (restrained())
@@ -794,3 +790,7 @@ default behaviour is:
 		if(A)
 			A.static_overlays |= static_overlay
 			A.client.images |= static_overlay
+
+/mob/living/proc/adjustNutrition(var/amount)
+	nutrition += amount
+	nutrition = max(0,min(nutrition, max_nutrition))	//clamp the value
