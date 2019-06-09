@@ -1,4 +1,4 @@
-obj/item/weapon/gun/projectile/automatic/maxim
+/obj/item/weapon/gun/projectile/automatic/maxim
 	name = "Excelsior machine gun"
 	desc = ""
 	icon_state = "maxim"
