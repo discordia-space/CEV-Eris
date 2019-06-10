@@ -274,8 +274,8 @@
 		/datum/design/autolathe/gun/energy_crossbow,
 		/datum/design/autolathe/gun/large_energy_crossbow,
 		/datum/design/autolathe/gun/laser,
-		/datum/design/autolathe/gun/pulse_rifle,
-		/datum/design/autolathe/gun/pulse_rifle_destroyer,
+		/datum/design/autolathe/gun/pulse,
+		/datum/design/autolathe/gun/pulse_destroyer,
 		/datum/design/autolathe/gun/ionrifle,
 	)
 
@@ -345,7 +345,7 @@
 	designs = list(
 		/datum/design/autolathe/gun/energygun_martin,
 		/datum/design/autolathe/gun/energygun,
-		/datum/design/autolathe/gun/pulse_rifle_cassad,
+		/datum/design/autolathe/gun/pulse_cassad,
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo //please, maintain general order (pistol>speedloaders>smg>other>shells)+(smaller/less damaging caliber>bigger/more damaging caliber)
