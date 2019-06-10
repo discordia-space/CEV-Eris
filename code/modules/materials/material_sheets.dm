@@ -86,7 +86,6 @@
 	name = "iron"
 	icon_state = "sheet-iron"
 	default_type = MATERIAL_IRON
-	apply_colour = 1
 	price_tag = 2
 
 /obj/item/stack/material/iron/random
