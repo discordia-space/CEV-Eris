@@ -247,7 +247,7 @@
 //Stores moar fuel!
 /obj/item/weapon/tool_upgrade/augment/fuel_tank
 	name = "Expanded fuel tank"
-	desc = "An auxiliary tank which stores 30 extra units of fuel"
+	desc = "An auxiliary tank which stores 100 extra units of fuel at the cost of degradation."
 	icon_state = "canister"
 	req_fuel = TRUE
 	prefix = "expanded"
@@ -256,7 +256,21 @@
 
 /obj/item/weapon/tool_upgrade/augment/fuel_tank/apply_values()
 	if (..())
-		holder.max_fuel += 30
+		holder.max_fuel += 100
+
+//OneStar fuel mod
+/obj/item/weapon/tool_upgrade/augment/holding_tank
+	name = "Expanded fuel tank of holding"
+	desc = "Rare relic of OneStar uses the bluetech space to store additional 600 units of fuel at the cost of degradation."
+	icon_state = "canister_holding"
+	req_fuel = TRUE
+	prefix = "holding"
+	bulk_mod = 1
+	degradation_mult = 1.30
+
+/obj/item/weapon/tool_upgrade/augment/holding_tank/apply_values()
+	if (..())
+		holder.max_fuel += 600
 
 
 //Penalises the tool, but unlocks several more augment slots.
@@ -301,3 +315,26 @@
 	if (..())
 		holder.item_flags |= SILENT
 		holder.color = "#AAAAAA"
+
+/obj/item/weapon/tool_upgrade/augment/ai_tool
+	name = "ai tool"
+	desc = "A tool mod from OneStar is deemed heretic by the clan of Technomancers. It enhances the tool by the micro-ai at cost of increased power usage."
+	icon_state = "ai_tool"
+	req_cell = TRUE
+	prefix = "intelligent"
+
+/obj/item/weapon/tool_upgrade/augment/ai_tool/apply_values()
+	if (..())
+		powercost_mult = 1.20
+		precision = 14
+		workspeed = 14
+
+/obj/item/weapon/tool_upgrade/augment/repair_nano
+	name = "repair nano"
+	desc = "Very rare tool mod from OneStar powered by their nanomachines. It repairs the tool while in use and makes it near unbreakable."
+	icon_state = "repair_nano"
+	prefix = "self-healing"
+
+/obj/item/weapon/tool_upgrade/augment/repair_nano/apply_values()
+	if (..())
+		degradation_mult = 0.01
