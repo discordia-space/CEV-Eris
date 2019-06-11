@@ -8,6 +8,7 @@
 	var/abstract = 0
 	var/r_speed = 1.0
 	var/health = null
+	var/maxhealth = null
 	var/burn_point = null
 	var/burning = null
 	var/hitsound = null
