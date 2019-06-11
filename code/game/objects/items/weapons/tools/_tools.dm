@@ -25,6 +25,8 @@
 
 	var/mode = NOMODE //For various tool icon updates.
 
+	var/jobs_special_tools = list(JOBS_ENGINEERING, JOBS_NONHUMAN)	// People with starting jobs have special interaction with tools like extra details from examine.
+
 	//Third type of resource, stock. A tool that uses physical objects (or itself) in order to work
 	//Currently used for tape roll
 	var/use_stock_cost = 0
@@ -159,7 +161,7 @@
 			else if (degradation) //Because robot tools are unbreakable
 				//otherwise, damage the host tool a bit, and give you another try
 				to_chat(user, SPAN_DANGER("You only managed to damage [src], but you can retry."))
-				unreliability += 10*degradation
+				health -= 10 * degradation
 				refresh_upgrades()
 				return 1
 	.=..()
@@ -362,7 +364,7 @@
 	if (T)
 		crit_fail_chance = max(crit_fail_chance, T.unreliability * 0.5) //At high unreliability, critical failures are more common
 		if (T.degradation)
-			T.unreliability += 15*T.degradation //Failing incurs 30 uses worth of damage
+			T.health -= 15 * T.degradation //Failing incurs 30 uses worth of damage
 	if(required_stat)
 		crit_fail_chance = crit_fail_chance - user.stats.getStat(required_stat)
 
@@ -629,7 +631,7 @@
 
 	//Makeshift tools get worse with each use
 	if (degradation)
-		unreliability += rand_between(0, degradation)
+		health -= rand_between(0, degradation)
 
 //Power and fuel drain, sparks spawn
 /obj/item/weapon/tool/proc/check_tool_effects(var/mob/living/user, var/time)
@@ -744,21 +746,23 @@
 		for (var/obj/item/weapon/tool_upgrade/TU in upgrades)
 			to_chat(user, SPAN_NOTICE(TU.name))
 
-	if (unreliability)
-		if (unreliability < 2)
+	if (health)
+		if (health > maxhealth * 0.95)
 			return
-		else if (unreliability < 4)
+		else if (health > maxhealth * 0.80)
 			to_chat(user, "It has a few light scratches.")
-		else if (unreliability < 8)
+		else if (health > maxhealth * 0.40)
 			to_chat(user, SPAN_NOTICE("It shows minor signs of stress and wear."))
-		else if (unreliability < 12)
+		else if (health > maxhealth * 0.20)
 			to_chat(user, SPAN_WARNING("It looks a bit cracked and worn."))
-		else if (unreliability < 25)
+		else if (health > maxhealth * 0.10)
 			to_chat(user, SPAN_WARNING("Whatever use this tool once had is fading fast."))
-		else if (unreliability < 40)
+		else if (health > maxhealth * 0.05)
 			to_chat(user, SPAN_WARNING("Attempting to use this thing as a tool is probably not going to work out well."))
 		else
 			to_chat(user, SPAN_DANGER("It's falling apart. This is one slip away from just being a pile of assorted trash."))
+		if(user.assigned_role in jobs_special_tools)
+			to_chat(user, SPAN_NOTICE(text("Health of [] is []/[] points.", src.name, src.health, src.maxhealth ))
 
 
 //Recharge the fuel at fueltank, also explode if switched on
@@ -789,12 +793,12 @@
 		//Tape can be used to repair other tools
 		if (istool(O))
 			var/obj/item/weapon/tool/T = O
-			if (T.unreliability)
+			if (T.health)
 				user.visible_message(SPAN_NOTICE("[user] begins repairing \the [O] with the [src]!"))
 				//Toolception!
-				if(use_tool(user, T, 60 + (T.unreliability*10), QUALITY_ADHESIVE, T.unreliability, STAT_MEC))
+				if(use_tool(user, T, 60 + (T.health * 10), QUALITY_ADHESIVE, T.health, STAT_MEC))
 					//Repairs are imperfect, it'll never go back to being intact
-					T.unreliability *= 0.1
+					T.health *= 0.1
 					repair_frequency++
 					refresh_upgrades()
 				return
