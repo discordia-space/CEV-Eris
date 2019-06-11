@@ -761,7 +761,7 @@
 			to_chat(user, SPAN_WARNING("Attempting to use this thing as a tool is probably not going to work out well."))
 		else
 			to_chat(user, SPAN_DANGER("It's falling apart. This is one slip away from just being a pile of assorted trash."))
-		if(user.assigned_role in jobs_special_tools)
+		if(user.mind.assigned_role in jobs_special_tools)
 			to_chat(user, SPAN_NOTICE(text("Health of [] is []/[] points.", src.name, src.health, src.max_health )))
 
 
@@ -871,7 +871,7 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/S = H.organs_by_name[user.targeted_organ]
 
-		if (!istype(S) || S.robotic < ORGAN_ROBOT)
+		if (!istype(S) || !BP_IS_ROBOTIC(S))
 			return ..()
 
 		if (get_tool_type(user, list(QUALITY_WELDING), H)) //Prosthetic repair
