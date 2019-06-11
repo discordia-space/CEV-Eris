@@ -38,6 +38,8 @@
 	var/degradation = 0.08 //If nonzero, the unreliability of the tool increases by 0..this after each tool operation
 	var/unreliability = 0 //This is added to the failure rate of operations with this tool
 	var/repair_frequency = 0 //How many times this tool has been repaired
+	health = 0		// Health of tool. Swap unreliability for health
+	maxhealth = 1000
 
 	var/toggleable = FALSE	//Determines if it can be switched ON or OFF, for example, if you need a tool that will consume power/fuel upon turning it ON only. Such as welder.
 	var/switched_on = FALSE	//Curent status of tool. Dont edit this in subtypes vars, its for procs only.
@@ -73,6 +75,9 @@
 
 	if (use_stock_cost)
 		stock = max_stock
+
+	if (maxhealth)
+		health = maxhealth
 
 	update_icon()
 	return
@@ -176,13 +181,13 @@
 		return ..()
 
 	//If it's this broken, you get nothing
-	if (unreliability >= 50)
+	if (health <= 20)
 		return null
 
 	var/list/tm = matter.Copy()
 	//Every point of damage reduces matter by 2% of total
 	for (var/mat in tm)
-		tm[mat] *= 1 - (unreliability * 0.02)
+		tm[mat] *= 1 - (health/maxhealth)
 
 	return tm
 
