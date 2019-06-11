@@ -38,6 +38,8 @@
 	var/degradation = 0.08 //If nonzero, the unreliability of the tool increases by 0..this after each tool operation
 	var/unreliability = 0 //This is added to the failure rate of operations with this tool
 	var/repair_frequency = 0 //How many times this tool has been repaired
+	health = 0		// Health of tool. Swap unreliability for health
+	maxhealth = 1000
 
 	var/toggleable = FALSE	//Determines if it can be switched ON or OFF, for example, if you need a tool that will consume power/fuel upon turning it ON only. Such as welder.
 	var/switched_on = FALSE	//Curent status of tool. Dont edit this in subtypes vars, its for procs only.
@@ -73,6 +75,9 @@
 
 	if (use_stock_cost)
 		stock = max_stock
+
+	if (maxhealth)
+		health = maxhealth
 
 	update_icon()
 	return
@@ -151,10 +156,10 @@
 					QDEL_NULL(toremove)
 				refresh_upgrades()
 				return 1
-			else if (health) //Because robot tools are unbreakable
+			else if (degradation) //Because robot tools are unbreakable
 				//otherwise, damage the host tool a bit, and give you another try
 				to_chat(user, SPAN_DANGER("You only managed to damage [src], but you can retry."))
-				health -= 10 * degradation
+				unreliability += 10*degradation
 				refresh_upgrades()
 				return 1
 	.=..()
@@ -172,17 +177,17 @@
 
 //Damaged tools are worth less matter for recycling
 /obj/item/weapon/tool/get_matter()
-	if (!matter || !matter.len || !health)
+	if (!matter || !matter.len || !degradation)
 		return ..()
 
 	//If it's this broken, you get nothing
-	if (unreliability >= 50)
+	if (health <= 20)
 		return null
 
 	var/list/tm = matter.Copy()
 	//Every point of damage reduces matter by 2% of total
 	for (var/mat in tm)
-		tm[mat] *= 1 - (unreliability * 0.02)
+		tm[mat] *= 1 - (health/maxhealth)
 
 	return tm
 
@@ -862,7 +867,7 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/S = H.organs_by_name[user.targeted_organ]
 
-		if (!istype(S) || !BP_IS_ROBOTIC(S))
+		if (!istype(S) || S.robotic < ORGAN_ROBOT)
 			return ..()
 
 		if (get_tool_type(user, list(QUALITY_WELDING), H)) //Prosthetic repair
