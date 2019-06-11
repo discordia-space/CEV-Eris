@@ -247,10 +247,11 @@
 	if(incapacitated())
 		return 1
 
+	
 	//Movement
 	turns_since_move++
 	if(!client && !stop_automated_movement && wander)
-		if(isturf(loc))		//This is so it only moves if it's not inside a closet, gentics machine, etc.
+		if(isturf(loc) && !resting)		//This is so it only moves if it's not inside a closet, gentics machine, etc.
 			if(turns_since_move >= turns_per_move)
 				if(!(stop_automated_movement_when_pulled && pulledby)) //Soma animals don't move when pulled
 					var/moving_to = 0 // otherwise it always picks 4, fuck if I know.   Did I mention fuck BYOND
@@ -408,7 +409,6 @@
 		stat(null, "Health: [round((health / maxHealth) * 100)]%")
 
 /mob/living/simple_animal/death(gibbed, deathmessage = "dies!")
-	walk_to(src,0)
 	movement_target = null
 	icon_state = icon_dead
 	density = 0
@@ -486,7 +486,6 @@
 				foodtarget = 0
 				stop_automated_movement = 0
 			if( !movement_target || !(movement_target.loc in oview(src, 7)) )
-				walk_to(src,0)
 				movement_target = null
 				foodtarget = 0
 				stop_automated_movement = 0
@@ -515,13 +514,14 @@
 			if(movement_target)
 				scan_interval = min_scan_interval
 				stop_automated_movement = 1
-
+				
+				var/turf/movement_target_turf = get_turf(movement_target)
 				if (istype(movement_target.loc, /turf))
-					walk_to(src,movement_target,0, seek_move_delay)//Stand ontop of food
+					if(get_dist(movement_target_turf, src) > 0) //Stand on top of food
+						DoMove(get_dir(src, movement_target_turf))
 				else
-					walk_to(src,movement_target.loc,1, seek_move_delay)//Don't stand ontop of people
-
-
+					if(get_dist(movement_target_turf, src) > 1) //Don't stand ontop of people
+						DoMove(get_dir(src, movement_target_turf)) 
 
 				if(movement_target)		//Not redundant due to sleeps, Item can be gone in 6 decisecomds
 					if (movement_target.loc.x < src.x)
@@ -581,7 +581,6 @@
 		stat = UNCONSCIOUS
 		canmove = FALSE
 		wander = FALSE
-		walk_to(src,0)
 		update_icons()
 
 //Wakes the mob up from sleeping

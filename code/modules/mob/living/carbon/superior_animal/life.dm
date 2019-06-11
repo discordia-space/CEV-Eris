@@ -34,7 +34,8 @@
 			stop_automated_movement = 1
 			stance = HOSTILE_STANCE_ATTACKING
 			set_glide_size(DELAY2GLIDESIZE(move_to_delay))
-			walk_to(src, target_mob, 1, move_to_delay)
+			if(get_dist(src, target_mob) > 1)
+				DoMove(get_dir(src, target_mob)) 
 
 		if(HOSTILE_STANCE_ATTACKING)
 			if(destroy_surroundings)

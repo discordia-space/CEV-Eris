@@ -69,11 +69,6 @@ var/datum/controller/process/open_space/OS_controller = null
 	if(OD)
 		OD.add(list(T), LIST_FAST, 1)
 
-/*
-/obj/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0) //Hackish
-	. = ..()
-	OS_controller.add_turf(get_turf(src))
-*/
 /turf/Entered(atom/movable/Obj, atom/OldLoc)
 	. = ..()
 	OS_controller.add_turf(src)

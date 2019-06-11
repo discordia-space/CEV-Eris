@@ -116,47 +116,28 @@
 		if(!mob.allow_spacemove())
 			return MOVEMENT_STOP
 	return MOVEMENT_PROCEED
+/datum/movement_handler/mob/buckle_relay
+	var/lastBuckledMessage = 0
 
 // Buckle movement (when you are trying to move when buckled to something)
 /datum/movement_handler/mob/buckle_relay/DoMove(var/direction, var/mover)
 	if(mob.buckled) // Wheelchair driving!
-		if(!handleDismount())
-			direction = mob.AdjustMovementDirection(direction)
-			mob.buckled.DoMove(direction, mob)
-		else
-			return MOVEMENT_STOP
+		direction = mob.AdjustMovementDirection(direction)
+		mob.buckled.DoMove(direction, mob)
 	return MOVEMENT_PROCEED
 
 /datum/movement_handler/mob/buckle_relay/MayMove(var/mover)
 	if(mob.buckled)
 		if(!mob.buckled.buckle_movable)
-			// TODO ADD MESSAGE THAT YOU ARE BUCKLED
+			if(lastBuckledMessage < world.time + 1 SECONDS)
+				lastBuckledMessage = world.time
+				to_chat(mob, SPAN_NOTICE("You're buckled to \the [mob.buckled]!</span>"))
 			return MOVEMENT_STOP
 		if(mob.buckled.buckle_drivable)
 			return mob.buckled.MayMove(mob, TRUE) ? (MOVEMENT_PROCEED|MOVEMENT_HANDLED) : MOVEMENT_STOP
 		else
 			return mob.buckled.MayMove(mover, FALSE) ? (MOVEMENT_PROCEED|MOVEMENT_HANDLED) : MOVEMENT_STOP
 	return MOVEMENT_PROCEED
-
-/datum/movement_handler/mob/buckle_relay/proc/handleDismount()
-	var/dismount = FALSE
-	if (isliving(mob.buckled))
-		if(get_turf(mob) != get_turf(mob.buckled))
-			dismount = TRUE
-		else if(ishuman(mob))
-			var/mob/living/carbon/human/driver = mob
-			var/obj/item/organ/external/l_arm = driver.get_organ(BP_L_ARM)
-			var/obj/item/organ/external/r_arm = driver.get_organ(BP_R_ARM)
-			var/obj/item/organ/external/l_leg = driver.get_organ(BP_L_LEG)
-			var/obj/item/organ/external/r_leg = driver.get_organ(BP_R_LEG)
-			if((!l_arm || l_arm.is_stump()) && (!r_arm || r_arm.is_stump()) || !(l_leg && r_leg))
-				dismount = TRUE // if no arms or no legs we cant hold onto mob
-	if(dismount)
-		mob.visible_message(SPAN_WARNING("[mob] has fallen of \the [mob.buckled]!"), SPAN_WARNING("You have fallen of \the [mob.buckled]!"))
-		mob.buckled.unbuckle_mob(mob)
-		step(mob, pick(cardinal))
-		return TRUE
-	return FALSE
 
 // Movement delay
 /datum/movement_handler/mob/delay
@@ -225,8 +206,6 @@
 /datum/movement_handler/mob/physically_restrained/MayMove(var/mob/mover)
 	if(mob.anchored)
 		if(mover == mob)
-			world << "-rest_anchord MOVE"
-			world << mob
 //			to_chat(mob, "<span class='notice'>You're anchored down!</span>")
 			if(isliving(mob))
 				mob:resist()
@@ -234,10 +213,7 @@
 
 	if(istype(mob.buckled) && !mob.buckled.buckle_movable)
 		if(mover == mob)
-//			to_chat(mob, "<span class='notice'>You're buckled to \the [mob.buckled]!</span>")
 			if(isliving(mob))
-				world << "-rest_buckled MOVE"
-				world << mob
 				mob:resist()
 		return MOVEMENT_STOP
 
@@ -292,7 +268,43 @@
 	direction = mob.AdjustMovementDirection(direction)
 	var/old_turf = get_turf(mob)
 	
-	step(mob, direction)
+	// To prevent issues, diagonal movements are broken up into two cardinal movements.
+	// Is this a diagonal movement?
+	if (direction & (direction - 1))
+		if (direction & NORTH)
+			if (direction & EAST)
+				// Pretty simple really, try to move north -> east, else try east -> north
+				// Pretty much exactly the same for all the other cases here.
+				if (step(mob, NORTH))
+					step(mob, EAST)
+				else
+					if (step(mob, EAST))
+						step(mob, NORTH)
+			else
+				if (direction & WEST)
+					if (step(mob, NORTH))
+						step(mob, WEST)
+					else
+						if (step(mob, WEST))
+							step(mob, NORTH)
+		else
+			if (direction & SOUTH)
+				if (direction & EAST)
+					if (step(mob, SOUTH))
+						step(mob, EAST)
+					else
+						if (step(mob, EAST))
+							step(mob, SOUTH)
+				else
+					if (direction & WEST)
+						if (step(mob, SOUTH))
+							step(mob, WEST)
+						else
+							if (step(mob, WEST))
+								step(mob, SOUTH)
+	
+	else
+		step(mob, direction)
 
 	// Something with pulling things
 	var/extra_delay = HandleGrabs(direction, old_turf)
@@ -307,6 +319,28 @@
 		G.adjust_position()
 	*/
 	mob.moving = 0
+
+// Stop effect
+/datum/movement_handler/mob/grabbed/DoMove(var/direction, var/mob/mover)
+	if(LAZYLEN(mob.grabbed_by))
+		if(mover == mob)
+			if(isliving(mob))
+				mob:resist()
+			return MOVEMENT_STOP
+		else
+			if(!mob.Adjacent(mover))
+				// TODO REMOVE GRABS
+				return MOVEMENT_STOP
+			else
+				return MOVEMENT_PROCEED
+		return MOVEMENT_STOP
+	return MOVEMENT_PROCEED
+
+/datum/movement_handler/mob/grabbed/MayMove(var/mover, var/is_external)
+	for(var/obj/effect/stop/S in mob.loc)
+		if(S.victim == mob)
+			return MOVEMENT_STOP
+	return MOVEMENT_PROCEED
 
 /datum/movement_handler/mob/movement/MayMove(var/mob/mover)
 	return IS_SELF(mover) &&  mob.moving ? MOVEMENT_STOP : MOVEMENT_PROCEED

@@ -461,6 +461,8 @@ default behaviour is:
 	return
 
 /mob/living/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+	. = ..()
+	/*
 	if (restrained())
 		stop_pulling()
 
@@ -558,7 +560,7 @@ default behaviour is:
 	if(update_slimes)
 		for(var/mob/living/carbon/slime/M in view(1,src))
 			M.UpdateFeed(src)
-
+*/
 
 
 

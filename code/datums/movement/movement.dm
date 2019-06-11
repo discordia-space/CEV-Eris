@@ -24,6 +24,8 @@ if(LAZYLEN(movement_handlers) && ispath(movement_handlers[1])) { \
 /atom/movable/proc/HasMovementHandler(var/handler_path)
 	if(!LAZYLEN(movement_handlers))
 		return FALSE
+	else if(!handler_path)
+		return TRUE
 	if(ispath(movement_handlers[1]))
 		return (handler_path in movement_handlers)
 	else
@@ -80,7 +82,6 @@ if(LAZYLEN(movement_handlers) && ispath(movement_handlers[1])) { \
 #define SET_IS_EXTERNAL(X) is_external = isnull(is_external) ? (mover != src) : is_external
 
 /atom/movable/proc/DoMove(var/direction, var/mob/mover, var/is_external)
-	
 	INIT_MOVEMENT_HANDLERS
 	SET_MOVER(mover)
 	SET_IS_EXTERNAL(mover)
