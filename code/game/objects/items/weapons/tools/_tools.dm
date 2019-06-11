@@ -151,10 +151,10 @@
 					QDEL_NULL(toremove)
 				refresh_upgrades()
 				return 1
-			else if (degradation) //Because robot tools are unbreakable
+			else if (health) //Because robot tools are unbreakable
 				//otherwise, damage the host tool a bit, and give you another try
 				to_chat(user, SPAN_DANGER("You only managed to damage [src], but you can retry."))
-				unreliability += 10*degradation
+				health -= 10 * degradation
 				refresh_upgrades()
 				return 1
 	.=..()
@@ -172,7 +172,7 @@
 
 //Damaged tools are worth less matter for recycling
 /obj/item/weapon/tool/get_matter()
-	if (!matter || !matter.len || !degradation)
+	if (!matter || !matter.len || !health)
 		return ..()
 
 	//If it's this broken, you get nothing
