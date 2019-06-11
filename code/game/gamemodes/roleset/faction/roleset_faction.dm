@@ -71,6 +71,7 @@
 	if (success_quantity >= target_quantity)
 		//Yay, all antags successfully spawned
 		return TRUE
+
 	else
 		//Welp, we didn't manage to spawn as many as desired
 		log_and_message_admins("Storyteller Warning: Antagonist Spawning unsuccessful for antagonist [role_id], [antag] \n \
@@ -82,6 +83,12 @@
 		if (success_quantity > 1)
 			success_percent = success_quantity / target_quantity
 		cancel(severity, success_percent)
+
+		if ( success_quantity > 0 )
+			// At least one antag has spawned
+			return TRUE
+		else
+			return FALSE
 
 // Code to prevent a role from being picked by the storyteller.
 /datum/storyevent/roleset/faction/antagonist_suitable(var/datum/mind/player, var/datum/antagonist/antag)
