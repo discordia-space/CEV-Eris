@@ -41,7 +41,7 @@
 	var/unreliability = 0 //This is added to the failure rate of operations with this tool
 	var/repair_frequency = 0 //How many times this tool has been repaired
 	health = 0		// Health of tool. Swap unreliability for health
-	maxhealth = 1000
+	max_health = 1000
 
 	var/toggleable = FALSE	//Determines if it can be switched ON or OFF, for example, if you need a tool that will consume power/fuel upon turning it ON only. Such as welder.
 	var/switched_on = FALSE	//Curent status of tool. Dont edit this in subtypes vars, its for procs only.
@@ -78,8 +78,8 @@
 	if (use_stock_cost)
 		stock = max_stock
 
-	if (maxhealth)
-		health = maxhealth
+	if (max_health)
+		health = max_health
 
 	update_icon()
 	return
@@ -189,7 +189,7 @@
 	var/list/tm = matter.Copy()
 	//Every point of damage reduces matter by 2% of total
 	for (var/mat in tm)
-		tm[mat] *= 1 - (health/maxhealth)
+		tm[mat] *= 1 - (health/max_health)
 
 	return tm
 
@@ -747,22 +747,22 @@
 			to_chat(user, SPAN_NOTICE(TU.name))
 
 	if (health)
-		if (health > maxhealth * 0.95)
+		if (health > max_health * 0.95)
 			return
-		else if (health > maxhealth * 0.80)
+		else if (health > max_health * 0.80)
 			to_chat(user, "It has a few light scratches.")
-		else if (health > maxhealth * 0.40)
+		else if (health > max_health * 0.40)
 			to_chat(user, SPAN_NOTICE("It shows minor signs of stress and wear."))
-		else if (health > maxhealth * 0.20)
+		else if (health > max_health * 0.20)
 			to_chat(user, SPAN_WARNING("It looks a bit cracked and worn."))
-		else if (health > maxhealth * 0.10)
+		else if (health > max_health * 0.10)
 			to_chat(user, SPAN_WARNING("Whatever use this tool once had is fading fast."))
-		else if (health > maxhealth * 0.05)
+		else if (health > max_health * 0.05)
 			to_chat(user, SPAN_WARNING("Attempting to use this thing as a tool is probably not going to work out well."))
 		else
 			to_chat(user, SPAN_DANGER("It's falling apart. This is one slip away from just being a pile of assorted trash."))
 		if(user.assigned_role in jobs_special_tools)
-			to_chat(user, SPAN_NOTICE(text("Health of [] is []/[] points.", src.name, src.health, src.maxhealth ))
+			to_chat(user, SPAN_NOTICE(text("Health of [] is []/[] points.", src.name, src.health, src.max_health )))
 
 
 //Recharge the fuel at fueltank, also explode if switched on
