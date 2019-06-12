@@ -73,6 +73,9 @@
 	price_tag = 50
 	contents_cost = 150
 
+/obj/structure/reagent_dispensers/watertank/derelict
+	icon_state = "watertank-derelict"
+
 /obj/structure/reagent_dispensers/watertank/huge
 	name = "high-capacity water tank"
 	desc = "A high-capacity water tank. It is used to store HUGE amounts of water."
@@ -80,6 +83,9 @@
 	volume = 3000
 	price_tag = 100
 	contents_cost = 300
+
+/obj/structure/reagent_dispensers/watertank/huge/derelict
+	icon_state = "hvwatertank-derelict"
 
 /obj/structure/reagent_dispensers/fueltank
 	name = "fuel tank"
@@ -94,6 +100,9 @@
 	price_tag = 50
 	contents_cost = 750
 
+/obj/structure/reagent_dispensers/fueltank/derelict
+	icon_state = "weldtank-derelict"
+
 /obj/structure/reagent_dispensers/fueltank/huge
 	name = "high-capacity fuel tank"
 	desc = "A high-capacity tank full of industrial welding fuel. Do not consume."
@@ -101,6 +110,9 @@
 	volume = 1000
 	price_tag = 100
 	contents_cost = 1500
+
+/obj/structure/reagent_dispensers/fueltank/huge/derelict
+	icon_state = "hvweldtank-derelict"
 
 /obj/structure/reagent_dispensers/fueltank/examine(mob/user)
 	if(!..(user, 2))
