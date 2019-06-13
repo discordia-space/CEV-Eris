@@ -2,6 +2,10 @@
 #define EXCAVATE 0
 #define DIG 1
 
+// Time added to tool operations in percent based on original time 
+// (if you dig hole in 10 seconds then 50 ADDITIONAL_TIME_LOWHEALTH will add 0 on full health, 2.5sec on 50% health and 5sec ~0% health)
+#define ADDITIONAL_TIME_LOWHEALTH 60
+
 /obj/item/weapon/tool
 	name = "tool"
 	icon = 'icons/obj/tools.dmi'
@@ -25,8 +29,6 @@
 
 	var/mode = NOMODE //For various tool icon updates.
 
-	var/jobs_special_tools = list(JOBS_ENGINEERING, JOBS_NONHUMAN)	// People with starting jobs have special interaction with tools like extra details from examine.
-
 	//Third type of resource, stock. A tool that uses physical objects (or itself) in order to work
 	//Currently used for tape roll
 	var/use_stock_cost = 0
@@ -37,11 +39,14 @@
 
 
 	//Variables used for tool degradation
-	var/degradation = 0.08 //If nonzero, the unreliability of the tool increases by 0..this after each tool operation
+	var/degradation = 0.8 //If nonzero, the health of the tool decreases by this percent after each tool operation
 	var/unreliability = 0 //This is added to the failure rate of operations with this tool
-	var/repair_frequency = 0 //How many times this tool has been repaired
-	health = 0		// Health of tool. Swap unreliability for health
+	health = 0		// Health of a tool.
 	max_health = 1000
+	var/health_threshold  = 40 // threshold in percent on which tool health stops dropping
+	var/lastNearBreakMessage = 0 // used to show messages that tool is about to break
+	var/isBroken = FALSE
+
 
 	var/toggleable = FALSE	//Determines if it can be switched ON or OFF, for example, if you need a tool that will consume power/fuel upon turning it ON only. Such as welder.
 	var/switched_on = FALSE	//Curent status of tool. Dont edit this in subtypes vars, its for procs only.
@@ -96,6 +101,15 @@
 /obj/item/weapon/tool/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
+
+/obj/item/weapon/tool/proc/adjustToolHealth(amount, user)
+	health = min(max_health, max(max_health * (health_threshold/100), health + amount))
+	if(!isBroken && health == 0)
+		breakTool()
+		isBroken = TRUE
+	else if(isBroken && health > 0)
+		isBroken = FALSE
+
 
 //Ignite plasma around, if we need it
 /obj/item/weapon/tool/Process()
@@ -161,14 +175,20 @@
 			else if (degradation) //Because robot tools are unbreakable
 				//otherwise, damage the host tool a bit, and give you another try
 				to_chat(user, SPAN_DANGER("You only managed to damage [src], but you can retry."))
-				health -= 10 * degradation
+				adjustToolHealth(-(5 * degradation), user) // inflicting 4 times use damage
 				refresh_upgrades()
 				return 1
+	if(isBroken)
+		to_chat(user, SPAN_WARNING("\The [src] is broken."))
+		return
 	.=..()
 
 
 //Turning it on/off
 /obj/item/weapon/tool/attack_self(mob/user)
+	if(isBroken)
+		to_chat(user, SPAN_WARNING("\The [src] is broken."))
+		return
 	if(toggleable)
 		if (switched_on)
 			turn_off(user)
@@ -263,6 +283,9 @@
 		//Workspeed var, can be improved by upgrades
 		if (T && T.workspeed > 0)
 			time_to_finish /= T.workspeed
+		// the worse tool condition - the more time required
+		if(T && T.degradation)
+			time_to_finish = time_to_finish + (time_to_finish/100 * (ADDITIONAL_TIME_LOWHEALTH * T.health/T.max_health))
 
 	if((instant_finish_tier < get_tool_quality(required_quality)) || time_to_finish < 0)
 		time_to_finish = 0
@@ -332,23 +355,67 @@
 		stat_modifer = user.stats.getStat(required_stat)
 	fail_chance = fail_chance - get_tool_quality(required_quality) - stat_modifer
 
-	//Unreliability increases failure rates, and precision reduces it
+	// handle tool breaking
+	if(T && T.health == 0)
+		T.breakTool(user)
+		return TOOL_USE_FAIL
+	else if(T && !T.health_threshold)
+		if(user.stats.getStat(STAT_MEC) >= STAT_LEVEL_BASIC && T.health < T.max_health/100 * 5)// tool health is < 5%
+			if(T.lastNearBreakMessage > world.time + 60 SECONDS) // once in 1 minute
+				T.lastNearBreakMessage = world.time
+				to_chat(user, SPAN_DANGER("Your [src.name] is about to fall apart."))
+		else if(user.stats.getStat(STAT_MEC) >= STAT_LEVEL_ADEPT && T.health < T.max_health/100 * 15) // tool health is < 15%
+			if(T.lastNearBreakMessage > world.time + 300 SECONDS) // once in 5 minutes
+				T.lastNearBreakMessage = world.time
+				to_chat(user, SPAN_WARNING("Some parts in your [src.name] are reeling."))
+		else
+			//lets give peasants a chance
+			if(T.health < T.max_health/100 * 5 && prob(10))// tool health is < 5% and chance a 10% to notice
+				if(T.lastNearBreakMessage > world.time + 60 SECONDS) // once in 1 minute
+					T.lastNearBreakMessage = world.time
+					to_chat(user, SPAN_DANGER("Your [src.name] is about to fall apart."))
+		
+	//precision reduce failure rates
 	if (T)
-		fail_chance += T.unreliability
 		fail_chance -= T.precision
 
 	fail_chance = round(fail_chance) // Stops <1% failure chance tasks from faling. Also makes falure chance in failure message look less weird.
 
 	if (fail_chance < 0)
 		fail_chance = 0
+	
+	if (fail_chance >= 100)
+		to_chat(user, SPAN_WARNING("You failed to finish your task with [src.name]! Considering your skills and this tool, it is impossible."))
+		return TOOL_USE_FAIL
 	if(prob(fail_chance))
-		to_chat(user, SPAN_WARNING("You failed to finish your task with [src.name]! There was a [fail_chance]% chance to screw this up."))
+		var/chanceMessage = "near imposible"
+		if(fail_chance < 5)
+			chanceMessage = "great"
+		else if(fail_chance < 25)
+			chanceMessage = "big"
+		else if(fail_chance < 50)
+			chanceMessage = "moderate"
+		else if(fail_chance < 75)
+			chanceMessage = "small"
+		else if(fail_chance < 95)
+			chanceMessage = "tiny"
+		to_chat(user, SPAN_WARNING("You failed to finish your task with [src.name]! There was a [chanceMessage] chance to succeed."))
 		return TOOL_USE_FAIL
 
 	return TOOL_USE_SUCCESS
 
-
-
+/obj/item/weapon/tool/proc/breakTool(mob/user)
+	if(user)
+		to_chat(user, SPAN_DANGER("Your [src] broke!"))
+		new /obj/item/weapon/material/shard/shrapnel(user.loc)
+	else
+		new /obj/item/weapon/material/shard/shrapnel(get_turf(src))
+	if(istype(loc, /obj/machinery/door/airlock))
+		var/obj/machinery/door/airlock/AD = loc
+		AD.take_out_wedged_item()
+	playsound(get_turf(src), 'sound/effects/impacts/thud1.ogg', 50, 1 -3)
+	isBroken = TRUE
+	return
 
 /******************************
 	/* Tool Failure */
@@ -361,15 +428,9 @@
 		T = src
 
 	var/crit_fail_chance = 25
-	if (T)
-		crit_fail_chance = max(crit_fail_chance, T.unreliability * 0.5) //At high unreliability, critical failures are more common
-		if (T.degradation)
-			T.health -= 15 * T.degradation //Failing incurs 30 uses worth of damage
+
 	if(required_stat)
 		crit_fail_chance = crit_fail_chance - user.stats.getStat(required_stat)
-
-
-
 
 	if (crit_fail_chance <= 0)
 		return
@@ -386,10 +447,6 @@
 
 		if(T && T.degradation)
 			failtypes["damage"] = 2.5
-			if(T.unreliability >= 3)
-				failtypes["break"] = T.unreliability * 0.1 // Damaged tools are more likely to break.
-		else
-			failtypes["break"] = 0.5
 
 	if(user)
 		failtypes["slip"] = 2
@@ -408,13 +465,16 @@
 		var/fail_type = pickweight(failtypes)
 
 		switch(fail_type)
-			//Drop the tool on the floor
+			//Damage the
 			if("damage")
 				if(user)
 					to_chat(user, SPAN_DANGER("Your hand slips and you damage [src] a bit."))
-				T.unreliability += 5
+				if(T)
+					if(T.health == 0)
+						T.breakTool(user)
+					else
+						T.adjustToolHealth(-(30 * T.degradation), user) //Failing incurs 30 uses worth of damage
 				return
-
 			//Drop the tool on the floor
 			if("drop")
 				if(user)
@@ -473,27 +533,6 @@
 				var/mob/living/carbon/human/H = user
 				to_chat(user, SPAN_DANGER("You accidentally stuck [src] in your hand!"))
 				H.get_organ(H.get_holding_hand(src)).embed(src)
-				return
-
-			//The tool completely breaks, permanantly gone
-			if("break")
-				if(user)
-					to_chat(user, SPAN_DANGER("Your [src] broke beyond repair!"))
-					new /obj/item/weapon/material/shard/shrapnel(user.loc)
-				else
-					new /obj/item/weapon/material/shard/shrapnel(get_turf(src))
-
-				//To encourage using makeshift tools, upgrades are preserved if the tool breaks
-				if (T)
-					for (var/obj/item/weapon/tool_upgrade/A in T.upgrades)
-						A.forceMove(get_turf(src))
-						A.holder = null
-
-				if(istype(loc, /obj/machinery/door/airlock))
-					var/obj/machinery/door/airlock/AD = loc
-					AD.take_out_wedged_item()
-
-				qdel(src)
 				return
 
 			//The fuel in the tool ignites and sets you aflame
@@ -568,13 +607,6 @@
 
 	return return_quality
 
-
-
-
-
-
-
-
 /obj/item/weapon/tool/proc/turn_on(var/mob/user)
 	switched_on = TRUE
 	tool_qualities = switched_on_qualities
@@ -631,7 +663,7 @@
 
 	//Makeshift tools get worse with each use
 	if (degradation)
-		health -= rand_between(0, degradation)
+		adjustToolHealth(-degradation, user)
 
 //Power and fuel drain, sparks spawn
 /obj/item/weapon/tool/proc/check_tool_effects(var/mob/living/user, var/time)
@@ -688,11 +720,12 @@
 ****************************/
 /obj/item/weapon/tool/proc/refresh_upgrades()
 //First of all, lets reset any var that could possibly be altered by an upgrade
-	degradation = initial(degradation) * 1.05 ** repair_frequency //Degradation gets slightly worse each time the tool is repaired
+	degradation = initial(degradation)
 	workspeed = initial(workspeed)
 	precision = initial(precision)
 	suitable_cell = initial(suitable_cell)
 	max_fuel = initial(max_fuel)
+	health_threshold = initial(health_threshold)
 
 	use_fuel_cost = initial(use_fuel_cost)
 	use_power_cost = initial(use_power_cost)
@@ -712,6 +745,8 @@
 
 	for (var/prefix in prefixes)
 		name = "[prefix] [name]"
+	
+	health_threshold = max(0, health_threshold)
 
 	//Set the fuel volume, incase any mods altered our max fuel
 	if (reagents)
@@ -761,12 +796,13 @@
 			to_chat(user, SPAN_WARNING("Attempting to use this thing as a tool is probably not going to work out well."))
 		else
 			to_chat(user, SPAN_DANGER("It's falling apart. This is one slip away from just being a pile of assorted trash."))
-		if(user.mind.assigned_role in jobs_special_tools)
-			to_chat(user, SPAN_NOTICE(text("Health of [] is []/[] points.", src.name, src.health, src.max_health )))
-
 
 //Recharge the fuel at fueltank, also explode if switched on
 /obj/item/weapon/tool/afterattack(obj/O, mob/user, proximity)
+	// i assume tape cant be broken
+	if(isBroken)
+		to_chat(user, SPAN_WARNING("\The [src] is broken."))
+		return
 	if(use_fuel_cost)
 		if(!proximity) return
 		if ((istype(O, /obj/structure/reagent_dispensers/fueltank) || istype(O, /obj/item/weapon/weldpack)) && get_dist(src,O) <= 1 && !has_quality(QUALITY_WELDING))
@@ -796,10 +832,8 @@
 			if (T.health)
 				user.visible_message(SPAN_NOTICE("[user] begins repairing \the [O] with the [src]!"))
 				//Toolception!
-				if(use_tool(user, T, 60 + (T.health * 10), QUALITY_ADHESIVE, T.health, STAT_MEC))
-					//Repairs are imperfect, it'll never go back to being intact
-					T.health *= 0.1
-					repair_frequency++
+				if(use_tool(user, T, 60, QUALITY_ADHESIVE, FAILCHANCE_EASY, STAT_MEC))
+					adjustToolHealth(T.max_health * 0.8 + (user.stats.getStat(STAT_MEC)/2)/100, user)
 					refresh_upgrades()
 				return
 
@@ -808,21 +842,20 @@
 	//Triggers degradation and resource use upon attacks
 	if (!(flags & NOBLUDGEON) && (world.time - last_tooluse) > 2)
 		consume_resources(5,user)
-		if (prob(unreliability))
-			handle_failure(user, O)
 
 	return ..()
 
 //Triggers degradation and resource use upon attacks
 /obj/item/weapon/tool/resolve_attackby(atom/A, mob/user, params)
+	if(isBroken)
+		to_chat(user, SPAN_WARNING("\The [src] is broken."))
+		return
 	.=..()
 	//If the parent return value is true, then there won't be an attackby
 	//If there will be an attackby, we'll handle it there
 	//Checking the last tooluse time prevents consuming twice for a tool action
 	if (. && loc == user && (!(flags & NOBLUDGEON)) && (world.time - last_tooluse) > 2)
 		consume_resources(5,user)
-		if (prob(unreliability))
-			handle_failure(user, A)
 
 //Decides whether or not to damage a player's eyes based on what they're wearing as protection
 //Note: This should probably be moved to mob
@@ -867,6 +900,9 @@
 
 
 /obj/item/weapon/tool/attack(mob/living/M, mob/living/user, var/target_zone)
+	if(isBroken)
+		to_chat(user, SPAN_WARNING("\The [src] is broken."))
+		return
 	if ((user.a_intent == I_HELP) && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/S = H.organs_by_name[user.targeted_organ]
@@ -952,3 +988,5 @@
 							QUALITY_DIGGING = 100,
 							QUALITY_EXCAVATION = 100,
 							QUALITY_CUTTING = 100)
+
+#undef ADDITIONAL_TIME_LOWHEALTH

@@ -111,7 +111,7 @@
 
 //Fire is instakill. Deploy flamethrowers
 /obj/effect/plant/fire_act()
-	health -= max_health * rand_between(0.5, 1.5)
+	health -= max_health * rand_decimal(0.5, 1.5)
 	check_health()
 
 

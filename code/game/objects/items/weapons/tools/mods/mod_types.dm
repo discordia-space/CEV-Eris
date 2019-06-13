@@ -24,6 +24,7 @@
 	icon_state = "heatsink"
 	prefix = "heatsunk"
 	degradation_mult = 0.65
+	health_threshold_modifier = 10
 
 
 /obj/item/weapon/tool_upgrade/reinforcement/heatsink/can_apply(var/obj/item/weapon/tool/T, var/mob/user)
@@ -42,6 +43,7 @@
 	force_mod = 1
 	precision = -5
 	bulk_mod = 1
+	health_threshold_modifier = 10
 
 
 /obj/item/weapon/tool_upgrade/reinforcement/guard
@@ -52,6 +54,7 @@
 	prefix = "shielded"
 	degradation_mult = 0.75
 	precision = 5
+	health_threshold_modifier = 10
 
 
 
@@ -128,6 +131,7 @@
 	workspeed = 0.20
 	force_mult = 1.15
 	degradation_mult = 1.15
+	health_threshold_modifier = -10
 
 
 //Enhances power tools majorly, but also increases costs
@@ -144,6 +148,7 @@
 	powercost_mult = 1.35
 	fuelcost_mult = 1.35
 	precision = -10
+	health_threshold_modifier = -10
 
 /obj/item/weapon/tool_upgrade/productivity/motor/can_apply(var/obj/item/weapon/tool/T, var/mob/user)
 	.=..()
@@ -178,6 +183,7 @@
 	QUALITY_PULSING, QUALITY_CLAMPING, QUALITY_CAUTERIZING, QUALITY_BONE_SETTING, QUALITY_LASER_CUTTING)
 	prefix = "stabilized"
 	precision = 10
+	health_threshold_modifier = 10
 
 /obj/item/weapon/tool_upgrade/refinement/magbit
 	name = "magnetic bit"
@@ -197,6 +203,7 @@
 	precision = 12
 	degradation_mult = 1.15
 	bulk_mod = 1
+	health_threshold_modifier = 10
 
 
 
@@ -218,6 +225,7 @@
 	prefix = "medium-cell"
 	bulk_mod = 1
 	degradation_mult = 1.15
+	health_threshold_modifier = -10
 
 /obj/item/weapon/tool_upgrade/augment/cell_mount/can_apply(var/obj/item/weapon/tool/T, var/mob/user)
 	.=..()
@@ -253,6 +261,7 @@
 	prefix = "expanded"
 	bulk_mod = 1
 	degradation_mult = 1.15
+	health_threshold_modifier = -10
 
 /obj/item/weapon/tool_upgrade/augment/fuel_tank/apply_values()
 	if (..())
@@ -267,6 +276,7 @@
 	prefix = "holding"
 	bulk_mod = 1
 	degradation_mult = 1.30
+	health_threshold_modifier = -20
 
 /obj/item/weapon/tool_upgrade/augment/holding_tank/apply_values()
 	if (..())
@@ -282,6 +292,7 @@
 	bulk_mod = 2
 	degradation_mult = 1.3
 	precision = -10
+	health_threshold_modifier = -20
 
 /obj/item/weapon/tool_upgrade/augment/expansion/apply_values()
 	if (..())
@@ -298,6 +309,7 @@
 	degradation_mult = 1.15
 	workspeed = -0.15
 	price_tag = 100
+	health_threshold_modifier = -10
 
 /obj/item/weapon/tool_upgrade/augment/spikes/apply_values()
 	if (..())
@@ -309,6 +321,7 @@
 	desc = "This aural dampener is a cutting edge tool attachment which mostly nullifies sound waves within a tiny radius. It minimises the noise created during use, perfect for stealth operations"
 	icon_state = "dampener"
 	prefix = "silenced"
+	health_threshold_modifier = -10
 
 
 /obj/item/weapon/tool_upgrade/augment/dampener/apply_values()
@@ -322,19 +335,15 @@
 	icon_state = "ai_tool"
 	req_cell = TRUE
 	prefix = "intelligent"
-
-/obj/item/weapon/tool_upgrade/augment/ai_tool/apply_values()
-	if (..())
-		powercost_mult = 1.20
-		precision = 14
-		workspeed = 14
+	powercost_mult = 1.20
+	precision = 14
+	workspeed = 14
+	health_threshold_modifier = -10
 
 /obj/item/weapon/tool_upgrade/augment/repair_nano
 	name = "repair nano"
 	desc = "Very rare tool mod from OneStar powered by their nanomachines. It repairs the tool while in use and makes it near unbreakable."
 	icon_state = "repair_nano"
 	prefix = "self-healing"
-
-/obj/item/weapon/tool_upgrade/augment/repair_nano/apply_values()
-	if (..())
-		degradation_mult = 0.01
+	degradation_mult = 0.01
+	health_threshold_modifier = 10

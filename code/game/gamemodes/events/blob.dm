@@ -447,13 +447,13 @@
 			continue
 		L.visible_message(SPAN_DANGER("The blob attacks \the [L]!"), SPAN_DANGER("The blob attacks you!"))
 		playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
-		L.take_organ_damage(burn = rand_between(0.4, 2.3))
+		L.take_organ_damage(burn = rand_decimal(0.4, 2.3))
 
 		//In addition to the flat damage above, we will also splash a small amount of acid on the target
 		//This allows them to wear acidproof gear to resist it
 		if (iscarbon(L))
 			var/datum/reagents/R = new /datum/reagents(4, null)
-			R.add_reagent("sacid", rand_between(0.8,4))
+			R.add_reagent("sacid", rand_decimal(0.8,4))
 			R.trans_to(L, R.total_volume)
 			qdel(R)
 

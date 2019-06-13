@@ -40,6 +40,7 @@
 	var/powercost_mult = 1
 	var/fuelcost_mult = 1
 	var/bulk_mod = 0
+	var/health_threshold_modifier = 0
 
 /obj/item/weapon/tool_upgrade/examine(var/mob/user)
 	.=..()
@@ -174,5 +175,6 @@
 	holder.use_fuel_cost *= fuelcost_mult
 	holder.use_power_cost *= powercost_mult
 	holder.extra_bulk += bulk_mod
+	holder.health_threshold += health_threshold_modifier
 	holder.prefixes |= prefix
 	return TRUE
