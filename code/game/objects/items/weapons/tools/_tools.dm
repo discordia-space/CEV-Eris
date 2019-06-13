@@ -40,7 +40,6 @@
 
 	//Variables used for tool degradation
 	var/degradation = 0.8 //If nonzero, the health of the tool decreases by this percent after each tool operation
-	var/unreliability = 0 //This is added to the failure rate of operations with this tool
 	health = 0		// Health of a tool.
 	max_health = 1000
 	var/health_threshold  = 40 // threshold in percent on which tool health stops dropping
@@ -285,7 +284,8 @@
 			time_to_finish /= T.workspeed
 		// the worse tool condition - the more time required
 		if(T && T.degradation)
-			time_to_finish = time_to_finish + (time_to_finish/100 * (ADDITIONAL_TIME_LOWHEALTH * T.health/T.max_health))
+			// so basically we adding time based on percent of missing health multiplied by ADDITIONAL_TIME_LOWHEALTH for easier balancing
+			time_to_finish = time_to_finish + (time_to_finish/100 * (ADDITIONAL_TIME_LOWHEALTH * (1 -(T.health/T.max_health))))
 
 	if((instant_finish_tier < get_tool_quality(required_quality)) || time_to_finish < 0)
 		time_to_finish = 0
@@ -465,15 +465,12 @@
 		var/fail_type = pickweight(failtypes)
 
 		switch(fail_type)
-			//Damage the
+			//Damage the tool
 			if("damage")
 				if(user)
 					to_chat(user, SPAN_DANGER("Your hand slips and you damage [src] a bit."))
 				if(T)
-					if(T.health == 0)
-						T.breakTool(user)
-					else
-						T.adjustToolHealth(-(30 * T.degradation), user) //Failing incurs 30 uses worth of damage
+					T.adjustToolHealth(-(30 * T.degradation), user) //Failing incurs 30 uses worth of damage
 				return
 			//Drop the tool on the floor
 			if("drop")
@@ -833,7 +830,9 @@
 				user.visible_message(SPAN_NOTICE("[user] begins repairing \the [O] with the [src]!"))
 				//Toolception!
 				if(use_tool(user, T, 60, QUALITY_ADHESIVE, FAILCHANCE_EASY, STAT_MEC))
-					adjustToolHealth(T.max_health * 0.8 + (user.stats.getStat(STAT_MEC)/2)/100, user)
+					T.adjustToolHealth(T.max_health * 0.8 + (user.stats.getStat(STAT_MEC)/2)/100, user)
+					if(user.stats.getStat(STAT_MEC) > STAT_LEVEL_BASIC/2)
+						to_chat(user, SPAN_NOTICE("You knowledge in tools helped you repair it better."))
 					refresh_upgrades()
 				return
 

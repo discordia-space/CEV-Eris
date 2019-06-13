@@ -50,7 +50,7 @@
 /obj/item/weapon/tool/make_old()
 	.=..()
 	if (.)
-		unreliability += rand(40, 150) * degradation
+		adjustToolHealth(-(rand(40, 150) * degradation))
 
 /obj/item/weapon/storage/make_old()
 	.=..()
