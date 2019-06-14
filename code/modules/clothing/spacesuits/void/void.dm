@@ -92,6 +92,8 @@
 			if(helmet && H.head == helmet)
 				H.drop_from_inventory(helmet)
 				helmet.forceMove(src)
+				if(helmet.overslot)
+					helmet.remove_overslot_contents(H)
 
 	if(boots)
 		boots.canremove = 1
@@ -100,6 +102,8 @@
 			if(boots && H.shoes == boots)
 				H.drop_from_inventory(boots)
 				boots.forceMove(src)
+				if(boots.overslot)
+					boots.remove_overslot_contents(H)
 
 	if(tank)
 		tank.canremove = 1

@@ -82,11 +82,6 @@
 		if(content_size > storage_capacity-5)
 			storage_capacity = content_size + 5
 
-
-
-
-
-
 /obj/structure/closet/examine(mob/user)
 	if(..(user, 1) && !opened)
 		var/content_size = 0
@@ -613,3 +608,6 @@
 	var/shake_dir = pick(-1, 1)
 	animate(src, transform=turn(matrix(), 8*shake_dir), pixel_x=init_px + 2*shake_dir, time=1)
 	animate(transform=null, pixel_x=init_px, time=6, easing=ELASTIC_EASING)
+
+/obj/structure/closet/AllowDrop()
+	return TRUE

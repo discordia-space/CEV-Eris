@@ -88,7 +88,7 @@
 				stat("Chemical Storage", mind.changeling.chem_charges)
 				stat("Genetic Damage Time", mind.changeling.geneticdamage)
 
-		var/obj/item/weapon/implant/core_implant/cruciform/C = get_cruciform()
+		var/obj/item/weapon/implant/core_implant/cruciform/C = get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 		if (C)
 			stat("Cruciform", "[C.power]/[C.max_power]")
 
@@ -1118,7 +1118,7 @@ var/list/rank_prefix = list(\
 #define MODIFICATION_REMOVED 3
 
 //Needed for augmentation
-/mob/living/carbon/human/proc/rebuild_organs(var/from_preference = 0)
+/mob/living/carbon/human/proc/rebuild_organs(from_preference)
 	if(!species)
 		return 0
 
@@ -1152,18 +1152,24 @@ var/list/rank_prefix = list(\
 			var/datum/body_modification/PBM = Pref.get_modification(OD.parent_organ)
 			if(PBM && (PBM.nature == MODIFICATION_SILICON || PBM.nature == MODIFICATION_REMOVED))
 				BM = PBM
-			if(BM.is_allowed(tag, Pref))
+			if(BM.is_allowed(tag, Pref, src))
 				BM.create_organ(src, OD, Pref.modifications_colors[tag])
 			else
 				OD.create_organ(src)
 
 		for(var/tag in species.has_organ)
 			BM = Pref.get_modification(tag)
-			if(BM.is_allowed(tag, Pref))
+			if(BM.is_allowed(tag, Pref, src))
 				BM.create_organ(src, species.has_organ[tag], Pref.modifications_colors[tag])
 			else
 				var/organ_type = species.has_organ[tag]
 				new organ_type(src)
+
+		// Qualifies for a cruciform: spawn it and install it
+		if(Pref.religion == "NeoTheology" || (mind && mind.assigned_job && mind.assigned_job.department == DEPARTMENT_CHURCH))
+			var/obj/item/weapon/implant/core_implant/cruciform/C = new /obj/item/weapon/implant/core_implant/cruciform
+			C.install(src)
+			C.activate()
 
 	else
 		var/organ_type = null
@@ -1241,7 +1247,6 @@ var/list/rank_prefix = list(\
 
 /mob/living/carbon/human/can_inject(var/mob/user, var/error_msg, var/target_zone)
 	. = 1
-
 	if(!target_zone)
 		if(user)
 			target_zone = user.targeted_organ
@@ -1249,7 +1254,7 @@ var/list/rank_prefix = list(\
 			// Pick an existing non-robotic limb, if possible.
 			for(target_zone in BP_ALL_LIMBS)
 				var/obj/item/organ/external/affecting = get_organ(target_zone)
-				if(affecting && affecting.robotic < ORGAN_ROBOT)
+				if(affecting && BP_IS_ORGANIC(affecting) || BP_IS_ASSISTED(affecting))
 					break
 
 
@@ -1258,7 +1263,7 @@ var/list/rank_prefix = list(\
 	if(!affecting)
 		. = 0
 		fail_msg = "They are missing that limb."
-	else if (affecting.robotic >= ORGAN_ROBOT)
+	else if (BP_IS_ROBOTIC(affecting))
 		. = 0
 		fail_msg = "That limb is robotic."
 	else
@@ -1270,7 +1275,9 @@ var/list/rank_prefix = list(\
 				if(wear_suit && wear_suit.item_flags & THICKMATERIAL)
 					. = 0
 	if(!. && error_msg && user)
-		if(!fail_msg)
+		if(BP_IS_LIFELIKE(affecting) && user.stats.getStat(STAT_BIO) < STAT_LEVEL_BASIC)
+			fail_msg = "Skin is tough and inelastic."
+		else if(!fail_msg)
 			fail_msg = "There is no exposed flesh or thin material [target_zone == BP_HEAD ? "on their head" : "on their body"] to inject into."
 		to_chat(user, SPAN_WARNING(fail_msg))
 
@@ -1461,11 +1468,11 @@ var/list/rank_prefix = list(\
 	else if(organ_check in list(BP_LIVER, BP_KIDNEYS))
 		affecting = organs_by_name[BP_GROIN]
 
-	if(affecting && (affecting.robotic >= ORGAN_ROBOT))
+	if(affecting && (BP_IS_ROBOTIC(affecting)))
 		return FALSE
 	return (species && species.has_organ[organ_check])
 
-/mob/living/carbon/human/has_appendage(var/appendage_check)	//returns TRUE if found, 2 or 3 if limb is robotic, FALSE if not found
+/mob/living/carbon/human/has_appendage(var/appendage_check)	//returns TRUE if found, type of organ modification if limb is robotic, FALSE if not found
 
 	if (appendage_check == BP_CHEST)
 		return TRUE
@@ -1474,8 +1481,8 @@ var/list/rank_prefix = list(\
 	appendage = organs_by_name[appendage_check]
 
 	if(appendage && !appendage.is_stump())
-		if(appendage.robotic >= ORGAN_ROBOT)
-			return appendage.robotic
+		if(BP_IS_ROBOTIC(appendage))
+			return appendage.nature
 		else return TRUE
 	return FALSE
 

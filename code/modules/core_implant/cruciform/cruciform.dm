@@ -3,10 +3,11 @@ var/list/disciples = list()
 /obj/item/weapon/implant/core_implant/cruciform
 	name = "cruciform"
 	icon_state = "cruciform_green"
-	desc = "Soul holder for every disciple. With the proper rituals, this can be implanted to induct a new believer into Neotheology."
+	desc = "Soul holder for every disciple. With the proper rituals, this can be implanted to induct a new believer into NeoTheology."
 	allowed_organs = list(BP_CHEST)
 	implant_type = /obj/item/weapon/implant/core_implant/cruciform
 	layer = ABOVE_MOB_LAYER
+	access = list(access_nt_disciple)
 	power = 50
 	max_power = 50
 	power_regen = 0.5
@@ -67,7 +68,7 @@ var/list/disciples = list()
 	if(wearer.dna.unique_enzymes == data.dna.unique_enzymes)
 		for(var/mob/M in GLOB.player_list)
 			if(M.ckey == data.ckey)
-				if(!isghost(M) && !isangel(M))
+				if(M.stat != DEAD)
 					return FALSE
 		var/datum/mind/MN = data.mind
 		if(!istype(MN, /datum/mind))
@@ -130,7 +131,3 @@ var/list/disciples = list()
 	add_module(new CRUCIFORM_INQUISITOR)
 	add_module(new /datum/core_module/cruciform/uplink())
 	remove_modules(/datum/core_module/cruciform/red_light)
-
-/mob/proc/get_cruciform()
-	var/obj/item/weapon/implant/core_implant/C = locate(/obj/item/weapon/implant/core_implant/cruciform, src)
-	return C

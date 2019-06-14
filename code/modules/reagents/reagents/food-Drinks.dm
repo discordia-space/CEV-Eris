@@ -1269,7 +1269,7 @@
 
 /datum/reagent/ethanol/ntcahors/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	M.hallucination = max(0, M.hallucination - 9 * removed)
+	M.adjust_hallucination(-9 * removed)
 	M.adjustToxLoss(-5 * removed)
 
 // Cocktails

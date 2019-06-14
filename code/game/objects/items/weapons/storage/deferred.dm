@@ -55,13 +55,13 @@
 /obj/item/weapon/storage/deferred/rations
 	name = "field rations kit"
 	icon_state = "donk_kit"
-	desc = "A box of preserved, ready-to-eat food for soldiers and spacefarers on the go"
+	desc = "A box of preserved, ready-to-eat food for soldiers and spacefarers on the go."
 	initial_contents = list(/obj/random/rations = 14)
 
 
 /obj/item/weapon/storage/deferred/toolmod
 	name = "tool modifications kit"
-	desc = "A sturdy container full of contraptions, bits of material, components and add-ons for modifying tools"
+	desc = "A sturdy container full of contraptions, bits of material, components and add-ons for modifying tools."
 	icon_state = "syndicate"
 	item_state = "toolbox_syndi"
 	initial_contents = list(/obj/random/tool_upgrade = 12,
@@ -70,7 +70,7 @@
 
 /obj/item/weapon/storage/deferred/pouches
 	name = "uniform modification kit"
-	desc = "A box full of hard-wearing pouches designed for easy attachment to clothing and armor. Good for carrying extra ammo or tools in the field"
+	desc = "A box full of hard-wearing pouches designed for easy attachment to clothing and armor. Good for carrying extra ammo or tools in the field."
 	initial_contents = list(/obj/random/pouch = 8, /obj/item/weapon/storage/pouch/pistol_holster = 1)
 	//One guaranteed holster and plenty of randoms
 
@@ -136,27 +136,30 @@
 
 /obj/item/weapon/storage/deferred/crate/tools
 	name = "tool storage box"
-	desc = "A moderately sized crate full of assorted tools"
+	desc = "A moderately sized crate full of assorted tools."
 	icon_state = "plasmacrate"
-	initial_contents = list(/obj/random/tool = 13, /obj/random/tool/advanced = 2)
+	initial_contents = list(/obj/random/tool = 13,
+	/obj/random/tool/advanced = 2)
 
 
 /obj/item/weapon/storage/deferred/crate/saw
 	name = "infantry support crate"
-	desc = "a crate containing two Pulemyot Kalashnikova light machine guns, and 640 rounds of 7.62mm ammunition"
+	desc = "A crate containing two Pulemyot Kalashnikova light machine guns, and 640 rounds of 7.62mm ammunition."
 	icon_state = "old_weaponcrate"
-	initial_contents = list(/obj/item/weapon/gun/projectile/automatic/lmg/pk = 2, /obj/item/ammo_magazine/ammobox/a762/pk = 8)
+	initial_contents = list(/obj/item/weapon/gun/projectile/automatic/lmg/pk = 2,
+	/obj/item/ammo_magazine/a762/pk = 8)
 
 
 /obj/item/weapon/storage/deferred/crate/ak
 	name = "rifleman crate"
-	desc = "a crate containing six AK-47 rifles, and plenty of magazines"
+	desc = "A crate containing six FS AK-47 rifles, and plenty of magazines."
 	icon_state = "old_weaponcrate"
-	initial_contents = list(/obj/item/weapon/gun/projectile/automatic/ak47/fs  = 6, /obj/item/ammo_magazine/ak47 = 18)
+	initial_contents = list(/obj/item/weapon/gun/projectile/automatic/ak47/fs  = 6,
+	/obj/item/ammo_magazine/c762_long = 18)
 
 /obj/item/weapon/storage/deferred/crate/grenadier
 	name = "grenadier crate"
-	desc = "a crate containing one \"Lenar\" launcher, and copious quantities of hand-propelled explosive devices"
+	desc = "A crate containing one \"Lenar\" launcher, and copious quantities of hand-propelled explosive devices."
 	icon_state = "old_weaponcrate"
 	initial_contents = list(/obj/item/weapon/grenade/frag/explosive = 5,
 	/obj/item/weapon/grenade/frag = 14,
@@ -164,19 +167,21 @@
 	/obj/item/weapon/grenade/smokebomb = 8,
 	/obj/item/weapon/gun/launcher/grenade/lenar = 1)
 
-/obj/item/weapon/storage/deferred/crate/antiarmor
-	name = "anti-armor crate"
-	desc = "a crate containing one \"RPG-7\" launcher, and twenty 40mm PG-7VL warheads"
+/obj/item/weapon/storage/deferred/crate/antiarmor //change to demolitions, won't do now because will affect map
+	name = "demolitions crate"
+	desc = "A crate containing one \"RPG-7\" launcher, and ten 40mm PG-7VL warheads."
 	icon_state = "old_weaponcrate"
-	initial_contents = list(/obj/item/ammo_casing/rocket = 20,
-	/obj/item/weapon/gun/launcher/rocket = 1)
-
+	initial_contents = list(/obj/item/ammo_casing/rocket = 12,
+	/obj/item/weapon/storage/pouch/tubular = 1,
+	/obj/item/weapon/gun/projectile/rpg = 1,
+	/obj/item/weapon/storage/pouch/tubular = 1)
 
 /obj/item/weapon/storage/deferred/crate/demolition
-	name = "demolitions crate"
-	desc = "a crate of tools to deal with stationary hard targets, and remove obstacles"
+	name = "breaching crate"
+	desc = "A crate of tools to deal with stationary hard targets, and remove obstacles."
 	icon_state = "old_weaponcrate"
-	initial_contents = list(/obj/item/weapon/plastique = 14,
+	initial_contents = list(/obj/item/weapon/plastique = 13,
+	/obj/item/weapon/storage/pouch/tubular = 1,
 	/obj/item/weapon/hatton = 1,
 	/obj/item/weapon/hatton_magazine = 5,
 	/obj/item/weapon/tool/pickaxe/diamonddrill = 1)
@@ -184,14 +189,14 @@
 
 /obj/item/weapon/storage/deferred/crate/marksman
 	name = "marksman crate"
-	desc = "a crate containing one \"Penetrator\" rifle, and seventy 14.5mm AP shells"
+	desc = "A crate containing one \"Penetrator\" rifle, and ten 14.5mm AP shells."
 	icon_state = "old_weaponcrate"
 	initial_contents = list(/obj/item/weapon/gun/projectile/heavysniper = 1,
 	/obj/item/weapon/storage/box/sniperammo = 2)
 
 /obj/item/weapon/storage/deferred/crate/sidearm
 	name = "sidearm crate"
-	desc = "a crate containing six Makarov 9mm pistols, 200 rounds of 9mm ammunition, and six fixed-blade combat knives"
+	desc = "A crate containing six Makarov 9mm pistols, 200 rounds of 9mm ammunition, and six fixed-blade combat knives."
 	icon_state = "old_weaponcrate"
 	initial_contents = list(/obj/item/weapon/gun/projectile/clarissa/makarov = 6,
 	/obj/item/ammo_magazine/mc9mm  = 20,
@@ -199,14 +204,14 @@
 
 /obj/item/weapon/storage/deferred/crate/cells
 	name = "power cell bin"
-	desc = "A moderately sized crate full of various power cells"
+	desc = "A moderately sized crate full of various power cells."
 	icon_state = "plasmacrate"
 	initial_contents = list(/obj/random/powercell = 16)
 
 
 /obj/item/weapon/storage/deferred/crate/alcohol
 	name = "liquor crate"
-	desc = "A moderately sized crate full of various alcoholic drinks"
+	desc = "A moderately sized crate full of various alcoholic drinks."
 	icon_state = "plasticcrate"
 	initial_contents = list(/obj/random/booze = 10,
 	/obj/random/booze/low_chance = 10,

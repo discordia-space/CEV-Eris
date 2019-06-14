@@ -1,3 +1,15 @@
+#define CUSTOM_TABLE_COVERING 			1
+#define CUSTOM_TABLE_ICON_REPLACE 		2
+
+
+//Custom appearance for tables, just add here a new design
+//should be: list(name, desc, icon_state, icon replace or overlay, reinfocing required)
+var/list/custom_table_appearance = list(
+					"Bar - special" 	= list("bar table", "Well designed bar table.", "bar_table", CUSTOM_TABLE_ICON_REPLACE, TRUE),
+					"Gambling" 			= list("gambling table", null, "carpet", CUSTOM_TABLE_COVERING, FALSE)
+										)
+
+
 /obj/structure/table
 	name = "table frame"
 	icon = 'icons/obj/tables.dmi'
@@ -22,7 +34,7 @@
 
 	// Gambling tables. I'd prefer reinforced with carpet/felt/cloth/whatever, but AFAIK it's either harder or impossible to get /obj/item/stack/material of those.
 	// Convert if/when you can easily get stacks of these.
-	var/carpeted = 0
+	var/list/custom_appearance = null
 
 	var/list/connections = list("nw0", "ne0", "sw0", "se0")
 
@@ -93,11 +105,11 @@
 	var/list/usable_qualities = list()
 	if(reinforced)
 		usable_qualities.Add(QUALITY_SCREW_DRIVING)
-	if(carpeted)
+	if(custom_appearance)
 		usable_qualities.Add(QUALITY_PRYING)
 	if(health < maxhealth)
 		usable_qualities.Add(QUALITY_WELDING)
-	if(!reinforced && !carpeted)
+	if(!reinforced && !custom_appearance)
 		usable_qualities.Add(QUALITY_BOLT_TURNING)
 
 	var/tool_type = I.get_tool_type(user, usable_qualities)
@@ -114,14 +126,19 @@
 			return
 
 		if(QUALITY_PRYING)
-			if(carpeted)
+			if(custom_appearance)
+				if(custom_appearance[5] && !reinforced)
+					to_chat(user, SPAN_WARNING("This type of design can't be applied to simple tables. Reinforce it first."))
+					return
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 					user.visible_message(
 						SPAN_NOTICE("\The [user] removes the carpet from \the [src]."),
 						SPAN_NOTICE("You remove the carpet from \the [src].")
 					)
 					new /obj/item/stack/tile/carpet(loc)
-					carpeted = 0
+					custom_appearance = null
+					name = initial(name)
+					desc = initial(desc)
 					update_icon()
 			return
 
@@ -133,7 +150,7 @@
 			return
 
 		if(QUALITY_BOLT_TURNING)
-			if(!reinforced && !carpeted)
+			if(!reinforced && !custom_appearance)
 				if(material)
 					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 						remove_material(I, user)
@@ -152,18 +169,20 @@
 						qdel(src)
 			return
 
-	if(!carpeted && material && istype(I, /obj/item/stack/tile/carpet))
+	if(!custom_appearance && material && istype(I, /obj/item/stack/tile/carpet))
 		var/obj/item/stack/tile/carpet/C = I
-		if(C.use(1))
-			user.visible_message(
-				SPAN_NOTICE("\The [user] adds \the [C] to \the [src]."),
-				SPAN_NOTICE("You add \the [C] to \the [src].")
-			)
-			carpeted = 1
-			update_icon()
-			return 1
-		else
-			user << SPAN_WARNING("You don't have enough carpet!")
+		var/choosen_style = input("Select an appearance.") in custom_table_appearance
+		if(choosen_style)
+			if(C.use(1))
+				user.visible_message(
+					SPAN_NOTICE("\The [user] adds \the [C] to \the [src]."),
+					SPAN_NOTICE("You add \the [C] to \the [src].")
+				)
+				custom_appearance = custom_table_appearance[choosen_style]
+				update_icon()
+				return 1
+			else
+				user << SPAN_WARNING("You don't have enough carpet!")
 
 	if(!material && can_plate && istype(I, /obj/item/stack/material))
 		material = common_material_add(I, user, "plat")
@@ -206,16 +225,20 @@
 		update_material()
 
 /obj/structure/table/proc/update_desc()
-	if(material)
-		name = "[material.display_name] table"
+	if(custom_appearance)
+		name = custom_appearance[1] || name
+		desc = custom_appearance[2] || desc
 	else
-		name = "table frame"
+		if(material)
+			name = "[material.display_name] table"
+		else
+			name = "table frame"
 
-	if(reinforced)
-		name = "reinforced [name]"
-		desc = "[initial(desc)] This one seems to be reinforced with [reinforced.display_name]."
-	else
-		desc = initial(desc)
+		if(reinforced)
+			name = "reinforced [name]"
+			desc = "[initial(desc)] This one seems to be reinforced with [reinforced.display_name]."
+		else
+			desc = initial(desc)
 
 // Returns the material to set the table to.
 /obj/structure/table/proc/common_material_add(obj/item/stack/material/S, mob/user, verb) // Verb is actually verb without 'e' or 'ing', which is added. Works for 'plate'/'plating' and 'reinforce'/'reinforcing'.
@@ -275,7 +298,7 @@
 		else
 			S = material.place_shard(loc)
 			if(S) shards += S
-	if(carpeted && (full_return || prob(50))) // Higher chance to get the carpet back intact, since there's no non-intact option
+	if(custom_appearance && (full_return || prob(50))) // Higher chance to get the carpet back intact, since there's no non-intact option
 		new /obj/item/stack/tile/carpet(src.loc)
 	if(full_return || prob(20))
 		new /obj/item/stack/material/steel(src.loc)
@@ -298,42 +321,44 @@
 			I = image(icon, dir = 1<<(i-1), icon_state = connections[i])
 			overlays += I
 
-		// Standard table image
-		if(material)
-			if (istype(material, /material/glass))
-				for(var/i = 1 to 4)
-					I = image(icon, "glass_[connections[i]]", dir = 1<<(i-1))
-					if(material.icon_colour)
-						I.color = material.icon_colour
-					overlays += I
-					var/material/glass/G = material
-					if (G.is_reinforced())
-						I = image(icon, "rglass_[connections[i]]", dir = 1<<(i-1))
+		//If there no any custom appearance or its an overlay, we use standard images
+		if(!custom_appearance || (custom_appearance && !(custom_appearance[4] == CUSTOM_TABLE_ICON_REPLACE)))
+			// Standard table image
+			if(material)
+				if (istype(material, /material/glass))
+					for(var/i = 1 to 4)
+						I = image(icon, "glass_[connections[i]]", dir = 1<<(i-1))
+						if(material.icon_colour)
+							I.color = material.icon_colour
+						overlays += I
+						var/material/glass/G = material
+						if (G.is_reinforced())
+							I = image(icon, "rglass_[connections[i]]", dir = 1<<(i-1))
+							overlays += I
+
+				else if (istype(material, /material/wood))
+					for(var/i = 1 to 4)
+						I = image(icon, "wood_[connections[i]]", dir = 1<<(i-1))
 						overlays += I
 
-			else if (istype(material, /material/wood))
+				else
+					for(var/i = 1 to 4)
+						I = image(icon, "[material.icon_base]_[connections[i]]", dir = 1<<(i-1))
+						if(material.icon_colour) I.color = material.icon_colour
+						I.alpha = 255 * material.opacity
+						overlays += I
+
+			// Reinforcements
+			if(reinforced)
 				for(var/i = 1 to 4)
-					I = image(icon, "wood_[connections[i]]", dir = 1<<(i-1))
+					I = image(icon, "[reinforced.icon_reinf]_[connections[i]]", dir = 1<<(i-1))
+					I.color = material.icon_colour
+					I.alpha = 255 * reinforced.opacity
 					overlays += I
-
-			else
-				for(var/i = 1 to 4)
-					I = image(icon, "[material.icon_base]_[connections[i]]", dir = 1<<(i-1))
-					if(material.icon_colour) I.color = material.icon_colour
-					I.alpha = 255 * material.opacity
-					overlays += I
-
-		// Reinforcements
-		if(reinforced)
+		//Custom appearance
+		if(custom_appearance)
 			for(var/i = 1 to 4)
-				I = image(icon, "[reinforced.icon_reinf]_[connections[i]]", dir = 1<<(i-1))
-				I.color = material.icon_colour
-				I.alpha = 255 * reinforced.opacity
-				overlays += I
-
-		if(carpeted)
-			for(var/i = 1 to 4)
-				I = image(icon, "carpet_[connections[i]]", dir = 1<<(i-1))
+				I = image(icon, "[custom_appearance[3]]_[connections[i]]", dir = 1<<(i-1))
 				overlays += I
 	else
 		overlays.Cut()
@@ -353,7 +378,10 @@
 				type += "+"
 
 		icon_state = "flip[type]"
-		if(material)
+		if(custom_appearance && custom_appearance[4] == CUSTOM_TABLE_ICON_REPLACE)
+			var/image/I = image(icon, "[custom_appearance[3]]_flip[type]")
+			overlays += I
+		else if(material)
 			if (istype(material, /material/wood))
 				var/image/I = image(icon, "wood_flip[type]")
 				overlays += I
@@ -372,8 +400,8 @@
 			I.alpha = 255 * reinforced.opacity
 			overlays += I
 
-		if(carpeted)
-			overlays += "carpet_flip[type]"
+		if(custom_appearance && custom_appearance[4] == CUSTOM_TABLE_COVERING)
+			overlays += "[custom_appearance[3]]_flip[type]"
 
 // set propagate if you're updating a table that should update tables around it too, for example if it's a new table or something important has changed (like material).
 /obj/structure/table/proc/update_connections(propagate=0)
@@ -468,3 +496,6 @@
 #undef CORNER_COUNTERCLOCKWISE
 #undef CORNER_DIAGONAL
 #undef CORNER_CLOCKWISE
+
+#undef CUSTOM_TABLE_COVERING
+#undef CUSTOM_TABLE_ICON_REPLACE

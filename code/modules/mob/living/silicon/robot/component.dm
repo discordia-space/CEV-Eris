@@ -1,5 +1,5 @@
 // TODO: remove the robot.mmi and robot.cell variables and completely rely on the robot component system
-/datum/robot_component/
+/datum/robot_component
 	var/name
 	var/installed = 0
 	var/powered = 0
@@ -122,11 +122,10 @@
 
 // ACTUATOR
 // Enables movement.
-// Uses no power when idle. Uses 200J for each tile the cyborg moves.
 /datum/robot_component/actuator
 	name = "actuator"
 	idle_usage = 0
-	active_usage = 200
+	active_usage = 100
 	external_type = /obj/item/robot_parts/robot_component/actuator
 	max_damage = 50
 
@@ -255,6 +254,7 @@
 /obj/item/robot_parts/robot_component
 	icon = 'icons/obj/robot_component.dmi'
 	icon_state = "working"
+	matter = list(MATERIAL_STEEL = 5)
 	var/brute = 0
 	var/burn = 0
 	var/icon_state_broken = "broken"
@@ -295,3 +295,4 @@
 	icon = 'icons/obj/tank.dmi'
 	icon_state = "jetpack-black"
 	icon_state_broken = "jetpack-black"
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASMA = 10, MATERIAL_SILVER = 20)

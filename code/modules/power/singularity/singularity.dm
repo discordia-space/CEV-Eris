@@ -430,7 +430,7 @@
 		if(M.stat == CONSCIOUS)
 			if (ishuman(M))
 				var/mob/living/carbon/human/H = M
-				if(istype(H.glasses,/obj/item/clothing/glasses/meson) && current_size != 11)
+				if(istype(H.glasses,/obj/item/clothing/glasses/powered/meson) && current_size != 11)
 					H << "<span class=\"notice\">You look directly into The [src.name], good thing you had your protective eyewear on!</span>"
 					return
 				else

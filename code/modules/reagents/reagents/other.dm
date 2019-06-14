@@ -128,7 +128,7 @@
 	M.radiation = 0
 	M.heal_organ_damage(5,5)
 	M.adjustToxLoss(-5)
-	M.hallucination = 0
+	M.hallucination_power = 0
 	M.setBrainLoss(0)
 	M.disabilities = 0
 	M.sdisabilities = 0
@@ -390,3 +390,11 @@
 
 /datum/reagent/luminol/touch_mob(var/mob/living/L)
 	L.reveal_blood()
+
+/datum/reagent/biomatter
+	name = "Biomatter"
+	id = "biomatter"
+	description = "A goo of unknown to you origin. Its better to stay that way."
+	taste_description = "vomit"
+	reagent_state = LIQUID
+	color = "#527f4f"

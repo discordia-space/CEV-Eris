@@ -211,3 +211,6 @@
 
 //Number of slots a modular computer has which can be tweaked via gear tweaks.
 #define TWEAKABLE_COMPUTER_PART_SLOTS 8
+
+ //Preference save/load cooldown. This is in deciseconds.
+#define PREF_SAVELOAD_COOLDOWN 4 //Should be sufficiently hard to achieve without a broken mouse or autoclicker while still fulfilling its intended goal.

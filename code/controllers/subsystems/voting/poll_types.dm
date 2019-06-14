@@ -110,6 +110,29 @@
 	if (pregame)
 		round_progressing = TRUE
 		world << "<b>The game will start in [SSticker.pregame_timeleft] seconds.</b>"
+		spawn(10 SECONDS)
+			var/tipsAndTricks/T = SStips.getRandomTip()
+			if(T)
+				var/typeText = ""
+				if(istype(T, /tipsAndTricks/gameplay))
+					typeText = "Gameplay"
+				else if(istype(T, /tipsAndTricks/mobs))
+					var/tipsAndTricks/mobs/MT = T
+					var/mob/M = pick(MT.mobs_list)
+					// I suppose this will be obsolete someday
+					if(M == /mob/living/carbon/human)
+						typeText = "Human"
+					else
+						typeText = initial(M.name)
+				else if(istype(T, /tipsAndTricks/roles))
+					var/tipsAndTricks/roles/RT = T
+					var/datum/antagonist/A = pick(RT.roles_list)
+					typeText = initial(A.role_text)
+				else if(istype(T, /tipsAndTricks/jobs))
+					var/tipsAndTricks/jobs/JT = T
+					var/datum/job/J = pick(JT.jobs_list)
+					typeText = initial(J.title)
+				to_chat(world, SStips.formatTip(T, "Random Tip \[[typeText]\]: "))
 	pregame = FALSE
 
 /datum/vote_choice/storyteller
@@ -232,7 +255,7 @@
 	can_unvote = FALSE
 	see_votes = TRUE
 
-	question = input("What's your vote question?","Custom vote","Custom vote question")
+	question = cyrillic_to_unicode(input("What's your vote question?","Custom vote","Custom vote question"))
 
 	var/choice_text = ""
 	var/ch_num = 1
@@ -241,7 +264,7 @@
 		ch_num += 1
 		if(choice_text != "")
 			var/datum/vote_choice/custom/C = new
-			C.text = choice_text
+			C.text = cyrillic_to_unicode(choice_text)
 			choices.Add(C)
 	while(choice_text != "" && ch_num < 10)
 

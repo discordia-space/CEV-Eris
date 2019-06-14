@@ -5,8 +5,9 @@
 #define STAT_BIO						"Biology"
 #define STAT_ROB						"Robustness"
 #define STAT_TGH						"Toughness"
+#define STAT_VIG						"Vigilance"
 
-#define ALL_STATS	list(STAT_MEC,STAT_COG,STAT_BIO,STAT_ROB,STAT_TGH)
+#define ALL_STATS	list(STAT_MEC,STAT_COG,STAT_BIO,STAT_ROB,STAT_TGH,STAT_VIG)
 
 #define STAT_LEVEL_NONE     0
 #define STAT_LEVEL_BASIC    15

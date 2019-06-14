@@ -47,15 +47,16 @@ research holder datum.
 /datum/research								//Holder for all the existing, archived, and known tech. Individual to console.
 	var/list/known_tech = list()			//List of locally known tech. Datum/tech go here.
 	var/list/possible_designs = list()		//List of all designs.
+	var/list/possible_design_ids = list()	//List of all designs.
 	var/list/known_designs = list()			//List of available designs.
 
-/datum/research/New()		//Insert techs into possible_tech here. Known_tech automatically updated.
-	for(var/T in typesof(/datum/tech) - /datum/tech)
+//Insert techs into possible_tech here. Known_tech automatically updated.
+/datum/research/New()
+	..()
+	for(var/T in subtypesof(/datum/tech))
 		known_tech += new T(src)
-	for(var/D in typesof(/datum/design) - /datum/design)
-		possible_designs += new D(src)
-	generate_integrated_circuit_designs()
-	RefreshResearch()
+
+	SSresearch.initialize_designs(src)
 
 /datum/tech/proc/getCost(current_level = null)
 	// Calculates tech disk's supply points sell cost
@@ -76,15 +77,18 @@ research holder datum.
 /datum/research/techonly
 
 /datum/research/techonly/New()
-	for(var/T in typesof(/datum/tech) - /datum/tech)
+	for(var/T in subtypesof(/datum/tech))
 		known_tech += new T(src)
 	RefreshResearch()
 
 //Checks to see if design has all the required pre-reqs.
 //Input: datum/design; Output: 0/1 (false/true)
-/datum/research/proc/DesignHasReqs(var/datum/design/D)
-	if(D.req_tech.len == 0)
-		return 1
+/datum/research/proc/DesignHasReqs(datum/design/D)
+	if(!D.req_tech) // Not discoverable in R&D.
+		return FALSE
+
+	if(!D.req_tech.len)
+		return TRUE
 
 	var/list/k_tech = list()
 
@@ -93,24 +97,27 @@ research holder datum.
 
 	for(var/req in D.req_tech)
 		if(isnull(k_tech[req]) || k_tech[req] < D.req_tech[req])
-			return 0
+			return FALSE
 
-	return 1
+	return TRUE
 
 //Adds a tech to known_tech list. Checks to make sure there aren't duplicates and updates existing tech's levels if needed.
 //Input: datum/tech; Output: Null
-/datum/research/proc/AddTech2Known(var/datum/tech/T)
+/datum/research/proc/AddTech2Known(datum/tech/T)
 	for(var/datum/tech/known in known_tech)
 		if(T.id == known.id)
 			if(T.level > known.level)
 				known.level = T.level
 			return
-	return
 
-/datum/research/proc/AddDesign2Known(var/datum/design/D)
+/datum/research/proc/AddDesign2Known(datum/design/D)
+	if(D in known_designs)
+		return
+
 	if(!known_designs.len) // Special case
 		known_designs.Add(D)
 		return
+
 	for(var/i = 1 to known_designs.len)
 		var/datum/design/A = known_designs[i]
 		if(A.id == D.id) // We are guaranteed to reach this if the ids are the same, because sort_string will also be the same
@@ -119,7 +126,6 @@ research holder datum.
 			known_designs.Insert(i, D)
 			return
 	known_designs.Add(D)
-	return
 
 //Refreshes known_tech and known_designs list
 //Input/Output: n/a
@@ -129,7 +135,6 @@ research holder datum.
 			AddDesign2Known(PD)
 	for(var/datum/tech/T in known_tech)
 		T = between(0, T.level, 20)
-	return
 
 //Refreshes the levels of a given tech.
 //Input: Tech's ID and Level; Output: null
@@ -146,28 +151,6 @@ research holder datum.
 		if(initial(check_tech.id) == ID)
 			return  initial(check_tech.name)
 
-/datum/research/proc/generate_integrated_circuit_designs()
-	spawn(2 SECONDS) // So the list has time to initialize.
-		for(var/obj/item/integrated_circuit/IC in all_integrated_circuits)
-			if(IC.spawn_flags & IC_SPAWN_RESEARCH)
-				var/datum/design/D = new /datum/design/circuit(src)
-				D.name = "Custom circuitry \[[IC.category_text]\] ([IC.name])"
-				D.id = "ic-[lowertext(IC.name)]"
-				if(IC.origin_tech && IC.origin_tech.len)
-					D.req_tech = IC.origin_tech.Copy()
-				else
-					D.req_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2)
-				D.build_path = IC.type
-				var/list/mats = IC.matter
-				if (mats && mats.len)
-					for (var/a in mats)
-						LAZYAPLUS(D.materials, a, mats[a])
-				mats = IC.matter_reagents
-				if (mats && mats.len)
-					for (var/a in mats)
-						LAZYAPLUS(D.chemicals, a, mats[a])
-				possible_designs += D
-
 
 /***************************************************************
 **						Technology Datums					  **
@@ -180,6 +163,11 @@ research holder datum.
 	var/id = "id"						//An easily referenced ID. Must be alphanumeric, lower-case, and no symbols.
 	var/level = 1						//A simple number scale of the research level. Level 0 = Secret tech.
 	var/rare = 1						//How much CentCom wants to get that tech. Used in supply shuttle tech cost calculation.
+
+/datum/tech/proc/Copy()
+	var/datum/tech/new_tech = new type
+	new_tech.level = level
+	return new_tech
 
 /datum/tech/materials
 	name = "Materials Research"
@@ -239,29 +227,3 @@ research holder datum.
 	desc = "Research into the occult and arcane field for use in practical science"
 	id = TECH_ARCANE
 	level = 0
-
-/obj/item/weapon/disk/tech_disk
-	name = "technology disk"
-	desc = "A disk for storing technology data for further research."
-	icon = 'icons/obj/discs.dmi'
-	icon_state = "blue"
-	item_state = "card-id"
-	w_class = ITEM_SIZE_SMALL
-	var/datum/tech/stored
-
-/obj/item/weapon/disk/tech_disk/New()
-	pixel_x = rand(-5.0, 5)
-	pixel_y = rand(-5.0, 5)
-
-/obj/item/weapon/disk/design_disk
-	name = "component design disk"
-	desc = "A disk for storing device design data for construction in lathes."
-	icon = 'icons/obj/discs.dmi'
-	icon_state = "yellow"
-	item_state = "card-id"
-	w_class = ITEM_SIZE_SMALL
-	var/datum/design/blueprint
-
-/obj/item/weapon/disk/design_disk/New()
-	pixel_x = rand(-5.0, 5)
-	pixel_y = rand(-5.0, 5)

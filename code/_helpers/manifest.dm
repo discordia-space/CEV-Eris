@@ -19,7 +19,7 @@
 		list("names" = list(), "header" = "Ironhammer Security", "flag" = IRONHAMMER),
 		list("names" = list(), "header" = "Moebius Medical", "flag" = MEDICAL),
 		list("names" = list(), "header" = "Moebius Research", "flag" = SCIENCE),
-		list("names" = list(), "header" = "Church of Neotheology", "flag" = CHURCH),
+		list("names" = list(), "header" = "Church of NeoTheology", "flag" = CHURCH),
 		list("names" = list(), "header" = "Asters Guild", "flag" = GUILD),
 		list("names" = list(), "header" = "Civilian", "flag" = CIVILIAN),
 		list("names" = list(), "header" = "Service", "flag" = SERVICE),

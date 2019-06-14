@@ -66,7 +66,7 @@
 
 	// We could have something like Captain set to high while on a non-rank map,
 	// so we prune here to make sure we don't spawn as a PFC captain
-	//prune_occupation_prefs()
+	prune_occupation_prefs()
 
 	//pref.skills_allocated = pref.sanitize_skills(pref.skills_allocated)		//this proc also automatically computes and updates points_by_job
 
@@ -137,11 +137,14 @@
 			bad_message = "\[IN [(available_in_days)] DAYS]"*/
 		else if(job.minimum_character_age && user.client && (user.client.prefs.age < job.minimum_character_age))
 			bad_message = "\[MINIMUM CHARACTER AGE: [job.minimum_character_age]]"
+		else if(user.client && job.is_religion_restricted(user.client.prefs.religion))
+			bad_message = "\[CONFLICT OF INTEREST: RELIGION]"
+
 		if(("Assistant" in pref.job_low) && (rank != "Assistant"))
 			. += "<a href='?src=\ref[src];set_skills=[rank]'><font color=grey>[rank]</font></a></td><td></td></tr>"
 			continue
 		if(bad_message)
-			. += "<a href='?src=\ref[src];set_skills=[rank]'><del>[rank]</del></a></td><td>[bad_message]</td></tr>"
+			. += "<a href='?src=\ref[src];set_skills=[rank]'><del>[rank]</del></a></td><td><font color=black>[bad_message]</font></td></tr>"
 			continue
 
 		//. += (unspent && (current_level != JOB_LEVEL_NEVER) ? "<a class='Points' href='?src=\ref[src];set_skills=[rank]'>" : "<a href='?src=\ref[src];set_skills=[rank]'>")
@@ -452,8 +455,9 @@
 	for(var/job_title in pref.job_low)
 		if(!(job_title in allowed_titles))
 			pref.job_low -= job_title
-/*
-datum/category_item/player_setup_item/proc/prune_occupation_prefs()
+
+/datum/category_item/player_setup_item/proc/prune_occupation_prefs()
+	/*
 	var/datum/species/S = preference_species()
 	if((GLOB.using_map.flags & MAP_HAS_BRANCH)\
 	   && (!pref.char_branch || !mil_branches.is_spawn_branch(pref.char_branch, S)))
@@ -462,8 +466,9 @@ datum/category_item/player_setup_item/proc/prune_occupation_prefs()
 	if((GLOB.using_map.flags & MAP_HAS_RANK)\
 	   && (!pref.char_rank || !mil_branches.is_spawn_rank(pref.char_branch, pref.char_rank, S)))
 		pref.char_rank = "None"
+	*/
 
-	prune_job_prefs()*/
+	prune_job_prefs()
 
 /datum/category_item/player_setup_item/occupation/proc/ResetJobs()
 	pref.job_high = null

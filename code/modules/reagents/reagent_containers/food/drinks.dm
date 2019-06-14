@@ -115,7 +115,7 @@
 	icon_state = "golden_cup"
 	item_state = "" //nope :(
 	w_class = ITEM_SIZE_LARGE
-	force = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_PAINFUL
 	throwforce = 10
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = null
@@ -204,6 +204,7 @@
 	desc = "A metal shaker to mix drinks in."
 	icon_state = "shaker"
 	amount_per_transfer_from_this = 10
+	possible_transfer_amounts = list(5,10,20,30,60,120)
 	volume = 120
 	center_of_mass = list("x"=17, "y"=10)
 

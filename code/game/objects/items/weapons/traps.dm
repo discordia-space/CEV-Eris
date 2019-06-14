@@ -21,6 +21,7 @@
 	var/target_zone
 	var/min_size = 5 //Mobs smaller than this won't trigger the trap
 	var/struggle_prob = 2
+	var/list/aware_mobs = list() //List of refs of mobs that examined this trap. Won't trigger it when walking.
 
 
 /obj/item/weapon/beartrap/Initialize()
@@ -139,6 +140,21 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	if (buckled_mob)
 		attempt_release(user)
 		return
+	if (deployed)
+		user.visible_message(
+			SPAN_DANGER("[user] starts to carefully disarm \the [src]."),
+			SPAN_DANGER("You begin to carefully disarm \the [src].")
+			)
+
+		if (do_after(user, 25))
+			user.visible_message(
+				SPAN_DANGER("[user] has disarmed \the [src]."),
+				SPAN_DANGER("You have disarmed \the [src]!")
+				)
+			deployed = FALSE
+			anchored = FALSE
+			update_icon()
+		return
 	.=..()
 
 /obj/item/weapon/beartrap/attack_generic(var/mob/user, var/damage)
@@ -196,6 +212,7 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 				"You hear a latch click loudly."
 				)
 
+			aware_mobs = list()
 			deployed = 1
 			user.drop_from_inventory(src)
 			update_icon()
@@ -301,6 +318,8 @@ Very rarely it might escape
 /obj/item/weapon/beartrap/Crossed(AM as mob|obj)
 	if(deployed && isliving(AM))
 		var/mob/living/L = AM
+		if(("\ref[L]" in aware_mobs) && MOVING_DELIBERATELY(L))
+			return ..()
 		L.visible_message(
 			"<span class='danger'>[L] steps on \the [src].</span>",
 			"<span class='danger'>You step on \the [src]!</span>",
@@ -313,7 +332,11 @@ Very rarely it might escape
 		update_icon()
 	..()
 
-
+/obj/item/weapon/beartrap/examine(mob/user)
+	..()
+	if(deployed && isliving(user) && !("\ref[user]" in aware_mobs))
+		to_chat(user, SPAN_NOTICE("You're aware of this trap, now. You won't set it off when walking carefully."))
+		aware_mobs |= "\ref[user]"
 
 
 /obj/item/weapon/beartrap/update_icon()

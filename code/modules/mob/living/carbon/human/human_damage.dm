@@ -8,7 +8,7 @@
 	var/total_burn  = 0
 	var/total_brute = 0
 	for(var/obj/item/organ/external/O in organs)	//hardcoded to streamline things a bit
-		if((O.robotic >= ORGAN_ROBOT) && !O.vital)
+		if(BP_IS_ROBOTIC(O) && !O.vital)
 			continue //*non-vital* robot limbs don't count towards shock and crit
 		total_brute += O.brute_dam
 		total_burn  += O.burn_dam
@@ -70,7 +70,7 @@
 /mob/living/carbon/human/getBruteLoss()
 	var/amount = 0
 	for(var/obj/item/organ/external/O in organs)
-		if(O.robotic >= ORGAN_ROBOT)
+		if(BP_IS_ROBOTIC(O))
 			continue //robot limbs don't count towards shock and crit
 		amount += O.brute_dam
 	return amount
@@ -78,7 +78,7 @@
 /mob/living/carbon/human/getFireLoss()
 	var/amount = 0
 	for(var/obj/item/organ/external/O in organs)
-		if(O.robotic >= ORGAN_ROBOT)
+		if(BP_IS_ROBOTIC(O))
 			continue //robot limbs don't count towards shock and crit
 		amount += O.burn_dam
 	return amount
@@ -109,7 +109,7 @@
 			O.take_damage(amount, 0, sharp=is_sharp(damage_source), edge=has_edge(damage_source), used_weapon=damage_source)
 		else
 			//if you don't want to heal robot organs, they you will have to check that yourself before using this proc.
-			O.heal_damage(-amount, 0, internal=0, robo_repair=(O.robotic >= ORGAN_ROBOT))
+			O.heal_damage(-amount, 0, internal=0, robo_repair=(BP_IS_ROBOTIC(O)))
 
 	BITSET(hud_updateflag, HEALTH_HUD)
 
@@ -122,7 +122,7 @@
 			O.take_damage(0, amount, sharp=is_sharp(damage_source), edge=has_edge(damage_source), used_weapon=damage_source)
 		else
 			//if you don't want to heal robot organs, they you will have to check that yourself before using this proc.
-			O.heal_damage(0, -amount, internal=0, robo_repair=(O.robotic >= ORGAN_ROBOT))
+			O.heal_damage(0, -amount, internal=0, robo_repair=(BP_IS_ROBOTIC(O)))
 
 	BITSET(hud_updateflag, HEALTH_HUD)
 
@@ -356,9 +356,9 @@ This function restores all organs.
 	//visible_message("Hit debug. [damage] | [damagetype] | [def_zone] | [blocked] | [sharp] | [used_weapon]")
 
 	//Handle other types of damage
-	if(!stat && damagetype != BRUTE && damagetype != BURN)
+	if(damagetype != BRUTE && damagetype != BURN)
 		if(damagetype == HALLOSS && !(species && (species.flags & NO_PAIN)))
-			if ((damage > 25 && prob(20)) || (damage > 50 && prob(60)))
+			if (!stat && (damage > 25 && prob(20)) || (damage > 50 && prob(60)))
 				emote("scream")
 
 		..(damage, damagetype, def_zone, blocked)

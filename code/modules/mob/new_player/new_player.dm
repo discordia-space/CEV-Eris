@@ -75,16 +75,16 @@
 /mob/new_player/Stat()
 	. = ..()
 
-	if(statpanel("Lobby"))
-		stat("Storyteller:", "[master_storyteller]") // Old setting for showing the game mode
-
+	if(statpanel("Status"))
 		if(SSticker.current_state == GAME_STATE_PREGAME)
+			stat("Storyteller:", "[master_storyteller]") // Old setting for showing the game mode
 			stat("Time To Start:", "[SSticker.pregame_timeleft][round_progressing ? "" : " (DELAYED)"]")
 			stat("Players: [totalPlayers]", "Players Ready: [totalPlayersReady]")
 			totalPlayers = 0
 			totalPlayersReady = 0
 			for(var/mob/new_player/player in GLOB.player_list)
-				stat("[player.key]", (player.ready)?("(Playing)"):(null))
+				if(player.ready)
+					stat("[player.client.prefs.real_name]", (player.ready)?("[player.client.prefs.job_high]"):(null))
 				totalPlayers++
 				if(player.ready)totalPlayersReady++
 
@@ -137,7 +137,8 @@
 			//observer.key = key
 			observer.ckey = ckey
 			observer.initialise_postkey()
-			observer.client.create_UI()
+
+			observer.client.create_UI(observer.type)
 			qdel(src)
 
 			return 1
@@ -300,6 +301,8 @@
 		if(job && IsJobAvailable(job.title))
 			if(job.minimum_character_age && (client.prefs.age < job.minimum_character_age))
 				continue
+			if(job.is_religion_restricted(client.prefs.religion))
+				continue
 			var/active = 0
 			// Only players with the job assigned and AFK for less than 10 minutes count as active
 			for(var/mob/M in GLOB.player_list) if(M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 * 60 * 10)
@@ -339,15 +342,6 @@
 				|| (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
 				new_character.add_language(lang)
 
-	if(SSticker.random_players)
-		new_character.gender = pick(MALE, FEMALE)
-		client.prefs.real_name = random_name(new_character.gender)
-		client.prefs.randomize_appearance_and_body_for(new_character)
-	else
-		client.prefs.copy_to(new_character)
-
-	sound_to(src, sound(null, repeat = 0, wait = 0, volume = 85, channel = GLOB.lobby_sound_channel))
-
 	if(mind)
 		mind.active = 0//we wish to transfer the key manually
 		mind.original = new_character
@@ -359,6 +353,15 @@
 				R.info = client.prefs.relations_info[T]
 			mind.gen_relations_info = client.prefs.relations_info["general"]
 		mind.transfer_to(new_character)					//won't transfer key since the mind is not active
+
+	if(SSticker.random_players)
+		new_character.gender = pick(MALE, FEMALE)
+		client.prefs.real_name = random_name(new_character.gender)
+		client.prefs.randomize_appearance_and_body_for(new_character)
+	else
+		client.prefs.copy_to(new_character)
+
+	sound_to(src, sound(null, repeat = 0, wait = 0, volume = 85, channel = GLOB.lobby_sound_channel))
 
 	new_character.name = real_name
 	new_character.dna.ready_dna(new_character)

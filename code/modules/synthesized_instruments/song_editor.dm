@@ -26,7 +26,7 @@
 		min(GLOB.musical_config.song_editor_lines_per_page * page_num, src.song.lines.len))
 
 
-/datum/nano_module/song_editor/ui_interact(mob/user, ui_key = "song_editor", var/datum/nanoui/ui = null, var/force_open = 0)
+/datum/nano_module/song_editor/ui_interact(mob/user, ui_key = "song_editor", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/list/data = list()
 
 	var/current_page = src.current_page()

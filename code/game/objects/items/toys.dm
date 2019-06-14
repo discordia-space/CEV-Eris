@@ -3,7 +3,6 @@
  *		Balloons
  *		Fake telebeacon
  *		Fake singularity
- *		Toy gun
  *		Toy crossbow
  *		Toy swords
  *		Toy bosun's whistle
@@ -116,7 +115,7 @@
 /obj/item/toy/crossbow
 	name = "foam dart crossbow"
 	desc = "A weapon favored by many overactive children. Ages 8 and up."
-	icon = 'icons/obj/gun.dmi'
+	icon = 'icons/obj/guns/energy.dmi'
 	icon_state = "crossbow"
 	item_state = "crossbow"
 	item_icons = list(

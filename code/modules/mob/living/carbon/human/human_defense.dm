@@ -45,8 +45,8 @@ meteor_act
 	agony_amount *= siemens_coeff
 
 	switch (def_zone)
-		if(BP_HEAD)
-			agony_amount *= 1.50
+		if(BP_CHEST)
+			agony_amount *= 0.80
 		if(BP_L_ARM, BP_R_ARM)
 			var/c_hand
 			if (def_zone == BP_L_ARM)
@@ -58,7 +58,7 @@ meteor_act
 				msg_admin_attack("[src.name] ([src.ckey]) was disarmed by a stun effect")
 
 				drop_from_inventory(c_hand)
-				if (affected.robotic >= ORGAN_ROBOT)
+				if (BP_IS_ROBOTIC(affected))
 					emote("pain", 1, "drops what they were holding, their [affected.name] malfunctioning!")
 				else
 					var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")

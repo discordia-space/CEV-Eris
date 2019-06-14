@@ -12,7 +12,11 @@
 #define TECH_ILLEGAL "syndicate"
 #define TECH_ARCANE "arcane"
 
-#define IMPRINTER	0x1	//For circuits. Uses glass/chemicals.
-#define PROTOLATHE	0x2	//New stuff. Uses glass/metal/chemicals
-#define MECHFAB		0x4	//Mechfab
-#define CHASSIS		0x8	//For protolathe, but differently
+//used in design to specify which machine can build it
+#define IMPRINTER		(1<<0)	//For circuits. Uses glass/chemicals.
+#define PROTOLATHE		(1<<1)	//New stuff. Uses glass/metal/chemicals
+#define AUTOLATHE		(1<<2)
+
+#define MECHFAB			(1<<4)
+
+#define ORGAN_GROWER	(1<<6)

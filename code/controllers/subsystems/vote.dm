@@ -19,7 +19,9 @@ SUBSYSTEM_DEF(vote)
 		interface_client(C)
 
 /datum/controller/subsystem/vote/proc/interface_client(client/C)
-	C << browse(interface(C),"window=vote;size=400x750;can_close=0;can_resize=0;can_minimize=0")
+	var/datum/browser/panel = new(C.mob, "Vote","Vote", 500, 650)
+	panel.set_content(interface(C))
+	panel.open()
 
 /datum/controller/subsystem/vote/fire()
 	if(active_vote)
@@ -150,7 +152,7 @@ SUBSYSTEM_DEF(vote)
 
 		data += "</ul><hr>"
 	data += "<a href='?src=\ref[src];close=1' style='position:absolute;right:50px'>Close</a></body></html>"
-	return russian_to_utf8(data)
+	return russian_to_utf8(data, TRUE)
 
 
 /datum/controller/subsystem/vote/Topic(href,href_list[],hsrc)
@@ -185,16 +187,8 @@ SUBSYSTEM_DEF(vote)
 
 	usr.vote()
 
-
-
-
-
-
-
-
 /mob/verb/vote()
 	set category = "OOC"
 	set name = "Vote"
 
 	SSvote.interface_client(client)
-

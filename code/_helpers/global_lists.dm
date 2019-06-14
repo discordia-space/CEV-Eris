@@ -67,7 +67,7 @@ GLOBAL_LIST_EMPTY(all_stash_datums)
 */
 
 
-//Neotheology
+//NeoTheology
 GLOBAL_LIST_EMPTY(all_rituals)//List of all rituals
 GLOBAL_LIST_EMPTY(global_ritual_cooldowns) // internal lists. Use ritual's cooldown_category
 

@@ -3,11 +3,11 @@
 
 
 #define ERR_OK 0
-#define ERR_NOTFOUND 1
-#define ERR_NOMATERIAL 2
-#define ERR_NOREAGENT 3
-#define ERR_NOLICENSE 4
-#define ERR_PAUSED 5
+#define ERR_NOTFOUND "not found"
+#define ERR_NOMATERIAL "no material"
+#define ERR_NOREAGENT "no reagent"
+#define ERR_NOLICENSE "no license"
+#define ERR_PAUSED "paused"
 
 
 /obj/machinery/autolathe
@@ -22,7 +22,7 @@
 	active_power_usage = 2000
 	circuit = /obj/item/weapon/circuitboard/autolathe
 
-	var/obj/item/weapon/disk/autolathe_disk/disk = null
+	var/obj/item/weapon/computer_hardware/hard_drive/portable/disk = null
 
 	var/list/stored_material =  list()
 	var/storage_capacity = 120
@@ -42,7 +42,7 @@
 
 	var/unfolded = null
 
-	var/current = null
+	var/datum/computer_file/binary/design/current_file = null
 	var/list/queue = list()
 	var/queue_max = 8
 
@@ -53,58 +53,60 @@
 	var/mat_efficiency = 1
 
 	var/have_disk = TRUE
+	var/have_reagents = TRUE
+	var/have_materials = TRUE
 
-	var/message_nolicense = "Disk licenses have been exhausted."
-	var/message_notfound = "Design data not found."
-	var/message_nomaterial = "Not enough materials."
-	var/message_noreagent = "Not enough reagents."
-	var/message_paused = "***Construction Paused***"
+	var/list/error_messages = list(
+		ERR_NOLICENSE = "Disk licenses have been exhausted.",
+		ERR_NOTFOUND = "Design data not found.",
+		ERR_NOMATERIAL = "Not enough materials.",
+		ERR_NOREAGENT = "Not enough reagents.",
+		ERR_PAUSED = "**Construction Paused**"
+	)
 
 	var/tmp/datum/wires/autolathe/wires = null
 
 
-/obj/machinery/autolathe/New()
-	..()
+/obj/machinery/autolathe/Initialize()
+	. = ..()
 	wires = new(src)
 
 /obj/machinery/autolathe/Destroy()
 	if(wires)
-		qdel(wires)
-		wires = null
+		QDEL_NULL(wires)
 	return ..()
 
 
-/obj/machinery/autolathe/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = 0)
+
+/obj/machinery/autolathe/ui_data()
 	var/list/data = list()
 
-	data["disk"] = disk_name()
-	data["paused"] = paused
-	data["uses"] = disk_uses()
-	data["error"] = error
 	data["have_disk"] = have_disk
+	data["have_reagents"] = have_reagents
+	data["have_materials"] = have_materials
+
+	data["error"] = error
+	data["paused"] = paused
+
+	data["unfolded"] = unfolded
+
+	data["mat_efficiency"] = mat_efficiency
+	data["mat_capacity"] = storage_capacity
+	data["speed"] = speed
+
+	if(disk)
+		data["disk"] = list(
+			"name" = disk.get_disk_name(),
+			"license" = disk.license,
+			"read_only" = disk.read_only
+		)
+
 
 	var/list/L = list()
-	for(var/rtype in recipe_list())
-		var/datum/autolathe/recipe/R = autolathe_recipes[rtype]
-		var/list/LE = list("name" = capitalize(R.name), "type" = "[rtype]", "time" = R.time)
-		LE["icon"] = cacheAtomIcon(R.path, user, TRUE)
-
-		if(unfolded == "[rtype]")
-			LE["unfolded"] = TRUE
-
-			var/text = ""
-			for(var/m in R.resources)
-				text += "[m]: [SANITIZE_LATHE_COST(R.resources[m])]<br>"
-			LE["resources"] = text == "" ? "None" : text
-
-			text = ""
-			for(var/m in R.reagents)
-				text += "[m]: [R.reagents[m]]<br>"
-			LE["reagents"] = text == "" ? "None" : text
-
-		L.Add(list(LE))
-
-	data["recipes"] = L
+	for(var/d in design_list())
+		var/datum/computer_file/binary/design/design_file = d
+		L.Add(list(design_file.ui_data()))
+	data["designs"] = L
 
 	data["container"] = FALSE
 	if(container)
@@ -118,7 +120,6 @@
 
 			data["reagents"] = L
 
-	data["mat_capacity"] = storage_capacity
 	var/list/M = list()
 	for(var/mtype in stored_material)
 		if(stored_material[mtype] <= 0)
@@ -134,56 +135,37 @@
 
 	data["materials"] = M
 
-	data["current"] = null
-	data["progress"] = progress
-	if(current)
-		var/datum/autolathe/recipe/R = autolathe_recipes[current]
-		if(R)
-			data["current"] = R.name
-			data["current_time"] = R.time
-
-		var/list/RS = list()
-		for(var/mat in R.resources)
-			RS.Add(list(list("name" = mat, "req" = SANITIZE_LATHE_COST(R.resources[mat]))))
-
-		data["req_materials"] = RS
-
-		RS = list()
-		for(var/reg in R.reagents)
-			var/datum/reagent/RG = chemical_reagents_list[reg]
-			if(RG)
-				RS.Add(list(list("name" = RG.name, "req" = R.reagents[reg])))
-			else
-				RS.Add(list(list("name" = "UNKNOWN", "req" = R.reagents[reg])))
-
-		data["req_reagents"] = RS
+	if(current_file)
+		data["current"] = current_file.ui_data()
+		data["progress"] = progress
 
 	var/list/Q = list()
+	var/licenses_used = 0
 	var/list/qmats = stored_material.Copy()
 
 	for(var/i = 1; i <= queue.len; i++)
-		if(!queue[i])
-			continue
+		var/datum/computer_file/binary/design/design_file = queue[i]
+		var/list/QR = design_file.ui_data()
 
-		var/datum/autolathe/recipe/R = autolathe_recipes[queue[i]]
-		if(!R)
-			Q.Add(list(list("name" = "ERROR", "ind" = i, "error" = 2)))
+		QR["ind"] = i
 
-		var/list/QR = list("name" = R.name, "ind" = i)
 		QR["error"] = 0
 
-		if(disk_uses() >= 0 && disk_uses() <= i)
-			QR["error"] = 1
+		if(design_file.copy_protected)
+			licenses_used++
 
-		for(var/rmat in R.resources)
+			if(!disk || licenses_used > disk.license)
+				QR["error"] = 1
+
+		for(var/rmat in design_file.design.materials)
 			if(!(rmat in qmats))
 				qmats[rmat] = 0
 
-			qmats[rmat] -= R.resources[rmat]
+			qmats[rmat] -= design_file.design.materials[rmat]
 			if(qmats[rmat] < 0)
 				QR["error"] = 1
 
-		if(cannot_print(queue[i]) != ERR_OK)
+		if(can_print(design_file) != ERR_OK)
 			QR["error"] = 2
 
 		Q.Add(list(QR))
@@ -191,6 +173,12 @@
 	data["queue"] = Q
 	data["queue_len"] = queue.len
 	data["queue_max"] = queue_max
+
+	return data
+
+
+/obj/machinery/autolathe/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+	var/list/data = ui_data(user, ui_key)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
@@ -209,7 +197,7 @@
 	if(default_part_replacement(I, user))
 		return
 
-	if(istype(I, /obj/item/weapon/disk/autolathe_disk))
+	if(istype(I, /obj/item/weapon/computer_hardware/hard_drive/portable))
 		insert_disk(user)
 
 	if(istype(I,/obj/item/stack))
@@ -219,7 +207,7 @@
 	ui_interact(user)
 
 
-/obj/machinery/autolathe/attack_hand(mob/user as mob)
+/obj/machinery/autolathe/attack_hand(mob/user)
 	if(..())
 		return TRUE
 
@@ -227,23 +215,26 @@
 	ui_interact(user)
 
 /obj/machinery/autolathe/Topic(href, href_list)
+	if(..())
+		return
+
 	add_fingerprint(usr)
 
 	usr.set_machine(src)
 
-	if(href_list["eject_disk"] && disk)
-		eject_disk()
-
 	if(href_list["insert"])
 		eat(usr)
 
-	if(href_list["insert_disk"])
-		insert_disk(usr)
+	if(href_list["disk"])
+		if(disk)
+			eject_disk()
+		else
+			insert_disk(usr)
 
 	if(href_list["insert_beaker"])
 		insert_beaker(usr)
 
-	if(!current || paused)
+	if(!current_file || paused)
 		if(href_list["eject_material"])
 			var/material = href_list["eject_material"]
 			var/material/M = get_material_by_name(material)
@@ -272,45 +263,54 @@
 
 
 	if(href_list["add_to_queue"])
-		var/recipe = text2path(href_list["add_to_queue"])
-		if(recipe)
-			if(queue.len < queue_max)
-				queue.Add(recipe)
-			else
-				usr << SPAN_NOTICE(" \The [src]'s queue is full.")
+		var/recipe_filename = href_list["add_to_queue"]
+		var/datum/computer_file/binary/design/design_file
 
-	if(href_list["add_to_queue_several"])
-		var/recipe = text2path(href_list["add_to_queue_several"])
-		if(recipe)
-			var/datum/autolathe/recipe/R = recipe
-			var/amount = input("How many \"[initial(R.name)]\" you want to print ?", "Print several") as null|num
-			if(amount && (queue.len + amount) < queue_max)
-				for(var/i = 1, i <= amount, i++)
-					queue.Add(recipe)
-			else if (amount)
-				usr << SPAN_NOTICE("Not enough free postions in \the [src]'s queue.")
+		for(var/f in design_list())
+			var/datum/computer_file/temp_file = f
+			if(temp_file.filename == recipe_filename)
+				design_file = temp_file
+				break
+
+		if(design_file)
+			var/amount = 1
+
+			if(href_list["several"])
+				amount = input("How many \"[design_file.design.name]\" you want to print ?", "Print several") as null|num
+				if(..() || !(design_file in design_list()))
+					return
+
+			// Copy the designs that are not copy protected so they can be printed even if the disk is ejected.
+			if(!design_file.copy_protected)
+				design_file = design_file.clone()
+
+			while(amount && queue.len < queue_max)
+				queue.Add(design_file)
+				amount--
+
+			if(!current_file)
+				next_file()
 
 	if(href_list["remove_from_queue"])
 		var/ind = text2num(href_list["remove_from_queue"])
-		if(ind != null && ind >= 1 && ind <= queue.len)
-			queue[ind] = null
-			fix_queue()
+		if(ind >= 1 && ind <= queue.len)
+			queue.Cut(ind, ind + 1)
 
 	if(href_list["move_up_queue"])
 		var/ind = text2num(href_list["move_up_queue"])
-		if(ind != null && ind >= 2 && ind <= queue.len)
-			queue.Swap(ind,ind-1)
+		if(ind >= 2 && ind <= queue.len)
+			queue.Swap(ind, ind - 1)
 
 	if(href_list["move_down_queue"])
 		var/ind = text2num(href_list["move_down_queue"])
-		if(ind != null && ind >= 1 && ind <= queue.len-1)
-			queue.Swap(ind,ind+1)
+		if(ind >= 1 && ind <= queue.len-1)
+			queue.Swap(ind, ind + 1)
 
 
 	if(href_list["abort_print"])
 		abort()
 
-	if(href_list["toggle_pause"])
+	if(href_list["pause"])
 		paused = !paused
 
 	if(href_list["unfold"])
@@ -319,9 +319,9 @@
 		else
 			unfolded = href_list["unfold"]
 
-	SSnano.update_uis(src)
+	return 1
 
-/obj/machinery/autolathe/proc/insert_disk(var/mob/living/user)
+/obj/machinery/autolathe/proc/insert_disk(mob/living/user)
 	if(!istype(user))
 		return
 
@@ -330,20 +330,20 @@
 	if(!istype(eating))
 		return
 
-	if(istype(eating,/obj/item/weapon/disk/autolathe_disk))
+	if(istype(eating, /obj/item/weapon/computer_hardware/hard_drive/portable))
 		if(!have_disk)
 			return
 
 		if(disk)
-			user << SPAN_NOTICE("There's already \a [disk] inside the autolathe.")
+			to_chat(user, SPAN_NOTICE("There's already \a [disk] inside [src]."))
 			return
 		user.unEquip(eating, src)
 		disk = eating
-		user << SPAN_NOTICE("You put \the [eating] into the autolathe.")
+		to_chat(user, SPAN_NOTICE("You put \the [eating] into [src]."))
 		SSnano.update_uis(src)
 
 
-/obj/machinery/autolathe/proc/insert_beaker(var/mob/living/user)
+/obj/machinery/autolathe/proc/insert_beaker(mob/living/user)
 	if(!istype(user))
 		return
 
@@ -352,16 +352,16 @@
 	if(!istype(eating))
 		return
 
-	if(istype(eating,/obj/item/weapon/reagent_containers/glass))
+	if(istype(eating, /obj/item/weapon/reagent_containers/glass))
 		if(container)
-			user << SPAN_NOTICE("There's already \a [container] inside the autolathe.")
+			user << SPAN_NOTICE("There's already \a [container] inside [src].")
 			return
 		user.unEquip(eating, src)
 		container = eating
-		user << SPAN_NOTICE("You put \the [eating] into the autolathe.")
+		user << SPAN_NOTICE("You put \the [eating] into [src].")
 		SSnano.update_uis(src)
 
-/obj/machinery/autolathe/proc/eat(var/mob/living/user)
+/obj/machinery/autolathe/proc/eat(mob/living/user)
 	if(!istype(user))
 		return
 
@@ -373,7 +373,7 @@
 	if(stat)
 		return
 
-	if(eating.loc != user && !(istype(eating,/obj/item/stack)))
+	if(eating.loc != user && !istype(eating, /obj/item/stack))
 		return FALSE
 
 	if(is_robot_module(eating))
@@ -383,10 +383,10 @@
 		user << SPAN_NOTICE("\The [eating] does not contain significant amounts of useful materials and cannot be accepted.")
 		return FALSE
 
-	if(istype(eating, /obj/item/weapon/disk/autolathe_disk))
-		var/obj/item/weapon/disk/autolathe_disk/disk = eating
+	if(istype(eating, /obj/item/weapon/computer_hardware/hard_drive/portable))
+		var/obj/item/weapon/computer_hardware/hard_drive/portable/disk = eating
 		if(disk.license)
-			user << SPAN_NOTICE("\The [src] refuses to accept \the [eating] as it has non-null license.")
+			to_chat(user, SPAN_NOTICE("\The [src] refuses to accept \the [eating] as it has non-null license."))
 			return
 
 	var/filltype = 0       // Used to determine message.
@@ -437,7 +437,7 @@
 			O.reagents.trans_to(container, O.reagents.total_volume)
 
 	if(!filltype && !reagents_filltype)
-		user << SPAN_NOTICE("\The [src] is full. Please remove material from the autolathe in order to insert more.")
+		to_chat(user, SPAN_NOTICE("\The [src] is full. Please remove material from [src] in order to insert more."))
 		return
 	else if(filltype == 1)
 		user << SPAN_NOTICE("You fill \the [src] to capacity with \the [eating].")
@@ -451,7 +451,7 @@
 
 	res_load() // Plays metal insertion animation. Work out a good way to work out a fitting animation. ~Z
 
-	if(istype(eating,/obj/item/stack))
+	if(istype(eating, /obj/item/stack))
 		var/obj/item/stack/stack = eating
 		stack.use(max(1, round(total_used/mass_per_sheet))) // Always use at least 1 to prevent infinite materials.
 	else
@@ -463,76 +463,50 @@
 //////////////////////////////////////////
 //Helper procs for derive possibility
 //////////////////////////////////////////
-/obj/machinery/autolathe/proc/recipe_list()
-	if(disk)
-		return disk.recipes
-	else
+/obj/machinery/autolathe/proc/design_list()
+	if(!disk)
 		return list()
 
-//Return -1 to infinite uses or lower value to disable uses display
-/obj/machinery/autolathe/proc/disk_uses()
-	if(disk)
-		return disk.license
-
-//Should return null if there is no disk
-/obj/machinery/autolathe/proc/disk_name()
-	if(disk)
-		return disk.category
-
-//Attempts to consume a license from the disk.
-//Returns true if success or disk is infinite
-//Returns false if disk is missing or doesnt have enough licenses
-/obj/machinery/autolathe/proc/disk_use_license()
-	if (!disk)
-		return FALSE
-
-	if(disk_uses() == -1)
-		return TRUE
-
-	return disk.use_license()
-
-
-	return FALSE
-
+	return disk.find_files_by_type(/datum/computer_file/binary/design)
 
 //Procs for handling print animation
 /obj/machinery/autolathe/proc/print_pre()
 	return
 
 /obj/machinery/autolathe/proc/print_post()
-	if(!queue.len)
+	if(!current_file && !queue.len)
 		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1 -3)
-		visible_message("\icon[src]\The [src] pings indicating that queue is complete.")
-	return
+		visible_message("\The [src] pings, indicating that queue is complete.")
 
 
 /obj/machinery/autolathe/proc/res_load()
 	flick("autolathe_o", src)
 
 
-/obj/machinery/autolathe/proc/cannot_print(var/recipe)
+/obj/machinery/autolathe/proc/can_print(datum/computer_file/binary/design/design_file)
 	if(progress <= 0)
-		var/datum/autolathe/recipe/R = autolathe_recipes[recipe]
-		if(!R)
+		if(!design_file || !design_file.design)
 			return ERR_NOTFOUND
 
-		if(disk_uses() == 0 )
+		if(!design_file.check_license())
 			return ERR_NOLICENSE
 
-		for(var/rmat in R.resources)
+		var/datum/design/design = design_file.design
+
+		for(var/rmat in design.materials)
 			if(!(rmat in stored_material))
 				return ERR_NOMATERIAL
 
-			if(stored_material[rmat] < SANITIZE_LATHE_COST(R.resources[rmat]))
+			if(stored_material[rmat] < SANITIZE_LATHE_COST(design.materials[rmat]))
 				return ERR_NOMATERIAL
 
-		if(R.reagents.len)
+		if(design.chemicals.len)
 			if(!container || !container.is_drawable())
 				return ERR_NOREAGENT
-			else
-				for(var/rgn in R.reagents)
-					if(!container.reagents.has_reagent(rgn, R.reagents[rgn]))
-						return ERR_NOREAGENT
+
+			for(var/rgn in design.chemicals)
+				if(!container.reagents.has_reagent(rgn, design.chemicals[rgn]))
+					return ERR_NOREAGENT
 
 
 	if (paused)
@@ -550,41 +524,28 @@
 		return
 
 	if(anim < world.time)
-		if(current)
-			var/datum/autolathe/recipe/R = autolathe_recipes[current]
-			var/err = cannot_print(current)
-			if(err == ERR_NOLICENSE)
-				error = message_nolicense
-			else if(err == ERR_NOMATERIAL)
-				error = message_nomaterial
-			else if(err == ERR_NOREAGENT)
-				error = message_noreagent
-			else if(err == ERR_NOTFOUND)
-				error = message_notfound
-			else if(err == ERR_PAUSED)
-				error = message_paused
-			else if(err == ERR_OK)
+		if(current_file)
+			var/err = can_print(current_file)
+
+			if(err == ERR_OK)
 				error = null
 
 				working = TRUE
-
-				if(progress <= 0)
-					consume_materials(current)
-
 				progress += speed
 
+			else if(err in error_messages)
+				error = error_messages[err]
 			else
 				error = "Unknown error."
 
-			if(R && progress >= R.time)
+			if(current_file.design && progress >= current_file.design.time)
 				finish_construction()
 
 		else
 			error = null
 			working = FALSE
-			next_recipe()
+			next_file()
 
-	fix_queue()
 	special_process()
 	update_icon()
 	SSnano.update_uis(src)
@@ -596,59 +557,39 @@
 
 	icon_state = "autolathe"
 	if(panel_open)
-		overlays.Add(image(icon,"autolathe_p"))
+		overlays.Add(image(icon, "autolathe_p"))
 
 	if(working && !error) // if error, work animation looks awkward.
 		icon_state = "autolathe_n"
 
-/obj/machinery/autolathe/proc/consume_materials(var/recipe)
-	var/datum/autolathe/recipe/R = autolathe_recipes[recipe]
-	if(!R)
-		return FALSE
+/obj/machinery/autolathe/proc/consume_materials(datum/design/design)
+	for(var/material in design.materials)
+		stored_material[material] = max(0, stored_material[material] - SANITIZE_LATHE_COST(design.materials[material]))
 
-	for(var/material in R.resources)
-		stored_material[material] = max(0, stored_material[material] - SANITIZE_LATHE_COST(R.resources[material]))
-
-	for(var/reagent in R.reagents)
-		container.reagents.remove_reagent(reagent, R.reagents[reagent])
+	for(var/reagent in design.chemicals)
+		container.reagents.remove_reagent(reagent, design.chemicals[reagent])
 
 	return TRUE
 
 
-/obj/machinery/autolathe/proc/next_recipe()
-	current = null
+/obj/machinery/autolathe/proc/next_file()
+	current_file = null
 	progress = 0
 	if(queue.len)
-		current = queue[1]
+		current_file = queue[1]
 		print_pre()
 		working = TRUE
-		queue[1] = null
-		fix_queue()
+		queue.Cut(1, 2) // Cut queue[1]
 	else
-		current = null
 		working = FALSE
 
 /obj/machinery/autolathe/proc/special_process()
-	queue_max = hacked ? 16 : 8
-
-/obj/machinery/autolathe/proc/fix_queue()
-	var/list/Q = list()
-	var/cnt = 0
-	for(var/r in queue)
-		if(ispath(r))
-			Q.Add(r)
-			cnt++
-			if(cnt > queue_max)
-				break
-
-	queue = Q
-
+	return
 
 //Autolathes can eject decimal quantities of material as a shard
-/obj/machinery/autolathe/proc/eject(var/material, var/amount)
+/obj/machinery/autolathe/proc/eject(material, amount)
 	if(!(material in stored_material))
 		return
-
 
 	if (!amount)
 		return
@@ -688,13 +629,12 @@
 	stored_material[material] -= amount
 
 
-/obj/machinery/autolathe/dismantle()
-
+/obj/machinery/autolathe/on_deconstruction()
 	for(var/mat in stored_material)
 		eject(mat, stored_material[mat])
-
+		
+	eject_disk()
 	..()
-	return 1
 
 //Updates overall lathe storage size.
 /obj/machinery/autolathe/RefreshParts()
@@ -709,7 +649,7 @@
 	storage_capacity = round(initial(storage_capacity)*(mb_rating/3))
 
 	speed = man_rating*3
-	mat_efficiency = 1.1 - man_rating * 0.1// Normally, price is 1.25 the amount of material, so this shouldn't go higher than 0.8. Maximum rating of parts is 3
+	mat_efficiency = 1.1 - man_rating * 0.1
 
 
 
@@ -719,56 +659,50 @@
 	if(working)
 		print_post()
 		working = FALSE
-	current = null
+	current_file = null
 	paused = TRUE
 	working = FALSE
 
 //Finishing current construction
 /obj/machinery/autolathe/proc/finish_construction()
-	var/datum/autolathe/recipe/R = autolathe_recipes[current]
-	//First of all, we check whether our current thing came from the disk which is currently inserted
-	if (locate(current) in recipe_list())
-		//It did, in that case we need to consume a license from the current disk.
-		if (disk_use_license()) //In the case of an unlimited disk, this will always be true
-			//We consumed a license, or the disk was infinite. Either way we're clear to proceed
-			var/atom/A = new R.path(src.loc)
-			A.Created()
-			working = FALSE
-			current = null
-			print_post()
-		else
-			//If we get here, then the user attempted to print something but the disk had run out of its limited licenses
-			//Those dirty cheaters will not get their item. It is aborted before it finishes
-			abort()
+	if(current_file.use_license()) //In the case of an an unprotected design, this will always be true
+		fabricate_design(current_file.design)
 	else
-		//If we get here, we're working on a recipe that was queued up from a previous unlimited disk which is now ejected
-		//This is fine, just complete it
-		var/atom/A = new R.path(src.loc)
-		A.Created()
-		working = FALSE
-		current = null
-		print_post()
+		//If we get here, then the user attempted to print something but the disk had run out of its limited licenses
+		//Those dirty cheaters will not get their item. It is aborted before it finishes
+		abort()
+
+
+/obj/machinery/autolathe/proc/fabricate_design(datum/design/design)
+	consume_materials(design)
+	design.Fabricate(get_turf(src), mat_efficiency, src)
+
+	working = FALSE
+	current_file = null
+	print_post()
+	next_file()
 
 //This proc ejects the autolathe disk, but it also does some DRM fuckery to prevent exploits
 /obj/machinery/autolathe/proc/eject_disk()
+	if(!disk)
+		return
 
-	//First of all check if we're using a limited disk.
-	if (disk_uses() != -1)
+	var/list/design_list = design_list()
 
-		//If we are, then we'll go through the queue and remove any recipes we find which came from this disk
-		for(var/rtype in queue)
-			if (locate(rtype) in recipe_list())
-				queue -= rtype
+	// Go through the queue and remove any recipes we find which came from this disk
+	for(var/design in queue)
+		if(design in design_list)
+			queue -= design
 
-		//Check the current too
-		if (locate(current) in recipe_list())
-			//And abort it if it came from this disk
-			abort()
+	//Check the current too
+	if(current_file in design_list)
+		//And abort it if it came from this disk
+		abort()
 
 
 	//Digital Rights have been successfully managed. The corporations win again.
 	//Now they will graciously allow you to eject the disk
-	disk.forceMove(src.loc)
+	disk.forceMove(get_turf(src))
 
 	if(isliving(usr))
 		var/mob/living/L = usr

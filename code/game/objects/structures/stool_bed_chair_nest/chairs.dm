@@ -208,6 +208,10 @@
 	overlays += I
 
 // Chair types
+
+//This should be removed and need replace all wooden chairs with custom wooden type (at map)
+//Don't want to broke something. Clock will do it, cause he's working with the map
+//from here
 /obj/structure/bed/chair/wood
 	name = "wooden chair"
 	desc = "Old is never too old to not be in fashion."
@@ -230,3 +234,44 @@
 
 /obj/structure/bed/chair/wood/wings
 	icon_state = "wooden_chair_wings"
+
+//to here
+
+
+/obj/structure/bed/chair/custom
+	applies_material_colour = 0
+
+/obj/structure/bed/chair/custom/update_icon()
+	return
+
+/obj/structure/bed/chair/custom/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/stack) || istype(W, /obj/item/weapon/tool/wirecutters))
+		return
+	..()
+
+/obj/structure/bed/chair/custom/New(var/newloc)
+	. = ..()
+	var/image/I = image(icon, "[icon_state]_over")
+	I.layer = FLY_LAYER
+	overlays += I
+
+
+//wooden
+/obj/structure/bed/chair/custom/wood
+	name = "wooden chair"
+	desc = "Old is never too old to not be in fashion."
+	icon_state = "wooden_chair"
+
+/obj/structure/bed/chair/custom/wood/New(var/newloc)
+	..(newloc, "wood")
+
+
+/obj/structure/bed/chair/custom/wood/wings
+	icon_state = "wooden_chair_wings"
+
+
+//modern
+/obj/structure/bed/chair/custom/bar_special
+	name = "bar chair"
+	desc = "Modern design and soft pad. Served up with the drink and great company."
+	icon_state = "bar_chair"

@@ -98,6 +98,17 @@
 	flags = null
 
 
+/datum/craft_recipe/furniture/barstool
+	name = "bar stool"
+	result = /obj/item/weapon/stool/custom/bar_special
+	time = 30
+	steps = list(
+		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL),
+		list(/obj/item/stack/rods, 3),
+		list(QUALITY_WELDING, 10, 20)
+	)
+
+
 //Common chairs
 /datum/craft_recipe/furniture/chair
 	name = "chair"
@@ -108,9 +119,19 @@
 
 /datum/craft_recipe/furniture/wooden_chair
 	name = "wooden chair"
-	result = /obj/structure/bed/chair/wood
+	result = /obj/structure/bed/chair/custom/wood
 	steps = list(
 		list(CRAFT_MATERIAL, 6, MATERIAL_WOOD),
+	)
+
+//Custom chairs
+/datum/craft_recipe/furniture/bar_chair
+	name = "bar chair"
+	result = /obj/structure/bed/chair/custom/bar_special
+	steps = list(
+		list(CRAFT_MATERIAL, 4, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 2, MATERIAL_PLASTIC),
+		list(QUALITY_BOLT_TURNING, 10, 20)
 	)
 
 // Office chairs
@@ -124,6 +145,14 @@
 /datum/craft_recipe/furniture/office_chair/light
 	name = "light office chair"
 	result = /obj/structure/bed/chair/office/light
+
+// Wheelchairs
+/datum/craft_recipe/furniture/wheelchair
+	name = "wheelchair"
+	result = /obj/structure/bed/chair/wheelchair
+	steps = list(
+		list(CRAFT_MATERIAL, 8, MATERIAL_STEEL),
+	)
 
 // Comfy chairs
 /datum/craft_recipe/furniture/comfy_chair
@@ -164,4 +193,3 @@
 /datum/craft_recipe/furniture/comfy_chair/green
 	name = "green comfy chair"
 	result = /obj/structure/bed/chair/comfy/green
-

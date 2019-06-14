@@ -10,7 +10,7 @@
 	1 - halfblock
 	2 - fullblock
 */
-/mob/living/proc/run_armor_check(var/def_zone = null, var/attack_flag = "melee", var/armour_pen = 0, var/absorb_text = null, var/soften_text = null)
+/mob/living/proc/run_armor_check(var/def_zone = null, var/attack_flag = "melee", var/armour_pen = 0, var/absorb_text = null, var/soften_text = null, var/silent = FALSE)
 	if(armour_pen >= 100)
 		return 0 //might as well just skip the processing
 
@@ -30,16 +30,18 @@
 		absorb -= 1
 
 	if(absorb >= 2)
-		if(absorb_text)
-			show_message("[absorb_text]")
-		else
-			show_message(SPAN_WARNING("Your armor absorbs the blow!"))
+		if(!silent)
+			if(absorb_text)
+				show_message("[absorb_text]")
+			else
+				show_message(SPAN_WARNING("Your armor absorbs the blow!"))
 		return 2
 	if(absorb == 1)
-		if(absorb_text)
-			show_message("[soften_text]",4)
-		else
-			show_message(SPAN_WARNING("Your armor softens the blow!"))
+		if(!silent)
+			if(absorb_text)
+				show_message("[soften_text]",4)
+			else
+				show_message(SPAN_WARNING("Your armor softens the blow!"))
 		return 1
 	return 0
 
@@ -64,7 +66,7 @@
 	//Stun Beams
 	if(P.taser_effect)
 		stun_effect_act(0, P.agony, def_zone, P)
-		src << SPAN_WARNING(" You have been hit by [P]!")
+		src << SPAN_WARNING("You have been hit by [P]!")
 		qdel(P)
 		return
 

@@ -51,6 +51,16 @@
 	var/datum/event_source //When listening for movement, this is the source we're listening to
 	var/mob/current_user //The last mob who interacted with us. We'll try to fetch the client from them
 
+
+/obj/item/device/t_scanner/get_cell()
+	return cell
+
+/obj/item/device/t_scanner/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+		update_icon()
+
 /obj/item/device/t_scanner/update_icon()
 	icon_state = "t-ray[enabled]"
 
@@ -158,7 +168,7 @@ are technically visible but obscured, for example by catwalks or trash sitting o
 	if (loc == M)
 		set_enabled(!enabled)
 
-/obj/item/device/t_scanner/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/device/t_scanner/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	// this is the data which will be sent to the ui
 	var/data[0]
 	data["enabled"] = enabled ? 1 : 0
