@@ -102,7 +102,7 @@
 			//non robotic limbs will be consumed
 			if(istype(item, /obj/item/organ))
 				var/obj/item/organ/organ = item
-				if(istype(organ, /obj/item/organ/external) && !organ.robotic)
+				if(istype(organ, /obj/item/organ/external) && organ.nature == MODIFICATION_ORGANIC)
 					continue
 				var/obj/machinery/multistructure/bioreactor_part/platform/neighbor_platform = pick(MS_bioreactor.platforms)
 				organ.forceMove(get_turf(neighbor_platform))
