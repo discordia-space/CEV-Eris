@@ -19,21 +19,25 @@
 	var/active = FALSE
 	var/port_dir = NORTH
 	var/obj/structure/reagent_dispensers/biomatter/container
+	var/last_time_used = 0
 
 
 /obj/machinery/biomatter_solidifier/update_icon()
 	if(active)
-		icon_state = "solidifier_on"
+		icon_state = initial(icon_state) + "_on"
 	else
 		icon_state = initial(icon_state)
 
 
 /obj/machinery/biomatter_solidifier/Process()
 	if(active)
-		if(container)
-			if(container.reagents.has_reagent("biomatter", BIOMATTER_PER_SHEET))
+		if(!container)
+			abort("Container of liquid biomatter required.")
+		else
+			if(!container.reagents.has_reagent("biomatter", BIOMATTER_PER_SHEET))
+				abort("Insufficient amount of biomatter.")
+			else
 				container.reagents.remove_reagent("biomatter", BIOMATTER_PER_SHEET)
-
 				var/obj/item/stack/material/biomatter/current_stack
 				//if there any stacks here, let's check them
 				if(locate(/obj/item/stack/material/biomatter) in loc)
@@ -44,18 +48,13 @@
 							break
 
 				if(current_stack)
-					current_stack.amount += 1
+					current_stack.add(1)
 					current_stack.update_strings()
 					if(current_stack.amount == current_stack.max_amount)
 						state("Stack is ready.")
 						ping()
 				else
 					current_stack = new(loc)
-
-			else
-				abort("Insufficient amount of biomatter.")
-		else
-			abort("Container of liquid biomatter required.")
 
 
 /obj/machinery/biomatter_solidifier/MouseDrop_T(obj/structure/reagent_dispensers/biomatter/tank, mob/user)
@@ -92,11 +91,12 @@
 
 
 /obj/machinery/biomatter_solidifier/attack_hand(mob/user)
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*2)
-	active = !active
-	to_chat(user, SPAN_NOTICE("You [active ? "turn [src] on" : "turn [src] off"]."))
-	playsound(src, 'sound/machines/click.ogg', 80, 1)
-	update_icon()
+	if(world.time >= last_time_used + 2 SECONDS)
+		last_time_used = world.time
+		active = !active
+		to_chat(user, SPAN_NOTICE("You [active ? "turn [src] on" : "turn [src] off"]."))
+		playsound(src, 'sound/machines/click.ogg', 80, 1)
+		update_icon()
 
 
 /obj/machinery/biomatter_solidifier/proc/abort(var/msg)
