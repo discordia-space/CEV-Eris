@@ -310,15 +310,15 @@
 	var/extra_delay = HandleGrabs(direction, old_turf)
 	mob.add_move_cooldown(extra_delay)
 
-	/* TODO: Bay grab system
+	// TODO: Bay grab system
+	/*
 	for (var/obj/item/weapon/grab/G in mob)
 		if (G.assailant_reverse_facing())
 			mob.set_dir(GLOB.reverse_dir[direction])
 		G.assailant_moved()
 	for (var/obj/item/weapon/grab/G in mob.grabbed_by)
 		G.adjust_position()
-	*/
-	mob.moving = 0
+	mob.moving = 0*/
 
 // Stop effect
 /datum/movement_handler/mob/grabbed/DoMove(var/direction, var/mob/mover)
@@ -347,34 +347,9 @@
 
 /datum/movement_handler/mob/movement/proc/HandleGrabs(var/direction, var/old_turf)
 	. = 0
-	// TODO: Look into making grabs use movement events instead, this is a mess.
 	for (var/obj/item/weapon/grab/G in mob)
-		//. = max(., G.grab_slowdown())	// TODO: Bay grab system
-		. = max(., G.slowdown)
-		var/list/L = mob.ret_grab()
-		if(istype(L, /list))
-			if(L.len == 2)
-				L -= mob
-				var/mob/M = L[1]
-				if(M)
-					if (get_dist(old_turf, M) <= 1)
-						if (isturf(M.loc) && isturf(mob.loc))
-							if (mob.loc != old_turf && M.loc != mob.loc)
-								step(M, get_dir(M.loc, old_turf))
-			else
-				for(var/mob/M in L)
-					M.other_mobs = 1
-					if(mob != M)
-						M.animate_movement = 3
-				for(var/mob/M in L)
-					spawn( 0 )
-						step(M, direction)
-						return
-					spawn( 1 )
-						M.other_mobs = null
-						M.animate_movement = 2
-						return
-			G.adjust_position()
+		. = max(., G.grab_slowdown())	// TODO: Bay grab system
+		G.adjust_position()
 
 /mob/proc/AdjustMovementDirection(var/direction)
 	. = direction

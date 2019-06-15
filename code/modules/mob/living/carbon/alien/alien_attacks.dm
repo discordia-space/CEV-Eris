@@ -13,22 +13,8 @@
 			help_shake_act(M)
 
 		if (I_GRAB)
-			if (M == src)
-				return
-			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab( M, M, src )
-
-			M.put_in_active_hand(G)
-
-			grabbed_by += G
-			G.affecting = src
-			G.synch()
-
-			LAssailant = M
-
-			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-			for(var/mob/O in viewers(src, null))
-				if ((O.client && !( O.blinded )))
-					O.show_message(text("\red [] has grabbed [] passively!", M, src), 1)
+			visible_message(SPAN_DANGER("[M] attempted to grab \the [src]!"))
+			return M.make_grab(M, src)
 
 		else
 			var/damage = rand(1, 9)

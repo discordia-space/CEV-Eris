@@ -273,17 +273,8 @@
 		if (I_GRAB)
 			if (M == src || anchored)
 				return
-			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src)
-
-			M.put_in_active_hand(G)
-
-			G.synch()
-
-			LAssailant = M
-
-			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-			visible_message(SPAN_WARNING("[M] has grabbed [src] passively!"))
-
+			visible_message(SPAN_DANGER("[M] attempted to grab \the [src]!"))
+			return M.make_grab(M, src)
 		else
 
 			var/damage = rand(1, 9)

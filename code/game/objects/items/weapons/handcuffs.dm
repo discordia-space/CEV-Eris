@@ -28,25 +28,44 @@
 		place_handcuffs(user, user)
 		return
 
-	if(C.handcuffed)
-		return
+	// only carbons can be handcuffed
+	if(istype(C))
+		if(!C.handcuffed)
+			if (C == user)
+				place_handcuffs(user, user)
+				return
 
-	if (C == user) //cool shit bro
-		place_handcuffs(user, user)
-		return
+			//check for an aggressive grab (or robutts)
+			if(can_place(C, user))
+				place_handcuffs(C, user)
+			else
+				to_chat(user, "<span class='danger'>You need to have a firm grip on [C] before you can put \the [src] on!</span>")
+		else
+			to_chat(user, "<span class='warning'>\The [C] is already handcuffed!</span>")
+	else
+		..()
 
 	var/cuff_delay = 4 SECONDS
-	for (var/obj/item/weapon/grab/G in C.grabbed_by)
+	for (var/obj/item/grab/G in C.grabbed_by)
 		if (G.loc == user)
-			if(G.state >= GRAB_PASSIVE)
+			if(G.state_name == NORM_PASSIVE)
 				cuff_delay -= 1 SECONDS //3
-			if(G.state >= GRAB_AGGRESSIVE)
+			if(G.state_name == NORM_AGGRESSIVE)
 				cuff_delay /= 2 //1.5
-			if(G.state >= GRAB_NECK)
+			if(G.state_name == NORM_NECK)
 				cuff_delay /= 2 //0.75
-			if(G.state >= GRAB_KILL)
+			if(G.state_name == NORM_KILL)
 				cuff_delay = 0
 	place_handcuffs(C, user, cuff_delay)
+
+/obj/item/weapon/handcuffs/proc/can_place(var/mob/target, var/mob/user)
+	if(user == target || istype(user, /mob/living/silicon/robot) || istype(user, /mob/living/bot))
+		return 1
+	else
+		for (var/obj/item/grab/G in target.grabbed_by)
+			if (G.force_danger())
+				return 1
+	return 0
 
 /obj/item/weapon/handcuffs/proc/place_handcuffs(var/mob/living/carbon/target, var/mob/user, var/delay)
 	playsound(src.loc, cuff_sound, 30, 1, -2)

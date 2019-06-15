@@ -136,7 +136,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	var/datum/changeling/changeling = changeling_power(0,0,100)
 	if(!changeling)	return
 
-	var/obj/item/weapon/grab/G = src.get_active_hand()
+	var/obj/item/G = src.get_active_hand()
 	if(!istype(G))
 		src << SPAN_WARNING("We must be grabbing a creature in our active hand to absorb them.")
 		return
@@ -154,7 +154,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 		src << SPAN_WARNING("This creature's DNA is ruined beyond useability!")
 		return
 
-	if(G.state != GRAB_KILL)
+	if(G.can_absorb())
 		src << SPAN_WARNING("We must have a tighter grip to absorb this creature.")
 		return
 

@@ -62,6 +62,7 @@
 	var/lying_prev = 0
 	var/canmove = 1
 
+	var/obj/item/grab/current_grab_type 	// What type of grab they use when they grab someone.
 
 	/*
 Allows mobs to move through dense areas without restriction. For instance, in space or out of holder objects.

@@ -796,3 +796,14 @@ default behaviour is:
 /mob/living/proc/adjustNutrition(var/amount)
 	nutrition += amount
 	nutrition = max(0,min(nutrition, max_nutrition))	//clamp the value
+
+/mob/living/proc/make_grab(var/mob/living/carbon/human/attacker, var/mob/living/carbon/human/victim, var/grab_tag)
+	var/obj/item/grab/G
+	if(!grab_tag)
+		G = new attacker.current_grab_type(attacker, victim)
+	else
+		var/obj/item/grab/given_grab_type = all_grabobjects[grab_tag]
+		G = new given_grab_type(attacker, victim)
+	if(QDELETED(G))
+		return 0
+	return 1

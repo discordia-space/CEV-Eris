@@ -43,6 +43,10 @@ var/global/list/turfs = list()						//list of all turfs
 
 var/list/mannequins_
 
+// Grabs
+var/global/list/all_grabstates[0]
+var/global/list/all_grabobjects[0]
+
 //Languages/species/whitelist.
 var/global/list/all_species[0]
 var/global/list/all_languages[0]
@@ -260,6 +264,21 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 		if (R.phrase)
 			GLOB.all_rituals[R.name] = R
 
+	//Grabs
+	paths = typesof(/datum/grab) - /datum/grab
+	for(var/T in paths)
+		var/datum/grab/G = new T
+		if(G.state_name)
+			all_grabstates[G.state_name] = G
+
+	paths = typesof(/obj/item/grab) - /obj/item/grab
+	for(var/T in paths)
+		var/obj/item/grab/G = T
+		all_grabobjects[initial(G.type_name)] = T
+
+	for(var/grabstate_name in all_grabstates)
+		var/datum/grab/G = all_grabstates[grabstate_name]
+		G.refresh_updown()
 
 	return 1
 

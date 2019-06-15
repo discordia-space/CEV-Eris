@@ -110,17 +110,11 @@
 		else
 			use_hand = "right"
 
-	src.visible_message(SPAN_WARNING("<b>\The [src]</b> seizes [T] aggressively!"))
+	
 
-	var/obj/item/weapon/grab/G = new(src,T)
-	if(use_hand == "left")
-		l_hand = G
-	else
-		r_hand = G
 
-	G.state = GRAB_PASSIVE
-	G.icon_state = "grabbed1"
-	G.synch()
+	if(src.make_grab(src, T))
+		src.visible_message(SPAN_WARNING("<b>\The [src]</b> seizes [T] aggressively!"))
 
 /mob/living/carbon/human/proc/gut()
 	set category = "Abilities"
@@ -134,12 +128,12 @@
 		src << "\red You cannot do that in your current state."
 		return
 
-	var/obj/item/weapon/grab/G = locate() in src
+	var/obj/item/grab/G = locate() in src
 	if(!G || !istype(G))
 		src << "\red You are not grabbing anyone."
 		return
 
-	if(G.state < GRAB_AGGRESSIVE)
+	if(G.force_danger())
 		src << "\red You must have an aggressive grab to gut your prey!"
 		return
 

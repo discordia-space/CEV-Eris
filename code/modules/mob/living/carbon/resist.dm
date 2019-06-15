@@ -1,85 +1,3 @@
-/mob/living/verb/resist()
-	set name = "Resist"
-	set category = "IC"
-
-	if(!stat && can_click())
-		setClickCooldown(20)
-		resist_grab()
-		if(!weakened)
-			process_resist()
-
-/mob/living/proc/process_resist()
-	//Getting out of someone's inventory.
-	if(istype(src.loc, /obj/item/weapon/holder))
-		escape_inventory(src.loc)
-		return
-
-	//unbuckling yourself
-	if(buckled)
-		if (buckled.resist_buckle(src))
-			spawn()
-				escape_buckle()
-			return TRUE
-		else
-			return FALSE
-
-	//Breaking out of a locker?
-	if( src.loc && (istype(src.loc, /obj/structure/closet)) )
-		var/obj/structure/closet/C = loc
-		spawn() C.mob_breakout(src)
-		return TRUE
-
-/mob/living/proc/escape_inventory(obj/item/weapon/holder/H)
-	if(H != src.loc) return
-
-	var/mob/M = H.loc //Get our mob holder (if any).
-
-	if(istype(M))
-		M.drop_from_inventory(H)
-		M << "<span class='warning'>\The [H] wriggles out of your grip!</span>"
-		src << "<span class='warning'>You wriggle out of \the [M]'s grip!</span>"
-
-		// Update whether or not this mob needs to pass emotes to contents.
-		for(var/atom/A in M.contents)
-			if(istype(A,/mob/living/simple_animal/borer) || istype(A,/obj/item/weapon/holder))
-				return
-		M.status_flags &= ~PASSEMOTES
-
-	else if(istype(H.loc,/obj/item/clothing/accessory/holster))
-		var/obj/item/clothing/accessory/holster/holster = H.loc
-		if(holster.holstered == H)
-			holster.clear_holster()
-		src << "<span class='warning'>You extricate yourself from \the [holster].</span>"
-		H.forceMove(get_turf(H))
-	else if(istype(H.loc,/obj/item))
-		src << "<span class='warning'>You struggle free of \the [H.loc].</span>"
-		H.forceMove(get_turf(H))
-
-
-
-/mob/living/proc/resist_grab()
-	var/resisting = 0
-	for(var/obj/O in requests)
-		requests.Remove(O)
-		qdel(O)
-		resisting++
-	for(var/obj/item/weapon/grab/G in grabbed_by)
-		resisting++
-		switch(G.state)
-			if(GRAB_PASSIVE)
-				qdel(G)
-			if(GRAB_AGGRESSIVE)
-				if(prob(60)) //same chance of breaking the grab as disarm
-					visible_message("<span class='warning'>[src] has broken free of [G.assailant]'s grip!</span>")
-					qdel(G)
-			if(GRAB_NECK)
-				//If the you move when grabbing someone then it's easier for them to break free. Same if the affected mob is immune to stun.
-				if (((world.time - G.assailant.l_move_time < 30 || !stunned) && prob(15)) || prob(3))
-					visible_message("<span class='warning'>[src] has broken free of [G.assailant]'s headlock!</span>")
-					qdel(G)
-	if(resisting)
-		visible_message("<span class='danger'>[src] resists!</span>")
-
 /mob/living/carbon/process_resist()
 
 	//drop && roll
@@ -107,6 +25,7 @@
 		spawn() escape_handcuffs()
 	else if(legcuffed)
 		spawn() escape_legcuffs()
+
 
 /mob/living/carbon/proc/escape_handcuffs()
 	//if(!(last_special <= world.time)) return
@@ -236,14 +155,6 @@
 		return 1
 	return ..()
 
-//Returning anything but true will make the mob unable to resist out of this buckle
-/atom/proc/resist_buckle(var/mob/living/user)
-	return TRUE
-
-/mob/living/proc/escape_buckle()
-	if(buckled)
-		buckled.user_unbuckle_mob(src)
-
 /mob/living/carbon/escape_buckle()
 	setClickCooldown(100)
 	if(!buckled) return
@@ -263,5 +174,3 @@
 			visible_message(SPAN_DANGER("\The [usr] manages to unbuckle themself!"),
 							SPAN_NOTICE("You successfully unbuckle yourself."))
 			buckled.user_unbuckle_mob(src)
-
-

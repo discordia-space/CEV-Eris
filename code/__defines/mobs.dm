@@ -15,12 +15,21 @@
 #define DISFIGURED  0x4000  // Set but never checked. Remove this sometime and replace occurences with the appropriate organ code
 #define XENO_HOST   0x8000  // Tracks whether we're gonna be a baby alien's mummy.
 
+// Grab Types
+#define GRAB_NORMAL			"normal"
+#define GRAB_NAB			"nab"
+#define GRAB_NAB_SPECIAL	"special nab"
+
 // Grab levels.
-#define GRAB_PASSIVE    1
-#define GRAB_AGGRESSIVE 2
-#define GRAB_NECK       3
-#define GRAB_UPGRADING  4
-#define GRAB_KILL       5
+#define NORM_PASSIVE    "normal passive"
+#define NORM_STRUGGLE   "normal struggle"
+#define NORM_AGGRESSIVE "normal aggressive"
+#define NORM_NECK       "normal neck"
+#define NORM_KILL       "normal kill"
+
+#define NAB_PASSIVE		"nab passive"
+#define NAB_AGGRESSIVE	"nab aggressive"
+#define NAB_KILL		"nab kill"
 
 #define BORGMESON 0x1
 #define BORGTHERM 0x2

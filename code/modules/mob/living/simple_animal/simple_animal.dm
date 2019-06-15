@@ -342,21 +342,8 @@
 			//TODO: Push the mob away or something
 
 		if(I_GRAB)
-			if (M == src)
-				return
-			if (!(status_flags & CANPUSH))
-				return
-
-			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src)
-
-			M.put_in_active_hand(G)
-
-			G.synch()
-			G.affecting = src
-			LAssailant = M
-
-			M.visible_message("\red [M] has grabbed [src] passively!")
-			M.do_attack_animation(src)
+			visible_message(SPAN_DANGER("[M] attempted to grab \the [src]!"))
+			return M.make_grab(M, src)
 
 		if(I_HURT)
 			adjustBruteLoss(harm_intent_damage)

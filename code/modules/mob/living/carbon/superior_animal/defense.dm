@@ -46,26 +46,8 @@
 		if (I_GRAB)
 			if(M == src || anchored)
 				return 0
-			for(var/obj/item/weapon/grab/G in src.grabbed_by)
-				if(G.assailant == M)
-					M << SPAN_NOTICE("You already grabbed [src].")
-					return
-
-			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src)
-			if(buckled)
-				M << SPAN_NOTICE("You cannot grab [src], \he is buckled in!")
-			if(!G) //the grab will delete itself in New if affecting is anchored
-				return
-
-			M.put_in_active_hand(G)
-			G.synch()
-			LAssailant = M
-
-			M.do_attack_animation(src)
-			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-			visible_message(SPAN_WARNING("[M] has grabbed [src] passively!"))
-
-			return 1
+			visible_message(SPAN_DANGER("[M] attempted to grab \the [src]!"))
+			return M.make_grab(M, src)
 
 		if (I_DISARM)
 			if (!weakened && prob(30))
