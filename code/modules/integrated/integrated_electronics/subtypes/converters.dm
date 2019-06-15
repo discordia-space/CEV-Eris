@@ -130,12 +130,15 @@
 	for(var/datum/integrated_io/input/I in inputs)
 		I.pull_data()
 		if(istext(I.data))
-			result = result + I.data
+			result += I.data
 		else if(!isnull(I.data) && num2text(I.data))
-			result = result + num2text(I.data)
+			result += num2text(I.data)
+
+		if(length(result) >= IC_MAX_STRING_SIZE)
+			break
 
 	var/datum/integrated_io/outgoing = outputs[1]
-	outgoing.data = result
+	outgoing.data = copytext(result, 1, IC_MAX_STRING_SIZE)
 	outgoing.push_data()
 	activate_pin(2)
 

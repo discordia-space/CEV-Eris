@@ -15,11 +15,8 @@ SUBSYSTEM_DEF(ticker)
 	var/first_start_trying = TRUE
 	var/story_vote_ended = FALSE
 
-
 	var/event_time = null
 	var/event = 0
-
-	var/login_music			// music played in pregame lobby
 
 	var/list/datum/mind/minds = list()//The people in the game. Used for objective tracking.
 
@@ -30,6 +27,7 @@ SUBSYSTEM_DEF(ticker)
 	var/list/availablefactions = list()	  // list of factions with openings
 
 	var/pregame_timeleft = 180
+	var/last_player_left_timestamp = 0
 
 	var/delay_end = 0	//if set to nonzero, the round will not restart on it's own
 
@@ -50,15 +48,6 @@ SUBSYSTEM_DEF(ticker)
 	//Now we have a general cinematic centrally held within the gameticker....far more efficient!
 	var/obj/screen/cinematic = null
 
-/datum/controller/subsystem/ticker/PreInit()
-	login_music = pick(list(
-		'sound/music/tonspender_irritations.ogg',
-		'sound/music/i_am_waiting_for_you_last_summer_neon_fever.ogg',
-		'sound/music/paradise_cracked_skytown.ogg',
-		'sound/music/nervous_testpilot _my_beautiful_escape.ogg',
-		'sound/music/deus_ex_unatco_nervous_testpilot_remix.ogg',
-		'sound/music/paradise_cracked_title03.ogg'))
-
 /datum/controller/subsystem/ticker/Initialize(start_timeofday)
 	if(!syndicate_code_phrase)
 		syndicate_code_phrase = generate_code_phrase()
@@ -67,12 +56,24 @@ SUBSYSTEM_DEF(ticker)
 
 	setup_objects()
 	setup_genetics()
+	setup_huds()
 
 	return ..()
 
 /datum/controller/subsystem/ticker/proc/setup_objects()
-	populate_lathe_recipes()
 	populate_antag_type_list() // Set up antagonists. Do these first since character setup will rely on them
+
+/datum/controller/subsystem/ticker/proc/setup_huds()
+	global_hud = new()
+	global_huds = list(
+		global_hud.druggy,
+		global_hud.blurry,
+		global_hud.vimpaired,
+		global_hud.darkMask,
+		global_hud.nvg,
+		global_hud.thermal,
+		global_hud.meson,
+		global_hud.science)
 
 /datum/controller/subsystem/ticker/fire()
 	switch(current_state)
@@ -91,6 +92,9 @@ SUBSYSTEM_DEF(ticker)
 		if(GAME_STATE_PREGAME)
 			if(start_immediately)
 				pregame_timeleft = 0
+
+			if(!process_empty_server())
+				return
 
 			if(round_progressing)
 				pregame_timeleft--
@@ -118,6 +122,9 @@ SUBSYSTEM_DEF(ticker)
 		if(GAME_STATE_PLAYING)
 			GLOB.storyteller.Process()
 			GLOB.storyteller.process_events()
+
+			if(!process_empty_server())
+				return
 
 			var/game_finished = (evacuation_controller.round_over() || ship_was_nuked  || universe_has_ended)
 
@@ -147,6 +154,45 @@ SUBSYSTEM_DEF(ticker)
 							world << SPAN_NOTICE("<b>An admin has delayed the round end</b>")
 					else
 						world << SPAN_NOTICE("<b>An admin has delayed the round end</b>")
+
+// This proc will scan for player and if the game is in progress and... 
+// there is no player for certain minutes (see config.empty_server_restart_time) it will restart the server and return FALSE
+// If the game in pregame state if will reset roundstart timer and return FALSE
+// otherwise it will return TRUE
+// will also return TRUE if its currently counting down to server's restart after last player left
+
+/datum/controller/subsystem/ticker/proc/process_empty_server()
+	if(!config.empty_server_restart_time)
+		return TRUE
+	switch(current_state)
+		if(GAME_STATE_PLAYING)
+			if(clients.len)
+				// Resets countdown if any player connects on empty server
+				if(last_player_left_timestamp)
+					last_player_left_timestamp = 0
+				return TRUE
+			else
+				// Last player left so we store the time when he left
+				if(!last_player_left_timestamp)
+					last_player_left_timestamp = world.time
+					return TRUE
+				// Counting down the world's end
+				else if (world.time >= last_player_left_timestamp + (config.empty_server_restart_time MINUTES))
+					last_player_left_timestamp = 0
+					log_game("\[Server\] No players were on a server last [config.empty_server_restart_time] minutes, restarting server...")
+					world.Reboot()
+					return FALSE
+		if(GAME_STATE_PREGAME)
+			if(!clients.len)
+				// if pregame and no player we break fire() execution so no countdown will be done
+				if(pregame_timeleft == initial(pregame_timeleft))
+					return FALSE
+				// Resetting countdown time
+				else
+					pregame_timeleft = initial(pregame_timeleft)
+					quoted = FALSE
+					return FALSE
+	return TRUE
 
 /datum/controller/subsystem/ticker/proc/setup()
 	//Create and announce mode

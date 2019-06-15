@@ -4,7 +4,7 @@
 	network_card = new /obj/item/weapon/computer_hardware/network_card/(src)
 	hard_drive = new /obj/item/weapon/computer_hardware/hard_drive/small(src)
 	processor_unit = new /obj/item/weapon/computer_hardware/processor_unit/small(src)
-	card_slot = new /obj/item/weapon/computer_hardware/card_slot/broadcaster(src)
+	card_slot = new /obj/item/weapon/computer_hardware/card_slot(src)
 	cell = new /obj/item/weapon/cell/small/moebius/pda(src)
 	gps_sensor	= new /obj/item/weapon/computer_hardware/gps_sensor(src)
 	led = new /obj/item/weapon/computer_hardware/led(src)
@@ -20,6 +20,7 @@
 	hard_drive.store_file(new /datum/computer_file/program/crew_manifest())
 	hard_drive.store_file(new /datum/computer_file/program/wordprocessor())
 	hard_drive.store_file(new /datum/computer_file/program/records())
+	hard_drive.store_file(new /datum/computer_file/program/bounty_board_app())
 	if(prob(50)) //harmless tax software
 		hard_drive.store_file(new /datum/computer_file/program/uplink())
 

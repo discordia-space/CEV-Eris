@@ -345,11 +345,9 @@ Class Procs:
 
 
 /obj/machinery/proc/dismantle()
-	var/obj/machinery/constructable_frame/machine_frame/M = create_frame(frame_type)
-	M.set_dir(src.dir)
-	M.state = 2
-	M.icon_state = "[M.base_state]_1"
-	M.update_icon()
+	on_deconstruction()
+	spawn_frame()
+
 	for(var/obj/I in component_parts)
 		I.forceMove(loc)
 		component_parts -= I
@@ -358,6 +356,24 @@ Class Procs:
 		circuit.deconstruct(src)
 	qdel(src)
 	return 1
+
+//called on deconstruction before the final deletion
+/obj/machinery/proc/on_deconstruction()
+	return
+
+/obj/machinery/proc/spawn_frame(disassembled=TRUE)
+	var/obj/machinery/constructable_frame/machine_frame/M = create_frame(frame_type)
+
+	transfer_fingerprints_to(M)
+	M.anchored = anchored
+	M.set_dir(src.dir)
+
+	M.state = 2
+	M.icon_state = "[M.base_state]_1"
+	M.update_icon()
+
+	return M
+
 
 /datum/proc/remove_visual(mob/M)
 	return

@@ -4,8 +4,8 @@
 	icon_state = "riotgun"
 	item_state = "riotgun"
 	w_class = ITEM_SIZE_LARGE
-	force = WEAPON_FORCE_NORMAL
-	matter = list(MATERIAL_PLASTEEL = 30, MATERIAL_PLASTIC = 20)
+	force = WEAPON_FORCE_PAINFUL
+	matter = list(MATERIAL_PLASTEEL = 30, MATERIAL_WOOD = 10)
 
 	fire_sound = 'sound/weapons/empty.ogg'
 	fire_sound_text = "a metallic thunk"
@@ -19,8 +19,8 @@
 	zoom_factor = 2.0
 
 //revolves the magazine, allowing players to choose between multiple grenade types
-/obj/item/weapon/gun/launcher/grenade/proc/pump(mob/M as mob)
-	playsound(M, 'sound/weapons/shotgunpump.ogg', 60, 1)
+/obj/item/weapon/gun/launcher/grenade/proc/pump(mob/user as mob)
+	playsound(user, 'sound/weapons/shotgunpump.ogg', 60, 1)
 
 	var/obj/item/weapon/grenade/next
 	if(grenades.len)
@@ -31,25 +31,25 @@
 	if(next)
 		grenades -= next //Remove grenade from loaded list.
 		chambered = next
-		M << SPAN_WARNING("Mechanism pumps [src], loading \a [next] into the chamber.")
+		to_chat(user, SPAN_WARNING("Mechanism pumps [src], loading \a [next] into the chamber."))
 	else
-		M << SPAN_WARNING("Mechanism pumps [src], but the magazine is empty.")
+		to_chat(user, SPAN_WARNING("Mechanism pumps [src], but the magazine is empty."))
 	update_icon()
 
 /obj/item/weapon/gun/launcher/grenade/examine(mob/user)
 	if(..(user, 2))
 		var/grenade_count = grenades.len + (chambered? 1 : 0)
-		user << "Has [grenade_count] grenade\s remaining."
+		to_chat(user, "Has [grenade_count] grenade\s remaining.")
 		if(chambered)
-			user << "\A [chambered] is chambered."
+			to_chat(user, "\A [chambered] is chambered.")
 
 /obj/item/weapon/gun/launcher/grenade/proc/load(obj/item/weapon/grenade/G, mob/user)
 	if(!G.loadable)
-		user << SPAN_WARNING("\The [G] doesn't seem to fit in \the [src]!")
+		to_chat(user, SPAN_WARNING("\The [G] doesn't seem to fit in \the [src]!"))
 		return
 
 	if(grenades.len >= max_grenades)
-		user << SPAN_WARNING("\The [src] is full.")
+		to_chat(user, SPAN_WARNING("\The [src] is full."))
 		return
 	user.remove_from_mob(G)
 	G.forceMove(src)
@@ -65,7 +65,7 @@
 		user.put_in_hands(G)
 		user.visible_message("\The [user] removes \a [G] from [src].", SPAN_NOTICE("You remove \a [G] from \the [src]."))
 	else
-		user << SPAN_WARNING("\The [src] is empty.")
+		to_chat(user, SPAN_WARNING("\The [src] is empty."))
 	update_icon()
 
 /obj/item/weapon/gun/launcher/grenade/attack_self(mob/user)
@@ -100,6 +100,7 @@
 	name = "underslung grenade launcher"
 	desc = "Not much more than a tube and a firing mechanism, this grenade launcher is designed to be fitted to a rifle."
 	w_class = ITEM_SIZE_NORMAL
+	matter = null
 	force = 5
 	max_grenades = 0
 	safety = FALSE
@@ -110,11 +111,11 @@
 //load and unload directly into chambered
 /obj/item/weapon/gun/launcher/grenade/underslung/load(obj/item/weapon/grenade/G, mob/user)
 	if(!G.loadable)
-		user << SPAN_WARNING("[G] doesn't seem to fit in the [src]!")
+		to_chat(user, SPAN_WARNING("[G] doesn't seem to fit in the [src]!"))
 		return
 
 	if(chambered)
-		user << SPAN_WARNING("\The [src] is already loaded.")
+		to_chat(user, SPAN_WARNING("\The [src] is already loaded."))
 		return
 	user.remove_from_mob(G)
 	G.forceMove(src)
@@ -127,22 +128,21 @@
 		user.visible_message("\The [user] removes \a [chambered] from \the[src].", SPAN_NOTICE("You remove \a [chambered] from \the [src]."))
 		chambered = null
 	else
-		user << SPAN_WARNING("\The [src] is empty.")
+		to_chat(user, SPAN_WARNING("\The [src] is empty."))
 
 /* Ironhammer stuff */
 
 /obj/item/weapon/gun/launcher/grenade/lenar
 	name = "FS GL \"Lenar\""
-	desc = "A bulky pump-action grenade launcher. Holds up to 6 grenades in a revolving magazine."
+	desc = "A more than bulky pump-action grenade launcher. Holds up to 6 grenades in a revolving magazine."
 	icon_state = "Grenadelauncher_PMC"
 	item_state = "pneumatic"
 	item_state_slots = list(slot_back_str = "pneumatic")
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
-	force = 10
+	matter = list(MATERIAL_PLASTEEL = 30, MATERIAL_PLASTIC = 10)
 	fire_sound = 'sound/weapons/empty.ogg'
 	fire_sound_text = "a metallic thunk"
-	recoil = 0
 	throw_distance = 10
 	release_force = 5
 
@@ -155,5 +155,4 @@
 
 /obj/item/weapon/gun/launcher/grenade/lenar/update_icon()
 	overlays.Cut()
-
 	update_charge()

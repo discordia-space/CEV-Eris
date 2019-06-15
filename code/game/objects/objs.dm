@@ -47,15 +47,17 @@
 	// Instead any such checks are made in CanUseTopic()
 	if(CanUseTopic(usr, state, href_list) == STATUS_INTERACTIVE)
 		CouldUseTopic(usr)
-		return 0
+		return OnTopic(usr, href_list, state)
 
 	CouldNotUseTopic(usr)
 	return 1
 
-/obj/CanUseTopic(var/mob/user, var/datum/topic_state/state)
+/obj/proc/OnTopic(mob/user, href_list, datum/topic_state/state)
+	return TOPIC_NOACTION
+
+/obj/CanUseTopic(mob/user, datum/topic_state/state)
 	if(user.CanUseObjTopic(src))
 		return ..()
-	user << SPAN_DANGER("\icon[src]Access Denied!")
 	return STATUS_CLOSE
 
 /mob/living/silicon/CanUseObjTopic(var/obj/O)

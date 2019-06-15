@@ -1,5 +1,3 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-
 /obj/item/weapon/airlock_electronics
 	name = "airlock electronics"
 	icon = 'icons/obj/doors/door_assembly.dmi'
@@ -10,99 +8,110 @@
 
 	req_access = list(access_engine)
 
-	var/secure = 0 //if set, then wires will be randomized and bolts will drop if the door is broken
-	var/list/conf_access = null
-	var/one_access = 0 //if set to 1, door would receive req_one_access instead of req_access
+	var/secure = FALSE //if set, then wires will be randomized and bolts will drop if the door is broken
+	var/list/conf_access = list()
+	var/one_access = FALSE //if set to 1, door would receive req_one_access instead of req_access
 	var/last_configurator = null
-	var/locked = 1
+	var/locked = TRUE
+	var/lockable = TRUE
 
-	attack_self(mob/user as mob)
-		if (!ishuman(user) && !isrobot(user))
-			return ..(user)
+/obj/item/weapon/airlock_electronics/attack_self(mob/user)
+	if (!ishuman(user) && !istype(user,/mob/living/silicon/robot))
+		return ..(user)
 
-		var/t1 = text("<B>Access control</B><br>\n")
+	ui_interact(user)
 
-		if (last_configurator)
-			t1 += "Operator: [last_configurator]<br>"
 
-		if (locked)
-			t1 += "<a href='?src=\ref[src];login=1'>Swipe ID</a><hr>"
+/obj/item/weapon/airlock_electronics/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, datum/topic_state/state = GLOB.hands_state)
+	var/list/data = ui_data()
+
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "airlock_electronics.tmpl", src.name, 1000, 500, null, null, state)
+		ui.set_initial_data(data)
+		ui.open()
+
+/obj/item/weapon/airlock_electronics/ui_data()
+	var/list/data = list()
+	var/list/regions = list()
+
+	for(var/i in ACCESS_REGION_MIN to ACCESS_REGION_MAX) //code/game/jobs/_access_defs.dm
+		var/list/region = list()
+		var/list/accesses = list()
+		for(var/j in get_region_accesses(i))
+			var/list/access = list()
+			access["name"] = get_access_desc(j)
+			access["id"] = j
+			access["req"] = (j in src.conf_access)
+			accesses[++accesses.len] = access
+		region["name"] = get_region_accesses_name(i)
+		region["accesses"] = accesses
+		regions[++regions.len] = region
+	data["regions"] = regions
+	data["oneAccess"] = one_access
+	data["locked"] = locked
+	data["lockable"] = lockable
+	//data["autoset"] = autoset
+
+	return data
+
+/obj/item/weapon/airlock_electronics/OnTopic(mob/user, list/href_list, state)
+	if(lockable)
+		if(href_list["unlock"])
+			if(!req_access || istype(user, /mob/living/silicon))
+				locked = FALSE
+				last_configurator = user.name
+			else
+				var/obj/item/weapon/card/id/I = user.get_active_hand()
+				I = I ? I.GetIdCard() : null
+				if(!istype(I, /obj/item/weapon/card/id))
+					to_chat(user, SPAN_WARNING("[\src] flashes a yellow LED near the ID scanner. Did you remember to scan your ID or PDA?"))
+					return TOPIC_HANDLED
+				if (check_access(I))
+					locked = FALSE
+					last_configurator = I.registered_name
+				else
+					to_chat(user, SPAN_WARNING("[\src] flashes a red LED near the ID scanner, indicating your access has been denied."))
+					return TOPIC_HANDLED
+			return TOPIC_REFRESH
+		else if(href_list["lock"])
+			locked = TRUE
+			return TOPIC_REFRESH
+
+	if(href_list["clear"])
+		conf_access = list()
+		one_access = FALSE
+		return TOPIC_REFRESH
+	if(href_list["one_access"])
+		one_access = !one_access
+		return TOPIC_REFRESH
+	/* Baystation's "autoset" feature: draws access levels from area
+	if(href_list["autoset"])
+		autoset = !autoset
+		return TOPIC_REFRESH
+	*/
+	if(href_list["access"])
+		toggle_access(text2num(href_list["access"]))
+		return TOPIC_REFRESH
+
+
+/obj/item/weapon/airlock_electronics/proc/toggle_access(var/acc)
+	if (acc == "all")
+		conf_access = null
+	else
+		var/req = text2num(acc)
+
+		if (conf_access == null)
+			conf_access = list()
+
+		if (!(req in conf_access))
+			conf_access += req
 		else
-			t1 += "<a href='?src=\ref[src];logout=1'>Block</a><hr>"
-
-			t1 += "Access requirement is set to "
-			t1 += one_access ? "<a style='color: green' href='?src=\ref[src];one_access=1'>ONE</a><hr>" : "<a style='color: red' href='?src=\ref[src];one_access=1'>ALL</a><hr>"
-
-			t1 += conf_access == null ? "<font color=red>All</font><br>" : "<a href='?src=\ref[src];access=all'>All</a><br>"
-
-			t1 += "<br>"
-
-			var/list/accesses = get_all_station_access()
-			for (var/acc in accesses)
-				var/aname = get_access_desc(acc)
-
-				if (!conf_access || !conf_access.len || !(acc in conf_access))
-					t1 += "<a href='?src=\ref[src];access=[acc]'>[aname]</a><br>"
-				else if(one_access)
-					t1 += "<a style='color: green' href='?src=\ref[src];access=[acc]'>[aname]</a><br>"
-				else
-					t1 += "<a style='color: red' href='?src=\ref[src];access=[acc]'>[aname]</a><br>"
-
-		t1 += text("<p><a href='?src=\ref[];close=1'>Close</a></p>\n", src)
-
-		user << browse(t1, "window=airlock_electronics")
-		onclose(user, "airlock")
-
-	Topic(href, href_list)
-		..()
-		if (usr.stat || usr.restrained() || (!ishuman(usr) && !issilicon(usr)))
-			return
-		if (href_list["close"])
-			usr << browse(null, "window=airlock")
-			return
-
-		if (href_list["login"])
-			if(issilicon(usr))
-				src.locked = 0
-				src.last_configurator = usr.name
-			else
-				var/obj/item/I = usr.get_active_hand()
-				if(I)
-					I = I.GetIdCard()
-				if (I && src.check_access(I))
-					src.locked = 0
-					src.last_configurator = I:registered_name
-
-		if (locked)
-			return
-
-		if (href_list["logout"])
-			locked = 1
-
-		if (href_list["one_access"])
-			one_access = !one_access
-
-		if (href_list["access"])
-			toggle_access(href_list["access"])
-
-		attack_self(usr)
-
-	proc
-		toggle_access(var/acc)
-			if (acc == "all")
+			conf_access -= req
+			if (!conf_access.len)
 				conf_access = null
-			else
-				var/req = text2num(acc)
 
-				if (conf_access == null)
-					conf_access = list()
 
-				if (!(req in conf_access))
-					conf_access += req
-				else
-					conf_access -= req
-					if (!conf_access.len)
-						conf_access = null
 
 
 /obj/item/weapon/airlock_electronics/secure

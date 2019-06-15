@@ -320,13 +320,24 @@
 	//If following checks determine user is protected we won't alarm for long.
 	if(PN)
 		PN.trigger_warning(5)
+
+	var/body_part = null
+
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.species.siemens_coefficient == 0)
 			return
+		var/obj/item/clothing/cloth
 		if(hands && H.gloves)
-			var/obj/item/clothing/gloves/G = H.gloves
-			if(G.siemens_coefficient == 0)	return 0		//to avoid spamming with insulated glvoes on
+			cloth = H.gloves
+			body_part = M.hand ? BP_L_ARM : BP_R_ARM
+		else if(H.shoes) // hand or legs for now
+			cloth = H.shoes
+			body_part = pick(BP_L_LEG, BP_R_LEG)
+		if(cloth)
+			siemens_coeff = cloth.siemens_coefficient
+		if(siemens_coeff == 0)	return 0
+		//TODO: ask for overslot contents checks
 
 
 	//Checks again. If we are still here subject will be shocked, trigger standard 20 tick warning
@@ -349,7 +360,8 @@
 	else
 		power_source = cell
 		shock_damage = cell_damage
-	var/drained_hp = M.electrocute_act(shock_damage, source, siemens_coeff) //zzzzzzap!
+
+	var/drained_hp = M.electrocute_act(shock_damage, source, siemens_coeff, body_part) //zzzzzzap!
 	var/drained_energy = drained_hp*20
 
 	if (source_area)

@@ -18,7 +18,7 @@
 	access = list(
 		access_security, access_eva, access_sec_doors, access_brig, access_armory, access_medspec,
 		access_forensics_lockers, access_morgue, access_maint_tunnels, access_all_personal_lockers,
-		access_moebius, access_engine, access_mining, access_moebius, access_construction, access_mailsorting,
+		access_moebius, access_engine, access_mining, access_construction, access_mailsorting,
 		access_heads, access_hos, access_RC_announce, access_keycard_auth, access_gateway,
 		access_external_airlocks
 	)
@@ -26,6 +26,7 @@
 	stat_modifiers = list(
 		STAT_ROB = 40,
 		STAT_TGH = 30,
+		STAT_VIG = 40,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/comm,
@@ -49,11 +50,11 @@
 		Your second loyalty is to the name and reputation of the ironhammer company. You are often the captain's primary tool in keeping order and you must pride yourself on ensuring commands are carried out, threats extinguished and safety preserved. You may need to carry out unsavory orders like executions, and must balance your professional pride versus your conscience.<br>\
 		<br>\
 		Your third loyalty is to the crew. As the strongest military force on the ship, any mutiny attempt is likely at your mercy, and if unjustified, it will fall to you to put it down. If the captain has gone mad and a mutiny is justified, your support will be the difference between a peaceful arrest and a bloody civil war in the halls. Without your guns, an insane captain will usually be forced to surrender."
+
 /obj/landmark/join/start/ihc
 	name = "Ironhammer Commander"
 	icon_state = "player-blue-officer"
 	join_tag = /datum/job/ihc
-
 
 
 /datum/job/gunserg
@@ -73,7 +74,7 @@
 	outfit_type = /decl/hierarchy/outfit/job/security/gunserg
 
 	access = list(
-		access_security, access_moebius, access_moebius, access_engine, access_mailsorting,
+		access_security, access_moebius, access_medspec, access_engine, access_mailsorting,
 		access_eva, access_sec_doors, access_brig, access_armory, access_maint_tunnels, access_morgue,
 		access_external_airlocks
 	)
@@ -81,11 +82,11 @@
 	stat_modifiers = list(
 		STAT_ROB = 25,
 		STAT_TGH = 25,
+		STAT_VIG = 25,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
 							 /datum/computer_file/program/camera_monitor)
-
 
 	description = "You are the Second-in-Command of the local Ironhammer regiment, and the defacto leader if the commander isn't around. <br>\
 	Within ironhammer you largely hold a desk job, your duties will rarely take you outside of the Ironhammer wing, and you are not expected to interact with civilians. You have enough to deal with as is, and are probably the hardest working member of Ironhammer.<br>\
@@ -119,18 +120,20 @@
 	selection_color = "#a7bbc6"
 	wage = WAGE_PROFESSIONAL
 	also_known_languages = list(LANGUAGE_CYRILLIC = 50, LANGUAGE_SERBIAN = 50)
+
+	outfit_type = /decl/hierarchy/outfit/job/security/inspector
+
 	access = list(
-		access_security, access_moebius, access_moebius, access_engine, access_mailsorting,
+		access_security, access_moebius, access_medspec, access_engine, access_mailsorting,
 		access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels,
 		access_external_airlocks
 	)
 
-	outfit_type = /decl/hierarchy/outfit/job/security/inspector
-
 	stat_modifiers = list(
-		STAT_BIO = 20,
+		STAT_BIO = 15,
 		STAT_ROB = 15,
 		STAT_TGH = 15,
+		STAT_VIG = 25,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
@@ -173,19 +176,20 @@
 	also_known_languages = list(LANGUAGE_CYRILLIC = 5)
 
 	outfit_type = /decl/hierarchy/outfit/job/security/medspec
+
 	access = list(
 		access_security, access_moebius, access_sec_doors, access_medspec, access_morgue, access_maint_tunnels, access_medical_equip
 	)
 
 	stat_modifiers = list(
-		STAT_BIO = 20,
+		STAT_BIO = 25,
 		STAT_TGH = 5,
+		STAT_VIG = 15,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
 							 /datum/computer_file/program/suit_sensors,
 							 /datum/computer_file/program/camera_monitor)
-
 
 	description = "You are a highly trained specialist within Ironhammer. You were probably a medical student or inexperienced doctor when you joined Ironhammer, and you thusly have a combination of medical and military training. You are not quite as knowledgeable as a civilian career doctor, not quite as much of a fighter as a dedicated IH operative, but strike a balance inbetween. Balance is the nature of your existence.<br>\
 	<br>\
@@ -224,13 +228,14 @@
 	outfit_type = /decl/hierarchy/outfit/job/security/ihoper
 
 	access = list(
-		access_security, access_moebius, access_moebius, access_engine, access_mailsorting,
-		access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_morgue, access_external_airlocks
+		access_security, access_moebius, access_engine, access_mailsorting,access_eva,
+		access_sec_doors, access_brig, access_maint_tunnels, access_morgue, access_external_airlocks
 	)
 
 	stat_modifiers = list(
 		STAT_ROB = 25,
 		STAT_TGH = 20,
+		STAT_VIG = 25,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
@@ -246,7 +251,6 @@
 	<br>\
 	You have almost-total access to the ship in order to carry out your duties and reach threats quickly. Do not abuse this. It does not mean you can walk into anywhere you like, many areas are full of sensitive machinery and entering unnanounced can be harmful to your health. Do not steal from departments either. If it's not in the ironhammer wing, it doesn't belong to you. Stealing from the Guild is a good way to get shot in the back"
 
-
 	duties = "		Patrol the ship, provide a security presence, and look for trouble<br>\
 		Subdue and arrest criminals, terrorists, and other threats<br>\
 		Exterminate monsters, giant vermin and hostile xenos<br>\
@@ -258,7 +262,9 @@
 		Your second loyalty is to your fellow ironhammer brothers in arms. As long as the company takes care of you, you should follow orders. But if you start being sent on suicide missions and treated as expendable fodder, that should change.<br>\
 		<br>\
 		Your third loyalty is to humanity. You are still human under all that armour. If you're being ordered to slaughter civilians en masse, it may be time to start thinking for yourself."
+
 /obj/landmark/join/start/ihoper
 	name = "Ironhammer Operative"
 	icon_state = "player-blue"
 	join_tag = /datum/job/ihoper
+

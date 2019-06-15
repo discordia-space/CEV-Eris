@@ -14,7 +14,7 @@
 	name = "oxygen tank"
 	desc = "A tank of oxygen."
 	icon_state = "oxygen"
-	force = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_PAINFUL
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 
 
@@ -64,7 +64,7 @@
 	name = "air tank"
 	desc = "Mixed anyone?"
 	icon_state = "oxygen"
-	force = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_PAINFUL
 
 
 	examine(mob/user)
@@ -106,7 +106,7 @@
 	name = "emergency oxygen tank"
 	desc = "Used for emergencies. Contains very little oxygen, so try to conserve it until you actually need it."
 	icon_state = "emergency"
-	gauge_icon = "indicator_emergency"
+	gauge_icon = "indicator-tank-small"
 	gauge_cap = 4
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
@@ -136,7 +136,7 @@
 /obj/item/weapon/tank/emergency_oxygen/double
 	name = "double emergency oxygen tank"
 	icon_state = "emergency_double"
-	gauge_icon = "indicator_emergency_double"
+	gauge_icon = "indicator-tank-double"
 	volume = 10
 
 /*
@@ -145,7 +145,7 @@
 /obj/item/weapon/tank/nitrogen
 	name = "nitrogen tank"
 	desc = "A tank of nitrogen."
-	force = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_PAINFUL
 	icon_state = "oxygen_fr"
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 

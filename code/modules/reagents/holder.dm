@@ -493,8 +493,44 @@
 	chem_temp = round(chem_temp)
 	handle_reactions()
 
+//Returns the average specific heat for all reagents currently in this holder.
+/datum/reagents/proc/specific_heat()
+	/*
+	. = 0
+	var/cached_amount = total_volume		//cache amount
+	var/list/cached_reagents = reagent_list		//cache reagents
+	for(var/I in cached_reagents)
+		var/datum/reagent/R = I
+		. += R.specific_heat * (R.volume / cached_amount)
+	*/
+	// Reagent specific heat is not yet implemented, this is here for compatibility reasons
+	return SPECIFIC_HEAT_DEFAULT
+
+/datum/reagents/proc/adjust_thermal_energy(J, min_temp = 2.7, max_temp = 1000)
+	var/S = specific_heat()
+	chem_temp = CLAMP(chem_temp + (J / (S * total_volume)), 2.7, 1000)
+
+// NanoUI / TG UI data
+/datum/reagents/ui_data()
+	var/list/data = list()
+
+	data["total_volume"] = total_volume
+	data["maximum_volume"] = maximum_volume
+
+	data["chem_temp"] = chem_temp
+
+	var/list/contents = list()
+	for(var/r in reagent_list)
+		var/datum/reagent/R = r
+		// list in a list because Byond merges the first list...
+		contents.Add(list(list("name" = R.name, "volume" = R.volume)))
+
+	data["contents"] = contents
+
+	return data
+
 
 /* Atom reagent creation - use it all the time */
 
-/atom/proc/create_reagents(var/max_vol)
-	reagents = new/datum/reagents(max_vol, src)
+/atom/proc/create_reagents(max_vol)
+	reagents = new /datum/reagents(max_vol, src)

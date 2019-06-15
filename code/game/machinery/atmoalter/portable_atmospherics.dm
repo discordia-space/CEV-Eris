@@ -158,6 +158,15 @@
 		return 1
 	return 0
 
+/obj/machinery/portable_atmospherics/powered/get_cell()
+	return cell
+
+/obj/machinery/portable_atmospherics/powered/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+		update_icon()
+
 /obj/machinery/portable_atmospherics/powered/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/cell/large))
 		if(cell)

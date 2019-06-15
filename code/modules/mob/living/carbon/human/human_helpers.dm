@@ -86,11 +86,6 @@
 	if(G && O.visor.active)
 		process_glasses(G,1)
 
-/mob/living/carbon/human/proc/get_core_implant()
-	var/obj/item/weapon/implant/core_implant/C = locate(/obj/item/weapon/implant/core_implant, src)
-	return C
-
-
 /mob/living/carbon/human/reset_layer()
 	if(hiding)
 		set_plane(HIDING_MOB_PLANE)

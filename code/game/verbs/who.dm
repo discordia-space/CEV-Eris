@@ -11,7 +11,10 @@
 			var/entry = "\t[C.key]"
 			if(C.holder && C.holder.fakekey)
 				entry += " <i>(as [C.holder.fakekey])</i>"
-			entry += " - Playing as [C.mob.real_name]"
+			if(SSticker.current_state == GAME_STATE_PREGAME)
+				entry += " - Ready as [C.prefs.real_name]"
+			else
+				entry += " - Playing as [C.mob.real_name]"
 			switch(C.mob.stat)
 				if(UNCONSCIOUS)
 					entry += " - <font color='darkgray'><b>Unconscious</b></font>"

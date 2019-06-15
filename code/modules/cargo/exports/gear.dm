@@ -149,18 +149,18 @@
 /datum/export/gear/glasses/meson
 	cost = 350
 	unit_name = "meson glasses"
-	export_types = list(/obj/item/clothing/glasses/meson)
+	export_types = list(/obj/item/clothing/glasses/powered/meson)
 
 /datum/export/gear/glasses/night
 	cost = 2000
 	unit_name = "night vision glasses"
-	export_types = list(/obj/item/clothing/glasses/night)
+	export_types = list(/obj/item/clothing/glasses/powered/night)
 
 /datum/export/gear/glasses/thermal
 	cost = 3000
 	include_subtypes = TRUE
 	unit_name = "thermal vision glasses"
-	export_types = list(/obj/item/clothing/glasses/thermal)
+	export_types = list(/obj/item/clothing/glasses/powered/thermal)
 
 /datum/export/gear/glasses/welding
 	cost = 100

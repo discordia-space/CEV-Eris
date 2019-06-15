@@ -293,7 +293,7 @@ var/list/mob/living/forced_ambiance_list = new
 	for(var/mob/M in src)
 		if(has_gravity)
 			thunk(M)
-		M.update_floating( M.check_dense_object() )
+		M.update_floating()
 
 //This thunk should probably not be an area proc.
 //TODO: Make it a mob proc
@@ -349,3 +349,9 @@ var/list/mob/living/forced_ambiance_list = new
 	if (!ship_area)
 		ship_area = TRUE
 		ship_areas[src] = TRUE
+
+/area/AllowDrop()
+	CRASH("Bad op: area/AllowDrop() called")
+
+/area/drop_location()
+	CRASH("Bad op: area/drop_location() called")

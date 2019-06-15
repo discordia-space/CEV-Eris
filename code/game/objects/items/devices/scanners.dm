@@ -43,9 +43,18 @@ REAGENT SCANNER
 		usr << SPAN_WARNING("[src] battery is dead or missing.")
 		. = FALSE
 
-/obj/item/device/scanner/New()
-	..()
+/obj/item/device/scanner/Initialize()
+	. = ..()
 	cell_check()
+
+/obj/item/device/scanner/get_cell()
+	return cell
+
+/obj/item/device/scanner/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+		update_icon()
 
 /obj/item/device/scanner/healthanalyzer
 	name = "health analyzer"
@@ -114,7 +123,7 @@ REAGENT SCANNER
 			for(var/obj/item/organ/external/org in damaged)
 				user.show_message(text("<span class='notice'>     [][]: [][] - []</span>",
 				capitalize(org.name),
-				(org.robotic >= ORGAN_ROBOT) ? "(Cybernetic)" : "",
+				(BP_IS_ROBOTIC(org)) ? "(Cybernetic)" : "",
 				(org.brute_dam > 0) ? SPAN_WARNING("[org.brute_dam]") : 0,
 				(org.status & ORGAN_BLEEDING)?SPAN_DANGER("\[Bleeding\]"):"",
 				(org.burn_dam > 0) ? "<font color='#FFA500'>[org.burn_dam]</font>" : 0), 1)

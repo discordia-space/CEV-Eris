@@ -403,7 +403,7 @@
 				var/mob/living/carbon/M = usr
 				if(prob(50))
 					usr << SPAN_WARNING("You hear battle shouts. The tramping of boots on cold metal. Screams of agony. The rush of venting air. Are you going insane?")
-					M.hallucination += 50
+					M.hallucination(50, 50)
 				else
 					usr << SPAN_DANGER("Something strikes you from behind! It hurts like hell and feel like a blunt weapon, but nothing is there...")
 					M.take_organ_damage(10)

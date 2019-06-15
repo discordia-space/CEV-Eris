@@ -18,72 +18,71 @@
 		), rand(40,80), 1)
 	interact(H)
 
-/obj/item/weapon/book/ritual/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = 1)
-	var/obj/item/weapon/implant/core_implant/cruciform/CI = user.get_cruciform()
+/obj/item/weapon/book/ritual/ui_data(mob/user)
+	var/obj/item/weapon/implant/core_implant/cruciform/CI
+	if(isliving(user))
+		var/mob/living/L = user
+		CI = L.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 
-	var/data = list()
-	data["noimplant"] = FALSE
-	data["refmode"] = reference_mode
-	data["hasref"] = has_reference
+	var/list/data = list(
+		"refmode" = reference_mode,
+		"hasref" = has_reference
+	)
 
-	if(CI && istype(CI))
-		var/list/rdata = list()
-		var/list/cdata = list()
-
-		for(var/RT in CI.known_rituals)
-			var/datum/ritual/R = GLOB.all_rituals[RT]
-
-
-			if(!(R.category in cdata))
-				cdata.Add(R.category)
-
-			if(current_category != "" && current_category != R.category)
-				continue
-
-			if(R.phrase)
-				if(istype(R,/datum/ritual/group))
-					var/datum/ritual/group/GR = R
-
-					var/list/L = list(
-						"group" = TRUE,
-						"name" = capitalize(R.name),
-						"desc" = R.desc,
-						"type" = "[R.name]",
-					)
-
-					var/list/P = list()
-					for(var/i = 1; i <= GR.phrases.len; i++)
-						P.Add(list(list("ind" = i, "phrase" = GR.phrases[i], "type" = "[RT]")))
-
-					L["phrases"] = P
-					rdata.Add(list(L))
-
-				else
-					var/list/L = list(
-						"group" = FALSE,
-						"name" = capitalize(R.name),
-						"desc" = R.desc,
-						"phrase" = R.get_display_phrase(),
-						"type" = "[RT]",
-					)
-
-
-					rdata.Add(list(L))
-
-		data["rituals"] = rdata
-		data["categories"] = cdata
-
-		data["firstcat"] = ""
-		if(cdata.len >= 1)
-			data["firstcat"] = cdata[1]
-
-		data["currcat"] = current_category
-		data["currexp"] = expanded_group
-
-	else
+	if(!CI)
 		data["noimplant"] = TRUE
+		return data
+
+	var/list/ritual_data = list()
+	var/list/category_data = list()
+
+	for(var/RT in CI.known_rituals)
+		var/datum/ritual/R = GLOB.all_rituals[RT]
+
+		if(!(R.category in category_data))
+			category_data.Add(R.category)
+
+		if(current_category != "" && current_category != R.category)
+			continue
+
+		if(R.phrase)
+			var/list/L = list(
+				"name" = capitalize(R.name),
+				"desc" = R.desc,
+				"type" = "[RT]"
+			)
+
+			if(istype(R, /datum/ritual/group))
+				L["group"] = TRUE
+
+				var/datum/ritual/group/GR = R
+				var/list/P = list()
+				for(var/i = 1; i <= GR.phrases.len; i++)
+					P.Add(list(list("ind" = i, "phrase" = GR.phrases[i], "type" = "[RT]")))
+
+				L["phrases"] = P
+
+			else
+				L["group"] = FALSE
+				L["phrase"] = R.get_display_phrase()
+
+			ritual_data.Add(list(L))
+
+	data["rituals"] = ritual_data
+	data["categories"] = category_data
+
+	data["firstcat"] = ""
+	if(category_data.len)
+		data["firstcat"] = category_data[1]
+
+	data["currcat"] = current_category
+	data["currexp"] = expanded_group
+
+	return data
 
 
+/obj/item/weapon/book/ritual/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
+	var/list/data = ui_data(user, ui_key)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
@@ -107,7 +106,7 @@
 	if(H.stat)
 		return
 
-	var/obj/item/weapon/implant/core_implant/cruciform/CI = H.get_cruciform()
+	var/obj/item/weapon/implant/core_implant/cruciform/CI = H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 
 	if(href_list["set_category"])
 		current_category = href_list["set_category"]
@@ -117,6 +116,9 @@
 
 	if(href_list["say"] || href_list["say_group"])
 		var/incantation = ""
+		if(!CI)
+			return
+
 		for(var/RT in CI.known_rituals)
 
 			if("[RT]" == href_list["say"])

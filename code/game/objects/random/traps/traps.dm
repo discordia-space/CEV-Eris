@@ -1,5 +1,7 @@
 /obj/random/traps
-	icon_state = "trap-orange"
+	name = "random trap"
+	icon_state = "trap-red"
+	alpha = 128
 
 /obj/random/traps/item_to_spawn()
 	var/list/possible_traps = list(/obj/structure/wire_splicing = 1,
@@ -17,7 +19,7 @@
 
 
 /obj/random/traps/low_chance
-	icon_state = "trap-orange-low"
+	icon_state = "trap-red-low"
 	spawn_nothing_percentage = 80
 
 /obj/random/traps/wire_splicing

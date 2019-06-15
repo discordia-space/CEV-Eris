@@ -76,7 +76,10 @@
 	kill_program(1)
 	QDEL_NULL_LIST(terminals)
 	STOP_PROCESSING(SSobj, src)
-	QDEL_NULL(stored_pen)
+
+	if(stored_pen && !ispath(stored_pen))
+		QDEL_NULL(stored_pen)
+
 	for(var/obj/item/weapon/computer_hardware/CH in src.get_all_components())
 		uninstall_component(null, CH, delete = TRUE)
 	return ..()
@@ -98,7 +101,7 @@
 			set_light(screen_light_range, screen_light_strength, get_average_color(icon,"bsod"), skip_screen_check = TRUE)
 			return
 		if(!enabled)
-			if(icon_state_screensaver)
+			if(icon_state_screensaver && try_use_power(0))
 				overlays.Add(icon_state_screensaver)
 			set_light(0, skip_screen_check = TRUE)
 			return
@@ -148,7 +151,7 @@
 		else
 			to_chat(user, "You press the power button, but the computer fails to boot up, displaying variety of errors before shutting down again.")
 		return
-	if(processor_unit && (apc_power(0) || battery_power(0))) // Battery-run and charged or non-battery but powered by APC.
+	if(processor_unit && try_use_power(0)) // Battery-run and charged or non-battery but powered by APC.
 		if(issynth)
 			to_chat(user, "You send an activation signal to \the [src], turning it on")
 		else
@@ -334,7 +337,7 @@
 		hard_drive.store_file(autorun)
 
 /obj/item/modular_computer/GetIdCard()
-	if(card_slot && card_slot.can_broadcast && istype(card_slot.stored_card))
+	if(card_slot && istype(card_slot.stored_card))
 		return card_slot.stored_card
 
 /obj/item/modular_computer/proc/update_name()

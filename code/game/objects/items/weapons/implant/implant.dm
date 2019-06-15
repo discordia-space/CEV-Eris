@@ -124,3 +124,5 @@
 /obj/item/weapon/implant/explosive/emp_act(severity)
 	malfunction(severity)
 
+/obj/item/weapon/implant/proc/get_scanner_name()
+	return name

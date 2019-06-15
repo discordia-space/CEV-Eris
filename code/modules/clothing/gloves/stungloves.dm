@@ -6,16 +6,25 @@
 	action_button_name = "Toggle Power Glove"
 	price_tag = 500
 	var/stunforce = 0
-	var/agonyforce = 60
+	var/agonyforce = 50
 	var/status = FALSE		//whether the thing is on or not
 	var/hitcost = 100
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/medium
 
-/obj/item/clothing/gloves/stungloves/New()
-	..()
+/obj/item/clothing/gloves/stungloves/Initialize()
+	. = ..()
 	cell = new /obj/item/weapon/cell/medium/high(src)
 	update_icon()
+
+/obj/item/clothing/gloves/stungloves/get_cell()
+	return cell
+
+/obj/item/clothing/gloves/stungloves/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+		update_icon()
 
 /obj/item/clothing/gloves/stungloves/proc/deductcharge(var/power_drain)
 	if(cell)

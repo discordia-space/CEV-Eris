@@ -4,7 +4,7 @@
 	icon_state = "pulse"
 	item_state = null	//so the human update icon uses the icon_state instead.
 	slot_flags = SLOT_BELT|SLOT_BACK
-	force = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_PAINFUL
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 7, MATERIAL_URANIUM = 8)
 	price_tag = 4500
 	fire_sound='sound/weapons/Laser.ogg'

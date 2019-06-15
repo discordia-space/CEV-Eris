@@ -28,6 +28,7 @@
 #define MATERIAL_VOXALLOY "voxalloy"
 #define MATERIAL_RESIN "resin"
 #define MATERIAL_CARPET "carpet"
+#define MATERIAL_BIOMATTER "biomatter"
 
 #define PLASTEEL_COLOUR "#8e9799"
 //Color to exactly match concept art #b0bcbe

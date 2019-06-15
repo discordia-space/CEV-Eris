@@ -144,7 +144,8 @@
 		/obj/item/weapon/implant/chem,
 		/obj/item/weapon/implant/death_alarm,
 		/obj/item/weapon/implant/tracking,
-		/obj/item/weapon/implant/core_implant/cruciform
+		/obj/item/weapon/implant/core_implant/cruciform,
+		/obj/item/weapon/implant/excelsior
 	)
 	var/delete
 	var/temphtml
@@ -317,11 +318,10 @@
 			bled = "Bleeding:"
 		if(e.status & ORGAN_BROKEN)
 			AN = "[e.broken_description]:"
-		switch(e.robotic)
-			if(ORGAN_ASSISTED)
-				robot = "Assisted:"
-			if(ORGAN_ROBOT)
-				robot = "Prosthetic:"
+		if(BP_IS_ASSISTED(e))
+			robot = "Assisted:"
+		if(BP_IS_ROBOTIC(e))
+			robot = "Prosthetic:"
 		if(e.open)
 			open = "Open:"
 
@@ -346,7 +346,8 @@
 			var/unknown_body = 0
 			for(var/I in e.implants)
 				if(is_type_in_list(I,known_implants))
-					imp += "[I] implanted:"
+					var/obj/item/weapon/implant/device = I
+					imp += "[device.get_scanner_name()] implanted:"
 				else
 					unknown_body++
 			if(unknown_body)
@@ -363,11 +364,10 @@
 	for(var/obj/item/organ/I in occ["internal_organs"])
 
 		var/mech = ""
-		switch(I.robotic)
-			if(ORGAN_ASSISTED)
-				mech = "Assisted:"
-			if(ORGAN_ROBOT)
-				mech = "Mechanical:"
+		if(BP_IS_ASSISTED(I))
+			mech = "Assisted:"
+		if(BP_IS_ROBOTIC(I))
+			mech = "Prosthetic:"
 
 		var/infection = "None"
 		switch (I.germ_level)

@@ -33,7 +33,7 @@
 /atom/New(loc, ...)
 	init_plane()
 	update_plane()
-	var/do_initialize = SSatoms.initialized
+	var/do_initialize = SSatoms.init_state
 	if(do_initialize > INITIALIZATION_INSSATOMS)
 		args[1] = do_initialize == INITIALIZATION_INNEW_MAPLOAD
 		if(SSatoms.InitAtom(src, args))
@@ -168,6 +168,9 @@
 			found += A.search_contents_for(path, filter_path)
 	return found
 
+//This proc is called on the location of an atom when the atom is Destroy()'d
+/atom/proc/handle_atom_del(atom/A)
+	return
 
 
 
@@ -619,7 +622,7 @@ its easier to just keep the beam vertical.
 
 //This proc is called when objects are created during the round by players.
 //This allows them to behave differently from objects that are mapped in, adminspawned, or purchased
-/atom/proc/Created()
+/atom/proc/Created(var/mob/user)
 	return
 	//Should be called when:
 		//An item is printed at an autolathe or protolathe **COMPLETE**
@@ -682,3 +685,12 @@ its easier to just keep the beam vertical.
 		result += a
 		result |= a.get_recursive_contents()
 	return result
+
+/atom/proc/AllowDrop()
+	return FALSE
+
+/atom/proc/drop_location()
+	var/atom/L = loc
+	if(!L)
+		return null
+	return L.AllowDrop() ? L : L.drop_location()

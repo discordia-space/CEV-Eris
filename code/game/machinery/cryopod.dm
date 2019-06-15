@@ -376,7 +376,7 @@
 			if (istype(M))
 				if (!(M.get_respawn_bonus("CRYOSLEEP")))
 					//We send a message to the occupant's current mob - probably a ghost, but who knows.
-					M << SPAN_NOTICE("Because your body was put into cryostorage, your crew respawn time has been reduced by 20 minutes.")
+					M << SPAN_NOTICE("Because your body was put into cryostorage, your crew respawn time has been reduced by [CRYOPOD_SPAWN_BONUS_DESC].")
 					M << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
 
 				//Going safely to cryo will allow the patient to respawn more quickly
@@ -455,6 +455,9 @@
 	//Eject any items that aren't meant to be in the pod.
 	var/list/items = src.contents
 	if(occupant)
+		if(usr != occupant && !occupant.client && occupant.stat != DEAD)
+			to_chat(usr, SPAN_WARNING("It's locked inside!"))
+			return
 		items -= occupant
 	if(announce)
 		items -= announce

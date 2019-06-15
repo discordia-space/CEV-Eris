@@ -18,6 +18,7 @@
 	stat_modifiers = list(
 		STAT_ROB = 15,
 		STAT_TGH = 15,
+		STAT_VIG = 10,
 	)
 	also_known_languages = list(LANGUAGE_JIVE = 80)
 
@@ -143,8 +144,7 @@
 	outfit_type = /decl/hierarchy/outfit/job/service/actor/clown
 	wage = WAGE_LABOUR_DUMB	//Barely a retaining fee. Actor can busk for credits to keep themselves fed
 	stat_modifiers = list(
-		STAT_TGH = 10,
-		STAT_ROB = 15,
+		STAT_TGH = 30, //basically a punching bag, he can't robust anyone or shoot guns anyway
 	)
 
 	loyalties = LOYALTY_CIVILIAN

@@ -23,7 +23,7 @@
 		var/mob/living/carbon/human/H = target
 		if(prob(poison_per_bite))
 			var/obj/item/organ/external/O = safepick(H.organs)
-			if(O && !(O.robotic >= ORGAN_ROBOT))
+			if(O && !BP_IS_ROBOTIC(O))
 				var/eggs = new /obj/effect/spider/eggcluster(O, src)
 				O.implants += eggs
 

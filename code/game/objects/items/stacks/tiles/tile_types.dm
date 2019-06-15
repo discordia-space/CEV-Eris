@@ -111,7 +111,7 @@
 	icon_state = "tile"
 	force = WEAPON_FORCE_NORMAL
 	matter = list(MATERIAL_STEEL = 1)
-	throwforce = WEAPON_FORCE_PAINFULL
+	throwforce = WEAPON_FORCE_PAINFUL
 	throw_speed = 5
 	throw_range = 20
 	flags = CONDUCT
@@ -240,6 +240,21 @@
 	name = "steel monofloor tile"
 	singular_name = "steel monofloor tile"
 	icon_state = "tile_steel_monofloor"
+
+/obj/item/stack/tile/floor/steel/bar_flat
+	name = "steel bar flat tile"
+	singular_name = "steel bar flat tile"
+	icon_state = "tile_steel_bar_flat"
+
+/obj/item/stack/tile/floor/steel/bar_dance
+	name = "steel bar dance tile"
+	singular_name = "steel bar dance tile"
+	icon_state = "tile_steel_bar_dance"
+
+/obj/item/stack/tile/floor/steel/bar_light
+	name = "steel bar light tile"
+	singular_name = "steel bar light tile"
+	icon_state = "tile_steel_bar_light"
 
 /*
  * Plastic

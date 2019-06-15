@@ -2,21 +2,45 @@
 	name = "excelsior implant"
 	implant_color = "r"
 	allowed_organs = list(BP_HEAD)
-
+	origin_tech = list(TECH_ILLEGAL = 2)
 	var/antag_id = ROLE_EXCELSIOR_REV
 	var/faction_id = FACTION_EXCELSIOR
+	var/global/possible_disguises = list(
+		/obj/item/weapon/implant/chem,
+		/obj/item/weapon/implant/death_alarm
+	)
+	var/disguise
 
+/obj/item/weapon/implant/excelsior/Initialize()
+	. = ..()
+	if(length(possible_disguises))
+		var/obj/item/weapon/implant/I = pick(possible_disguises)
+		disguise = initial(I.name)
+
+/obj/item/weapon/implant/excelsior/get_scanner_name()
+	return disguise
 
 /obj/item/weapon/implantcase/excelsior
 	name = "glass case - 'complant'"
 	desc = "A case containing an excelsior complant."
 	implant = /obj/item/weapon/implant/excelsior
 
-
 /obj/item/weapon/implanter/excelsior
 	name = "implanter-complant"
 	implant = /obj/item/weapon/implant/excelsior
 
+/obj/item/weapon/implant/excelsior/broken
+	name = "broken excelsior implant"
+	malfunction = MALFUNCTION_PERMANENT
+
+/obj/item/weapon/implantcase/excelsior/broken
+	name = "glass case - 'broken complant'"
+	desc = "A case containing an broken excelsior complant."
+	implant = /obj/item/weapon/implant/excelsior/broken
+
+/obj/item/weapon/implanter/excelsior/broken
+	name = "broken implanter-complant"
+	implant = /obj/item/weapon/implant/excelsior/broken
 
 //The excelsior implant converts humans into antags, but it also protects mobs from excelsior turrets and shields
 /obj/item/weapon/implant/excelsior/can_install(var/mob/living/carbon/human/target, var/obj/item/organ/external/E)
@@ -40,6 +64,10 @@
 	//Any other organic creature is fine. This allows you to implant your pets so the turrets dont shoot them
 	var/types = target.get_classification()
 	if (!(types & CLASSIFICATION_ORGANIC))
+		return FALSE
+
+	//Lastly the implant was ejected by cruciform, if yes the implant is broken.
+	if(malfunction)
 		return FALSE
 
 	//All good, return true

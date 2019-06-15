@@ -153,34 +153,42 @@
 			WR.crowbar_salvage += cell
 			cell.forceMove(WR)
 			cell.charge = rand(0, cell.charge)
+			cell = null
+
 		if(internal_tank)
 			WR.crowbar_salvage += internal_tank
 			internal_tank.forceMove(WR)
+			internal_tank = null
 	else
 		for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
 			E.detach(loc)
 			E.destroy()
-		if(cell)
-			qdel(cell)
-		if(internal_tank)
-			qdel(internal_tank)
-	equipment.Cut()
-	cell = null
-	internal_tank = null
 
-	qdel(pr_int_temp_processor)
-	qdel(pr_inertial_movement)
-	qdel(pr_give_air)
-	qdel(pr_internal_damage)
-	qdel(spark_system)
-	pr_int_temp_processor = null
-	pr_give_air = null
-	pr_internal_damage = null
-	spark_system = null
+		QDEL_NULL(cell)
+		QDEL_NULL(internal_tank)
+
+	equipment.Cut()
+
+	QDEL_NULL(pr_int_temp_processor)
+	QDEL_NULL(pr_inertial_movement)
+	QDEL_NULL(pr_give_air)
+	QDEL_NULL(pr_internal_damage)
+	QDEL_NULL(spark_system)
 
 	mechas_list -= src //global mech list
 	remove_hearing()
 	. = ..()
+
+/obj/mecha/lost_in_space()
+	return occupant.lost_in_space()
+
+/obj/mecha/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+
+/obj/mecha/get_cell()
+	return cell
 
 /obj/mecha/update_icon()
 	if (initial_icon)
@@ -930,6 +938,8 @@ assassination method if you time it right*/
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user << SPAN_NOTICE("You open the hatch to the power unit.")
 					state = 3
+					if(!cell)
+						state = 4
 					return
 			if(state == 3)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
@@ -1007,13 +1017,14 @@ assassination method if you time it right*/
 		return
 
 	else if(istype(I, /obj/item/weapon/cell/large))
-		if(state==4)
+		if(state == 4 || (state == 3 && !cell))
 			if(!src.cell)
-				user << "You install the powercell"
+				to_chat(user, "You install the powercell")
 				user.drop_item()
 				I.forceMove(src)
 				src.cell = I
 				src.log_message("Powercell installed")
+				state = 4
 			else
 				user << "There's already a powercell installed."
 		return
@@ -1414,44 +1425,42 @@ assassination method if you time it right*/
 
 /obj/mecha/proc/operation_allowed(mob/living/carbon/human/H)
 	for(var/ID in list(H.get_active_hand(), H.wear_id, H.belt))
-		if(src.check_access(ID,src.operation_req_access))
-			return 1
-	return 0
+		if(src.check_access(ID, operation_req_access))
+			return TRUE
+	return FALSE
 
 
 /obj/mecha/proc/internals_access_allowed(mob/living/carbon/human/H)
 	for(var/atom/ID in list(H.get_active_hand(), H.wear_id, H.belt))
-		if(src.check_access(ID,src.internals_req_access))
-			return 1
-	return 0
+		if(src.check_access(ID, internals_req_access))
+			return TRUE
+	return FALSE
 
 /obj/mecha/proc/dna_reset_allowed(mob/living/carbon/human/H)
 	for(var/atom/ID in list(H.get_active_hand(), H.wear_id, H.belt))
-		if(src.check_access(ID,src.dna_req_access))
-			return 1
-	return 0
+		if(src.check_access(ID, dna_req_access))
+			return TRUE
+	return FALSE
 
 
 /obj/mecha/check_access(obj/item/weapon/card/id/I, list/access_list)
 	if(!istype(access_list))
-		return 1
+		return TRUE
 	if(!access_list.len) //no requirements
-		return 1
-	if(istype(I, /obj/item/modular_computer))
-		var/obj/item/device/pda/pda = I
-		I = pda.id
-	if(!istype(I) || !I.access) //not ID or no access
-		return 0
+		return TRUE
+
+	var/list/user_access = I ? I.GetAccess() : list()
+
 	if(access_list==src.operation_req_access)
 		for(var/req in access_list)
-			if(!(req in I.access)) //doesn't have this access
-				return 0
+			if(!(req in user_access)) //doesn't have this access
+				return FALSE
 	else if(access_list == src.internals_req_access || access_list == src.dna_req_access)
 		for(var/req in access_list)
-			if(req in I.access)
-				return 1
-		return 0
-	return 1
+			if(req in user_access)
+				return TRUE
+		return FALSE
+	return TRUE
 
 
 ////////////////////////////////////
@@ -1682,10 +1691,12 @@ assassination method if you time it right*/
 	log[log.len] = list("time"=world.timeofday,"message"="[red?"<font color='red'>":null][message][red?"</font>":null]")
 	return log.len
 
-/obj/mecha/proc/log_append_to_last(message as text,red=null)
+/obj/mecha/proc/log_append_to_last(message, red=null)
+	if(!length(log))
+		return
+
 	var/list/last_entry = src.log[src.log.len]
 	last_entry["message"] += "<br>[red?"<font color='red'>":null][message][red?"</font>":null]"
-	return
 
 
 /////////////////

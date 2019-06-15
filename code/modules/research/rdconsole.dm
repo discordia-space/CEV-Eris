@@ -33,9 +33,8 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	icon_screen = "rdcomp"
 	light_color = COLOR_LIGHTING_PURPLE_MACHINERY
 	circuit = /obj/item/weapon/circuitboard/rdconsole
-	var/datum/research/files							//Stores all the collected research data.
-	var/obj/item/weapon/disk/tech_disk/t_disk   = null	//Stores the technology disk.
-	var/obj/item/weapon/disk/design_disk/d_disk = null	//Stores the design disk.
+	var/datum/research/files								//Stores all the collected research data.
+	var/obj/item/weapon/computer_hardware/hard_drive/portable/disk = null	//Stores the data disk.
 
 	var/obj/machinery/r_n_d/destructive_analyzer/linked_destroy = null	//Linked Destructive Analyzer
 	var/obj/machinery/r_n_d/protolathe/linked_lathe             = null	//Linked Protolathe
@@ -109,11 +108,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 /obj/machinery/computer/rdconsole/Initialize()
 	..()
+	files = new /datum/research(src) //Setup the research data holder.
 	SyncRDevices()
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/computer/rdconsole/LateInitialize()
-	files = new /datum/research(src) //Setup the research data holder.
 	if(!id)
 		for(var/obj/machinery/r_n_d/server/centcom/S in SSmachines.machinery)
 			S.Initialize()
@@ -121,21 +120,15 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 /obj/machinery/computer/rdconsole/attackby(var/obj/item/weapon/D as obj, var/mob/user as mob)
 	//Loading a disk into it.
-	if(istype(D, /obj/item/weapon/disk))
-		if(t_disk || d_disk)
-			user << SPAN_NOTICE("A disk is already loaded into the machine.")
+	if(istype(D, /obj/item/weapon/computer_hardware/hard_drive/portable))
+		if(disk)
+			to_chat(user, SPAN_NOTICE("A disk is already loaded into the machine."))
 			return
 
-		if(istype(D, /obj/item/weapon/disk/tech_disk))
-			t_disk = D
-		else if (istype(D, /obj/item/weapon/disk/design_disk))
-			d_disk = D
-		else
-			user << SPAN_NOTICE("Machine cannot accept disks in that format.")
-			return
 		user.drop_item()
 		D.loc = src
-		user << SPAN_NOTICE("You add \the [D] to the machine.")
+		disk = D
+		to_chat(user, SPAN_NOTICE("You add \the [D] to the machine."))
 	else
 		//The construction/deconstruction of the console code.
 		..()
@@ -161,58 +154,65 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		return
 
 	usr.set_machine(src)
+
+
+	// Disk operations
+	if(disk)
+		screen = 1.2
+		if(href_list["eject_disk"]) //Eject the data disk.
+			disk.forceMove(get_turf(src))
+			disk = null
+			screen = 1.0
+
+		else if(href_list["disk_upload"]) //Updates the research holder with design data from the design disk.
+			var/list/disk_designs = disk.find_files_by_type(/datum/computer_file/binary/design)
+
+			for(var/f in disk_designs)
+				var/datum/computer_file/binary/design/design_file = f
+
+				if(design_file.copy_protected)
+					continue
+				if(!(design_file.design in files.possible_designs))
+					continue
+
+				files.AddDesign2Known(design_file.design)
+
+
+			var/list/disk_technologies = disk.find_files_by_type(/datum/computer_file/binary/tech)
+
+			for(var/f in disk_technologies)
+				var/datum/computer_file/binary/tech/technology_file = f
+				files.AddTech2Known(technology_file.tech)
+
+			updateUsrDialog()
+			griefProtection() //Update centcomm too
+
+		else if(href_list["copy_tech"]) //Copys some technology data from the research holder to the disk.
+			var/datum/tech/tech
+			for(var/datum/tech/T in files.known_tech)
+				if(href_list["copy_tech"] == T.id)
+					tech = T
+					break
+
+			if(tech)
+				var/datum/computer_file/binary/tech/tech_file = new
+				tech_file.set_tech(tech.Copy())
+				disk.store_file(tech_file)
+
+
+		else if(href_list["copy_design"]) //Copy design data from the research holder to the design disk.
+			var/datum/design/design = files.possible_design_ids[href_list["copy_design"]]
+
+			if(design)
+				disk.store_file(design.file.clone())
+
+
 	if(href_list["menu"]) //Switches menu screens. Converts a sent text string into a number. Saves a LOT of code.
 		var/temp_screen = text2num(href_list["menu"])
 		if(temp_screen <= 1.1 || (3 <= temp_screen && 4.9 >= temp_screen) || allowed(usr) || emagged) //Unless you are making something, you need access.
 			screen = temp_screen
 		else
-			usr << "Unauthorized Access."
-
-	else if(href_list["updt_tech"]) //Update the research holder with information from the technology disk.
-		screen = 0.0
-		spawn(50)
-			screen = 1.2
-			files.AddTech2Known(t_disk.stored)
-			updateUsrDialog()
-			griefProtection() //Update centcomm too
-
-	else if(href_list["clear_tech"]) //Erase data on the technology disk.
-		t_disk.stored = null
-
-	else if(href_list["eject_tech"]) //Eject the technology disk.
-		t_disk.loc = loc
-		t_disk = null
-		screen = 1.0
-
-	else if(href_list["copy_tech"]) //Copys some technology data from the research holder to the disk.
-		for(var/datum/tech/T in files.known_tech)
-			if(href_list["copy_tech_ID"] == T.id)
-				t_disk.stored = T
-				break
-		screen = 1.2
-
-	else if(href_list["updt_design"]) //Updates the research holder with design data from the design disk.
-		screen = 0.0
-		spawn(50)
-			screen = 1.4
-			files.AddDesign2Known(d_disk.blueprint)
-			updateUsrDialog()
-			griefProtection() //Update centcomm too
-
-	else if(href_list["clear_design"]) //Erases data on the design disk.
-		d_disk.blueprint = null
-
-	else if(href_list["eject_design"]) //Eject the design disk.
-		d_disk.loc = loc
-		d_disk = null
-		screen = 1.0
-
-	else if(href_list["copy_design"]) //Copy design data from the research holder to the design disk.
-		for(var/datum/design/D in files.known_designs)
-			if(href_list["copy_design_ID"] == D.id)
-				d_disk.blueprint = D
-				break
-		screen = 1.4
+			to_chat(usr, "Unauthorized Access.")
 
 	else if(href_list["eject_item"]) //Eject the item inside the destructive analyzer.
 		if(linked_destroy)
@@ -220,7 +220,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				usr << SPAN_NOTICE("The destructive analyzer is busy at the moment.")
 
 			else if(linked_destroy.loaded_item)
-				linked_destroy.loaded_item.loc = linked_destroy.loc
+				linked_destroy.loaded_item.forceMove(get_turf(linked_destroy))
 				linked_destroy.loaded_item = null
 				linked_destroy.icon_state = "d_analyzer"
 				screen = 2.1
@@ -249,13 +249,20 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 						if(linked_lathe && linked_destroy.loaded_item.matter) // Also sends salvaged materials to a linked protolathe, if any.
 							for(var/t in linked_destroy.loaded_item.matter)
 								if(t in linked_lathe.materials)
-									linked_lathe.materials[t] += min(linked_lathe.max_material_storage - linked_lathe.TotalMaterials(), linked_destroy.loaded_item.matter[t] * linked_destroy.decon_mod)
+									linked_lathe.materials[t] += linked_destroy.loaded_item.matter[t] * linked_destroy.decon_mod
+									linked_lathe.materials[t] = min(linked_lathe.materials[t], linked_lathe.max_material_storage)
+
 
 						linked_destroy.loaded_item = null
 						for(var/obj/I in linked_destroy.contents)
 							for(var/mob/M in I.contents)
 								M.death()
-							if(istype(I,/obj/item/stack/material))//Only deconsturcts one sheet at a time instead of the entire stack
+							if(istype(I, /mob))
+								var/mob/M = I
+								M.death()
+								qdel(I)
+								linked_destroy.icon_state = "d_analyzer"
+							if(I && istype(I,/obj/item/stack/material))//Only deconsturcts one sheet at a time instead of the entire stack
 								var/obj/item/stack/material/S = I
 								if(S.get_amount() > 1)
 									S.use(1)
@@ -312,12 +319,9 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 	else if(href_list["build"]) //Causes the Protolathe to build something.
 		if(linked_lathe)
-			var/datum/design/being_built = null
-			for(var/datum/design/D in files.known_designs)
-				if(D.id == href_list["build"])
-					being_built = D
-					break
-			if(being_built)
+			var/datum/design/being_built = files.possible_design_ids[href_list["build"]]
+
+			if(being_built in files.known_designs)
 				linked_lathe.addToQueue(being_built)
 
 		screen = 3.1
@@ -325,13 +329,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 	else if(href_list["imprint"]) //Causes the Circuit Imprinter to build something.
 		if(linked_imprinter)
-			var/datum/design/being_built = null
-			for(var/datum/design/D in files.known_designs)
-				if(D.id == href_list["imprint"])
-					being_built = D
-					break
-			if(being_built)
+			var/datum/design/being_built = files.possible_design_ids[href_list["imprint"]]
+
+			if(being_built in files.known_designs)
 				linked_imprinter.addToQueue(being_built)
+
 		screen = 4.1
 		updateUsrDialog()
 
@@ -380,7 +382,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 	else if(href_list["reset"]) //Reset the R&D console's database.
 		griefProtection()
-		var/choice = alert("R&D Console Database Reset", "Are you sure you want to reset the R&D console's database? Data lost cannot be recovered.", "Continue", "Cancel")
+		var/choice = alert("Database Reset", "Are you sure you want to reset the R&D console database? Data lost cannot be recovered.", "Continue", "Cancel")
 		if(choice == "Continue")
 			screen = 0.0
 			qdel(files)
@@ -429,8 +431,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	var/dat
 	dat += "<UL>"
 	for(var/datum/design/D in files.known_designs)
-		if(D.build_path)
-			dat += "<LI><B>[D.name]</B>: [D.desc]"
+		dat += "<LI><B>[D.name]</B>: [D.desc]"
 	dat += "</UL>"
 	return dat
 
@@ -484,14 +485,21 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		if(1.0) //Main Menu
 			dat += "Main Menu:<BR><BR>"
 			dat += "Loaded disk: "
-			dat += (t_disk || d_disk) ? (t_disk ? "technology storage disk" : "design storage disk") : "none"
+			if(disk)
+				var/disk_name = disk.get_disk_name()
+
+				if(!disk_name)
+					disk_name = "data disk"
+
+				dat += disk_name
+			else
+				dat += "none"
+
 			dat += "<HR><UL>"
 			dat += "<LI><A href='?src=\ref[src];menu=1.1'>Current Research Levels</A>"
 			dat += "<LI><A href='?src=\ref[src];menu=5.0'>View Researched Technologies</A>"
-			if(t_disk)
+			if(disk)
 				dat += "<LI><A href='?src=\ref[src];menu=1.2'>Disk Operations</A>"
-			else if(d_disk)
-				dat += "<LI><A href='?src=\ref[src];menu=1.4'>Disk Operations</A>"
 			else
 				dat += "<LI>Disk Operations"
 			if(linked_destroy)
@@ -510,62 +518,68 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += GetResearchLevelsInfo()
 			dat += "</UL>"
 
-		if(1.2) //Technology Disk Menu
-
+		if(1.2) // Disk menu
 			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A><HR>"
-			dat += "Disk Contents: (Technology Data Disk)<BR><BR>"
-			if(isnull(t_disk.stored))
-				dat += "The disk has no data stored on it.<HR>"
-				dat += "Operations: "
-				dat += "<A href='?src=\ref[src];menu=1.3'>Load Tech to Disk</A> || "
-			else
-				dat += "Name: [t_disk.stored.name]<BR>"
-				dat += "Level: [t_disk.stored.level]<BR>"
-				dat += "Description: [t_disk.stored.desc]<HR>"
-				dat += "Operations: "
-				dat += "<A href='?src=\ref[src];updt_tech=1'>Upload to Database</A> || "
-				dat += "<A href='?src=\ref[src];clear_tech=1'>Clear Disk</A> || "
-			dat += "<A href='?src=\ref[src];eject_tech=1'>Eject Disk</A>"
 
-		if(1.3) //Technology Disk submenu
+			if(disk)
+				var/list/disk_designs = disk.find_files_by_type(/datum/computer_file/binary/design)
+				var/list/disk_technologies = disk.find_files_by_type(/datum/computer_file/binary/tech)
+
+				// Filter disk designs
+				for(var/f in disk_designs)
+					var/datum/computer_file/binary/design/design_file = f
+					if(design_file.copy_protected)
+						disk_designs -= design_file
+					if(!(design_file.design in files.possible_designs))
+						disk_designs -= design_file
+
+				if(!length(disk_designs))
+					dat += "The disk has no accessible design files stored on it."
+				else
+					dat += "Design files:<BR>"
+					for(var/f in disk_designs)
+						var/datum/computer_file/binary/design/design_file = f
+						dat += "[design_file.design.name]<BR>"
+
+				if(!length(disk_technologies))
+					dat += "The disk has no accessible technology files stored on it."
+				else
+					dat += "<BR>Technology files:<BR>"
+					for(var/f in disk_technologies)
+						var/datum/computer_file/binary/tech/tech_file = f
+						dat += "[tech_file.tech.name] (level [tech_file.tech.level])<BR>"
+
+				dat += "<HR>Operations: "
+
+				if(length(disk_designs) || length(disk_technologies))
+					dat += "<A href='?src=\ref[src];disk_upload=1'>Upload to Database</A> || "
+
+				if(disk.can_store_file(size = 4))
+					dat += "<A href='?src=\ref[src];menu=1.3'>Load Design to Disk</A> || "
+
+				if(disk.can_store_file(size = 8))
+					dat += "<A href='?src=\ref[src];menu=1.4'>Load Technology to Disk</A> || "
+
+				dat += "<A href='?src=\ref[src];eject_disk=1'>Eject Disk</A>"
+
+		if(1.3) // Disk design copy submenu
+			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A> || "
+			dat += "<A href='?src=\ref[src];menu=1.2'>Return to Disk Operations</A><HR>"
+			dat += "Load Design to Disk:<BR><BR>"
+			dat += "<UL>"
+			for(var/datum/design/D in files.known_designs)
+				dat += "<LI>[D.name] "
+				dat += "<A href='?src=\ref[src];copy_design=[D.id]'>\[copy to disk\]</A>"
+			dat += "</UL>"
+
+		if(1.4) // Disk technology copy submenu
 			dat += "<BR><A href='?src=\ref[src];menu=1.0'>Main Menu</A> || "
 			dat += "<A href='?src=\ref[src];menu=1.2'>Return to Disk Operations</A><HR>"
 			dat += "Load Technology to Disk:<BR><BR>"
 			dat += "<UL>"
 			for(var/datum/tech/T in files.known_tech)
 				dat += "<LI>[T.name] "
-				dat += "\[<A href='?src=\ref[src];copy_tech=1;copy_tech_ID=[T.id]'>copy to disk</A>\]"
-			dat += "</UL>"
-
-		if(1.4) //Design Disk menu.
-			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A><HR>"
-			if(isnull(d_disk.blueprint))
-				dat += "The disk has no data stored on it.<HR>"
-				dat += "Operations: "
-				dat += "<A href='?src=\ref[src];menu=1.5'>Load Design to Disk</A> || "
-			else
-				dat += "Name: [d_disk.blueprint.name]<BR>"
-				switch(d_disk.blueprint.build_type)
-					if(IMPRINTER) dat += "Lathe Type: Circuit Imprinter<BR>"
-					if(PROTOLATHE) dat += "Lathe Type: Proto-lathe<BR>"
-				dat += "Required Materials:<BR>"
-				for(var/M in d_disk.blueprint.materials)
-					if(copytext(M, 1, 2) == "$") dat += "* [copytext(M, 2)] x [d_disk.blueprint.materials[M]]<BR>"
-					else dat += "* [M] x [d_disk.blueprint.materials[M]]<BR>"
-				dat += "<HR>Operations: "
-				dat += "<A href='?src=\ref[src];updt_design=1'>Upload to Database</A> || "
-				dat += "<A href='?src=\ref[src];clear_design=1'>Clear Disk</A> || "
-			dat += "<A href='?src=\ref[src];eject_design=1'>Eject Disk</A>"
-
-		if(1.5) //Technology disk submenu
-			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A> || "
-			dat += "<A href='?src=\ref[src];menu=1.4'>Return to Disk Operations</A><HR>"
-			dat += "Load Design to Disk:<BR><BR>"
-			dat += "<UL>"
-			for(var/datum/design/D in files.known_designs)
-				if(D.build_path)
-					dat += "<LI>[D.name] "
-					dat += "<A href='?src=\ref[src];copy_design=1;copy_design_ID=[D.id]'>\[copy to disk\]</A>"
+				dat += "\[<A href='?src=\ref[src];copy_tech=[T.id]'>copy to disk</A>\]"
 			dat += "</UL>"
 
 		if(1.6) //R&D console settings
@@ -643,7 +657,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "<B>Chemical Volume:</B> [linked_lathe.reagents.total_volume] (MAX: [linked_lathe.reagents.maximum_volume])<HR>"
 			dat += "<UL>"
 			for(var/datum/design/D in files.known_designs)
-				if(!D.build_path || !(D.build_type & PROTOLATHE))
+				if(!(D.build_type & PROTOLATHE))
 					continue
 				var/temp_dat
 				dat += "<div class='block' style ='padding: 0px; overflow: auto; margin-left:-2px'>"
@@ -653,13 +667,8 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					temp_dat += ", [D.chemicals[T]] [CallReagentName(T)]"
 				if(temp_dat)
 					temp_dat = " \[[copytext(temp_dat, 3)]\]"
-				var/iconName = "[D.type].png"
-				iconName = sanitizeFileName(iconName)
-				// byond rewrites cache every time despite saying its not in documentation
-				if(user && user.client && !user.client.cache.Find(iconName))
-					user << browse_rsc(getFlatTypeIcon(D.build_path), iconName)
-					user.client.cache.Add(iconName)
-				dat += "<div style ='float: left; margin-left:0px; max-height:24px; max-width:24px; height:24px;width:24px;' class='statusDisplayItem'><img src= [iconName] height=24 width=24></div>"
+				var/iconName = getAtomCacheFilename(D.build_path)
+				dat += "<div style ='float: left; margin-left:0px; height:24px;width:24px;' class='statusDisplayItem'><img src= [iconName] height=24 width=24></div>"
 				if(linked_lathe.canBuild(D))
 					dat += "<LI><B><A href='?src=\ref[src];build=[D.id]'>[D.name]</A></B><div style = 'float: right;'>[temp_dat]</div>"
 				else
@@ -730,7 +739,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "Chemical Volume: [linked_imprinter.reagents.total_volume]<HR>"
 			dat += "<UL>"
 			for(var/datum/design/D in files.known_designs)
-				if(!D.build_path || !(D.build_type & IMPRINTER))
+				if(!(D.build_type & IMPRINTER))
 					continue
 				dat += "<div class='block' style ='padding: 0px; overflow: auto; margin-left:-2px'>"
 				var/temp_dat
@@ -740,8 +749,8 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					temp_dat += ", [D.chemicals[T]] [CallReagentName(T)]"
 				if(temp_dat)
 					temp_dat = " \[[copytext(temp_dat,3)]\]"
-				var/iconName = cacheAtomIcon(D.build_path, user, TRUE)
-				dat += "<div style ='float: left; margin-left:0px; max-height:24px; max-width:24px; height:24px;width:24px;' class='statusDisplayItem'><img src= [iconName] height=24 width=24></div>"
+				var/iconName = getAtomCacheFilename(D.build_path)
+				dat += "<div style ='float: left; margin-left:0px; height:24px;width:24px;' class='statusDisplayItem'><img src= [iconName] height=24 width=24></div>"
 
 				if(linked_imprinter.canBuild(D))
 					dat += "<LI><B><A href='?src=\ref[src];imprint=[D.id]'>[D.name]</A></B><div style = 'float: right;'>[temp_dat]</div>"

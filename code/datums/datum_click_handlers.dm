@@ -94,8 +94,12 @@
 /datum/click_handler/fullauto/proc/stop_firing()
 	firing = FALSE
 	target = null
+	if(reciever)
+		reciever.recoil = initial(reciever.recoil)
+		reciever.cursor_check()
 
 /datum/click_handler/fullauto/proc/do_fire()
+	reciever.recoil += reciever.recoil_buildup //Add shitloads of recoil.
 	reciever.afterattack(target, owner.mob, FALSE)
 
 /datum/click_handler/fullauto/MouseDown(object,location,control,params)

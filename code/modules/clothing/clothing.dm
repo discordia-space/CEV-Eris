@@ -30,6 +30,7 @@
 
 //Delayed equipping
 /obj/item/clothing/pre_equip(var/mob/user, var/slot)
+	..(user, slot)
 	if (equip_delay > 0)
 		//If its currently worn, we must be taking it off
 		if (is_worn())
@@ -48,7 +49,12 @@
 			if(!do_after(user,equip_delay,src))
 				return TRUE //A nonzero return value will cause the equipping operation to fail
 
-
+// To catch MouseDrop on clothing
+/obj/item/clothing/MouseDrop(over_object)
+	if(!(item_flags & DRAG_AND_DROP_UNEQUIP))
+		return ..()
+	if(!pre_equip(usr, over_object))
+		..()
 
 ///////////////////////////////////////////////////////////////////////
 // Ears: headsets, earmuffs and tiny objects
@@ -113,7 +119,7 @@
 	var/other_slot = (slot == slot_l_ear) ? slot_r_ear : slot_l_ear
 	if(user.get_equipped_item(other_slot) != master_item || user.get_equipped_item(slot))
 		return FALSE
-	return TRUE
+	return ..()
 
 /obj/item/clothing/ears/earmuffs
 	name = "earmuffs"

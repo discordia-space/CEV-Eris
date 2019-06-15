@@ -21,17 +21,45 @@
 
 	SSinventory.update_mob(loc, slot, redraw_mob)
 
+
+/obj/item/proc/can_be_equipped(mob/user, slot, disable_warning = 0)
+	var/obj/item/equipped = user.get_equipped_item(slot)
+	if(equipped && equipped.overslot)
+		if (!disable_warning)
+			to_chat(user, "You are unable to wear \the [src] as [equipped] in the way.")
+		return FALSE
+	return TRUE
+
+/obj/item/pre_attack(atom/a, mob/user, var/params)
+	if(overslot)
+		var/obj/item/clothing/i = a
+		if (i)
+			if(i.is_worn() && i.slot_flags == slot_flags)
+				user.equip_to_appropriate_slot(src)
+				return TRUE
+
+
 /obj/item/proc/pre_equip(var/mob/user, var/slot)
 	//Some inventory sounds.
 	//occurs when you equip something
 	if(item_flags & EQUIP_SOUNDS)
 		var/picked_sound = pick(w_class > ITEM_SIZE_NORMAL ? long_equipement_sound : short_equipement_sound)
 		playsound(src, picked_sound, 100, 1, 1)
+	if(overslot)
+		var/obj/item/equipped = user.get_equipped_item(slot)
+		if(equipped)
+			src.overslot_contents = equipped
+			user.drop_from_inventory(equipped)
+			equipped.forceMove(src)
+
+
 
 /obj/item/proc/equipped(var/mob/user, var/slot)
 	equip_slot = slot
 	if(user.pulling == src)
 		user.stop_pulling()
+	if(overslot && !is_worn())
+		remove_overslot_contents(user)
 
 
 
@@ -40,10 +68,17 @@
 	if(zoom) //binoculars, scope, etc
 		zoom()
 	remove_hud_actions(user)
+	if(overslot && is_held())
+		remove_overslot_contents(user)
 
 
-/obj/item/proc/can_be_equipped(mob/Mob, slot, disable_warning = FALSE)
-	return TRUE
+
+/obj/item/proc/remove_overslot_contents(mob/user)
+	if(overslot_contents)
+		if(!user.equip_to_appropriate_slot(overslot_contents))
+			overslot_contents.forceMove(get_turf(src))
+		overslot_contents = null
+
 
 
 /obj/item/proc/mob_can_unequip(mob/M, slot, disable_warning = 0)
@@ -116,4 +151,3 @@
 				H.put_in_l_hand(src)
 		src.add_fingerprint(usr)
 		return TRUE
-

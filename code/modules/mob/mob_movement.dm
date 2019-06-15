@@ -172,21 +172,16 @@
 //Return true for safe movement
 //Return -1 for movement with possibility of slipping
 //Return false for no movement
-/mob/proc/allow_spacemove(var/check_drift = 0)
+/mob/proc/allow_spacemove()
 	//First up, check for magboots or other gripping capability
-	var/shoegrip = check_shoegrip()
-
 	//If we have some, then check the ground under us
-	if (shoegrip && check_solid_ground())
-		update_floating(FALSE)
+	if (incorporeal_move)
 		return TRUE
-	else if(check_dense_object())
-		update_floating(TRUE)
+	if (check_shoegrip() && check_solid_ground())
+		return TRUE
+	if (check_dense_object())
 		return -1
-
-	update_floating()
 	return FALSE
-
 
 //return 1 if slipped, 0 otherwise
 /mob/proc/handle_spaceslipping()
@@ -204,8 +199,7 @@
 	if(istype(loc, /turf/space))
 		return 0
 
-	if(!lastarea)
-		lastarea = get_area(src)
+	lastarea = get_area(src)
 	if(!lastarea || !lastarea.has_gravity)
 		return 0
 
@@ -215,17 +209,18 @@
 //This proc specifically checks the floor under us. Both floor turfs and walkable objects like catwalk
 //This proc is only called if we have grip, ie magboots
 /mob/proc/check_solid_ground()
-	.=FALSE
-	var/turf/simulated/T = loc
-	if (istype(T))
+	if (istype(loc, /turf/simulated))
+		if(istype(loc, /turf/simulated/open))
+			return FALSE //open spess was fogotten
 		return TRUE //We're standing on a simulated floor
 	else
 		//We're probably in space
-		for(var/obj/O in T)
+		for(var/obj/O in loc)
 			if(istype(O, /obj/structure/lattice))
 				return TRUE
 			if(istype(O, /obj/structure/catwalk))
 				return TRUE
+	return FALSE
 
 //This proc checks for dense, anchored atoms, or walls.
 //It checks all the adjacent tiles

@@ -14,10 +14,10 @@
 /datum/ritual/cruciform/priest/epiphany
 	name = "Epiphany"
 	phrase = "In nomine Patris et Filii et Spiritus sancti"
-	desc = "Neotheology's principal sacrament is a ritual of baptism and merging with cruciform. A body, relieved of clothes should be placed on NeoTheology corporation's  special altar."
+	desc = "NeoTheology's principal sacrament is a ritual of baptism and merging with cruciform. A body, relieved of clothes should be placed on NeoTheology's special altar."
 
 /datum/ritual/cruciform/priest/epiphany/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
-	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user)
+	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform, FALSE)
 
 	if(!CI)
 		fail("There is no cruciform on this one.", user, C)
@@ -50,38 +50,13 @@
 	phrase = "Et ne inducas nos in tentationem, sed libera nos a malo"
 */
 
-/datum/ritual/cruciform/priest/resurrection
-	name = "Resurrection"
-	phrase = "Qui fuit, et crediderunt in me non morietur in aeternum"
-	desc = "A ritual of formation of a new body in a speclially designed machine.  Deceased person's cruciform has to be placed on the scanner then a prayer is to be uttered over the apparatus."
-
-/datum/ritual/cruciform/priest/resurrection/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
-	var/list/OBJS = get_front(user)
-
-	var/obj/machinery/neotheology/cloner/pod = locate(/obj/machinery/neotheology/cloner) in OBJS
-
-	if(!pod)
-		fail("You fail to find any cloner here.", user, C)
-		return FALSE
-
-	if(pod.cloning)
-		fail("Cloner is already cloning.", user, C)
-		return FALSE
-
-	if(pod.stat & NOPOWER)
-		fail("Cloner is off.", user, C)
-		return FALSE
-
-	pod.start()
-	return TRUE
-
 /datum/ritual/cruciform/priest/reincarnation
 	name = "Reincarnation"
 	phrase = "Vetus moritur et onus hoc levaverit"
 	desc = "A reunion of a spirit with it's new body, ritual of activation of a crucifrom, lying on the body. The process requires NeoTheology's special altar on which a body stripped of clothes is to be placed."
 
 /datum/ritual/cruciform/priest/reincarnation/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
-	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user)
+	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform)
 
 	if(!CI)
 		fail("There is no cruciform on this one", user, C)
@@ -134,7 +109,7 @@
 
 /datum/ritual/cruciform/priest/install/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
 	var/mob/living/H = get_victim(user)
-	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform)
+	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform, FALSE)
 	if(CI)
 		fail("[H] already have a cruciform installed.", user, C)
 		return FALSE
@@ -195,7 +170,7 @@
 	desc = "This litany will command cruciform to detach from bearer. If the one bearing it is dead. You will be able to  use it in scanner for Resurrection."
 
 /datum/ritual/cruciform/priest/ejection/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
-	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user)
+	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform)
 
 	if(!CI)
 		fail("There is no cruciform on this one", user, C)
@@ -224,7 +199,7 @@
 	desc = "This litany will remove any upgrade from the target's Cruciform implant"
 
 /datum/ritual/cruciform/priest/unupgrade/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
-	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user)
+	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform)
 
 	if(!CI)
 		fail("There is no cruciform on this one.", user, C)

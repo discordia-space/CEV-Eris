@@ -3,8 +3,8 @@
 	desc = "Apparently a staff used by the wizard."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "staff"
-	force = WEAPON_FORCE_PAINFULL
-	throwforce = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_PAINFUL
+	throwforce = WEAPON_FORCE_PAINFUL
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEM_SIZE_SMALL

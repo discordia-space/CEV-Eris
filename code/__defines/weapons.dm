@@ -2,24 +2,26 @@
 
 //Weapon Force: Provides the base damage for melee weapons.
 //These are due for a review and overhaul, generally too powerful
-#define WEAPON_FORCE_HARMLESS    3
-#define WEAPON_FORCE_WEAK        7
-#define WEAPON_FORCE_NORMAL      10
-#define WEAPON_FORCE_PAINFULL    15
-#define WEAPON_FORCE_DANGEROUS   20
-#define WEAPON_FORCE_ROBUST      26
-#define WEAPON_FORCE_LETHAL      51
+#define WEAPON_FORCE_HARMLESS		3
+#define WEAPON_FORCE_WEAK			7
+#define WEAPON_FORCE_NORMAL			10
+#define WEAPON_FORCE_PAINFUL		15
+#define WEAPON_FORCE_DANGEROUS		20
+#define WEAPON_FORCE_ROBUST			26
+#define WEAPON_FORCE_LETHAL			51
 
 
-//Resistance values, used on floors, windows, airlocks, girders, and similar hard targets
+//Resistance values, used on floors, windows, airlocks, girders, and similar hard targets.
+//Resistance value is also used on simple animals.
 //Reduces the damage they take by flat amounts
+#define RESISTANCE_NONE 				0
 #define RESISTANCE_FRAGILE 				4
 #define RESISTANCE_AVERAGE 				8
 #define RESISTANCE_IMPROVED 			12
-#define RESISTANCE_TOUGH 				15
+#define RESISTANCE_TOUGH 				16
 #define RESISTANCE_ARMOURED 			20
-#define RESISTANCE_HEAVILY_ARMOURED 	25
-#define RESISTANCE_VAULT 				30
+#define RESISTANCE_HEAVILY_ARMOURED 	24
+#define RESISTANCE_VAULT 				32
 #define RESISTANCE_UNBREAKABLE 			100
 
 

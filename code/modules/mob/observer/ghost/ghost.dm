@@ -137,8 +137,6 @@ Works together with spawning an observer, noted above.
 
 /mob/proc/ghostize(var/can_reenter_corpse = 1)
 	if(key)
-		if(client)
-			client.destroy_UI()
 		var/mob/observer/ghost/ghost = new(src)	//Transfer safety to observer spawning proc.
 		ghost.can_reenter_corpse = can_reenter_corpse
 		ghost.timeofdeath = src.stat == DEAD ? src.timeofdeath : world.time
@@ -157,7 +155,7 @@ Works together with spawning an observer, noted above.
 		//This is duplicated in the cryopod code for robustness. The message will not display twice
 		if (istype(loc, /obj/machinery/cryopod) && in_perfect_health())
 			if (!get_respawn_bonus("CRYOSLEEP"))
-				src << SPAN_NOTICE("Because you ghosted from a cryopod in good health, your crew respawn time has been reduced by 20 minutes.")
+				src << SPAN_NOTICE("Because you ghosted from a cryopod in good health, your crew respawn time has been reduced by [CRYOPOD_SPAWN_BONUS_DESC].")
 				src << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
 			set_respawn_bonus("CRYOSLEEP", CRYOPOD_SPAWN_BONUS)
 
@@ -706,8 +704,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(respawn_time &&  timedifference > respawn_time)
 		return TRUE
 	else
-		var/timedifference_text = time2text(respawn_time  - timedifference,"mm:ss")
-		src << "<span class='warning'>You must have been dead for [respawn_time / 600] minute\s to respawn. You have [timedifference_text] left.</span>"
+		if(feedback)
+			var/timedifference_text = time2text(respawn_time  - timedifference,"mm:ss")
+			src << "<span class='warning'>You must have been dead for [respawn_time / 600] minute\s to respawn. You have [timedifference_text] left.</span>"
 		return 0
 
 	return 1
@@ -794,6 +793,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	M.key = key
-	if(M.mind)
-		M.mind.reset()
+	if(M.client)
+		M.client.create_UI(M.type)
 	return
