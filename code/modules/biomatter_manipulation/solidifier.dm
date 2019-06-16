@@ -49,7 +49,6 @@
 
 				if(current_stack)
 					current_stack.add(1)
-					current_stack.update_strings()
 					if(current_stack.amount == current_stack.max_amount)
 						state("Stack is ready.")
 						ping()

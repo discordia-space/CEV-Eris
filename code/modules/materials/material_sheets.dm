@@ -82,6 +82,11 @@
 		return
 	return ..()
 
+/obj/item/stack/material/add(var/extra)
+	..()
+	update_strings()
+
+
 /obj/item/stack/material/iron
 	name = "iron"
 	icon_state = "sheet-iron"
