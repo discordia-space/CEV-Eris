@@ -24,7 +24,7 @@
 /datum/grab/normal/aggressive/process_effect(var/obj/item/grab/G)
 	var/mob/living/carbon/human/affecting = G.affecting
 
-	if(G.target_zone in list(BP_L_HAND, BP_R_HAND))
+	if(G.target_zone in list(BP_L_ARM, BP_R_ARM))
 		affecting.drop_l_hand()
 		affecting.drop_r_hand()
 

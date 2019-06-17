@@ -65,6 +65,11 @@
 			else
 				return 0
 
+/datum/stat_holder/proc/getStatDifference(statName, mob/otherMob, Pure = null)
+	if(!otherMob || !otherMob.stats)
+		return
+	return (getStat(statName, Pure) - otherMob.stats.getStat(statName, Pure))
+
 /datum/stat_holder/proc/Clone()
 	var/datum/stat_holder/new_stat = new()
 	for (var/S in stat_list)
@@ -127,11 +132,11 @@
 	name = STAT_BIO
 	desc = "What's the difference between being dead, and just not knowing you're alive? Competence in physiology and chemistry."
 
-/datum/stat/physique
+/datum/stat/robustness
 	name = STAT_ROB
 	desc = "Violence is what people do when they run out of good ideas. Increases your health, damage in unarmed combat, affect the knockdown chance."
 
-/datum/stat/robustness
+/datum/stat/toughness
 	name = STAT_TGH
 	desc = "You're a tough guy, but I'm a nightmare wrapped in the apocalypse. Enhances your resistance to poisons and also raises your speed in uncomfortable clothes."
 

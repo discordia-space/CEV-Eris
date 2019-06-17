@@ -53,7 +53,7 @@ default behaviour is:
 			var/mob/living/tmob = AM
 
 			for(var/mob/living/M in range(tmob, 1))
-				if(tmob.pinned.len ||  ((M.pulling == tmob && ( tmob.restrained() && !( M.restrained() ) && M.stat == 0)) || locate(/obj/item/weapon/grab, tmob.grabbed_by.len)) )
+				if(tmob.pinned.len ||  ((M.pulling == tmob && ( tmob.restrained() && !( M.restrained() ) && M.stat == 0)) || locate(/obj/item/grab, tmob.grabbed_by.len)) )
 					if ( !(world.time % 5) )
 						src << "<span class='warning'>[tmob] is restrained, you cannot push past</span>"
 					now_pushing = FALSE
@@ -121,9 +121,9 @@ default behaviour is:
 							now_pushing = FALSE
 							return
 					step_glide(AM, t, glide_size)
-					if(ishuman(AM) && AM:grabbed_by)
-						for(var/obj/item/weapon/grab/G in AM:grabbed_by)
-							step_glide(G:assailant, get_dir(G:assailant, AM), glide_size)
+					if(ishuman(AM) && AM.grabbed_by)
+						for(var/obj/item/grab/G in AM.grabbed_by)
+							step_glide(G.assailant, get_dir(G.assailant, AM), glide_size)
 							G.adjust_position()
 				now_pushing = FALSE
 			return

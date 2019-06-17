@@ -101,7 +101,7 @@
 
 //Getting mobs
 /proc/get_grabbed_mob(var/mob/living/carbon/human/user)
-	var/obj/item/weapon/grab/G = locate(/obj/item/weapon/grab) in user
+	var/obj/item/weapon/grab/G = locate(/obj/item/grab) in user
 
 	if (G && G.affecting && istype(G.affecting, /mob/living))
 		return G.affecting

@@ -222,7 +222,7 @@
 			to_chat(mob, "<span class='notice'>You're pinned down by \a [mob.pinned[1]]!</span>")
 		return MOVEMENT_STOP
 
-	for(var/obj/item/weapon/grab/G in mob.grabbed_by)
+	for(var/obj/item/grab/G in mob.grabbed_by)
 		return MOVEMENT_STOP
 		/* TODO: Bay grab system
 		if(G.stop_move())
@@ -347,7 +347,7 @@
 
 /datum/movement_handler/mob/movement/proc/HandleGrabs(var/direction, var/old_turf)
 	. = 0
-	for (var/obj/item/weapon/grab/G in mob)
+	for (var/obj/item/grab/G in mob)
 		. = max(., G.grab_slowdown())	// TODO: Bay grab system
 		G.adjust_position()
 

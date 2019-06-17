@@ -330,12 +330,10 @@
 	if(ismob(target))
 		var/mob/M = target
 		if(M.grabbed_by.len)
-			var/grabstate = 0
-			for(var/obj/item/weapon/grab/G in M.grabbed_by)
-				grabstate = max(grabstate, G.state)
-			if(grabstate >= GRAB_NECK)
+			for(var/obj/item/grab/G in M.grabbed_by)
+			if(G.state_name == NORM_NECK)
 				damage_mult = 2.5
-			else if(grabstate >= GRAB_AGGRESSIVE)
+			else if(G.force_danger())
 				damage_mult = 1.5
 	P.damage *= damage_mult
 
