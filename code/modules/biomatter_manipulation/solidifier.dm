@@ -6,7 +6,8 @@
 #define CONTAINER_PIXEL_OFFSET 		6
 
 /obj/machinery/biomatter_solidifier
-	name = "Biomatter compressor"
+	name = "biomatter solidifier"
+	desc = "A Neotheology machine that converts liquid biomatter into the solid."
 	icon = 'icons/obj/machines/simple_nt_machines.dmi'
 	icon_state = "solidifier"
 	density = TRUE
