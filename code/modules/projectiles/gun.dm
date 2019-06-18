@@ -34,7 +34,6 @@
 	var/recoil_buildup = 0.2 //How quickly recoil builds up
 
 	var/muzzle_flash = 3
-	var/list/dispersion = list(0)
 	var/requires_two_hands
 	var/dual_wielding
 	var/wielded_icon = "gun_wielded"
@@ -226,14 +225,6 @@
 	user.setClickCooldown(shoot_time) //no clicking on things while shooting
 	next_fire_time = world.time + shoot_time
 
-	var/held_disp_mod = 0
-	if(requires_two_hands)
-		if((user.l_hand == src && user.r_hand) || (user.r_hand == src && user.l_hand))
-			held_disp_mod = 3
-
-	if(dual_wielding)
-		held_disp_mod = 6
-
 	//actually attempt to shoot
 	var/turf/targloc = get_turf(target) //cache this in case target gets deleted during shooting, e.g. if it was a securitron that got destroyed.
 	for(var/i in 1 to burst)
@@ -242,8 +233,7 @@
 			handle_click_empty(user)
 			break
 
-		var/disp = dispersion[min(i, dispersion.len)] + held_disp_mod
-		process_accuracy(projectile, user, target, disp)
+		process_accuracy(projectile, user, target)
 
 		projectile.multiply_projectile_damage(damage_multiplier)
 
@@ -356,7 +346,7 @@
 				damage_mult = 1.5
 	P.damage *= damage_mult
 
-/obj/item/weapon/gun/proc/process_accuracy(obj/projectile, mob/user, atom/target, dispersion)
+/obj/item/weapon/gun/proc/process_accuracy(obj/projectile, mob/user, atom/target, dispersion) //Applies the actual bullet spread
 	var/obj/item/projectile/P = projectile
 	if(!istype(P))
 		return
