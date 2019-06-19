@@ -80,40 +80,40 @@
 			user << SPAN_NOTICE("You empty the [O] into the [src].")
 
 
-/obj/structure/toilet/affect_grab(var/mob/user, var/mob/living/target, var/state)
-	if(state == GRAB_PASSIVE)
-		user << SPAN_NOTICE("You need a tighter grip.")
+/obj/structure/toilet/grab_attack(var/obj/item/grab/G)
+	if(!G.force_danger())
+		G.assailant << SPAN_NOTICE("You need a tighter grip.")
 		return FALSE
-	if(!target.loc == src.loc)
-		user << SPAN_NOTICE("[target] needs to be on the toilet.")
+	if(!G.affecting.loc == src.loc)
+		G.assailant << SPAN_NOTICE("[G.affecting] needs to be on the toilet.")
 		return FALSE
 	if(open && !swirlie)
-		user.visible_message(
-			SPAN_DANGER("[user] starts to give [target] a swirlie!"),
-			SPAN_NOTICE("You start to give [target] a swirlie!")
+		G.assailant.visible_message(
+			SPAN_DANGER("[G.assailant] starts to give [G.affecting] a swirlie!"),
+			SPAN_NOTICE("You start to give [G.affecting] a swirlie!")
 		)
-		swirlie = target
-		if (do_after(user, 30, src) || !Adjacent(target))
-			user.visible_message(
-				SPAN_DANGER("[user] gives [target] a swirlie!"),
-				SPAN_NOTICE("You give [target] a swirlie!"),
+		swirlie = G.affecting
+		if (do_after(user, 30, src) || !Adjacent(G.affecting))
+			G.assailant.visible_message(
+				SPAN_DANGER("[G.assailant] gives [G.affecting] a swirlie!"),
+				SPAN_NOTICE("You give [G.affecting] a swirlie!"),
 				"You hear a toilet flushing."
 			)
-			var/mob/living/carbon/C = target
+			var/mob/living/carbon/C = G.affecting
 			if(!istype(C) || !C.internal)
-				target.adjustOxyLoss(5)
+				G.affecting.adjustOxyLoss(5)
 		swirlie = null
 	else
-		user.visible_message(
-			SPAN_DANGER("[user] slams [target] into the [src]!"),
-			SPAN_NOTICE("You slam [target] into the [src]!")
+		G.assailant.visible_message(
+			SPAN_DANGER("[G.assailant] slams [G.affecting] into the [src]!"),
+			SPAN_NOTICE("You slam [G.affecting] into the [src]!")
 		)
-		admin_attack_log(user, target,
-			"slams <b>[key_name(target)]</b> into the [src]",
-			"Was slamed by <b>[key_name(user)] into the [src]</b>",
+		admin_attack_log(G.assailant, G.affecting,
+			"slams <b>[key_name(G.affecting)]</b> into the [src]",
+			"Was slamed by <b>[key_name(G.assailant)] into the [src]</b>",
 			"slamed into the [src]"
 		)
-		target.adjustBruteLoss(8)
+		G.affecting.adjustBruteLoss(8)
 	return TRUE
 
 
@@ -125,23 +125,23 @@
 	density = 0
 	anchored = 1
 
-/obj/structure/urinal/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
-	if(state == GRAB_PASSIVE)
-		user << SPAN_NOTICE("You need a tighter grip.")
+/obj/structure/urinal/grab_attack(var/obj/item/grab/G)
+	if(!G.force_danger())
+		G.assailant << SPAN_NOTICE("You need a tighter grip.")
 		return FALSE
-	if(!target.loc == src.loc)
-		user << SPAN_NOTICE("[target] needs to be on the urinal.")
+	if(!G.affecting.loc == src.loc)
+		G.assailant << SPAN_NOTICE("[G.affecting] needs to be on the urinal.")
 		return
-	user.visible_message(
-		SPAN_DANGER("[user] slams [target] into the [src]!"),
-		SPAN_NOTICE("You slam [target] into the [src]!")
+	G.assailant.visible_message(
+		SPAN_DANGER("[G.assailant] slams [G.affecting] into the [src]!"),
+		SPAN_NOTICE("You slam [G.affecting] into the [src]!")
 	)
-	admin_attack_log(user, target,
-		"slams <b>[key_name(target)]</b> into the [src]",
-		"Was slamed by <b>[key_name(user)] into the [src]</b>",
+	admin_attack_log(G.assailant, G.affecting,
+		"slams <b>[key_name(G.affecting)]</b> into the [src]",
+		"Was slamed by <b>[key_name(G.assailant)] into the [src]</b>",
 		"slamed into the [src]"
 	)
-	target.adjustBruteLoss(8)
+	G.affecting.adjustBruteLoss(8)
 	return TRUE
 
 

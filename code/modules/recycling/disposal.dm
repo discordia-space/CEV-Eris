@@ -49,16 +49,16 @@
 		trunk.linked = null
 	return ..()
 
-/obj/machinery/disposal/affect_grab(var/mob/living/user, var/mob/living/target)
-	user.visible_message("[user] starts putting [target] into the disposal.")
-	var/time_to_put = target.mob_size //size is perfectly suit
-	if(do_after(user, time_to_put, src) && Adjacent(target))
-		user.face_atom(src)
-		target.forceMove(src)
-		visible_message(SPAN_NOTICE("[target] has been placed in the [src] by [user]."))
-		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Has placed [target] ([target.ckey]) in disposals.</font>")
-		target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been placed in disposals by [user.name] ([user.ckey])</font>")
-		msg_admin_attack("[user] ([user.ckey]) placed [target] ([target.ckey]) in a disposals unit. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>)")
+/obj/machinery/disposal/grab_attack(var/obj/item/grab/G)
+	G.assailant.visible_message("[G.assailant] starts putting [G.affecting] into the disposal.")
+	var/time_to_put = G.affecting.mob_size //size is perfectly suit
+	if(do_after(G.assailant, time_to_put, src) && Adjacent(G.affecting))
+		G.assailant.face_atom(src)
+		G.affecting.forceMove(src)
+		visible_message(SPAN_NOTICE("[G.affecting] has been placed in the [src] by [G.assailant]."))
+		G.assailant.attack_log += text("\[[time_stamp()]\] <font color='red'>Has placed [G.affecting] ([G.affecting.ckey]) in disposals.</font>")
+		G.affecting.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been placed in disposals by [G.assailant.name] ([G.assailant.ckey])</font>")
+		msg_admin_attack("[G.assailant] ([G.assailant.ckey]) placed [G.affecting] ([G.affecting.ckey]) in a disposals unit. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>)")
 		return TRUE
 
 // attack by item places it in to disposal

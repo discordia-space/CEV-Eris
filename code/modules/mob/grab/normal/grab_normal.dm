@@ -56,7 +56,7 @@
 	var/mob/living/carbon/human/assailant = G.assailant
 	var/mob/living/carbon/human/affecting = G.affecting
 
-	if(!assailant.skill_check(SKILL_COMBAT, SKILL_ADEPT))
+	if(assailant.stats.getStat(STAT_ROB) < STAT_LEVEL_ADEPT)
 		return
 
 	if(!O)
@@ -87,7 +87,7 @@
 	var/mob/living/carbon/human/assailant = G.assailant
 	var/mob/living/carbon/human/affecting = G.affecting
 
-	if(!assailant.skill_check(SKILL_COMBAT, SKILL_ADEPT))
+	if(assailant.stats.getStat(STAT_ROB) < STAT_LEVEL_ADEPT)
 		return
 
 	if(!O)
@@ -124,7 +124,7 @@
 /datum/grab/normal/resolve_openhand_attack(var/obj/item/grab/G)
 	if(G.assailant.a_intent != I_HELP)
 		if(G.target_zone == BP_HEAD)
-			if(G.assailant.zone_sel.selecting == BP_EYES)
+			if(G.assailant.targeted_organ == BP_EYES)
 				if(attack_eye(G))
 					return 1
 			else
@@ -159,7 +159,7 @@
 	var/mob/living/carbon/human/attacker = G.assailant
 	var/mob/living/carbon/human/target = G.affecting
 
-	if(!attacker.skill_check(SKILL_COMBAT, SKILL_BASIC))
+	if(attacker.stats.getStat(STAT_ROB) < STAT_LEVEL_BASIC)
 		return
 
 	if(target.lying)
@@ -183,7 +183,7 @@
 
 	if(armor < 0.5 && target.headcheck(BP_HEAD) && prob(damage))
 		target.apply_effect(20, PARALYZE)
-		target.visible_message("<span class='danger'>[target] [target.species.get_knockout_message(target)]</span>")
+		target.visible_message("<span class='danger'>[target] has been knocked out by [attacker].</span>")
 
 	playsound(attacker.loc, "swing_hit", 25, 1, -1)
 
@@ -244,24 +244,24 @@
 	user.visible_message("<span class='danger'>\The [user] begins to slit [affecting]'s throat with \the [W]!</span>")
 
 	user.next_move = world.time + 20 //also should prevent user from triggering this repeatedly
-	if(!do_after(user, 20*user.skill_delay_mult(SKILL_COMBAT) , progress = 0))
+	if(!do_after(user, 20*user.stats.getDelayMult(STAT_ROB, STAT_LEVEL_EXPERT) , progress = 0))
 		return 0
 	if(!(G && G.affecting == affecting)) //check that we still have a grab
 		return 0
 
 	var/damage_mod = 1
-	var/damage_flags = W.damage_flags()
+	//var/damage_flags = W.damage_flags()
 	//presumably, if they are wearing a helmet that stops pressure effects, then it probably covers the throat as well
 	var/obj/item/clothing/head/helmet = affecting.get_equipped_item(slot_head)
-	if(istype(helmet) && (helmet.body_parts_covered & HEAD) && (helmet.item_flags & ITEM_FLAG_AIRTIGHT) && !isnull(helmet.max_pressure_protection))
+	/*if(istype(helmet) && (helmet.body_parts_covered & HEAD) && (helmet.item_flags & ITEM_FLAG_AIRTIGHT))
 		var/datum/extension/armor/armor_datum = get_extension(helmet, /datum/extension/armor)
 		if(armor_datum)
 			damage_mod -= armor_datum.get_blocked(BRUTE, damage_flags)
-
+	*/
 	var/total_damage = 0
 	for(var/i in 1 to 3)
 		var/damage = min(W.force*1.5, 20)*damage_mod
-		affecting.apply_damage(damage, W.damtype, BP_HEAD, damage_flags, armor_pen = 100, used_weapon=W)
+		affecting.apply_damage(damage, W.damtype, BP_HEAD, /*damage_flags, armor_pen = 100, */used_weapon=W)
 		total_damage += damage
 
 
@@ -279,7 +279,7 @@
 /datum/grab/normal/proc/attack_tendons(var/obj/item/grab/G, var/obj/item/W, var/mob/living/carbon/human/user, var/target_zone)
 	var/mob/living/carbon/human/affecting = G.affecting
 
-	if(!user.skill_check(SKILL_COMBAT, SKILL_ADEPT))
+	if(G.assailant.stats.getStat(STAT_ROB) < STAT_LEVEL_ADEPT)
 		return
 
 	if(user.a_intent != I_HURT)

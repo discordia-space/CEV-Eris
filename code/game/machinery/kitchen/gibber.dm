@@ -109,11 +109,11 @@
 	user <<  SPAN_DANGER("You [emagged ? "disable" : "enable"] the gibber safety guard.")
 	return 1
 
-/obj/machinery/gibber/affect_grab(var/mob/user, var/mob/target, var/state)
-	if(state < GRAB_NECK)
-		user << SPAN_DANGER("You need a better grip to do that!")
+/obj/machinery/gibber/grab_attack(var/obj/item/grab/G)
+	if(G.force_danger())
+		G.assailant << SPAN_DANGER("You need a better grip to do that!")
 		return FALSE
-	move_into_gibber(user, target)
+	move_into_gibber(G.assailant, G.affecting)
 	return TRUE
 
 /obj/machinery/gibber/MouseDrop_T(mob/target, mob/user)

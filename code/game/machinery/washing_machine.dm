@@ -110,10 +110,10 @@
 /obj/machinery/washing_machine/update_icon()
 	icon_state = "wm_[state][panel]"
 
-/obj/machinery/washing_machine/affect_grab(var/mob/user, var/mob/target)
+/obj/machinery/washing_machine/grab_attack(var/obj/item/grab/G)
 	if((state == 1) && hacked)
-		if(ishuman(user) && iscorgi(target))
-			target.forceMove(src)
+		if(ishuman(G.assailant) && iscorgi(G.affecting))
+			G.affecting.forceMove(src)
 			state = 3
 			return TRUE
 

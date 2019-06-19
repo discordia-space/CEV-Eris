@@ -292,7 +292,7 @@
 		stop_pulling()
 
 	if(istype(l_hand, /obj/item/grab))
-		var/obj/item/weapon/lgrab = l_hand
+		var/obj/item/grab/lgrab = l_hand
 		if(lgrab.affecting)
 			visible_message(SPAN_DANGER("[user] has broken [src]'s grip on [lgrab.affecting]!"))
 			success = 1

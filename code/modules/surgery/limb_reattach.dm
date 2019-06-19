@@ -51,7 +51,7 @@
 
 /datum/surgery_step/limb/connect/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/E = target.get_organ(target_zone)
-	return E && !E.is_stump() && (E.status & ORGAN_DESTROYED)
+	return E && !E.is_stump() && (E.status & ORGAN_BROKEN)
 
 /datum/surgery_step/limb/connect/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/E = target.get_organ(target_zone)
@@ -62,10 +62,10 @@
 	var/obj/item/organ/external/E = target.get_organ(target_zone)
 	user.visible_message(SPAN_NOTICE("[user] has connected tendons and muscles in [target]'s [E.amputation_point] with [tool]."),	\
 	SPAN_NOTICE("You have connected tendons and muscles in [target]'s [E.amputation_point] with [tool]."))
-	E.status &= ~ORGAN_DESTROYED
+	E.status &= ~ORGAN_BROKEN
 	if(E.children)
 		for(var/obj/item/organ/external/C in E.children)
-			C.status &= ~ORGAN_DESTROYED
+			C.status &= ~ORGAN_BROKEN
 	target.update_body()
 	target.updatehealth()
 	target.UpdateDamageIcon()

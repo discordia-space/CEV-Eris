@@ -86,19 +86,19 @@
 
 
 //--------------------------------------------------GRAB---------------------------------------------------------
-/obj/screen/grab
+/*/obj/screen/grab
 	name = "grab"
 
 /obj/screen/grab/Click()
-	var/obj/item/weapon/grab/G = master
-	G.s_click(src)
+	var/obj/item/grab/G = master
+	G.attack_self(src)
 	return TRUE
 
 /obj/screen/grab/attack_hand()
 	return
 
 /obj/screen/grab/attackby()
-	return
+	return*/
 //-----------------------------------------------GRAB END---------------------------------------------------------
 
 

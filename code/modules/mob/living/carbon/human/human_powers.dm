@@ -102,16 +102,10 @@
 		src.Weaken(5)
 		return
 
-	var/use_hand = "left"
 	if(l_hand)
 		if(r_hand)
 			src << SPAN_DANGER("You need to have one hand free to grab someone.")
 			return
-		else
-			use_hand = "right"
-
-	
-
 
 	if(src.make_grab(src, T))
 		src.visible_message(SPAN_WARNING("<b>\The [src]</b> seizes [T] aggressively!"))

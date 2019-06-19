@@ -478,24 +478,24 @@
 		src.OCCUPANT = null //Testing this as a backup sanity test
 	return
 
-/obj/machinery/suit_storage_unit/affect_grab(var/mob/user, var/mob/target)
+/obj/machinery/suit_storage_unit/grab_attack(var/obj/item/grab/G)
 	if(!isopen)
-		user << SPAN_WARNING("The unit's doors are shut.")
+		G.assailant << SPAN_WARNING("The unit's doors are shut.")
 		return
 	if(!ispowered || isbroken)
-		user << SPAN_WARNING("The unit is not operational.")
+		G.assailant << SPAN_WARNING("The unit is not operational.")
 		return
 	if(OCCUPANT || HELMET || SUIT) //Unit needs to be absolutely empty
-		user << SPAN_WARNING("The unit's storage area is too cluttered.")
+		G.assailant << SPAN_WARNING("The unit's storage area is too cluttered.")
 		return
-	visible_message("[user] starts putting [target] into the Suit Storage Unit.")
-	if(do_after(user, 20, src) && Adjacent(target))
-		target.reset_view(src)
-		target.forceMove(src)
-		OCCUPANT = target
+	visible_message("[G.assailant] starts putting [G.affecting] into the Suit Storage Unit.")
+	if(do_after(G.assailant, 20, src) && Adjacent(G.affecting))
+		G.affecting.reset_view(src)
+		G.affecting.forceMove(src)
+		OCCUPANT = G.affecting
 		isopen = 0 //close ittt
 
-		add_fingerprint(user)
+		add_fingerprint(G.assailant)
 		updateUsrDialog()
 		update_icon()
 		return TRUE
@@ -634,23 +634,23 @@
 /obj/machinery/suit_cycler/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/suit_cycler/affect_grab(var/mob/user, var/mob/target)
+/obj/machinery/suit_cycler/grab_attack(var/obj/item/grab/G)
 	if(locked)
-		user << SPAN_DANGER("The suit cycler is locked.")
+		G.assailant << SPAN_DANGER("The suit cycler is locked.")
 		return
 
 	if(contents.len)
-		user << SPAN_DANGER("There is no room inside the cycler for [target].")
+		G.assailant << SPAN_DANGER("There is no room inside the cycler for [G.affecting].")
 		return
 
-	visible_message(SPAN_NOTICE("[user] starts putting [target] into the suit cycler."))
+	visible_message(SPAN_NOTICE("[G.assailant] starts putting [G.affecting] into the suit cycler."))
 
-	if(do_after(user, 20) && Adjacent(target))
-		target.reset_view(src)
-		target.forceMove(src)
-		occupant = target
+	if(do_after(G.assailant, 20) && Adjacent(G.affecting))
+		G.affecting.reset_view(src)
+		G.affecting.forceMove(src)
+		occupant = G.affecting
 
-		add_fingerprint(user)
+		add_fingerprint(G.assailant)
 		updateUsrDialog()
 		return TRUE
 

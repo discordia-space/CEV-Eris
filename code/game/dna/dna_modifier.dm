@@ -102,15 +102,15 @@
 	src.add_fingerprint(usr)
 	return
 
-/obj/machinery/dna_scannernew/affect_grab(var/mob/user, var/mob/target)
+/obj/machinery/dna_scannernew/grab_attack(var/obj/item/grab/G)
 	if (src.occupant)
-		user << SPAN_WARNING("The scanner is already occupied!")
+		G.assailant << SPAN_WARNING("The scanner is already occupied!")
 		return
-	if (target.abiotic())
-		user << SPAN_WARNING("The subject cannot have abiotic items on.")
+	if (G.affecting.abiotic())
+		G.assailant << SPAN_WARNING("The subject cannot have abiotic items on.")
 		return
-	put_in(target)
-	src.add_fingerprint(user)
+	put_in(G.affecting)
+	src.add_fingerprint(G.assailant)
 	return TRUE
 
 

@@ -71,7 +71,3 @@
 		G.handle_resist()
 	if(resisting)
 		visible_message("<span class='danger'>[src] resists!</span>")
-
-/mob/living/proc/escape_buckle()
-	if(buckled)
-		buckled.user_unbuckle_mob(src)

@@ -331,10 +331,10 @@
 		var/mob/M = target
 		if(M.grabbed_by.len)
 			for(var/obj/item/grab/G in M.grabbed_by)
-			if(G.state_name == NORM_NECK)
-				damage_mult = 2.5
-			else if(G.force_danger())
-				damage_mult = 1.5
+				if(G.get_state_name() == NORM_NECK)
+					damage_mult = 2.5
+				else if(G.force_danger())
+					damage_mult = 1.5
 	P.damage *= damage_mult
 
 /obj/item/weapon/gun/proc/process_accuracy(obj/projectile, mob/user, atom/target, dispersion)

@@ -390,8 +390,8 @@
 	set_occupant(null)
 
 
-/obj/machinery/cryopod/affect_grab(var/mob/user, var/mob/target)
-	try_put_inside(target, user)
+/obj/machinery/cryopod/grab_attack(var/obj/item/grab/G)
+	try_put_inside(G.affecting, G.assailant)
 	return TRUE
 
 /obj/machinery/cryopod/MouseDrop_T(var/mob/living/L, mob/living/user)

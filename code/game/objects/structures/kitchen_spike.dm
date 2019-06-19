@@ -12,16 +12,16 @@
 	var/meat_type
 	var/victim_name = "corpse"
 
-/obj/structure/kitchenspike/affect_grab(var/mob/user, var/mob/living/target)
+/obj/structure/kitchenspike/grab_attack(var/obj/item/grab/G)
 	if(occupied)
-		user << SPAN_DANGER("The spike already has something on it, finish collecting its meat first!")
+		G.assailant << SPAN_DANGER("The spike already has something on it, finish collecting its meat first!")
 	else
-		if(spike(target))
-			visible_message(SPAN_DANGER("[user] has forced [target] onto the spike, killing them instantly!"))
-			qdel(target)
+		if(spike(G.affecting))
+			visible_message(SPAN_DANGER("[G.assailant] has forced [G.affecting] onto the spike, killing them instantly!"))
+			qdel(G.affecting)
 			return TRUE
 		else
-			user << SPAN_DANGER("They are too big for the spike, try something smaller!")
+			G.assailant << SPAN_DANGER("They are too big for the spike, try something smaller!")
 
 /obj/structure/kitchenspike/proc/spike(var/mob/living/victim)
 

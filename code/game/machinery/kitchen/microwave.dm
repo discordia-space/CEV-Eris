@@ -171,8 +171,8 @@
 	..()
 	src.updateUsrDialog()
 
-/obj/machinery/microwave/affect_grab(var/mob/user, var/mob/target)
-	user << SPAN_WARNING("This is ridiculous. You can not fit \the [target] in this [src].")
+/obj/machinery/microwave/grab_attack(var/obj/item/grab/G)
+	G.assailant << SPAN_WARNING("This is ridiculous. You can not fit \the [G.affecting] in this [src].")
 	return FALSE
 
 /obj/machinery/microwave/attack_ai(mob/user as mob)

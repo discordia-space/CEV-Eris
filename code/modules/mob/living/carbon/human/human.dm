@@ -1046,6 +1046,8 @@ var/list/rank_prefix = list(\
 		else
 			dna.species = new_species
 
+	current_grab_type = all_grabobjects[GRAB_NORMAL]
+
 	// No more invisible screaming wheelchairs because of set_species() typos.
 	if(!all_species[new_species])
 		new_species = "Human"

@@ -88,15 +88,15 @@
 				qdel(src)
 				return
 
-/obj/structure/bed/affect_grab(var/mob/user, var/mob/target)
-	user.visible_message(SPAN_NOTICE("[user] attempts to buckle [target] into \the [src]!"))
-	if(do_after(user, 20, src) && Adjacent(target))
-		target.forceMove(loc)
+/obj/structure/bed/grab_attack(var/obj/item/grab/G)
+	G.assailant.visible_message(SPAN_NOTICE("[G.assailant] attempts to buckle [G.affecting] into \the [src]!"))
+	if(do_after(G.assailant, 20, src) && Adjacent(G.affecting))
+		G.affecting.forceMove(loc)
 		spawn(0)
-			if(buckle_mob(target))
-				target.visible_message(
-					SPAN_DANGER("[target] is buckled to [src] by [user]!"),
-					SPAN_DANGER("You are buckled to [src] by [user]!"),
+			if(buckle_mob(G.affecting))
+				G.affecting.visible_message(
+					SPAN_DANGER("[G.affecting] is buckled to [src] by [G.assailant]!"),
+					SPAN_DANGER("You are buckled to [src] by [G.assailant]!"),
 					SPAN_NOTICE("You hear metal clanking.")
 				)
 		return TRUE
@@ -139,11 +139,6 @@
 		user << "You remove the padding from \the [src]."
 		playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
 		remove_padding()
-	else if(istype(W, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = W
-		var/mob/living/affecting = G.affecting
-		if(user_buckle_mob(affecting, user))
-			qdel(W)
 
 	else if(!istype(W, /obj/item/weapon/bedsheet))
 		..()

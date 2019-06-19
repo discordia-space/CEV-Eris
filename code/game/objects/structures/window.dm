@@ -248,29 +248,29 @@
 		return
 	return 1
 
-/obj/structure/window/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
-	target.do_attack_animation(src, FALSE) //This is to visually create the appearance of the victim being bashed against the window
+/obj/structure/window/grab_attack(var/obj/item/grab/G)
+	G.affecting.do_attack_animation(src, FALSE) //This is to visually create the appearance of the victim being bashed against the window
 	//So we pass false on the use_item flag so it doesn't look like they hit the window with something
-	switch(state)
-		if(GRAB_PASSIVE)
-			visible_message(SPAN_WARNING("[user] slams [target] against \the [src]!"))
-			target.apply_damage(7)
+	switch(G.get_state_name())
+		if(NORM_PASSIVE)
+			visible_message(SPAN_WARNING("[G.assailant] slams [G.affecting] against \the [src]!"))
+			G.affecting.apply_damage(7)
 			hit(10)
-		if(GRAB_AGGRESSIVE)
-			visible_message(SPAN_DANGER("[user] bashes [target] against \the [src]!"))
+		if(NORM_AGGRESSIVE)
+			visible_message(SPAN_DANGER("[G.assailant] bashes [G.affecting] against \the [src]!"))
 			if(prob(50))
-				target.Weaken(1)
-			target.apply_damage(10)
+				G.affecting.Weaken(1)
+			G.affecting.apply_damage(10)
 			hit(15)
-		if(GRAB_NECK)
-			visible_message(SPAN_DANGER("<big>[user] crushes [target] against \the [src]!</big>"))
-			target.Weaken(5)
-			target.apply_damage(20)
+		if(NORM_NECK)
+			visible_message(SPAN_DANGER("<big>[G.assailant] crushes [G.affecting] against \the [src]!</big>"))
+			G.affecting.Weaken(5)
+			G.affecting.apply_damage(20)
 			hit(20)
-	admin_attack_log(user, target,
-		"Smashed [key_name(target)] against \the [src]",
-		"Smashed against \the [src] by [key_name(user)]",
-		"smashed [key_name(target)] against \the [src]."
+	admin_attack_log(G.assailant, G.affecting,
+		"Smashed [key_name(G.affecting)] against \the [src]",
+		"Smashed against \the [src] by [key_name(G.assailant)]",
+		"smashed [key_name(G.affecting)] against \the [src]."
 	)
 	sleep(5) //Allow a littleanimating time
 	return TRUE

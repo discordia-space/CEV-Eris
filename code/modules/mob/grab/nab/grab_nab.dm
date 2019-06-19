@@ -70,9 +70,11 @@
 	G.affecting.visible_message("<span class='danger'>[G.assailant] crushes [G.affecting]'s [damaging.name]!</span>")
 
 	if(prob(30))
-		G.affecting.apply_damage(max(attack_damage + 10, 15), BRUTE, hit_zone, DAM_SHARP, used_weapon = "organic punctures")
-		var/armor = 100 * G.affecting.get_blocked_ratio(hit_zone, BRUTE)
-		G.affecting.apply_effect(attack_damage, PAIN, armor)
+		G.affecting.apply_damage(max(attack_damage + 10, 15), BRUTE, hit_zone, sharp = TRUE, used_weapon = "organic punctures")	// TODO AFTER BAYMED's apply_damage rework restore this
+		G.affecting.pain(50)
+		//var/armor = 100 * G.affecting.get_blocked_ratio(hit_zone, BRUTE)
+		
+		//G.affecting.apply_effect(attack_damage, PAIN, armor)
 		G.affecting.visible_message("<span class='danger'>[G.assailant]'s spikes dig in painfully!</span>")
 	else
 		G.affecting.apply_damage(attack_damage, BRUTE, hit_zone, used_weapon = "crushing")
@@ -82,10 +84,10 @@
 
 // This causes the assailant to chew on the affecting mob.
 /datum/grab/nab/proc/masticate(var/obj/item/grab/G, var/attack_damage)
-	var/hit_zone = G.assailant.zone_sel.selecting
+	var/hit_zone = G.assailant.targeted_organ
 	var/obj/item/organ/external/damaging = G.affecting.get_organ(hit_zone)
 
-	G.affecting.apply_damage(attack_damage, BRUTE, hit_zone, DAM_SHARP|DAM_EDGE, used_weapon = "mandibles")
+	G.affecting.apply_damage(attack_damage, BRUTE, hit_zone, sharp = TRUE, edge = TRUE, used_weapon = "mandibles")	// TODO AFTER BAYMED
 	G.affecting.visible_message("<span class='danger'>[G.assailant] chews on [G.affecting]'s [damaging.name]!</span>")
 	playsound(get_turf(G.assailant), 'sound/weapons/bite.ogg', 25, 1, -1)
 

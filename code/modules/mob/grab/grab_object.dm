@@ -34,8 +34,8 @@
 	affecting = victim
 	if(!istype(affecting))
 		return INITIALIZE_HINT_QDEL
-	target_zone = assailant.zone_sel.selecting
-	assailant.remove_cloaking_source(assailant.species)
+	target_zone = assailant.targeted_organ
+//	assailant.remove_cloaking_source(assailant.species)
 
 	if(!can_grab())
 		return INITIALIZE_HINT_QDEL
@@ -45,7 +45,7 @@
 	var/obj/item/organ/O = get_targeted_organ()
 	SetName("[name] ([O.name])")
 	GLOB.dismembered_event.register(affecting, src, .proc/on_organ_loss)
-	GLOB.zone_selected_event.register(assailant.zone_sel, src, .proc/on_target_change)
+	GLOB.zone_selected_event.register(assailant.targeted_organ, src, .proc/on_target_change)
 
 /obj/item/grab/examine(var/user)
 	..()
@@ -65,10 +65,10 @@
 /obj/item/grab/attack(mob/M, mob/living/user)
 
 	// Relying on BYOND proc ordering isn't working, so go go ugly workaround.
-	if(ishuman(user) && affecting == M)
-		var/mob/living/carbon/human/H = user
-		if(H.check_psi_grab(src))
-			return
+//	if(ishuman(user) && affecting == M)
+//		var/mob/living/carbon/human/H = user
+//		if(H.check_psi_grab(src))
+//			return
 	// End workaround
 
 	current_grab.hit_with_grab(src)
@@ -99,7 +99,7 @@
 		affecting.reset_plane_and_layer()
 		affecting = null
 	if(assailant)
-		GLOB.zone_selected_event.unregister(assailant.zone_sel, src)
+		GLOB.zone_selected_event.unregister(assailant.targeted_organ, src)
 		assailant = null
 	return ..()
 
@@ -299,4 +299,7 @@
 	return current_grab.restrains
 
 /obj/item/grab/proc/resolve_openhand_attack()
-		return current_grab.resolve_openhand_attack(src)
+	return current_grab.resolve_openhand_attack(src)
+
+/obj/item/grab/proc/get_state_name()
+	return current_grab.state_name

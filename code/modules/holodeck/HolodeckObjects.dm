@@ -262,13 +262,13 @@
 	density = 1
 	throwpass = 1
 
-/obj/structure/holohoop/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
-	if(state == GRAB_PASSIVE)
-		user << SPAN_WARNING("You need a better grip to do that!")
+/obj/structure/holohoop/grab_attack(var/obj/item/grab/G)
+	if(!G.force_danger())
+		G.assailant << SPAN_WARNING("You need a better grip to do that!")
 		return FALSE
-	target.forceMove(src.loc)
-	target.Weaken(5)
-	visible_message(SPAN_WARNING("[user] dunks [target] into the [src]!"))
+	G.affecting.forceMove(src.loc)
+	G.affecting.Weaken(5)
+	visible_message(SPAN_WARNING("[G.assailant] dunks [G.affecting] into the [src]!"))
 	return TRUE
 
 /obj/structure/holohoop/attackby(obj/item/weapon/W as obj, mob/user as mob)

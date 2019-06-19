@@ -193,6 +193,18 @@
 /obj/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
 	return
 
+/obj/proc/damage_flags()
+	. = 0
+	if(has_edge(src))
+		. |= DAM_EDGE
+	if(is_sharp(src))
+		. |= DAM_SHARP
+		if(damtype == BURN)
+			. |= DAM_LASER
+
+/obj/proc/can_embed()
+	return is_sharp(src)
+
 /obj/proc/add_hearing()
 	hearing_objects |= src
 

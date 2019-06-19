@@ -698,3 +698,8 @@ its easier to just keep the beam vertical.
 	if(!L)
 		return null
 	return L.AllowDrop() ? L : L.drop_location()
+
+// Called when hitting the atom with a grab.
+// Will skip attackby() and afterattack() if returning TRUE.
+/atom/proc/grab_attack(var/obj/item/grab/G)
+	return FALSE

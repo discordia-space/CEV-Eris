@@ -65,11 +65,16 @@
 	var/amputation_point	// Descriptive string used in amputation.
 	var/dislocated = 0		// If you target a joint, you can dislocate the limb, impairing it's usefulness and causing pain
 	var/encased				// Needs to be opened with a saw to access the organs.
-
+	var/tendon_name = "tendon"         // Flavour text for Achilles tendon, etc.
+	
 	// Surgery vars.
 	var/open = 0
 	var/stage = 0
 	var/cavity = 0
+
+
+	// A bitfield for a collection of limb behavior flags.
+	var/limb_flags = ORGAN_FLAG_CAN_AMPUTATE | ORGAN_FLAG_CAN_BREAK
 
 /obj/item/organ/external/New(var/mob/living/carbon/holder,var/datum/organ_description/OD)
 	..(holder)
@@ -408,7 +413,7 @@ This function completely restores a damaged organ to perfect condition.
 
 //Determines if we even need to process this organ.
 /obj/item/organ/external/proc/need_process()
-	if(status & (ORGAN_CUT_AWAY|ORGAN_BLEEDING|ORGAN_BROKEN|ORGAN_DESTROYED|ORGAN_SPLINTED|ORGAN_DEAD|ORGAN_MUTATED))
+	if(status & (ORGAN_CUT_AWAY|ORGAN_BLEEDING|ORGAN_BROKEN|ORGAN_BROKEN|ORGAN_SPLINTED|ORGAN_DEAD|ORGAN_MUTATED))
 		return 1
 	if((brute_dam || burn_dam) && (robotic < ORGAN_ROBOT)) //Robot limbs don't autoheal and thus don't need to process when damaged
 		return 1
@@ -1023,3 +1028,13 @@ Note that amputating the affected organ does in fact remove the infection from t
 					flavor_text += "a ton of [wound]\s"
 		return english_list(flavor_text)
 
+/obj/item/organ/external/proc/jointlock(mob/attacker)
+	if(!can_feel_pain())
+		return
+
+	var/armor = 100 * owner.get_blocked_ratio(owner, BRUTE)
+	if(armor < 100)
+		to_chat(owner, "<span class='danger'>You feel extreme pain!</span>")
+
+		var/max_halloss = round(owner.species.total_health * 0.8 * ((100 - armor) / 100)) //up to 80% of passing out, further reduced by armour
+		add_pain(Clamp(0, max_halloss - owner.getHalLoss(), 30))

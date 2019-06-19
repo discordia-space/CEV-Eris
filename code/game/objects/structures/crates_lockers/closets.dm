@@ -340,9 +340,9 @@
 
 	return
 
-/obj/structure/closet/affect_grab(var/mob/living/user, var/mob/living/target)
+/obj/structure/closet/grab_attack(var/obj/item/grab/G)
 	if(src.opened)
-		MouseDrop_T(target, user)      //act like they were dragged onto the closet
+		MouseDrop_T(G.affecting, G.assailant)      //act like they were dragged onto the closet
 		return TRUE
 	return FALSE
 

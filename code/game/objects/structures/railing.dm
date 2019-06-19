@@ -13,7 +13,7 @@
 	var/broken = 0
 	var/health=70
 	var/maxhealth=70
-	//var/LeftSide = list(0,0,0)// Нужны для хранения данных
+	//var/LeftSide = list(0,0,0)// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	//var/RightSide = list(0,0,0)
 	var/check = 0
 
@@ -45,7 +45,7 @@
 		return !density
 	else
 		return 1
-//32 и 4 - в той же клетке
+//32 пїЅ 4 - пїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 /obj/structure/railing/examine(mob/user)
 	. = ..()
@@ -72,46 +72,46 @@
 	var/Rturn = turn(src.dir, -90)
 	var/Lturn = turn(src.dir, 90)
 
-	for(var/obj/structure/railing/R in src.loc)// Анализ клетки, где находится сам объект
-		if ((R.dir == Lturn) && R.anchored)//Проверка левой стороны
+	for(var/obj/structure/railing/R in src.loc)// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+		if ((R.dir == Lturn) && R.anchored)//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			//src.LeftSide[1] = 1
 			check |= 32
 			if (UpdateNeighbors)
 				R.update_icon(0)
-		if ((R.dir == Rturn) && R.anchored)//Проверка правой стороны
+		if ((R.dir == Rturn) && R.anchored)//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			//src.RightSide[1] = 1
 			check |= 2
 			if (UpdateNeighbors)
 				R.update_icon(0)
 
-	for (var/obj/structure/railing/R in get_step(src, Lturn))//Анализ левой клетки от направления объекта
+	for (var/obj/structure/railing/R in get_step(src, Lturn))//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if ((R.dir == src.dir) && R.anchored)
 			//src.LeftSide[2] = 1
 			check |= 16
 			if (UpdateNeighbors)
 				R.update_icon(0)
-	for (var/obj/structure/railing/R in get_step(src, Rturn))//Анализ правой клетки от направления объекта
+	for (var/obj/structure/railing/R in get_step(src, Rturn))//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if ((R.dir == src.dir) && R.anchored)
 			//src.RightSide[2] = 1
 			check |= 1
 			if (UpdateNeighbors)
 				R.update_icon(0)
 
-	for (var/obj/structure/railing/R in get_step(src, (Lturn + src.dir)))//Анализ передней-левой диагонали относительно направления объекта.
+	for (var/obj/structure/railing/R in get_step(src, (Lturn + src.dir)))//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		if ((R.dir == Rturn) && R.anchored)
 			check |= 64
 			if (UpdateNeighbors)
 				R.update_icon(0)
-	for (var/obj/structure/railing/R in get_step(src, (Rturn + src.dir)))//Анализ передней-правой диагонали относительно направления объекта.
+	for (var/obj/structure/railing/R in get_step(src, (Rturn + src.dir)))//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		if ((R.dir == Lturn) && R.anchored)
 			check |= 4
 			if (UpdateNeighbors)
 				R.update_icon(0)
 
 /*	for(var/obj/structure/railing/R in get_step(src, src.dir))
-		if ((R.dir == Lturn) && R.anchored)//Проверка левой стороны
+		if ((R.dir == Lturn) && R.anchored)//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			src.LeftSide[3] = 1
-		if ((R.dir == Rturn) && R.anchored)//Проверка правой стороны
+		if ((R.dir == Rturn) && R.anchored)//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			src.RightSide[3] = 1*/
 	//check <<"check: [check]"
 	//world << "dir = [src.dir]"
@@ -125,7 +125,7 @@
 		icon_state = "railing0"
 	else
 		icon_state = "railing1"
-		//левая сторона
+		//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (check & 32)
 			overlays += image ('icons/obj/railing.dmi', src, "corneroverlay")
 			//world << "32 check"
@@ -208,29 +208,29 @@
 		return 0
 	return 1
 
-/obj/structure/railing/affect_grab(var/mob/user, var/mob/living/target, var/state)
+/obj/structure/railing/grab_attack(var/obj/item/grab/G)
 	var/obj/occupied = turf_is_crowded()
 	if(occupied)
-		user << SPAN_DANGER("There's \a [occupied] in the way.")
+		G.assailant << SPAN_DANGER("There's \a [occupied] in the way.")
 		return
-	if (state < GRAB_AGGRESSIVE)
-		if(user.a_intent == I_HURT)
+	if (G.force_danger())
+		if(G.assailant.a_intent == I_HURT)
 			if(prob(15))
-				target.Weaken(5)
-			target.apply_damage(8, def_zone = BP_HEAD)
+				G.affecting.Weaken(5)
+			G.affecting.apply_damage(8, def_zone = BP_HEAD)
 			take_damage(8)
-			visible_message(SPAN_DANGER("[user] slams [target]'s face against \the [src]!"))
+			visible_message(SPAN_DANGER("[G.assailant] slams [G.affecting]'s face against \the [src]!"))
 			playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
 		else
-			user << SPAN_DANGER("You need a better grip to do that!")
+			G.assailant << SPAN_DANGER("You need a better grip to do that!")
 			return
 	else
-		if (get_turf(target) == get_turf(src))
-			target.forceMove(get_step(src, src.dir))
+		if (get_turf(G.affecting) == get_turf(src))
+			G.affecting.forceMove(get_step(src, src.dir))
 		else
-			target.forceMove(get_turf(src))
-		target.Weaken(5)
-		visible_message(SPAN_DANGER("[user] throws [target] over \the [src]!"))
+			G.affecting.forceMove(get_turf(src))
+		G.affecting.Weaken(5)
+		visible_message(SPAN_DANGER("[G.assailant] throws [G.affecting] over \the [src]!"))
 	return TRUE
 
 /obj/structure/railing/attackby(obj/item/I, mob/user)

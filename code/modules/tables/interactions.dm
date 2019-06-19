@@ -79,17 +79,17 @@
 	return ..()
 
 
-/obj/structure/table/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
+/obj/structure/table/grab_attack(var/obj/item/grab/G)
 	var/obj/occupied = turf_is_crowded()
 	if(occupied)
-		user << SPAN_DANGER("There's \a [occupied] in the way.")
+		G.assailant << SPAN_DANGER("There's \a [occupied] in the way.")
 		return
-	if(state < GRAB_AGGRESSIVE || target.loc==src.loc)
-		if(user.a_intent == I_HURT)
+	if(G.force_danger() || G.affecting.loc==src.loc)
+		if(G.assailant.a_intent == I_HURT)
 			if(prob(15))
-				target.Weaken(5)
-			target.apply_damage(8, def_zone = BP_HEAD)
-			visible_message(SPAN_DANGER("[user] slams [target]'s face against \the [src]!"))
+				G.affecting.Weaken(5)
+			G.affecting.apply_damage(8, def_zone = BP_HEAD)
+			visible_message(SPAN_DANGER("[G.assailant] slams [G.affecting]'s face against \the [src]!"))
 			if(material)
 				playsound(loc, material.tableslam_noise, 50, 1)
 			else
@@ -98,20 +98,20 @@
 			// Shards. Extra damage, plus potentially the fact YOU LITERALLY HAVE A PIECE OF GLASS/METAL/WHATEVER IN YOUR FACE
 			for(var/obj/item/weapon/material/shard/S in L)
 				if(prob(50))
-					target.visible_message(
-						SPAN_DANGER("\The [S] slices [target]'s face messily!"),
+					G.affecting.visible_message(
+						SPAN_DANGER("\The [S] slices [G.affecting]'s face messily!"),
 						SPAN_DANGER("\The [S] slices your face messily!")
 					)
-					target.apply_damage(10, def_zone = BP_HEAD)
+					G.affecting.apply_damage(10, def_zone = BP_HEAD)
 					if(prob(2))
-						target.embed(S, def_zone = BP_HEAD)
+						G.affecting.embed(S, def_zone = BP_HEAD)
 		else
-			user << SPAN_DANGER("You need a better grip to do that!")
+			G.assailant << SPAN_DANGER("You need a better grip to do that!")
 			return
 	else
-		target.forceMove(loc)
-		target.Weaken(5)
-		visible_message(SPAN_DANGER("[user] puts [target] on \the [src]."))
+		G.affecting.forceMove(loc)
+		G.affecting.Weaken(5)
+		visible_message(SPAN_DANGER("[G.assailant] puts [G.affecting] on \the [src]."))
 	return TRUE
 
 

@@ -68,18 +68,18 @@
 	src.add_fingerprint(usr)
 
 
-/obj/machinery/bodyscanner/affect_grab(var/mob/user, var/mob/target)
+/obj/machinery/bodyscanner/grab_attack(var/obj/item/grab/G)
 	if (src.occupant)
-		user << SPAN_NOTICE("The scanner is already occupied!")
+		G.assailant << SPAN_NOTICE("The scanner is already occupied!")
 		return
-	if(target.buckled)
-		user << SPAN_NOTICE("Unbuckle the subject before attempting to move them.")
+	if(G.affecting.buckled)
+		G.assailant << SPAN_NOTICE("Unbuckle the subject before attempting to move them.")
 		return
-	if(target.abiotic())
-		user << SPAN_NOTICE("Subject cannot have abiotic items on.")
+	if(G.affecting.abiotic())
+		G.assailant << SPAN_NOTICE("Subject cannot have abiotic items on.")
 		return
-	set_occupant(target)
-	src.add_fingerprint(user)
+	set_occupant(G.affecting)
+	src.add_fingerprint(G.assailant)
 	return TRUE
 
 /obj/machinery/bodyscanner/MouseDrop_T(var/mob/target, var/mob/user)

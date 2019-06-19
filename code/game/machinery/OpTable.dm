@@ -122,8 +122,8 @@
 
 	take_victim(usr,usr)
 
-/obj/machinery/optable/affect_grab(var/mob/user, var/mob/target)
-	take_victim(target,user)
+/obj/machinery/optable/grab_attack(var/obj/item/grab/G)
+	take_victim(G.affecting,G.assailant)
 	return TRUE
 
 /obj/machinery/optable/proc/check_table(mob/living/carbon/patient as mob)

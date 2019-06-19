@@ -173,10 +173,10 @@
 		user << SPAN_NOTICE("You hit the metal foam but bounce off it.")
 	return
 
-/obj/structure/foamedmetal/affect_grab(var/mob/living/user, var/mob/living/target)
-	target.forceMove(src.loc)
-	visible_message(SPAN_WARNING("[user] smashes [target] through the foamed metal wall."))
-	target.Weaken(5)
+/obj/structure/foamedmetal/grab_attack(var/obj/item/grab/G)
+	G.affecting.forceMove(src.loc)
+	visible_message(SPAN_WARNING("[G.assailant] smashes [G.affecting] through the foamed metal wall."))
+	G.affecting.Weaken(5)
 	qdel(src)
 	return TRUE
 

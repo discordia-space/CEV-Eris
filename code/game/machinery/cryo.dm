@@ -173,12 +173,12 @@
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	return 1 // update UIs attached to this object
 
-/obj/machinery/atmospherics/unary/cryo_cell/affect_grab(var/mob/user, var/mob/target)
-	for(var/mob/living/carbon/slime/M in range(1,target))
-		if(M.Victim == target)
-			user << "[target] will not fit into the cryo because they have a slime latched onto their head."
+/obj/machinery/atmospherics/unary/cryo_cell/grab_attack(var/obj/item/grab/G)
+	for(var/mob/living/carbon/slime/M in range(1,G.affecting))
+		if(M.Victim == G.affecting)
+			G.assailant << "[G.affecting] will not fit into the cryo because they have a slime latched onto their head."
 			return
-	return put_mob(target)
+	return put_mob(G.affecting)
 
 /obj/machinery/atmospherics/unary/cryo_cell/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
 	if(istype(W, /obj/item/weapon/reagent_containers/glass))

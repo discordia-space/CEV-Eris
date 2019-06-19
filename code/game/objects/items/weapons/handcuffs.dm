@@ -48,13 +48,13 @@
 	var/cuff_delay = 4 SECONDS
 	for (var/obj/item/grab/G in C.grabbed_by)
 		if (G.loc == user)
-			if(G.state_name == NORM_PASSIVE)
+			if(G.get_state_name() == NORM_PASSIVE)
 				cuff_delay -= 1 SECONDS //3
-			if(G.state_name == NORM_AGGRESSIVE)
+			if(G.get_state_name() == NORM_AGGRESSIVE)
 				cuff_delay /= 2 //1.5
-			if(G.state_name == NORM_NECK)
+			if(G.get_state_name() == NORM_NECK)
 				cuff_delay /= 2 //0.75
-			if(G.state_name == NORM_KILL)
+			if(G.get_state_name() == NORM_KILL)
 				cuff_delay = 0
 	place_handcuffs(C, user, cuff_delay)
 

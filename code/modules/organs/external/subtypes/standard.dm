@@ -17,6 +17,7 @@
 	cannot_amputate = 1
 	parent_organ = null
 	encased = "ribcage"
+	limb_flags = ORGAN_FLAG_GENDERED_ICON | ORGAN_FLAG_HEALS_OVERKILL | ORGAN_FLAG_CAN_BREAK
 
 /obj/item/organ/external/groin
 	name = "lower body"
@@ -31,6 +32,7 @@
 	amputation_point = "lumbar"
 	joint = "hip"
 	dislocated = -1
+	limb_flags = ORGAN_FLAG_CAN_AMPUTATE | ORGAN_FLAG_GENDERED_ICON | ORGAN_FLAG_CAN_BREAK
 
 /obj/item/organ/external/head
 	organ_tag = BP_HEAD
@@ -64,3 +66,50 @@
 				disfigure("brute")
 		if (burn_dam > 40)
 			disfigure("burn")
+
+
+/obj/item/organ/external/arm
+	organ_tag = BP_L_ARM
+	name = "left arm"
+	icon_name = "l_arm"
+	max_damage = 50
+	min_broken_damage = 30
+	w_class = ITEM_SIZE_NORMAL
+	body_part = ARM_LEFT
+	parent_organ = BP_CHEST
+	joint = "left elbow"
+	amputation_point = "left shoulder"
+	tendon_name = "palmaris longus tendon"
+	limb_flags = ORGAN_FLAG_CAN_AMPUTATE | ORGAN_FLAG_CAN_GRASP | ORGAN_FLAG_HAS_TENDON | ORGAN_FLAG_CAN_BREAK
+
+/obj/item/organ/external/arm/right
+	organ_tag = BP_R_ARM
+	name = "right arm"
+	icon_name = "r_arm"
+	body_part = ARM_RIGHT
+	joint = "right elbow"
+	amputation_point = "right shoulder"
+
+/obj/item/organ/external/leg
+	organ_tag = BP_L_LEG
+	name = "left leg"
+	icon_name = "l_leg"
+	max_damage = 50
+	min_broken_damage = 30
+	w_class = ITEM_SIZE_NORMAL
+	body_part = LEG_LEFT
+	icon_position = LEFT
+	parent_organ = BP_GROIN
+	joint = "left knee"
+	amputation_point = "left hip"
+	tendon_name = "cruciate ligament"
+	limb_flags = ORGAN_FLAG_CAN_AMPUTATE | ORGAN_FLAG_CAN_STAND | ORGAN_FLAG_HAS_TENDON | ORGAN_FLAG_CAN_BREAK
+
+/obj/item/organ/external/leg/right
+	organ_tag = BP_R_LEG
+	name = "right leg"
+	icon_name = "r_leg"
+	body_part = LEG_RIGHT
+	icon_position = RIGHT
+	joint = "right knee"
+	amputation_point = "right hip"

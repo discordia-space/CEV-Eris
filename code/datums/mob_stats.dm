@@ -70,6 +70,14 @@
 		return
 	return (getStat(statName, Pure) - otherMob.stats.getStat(statName, Pure))
 
+// return value from 0 to 1 based on value of stat, more stat value less return value
+// use this proc to get multiplier for decreasing delay time (exaple: "50 * getDelayMult(STAT_ROB, STAT_LEVEL_ADEPT)"  this will result in 5 seconds if stat STAT_ROB = 0 and result will be 0 if STAT_ROB = STAT_LEVEL_ADEPT)
+/datum/stat_holder/proc/getDelayMult(statName, statCap = STAT_LEVEL_MAX, Pure = null)
+	if(!statName)
+		return
+	return max(0,min(1,getStat(statName, Pure)/statCap))
+	
+
 /datum/stat_holder/proc/Clone()
 	var/datum/stat_holder/new_stat = new()
 	for (var/S in stat_list)

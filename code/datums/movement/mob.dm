@@ -307,18 +307,16 @@
 		step(mob, direction)
 
 	// Something with pulling things
-	var/extra_delay = HandleGrabs(direction, old_turf)
-	mob.add_move_cooldown(extra_delay)
+	var/extra_delay = 0
 
-	// TODO: Bay grab system
-	/*
-	for (var/obj/item/weapon/grab/G in mob)
+	for(var/obj/item/grab/G in mob)
+		extra_delay += max(0, G.grab_slowdown())
 		if (G.assailant_reverse_facing())
 			mob.set_dir(GLOB.reverse_dir[direction])
+			extra_delay += max(0, G.grab_slowdown()/3)
 		G.assailant_moved()
-	for (var/obj/item/weapon/grab/G in mob.grabbed_by)
-		G.adjust_position()
-	mob.moving = 0*/
+	mob.add_move_cooldown(extra_delay)
+	mob.moving = 0
 
 // Stop effect
 /datum/movement_handler/mob/grabbed/DoMove(var/direction, var/mob/mover)
@@ -329,9 +327,14 @@
 			return MOVEMENT_STOP
 		else
 			if(!mob.Adjacent(mover))
-				// TODO REMOVE GRABS
-				return MOVEMENT_STOP
+				for (var/obj/item/grab/G in mob.grabbed_by)
+					if(G.assailant == mover)
+						qdel(G)
+						break
+				return MOVEMENT_PROCEED
 			else
+				for (var/obj/item/grab/G in mob.grabbed_by)
+					G.adjust_position()
 				return MOVEMENT_PROCEED
 		return MOVEMENT_STOP
 	return MOVEMENT_PROCEED
@@ -345,11 +348,6 @@
 /datum/movement_handler/mob/movement/MayMove(var/mob/mover)
 	return IS_SELF(mover) &&  mob.moving ? MOVEMENT_STOP : MOVEMENT_PROCEED
 
-/datum/movement_handler/mob/movement/proc/HandleGrabs(var/direction, var/old_turf)
-	. = 0
-	for (var/obj/item/grab/G in mob)
-		. = max(., G.grab_slowdown())	// TODO: Bay grab system
-		G.adjust_position()
 
 /mob/proc/AdjustMovementDirection(var/direction)
 	. = direction

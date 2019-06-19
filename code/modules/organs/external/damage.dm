@@ -137,3 +137,8 @@
 
 	return update_damstate()
 
+/obj/item/organ/external/proc/sever_tendon()
+	if((limb_flags & ORGAN_FLAG_HAS_TENDON) && !BP_IS_ROBOTIC(src) && !(status & ORGAN_TENDON_CUT))
+		status |= ORGAN_TENDON_CUT
+		return TRUE
+	return FALSE
