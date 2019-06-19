@@ -18,7 +18,7 @@
 
 	firemodes = list(
 		SEMI_AUTO_NODELAY,
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    dispersion=null, icon="burst"),
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,     icon="burst"),
 		)
 
 /obj/item/weapon/gun/projectile/automatic/sol/proc/update_charge()
