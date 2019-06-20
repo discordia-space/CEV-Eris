@@ -329,3 +329,9 @@
 			blood_DNA = list()
 		blood_DNA[H.dna.unique_enzymes] = H.dna.b_type
 	STOP_PROCESSING(SSobj, src)
+
+/obj/item/organ/proc/is_usable()
+	return !(status & (ORGAN_CUT_AWAY|ORGAN_MUTATED|ORGAN_DEAD))
+
+/obj/item/organ/proc/can_feel_pain()
+	return (!BP_IS_ROBOTIC(src))

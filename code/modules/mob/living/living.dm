@@ -73,8 +73,8 @@ default behaviour is:
 
 			if(can_swap_with(tmob)) // mutual brohugs all around!
 				var/turf/oldloc = loc
-				forceMove(tmob.loc)
-				tmob.forceMove(oldloc)
+				DoMove(tmob.loc)
+				tmob.DoMove(oldloc)
 				now_pushing = FALSE
 				for(var/mob/living/carbon/slime/slime in view(1,tmob))
 					if(slime.Victim == tmob)
@@ -120,11 +120,8 @@ default behaviour is:
 						for(var/obj/structure/window/win in get_step(AM,t))
 							now_pushing = FALSE
 							return
-					step_glide(AM, t, glide_size)
-					if(ishuman(AM) && AM.grabbed_by)
-						for(var/obj/item/grab/G in AM.grabbed_by)
-							step_glide(G.assailant, get_dir(G.assailant, AM), glide_size)
-							G.adjust_position()
+					AM.DoMove(t, src, TRUE)
+					DoMove(t)
 				now_pushing = FALSE
 			return
 	return
@@ -807,3 +804,6 @@ default behaviour is:
 	if(QDELETED(G))
 		return 0
 	return 1
+
+/mob/living/proc/is_asystole()
+	return FALSE

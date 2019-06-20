@@ -46,6 +46,8 @@
 #define CE_PULSE      "xcardic" // increases or decreases heart rate
 #define CE_NOPULSE    "heartstop" // stops heartbeat
 #define CE_MIND    		 "mindbending"  // Stabilizes or wrecks mind. Used for hallucinations
+#define CE_BLOCKAGE	     "blockage"     // Gets in the way of blood circulation, higher the worse
+#define CE_OXYGENATED    "oxygen"       // Dexalin.
 
 // Reagent specific heat is not yet implemented, this is here for compatibility reasons
 #define SPECIFIC_HEAT_DEFAULT			200

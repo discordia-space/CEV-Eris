@@ -26,7 +26,7 @@
 	var/burst = 1
 	var/fire_delay = 6 	//delay after shooting before the gun can be used again
 	var/burst_delay = 2	//delay between shots, if firing in bursts
-	var/move_delay = 1
+	move_delay = 1
 	var/fire_sound = 'sound/weapons/Gunshot.ogg'
 
 	var/fire_sound_text = "gunshot"
@@ -262,7 +262,6 @@
 
 	//update timing
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
-	user.set_move_cooldown(move_delay)
 	next_fire_time = world.time + fire_delay
 
 	if(muzzle_flash)

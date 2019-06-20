@@ -13,28 +13,47 @@
 		return
 	. = AM.DoMove(direction, mover, FALSE)
 	if(!(. & MOVEMENT_HANDLED))
-		. = MOVEMENT_HANDLED
+		. = (MOVEMENT_HANDLED|MOVEMENT_STOP)
 		AM.relaymove(mover, direction)
 
 // Movement delay
 /datum/movement_handler/delay
-	var/delay = 1
 	var/next_move
 
-/datum/movement_handler/delay/New(var/host, var/delay)
-	..()
-	src.delay = max(1, delay)
+/datum/movement_handler/delay/DoMove(var/direction, var/atom/movable/mover)
+	/*
+	Overflow is used to prevent rounding errors, caused by the world time overshooting the next time we're allowed to move. This is inevitable
+	because the server fires events 10x per second when the user is holding down a movement key, meaning that your movement is anywhere up to 0.1
+	seconds later than it should have been.
+	This doesn't sound like much, but it causes a lot of lost total time when moving across the whole ship.
 
-/datum/movement_handler/delay/DoMove()
-	next_move = world.time + delay
+	Here, we store the overflow time and apply it as a discount to the next step's delay. This ensures that journey times are accurate over a distance
+	Any individual step can still be slightly slower than it should be, but the next one will compensate and errors won't compound
+	*/
+	var/overflow = next_move - world.time
+	if (overflow > 1 || overflow < 0)
+		overflow = 0
 
-/datum/movement_handler/delay/MayMove()
+	var/delay
+	if(IS_SELF(mover))
+		delay = host.movement_delay() - overflow
+	else
+		delay = min(mover.movement_delay(), host.movement_delay()) - overflow
+	SetDelay(delay)
+	host.set_glide_size(DELAY2GLIDESIZE(delay), 0)
+	
+	host.reset_movement_delay()
+
+/datum/movement_handler/delay/MayMove(var/mover, var/is_external)
+	if(IS_NOT_SELF(mover) && !host.buckle_drivable)
+		return MOVEMENT_PROCEED
 	return world.time >= next_move ? MOVEMENT_PROCEED : MOVEMENT_STOP
 
-// Relay self
-/datum/movement_handler/move_relay_self/DoMove(var/direction, var/mover)
-	host.relaymove(mover, direction)
-	return MOVEMENT_HANDLED
+/datum/movement_handler/delay/proc/SetDelay(var/delay)
+	next_move = max(next_move, world.time + delay)
+
+/datum/movement_handler/delay/proc/AddDelay(var/delay)
+	next_move += max(0, delay)
 
 /datum/movement_handler/basic/DoMove(var/direction, var/mover)
 	. = MOVEMENT_HANDLED
@@ -80,19 +99,21 @@
 	return MOVEMENT_PROCEED
 
 /datum/movement_handler/pulled/DoMove(var/direction, var/mover)
-	if(isliving(mover))
-		var/mob/living/L = mover
-		if(!host.Adjacent(L))
-			L.stop_pulling()
-			return MOVEMENT_STOP
-		else
-			host.set_glide_size(DELAY2GLIDESIZE(L.movement_delay()), 0)
+	if(host.pulledby)
+		if(!host.Adjacent(host.pulledby))
+			to_chat(host.pulledby, "<span class='notice'>You have lost your grip on [host]!</span>")
+			host.pulledby.stop_pulling()
 	return MOVEMENT_PROCEED
 
 /datum/movement_handler/pulled/MayMove(var/mover, var/is_external)
-	if(isliving(mover))
-		var/mob/living/L = mover
-		if(!host.Adjacent(L))
-			L.stop_pulling()
-			return MOVEMENT_STOP
+	return MOVEMENT_PROCEED
+
+// obstacle check
+/datum/movement_handler/obstacle/DoMove(var/direction, var/mover)
+	return MOVEMENT_PROCEED
+
+/datum/movement_handler/obstacle/MayMove(var/mover, var/is_external, var/direction)
+	var/turf/T = get_step(get_turf(host),direction)
+	if(istype(T) && T.density)
+		return MOVEMENT_STOP
 	return MOVEMENT_PROCEED

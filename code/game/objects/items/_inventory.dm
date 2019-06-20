@@ -85,7 +85,7 @@
 	if(!slot) return 0
 	if(!M) return 0
 
-	if(!canremove)
+	if(!canremove && !can_be_dropped_by_client(M))
 		return 0
 	if(!M.slot_is_accessible(slot, src, disable_warning? null : M))
 		return 0

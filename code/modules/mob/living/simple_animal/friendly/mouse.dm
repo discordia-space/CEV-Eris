@@ -253,7 +253,7 @@
 		face_atom(L)
 		L.attack_generic(src, 1, "bitten")
 		setClickCooldown(15)
-		set_move_cooldown(10)
+		set_movement_delay(10)
 
 /*
  * Mouse types

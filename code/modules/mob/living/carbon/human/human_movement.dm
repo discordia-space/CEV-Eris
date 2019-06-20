@@ -36,6 +36,11 @@
 		tally += (283.222 - bodytemperature) / 10 * 1.75
 	tally += max(2 * stance_damage, 0) //damaged/missing feet or legs is slow
 
+	for(var/obj/item/grab/G in src)
+		tally += max(0, G.grab_slowdown())
+		if (G.assailant_reverse_facing())
+			tally += max(0, G.grab_slowdown()/3)
+
 	return tally
 
 

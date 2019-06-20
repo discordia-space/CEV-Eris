@@ -158,7 +158,7 @@ Proc for attack log creation, because really why not
 
 /proc/get_exposed_defense_zone(var/atom/movable/target)
 	var/obj/item/grab/G = locate() in target
-	if(G && G.state_name == NORM_NECK) //dont know bout dat -> (works because mobs are currently not allowed to upgrade to NECK if they are grabbing two people.)
+	if(G && G.affecting == target && G.force_danger())
 		return pick(BP_ALL_LIMBS - list(BP_CHEST, BP_GROIN))
 	else
 		return pick(BP_CHEST, BP_GROIN)

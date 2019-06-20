@@ -7,7 +7,7 @@ var/const/BLOOD_VOLUME_OKAY =    75
 var/const/BLOOD_VOLUME_BAD =     60
 var/const/BLOOD_VOLUME_SURVIVE = 40
 
-/mob/living/carbon/human/var/datum/reagents/vessel // Container for blood and BLOOD ONLY. Do not transfer other chems here.
+
 /mob/living/carbon/human/var/var/pale = 0          // Should affect how mob sprite is drawn, but currently doesn't.
 
 //Initializes blood vessels
@@ -152,16 +152,6 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 		vessel.update_total()
 	..()
 
-//Gets human's own blood.
-/mob/living/carbon/proc/get_blood(datum/reagents/container)
-	var/datum/reagent/blood/res = locate() in container.reagent_list //Grab some blood
-	if(res) // Make sure there's some blood at all
-		if(res.data["donor"] != src) //If it's not theirs, then we look for theirs
-			for(var/datum/reagent/blood/D in container.reagent_list)
-				if(D.data["donor"] == src)
-					return D
-	return res
-
 proc/blood_incompatible(donor,receiver,donor_species,receiver_species)
 	if(!donor || !receiver) return 0
 
@@ -240,30 +230,12 @@ proc/blood_splatter(var/target,var/datum/reagent/blood/source,var/large)
 	return B
 
 //Percentage of maximum blood volume.
-/mob/living/carbon/human/proc/get_blood_volume()
+/mob/living/carbon/human/get_blood_volume()
 	return round((vessel.get_reagent_amount("blood")/species.blood_volume)*100)
 
 //Get fluffy numbers
-/mob/living/carbon/human/proc/get_blood_pressure()
+/mob/living/carbon/human/get_blood_pressure()
 	if(status_flags & FAKEDEATH)
 		return "[Floor(120+rand(-5,5))*0.25]/[Floor(80+rand(-5,5)*0.25)]"
 	var/blood_result = get_blood_circulation()
 	return "[Floor((120+rand(-5,5))*(blood_result/100))]/[Floor((80+rand(-5,5))*(blood_result/100))]"
-
-//Percentage of maximum blood volume, affected by the condition of circulation organs
-/mob/living/carbon/human/proc/get_blood_circulation()
-	var/obj/item/organ/internal/heart/heart = internal_organs_by_name[BP_HEART]
-	var/blood_volume = get_blood_volume()
-	if(!heart || (heart.pulse == PULSE_NONE && !(status_flags & FAKEDEATH) && !BP_IS_ROBOTIC(heart)))
-		blood_volume *= 0.25
-	else
-		var/pulse_mod = 1
-		switch(heart.pulse)
-			if(PULSE_SLOW)
-				pulse_mod *= 0.9
-			if(PULSE_FAST)
-				pulse_mod *= 1.1
-			if(PULSE_2FAST, PULSE_THREADY)
-				pulse_mod *= 1.25
-		blood_volume *= max(0.3, (1-(heart.damage / heart.max_damage))) * pulse_mod
-	return min(blood_volume, 100)

@@ -20,6 +20,6 @@ GLOBAL_DATUM_INIT(zone_selected_event, /decl/observ/zone_selected, new)
 *******************/
 
 /obj/screen/zone_sel/set_selected_zone(bodypart)
-	var/old_selecting = selecting
+	var/old_selecting = parentmob.targeted_organ
 	if((. = ..()))
-		GLOB.zone_selected_event.raise_event(src, old_selecting, selecting)
+		GLOB.zone_selected_event.raise_event(src, old_selecting, bodypart)

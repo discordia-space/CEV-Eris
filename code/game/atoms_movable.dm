@@ -3,7 +3,8 @@
 	var/last_move = null
 	var/anchored = 0
 	// var/elevation = 2    - not used anywhere
-	var/move_speed = 10
+	var/move_speed = 10		//current movespeed of an object
+	var/move_delay = MOVE_DELAY_BASE		//speed limit of an object if it moves by itself (mobs dont use this they use move_intent.move_delay)
 	var/l_move_time = 1
 	var/m_flag = 1
 	var/throwing = 0
@@ -15,6 +16,13 @@
 	var/mob/pulledby = null
 	var/item_state = null // Used to specify the item state for the on-mob overlays.
 	var/inertia_dir = 0
+	movement_handlers = list(
+		/datum/movement_handler/anchored,
+		/datum/movement_handler/delay,
+		/datum/movement_handler/obstacle,
+		/datum/movement_handler/basic,
+		/datum/movement_handler/pulled
+		)
 
 /atom/movable/Del()
 	if(isnull(gc_destroyed) && loc)
@@ -385,3 +393,16 @@
 /proc/step_glide(var/atom/movable/am, var/dir, var/glide_size_override)
 	am.set_glide_size(glide_size_override)
 	return step(am, dir)
+
+/atom/movable/proc/movement_delay()
+	return move_delay
+
+/atom/movable/proc/set_movement_delay(var/delay)
+	move_delay = delay
+
+/atom/movable/proc/add_movement_delay(var/delay)
+	move_delay += delay
+
+/atom/movable/proc/reset_movement_delay(var/delay)
+	if(move_delay != initial(move_delay))
+		move_delay = initial(move_delay)

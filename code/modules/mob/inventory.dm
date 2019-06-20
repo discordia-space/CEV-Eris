@@ -199,3 +199,16 @@
 		var/obj/item/I = entry
 		if(I.body_parts_covered & body_parts)
 			. += I
+
+// Returns the first item which covers any given body part
+/mob/proc/get_covering_equipped_item(var/body_parts)
+	for(var/entry in get_equipped_items())
+		var/obj/item/I = entry
+		if(I.body_parts_covered & body_parts)
+			return I
+
+//Same as get_covering_equipped_items, but using target zone instead of bodyparts flags
+/mob/living/carbon/human/proc/get_covering_equipped_item_by_zone(var/zone)
+	var/obj/item/organ/external/O = get_organ(zone)
+	if(O)
+		return get_covering_equipped_item(O.body_part)

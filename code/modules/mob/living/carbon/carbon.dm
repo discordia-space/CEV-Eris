@@ -275,18 +275,20 @@
 				var/start_T_descriptor = "<font color='#6b5d00'>[start_T] \[[start_T.x],[start_T.y],[start_T.z]\] ([start_T.loc])</font>"
 				var/end_T_descriptor = "<font color='#6b4400'>[start_T] \[[end_T.x],[end_T.y],[end_T.z]\] ([end_T.loc])</font>"
 				admin_attack_log(usr, M, "Threw the victim from [start_T_descriptor] to [end_T_descriptor].", "Was from [start_T_descriptor] to [end_T_descriptor].", "threw, from [start_T_descriptor] to [end_T_descriptor], ")
-
+	else if (istype(item, /obj/item/))
+		var/obj/item/I = item
+		itemsize = I.w_class
 
 	//Grab processing has a chance of returning null
 	if(item && src.unEquip(item, loc))
-		src.visible_message("\red [src] has thrown [item].")
+		src.visible_message("\red [src] has thrown [item].", range = min(itemsize*2,world.view))
 		if(incorporeal_move)
 			inertia_dir = 0
 		else if(!check_gravity() && !src.allow_spacemove()) // spacemove would return one with magboots, -1 with adjacent tiles
 			src.inertia_dir = get_dir(target, src)
 			step(src, inertia_dir)
 
-		item.throw_at(target, item.throw_range, item.throw_speed, src)
+		item.throw_at(target, throw_range, item.throw_speed, src)
 
 /mob/living/carbon/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	..()
@@ -388,3 +390,6 @@
 
 /mob/living/carbon/proc/has_appendage(var/limb_check)
 	return 0
+
+/mob/living/carbon/proc/need_breathe()
+	return TRUE

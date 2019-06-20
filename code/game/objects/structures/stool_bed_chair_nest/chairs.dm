@@ -197,9 +197,11 @@
 
 /obj/structure/bed/chair/office/light
 	icon_state = "officechair_white"
+	buckle_drivable = TRUE
 
 /obj/structure/bed/chair/office/dark
 	icon_state = "officechair_dark"
+	buckle_drivable = TRUE
 
 /obj/structure/bed/chair/office/New()
 	..()

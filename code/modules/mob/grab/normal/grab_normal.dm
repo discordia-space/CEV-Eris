@@ -177,11 +177,12 @@
 	else
 		attacker.visible_message("<span class='danger'>[attacker] thrusts \his head into [target]'s skull!</span>")
 
-	var/armor = target.get_blocked_ratio(BP_HEAD, BRUTE)
+	//var/armor = target.get_blocked_ratio(BP_HEAD, BRUTE)
 	target.apply_damage(damage, BRUTE, BP_HEAD, damage_flags)
 	attacker.apply_damage(10, BRUTE, BP_HEAD)
 
-	if(armor < 0.5 && target.headcheck(BP_HEAD) && prob(damage))
+	//if(armor < 0.5 && target.headcheck(BP_HEAD) && prob(damage))
+	if(target.headcheck(BP_HEAD) && prob(damage))
 		target.apply_effect(20, PARALYZE)
 		target.visible_message("<span class='danger'>[target] has been knocked out by [attacker].</span>")
 
@@ -252,7 +253,7 @@
 	var/damage_mod = 1
 	//var/damage_flags = W.damage_flags()
 	//presumably, if they are wearing a helmet that stops pressure effects, then it probably covers the throat as well
-	var/obj/item/clothing/head/helmet = affecting.get_equipped_item(slot_head)
+	//var/obj/item/clothing/head/helmet = affecting.get_equipped_item(slot_head)
 	/*if(istype(helmet) && (helmet.body_parts_covered & HEAD) && (helmet.item_flags & ITEM_FLAG_AIRTIGHT))
 		var/datum/extension/armor/armor_datum = get_extension(helmet, /datum/extension/armor)
 		if(armor_datum)

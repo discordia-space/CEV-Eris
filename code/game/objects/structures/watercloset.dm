@@ -93,7 +93,7 @@
 			SPAN_NOTICE("You start to give [G.affecting] a swirlie!")
 		)
 		swirlie = G.affecting
-		if (do_after(user, 30, src) || !Adjacent(G.affecting))
+		if (do_after(G.assailant, 30, src) || !Adjacent(G.affecting))
 			G.assailant.visible_message(
 				SPAN_DANGER("[G.assailant] gives [G.affecting] a swirlie!"),
 				SPAN_NOTICE("You give [G.affecting] a swirlie!"),

@@ -24,7 +24,7 @@
 	var/force_danger = 0						// If the grab is strong enough to be able to force someone to do something harmful to them.
 	var/restrains = 0							// If the grab acts like cuffs and prevents action from the victim.
 
-	var/grab_slowdown = 7
+	var/grab_slowdown = 4
 
 	var/shift = 0
 
@@ -185,6 +185,18 @@
 		if(EAST)
 			animate(affecting, pixel_x =-shift, pixel_y = 0, 5, 1, LINEAR_EASING)
 			G.draw_affecting_under()
+		if(NORTHEAST)
+			animate(affecting, pixel_x =-shift, pixel_y =-shift, 5, 1, LINEAR_EASING)
+			G.draw_affecting_under()
+		if(NORTHWEST)
+			animate(affecting, pixel_x = shift, pixel_y =-shift, 5, 1, LINEAR_EASING)
+			G.draw_affecting_under()
+		if(SOUTHEAST)
+			animate(affecting, pixel_x =-shift, pixel_y = shift, 5, 1, LINEAR_EASING)
+			G.draw_affecting_over()
+		if(SOUTHWEST)
+			animate(affecting, pixel_x = shift, pixel_y = shift, 5, 1, LINEAR_EASING)
+			G.draw_affecting_over()
 
 	affecting.reset_plane_and_layer()
 

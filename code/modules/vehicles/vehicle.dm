@@ -28,7 +28,7 @@
 	var/stat = 0
 	var/emagged = 0
 	var/powered = 0		//set if vehicle is powered and should use fuel when moving
-	var/move_delay = 1	//set this to limit the speed of the vehicle
+	move_delay = 1	//set this to limit the speed of the vehicle
 
 	var/passenger_allowed = 1
 

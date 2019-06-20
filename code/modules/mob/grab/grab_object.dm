@@ -19,7 +19,7 @@
 	var/target_zone
 	var/done_struggle = FALSE // Used by struggle grab datum to keep track of state.
 
-	item_flags = ITEM_FLAG_NO_BLUDGEON
+	item_flags = NOBLUDGEON
 	w_class = ITEM_SIZE_NO_CONTAINER
 /*
 	This section is for overrides of existing procs.
@@ -45,7 +45,7 @@
 	var/obj/item/organ/O = get_targeted_organ()
 	SetName("[name] ([O.name])")
 	GLOB.dismembered_event.register(affecting, src, .proc/on_organ_loss)
-	GLOB.zone_selected_event.register(assailant.targeted_organ, src, .proc/on_target_change)
+	GLOB.zone_selected_event.register(assailant.HUDneed["damage zone"], src, .proc/on_target_change)
 
 /obj/item/grab/examine(var/user)
 	..()
@@ -163,7 +163,7 @@
 /obj/item/grab/proc/init()
 	if(!assailant.put_in_active_hand(src))
 		return FALSE // This should succeed as we checked the hand, but if not we abort here.
-	affecting.UpdateLyingBuckledAndVerbStatus()
+	affecting.update_lying_buckled_and_verb_status()
 	affecting.grabbed_by += src // This is how we handle affecting being deleted.
 	adjust_position()
 	action_used()
@@ -185,7 +185,7 @@
 		return 0
 
 /obj/item/grab/proc/action_used()
-	assailant.remove_cloaking_source(assailant.species)
+	//assailant.remove_cloaking_source(assailant.species)
 	last_action = world.time
 	leave_forensic_traces()
 
@@ -198,9 +198,7 @@
 /obj/item/grab/proc/leave_forensic_traces()
 	var/obj/item/clothing/C = affecting.get_covering_equipped_item_by_zone(target_zone)
 	if(istype(C))
-		C.leave_evidence(assailant)
-		if(prob(50))
-			C.ironed_state = WRINKLES_WRINKLY
+		C.add_fingerprint(assailant)
 
 /obj/item/grab/proc/upgrade(var/bypass_cooldown = FALSE)
 	if(!check_upgrade_cooldown() && !bypass_cooldown)
@@ -222,7 +220,7 @@
 		current_grab = downgrab
 		update_icon()
 
-/obj/item/grab/on_update_icon()
+/obj/item/grab/update_icon()
 	if(current_grab.icon)
 		icon = current_grab.icon
 	if(current_grab.icon_state)
@@ -246,11 +244,18 @@
 /obj/item/grab/proc/adjust_position(var/force = 0)
 	if(force)	affecting.forceMove(assailant.loc)
 
+	if(!validate())
+		return
+	
+	current_grab.adjust_position(src)
+
+/obj/item/grab/proc/validate()
 	if(!assailant || !affecting || !assailant.Adjacent(affecting))
+		if(assailant && affecting)
+			to_chat(assailant, "<span class='notice'>You have lost your grip on [affecting]!</span>")
 		qdel(src)
-		return 0
-	else
-		current_grab.adjust_position(src)
+		return FALSE
+	return TRUE
 
 /obj/item/grab/proc/reset_position()
 	current_grab.reset_position(src)

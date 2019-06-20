@@ -1,8 +1,8 @@
-var/const/MOVEMENT_HANDLED = 0x0001 // If no further movement handling should occur after this
+var/const/MOVEMENT_HANDLED = 0x0001
 var/const/MOVEMENT_REMOVE  = 0x0002
 
 var/const/MOVEMENT_PROCEED = 0x0004
-var/const/MOVEMENT_STOP    = 0x0008
+var/const/MOVEMENT_STOP    = 0x0008  // If no further movement handling should occur after this
 
 #define INIT_MOVEMENT_HANDLERS \
 if(LAZYLEN(movement_handlers) && ispath(movement_handlers[1])) { \
@@ -81,44 +81,53 @@ if(LAZYLEN(movement_handlers) && ispath(movement_handlers[1])) { \
 #define SET_MOVER(X) X = X || src
 #define SET_IS_EXTERNAL(X) is_external = isnull(is_external) ? (mover != src) : is_external
 
-/atom/movable/proc/DoMove(var/direction, var/mob/mover, var/is_external)
+/atom/movable/proc/DoMove(var/directionOrTurf, var/mob/mover, var/is_external)
 	INIT_MOVEMENT_HANDLERS
 	SET_MOVER(mover)
 	SET_IS_EXTERNAL(mover)
+	
+	var/direction
+	if(isturf(directionOrTurf))
+		direction = get_dir(get_turf(src), directionOrTurf)
+	else
+		direction = directionOrTurf
+
 	if(debug)
 		world << "+++++++++++++"
 	for(var/mh in movement_handlers)
 		var/datum/movement_handler/movement_handler = mh
 		if(debug)
 			world << "[src] : [movement_handler.type] : mover [mover] : is_ext [is_external]"
-		if(movement_handler.MayMove(mover, is_external) & MOVEMENT_STOP)
+		if(movement_handler.MayMove(mover, is_external, direction) & MOVEMENT_STOP)
 			if(debug)
-				world << "STOPED : [src] : [movement_handler.type]"
+				world << "MAY STOPPED : [src] : [movement_handler.type]"
 				world << "-------------"
 			return MOVEMENT_HANDLED
 
 		. = movement_handler.DoMove(direction, mover, is_external)
 		if(. & MOVEMENT_REMOVE)
 			REMOVE_AND_QDEL(movement_handler)
+		if(. & MOVEMENT_STOP)
+			if(debug)
+				world << "STOPPED : [src] : [movement_handler.type]"
+				world << "-------------"
+			return MOVEMENT_HANDLED
 		if(. & MOVEMENT_HANDLED)
 			if(debug)
 				world << "HANDLED : [src] : [movement_handler.type]"
-				world << "-------------"
-			return
 	if(debug)
-		world << "NOTHING : [src]"
 		world << "-------------"
 
 // is_external means that something else (not inside us) is asking if we may move
 // This for example includes mobs bumping into each other
-/atom/movable/proc/MayMove(var/mob/mover, var/is_external)
+/atom/movable/proc/MayMove(var/mob/mover, var/is_external, var/direction)
 	INIT_MOVEMENT_HANDLERS
 	SET_MOVER(mover)
 	SET_IS_EXTERNAL(mover)
 
 	for(var/mh in movement_handlers)
 		var/datum/movement_handler/movement_handler = mh
-		var/may_move = movement_handler.MayMove(mover, is_external)
+		var/may_move = movement_handler.MayMove(mover, is_external, direction)
 		if(may_move & MOVEMENT_STOP)
 			return FALSE
 		if((may_move & (MOVEMENT_PROCEED|MOVEMENT_HANDLED)) == (MOVEMENT_PROCEED|MOVEMENT_HANDLED))
@@ -153,7 +162,7 @@ if(LAZYLEN(movement_handlers) && ispath(movement_handlers[1])) { \
 	return
 
 // Asks the handlers if the mob may move, ignoring destination, if attempting a DoMove()
-/datum/movement_handler/proc/MayMove(var/mob/mover, var/is_external)
+/datum/movement_handler/proc/MayMove(var/mob/mover, var/is_external, var/direction)
 	return MOVEMENT_PROCEED
 
 /*******

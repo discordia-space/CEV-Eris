@@ -108,7 +108,7 @@
 		else if (user)
 			//You hit a wall!
 			user.setClickCooldown(30)
-			user.set_move_cooldown(30)
+			user.set_movement_delay(30)
 			shake_camera(user, 1, 1)
 			playsound(T,"thud", 20, 1, -3)
 			user << SPAN_DANGER("There's not enough space for broad sweeps here!")

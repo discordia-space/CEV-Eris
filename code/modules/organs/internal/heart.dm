@@ -8,6 +8,7 @@
 	var/pulse = PULSE_NORM
 	var/heartbeat = 0
 	var/efficiency = 1
+	var/list/external_pump
 
 /obj/item/organ/internal/heart/Process()
 	if(owner)
@@ -98,3 +99,9 @@
 			owner.nutrition -= 10
 		else if(owner.nutrition >= 200)
 			owner.nutrition -= 3
+
+/obj/item/organ/internal/heart/proc/is_working()
+	if(!is_usable())
+		return FALSE
+
+	return pulse > PULSE_NONE || BP_IS_ROBOTIC(src) || (owner.status_flags & FAKEDEATH)

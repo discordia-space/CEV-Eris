@@ -51,6 +51,8 @@
 	var/list/implants = list()			// Currently implanted objects.
 	var/max_size = 0
 
+	var/pain = 0                       // How much the limb hurts.
+
 	var/list/drop_on_remove = null
 
 	var/obj/item/organ_module/active/module = null
@@ -66,7 +68,7 @@
 	var/dislocated = 0		// If you target a joint, you can dislocate the limb, impairing it's usefulness and causing pain
 	var/encased				// Needs to be opened with a saw to access the organs.
 	var/tendon_name = "tendon"         // Flavour text for Achilles tendon, etc.
-	
+
 	// Surgery vars.
 	var/open = 0
 	var/stage = 0
@@ -922,7 +924,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			return 1
 	return 0
 
-/obj/item/organ/external/proc/is_usable()
+/obj/item/organ/external/is_usable()
 	return !is_dislocated() && !(status & (ORGAN_MUTATED|ORGAN_DEAD))
 
 /obj/item/organ/external/proc/is_malfunctioning()
@@ -1032,9 +1034,74 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(!can_feel_pain())
 		return
 
-	var/armor = 100 * owner.get_blocked_ratio(owner, BRUTE)
-	if(armor < 100)
-		to_chat(owner, "<span class='danger'>You feel extreme pain!</span>")
+	//var/armor = 100 * owner.get_blocked_ratio(owner, BRUTE)
+	//if(armor < 100)
+	to_chat(owner, "<span class='danger'>You feel extreme pain!</span>")
 
-		var/max_halloss = round(owner.species.total_health * 0.8 * ((100 - armor) / 100)) //up to 80% of passing out, further reduced by armour
-		add_pain(Clamp(0, max_halloss - owner.getHalLoss(), 30))
+	var/max_halloss = round(owner.species.total_health * 0.8 * ((100 - armor) / 100)) //up to 80% of passing out, further reduced by armour
+	add_pain(Clamp(0, max_halloss - owner.getHalLoss(), 30))
+
+/obj/item/organ/external/proc/add_pain(var/amount)
+	if(!can_feel_pain())
+		pain = 0
+		return
+	var/last_pain = pain
+	pain = max(0,min(max_damage,pain+amount))
+	if(owner && ((amount > 15 && prob(20)) || (amount > 30 && prob(60))))
+		owner.emote("scream")
+	return pain-last_pain
+
+/obj/item/organ/external/proc/inspect(mob/user)
+	if(is_stump())
+		to_chat(user, "<span class='notice'>[owner] is missing that bodypart.</span>")
+		return
+
+	user.visible_message("<span class='notice'>[user] starts inspecting [owner]'s [name] carefully.</span>")
+	if(LAZYLEN(wounds))
+		to_chat(user, "<span class='warning'>You find [get_wounds_desc()]</span>")
+		/*var/list/stuff = list()
+		for(var/datum/wound/wound in wounds)
+			if(LAZYLEN(wound.embedded_objects))
+				stuff |= wound.embedded_objects
+		if(stuff.len)
+			to_chat(user, "<span class='warning'>There's [english_list(stuff)] sticking out of [owner]'s [name].</span>")*/
+	else
+		to_chat(user, "<span class='notice'>You find no visible wounds.</span>")
+
+	to_chat(user, "<span class='notice'>Checking skin now...</span>")
+	if(!do_mob(user, owner, 10))
+		to_chat(user, "<span class='notice'>You must stand still to check [owner]'s skin for abnormalities.</span>")
+		return
+
+	var/list/badness = list()
+	if(owner.shock_stage >= 30)
+		badness += "clammy and cool to the touch"
+	if(owner.getToxLoss() >= 25)
+		badness += "jaundiced"
+	if(owner.get_blood_oxygenation() <= 50)
+		badness += "turning blue"
+	if(owner.get_blood_circulation() <= 60)
+		badness += "very pale"
+	if(status & ORGAN_DEAD)
+		badness += "rotting"
+	if(!badness.len)
+		to_chat(user, "<span class='notice'>[owner]'s skin is normal.</span>")
+	else
+		to_chat(user, "<span class='warning'>[owner]'s skin is [english_list(badness)].</span>")
+
+	to_chat(user, "<span class='notice'>Checking bones now...</span>")
+	if(!do_mob(user, owner, 10))
+		to_chat(user, "<span class='notice'>You must stand still to feel [src] for fractures.</span>")
+		return
+
+	if(status & ORGAN_BROKEN)
+		to_chat(user, "<span class='warning'>The [encased ? encased : "bone in the [name]"] moves slightly when you poke it!</span>")
+		owner.custom_pain("Your [name] hurts where it's poked.",40, affecting = src)
+	else
+		to_chat(user, "<span class='notice'>The [encased ? encased : "bones in the [name]"] seem to be fine.</span>")
+
+	if(status & ORGAN_TENDON_CUT)
+		to_chat(user, "<span class='warning'>The tendons in [name] are severed!</span>")
+	if(dislocated == 2)
+		to_chat(user, "<span class='warning'>The [joint] is dislocated!</span>")
+	return 1

@@ -137,16 +137,14 @@
 			return M
 	return 0
 
-/mob/proc/movement_delay()
+/mob/movement_delay()
 	. = 0
-
 	if ((drowsyness > 0) && !MOVING_DELIBERATELY(src))
 		. += 6
 	if(lying) //Crawling, it's slower
 		. += 14 + (weakened)
 	. += move_intent.move_delay
-
-
+		
 /mob/proc/Life()
 //	if(organStructure)
 //		organStructure.ProcessOrgans()
@@ -723,7 +721,6 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 	set_dir(ndir)
 	if(buckled && buckled.buckle_movable)
 		buckled.set_dir(ndir)
-	set_move_cooldown(movement_delay())
 	return 1
 
 

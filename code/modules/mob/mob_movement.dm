@@ -10,11 +10,6 @@
 /mob
 	var/moving           = FALSE
 
-/mob/proc/set_move_cooldown(var/timeout)
-	var/datum/movement_handler/mob/delay/delay = GetMovementHandler(/datum/movement_handler/mob/delay)
-	if(delay)
-		delay.SetDelay(timeout)
-
 /mob/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return 1
 
@@ -26,11 +21,6 @@
 	else
 		return (!mover.density || !density || lying)
 	return
-
-/mob/proc/add_move_cooldown(var/timeout)
-	var/datum/movement_handler/mob/delay/delay = GetMovementHandler(/datum/movement_handler/mob/delay)
-	if(delay)
-		delay.AddDelay(timeout)
 
 /client/proc/client_dir(input, direction=-1)
 	return turn(input, direction*dir2angle(dir))
@@ -114,7 +104,9 @@
 /client/verb/drop_item()
 	set hidden = 1
 	if(!isrobot(mob) && mob.stat == CONSCIOUS && isturf(mob.loc))
-		return mob.drop_item()
+		var/obj/item/I = mob.get_active_hand()
+		if(I && I.can_be_dropped_by_client(mob))
+			mob.drop_item()
 	return
 
 //Called from space movement handler
@@ -220,24 +212,3 @@
 
 #undef DO_MOVE
 
-//This is an atom proc for the sake of vehicles and mechas
-//Attempts to return the expected total time in deciseconds, between this atom making moves
-//TODO: Fix this shit
-/atom/movable/proc/total_movement_delay()
-	return 0
-
-/mob/total_movement_delay()
-	var/delay = 0
-
-	if (MOVING_QUICKLY(src))
-		if(drowsyness > 0)
-			delay += 6
-		delay += 1
-	else
-		delay += 7
-	delay += movement_delay()
-
-	if (speed_factor && speed_factor != 1.0)
-		delay /= speed_factor
-
-	return delay
