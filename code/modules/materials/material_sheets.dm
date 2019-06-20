@@ -82,6 +82,11 @@
 		return
 	return ..()
 
+/obj/item/stack/material/add(var/extra)
+	..()
+	update_strings()
+
+
 /obj/item/stack/material/iron
 	name = "iron"
 	icon_state = "sheet-iron"
@@ -289,3 +294,19 @@
 	icon_state = "sheet-plasmarglass"
 	default_type = MATERIAL_RPLASMAGLASS
 	price_tag = 12
+
+/obj/item/stack/material/biomatter
+	name = "biomatter"
+	desc = "An another by-product of mob grinding. Feels soft and... Strange."
+	singular_name = "biomatter sheet"
+	icon_state = "sheet-biomatter"
+	default_type = MATERIAL_BIOMATTER
+	max_amount = 60
+	price_tag = 10
+
+/obj/item/stack/material/biomatter/random
+	rand_min = 5
+	rand_max = 25
+
+/obj/item/stack/material/biomatter/full
+	amount = 60

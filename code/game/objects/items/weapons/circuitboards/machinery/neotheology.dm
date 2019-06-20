@@ -134,3 +134,17 @@
 		/obj/item/weapon/stock_parts/manipulator = 2,
 		/obj/item/weapon/stock_parts/micro_laser = 2
 	)
+
+
+//Solidifier
+/obj/item/weapon/circuitboard/neotheology/solidifier
+	name = T_BOARD("biomatter solidifier")
+	build_path = /obj/machinery/biomatter_solidifier
+	board_type = "machine"
+	origin_tech = list(TECH_DATA = 2)
+	req_components = list(
+		/obj/item/weapon/stock_parts/matter_bin = 2,
+		/obj/item/weapon/stock_parts/manipulator = 2,
+		/obj/item/weapon/stock_parts/micro_laser = 1,
+		/obj/item/weapon/stock_parts/capacitor = 1
+	)
