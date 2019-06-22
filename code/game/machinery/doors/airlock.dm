@@ -613,7 +613,7 @@ There are 9 wires.
 		user = usr
 
 	if(wedged_item)
-		if(user && !wedged_item.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_PRYING, FAILCHANCE_ZERO, STAT_ROB))
+		if(user && !wedged_item.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_PRYING, FAILCHANCE_ZERO, list(STAT_MEC, STAT_ROB)))
 			return
 		wedged_item.forceMove(loc)
 		if(user)
@@ -977,7 +977,7 @@ There are 9 wires.
 	switch(tool_type)
 		if(QUALITY_PRYING)
 			if(!repairing)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY,  required_stat = STAT_ROB))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY,  required_stat = list(STAT_MEC, STAT_ROB)))
 					if(src.p_open && (operating < 0 || (!operating && welded && !src.arePowerSystemsOn() && density && (!src.locked || (stat & BROKEN)))) )
 						user << SPAN_NOTICE("You removed the airlock electronics!")
 

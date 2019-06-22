@@ -7,6 +7,7 @@
 	var/list/steps
 	var/flags
 	var/time = 30 //Used when no specific time is set
+	var/related_stats = list(STAT_COG)	// used to decrease crafting time for non tool steps
 
 /datum/craft_recipe/New()
 	var/step_definations = steps
@@ -16,7 +17,6 @@
 
 /datum/craft_recipe/proc/is_compelete(step)
 	return steps.len < step
-
 
 /datum/craft_recipe/proc/spawn_result(obj/item/craft/C, mob/living/user)
 	var/atom/movable/M = new result(get_turf(C))

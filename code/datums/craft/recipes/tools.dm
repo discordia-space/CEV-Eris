@@ -1,6 +1,7 @@
 /datum/craft_recipe/tool
 	category = "Tools"
 	time = 100
+	related_stats = list(STAT_COG)
 
 
 /datum/craft_recipe/tool/webtape

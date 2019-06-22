@@ -251,7 +251,10 @@
 	//Precalculate worktime here
 	var/time_to_finish = 0
 	if (base_time)
-		time_to_finish = base_time - get_tool_quality(required_quality) - user.stats.getStat(required_stat)
+		if(islist(required_stat))
+			time_to_finish = base_time - get_tool_quality(required_quality) - user.stats.getMaxStat(required_stat)
+		else
+			time_to_finish = base_time - get_tool_quality(required_quality) - user.stats.getStat(required_stat)
 
 		//Workspeed var, can be improved by upgrades
 		if (T && T.workspeed > 0)

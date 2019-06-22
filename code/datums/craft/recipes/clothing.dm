@@ -1,6 +1,7 @@
 /datum/craft_recipe/clothing
 	category = "Clothing"
 	time = 50
+	related_stats = list(STAT_COG)
 
 /datum/craft_recipe/clothing/cardborg_suit
 	name = "cardborg suit"

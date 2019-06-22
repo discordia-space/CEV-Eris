@@ -479,7 +479,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 		var/start = world.time
 		var/target_time = WORKTIME_FAST+ 2*integrity
 
-		if (I.use_tool(user, src, target_time, QUALITY_DIGGING, 1.3*integrity, list(STAT_SUM, STAT_MEC, STAT_ROB), forced_sound = WORKSOUND_PICKAXE))
+		if (I.use_tool(user, src, target_time, QUALITY_DIGGING, 1.3*integrity, list(STAT_MEC, STAT_ROB), forced_sound = WORKSOUND_PICKAXE))
 			//On success, the hole is destroyed!
 			user.visible_message("[user] collapses [src] with the [I]", "You collapse [src] with the [I]")
 

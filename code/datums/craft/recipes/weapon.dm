@@ -1,6 +1,7 @@
 /datum/craft_recipe/weapon
 	category = "Weapon"
 	time = 60
+	related_stats = list(STAT_COG)
 
 /datum/craft_recipe/weapon/baseballbat
 	name = "baseball bat"
