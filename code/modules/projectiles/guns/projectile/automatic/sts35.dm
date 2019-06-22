@@ -22,8 +22,8 @@
 	firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    dispersion=list(0.0, 0.6, 0.6), icon="burst"),
-		list(mode_name="short bursts",   burst=5, fire_delay=null, move_delay=6,    dispersion=list(0.6, 1.0, 1.0, 1.0, 1.2), icon="burst"),
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,     icon="burst"),
+		list(mode_name="short bursts",   burst=5, fire_delay=null, move_delay=6,     icon="burst"),
 		)
 
 /obj/item/weapon/gun/projectile/automatic/sts35/update_icon(var/ignore_inhands)

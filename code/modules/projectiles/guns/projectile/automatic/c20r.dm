@@ -25,13 +25,13 @@
 	firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    dispersion=list(0.0, 0.6, 0.6), icon="burst"),
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,     icon="burst"),
 		)
 
 	firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    dispersion=list(0.0, 0.6, 0.6), icon="burst"),
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,     icon="burst"),
 		)
 
 /obj/item/weapon/gun/projectile/automatic/c20r/update_icon()

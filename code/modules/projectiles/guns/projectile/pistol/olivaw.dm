@@ -15,8 +15,8 @@
 	recoil = 0.4 //low-caliber peashooter, but more complicated and robust than giskard so less than normal recoil
 
 	firemodes = list(
-		list(mode_name="semiauto",       burst=1, fire_delay=1.2, move_delay=null, dispersion=null,				icon="semi"),
-		list(mode_name="2-round bursts", burst=2, fire_delay=0.2, move_delay=4,    dispersion=list(0.8, 1.0),	icon="burst"),
+		list(mode_name="semiauto",       burst=1, fire_delay=1.2, move_delay=null, 				icon="semi"),
+		list(mode_name="2-round bursts", burst=2, fire_delay=0.2, move_delay=4,    	icon="burst"),
 		)
 
 /obj/item/weapon/gun/projectile/olivaw/update_icon()

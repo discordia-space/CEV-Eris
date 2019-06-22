@@ -20,15 +20,15 @@
 	firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
-		list(mode_name="3-round bursts", burst=3, fire_delay=null,     dispersion=list(0.0, 0.6, 1.0), icon="burst"),
-		list(mode_name="short bursts",   burst=5, fire_delay=null,     dispersion=list(0.6, 1.0, 1.0, 1.0, 1.2), icon="burst"),
+		list(mode_name="3-round bursts", burst=3, fire_delay=null,     icon="burst"),
+		list(mode_name="short bursts",   burst=5, fire_delay=null,      icon="burst"),
 		)
 
 
 //Automatic firing
 //Todo: Way more checks and safety here
 /datum/firemode/automatic
-	settings = list(burst = 1, suppress_delay_warning = TRUE, dispersion=list(0.6, 1.0, 1.0, 1.0, 1.2))
+	settings = list(burst = 1, suppress_delay_warning = TRUE, dispersion=null)
 	//The full auto clickhandler we have
 	var/datum/click_handler/fullauto/CH = null
 

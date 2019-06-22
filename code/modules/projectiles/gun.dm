@@ -34,7 +34,6 @@
 	var/recoil_buildup = 0.2 //How quickly recoil builds up
 
 	var/muzzle_flash = 3
-	var/list/dispersion = list(0)
 	var/requires_two_hands
 	var/dual_wielding
 	var/wielded_icon = "gun_wielded"
@@ -64,6 +63,7 @@
 	var/obj/item/weapon/silencer/silenced = null //The installed silencer, if any
 	var/silencer_type = null //The type of silencer that could be installed in us, if we don't have one
 	var/fire_sound_silenced = 'sound/weapons/Gunshot_silenced.wav' //Firing sound used when silenced
+	var/datum/timedevent/recoil_timer //Allows for recoil buildup, this is reset when you don't fire your gun for N seconds (affected by vig)
 
 /obj/item/weapon/gun/get_item_cost(export)
 	if(export)
@@ -225,14 +225,6 @@
 	user.setClickCooldown(shoot_time) //no clicking on things while shooting
 	next_fire_time = world.time + shoot_time
 
-	var/held_disp_mod = 0
-	if(requires_two_hands)
-		if((user.l_hand == src && user.r_hand) || (user.r_hand == src && user.l_hand))
-			held_disp_mod = 3
-
-	if(dual_wielding)
-		held_disp_mod = 6
-
 	//actually attempt to shoot
 	var/turf/targloc = get_turf(target) //cache this in case target gets deleted during shooting, e.g. if it was a securitron that got destroyed.
 	for(var/i in 1 to burst)
@@ -241,8 +233,7 @@
 			handle_click_empty(user)
 			break
 
-		var/disp = dispersion[min(i, dispersion.len)] + held_disp_mod
-		process_accuracy(projectile, user, target, disp)
+		process_accuracy(projectile, user, target)
 
 		projectile.multiply_projectile_damage(damage_multiplier)
 
@@ -312,11 +303,27 @@
 
 		if(muzzle_flash)
 			set_light(muzzle_flash)
+	//We've successfully fired a shot! Now we add recoil, and add a delay to remove the recoil (2s, affected by vig)
+	recoil += recoil_buildup*10 //Course wanted noticeable recoil. EX: 0.2 buildup * 10 = 2
+	var/skill_offset = user.stats.getStat(STAT_VIG)/50 //For example, IH have 40 VIG so this translates into a 0.8s cooldown reduction,meaning they can fire double as fast. Feel free to change this, Course!
+	var/recoil_reset_time = 20 //After you fire your shot, you must wait 2 seconds for it to become accurate again
+	recoil_reset_time -= skill_offset
+	recoil -= skill_offset //People with VIG are better at controlling sprays
 
+	if(!recoil_timer || QDELETED(recoil_timer)) //If there is not already an active recoil timer, make a new one
+		addtimer(CALLBACK(src, .proc/reset_recoil), recoil_reset_time)
+	else //There is already a recoil timer, so add onto its reset time.
+		recoil_timer.timeToRun += recoil_reset_time
 	if(recoil)
 		update_cursor(user)
 	update_icon()
 
+/obj/item/weapon/gun/proc/reset_recoil() //Clear all our recoil, CSGO style
+	var/mob/living/M = loc
+	if(istype(M) && recoil)
+		update_cursor(M) //Show that their recoil has diminished
+	recoil = 0
+	recoil_timer = null //Remove the timer object's reference to avoid null pointer
 
 /obj/item/weapon/gun/proc/process_point_blank(obj/projectile, mob/user, atom/target)
 	var/obj/item/projectile/P = projectile
@@ -339,7 +346,7 @@
 				damage_mult = 1.5
 	P.damage *= damage_mult
 
-/obj/item/weapon/gun/proc/process_accuracy(obj/projectile, mob/user, atom/target, dispersion)
+/obj/item/weapon/gun/proc/process_accuracy(obj/projectile, mob/user, atom/target, dispersion) //Applies the actual bullet spread
 	var/obj/item/projectile/P = projectile
 	if(!istype(P))
 		return
