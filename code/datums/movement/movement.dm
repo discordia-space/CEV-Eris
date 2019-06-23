@@ -13,6 +13,7 @@ if(LAZYLEN(movement_handlers) && ispath(movement_handlers[1])) { \
 		new_handlers += new path(arglist(arguments)); \
 	} \
 	movement_handlers= new_handlers; \
+	reset_movement_delay(); \
 }
 
 #define REMOVE_AND_QDEL(X) LAZYREMOVE(movement_handlers, X); qdel(X);
@@ -91,7 +92,7 @@ if(LAZYLEN(movement_handlers) && ispath(movement_handlers[1])) { \
 		direction = get_dir(get_turf(src), directionOrTurf)
 	else
 		direction = directionOrTurf
-
+	
 	if(debug)
 		world << "+++++++++++++"
 	for(var/mh in movement_handlers)
@@ -102,7 +103,7 @@ if(LAZYLEN(movement_handlers) && ispath(movement_handlers[1])) { \
 			if(debug)
 				world << "MAY STOPPED : [src] : [movement_handler.type]"
 				world << "-------------"
-			return MOVEMENT_HANDLED
+			return
 
 		. = movement_handler.DoMove(direction, mover, is_external)
 		if(. & MOVEMENT_REMOVE)
@@ -111,7 +112,7 @@ if(LAZYLEN(movement_handlers) && ispath(movement_handlers[1])) { \
 			if(debug)
 				world << "STOPPED : [src] : [movement_handler.type]"
 				world << "-------------"
-			return MOVEMENT_HANDLED
+			return
 		if(. & MOVEMENT_HANDLED)
 			if(debug)
 				world << "HANDLED : [src] : [movement_handler.type]"

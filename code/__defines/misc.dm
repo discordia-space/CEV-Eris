@@ -77,6 +77,13 @@
 
 #define DEFAULT_JOB_TYPE /datum/job/assistant
 
+// Vending machinery
+#define CAT_NORMAL 1
+#define CAT_HIDDEN 2  // also used in corresponding wires/vending.dm
+#define CAT_COIN   4
+
+#define CUSTOM_VENDOMAT_MODELS list("Generic" = "generic", "Security" = "sec", "Electronics" = "cart", "Research" = "robotics", "Medical" = "med", "Engineering" = "engivend", "Engineering 2" = "engi", "Tools" = "tool", "Shady" = "sovietsoda", "Fridge" = "smartfridge", "Alcohol" = "boozeomat", "Frozen Star" = "weapon", "NeoTheo" = "teomat", "Asters Power Cells" = "powermat", "Asters Disks" = "discomat")
+
 
 //Area flags, possibly more to come
 #define AREA_FLAG_RAD_SHIELDED 1 // shielded from radiation, clearly
@@ -214,3 +221,6 @@
 
  //Preference save/load cooldown. This is in deciseconds.
 #define PREF_SAVELOAD_COOLDOWN 4 //Should be sufficiently hard to achieve without a broken mouse or autoclicker while still fulfilling its intended goal.
+
+// do_after() animation defines
+#define DO_AFTER_ANIMATION_SHAKING "shaking"

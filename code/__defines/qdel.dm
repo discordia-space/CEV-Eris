@@ -20,7 +20,7 @@
 
 // Delete "item" and nullify var, where it was.
 #define QDEL_NULL(item) if(item) { qdel(item); item = null }
-
+#define QDEL_NULL_LIST(item) if(item) { for(var/y in item) { qdel(y) } ; item = null }
 /**
  * Delete `item` after `time` passed.
  * Return `id` for timer, so deletion process could be stopped.

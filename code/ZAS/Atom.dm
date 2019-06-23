@@ -7,25 +7,56 @@
 
 	return (!density || !height || air_group)
 
+// if mover can pass turf coming from target turf
 /turf/CanPass(atom/movable/mover, turf/target, height=1.5,air_group=0)
-	if(!target) return 0
+	if(!target)
+		return 0
 
-	if(istype(mover)) // turf/Enter(...) will perform more advanced checks
-		return !density
+	if(target.blocks_air||blocks_air)
+		return 0
+	
+	if(istype(mover))
+		//First, check objects to block exit that are not on the border
+		for(var/obj/obstacle in target)
+			if(!(obstacle.flags & ON_BORDER) && (mover != obstacle) && (mover != obstacle))
+				if(!obstacle.CheckExit(mover, src))
+					if(mover.debug)
+						world << "first : obstacle is [obstacle]"
+					mover.Bump(obstacle, 1)
+					if(!mover.canPush(obstacle, get_dir(target, src)))
+						return 0
 
-	else // Now, doing more detailed checks for air movement and air group formation
-		if(target.blocks_air||blocks_air)
-			return 0
+		//Now, check objects to block exit that are on the border
+		for(var/obj/border_obstacle in target)
+			if((border_obstacle.flags & ON_BORDER) && (mover != border_obstacle) && (mover != border_obstacle))
+				if(!border_obstacle.CheckExit(mover, src))
+					if(mover.debug)
+						world << "second : obstacle is [border_obstacle]"
+					mover.Bump(border_obstacle, 1)
+					if(!mover.canPush(border_obstacle, get_dir(target, src)))
+						return 0
 
-		for(var/obj/obstacle in src)
-			if(!obstacle.CanPass(mover, target, height, air_group))
-				return 0
-		if(target != src)
-			for(var/obj/obstacle in target)
-				if(!obstacle.CanPass(mover, src, height, air_group))
-					return 0
+		//Next, check objects to block entry that are on the border
+		for(var/obj/border_obstacle in src)
+			if(border_obstacle.flags & ON_BORDER)
+				if(!border_obstacle.CanPass(mover, mover.loc, 1, 0) && (mover != border_obstacle))
+					if(mover.debug)
+						world << "third : obstacle is [border_obstacle]"
+					mover.Bump(border_obstacle, 1)
+					if(!mover.canPush(border_obstacle, get_dir(target, src)))
+						return 0
 
-		return 1
+		//Finally, check objects/mobs to block entry that are not on the border
+		for(var/atom/movable/obstacle in src)
+			if(!(obstacle.flags & ON_BORDER))
+				if(!obstacle.CanPass(mover, mover.loc, 1, 0) && (mover != obstacle))
+					if(mover.debug)
+						world << "forth : obstacle is [obstacle]"
+					mover.Bump(obstacle, 1)
+					if(!mover.canPush(obstacle, get_dir(target, src)))
+						return 0
+
+	return 1
 
 //Convenience function for atoms to update turfs they occupy
 /atom/movable/proc/update_nearby_tiles(need_rebuild)

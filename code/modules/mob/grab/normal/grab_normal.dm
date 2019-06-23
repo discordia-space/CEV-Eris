@@ -31,6 +31,10 @@
 	var/mob/living/carbon/human/affecting = G.affecting
 	var/mob/living/carbon/human/assailant = G.assailant
 
+	if(assailant.stats.getStat(STAT_ROB) < STAT_LEVEL_BASIC)
+		to_chat(assailant, "<span class='notice'>You are not robust enough to pin people.</span>")
+		return
+
 	if(!G.attacking && !affecting.lying)
 
 		affecting.visible_message("<span class='notice'>[assailant] is trying to pin [affecting] to the ground!</span>")
@@ -56,8 +60,10 @@
 	var/mob/living/carbon/human/assailant = G.assailant
 	var/mob/living/carbon/human/affecting = G.affecting
 
-	if(assailant.stats.getStat(STAT_ROB) < STAT_LEVEL_ADEPT)
-		return
+	if(assailant.stats.getStat(STAT_ROB) < STAT_LEVEL_BASIC)
+		if(assailant.stats.getStat(STAT_TGH) < STAT_LEVEL_ADEPT)
+			to_chat(assailant, "<span class='notice'>You are not robust enough to be able to jointlock.</span>")
+			return
 
 	if(!O)
 		to_chat(assailant, "<span class='warning'>[affecting] is missing that body part!</span>")
@@ -87,8 +93,10 @@
 	var/mob/living/carbon/human/assailant = G.assailant
 	var/mob/living/carbon/human/affecting = G.affecting
 
-	if(assailant.stats.getStat(STAT_ROB) < STAT_LEVEL_ADEPT)
-		return
+	if(assailant.stats.getStat(STAT_TGH) < STAT_LEVEL_BASIC)
+		if(assailant.stats.getStat(STAT_ROB) < STAT_LEVEL_ADEPT)
+			to_chat(assailant, "<span class='notice'>You are not tough enough to be able to dislocate limbs.</span>")
+			return
 
 	if(!O)
 		to_chat(assailant, "<span class='warning'>[affecting] is missing that body part!</span>")
@@ -159,13 +167,10 @@
 	var/mob/living/carbon/human/attacker = G.assailant
 	var/mob/living/carbon/human/target = G.affecting
 
-	if(attacker.stats.getStat(STAT_ROB) < STAT_LEVEL_BASIC)
-		return
-
 	if(target.lying)
 		return
 
-	var/damage = 20
+	var/damage = 30 - (10 * (attacker.stats.getDelayMult(STAT_TGH)))
 	var/obj/item/clothing/hat = attacker.head
 	var/damage_flags = 0
 	if(istype(hat))
@@ -280,7 +285,8 @@
 /datum/grab/normal/proc/attack_tendons(var/obj/item/grab/G, var/obj/item/W, var/mob/living/carbon/human/user, var/target_zone)
 	var/mob/living/carbon/human/affecting = G.affecting
 
-	if(G.assailant.stats.getStat(STAT_ROB) < STAT_LEVEL_ADEPT)
+	if(G.assailant.stats.getStat(STAT_BIO) < STAT_LEVEL_BASIC)
+		to_chat(G.assailant, "<span class='notice'>You are lacking biological knowledge to cut tendons.</span>")
 		return
 
 	if(user.a_intent != I_HURT)

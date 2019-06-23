@@ -146,6 +146,7 @@
 /obj/structure/bed/chair/office
 	anchored = 0
 	buckle_movable = 1
+	move_delay = 3
 
 /obj/structure/bed/chair/office/update_icon()
 	return
@@ -158,14 +159,10 @@
 /obj/structure/bed/chair/office/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	. = ..()
 	if(buckled_mob)
-		var/mob/living/occupant = buckled_mob
-		occupant.buckled = null
-		occupant.Move(src.loc, glide_size_override=glide_size)
-		occupant.buckled = src
-		if (occupant && (src.loc != occupant.loc))
+		if (src.loc != buckled_mob.loc)
 			if (propelled)
 				for (var/mob/O in src.loc)
-					if (O != occupant)
+					if (O != buckled_mob)
 						Bump(O)
 			else
 				unbuckle_mob()
@@ -198,6 +195,14 @@
 /obj/structure/bed/chair/office/light
 	icon_state = "officechair_white"
 	buckle_drivable = TRUE
+
+/obj/structure/bed/chair/office/light/New()
+	. = ..()
+	AddMovementHandler(/datum/movement_handler/buckle_handler/moveableWithLegs, /datum/movement_handler/delay)
+
+/obj/structure/bed/chair/office/dark/New()
+	. = ..()
+	AddMovementHandler(/datum/movement_handler/buckle_handler/moveableWithLegs, /datum/movement_handler/delay)
 
 /obj/structure/bed/chair/office/dark
 	icon_state = "officechair_dark"

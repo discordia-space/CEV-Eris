@@ -202,7 +202,8 @@ Proc for attack log creation, because really why not
 	if (progbar)
 		qdel(progbar)
 
-/proc/do_after(mob/user, delay, atom/target = null, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_DEFAULT)
+// anti_incapacitation_flags does interrupt if they are not present, for example if mob stands up
+/proc/do_after(mob/user, delay, atom/target = null, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_DEFAULT, var/anti_incapacitation_flags = null, var/animationData = null)
 	if(!user)
 		return 0
 	var/atom/target_loc = null
@@ -228,12 +229,13 @@ Proc for attack log creation, because really why not
 	var/endtime = world.time + delay
 	var/starttime = world.time
 	. = 1
+	var/lastAnimated = 0
 	while (world.time < endtime)
 		sleep(1)
 		if (progress)
 			progbar.update(world.time - starttime)
 
-		if(!user || user.incapacitated(incapacitation_flags) || user.loc != original_loc)
+		if(!user || user.incapacitated(incapacitation_flags) || user.loc != original_loc || !user.incapacitated(anti_incapacitation_flags))
 			. = 0
 			break
 
@@ -245,6 +247,14 @@ Proc for attack log creation, because really why not
 			if(user.get_active_hand() != holding)
 				. = 0
 				break
+		// TODO: Add more animations
+		if(is_associative(animationData) && world.time >= lastAnimated + animationData["delay"])
+			lastAnimated = world.time
+			switch(animationData["type"])
+				if(DO_AFTER_ANIMATION_SHAKING)
+					if(target)
+						target.shake_animation(animationData["intensity"])
+					
 
 	if (progbar)
 		qdel(progbar)

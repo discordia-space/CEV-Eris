@@ -20,13 +20,14 @@
 
 
 
-/mob/living/silicon/robot/movement_delay()
-	var/tally = ..()
-	tally += speed //This var is a placeholder
+/mob/living/silicon/robot/update_movement_delays()
+	..()
+	var/value = 0
+	value += speed //This var is a placeholder
 	if(module_active && istype(module_active,/obj/item/borg/combat/mobility)) //And so is this silly check
-		tally-=1
-	tally /= speed_factor
-	return tally
+		value-=1
+	value /= speed_factor
+	adjust_movement_delay(DELAY_ROBOT, value)
 
 
 /mob/living/silicon/robot/SelfMove(turf/n, direct)

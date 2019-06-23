@@ -57,14 +57,17 @@
 
 	var/list/move_speed = list(1, 1, 1, 2, 2, 3)
 	for(var/i in 1 to 6)
+		set_movement_delay(move_speed[i])
 		if(C) C.propelled = (6-i)
-		O.Move(get_step(user,movementdirection), movementdirection)
-		sleep(move_speed[i])
+		O.DoMove(movementdirection, src, TRUE)
+		sleep(get_movement_delay())
 
 	//additional movement
 	for(var/i in 1 to 3)
-		O.Move(get_step(user,movementdirection), movementdirection)
-		sleep(3)
+		set_movement_delay(i)
+		O.DoMove(movementdirection, src, TRUE)
+		sleep(get_movement_delay())
+	reset_movement_delay()
 
 /obj/item/weapon/extinguisher/afterattack(var/atom/target, var/mob/user, var/flag)
 	//TODO; Add support for reagents in water.

@@ -375,19 +375,20 @@
 	effective_force -= resistance
 	.=..(O, user, effective_force, hit_zone)
 
-/mob/living/simple_animal/movement_delay()
-	var/tally = MOVE_DELAY_BASE //Incase I need to add stuff other than "speed" later
+/mob/living/simple_animal/update_movement_delays()
+	..()
+	var/value
 
-	tally += speed
+	value += speed
 	if(purge)//Purged creatures will move more slowly. The more time before their purge stops, the slower they'll move.
-		if(tally <= 0)
-			tally = 1
-		tally *= purge
+		if(value <= 0)
+			value = 1
+		value *= purge
 
 	if (!nutrition)
-		tally += 4
+		value += 4
 
-	return tally
+	adjust_movement_delay(DELAY_SIMPLE_ANIMAL, value)
 
 /mob/living/simple_animal/Stat()
 	. = ..()

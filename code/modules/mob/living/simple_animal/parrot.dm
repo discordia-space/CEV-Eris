@@ -502,7 +502,7 @@
  * Procs
  */
 
-/mob/living/simple_animal/parrot/movement_delay()
+/mob/living/simple_animal/parrot/update_movement_delays()
 	if(client && stat == CONSCIOUS && parrot_state != "parrot_fly")
 		icon_state = "parrot_fly"
 	return ..()

@@ -40,11 +40,12 @@
 
 	pass_flags = PASSTABLE
 	holder_type = /obj/item/weapon/holder
+
 /datum/species/monkey/handle_npc(var/mob/living/carbon/human/H)
 	if(H.stat != CONSCIOUS)
 		return
 	if(prob(33) && H.canmove && isturf(H.loc) && !H.pulledby) //won't move if being pulled
-		step(H, pick(cardinal))
+		H.DoMove(pick(cardinal))
 	if(prob(1))
 		H.emote(pick("scratch","jump","roll","tail"))
 

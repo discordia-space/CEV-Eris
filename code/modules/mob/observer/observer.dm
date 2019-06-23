@@ -14,6 +14,11 @@ var/const/GHOST_IMAGE_ALL = ~GHOST_IMAGE_NONE
 	status_flags = GODMODE
 	var/ghost_image_flag = GHOST_IMAGE_DARKNESS
 	var/image/ghost_image = null //this mobs ghost image, for deleting and stuff
+	movement_handlers = list(
+	/datum/movement_handler/delay,
+	/datum/movement_handler/mob/stop_effect,
+	/datum/movement_handler/mob/movement,
+	)
 
 /mob/observer/can_fall()
 	return FALSE

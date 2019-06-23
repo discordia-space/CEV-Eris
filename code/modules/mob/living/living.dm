@@ -45,6 +45,8 @@ default behaviour is:
 		return FALSE
 
 /mob/living/Bump(atom/movable/AM, yes)
+	..()
+	/*
 	spawn(0)
 		if ((!( yes ) || now_pushing) || !loc)
 			return
@@ -73,8 +75,9 @@ default behaviour is:
 
 			if(can_swap_with(tmob)) // mutual brohugs all around!
 				var/turf/oldloc = loc
-				DoMove(tmob.loc)
-				tmob.DoMove(oldloc)
+				if(DoMove(tmob.loc,tmob,TRUE))
+					spawn()
+						tmob.DoMove(oldloc,src,TRUE)
 				now_pushing = FALSE
 				for(var/mob/living/carbon/slime/slime in view(1,tmob))
 					if(slime.Victim == tmob)
@@ -120,11 +123,70 @@ default behaviour is:
 						for(var/obj/structure/window/win in get_step(AM,t))
 							now_pushing = FALSE
 							return
-					AM.DoMove(t, src, TRUE)
-					DoMove(t)
+					if(AM.MayMove(src,TRUE,t))
+						temporary_movement_delay_adjustment("pushing",1,-get_movement_delay()/2) // we need it only for one tick to push atom and move self
+						if(AM.DoMove(t, src, TRUE))
+							set_next_move(0)
+							DoMove(t)
+					// resets next_move so mob will be able to move
 				now_pushing = FALSE
 			return
+			*/
 	return
+
+/mob/living/update_movement_delays()
+	..()
+	var/value = 0
+	if(lying) //Crawling, it's slower
+		value += 14 + (weakened)
+	adjust_movement_delay(DELAY_LIVING, value)
+
+/atom/movable/proc/canPush(var/atom/movable/target, var/direction)
+	if(!istype(target))
+		return FALSE
+
+	if(!target.density || !density)
+		return FALSE
+
+	if(target.HasMovementHandler())
+		if(!target.MayMove(src,TRUE,direction))
+			return FALSE
+	else
+		if (target.anchored)
+			return FALSE
+	if(now_pushing)
+		return FALSE
+
+	return TRUE
+
+/obj/canPush(var/atom/movable/target, var/direction)
+	if(!..())
+		return FALSE
+	if(!inertia_dir)
+		return FALSE
+	return TRUE
+
+/mob/living/canPush(var/atom/movable/target, var/direction)
+	if(!..())
+		return FALSE
+	if(!(status_flags & CANPUSH))
+		return FALSE
+	if(isliving(target))
+		var/mob/living/L = target
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
+			if(FAT in L.mutations)
+				if(prob(40) && !(FAT in src.mutations))
+					to_chat(src, SPAN_DANGER("You fail to push [H]'s fat ass out of the way."))
+					return FALSE
+		if((L.r_hand && istype(L.r_hand, /obj/item/weapon/shield/riot)) || (L.l_hand && istype(L.l_hand, /obj/item/weapon/shield/riot)))
+			if(stats.getStatDifference(STAT_TGH, target) < STAT_LEVEL_BASIC/2)
+				if (!(world.time % 5))
+					to_chat(src, SPAN_DANGER("You are not tough enough to push past [L]'s [L.r_hand]."))
+					return FALSE
+				else
+					to_chat(L, SPAN_DANGER("You can't hold back the onslaught of [src]!"))
+	return TRUE
 
 /proc/swap_density_check(var/mob/swapper, var/mob/swapee)
 	var/turf/T = get_turf(swapper)
@@ -137,6 +199,8 @@ default behaviour is:
 			return TRUE
 
 /mob/living/proc/can_swap_with(var/mob/living/tmob)
+	if(!istype(tmob))
+		return FALSE
 	if(tmob.buckled || buckled)
 		return FALSE
 	//BubbleWrap: people in handcuffs are always switched around as if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
@@ -459,107 +523,6 @@ default behaviour is:
 
 /mob/living/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	. = ..()
-	/*
-	if (restrained())
-		stop_pulling()
-
-	var/t7 = 1
-	if (restrained())
-		for(var/mob/living/M in range(src, 1))
-			if ((M.pulling == src && M.stat == 0 && !( M.restrained() )))
-				t7 = null
-	if ((t7 && (pulling && ((get_dist(src, pulling) <= 1 || pulling.loc == loc) && (moving)))))
-		var/turf/T = loc
-		. = ..()
-
-		if (pulling && pulling.loc)
-			if(!(isturf(pulling.loc)))
-				stop_pulling()
-				return
-
-		/////
-		if(pulling && pulling.anchored)
-			stop_pulling()
-			return
-
-		if (!restrained())
-			var/diag = get_dir(src, pulling)
-			if ((diag - 1) & diag)
-			else
-				diag = null
-			if ((get_dist(src, pulling) > 1 || diag))
-				if (isliving(pulling))
-					var/mob/living/M = pulling
-					var/ok = 1
-					if (locate(/obj/item/weapon/grab, M.grabbed_by))
-						if (prob(75))
-							var/obj/item/weapon/grab/G = pick(M.grabbed_by)
-							if (istype(G, /obj/item/weapon/grab))
-								for(var/mob/O in viewers(M, null))
-									O.show_message(text("\red [] has been pulled from []'s grip by []", G.affecting, G.assailant, src), 1)
-								//G = null
-								qdel(G)
-						else
-							ok = 0
-						if (locate(/obj/item/weapon/grab, M.grabbed_by.len))
-							ok = 0
-					if (ok)
-						var/atom/movable/t = M.pulling
-						M.stop_pulling()
-
-						if(!istype(M.loc, /turf/space))
-							var/area/A = get_area(M)
-							if(A.has_gravity)
-								//this is the gay blood on floor shit -- Added back -- Skie
-								if (M.lying && (prob(M.getBruteLoss() / 6)))
-									var/turf/location = M.loc
-									if (istype(location, /turf/simulated))
-										location.add_blood(M)
-								//pull damage with injured people
-									if(prob(25))
-										M.adjustBruteLoss(1)
-										visible_message("<span class='danger'>\The [M]'s [M.isSynthetic() ? "state worsens": "wounds open more"] from being dragged!</span>")
-								if(M.pull_damage())
-									if(prob(25))
-										M.adjustBruteLoss(2)
-										visible_message("<span class='danger'>\The [M]'s [M.isSynthetic() ? "state" : "wounds"] worsen terribly from being dragged!</span>")
-										var/turf/location = M.loc
-										if (istype(location, /turf/simulated))
-											location.add_blood(M)
-											if(ishuman(M))
-												var/mob/living/carbon/human/H = M
-												var/blood_volume = round(H.vessel.get_reagent_amount("blood"))
-												if(blood_volume > 0)
-													H.vessel.remove_reagent("blood", 1)
-
-
-						step_glide(pulling, get_dir(pulling.loc, T), glide_size)
-						if(t)
-							M.start_pulling(t)
-				else
-					if (pulling)
-						if (istype(pulling, /obj/structure/window))
-							var/obj/structure/window/W = pulling
-							if(W.is_full_window())
-								for(var/obj/structure/window/win in get_step(pulling,get_dir(pulling.loc, T)))
-									stop_pulling()
-					if (pulling)
-						step_glide(pulling, get_dir(pulling.loc, T), glide_size)
-	else
-		stop_pulling()
-		. = ..()
-
-	if (s_active && !( s_active in contents ) && get_turf(s_active) != get_turf(src))	//check !( s_active in contents ) first so we hopefully don't have to call get_turf() so much.
-		s_active.close(src)
-
-	step_count++
-
-	if(update_slimes)
-		for(var/mob/living/carbon/slime/M in view(1,src))
-			M.UpdateFeed(src)
-*/
-
-
 
 /mob/living/verb/lay_down()
 	set name = "Rest"
@@ -567,6 +530,13 @@ default behaviour is:
 
 	var/state_changed = FALSE
 	if(resting && can_stand_up())
+
+		if(incapacitated(INCAPACITATION_RESTRAINED))
+			if(stats.getDelayMult(STAT_TGH) >= 1/4) // if less that 1 second we skip
+				visible_message(SPAN_NOTICE("[src] is trying to get up!"), SPAN_NOTICE("You are trying to get up."))
+				if(!do_after(src, 4 SECONDS * stats.getDelayMult(STAT_TGH), src, FALSE, TRUE, INCAPACITATION_DISABLED & ~INCAPACITATION_FORCELYING, (INCAPACITATION_FORCELYING|INCAPACITATION_RESTRAINED), animationData = list("type" = DO_AFTER_ANIMATION_SHAKING, "delay" = 2 SECONDS, "intensity" = 2)))
+					return
+		visible_message(SPAN_NOTICE("[src] gets up!"), SPAN_NOTICE("You get up."), range = 3)
 		resting = FALSE
 		state_changed = TRUE
 
@@ -586,7 +556,8 @@ default behaviour is:
 			resting = TRUE
 			state_changed = TRUE
 	if(state_changed)
-		src << "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>"
+		if(resting)
+			src << "<span class='notice'>You are now resting</span>"
 		update_lying_buckled_and_verb_status()
 
 /mob/living/proc/can_stand_up()
@@ -807,3 +778,28 @@ default behaviour is:
 
 /mob/living/proc/is_asystole()
 	return FALSE
+
+/mob/living/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
+
+	if(!client)	return
+
+	if (type)
+		if(type & 1 && (sdisabilities & BLIND || blinded || paralysis) )//Vision related
+			if (!( alt ))
+				return
+			else
+				msg = alt
+				type = alt_type
+		if (type & 2 && (sdisabilities & DEAF || ear_deaf))//Hearing related
+			if (!( alt ))
+				return
+			else
+				msg = alt
+				type = alt_type
+				if ((type & 1 && sdisabilities & BLIND))
+					return
+	// Added voice muffling for Issue 41.
+	if(stat == UNCONSCIOUS || sleeping > 0)
+		to_chat(src,"<I>... You can almost hear someone talking ...</I>")
+	else
+		to_chat(src, msg)

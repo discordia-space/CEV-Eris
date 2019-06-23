@@ -471,13 +471,13 @@
 		move_result = mechturn(direction, movemode)
 		//We don't set l_move_time for turning on the spot. it doesnt count as movement
 	else if(hasInternalDamage(MECHA_INT_CONTROL_LOST))
-		set_glide_size(DELAY2GLIDESIZE(movement_delay()))
+		set_glide_size(DELAY2GLIDESIZE(get_movement_delay()))
 		move_result = mechsteprand(movemode)
 		if (occupant)
 			occupant.l_move_time = world.time
 
 	else
-		set_glide_size(DELAY2GLIDESIZE(movement_delay()))
+		set_glide_size(DELAY2GLIDESIZE(get_movement_delay()))
 		move_result = mechstep(direction, movemode)
 		if (occupant)
 			occupant.l_move_time = world.time
@@ -488,7 +488,7 @@
 
 
 
-		if(do_after(movement_delay()))
+		if(do_after(get_movement_delay()))
 			can_move = 1
 		return 1
 	return 0
@@ -522,8 +522,8 @@
 	return result
 
 //Used for jetpacks
-/obj/mecha/movement_delay()
-	return step_in
+/obj/mecha/update_movement_delays()
+	adjust_movement_delay(DELAY_MECH, step_in)
 
 /obj/mecha/Bump(var/atom/obstacle)
 //	src.inertia_dir = null

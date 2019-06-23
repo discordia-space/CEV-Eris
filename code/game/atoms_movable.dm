@@ -4,7 +4,7 @@
 	var/anchored = 0
 	// var/elevation = 2    - not used anywhere
 	var/move_speed = 10		//current movespeed of an object
-	var/move_delay = MOVE_DELAY_BASE		//speed limit of an object if it moves by itself (mobs dont use this they use move_intent.move_delay)
+	var/move_delay = MOVE_DELAY_BASE		//speed limit of an object if it moves by itself (mobs dont use this directly they use move_intent.move_delay and move_delay is added as modificator)
 	var/l_move_time = 1
 	var/m_flag = 1
 	var/throwing = 0
@@ -16,6 +16,7 @@
 	var/mob/pulledby = null
 	var/item_state = null // Used to specify the item state for the on-mob overlays.
 	var/inertia_dir = 0
+	var/now_pushing = FALSE
 	movement_handlers = list(
 		/datum/movement_handler/anchored,
 		/datum/movement_handler/delay,
@@ -329,62 +330,29 @@
 
 //This proc should never be overridden elsewhere at /atom/movable to keep directions sane.
 // Spoiler alert: it is, in moved.dm
-/atom/movable/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/atom/movable/Move(var/turf/NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	var/atom/oldloc = loc
+
+	if(!HasMovementHandler())
+		if(!NewLoc.CanPass(src, get_turf(src)))
+			return
+	if(Dir && Dir != src.dir)
+		set_dir(Dir)
 
 	if (glide_size_override > 0)
 		set_glide_size(glide_size_override)
 
-	// To prevent issues, diagonal movements are broken up into two cardinal movements.
+	
 
-	// Is this a diagonal movement?
-	if (Dir & (Dir - 1))
-		if (Dir & NORTH)
-			if (Dir & EAST)
-				// Pretty simple really, try to move north -> east, else try east -> north
-				// Pretty much exactly the same for all the other cases here.
-				if (step(src, NORTH))
-					step(src, EAST)
-				else
-					if (step(src, EAST))
-						step(src, NORTH)
-			else
-				if (Dir & WEST)
-					if (step(src, NORTH))
-						step(src, WEST)
-					else
-						if (step(src, WEST))
-							step(src, NORTH)
-		else
-			if (Dir & SOUTH)
-				if (Dir & EAST)
-					if (step(src, SOUTH))
-						step(src, EAST)
-					else
-						if (step(src, EAST))
-							step(src, SOUTH)
-				else
-					if (Dir & WEST)
-						if (step(src, SOUTH))
-							step(src, WEST)
-						else
-							if (step(src, WEST))
-								step(src, SOUTH)
-	else
-		var/atom/A = src.loc
+	var/atom/A = src.loc
+	. = ..()
 
-		var/olddir = dir //we can't override this without sacrificing the rest of movable/New()
-		. = ..()
-		if(Dir != olddir)
-			dir = olddir
-			set_dir(Dir)
+	src.move_speed = world.time - src.l_move_time
+	src.l_move_time = world.time
+	src.m_flag = 1
 
-		src.move_speed = world.time - src.l_move_time
-		src.l_move_time = world.time
-		src.m_flag = 1
-
-		if ((A != src.loc && A && A.z == src.z))
-			src.last_move = get_dir(A, src.loc)
+	if ((A != src.loc && A && A.z == src.z))
+		src.last_move = get_dir(A, src.loc)
 
 	if((!isturf(loc) || !isturf(oldloc)) || loc.z != oldloc.z)
 		update_plane()
@@ -394,15 +362,47 @@
 	am.set_glide_size(glide_size_override)
 	return step(am, dir)
 
-/atom/movable/proc/movement_delay()
-	return move_delay
+// executed every time atom moves, recalculates any adjustments, see examples lie carbon
+/atom/movable/proc/update_movement_delays()
+	return
 
+// sets original delay
 /atom/movable/proc/set_movement_delay(var/delay)
-	move_delay = delay
+	adjust_movement_delay(DELAY_ORIGIN, delay)
 
-/atom/movable/proc/add_movement_delay(var/delay)
-	move_delay += delay
+// adds speed modifiers to atom
+/atom/movable/proc/adjust_movement_delay(var/tag, var/delay)
+	var/datum/movement_handler/delay/delayHandler = GetMovementHandler(/datum/movement_handler/delay)
+	if(delayHandler)
+		delayHandler.adjustDelay(tag, delay)
 
+// gets speed modifiers of atom
+/atom/movable/proc/get_movement_delay(var/tag)
+	var/datum/movement_handler/delay/delayHandler = GetMovementHandler(/datum/movement_handler/delay)
+	if(delayHandler)
+		return delayHandler.getDelay(tag)
+	else 
+		return move_delay
+
+// resets original delay
 /atom/movable/proc/reset_movement_delay(var/delay)
-	if(move_delay != initial(move_delay))
-		move_delay = initial(move_delay)
+	set_movement_delay(move_delay)
+
+/mob/reset_movement_delay(var/delay)
+	if(move_intent)
+		set_movement_delay(move_intent.move_delay)
+	else
+		set_movement_delay(move_delay)
+
+/atom/movable/proc/temporary_movement_delay_adjustment(var/tag, var/time, var/slow)
+	tag = "[tag] (temporary)"
+	adjust_movement_delay(tag, slow)
+	spawn(time)
+		adjust_movement_delay(tag, 0)
+
+// this will set next_move value of this atoms delay_handler to certain number, if next_move < world.time mob will not be able to move
+// you should never use that, to stop atom movement. Currently it only used in livings Bump() to reset next_move so mob will be able to move right after he pushed object
+/atom/movable/proc/set_next_move(var/value)
+	var/datum/movement_handler/delay/delayHandler = GetMovementHandler(/datum/movement_handler/delay)
+	if(delayHandler)
+		delayHandler.next_move = value

@@ -18,6 +18,8 @@
 
 // Movement delay
 /datum/movement_handler/delay
+	var/calculatedDelay
+	var/list/delayData = list()
 	var/next_move
 
 /datum/movement_handler/delay/DoMove(var/direction, var/atom/movable/mover)
@@ -30,33 +32,59 @@
 	Here, we store the overflow time and apply it as a discount to the next step's delay. This ensures that journey times are accurate over a distance
 	Any individual step can still be slightly slower than it should be, but the next one will compensate and errors won't compound
 	*/
-	var/overflow = next_move - world.time
-	if (overflow > 1 || overflow < 0)
-		overflow = 0
+	// we will set delay after actual movement, so we can change movespeed during movement_handler that handle actual movement
+	spawn()
+		var/overflow = next_move - world.time
+		if (overflow > 1 || overflow < 0)
+			overflow = 0
 
-	var/delay
-	if(IS_SELF(mover))
-		delay = host.movement_delay() - overflow
-	else
-		delay = min(mover.movement_delay(), host.movement_delay()) - overflow
-	SetDelay(delay)
-	host.set_glide_size(DELAY2GLIDESIZE(delay), 0)
-	
-	host.reset_movement_delay()
+		var/delay
+		if(host.buckle_drivable && host.buckled_mob == mover)
+			host.update_movement_delays()
+			delay = host.get_movement_delay() - overflow
+		else
+			mover.update_movement_delays()
+			delay = mover.get_movement_delay() - overflow
+		setNextMove(delay)
+		host.set_glide_size(DELAY2GLIDESIZE(delay), 0)
 
 /datum/movement_handler/delay/MayMove(var/mover, var/is_external)
 	if(IS_NOT_SELF(mover) && !host.buckle_drivable)
 		return MOVEMENT_PROCEED
 	return world.time >= next_move ? MOVEMENT_PROCEED : MOVEMENT_STOP
 
-/datum/movement_handler/delay/proc/SetDelay(var/delay)
+/datum/movement_handler/delay/proc/setNextMove(var/delay)
 	next_move = max(next_move, world.time + delay)
 
-/datum/movement_handler/delay/proc/AddDelay(var/delay)
-	next_move += max(0, delay)
+/datum/movement_handler/delay/proc/adjustDelay(var/tag, var/delay, var/noUpdate = FALSE)
+	if(!tag)
+		log_debug("error: Adjusting delay without tag, returned.")
+	if(delay == 0)
+		if(delayData[tag])
+			delayData.Remove(tag)
+			if(!noUpdate)
+				updateDelay()
+		return
+	if(delayData[tag] == delay)
+		return
+	delayData[tag] = delay
+	if(!noUpdate)
+		updateDelay()
+
+/datum/movement_handler/delay/proc/getDelay(var/tag)
+	if(!tag)
+		return calculatedDelay
+	else 
+		return delayData[tag]
+
+/datum/movement_handler/delay/proc/updateDelay()
+	calculatedDelay = 0
+	for(var/tag in delayData)
+		calculatedDelay += delayData[tag]
+	calculatedDelay = max(1, calculatedDelay)
 
 /datum/movement_handler/basic/DoMove(var/direction, var/mover)
-	. = MOVEMENT_HANDLED
+	var/moved = 0
 	// To prevent issues, diagonal movements are broken up into two cardinal movements.
 	// Is this a diagonal movement?
 	if (direction & (direction - 1))
@@ -65,35 +93,45 @@
 				// Pretty simple really, try to move north -> east, else try east -> north
 				// Pretty much exactly the same for all the other cases here.
 				if (step(host, NORTH))
-					step(host, EAST)
+					moved++
+					moved += step(host, EAST)
 				else
 					if (step(host, EAST))
-						step(host, NORTH)
+						moved++
+						moved += step(host, NORTH)
 			else
 				if (direction & WEST)
 					if (step(host, NORTH))
-						step(host, WEST)
+						moved++
+						moved += step(host, WEST)
 					else
 						if (step(host, WEST))
-							step(host, NORTH)
+							moved++
+							moved += step(host, NORTH)
 		else
 			if (direction & SOUTH)
 				if (direction & EAST)
 					if (step(host, SOUTH))
-						step(host, EAST)
+						moved++
+						moved += step(host, EAST)
 					else
 						if (step(host, EAST))
-							step(host, SOUTH)
+							moved++
+							moved += step(host, SOUTH)
 				else
 					if (direction & WEST)
 						if (step(host, SOUTH))
-							step(host, WEST)
+							moved++
+							moved += step(host, WEST)
 						else
 							if (step(host, WEST))
-								step(host, SOUTH)
+								moved++
+								moved += step(host, SOUTH)
 	
 	else
-		step(host, direction)
+		moved += step(host, direction)
+	if(moved)
+		. |= MOVEMENT_HANDLED
 
 /datum/movement_handler/basic/MayMove(var/mover, var/is_external)
 	return MOVEMENT_PROCEED
@@ -114,6 +152,22 @@
 
 /datum/movement_handler/obstacle/MayMove(var/mover, var/is_external, var/direction)
 	var/turf/T = get_step(get_turf(host),direction)
-	if(istype(T) && T.density)
+
+	if(!istype(T))
 		return MOVEMENT_STOP
+	
+	if(!host.density)
+		return MOVEMENT_PROCEED
+	
+	if(isliving(host))
+		for(var/mob/living/L in T)
+			if(!L.can_swap_with(host))
+				return MOVEMENT_STOP
+
+	if(!T.CanPass(host, get_turf(host)))
+		if(IS_SELF(mover))
+			if(direction != host.dir)
+				host.set_dir(direction)
+		return MOVEMENT_STOP
+
 	return MOVEMENT_PROCEED

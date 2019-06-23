@@ -126,7 +126,7 @@ obj/item/check_airflow_movable(n)
 		step_towards(src, src.airflow_dest)
 		var/mob/M = src
 		if(istype(M) && M.client)
-			M.set_movement_delay(vsc.airflow_mob_slowdown)
+			M.temporary_movement_delay_adjustment(DELAY_AIRFLOW, 10, -vsc.airflow_mob_slowdown)
 	airflow_dest = null
 	airflow_speed = 0
 	airflow_time = 0
@@ -179,7 +179,7 @@ obj/item/check_airflow_movable(n)
 		step_towards(src, src.airflow_dest)
 		if(ismob(src))
 			var/mob/m = src
-			m.set_movement_delay(vsc.airflow_mob_slowdown)
+			m.temporary_movement_delay_adjustment(DELAY_AIRFLOW, 10, vsc.airflow_mob_slowdown)
 	airflow_dest = null
 	airflow_speed = 0
 	airflow_time = 0

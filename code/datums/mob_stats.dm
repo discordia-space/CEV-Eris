@@ -65,6 +65,7 @@
 			else
 				return 0
 
+// return positive if src's have more stat, negative if otherwise
 /datum/stat_holder/proc/getStatDifference(statName, mob/otherMob, Pure = null)
 	if(!otherMob || !otherMob.stats)
 		return
@@ -75,7 +76,7 @@
 /datum/stat_holder/proc/getDelayMult(statName, statCap = STAT_LEVEL_MAX, Pure = null)
 	if(!statName)
 		return
-	return max(0,min(1,getStat(statName, Pure)/statCap))
+	return 1 - max(0,min(1,getStat(statName, Pure)/statCap))
 	
 
 /datum/stat_holder/proc/Clone()

@@ -286,7 +286,7 @@
 			inertia_dir = 0
 		else if(!check_gravity() && !src.allow_spacemove()) // spacemove would return one with magboots, -1 with adjacent tiles
 			src.inertia_dir = get_dir(target, src)
-			step(src, inertia_dir)
+			DoMove(inertia_dir, item, TRUE)
 
 		item.throw_at(target, throw_range, item.throw_speed, src)
 
@@ -393,3 +393,11 @@
 
 /mob/living/carbon/proc/need_breathe()
 	return TRUE
+
+/mob/living/carbon/update_movement_delays()
+	..()
+	var/value = 0
+	if ((drowsyness > 0) && !MOVING_DELIBERATELY(src))
+		value += 6
+	adjust_movement_delay(DELAY_CARBON, value)
+	

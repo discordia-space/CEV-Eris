@@ -347,7 +347,7 @@
 				a_intent = I_HURT
 			UnarmedAttack(frenemy)
 
-	var/sleeptime = movement_delay()
+	var/sleeptime = get_movement_delay()
 	if(sleeptime <= 5) sleeptime = 5 // Maximum one action per half a second
 	spawn (sleeptime)
 		handle_AI()

@@ -439,7 +439,7 @@
 	if(O in user)
 		if(!user.unEquip(O))
 			return
-	step_towards(O, src.loc)
+	O.DoMove(src.loc, user, TRUE)
 	if(user != O)
 		user.show_viewers(SPAN_DANGER("[user] stuffs [O] into [src]!"))
 	src.add_fingerprint(user)

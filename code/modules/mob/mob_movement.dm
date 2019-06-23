@@ -129,7 +129,7 @@
 	if(prob(5)) //Todo: Factor in future agility stat here
 		to_chat(src, SPAN_WARNING("You slipped!"))
 		src.inertia_dir = src.last_move
-		step(src, src.inertia_dir)
+		DoMove(src.inertia_dir, null, TRUE)
 		return 1
 	return 0
 
@@ -211,4 +211,3 @@
 	DO_MOVE(WEST)
 
 #undef DO_MOVE
-

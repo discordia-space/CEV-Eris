@@ -218,7 +218,7 @@
 	//Setup a stabilize check, but only if this isn't already from one
 	if (!stabilization_check)
 		stabilize_done = FALSE
-		addtimer(CALLBACK(src, .proc/stabilize, user, world.time), user.movement_delay()*1.5)
+		addtimer(CALLBACK(src, .proc/stabilize, user, world.time), user.get_movement_delay()*1.5)
 
 	var/datum/gas_mixture/G = get_gas().remove(num)
 
@@ -271,7 +271,7 @@
 
 
 		//If the time since their last move is 50% more than their movement delay, then they've probably stopped
-		if ((world.time - user.l_move_time) < user.movement_delay()*1.25)
+		if ((world.time - user.l_move_time) < user.get_movement_delay()*1.25)
 			return FALSE
 
 

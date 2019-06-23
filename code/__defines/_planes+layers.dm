@@ -71,7 +71,6 @@ What is the naming convention for planes or layers?
 
 #define LYING_MOB_PLANE               -1 //-14 on bay// other mobs that are lying down.
 
-	#define LYING_MOB_LAYER 3.8 //0 on bay
 
 #define LYING_HUMAN_PLANE             -1 //-13 on bay// humans that are lying down
 

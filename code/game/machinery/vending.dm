@@ -1,9 +1,3 @@
-#define CAT_NORMAL 1
-#define CAT_HIDDEN 2  // also used in corresponding wires/vending.dm
-#define CAT_COIN   4
-
-#define CUSTOM_VENDOMAT_MODELS list("Generic" = "generic", "Security" = "sec", "Electronics" = "cart", "Research" = "robotics", "Medical" = "med", "Engineering" = "engivend", "Engineering 2" = "engi", "Tools" = "tool", "Shady" = "sovietsoda", "Fridge" = "smartfridge", "Alcohol" = "boozeomat", "Frozen Star" = "weapon", "NeoTheo" = "teomat", "Asters Power Cells" = "powermat", "Asters Disks" = "discomat")
-
 /**
  *  Datum used to hold information about a product in a vending machine
  */

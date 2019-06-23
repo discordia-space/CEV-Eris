@@ -79,29 +79,9 @@
 	return eyeobj.EyeMove(direct)
 
 /mob/observer/eye/EyeMove(direct)
-	var/initial = initial(sprint)
-	var/max_sprint = 70
-
-	var/delay = 0.5
-	set_glide_size(DELAY2GLIDESIZE(delay))
-
-	if (cooldown && cooldown < world.timeofday)
-		sprint = initial
-	for (var/i = 0; i < max(sprint, initial); i += 30)
-		var/turf/step = get_step(get_turf(src), direct)
-		if (step)
-			setLoc(step)
-
-	cooldown = world.timeofday + 5
-	if (acceleration)
-		sprint = min(sprint + 0.5, max_sprint)
-	else
-		sprint = initial
-
-	if(owner.hud_used)
-		owner.hud_used.updatePlaneMasters(owner)
-
-	return 1
+	if(ismob(src.loc))
+		var/mob/host = src.loc
+		DoMove(direct, host, TRUE)
 
 /mob/observer/eye/forceMove(atom/destination, var/special_event, glide_size_override=0)
 	. = ..()

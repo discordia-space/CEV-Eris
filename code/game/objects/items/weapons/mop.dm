@@ -108,7 +108,7 @@
 		else if (user)
 			//You hit a wall!
 			user.setClickCooldown(30)
-			user.set_movement_delay(30)
+			user.temporary_movement_delay_adjustment("mop hot wall daze", 30, 3)
 			shake_camera(user, 1, 1)
 			playsound(T,"thud", 20, 1, -3)
 			user << SPAN_DANGER("There's not enough space for broad sweeps here!")

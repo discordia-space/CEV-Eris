@@ -111,4 +111,3 @@ world/IsBanned(key, address, computer_id)
 			message_admins("[key] has logged in with a blank ip in the ban check.")
 		return ..()	//default pager ban stuff
 #endif
-#undef OVERRIDE_BAN_SYSTEM

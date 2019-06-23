@@ -34,27 +34,7 @@
 /mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
 
 	if(!client)	return
-
-	if (type)
-		if(type & 1 && (sdisabilities & BLIND || blinded || paralysis) )//Vision related
-			if (!( alt ))
-				return
-			else
-				msg = alt
-				type = alt_type
-		if (type & 2 && (sdisabilities & DEAF || ear_deaf))//Hearing related
-			if (!( alt ))
-				return
-			else
-				msg = alt
-				type = alt_type
-				if ((type & 1 && sdisabilities & BLIND))
-					return
-	// Added voice muffling for Issue 41.
-	if(stat == UNCONSCIOUS || sleeping > 0)
-		src << "<I>... You can almost hear someone talking ...</I>"
-	else
-		src << msg
+	to_chat(src, msg)
 	return
 
 // Show a message to all mobs and objects in sight of this one
@@ -137,14 +117,6 @@
 			return M
 	return 0
 
-/mob/movement_delay()
-	. = 0
-	if ((drowsyness > 0) && !MOVING_DELIBERATELY(src))
-		. += 6
-	if(lying) //Crawling, it's slower
-		. += 14 + (weakened)
-	. += move_intent.move_delay
-		
 /mob/proc/Life()
 //	if(organStructure)
 //		organStructure.ProcessOrgans()

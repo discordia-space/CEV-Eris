@@ -6,20 +6,19 @@
 	var/datum/mind/mind
 
 	movement_handlers = list(
-	/datum/movement_handler/mob/relayed_movement,
+	/datum/movement_handler/delay,
 	/datum/movement_handler/mob/death,
 	/datum/movement_handler/mob/conscious,
-	/datum/movement_handler/mob/eye,
-	/datum/movement_handler/move_relay,
-	/datum/movement_handler/mob/buckle_relay,
-	/datum/movement_handler/buckle_handler/mob/basic,
-	/datum/movement_handler/delay,
-	/datum/movement_handler/obstacle,
 	/datum/movement_handler/mob/stop_effect,
+	/datum/movement_handler/obstacle,
 	/datum/movement_handler/mob/physically_capable,
 	/datum/movement_handler/mob/physically_restrained,
 	/datum/movement_handler/mob/space,
+	/datum/movement_handler/buckle_handler/mob/basic,
+	/datum/movement_handler/mob/buckle_relay,
 	/datum/movement_handler/mob/movement,
+	/datum/movement_handler/move_relay,
+	/datum/movement_handler/mob/relayed_movement,
 	/datum/movement_handler/mob/grabbed,
 	/datum/movement_handler/pulled
 	)

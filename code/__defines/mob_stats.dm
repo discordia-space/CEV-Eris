@@ -15,8 +15,8 @@
 #define STAT_LEVEL_EXPERT   40
 #define STAT_LEVEL_PROF     60
 
-#define STAT_LEVEL_MIN      0 // Min stat value selectable
-#define STAT_LEVEL_MAX      60 // Max stat value selectable
+#define STAT_LEVEL_MIN      STAT_LEVEL_NONE // Min stat value selectable
+#define STAT_LEVEL_MAX      STAT_LEVEL_PROF // Max stat value selectable
 
 
 //Compound stat checks. These tell the getStat function how to combine multiple stats

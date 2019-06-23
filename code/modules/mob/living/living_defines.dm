@@ -28,7 +28,6 @@
 	var/t_sl_gas = null
 	var/t_n2 = null
 
-	var/now_pushing = null
 	var/mob_bump_flag = 0
 	var/mob_swap_flags = 0
 	var/mob_push_flags = 0

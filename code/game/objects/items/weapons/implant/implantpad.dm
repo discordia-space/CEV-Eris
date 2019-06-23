@@ -43,7 +43,7 @@
 			user.drop_item()
 			C.loc = src
 			src.case = C
-				src.update()
+			src.update()
 	return
 
 
