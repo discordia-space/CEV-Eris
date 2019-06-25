@@ -67,6 +67,8 @@
 	var/datum/stat_holder/stats = null
 
 	var/last_activity = 0
+
+	var/list/knownCraftRecipes = list()
 	/*
 		The world time when this mind was last in a mob, controlled by a client which did something.
 		Only updated once per minute, set by the inactivity subsystem

@@ -8,6 +8,7 @@
 	var/flags
 	var/time = 30 //Used when no specific time is set
 	var/related_stats = list(STAT_COG)	// used to decrease crafting time for non tool steps
+	var/avaliableToEveryone = TRUE
 
 /datum/craft_recipe/New()
 	var/step_definations = steps

@@ -59,10 +59,11 @@
 		)
 	var/list/items = list()
 	for(var/datum/craft_recipe/recipe in SScraft.categories[curr_category])
-		items += list(list(
-			"name" = capitalize(recipe.name),
-			"ref" = "\ref[recipe]"
-		))
+		if(recipe.avaliableToEveryone || (recipe.type in user.mind.knownCraftRecipes))
+			items += list(list(
+				"name" = capitalize(recipe.name),
+				"ref" = "\ref[recipe]"
+			))
 	data["items"] = items
 
 
