@@ -283,7 +283,8 @@
 	usr.visible_message(SPAN_WARNING("[user] starts climbing onto \the [src]!"))
 	climbers |= user
 
-	if(!do_after(user,(issmall(user) ? 20 : 34)))
+	var mult = user.stats.getDelayMult(STAT_VIG, STAT_LEVEL_BASIC)
+	if(!do_after(user,(issmall(user) ? 20 : 34) * mult))
 		climbers -= user
 		return
 

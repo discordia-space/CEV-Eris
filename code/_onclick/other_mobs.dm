@@ -52,7 +52,7 @@
 
 			visible_message(SPAN_WARNING("[src] starts climbing onto \the [A]!"))
 			shadow.visible_message(SPAN_WARNING("[shadow] starts climbing onto \the [A]!"))
-			if(do_after(src, 50, helper))
+			if(do_after(src, 50 * src.stats.getDelayMult(STAT_VIG, STAT_LEVEL_BASIC), helper))
 				visible_message(SPAN_WARNING("[src] climbs onto \the [A]!"))
 				shadow.visible_message(SPAN_WARNING("[shadow] climbs onto \the [A]!"))
 				src.Move(T)
