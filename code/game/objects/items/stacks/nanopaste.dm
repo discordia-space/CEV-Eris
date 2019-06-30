@@ -4,7 +4,7 @@
 	desc = "A tube of paste containing swarms of repair nanites. Very effective in repairing robotic machinery."
 	icon = 'icons/obj/nanopaste.dmi'
 	icon_state = "tube"
-	matter = list(MATERIAL_PLASTIC = 10)
+	matter = list(MATERIAL_PLASTIC = 2)
 	origin_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
 	amount = 10
 	w_class = ITEM_SIZE_SMALL //just so you can place same places that a brute pack would be
