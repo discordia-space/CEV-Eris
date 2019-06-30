@@ -158,7 +158,9 @@
 		if(target != user && !user.restrained() && !user.stat && !user.weakened && !user.stunned && !user.paralysis)
 			if(target.anchored) return
 			V.show_message("[usr] starts stuffing [target.name] into the disposal.", 3)
-	if(!do_after(usr, 20 * usr.stats.getDelayMult(STAT_VIG, STAT_LEVEL_BASIC), src))
+	
+	var delay = 20
+	if(!do_after(usr, max(delay * usr.stats.getDelayMult(STAT_VIG, STAT_LEVEL_EXPERT), delay * 0.66), src))
 		return
 	if(target_loc != target.loc)
 		return
