@@ -162,6 +162,8 @@
 		)
 		playsound(src, pick(climb_sound), 100, 1, 5,5)
 
+		delay = delay * M.stats.getDelayMult(STAT_VIG, STAT_LEVEL_BASIC)
+
 	if(do_after(M, delay, src))
 		M.forceMove(T)
 		try_resolve_mob_pulling(M, src)
