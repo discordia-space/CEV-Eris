@@ -41,8 +41,6 @@
 	if(stage > 1 && !active && clown_check(user))
 		user << SPAN_WARNING("You prime \the [name]!")
 
-		msg_admin_attack("[user.name] ([user.ckey]) primed \a [src]. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
-
 		activate()
 		add_fingerprint(user)
 		if(iscarbon(user))

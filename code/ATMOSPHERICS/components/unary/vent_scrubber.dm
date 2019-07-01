@@ -10,7 +10,7 @@
 
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SCRUBBER //connects to regular and scrubber pipes
 
-	level = 1
+	level = BELOW_PLATING_LEVEL
 	layer = GAS_SCRUBBER_LAYER
 
 	var/area/initial_loc
@@ -78,7 +78,7 @@
 		var/turf/T = get_turf(src)
 		if(!istype(T))
 			return
-		if(!T.is_plating() && node1 && node1.level == 1 && istype(node1, /obj/machinery/atmospherics/pipe))
+		if(!T.is_plating() && node1 && node1.level == BELOW_PLATING_LEVEL && istype(node1, /obj/machinery/atmospherics/pipe))
 			return
 		else
 			if(node1)

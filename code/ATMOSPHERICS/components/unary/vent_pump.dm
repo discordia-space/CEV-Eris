@@ -20,7 +20,7 @@
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SUPPLY //connects to regular and supply pipes
 
 	var/area/initial_loc
-	level = 1
+	level = BELOW_PLATING_LEVEL
 	layer = GAS_SCRUBBER_LAYER
 	var/area_uid
 	var/id_tag = null
@@ -116,7 +116,7 @@
 	if(!istype(T))
 		return
 
-	if(!T.is_plating() && node1 && node1.level == 1 && istype(node1, /obj/machinery/atmospherics/pipe))
+	if(!T.is_plating() && node1 && node1.level == BELOW_PLATING_LEVEL && istype(node1, /obj/machinery/atmospherics/pipe))
 		vent_icon += "h"
 
 	if(welded)
@@ -134,7 +134,7 @@
 		var/turf/T = get_turf(src)
 		if(!istype(T))
 			return
-		if(!T.is_plating() && node1 && node1.level == 1 && istype(node1, /obj/machinery/atmospherics/pipe))
+		if(!T.is_plating() && node1 && node1.level == BELOW_PLATING_LEVEL && istype(node1, /obj/machinery/atmospherics/pipe))
 			return
 		else
 			if(node1)

@@ -7,6 +7,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 
 /obj/effect
 	var/random_rotation = 0 //If 1, pick a random cardinal direction. if 2, pick a randomised angle
+	var/random_offset = 0
 
 /obj/effect/effect
 	name = "effect"
@@ -27,6 +28,10 @@ would spawn and follow the beaker, even if it is carried or thrown.
 			M.Turn(rand(0,360))
 
 		transform = M
+	if(random_offset)
+		pixel_x += rand(-random_offset,random_offset)
+		pixel_y += rand(-random_offset,random_offset)
+
 
 /obj/effect/Destroy()
 	if(reagents)

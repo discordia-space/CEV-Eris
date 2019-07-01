@@ -165,6 +165,8 @@ What is the naming convention for planes or layers?
 #define CINEMATIC_PLANE 32700
 #define CINEMATIC_LAYER 21
 
+#define BELOW_PLATING_LEVEL 1
+#define ABOVE_PLATING_LEVEL 2
 
 /atom/proc/reset_plane_and_layer()
 	set_plane(original_plane)

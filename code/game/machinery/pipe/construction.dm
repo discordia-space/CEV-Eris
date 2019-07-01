@@ -63,7 +63,7 @@ Buildable meters
 	icon_state = "simple"
 	item_state = "buildpipe"
 	w_class = ITEM_SIZE_NORMAL
-	level = 2
+	level = ABOVE_PLATING_LEVEL
 
 /obj/item/pipe/can_fall()
 	var/turf/below = GetBelow(get_turf(src))
