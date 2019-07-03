@@ -907,6 +907,17 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	crate name = "Emergency Floodlight Crate"
 	group = "Medical / Science"
 
+/datum/supply_pack/atomic_cells //Ironicly its a atomic Family ^_^
+	name = "Full Set Of Atomic Cells"
+	cost = 7500
+	contains = list(/obj/item/weapon/cell/large/moebius/nuclear,
+				/obj/item/weapon/cell/medium/moebius/nuclear,
+				/obj/item/weapon/cell/small/moebius/nuclear,
+				/obj/item/weapon/cell/small/moebius/pda)
+	containertype = /obj/structure/closet/crate/secure/scisecurecrate
+	crate_name = "Atomic Cells Crate"
+	group = "Medical / Science"
+
 //----------------------------------------------
 //-----------------HYDROPONICS------------------
 //----------------------------------------------
@@ -1336,8 +1347,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containertype = /obj/structure/closet/crate
 	group = "Operations"
 
-
-
 datum/supply_pack/randomised/voidsuit
 	num_contained = 1
 	contains = list(/obj/random/voidsuit,
@@ -1367,3 +1376,45 @@ datum/supply_pack/randomised/rigmods
 	crate_name = "Surplus Rig Modules"
 	containertype = /obj/structure/closet/crate
 	group = "Operations"
+
+
+datum/supply_pack/randomised/delux_Cells
+	num_contained = 5
+	contains = list(/obj/item/weapon/cell/large/super,
+				/obj/item/weapon/cell/large/hyper,
+				/obj/item/weapon/cell/large/moebius/super,
+				/obj/item/weapon/cell/large/moebius/hyper,
+				/obj/item/weapon/cell/medium/super,
+				/obj/item/weapon/cell/medium/hyper,
+				/obj/item/weapon/cell/medium/moebius/super,
+				/obj/item/weapon/cell/medium/moebius/hyper,
+				/obj/item/weapon/cell/small/super,
+				/obj/item/weapon/cell/small/hyper,
+				/obj/item/weapon/cell/small/moebius/super,
+				/obj/item/weapon/cell/small/moebius/hyper)
+	name = "Surplus High-Charge Cells"
+	cost = 3000
+	crate_name = "Surplus Cells"
+	containertype = /obj/structure/closet/crate
+	group = "Engineering"
+
+
+datum/supply_pack/randomised/cheap_cells
+	num_contained = 5
+	contains = list(/obj/item/weapon/cell/large,
+				/obj/item/weapon/cell/large/high,
+				/obj/item/weapon/cell/large/moebius,
+				/obj/item/weapon/cell/large/moebius/high,
+				/obj/item/weapon/cell/medium,
+				/obj/item/weapon/cell/medium/high,
+				/obj/item/weapon/cell/medium/moebius,
+				/obj/item/weapon/cell/medium/moebius/high,
+				/obj/item/weapon/cell/small,
+				/obj/item/weapon/cell/small/high,
+				/obj/item/weapon/cell/small/moebius,
+				/obj/item/weapon/cell/small/moebius/high)
+	name = "Surplus Low-Charge Cells"
+	cost = 1250
+	crate_name = "Surplus Cells"
+	containertype = /obj/structure/closet/crate
+	group = "Engineering"
