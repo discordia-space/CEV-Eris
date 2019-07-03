@@ -3,8 +3,8 @@ obj/machinery/autodoc
 	var/datum/autodoc/autodoc_processor
 	var/locked
 	name = "Autodoc"
-	icon = 'icons/obj/Cryogenic2.dmi'
-	icon_state = "scanner_off"
+	icon = 'icons/obj/autodoc.dmi'
+	icon_state = "powered_off"
 	density = 1
 	anchored = 1
 
@@ -75,12 +75,13 @@ obj/machinery/autodoc
 /obj/machinery/autodoc/proc/set_occupant(var/mob/living/L)
 	L.forceMove(src)
 	src.occupant = L
-	update_icon()
 	src.add_fingerprint(usr)
-	autodoc_processor.set_patient(L)
-	ui_interact(L)
-	update_use_power(2)
-	L.set_machine(src)
+	if(stat & (NOPOWER|BROKEN))
+		autodoc_processor.set_patient(L)
+		ui_interact(L)
+		update_use_power(2)
+		L.set_machine(src)
+	update_icon()
 
 /obj/machinery/autodoc/affect_grab(var/mob/user, var/mob/target)
 	if (src.occupant)
@@ -124,15 +125,16 @@ obj/machinery/autodoc
 	if(occupant)
 		locked = autodoc_processor.active
 		ui_interact(occupant)
+	update_icon()
 
 /obj/machinery/autodoc/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open = 2, datum/topic_state/state =  GLOB.default_state)
 	return autodoc_processor.ui_interact(user, ui_key, ui, force_open, state)
 /obj/machinery/autodoc/Topic(href, href_list)
 	return autodoc_processor.Topic(href, href_list)
-
-/obj/machinery/autodoc/RefreshParts()
-	..()
-	var/new_speed = 30 SECONDS
-	for(var/obj/item/weapon/stock_parts/P in component_parts)
-		new_speed -= 1 SECOND
-	if(autodoc_processor) autodoc_processor.processing_speed = new_speed
+/obj/machinery/autodoc/update_icon()
+	if(stat & (NOPOWER|BROKEN))
+		icon_state = "powered_off"
+	else
+		icon_state = "powered_on"
+	if(autodoc_processor.active)
+		icon_state = "active"
