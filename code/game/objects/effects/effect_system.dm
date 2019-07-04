@@ -17,8 +17,8 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	pass_flags = PASSTABLE | PASSGRILLE
 
 
-/obj/effect/New()
-	.=..()
+/obj/effect/Initialize(mapload, ...)
+	. = ..()
 	if (random_rotation)
 		var/matrix/M = transform
 		if (random_rotation == 1)
@@ -31,6 +31,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	if(random_offset)
 		pixel_x += rand(-random_offset,random_offset)
 		pixel_y += rand(-random_offset,random_offset)
+
 
 
 /obj/effect/Destroy()
