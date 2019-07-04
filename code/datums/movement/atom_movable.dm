@@ -159,15 +159,53 @@
 	if(!host.density)
 		return MOVEMENT_PROCEED
 	
-	if(isliving(host))
-		for(var/mob/living/L in T)
-			if(!L.can_swap_with(host))
-				return MOVEMENT_STOP
-
 	if(!T.CanPass(host, get_turf(host)))
 		if(IS_SELF(mover))
 			if(direction != host.dir)
 				host.set_dir(direction)
 		return MOVEMENT_STOP
 
+	return MOVEMENT_PROCEED
+
+// swapping handler
+/datum/movement_handler/swapper/DoMove(var/direction, var/mover)
+	if(IS_SELF(mover))
+		var/turf/T = get_step(get_turf(host),direction)
+		if(!istype(T))
+			return MOVEMENT_PROCEED
+		for(var/mob/living/L in T)
+			if(L == mover)
+				continue
+			L.DoMove(reverse_direction(direction), host, TRUE)
+
+/datum/movement_handler/swapper/MayMove(var/mover, var/is_external, var/direction)
+	var/turf/T = get_step(get_turf(host),direction)
+	if(!istype(T))
+		return MOVEMENT_STOP
+
+	if(isliving(host))
+		for(var/mob/living/L in T)
+			if(L == mover)
+				continue
+			if(L.density && !L.can_swap_with(host))
+				if (!(world.time % 5))
+					to_chat(host, SPAN_WARNING("You can't go past [L]."))
+				return MOVEMENT_STOP
+	return MOVEMENT_PROCEED
+
+// pushing handler
+/datum/movement_handler/pusher/DoMove(var/direction, var/mover)
+	if(IS_SELF(mover))
+		host.now_pushing = TRUE
+		for(var/atom/movable/A in get_step(host, direction))
+			if(!A.density || A.now_pushing)
+				continue
+			if(host.canPush(A, direction))
+				host.temporary_movement_delay_adjustment(host.get_movement_delay() * 0.66)
+				A.DoMove(direction, host, TRUE)
+		if (host.now_pushing)
+			host.now_pushing = FALSE
+	return MOVEMENT_PROCEED
+
+/datum/movement_handler/pusher/MayMove(var/mover, var/is_external, var/direction)
 	return MOVEMENT_PROCEED

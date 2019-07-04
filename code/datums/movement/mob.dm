@@ -222,16 +222,7 @@
 	//We are now going to move
 	mob.moving = 1
 
-	//first lets push all obstacles
 	
-	for(var/atom/movable/A in get_step(mob, direction))
-		if(mob.canPush(A, direction))
-			if (!mob.now_pushing)
-				mob.now_pushing = TRUE
-				mob.temporary_movement_delay_adjustment(mob.get_movement_delay() * 0.66)
-				A.DoMove(direction, mob, TRUE)
-	if (mob.now_pushing)
-		mob.now_pushing = FALSE
 
 	direction = mob.AdjustMovementDirection(direction)
 	var/moved = 0

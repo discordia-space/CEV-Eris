@@ -802,3 +802,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(M.mind)
 		M.mind.reset()
 	return
+
+/mob/observer/ghost/update_movement_delays()
+	adjust_movement_delay(DELAY_GHOST, 0.1)

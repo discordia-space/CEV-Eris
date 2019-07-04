@@ -15,3 +15,4 @@
 #define DELAY_MOB "mob"
 #define DELAY_LIVING "living"
 #define DELAY_CARBON "carbon"
+#define DELAY_GHOST "ghost"
