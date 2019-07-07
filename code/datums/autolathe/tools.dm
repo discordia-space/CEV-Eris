@@ -138,6 +138,10 @@
 	name = "cautery"
 	build_path = /obj/item/weapon/tool/cautery
 
+/datum/design/autolathe/tool/bonesetter
+	name = "bonesetter"
+	build_path = /obj/item/weapon/tool/bonesetter
+
 /datum/design/autolathe/tool/hemostat
 	name = "hemostat"
 	build_path = /obj/item/weapon/tool/hemostat
