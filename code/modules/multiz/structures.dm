@@ -162,6 +162,9 @@
 		)
 		playsound(src, pick(climb_sound), 100, 1, 5,5)
 
+		
+		delay = max(delay * M.stats.getDelayMult(STAT_VIG, STAT_LEVEL_EXPERT), delay * 0.66) 
+
 	if(do_after(M, delay, src))
 		M.forceMove(T)
 		try_resolve_mob_pulling(M, src)
