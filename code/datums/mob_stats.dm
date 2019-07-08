@@ -13,6 +13,10 @@
 /datum/stat_holder/proc/changeStat(statName, Value)
 	var/datum/stat/S = stat_list[statName]
 	S.changeValue(Value)
+	
+/datum/stat_holder/proc/setStat(statName, Value)
+	var/datum/stat/S = stat_list[statName]
+	S.setValue(Value)
 
 /datum/stat_holder/proc/getStat(statName, pure = FALSE)
 	if (!islist(statName))
@@ -115,8 +119,8 @@
 				qdel(SM)
 			. += SM.value
 
-
-
+/datum/stat/proc/setValue(value)
+	src.value = value
 
 /datum/stat/productivity
 	name = STAT_MEC
