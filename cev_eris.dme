@@ -2094,7 +2094,7 @@
 #include "code\modules\projectiles\ammunition\magazines.dm"
 #include "code\modules\projectiles\guns\alien.dm"
 #include "code\modules\projectiles\guns\energy.dm"
-#include "code\modules\projectiles\guns\hatton.dm"
+#include "code\modules\projectiles\guns\Hatton.dm"
 #include "code\modules\projectiles\guns\launcher.dm"
 #include "code\modules\projectiles\guns\projectile.dm"
 #include "code\modules\projectiles\guns\energy\cassad.dm"
