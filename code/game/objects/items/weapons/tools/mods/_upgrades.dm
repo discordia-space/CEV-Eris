@@ -40,6 +40,7 @@
 	var/powercost_mult = 1
 	var/fuelcost_mult = 1
 	var/bulk_mod = 0
+	var/health_threshold_modifier = 0
 
 /obj/item/weapon/tool_upgrade/examine(var/mob/user)
 	.=..()
@@ -147,7 +148,7 @@
 
 	if (user)
 		user.visible_message(SPAN_NOTICE("[user] starts applying [src] to [T]"), SPAN_NOTICE("You start applying [src] to [T]"))
-		if (!use_tool(user = user, target =  T, base_time = WORKTIME_NORMAL, required_quality = null, fail_chance = FAILCHANCE_EASY+T.unreliability, required_stat = STAT_MEC, forced_sound = WORKSOUND_WRENCHING))
+		if (!use_tool(user = user, target =  T, base_time = WORKTIME_NORMAL, required_quality = null, fail_chance = FAILCHANCE_EASY, required_stat = STAT_MEC, forced_sound = WORKSOUND_WRENCHING))
 			return
 		user << SPAN_NOTICE("You have successfully installed [src] in [T]")
 		user.drop_from_inventory(src)
@@ -174,5 +175,6 @@
 	holder.use_fuel_cost *= fuelcost_mult
 	holder.use_power_cost *= powercost_mult
 	holder.extra_bulk += bulk_mod
+	holder.health_threshold += health_threshold_modifier
 	holder.prefixes |= prefix
 	return TRUE

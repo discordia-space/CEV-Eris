@@ -79,7 +79,7 @@
 	max_fuel = 40
 	switched_on_force = WEAPON_FORCE_PAINFUL * 1.15 //Slightly more powerful, not much more so
 	heat = 3773
-	degradation = 0.07
+	degradation = 0.7
 	max_upgrades = 4
 
 /obj/item/weapon/tool/weldingtool/onestar
@@ -93,7 +93,7 @@
 	glow_color = COLOR_RED_LIGHT
 	use_fuel_cost = 0.15
 	max_fuel = 20
-	degradation = 0.06
+	degradation = 0.6
 	heat = 2750
 	max_upgrades = 2
 	workspeed = 1.7

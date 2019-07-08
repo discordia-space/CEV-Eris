@@ -54,7 +54,7 @@
 	switched_off_qualities = list(QUALITY_EXCAVATION = 15, QUALITY_PRYING = 25)
 	switched_on_qualities = list(QUALITY_DIGGING = 40, QUALITY_PRYING = 20)
 	glow_color = COLOR_BLUE_LIGHT
-	degradation = 0.06
+	degradation = 0.6
 	max_upgrades = 2
 	workspeed = 1.2
 	use_power_cost = 0
@@ -80,7 +80,7 @@
 	switched_off_qualities = list(QUALITY_EXCAVATION = 10)
 	switched_on_qualities = list(QUALITY_DIGGING = 35)
 	origin_tech = list(TECH_MATERIAL = 3, TECH_POWER = 2, TECH_ENGINEERING = 2)
-	degradation = 0.07
+	degradation = 0.7
 	use_power_cost = 0.6
 	suitable_cell = /obj/item/weapon/cell/medium
 
@@ -94,7 +94,7 @@
 	switched_off_qualities = list(QUALITY_EXCAVATION = 10)
 	switched_on_qualities = list(QUALITY_DIGGING = 35)
 	origin_tech = list(TECH_MATERIAL = 4, TECH_POWER = 2, TECH_ENGINEERING = 3)
-	degradation = 0.06
+	degradation = 0.6
 	workspeed = 1.7
 	max_upgrades = 2
 	use_power_cost = 0.8
@@ -109,7 +109,7 @@
 	switched_on_qualities = list(QUALITY_DIGGING = 40, QUALITY_DRILLING = 10)
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 2)
 	origin_tech = list(TECH_MATERIAL = 2, TECH_POWER = 3, TECH_ENGINEERING = 2)
-	degradation = 0.07
+	degradation = 0.7
 	use_fuel_cost = 0.15
 	max_fuel = 100
 
@@ -122,7 +122,7 @@
 	switched_on_qualities = list(QUALITY_DIGGING = 40, QUALITY_DRILLING = 10)
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLATINUM = 2)
 	origin_tech = list(TECH_MATERIAL = 4, TECH_POWER = 3, TECH_ENGINEERING = 2)
-	degradation = 0.06
+	degradation = 0.6
 	workspeed = 1.7
 	max_upgrades = 2
 	use_fuel_cost = 0.2
@@ -140,7 +140,7 @@
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 2, MATERIAL_DIAMOND = 1)
 	origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 4, TECH_ENGINEERING = 5)
 	max_upgrades = 4
-	degradation = 0.01
+	degradation = 0.1
 	use_fuel_cost = 0.15
 	max_fuel = 120
 

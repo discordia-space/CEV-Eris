@@ -136,9 +136,8 @@
 /proc/RoundUpToPowerOfTwo(var/val)
     return 2 ** -round(-log(2, val))
 
-/proc/rand_between(var/lower, var/upper)
+/proc/rand_decimal(var/lower, var/upper)
 	return (rand() * (upper - lower)) + lower
-
 
 /proc/dist3D(var/atom/A, var/atom/B)
 	var/turf/a = get_turf(A)

@@ -1165,9 +1165,7 @@ There are 9 wires.
 /obj/item/weapon/tool/airlock_crush(crush_damage)
 	. = ..() // Perhaps some function to this was planned, however currently this proc's return is not used anywhere, how peculiar. ~Luduk
 	// #define MAGIC_NANAKO_CONSTANT 0.4
-	unreliability += crush_damage * degradation * (1 - get_tool_quality(QUALITY_PRYING) * 0.01) * 0.4
-	if(prob(unreliability))
-		handle_failure(null, src)
+	health += crush_damage * degradation * (1 - get_tool_quality(QUALITY_PRYING) * 0.01) * 0.4
 
 /mob/living/airlock_crush(var/crush_damage)
 	. = ..()

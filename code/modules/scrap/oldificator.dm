@@ -21,14 +21,14 @@
 	    "A relic from a bygone age.")
 
 	germ_level = pick(80,110,160)
-	price_tag *= rand_between(0.1, 0.6) //Tank the price of it
+	price_tag *= rand_decimal(0.1, 0.6) //Tank the price of it
 
 	//Deplete matter and matter_reagents
 	for (var/a in matter)
-		matter[a] *= rand_between(0.5, 1)
+		matter[a] *= rand_decimal(0.5, 1)
 
 	for (var/a in matter_reagents)
-		matter_reagents[a] *= rand_between(0.5, 1)
+		matter_reagents[a] *= rand_decimal(0.5, 1)
 
 	for(var/obj/item/sub_item in contents)
 		if (prob(80))
@@ -50,7 +50,7 @@
 /obj/item/weapon/tool/make_old()
 	.=..()
 	if (.)
-		unreliability += rand(40, 150) * degradation
+		adjustToolHealth(-(rand(40, 150) * degradation))
 
 /obj/item/weapon/storage/make_old()
 	.=..()
@@ -113,7 +113,7 @@
 /obj/item/weapon/cell/make_old()
 	.=..()
 	if (.)
-		charge = min(charge, rand_between(0, maxcharge))
+		charge = min(charge, rand_decimal(0, maxcharge))
 		if(prob(10))
 			rigged = TRUE
 			if(prob(80))
@@ -134,7 +134,7 @@
 
 /obj/item/weapon/grenade/make_old()
 	..()
-	det_time = rand_between(0, det_time)
+	det_time = rand_decimal(0, det_time)
 
 /obj/item/weapon/tank/make_old()
 	.=..()

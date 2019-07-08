@@ -118,7 +118,7 @@
 			download_netspeed = NTNETSPEED_HIGHSIGNAL
 		if(3)
 			download_netspeed = NTNETSPEED_ETHERNET
-	download_netspeed *= rand_between(1-netspeed_variance, 1+netspeed_variance)
+	download_netspeed *= rand_decimal(1-netspeed_variance, 1+netspeed_variance)
 	download_netspeed = round(download_netspeed, 0.001)
 	download_completion += download_netspeed
 
