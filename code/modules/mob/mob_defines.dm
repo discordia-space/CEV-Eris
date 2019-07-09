@@ -18,7 +18,7 @@
 	/datum/movement_handler/mob/buckle_relay,
 	/datum/movement_handler/swapper,
 	/datum/movement_handler/pusher,
-	/datum/movement_handler/mob/movement,
+	/datum/movement_handler/movement/mob,
 	/datum/movement_handler/move_relay,
 	/datum/movement_handler/mob/relayed_movement,
 	/datum/movement_handler/mob/grabbed,

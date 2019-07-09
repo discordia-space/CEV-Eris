@@ -17,7 +17,7 @@ var/const/GHOST_IMAGE_ALL = ~GHOST_IMAGE_NONE
 	movement_handlers = list(
 	/datum/movement_handler/delay,
 	/datum/movement_handler/mob/stop_effect,
-	/datum/movement_handler/mob/movement,
+	/datum/movement_handler/movement/mob,
 	)
 
 /mob/observer/can_fall()

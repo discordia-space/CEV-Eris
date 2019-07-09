@@ -209,7 +209,7 @@
 	return MOVEMENT_PROCEED
 
 // Finally.. the last of the mob movement junk
-/datum/movement_handler/mob/movement/DoMove(var/direction, var/mob/mover)
+/datum/movement_handler/movement/mob/DoMove(var/direction, var/mob/mover)
 	. = MOVEMENT_PROCEED
 	if(mob.moving)
 		return
@@ -219,67 +219,20 @@
 
 	var/old_turf = get_turf(mob)
 
+	direction = mob.AdjustMovementDirection(direction)
+
 	//We are now going to move
 	mob.moving = 1
-
-	
-
-	direction = mob.AdjustMovementDirection(direction)
-	var/moved = 0
-	// To prevent issues, diagonal movements are broken up into two cardinal movements.
-	// Is this a diagonal movement?
-	if (direction & (direction - 1))
-		if (direction & NORTH)
-			if (direction & EAST)
-				// Pretty simple really, try to move north -> east, else try east -> north
-				// Pretty much exactly the same for all the other cases here.
-				if (step(mob, NORTH))
-					moved++
-					moved += step(mob, EAST)
-				else
-					if (step(mob, EAST))
-						moved++
-						moved += step(mob, NORTH)
-			else
-				if (direction & WEST)
-					if (step(mob, NORTH))
-						moved++
-						moved += step(mob, WEST)
-					else
-						if (step(mob, WEST))
-							moved++
-							moved += step(mob, NORTH)
-		else
-			if (direction & SOUTH)
-				if (direction & EAST)
-					if (step(mob, SOUTH))
-						moved++
-						moved += step(mob, EAST)
-					else
-						if (step(mob, EAST))
-							moved++
-							moved += step(mob, SOUTH)
-				else
-					if (direction & WEST)
-						if (step(mob, SOUTH))
-							moved++
-							moved += step(mob, WEST)
-						else
-							if (step(mob, WEST))
-								moved++
-								moved += step(mob, SOUTH)
-	
-	else
-		moved += step(mob, direction)
-
-	if(moved)
+	. = ..()
+	if(. & MOVEMENT_HANDLED)
 		for(var/obj/item/grab/G in mob)
 			G.affecting.DoMove(old_turf, mob, TRUE)
 
 		if(mob.pulling)
 			mob.pulling.DoMove(old_turf, mob, TRUE)
-	
 	mob.moving = 0
+
+	//checking grabs pulled mobs
 	if(mob.pulling)
 		if(!mob.Adjacent(mob.pulling))
 			to_chat(mob, "<span class='notice'>You have lost your grip on [mob.pulling]!</span>")
@@ -289,10 +242,11 @@
 	if(heldGrab)
 		if(!QDELETED(heldGrab))
 			heldGrab.validate()
-	if(moved)
-		. |= MOVEMENT_HANDLED
 
-/datum/movement_handler/mob/movement/MayMove(var/mob/mover, var/is_external, var/direction)
+/datum/movement_handler/movement/mob/MayMove(var/mob/mover, var/is_external, var/direction)
+	if(!(..() & MOVEMENT_PROCEED))
+		return MOVEMENT_STOP
+	
 	if(mob.pulling)
 		if(!mob.pulling.MayMove(mob, TRUE, direction))
 			to_chat(mob, "<span class='warning'>[mob.pulling] wont budge!</span>")

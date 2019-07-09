@@ -141,6 +141,34 @@ default behaviour is:
 		value += 14 + (weakened)
 	adjust_movement_delay(DELAY_LIVING, value)
 
+// returns list of obstacles from src turf to target turf
+/atom/movable/proc/getObstacles(var/turf/target)
+	if(!istype(target))
+		crash_with("Wrong usage of getObstacles()")
+	
+	var/turf/srcTurf = get_turf(src)
+
+	if(get_dist(target, src) > 1)
+		crash_with("Wrong usage of getObstacles() [src]|[x]:[y]:[z] is not adjacent to [target]|[target.x]:[target.y]:[target.z] turf")
+	
+	if(srcTurf == target)
+		crash_with("Wrong usage of getObstacles() [srcTurf] turf cant be [target] turf")
+
+	var/list/RList = list()
+
+	if(target.density)
+		RList += target
+
+	for(var/atom/obstacle in target)
+		if(!obstacle.CanPass(src, target, 1, 0))
+			RList += obstacle
+
+	for(var/atom/obstacle in src)
+		if((src != obstacle) && !obstacle.CanPass(src, srcTurf, 1, 0))
+			RList += obstacle
+				
+	return RList
+
 /atom/movable/proc/canPush(var/atom/movable/target, var/direction)
 	if(!istype(target))
 		return FALSE
@@ -198,7 +226,7 @@ default behaviour is:
 		if(!A.CanPass(swapee, T, 1))
 			return TRUE
 
-/mob/living/proc/can_swap_with(var/mob/living/tmob)
+/mob/living/can_swap_with(var/mob/living/tmob)
 	if(!istype(tmob))
 		return FALSE
 	if(tmob.buckled || buckled)

@@ -13,7 +13,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 	movement_handlers = list(
 	/datum/movement_handler/delay,
 	/datum/movement_handler/mob/stop_effect,
-	/datum/movement_handler/mob/movement,
+	/datum/movement_handler/movement/mob
 	)
 
 	var/can_reenter_corpse

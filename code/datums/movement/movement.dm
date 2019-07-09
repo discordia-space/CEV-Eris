@@ -180,3 +180,28 @@ if(LAZYLEN(movement_handlers) && ispath(movement_handlers[1])) { \
 /datum/movement_handler/mob/Destroy()
 	mob = null
 	. = ..()
+
+/datum/movement_handler/movement/mob
+	expected_host_type = /mob
+	var/mob/mob
+
+/datum/movement_handler/movement/mob/New(var/host)
+	..()
+	src.mob = host
+
+/datum/movement_handler/movement/mob/Destroy()
+	mob = null
+	. = ..()
+
+// Movement of a mob mounted by other mob (basically movement of the horse)
+/datum/movement_handler/buckle_handler/mob
+	expected_host_type = /mob
+	var/mob/mob
+
+/datum/movement_handler/buckle_handler/mob/New(var/host)
+	. = ..()
+	src.mob = host
+
+/datum/movement_handler/buckle_handler/mob/Destroy()
+	mob = null
+	. = ..()

@@ -21,7 +21,7 @@
 		/datum/movement_handler/anchored,
 		/datum/movement_handler/delay,
 		/datum/movement_handler/obstacle,
-		/datum/movement_handler/basic,
+		/datum/movement_handler/movement,
 		/datum/movement_handler/pulled
 		)
 
@@ -406,3 +406,7 @@
 	var/datum/movement_handler/delay/delayHandler = GetMovementHandler(/datum/movement_handler/delay)
 	if(delayHandler)
 		delayHandler.next_move = value
+
+//If you wanna add swapping with atoms, be my guest
+/atom/movable/can_swap_with(var/atom/movable/target)
+	return FALSE

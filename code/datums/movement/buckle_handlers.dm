@@ -64,19 +64,6 @@
 			return MOVEMENT_STOP
 	return MOVEMENT_PROCEED
 
-// Movement of a mob mounted by other mob (basically movement of the horse)
-/datum/movement_handler/buckle_handler/mob
-	expected_host_type = /mob
-	var/mob/mob
-
-/datum/movement_handler/buckle_handler/mob/New(var/host)
-	. = ..()
-	src.mob = host
-
-/datum/movement_handler/buckle_handler/mob/Destroy()
-	mob = null
-	. = ..()
-
 /datum/movement_handler/buckle_handler/mob/basic/MayMove(var/mover, var/is_external)
 	if(mob.buckled_mob)
 		if(!checkRiderCapabilities(0,2,TRUE) || !checkRiderCapabilities(2,0,TRUE))

@@ -703,3 +703,7 @@ its easier to just keep the beam vertical.
 // Will skip attackby() and afterattack() if returning TRUE.
 /atom/proc/grab_attack(var/obj/item/grab/G)
 	return FALSE
+
+//If you wanna add swapping with atoms, be my guest
+/atom/proc/can_swap_with(var/atom/movable/target)
+	return FALSE
