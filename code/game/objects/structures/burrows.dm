@@ -637,7 +637,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 /obj/structure/burrow/examine()
 	..()
 	if(isSealed && recieving)
-		to_chat(usr, SPAN_WARNING("You can see movement behind cracks. Maybe they can be welded before whatever behind them break through."))
+		to_chat(usr, SPAN_WARNING("You can see something move behind the cracks. You should weld them shut before it breaks through."))
 
 
 /obj/structure/burrow/ex_act(severity)

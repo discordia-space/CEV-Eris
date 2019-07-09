@@ -38,7 +38,7 @@
 
 	for(var/atom/movable/A in src)
 		if(A.preventsTurfInteractions())
-			to_chat(user, SPAN_NOTICE("[A] is on the way."))
+			to_chat(user, SPAN_NOTICE("[A] is in the way."))
 			A.attackby(I, user)
 			if(A.preventsTurfInteractions())
 				return
