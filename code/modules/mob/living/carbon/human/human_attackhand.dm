@@ -257,7 +257,7 @@
 			var/randn = rand(1, 100)
 			randn = max(1, randn - H.stats.getStat(STAT_ROB))
 			if(!(species.flags & NO_SLIP) && randn <= 20)
-				var/armor_check = run_armor_check(affecting, "melee", armour_pen = H.stats.getStat(STAT_ROB))
+				var/armor_check = run_armor_check(affecting, "melee", armour_pen = (H.stats.getStat(STAT_ROB) / 2))
 				apply_effect(3, WEAKEN, armor_check)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 				if(armor_check < 2)

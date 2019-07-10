@@ -10,7 +10,8 @@
 	1 - halfblock
 	2 - fullblock
 */
-/mob/living/proc/run_armor_check(var/def_zone = null, var/attack_flag = "melee", var/armour_pen = 0, var/absorb_text = null, var/soften_text = null)
+
+/*/mob/living/proc/run_armor_check(var/def_zone = null, var/attack_flag = "melee", var/armour_pen = 0, var/absorb_text = null, var/soften_text = null)
 	if(armour_pen >= 100)
 		return 0 //might as well just skip the processing
 
@@ -42,7 +43,27 @@
 			show_message(SPAN_WARNING("Your armor softens the blow!"))
 		return 1
 	return 0
+*/
 
+#define ARMOR_STUN_COEFFICIENT 0.6
+#define ARMOR_GDR_COEFFICIENT 0.1
+
+/mob/living/proc/damage_through_armor(var/damage = 0, var/def_zone = null, var/damagetype = BRUTE, var/attack_flag = "melee", var/armour_pen = 0, var/used_weapon = null, var/sharp = 0, var/edge = 0)
+
+	if(damage == 0)
+		return FALSE
+
+	var/armor = getarmor(def_zone, attack_flag)
+	var/guaranteed_damage_red = armor * ARMOR_GDR_COEFFICIENT
+	var/armor_effectiveness = max(0, ( armor - armour_pen )
+	var/effective_damage = damage - guaranteed_damage_red
+
+	if(effective_damage == 0)
+		show_message(SPAN_WARNING("Your armor absorbs the blow!"))
+		return FALSE
+
+	if(armor_effectiveness == 0)
+		apply_damage(damage, damagetype, def_zone, absorb, 0, P, sharp=proj_sharp, edge=proj_edge)
 
 //if null is passed for def_zone, then this should return something appropriate for all zones (e.g. area effect damage)
 /mob/living/proc/getarmor(var/def_zone, var/type)
@@ -382,4 +403,3 @@
 			hud_used.hide_actions_toggle.screen_loc = hud_used.ButtonNumberToScreenCoords(button_number+1)
 			//hud_used.SetButtonCoords(hud_used.hide_actions_toggle,button_number+1)
 		client.screen += hud_used.hide_actions_toggle*/
-
