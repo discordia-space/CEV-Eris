@@ -45,7 +45,7 @@
 	return 0
 */
 
-#define ARMOR_STUN_COEFFICIENT 0.6
+#define ARMOR_AGONY_COEFFICIENT 0.6
 #define ARMOR_GDR_COEFFICIENT 0.1
 
 /mob/living/proc/damage_through_armor(var/damage = 0, var/def_zone = null, var/damagetype = BRUTE, var/attack_flag = "melee", var/armour_pen = 0, var/used_weapon = null, var/sharp = 0, var/edge = 0)
@@ -64,6 +64,10 @@
 
 	if(armor_effectiveness == 0)
 		apply_damage(damage, damagetype, def_zone, absorb, 0, P, sharp=proj_sharp, edge=proj_edge)
+
+	else
+		var/agony_gamage = round( ( effective_damage * armor_effectiveness * ARMOR_AGONY_COEFFICIENT ) / 100 )
+
 
 //if null is passed for def_zone, then this should return something appropriate for all zones (e.g. area effect damage)
 /mob/living/proc/getarmor(var/def_zone, var/type)
