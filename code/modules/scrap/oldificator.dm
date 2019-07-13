@@ -176,7 +176,6 @@
 		if(prob(40))
 			armor["melee"] = rand(0, armor["melee"])
 			armor["bullet"] = rand(0, armor["bullet"])
-			armor["laser"] = rand(0, armor["laser"])
 			armor["energy"] = rand(0, armor["energy"])
 			armor["bomb"] = rand(0, armor["bomb"])
 			armor["bio"] = rand(0, armor["bio"])

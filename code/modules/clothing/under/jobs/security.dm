@@ -14,7 +14,6 @@
 	icon_state = "warden"
 	item_state = "r_suit"
 
-	armor = list(melee = 20, bullet = 10, laser = 10,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
 
 /obj/item/clothing/head/warden
@@ -29,7 +28,6 @@
 	icon_state = "security"
 	item_state = "ba_suit"
 
-	armor = list(melee = 15, bullet = 10, laser = 10,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
 
 /obj/item/clothing/under/rank/medspec
@@ -38,7 +36,6 @@
 	icon_state = "medspec"
 	item_state = "ba_suit"
 
-	armor = list(melee = 15, bullet = 10, laser = 10,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
 
 
@@ -46,9 +43,7 @@
 	name = "tactical jumpsuit"
 	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for robust protection."
 	icon_state = "syndicate"
-	//item_state = "swatunder"
 
-	armor = list(melee = 15, bullet = 10, laser = 10,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
 
 /*
@@ -60,7 +55,6 @@
 	icon_state = "insp_under"
 	item_state = "insp_under"
 
-	armor = list(melee = 15, bullet = 10, laser = 10,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
 
 
@@ -71,7 +65,6 @@
 	icon_state = "detective"
 	item_state = "det"
 
-	armor = list(melee = 15, bullet = 10, laser = 10,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
 
 
@@ -91,7 +84,7 @@
 		slot_r_hand_str = "det_hat",
 		)
 	allowed = list(/obj/item/weapon/reagent_containers/food/snacks/candy_corn, /obj/item/weapon/pen)
-	armor = list(melee = 20, bullet = 5, laser = 10,energy = 5, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 10, bullet = 5, energy = 10, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
 	body_parts_covered = 0
 
@@ -109,7 +102,6 @@
 	icon_state = "hos"
 	item_state = "r_suit"
 
-	armor = list(melee = 15, bullet = 10, laser = 10,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.8
 
 
@@ -132,7 +124,7 @@
 	icon_state = "hos"
 	item_state = "hos"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	armor = list(melee = 65, bullet = 50, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 50, bullet = 50, energy = 30, bomb = 25, bio = 0, rad = 0)
 	flags_inv = HIDEJUMPSUIT
 	siemens_coefficient = 0.6
 

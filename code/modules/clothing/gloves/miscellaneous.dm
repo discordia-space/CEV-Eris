@@ -51,7 +51,7 @@
 	name = "IHS combat gloves"
 	icon_state = "ihscombat"
 	item_state = "ihscombat"
-	armor = list(melee = 40, bullet = 30, laser = 30,energy = 25, bomb = 40, bio = 10, rad = 0)
+	armor = list(melee = 40, bullet = 30,energy = 30, bomb = 40, bio = 10, rad = 0)
 	price_tag = 300
 
 /obj/item/clothing/gloves/thick/combat //Combined effect of SWAT gloves and insulated gloves
@@ -59,7 +59,7 @@
 	name = "combat gloves"
 	icon_state = "black"
 	item_state = "swat_gl"
-	armor = list(melee = 40, bullet = 30, laser = 30,energy = 25, bomb = 40, bio = 10, rad = 0)
+	armor = list(melee = 40, bullet = 30, energy = 30, bomb = 40, bio = 10, rad = 0)
 	siemens_coefficient = 0
 	price_tag = 500
 

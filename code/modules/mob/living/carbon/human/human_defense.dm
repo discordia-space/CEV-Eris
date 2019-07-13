@@ -39,14 +39,10 @@ meteor_act
 
 
 /mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
-	var/obj/item/organ/external/affected = get_organ(check_zone(def_zone))
-	var/siemens_coeff = get_siemens_coefficient_organ(affected)
-	stun_amount *= siemens_coeff
-	agony_amount *= siemens_coeff
+
+//	No siemens coefficient calculations now, it's all done with armor "Energy" protection stat
 
 	switch (def_zone)
-		if(BP_CHEST)
-			agony_amount *= 0.80
 		if(BP_L_ARM, BP_R_ARM)
 			var/c_hand
 			if (def_zone == BP_L_ARM)

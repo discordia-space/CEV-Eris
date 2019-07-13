@@ -5,7 +5,7 @@
 	icon_state = "void"
 
 	heat_protection = HEAD
-	armor = list(melee = 40, bullet = 35, laser = 35,energy = 5, bomb = 35, bio = 100, rad = 60)
+	armor = list(melee = 40, bullet = 35, energy = 15, bomb = 35, bio = 100, rad = 70)
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 
 	light_overlay = "helmet_light"
@@ -17,7 +17,7 @@
 	desc = "A high-tech dark red space suit. Used for AI satellite maintenance."
 	slowdown = 1
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	armor = list(melee = 40, bullet = 35, laser = 35,energy = 5, bomb = 35, bio = 100, rad = 90)
+	armor = list(melee = 40, bullet = 35, energy = 15, bomb = 35, bio = 100, rad = 70)
 
 
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
