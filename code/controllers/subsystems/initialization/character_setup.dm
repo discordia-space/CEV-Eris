@@ -20,6 +20,6 @@ SUBSYSTEM_DEF(character_setup)
 
 	// Start playing music for clients
 	for(var/client/C in clients)
-		GLOB.lobbyScreen.playMusic(C)
+		GLOB.lobbyScreen.play_music(C)
 
 	. = ..()
