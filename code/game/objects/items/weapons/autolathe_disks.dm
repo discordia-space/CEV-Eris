@@ -209,6 +209,7 @@
 		/datum/design/autolathe/tool/retractor,
 		/datum/design/autolathe/tool/cautery,
 		/datum/design/autolathe/tool/hemostat,
+		/datum/design/autolathe/tool/bonesetter,
 		/datum/design/autolathe/container/syringe,
 		/datum/design/autolathe/container/vial,
 		/datum/design/autolathe/container/beaker,

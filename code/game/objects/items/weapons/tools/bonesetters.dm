@@ -4,5 +4,6 @@
 	throw_speed = 3
 	throw_range = 5
 	w_class = ITEM_SIZE_SMALL
+	matter = list(MATERIAL_STEEL = 4)
 	attack_verb = list("attacked", "hit", "bludgeoned")
 	tool_qualities = list(QUALITY_BONE_SETTING = 30)
