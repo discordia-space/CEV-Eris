@@ -486,8 +486,8 @@
 	icon = 'icons/obj/toy.dmi'
 
 /obj/item/toy/figure/cmo
-	name = "Chief Medical Officer action figure"
-	desc = "A \"Space Life\" brand Chief Medical Officer action figure."
+	name = "Biolab Officer action figure"
+	desc = "A \"Space Life\" brand Biolab Officer action figure."
 	icon_state = "cmo"
 
 /obj/item/toy/figure/assistant
@@ -496,8 +496,8 @@
 	icon_state = "assistant"
 
 /obj/item/toy/figure/atmos
-	name = "Atmospheric Technician action figure"
-	desc = "A \"Space Life\" brand Atmospheric Technician action figure."
+	name = "Technomancer Atmosphericist action figure"
+	desc = "A \"Space Life\" brand Technomancer Atmosphericist action figure."
 	icon_state = "atmos"
 
 /obj/item/toy/figure/bartender
@@ -521,13 +521,13 @@
 	icon_state = "captain"
 
 /obj/item/toy/figure/cargotech
-	name = "Cargo Technician action figure"
-	desc = "A \"Space Life\" brand Cargo Technician action figure."
+	name = "Guild Technician action figure"
+	desc = "A \"Space Life\" brand Guild Technician action figure."
 	icon_state = "cargotech"
 
 /obj/item/toy/figure/ce
-	name = "Chief Engineer action figure"
-	desc = "A \"Space Life\" brand Chief Engineer action figure."
+	name = "Technomancer Exultant action figure"
+	desc = "A \"Space Life\" brand Technomancer Exultant action figure."
 	icon_state = "ce"
 
 /obj/item/toy/figure/chaplain
@@ -556,8 +556,8 @@
 	icon_state = "ian"
 
 /obj/item/toy/figure/detective
-	name = "Detective action figure"
-	desc = "A \"Space Life\" brand Detective action figure."
+	name = "Inspector action figure"
+	desc = "A \"Space Life\" brand Inspector action figure."
 	icon_state = "detective"
 
 /obj/item/toy/figure/dsquad
@@ -566,8 +566,8 @@
 	icon_state = "dsquad"
 
 /obj/item/toy/figure/engineer
-	name = "Engineer action figure"
-	desc = "A \"Space Life\" brand Engineer action figure."
+	name = "Technomancer action figure"
+	desc = "A \"Space Life\" brand Technomancer action figure."
 	icon_state = "engineer"
 
 /obj/item/toy/figure/geneticist
@@ -576,18 +576,18 @@
 	icon_state = "geneticist"
 
 /obj/item/toy/figure/hop
-	name = "Head of Personel action figure"
-	desc = "A \"Space Life\" brand Head of Personel action figure."
+	name = "First Officer action figure"
+	desc = "A \"Space Life\" brand First Officer action figure."
 	icon_state = "hop"
 
 /obj/item/toy/figure/hos
-	name = "Head of Security action figure"
-	desc = "A \"Space Life\" brand Head of Security action figure."
+	name = "Ironhammer Commander action figure"
+	desc = "A \"Space Life\" brand Ironhammer Commander action figure."
 	icon_state = "hos"
 
 /obj/item/toy/figure/qm
-	name = "Quartermaster action figure"
-	desc = "A \"Space Life\" brand Quartermaster action figure."
+	name = "Guild Merchant action figure"
+	desc = "A \"Space Life\" brand Guild Merchant action figure."
 	icon_state = "qm"
 
 /obj/item/toy/figure/janitor
@@ -616,8 +616,8 @@
 	icon_state = "mime"
 
 /obj/item/toy/figure/miner
-	name = "Shaft Miner action figure"
-	desc = "A \"Space Life\" brand Shaft Miner action figure."
+	name = "Guild Miner action figure"
+	desc = "A \"Space Life\" brand Guild Miner action figure."
 	icon_state = "miner"
 
 /obj/item/toy/figure/ninja
@@ -631,8 +631,8 @@
 	icon_state = "wizard"
 
 /obj/item/toy/figure/rd
-	name = "Research Director action figure"
-	desc = "A \"Space Life\" brand Research Director action figure."
+	name = "Expedition Overseer action figure"
+	desc = "A \"Space Life\" brand Expedition Overseer action figure."
 	icon_state = "rd"
 
 /obj/item/toy/figure/roboticist
@@ -651,18 +651,18 @@
 	icon_state = "syndie"
 
 /obj/item/toy/figure/secofficer
-	name = "Security Officer action figure"
-	desc = "A \"Space Life\" brand Security Officer action figure."
+	name = "Ironhammer Operative action figure"
+	desc = "A \"Space Life\" brand Ironhammer Operative action figure."
 	icon_state = "secofficer"
 
 /obj/item/toy/figure/warden
-	name = "Warden action figure"
-	desc = "A \"Space Life\" brand Warden action figure."
+	name = "Gunnery Sergeant action figure"
+	desc = "A \"Space Life\" brand Gunnery Sergeant action figure."
 	icon_state = "warden"
 
 /obj/item/toy/figure/psychologist
-	name = "Psychologist action figure"
-	desc = "A \"Space Life\" brand Psychologist action figure."
+	name = "Psychiatrist action figure"
+	desc = "A \"Space Life\" brand Psychiatrist action figure."
 	icon_state = "psychologist"
 
 /obj/item/toy/figure/paramedic

@@ -163,6 +163,8 @@
 	reagents.trans_to_mob(target, issmall(user) ? ceil(amount_per_transfer_from_this/2) : amount_per_transfer_from_this, CHEM_INGEST)
 
 	feed_sound(user)
+	if(istype(src, /obj/item/weapon/reagent_containers/pill))
+		qdel(src) //pills are swallowed whole, so delete it here
 	return TRUE
 
 /obj/item/weapon/reagent_containers/proc/standard_pour_into(mob/user, atom/target) // This goes into afterattack and yes, it's atom-level

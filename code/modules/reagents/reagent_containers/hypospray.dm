@@ -98,3 +98,16 @@
 		icon_state = initial(icon_state)
 	else
 		icon_state = "[initial(icon_state)]0"
+
+
+/obj/item/weapon/reagent_containers/hypospray/verb/empty()
+
+	set name = "Empty Hypospray"
+	set category = "Object"
+	set src in usr
+
+	if (alert(usr, "Are you sure you want to empty that?", "Empty Bottle:", "Yes", "No") != "Yes")
+		return
+	if(isturf(usr.loc))
+		usr << SPAN_NOTICE("You empty \the [src] onto the floor.")
+		reagents.splash(usr.loc, reagents.total_volume)
