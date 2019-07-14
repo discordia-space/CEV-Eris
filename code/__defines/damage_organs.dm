@@ -27,10 +27,12 @@
 
 //Armor defines
 
-#define ARMOR_MELEE      "stun"
-#define ARMOR_BULLET   "weaken"
-#define PARALYZE  "paralize"
-#define IRRADIATE "irradiate"
+#define ARMOR_MELEE			"stun"
+#define ARMOR_BULLET		"weaken"
+#define ARMOR_ENERGY		"energy"
+#define ARMOR_BOMB			"bomb"
+#define ARMOR_BIO			"bio"
+#define ARMOR_RAD			"rad"
 
 
 // Organs.

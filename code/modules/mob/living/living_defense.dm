@@ -44,7 +44,7 @@
 		return 1
 	return 0
 */
-/*
+
 #define ARMOR_AGONY_COEFFICIENT 0.6
 #define ARMOR_GDR_COEFFICIENT 0.1
 
@@ -68,7 +68,6 @@
 	else
 		var/agony_gamage = round( ( effective_damage * armor_effectiveness * ARMOR_AGONY_COEFFICIENT ) / 100 )
 		stun_effect_act(0, agony_gamage, def_zone, P)
-*/
 
 //if null is passed for def_zone, then this should return something appropriate for all zones (e.g. area effect damage)
 /mob/living/proc/getarmor(var/def_zone, var/type)
