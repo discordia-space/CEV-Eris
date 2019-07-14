@@ -18,10 +18,6 @@
 	GLOB.player_list |= src
 
 	new_player_panel()
-	GLOB.lobbyScreen.playMusic(src.client)
 
-	if (client)
-		if(client.UI)
-			client.UI.show()
-		else
-			client.create_UI(src.type)
+	GLOB.lobbyScreen.play_music(client)
+	GLOB.lobbyScreen.show_titlescreen(client)
