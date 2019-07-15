@@ -451,6 +451,7 @@
 #include "code\defines\procs\radio.dm"
 #include "code\defines\procs\sd_Alert.dm"
 #include "code\defines\procs\statistics.dm"
+#include "code\game\atom_stats.dm"
 #include "code\game\atoms.dm"
 #include "code\game\atoms_movable.dm"
 #include "code\game\base_turf.dm"
