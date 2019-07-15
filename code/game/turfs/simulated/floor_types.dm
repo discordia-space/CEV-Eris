@@ -22,7 +22,7 @@
 	name = "plating"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "plating"
-	level = 1
+	level = BELOW_PLATING_LEVEL
 
 /turf/simulated/shuttle/plating/is_plating()
 	return TRUE

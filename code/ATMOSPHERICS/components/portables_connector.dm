@@ -16,7 +16,7 @@
 
 	var/on = 0
 	use_power = 0
-	level = 1
+	level = BELOW_PLATING_LEVEL
 	layer = GAS_FILTER_LAYER
 
 

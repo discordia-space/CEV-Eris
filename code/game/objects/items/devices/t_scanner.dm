@@ -138,7 +138,7 @@ are technically visible but obscured, for example by catwalks or trash sitting o
 
 	for(var/turf/T in trange(scan_range, center))
 		for(var/obj/O in T.contents)
-			if(O.level != 1)
+			if(O.level != BELOW_PLATING_LEVEL)
 				continue
 			if(!O.invisibility && !O.hides_under_flooring())
 				continue //if it's already visible don't need an overlay for it
