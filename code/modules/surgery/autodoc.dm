@@ -78,7 +78,7 @@
 		patchnote.organ = external
 		if(AUTODOC_DAMAGE in possible_operations)
 			if(external.brute_dam || external.burn_dam)
-				if(external.robotic)
+				if(BP_IS_ROBOTIC(external))
 					continue
 				patchnote.surgery_operations |= AUTODOC_DAMAGE
 		
