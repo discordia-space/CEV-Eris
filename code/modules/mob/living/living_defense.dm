@@ -11,7 +11,7 @@
 	2 - fullblock
 */
 
-/*/mob/living/proc/run_armor_check(var/def_zone = null, var/attack_flag = "melee", var/armour_pen = 0, var/absorb_text = null, var/soften_text = null)
+/*/mob/living/proc/run_armor_check(var/def_zone = null, var/attack_flag = ARMOR_MELEE, var/armour_pen = 0, var/absorb_text = null, var/soften_text = null)
 	if(armour_pen >= 100)
 		return 0 //might as well just skip the processing
 
@@ -48,11 +48,14 @@
 #define ARMOR_AGONY_COEFFICIENT 0.6
 #define ARMOR_GDR_COEFFICIENT 0.1
 
-/mob/living/proc/damage_through_armor(var/damage = 0, var/def_zone = null, var/damagetype = BRUTE, var/attack_flag = "melee", var/armour_pen = 0, var/used_weapon = null, var/sharp = 0, var/edge = 0)
+//This calculation replaces old run_armor_check in favor of more complex and better system
+
+/mob/living/proc/damage_through_armor(var/damage = 0, var/def_zone = null, var/damagetype = BRUTE, var/attack_flag = ARMOR_MELEE, var/armour_pen = 0, var/used_weapon = null, var/sharp = 0, var/edge = 0)
 
 	if(damage == 0)
 		return FALSE
 
+	//GDR - guaranteed damage reduction. It's a value that deducted from damage before all calculations
 	var/armor = getarmor(def_zone, attack_flag)
 	var/guaranteed_damage_red = armor * ARMOR_GDR_COEFFICIENT
 	var/armor_effectiveness = max(0, ( armor - armour_pen )
@@ -63,11 +66,21 @@
 		return FALSE
 
 	if(armor_effectiveness == 0)
+		apply_damage(effective_damage, damagetype, def_zone, absorb, 0, P, sharp=proj_sharp, edge=proj_edge)
+
+	//Here we split damage in two parts, where armor value will determine how much damage will get through
+	else
+		//Pain part of the damage, that simulates impact from armor absorbtion
+		//For balance purposes, it's lowered by ARMOR_AGONY_COEFFICIENT
+		var/agony_gamage = round( ( effective_damage * armor_effectiveness * ARMOR_AGONY_COEFFICIENT ) / 100 )
+		stun_effect_act(0, agony_gamage, def_zone)
+
+		//Actual part of the damage that passed through armor
+		var/actual_damage = round ( ( effective_damage * ( 100 - armor_effectiveness ) ) / 100 )
 		apply_damage(damage, damagetype, def_zone, absorb, 0, P, sharp=proj_sharp, edge=proj_edge)
 
-	else
-		var/agony_gamage = round( ( effective_damage * armor_effectiveness * ARMOR_AGONY_COEFFICIENT ) / 100 )
-		stun_effect_act(0, agony_gamage, def_zone, P)
+	return TRUE
+
 
 //if null is passed for def_zone, then this should return something appropriate for all zones (e.g. area effect damage)
 /mob/living/proc/getarmor(var/def_zone, var/type)
@@ -142,7 +155,7 @@
 /mob/living/proc/hit_with_weapon(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
 	visible_message(SPAN_DANGER("[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] with [I.name] by [user]!"))
 
-	var/blocked = run_armor_check(hit_zone, "melee")
+	var/blocked = run_armor_check(hit_zone, ARMOR_MELEE)
 	standard_weapon_hit_effects(I, user, effective_force, blocked, hit_zone)
 
 	if(I.damtype == BRUTE && prob(33)) // Added blood for whacking non-humans too
@@ -163,7 +176,7 @@
 	//Apply weapon damage
 	var/weapon_sharp = is_sharp(I)
 	var/weapon_edge = has_edge(I)
-	if(prob(max(getarmor(hit_zone, "melee") - I.armor_penetration, 0))) //melee armour provides a chance to turn sharp/edge weapon attacks into blunt ones
+	if(prob(max(getarmor(hit_zone, ARMOR_MELEE) - I.armor_penetration, 0))) //melee armour provides a chance to turn sharp/edge weapon attacks into blunt ones
 		weapon_sharp = 0
 		weapon_edge = 0
 
@@ -192,7 +205,7 @@
 			IgniteMob()
 
 		src.visible_message(SPAN_WARNING("[src] has been hit by [O]."))
-		var/armor = run_armor_check(null, "melee")
+		var/armor = run_armor_check(null, ARMOR_MELEE)
 
 		if(armor < 2)
 			apply_damage(throw_damage, dtype, null, armor, is_sharp(O), has_edge(O), O)
@@ -321,7 +334,7 @@
 
 /mob/living/proc/irradiate(amount)
 	if(amount)
-		var/blocked = run_armor_check(null, "rad")
+		var/blocked = run_armor_check(null, ARMOR_RAD)
 		apply_effect(amount, IRRADIATE, blocked)
 
 /mob/living/proc/get_cold_protection()

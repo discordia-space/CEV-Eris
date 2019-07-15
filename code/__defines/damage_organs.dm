@@ -27,8 +27,8 @@
 
 //Armor defines
 
-#define ARMOR_MELEE			"stun"
-#define ARMOR_BULLET		"weaken"
+#define ARMOR_MELEE			"melee"
+#define ARMOR_BULLET		"bullet"
 #define ARMOR_ENERGY		"energy"
 #define ARMOR_BOMB			"bomb"
 #define ARMOR_BIO			"bio"

@@ -51,7 +51,7 @@
 		return
 
 	attacker.visible_message("<span class='danger'>[attacker] [pick("bent", "twisted")] [target]'s [organ.name] into a jointlock!</span>")
-	var/armor = target.run_armor_check(target, "melee")
+	var/armor = target.run_armor_check(target, ARMOR_MELEE)
 	if(armor < 2)
 		target << SPAN_DANGER("You feel extreme pain!")
 		affecting.adjustHalLoss(Clamp(0, 60-affecting.halloss, 30)) //up to 60 halloss
@@ -93,9 +93,9 @@
 	if(istype(hat))
 		damage += hat.force * 3
 
-	var/armor = target.run_armor_check(BP_HEAD, "melee")
+	var/armor = target.run_armor_check(BP_HEAD, ARMOR_MELEE)
 	target.apply_damage(damage, BRUTE, BP_HEAD, armor)
-	attacker.apply_damage(10, BRUTE, BP_HEAD, attacker.run_armor_check(BP_HEAD, "melee"))
+	attacker.apply_damage(10, BRUTE, BP_HEAD, attacker.run_armor_check(BP_HEAD, ARMOR_MELEE))
 
 	if(!armor && target.headcheck(BP_HEAD) && prob(damage))
 		target.apply_effect(20, PARALYZE)

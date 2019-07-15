@@ -35,7 +35,7 @@
 				visible_message("\red <B>[H] has attempted to punch [src]!</B>")
 				return 0
 			var/obj/item/organ/external/affecting = get_organ(ran_zone(H.targeted_organ))
-			var/armor_block = run_armor_check(affecting, "melee")
+			var/armor_block = run_armor_check(affecting, ARMOR_MELEE)
 
 			if(HULK in H.mutations)
 				damage += 5
@@ -223,7 +223,7 @@
 				stat_damage *= 2
 			real_damage = max(1, real_damage)
 
-			var/armour = run_armor_check(affecting, "melee")
+			var/armour = run_armor_check(affecting, ARMOR_MELEE)
 			// Apply additional unarmed effects.
 			attack.apply_effects(H, src, armour, stat_damage, hit_zone)
 
@@ -257,7 +257,7 @@
 			var/randn = rand(1, 100)
 			randn = max(1, randn - H.stats.getStat(STAT_ROB))
 			if(!(species.flags & NO_SLIP) && randn <= 20)
-				var/armor_check = run_armor_check(affecting, "melee", armour_pen = (H.stats.getStat(STAT_ROB) / 2))
+				var/armor_check = run_armor_check(affecting, ARMOR_MELEE, armour_pen = (H.stats.getStat(STAT_ROB) / 2))
 				apply_effect(3, WEAKEN, armor_check)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 				if(armor_check < 2)
@@ -298,7 +298,7 @@
 
 	var/dam_zone = pick(organs_by_name)
 	var/obj/item/organ/external/affecting = get_organ(ran_zone(dam_zone))
-	var/armor_block = run_armor_check(affecting, "melee")
+	var/armor_block = run_armor_check(affecting, ARMOR_MELEE)
 	apply_damage(damage, BRUTE, affecting, armor_block)
 	updatehealth()
 	return 1

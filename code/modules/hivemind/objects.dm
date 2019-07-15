@@ -8,7 +8,7 @@
 	icon_state = "goo_proj"
 	damage = 15
 	damage_type = BURN
-	check_armour = "bio"
+	check_armour = ARMOR_BIO
 	step_delay = 2
 
 
