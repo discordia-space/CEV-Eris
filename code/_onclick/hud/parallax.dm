@@ -1,6 +1,10 @@
+GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "space4", "space5", "space6"))
+
 /obj/parallax_screen
 	icon = 'icons/parallax.dmi'
-	icon_state = "space"
+
+/obj/parallax_screen/New()
+	icon_state = GLOB.random_parallax
 
 /obj/parallax
 	name = "parallax"
@@ -13,7 +17,7 @@
 	var/obj/parallax_screen/parallax_screen
 	var/list/layers = list()
 
-	New(mob/M)
+	/obj/parallax/New(mob/M)
 		owner = M
 		owner.parallax = src
 		parallax_screen = new /obj/parallax_screen
