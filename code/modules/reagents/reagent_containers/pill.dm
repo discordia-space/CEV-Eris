@@ -19,10 +19,7 @@
 
 
 /obj/item/weapon/reagent_containers/pill/attack(mob/M as mob, mob/user as mob, def_zone)
-	if(standard_feed_mob(user, M))
-		qdel(src)
-		return 1
-	return 0
+	standard_feed_mob(user, M)
 
 /obj/item/weapon/reagent_containers/pill/self_feed_message(var/mob/user)
 	to_chat(user, SPAN_NOTICE("You swallow \the [src]."))
