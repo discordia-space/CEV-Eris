@@ -48,27 +48,35 @@
 
 
 
-/mob/living/proc/apply_effect(var/effect = 0,var/effecttype = STUN, var/blocked = 0, var/check_protection = 1)
-	if(!effect || (blocked >= 2))	return 0
+/mob/living/proc/apply_effect(var/effect = 0,var/effecttype = STUN, var/armor_value = 0, var/check_protection = 1)
+
+	if(!effect))
+		return 0
+
+	if(armor_value)
+		var/effect = effect * ( ( 100 - armor_value ) / 100 )
+
 	switch(effecttype)
+
 		if(STUN)
-			Stun(effect/(blocked+1))
+			Stun(effect)
 		if(WEAKEN)
-			Weaken(effect/(blocked+1))
+			Weaken(effect)
 		if(PARALYZE)
-			Paralyse(effect/(blocked+1))
+			Paralyse(effect)
 		if(AGONY)
 			halloss += effect // Useful for objects that cause "subdual" damage. PAIN!
 		if(IRRADIATE)
-			var/rad_protection = check_protection ? getarmor(null, ARMOR_RAD)/100 : 0
-			radiation += max((1-rad_protection)*effect/(blocked+1),0)//Rads auto check armor
+			var/rad_protection = check_protection ? getarmor(null, ARMOR_RAD) / 100 : 0
+			radiation += max((1 - rad_protection) * effect, 0)//Rads auto check armor
 		if(STUTTER)
 			if(status_flags & CANSTUN) // stun is usually associated with stutter
-				stuttering = max(stuttering,(effect/(blocked+1)))
+				stuttering = max(stuttering,(effect))
 		if(EYE_BLUR)
-			eye_blurry = max(eye_blurry,(effect/(blocked+1)))
+			eye_blurry = max(eye_blurry,(effect))
 		if(DROWSY)
-			drowsyness = max(drowsyness,(effect/(blocked+1)))
+			drowsyness = max(drowsyness,(effect))
+
 	updatehealth()
 	return 1
 

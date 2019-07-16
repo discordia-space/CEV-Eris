@@ -953,7 +953,7 @@
 		if(..())
 			for(var/mob/living/carbon/M in view(EG.chassis))
 				if(ishuman(M))
-					M.apply_effect((EG.rad_per_cycle*3),IRRADIATE,0)
+					M.apply_effect((EG.rad_per_cycle*3),IRRADIATE)
 				else
 					M.apply_effect(EG.rad_per_cycle, IRRADIATE)
 		return 1

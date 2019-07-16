@@ -58,7 +58,7 @@
 	//GDR - guaranteed damage reduction. It's a value that deducted from damage before all calculations
 	var/armor = getarmor(def_zone, attack_flag)
 	var/guaranteed_damage_red = armor * ARMOR_GDR_COEFFICIENT
-	var/armor_effectiveness = max(0, ( armor - armour_pen )
+	var/armor_effectiveness = max(0, ( armor - armour_pen ) )
 	var/effective_damage = damage - guaranteed_damage_red
 
 	if(effective_damage == 0)
@@ -66,7 +66,7 @@
 		return FALSE
 
 	if(armor_effectiveness == 0)
-		apply_damage(effective_damage, damagetype, def_zone, absorb, 0, P, sharp=proj_sharp, edge=proj_edge)
+		apply_damage(effective_damage, damagetype, def_zone, used_weapon, sharp, edge)
 
 	//Here we split damage in two parts, where armor value will determine how much damage will get through
 	else
@@ -77,7 +77,7 @@
 
 		//Actual part of the damage that passed through armor
 		var/actual_damage = round ( ( effective_damage * ( 100 - armor_effectiveness ) ) / 100 )
-		apply_damage(damage, damagetype, def_zone, absorb, 0, P, sharp=proj_sharp, edge=proj_edge)
+		apply_damage(actual_damage, damagetype, def_zone, used_weapon, sharp, edge)
 
 	return TRUE
 
