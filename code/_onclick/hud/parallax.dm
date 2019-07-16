@@ -17,7 +17,7 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 	var/obj/parallax_screen/parallax_screen
 	var/list/layers = list()
 
-	/obj/parallax/New(mob/M)
+	New(mob/M)
 		owner = M
 		owner.parallax = src
 		parallax_screen = new /obj/parallax_screen
