@@ -36,8 +36,8 @@
 	return 1
 
 
-/mob/living/proc/apply_damages(var/brute = 0, var/burn = 0, var/tox = 0, var/oxy = 0, var/clone = 0, var/halloss = 0, var/def_zone = null, var/blocked = 0)
-	if(blocked >= 2)	return 0
+/mob/living/proc/apply_damages(var/brute = 0, var/burn = 0, var/tox = 0, var/oxy = 0, var/clone = 0, var/halloss = 0, var/def_zone = null)
+
 	if(brute)	apply_damage(brute, BRUTE, def_zone, blocked)
 	if(burn)	apply_damage(burn, BURN, def_zone, blocked)
 	if(tox)		apply_damage(tox, TOX, def_zone, blocked)
@@ -81,16 +81,16 @@
 	return 1
 
 
-/mob/living/proc/apply_effects(var/stun = 0, var/weaken = 0, var/paralyze = 0, var/irradiate = 0, var/stutter = 0, var/eyeblur = 0, var/drowsy = 0, var/agony = 0, var/blocked = 0)
-	if(blocked >= 2)	return 0
-	if(stun)		apply_effect(stun, STUN, blocked)
-	if(weaken)		apply_effect(weaken, WEAKEN, blocked)
-	if(paralyze)	apply_effect(paralyze, PARALYZE, blocked)
-	if(irradiate)	apply_effect(irradiate, IRRADIATE, blocked)
-	if(stutter)		apply_effect(stutter, STUTTER, blocked)
-	if(eyeblur)		apply_effect(eyeblur, EYE_BLUR, blocked)
-	if(drowsy)		apply_effect(drowsy, DROWSY, blocked)
-	if(agony)		apply_effect(agony, AGONY, blocked)
+/mob/living/proc/apply_effects(var/stun = 0, var/weaken = 0, var/paralyze = 0, var/irradiate = 0, var/stutter = 0, var/eyeblur = 0, var/drowsy = 0, var/agony = 0, var/armor_value = 0)
+
+	if(stun)		apply_effect(stun, STUN, armor_value)
+	if(weaken)		apply_effect(weaken, WEAKEN, armor_value)
+	if(paralyze)	apply_effect(paralyze, PARALYZE, armor_value)
+	if(irradiate)	apply_effect(irradiate, IRRADIATE, armor_value)
+	if(stutter)		apply_effect(stutter, STUTTER, armor_value)
+	if(eyeblur)		apply_effect(eyeblur, EYE_BLUR, armor_value)
+	if(drowsy)		apply_effect(drowsy, DROWSY, armor_value)
+	if(agony)		apply_effect(agony, AGONY, armor_value)
 	return 1
 
 
