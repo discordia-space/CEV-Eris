@@ -16,7 +16,7 @@
 	. = ..()
 	if(isliving(target) && !issilicon(target) && !blocked)
 		var/mob/living/L = target
-		L.apply_damage(10, TOX)
+		L.damage_through_armor(10, TOX, attack_flag = ARMOR_RAD)
 	if(!(locate(/obj/effect/decal/cleanable/spiderling_remains) in target.loc))
 		var/obj/effect/decal/cleanable/spiderling_remains/goo = new /obj/effect/decal/cleanable/spiderling_remains(target.loc)
 		goo.name = "acrid goo"

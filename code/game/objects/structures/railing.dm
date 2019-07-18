@@ -26,7 +26,7 @@
 	if(climbable)
 		verbs += /obj/structure/proc/climb_on
 	update_icon(FALSE)
-	
+
 /obj/structure/railing/Created(var/mob/user)
 	anchored = FALSE
 	// this way its much easier to build it, and there is no need to update_icon after that, flip will take care of that
@@ -205,7 +205,7 @@
 		if(user.a_intent == I_HURT)
 			if(prob(15))
 				target.Weaken(5)
-			target.apply_damage(8, def_zone = BP_HEAD)
+			target.damage_through_armor(8, BRUTE, BP_HEAD, ARMOR_MELEE)
 			take_damage(8)
 			visible_message(SPAN_DANGER("[user] slams [target]'s face against \the [src]!"))
 			playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)

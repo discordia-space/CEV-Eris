@@ -93,9 +93,8 @@
 	if(istype(hat))
 		damage += hat.force * 3
 
-	var/armor = target.run_armor_check(BP_HEAD, ARMOR_MELEE)
-	target.apply_damage(damage, BRUTE, BP_HEAD, armor)
-	attacker.apply_damage(10, BRUTE, BP_HEAD, attacker.run_armor_check(BP_HEAD, ARMOR_MELEE))
+	target.damage_through_armor(damage, BRUTE, BP_HEAD, ARMOR_MELEE)
+	attacker..damage_through_armor(10, BRUTE, BP_HEAD, ARMOR_MELEE)
 
 	if(!armor && target.headcheck(BP_HEAD) && prob(damage))
 		target.apply_effect(20, PARALYZE)

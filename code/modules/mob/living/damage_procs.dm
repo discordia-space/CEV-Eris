@@ -33,7 +33,8 @@
 
 	flash_weak_pain()
 	updatehealth()
-	return 1
+
+	return TRUE
 
 
 /mob/living/proc/apply_damages(var/brute = 0, var/burn = 0, var/tox = 0, var/oxy = 0, var/clone = 0, var/halloss = 0, var/def_zone = null)
@@ -44,14 +45,15 @@
 	if(oxy)		apply_damage(oxy, OXY, def_zone, blocked)
 	if(clone)	apply_damage(clone, CLONE, def_zone, blocked)
 	if(halloss) apply_damage(halloss, HALLOSS, def_zone, blocked)
-	return 1
+
+	return TRUE
 
 
 
 /mob/living/proc/apply_effect(var/effect = 0,var/effecttype = STUN, var/armor_value = 0, var/check_protection = 1)
 
 	if(!effect))
-		return 0
+		return FALSE
 
 	if(armor_value)
 		var/effect = effect * ( ( 100 - armor_value ) / 100 )
@@ -78,7 +80,8 @@
 			drowsyness = max(drowsyness,(effect))
 
 	updatehealth()
-	return 1
+
+	return TRUE
 
 
 /mob/living/proc/apply_effects(var/stun = 0, var/weaken = 0, var/paralyze = 0, var/irradiate = 0, var/stutter = 0, var/eyeblur = 0, var/drowsy = 0, var/agony = 0, var/armor_value = 0)

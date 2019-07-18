@@ -481,7 +481,7 @@
 		if(user.a_intent == I_HURT)
 			if(prob(15))
 				target.Weaken(5)
-			target.apply_damage(12, def_zone = BP_HEAD)
+			target.damage_through_armor(12, BRUTE, BP_HEAD, ARMOR_MELEE)
 			visible_message(SPAN_DANGER("[user] slams [target]'s face against \the [src]!"))
 			playsound(loc, 'sound/weapons/tablehit1.ogg', 50, 1)
 

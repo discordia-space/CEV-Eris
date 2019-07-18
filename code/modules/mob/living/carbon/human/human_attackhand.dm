@@ -44,7 +44,7 @@
 
 			visible_message("\red <B>[H] has punched [src]!</B>")
 
-			damage_through_armor(damage, affecting, HALLOSS, ARMOR_MELEE, )
+			damage_through_armor(damage, HALLOSS, affecting, ARMOR_MELEE, )
 			apply_damage(damage, HALLOSS, affecting, armor_block)
 			if(damage >= 9)
 				visible_message("\red <B>[H] has weakened [src]!</B>")

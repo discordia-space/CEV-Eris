@@ -49,8 +49,10 @@
 #define ARMOR_GDR_COEFFICIENT 0.1
 
 //This calculation replaces old run_armor_check in favor of more complex and better system
+//If you need to do something else with armor - just use getarmor() proc and do with those numbers all you want
+//Random absorb system was a cancer, and was removed from all across the codebase. Don't recreate it. Clockrigger 2019
 
-/mob/living/proc/damage_through_armor(var/damage = 0, var/def_zone = null, var/damagetype = BRUTE, var/attack_flag = ARMOR_MELEE, var/armour_pen = 0, var/used_weapon = null, var/sharp = 0, var/edge = 0)
+/mob/living/proc/damage_through_armor(var/damage = 0, var/damagetype = BRUTE, var/def_zone = null, var/attack_flag = ARMOR_MELEE, var/armour_pen = 0, var/used_weapon = null, var/sharp = 0, var/edge = 0)
 
 	if(damage == 0)
 		return FALSE
@@ -165,7 +167,7 @@
 	return blocked
 
 //returns 0 if the effects failed to apply for some reason, 1 otherwise.
-/mob/living/proc/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/blocked, var/hit_zone)
+//mob/living/proc/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/blocked, var/hit_zone)
 	if(!effective_force || blocked >= 2)
 		return 0
 
@@ -180,6 +182,7 @@
 		weapon_sharp = 0
 		weapon_edge = 0
 
+	damage_through_armor(effective_force, I.damtype, hit_zone, var/attack_flag = ARMOR_MELEE, I.armor_penetration, used_weapon=I, sharp=weapon_sharp, edge=weapon_edge)
 	apply_damage(effective_force, I.damtype, hit_zone, blocked, sharp=weapon_sharp, edge=weapon_edge, used_weapon=I)
 
 	return 1

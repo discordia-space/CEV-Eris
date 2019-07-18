@@ -80,7 +80,7 @@ var/global/list/stool_cache = list() //haha stool
 		qdel(src)
 		var/mob/living/T = M
 		T.Weaken(10)
-		T.apply_damage(20)
+		T.damage_through_armor(20, BRUTE, BP_CHEST, ARMOR_MELEE)
 		return
 	..()
 
