@@ -219,6 +219,7 @@
 #include "code\controllers\subsystems\radio.dm"
 #include "code\controllers\subsystems\research.dm"
 #include "code\controllers\subsystems\shuttle.dm"
+#include "code\controllers\subsystems\staverbs.dm"
 #include "code\controllers\subsystems\sun.dm"
 #include "code\controllers\subsystems\supply.dm"
 #include "code\controllers\subsystems\ticker.dm"
