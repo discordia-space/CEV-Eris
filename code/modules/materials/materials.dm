@@ -670,6 +670,14 @@ var/list/name_to_material
 		return 1
 	return 0
 
+/material/biomatter
+	name = MATERIAL_BIOMATTER
+	stack_type = /obj/item/stack/material/biomatter
+	icon_colour = "#F48042"
+	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2)
+	sheet_singular_name = "sheet"
+	sheet_plural_name = "sheets"
+
 //TODO PLACEHOLDERS:
 /material/leather
 	name = MATERIAL_LEATHER

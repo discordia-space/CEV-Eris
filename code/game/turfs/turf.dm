@@ -1,6 +1,6 @@
 /turf
 	icon = 'icons/turf/floors.dmi'
-	level = 1
+	level = BELOW_PLATING_LEVEL
 	var/holy = 0
 	var/diffused = 0 //If above zero, shields can't be on this turf. Set by floor diffusers only
 	//This is not a boolean. Multiple diffusers can stack and set it to 2, 3, etc

@@ -657,7 +657,7 @@
 	anchored = 1
 	density = 0
 
-	level = 1			// underfloor only
+	level = BELOW_PLATING_LEVEL			// underfloor only
 	var/pipe_dir = 0		// bitmask of pipe directions
 	dir = 0				// dir will contain dominant direction for junction pipes
 	var/health = 10 	// health points 0-10

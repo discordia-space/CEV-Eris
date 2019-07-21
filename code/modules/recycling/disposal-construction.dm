@@ -10,7 +10,7 @@
 	anchored = 0
 	density = 0
 	matter = list(MATERIAL_STEEL = 6)
-	level = 2
+	level = ABOVE_PLATING_LEVEL
 	var/sortType = list()
 	var/pipe_type = 0
 	var/sort_mode = 0
@@ -101,7 +101,7 @@
 	// hide called by levelupdate if turf intact status changes
 	// change visibility status and force update of icon
 /obj/structure/disposalconstruct/hide(var/intact)
-	invisibility = (intact && level == 1) ? 101 : 0	// hide if floor is intact
+	invisibility = (intact && level == BELOW_PLATING_LEVEL) ? 101 : 0	// hide if floor is intact
 	update()
 
 
@@ -261,7 +261,7 @@
 				if(anchored)
 					anchored = 0
 					if(is_pipe)
-						level = 2
+						level = ABOVE_PLATING_LEVEL
 						density = 0
 					else
 						density = 1
@@ -270,7 +270,7 @@
 				else
 					anchored = 1
 					if(is_pipe)
-						level = 1 // We don't want disposal bins to disappear under the floors
+						level = BELOW_PLATING_LEVEL // We don't want disposal bins to disappear under the floors
 						density = 0
 					else
 						density = 1 // We don't want disposal bins or outlets to go density 0

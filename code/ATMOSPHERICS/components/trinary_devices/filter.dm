@@ -2,7 +2,7 @@
 	icon = 'icons/atmos/filter.dmi'
 	icon_state = "map"
 	density = 0
-	level = 1
+	level = BELOW_PLATING_LEVEL
 
 	name = "Gas filter"
 

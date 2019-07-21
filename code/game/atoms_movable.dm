@@ -385,3 +385,7 @@
 /proc/step_glide(var/atom/movable/am, var/dir, var/glide_size_override)
 	am.set_glide_size(glide_size_override)
 	return step(am, dir)
+
+// if this returns true, interaction to turf will be redirected to src instead
+/atom/movable/proc/preventsTurfInteractions()
+	return FALSE

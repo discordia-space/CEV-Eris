@@ -7,7 +7,7 @@
 	icon_state = "base"
 	use_power = 1
 	initialize_directions = 0
-	level = 1
+	level = BELOW_PLATING_LEVEL
 
 	var/configuring = 0
 	//var/target_pressure = ONE_ATMOSPHERE	//a base type as abstract as this should NOT be making these kinds of assumptions
@@ -188,7 +188,7 @@
 		var/turf/T = get_turf(src)
 		if(!istype(T))
 			return
-		if(!T.is_plating() && istype(P.node, /obj/machinery/atmospherics/pipe) && P.node.level == 1 )
+		if(!T.is_plating() && istype(P.node, /obj/machinery/atmospherics/pipe) && P.node.level == BELOW_PLATING_LEVEL )
 			//pipe_state = icon_manager.get_atmos_icon("underlay_down", P.dir, color_cache_name(P.node))
 			pipe_state = icon_manager.get_atmos_icon("underlay", P.dir, color_cache_name(P.node), "down")
 		else
