@@ -5,4 +5,4 @@
 
 /tipsAndTricks/mobs/breathing
     mobs_list = list(/mob/living/carbon/human)
-    tipText = "As a human you need oxygen and a pressure to breath. Comfortable pressure for human is around 101kPa. Some gasses like plasma are toxic to you."
+    tipText = "As a human, you need oxygen and pressure to breathe. Comfortable pressure for human is around 101kPa. Some gases, like plasma, are toxic to you."

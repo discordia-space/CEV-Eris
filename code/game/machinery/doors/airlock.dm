@@ -1014,6 +1014,8 @@ There are 9 wires.
 							spawn(0)	open(I)
 						else
 							spawn(0)	close(I)
+			else
+				..()
 			return
 
 		if(QUALITY_SCREW_DRIVING)
@@ -1037,6 +1039,8 @@ There are 9 wires.
 					else
 						src.welded = null
 					src.update_icon()
+			else
+				..()
 			return
 
 		if(ABORT_CHECK)
