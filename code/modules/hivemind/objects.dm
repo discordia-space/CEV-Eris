@@ -12,9 +12,9 @@
 	step_delay = 2
 
 
-/obj/item/projectile/goo/on_hit(atom/target, var/blocked = 0)
+/obj/item/projectile/goo/on_hit(atom/target)
 	. = ..()
-	if(isliving(target) && !issilicon(target) && !blocked)
+	if( isliving(target) && !issilicon(target) )
 		var/mob/living/L = target
 		L.damage_through_armor(10, TOX, attack_flag = ARMOR_RAD)
 	if(!(locate(/obj/effect/decal/cleanable/spiderling_remains) in target.loc))

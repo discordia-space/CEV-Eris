@@ -185,7 +185,7 @@
 	var/result = PROJECTILE_FORCE_MISS
 	if(hit_zone)
 		def_zone = hit_zone //set def_zone, so if the projectile ends up hitting someone else later (to be implemented), it is more likely to hit the same part
-		result = target_mob.bullet_act(src, def_zone)//this returns mob's armor_check and another - see modules/mob/living/living_defense.dm
+		result = target_mob.bullet_act(src, def_zone)//this returns TRUE if mob was hit and another - see modules/mob/living/living_defense.dm
 
 	if(result == PROJECTILE_FORCE_MISS)
 		if(!silenced)

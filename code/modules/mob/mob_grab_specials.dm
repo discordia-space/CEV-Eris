@@ -54,7 +54,7 @@
 	var/armor = target.run_armor_check(target, ARMOR_MELEE)
 	if(armor < 2)
 		target << SPAN_DANGER("You feel extreme pain!")
-		affecting.adjustHalLoss(Clamp(0, 60-affecting.halloss, 30)) //up to 60 halloss
+		affecting.adjustHalLoss(Clamp(0, 60 - affecting.halloss, 30)) //up to 60 halloss
 
 /obj/item/weapon/grab/proc/attack_eye(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
 	if(!istype(attacker))
