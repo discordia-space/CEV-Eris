@@ -126,7 +126,7 @@
 	if (stun_amount)
 
 		//For not bloating damage_through_armor here is simple armor calculation for stun time
-		var/armor = getarmor(def_zone, attack_flag)
+		var/armor = getarmor(def_zone, ARMOR_ENERGY)
 
 
 		Stun(stun_amount)
@@ -324,11 +324,6 @@
 /mob/living/fire_act()
 	adjust_fire_stacks(2)
 	IgniteMob()
-
-/mob/living/proc/irradiate(amount)
-	if(amount)
-		var/blocked = run_armor_check(null, ARMOR_RAD)
-		apply_effect(amount, IRRADIATE, blocked)
 
 /mob/living/proc/get_cold_protection()
 	return 0
