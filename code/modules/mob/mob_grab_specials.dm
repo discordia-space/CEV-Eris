@@ -52,7 +52,7 @@
 
 	var/time_to_jointlock = max( 0, ( target.getarmor(target_zone, ARMOR_MELEE) - attacker.stats.getStat(STAT_ROB) ) )
 	if(!do_mob(attacker, target, time_to_jointlock))
-		user << SPAN_WARNING("You must stand still to jointlock [[target]]!")
+		user << SPAN_WARNING("You must stand still to jointlock [target]!")
 	else
 		user << SPAN_WARNING("[attacker] [pick("bent", "twisted")] [target]'s [organ.name] into a jointlock!")
 		target << SPAN_DANGER("You feel extreme pain!")

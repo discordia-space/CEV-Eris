@@ -40,6 +40,8 @@ meteor_act
 
 /mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
 
+	var/obj/item/organ/external/affected = get_organ(check_zone(def_zone))
+
 //	No siemens coefficient calculations now, it's all done with armor "Energy" protection stat
 
 	switch (def_zone)
@@ -193,12 +195,12 @@ meteor_act
 				//Harder to score a stun but if you do it lasts a bit longer
 				if(prob(effective_force))
 					visible_message(SPAN_DANGER("[src] [species.knockout_message]"))
-					apply_effect(20, PARALYZE, get_armor(hit_zone, ARMOR_MELEE) )
+					apply_effect(20, PARALYZE, src.get_armor(hit_zone, ARMOR_MELEE) )
 			else
 				//Easier to score a stun but lasts less time
 				if(prob(effective_force + 10))
 					visible_message(SPAN_DANGER("[src] has been knocked down!"))
-					apply_effect(6, WEAKEN, get_armor(hit_zone, ARMOR_MELEE) )
+					apply_effect(6, WEAKEN, src.get_armor(hit_zone, ARMOR_MELEE) )
 
 		//Apply blood
 		if(!(I.flags & NOBLOODY))
@@ -308,9 +310,6 @@ meteor_act
 			if (I && I.damtype == BRUTE && !I.anchored && !is_robot_module(I))
 				var/damage = throw_damage
 				var/sharp = is_sharp(I)
-
-				if (armor)
-					damage /= armor+1
 
 				//blunt objects should really not be embedding in things unless a huge amount of force is involved
 

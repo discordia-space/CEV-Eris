@@ -123,21 +123,22 @@
 /mob/living/proc/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null)
 	flash_pain()
 
-	if (stun_amount)
+	//For not bloating damage_through_armor here is simple armor calculation for stun time
+	var/armor_coefficient = max(0, 1 - getarmor(def_zone, ARMOR_ENERGY) / 100)
 
-		//For not bloating damage_through_armor here is simple armor calculation for stun time
-		var/armor = getarmor(def_zone, ARMOR_ENERGY)
+	//If armor is 100 or more, we just skeeping it
+	if (stun_amount && armor_coefficient)
 
+		Stun(stun_amount * armor_coefficient)
+		Weaken(stun_amount * armor_coefficient)
+		apply_effect(STUTTER, stun_amount * armor_coefficient)
+		apply_effect(EYE_BLUR, stun_amount * armor_coefficient)
 
-		Stun(stun_amount)
-		Weaken(stun_amount)
-		apply_effect(STUTTER, stun_amount)
-		apply_effect(EYE_BLUR, stun_amount)
+	if (agony_amount && armor_coefficient)
 
-	if (agony_amount)
-		apply_damage(agony_amount, HALLOSS, def_zone, 0, used_weapon)
-		apply_effect(STUTTER, agony_amount/10)
-		apply_effect(EYE_BLUR, agony_amount/10)
+		apply_damage(agony_amount * armor_coefficient, HALLOSS, def_zone, 0, used_weapon)
+		apply_effect(STUTTER, agony_amount * armor_coefficient)
+		apply_effect(EYE_BLUR, agony_amount * armor_coefficient)
 
 /mob/living/proc/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0)
 	  return 0 //only carbon liveforms have this proc
@@ -173,8 +174,7 @@
 		effective_force *= 2
 
 	//Apply weapon damage
-
-	if (damage_through_armor(effective_force, I.damtype, hit_zone, ARMOR_MELEE, I.armor_penetration, used_weapon = I, sharp=weapon_sharp, edge=weapon_edge))
+	if (damage_through_armor(effective_force, I.damtype, hit_zone, ARMOR_MELEE, I.armor_penetration, used_weapon = I, sharp = is_sharp(I), edge = has_edge(I)))
 		return TRUE
 	else
 		return FALSE
