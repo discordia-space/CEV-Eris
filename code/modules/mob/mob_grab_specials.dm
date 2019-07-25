@@ -50,11 +50,14 @@
 	if(!organ || organ.dislocated == -1)
 		return
 
-	attacker.visible_message("<span class='danger'>[attacker] [pick("bent", "twisted")] [target]'s [organ.name] into a jointlock!</span>")
-	var/armor = target.run_armor_check(target, ARMOR_MELEE)
-	if(armor < 2)
+	var/time_to_jointlock = max( 0, ( target.getarmor(target_zone, ARMOR_MELEE) - attacker.stats.getStat(STAT_ROB) ) )
+	if(!do_mob(attacker, target, time_to_jointlock))
+		user << SPAN_WARNING("You must stand still to jointlock [[target]]!")
+	else
+		user << SPAN_WARNING("[attacker] [pick("bent", "twisted")] [target]'s [organ.name] into a jointlock!")
 		target << SPAN_DANGER("You feel extreme pain!")
 		affecting.adjustHalLoss(Clamp(0, 60 - affecting.halloss, 30)) //up to 60 halloss
+
 
 /obj/item/weapon/grab/proc/attack_eye(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
 	if(!istype(attacker))
