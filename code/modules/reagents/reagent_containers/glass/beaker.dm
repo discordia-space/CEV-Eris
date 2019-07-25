@@ -9,7 +9,8 @@
 /obj/item/weapon/reagent_containers/glass/beaker/Initialize()
 	. = ..()
 	desc += " Can hold up to [volume] units."
-
+	can_be_placed_into.Add(/obj/machinery/centrifuge, /obj/machinery/electrolyzer)
+	
 /obj/item/weapon/reagent_containers/glass/beaker/pickup(mob/user)
 	..()
 	playsound(src,'sound/items/Glass_Fragment_take.ogg',50,1)

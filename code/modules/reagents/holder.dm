@@ -6,6 +6,14 @@
 	var/maximum_volume = 100
 	var/chem_temp = T20C
 	var/atom/my_atom = null
+	var/isElectrolysed = FALSE
+	var/isHighlyGravitated = FALSE
+
+/datum/reagents/proc/affectedByStrongGravity()
+	return isHighlyGravitated
+
+/datum/reagents/proc/beingElectrolysed()
+	return isElectrolysed
 
 /datum/reagents/New(var/max = 100, atom/A = null)
 	..()

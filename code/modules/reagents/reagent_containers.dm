@@ -192,3 +192,39 @@
 	playsound(src,'sound/effects/Liquid_transfer_mono.ogg',50,1)
 	to_chat(user, SPAN_NOTICE("You transfer [trans] units of the solution to [target]."))
 	return TRUE
+
+// if amount_per_reagent is null or zero it will transfer all
+/obj/item/weapon/reagent_containers/proc/separateSolution(var/list/obj/item/weapon/reagent_containers/acceptingContainers, var/amount_per_reagent, var/list/ignoreReagentsIDs)
+	if(!is_drainable())
+		return FALSE
+	if(!reagents.total_volume)
+		return FALSE
+	
+	// nothing to separate
+	if(reagents.reagent_list.len <= 1)
+		return FALSE
+	var/list/obj/item/weapon/reagent_containers/containers = acceptingContainers.Copy()
+	for(var/obj/item/weapon/reagent_containers/C in containers)
+		if(!C.is_refillable())
+			containers.Remove(C)
+	if(!containers.len)
+		return FALSE
+	for(var/datum/reagent/R in reagents.reagent_list)
+		if(R.id in ignoreReagentsIDs)
+			continue
+		var/amount_to_transfer = amount_per_reagent ? amount_per_reagent : R.volume
+		for(var/obj/item/weapon/reagent_containers/C in containers)
+			if(!amount_to_transfer)
+				break
+			if(!C.reagents.get_free_space())
+				containers.Remove(C)
+				continue
+			
+			var/amount = min(C.reagents.get_free_space(), amount_to_transfer)
+			if(!C.reagents.total_volume || C.reagents.has_reagent(R.id))
+				C.reagents.add_reagent(R.id, amount, R.get_data())
+				reagents.remove_reagent(R.id, amount)
+				amount_to_transfer = max(0,amount_to_transfer - amount)
+	return TRUE
+		
+		
