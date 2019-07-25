@@ -236,7 +236,7 @@
 		var/attackforce = I.force*I.structure_damage_factor
 		var/dam_threshhold = material.integrity
 		if(reinf_material)
-			dam_threshhold = ceil(max(dam_threshhold,reinf_material.integrity)/2)
+			dam_threshhold = CEILING(max(dam_threshhold,reinf_material.integrity) * 0.5, 1)
 		var/dam_prob = min(100,material.hardness*1.5)
 		if (locate(/obj/effect/overlay/wallrot) in src)
 			dam_prob *= 0.5 //Rot makes reinforced walls breakable

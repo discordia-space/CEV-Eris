@@ -87,8 +87,8 @@
 	objectsInView = new
 
 	verbs -= /mob/verb/observe
-	pixel_x = rand_decimal(-randpixel, randpixel)
-	pixel_y = rand_decimal(-randpixel, randpixel)
+	pixel_x = RAND_DECIMAL(-randpixel, randpixel)
+	pixel_y = RAND_DECIMAL(-randpixel, randpixel)
 
 
 /mob/living/carbon/superior_animal/Initialize(var/mapload)

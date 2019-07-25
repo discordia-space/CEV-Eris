@@ -10,6 +10,19 @@
 /proc/cmp_numeric_asc(a,b)
 	return a - b
 
+GLOBAL_VAR_INIT(cmp_field, "name")
+/proc/cmp_records_asc(datum/data/record/a, datum/data/record/b)
+	return sorttext(b.fields[GLOB.cmp_field], a.fields[GLOB.cmp_field])
+
+/proc/cmp_records_dsc(datum/data/record/a, datum/data/record/b)
+	return sorttext(a.fields[GLOB.cmp_field], b.fields[GLOB.cmp_field])
+
+/proc/cmp_ckey_asc(client/a, client/b)
+	return sorttext(b.ckey, a.ckey)
+
+/proc/cmp_ckey_dsc(client/a, client/b)
+	return sorttext(a.ckey, b.ckey)
+
 /proc/cmp_subsystem_display(datum/controller/subsystem/a, datum/controller/subsystem/b)
 	return sorttext(b.name, a.name)
 
@@ -40,5 +53,8 @@
 	if (!.)
 		. = B.qdels - A.qdels
 
-/proc/cmp_crew_sensor_modifier(var/crew_sensor_modifier/a, var/crew_sensor_modifier/b)
+/proc/cmp_crew_sensor_modifier(crew_sensor_modifier/a, crew_sensor_modifier/b)
 	return b.priority - a.priority
+
+/proc/cmp_smeslist_rcon_tag(list/A, list/B)
+	return sorttext(A["RCON_tag"], B["RCON_tag"])

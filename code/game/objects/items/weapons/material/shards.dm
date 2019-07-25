@@ -29,7 +29,7 @@
 
 	//Shards must be made of some matter
 	if (!amount)
-		amount = round(rand_decimal(0.1, 1), 0.1)
+		amount = round(RAND_DECIMAL(0.1, 1), 0.1)
 
 	//Overwrite whatever was populated before. A shard contains <1 unit of a single material
 	matter = list(material.name = amount)

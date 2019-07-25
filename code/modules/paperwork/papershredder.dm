@@ -93,7 +93,7 @@
 	return new /obj/item/weapon/shreddedp(get_turf(src))
 
 /obj/machinery/papershredder/update_icon()
-	icon_state = "papershredder[max(0,min(5,Floor(paperamount/2)))]"
+	icon_state = "papershredder[max(0,min(5,FLOOR(paperamount * 0.5, 1)))]"
 
 /obj/item/weapon/shreddedp/attackby(var/obj/item/W as obj, var/mob/user)
 	if(istype(W, /obj/item/weapon/flame/lighter))

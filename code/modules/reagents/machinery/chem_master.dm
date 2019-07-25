@@ -108,7 +108,7 @@
 		else if (href_list["add"])
 			if(href_list["amount"])
 				var/id = href_list["add"]
-				var/amount = Clamp(text2num(href_list["amount"]), 0, reagents.get_free_space())
+				var/amount = CLAMP(text2num(href_list["amount"]), 0, reagents.get_free_space())
 				R.trans_id_to(src, id, amount)
 				if(reagents.get_free_space() < 1)
 					usr << SPAN_WARNING("The [name] is full!")
@@ -120,7 +120,7 @@
 		else if (href_list["remove"])
 			if(href_list["amount"])
 				var/id = href_list["remove"]
-				var/amount = Clamp(text2num(href_list["amount"]), 0, beaker.reagents.get_free_space())
+				var/amount = CLAMP(text2num(href_list["amount"]), 0, beaker.reagents.get_free_space())
 				if(mode)
 					reagents.trans_id_to(beaker, id, amount)
 					if(beaker.reagents.get_free_space() < 1)
@@ -153,7 +153,7 @@
 
 			if (href_list["createpill_multiple"])
 				count = input("Select the number of pills to make.", "Max [max_pill_count]", pillamount) as num
-				count = Clamp(count, 1, max_pill_count)
+				count = CLAMP(count, 1, max_pill_count)
 
 			if(reagents.total_volume/count < 1) //Sanity checking.
 				return

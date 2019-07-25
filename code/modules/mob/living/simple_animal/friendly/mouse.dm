@@ -93,12 +93,12 @@
 		if (prob(50))
 			var/new_pixelx = pixel_x
 			new_pixelx += rand(-2,2)
-			new_pixelx = Clamp(new_pixelx, -10, 10)
+			new_pixelx = CLAMP(new_pixelx, -10, 10)
 			animate(src, pixel_x = new_pixelx, time = 1)
 		else
 			var/new_pixely = pixel_y
 			new_pixely += rand(-2,2)
-			new_pixely = Clamp(new_pixely, -4, 14)
+			new_pixely = CLAMP(new_pixely, -4, 14)
 			animate(src, pixel_y = new_pixely, time = 1)
 
 /mob/living/simple_animal/mouse/Initialize()

@@ -60,7 +60,7 @@
 	playsound(loc, 'sound/weapons/armbomb.ogg', 75, 1, -3)
 
 	if(variance)
-		det_time *= rand_decimal(1-variance, 1+variance)
+		det_time *= RAND_DECIMAL(1-variance, 1+variance)
 
 	spawn(det_time)
 		prime()
