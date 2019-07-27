@@ -3,7 +3,7 @@
     textColor = "#32690e"
 
 /tipsAndTricks/gameplay/airlockInteractions
-    tipText = "Did you know? You can click on turf tile where airlock is located instead of actual airlock to toggle it."
+    tipText = "Did you know? You can click on the turf tile where an airlock is located instead of the actual airlock to toggle it."
 
 /tipsAndTricks/gameplay/fightBlob
     tipText = "If you're trying to take on a blob, a flamethrower is your best weapon."
@@ -21,16 +21,16 @@
     tipText = "You can find or buy many modifications to improve your tools, and turn them into effective weapons."
 
 /tipsAndTricks/gameplay/spiderslip
-    tipText = "Spiders and roaches can be stunned and slipped like humans, when facing off against either, try to even the fight by either flashing them with a flash or leading them to slip on some spilled water."
+    tipText = "Spiders and roaches can be stunned and slipped like humans. When facing off against either, try to even the fight by either flashing them with a flash, or leading them to slip on some spilled water."
 
 /tipsAndTricks/gameplay/retreatFool
-    tipText = "It's better to retreat from a fight and only suffer mild injuries than to win a fight and suffer a mortal wound, pick and choose your battles carefully."
+    tipText = "It's better to retreat from a fight and only suffer mild injuries than to win a fight and suffer a mortal wound. Pick and choose your battles carefully."
 
 /tipsAndTricks/gameplay/pdaCoords
-    tipText = "Your PDA has GPS system and can show you your current location. If you are in trouble and seek help while dont know your location, tell your coordinates to your potential rescuers."
+    tipText = "Your PDA has a GPS system and can show you your current location. If you are in trouble and seek help while you don't know your location, tell your coordinates to your potential rescuers."
 
 /tipsAndTricks/gameplay/walkOnUnderplatin
-    tipText = "If you walk instead of run on underplating you wont trip."
+    tipText = "If you walk instead of run on underplating, you won't trip."
 
 /tipsAndTricks/gameplay/zoneTargetingNum
-    tipText = " You can target specific damage zones by using the Numpad Keys."
+    tipText = " You can target specific damage zones by using the Numpad keys."

@@ -108,7 +108,7 @@
 	desc = "This litany will command cruciform attach to person, so you can perform Reincarnation or Epiphany. Cruciform must lay near them."
 
 /datum/ritual/cruciform/priest/install/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
-	var/mob/living/H = get_victim(user)
+	var/mob/living/carbon/human/H = get_victim(user)
 	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform, FALSE)
 	if(CI)
 		fail("[H] already have a cruciform installed.", user, C)

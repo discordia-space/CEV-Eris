@@ -49,10 +49,13 @@
 		return
 	else if(istype(target,/turf))
 		user << "You start scrubbing the [target.name]"
-		if (do_after(user, 50, target)) //Soap should be slower and worse than mop
+		if(do_after(user, 50, target)) //Soap should be slower and worse than mop
 			user << "<span class='notice'>You scrub \the [target.name] clean.</span>"
 			var/turf/T = target
 			T.clean(src, user)
+			return
+		else
+			user << "<span class='notice'>You need to stand still to clean \the [target.name]!</span>"
 			return
 	else if(istype(target,/obj/structure/sink) || istype(target,/obj/structure/sink))
 		user << "<span class='notice'>You wet \the [src] in the sink.</span>"
