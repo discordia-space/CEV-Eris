@@ -195,12 +195,12 @@ meteor_act
 				//Harder to score a stun but if you do it lasts a bit longer
 				if(prob(effective_force))
 					visible_message(SPAN_DANGER("[src] [species.knockout_message]"))
-					apply_effect(20, PARALYZE, src.get_armor(hit_zone, ARMOR_MELEE) )
+					apply_effect(20, PARALYZE, getarmor(hit_zone, ARMOR_MELEE) )
 			else
 				//Easier to score a stun but lasts less time
 				if(prob(effective_force + 10))
 					visible_message(SPAN_DANGER("[src] has been knocked down!"))
-					apply_effect(6, WEAKEN, src.get_armor(hit_zone, ARMOR_MELEE) )
+					apply_effect(6, WEAKEN, getarmor(hit_zone, ARMOR_MELEE) )
 
 		//Apply blood
 		if(!(I.flags & NOBLOODY))

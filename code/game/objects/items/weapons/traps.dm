@@ -274,7 +274,7 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	if( L.damage_through_armor(fail_damage, BRUTE, target_zone, ARMOR_MELEE, used_weapon = src) )
 	//No damage - no stun
 		L.Stun(4) //A short stun prevents spamming failure attempts
-		shake_camera(user, 2, 1)
+		shake_camera(L, 2, 1)
 
 	//trap the victim in place
 	set_dir(L.dir)

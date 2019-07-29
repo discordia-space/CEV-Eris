@@ -52,9 +52,9 @@
 
 	var/time_to_jointlock = max( 0, ( target.getarmor(target_zone, ARMOR_MELEE) - attacker.stats.getStat(STAT_ROB) ) )
 	if(!do_mob(attacker, target, time_to_jointlock))
-		user << SPAN_WARNING("You must stand still to jointlock [target]!")
+		attacker << SPAN_WARNING("You must stand still to jointlock [target]!")
 	else
-		user << SPAN_WARNING("[attacker] [pick("bent", "twisted")] [target]'s [organ.name] into a jointlock!")
+		attacker << SPAN_WARNING("[attacker] [pick("bent", "twisted")] [target]'s [organ.name] into a jointlock!")
 		target << SPAN_DANGER("You feel extreme pain!")
 		affecting.adjustHalLoss(Clamp(0, 60 - affecting.halloss, 30)) //up to 60 halloss
 
@@ -97,7 +97,7 @@
 		damage += hat.force * 3
 
 	target.damage_through_armor(damage, BRUTE, BP_HEAD, ARMOR_MELEE)
-	attacker..damage_through_armor(10, BRUTE, BP_HEAD, ARMOR_MELEE)
+	attacker.damage_through_armor(10, BRUTE, BP_HEAD, ARMOR_MELEE)
 
 	if(!armor && target.headcheck(BP_HEAD) && prob(damage))
 		target.apply_effect(20, PARALYZE)

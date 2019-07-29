@@ -7,7 +7,7 @@
 		hit_zone = "chest"
 	return ..(I, user, hit_zone)
 
-/mob/living/carbon/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/blocked, var/hit_zone)
+/mob/living/carbon/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
 	if(!effective_force || blocked >= 2)
 		return 0
 
@@ -22,7 +22,7 @@
 		weapon_sharp = 0
 		weapon_edge = 0
 
-	apply_damage(effective_force, I.damtype, hit_zone, blocked, sharp=weapon_sharp, edge=weapon_edge, used_weapon=I)
+	damage_through_armor(effective_force, I.damtype, hit_zone, ARMOR_MELEE, I.armor_penetration, used_weapon = I, weapon_sharp, edge = weapon_edge)
 
 /*Its entirely possible that we were gibbed or dusted by the above. Check if we still exist before
 continuing. Being gibbed or dusted has a 1.5 second delay, during which it sets the transforming var to
@@ -46,7 +46,7 @@ true, and the mob is not yet deleted, so we need to check that as well*/
 		if (embed_chance > 0 && prob(embed_chance))
 			src.embed(I, hit_zone)
 
-	return 1
+	return TRUE
 
 // Attacking someone with a weapon while they are neck-grabbed
 /mob/living/carbon/proc/check_attack_throat(obj/item/W, mob/user)

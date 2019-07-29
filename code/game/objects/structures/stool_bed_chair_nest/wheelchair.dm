@@ -150,9 +150,9 @@
 		var/def_zone = ran_zone()
 
 		occupant.throw_at(A, 3, propelled)
-		occupant.apply_effect(6, STUN, getarmor(def_zone, ARMOR_MELEE))
-		occupant.apply_effect(6, WEAKEN, getarmor(def_zone, ARMOR_MELEE))
-		occupant.apply_effect(6, STUTTER, getarmor(def_zone, ARMOR_MELEE))
+		occupant.apply_effect(6, STUN, occupant.getarmor(def_zone, ARMOR_MELEE))
+		occupant.apply_effect(6, WEAKEN, occupant.getarmor(def_zone, ARMOR_MELEE))
+		occupant.apply_effect(6, STUTTER, occupant.getarmor(def_zone, ARMOR_MELEE))
 		occupant.damage_through_armor(6, BRUTE, def_zone, ARMOR_MELEE)
 
 		playsound(src.loc, 'sound/weapons/punch1.ogg', 50, 1, -1)
@@ -162,10 +162,10 @@
 			var/mob/living/victim = A
 			def_zone = ran_zone()
 
-			victim.apply_effect(6, STUN, getarmor(def_zone, ARMOR_MELEE))
-			victim.apply_effect(6, WEAKEN, getarmor(def_zone, ARMOR_MELEE))
-			victim.apply_effect(6, STUTTER, getarmor(def_zone, ARMOR_MELEE))
-			victim.damage_through_armor(6, BRUTE, ran_zone, ARMOR_MELEE)
+			victim.apply_effect(6, STUN, victim.getarmor(def_zone, ARMOR_MELEE))
+			victim.apply_effect(6, WEAKEN, victim.getarmor(def_zone, ARMOR_MELEE))
+			victim.apply_effect(6, STUTTER, victim.getarmor(def_zone, ARMOR_MELEE))
+			victim.damage_through_armor(6, BRUTE, def_zone, ARMOR_MELEE)
 
 		if(pulling)
 			occupant.visible_message(SPAN_DANGER("[pulling] has thrusted \the [name] into \the [A], throwing \the [occupant] out of it!"))

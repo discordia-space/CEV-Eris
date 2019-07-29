@@ -56,7 +56,7 @@
 		return FALSE
 
 	if(armor_value)
-		var/effect = effect * ( ( 100 - armor_value ) / 100 )
+		effect = effect * ( ( 100 - armor_value ) / 100 )
 
 	switch(effecttype)
 
