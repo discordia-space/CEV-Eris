@@ -267,10 +267,16 @@
 	heal_brute = 8
 	origin_tech = list(TECH_BIO = 2)
 	automatic_charge_overlays = TRUE
+	consumable = FALSE	// Will the stack disappear entirely once the amount is used up?
+	splittable = FALSE	// Is the stack capable of being splitted?
+
 
 /obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M, mob/living/user)
 	if(..())
 		return 1
+
+	if(amount < 1)
+		return
 
 	if(!ishuman(M))
 		return
@@ -357,11 +363,15 @@
 	heal_burn = 8
 	origin_tech = list(TECH_BIO = 2)
 	automatic_charge_overlays = TRUE
-
+	consumable = FALSE	// Will the stack disappear entirely once the amount is used up?
+	splittable = FALSE	// Is the stack capable of being splitted?
 
 /obj/item/stack/medical/advanced/ointment/attack(mob/living/carbon/M, mob/living/user)
 	if(..())
 		return 1
+
+	if(amount < 1)
+		return
 
 	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
