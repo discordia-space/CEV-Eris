@@ -51,6 +51,15 @@
 			visible_message("\red [src] knocks over [M]!")
 			M.apply_effects(5, 5)				//knock people down if you hit them
 			M.apply_damages(22 / move_delay)	// and do damage according to how fast the train is going
+
+			var/damage = rand(5,15)
+			M.damage_through_armor( 2  * damage / move_delay, BRUTE, BP_HEAD, ARMOR_MELEE)
+			M.damage_through_armor( 2  * damage / move_delay, BRUTE, BP_CHEST, ARMOR_MELEE)
+			M.damage_through_armor(0.5 * damage / move_delay, BRUTE, BP_L_LEG, ARMOR_MELEE)
+			M.damage_through_armor(0.5 * damage / move_delay, BRUTE, BP_R_LEG, ARMOR_MELEE)
+			M.damage_through_armor(0.5 * damage / move_delay, BRUTE, BP_L_ARM, ARMOR_MELEE)
+			M.damage_through_armor(0.5 * damage / move_delay, BRUTE, BP_R_ARM, ARMOR_MELEE)
+
 			if(ishuman(load))
 				var/mob/living/D = load
 				D << "\red You hit [M]!"

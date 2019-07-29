@@ -145,6 +145,15 @@
 	for(var/i = 0, i < rand(1,3), i++)
 		H.apply_damage(rand(1,5), BRUTE, pick(parts))
 
+	var/damage = rand(1,3)
+	M.damage_through_armor( 2  * damage, BRUTE, BP_HEAD, ARMOR_MELEE)
+	M.damage_through_armor( 2  * damage, BRUTE, BP_CHEST, ARMOR_MELEE)
+	M.damage_through_armor(0.5 * damage, BRUTE, BP_L_LEG, ARMOR_MELEE)
+	M.damage_through_armor(0.5 * damage, BRUTE, BP_R_LEG, ARMOR_MELEE)
+	M.damage_through_armor(0.5 * damage, BRUTE, BP_L_ARM, ARMOR_MELEE)
+	M.damage_through_armor(0.5 * damage, BRUTE, BP_R_ARM, ARMOR_MELEE)
+
+
 /obj/vehicle/train/cargo/trolley/RunOver(var/mob/living/carbon/human/H)
 	..()
 	attack_log += text("\[[time_stamp()]\] <font color='red'>ran over [H.name] ([H.ckey])</font>")
