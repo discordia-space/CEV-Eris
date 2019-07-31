@@ -34,6 +34,8 @@
 
 	log_ooc("[mob.name]/[key] : [msg]")
 
+	msg = emoji_parse(msg)
+
 	var/ooc_style = "everyone"
 	if(holder && !holder.fakekey)
 		ooc_style = "elevated"

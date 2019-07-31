@@ -1478,6 +1478,7 @@
 #include "code\modules\economy\Events_Mundane.dm"
 #include "code\modules\economy\price_list.dm"
 #include "code\modules\economy\TradeDestinations.dm"
+#include "code\modules\emoji\emoji_parse.dm"
 #include "code\modules\error_handler\error_handler.dm"
 #include "code\modules\error_handler\error_viewer.dm"
 #include "code\modules\examine\examine.dm"

@@ -65,6 +65,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_pm_panel, R_ADMIN|R_MOD|R_MENTOR, FALSE)
 
 	var/recieve_pm_type = "Player"
 	if(holder)
+		msg = emoji_parse(msg)
 		//mod PMs are maroon
 		//PMs sent from admins and mods display their rank
 		if(holder)

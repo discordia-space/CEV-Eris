@@ -11,6 +11,8 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_say, R_ADMIN, TRUE)
 
 	log_admin("ADMIN: [key_name(src)] : [msg]")
 
+	msg = emoji_parse(msg)
+
 	if(check_rights(R_ADMIN,0))
 		for(var/client/C in admins)
 			if(R_ADMIN & C.holder.rights)
