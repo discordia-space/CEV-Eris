@@ -117,7 +117,7 @@ proc/get_radio_key_from_channel(var/channel)
 /mob/living/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="")
 	if(client)
 		if(client.prefs.muted&MUTE_IC)
-			src << "\red You cannot speak in IC (Muted)."
+			to_chat(src, "\red You cannot speak in IC (Muted).")
 			return
 
 	if(stat)
@@ -126,7 +126,7 @@ proc/get_radio_key_from_channel(var/channel)
 		return
 
 	if(is_muzzled())
-		src << SPAN_DANGER("You're muzzled and cannot speak!")
+		to_chat(src, SPAN_DANGER("You're muzzled and cannot speak!"))
 		return
 
 	var/prefix = copytext(message,1,2)
@@ -318,7 +318,7 @@ proc/get_radio_key_from_channel(var/channel)
 		// INNATE is the flag for audible-emote-language, so we don't want to show an "x talks but you cannot hear them" message if it's set
 		if(!language || !language.flags&INNATE)
 			if(speaker == src)
-				src << SPAN_WARNING("You cannot hear yourself speak!")
+				to_chat(src, SPAN_WARNING("You cannot hear yourself speak!"))
 			else
 				var/speaker_name = speaker.name
 				if(ishuman(speaker))

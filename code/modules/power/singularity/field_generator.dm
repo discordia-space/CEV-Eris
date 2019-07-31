@@ -83,7 +83,7 @@ field_generator power level display
 	if(state == 2)
 		if(get_dist(src, user) <= 1)//Need to actually touch the thing to turn it on
 			if(src.active >= 1)
-				user << "You are unable to turn off the [src.name] once it is online."
+				to_chat(user, "You are unable to turn off the [src.name] once it is online.")
 				return 1
 			else
 				user.visible_message("[user.name] turns on the [src.name]", \
@@ -94,13 +94,13 @@ field_generator power level display
 
 				src.add_fingerprint(user)
 	else
-		user << "The [src] needs to be firmly secured to the floor first."
+		to_chat(user, "The [src] needs to be firmly secured to the floor first.")
 		return
 
 
 /obj/machinery/field_generator/attackby(obj/item/I, mob/user)
 	if(active)
-		user << "The [src] needs to be off."
+		to_chat(user, "The [src] needs to be off.")
 		return
 
 	var/list/usable_qualities = list()
@@ -134,12 +134,12 @@ field_generator power level display
 		if(QUALITY_WELDING)
 			if(state == 1)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You weld the field generator to the floor.")
+					to_chat(user, SPAN_NOTICE("You weld the field generator to the floor."))
 					state = 2
 					return
 			if(state == 2)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You cut the [src] free from the floor.")
+					to_chat(user, SPAN_NOTICE("You cut the [src] free from the floor."))
 					state = 1
 					return
 			return

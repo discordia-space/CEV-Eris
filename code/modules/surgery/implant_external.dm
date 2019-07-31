@@ -44,7 +44,7 @@
 		if(istype(I,/obj/item/weapon/implant))
 			var/obj/item/weapon/implant/IM = I
 			if(!IM.is_external())
-				user << SPAN_WARNING("[implant] doesn't fit.")
+				to_chat(user, SPAN_WARNING("[implant] doesn't fit."))
 				return
 
 	user.visible_message(SPAN_NOTICE("[user] installed [tool] to [target]'s [affected]."), \

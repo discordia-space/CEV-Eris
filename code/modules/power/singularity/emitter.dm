@@ -37,7 +37,7 @@
 	set src in oview(1)
 
 	if (src.anchored || usr:stat)
-		usr << "It is fastened to the floor!"
+		to_chat(usr, "It is fastened to the floor!")
 		return 0
 	src.set_dir(turn(src.dir, 90))
 	return 1
@@ -70,18 +70,18 @@
 /obj/machinery/power/emitter/proc/activate(mob/user as mob)
 	if(state == 2)
 		if(!powernet)
-			user << "\The [src] isn't connected to a wire."
+			to_chat(user, "\The [src] isn't connected to a wire.")
 			return 1
 		if(!src.locked)
 			if(src.active==1)
 				src.active = 0
-				user << "You turn off [src]."
+				to_chat(user, "You turn off [src].")
 				message_admins("Emitter turned off by [key_name(user, user.client)](<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) in ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
 				log_game("Emitter turned off by [user.ckey]([user]) in ([x],[y],[z])")
 				investigate_log("turned <font color='red'>off</font> by [user.key]","singulo")
 			else
 				src.active = 1
-				user << "You turn on [src]."
+				to_chat(user, "You turn on [src].")
 				src.shot_number = 0
 				src.fire_delay = 100
 				message_admins("Emitter turned on by [key_name(user, user.client)](<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) in ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
@@ -90,9 +90,9 @@
 			playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 			update_icon()
 		else
-			user << SPAN_WARNING("The controls are locked!")
+			to_chat(user, SPAN_WARNING("The controls are locked!"))
 	else
-		user << SPAN_WARNING("\The [src] needs to be firmly secured to the floor first.")
+		to_chat(user, SPAN_WARNING("\The [src] needs to be firmly secured to the floor first."))
 		return 1
 
 
@@ -160,7 +160,7 @@
 
 		if(QUALITY_BOLT_TURNING)
 			if(active)
-				user << SPAN_WARNING("Turn off [src] first.")
+				to_chat(user, SPAN_WARNING("Turn off [src] first."))
 				return
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 				state = !state
@@ -172,22 +172,22 @@
 
 		if(QUALITY_WELDING)
 			if(active)
-				user << "Turn off [src] first."
+				to_chat(user, "Turn off [src] first.")
 				return
 			switch(state)
 				if(0)
-					user << SPAN_WARNING("\The [src] needs to be wrenched to the floor.")
+					to_chat(user, SPAN_WARNING("\The [src] needs to be wrenched to the floor."))
 					return
 				if(1)
 					if (I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						state = 2
-						user << SPAN_NOTICE("You weld [src] to the floor.")
+						to_chat(user, SPAN_NOTICE("You weld [src] to the floor."))
 						connect_to_network()
 						return
 				if(2)
 					if (I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						state = 1
-						user << SPAN_NOTICE("You cut [src] free from the floor.")
+						to_chat(user, SPAN_NOTICE("You cut [src] free from the floor."))
 						disconnect_from_network()
 						return
 			return
@@ -197,17 +197,17 @@
 
 	if(istype(I, /obj/item/weapon/card/id) || istype(I, /obj/item/modular_computer))
 		if(emagged)
-			user << SPAN_WARNING("The lock seems to be broken.")
+			to_chat(user, SPAN_WARNING("The lock seems to be broken."))
 			return
 		if(src.allowed(user))
 			if(active)
 				src.locked = !src.locked
-				user << "The controls are now [src.locked ? "locked." : "unlocked."]"
+				to_chat(user, "The controls are now [src.locked ? "locked." : "unlocked."]")
 			else
 				src.locked = 0 //just in case it somehow gets locked
-				user << SPAN_WARNING("The controls can only be locked when [src] is online.")
+				to_chat(user, SPAN_WARNING("The controls can only be locked when [src] is online."))
 		else
-			user << SPAN_WARNING("Access denied.")
+			to_chat(user, SPAN_WARNING("Access denied."))
 		return
 	..()
 	return

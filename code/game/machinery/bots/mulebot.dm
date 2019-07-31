@@ -104,7 +104,7 @@
 		updateDialog()
 	else if(istype(I,/obj/item/weapon/tool/screwdriver))
 		if(locked)
-			user << SPAN_NOTICE("The maintenance hatch cannot be opened or closed while the controls are locked.")
+			to_chat(user, SPAN_NOTICE("The maintenance hatch cannot be opened or closed while the controls are locked."))
 			return
 
 		open = !open
@@ -126,13 +126,13 @@
 				SPAN_NOTICE("You repair \the [src]!")
 			)
 		else
-			user << SPAN_NOTICE("[src] does not need a repair!")
+			to_chat(user, SPAN_NOTICE("[src] does not need a repair!"))
 	else if(load && ismob(load))  // chance to knock off rider
 		if(prob(1+I.force * 2))
 			unload(0)
 			user.visible_message(SPAN_WARNING("[user] knocks [load] off [src] with \the [I]!"), SPAN_WARNING("You knock [load] off [src] with \the [I]!"))
 		else
-			user << "You hit [src] with \the [I] but to no effect."
+			to_chat(user, "You hit [src] with \the [I] but to no effect.")
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	else
 		..()
@@ -140,7 +140,7 @@
 
 /obj/machinery/bot/mulebot/emag_act(var/remaining_charges, var/user)
 	locked = !locked
-	user << "<span class='notice'>You [locked ? "lock" : "unlock"] the mulebot's controls!</span>"
+	to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] the mulebot's controls!</span>")
 	flick("mulebot-emagged", src)
 	playsound(src.loc, 'sound/effects/sparks1.ogg', 100, 0)
 	return 1
@@ -261,14 +261,14 @@
 					locked = !locked
 					updateDialog()
 				else
-					usr << SPAN_WARNING("Access denied.")
+					to_chat(usr, SPAN_WARNING("Access denied."))
 					return
 			if("power")
 				if (src.on)
 					turn_off()
 				else if (cell && !open)
 					if (!turn_on())
-						usr << SPAN_WARNING("You can't switch on [src].")
+						to_chat(usr, SPAN_WARNING("You can't switch on [src]."))
 						return
 				else
 					return

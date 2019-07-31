@@ -33,7 +33,7 @@
 		for (var/obj/screen/inv in parentmob.HUDinventory)
 			inv.update_icon()
 	else
-		R << "You haven't selected a module yet."
+		to_chat(R, "You haven't selected a module yet.")
 	return TRUE
 
 
@@ -178,7 +178,7 @@
 		if(R.module)
 			R.toggle_show_robot_modules()
 		else
-			R << "You haven't selected a module yet."
+			to_chat(R, "You haven't selected a module yet.")
 
 	return TRUE
 

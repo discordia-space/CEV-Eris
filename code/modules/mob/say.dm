@@ -23,7 +23,7 @@
 	set name = "Say"
 	set hidden = TRUE
 	if(say_disabled)	//This is here to try to identify lag problems
-		usr << "\red Speech is currently admin-disabled."
+		to_chat(usr, "\red Speech is currently admin-disabled.")
 		return
 	set_typing_indicator(FALSE)
 	usr.say(message)
@@ -47,7 +47,7 @@
 	set hidden = TRUE
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		usr << "\red Speech is currently admin-disabled."
+		to_chat(usr, "\red Speech is currently admin-disabled.")
 		return
 
 	message = sanitize(message)
@@ -60,16 +60,16 @@
 
 /mob/proc/say_dead(var/message)
 	if(say_disabled)	//This is here to try to identify lag problems
-		usr << SPAN_DANGER("Speech is currently admin-disabled.")
+		to_chat(usr, SPAN_DANGER("Speech is currently admin-disabled."))
 		return
 
 	if(!src.client.holder)
 		if(!config.dsay_allowed)
-			src << SPAN_DANGER("Deadchat is globally muted.")
+			to_chat(src, SPAN_DANGER("Deadchat is globally muted."))
 			return
 
 	if(get_preference_value(/datum/client_preference/show_dsay) == GLOB.PREF_HIDE)
-		usr << SPAN_DANGER("You have deadchat muted.")
+		to_chat(usr, SPAN_DANGER("You have deadchat muted."))
 		return
 
 	say_dead_direct("[pick("complains", "moans", "whines", "laments", "blubbers")], <span class='message'>\"[emoji_parse(message)]\"</span>", src)

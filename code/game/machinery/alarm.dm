@@ -375,7 +375,7 @@
 
 	switch(mode)
 		if(AALARM_MODE_SCRUBBING)
-			usr << "Air Alarm mode changed to Filtering."
+			to_chat(usr, "Air Alarm mode changed to Filtering.")
 			for(var/device_id in alarm_area.air_scrub_names)
 				send_signal(device_id, list("power"= 1, "co2_scrub"= 1, "scrubbing"= 1, "panic_siphon"= 0) )
 			for(var/device_id in alarm_area.air_vent_names)
@@ -383,30 +383,30 @@
 
 		if(AALARM_MODE_PANIC, AALARM_MODE_CYCLE)
 			if(mode == AALARM_MODE_PANIC)
-				usr << "Air Alarm mode changed to Panic."
+				to_chat(usr, "Air Alarm mode changed to Panic.")
 			else
-				usr << "Air Alarm mode changed to Cycle."
+				to_chat(usr, "Air Alarm mode changed to Cycle.")
 			for(var/device_id in alarm_area.air_scrub_names)
 				send_signal(device_id, list("power"= 1, "panic_siphon"= 1) )
 			for(var/device_id in alarm_area.air_vent_names)
 				send_signal(device_id, list("power"= 0) )
 
 		if(AALARM_MODE_REPLACEMENT)
-			usr << "Air Alarm mode changed to Replace Air."
+			to_chat(usr, "Air Alarm mode changed to Replace Air.")
 			for(var/device_id in alarm_area.air_scrub_names)
 				send_signal(device_id, list("power"= 1, "panic_siphon"= 1) )
 			for(var/device_id in alarm_area.air_vent_names)
 				send_signal(device_id, list("power"= 1, "checks"= "default", "set_external_pressure"= "default") )
 
 		if(AALARM_MODE_FILL)
-			usr << "Air Alarm mode changed to Fill."
+			to_chat(usr, "Air Alarm mode changed to Fill.")
 			for(var/device_id in alarm_area.air_scrub_names)
 				send_signal(device_id, list("power"= 0) )
 			for(var/device_id in alarm_area.air_vent_names)
 				send_signal(device_id, list("power"= 1, "checks"= "default", "set_external_pressure"= "default") )
 
 		if(AALARM_MODE_OFF)
-			usr << "Air Alarm mode changed to Off."
+			to_chat(usr, "Air Alarm mode changed to Off.")
 			for(var/device_id in alarm_area.air_scrub_names)
 				send_signal(device_id, list("power"= 0) )
 			for(var/device_id in alarm_area.air_vent_names)
@@ -582,7 +582,7 @@
 		return STATUS_CLOSE
 
 	if(aidisabled && isAI(user))
-		user << SPAN_WARNING("AI control for \the [src] interface has been disabled.")
+		to_chat(user, SPAN_WARNING("AI control for \the [src] interface has been disabled."))
 		return STATUS_CLOSE
 
 	. = shorted ? STATUS_DISABLED : STATUS_INTERACTIVE
@@ -626,7 +626,7 @@
 		var/input_temperature = input("What temperature would you like the system to mantain? (Capped between [min_temperature] and [max_temperature]C)", "Thermostat Controls", target_temperature - T0C) as num|null
 		if(isnum(input_temperature))
 			if(input_temperature > max_temperature || input_temperature < min_temperature)
-				usr << "Temperature must be between [min_temperature]C and [max_temperature]C"
+				to_chat(usr, "Temperature must be between [min_temperature]C and [max_temperature]C")
 			else
 				target_temperature = input_temperature + T0C
 		playsound(loc, 'sound/machines/button.ogg', 100, 1)
@@ -772,7 +772,7 @@
 				var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, instant_finish_tier = 30, forced_sound = used_sound))
 					wiresexposed = !wiresexposed
-					user << "The wires have been [wiresexposed ? "exposed" : "unexposed"]"
+					to_chat(user, "The wires have been [wiresexposed ? "exposed" : "unexposed"]")
 					update_icon()
 					return
 			return
@@ -790,7 +790,7 @@
 		if(QUALITY_PRYING)
 			if(buildstage == 1)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					user << "You pry out the circuit!"
+					to_chat(user, "You pry out the circuit!")
 					var/obj/item/weapon/airalarm_electronics/circuit = new /obj/item/weapon/airalarm_electronics()
 					circuit.loc = user.loc
 					buildstage = 0
@@ -801,7 +801,7 @@
 		if(QUALITY_BOLT_TURNING)
 			if(buildstage == 0)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					user << "You remove the fire alarm assembly from the wall!"
+					to_chat(user, "You remove the fire alarm assembly from the wall!")
 					new /obj/item/frame/air_alarm(get_turf(user))
 					qdel(src)
 			return
@@ -813,32 +813,32 @@
 		if(2)
 			if (istype(I, /obj/item/weapon/card/id) || istype(I, /obj/item/modular_computer))// trying to unlock the interface with an ID card
 				if(stat & (NOPOWER|BROKEN))
-					user << "It does nothing"
+					to_chat(user, "It does nothing")
 					return
 				else
 					if(allowed(usr) && !wires.IsIndexCut(AALARM_WIRE_IDSCAN))
 						locked = !locked
-						user << "<span class='notice'>You [ locked ? "lock" : "unlock"] the Air Alarm interface.</span>"
+						to_chat(user, "<span class='notice'>You [ locked ? "lock" : "unlock"] the Air Alarm interface.</span>")
 					else
-						user << SPAN_WARNING("Access denied.")
+						to_chat(user, SPAN_WARNING("Access denied."))
 			return
 
 		if(1)
 			if(istype(I, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = I
 				if (C.use(5))
-					user << SPAN_NOTICE("You wire \the [src].")
+					to_chat(user, SPAN_NOTICE("You wire \the [src]."))
 					buildstage = 2
 					update_icon()
 					first_run()
 					return
 				else
-					user << SPAN_WARNING("You need 5 pieces of cable to do wire \the [src].")
+					to_chat(user, SPAN_WARNING("You need 5 pieces of cable to do wire \the [src]."))
 					return
 
 		if(0)
 			if(istype(I, /obj/item/weapon/airalarm_electronics))
-				user << "You insert the circuit!"
+				to_chat(user, "You insert the circuit!")
 				qdel(I)
 				buildstage = 1
 				update_icon()
@@ -854,9 +854,9 @@
 /obj/machinery/alarm/examine(mob/user)
 	..(user)
 	if (buildstage < 2)
-		user << "It is not wired."
+		to_chat(user, "It is not wired.")
 	if (buildstage < 1)
-		user << "The circuit is missing."
+		to_chat(user, "The circuit is missing.")
 /*
 AIR ALARM CIRCUIT
 Just a object used in constructing air alarms
@@ -969,7 +969,7 @@ FIRE ALARM
 				var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, instant_finish_tier = 30, forced_sound = used_sound))
 					wiresexposed = !wiresexposed
-					user << "The wires have been [wiresexposed ? "exposed" : "unexposed"]"
+					to_chat(user, "The wires have been [wiresexposed ? "exposed" : "unexposed"]")
 					update_icon()
 					return
 			return
@@ -997,7 +997,7 @@ FIRE ALARM
 		if(QUALITY_PRYING)
 			if(buildstage == 1)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					user << "You pry out the circuit!"
+					to_chat(user, "You pry out the circuit!")
 					var/obj/item/weapon/airalarm_electronics/circuit = new /obj/item/weapon/airalarm_electronics()
 					circuit.loc = user.loc
 					buildstage = 0
@@ -1008,7 +1008,7 @@ FIRE ALARM
 		if(QUALITY_BOLT_TURNING)
 			if(buildstage == 0)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, , required_stat = STAT_MEC))
-					user << "You remove the fire alarm assembly from the wall!"
+					to_chat(user, "You remove the fire alarm assembly from the wall!")
 					new /obj/item/frame/air_alarm(get_turf(user))
 					qdel(src)
 			return
@@ -1022,17 +1022,17 @@ FIRE ALARM
 			if(istype(I, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = I
 				if (C.use(5))
-					user << SPAN_NOTICE("You wire \the [src].")
+					to_chat(user, SPAN_NOTICE("You wire \the [src]."))
 					buildstage = 2
 					update_icon()
 					return
 				else
-					user << SPAN_WARNING("You need 5 pieces of cable to do wire \the [src].")
+					to_chat(user, SPAN_WARNING("You need 5 pieces of cable to do wire \the [src]."))
 					return
 
 		if(0)
 			if(istype(I, /obj/item/weapon/firealarm_electronics))
-				user << "You insert the circuit!"
+				to_chat(user, "You insert the circuit!")
 				qdel(I)
 				buildstage = 1
 				update_icon()
@@ -1122,7 +1122,7 @@ FIRE ALARM
 	if(iscarbon(usr))
 		visible_message("[usr] resets \the [src].", "You have reset \the [src].")
 	else
-		usr << "Fire Alarm is reset."
+		to_chat(usr, "Fire Alarm is reset.")
 	update_icon()
 	return
 
@@ -1135,7 +1135,7 @@ FIRE ALARM
 	if(iscarbon(usr))
 		visible_message(SPAN_WARNING("[usr] pulled \the [src]'s pull station!"), SPAN_WARNING("You have pulled \the [src]'s pull station!"))
 	else
-		usr << "Fire Alarm activated."
+		to_chat(usr, "Fire Alarm activated.")
 	update_icon()
 	//playsound(src.loc, 'sound/ambience/signal.ogg', 75, 0)
 	return

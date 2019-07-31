@@ -103,12 +103,12 @@
 			for (var/obj/C in src)
 				C.loc = src.loc
 			if (src.stat & BROKEN)
-				user << SPAN_NOTICE("The broken glass falls out.")
+				to_chat(user, SPAN_NOTICE("The broken glass falls out."))
 				new /obj/item/weapon/material/shard(src.loc)
 				A.state = 3
 				A.icon_state = "3"
 			else
-				user << SPAN_NOTICE("You disconnect the monitor.")
+				to_chat(user, SPAN_NOTICE("You disconnect the monitor."))
 				A.state = 4
 				A.icon_state = "4"
 			circuit.deconstruct(src)
@@ -123,7 +123,7 @@
 		keyboardsound(usr)
 		return 0
 	else
-		usr << "You need to stand in front of console's keyboard!"
+		to_chat(usr, "You need to stand in front of console's keyboard!")
 		return 1
 
 /obj/proc/keyboardsound(mob/user as mob)
@@ -139,5 +139,5 @@
 		keyboardsound(user)
 		return 0
 	else
-		user << "you need stay face to console"
+		to_chat(user, "you need stay face to console")
 		return 1

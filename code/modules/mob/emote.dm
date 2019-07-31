@@ -3,7 +3,7 @@
 //m_type == 2 --> audible
 /mob/proc/custom_emote(var/m_type=1,var/message = null)
 	if(usr && stat || !use_me && usr == src)
-		src << "You are unable to emote."
+		to_chat(src, "You are unable to emote.")
 		return
 
 	var/muzzled = istype(src.wear_mask, /obj/item/clothing/mask/muzzle) || istype(src.wear_mask, /obj/item/weapon/grenade)
@@ -28,16 +28,16 @@
 /mob/proc/emote_dead(var/message)
 
 	if(client.prefs.muted & MUTE_DEADCHAT)
-		src << SPAN_DANGER("You cannot send deadchat emotes (muted).")
+		to_chat(src, SPAN_DANGER("You cannot send deadchat emotes (muted)."))
 		return
 
 	if(get_preference_value(/datum/client_preference/show_dsay) == GLOB.PREF_HIDE)
-		src << SPAN_DANGER("You have deadchat muted.")
+		to_chat(src, SPAN_DANGER("You have deadchat muted."))
 		return
 
 	if(!src.client.holder)
 		if(!config.dsay_allowed)
-			src << SPAN_DANGER("Deadchat is globally muted.")
+			to_chat(src, SPAN_DANGER("Deadchat is globally muted."))
 			return
 
 

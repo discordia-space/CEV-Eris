@@ -93,7 +93,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		return 0
 	var/zone = user.targeted_organ
 	if(zone in M.op_stage.in_progress) //Can't operate on someone repeatedly.
-		user << SPAN_WARNING("You can't operate on this area while surgery is already in progress.")
+		to_chat(user, SPAN_WARNING("You can't operate on this area while surgery is already in progress."))
 		return 1
 	var/datum/surgery_step/selectedStep = null
 	var/list/possibleSteps = list()
@@ -139,7 +139,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 			tool.handle_failure(user, M, required_stat = STAT_BIO, required_quality = selectedStep.requedQuality)
 			selectedStep.fail_step(user, M, zone, tool)		//malpractice~
 		else
-			user << SPAN_WARNING("You must remain close to your patient to conduct surgery.")
+			to_chat(user, SPAN_WARNING("You must remain close to your patient to conduct surgery."))
 		M.op_stage.in_progress -= zone 									// Clear the in-progress flag.
 		if (ishuman(M))
 			var/mob/living/carbon/human/H = M
@@ -147,7 +147,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		return	1	  												//don't want to do weapony things after surgery
 
 	if (user.a_intent == I_HELP)
-		user << SPAN_WARNING("You can't see any useful way to use [tool] on [M].")
+		to_chat(user, SPAN_WARNING("You can't see any useful way to use [tool] on [M]."))
 
 		if (tool.tool_qualities)
 			return 1 //Prevents attacking the patient when trying to do surgery

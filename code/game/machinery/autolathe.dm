@@ -354,11 +354,11 @@
 
 	if(istype(eating, /obj/item/weapon/reagent_containers/glass))
 		if(container)
-			user << SPAN_NOTICE("There's already \a [container] inside [src].")
+			to_chat(user, SPAN_NOTICE("There's already \a [container] inside [src]."))
 			return
 		user.unEquip(eating, src)
 		container = eating
-		user << SPAN_NOTICE("You put \the [eating] into [src].")
+		to_chat(user, SPAN_NOTICE("You put \the [eating] into [src]."))
 		SSnano.update_uis(src)
 
 /obj/machinery/autolathe/proc/eat(mob/living/user)
@@ -380,7 +380,7 @@
 		return FALSE
 
 	if(!eating.matter || !eating.matter.len)
-		user << SPAN_NOTICE("\The [eating] does not contain significant amounts of useful materials and cannot be accepted.")
+		to_chat(user, SPAN_NOTICE("\The [eating] does not contain significant amounts of useful materials and cannot be accepted."))
 		return FALSE
 
 	if(istype(eating, /obj/item/weapon/computer_hardware/hard_drive/portable))
@@ -440,14 +440,14 @@
 		to_chat(user, SPAN_NOTICE("\The [src] is full. Please remove material from [src] in order to insert more."))
 		return
 	else if(filltype == 1)
-		user << SPAN_NOTICE("You fill \the [src] to capacity with \the [eating].")
+		to_chat(user, SPAN_NOTICE("You fill \the [src] to capacity with \the [eating]."))
 	else
-		user << SPAN_NOTICE("You fill \the [src] with \the [eating].")
+		to_chat(user, SPAN_NOTICE("You fill \the [src] with \the [eating]."))
 
 	if(reagents_filltype == 1)
-		user << SPAN_NOTICE("Some liquid flowed to \the [container].")
+		to_chat(user, SPAN_NOTICE("Some liquid flowed to \the [container]."))
 	else if(reagents_filltype == 2)
-		user << SPAN_NOTICE("Some liquid flowed to the floor from autolathe beaker slot.")
+		to_chat(user, SPAN_NOTICE("Some liquid flowed to the floor from autolathe beaker slot."))
 
 	res_load() // Plays metal insertion animation. Work out a good way to work out a fitting animation. ~Z
 

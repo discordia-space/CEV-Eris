@@ -490,7 +490,7 @@
 		qdel(S)
 		var/obj/item/weapon/secbot_assembly/A = new /obj/item/weapon/secbot_assembly
 		user.put_in_hands(A)
-		user << "You add the signaler to the helmet."
+		to_chat(user, "You add the signaler to the helmet.")
 		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		user.drop_from_inventory(src)
 		qdel(src)
@@ -512,12 +512,12 @@
 		if(QUALITY_WELDING in I.tool_qualities)
 			build_step = 1
 			overlays += image('icons/obj/aibots.dmi', "hs_hole")
-			user << "You weld a hole in \the [src]."
+			to_chat(user, "You weld a hole in \the [src].")
 
 	else if(is_proximity_sensor(I) && (build_step == 1))
 		user.drop_item()
 		build_step = 2
-		user << "You add \the [I] to [src]."
+		to_chat(user, "You add \the [I] to [src].")
 		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		overlays += image('icons/obj/aibots.dmi', "hs_eye")
 		name = "helmet/signaler/prox sensor assembly"
@@ -526,7 +526,7 @@
 	else if((istype(I, /obj/item/robot_parts/l_arm) || istype(I, /obj/item/robot_parts/r_arm)) && build_step == 2)
 		user.drop_item()
 		build_step = 3
-		user << "You add \the [I] to [src]."
+		to_chat(user, "You add \the [I] to [src].")
 		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		name = "helmet/signaler/prox sensor/robot arm assembly"
 		overlays += image('icons/obj/aibots.dmi', "hs_arm")
@@ -534,7 +534,7 @@
 
 	else if(istype(I, /obj/item/weapon/melee/baton) && build_step == 3)
 		user.drop_item()
-		user << "You complete the Securitron! Beep boop."
+		to_chat(user, "You complete the Securitron! Beep boop.")
 		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		var/mob/living/bot/secbot/S = new /mob/living/bot/secbot(get_turf(src))
 		S.name = created_name

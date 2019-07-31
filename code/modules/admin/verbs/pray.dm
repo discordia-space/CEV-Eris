@@ -3,7 +3,7 @@
 	set name = "Pray"
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		usr << "\red Speech is currently admin-disabled."
+		to_chat(usr, "\red Speech is currently admin-disabled.")
 		return
 
 	msg = sanitize(msg)
@@ -11,7 +11,7 @@
 
 	if(usr.client)
 		if(usr.client.prefs.muted & MUTE_PRAY)
-			usr << "\red You cannot pray (muted)."
+			to_chat(usr, "\red You cannot pray (muted).")
 			return
 		if(src.client.handle_spam_prevention(msg,MUTE_PRAY))
 			return
@@ -22,8 +22,8 @@
 	for(var/client/C in admins)
 		if(R_ADMIN & C.holder.rights)
 			if(C.get_preference_value(/datum/client_preference/staff/show_chat_prayers) == GLOB.PREF_SHOW)
-				C << msg
-	usr << "Your prayers have been received by the gods."
+				to_chat(C, msg)
+	to_chat(usr, "Your prayers have been received by the gods.")
 
 
 	//log_admin("HELP: [key_name(src)]: [msg]")

@@ -39,13 +39,13 @@
 			name = ("bookcase ([newname])")
 	else if(istype(O,/obj/item/weapon/tool/wrench))
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
-		user << (anchored ? SPAN_NOTICE("You unfasten \the [src] from the floor.") : SPAN_NOTICE("You secure \the [src] to the floor."))
+		to_chat(user, (anchored ? SPAN_NOTICE("You unfasten \the [src] from the floor.") : SPAN_NOTICE("You secure \the [src] to the floor.")))
 		anchored = !anchored
 	else if(istype(O,/obj/item/weapon/tool/screwdriver))
 		playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
-		user << SPAN_NOTICE("You begin dismantling \the [src].")
+		to_chat(user, SPAN_NOTICE("You begin dismantling \the [src]."))
 		if(do_after(user,25,src))
-			user << SPAN_NOTICE("You dismantle \the [src].")
+			to_chat(user, SPAN_NOTICE("You dismantle \the [src]."))
 			new /obj/item/stack/material/wood(get_turf(src), 10)
 			for(var/obj/item/weapon/book/b in contents)
 				b.loc = (get_turf(src))
@@ -159,19 +159,19 @@
 		), rand(40,80), 1)
 	if(carved)
 		if(store)
-			user << SPAN_NOTICE("[store] falls out of [title]!")
+			to_chat(user, SPAN_NOTICE("[store] falls out of [title]!"))
 			store.loc = get_turf(src.loc)
 			store = null
 			return
 		else
-			user << SPAN_NOTICE("The pages of [title] have been cut out!")
+			to_chat(user, SPAN_NOTICE("The pages of [title] have been cut out!"))
 			return
 	if(src.dat)
 		user << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book[window_size != null ? ";size=[window_size]" : ""]")
 		user.visible_message("[user] opens a book titled \"[src.title]\" and begins reading intently.")
 		onclose(user, "book")
 	else
-		user << "This book is completely blank!"
+		to_chat(user, "This book is completely blank!")
 
 /obj/item/weapon/book/attackby(obj/item/I, mob/user)
 	if(carved)
@@ -180,24 +180,24 @@
 				user.drop_item()
 				I.loc = src
 				store = I
-				user << SPAN_NOTICE("You put [I] in [title].")
+				to_chat(user, SPAN_NOTICE("You put [I] in [title]."))
 				return
 			else
-				user << SPAN_NOTICE("[I] won't fit in [title].")
+				to_chat(user, SPAN_NOTICE("[I] won't fit in [title]."))
 				return
 		else
-			user << SPAN_NOTICE("There's already something in [title]!")
+			to_chat(user, SPAN_NOTICE("There's already something in [title]!"))
 			return
 	if(istype(I, /obj/item/weapon/pen))
 		if(unique)
-			user << "These pages don't seem to take the ink well. Looks like you can't modify it."
+			to_chat(user, "These pages don't seem to take the ink well. Looks like you can't modify it.")
 			return
 		var/choice = input("What would you like to change?") in list("Title", "Contents", "Author", "Cancel")
 		switch(choice)
 			if("Title")
 				var/newtitle = reject_bad_text(sanitizeSafe(input("Write a new title:")))
 				if(!newtitle)
-					usr << "The title is invalid."
+					to_chat(usr, "The title is invalid.")
 					return
 				else
 					src.name = newtitle
@@ -205,14 +205,14 @@
 			if("Contents")
 				var/content = sanitize(input("Write your book's contents (HTML NOT allowed):") as message|null, MAX_BOOK_MESSAGE_LEN)
 				if(!content)
-					usr << "The content is invalid."
+					to_chat(usr, "The content is invalid.")
 					return
 				else
 					src.dat += content
 			if("Author")
 				var/newauthor = sanitize(input(usr, "Write the author's name:"))
 				if(!newauthor)
-					usr << "The name is invalid."
+					to_chat(usr, "The name is invalid.")
 					return
 				else
 					src.author = newauthor
@@ -221,37 +221,37 @@
 	else if(istype(I, /obj/item/weapon/barcodescanner))
 		var/obj/item/weapon/barcodescanner/scanner = I
 		if(!scanner.computer)
-			user << "[I]'s screen flashes: 'No associated computer found!'"
+			to_chat(user, "[I]'s screen flashes: 'No associated computer found!'")
 		else
 			switch(scanner.mode)
 				if(0)
 					scanner.book = src
-					user << "[I]'s screen flashes: 'Book stored in buffer.'"
+					to_chat(user, "[I]'s screen flashes: 'Book stored in buffer.'")
 				if(1)
 					scanner.book = src
 					scanner.computer.buffer_book = src.name
-					user << "[I]'s screen flashes: 'Book stored in buffer. Book title stored in associated computer buffer.'"
+					to_chat(user, "[I]'s screen flashes: 'Book stored in buffer. Book title stored in associated computer buffer.'")
 				if(2)
 					scanner.book = src
 					for(var/datum/borrowbook/b in scanner.computer.checkouts)
 						if(b.bookname == src.name)
 							scanner.computer.checkouts.Remove(b)
-							user << "[I]'s screen flashes: 'Book stored in buffer. Book has been checked in.'"
+							to_chat(user, "[I]'s screen flashes: 'Book stored in buffer. Book has been checked in.'")
 							return
-					user << "[I]'s screen flashes: 'Book stored in buffer. No active check-out record found for current title.'"
+					to_chat(user, "[I]'s screen flashes: 'Book stored in buffer. No active check-out record found for current title.'")
 				if(3)
 					scanner.book = src
 					for(var/obj/item/weapon/book in scanner.computer.inventory)
 						if(book == src)
-							user << "[I]'s screen flashes: 'Book stored in buffer. Title already present in inventory, aborting to avoid duplicate entry.'"
+							to_chat(user, "[I]'s screen flashes: 'Book stored in buffer. Title already present in inventory, aborting to avoid duplicate entry.'")
 							return
 					scanner.computer.inventory.Add(src)
-					user << "[I]'s screen flashes: 'Book stored in buffer. Title added to general inventory.'"
+					to_chat(user, "[I]'s screen flashes: 'Book stored in buffer. Title added to general inventory.'")
 	else if(QUALITY_CUTTING in I.tool_qualities)
 		if(carved)	return
-		user << SPAN_NOTICE("You begin to carve out [title].")
+		to_chat(user, SPAN_NOTICE("You begin to carve out [title]."))
 		if(do_after(user, 30, src))
-			user << SPAN_NOTICE("You carve out the pages from [title]! You didn't want to read it anyway.")
+			to_chat(user, SPAN_NOTICE("You carve out the pages from [title]! You didn't want to read it anyway."))
 			carved = 1
 			return
 	else
@@ -283,7 +283,7 @@
 		mode += 1
 		if(mode > 3)
 			mode = 0
-		user << "[src] Status Display:"
+		to_chat(user, "[src] Status Display:")
 		var/modedesc
 		switch(mode)
 			if(0)
@@ -296,9 +296,9 @@
 				modedesc = "Scan book to local buffer, attempt to add book to general inventory."
 			else
 				modedesc = "ERROR"
-		user << " - Mode [mode] : [modedesc]"
+		to_chat(user, " - Mode [mode] : [modedesc]")
 		if(src.computer)
-			user << "<font color=green>Computer has been associated with this unit.</font>"
+			to_chat(user, "<font color=green>Computer has been associated with this unit.</font>")
 		else
-			user << "<font color=red>No associated computer found. Only local scans will function properly.</font>"
-		user << "\n"
+			to_chat(user, "<font color=red>No associated computer found. Only local scans will function properly.</font>")
+		to_chat(user, "\n")

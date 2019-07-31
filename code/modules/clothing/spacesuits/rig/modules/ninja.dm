@@ -37,7 +37,7 @@
 
 	var/mob/living/carbon/human/H = holder.wearer
 
-	H << "<font color='blue'><b>You are now invisible to normal detection.</b></font>"
+	to_chat(H, "<font color='blue'><b>You are now invisible to normal detection.</b></font>")
 	H.invisibility = INVISIBILITY_LEVEL_TWO
 
 	anim(get_turf(H), H, 'icons/effects/effects.dmi', "electricity",null,20,null)
@@ -51,7 +51,7 @@
 
 	var/mob/living/carbon/human/H = holder.wearer
 
-	H << SPAN_DANGER("You are now visible.")
+	to_chat(H, SPAN_DANGER("You are now visible."))
 	H.invisibility = 0
 
 	anim(get_turf(H), H,'icons/mob/mob.dmi',,"uncloak",,H.dir)
@@ -102,7 +102,7 @@
 	var/mob/living/carbon/human/H = holder.wearer
 
 	if(!istype(H.loc, /turf))
-		H << SPAN_WARNING("You cannot teleport out of your current location.")
+		to_chat(H, SPAN_WARNING("You cannot teleport out of your current location."))
 		return 0
 
 	var/turf/T
@@ -112,19 +112,19 @@
 		T = get_teleport_loc(get_turf(H), H, rand(5, 9))
 
 	if(!T || T.density)
-		H << SPAN_WARNING("You cannot teleport into solid walls.")
+		to_chat(H, SPAN_WARNING("You cannot teleport into solid walls."))
 		return 0
 
 	if(isAdminLevel(T.z))
-		H << SPAN_WARNING("You cannot use your teleporter on this Z-level.")
+		to_chat(H, SPAN_WARNING("You cannot use your teleporter on this Z-level."))
 		return 0
 
 	if(T.contains_dense_objects())
-		H << SPAN_WARNING("You cannot teleport to a location with solid objects.")
+		to_chat(H, SPAN_WARNING("You cannot teleport to a location with solid objects."))
 		return 0
 
 	if(T.z != H.z || get_dist(T, get_turf(H)) > world.view)
-		H << SPAN_WARNING("You cannot teleport to such a distant object.")
+		to_chat(H, SPAN_WARNING("You cannot teleport to such a distant object."))
 		return 0
 
 	phase_out(H,get_turf(H))

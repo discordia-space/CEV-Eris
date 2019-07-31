@@ -104,7 +104,7 @@ var/group_global_cooldown = 0
 	first = FALSE
 	participants = correct_participants
 	correct_participants = list()
-	implant.wearer << SPAN_NOTICE("There is [participants.len] followers continuing the ritual.")
+	to_chat(implant.wearer, SPAN_NOTICE("There is [participants.len] followers continuing the ritual."))
 
 
 /datum/core_module/group_ritual/proc/d_reset_cooldown()
@@ -123,11 +123,11 @@ var/group_global_cooldown = 0
 	if(!starter_succ_message)
 		starter_succ_message = succ_message
 
-	starter << starter_succ_message
+	to_chat(starter, starter_succ_message)
 	success(starter, participants.len)
 
 	for(var/mob/affected in participants)
-		affected << fail_message
+		to_chat(affected, fail_message)
 		success(affected, participants.len)
 
 /datum/group_ritual_effect/proc/success(var/mob/affected, var/part_len)
@@ -137,11 +137,11 @@ var/group_global_cooldown = 0
 	if(!starter_fail_message)
 		starter_fail_message = fail_message
 
-	starter << starter_fail_message
+	to_chat(starter, starter_fail_message)
 	fail(starter, participants.len)
 
 	for(var/mob/affected in participants)
-		affected << fail_message
+		to_chat(affected, fail_message)
 		fail(affected, participants.len)
 
 /datum/group_ritual_effect/proc/fail(var/mob/affected, var/part_len)

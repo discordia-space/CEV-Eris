@@ -45,7 +45,7 @@
 	new /obj/item/weapon/circuitboard/excelsior_teleporter(LM)
 
 	for (var/datum/antagonist/A in members)
-		A.owner.current << SPAN_NOTICE("Use your excelsior supply stash. [landmark.navigation]")
+		to_chat(A.owner.current, SPAN_NOTICE("Use your excelsior supply stash. [landmark.navigation]"))
 		A.owner.store_memory("Excelsior stash. [landmark.navigation]")
 
 

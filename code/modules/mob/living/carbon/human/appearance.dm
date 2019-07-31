@@ -25,7 +25,7 @@
 	else
 		var/newname = input("Choose a name for your character.","Your Name", real_name)
 		fully_replace_character_name(real_name, newname)
-	src << SPAN_NOTICE("Your name is now [real_name]")
+	to_chat(src, SPAN_NOTICE("Your name is now [real_name]"))
 
 /mob/living/carbon/human/proc/change_gender(var/gender)
 	if(src.gender == gender)

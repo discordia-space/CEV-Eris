@@ -79,7 +79,7 @@
 	close_all()
 
 	// Now make the cardboard
-	user << SPAN_NOTICE("You fold [src] flat.")
+	to_chat(user, SPAN_NOTICE("You fold [src] flat."))
 	new src.foldable(get_turf(src))
 	qdel(src)
 

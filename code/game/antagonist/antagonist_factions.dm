@@ -34,7 +34,7 @@
 	members.Add(member)
 	member.faction = src
 	if(announce)
-		member.owner.current << SPAN_NOTICE("You became a member of the [name].")
+		to_chat(member.owner.current, SPAN_NOTICE("You became a member of the [name]."))
 
 	if (objectives.len)
 		member.set_objectives(objectives)
@@ -54,7 +54,7 @@
 	leaders.Add(member)
 	member.owner.current.verbs |= leader_verbs
 	if(announce)
-		member.owner.current << SPAN_NOTICE("You became a <b>leader</b> of the [name].")
+		to_chat(member.owner.current, SPAN_NOTICE("You became a <b>leader</b> of the [name]."))
 	update_members()
 	update_icons(member)
 	return TRUE
@@ -81,7 +81,7 @@
 
 	leaders.Remove(member)
 	if(announce)
-		member.owner.current << SPAN_WARNING("You are no longer the <b>leader</b> of the [name].")
+		to_chat(member.owner.current, SPAN_WARNING("You are no longer the <b>leader</b> of the [name]."))
 	member.owner.current.verbs.Remove(leader_verbs)
 
 	update_members()
@@ -99,7 +99,7 @@
 		remove_leader(member, FALSE)
 
 	if(announce)
-		member.owner.current << SPAN_WARNING("You are no longer a member of the [name].")
+		to_chat(member.owner.current, SPAN_WARNING("You are no longer a member of the [name]."))
 
 	if(member.owner && member.owner.current)
 		member.owner.current.verbs.Remove(verbs)
@@ -149,14 +149,14 @@
 	message = capitalize_cp1251(sanitize(message))
 	var/text = "<span class='revolution'>[name] member, [user]: \"[message]\"</span>"
 	for(var/datum/antagonist/A in members)
-		A.owner.current << text
+		to_chat(A.owner.current, text)
 
 	//ghosts
 	for (var/mob/observer/ghost/M in GLOB.dead_mob_list)	//does this include players who joined as observers as well?
 		if (!(M.client))
 			continue
 		if((M.antagHUD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH) || is_admin(M))
-			M << "[text] ([ghost_follow_link(user, M)])"
+			to_chat(M, "[text] ([ghost_follow_link(user, M)])")
 
 	log_say("[user.name]/[user.key] (REV [name]) : [message]")
 

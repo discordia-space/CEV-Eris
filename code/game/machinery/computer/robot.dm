@@ -38,7 +38,7 @@
 		return
 	var/mob/user = usr
 	if(!src.allowed(user))
-		user << "Access Denied"
+		to_chat(user, "Access Denied")
 		return
 
 	// Destroys the cyborg
@@ -47,11 +47,11 @@
 		if(!target || !istype(target))
 			return
 		if(isAI(user) && (target.connected_ai != user))
-			user << "Access Denied. This robot is not linked to you."
+			to_chat(user, "Access Denied. This robot is not linked to you.")
 			return
 		// Cyborgs may blow up themselves via the console
 		if(isrobot(user) && user != target)
-			user << "Access Denied."
+			to_chat(user, "Access Denied.")
 			return
 		var/choice = input("Really detonate [target.name]?") in list ("Yes", "No")
 		if(choice != "Yes")
@@ -61,12 +61,12 @@
 
 		// Antagonistic cyborgs? Left here for downstream
 		if(target.mind && player_is_antag(target.mind) && target.emagged)
-			target << "Extreme danger.  Termination codes detected.  Scrambling security codes and automatic AI unlink triggered."
+			to_chat(target, "Extreme danger.  Termination codes detected.  Scrambling security codes and automatic AI unlink triggered.")
 			target.ResetSecurityCodes()
 		else
 			message_admins(SPAN_NOTICE("[key_name_admin(usr)] detonated [target.name]!"))
 			log_game("[key_name(usr)] detonated [target.name]!")
-			target << SPAN_DANGER("Self-destruct command received.")
+			to_chat(target, SPAN_DANGER("Self-destruct command received."))
 			spawn(10)
 				target.self_destruct()
 
@@ -79,11 +79,11 @@
 			return
 
 		if(isAI(user) && (target.connected_ai != user))
-			user << "Access Denied. This robot is not linked to you."
+			to_chat(user, "Access Denied. This robot is not linked to you.")
 			return
 
 		if(isrobot(user))
-			user << "Access Denied."
+			to_chat(user, "Access Denied.")
 			return
 
 		var/choice = input("Really [target.lockcharge ? "unlock" : "lockdown"] [target.name] ?") in list ("Yes", "No")
@@ -98,10 +98,10 @@
 		target.canmove = !target.canmove
 		if (target.lockcharge)
 			target.lockcharge = !target.lockcharge
-			target << "Your lockdown has been lifted!"
+			to_chat(target, "Your lockdown has been lifted!")
 		else
 			target.lockcharge = !target.lockcharge
-			target << "You have been locked down!"
+			to_chat(target, "You have been locked down!")
 
 	// Remotely hacks the cyborg. Only antag AIs can do this and only to linked cyborgs.
 	else if (href_list["hack"])
@@ -111,11 +111,11 @@
 
 		// Antag AI checks
 		if(!isAI(user) || !(user.mind.antagonist.len && user.mind.original == user))
-			user << "Access Denied"
+			to_chat(user, "Access Denied")
 			return
 
 		if(target.emagged)
-			user << "Robot is already hacked."
+			to_chat(user, "Robot is already hacked.")
 			return
 
 		var/choice = input("Really hack [target.name]? This cannot be undone.") in list("Yes", "No")
@@ -128,24 +128,24 @@
 		message_admins(SPAN_NOTICE("[key_name_admin(usr)] emagged [target.name] using robotic console!"))
 		log_game("[key_name(usr)] emagged [target.name] using robotic console!")
 		target.emagged = 1
-		target << SPAN_NOTICE("Failsafe protocols overriden. New tools available.")
+		to_chat(target, SPAN_NOTICE("Failsafe protocols overriden. New tools available."))
 
 	// Arms the emergency self-destruct system
 	else if(href_list["arm"])
 		if(issilicon(user))
-			user << "Access Denied"
+			to_chat(user, "Access Denied")
 			return
 
 		safety = !safety
-		user << "You [safety ? "disarm" : "arm"] the emergency self destruct"
+		to_chat(user, "You [safety ? "disarm" : "arm"] the emergency self destruct")
 
 	// Destroys all accessible cyborgs if safety is disabled
 	else if(href_list["nuke"])
 		if(issilicon(user))
-			user << "Access Denied"
+			to_chat(user, "Access Denied")
 			return
 		if(safety)
-			user << "Self-destruct aborted - safety active"
+			to_chat(user, "Self-destruct aborted - safety active")
 			return
 
 		message_admins(SPAN_NOTICE("[key_name_admin(usr)] detonated all cyborgs!"))
@@ -157,7 +157,7 @@
 			// Ignore antagonistic cyborgs
 			if(R.scrambledcodes)
 				continue
-			R << SPAN_DANGER("Self-destruct command received.")
+			to_chat(R, SPAN_DANGER("Self-destruct command received."))
 			spawn(10)
 				R.self_destruct()
 

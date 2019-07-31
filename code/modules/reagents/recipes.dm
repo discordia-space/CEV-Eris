@@ -730,7 +730,7 @@
 	var/location = get_turf(holder.my_atom)
 
 	for(var/mob/M in viewers(5, location))
-		M << SPAN_WARNING("The solution spews out foam!")
+		to_chat(M, SPAN_WARNING("The solution spews out foam!"))
 
 	var/datum/effect/effect/system/foam_spread/s = new()
 	s.set_up(created_volume, location, holder, 0)
@@ -749,7 +749,7 @@
 	var/location = get_turf(holder.my_atom)
 
 	for(var/mob/M in viewers(5, location))
-		M << SPAN_WARNING("The solution spews out a metalic foam!")
+		to_chat(M, SPAN_WARNING("The solution spews out a metalic foam!"))
 
 	var/datum/effect/effect/system/foam_spread/s = new()
 	s.set_up(created_volume, location, holder, 1)
@@ -767,7 +767,7 @@
 	var/location = get_turf(holder.my_atom)
 
 	for(var/mob/M in viewers(5, location))
-		M << SPAN_WARNING("The solution spews out a metalic foam!")
+		to_chat(M, SPAN_WARNING("The solution spews out a metalic foam!"))
 
 	var/datum/effect/effect/system/foam_spread/s = new()
 	s.set_up(created_volume, location, holder, 2)
@@ -1147,7 +1147,7 @@
 	playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
 	for(var/mob/living/M in range (get_turf(holder.my_atom), 7))
 		M.bodytemperature -= 140
-		M << SPAN_WARNING("You feel a chill!")
+		to_chat(M, SPAN_WARNING("You feel a chill!"))
 
 //Orange
 /datum/chemical_reaction/slime/casp

@@ -17,7 +17,7 @@
 	if(ishuman(src.loc))
 		var/mob/living/carbon/human/M = src.loc
 		if(M.glasses == src)
-			M << SPAN_DANGER("[src] overloads and blinds you!")
+			to_chat(M, SPAN_DANGER("[src] overloads and blinds you!"))
 			M.eye_blind = 3
 			M.eye_blurry = 5
 			// Don't cure being nearsighted
