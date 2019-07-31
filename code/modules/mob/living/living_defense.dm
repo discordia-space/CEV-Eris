@@ -1,50 +1,3 @@
-
-/*
-	run_armor_check(a,b)
-	args
-	a:def_zone - What part is getting hit, if null will check entire body
-	b:attack_flag - What type of attack, bullet, laser, energy, melee
-
-	Returns
-	0 - no block
-	1 - halfblock
-	2 - fullblock
-*/
-
-/*/mob/living/proc/run_armor_check(var/def_zone = null, var/attack_flag = ARMOR_MELEE, var/armour_pen = 0, var/absorb_text = null, var/soften_text = null)
-	if(armour_pen >= 100)
-		return 0 //might as well just skip the processing
-
-	var/armor = getarmor(def_zone, attack_flag)
-	var/absorb = 0
-
-	//Roll armour
-	if(prob(armor))
-		absorb += 1
-	if(prob(armor))
-		absorb += 1
-
-	//Roll penetration
-	if(prob(armour_pen))
-		absorb -= 1
-	if(prob(armour_pen))
-		absorb -= 1
-
-	if(absorb >= 2)
-		if(absorb_text)
-			show_message("[absorb_text]")
-		else
-			show_message(SPAN_WARNING("Your armor absorbs the blow!"))
-		return 2
-	if(absorb == 1)
-		if(absorb_text)
-			show_message("[soften_text]",4)
-		else
-			show_message(SPAN_WARNING("Your armor softens the blow!"))
-		return 1
-	return 0
-*/
-
 #define ARMOR_AGONY_COEFFICIENT 0.6
 #define ARMOR_GDR_COEFFICIENT 0.1
 
@@ -62,6 +15,18 @@
 	var/guaranteed_damage_red = armor * ARMOR_GDR_COEFFICIENT
 	var/armor_effectiveness = max(0, ( armor - armour_pen ) )
 	var/effective_damage = damage - guaranteed_damage_red
+
+	world << "ARMOR DEBUG: Armor [armor]"
+	world << "ARMOR DEBUG: GDR [guaranteed_damage_red]"
+	world << "ARMOR DEBUG: Armor Effectiveness [armor_effectiveness]"
+	world << "ARMOR DEBUG: Damage Type [damagetype]"
+	world << "ARMOR DEBUG: Attack Flag [attack_flag]"
+	world << "ARMOR DEBUG: Armour Pen [def_zone]"
+	world << "ARMOR DEBUG: Used Weapon [used_weapon]"
+	world << "ARMOR DEBUG: Def Zone [def_zone]"
+	world << "ARMOR DEBUG: Sharp [sharp]"
+	world << "ARMOR DEBUG: Edge [edge]"
+	world << "ARMOR DEBUG: Effective damage [effective_damage]"
 
 	if(effective_damage == 0)
 		show_message(SPAN_WARNING("Your armor absorbs the blow!"))
@@ -85,6 +50,10 @@
 		//Actual part of the damage that passed through armor
 		var/actual_damage = round ( ( effective_damage * ( 100 - armor_effectiveness ) ) / 100 )
 		apply_damage(actual_damage, damagetype, def_zone, used_weapon, sharp, edge)
+
+
+		world << "ARMOR DEBUG: Agony damage [agony_gamage]"
+		world << "ARMOR DEBUG: Actual Damage [actual_damage]"
 
 	return TRUE
 
@@ -152,7 +121,7 @@
 /mob/living/proc/resolve_item_attack(obj/item/I, mob/living/user, var/target_zone)
 	return target_zone
 
-//Called when the mob is hit with an item in combat. Returns the blocked result
+//Called when the mob is hit with an item in combat.
 /mob/living/proc/hit_with_weapon(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
 	visible_message(SPAN_DANGER("[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] with [I.name] by [user]!"))
 
@@ -162,7 +131,7 @@
 		var/turf/simulated/location = get_turf(src)
 		if(istype(location)) location.add_blood_floor(src)
 
-	return blocked
+	return
 
 //returns 0 if the effects failed to apply for some reason, 1 otherwise.
 /mob/living/proc/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
