@@ -59,6 +59,11 @@
 		if("usr")		hsrc = mob
 		if("prefs")		return prefs.process_link(usr,href_list)
 		if("vars")		return view_var_Topic(href,href_list,hsrc)
+		if("chat")		return chatOutput.Topic(href, href_list)
+
+	switch(href_list["action"])
+		if("openLink")
+			src << link(href_list["link"])
 
 	..()	//redirect to hsrc.Topic()
 
@@ -97,6 +102,7 @@
 	///////////
 /client/New(TopicData)
 	dir = NORTH
+	chatOutput = new /datum/chatOutput(src)
 	TopicData = null							//Prevent calls to client.Topic from connect
 
 	if(!(connection in list("seeker", "web")))					//Invalid connection type.
@@ -152,6 +158,8 @@
 	prefs.last_id = computer_id			//these are gonna be used for banning
 
 	. = ..()	//calls mob.Login()
+
+	chatOutput.start() // Starts the chat
 
 	if(custom_event_msg && custom_event_msg != "")
 		src << "<h1 class='alert'>Custom Event</h1>"
