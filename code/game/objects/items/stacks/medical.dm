@@ -1,7 +1,7 @@
 /obj/item/stack/medical
 	name = "medical pack"
 	singular_name = "medical pack"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/stack/items.dmi'
 	amount = 5
 	max_amount = 5
 	w_class = ITEM_SIZE_SMALL
@@ -56,7 +56,7 @@
 					)
 				M.updatehealth()
 				return 1
-				
+
 			user << SPAN_WARNING("This isn't useful at all on a robotic limb.")
 			return 1
 

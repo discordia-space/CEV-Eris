@@ -10,6 +10,7 @@
  */
 
 /obj/item/stack
+	icon = 'icons/obj/stack/items.dmi'
 	gender = PLURAL
 	origin_tech = list(TECH_MATERIAL = 1)
 	var/list/datum/stack_recipe/recipes
@@ -21,6 +22,7 @@
 	var/uses_charge = 0
 	var/list/charge_costs = null
 	var/list/datum/matter_synth/synths = null
+	var/novariants = TRUE //Determines whether the item should update it's sprites based on amount.
 
 	//If either of these two are set to nonzero values, the stack will have randomised quantity on spawn
 	//Used for the /random subtypes of material stacks. any stack works
@@ -43,6 +45,18 @@
 	if (rand_min || rand_max)
 		amount = rand(rand_min, rand_max)
 		amount = round(amount, 1) //Just in case
+	update_icon()
+
+/obj/item/stack/update_icon()
+	if(novariants)
+		return ..()
+	if(amount <= (max_amount * (1/3)))
+		icon_state = initial(icon_state)
+	else if (amount <= (max_amount * (2/3)))
+		icon_state = "[initial(icon_state)]_2"
+	else
+		icon_state = "[initial(icon_state)]_3"
+	..()
 
 /obj/item/stack/Destroy()
 	if (synths)
@@ -210,6 +224,7 @@
 			if(usr)
 				usr.remove_from_mob(src)
 			qdel(src) //should be safe to qdel immediately since if someone is still using this stack it will persist for a little while longer
+		update_icon()
 		return 1
 	else
 		if(get_amount() < used)
@@ -226,6 +241,7 @@
 			return 0
 		else
 			amount += extra
+		update_icon()
 		return 1
 	else if(!synths || synths.len < uses_charge)
 		return 0
