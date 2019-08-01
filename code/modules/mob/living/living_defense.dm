@@ -16,20 +16,21 @@
 	var/armor_effectiveness = max(0, ( armor - armour_pen ) )
 	var/effective_damage = damage - guaranteed_damage_red
 
+	world << "ARMOR DEBUG: Damage [damage]"
 	world << "ARMOR DEBUG: Armor [armor]"
 	world << "ARMOR DEBUG: GDR [guaranteed_damage_red]"
 	world << "ARMOR DEBUG: Armor Effectiveness [armor_effectiveness]"
 	world << "ARMOR DEBUG: Damage Type [damagetype]"
 	world << "ARMOR DEBUG: Attack Flag [attack_flag]"
-	world << "ARMOR DEBUG: Armour Pen [def_zone]"
+	world << "ARMOR DEBUG: Armour Pen [armour_pen]"
 	world << "ARMOR DEBUG: Used Weapon [used_weapon]"
 	world << "ARMOR DEBUG: Def Zone [def_zone]"
 	world << "ARMOR DEBUG: Sharp [sharp]"
 	world << "ARMOR DEBUG: Edge [edge]"
 	world << "ARMOR DEBUG: Effective damage [effective_damage]"
 
-	if(effective_damage == 0)
-		show_message(SPAN_WARNING("Your armor absorbs the blow!"))
+	if(effective_damage <= 0)
+		show_message(SPAN_NOTICE("Your armor absorbs the blow!"))
 		return FALSE
 
 	//Here we can remove edge or sharpness from the blow
@@ -37,6 +38,23 @@
 		sharp = 0
 		edge = 0
 
+
+	//Feedback
+	//In order to show both target and everyone around that armor is actually working, we are going to send message for both of them
+	//Goon/tg chat should take care of spam issue on this one
+
+	if(armor_effectiveness >= 74)
+		visible_message(SPAN_NOTICE("[src] armor easily absorbs the blow!"),
+						SPAN_NOTICE("Your armor reduced the impact greatly!"))
+
+	else if(armor_effectiveness >= 49)
+		visible_message(SPAN_NOTICE("[src] armor abosrbs most of the damage!"),
+						SPAN_NOTICE("Your armor protects you from impact!"))
+
+	else if(armor_effectiveness >= 24)
+		show_message(SPAN_NOTICE("Your armor reduced impact for a bit."))
+
+	//No armor? Damage as usual
 	if(armor_effectiveness == 0)
 		apply_damage(effective_damage, damagetype, def_zone, used_weapon, sharp, edge)
 
@@ -84,7 +102,7 @@
 
 	//Armor and damage
 	if(!P.nodamage)
-		damage_through_armor(P.damage, P.damage_type, def_zone, P.check_armour, P.armor_penetration, used_weapon = P, sharp=is_sharp(P), edge=has_edge(P))
+		damage_through_armor(P.damage, P.damage_type, def_zone, P.check_armour, armour_pen = P.armor_penetration, used_weapon = P, sharp=is_sharp(P), edge=has_edge(P))
 
 	return TRUE
 
