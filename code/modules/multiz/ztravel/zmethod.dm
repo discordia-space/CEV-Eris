@@ -141,7 +141,7 @@
 			start(dir)
 		return TRUE
 	else if (istext(.))
-		M << SPAN_NOTICE(.)
+		to_chat(M, SPAN_NOTICE(.))
 	return FALSE
 
 /*
@@ -290,4 +290,4 @@
 	M.Move(target)
 	if (ismob(M))
 		mob.Weaken(2)
-	mob << SPAN_DANGER("You lose control and slip into freefall")
+	to_chat(mob, SPAN_DANGER("You lose control and slip into freefall"))

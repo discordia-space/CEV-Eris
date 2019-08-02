@@ -27,7 +27,7 @@
 				SPAN_NOTICE("You retract your [I] into [E].")
 			)
 		else
-			H << SPAN_WARNING("You must drop [I] before tool can be extend.")
+			to_chat(H, SPAN_WARNING("You must drop [I] before tool can be extend."))
 	else
 		var/obj/item = input(H, "Select item for deploy") as null|anything in src
 		if(!item || !src.loc in H.organs || H.incapacitated())

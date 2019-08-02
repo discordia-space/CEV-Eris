@@ -54,27 +54,27 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 
 	var/turf/T = get_turf(mob)
 
-	mob << "<b>We are at [T.z] level.</b>"
+	to_chat(mob, "<b>We are at [T.z] level.</b>")
 
-	mob << "level name is [get_level_name(T.z)]"
+	to_chat(mob, "level name is [get_level_name(T.z)]")
 
-	mob << "isStationLevel: [isStationLevel(mob.z)]"
-	mob << "isNotStationLevel: [isNotStationLevel(mob.z)]"
-	mob << "isOnStationLevel: [isOnStationLevel(mob)]"
+	to_chat(mob, "isStationLevel: [isStationLevel(mob.z)]")
+	to_chat(mob, "isNotStationLevel: [isNotStationLevel(mob.z)]")
+	to_chat(mob, "isOnStationLevel: [isOnStationLevel(mob)]")
 
-	mob << "isPlayerLevel: [isPlayerLevel(mob.z)]"
-	mob << "isOnPlayerLevel: [isOnPlayerLevel(mob)]"
+	to_chat(mob, "isPlayerLevel: [isPlayerLevel(mob.z)]")
+	to_chat(mob, "isOnPlayerLevel: [isOnPlayerLevel(mob)]")
 
-	mob << "isAdminLevel: [isAdminLevel(mob.z)]"
-	mob << "isNotAdminLevel: [isNotAdminLevel(mob.z)]"
-	mob << "isOnAdminLevel: [isOnAdminLevel(mob)]"
+	to_chat(mob, "isAdminLevel: [isAdminLevel(mob.z)]")
+	to_chat(mob, "isNotAdminLevel: [isNotAdminLevel(mob.z)]")
+	to_chat(mob, "isOnAdminLevel: [isOnAdminLevel(mob)]")
 
-	mob << "isAcessableLevel: [maps_data.accessable_levels[num2text(mob.z)]]"
+	to_chat(mob, "isAcessableLevel: [maps_data.accessable_levels[num2text(mob.z)]]")
 
 	if(maps_data.asteroid_leves[num2text(T.z)])
-		mob << "Asteroid will be generated here"
+		to_chat(mob, "Asteroid will be generated here")
 	else
-		mob << "This isn't asteroid level"
+		to_chat(mob, "This isn't asteroid level")
 
 /datum/maps_data
 	var/list/all_levels        = new

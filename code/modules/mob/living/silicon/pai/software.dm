@@ -25,7 +25,7 @@ var/global/list/default_pai_software = list()
 		var/datum/pai_software/P = new type()
 		if(pai_software_by_key[P.id])
 			var/datum/pai_software/O = pai_software_by_key[P.id]
-			world << SPAN_WARNING("pAI software module [P.name] has the same key as [O.name]!")
+			to_chat(world, SPAN_WARNING("pAI software module [P.name] has the same key as [O.name]!"))
 			r = 0
 			continue
 		pai_software_by_key[P.id] = P

@@ -57,22 +57,22 @@
 	if(O.GetIdCard())
 		if(access_scanner.allowed(user) && !open && !emagged)
 			locked = !locked
-			user << "<span class='notice'>Controls are now [locked ? "locked." : "unlocked."]</span>"
+			to_chat(user, "<span class='notice'>Controls are now [locked ? "locked." : "unlocked."]</span>")
 			attack_hand(user)
 		else
 			if(emagged)
-				user << SPAN_WARNING("ERROR")
+				to_chat(user, SPAN_WARNING("ERROR"))
 			if(open)
-				user << SPAN_WARNING("Please close the access panel before locking it.")
+				to_chat(user, SPAN_WARNING("Please close the access panel before locking it."))
 			else
-				user << SPAN_WARNING("Access denied.")
+				to_chat(user, SPAN_WARNING("Access denied."))
 		return
 	else if(istype(O, /obj/item/weapon/tool/screwdriver))
 		if(!locked)
 			open = !open
-			user << "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>"
+			to_chat(user, "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>")
 		else
-			user << SPAN_NOTICE("You need to unlock the controls first.")
+			to_chat(user, SPAN_NOTICE("You need to unlock the controls first."))
 		return
 	else if(istype(O, /obj/item/weapon/tool/weldingtool))
 		if(health < maxHealth)
@@ -80,9 +80,9 @@
 				health = min(maxHealth, health + 10)
 				user.visible_message(SPAN_NOTICE("[user] repairs [src]."),SPAN_NOTICE("You repair [src]."))
 			else
-				user << SPAN_NOTICE("Unable to repair with the maintenance panel closed.")
+				to_chat(user, SPAN_NOTICE("Unable to repair with the maintenance panel closed."))
 		else
-			user << SPAN_NOTICE("[src] does not need a repair.")
+			to_chat(user, SPAN_NOTICE("[src] does not need a repair."))
 		return
 	else
 		..()

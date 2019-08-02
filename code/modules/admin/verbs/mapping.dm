@@ -212,7 +212,7 @@ ADMIN_VERB_ADD(/client/proc/enable_debug_verbs, R_DEBUG, FALSE)
 	var/turf/simulated/location = get_turf(usr)
 
 	if(!istype(location, /turf/simulated)) // We're in space, let's not cause runtimes.
-		usr << "\red this debug tool cannot be used from space"
+		to_chat(usr, "\red this debug tool cannot be used from space")
 		return
 
 	var/icon/red = new('icons/misc/debug_group.dmi', "red")		//created here so we don't have to make thousands of these.
@@ -220,11 +220,11 @@ ADMIN_VERB_ADD(/client/proc/enable_debug_verbs, R_DEBUG, FALSE)
 	var/icon/blue = new('icons/misc/debug_group.dmi', "blue")
 
 	if(!usedZAScolors)
-		usr << "ZAS Test Colors"
-		usr << "Green = Zone you are standing in"
-		usr << "Blue = Connected zone to the zone you are standing in"
-		usr << "Yellow = A zone that is connected but not one adjacent to your connected zone"
-		usr << "Red = Not connected"
+		to_chat(usr, "ZAS Test Colors")
+		to_chat(usr, "Green = Zone you are standing in")
+		to_chat(usr, "Blue = Connected zone to the zone you are standing in")
+		to_chat(usr, "Yellow = A zone that is connected but not one adjacent to your connected zone")
+		to_chat(usr, "Red = Not connected")
 		usedZAScolors = 1
 
 	testZAScolors_zones += location.zone
@@ -309,7 +309,7 @@ ADMIN_VERB_ADD(/client/proc/enable_debug_verbs, R_DEBUG, FALSE)
 				line += " no.[i+10+j]@\[[temp_atom.x], [temp_atom.y], [temp_atom.z]\]; "
 		world << line*/
 
-	world << "There are [count] objects of type [type_path] on z-level [num_level]"
+	to_chat(world, "There are [count] objects of type [type_path] on z-level [num_level]")
 
 
 /client/proc/count_objects_all()
@@ -336,7 +336,7 @@ ADMIN_VERB_ADD(/client/proc/enable_debug_verbs, R_DEBUG, FALSE)
 				line += " no.[i+10+j]@\[[temp_atom.x], [temp_atom.y], [temp_atom.z]\]; "
 		world << line*/
 
-	world << "There are [count] objects of type [type_path] in the game world"
+	to_chat(world, "There are [count] objects of type [type_path] in the game world")
 
 
 
@@ -355,7 +355,7 @@ var/global/prevent_airgroup_regroup = 0
 	set category = "Mapping"
 	set name = "Regroup All Airgroups Attempt"
 
-	usr << "\red Proc disabled."
+	to_chat(usr, "\red Proc disabled.")
 
 	/*prevent_airgroup_regroup = 0
 	for(var/datum/air_group/AG in SSair.air_groups)
@@ -366,7 +366,7 @@ var/global/prevent_airgroup_regroup = 0
 	set category = "Mapping"
 	set name = "Kill pipe processing"
 
-	usr << "\red Proc disabled."
+	to_chat(usr, "\red Proc disabled.")
 
 	/*pipe_processing_killed = !pipe_processing_killed
 	if(pipe_processing_killed)
@@ -378,7 +378,7 @@ var/global/prevent_airgroup_regroup = 0
 	set category = "Mapping"
 	set name = "Kill air processing"
 
-	usr << "\red Proc disabled."
+	to_chat(usr, "\red Proc disabled.")
 
 	/*air_processing_killed = !air_processing_killed
 	if(air_processing_killed)
@@ -392,7 +392,7 @@ var/global/say_disabled = 0
 	set category = "Mapping"
 	set name = "Disable all communication verbs"
 
-	usr << "\red Proc disabled."
+	to_chat(usr, "\red Proc disabled.")
 
 	/*say_disabled = !say_disabled
 	if(say_disabled)
@@ -407,7 +407,7 @@ var/global/movement_disabled_exception //This is the client that calls the proc,
 	set category = "Mapping"
 	set name = "Disable all movement"
 
-	usr << "\red Proc disabled."
+	to_chat(usr, "\red Proc disabled.")
 
 	/*movement_disabled = !movement_disabled
 	if(movement_disabled)

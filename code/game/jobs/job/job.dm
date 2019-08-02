@@ -99,7 +99,7 @@
 
 		H.mind.initial_account = M
 
-	H << SPAN_NOTICE("<b>Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]</b>")
+	to_chat(H, SPAN_NOTICE("<b>Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]</b>"))
 
 
 

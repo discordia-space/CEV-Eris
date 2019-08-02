@@ -275,7 +275,7 @@
 		return 0 //Means the item is already in the storage item
 	if(storage_slots != null && contents.len >= storage_slots)
 		if(!stop_messages)
-			usr << SPAN_NOTICE("[src] is full, make some space.")
+			to_chat(usr, SPAN_NOTICE("[src] is full, make some space."))
 		return 0 //Storage item is full
 
 	if(W.anchored)
@@ -284,22 +284,22 @@
 	if(can_hold.len)
 		if(!is_type_in_list(W, can_hold))
 			if(!stop_messages && ! istype(W, /obj/item/weapon/hand_labeler))
-				usr << SPAN_NOTICE("[src] cannot hold \the [W].")
+				to_chat(usr, SPAN_NOTICE("[src] cannot hold \the [W]."))
 			return 0
 		var/max_instances = can_hold[W.type]
 		if(max_instances && instances_of_type_in_list(W, contents) >= max_instances)
 			if(!stop_messages && !istype(W, /obj/item/weapon/hand_labeler))
-				usr << SPAN_NOTICE("[src] has no more space specifically for \the [W].")
+				to_chat(usr, SPAN_NOTICE("[src] has no more space specifically for \the [W]."))
 			return 0
 
 	if(cant_hold.len && is_type_in_list(W, cant_hold))
 		if(!stop_messages)
-			usr << SPAN_NOTICE("[src] cannot hold [W].")
+			to_chat(usr, SPAN_NOTICE("[src] cannot hold [W]."))
 		return 0
 
 	if (max_w_class != null && W.w_class > max_w_class)
 		if(!stop_messages)
-			usr << SPAN_NOTICE("[W] is too long for this [src].")
+			to_chat(usr, SPAN_NOTICE("[W] is too long for this [src]."))
 		return 0
 
 	//Slot based storage overrides space-based storage
@@ -310,12 +310,12 @@
 
 		if(total_storage_space > max_storage_space)
 			if(!stop_messages)
-				usr << SPAN_NOTICE("[src] is too full, make some space.")
+				to_chat(usr, SPAN_NOTICE("[src] is too full, make some space."))
 			return 0
 
 	if(W.w_class >= src.w_class && (istype(W, /obj/item/weapon/storage)))
 		if(!stop_messages)
-			usr << SPAN_NOTICE("[src] cannot hold [W] as it's a storage item of the same size.")
+			to_chat(usr, SPAN_NOTICE("[src] cannot hold [W] as it's a storage item of the same size."))
 		return 0 //To prevent the stacking of same sized storage items.
 
 	return 1
@@ -341,7 +341,7 @@
 		if (!prevent_warning)
 			for (var/mob/M in viewers(usr, null))
 				if (M == usr)
-					usr << SPAN_NOTICE("You put \the [W] into [src].")
+					to_chat(usr, SPAN_NOTICE("You put \the [W] into [src]."))
 				else if (M in range(1)) //If someone is standing close enough, they can tell what it is...
 					M.show_message(SPAN_NOTICE("\The [usr] puts [W] into [src]."))
 				else if (W && W.w_class >= ITEM_SIZE_NORMAL) //Otherwise they can only see large or normal items from a distance...
@@ -393,7 +393,7 @@
 					remove_from_storage(L, T)
 					qdel(L)
 		if(amt_inserted)
-			user << "You inserted [amt_inserted] light\s into \the [LP.name]. You have [LP.uses] light\s remaining."
+			to_chat(user, "You inserted [amt_inserted] light\s into \the [LP.name]. You have [LP.uses] light\s remaining.")
 			return
 
 	if(!can_be_inserted(W))
@@ -403,14 +403,14 @@
 		var/obj/item/weapon/tray/T = W
 		if(T.calc_carry() > 0)
 			if(prob(85))
-				user << SPAN_WARNING("The tray won't fit in [src].")
+				to_chat(user, SPAN_WARNING("The tray won't fit in [src]."))
 				return
 			else //todo: proper drop handling
 				W.loc = user.loc
 				if (user.client)
 					user.client.screen -= W
 				W.dropped(user)
-				user << SPAN_WARNING("God damnit!")
+				to_chat(user, SPAN_WARNING("God damnit!"))
 
 	W.add_fingerprint(user)
 	return handle_item_insertion(W)
@@ -447,9 +447,9 @@
 	collection_mode = !collection_mode
 	switch (collection_mode)
 		if(1)
-			usr << "[src] now picks up all items in a tile at once."
+			to_chat(usr, "[src] now picks up all items in a tile at once.")
 		if(0)
-			usr << "[src] now picks up one item at a time."
+			to_chat(usr, "[src] now picks up one item at a time.")
 
 /obj/item/weapon/storage/proc/collectItems(var/turf/target, var/mob/user)
 	ASSERT(istype(target))
@@ -468,7 +468,7 @@
 			if (src.use_sound)
 				playsound(src.loc, src.use_sound, 50, 1, -5)
 		else
-			user << SPAN_NOTICE("You fail to pick anything up with \the [src].")
+			to_chat(user, SPAN_NOTICE("You fail to pick anything up with \the [src]."))
 
 
 /obj/item/weapon/storage/resolve_attackby(atom/A, mob/user)

@@ -18,13 +18,13 @@
 /obj/item/organ_module/active/proc/can_activate(var/mob/living/carbon/human/H, var/obj/item/organ/external/E)
 	//As long as you're awake you can toggle your own body
 	if(H.incapacitated(INCAPACITATION_UNCONSCIOUS))
-		H << SPAN_WARNING("You can't do that now!")
+		to_chat(H, SPAN_WARNING("You can't do that now!"))
 		return
 /*
 	for(var/obj/item/weapon/implant/prosthesis_inhibition/I in H)
 		if(I.malfunction)
 			continue
-		H << SPAN_WARNING("[I] in your [I.part] prevent [src] activation!")
+		to_chat(H, SPAN_WARNING("[I] in your [I.part] prevent [src] activation!"))
 		return FALSE
 */
 	return TRUE

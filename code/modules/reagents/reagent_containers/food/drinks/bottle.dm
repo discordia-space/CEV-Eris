@@ -99,7 +99,7 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/proc/insert_rag(obj/item/weapon/reagent_containers/glass/rag/R, mob/user)
 	if(!isGlass || rag) return
 	if(user.unEquip(R))
-		user << SPAN_NOTICE("You stuff [R] into [src].")
+		to_chat(user, SPAN_NOTICE("You stuff [R] into [src]."))
 		rag = R
 		rag.forceMove(src)
 		reagent_flags &= ~OPENCONTAINER

@@ -47,7 +47,7 @@ obj/structure/firedoor_assembly/attackby(obj/item/I, mob/user)
 		if(QUALITY_WIRE_CUTTING)
 			if(wired)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You cut the wires!")
+					to_chat(user, SPAN_NOTICE("You cut the wires!"))
 					new/obj/item/stack/cable_coil(src.loc, 1)
 					wired = 0
 					return
@@ -59,13 +59,13 @@ obj/structure/firedoor_assembly/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack/cable_coil) && !wired && anchored)
 		var/obj/item/stack/cable_coil/cable = I
 		if (cable.get_amount() < 1)
-			user << SPAN_WARNING("You need one length of coil to wire \the [src].")
+			to_chat(user, SPAN_WARNING("You need one length of coil to wire \the [src]."))
 			return
 		user.visible_message("[user] wires \the [src].", "You start to wire \the [src].")
 		if(do_after(user, 40, src) && !wired && anchored)
 			if (cable.use(1))
 				wired = 1
-				user << SPAN_NOTICE("You wire \the [src].")
+				to_chat(user, SPAN_NOTICE("You wire \the [src]."))
 
 	else if(istype(I, /obj/item/weapon/airalarm_electronics) && wired)
 		if(anchored)
@@ -76,7 +76,7 @@ obj/structure/firedoor_assembly/attackby(obj/item/I, mob/user)
 			qdel(I)
 			qdel(src)
 		else
-			user << SPAN_WARNING("You must secure \the [src] first!")
+			to_chat(user, SPAN_WARNING("You must secure \the [src] first!"))
 
 	else
 		..(I, user)

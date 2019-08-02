@@ -24,7 +24,7 @@
 		return
 
 	if ((CLUMSY in user.mutations) && prob(50))
-		user << SPAN_WARNING("Uh ... how do those things work?!")
+		to_chat(user, SPAN_WARNING("Uh ... how do those things work?!"))
 		place_handcuffs(user, user)
 		return
 
@@ -154,7 +154,7 @@ var/last_chew = 0
 		if (R.use(1))
 			var/obj/item/weapon/material/wirerod/W = new(get_turf(user))
 			user.put_in_hands(W)
-			user << SPAN_NOTICE("You wrap the cable restraint around the top of the rod.")
+			to_chat(user, SPAN_NOTICE("You wrap the cable restraint around the top of the rod."))
 			qdel(src)
 			update_icon(user)
 

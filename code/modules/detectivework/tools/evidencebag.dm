@@ -43,15 +43,15 @@
 		return
 
 	if(istype(I, /obj/item/weapon/evidencebag))
-		user << SPAN_NOTICE("You find putting an evidence bag in another evidence bag to be slightly absurd.")
+		to_chat(user, SPAN_NOTICE("You find putting an evidence bag in another evidence bag to be slightly absurd."))
 		return
 
 	if(I.w_class >= ITEM_SIZE_LARGE)
-		user << SPAN_NOTICE("[I] won't fit in [src].")
+		to_chat(user, SPAN_NOTICE("[I] won't fit in [src]."))
 		return
 
 	if(contents.len)
-		user << SPAN_NOTICE("[src] already has something inside it.")
+		to_chat(user, SPAN_NOTICE("[src] already has something inside it."))
 		return
 
 	user.visible_message("[user] puts [I] into [src]", "You put [I] inside [src].",\
@@ -90,7 +90,7 @@
 		icon_state = "evidenceobj"
 		desc = "An empty evidence bag."
 	else
-		user << "[src] is empty."
+		to_chat(user, "[src] is empty.")
 		icon_state = "evidenceobj"
 	return
 

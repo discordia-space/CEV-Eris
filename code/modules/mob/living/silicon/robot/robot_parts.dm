@@ -118,13 +118,13 @@
 		if (M.use(1))
 			var/obj/item/weapon/secbot_assembly/ed209_assembly/B = new(loc)
 			B.forceMove(get_turf(src))
-			user << SPAN_NOTICE("You armed the robot frame.")
+			to_chat(user, SPAN_NOTICE("You armed the robot frame."))
 			if (user.get_inactive_hand() == src)
 				user.remove_from_mob(src)
 				user.put_in_inactive_hand(B)
 			qdel(src)
 		else
-			user << SPAN_WARNING("You need one sheet of metal to arm the robot frame.")
+			to_chat(user, SPAN_WARNING("You need one sheet of metal to arm the robot frame."))
 
 	if(W.has_quality(QUALITY_BOLT_TURNING))
 		var/part = input("Select part for detach", "Detach") \
@@ -134,7 +134,7 @@
 
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 		if(!W.use_tool(user, src, 30, QUALITY_BOLT_TURNING))
-			user << SPAN_NOTICE("You stop detaching [selected].")
+			to_chat(user, SPAN_NOTICE("You stop detaching [selected]."))
 			return
 
 		if(selected.loc == src)
@@ -154,10 +154,10 @@
 	if(istype(W, /obj/item/robot_parts))
 		var/obj/item/robot_parts/RP = W
 		if(!req_parts.Find(RP.body_part))
-			user << SPAN_WARNING("You can't attach that here!")
+			to_chat(user, SPAN_WARNING("You can't attach that here!"))
 			return
 		if(parts[RP.body_part])
-			user << SPAN_WARNING("There is already one [parts[RP.body_part]] attached.")
+			to_chat(user, SPAN_WARNING("There is already one [parts[RP.body_part]] attached."))
 			return
 		if(!RP.is_ready(user))
 			return
@@ -169,14 +169,14 @@
 	if(istype(W, /obj/item/device/mmi))
 		var/obj/item/device/mmi/M = W
 		if(!is_ready(user))
-			user << SPAN_WARNING("The MMI must go in after everything else!")
+			to_chat(user, SPAN_WARNING("The MMI must go in after everything else!"))
 			return
 
 		if(!istype(loc,/turf))
-			user << SPAN_WARNING("You can't put \the [W] in, the frame has to be standing on the ground to be perfectly precise.")
+			to_chat(user, SPAN_WARNING("You can't put \the [W] in, the frame has to be standing on the ground to be perfectly precise."))
 			return
 		if(!M.brainmob)
-			user << SPAN_WARNING("Sticking an empty [W] into the frame would sort of defeat the purpose.")
+			to_chat(user, SPAN_WARNING("Sticking an empty [W] into the frame would sort of defeat the purpose."))
 			return
 		if(!M.brainmob.key)
 			var/ghost_can_reenter = 0
@@ -186,15 +186,15 @@
 						ghost_can_reenter = 1
 						break
 			if(!ghost_can_reenter)
-				user << SPAN_NOTICE("\The [W] is completely unresponsive; there's no point.")
+				to_chat(user, SPAN_NOTICE("\The [W] is completely unresponsive; there's no point."))
 				return
 
 		if(M.brainmob.stat == DEAD)
-			user << SPAN_WARNING("Sticking a dead [W] into the frame would sort of defeat the purpose.")
+			to_chat(user, SPAN_WARNING("Sticking a dead [W] into the frame would sort of defeat the purpose."))
 			return
 
 		if(jobban_isbanned(M.brainmob, "Robot"))
-			user << SPAN_WARNING("This [W] does not seem to fit.")
+			to_chat(user, SPAN_WARNING("This [W] does not seem to fit."))
 			return
 
 		var/mob/living/silicon/robot/O = new (get_turf(loc), unfinished = 1)
@@ -248,30 +248,30 @@
 /obj/item/robot_parts/chest/attackby(obj/item/W, mob/living/user)
 	if(istype(W, /obj/item/weapon/cell))
 		if(src.cell)
-			user << SPAN_WARNING("You have already inserted a cell!")
+			to_chat(user, SPAN_WARNING("You have already inserted a cell!"))
 		else
 			user.drop_from_inventory(W, src)
 			src.cell = W
-			user << SPAN_NOTICE("You insert the cell!")
+			to_chat(user, SPAN_NOTICE("You insert the cell!"))
 	else if(istype(W, /obj/item/stack/cable_coil))
 		if(src.wires)
-			user << SPAN_WARNING("You have already inserted wire!")
+			to_chat(user, SPAN_WARNING("You have already inserted wire!"))
 			return
 		else
 			var/obj/item/stack/cable_coil/coil = W
 			coil.use(1)
 			src.wires = W.color
-			user << SPAN_NOTICE("You insert the wire!")
+			to_chat(user, SPAN_NOTICE("You insert the wire!"))
 
 	var/tool_type = W.get_tool_type(user, list(QUALITY_SCREW_DRIVING, QUALITY_WIRE_CUTTING), src)
 	switch(tool_type)
 		if(QUALITY_SCREW_DRIVING)
 			if(cell)
-				user << SPAN_WARNING("You eject the cell!")
+				to_chat(user, SPAN_WARNING("You eject the cell!"))
 				user.put_in_hands(cell)
 				cell = null
 			else
-				user << SPAN_WARNING("There is nothing to eject.")
+				to_chat(user, SPAN_WARNING("There is nothing to eject."))
 			return
 		if(QUALITY_WIRE_CUTTING)
 			if(wires)
@@ -279,9 +279,9 @@
 				C.color = wires
 				wires = 0
 				user.put_in_hands(C)
-				user << SPAN_WARNING("You cut the wire!")
+				to_chat(user, SPAN_WARNING("You cut the wire!"))
 			else
-				user << SPAN_WARNING("There is no wire inside!")
+				to_chat(user, SPAN_WARNING("There is no wire inside!"))
 
 
 /obj/item/robot_parts/head/attackby(obj/item/W as obj, mob/user as mob)
@@ -290,7 +290,7 @@
 		if(isrobot(user))
 			var/current_module = user.get_active_hand()
 			if(current_module == W)
-				user << SPAN_WARNING("How do you propose to do that?")
+				to_chat(user, SPAN_WARNING("How do you propose to do that?"))
 				return
 			else
 				add_flashes(W,user)
@@ -307,10 +307,10 @@
 			user.visible_message(SPAN_NOTICE("[user] eject [flash1] from [src]."))
 			flash1 = null
 		else
-			user << "<span class='warning'There is nothing to eject.</span>"
+			to_chat(user, "<span class='warning'There is nothing to eject.</span>")
 
 	else if(istype(W, /obj/item/weapon/stock_parts/manipulator))
-		user << SPAN_NOTICE("You install some manipulators and modify the head, creating a functional spider-bot!")
+		to_chat(user, SPAN_NOTICE("You install some manipulators and modify the head, creating a functional spider-bot!"))
 		new /mob/living/simple_animal/spiderbot(get_turf(loc))
 		user.drop_from_inventory(W)
 		qdel(W)
@@ -320,11 +320,11 @@
 //Made into a seperate proc to avoid copypasta
 /obj/item/robot_parts/head/proc/add_flashes(obj/item/W as obj, mob/user as mob)
 	if(src.flash1 && src.flash2)
-		user << SPAN_NOTICE("You have already inserted the eyes!")
+		to_chat(user, SPAN_NOTICE("You have already inserted the eyes!"))
 		return
 	else if(src.flash1)
 		src.flash2 = W
 	else
 		src.flash1 = W
 	user.drop_from_inventory(W, src)
-	user << SPAN_NOTICE("You insert the flash into the eye socket!")
+	to_chat(user, SPAN_NOTICE("You insert the flash into the eye socket!"))

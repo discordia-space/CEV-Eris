@@ -14,7 +14,7 @@
 	var/damage = 0                    // Current damage to the organ
 
 	// Type of modification, (If you ever need to apply several types make this a bit flag)
-	var/nature = MODIFICATION_ORGANIC 
+	var/nature = MODIFICATION_ORGANIC
 
 	// Reference data.
 	var/mob/living/carbon/human/owner // Current mob owning the organ.
@@ -149,7 +149,7 @@
 /obj/item/organ/examine(mob/user)
 	..(user)
 	if(status & ORGAN_DEAD)
-		user << SPAN_NOTICE("The decay has set in.")
+		to_chat(user, SPAN_NOTICE("The decay has set in."))
 
 /obj/item/organ/proc/handle_germ_effects()
 	//** Handle the effects of infections

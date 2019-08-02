@@ -460,7 +460,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 			user.visible_message("[user] attempts to weld [src] with the [I]", "You start welding [src] with the [I]")
 			if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_WELDING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC) && isSealed)
 				user.visible_message("[user] welds [src] with the [I].", "You welds [src] with the [I].")
-				if(recieving)	
+				if(recieving)
 					if(prob(33))
 						qdel(src)
 					else	// false welding, critters will create new cracks
@@ -475,7 +475,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 	else
 		if(istype(I, /obj/item/stack/material) && I.get_material_name() == "steel")
 			var/obj/item/stack/G = I
-			
+
 			user.visible_message("[user] starts covering [src] with the [I]", "You start covering [src] with the [I]")
 			if(do_after(user, 20, src))
 				if (G.use(1))
@@ -502,7 +502,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 				//On success, the hole is destroyed!
 				new /obj/random/scrap/sparse_weighted(get_turf(user))
 				user.visible_message("[user] collapses [src] with the [I] and dumps trash which was in the way.", "You collapse [src] with the [I] and dump trash which was in the way.")
-				
+
 				collapse()
 			else
 				var/duration = world.time - start
@@ -512,9 +512,9 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 				spawn_rubble(loc, 1, 100)
 
 				if (I.get_tool_quality(QUALITY_DIGGING) > 30)
-					user << SPAN_NOTICE("The [src] crumbles a bit. Keep trying and you'll collapse it eventually")
+					to_chat(user, SPAN_NOTICE("The [src] crumbles a bit. Keep trying and you'll collapse it eventually"))
 				else
-					user << SPAN_NOTICE("This isn't working very well. Perhaps you should get a better digging tool?")
+					to_chat(user, SPAN_NOTICE("This isn't working very well. Perhaps you should get a better digging tool?"))
 
 				//On failure, the hole takes some damage based on the digging quality of the tool.
 				//This will make things much easier next time

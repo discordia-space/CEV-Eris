@@ -106,11 +106,11 @@
 
 	var/turf/T = get_turf(src)
 	if(!T || !istype(T,/turf/simulated/floor/asteroid))
-		user << "The flag won't stand up in this terrain."
+		to_chat(user, "The flag won't stand up in this terrain.")
 		return
 
 	if(F && F.upright)
-		user << "There is already a flag here."
+		to_chat(user, "There is already a flag here.")
 		return
 
 	var/obj/item/stack/flag/newflag = new src.type(T)

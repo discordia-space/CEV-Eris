@@ -77,7 +77,7 @@
 		turn_off(1)
 	else
 		if(!turn_on(1))
-			user << "You try to turn on \the [src] but it does not work."
+			to_chat(user, "You try to turn on \the [src] but it does not work.")
 
 
 /obj/machinery/floodlight/attack_hand(mob/user)
@@ -93,7 +93,7 @@
 		src.cell = null
 		on = 0
 		set_light(0)
-		user << "You remove the power cell"
+		to_chat(user, "You remove the power cell")
 		update_icon()
 		return
 
@@ -101,7 +101,7 @@
 		turn_off(1)
 	else
 		if(!turn_on(1))
-			user << "You try to turn on \the [src] but it does not work."
+			to_chat(user, "You try to turn on \the [src] but it does not work.")
 
 	update_icon()
 
@@ -121,11 +121,11 @@
 					if(open)
 						open = 0
 						overlays = null
-						user << SPAN_NOTICE("You crowbar the battery panel in place.")
+						to_chat(user, SPAN_NOTICE("You crowbar the battery panel in place."))
 					else
 						if(unlocked)
 							open = 1
-							user << SPAN_NOTICE("You remove the battery panel.")
+							to_chat(user, SPAN_NOTICE("You remove the battery panel."))
 					update_icon()
 				return
 			return
@@ -134,7 +134,7 @@
 			var/used_sound = unlocked ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, instant_finish_tier = 30, forced_sound = used_sound))
 				unlocked = !unlocked
-				user << SPAN_NOTICE("You [unlocked ? "screw" : "unscrew"] the battery panel of \the [src] with [I].")
+				to_chat(user, SPAN_NOTICE("You [unlocked ? "screw" : "unscrew"] the battery panel of \the [src] with [I]."))
 				update_icon()
 				return
 			return
@@ -145,10 +145,10 @@
 	if (istype(I, /obj/item/weapon/cell/large))
 		if(open)
 			if(cell)
-				user << SPAN_WARNING("There is a power cell already installed.")
+				to_chat(user, SPAN_WARNING("There is a power cell already installed."))
 			else
 				user.drop_item()
 				I.forceMove(src)
 				cell = I
-				user << SPAN_NOTICE("You insert the power cell.")
+				to_chat(user, SPAN_NOTICE("You insert the power cell."))
 		update_icon()
