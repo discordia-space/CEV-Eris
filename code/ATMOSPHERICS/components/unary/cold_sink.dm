@@ -97,9 +97,9 @@
 	if(href_list["toggleStatus"])
 		use_power = !use_power
 		if(use_power)
-			usr << "[src] turned on."
+			to_chat(usr, "[src] turned on.")
 		else
-			usr << "[src] turned off."
+			to_chat(usr, "[src] turned off.")
 		update_icon()
 	if(href_list["temp"])
 		var/amount = text2num(href_list["temp"])
@@ -181,4 +181,4 @@
 /obj/machinery/atmospherics/unary/freezer/examine(mob/user)
 	..(user)
 	if(panel_open)
-		user << "The maintenance hatch is open."
+		to_chat(user, "The maintenance hatch is open.")

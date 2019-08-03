@@ -8,7 +8,7 @@
 
 	if(!check_HUDdatum())//check client prefs
 		log_debug("[H] try check a HUD, but HUDdatums not have \"[H.client.prefs.UI_style]!\"")
-		H << "Some problem hase accure, use default HUD type"
+		to_chat(H, "Some problem hase accure, use default HUD type")
 		H.defaultHUD = "ErisStyle"
 		recreate_flag = TRUE
 	else if (H.client.prefs.UI_style != H.defaultHUD)//Если стиль у МОБА не совпадает со стилем у клинета
@@ -145,7 +145,7 @@
 	for (var/gear_slot in species.hud.gear)//Добавляем Элементы ХУДа (инвентарь)
 		if (!HUDdatum.slot_data.Find(gear_slot))
 			log_debug("[usr] try take inventory data for [gear_slot], but HUDdatum not have it!")
-			src << "Sorry, but something wrong witch creating a inventory slots, we recomendend chance a HUD type or call admins"
+			to_chat(src, "Sorry, but something wrong witch creating a inventory slots, we recomendend chance a HUD type or call admins")
 			return
 		else
 			var/HUDtype

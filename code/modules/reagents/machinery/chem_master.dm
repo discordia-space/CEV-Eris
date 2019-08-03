@@ -48,25 +48,25 @@
 	if(istype(B, /obj/item/weapon/reagent_containers/glass))
 
 		if(src.beaker)
-			user << "A beaker is already loaded into the machine."
+			to_chat(user, "A beaker is already loaded into the machine.")
 			return
 
 		if (usr.unEquip(B, src))
 			src.beaker = B
-			user << "You add the beaker to the machine!"
+			to_chat(user, "You add the beaker to the machine!")
 			src.updateUsrDialog()
 			icon_state = "mixer1"
 
 	else if(istype(B, /obj/item/weapon/storage/pill_bottle))
 
 		if(src.loaded_pill_bottle)
-			user << "A pill bottle is already loaded into the machine."
+			to_chat(user, "A pill bottle is already loaded into the machine.")
 			return
 
 
 		if (usr.unEquip(B, src))
 			src.loaded_pill_bottle = B
-			user << "You add the pill bottle into the dispenser slot!"
+			to_chat(user, "You add the pill bottle into the dispenser slot!")
 			src.updateUsrDialog()
 	return
 
@@ -111,7 +111,7 @@
 				var/amount = Clamp(text2num(href_list["amount"]), 0, reagents.get_free_space())
 				R.trans_id_to(src, id, amount)
 				if(reagents.get_free_space() < 1)
-					usr << SPAN_WARNING("The [name] is full!")
+					to_chat(usr, SPAN_WARNING("The [name] is full!"))
 
 		else if (href_list["addcustom"])
 			useramount = input("Select the amount to transfer.", 30, useramount) as num
@@ -124,7 +124,7 @@
 				if(mode)
 					reagents.trans_id_to(beaker, id, amount)
 					if(beaker.reagents.get_free_space() < 1)
-						usr << SPAN_WARNING("The [name] is full!")
+						to_chat(usr, SPAN_WARNING("The [name] is full!"))
 				else
 					reagents.remove_reagent(id, amount)
 

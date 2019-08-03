@@ -46,18 +46,18 @@
 					state = !state
 					update_icon()
 					auto_turn()
-					user << SPAN_NOTICE("You [anchored? "wrench" : "unattach"] the assembly.")
+					to_chat(user, SPAN_NOTICE("You [anchored? "wrench" : "unattach"] the assembly."))
 					return
 			return
 
 		if(QUALITY_WELDING)
 			if(state == 1)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You weld the assembly securely into place.")
+					to_chat(user, SPAN_NOTICE("You weld the assembly securely into place."))
 					state = 2
 			if(state == 2)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You unweld the assembly from its place.")
+					to_chat(user, SPAN_NOTICE("You unweld the assembly from its place."))
 					state = 1
 			return
 
@@ -65,7 +65,7 @@
 			if(state == 3)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					new/obj/item/stack/cable_coil(get_turf(src), 2)
-					user << SPAN_NOTICE("You remove the wires from the circuits.")
+					to_chat(user, SPAN_NOTICE("You remove the wires from the circuits."))
 					state = 2
 					return
 			return
@@ -75,12 +75,12 @@
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					var/input = sanitize(input(usr, "Which networks would you like to connect this camera to? Separate networks with a comma. No Spaces!\nFor example: CEV Eris,Security,Secret", "Set Network", camera_network ? camera_network : NETWORK_CEV_ERIS))
 					if(!input)
-						usr << "No input found please hang up and try your call again."
+						to_chat(usr, "No input found please hang up and try your call again.")
 						return
 
 					var/list/tempnetwork = splittext(input, ",")
 					if(tempnetwork.len < 1)
-						usr << "No network found please hang up and try your call again."
+						to_chat(usr, "No network found please hang up and try your call again.")
 						return
 
 					var/area/camera_area = get_area(src)
@@ -114,7 +114,7 @@
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					var/obj/U = locate(/obj) in upgrades
 					if(U)
-						user << SPAN_NOTICE("You unattach an upgrade from the assembly.")
+						to_chat(user, SPAN_NOTICE("You unattach an upgrade from the assembly."))
 						playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 						U.loc = get_turf(src)
 						upgrades -= U
@@ -128,16 +128,16 @@
 		if(istype(I, /obj/item/stack/cable_coil))
 			var/obj/item/stack/cable_coil/C = I
 			if(C.use(2))
-				user << SPAN_NOTICE("You add wires to the assembly.")
+				to_chat(user, SPAN_NOTICE("You add wires to the assembly."))
 				state = 3
 			else
-				user << SPAN_WARNING("You need 2 coils of wire to wire the assembly.")
+				to_chat(user, SPAN_WARNING("You need 2 coils of wire to wire the assembly."))
 			return
 
 
 	// Upgrades!
 	if(is_type_in_list(I, possible_upgrades) && !is_type_in_list(I, upgrades)) // Is a possible upgrade and isn't in the camera already.
-		user << "You attach \the [I] into the assembly inner circuits."
+		to_chat(user, "You attach \the [I] into the assembly inner circuits.")
 		upgrades += I
 		user.remove_from_mob(I)
 		I.loc = src

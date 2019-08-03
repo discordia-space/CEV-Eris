@@ -231,7 +231,7 @@
 
 			if(QUALITY_WELDING)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You finish repairing the damage to \the [src].")
+					to_chat(user, SPAN_NOTICE("You finish repairing the damage to \the [src]."))
 					health = between(health, health + repairing.amount*DOOR_REPAIR_AMOUNT, maxhealth)
 					update_icon()
 					qdel(repairing)
@@ -241,7 +241,7 @@
 
 			if(QUALITY_PRYING)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_ROB))
-					user << SPAN_NOTICE("You remove \the [repairing].")
+					to_chat(user, SPAN_NOTICE("You remove \the [repairing]."))
 					repairing.loc = user.loc
 					repairing = null
 					return
@@ -252,13 +252,13 @@
 
 	if(istype(I, /obj/item/stack/material) && I.get_material_name() == src.get_material_name())
 		if(stat & BROKEN)
-			user << SPAN_NOTICE("It looks like \the [src] is pretty busted. It's going to need more than just patching up now.")
+			to_chat(user, SPAN_NOTICE("It looks like \the [src] is pretty busted. It's going to need more than just patching up now."))
 			return
 		if(health >= maxhealth)
-			user << SPAN_NOTICE("Nothing to fix!")
+			to_chat(user, SPAN_NOTICE("Nothing to fix!"))
 			return
 		if(!density)
-			user << SPAN_WARNING("\The [src] must be closed before you can repair it.")
+			to_chat(user, SPAN_WARNING("\The [src] must be closed before you can repair it."))
 			return
 
 		//figure out how much metal we need
@@ -270,7 +270,7 @@
 		if (repairing)
 			transfer = stack.transfer_to(repairing, amount_needed - repairing.amount)
 			if (!transfer)
-				user << SPAN_WARNING("You must weld or remove \the [repairing] from \the [src] before you can add anything else.")
+				to_chat(user, SPAN_WARNING("You must weld or remove \the [repairing] from \the [src] before you can add anything else."))
 		else
 			repairing = stack.split(amount_needed)
 			if (repairing)
@@ -278,7 +278,7 @@
 				transfer = repairing.amount
 
 		if (transfer)
-			user << SPAN_NOTICE("You fit [transfer] [stack.singular_name]\s to damaged and broken parts on \the [src].")
+			to_chat(user, SPAN_NOTICE("You fit [transfer] [stack.singular_name]\s to damaged and broken parts on \the [src]."))
 
 		return
 
@@ -343,11 +343,11 @@
 /obj/machinery/door/examine(mob/user)
 	. = ..()
 	if(src.health < src.maxhealth / 4)
-		user << "\The [src] looks like it's about to break!"
+		to_chat(user, "\The [src] looks like it's about to break!")
 	else if(src.health < src.maxhealth / 2)
-		user << "\The [src] looks seriously damaged!"
+		to_chat(user, "\The [src] looks seriously damaged!")
 	else if(src.health < src.maxhealth * 3/4)
-		user << "\The [src] shows signs of damage!"
+		to_chat(user, "\The [src] shows signs of damage!")
 
 
 /obj/machinery/door/proc/set_broken()

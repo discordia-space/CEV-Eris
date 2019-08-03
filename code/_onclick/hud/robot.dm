@@ -190,11 +190,11 @@
 		//r.client.screen += robot_inventory	//"store" icon
 
 		if(!r.module)
-			usr << SPAN_DANGER("No module selected")
+			to_chat(usr, SPAN_DANGER("No module selected"))
 			return
 
 		if(!r.module.modules)
-			usr << SPAN_DANGER("Selected module has no modules to select")
+			to_chat(usr, SPAN_DANGER("Selected module has no modules to select"))
 			return
 
 		if(!r.robot_modules_background)

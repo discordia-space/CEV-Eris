@@ -19,20 +19,20 @@
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/weapon/card/id))
 			if(src.broken)
-				user << SPAN_WARNING("It appears to be broken.")
+				to_chat(user, SPAN_WARNING("It appears to be broken."))
 				return
 			if(src.allowed(user))
 				src.locked = !( src.locked )
 				if(src.locked)
 					src.icon_state = src.icon_locked
-					user << SPAN_NOTICE("You lock \the [src]!")
+					to_chat(user, SPAN_NOTICE("You lock \the [src]!"))
 					return
 				else
 					src.icon_state = src.icon_closed
-					user << SPAN_NOTICE("You unlock \the [src]!")
+					to_chat(user, SPAN_NOTICE("You unlock \the [src]!"))
 					return
 			else
-				user << SPAN_WARNING("Access Denied")
+				to_chat(user, SPAN_WARNING("Access Denied"))
 		else if(istype(W, /obj/item/weapon/melee/energy/blade))
 			if(emag_act(INFINITY, user, W, "The locker has been sliced open by [user] with an energy blade!", "You hear metal being sliced and sparks flying."))
 				var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
@@ -43,13 +43,13 @@
 		if(!locked)
 			..()
 		else
-			user << SPAN_WARNING("It's locked!")
+			to_chat(user, SPAN_WARNING("It's locked!"))
 		return
 
 
 	show_to(mob/user as mob)
 		if(locked)
-			user << SPAN_WARNING("It's locked!")
+			to_chat(user, SPAN_WARNING("It's locked!"))
 		else
 			..()
 		return

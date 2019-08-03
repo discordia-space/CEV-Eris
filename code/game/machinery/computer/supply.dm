@@ -165,7 +165,7 @@
 
 /obj/machinery/computer/supplycomp/attack_hand(var/mob/user as mob)
 	if(!allowed(user))
-		user << SPAN_WARNING("Access Denied.")
+		to_chat(user, SPAN_WARNING("Access Denied."))
 		return
 
 	if(..())
@@ -219,7 +219,7 @@
 
 /obj/machinery/computer/supplycomp/emag_act(var/remaining_charges, var/mob/user)
 	if(!hacked)
-		user << SPAN_NOTICE("Special supplies unlocked.")
+		to_chat(user, SPAN_NOTICE("Special supplies unlocked."))
 		hacked = 1
 		return TRUE
 

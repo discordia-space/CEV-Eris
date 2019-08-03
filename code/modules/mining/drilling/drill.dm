@@ -142,13 +142,13 @@
 
 	if(istype(I, /obj/item/weapon/cell/large))
 		if(cell)
-			user << "The drill already has a cell installed."
+			to_chat(user, "The drill already has a cell installed.")
 		else
 			user.drop_item()
 			I.loc = src
 			cell = I
 			component_parts += I
-			user << "You install \the [I]."
+			to_chat(user, "You install \the [I].")
 		return
 	..()
 
@@ -156,13 +156,13 @@
 	check_supports()
 
 	if (panel_open && cell)
-		user << "You take out \the [cell]."
+		to_chat(user, "You take out \the [cell].")
 		cell.loc = get_turf(user)
 		component_parts -= cell
 		cell = null
 		return
 	else if(need_player_check)
-		user << "You hit the manual override and reset the drill's error checking."
+		to_chat(user, "You hit the manual override and reset the drill's error checking.")
 		need_player_check = 0
 		if(anchored)
 			get_resource_field()
@@ -177,9 +177,9 @@
 			else
 				visible_message(SPAN_NOTICE("\The [src] shudders to a grinding halt."))
 		else
-			user << SPAN_NOTICE("The drill is unpowered.")
+			to_chat(user, SPAN_NOTICE("The drill is unpowered."))
 	else
-		user << SPAN_NOTICE("Turning on a piece of industrial machinery without sufficient bracing or wires exposed is a bad idea.")
+		to_chat(user, SPAN_NOTICE("Turning on a piece of industrial machinery without sufficient bracing or wires exposed is a bad idea."))
 
 	update_icon()
 
@@ -271,9 +271,9 @@
 	if(B)
 		for(var/obj/item/weapon/ore/O in contents)
 			O.loc = B
-		usr << SPAN_NOTICE("You unload the drill's storage cache into the ore box.")
+		to_chat(usr, SPAN_NOTICE("You unload the drill's storage cache into the ore box."))
 	else
-		usr << SPAN_NOTICE("You must move an ore box up to the drill before you can unload it.")
+		to_chat(usr, SPAN_NOTICE("You must move an ore box up to the drill before you can unload it."))
 
 
 /obj/machinery/mining/brace
@@ -285,7 +285,7 @@
 
 /obj/machinery/mining/brace/attackby(var/obj/item/I, mob/user as mob)
 	if(connected && connected.active)
-		user << SPAN_NOTICE("You can't work with the brace of a running drill!")
+		to_chat(user, SPAN_NOTICE("You can't work with the brace of a running drill!"))
 		return
 
 	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING, QUALITY_BOLT_TURNING), src)
@@ -293,10 +293,10 @@
 
 		if(QUALITY_PRYING)
 			if(!panel_open)
-				user << SPAN_NOTICE("You cant get to the components of \the [src], remove the cover.")
+				to_chat(user, SPAN_NOTICE("You cant get to the components of \the [src], remove the cover."))
 				return
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-				user << SPAN_NOTICE("You remove the components of \the [src] with [I].")
+				to_chat(user, SPAN_NOTICE("You remove the components of \the [src] with [I]."))
 				dismantle()
 				return
 
@@ -304,16 +304,16 @@
 			var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
 				panel_open = !panel_open
-				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
+				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
 				update_icon()
 				return
 
 		if(QUALITY_BOLT_TURNING)
 			if(istype(get_turf(src), /turf/space))
-				user << SPAN_NOTICE("You can't anchor something to empty space. Idiot.")
+				to_chat(user, SPAN_NOTICE("You can't anchor something to empty space. Idiot."))
 				return
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-				user << SPAN_NOTICE("You [anchored ? "un" : ""]anchor the brace with [I].")
+				to_chat(user, SPAN_NOTICE("You [anchored ? "un" : ""]anchor the brace with [I]."))
 				anchored = !anchored
 				if(anchored)
 					connect()
@@ -363,7 +363,7 @@
 	if(usr.stat) return
 
 	if (src.anchored)
-		usr << "It is anchored in place!"
+		to_chat(usr, "It is anchored in place!")
 		return 0
 
 	src.set_dir(turn(src.dir, 90))

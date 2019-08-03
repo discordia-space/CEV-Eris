@@ -16,7 +16,7 @@
 		if(H.hand)
 			temp = H.organs_by_name[BP_L_ARM]
 		if(!temp || !temp.is_usable())
-			H << "\red You can't use your hand."
+			to_chat(H, "\red You can't use your hand.")
 			return
 
 	..()
@@ -58,16 +58,16 @@
 		if(I_HELP)
 			if(istype(H) && health < HEALTH_THRESHOLD_CRIT && health > HEALTH_THRESHOLD_DEAD)
 				if(!H.check_has_mouth())
-					H << SPAN_DANGER("You don't have a mouth, you cannot perform CPR!")
+					to_chat(H, SPAN_DANGER("You don't have a mouth, you cannot perform CPR!"))
 					return
 				if(!check_has_mouth())
-					H << SPAN_DANGER("They don't have a mouth, you cannot perform CPR!")
+					to_chat(H, SPAN_DANGER("They don't have a mouth, you cannot perform CPR!"))
 					return
 				if((H.head && (H.head.body_parts_covered & FACE)) || (H.wear_mask && (H.wear_mask.body_parts_covered & FACE)))
-					H << SPAN_NOTICE("Remove your mask!")
+					to_chat(H, SPAN_NOTICE("Remove your mask!"))
 					return 0
 				if((head && (head.body_parts_covered & FACE)) || (wear_mask && (wear_mask.body_parts_covered & FACE)))
-					H << SPAN_NOTICE("Remove [src]'s mask!")
+					to_chat(H, SPAN_NOTICE("Remove [src]'s mask!"))
 					return 0
 
 				if (!cpr_time)
@@ -86,8 +86,8 @@
 				adjustOxyLoss(-(min(getOxyLoss(), cpr_efficiency)))
 				updatehealth()
 				H.visible_message(SPAN_DANGER("\The [H] performs CPR on \the [src]!"))
-				src << SPAN_NOTICE("You feel a breath of fresh air enter your lungs. It feels good.")
-				H << SPAN_WARNING("Repeat at least every 7 seconds.")
+				to_chat(src, SPAN_NOTICE("You feel a breath of fresh air enter your lungs. It feels good."))
+				to_chat(H, SPAN_WARNING("Repeat at least every 7 seconds."))
 
 			else
 				help_shake_act(M)
@@ -98,14 +98,14 @@
 				return 0
 			for(var/obj/item/weapon/grab/G in src.grabbed_by)
 				if(G.assailant == M)
-					M << SPAN_NOTICE("You already grabbed [src].")
+					to_chat(M, SPAN_NOTICE("You already grabbed [src]."))
 					return
 			if(w_uniform)
 				w_uniform.add_fingerprint(M)
 
 			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src)
 			if(buckled)
-				M << SPAN_NOTICE("You cannot grab [src], \he is buckled in!")
+				to_chat(M, SPAN_NOTICE("You cannot grab [src], \he is buckled in!"))
 			if(!G)	//the grab will delete itself in New if affecting is anchored
 				return
 			M.put_in_active_hand(G)
@@ -125,7 +125,7 @@
 					G.activate(M)
 					update_inv_wear_mask()
 				else
-					M << SPAN_WARNING("\The [G] is already primed! Run!")
+					to_chat(M, SPAN_WARNING("\The [G] is already primed! Run!"))
 				return
 
 			if(!istype(H))
@@ -139,7 +139,7 @@
 			var/obj/item/organ/external/affecting = get_organ(hit_zone)
 
 			if(!affecting || affecting.is_stump())
-				M << SPAN_DANGER("They are missing that limb!")
+				to_chat(M, SPAN_DANGER("They are missing that limb!"))
 				return 1
 
 			switch(src.a_intent)

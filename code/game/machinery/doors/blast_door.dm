@@ -113,27 +113,27 @@
 			if(((stat & NOPOWER) || (stat & BROKEN)) && !( src.operating ))
 				force_toggle()
 			else
-				usr << SPAN_NOTICE("[src]'s motors resist your effort.")
+				to_chat(usr, SPAN_NOTICE("[src]'s motors resist your effort."))
 		return
 	if(istype(I, /obj/item/stack/material) && I.get_material_name() == "plasteel")
 		var/amt = Ceiling((maxhealth - health)/150)
 		if(!amt)
-			usr << SPAN_NOTICE("\The [src] is already fully repaired.")
+			to_chat(usr, SPAN_NOTICE("\The [src] is already fully repaired."))
 			return
 		var/obj/item/stack/P = I
 		if(P.amount < amt)
-			usr << SPAN_WARNING("You don't have enough sheets to repair this! You need at least [amt] sheets.")
+			to_chat(usr, SPAN_WARNING("You don't have enough sheets to repair this! You need at least [amt] sheets."))
 			return
-		usr << SPAN_NOTICE("You begin repairing [src]...")
+		to_chat(usr, SPAN_NOTICE("You begin repairing [src]..."))
 		if(do_after(usr, 30, src))
 			if(P.use(amt))
-				usr << SPAN_NOTICE("You have repaired \the [src]")
+				to_chat(usr, SPAN_NOTICE("You have repaired \the [src]"))
 				src.repair()
 			else
-				usr << SPAN_WARNING("You don't have enough sheets to repair this! You need at least [amt] sheets.")
+				to_chat(usr, SPAN_WARNING("You don't have enough sheets to repair this! You need at least [amt] sheets."))
 
 /obj/machinery/door/blast/attack_hand(mob/user as mob)
-	usr << SPAN_WARNING("You can't [density ? "open" : "close"] [src] by your own hands only.")
+	to_chat(usr, SPAN_WARNING("You can't [density ? "open" : "close"] [src] by your own hands only."))
 	return
 
 // Proc: open()

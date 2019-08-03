@@ -33,7 +33,7 @@
 /obj/item/rig_module/storage/can_install(var/obj/item/weapon/rig/rig, var/mob/user, var/feedback = FALSE)
 	if (rig.storage) //If it already has a storage mod installed, then no adding another one
 		if (user && feedback)
-			user << SPAN_DANGER("The [rig] already has a storage module installed, you can't fit another one.")
+			to_chat(user, SPAN_DANGER("The [rig] already has a storage module installed, you can't fit another one."))
 		return FALSE
 	.=..()
 

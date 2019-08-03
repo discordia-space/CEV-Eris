@@ -49,7 +49,7 @@ Frequency:
 		return
 	var/turf/current_location = get_turf(usr)//What turf is the user on?
 	if(!current_location||current_location.z==2)//If turf was not found or they're on z level 2.
-		usr << "The [src] is malfunctioning."
+		to_chat(usr, "The [src] is malfunctioning.")
 		return
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
 		usr.set_machine(src)
@@ -156,11 +156,11 @@ Frequency:
 
 /obj/item/weapon/hand_tele/attack_self(mob/user)
 	if(!cell || !cell.checked_use( cell_charge_per_attempt ))
-		user << SPAN_WARNING("[src] battery is dead or missing.")
+		to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
 		return
 	var/turf/current_location = get_turf(user)//What turf is the user on?
 	if(!current_location||current_location.z==2||current_location.z>=7)//If turf was not found or they're on z level 2 or >7 which does not currently exist.
-		user << SPAN_NOTICE("\The [src] is malfunctioning.")
+		to_chat(user, SPAN_NOTICE("\The [src] is malfunctioning."))
 		return
 	var/list/L = list()
 	for(var/obj/machinery/teleport/hub/R in world)
@@ -184,7 +184,7 @@ Frequency:
 	if ((user.get_active_hand() != src || user.stat || user.restrained()))
 		return
 	var/T = L[t1]
-	user << SPAN_NOTICE("Portal locked in.")
+	to_chat(user, SPAN_NOTICE("Portal locked in."))
 	var/obj/effect/portal/P = new portal_type(get_turf(src))
 	P.set_target(T)
 	if(portal_fail_chance)
@@ -226,12 +226,12 @@ Frequency:
 					return
 			if(do_after(user, 30))
 				if(calibration_required)
-					user << SPAN_WARNING("You loosen [src]'s calibration, it'll probably fail when used now")
+					to_chat(user, SPAN_WARNING("You loosen [src]'s calibration, it'll probably fail when used now"))
 					portal_fail_chance = 90
 					calibration_required = FALSE
 				else
 					calibration_required = TRUE
-					user << SPAN_NOTICE("You recalibrate [src]. It'll probably function now")
+					to_chat(user, SPAN_NOTICE("You recalibrate [src]. It'll probably function now"))
 					portal_fail_chance = 50
 		else
 			if(do_after(user, 30))
@@ -241,9 +241,9 @@ Frequency:
 					if(portal_fail_chance < 0)
 						portal_fail_chance = 0
 					calibration_required = FALSE
-					user << SPAN_NOTICE("You carefully place bluespace crystal into slot to the end, and tweak the circuit with your [C]. [src] now looks more reliable.")
+					to_chat(user, SPAN_NOTICE("You carefully place bluespace crystal into slot to the end, and tweak the circuit with your [C]. [src] now looks more reliable."))
 				else
-					user << SPAN_WARNING("[src] is calibrated already. You can decalibrate it with some harmful effort.")
+					to_chat(user, SPAN_WARNING("[src] is calibrated already. You can decalibrate it with some harmful effort."))
 
 /obj/item/weapon/tele_spear
 	name = "Telespear"

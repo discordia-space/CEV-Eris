@@ -82,7 +82,7 @@
 		return
 
 	if(!F)
-		target << SPAN_WARNING("You feel nothing.")
+		to_chat(target, SPAN_WARNING("You feel nothing."))
 
 	for(var/datum/antagonist/A in target.mind.antagonist)
 		if(A.id == antag_id && A.faction && A.faction.id == faction_id)

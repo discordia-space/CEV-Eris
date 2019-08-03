@@ -15,7 +15,7 @@
 	if(..(user))
 		return
 	if(!allowed(user))
-		user << "<span class='warning'>Access Denied.</span>"
+		to_chat(user, "<span class='warning'>Access Denied.</span>")
 		return 1
 
 	ui_interact(user)
@@ -59,7 +59,7 @@
 
 	if(href_list["move"])
 		if(!shuttle.next_location.is_valid(shuttle))
-			user << "<span class='warning'>Destination zone is invalid or obstructed.</span>"
+			to_chat(user, "<span class='warning'>Destination zone is invalid or obstructed.</span>")
 			return TOPIC_HANDLED
 		shuttle.launch(src)
 		return TOPIC_REFRESH
@@ -75,7 +75,7 @@
 /obj/machinery/computer/shuttle_control/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/datum/shuttle/autodock/shuttle = SSshuttle.shuttles[shuttle_tag]
 	if (!istype(shuttle))
-		user << "<span class='warning'>Unable to establish link with the shuttle.</span>"
+		to_chat(user, "<span class='warning'>Unable to establish link with the shuttle.</span>")
 		return
 
 	var/list/data = get_ui_data(shuttle)
@@ -95,7 +95,7 @@
 		req_access = list()
 		req_one_access = list()
 		hacked = 1
-		user << "You short out the console's ID checking system. It's now available to everyone!"
+		to_chat(user, "You short out the console's ID checking system. It's now available to everyone!")
 		return 1
 
 /obj/machinery/computer/shuttle_control/bullet_act(var/obj/item/projectile/Proj)

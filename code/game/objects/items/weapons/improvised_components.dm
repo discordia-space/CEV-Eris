@@ -8,7 +8,7 @@
 
 /obj/item/weapon/material/butterflyconstruction/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/tool/screwdriver))
-		user << "You finish the concealed blade weapon."
+		to_chat(user, "You finish the concealed blade weapon.")
 		new /obj/item/weapon/material/butterfly(user.loc, material.name)
 		qdel(src)
 		return
@@ -32,7 +32,7 @@
 /obj/item/weapon/material/butterflyhandle/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/material/butterflyblade))
 		var/obj/item/weapon/material/butterflyblade/B = W
-		user << "You attach the two concealed blade parts."
+		to_chat(user, "You attach the two concealed blade parts.")
 		new /obj/item/weapon/material/butterflyconstruction(user.loc, B.material.name)
 		qdel(W)
 		qdel(src)
@@ -57,10 +57,10 @@
 	if(istype(I, /obj/item/weapon/material/shard))
 		var/obj/item/weapon/material/tmp_shard = I
 		finished = new /obj/item/weapon/material/twohanded/spear(get_turf(user), tmp_shard.material.name)
-		user << SPAN_NOTICE("You fasten \the [I] to the top of the rod with the cable.")
+		to_chat(user, SPAN_NOTICE("You fasten \the [I] to the top of the rod with the cable."))
 	else if((QUALITY_CUTTING in I.tool_qualities) || (QUALITY_WIRE_CUTTING in I.tool_qualities))
 		finished = new /obj/item/weapon/melee/baton/cattleprod(get_turf(user))
-		user << SPAN_NOTICE("You fasten the wirecutters to the top of the rod with the cable, prongs outward.")
+		to_chat(user, SPAN_NOTICE("You fasten the wirecutters to the top of the rod with the cable, prongs outward."))
 	if(finished)
 		user.drop_from_inventory(src)
 		user.drop_from_inventory(I)

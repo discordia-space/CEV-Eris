@@ -14,6 +14,6 @@
 		message_admins("[key_name(src)] has modified world.tick_lag to [newtick]", 0)
 		world.tick_lag = newtick
 	else
-		src << "\red Error: ticklag(): Invalid world.ticklag value. No changes made."
+		to_chat(src, "\red Error: ticklag(): Invalid world.ticklag value. No changes made.")
 
 

@@ -15,7 +15,7 @@
 	if(genes.len)
 		var/choice = alert(user, "Are you sure you want to wipe the disk?", "Xenobotany Data", "No", "Yes")
 		if(src && user && genes && choice && choice == "Yes" && user.Adjacent(get_turf(src)))
-			user << "You wipe the disk data."
+			to_chat(user, "You wipe the disk data.")
 			name = initial(name)
 			desc = initial(name)
 			genes = list()
@@ -86,38 +86,38 @@
 
 	if(istype(I,/obj/item/seeds))
 		if(seed)
-			user << "There is already a seed loaded."
+			to_chat(user, "There is already a seed loaded.")
 			return
 		var/obj/item/seeds/S = I
 		if(S.seed && S.seed.get_trait(TRAIT_IMMUTABLE) > 0)
-			user << "That seed is not compatible with our genetics technology."
+			to_chat(user, "That seed is not compatible with our genetics technology.")
 		else
 			user.drop_from_inventory(I)
 			I.loc = src
 			seed = I
-			user << "You load [I] into [src]."
+			to_chat(user, "You load [I] into [src].")
 		return
 
 	if(istype(I,/obj/item/weapon/disk/botany))
 		if(loaded_disk)
-			user << "There is already a data disk loaded."
+			to_chat(user, "There is already a data disk loaded.")
 			return
 		else
 			var/obj/item/weapon/disk/botany/B = I
 
 			if(B.genes && B.genes.len)
 				if(!disk_needs_genes)
-					user << "That disk already has gene data loaded."
+					to_chat(user, "That disk already has gene data loaded.")
 					return
 			else
 				if(disk_needs_genes)
-					user << "That disk does not have any gene data loaded."
+					to_chat(user, "That disk does not have any gene data loaded.")
 					return
 
 			user.drop_from_inventory(I)
 			I.loc = src
 			loaded_disk = I
-			user << "You load [I] into [src]."
+			to_chat(user, "You load [I] into [src].")
 
 		return
 	..()

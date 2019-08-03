@@ -70,7 +70,7 @@
 /mob/living/silicon/ai/proc/core()
 	set category = "Silicon Commands"
 	set name = "AI Core"
-	
+
 	view_core()
 
 /mob/living/silicon/ai/proc/view_core()
@@ -94,4 +94,4 @@
 		return
 
 	eyeobj.acceleration = !eyeobj.acceleration
-	usr << "Camera acceleration has been toggled [eyeobj.acceleration ? "on" : "off"]."
+	to_chat(usr, "Camera acceleration has been toggled [eyeobj.acceleration ? "on" : "off"].")

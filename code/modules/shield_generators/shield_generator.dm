@@ -656,11 +656,11 @@
 	if(O.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
 		if(anchored)
-			user << SPAN_NOTICE("You unsecure the [src] from the floor!")
+			to_chat(user, SPAN_NOTICE("You unsecure the [src] from the floor!"))
 			anchored = FALSE
 		else
 			if(istype(get_turf(src), /turf/space)) return //No wrenching these in space!
-			user << SPAN_NOTICE("You secure the [src] to the floor!")
+			to_chat(user, SPAN_NOTICE("You secure the [src] to the floor!"))
 			anchored = TRUE
 		return
 

@@ -176,11 +176,11 @@ var/list/turret_icons
 
 /obj/machinery/porta_turret/proc/isLocked(mob/user)
 	if(ailock && issilicon(user))
-		user << SPAN_NOTICE("There seems to be a firewall preventing you from accessing this device.")
+		to_chat(user, SPAN_NOTICE("There seems to be a firewall preventing you from accessing this device."))
 		return 1
 
 	if(locked && !issilicon(user))
-		user << SPAN_NOTICE("Access denied.")
+		to_chat(user, SPAN_NOTICE("Access denied."))
 		return 1
 
 	return 0
@@ -228,14 +228,14 @@ var/list/turret_icons
 
 /obj/machinery/porta_turret/CanUseTopic(var/mob/user)
 	if(HasController())
-		user << SPAN_NOTICE("Turrets can only be controlled using the assigned turret controller.")
+		to_chat(user, SPAN_NOTICE("Turrets can only be controlled using the assigned turret controller."))
 		return STATUS_CLOSE
 
 	if(isLocked(user))
 		return STATUS_CLOSE
 
 	if(!anchored)
-		usr << SPAN_NOTICE("\The [src] has to be secured first!")
+		to_chat(usr, SPAN_NOTICE("\The [src] has to be secured first!"))
 		return STATUS_CLOSE
 
 	return ..()
@@ -283,10 +283,10 @@ var/list/turret_icons
 			if(istype(I, /obj/item/weapon/tool/crowbar))
 				//If the turret is destroyed, you can remove it with a crowbar to
 				//try and salvage its components
-				user << SPAN_NOTICE("You begin prying the metal coverings off.")
+				to_chat(user, SPAN_NOTICE("You begin prying the metal coverings off."))
 				if(do_after(user, 20, src))
 					if(prob(70))
-						user << SPAN_NOTICE("You remove the turret and salvage some components.")
+						to_chat(user, SPAN_NOTICE("You remove the turret and salvage some components."))
 						if(installation)
 							var/obj/item/weapon/gun/energy/Gun = new installation(loc)
 							Gun.cell.charge = gun_charge
@@ -296,18 +296,18 @@ var/list/turret_icons
 						if(prob(50))
 							new /obj/item/device/assembly/prox_sensor(loc)
 					else
-						user << SPAN_NOTICE("You remove the turret but did not manage to salvage anything.")
+						to_chat(user, SPAN_NOTICE("You remove the turret but did not manage to salvage anything."))
 					qdel(src) // qdel
 
 		else if((istype(I, /obj/item/weapon/tool/wrench)))
 			if(enabled)
-				user << SPAN_WARNING("You cannot unsecure an active turret!")
+				to_chat(user, SPAN_WARNING("You cannot unsecure an active turret!"))
 				return
 			if(wrenching)
-				user << "<span class='warning'>Someone is already [anchored ? "un" : ""]securing the turret!</span>"
+				to_chat(user, "<span class='warning'>Someone is already [anchored ? "un" : ""]securing the turret!</span>")
 				return
 			if(!anchored && isinspace())
-				user << SPAN_WARNING("Cannot secure turrets in space!")
+				to_chat(user, SPAN_WARNING("Cannot secure turrets in space!"))
 				return
 
 			user.visible_message( \
@@ -322,18 +322,18 @@ var/list/turret_icons
 					playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
 					anchored = TRUE
 					update_icon()
-					user << SPAN_NOTICE("You secure the exterior bolts on the turret.")
+					to_chat(user, SPAN_NOTICE("You secure the exterior bolts on the turret."))
 					if(disabled)
 						spawn(200)
 							disabled = FALSE
 				else if(anchored)
 					if(disabled)
-						user << SPAN_NOTICE("The turret is still recalibrating. Wait some time before trying to move it.")
+						to_chat(user, SPAN_NOTICE("The turret is still recalibrating. Wait some time before trying to move it."))
 						return
 					playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
 					anchored = 0
 					disabled = TRUE
-					user << SPAN_NOTICE("You unsecure the exterior bolts on the turret.")
+					to_chat(user, SPAN_NOTICE("You unsecure the exterior bolts on the turret."))
 					update_icon()
 			wrenching = 0
 
@@ -341,10 +341,10 @@ var/list/turret_icons
 			//Behavior lock/unlock mangement
 			if(allowed(user))
 				locked = !locked
-				user << "<span class='notice'>Controls are now [locked ? "locked" : "unlocked"].</span>"
+				to_chat(user, "<span class='notice'>Controls are now [locked ? "locked" : "unlocked"].</span>")
 				updateUsrDialog()
 			else
-				user << SPAN_NOTICE("Access denied.")
+				to_chat(user, SPAN_NOTICE("Access denied."))
 
 	if (!(I.flags & NOBLUDGEON) && I.force && !(stat & BROKEN))
 		//if the turret was attacked with the intention of harming it:
@@ -368,7 +368,7 @@ var/list/turret_icons
 	if(!emagged)
 		//Emagging the turret makes it go bonkers and stun everyone. It also makes
 		//the turret shoot much, much faster.
-		user << SPAN_WARNING("You short out [src]'s threat assessment circuits.")
+		to_chat(user, SPAN_WARNING("You short out [src]'s threat assessment circuits."))
 		visible_message("[src] hums oddly...")
 		emagged = 1
 		iconholder = 1
@@ -711,24 +711,24 @@ var/list/turret_icons
 		if(QUALITY_BOLT_TURNING)
 			if(build_step == 0 && !anchored)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You secure the external bolts.")
+					to_chat(user, SPAN_NOTICE("You secure the external bolts."))
 					anchored = 1
 					build_step = 1
 					return
 			if(build_step == 1)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You unfasten the external bolts.")
+					to_chat(user, SPAN_NOTICE("You unfasten the external bolts."))
 					anchored = 0
 					build_step = 0
 					return
 			if(build_step == 2)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You bolt the metal armor into place.")
+					to_chat(user, SPAN_NOTICE("You bolt the metal armor into place."))
 					build_step = 3
 					return
 			if(build_step == 3)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You remove the turret's metal armor bolts.")
+					to_chat(user, SPAN_NOTICE("You remove the turret's metal armor bolts."))
 					build_step = 2
 					return
 			return
@@ -736,13 +736,13 @@ var/list/turret_icons
 		if(QUALITY_PRYING)
 			if(build_step == 0 && !anchored)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You dismantle the turret construction.")
+					to_chat(user, SPAN_NOTICE("You dismantle the turret construction."))
 					new /obj/item/stack/material/steel( loc, 8)
 					qdel(src)
 					return
 			if(build_step == 7)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You pry off the turret's exterior armor.")
+					to_chat(user, SPAN_NOTICE("You pry off the turret's exterior armor."))
 					new /obj/item/stack/material/steel(loc, 2)
 					build_step = 6
 					return
@@ -751,14 +751,14 @@ var/list/turret_icons
 		if(QUALITY_WELDING)
 			if(build_step == 2)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					user << "You remove the turret's interior metal armor."
+					to_chat(user, "You remove the turret's interior metal armor.")
 					new /obj/item/stack/material/steel( loc, 2)
 					build_step = 1
 					return
 			if(build_step == 7)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					build_step = 8
-					user << SPAN_NOTICE("You weld the turret's armor down.")
+					to_chat(user, SPAN_NOTICE("You weld the turret's armor down."))
 
 					//The final step: create a full turret
 					var/obj/machinery/porta_turret/Turret = new target_type(loc)
@@ -775,12 +775,12 @@ var/list/turret_icons
 		if(QUALITY_SCREW_DRIVING)
 			if(build_step == 5)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You close the internal access hatch.")
+					to_chat(user, SPAN_NOTICE("You close the internal access hatch."))
 					build_step = 6
 					return
 			if(build_step == 6)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You open the internal access hatch.")
+					to_chat(user, SPAN_NOTICE("You open the internal access hatch."))
 					build_step = 5
 					return
 			return
@@ -794,11 +794,11 @@ var/list/turret_icons
 			if(istype(I, /obj/item/stack/material) && I.get_material_name() == MATERIAL_STEEL)
 				var/obj/item/stack/M = I
 				if(M.use(2))
-					user << SPAN_NOTICE("You add some metal armor to the interior frame.")
+					to_chat(user, SPAN_NOTICE("You add some metal armor to the interior frame."))
 					build_step = 2
 					icon_state = "turret_frame2"
 				else
-					user << SPAN_WARNING("You need two sheets of metal to continue construction.")
+					to_chat(user, SPAN_WARNING("You need two sheets of metal to continue construction."))
 				return
 
 		if(3)
@@ -808,11 +808,11 @@ var/list/turret_icons
 					return
 				var/obj/item/weapon/gun/energy/E = I //typecasts the item to an energy gun
 				if(!user.unEquip(I))
-					user << SPAN_NOTICE("\the [I] is stuck to your hand, you cannot put it in \the [src]")
+					to_chat(user, SPAN_NOTICE("\the [I] is stuck to your hand, you cannot put it in \the [src]"))
 					return
 				installation = I.type //installation becomes I.type
 				gun_charge = E.cell.charge //the gun's charge is stored in gun_charge
-				user << SPAN_NOTICE("You add [I] to the turret.")
+				to_chat(user, SPAN_NOTICE("You add [I] to the turret."))
 				target_type = /obj/machinery/porta_turret
 
 				build_step = 4
@@ -825,9 +825,9 @@ var/list/turret_icons
 			if(is_proximity_sensor(I))
 				build_step = 5
 				if(!user.unEquip(I))
-					user << SPAN_NOTICE("\the [I] is stuck to your hand, you cannot put it in \the [src]")
+					to_chat(user, SPAN_NOTICE("\the [I] is stuck to your hand, you cannot put it in \the [src]"))
 					return
-				user << SPAN_NOTICE("You add the prox sensor to the turret.")
+				to_chat(user, SPAN_NOTICE("You add the prox sensor to the turret."))
 				qdel(I)
 				return
 
@@ -837,10 +837,10 @@ var/list/turret_icons
 			if(istype(I, /obj/item/stack/material) && I.get_material_name() == MATERIAL_STEEL)
 				var/obj/item/stack/M = I
 				if(M.use(2))
-					user << SPAN_NOTICE("You add some metal armor to the exterior frame.")
+					to_chat(user, SPAN_NOTICE("You add some metal armor to the exterior frame."))
 					build_step = 7
 				else
-					user << SPAN_WARNING("You need two sheets of metal to continue construction.")
+					to_chat(user, SPAN_WARNING("You need two sheets of metal to continue construction."))
 				return
 
 	if(istype(I, /obj/item/weapon/pen))	//you can rename turrets like bots!
@@ -868,10 +868,10 @@ var/list/turret_icons
 			Gun.update_icon()
 			installation = null
 			gun_charge = 0
-			user << SPAN_NOTICE("You remove [Gun] from the turret frame.")
+			to_chat(user, SPAN_NOTICE("You remove [Gun] from the turret frame."))
 
 		if(5)
-			user << SPAN_NOTICE("You remove the prox sensor from the turret frame.")
+			to_chat(user, SPAN_NOTICE("You remove the prox sensor from the turret frame."))
 			new /obj/item/device/assembly/prox_sensor(loc)
 			build_step = 4
 

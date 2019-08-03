@@ -202,6 +202,8 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 	var/ghosts_can_possess_animals = 0
 
+	var/emojis = 0
+
 /datum/configuration/New()
 	fill_storyevents_list()
 
@@ -653,6 +655,9 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if("empty_server_restart_time")
 					config.empty_server_restart_time = text2num(value)
+
+				if("emojis")
+					config.emojis = 1
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")

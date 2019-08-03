@@ -75,9 +75,9 @@
 /obj/item/stack/examine(mob/user)
 	if(..(user, 1))
 		if(!uses_charge)
-			user << "There [src.amount == 1 ? "is" : "are"] [src.amount] [src.singular_name]\s in the stack."
+			to_chat(user, "There [src.amount == 1 ? "is" : "are"] [src.amount] [src.singular_name]\s in the stack.")
 		else
-			user << "There is enough charge for [get_amount()]."
+			to_chat(user, "There is enough charge for [get_amount()].")
 
 /obj/item/stack/attack_self(mob/user as mob)
 	list_recipes(user)
@@ -143,21 +143,21 @@
 
 	if (!can_use(required))
 		if (produced>1)
-			user << SPAN_WARNING("You haven't got enough [src] to build \the [produced] [recipe.title]\s!")
+			to_chat(user, SPAN_WARNING("You haven't got enough [src] to build \the [produced] [recipe.title]\s!"))
 		else
-			user << SPAN_WARNING("You haven't got enough [src] to build \the [recipe.title]!")
+			to_chat(user, SPAN_WARNING("You haven't got enough [src] to build \the [recipe.title]!"))
 		return
 
 	if (recipe.one_per_turf && (locate(recipe.result_type) in user.loc))
-		user << SPAN_WARNING("There is another [recipe.title] here!")
+		to_chat(user, SPAN_WARNING("There is another [recipe.title] here!"))
 		return
 
 	if (recipe.on_floor && !isfloor(user.loc))
-		user << SPAN_WARNING("\The [recipe.title] must be constructed on the floor!")
+		to_chat(user, SPAN_WARNING("\The [recipe.title] must be constructed on the floor!"))
 		return
 
 	if (recipe.time)
-		user << SPAN_NOTICE("Building [recipe.title] ...")
+		to_chat(user, SPAN_NOTICE("Building [recipe.title] ..."))
 		if (!do_after(user, recipe.time, user))
 			return
 
@@ -329,7 +329,7 @@
 			continue
 		var/transfer = src.transfer_to(item)
 		if (transfer)
-			user << SPAN_NOTICE("You add a new [item.singular_name] to the stack. It now contains [item.amount] [item.singular_name]\s.")
+			to_chat(user, SPAN_NOTICE("You add a new [item.singular_name] to the stack. It now contains [item.amount] [item.singular_name]\s."))
 		if(!amount)
 			break
 
@@ -379,7 +379,7 @@
 	The new stack will be put into your hands if possible", "Split Stack", round(amount * 0.5)) as null|num
 
 	if (!Adjacent(usr))
-		usr << SPAN_WARNING("You need to be in arm's reach for that!")
+		to_chat(usr, SPAN_WARNING("You need to be in arm's reach for that!"))
 		return
 
 	if (usr.incapacitated())
