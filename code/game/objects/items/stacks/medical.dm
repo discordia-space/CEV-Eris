@@ -57,7 +57,7 @@
 				M.updatehealth()
 				return 1
 
-to_chat(user, SPAN_WARNING("This isn't useful at all on a robotic limb."))
+			to_chat(user, SPAN_WARNING("This isn't useful at all on a robotic limb."))
 			return 1
 
 		H.UpdateDamageIcon()
