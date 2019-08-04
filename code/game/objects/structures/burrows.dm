@@ -10,8 +10,6 @@
 	plane = FLOOR_PLANE
 	icon = 'icons/obj/burrows.dmi'
 	icon_state = "cracks"
-	level = BELOW_PLATING_LEVEL
-	layer = ABOVE_NORMAL_TURF_LAYER
 
 	//health is used when attempting to collapse this hole. It is a multiplier on the time taken and failure rate
 	//Any failed attempt to collapse it will reduce the health, making future attempts easier
@@ -424,7 +422,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 		invisibility = 0
 		icon_state = "hole"
 		name = "burrow"
-		desc = "Some sort of hole that leads inside a wall. It's full of hardened resin and secretions. Collapsing this would require some heavy digging tools"
+		desc = "Some sort of hole that leads inside a wall. It's full of hardened resin and secretions. Collapsing this would require some heavy digging tools."
 		var/turf/simulated/floor/F = loc
 		if (istype(F) && F.flooring)
 			//This should never be false
@@ -436,7 +434,6 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 /obj/structure/burrow/proc/reveal()
 	if(!isRevealed)
 		isRevealed = TRUE
-		level = ABOVE_PLATING_LEVEL
 	var/turf/simulated/floor/F = loc
 	if (istype(F))
 		F.levelupdate()
@@ -457,9 +454,9 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 		return
 	if(isSealed)
 		if (I.has_quality(QUALITY_WELDING))
-			user.visible_message("[user] attempts to weld [src] with the [I]", "You start welding [src] with the [I]")
+			user.visible_message("[user] attempts to weld [src] with the [I].", "You start welding [src] with the [I].")
 			if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_WELDING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC) && isSealed)
-				user.visible_message("[user] welds [src] with the [I].", "You welds [src] with the [I].")
+				user.visible_message("[user] welds [src] with the [I].", "You weld [src] with the [I].")
 				if(recieving)
 					if(prob(33))
 						qdel(src)
@@ -476,16 +473,17 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 		if(istype(I, /obj/item/stack/material) && I.get_material_name() == "steel")
 			var/obj/item/stack/G = I
 
-			user.visible_message("[user] starts covering [src] with the [I]", "You start covering [src] with the [I]")
+			user.visible_message("[user] starts covering [src] with the [I].", "You start covering [src] with the [I].")
 			if(do_after(user, 20, src))
 				if (G.use(1))
 					playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+					user.visible_message("[user] collapses [src] with the [I], dumping the trash into a pile.", "You collapse [src] with the [I], dumping the trash into a pile.")
 					collapse(clean = TRUE)
 					return
 
 
 		if (I.has_quality(QUALITY_DIGGING) && !isSealed)
-			user.visible_message("[user] starts breaking and collapsing [src] with the [I]", "You start breaking and collapsing [src] with the [I]")
+			user.visible_message("[user] starts breaking and collapsing [src] with the [I].", "You start breaking and collapsing [src] with the [I].")
 
 			//Attempting to collapse a burrow may trigger reinforcements.
 			//Not immediate so they will take some time to arrive.
@@ -496,12 +494,10 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 
 			//We record the time to prevent exploits of starting and quickly cancelling
 			var/start = world.time
-			var/target_time = WORKTIME_FAST+ 2*health
+			var/target_time = WORKTIME_FAST+ *health
 
 			if (I.use_tool(user, src, target_time, QUALITY_DIGGING, health * 0.66, list(STAT_MEC, STAT_ROB), forced_sound = WORKSOUND_PICKAXE))
 				//On success, the hole is destroyed!
-				new /obj/random/scrap/sparse_weighted(get_turf(user))
-				user.visible_message("[user] collapses [src] with the [I] and dumps trash which was in the way.", "You collapse [src] with the [I] and dump trash which was in the way.")
 
 				collapse()
 			else
@@ -512,7 +508,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 				spawn_rubble(loc, 1, 100)
 
 				if (I.get_tool_quality(QUALITY_DIGGING) > 30)
-					to_chat(user, SPAN_NOTICE("The [src] crumbles a bit. Keep trying and you'll collapse it eventually"))
+					to_chat(user, SPAN_NOTICE("The [src] crumbles a bit. Keep trying and you'll collapse it eventually."))
 				else
 					to_chat(user, SPAN_NOTICE("This isn't working very well. Perhaps you should get a better digging tool?"))
 
@@ -536,10 +532,8 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 	if(!clean)
 		spawn_rubble(loc, 0, 100)
 	isSealed = TRUE
-	icon_state = initial(icon_state)
-	name = initial(name)
-	desc = initial(desc)
-
+	new /obj/random/scrap/sparse_weighted(get_turf(src))
+	qdel(src)
 
 //Spawns some rubble on or near a target turf
 //Will only allow one rubble decal per tile
