@@ -1,6 +1,7 @@
 /obj/item/stack/rods
 	name = "metal rod"
 	desc = "Some rods. Can be used for building, or something."
+	icon = 'icons/obj/stack/items.dmi'
 	singular_name = "metal rod"
 	icon_state = "rods"
 	flags = CONDUCT
