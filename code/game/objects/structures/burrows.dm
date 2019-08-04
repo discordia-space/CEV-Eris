@@ -494,7 +494,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 
 			//We record the time to prevent exploits of starting and quickly cancelling
 			var/start = world.time
-			var/target_time = WORKTIME_FAST+ *health
+			var/target_time = WORKTIME_FAST+ health
 
 			if (I.use_tool(user, src, target_time, QUALITY_DIGGING, health * 0.66, list(STAT_MEC, STAT_ROB), forced_sound = WORKSOUND_PICKAXE))
 				//On success, the hole is destroyed!
