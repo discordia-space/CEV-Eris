@@ -9,15 +9,13 @@
 	circuit = /obj/item/weapon/circuitboard/centrifuge
 	var/obj/item/weapon/reagent_containers/mainBeaker
 	var/list/obj/item/weapon/reagent_containers/separationBeakers = list()
-	var/workTime = 12 SECONDS
+	var/workTime = 10 SECONDS
 	var/lastActivation = 0
 	var/on = FALSE
 	var/beakerSlots = 3
 
 /obj/machinery/centrifuge/Initialize(mapload, d)
 	. = ..()
-	for(var/i = 1 to beakerSlots)
-		separationBeakers += new /obj/item/weapon/reagent_containers/glass/beaker(src)
 
 /obj/machinery/centrifuge/Destroy()
 	qdel(mainBeaker)
@@ -66,18 +64,19 @@
 
 
 	if(istype(I, /obj/item/weapon/reagent_containers) && I.is_open_container())
-		. = TRUE //no afterattack
-		var/obj/item/weapon/reagent_containers/B = I
-		if(!user.unEquip(B, src))
+		if (!mainBeaker || separationBeakers.len < beakerSlots)
+			. = TRUE //no afterattack
+			var/obj/item/weapon/reagent_containers/B = I
+			if(!user.unEquip(B, src))
+				return
+			if(!mainBeaker)
+				mainBeaker = B
+			else
+				separationBeakers.Add(B)
+			to_chat(user, SPAN_NOTICE("You add [B] to [src]."))
+			updateUsrDialog()
+			update_icon()
 			return
-		mainBeaker = B
-		to_chat(user, SPAN_NOTICE("You add [B] to [src]."))
-		updateUsrDialog()
-		update_icon()
-
-		on = TRUE
-		lastActivation = world.time
-		return
 	return ..()
 
 /obj/machinery/centrifuge/on_deconstruction()
@@ -91,6 +90,72 @@
 	separationBeakers = list()
 	..()
 
+
+/obj/machinery/centrifuge/attack_hand(mob/user)
+	if(..())
+		return TRUE
+
+	user.set_machine(src)
+	ui_interact(user)
+
+/obj/machinery/centrifuge/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
+	var/list/data = ui_data()
+
+	// update the ui if it exists, returns null if no ui is passed/found
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if (!ui)
+		// the ui does not exist, so we'll create a new() one
+        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		ui = new(user, src, ui_key, "centrifuge.tmpl", name, 600, 700)
+		// when the ui is first opened this is the data it will use
+		ui.set_initial_data(data)
+		// open the new ui window
+		ui.open()
+
+
+
+/obj/machinery/centrifuge/ui_data()
+	var/data = list()
+	data["on"] = on
+	data["cycleTime"] = workTime / 10
+	data["timeLeft"] = round((lastActivation + workTime - world.time) / 10)
+	data["maxBeakers"] = beakerSlots
+	
+	if(mainBeaker)
+		data["mainBeaker"] = mainBeaker.reagents.ui_data()
+	var/list/beakersData = list()
+	for(var/i = 1 to beakerSlots)
+		var/list/beakerInfo = list()
+		if(separationBeakers.len <= i)
+			var/obj/item/weapon/reagent_containers/B = separationBeakers[i]
+			beakerInfo = B.reagents.ui_data()
+		beakerInfo["slot"] = i
+		beakersData.Add(list(beakerInfo))
+	data["beakers"] = beakersData
+	return data
+
+
+/obj/machinery/centrifuge/Topic(href, href_list)
+	if(..())
+		return
+
+	if(href_list["power"] && mainBeaker)
+		on = !on
+		lastActivation = world.time
+
+	if(href_list["ejectBeaker"] && !on)
+		if(href_list["ejectBeaker"] == "0")
+			mainBeaker.forceMove(get_turf(src))
+			mainBeaker = null
+		else
+			separationBeakers[text2num(href_list["ejectBeaker"])].forceMove(get_turf(src))
+			separationBeakers.Remove(separationBeakers[text2num(href_list["ejectBeaker"])])
+
+	
+	if(href_list["setTime"] && !on)
+		workTime = text2num(href_list["setTime"]) SECONDS
+
+	return 1 // update UIs attached to this object
 
 /obj/item/makeshiftCentrifuge
 	name = "makeshift centrifuge"

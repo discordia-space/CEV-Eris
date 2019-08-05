@@ -403,3 +403,80 @@
 	taste_description = "sludge"
 	reagent_state = LIQUID
 	color = "#535E66"
+
+/datum/reagent/pararein
+	name = "Pararein"
+	id = "pararein"
+	description = ""
+	taste_description = "sludge"
+	reagent_state = LIQUID
+	color = "#a37d9c"
+	overdose = REAGENTS_OVERDOSE/3
+	addiction_chance = 10
+	NSA = 5
+	
+/datum/reagent/carpotoxin
+	name = "Carpotoxin"
+	id = "carpotoxin"
+	description = "Harvested from carps."
+	taste_description = "something fishy"
+	reagent_state = LIQUID
+	color = "#acc107"
+	overdose = REAGENTS_OVERDOSE/3
+	addiction_chance = 10
+	NSA = 5
+
+/datum/reagent/diplopterum
+	name = "Diplopterum"
+	id = "diplopterum"
+	description = "Harvested from roaches."
+	taste_description = "sludge"
+	reagent_state = LIQUID
+	color = "#c9bed2"
+	overdose = REAGENTS_OVERDOSE * 0.66
+	addiction_chance = 10
+	NSA = 5
+	
+/datum/reagent/seligitillin
+	name = "Seligitillin"
+	id = "seligitillin"
+	description = "Harvested from Seuche roaches."
+	taste_description = "plague"
+	reagent_state = LIQUID
+	color = "#6d33b4"
+	overdose = REAGENTS_OVERDOSE/2
+	addiction_chance = 10
+	NSA = 5
+
+/datum/reagent/starkellin
+	name = "Starkellin"
+	id = "starkellin"
+	description = "Harvested from Panzer roaches."
+	taste_description = "metal"
+	reagent_state = LIQUID
+	color = "#736bbe"
+	overdose = REAGENTS_OVERDOSE/2
+	addiction_chance = 15
+	NSA = 5
+
+/datum/reagent/gewaltine
+	name = "Gewaltine"
+	id = "gewaltine"
+	description = "Harvested from Jager roaches."
+	taste_description = "raw meat"
+	reagent_state = LIQUID
+	color = "#9452ba"
+	overdose = REAGENTS_OVERDOSE/2
+	addiction_chance = 20
+	NSA = 5
+
+/datum/reagent/fuhrerole
+	name = "fuhrerole"
+	id = "fuhrerole"
+	description = "Harvested from Fuhrer roaches."
+	taste_description = "third reich"
+	reagent_state = LIQUID
+	color = "#a6b85b"
+	overdose = 8
+	addiction_chance = 30
+	NSA = 4

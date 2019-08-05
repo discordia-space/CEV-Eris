@@ -176,12 +176,13 @@
 	taste_description = "sourness"
 	reagent_state = LIQUID
 	color = "#CB68FC"
-	overdose = 30
+	overdose = REAGENTS_OVERDOSE
 	scannable = 1
 	metabolism = 0.02
+	NSA = 40
 
 /datum/reagent/tramadol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 80)
+	M.add_chemical_effect(CE_PAINKILLER, 130)
 
 /datum/reagent/tramadol/overdose(var/mob/living/carbon/M, var/alien)
 	..()
@@ -194,8 +195,9 @@
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#800080"
-	overdose = 20
+	overdose = REAGENTS_OVERDOSE * 0.66
 	metabolism = 0.02
+	NSA = 60
 
 /datum/reagent/oxycodone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.add_chemical_effect(CE_PAINKILLER, 200)
@@ -214,8 +216,9 @@
 	reagent_state = LIQUID
 	color = "#99CCFF"
 	metabolism = REM * 0.05
-	overdose = REAGENTS_OVERDOSE
+	overdose = 5
 	scannable = 1
+	NSA = 50
 
 /datum/reagent/synaptizine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.drowsyness = max(M.drowsyness - 5, 0)
@@ -489,3 +492,35 @@
 	if(dose > 10)
 		M.make_dizzy(5)
 		M.make_jittery(5)
+
+/datum/reagent/quickclot  
+	name = "Quickclot"
+	id = "quickclot"
+	description = "Temporarily stops\\oppresses any internal and internal bleeding."
+	taste_description = "metal"
+	reagent_state = LIQUID
+	color = "#a6b85b"
+	overdose = REAGENTS_OVERDOSE/2
+
+/datum/reagent/ossisine   
+	name = "Quickclot"
+	id = "quickclot"
+	description = "Paralyses user and restores broken bones."
+	taste_description = "calcium"
+	reagent_state = LIQUID
+	color = "#660679"
+	overdose = REAGENTS_OVERDOSE/2
+
+
+/datum/reagent/noexcutite
+	name = "Noexcutite"
+	id = "noexcutite"
+	description = "A thick, syrupy liquid that has a lethargic effect. Used to cure cases of jitteriness."
+	taste_description = "numbing coldness"
+	reagent_state = LIQUID
+	color = "#bc018a"
+	overdose = REAGENTS_OVERDOSE
+	scannable = 1
+
+/datum/reagent/noexcutite/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	M.make_jittery(-50)

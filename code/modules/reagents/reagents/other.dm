@@ -390,3 +390,59 @@
 
 /datum/reagent/luminol/touch_mob(var/mob/living/L)
 	L.reveal_blood()
+
+/datum/reagent/aranecolmin
+	name = "Aranecolmin"
+	id = "aranecolmin"
+	description = ""
+	taste_description = "sludge"
+	reagent_state = LIQUID
+	color = "#acc107"
+	overdose = REAGENTS_OVERDOSE
+	addiction_chance = 10
+	NSA = 5
+
+/datum/reagent/vomitol
+	name = "Vomitol"
+	id = "vomitol"
+	description = "Forces patient to vomit for some time - results in total cleaning of his stomach. Has extremely unpleasant taste."
+	taste_description = "worst thing in the world"
+	reagent_state = LIQUID
+	color = "#a6b85b"
+	overdose = REAGENTS_OVERDOSE
+
+/datum/reagent/kyphotorin 
+	name = "Kyphotorin"
+	id = "kyphotorin"
+	description = "Allows patient to grow back limbs, yet by sacrificing lots of blood and nutrients, also deals random damage to body parts, extremely painful and needs constant medical attention when applied."
+	taste_description = "metal"
+	reagent_state = LIQUID
+	color = "#7d88e6"
+	overdose = REAGENTS_OVERDOSE * 0.66
+
+/datum/reagent/cavasin  
+	name = "Cavasin"
+	id = "cavasin"
+	description = "Will make you feel full, thus negating need for food for some time."
+	taste_description = "mom's spaghetti"
+	reagent_state = LIQUID
+	color = "#bc7a87"
+	overdose = REAGENTS_OVERDOSE * 0.66
+
+/datum/reagent/arectine 
+	name = "Arectine"
+	id = "arectine"
+	description = "Makes user emit light."
+	taste_description = "fireflies"
+	reagent_state = LIQUID
+	color = "#a6b85b"
+	overdose = 25
+	addiction_chance = 5
+
+/datum/reagent/instantIce  
+	name = "instantIce"
+	id = "instantice"
+	description = "Will cool reagents inside container when mixed with water to -50C"
+	taste_description = "nothing"
+	reagent_state = LIQUID
+	color = "#bbc5f0"

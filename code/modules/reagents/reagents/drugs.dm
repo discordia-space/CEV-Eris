@@ -10,6 +10,7 @@
 	color = "#60A584"
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE
+	addiction_chance = 100
 
 /datum/reagent/space_drugs/affect_blood(mob/living/carbon/M, alien, removed)
 	M.druggy = max(M.druggy, 15)
@@ -91,8 +92,10 @@
 	description = "A strong psycotropic derived from certain species of mushroom."
 	taste_description = "mushroom"
 	color = "#E700E7"
-	overdose = REAGENTS_OVERDOSE
+	overdose = REAGENTS_OVERDOSE * 0.66
 	metabolism = REM * 0.5
+	addiction_chance = 10
+	NSA = 40
 
 /datum/reagent/psilocybin/affect_blood(mob/living/carbon/M, alien, removed)
 	M.druggy = max(M.druggy, 30)
@@ -127,6 +130,9 @@
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#181818"
+	overdose = REAGENTS_OVERDOSE/2
+	addiction_chance = 10
+	NSA = 10
 
 /datum/reagent/nicotine/affect_blood(mob/living/carbon/M, alien, removed)
 	..()
@@ -141,8 +147,9 @@
 	reagent_state = LIQUID
 	color = "#FF3300"
 	metabolism = REM * 0.15
-	overdose = REAGENTS_OVERDOSE * 0.5
+	overdose = REAGENTS_OVERDOSE * 0.66
 	withdrawal_threshold = 10
+	NSA = 70
 
 /datum/reagent/hyperzine/affect_blood(mob/living/carbon/M, alien, removed)
 	if(prob(5))
@@ -153,3 +160,15 @@
 /datum/reagent/hyperzine/withdrawal_act(mob/living/carbon/M)
 	M.add_chemical_effect(CE_SPEEDBOOST, -1)
 	M.add_chemical_effect(CE_PULSE, 1)
+
+/datum/reagent/sanguinum
+	name = "Sanguinum"
+	id = "sanguinum"
+	description = ""
+	taste_description = "acid"
+	reagent_state = LIQUID
+	color = "#e06270"
+	metabolism = REM
+	overdose = REAGENTS_OVERDOSE/2
+	NSA = 80
+	addiction_chance = 30

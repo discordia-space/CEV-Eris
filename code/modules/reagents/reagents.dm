@@ -49,6 +49,8 @@
 	var/heating_sound = 'sound/effects/bubbles.ogg'
 	var/list/heating_products
 
+	var/NSA = 10 // Nerve system accumulations
+
 /datum/reagent/proc/remove_self(amount) // Shortcut
 	holder.remove_reagent(id, amount)
 

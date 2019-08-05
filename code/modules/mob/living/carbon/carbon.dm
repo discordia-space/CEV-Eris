@@ -11,10 +11,43 @@
 	..()
 
 	handle_viruses()
-
+	handleNSA()
 	// Increase germ_level regularly
 	if(germ_level < GERM_LEVEL_AMBIENT && prob(30))	//if you're just standing there, you shouldn't get more germs beyond an ambient level
 		germ_level++
+
+/mob/living/carbon/proc/adjustNSA(value, tag)
+	if(!tag)
+		crash_with("no tag given to adjustNSA()")
+		return
+	NSA[tag] = value
+
+/mob/living/carbon/proc/removeNSA(tag)
+	if(NSA[tag])
+		NSA.Remove(tag)
+
+/mob/living/carbon/proc/getNSA()
+	var/accumulatedNSA
+	for(var/tag in NSA)
+		accumulatedNSA += NSA[tag]
+	return accumulatedNSA
+
+/mob/living/carbon/proc/handleNSA()
+	if(getNSA() > NSA_threshold)
+		NSA_breachedAffect()
+
+/mob/living/carbon/proc/NSA_breachedAffect()
+	apply_effect(3, STUTTER)
+	make_jittery(10)
+	make_dizzy(10)
+	druggy = max(druggy, 40)
+	if(prob(5))
+		emote(pick("twitch", "drool", "moan", "blink_r", "shiver"))	
+	else if (prob(5))
+		var/direction = pick(cardinal)
+		if(MayMove(direction))
+			DoMove(direction)
+			
 
 /mob/living/carbon/Destroy()
 	qdel(ingested)

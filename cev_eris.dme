@@ -2211,6 +2211,7 @@
 #include "code\modules\reagents\reagents\food-Drinks.dm"
 #include "code\modules\reagents\reagents\medicine.dm"
 #include "code\modules\reagents\reagents\other.dm"
+#include "code\modules\reagents\reagents\stims.dm"
 #include "code\modules\reagents\reagents\toxins.dm"
 #include "code\modules\recycling\conveyor2.dm"
 #include "code\modules\recycling\disposal-construction.dm"

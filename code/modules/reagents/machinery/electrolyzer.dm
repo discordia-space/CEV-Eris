@@ -35,6 +35,7 @@
 		update_icon()
 		return
 	if(on && beaker && beaker.reagents.total_volume)
+		beaker.reagents.adjust_thermal_energy((350 - beaker.reagents.chem_temp) * 0.05 * SPECIFIC_HEAT_DEFAULT * beaker.reagents.total_volume)
 		beaker.reagents.isElectrolysed = TRUE
 		beaker.reagents.handle_reactions()
 		SSnano.update_uis(src)
@@ -64,7 +65,7 @@
 		beaker.forceMove(get_turf(src))
 		beaker = null
 	..()
-/*
+
 /obj/machinery/electrolyzer/attack_hand(mob/user)
 	if(..())
 		return TRUE
@@ -80,7 +81,7 @@
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "chem_heater.tmpl", name, 275, 400)
+		ui = new(user, src, ui_key, "electrolyzer.tmpl", name, 275, 400)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window
@@ -90,7 +91,6 @@
 
 /obj/machinery/electrolyzer/ui_data()
 	var/data = list()
-	data["target_temperature"] = target_temperature
 	data["on"] = on
 
 	if(beaker)
@@ -105,12 +105,12 @@
 	if(href_list["power"])
 		on = !on
 
-	if(href_list["eject"])
+	if(href_list["eject"] && beaker)
 		on = FALSE
-		replace_beaker(usr)
+		beaker.forceMove(get_turf(src))
 
 	return 1 // update UIs attached to this object
-*/
+
 
 
 /obj/item/device/makeshiftElectrolyser

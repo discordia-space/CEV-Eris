@@ -6,9 +6,9 @@
 		var/datum/stat/S = new sttype
 		stat_list[S.name] = S
 
-/datum/stat_holder/proc/addTempStat(statName, Value, timeDelay)
+/datum/stat_holder/proc/addTempStat(statName, Value, timeDelay, id = null)
 	var/datum/stat/S = stat_list[statName]
-	S.addModif(timeDelay, Value)
+	S.addModif(timeDelay, Value, id)
 
 /datum/stat_holder/proc/changeStat(statName, Value)
 	var/datum/stat/S = stat_list[statName]
