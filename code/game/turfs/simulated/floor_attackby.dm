@@ -5,8 +5,8 @@
 
 	if(istype(src, /turf/simulated/floor/plating/under) && istype(I, /obj/item/stack/material/cyborg/steel))
 		if(do_after(user, 5, src))
-			I:use(2)
-			ChangeTurf(/turf/simulated/floor/plating)
+			if(I:use(2))
+				ChangeTurf(/turf/simulated/floor/plating)
 
 	var/obj/effect/shield/turf_shield = getEffectShield()
 
