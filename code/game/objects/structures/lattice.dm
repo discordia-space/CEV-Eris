@@ -64,8 +64,7 @@
 
 			to_chat(user, SPAN_NOTICE("You start connecting [R.name] to [src.name] ..."))
 			if(do_after(user,50, src))
-				if(!istype(R, /obj/item/stack/rods/cyborg))
-					R.use(2)
+				R.use(2)
 				src.alpha = 0
 				new /obj/structure/catwalk(src.loc)
 				qdel(src)
