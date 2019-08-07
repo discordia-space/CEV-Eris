@@ -3,6 +3,10 @@
 	if(!I || !user)
 		return 0
 
+	if(istype(src, /turf/simulated/floor/plating/under) && istype(I, /obj/item/stack/material/cyborg/steel))
+		if(do_after(user, 5, src))
+			ChangeTurf(/turf/simulated/floor/plating)
+
 	var/obj/effect/shield/turf_shield = getEffectShield()
 
 	if (turf_shield && !turf_shield.CanActThrough(user))
