@@ -92,7 +92,7 @@
 	if(req_amount && istype(I, /obj/item/stack))
 		var/obj/item/stack/S = I
 		if(!S.can_use(req_amount))
-			user << "Not enough items in [I]"
+			to_chat(user, "Not enough items in [I]")
 			return
 
 	var/new_time = time // for reqed_type or raw materials
@@ -105,16 +105,16 @@
 
 	if(reqed_type)
 		if(!istype(I, reqed_type))
-			user << "Wrong item!"
+			to_chat(user, "Wrong item!")
 			return
 		if (!is_valid_to_consume(I, user))
-			user << "That item can't be used for crafting!"
+			to_chat(user, "That item can't be used for crafting!")
 			return
 
 		if(req_amount && istype(I, /obj/item/stack))
 			var/obj/item/stack/S = I
 			if(S.get_amount() < req_amount)
-				user << "Not enough items in [I]"
+				to_chat(user, "Not enough items in [I]")
 				return
 
 		if(target)
@@ -126,16 +126,16 @@
 	else if(reqed_quality)
 		var/q = I.get_tool_quality(reqed_quality)
 		if(!q)
-			user << SPAN_WARNING("Wrong type of tool. You need a tool with [reqed_quality] quality")
+			to_chat(user, SPAN_WARNING("Wrong type of tool. You need a tool with [reqed_quality] quality"))
 			return
 		if(target)
 			announce_action(start_msg, user, I, target)
 		if(!I.use_tool(user, target || user, time, reqed_quality, FAILCHANCE_NORMAL, list(STAT_MEC, STAT_COG)))
-			user << SPAN_WARNING("Work aborted")
+			to_chat(user, SPAN_WARNING("Work aborted"))
 			return
 
 		if(q < reqed_quality_level)
-			user << SPAN_WARNING("That tool is too crude for the task. You need a tool with [reqed_quality_level] [reqed_quality] quality. This tool only has [q] [reqed_quality]")
+			to_chat(user, SPAN_WARNING("That tool is too crude for the task. You need a tool with [reqed_quality_level] [reqed_quality] quality. This tool only has [q] [reqed_quality]"))
 			return
 	else
 		if(!do_after(user, new_time, target || user))
@@ -152,7 +152,7 @@
 		if(istype(I, /obj/item/stack))
 			var/obj/item/stack/S = I
 			if(!S.use(req_amount))
-				user << SPAN_WARNING("Not enough items in [S]. It has [S.get_amount()] units and we need [req_amount]")
+				to_chat(user, SPAN_WARNING("Not enough items in [S]. It has [S.get_amount()] units and we need [req_amount]"))
 				return FALSE
 		else if (reqed_type) //No deleting tools
 			qdel(I)

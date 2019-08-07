@@ -166,7 +166,7 @@
 	name = "[name] (ID [id])"
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/attack_hand(var/mob/user as mob)
-		usr << SPAN_NOTICE("You can't directly interact with this machine. Use the scrubber control console.")
+		to_chat(usr, SPAN_NOTICE("You can't directly interact with this machine. Use the scrubber control console."))
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/update_icon()
 	src.overlays = 0
@@ -207,12 +207,12 @@
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/attackby(var/obj/item/I as obj, var/mob/user as mob)
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		if(on)
-			user << SPAN_WARNING("Turn \the [src] off first!")
+			to_chat(user, SPAN_WARNING("Turn \the [src] off first!"))
 			return
 
 		anchored = !anchored
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-		user << "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>"
+		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
 
 		return
 
@@ -234,7 +234,7 @@
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/attackby(var/obj/item/I as obj, var/mob/user as mob)
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
-		user << SPAN_WARNING("The bolts are too tight for you to unscrew!")
+		to_chat(user, SPAN_WARNING("The bolts are too tight for you to unscrew!"))
 		return
 
 	..()

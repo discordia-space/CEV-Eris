@@ -512,9 +512,9 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 				spawn_rubble(loc, 1, 100)
 
 				if (I.get_tool_quality(QUALITY_DIGGING) > 30)
-					user << SPAN_NOTICE("The [src] crumbles a bit. Keep trying and you'll collapse it eventually")
+					to_chat(user, SPAN_NOTICE("The [src] crumbles a bit. Keep trying and you'll collapse it eventually"))
 				else
-					user << SPAN_NOTICE("This isn't working very well. Perhaps you should get a better digging tool?")
+					to_chat(user, SPAN_NOTICE("This isn't working very well. Perhaps you should get a better digging tool?"))
 
 				//On failure, the hole takes some damage based on the digging quality of the tool.
 				//This will make things much easier next time

@@ -47,13 +47,13 @@
 
 	if(istype(W, /obj/item/weapon/tool/wirecutters) || istype(W, /obj/item/weapon/tool/scalpel))
 		if(sampled)
-			user << SPAN_WARNING("\The [src] has already been sampled recently.")
+			to_chat(user, SPAN_WARNING("\The [src] has already been sampled recently."))
 			return
 		if(!is_mature())
-			user << SPAN_WARNING("\The [src] is not mature enough to yield a sample yet.")
+			to_chat(user, SPAN_WARNING("\The [src] is not mature enough to yield a sample yet."))
 			return
 		if(!seed)
-			user << SPAN_WARNING("There is nothing to take a sample from.")
+			to_chat(user, SPAN_WARNING("There is nothing to take a sample from."))
 			return
 		if(prob(70))
 			sampled = 1
@@ -179,4 +179,4 @@
 	if(victim.loc == src.loc)
 		buckle_mob(victim)
 		victim.set_dir(pick(cardinal))
-		victim << "<span class='danger'>Tendrils [pick("wind", "tangle", "tighten")] around you!</span>"
+		to_chat(victim, "<span class='danger'>Tendrils [pick("wind", "tangle", "tighten")] around you!</span>")

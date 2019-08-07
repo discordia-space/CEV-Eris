@@ -4,46 +4,46 @@
 	var/obj/item/organ/external/E = H.get_organ(target_zone)
 
 	if(!E || E.is_stump())
-		user << SPAN_NOTICE("[H] is missing that bodypart.")
+		to_chat(user, SPAN_NOTICE("[H] is missing that bodypart."))
 		return
 
 	user.visible_message(SPAN_NOTICE("[user] starts inspecting [affecting]'s [E.name] carefully."))
 	if(!do_mob(user,H, 10))
-		user << SPAN_NOTICE("You must stand still to inspect [E] for wounds.")
+		to_chat(user, SPAN_NOTICE("You must stand still to inspect [E] for wounds."))
 	else if(E.wounds.len)
-		user << SPAN_WARNING("You find [E.get_wounds_desc()]")
+		to_chat(user, SPAN_WARNING("You find [E.get_wounds_desc()]"))
 	else
-		user << SPAN_NOTICE("You find no visible wounds.")
+		to_chat(user, SPAN_NOTICE("You find no visible wounds."))
 
-	user << SPAN_NOTICE("Checking bones now...")
+	to_chat(user, SPAN_NOTICE("Checking bones now..."))
 	if(!do_mob(user, H, 20))
-		user << SPAN_NOTICE("You must stand still to feel [E] for fractures.")
+		to_chat(user, SPAN_NOTICE("You must stand still to feel [E] for fractures."))
 	else if(E.status & ORGAN_BROKEN)
-		user << "<span class='warning'>The [E.encased ? E.encased : "bone in the [E.name]"] moves slightly when you poke it!</span>"
+		to_chat(user, "<span class='warning'>The [E.encased ? E.encased : "bone in the [E.name]"] moves slightly when you poke it!</span>")
 		H.custom_pain("Your [E.name] hurts where it's poked.")
 	else
-		user << "<span class='notice'>The [E.encased ? E.encased : "bones in the [E.name]"] seem to be fine.</span>"
+		to_chat(user, "<span class='notice'>The [E.encased ? E.encased : "bones in the [E.name]"] seem to be fine.</span>")
 
-	user << SPAN_NOTICE("Checking skin now...")
+	to_chat(user, SPAN_NOTICE("Checking skin now..."))
 	if(!do_mob(user, H, 10))
-		user << SPAN_NOTICE("You must stand still to check [H]'s skin for abnormalities.")
+		to_chat(user, SPAN_NOTICE("You must stand still to check [H]'s skin for abnormalities."))
 	else
 		var/bad = 0
 		if(H.getToxLoss() >= 40)
-			user << SPAN_WARNING("[H] has an unhealthy skin discoloration.")
+			to_chat(user, SPAN_WARNING("[H] has an unhealthy skin discoloration."))
 			bad = 1
 		if(H.getOxyLoss() >= 20)
-			user << SPAN_WARNING("[H]'s skin is unusaly pale.")
+			to_chat(user, SPAN_WARNING("[H]'s skin is unusaly pale."))
 			bad = 1
 		if(E.status & ORGAN_DEAD)
-			user << SPAN_WARNING("[E] is decaying!")
+			to_chat(user, SPAN_WARNING("[E] is decaying!"))
 			bad = 1
 		if(!bad)
-			user << SPAN_NOTICE("[H]'s skin is normal.")
+			to_chat(user, SPAN_NOTICE("[H]'s skin is normal."))
 
 /obj/item/weapon/grab/proc/jointlock(mob/living/carbon/human/target, mob/attacker, var/target_zone)
 	if(state < GRAB_AGGRESSIVE)
-		attacker << SPAN_WARNING("You require a better grab to do this.")
+		to_chat(attacker, SPAN_WARNING("You require a better grab to do this."))
 		return
 
 	var/obj/item/organ/external/organ = target.get_organ(check_zone(target_zone))
@@ -53,7 +53,7 @@
 	attacker.visible_message("<span class='danger'>[attacker] [pick("bent", "twisted")] [target]'s [organ.name] into a jointlock!</span>")
 	var/armor = target.run_armor_check(target, "melee")
 	if(armor < 2)
-		target << SPAN_DANGER("You feel extreme pain!")
+		to_chat(target, SPAN_DANGER("You feel extreme pain!"))
 		affecting.adjustHalLoss(CLAMP(0, 60-affecting.halloss, 30)) //up to 60 halloss
 
 /obj/item/weapon/grab/proc/attack_eye(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
@@ -65,14 +65,14 @@
 	if(!attack)
 		return
 	if(state < GRAB_NECK)
-		attacker << SPAN_WARNING("You require a better grab to do this.")
+		to_chat(attacker, SPAN_WARNING("You require a better grab to do this."))
 		return
 	for(var/obj/item/protection in list(target.head, target.wear_mask, target.glasses))
 		if(protection && (protection.body_parts_covered & EYES))
-			attacker << SPAN_DANGER("You're going to need to remove the eye covering first.")
+			to_chat(attacker, SPAN_DANGER("You're going to need to remove the eye covering first."))
 			return
 	if(!target.has_eyes())
-		attacker << SPAN_DANGER("You cannot locate any eyes on [target]!")
+		to_chat(attacker, SPAN_DANGER("You cannot locate any eyes on [target]!"))
 		return
 
 	attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>Attacked [target.name]'s eyes using grab ([target.ckey])</font>")
@@ -113,7 +113,7 @@
 
 /obj/item/weapon/grab/proc/dislocate(mob/living/carbon/human/target, mob/living/attacker, var/target_zone)
 	if(state < GRAB_NECK)
-		attacker << SPAN_WARNING("You require a better grab to do this.")
+		to_chat(attacker, SPAN_WARNING("You require a better grab to do this."))
 		return
 	if(target.grab_joint(attacker, target_zone))
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
@@ -121,10 +121,10 @@
 
 /obj/item/weapon/grab/proc/pin_down(mob/target, mob/attacker)
 	if(state < GRAB_AGGRESSIVE)
-		attacker << SPAN_WARNING("You require a better grab to do this.")
+		to_chat(attacker, SPAN_WARNING("You require a better grab to do this."))
 		return
 	if(force_down)
-		attacker << SPAN_WARNING("You are already pinning [target] to the ground.")
+		to_chat(attacker, SPAN_WARNING("You are already pinning [target] to the ground."))
 
 	attacker.visible_message(SPAN_DANGER("[attacker] starts forcing [target] to the ground!"))
 	if(do_after(attacker, 20, progress=0) && target)

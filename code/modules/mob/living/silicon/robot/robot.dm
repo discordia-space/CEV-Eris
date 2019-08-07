@@ -887,7 +887,7 @@
 			return 1
 
 		if(activated(O))
-			src << "Already activated"
+			to_chat(src, "Already activated")
 			return 1
 		if(!module_state_1)
 			module_state_1 = O

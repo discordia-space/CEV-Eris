@@ -35,10 +35,10 @@
 			if(construct_op == 0 || construct_op == 1)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					if(construct_op == 0)
-						user << "You unfasten the bolts."
+						to_chat(user, "You unfasten the bolts.")
 						construct_op ++
 					else if(construct_op == 1)
-						user << "You fasten the bolts."
+						to_chat(user, "You fasten the bolts.")
 						construct_op --
 					return
 				return
@@ -46,7 +46,7 @@
 		if(QUALITY_WIRE_CUTTING)
 			if(construct_op == 2)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << "You remove the cables."
+					to_chat(user, "You remove the cables.")
 					construct_op ++
 					var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( user.loc )
 					A.amount = 5
@@ -61,9 +61,9 @@
 
 		if(QUALITY_PRYING)
 			if(construct_op == 3)
-				user << "You begin prying out the circuit board other components..."
+				to_chat(user, "You begin prying out the circuit board other components...")
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << "You finish prying out the components."
+					to_chat(user, "You finish prying out the components.")
 
 					// Drop all the component stuff
 					if(contents.len > 0)
@@ -98,10 +98,10 @@
 			if(construct_op == 1 || construct_op == 2)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					if(construct_op == 1)
-						user << "You dislodge the external plating."
+						to_chat(user, "You dislodge the external plating.")
 						construct_op ++
 					else if(construct_op == 2)
-						user << "You secure the external plating."
+						to_chat(user, "You secure the external plating.")
 						construct_op --
 					return
 				return
@@ -116,20 +116,20 @@
 		if (integrity < 100)               								//Damaged, let's repair!
 			if (T.use(1))
 				integrity = between(0, integrity + rand(10,20), 100)
-				usr << "You apply the Nanopaste to [src], repairing some of the damage."
+				to_chat(usr, "You apply the Nanopaste to [src], repairing some of the damage.")
 		else
-			usr << "This machine is already in perfect condition."
+			to_chat(usr, "This machine is already in perfect condition.")
 		return
 
 	if(istype(I, /obj/item/stack/cable_coil))
 		if(construct_op == 3)
 			var/obj/item/stack/cable_coil/A = I
 			if (A.use(5))
-				user << SPAN_NOTICE("You insert the cables.")
+				to_chat(user, SPAN_NOTICE("You insert the cables."))
 				construct_op--
 				stat &= ~BROKEN // the machine's not borked anymore!
 			else
-				user << SPAN_WARNING("You need five coils of wire for this.")
+				to_chat(user, SPAN_WARNING("You need five coils of wire for this."))
 
 
 /obj/machinery/telecomms/attack_ai(var/mob/user as mob)

@@ -22,7 +22,7 @@
 /obj/item/weapon/wire/attack_self(mob/user as mob)
 	if (src.laying)
 		src.laying = 0
-		user << SPAN_NOTICE("You're done laying wire!")
+		to_chat(user, SPAN_NOTICE("You're done laying wire!"))
 	else
-		user << SPAN_WARNING("You are not using this to lay wire...")
+		to_chat(user, SPAN_WARNING("You are not using this to lay wire..."))
 	return

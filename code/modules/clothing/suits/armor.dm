@@ -157,11 +157,11 @@
 /obj/item/clothing/suit/armor/reactive/attack_self(mob/user as mob)
 	src.active = !( src.active )
 	if (src.active)
-		user << "\blue The reactive armor is now active."
+		to_chat(user, "\blue The reactive armor is now active.")
 		src.icon_state = "reactive"
 		src.item_state = "reactive"
 	else
-		user << "\blue The reactive armor is now inactive."
+		to_chat(user, "\blue The reactive armor is now inactive.")
 		src.icon_state = "reactiveoff"
 		src.item_state = "reactiveoff"
 		src.add_fingerprint(user)
@@ -205,7 +205,7 @@
 	if(!holster.holstered)
 		var/obj/item/W = usr.get_active_hand()
 		if(!istype(W, /obj/item))
-			usr << SPAN_WARNING("You need your gun equiped to holster it.")
+			to_chat(usr, SPAN_WARNING("You need your gun equiped to holster it."))
 			return
 		holster.holster(W, usr)
 	else

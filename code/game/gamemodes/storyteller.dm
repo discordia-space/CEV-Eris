@@ -93,20 +93,20 @@ GLOBAL_DATUM(storyteller, /datum/storyteller)
 
 	if(announce)
 		if(!engineer && !command)
-			world << "<b><font color='[tcol]'>A command officer and technomancer are required to start round.</font></b>"
+			to_chat(world, "<b><font color='[tcol]'>A command officer and technomancer are required to start round.</font></b>")
 		else if(!engineer)
-			world << "<b><font color='[tcol]'>Technomancer is required to start round.</font></b>"
+			to_chat(world, "<b><font color='[tcol]'>Technomancer is required to start round.</font></b>")
 		else if(!command)
-			world << "<b><font color='[tcol]'>A command officer is required to start round.</font></b>"
+			to_chat(world, "<b><font color='[tcol]'>A command officer is required to start round.</font></b>")
 
 	if(GLOB.player_list.len <= 10)
-		world << "<i>But there's less than 10 players, so this requirement will be ignored.</i>"
+		to_chat(world, "<i>But there's less than 10 players, so this requirement will be ignored.</i>")
 		return TRUE
 
 	return FALSE
 
 /datum/storyteller/proc/announce()
-	world << "<b><font size=3>Storyteller is [name].</font> <br>[welcome]</b>"
+	to_chat(world, "<b><font size=3>Storyteller is [name].</font> <br>[welcome]</b>")
 
 /datum/storyteller/proc/set_up()
 	build_event_pools()

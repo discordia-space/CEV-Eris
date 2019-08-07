@@ -272,18 +272,18 @@
 	. = ..(user)
 
 	if(!damage)
-		user << SPAN_NOTICE("It looks fully intact.")
+		to_chat(user, SPAN_NOTICE("It looks fully intact."))
 	else
 		var/dam = damage / material.integrity
 		if(dam <= 0.3)
-			user << SPAN_WARNING("It looks slightly damaged.")
+			to_chat(user, SPAN_WARNING("It looks slightly damaged."))
 		else if(dam <= 0.6)
-			user << SPAN_WARNING("It looks moderately damaged.")
+			to_chat(user, SPAN_WARNING("It looks moderately damaged."))
 		else
-			user << SPAN_DANGER("It looks heavily damaged.")
+			to_chat(user, SPAN_DANGER("It looks heavily damaged."))
 
 	if(locate(/obj/effect/overlay/wallrot) in src)
-		user << SPAN_WARNING("There is fungus growing on [src].")
+		to_chat(user, SPAN_WARNING("There is fungus growing on [src]."))
 
 //Damage
 
@@ -397,7 +397,7 @@
 	var/turf/simulated/floor/F = src
 	F.burn_tile()
 	F.icon_state = "wall_thermite"
-	user << SPAN_WARNING("The thermite starts melting through the wall.")
+	to_chat(user, SPAN_WARNING("The thermite starts melting through the wall."))
 
 	spawn(100)
 		if(O)

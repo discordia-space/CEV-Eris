@@ -25,12 +25,12 @@
 	update_icon()
 
 /turf/simulated/wall/proc/fail_smash(var/mob/user)
-	user << SPAN_DANGER("You smash against the wall!")
+	to_chat(user, SPAN_DANGER("You smash against the wall!"))
 	user.do_attack_animation(src)
 	take_damage(rand(25,75))
 
 /turf/simulated/wall/proc/success_smash(var/mob/user)
-	user << SPAN_DANGER("You smash through the wall!")
+	to_chat(user, SPAN_DANGER("You smash through the wall!"))
 	user.do_attack_animation(src)
 	spawn(1)
 		dismantle_wall(1)
@@ -39,16 +39,16 @@
 
 	if(rotting)
 		if(reinf_material)
-			user << SPAN_DANGER("\The [reinf_material.display_name] feels porous and crumbly.")
+			to_chat(user, SPAN_DANGER("\The [reinf_material.display_name] feels porous and crumbly."))
 		else
-			user << SPAN_DANGER("\The [material.display_name] crumbles under your touch!")
+			to_chat(user, SPAN_DANGER("\The [material.display_name] crumbles under your touch!"))
 			dismantle_wall()
 			return 1
 
 	if(..()) return 1
 
 	if(!can_open)
-		user << SPAN_NOTICE("You push the wall, but nothing happens.")
+		to_chat(user, SPAN_NOTICE("You push the wall, but nothing happens."))
 		playsound(src, hitsound, 25, 1)
 		user.do_attack_animation(src)
 	else
@@ -97,7 +97,7 @@
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if (!user.)
-		user << SPAN_WARNING("You don't have the dexterity to do this!")
+		to_chat(user, SPAN_WARNING("You don't have the dexterity to do this!"))
 		return
 
 	//get the user's location
@@ -125,90 +125,90 @@
 
 		if(QUALITY_BOLT_TURNING)
 			if(construction_stage == 2)
-				user << SPAN_NOTICE("You begin removing the bolts anchoring the support rods...")
+				to_chat(user, SPAN_NOTICE("You begin removing the bolts anchoring the support rods..."))
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					construction_stage = 1
 					update_icon()
-					user << SPAN_NOTICE("You remove the bolts anchoring the support rods.")
+					to_chat(user, SPAN_NOTICE("You remove the bolts anchoring the support rods."))
 					return
 			return
 
 		if(QUALITY_WELDING)
 			if(locate(/obj/effect/overlay/wallrot) in src)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You burn away the fungi with \the [I].")
+					to_chat(user, SPAN_NOTICE("You burn away the fungi with \the [I]."))
 					for(var/obj/effect/overlay/wallrot/WR in src)
 						qdel(WR)
 					return
 			if(thermite)
 				if(I.use_tool(user, src, WORKTIME_INSTANT,tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You ignite the termit with the [I]!")
+					to_chat(user, SPAN_NOTICE("You ignite the termit with the [I]!"))
 					thermitemelt(user)
 					return
 			if(damage)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You repair the damage to [src].")
+					to_chat(user, SPAN_NOTICE("You repair the damage to [src]."))
 					clear_bulletholes()
 					take_damage(-damage)
 					return
 			if(isnull(construction_stage) || !reinf_material)
-				user << SPAN_NOTICE("You begin removing the outer plating...")
+				to_chat(user, SPAN_NOTICE("You begin removing the outer plating..."))
 				if(I.use_tool(user, src, WORKTIME_LONG, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You remove the outer plating.")
+					to_chat(user, SPAN_NOTICE("You remove the outer plating."))
 					dismantle_wall()
 					user.visible_message(SPAN_WARNING("The wall was torn open by [user]!"))
 					return
 			if(construction_stage == 4)
-				user << SPAN_NOTICE("You begin removing the outer plating...")
+				to_chat(user, SPAN_NOTICE("You begin removing the outer plating..."))
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					construction_stage = 3
 					update_icon()
-					user << SPAN_NOTICE("You press firmly on the cover, dislodging it.")
+					to_chat(user, SPAN_NOTICE("You press firmly on the cover, dislodging it."))
 					return
 			if(construction_stage == 1)
-				user << SPAN_NOTICE("You begin removing the support rods...")
+				to_chat(user, SPAN_NOTICE("You begin removing the support rods..."))
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					construction_stage = 0
 					update_icon()
 					new /obj/item/stack/rods(user.loc)
-					user << SPAN_NOTICE("The support rods drop out as you cut them loose from the frame.")
+					to_chat(user, SPAN_NOTICE("The support rods drop out as you cut them loose from the frame."))
 					return
 			return
 
 		if(QUALITY_PRYING)
 			if(construction_stage == 3)
-				user << SPAN_NOTICE("You begin to prying off the cover...")
+				to_chat(user, SPAN_NOTICE("You begin to prying off the cover..."))
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					construction_stage = 2
 					update_icon()
-					user << SPAN_NOTICE("You pry off the cover.")
+					to_chat(user, SPAN_NOTICE("You pry off the cover."))
 					return
 			if(construction_stage == 0)
-				user << SPAN_NOTICE("You struggle to pry off the outer sheath...")
+				to_chat(user, SPAN_NOTICE("You struggle to pry off the outer sheath..."))
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You pry off the outer sheath.")
+					to_chat(user, SPAN_NOTICE("You pry off the outer sheath."))
 					dismantle_wall()
 					return
 			return
 
 		if(QUALITY_WIRE_CUTTING)
 			if(construction_stage == 6)
-				user << SPAN_NOTICE("You begin removing the outer grille...")
+				to_chat(user, SPAN_NOTICE("You begin removing the outer grille..."))
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					construction_stage = 5
 					new /obj/item/stack/rods(user.loc)
-					user << SPAN_NOTICE("You removing the outer grille.")
+					to_chat(user, SPAN_NOTICE("You removing the outer grille."))
 					update_icon()
 					return
 			return
 
 		if(QUALITY_SCREW_DRIVING)
 			if(construction_stage == 5)
-				user << SPAN_NOTICE("You begin removing the support lines...")
+				to_chat(user, SPAN_NOTICE("You begin removing the support lines..."))
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					construction_stage = 4
 					update_icon()
-					user << SPAN_NOTICE("You remove the support lines.")
+					to_chat(user, SPAN_NOTICE("You remove the support lines."))
 					return
 			return
 
@@ -222,7 +222,7 @@
 				O.use(1)
 				construction_stage = 6
 				update_icon()
-				user << SPAN_NOTICE("You replace the outer grille.")
+				to_chat(user, SPAN_NOTICE("You replace the outer grille."))
 				return
 
 	if(istype(I,/obj/item/frame))

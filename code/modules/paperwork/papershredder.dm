@@ -28,14 +28,14 @@
 				paper_result = shred_amounts[shred_type]
 		if(paper_result)
 			if(paperamount == max_paper)
-				user << SPAN_WARNING("\The [src] is full; please empty it before you continue.")
+				to_chat(user, SPAN_WARNING("\The [src] is full; please empty it before you continue."))
 				return
 			paperamount += paper_result
 			user.drop_from_inventory(W)
 			qdel(W)
 			playsound(src.loc, 'sound/items/pshred.ogg', 75, 1)
 			if(paperamount > max_paper)
-				user <<SPAN_DANGER("\The [src] was too full, and shredded paper goes everywhere!")
+				to_chat(user, SPAN_DANGER("\The [src] was too full, and shredded paper goes everywhere!"))
 				for(var/i=(paperamount-max_paper);i>0;i--)
 					var/obj/item/weapon/shreddedp/SP = get_shredded_paper()
 					SP.loc = get_turf(src)
@@ -54,7 +54,7 @@
 		return
 
 	if(!paperamount)
-		usr << SPAN_NOTICE("\The [src] is empty.")
+		to_chat(usr, SPAN_NOTICE("\The [src] is empty."))
 		return
 
 	empty_bin(usr)
@@ -66,7 +66,7 @@
 		empty_into = null
 
 	if(empty_into && empty_into.contents.len >= empty_into.storage_slots)
-		user << SPAN_NOTICE("\The [empty_into] is full.")
+		to_chat(user, SPAN_NOTICE("\The [empty_into] is full."))
 		return
 
 	while(paperamount)
@@ -78,12 +78,12 @@
 				break
 	if(empty_into)
 		if(paperamount)
-			user << SPAN_NOTICE("You fill \the [empty_into] with as much shredded paper as it will carry.")
+			to_chat(user, SPAN_NOTICE("You fill \the [empty_into] with as much shredded paper as it will carry."))
 		else
-			user << SPAN_NOTICE("You empty \the [src] into \the [empty_into].")
+			to_chat(user, SPAN_NOTICE("You empty \the [src] into \the [empty_into]."))
 
 	else
-		user << SPAN_NOTICE("You empty \the [src].")
+		to_chat(user, SPAN_NOTICE("You empty \the [src]."))
 	update_icon()
 
 /obj/machinery/papershredder/proc/get_shredded_paper()
@@ -105,12 +105,12 @@
 	if(user.restrained())
 		return
 	if(!P.lit)
-		user << SPAN_WARNING("\The [P] is not lit.")
+		to_chat(user, SPAN_WARNING("\The [P] is not lit."))
 		return
 	user.visible_message(SPAN_WARNING("\The [user] holds \the [P] up to \the [src]. It looks like \he's trying to burn it!"), \
 		SPAN_WARNING("You hold \the [P] up to \the [src], burning it slowly."))
 	if(!do_after(user,20, src))
-		user << SPAN_WARNING("You must hold \the [P] steady to burn \the [src].")
+		to_chat(user, SPAN_WARNING("You must hold \the [P] steady to burn \the [src]."))
 		return
 	user.visible_message(SPAN_DANGER("\The [user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap."), \
 		SPAN_DANGER("You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap."))

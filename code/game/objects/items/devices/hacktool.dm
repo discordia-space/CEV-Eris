@@ -27,7 +27,7 @@
 	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_COG))
 			in_hack_mode = !in_hack_mode
-			user << SPAN_NOTICE("You [in_hack_mode? "enable" : "disable"] the hach mode.")
+			to_chat(user, SPAN_NOTICE("You [in_hack_mode? "enable" : "disable"] the hach mode."))
 	else
 		..()
 
@@ -45,27 +45,27 @@
 
 /obj/item/weapon/tool/multitool/hacktool/proc/attempt_hack(var/mob/user, var/atom/target)
 	if(is_hacking)
-		user << SPAN_WARNING("You are already hacking!")
+		to_chat(user, SPAN_WARNING("You are already hacking!"))
 		return 0
 	if(!is_type_in_list(target, supported_types))
-		user << "\icon[src] <span class='warning'>Unable to hack this target!</span>"
+		to_chat(user, "\icon[src] <span class='warning'>Unable to hack this target!</span>")
 		return 0
 	var/found = known_targets.Find(target)
 	if(found)
 		known_targets.Swap(1, found)	// Move the last hacked item first
 		return 1
 
-	user << SPAN_NOTICE("You begin hacking \the [target]...")
+	to_chat(user, SPAN_NOTICE("You begin hacking \the [target]..."))
 	is_hacking = 1
 	// On average hackin takes ~30 seconds. Fairly small random span to avoid people simply aborting and trying again
 	var/hack_result = do_after(user, (20 SECONDS + rand(0, 10 SECONDS) + rand(0, 10 SECONDS)), progress = 0)
 	is_hacking = 0
 
 	if(hack_result && in_hack_mode)
-		user << SPAN_NOTICE("Your hacking attempt was succesful!")
+		to_chat(user, SPAN_NOTICE("Your hacking attempt was succesful!"))
 		playsound(src.loc, 'sound/piano/A#6.ogg', 75)
 	else
-		user << SPAN_WARNING("Your hacking attempt failed!")
+		to_chat(user, SPAN_WARNING("Your hacking attempt failed!"))
 		return 0
 
 	known_targets.Insert(1, target)	// Insert the newly hacked target first,

@@ -21,5 +21,5 @@
 		if(O)
 			scanner_image = image(icon, loc = get_turf(src), icon_state = (O.scan_icon ? O.scan_icon : icon_state))
 		else
-			world << "No ore data for [src]!"
+			to_chat(world, "No ore data for [src]!")
 	return scanner_image

@@ -30,13 +30,13 @@
 	if(!usr || usr.stat || usr.lying)	return
 
 	if(scan)
-		usr << "You remove \the [scan] from \the [src]."
+		to_chat(usr, "You remove \the [scan] from \the [src].")
 		scan.loc = get_turf(src)
 		if(!usr.get_active_hand() && ishuman(usr))
 			usr.put_in_hands(scan)
 		scan = null
 	else
-		usr << "There is nothing to remove from the console."
+		to_chat(usr, "There is nothing to remove from the console.")
 	return
 
 /obj/machinery/computer/secure_data/attackby(obj/item/O as obj, user as mob)
@@ -44,7 +44,7 @@
 		usr.drop_item()
 		O.loc = src
 		scan = O
-		user << "You insert [O]."
+		to_chat(user, "You insert [O].")
 	..()
 
 /obj/machinery/computer/secure_data/attack_ai(mob/user as mob)
@@ -58,7 +58,7 @@
 
 /obj/machinery/computer/secure_data/ui_interact(user)
 	if (src.z > 6)
-		user << "<span class='warning'>Unable to establish a connection:</span> You're too far away from the station!"
+		to_chat(user, "<span class='warning'>Unable to establish a connection:</span> You're too far away from the station!")
 		return
 
 	var/dat

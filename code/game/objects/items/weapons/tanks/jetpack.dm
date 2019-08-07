@@ -92,9 +92,9 @@
 
 /obj/item/weapon/tank/jetpack/examine(mob/user)
 	. = ..()
-	user << "The pressure gauge reads: [SPAN_NOTICE(get_gas().return_pressure())] kPa"
+	to_chat(user, "The pressure gauge reads: [SPAN_NOTICE(get_gas().return_pressure())] kPa")
 	if(air_contents.total_moles < 5)
-		user << SPAN_DANGER("The gauge on \the [src] indicates you are almost out of gas!")
+		to_chat(user, SPAN_DANGER("The gauge on \the [src] indicates you are almost out of gas!"))
 		playsound(user, 'sound/effects/alert.ogg', 50, 1)
 
 
@@ -118,19 +118,19 @@
 /obj/item/weapon/tank/jetpack/proc/enable_stabilizer()
 	if (stabilize(usr, usr.l_move_time, TRUE))
 		stabilization_on = TRUE
-		usr << "You toggle the stabilization [stabilization_on? "on":"off"]."
+		to_chat(usr, "You toggle the stabilization [stabilization_on? "on":"off"].")
 		return TRUE
 	else
 		if (!on)
-			usr << SPAN_WARNING("The [src] must be enabled first!")
+			to_chat(usr, SPAN_WARNING("The [src] must be enabled first!"))
 		else
-			usr << SPAN_WARNING("The [src] doesnt have enough gas to enable the stabiliser.")
+			to_chat(usr, SPAN_WARNING("The [src] doesnt have enough gas to enable the stabiliser."))
 		return FALSE
 
 
 /obj/item/weapon/tank/jetpack/proc/disable_stabilizer()
 	stabilization_on = FALSE
-	usr << "You toggle the stabilization [stabilization_on? "on":"off"]."
+	to_chat(usr, "You toggle the stabilization [stabilization_on? "on":"off"].")
 
 	//If your jetpack cuts out, you'll fall in a gravity area. Lets trigger that
 	var/atom/movable/A = get_toplevel_atom() //Get what this jetpack is attached to, usually a mob or object
@@ -171,7 +171,7 @@
 		var/mob/M = usr
 		M.update_inv_back()
 		M.update_action_buttons()
-		usr << "You toggle the thrusters [on? "on":"off"]."
+		to_chat(usr, "You toggle the thrusters [on? "on":"off"].")
 	return TRUE
 
 
@@ -183,7 +183,7 @@
 		var/mob/M = usr
 		M.update_inv_back()
 		M.update_action_buttons()
-		usr << "You toggle the thrusters [on? "on":"off"]."
+		to_chat(usr, "You toggle the thrusters [on? "on":"off"].")
 
 
 
@@ -464,7 +464,7 @@
 	//We now start compressing.
 	if (!compressing)
 		playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
-		R << SPAN_NOTICE("Your [src] clicks as it starts drawing and compressing air to refill the tank")
+		to_chat(R, SPAN_NOTICE("Your [src] clicks as it starts drawing and compressing air to refill the tank"))
 
 	compressing = TRUE
 	//Setting this compressing var to true will cause the component to draw power
@@ -482,7 +482,7 @@
 	if (compressing)
 		playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 		var/mob/living/silicon/robot/R = get_holding_mob()
-		R << SPAN_NOTICE("Your [src] clicks as its internal compressor shuts off")
+		to_chat(R, SPAN_NOTICE("Your [src] clicks as its internal compressor shuts off"))
 	compressing = FALSE
 
 	if (complete)

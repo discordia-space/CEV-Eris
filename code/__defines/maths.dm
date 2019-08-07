@@ -9,10 +9,12 @@
 
 #define SHORT_REAL_LIMIT 16777216
 
+#define SQRTWO 1.414
+
 #define PERCENT(val) (round((val)*100, 0.1))
 #define CLAMP01(x) (CLAMP(x, 0, 1))
 
-#define SIGN(x) ( (x)!=0 ? (x) / abs(x) : 0 )
+#define SIGN(x) ( x < 0 ? -1  : 1 )
 
 #define CEILING(x, y) ( -round(-(x) / (y)) * (y) )
 

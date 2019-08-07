@@ -113,13 +113,13 @@
 		return
 	if(hud in src)
 		if(user.equip_to_slot_if_possible(hud, slot_glasses))
-			user << "You enable security hud on [src]."
+			to_chat(user, "You enable security hud on [src].")
 			update_icon()
 	else
 		if(ismob(hud.loc))
 			var/mob/hud_loc = hud.loc
 			hud_loc.drop_from_inventory(hud, src)
-			user << "You disable security hud on [src]."
+			to_chat(user, "You disable security hud on [src].")
 		hud.forceMove(src)
 		update_icon()
 	usr.update_action_buttons()
@@ -130,7 +130,7 @@
 		if(ismob(hud.loc))
 			var/mob/hud_loc = hud.loc
 			hud_loc.drop_from_inventory(hud, src)
-			hud_loc << "[hud] automaticly retract in [src]."
+			to_chat(hud_loc, "[hud] automaticly retract in [src].")
 		hud.forceMove(src)
 		update_icon()
 

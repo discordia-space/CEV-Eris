@@ -30,7 +30,7 @@ SUBSYSTEM_DEF(job)
 		occupations_by_name[job.title] = job
 
 	if(!occupations.len)
-		world << SPAN_WARNING("Error setting up jobs, no job datums found!")
+		to_chat(world, SPAN_WARNING("Error setting up jobs, no job datums found!"))
 		return FALSE
 
 	return TRUE
@@ -325,7 +325,7 @@ SUBSYSTEM_DEF(job)
 		spawn_in_storage = EquipCustomLoadout(H, job)
 
 	else
-		H << "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator."
+		to_chat(H, "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator.")
 
 	H.job = rank
 
@@ -373,13 +373,13 @@ SUBSYSTEM_DEF(job)
 			W.buckled_mob = H
 			W.add_fingerprint(H)
 
-	H << "<B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B>"
+	to_chat(H, "<B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B>")
 
 	if(job.supervisors)
-		H << "<b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>"
+		to_chat(H, "<b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>")
 
 	if(job.req_admin_notify)
-		H << "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>"
+		to_chat(H, "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>")
 
 	//Gives glasses to the vision impaired
 	if(H.disabilities & NEARSIGHTED)
@@ -544,7 +544,7 @@ proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
 			if(SP.can_spawn(H, rank))
 				return SP
 			else
-				to_chat(H, SPAN_WARNING("Unable to spawn you at [SP.name]."))// you will be assigned default one which is \"[SP.display_name]\".")
+				to_chat(H, SPAN_WARNING("Unable to spawn you at [SP.name].")) // you will be assigned default one which is \"[SP.display_name]\"."
 
 	// No spawn point? Something is fucked.
 	// Pick the default one.

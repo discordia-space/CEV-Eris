@@ -236,8 +236,8 @@
 #define random_id(key,min_id,max_id) uniqueness_repository.Generate(/datum/uniqueness_generator/id_random, key, min_id, max_id)
 
 #define sound_to(target, sound)                             target << sound
-#define to_chat(target, message)                            target << message
-#define to_world(message)                                   world << message
+//#define to_chat(target, message)                          target << message
+#define to_world(message)                                   to_chat(world, message)
 #define to_world_log(message)                               log_world(message)
 #define show_browser(target, browser_content, browser_name) target << browse(browser_content, browser_name)
 #define to_file(file_entry, source_var)                     file_entry << source_var
@@ -256,3 +256,5 @@
 
 // Spawns multiple objects of the same type
 #define cast_new(type, num, args...) if((num) == 1) { new type(args) } else { for(var/i in 1 to num) { new type(args) } }
+
+#define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I, /client) ? I : (istype(I, /datum/mind) ? I:current?:client : null)))

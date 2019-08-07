@@ -114,7 +114,7 @@
 
 /obj/machinery/mecha_part_fabricator/attackby(var/obj/item/I, var/mob/user)
 	if(busy)
-		user << SPAN_NOTICE("\icon[src]\The [src] is busy. Please wait for completion of previous operation.")
+		to_chat(user, SPAN_NOTICE("\icon[src]\The [src] is busy. Please wait for completion of previous operation."))
 		return TRUE
 
 	if(default_deconstruction(I, user))
@@ -133,7 +133,7 @@
 		return
 
 	if(!istype(S, /obj/item/stack/material))
-		user << SPAN_NOTICE("You cannot insert this item into \the [src]!")
+		to_chat(user, SPAN_NOTICE("You cannot insert this item into \the [src]!"))
 		return
 
 	var/material = S.get_material_name()
@@ -142,7 +142,7 @@
 		return ..()
 
 	if(materials[material] >= res_max_amount)
-		user << "\icon[src]\The [src] cannot hold more [material]."
+		to_chat(user, "\icon[src]\The [src] cannot hold more [material].")
 
 	var/amount = round(input("How many sheets do you want to add?") as num)
 
@@ -161,7 +161,7 @@
 	if(do_after(usr, 16, src))
 		res_load(material)
 		if(S.use(amount))
-			user << SPAN_NOTICE("You add [amount] [material] sheet\s to \the [src].")
+			to_chat(user, SPAN_NOTICE("You add [amount] [material] sheet\s to \the [src]."))
 			if(!(material in materials))
 				materials[material] = 0
 			materials[material] += amount

@@ -189,7 +189,7 @@ see multiz/movement.dm for some info.
 			return
 		var/obj/item/stack/rods/R = C
 		if (R.use(1))
-			user << SPAN_NOTICE("Constructing support lattice ...")
+			to_chat(user, SPAN_NOTICE("Constructing support lattice ..."))
 			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
 			ReplaceWithLattice()
 		return
@@ -209,7 +209,7 @@ see multiz/movement.dm for some info.
 			if (S.get_amount() < 4)
 				return
 
-			user << SPAN_NOTICE("You start constructing underplating on the lattice.")
+			to_chat(user, SPAN_NOTICE("You start constructing underplating on the lattice."))
 			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
 			if(do_after(user,80, src))
 				qdel(L)
@@ -217,7 +217,7 @@ see multiz/movement.dm for some info.
 				ChangeTurf(/turf/simulated/floor/plating/under)
 			return
 		else
-			user << SPAN_WARNING("The plating is going to need some support.")
+			to_chat(user, SPAN_WARNING("The plating is going to need some support."))
 
 	if(istype(C, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/coil = C

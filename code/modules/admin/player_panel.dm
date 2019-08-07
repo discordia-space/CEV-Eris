@@ -324,5 +324,5 @@
 	if(get_storyteller())
 		get_storyteller().storyteller_panel()
 	else
-		usr << SPAN_WARNING("There is no storyteller.")
+		to_chat(usr, SPAN_WARNING("There is no storyteller."))
 

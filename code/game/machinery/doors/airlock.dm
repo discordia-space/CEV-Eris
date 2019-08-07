@@ -535,7 +535,7 @@ There are 9 wires.
 		src.electrified_until = duration == -1 ? -1 : world.time + SecondsToTicks(duration)
 
 	if(feedback && message)
-		usr << message
+		to_chat(usr, message)
 
 /obj/machinery/door/airlock/proc/set_idscan(var/activate, var/feedback = 0)
 	var/message = ""
@@ -549,7 +549,7 @@ There are 9 wires.
 		message = "IdScan feature has been disabled."
 
 	if(feedback && message)
-		usr << message
+		to_chat(usr, message)
 
 /obj/machinery/door/airlock/proc/set_safeties(var/activate, var/feedback = 0)
 	var/message = ""
@@ -562,7 +562,7 @@ There are 9 wires.
 		safe = 1
 
 	if(feedback && message)
-		usr << message
+		to_chat(usr, message)
 
 // shock user with probability prb (if all connections & power are working)
 // returns 1 if shocked, 0 otherwise
@@ -797,43 +797,43 @@ There are 9 wires.
 		src.aiHacking=1
 		spawn(20)
 			//TODO: Make this take a minute
-			user << "Airlock AI control has been blocked. Beginning fault-detection."
+			to_chat(user, "Airlock AI control has been blocked. Beginning fault-detection.")
 			sleep(50)
 			if(src.canAIControl())
-				user << "Alert cancelled. Airlock control has been restored without our assistance."
+				to_chat(user, "Alert cancelled. Airlock control has been restored without our assistance.")
 				src.aiHacking=0
 				return
 			else if(!src.canAIHack(user))
-				user << "We've lost our connection! Unable to hack airlock."
+				to_chat(user, "We've lost our connection! Unable to hack airlock.")
 				src.aiHacking=0
 				return
-			user << "Fault confirmed: airlock control wire disabled or cut."
+			to_chat(user, "Fault confirmed: airlock control wire disabled or cut.")
 			sleep(20)
-			user << "Attempting to hack into airlock. This may take some time."
+			to_chat(user, "Attempting to hack into airlock. This may take some time.")
 			sleep(200)
 			if(src.canAIControl())
-				user << "Alert cancelled. Airlock control has been restored without our assistance."
+				to_chat(user, "Alert cancelled. Airlock control has been restored without our assistance.")
 				src.aiHacking=0
 				return
 			else if(!src.canAIHack(user))
-				user << "We've lost our connection! Unable to hack airlock."
+				to_chat(user, "We've lost our connection! Unable to hack airlock.")
 				src.aiHacking=0
 				return
-			user << "Upload access confirmed. Loading control program into airlock software."
+			to_chat(user, "Upload access confirmed. Loading control program into airlock software.")
 			sleep(170)
 			if(src.canAIControl())
-				user << "Alert cancelled. Airlock control has been restored without our assistance."
+				to_chat(user, "Alert cancelled. Airlock control has been restored without our assistance.")
 				src.aiHacking=0
 				return
 			else if(!src.canAIHack(user))
-				user << "We've lost our connection! Unable to hack airlock."
+				to_chat(user, "We've lost our connection! Unable to hack airlock.")
 				src.aiHacking=0
 				return
-			user << "Transfer complete. Forcing airlock to execute program."
+			to_chat(user, "Transfer complete. Forcing airlock to execute program.")
 			sleep(50)
 			//disable blocked control
 			src.aiControlDisabled = 2
-			user << "Receiving control information from airlock."
+			to_chat(user, "Receiving control information from airlock.")
 			sleep(10)
 			//bring up airlock dialog
 			src.aiHacking = 0
@@ -887,16 +887,16 @@ There are 9 wires.
 
 /obj/machinery/door/airlock/CanUseTopic(var/mob/user)
 	if(operating < 0) //emagged
-		user << SPAN_WARNING("Unable to interface: Internal error.")
+		to_chat(user, SPAN_WARNING("Unable to interface: Internal error."))
 		return STATUS_CLOSE
 	if(issilicon(user) && !src.canAIControl())
 		if(src.canAIHack(user))
 			src.hack(user)
 		else
 			if (src.isAllPowerLoss()) //don't really like how this gets checked a second time, but not sure how else to do it.
-				user << SPAN_WARNING("Unable to interface: Connection timed out.")
+				to_chat(user, SPAN_WARNING("Unable to interface: Connection timed out."))
 			else
-				user << SPAN_WARNING("Unable to interface: Connection refused.")
+				to_chat(user, SPAN_WARNING("Unable to interface: Connection refused."))
 		return STATUS_CLOSE
 
 	return ..()
@@ -917,20 +917,20 @@ There are 9 wires.
 				src.loseBackupPower()
 		if("bolts")
 			if(src.isWireCut(AIRLOCK_WIRE_DOOR_BOLTS))
-				usr << "The door bolt control wire is cut - Door bolts permanently dropped."
+				to_chat(usr, "The door bolt control wire is cut - Door bolts permanently dropped.")
 			else if(activate && src.lock())
-				usr << "The door bolts have been dropped."
+				to_chat(usr, "The door bolts have been dropped.")
 			else if(!activate && src.unlock())
-				usr << "The door bolts have been raised."
+				to_chat(usr, "The door bolts have been raised.")
 		if("electrify_temporary")
 			electrify(30 * activate, 1)
 		if("electrify_permanently")
 			electrify(-1 * activate, 1)
 		if("open")
 			if(src.welded)
-				usr << text("The airlock has been welded shut!")
+				to_chat(usr, text("The airlock has been welded shut!"))
 			else if(src.locked)
-				usr << text("The door bolts are down!")
+				to_chat(usr, text("The door bolts are down!"))
 			else if(activate && density)
 				open()
 			else if(!activate && !density)
@@ -940,7 +940,7 @@ There are 9 wires.
 		if("timing")
 			// Door speed control
 			if(src.isWireCut(AIRLOCK_WIRE_SPEED))
-				usr << text("The timing wire is cut - Cannot alter timing.")
+				to_chat(usr, text("The timing wire is cut - Cannot alter timing."))
 			else if (activate && src.normalspeed)
 				normalspeed = 0
 			else if (!activate && !src.normalspeed)
@@ -948,13 +948,13 @@ There are 9 wires.
 		if("lights")
 			// Bolt lights
 			if(src.isWireCut(AIRLOCK_WIRE_LIGHT))
-				usr << "The bolt lights wire is cut - The door bolt lights are permanently disabled."
+				to_chat(usr, "The bolt lights wire is cut - The door bolt lights are permanently disabled.")
 			else if (!activate && src.lights)
 				lights = 0
-				usr << "The door bolt lights have been disabled."
+				to_chat(usr, "The door bolt lights have been disabled.")
 			else if (activate && !src.lights)
 				lights = 1
-				usr << "The door bolt lights have been enabled."
+				to_chat(usr, "The door bolt lights have been enabled.")
 
 	update_icon()
 	return 1
@@ -979,7 +979,7 @@ There are 9 wires.
 			if(!repairing)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY,  required_stat = list(STAT_MEC, STAT_ROB)))
 					if(src.p_open && (operating < 0 || (!operating && welded && !src.arePowerSystemsOn() && density && (!src.locked || (stat & BROKEN)))) )
-						user << SPAN_NOTICE("You removed the airlock electronics!")
+						to_chat(user, SPAN_NOTICE("You removed the airlock electronics!"))
 
 						var/obj/structure/door_assembly/da = new assembly_type(src.loc)
 						if (istype(da, /obj/structure/door_assembly/multi_tile))
@@ -1006,14 +1006,16 @@ There are 9 wires.
 						qdel(src)
 						return
 					else if(arePowerSystemsOn())
-						user << SPAN_NOTICE("The airlock's motors resist your efforts to force it.")
+						to_chat(user, SPAN_NOTICE("The airlock's motors resist your efforts to force it."))
 					else if(locked)
-						user << SPAN_NOTICE("The airlock's bolts prevent it from being forced.")
+						to_chat(user, SPAN_NOTICE("The airlock's bolts prevent it from being forced."))
 					else
 						if(density)
 							spawn(0)	open(I)
 						else
 							spawn(0)	close(I)
+			else
+				..()
 			return
 
 		if(QUALITY_SCREW_DRIVING)
@@ -1021,7 +1023,7 @@ There are 9 wires.
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
 				if (p_open)
 					if (stat & BROKEN)
-						usr << SPAN_WARNING("The panel is broken and cannot be closed.")
+						to_chat(usr, SPAN_WARNING("The panel is broken and cannot be closed."))
 					else
 						p_open = 0
 				else
@@ -1037,6 +1039,8 @@ There are 9 wires.
 					else
 						src.welded = null
 					src.update_icon()
+			else
+				..()
 			return
 
 		if(ABORT_CHECK)

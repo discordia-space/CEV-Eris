@@ -30,7 +30,7 @@
 	if(!plant_controller)
 		sleep(250) // ugly hack, should mean roundstart plants are fine.
 	if(!plant_controller)
-		world << SPAN_DANGER("Plant controller does not exist and [src] requires it. Aborting.")
+		to_chat(world, SPAN_DANGER("Plant controller does not exist and [src] requires it. Aborting."))
 		qdel(src)
 		return
 
@@ -70,7 +70,7 @@
 	if(!plant_controller)
 		sleep(250) // ugly hack, should mean roundstart plants are fine.
 	if(!plant_controller)
-		world << SPAN_DANGER("Plant controller does not exist and [src] requires it. Aborting.")
+		to_chat(world, SPAN_DANGER("Plant controller does not exist and [src] requires it. Aborting."))
 		qdel(src)
 		return
 
@@ -163,7 +163,7 @@
 					return
 
 			M.stop_pulling()
-			M << SPAN_NOTICE("You slipped on the [name]!")
+			to_chat(M, SPAN_NOTICE("You slipped on the [name]!"))
 			playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
 			M.Stun(8)
 			M.Weaken(5)
@@ -183,7 +183,7 @@
 			var/obj/item/stack/cable_coil/C = W
 			if(C.use(5))
 				//TODO: generalize this.
-				user << SPAN_NOTICE("You add some cable to the [src.name] and slide it inside the battery casing.")
+				to_chat(user, SPAN_NOTICE("You add some cable to the [src.name] and slide it inside the battery casing."))
 				var/obj/item/weapon/cell/large/potato/pocell = new /obj/item/weapon/cell/large/potato(get_turf(user))
 				if(src.loc == user && !(user.l_hand && user.r_hand) && ishuman(user))
 					user.put_in_hands(pocell)
@@ -211,26 +211,26 @@
 							if(G.amount>=G.max_amount)
 								continue
 							G.attackby(NG, user)
-						user << "You add the newly-formed wood to the stack. It now contains [NG.amount] planks."
+						to_chat(user, "You add the newly-formed wood to the stack. It now contains [NG.amount] planks.")
 					qdel(src)
 					return
 				else if(!isnull(seed.chems["potato"]))
-					user << "You slice \the [src] into sticks."
+					to_chat(user, "You slice \the [src] into sticks.")
 					new /obj/item/weapon/reagent_containers/food/snacks/rawsticks(get_turf(src))
 					qdel(src)
 					return
 				else if(!isnull(seed.chems["carrotjuice"]))
-					user << "You slice \the [src] into sticks."
+					to_chat(user, "You slice \the [src] into sticks.")
 					new /obj/item/weapon/reagent_containers/food/snacks/carrotfries(get_turf(src))
 					qdel(src)
 					return
 				else if(!isnull(seed.chems["soymilk"]))
-					user << "You roughly chop up \the [src]."
+					to_chat(user, "You roughly chop up \the [src].")
 					new /obj/item/weapon/reagent_containers/food/snacks/soydope(get_turf(src))
 					qdel(src)
 					return
 				else if(seed.get_trait(TRAIT_FLESH_COLOUR))
-					user << "You slice up \the [src]."
+					to_chat(user, "You slice up \the [src].")
 					var/slices = rand(3,5)
 					var/reagents_to_transfer = round(reagents.total_volume/slices)
 					for(var/i=i;i<=slices;i++)
@@ -253,7 +253,7 @@
 			return
 		if(prob(35))
 			if(user)
-				user << SPAN_DANGER("\The [src] has fallen to bits.")
+				to_chat(user, SPAN_DANGER("\The [src] has fallen to bits."))
 				user.drop_from_inventory(src)
 			qdel(src)
 
@@ -285,12 +285,12 @@
 				if(NG.amount>=NG.max_amount)
 					continue
 				NG.attackby(G, user)
-			user << "You add the newly-formed grass to the stack. It now contains [G.amount] tiles."
+			to_chat(user, "You add the newly-formed grass to the stack. It now contains [G.amount] tiles.")
 		qdel(src)
 		return
 
 	if(seed.get_trait(TRAIT_SPREAD) > 0)
-		user << SPAN_NOTICE("You plant the [src.name].")
+		to_chat(user, SPAN_NOTICE("You plant the [src.name]."))
 		new /obj/machinery/portable_atmospherics/hydroponics/soil/invisible(get_turf(user),src.seed)
 		qdel(src)
 		return

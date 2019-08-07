@@ -65,7 +65,7 @@
 
 	if (istype(I,/obj/item/device/assembly_holder))
 		if(detonator)
-			user << SPAN_WARNING("There is another device in the way.")
+			to_chat(user, SPAN_WARNING("There is another device in the way."))
 			return ..()
 
 		user.visible_message("\The [user] begins attaching [I] to \the [src].", "You begin attaching [I] to \the [src]")

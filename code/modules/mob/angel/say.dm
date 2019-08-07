@@ -8,23 +8,23 @@
 
 	if (src.client)
 		if(src.client.prefs.muted & MUTE_DEADCHAT)
-			src << "\red You cannot talk in deadchat and ANGEL chat (muted)."
+			to_chat(src, "\red You cannot talk in deadchat and ANGEL chat (muted).")
 			return
 
 		if (src.client.handle_spam_prevention(message,MUTE_DEADCHAT))
 			return
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		usr << SPAN_DANGER("Speech is currently admin-disabled.")
+		to_chat(usr, SPAN_DANGER("Speech is currently admin-disabled."))
 		return
 
 	if(!src.client.holder)
 		if(!config.dsay_allowed)
-			src << SPAN_DANGER("Deadchat and ANGEL chat are globally muted.")
+			to_chat(src, SPAN_DANGER("Deadchat and ANGEL chat are globally muted."))
 			return
 
 	if(get_preference_value(/datum/client_preference/show_dsay) == GLOB.PREF_HIDE)
-		usr << SPAN_DANGER("You have deadchat and ANGEL chat muted.")
+		to_chat(usr, SPAN_DANGER("You have deadchat and ANGEL chat muted."))
 		return
 
 	say_angel_direct("[pick("beeps","buzzes","echoes","fizzes")], <span class='message'>\"[message]\"</span>", src)
@@ -43,23 +43,23 @@
 
 	if(src.client)
 		if(src.client.prefs.muted & MUTE_DEADCHAT)
-			src << "\red You cannot emote in deadchat and ANGEL chat (muted)."
+			to_chat(src, "\red You cannot emote in deadchat and ANGEL chat (muted).")
 			return
 
 		if(src.client.handle_spam_prevention(message, MUTE_DEADCHAT))
 			return
 
 	if(client.prefs.muted & MUTE_DEADCHAT)
-		src << SPAN_DANGER("You cannot send deadchat and ANGEL emotes (muted).")
+		to_chat(src, SPAN_DANGER("You cannot send deadchat and ANGEL emotes (muted)."))
 		return
 
 	if(get_preference_value(/datum/client_preference/show_dsay) == GLOB.PREF_HIDE)
-		src << SPAN_DANGER("You have deadchat and ANGEL chat muted.")
+		to_chat(src, SPAN_DANGER("You have deadchat and ANGEL chat muted."))
 		return
 
 	if(!src.client.holder)
 		if(!config.dsay_allowed)
-			src << SPAN_DANGER("Deadchat and ANGEL chat are globally muted.")
+			to_chat(src, SPAN_DANGER("Deadchat and ANGEL chat are globally muted."))
 			return
 
 
@@ -98,4 +98,4 @@
 				else
 					lname = name
 				lname = "<span class='name'>[lname]</span> "
-			M << "<span class='angelsay'>" + create_text_tag("angel", "ANGEL:", M.client) + " [lname][message]</span>"
+			to_chat(M, "<span class='angelsay'>" + create_text_tag("angel", "ANGEL:", M.client) + " [lname][message]</span>")

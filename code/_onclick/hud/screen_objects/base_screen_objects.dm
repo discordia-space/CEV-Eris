@@ -636,7 +636,7 @@ obj/screen/fire/DEADelize()
 		if(!C.stat && !C.stunned && !C.paralysis && !C.restrained())
 			if(C.internal)
 				C.internal = null
-				C << SPAN_NOTICE("No longer running on internals.")
+				to_chat(C, SPAN_NOTICE("No longer running on internals."))
 				overlays.Cut()
 			else
 
@@ -647,7 +647,7 @@ obj/screen/fire/DEADelize()
 						no_mask = 1
 
 				if(no_mask)
-					C << SPAN_NOTICE("You are not wearing a suitable mask or helmet.")
+					to_chat(C, SPAN_NOTICE("You are not wearing a suitable mask or helmet."))
 					return TRUE
 				else
 					var/list/nicename = null
@@ -723,12 +723,12 @@ obj/screen/fire/DEADelize()
 					//We've determined the best container now we set it as our internals
 
 					if(best)
-						C << SPAN_NOTICE("You are now running on internals from [tankcheck[best]] [from] your [nicename[best]].")
+						to_chat(C, SPAN_NOTICE("You are now running on internals from [tankcheck[best]] [from] your [nicename[best]]."))
 						playsound(usr, 'sound/effects/Custom_internals.ogg', 50, -5)
 						C.internal = tankcheck[best]
 
 					if(!C.internal)
-						C << "<span class='notice'>You don't have a[breathes=="oxygen" ? "n oxygen" : addtext(" ", breathes)] tank.</span>"
+						to_chat(C, "<span class='notice'>You don't have a[breathes=="oxygen" ? "n oxygen" : addtext(" ", breathes)] tank.</span>")
 					update_icon()
 
 /obj/screen/internal/update_icon()

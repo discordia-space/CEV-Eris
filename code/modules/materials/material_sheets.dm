@@ -143,6 +143,7 @@
 	icon_state = "sheet-plastic"
 	default_type = MATERIAL_PLASTIC
 	price_tag = 2
+	novariants = FALSE
 
 /obj/item/stack/material/plastic/random
 	rand_min = 3
@@ -206,6 +207,7 @@
 	icon_state = "sheet-metal"
 	default_type = MATERIAL_STEEL
 	price_tag = 2
+	novariants = FALSE
 
 //A stack which starts with the max amount
 /obj/item/stack/material/steel/full
@@ -221,6 +223,7 @@
 	item_state = "sheet-metal"
 	default_type = MATERIAL_PLASTEEL
 	price_tag = 30
+	novariants = FALSE
 
 /obj/item/stack/material/plasteel/random
 	rand_min = 3

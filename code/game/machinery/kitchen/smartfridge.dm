@@ -266,12 +266,12 @@
 		return
 
 	if(stat & NOPOWER)
-		user << SPAN_NOTICE("\The [src] is unpowered and useless.")
+		to_chat(user, SPAN_NOTICE("\The [src] is unpowered and useless."))
 		return
 
 	if(accept_check(O))
 		if(contents.len >= max_n_of_items)
-			user << SPAN_NOTICE("\The [src] is full.")
+			to_chat(user, SPAN_NOTICE("\The [src] is full."))
 			return 1
 		else
 			user.remove_from_mob(O)
@@ -287,7 +287,7 @@
 		for(var/obj/G in P.contents)
 			if(accept_check(G))
 				if(contents.len >= max_n_of_items)
-					user << SPAN_NOTICE("\The [src] is full.")
+					to_chat(user, SPAN_NOTICE("\The [src] is full."))
 					return 1
 				else
 					P.remove_from_storage(G,src)
@@ -297,19 +297,19 @@
 			update_icon()
 			user.visible_message(SPAN_NOTICE("[user] loads \the [src] with \the [P]."), SPAN_NOTICE("You load \the [src] with \the [P]."))
 			if(P.contents.len > 0)
-				user << SPAN_NOTICE("Some items are refused.")
+				to_chat(user, SPAN_NOTICE("Some items are refused."))
 
 		SSnano.update_uis(src)
 
 	else
-		user << SPAN_NOTICE("\The [src] smartly refuses [O].")
+		to_chat(user, SPAN_NOTICE("\The [src] smartly refuses [O]."))
 		return 1
 
 /obj/machinery/smartfridge/secure/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		emagged = 1
 		locked = -1
-		user << "You short out the product lock on [src]."
+		to_chat(user, "You short out the product lock on [src].")
 		return 1
 
 /obj/machinery/smartfridge/attack_ai(mob/user as mob)
@@ -425,6 +425,6 @@
 	if(stat & (NOPOWER|BROKEN)) return 0
 	if(usr.contents.Find(src) || (in_range(src, usr) && istype(loc, /turf)))
 		if(!allowed(usr) && !emagged && locked != -1 && href_list["vend"])
-			usr << SPAN_WARNING("Access denied.")
+			to_chat(usr, SPAN_WARNING("Access denied."))
 			return 0
 	return ..()

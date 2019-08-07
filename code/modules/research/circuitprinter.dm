@@ -101,10 +101,10 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 
 		if(QUALITY_PRYING)
 			if(!panel_open)
-				user << SPAN_NOTICE("You cant get to the components of \the [src], remove the cover.")
+				to_chat(user, SPAN_NOTICE("You cant get to the components of \the [src], remove the cover."))
 				return
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-				user << SPAN_NOTICE("You remove the components of \the [src] with [I].")
+				to_chat(user, SPAN_NOTICE("You remove the components of \the [src] with [I]."))
 				dismantle()
 				return
 
@@ -115,7 +115,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 					linked_console.linked_imprinter = null
 					linked_console = null
 				panel_open = !panel_open
-				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
+				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
 				update_icon()
 				return
 
@@ -148,11 +148,11 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 		return
 
 	if(!istype(S, /obj/item/stack/material))
-		user << SPAN_WARNING("You cannot insert this item into \the [src]!")
+		to_chat(user, SPAN_WARNING("You cannot insert this item into \the [src]!"))
 		return
 
 	if(TotalMaterials() + 1 > max_material_storage)
-		user << SPAN_WARNING("\The [src]'s material bin is full. Please remove material before adding more.")
+		to_chat(user, SPAN_WARNING("\The [src]'s material bin is full. Please remove material before adding more."))
 		return
 
 	var/amount = round(input("How many sheets do you want to add?") as num)
@@ -176,14 +176,14 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 		if(do_after(usr, 16, src))
 			if(S.use(amount))
 				materials[material] += amount
-				user << SPAN_NOTICE("You add [amount] [material] sheet\s to \the [src]. Material storage is [TotalMaterials()]/[max_material_storage].")
+				to_chat(user, SPAN_NOTICE("You add [amount] [material] sheet\s to \the [src]. Material storage is [TotalMaterials()]/[max_material_storage]."))
 	busy = 0
 	linked_console.updateUsrDialog()
 	return TRUE
 
 /obj/machinery/r_n_d/circuit_imprinter/examine(mob/user)
 	..()
-	user << "Material storage is [TotalMaterials()]/[max_material_storage]."
+	to_chat(user, "Material storage is [TotalMaterials()]/[max_material_storage].")
 
 /obj/machinery/r_n_d/circuit_imprinter/proc/res_load(var/name)
 	// Will be here untill someone decided to draw insert animation

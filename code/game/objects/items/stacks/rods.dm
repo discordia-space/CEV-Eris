@@ -1,6 +1,7 @@
 /obj/item/stack/rods
 	name = "metal rod"
 	desc = "Some rods. Can be used for building, or something."
+	icon = 'icons/obj/stack/items.dmi'
 	singular_name = "metal rod"
 	icon_state = "rods"
 	flags = CONDUCT
@@ -31,7 +32,7 @@
 	..()
 	if(QUALITY_WELDING in I.tool_qualities)
 		if(get_amount() < 2)
-			user << SPAN_WARNING("You need at least two rods to do this.")
+			to_chat(user, SPAN_WARNING("You need at least two rods to do this."))
 			return
 
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))

@@ -55,7 +55,7 @@
 			question = select_query.item[3]
 			type = select_query.item[4]
 		else
-			usr << SPAN_DANGER("Poll question details not found.")
+			to_chat(usr, SPAN_DANGER("Poll question details not found."))
 			return
 
 		switch(type)
@@ -177,10 +177,10 @@
 
 		if(select_query.NextRow())
 			if(select_query.item[4] != "OPTION")
-				usr << SPAN_DANGER("Invalid poll type.")
+				to_chat(usr, SPAN_DANGER("Invalid poll type."))
 				return
 		else
-			usr << SPAN_DANGER("Poll not found.")
+			to_chat(usr, SPAN_DANGER("Poll not found."))
 			return
 
 		var/DBQuery/select_query2 = dbcon.NewQuery("SELECT id FROM poll_options WHERE id = [option_id] AND poll_id = [poll_id]")
@@ -189,7 +189,7 @@
 			return
 
 		if(!select_query2.NextRow())
-			usr << SPAN_WARNING("Invalid poll options.")
+			to_chat(usr, SPAN_WARNING("Invalid poll options."))
 			return
 
 		var/DBQuery/voted_query = dbcon.NewQuery("SELECT id FROM poll_votes WHERE poll_id = [poll_id] AND player_id = [client.id]")
@@ -198,7 +198,7 @@
 			return
 
 		if(voted_query.NextRow())
-			usr << SPAN_WARNING("You already voted in this poll.")
+			to_chat(usr, SPAN_WARNING("You already voted in this poll."))
 			return
 
 		var/DBQuery/insert_query = dbcon.NewQuery("INSERT INTO poll_votes (time, option_id, poll_id, player_id) VALUES (Now(), [option_id], [poll_id], [client.id])")
@@ -206,7 +206,7 @@
 			log_world("Failed to insert vote from [client.id] for poll [poll_id]. Error message: [insert_query.ErrorMsg()].")
 			return
 
-		usr << SPAN_NOTICE("Vote successful.")
+		to_chat(usr, SPAN_NOTICE("Vote successful."))
 		usr << browse(null,"window=playerpoll")
 
 
@@ -225,7 +225,7 @@
 			return
 
 		if(select_query.NextRow() && select_query.item[4] != "TEXT")
-			usr << SPAN_WARNING("Invalid poll type.")
+			to_chat(usr, SPAN_WARNING("Invalid poll type."))
 			return
 
 		var/DBQuery/voted_query = dbcon.NewQuery("SELECT id FROM poll_text_replies WHERE poll_id = [poll_id] AND player_id = [client.id]")
@@ -234,7 +234,7 @@
 			return
 
 		if(voted_query.NextRow())
-			usr << SPAN_WARNING("You already sent your feedback for this poll.")
+			to_chat(usr, SPAN_WARNING("You already sent your feedback for this poll."))
 			return
 
 		reply_text = replacetext(reply_text, "%BR%", "")
@@ -243,7 +243,7 @@
 		reply_text = replacetext(reply_text, "%BR%", "<BR>")
 
 		if(!text_pass)
-			usr << SPAN_WARNING("The text you entered was blank, contained illegal characters or was too long. Please correct the text and submit again.")
+			to_chat(usr, SPAN_WARNING("The text you entered was blank, contained illegal characters or was too long. Please correct the text and submit again."))
 			return
 
 		var/DBQuery/insert_query = dbcon.NewQuery("INSERT INTO poll_text_replies (time, poll_id, player_id, text) VALUES (Now(), [poll_id], [client.id], '[reply_text]')")
@@ -251,5 +251,5 @@
 			log_world("Failed to insert text vote reply for [poll_id] from user [client.id]. Error message: [insert_query.ErrorMsg()].")
 			return
 
-		usr << SPAN_NOTICE("Vote successful.")
+		to_chat(usr, SPAN_NOTICE("Vote successful."))
 		usr << browse(null,"window=playerpoll")

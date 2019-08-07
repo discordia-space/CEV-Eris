@@ -216,14 +216,14 @@
 
 	if(!protected)
 		playsound(src.loc, "sparks", 75, 1, -1)
-		user << "<font color='red'>You try to touch the controls but you get zapped. There must be a short circuit somewhere.</font>"
+		to_chat(user, "<font color='red'>You try to touch the controls but you get zapped. There must be a short circuit somewhere.</font>")
 		return*/
 	else  //welp, the guy is protected, we can continue
 		if(src.issuperUV)
-			user << "You slide the dial back towards \"185nm\"."
+			to_chat(user, "You slide the dial back towards \"185nm\".")
 			src.issuperUV = 0
 		else
-			user << "You crank the dial all the way up to \"15nm\"."
+			to_chat(user, "You crank the dial all the way up to \"15nm\".")
 			src.issuperUV = 1
 		return
 
@@ -242,10 +242,10 @@
 
 	if(!protected)
 		playsound(src.loc, "sparks", 75, 1, -1)
-		user << "<font color='red'>You try to touch the controls but you get zapped. There must be a short circuit somewhere.</font>"
+		to_chat(user, "<font color='red'>You try to touch the controls but you get zapped. There must be a short circuit somewhere.</font>")
 		return*/
 	else
-		user << "You push the button. The coloured LED next to it changes."
+		to_chat(user, "You push the button. The coloured LED next to it changes.")
 		src.safetieson = !src.safetieson
 
 
@@ -294,7 +294,7 @@
 
 /obj/machinery/suit_storage_unit/proc/toggle_open(mob/user as mob)
 	if(src.islocked || src.isUV)
-		user << "<font color='red'>Unable to open unit.</font>"
+		to_chat(user, "<font color='red'>Unable to open unit.</font>")
 		return
 	if(src.OCCUPANT)
 		src.eject_occupant(user)
@@ -306,7 +306,7 @@
 
 /obj/machinery/suit_storage_unit/proc/toggle_lock(mob/user as mob)
 	if(src.OCCUPANT && src.safetieson)
-		user << "<font color='red'>The Unit's safety protocols disallow locking when a biological form is detected inside its compartments.</font>"
+		to_chat(user, "<font color='red'>The Unit's safety protocols disallow locking when a biological form is detected inside its compartments.</font>")
 		return
 	if(src.isopen)
 		return
@@ -319,12 +319,12 @@
 	if(src.isUV || src.isopen) //I'm bored of all these sanity checks
 		return
 	if(src.OCCUPANT && src.safetieson)
-		user << "<font color='red'><B>WARNING:</B> Biological entity detected in the confines of the Unit's storage. Cannot initiate cycle.</font>"
+		to_chat(user, "<font color='red'><B>WARNING:</B> Biological entity detected in the confines of the Unit's storage. Cannot initiate cycle.</font>")
 		return
 	if(!src.HELMET && !src.MASK && !src.SUIT && !src.OCCUPANT ) //shit's empty yo
-		user << "<font color='red'>Unit storage bays empty. Nothing to disinfect -- Aborting.</font>"
+		to_chat(user, "<font color='red'>Unit storage bays empty. Nothing to disinfect -- Aborting.</font>")
 		return
-	user << "You start the Unit's cauterisation cycle."
+	to_chat(user, "You start the Unit's cauterisation cycle.")
 	src.cycletime_left = 20
 	src.isUV = 1
 	if(src.OCCUPANT && !src.islocked)
@@ -389,10 +389,10 @@
 			if(src.OCCUPANT)
 				if(src.issuperUV)
 					OCCUPANT.take_organ_damage(0,40)
-					user << "Test. You gave him 40 damage"
+					to_chat(user, "Test. You gave him 40 damage")
 				else
 					OCCUPANT.take_organ_damage(0,8)
-					user << "Test. You gave him 8 damage"
+					to_chat(user, "Test. You gave him 8 damage")
 	return*/
 
 
@@ -413,9 +413,9 @@
 
 	if (src.OCCUPANT.client)
 		if(user != OCCUPANT)
-			OCCUPANT << "<font color='blue'>The machine kicks you out!</font>"
+			to_chat(OCCUPANT, "<font color='blue'>The machine kicks you out!</font>")
 		if(user.loc != src.loc)
-			OCCUPANT << "<font color='blue'>You leave the not-so-cozy confines of the SSU.</font>"
+			to_chat(OCCUPANT, "<font color='blue'>You leave the not-so-cozy confines of the SSU.</font>")
 
 		src.OCCUPANT.client.eye = src.OCCUPANT.client.mob
 		src.OCCUPANT.client.perspective = MOB_PERSPECTIVE
@@ -449,13 +449,13 @@
 	if (usr.stat != 0)
 		return
 	if (!src.isopen)
-		usr << "<font color='red'>The unit's doors are shut.</font>"
+		to_chat(usr, "<font color='red'>The unit's doors are shut.</font>")
 		return
 	if (!src.ispowered || src.isbroken)
-		usr << "<font color='red'>The unit is not operational.</font>"
+		to_chat(usr, "<font color='red'>The unit is not operational.</font>")
 		return
 	if ( (src.OCCUPANT) || (src.HELMET) || (src.SUIT) )
-		usr << "<font color='red'>It's too cluttered inside for you to fit in!</font>"
+		to_chat(usr, "<font color='red'>It's too cluttered inside for you to fit in!</font>")
 		return
 	visible_message("\The [usr] starts squeezing into the suit storage unit!", 3)
 	if(do_after(usr, 10, src))
@@ -480,13 +480,13 @@
 
 /obj/machinery/suit_storage_unit/affect_grab(var/mob/user, var/mob/target)
 	if(!isopen)
-		user << SPAN_WARNING("The unit's doors are shut.")
+		to_chat(user, SPAN_WARNING("The unit's doors are shut."))
 		return
 	if(!ispowered || isbroken)
-		user << SPAN_WARNING("The unit is not operational.")
+		to_chat(user, SPAN_WARNING("The unit is not operational."))
 		return
 	if(OCCUPANT || HELMET || SUIT) //Unit needs to be absolutely empty
-		user << SPAN_WARNING("The unit's storage area is too cluttered.")
+		to_chat(user, SPAN_WARNING("The unit's storage area is too cluttered."))
 		return
 	visible_message("[user] starts putting [target] into the Suit Storage Unit.")
 	if(do_after(user, 20, src) && Adjacent(target))
@@ -513,10 +513,10 @@
 			check = SUIT
 
 	if(check)
-		user << "<font color='blue'>The unit already contains a [slot].</font>"
+		to_chat(user, "<font color='blue'>The unit already contains a [slot].</font>")
 		return
 
-	user << "You load the [I.name] into the storage compartment."
+	to_chat(user, "You load the [I.name] into the storage compartment.")
 	user.drop_from_inventory(I, src)
 
 	switch(slot)
@@ -537,7 +537,7 @@
 	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			panelopen = !panelopen
-			user << text("<font color='blue'>You [] the unit's maintenance panel.</font>",(panelopen ? "open up" : "close"))
+			to_chat(user, text("<font color='blue'>You [] the unit's maintenance panel.</font>",(panelopen ? "open up" : "close")))
 			updateUsrDialog()
 			return
 	else if(istype(I,/obj/item/clothing/suit/space))
@@ -636,11 +636,11 @@
 
 /obj/machinery/suit_cycler/affect_grab(var/mob/user, var/mob/target)
 	if(locked)
-		user << SPAN_DANGER("The suit cycler is locked.")
+		to_chat(user, SPAN_DANGER("The suit cycler is locked."))
 		return
 
 	if(contents.len)
-		user << SPAN_DANGER("There is no room inside the cycler for [target].")
+		to_chat(user, SPAN_DANGER("There is no room inside the cycler for [target]."))
 		return
 
 	visible_message(SPAN_NOTICE("[user] starts putting [target] into the suit cycler."))
@@ -665,7 +665,7 @@
 		var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
 		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
 			panel_open = !panel_open
-			user << "You [panel_open ?  "open" : "close"] the maintenance panel."
+			to_chat(user, "You [panel_open ?  "open" : "close"] the maintenance panel.")
 			updateUsrDialog()
 		return
 
@@ -678,18 +678,18 @@
 	else if(istype(I,/obj/item/clothing/head/helmet/space) && !istype(I, /obj/item/clothing/head/helmet/space/rig))
 
 		if(locked)
-			user << SPAN_DANGER("The suit cycler is locked.")
+			to_chat(user, SPAN_DANGER("The suit cycler is locked."))
 			return
 
 		if(helmet)
-			user << SPAN_DANGER("The cycler already contains a helmet.")
+			to_chat(user, SPAN_DANGER("The cycler already contains a helmet."))
 			return
 
 		if(I.icon_override == CUSTOM_ITEM_MOB)
-			user << "You cannot refit a customised voidsuit."
+			to_chat(user, "You cannot refit a customised voidsuit.")
 			return
 
-		user << "You fit \the [I] into the suit cycler."
+		to_chat(user, "You fit \the [I] into the suit cycler.")
 		user.drop_item()
 		I.loc = src
 		helmet = I
@@ -701,18 +701,18 @@
 	else if(istype(I,/obj/item/clothing/suit/space/void))
 
 		if(locked)
-			user << SPAN_DANGER("The suit cycler is locked.")
+			to_chat(user, SPAN_DANGER("The suit cycler is locked."))
 			return
 
 		if(suit)
-			user << SPAN_DANGER("The cycler already contains a voidsuit.")
+			to_chat(user, SPAN_DANGER("The cycler already contains a voidsuit."))
 			return
 
 		if(I.icon_override == CUSTOM_ITEM_MOB)
-			user << "You cannot refit a customised voidsuit."
+			to_chat(user, "You cannot refit a customised voidsuit.")
 			return
 
-		user << "You fit \the [I] into the suit cycler."
+		to_chat(user, "You fit \the [I] into the suit cycler.")
 		user.drop_item()
 		I.loc = src
 		suit = I
@@ -725,11 +725,11 @@
 
 /obj/machinery/suit_cycler/emag_act(var/remaining_charges, var/mob/user)
 	if(emagged)
-		user << SPAN_DANGER("The cycler has already been subverted.")
+		to_chat(user, SPAN_DANGER("The cycler has already been subverted."))
 		return
 
 	//Clear the access reqs, disable the safeties, and open up all paintjobs.
-	user << SPAN_DANGER("You run the sequencer across the interface, corrupting the operating protocols.")
+	to_chat(user, SPAN_DANGER("You run the sequencer across the interface, corrupting the operating protocols."))
 	departments = list("Engineering","Mining","Medical","Security","Atmos","^%###^%$")
 	emagged = 1
 	safeties = 0
@@ -830,14 +830,14 @@
 
 		if(src.allowed(usr))
 			locked = !locked
-			usr << "You [locked ? "" : "un"]lock \the [src]."
+			to_chat(usr, "You [locked ? "" : "un"]lock \the [src].")
 		else
-			usr << SPAN_DANGER("Access denied.")
+			to_chat(usr, SPAN_DANGER("Access denied."))
 
 	else if(href_list["begin_decontamination"])
 
 		if(safeties && occupant)
-			usr << SPAN_DANGER("The cycler has detected an occupant. Please remove the occupant before commencing the decontamination cycle.")
+			to_chat(usr, SPAN_DANGER("The cycler has detected an occupant. Please remove the occupant before commencing the decontamination cycle."))
 			return
 
 		active = 1
@@ -919,7 +919,7 @@
 /obj/machinery/suit_cycler/proc/eject_occupant(mob/user as mob)
 
 	if(locked || active)
-		user << SPAN_WARNING("The cycler is locked.")
+		to_chat(user, SPAN_WARNING("The cycler is locked."))
 		return
 
 	if (!occupant)

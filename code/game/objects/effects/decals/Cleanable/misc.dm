@@ -16,7 +16,7 @@
 	anchored = 1
 
 /obj/effect/decal/cleanable/ash/attack_hand(mob/user as mob)
-	user << SPAN_NOTICE("[src] sifts through your fingers.")
+	to_chat(user, SPAN_NOTICE("[src] sifts through your fingers."))
 	qdel(src)
 
 /obj/effect/decal/cleanable/greenglow
