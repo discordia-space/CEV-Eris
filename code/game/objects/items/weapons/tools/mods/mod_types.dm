@@ -117,7 +117,7 @@
 	.=..()
 	if (.)
 		if (T.ever_has_quality(QUALITY_WELDING) || T.ever_has_quality(QUALITY_LASER_CUTTING))
-			user << SPAN_WARNING("This tool doesn't use a physical edge!")
+			to_chat(user, SPAN_WARNING("This tool doesn't use a physical edge!"))
 			return FALSE
 
 
@@ -232,7 +232,7 @@
 	if (.)
 		if (T.suitable_cell == /obj/item/weapon/cell/medium || T.suitable_cell == /obj/item/weapon/cell/small)
 			if (T.cell)
-				user << SPAN_DANGER("You'll need to remove the power cell before installing this upgrade. It won't be compatible afterwards")
+				to_chat(user, SPAN_DANGER("You'll need to remove the power cell before installing this upgrade. It won't be compatible afterwards"))
 				return FALSE
 			return TRUE
 		else

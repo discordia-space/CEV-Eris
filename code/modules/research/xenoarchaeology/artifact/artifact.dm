@@ -52,9 +52,9 @@
 		if(QUALITY_EXCAVATION)
 			var/excavation_amount = input("How deep are you going to dig?", "Excavation depth", 0) as num
 			if(excavation_amount)
-				user << SPAN_NOTICE("You start exacavating [src].")
+				to_chat(user, SPAN_NOTICE("You start exacavating [src]."))
 				if(I.use_tool(user, src, WORKTIME_SLOW, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_COG))
-					user << SPAN_NOTICE("You finish exacavating [src].")
+					to_chat(user, SPAN_NOTICE("You finish exacavating [src]."))
 					excavation_level += excavation_amount
 
 					if(excavation_level > 100)
@@ -109,7 +109,7 @@
 		var/obj/item/device/measuring_tape/P = I
 		user.visible_message("<span class='notice'>[user] extends [P] towards [src].","\blue You extend [P] towards [src].</span>")
 		if(do_after(user,40,src))
-			user << SPAN_NOTICE("[src] has been excavated to a depth of [2*src.excavation_level]cm.")
+			to_chat(user, SPAN_NOTICE("[src] has been excavated to a depth of [2*src.excavation_level]cm."))
 		return
 
 /obj/structure/boulder/Bumped(AM)

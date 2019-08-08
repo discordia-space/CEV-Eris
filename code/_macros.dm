@@ -144,8 +144,8 @@
 
 
 #define sound_to(target, sound)                             target << sound
-#define to_chat(target, message)                            target << message
-#define to_world(message)                                   world << message
+//#define to_chat(target, message)                            target << message
+#define to_world(message)                                   to_chat(world, message)
 #define to_world_log(message)                               log_world(message)
 #define show_browser(target, browser_content, browser_name) target << browse(browser_content, browser_name)
 #define to_file(file_entry, source_var)                     file_entry << source_var

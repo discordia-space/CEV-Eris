@@ -161,7 +161,7 @@
 
 	if (disabilities & EPILEPSY)
 		if ((prob(1) && paralysis < 1))
-			src << "\red You have a seizure!"
+			to_chat(src, "\red You have a seizure!")
 			for(var/mob/O in viewers(src, null))
 				if(O == src)
 					continue
@@ -198,19 +198,19 @@
 				custom_pain("Your head feels numb and painful.")
 		if(getBrainLoss() >= 15)
 			if(4 <= rn && rn <= 6) if(eye_blurry <= 0)
-				src << SPAN_WARNING("It becomes hard to see for some reason.")
+				to_chat(src, SPAN_WARNING("It becomes hard to see for some reason."))
 				eye_blurry = 10
 		if(getBrainLoss() >= 35)
 			if(7 <= rn && rn <= 9) if(get_active_hand())
-				src << SPAN_DANGER("Your hand won't respond properly, you drop what you're holding!")
+				to_chat(src, SPAN_DANGER("Your hand won't respond properly, you drop what you're holding!"))
 				drop_item()
 		if(getBrainLoss() >= 45)
 			if(10 <= rn && rn <= 12)
 				if(prob(50))
-					src << SPAN_DANGER("You suddenly black out!")
+					to_chat(src, SPAN_DANGER("You suddenly black out!"))
 					Paralyse(10)
 				else if(!lying)
-					src << SPAN_DANGER("Your legs won't respond properly, you fall down!")
+					to_chat(src, SPAN_DANGER("Your legs won't respond properly, you fall down!"))
 					Weaken(10)
 
 
@@ -245,13 +245,13 @@
 			radiation -= 1 * RADIATION_SPEED_COEFFICIENT
 			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT))
 				radiation -= 5 * RADIATION_SPEED_COEFFICIENT
-				src << SPAN_WARNING("You feel weak.")
+				to_chat(src, SPAN_WARNING("You feel weak."))
 				Weaken(3)
 				if(!lying)
 					emote("collapse")
 			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT) && species.get_bodytype() == "Human") //apes go bald
 				if((h_style != "Bald" || f_style != "Shaved" ))
-					src << SPAN_WARNING("Your hair falls out.")
+					to_chat(src, SPAN_WARNING("Your hair falls out."))
 					h_style = "Bald"
 					f_style = "Shaved"
 					update_hair()
@@ -262,7 +262,7 @@
 			if(prob(5))
 				take_overall_damage(0, 5 * RADIATION_SPEED_COEFFICIENT, used_weapon = "Radiation Burns")
 			if(prob(1))
-				src << SPAN_WARNING("You feel strange!")
+				to_chat(src, SPAN_WARNING("You feel strange!"))
 				adjustCloneLoss(5 * RADIATION_SPEED_COEFFICIENT)
 				emote("gasp")
 
@@ -620,7 +620,7 @@
 			handle_hallucinations()
 
 		if(halloss >= species.total_health)
-			src << SPAN_WARNING("[species.halloss_message_self]")
+			to_chat(src, SPAN_WARNING("[species.halloss_message_self]"))
 			src.visible_message("<B>[src]</B> [species.halloss_message].")
 			Paralyse(10)
 			setHalLoss(species.total_health-1)
@@ -795,29 +795,29 @@
 		return
 
 	if(shock_stage == 10)
-		src << "<span class='danger'>[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!</span>"
+		to_chat(src, "<span class='danger'>[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!</span>")
 
 	if(shock_stage >= 30)
 		if(shock_stage == 30) emote("me",1,"is having trouble keeping their eyes open.")
 		stuttering = max(stuttering, 5)
 
 	if(shock_stage == 40)
-		src << "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>"
+		to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>")
 
 	if (shock_stage >= 60)
 		if(shock_stage == 60) emote("me",1,"'s body becomes limp.")
 		if (prob(2))
-			src << "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>"
+			to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>")
 			Weaken(20)
 
 	if(shock_stage >= 80)
 		if (prob(5))
-			src << "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>"
+			to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>")
 			Weaken(20)
 
 	if(shock_stage >= 120)
 		if (prob(2))
-			src << "<span class='danger'>[pick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!</span>"
+			to_chat(src, "<span class='danger'>[pick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!</span>")
 			Paralyse(5)
 
 	if(shock_stage == 150)

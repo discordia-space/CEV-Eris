@@ -8,7 +8,7 @@
 	var/mob/living/simple_animal/borer/B = has_brain_worms()
 
 	if(B && B.host_brain)
-		src << "\red <B>You withdraw your probosci, releasing control of [B.host_brain]</B>"
+		to_chat(src, "\red <B>You withdraw your probosci, releasing control of [B.host_brain]</B>")
 
 		B.detatch()
 
@@ -17,7 +17,7 @@
 		verbs -= /mob/living/carbon/proc/spawn_larvae
 
 	else
-		src << "\red <B>ERROR NO BORER OR BRAINMOB DETECTED IN THIS MOB, THIS IS A BUG !</B>"
+		to_chat(src, "\red <B>ERROR NO BORER OR BRAINMOB DETECTED IN THIS MOB, THIS IS A BUG !</B>")
 
 //Brain slug proc for tormenting the host.
 /mob/living/carbon/proc/punish_host()
@@ -31,13 +31,13 @@
 		return
 
 	if(B.host_brain.ckey)
-		src << "\red <B>You send a punishing spike of psychic agony lancing into your host's brain.</B>"
+		to_chat(src, "\red <B>You send a punishing spike of psychic agony lancing into your host's brain.</B>")
 
 		if (species && (species.flags & NO_PAIN))
-			B.host_brain << "\red You feel a strange sensation as a foreign influence prods your mind."
-			src << "\red <B>It doesn't seem to be as effective as you hoped.</B>"
+			to_chat(B.host_brain, "\red You feel a strange sensation as a foreign influence prods your mind.")
+			to_chat(src, "\red <B>It doesn't seem to be as effective as you hoped.</B>")
 		else
-			B.host_brain << "\red <B><FONT size=3>Horrific, burning agony lances through you, ripping a soundless scream from your trapped mind!</FONT></B>"
+			to_chat(B.host_brain, "\red <B><FONT size=3>Horrific, burning agony lances through you, ripping a soundless scream from your trapped mind!</FONT></B>")
 
 /mob/living/carbon/proc/spawn_larvae()
 	set category = "Abilities"
@@ -50,7 +50,7 @@
 		return
 
 	if(B.chemicals >= 100)
-		src << "\red <B>Your host twitches and quivers as you rapidly excrete a larva from your sluglike body.</B>"
+		to_chat(src, "\red <B>Your host twitches and quivers as you rapidly excrete a larva from your sluglike body.</B>")
 		visible_message("\red <B>[src] heaves violently, expelling a rush of vomit and a wriggling, sluglike creature!</B>")
 		B.chemicals -= 100
 		B.has_reproduced = 1
@@ -60,5 +60,5 @@
 		new /mob/living/simple_animal/borer(get_turf(src))
 
 	else
-		src << "You do not have enough chemicals stored to reproduce."
+		to_chat(src, "You do not have enough chemicals stored to reproduce.")
 		return

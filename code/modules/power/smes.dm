@@ -208,7 +208,7 @@
 //Will return 1 on failure
 /obj/machinery/power/smes/proc/make_terminal(const/mob/user)
 	if (user.loc == loc)
-		user << SPAN_WARNING("You must not be on the same tile as the [src].")
+		to_chat(user, SPAN_WARNING("You must not be on the same tile as the [src]."))
 		return 1
 
 	//Direction the terminal will face to
@@ -220,13 +220,13 @@
 			tempDir = WEST
 	var/turf/tempLoc = get_step(src, reverse_direction(tempDir))
 	if (istype(tempLoc, /turf/space))
-		user << SPAN_WARNING("You can't build a terminal on space.")
+		to_chat(user, SPAN_WARNING("You can't build a terminal on space."))
 		return 1
 	else if (istype(tempLoc))
 		if(!tempLoc.is_plating())
-			user << SPAN_WARNING("You must remove the floor plating first.")
+			to_chat(user, SPAN_WARNING("You must remove the floor plating first."))
 			return 1
-	user << SPAN_NOTICE("You start adding cable to the [src].")
+	to_chat(user, SPAN_NOTICE("You start adding cable to the [src]."))
 	if(do_after(user, 50, src))
 		terminal = new /obj/machinery/power/terminal(tempLoc)
 		terminal.set_dir(tempDir)
@@ -257,11 +257,11 @@
 	if(tool_type == QUALITY_SCREW_DRIVING)
 		if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			open_hatch = !open_hatch
-			user << SPAN_NOTICE("You [open_hatch ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
+			to_chat(user, SPAN_NOTICE("You [open_hatch ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
 		return
 
 	if (!open_hatch)
-		user << SPAN_WARNING("You need to open access hatch on [src] first!")
+		to_chat(user, SPAN_WARNING("You need to open access hatch on [src] first!"))
 		return 0
 
 	if(tool_type == QUALITY_WIRE_CUTTING)
@@ -269,7 +269,7 @@
 			var/turf/tempTDir = terminal.loc
 			if (istype(tempTDir))
 				if(!tempTDir.is_plating())
-					user << SPAN_WARNING("You must remove the floor plating first.")
+					to_chat(user, SPAN_WARNING("You must remove the floor plating first."))
 					return
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 				building_terminal = 1
@@ -292,7 +292,7 @@
 		building_terminal = 1
 		var/obj/item/stack/cable_coil/CC = I
 		if (CC.get_amount() <= 10)
-			user << SPAN_WARNING("You need more cables.")
+			to_chat(user, SPAN_WARNING("You need more cables."))
 			building_terminal = 0
 			return 0
 		if (make_terminal(user))
@@ -419,18 +419,18 @@
 
 /obj/machinery/power/smes/proc/inputting(var/do_input)
 	if(do_input)
-		usr << "[src] input mode set to auto."
+		to_chat(usr, "[src] input mode set to auto.")
 	else
-		usr << "[src] output mode set to off."
+		to_chat(usr, "[src] output mode set to off.")
 	input_attempt = do_input
 	if(!input_attempt)
 		inputting = 0
 
 /obj/machinery/power/smes/proc/outputting(var/do_output)
 	if(do_output)
-		usr << "[src] output mode set to online."
+		to_chat(usr, "[src] output mode set to online.")
 	else
-		usr << "[src] output mode set to offline."
+		to_chat(usr, "[src] output mode set to offline.")
 	output_attempt = do_output
 	if(!output_attempt)
 		outputting = 0

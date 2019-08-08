@@ -121,7 +121,7 @@
 
 	var/mob/living/carbon/human/H = M
 	if(!istype(H))
-		user << SPAN_WARNING("Apparently it didn't work...")
+		to_chat(user, SPAN_WARNING("Apparently it didn't work..."))
 		return
 
 	// Used by admin log.

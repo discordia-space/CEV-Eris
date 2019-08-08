@@ -243,17 +243,17 @@
 				beacon_freq = freq
 		if("screw")
 			screwloose = !screwloose
-			usr << SPAN_NOTICE("You twiddle the screw.")
+			to_chat(usr, SPAN_NOTICE("You twiddle the screw."))
 		if("oddbutton")
 			oddbutton = !oddbutton
-			usr << SPAN_NOTICE("You press the weird button.")
+			to_chat(usr, SPAN_NOTICE("You press the weird button."))
 	attack_hand(usr)
 
 /mob/living/bot/cleanbot/emag_act(var/remaining_uses, var/mob/user)
 	. = ..()
 	if(!screwloose || !oddbutton)
 		if(user)
-			user << SPAN_NOTICE("The [src] buzzes and beeps.")
+			to_chat(user, SPAN_NOTICE("The [src] buzzes and beeps."))
 			playsound(loc, "robot_talk_light", 100, 0, 0)
 		oddbutton = 1
 		screwloose = 1
@@ -314,7 +314,7 @@
 		var/turf/T = get_turf(loc)
 		var/mob/living/bot/cleanbot/A = new /mob/living/bot/cleanbot(T)
 		A.name = created_name
-		user << SPAN_NOTICE("You add the robot arm to the bucket and sensor assembly. Beep boop!")
+		to_chat(user, SPAN_NOTICE("You add the robot arm to the bucket and sensor assembly. Beep boop!"))
 		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		user.drop_from_inventory(src)
 		qdel(src)

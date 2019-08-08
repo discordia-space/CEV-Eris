@@ -33,7 +33,7 @@
 /obj/item/weapon/rcd/examine()
 	..()
 	if(src.type == /obj/item/weapon/rcd && loc == usr)
-		usr << "It currently holds [stored_matter]/30 matter-units."
+		to_chat(usr, "It currently holds [stored_matter]/30 matter-units.")
 
 /obj/item/weapon/rcd/New()
 	..()
@@ -51,13 +51,13 @@
 
 	if(istype(W, /obj/item/weapon/rcd_ammo))
 		if((stored_matter + 10) > 30)
-			user << SPAN_NOTICE("The RCD can't hold any more matter-units.")
+			to_chat(user, SPAN_NOTICE("The RCD can't hold any more matter-units."))
 			return
 		user.drop_from_inventory(W)
 		qdel(W)
 		stored_matter += 10
 		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
-		user << SPAN_NOTICE("The RCD now holds [stored_matter]/30 matter-units.")
+		to_chat(user, SPAN_NOTICE("The RCD now holds [stored_matter]/30 matter-units."))
 		update_icon()	//Updates the ammo counter
 		return
 	..()

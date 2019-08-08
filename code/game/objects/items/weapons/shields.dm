@@ -173,7 +173,7 @@
 
 /obj/item/weapon/shield/energy/attack_self(mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
-		user << SPAN_WARNING("You beat yourself in the head with [src].")
+		to_chat(user, SPAN_WARNING("You beat yourself in the head with [src]."))
 		user.take_organ_damage(5)
 	active = !active
 	if (active)
@@ -181,14 +181,14 @@
 		update_icon()
 		w_class = ITEM_SIZE_LARGE
 		playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
-		user << SPAN_NOTICE("\The [src] is now active.")
+		to_chat(user, SPAN_NOTICE("\The [src] is now active."))
 
 	else
 		force = 3
 		update_icon()
 		w_class = ITEM_SIZE_TINY
 		playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
-		user << SPAN_NOTICE("\The [src] can now be concealed.")
+		to_chat(user, SPAN_NOTICE("\The [src] can now be concealed."))
 
 	add_fingerprint(user)
 	return

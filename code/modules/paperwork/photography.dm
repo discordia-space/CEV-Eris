@@ -58,9 +58,9 @@ var/global/photo_count = 0
 /obj/item/weapon/photo/examine(mob/user)
 	if(in_range(user, src))
 		show(user)
-		user << desc
+		to_chat(user, desc)
 	else
-		user << SPAN_NOTICE("It is too far away.")
+		to_chat(user, SPAN_NOTICE("It is too far away."))
 
 /obj/item/weapon/photo/proc/show(mob/user as mob)
 	user << browse_rsc(img, "tmp_photo_[id].png")
@@ -123,7 +123,7 @@ var/global/photo_count = 0
 	var/nsize = input("Photo Size","Pick a size of resulting photo.") as null|anything in list(3,5,7,9)
 	if(nsize)
 		radius = (nsize - 1) * 0.5
-		usr << SPAN_NOTICE("Camera will now take [(radius*2)+1]x[(radius*2)+1] photos.")
+		to_chat(usr, SPAN_NOTICE("Camera will now take [(radius*2)+1]x[(radius*2)+1] photos."))
 
 /obj/item/device/camera/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	return
@@ -134,15 +134,15 @@ var/global/photo_count = 0
 		src.icon_state = icon_on
 	else
 		src.icon_state = icon_off
-	user << "You switch the camera [on ? "on" : "off"]."
+	to_chat(user, "You switch the camera [on ? "on" : "off"].")
 	return
 
 /obj/item/device/camera/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/device/camera_film))
 		if(pictures_left)
-			user << SPAN_NOTICE("[src] still has some film in it!")
+			to_chat(user, SPAN_NOTICE("[src] still has some film in it!"))
 			return
-		user << SPAN_NOTICE("You insert [I] into [src].")
+		to_chat(user, SPAN_NOTICE("You insert [I] into [src]."))
 		user.drop_item()
 		qdel(I)
 		pictures_left = pictures_max
@@ -180,7 +180,7 @@ var/global/photo_count = 0
 
 	pictures_left--
 	desc = "A polaroid camera. It has [pictures_left] photos left."
-	user << SPAN_NOTICE("[pictures_left] photos left.")
+	to_chat(user, SPAN_NOTICE("[pictures_left] photos left."))
 	icon_state = icon_off
 	on = 0
 	spawn(64)

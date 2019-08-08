@@ -90,17 +90,17 @@
 
 /obj/machinery/r_n_d/protolathe/attackby(var/obj/item/I, var/mob/user as mob)
 	if(busy)
-		user << SPAN_NOTICE("\icon[src]\The [src] is busy. Please wait for completion of previous operation.")
+		to_chat(user, SPAN_NOTICE("\icon[src]\The [src] is busy. Please wait for completion of previous operation."))
 		return TRUE
 
 	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING), src)
 	switch(tool_type)
 		if(QUALITY_PRYING)
 			if(!panel_open)
-				user << SPAN_NOTICE("You cant get to the components of \the [src], remove the cover.")
+				to_chat(user, SPAN_NOTICE("You cant get to the components of \the [src], remove the cover."))
 				return
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-				user << SPAN_NOTICE("You remove the components of \the [src] with [I].")
+				to_chat(user, SPAN_NOTICE("You remove the components of \the [src] with [I]."))
 				dismantle()
 				return
 
@@ -111,7 +111,7 @@
 					linked_console.linked_lathe = null
 					linked_console = null
 				panel_open = !panel_open
-				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
+				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
 				update_icon()
 				return
 
@@ -123,10 +123,10 @@
 	if(I.is_drainable())
 		return FALSE
 	if(panel_open)
-		user << SPAN_NOTICE("You can't load \the [src] while it's opened.")
+		to_chat(user, SPAN_NOTICE("You can't load \the [src] while it's opened."))
 		return TRUE
 	if(!linked_console)
-		user << SPAN_NOTICE("\icon[src]\The [src] must be linked to an R&D console first!")
+		to_chat(user, SPAN_NOTICE("\icon[src]\The [src] must be linked to an R&D console first!"))
 		return TRUE
 	if(is_robot_module(I))
 		return FALSE
@@ -140,11 +140,11 @@
 		return
 
 	if(!istype(S, /obj/item/stack/material))
-		user << SPAN_NOTICE("You cannot insert this item into \the [src]!")
+		to_chat(user, SPAN_NOTICE("You cannot insert this item into \the [src]!"))
 		return
 
 	if(TotalMaterials() + 1 > max_material_storage)
-		user << SPAN_NOTICE("\icon[src]\The [src]'s material bin is full. Please remove material before adding more.")
+		to_chat(user, SPAN_NOTICE("\icon[src]\The [src]'s material bin is full. Please remove material before adding more."))
 		return
 
 	var/amount = round(input("How many sheets do you want to add?") as num)
@@ -168,7 +168,7 @@
 			res_load(material)
 			if(S.use(amount))
 				materials[material] += amount
-				user << SPAN_NOTICE("You add [amount] [material] sheet\s to \the [src]. Material storage is [TotalMaterials()]/[max_material_storage] full.")
+				to_chat(user, SPAN_NOTICE("You add [amount] [material] sheet\s to \the [src]. Material storage is [TotalMaterials()]/[max_material_storage] full."))
 
 	busy = FALSE
 	linked_console.updateUsrDialog()
@@ -176,7 +176,7 @@
 
 /obj/machinery/r_n_d/protolathe/examine(mob/user)
 	..()
-	user << "Material storage is [TotalMaterials()]/[max_material_storage] full."
+	to_chat(user, "Material storage is [TotalMaterials()]/[max_material_storage] full.")
 
 /obj/machinery/r_n_d/protolathe/proc/res_load(var/name)
 	var/obj/effect/temp_visual/resourceInsertion/protolathe/effect = new(src.loc)

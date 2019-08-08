@@ -121,7 +121,7 @@
 		user.visible_message("\blue [user] puts \the [tool] inside [target]'s [get_cavity(affected)] cavity.", \
 		"\blue You put \the [tool] inside [target]'s [get_cavity(affected)] cavity." )
 		if (tool.w_class > get_max_wclass(affected)/2 && prob(50) && !BP_IS_ROBOTIC(affected))
-			user << "\red You tear some blood vessels trying to fit such a big object in this cavity."
+			to_chat(user, "\red You tear some blood vessels trying to fit such a big object in this cavity.")
 			var/datum/wound/internal_bleeding/I = new (10)
 			affected.wounds += I
 			affected.owner.custom_pain("You feel something rip in your [affected.name]!", 1)
@@ -212,7 +212,7 @@
 				if(istype(obj,/obj/item/weapon/implant))
 					var/obj/item/weapon/implant/imp = obj
 					imp.uninstall()
-					
+
 			playsound(target.loc, 'sound/effects/squelch1.ogg', 50, 1)
 		else
 			user.visible_message("\blue [user] removes \the [tool] from [target]'s [affected.name].", \

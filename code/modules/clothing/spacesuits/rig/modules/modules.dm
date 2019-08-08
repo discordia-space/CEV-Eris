@@ -66,28 +66,28 @@
 	..()
 	switch(damage)
 		if(0)
-			usr << "It is undamaged."
+			to_chat(usr, "It is undamaged.")
 		if(1)
-			usr << "It is badly damaged."
+			to_chat(usr, "It is badly damaged.")
 		if(2)
-			usr << "It is almost completely destroyed."
+			to_chat(usr, "It is almost completely destroyed.")
 
 /obj/item/rig_module/attackby(obj/item/W as obj, mob/user as mob)
 
 	if(istype(W,/obj/item/stack/nanopaste))
 
 		if(damage == 0)
-			user << "There is no damage to mend."
+			to_chat(user, "There is no damage to mend.")
 			return
 
-		user << "You start mending the damaged portions of \the [src]..."
+		to_chat(user, "You start mending the damaged portions of \the [src]...")
 
 		if(!do_after(user,30,src) || !W || !src)
 			return
 
 		var/obj/item/stack/nanopaste/paste = W
 		damage = 0
-		user << "You mend the damage to [src] with [W]."
+		to_chat(user, "You mend the damage to [src] with [W].")
 		paste.use(1)
 		return
 
@@ -95,23 +95,23 @@
 
 		switch(damage)
 			if(0)
-				user << "There is no damage to mend."
+				to_chat(user, "There is no damage to mend.")
 				return
 			if(2)
-				user << "There is no damage that you are capable of mending with such crude tools."
+				to_chat(user, "There is no damage that you are capable of mending with such crude tools.")
 				return
 
 		var/obj/item/stack/cable_coil/cable = W
 		if(!cable.amount >= 5)
-			user << "You need five units of cable to repair \the [src]."
+			to_chat(user, "You need five units of cable to repair \the [src].")
 			return
 
-		user << "You start mending the damaged portions of \the [src]..."
+		to_chat(user, "You start mending the damaged portions of \the [src]...")
 		if(!do_after(user,30,src) || !W || !src)
 			return
 
 		damage = 1
-		user << "You mend some of damage to [src] with [W], but you will need more advanced tools to fix it completely."
+		to_chat(user, "You mend some of damage to [src] with [W], but you will need more advanced tools to fix it completely.")
 		cable.use(5)
 		return
 	..()
@@ -170,27 +170,27 @@
 /obj/item/rig_module/proc/engage()
 
 	if(damage >= 2)
-		usr << SPAN_WARNING("The [interface_name] is damaged beyond use!")
+		to_chat(usr, SPAN_WARNING("The [interface_name] is damaged beyond use!"))
 		return 0
 
 	if(world.time < next_use)
-		usr << SPAN_WARNING("You cannot use the [interface_name] again so soon.")
+		to_chat(usr, SPAN_WARNING("You cannot use the [interface_name] again so soon."))
 		return 0
 
 	if(!holder || holder.canremove)
-		usr << SPAN_WARNING("The suit is not initialized.")
+		to_chat(usr, SPAN_WARNING("The suit is not initialized."))
 		return 0
 
 	if(holder.wearer.lying || holder.wearer.stat || holder.wearer.stunned || holder.wearer.paralysis || holder.wearer.weakened)
-		usr << SPAN_WARNING("You cannot use the suit in this state.")
+		to_chat(usr, SPAN_WARNING("You cannot use the suit in this state."))
 		return 0
 
 	if(holder.wearer && holder.wearer.lying)
-		usr << SPAN_WARNING("The suit cannot function while the wearer is prone.")
+		to_chat(usr, SPAN_WARNING("The suit cannot function while the wearer is prone."))
 		return 0
 
 	if(holder.security_check_enabled && !holder.check_suit_access(usr))
-		usr << SPAN_DANGER("Access denied.")
+		to_chat(usr, SPAN_DANGER("Access denied."))
 		return 0
 
 	if(!holder.check_power_cost(usr, use_power_cost, 0, src, (istype(usr,/mob/living/silicon ? 1 : 0) ) ) )

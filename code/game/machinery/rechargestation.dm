@@ -102,7 +102,7 @@
 
 /obj/machinery/recharge_station/examine(mob/user)
 	..(user)
-	user << "The charge meter reads: [round(chargepercentage())]%"
+	to_chat(user, "The charge meter reads: [round(chargepercentage())]%")
 
 /obj/machinery/recharge_station/proc/chargepercentage()
 	if(!cell)
@@ -127,7 +127,7 @@
 
 /obj/machinery/recharge_station/attackby(var/obj/item/I, var/mob/user as mob)
 	if(occupant)
-		user << SPAN_NOTICE("You cant do anything with [src] while someone inside of it.")
+		to_chat(user, SPAN_NOTICE("You cant do anything with [src] while someone inside of it."))
 		return
 
 	if(default_deconstruction(I, user))

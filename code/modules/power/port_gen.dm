@@ -57,9 +57,9 @@
 	if(!..(user,1 ))
 		return
 	if(active)
-		user << SPAN_NOTICE("The generator is on.")
+		to_chat(user, SPAN_NOTICE("The generator is on."))
 	else
-		user << SPAN_NOTICE("The generator is off.")
+		to_chat(user, SPAN_NOTICE("The generator is off."))
 
 /obj/machinery/power/port_gen/emp_act(severity)
 	var/duration = 6000 //ten minutes
@@ -147,14 +147,14 @@
 
 /obj/machinery/power/port_gen/pacman/examine(mob/user)
 	..(user)
-	user << "\The [src] appears to be producing [power_gen*power_output] W."
+	to_chat(user, "\The [src] appears to be producing [power_gen*power_output] W.")
 	if(!use_reagents_as_fuel)
-		user << "There [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper."
+		to_chat(user, "There [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper.")
 
 	if(IsBroken())
-		user << SPAN_WARNING("\The [src] seems to have broken down.")
+		to_chat(user, SPAN_WARNING("\The [src] seems to have broken down."))
 	if(overheating)
-		user << SPAN_DANGER("\The [src] is overheating!")
+		to_chat(user, SPAN_DANGER("\The [src] is overheating!"))
 
 /obj/machinery/power/port_gen/pacman/HasFuel()
 	var/needed_fuel = power_output / time_per_fuel_unit
@@ -284,16 +284,16 @@
 		var/obj/item/stack/addstack = I
 		var/amount = min((max_fuel_volume - sheets), addstack.amount)
 		if(amount < 1)
-			user << "\blue The [src.name] is full!"
+			to_chat(user, "\blue The [src.name] is full!")
 			return
-		user << "\blue You add [amount] sheet\s to the [src.name]."
+		to_chat(user, "\blue You add [amount] sheet\s to the [src.name].")
 		sheets += amount
 		addstack.use(amount)
 		updateUsrDialog()
 		return
 
 	if(active)
-		user << SPAN_NOTICE("You can't work with [src] while its running!")
+		to_chat(user, SPAN_NOTICE("You can't work with [src] while its running!"))
 
 	else
 
@@ -322,17 +322,17 @@
 				var/used_sound = open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
 					open = !open
-					user << SPAN_NOTICE("You [open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
+					to_chat(user, SPAN_NOTICE("You [open ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
 					update_icon()
 					return
 				return
 
 			if(QUALITY_BOLT_TURNING)
 				if(istype(get_turf(src), /turf/space) && !anchored)
-					user << SPAN_NOTICE("You can't anchor something to empty space. Idiot.")
+					to_chat(user, SPAN_NOTICE("You can't anchor something to empty space. Idiot."))
 					return
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You [anchored ? "un" : ""]anchor the brace with [I].")
+					to_chat(user, SPAN_NOTICE("You [anchored ? "un" : ""]anchor the brace with [I]."))
 					anchored = !anchored
 					if(anchored)
 						connect_to_network()

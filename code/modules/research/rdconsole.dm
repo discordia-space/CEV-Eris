@@ -140,7 +140,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	if(!emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
-		user << SPAN_NOTICE("You disable the security protocols.")
+		to_chat(user, SPAN_NOTICE("You disable the security protocols."))
 		return 1
 
 /obj/machinery/computer/rdconsole/Topic(href, href_list)
@@ -217,7 +217,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	else if(href_list["eject_item"]) //Eject the item inside the destructive analyzer.
 		if(linked_destroy)
 			if(linked_destroy.busy)
-				usr << SPAN_NOTICE("The destructive analyzer is busy at the moment.")
+				to_chat(usr, SPAN_NOTICE("The destructive analyzer is busy at the moment."))
 
 			else if(linked_destroy.loaded_item)
 				linked_destroy.loaded_item.forceMove(get_turf(linked_destroy))
@@ -228,7 +228,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	else if(href_list["deconstruct"]) //Deconstruct the item in the destructive analyzer and update the research holder.
 		if(linked_destroy)
 			if(linked_destroy.busy)
-				usr << SPAN_NOTICE("The destructive analyzer is busy at the moment.")
+				to_chat(usr, SPAN_NOTICE("The destructive analyzer is busy at the moment."))
 			else
 				if(!linked_destroy)
 					return
@@ -240,7 +240,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					if(linked_destroy)
 						linked_destroy.busy = 0
 						if(!linked_destroy.loaded_item)
-							usr <<SPAN_NOTICE("The destructive analyzer appears to be empty.")
+							to_chat(usr, SPAN_NOTICE("The destructive analyzer appears to be empty."))
 							screen = 1.0
 							return
 
@@ -283,12 +283,12 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		if(allowed(usr))
 			screen = text2num(href_list["lock"])
 		else
-			usr << "Unauthorized Access."
+			to_chat(usr, "Unauthorized Access.")
 
 	else if(href_list["sync"]) //Sync the research holder with all the R&D consoles in the game that aren't sync protected.
 		screen = 0.0
 		if(!sync)
-			usr << SPAN_NOTICE("You must connect to the network first.")
+			to_chat(usr, SPAN_NOTICE("You must connect to the network first."))
 		else
 			griefProtection() //Putting this here because I dont trust the sync process
 			spawn(30)

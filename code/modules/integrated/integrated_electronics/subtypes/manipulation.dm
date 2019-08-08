@@ -31,12 +31,12 @@
 	if(istype(O, /obj/item/weapon/gun))
 		var/obj/item/weapon/gun/gun = O
 		if(installed_gun)
-			user << SPAN_WARNING("There's already a weapon installed.")
+			to_chat(user, SPAN_WARNING("There's already a weapon installed."))
 			return
 		user.drop_from_inventory(gun)
 		installed_gun = gun
 		gun.forceMove(src)
-		user << SPAN_NOTICE("You slide \the [gun] into the firing mechanism.")
+		to_chat(user, SPAN_NOTICE("You slide \the [gun] into the firing mechanism."))
 		playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 	else
 		..()
@@ -44,11 +44,11 @@
 /obj/item/integrated_circuit/manipulation/weapon_firing/attack_self(var/mob/user)
 	if(installed_gun)
 		installed_gun.forceMove(get_turf(src))
-		user << SPAN_NOTICE("You slide \the [installed_gun] out of the firing mechanism.")
+		to_chat(user, SPAN_NOTICE("You slide \the [installed_gun] out of the firing mechanism."))
 		playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 		installed_gun = null
 	else
-		user << SPAN_NOTICE("There's no weapon to remove from the mechanism.")
+		to_chat(user, SPAN_NOTICE("There's no weapon to remove from the mechanism."))
 
 /obj/item/integrated_circuit/manipulation/weapon_firing/do_work()
 	if(..())

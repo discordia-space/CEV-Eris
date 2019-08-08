@@ -9,7 +9,7 @@
 
 	text += print_objectives(FALSE)
 
-	owner.current << text
+	to_chat(owner.current, text)
 
 /datum/antagonist/proc/greet()
 	if(!owner || !owner.current)
@@ -17,16 +17,16 @@
 
 	var/mob/player = owner.current
 	// Basic intro text.
-	player << "<span class='danger'><font size=3>You are a [role_text]!</font></span>"
+	to_chat(player, "<span class='danger'><font size=3>You are a [role_text]!</font></span>")
 	if(faction)
 		if(src in faction.leaders)
-			player << "You are a leader of the [faction.name]!"
+			to_chat(player, "You are a leader of the [faction.name]!")
 		else
-			player << "You are a member of the [faction.name]."
+			to_chat(player, "You are a member of the [faction.name].")
 
-		player << "[faction.welcome_text]"
+		to_chat(player, "[faction.welcome_text]")
 	else
-		player << "[welcome_text]"
+		to_chat(player, "[welcome_text]")
 
 	show_objectives()
 	printTip()

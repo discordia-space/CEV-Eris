@@ -36,7 +36,7 @@
 	..()
 	var/mob/living/carbon/human/H = hit_atom
 	if(istype(H) && H.has_eyes() && prob(85))
-		H << SPAN_DANGER("Some of \the [src] gets in your eyes!")
+		to_chat(H, SPAN_DANGER("Some of \the [src] gets in your eyes!"))
 		H.eye_blind += 5
 		H.eye_blurry += 10
 		spawn(1)

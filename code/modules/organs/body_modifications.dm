@@ -55,7 +55,7 @@ var/global/list/modifications_types = list(
 		if(parent_organ)
 			var/datum/body_modification/parent = P.get_modification(parent_organ)
 			if(parent.nature > nature)
-				usr << "[name] can't be attached to [parent.name]"
+				to_chat(usr, "[name] can't be attached to [parent.name]")
 				return FALSE
 
 	if(!allow_nt)

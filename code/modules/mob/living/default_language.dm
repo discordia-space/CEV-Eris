@@ -6,9 +6,9 @@
 	set category = "IC"
 
 	if(language)
-		src << SPAN_NOTICE("You will now speak [language] if you do not specify a language when speaking.")
+		to_chat(src, SPAN_NOTICE("You will now speak [language] if you do not specify a language when speaking."))
 	else
-		src << SPAN_NOTICE("You will now speak whatever your standard default language is if you do not specify one when speaking.")
+		to_chat(src, SPAN_NOTICE("You will now speak whatever your standard default language is if you do not specify one when speaking."))
 	set_default_language(language)
 
 // Silicons can't neccessarily speak everything in their languages list
@@ -20,9 +20,9 @@
 	set category = "IC"
 
 	if(default_language)
-		src << SPAN_NOTICE("You are currently speaking [default_language] by default.")
+		to_chat(src, SPAN_NOTICE("You are currently speaking [default_language] by default."))
 	else
-		src << SPAN_NOTICE("Your current default language is your species or mob type default.")
+		to_chat(src, SPAN_NOTICE("Your current default language is your species or mob type default."))
 
 /mob/living/proc/set_default_language(var/langname)
 	var/datum/language/L
