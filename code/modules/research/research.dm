@@ -139,9 +139,9 @@ Procs:
 	known_designs += D
 	var/cat = D.category ? D.category : "Unspecified"
 	if(D.build_type & PROTOLATHE)
-		design_categories_protolathe += cat
+		design_categories_protolathe |= cat
 	else if(D.build_type & IMPRINTER)
-		design_categories_imprinter += cat
+		design_categories_imprinter |= cat
 
 
 // Unlocks hidden tech trees
