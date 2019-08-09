@@ -147,7 +147,7 @@
 		return ..()
 
 	if(materials[material] >= res_max_amount)
-		user << "\icon[src]\The [src] cannot hold more [material]."
+		to_chat(user, "\icon[src]\The [src] cannot hold more [material].")
 
 	var/amount = round(input("How many sheets do you want to add?") as num)
 

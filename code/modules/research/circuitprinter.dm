@@ -149,11 +149,11 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 		return
 
 	if(!istype(S, /obj/item/stack/material))
-		user << SPAN_WARNING("You cannot insert this item into \the [src]!")
+		to_chat(user, SPAN_WARNING("You cannot insert this item into \the [src]!"))
 		return
 
 	if(TotalMaterials() + 1 > max_material_storage)
-		user << SPAN_WARNING("\The [src]'s material bin is full. Please remove material before adding more.")
+		to_chat(user, SPAN_WARNING("\The [src]'s material bin is full. Please remove material before adding more."))
 		return
 
 	var/amount = round(input("How many sheets do you want to add?") as num)

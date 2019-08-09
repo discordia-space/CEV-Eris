@@ -204,10 +204,10 @@
 						continue
 					var/HUDtype = HUDdatum.HUDneed[HUDname]
 					var/obj/screen/HUD = new HUDtype()
-					world << "[HUD] added"
+					to_chat(world, "[HUD] added")
 					H.HUDneed += HUD
 					if (HUD.type in HUDdatum.HUDprocess)
-						world << "[HUD] added in process"
+						to_chat(world, "[HUD] added in process")
 						H.HUDprocess += HUD
-					world << "[HUD] added in screen"
+					to_chat(world, "[HUD] added in screen")
 */

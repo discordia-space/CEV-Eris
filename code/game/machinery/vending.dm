@@ -197,7 +197,7 @@
 	if(!user.unEquip(W))
 		return
 
-	user << SPAN_NOTICE("You insert \the [W] in the product receptor.")
+	to_chat(user, SPAN_NOTICE("You insert \the [W] in the product receptor."))
 	if (R)
 		R.add_product(W)
 	else
@@ -207,13 +207,13 @@
 
 /obj/machinery/vending/proc/try_to_buy(obj/item/weapon/W, var/datum/data/vending_product/R, var/mob/user)
 	if(!earnings_account)
-		user << SPAN_WARNING("[src] flashes a message: Vendomat not registered to an account.")
+		to_chat(user, SPAN_WARNING("[src] flashes a message: Vendomat not registered to an account."))
 		return
 	if(vendor_department)
-		user << SPAN_WARNING("[src] flashes a message: Vendomat not authorized to accept sales. Please contact a member of [all_departments[vendor_department]].")
+		to_chat(user, SPAN_WARNING("[src] flashes a message: Vendomat not authorized to accept sales. Please contact a member of [all_departments[vendor_department]]."))
 		return
 	if(buying_percentage <= 0)
-		user << SPAN_WARNING("[src] flashes a message: Vendomat not accepting sales.")
+		to_chat(user, SPAN_WARNING("[src] flashes a message: Vendomat not accepting sales."))
 		return
 
 	if(!user.unEquip(W))
@@ -221,7 +221,7 @@
 
 	var/buying_price = round(R.price * buying_percentage/100,5)
 	if(earnings_account.money < buying_price)
-		user << SPAN_WARNING("[src] flashes a message: Account is unable to make this purchase.")
+		to_chat(user, SPAN_WARNING("[src] flashes a message: Account is unable to make this purchase."))
 		return
 	var/datum/transaction/T = new(-buying_price, "[user.name] (via [name])", "Sale of [R.product_name]", name)
 	T.apply_to(earnings_account)
@@ -230,7 +230,7 @@
 
 	spawn_money(buying_price,loc,usr)
 
-	user << SPAN_NOTICE("[src] accepts the sale of [W] and dispenses [buying_price] credits.")
+	to_chat(user, SPAN_NOTICE("[src] accepts the sale of [W] and dispenses [buying_price] credits."))
 
 
 	SSnano.update_uis(src)
@@ -304,14 +304,14 @@
 
 /obj/machinery/vending/emag_act(var/remaining_charges, var/mob/user)
 	if (machine_vendor_account || vendor_department || earnings_account)
-		user << "You override the ownership protocols on \the [src] and unlock it. You can now register it in your name."
+		to_chat(user, "You override the ownership protocols on \the [src] and unlock it. You can now register it in your name.")
 		machine_vendor_account = null
 		vendor_department = null
 		earnings_account = null
 		return 1
 	if (!emagged)
 		emagged = 1
-		user << "You short out the product lock on \the [src]"
+		to_chat(user, "You short out the product lock on \the [src]")
 		return 1
 
 /obj/machinery/vending/attackby(obj/item/I, mob/user)
@@ -321,7 +321,7 @@
 
 		if(QUALITY_BOLT_TURNING)
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-				user << SPAN_NOTICE("You [anchored? "un" : ""]secured \the [src]!")
+				to_chat(user, SPAN_NOTICE("You [anchored? "un" : ""]secured \the [src]!"))
 				anchored = !anchored
 			return
 
@@ -329,7 +329,7 @@
 			var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
 				panel_open = !panel_open
-				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance panel.")
+				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance panel."))
 				overlays.Cut()
 				if(panel_open)
 					overlays += image(icon, "[icon_type]-panel")
@@ -339,7 +339,7 @@
 		if(QUALITY_WELDING)
 			if(custom_vendor)
 				if(!panel_open)
-					usr << SPAN_WARNING("The maintenance panel on \the [src] needs to be open before deconstructing it.")
+					to_chat(usr, SPAN_WARNING("The maintenance panel on \the [src] needs to be open before deconstructing it."))
 					return
 				if(I.use_tool(user, src, WORKTIME_EXTREMELY_LONG, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					visible_message(SPAN_WARNING("\The [src] has been dismantled by [user]!"),"You hear welding.")
@@ -444,7 +444,7 @@
 		I.loc = src
 		coin = I
 		categories |= CAT_COIN
-		user << SPAN_NOTICE("You insert \the [I] into \the [src].")
+		to_chat(user, SPAN_NOTICE("You insert \the [I] into \the [src]."))
 		SSnano.update_uis(src)
 		return
 
@@ -471,7 +471,7 @@
 	if(currently_vending.price > cashmoney.worth)
 		// This is not a status display message, since it's something the character
 		// themselves is meant to see BEFORE putting the money in
-		usr << "\icon[cashmoney] <span class='warning'>That is not enough money.</span>"
+		to_chat(usr, "\icon[cashmoney] <span class='warning'>That is not enough money.</span>")
 		return 0
 
 	visible_message("<span class='info'>\The [usr] inserts some cash into \the [src].</span>")
@@ -648,20 +648,20 @@
 
 	if(href_list["remove_coin"] && !issilicon(usr))
 		if(!coin)
-			usr << "There is no coin in this machine."
+			to_chat(usr, "There is no coin in this machine.")
 			return
 
 		coin.loc = loc
 		if(!usr.get_active_hand())
 			usr.put_in_hands(coin)
-		usr << SPAN_NOTICE("You remove the [coin] from the [src]")
+		to_chat(usr, SPAN_NOTICE("You remove the [coin] from the [src]"))
 		coin = null
 		categories &= ~CAT_COIN
 
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(loc, /turf))))
 		if ((href_list["vend"]) && (vend_ready) && (!currently_vending))
 			if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
-				usr << SPAN_WARNING("Access denied.")	//Unless emagged of course
+				to_chat(usr, SPAN_WARNING("Access denied."))	//Unless emagged of course
 				flick(icon_deny,src)
 				return
 
@@ -675,7 +675,7 @@
 			if(R.price <= 0 || !locked)
 				vend(R, usr)
 			else if(issilicon(usr)) //If the item is not free, provide feedback if a synth is trying to buy something.
-				usr << SPAN_DANGER("Artificial unit recognized.  Artificial units cannot complete this transaction.  Purchase canceled.")
+				to_chat(usr, SPAN_DANGER("Artificial unit recognized.  Artificial units cannot complete this transaction.  Purchase canceled."))
 				return
 			else
 				currently_vending = R
@@ -750,7 +750,7 @@
 
 /obj/machinery/vending/proc/vend(datum/data/vending_product/R, mob/user)
 	if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
-		usr << SPAN_WARNING("Access denied.")	//Unless emagged of course
+		to_chat(usr, SPAN_WARNING("Access denied."))	//Unless emagged of course
 		flick(icon_deny,src)
 		return
 	vend_ready = 0 //One thing at a time!!
@@ -760,13 +760,13 @@
 
 	if (R.category & CAT_COIN)
 		if(!coin)
-			user << SPAN_NOTICE("You need to insert a coin to get this item.")
+			to_chat(user, SPAN_NOTICE("You need to insert a coin to get this item."))
 			return
 		if(coin.string_attached)
 			if(prob(50))
-				user << SPAN_NOTICE("You successfully pull the coin out before \the [src] could swallow it.")
+				to_chat(user, SPAN_NOTICE("You successfully pull the coin out before \the [src] could swallow it."))
 			else
-				user << SPAN_NOTICE("You weren't able to pull the coin out fast enough, the machine ate it, string and all.")
+				to_chat(user, SPAN_NOTICE("You weren't able to pull the coin out fast enough, the machine ate it, string and all."))
 				qdel(coin)
 				categories &= ~CAT_COIN
 		else
@@ -1355,7 +1355,7 @@
 	set src in oview(1)
 
 	if(locked)
-		usr << SPAN_WARNING("[src] needs to be unlocked to remodel it.")
+		to_chat(usr, SPAN_WARNING("[src] needs to be unlocked to remodel it."))
 		return
 	var/choice = input(usr, "How do you want your Vendomat to look? You can remodel it again later.", "Vendomat Remodeling", null) in CUSTOM_VENDOMAT_MODELS
 	if(!choice)
@@ -1369,7 +1369,7 @@
 	set src in oview(1)
 
 	if(locked)
-		usr << SPAN_WARNING("[src] needs to be unlocked to rename it.")
+		to_chat(usr, SPAN_WARNING("[src] needs to be unlocked to rename it."))
 		return
 
 	var/choice = sanitize(input("What do you want to name your Vendomat? You can rename it again later.", "Vendomat Renaming", name) as text|null, MAX_NAME_LEN)

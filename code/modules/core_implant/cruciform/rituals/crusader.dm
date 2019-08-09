@@ -37,7 +37,7 @@
 
 	user.stats.changeStat(STAT_TGH, count)
 	user.stats.changeStat(STAT_ROB, count)
-	user << SPAN_NOTICE("You feel an extraordinary burst of energy.")
+	to_chat(user, SPAN_NOTICE("You feel an extraordinary burst of energy."))
 	set_personal_cooldown(user)
 	addtimer(CALLBACK(src, .proc/discard_effect, user, count), src.cooldown_time)
 	return TRUE
@@ -58,16 +58,16 @@
 /datum/ritual/cruciform/crusader/flash/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
 	if(prob(100 - user.stats.getStat(STAT_VIG)))
 		user.Weaken(10)
-		user << SPAN_WARNING("The flux of psy-energy knocks over you!")
+		to_chat(user, SPAN_WARNING("The flux of psy-energy knocks over you!"))
 	else
-		user << SPAN_NOTICE("The flux of psy-energy washed your mind, but you managed to keep focused!")
+		to_chat(user, SPAN_NOTICE("The flux of psy-energy washed your mind, but you managed to keep focused!"))
 	playsound(user.loc, 'sound/effects/cascade.ogg', 65, 1)
 	for(var/mob/living/carbon/human/victim in view(user))
 		if(!victim.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
 			if(prob(100 - victim.stats.getStat(STAT_VIG)))
-				victim << SPAN_WARNING("You feel that your knees bends!")
+				to_chat(victim, SPAN_WARNING("You feel that your knees bends!"))
 				victim.Weaken(5)
 			else
-				victim << SPAN_NOTICE("Your legs feel numb, but you managed to stay on your feet!")
+				to_chat(victim, SPAN_NOTICE("Your legs feel numb, but you managed to stay on your feet!"))
 	set_personal_cooldown(user)
 	return TRUE

@@ -171,7 +171,7 @@
 		if(M.health <= 25)
 			M.mutations.Remove(HULK)
 			M.update_mutations()		//update our mutation overlays
-			M << SPAN_WARNING("You suddenly feel very weak.")
+			to_chat(M, SPAN_WARNING("You suddenly feel very weak."))
 			M.Weaken(3)
 			M.emote("collapse")
 

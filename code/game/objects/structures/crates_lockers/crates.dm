@@ -68,21 +68,21 @@
 	else if(istype(W, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/C = W
 		if(rigged)
-			user << SPAN_NOTICE("[src] is already rigged!")
+			to_chat(user, SPAN_NOTICE("[src] is already rigged!"))
 			return
 		if (C.use(1))
-			user  << SPAN_NOTICE("You rig [src].")
+			to_chat(user, SPAN_NOTICE("You rig [src]."))
 			rigged = TRUE
 			return
 	else if(istype(W, /obj/item/device/radio/electropack))
 		if(rigged)
-			user  << SPAN_NOTICE("You attach [W] to [src].")
+			to_chat(user, SPAN_NOTICE("You attach [W] to [src]."))
 			user.drop_item()
 			W.forceMove(src)
 			return
 	else if(istype(W, /obj/item/weapon/tool/wirecutters))
 		if(rigged)
-			user  << SPAN_NOTICE("You cut away the wiring.")
+			to_chat(user, SPAN_NOTICE("You cut away the wiring."))
 			playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
 			rigged = FALSE
 			return

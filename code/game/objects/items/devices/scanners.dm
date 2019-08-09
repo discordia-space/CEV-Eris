@@ -40,7 +40,7 @@ REAGENT SCANNER
 /obj/item/device/scanner/proc/cell_use_check(charge)
 	. = TRUE
 	if(!cell || !cell.checked_use(charge))
-		usr << SPAN_WARNING("[src] battery is dead or missing.")
+		to_chat(usr, SPAN_WARNING("[src] battery is dead or missing."))
 		. = FALSE
 
 /obj/item/device/scanner/Initialize()
@@ -75,7 +75,7 @@ REAGENT SCANNER
 	if(user.incapacitated())
 		return
 	if ((CLUMSY in user.mutations) && prob(50))
-		user << SPAN_WARNING("You try to analyze the floor's vitals!")
+		to_chat(user, SPAN_WARNING("You try to analyze the floor's vitals!"))
 		for(var/mob/O in viewers(M, null))
 			O.show_message(SPAN_WARNING("\The [user] has analyzed the floor's vitals!"), 1)
 		user.show_message(SPAN_NOTICE("Analyzing Results for The floor:"), 1)
@@ -158,11 +158,11 @@ REAGENT SCANNER
 			var/unknown = 0
 			for(var/datum/reagent/R in C.ingested.reagent_list)
 				if(R.scannable)
-					user << SPAN_NOTICE("[R.name] found in subject's stomach.")
+					to_chat(user, SPAN_NOTICE("[R.name] found in subject's stomach."))
 				else
 					++unknown
 			if(unknown)
-				user << "<span class='warning'>Non-medical reagent[(unknown > 1)?"s":""] found in subject's stomach.</span>"
+				to_chat(user, "<span class='warning'>Non-medical reagent[(unknown > 1)?"s":""] found in subject's stomach.</span>")
 		if(C.virus2.len)
 			for (var/ID in C.virus2)
 				if (ID in virusDB)
@@ -188,11 +188,11 @@ REAGENT SCANNER
 			if(E.status & ORGAN_BROKEN)
 				if(!(E.status & ORGAN_SPLINTED))
 					if(E.organ_tag in list(BP_R_ARM, BP_L_ARM, BP_R_LEG, BP_L_LEG))
-						user << SPAN_WARNING("Unsecured fracture in subject [E]. Splinting recommended for transport.")
+						to_chat(user, SPAN_WARNING("Unsecured fracture in subject [E]. Splinting recommended for transport."))
 					else
 						foundUnlocatedFracture = TRUE
 			if(E.has_infected_wound())
-				user << SPAN_WARNING("Infected wound detected in subject [E]. Disinfection recommended.")
+				to_chat(user, SPAN_WARNING("Infected wound detected in subject [E]. Disinfection recommended."))
 
 		if(foundUnlocatedFracture)
 			user.show_message(SPAN_WARNING("Bone fractures detected. Advanced scanner required for location."), 1)
@@ -223,9 +223,9 @@ REAGENT SCANNER
 	mode = !mode
 	switch (mode)
 		if(1)
-			usr << "The scanner now shows specific limb damage."
+			to_chat(usr, "The scanner now shows specific limb damage.")
 		if(0)
-			usr << "The scanner no longer shows limb damage."
+			to_chat(usr, "The scanner no longer shows limb damage.")
 
 /obj/item/device/scanner/healthanalyzer/MouseDrop(over_object)
 	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
@@ -312,7 +312,7 @@ REAGENT SCANNER
 		for(var/datum/reagent/R in reagents.reagent_list)
 			if(R.id != "blood")
 				reagents.clear_reagents()
-				user << SPAN_WARNING("The sample was contaminated! Please insert another sample")
+				to_chat(user, SPAN_WARNING("The sample was contaminated! Please insert another sample"))
 				return
 			else
 				blood_traces = params2list(R.data["trace_chem"])
@@ -323,7 +323,7 @@ REAGENT SCANNER
 				dat += "[R] ([blood_traces[R]] units) "
 			else
 				dat += "[R] "
-		user << "[dat]"
+		to_chat(user, "[dat]")
 		reagents.clear_reagents()
 
 /obj/item/device/scanner/mass_spectrometer/MouseDrop(over_object)
@@ -371,11 +371,11 @@ REAGENT SCANNER
 			for (var/datum/reagent/R in O.reagents.reagent_list)
 				dat += "\n \t <span class='notice'>[R][details ? ": [R.volume / one_percent]%" : ""]"
 		if(dat)
-			user << SPAN_NOTICE("Chemicals found: [dat]")
+			to_chat(user, SPAN_NOTICE("Chemicals found: [dat]"))
 		else
-			user << SPAN_NOTICE("No active chemical agents found in [O].")
+			to_chat(user, SPAN_NOTICE("No active chemical agents found in [O]."))
 	else
-		user << SPAN_NOTICE("No significant chemical agents found in [O].")
+		to_chat(user, SPAN_NOTICE("No significant chemical agents found in [O]."))
 
 /obj/item/device/scanner/reagent_scanner/MouseDrop(over_object)
 	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
@@ -409,7 +409,7 @@ REAGENT SCANNER
 	if(user.incapacitated())
 		return
 	if (!isslime(M))
-		user << "<B>This device can only scan slimes!</B>"
+		to_chat(user, "<B>This device can only scan slimes!</B>")
 		return
 	var/mob/living/carbon/slime/T = M
 	user.show_message("Slime scan results:")

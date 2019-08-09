@@ -26,16 +26,16 @@ ADMIN_VERB_ADD(/client/proc/giveruntimelog, R_ADMIN, FALSE)
 	set category = null
 
 	if(!src.holder)
-		src << "<font color='red'>Only Admins may use this command.</font>"
+		to_chat(src, "<font color='red'>Only Admins may use this command.</font>")
 		return
 
 	var/client/target = input(src,"Choose somebody to grant access to the server's runtime logs (permissions expire at the end of each round):","Grant Permissions",null) as null|anything in clients
 	if(!istype(target,/client))
-		src << "<font color='red'>Error: giveruntimelog(): Client not found.</font>"
+		to_chat(src, "<font color='red'>Error: giveruntimelog(): Client not found.</font>")
 		return
 
 	target.verbs |= /client/proc/getruntimelog
-	target << "<font color='red'>You have been granted access to runtime logs. Please use them responsibly or risk being banned.</font>"
+	to_chat(target, "<font color='red'>You have been granted access to runtime logs. Please use them responsibly or risk being banned.</font>")
 	return
 
 
@@ -57,7 +57,7 @@ ADMIN_VERB_ADD(/client/proc/getruntimelog, R_DEBUG, FALSE)
 
 	message_admins("[key_name_admin(src)] accessed file: [path]")
 	src << run( file(path) )
-	src << "Attempting to send file, this may take a fair few minutes if the file is very large."
+	to_chat(src, "Attempting to send file, this may take a fair few minutes if the file is very large.")
 	return
 
 
@@ -78,7 +78,7 @@ ADMIN_VERB_ADD(/client/proc/getserverlog, R_ADMIN, FALSE)
 
 	message_admins("[key_name_admin(src)] accessed file: [path]")
 	src << run( file(path) )
-	src << "Attempting to send file, this may take a fair few minutes if the file is very large."
+	to_chat(src, "Attempting to send file, this may take a fair few minutes if the file is very large.")
 	return
 
 
@@ -96,7 +96,7 @@ ADMIN_VERB_ADD(/datum/admins/proc/view_txt_log, R_ADMIN, FALSE)
 	if( fexists(path) )
 		src << run( file(path) )
 	else
-		src << "<font color='red'>Error: view_txt_log(): File not found/Invalid path([path]).</font>"
+		to_chat(src, "<font color='red'>Error: view_txt_log(): File not found/Invalid path([path]).</font>")
 		return
 
 	return
@@ -113,7 +113,7 @@ ADMIN_VERB_ADD(/datum/admins/proc/view_atk_log, R_ADMIN, FALSE)
 	if( fexists(path) )
 		src << run( file(path) )
 	else
-		src << "<font color='red'>Error: view_atk_log(): File not found/Invalid path([path]).</font>"
+		to_chat(src, "<font color='red'>Error: view_atk_log(): File not found/Invalid path([path]).</font>")
 		return
 	usr << run( file(path) )
 

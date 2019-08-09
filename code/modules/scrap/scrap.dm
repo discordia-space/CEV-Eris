@@ -144,7 +144,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 			if(H.shoes)
 				return
 
-			M << SPAN_DANGER("You step on \the [src]!")
+			to_chat(M, SPAN_DANGER("You step on \the [src]!"))
 
 			var/list/check = list(BP_L_LEG, BP_R_LEG)
 			while(check.len)

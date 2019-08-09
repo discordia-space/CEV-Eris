@@ -33,15 +33,15 @@
 	if(..(user, 1))
 		if (mybucket)
 			var/contains = mybucket.reagents.total_volume
-			user << "\icon[src] The bucket contains [contains] unit\s of liquid!"
+			to_chat(user, "\icon[src] The bucket contains [contains] unit\s of liquid!")
 		else
-			user << "\icon[src] There is no bucket mounted on it!"
+			to_chat(user, "\icon[src] There is no bucket mounted on it!")
 
 /obj/structure/janitorialcart/MouseDrop_T(atom/movable/O as mob|obj, mob/living/user as mob)
 	if (istype(O, /obj/structure/mopbucket) && !mybucket)
 		O.forceMove(src)
 		mybucket = O
-		user << "You mount the [O] on the janicart."
+		to_chat(user, "You mount the [O] on the janicart.")
 		update_icon()
 	else
 		..()
@@ -51,15 +51,15 @@
 		if (mybucket)
 			if(I.reagents.total_volume < I.reagents.maximum_volume)
 				if(mybucket.reagents.total_volume < 1)
-					user << "<span class='notice'>[mybucket] is empty!</span>"
+					to_chat(user, "<span class='notice'>[mybucket] is empty!</span>")
 				else
 					mybucket.reagents.trans_to_obj(I, 5)	//
-					user << "<span class='notice'>You wet [I] in [mybucket].</span>"
+					to_chat(user, "<span class='notice'>You wet [I] in [mybucket].</span>")
 					playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 			else
-				user << "<span class='notice'>[I] can't absorb anymore liquid!</span>"
+				to_chat(user, "<span class='notice'>[I] can't absorb anymore liquid!</span>")
 		else
-			user << "<span class='notice'>There is no bucket mounted here to dip [I] into!</span>"
+			to_chat(user, "<span class='notice'>There is no bucket mounted here to dip [I] into!</span>")
 		return 1
 
 	else if (istype(I, /obj/item/weapon/reagent_containers/glass/bucket) && mybucket)
@@ -72,7 +72,7 @@
 		myspray = I
 		update_icon()
 		updateUsrDialog()
-		user << "<span class='notice'>You put [I] into [src].</span>"
+		to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
 		return 1
 
 	else if(istype(I, /obj/item/device/lightreplacer) && !myreplacer)
@@ -80,7 +80,7 @@
 		myreplacer = I
 		update_icon()
 		updateUsrDialog()
-		user << "<span class='notice'>You put [I] into [src].</span>"
+		to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
 		return 1
 
 	else if(istype(I, /obj/item/weapon/storage/bag/trash) && !mybag)
@@ -88,7 +88,7 @@
 		mybag = I
 		update_icon()
 		updateUsrDialog()
-		user << "<span class='notice'>You put [I] into [src].</span>"
+		to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
 		return 1
 
 	else if(istype(I, /obj/item/weapon/caution))
@@ -97,9 +97,9 @@
 			signs++
 			update_icon()
 			updateUsrDialog()
-			user << SPAN_NOTICE("You put [I] into [src].")
+			to_chat(user, SPAN_NOTICE("You put [I] into [src]."))
 		else
-			user << SPAN_NOTICE("[src] can't hold any more signs.")
+			to_chat(user, SPAN_NOTICE("[src] can't hold any more signs."))
 		return 1
 
 	else if(mybag)
@@ -127,10 +127,10 @@
 			mymop = I
 			update_icon()
 			updateUsrDialog()
-			usr << "<span class='notice'>You put [I] into [src].</span>"
+			to_chat(usr, "<span class='notice'>You put [I] into [src].</span>")
 			update_icon()
 		else
-			usr << "<span class='notice'>The cart already has a mop attached</span>"
+			to_chat(usr, "<span class='notice'>The cart already has a mop attached</span>")
 		return
 	else if(istype(I, /obj/item/weapon/reagent_containers) && mybucket)
 		var/obj/item/weapon/reagent_containers/C = I
@@ -171,29 +171,29 @@
 			if("garbage")
 				if(mybag)
 					user.put_in_hands(mybag)
-					user << SPAN_NOTICE("You take [mybag] from [src].")
+					to_chat(user, SPAN_NOTICE("You take [mybag] from [src]."))
 					mybag = null
 			if("mop")
 				if(mymop)
 					user.put_in_hands(mymop)
-					user << SPAN_NOTICE("You take [mymop] from [src].")
+					to_chat(user, SPAN_NOTICE("You take [mymop] from [src]."))
 					mymop = null
 			if("spray")
 				if(myspray)
 					user.put_in_hands(myspray)
-					user << SPAN_NOTICE("You take [myspray] from [src].")
+					to_chat(user, SPAN_NOTICE("You take [myspray] from [src]."))
 					myspray = null
 			if("replacer")
 				if(myreplacer)
 					user.put_in_hands(myreplacer)
-					user << SPAN_NOTICE("You take [myreplacer] from [src].")
+					to_chat(user, SPAN_NOTICE("You take [myreplacer] from [src]."))
 					myreplacer = null
 			if("sign")
 				if(signs)
 					var/obj/item/weapon/caution/Sign = locate() in src
 					if(Sign)
 						user.put_in_hands(Sign)
-						user << SPAN_NOTICE("You take \a [Sign] from [src].")
+						to_chat(user, SPAN_NOTICE("You take \a [Sign] from [src]."))
 						signs--
 					else
 						warning("[src] signs ([signs]) didn't match contents")
@@ -201,7 +201,7 @@
 			if("bucket")
 				if(mybucket)
 					mybucket.forceMove(get_turf(user))
-					user << "<span class='notice'>You unmount [mybucket] from [src].</span>"
+					to_chat(user, "<span class='notice'>You unmount [mybucket] from [src].</span>")
 					mybucket = null
 
 	update_icon()
@@ -320,14 +320,14 @@
 		return
 
 	if(mybag)
-		user << "\A [mybag] is hanging on the [callme]."
+		to_chat(user, "\A [mybag] is hanging on the [callme].")
 
 
 /obj/structure/bed/chair/janicart/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/key))
-		user << "Hold [I] in one of your hands while you drive this [callme]."
+		to_chat(user, "Hold [I] in one of your hands while you drive this [callme].")
 	else if(istype(I, /obj/item/weapon/storage/bag/trash))
-		user << SPAN_NOTICE("You hook the trashbag onto the [callme].")
+		to_chat(user, SPAN_NOTICE("You hook the trashbag onto the [callme]."))
 		user.drop_item()
 		I.loc = src
 		mybag = I
@@ -349,7 +349,7 @@
 		step(src, direction)
 		update_mob()
 	else
-		user << SPAN_NOTICE("You'll need the keys in one of your hands to drive this [callme].")
+		to_chat(user, SPAN_NOTICE("You'll need the keys in one of your hands to drive this [callme]."))
 
 
 /obj/structure/bed/chair/janicart/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)

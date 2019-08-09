@@ -17,7 +17,7 @@
 
 /obj/item/device/flash/proc/clown_check(var/mob/user)
 	if(user && (CLUMSY in user.mutations) && prob(50))
-		user << SPAN_WARNING("\The [src] slips out of your hand.")
+		to_chat(user, SPAN_WARNING("\The [src] slips out of your hand."))
 		user.drop_item()
 		return 0
 	return 1
@@ -45,7 +45,7 @@
 
 	if(!clown_check(user))	return
 	if(broken)
-		user << SPAN_WARNING("\The [src] is broken.")
+		to_chat(user, SPAN_WARNING("\The [src] is broken."))
 		return
 
 	flash_recharge()
@@ -57,12 +57,12 @@
 			last_used = world.time
 			if(prob(times_used))	//if you use it 5 times in a minute it has a 10% chance to break!
 				broken = 1
-				user << SPAN_WARNING("The bulb has burnt out!")
+				to_chat(user, SPAN_WARNING("The bulb has burnt out!"))
 				icon_state = "flashburnt"
 				return
 			times_used++
 		else	//can only use it  5 times a minute
-			user << SPAN_WARNING("*click* *click*")
+			to_chat(user, SPAN_WARNING("*click* *click*"))
 			return
 	playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
 	var/flashfail = 0
@@ -135,7 +135,7 @@
 		if(0 to 5)
 			if(prob(2*times_used))	//if you use it 5 times in a minute it has a 10% chance to break!
 				broken = 1
-				user << SPAN_WARNING("The bulb has burnt out!")
+				to_chat(user, SPAN_WARNING("The bulb has burnt out!"))
 				icon_state = "flashburnt"
 				return
 			times_used++

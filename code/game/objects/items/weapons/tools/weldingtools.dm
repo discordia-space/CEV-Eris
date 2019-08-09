@@ -30,21 +30,21 @@
 
 	if (get_fuel() > passive_fuel_cost)
 		item_state = "[initial(item_state)]_on"
-		user << SPAN_NOTICE("You switch [src] on.")
+		to_chat(user, SPAN_NOTICE("You switch [src] on."))
 		playsound(loc, 'sound/items/welderactivate.ogg', 50, 1)
 		..()
 		damtype = BURN
 		START_PROCESSING(SSobj, src)
 	else
 		item_state = initial(item_state)
-		user << SPAN_WARNING("[src] has no fuel!")
+		to_chat(user, SPAN_WARNING("[src] has no fuel!"))
 
 	//Todo: Add a better hit sound for a turned_on welder
 
 /obj/item/weapon/tool/weldingtool/turn_off(mob/user)
 	item_state = initial(item_state)
 	playsound(loc, 'sound/items/welderdeactivate.ogg', 50, 1)
-	user << SPAN_NOTICE("You switch [src] off.")
+	to_chat(user, SPAN_NOTICE("You switch [src] off."))
 	..()
 	damtype = initial(damtype)
 

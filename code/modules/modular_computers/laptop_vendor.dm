@@ -266,7 +266,7 @@
 
 obj/machinery/lapvend/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(inoperable())
-		user << SPAN_WARNING("[src] is not responding.")
+		to_chat(user, SPAN_WARNING("[src] is not responding."))
 		return
 	var/obj/item/weapon/card/id/I = W.GetIdCard()
 	// Awaiting payment state

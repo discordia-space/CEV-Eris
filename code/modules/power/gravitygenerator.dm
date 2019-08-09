@@ -189,7 +189,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 		if(QUALITY_BOLT_TURNING)
 			if(GRAV_NEEDS_WRENCH)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You secure the plating to the framework.")
+					to_chat(user, SPAN_NOTICE("You secure the plating to the framework."))
 					set_fix()
 					return
 			return
@@ -197,7 +197,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 		if(QUALITY_WELDING)
 			if(GRAV_NEEDS_WELDING)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You mend the damaged framework.")
+					to_chat(user, SPAN_NOTICE("You mend the damaged framework."))
 					broken_state++
 					return
 			return
@@ -205,7 +205,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 		if(QUALITY_SCREW_DRIVING)
 			if(GRAV_NEEDS_SCREWDRIVER)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You secure the screws of the framework.")
+					to_chat(user, SPAN_NOTICE("You secure the screws of the framework."))
 					broken_state++
 					return
 			return
@@ -218,11 +218,11 @@ var/const/GRAV_NEEDS_WRENCH = 3
 			var/obj/item/stack/material/plasteel/PS = I
 			if(PS.amount >= 10)
 				PS.use(10)
-				user << SPAN_NOTICE("You add the plating to the framework.")
+				to_chat(user, SPAN_NOTICE("You add the plating to the framework."))
 				playsound(src.loc, 'sound/machines/click.ogg', 75, 1)
 				broken_state++
 			else
-				user << SPAN_WARNING("You need 10 sheets of plasteel!")
+				to_chat(user, SPAN_WARNING("You need 10 sheets of plasteel!"))
 	if(old_broken_state != broken_state)
 		update_icon()
 	else

@@ -2,8 +2,8 @@
 	name = "nanopaste"
 	singular_name = "nanite swarm"
 	desc = "A tube of paste containing swarms of repair nanites. Very effective in repairing robotic machinery."
-	icon = 'icons/obj/nanopaste.dmi'
-	icon_state = "tube"
+	icon = 'icons/obj/stack/items.dmi'
+	icon_state = "nanopaste"
 	matter = list(MATERIAL_PLASTIC = 2)
 	origin_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
 	amount = 10
@@ -27,7 +27,7 @@
 			user.visible_message(SPAN_NOTICE("\The [user] applied some [src] at [R]'s damaged areas."),\
 				SPAN_NOTICE("You apply some [src] at [R]'s damaged areas."))
 		else
-			user << SPAN_NOTICE("All [R]'s systems are nominal.")
+			to_chat(user, SPAN_NOTICE("All [R]'s systems are nominal."))
 
 	if (ishuman(M))		//Repairing robolimbs
 		var/mob/living/carbon/human/H = M
@@ -45,10 +45,10 @@
 						"<span class='notice'>You apply some nanite paste at [user == M ? "your" : "[M]'s"] [S.name].</span>"
 					)
 				else
-					user << SPAN_NOTICE("Nothing to fix here.")
+					to_chat(user, SPAN_NOTICE("Nothing to fix here."))
 		else
 			if (can_operate(H))        //Checks if mob is lying down on table for surgery
 				if (do_surgery(H,user,src))
 					return
 			else
-				user << SPAN_NOTICE("Nothing to fix in here.") //back to the original
+				to_chat(user, SPAN_NOTICE("Nothing to fix in here.")) //back to the original

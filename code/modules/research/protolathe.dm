@@ -181,7 +181,7 @@
 
 /obj/machinery/r_n_d/protolathe/examine(mob/user)
 	..()
-	user << "Material storage is [TotalMaterials()]/[max_material_storage] full."
+	to_chat(user, "Material storage is [TotalMaterials()]/[max_material_storage] full.")
 
 /obj/machinery/r_n_d/protolathe/proc/res_load(var/name)
 	var/obj/effect/temp_visual/resourceInsertion/protolathe/effect = new(src.loc)

@@ -83,7 +83,7 @@
 	set src in view(usr, 1)
 	set name = "Print Data"
 	if(usr.stat)
-		usr << "You must be conscious to do that!"
+		to_chat(usr, "You must be conscious to do that!")
 		return
 
 	if (!usr.IsAdvancedToolUser())
@@ -181,7 +181,7 @@
 		return
 
 	if(!can_operate(M))
-		user << SPAN_WARNING("You need to lay the cadaver down on a table first!")
+		to_chat(user, SPAN_WARNING("You need to lay the cadaver down on a table first!"))
 		return
 
 	if(target_name != M.name)
@@ -189,16 +189,16 @@
 		src.wdata = list()
 		src.chemtraces = list()
 		src.timeofdeath = null
-		user << SPAN_NOTICE("A new patient has been registered.. Purging data for previous patient.")
+		to_chat(user, SPAN_NOTICE("A new patient has been registered.. Purging data for previous patient."))
 
 	src.timeofdeath = M.timeofdeath
 
 	var/obj/item/organ/external/S = M.get_organ(user.targeted_organ)
 	if(!S)
-		usr << SPAN_WARNING("You can't scan this body part.")
+		to_chat(usr, SPAN_WARNING("You can't scan this body part."))
 		return
 	if(!S.open)
-		usr << SPAN_WARNING("You have to cut the limb open first!")
+		to_chat(usr, SPAN_WARNING("You have to cut the limb open first!"))
 		return
 	for(var/mob/O in viewers(M))
 		O.show_message(SPAN_NOTICE("\The [user] scans the wounds on [M.name]'s [S.name] with \the [src]"), 1)

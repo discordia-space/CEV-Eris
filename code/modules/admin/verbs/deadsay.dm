@@ -5,15 +5,15 @@ ADMIN_VERB_ADD(/client/proc/dsay, R_ADMIN|R_DEBUG|R_MOD, TRUE)
 	set name = "Dsay" //Gave this shit a shorter name so you only have to time out "dsay" rather than "dead say" to use it --NeoFite
 	set hidden = 1
 	if(!src.holder)
-		src << "Only administrators may use this command."
+		to_chat(src, "Only administrators may use this command.")
 		return
 	if(!src.mob)
 		return
 	if(prefs.muted & MUTE_DEADCHAT)
-		src << SPAN_WARNING("You cannot send DSAY messages (muted).")
+		to_chat(src, SPAN_WARNING("You cannot send DSAY messages (muted)."))
 		return
 	if(src.get_preference_value(/datum/client_preference/show_dsay) == GLOB.PREF_HIDE)
-		src << SPAN_WARNING("You have deadchat muted.")
+		to_chat(src, SPAN_WARNING("You have deadchat muted."))
 		return
 
 	if (src.handle_spam_prevention(msg,MUTE_DEADCHAT))

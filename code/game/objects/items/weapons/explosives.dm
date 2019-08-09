@@ -28,7 +28,7 @@
 	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			open_panel = !open_panel
-			user << "<span class='notice'>You [open_panel ? "open" : "close"] the wire panel.</span>"
+			to_chat(user, "<span class='notice'>You [open_panel ? "open" : "close"] the wire panel.</span>")
 	else if(istype(I, /obj/item/weapon/tool))
 		wires.Interact(user)
 	else
@@ -39,14 +39,14 @@
 	if(user.get_active_hand() == src)
 		newtime = Clamp(newtime, 10, 60000)
 		timer = newtime
-		user << "Timer set for [timer] seconds."
+		to_chat(user, "Timer set for [timer] seconds.")
 
 /obj/item/weapon/plastique/afterattack(atom/movable/target, mob/user, flag)
 	if (!flag)
 		return
 	if (ismob(target) || istype(target, /turf/unsimulated) || istype(target, /turf/simulated/shuttle) || istype(target, /obj/item/weapon/storage/) || istype(target, /obj/item/clothing/under))
 		return
-	user << "Planting the explosive charge..."
+	to_chat(user, "Planting the explosive charge...")
 	user.do_attack_animation(target)
 
 	if(do_after(user, 50, target) && in_range(user, target))
@@ -65,7 +65,7 @@
 			log_game("[key_name(user)] planted [src.name] on [target.name] at ([target.x],[target.y],[target.z]) with [timer] second fuse")
 
 		target.overlays += image_overlay
-		user << "Bomb has been planted. Timer is counting down from [timer]."
+		to_chat(user, "Bomb has been planted. Timer is counting down from [timer].")
 		spawn(timer*10)
 			explode(get_turf(target))
 

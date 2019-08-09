@@ -28,7 +28,7 @@
 	return
 
 /obj/item/weapon/grenade/flashbang/proc/bang(var/turf/T , var/mob/living/carbon/M)					// Added a new proc called 'bang' that takes a location and a person to be banged.
-	M << SPAN_DANGER("BANG")						// Called during the loop that bangs people in lockers/containers and when banging
+	to_chat(M, SPAN_DANGER("BANG"))								// Called during the loop that bangs people in lockers/containers and when banging
 	playsound(src.loc, 'sound/effects/bang.ogg', 50, 1, 5)		// people in normal view.  Could theroetically be called during other explosions.
 																// -- Polymorph
 
@@ -84,10 +84,10 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[BP_EYES]
 		if (E && E.damage >= E.min_bruised_damage)
-			M << SPAN_DANGER("Your eyes start to burn badly!")
+			to_chat(M, SPAN_DANGER("Your eyes start to burn badly!"))
 	if (M.ear_damage >= 15)
-		M << SPAN_DANGER("Your ears start to ring badly!")
+		to_chat(M, SPAN_DANGER("Your ears start to ring badly!"))
 	else
 		if (M.ear_damage >= 5)
-			M << SPAN_DANGER("Your ears start to ring!")
+			to_chat(M, SPAN_DANGER("Your ears start to ring!"))
 	M.update_icons()

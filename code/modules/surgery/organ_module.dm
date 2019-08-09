@@ -15,7 +15,7 @@
 	var/obj/item/organ_module/OM = tool
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(!affected.organ_tag in OM.allowed_organs)
-		user << SPAN_WARNING("[OM] isn't created for [affected].")
+		to_chat(user, SPAN_WARNING("[OM] isn't created for [affected]."))
 		return 0
 	return affected && !affected.module && affected.open >= 2
 
