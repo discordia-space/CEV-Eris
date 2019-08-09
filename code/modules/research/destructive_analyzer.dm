@@ -9,11 +9,11 @@ Note: Must be placed within 3 tiles of the R&D Console
 /obj/machinery/r_n_d/destructive_analyzer
 	name = "destructive analyzer"
 	icon_state = "d_analyzer"
-	var/obj/item/weapon/loaded_item = null
+	var/obj/item/loaded_item = null
 	var/decon_mod = 0
 	circuit = /obj/item/weapon/circuitboard/destructive_analyzer
 
-	use_power = 1
+	use_power = TRUE
 	idle_power_usage = 30
 	active_power_usage = 2500
 
@@ -31,23 +31,23 @@ Note: Must be placed within 3 tiles of the R&D Console
 	else
 		icon_state = "d_analyzer"
 
-/obj/machinery/r_n_d/destructive_analyzer/attackby(var/obj/item/I, var/mob/user as mob)
+/obj/machinery/r_n_d/destructive_analyzer/attackby(obj/item/I, mob/user)
 	if(busy)
-		user << SPAN_NOTICE("\The [src] is busy right now.")
+		to_chat(user, SPAN_NOTICE("\The [src] is busy right now."))
 		return
 	if(loaded_item)
-		user << SPAN_NOTICE("There is something already loaded into \the [src].")
-		return 1
+		to_chat(user, SPAN_NOTICE("There is something already loaded into \the [src]."))
+		return
 
 	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING), src)
 	switch(tool_type)
 
 		if(QUALITY_PRYING)
 			if(!panel_open)
-				user << SPAN_NOTICE("You cant get to the components of \the [src], remove the cover.")
+				to_chat(user, SPAN_NOTICE("You cant get to the components of \the [src], remove the cover."))
 				return
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-				user << SPAN_NOTICE("You remove the components of \the [src] with [I].")
+				to_chat(user, SPAN_NOTICE("You remove the components of \the [src] with [I]."))
 				dismantle()
 				return
 
@@ -58,7 +58,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 					linked_console.linked_imprinter = null
 					linked_console = null
 				panel_open = !panel_open
-				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
+				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
 				update_icon()
 				return
 
@@ -68,27 +68,76 @@ Note: Must be placed within 3 tiles of the R&D Console
 	if(default_part_replacement(I, user))
 		return
 	if(panel_open)
-		user << SPAN_NOTICE("You can't load \the [src] while it's opened.")
-		return 1
-	if(!linked_console)
-		user << SPAN_NOTICE("\The [src] must be linked to an R&D console first.")
+		to_chat(user, SPAN_NOTICE("You can't load \the [src] while it's opened."))
 		return
-	if(!loaded_item)
+	if(!linked_console)
+		to_chat(user, SPAN_NOTICE("\The [src] must be linked to an R&D console first."))
+		return
+	if(!loaded_item && istype(I))
 		if(!I.origin_tech)
-			user << SPAN_NOTICE("This doesn't seem to have a tech origin.")
+			to_chat(user, SPAN_NOTICE("This doesn't seem to have a tech origin."))
 			return
 		if(I.origin_tech.len == 0)
-			user << SPAN_NOTICE("You cannot deconstruct this item.")
+			to_chat(user, SPAN_NOTICE("You cannot deconstruct this item."))
 			return
 
 		if(user.unEquip(I, src))
-			busy = 1
+			busy = TRUE
 			loaded_item = I
-			user << SPAN_NOTICE("You add \the [I] to \the [src].")
+			to_chat(user, SPAN_NOTICE("You add \the [I] to \the [src]."))
 			flick("d_analyzer_la", src)
-			spawn(10)
-				update_icon()
-				busy = 0
-				linked_console.updateUsrDialog()
-			return 1
+			addtimer(CALLBACK(src, .proc/reset_busy), 1 SECOND)
+			return TRUE
 	return
+
+/obj/machinery/r_n_d/destructive_analyzer/proc/reset_busy()
+	busy = FALSE
+	update_icon()
+	if(linked_console)
+		SSnano.update_uis(linked_console)
+
+// If this returns true, the rdconsole caller will set its screen to SCREEN_WORKING
+/obj/machinery/r_n_d/destructive_analyzer/proc/deconstruct_item()
+	if(busy)
+		to_chat(usr, SPAN_WARNING("The destructive analyzer is busy at the moment."))
+		return
+	if(!loaded_item)
+		return
+
+	busy = TRUE
+	flick("d_analyzer_process", src)
+	addtimer(CALLBACK(src, .proc/finish_deconstructing), 2.4 SECONDS)
+	return TRUE
+
+/obj/machinery/r_n_d/destructive_analyzer/proc/finish_deconstructing()
+	busy = FALSE
+	if(!loaded_item)
+		return
+	if(linked_console)
+		linked_console.handle_item_analysis(loaded_item)
+
+	if(istype(loaded_item,/obj/item/stack))
+		var/obj/item/stack/S = loaded_item
+		if(S.amount <= 1)
+			qdel(S)
+			loaded_item = null
+		else
+			S.use(1)
+	else
+		qdel(loaded_item)
+		loaded_item = null
+
+	use_power(active_power_usage)
+	update_icon()
+	if(linked_console)
+		linked_console.reset_screen()
+
+/obj/machinery/r_n_d/destructive_analyzer/eject_item()
+	if(busy)
+		to_chat(usr, SPAN_WARNING("The destructive analyzer is busy at the moment."))
+		return
+
+	if(loaded_item)
+		loaded_item.forceMove(loc)
+		loaded_item = null
+		update_icon()
