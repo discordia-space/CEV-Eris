@@ -59,6 +59,7 @@
 		var/success = 0
 		for(var/obj/machinery/r_n_d/server/S in SSmachines.machinery)
 			S.files.download_from(files)
+			files.download_from(S.files)
 			success = TRUE
 		if(success)
 			to_chat(user, "You connect to the research server, push your data upstream to it, then pull the resulting merged data from the master branch.")

@@ -2,7 +2,7 @@
 Research and Development (R&D) Console
 
 This is the main work horse of the R&D system. It contains the menus/controls for the Destructive Analyzer, Protolathe, and Circuit
-imprinter. It also contains the /datum/research holder with all the known/possible technology paths and device designs.
+imprinter. It also contains the /datum/research holder which handles the local research database.
 
 Basic use: When it first is created, it will attempt to link up to related devices within 3 squares. It'll only link up if they
 aren't already linked to another console. Any consoles it cannot link up with (either because all of a certain type are already
@@ -16,13 +16,13 @@ doesn't have toxins access.
 
 When a R&D console is destroyed or even partially disassembled, you lose all research data on it. However, there are two ways around
 this dire fate:
-- The easiest way is to go to the settings menu and select "Sync Database with Network." That causes it to upload (but not download)
+- The easiest way is to go to the settings menu and select "Sync Database with Network." That causes it to upload 
 it's data to every other device in the game. Each console has a "disconnect from network" option that'll will cause data base sync
 operations to skip that console. This is useful if you want to make a "public" R&D console or, for example, give the engineers
 a circuit imprinter with certain designs on it and don't want it accidentally updating. The downside of this method is that you have
 to have physical access to the other console to send data back. Note: An R&D console is on CentCom so if a random griffan happens to
 cause a ton of data to be lost, an admin can go send it back.
-- The second method is with Technology Disks and Design Disks. Each of these disks can hold a single technology or design datum in
+- The second method is with data disks. Each of these disks can hold multiple technology or design datum in
 it's entirety. You can then take the disk to any R&D console and upload it's data to it. This method is a lot more secure (since it
 won't update every console in existence) but it's more of a hassle to do. Also, the disks can be stolen.
 */
@@ -49,8 +49,6 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	var/obj/machinery/r_n_d/protolathe/linked_lathe             = null	//Linked Protolathe
 	var/obj/machinery/r_n_d/circuit_imprinter/linked_imprinter  = null	//Linked Circuit Imprinter
 
-	//var/obj/item/weapon/disk/design_disk/d_disk = null	//Stores the design disk.
-
 	var/screen = SCREEN_MAIN	//Which screen is currently showing.
 	var/id     = 0			//ID of the computer (for server restrictions).
 	var/sync   = 1		//If sync = 0, it doesn't show up on Server Control Console
@@ -58,7 +56,6 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 	req_access = list(access_moebius)	//Data and setting manipulation requires scientist access.
 
-	var/datum/browser/popup
 	var/datum/tech/selected_tech_tree
 	var/datum/technology/selected_technology
 	var/show_settings = FALSE
@@ -95,7 +92,6 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 /obj/machinery/computer/rdconsole/Destroy()
 	files = null
-	popup = null
 	if(linked_destroy)
 		linked_destroy.linked_console = null
 		linked_destroy = null
@@ -118,13 +114,13 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		D.loc = src
 		disk = D
 		to_chat(user, SPAN_NOTICE("You add \the [D] to the machine."))
-	else if(istype(D, /obj/item/weapon/disk/research_points))
+	else if(istype(D, /obj/item/weapon/disk/research_points)) // Special disks (just normal items) that can be slapped on the console for an immediate point boost.
 		var/obj/item/weapon/disk/research_points/disk = D
 		to_chat(user, SPAN_NOTICE("[name] received [disk.stored_points] research points from [disk.name]."))
 		files.research_points += disk.stored_points
 		user.drop_item()
 		qdel(disk)
-	else if(istype(D, /obj/item/device/science_tool))
+	else if(istype(D, /obj/item/device/science_tool)) // Used when you want to upload autopsy/other scanned data to the console
 		var/research_points = files.experiments.read_science_tool(D)
 		if(research_points > 0)
 			to_chat(user, SPAN_NOTICE("[name] received [research_points] research points from uploaded data."))
@@ -145,11 +141,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		user << SPAN_NOTICE("You disable the security protocols.")
 		return TRUE
 
-/obj/machinery/computer/rdconsole/proc/reset_screen()
+/obj/machinery/computer/rdconsole/proc/reset_screen() // simply resets the screen to the main screen and updates the UIs
 	screen = SCREEN_MAIN
 	SSnano.update_uis(src)
 
-/obj/machinery/computer/rdconsole/proc/handle_item_analysis(obj/item/I)
+/obj/machinery/computer/rdconsole/proc/handle_item_analysis(obj/item/I) // handles deconstructing items.
 	files.check_item_for_tech(I)
 	files.research_points += files.experiments.get_object_research_value(I)
 	files.experiments.do_research_object(I)
@@ -159,23 +155,23 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				linked_lathe.materials[t] += I.matter[t] * linked_destroy.decon_mod
 				linked_lathe.materials[t] = min(linked_lathe.materials[t], linked_lathe.max_material_storage)
 
-/obj/machinery/computer/rdconsole/Topic(href, href_list)
+/obj/machinery/computer/rdconsole/Topic(href, href_list) // Oh boy here we go.
 	if(..())
 		return 1
-	if(href_list["select_tech_tree"])
+	if(href_list["select_tech_tree"]) // User selected a tech tree.
 		var/datum/tech/tech_tree = locate(href_list["select_tech_tree"]) in files.researched_tech
 		if(tech_tree && tech_tree.shown)
 			selected_tech_tree = tech_tree
 			selected_technology = null
-	if(href_list["select_technology"])
+	if(href_list["select_technology"]) // User selected a technology node.
 		var/tech_node = locate(href_list["select_technology"]) in SSresearch.all_tech_nodes
 		if(tech_node)
 			selected_technology = tech_node
-	if(href_list["unlock_technology"])
+	if(href_list["unlock_technology"]) // User attempts to unlock a technology node (Safeties are within UnlockTechnology)
 		var/tech_node = locate(href_list["unlock_technology"]) in SSresearch.all_tech_nodes
 		if(tech_node)
 			files.UnlockTechology(tech_node)
-	if(href_list["go_screen"])
+	if(href_list["go_screen"]) // User is changing the screen.
 		var/where = href_list["go_screen"]
 		if(href_list["need_access"])
 			if(!allowed(usr) && !emagged)
@@ -184,11 +180,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		screen = where
 		if(screen == SCREEN_PROTO || screen == SCREEN_IMPRINTER)
 			search_text = ""
-	if(href_list["eject_disk"])
+	if(href_list["eject_disk"]) // User is ejecting the disk.
 		if(disk)
 			disk.forceMove(get_turf(src))
 			disk = null
-	if(href_list["delete_disk_design"])
+	if(href_list["delete_disk_design"]) // User is attempting to delete a design from the loaded disk.
 		if(disk)
 			var/list/disk_design_files = disk.find_files_by_type(/datum/computer_file/binary/design)
 			for(var/f in disk_design_files)
@@ -196,7 +192,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				if("\ref[design_file.design]" == href_list["delete_disk_design"])
 					disk.remove_file(design_file)
 					break
-	if(href_list["download_disk_design"])
+	if(href_list["download_disk_design"]) // User is attempting to download (disk->rdconsole) a design from the disk.
 		if(disk)
 			var/list/disk_design_files = disk.find_files_by_type(/datum/computer_file/binary/design)
 			for(var/f in disk_design_files)
@@ -207,12 +203,12 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					files.AddDesign2Known(design_file.design)
 					griefProtection() //Update CentComm too
 					break
-	if(href_list["upload_disk_design"])
+	if(href_list["upload_disk_design"]) // User is attempting to upload (rdconsole->disk) a design to the disk.
 		if(disk)
 			var/datum/design/D = locate(href_list["upload_disk_design"]) in files.known_designs
 			if(D)
 				disk.store_file(D.file.clone())
-	if(href_list["delete_disk_node"])
+	if(href_list["delete_disk_node"]) // User is attempting to delete a technology node from the disk.
 		if(disk)
 			var/list/disk_node_files = disk.find_files_by_type(/datum/computer_file/binary/tech)
 			for(var/f in disk_node_files)
@@ -220,7 +216,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				if("\ref[node_file.node]" == href_list["delete_disk_node"])
 					disk.remove_file(node_file)
 					break
-	if(href_list["download_disk_node"])
+	if(href_list["download_disk_node"]) // User is attempting to download (disk->rdconsole) a technology node from the disk.
 		if(disk)
 			var/list/disk_node_files = disk.find_files_by_type(/datum/computer_file/binary/tech)
 			for(var/f in disk_node_files)
@@ -229,24 +225,24 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					files.UnlockTechology(node_file.node, TRUE)
 					griefProtection() //Update CentComm too
 					break
-	if(href_list["upload_disk_node"])
+	if(href_list["upload_disk_node"]) // User is attempting to upload (rdconsole->disk) a technology node to the disk.
 		if(disk)
 			var/datum/technology/T = locate(href_list["upload_disk_node"]) in files.researched_nodes
 			if(T)
 				var/datum/computer_file/binary/tech/tech_file = new
 				tech_file.set_tech(T)
 				disk.store_file(tech_file)
-	if(href_list["toggle_settings"])
+	if(href_list["toggle_settings"]) // User wants to see the settings.
 		if(allowed(usr) || emagged)
 			show_settings = !show_settings
 		else
 			to_chat(usr, SPAN_WARNING("Unauthorized access.</span>"))
-	if(href_list["toggle_link_menu"])
+	if(href_list["toggle_link_menu"]) // User wants to see the device linkage menu.
 		if(allowed(usr) || emagged)
 			show_link_menu = !show_link_menu
 		else
 			to_chat(usr, SPAN_WARNING("Unauthorized access."))
-	if(href_list["sync"]) //Sync the research holder with all the R&D consoles in the game that aren't sync protected.
+	if(href_list["sync"]) //Sync the research holder with all the R&D consoles in the game that aren't sync protected (after a 3 seconds delay).
 		if(!sync)
 			to_chat(usr, SPAN_WARNING("You must connect to the network first!"))
 		else
@@ -255,22 +251,22 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			addtimer(CALLBACK(src, .proc/sync_tech), 3 SECONDS)
 	if(href_list["togglesync"]) //Prevents the console from being synced by other consoles. Can still send data.
 		sync = !sync
-	if(href_list["select_category"])
+	if(href_list["select_category"]) // User is selecting a design category while in the protolathe/imprinter screen
 		var/what_cat = href_list["select_category"]
 		if(screen == SCREEN_PROTO)
 			selected_protolathe_category = what_cat
 		if(screen == SCREEN_IMPRINTER)
 			selected_imprinter_category = what_cat
-	if(href_list["build"] && screen == SCREEN_PROTO && linked_lathe) //Causes the Protolathe to build something.
-		var/amount = CLAMP(text2num(href_list["amount"]), 1, 10) // TODO add safety checks?
+	if(href_list["build"] && screen == SCREEN_PROTO && linked_lathe) // User wants to build something with the protolathe.
+		var/amount = CLAMP(text2num(href_list["amount"]), 1, 10)
 		var/datum/design/being_built = locate(href_list["build"]) in files.known_designs
-		if(being_built && amount)
+		if(being_built && amount && linked_lathe)
 			linked_lathe.queue_design(being_built, amount)
-	if(href_list["build"] && screen == SCREEN_IMPRINTER && linked_imprinter)
+	if(href_list["build"] && screen == SCREEN_IMPRINTER && linked_imprinter) // User wants to build something with the imprinter.
 		var/datum/design/being_built = locate(href_list["build"]) in files.known_designs
-		if(being_built)
+		if(being_built && linked_imprinter)
 			linked_imprinter.queue_design(being_built)
-	if(href_list["search"])
+	if(href_list["search"]) // User is searching for a specific design.
 		var/input = sanitizeSafe(input(usr, "Enter text to search", "Searching") as null|text, MAX_LNAME_LEN)
 		search_text = input
 		if(screen == SCREEN_PROTO)
@@ -283,29 +279,29 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				selected_imprinter_category = null
 			else
 				selected_imprinter_category = "Search Results"
-	if(href_list["clear_queue"])
+	if(href_list["clear_queue"]) // User's clearing a queue.
 		if(screen == SCREEN_PROTO && linked_lathe)
 			linked_lathe.clear_queue()
 		if(screen == SCREEN_IMPRINTER && linked_imprinter)
 			linked_imprinter.clear_queue()
-	if(href_list["deconstruct"])
+	if(href_list["deconstruct"]) // User is deconstructing an item.
 		if(linked_destroy)
 			if(linked_destroy.deconstruct_item())
-				screen = SCREEN_WORKING
-	if(href_list["eject_item"])
+				screen = SCREEN_WORKING // Will be resetted by the linked_destroy.
+	if(href_list["eject_item"]) // User is ejecting an item from the linked_destroy.
 		if(linked_destroy)
 			linked_destroy.eject_item()
-	if(href_list["imprinter_purgeall"] && linked_imprinter)
+	if(href_list["imprinter_purgeall"] && linked_imprinter) // Purging the linked_destroy reagents
 		linked_imprinter.reagents.clear_reagents()
 	if(href_list["imprinter_purge"] && linked_imprinter)
-		linked_imprinter.reagents.del_reagent(href_list["imprinter_purge"])
-	if(href_list["lathe_ejectsheet"] && linked_lathe)
+		linked_imprinter.reagents.del_reagent(href_list["imprinter_purge"]) // Purging a specific reagent
+	if(href_list["lathe_ejectsheet"] && linked_lathe) // Ejecting sheets from the protolathe
 		var/desired_num_sheets = text2num(href_list["lathe_ejectsheet_amt"])
 		linked_lathe.eject(href_list["lathe_ejectsheet"], desired_num_sheets)
-	if(href_list["imprinter_ejectsheet"] && linked_imprinter)
+	if(href_list["imprinter_ejectsheet"] && linked_imprinter) // Ejecting sheets from the imprinter
 		var/desired_num_sheets = text2num(href_list["imprinter_ejectsheet_amt"])
 		linked_imprinter.eject(href_list["imprinter_ejectsheet"], desired_num_sheets)
-	if(href_list["find_device"])
+	if(href_list["find_device"]) // Connect with the local devices
 		screen = SCREEN_WORKING
 		addtimer(CALLBACK(src, .proc/find_devices), 2 SECONDS)
 	if(href_list["disconnect"]) //The R&D console disconnects with a specific device.
@@ -332,7 +328,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			screen = SCREEN_LOCKED
 		else
 			to_chat(usr, SPAN_WARNING("Unauthorized access."))
-	if(href_list["unlock"])
+	if(href_list["unlock"]) // Unlock
 		if(allowed(usr) || emagged)
 			screen = SCREEN_MAIN
 		else
@@ -404,7 +400,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	return imprinter_list
 
 
-/obj/machinery/computer/rdconsole/proc/get_possible_designs_data(build_type, category)
+/obj/machinery/computer/rdconsole/proc/get_possible_designs_data(build_type, category) // Builds the design list for the UI
 	var/list/designs_list = list()
 	for(var/datum/design/D in files.known_designs)
 		if(D.build_type & build_type)
@@ -457,7 +453,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	ui_interact(user)
 	
 
-/obj/machinery/computer/rdconsole/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
+/obj/machinery/computer/rdconsole/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null) // Here we go again
 	if((screen == SCREEN_PROTO && !linked_lathe) || (screen == SCREEN_IMPRINTER && !linked_imprinter))
 		screen = SCREEN_MAIN // Kick us from protolathe or imprinter screen if they were destroyed
 

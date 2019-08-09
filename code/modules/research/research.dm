@@ -1,42 +1,27 @@
 /*
-General Explination:
+General Explanation:
 The research datum is the "folder" where all the research information is stored in a R&D console. It's also a holder for all the
-various procs used to manipulate it. It has four variables and seven procs:
+various procs used to manipulate it.
 
 Variables:
-- possible_tech is a list of all the /datum/tech that can potentially be researched by the player. The RefreshResearch() proc
-(explained later) only goes through those when refreshing what you know. Generally, possible_tech contains ALL of the existing tech
-but it is possible to add tech to the game that DON'T start in it (example: Xeno tech). Generally speaking, you don't want to mess
-with these since they should be the default version of the datums. They're actually stored in a list rather then using typesof to
-refer to them since it makes it a bit easier to search through them for specific information.
-- know_tech is the companion list to possible_tech. It's the tech you can actually research and improve. Until it's added to this
-list, it can't be improved. All the tech in this list are visible to the player.
-- possible_designs is functionally identical to possbile_tech except it's for /datum/design.
-- known_designs is functionally identical to known_tech except it's for /datum/design
+- known_designs: A list of instantiated design datums known by this research datum.
+- design_categories_protolathe: Same as above, but filtered by build_type.
+- design_categories_imprinter: Ditto.
+- researched_tech: An associative list of instantiated tech trees (/datum/tech), with a value of a list containing known instantiated technology nodes (/datum/technology)
+- researched_nodes: All the known researched technology nodes.
+- experiments: experiments datum.
+- research_points: a number value representing points. Only meaningful for the rd console currently.
 
 Procs:
-- TechHasReqs: Used by other procs (specifically RefreshResearch) to see whether all of a tech's requirements are currently in
-known_tech and at a high enough level.
-- DesignHasReqs: Same as TechHasReqs but for /datum/design and known_design.
-- AddTech2Known: Adds a /datum/tech to known_tech. It checks to see whether it already has that tech (if so, it just replaces it). If
-it doesn't have it, it adds it. Note: It does NOT check possible_tech at all. So if you want to add something strange to it (like
-a player made tech?) you can.
-- AddDesign2Known: Same as AddTech2Known except for /datum/design and known_designs.
-- RefreshResearch: This is the workhorse of the R&D system. It updates the /datum/research holder and adds any unlocked tech paths
-and designs you have reached the requirements for. It only checks through possible_tech and possible_designs, however, so it won't
-accidentally add "secret" tech to it.
-- UpdateTech is used as part of the actual researching process. It takes an ID and finds techs with that same ID in known_tech. When
-it finds it, it checks to see whether it can improve it at all. If the known_tech's level is less then or equal to
-the inputted level, it increases the known tech's level to the inputted level -1 or know tech's level +1 (whichever is higher).
-
-The tech datums are the actual "tech trees" that you improve through researching. Each one has five variables:
-- Name:		Pretty obvious. This is often viewable to the players.
-- Desc:		Pretty obvious. Also player viewable.
-- ID:		This is the unique ID of the tech that is used by the various procs to find and/or maniuplate it.
-- Level:	This is the current level of the tech. All techs start at 1 and have a max of 20. Devices and some techs require a certain
-level in specific techs before you can produce them.
-- Req_tech:	This is a list of the techs required to unlock this tech path. If left blank, it'll automatically be loaded into the
-research holder datum.
+- IsResearched(datum/technology/T): Is T in researched_nodes?
+- CanResearch(datum/technology/T): Can T be researched (checks T cost, if T's associated tree is shown and if we have the required tech levels/nodes).
+- UnlockTechology(datum/technology/T, force = FALSE): Unlocks a technology node T for src. Safe (uses the procs above). Adds T to the needed lists, and adds its designs too.
+														Setting force to true ignores T's cost. 
+- download_from(datum/research/O): Downloads data from O. The result is the union of src and O. 
+- forget_techology(datum/technology/T): Removes T from src. 
+- forget_all(tech_type): Forget all the technology nodes associated to a tree with type tech_type. 
+- AddDesign2Known(datum/design/D): Add design to known_designs. 
+- check_item_for_tech(obj/item/I): Unlocks a hidden tech tree if the item has the tree's item_tech_req in its origin_tech.
 
 */
 /***************************************************************
@@ -176,8 +161,7 @@ research holder datum.
 				return
 
 /***************************************************************
-**						Technology Datums					  **
-**	Includes all the various technoliges and what they make.  **
+**						Technology Trees					  **
 ***************************************************************/
 
 /datum/tech	//Datum of individual technologies.
@@ -186,7 +170,7 @@ research holder datum.
 	var/desc = "description"   //General description of what it does and what it makes.
 	var/level = 0              //A simple number scale of the research level.
 	var/rare = 1               //How much CentCom wants to get that tech. Used in supply shuttle tech cost calculation.
-	var/max_level               //Calculated based on the ammount of technologies
+	var/max_level              //Calculated based on the ammount of technologies
 	var/shown = TRUE           //Used to hide tech that is not supposed to be shown from the start
 	var/item_tech_req          //Deconstructing items with this tech will unlock this tech tree
 
@@ -231,11 +215,10 @@ research holder datum.
 	shown = FALSE
 	item_tech_req = TECH_ILLEGAL // research any traitor item and this tech will show up
 
-// TODO: Remove all ids, convert all list elements to paths
 /datum/technology
 	var/name = "name"
 	var/desc = "description"                // Not used because lazy
-	var/tech_type                           // Which tech tree does this techology belongs to
+	var/tech_type                           // Which tech tree does this techology belongs to (path/define)
 
 	var/x = 0.5                             // Position on the tech tree map, 0 - left, 1 - right
 	var/y = 0.5                             // 0 - down, 1 - top
