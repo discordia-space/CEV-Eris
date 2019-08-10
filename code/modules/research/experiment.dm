@@ -229,7 +229,7 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 	w_class = ITEM_SIZE_SMALL
 	throw_speed = 5
 	throw_range = 10
-	matter = list(MATERIAL_STEEL = 20)
+	matter = list(MATERIAL_STEEL = 5)
 	origin_tech = list(TECH_ENGINEERING = 1, TECH_BIO = 1)
 
 	var/datum/experiment_data/experiments

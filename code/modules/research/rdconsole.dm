@@ -707,8 +707,20 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			for(var/T in tech_node.unlocks_designs)
 				var/datum/design/D = locate(T) in SSresearch.all_designs
 				if(D) // remove?
+					var/list/build_types = list()
+					if(D.build_type & IMPRINTER)
+						build_types += "imprinter"
+					if(D.build_type & PROTOLATHE)
+						build_types += "protolathe"
+					if(D.build_type & AUTOLATHE)
+						build_types += "autolathe"
+					if(D.build_type & MECHFAB)
+						build_types += "exosuit fabricator"
+					if(D.build_type & ORGAN_GROWER)
+						build_types += "organ grower"
 					var/list/unlock_data = list(
 						"text" =           "[D.name]",
+						"build_types" =		english_list(build_types, "")
 					)
 					unlock_list += list(unlock_data)
 			technology_data["unlocks"] = unlock_list
