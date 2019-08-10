@@ -136,12 +136,9 @@
 //Combines testing and starting. Autostarts if possible
 /datum/vertical_travel_method/proc/attempt(var/dir)
 	.=can_perform(dir)
-	world << "debug1"
 	if (. == TRUE)
-		world << "debug2"
 		spawn()
 			start(dir)
-		world << "debug3"
 		return TRUE
 	else if (istext(.))
 		to_chat(M, SPAN_NOTICE(.))
@@ -176,12 +173,9 @@
 
 	spawn()
 		handle_ticking()
-	world << "debug5"
 	if (!do_after(mob, duration, M, needs_hands))
 		abort()
-		world << "debug_NO"
 		return
-	world << "debug8"
 	finish()
 
 /datum/vertical_travel_method/proc/abort()
@@ -204,11 +198,9 @@
 	if(istype(mob, /mob))
 		mob.stop_floating()
 		mob.update_floating()
-		world << "debug04"
 	// end_of_dirty_bullshit.dm
 
 	M.forceMove(destination)
-	world << "debug9"
 	if (prob(slip_chance))
 		slip()
 	announce_end()
