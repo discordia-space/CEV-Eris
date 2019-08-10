@@ -173,7 +173,6 @@
 
 	spawn()
 		handle_ticking()
-
 	if (!do_after(mob, duration, M, needs_hands))
 		abort()
 		return
@@ -196,7 +195,7 @@
 	//this is bullshit, but animation is always halted on z change. Vars such as floating remain the same
 	//So we gotta "prepare" it right after successful zmove
 	var/mob/mob = M
-	if(mob)
+	if(istype(mob, /mob))
 		mob.stop_floating()
 		mob.update_floating()
 	// end_of_dirty_bullshit.dm
