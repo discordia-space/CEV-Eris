@@ -413,6 +413,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				var/maximum = 50
 				var/can_build
 				var/can_build_chem
+				var/iconName = getAtomCacheFilename(D.build_path)
 				for(var/M in D.materials)
 					if(build_type == PROTOLATHE)
 						can_build = linked_lathe.check_craftable_amount_by_material(D, M)
@@ -437,6 +438,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					"id" =             "\ref[D]",
 					"name" =           D.name,
 					"desc" =           D.desc,
+					"icon" =			iconName,
 					"can_create" =     can_build,
 					"temp_material" =  temp_material,
 					"temp_chemical" =  temp_chemical
