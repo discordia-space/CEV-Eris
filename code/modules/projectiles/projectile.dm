@@ -185,8 +185,6 @@
 	if(hit_zone)
 		def_zone = hit_zone //set def_zone, so if the projectile ends up hitting someone else later (to be implemented), it is more likely to hit the same part
 		if(def_zone)
-			visible_message(SPAN_DANGER("[def_zone];[p_x];[p_y]!"))
-
 			switch(target_mob.dir)
 				if(2)
 					if(p_y <= 10) //legs level
