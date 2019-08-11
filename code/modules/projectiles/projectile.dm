@@ -349,22 +349,26 @@
 						//head
 				if(4)
 					if(p_y <= 10) //legs level
-						if(def_zone == BP_L_LEG || def_zone == BP_R_LEG \
+						if(def_zone == BP_R_LEG \
 						|| def_zone == BP_GROIN || def_zone == BP_R_ARM \
 						|| def_zone == BP_CHEST)
 							def_zone = BP_R_LEG
 						if(def_zone == BP_HEAD || def_zone == BP_R_ARM)
 							def_zone = BP_CHEST
+						if(def_zone == BP_L_LEG)
+							def_zone = BP_L_LEG
 						//rleg
 
 					if(p_y > 10 && p_y <= 13) //groin level
 						if(p_x < 16)
-							if(def_zone == BP_L_ARM || def_zone == BP_R_LEG \
+							if(def_zone == BP_R_LEG \
 							|| def_zone == BP_GROIN || def_zone == BP_R_ARM \
 							|| def_zone == BP_CHEST || def_zone == BP_HEAD)
 								def_zone = BP_R_ARM
 							if(def_zone == HEAD || def_zone == BP_L_LEG)
 								def_zone = BP_CHEST
+							if(def_zone == BP_L_ARM)
+								def_zone = BP_L_ARM
 							//rarm
 						if(p_x >= 16)
 							if(def_zone == BP_L_ARM || def_zone == BP_R_LEG \
@@ -384,13 +388,15 @@
 								def_zone = BP_CHEST
 							//chest
 						if(p_x < 16)
-							if(def_zone == BP_L_ARM || def_zone == BP_R_LEG \
+							if(def_zone == BP_R_LEG \
 							|| def_zone == BP_GROIN || def_zone == BP_R_ARM \
 							|| def_zone == BP_CHEST || def_zone == BP_HEAD)
 								def_zone = BP_R_ARM
 							//rarm
 							if(def_zone == BP_HEAD || def_zone == BP_L_LEG)
 								def_zone = BP_CHEST
+							if(def_zone == BP_L_ARM)
+								def_zone = BP_L_ARM
 
 					if(p_y > 22 && p_y <= 32)
 						if(def_zone == BP_L_ARM \
@@ -404,13 +410,16 @@
 				if(8)
 					if(p_y <= 10) //legs level
 						//lleg
-						if(def_zone == BP_L_LEG || def_zone == BP_R_LEG \
+						if(def_zone == BP_L_LEG \
 						|| def_zone == BP_GROIN || def_zone == BP_L_ARM \
 						|| def_zone == BP_CHEST)
 							def_zone = BP_L_LEG
 
 						if(def_zone == BP_HEAD || def_zone == BP_R_ARM)
 							def_zone = BP_CHEST
+
+						if(def_zone == BP_R_LEG)
+							def_zone = BP_R_LEG
 
 					if(p_y > 10 && p_y <= 13) //groin level
 						if(p_x < 16)
@@ -423,11 +432,13 @@
 							//groin
 						if(p_x >= 16)
 							if(def_zone == BP_L_ARM || def_zone == BP_L_LEG \
-							|| def_zone == BP_GROIN || def_zone == BP_R_ARM \
+							|| def_zone == BP_GROIN \
 							|| def_zone == BP_CHEST || def_zone == BP_HEAD)
 								def_zone = BP_L_ARM
 							if(def_zone == BP_HEAD || def_zone == BP_R_LEG)
 								def_zone = BP_CHEST
+							if(def_zone == BP_R_ARM)
+								def_zone = BP_R_ARM
 							//left_arm
 
 					if(p_y > 13 && p_y <= 22)
@@ -440,11 +451,13 @@
 							//chest
 						if(p_x >= 16)
 							if(def_zone == BP_L_ARM || def_zone == BP_L_LEG \
-							|| def_zone == BP_GROIN || def_zone == BP_R_ARM \
+							|| def_zone == BP_GROIN \
 							|| def_zone == BP_CHEST || def_zone == BP_HEAD)
 								def_zone = BP_L_ARM
 							if(def_zone == BP_R_LEG || def_zone == BP_HEAD)
 								def_zone = BP_CHEST
+							if(def_zone == BP_R_ARM)
+								def_zone = BP_R_ARM
 							//larm
 
 					if(p_y > 22 && p_y <= 32)
@@ -454,6 +467,7 @@
 							def_zone = BP_HEAD
 						if(def_zone ==  BP_GROIN || def_zone == BP_L_LEG || def_zone == BP_R_LEG)
 							def_zone = BP_CHEST
+
 						//head
 
 
