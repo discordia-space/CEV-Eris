@@ -3,7 +3,7 @@
 //// Loot table on all tiers
 // Tier 1
 /obj/structure/closet/onestar/tier1
-	name = "\improper oneStar forgotten closet"
+	name = "\improper OneStar forgotten closet"
 	desc = "Old OneStar closet, it may contain junk loot."
 	icon_state = "lootcloset"
 
@@ -25,7 +25,7 @@
 
 // Tier 2
 /obj/structure/closet/onestar/tier2
-	name = "\improper oneStar forgotten closet"
+	name = "\improper OneStar forgotten closet"
 	desc = "Old OneStar closet, it may contain some good loot."
 	icon_state = "lootcloset1"
 
@@ -47,7 +47,7 @@
 
 // Tier 3
 /obj/structure/closet/onestar/tier2
-	name = "\improper oneStar forgotten closet"
+	name = "\improper OneStar forgotten closet"
 	desc = "Old OneStar closet, it may contain legendary loot."
 	icon_state = "lootcloset2"
 
@@ -73,7 +73,7 @@
 ////Normal
 //Tier 1
 /obj/structure/closet/onestar/tier1/normal
-	name = "\improper oneStar forgotten closet"
+	name = "\improper OneStar forgotten closet"
 	icon_state = "lootcloset"
 	old_chance = 70
 
@@ -83,7 +83,7 @@
 
 //Tier 2
 /obj/structure/closet/onestar/tier2/normal
-	name = "\improper oneStar forgotten closet"
+	name = "\improper OneStar forgotten closet"
 	icon_state = "lootcloset1"
 	old_chance = 30
 
@@ -93,7 +93,7 @@
 
 //Tier 3
 /obj/structure/closet/onestar/tier3/normal
-	name = "\improper oneStar forgotten closet"
+	name = "\improper OneStar forgotten closet"
 	icon_state = "lootcloset2"
 	old_chance = 10
 
@@ -105,7 +105,7 @@
 ////Special
 //Tier 1
 /obj/structure/closet/onestar/tier1/special
-	name = "\improper oneStar forgotten closet"
+	name = "\improper OneStar forgotten closet"
 	icon_state = "special_lootcloset"
 	old_chance = 70
 
@@ -120,7 +120,7 @@
 
 //Tier 2
 /obj/structure/closet/onestar/tier2/special
-	name = "\improper oneStar forgotten closet"
+	name = "\improper OneStar forgotten closet"
 	icon_state = "special_lootcloset1"
 	old_chance = 30
 
@@ -135,7 +135,7 @@
 
 //Tier 3
 /obj/structure/closet/onestar/tier3/special
-	name = "\improper oneStar forgotten closet"
+	name = "\improper OneStar forgotten closet"
 	icon_state = "special_lootcloset2"
 	old_chance = 10
 
@@ -151,7 +151,7 @@
 ////Mineral
 //Tier 1
 /obj/structure/closet/onestar/tier1/mineral
-	name = "\improper oneStar forgotten closet"
+	name = "\improper OneStar forgotten closet"
 	icon_state = "mineral_lootcloset"
 	old_chance = 70
 
@@ -166,7 +166,7 @@
 
 //Tier 2
 /obj/structure/closet/onestar/tier2/mineral
-	name = "\improper oneStar forgotten closet"
+	name = "\improper OneStar forgotten closet"
 	icon_state = "mineral_lootcloset1"
 	old_chance = 30
 
@@ -181,7 +181,7 @@
 
 //Tier 3
 /obj/structure/closet/onestar/tier3/mineral
-	name = "\improper oneStar forgotten closet"
+	name = "\improper OneStar forgotten closet"
 	icon_state = "mineral_lootcloset2"
 	old_chance = 10
 
@@ -197,7 +197,7 @@
 ////Medical
 //Tier 1
 /obj/structure/closet/onestar/tier1/medical
-	name = "\improper oneStar forgotten closet"
+	name = "\improper OneStar forgotten closet"
 	icon_state = "medical_lootcloset"
 	old_chance = 70
 
@@ -212,7 +212,7 @@
 
 //Tier 2
 /obj/structure/closet/onestar/tier2/medical
-	name = "\improper oneStar forgotten closet"
+	name = "\improper OneStar forgotten closet"
 	icon_state = "medical_lootcloset1"
 	old_chance = 30
 
@@ -227,7 +227,7 @@
 
 //Tier 3
 /obj/structure/closet/onestar/tier3/medical
-	name = "\improper oneStar forgotten closet"
+	name = "\improper OneStar forgotten closet"
 	icon_state = "medical_lootcloset2"
 	old_chance = 10
 
