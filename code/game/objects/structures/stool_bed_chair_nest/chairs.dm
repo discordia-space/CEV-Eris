@@ -275,3 +275,12 @@
 	name = "bar chair"
 	desc = "Modern design and soft pad. Served up with the drink and great company."
 	icon_state = "bar_chair"
+
+//onestar
+/obj/structure/bed/chair/custom/onestar
+	name = "onestar chair"
+	desc = "Advanced chair and it looks pristine after the Fall."
+	icon_state = "onestar_chair_grey"
+
+/obj/structure/bed/chair/custom/onestar/red
+	icon_state = "onestar_chair_red"
