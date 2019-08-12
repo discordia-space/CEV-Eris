@@ -46,7 +46,7 @@
 	new /obj/random/pack/gun_loot/low_chance(src)
 
 // Tier 3
-/obj/structure/closet/onestar/tier2
+/obj/structure/closet/onestar/tier3
 	name = "\improper OneStar forgotten closet"
 	desc = "Old OneStar closet, what lies behind the door is more than you could gather in your life."
 	icon_state = "lootcloset2"
