@@ -279,7 +279,7 @@
 //onestar
 /obj/structure/bed/chair/custom/onestar
 	name = "onestar chair"
-	desc = "Advanced chair and it looks pristine after the Fall."
+	desc = "Plain-looking chair. Made by OneStar."
 	icon_state = "onestar_chair_grey"
 
 /obj/structure/bed/chair/custom/onestar/red
