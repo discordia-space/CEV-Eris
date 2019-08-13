@@ -52,20 +52,20 @@
 /obj/structure/lattice/attackby(obj/item/I, mob/user)
 	if(I.get_tool_type(user, list(QUALITY_WELDING), src))
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-			user << SPAN_NOTICE("Slicing lattice joints ...")
+			to_chat(user, SPAN_NOTICE("Slicing lattice joints ..."))
 			new /obj/item/stack/rods(loc)
 			qdel(src)
-	if (istype(I, /obj/item/stack/rods))
+	if (istype(I, /obj/item/stack/rods) || istype(I, /obj/item/stack/rods/cyborg))
 		var/obj/item/stack/rods/R = I
-		if(R.amount <= 2)
+		if(R.amount <= 2 && !istype(R, /obj/item/stack/rods/cyborg))
 			return
 
 		else
 
-			user << SPAN_NOTICE("You start connecting [R.name] to [src.name] ...")
+			to_chat(user, SPAN_NOTICE("You start connecting [R.name] to [src.name] ..."))
 			if(do_after(user,50, src))
-				R.use(2)
-				src.alpha = 0
+				if(R.use(2))
+					src.alpha = 0
 				new /obj/structure/catwalk(src.loc)
 				qdel(src)
 			return

@@ -47,15 +47,15 @@
 
 /obj/item/clothing/glasses/hud/health/mech/process_hud(var/mob/M)
 /*
-	world<< "view(M)"
+	to_chat(world, "view(M)")
 	for(var/mob/mob in view(M))
-		world << "[mob]"
-	world<< "view(M.client)"
+		to_chat(world, "[mob]")
+	to_chat(world, "view(M.client)")
 	for(var/mob/mob in view(M.client))
-		world << "[mob]"
-	world<< "view(M.loc)"
+		to_chat(world, "[mob]")
+	to_chat(world, "view(M.loc)")
 	for(var/mob/mob in view(M.loc))
-		world << "[mob]"
+		to_chat(world, "[mob]")
 */
 
 	if(!M || M.stat || !(M in view(M)))	return

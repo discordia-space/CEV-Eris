@@ -385,9 +385,9 @@
 		return
 
 	if(!reagents.has_reagent("biomatter"))
-		user << SPAN_NOTICE("It is empty.")
+		to_chat(user, SPAN_NOTICE("It is empty."))
 	else
-		user << SPAN_NOTICE("Filled to [reagents.total_volume]/[biomass_capacity].")
+		to_chat(user, SPAN_NOTICE("Filled to [reagents.total_volume]/[biomass_capacity]."))
 
 /obj/machinery/neotheology/biomass_container/attackby(obj/item/I, mob/user as mob)
 
@@ -454,7 +454,7 @@
 		return
 
 	if(reading)
-		user << SPAN_WARNING("You try to pull the [implant], but it does not move.")
+		to_chat(user, SPAN_WARNING("You try to pull the [implant], but it does not move."))
 		return
 
 	user.put_in_active_hand(implant)

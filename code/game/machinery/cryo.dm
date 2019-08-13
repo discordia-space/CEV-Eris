@@ -176,14 +176,14 @@
 /obj/machinery/atmospherics/unary/cryo_cell/affect_grab(var/mob/user, var/mob/target)
 	for(var/mob/living/carbon/slime/M in range(1,target))
 		if(M.Victim == target)
-			user << "[target] will not fit into the cryo because they have a slime latched onto their head."
+			to_chat(user, "[target] will not fit into the cryo because they have a slime latched onto their head.")
 			return
 	return put_mob(target)
 
 /obj/machinery/atmospherics/unary/cryo_cell/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
 	if(istype(W, /obj/item/weapon/reagent_containers/glass))
 		if(beaker)
-			user << SPAN_WARNING("A beaker is already loaded into the machine.")
+			to_chat(user, SPAN_WARNING("A beaker is already loaded into the machine."))
 			return
 		if(user.unEquip(W, src))
 			beaker = W
@@ -288,19 +288,19 @@
 
 /obj/machinery/atmospherics/unary/cryo_cell/proc/put_mob(mob/living/carbon/M as mob)
 	if (stat & (NOPOWER|BROKEN))
-		usr << SPAN_WARNING("The cryo cell is not functioning.")
+		to_chat(usr, SPAN_WARNING("The cryo cell is not functioning."))
 		return
 	if (!istype(M))
-		usr << SPAN_DANGER("The cryo cell cannot handle such a lifeform!")
+		to_chat(usr, SPAN_DANGER("The cryo cell cannot handle such a lifeform!"))
 		return
 	if (occupant)
-		usr << SPAN_DANGER("The cryo cell is already occupied!")
+		to_chat(usr, SPAN_DANGER("The cryo cell is already occupied!"))
 		return
 	if (M.abiotic())
-		usr << SPAN_WARNING("Subject may not have abiotic items on.")
+		to_chat(usr, SPAN_WARNING("Subject may not have abiotic items on."))
 		return
 	if(!node1)
-		usr << SPAN_WARNING("The cell is not correctly connected to its pipe network!")
+		to_chat(usr, SPAN_WARNING("The cell is not correctly connected to its pipe network!"))
 		return
 	if (M.client)
 		M.client.perspective = EYE_PERSPECTIVE
@@ -309,7 +309,7 @@
 	M.loc = src
 	M.ExtinguishMob()
 	if(M.health > -100 && (M.health < 0 || M.sleeping))
-		M << SPAN_NOTICE("<b>You feel a cold liquid surround you. Your skin starts to freeze up.</b>")
+		to_chat(M, SPAN_NOTICE("<b>You feel a cold liquid surround you. Your skin starts to freeze up.</b>"))
 	occupant = M
 	current_heat_capacity = HEAT_CAPACITY_HUMAN
 	update_use_power(2)
@@ -322,7 +322,7 @@
 	if(!ismob(target))
 		return
 	if (target.buckled)
-		usr << SPAN_WARNING("Unbuckle the subject before attempting to move them.")
+		to_chat(usr, SPAN_WARNING("Unbuckle the subject before attempting to move them."))
 		return
 	user.visible_message(
 		SPAN_NOTICE("\The [user] begins placing \the [target] into \the [src]."),
@@ -341,7 +341,7 @@
 	if(usr == occupant)//If the user is inside the tube...
 		if(usr.stat == DEAD)//and he's not dead....
 			return
-		usr << SPAN_NOTICE("Release sequence activated. This will take two minutes.")
+		to_chat(usr, SPAN_NOTICE("Release sequence activated. This will take two minutes."))
 		sleep(1200)
 		if(!src || !usr || !occupant || (occupant != usr)) //Check if someone's released/replaced/bombed him already
 			return
@@ -359,7 +359,7 @@
 	set src in oview(1)
 	for(var/mob/living/carbon/slime/M in range(1,usr))
 		if(M.Victim == usr)
-			usr << "You're too busy getting your life sucked out of you."
+			to_chat(usr, "You're too busy getting your life sucked out of you.")
 			return
 	if (usr.stat != 0)
 		return

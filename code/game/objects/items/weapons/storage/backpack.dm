@@ -83,7 +83,7 @@
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
 		if(istype(W, /obj/item/weapon/storage/backpack/holding))
-			user << SPAN_WARNING("The Bluespace interfaces of the two devices conflict and malfunction.")
+			to_chat(user, SPAN_WARNING("The Bluespace interfaces of the two devices conflict and malfunction."))
 			qdel(W)
 			return
 		..()

@@ -305,3 +305,7 @@ JOIN_UNASSIGNED
 
 ## Time in minutes before empty server will restart	
 EMPTY_SERVER_RESTART_TIME 30
+
+## EMOJI ###
+## Comment this out if you want to disable emojis
+EMOJIS

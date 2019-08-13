@@ -256,7 +256,7 @@
 				else
 					new /obj/machinery/power/solar(get_turf(src), src)
 			else
-				user << SPAN_WARNING("You need two sheets of glass to put them into a solar panel.")
+				to_chat(user, SPAN_WARNING("You need two sheets of glass to put them into a solar panel."))
 				return
 			return
 
@@ -406,7 +406,7 @@
 	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING), src))
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 			if (src.stat & BROKEN)
-				user << SPAN_NOTICE("The broken glass falls out.")
+				to_chat(user, SPAN_NOTICE("The broken glass falls out."))
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 				new /obj/item/weapon/material/shard( src.loc )
 				var/obj/item/weapon/circuitboard/solar_control/M = new /obj/item/weapon/circuitboard/solar_control( A )
@@ -418,7 +418,7 @@
 				A.anchored = 1
 				qdel(src)
 			else
-				user << SPAN_NOTICE("You disconnect the monitor.")
+				to_chat(user, SPAN_NOTICE("You disconnect the monitor."))
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 				var/obj/item/weapon/circuitboard/solar_control/M = new /obj/item/weapon/circuitboard/solar_control( A )
 				for (var/obj/C in src)

@@ -8,7 +8,7 @@
 			return
 		src << link(config.wikiurl)
 	else
-		src << SPAN_WARNING("The wiki URL is not set in the server configuration.")
+		to_chat(src, SPAN_WARNING("The wiki URL is not set in the server configuration."))
 	return
 
 /client/verb/discordurl()
@@ -20,7 +20,7 @@
 			return
 		src << link(config.discordurl)
 	else
-		src << SPAN_WARNING("The Discordia Discord invite is not set in the server configuration.")
+		to_chat(src, SPAN_WARNING("The Discordia Discord invite is not set in the server configuration."))
 	return
 
 /client/verb/githuburl()
@@ -32,7 +32,7 @@
 			return
 		src << link(config.githuburl)
 	else
-		src << SPAN_WARNING("The Discordia Github is not set in the server configuration.")
+		to_chat(src, SPAN_WARNING("The Discordia Github is not set in the server configuration."))
 	return
 
 
@@ -160,10 +160,10 @@ Any-Mode: (hotkey doesn't need to be on)
 </font>"}
 
 	if(isrobot(src.mob))
-		src << robot_hotkey_mode
-		src << robot_other
+		to_chat(src, robot_hotkey_mode)
+		to_chat(src, robot_other)
 	else
-		src << hotkey_mode
-		src << other
+		to_chat(src, hotkey_mode)
+		to_chat(src, other)
 	if(holder)
-		src << admin
+		to_chat(src, admin)

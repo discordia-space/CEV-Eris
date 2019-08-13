@@ -57,7 +57,7 @@
 
 /obj/item/weapon/flamethrower/afterattack(atom/target, mob/user, proximity)
 	if (!lit)
-		user << SPAN_WARNING("You press the trigger but nothing happens.")
+		to_chat(user, SPAN_WARNING("You press the trigger but nothing happens."))
 	if (istype(target,/obj/item) && user == target.get_holding_mob())
 		return
 	if (get_dist(target, user) <= flamerange)
@@ -72,7 +72,7 @@
 
 	if(istype(W,/obj/item/weapon/tank/plasma))
 		if(ptank)
-			user << SPAN_NOTICE("There appears to already be a plasma tank loaded in [src]!")
+			to_chat(user, SPAN_NOTICE("There appears to already be a plasma tank loaded in [src]!"))
 			return
 		user.drop_item()
 		ptank = W
@@ -106,7 +106,7 @@
 	usr.set_machine(src)
 	if(href_list["light"])
 		if(!ptank || ptank.air_contents.gas["plasma"] < 1)
-			usr << SPAN_WARNING("You press the ignite button but nothing happens.")
+			to_chat(usr, SPAN_WARNING("You press the ignite button but nothing happens."))
 			return
 		lit = !lit
 		if (lit)
@@ -116,13 +116,13 @@
 		else
 			usr.visible_message(SPAN_NOTICE("\The [usr] extinguish \the [src]."), SPAN_NOTICE("You extinguish \the [src]."))
 			STOP_PROCESSING(SSobj, src)
-			
+
 	if(href_list["amount"])
 		throw_amount = throw_amount + text2num(href_list["amount"])
 		throw_amount = max(50, min(5000, throw_amount))
 	if(href_list["remove"])
 		if(!ptank)	return
-		usr << SPAN_NOTICE("You remove \the [ptank].")
+		to_chat(usr, SPAN_NOTICE("You remove \the [ptank]."))
 		usr.put_in_hands(ptank)
 		ptank = null
 		lit = 0

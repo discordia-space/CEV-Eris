@@ -209,10 +209,10 @@
 	switch(msg_type)
 		if("cold")
 			if(!covered)
-				H << SPAN_DANGER("[pick(cold_discomfort_strings)]")
+				to_chat(H, SPAN_DANGER("[pick(cold_discomfort_strings)]"))
 		if("heat")
 			if(covered)
-				H << SPAN_DANGER("[pick(heat_discomfort_strings)]")
+				to_chat(H, SPAN_DANGER("[pick(heat_discomfort_strings)]"))
 
 /datum/species/proc/sanitize_name(var/name)
 	return sanitizeName(name)

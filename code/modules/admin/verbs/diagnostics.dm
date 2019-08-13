@@ -123,7 +123,7 @@ ADMIN_VERB_ADD(/client/proc/jump_to_dead_group, R_DEBUG, FALSE)
 	set name = "Jump to dead group"
 	set category = "Debug"
 	if(!holder)
-		src << "Only administrators may use this command."
+		to_chat(src, "Only administrators may use this command.")
 		return
 
 	var/datum/air_group/dead_groups = list()
@@ -143,7 +143,7 @@ ADMIN_VERB_ADD(/client/proc/kill_airgroup, R_DEBUG, FALSE)
 	set desc = "Use this to allow manual manupliation of atmospherics."
 	set category = "Debug"
 	if(!holder)
-		src << "Only administrators may use this command."
+		to_chat(src, "Only administrators may use this command.")
 		return
 
 	var/turf/T = get_turf(usr)
@@ -152,7 +152,7 @@ ADMIN_VERB_ADD(/client/proc/kill_airgroup, R_DEBUG, FALSE)
 		AG.next_check = 30
 		AG.group_processing = 0
 	else
-		usr << "Local airgroup is unsimulated!"
+		to_chat(usr, "Local airgroup is unsimulated!")
 
 */
 
@@ -161,9 +161,9 @@ ADMIN_VERB_ADD(/client/proc/kill_airgroup, R_DEBUG, FALSE)
 	set desc = "This spams all the active jobban entries for the current round to standard output."
 	set category = "Debug"
 
-	usr << "<b>Jobbans active in this round.</b>"
+	to_chat(usr, "<b>Jobbans active in this round.</b>")
 	for(var/t in jobban_keylist)
-		usr << "[t]"
+		to_chat(usr, "[t]")
 
 /client/proc/print_jobban_old_filter()
 	set name = "Search Jobban Log"
@@ -174,7 +174,7 @@ ADMIN_VERB_ADD(/client/proc/kill_airgroup, R_DEBUG, FALSE)
 	if(!filter)
 		return
 
-	usr << "<b>Jobbans active in this round.</b>"
+	to_chat(usr, "<b>Jobbans active in this round.</b>")
 	for(var/t in jobban_keylist)
 		if(findtext(t, filter))
-			usr << "[t]"
+			to_chat(usr, "[t]")

@@ -14,7 +14,7 @@
 	set desc = "Minimize or maximaze you UI"
 
 	if(!ishuman(usr))
-		usr << SPAN_WARNING("You must be human to use this verb.")
+		to_chat(usr, SPAN_WARNING("You must be human to use this verb."))
 		return
 
 
@@ -29,7 +29,7 @@
 	set desc = "Configure your user interface"
 
 	if(!ishuman(usr))
-		usr << SPAN_WARNING("You must be human to use this verb.")
+		to_chat(usr, SPAN_WARNING("You must be human to use this verb."))
 		return
 //to:do make normal HUDoption page
 

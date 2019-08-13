@@ -14,7 +14,7 @@
 
 /obj/item/device/radio/electropack/attack_hand(mob/user as mob)
 	if(src == user.back)
-		user << SPAN_NOTICE("You need help taking this off!")
+		to_chat(user, SPAN_NOTICE("You need help taking this off!"))
 		return
 	..()
 
@@ -22,7 +22,7 @@
 	..()
 	if(istype(W, /obj/item/clothing/head/helmet))
 		if(!b_stat)
-			user << SPAN_NOTICE("[src] is not ready to be attached!")
+			to_chat(user, SPAN_NOTICE("[src] is not ready to be attached!"))
 			return
 		var/obj/item/assembly/shock_kit/A = new /obj/item/assembly/shock_kit( user )
 		A.icon = 'icons/obj/assemblies.dmi'
@@ -93,7 +93,7 @@
 				sleep(50)
 				if(M)
 					M.moved_recently = 0
-		M << SPAN_DANGER("You feel a sharp shock!")
+		to_chat(M, SPAN_DANGER("You feel a sharp shock!"))
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(3, 1, M)
 		s.start()

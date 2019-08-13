@@ -32,13 +32,13 @@
 /obj/item/weapon/tool/pickaxe/turn_on(mob/user)
 
 	mode = DIG
-	user << SPAN_NOTICE("You tighten your grip on [src], and ready yourself to strike earth.")
+	to_chat(user, SPAN_NOTICE("You tighten your grip on [src], and ready yourself to strike earth."))
 	..()
 
 /obj/item/weapon/tool/pickaxe/turn_off(mob/user)
 
 	mode = EXCAVATE
-	user << SPAN_NOTICE("You loosen your grip on [src], and prepare to remove debris.")
+	to_chat(user, SPAN_NOTICE("You loosen your grip on [src], and prepare to remove debris."))
 	..()
 
 
@@ -61,12 +61,12 @@
 
 /obj/item/weapon/tool/pickaxe/onestar/turn_on(mob/user)
 
-	user << SPAN_NOTICE("You switch [src] on.")
+	to_chat(user, SPAN_NOTICE("You switch [src] on."))
 	..()
 
 /obj/item/weapon/tool/pickaxe/onestar/turn_off(mob/user)
 
-	user << SPAN_NOTICE("You switch [src] off.")
+	to_chat(user, SPAN_NOTICE("You switch [src] off."))
 	..()
 
 

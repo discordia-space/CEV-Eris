@@ -47,22 +47,22 @@
 		return
 
 	if(cell)
-		user <<SPAN_NOTICE("Power Glove is [round(cell.percent())]% charged.")
+		to_chat(user, SPAN_NOTICE("Power Glove is [round(cell.percent())]% charged."))
 	if(!cell)
-		user <<SPAN_WARNING("Power Glove does not have a power source installed.")
+		to_chat(user, SPAN_WARNING("Power Glove does not have a power source installed."))
 
 /obj/item/clothing/gloves/stungloves/attack_self(mob/user)
 	if(cell && cell.charge > hitcost)
 		status = !status
-		user << "<span class='notice'>[src] is now [status ? "on" : "off"].</span>"
+		to_chat(user, "<span class='notice'>[src] is now [status ? "on" : "off"].</span>")
 		playsound(loc, "sparks", 75, 1, -1)
 		update_icon()
 	else
 		status = FALSE
 		if(!cell)
-			user << SPAN_WARNING("[src] does not have a power source!")
+			to_chat(user, SPAN_WARNING("[src] does not have a power source!"))
 		else
-			user << SPAN_WARNING("[src] is out of charge.")
+			to_chat(user, SPAN_WARNING("[src] is out of charge."))
 	add_fingerprint(user)
 
 /obj/item/clothing/gloves/stungloves/ui_action_click()

@@ -6,7 +6,7 @@
 	density = 1
 
 /obj/structure/largecrate/attack_hand(mob/user as mob)
-	user << SPAN_NOTICE("You need a crowbar to pry this open!")
+	to_chat(user, SPAN_NOTICE("You need a crowbar to pry this open!"))
 	return
 
 /obj/structure/largecrate/attackby(obj/item/I, mob/user)

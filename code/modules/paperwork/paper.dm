@@ -77,7 +77,7 @@
 	if(in_range(user, src) || isghost(user))
 		show_content(usr)
 	else
-		user << SPAN_NOTICE("You have to go closer if you want to read it.")
+		to_chat(user, SPAN_NOTICE("You have to go closer if you want to read it."))
 	return
 
 /obj/item/weapon/paper/proc/show_content(var/mob/user, var/forceshow=0)
@@ -95,7 +95,7 @@
 	playsound(src,'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.ogg',40,1)
 
 	if((CLUMSY in usr.mutations) && prob(50))
-		usr << SPAN_WARNING("You cut yourself on the paper.")
+		to_chat(usr, SPAN_WARNING("You cut yourself on the paper."))
 		return
 	var/n_name = sanitizeSafe(input(usr, "What would you like to label the paper?", "Paper Labelling", null)  as text, MAX_NAME_LEN)
 
@@ -151,7 +151,7 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(H == user)
-				user << SPAN_NOTICE("You wipe off the lipstick with [src].")
+				to_chat(user, SPAN_NOTICE("You wipe off the lipstick with [src]."))
 				H.lip_style = null
 				H.update_body()
 			else
@@ -317,7 +317,7 @@
 				qdel(src)
 
 			else
-				user << "\red You must hold \the [P] steady to burn \the [src]."
+				to_chat(user, "\red You must hold \the [P] steady to burn \the [src].")
 
 
 /obj/item/weapon/paper/Topic(href, href_list)
@@ -330,7 +330,7 @@
 		//var/t = strip_html_simple(input(usr, "What text do you wish to add to " + (id=="end" ? "the end of the paper" : "field "+id) + "?", "[name]", null),8192) as message
 
 		if(free_space <= 0)
-			usr << "<span class='info'>There isn't enough space left on \the [src] to write anything.</span>"
+			to_chat(usr, "<span class='info'>There isn't enough space left on \the [src] to write anything.</span>")
 			return
 
 		var/t =  sanitize(input("Enter what you want to write:", "Write", null, null) as message, free_space, extra = 0)
@@ -356,7 +356,7 @@
 		// check for exploits
 		for(var/bad in paper_blacklist)
 			if(findtext(t,bad))
-				usr << "\blue You think to yourself, \"Hm.. this is only paper...\""
+				to_chat(usr, "\blue You think to yourself, \"Hm.. this is only paper...\"")
 				log_admin("PAPER: [usr] ([usr.ckey]) tried to use forbidden word in [src]: [bad].")
 				message_admins("PAPER: [usr] ([usr.ckey]) tried to use forbidden word in [src]: [bad].")
 				return
@@ -370,7 +370,7 @@
 
 
 		if(fields > 50)//large amount of fields creates a heavy load on the server, see updateinfolinks() and addtofield()
-			usr << SPAN_WARNING("Too many fields. Sorry, you can't do this.")
+			to_chat(usr, SPAN_WARNING("Too many fields. Sorry, you can't do this."))
 			fields = last_fields_value
 			return
 
@@ -399,7 +399,7 @@
 		if (istype(P, /obj/item/weapon/paper/carbon))
 			var/obj/item/weapon/paper/carbon/C = P
 			if (!C.iscopy && !C.copied)
-				user << SPAN_NOTICE("Take off the carbon copy first.")
+				to_chat(user, SPAN_NOTICE("Take off the carbon copy first."))
 				add_fingerprint(user)
 				return
 		var/obj/item/weapon/paper_bundle/B = new(src.loc)
@@ -436,7 +436,7 @@
 					src.loc = get_turf(h_user)
 					if(h_user.client)	h_user.client.screen -= src
 					h_user.put_in_hands(B)
-			user << SPAN_NOTICE("You clip the [P.name] to [(src.name == "paper") ? "the paper" : src.name].")
+			to_chat(user, SPAN_NOTICE("You clip the [P.name] to [(src.name == "paper") ? "the paper" : src.name]."))
 		src.loc = B
 		P.loc = B
 
@@ -447,7 +447,7 @@
 
 	else if(istype(P, /obj/item/weapon/pen))
 		if(icon_state == "scrap")
-			usr << SPAN_WARNING("\The [src] is too crumpled to write on.")
+			to_chat(usr, SPAN_WARNING("\The [src] is too crumpled to write on."))
 			return
 
 		var/obj/item/weapon/pen/robopen/RP = P
@@ -486,7 +486,7 @@
 		stamped += P.type
 		overlays += stampoverlay
 
-		user << SPAN_NOTICE("You stamp the paper with your rubber stamp.")
+		to_chat(user, SPAN_NOTICE("You stamp the paper with your rubber stamp."))
 
 	else if(istype(P, /obj/item/weapon/flame))
 		burnpaper(P, user)

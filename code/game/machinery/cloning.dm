@@ -44,7 +44,7 @@
 		return
 	if(occupant.stat != DEAD)
 		var/completion = (100 * ((occupant.health + 50) / (heal_level + 100))) // Clones start at -150 health
-		user << "Current clone cycle is [round(completion)]% complete."
+		to_chat(user, "Current clone cycle is [round(completion)]% complete.")
 	return
 
 //Clonepod
@@ -93,7 +93,7 @@
 
 	clonemind.transfer_to(H)
 	H.ckey = R.ckey
-	H << SPAN_NOTICE("<b>Consciousness slowly creeps over you as your body regenerates.</b><br><i>So this is what cloning feels like?</i>")
+	to_chat(H, SPAN_NOTICE("<b>Consciousness slowly creeps over you as your body regenerates.</b><br><i>So this is what cloning feels like?</i>"))
 
 	// -- Mode/mind specific stuff goes here
 	callHook("clone", list(H))
@@ -184,20 +184,20 @@
 
 	if(I.GetIdCard())
 		if(!check_access(I))
-			user << SPAN_WARNING("Access Denied.")
+			to_chat(user, SPAN_WARNING("Access Denied."))
 			return
 		if(!locked || isnull(occupant))
 			return
 		if((occupant.health < -20) && (occupant.stat != DEAD))
-			user << SPAN_WARNING("Access Refused.")
+			to_chat(user, SPAN_WARNING("Access Refused."))
 			return
 		else
 			locked = 0
-			user << "System unlocked."
+			to_chat(user, "System unlocked.")
 	else
 		for(var/type in BIOMASS_TYPES)
 			if(istype(I,type))
-				user << SPAN_NOTICE("\The [src] processes \the [I].")
+				to_chat(user, SPAN_NOTICE("\The [src] processes \the [I]."))
 				biomass += BIOMASS_TYPES[type]
 				user.drop_from_inventory(I)
 				qdel(I)
@@ -207,7 +207,7 @@
 /obj/machinery/clonepod/emag_act(var/remaining_charges, var/mob/user)
 	if(isnull(occupant))
 		return NO_EMAG_ACT
-	user << "You force an emergency ejection."
+	to_chat(user, "You force an emergency ejection.")
 	locked = 0
 	go_out()
 	return 1

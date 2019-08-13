@@ -28,11 +28,11 @@
 
 /obj/item/weapon/disk/data/attack_self(mob/user as mob)
 	read_only = !read_only
-	user << "You flip the write-protect tab to [read_only ? "protected" : "unprotected"]."
+	to_chat(user, "You flip the write-protect tab to [read_only ? "protected" : "unprotected"].")
 
 /obj/item/weapon/disk/data/examine(mob/user)
 	..(user)
-	user << text("The write-protect tab is set to [read_only ? "protected" : "unprotected"].")
+	to_chat(user, text("The write-protect tab is set to [read_only ? "protected" : "unprotected"]."))
 	return
 
 

@@ -14,7 +14,7 @@
 
 	if (src.client)
 		if(client.prefs.muted & MUTE_IC)
-			src << "\red You cannot speak in IC (muted)."
+			to_chat(src, "\red You cannot speak in IC (muted).")
 			return
 		if (src.client.handle_spam_prevention(message,MUTE_IC))
 			return
@@ -29,14 +29,14 @@
 
 	if(!host)
 		//TODO: have this pick a random mob within 3 tiles to speak for the borer.
-		src << "You have no host to speak to."
+		to_chat(src, "You have no host to speak to.")
 		return //No host, no audible speech.
 
-	src << "You drop words into [host]'s mind: \"[message]\""
-	host << "Your own thoughts speak: \"[message]\""
+	to_chat(src, "You drop words into [host]'s mind: \"[message]\"")
+	to_chat(host, "Your own thoughts speak: \"[message]\"")
 
 	for (var/mob/M in GLOB.player_list)
 		if (isnewplayer(M))
 			continue
 		else if(M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
-			M << "[src.truename] whispers to [host], \"[message]\""
+			to_chat(M, "[src.truename] whispers to [host], \"[message]\"")

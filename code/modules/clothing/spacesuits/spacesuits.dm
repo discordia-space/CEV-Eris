@@ -49,13 +49,13 @@
 		camera.set_status(!camera.status)
 		if(camera.status)
 			camera.c_tag = FindNameFromID(usr)
-			usr << SPAN_NOTICE("User scanned as [camera.c_tag]. Camera activated.")
+			to_chat(usr, SPAN_NOTICE("User scanned as [camera.c_tag]. Camera activated."))
 		else
-			usr << SPAN_NOTICE("Camera deactivated.")
+			to_chat(usr, SPAN_NOTICE("Camera deactivated."))
 
 /obj/item/clothing/head/helmet/space/examine(var/mob/user)
 	if(..(user, 1) && camera_networks && camera_networks.len)
-		user << "This helmet has a built-in camera. It's [camera && camera.status ? "" : "in"]active."
+		to_chat(user, "This helmet has a built-in camera. It's [camera && camera.status ? "" : "in"]active.")
 
 /obj/item/clothing/suit/space
 	name = "Space suit"
@@ -103,5 +103,5 @@
 	// Otherwise, remove the splints.
 	for(var/obj/item/organ/external/E in supporting_limbs)
 		E.status &= ~ ORGAN_SPLINTED
-		user << "The suit stops supporting your [E.name]."
+		to_chat(user, "The suit stops supporting your [E.name].")
 	supporting_limbs = list()
