@@ -16,19 +16,6 @@
 	var/armor_effectiveness = max(0, ( armor - armour_pen ) )
 	var/effective_damage = damage - guaranteed_damage_red
 
-	world << "ARMOR DEBUG: Damage [damage]"
-	world << "ARMOR DEBUG: Armor [armor]"
-	world << "ARMOR DEBUG: GDR [guaranteed_damage_red]"
-	world << "ARMOR DEBUG: Armor Effectiveness [armor_effectiveness]"
-	world << "ARMOR DEBUG: Damage Type [damagetype]"
-	world << "ARMOR DEBUG: Attack Flag [attack_flag]"
-	world << "ARMOR DEBUG: Armour Pen [armour_pen]"
-	world << "ARMOR DEBUG: Used Weapon [used_weapon]"
-	world << "ARMOR DEBUG: Def Zone [def_zone]"
-	world << "ARMOR DEBUG: Sharp [sharp]"
-	world << "ARMOR DEBUG: Edge [edge]"
-	world << "ARMOR DEBUG: Effective damage [effective_damage]"
-
 	if(effective_damage <= 0)
 		show_message(SPAN_NOTICE("Your armor absorbs the blow!"))
 		return FALSE
@@ -68,10 +55,6 @@
 		//Actual part of the damage that passed through armor
 		var/actual_damage = round ( ( effective_damage * ( 100 - armor_effectiveness ) ) / 100 )
 		apply_damage(actual_damage, damagetype, def_zone, used_weapon, sharp, edge)
-
-
-		world << "ARMOR DEBUG: Agony damage [agony_gamage]"
-		world << "ARMOR DEBUG: Actual Damage [actual_damage]"
 
 	return TRUE
 
