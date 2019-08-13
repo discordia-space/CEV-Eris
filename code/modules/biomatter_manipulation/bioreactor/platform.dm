@@ -35,7 +35,7 @@
 					victim.forceMove(MS_bioreactor.misc_output)
 					continue
 				//if our target has hazard protection, then okay
-				var/hazard_protection = victim.run_armor_check(null, "bio", silent = TRUE)
+				var/hazard_protection = victim.getarmor(null, "bio")
 				if(!hazard_protection)
 					victim.apply_damage(CLONE_DAMAGE_PER_TICK, CLONE)
 					if(prob(10))

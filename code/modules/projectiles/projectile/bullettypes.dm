@@ -249,7 +249,7 @@
 /obj/item/projectile/bullet/shotgun/beanbag		//because beanbags are not bullets
 	name = "beanbag"
 	icon_state = "buckshot"
-	check_armour = "melee"
+	check_armour = ARMOR_MELEE
 	damage = DAMAGE_BEANBAG
 	agony = AGONY_BEANBAG
 	armor_penetration = ARMOR_PENETRATION_BEANBAG

@@ -88,7 +88,7 @@
 		if(user.a_intent == I_HURT)
 			if(prob(15))
 				target.Weaken(5)
-			target.apply_damage(8, def_zone = BP_HEAD)
+			target.damage_through_armor(8, BRUTE, BP_HEAD, ARMOR_MELEE)
 			visible_message(SPAN_DANGER("[user] slams [target]'s face against \the [src]!"))
 			if(material)
 				playsound(loc, material.tableslam_noise, 50, 1)
@@ -102,7 +102,7 @@
 						SPAN_DANGER("\The [S] slices [target]'s face messily!"),
 						SPAN_DANGER("\The [S] slices your face messily!")
 					)
-					target.apply_damage(10, def_zone = BP_HEAD)
+					target.damage_through_armor(10, BRUTE, BP_HEAD, ARMOR_MELEE)
 					if(prob(2))
 						target.embed(S, def_zone = BP_HEAD)
 		else

@@ -98,4 +98,5 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	var/power = force
 	if(HULK in user.mutations)
 		power *= 2
-	return target.hit_with_weapon(src, user, power, hit_zone)
+	target.hit_with_weapon(src, user, power, hit_zone)
+	return

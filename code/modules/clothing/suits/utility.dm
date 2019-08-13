@@ -48,7 +48,7 @@
 	name = "bomb hood"
 	desc = "Use in case of bomb."
 	icon_state = "bombsuit"
-	armor = list(melee = 50, bullet = 50, laser = 50,energy = 50, bomb = 300, bio = 50, rad = 50)
+	armor = list(melee = 50, bullet = 50, energy = 50, bomb = 300, bio = 50, rad = 50)
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES|EARS
 	item_flags = COVER_PREVENT_MANIPULATION
@@ -67,7 +67,7 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	slowdown = 3.2
-	armor = list(melee = 50, bullet = 50, laser = 50,energy = 50, bomb = 300, bio = 50, rad = 50)
+	armor = list(melee = 50, bullet = 50, energy = 50, bomb = 300, bio = 50, rad = 50)
 	flags_inv = HIDEJUMPSUIT|HIDETAIL
 	heat_protection = UPPER_TORSO|LOWER_TORSO
 	item_flags = COVER_PREVENT_MANIPULATION
@@ -95,7 +95,7 @@
 	desc = "A hood with radiation protective properties. Label: Made with lead, do not eat insulation"
 	flags_inv = BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 60, rad = 100)
+	armor = list(melee = 0, bullet = 0, energy = 60, bomb = 0, bio = 100, rad = 100)
 	price_tag = 50
 
 
@@ -110,6 +110,6 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	extra_allowed = list(/obj/item/clothing/head/radiation)
 	slowdown = 1.5
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 60, rad = 100)
+	armor = list(melee = 0, bullet = 0, energy = 60, bomb = 0, bio = 100, rad = 100)
 	flags_inv = HIDEJUMPSUIT|HIDETAIL
 	price_tag = 100
