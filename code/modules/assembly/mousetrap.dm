@@ -44,8 +44,8 @@
 					if(!H.gloves)
 						H.apply_effect(250/(target.mob_size), AGONY)
 		if (!isrobot(target))
-			target.damage_through_armor(rand(15,30), AGONY, def_zone = zone, ARMOR_MELEE, used_weapon = src)
-			target.damage_through_armor(rand(8,15), BRUTE, def_zone = zone, ARMOR_MELEE, used_weapon = src)
+			target.damage_through_armor(rand(15,30), AGONY, zone, ARMOR_MELEE, used_weapon = src)
+			target.damage_through_armor(rand(8,15), BRUTE, zone, ARMOR_MELEE, used_weapon = src)
 
 	playsound(target.loc, 'sound/effects/snap.ogg', 50, 1)
 	layer = MOB_LAYER - 0.2
