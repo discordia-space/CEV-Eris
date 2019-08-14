@@ -23,13 +23,13 @@
 	name = "security armor"
 	desc = "An armored vest that protects against some damage. This one have Ironhammer Security signs. Not designed for serious operations."
 	icon_state = "armorsec"
-	item_state = "armorsec"
+	item_state = "armor"
 
 /obj/item/clothing/suit/armor/vest/handmade
 	name = "handmade armor vest"
 	desc = "An armored vest of uncertain quality. Provides a good protection against physical damage, for piece of crap."
 	icon_state = "hm_armorvest"
-	item_state = "hm_armorvest"
+	item_state = "armor"
 	armor = list(melee = 40, bullet = 35, laser = 30, energy = 15, bomb = 15, bio = 0, rad = 0)
 	price_tag = 150
 
@@ -38,7 +38,7 @@
 	name = "riot suit"
 	desc = "A suit of armor with heavy padding to protect against melee attacks. Looks like it might impair movement."
 	icon_state = "riot"
-	item_state = "riot"
+	item_state = "armor"
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	slowdown = 1
