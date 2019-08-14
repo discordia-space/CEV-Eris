@@ -45,9 +45,6 @@
 		else
 			command_announcement.Announce("Meteors have been detected on collision course with the ship.ETA 3 minutes until impact.", "Meteor Alert", new_sound = 'sound/AI/meteors.ogg')
 
-
-
-
 /datum/event/meteor_wave/tick()
 	if(activeFor >= next_meteor)
 		var/pick_side = prob(60) ? start_side : (prob(50) ? turn(start_side, 90) : turn(start_side, -90))
@@ -173,7 +170,6 @@
 		)
 
 
-
 ///////////////////////////////
 //Meteor spawning global procs
 ///////////////////////////////
@@ -235,6 +231,75 @@
 			endx = world.maxx-TRANSITIONEDGE
 	var/turf/T = locate(endx, endy, Z)
 	return T
+
+/////////                      ........::::::%%%SPACE_COMET
+
+/var/list/comet_hardcore = list(\
+		/obj/effect/meteor/large/ice=40,\
+		/obj/effect/meteor/medium/ice=20,\
+		/obj/effect/meteor/dust/ice=10
+		)
+
+/var/list/comet_mediumrare = list(\
+		/obj/effect/meteor/medium/ice=40,\
+		/obj/effect/meteor/large/ice=10,\
+		/obj/effect/meteor/dust/ice=20
+		)
+
+/var/list/comet_mini = list(\
+		/obj/effect/meteor/medium/ice=10,\
+		/obj/effect/meteor/large/ice=5,\
+		/obj/effect/meteor/dust/ice=40
+		)
+
+/obj/effect/meteor/large/ice
+	name = "comet"
+	icon_state = "comet_tail"
+	hits = 8
+	dropamt = 3
+
+/obj/effect/meteor/medium/ice
+	name = "comet"
+	icon_state = "comet_tail"
+	hits = 6
+	dropamt = 3
+
+/obj/effect/meteor/dust/ice
+	name = "comet ice"
+	icon_state = "comet_tail"
+	hits = 1
+	hitpwr = 3
+	dropamt = 1
+
+/datum/event/meteor_wave/overmap/space_comet/get_meteors()
+	switch(severity)
+		if(EVENT_LEVEL_MAJOR)
+			return comet_hardcore
+		if(EVENT_LEVEL_MODERATE)
+			return comet_mediumrare
+		else
+			return comet_mini
+
+/datum/event/meteor_wave/overmap/space_comet/hard
+	startWhen		= 0//90
+	endWhen 		= 120
+	strength = 7
+	duration = 60
+
+/datum/event/meteor_wave/overmap/space_comet/medium
+	startWhen		= 0//90
+	endWhen 		= 120
+	strength = 5
+	duration = 30
+
+/datum/event/meteor_wave/overmap/space_comet/mini
+	startWhen		= 0//90
+	endWhen 		= 120
+	strength = 2
+	duration = 20
+
+//////                                                                           SPACE_COMET%%%::::::........
+
 
 ///////////////////////
 //The meteor effect
