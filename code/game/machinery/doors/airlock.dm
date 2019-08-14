@@ -1173,7 +1173,14 @@ There are 9 wires.
 
 /mob/living/airlock_crush(var/crush_damage)
 	. = ..()
-	adjustBruteLoss(crush_damage)
+
+	damage_through_armor(0.2 * crush_damage, BRUTE, BP_HEAD, ARMOR_MELEE)
+	damage_through_armor(0.4 * crush_damage, BRUTE, BP_CHEST, ARMOR_MELEE)
+	damage_through_armor(0.1 * crush_damage, BRUTE, BP_L_LEG, ARMOR_MELEE)
+	damage_through_armor(0.1 * crush_damage, BRUTE, BP_R_LEG, ARMOR_MELEE)
+	damage_through_armor(0.1 * crush_damage, BRUTE, BP_L_ARM, ARMOR_MELEE)
+	damage_through_armor(0.1 * crush_damage, BRUTE, BP_R_ARM, ARMOR_MELEE)
+
 	SetStunned(5)
 	SetWeakened(5)
 	var/turf/T = get_turf(src)

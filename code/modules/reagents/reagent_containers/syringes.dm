@@ -172,7 +172,7 @@
 							// if he is not lets show him what actually happened
 							H.can_inject(user, TRUE)
 							return
-				
+
 				else if(!L.can_inject(user, TRUE))
 					return
 
@@ -213,7 +213,7 @@
 			else
 				trans = reagents.trans_to(target, amount_per_transfer_from_this)
 			to_chat(user, SPAN_NOTICE("You inject [trans] units of the solution. [src] now contains [src.reagents.total_volume] units."))
-				
+
 
 
 /obj/item/weapon/reagent_containers/syringe/update_icon()
@@ -262,7 +262,7 @@
 		if((user != target) && H.check_shields(7, src, user, "\the [src]"))
 			return
 
-		if (target != user && H.getarmor(target_zone, "melee") > 5 && prob(50))
+		if (target != user && H.getarmor(target_zone, ARMOR_MELEE) > 5 && prob(50))
 			for(var/mob/O in viewers(world.view, user))
 				O.show_message(text("\red <B>[user] tries to stab [target] in \the [hit_area] with [src.name], but the attack is deflected by armor!</B>"), 1)
 			user.remove_from_mob(src)
