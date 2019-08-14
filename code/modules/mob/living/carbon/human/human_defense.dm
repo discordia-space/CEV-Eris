@@ -29,7 +29,7 @@ meteor_act
 	var/check_absorb = .
 	//Shrapnel
 	if(P.can_embed() && (check_absorb < 2))
-		var/armor = getarmor_organ(organ, "bullet")
+		var/armor = getarmor_organ(organ, ARMOR_BULLET)
 		if(prob(20 + max(P.damage - armor, -10)))
 			var/obj/item/weapon/material/shard/shrapnel/SP = new()
 			SP.name = (P.name != "shrapnel")? "[P.name] shrapnel" : "shrapnel"
@@ -39,14 +39,12 @@ meteor_act
 
 
 /mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
+
 	var/obj/item/organ/external/affected = get_organ(check_zone(def_zone))
-	var/siemens_coeff = get_siemens_coefficient_organ(affected)
-	stun_amount *= siemens_coeff
-	agony_amount *= siemens_coeff
+
+//	No siemens coefficient calculations now, it's all done with armor "Energy" protection stat
 
 	switch (def_zone)
-		if(BP_CHEST)
-			agony_amount *= 0.80
 		if(BP_L_ARM, BP_R_ARM)
 			var/c_hand
 			if (def_zone == BP_L_ARM)
@@ -166,29 +164,28 @@ meteor_act
 /mob/living/carbon/human/hit_with_weapon(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
 	var/obj/item/organ/external/affecting = get_organ(hit_zone)
 	if(!affecting)
-		return //should be prevented by attacked_with_item() but for sanity.
+		return FALSE//should be prevented by attacked_with_item() but for sanity.
 
 	visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [affecting.name] with [I.name] by [user]!</span>")
 
-	var/blocked = run_armor_check(hit_zone, "melee", I.armor_penetration, "Your armor has protected your [affecting.name].", "Your armor has softened the blow to your [affecting.name].")
-	standard_weapon_hit_effects(I, user, effective_force, blocked, hit_zone)
+	standard_weapon_hit_effects(I, user, effective_force, hit_zone)
 
-	return blocked
+	return TRUE
 
-/mob/living/carbon/human/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/blocked, var/hit_zone)
+/mob/living/carbon/human/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
 	var/obj/item/organ/external/affecting = get_organ(hit_zone)
 	if(!affecting)
-		return 0
+		return FALSE
 
 	// Handle striking to cripple.
 	if(user.a_intent == I_DISARM)
 		effective_force /= 2 //half the effective force
-		if(!..(I, effective_force, blocked, hit_zone))
-			return 0
+		if(!..(I, effective_force, hit_zone))
+			return FALSE
 
-		attack_joint(affecting, I, blocked) //but can dislocate joints
+		attack_joint(affecting, I) //but can dislocate joints
 	else if(!..())
-		return 0
+		return FALSE
 
 	if(effective_force > 10 || effective_force >= 5 && prob(33))
 		forcesay(hit_appends)	//forcesay checks stat already
@@ -198,12 +195,12 @@ meteor_act
 				//Harder to score a stun but if you do it lasts a bit longer
 				if(prob(effective_force))
 					visible_message(SPAN_DANGER("[src] [species.knockout_message]"))
-					apply_effect(20, PARALYZE, blocked)
+					apply_effect(20, PARALYZE, getarmor(hit_zone, ARMOR_MELEE) )
 			else
 				//Easier to score a stun but lasts less time
 				if(prob(effective_force + 10))
 					visible_message(SPAN_DANGER("[src] has been knocked down!"))
-					apply_effect(6, WEAKEN, blocked)
+					apply_effect(6, WEAKEN, getarmor(hit_zone, ARMOR_MELEE) )
 
 		//Apply blood
 		if(!(I.flags & NOBLOODY))
@@ -233,16 +230,17 @@ meteor_act
 				if(BP_CHEST)
 					bloody_body(src)
 
-	return 1
+	return TRUE
 
-/mob/living/carbon/human/proc/attack_joint(var/obj/item/organ/external/organ, var/obj/item/W, var/blocked)
-	if(!organ || (organ.dislocated == 2) || (organ.dislocated == -1) || blocked >= 2)
-		return 0
-	if(prob(W.force / (blocked+1)))
+/mob/living/carbon/human/proc/attack_joint(var/obj/item/organ/external/organ, var/obj/item/W)
+	if(!organ || (organ.dislocated == 2) || (organ.dislocated == -1) )
+		return FALSE
+	//There was blocked var, removed now. For the sake of game balance, it was just replaced by 2
+	if(prob(W.force / 2))
 		visible_message("<span class='danger'>[src]'s [organ.joint] [pick("gives way","caves in","crumbles","collapses")]!</span>")
 		organ.dislocate(1)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 //this proc handles being hit by a thrown atom
 /mob/living/carbon/human/hitby(atom/movable/AM as mob|obj,var/speed = THROWFORCE_SPEED_DIVISOR)
@@ -294,10 +292,8 @@ meteor_act
 			IgniteMob()
 
 		src.visible_message("\red [src] has been hit in the [hit_area] by [O].")
-		var/armor = run_armor_check(affecting, "melee", O.armor_penetration, "Your armor has protected your [hit_area].", "Your armor has softened hit to your [hit_area].") //I guess "melee" is the best fit here
 
-		if(armor < 2)
-			apply_damage(throw_damage, dtype, zone, armor, is_sharp(O), has_edge(O), O)
+		damage_through_armor(throw_damage, dtype, null, ARMOR_MELEE, null, used_weapon = O, sharp = is_sharp(O), edge = has_edge(O))
 
 		if(ismob(O.thrower))
 			var/mob/M = O.thrower
@@ -314,9 +310,6 @@ meteor_act
 			if (I && I.damtype == BRUTE && !I.anchored && !is_robot_module(I))
 				var/damage = throw_damage
 				var/sharp = is_sharp(I)
-
-				if (armor)
-					damage /= armor+1
 
 				//blunt objects should really not be embedding in things unless a huge amount of force is involved
 

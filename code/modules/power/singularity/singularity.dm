@@ -416,7 +416,7 @@
 		if(M.status_flags & GODMODE)
 			continue
 		M.apply_effect(rand(radiationmin,radiation), IRRADIATE)
-		toxdamage = (toxdamage - (toxdamage*M.getarmor(null, "rad")))
+		toxdamage = (toxdamage - (toxdamage*M.getarmor(null, ARMOR_RAD)))
 		M.apply_effect(toxdamage, TOX)
 	return
 

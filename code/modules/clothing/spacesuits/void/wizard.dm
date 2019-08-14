@@ -8,7 +8,7 @@
 		slot_r_hand_str = "wiz_helm",
 		)
 	unacidable = 1 //No longer shall our kind be foiled by lone chemists with spray bottles!
-	armor = list(melee = 60, bullet = 55, laser = 55,energy = 5, bomb = 35, bio = 100, rad = 90)
+	armor = list(melee = 60, bullet = 55, energy = 35, bomb = 35, bio = 100, rad = 90)
 	siemens_coefficient = 0.7
 
 /obj/item/clothing/suit/space/void/wizard
@@ -18,5 +18,5 @@
 	item_state = "wiz_voidsuit"
 	slowdown = 1
 	unacidable = 1
-	armor = list(melee = 40, bullet = 55, laser = 55,energy = 5, bomb = 35, bio = 100, rad = 90)
+	armor = list(melee = 40, bullet = 55, energy = 35, bomb = 35, bio = 100, rad = 90)
 	siemens_coefficient = 0.7

@@ -233,9 +233,9 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 
 	var/mob/living/L = buckled_mob
 	//armour
-	var/blocked = L.run_armor_check(target_zone, "melee")
-	if(blocked < 100)
-		L.apply_damage(fail_damage, BRUTE, target_zone, blocked, src)
+
+	if( L.damage_through_armor(fail_damage, BRUTE, target_zone, ARMOR_MELEE, used_weapon = src) )
+	//No damage - no stun
 		L.Stun(4) //A short stun prevents spamming failure attempts
 		shake_camera(user, 2, 1)
 
@@ -271,12 +271,10 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 
 
 	//armour
-	var/blocked = L.run_armor_check(target_zone, "melee")
-	if(blocked < 100)
-
-		var/success = L.apply_damage(base_damage, BRUTE, target_zone, blocked, src)
-		if(success)
-			shake_camera(L, 2, 1)
+	if( L.damage_through_armor(fail_damage, BRUTE, target_zone, ARMOR_MELEE, used_weapon = src) )
+	//No damage - no stun
+		L.Stun(4) //A short stun prevents spamming failure attempts
+		shake_camera(L, 2, 1)
 
 	//trap the victim in place
 	set_dir(L.dir)
