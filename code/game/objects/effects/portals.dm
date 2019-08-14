@@ -167,5 +167,6 @@ var/list/portal_cache = list()
 	src.icon_state = "portal1"
 	if(istype(M, /mob/living))
 		var/mob/living/victim = M
+		//Portals ignore armor when messing you up, it's logical
 		victim.apply_damage(20+rand(60), BRUTE, pick(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG))
 	do_teleport(M, get_destination(get_turf(M)), 1)

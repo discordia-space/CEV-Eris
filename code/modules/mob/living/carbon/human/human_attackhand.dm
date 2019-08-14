@@ -35,7 +35,6 @@
 				visible_message("\red <B>[H] has attempted to punch [src]!</B>")
 				return 0
 			var/obj/item/organ/external/affecting = get_organ(ran_zone(H.targeted_organ))
-			var/armor_block = run_armor_check(affecting, "melee")
 
 			if(HULK in H.mutations)
 				damage += 5
@@ -44,10 +43,10 @@
 
 			visible_message("\red <B>[H] has punched [src]!</B>")
 
-			apply_damage(damage, HALLOSS, affecting, armor_block)
+			damage_through_armor(damage, HALLOSS, affecting, ARMOR_MELEE)
 			if(damage >= 9)
 				visible_message("\red <B>[H] has weakened [src]!</B>")
-				apply_effect(4, WEAKEN, armor_block)
+				apply_effect(4, WEAKEN, getarmor(affecting, ARMOR_MELEE))
 
 			return
 
@@ -212,7 +211,7 @@
 			msg_admin_attack("[key_name(H)] [miss_type ? (miss_type == 1 ? "has missed" : "was blocked by") : "has [pick(attack.attack_verb)]"] [key_name(src)]")
 
 			if(miss_type)
-				return 0
+				return FALSE
 
 			var/real_damage = stat_damage
 			real_damage += attack.get_unarmed_damage(H)
@@ -223,12 +222,11 @@
 				stat_damage *= 2
 			real_damage = max(1, real_damage)
 
-			var/armour = run_armor_check(affecting, "melee")
 			// Apply additional unarmed effects.
-			attack.apply_effects(H, src, armour, stat_damage, hit_zone)
+			attack.apply_effects(H, src, getarmor(affecting, ARMOR_MELEE), stat_damage, hit_zone)
 
 			// Finally, apply damage to target
-			apply_damage(real_damage, (attack.deal_halloss ? HALLOSS : BRUTE), affecting, armour, sharp=attack.sharp, edge=attack.edge)
+			damage_through_armor(real_damage, (attack.deal_halloss ? HALLOSS : BRUTE), affecting, ARMOR_MELEE, sharp = attack.sharp, edge = attack.edge)
 
 		if(I_DISARM)
 			M.attack_log += text("\[[time_stamp()]\] <font color='red'>Disarmed [src.name] ([src.ckey])</font>")
@@ -257,13 +255,9 @@
 			var/randn = rand(1, 100)
 			randn = max(1, randn - H.stats.getStat(STAT_ROB))
 			if(!(species.flags & NO_SLIP) && randn <= 20)
-				var/armor_check = run_armor_check(affecting, "melee", armour_pen = H.stats.getStat(STAT_ROB))
-				apply_effect(3, WEAKEN, armor_check)
+				apply_effect(3, WEAKEN, getarmor(affecting, ARMOR_MELEE))
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-				if(armor_check < 2)
-					visible_message(SPAN_DANGER("[M] has pushed [src]!"))
-				else
-					visible_message(SPAN_WARNING("[M] attempted to push [src]!"))
+				visible_message(SPAN_DANGER("[M] has pushed [src]!"))
 				return
 
 			if(randn <= 50)
@@ -298,10 +292,9 @@
 
 	var/dam_zone = pick(organs_by_name)
 	var/obj/item/organ/external/affecting = get_organ(ran_zone(dam_zone))
-	var/armor_block = run_armor_check(affecting, "melee")
-	apply_damage(damage, BRUTE, affecting, armor_block)
+	damage_through_armor(damage, BRUTE, affecting, ARMOR_MELEE)
 	updatehealth()
-	return 1
+	return TRUE
 
 //Used to attack a joint through grabbing
 /mob/living/carbon/human/proc/grab_joint(var/mob/living/user, var/def_zone)

@@ -351,7 +351,7 @@ This function restores all organs.
 		zone = BP_HEAD
 	return organs_by_name[zone]
 
-/mob/living/carbon/human/apply_damage(var/damage = 0, var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/sharp = 0, var/edge = 0, var/obj/used_weapon = null)
+/mob/living/carbon/human/apply_damage(var/damage = 0, var/damagetype = BRUTE, var/def_zone = null, var/sharp = 0, var/edge = 0, var/obj/used_weapon = null)
 
 	//visible_message("Hit debug. [damage] | [damagetype] | [def_zone] | [blocked] | [sharp] | [used_weapon]")
 
@@ -361,13 +361,11 @@ This function restores all organs.
 			if (!stat && (damage > 25 && prob(20)) || (damage > 50 && prob(60)))
 				emote("scream")
 
-		..(damage, damagetype, def_zone, blocked)
+		..(damage, damagetype, def_zone)
 		return 1
 
 	//Handle BRUTE and BURN damage
 	handle_suit_punctures(damagetype, damage, def_zone)
-
-	if(blocked >= 2)	return 0
 
 	var/obj/item/organ/external/organ = null
 	if(isorgan(def_zone))
@@ -376,9 +374,6 @@ This function restores all organs.
 		if(!def_zone)	def_zone = ran_zone(def_zone)
 		organ = get_organ(check_zone(def_zone))
 	if(!organ)	return 0
-
-	if(blocked)
-		damage = (damage/(blocked+1))
 
 	switch(damagetype)
 		if(BRUTE)
