@@ -2,6 +2,7 @@
 
 /datum/design/research/item/mechfab/ripley
 	category = "Ripley"
+	starts_unlocked = TRUE
 
 /datum/design/research/item/mechfab/ripley/chassis
 	build_path = /obj/item/mecha_parts/chassis/ripley
@@ -29,6 +30,7 @@
 
 /datum/design/research/item/mechfab/odysseus
 	category = "Odysseus"
+	starts_unlocked = TRUE
 
 /datum/design/research/item/mechfab/odysseus/chassis
 	build_path = /obj/item/mecha_parts/chassis/odysseus
@@ -55,6 +57,7 @@
 
 /datum/design/research/item/mechfab/gygax
 	category = "Gygax"
+	starts_unlocked = TRUE
 
 /datum/design/research/item/mechfab/gygax/chassis
 	build_path = /obj/item/mecha_parts/chassis/gygax
@@ -84,6 +87,7 @@
 
 /datum/design/research/item/mechfab/phazon
 	category = "Phazon"
+	starts_unlocked = TRUE
 
 /datum/design/research/item/mechfab/phazon/chassis
 	build_path = /obj/item/mecha_parts/chassis/phazon
@@ -113,6 +117,7 @@
 
 /datum/design/research/item/mechfab/durand
 	category = "Durand"
+	starts_unlocked = TRUE
 
 /datum/design/research/item/mechfab/durand/chassis
 	build_path = /obj/item/mecha_parts/chassis/durand
@@ -144,8 +149,8 @@
 ///////////////////////////////////
 
 /datum/design/research/circuit/mecha
-	req_tech = list(TECH_DATA = 3)
 	name_category = ""
+	category = CAT_MECHA
 
 //Ripley ==============================================
 
@@ -160,62 +165,51 @@
 //Odysseus ==============================================
 
 /datum/design/research/circuit/mecha/odysseus_main
-	req_tech = list(TECH_DATA = 3,TECH_BIO = 2)
 	build_path = /obj/item/weapon/circuitboard/mecha/odysseus/main
 	sort_string = "NAABA"
 
 /datum/design/research/circuit/mecha/odysseus_peri
-	req_tech = list(TECH_DATA = 3,TECH_BIO = 2)
 	build_path = /obj/item/weapon/circuitboard/mecha/odysseus/peripherals
 	sort_string = "NAABB"
 
 //Gygax ==============================================
 
 /datum/design/research/circuit/mecha/gygax_main
-	req_tech = list(TECH_DATA = 4)
 	build_path = /obj/item/weapon/circuitboard/mecha/gygax/main
 	sort_string = "NAACA"
 
 /datum/design/research/circuit/mecha/gygax_peri
-	req_tech = list(TECH_DATA = 4)
 	build_path = /obj/item/weapon/circuitboard/mecha/gygax/peripherals
 	sort_string = "NAACB"
 
 /datum/design/research/circuit/mecha/gygax_targ
-	req_tech = list(TECH_DATA = 4, TECH_COMBAT = 2)
 	build_path = /obj/item/weapon/circuitboard/mecha/gygax/targeting
 	sort_string = "NAACC"
 
 //Durand ==============================================
 
 /datum/design/research/circuit/mecha/durand_main
-	req_tech = list(TECH_DATA = 4)
 	build_path = /obj/item/weapon/circuitboard/mecha/durand/main
 	sort_string = "NAADA"
 
 /datum/design/research/circuit/mecha/durand_peri
-	req_tech = list(TECH_DATA = 4)
 	build_path = /obj/item/weapon/circuitboard/mecha/durand/peripherals
 	sort_string = "NAADB"
 
 /datum/design/research/circuit/mecha/durand_targ
-	req_tech = list(TECH_DATA = 4, TECH_COMBAT = 2)
 	build_path = /obj/item/weapon/circuitboard/mecha/durand/targeting
 	sort_string = "NAADC"
 
 //Phazon ==============================================
 
 /datum/design/research/circuit/mecha/phazon_main
-	req_tech = list(TECH_DATA = 5, TECH_BLUESPACE = 2)
 	build_path = /obj/item/weapon/circuitboard/mecha/phazon/main
 	sort_string = "NAAEA"
 
 /datum/design/research/circuit/mecha/phazon_peri
-	req_tech = list(TECH_DATA = 5, TECH_BLUESPACE = 2)
 	build_path = /obj/item/weapon/circuitboard/mecha/phazon/peripherals
 	sort_string = "NAAEB"
 
 /datum/design/research/circuit/mecha/phazon_targ
-	req_tech = list(TECH_DATA = 5, TECH_COMBAT = 3, TECH_BLUESPACE = 5)
 	build_path = /obj/item/weapon/circuitboard/mecha/phazon/targeting
 	sort_string = "NAAEC"

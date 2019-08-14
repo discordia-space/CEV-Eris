@@ -7,14 +7,14 @@
 
 	var/min_reliability = 90 //Can't upgrade, call it laziness or a drawback
 
-	var/datum/research/techonly/files 	//The device uses the same datum structure as the R&D computer/server.
+	var/datum/research/files 	//The device uses the same datum structure as the R&D computer/server.
 										//This analyzer can only store tech levels, however.
 
 	var/obj/item/weapon/loaded_item	//What is currently inside the analyzer.
 
 /obj/item/weapon/portable_destructive_analyzer/Initialize()
 	. = ..()
-	files = new /datum/research/techonly(src) //Setup the research data holder.
+	files = new /datum/research(src) //Setup the research data holder.
 
 /obj/item/weapon/portable_destructive_analyzer/attack_self(user as mob)
 	var/response = alert(user, 	"Analyzing the item inside will *DESTROY* the item for good.\n\
@@ -29,8 +29,11 @@
 				flick("portable_analyzer_scan", src)
 				playsound(src.loc, 'sound/items/Welder2.ogg', 50, 1)
 				for(var/T in loaded_item.origin_tech)
-					files.UpdateTech(T, loaded_item.origin_tech[T])
-					to_chat(user, "\The [loaded_item] had level [loaded_item.origin_tech[T]] in [CallTechName(T)].")
+					files.check_item_for_tech(loaded_item)
+					var/object_research_value = files.experiments.get_object_research_value(loaded_item)
+					files.research_points += object_research_value
+					files.experiments.do_research_object(loaded_item)
+					to_chat(user, "\The [loaded_item] incremented the research points by [object_research_value].")
 				loaded_item = null
 				for(var/obj/I in contents)
 					for(var/mob/M in I.contents)
@@ -55,12 +58,9 @@
 	if(response == "Sync")
 		var/success = 0
 		for(var/obj/machinery/r_n_d/server/S in SSmachines.machinery)
-			for(var/datum/tech/T in files.known_tech) //Uploading
-				S.files.AddTech2Known(T)
-			for(var/datum/tech/T in S.files.known_tech) //Downloading
-				files.AddTech2Known(T)
-			success = 1
-			files.RefreshResearch()
+			S.files.download_from(files)
+			files.download_from(S.files)
+			success = TRUE
 		if(success)
 			to_chat(user, "You connect to the research server, push your data upstream to it, then pull the resulting merged data from the master branch.")
 			playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 1)
