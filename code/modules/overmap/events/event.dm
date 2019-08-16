@@ -25,21 +25,24 @@
 //			world << "No candidate_tufs"
 			break
 		var/overmap_event_type = pick(subtypesof(/datum/overmap_event))
-		var/datum/overmap_event/overmap_event = new overmap_event_type
+		if(!ispath(overmap_event_type, /datum/overmap_event/meteor/comet_tail) && \
+		!ispath(overmap_event_type, /datum/overmap_event/meteor/comet_tail_medium) && \
+		!ispath(overmap_event_type, /datum/overmap_event/meteor/comet_tail_core))
+			var/datum/overmap_event/overmap_event = new overmap_event_type
 
-		var/list/event_turfs = acquire_event_turfs(overmap_event.count, overmap_event.radius, candidate_turfs, overmap_event.continuous)
-		candidate_turfs -= event_turfs
+			var/list/event_turfs = acquire_event_turfs(overmap_event.count, overmap_event.radius, candidate_turfs, overmap_event.continuous)
+			candidate_turfs -= event_turfs
 
-		for(var/event_turf in event_turfs)
-			events_by_turf[event_turf] = overmap_event
-			GLOB.entered_event.register(event_turf, src, /decl/overmap_event_handler/proc/on_turf_entered)
-			GLOB.exited_event.register(event_turf, src, /decl/overmap_event_handler/proc/on_turf_exited)
+			for(var/event_turf in event_turfs)
+				events_by_turf[event_turf] = overmap_event
+				GLOB.entered_event.register(event_turf, src, /decl/overmap_event_handler/proc/on_turf_entered)
+				GLOB.exited_event.register(event_turf, src, /decl/overmap_event_handler/proc/on_turf_exited)
 
-			var/obj/effect/overmap_event/event = new(event_turf)
-//			world << "Created new event in [event.loc.x], [event.loc.y]"
-			event.name = overmap_event.name
-			event.icon_state = pick(overmap_event.event_icon_states)
-			event.opacity =  overmap_event.opacity
+				var/obj/effect/overmap_event/event = new(event_turf)
+	//			world << "Created new event in [event.loc.x], [event.loc.y]"
+				event.name = overmap_event.name
+				event.icon_state = pick(overmap_event.event_icon_states)
+				event.opacity =  overmap_event.opacity
 
 /decl/overmap_event_handler/proc/get_event_turfs_by_z_level(var/z_level)
 	var/z_level_text = num2text(z_level)
@@ -141,8 +144,11 @@
 		admin_notice("<span class='danger'>Event manager not setup.</span>")
 		return
 	if(victim in victims)
-		admin_notice("<span class='danger'>Multiple attempts to trigger the same event by [victim] detected.</span>")
-		return
+		if(!istype(src, /datum/overmap_event/meteor/comet_tail_core) && \
+		!istype(src, /datum/overmap_event/meteor/comet_tail_medium)  && \
+		!istype(src, /datum/overmap_event/meteor/comet_tail))
+			admin_notice("<span class='danger'>Multiple attempts to trigger the same event by [victim] detected.</span>")
+			return
 	LAZYADD(victims, victim)
 	//var/datum/event_meta/EM = new(difficulty, "Overmap event - [name]", event, add_to_queue = FALSE, is_one_shot = TRUE)
 	var/datum/event/E = new event(null, difficulty)
@@ -166,6 +172,30 @@
 	continuous = FALSE
 	event_icon_states = list("meteor1", "meteor2", "meteor3", "meteor4")
 	difficulty = EVENT_LEVEL_MAJOR
+
+/datum/overmap_event/meteor/comet_tail
+	name = "comet tail further"
+	event = /datum/event/meteor_wave/overmap/space_comet/mini
+	count = 16
+	radius = 4
+	continuous = FALSE
+	event_icon_states = list("meteor1", "meteor2", "meteor3", "meteor4")
+
+/datum/overmap_event/meteor/comet_tail_medium
+	name = "comet tail"
+	event = /datum/event/meteor_wave/overmap/space_comet/medium
+	count = 16
+	radius = 4
+	continuous = FALSE
+	event_icon_states = list("meteor1", "meteor2", "meteor3", "meteor4")
+
+/datum/overmap_event/meteor/comet_tail_core
+	name = "comet core"
+	event = /datum/event/meteor_wave/overmap/space_comet/hard
+	count = 16
+	radius = 4
+	continuous = FALSE
+	event_icon_states = list("meteor1", "meteor2", "meteor3", "meteor4")
 
 /datum/overmap_event/meteor/enter(var/obj/effect/overmap/ship/victim)
 	..()
