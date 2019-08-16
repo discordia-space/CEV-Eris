@@ -151,9 +151,6 @@
 
 /obj/effect/overmap_event/movable/comet/cometmedium/Initialize()
 	. = ..()
-	//start_x = pick(2, maps_data.overmap_size - 1)
-	//start_y = pick(2, maps_data.overmap_size - 1)
-	//moving_vector = pick(NORTH, SOUTH, WEST, EAST)
 
 	if(!config.use_overmap)
 		return
@@ -182,9 +179,6 @@
 
 /obj/effect/overmap_event/movable/comet/comettail/Initialize()
 	. = ..()
-	//start_x = pick(2, maps_data.overmap_size - 1)
-	//start_y = pick(2, maps_data.overmap_size - 1)
-	//moving_vector = pick(NORTH, SOUTH, WEST, EAST)
 
 	if(!config.use_overmap)
 		return
