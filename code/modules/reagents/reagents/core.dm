@@ -34,15 +34,15 @@
 		if(B)
 			B.blood_DNA["UNKNOWN DNA STRUCTURE"] = "X*"
 
-/datum/reagent/blood/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/blood/affect_ingest(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
 
 	var/effective_dose = dose
 	if(issmall(M)) effective_dose *= 2
 
 	if(effective_dose > 5)
-		M.adjustToxLoss(removed)
+		M.adjustToxLoss(1 * effectMultiplier)
 	if(effective_dose > 15)
-		M.adjustToxLoss(removed)
+		M.adjustToxLoss(1 * effectMultiplier)
 	if(data && data["virus2"])
 		var/list/vlist = data["virus2"]
 		if(vlist.len)
@@ -51,7 +51,7 @@
 				if(V.spreadtype == "Contact")
 					infect_virus2(M, V.getcopy())
 
-/datum/reagent/blood/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/blood/affect_touch(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
 	if(data && data["virus2"])
 		var/list/vlist = data["virus2"]
 		if(vlist.len)
@@ -62,7 +62,7 @@
 	if(data && data["antibodies"])
 		M.antibodies |= data["antibodies"]
 
-/datum/reagent/blood/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/blood/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
 	M.inject_blood(src, volume)
 	remove_self(volume)
 
@@ -75,7 +75,7 @@
 	reagent_state = LIQUID
 	color = "#0050F0"
 
-/datum/reagent/antibodies/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/antibodies/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
 	if(src.data)
 		M.antibodies |= src.data["antibodies"]
 	..()
@@ -138,15 +138,15 @@
 			remove_self(amount)
 		*/
 
-/datum/reagent/water/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/water/affect_touch(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
 	if(isslime(M))
 		var/mob/living/carbon/slime/S = M
-		S.adjustToxLoss(8 * removed) // Babies have 150 health, adults have 200; So, 10 units and 13.5
+		S.adjustToxLoss(0.8 * effectMultiplier) // Babies have 150 health, adults have 200; So, 10 units and 13.5
 		if(!S.client)
 			if(S.Target) // Like cats
 				S.Target = null
 				++S.Discipline
-		if(dose == removed)
+		if(prob(5))
 			S.visible_message(SPAN_WARNING("[S]'s flesh sizzles where the water touches it!"), SPAN_DANGER("Your flesh burns in the water!"))
 
 /datum/reagent/fuel
@@ -167,9 +167,8 @@
 	remove_self(volume)
 	return
 
-/datum/reagent/fuel/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(issmall(M)) removed *= 2
-	M.adjustToxLoss(2 * removed)
+/datum/reagent/fuel/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+	M.adjustToxLoss(0.2 * issmall(M) ? effectMultiplier * 2 : effectMultiplier)
 
 /datum/reagent/fuel/touch_mob(var/mob/living/L, var/amount)
 	if(istype(L))

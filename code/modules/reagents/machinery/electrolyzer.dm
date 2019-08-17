@@ -2,26 +2,68 @@
 	name = "electrolyzer"
 	density = TRUE
 	anchored = TRUE
-	icon = 'icons/obj/chemical.dmi'
-	icon_state = "mixer0b"
+	icon = 'icons/obj/machines/chemistry.dmi'
+	icon_state = "electrolysis"
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 40
-	//resistance_flags = FIRE_PROOF | ACID_PROOF
-	//circuit = /obj/item/weapon/circuitboard/electrolyzer
+	circuit = /obj/item/weapon/circuitboard/electrolyzer
 	var/obj/item/weapon/reagent_containers/beaker
+	var/obj/item/weapon/reagent_containers/separationBeaker
 	var/convertion_coefficient = 2
 	var/on = FALSE
 
+/obj/item/weapon/circuitboard/electrolyzer
+	name = T_BOARD("electrolyzer")
+	build_path = /obj/machinery/electrolyzer
+	origin_tech = list(TECH_BIO = 3)
+
+/proc/electrolysis(var/obj/item/weapon/reagent_containers/primaryBeaker, var/obj/item/weapon/reagent_containers/secondaryBeaker, var/amount)
+	if(!primaryBeaker || !secondaryBeaker)
+		return FALSE
+	//check if has reagents
+	if(!primaryBeaker.reagents.total_volume)
+		return FALSE
+
+	//check only one reagent present
+	if(!primaryBeaker.reagents.reagent_list.len > 1)
+		return FALSE
+
+	var/reagent_id = primaryBeaker.reagents.get_master_reagent_id()
+	var/datum/chemical_reaction/originalReaction
+	for(var/datum/chemical_reaction/R in chemical_reactions_list)
+		if(reagent_id == R.result && R.supports_decomposition_by_electrolysis)
+			originalReaction = R
+			break
+
+	if(istype(originalReaction))
+		crash_with("something went wrong")
+
+	var/volumeToHandle = min(originalReaction.result_amount, primaryBeaker.reagents.total_volume, amount)
+	var/partVolume = volumeToHandle/originalReaction.result_amount
+
+	if(secondaryBeaker.reagents.get_free_space() < volumeToHandle)
+		return FALSE
+
+	primaryBeaker.reagents.remove_reagent(reagent_id, volumeToHandle)
+	primaryBeaker.reagents.add_reagent(originalReaction.required_reagents[1], partVolume * originalReaction.required_reagents[originalReaction.required_reagents[1]])
+	for(var/i = 2 , i <= originalReaction.required_reagents.len, i++)
+		secondaryBeaker.reagents.add_reagent(originalReaction.required_reagents[i], partVolume * originalReaction.required_reagents[originalReaction.required_reagents[i]])
+	return TRUE
+
+
 /obj/machinery/electrolyzer/Destroy()
 	QDEL_NULL(beaker)
+	QDEL_NULL(separationBeaker)
 	return ..()
 
 /obj/machinery/electrolyzer/update_icon()
-//	if(on)
-	if(beaker)
-		icon_state = "mixer1b"
+	if(stat & NOPOWER)
+		icon_state = "[initial(icon_state)]_off"
+		return
+	if(on)
+		icon_state = "[initial(icon_state)]_working"
 	else
-		icon_state = "mixer0b"
+		icon_state = initial(icon_state)
 
 /obj/machinery/electrolyzer/RefreshParts()
 	convertion_coefficient = initial(convertion_coefficient)
@@ -35,9 +77,11 @@
 		update_icon()
 		return
 	if(on && beaker && beaker.reagents.total_volume)
-		beaker.reagents.adjust_thermal_energy((350 - beaker.reagents.chem_temp) * 0.05 * SPECIFIC_HEAT_DEFAULT * beaker.reagents.total_volume)
-		beaker.reagents.isElectrolysed = TRUE
-		beaker.reagents.handle_reactions()
+		if(!electrolysis(beaker, separationBeaker, convertion_coefficient))
+			on = FALSE
+			playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 1 -3)
+			visible_message("\icon[src]\The [src] buzzes indicating that error has occured.")
+			update_icon()
 		SSnano.update_uis(src)
 
 /obj/machinery/electrolyzer/attackby(obj/item/I, mob/user, params)
@@ -47,13 +91,15 @@
 	if(default_part_replacement(I, user))
 		return
 
-
-	if(istype(I, /obj/item/weapon/reagent_containers) && I.is_open_container())
+	if(istype(I, /obj/item/weapon/reagent_containers) && I.is_open_container() && (!beaker || !separationBeaker))
 		. = TRUE //no afterattack
 		var/obj/item/weapon/reagent_containers/B = I
 		if(!user.unEquip(B, src))
 			return
-		beaker = B
+		if(!beaker)
+			beaker = B
+		else if(!separationBeaker)
+			separationBeaker = B
 		to_chat(user, SPAN_NOTICE("You add [B] to [src]."))
 		updateUsrDialog()
 		update_icon()
@@ -64,7 +110,11 @@
 	if(beaker)
 		beaker.forceMove(get_turf(src))
 		beaker = null
+	if(separationBeaker)
+		separationBeaker.forceMove(get_turf(src))
+		separationBeaker = null
 	..()
+	
 
 /obj/machinery/electrolyzer/attack_hand(mob/user)
 	if(..())
@@ -95,6 +145,8 @@
 
 	if(beaker)
 		data["beaker"] = beaker.reagents.ui_data()
+	if(separationBeaker)
+		data["separationBeaker"] = separationBeaker.reagents.ui_data()
 	return data
 
 
@@ -107,7 +159,15 @@
 
 	if(href_list["eject"] && beaker)
 		on = FALSE
-		beaker.forceMove(get_turf(src))
+		if(beaker)
+			beaker.forceMove(get_turf(src))
+			beaker = null
+
+	if(href_list["ejectSecondary"] && beaker)
+		on = FALSE
+		if(separationBeaker)
+			separationBeaker.forceMove(get_turf(src))
+			separationBeaker = null
 
 	return 1 // update UIs attached to this object
 
@@ -115,15 +175,16 @@
 
 /obj/item/device/makeshiftElectrolyser
 	name = "makeshift electrolyzer"
-	icon = 'icons/obj/chemical.dmi'
-	icon_state = "mixer0b"
+	icon = 'icons/obj/machines/chemistry.dmi'
+	icon_state = "electrolysis_makeshift"
 	var/on = FALSE
 	var/tick_cost = 30
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/small
 	var/obj/item/weapon/reagent_containers/beaker
+	var/obj/item/weapon/reagent_containers/separationBeaker
 
-/obj/item/device/makeshiftElectrolyser/update_icon()
+//obj/item/device/makeshiftElectrolyser/update_icon()
 //	if(on)
 	/*if(beaker)
 		icon_state = "mixer1b"
@@ -169,8 +230,8 @@
 			visible_message(SPAN_NOTICE("[src]'s electrodes stopped bubbling."), range = 4)
 			turn_off()
 		if(beaker && beaker.reagents.total_volume)
-			beaker.reagents.isElectrolysed = TRUE
-			beaker.reagents.handle_reactions()
+			if(!electrolysis(beaker, separationBeaker, 1))
+				turn_off()
 			SSnano.update_uis(src)
 
 /obj/item/device/makeshiftElectrolyser/MouseDrop(over_object)
@@ -183,3 +244,18 @@
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
 		to_chat(user, SPAN_NOTICE("You add [C] to [src]."))
 		src.cell = C
+		updateUsrDialog()
+		return
+	if(istype(C, /obj/item/weapon/reagent_containers) && C.is_open_container() && (!beaker || !separationBeaker))
+		. = TRUE //no afterattack
+		var/obj/item/weapon/reagent_containers/B = C
+		if(!user.unEquip(B, src))
+			return
+		if(!beaker)
+			beaker = B
+		else if(!separationBeaker)
+			separationBeaker = B
+		to_chat(user, SPAN_NOTICE("You add [B] to [src]."))
+		updateUsrDialog()
+		return
+	return ..()

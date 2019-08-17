@@ -193,7 +193,7 @@
 		if(H.species.name == src.species.name)
 			return
 		H << "\red Your nose begins to bleed..."
-		H.drip(1)
+		H.dripBlood(1)
 
 /mob/living/carbon/human/proc/regurgitate()
 	set name = "Regurgitate"

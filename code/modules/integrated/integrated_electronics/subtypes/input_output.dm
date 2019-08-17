@@ -376,7 +376,7 @@
 	remove_hearing()
 	return ..()
 
-/obj/item/integrated_circuit/input/microphone/hear_talk(mob/living/M, msg, var/verb="says", datum/language/speaking=null)
+/obj/item/integrated_circuit/input/microphone/hear_talk(mob/living/M, msg, var/verb="says", datum/language/speaking=null, speechVolume)
 	var/translated = FALSE
 	if(M && msg)
 		if(speaking)
@@ -700,7 +700,7 @@
 		text_output += "\an [name]"
 	else
 		text_output += "\an ["\improper[initial_name]"] labeled '[name]'"
-	text_output += " which is currently [get_pin_data(IC_INPUT, 1) ? "lit <font color=[led_color]>¤</font>" : "unlit."]"
+	text_output += " which is currently [get_pin_data(IC_INPUT, 1) ? "lit <font color=[led_color]>ï¿½</font>" : "unlit."]"
 	user << jointext(text_output,null)
 
 /obj/item/integrated_circuit/output/led/red

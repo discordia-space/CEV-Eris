@@ -80,9 +80,9 @@
 
 
 // heal ONE external organ, organ gets randomly selected from damaged ones.
-/mob/living/proc/heal_organ_damage(var/brute, var/burn)
-	adjustBruteLoss(-brute)
-	adjustFireLoss(-burn)
+/mob/living/proc/heal_organ_damage(var/brute, var/burn, var/additionalyBrutePercent = 0, var/additionalyBurnPercent = 0)
+	adjustBruteLoss(-(brute + getBruteLoss()/100 * additionalyBrutePercent))
+	adjustFireLoss(-(burn + getFireLoss()/100 * additionalyBurnPercent))
 	src.updatehealth()
 
 // damage ONE external organ, organ gets randomly selected from damaged ones.

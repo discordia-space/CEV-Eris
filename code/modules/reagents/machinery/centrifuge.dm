@@ -2,8 +2,8 @@
 	name = "centrifuge"
 	density = TRUE
 	anchored = TRUE
-	icon = 'icons/obj/chemical.dmi'
-	icon_state = "mixer0b"
+	icon = 'icons/obj/machines/chemistry.dmi'
+	icon_state = "centrifuge"
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 20
 	circuit = /obj/item/weapon/circuitboard/centrifuge
@@ -23,11 +23,16 @@
 	return ..()
 
 /obj/machinery/centrifuge/update_icon()
-//	if(on)
-	if(mainBeaker)
-		icon_state = "mixer1b"
+	if(stat & BROKEN)
+		icon_state = "[initial(icon_state)]_broken"
+		return
+	if(stat & NOPOWER)
+		icon_state = "[initial(icon_state)]_off"
+		return
+	if(on)
+		icon_state = "[initial(icon_state)]_moving"
 	else
-		icon_state = "mixer0b"
+		icon_state = initial(icon_state)
 
 /obj/machinery/centrifuge/RefreshParts()
 	workTime = initial(workTime)
@@ -44,11 +49,9 @@
 	if(on)
 		if(world.time >= lastActivation + workTime)
 			on = FALSE
-			mainBeaker.reagents.isHighlyGravitated = FALSE
 			mainBeaker.reagents.handle_reactions()
 			update_icon()
 
-		mainBeaker.reagents.isHighlyGravitated = TRUE
 		mainBeaker.reagents.handle_reactions()
 		mainBeaker.separateSolution(separationBeakers, 2, mainBeaker.reagents.get_master_reagent_id())
 		
@@ -83,7 +86,6 @@
 	on = FALSE
 	if(mainBeaker)
 		mainBeaker.forceMove(get_turf(src))
-		mainBeaker.reagents.isHighlyGravitated = FALSE
 		mainBeaker = null
 	for(var/obj/item/I in separationBeakers)
 		I.forceMove(get_turf(src))
@@ -159,13 +161,13 @@
 
 /obj/item/makeshiftCentrifuge
 	name = "makeshift centrifuge"
-	icon = 'icons/obj/chemical.dmi'
-	icon_state = "mixer0b"
+	icon = 'icons/obj/machines/chemistry.dmi'
+	icon_state = "centrifuge_makeshift"
 	var/obj/item/weapon/reagent_containers/mainBeaker
 	var/list/obj/item/weapon/reagent_containers/separationBeakers = list()
 	var/beakerSlots = 2
 
-/obj/item/makeshiftCentrifuge/update_icon()
+//obj/item/makeshiftCentrifuge/update_icon()
 //	if(on)
 	/*if(beaker)
 		icon_state = "mixer1b"
@@ -190,10 +192,8 @@
 
 /obj/item/makeshiftCentrifuge/attack_self(mob/user)
 	if(mainBeaker && mainBeaker.reagents.total_volume)
-		mainBeaker.reagents.isHighlyGravitated = TRUE
 		mainBeaker.reagents.handle_reactions()
 		mainBeaker.separateSolution(separationBeakers, 2, mainBeaker.reagents.get_master_reagent_id())
-		mainBeaker.reagents.isHighlyGravitated = FALSE
 		SSnano.update_uis(src)
 
 /obj/item/makeshiftCentrifuge/MouseDrop(over_object)

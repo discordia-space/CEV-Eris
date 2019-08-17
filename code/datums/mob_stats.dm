@@ -10,6 +10,12 @@
 	var/datum/stat/S = stat_list[statName]
 	S.addModif(timeDelay, Value, id)
 
+/datum/stat_holder/proc/removeTempStat(statName, id)
+	if(!id)
+		crash_with("no id passed to removeTempStat(")
+	var/datum/stat/S = stat_list[statName]
+	S.removeModif(id)
+
 /datum/stat_holder/proc/changeStat(statName, Value)
 	var/datum/stat/S = stat_list[statName]
 	S.changeValue(Value)
@@ -66,8 +72,8 @@
 	return avg / namesList.len
 
 // return value from 0 to 1 based on value of stat, more stat value less return value
-// use this proc to get multiplier for decreasing delay time (exaple: "50 * getDelayMult(STAT_ROB, STAT_LEVEL_ADEPT)"  this will result in 5 seconds if stat STAT_ROB = 0 and result will be 0 if STAT_ROB = STAT_LEVEL_ADEPT)
-/datum/stat_holder/proc/getDelayMult(statName, statCap = STAT_LEVEL_MAX, pure = FALSE)
+// use this proc to get multiplier for decreasing delay time (exaple: "50 * getMult(STAT_ROB, STAT_LEVEL_ADEPT)"  this will result in 5 seconds if stat STAT_ROB = 0 and result will be 0 if STAT_ROB = STAT_LEVEL_ADEPT)
+/datum/stat_holder/proc/getMult(statName, statCap = STAT_LEVEL_MAX, pure = FALSE)
     if(!statName)
         return
     return 1 - max(0,min(1,getStat(statName, pure)/statCap))
@@ -83,9 +89,13 @@
 	var/value = 0
 	var/id
 
-/datum/stat_mod/New(delay, affect)
-	src.time = world.time + delay
+/datum/stat_mod/New(delay, affect, id)
+	if(delay == INFINITY)
+		src.time = -1
+	else
+		src.time = world.time + delay
 	src.value = affect
+	src.id = id
 
 
 
@@ -99,10 +109,20 @@
 	for(var/elem in mods)
 		var/datum/stat_mod/SM = elem
 		if(SM.id == id)
-			SM.time = world.time + delay
+			if(delay == INFINITY)
+				SM.time = -1
+			else
+				SM.time = world.time + delay
 			SM.value = affect
 			return
-	mods += new /datum/stat_mod(delay, affect)
+	mods += new /datum/stat_mod(delay, affect, id)
+
+/datum/stat/proc/removeModif(id)
+	for(var/elem in mods)
+		var/datum/stat_mod/SM = elem
+		if(SM.id == id)
+			mods.Remove(SM)
+			return
 
 /datum/stat/proc/changeValue(affect)
 	value = value + affect
@@ -114,9 +134,10 @@
 		. = value
 		for(var/elem in mods)
 			var/datum/stat_mod/SM = elem
-			if(SM.time > world.time)
+			if(SM.time != -1 && SM.time > world.time)
 				mods -= SM
 				qdel(SM)
+				continue
 			. += SM.value
 
 /datum/stat/proc/setValue(value)

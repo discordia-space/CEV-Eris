@@ -87,9 +87,6 @@
 	if(temperature < minimum_temperature || temperature > maximum_temperature)
 		return FALSE
 
-	if(requireElectrolysis && !holder.beingElectrolysed())
-		return FALSE
-
 	return TRUE
 
 /datum/chemical_reaction/proc/calc_reaction_progress(var/datum/reagents/holder, var/reaction_limit)
@@ -185,8 +182,6 @@
 		for(var/mob/M in seen)
 			M.show_message(SPAN_NOTICE("\icon[container] [mix_message]"), 1)
 		playsound(T, reaction_sound, 80, 1)
-	//holder.isHighlyGravitated = FALSE
-	//holder.isElectrolysed = FALSE
 
 //obtains any special data that will be provided to the reaction products
 //this is called just before reactants are removed.
@@ -447,9 +442,10 @@
 
 /datum/chemical_reaction/condensedcapsaicin
 	result = "condensedcapsaicin"
-	required_reagents = list("capsaicin" = 2)
-	catalysts = list("plasma" = 5)
+	required_reagents = list("capsaicin" = 3)
 	result_amount = 1
+	maximum_temperature = INFINITY
+	minimum_temperature = 373
 
 /datum/chemical_reaction/coolant
 	result = "coolant"
@@ -1685,69 +1681,7 @@
 	result = "luminol"
 	required_reagents = list("hydrogen" = 2, "carbon" = 2, "ammonia" = 2)
 	result_amount = 6
-/*
-/datum/chemical_reaction/electrolysis
-	thermal_product = 1
-	supports_decomposition_by_electrolysis = FALSE
-
-/datum/chemical_reaction/electrolysis/can_happen(datum/reagents/holder)
-	//check if has reagents
-	if(!holder.total_volume)
-		return FALSE
-
-	//check only one reagent present
-	if(!holder.reagent_list.len > 1)
-		return FALSE
 	
-	var/reagent_id = holder.get_master_reagent_id()
-	for(var/datum/chemical_reaction/R in subtypesof(/datum/chemical_reaction) - /datum/chemical_reaction/electrolysis)
-		if(reagent_id == initial(R.result) && initial(R.supports_decomposition_by_electrolysis))
-			return TRUE
-	return FALSE
-
-/datum/chemical_reaction/electrolysis/process(datum/reagents/holder)
-	//determine how far the reaction can proceed
-	var/list/reaction_limits = list()
-	for(var/reactant in required_reagents)
-		reaction_limits += holder.get_reagent_amount(reactant) / required_reagents[reactant]
-
-	//determine how far the reaction proceeds
-	var/reaction_limit = min(reaction_limits)
-	var/progress_limit = calc_reaction_progress(holder, reaction_limit)
-
-	var/reaction_progress = min(reaction_limit, progress_limit) //no matter what, the reaction progress cannot exceed the stoichiometric limit.
-
-	//need to obtain the new reagent's data before anything is altered
-	var/data = send_data(holder, reaction_progress)
-
-	//remove the reactants
-	for(var/reactant in required_reagents)
-		var/amt_used = required_reagents[reactant] * reaction_progress
-		holder.remove_reagent(reactant, amt_used, safety = 1)
-
-	//add the product
-	var/amt_produced = result_amount * reaction_progress
-	if(result)
-		holder.add_reagent(result, amt_produced, data, safety = 1)
-
-	on_reaction(holder, amt_produced)
-
-	return reaction_progress
-
-//called after processing reactions, if they occurred
-/datum/chemical_reaction/proc/post_reaction(var/datum/reagents/holder)
-	var/atom/container = holder.my_atom
-	if(mix_message && container && !ismob(container))
-		var/turf/T = get_turf(container)
-		var/list/seen = viewers(4, T)
-		for(var/mob/M in seen)
-			M.show_message(SPAN_NOTICE("\icon[container] [mix_message]"), 1)
-		playsound(T, reaction_sound, 80, 1)
-	//holder.isHighlyGravitated = FALSE
-	//holder.isElectrolysed = FALSE
-	*/
-
-//TODO DELETE THIS
 /datum/chemical_reaction/mbr
 	result = "machine binding ritual"
 	required_reagents = list("coffee" = 2, "diplopterum" = 1, "sugar" = 1, "ethanol" = 1)
@@ -1796,7 +1730,7 @@
 
 /datum/chemical_reaction/noexcutite
 	result = "noexcutite"
-	required_reagents = list("oxycodone" = 1, "dylovene" = 1)
+	required_reagents = list("oxycodone" = 1, "anti_toxin" = 1)
 	result_amount = 2
 
 /datum/chemical_reaction/violence
@@ -1863,14 +1797,9 @@
 	required_reagents = list("carbon" = 1, "sugar" = 1, "acetone" = 1)
 	result_amount = 3
 
-/datum/chemical_reaction/cavasin
-	result = "cavasin"
-	required_reagents = list("carbon" = 1, "tungsten" = 1, "nicotine" = 1)
-	result_amount = 3
-
 /datum/chemical_reaction/arectine
 	result = "arectine"
-	required_reagents = list("ethanol" = 1, "dylovene" = 1, "fuel" = 1)
+	required_reagents = list("ethanol" = 1, "anti_toxin" = 1, "fuel" = 1)
 	result_amount = 3
 
 /datum/chemical_reaction/quickclot
@@ -1895,6 +1824,119 @@
 	required_reagents = list("instantIce" = 3, "water" = 3)
 	result_amount = 4
 
-/datum/chemical_reaction/proc/process(datum/reagents/holder)
-	holder.temperature = 223
+
+/datum/chemical_reaction/instantIceWithWater/on_reaction(datum/reagents/holder, var/created_volume)
+	..()
+	holder.chem_temp = max(223, holder.chem_temp - abs(holder.chem_temp - 223) * created_volume/holder.total_volume) // if someone actually wants to do some physics here they are welcome
 	return 0
+
+/datum/chemical_reaction/detox
+	result = "detox"
+	required_reagents = list("serotrotium" = 1, "inaprovaline" = 3)
+	result_amount = 4
+	maximum_temperature = INFINITY
+	minimum_temperature = 363
+
+/datum/chemical_reaction/polystem
+	result = "polystem"
+	required_reagents = list("pacid" = 1, "iron" = 1, "potassium" = 3)
+	result_amount = 5
+	maximum_temperature = 168
+	minimum_temperature = 124
+
+/datum/chemical_reaction/purger
+	result = "purger"
+	required_reagents = list("mindbreaker" = 1, "anti_toxin" = 3)
+	result_amount = 4
+	maximum_temperature = INFINITY
+	minimum_temperature = 363
+
+/datum/chemical_reaction/addictol
+	result = "addictol"
+	required_reagents = list("mercury" = 2, "purger" = 2, "impedrezene" = 2)
+	result_amount = 3
+	
+/datum/chemical_reaction/aminazine
+	result = "aminazine"
+	required_reagents = list("purger" = 1, "alkysine" = 1)
+	result_amount = 2
+	
+/datum/chemical_reaction/haloperidol
+	result = "haloperidol"
+	required_reagents = list("anti_toxin" = 2, "leporazine" = 1)
+	result_amount = 3
+	maximum_temperature = 340
+	minimum_temperature = 290
+	
+/datum/chemical_reaction/ethanol
+	result = "ethanol"
+	required_reagents = list("water" = 3, "sugar" = 1)
+	result_amount = 4
+	catalysts = list("enzyme" = 5)
+	maximum_temperature = INFINITY
+	minimum_temperature = 363
+
+/datum/chemical_reaction/adrenalin
+	result = "adrenalin"
+	required_reagents = list("blood" = 3, "dexalin" = 1)
+	result_amount = 4
+	maximum_temperature = INFINITY
+	minimum_temperature = 373
+
+/datum/chemical_reaction/carbon
+	result = "carbon"
+	required_reagents = list("woodpulp" = 3)
+	result_amount = 2
+	maximum_temperature = INFINITY
+	minimum_temperature = 373
+
+/datum/chemical_reaction/cyanide
+	result = "cyanide"
+	required_reagents = list("toxin" = 5, "mindbreaker" = 3, "fuhrerole" = 2)
+	result_amount = 2
+	maximum_temperature = 33
+	minimum_temperature = 10
+
+/datum/chemical_reaction/serotrotium
+	result = "serotrotium"
+	required_reagents = list("blood" = 5, "psilocybin" = 1)
+	catalysts = list("nutriment" = 5)
+	result_amount = 4
+	maximum_temperature = 273
+	minimum_temperature = 203
+
+/datum/chemical_reaction/oil
+	result = "oil"
+	required_reagents = list("fuel" = 1, "carbon" = 1, "ethanol" = 1)
+	result_amount = 3
+	maximum_temperature = INFINITY
+	minimum_temperature = 480
+
+/datum/chemical_reaction/plasticide
+	result = "plasticide"
+	required_reagents = list("oil" = 1, "ethanol" = 1, "silicon" = 1)
+	result_amount = 3
+	maximum_temperature = 270
+	minimum_temperature = 0
+	
+/datum/chemical_reaction/glue
+	result = "glue"
+	required_reagents = list("plasticide" = 1, "ethanol" = 1, "carbon" = 1)
+	result_amount = 3
+	maximum_temperature = INFINITY
+	minimum_temperature = 363
+
+/datum/chemical_reaction/eznutrient
+	result = "eznutrient"
+	required_reagents = list("nutriment" = 1, "carbon" = 3)
+	result_amount = 4
+
+/datum/chemical_reaction/left4zed
+	result = "left4zed"
+	required_reagents = list("nutriment" = 1, "radium" = 3)
+	result_amount = 4
+
+/datum/chemical_reaction/robustharvest
+	result = "robustharvest"
+	required_reagents = list("eznutrient" = 1, "sugar" = 3, "carbon" = 3)
+	result_amount = 7

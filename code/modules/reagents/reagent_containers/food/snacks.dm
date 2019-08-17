@@ -619,15 +619,6 @@
 	nutriment_amt = 3
 	nutriment_desc = list("dryness" = 2, "bread" = 2)
 
-/obj/item/weapon/reagent_containers/food/snacks/carpmeat
-	name = "carp fillet"
-	desc = "A fillet of spess carp meat"
-	icon_state = "fishfillet"
-	filling_color = "#FFDEFE"
-	bitesize = 6
-	center_of_mass = list("x"=17, "y"=13)
-	preloaded = list("protein" = 3, "carpotoxin" = 3)
-
 /obj/item/weapon/reagent_containers/food/snacks/fishfingers
 	name = "Fish Fingers"
 	desc = "A finger of fish."
@@ -657,24 +648,6 @@
 	center_of_mass = list("x"=17, "y"=16)
 	nutriment_amt = 3
 	nutriment_desc = list("raw" = 2, "tomato" = 3)
-
-/obj/item/weapon/reagent_containers/food/snacks/bearmeat
-	name = "bear meat"
-	desc = "A very manly slab of meat."
-	icon_state = "bearmeat"
-	filling_color = "#DB0000"
-	bitesize = 3
-	center_of_mass = list("x"=16, "y"=10)
-	preloaded = list("protein" = 12, "hyperzine" = 5)
-
-/obj/item/weapon/reagent_containers/food/snacks/xenomeat
-	name = "meat"
-	desc = "A slab of green meat. Smells like acid."
-	icon_state = "xenomeat"
-	filling_color = "#43DE18"
-	bitesize = 6
-	center_of_mass = list("x"=16, "y"=10)
-	preloaded = list("protein" = 6, "pacid" = 6)
 
 /obj/item/weapon/reagent_containers/food/snacks/meatball
 	name = "meatball"

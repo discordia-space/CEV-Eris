@@ -31,6 +31,8 @@
 	var/max_damage                    // Damage cap
 	var/rejecting                     // Is this organ already being rejected?
 
+	var/death_time // limits organ self recovery
+
 /obj/item/organ/Destroy()
 	if(owner)
 		if(src in owner.contents)
@@ -93,6 +95,7 @@
 	damage = max_damage
 	status |= ORGAN_DEAD
 	STOP_PROCESSING(SSobj, src)
+	death_time = world.time
 	if(dead_icon)
 		icon_state = dead_icon
 	if(owner && vital)
@@ -331,3 +334,15 @@
 			blood_DNA = list()
 		blood_DNA[H.dna.unique_enzymes] = H.dna.b_type
 	STOP_PROCESSING(SSobj, src)
+
+/obj/item/organ/proc/heal_damage(amount)
+	return
+
+/obj/item/organ/proc/can_recover()
+	return (max_damage > 0) && !(status & ORGAN_DEAD) || death_time >= world.time - ORGAN_RECOVERY_THRESHOLD
+
+/obj/item/organ/proc/can_feel_pain()
+	return (!BP_IS_ROBOTIC(src) && (!species || !(species.flags & NO_PAIN)))
+
+/obj/item/organ/proc/is_usable()
+	return !(status & (ORGAN_CUT_AWAY|ORGAN_MUTATED|ORGAN_DEAD))

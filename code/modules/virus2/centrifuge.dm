@@ -6,7 +6,6 @@
 	var/curing
 	var/isolating
 	CheckFaceFlag = 0
-	circuit = /obj/item/weapon/circuitboard/centrifuge
 	var/obj/item/weapon/reagent_containers/glass/beaker/vial/sample = null
 	var/datum/disease2/disease/virus2 = null
 

@@ -16,7 +16,7 @@
 </div>
 <div class="statusDisplay" style="min-height: 180px;">
 	<div class="item">
-		<div class="itemContent" style="width: 100%;">
+		<div class="itemContent" style="width: 50%;">
 			{{if data.beaker}}
 				Volume:&nbsp;{{:helper.fixed(data.beaker.total_volume)}}&nbsp;/&nbsp;{{:data.beaker.maximum_volume}}<br>
 				Temperature:&nbsp;{{:helper.fixed(data.beaker.chem_temp)}} K<br>
@@ -32,6 +32,37 @@
 					No beaker loaded
 				</i></span>
 			{{/if}}
+		</div>
+	</div>
+</div>
+<div style="float: right">
+	<div class="item">
+		<div class="itemLabel">
+			Separation Beaker
+		</div>
+		<div class="itemContent">
+			{{:helper.link('Eject Beaker', 'eject', {'ejectSecondary' : 1}, data.beaker ? null : 'disabled', 'floatRight')}}
+		</div>
+	</div>
+	<div class="statusDisplay" style="min-height: 180px;">
+		<div class="item" >
+			<div class="itemContent" style="width: 50%">
+				{{if data.separationBeaker}}
+					Volume:&nbsp;{{:helper.fixed(data.separationBeaker.total_volume)}}&nbsp;/&nbsp;{{:data.separationBeaker.maximum_volume}}<br>
+					Temperature:&nbsp;{{:helper.fixed(data.separationBeaker.chem_temp)}} K<br>
+					{{for data.separationBeaker.contents}}
+						<span class="highlight">{{:helper.fixed(value.volume)}} units of {{:value.name}}</span><br>
+					{{empty}}
+						<span class="bad">
+							Beaker is empty
+						</span>
+					{{/for}}
+				{{else}}
+					<span class="average"><i>
+						No beaker loaded
+					</i></span>
+				{{/if}}
+			</div>
 		</div>
 	</div>
 </div>

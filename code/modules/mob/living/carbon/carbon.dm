@@ -419,3 +419,6 @@
 
 /mob/living/carbon/proc/has_appendage(var/limb_check)
 	return 0
+
+/mob/living/carbon/proc/need_breathe()
+	return TRUE

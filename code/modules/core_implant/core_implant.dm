@@ -107,7 +107,7 @@
 		L |= M.GetAccess()
 	return L
 
-/obj/item/weapon/implant/core_implant/hear_talk(mob/living/carbon/human/H, message)
+/obj/item/weapon/implant/core_implant/hear_talk(mob/living/carbon/human/H, message, verb, datum/language/speaking, speechVolume)
 	for(var/datum/core_module/group_ritual/GR in src.modules)
 		GR.hear(H, message)
 
