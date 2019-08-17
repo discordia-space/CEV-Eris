@@ -249,7 +249,7 @@
 	desc = "Moebius Laboratories branded S-standardized microreactor cell. Recharges itself over time."
 	icon_state = "meb_pda"
 	origin_tech = list(TECH_POWER = 4)
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1)
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_URANIUM = 1)
 	maxcharge = 50
 	// Autorecharge rate is calculated for PDA power consumption: enough to offset it, unless PDA light is on.
 	autorecharging = TRUE
