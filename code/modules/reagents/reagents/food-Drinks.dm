@@ -266,12 +266,12 @@
 			return
 	if(dose < agony_dose)
 		if(prob(5) || dose == metabolism) //dose == metabolism is a very hacky way of forcing the message the first time this procs
-			M << discomfort_message
+			to_chat(M, discomfort_message)
 	else
 		M.apply_effect(agony_amount, AGONY, 0)
 		if(prob(5))
 			M.custom_emote(2, "[pick("dry heaves!","coughs!","splutters!")]")
-			M << SPAN_DANGER("You feel like your insides are burning!")
+			to_chat(M, SPAN_DANGER("You feel like your insides are burning!"))
 	if(isslime(M))
 		M.bodytemperature += rand(0, 15) + slime_temp_adj
 	holder.remove_reagent("frostoil", 5)
@@ -344,7 +344,7 @@
 		if(H.species && (H.species.flags & NO_PAIN))
 			return
 	if(dose == metabolism)
-		M << SPAN_DANGER("You feel like your insides are burning!")
+		to_chat(M, SPAN_DANGER("You feel like your insides are burning!"))
 	else
 		M.apply_effect(4, AGONY, 0)
 		if(prob(5))

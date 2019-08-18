@@ -231,8 +231,13 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 		// just nop.
 		if (candidate.obelisk_around)
 			continue
+
 		//And a high chance to reroll it if its not what we want in terms of being in/out of maintenance
 		if ((candidate.maintenance != reroll_type) && prob(reroll_prob))
+			continue
+		
+		// if burrow was closed before it has chance to be ignored
+		if (candidate.isSealed && candidate.isRevealed && prob(reroll_prob/2))
 			continue
 
 		break
@@ -264,6 +269,10 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 
 		//Burrow is already busy
 		if (candidate.target || candidate.recieving)
+			continue
+		
+		// Burrow is closed
+		if(candidate.isSealed)
 			continue
 
 		//Lets not take mobs away from a burrow that's requesting more

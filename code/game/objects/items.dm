@@ -43,7 +43,7 @@
 	var/permeability_coefficient = 1 // for chemicals/diseases
 	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
 	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
-	var/list/armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	var/list/armor = list(melee = 0, bullet = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	var/list/allowed = list() //suit storage stuff.
 	var/obj/item/device/uplink/hidden/hidden_uplink = null // All items can have an uplink hidden inside, just remember to add the triggers.
 	var/zoomdevicename = null //name used for message when binoculars/scope is used
@@ -204,22 +204,22 @@
 	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr))
 		return
 	if(!iscarbon(usr) || isbrain(usr))//Is humanoid, and is not a brain
-		usr << SPAN_WARNING("You can't pick things up!")
+		to_chat(usr, SPAN_WARNING("You can't pick things up!"))
 		return
 	if( usr.stat || usr.restrained() )//Is not asleep/dead and is not restrained
-		usr << SPAN_WARNING("You can't pick things up!")
+		to_chat(usr, SPAN_WARNING("You can't pick things up!"))
 		return
 	if(anchored) //Object isn't anchored
-		usr << SPAN_WARNING("You can't pick that up!")
+		to_chat(usr, SPAN_WARNING("You can't pick that up!"))
 		return
 	if(!usr.hand && usr.r_hand) //Right hand is not full
-		usr << SPAN_WARNING("Your right hand is full.")
+		to_chat(usr, SPAN_WARNING("Your right hand is full."))
 		return
 	if(usr.hand && usr.l_hand) //Left hand is not full
-		usr << SPAN_WARNING("Your left hand is full.")
+		to_chat(usr, SPAN_WARNING("Your left hand is full."))
 		return
 	if(!istype(loc, /turf)) //Object is on a turf
-		usr << SPAN_WARNING("You can't pick that up!")
+		to_chat(usr, SPAN_WARNING("You can't pick that up!"))
 		return
 	//All checks are done, time to pick it up!
 	usr.UnarmedAttack(src)
@@ -252,11 +252,11 @@
 		for(var/obj/item/protection in list(H.head, H.wear_mask, H.glasses))
 			if(protection && (protection.body_parts_covered & EYES))
 				// you can't stab someone in the eyes wearing a mask!
-				user << SPAN_WARNING("You're going to need to remove the eye covering first.")
+				to_chat(user, SPAN_WARNING("You're going to need to remove the eye covering first."))
 				return
 
 	if(!M.has_eyes())
-		user << SPAN_WARNING("You cannot locate any eyes on [M]!")
+		to_chat(user, SPAN_WARNING("You cannot locate any eyes on [M]!"))
 		return
 
 	user.attack_log += "\[[time_stamp()]\]<font color='red'> Attacked [M.name] ([M.ckey]) with [name] (INTENT: [uppertext(user.a_intent)])</font>"
@@ -270,7 +270,7 @@
 	//if((CLUMSY in user.mutations) && prob(50))
 	//	M = user
 		/*
-		M << SPAN_WARNING("You stab yourself in the eye.")
+		to_chat(M, SPAN_WARNING("You stab yourself in the eye."))
 		M.sdisabilities |= BLIND
 		M.weakened += 4
 		M.adjustBruteLoss(10)
@@ -286,8 +286,8 @@
 		if(H != user)
 			for(var/mob/O in (viewers(M) - user - M))
 				O.show_message(SPAN_DANGER("[M] has been stabbed in the eye with [src] by [user]."), 1)
-			M << SPAN_DANGER("[user] stabs you in the eye with [src]!")
-			user << SPAN_DANGER("You stab [M] in the eye with [src]!")
+			to_chat(M, SPAN_DANGER("[user] stabs you in the eye with [src]!"))
+			to_chat(user, SPAN_DANGER("You stab [M] in the eye with [src]!"))
 		else
 			user.visible_message( \
 				SPAN_DANGER("[user] has stabbed themself with [src]!"), \
@@ -298,17 +298,17 @@
 		if(eyes.damage >= eyes.min_bruised_damage)
 			if(M.stat != DEAD)
 				if(BP_IS_ORGANIC(eyes) || BP_IS_ASSISTED(eyes)) //robot eyes bleeding might be a bit silly
-					M << SPAN_DANGER("Your eyes start to bleed profusely!")
+					to_chat(M, SPAN_DANGER("Your eyes start to bleed profusely!"))
 			if(prob(50))
 				if(M.stat != DEAD)
-					M << SPAN_WARNING("You drop what you're holding and clutch at your eyes!")
+					to_chat(M, SPAN_WARNING("You drop what you're holding and clutch at your eyes!"))
 					M.drop_item()
 				M.eye_blurry += 10
 				M.Paralyse(1)
 				M.Weaken(4)
 			if (eyes.damage >= eyes.min_broken_damage)
 				if(M.stat != 2)
-					M << SPAN_WARNING("You go blind!")
+					to_chat(M, SPAN_WARNING("You go blind!"))
 		var/obj/item/organ/external/affecting = H.get_organ(BP_HEAD)
 		if(affecting.take_damage(7))
 			M:UpdateDamageIcon()
@@ -400,13 +400,13 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	var/cannotzoom
 
 	if(usr.stat || !(ishuman(usr)))
-		usr << "You are unable to focus through the [devicename]"
+		to_chat(usr, "You are unable to focus through the [devicename]")
 		cannotzoom = 1
 	else if(!zoom && global_hud.darkMask[1] in usr.client.screen)
-		usr << "Your visor gets in the way of looking through the [devicename]"
+		to_chat(usr, "Your visor gets in the way of looking through the [devicename]")
 		cannotzoom = 1
 	else if(!zoom && usr.get_active_hand() != src)
-		usr << "You are too distracted to look through the [devicename], perhaps if it was in your active hand this might work better"
+		to_chat(usr, "You are too distracted to look through the [devicename], perhaps if it was in your active hand this might work better")
 		cannotzoom = 1
 
 	if(!zoom && !cannotzoom)

@@ -141,7 +141,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_display_init_log, R_DEBUG, null)
 	set desc = "Displays a list of things that didn't handle Initialize() properly."
 
 	if(!LAZYLEN(SSatoms.BadInitializeCalls))
-		usr << SPAN_NOTICE("BadInit list is empty.")
+		to_chat(usr, SPAN_NOTICE("BadInit list is empty."))
 	else
 		usr << browse(replacetext(SSatoms.InitLog(), "\n", "<br>"), "window=initlog")
 

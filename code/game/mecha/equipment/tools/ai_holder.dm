@@ -48,7 +48,7 @@
 		if(occupant == user)
 			go_out()
 		else
-			user << "Controller is already occupied!"
+			to_chat(user, "Controller is already occupied!")
 	else
 		//No OC
 		if(isAI(user))

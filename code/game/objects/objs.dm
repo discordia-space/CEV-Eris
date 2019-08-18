@@ -27,11 +27,11 @@
 		if (corporation)
 			if (corporation in global.global_corporations)
 				var/datum/corporation/C = global_corporations[corporation]
-				user << "<font color='[C.textcolor]'>You think this [src.name] create a \
+				to_chat(user, "<font color='[C.textcolor]'>You think this [src.name] create a \
 				<IMG CLASS=icon SRC=\ref[C.icon] ICONSTATE='[C.icon_state]'>\
-				[C.name]. [C.about]</font>"
+				[C.name]. [C.about]</font>")
 			else
-				user << "You think this [src.name] create a [corporation]."
+				to_chat(user, "You think this [src.name] create a [corporation].")
 	return distance == -1 || (get_dist(src, user) <= distance)
 
 
@@ -176,7 +176,7 @@
 	invisibility = hide ? INVISIBILITY_MAXIMUM : initial(invisibility)
 
 /obj/proc/hides_under_flooring()
-	return level == 1
+	return level == BELOW_PLATING_LEVEL
 
 /obj/proc/hear_talk(mob/M as mob, text, verb, datum/language/speaking, speechVolume)
 	if(talking_atom)

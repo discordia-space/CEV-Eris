@@ -222,7 +222,7 @@
 			say("Meow!")
 			return
 
-	usr << SPAN_NOTICE("[src] ignores you.")
+	to_chat(usr, SPAN_NOTICE("[src] ignores you."))
 	return
 
 

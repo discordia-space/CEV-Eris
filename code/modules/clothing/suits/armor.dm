@@ -17,20 +17,19 @@
 	icon_state = "armor"
 	item_state = "armor"
 	blood_overlay_type = "armor"
-	armor = list(melee = 50, bullet = 40, laser = 40, energy = 30, bomb = 15, bio = 0, rad = 0)
+	armor = list(melee = 35, bullet = 35, energy = 15, bomb = 15, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/armor/vest/security
 	name = "security armor"
 	desc = "An armored vest that protects against some damage. This one have Ironhammer Security signs. Not designed for serious operations."
 	icon_state = "armorsec"
-	item_state = "armorsec"
+	item_state = "armor"
 
 /obj/item/clothing/suit/armor/vest/handmade
 	name = "handmade armor vest"
 	desc = "An armored vest of uncertain quality. Provides a good protection against physical damage, for piece of crap."
 	icon_state = "hm_armorvest"
-	item_state = "hm_armorvest"
-	armor = list(melee = 40, bullet = 35, laser = 30, energy = 15, bomb = 15, bio = 0, rad = 0)
+	armor = list(melee = 30, bullet = 30, energy = 15, bomb = 15, bio = 0, rad = 0)
 	price_tag = 150
 
 
@@ -38,11 +37,11 @@
 	name = "riot suit"
 	desc = "A suit of armor with heavy padding to protect against melee attacks. Looks like it might impair movement."
 	icon_state = "riot"
-	item_state = "riot"
+	item_state = "armor"
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	slowdown = 1
-	armor = list(melee = 75, bullet = 35, laser = 35, energy = 20, bomb = 35, bio = 0, rad = 0)
+	armor = list(melee = 75, bullet = 45, energy = 45, bomb = 35, bio = 0, rad = 0)
 	flags_inv = HIDEJUMPSUIT
 	siemens_coefficient = 0.5
 	price_tag = 500
@@ -55,7 +54,7 @@
 	item_state = "armor"
 	blood_overlay_type = "armor"
 	slowdown = 0.5
-	armor = list(melee = 35, bullet = 75, laser = 35, energy = 10, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 35, bullet = 75, energy = 10, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
 	price_tag = 500
 
@@ -66,7 +65,7 @@
 	item_state = "armor_reflec"
 	blood_overlay_type = "armor"
 	slowdown = 0.5
-	armor = list(melee = 35, bullet = 35, laser = 75, energy = 50, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 35, bullet = 35, energy = 75, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0
 	price_tag = 650
 
@@ -101,7 +100,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/tank/emergency_oxygen)
 	slowdown = 1
-	armor = list(melee = 70, bullet = 60, laser = 60,energy = 25, bomb = 50, bio = 100, rad = 100)
+	armor = list(melee = 50, bullet = 50, energy = 30, bomb = 50, bio = 100, rad = 100)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
@@ -128,7 +127,7 @@
 	item_state = "reactiveoff"
 	blood_overlay_type = "armor"
 	slowdown = 1
-	armor = list(melee = 30, bullet = 30, laser = 30, energy = 0, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 30, bullet = 30, energy = 0, bomb = 0, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/armor/reactive/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(prob(50))
@@ -157,11 +156,11 @@
 /obj/item/clothing/suit/armor/reactive/attack_self(mob/user as mob)
 	src.active = !( src.active )
 	if (src.active)
-		user << "\blue The reactive armor is now active."
+		to_chat(user, "\blue The reactive armor is now active.")
 		src.icon_state = "reactive"
 		src.item_state = "reactive"
 	else
-		user << "\blue The reactive armor is now inactive."
+		to_chat(user, "\blue The reactive armor is now inactive.")
 		src.icon_state = "reactiveoff"
 		src.item_state = "reactiveoff"
 		src.add_fingerprint(user)
@@ -181,7 +180,7 @@
 	var/obj/item/weapon/gun/holstered = null
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	slowdown = 1
-	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 20, bio = 0, rad = 0)
+	armor = list(melee = 40, bullet = 40, energy = 30, bomb = 20, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
 	var/obj/item/clothing/accessory/holster/holster
 
@@ -205,7 +204,7 @@
 	if(!holster.holstered)
 		var/obj/item/W = usr.get_active_hand()
 		if(!istype(W, /obj/item))
-			usr << SPAN_WARNING("You need your gun equiped to holster it.")
+			to_chat(usr, SPAN_WARNING("You need your gun equiped to holster it."))
 			return
 		holster.holster(W, usr)
 	else
@@ -220,7 +219,7 @@
 	name = "webbed armor vest"
 	desc = "A synthetic armor vest. This one has added webbing and ballistic plates."
 	icon_state = "webvest"
-	armor = list(melee = 50, bullet = 45, laser = 50, energy = 25, bomb = 30, bio = 0, rad = 0)
+	armor = list(melee = 40, bullet = 40, energy = 25, bomb = 30, bio = 0, rad = 0)
 
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS|THICKMATERIAL
@@ -237,7 +236,7 @@
 	desc = "A high-quality armor vest in a fetching tan. It is surprisingly flexible and light, even with the added webbing and armor plating."
 	icon_state = "mercwebvest"
 	item_state = "mercwebvest"
-	armor = list(melee = 60, bullet = 65, laser = 65, energy = 40, bomb = 40, bio = 0, rad = 0)
+	armor = list(melee = 45, bullet = 45, energy = 40, bomb = 40, bio = 0, rad = 0)
 
 
 //All of the armor below is mostly unused

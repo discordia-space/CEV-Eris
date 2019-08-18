@@ -608,7 +608,7 @@
 	//when we have passenger, we torture him
 	//I'd like to tidy this up so the damage type is linked to specific speech arrays.
 	if(passenger && prob(15))
-		passenger.apply_damage(rand(5, 10), pick(BRUTE, BURN, TOX))
+		passenger.damage_through_armor(rand(10,15), pick(BRUTE, BURN, TOX), attack_flag = ARMOR_MELEE)
 		to_chat(passenger, SPAN_DANGER(pick(
 								"A woman's arm grabs your neck!", "Lips whisper, \" This is the womb of your rebirth... \"", "Hot breath flows over your ear, \" You will enjoy bliss when this is over... \"",
 								"A whirring drill bit bores through your chest!", "Something is crushing your ribs!", "Some blood-hot liquid covers you!",

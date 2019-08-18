@@ -9,13 +9,13 @@ mob/proc/airflow_stun()
 	if(last_airflow_stun > world.time - vsc.airflow_stun_cooldown)	return 0
 
 	if(!(status_flags & CANSTUN) && !(status_flags & CANWEAKEN))
-		src << SPAN_NOTICE("You stay upright as the air rushes past you.")
+		to_chat(src, SPAN_NOTICE("You stay upright as the air rushes past you."))
 		return 0
 	if(buckled)
-		src << SPAN_NOTICE("Air suddenly rushes past you!")
+		to_chat(src, SPAN_NOTICE("Air suddenly rushes past you!"))
 		return 0
 	if(!lying)
-		src << SPAN_WARNING("The sudden rush of air knocks you over!")
+		to_chat(src, SPAN_WARNING("The sudden rush of air knocks you over!"))
 	Weaken(5)
 	last_airflow_stun = world.time
 
@@ -87,7 +87,7 @@ obj/item/check_airflow_movable(n)
 	if(!src.AirflowCanMove(n))
 		return
 	if(ismob(src))
-		src << SPAN_DANGER("You are sucked away by airflow!")
+		to_chat(src, SPAN_DANGER("You are sucked away by airflow!"))
 	last_airflow = world.time
 	var/airflow_falloff = 9 - sqrt((x - airflow_dest.x) ** 2 + (y - airflow_dest.y) ** 2)
 	if(airflow_falloff < 1)
@@ -146,7 +146,7 @@ obj/item/check_airflow_movable(n)
 	if(!src.AirflowCanMove(n))
 		return
 	if(ismob(src))
-		src << "<span clas='danger'>You are pushed away by airflow!</span>"
+		to_chat(src, "<span clas='danger'>You are pushed away by airflow!</span>")
 	last_airflow = world.time
 	var/airflow_falloff = 9 - sqrt((x - airflow_dest.x) ** 2 + (y - airflow_dest.y) ** 2)
 	if(airflow_falloff < 1)
@@ -225,14 +225,11 @@ mob/living/carbon/human/airflow_hit(atom/A)
 		bloody_body(src)
 	var/b_loss = airflow_speed * vsc.airflow_damage
 
-	var/blocked = run_armor_check(BP_HEAD,"melee")
-	apply_damage(b_loss/3, BRUTE, BP_HEAD, blocked, 0, "Airflow")
+	damage_through_armor(b_loss/3, BRUTE, BP_HEAD, ARMOR_MELEE, 0, "Airflow")
 
-	blocked = run_armor_check(BP_CHEST,"melee")
-	apply_damage(b_loss/3, BRUTE, BP_CHEST, blocked, 0, "Airflow")
+	damage_through_armor(b_loss/3, BRUTE, BP_CHEST, ARMOR_MELEE, 0, "Airflow")
 
-	blocked = run_armor_check(BP_GROIN,"melee")
-	apply_damage(b_loss/3, BRUTE, BP_GROIN, blocked, 0, "Airflow")
+	damage_through_armor(b_loss/3, BRUTE, BP_GROIN, ARMOR_MELEE, 0, "Airflow")
 
 	if(airflow_speed > 10)
 		Paralyse(round(airflow_speed * vsc.airflow_stun))

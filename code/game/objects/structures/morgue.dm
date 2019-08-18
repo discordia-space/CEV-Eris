@@ -276,7 +276,7 @@
 	if (user != O)
 		for(var/mob/B in viewers(user, 3))
 			if ((B.client && !( B.blinded )))
-				B << SPAN_WARNING("\The [user] stuffs [O] into [src]!")
+				to_chat(B, SPAN_WARNING("\The [user] stuffs [O] into [src]!"))
 	return
 
 
@@ -354,7 +354,7 @@
 //		src:loc:firelevel = src:loc:poison
 //		return
 	if (cremating)
-		usr << SPAN_WARNING("It's locked.")
+		to_chat(usr, SPAN_WARNING("It's locked."))
 		return
 	if ((connected) && (locked == 0))
 		for(var/atom/movable/A as mob|obj in connected.loc)
@@ -428,7 +428,7 @@
 
 	else
 		if(!isemptylist(search_contents_for(/obj/item/weapon/disk/nuclear)))
-			usr << "You get the feeling that you shouldn't cremate one of the items in the cremator."
+			to_chat(usr, "You get the feeling that you shouldn't cremate one of the items in the cremator.")
 			return
 
 		for (var/mob/M in viewers(src))
@@ -510,7 +510,7 @@
 	if (user != O)
 		for(var/mob/B in viewers(user, 3))
 			if ((B.client && !( B.blinded )))
-				B << (SPAN_WARNING("[user] stuffs [O] into [src]!"))
+				to_chat(B, (SPAN_WARNING("[user] stuffs [O] into [src]!")))
 			//Foreach goto(99)
 	return
 
@@ -534,4 +534,4 @@
 				if (!C.cremating)
 					C.cremate(user)
 	else
-		usr << SPAN_WARNING("Access denied.")
+		to_chat(usr, SPAN_WARNING("Access denied."))

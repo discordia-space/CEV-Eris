@@ -440,11 +440,11 @@
 /datum/reagent/methylphenidate/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
 	if(volume <= 0.1 && data != -1)
 		data = -1
-		M << SPAN_WARNING("You lose focus...")
+		to_chat(M, SPAN_WARNING("You lose focus..."))
 	else
 		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 			data = world.time
-			M << SPAN_NOTICE("Your mind feels focused and undivided.")
+			to_chat(M, SPAN_NOTICE("Your mind feels focused and undivided."))
 
 /datum/reagent/citalopram
 	name = "Citalopram"
@@ -459,12 +459,12 @@
 /datum/reagent/citalopram/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
 	if(volume <= 0.1 && data != -1)
 		data = -1
-		M << SPAN_WARNING("Your mind feels a little less stable...")
+		to_chat(M, SPAN_WARNING("Your mind feels a little less stable..."))
 	else
 		M.add_chemical_effect(CE_MIND, 1)
 		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 			data = world.time
-			M << SPAN_NOTICE("Your mind feels stable... a little stable.")
+			to_chat(M, SPAN_NOTICE("Your mind feels stable... a little stable."))
 
 /datum/reagent/paroxetine
 	name = "Paroxetine"
@@ -478,15 +478,15 @@
 /datum/reagent/paroxetine/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
 	if(volume <= 0.1 && data != -1)
 		data = -1
-		M << SPAN_WARNING("Your mind feels much less stable...")
+		to_chat(M, SPAN_WARNING("Your mind feels much less stable..."))
 	else
 		M.add_chemical_effect(CE_MIND, 2)
 		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 			data = world.time
 			if(prob(90))
-				M << SPAN_NOTICE("Your mind feels much more stable.")
+				to_chat(M, SPAN_NOTICE("Your mind feels much more stable."))
 			else
-				M << SPAN_WARNING("Your mind breaks apart...")
+				to_chat(M, SPAN_WARNING("Your mind breaks apart..."))
 				M.hallucination(200, 100)
 
 /datum/reagent/rezadone

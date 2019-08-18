@@ -25,7 +25,7 @@
 			icon_state = initial(icon_state)
 			flash_protection = initial(flash_protection)
 			tint = initial(tint)
-			usr << "You flip \the [src] down to protect your eyes."
+			to_chat(usr, "You flip \the [src] down to protect your eyes.")
 		else
 			src.active = !src.active
 			flags_inv &= ~HIDEEYES
@@ -33,7 +33,7 @@
 			icon_state = "[initial(icon_state)]up"
 			flash_protection = FLASH_PROTECTION_NONE
 			tint = TINT_NONE
-			usr << "You push \the [src] up out of your face."
+			to_chat(usr, "You push \the [src] up out of your face.")
 		update_wear_icon()
 		usr.update_action_buttons()
 

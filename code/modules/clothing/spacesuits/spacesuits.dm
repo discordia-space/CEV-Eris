@@ -13,7 +13,7 @@
 		slot_r_hand_str = "s_helmet",
 		)
 	permeability_coefficient = 0.01
-	armor = list(melee = 15, bullet = 15, laser = 15,energy = 0, bomb = 0, bio = 100, rad = 50)
+	armor = list(melee = 15, bullet = 15, energy = 15, bomb = 0, bio = 100, rad = 50)
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES|EARS
 	cold_protection = HEAD
@@ -49,13 +49,13 @@
 		camera.set_status(!camera.status)
 		if(camera.status)
 			camera.c_tag = FindNameFromID(usr)
-			usr << SPAN_NOTICE("User scanned as [camera.c_tag]. Camera activated.")
+			to_chat(usr, SPAN_NOTICE("User scanned as [camera.c_tag]. Camera activated."))
 		else
-			usr << SPAN_NOTICE("Camera deactivated.")
+			to_chat(usr, SPAN_NOTICE("Camera deactivated."))
 
 /obj/item/clothing/head/helmet/space/examine(var/mob/user)
 	if(..(user, 1) && camera_networks && camera_networks.len)
-		user << "This helmet has a built-in camera. It's [camera && camera.status ? "" : "in"]active."
+		to_chat(user, "This helmet has a built-in camera. It's [camera && camera.status ? "" : "in"]active.")
 
 /obj/item/clothing/suit/space
 	name = "Space suit"
@@ -69,7 +69,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	matter = list(MATERIAL_PLASTIC = 30, MATERIAL_STEEL = 10)
 	slowdown = 3
-	armor = list(melee = 15, bullet = 15, laser = 15,energy = 0, bomb = 0, bio = 100, rad = 50)
+	armor = list(melee = 15, bullet = 15, energy = 15, bomb = 0, bio = 100, rad = 50)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
@@ -103,5 +103,5 @@
 	// Otherwise, remove the splints.
 	for(var/obj/item/organ/external/E in supporting_limbs)
 		E.status &= ~ ORGAN_SPLINTED
-		user << "The suit stops supporting your [E.name]."
+		to_chat(user, "The suit stops supporting your [E.name].")
 	supporting_limbs = list()

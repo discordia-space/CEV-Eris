@@ -82,6 +82,11 @@
 		return
 	return ..()
 
+/obj/item/stack/material/add(var/extra)
+	..()
+	update_strings()
+
+
 /obj/item/stack/material/iron
 	name = "iron"
 	icon_state = "sheet-iron"
@@ -138,6 +143,7 @@
 	icon_state = "sheet-plastic"
 	default_type = MATERIAL_PLASTIC
 	price_tag = 2
+	novariants = FALSE
 
 /obj/item/stack/material/plastic/random
 	rand_min = 3
@@ -201,6 +207,7 @@
 	icon_state = "sheet-metal"
 	default_type = MATERIAL_STEEL
 	price_tag = 2
+	novariants = FALSE
 
 //A stack which starts with the max amount
 /obj/item/stack/material/steel/full
@@ -216,6 +223,7 @@
 	item_state = "sheet-metal"
 	default_type = MATERIAL_PLASTEEL
 	price_tag = 30
+	novariants = FALSE
 
 /obj/item/stack/material/plasteel/random
 	rand_min = 3
@@ -288,3 +296,19 @@
 	icon_state = "sheet-plasmarglass"
 	default_type = MATERIAL_RPLASMAGLASS
 	price_tag = 12
+
+/obj/item/stack/material/biomatter
+	name = "biomatter"
+	desc = "An another by-product of mob grinding. Feels soft and... Strange."
+	singular_name = "biomatter sheet"
+	icon_state = "sheet-biomatter"
+	default_type = MATERIAL_BIOMATTER
+	max_amount = 60
+	price_tag = 10
+
+/obj/item/stack/material/biomatter/random
+	rand_min = 5
+	rand_max = 25
+
+/obj/item/stack/material/biomatter/full
+	amount = 60

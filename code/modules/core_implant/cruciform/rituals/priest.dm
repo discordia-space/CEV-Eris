@@ -35,7 +35,7 @@
 		fail("It is too late for this one, the soul has already left the vessel", user, C)
 		return FALSE
 
-	CI.wearer << "<span class='info'>Your cruciform vibrates and warms up.</span>"
+	to_chat(CI.wearer, "<span class='info'>Your cruciform vibrates and warms up.</span>")
 
 	CI.activate()
 
@@ -49,31 +49,6 @@
 	name = "banish"
 	phrase = "Et ne inducas nos in tentationem, sed libera nos a malo"
 */
-
-/datum/ritual/cruciform/priest/resurrection
-	name = "Resurrection"
-	phrase = "Qui fuit, et crediderunt in me non morietur in aeternum"
-	desc = "A ritual of formation of a new body in a speclially designed machine.  Deceased person's cruciform has to be placed on the scanner then a prayer is to be uttered over the apparatus."
-
-/datum/ritual/cruciform/priest/resurrection/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
-	var/list/OBJS = get_front(user)
-
-	var/obj/machinery/neotheology/cloner/pod = locate(/obj/machinery/neotheology/cloner) in OBJS
-
-	if(!pod)
-		fail("You fail to find any cloner here.", user, C)
-		return FALSE
-
-	if(pod.cloning)
-		fail("Cloner is already cloning.", user, C)
-		return FALSE
-
-	if(pod.stat & NOPOWER)
-		fail("Cloner is off.", user, C)
-		return FALSE
-
-	pod.start()
-	return TRUE
 
 /datum/ritual/cruciform/priest/reincarnation
 	name = "Reincarnation"
@@ -133,7 +108,7 @@
 	desc = "This litany will command cruciform attach to person, so you can perform Reincarnation or Epiphany. Cruciform must lay near them."
 
 /datum/ritual/cruciform/priest/install/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
-	var/mob/living/H = get_victim(user)
+	var/mob/living/carbon/human/H = get_victim(user)
 	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform, FALSE)
 	if(CI)
 		fail("[H] already have a cruciform installed.", user, C)
@@ -270,10 +245,10 @@
 			people_around.Add(H)
 
 	if(people_around.len > 0)
-		user << SPAN_NOTICE("Your feel the air thrum with an inaudible vibration.")
+		to_chat(user, SPAN_NOTICE("Your feel the air thrum with an inaudible vibration."))
 		playsound(user.loc, 'sound/machines/signal.ogg', 50, 1)
 		for(var/mob/living/carbon/human/participant in people_around)
-			participant << SPAN_NOTICE("You hear a silent signal...")
+			to_chat(participant, SPAN_NOTICE("You hear a silent signal..."))
 			give_boost(participant)
 		set_global_cooldown()
 		return TRUE
@@ -288,12 +263,12 @@
 		participant.stats.changeStat(stat, amount)
 		addtimer(CALLBACK(src, .proc/take_boost, participant, stat, amount), effect_time)
 	spawn(30)
-		participant << SPAN_NOTICE("A wave of dizziness washes over you, and your mind is filled with a sudden insight into [get_stats_to_text()].")
+		to_chat(participant, SPAN_NOTICE("A wave of dizziness washes over you, and your mind is filled with a sudden insight into [get_stats_to_text()]."))
 
 
 /datum/ritual/cruciform/priest/short_boost/proc/take_boost(mob/living/carbon/human/participant, stat, amount)
 	participant.stats.changeStat(stat, -amount)
-	participant << SPAN_WARNING("Your knowledge of [get_stats_to_text()] feels lessened.")
+	to_chat(participant, SPAN_WARNING("Your knowledge of [get_stats_to_text()] feels lessened."))
 
 /datum/ritual/cruciform/priest/short_boost/proc/get_stats_to_text()
 	if(stats_to_boost.len == 1)
@@ -352,7 +327,7 @@
 
 	var/mob/living/M = CI.wearer
 
-	M << SPAN_DANGER("A wave of agony washes over you, the cruciform in your chest searing like a star for a few moments of eternity.")
+	to_chat(M, SPAN_DANGER("A wave of agony washes over you, the cruciform in your chest searing like a star for a few moments of eternity."))
 
 
 	var/datum/effect/effect/system/spark_spread/s = new

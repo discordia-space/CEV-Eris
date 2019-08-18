@@ -123,7 +123,7 @@
 		if (H.hand)
 			temp = H.organs_by_name[BP_L_ARM]
 		if(temp && !temp.is_usable())
-			H << "\red You can't use your [temp.name]"
+			to_chat(H, "\red You can't use your [temp.name]")
 			return
 
 
@@ -356,7 +356,7 @@
 	set category = "IC"
 
 	if(usr.sleeping)
-		usr << "\red You are already sleeping"
+		to_chat(usr, "\red You are already sleeping")
 		return
 	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
 		usr.sleeping = 20 //Short nap
@@ -376,7 +376,7 @@
 		return 0
 	stop_pulling()
 	if (slipped_on)
-		src << SPAN_WARNING("You slipped on [slipped_on]!")
+		to_chat(src, SPAN_WARNING("You slipped on [slipped_on]!"))
 		playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
 	Stun(stun_duration)
 	Weaken(Floor(stun_duration/2))

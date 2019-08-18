@@ -53,15 +53,15 @@
 			if(!istype(D))
 				return
 
-			D << SPAN_DANGER("You begin decompiling [M].")
+			to_chat(D, SPAN_DANGER("You begin decompiling [M]."))
 
 			if(!do_after(D,50,M))
-				D << SPAN_DANGER("You need to remain still while decompiling such a large object.")
+				to_chat(D, SPAN_DANGER("You need to remain still while decompiling such a large object."))
 				return
 
 			if(!M || !D) return
 
-			D << SPAN_DANGER("You carefully and thoroughly decompile [M], storing as much of its resources as you can within yourself.")
+			to_chat(D, SPAN_DANGER("You carefully and thoroughly decompile [M], storing as much of its resources as you can within yourself."))
 			qdel(M)
 			new/obj/effect/decal/cleanable/blood/oil(get_turf(src))
 
@@ -134,16 +134,16 @@
 		grabbed_something = 1
 
 	if(grabbed_something)
-		user << SPAN_NOTICE("You deploy your decompiler and clear out the contents of \the [T].")
+		to_chat(user, SPAN_NOTICE("You deploy your decompiler and clear out the contents of \the [T]."))
 	else
-		user << SPAN_DANGER("Nothing on \the [T] is useful to you.")
+		to_chat(user, SPAN_DANGER("Nothing on \the [T] is useful to you."))
 	return
 
 //PRETTIER TOOL LIST.
 /mob/living/silicon/robot/drone/installed_modules()
 
 	if(weapon_lock)
-		src << SPAN_DANGER("Weapon lock active, unable to use modules! Count:[weaponlock_time]")
+		to_chat(src, SPAN_DANGER("Weapon lock active, unable to use modules! Count:[weaponlock_time]"))
 		return
 
 	if(!module)

@@ -351,7 +351,7 @@
 	if (W.has_quality(QUALITY_SEALING) && damage > 0)
 		user.visible_message("[user] starts sealing up cracks in [src] with the [W]", "You start sealing up cracks in [src] with the [W]")
 		if (W.use_tool(user, src, 140, QUALITY_SEALING, FAILCHANCE_VERY_HARD, STAT_MEC))
-			user << SPAN_NOTICE("Your insane actions are somehow paying off.")
+			to_chat(user, SPAN_NOTICE("Your insane actions are somehow paying off."))
 			user.apply_effect(100, IRRADIATE)
 			damage = 0
 			return
@@ -409,7 +409,7 @@
 		if(ishuman(A))
 			var/mob/living/carbon/human/H = A
 			if(!H.lying)
-				H << SPAN_DANGER("A strong gravitational force slams you to the ground!")
+				to_chat(H, SPAN_DANGER("A strong gravitational force slams you to the ground!"))
 				H.Weaken(20)
 
 

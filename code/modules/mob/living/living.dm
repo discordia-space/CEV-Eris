@@ -55,12 +55,12 @@ default behaviour is:
 			for(var/mob/living/M in range(tmob, 1))
 				if(tmob.pinned.len ||  ((M.pulling == tmob && ( tmob.restrained() && !( M.restrained() ) && M.stat == 0)) || locate(/obj/item/weapon/grab, tmob.grabbed_by.len)) )
 					if ( !(world.time % 5) )
-						src << "<span class='warning'>[tmob] is restrained, you cannot push past</span>"
+						to_chat(src, "<span class='warning'>[tmob] is restrained, you cannot push past</span>")
 					now_pushing = FALSE
 					return
 				if( tmob.pulling == M && ( M.restrained() && !( tmob.restrained() ) && tmob.stat == 0) )
 					if ( !(world.time % 5) )
-						src << "<span class='warning'>[tmob] is restraining [M], you cannot push past</span>"
+						to_chat(src, "<span class='warning'>[tmob] is restraining [M], you cannot push past</span>")
 					now_pushing = FALSE
 					return
 
@@ -89,7 +89,7 @@ default behaviour is:
 				return
 			if(ishuman(tmob) && (FAT in tmob.mutations))
 				if(prob(40) && !(FAT in src.mutations))
-					src << "<span class='danger'>You fail to push [tmob]'s fat ass out of the way.</span>"
+					to_chat(src, "<span class='danger'>You fail to push [tmob]'s fat ass out of the way.</span>")
 					now_pushing = FALSE
 					return
 			if(tmob.r_hand && istype(tmob.r_hand, /obj/item/weapon/shield/riot))
@@ -161,7 +161,7 @@ default behaviour is:
 	if ((src.health < 0 && src.health > (5-src.maxHealth))) // Health below Zero but above 5-away-from-death, as before, but variable
 		src.adjustOxyLoss(src.health + src.maxHealth * 2) // Deal 2x health in OxyLoss damage, as before but variable.
 		src.health = src.maxHealth - src.getOxyLoss() - src.getToxLoss() - src.getFireLoss() - src.getBruteLoss()
-		src << "\blue You have given up life and succumbed to death."
+		to_chat(src, "\blue You have given up life and succumbed to death.")
 
 
 /mob/living/proc/updatehealth()
@@ -591,7 +591,7 @@ default behaviour is:
 			resting = TRUE
 			state_changed = TRUE
 	if(state_changed)
-		src << "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>"
+		to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>")
 		update_lying_buckled_and_verb_status()
 
 /mob/living/proc/can_stand_up()
@@ -601,7 +601,7 @@ default behaviour is:
 	if(no_blankets)
 		return TRUE
 	else
-		src << SPAN_WARNING("You can't stand up, bedsheets are in the way and you struggle to get rid of them.")
+		to_chat(src, SPAN_WARNING("You can't stand up, bedsheets are in the way and you struggle to get rid of them."))
 		return FALSE
 
 //used to push away bedsheets in order to stand up, only humans will roll them (see overriden human proc)
@@ -647,10 +647,10 @@ default behaviour is:
 	if(!..())
 		return FALSE
 	if(!possession_candidate)
-		possessor << "<span class='warning'>That animal cannot be possessed.</span>"
+		to_chat(possessor, "<span class='warning'>That animal cannot be possessed.</span>")
 		return FALSE
 	if(jobban_isbanned(possessor, "Animal"))
-		possessor << "<span class='warning'>You are banned from animal roles.</span>"
+		to_chat(possessor, "<span class='warning'>You are banned from animal roles.</span>")
 		return FALSE
 	if(!possessor.MayRespawn(0 ,ANIMAL))
 		return FALSE
@@ -662,7 +662,7 @@ default behaviour is:
 		return FALSE
 
 	if(src.ckey || src.client)
-		possessor << "<span class='warning'>\The [src] already has a player.</span>"
+		to_chat(possessor, "<span class='warning'>\The [src] already has a player.</span>")
 		return FALSE
 
 	message_admins("<span class='adminnotice'>[key_name_admin(possessor)] has taken control of \the [src].</span>")
@@ -670,8 +670,8 @@ default behaviour is:
 	src.ckey = possessor.ckey
 	qdel(possessor)
 
-	src << "<b>You are now \the [src]!</b>"
-	src << "<span class='notice'>Remember to stay in character for a mob of this type!</span>"
+	to_chat(src, "<b>You are now \the [src]!</b>")
+	to_chat(src, "<span class='notice'>Remember to stay in character for a mob of this type!</span>")
 	return TRUE
 
 /mob/living/reset_layer()
@@ -718,22 +718,22 @@ default behaviour is:
 		return
 
 	if (AM.anchored)
-		src << "<span class='warning'>It won't budge!</span>"
+		to_chat(src, "<span class='warning'>It won't budge!</span>")
 		return
 
 	var/mob/M = AM
 	if(ismob(AM))
 
 		if(!can_pull_mobs || !can_pull_size)
-			src << "<span class='warning'>It won't budge!</span>"
+			to_chat(src, "<span class='warning'>It won't budge!</span>")
 			return
 
 		if((mob_size < M.mob_size) && (can_pull_mobs != MOB_PULL_LARGER))
-			src << "<span class='warning'>It won't budge!</span>"
+			to_chat(src, "<span class='warning'>It won't budge!</span>")
 			return
 
 		if((mob_size == M.mob_size) && (can_pull_mobs == MOB_PULL_SMALLER))
-			src << "<span class='warning'>It won't budge!</span>"
+			to_chat(src, "<span class='warning'>It won't budge!</span>")
 			return
 
 		// If your size is larger than theirs and you have some
@@ -748,7 +748,7 @@ default behaviour is:
 	else if(isobj(AM))
 		var/obj/I = AM
 		if(!can_pull_size || can_pull_size < I.w_class)
-			src << "<span class='warning'>It won't budge!</span>"
+			to_chat(src, "<span class='warning'>It won't budge!</span>")
 			return
 
 	if(pulling)
@@ -768,7 +768,7 @@ default behaviour is:
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		if(H.pull_damage())
-			src << "\red <B>Pulling \the [H] in their current condition would probably be a bad idea.</B>"
+			to_chat(src, "\red <B>Pulling \the [H] in their current condition would probably be a bad idea.</B>")
 
 	//Attempted fix for people flying away through space when cuffed and dragged.
 	if(ismob(AM))

@@ -244,27 +244,27 @@
 
 /obj/machinery/power/apc/examine(mob/user)
 	if(..(user, 1))
-		user << "A control terminal for the area electrical systems."
+		to_chat(user, "A control terminal for the area electrical systems.")
 		if(stat & BROKEN)
-			user << "Looks broken."
+			to_chat(user, "Looks broken.")
 			return
 		if(opened)
 			if(has_electronics && terminal)
-				user << "The cover is [opened==2?"removed":"open"] and the power cell is [ cell ? "installed" : "missing"]."
+				to_chat(user, "The cover is [opened==2?"removed":"open"] and the power cell is [ cell ? "installed" : "missing"].")
 			else if (!has_electronics && terminal)
-				user << "There are some wires but no any electronics."
+				to_chat(user, "There are some wires but no any electronics.")
 			else if (has_electronics && !terminal)
-				user << "Electronics installed but not wired."
+				to_chat(user, "Electronics installed but not wired.")
 			else /* if (!has_electronics && !terminal) */
-				user << "There is no electronics nor connected wires."
+				to_chat(user, "There is no electronics nor connected wires.")
 
 		else
 			if (stat & MAINT)
-				user << "The cover is closed. Something wrong with it: it doesn't work."
+				to_chat(user, "The cover is closed. Something wrong with it: it doesn't work.")
 			else if (hacker)
-				user << "The cover is locked."
+				to_chat(user, "The cover is locked.")
 			else
-				user << "The cover is closed."
+				to_chat(user, "The cover is closed.")
 
 
 // update the APC icon to show the three base states
@@ -465,7 +465,7 @@
 			if(opened)
 				if (has_electronics==1)
 					if (terminal)
-						user << SPAN_WARNING("Disconnect wires first.")
+						to_chat(user, SPAN_WARNING("Disconnect wires first."))
 						return
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					if (has_electronics==1)
@@ -488,7 +488,7 @@
 						update_icon()
 					else if(!((stat & BROKEN) || hacker))
 						if(coverlocked && !(stat & MAINT))
-							user << SPAN_WARNING("The cover is locked and cannot be opened.")
+							to_chat(user, SPAN_WARNING("The cover is locked and cannot be opened."))
 						else
 							opened = 1
 							update_icon()
@@ -499,7 +499,7 @@
 			if(terminal && opened && has_electronics!=2)
 				var/turf/T = loc
 				if(istype(T) && !T.is_plating())
-					user << SPAN_WARNING("You must remove the floor plating in front of the APC first.")
+					to_chat(user, SPAN_WARNING("You must remove the floor plating in front of the APC first."))
 					return
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					if (prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
@@ -509,14 +509,14 @@
 						if(usr.stunned)
 							return
 					new /obj/item/stack/cable_coil(loc,10)
-					user << SPAN_NOTICE("You remove the cables and dismantle the power terminal.")
+					to_chat(user, SPAN_NOTICE("You remove the cables and dismantle the power terminal."))
 					qdel(terminal)
 					return
 			return
 
 		if(QUALITY_SCREW_DRIVING)
 			if (cell && opened)
-				user << SPAN_WARNING("Close the APC first.")
+				to_chat(user, SPAN_WARNING("Close the APC first."))
 				return
 			var/used_sound = wiresexposed ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
@@ -524,18 +524,18 @@
 					if (has_electronics==1 && terminal)
 						has_electronics = 2
 						stat &= ~MAINT
-						user << "You screw the circuit electronics into place."
+						to_chat(user, "You screw the circuit electronics into place.")
 					else if (has_electronics==2)
 						has_electronics = 1
 						stat |= MAINT
-						user << "You unfasten the electronics."
+						to_chat(user, "You unfasten the electronics.")
 					else /* has_electronics==0 */
-						user << SPAN_WARNING("There is nothing to secure.")
+						to_chat(user, SPAN_WARNING("There is nothing to secure."))
 						return
 					update_icon()
 				else
 					wiresexposed = !wiresexposed
-					user << "The wires have been [wiresexposed ? "exposed" : "unexposed"]"
+					to_chat(user, "The wires have been [wiresexposed ? "exposed" : "unexposed"]")
 					var/sound = wiresexposed ?'sound/machines/Custom_screwdriveropen.ogg' : 'sound/machines/Custom_screwdriverclose.ogg'
 					playsound(src.loc, sound, 100, 1)
 					update_icon()
@@ -578,13 +578,13 @@
 
 	if (istype(I, /obj/item/weapon/cell/large) && opened)	// trying to put a cell inside
 		if(cell)
-			user << "There is a power cell already installed."
+			to_chat(user, "There is a power cell already installed.")
 			return
 		if (stat & MAINT)
-			user << SPAN_WARNING("There is no connector for your power cell.")
+			to_chat(user, SPAN_WARNING("There is no connector for your power cell."))
 			return
 		if(I.w_class != ITEM_SIZE_NORMAL)
-			user << "\The [I] is too [I.w_class < ITEM_SIZE_NORMAL? "small" : "large"] to fit here."
+			to_chat(user, "\The [I] is too [I.w_class < ITEM_SIZE_NORMAL? "small" : "large"] to fit here.")
 			return
 
 		user.drop_item()
@@ -598,31 +598,31 @@
 
 	else if (istype(I, /obj/item/weapon/card/id)||istype(I, /obj/item/modular_computer))			// trying to unlock the interface with an ID card
 		if(emagged)
-			user << "The interface is broken."
+			to_chat(user, "The interface is broken.")
 		else if(opened)
-			user << "You must close the cover to swipe an ID card."
+			to_chat(user, "You must close the cover to swipe an ID card.")
 		else if(wiresexposed)
-			user << "You must close the panel"
+			to_chat(user, "You must close the panel")
 		else if(stat & (BROKEN|MAINT))
-			user << "Nothing happens."
+			to_chat(user, "Nothing happens.")
 		else if(hacker)
-			user << SPAN_WARNING("Access denied.")
+			to_chat(user, SPAN_WARNING("Access denied."))
 		else
 			if(src.allowed(usr) && !isWireCut(APC_WIRE_IDSCAN))
 				locked = !locked
-				user << "You [ locked ? "lock" : "unlock"] the APC interface."
+				to_chat(user, "You [ locked ? "lock" : "unlock"] the APC interface.")
 				update_icon()
 			else
-				user << SPAN_WARNING("Access denied.")
+				to_chat(user, SPAN_WARNING("Access denied."))
 
 	else if (istype(I, /obj/item/stack/cable_coil) && !terminal && opened && has_electronics!=2)
 		var/turf/T = loc
 		if(istype(T) && !T.is_plating())
-			user << SPAN_WARNING("You must remove the floor plating in front of the APC first.")
+			to_chat(user, SPAN_WARNING("You must remove the floor plating in front of the APC first."))
 			return
 		var/obj/item/stack/cable_coil/C = I
 		if(C.get_amount() < 10)
-			user << SPAN_WARNING("You need ten lengths of cable for APC.")
+			to_chat(user, SPAN_WARNING("You need ten lengths of cable for APC."))
 			return
 		user.visible_message(SPAN_WARNING("[user.name] adds cables to the APC frame."), \
 							"You start adding cables to the APC frame...")
@@ -650,11 +650,11 @@
 		if(do_after(user, 10, src))
 			if(has_electronics==0)
 				has_electronics = 1
-				user << SPAN_NOTICE("You place the power control board inside the frame.")
+				to_chat(user, SPAN_NOTICE("You place the power control board inside the frame."))
 				qdel(I)
 
 	else if (istype(I, /obj/item/weapon/circuitboard/apc) && opened && has_electronics==0 && ((stat & BROKEN)))
-		user << SPAN_WARNING("You cannot put the board inside, the frame is damaged.")
+		to_chat(user, SPAN_WARNING("You cannot put the board inside, the frame is damaged."))
 		return
 
 	else if (istype(I, /obj/item/frame/apc) && opened && emagged)
@@ -669,7 +669,7 @@
 
 	else if (istype(I, /obj/item/frame/apc) && opened && ((stat & BROKEN) || hacker))
 		if (has_electronics)
-			user << SPAN_WARNING("You cannot repair this APC until you remove the electronics still inside.")
+			to_chat(user, SPAN_WARNING("You cannot repair this APC until you remove the electronics still inside."))
 			return
 		user.visible_message(SPAN_WARNING("[user.name] replaces the damaged APC frame with a new one."),\
 							"You begin to replace the damaged APC frame...")
@@ -715,21 +715,21 @@
 /obj/machinery/power/apc/emag_act(var/remaining_charges, var/mob/user)
 	if (!(emagged || hacker))		// trying to unlock with an emag card
 		if(opened)
-			user << "You must close the cover to swipe an ID card."
+			to_chat(user, "You must close the cover to swipe an ID card.")
 		else if(wiresexposed)
-			user << "You must close the panel first"
+			to_chat(user, "You must close the panel first")
 		else if(stat & (BROKEN|MAINT))
-			user << "Nothing happens."
+			to_chat(user, "Nothing happens.")
 		else
 			flick("apc-spark", src)
 			if (do_after(user,6,src))
 				if(prob(50))
 					emagged = 1
 					locked = 0
-					user << SPAN_NOTICE("You emag the APC interface.")
+					to_chat(user, SPAN_NOTICE("You emag the APC interface."))
 					update_icon()
 				else
-					user << "<span class='warning'>You fail to [ locked ? "unlock" : "lock"] the APC interface.</span>"
+					to_chat(user, "<span class='warning'>You fail to [ locked ? "unlock" : "lock"] the APC interface.</span>")
 				return 1
 
 /obj/machinery/power/apc/attack_hand(mob/user)
@@ -879,7 +879,7 @@
 
 /obj/machinery/power/apc/proc/can_use(mob/user as mob, var/loud = 0) //used by attack_hand() and Topic()
 	if (user.stat)
-		user << SPAN_WARNING("You must be conscious to use [src]!")
+		to_chat(user, SPAN_WARNING("You must be conscious to use [src]!"))
 		return 0
 	if(!user.client)
 		return 0
@@ -888,10 +888,10 @@
 	if(!user.IsAdvancedToolUser())
 		return 0
 	if(user.restrained())
-		user << SPAN_WARNING("You must have free hands to use [src].")
+		to_chat(user, SPAN_WARNING("You must have free hands to use [src]."))
 		return 0
 	if(user.lying)
-		user << SPAN_WARNING("You must stand to use [src]!")
+		to_chat(user, SPAN_WARNING("You must stand to use [src]!"))
 		return 0
 	autoflag = 5
 	if (issilicon(user))
@@ -906,14 +906,14 @@
 
 		if(aidisabled && !permit)
 			if(!loud)
-				user << SPAN_DANGER("\The [src] have AI control disabled!")
+				to_chat(user, SPAN_DANGER("\The [src] have AI control disabled!"))
 			return 0
 	else
 		if (!in_range(src, user) || !istype(src.loc, /turf))
 			return 0
 	var/mob/living/carbon/human/H = user
 	if (istype(H) && prob(H.getBrainLoss()))
-		user << SPAN_DANGER("You momentarily forget how to use [src].")
+		to_chat(user, SPAN_DANGER("You momentarily forget how to use [src]."))
 		return 0
 	return 1
 
@@ -926,7 +926,7 @@
 
 	if(!issilicon(usr) && (locked && !emagged))
 		// Shouldn't happen, this is here to prevent href exploits
-		usr << "You must unlock the panel to use this!"
+		to_chat(usr, "You must unlock the panel to use this!")
 		return 1
 
 	if (href_list["lock"])
@@ -971,7 +971,7 @@
 	else if (href_list["toggleaccess"])
 		if(issilicon(usr))
 			if(emagged || (stat & (BROKEN|MAINT)))
-				usr << "The APC does not respond to the command."
+				to_chat(usr, "The APC does not respond to the command.")
 			else
 				locked = !locked
 				update_icon()

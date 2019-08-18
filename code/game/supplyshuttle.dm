@@ -250,7 +250,7 @@ var/list/mechtoys = list(
 					var/list/L = SP.access // access var is a plain var, we need a list
 					A.req_access = L.Copy()
 				else
-					world << SPAN_DANGER("Supply pack with invalid access restriction [SP.access] encountered!")
+					to_chat(world, SPAN_DANGER("Supply pack with invalid access restriction [SP.access] encountered!"))
 
 			var/list/contains
 			if(istype(SP,/datum/supply_packs/randomised))

@@ -2,7 +2,7 @@
 	layer = TURF_LAYER
 	plane = GAME_PLANE
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
-	var/level = 2
+	var/level = ABOVE_PLATING_LEVEL
 	var/flags = 0
 	var/list/fingerprints
 	var/list/fingerprintshidden
@@ -132,7 +132,7 @@
 
 
 /atom/proc/bullet_act(obj/item/projectile/P, def_zone)
-	P.on_hit(src, 0, def_zone)
+	P.on_hit(src, def_zone)
 	. = FALSE
 
 /atom/proc/in_contents_of(container)//can take class or object instance as argument
@@ -258,12 +258,12 @@ its easier to just keep the beam vertical.
 			full_name += "oil-stained [name][infix]."
 
 	if(isobserver(user))
-		user << "\icon[src] This is [full_name] [suffix]"
+		to_chat(user, "\icon[src] This is [full_name] [suffix]")
 	else
 		user.visible_message("<font size=1>[user.name] looks at [src].</font>", "\icon[src] This is [full_name] [suffix]")
 
 	if(desc)
-		user << desc
+		to_chat(user, desc)
 
 	if(reagents)
 		if(reagent_flags & TRANSPARENT)

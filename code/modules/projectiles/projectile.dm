@@ -8,7 +8,6 @@
 #define ADD "add"
 #define SET "set"
 */
-
 /obj/item/projectile
 	name = "projectile"
 	icon = 'icons/obj/projectiles.dmi'
@@ -43,7 +42,7 @@
 	var/damage_type = BRUTE //BRUTE, BURN, TOX, OXY, CLONE, HALLOSS are the only things that should be in here
 	var/nodamage = FALSE //Determines if the projectile will skip any damage inflictions
 	var/taser_effect = FALSE //If set then the projectile will apply it's agony damage using stun_effect_act() to mobs it hits, and other damage will be ignored
-	var/check_armour = "bullet" //Defines what armor to use when it hits things.  Must be set to bullet, laser, energy,or bomb	//Cael - bio and rad are also valid
+	var/check_armour = ARMOR_BULLET //Defines what armor to use when it hits things. Full list could be found at defines\damage_organs.dm
 	var/projectile_type = /obj/item/projectile
 	var/penetrating = 0 //If greater than zero, the projectile will pass through dense objects as specified by on_penetrate()
 	var/kill_count = 50 //This will de-increment every process(). When 0, it will delete the projectile.
@@ -84,7 +83,7 @@
 	if(!isliving(target))	return 0
 	if(isanimal(target))	return 0
 	var/mob/living/L = target
-	L.apply_effects(stun, weaken, paralyze, irradiate, stutter, eyeblur, drowsy, agony, blocked) // add in AGONY!
+	L.apply_effects(stun, weaken, paralyze, irradiate, stutter, eyeblur, drowsy, agony) // add in AGONY!
 	return TRUE
 
 // generate impact effect
@@ -173,6 +172,21 @@
 
 	setup_trajectory(starting_loc, new_target)
 
+/obj/item/projectile/proc/istargetloc(var/mob/living/target_mob)
+	if(target_mob && original)
+		var/turf/originalloc
+		if(!istype(original, /turf))
+			originalloc = original.loc
+		else
+			originalloc = original
+		if(originalloc == target_mob.loc)
+			return 1
+		else
+			return 0
+	else
+		return 0
+
+
 //Called when the projectile intercepts a mob. Returns 1 if the projectile hit the mob, 0 if it missed and should keep flying.
 /obj/item/projectile/proc/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier=0)
 	if(!istype(target_mob))
@@ -185,7 +199,331 @@
 	var/result = PROJECTILE_FORCE_MISS
 	if(hit_zone)
 		def_zone = hit_zone //set def_zone, so if the projectile ends up hitting someone else later (to be implemented), it is more likely to hit the same part
-		result = target_mob.bullet_act(src, def_zone)//this returns mob's armor_check and another - see modules/mob/living/living_defense.dm
+		if(def_zone)
+			switch(target_mob.dir)
+				if(2)
+					if(p_y <= 10) //legs level
+						if(p_x  >= 17)
+							if(def_zone == BP_L_LEG || def_zone == BP_R_LEG \
+							|| def_zone == BP_GROIN || def_zone == BP_L_ARM \
+							|| def_zone == BP_CHEST)
+								def_zone = BP_L_LEG
+							if(def_zone == BP_HEAD || def_zone == BP_R_ARM)
+								def_zone = BP_CHEST
+							//lleg
+						else
+							if(def_zone == BP_L_LEG || def_zone == BP_R_LEG \
+							|| def_zone == BP_GROIN || def_zone == BP_R_ARM \
+							|| def_zone == BP_CHEST)
+								def_zone = BP_R_LEG
+							if(def_zone == BP_HEAD || def_zone == BP_L_ARM)
+								def_zone = BP_CHEST
+							//rleg
+						if(istargetloc(target_mob) == 0)
+							def_zone = pick(BP_L_LEG, BP_R_LEG)
+
+					if(p_y > 10 && p_y <= 13) //groin level
+						if(p_x <= 12)
+							if(def_zone == BP_L_ARM || def_zone == BP_R_LEG \
+							|| def_zone == BP_GROIN || def_zone == BP_R_ARM \
+							|| def_zone == BP_CHEST || def_zone == BP_HEAD)
+								def_zone = BP_R_ARM
+							if(def_zone == BP_HEAD || def_zone == BP_L_LEG)
+								def_zone = BP_CHEST
+							//rarm
+						if(p_x > 12 && p_x < 21)
+							if(def_zone == BP_L_ARM || def_zone == BP_R_LEG \
+							|| def_zone == BP_GROIN || def_zone == BP_R_ARM \
+							|| def_zone == BP_CHEST || def_zone == BP_L_LEG)
+								def_zone = BP_GROIN
+							if(def_zone == BP_HEAD)
+								def_zone = BP_CHEST
+							//groin
+						if(p_x >= 21 && p_x < 24)
+							//larm
+							if(def_zone == BP_L_ARM || def_zone == BP_L_LEG \
+							|| def_zone == BP_GROIN || def_zone == BP_R_ARM \
+							|| def_zone == BP_CHEST || def_zone == BP_HEAD)
+								def_zone = BP_L_ARM
+							if(def_zone == BP_HEAD || def_zone == BP_R_LEG)
+								def_zone = BP_CHEST
+
+						if(istargetloc(target_mob) == 0)
+							def_zone = pick(BP_R_ARM, BP_L_ARM, BP_CHEST, BP_GROIN)
+
+					if(p_y > 13 && p_y <= 22)
+						if(p_x <= 12)
+							if(def_zone == BP_L_ARM || def_zone == BP_R_LEG \
+							|| def_zone == BP_GROIN || def_zone == BP_R_ARM \
+							|| def_zone == BP_CHEST || def_zone == BP_HEAD)
+								def_zone = BP_R_ARM
+							if(def_zone == BP_HEAD || def_zone == BP_L_LEG)
+								def_zone = BP_CHEST
+							//rarm
+						if(p_x > 12 && p_x < 21)
+							if(def_zone == BP_L_ARM || def_zone == BP_R_LEG \
+							|| def_zone == BP_GROIN || def_zone == BP_R_ARM \
+							|| def_zone == BP_CHEST || def_zone == BP_L_LEG \
+							|| def_zone == BP_HEAD)
+								def_zone = BP_CHEST
+							//chest
+
+						if(p_x >= 21 && p_x < 24)
+							if(def_zone == BP_L_ARM || def_zone == BP_HEAD\
+							|| def_zone == BP_GROIN || def_zone == BP_R_ARM \
+							|| def_zone == BP_CHEST || def_zone == BP_L_LEG)
+								def_zone = BP_L_ARM
+							//larm
+							if(def_zone == BP_HEAD || def_zone == BP_R_LEG)
+								def_zone = BP_CHEST
+
+						if(istargetloc(target_mob) == 0)
+							def_zone = pick(BP_R_ARM, BP_L_ARM, BP_CHEST)
+
+					if(p_y > 22 && p_y <= 32)
+						if(def_zone == BP_L_ARM \
+						|| def_zone == BP_R_ARM \
+						|| def_zone == BP_CHEST)
+							def_zone = BP_HEAD
+						//head
+						if(def_zone == BP_GROIN || def_zone == BP_R_LEG || \
+						def_zone == BP_L_LEG)
+							def_zone = BP_CHEST
+
+						if(istargetloc(target_mob) == 0)
+							def_zone = pick(BP_HEAD, BP_CHEST)
+				if(1)
+					if(p_y <= 10) //legs level
+						if(p_x  >= 17)
+							if(def_zone == BP_L_LEG || def_zone == BP_R_LEG \
+							|| def_zone == BP_GROIN || def_zone == BP_R_ARM \
+							|| def_zone == BP_CHEST)
+								def_zone = BP_R_LEG
+							if(def_zone == BP_HEAD || def_zone == BP_L_ARM)
+								def_zone = BP_CHEST
+							//rleg
+
+						else
+							if(def_zone == BP_L_LEG || def_zone == BP_R_LEG \
+							|| def_zone == BP_GROIN || def_zone == BP_L_ARM \
+							|| def_zone == BP_CHEST)
+								def_zone = BP_L_LEG
+							if(def_zone == BP_HEAD || def_zone == BP_L_ARM)
+								def_zone = BP_CHEST
+							//lleg
+						if(istargetloc(target_mob) == 0)
+							def_zone = pick(BP_R_LEG, BP_L_LEG, BP_CHEST)
+
+					if(p_y > 10 && p_y <= 13) //groin level
+						if(p_x <= 12)
+							if(def_zone == BP_L_ARM || def_zone == BP_L_LEG \
+							|| def_zone == BP_GROIN || def_zone == BP_R_ARM \
+							|| def_zone == BP_CHEST || def_zone == BP_HEAD)
+								def_zone = BP_L_ARM
+							if(def_zone == BP_HEAD || def_zone == BP_R_LEG)
+								def_zone = BP_CHEST
+							//larm
+						if(p_x > 12 && p_x < 21)
+							if(def_zone == BP_L_ARM || def_zone == BP_R_LEG \
+							|| def_zone == BP_GROIN || def_zone == BP_R_ARM \
+							|| def_zone == BP_CHEST || def_zone == BP_L_LEG)
+								def_zone = BP_GROIN
+							if(def_zone == BP_HEAD)
+								def_zone = BP_CHEST
+							//groin
+						if(p_x >= 21 && p_x < 24)
+							if(def_zone == BP_L_ARM || def_zone == BP_R_LEG \
+							|| def_zone == BP_GROIN || def_zone == BP_R_ARM \
+							|| def_zone == BP_CHEST || def_zone == BP_HEAD)
+								def_zone = BP_R_ARM
+							if(def_zone == BP_HEAD || def_zone == BP_L_LEG)
+								def_zone = BP_CHEST
+							//rarm
+						if(istargetloc(target_mob) == 0)
+							def_zone = pick(BP_R_ARM, BP_L_ARM, BP_CHEST, BP_GROIN)
+					if(p_y > 13 && p_y <= 22)
+						if(p_x <= 12)
+							if(def_zone == BP_L_ARM || def_zone == BP_L_LEG \
+							|| def_zone == BP_GROIN || def_zone == BP_R_ARM \
+							|| def_zone == BP_CHEST || def_zone == BP_HEAD)
+								def_zone = BP_L_ARM
+							if(def_zone == BP_HEAD || def_zone == BP_R_LEG)
+								def_zone = BP_CHEST
+							//larm
+						if(p_x > 12 && p_x < 21)
+							if(def_zone == BP_L_ARM || def_zone == BP_R_LEG \
+							|| def_zone == BP_GROIN || def_zone == BP_R_ARM \
+							|| def_zone == BP_CHEST || def_zone == BP_L_LEG \
+							|| def_zone == BP_HEAD)
+								def_zone = BP_CHEST
+							if(def_zone == BP_HEAD || def_zone == BP_R_LEG)
+								def_zone = BP_CHEST
+							//chest
+						if(p_x >= 21 && p_x < 24)
+							if(def_zone == BP_L_ARM || def_zone == BP_R_LEG \
+							|| def_zone == BP_GROIN || def_zone == BP_R_ARM \
+							|| def_zone == BP_CHEST || def_zone == BP_HEAD)
+								def_zone = BP_R_ARM
+							if(def_zone == BP_HEAD || def_zone == BP_L_LEG)
+								def_zone = BP_CHEST
+							//rarm
+						if(istargetloc(target_mob) == 0)
+							def_zone = pick(BP_R_ARM, BP_L_ARM, BP_CHEST)
+
+					if(p_y > 22 && p_y <= 32)
+						if(def_zone == BP_L_ARM \
+						|| def_zone == BP_R_ARM \
+						|| def_zone == BP_CHEST)
+							def_zone = BP_HEAD
+						if(def_zone == BP_GROIN || def_zone == BP_L_LEG || \
+						def_zone == BP_R_LEG)
+							def_zone = BP_CHEST
+						if(istargetloc(target_mob) == 0)
+							def_zone = pick(BP_R_ARM, BP_L_ARM, BP_CHEST, BP_HEAD)
+						//head
+				if(4)
+					if(p_y <= 10) //legs level
+						if(def_zone == BP_R_LEG \
+						|| def_zone == BP_GROIN || def_zone == BP_R_ARM \
+						|| def_zone == BP_CHEST)
+							def_zone = BP_R_LEG
+						if(def_zone == BP_HEAD || def_zone == BP_R_ARM)
+							def_zone = BP_CHEST
+						if(def_zone == BP_L_LEG)
+							def_zone = BP_L_LEG
+						if(istargetloc(target_mob) == 0)
+							def_zone = pick(BP_R_LEG, BP_L_LEG, BP_CHEST)
+						//rleg
+
+					if(p_y > 10 && p_y <= 13) //groin level
+						if(p_x < 16)
+							if(def_zone == BP_R_LEG \
+							|| def_zone == BP_GROIN || def_zone == BP_R_ARM \
+							|| def_zone == BP_CHEST || def_zone == BP_HEAD)
+								def_zone = BP_R_ARM
+							if(def_zone == HEAD || def_zone == BP_L_LEG)
+								def_zone = BP_CHEST
+							if(def_zone == BP_L_ARM)
+								def_zone = BP_L_ARM
+							//rarm
+						if(p_x >= 16)
+							if(def_zone == BP_L_ARM || def_zone == BP_R_LEG \
+							|| def_zone == BP_GROIN || def_zone == BP_R_ARM \
+							|| def_zone == BP_CHEST || def_zone == BP_L_LEG)
+								def_zone = BP_GROIN
+							if(def_zone == BP_HEAD)
+								def_zone = BP_CHEST
+
+						if(istargetloc(target_mob) == 0)
+							def_zone = pick(BP_R_ARM, BP_L_ARM, BP_CHEST, BP_GROIN)
+							//groin
+
+					if(p_y > 13 && p_y <= 22)
+						if(p_x >= 16)
+							if(def_zone == BP_L_ARM || def_zone == BP_R_LEG \
+							|| def_zone == BP_GROIN || def_zone == BP_R_ARM \
+							|| def_zone == BP_CHEST || def_zone == BP_L_LEG \
+							|| def_zone == HEAD)
+								def_zone = BP_CHEST
+							//chest
+						if(p_x < 16)
+							if(def_zone == BP_R_LEG \
+							|| def_zone == BP_GROIN || def_zone == BP_R_ARM \
+							|| def_zone == BP_CHEST || def_zone == BP_HEAD)
+								def_zone = BP_R_ARM
+							//rarm
+							if(def_zone == BP_HEAD || def_zone == BP_L_LEG)
+								def_zone = BP_CHEST
+							if(def_zone == BP_L_ARM)
+								def_zone = BP_L_ARM
+						if(istargetloc(target_mob) == 0)
+							def_zone = pick(BP_R_ARM, BP_L_ARM, BP_CHEST)
+
+					if(p_y > 22 && p_y <= 32)
+						if(def_zone == BP_L_ARM \
+						|| def_zone == BP_R_ARM \
+						|| def_zone == BP_CHEST)
+							def_zone = BP_HEAD
+						if(def_zone ==  BP_GROIN || def_zone == BP_L_LEG || def_zone == BP_R_LEG)
+							def_zone = BP_CHEST
+						if(istargetloc(target_mob) == 0)
+							def_zone = pick(BP_R_ARM, BP_L_ARM, BP_CHEST, BP_HEAD)
+						//head
+
+				if(8)
+					if(p_y <= 10) //legs level
+						//lleg
+						if(def_zone == BP_L_LEG \
+						|| def_zone == BP_GROIN || def_zone == BP_L_ARM \
+						|| def_zone == BP_CHEST)
+							def_zone = BP_L_LEG
+
+						if(def_zone == BP_HEAD || def_zone == BP_R_ARM)
+							def_zone = BP_CHEST
+
+						if(def_zone == BP_R_LEG)
+							def_zone = BP_R_LEG
+						if(istargetloc(target_mob) == 0)
+							def_zone = pick(BP_R_LEG, BP_L_LEG, BP_CHEST)
+
+					if(p_y > 10 && p_y <= 13) //groin level
+						if(p_x < 16)
+							if(def_zone == BP_L_ARM || def_zone == BP_R_LEG \
+							|| def_zone == BP_GROIN || def_zone == BP_R_ARM \
+							|| def_zone == BP_CHEST || def_zone == BP_L_LEG)
+								def_zone = BP_GROIN
+							if(def_zone == BP_HEAD)
+								def_zone = BP_CHEST
+							//groin
+						if(p_x >= 16)
+							if(def_zone == BP_L_ARM || def_zone == BP_L_LEG \
+							|| def_zone == BP_GROIN \
+							|| def_zone == BP_CHEST || def_zone == BP_HEAD)
+								def_zone = BP_L_ARM
+							if(def_zone == BP_HEAD || def_zone == BP_R_LEG)
+								def_zone = BP_CHEST
+							if(def_zone == BP_R_ARM)
+								def_zone = BP_R_ARM
+						if(istargetloc(target_mob) == 0)
+							def_zone = pick(BP_R_ARM, BP_L_ARM, BP_CHEST, BP_GROIN)
+							//left_arm
+
+					if(p_y > 13 && p_y <= 22)
+						if(p_x < 16)
+							if(def_zone == BP_L_ARM || def_zone == BP_R_LEG \
+							|| def_zone == BP_GROIN || def_zone == BP_R_ARM \
+							|| def_zone == BP_CHEST || def_zone == BP_L_LEG \
+							|| def_zone == BP_HEAD)
+								def_zone = BP_CHEST
+							//chest
+						if(p_x >= 16)
+							if(def_zone == BP_L_ARM || def_zone == BP_L_LEG \
+							|| def_zone == BP_GROIN \
+							|| def_zone == BP_CHEST || def_zone == BP_HEAD)
+								def_zone = BP_L_ARM
+							if(def_zone == BP_R_LEG || def_zone == BP_HEAD)
+								def_zone = BP_CHEST
+							if(def_zone == BP_R_ARM)
+								def_zone = BP_R_ARM
+							//larm
+						if(istargetloc(target_mob) == 0)
+							def_zone = pick(BP_R_ARM, BP_L_ARM, BP_CHEST)
+
+					if(p_y > 22 && p_y <= 32)
+						if(def_zone == BP_L_ARM \
+						|| def_zone == BP_R_ARM \
+						|| def_zone == BP_CHEST)
+							def_zone = BP_HEAD
+						if(def_zone ==  BP_GROIN || def_zone == BP_L_LEG || def_zone == BP_R_LEG)
+							def_zone = BP_CHEST
+						if(istargetloc(target_mob) == 0)
+							def_zone = pick(BP_R_ARM, BP_L_ARM, BP_CHEST, BP_HEAD)
+						//head
+
+
+
+			result = target_mob.bullet_act(src, def_zone)//this returns mob's armor_check and another - see modules/mob/living/living_defense.dm
+
 
 	if(result == PROJECTILE_FORCE_MISS)
 		if(!silenced)

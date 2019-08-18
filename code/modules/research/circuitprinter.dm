@@ -19,9 +19,9 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	idle_power_usage = 30
 	active_power_usage = 2500
 
-/obj/machinery/r_n_d/circuit_imprinter/New()
+/obj/machinery/r_n_d/circuit_imprinter/Initialize()
+	. = ..()
 	materials = default_material_composition.Copy()
-	..()
 
 /obj/machinery/r_n_d/circuit_imprinter/Process()
 	..()
@@ -32,23 +32,24 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 		busy = FALSE
 		update_icon()
 		return
-	var/datum/design/D = queue[1]
-	if(canBuild(D))
+	var/datum/rnd_queue_design/RNDD = queue[1]
+	var/datum/design/D = RNDD.design
+	if(canBuild(RNDD))
 		if(progress == 0)
 			print_pre(D)
-		busy = 1
+		busy = TRUE
 		progress += speed
-		if(progress >= D.time)
-			build(D)
+		if(progress >= D.time * RNDD.amount)
+			build(RNDD)
 			progress = 0
-			removeFromQueue(1)
+			queue -= RNDD
 			if(linked_console)
-				linked_console.updateUsrDialog()
+				SSnano.update_uis(linked_console)
 			print_post(D)
 		update_icon()
 	else
 		if(busy)
-			visible_message(SPAN_NOTICE("\icon[src]\The [src] flashes: insufficient materials: [getLackingMaterials(D)]."))
+			visible_message(SPAN_NOTICE("\icon[src]\The [src] flashes: insufficient materials: [getLackingMaterials(RNDD)]."))
 			busy = FALSE
 			update_icon()
 
@@ -91,7 +92,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 				S.amount = materials[f]
 	..()
 
-/obj/machinery/r_n_d/circuit_imprinter/attackby(var/obj/item/I, var/mob/user as mob)
+/obj/machinery/r_n_d/circuit_imprinter/attackby(obj/item/I, mob/user as mob)
 	if(busy)
 		to_chat(user, SPAN_NOTICE("\The [src] is busy. Please wait for completion of previous operation."))
 		return 1
@@ -101,10 +102,10 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 
 		if(QUALITY_PRYING)
 			if(!panel_open)
-				user << SPAN_NOTICE("You cant get to the components of \the [src], remove the cover.")
+				to_chat(user, SPAN_NOTICE("You cant get to the components of \the [src], remove the cover."))
 				return
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-				user << SPAN_NOTICE("You remove the components of \the [src] with [I].")
+				to_chat(user, SPAN_NOTICE("You remove the components of \the [src] with [I]."))
 				dismantle()
 				return
 
@@ -115,7 +116,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 					linked_console.linked_imprinter = null
 					linked_console = null
 				panel_open = !panel_open
-				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
+				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
 				update_icon()
 				return
 
@@ -143,16 +144,16 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	else
 		return ..()
 
-/obj/machinery/r_n_d/circuit_imprinter/proc/loadMaterials(var/obj/item/stack/material/S, var/mob/user)
+/obj/machinery/r_n_d/circuit_imprinter/proc/loadMaterials(obj/item/stack/material/S, mob/user)
 	if(!istype(user))
 		return
 
 	if(!istype(S, /obj/item/stack/material))
-		user << SPAN_WARNING("You cannot insert this item into \the [src]!")
+		to_chat(user, SPAN_WARNING("You cannot insert this item into \the [src]!"))
 		return
 
 	if(TotalMaterials() + 1 > max_material_storage)
-		user << SPAN_WARNING("\The [src]'s material bin is full. Please remove material before adding more.")
+		to_chat(user, SPAN_WARNING("\The [src]'s material bin is full. Please remove material before adding more."))
 		return
 
 	var/amount = round(input("How many sheets do you want to add?") as num)
@@ -168,7 +169,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	if(max_material_storage - TotalMaterials() < amount) //Can't overfill
 		amount = min(S.get_amount(), max_material_storage - TotalMaterials())
 
-	busy = 1
+	busy = TRUE
 	use_power(1000)
 	var/material = S.get_material_name()
 	if(material)
@@ -176,62 +177,76 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 		if(do_after(usr, 16, src))
 			if(S.use(amount))
 				materials[material] += amount
-				user << SPAN_NOTICE("You add [amount] [material] sheet\s to \the [src]. Material storage is [TotalMaterials()]/[max_material_storage].")
-	busy = 0
-	linked_console.updateUsrDialog()
+				to_chat(user, SPAN_NOTICE("You add [amount] [material] sheet\s to \the [src]. Material storage is [TotalMaterials()]/[max_material_storage]."))
+	busy = FALSE
+	if(linked_console)
+		SSnano.update_uis(linked_console)
 	return TRUE
 
 /obj/machinery/r_n_d/circuit_imprinter/examine(mob/user)
 	..()
-	user << "Material storage is [TotalMaterials()]/[max_material_storage]."
+	to_chat(user, "Material storage is [TotalMaterials()]/[max_material_storage].")
 
-/obj/machinery/r_n_d/circuit_imprinter/proc/res_load(var/name)
-	// Will be here untill someone decided to draw insert animation
+/obj/machinery/r_n_d/circuit_imprinter/proc/res_load(name)
+	// Will be here until someone decided to draw insert animation
 	//flick("protolathe_[]", src)
 
-/obj/machinery/r_n_d/circuit_imprinter/proc/addToQueue(datum/design/D)
-	queue += D
-	return
+/obj/machinery/r_n_d/circuit_imprinter/proc/queue_design(datum/design/D)
+	var/datum/rnd_queue_design/RNDD = new /datum/rnd_queue_design(D, 1)
+	queue += RNDD
 
-/obj/machinery/r_n_d/circuit_imprinter/proc/removeFromQueue(var/index)
-	queue.Cut(index, index + 1)
-	return
+/obj/machinery/r_n_d/circuit_imprinter/proc/clear_queue()
+	queue = list()
+	progress = 0
 
-/obj/machinery/r_n_d/circuit_imprinter/proc/canBuild(datum/design/D)
+/obj/machinery/r_n_d/circuit_imprinter/proc/canBuild(datum/rnd_queue_design/RNDD)
+	var/datum/design/D = RNDD.design
 	for(var/M in D.materials)
-		if(materials[M] < D.materials[M])
-			return 0
+		if(materials[M] < D.materials[M]*RNDD.amount)
+			return FALSE
 	for(var/C in D.chemicals)
-		if(!reagents.has_reagent(C, D.chemicals[C]))
-			return 0
-	return 1
+		if(!reagents.has_reagent(C, D.chemicals[C] * RNDD.amount))
+			return FALSE
+	return TRUE
 
-/obj/machinery/r_n_d/circuit_imprinter/proc/getLackingMaterials(datum/design/D)
+/obj/machinery/r_n_d/circuit_imprinter/proc/check_craftable_amount_by_material(datum/design/D, mat)
+	var/A = materials[mat]
+	A = A / max(1 , (D.materials[mat])) // loaded material / required material
+	return A
+
+/obj/machinery/r_n_d/circuit_imprinter/proc/check_craftable_amount_by_chemical(datum/design/D, chemid)
+	var/A = reagents.get_reagent_amount(chemid)
+	A = A / max(1 , (D.chemicals[chemid])) // loaded material / required material
+	return A
+
+/obj/machinery/r_n_d/circuit_imprinter/proc/getLackingMaterials(datum/rnd_queue_design/RNDD)
 	var/ret = ""
+	var/datum/design/D = RNDD.design
 	for(var/M in D.materials)
-		if(materials[M] < D.materials[M])
+		if(materials[M] < D.materials[M] * RNDD.amount)
 			if(ret != "")
 				ret += ", "
-			ret += "[D.materials[M] - materials[M]] [M]"
+			ret += "[(D.materials[M] * RNDD.amount) - materials[M]] [M]"
 	for(var/C in D.chemicals)
-		if(!reagents.has_reagent(C, D.chemicals[C]))
+		if(!reagents.has_reagent(C, (D.chemicals[C] * RNDD.amount)))
 			if(ret != "")
 				ret += ", "
 			ret += C
 	return ret
 
-/obj/machinery/r_n_d/circuit_imprinter/proc/build(datum/design/D)
+/obj/machinery/r_n_d/circuit_imprinter/proc/build(datum/rnd_queue_design/RNDD)
+	var/datum/design/D = RNDD.design
 	var/power = active_power_usage
 	for(var/M in D.materials)
-		power += round(D.materials[M] / 5)
+		power += round(D.materials[M] / 5) * RNDD.amount
 	power = max(active_power_usage, power)
 	use_power(power)
 	for(var/M in D.materials)
-		materials[M] = max(0, materials[M] - D.materials[M])
+		materials[M] = max(0, materials[M] - (D.materials[M] * RNDD.amount))
 	for(var/C in D.chemicals)
-		reagents.remove_reagent(C, D.chemicals[C])
-
-	D.Fabricate(get_turf(src), 1, src)
+		reagents.remove_reagent(C, (D.chemicals[C] * RNDD.amount))
+	for(var/i in 1 to RNDD.amount)
+		D.Fabricate(get_turf(src), 1, src)
 
 /obj/machinery/r_n_d/circuit_imprinter/proc/print_pre(datum/design/D)
 	return

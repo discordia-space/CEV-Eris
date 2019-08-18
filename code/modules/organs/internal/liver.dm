@@ -14,7 +14,7 @@
 
 	if (germ_level > INFECTION_LEVEL_ONE)
 		if(prob(1))
-			owner << SPAN_WARNING("Your skin itches.")
+			to_chat(owner, SPAN_WARNING("Your skin itches."))
 	if (germ_level > INFECTION_LEVEL_TWO)
 		if(prob(1))
 			spawn owner.vomit()

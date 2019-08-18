@@ -146,17 +146,17 @@ datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
 		ban_number++;
 
 	if(ban_number == 0)
-		usr << "\red Database update failed due to no bans fitting the search criteria. If this is not a legacy ban you should contact the database admin."
+		to_chat(usr, "\red Database update failed due to no bans fitting the search criteria. If this is not a legacy ban you should contact the database admin.")
 		return
 
 	if(ban_number > 1)
-		usr << "\red Database update failed due to multiple bans fitting the search criteria. Note down the ckey, job and current time and contact the database admin."
+		to_chat(usr, "\red Database update failed due to multiple bans fitting the search criteria. Note down the ckey, job and current time and contact the database admin.")
 		return
 
 	if(istext(ban_id))
 		ban_id = text2num(ban_id)
 	if(!isnum(ban_id))
-		usr << "\red Database update failed due to a ban ID mismatch. Contact the database admin."
+		to_chat(usr, "\red Database update failed due to a ban ID mismatch. Contact the database admin.")
 		return
 
 	DB_ban_unban_by_id(ban_id)
@@ -172,7 +172,7 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 		return
 
 	if(!isnum(banid) || !istext(param))
-		usr << "Cancelled"
+		to_chat(usr, "Cancelled")
 		return
 
 	var/target_id
@@ -206,7 +206,7 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 				value = sanitize(input("Insert the new reason for [ckey]'s ban", "New Reason", "[reason]", null) as null|text)
 				value = sql_sanitize_text(value)
 				if(!value)
-					usr << "Cancelled"
+					to_chat(usr, "Cancelled")
 					return
 			var/DBQuery/update_query = dbcon.NewQuery("UPDATE bans SET reason = '[value]', WHERE id = [banid]")
 			if(!update_query.Execute())
@@ -218,7 +218,7 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 			if(!value)
 				value = input("Insert the new duration (in minutes) for [ckey]'s ban", "New Duration", "[duration]", null) as null|num
 				if(!isnum(value) || !value)
-					usr << "Cancelled"
+					to_chat(usr, "Cancelled")
 					return
 			var/DBQuery/update_query = dbcon.NewQuery("UPDATE bans SET duration = [value], expiration_time = DATE_ADD(time, INTERVAL '[value]' MINUTE) WHERE id = [banid]")
 			if(!update_query.Execute())
@@ -231,10 +231,10 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 				DB_ban_unban_by_id(banid)
 				return
 			else
-				usr << "Cancelled"
+				to_chat(usr, "Cancelled")
 				return
 		else
-			usr << "Cancelled"
+			to_chat(usr, "Cancelled")
 			return
 
 datum/admins/proc/DB_ban_unban_by_id(var/id)
@@ -296,7 +296,7 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 
 	establish_db_connection()
 	if(!dbcon.IsConnected())
-		usr << "\red Failed to establish database connection"
+		to_chat(usr, "\red Failed to establish database connection")
 		return
 
 	var/output = "<div align='center'><table width='90%'><tr>"

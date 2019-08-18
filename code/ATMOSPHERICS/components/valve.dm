@@ -5,7 +5,7 @@
 	name = "manual valve"
 	desc = "A pipe valve"
 
-	level = 1
+	level = BELOW_PLATING_LEVEL
 	dir = SOUTH
 	initialize_directions = SOUTH|NORTH
 
@@ -239,7 +239,7 @@
 	if(!powered())
 		return
 	if(!src.allowed(user))
-		user << SPAN_WARNING("Access denied.")
+		to_chat(user, SPAN_WARNING("Access denied."))
 		return
 	..()
 
@@ -292,16 +292,16 @@
 	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
 		return ..()
 	if (istype(src, /obj/machinery/atmospherics/valve/digital))
-		user << SPAN_WARNING("You cannot unwrench \the [src], it's too complicated.")
+		to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], it's too complicated."))
 		return 1
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
 	if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
-		user << SPAN_WARNING("You cannot unwrench \the [src], it is too exerted due to internal pressure.")
+		to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], it is too exerted due to internal pressure."))
 		add_fingerprint(user)
 		return 1
 	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-	user << SPAN_NOTICE("You begin to unfasten \the [src]...")
+	to_chat(user, SPAN_NOTICE("You begin to unfasten \the [src]..."))
 	if (do_after(user, 40, src))
 		user.visible_message( \
 			SPAN_NOTICE("\The [user] unfastens \the [src]."), \
@@ -312,4 +312,4 @@
 
 /obj/machinery/atmospherics/valve/examine(mob/user)
 	..()
-	user << "It is [open ? "open" : "closed"]."
+	to_chat(user, "It is [open ? "open" : "closed"].")

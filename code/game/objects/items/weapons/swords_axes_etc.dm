@@ -19,11 +19,11 @@
 
 /obj/item/weapon/melee/classic_baton/attack(mob/M as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
-		user << SPAN_WARNING("You club yourself over the head.")
+		to_chat(user, SPAN_WARNING("You club yourself over the head."))
 		user.Weaken(3 * force)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
-			H.apply_damage(2 * force, BRUTE, BP_HEAD)
+			H.damage_through_armor(2 * force, BRUTE, BP_HEAD, ARMOR_MELEE)
 		else
 			user.take_organ_damage(2 * force)
 		return
@@ -88,11 +88,11 @@
 /obj/item/weapon/melee/telebaton/attack(mob/target as mob, mob/living/user as mob)
 	if(on)
 		if ((CLUMSY in user.mutations) && prob(50))
-			user << SPAN_WARNING("You club yourself over the head.")
+			to_chat(user, SPAN_WARNING("You club yourself over the head."))
 			user.Weaken(3 * force)
 			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
-				H.apply_damage(2 * force, BRUTE, BP_HEAD)
+				H.damage_through_armor(2 * force, BRUTE, BP_HEAD, ARMOR_MELEE)
 			else
 				user.take_organ_damage(2*force)
 			return

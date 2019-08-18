@@ -15,16 +15,16 @@ a creative player the means to solve many problems.  Circuits are held inside an
 
 // This should be used when someone is examining while the case is opened.
 /obj/item/integrated_circuit/proc/internal_examine(mob/user)
-	user << "This board has [inputs.len] input pin\s, [outputs.len] output pin\s and [activators.len] activation pin\s."
+	to_chat(user, "This board has [inputs.len] input pin\s, [outputs.len] output pin\s and [activators.len] activation pin\s.")
 	for(var/datum/integrated_io/input/I in inputs)
 		if(I.linked.len)
-			user << "The '[I]' is connected to [I.get_linked_to_desc()]."
+			to_chat(user, "The '[I]' is connected to [I.get_linked_to_desc()].")
 	for(var/datum/integrated_io/output/O in outputs)
 		if(O.linked.len)
-			user << "The '[O]' is connected to [O.get_linked_to_desc()]."
+			to_chat(user, "The '[O]' is connected to [O.get_linked_to_desc()].")
 	for(var/datum/integrated_io/activate/A in activators)
 		if(A.linked.len)
-			user << "The '[A]' is connected to [A.get_linked_to_desc()]."
+			to_chat(user, "The '[A]' is connected to [A.get_linked_to_desc()].")
 	any_examine(user)
 	interact(user)
 
@@ -74,7 +74,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 
 	var/input = sanitizeSafe(input("What do you want to name the circuit?", "Rename", src.name) as null|text, MAX_NAME_LEN)
 	if(src && input && CanInteract(M,GLOB.physical_state))
-		M << SPAN_NOTICE("The circuit '[src.name]' is now labeled '[input]'.")
+		to_chat(M, SPAN_NOTICE("The circuit '[src.name]' is now labeled '[input]'."))
 		name = input
 
 /obj/item/integrated_circuit/interact(mob/user)
@@ -208,7 +208,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 			if(pin)
 				debugger.write_data(pin, usr)
 		else
-			usr << SPAN_WARNING("You can't do a whole lot without the proper tools.")
+			to_chat(usr, SPAN_WARNING("You can't do a whole lot without the proper tools."))
 
 	if(href_list["examine"])
 		examine(usr)
@@ -222,9 +222,9 @@ a creative player the means to solve many problems.  Circuits are held inside an
 			if(D.accepting_refs)
 				D.afterattack(src, usr, TRUE)
 			else
-				usr << SPAN_WARNING("The Debugger's 'ref scanner' needs to be on.")
+				to_chat(usr, SPAN_WARNING("The Debugger's 'ref scanner' needs to be on."))
 		else
-			usr << SPAN_WARNING("You need a Debugger set to 'ref' mode to do that.")
+			to_chat(usr, SPAN_WARNING("You need a Debugger set to 'ref' mode to do that."))
 
 	if(href_list["autopulse"])
 		if(autopulse != -1)
@@ -233,16 +233,16 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	if(href_list["remove"])
 		if(istype(held_item, /obj/item/weapon/tool/screwdriver))
 			if(!removable)
-				usr << SPAN_WARNING("\The [src] seems to be permanently attached to the case.")
+				to_chat(usr, SPAN_WARNING("\The [src] seems to be permanently attached to the case."))
 				return
 			disconnect_all()
 			var/turf/T = get_turf(src)
 			forceMove(T)
 			assembly = null
 			playsound(T, 'sound/items/Crowbar.ogg', 50, 1)
-			usr << SPAN_NOTICE("You pop \the [src] out of the case, and slide it out.")
+			to_chat(usr, SPAN_NOTICE("You pop \the [src] out of the case, and slide it out."))
 		else
-			usr <<SPAN_WARNING("You need a screwdriver to remove components.")
+			to_chat(usr, SPAN_WARNING("You need a screwdriver to remove components."))
 		var/obj/item/device/electronic_assembly/ea = loc
 		if(istype(ea))
 			ea.interact(usr)

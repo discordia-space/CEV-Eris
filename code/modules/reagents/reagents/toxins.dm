@@ -396,7 +396,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.species.name != "Slime")
-			M << SPAN_DANGER("Your flesh rapidly mutates!")
+			to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
 			H.set_species("Slime")
 
 /datum/reagent/aslimetoxin
@@ -410,7 +410,7 @@
 /datum/reagent/aslimetoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier) // TODO: check if there's similar code anywhere else
 	if(HAS_TRANSFORMATION_MOVEMENT_HANDLER(M))
 		return
-	M << SPAN_DANGER("Your flesh rapidly mutates!")
+	to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
 	ADD_TRANSFORMATION_MOVEMENT_HANDLER(M)
 	M.canmove = 0
 	M.icon = null

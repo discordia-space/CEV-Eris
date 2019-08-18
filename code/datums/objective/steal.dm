@@ -9,7 +9,7 @@
 		"a jetpack" = /obj/item/weapon/tank/jetpack,
 		"a captain's jumpsuit" = /obj/item/clothing/under/rank/captain,
 		"a functional AI" = /obj/item/device/aicard,
-		"the Technomancer Exultant's advanced voidsuit" = /obj/item/weapon/rig/ce,
+		"the Technomancer Exultant's advanced voidsuit control module" = /obj/item/weapon/rig/ce,
 		"the station blueprints" = /obj/item/blueprints,
 		"a nasa voidsuit" = /obj/item/clothing/suit/space/void,
 		"28 moles of plasma (full tank)" = /obj/item/weapon/tank,
@@ -23,7 +23,7 @@
 		"the hypospray" = /obj/item/weapon/reagent_containers/hypospray,
 		"the captain's pinpointer" = /obj/item/weapon/pinpointer,
 		"an ablative armor vest" = /obj/item/clothing/suit/armor/laserproof,
-		"an ironhammer hardsuit" = /obj/item/weapon/rig/ihs_combat
+		"an Ironhammer hardsuit control module" = /obj/item/weapon/rig/ihs_combat
 	)
 
 	var/global/possible_items_special[] = list(

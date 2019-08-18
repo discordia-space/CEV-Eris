@@ -80,7 +80,7 @@ var/global/list/stool_cache = list() //haha stool
 		qdel(src)
 		var/mob/living/T = M
 		T.Weaken(10)
-		T.apply_damage(20)
+		T.damage_through_armor(20, BRUTE, BP_CHEST, ARMOR_MELEE)
 		return
 	..()
 
@@ -142,3 +142,28 @@ var/global/list/stool_cache = list() //haha stool
 		return
 	else
 		..()
+
+
+//Custom stools
+//You can't pad them with something and they craft separately
+/obj/item/weapon/stool/custom
+	icon_state = "stool_base"
+
+/obj/item/weapon/stool/custom/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/weapon/tool))
+		if(W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+			dismantle()
+			qdel(src)
+	else if(istype(W,/obj/item/stack))
+		to_chat(user, "\The [src] can't be padded.")
+		return
+	else
+		..()
+
+/obj/item/weapon/stool/custom/update_icon()
+	return
+
+
+/obj/item/weapon/stool/custom/bar_special
+	name = "bar stool"
+	icon_state = "bar_stool"

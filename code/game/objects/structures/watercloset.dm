@@ -29,7 +29,7 @@
 
 	if(cistern && !open)
 		if(!contents.len)
-			user << SPAN_NOTICE("The cistern is empty.")
+			to_chat(user, SPAN_NOTICE("The cistern is empty."))
 			return
 		else
 			var/obj/item/I = pick(contents)
@@ -37,7 +37,7 @@
 				user.put_in_hands(I)
 			else
 				I.loc = get_turf(src)
-			user << SPAN_NOTICE("You find \an [I] in the cistern.")
+			to_chat(user, SPAN_NOTICE("You find \an [I] in the cistern."))
 			w_items -= I.w_class
 			return
 
@@ -49,7 +49,7 @@
 
 /obj/structure/toilet/attackby(obj/item/I as obj, mob/living/user as mob)
 	if(QUALITY_PRYING in I.tool_qualities)
-		user << "<span class='notice'>You start to [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"].</span>"
+		to_chat(user, "<span class='notice'>You start to [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"].</span>")
 		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			user.visible_message("<span class='notice'>[user] [cistern ? "replaces the lid on the cistern" : "lifts the lid off the cistern"]!</span>", "<span class='notice'>You [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"]!</span>", "You hear grinding porcelain.")
 			cistern = !cistern
@@ -58,15 +58,15 @@
 
 	if(cistern && !isrobot(user)) //STOP PUTTING YOUR MODULES IN THE TOILET.
 		if(I.w_class >= ITEM_SIZE_LARGE)
-			user << SPAN_NOTICE("\The [I] does not fit.")
+			to_chat(user, SPAN_NOTICE("\The [I] does not fit."))
 			return
 		if(w_items + I.w_class > ITEM_SIZE_HUGE)
-			user << SPAN_NOTICE("The cistern is full.")
+			to_chat(user, SPAN_NOTICE("The cistern is full."))
 			return
 		user.drop_item()
 		I.loc = src
 		w_items += I.w_class
-		user << "You carefully place \the [I] into the cistern."
+		to_chat(user, "You carefully place \the [I] into the cistern.")
 		return
 
 /obj/structure/toilet/AltClick(var/mob/living/user)
@@ -77,15 +77,15 @@
 		var/obj/item/weapon/reagent_containers/O = user.get_active_hand()
 		if(O.reagents && O.reagents.total_volume)
 			O.reagents.clear_reagents()
-			user << SPAN_NOTICE("You empty the [O] into the [src].")
+			to_chat(user, SPAN_NOTICE("You empty the [O] into the [src]."))
 
 
 /obj/structure/toilet/affect_grab(var/mob/user, var/mob/living/target, var/state)
 	if(state == GRAB_PASSIVE)
-		user << SPAN_NOTICE("You need a tighter grip.")
+		to_chat(user, SPAN_NOTICE("You need a tighter grip."))
 		return FALSE
 	if(!target.loc == src.loc)
-		user << SPAN_NOTICE("[target] needs to be on the toilet.")
+		to_chat(user, SPAN_NOTICE("[target] needs to be on the toilet."))
 		return FALSE
 	if(open && !swirlie)
 		user.visible_message(
@@ -127,10 +127,10 @@
 
 /obj/structure/urinal/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
 	if(state == GRAB_PASSIVE)
-		user << SPAN_NOTICE("You need a tighter grip.")
+		to_chat(user, SPAN_NOTICE("You need a tighter grip."))
 		return FALSE
 	if(!target.loc == src.loc)
-		user << SPAN_NOTICE("[target] needs to be on the urinal.")
+		to_chat(user, SPAN_NOTICE("[target] needs to be on the urinal."))
 		return
 	user.visible_message(
 		SPAN_DANGER("[user] slams [target] into the [src]!"),
@@ -186,7 +186,7 @@
 
 /obj/machinery/shower/attackby(obj/item/I, mob/user)
 	if(I.type == /obj/item/device/scanner/analyzer)
-		user << SPAN_NOTICE("The water temperature seems to be [watertemp].")
+		to_chat(user, SPAN_NOTICE("The water temperature seems to be [watertemp]."))
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		var/newtemp = input(user, "What setting would you like to set the temperature valve to?", "Water Temperature Valve") in temperature_settings
 		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
@@ -347,9 +347,9 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(temperature >= H.species.heat_level_1)
-			H << SPAN_DANGER("The water is searing hot!")
+			to_chat(H, SPAN_DANGER("The water is searing hot!"))
 		else if(temperature <= H.species.cold_level_1)
-			H << SPAN_WARNING("The water is freezing cold!")
+			to_chat(H, SPAN_WARNING("The water is freezing cold!"))
 
 /obj/item/weapon/bikehorn/rubberducky
 	name = "rubber ducky"
@@ -376,7 +376,7 @@
 	if(!usr.Adjacent(src))
 		return
 	if(!thing.reagents || thing.reagents.total_volume == 0)
-		usr << SPAN_WARNING("\The [thing] is empty.")
+		to_chat(usr, SPAN_WARNING("\The [thing] is empty."))
 		return 0
 	// Clear the vessel.
 	visible_message(SPAN_NOTICE("\The [usr] tips the contents of \the [thing] into \the [src]."))
@@ -389,7 +389,7 @@
 		if (user.hand)
 			temp = H.organs_by_name[BP_L_ARM]
 		if(temp && !temp.is_usable())
-			user << SPAN_NOTICE("You try to move your [temp.name], but cannot!")
+			to_chat(user, SPAN_NOTICE("You try to move your [temp.name], but cannot!"))
 			return
 
 	if(isrobot(user) || isAI(user))
@@ -399,10 +399,10 @@
 		return
 
 	if(busy)
-		user << SPAN_WARNING("Someone's already washing here.")
+		to_chat(user, SPAN_WARNING("Someone's already washing here."))
 		return
 
-	usr << SPAN_NOTICE("You start washing your hands.")
+	to_chat(usr, SPAN_NOTICE("You start washing your hands."))
 
 	playsound(loc, 'sound/effects/watersplash.ogg', 100, 1)
 
@@ -421,7 +421,7 @@
 
 /obj/structure/sink/attackby(obj/item/O as obj, mob/living/user as mob)
 	if(busy)
-		user << SPAN_WARNING("Someone's already washing here.")
+		to_chat(user, SPAN_WARNING("Someone's already washing here."))
 		return
 
 	var/obj/item/weapon/reagent_containers/RG = O
@@ -458,7 +458,7 @@
 	var/obj/item/I = O
 	if(!I || !istype(I,/obj/item)) return
 
-	usr << SPAN_NOTICE("You start washing \the [I].")
+	to_chat(usr, SPAN_NOTICE("You start washing \the [I]."))
 
 	busy = 1
 	sleep(40)
@@ -479,7 +479,7 @@
 		var/obj/item/weapon/reagent_containers/O = user.get_active_hand()
 		if(O.reagents && O.reagents.total_volume)
 			O.reagents.clear_reagents()
-			user << SPAN_NOTICE("You empty the [O] into the [src].")
+			to_chat(user, SPAN_NOTICE("You empty the [O] into the [src]."))
 
 
 /obj/structure/sink/kitchen

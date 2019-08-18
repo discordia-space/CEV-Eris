@@ -30,13 +30,13 @@
 		if(QUALITY_BOLT_TURNING)
 			if(state == 0)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_HARD, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You wrench the frame into place.")
+					to_chat(user, SPAN_NOTICE("You wrench the frame into place."))
 					anchored = 1
 					state = 1
 					return
 			if(state == 1 && !circuit)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_HARD, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You unfasten the frame.")
+					to_chat(user, SPAN_NOTICE("You unfasten the frame."))
 					anchored = 0
 					state = 0
 					return
@@ -45,7 +45,7 @@
 		if(QUALITY_WELDING)
 			if(state == 0)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_HARD, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You deconstruct the frame.")
+					to_chat(user, SPAN_NOTICE("You deconstruct the frame."))
 					new /obj/item/stack/material/plasteel( loc, 8)
 					qdel(src)
 					return
@@ -54,7 +54,7 @@
 		if(QUALITY_PRYING)
 			if(state == 1 && circuit)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_HARD, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You remove the circuit board.")
+					to_chat(user, SPAN_NOTICE("You remove the circuit board."))
 					state = 1
 					icon_state = "0"
 					circuit.loc = loc
@@ -62,14 +62,14 @@
 					return
 			if(state == 3 && brain)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_HARD, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You remove the brain.")
+					to_chat(user, SPAN_NOTICE("You remove the brain."))
 					brain.loc = loc
 					brain = null
 					icon_state = "3"
 					return
 			if(state == 4)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_HARD, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You remove the glass panel.")
+					to_chat(user, SPAN_NOTICE("You remove the glass panel."))
 					state = 3
 					if (brain)
 						icon_state = "3b"
@@ -82,19 +82,19 @@
 		if(QUALITY_SCREW_DRIVING)
 			if(state == 1 && circuit)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_HARD, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You screw the circuit board into place.")
+					to_chat(user, SPAN_NOTICE("You screw the circuit board into place."))
 					state = 2
 					icon_state = "2"
 					return
 			if(state == 2 && circuit)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_HARD, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You unfasten the circuit board.")
+					to_chat(user, SPAN_NOTICE("You unfasten the circuit board."))
 					state = 1
 					icon_state = "1"
 					return
 			if(state == 4)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_HARD, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You connect the monitor.")
+					to_chat(user, SPAN_NOTICE("You connect the monitor."))
 					if(!brain)
 						var/open_for_latejoin = alert(user, "Would you like this core to be open for latejoining AIs?", "Latejoin", "Yes", "Yes", "No") == "Yes"
 						var/obj/structure/AIcore/deactivated/D = new(loc)
@@ -111,9 +111,9 @@
 		if(QUALITY_WIRE_CUTTING)
 			if(state == 3)
 				if (brain)
-					user << "Get that brain out of there first"
+					to_chat(user, "Get that brain out of there first")
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_HARD, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You remove the cables.")
+					to_chat(user, SPAN_NOTICE("You remove the cables."))
 					state = 2
 					icon_state = "2"
 					var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( loc )
@@ -128,7 +128,7 @@
 		if(1)
 			if(istype(I, /obj/item/weapon/circuitboard/aicore) && !circuit)
 				playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
-				user << SPAN_NOTICE("You place the circuit board inside the frame.")
+				to_chat(user, SPAN_NOTICE("You place the circuit board inside the frame."))
 				icon_state = "1"
 				circuit = I
 				user.drop_item()
@@ -137,47 +137,47 @@
 			if(istype(I, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = I
 				if (C.get_amount() < 5)
-					user << SPAN_WARNING("You need five coils of wire to add them to the frame.")
+					to_chat(user, SPAN_WARNING("You need five coils of wire to add them to the frame."))
 					return
-				user << SPAN_NOTICE("You start to add cables to the frame.")
+				to_chat(user, SPAN_NOTICE("You start to add cables to the frame."))
 				playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 				if (do_after(user, 20, src) && state == 2)
 					if (C.use(5))
 						state = 3
 						icon_state = "3"
-						user << SPAN_NOTICE("You add cables to the frame.")
+						to_chat(user, SPAN_NOTICE("You add cables to the frame."))
 				return
 		if(3)
 			if(istype(I, /obj/item/stack/material) && I.get_material_name() == "rglass")
 				var/obj/item/stack/RG = I
 				if (RG.get_amount() < 2)
-					user << SPAN_WARNING("You need two sheets of glass to put in the glass panel.")
+					to_chat(user, SPAN_WARNING("You need two sheets of glass to put in the glass panel."))
 					return
-				user << SPAN_NOTICE("You start to put in the glass panel.")
+				to_chat(user, SPAN_NOTICE("You start to put in the glass panel."))
 				playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 				if (do_after(user, 20,src) && state == 3)
 					if(RG.use(2))
-						user << SPAN_NOTICE("You put in the glass panel.")
+						to_chat(user, SPAN_NOTICE("You put in the glass panel."))
 						state = 4
 						icon_state = "4"
 
 			if(istype(I, /obj/item/weapon/aiModule))
 				var/obj/item/weapon/aiModule/AIM = I
 				AIM.transmitInstructions(src, usr)
-				usr << "Law module applied."
+				to_chat(usr, "Law module applied.")
 				return
 
 			if(istype(I, /obj/item/device/mmi))
 				var/obj/item/device/mmi/M = I
 				if(!M.brainmob)
-					user << SPAN_WARNING("Sticking an empty [I] into the frame would sort of defeat the purpose.")
+					to_chat(user, SPAN_WARNING("Sticking an empty [I] into the frame would sort of defeat the purpose."))
 					return
 				if(M.brainmob.stat == 2)
-					user << SPAN_WARNING("Sticking a dead [I] into the frame would sort of defeat the purpose.")
+					to_chat(user, SPAN_WARNING("Sticking a dead [I] into the frame would sort of defeat the purpose."))
 					return
 
 				if(jobban_isbanned(M.brainmob, "AI"))
-					user << SPAN_WARNING("This [I] does not seem to fit.")
+					to_chat(user, SPAN_WARNING("This [I] does not seem to fit."))
 					return
 
 				if(M.brainmob.mind)
@@ -186,7 +186,7 @@
 				user.drop_item()
 				I.loc = src
 				brain = I
-				usr << "Added [I]."
+				to_chat(usr, "Added [I].")
 				icon_state = "3b"
 
 /obj/structure/AIcore/deactivated
@@ -212,8 +212,8 @@
 	transfer.loc = get_turf(src)
 	transfer.create_eyeobj()
 	transfer.cancel_camera()
-	user << "<span class='notice'>Transfer successful:</span> [transfer.name] ([rand(1000,9999)].exe) downloaded to host terminal. Local copy wiped."
-	transfer << "You have been uploaded to a stationary terminal. Remote device connection restored."
+	to_chat(user, "<span class='notice'>Transfer successful:</span> [transfer.name] ([rand(1000,9999)].exe) downloaded to host terminal. Local copy wiped.")
+	to_chat(transfer, "You have been uploaded to a stationary terminal. Remote device connection restored.")
 
 	if(card)
 		card.clear()
@@ -235,7 +235,7 @@
 		if(transfer)
 			load_ai(transfer,card,user)
 		else
-			user << "<span class='danger'>ERROR:</span> Unable to locate artificial intelligence."
+			to_chat(user, "<span class='danger'>ERROR:</span> Unable to locate artificial intelligence.")
 		return
 	else if(istype(W, /obj/item/weapon/tool/wrench))
 		if(anchored)
@@ -274,7 +274,7 @@ ADMIN_VERB_ADD(/client/proc/empty_ai_core_toggle_latejoin, R_ADMIN, null)
 
 	if(D in empty_playable_ai_cores)
 		empty_playable_ai_cores -= D
-		src << "\The [id] is now <font color=\"#ff0000\">not available</font> for latejoining AIs."
+		to_chat(src, "\The [id] is now <font color=\"#ff0000\">not available</font> for latejoining AIs.")
 	else
 		empty_playable_ai_cores += D
-		src << "\The [id] is now <font color=\"#008000\">available</font> for latejoining AIs."
+		to_chat(src, "\The [id] is now <font color=\"#008000\">available</font> for latejoining AIs.")

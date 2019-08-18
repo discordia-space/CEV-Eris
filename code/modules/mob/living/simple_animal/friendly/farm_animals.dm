@@ -76,9 +76,9 @@
 		user.visible_message(SPAN_NOTICE("[user] milks [src] using \the [O]."))
 		var/transfered = udder.trans_id_to(G, "milk", rand(5,10))
 		if(G.reagents.total_volume >= G.volume)
-			user << "\red The [O] is full."
+			to_chat(user, "\red The [O] is full.")
 		if(!transfered)
-			user << "\red The udder is dry. Wait a bit longer..."
+			to_chat(user, "\red The udder is dry. Wait a bit longer...")
 	else
 		..()
 //cow
@@ -114,9 +114,9 @@
 		user.visible_message(SPAN_NOTICE("[user] milks [src] using \the [O]."))
 		var/transfered = udder.trans_id_to(G, "milk", rand(5,10))
 		if(G.reagents.total_volume >= G.volume)
-			user << "\red The [O] is full."
+			to_chat(user, "\red The [O] is full.")
 		if(!transfered)
-			user << "\red The udder is dry. Wait a bit longer..."
+			to_chat(user, "\red The udder is dry. Wait a bit longer...")
 	else
 		..()
 
@@ -138,7 +138,7 @@
 											"[src] looks at you pleadingly",
 											"[src] looks at you with a resigned expression.",
 											"[src] seems resigned to its fate.")
-				M << pick(responses)
+				to_chat(M, pick(responses))
 	else
 		..()
 
@@ -231,9 +231,9 @@ var/global/chicken_count = 0
 				qdel(O)
 				eggsleft += rand(1, 4)
 			else
-				user << "\blue [name] doesn't seem hungry!"
+				to_chat(user, "\blue [name] doesn't seem hungry!")
 		else
-			user << "[name] doesn't seem interested in that."
+			to_chat(user, "[name] doesn't seem interested in that.")
 	else
 		..()
 

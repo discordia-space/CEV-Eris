@@ -9,7 +9,7 @@
 	var/mag_slow = 3
 	var/icon_base = "magboots"
 	action_button_name = "Toggle Magboots"
-	armor = list(melee = 40, bullet = 30, laser = 30,energy = 25, bomb = 50, bio = 100, rad = 70)
+	armor = list(melee = 40, bullet = 30, energy = 30, bomb = 50, bio = 100, rad = 70)
 	siemens_coefficient = 0 // DAMN BOI
 	//This armor only applies to legs
 
@@ -26,14 +26,14 @@
 		set_slowdown()
 		force = WEAPON_FORCE_WEAK
 		if(icon_base) icon_state = "[icon_base]0"
-		user << "You disable the mag-pulse traction system."
+		to_chat(user, "You disable the mag-pulse traction system.")
 	else
 		item_flags |= NOSLIP
 		magpulse = 1
 		set_slowdown()
 		force = WEAPON_FORCE_PAINFUL
 		if(icon_base) icon_state = "[icon_base]1"
-		user << "You enable the mag-pulse traction system."
+		to_chat(user, "You enable the mag-pulse traction system.")
 	user.update_inv_shoes()	//so our mob-overlays update
 	user.update_action_buttons()
 	user.update_floating()
@@ -43,7 +43,7 @@
 	var/state = "disabled"
 	if(item_flags & NOSLIP)
 		state = "enabled"
-	user << "Its mag-pulse traction system appears to be [state]."
+	to_chat(user, "Its mag-pulse traction system appears to be [state].")
 
 
 /*

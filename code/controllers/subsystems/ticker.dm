@@ -15,11 +15,8 @@ SUBSYSTEM_DEF(ticker)
 	var/first_start_trying = TRUE
 	var/story_vote_ended = FALSE
 
-
 	var/event_time = null
 	var/event = 0
-
-	var/login_music			// music played in pregame lobby
 
 	var/list/datum/mind/minds = list()//The people in the game. Used for objective tracking.
 
@@ -50,15 +47,6 @@ SUBSYSTEM_DEF(ticker)
 	//station_explosion used to be a variable for every mob's hud. Which was a waste!
 	//Now we have a general cinematic centrally held within the gameticker....far more efficient!
 	var/obj/screen/cinematic = null
-
-/datum/controller/subsystem/ticker/PreInit()
-	login_music = pick(list(
-		'sound/music/tonspender_irritations.ogg',
-		'sound/music/i_am_waiting_for_you_last_summer_neon_fever.ogg',
-		'sound/music/paradise_cracked_skytown.ogg',
-		'sound/music/nervous_testpilot _my_beautiful_escape.ogg',
-		'sound/music/deus_ex_unatco_nervous_testpilot_remix.ogg',
-		'sound/music/paradise_cracked_title03.ogg'))
 
 /datum/controller/subsystem/ticker/Initialize(start_timeofday)
 	if(!syndicate_code_phrase)
@@ -92,12 +80,12 @@ SUBSYSTEM_DEF(ticker)
 		if(GAME_STATE_STARTUP)
 			if(first_start_trying)
 				pregame_timeleft = initial(pregame_timeleft)
-				world << "<B><FONT color='blue'>Welcome to the pre-game lobby!</FONT></B>"
+				to_chat(world, "<B><FONT color='blue'>Welcome to the pre-game lobby!</FONT></B>")
 			else
 				pregame_timeleft = 40
 
 			if(!start_immediately)
-				world << "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds."
+				to_chat(world, "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds.")
 			current_state = GAME_STATE_PREGAME
 			send_assets()
 
@@ -152,10 +140,10 @@ SUBSYSTEM_DEF(ticker)
 
 					if(universe_has_ended)
 						if(!delay_end)
-							world << SPAN_NOTICE("<b>Rebooting due to destruction of station in [restart_timeout/10] seconds</b>")
+							to_chat(world, SPAN_NOTICE("<b>Rebooting due to destruction of station in [restart_timeout/10] seconds</b>"))
 					else
 						if(!delay_end)
-							world << SPAN_NOTICE("<b>Restarting in [restart_timeout/10] seconds</b>")
+							to_chat(world, SPAN_NOTICE("<b>Restarting in [restart_timeout/10] seconds</b>"))
 
 
 					if(!delay_end)
@@ -163,11 +151,11 @@ SUBSYSTEM_DEF(ticker)
 						if(!delay_end)
 							world.Reboot()
 						else
-							world << SPAN_NOTICE("<b>An admin has delayed the round end</b>")
+							to_chat(world, SPAN_NOTICE("<b>An admin has delayed the round end</b>"))
 					else
-						world << SPAN_NOTICE("<b>An admin has delayed the round end</b>")
+						to_chat(world, SPAN_NOTICE("<b>An admin has delayed the round end</b>"))
 
-// This proc will scan for player and if the game is in progress and... 
+// This proc will scan for player and if the game is in progress and...
 // there is no player for certain minutes (see config.empty_server_restart_time) it will restart the server and return FALSE
 // If the game in pregame state if will reset roundstart timer and return FALSE
 // otherwise it will return TRUE
@@ -213,14 +201,14 @@ SUBSYSTEM_DEF(ticker)
 		set_storyteller(announce = FALSE)
 
 	if(!GLOB.storyteller)
-		world << "<span class='danger'>Serious error storyteller system!</span> Reverting to pre-game lobby."
+		to_chat(world, "<span class='danger'>Serious error storyteller system!</span> Reverting to pre-game lobby.")
 		return FALSE
 
 	SSjob.ResetOccupations()
 	SSjob.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
 
 	if(!GLOB.storyteller.can_start(TRUE))
-		world << "<B>Unable to start game.</B> Reverting to pre-game lobby."
+		to_chat(world, "<B>Unable to start game.</B> Reverting to pre-game lobby.")
 		//GLOB.storyteller = null //Possibly bring this back in future if we have storytellers with differing requirements
 		//story_vote_ended = FALSE
 		SSjob.ResetOccupations()
@@ -246,7 +234,7 @@ SUBSYSTEM_DEF(ticker)
 
 	spawn(0)//Forking here so we dont have to wait for this to finish
 		GLOB.storyteller.set_up()
-		world << "<FONT color='blue'><B>Enjoy the game!</B></FONT>"
+		to_chat(world, "<FONT color='blue'><B>Enjoy the game!</B></FONT>")
 		world << sound('sound/AI/welcome.ogg') // Skie
 		//Holiday Round-start stuff	~Carn
 		Holiday_Game_Start()
@@ -356,7 +344,7 @@ SUBSYSTEM_DEF(ticker)
 	if(quotes.len)
 		message = pick(quotes)
 	if(message)
-		world << SPAN_NOTICE("<font color='purple'><b>Quote of the round: </b>[html_encode(message)]</font>")
+		to_chat(world, SPAN_NOTICE("<font color='purple'><b>Quote of the round: </b>[html_encode(message)]</font>"))
 
 /datum/controller/subsystem/ticker/proc/create_characters()
 	for(var/mob/new_player/player in GLOB.player_list)
@@ -389,7 +377,7 @@ SUBSYSTEM_DEF(ticker)
 	if(captainless)
 		for(var/mob/M in GLOB.player_list)
 			if(!isnewplayer(M))
-				M << "Captainship not forced on anyone."
+				to_chat(M, "Captainship not forced on anyone.")
 
 /datum/controller/subsystem/ticker/proc/move_characters_to_spawnpoints()
 	for(var/mob/living/carbon/human/player in GLOB.player_list)
@@ -398,43 +386,43 @@ SUBSYSTEM_DEF(ticker)
 
 
 /datum/controller/subsystem/ticker/proc/declare_completion()
-	world << "<br><br><br><H1>A round has ended!</H1>"
+	to_chat(world, "<br><br><br><H1>A round has ended!</H1>")
 	for(var/mob/Player in GLOB.player_list)
 		if(Player.mind && !isnewplayer(Player))
 			if(Player.stat != DEAD)
 				var/turf/playerTurf = get_turf(Player)
 				if(evacuation_controller.round_over() && evacuation_controller.emergency_evacuation)
 					if(isNotAdminLevel(playerTurf.z))
-						Player << "<font color='blue'><b>You managed to survive, but were marooned on [station_name()] as [Player.real_name]...</b></font>"
+						to_chat(Player, "<font color='blue'><b>You managed to survive, but were marooned on [station_name()] as [Player.real_name]...</b></font>")
 					else
-						Player << "<font color='green'><b>You managed to survive the events on [station_name()] as [Player.real_name].</b></font>"
+						to_chat(Player, "<font color='green'><b>You managed to survive the events on [station_name()] as [Player.real_name].</b></font>")
 				else if(isAdminLevel(playerTurf.z))
-					Player << "<font color='green'><b>You successfully underwent crew transfer after events on [station_name()] as [Player.real_name].</b></font>"
+					to_chat(Player, "<font color='green'><b>You successfully underwent crew transfer after events on [station_name()] as [Player.real_name].</b></font>")
 				else if(issilicon(Player))
-					Player << "<font color='green'><b>You remain operational after the events on [station_name()] as [Player.real_name].</b></font>"
+					to_chat(Player, "<font color='green'><b>You remain operational after the events on [station_name()] as [Player.real_name].</b></font>")
 				else
-					Player << "<font color='blue'><b>You missed the crew transfer after the events on [station_name()] as [Player.real_name].</b></font>"
+					to_chat(Player, "<font color='blue'><b>You missed the crew transfer after the events on [station_name()] as [Player.real_name].</b></font>")
 			else
 				if(isghost(Player))
 					var/mob/observer/ghost/O = Player
 					if(!O.started_as_observer)
-						Player << "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>"
+						to_chat(Player, "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>")
 				else
-					Player << "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>"
-	world << "<br>"
+					to_chat(Player, "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>")
+	to_chat(world, "<br>")
 
 	for(var/mob/living/silicon/ai/aiPlayer in SSmobs.mob_list)
 		if(aiPlayer.stat != DEAD)
-			world << "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the round were:</b>"
+			to_chat(world, "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the round were:</b>")
 		else
-			world << "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws when it was deactivated were:</b>"
+			to_chat(world, "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws when it was deactivated were:</b>")
 		aiPlayer.show_laws(TRUE)
 
 		if(aiPlayer.connected_robots.len)
 			var/robolist = "<b>The AI's loyal minions were:</b> "
 			for(var/mob/living/silicon/robot/robo in aiPlayer.connected_robots)
 				robolist += "[robo.name][robo.stat?" (Deactivated) (Played by: [robo.key]), ":" (Played by: [robo.key]), "]"
-			world << "[robolist]"
+			to_chat(world, "[robolist]")
 
 	var/dronecount = 0
 
@@ -446,15 +434,15 @@ SUBSYSTEM_DEF(ticker)
 
 		if(!robo.connected_ai)
 			if(robo.stat != 2)
-				world << "<b>[robo.name] (Played by: [robo.key]) survived as an AI-less synthetic! Its laws were:</b>"
+				to_chat(world, "<b>[robo.name] (Played by: [robo.key]) survived as an AI-less synthetic! Its laws were:</b>")
 			else
-				world << "<b>[robo.name] (Played by: [robo.key]) was unable to survive the rigors of being a synthetic without an AI. Its laws were:</b>"
+				to_chat(world, "<b>[robo.name] (Played by: [robo.key]) was unable to survive the rigors of being a synthetic without an AI. Its laws were:</b>")
 
 			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
 				robo.laws.show_laws(world)
 
 	if(dronecount)
-		world << "<b>There [dronecount>1 ? "were" : "was"] [dronecount] industrious maintenance [dronecount>1 ? "drones" : "drone"] at the end of this round.</b>"
+		to_chat(world, "<b>There [dronecount>1 ? "were" : "was"] [dronecount] industrious maintenance [dronecount>1 ? "drones" : "drone"] at the end of this round.</b>")
 
 	GLOB.storyteller.declare_completion()//To declare normal completion.
 

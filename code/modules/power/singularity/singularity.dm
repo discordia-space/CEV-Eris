@@ -416,7 +416,7 @@
 		if(M.status_flags & GODMODE)
 			continue
 		M.apply_effect(rand(radiationmin,radiation), IRRADIATE)
-		toxdamage = (toxdamage - (toxdamage*M.getarmor(null, "rad")))
+		toxdamage = (toxdamage - (toxdamage*M.getarmor(null, ARMOR_RAD)))
 		M.apply_effect(toxdamage, TOX)
 	return
 
@@ -431,11 +431,11 @@
 			if (ishuman(M))
 				var/mob/living/carbon/human/H = M
 				if(istype(H.glasses,/obj/item/clothing/glasses/powered/meson) && current_size != 11)
-					H << "<span class=\"notice\">You look directly into The [src.name], good thing you had your protective eyewear on!</span>"
+					to_chat(H, "<span class=\"notice\">You look directly into The [src.name], good thing you had your protective eyewear on!</span>")
 					return
 				else
-					H << "<span class=\"warning\">You look directly into The [src.name], but your eyewear does absolutely nothing to protect you from it!</span>"
-		M << "<span class='danger'>You look directly into The [src.name] and feel [current_size == 11 ? "helpless" : "weak"].</span>"
+					to_chat(H, "<span class=\"warning\">You look directly into The [src.name], but your eyewear does absolutely nothing to protect you from it!</span>")
+		to_chat(M, "<span class='danger'>You look directly into The [src.name] and feel [current_size == 11 ? "helpless" : "weak"].</span>")
 		M.apply_effect(3, STUN)
 		for(var/mob/O in viewers(M, null))
 			O.show_message(SPAN_DANGER("[M] stares blankly at The [src]!"), 1)
@@ -450,11 +450,11 @@
 	for(var/mob/living/M in view(10, src.loc))
 		if(prob(67))
 			M.apply_effect(rand(energy), IRRADIATE)
-			M << "<span class=\"warning\">You hear an uneartly ringing, then what sounds like a shrilling kettle as you are washed with a wave of heat.</span>"
-			M << "<span class=\"notice\">Miraculously, it fails to kill you.</span>"
+			to_chat(M, "<span class=\"warning\">You hear an uneartly ringing, then what sounds like a shrilling kettle as you are washed with a wave of heat.</span>")
+			to_chat(M, "<span class=\"notice\">Miraculously, it fails to kill you.</span>")
 		else
-			M << "<span class=\"danger\">You hear an uneartly ringing, then what sounds like a shrilling kettle as you are washed with a wave of heat.</span>"
-			M << "<span class=\"danger\">You don't even have a moment to react as you are reduced to ashes by the intense radiation.</span>"
+			to_chat(M, "<span class=\"danger\">You hear an uneartly ringing, then what sounds like a shrilling kettle as you are washed with a wave of heat.</span>")
+			to_chat(M, "<span class=\"danger\">You don't even have a moment to react as you are reduced to ashes by the intense radiation.</span>")
 			M.dust()
 	return
 

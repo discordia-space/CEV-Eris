@@ -25,7 +25,7 @@ obj/machinery/atmospherics/pipe/zpipe
 		var/travel_direction_name = "UNDEFINED"
 		var/travel_direction = "UNDEFINED"
 
-		level = 1
+		level = BELOW_PLATING_LEVEL
 
 obj/machinery/atmospherics/pipe/zpipe/New()
 	..()

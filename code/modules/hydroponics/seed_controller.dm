@@ -14,11 +14,11 @@ ADMIN_VERB_ADD(/client/proc/show_plant_genes, R_DEBUG, FALSE)
 	if(!holder)	return
 
 	if(!plant_controller || !plant_controller.gene_tag_masks)
-		usr << "Gene masks not set."
+		to_chat(usr, "Gene masks not set.")
 		return
 
 	for(var/mask in plant_controller.gene_tag_masks)
-		usr << "[mask]: [plant_controller.gene_tag_masks[mask]]"
+		to_chat(usr, "[mask]: [plant_controller.gene_tag_masks[mask]]")
 
 var/global/datum/controller/plants/plant_controller // Set in New().
 

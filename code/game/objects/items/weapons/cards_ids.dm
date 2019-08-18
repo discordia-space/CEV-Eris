@@ -45,7 +45,7 @@
 	icon_state = "data"
 	item_state = "card-id"
 	layer = 3
-	level = 2
+	level = ABOVE_PLATING_LEVEL
 	desc = "This card contains coordinates to the fabled Clown Planet. Handle with care."
 	function = "teleporter"
 	data = "Clown Land"
@@ -121,9 +121,9 @@ var/const/NO_EMAG_ACT = -50
 	set src in oview(1)
 	if(in_range(usr, src))
 		show(usr)
-		usr << desc
+		to_chat(usr, desc)
 	else
-		usr << SPAN_WARNING("It is too far away.")
+		to_chat(usr, SPAN_WARNING("It is too far away."))
 
 /obj/item/weapon/card/id/proc/prevent_tracking()
 	return 0
@@ -187,16 +187,16 @@ var/const/NO_EMAG_ACT = -50
 
 /obj/item/weapon/card/id/GetIdCard()
 	return src
-	
+
 /obj/item/weapon/card/id/verb/read()
 	set name = "Read ID Card"
 	set category = "Object"
 	set src in usr
 
-	usr << text("\icon[] []: The current assignment on the card is [].", src, src.name, src.assignment)
-	usr << "The blood type on the card is [blood_type]."
-	usr << "The DNA hash on the card is [dna_hash]."
-	usr << "The fingerprint hash on the card is [fingerprint_hash]."
+	to_chat(usr, text("\icon[] []: The current assignment on the card is [].", src, src.name, src.assignment))
+	to_chat(usr, "The blood type on the card is [blood_type].")
+	to_chat(usr, "The DNA hash on the card is [dna_hash].")
+	to_chat(usr, "The fingerprint hash on the card is [fingerprint_hash].")
 	return
 
 
