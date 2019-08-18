@@ -4,7 +4,7 @@
 // Tier 1
 /obj/structure/closet/onestar/tier1
 	name = "\improper OneStar forgotten closet"
-	desc = "Old OneStar closet, doesn't look like it contains anything worthwhile."
+	desc = "Old OneStar closet, doesn't look like it contains anything worthwhile. Maybe."
 	icon_state = "lootcloset"
 
 /obj/structure/closet/onestar/tier1/populate_contents()
@@ -26,7 +26,7 @@
 // Tier 2
 /obj/structure/closet/onestar/tier2
 	name = "\improper OneStar forgotten closet"
-	desc = "Old OneStar closet, there's good stuff inside it."
+	desc = "Old OneStar closet, it might have some good stuff inside it."
 	icon_state = "lootcloset1"
 
 /obj/structure/closet/onestar/tier2/populate_contents()
@@ -48,7 +48,7 @@
 // Tier 3
 /obj/structure/closet/onestar/tier3
 	name = "\improper OneStar forgotten closet"
-	desc = "Old OneStar closet, what lies behind the door is more than you could gather in your life."
+	desc = "Old OneStar closet, may contain very valuable items or nothing of worthwhile."
 	icon_state = "lootcloset2"
 
 /obj/structure/closet/onestar/tier3/populate_contents()

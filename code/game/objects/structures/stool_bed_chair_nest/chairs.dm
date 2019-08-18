@@ -279,7 +279,7 @@
 //onestar
 /obj/structure/bed/chair/custom/onestar
 	name = "onestar chair"
-	desc = "Plain-looking chair. Made by OneStar."
+	desc = "Duranium chair. The chair uses ancient metals in his construction and is manufactured inside OneStar"
 	icon_state = "onestar_chair_grey"
 
 /obj/structure/bed/chair/custom/onestar/red
