@@ -241,4 +241,84 @@
 			if (beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
 				break
 
+/obj/item/weapon/storage/handmadeGrinder
+	name = "Makeshift grinder"
+	desc = "Mortar and pestle to grind ingridients."
+	icon = 'icons/obj/machines/chemistry.dmi'
+	icon_state = "mortar"
+	storage_slots = 3
+	unacidable = 1
+	var/amount_per_transfer_from_this = 5
+	var/possible_transfer_amounts = list(5,10,30,60)
+
+/obj/item/weapon/storage/handmadeGrinder/Initialize(mapload, ...)
+	. = ..()
+	create_reagents(60)
+
+/obj/item/weapon/storage/handmadeGrinder/attack_self(mob/user)
+	if(do_after(user, 60 - (40 * user.stats.getMult(STAT_TGH, STAT_LEVEL_ADEPT))))
+		grind()
+		refresh_all()
+
+/obj/item/weapon/storage/handmadeGrinder/proc/grind()
+	// Sanity check.
+	if (!reagents || (reagents.total_volume >= reagents.maximum_volume))
+		return
+
+	// Process.
+	for (var/obj/item/O in src.contents)
+		var/remaining_volume = reagents.maximum_volume - reagents.total_volume
+		if(remaining_volume <= 0)
+			break
+
+		if(get_material_name_by_stack_type(O.type))
+			var/obj/item/stack/stack = O
+			if(istype(stack))
+				var/amount_to_take = max(0,min(stack.amount,round(remaining_volume/REAGENTS_PER_SHEET)))
+				if(amount_to_take)
+					stack.use(amount_to_take)	
+					if(QDELETED(stack))
+						src.contents.Remove(O)
+					reagents.add_reagent(get_material_name_by_stack_type(stack.type), (amount_to_take*REAGENTS_PER_SHEET))
+					continue
+
+		if(O.reagents)
+			O.reagents.trans_to(reagents, min(O.reagents.total_volume, remaining_volume))
+			if(O.reagents.total_volume == 0)
+				qdel(O)
+				src.contents.Remove(O)
+			if (reagents.total_volume >= reagents.maximum_volume)
+				break
+
+
+/obj/item/weapon/storage/handmadeGrinder/afterattack(var/obj/target, var/mob/user, var/flag)
+	// Ensure we don't splash beakers and similar containers.
+	if(!target.is_refillable())
+		if(istype(target, /obj/item/weapon/reagent_containers))
+			var/obj/item/weapon/reagent_containers/container = target
+			container.is_closed_message(user)
+			return TRUE
+		// Otherwise don't care about splashing.
+		else
+			return FALSE
+
+	if(!reagents.total_volume)
+		to_chat(user, SPAN_NOTICE("[src] is empty."))
+		return TRUE
+
+	if(!target.reagents.get_free_space())
+		to_chat(user, SPAN_NOTICE("[target] is full."))
+		return TRUE
+
+	var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
+	playsound(src,'sound/effects/Liquid_transfer_mono.ogg',50,1)
+	to_chat(user, SPAN_NOTICE("You transfer [trans] units of the solution to [target]."))
+
+/obj/item/weapon/storage/handmadeGrinder/verb/set_APTFT() //set amount_per_transfer_from_this
+	set name = "Set transfer amount"
+	set category = "Object"
+	set src in range(0)
+	var/N = input("Amount per transfer from this:","[src]") as null|anything in possible_transfer_amounts
+	if(N)
+		amount_per_transfer_from_this = N
 #undef REAGENTS_PER_SHEET

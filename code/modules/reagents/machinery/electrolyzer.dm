@@ -17,6 +17,7 @@
 	build_path = /obj/machinery/electrolyzer
 	origin_tech = list(TECH_BIO = 3)
 
+// returns FALSE on errors TRUE on success and -1 if nothing to do
 /proc/electrolysis(var/obj/item/weapon/reagent_containers/primaryBeaker, var/obj/item/weapon/reagent_containers/secondaryBeaker, var/amount)
 	if(!primaryBeaker || !secondaryBeaker)
 		return FALSE
@@ -28,15 +29,20 @@
 	if(!primaryBeaker.reagents.reagent_list.len > 1)
 		return FALSE
 
-	var/reagent_id = primaryBeaker.reagents.get_master_reagent_id()
 	var/datum/chemical_reaction/originalReaction
-	for(var/datum/chemical_reaction/R in chemical_reactions_list)
-		if(reagent_id == R.result && R.supports_decomposition_by_electrolysis)
-			originalReaction = R
-			break
+	var/activeReagent
+	for(var/datum/reagent/R in primaryBeaker.reagents.reagent_list)
+		for(var/id in GLOB.chemical_reactions_list_by_result)
+			if(R.id == id)
+				var/list/recipeList = GLOB.chemical_reactions_list_by_result[id]
+				var/datum/chemical_reaction/recipe = recipeList[1]	// lets pick first one and hope that its the right one (this might cause problems if there is more than 1 recipe for reagent)
+				if(recipe.supports_decomposition_by_electrolysis)
+					activeReagent = R.id
+					originalReaction = recipe
+					break
 
-	if(istype(originalReaction))
-		crash_with("something went wrong")
+	if(!istype(originalReaction))
+		return -1
 
 	var/volumeToHandle = min(originalReaction.result_amount, primaryBeaker.reagents.total_volume, amount)
 	var/partVolume = volumeToHandle/originalReaction.result_amount
@@ -44,7 +50,7 @@
 	if(secondaryBeaker.reagents.get_free_space() < volumeToHandle)
 		return FALSE
 
-	primaryBeaker.reagents.remove_reagent(reagent_id, volumeToHandle)
+	primaryBeaker.reagents.remove_reagent(activeReagent, volumeToHandle)
 	primaryBeaker.reagents.add_reagent(originalReaction.required_reagents[1], partVolume * originalReaction.required_reagents[originalReaction.required_reagents[1]])
 	for(var/i = 2 , i <= originalReaction.required_reagents.len, i++)
 		secondaryBeaker.reagents.add_reagent(originalReaction.required_reagents[i], partVolume * originalReaction.required_reagents[originalReaction.required_reagents[i]])
@@ -77,11 +83,16 @@
 		update_icon()
 		return
 	if(on && beaker && beaker.reagents.total_volume)
-		if(!electrolysis(beaker, separationBeaker, convertion_coefficient))
+		var/state = electrolysis(beaker, separationBeaker, convertion_coefficient)
+		if(!state)
 			on = FALSE
 			playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 1 -3)
 			visible_message("\icon[src]\The [src] buzzes indicating that error has occured.")
-			update_icon()
+		else if(state == -1)
+			on = FALSE
+			playsound(src.loc, 'sound/machines/ping.ogg', 50, 1 -3)
+			visible_message("\icon[src]\The [src] pings indicating that process is complete.")
+		update_icon()
 		SSnano.update_uis(src)
 
 /obj/machinery/electrolyzer/attackby(obj/item/I, mob/user, params)
@@ -101,7 +112,7 @@
 		else if(!separationBeaker)
 			separationBeaker = B
 		to_chat(user, SPAN_NOTICE("You add [B] to [src]."))
-		updateUsrDialog()
+		SSnano.update_uis(src)
 		update_icon()
 		return
 	return ..()
@@ -131,7 +142,7 @@
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "electrolyzer.tmpl", name, 275, 400)
+		ui = new(user, src, ui_key, "electrolyzer.tmpl", name, 550, 400)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window
@@ -147,6 +158,7 @@
 		data["beaker"] = beaker.reagents.ui_data()
 	if(separationBeaker)
 		data["separationBeaker"] = separationBeaker.reagents.ui_data()
+	data["has_power"] = (stat & NOPOWER) ? FALSE : TRUE
 	return data
 
 
@@ -154,8 +166,11 @@
 	if(..())
 		return
 
-	if(href_list["power"])
-		on = !on
+	if(href_list["turn_on"])
+		on = TRUE
+
+	if(href_list["turn_off"])
+		on = FALSE
 
 	if(href_list["eject"] && beaker)
 		on = FALSE
@@ -178,7 +193,7 @@
 	icon = 'icons/obj/machines/chemistry.dmi'
 	icon_state = "electrolysis_makeshift"
 	var/on = FALSE
-	var/tick_cost = 30
+	var/tick_cost = 3
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/small
 	var/obj/item/weapon/reagent_containers/beaker
@@ -217,12 +232,13 @@
 		playsound(loc, 'sound/machines/button.ogg', 50, 1)
 		user << SPAN_WARNING("[src] battery is dead or missing.")
 		return FALSE
-	. = ..()
+	on = TRUE
+	START_PROCESSING(SSobj, src)
 
 /obj/item/device/makeshiftElectrolyser/proc/turn_off(mob/user)
-	. = ..()
-	if(. && user)
-		user.update_action_buttons()
+	on = FALSE
+	STOP_PROCESSING(SSobj, src)
+	SSnano.update_uis(src)
 
 /obj/item/device/makeshiftElectrolyser/Process()
 	if(on)
@@ -230,9 +246,16 @@
 			visible_message(SPAN_NOTICE("[src]'s electrodes stopped bubbling."), range = 4)
 			turn_off()
 		if(beaker && beaker.reagents.total_volume)
-			if(!electrolysis(beaker, separationBeaker, 1))
+			var/state = electrolysis(beaker, separationBeaker, 2)
+			if(!state || state == -1)
 				turn_off()
 			SSnano.update_uis(src)
+			
+
+/obj/item/device/makeshiftElectrolyser/attack_self(mob/user as mob)
+	user.set_machine(src)
+	ui_interact(user)
+	add_fingerprint(user)
 
 /obj/item/device/makeshiftElectrolyser/MouseDrop(over_object)
 	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
@@ -244,7 +267,7 @@
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
 		to_chat(user, SPAN_NOTICE("You add [C] to [src]."))
 		src.cell = C
-		updateUsrDialog()
+		SSnano.update_uis(src)
 		return
 	if(istype(C, /obj/item/weapon/reagent_containers) && C.is_open_container() && (!beaker || !separationBeaker))
 		. = TRUE //no afterattack
@@ -256,6 +279,64 @@
 		else if(!separationBeaker)
 			separationBeaker = B
 		to_chat(user, SPAN_NOTICE("You add [B] to [src]."))
-		updateUsrDialog()
+		SSnano.update_uis(src)
 		return
 	return ..()
+
+/obj/item/device/makeshiftElectrolyser/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
+	var/list/data = ui_data()
+
+	// update the ui if it exists, returns null if no ui is passed/found
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if (!ui)
+		// the ui does not exist, so we'll create a new() one
+        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		ui = new(user, src, ui_key, "electrolyzer.tmpl", name, 550, 400)
+		// when the ui is first opened this is the data it will use
+		ui.set_initial_data(data)
+		// open the new ui window
+		ui.open()
+
+
+
+/obj/item/device/makeshiftElectrolyser/ui_data()
+	var/data = list()
+	data["on"] = on
+	data["has_power"] = cell ? cell.check_charge(tick_cost) : FALSE
+
+	if(beaker)
+		data["beaker"] = beaker.reagents.ui_data()
+	if(separationBeaker)
+		data["separationBeaker"] = separationBeaker.reagents.ui_data()
+	return data
+
+/obj/item/device/makeshiftElectrolyser/attack_hand(mob/user)
+	if(loc != user && ..())
+		return TRUE
+	user.set_machine(src)
+	ui_interact(user)
+
+/obj/item/device/makeshiftElectrolyser/Topic(href, href_list)
+	if(..())
+		return
+
+	if(href_list["turn_on"])
+		turn_on()
+
+	if(href_list["turn_off"])
+		turn_off()
+
+	if(href_list["eject"] && beaker)
+		turn_off()
+		if(beaker)
+			beaker.forceMove(get_turf(src))
+			beaker = null
+
+	if(href_list["ejectSecondary"] && beaker)
+		turn_off()
+		if(separationBeaker)
+			separationBeaker.forceMove(get_turf(src))
+			separationBeaker = null
+
+	return 1 // update UIs attached to this object
+

@@ -12,6 +12,10 @@
 	for(var/path in paths)
 		var/datum/chemical_reaction/D = new path()
 		if(D.required_reagents && D.required_reagents.len)
+			if(D.result)
+				if(!GLOB.chemical_reactions_list_by_result[D.result])
+					GLOB.chemical_reactions_list_by_result[D.result] = list()
+				GLOB.chemical_reactions_list_by_result[D.result] += D
 			var/reagent_id = D.required_reagents[1]
 			if(!chemical_reactions_list[reagent_id])
 				chemical_reactions_list[reagent_id] = list()

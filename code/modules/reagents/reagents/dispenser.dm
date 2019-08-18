@@ -116,7 +116,7 @@
 
 	M.add_chemical_effect(CE_ALCOHOL, 1)
 
-//Tought people can drink a lot
+//Tough people can drink a lot
 	var/tolerance = max(10, strength + M.stats.getStat(STAT_TGH))
 
 	if(dose * strength_mod >= tolerance) // Early warning
@@ -181,7 +181,7 @@
 	M.adjustToxLoss(0.4 * effectMultiplier)
 
 /datum/reagent/hydrazine/affect_touch(var/mob/living/carbon/M, var/alien, var/effectMultiplier) // Hydrazine is both toxic and flammable.
-	M.adjust_fire_stacks(0.04 / 12)
+	M.adjust_fire_stacks(0.4 / 12)
 	M.adjustToxLoss(0.2 * effectMultiplier)
 
 /datum/reagent/hydrazine/touch_turf(var/turf/T)

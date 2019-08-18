@@ -634,6 +634,14 @@
 	..()
 	if(adj_temp > 0)
 		holder.remove_reagent("frostoil", 1 * effectMultiplier)
+	// Coffee is really bad for you with busted kidneys.
+	var/mob/living/carbon/human/H = M
+	var/obj/item/organ/internal/kidneys/K = H.internal_organs_by_name[BP_KIDNEYS]
+	if (istype(K))
+		if(K.is_bruised())
+			M.adjustToxLoss(0.1)
+		else if(K.is_broken())
+			M.adjustToxLoss(0.3)
 	M.add_chemical_effect(CE_PULSE, 1)
 
 /datum/reagent/drink/coffee/overdose(var/mob/living/carbon/M, var/alien)

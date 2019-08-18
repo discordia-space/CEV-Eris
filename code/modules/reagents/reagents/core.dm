@@ -146,7 +146,7 @@
 			if(S.Target) // Like cats
 				S.Target = null
 				++S.Discipline
-		if(prob(5))
+		if(dose >= MTR(effectMultiplier, CHEM_TOUCH))
 			S.visible_message(SPAN_WARNING("[S]'s flesh sizzles where the water touches it!"), SPAN_DANGER("Your flesh burns in the water!"))
 
 /datum/reagent/fuel

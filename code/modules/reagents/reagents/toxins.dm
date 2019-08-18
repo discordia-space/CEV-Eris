@@ -565,7 +565,7 @@
 	M.adjustCloneLoss(2)
 		
 /datum/reagent/fuhrerole
-	name = "fuhrerole"
+	name = "Fuhrerole"
 	id = "fuhrerole"
 	description = "Harvested from Fuhrer roaches."
 	taste_description = "third reich"

@@ -11,6 +11,7 @@
 	metabolism = REM/2
 	heating_point = 363
 	heating_products = list("toxin")
+	scannable = 1
 
 /datum/reagent/nanites/proc/eatBlood(var/mob/living/carbon/M) // Yam !
 	var/datum/reagent/blood/B = M.get_blood()
@@ -29,7 +30,7 @@
 		return 0
 
 /datum/reagent/nanites/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
-	eatBlood()
+	eatBlood(M)
 	if(M.get_blood_volume() < BLOOD_VOLUME_OKAY)
 		var/removed = consumed_amount() * (BLOOD_VOLUME_OKAY - M.get_blood_volume() / 100)
 		removed = min(volume,removed)
@@ -71,7 +72,9 @@
 	description = "Microscopic construction robots."
 
 /datum/reagent/nanites/uncapped/will_occur(var/mob/living/carbon/M, var/alien, var/location)
-	return FALSE
+	if(type == /datum/reagent/nanites/uncapped) // only derived classes are consumed
+		return FALSE
+	return TRUE
 
 /datum/reagent/nanites/arad
 	name = "A-rad (nanobots)"
@@ -220,11 +223,6 @@
 				var/datum/reagent/R = current
 				if(istype(current, /datum/reagent/nanites) && !istype(current, /datum/reagent/nanites/purgers))
 					R.remove_self(effectMultiplier * 1)
-
-/datum/reagent/nanites/uncapped/will_occur(var/mob/living/carbon/M, var/alien, var/location)
-	if(..())
-		return TRUE
-
 
 /datum/reagent/nanites/uncapped/controlBoosterUtility
 	name = "Control Booster Utility (uncapped nanobots)"

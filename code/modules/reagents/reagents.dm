@@ -62,17 +62,21 @@
 		removed = ingest_met
 	if(touch_met && (location == CHEM_TOUCH))
 		removed = touch_met
-	// on half of overdose chemicals will be metabolized faster, 
+	// on half of overdose, chemicals will start be metabolized faster, 
 	// also blood circulation affects chemical strength (meaining if target has low blood volume or has something that lowers blood circulation chemicals will be consumed less and effect will diminished)
 	if(location == CHEM_BLOOD)
 		if(!constantMetabolism)
 			if(overdose)
-				removed = CLAMP(metabolism * volume/(overdose/2) * M.get_blood_circulation()/100, metabolism, metabolism * REAGENTS_MAX_EFFECT_MULTIPLIER)
+				removed = CLAMP(metabolism * volume/(overdose/2) * M.get_blood_circulation()/100, metabolism * REAGENTS_MIN_EFFECT_MULTIPLIER, metabolism * REAGENTS_MAX_EFFECT_MULTIPLIER)
 			else
-				removed = CLAMP(metabolism * volume/(REAGENTS_OVERDOSE/2), metabolism, metabolism * REAGENTS_MAX_EFFECT_MULTIPLIER)
+				removed = CLAMP(metabolism * volume/(REAGENTS_OVERDOSE/2) * M.get_blood_circulation()/100, metabolism * REAGENTS_MIN_EFFECT_MULTIPLIER, metabolism * REAGENTS_MAX_EFFECT_MULTIPLIER)
+	removed = round(removed, 0.01)
 	removed = min(removed, volume)
+	if(M.name == "Jhony Mccune")
+		world << "removed [name] = [removed]"
 	return removed
-// Removed to multiplier
+
+// "Removed" to multiplier
 // will return multiplier of how much value is more or less than default metabolism amount
 // all chem effects should be multiplied by return of this proc
 /datum/reagent/proc/RTM(var/removed, var/location)
@@ -81,6 +85,14 @@
 	if(touch_met && location == CHEM_TOUCH)
 		return removed/touch_met
 	return removed/metabolism
+
+// reverse convertion
+/datum/reagent/proc/MTR(var/RTM, var/location)
+	if(ingest_met && location == CHEM_INGEST)
+		return ingest_met * RTM
+	if(touch_met && location == CHEM_TOUCH)
+		return touch_met * RTM
+	return metabolism * RTM
 
 
 // This doesn't apply to skin contact - this is for, e.g. extinguishers and sprays.

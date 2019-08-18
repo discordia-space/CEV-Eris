@@ -1012,6 +1012,7 @@
 #include "code\game\objects\items\weapons\tools\mods\_upgrades.dm"
 #include "code\game\objects\items\weapons\tools\mods\mod_types.dm"
 #include "code\game\objects\landmarks\costume.dm"
+#include "code\game\objects\landmarks\debug.dm"
 #include "code\game\objects\landmarks\event.dm"
 #include "code\game\objects\landmarks\join.dm"
 #include "code\game\objects\landmarks\landmark.dm"

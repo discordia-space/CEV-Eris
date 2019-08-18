@@ -939,8 +939,8 @@ var/list/rank_prefix = list(\
 /mob/living/carbon/human/proc/get_full_print()
 	if(!dna ||!dna.uni_identity)
 		return
-	if(chem_effects[CE_VOICEMIMIC])
-		return md5(chem_effects[CE_VOICEMIMIC])
+	if(chem_effects[CE_DYNAMICFINGERS])
+		return md5(chem_effects[CE_DYNAMICFINGERS])
 	return md5(dna.uni_identity)
 
 /mob/living/carbon/human/clean_blood(var/clean_feet)

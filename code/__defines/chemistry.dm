@@ -30,6 +30,8 @@
 #define GAS				3
 
 #define REAGENTS_OVERDOSE 30
+
+#define REAGENTS_MIN_EFFECT_MULTIPLIER 0.2
 #define REAGENTS_MAX_EFFECT_MULTIPLIER 2.5
 
 #define CHEM_SYNTH_ENERGY 500 // How much energy does it take to synthesize 1 unit of chemical, in Joules.
