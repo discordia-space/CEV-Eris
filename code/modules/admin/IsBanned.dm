@@ -1,17 +1,20 @@
 #ifndef OVERRIDE_BAN_SYSTEM
 //Blocks an attempt to connect before even creating our client datum thing.
-world/IsBanned(key, address, computer_id)
+world/IsBanned(key, address, computer_id, real_bans_only=FALSE)
+	if(real_bans_only && !key)
+		return FALSE
+
 	if(ckey(key) in admin_datums)
 		return ..()
 
 	//Guest Checking
-	if(!config.guests_allowed && IsGuestKey(key))
+	if(!real_bans_only && !config.guests_allowed && IsGuestKey(key))
 		log_access("Failed Login: [key] - Guests not allowed")
 		message_admins("\blue Failed Login: [key] - Guests not allowed")
 		return list("reason"="guest", "desc"="\nReason: Guests not allowed. Please sign in with a byond account.")
 
 	//check if the IP address is a known TOR node
-	if(config && config.ToRban && ToRban_isbanned(address))
+	if(!real_bans_only && config && config.ToRban && ToRban_isbanned(address))
 		log_access("Failed Login: [src] - Banned: ToR")
 		message_admins("\blue Failed Login: [src] - Banned: ToR")
 		//ban their computer_id and ckey for posterity

@@ -79,13 +79,13 @@
 	.=..()
 	if (health < maxHealth)
 		if (health < (0.25 * maxHealth))
-			user << SPAN_DANGER("It looks like it's about to collapse!")
+			to_chat(user, SPAN_DANGER("It looks like it's about to collapse!"))
 		else if (health < (0.5 * maxHealth))
-			user << SPAN_WARNING("It's heavily damaged!")
+			to_chat(user, SPAN_WARNING("It's heavily damaged!"))
 		else if (health < (0.75 * maxHealth))
-			user << SPAN_WARNING("It's taken a bit of a beating!")
+			to_chat(user, SPAN_WARNING("It's taken a bit of a beating!"))
 		else
-			user << SPAN_WARNING("It has a few scuffs and scrapes")
+			to_chat(user, SPAN_WARNING("It has a few scuffs and scrapes"))
 
 
 

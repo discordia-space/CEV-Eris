@@ -876,7 +876,7 @@
 		if(isnull(result))
 			user.visible_message("[user] tries to shove [weapon] into [src]. What a dumb-ass.",SPAN_WARNING("[fuel] traces minimal. [weapon] cannot be used as fuel."))
 		else if(!result)
-			user << "Unit is full."
+			to_chat(user, "Unit is full.")
 		else
 			user.visible_message("[user] loads [src] with [fuel].","[result] unit\s of [fuel] successfully loaded.")
 		return
@@ -953,7 +953,7 @@
 		if(..())
 			for(var/mob/living/carbon/M in view(EG.chassis))
 				if(ishuman(M))
-					M.apply_effect((EG.rad_per_cycle*3),IRRADIATE,0)
+					M.apply_effect((EG.rad_per_cycle*3),IRRADIATE)
 				else
 					M.apply_effect(EG.rad_per_cycle, IRRADIATE)
 		return 1
@@ -1037,7 +1037,7 @@
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/destroy()
 	for(var/atom/movable/AM in src)
 		AM.forceMove(get_turf(src))
-		AM << SPAN_DANGER("You tumble out of the destroyed [src.name]!")
+		to_chat(AM, SPAN_DANGER("You tumble out of the destroyed [src.name]!"))
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/Exit(atom/movable/O)
@@ -1054,9 +1054,9 @@
 			log_message("\The [user] boarded.")
 			occupant_message("\The [user] boarded.")
 		else if(src.occupant != user)
-			user << SPAN_WARNING("[src.occupant] was faster. Try better next time, loser.")
+			to_chat(user, SPAN_WARNING("[src.occupant] was faster. Try better next time, loser."))
 	else
-		user << "You stop entering the exosuit."
+		to_chat(user, "You stop entering the exosuit.")
 
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/verb/eject()
 	set name = "Eject"
@@ -1066,7 +1066,7 @@
 
 	if(usr != occupant)
 		return
-	occupant << "You climb out from \the [src]."
+	to_chat(occupant, "You climb out from \the [src].")
 	go_out()
 	occupant_message("[occupant] disembarked.")
 	log_message("[occupant] disembarked.")
@@ -1128,18 +1128,18 @@
 		return
 
 	if (!isturf(usr.loc))
-		usr << SPAN_DANGER("You can't reach the passenger compartment from here.")
+		to_chat(usr, SPAN_DANGER("You can't reach the passenger compartment from here."))
 		return
 
 	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
 		if(C.handcuffed)
-			usr << SPAN_DANGER("Kinda hard to climb in while handcuffed don't you think?")
+			to_chat(usr, SPAN_DANGER("Kinda hard to climb in while handcuffed don't you think?"))
 			return
 
 	for(var/mob/living/carbon/slime/M in range(1,usr))
 		if(M.Victim == usr)
-			usr << SPAN_DANGER("You're too busy getting your life sucked out of you.")
+			to_chat(usr, SPAN_DANGER("You're too busy getting your life sucked out of you."))
 			return
 
 	//search for a valid passenger compartment
@@ -1159,13 +1159,13 @@
 	//didn't find anything
 	switch (feedback)
 		if (OCCUPIED)
-			usr << SPAN_DANGER("The passenger compartment is already occupied!")
+			to_chat(usr, SPAN_DANGER("The passenger compartment is already occupied!"))
 		if (LOCKED)
-			usr << SPAN_WARNING("The passenger compartment hatch is locked!")
+			to_chat(usr, SPAN_WARNING("The passenger compartment hatch is locked!"))
 		if (OCCUPIED|LOCKED)
-			usr << SPAN_DANGER("All of the passenger compartments are already occupied or locked!")
+			to_chat(usr, SPAN_DANGER("All of the passenger compartments are already occupied or locked!"))
 		if (0)
-			usr << SPAN_WARNING("\The [src] doesn't have a passenger compartment.")
+			to_chat(usr, SPAN_WARNING("\The [src] doesn't have a passenger compartment."))
 
 #undef LOCKED
 #undef OCCUPIED

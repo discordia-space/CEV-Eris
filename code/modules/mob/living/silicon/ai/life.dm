@@ -35,18 +35,18 @@
 		malf_process()
 
 		if(APU_power && (hardware_integrity() < 50))
-			src << SPAN_NOTICE("<b>APU GENERATOR FAILURE! (System Damaged)</b>")
+			to_chat(src, SPAN_NOTICE("<b>APU GENERATOR FAILURE! (System Damaged)</b>"))
 			stop_apu(1)
 
 		if (!is_blinded())
 			if (aiRestorePowerRoutine==2)
-				src << "Alert cancelled. Power has been restored without our assistance."
+				to_chat(src, "Alert cancelled. Power has been restored without our assistance.")
 				aiRestorePowerRoutine = 0
 //				src.blind.alpha = 0
 				updateicon()
 				return
 			else if (aiRestorePowerRoutine==3)
-				src << "Alert cancelled. Power has been restored."
+				to_chat(src, "Alert cancelled. Power has been restored.")
 				aiRestorePowerRoutine = 0
 //				src.blind.alpha = 0
 				updateicon()
@@ -64,26 +64,26 @@
 					aiRestorePowerRoutine = 1
 
 					//Now to tell the AI why they're blind and dying slowly.
-					src << "You've lost power!"
+					to_chat(src, "You've lost power!")
 
 					spawn(20)
-						src << "Backup battery online. Scanners, camera, and radio interface offline. Beginning fault-detection."
+						to_chat(src, "Backup battery online. Scanners, camera, and radio interface offline. Beginning fault-detection.")
 						sleep(50)
 						if (current_area.power_equip)
 							if (!istype(T, /turf/space))
-								src << "Alert cancelled. Power has been restored without our assistance."
+								to_chat(src, "Alert cancelled. Power has been restored without our assistance.")
 								aiRestorePowerRoutine = 0
 //								src.blind.alpha = 0
 								return
-						src << "Fault confirmed: missing external power. Shutting down main control system to save power."
+						to_chat(src, "Fault confirmed: missing external power. Shutting down main control system to save power.")
 						sleep(20)
-						src << "Emergency control system online. Verifying connection to power network."
+						to_chat(src, "Emergency control system online. Verifying connection to power network.")
 						sleep(50)
 						if (istype(T, /turf/space))
-							src << "Unable to verify! No power connection detected!"
+							to_chat(src, "Unable to verify! No power connection detected!")
 							aiRestorePowerRoutine = 2
 							return
-						src << "Connection verified. Searching for APC in power network."
+						to_chat(src, "Connection verified. Searching for APC in power network.")
 						sleep(50)
 						var/obj/machinery/power/apc/theAPC = null
 
@@ -101,7 +101,7 @@
 								return
 							if (current_area.power_equip)
 								if (!istype(T, /turf/space))
-									src << "Alert cancelled. Power has been restored without our assistance."
+									to_chat(src, "Alert cancelled. Power has been restored without our assistance.")
 									aiRestorePowerRoutine = 0
 //									src.blind.alpha = 0 //This, too, is a fix to issue 603
 									return
@@ -110,15 +110,15 @@
 								if (2) src << "Best route identified. Hacking offline APC power port."
 								if (3) src << "Power port upload access confirmed. Loading control program into APC power port software."
 								if (4)
-									src << "Transfer complete. Forcing APC to execute program."
+									to_chat(src, "Transfer complete. Forcing APC to execute program.")
 									sleep(50)
-									src << "Receiving control information from APC."
+									to_chat(src, "Receiving control information from APC.")
 									sleep(2)
 									theAPC.operating = 1
 									theAPC.equipment = 3
 									theAPC.update()
 									aiRestorePowerRoutine = 3
-									src << "Here are your current laws:"
+									to_chat(src, "Here are your current laws:")
 									show_laws()
 									updateicon()
 							sleep(50)

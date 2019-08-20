@@ -10,7 +10,7 @@
 	examine(mob/user)
 		..(user)
 		if(armed)
-			user << "It looks like it's armed."
+			to_chat(user, "It looks like it's armed.")
 
 	update_icon()
 		if(armed)
@@ -44,8 +44,8 @@
 					if(!H.gloves)
 						H.apply_effect(250/(target.mob_size), AGONY)
 		if (!isrobot(target))
-			target.apply_damage(rand(15,30), AGONY, def_zone = zone, used_weapon = src)
-			target.apply_damage(rand(8,15), BRUTE, def_zone = zone, used_weapon = src)
+			target.damage_through_armor(rand(15,30), AGONY, zone, ARMOR_MELEE, used_weapon = src)
+			target.damage_through_armor(rand(8,15), BRUTE, zone, ARMOR_MELEE, used_weapon = src)
 
 	playsound(target.loc, 'sound/effects/snap.ogg', 50, 1)
 	layer = MOB_LAYER - 0.2
@@ -56,7 +56,7 @@
 
 /obj/item/device/assembly/mousetrap/attack_self(mob/living/user as mob)
 	if(!armed)
-		user << "<span class='notice'>You arm [src].</span>"
+		to_chat(user, "<span class='notice'>You arm [src].</span>")
 	else
 		if((CLUMSY in user.mutations)&& prob(50))
 			var/which_hand = "l_hand"
@@ -66,7 +66,7 @@
 			user.visible_message("<span class='warning'>[user] accidentally sets off [src], breaking their fingers.</span>", \
 								 "<span class='warning'>You accidentally trigger [src]!</span>")
 			return
-		user << "<span class='notice'>You disarm [src].</span>"
+		to_chat(user, "<span class='notice'>You disarm [src].</span>")
 	armed = !armed
 	update_icon()
 	playsound(user.loc, 'sound/weapons/handcuffs.ogg', 30, 1, -3)
@@ -128,4 +128,4 @@
 		return
 
 	layer = TURF_LAYER+0.2
-	usr << "<span class='notice'>You hide [src].</span>"
+	to_chat(usr, "<span class='notice'>You hide [src].</span>")

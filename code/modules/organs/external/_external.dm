@@ -234,7 +234,7 @@
 		for(var/obj/item/I in contents)
 			if(istype(I, /obj/item/organ))
 				continue
-			usr << SPAN_DANGER("There is \a [I] sticking out of it.")
+			to_chat(usr, SPAN_DANGER("There is \a [I] sticking out of it."))
 	return
 
 /obj/item/organ/external/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -538,7 +538,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(germ_level >= INFECTION_LEVEL_THREE && antibiotics < 30)	//overdosing is necessary to stop severe infections
 		if (!(status & ORGAN_DEAD))
 			status |= ORGAN_DEAD
-			owner << SPAN_NOTICE("You can't feel your [name] anymore...")
+			to_chat(owner, SPAN_NOTICE("You can't feel your [name] anymore..."))
 			owner.update_body(1)
 
 		germ_level++
@@ -884,7 +884,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			if(isnull(suit.supporting_limbs))
 				return
 
-			owner << SPAN_NOTICE("You feel \the [suit] constrict about your [name], supporting it.")
+			to_chat(owner, SPAN_NOTICE("You feel \the [suit] constrict about your [name], supporting it."))
 			status |= ORGAN_SPLINTED
 			suit.supporting_limbs |= src
 	return

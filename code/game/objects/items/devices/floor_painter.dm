@@ -46,11 +46,11 @@
 
 	var/turf/simulated/floor/F = A
 	if(!istype(F))
-		user << SPAN_WARNING("\The [src] can only be used on station flooring.")
+		to_chat(user, SPAN_WARNING("\The [src] can only be used on station flooring."))
 		return
 
 	if(!F.flooring || !F.flooring.can_paint || F.broken || F.burnt)
-		user << SPAN_WARNING("\The [src] cannot paint broken or missing tiles.")
+		to_chat(user, SPAN_WARNING("\The [src] cannot paint broken or missing tiles."))
 		return
 
 	var/list/decal_data = decals[decal]
@@ -64,11 +64,11 @@
 			config_error = 1
 
 	if(config_error)
-		user << SPAN_WARNING("\The [src] flashes an error light. You might need to reconfigure it.")
+		to_chat(user, SPAN_WARNING("\The [src] flashes an error light. You might need to reconfigure it."))
 		return
 
 	if(F.decals && F.decals.len > 5 && painting_decal != /obj/effect/floor_decal/reset)
-		user << SPAN_WARNING("\The [F] has been painted too much; you need to clear it off.")
+		to_chat(user, SPAN_WARNING("\The [F] has been painted too much; you need to clear it off."))
 		return
 
 	var/painting_dir = 0
@@ -112,7 +112,7 @@
 
 /obj/item/device/floor_painter/examine(mob/user)
 	..(user)
-	user << "It is configured to produce the '[decal]' decal with a direction of '[paint_dir]' using [paint_colour] paint."
+	to_chat(user, "It is configured to produce the '[decal]' decal with a direction of '[paint_dir]' using [paint_colour] paint.")
 
 /obj/item/device/floor_painter/verb/choose_colour()
 	set name = "Choose Colour"
@@ -125,7 +125,7 @@
 	var/new_colour = input(usr, "Choose a colour.", "Floor painter", paint_colour) as color|null
 	if(new_colour && new_colour != paint_colour)
 		paint_colour = new_colour
-		usr << SPAN_NOTICE("You set \the [src] to paint with <font color='[paint_colour]'>a new colour</font>.")
+		to_chat(usr, SPAN_NOTICE("You set \the [src] to paint with <font color='[paint_colour]'>a new colour</font>."))
 
 /obj/item/device/floor_painter/verb/choose_decal()
 	set name = "Choose Decal"
@@ -139,7 +139,7 @@
 	var/new_decal = input("Select a decal.") as null|anything in decals
 	if(new_decal && !isnull(decals[new_decal]))
 		decal = new_decal
-		usr << SPAN_NOTICE("You set \the [src] decal to '[decal]'.")
+		to_chat(usr, SPAN_NOTICE("You set \the [src] decal to '[decal]'."))
 
 /obj/item/device/floor_painter/verb/choose_direction()
 	set name = "Choose Direction"
@@ -153,4 +153,4 @@
 	var/new_dir = input("Select a direction.") as null|anything in paint_dirs
 	if(new_dir && !isnull(paint_dirs[new_dir]))
 		paint_dir = new_dir
-		usr << SPAN_NOTICE("You set \the [src] direction to '[paint_dir]'.")
+		to_chat(usr, SPAN_NOTICE("You set \the [src] direction to '[paint_dir]'."))

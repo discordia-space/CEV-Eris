@@ -3,7 +3,7 @@
 	icon_state = "spark"
 	damage = 0
 	damage_type = BURN
-	check_armour = "energy"
+	check_armour = ARMOR_ENERGY
 
 	heat = 100
 

@@ -16,14 +16,14 @@
 /datum/storyevent/roleset/secdoc_hunters/can_trigger(var/severity = EVENT_LEVEL_ROLESET, var/report)
 	var/list/scientists = candidates_list(ROLE_SECDOC_DEFENDER, report)
 	if(scientists.len < 1)
-		if (report) report << SPAN_NOTICE("Failure: No scientist candidates found")
+		if (report) to_chat(report, SPAN_NOTICE("Failure: No scientist candidates found"))
 		return FALSE
 
 	var/scientist = pick(scientists)
 	var/list/hunters = candidates_list(ROLE_TRAITOR, report)
 	hunters -= scientist
 	if(hunters.len < 1)
-		if (report) report << SPAN_NOTICE("Failure: No hunter candidates found")
+		if (report) to_chat(report, SPAN_NOTICE("Failure: No hunter candidates found"))
 		return FALSE
 
 

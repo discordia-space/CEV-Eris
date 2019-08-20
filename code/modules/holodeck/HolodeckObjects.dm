@@ -113,11 +113,11 @@
 		return
 
 	if(istype(W, /obj/item/weapon/tool/screwdriver))
-		user << (SPAN_NOTICE("It's a holowindow, you can't unfasten it!"))
+		to_chat(user, (SPAN_NOTICE("It's a holowindow, you can't unfasten it!")))
 	else if(istype(W, /obj/item/weapon/tool/crowbar) && reinf && state <= 1)
-		user << (SPAN_NOTICE("It's a holowindow, you can't pry it!"))
+		to_chat(user, (SPAN_NOTICE("It's a holowindow, you can't pry it!")))
 	else if(istype(W, /obj/item/weapon/tool/wrench) && !anchored && (!state || !reinf))
-		user << (SPAN_NOTICE("It's a holowindow, you can't dismantle it!"))
+		to_chat(user, (SPAN_NOTICE("It's a holowindow, you can't dismantle it!")))
 	else
 		if(W.damtype == BRUTE || W.damtype == BURN)
 			hit(W.force)
@@ -183,7 +183,7 @@
 
 /obj/structure/bed/chair/holochair/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/tool/wrench))
-		user << (SPAN_NOTICE("It's a holochair, you can't dismantle it!"))
+		to_chat(user, (SPAN_NOTICE("It's a holochair, you can't dismantle it!")))
 	return
 
 /obj/item/weapon/holo
@@ -231,13 +231,13 @@
 		icon_state = "sword[item_color]"
 		w_class = ITEM_SIZE_LARGE
 		playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
-		user << SPAN_NOTICE("[src] is now active.")
+		to_chat(user, SPAN_NOTICE("[src] is now active."))
 	else
 		force = 3
 		icon_state = "sword0"
 		w_class = ITEM_SIZE_SMALL
 		playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
-		user << SPAN_NOTICE("[src] can now be concealed.")
+		to_chat(user, SPAN_NOTICE("[src] can now be concealed."))
 
 	update_wear_icon()
 
@@ -264,7 +264,7 @@
 
 /obj/structure/holohoop/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
 	if(state == GRAB_PASSIVE)
-		user << SPAN_WARNING("You need a better grip to do that!")
+		to_chat(user, SPAN_WARNING("You need a better grip to do that!"))
 		return FALSE
 	target.forceMove(src.loc)
 	target.Weaken(5)
@@ -308,7 +308,7 @@
 	power_channel = ENVIRON
 
 /obj/machinery/readybutton/attack_ai(mob/user as mob)
-	user << "The station AI is not to interact with these devices!"
+	to_chat(user, "The station AI is not to interact with these devices!")
 	return
 
 /obj/machinery/readybutton/New()
@@ -316,12 +316,12 @@
 
 
 /obj/machinery/readybutton/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	user << "The device is a solid button, there's nothing you can do with it!"
+	to_chat(user, "The device is a solid button, there's nothing you can do with it!")
 
 /obj/machinery/readybutton/attack_hand(mob/user as mob)
 
 	if(user.stat || stat & (NOPOWER|BROKEN))
-		user << "This device is not powered."
+		to_chat(user, "This device is not powered.")
 		return
 
 	if(!user.IsAdvancedToolUser())
@@ -332,7 +332,7 @@
 		qdel(src)
 
 	if(eventstarted)
-		usr << "The event has already begun!"
+		to_chat(usr, "The event has already begun!")
 		return
 
 	ready = !ready
@@ -363,7 +363,7 @@
 		qdel(W)
 
 	for(var/mob/M in currentarea)
-		M << "FIGHT!"
+		to_chat(M, "FIGHT!")
 
 //Holocarp
 

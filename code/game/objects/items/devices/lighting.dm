@@ -14,7 +14,7 @@
 /obj/item/device/lighting/proc/turn_on(var/mob/living/user)
 	if(user && !isturf(user.loc))
 		//To prevent some lighting anomalities.
-		user << "You cannot turn the light on while in this [user.loc]."
+		to_chat(user, "You cannot turn the light on while in this [user.loc].")
 		return FALSE
 	set_light(brightness_on)
 	if(turn_on_sound)

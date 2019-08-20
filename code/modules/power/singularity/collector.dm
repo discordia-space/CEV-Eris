@@ -49,7 +49,7 @@ var/global/list/rad_collectors = list()
 			investigate_log("turned [active?"<font color='green'>on</font>":"<font color='red'>off</font>"] by [user.key]. [P?"Fuel: [round(P.air_contents.gas["plasma"]/0.29)]%":"<font color='red'>It is empty</font>"].","singulo")
 			return
 		else
-			user << "\red The controls are locked!"
+			to_chat(user, "\red The controls are locked!")
 			return
 	..()
 
@@ -90,10 +90,10 @@ var/global/list/rad_collectors = list()
 
 	if(istype(I, /obj/item/weapon/tank/plasma))
 		if(!src.anchored)
-			user << "\red The [src] needs to be secured to the floor first."
+			to_chat(user, "\red The [src] needs to be secured to the floor first.")
 			return
 		if(src.P)
-			user << "\red There's already a plasma tank loaded."
+			to_chat(user, "\red There's already a plasma tank loaded.")
 			return
 		user.drop_item()
 		src.P = I
@@ -105,18 +105,18 @@ var/global/list/rad_collectors = list()
 		if (src.allowed(user))
 			if(active)
 				src.locked = !src.locked
-				user << "The controls are now [src.locked ? "locked." : "unlocked."]"
+				to_chat(user, "The controls are now [src.locked ? "locked." : "unlocked."]")
 			else
 				src.locked = 0 //just in case it somehow gets locked
-				user << "\red The controls can only be locked when the [src] is active"
+				to_chat(user, "\red The controls can only be locked when the [src] is active")
 		else
-			user << "\red Access denied!"
+			to_chat(user, "\red Access denied!")
 		return
 	return ..()
 
 /obj/machinery/power/rad_collector/examine(mob/user)
 	if (..(user, 3))
-		user << "The meter indicates that \the [src] is collecting [last_power] W."
+		to_chat(user, "The meter indicates that \the [src] is collecting [last_power] W.")
 		return 1
 
 /obj/machinery/power/rad_collector/ex_act(severity)

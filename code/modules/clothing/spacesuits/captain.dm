@@ -7,7 +7,7 @@
 	item_flags = STOPPRESSUREDAMAGE
 	flags_inv = HIDEFACE|BLOCKHAIR
 	permeability_coefficient = 0.01
-	armor = list(melee = 65, bullet = 55, laser = 55,energy = 25, bomb = 50, bio = 100, rad = 50)
+	armor = list(melee = 65, bullet = 55, energy = 40, bomb = 50, bio = 100, rad = 50)
 
 //Captain's space suit
 // This is not the proper path but I don't currently know enough about how this all works to mess with it.
@@ -22,7 +22,7 @@
 	item_flags = STOPPRESSUREDAMAGE
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	slowdown = 1.5
-	armor = list(melee = 65, bullet = 55, laser = 55, energy = 25, bomb = 50, bio = 100, rad = 50)
+	armor = list(melee = 65, bullet = 55, energy = 40, bomb = 50, bio = 100, rad = 50)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE

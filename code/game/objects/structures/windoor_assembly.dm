@@ -83,7 +83,7 @@ obj/structure/windoor_assembly/Destroy()
 		if(QUALITY_BOLT_TURNING)
 			if(state == 0 && !anchored)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You've secured the windoor assembly!")
+					to_chat(user, SPAN_NOTICE("You've secured the windoor assembly!"))
 					src.anchored = 1
 					if(src.secure)
 						src.name = "Secure Anchored Windoor Assembly"
@@ -92,7 +92,7 @@ obj/structure/windoor_assembly/Destroy()
 					return
 			if(state == 0 && anchored)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You've unsecured the windoor assembly!")
+					to_chat(user, SPAN_NOTICE("You've unsecured the windoor assembly!"))
 					anchored = 0
 					if(src.secure)
 						src.name = "Secure Windoor Assembly"
@@ -104,7 +104,7 @@ obj/structure/windoor_assembly/Destroy()
 		if(QUALITY_WELDING)
 			if(state == 0 && !anchored)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You dissasembled the windoor assembly!")
+					to_chat(user, SPAN_NOTICE("You dissasembled the windoor assembly!"))
 					new /obj/item/stack/material/glass/reinforced(get_turf(src), 5)
 					if(secure)
 						new /obj/item/stack/rods(get_turf(src), 4)
@@ -117,7 +117,7 @@ obj/structure/windoor_assembly/Destroy()
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					usr << browse(null, "window=windoor_access")
 					density = 1 //Shouldn't matter but just incase
-					user << SPAN_NOTICE("You finish the windoor!")
+					to_chat(user, SPAN_NOTICE("You finish the windoor!"))
 
 					if(secure)
 						var/obj/machinery/door/window/brigdoor/windoor = new /obj/machinery/door/window/brigdoor(src.loc)
@@ -163,7 +163,7 @@ obj/structure/windoor_assembly/Destroy()
 		if(QUALITY_WIRE_CUTTING)
 			if(state == 1 && !electronics)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You remove the windoor wires.!")
+					to_chat(user, SPAN_NOTICE("You remove the windoor wires.!"))
 					new/obj/item/stack/cable_coil(get_turf(user), 1)
 					src.state = 0
 					if(src.secure)
@@ -176,7 +176,7 @@ obj/structure/windoor_assembly/Destroy()
 		if(QUALITY_SCREW_DRIVING)
 			if(state == 1 && electronics)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You've removed the airlock electronics!")
+					to_chat(user, SPAN_NOTICE("You've removed the airlock electronics!"))
 					if(src.secure)
 						src.name = "Secure Wired Windoor Assembly"
 					else
@@ -196,13 +196,13 @@ obj/structure/windoor_assembly/Destroy()
 			if(istype(I, /obj/item/stack/rods) && !secure)
 				var/obj/item/stack/rods/R = I
 				if(R.get_amount() < 4)
-					user << SPAN_WARNING("You need more rods to do this.")
+					to_chat(user, SPAN_WARNING("You need more rods to do this."))
 					return
-				user << SPAN_NOTICE("You start to reinforce the windoor with rods.")
+				to_chat(user, SPAN_NOTICE("You start to reinforce the windoor with rods."))
 
 				if(do_after(user,40,src) && !secure)
 					if (R.use(4))
-						user << SPAN_NOTICE("You reinforce the windoor.")
+						to_chat(user, SPAN_NOTICE("You reinforce the windoor."))
 						src.secure = "secure_"
 						if(src.anchored)
 							src.name = "Secure Anchored Windoor Assembly"
@@ -216,7 +216,7 @@ obj/structure/windoor_assembly/Destroy()
 				var/obj/item/stack/cable_coil/CC = I
 				if(do_after(user, 40,src))
 					if (CC.use(1))
-						user << SPAN_NOTICE("You wire the windoor!")
+						to_chat(user, SPAN_NOTICE("You wire the windoor!"))
 						src.state = 1
 						if(src.secure)
 							src.name = "Secure Wired Windoor Assembly"
@@ -237,7 +237,7 @@ obj/structure/windoor_assembly/Destroy()
 
 					user.drop_item()
 					I.loc = src
-					user << SPAN_NOTICE("You've installed the airlock electronics!")
+					to_chat(user, SPAN_NOTICE("You've installed the airlock electronics!"))
 					src.name = "Near finished Windoor Assembly"
 					src.electronics = I
 				else
@@ -257,7 +257,7 @@ obj/structure/windoor_assembly/Destroy()
 	set src in oview(1)
 
 	if (src.anchored)
-		usr << "It is fastened to the floor; therefore, you can't rotate it!"
+		to_chat(usr, "It is fastened to the floor; therefore, you can't rotate it!")
 		return 0
 	if(src.state != 0)
 		update_nearby_tiles(need_rebuild=1) //Compel updates before
@@ -277,11 +277,11 @@ obj/structure/windoor_assembly/Destroy()
 	set src in oview(1)
 
 	if(src.facing == "l")
-		usr << "The windoor will now slide to the right."
+		to_chat(usr, "The windoor will now slide to the right.")
 		src.facing = "r"
 	else
 		src.facing = "l"
-		usr << "The windoor will now slide to the left."
+		to_chat(usr, "The windoor will now slide to the left.")
 
 	update_icon()
 	return

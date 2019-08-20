@@ -51,11 +51,7 @@
 			health = max(0, health - 1)
 	if(health <= 0)
 		griefProtection() //I dont like putting this in process() but it's the best I can do without re-writing a chunk of rd servers.
-		files.known_designs = list()
-		for(var/datum/tech/T in files.known_tech)
-			if(prob(1))
-				T.level--
-		files.RefreshResearch()
+		files.forget_random_technology()
 	if(delay)
 		delay--
 	else
@@ -73,11 +69,7 @@
 //Backup files to centcomm to help admins recover data after greifer attacks
 /obj/machinery/r_n_d/server/proc/griefProtection()
 	for(var/obj/machinery/r_n_d/server/centcom/C in SSmachines.machinery)
-		for(var/datum/tech/T in files.known_tech)
-			C.files.AddTech2Known(T)
-		for(var/datum/design/D in files.known_designs)
-			C.files.AddDesign2Known(D)
-		C.files.RefreshResearch()
+		C.files.download_from(files)
 
 /obj/machinery/r_n_d/server/proc/produce_heat()
 	if(!produces_heat)
@@ -109,10 +101,11 @@
 
 		if(QUALITY_PRYING)
 			if(!panel_open)
-				user << SPAN_NOTICE("You cant get to the components of \the [src], remove the cover.")
+				to_chat(user, SPAN_NOTICE("You can't get to the components of \the [src], remove the cover."))
 				return
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-				user << SPAN_NOTICE("You remove the components of \the [src] with [I].")
+				to_chat(user, SPAN_NOTICE("You remove the components of \the [src] with [I]."))
+				griefProtection()
 				dismantle()
 				return
 
@@ -120,7 +113,7 @@
 			var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
 				panel_open = !panel_open
-				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
+				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
 				update_icon()
 				return
 
@@ -179,7 +172,7 @@
 	add_fingerprint(usr)
 	usr.set_machine(src)
 	if(!allowed(usr) && !emagged)
-		usr << SPAN_WARNING("You do not have the required access level")
+		to_chat(usr, SPAN_WARNING("You do not have the required access level"))
 		return
 
 	if(href_list["main"])
@@ -222,21 +215,14 @@
 			temp_server.id_with_download += num
 
 	else if(href_list["reset_tech"])
-		var/choice = alert("Technology Data Rest", "Are you sure you want to reset this technology to its default data? Data lost cannot be recovered.", "Continue", "Cancel")
+		var/choice = alert("Technology Data Reset", "Are you sure you want to reset this technology to its default data? Data lost cannot be recovered.", "Continue", "Cancel")
 		if(choice == "Continue")
-			for(var/datum/tech/T in temp_server.files.known_tech)
-				if(T.id == href_list["reset_tech"])
-					T.level = 1
-					break
-		temp_server.files.RefreshResearch()
+			temp_server.files.forget_all((locate(href_list["reset_tech"]) in temp_server.files.researched_tech))
 
-	else if(href_list["reset_design"])
-		var/choice = alert("Design Data Deletion", "Are you sure you want to delete this design? If you still have the prerequisites for the design, it'll reset to its base reliability. Data lost cannot be recovered.", "Continue", "Cancel")
+	else if(href_list["reset_techology"])
+		var/choice = alert("Techology Deletion", "Are you sure you want to delete this techology? Data lost cannot be recovered.", "Continue", "Cancel")
 		if(choice == "Continue")
-			var/datum/design/D = temp_server.files.possible_design_ids[href_list["reset_design"]]
-			if(D in temp_server.files.known_designs)
-				temp_server.files.known_designs -= D
-				temp_server.files.RefreshResearch()
+			temp_server.files.forget_techology((locate(href_list["reset_technology"]) in temp_server.files.researched_nodes))
 
 	updateUsrDialog()
 	return
@@ -281,15 +267,16 @@
 			dat += "<HR><A href='?src=\ref[src];main=1'>Main Menu</A>"
 
 		if(2) //Data Management menu
-			dat += "[temp_server.name] Data ManagementP<BR><BR>"
-			dat += "Known Technologies<BR>"
-			for(var/datum/tech/T in temp_server.files.known_tech)
+			dat += "[temp_server.name] Data Management<BR><BR>"
+			dat += "Known Tech Trees<BR>"
+			for(var/datum/tech/T in temp_server.files.researched_tech)
 				dat += "* [T.name] "
-				dat += "<A href='?src=\ref[src];reset_tech=[T.id]'>(Reset)</A><BR>" //FYI, these are all strings.
-			dat += "Known Designs<BR>"
-			for(var/datum/design/D in temp_server.files.known_designs)
-				dat += "* [D.name] "
-				dat += "<A href='?src=\ref[src];reset_design=[D.id]'>(Delete)</A><BR>"
+				dat += "<A href='?src=\ref[src];reset_tech=\ref[T]'>(Reset)</A><BR>"
+			dat += "Known Technologies<BR>"
+			for(var/t in temp_server.files.researched_nodes)
+				var/datum/technology/T = t
+				dat += "* [T.name] "
+				dat += "<A href='?src=\ref[src];reset_techology=\ref[T]'>(Delete)</A><BR>"
 			dat += "<HR><A href='?src=\ref[src];main=1'>Main Menu</A>"
 
 		if(3) //Server Data Transfer
@@ -306,7 +293,7 @@
 	if(!emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
-		user << SPAN_NOTICE("You you disable the security protocols.")
+		to_chat(user, SPAN_NOTICE("You you disable the security protocols."))
 		src.updateUsrDialog()
 		return 1
 

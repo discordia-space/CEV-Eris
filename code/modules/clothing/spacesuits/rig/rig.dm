@@ -24,7 +24,7 @@
 	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS
 
 	// These values are passed on to all component pieces.
-	armor = list(melee = 40, bullet = 35, laser = 35,energy = 35, bomb = 35, bio = 100, rad = 40)
+	armor = list(melee = 40, bullet = 35, energy = 35, bomb = 35, bio = 100, rad = 40)
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.2
@@ -105,17 +105,17 @@
 		return visor.vision.glasses
 
 /obj/item/weapon/rig/examine()
-	usr << "This is \icon[src][src.name]."
-	usr << "[src.desc]"
+	to_chat(usr, "This is \icon[src][src.name].")
+	to_chat(usr, "[src.desc]")
 	if(wearer)
 		for(var/obj/item/piece in list(helmet,gloves,chest,boots))
 			if(!piece || piece.loc != wearer)
 				continue
-			usr << "\icon[piece] \The [piece] [piece.gender == PLURAL ? "are" : "is"] deployed."
+			to_chat(usr, "\icon[piece] \The [piece] [piece.gender == PLURAL ? "are" : "is"] deployed.")
 
 	if(src.loc == usr)
-		usr << "The maintenance panel is [open ? "open" : "closed"]."
-		usr << "Hardsuit systems are [offline ? "<font color='red'>offline</font>" : "<font color='green'>online</font>"]."
+		to_chat(usr, "The maintenance panel is [open ? "open" : "closed"].")
+		to_chat(usr, "Hardsuit systems are [offline ? "<font color='red'>offline</font>" : "<font color='green'>online</font>"].")
 
 /obj/item/weapon/rig/New()
 	..()
@@ -295,9 +295,9 @@
 
 					//sealed pieces become airtight, protecting against diseases
 					if (seal_target)
-						piece.armor["bio"] = 100
+						piece.armor[ARMOR_BIO] = 100
 					else
-						piece.armor["bio"] = src.armor["bio"]
+						piece.armor[ARMOR_BIO] = src.armor[ARMOR_BIO]
 
 				else
 					failed_to_seal = 1
@@ -590,7 +590,7 @@
 /obj/item/weapon/rig/proc/notify_ai(var/message)
 	for(var/obj/item/rig_module/ai_container/module in installed_modules)
 		if(module.integrated_ai && module.integrated_ai.client && !module.integrated_ai.stat)
-			module.integrated_ai << "[message]"
+			to_chat(module.integrated_ai, "[message]")
 			. = 1
 
 //Delayed equipping of rigs
@@ -822,17 +822,17 @@
 
 	if(wearer)
 		if(dam_module.damage >= 2)
-			wearer << SPAN_DANGER("The [source] has disabled your [dam_module.interface_name]!")
+			to_chat(wearer, SPAN_DANGER("The [source] has disabled your [dam_module.interface_name]!"))
 		else
-			wearer << SPAN_WARNING("The [source] has damaged your [dam_module.interface_name]!")
+			to_chat(wearer, SPAN_WARNING("The [source] has damaged your [dam_module.interface_name]!"))
 	dam_module.deactivate()
 
 /obj/item/weapon/rig/proc/malfunction_check(var/mob/living/carbon/human/user)
 	if(malfunction_delay)
 		if(offline)
-			user << SPAN_DANGER("The suit is completely unresponsive.")
+			to_chat(user, SPAN_DANGER("The suit is completely unresponsive."))
 		else
-			user << SPAN_DANGER("ERROR: Hardware fault. Rebooting interface...")
+			to_chat(user, SPAN_DANGER("ERROR: Hardware fault. Rebooting interface..."))
 		return 1
 	return 0
 
@@ -856,7 +856,7 @@
 			return 0
 		var/obj/item/rig_module/ai_container/module = user.loc.loc
 		if(!istype(module) || module.damage >= 2)
-			user << SPAN_WARNING("Your host module is unable to interface with the suit.")
+			to_chat(user, SPAN_WARNING("Your host module is unable to interface with the suit."))
 			return 0
 
 	if(offline || !cell || !cell.charge || locked_down)
@@ -874,7 +874,7 @@
 	if(!ai_can_move_suit(user, check_user_module = 1))
 		return
 	wearer.lay_down()
-	user << "<span class='notice'>\The [wearer] is now [wearer.resting ? "resting" : "getting up"].</span>"
+	to_chat(user, "<span class='notice'>\The [wearer] is now [wearer.resting ? "resting" : "getting up"].</span>")
 
 /obj/item/weapon/rig/proc/forced_move(var/direction, var/mob/user)
 	if(malfunctioning)

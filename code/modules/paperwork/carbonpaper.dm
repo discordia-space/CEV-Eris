@@ -42,10 +42,10 @@
 		copy.name = "Copy - " + c.name
 		copy.fields = c.fields
 		copy.updateinfolinks()
-		usr << SPAN_NOTICE("You tear off the carbon-copy!")
+		to_chat(usr, SPAN_NOTICE("You tear off the carbon-copy!"))
 		c.copied = 1
 		copy.iscopy = 1
 		copy.update_icon()
 		c.update_icon()
 	else
-		usr << "There are no more carbon copies attached to this paper!"
+		to_chat(usr, "There are no more carbon copies attached to this paper!")

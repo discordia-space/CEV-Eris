@@ -6,9 +6,9 @@
 	if(!client) return
 	client.inquisitive_ghost = !client.inquisitive_ghost
 	if(client.inquisitive_ghost)
-		src << SPAN_NOTICE("You will now examine everything you click on.")
+		to_chat(src, SPAN_NOTICE("You will now examine everything you click on."))
 	else
-		src << SPAN_NOTICE("You will no longer examine things you click on.")
+		to_chat(src, SPAN_NOTICE("You will no longer examine things you click on."))
 
 /mob/observer/ghost/DblClickOn(var/atom/A, var/params)
 	if(client.buildmode)
@@ -68,13 +68,13 @@
 	if(awaygate)
 		user.loc = awaygate.loc
 	else
-		user << "[src] has no destination."
+		to_chat(user, "[src] has no destination.")
 
 /obj/machinery/gateway/centeraway/attack_ghost(mob/user as mob)
 	if(stationgate)
 		user.loc = stationgate.loc
 	else
-		user << "[src] has no destination."
+		to_chat(user, "[src] has no destination.")
 */
 
 // -------------------------------------------

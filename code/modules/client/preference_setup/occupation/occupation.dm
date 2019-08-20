@@ -211,8 +211,9 @@
 				return (pref.equip_preview_mob ? TOPIC_REFRESH_UPDATE_PREVIEW : TOPIC_REFRESH)
 
 	else if(href_list["set_job"] && href_list["set_level"])
-		create_job_description(user)
-		if(SetJob(user, href_list["set_job"], text2num(href_list["set_level"]))) return (pref.equip_preview_mob ? TOPIC_REFRESH_UPDATE_PREVIEW : TOPIC_REFRESH)
+		if(SetJob(user, href_list["set_job"], text2num(href_list["set_level"])))
+			create_job_description(user)
+			return (pref.equip_preview_mob ? TOPIC_REFRESH_UPDATE_PREVIEW : TOPIC_REFRESH)
 /*
 	else if(href_list["set_skills"])
 		var/rank = href_list["set_skills"]
@@ -275,6 +276,8 @@
 	//First of all, we check if the user has opted to query any specific job by clicking the ? button
 	if(job_info_selected_rank)
 		job = SSjob.GetJob(job_info_selected_rank)
+	else if("Assistant" in pref.job_low)
+		job = SSjob.GetJob("Assistant")
 	else
 		//If not, then we'll attempt to get the job they have set as high priority, if any
 		job = SSjob.GetJob(pref.job_high)

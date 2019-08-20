@@ -23,7 +23,7 @@
 		return
 
 	if(owner.stat || owner.paralysis || owner.stunned || owner.weakened || owner.lying || owner.restrained() || owner.buckled)
-		owner << "You cannot spit neurotoxin in your current state."
+		to_chat(owner, "You cannot spit neurotoxin in your current state.")
 		return
 
 	owner.visible_message(
@@ -55,7 +55,7 @@
 	set category = "Abilities"
 
 	if(!O in oview(1, owner))
-		owner << "<span class='alium'>[O] is too far away.</span>"
+		to_chat(owner, "<span class='alium'>[O] is too far away.</span>")
 		return
 
 	// OBJ CHECK
@@ -75,7 +75,7 @@
 				cannot_melt = TRUE
 
 	if(cannot_melt)
-		owner << "<span class='alium'>You cannot dissolve this object.</span>"
+		to_chat(owner, "<span class='alium'>You cannot dissolve this object.</span>")
 		return
 
 	if(check_alien_ability(200))

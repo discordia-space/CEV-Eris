@@ -6,7 +6,7 @@
 	var/data[0]
 	var/datum/shuttle/autodock/overmap/shuttle = SSshuttle.shuttles[shuttle_tag]
 	if (!istype(shuttle))
-		usr << "<span class='warning'>Unable to establish link with the shuttle.</span>"
+		to_chat(usr, "<span class='warning'>Unable to establish link with the shuttle.</span>")
 		return
 
 	var/shuttle_state
@@ -87,7 +87,7 @@
 		if(possible_d.len)
 			D = input("Choose shuttle destination", "Shuttle Destination") as null|anything in possible_d
 		else
-			usr << "<span class='warning'>No valid landing sites in range.</span>"
+			to_chat(usr, "<span class='warning'>No valid landing sites in range.</span>")
 		possible_d = shuttle.get_possible_destinations()
 		if(CanInteract(usr,GLOB.default_state) && (D in possible_d))
 			shuttle.set_destination(possible_d[D])

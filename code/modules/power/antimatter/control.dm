@@ -114,7 +114,7 @@
 
 
 /obj/machinery/power/am_control_unit/bullet_act(var/obj/item/projectile/Proj)
-	if(Proj.check_armour != "bullet")
+	if(Proj.check_armour != ARMOR_BULLET)
 		stability -= Proj.force
 	return 0
 
@@ -136,7 +136,7 @@
 
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		if(anchored || linked_shielding.len)
-			user << "\red Once bolted and linked to a shielding unit it the [src.name] is unable to be moved!"
+			to_chat(user, "\red Once bolted and linked to a shielding unit it the [src.name] is unable to be moved!")
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 			if(!anchored)
 				user.visible_message("[user.name] secures the [src.name] to the floor.", \
@@ -154,7 +154,7 @@
 
 	if(istype(I, /obj/item/weapon/am_containment))
 		if(fueljar)
-			user << "\red There is already a [fueljar] inside!"
+			to_chat(user, "\red There is already a [fueljar] inside!")
 			return
 		fueljar = I
 		user.remove_from_mob(I)

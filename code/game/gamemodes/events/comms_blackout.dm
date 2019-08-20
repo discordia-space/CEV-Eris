@@ -16,9 +16,9 @@
 						"#4nd%;f4y6,>£%-BZZZZZZZT")
 
 	for(var/mob/living/silicon/ai/A in GLOB.player_list)	//AIs are always aware of communication blackouts.
-		A << "<br>"
-		A << SPAN_WARNING("<b>[alert]</b>")
-		A << "<br>"
+		to_chat(A, "<br>")
+		to_chat(A, SPAN_WARNING("<b>[alert]</b>"))
+		to_chat(A, "<br>")
 
 	if(prob(30))	//most of the time, we don't want an announcement, so as to allow AIs to fake blackouts.
 		command_announcement.Announce(alert, new_sound = sound('sound/misc/interference.ogg', volume=25))
@@ -36,8 +36,8 @@
 		command_announcement.Announce("Ionospheric anomalies detected. Temporary telecommunication failure imminent. Please contact you-BZZT", new_sound = 'sound/misc/interference.ogg')
 	else // AIs will always know if there's a comm blackout, rogue AIs could then lie about comm blackouts in the future while they shutdown comms
 		for(var/mob/living/silicon/ai/A in GLOB.player_list)
-			A << "<br>"
-			A << SPAN_WARNING("<b>Ionospheric anomalies detected. Temporary telecommunication failure imminent. Please contact you-BZZT</b>")
-			A << "<br>"
+			to_chat(A, "<br>")
+			to_chat(A, SPAN_WARNING("<b>Ionospheric anomalies detected. Temporary telecommunication failure imminent. Please contact you-BZZT</b>"))
+			to_chat(A, "<br>")
 	for(var/obj/machinery/telecomms/T in telecomms_list)
 		T.emp_act(1)

@@ -20,13 +20,13 @@
 	if (istype(target, /obj/effect/portal))
 		var/obj/effect/portal/P = target
 		if (P.failchance)
-			user << SPAN_NOTICE("This aperture has approximately [100-P.failchance]% stability.")
+			to_chat(user, SPAN_NOTICE("This aperture has approximately [100-P.failchance]% stability."))
 		else
-			user << SPAN_NOTICE("This aperture appears to be stable and safe.")
+			to_chat(user, SPAN_NOTICE("This aperture appears to be stable and safe."))
 
 		var/time_existed = world.time - P.birthtime
 		var/time_remaining = P.lifetime - time_existed
-		user << SPAN_NOTICE("It should remain open for approximately another [time2text(time_remaining, "hh hours and mm minutes")]")
+		to_chat(user, SPAN_NOTICE("It should remain open for approximately another [time2text(time_remaining, "hh hours and mm minutes")]"))
 
 /obj/item/device/ano_scanner/attack_self(var/mob/user as mob)
 	return src.interact(user)
@@ -40,11 +40,11 @@
 			if(!user) return
 
 			if(nearest_artifact_distance >= 0)
-				user << "Exotic energy detected on wavelength '[nearest_artifact_id]' in a radius of [nearest_artifact_distance]m"
+				to_chat(user, "Exotic energy detected on wavelength '[nearest_artifact_id]' in a radius of [nearest_artifact_distance]m")
 			else
-				user << "Background radiation levels detected."
+				to_chat(user, "Background radiation levels detected.")
 	else
-		user << "Scanning array is recharging."
+		to_chat(user, "Scanning array is recharging.")
 	spawn(25)
 		icon_state = "ano_scanner"
 

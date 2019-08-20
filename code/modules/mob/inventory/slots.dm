@@ -24,7 +24,7 @@
 /datum/inventory_slot/proc/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
 	if(req_item_in_slot && !owner.get_equipped_item(req_item_in_slot))
 		if(!disable_warning)
-			owner << SPAN_WARNING("You need something you can attach this [I] to.")
+			to_chat(owner, SPAN_WARNING("You need something you can attach this [I] to."))
 		return FALSE
 
 	if(req_organ)
@@ -36,12 +36,12 @@
 					break
 			if(!found_organ)
 				if(!disable_warning)
-					owner << SPAN_WARNING("You can' equip this [I]!")
+					to_chat(owner, SPAN_WARNING("You can' equip this [I]!"))
 				return FALSE
 		else
 			if(!owner.has_organ(req_organ))
 				if(!disable_warning)
-					owner << SPAN_WARNING("You have nothing you can thear this [I] on.")
+					to_chat(owner, SPAN_WARNING("You have nothing you can thear this [I] on."))
 				return FALSE
 
 	if(req_type && istype(I, req_type))
@@ -52,7 +52,7 @@
 		return TRUE
 
 	if(!disable_warning)
-		owner << SPAN_WARNING("You can't wear [I] in your [name] slot")
+		to_chat(owner, SPAN_WARNING("You can't wear [I] in your [name] slot"))
 
 	return FALSE
 
@@ -99,7 +99,7 @@
 /datum/inventory_slot/hand/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
 	if(owner.lying && I.canremove)
 		if(!disable_warning)
-			owner << SPAN_WARNING("You can't hold items while lying")
+			to_chat(owner, SPAN_WARNING("You can't hold items while lying"))
 		return FALSE
 	return ..()
 
@@ -202,7 +202,7 @@
 /datum/inventory_slot/store/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
 	if(I.slot_flags & SLOT_DENYPOCKET)
 		if(!disable_warning)
-			owner << SPAN_WARNING("[I] can't be holded by your [name].")
+			to_chat(owner, SPAN_WARNING("[I] can't be holded by your [name]."))
 		return FALSE
 	if(istype(I, /obj/item/weapon/storage/pouch)) // Pouches are basically equipped over the suit, they just take up pockets.
 		return TRUE
@@ -228,15 +228,15 @@
 	var/obj/item/wear_suit = owner.get_equipped_item(slot_wear_suit)
 	if(!wear_suit)
 		if(!disable_warning)
-			owner << SPAN_WARNING("You need some suit to wear items in [name].")
+			to_chat(owner, SPAN_WARNING("You need some suit to wear items in [name]."))
 		return FALSE
 	if(!wear_suit.allowed)
 		if(!disable_warning)
-			owner << SPAN_WARNING("You can't attach anything to that [wear_suit].")
+			to_chat(owner, SPAN_WARNING("You can't attach anything to that [wear_suit]."))
 		return FALSE
 	if( !is_type_in_list(I, wear_suit.allowed + list(/obj/item/modular_computer/pda, /obj/item/weapon/pen)) )
 		if(!disable_warning)
-			owner << SPAN_WARNING("You can't attach [I] to that [wear_suit].")
+			to_chat(owner, SPAN_WARNING("You can't attach [I] to that [wear_suit]."))
 		return FALSE
 	return TRUE
 
@@ -262,11 +262,11 @@
 	var/obj/item/clothing/under/uniform = owner.get_equipped_item(slot_w_uniform)
 	if(!uniform)
 		if(!disable_warning)
-			src << SPAN_WARNING("You need a jumpsuit before you can attach this [name].")
+			to_chat(src, SPAN_WARNING("You need a jumpsuit before you can attach this [name]."))
 		return FALSE
 	if(uniform.accessories.len && !uniform.can_attach_accessory(src))
 		if (!disable_warning)
-			src << SPAN_WARNING("You already have an accessory of this type attached to your [uniform].")
+			to_chat(src, SPAN_WARNING("You already have an accessory of this type attached to your [uniform]."))
 		return FALSE
 	return TRUE
 

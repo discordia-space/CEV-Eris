@@ -1,7 +1,6 @@
 /obj/machinery/button/remote
 	name = "remote object control"
 	desc = "It controls objects, remotely."
-	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "doorctrl0"
 	power_channel = ENVIRON
 	var/desiredstate = 0
@@ -12,7 +11,7 @@
 				2=Network Access
 	*/
 
-	anchored = 1.0
+	anchored = 1
 	use_power = 1
 	idle_power_usage = 2
 	active_power_usage = 4
@@ -21,7 +20,7 @@
 	if(wires & 2)
 		return attack_hand(user)
 	else
-		user << "Error, no route to host."
+		to_chat(user, "Error, no route to host.")
 
 /obj/machinery/button/remote/attackby(obj/item/weapon/W, mob/user as mob)
 	return attack_hand(user)
@@ -42,7 +41,7 @@
 		return
 
 	if(!allowed(user) && (wires & 1))
-		user << SPAN_WARNING("Access Denied")
+		to_chat(user, SPAN_WARNING("Access Denied"))
 		flick("doorctrl-denied",src)
 		return
 
@@ -166,8 +165,7 @@
 /obj/machinery/button/remote/driver
 	name = "mass driver button"
 	desc = "A remote control switch for a mass driver."
-	icon = 'icons/obj/objects.dmi'
-	icon_state = "launcherbtt"
+	icon_state = "launcher0"
 
 /obj/machinery/button/remote/driver/trigger(mob/user as mob)
 	active = 1
@@ -193,13 +191,16 @@
 				M.close()
 				return
 
-	icon_state = "launcherbtt"
+	active = 0
+	icon_state = "launcher0"
 	update_icon()
 
 	return
 
 /obj/machinery/button/remote/driver/update_icon()
-	if(!active || (stat & NOPOWER))
-		icon_state = "launcherbtt"
+	if(active)
+		icon_state = "launcher1"
+	else if(stat & (NOPOWER))
+		icon_state = "launcher-p"
 	else
-		icon_state = "launcheract"
+		icon_state = "launcher0"

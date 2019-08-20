@@ -113,7 +113,7 @@ var/const/tk_maxrange = 15
 	if (d == 0)
 		return
 	if (d > tk_maxrange)
-		user << SPAN_NOTICE("Your mind won't reach that far.")
+		to_chat(user, SPAN_NOTICE("Your mind won't reach that far."))
 		return
 
 	if(!focus)

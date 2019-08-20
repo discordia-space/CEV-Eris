@@ -33,26 +33,26 @@
 	set_state(1)
 
 /obj/machinery/power/breakerbox/examine(mob/user)
-	user << "Large machine with heavy duty switching circuits used for advanced grid control"
+	to_chat(user, "Large machine with heavy duty switching circuits used for advanced grid control")
 	if(on)
-		user << "\green It seems to be online."
+		to_chat(user, "\green It seems to be online.")
 	else
-		user << SPAN_WARNING("It seems to be offline.")
+		to_chat(user, SPAN_WARNING("It seems to be offline."))
 
 /obj/machinery/power/breakerbox/attack_ai(mob/user)
 	if(update_locked)
-		user << SPAN_WARNING("System locked. Please try again later.")
+		to_chat(user, SPAN_WARNING("System locked. Please try again later."))
 		return
 
 	if(busy)
-		user << SPAN_WARNING("System is busy. Please wait until current operation is finished before changing power settings.")
+		to_chat(user, SPAN_WARNING("System is busy. Please wait until current operation is finished before changing power settings."))
 		return
 
 	busy = 1
-	user << "\green Updating power settings.."
+	to_chat(user, "\green Updating power settings..")
 	if(do_after(user, 50, src))
 		set_state(!on)
-		user << "\green Update Completed. New setting:[on ? "on": "off"]"
+		to_chat(user, "\green Update Completed. New setting:[on ? "on": "off"]")
 		update_locked = 1
 		spawn(600)
 			update_locked = 0
@@ -61,11 +61,11 @@
 
 /obj/machinery/power/breakerbox/attack_hand(mob/user)
 	if(update_locked)
-		user << SPAN_WARNING("System locked. Please try again later.")
+		to_chat(user, SPAN_WARNING("System locked. Please try again later."))
 		return
 
 	if(busy)
-		user << SPAN_WARNING("System is busy. Please wait until current operation is finished before changing power settings.")
+		to_chat(user, SPAN_WARNING("System is busy. Please wait until current operation is finished before changing power settings."))
 		return
 
 	busy = 1
@@ -87,7 +87,7 @@
 		var/newtag = input(user, "Enter new RCON tag. Use \"NO_TAG\" to disable RCON or leave empty to cancel.", "SMES RCON system") as text
 		if(newtag)
 			RCon_tag = newtag
-			user << SPAN_NOTICE("You changed the RCON tag to: [newtag]")
+			to_chat(user, SPAN_NOTICE("You changed the RCON tag to: [newtag]"))
 
 
 

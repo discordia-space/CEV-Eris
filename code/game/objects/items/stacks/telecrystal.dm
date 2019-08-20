@@ -23,4 +23,4 @@
 			I.hidden_uplink.update_nano_data()
 			SSnano.update_uis(I.hidden_uplink)
 			use(amount)
-			user << SPAN_NOTICE("You slot \the [src] into \the [I] and charge its internal uplink.")
+			to_chat(user, SPAN_NOTICE("You slot \the [src] into \the [I] and charge its internal uplink."))

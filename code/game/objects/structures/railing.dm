@@ -26,7 +26,7 @@
 	if(climbable)
 		verbs += /obj/structure/proc/climb_on
 	update_icon(FALSE)
-	
+
 /obj/structure/railing/Created(var/mob/user)
 	anchored = FALSE
 	// this way its much easier to build it, and there is no need to update_icon after that, flip will take care of that
@@ -58,11 +58,11 @@
 	if(health < maxhealth)
 		switch(health / maxhealth)
 			if(0.0 to 0.5)
-				user << SPAN_WARNING("It looks severely damaged!")
+				to_chat(user, SPAN_WARNING("It looks severely damaged!"))
 			if(0.25 to 0.5)
-				user << SPAN_WARNING("It looks damaged!")
+				to_chat(user, SPAN_WARNING("It looks damaged!"))
 			if(0.5 to 1.0)
-				user << SPAN_NOTICE("It has a few scrapes and dents.")
+				to_chat(user, SPAN_NOTICE("It has a few scrapes and dents."))
 
 /obj/structure/railing/proc/take_damage(amount)
 	health -= amount
@@ -199,18 +199,18 @@
 /obj/structure/railing/affect_grab(var/mob/user, var/mob/living/target, var/state)
 	var/obj/occupied = turf_is_crowded()
 	if(occupied)
-		user << SPAN_DANGER("There's \a [occupied] in the way.")
+		to_chat(user, SPAN_DANGER("There's \a [occupied] in the way."))
 		return
 	if (state < GRAB_AGGRESSIVE)
 		if(user.a_intent == I_HURT)
 			if(prob(15))
 				target.Weaken(5)
-			target.apply_damage(8, def_zone = BP_HEAD)
+			target.damage_through_armor(8, BRUTE, BP_HEAD, ARMOR_MELEE)
 			take_damage(8)
 			visible_message(SPAN_DANGER("[user] slams [target]'s face against \the [src]!"))
 			playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
 		else
-			user << SPAN_DANGER("You need a better grip to do that!")
+			to_chat(user, SPAN_DANGER("You need a better grip to do that!"))
 			return
 	else
 		if (get_turf(target) == get_turf(src))
@@ -233,7 +233,7 @@
 
 		if(QUALITY_SCREW_DRIVING)
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-				user << (anchored ? SPAN_NOTICE("You have unfastened \the [src] from the floor.") : SPAN_NOTICE("You have fastened \the [src] to the floor."))
+				to_chat(user, (anchored ? SPAN_NOTICE("You have unfastened \the [src] from the floor.") : SPAN_NOTICE("You have fastened \the [src] to the floor.")))
 				anchored = !anchored
 				update_icon()
 			return
@@ -294,7 +294,7 @@
 		return
 
 	if(!neighbor_turf_passable())
-		user << SPAN_DANGER("You can't climb there, the way is blocked.")
+		to_chat(user, SPAN_DANGER("You can't climb there, the way is blocked."))
 		climbers -= user
 		return
 

@@ -21,7 +21,7 @@
 
 /obj/item/blueprints/attack_self(mob/M as mob)
 	if (!ishuman(M))
-		M << "This stack of blue paper means nothing to you." //monkeys cannot into projecting
+		to_chat(M, "This stack of blue paper means nothing to you." ) //monkeys cannot into projecting
 		return
 	interact()
 	return
@@ -101,20 +101,20 @@ move an amendment</a> to the drawing.</p>
 	if(!istype(res,/list))
 		switch(res)
 			if(ROOM_ERR_SPACE)
-				usr << SPAN_WARNING("The new area must be completely airtight!")
+				to_chat(usr, SPAN_WARNING("The new area must be completely airtight!"))
 				return
 			if(ROOM_ERR_TOOLARGE)
-				usr << SPAN_WARNING("The new area too large!")
+				to_chat(usr, SPAN_WARNING("The new area too large!"))
 				return
 			else
-				usr << SPAN_WARNING("Error! Please notify administration!")
+				to_chat(usr, SPAN_WARNING("Error! Please notify administration!"))
 				return
 	var/list/turf/turfs = res
 	var/str = sanitizeSafe(input("New area name:","Blueprint Editing", ""), MAX_NAME_LEN)
 	if(!str || !length(str)) //cancel
 		return
 	if(length(str) > 50)
-		usr << SPAN_WARNING("Name too long.")
+		to_chat(usr, SPAN_WARNING("Name too long."))
 		return
 	var/area/A = new
 	A.name = str
@@ -150,11 +150,11 @@ move an amendment</a> to the drawing.</p>
 	if(!str || !length(str) || str==prevname) //cancel
 		return
 	if(length(str) > 50)
-		usr << SPAN_WARNING("Text too long.")
+		to_chat(usr, SPAN_WARNING("Text too long."))
 		return
 	set_area_machinery_title(A,str,prevname)
 	A.name = str
-	usr << SPAN_NOTICE("You set the area '[prevname]' title to '[str]'.")
+	to_chat(usr, SPAN_NOTICE("You set the area '[prevname]' title to '[str]'."))
 	interact()
 	return
 

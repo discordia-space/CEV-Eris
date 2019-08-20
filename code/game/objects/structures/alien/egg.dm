@@ -31,7 +31,7 @@
 	if(progress >= MAX_PROGRESS)
 		for(var/mob/M in GLOB.dead_mob_list)
 			if(isghost(M) && M.client && M.client.prefs && (ROLE_XENOMORPH in M.client.prefs.be_special_role))
-				M << SPAN_NOTICE("An alien is ready to hatch! ([ghost_follow_link(src, M)]) (<a href='byond://?src=\ref[src];spawn=1'>spawn</a>)")
+				to_chat(M, SPAN_NOTICE("An alien is ready to hatch! ([ghost_follow_link(src, M)]) (<a href='byond://?src=\ref[src];spawn=1'>spawn</a>)"))
 		STOP_PROCESSING(SSobj, src)
 		update_icon()
 
@@ -48,7 +48,7 @@
 		return
 
 	if(progress < MAX_PROGRESS)
-		user << "\The [src] has not yet matured."
+		to_chat(user, "\The [src] has not yet matured.")
 		return
 
 	if(!user.MayRespawn(1, ANIMAL))
@@ -56,7 +56,7 @@
 
 	// Check for bans properly.
 	if(jobban_isbanned(user, "Xenomorph"))
-		user << SPAN_DANGER("You are banned from playing a Xenomorph.")
+		to_chat(user, SPAN_DANGER("You are banned from playing a Xenomorph."))
 		return
 
 	var/confirm = alert(user, "Are you sure you want to join as a Xenomorph larva?", "Become Larva", "No", "Yes")
@@ -68,7 +68,7 @@
 		return
 
 	if(progress == -1) //Egg has been hatched.
-		user << "Too slow..."
+		to_chat(user, "Too slow...")
 		return
 
 	flick("egg_opening",src)

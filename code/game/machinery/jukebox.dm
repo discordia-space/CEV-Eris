@@ -81,11 +81,11 @@
 		return
 
 	if(!anchored)
-		usr << SPAN_WARNING("You must secure \the [src] first.")
+		to_chat(usr, SPAN_WARNING("You must secure \the [src] first."))
 		return
 
 	if(stat & (NOPOWER|BROKEN))
-		usr << "\The [src] doesn't appear to function."
+		to_chat(usr, "\The [src] doesn't appear to function.")
 		return
 
 	if(href_list["change_track"])
@@ -128,7 +128,7 @@
 		return
 
 	if(stat & (NOPOWER|BROKEN))
-		usr << "\The [src] doesn't appear to function."
+		to_chat(usr, "\The [src] doesn't appear to function.")
 		return
 
 	ui_interact(user)

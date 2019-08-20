@@ -256,7 +256,7 @@
 
 	else if(state < GRAB_NECK)
 		if(isslime(affecting))
-			assailant << SPAN_NOTICE("You squeeze [affecting], but nothing interesting happens.")
+			to_chat(assailant, SPAN_NOTICE("You squeeze [affecting], but nothing interesting happens."))
 			return
 
 		assailant.visible_message(SPAN_WARNING("[assailant] grabs [affecting] neck!"))
@@ -317,7 +317,7 @@
 			switch(assailant.a_intent)
 				if(I_HELP)
 					if(force_down)
-						assailant << SPAN_WARNING("You are no longer pinning [affecting] to the ground.")
+						to_chat(assailant, SPAN_WARNING("You are no longer pinning [affecting] to the ground."))
 						force_down = 0
 						return
 					inspect_organ(affecting, assailant, hit_zone)

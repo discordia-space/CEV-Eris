@@ -49,7 +49,7 @@
 
 	var/mob/living/M = CI.wearer
 
-	M << SPAN_DANGER("A wave of agony washes over you, the cruciform in your chest searing like a star for a few moments of eternity.")
+	to_chat(M, SPAN_DANGER("A wave of agony washes over you, the cruciform in your chest searing like a star for a few moments of eternity."))
 
 
 	var/datum/effect/effect/system/spark_spread/s = new
@@ -117,7 +117,7 @@
 	power = 25 //Healing yourself is slightly easier than healing someone else
 
 /datum/ritual/cruciform/inquisitor/selfheal/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C,list/targets)
-	H << "<span class='info'>A sensation of relief bathes you, washing away your pain</span>"
+	to_chat(H, "<span class='info'>A sensation of relief bathes you, washing away your pain</span>")
 	H.add_chemical_effect(CE_PAINKILLER, 20)
 	H.adjustBruteLoss(-20)
 	H.adjustFireLoss(-20)
@@ -159,7 +159,7 @@
 	//Checking turfs allows this to be done in unusual circumstances, like if both are inside the same mecha
 	var/turf/T = get_turf(user)
 	if (!(T.Adjacent(get_turf(H))))
-		user << SPAN_DANGER("[H] is beyond your reach..")
+		to_chat(user, SPAN_DANGER("[H] is beyond your reach.."))
 		return
 
 
@@ -167,9 +167,9 @@
 	if (do_after(user, 40, H, TRUE))
 		T = get_turf(user)
 		if (!(T.Adjacent(get_turf(H))))
-			user << SPAN_DANGER("[H] is beyond your reach..")
+			to_chat(user, SPAN_DANGER("[H] is beyond your reach.."))
 			return
-		H << "<span class='info'>A sensation of relief bathes you, washing away your pain</span>"
+		to_chat(H, "<span class='info'>A sensation of relief bathes you, washing away your pain</span>")
 		H.add_chemical_effect(CE_PAINKILLER, 20)
 		H.adjustBruteLoss(-20)
 		H.adjustFireLoss(-20)
@@ -202,7 +202,7 @@
 		fail("You feel stupid.",user,C,targets)
 		return FALSE
 
-	M << SPAN_NOTICE("You feel an odd presence in the back of your mind. A lingering sense that someone is watching you...")
+	to_chat(M, SPAN_NOTICE("You feel an odd presence in the back of your mind. A lingering sense that someone is watching you..."))
 
 	var/mob/observer/eye/god/eye = new/mob/observer/eye/god(M)
 	eye.target = M
@@ -245,7 +245,7 @@
 	var/text = input(user, "What message will you send to the target? The message will be recieved telepathically and they will not know who it is from unless you reveal yourself.", "Sending a message") as (text|null)
 	if (!text)
 		return
-	H << "<span class='notice'>A voice speaks in your mind: \"[text]\"</span>"
+	to_chat(H, "<span class='notice'>A voice speaks in your mind: \"[text]\"</span>")
 
 
 
@@ -293,10 +293,10 @@
 
 	if(I && I.uplink)
 		I.telecrystals = I.uplink.uses
-		user << "<span class='info'>You have [I.telecrystals] telecrystals.</span>"
+		to_chat(user, "<span class='info'>You have [I.telecrystals] telecrystals.</span>")
 		return FALSE
 	else
-		user << "<span class='info'>You have no uplink.</span>"
+		to_chat(user, "<span class='info'>You have no uplink.</span>")
 		return FALSE
 
 
