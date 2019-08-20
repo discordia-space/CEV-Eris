@@ -1944,3 +1944,58 @@
 	result = "robustharvest"
 	required_reagents = list("eznutrient" = 1, "sugar" = 3, "carbon" = 3)
 	result_amount = 7
+
+/datum/chemical_reaction/arad
+	result = "arad nanites"
+	required_reagents = list("nanites" = 1, "arithrazine" = 1)
+	result_amount = 1
+
+/datum/chemical_reaction/implantMedics
+	result = "implant nanites"
+	required_reagents = list("nanites" = 1, "aluminum" = 1)
+	result_amount = 1
+
+/datum/chemical_reaction/nantidotes
+	result = "nantidotes"
+	required_reagents = list("nanites" = 1, "haloperidol" = 1)
+	result_amount = 1
+
+/datum/chemical_reaction/nanosymb
+	result = "nanosymb"
+	required_reagents = list("nanites" = 1, "peridaxon" = 1)
+	result_amount = 1
+
+/datum/chemical_reaction/oxyrush
+	result = "oxyrush"
+	required_reagents = list("nanites" = 1, "dexalin" = 1)
+	result_amount = 1
+
+/datum/chemical_reaction/tcs
+	result = "tcs"
+	required_reagents = list("nanites" = 1, "bicaridine" = 1)
+	result_amount = 1
+
+/datum/chemical_reaction/nanopurgers
+	result = "nanopurgers"
+	required_reagents = list("nanites" = 1, "synaptizine" = 1)
+	result_amount = 1
+
+/datum/chemical_reaction/cbu
+	result = "cbu"
+	required_reagents = list("uncap nanites" = 1, "party drops" = 1)
+	result_amount = 1
+
+/datum/chemical_reaction/cbc
+	result = "cbc"
+	required_reagents = list("uncap nanites" = 1, "menace" = 1)
+	result_amount = 1
+
+/datum/chemical_reaction/nanohands
+	result = "nanohands"
+	required_reagents = list("uncap nanites" = 1, "nanohands" = 1)
+	result_amount = 1
+
+/datum/chemical_reaction/nanovoice
+	result = "nanovoice"
+	required_reagents = list("uncap nanites" = 1, "synaptizine" = 1)
+	result_amount = 1

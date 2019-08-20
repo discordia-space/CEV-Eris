@@ -406,6 +406,7 @@
 		I.was_bloodied = null
 	for(var/obj/effect/decal/cleanable/blood/B in T)
 		qdel(B)
+	return TRUE
 
 /datum/reagent/leporazine
 	name = "Leporazine"

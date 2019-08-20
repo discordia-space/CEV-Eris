@@ -168,21 +168,25 @@
 
 	if(href_list["turn_on"])
 		on = TRUE
+		update_icon()
 
 	if(href_list["turn_off"])
 		on = FALSE
+		update_icon()
 
 	if(href_list["eject"] && beaker)
 		on = FALSE
 		if(beaker)
 			beaker.forceMove(get_turf(src))
 			beaker = null
+			update_icon()
 
 	if(href_list["ejectSecondary"] && beaker)
 		on = FALSE
 		if(separationBeaker)
 			separationBeaker.forceMove(get_turf(src))
 			separationBeaker = null
+		update_icon()
 
 	return 1 // update UIs attached to this object
 

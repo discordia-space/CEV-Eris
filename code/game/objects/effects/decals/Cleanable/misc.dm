@@ -19,12 +19,19 @@
 	to_chat(user, SPAN_NOTICE("[src] sifts through your fingers."))
 	qdel(src)
 
-/obj/effect/decal/cleanable/greenglow
+/obj/effect/decal/cleanable/greenglow/New()
+	..()
+	START_PROCESSING(SSobj, src)
+	set_light(1.5 ,1, "#00FF7F")
+	spawn(1200)// 2 minutes
+		qdel(src)
 
-	New()
-		..()
-		spawn(1200)// 2 minutes
-			qdel(src)
+/obj/effect/decal/cleanable/greenglow/Process()
+	. = ..()
+	for(var/mob/living/carbon/l in range(4))
+		if(prob(2))
+			to_chat(l, SPAN_WARNING("Your skin itches."))
+		l.apply_effect(2, IRRADIATE)		
 
 /obj/effect/decal/cleanable/dirt
 	name = "dirt"
@@ -35,6 +42,28 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "dirt"
 	mouse_opacity = 0
+
+/obj/effect/decal/cleanable/splashed_reagents
+	name = "splashed liquid"
+	desc = "Someone should clean that up."
+	gender = PLURAL
+	density = 0
+	anchored = 1
+	icon = 'icons/obj/reagentfillings.dmi'
+	icon_state = "splashed"
+	mouse_opacity = 0
+	random_rotation = FALSE
+
+/obj/effect/decal/cleanable/piled_reagents
+	name = "powder pile"
+	desc = "Someone should clean that up."
+	gender = PLURAL
+	density = 0
+	anchored = 1
+	icon = 'icons/obj/reagentfillings.dmi'
+	icon_state = "powderpile"
+	mouse_opacity = 0
+	random_rotation = FALSE
 
 /obj/effect/decal/cleanable/flour
 	name = "flour"

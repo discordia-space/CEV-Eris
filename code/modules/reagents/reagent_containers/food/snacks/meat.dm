@@ -6,8 +6,8 @@
 	filling_color = "#FF1C1C"
 	center_of_mass = list("x"=16, "y"=14)
 	bitesize = 3
-	preloaded = list("protein" = 9)
 	matter = list(MATERIAL_BIOMATTER = 20)
+	preloaded_reagents = list("protein" = 9)
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/attackby(obj/item/I, mob/user)
 	if(QUALITY_CUTTING in I.tool_qualities)
@@ -42,23 +42,23 @@
 	filling_color = "#E2FFDE"
 
 	bitesize = 6
-	preloaded = list("protein" = 4, "blattedin" = 8, "diplopterum" = 7)
+	preloaded_reagents = list("protein" = 4, "blattedin" = 8, "diplopterum" = 7)
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/seuche
 	name = "seuche roach meat"
-	preloaded = list("protein" = 4, "seligitillin" = 8, "diplopterum" = 6)
+	preloaded_reagents = list("protein" = 4, "seligitillin" = 8, "diplopterum" = 6)
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/panzer
 	name = "panzer roach meat"
-	preloaded = list("protein" = 8, "blattedin" = 12, "starkellin" = 15, "diplopterum" = 4)
+	preloaded_reagents = list("protein" = 8, "blattedin" = 12, "starkellin" = 15, "diplopterum" = 4)
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/fuhrer
 	name = "fuhrer roach meat"
-	preloaded = list("protein" = 6, "seligitillin" = 6, "fuhrerole" = 12, "diplopterum" = 6)
+	preloaded_reagents = list("protein" = 6, "seligitillin" = 6, "fuhrerole" = 12, "diplopterum" = 6)
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/jager
 	name = "jager roach meat"
-	preloaded = list("protein" = 6, "blattedin" = 6, "gewaltine" = 8, "diplopterum" = 2)
+	preloaded_reagents = list("protein" = 6, "blattedin" = 6, "gewaltine" = 8, "diplopterum" = 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/spider
 	name = "spider meat"
@@ -67,7 +67,7 @@
 	filling_color = "#E2FFDE"
 
 	bitesize = 6
-	preloaded = list("protein" = 7, "pararein" = 12)
+	preloaded_reagents = list("protein" = 7, "pararein" = 12)
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/spider/hunter
 	name = "hunter spider meat"
@@ -76,7 +76,7 @@
 	filling_color = "#E2FFDE"
 
 	bitesize = 6
-	preloaded = list("protein" = 9, "aranecolmin" = 8, "pararein" = 2)
+	preloaded_reagents = list("protein" = 9, "aranecolmin" = 8, "pararein" = 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/spider/nurse
 	name = "nurse spider meat"
@@ -85,7 +85,7 @@
 	filling_color = "#E2FFDE"
 
 	bitesize = 6
-	preloaded = list("protein" = 8, "stoxin" = 8)
+	preloaded_reagents = list("protein" = 8, "stoxin" = 8)
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/carp
 	name = "carp fillet"
@@ -94,7 +94,7 @@
 	filling_color = "#FFDEFE"
 	center_of_mass = list("x"=17, "y"=13)
 	bitesize = 6
-	preloaded = list("protein" = 8, "carpotoxin" = 8)
+	preloaded_reagents = list("protein" = 8, "carpotoxin" = 8)
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/bearmeat
 	name = "bear meat"
@@ -103,7 +103,7 @@
 	filling_color = "#DB0000"
 	bitesize = 3
 	center_of_mass = list("x"=16, "y"=10)
-	preloaded = list("protein" = 12, "hyperzine" = 5)
+	preloaded_reagents = list("protein" = 12, "hyperzine" = 5)
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/xenomeat
 	name = "meat"
@@ -112,4 +112,4 @@
 	filling_color = "#43DE18"
 	bitesize = 6
 	center_of_mass = list("x"=16, "y"=10)
-	preloaded = list("protein" = 6, "pacid" = 6)
+	preloaded_reagents = list("protein" = 6, "pacid" = 6)

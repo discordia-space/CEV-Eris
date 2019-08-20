@@ -62,6 +62,7 @@
 /datum/reagent/paint/touch_turf(var/turf/T)
 	if(istype(T) && !istype(T, /turf/space))
 		T.color = color
+	return TRUE
 
 /datum/reagent/paint/touch_obj(var/obj/O)
 	if(istype(O))
@@ -181,7 +182,9 @@
 			var/obj/effect/decal/cleanable/greenglow/glow = locate(/obj/effect/decal/cleanable/greenglow, T)
 			if(!glow)
 				new /obj/effect/decal/cleanable/greenglow(T)
-			return
+			return TRUE
+	return TRUE
+	
 
 /datum/reagent/adrenaline
 	name = "Adrenaline"
@@ -203,7 +206,7 @@
 /datum/reagent/water/holywater/touch_turf(var/turf/T)
 	if(volume >= 5)
 		T.holy = 1
-	return
+	return TRUE
 
 /datum/reagent/diethylamine
 	name = "Diethylamine"
@@ -245,7 +248,7 @@
 			W.thermite = 1
 			W.overlays += image('icons/effects/effects.dmi',icon_state = "#673910")
 			remove_self(5)
-	return
+	return TRUE
 
 /datum/reagent/thermite/touch_mob(var/mob/living/L, var/amount)
 	if(istype(L))
@@ -279,6 +282,7 @@
 			M.adjustToxLoss(rand(5, 10))
 
 	T.color = "white"
+	return TRUE
 
 /datum/reagent/space_cleaner/affect_touch(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
 	if(M.r_hand)
@@ -318,9 +322,10 @@
 
 /datum/reagent/lube/touch_turf(var/turf/simulated/T)
 	if(!istype(T))
-		return
+		return TRUE
 	if(volume >= 1)
 		T.wet_floor(2)
+	return TRUE
 
 /datum/reagent/silicate
 	name = "Silicate"

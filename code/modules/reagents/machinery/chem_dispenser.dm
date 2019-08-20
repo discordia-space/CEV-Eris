@@ -221,3 +221,15 @@
 		"stoxin","chloralhydrate","cryoxadone",
 		"clonexadone"
 	)
+
+/obj/machinery/chemical_dispenser/industrial
+	name = "industrial chem dispenser"
+	icon = 'icons/obj/machines/chemistry.dmi'
+	icon_state = "industrial_dispenser"
+	ui_title = "Industrial Dispenser 4835"
+	dispensable_reagents = list(
+		"acetone","aluminum","ammonia",
+		"copper","ethanol","hydrazine",
+		"iron","radium","sacid",
+		"hclacid","silicon","tungsten"
+	)

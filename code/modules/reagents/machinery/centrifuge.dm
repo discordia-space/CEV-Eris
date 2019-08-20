@@ -204,6 +204,7 @@
 /obj/item/device/makeshiftCentrifuge/attack_self(mob/user)
 	on = TRUE
 	SSnano.update_uis(src)
+	user.visible_message(SPAN_NOTICE("[user] have started to turn handle on \the [src]."), SPAN_NOTICE("You started to turn handle on \the [src]."))
 	if(do_after(user, 60 - (30 * user.stats.getMult(STAT_TGH, STAT_LEVEL_ADEPT))))
 		if(mainBeaker && mainBeaker.reagents.total_volume)
 			mainBeaker.reagents.handle_reactions()

@@ -73,10 +73,10 @@
 	possible_transfer_amounts = list(5,10,15,25)
 
 /obj/item/weapon/reagent_containers/glass/beaker/cryoxadone
-	preloaded = list("cryoxadone" = 30)
+	preloaded_reagents = list("cryoxadone" = 30)
 
 /obj/item/weapon/reagent_containers/glass/beaker/sulphuric
-	preloaded = list("sacid" = 60)
+	preloaded_reagents = list("sacid" = 60)
 
 
 /obj/item/weapon/reagent_containers/glass/bucket
@@ -88,8 +88,8 @@
 	matter = list(MATERIAL_PLASTIC = 2)
 	w_class = ITEM_SIZE_NORMAL
 	amount_per_transfer_from_this = 20
-	possible_transfer_amounts = list(10,20,30,60,120)
-	volume = 120
+	possible_transfer_amounts = list(10,20,30,60,120,200)
+	volume = 200
 	unacidable = 0
 
 /obj/item/weapon/reagent_containers/glass/bucket/attackby(var/obj/D, mob/user as mob)

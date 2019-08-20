@@ -231,6 +231,9 @@
 					if(QDELETED(stack))
 						holdingitems -= stack
 					beaker.reagents.add_reagent(sheet_reagents[stack.type], (amount_to_take*REAGENTS_PER_SHEET))
+					if(stack.reagents)
+						for(var/datum/reagent/R in stack.reagents.reagent_list)
+							reagents.add_reagent(R.id, R.volume)
 					continue
 
 		if(O.reagents)
@@ -242,7 +245,7 @@
 				break
 
 /obj/item/weapon/storage/handmadeGrinder
-	name = "Makeshift grinder"
+	name = "makeshift grinder"
 	desc = "Mortar and pestle to grind ingridients."
 	icon = 'icons/obj/machines/chemistry.dmi'
 	icon_state = "mortar"
@@ -250,15 +253,23 @@
 	unacidable = 1
 	var/amount_per_transfer_from_this = 5
 	var/possible_transfer_amounts = list(5,10,30,60)
+	reagent_flags = REFILLABLE | DRAINABLE | DRAWABLE | INJECTABLE
 
 /obj/item/weapon/storage/handmadeGrinder/Initialize(mapload, ...)
 	. = ..()
 	create_reagents(60)
 
 /obj/item/weapon/storage/handmadeGrinder/attack_self(mob/user)
-	if(do_after(user, 60 - (40 * user.stats.getMult(STAT_TGH, STAT_LEVEL_ADEPT))))
+	var/time_to_finish = 60 - (40 * user.stats.getMult(STAT_TGH, STAT_LEVEL_ADEPT))
+	var/datum/repeating_sound/toolsound = new/datum/repeating_sound(8,time_to_finish,0.15, src, 'sound/effects/impacts/thud2.ogg', 50, 1)
+	user.visible_message(SPAN_NOTICE("[user] grind contents of \the [src]."), SPAN_NOTICE("You starting to grind contents of \the [src]."))
+	if(do_after(user,time_to_finish))
 		grind()
+		update_icon()
 		refresh_all()
+		if (toolsound)
+			toolsound.stop()
+			toolsound = null
 
 /obj/item/weapon/storage/handmadeGrinder/proc/grind()
 	// Sanity check.
@@ -280,6 +291,9 @@
 					if(QDELETED(stack))
 						src.contents.Remove(O)
 					reagents.add_reagent(get_material_name_by_stack_type(stack.type), (amount_to_take*REAGENTS_PER_SHEET))
+					if(stack.reagents)
+						for(var/datum/reagent/R in stack.reagents.reagent_list)
+							reagents.add_reagent(R.id, R.volume)
 					continue
 
 		if(O.reagents)
@@ -291,28 +305,13 @@
 				break
 
 
-/obj/item/weapon/storage/handmadeGrinder/afterattack(var/obj/target, var/mob/user, var/flag)
-	// Ensure we don't splash beakers and similar containers.
-	if(!target.is_refillable())
-		if(istype(target, /obj/item/weapon/reagent_containers))
-			var/obj/item/weapon/reagent_containers/container = target
-			container.is_closed_message(user)
-			return TRUE
-		// Otherwise don't care about splashing.
-		else
-			return FALSE
+/obj/item/weapon/storage/handmadeGrinder/attackby(obj/item/I, mob/user)
+	. = ..()
+	update_icon()
 
-	if(!reagents.total_volume)
-		to_chat(user, SPAN_NOTICE("[src] is empty."))
-		return TRUE
-
-	if(!target.reagents.get_free_space())
-		to_chat(user, SPAN_NOTICE("[target] is full."))
-		return TRUE
-
-	var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
-	playsound(src,'sound/effects/Liquid_transfer_mono.ogg',50,1)
-	to_chat(user, SPAN_NOTICE("You transfer [trans] units of the solution to [target]."))
+/obj/item/weapon/storage/handmadeGrinder/afterattack(obj/target, mob/user, flag)
+	..()
+	update_icon()
 
 /obj/item/weapon/storage/handmadeGrinder/verb/set_APTFT() //set amount_per_transfer_from_this
 	set name = "Set transfer amount"
@@ -321,4 +320,21 @@
 	var/N = input("Amount per transfer from this:","[src]") as null|anything in possible_transfer_amounts
 	if(N)
 		amount_per_transfer_from_this = N
+
+/obj/item/weapon/storage/handmadeGrinder/examine(mob/user)
+	if(!..(user, 2))
+		return
+	if(contents.len)
+		to_chat(user, SPAN_NOTICE("It has something inside."))
+	if(reagents.total_volume)
+		to_chat(user, SPAN_NOTICE("It's filled with [reagents.total_volume]/[reagents.maximum_volume] units of reagents."))
+
+
+/obj/item/weapon/storage/handmadeGrinder/update_icon()
+	. = ..()
+	cut_overlays()
+	if(reagents.total_volume)
+		var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[icon_state]100")
+		filling.color = reagents.get_color()
+		add_overlay(filling)
 #undef REAGENTS_PER_SHEET

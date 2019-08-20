@@ -72,6 +72,7 @@
 			dirtoverlay.alpha = volume * 30
 		else
 			dirtoverlay.alpha = min(dirtoverlay.alpha + volume * 30, 255)
+	return TRUE
 
 /datum/reagent/copper
 	name = "Copper"
@@ -187,7 +188,7 @@
 /datum/reagent/hydrazine/touch_turf(var/turf/T)
 	new /obj/effect/decal/cleanable/liquid_fuel(T, volume)
 	remove_self(volume)
-	return
+	return TRUE
 
 /datum/reagent/iron
 	name = "Iron"
@@ -276,7 +277,8 @@
 			var/obj/effect/decal/cleanable/greenglow/glow = locate(/obj/effect/decal/cleanable/greenglow, T)
 			if(!glow)
 				new /obj/effect/decal/cleanable/greenglow(T)
-			return
+			return TRUE
+	return TRUE
 
 /datum/reagent/acid
 	name = "Sulphuric acid"

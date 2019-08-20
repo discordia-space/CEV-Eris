@@ -87,6 +87,10 @@
     jobs_list = list(/datum/job/cmo, /datum/job/doctor, /datum/job/chemist, /datum/job/psychiatrist, /datum/job/paramedic)
     tipText = "Inaprovaline stabilize a patient in many ways and a must to chemical for critical patients."
 
+/tipsAndTricks/jobs/liddraw
+    jobs_list = list(/datum/job/cmo, /datum/job/doctor, /datum/job/chemist, /datum/job/psychiatrist, /datum/job/paramedic)
+    tipText = "You can draw a reagents from bottles with syringe through the lid."
+
 /tipsAndTricks/jobs/quickclotinternal
     jobs_list = list(/datum/job/cmo, /datum/job/doctor, /datum/job/chemist, /datum/job/psychiatrist, /datum/job/paramedic)
     tipText = "Quickclot and some other chemicals can heal internal bleeding."

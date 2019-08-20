@@ -114,6 +114,7 @@
 		return
 	T.assume_gas("plasma", volume, T20C)
 	remove_self(volume)
+	return TRUE
 
 /datum/reagent/toxin/cyanide //Fast and Lethal
 	name = "Cyanide"
@@ -236,6 +237,7 @@
 			for(var/obj/effect/overlay/wallrot/E in W)
 				qdel(E)
 			W.visible_message(SPAN_NOTICE("The fungi are completely dissolved by the solution!"))
+	return TRUE
 
 /datum/reagent/toxin/plantbgone/touch_obj(var/obj/O, var/volume)
 	if(istype(O, /obj/effect/plant))
@@ -470,6 +472,8 @@
 	strength = 0.1
 	addiction_chance = 10
 	NSA = 5
+	heating_point = 363
+	heating_products = list("radium", "acetone", "hydrazine", "nutriment")
 
 /datum/reagent/toxin/diplopterum/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
 	..()
@@ -499,6 +503,8 @@
 	overdose = REAGENTS_OVERDOSE/2
 	addiction_chance = 10
 	NSA = 5
+	heating_point = 363
+	heating_products = list("radium", "ammonia", "sulfur", "nutriment")
 
 /datum/reagent/seligitillin/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
 	M.add_chemical_effect(CE_BLOODCLOT, 0.2)
@@ -531,14 +537,16 @@
 	overdose = REAGENTS_OVERDOSE/2
 	addiction_chance = 15
 	NSA = 5
+	heating_point = 363
+	heating_products = list("radium", "aluminum", "tungsten", "nutriment")
 
 /datum/reagent/toxin/starkellin/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
 	..()
-	M.stats.addTempStat(STAT_TGH, STAT_LEVEL_BASIC, STIM_TIME, "diplopterum")
+	M.stats.addTempStat(STAT_TGH, STAT_LEVEL_BASIC, STIM_TIME, "starkellin")
 
 /datum/reagent/toxin/starkellin/withdrawal_act(mob/living/carbon/M)
-	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_BASIC, STIM_TIME, "diplopterum_w")
-	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, STIM_TIME, "diplopterum_w")
+	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_BASIC, STIM_TIME, "starkellin_w")
+	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, STIM_TIME, "starkellin_w")
 
 /datum/reagent/toxin/gewaltine
 	name = "Gewaltine"
@@ -551,6 +559,8 @@
 	addiction_chance = 20
 	NSA = 5
 	strength = 0.2
+	chilling_point = 363
+	chilling_products = list("radium", "mercury", "sugar", "nutriment")
 
 /datum/reagent/toxin/gewaltine/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
 	..()
@@ -574,6 +584,8 @@
 	overdose = 8
 	addiction_chance = 30
 	NSA = 4
+	heating_point = 363
+	heating_products = list("radium", "mercury", "lithium", "nutriment")
 
 /datum/reagent/fuhrerole/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
 	M.faction = "roach"
@@ -582,8 +594,8 @@
 	L.faction = initial(L.faction)
 
 /datum/reagent/fuhrerole/withdrawal_act(mob/living/carbon/M)
-	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_BASIC, STIM_TIME, "diplopterum_w")
-	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, STIM_TIME, "diplopterum_w")
+	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_BASIC, STIM_TIME, "fuhrerole_w")
+	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, STIM_TIME, "fuhrerole_w")
 
 /datum/reagent/fuhrerole/overdose(var/mob/living/carbon/M, var/alien)
 	M.add_chemical_effect(CE_SPEECH_VOLUME, rand(3,4))

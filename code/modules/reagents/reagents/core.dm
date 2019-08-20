@@ -26,13 +26,14 @@
 
 /datum/reagent/blood/touch_turf(var/turf/simulated/T)
 	if(!istype(T) || volume < 3)
-		return
+		return TRUE
 	if(!data["donor"] || istype(data["donor"], /mob/living/carbon/human))
 		blood_splatter(T, src, 1)
 	else if(istype(data["donor"], /mob/living/carbon/alien))
 		var/obj/effect/decal/cleanable/blood/B = blood_splatter(T, src, 1)
 		if(B)
 			B.blood_DNA["UNKNOWN DNA STRUCTURE"] = "X*"
+	return TRUE
 
 /datum/reagent/blood/affect_ingest(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
 
@@ -95,7 +96,7 @@
 
 /datum/reagent/water/touch_turf(var/turf/simulated/T)
 	if(!istype(T))
-		return
+		return TRUE
 
 	var/datum/gas_mixture/environment = T.return_air()
 	var/min_temperature = T0C + 100 // 100C, the boiling point of water
@@ -116,6 +117,7 @@
 
 	else if(volume >= 10)
 		T.wet_floor(1)
+	return TRUE
 
 /datum/reagent/water/touch_obj(var/obj/O)
 	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/monkeycube))
@@ -165,7 +167,7 @@
 /datum/reagent/fuel/touch_turf(var/turf/T)
 	new /obj/effect/decal/cleanable/liquid_fuel(T, volume)
 	remove_self(volume)
-	return
+	return TRUE
 
 /datum/reagent/fuel/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
 	M.adjustToxLoss(0.2 * issmall(M) ? effectMultiplier * 2 : effectMultiplier)

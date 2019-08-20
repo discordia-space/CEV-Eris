@@ -8,7 +8,7 @@
 	var/possible_transfer_amounts = list(5,10,15,25,30)
 	var/volume = 30
 	var/filling_states				// List of percentages full that have icons
-	var/list/preloaded = null
+	
 
 /obj/item/weapon/reagent_containers/verb/set_APTFT() //set amount_per_transfer_from_this
 	set name = "Set transfer amount"
@@ -22,9 +22,9 @@
 	if(!possible_transfer_amounts)
 		src.verbs -= /obj/item/weapon/reagent_containers/verb/set_APTFT
 	create_reagents(volume)
-	if(preloaded)
-		for(var/reagent in preloaded)
-			reagents.add_reagent(reagent, preloaded[reagent])
+	if(preloaded_reagents)
+		for(var/reagent in preloaded_reagents)
+			reagents.add_reagent(reagent, preloaded_reagents[reagent])
 	..()
 
 
@@ -173,22 +173,22 @@
 		if(istype(target, /obj/item/weapon/reagent_containers))
 			var/obj/item/weapon/reagent_containers/container = target
 			container.is_closed_message(user)
-			return TRUE
+			return FALSE
 		// Otherwise don't care about splashing.
 		else
 			return FALSE
 
 	if(!is_drainable())
 		is_closed_message(user)
-		return TRUE
+		return FALSE
 
 	if(!reagents.total_volume)
 		to_chat(user, SPAN_NOTICE("[src] is empty."))
-		return TRUE
+		return FALSE
 
 	if(!target.reagents.get_free_space())
 		to_chat(user, SPAN_NOTICE("[target] is full."))
-		return TRUE
+		return FALSE
 
 	var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
 	playsound(src,'sound/effects/Liquid_transfer_mono.ogg',50,1)

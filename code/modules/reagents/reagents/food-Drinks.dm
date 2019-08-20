@@ -84,6 +84,7 @@
 /datum/reagent/nutriment/flour/touch_turf(var/turf/simulated/T)
 	if(!istype(T, /turf/space))
 		new /obj/effect/decal/cleanable/flour(T)
+	return TRUE
 
 /datum/reagent/nutriment/coco
 	name = "Coco Powder"
@@ -146,7 +147,7 @@
 
 /datum/reagent/nutriment/cornoil/touch_turf(var/turf/simulated/T)
 	if(!istype(T))
-		return
+		return TRUE
 
 	var/hotspot = (locate(/obj/fire) in T)
 	if(hotspot && !istype(T, /turf/space))
@@ -158,6 +159,7 @@
 
 	if(volume >= 3)
 		T.wet_floor()
+	return TRUE
 
 /datum/reagent/nutriment/virus_food
 	name = "Virus Food"
