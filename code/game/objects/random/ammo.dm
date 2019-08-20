@@ -28,9 +28,7 @@
 				/obj/item/ammo_magazine/c45m/flash = 4,
 				/obj/item/ammo_magazine/sl357 = 2,
 				/obj/item/ammo_magazine/sl38 = 3,
-				/obj/item/ammo_magazine/sl38/rubber = 4,
-				/obj/item/ammo_magazine/mc9mmt = 2,
-				/obj/item/ammo_magazine/mc9mmt/rubber = 6))
+				/obj/item/ammo_magazine/sl38/rubber = 4))
 
 
 /obj/random/ammo/low_chance

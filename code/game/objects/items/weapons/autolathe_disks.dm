@@ -327,7 +327,6 @@
 		/datum/design/autolathe/gun/revolver_deckard,
 		/datum/design/autolathe/gun/revolver,
 		/datum/design/autolathe/gun/idaho, //smgs
-		/datum/design/autolathe/gun/wt550,
 		/datum/design/autolathe/gun/IH_smg,
 		/datum/design/autolathe/gun/atreides,
 		/datum/design/autolathe/gun/smg_sol, //other
@@ -364,7 +363,6 @@
 		/datum/design/autolathe/ammo/sl_c138_rubber, //speed loaders
 		/datum/design/autolathe/ammo/sl_cl44_rubber,
 		/datum/design/autolathe/ammo/smg9mm_rubber, //smg mags
-		/datum/design/autolathe/ammo/magazine_mc9mmt_rubber,
 		/datum/design/autolathe/ammo/c45smg_rubber,
 		/datum/design/autolathe/ammo/SMG_sol_rubber, //other mags
 		/datum/design/autolathe/ammo/a556_practice,
@@ -390,7 +388,6 @@
 		/datum/design/autolathe/ammo/sl_cl44_brute,
 		/datum/design/autolathe/ammo/magazine_sl357,
 		/datum/design/autolathe/ammo/smg9mm_brute, //smg mags
-		/datum/design/autolathe/ammo/magazine_mc9mmt,
 		/datum/design/autolathe/ammo/c45smg_brute,
 		/datum/design/autolathe/ammo/magazine_smg10mm,
 		/datum/design/autolathe/ammo/SMG_sol_brute, //other mags
