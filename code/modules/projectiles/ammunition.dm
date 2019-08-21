@@ -32,6 +32,24 @@
 	set_dir(pick(cardinal)) //spin spent casings
 	update_icon()
 
+// Called after the casing hits the floor.
+// Merges it into an existing casing stack, if any.
+/obj/item/ammo_casing/proc/on_ejection()
+	for(var/obj/item/ammo_casing/temp_casing in src.loc)
+		if(temp_casing == src || temp_casing.desc != desc || temp_casing.BB)
+			continue
+
+		var/temp_amount = temp_casing.amount + amount
+		if(temp_amount > maxamount)
+			temp_casing.amount -= (maxamount - amount)
+			amount = maxamount
+			temp_casing.update_icon()
+		else
+			amount = temp_amount
+			QDEL_NULL(temp_casing)
+		update_icon()
+
+
 /obj/item/ammo_casing/attack_hand(mob/user)
 	if((src.amount > 1) && (src == user.get_inactive_hand()))
 		src.amount -= 1

@@ -1,18 +1,16 @@
 /mob/living/simple_animal/hostile/retaliate
 	var/list/enemies = list()
 
-/mob/living/simple_animal/hostile/retaliate/Found(var/atom/A)
+/mob/living/simple_animal/hostile/retaliate/Found(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(!L.stat)
-			stance = HOSTILE_STANCE_ATTACK
 			return L
 		else
 			enemies -= L
 	else if(istype(A, /obj/mecha))
 		var/obj/mecha/M = A
 		if(M.occupant)
-			stance = HOSTILE_STANCE_ATTACK
 			return A
 
 /mob/living/simple_animal/hostile/retaliate/ListTargets()
@@ -23,15 +21,14 @@
 	return see
 
 /mob/living/simple_animal/hostile/retaliate/proc/Retaliate()
-	..()
-	var/list/around = view(src, 7)
+	var/list/around = view(src, vision_range)
 
 	for(var/atom/movable/A in around)
 		if(A == src)
 			continue
 		if(isliving(A))
 			var/mob/living/M = A
-			if(!attack_same && M.faction != faction)
+			if(attack_same || !faction_check_mob(M))
 				enemies |= M
 		else if(istype(A, /obj/mecha))
 			var/obj/mecha/M = A
@@ -40,10 +37,11 @@
 				enemies |= M.occupant
 
 	for(var/mob/living/simple_animal/hostile/retaliate/H in around)
-		if(!attack_same && !H.attack_same && H.faction == faction)
+		if(faction_check_mob(H) && !attack_same && !H.attack_same)
 			H.enemies |= enemies
 	return 0
 
 /mob/living/simple_animal/hostile/retaliate/adjustBruteLoss(var/damage)
 	..(damage)
-	Retaliate()
+	if(damage > 0 && stat == CONSCIOUS)
+		Retaliate()

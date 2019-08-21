@@ -10,11 +10,11 @@
 	Note that in all cases the neighbor is handled simply; this is usually the user's mob, in which case it is up to you
 	to check that the mob is not inside of something
 */
-/atom/proc/Adjacent(var/atom/neighbor) // basic inheritance, unused
+/atom/proc/Adjacent(atom/neighbor) // basic inheritance, unused
 	return FALSE
 
 // Not a sane use of the function and (for now) indicative of an error elsewhere
-/area/Adjacent(var/atom/neighbor)
+/area/Adjacent(atom/neighbor)
 	CRASH("Call to /area/Adjacent(), unimplemented proc")
 
 
@@ -25,13 +25,13 @@
 	* If you are diagonally adjacent, ensure you can pass through at least one of the mutually adjacent square.
 		* Passing through in this case ignores anything with the throwpass flag, such as tables, racks, and morgue trays.
 */
-/turf/Adjacent(var/atom/neighbor, var/atom/target = null)
+/turf/Adjacent(atom/neighbor, atom/target = null, atom/movable/mover = null)
 	var/turf/T0 = get_turf(neighbor)
 
-	if(T0 == src)
+	if(T0 == src) //same turf
 		return TRUE
 
-	if(get_dist(src, T0) > 1 || (src.z != T0.z))
+	if(get_dist(src, T0) > 1 || (src.z != T0.z))  //too far
 		return FALSE
 
 	// Non diagonal case
@@ -45,16 +45,16 @@
 	var/d2 = in_dir&(NORTH|SOUTH)	// eg north		(1+8) - 8 = 1
 
 	for(var/d in list(d1, d2))
-		if(!T0.ClickCross(d, TRUE))
+		if(!T0.ClickCross(d, border_only = TRUE, target_atom = target, mover = mover))
 			continue // could not leave T0 in that direction
 
 		var/turf/T1 = get_step(T0, d)
 		if(!T1 || T1.density)
 			continue
-		if(!T1.ClickCross(get_dir(T1, T0), FALSE) || !T1.ClickCross(get_dir(T1, src), FALSE))
+		if(!T1.ClickCross(get_dir(T1,src), border_only = FALSE, target_atom = target, mover = mover) || !T1.ClickCross(get_dir(T1,T0), border_only = FALSE, target_atom = target, mover = mover))
 			continue // couldn't enter or couldn't leave T1
 
-		if(!src.ClickCross(get_dir(src, T1), TRUE, target))
+		if(!src.ClickCross(get_dir(src, T1), border_only = TRUE, target_atom = target, mover = mover))
 			continue // could not enter src
 
 		return TRUE // we don't care about our own density
@@ -124,7 +124,8 @@ Quick adjacency (to turf):
 			//exception for breaking full tile windows on top of single pane windows
 			if(W.is_fulltile())
 				return FALSE
-	return ..()
+		return ..()
+	return !border_only
 
 
 /*
@@ -132,7 +133,7 @@ Quick adjacency (to turf):
 	This is defined as any dense ON_BORDER object, or any dense object without throwpass.
 	The border_only flag allows you to not objects (for source and destination squares)
 */
-/turf/proc/ClickCross(var/target_dir, var/border_only, var/target_atom = null)
+/turf/proc/ClickCross(target_dir, border_only, target_atom = null, atom/movable/mover = null)
 	for(var/obj/O in src)
 		// throwpass is used for anything you can click through
 		if(!O.density || O == target_atom || O.throwpass)

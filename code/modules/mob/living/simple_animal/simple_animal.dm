@@ -47,15 +47,12 @@
 	var/cold_damage_per_tick = 2	//same as heat_damage_per_tick, only if the bodytemperature it's lower than minbodytemp
 	var/fire_alert = 0
 
-	//Atmos effect - Yes, you can make creatures that require plasma or co2 to survive. N2O is a trace gas and handled separately, hence why it isn't here. It'd be hard to add it. Hard and me don't mix (Yes, yes make all the dick jokes you want with that.) - Errorage
-	var/min_oxy = 5
-	var/max_oxy = 0					//Leaving something at 0 means it's off - has no maximum
-	var/min_tox = 0
-	var/max_tox = 1
-	var/min_co2 = 0
-	var/max_co2 = 5
-	var/min_n2 = 0
-	var/max_n2 = 0
+	//Atmos effect - Yes, you can make creatures that require plasma or co2 to survive.
+	//N2O is a trace gas and handled separately, hence why it isn't here.
+	//It'd be hard to add it. Hard and me don't mix (Yes, yes make all the dick jokes you want with that.) - Errorage
+	var/list/atmos_requirements = list("min_oxy" = 5, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 1, "min_co2" = 0, "max_co2" = 5, "min_n2" = 0, "max_n2" = 0)
+	//Leaving a maximum at 0 means it's off - has no maximum
+
 	var/unsuitable_atoms_damage = 2	//This damage is taken when atmos doesn't fit all the requirements above
 	var/speed = 2 //LETS SEE IF I CAN SET SPEEDS FOR SIMPLE MOBS WITHOUT DESTROYING EVERYTHING. Higher speed is slower, negative speed is faster
 
@@ -65,7 +62,7 @@
 	var/attacktext = "attacked"
 	var/attack_sound = null
 	var/friendly = "nuzzles"
-	var/environment_smash = 0
+	var/environment_smash = ENVIRONMENT_SMASH_NONE
 	var/resistance		  = 0	// Damage reduction
 
 	//Null rod stuff
@@ -186,7 +183,7 @@
 	handle_foodscanning()
 
 	//Atmos
-	var/atmos_suitable = 1
+	var/atmos_suitable = TRUE
 
 	var/atom/A = loc
 
@@ -197,35 +194,39 @@
 
 		if(Environment)
 
-			if( abs(Environment.temperature - bodytemperature) > 40 )
+			if(abs(Environment.temperature - bodytemperature) > 40 )
 				bodytemperature += ((Environment.temperature - bodytemperature) / 5)
 
-			if(min_oxy)
-				if(Environment.gas["oxygen"] < min_oxy)
-					atmos_suitable = 0
-			if(max_oxy)
-				if(Environment.gas["oxygen"] > max_oxy)
-					atmos_suitable = 0
-			if(min_tox)
-				if(Environment.gas["plasma"] < min_tox)
-					atmos_suitable = 0
-			if(max_tox)
-				if(Environment.gas["plasma"] > max_tox)
-					atmos_suitable = 0
-			if(min_n2)
-				if(Environment.gas["nitrogen"] < min_n2)
-					atmos_suitable = 0
-			if(max_n2)
-				if(Environment.gas["nitrogen"] > max_n2)
-					atmos_suitable = 0
-			if(min_co2)
-				if(Environment.gas["carbon_dioxide"] < min_co2)
-					atmos_suitable = 0
-			if(max_co2)
-				if(Environment.gas["carbon_dioxide"] > max_co2)
-					atmos_suitable = 0
+			if(atmos_requirements["min_oxy"])
+				if(Environment.gas["oxygen"] < atmos_requirements["min_oxy"])
+					atmos_suitable = FALSE
+			if(atmos_requirements["max_oxy"])
+				if(Environment.gas["oxygen"] > atmos_requirements["max_oxy"])
+					atmos_suitable = FALSE
+			if(atmos_requirements["min_tox"])
+				if(Environment.gas["plasma"] < atmos_requirements["min_tox"])
+					atmos_suitable = FALSE
+			if(atmos_requirements["max_tox"])
+				if(Environment.gas["plasma"] > atmos_requirements["max_tox"])
+					atmos_suitable = FALSE
+			if(atmos_requirements["min_n2"])
+				if(Environment.gas["nitrogen"] < atmos_requirements["min_n2"])
+					atmos_suitable = FALSE
+			if(atmos_requirements["max_n2"])
+				if(Environment.gas["nitrogen"] > atmos_requirements["max_n2"])
+					atmos_suitable = FALSE
+			if(atmos_requirements["min_co2"])
+				if(Environment.gas["carbon_dioxide"] < atmos_requirements["min_co2"])
+					atmos_suitable = FALSE
+			if(atmos_requirements["max_co2"])
+				if(Environment.gas["carbon_dioxide"] > atmos_requirements["max_co2"])
+					atmos_suitable = FALSE
 
 	//Atmos effect
+	if(!atmos_suitable)
+		adjustBruteLoss(unsuitable_atoms_damage)
+
+	//Temperature effect
 	if(bodytemperature < minbodytemp)
 		fire_alert = 2
 		adjustBruteLoss(cold_damage_per_tick)
@@ -234,9 +235,6 @@
 		adjustBruteLoss(heat_damage_per_tick)
 	else
 		fire_alert = 0
-
-	if(!atmos_suitable)
-		adjustBruteLoss(unsuitable_atoms_damage)
 
 	//Speaking
 	if(!client && speak_chance)
@@ -436,19 +434,20 @@
 
 
 /mob/living/simple_animal/proc/SA_attackable(target_mob)
-	if (isliving(target_mob))
+	if(isliving(target_mob))
 		var/mob/living/L = target_mob
 		if(!L.stat || L.health >= (ishuman(L) ? HEALTH_THRESHOLD_CRIT : 0))
-			return (0)
-	if (istype(target_mob,/obj/mecha))
+			return TRUE
+
+	if(istype(target_mob, /obj/mecha))
 		var/obj/mecha/M = target_mob
 		if (M.occupant)
-			return (0)
-	if (istype(target_mob,/obj/machinery/bot))
+			return TRUE
+	if(istype(target_mob, /obj/machinery/bot))
 		var/obj/machinery/bot/B = target_mob
 		if(B.health > 0)
-			return (0)
-	return 1
+			return TRUE
+	return FALSE
 
 /mob/living/simple_animal/get_speech_ending(verb, var/ending)
 	return verb

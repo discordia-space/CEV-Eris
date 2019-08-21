@@ -540,8 +540,8 @@
 				add_overlay("[icon_lock]_off")
 				add_overlay(icon_sparking)
 
-/obj/structure/closet/attack_generic(var/mob/user, var/damage, var/attack_message = "destroys", var/wallbreaker)
-	if(!damage || !wallbreaker)
+/obj/structure/closet/attack_generic(mob/user, damage, attack_message = "destroys", environment_smash)
+	if(!damage || !environment_smash)
 		return
 	attack_animation(user)
 	visible_message(SPAN_DANGER("[user] [attack_message] the [src]!"))

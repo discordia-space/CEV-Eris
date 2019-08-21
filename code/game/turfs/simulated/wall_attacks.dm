@@ -71,7 +71,7 @@
 
 	try_touch(user, rotting)
 
-/turf/simulated/wall/attack_generic(var/mob/user, var/damage, var/attack_message, var/wallbreaker)
+/turf/simulated/wall/attack_generic(mob/user, damage, attack_message, environment_smash)
 
 	radiate()
 	if(!istype(user))
@@ -79,7 +79,7 @@
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	var/rotting = (locate(/obj/effect/overlay/wallrot) in src)
-	if(!damage || !wallbreaker)
+	if(!damage || !environment_smash)
 		try_touch(user, rotting)
 		return
 
@@ -87,7 +87,7 @@
 		return success_smash(user)
 
 	if(reinf_material)
-		if((wallbreaker == 2) || (damage >= max(material.hardness,reinf_material.hardness)))
+		if((environment_smash >= ENVIRONMENT_SMASH_WALLS) || (damage >= max(material.hardness, reinf_material.hardness)))
 			return success_smash(user)
 	else if(damage >= material.hardness)
 		return success_smash(user)

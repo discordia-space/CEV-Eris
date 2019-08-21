@@ -385,7 +385,7 @@
 		faction = "neutral"
 		melee_damage_lower = 0
 		melee_damage_upper = 0
-		environment_smash = 0
+		environment_smash = ENVIRONMENT_SMASH_NONE
 		destroy_surroundings = 0
 	else
 		faction = "carp"

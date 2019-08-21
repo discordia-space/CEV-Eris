@@ -11,10 +11,6 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 10
 
-	min_oxy = 5
-	max_co2 = 5
-	max_tox = 2 //We tuff bear
-
 	response_help = "pets"
 	response_harm = "hits"
 	response_disarm = "pushes"

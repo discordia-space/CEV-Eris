@@ -449,6 +449,26 @@
 	update_connections(1)
 	qdel(src)
 
+/obj/structure/low_wall/attack_generic(mob/user, damage)
+	if(istype(user))
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		user.do_attack_animation(src)
+
+	/*
+	if(damage >= resistance)
+		visible_message(SPAN_DANGER("[user] smashes into [src]!"))
+		take_damage(damage)
+	else
+		visible_message(SPAN_NOTICE("\The [user] bonks \the [src] harmlessly."))
+		playsound(src.loc, 'sound/effects/glasshit.ogg', 40, 1)
+		return
+	*/
+
+	visible_message(SPAN_DANGER("[user] smashes into [src]!"))
+	take_damage(damage)
+
+	return 1
+
 
 /obj/structure/low_wall/proc/take_damage(dam)
 	if(locate(/obj/effect/overlay/wallrot) in src)

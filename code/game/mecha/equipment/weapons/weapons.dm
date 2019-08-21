@@ -268,23 +268,24 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive/Fire(atom/movable/AM, atom/target)
 	var/obj/item/missile/M = AM
-	M.primed = 1
+	M.primed = TRUE
 	..()
 
 /obj/item/missile
-	icon = 'icons/obj/grenade.dmi'
+	name = "missile"
 	icon_state = "missile"
-	var/primed = null
+	icon = 'icons/obj/grenade.dmi'
 	throwforce = 15
 	allow_spin = 0
+	var/primed = FALSE
 
-	throw_impact(atom/hit_atom)
-		if(primed)
-			explosion(hit_atom, 0, 1, 2, 4)
-			qdel(src)
-		else
-			..()
-		return
+/obj/item/missile/throw_impact(atom/hit_atom)
+	if(primed)
+		explosion(hit_atom, 0, 1, 2, 4)
+		qdel(src)
+	else
+		..()
+	return
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang
 	name = "\improper SGL-6 grenade launcher"

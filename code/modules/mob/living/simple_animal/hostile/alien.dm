@@ -18,17 +18,10 @@
 	attacktext = "slashed"
 	a_intent = I_HURT
 	attack_sound = 'sound/weapons/bladeslice.ogg'
-	min_oxy = 0
-	max_oxy = 0
-	min_tox = 0
-	max_tox = 0
-	min_co2 = 0
-	max_co2 = 0
-	min_n2 = 0
-	max_n2 = 0
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	unsuitable_atoms_damage = 15
 	faction = "alien"
-	environment_smash = 2
+	environment_smash = ENVIRONMENT_SMASH_WALLS
 	status_flags = CANPUSH
 	minbodytemp = 0
 	heat_damage_per_tick = 20

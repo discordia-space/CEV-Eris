@@ -67,7 +67,7 @@
 	var/atom/target_mob //currently chased target
 	var/attack_same = 0 //whether mob AI should target own faction members for attacks
 	var/list/friends = list() //list of mobs to consider friends, not types
-	var/environment_smash = 1
+	var/environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	var/destroy_surroundings = 1
 	var/break_stuff_probability = 10
 	can_burrow = TRUE

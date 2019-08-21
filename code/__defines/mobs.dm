@@ -33,6 +33,11 @@
 #define HOSTILE_STANCE_ATTACKING 4
 #define HOSTILE_STANCE_TIRED     5
 
+//determines if a mob can smash through it
+#define ENVIRONMENT_SMASH_NONE			0
+#define ENVIRONMENT_SMASH_STRUCTURES	(1<<0) 	//crates, lockers, ect
+#define ENVIRONMENT_SMASH_WALLS			(1<<1)  //walls
+
 #define LEFT  1
 #define RIGHT 2
 
@@ -105,6 +110,15 @@
 // Defines the argument used for get_mobs_and_objs_in_view_fast
 #define GHOSTS_ALL_HEAR 1
 #define ONLY_GHOSTS_IN_VIEW 0
+
+//Mob AI Status
+
+//Hostile simple animals
+//If you add a new status, be sure to add a list for it to the simple_animals global in _globalvars/lists/mobs.dm
+#define AI_ON		1
+#define AI_IDLE		2
+#define AI_OFF		3
+#define AI_Z_OFF	4
 
 // Defines mob sizes, used by lockers and to determine what is considered a small sized mob, etc.
 #define MOB_LARGE  		40

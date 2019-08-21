@@ -1165,13 +1165,11 @@ mob/proc/yank_out_object()
 /client/verb/body_toggle_head()
 	set name = "body-toggle-head"
 	set hidden = TRUE
-	set category = "OOC"
 	toggle_zone_sel(list(BP_HEAD,BP_EYES,BP_MOUTH))
 
 /client/verb/body_r_arm()
 	set name = "body-r-arm"
 	set hidden = TRUE
-	set category = "OOC"
 	toggle_zone_sel(list(BP_R_ARM))
 
 /client/verb/body_l_arm()
@@ -1204,3 +1202,31 @@ mob/proc/yank_out_object()
 		return
 	var/obj/screen/zone_sel/selector = mob.HUDneed["damage zone"]
 	selector.set_selected_zone(next_in_list(mob.targeted_organ,zones))
+
+	
+/mob/proc/faction_check_mob(mob/target, exact_match)
+	return faction == target.faction
+	// TODO: port tgstation list factions
+/*
+	if(exact_match) //if we need an exact match, we need to do some bullfuckery.
+		var/list/faction_src = faction.Copy()
+		var/list/faction_target = target.faction.Copy()
+		if(!("[REF(src)]" in faction_target)) //if they don't have our ref faction, remove it from our factions list.
+			faction_src -= "[REF(src)]" //if we don't do this, we'll never have an exact match.
+		if(!("[REF(target)]" in faction_src))
+			faction_target -= "[REF(target)]" //same thing here.
+		return faction_check(faction_src, faction_target, TRUE)
+	return faction_check(faction, target.faction, FALSE)
+
+/proc/faction_check(list/faction_A, list/faction_B, exact_match)
+	var/list/match_list
+	if(exact_match)
+		match_list = faction_A&faction_B //only items in both lists
+		var/length = LAZYLEN(match_list)
+		if(length)
+			return (length == LAZYLEN(faction_A)) //if they're not the same len(gth) or we don't have a len, then this isn't an exact match.
+	else
+		match_list = faction_A&faction_B
+		return LAZYLEN(match_list)
+	return FALSE
+*/
