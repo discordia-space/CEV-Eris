@@ -119,7 +119,9 @@
 						amount_per_pill = Clamp(amount_per_pill, 1, R.total_volume)
 					else
 						return
-				
+			else
+				count = 1
+			
 			if(count)
 				if(R.total_volume/count < 1) //Sanity checking.
 					return
@@ -131,6 +133,7 @@
 			var/obj/item/weapon/storage/pill_bottle/PB
 			if(createPillBottle)
 				PB = new(get_turf(src))
+				PB.name = "[PB.name] ([name])"
 			while (R.total_volume)
 				var/obj/item/weapon/reagent_containers/pill/P = new/obj/item/weapon/reagent_containers/pill(src.loc)
 				if(!name) name = R.get_master_reagent_name()
@@ -201,7 +204,7 @@
 		dat += "<A href='?src=\ref[src];close=1'>Close</A>"
 	else
 		var/datum/reagents/R = beaker:reagents
-		dat += "<A href='?src=\ref[src];eject=1'>Eject beaker and Clear Buffer</A><BR>"
+		dat += "<A href='?src=\ref[src];eject=1'>Eject beaker</A><BR>"
 		if(!R.total_volume)
 			dat += "Beaker is empty."
 		else

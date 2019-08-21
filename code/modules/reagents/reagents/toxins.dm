@@ -50,7 +50,7 @@
 	strength = 0.1
 	NSA = 60
 	addiction_chance = 20
-	heating_point = 363
+	heating_point = 523
 	heating_products = list("toxin")
 
 /datum/reagent/toxin/carpotoxin
@@ -64,7 +64,7 @@
 	overdose = REAGENTS_OVERDOSE/3
 	addiction_chance = 10
 	NSA = 5
-	heating_point = 363
+	heating_point = 523
 	heating_products = list("toxin")
 
 /datum/reagent/toxin/carpotoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
@@ -453,7 +453,7 @@
 	addiction_chance = 10
 	NSA = 5
 	strength = 0.1
-	heating_point = 363
+	heating_point = 523
 	heating_products = list("toxin")
 
 /datum/reagent/toxin/pararein/affect_blood(mob/living/carbon/M, alien, effectMultiplier)
@@ -472,7 +472,7 @@
 	strength = 0.1
 	addiction_chance = 10
 	NSA = 5
-	heating_point = 363
+	heating_point = 573
 	heating_products = list("radium", "acetone", "hydrazine", "nutriment")
 
 /datum/reagent/toxin/diplopterum/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
@@ -503,7 +503,7 @@
 	overdose = REAGENTS_OVERDOSE/2
 	addiction_chance = 10
 	NSA = 5
-	heating_point = 363
+	heating_point = 573
 	heating_products = list("radium", "ammonia", "sulfur", "nutriment")
 
 /datum/reagent/seligitillin/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
@@ -537,7 +537,7 @@
 	overdose = REAGENTS_OVERDOSE/2
 	addiction_chance = 15
 	NSA = 5
-	heating_point = 363
+	heating_point = 573
 	heating_products = list("radium", "aluminum", "tungsten", "nutriment")
 
 /datum/reagent/toxin/starkellin/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
@@ -559,8 +559,8 @@
 	addiction_chance = 20
 	NSA = 5
 	strength = 0.2
-	chilling_point = 363
-	chilling_products = list("radium", "mercury", "sugar", "nutriment")
+	heating_point = 573
+	heating_products = list("radium", "mercury", "sugar", "nutriment")
 
 /datum/reagent/toxin/gewaltine/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
 	..()
@@ -584,7 +584,7 @@
 	overdose = 8
 	addiction_chance = 30
 	NSA = 4
-	heating_point = 363
+	heating_point = 573
 	heating_products = list("radium", "mercury", "lithium", "nutriment")
 
 /datum/reagent/fuhrerole/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)

@@ -9,7 +9,7 @@
 	reagent_state = LIQUID
 	color = "#696969" // ( ͡° ͜ʖ ͡°)
 	metabolism = REM/2
-	heating_point = 363
+	heating_point = 523
 	heating_products = list("toxin")
 	scannable = 1
 

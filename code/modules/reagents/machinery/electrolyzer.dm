@@ -336,7 +336,7 @@
 			beaker.forceMove(get_turf(src))
 			beaker = null
 
-	if(href_list["ejectSecondary"] && beaker)
+	if(href_list["ejectSecondary"] && separationBeaker)
 		turn_off()
 		if(separationBeaker)
 			separationBeaker.forceMove(get_turf(src))

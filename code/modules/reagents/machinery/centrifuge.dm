@@ -180,7 +180,8 @@
 	return 1 // update UIs attached to this object
 
 /obj/item/device/makeshiftCentrifuge
-	name = "mortar and pestle"
+	name = "makeshift centrifuge"
+	desc = "A handmade centrifuge with manual mechanism."
 	icon = 'icons/obj/machines/chemistry.dmi'
 	icon_state = "centrifuge_makeshift"
 	var/obj/item/weapon/reagent_containers/mainBeaker
