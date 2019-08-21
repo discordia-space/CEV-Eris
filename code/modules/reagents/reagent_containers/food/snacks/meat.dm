@@ -36,7 +36,6 @@
 	desc = "Tastes like... well, you know."
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat
-	name = "roach meat"
 	desc = "Gross piece of roach meat."
 	icon_state = "xenomeat"
 	filling_color = "#E2FFDE"
@@ -45,23 +44,18 @@
 	preloaded_reagents = list("protein" = 4, "blattedin" = 8, "diplopterum" = 7)
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/seuche
-	name = "seuche roach meat"
 	preloaded_reagents = list("protein" = 4, "seligitillin" = 8, "diplopterum" = 6)
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/panzer
-	name = "panzer roach meat"
 	preloaded_reagents = list("protein" = 8, "blattedin" = 12, "starkellin" = 15, "diplopterum" = 4)
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/fuhrer
-	name = "fuhrer roach meat"
 	preloaded_reagents = list("protein" = 6, "seligitillin" = 6, "fuhrerole" = 12, "diplopterum" = 6)
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/jager
-	name = "jager roach meat"
 	preloaded_reagents = list("protein" = 6, "blattedin" = 6, "gewaltine" = 8, "diplopterum" = 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/spider
-	name = "spider meat"
 	desc = "Bloaty piece of spider meat."
 	icon_state = "xenomeat"
 	filling_color = "#E2FFDE"
@@ -70,7 +64,6 @@
 	preloaded_reagents = list("protein" = 7, "pararein" = 12)
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/spider/hunter
-	name = "hunter spider meat"
 	desc = "Bloaty piece of spider meat."
 	icon_state = "xenomeat"
 	filling_color = "#E2FFDE"
@@ -79,7 +72,6 @@
 	preloaded_reagents = list("protein" = 9, "aranecolmin" = 8, "pararein" = 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/spider/nurse
-	name = "nurse spider meat"
 	desc = "Bloaty piece of spider meat."
 	icon_state = "xenomeat"
 	filling_color = "#E2FFDE"
