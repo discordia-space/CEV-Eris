@@ -1367,3 +1367,24 @@ datum/supply_pack/randomised/rigmods
 	crate_name = "Surplus Rig Modules"
 	containertype = /obj/structure/closet/crate
 	group = "Operations"
+
+/datum/supply_pack/nanites
+	name = "Raw Nanites"
+	contains = list(
+		/obj/item/weapon/reagent_containers/glass/beaker/vial/nanites
+	)
+	cost = 1500
+	crate_name = "Raw Nanites Container"
+	group = "Medical / Science"
+	containertype = /obj/structure/closet/crate/medical
+
+/datum/supply_pack/uncapnanites
+	name = "Raw Uncapped Nanites"
+	contains = list(
+		/obj/item/weapon/reagent_containers/glass/beaker/vial/uncapnanites
+	)
+	cost = 2000
+	crate_name = "Raw Nanites Container"
+	group = "Medical / Science"
+	contraband = TRUE
+	containertype = /obj/structure/closet/crate/medical

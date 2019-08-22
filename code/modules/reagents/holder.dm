@@ -438,11 +438,10 @@
 
 /datum/reagents/proc/touch_turf(var/turf/target)
 	if(!target || !istype(target) || !target.simulated)
-		if(istype(target, /turf/simulated/open))
-			var/turf/simulated/open/T = target
-			if(T.isOpen())
-				return
-		else
+		return
+	if(istype(target, /turf/simulated/open))
+		var/turf/simulated/open/T = target
+		if(T.isOpen())
 			return
 
 	var/handled = TRUE

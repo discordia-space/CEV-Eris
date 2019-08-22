@@ -7,3 +7,15 @@
 		var/obj/item/weapon/reagent_containers/glass/beaker/large/B = new /obj/item/weapon/reagent_containers/glass/beaker/large(src.loc)
 		B.name = R.name
 		B.reagents.add_reagent(id, B.volume, null, TRUE)
+
+/obj/landmark/debug/allContainers/New()
+	for(var/type in typesof(/obj/item/weapon/reagent_containers) - typesof(/obj/item/weapon/reagent_containers/food))
+		new type(src.loc)
+
+/obj/landmark/debug/allFood/New()
+	for(var/type in typesof(/obj/item/weapon/reagent_containers/food))
+		new type(src.loc)
+
+/obj/landmark/debug/allClosets/New()
+	for(var/type in typesof(/obj/structure/closet))
+		new type(src.loc)

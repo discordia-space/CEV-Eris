@@ -292,8 +292,8 @@
 
 //this is big movable beaker
 /obj/structure/reagent_dispensers/bidon
-	name = "reagent canister"
-	desc = "A canister with acid-resistant linings intended for handling big volumes of chemicals."
+	name = "B.I.D.O.N. canister"
+	desc = "Bulk Industrial Dispenser Omnitech-Nanochem. A canister with acid-resistant linings intended for handling big volumes of chemicals."
 	icon = 'icons/obj/machines/chemistry.dmi'
 	icon_state = "bidon"
 	reagent_flags = AMOUNT_VISIBLE
@@ -307,8 +307,8 @@
 	var/lid = TRUE
 
 /obj/structure/reagent_dispensers/bidon/advanced
-	name = "stasis reagent canister"
-	desc = "A advanced reagent canister with stasis function."
+	name = "stasis B.I.D.O.N. canister"
+	desc = "An advanced B.I.D.O.N. canister with stasis function."
 	icon_state = "bidon_adv"
 	reagent_flags = TRANSPARENT
 	filling_states = list(20,40,60,80,100)

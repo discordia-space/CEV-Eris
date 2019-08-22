@@ -106,6 +106,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/zippomes = "USER lights NAME with FLAME"
 	var/weldermes = "USER lights NAME with FLAME"
 	var/ignitermes = "USER lights NAME with FLAME"
+	preloaded_reagents = list("nicotine" = 5)
 
 /obj/item/clothing/mask/smokable/New()
 	..()

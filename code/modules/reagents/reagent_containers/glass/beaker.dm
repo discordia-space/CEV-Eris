@@ -72,6 +72,12 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25)
 
+/obj/item/weapon/reagent_containers/glass/beaker/vial/nanites
+	preloaded_reagents = list("nanites" = 30)
+
+/obj/item/weapon/reagent_containers/glass/beaker/vial/uncapnanites
+	preloaded_reagents = list("uncap nanites" = 30)
+
 /obj/item/weapon/reagent_containers/glass/beaker/cryoxadone
 	preloaded_reagents = list("cryoxadone" = 30)
 
