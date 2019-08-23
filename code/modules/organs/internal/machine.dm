@@ -12,10 +12,10 @@
 	//at 0.8 completely depleted after 60ish minutes of constant walking or 130 minutes of standing still
 	var/servo_cost = 0.8 // this will probably require tweaking
 
-/obj/item/organ/internal/cell/New()
+/obj/item/organ/internal/cell/Initialize(mapload, ...)
+	. = ..()
 	if(ispath(cell))
 		cell = new cell(src)
-	..()
 
 /obj/item/organ/internal/cell/proc/percent()
 	if(!cell)
@@ -55,7 +55,7 @@
 		cost *= 2
 	if(!use(cost))
 		if(!owner.lying && !owner.buckled)
-			to_chat(owner, "<span class='warning'>You don't have enough energy to function!</span>")
+			to_chat(owner, SPAN_WARNING("You don't have enough energy to function!"))
 		owner.Paralyse(3)
 
 /obj/item/organ/internal/cell/emp_act(severity)
@@ -67,32 +67,32 @@
 	if(QUALITY_SCREW_DRIVING in W.tool_qualities)
 		if(open)
 			open = 0
-			to_chat(user, "<span class='notice'>You screw the battery panel in place.</span>")
+			to_chat(user, SPAN_NOTICE("You screw the battery panel in place."))
 		else
 			open = 1
-			to_chat(user, "<span class='notice'>You unscrew the battery panel.</span>")
+			to_chat(user, SPAN_NOTICE("You unscrew the battery panel."))
 
 	if(QUALITY_PRYING in W.tool_qualities)
 		if(open)
 			if(cell)
 				user.put_in_hands(cell)
-				to_chat(user, "<span class='notice'>You remove \the [cell] from \the [src].</span>")
+				to_chat(user, SPAN_NOTICE("You remove \the [cell] from \the [src]."))
 				cell = null
 
 	if (istype(W, /obj/item/weapon/cell))
 		if(open)
 			if(cell)
-				to_chat(user, "<span class ='warning'>There is a power cell already installed.</span>")
+				to_chat(user, SPAN_WARNING("There is a power cell already installed."))
 			else if(user.unEquip(W, src))
 				cell = W
-				to_chat(user, "<span class = 'notice'>You insert \the [cell].</span>")
+				to_chat(user, SPAN_NOTICE("You insert \the [cell]."))
 
 /obj/item/organ/internal/cell/replaced()
 	..()
 	// This is very ghetto way of rebooting an IPC. TODO better way.
 	if(owner && owner.stat == DEAD)
 		owner.set_stat(CONSCIOUS)
-		owner.visible_message("<span class='danger'>\The [owner] twitches visibly!</span>")
+		owner.visible_message(SPAN_DANGER("\The [owner] twitches visibly!"))
 
 
 /obj/item/organ/optical_sensor

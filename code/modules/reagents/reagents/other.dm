@@ -410,7 +410,7 @@
 	color = "#acc107"
 	overdose = REAGENTS_OVERDOSE
 	addiction_chance = 10
-	NSA = 5
+	nsa = 5
 
 /datum/reagent/aranecolmin/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
 	M.add_chemical_effect(CE_ANTITOX, 0.3)

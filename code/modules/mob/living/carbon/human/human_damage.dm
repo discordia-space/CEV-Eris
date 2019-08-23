@@ -212,12 +212,6 @@
 	return ..()
 
 /mob/living/carbon/human/adjustToxLoss(var/amount)
-	/*if(species.flags & NO_POISON)
-		toxloss = 0
-	else
-		amount = amount*species.toxins_mod
-		..(amount)
-	*/
 	if((species.flags & NO_POISON) || isSynthetic())
 		return
 

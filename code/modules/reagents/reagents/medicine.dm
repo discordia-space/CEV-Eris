@@ -186,7 +186,7 @@
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
 	metabolism = 0.02
-	NSA = 40
+	nsa = 40
 
 /datum/reagent/tramadol/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
 	M.add_chemical_effect(CE_PAINKILLER, 130 )
@@ -208,7 +208,7 @@
 	color = "#800080"
 	overdose = REAGENTS_OVERDOSE * 0.66
 	metabolism = 0.02
-	NSA = 60
+	nsa = 60
 
 /datum/reagent/oxycodone/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
 	M.add_chemical_effect(CE_PAINKILLER, 200)
@@ -235,7 +235,7 @@
 	metabolism = REM * 0.05
 	overdose = 5
 	scannable = 1
-	NSA = 50
+	nsa = 50
 
 /datum/reagent/synaptizine/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
 	M.drowsyness = max(M.drowsyness - 5, 0)
@@ -594,7 +594,7 @@
 					missingLimbs += name
 			if(missingLimbs.len)
 				var/luckyLimbName = pick(missingLimbs)
-				H.restore_limb(luckyLimbName)
+				H.restore_organ(luckyLimbName)
 				M.pain(luckyLimbName, 100, TRUE)
 				dose = 0
 	if(prob(10))
@@ -634,18 +634,18 @@
 	metabolism = REM/2
 
 /datum/reagent/purger/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
-	if(M.NSA_threshold == initial(M.NSA_threshold))
-		M.NSA_threshold += rand(20, 60)
+	if(M.nsa_threshold == initial(M.nsa_threshold))
+		M.nsa_threshold += rand(20, 60)
 
 /datum/reagent/detox/on_mob_delete(mob/living/L)
 	var/mob/living/carbon/C = L
 	if(istype(C))
-		C.NSA_threshold = initial(C.NSA_threshold)
+		C.nsa_threshold = initial(C.nsa_threshold)
 
 /datum/reagent/detox/overdose(var/mob/living/carbon/M, var/alien)
 	var/mob/living/carbon/C = M
 	if(istype(C))
-		C.NSA_threshold = initial(C.NSA_threshold) - rand(20, 40)
+		C.nsa_threshold = initial(C.nsa_threshold) - rand(20, 40)
 
 /datum/reagent/purger
 	name = "Purger"
@@ -733,7 +733,7 @@
 		M.sleeping = max(M.sleeping, 20)
 		M.drowsyness = max(M.drowsyness, 60)
 	M.add_chemical_effect(CE_PULSE, -1)
-	M.NSA_threshold /= 2
+	M.nsa_threshold /= 2
 
 
 /datum/reagent/haloperidol/overdose(var/mob/living/carbon/M, var/alien)
@@ -742,4 +742,4 @@
 /datum/reagent/haloperidol/on_mob_delete(mob/living/L)
 	var/mob/living/carbon/C = L
 	if(istype(C))
-		C.NSA_threshold = initial(C.NSA_threshold)
+		C.nsa_threshold = initial(C.nsa_threshold)

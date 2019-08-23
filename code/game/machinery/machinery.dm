@@ -243,10 +243,13 @@ Class Procs:
 /obj/machinery/proc/RefreshParts() //Placeholder proc for machines that are built using frames.
 	return
 
-/obj/machinery/proc/maxPartRating(var/type) //returns max raiting of installed part type or null on error(keep in mind that all parts have to match that raiting).
+/obj/machinery/proc/maxPartRating(var/type) //returns max rating of installed part type or null on error(keep in mind that all parts have to match that raiting).
 	if(!istype(type,/obj/item/weapon/stock_parts))
 		return
-	var/list/obj/item/weapon/stock_parts/parts = locate(type) in component_parts
+	var/list/obj/item/weapon/stock_parts/parts = list()
+	for(var/list/obj/item/weapon/stock_parts/P in component_parts)
+		if(istype(P, type))
+			parts.Add(P)
 	if(!parts.len)
 		return
 	var/rating = 1

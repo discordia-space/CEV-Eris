@@ -20,20 +20,20 @@
 	if(!tag)
 		crash_with("no tag given to adjustNSA()")
 		return
-	NSA[tag] = value
+	nsa[tag] = value
 
 /mob/living/carbon/proc/removeNSA(tag)
-	if(NSA[tag])
-		NSA.Remove(tag)
+	if(nsa[tag])
+		nsa.Remove(tag)
 
 /mob/living/carbon/proc/getNSA()
 	var/accumulatedNSA
-	for(var/tag in NSA)
-		accumulatedNSA += NSA[tag]
+	for(var/tag in nsa)
+		accumulatedNSA += nsa[tag]
 	return accumulatedNSA
 
 /mob/living/carbon/proc/handleNSA()
-	if(getNSA() > NSA_threshold)
+	if(getNSA() > nsa_threshold)
 		NSA_breachedAffect()
 
 /mob/living/carbon/proc/NSA_breachedAffect()

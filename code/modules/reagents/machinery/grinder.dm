@@ -29,6 +29,59 @@
 	icon_state = "juicer"+num2text(!isnull(beaker))
 	return
 
+/obj/machinery/reagentgrinder/MouseDrop_T(atom/movable/I, mob/user, src_location, over_location, src_control, over_control, params)
+	if(!Adjacent(user) || !I.Adjacent(user) || user.stat)
+		return ..()
+	if(istype(I, /obj/item/weapon/reagent_containers) && I.is_open_container() && !beaker)
+		I.forceMove(src)
+		src.beaker = I
+		to_chat(user, SPAN_NOTICE("You add [I] to [src]."))
+		updateUsrDialog()
+		update_icon()
+		return
+
+	if(holdingitems && holdingitems.len >= limit)
+		to_chat(user, "The machine cannot hold anymore items.")
+		return
+
+	var/obj/item/O = I
+	
+	if(!istype(O))
+		return
+
+	if(istype(O,/obj/item/weapon/storage/bag/plants))
+		var/obj/item/weapon/storage/bag/plants/bag = O
+		var/failed = 1
+		for(var/obj/item/G in O.contents)
+			if(!G.reagents || !G.reagents.total_volume)
+				continue
+			failed = 0
+			bag.remove_from_storage(G, src)
+			holdingitems += G
+			if(holdingitems && holdingitems.len >= limit)
+				break
+
+		if(failed)
+			to_chat(user, "Nothing in the plant bag is usable.")
+			return
+
+		if(!O.contents.len)
+			to_chat(user, "You empty \the [O] into \the [src].")
+		else
+			to_chat(user, "You fill \the [src] from \the [O].")
+
+		updateUsrDialog()
+		return
+
+	if(!sheet_reagents[O.type] && (!O.reagents || !O.reagents.total_volume))
+		to_chat(user, "\The [O] is not suitable for blending.")
+		return
+	O.add_fingerprint(user)
+	O.forceMove(src)
+	holdingitems += O
+	updateUsrDialog()
+	. = ..()
+
 /obj/machinery/reagentgrinder/attackby(var/obj/item/O as obj, var/mob/user as mob)
 
 	if (istype(O,/obj/item/weapon/reagent_containers/glass) || \
@@ -303,7 +356,6 @@
 				src.contents.Remove(O)
 			if (reagents.total_volume >= reagents.maximum_volume)
 				break
-
 
 /obj/item/weapon/storage/handmadeGrinder/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/reagent_containers))

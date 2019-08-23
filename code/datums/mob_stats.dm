@@ -85,13 +85,13 @@
 	var/value = 0
 	var/id
 
-/datum/stat_mod/New(delay, affect, id)
-	if(delay == INFINITY)
-		src.time = -1
+/datum/stat_mod/New(_delay, _affect, _id)
+	if(_delay == INFINITY)
+		time = -1
 	else
-		src.time = world.time + delay
-	src.value = affect
-	src.id = id
+		time = world.time + _delay
+	value = _affect
+	id = _id
 
 
 

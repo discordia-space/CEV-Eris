@@ -190,41 +190,6 @@
 			return TRUE
 	return FALSE
 
-ge_this_tick
-
-/mob/living/carbon/human/proc/restore_limb(var/limb_type, var/show_message = FALSE, var/heal = FALSE)
-	var/obj/item/organ/external/E = organs_by_name[limb_type]
-	if(E && E.organ_tag != BP_HEAD && !E.vital && !E.is_usable())	//Skips heads and vital bits...
-		E.removed()//...because no one wants their head to explode to make way for a new one.
-		qdel(E)
-		E= null
-	if(!E)
-		var/list/organ_data = species.has_limbs[limb_type]
-		var/limb_path = organ_data["path"]
-		var/obj/item/organ/external/O = new limb_path(src)
-		organ_data["descriptor"] = O.name
-		var/datum/reagent/blood/B = locate(/datum/reagent/blood) in vessel.reagent_list
-		blood_splatter(src,B,1)
-		O.set_dna(dna)
-		update_body()
-		if (show_message)
-			to_chat(src, "<span class='danger'>With a shower of fresh blood, a new [O.name] forms.</span>")
-			visible_message("<span class='danger'>With a shower of fresh blood, a length of biomass shoots from [src]'s [O.amputation_point], forming a new [O.name]!</span>")
-		return 1
-	else if (heal && (E.damage > 0 || E.status & (ORGAN_BROKEN) || E.hasInternalBleeding()))
-		E.status &= ~ORGAN_BROKEN
-		for(var/datum/wound/W in E.wounds) 
-			if(W.internal)
-				E.wounds.Remove(W)
-				qdel(W)
-				E.update_wounds()
-		for(var/datum/wound/W in E.wounds)
-			if(W.wound_damage() == 0 && prob(50))
-				E.wounds -= W
-		return 1
-	else
-		return 0
-
 // basically has_limb()
 /mob/living/carbon/human/has_appendage(var/appendage_check)	//returns TRUE if found, type of organ modification if limb is robotic, FALSE if not found
 
@@ -240,24 +205,52 @@ ge_this_tick
 		else return TRUE
 	return FALSE
 
-/mob/living/carbon/human/proc/restore_organ(organ_type, var/heal = FALSE)
-	var/obj/item/organ/internal/E = internal_organs_by_name[organ_type]
-	if(E && !E.vital && !E.is_usable())	//Skips heads and vital bits...
+/mob/living/carbon/human/proc/restore_organ(organ_type, var/show_message = FALSE, var/heal = FALSE,)
+	var/obj/item/organ/E = organs_by_name[organ_type]
+	if(E && E.organ_tag != BP_HEAD && !E.vital && !E.is_usable())	//Skips heads and vital bits...
 		E.removed()//...because no one wants their head to explode to make way for a new one.
 		qdel(E)
-		E = null
+		E= null
 	if(!E)
-		var/list/organ_data = species.has_organ[organ_type]
-		var/organ_path = organ_data["path"]
-		var/obj/item/organ/internal/O = new organ_path(src)
-		organ_data["descriptor"] = O.name
-		O.set_dna(dna)
-		update_body()
-		if(O.organ_tag == BP_BRAIN)
-			O.vital = 0
-		return TRUE
-	else if (heal && (E.damage > 0 || E.status & (ORGAN_BROKEN)))
-		E.status &= ~ORGAN_BROKEN
-		return TRUE
+		if(organ_type in BP_ALL_LIMBS)
+			var/list/organ_data = species.has_limbs[organ_type]
+			var/limb_path = organ_data["path"]
+			var/obj/item/organ/external/O = new limb_path(src)
+			organ_data["descriptor"] = O.name
+			var/datum/reagent/blood/B = locate(/datum/reagent/blood) in vessel.reagent_list
+			blood_splatter(src,B,1)
+			O.set_dna(dna)
+			update_body()
+			if (show_message)
+				to_chat(src, SPAN_DANGER("With a shower of fresh blood, a new [O.name] forms."))
+				visible_message(SPAN_DANGER("With a shower of fresh blood, a length of biomass shoots from [src]'s [O.amputation_point], forming a new [O.name]!"))
+			return TRUE
+		else
+			var/list/organ_data = species.has_organ[organ_type]
+			var/organ_path = organ_data["path"]
+			var/obj/item/organ/internal/O = new organ_path(src)
+			organ_data["descriptor"] = O.name
+			O.set_dna(dna)
+			update_body()
+			if(mind.changeling && O.organ_tag == BP_BRAIN)
+				O.vital = 0
+			return TRUE
 	else
-		return FALSE
+		if(organ_type in BP_ALL_LIMBS)
+			var/obj/item/organ/external/O = E
+			if (heal && (O.damage > 0 || O.status & (ORGAN_BROKEN) || O.hasInternalBleeding()))
+				O.status &= ~ORGAN_BROKEN
+				for(var/datum/wound/W in O.wounds) 
+					if(W.internal)
+						O.wounds.Remove(W)
+						qdel(W)
+						O.update_wounds()
+				for(var/datum/wound/W in O.wounds)
+					if(W.wound_damage() == 0 && prob(50))
+						O.wounds -= W
+				return TRUE
+		else
+			if (heal && (E.damage > 0 || E.status & (ORGAN_BROKEN)))
+				E.status &= ~ORGAN_BROKEN
+				return TRUE
+	return FALSE

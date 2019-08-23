@@ -95,7 +95,7 @@
 	overdose = REAGENTS_OVERDOSE * 0.66
 	metabolism = REM * 0.5
 	addiction_chance = 10
-	NSA = 40
+	nsa = 40
 
 /datum/reagent/psilocybin/affect_blood(mob/living/carbon/M, alien, effectMultiplier)
 	M.druggy = max(M.druggy, 30 * effectMultiplier)
@@ -135,7 +135,7 @@
 	color = "#181818"
 	overdose = REAGENTS_OVERDOSE/2
 	addiction_chance = 20
-	NSA = 10
+	nsa = 10
 
 /datum/reagent/nicotine/affect_blood(mob/living/carbon/M, alien, effectMultiplier)
 	..()
@@ -161,7 +161,7 @@
 	metabolism = REM * 0.15
 	overdose = REAGENTS_OVERDOSE * 0.66
 	withdrawal_threshold = 10
-	NSA = 70
+	nsa = 70
 
 /datum/reagent/hyperzine/affect_blood(mob/living/carbon/M, alien, effectMultiplier)
 	if(prob(5))
@@ -182,7 +182,7 @@
 	color = "#e06270"
 	metabolism = REM
 	overdose = REAGENTS_OVERDOSE/2
-	NSA = 80
+	nsa = 80
 	addiction_chance = 30
 
 /datum/reagent/sanguinum/affect_blood(mob/living/carbon/M, alien, effectMultiplier)

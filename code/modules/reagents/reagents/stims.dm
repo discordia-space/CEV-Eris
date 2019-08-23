@@ -12,7 +12,7 @@
 	color = "#5f95e2"
 	overdose = REAGENTS_OVERDOSE
 	addiction_chance = 20
-	NSA = 15
+	nsa = 15
 
 /datum/reagent/stim/stim/mbr/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
 	M.stats.addTempStat(STAT_MEC, STAT_LEVEL_BASIC * effectMultiplier, STIM_TIME, "mbr")
@@ -40,7 +40,7 @@
 	reagent_state = LIQUID
 	color = "#9bd70f"
 	overdose = REAGENTS_OVERDOSE + 5
-	NSA = 20
+	nsa = 20
 	addiction_chance = 30
 
 /datum/reagent/stim/cherrydrops/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
@@ -63,7 +63,7 @@
 	reagent_state = LIQUID
 	color = "#2d867a"
 	overdose = REAGENTS_OVERDOSE
-	NSA = 20
+	nsa = 20
 	addiction_chance = 20
 
 /datum/reagent/stim/proSurgeon/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
@@ -91,7 +91,7 @@
 	reagent_state = LIQUID
 	color = "#75aea5"
 	overdose = REAGENTS_OVERDOSE - 10
-	NSA = 30
+	nsa = 30
 	addiction_chance = 30
 
 /datum/reagent/stim/violence/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
@@ -117,7 +117,7 @@
 	reagent_state = LIQUID
 	color = "#682f93"
 	overdose = REAGENTS_OVERDOSE
-	NSA = 10
+	nsa = 10
 	addiction_chance = 20
 
 /datum/reagent/stim/bouncer/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
@@ -141,7 +141,7 @@
 	reagent_state = LIQUID
 	color = "#334183"
 	overdose = REAGENTS_OVERDOSE - 10
-	NSA = 20
+	nsa = 20
 	addiction_chance = 20
 
 /datum/reagent/stim/steady/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
@@ -170,7 +170,7 @@
 	reagent_state = LIQUID
 	color = "#9eb236"
 	overdose = REAGENTS_OVERDOSE - 12
-	NSA = 30
+	nsa = 30
 	addiction_chance = 30
 
 /datum/reagent/stim/machineSpirit/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
@@ -201,7 +201,7 @@
 	reagent_state = LIQUID
 	color = "#eb5783"
 	overdose = REAGENTS_OVERDOSE - 5
-	NSA = 30
+	nsa = 30
 	addiction_chance = 40
 
 /datum/reagent/stim/grapeDrops/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
@@ -227,7 +227,7 @@
 	reagent_state = LIQUID
 	color = "#0c07c4"
 	overdose = REAGENTS_OVERDOSE - 13
-	NSA = 30
+	nsa = 30
 	addiction_chance = 30
 
 /datum/reagent/stim/ultraSurgeon/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
@@ -257,7 +257,7 @@
 	reagent_state = LIQUID
 	color = "#3d3362"
 	overdose = REAGENTS_OVERDOSE - 19
-	NSA = 60
+	nsa = 60
 	addiction_chance = 40
 
 /datum/reagent/stim/violenceUltra/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
@@ -286,7 +286,7 @@
 	reagent_state = LIQUID
 	color = "#0ed750"
 	overdose = REAGENTS_OVERDOSE/2
-	NSA = 50
+	nsa = 50
 	addiction_chance = 30
 
 /datum/reagent/stim/boxer/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
@@ -311,7 +311,7 @@
 	reagent_state = LIQUID
 	color = "#f22168"
 	overdose = REAGENTS_OVERDOSE-18
-	NSA = 60
+	nsa = 60
 	addiction_chance = 40
 
 /datum/reagent/stim/turbo/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
@@ -343,7 +343,7 @@
 	reagent_state = LIQUID
 	color = "#ffb3b7"
 	overdose = REAGENTS_OVERDOSE - 18
-	NSA = 70
+	nsa = 70
 	addiction_chance = 50
 
 /datum/reagent/stim/partyDrops/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
@@ -375,7 +375,7 @@
 	reagent_state = LIQUID
 	color = "#ffb3b7"
 	overdose = REAGENTS_OVERDOSE - 21
-	NSA = 90
+	nsa = 90
 	addiction_chance = 70
 
 /datum/reagent/stim/menace/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)

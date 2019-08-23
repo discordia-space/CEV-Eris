@@ -51,7 +51,7 @@
 
 	var/constantMetabolism = FALSE	// if metabolism factor should not change with volume or blood circulation
 
-	var/NSA = 10 // Nerve system accumulations
+	var/nsa = 10 // Nerve system accumulations
 
 /datum/reagent/proc/remove_self(amount) // Shortcut
 	holder.remove_reagent(id, amount)
@@ -72,8 +72,7 @@
 				removed = CLAMP(metabolism * volume/(REAGENTS_OVERDOSE/2) * M.get_blood_circulation()/100, metabolism * REAGENTS_MIN_EFFECT_MULTIPLIER, metabolism * REAGENTS_MAX_EFFECT_MULTIPLIER)
 	removed = round(removed, 0.01)
 	removed = min(removed, volume)
-	if(M.name == "Jhony Mccune")
-		world << "removed [name] = [removed]"
+		
 	return removed
 
 // "Removed" to multiplier

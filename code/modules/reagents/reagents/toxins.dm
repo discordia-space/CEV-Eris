@@ -48,7 +48,7 @@
 	reagent_state = LIQUID
 	color = "#792300"
 	strength = 0.1
-	NSA = 60
+	nsa = 60
 	addiction_chance = 20
 	heating_point = 523
 	heating_products = list("toxin")
@@ -63,7 +63,7 @@
 	strength = 0.1
 	overdose = REAGENTS_OVERDOSE/3
 	addiction_chance = 10
-	NSA = 5
+	nsa = 5
 	heating_point = 523
 	heating_products = list("toxin")
 
@@ -451,7 +451,7 @@
 	color = "#a37d9c"
 	overdose = REAGENTS_OVERDOSE/3
 	addiction_chance = 10
-	NSA = 5
+	nsa = 5
 	strength = 0.1
 	heating_point = 523
 	heating_products = list("toxin")
@@ -471,7 +471,7 @@
 	overdose = REAGENTS_OVERDOSE * 0.66
 	strength = 0.1
 	addiction_chance = 10
-	NSA = 5
+	nsa = 5
 	heating_point = 573
 	heating_products = list("radium", "acetone", "hydrazine", "nutriment")
 
@@ -502,7 +502,7 @@
 	color = "#6d33b4"
 	overdose = REAGENTS_OVERDOSE/2
 	addiction_chance = 10
-	NSA = 5
+	nsa = 5
 	heating_point = 573
 	heating_products = list("radium", "ammonia", "sulfur", "nutriment")
 
@@ -536,7 +536,7 @@
 	color = "#736bbe"
 	overdose = REAGENTS_OVERDOSE/2
 	addiction_chance = 15
-	NSA = 5
+	nsa = 5
 	heating_point = 573
 	heating_products = list("radium", "aluminum", "tungsten", "nutriment")
 
@@ -557,7 +557,7 @@
 	color = "#9452ba"
 	overdose = REAGENTS_OVERDOSE/2
 	addiction_chance = 20
-	NSA = 5
+	nsa = 5
 	strength = 0.2
 	heating_point = 573
 	heating_products = list("radium", "mercury", "sugar", "nutriment")
@@ -583,7 +583,7 @@
 	color = "#a6b85b"
 	overdose = 8
 	addiction_chance = 30
-	NSA = 4
+	nsa = 4
 	heating_point = 573
 	heating_products = list("radium", "mercury", "lithium", "nutriment")
 

@@ -103,11 +103,11 @@
 				pick_list -= H
 			message = jointext(temp_message, " ")
 			message = replacetext(message, "o", "¤")
-			message = replacetext(message, "p", "?")
-			message = replacetext(message, "l", "?")
+			message = replacetext(message, "p", "ş")
+			message = replacetext(message, "l", "£")
 			message = replacetext(message, "s", "§")
 			message = replacetext(message, "u", "µ")
-			message = replacetext(message, "b", "?")
+			message = replacetext(message, "b", "ß")
 
 	var/list/listening = hearers(message_range, src)
 	listening |= src

@@ -193,7 +193,7 @@
 		if(H.species.name == src.species.name)
 			return
 
-		H << "\red Your nose begins to bleed..."
+		to_chat(H, SPAN_WARNING("Your nose begins to bleed..."))
 		H.dripBlood(1)
 
 

@@ -1018,6 +1018,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return english_list(flavor_text)
 
 /obj/item/organ/external/is_usable()
+	// TODO: enable after baymed
 	//return ..() && !is_stump() && !(status & ORGAN_TENDON_CUT) && (!can_feel_pain() || get_pain() < pain_disability_threshold) && brute_ratio < 1 && burn_ratio < 1
 	return !is_dislocated() && !(status & (ORGAN_MUTATED|ORGAN_DEAD))
 

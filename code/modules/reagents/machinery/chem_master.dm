@@ -39,6 +39,19 @@
 			if (prob(50))
 				qdel(src)
 
+/obj/machinery/chem_master/MouseDrop_T(atom/movable/I, mob/user, src_location, over_location, src_control, over_control, params)
+	if(!Adjacent(user) || !I.Adjacent(user) || user.stat)
+		return ..()
+	if(istype(I, /obj/item/weapon/reagent_containers) && I.is_open_container() && !beaker)
+		I.forceMove(src)
+		I.add_fingerprint(user)
+		src.beaker = I
+		to_chat(user, SPAN_NOTICE("You add [I] to [src]."))
+		updateUsrDialog()
+		icon_state = "mixer1"
+		return
+	. = ..()
+
 /obj/machinery/chem_master/attackby(var/obj/item/weapon/B as obj, var/mob/user as mob)
 
 	if(istype(B, /obj/item/weapon/reagent_containers/glass))
@@ -143,7 +156,7 @@
 				P.icon_state = "pill"+pillsprite
 				R.trans_to_obj(P,amount_per_pill)
 				if(PB)
-					P.loc = PB
+					P.forceMove(PB)
 					src.updateUsrDialog()
 
 		else if (href_list["createbottle"])

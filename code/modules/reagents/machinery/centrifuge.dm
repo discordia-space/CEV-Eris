@@ -7,6 +7,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 20
 	circuit = /obj/item/weapon/circuitboard/centrifuge
+	layer = BELOW_OBJ_LAYER
 	var/obj/item/weapon/reagent_containers/mainBeaker
 	var/list/obj/item/weapon/reagent_containers/separationBeakers = list()
 	var/workTime = 10 SECONDS
@@ -14,9 +15,6 @@
 	var/on = FALSE
 	var/beakerSlots = 3
 	var/unitsPerSec = 2
-
-/obj/machinery/centrifuge/Initialize(mapload, d)
-	. = ..()
 
 /obj/machinery/centrifuge/Destroy()
 	QDEL_NULL(mainBeaker)
@@ -85,17 +83,20 @@
 			return
 	return ..()
 
-/obj/machinery/centrifuge/MouseDrop_T(atom/C, mob/user, src_location, over_location, src_control, over_control, params)
+/obj/machinery/centrifuge/MouseDrop_T(atom/movable/C, mob/user, src_location, over_location, src_control, over_control, params)
+	if(!Adjacent(user) || !C.Adjacent(user) || user.stat)
+		return ..()
 	if(!on && istype(C, /obj/item/weapon/reagent_containers) && C.is_open_container())
 		if (!mainBeaker || separationBeakers.len < beakerSlots)
-			if(insert_item(C, user))
-				if(!mainBeaker)
-					mainBeaker = C
-				else
-					separationBeakers.Add(C)
-				to_chat(user, SPAN_NOTICE("You add [C] to [src]."))
-				SSnano.update_uis(src)
-				update_icon()
+			C.forceMove(src)
+			C.add_fingerprint(user)
+			if(!mainBeaker)
+				mainBeaker = C
+			else
+				separationBeakers.Add(C)
+			to_chat(user, SPAN_NOTICE("You add [C] to [src]."))
+			SSnano.update_uis(src)
+			update_icon()
 	else
 		return ..()
 
@@ -189,14 +190,6 @@
 	var/beakerSlots = 2
 	var/on = FALSE
 
-//obj/item/device/makeshiftCentrifuge/update_icon()
-//	if(on)
-	/*if(beaker)
-		icon_state = "mixer1b"
-	else
-		icon_state = "mixer0b"
-	*/
-
 /obj/item/device/makeshiftCentrifuge/Destroy()
 	QDEL_NULL(mainBeaker)
 	QDEL_NULL_LIST(separationBeakers)
@@ -213,17 +206,20 @@
 	on = FALSE
 	SSnano.update_uis(src)
 
-/obj/item/device/makeshiftCentrifuge/MouseDrop_T(atom/C, mob/user, src_location, over_location, src_control, over_control, params)
+/obj/item/device/makeshiftCentrifuge/MouseDrop_T(atom/movable/C, mob/user, src_location, over_location, src_control, over_control, params)
+	if(!Adjacent(user) || !C.Adjacent(user) || user.stat)
+		return ..()
 	if(!on && istype(C, /obj/item/weapon/reagent_containers) && C.is_open_container())
 		if (!mainBeaker || separationBeakers.len < beakerSlots)
-			if(insert_item(C, user))
-				if(!mainBeaker)
-					mainBeaker = C
-				else
-					separationBeakers.Add(C)
-				to_chat(user, SPAN_NOTICE("You add [C] to [src]."))
-				SSnano.update_uis(src)
-				update_icon()
+			C.forceMove(src)
+			C.add_fingerprint(user)
+			if(!mainBeaker)
+				mainBeaker = C
+			else
+				separationBeakers.Add(C)
+			to_chat(user, SPAN_NOTICE("You add [C] to [src]."))
+			SSnano.update_uis(src)
+			update_icon()
 	else
 		return ..()
 

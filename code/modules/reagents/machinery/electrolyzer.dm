@@ -7,6 +7,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 40
 	circuit = /obj/item/weapon/circuitboard/electrolyzer
+	layer = BELOW_OBJ_LAYER
 	var/obj/item/weapon/reagent_containers/beaker
 	var/obj/item/weapon/reagent_containers/separationBeaker
 	var/convertion_coefficient = 2
@@ -32,14 +33,13 @@
 	var/datum/chemical_reaction/originalReaction
 	var/activeReagent
 	for(var/datum/reagent/R in primaryBeaker.reagents.reagent_list)
-		for(var/id in GLOB.chemical_reactions_list_by_result)
-			if(R.id == id)
-				var/list/recipeList = GLOB.chemical_reactions_list_by_result[id]
-				var/datum/chemical_reaction/recipe = recipeList[1]	// lets pick first one and hope that its the right one (this might cause problems if there is more than 1 recipe for reagent)
-				if(recipe.supports_decomposition_by_electrolysis)
-					activeReagent = R.id
-					originalReaction = recipe
-					break
+		if(GLOB.chemical_reactions_list_by_result[R.id])
+			var/list/recipeList = GLOB.chemical_reactions_list_by_result[R.id]
+			var/datum/chemical_reaction/recipe = recipeList[1]	// lets pick first one and hope that its the right one (this might cause problems if there is more than 1 recipe for reagent)
+			if(recipe.supports_decomposition_by_electrolysis)
+				activeReagent = R.id
+				originalReaction = recipe
+				break
 
 	if(!istype(originalReaction))
 		return -1
@@ -94,6 +94,25 @@
 			visible_message("\icon[src]\The [src] pings indicating that process is complete.")
 		update_icon()
 		SSnano.update_uis(src)
+
+
+/obj/machinery/electrolyzer/MouseDrop_T(atom/movable/I, mob/user, src_location, over_location, src_control, over_control, params)
+	if(!Adjacent(user) || !I.Adjacent(user) || user.stat)
+		return ..()
+	if(istype(I, /obj/item/weapon/reagent_containers) && I.is_open_container() && (!beaker || !separationBeaker))
+		. = TRUE //no afterattack
+		var/obj/item/weapon/reagent_containers/B = I
+		I.forceMove(src)
+		I.add_fingerprint(user)
+		if(!beaker)
+			beaker = B
+		else if(!separationBeaker)
+			separationBeaker = B
+		to_chat(user, SPAN_NOTICE("You add [B] to [src]."))
+		SSnano.update_uis(src)
+		update_icon()
+		return
+	return ..()
 
 /obj/machinery/electrolyzer/attackby(obj/item/I, mob/user, params)
 	if(default_deconstruction(I, user))
@@ -203,17 +222,6 @@
 	var/obj/item/weapon/reagent_containers/beaker
 	var/obj/item/weapon/reagent_containers/separationBeaker
 
-//obj/item/device/makeshiftElectrolyser/update_icon()
-//	if(on)
-	/*if(beaker)
-		icon_state = "mixer1b"
-	else
-		icon_state = "mixer0b"
-	*/
-
-/obj/item/device/makeshiftElectrolyser/Initialize()
-	. = ..()
-
 /obj/item/device/makeshiftElectrolyser/Destroy()
 	QDEL_NULL(beaker)
 	QDEL_NULL(cell)
@@ -221,6 +229,28 @@
 
 /obj/item/device/makeshiftElectrolyser/get_cell()
 	return cell
+
+/obj/item/device/makeshiftElectrolyser/MouseDrop_T(atom/movable/C, mob/user, src_location, over_location, src_control, over_control, params)
+	if(!Adjacent(user) || !C.Adjacent(user))
+		return ..()
+	if(istype(C, suitable_cell) && !cell)
+		to_chat(user, SPAN_NOTICE("You add [C] to [src]."))
+		C.forceMove(src)
+		src.cell = C
+		SSnano.update_uis(src)
+		return
+	if(istype(C, /obj/item/weapon/reagent_containers) && C.is_open_container() && (!beaker || !separationBeaker))
+		. = TRUE //no afterattack
+		var/obj/item/weapon/reagent_containers/B = C
+		C.forceMove(src)
+		C.add_fingerprint(user)
+		if(!beaker)
+			beaker = B
+		else if(!separationBeaker)
+			separationBeaker = B
+		to_chat(user, SPAN_NOTICE("You add [B] to [src]."))
+		SSnano.update_uis(src)
+		return
 
 /obj/item/device/makeshiftElectrolyser/handle_atom_del(atom/A)
 	..()
