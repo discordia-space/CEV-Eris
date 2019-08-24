@@ -1,10 +1,10 @@
 /mob/living/silicon/say(var/message, var/sanitize = 1)
 	return ..(sanitize ? sanitize(message) : message)
 
-/mob/living/silicon/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name, speechVolume)
+/mob/living/silicon/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name, speech_volume)
 	log_say("[key_name(src)] : [message]")
 
-/mob/living/silicon/robot/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name, speechVolume)
+/mob/living/silicon/robot/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name, speech_volume)
 	..()
 	if(message_mode)
 		if(!is_component_functioning("radio"))
@@ -12,9 +12,9 @@
 			return 0
 		if(message_mode == "general")
 			message_mode = null
-		return radio.talk_into(src,message,message_mode,verb,speaking, speechVolume)
+		return radio.talk_into(src,message,message_mode,verb,speaking, speech_volume)
 
-/mob/living/silicon/ai/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name, speechVolume)
+/mob/living/silicon/ai/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name, speech_volume)
 	..()
 	if(message_mode == "department" || holo)
 		return holopad_talk(message, verb, speaking)
@@ -24,14 +24,14 @@
 			return 0
 		if(message_mode == "general")
 			message_mode = null
-		return aiRadio.talk_into(src,message,message_mode,verb,speaking,speechVolume)
+		return aiRadio.talk_into(src,message,message_mode,verb,speaking,speech_volume)
 
-/mob/living/silicon/pai/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name, speechVolume)
+/mob/living/silicon/pai/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name, speech_volume)
 	..()
 	if(message_mode)
 		if(message_mode == "general")
 			message_mode = null
-		return radio.talk_into(src,message,message_mode,verb,speaking, speechVolume)
+		return radio.talk_into(src,message,message_mode,verb,speaking, speech_volume)
 
 /mob/living/silicon/say_quote(var/text)
 	var/ending = copytext(text, length(text))

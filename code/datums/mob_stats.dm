@@ -10,7 +10,7 @@
 	if(!id)
 		crash_with("no id passed to removeTempStat(")
 	var/datum/stat/S = stat_list[statName]
-	S.removeModif(id)
+	S.remove_modifier(id)
 
 /datum/stat_holder/proc/changeStat(statName, Value)
 	var/datum/stat/S = stat_list[statName]
@@ -118,7 +118,7 @@
 			return
 	mods += new /datum/stat_mod(delay, affect, id)
 
-/datum/stat/proc/removeModif(id)
+/datum/stat/proc/remove_modifier(id)
 	for(var/elem in mods)
 		var/datum/stat_mod/SM = elem
 		if(SM.id == id)

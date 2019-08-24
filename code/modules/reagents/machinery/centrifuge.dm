@@ -35,10 +35,10 @@
 
 /obj/machinery/centrifuge/RefreshParts()
 	unitsPerSec = initial(unitsPerSec)
-	unitsPerSec = max(unitsPerSec * maxPartRating(/obj/item/weapon/stock_parts/manipulator))
+	unitsPerSec = max(unitsPerSec * max_part_rating(/obj/item/weapon/stock_parts/manipulator))
 	beakerSlots = initial(beakerSlots)
-	if(maxPartRating(/obj/item/weapon/stock_parts/manipulator) > 1)
-		beakerSlots += (maxPartRating(/obj/item/weapon/stock_parts/manipulator) - 1)
+	if(max_part_rating(/obj/item/weapon/stock_parts/manipulator) > 1)
+		beakerSlots += (max_part_rating(/obj/item/weapon/stock_parts/manipulator) - 1)
 
 
 /obj/machinery/centrifuge/Process()
@@ -55,7 +55,7 @@
 			update_icon()
 
 		mainBeaker.reagents.handle_reactions()
-		mainBeaker.separateSolution(separationBeakers, unitsPerSec, mainBeaker.reagents.get_master_reagent_id())
+		mainBeaker.separate_solution(separationBeakers, unitsPerSec, mainBeaker.reagents.get_master_reagent_id())
 		
 
 		SSnano.update_uis(src)
@@ -180,7 +180,7 @@
 
 	return 1 // update UIs attached to this object
 
-/obj/item/device/makeshiftCentrifuge
+/obj/item/device/makeshift_centrifuge
 	name = "makeshift centrifuge"
 	desc = "A handmade centrifuge with manual mechanism."
 	icon = 'icons/obj/machines/chemistry.dmi'
@@ -190,23 +190,23 @@
 	var/beakerSlots = 2
 	var/on = FALSE
 
-/obj/item/device/makeshiftCentrifuge/Destroy()
+/obj/item/device/makeshift_centrifuge/Destroy()
 	QDEL_NULL(mainBeaker)
 	QDEL_NULL_LIST(separationBeakers)
 	return ..()
 
-/obj/item/device/makeshiftCentrifuge/attack_self(mob/user)
+/obj/item/device/makeshift_centrifuge/attack_self(mob/user)
 	on = TRUE
 	SSnano.update_uis(src)
 	user.visible_message(SPAN_NOTICE("[user] have started to turn handle on \the [src]."), SPAN_NOTICE("You started to turn handle on \the [src]."))
 	if(do_after(user, 60 - (30 * user.stats.getMult(STAT_TGH, STAT_LEVEL_ADEPT))))
 		if(mainBeaker && mainBeaker.reagents.total_volume)
 			mainBeaker.reagents.handle_reactions()
-			mainBeaker.separateSolution(separationBeakers, 5, mainBeaker.reagents.get_master_reagent_id())
+			mainBeaker.separate_solution(separationBeakers, 5, mainBeaker.reagents.get_master_reagent_id())
 	on = FALSE
 	SSnano.update_uis(src)
 
-/obj/item/device/makeshiftCentrifuge/MouseDrop_T(atom/movable/C, mob/user, src_location, over_location, src_control, over_control, params)
+/obj/item/device/makeshift_centrifuge/MouseDrop_T(atom/movable/C, mob/user, src_location, over_location, src_control, over_control, params)
 	if(!Adjacent(user) || !C.Adjacent(user) || user.stat)
 		return ..()
 	if(!on && istype(C, /obj/item/weapon/reagent_containers) && C.is_open_container())
@@ -223,7 +223,7 @@
 	else
 		return ..()
 
-/obj/item/device/makeshiftCentrifuge/attackby(obj/item/C, mob/living/user)
+/obj/item/device/makeshift_centrifuge/attackby(obj/item/C, mob/living/user)
 	if(!on && istype(C, /obj/item/weapon/reagent_containers) && C.is_open_container())
 		if (!mainBeaker || separationBeakers.len < beakerSlots)
 			if(insert_item(C, user))
@@ -237,13 +237,13 @@
 	else
 		..()
 
-/obj/item/device/makeshiftCentrifuge/attack_hand(mob/user)
+/obj/item/device/makeshift_centrifuge/attack_hand(mob/user)
 	if(loc != user && ..())
 		return TRUE
 	user.set_machine(src)
 	ui_interact(user)
 
-/obj/item/device/makeshiftCentrifuge/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
+/obj/item/device/makeshift_centrifuge/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	var/list/data = ui_data()
 
 	// update the ui if it exists, returns null if no ui is passed/found
@@ -257,7 +257,7 @@
 		// open the new ui window
 		ui.open()
 
-/obj/item/device/makeshiftCentrifuge/ui_data()
+/obj/item/device/makeshift_centrifuge/ui_data()
 	var/data = list()
 	data["on"] = on
 	data["maxBeakers"] = beakerSlots
@@ -278,7 +278,7 @@
 	return data
 
 
-/obj/item/device/makeshiftCentrifuge/Topic(href, href_list)
+/obj/item/device/makeshift_centrifuge/Topic(href, href_list)
 	if(..())
 		return
 

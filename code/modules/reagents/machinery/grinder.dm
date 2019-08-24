@@ -297,7 +297,7 @@
 			if (beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
 				break
 
-/obj/item/weapon/storage/handmadeGrinder
+/obj/item/weapon/storage/makeshift_grinder
 	name = "makeshift grinder"
 	desc = "Mortar and pestle to grind ingridients."
 	icon = 'icons/obj/machines/chemistry.dmi'
@@ -308,11 +308,11 @@
 	var/possible_transfer_amounts = list(5,10,30,60)
 	reagent_flags = REFILLABLE | DRAINABLE
 
-/obj/item/weapon/storage/handmadeGrinder/Initialize(mapload, ...)
+/obj/item/weapon/storage/makeshift_grinder/Initialize(mapload, ...)
 	. = ..()
 	create_reagents(60)
 
-/obj/item/weapon/storage/handmadeGrinder/attack_self(mob/user)
+/obj/item/weapon/storage/makeshift_grinder/attack_self(mob/user)
 	var/time_to_finish = 60 - (40 * user.stats.getMult(STAT_TGH, STAT_LEVEL_ADEPT))
 	var/datum/repeating_sound/toolsound = new/datum/repeating_sound(8,time_to_finish,0.15, src, 'sound/effects/impacts/thud2.ogg', 50, 1)
 	user.visible_message(SPAN_NOTICE("[user] grind contents of \the [src]."), SPAN_NOTICE("You starting to grind contents of \the [src]."))
@@ -324,7 +324,7 @@
 			toolsound.stop()
 			toolsound = null
 
-/obj/item/weapon/storage/handmadeGrinder/proc/grind()
+/obj/item/weapon/storage/makeshift_grinder/proc/grind()
 	// Sanity check.
 	if (!reagents || (reagents.total_volume >= reagents.maximum_volume))
 		return
@@ -357,7 +357,7 @@
 			if (reagents.total_volume >= reagents.maximum_volume)
 				break
 
-/obj/item/weapon/storage/handmadeGrinder/attackby(obj/item/I, mob/user)
+/obj/item/weapon/storage/makeshift_grinder/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/reagent_containers))
 		var/obj/item/weapon/reagent_containers/container = I
 		if(!container.standard_pour_into(user, src))
@@ -366,7 +366,7 @@
 		. = ..()
 	update_icon()
 
-/obj/item/weapon/storage/handmadeGrinder/afterattack(atom/target, mob/user, flag)
+/obj/item/weapon/storage/makeshift_grinder/afterattack(atom/target, mob/user, flag)
 	// Ensure we don't splash beakers and similar containers.
 	if(user.a_intent == I_HURT)
 		if(!istype(target))
@@ -407,7 +407,7 @@
 		to_chat(user, SPAN_NOTICE("You transfer [trans] units of the solution to [target]."))
 	update_icon()
 
-/obj/item/weapon/storage/handmadeGrinder/verb/set_APTFT() //set amount_per_transfer_from_this
+/obj/item/weapon/storage/makeshift_grinder/verb/set_APTFT() //set amount_per_transfer_from_this
 	set name = "Set transfer amount"
 	set category = "Object"
 	set src in range(0)
@@ -415,7 +415,7 @@
 	if(N)
 		amount_per_transfer_from_this = N
 
-/obj/item/weapon/storage/handmadeGrinder/examine(mob/user)
+/obj/item/weapon/storage/makeshift_grinder/examine(mob/user)
 	if(!..(user, 2))
 		return
 	if(contents.len)
@@ -424,7 +424,7 @@
 		to_chat(user, SPAN_NOTICE("It's filled with [reagents.total_volume]/[reagents.maximum_volume] units of reagents."))
 
 
-/obj/item/weapon/storage/handmadeGrinder/update_icon()
+/obj/item/weapon/storage/makeshift_grinder/update_icon()
 	. = ..()
 	cut_overlays()
 	if(reagents.total_volume)

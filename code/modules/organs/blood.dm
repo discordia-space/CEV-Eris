@@ -91,10 +91,10 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 	// bloodclotting slows bleeding
 	if(chem_effects[CE_BLOODCLOT])
 		blood_max *=  1 - chem_effects[CE_BLOODCLOT]
-	dripBlood(blood_max)
+	drip_blood(blood_max)
 
 //Makes a blood drop, leaking amt units of blood from the mob
-/mob/living/carbon/human/dripBlood(var/amt as num)
+/mob/living/carbon/human/drip_blood(var/amt as num)
 
 	if(species && species.flags & NO_BLOOD) //TODO: Make drips come from the reagents instead.
 		return

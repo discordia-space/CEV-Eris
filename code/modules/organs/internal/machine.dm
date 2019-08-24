@@ -66,10 +66,10 @@
 /obj/item/organ/internal/cell/attackby(obj/item/weapon/W, mob/user)
 	if(QUALITY_SCREW_DRIVING in W.tool_qualities)
 		if(open)
-			open = 0
+			open = FALSE
 			to_chat(user, SPAN_NOTICE("You screw the battery panel in place."))
 		else
-			open = 1
+			open = TRUE
 			to_chat(user, SPAN_NOTICE("You unscrew the battery panel."))
 
 	if(QUALITY_PRYING in W.tool_qualities)

@@ -165,11 +165,11 @@
 		master.receive_signal()
 
 
-/obj/item/device/assembly_holder/hear_talk(mob/living/M as mob, msg, verb, datum/language/speaking, speechVolume)
+/obj/item/device/assembly_holder/hear_talk(mob/living/M as mob, msg, verb, datum/language/speaking, speech_volume)
 	if(right_assembly)
-		right_assembly.hear_talk(M, msg, verb, speaking, speechVolume)
+		right_assembly.hear_talk(M, msg, verb, speaking, speech_volume)
 	if(left_assembly)
-		left_assembly.hear_talk(M, msg, verb, speaking, speechVolume)
+		left_assembly.hear_talk(M, msg, verb, speaking, speech_volume)
 
 
 

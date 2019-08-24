@@ -11,9 +11,9 @@
 	metabolism = REM * 0.05 // 0.01 by default. They last a while and slowly kill you.
 	var/strength = 0.05 // How much damage it deals per unit
 
-/datum/reagent/toxin/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/toxin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(strength)
-		var/multi = effectMultiplier
+		var/multi = effect_multiplier
 		if(issmall(M))  // Small bodymass, more effect from lower volume.
 			multi *= 2
 		M.adjustToxLoss(strength * multi)
@@ -48,7 +48,7 @@
 	reagent_state = LIQUID
 	color = "#792300"
 	strength = 0.1
-	nsa = 60
+	nerve_system_accumulations = 60
 	addiction_chance = 20
 	heating_point = 523
 	heating_products = list("toxin")
@@ -63,15 +63,15 @@
 	strength = 0.1
 	overdose = REAGENTS_OVERDOSE/3
 	addiction_chance = 10
-	nsa = 5
+	nerve_system_accumulations = 5
 	heating_point = 523
 	heating_products = list("toxin")
 
-/datum/reagent/toxin/carpotoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/toxin/carpotoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	var/mob/living/carbon/human/H = M
 	var/obj/item/organ/internal/liver/L = H.internal_organs_by_name[BP_LIVER]
 	if (istype(L))
-		L.take_damage(strength * effectMultiplier, 0)
+		L.take_damage(strength * effect_multiplier, 0)
 	M.stats.addTempStat(STAT_VIG, STAT_LEVEL_BASIC, STIM_TIME, "carpotoxin")
 
 /datum/reagent/toxin/carpotoxin/withdrawal_act(mob/living/carbon/M)
@@ -104,8 +104,8 @@
 	if(istype(L))
 		L.adjust_fire_stacks(amount / 5)
 
-/datum/reagent/toxin/plasma/affect_touch(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
-	M.take_organ_damage(0, effectMultiplier * 0.1) //being splashed directly with plasma causes minor chemical burns
+/datum/reagent/toxin/plasma/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	M.take_organ_damage(0, effect_multiplier * 0.1) //being splashed directly with plasma causes minor chemical burns
 	if(prob(50))
 		M.pl_effects()
 
@@ -126,9 +126,9 @@
 	strength = 0.2
 	metabolism = REM * 2
 
-/datum/reagent/toxin/cyanide/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/toxin/cyanide/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
-	M.adjustOxyLoss(2 * effectMultiplier)
+	M.adjustOxyLoss(2 * effect_multiplier)
 	M.sleeping += 1
 
 /datum/reagent/toxin/potassium_chloride
@@ -163,7 +163,7 @@
 	strength = 0.1
 	overdose = 20
 
-/datum/reagent/toxin/potassium_chlorophoride/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/toxin/potassium_chlorophoride/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -184,10 +184,10 @@
 	metabolism = REM
 	strength = 0.04
 
-/datum/reagent/toxin/zombiepowder/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/toxin/zombiepowder/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
 	M.status_flags |= FAKEDEATH
-	M.adjustOxyLoss(0.6 * effectMultiplier)
+	M.adjustOxyLoss(0.6 * effect_multiplier)
 	M.Weaken(10)
 	M.silent = max(M.silent, 10)
 	M.tod = stationtime2text()
@@ -262,8 +262,8 @@
 	color = "#C8A5DC"
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/lexorin/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
-	M.take_organ_damage(0.3 * effectMultiplier, 0)
+/datum/reagent/lexorin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	M.take_organ_damage(0.3 * effect_multiplier, 0)
 	if(M.losebreath < 15)
 		M.losebreath++
 
@@ -276,20 +276,20 @@
 	reagent_state = LIQUID
 	color = "#13BC5E"
 
-/datum/reagent/mutagen/affect_touch(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/mutagen/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(prob(33))
-		affect_blood(M, alien, effectMultiplier)
+		affect_blood(M, alien, effect_multiplier)
 
-/datum/reagent/mutagen/affect_ingest(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/mutagen/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(prob(67))
-		affect_blood(M, alien, effectMultiplier)
+		affect_blood(M, alien, effect_multiplier)
 
-/datum/reagent/mutagen/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/mutagen/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	var/mob/living/carbon/human/H = M
 	if(istype(H) && (H.species.flags & NO_SCAN))
 		return
 	if(M.dna)
-		if(prob(effectMultiplier * 0.01)) // Approx. one mutation per 10 injected/20 ingested/30 touching units
+		if(prob(effect_multiplier * 0.01)) // Approx. one mutation per 10 injected/20 ingested/30 touching units
 			randmuti(M)
 			if(prob(98))
 				randmutb(M)
@@ -297,7 +297,7 @@
 				randmutg(M)
 			domutcheck(M, null)
 			M.UpdateAppearance()
-	M.apply_effect(1 * effectMultiplier, IRRADIATE, 0)
+	M.apply_effect(1 * effect_multiplier, IRRADIATE, 0)
 
 /datum/reagent/slimejelly
 	name = "Slime Jelly"
@@ -308,12 +308,12 @@
 	reagent_state = LIQUID
 	color = "#801E28"
 
-/datum/reagent/slimejelly/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/slimejelly/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(prob(10))
-		M << SPAN_DANGER("Your insides are burning!")
-		M.adjustToxLoss(rand(10, 30) * effectMultiplier)
+		to_chat(M, SPAN_DANGER("Your insides are burning!"))
+		M.adjustToxLoss(rand(10, 30) * effect_multiplier)
 	else if(prob(40))
-		M.heal_organ_damage(2.5 * effectMultiplier, 0)
+		M.heal_organ_damage(2.5 * effect_multiplier, 0)
 
 /datum/reagent/soporific
 	name = "Soporific"
@@ -325,7 +325,7 @@
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/soporific/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/soporific/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	var/effective_dose = dose
 	if(issmall(M))
 		effective_dose *= 2
@@ -354,7 +354,7 @@
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE * 0.5
 
-/datum/reagent/chloralhydrate/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/chloralhydrate/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	var/effective_dose = dose
 	if(issmall(M))
 		effective_dose *= 2
@@ -369,7 +369,7 @@
 		M.sleeping = max(M.sleeping, 30)
 
 	if(effective_dose > 1)
-		M.adjustToxLoss(effectMultiplier * 0.1)
+		M.adjustToxLoss(effect_multiplier * 0.1)
 
 /datum/reagent/chloralhydrate/beer2 //disguised as normal beer for use by emagged brobots
 	name = "Beer"
@@ -394,7 +394,7 @@
 	reagent_state = LIQUID
 	color = "#13BC5E"
 
-/datum/reagent/slimetoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/slimetoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.species.name != "Slime")
@@ -409,7 +409,7 @@
 	reagent_state = LIQUID
 	color = "#13BC5E"
 
-/datum/reagent/aslimetoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier) // TODO: check if there's similar code anywhere else
+/datum/reagent/aslimetoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier) // TODO: check if there's similar code anywhere else
 	if(HAS_TRANSFORMATION_MOVEMENT_HANDLER(M))
 		return
 	to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
@@ -451,12 +451,12 @@
 	color = "#a37d9c"
 	overdose = REAGENTS_OVERDOSE/3
 	addiction_chance = 10
-	nsa = 5
+	nerve_system_accumulations = 5
 	strength = 0.1
 	heating_point = 523
 	heating_products = list("toxin")
 
-/datum/reagent/toxin/pararein/affect_blood(mob/living/carbon/M, alien, effectMultiplier)
+/datum/reagent/toxin/pararein/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	..()
 	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_BASIC, STIM_TIME, "pararein")
 	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_BASIC, STIM_TIME, "pararein")
@@ -471,11 +471,11 @@
 	overdose = REAGENTS_OVERDOSE * 0.66
 	strength = 0.1
 	addiction_chance = 10
-	nsa = 5
+	nerve_system_accumulations = 5
 	heating_point = 573
 	heating_products = list("radium", "acetone", "hydrazine", "nutriment")
 
-/datum/reagent/toxin/diplopterum/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/toxin/diplopterum/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
 	M.stats.addTempStat(STAT_MEC, STAT_LEVEL_BASIC, STIM_TIME, "diplopterum")
 
@@ -502,18 +502,18 @@
 	color = "#6d33b4"
 	overdose = REAGENTS_OVERDOSE/2
 	addiction_chance = 10
-	nsa = 5
+	nerve_system_accumulations = 5
 	heating_point = 573
 	heating_products = list("radium", "ammonia", "sulfur", "nutriment")
 
-/datum/reagent/seligitillin/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/seligitillin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.add_chemical_effect(CE_BLOODCLOT, 0.2)
-	M.heal_organ_damage(0.2 * effectMultiplier, 0, 3)
+	M.heal_organ_damage(0.2 * effect_multiplier, 0, 3)
 	var/mob/living/carbon/human/H = M
 	for(var/obj/item/organ/external/E in H.organs)
 		for(var/datum/wound/W in E.wounds)
 			if(W.internal)
-				W.heal_damage(1 * effectMultiplier)
+				W.heal_damage(1 * effect_multiplier)
 
 /datum/reagent/seligitillin/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_ADEPT, STIM_TIME, "seligitillin_w")
@@ -536,11 +536,11 @@
 	color = "#736bbe"
 	overdose = REAGENTS_OVERDOSE/2
 	addiction_chance = 15
-	nsa = 5
+	nerve_system_accumulations = 5
 	heating_point = 573
 	heating_products = list("radium", "aluminum", "tungsten", "nutriment")
 
-/datum/reagent/toxin/starkellin/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/toxin/starkellin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
 	M.stats.addTempStat(STAT_TGH, STAT_LEVEL_BASIC, STIM_TIME, "starkellin")
 
@@ -557,12 +557,12 @@
 	color = "#9452ba"
 	overdose = REAGENTS_OVERDOSE/2
 	addiction_chance = 20
-	nsa = 5
+	nerve_system_accumulations = 5
 	strength = 0.2
 	heating_point = 573
 	heating_products = list("radium", "mercury", "sugar", "nutriment")
 
-/datum/reagent/toxin/gewaltine/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/toxin/gewaltine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
 	M.stats.addTempStat(STAT_ROB, STAT_LEVEL_BASIC, STIM_TIME, "gewaltine")
 	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, STIM_TIME, "gewaltine")
@@ -583,11 +583,11 @@
 	color = "#a6b85b"
 	overdose = 8
 	addiction_chance = 30
-	nsa = 4
+	nerve_system_accumulations = 4
 	heating_point = 573
 	heating_products = list("radium", "mercury", "lithium", "nutriment")
 
-/datum/reagent/fuhrerole/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/fuhrerole/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.faction = "roach"
 
 /datum/reagent/fuhrerole/on_mob_delete(mob/living/L)

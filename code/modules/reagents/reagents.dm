@@ -49,9 +49,9 @@
 	var/heating_sound = 'sound/effects/bubbles.ogg'
 	var/list/heating_products
 
-	var/constantMetabolism = FALSE	// if metabolism factor should not change with volume or blood circulation
+	var/constant_metabolism = FALSE	// if metabolism factor should not change with volume or blood circulation
 
-	var/nsa = 10 // Nerve system accumulations
+	var/nerve_system_accumulations = 10 // Nerve system accumulations
 
 /datum/reagent/proc/remove_self(amount) // Shortcut
 	holder.remove_reagent(id, amount)
@@ -65,7 +65,7 @@
 	// on half of overdose, chemicals will start be metabolized faster, 
 	// also blood circulation affects chemical strength (meaining if target has low blood volume or has something that lowers blood circulation chemicals will be consumed less and effect will diminished)
 	if(location == CHEM_BLOOD)
-		if(!constantMetabolism)
+		if(!constant_metabolism)
 			if(overdose)
 				removed = CLAMP(metabolism * volume/(overdose/2) * M.get_blood_circulation()/100, metabolism * REAGENTS_MIN_EFFECT_MULTIPLIER, metabolism * REAGENTS_MAX_EFFECT_MULTIPLIER)
 			else
@@ -137,14 +137,14 @@
 	remove_self(removed)
 	return
 
-/datum/reagent/proc/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/proc/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	return
 
-/datum/reagent/proc/affect_ingest(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
-	affect_blood(M, alien, effectMultiplier * 0.5)
+/datum/reagent/proc/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	affect_blood(M, alien, effect_multiplier * 0.5)
 	return
 
-/datum/reagent/proc/affect_touch(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/proc/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	return
 
 /datum/reagent/proc/overdose(var/mob/living/carbon/M, var/alien) // Overdose effect. Doesn't happen instantly.

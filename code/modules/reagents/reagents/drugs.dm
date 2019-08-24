@@ -12,11 +12,11 @@
 	overdose = REAGENTS_OVERDOSE
 	addiction_chance = 100
 
-/datum/reagent/space_drugs/affect_blood(mob/living/carbon/M, alien, effectMultiplier)
-	M.druggy = max(M.druggy, 15 * effectMultiplier)
-	if(prob(10 * effectMultiplier) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
+/datum/reagent/space_drugs/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	M.druggy = max(M.druggy, 15 * effect_multiplier)
+	if(prob(10 * effect_multiplier) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
 		step(M, pick(cardinal))
-	if(prob(7 * effectMultiplier))
+	if(prob(7 * effect_multiplier))
 		M.emote(pick("twitch", "drool", "moan", "giggle"))
 	M.add_chemical_effect(CE_PULSE, -1)
 
@@ -33,8 +33,8 @@
 	addiction_threshold = 20
 	addiction_chance = 10
 
-/datum/reagent/serotrotium/affect_blood(mob/living/carbon/M, alien, effectMultiplier)
-	if(prob(7 * effectMultiplier))
+/datum/reagent/serotrotium/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	if(prob(7 * effect_multiplier))
 		M.emote(pick("twitch", "drool", "moan", "gasp"))
 
 
@@ -48,9 +48,9 @@
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/cryptobiolin/affect_blood(mob/living/carbon/M, alien, effectMultiplier)
-	M.make_dizzy(4 * effectMultiplier)
-	M.confused = max(M.confused, 20 * effectMultiplier)
+/datum/reagent/cryptobiolin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	M.make_dizzy(4 * effect_multiplier)
+	M.confused = max(M.confused, 20 * effect_multiplier)
 
 
 /datum/reagent/impedrezene
@@ -62,12 +62,12 @@
 	color = "#C8A5DC"
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/impedrezene/affect_blood(mob/living/carbon/M, alien, effectMultiplier)
-	M.jitteriness = max(M.jitteriness - (5 * effectMultiplier), 0)
+/datum/reagent/impedrezene/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	M.jitteriness = max(M.jitteriness - (5 * effect_multiplier), 0)
 	if(prob(80))
-		M.adjustBrainLoss(0.1 * effectMultiplier)
+		M.adjustBrainLoss(0.1 * effect_multiplier)
 	if(prob(50))
-		M.drowsyness = max(M.drowsyness, 3 * effectMultiplier)
+		M.drowsyness = max(M.drowsyness, 3 * effect_multiplier)
 	if(prob(10))
 		M.emote("drool")
 
@@ -82,8 +82,8 @@
 	metabolism = REM * 0.25
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/mindbreaker/affect_blood(mob/living/carbon/M, alien, effectMultiplier)
-	M.hallucination(50 * effectMultiplier, 50 * effectMultiplier)
+/datum/reagent/mindbreaker/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	M.hallucination(50 * effect_multiplier, 50 * effect_multiplier)
 
 
 /datum/reagent/psilocybin
@@ -95,10 +95,10 @@
 	overdose = REAGENTS_OVERDOSE * 0.66
 	metabolism = REM * 0.5
 	addiction_chance = 10
-	nsa = 40
+	nerve_system_accumulations = 40
 
-/datum/reagent/psilocybin/affect_blood(mob/living/carbon/M, alien, effectMultiplier)
-	M.druggy = max(M.druggy, 30 * effectMultiplier)
+/datum/reagent/psilocybin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	M.druggy = max(M.druggy, 30 * effect_multiplier)
 	
 	var/effective_dose = dose
 	if(issmall(M)) effective_dose *= 2
@@ -135,12 +135,12 @@
 	color = "#181818"
 	overdose = REAGENTS_OVERDOSE/2
 	addiction_chance = 20
-	nsa = 10
+	nerve_system_accumulations = 10
 
-/datum/reagent/nicotine/affect_blood(mob/living/carbon/M, alien, effectMultiplier)
+/datum/reagent/nicotine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	..()
 	M.add_chemical_effect(CE_PULSE, 1)
-	M.add_chemical_effect(CE_PAINKILLER, 5 * effectMultiplier)
+	M.add_chemical_effect(CE_PAINKILLER, 5 * effect_multiplier)
 
 /datum/reagent/nicotine/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_BIO, -STAT_LEVEL_BASIC, STIM_TIME, "nicotine_w")
@@ -161,9 +161,9 @@
 	metabolism = REM * 0.15
 	overdose = REAGENTS_OVERDOSE * 0.66
 	withdrawal_threshold = 10
-	nsa = 70
+	nerve_system_accumulations = 70
 
-/datum/reagent/hyperzine/affect_blood(mob/living/carbon/M, alien, effectMultiplier)
+/datum/reagent/hyperzine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(prob(5))
 		M.emote(pick("twitch", "blink_r", "shiver"))
 	M.add_chemical_effect(CE_SPEEDBOOST, 1)
@@ -182,15 +182,15 @@
 	color = "#e06270"
 	metabolism = REM
 	overdose = REAGENTS_OVERDOSE/2
-	nsa = 80
+	nerve_system_accumulations = 80
 	addiction_chance = 30
 
-/datum/reagent/sanguinum/affect_blood(mob/living/carbon/M, alien, effectMultiplier)
-	M.add_chemical_effect(CE_BLOODRESTORE, 1.6 * effectMultiplier)
+/datum/reagent/sanguinum/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	M.add_chemical_effect(CE_BLOODRESTORE, 1.6 * effect_multiplier)
 	if(prob(2))
 		spawn 
 			M.emote("me", 1, "coughs up blood!")
-		M.dripBlood(10)
+		M.drip_blood(10)
 
 /datum/reagent/sanguinum/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, STIM_TIME, "sanguinum_w")
@@ -203,7 +203,7 @@
 		var/list/obj/item/organ/external/bodyParts = locate(/obj/item/organ/external) in H.organs_by_name
 		var/chanceToRupture = 30
 		for(var/obj/item/organ/external/E in bodyParts)
-			if(E.hasInternalBleeding())
+			if(E.has_internal_bleeding())
 				chanceToRupture -= 10
 		chanceToRupture = max(0,chanceToRupture)
 		if(prob(chanceToRupture))

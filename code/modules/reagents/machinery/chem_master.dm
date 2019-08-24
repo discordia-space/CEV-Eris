@@ -116,10 +116,10 @@
 
 			if(!R) //Sanity checking.
 				return
-			var/createPillBottle = FALSE
+			var/create_pill_bottle = FALSE
 			if (href_list["createpill_multiple"])
 				if(alert("Create bottle ?","Container.","Yes","No") == "Yes")
-					createPillBottle = TRUE
+					create_pill_bottle = TRUE
 				switch(alert("How to create pills.","Choose method.","By amount","By volume"))
 					if("By amount")
 						count = input("Select the number of pills to make.", "Max [max_pill_count]", pillamount) as num
@@ -144,7 +144,7 @@
 
 			var/name = sanitizeSafe(input(usr,"Name:","Name your pill!","[R.get_master_reagent_name()] ([amount_per_pill] units)"), MAX_NAME_LEN)
 			var/obj/item/weapon/storage/pill_bottle/PB
-			if(createPillBottle)
+			if(create_pill_bottle)
 				PB = new(get_turf(src))
 				PB.name = "[PB.name] ([name])"
 			while (R.total_volume)

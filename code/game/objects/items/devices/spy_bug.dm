@@ -45,8 +45,8 @@
 	else
 		..()
 
-/obj/item/device/spy_bug/hear_talk(mob/M, var/msg, verb, datum/language/speaking, speechVolume)
-	radio.hear_talk(M, msg, speaking, speechVolume = speechVolume)
+/obj/item/device/spy_bug/hear_talk(mob/M, var/msg, verb, datum/language/speaking, speech_volume)
+	radio.hear_talk(M, msg, speaking, speech_volume = speech_volume)
 
 
 /obj/item/device/spy_monitor
@@ -140,8 +140,8 @@
 
 	return 1
 
-/obj/item/device/spy_monitor/hear_talk(mob/M, var/msg, verb, datum/language/speaking, speechVolume)
-	return radio.hear_talk(M, msg, speaking, speechVolume = speechVolume)
+/obj/item/device/spy_monitor/hear_talk(mob/M, var/msg, verb, datum/language/speaking, speech_volume)
+	return radio.hear_talk(M, msg, speaking, speech_volume = speech_volume)
 
 
 /obj/machinery/camera/spy

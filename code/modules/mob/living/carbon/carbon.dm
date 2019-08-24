@@ -20,16 +20,16 @@
 	if(!tag)
 		crash_with("no tag given to adjustNSA()")
 		return
-	nsa[tag] = value
+	nerve_system_accumulations[tag] = value
 
 /mob/living/carbon/proc/removeNSA(tag)
-	if(nsa[tag])
-		nsa.Remove(tag)
+	if(nerve_system_accumulations[tag])
+		nerve_system_accumulations.Remove(tag)
 
 /mob/living/carbon/proc/getNSA()
 	var/accumulatedNSA
-	for(var/tag in nsa)
-		accumulatedNSA += nsa[tag]
+	for(var/tag in nerve_system_accumulations)
+		accumulatedNSA += nerve_system_accumulations[tag]
 	return accumulatedNSA
 
 /mob/living/carbon/proc/handleNSA()

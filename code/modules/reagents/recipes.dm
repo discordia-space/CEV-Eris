@@ -160,8 +160,8 @@
 /datum/chemical_reaction/proc/on_reaction(var/datum/reagents/holder, var/created_volume)
 	if(thermal_product)
 		holder.chem_temp += thermal_product
-	var/datum/reagents/toSplash = new()
-	toSplash.maximum_volume = INFINITY
+	var/datum/reagents/to_splash = new()
+	to_splash.maximum_volume = INFINITY
 	//well i'll never test this cause there is no recipes with byproducts, so if YOU, yes you, the one who decided to add some, its up to you to fix this
 	if(byproducts.len)
 		for(var/i = 1 to created_volume/result_amount) // this to evenly fill holder
@@ -169,11 +169,11 @@
 				if(holder.get_free_space() > byproducts[id])
 					holder.add_reagent(id, byproducts[id], safety = 1)
 				else
-					toSplash.add_reagent(id, byproducts[id], safety = 1)
-	if(toSplash.total_volume)
-		toSplash.handle_reactions()
-		toSplash.splash(get_turf(holder.my_atom), toSplash.total_volume, 1, FALSE, toSplash.total_volume, toSplash.total_volume)
-		qdel(toSplash)
+					to_splash.add_reagent(id, byproducts[id], safety = 1)
+	if(to_splash.total_volume)
+		to_splash.handle_reactions()
+		to_splash.splash(get_turf(holder.my_atom), to_splash.total_volume, 1, FALSE, to_splash.total_volume, to_splash.total_volume)
+		qdel(to_splash)
 	holder.handle_reactions()
 
 
@@ -1693,39 +1693,39 @@
 	maximum_temperature = 343
 	minimum_temperature = 323
 
-/datum/chemical_reaction/machineSpirit
+/datum/chemical_reaction/machine_spirit
 	result = "machine spirit"
 	required_reagents = list("machine binding ritual" = 1, "tramadol" = 1, "blattedin" = 1)
 	result_amount = 3
 	maximum_temperature = 318
 	minimum_temperature = 308
 
-/datum/chemical_reaction/partyDrops
+/datum/chemical_reaction/party_drops
 	result = "party drops"
 	required_reagents = list("grape drops" = 1, "machine spirit" = 1, "ultrasurgeon" = 1)
 	catalysts = list("honey" = 1)
 	result_amount = 3
 
-/datum/chemical_reaction/cherryDrops
+/datum/chemical_reaction/cherry_drops
 	result = "cherry drops"
 	required_reagents = list("iron" = 1, "psilocybin" = 1, "plantbgone" = 1)
 	result_amount = 3
 	maximum_temperature = 333
 	minimum_temperature = 303
 
-/datum/chemical_reaction/grapeDrops
+/datum/chemical_reaction/grape_drops
 	result = "grape drops"
 	required_reagents = list("honey" = 1, "cherry drops" = 2, "ethanol" = 2)
 	result_amount = 5
 	maximum_temperature = 343
 	minimum_temperature = 338
 
-/datum/chemical_reaction/proSurgeon
+/datum/chemical_reaction/pro_surgeon
 	result = "prosurgeon"
 	required_reagents = list("nicotine" = 1, "sugar" = 2, "tungsten" = 2)
 	result_amount = 4
 
-/datum/chemical_reaction/ultraSurgeon
+/datum/chemical_reaction/ultra_surgeon
 	result = "ultrasurgeon"
 	required_reagents = list("prosurgeon" = 3, "noexcutite" = 1)
 	result_amount = 4
@@ -1744,7 +1744,7 @@
 	maximum_temperature = 423
 	minimum_temperature = 393
 
-/datum/chemical_reaction/violenceUltra
+/datum/chemical_reaction/violence_ultra
 	result = "violence ultra"
 	required_reagents = list("violence" = 1, "fuhrerole" = 1, "hyperzine" = 1)
 	result_amount = 3
@@ -1817,19 +1817,19 @@
 	required_reagents = list("soporific" = 1, "clonexadone" = 1, "bicardine" = 1)
 	result_amount = 3
 
-/datum/chemical_reaction/instantIce
-	result = "instantIce"
+/datum/chemical_reaction/instant_ice
+	result = "instant_ice"
 	required_reagents = list("hydrazine" = 1, "acetone" = 1, "salt" = 1)
 	result_amount = 3
 
-/datum/chemical_reaction/instantIceWithWater
+/datum/chemical_reaction/instant_ice_with_water
 	result = "water"
 	supports_decomposition_by_electrolysis = FALSE
-	required_reagents = list("instantIce" = 3, "water" = 3)
+	required_reagents = list("instant_ice" = 3, "water" = 3)
 	result_amount = 4
 
 
-/datum/chemical_reaction/instantIceWithWater/on_reaction(datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/instant_ice_with_water/on_reaction(datum/reagents/holder, var/created_volume)
 	..()
 	holder.chem_temp = max(223, holder.chem_temp - abs(holder.chem_temp - 223) * created_volume/holder.total_volume) // if someone actually wants to do some physics here they are welcome
 	return 0
@@ -1950,7 +1950,7 @@
 	required_reagents = list("nanites" = 1, "arithrazine" = 1)
 	result_amount = 1
 
-/datum/chemical_reaction/implantMedics
+/datum/chemical_reaction/implant_medics
 	result = "implant nanites"
 	required_reagents = list("nanites" = 1, "aluminum" = 1)
 	result_amount = 1
@@ -1960,8 +1960,8 @@
 	required_reagents = list("nanites" = 1, "haloperidol" = 1)
 	result_amount = 1
 
-/datum/chemical_reaction/nanosymb
-	result = "nanosymb"
+/datum/chemical_reaction/nanosymbiotes
+	result = "nanosymbiotes"
 	required_reagents = list("nanites" = 1, "peridaxon" = 1)
 	result_amount = 1
 
@@ -1970,8 +1970,8 @@
 	required_reagents = list("nanites" = 1, "dexalin" = 1)
 	result_amount = 1
 
-/datum/chemical_reaction/tcs
-	result = "tcs"
+/datum/chemical_reaction/trauma_control_system
+	result = "trauma_control_system"
 	required_reagents = list("nanites" = 1, "bicaridine" = 1)
 	result_amount = 1
 

@@ -120,10 +120,10 @@
 	glass_name = "golden cup"
 	glass_desc = "It's magic. We don't have to explain it."
 
-/datum/reagent/adminordrazine/affect_touch(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
-	affect_blood(M, alien, effectMultiplier)
+/datum/reagent/adminordrazine/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	affect_blood(M, alien, effect_multiplier)
 
-/datum/reagent/adminordrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/adminordrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.setCloneLoss(0)
 	M.setOxyLoss(0)
 	M.radiation = 0
@@ -170,11 +170,11 @@
 	reagent_state = SOLID
 	color = "#B8B8C0"
 
-/datum/reagent/uranium/affect_touch(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
-	affect_ingest(M, alien, effectMultiplier)
+/datum/reagent/uranium/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	affect_ingest(M, alien, effect_multiplier)
 
-/datum/reagent/uranium/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
-	M.apply_effect(effectMultiplier, IRRADIATE, 0)
+/datum/reagent/uranium/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	M.apply_effect(effect_multiplier, IRRADIATE, 0)
 
 /datum/reagent/uranium/touch_turf(var/turf/T)
 	if(volume >= 3)
@@ -194,10 +194,10 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 
-/datum/reagent/adrenaline/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/adrenaline/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.SetParalysis(0)
 	M.SetWeakened(0)
-	M.stats.addTempStat(STAT_TGH, STAT_LEVEL_ADEPT * effectMultiplier, STIM_TIME, "adrenaline")
+	M.stats.addTempStat(STAT_TGH, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "adrenaline")
 	M.adjustToxLoss(rand(3))
 
 /datum/reagent/adrenaline/withdrawal_act(mob/living/carbon/M)
@@ -254,7 +254,7 @@
 	if(istype(L))
 		L.adjust_fire_stacks(amount / 5)
 
-/datum/reagent/thermite/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/thermite/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.adjustFireLoss(3 * 0.6)
 
 /datum/reagent/space_cleaner
@@ -284,7 +284,7 @@
 	T.color = "white"
 	return TRUE
 
-/datum/reagent/space_cleaner/affect_touch(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/space_cleaner/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(M.r_hand)
 		M.r_hand.clean_blood()
 	if(M.l_hand)
@@ -358,7 +358,7 @@
 	reagent_state = LIQUID
 	color = "#808080"
 
-/datum/reagent/nitroglycerin/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/nitroglycerin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
 	M.add_chemical_effect(CE_PULSE, 2)
 
@@ -410,9 +410,9 @@
 	color = "#acc107"
 	overdose = REAGENTS_OVERDOSE
 	addiction_chance = 10
-	nsa = 5
+	nerve_system_accumulations = 5
 
-/datum/reagent/aranecolmin/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/aranecolmin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.add_chemical_effect(CE_ANTITOX, 0.3)
 	if(M.bloodstr)
 		for(var/current in M.bloodstr.reagent_list)
@@ -420,7 +420,7 @@
 			if(istype(R))
 				R.metabolism = initial(R.metabolism) * 3
 
-/datum/reagent/aranecolmin/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/aranecolmin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.add_chemical_effect(CE_ANTITOX, 0.3)
 	if(M.bloodstr)
 		for(var/current in M.bloodstr.reagent_list)
@@ -448,8 +448,8 @@
 	color = "#a6b85b"
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/vomitol/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
-	if(prob(10 * effectMultiplier))
+/datum/reagent/vomitol/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	if(prob(10 * effect_multiplier))
 		M.vomit()
 
 /datum/reagent/arectine 
@@ -462,7 +462,7 @@
 	overdose = 25
 	addiction_chance = 5
 
-/datum/reagent/arectine/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/arectine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.set_light(2.5)
 
 /datum/reagent/arectine/overdose(var/mob/living/carbon/M, var/alien)
@@ -472,7 +472,7 @@
 /datum/reagent/fuhrerole/on_mob_delete(mob/living/L)
 	L.set_light(0)
 
-/datum/reagent/instantIce  
+/datum/reagent/instant_ice  
 	name = "InstantIce"
 	id = "instantice"
 	description = "Will cool reagents inside container when mixed with water to -50C"

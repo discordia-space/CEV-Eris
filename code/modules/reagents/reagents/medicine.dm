@@ -11,9 +11,9 @@
 	metabolism = REM * 0.5
 	scannable = 1
 
-/datum/reagent/inaprovaline/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/inaprovaline/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.add_chemical_effect(CE_STABLE)
-	M.add_chemical_effect(CE_PAINKILLER, 25 * effectMultiplier)
+	M.add_chemical_effect(CE_PAINKILLER, 25 * effect_multiplier)
 	M.add_chemical_effect(CE_PULSE, 1)
 
 /datum/reagent/bicaridine
@@ -27,8 +27,8 @@
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
 
-/datum/reagent/bicaridine/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
-	M.heal_organ_damage(0.6 * effectMultiplier, 0, 5 * effectMultiplier)
+/datum/reagent/bicaridine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	M.heal_organ_damage(0.6 * effect_multiplier, 0, 5 * effect_multiplier)
 	M.add_chemical_effect(CE_BLOODCLOT, 0.15)
 
 /datum/reagent/kelotane
@@ -41,8 +41,8 @@
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
 
-/datum/reagent/kelotane/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
-	M.heal_organ_damage(0, 0.6 * effectMultiplier, 0, 3 * effectMultiplier)
+/datum/reagent/kelotane/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	M.heal_organ_damage(0, 0.6 * effect_multiplier, 0, 3 * effect_multiplier)
 
 /datum/reagent/dermaline
 	name = "Dermaline"
@@ -55,8 +55,8 @@
 	overdose = REAGENTS_OVERDOSE * 0.5
 	scannable = 1
 
-/datum/reagent/dermaline/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
-	M.heal_organ_damage(0, 1.2 * effectMultiplier, 0, 5 * effectMultiplier)
+/datum/reagent/dermaline/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	M.heal_organ_damage(0, 1.2 * effect_multiplier, 0, 5 * effect_multiplier)
 
 /datum/reagent/dylovene
 	name = "Dylovene"
@@ -67,10 +67,10 @@
 	color = "#00A000"
 	scannable = 1
 
-/datum/reagent/dylovene/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
-	M.drowsyness = max(0, M.drowsyness - 0.6 * effectMultiplier)
-	M.adjust_hallucination(-0.9 * effectMultiplier)
-	M.adjustToxLoss(-((0.4 + (M.getToxLoss() * 0.05)) * effectMultiplier))
+/datum/reagent/dylovene/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	M.drowsyness = max(0, M.drowsyness - 0.6 * effect_multiplier)
+	M.adjust_hallucination(-0.9 * effect_multiplier)
+	M.adjustToxLoss(-((0.4 + (M.getToxLoss() * 0.05)) * effect_multiplier))
 	M.add_chemical_effect(CE_ANTITOX, 1)
 
 /datum/reagent/dexalin
@@ -83,10 +83,10 @@
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
 
-/datum/reagent/dexalin/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
-	M.adjustOxyLoss(-1.5 * effectMultiplier)
+/datum/reagent/dexalin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	M.adjustOxyLoss(-1.5 * effect_multiplier)
 	M.add_chemical_effect(CE_OXYGENATED, 1)
-	holder.remove_reagent("lexorin", 0.2 * effectMultiplier)
+	holder.remove_reagent("lexorin", 0.2 * effect_multiplier)
 
 /datum/reagent/dexalinp
 	name = "Dexalin Plus"
@@ -98,10 +98,10 @@
 	overdose = REAGENTS_OVERDOSE * 0.5
 	scannable = 1
 
-/datum/reagent/dexalinp/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
-	M.adjustOxyLoss(-30 * effectMultiplier)
+/datum/reagent/dexalinp/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	M.adjustOxyLoss(-30 * effect_multiplier)
 	M.add_chemical_effect(CE_OXYGENATED, 2)
-	holder.remove_reagent("lexorin", 0.3 * effectMultiplier)
+	holder.remove_reagent("lexorin", 0.3 * effect_multiplier)
 
 /datum/reagent/tricordrazine
 	name = "Tricordrazine"
@@ -112,10 +112,10 @@
 	color = "#8040FF"
 	scannable = 1
 
-/datum/reagent/tricordrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
-	M.adjustOxyLoss(-0.6 * effectMultiplier)
-	M.heal_organ_damage(0.3 * effectMultiplier, 0.3 * effectMultiplier)
-	M.adjustToxLoss(-0.3 * effectMultiplier)
+/datum/reagent/tricordrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	M.adjustOxyLoss(-0.6 * effect_multiplier)
+	M.heal_organ_damage(0.3 * effect_multiplier, 0.3 * effect_multiplier)
+	M.adjustToxLoss(-0.3 * effect_multiplier)
 	M.add_chemical_effect(CE_BLOODCLOT, 0.1)
 
 /datum/reagent/cryoxadone
@@ -128,13 +128,13 @@
 	metabolism = REM * 0.5
 	scannable = 1
 
-/datum/reagent/cryoxadone/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/cryoxadone/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(M.bodytemperature < 170)
-		M.adjustCloneLoss(-(1 + (M.getCloneLoss() * 0.05)) * effectMultiplier)
-		M.adjustOxyLoss(-(1 + (M.getOxyLoss() * 0.05)) * effectMultiplier)
+		M.adjustCloneLoss(-(1 + (M.getCloneLoss() * 0.05)) * effect_multiplier)
+		M.adjustOxyLoss(-(1 + (M.getOxyLoss() * 0.05)) * effect_multiplier)
 		M.add_chemical_effect(CE_OXYGENATED, 1)
-		M.heal_organ_damage(1 * effectMultiplier, 1 * effectMultiplier, 5 * effectMultiplier, 5 * effectMultiplier)
-		M.adjustToxLoss(-(1 + (M.getToxLoss() * 0.05)) * effectMultiplier)
+		M.heal_organ_damage(1 * effect_multiplier, 1 * effect_multiplier, 5 * effect_multiplier, 5 * effect_multiplier)
+		M.adjustToxLoss(-(1 + (M.getToxLoss() * 0.05)) * effect_multiplier)
 		M.add_chemical_effect(CE_PULSE, -2)
 
 /datum/reagent/clonexadone
@@ -147,13 +147,13 @@
 	metabolism = REM * 0.5
 	scannable = 1
 
-/datum/reagent/clonexadone/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/clonexadone/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(M.bodytemperature < 170)
-		M.adjustCloneLoss(-(3 + (M.getCloneLoss() * 0.05)) * effectMultiplier)
-		M.adjustOxyLoss(-(3 + (M.getOxyLoss() * 0.05)) * effectMultiplier)
+		M.adjustCloneLoss(-(3 + (M.getCloneLoss() * 0.05)) * effect_multiplier)
+		M.adjustOxyLoss(-(3 + (M.getOxyLoss() * 0.05)) * effect_multiplier)
 		M.add_chemical_effect(CE_OXYGENATED, 2)
-		M.heal_organ_damage(3 * effectMultiplier, 3 * effectMultiplier, 5 * effectMultiplier, 5 * effectMultiplier)
-		M.adjustToxLoss(-(3 + (M.getToxLoss() * 0.05)) * effectMultiplier)
+		M.heal_organ_damage(3 * effect_multiplier, 3 * effect_multiplier, 5 * effect_multiplier, 5 * effect_multiplier)
+		M.adjustToxLoss(-(3 + (M.getToxLoss() * 0.05)) * effect_multiplier)
 		M.add_chemical_effect(CE_PULSE, -2)
 
 /* Painkillers */
@@ -169,7 +169,7 @@
 	scannable = 1
 	metabolism = 0.02
 
-/datum/reagent/paracetamol/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/paracetamol/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.add_chemical_effect(CE_PAINKILLER, 50)
 
 /datum/reagent/paracetamol/overdose(var/mob/living/carbon/M, var/alien)
@@ -186,9 +186,9 @@
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
 	metabolism = 0.02
-	nsa = 40
+	nerve_system_accumulations = 40
 
-/datum/reagent/tramadol/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/tramadol/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.add_chemical_effect(CE_PAINKILLER, 130 )
 
 /datum/reagent/tramadol/overdose(var/mob/living/carbon/M, var/alien)
@@ -208,9 +208,9 @@
 	color = "#800080"
 	overdose = REAGENTS_OVERDOSE * 0.66
 	metabolism = 0.02
-	nsa = 60
+	nerve_system_accumulations = 60
 
-/datum/reagent/oxycodone/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/oxycodone/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.add_chemical_effect(CE_PAINKILLER, 200)
 	M.druggy = max(M.druggy, 10)
 
@@ -235,9 +235,9 @@
 	metabolism = REM * 0.05
 	overdose = 5
 	scannable = 1
-	nsa = 50
+	nerve_system_accumulations = 50
 
-/datum/reagent/synaptizine/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/synaptizine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.drowsyness = max(M.drowsyness - 5, 0)
 	M.AdjustParalysis(-1)
 	M.AdjustStunned(-1)
@@ -245,7 +245,7 @@
 	holder.remove_reagent("mindbreaker", 5)
 	M.adjust_hallucination(-10)
 	M.add_chemical_effect(CE_MIND, 2)
-	M.adjustToxLoss(0.5 * effectMultiplier) // It used to be incredibly deadly due to an oversight. Not anymore!
+	M.adjustToxLoss(0.5 * effect_multiplier) // It used to be incredibly deadly due to an oversight. Not anymore!
 	M.add_chemical_effect(CE_PAINKILLER, 40)
 
 /datum/reagent/alkysine
@@ -259,9 +259,9 @@
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
 
-/datum/reagent/alkysine/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
-	M.adjustBrainLoss(-(3 + (M.getBrainLoss() * 0.05)) * effectMultiplier)
-	M.add_chemical_effect(CE_PAINKILLER, 10 * effectMultiplier)
+/datum/reagent/alkysine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	M.adjustBrainLoss(-(3 + (M.getBrainLoss() * 0.05)) * effect_multiplier)
+	M.add_chemical_effect(CE_PAINKILLER, 10 * effect_multiplier)
 
 /datum/reagent/imidazoline
 	name = "Imidazoline"
@@ -273,15 +273,15 @@
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
 
-/datum/reagent/imidazoline/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
-	M.eye_blurry = max(M.eye_blurry - (5 * effectMultiplier), 0)
-	M.eye_blind = max(M.eye_blind - (5 * effectMultiplier), 0)
+/datum/reagent/imidazoline/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	M.eye_blurry = max(M.eye_blurry - (5 * effect_multiplier), 0)
+	M.eye_blind = max(M.eye_blind - (5 * effect_multiplier), 0)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[BP_EYES]
 		if(E && istype(E))
 			if(E.damage > 0)
-				E.damage = max(E.damage - (0.5 * effectMultiplier), 0)
+				E.damage = max(E.damage - (0.5 * effect_multiplier), 0)
 
 /datum/reagent/peridaxon
 	name = "Peridaxon"
@@ -293,13 +293,13 @@
 	overdose = 10
 	scannable = 1
 
-/datum/reagent/peridaxon/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/peridaxon/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 
 		for(var/obj/item/organ/I in H.internal_organs)
 			if((I.damage > 0) && !BP_IS_ROBOTIC(I)) //Peridaxon heals only non-robotic organs
-				I.heal_damage(((0.2 + I.damage * 0.05) * effectMultiplier), FALSE)
+				I.heal_damage(((0.2 + I.damage * 0.05) * effect_multiplier), FALSE)
 
 /datum/reagent/ryetalyn
 	name = "Ryetalyn"
@@ -310,7 +310,7 @@
 	color = "#004000"
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/ryetalyn/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/ryetalyn/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	var/needs_update = M.mutations.len > 0
 
 	M.mutations = list()
@@ -330,7 +330,7 @@
 	color = "#605048"
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/ethylredoxrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/ethylredoxrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.dizziness = 0
 	M.drowsyness = 0
 	M.stuttering = 0
@@ -338,7 +338,7 @@
 	if(M.ingested)
 		for(var/datum/reagent/R in M.ingested.reagent_list)
 			if(istype(R, /datum/reagent/ethanol))
-				R.dose = max(R.dose - effectMultiplier, 0)
+				R.dose = max(R.dose - effect_multiplier, 0)
 
 /datum/reagent/hyronalin
 	name = "Hyronalin"
@@ -351,8 +351,8 @@
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
 
-/datum/reagent/hyronalin/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
-	M.radiation = max(M.radiation - (3 * effectMultiplier), 0)
+/datum/reagent/hyronalin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	M.radiation = max(M.radiation - (3 * effect_multiplier), 0)
 
 /datum/reagent/arithrazine
 	name = "Arithrazine"
@@ -364,11 +364,11 @@
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
 
-/datum/reagent/arithrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
-	M.radiation = max(M.radiation - (7 + (M.radiation * 0.10)) * effectMultiplier, 0)
-	M.adjustToxLoss(-(1 + (M.getToxLoss() * 0.05)) * effectMultiplier)
+/datum/reagent/arithrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	M.radiation = max(M.radiation - (7 + (M.radiation * 0.10)) * effect_multiplier, 0)
+	M.adjustToxLoss(-(1 + (M.getToxLoss() * 0.05)) * effect_multiplier)
 	if(prob(60))
-		M.take_organ_damage(0.4 * effectMultiplier, 0)
+		M.take_organ_damage(0.4 * effect_multiplier, 0)
 
 /datum/reagent/spaceacillin
 	name = "Spaceacillin"
@@ -390,8 +390,8 @@
 	color = "#C8A5DC"
 	touch_met = 5
 
-/datum/reagent/sterilizine/affect_touch(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
-	M.germ_level -= min(effectMultiplier * 2, M.germ_level)
+/datum/reagent/sterilizine/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	M.germ_level -= min(effect_multiplier * 2, M.germ_level)
 	for(var/obj/item/I in M.contents)
 		I.was_bloodied = null
 	M.was_bloodied = null
@@ -418,11 +418,11 @@
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
 
-/datum/reagent/leporazine/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/leporazine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(M.bodytemperature > 310)
-		M.bodytemperature = max(310, M.bodytemperature - (40 * TEMPERATURE_DAMAGE_COEFFICIENT) * effectMultiplier)
+		M.bodytemperature = max(310, M.bodytemperature - (40 * TEMPERATURE_DAMAGE_COEFFICIENT) * effect_multiplier)
 	else if(M.bodytemperature < 311)
-		M.bodytemperature = min(310, M.bodytemperature + (40 * TEMPERATURE_DAMAGE_COEFFICIENT) * effectMultiplier)
+		M.bodytemperature = min(310, M.bodytemperature + (40 * TEMPERATURE_DAMAGE_COEFFICIENT) * effect_multiplier)
 
 /* Antidepressants */
 
@@ -438,7 +438,7 @@
 	metabolism = 0.01
 	data = 0
 
-/datum/reagent/methylphenidate/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/methylphenidate/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(volume <= 0.1 && data != -1)
 		data = -1
 		to_chat(M, SPAN_WARNING("You lose focus..."))
@@ -457,7 +457,7 @@
 	metabolism = 0.01
 	data = 0
 
-/datum/reagent/citalopram/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/citalopram/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(volume <= 0.1 && data != -1)
 		data = -1
 		to_chat(M, SPAN_WARNING("Your mind feels a little less stable..."))
@@ -476,7 +476,7 @@
 	metabolism = 0.01
 	data = 0
 
-/datum/reagent/paroxetine/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/paroxetine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(volume <= 0.1 && data != -1)
 		data = -1
 		to_chat(M, SPAN_WARNING("Your mind feels much less stable..."))
@@ -500,11 +500,11 @@
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
 
-/datum/reagent/rezadone/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
-	M.adjustCloneLoss(-(2 + (M.getCloneLoss() * 0.05)) * effectMultiplier)
-	M.adjustOxyLoss(-0.2 * effectMultiplier)
-	M.heal_organ_damage(2 * effectMultiplier, 2 * effectMultiplier, 5 * effectMultiplier, 5 * effectMultiplier)
-	M.adjustToxLoss(-(2 + (M.getToxLoss() * 0.05)) * effectMultiplier)
+/datum/reagent/rezadone/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	M.adjustCloneLoss(-(2 + (M.getCloneLoss() * 0.05)) * effect_multiplier)
+	M.adjustOxyLoss(-0.2 * effect_multiplier)
+	M.heal_organ_damage(2 * effect_multiplier, 2 * effect_multiplier, 5 * effect_multiplier, 5 * effect_multiplier)
+	M.adjustToxLoss(-(2 + (M.getToxLoss() * 0.05)) * effect_multiplier)
 	if(dose > 3)
 		M.status_flags &= ~DISFIGURED
 	if(dose > 10)
@@ -521,14 +521,14 @@
 	overdose = REAGENTS_OVERDOSE/2
 	metabolism = REM/2
 
-/datum/reagent/quickclot/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
-	M.add_chemical_effect(CE_BLOODCLOT, min(1,0.1 * effectMultiplier))	// adding 0.01 to be more than 0.1 in order to stop int bleeding from growing
+/datum/reagent/quickclot/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	M.add_chemical_effect(CE_BLOODCLOT, min(1,0.1 * effect_multiplier))	// adding 0.01 to be more than 0.1 in order to stop int bleeding from growing
 	var/mob/living/carbon/human/H = M
 	if(istype(H))
 		for(var/obj/item/organ/external/E in H.organs)
 			for(var/datum/wound/W in E.wounds)
 				if(W.internal)
-					W.heal_damage(5 * effectMultiplier)
+					W.heal_damage(5 * effect_multiplier)
 
 /datum/reagent/quickclot/overdose(var/mob/living/carbon/M, var/alien)
 	M.add_chemical_effect(CE_BLOODCLOT, min(1, 0.20))
@@ -542,12 +542,12 @@
 	color = "#660679"
 	overdose = REAGENTS_OVERDOSE/2
 
-/datum/reagent/ossisine/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/ossisine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.paralysis = max(M.paralysis, 5)
 	M.add_chemical_effect(CE_BLOODCLOT, 0.1)
 	var/mob/living/carbon/human/H = M
 	if(istype(H))
-		if(prob(5 * effectMultiplier + dose) || dose == overdose)
+		if(prob(5 * effect_multiplier + dose) || dose == overdose)
 			var/list/brokenBP = list()
 			for(var/obj/item/organ/external/E in H.organs)
 				if(E.is_broken())
@@ -571,7 +571,7 @@
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
 
-/datum/reagent/noexcutite/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/noexcutite/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.make_jittery(-50)
 
 
@@ -584,10 +584,10 @@
 	color = "#7d88e6"
 	overdose = REAGENTS_OVERDOSE * 0.66
 
-/datum/reagent/kyphotorin/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/kyphotorin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	var/mob/living/carbon/human/H = M
 	if(istype(H))
-		if(prob(5 * effectMultiplier + dose) || dose == overdose)
+		if(prob(5 * effect_multiplier + dose) || dose == overdose)
 			var/list/missingLimbs = list()
 			for(var/name in BP_ALL_LIMBS)
 				if(!H.has_appendage(name))
@@ -615,9 +615,9 @@
 	metabolism = REM/2
 	overdose = REAGENTS_OVERDOSE - 10
 
-/datum/reagent/polystem/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
-	M.heal_organ_damage(0.2 * effectMultiplier, 0, 3 * effectMultiplier)
-	M.add_chemical_effect(CE_BLOODCLOT, min(1,0.1 * effectMultiplier))
+/datum/reagent/polystem/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	M.heal_organ_damage(0.2 * effect_multiplier, 0, 3 * effect_multiplier)
+	M.add_chemical_effect(CE_BLOODCLOT, min(1,0.1 * effect_multiplier))
 
 /datum/reagent/polystem/overdose(var/mob/living/carbon/M, var/alien)
 	M.add_chemical_effect(CE_BLOODCLOT, min(1,0.1))
@@ -633,7 +633,7 @@
 	scannable = 1
 	metabolism = REM/2
 
-/datum/reagent/purger/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/purger/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(M.nsa_threshold == initial(M.nsa_threshold))
 		M.nsa_threshold += rand(20, 60)
 
@@ -657,7 +657,7 @@
 	scannable = 1
 	metabolism = REM/2
 
-/datum/reagent/purger/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/purger/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.add_chemical_effect(CE_PURGER, 1)
 
 /datum/reagent/addictol
@@ -670,10 +670,10 @@
 	scannable = 1
 	metabolism = REM/2
 
-/datum/reagent/addictol/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/addictol/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	var/mob/living/carbon/C = M
 	if(istype(C) && C.metabolism_effects.addiction_list.len)
-		if(prob(5 * effectMultiplier + dose))
+		if(prob(5 * effect_multiplier + dose))
 			var/list/datum/reagent/R = pick(C.metabolism_effects.addiction_list)
 			to_chat(C, SPAN_NOTICE("You dont crave for [R.name] anymore."))
 			C.metabolism_effects.addiction_list.Remove(R)
@@ -683,7 +683,7 @@
 	var/mob/living/carbon/C = L
 	if(dose >= 10)
 		if(istype(C))
-			C.removeAllAddictions()
+			C.remove_all_addictions()
 
 /datum/reagent/aminazine
 	name = "Aminazine"
@@ -696,7 +696,7 @@
 	scannable = 1
 	metabolism = REM/2
 
-/datum/reagent/aminazine/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/aminazine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.add_chemical_effect(CE_NOWITHDRAW, 1)
 
 /datum/reagent/haloperidol
@@ -710,12 +710,12 @@
 	scannable = 1
 	metabolism = REM/2
 
-/datum/reagent/haloperidol/affect_blood(var/mob/living/carbon/M, var/alien, var/effectMultiplier)
+/datum/reagent/haloperidol/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(M.bloodstr)
 		for(var/current in M.bloodstr.reagent_list)
 			var/datum/reagent/toxin/pararein/R = current
 			if(!istype(R, src))
-				R.remove_self(effectMultiplier * pick(list(1,2,3)))
+				R.remove_self(effect_multiplier * pick(list(1,2,3)))
 	var/effective_dose = dose
 	if(issmall(M))
 		effective_dose *= 2

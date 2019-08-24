@@ -152,10 +152,10 @@
 	withdrawal_list.Cut()
 	addiction_list.Cut()
 
-/mob/living/carbon/proc/removeAllAddictions()
+/mob/living/carbon/proc/remove_all_addictions()
 	metabolism_effects.addiction_list.Cut()
 
-/mob/living/carbon/proc/getMetabolismHandler(var/location)
+/mob/living/carbon/proc/get_metabolism_handler(var/location)
 	if(location == CHEM_TOUCH)
 		return touching
 	else if(location == CHEM_INGEST)

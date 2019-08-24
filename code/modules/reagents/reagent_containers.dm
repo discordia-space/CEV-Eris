@@ -196,7 +196,7 @@
 	return TRUE
 
 // if amount_per_reagent is null or zero it will transfer all
-/obj/item/weapon/reagent_containers/proc/separateSolution(var/list/obj/item/weapon/reagent_containers/acceptingContainers, var/amount_per_reagent, var/list/ignoreReagentsIDs)
+/obj/item/weapon/reagent_containers/proc/separate_solution(var/list/obj/item/weapon/reagent_containers/accepting_containers, var/amount_per_reagent, var/list/ignore_reagents_ids)
 	if(!is_drainable())
 		return FALSE
 	if(!reagents.total_volume)
@@ -205,14 +205,14 @@
 	// nothing to separate
 	if(reagents.reagent_list.len <= 1)
 		return FALSE
-	var/list/obj/item/weapon/reagent_containers/containers = acceptingContainers.Copy()
+	var/list/obj/item/weapon/reagent_containers/containers = accepting_containers.Copy()
 	for(var/obj/item/weapon/reagent_containers/C in containers)
 		if(!C.is_refillable())
 			containers.Remove(C)
 	if(!containers.len)
 		return FALSE
 	for(var/datum/reagent/R in reagents.reagent_list)
-		if(R.id in ignoreReagentsIDs)
+		if(R.id in ignore_reagents_ids)
 			continue
 		var/amount_to_transfer = amount_per_reagent ? amount_per_reagent : R.volume
 		for(var/obj/item/weapon/reagent_containers/C in containers)

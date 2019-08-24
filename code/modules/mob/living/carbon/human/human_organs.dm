@@ -238,7 +238,7 @@
 	else
 		if(organ_type in BP_ALL_LIMBS)
 			var/obj/item/organ/external/O = E
-			if (heal && (O.damage > 0 || O.status & (ORGAN_BROKEN) || O.hasInternalBleeding()))
+			if (heal && (O.damage > 0 || O.status & (ORGAN_BROKEN) || O.has_internal_bleeding()))
 				O.status &= ~ORGAN_BROKEN
 				for(var/datum/wound/W in O.wounds) 
 					if(W.internal)

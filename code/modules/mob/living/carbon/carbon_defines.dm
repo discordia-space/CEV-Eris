@@ -32,5 +32,5 @@
 	var/obj/item/weapon/tank/internal = null//Human/Monkey
 
 	//TODO: move to brain
-	var/list/nsa = list() // Nerve system accumulations
+	var/list/nerve_system_accumulations = list() // Nerve system accumulations
 	var/nsa_threshold = 100

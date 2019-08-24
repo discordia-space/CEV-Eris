@@ -134,7 +134,7 @@
 										var/mob/living/carbon/human/H = M
 										if (H.get_blood_volume() >= 1)
 											src.visible_message(SPAN_WARNING("\The [src] sticks a proboscis into \the [cocoon_target] and sucks a viscous substance out."))
-											H.dripBlood(H.species.blood_volume)
+											H.drip_blood(H.species.blood_volume)
 											fed++
 
 									C = C || new(targetTurf)

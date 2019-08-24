@@ -175,7 +175,7 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 
 /*This is the proc for special two-way communication between AI and holopad/people talking near holopad.
 For the other part of the code, check silicon say.dm. Particularly robot talk.*/
-/obj/machinery/hologram/holopad/hear_talk(mob/living/M, text, verb, datum/language/speaking, speechVolume)
+/obj/machinery/hologram/holopad/hear_talk(mob/living/M, text, verb, datum/language/speaking, speech_volume)
 	if(M)
 		for(var/mob/living/silicon/ai/master in masters)
 			if(M == master)
