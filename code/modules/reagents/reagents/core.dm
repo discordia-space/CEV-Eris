@@ -10,6 +10,7 @@
 	glass_icon_state = "glass_red"
 	glass_name = "tomato juice"
 	glass_desc = "Are you sure this is tomato juice?"
+	nerve_system_accumulations = 0
 
 /datum/reagent/blood/initialize_data(var/newdata)
 	..()
@@ -93,7 +94,8 @@
 	glass_icon_state = "glass_clear"
 	glass_name = "water"
 	glass_desc = "The father of all refreshments."
-
+	nerve_system_accumulations = 0
+	
 /datum/reagent/water/touch_turf(var/turf/simulated/T)
 	if(!istype(T))
 		return TRUE

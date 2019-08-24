@@ -63,7 +63,7 @@
 		var/add_addiction_flag = R.volume >= R.addiction_threshold
 
 		if(!add_addiction_flag && R.addiction_chance)
-			var/percent = (R.addiction_chance + parent.getNSA()/3) - (R.addiction_chance/2 * parent.stats.getMult(STAT_TGH))
+			var/percent = (R.addiction_chance + parent.get_nsa()/3) - (R.addiction_chance/2 * parent.stats.getMult(STAT_TGH))
 			percent = CLAMP(percent, 1, 100)
 			add_addiction_flag = prob(percent)
 

@@ -51,7 +51,7 @@
 
 	var/constant_metabolism = FALSE	// if metabolism factor should not change with volume or blood circulation
 
-	var/nerve_system_accumulations = 10 // Nerve system accumulations
+	var/nerve_system_accumulations = 5 // Nerve system accumulations
 
 /datum/reagent/proc/remove_self(amount) // Shortcut
 	holder.remove_reagent(id, amount)
@@ -107,10 +107,16 @@
 
 // Called when this reagent is first added to a mob
 /datum/reagent/proc/on_mob_add(mob/living/L)
+	var/mob/living/carbon/C = L
+	if(istype(C))
+		C.adjust_nsa(nerve_system_accumulations, id)
 	return
 
 // Called when this reagent is removed while inside a mob
 /datum/reagent/proc/on_mob_delete(mob/living/L)
+	var/mob/living/carbon/C = L
+	if(istype(C))
+		C.remove_nsa(id)
 	return
 
 // Currently, on_mob_life is only called on carbons. Any interaction with non-carbon mobs (lube) will need to be done in touch_mob.

@@ -263,6 +263,7 @@
 	var/uni_identity
 
 /datum/reagent/nanites/uncapped/dynamic_handprints/on_mob_add(mob/living/L)
+	..()
 	var/mob/living/carbon/human/host = L
 	if(istype(host))
 		for(var/mob/living/carbon/human/H in GLOB.human_mob_list)

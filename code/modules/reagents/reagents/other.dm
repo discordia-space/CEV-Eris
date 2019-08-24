@@ -430,6 +430,7 @@
 				break
 
 /datum/reagent/aranecolmin/on_mob_delete(mob/living/carbon/M)
+	..()
 	if(istype(M))
 		if(M.bloodstr)
 			for(var/current in M.bloodstr.reagent_list)
@@ -470,6 +471,7 @@
 		M.IgniteMob()
 
 /datum/reagent/fuhrerole/on_mob_delete(mob/living/L)
+	..()
 	L.set_light(0)
 
 /datum/reagent/instant_ice  

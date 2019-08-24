@@ -591,6 +591,7 @@
 	M.faction = "roach"
 
 /datum/reagent/fuhrerole/on_mob_delete(mob/living/L)
+	..()
 	L.faction = initial(L.faction)
 
 /datum/reagent/fuhrerole/withdrawal_act(mob/living/carbon/M)

@@ -638,6 +638,7 @@
 		M.nsa_threshold += rand(20, 60)
 
 /datum/reagent/detox/on_mob_delete(mob/living/L)
+	..()
 	var/mob/living/carbon/C = L
 	if(istype(C))
 		C.nsa_threshold = initial(C.nsa_threshold)
@@ -680,6 +681,7 @@
 			qdel(R)
 
 /datum/reagent/addictol/on_mob_delete(mob/living/L)
+	..()
 	var/mob/living/carbon/C = L
 	if(dose >= 10)
 		if(istype(C))
@@ -740,6 +742,7 @@
 	M.adjustToxLoss(6)
 
 /datum/reagent/haloperidol/on_mob_delete(mob/living/L)
+	..()
 	var/mob/living/carbon/C = L
 	if(istype(C))
 		C.nsa_threshold = initial(C.nsa_threshold)
