@@ -37,6 +37,8 @@
 
 /obj/item/weapon/paper/New(loc, text,title)
 	..(loc)
+	pixel_y = rand(-8, 8)
+	pixel_x = rand(-9, 9)
 	set_content(text ? text : info, title)
 
 /obj/item/weapon/paper/proc/set_content(text,title)
