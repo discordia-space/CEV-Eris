@@ -2,12 +2,13 @@
 	name = "Seuche Roach"
 	desc = "A monstrous, dog-sized cockroach. This one smells like hell and secretes strange vapors."
 	icon_state = "seuche"
-	meat_amount = 3
 	turns_per_move = 6
 	maxHealth = 20
 	health = 20
 	var/datum/reagents/gas_sac //Stores gas. Can't use the default reagents since that is now bloodstream
 	melee_damage_upper = 3
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/seuche
+	meat_amount = 3
 
 /mob/living/carbon/superior_animal/roach/support/New()
 	..()

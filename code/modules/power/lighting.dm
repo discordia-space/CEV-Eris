@@ -681,6 +681,7 @@
 	var/brightness_range = 2 //how much light it gives off
 	var/brightness_power = 1
 	var/brightness_color = null
+	preloaded_reagents = list("silicon" = 10, "tungsten" = 5)
 
 /obj/item/weapon/light/tube
 	name = "light tube"

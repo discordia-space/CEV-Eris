@@ -138,6 +138,19 @@
 	add_fingerprint(usr)
 	return 1 // update UIs attached to this object
 
+
+/obj/machinery/chemical_dispenser/MouseDrop_T(atom/movable/I, mob/user, src_location, over_location, src_control, over_control, params)
+	if(!Adjacent(user) || !I.Adjacent(user) || user.stat)
+		return ..()
+	if(istype(I, /obj/item/weapon/reagent_containers) && I.is_open_container() && !beaker)
+		I.forceMove(src)
+		I.add_fingerprint(user)
+		beaker = I
+		to_chat(user, SPAN_NOTICE("You add [I] to [src]."))
+		SSnano.update_uis(src) // update all UIs attached to src
+		return
+	. = ..()
+
 /obj/machinery/chemical_dispenser/attackby(obj/item/weapon/reagent_containers/B, mob/living/user)
 	if(beaker)
 		to_chat(user, "Something is already loaded into the machine.")
@@ -220,4 +233,16 @@
 		"rezadone","spaceacillin","ethylredoxrazine",
 		"stoxin","chloralhydrate","cryoxadone",
 		"clonexadone"
+	)
+
+/obj/machinery/chemical_dispenser/industrial
+	name = "industrial chem dispenser"
+	icon = 'icons/obj/machines/chemistry.dmi'
+	icon_state = "industrial_dispenser"
+	ui_title = "Industrial Dispenser 4835"
+	dispensable_reagents = list(
+		"acetone","aluminum","ammonia",
+		"copper","ethanol","hydrazine",
+		"iron","radium","sacid",
+		"hclacid","silicon","tungsten"
 	)

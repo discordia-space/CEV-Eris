@@ -40,8 +40,8 @@
 
 // for /obj/machinery/vending/sovietsoda
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/soda
-	preloaded = list("sodawater" = 50)
+	preloaded_reagents = list("sodawater" = 50)
 
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/cola
-	preloaded = list("cola" = 50)
+	preloaded_reagents = list("cola" = 50)
 
