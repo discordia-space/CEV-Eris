@@ -83,9 +83,17 @@
     jobs_list = list(/datum/job/cmo, /datum/job/doctor, /datum/job/chemist, /datum/job/psychiatrist, /datum/job/paramedic)
     tipText = "Pills containing pure carbon can be ingested to treat cases of poisoning and accidental overdoes. 1u of carbon will remove 1u of anything in the stomach. This will not, however, purge chemicals in the bloodstream, nor will injecting carbon have the same effect."
 
-/tipsAndTricks/jobs/inabicaInternal
+/tipsAndTricks/jobs/inaprov
     jobs_list = list(/datum/job/cmo, /datum/job/doctor, /datum/job/chemist, /datum/job/psychiatrist, /datum/job/paramedic)
-    tipText = "Inaprovaline and bicardine can be used to stem the effects of internal bleeding."
+    tipText = "Inaprovaline stabilize a patient in many ways and a must to chemical for critical patients."
+
+/tipsAndTricks/jobs/lid_draw
+    jobs_list = list(/datum/job/cmo, /datum/job/doctor, /datum/job/chemist, /datum/job/psychiatrist, /datum/job/paramedic)
+    tipText = "You can draw a reagents from bottles with syringe through the lid."
+
+/tipsAndTricks/jobs/quick_clot_internal
+    jobs_list = list(/datum/job/cmo, /datum/job/doctor, /datum/job/chemist, /datum/job/psychiatrist, /datum/job/paramedic)
+    tipText = "Quickclot and some other chemicals can heal internal bleeding."
 
 /tipsAndTricks/jobs/crewMonitorHelp
     jobs_list = list(/datum/job/cmo, /datum/job/doctor, /datum/job/paramedic)

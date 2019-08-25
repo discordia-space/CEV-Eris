@@ -7,18 +7,20 @@
 	price_tag = 600
 
 /obj/item/organ/internal/kidneys/Process()
-
 	..()
 
 	if(!owner)
 		return
-
-	// Coffee is really bad for you with busted kidneys.
-	// This should probably be expanded in some way, but fucked if I know
-	// what else kidneys can process in our reagent list.
-	var/datum/reagent/coffee = locate(/datum/reagent/drink/coffee) in owner.reagents.reagent_list
-	if(coffee)
+	var/datum/reagents/metabolism/BLOOD_METABOLISM = owner.get_metabolism_handler(CHEM_BLOOD)
+	//If your kidneys aren't working, your body's going to have a hard time cleaning your blood.
+	if(!owner.chem_effects[CE_ANTITOX])
 		if(is_bruised())
-			owner.adjustToxLoss(0.1 * ORGAN_PROCESS_ACCURACY)
-		else if(is_broken())
-			owner.adjustToxLoss(0.3 * ORGAN_PROCESS_ACCURACY)
+			if(prob(5) && BLOOD_METABOLISM.get_reagent_amount("potassium") < 5)
+				BLOOD_METABOLISM.add_reagent("potassium", REM*5)
+		if(is_broken())
+			if(BLOOD_METABOLISM.get_reagent_amount("potassium") < 15)
+				BLOOD_METABOLISM.add_reagent("potassium", REM*2)
+		if(status & ORGAN_DEAD)
+			owner.adjustToxLoss(1)
+
+			

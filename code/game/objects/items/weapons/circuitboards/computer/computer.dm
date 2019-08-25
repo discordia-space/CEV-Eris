@@ -120,7 +120,7 @@
 
 /obj/item/weapon/circuitboard/centrifuge
 	name = T_BOARD("isolation centrifuge")
-	build_path = /obj/machinery/computer/centrifuge
+	build_path = /obj/machinery/centrifuge
 
 /obj/item/weapon/circuitboard/helm
 	name = T_BOARD("helm control console")

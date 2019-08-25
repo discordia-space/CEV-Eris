@@ -121,10 +121,10 @@
 	name = "Universal Enzyme"
 	desc = "Used in cooking various dishes."
 	icon_state = "enzyme"
-	preloaded = list("enzyme" = 50)
+	preloaded_reagents = list("enzyme" = 50)
 
 /obj/item/weapon/reagent_containers/food/condiment/sugar
-	preloaded = list("sugar" = 50)
+	preloaded_reagents = list("sugar" = 50)
 
 //Seperate from above since it's a small shaker rather then a large one.
 /obj/item/weapon/reagent_containers/food/condiment/saltshaker
@@ -134,7 +134,7 @@
 	possible_transfer_amounts = list(1,20) //for clown turning the lid off
 	amount_per_transfer_from_this = 1
 	volume = 20
-	preloaded = list("sodiumchloride" = 20)
+	preloaded_reagents = list("sodiumchloride" = 20)
 
 /obj/item/weapon/reagent_containers/food/condiment/peppermill
 	name = "pepper mill"
@@ -143,7 +143,7 @@
 	possible_transfer_amounts = list(1,20) //for clown turning the lid off
 	amount_per_transfer_from_this = 1
 	volume = 20
-	preloaded = list("blackpepper" = 20)
+	preloaded_reagents = list("blackpepper" = 20)
 
 /obj/item/weapon/reagent_containers/food/condiment/flour
 	name = "flour sack"
@@ -151,5 +151,5 @@
 	icon = 'icons/obj/food.dmi'
 	icon_state = "flour"
 	item_state = "flour"
-	preloaded = list("flour" = 30)
+	preloaded_reagents = list("flour" = 30)
 
