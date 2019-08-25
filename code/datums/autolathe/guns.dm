@@ -86,10 +86,6 @@
 	name = "FS SMG 9x19 \"Idaho\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/idaho
 
-/datum/design/autolathe/gun/wt550
-	name = "FS SMG 9x19 \"W-T Saber\""
-	build_path = /obj/item/weapon/gun/projectile/automatic/wt550
-
 /datum/design/autolathe/gun/atreides
 	name = "FS SMG .45 \"Atreides\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/atreides

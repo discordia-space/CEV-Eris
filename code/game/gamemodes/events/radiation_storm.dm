@@ -32,6 +32,7 @@
 
 /datum/event/radiation_storm/start()
 	make_maint_all_access()
+	SSweather.run_weather(/datum/weather/rad_storm)
 
 /datum/event/radiation_storm/tick()
 	if(activeFor == enterBelt)
