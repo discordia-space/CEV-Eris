@@ -59,18 +59,16 @@
 				withdrawal_list[A] = max(withdrawal_list[A], R.max_dose)
 
 	// Addictions
-	if(R.addiction_threshold)
-		var/add_addiction = R.volume >= R.addiction_threshold
+	if(R.addiction_threshold || R.addiction_chance)
+		var/add_addiction_flag = R.volume >= R.addiction_threshold
 
-		if(!add_addiction && R.addiction_chance && R.volume >= R.addiction_chance)
-			// At 40 STAT_TGH, there is no chance of getting addicted by addiction_chance.
-
-			var/percent = (R.volume - R.addiction_chance) / (R.addiction_threshold - R.addiction_chance) * 20
-			percent = CLAMP(percent, 1, 20) - (parent.stats.getStat(STAT_TGH) / 2)
-			add_addiction = prob(percent)
+		if(!add_addiction_flag && R.addiction_chance)
+			var/percent = (R.addiction_chance + parent.get_nsa()/3) - (R.addiction_chance/2 * parent.stats.getMult(STAT_TGH))
+			percent = CLAMP(percent, 1, 100)
+			add_addiction_flag = prob(percent)
 
 
-		if(add_addiction && !is_type_in_list(R, addiction_list))
+		if(add_addiction_flag && !is_type_in_list(R, addiction_list))
 			var/datum/reagent/new_reagent = new R.type()
 			new_reagent.max_dose = R.max_dose
 			addiction_list.Add(new_reagent)
@@ -110,7 +108,8 @@
 			withdrawal_list.Remove(R)
 			continue
 
-		R.withdrawal_act(parent)
+		if(!parent.chem_effects[CE_NOWITHDRAW])
+			R.withdrawal_act(parent)
 		withdrawal_list[R] -= R.withdrawal_rate
 
 /datum/metabolism_effects/proc/start_withdrawal(datum/reagent/R)
@@ -130,19 +129,20 @@
 			continue
 
 		addiction_list[R]++
+		if(!parent.chem_effects[CE_PURGER])
 
-		switch(addiction_list[R])
-			if(1 to 10)
-				R.addiction_act_stage1(parent)
-			if(10 to 20)
-				R.addiction_act_stage2(parent)
-			if(20 to 30)
-				R.addiction_act_stage3(parent)
-			if(30 to 40)
-				R.addiction_act_stage4(parent)
-			if(40 to INFINITY)
-				R.addiction_end(parent)
-				addiction_list.Remove(R)
+			switch(addiction_list[R])
+				if(1 to 10)
+					R.addiction_act_stage1(parent)
+				if(10 to 20)
+					R.addiction_act_stage2(parent)
+				if(20 to 30)
+					R.addiction_act_stage3(parent)
+				if(30 to 40)
+					R.addiction_act_stage4(parent)
+				if(40 to INFINITY)
+					R.addiction_end(parent)
+					addiction_list.Remove(R)
 
 /datum/metabolism_effects/proc/clear_effects()
 	for(var/withdrawal in active_withdrawals)
@@ -151,3 +151,14 @@
 	active_withdrawals.Cut()
 	withdrawal_list.Cut()
 	addiction_list.Cut()
+
+/mob/living/carbon/proc/remove_all_addictions()
+	metabolism_effects.addiction_list.Cut()
+
+/mob/living/carbon/proc/get_metabolism_handler(var/location)
+	if(location == CHEM_TOUCH)
+		return touching
+	else if(location == CHEM_INGEST)
+		return ingested
+	else if(location == CHEM_BLOOD)
+		return bloodstr

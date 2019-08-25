@@ -214,7 +214,7 @@
 				display_name = "Turnovers"
 				items_measures[display_name] = "turnover"
 				items_measures_p[display_name] = "turnovers"
-			if (istype(O,/obj/item/weapon/reagent_containers/food/snacks/carpmeat))
+			if (istype(O,/obj/item/weapon/reagent_containers/food/snacks/meat/carp))
 				items_measures[display_name] = "fillet of meat"
 				items_measures_p[display_name] = "fillets of meat"
 			items_counts[display_name]++

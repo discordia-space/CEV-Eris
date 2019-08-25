@@ -305,9 +305,9 @@
 /obj/mecha/proc/drop_item()//Derpfix, but may be useful in future for engineering exosuits.
 	return
 
-/obj/mecha/hear_talk(mob/M as mob, text)
+/obj/mecha/hear_talk(mob/M as mob, text, verb, datum/language/speaking, speech_volume)
 	if(M==occupant && radio.broadcasting)
-		radio.talk_into(M, text)
+		radio.talk_into(M, text, speech_volume = speech_volume)
 
 ////////////////////////////
 ///// Action processing ////

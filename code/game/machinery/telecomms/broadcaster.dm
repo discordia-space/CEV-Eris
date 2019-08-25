@@ -62,7 +62,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 							  signal.data["name"], signal.data["job"],
 							  signal.data["realname"], signal.data["vname"],,
 							  signal.data["compression"], signal.data["level"], signal.frequency,
-							  signal.data["verb"], signal.data["language"]	)
+							  signal.data["verb"], signal.data["language"], signal.data["speech_volume"])
 
 
 	   /** #### - Simple Broadcast - #### **/
@@ -89,7 +89,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 							  signal.data["name"], signal.data["job"],
 							  signal.data["realname"], signal.data["vname"], 4,
 							  signal.data["compression"], signal.data["level"], signal.frequency,
-							  signal.data["verb"], signal.data["language"])
+							  signal.data["verb"], signal.data["language"], signal.data["speech_volume"])
 
 		if(!message_delay)
 			message_delay = 1
@@ -226,7 +226,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 						var/vmask, var/vmessage, var/obj/item/device/radio/radio,
 						var/message, var/name, var/job, var/realname, var/vname,
 						var/data, var/compression, var/list/level, var/freq, var/verbage = "says",
-						var/datum/language/speaking = null)
+						var/datum/language/speaking = null, var/text_size)
 
 
   /* ###### Prepare the radio connection ###### */
@@ -327,6 +327,8 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
   /* ###### Begin formatting and sending the message ###### */
 	if (length(heard_masked) || length(heard_normal) || length(heard_voice) || length(heard_garbled) || length(heard_gibberish))
+		if(text_size)
+			message = "<FONT size='[max(text_size, 1)]'>[message]</FONT>"
 
 	  /* --- Some miscellaneous variables to format the string output --- */
 		var/freq_text = get_frequency_name(display_freq)

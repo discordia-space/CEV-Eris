@@ -605,7 +605,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/tofurkey
 	price_tag = 25
 
-/obj/item/weapon/reagent_containers/food/snacks/carpmeat
+/obj/item/weapon/reagent_containers/food/snacks/meat/carp
 	price_tag = 25
 
 /obj/item/weapon/reagent_containers/food/snacks/fishfingers
