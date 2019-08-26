@@ -382,6 +382,7 @@ proc/TextPreview(var/string, var/len=40)
 
 
 /proc/pencode2html(t)
+	t = cp1251_to_utf8(t)
 	t = replacetext(t, "\n", "<BR>")
 	t = replacetext(t, "\[center\]", "<center>")
 	t = replacetext(t, "\[/center\]", "</center>")
@@ -416,10 +417,6 @@ proc/TextPreview(var/string, var/len=40)
 	t = replacetext(t, "\[row\]", "</td><tr>")
 	t = replacetext(t, "\[cell\]", "<td>")
 	t = replacetext(t, "\[logo\]", "<img src = ntlogo.png>")
-	t = replacetext(t, "\[bluelogo\]", "<img src = bluentlogo.png>")
-	t = replacetext(t, "\[solcrest\]", "<img src = sollogo.png>")
-	t = replacetext(t, "\[torchltd\]", "<img src = torchltd.png>")
-	t = replacetext(t, "\[terraseal\]", "<img src = terralogo.png>")
 	t = replacetext(t, "\[editorbr\]", "")
 	return t
 
@@ -450,9 +447,6 @@ proc/TextPreview(var/string, var/len=40)
 	t = replacetext(t, "<tr>", "\[row\]")
 	t = replacetext(t, "<td>", "\[cell\]")
 	t = replacetext(t, "<img src = ntlogo.png>", "\[logo\]")
-	t = replacetext(t, "<img src = bluentlogo.png>", "\[bluelogo\]")
-	t = replacetext(t, "<img src = sollogo.png>", "\[solcrest\]")
-	t = replacetext(t, "<img src = terralogo.png>", "\[terraseal\]")
 	t = replacetext(t, "<span class=\"paper_field\"></span>", "\[field\]")
 	t = strip_html_properly(t)
 	return t
