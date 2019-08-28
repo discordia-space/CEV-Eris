@@ -264,11 +264,11 @@
 			if(prob(25))
 				icon = 'icons/obj/xenoarchaeology.dmi'
 				item_type = "smooth green crystal"
-				icon_state = "Green lump"
+				icon_state = "green_lump"
 			else if(prob(33))
 				icon = 'icons/obj/xenoarchaeology.dmi'
 				item_type = "irregular purple crystal"
-				icon_state = "Phazon"
+				icon_state = "phazon"
 			else
 				icon = 'icons/obj/xenoarchaeology.dmi'
 				item_type = "rough red crystal"

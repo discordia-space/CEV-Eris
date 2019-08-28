@@ -12,3 +12,5 @@
 
 #define TimeOfGame (get_game_time())
 #define TimeOfTick (world.tick_usage*0.01*world.tick_lag)
+
+#define STIM_TIME 1 SECOND

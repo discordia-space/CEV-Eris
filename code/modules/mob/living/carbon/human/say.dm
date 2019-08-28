@@ -86,6 +86,8 @@
 		return mind.changeling.mimicing
 	if(GetSpecialVoice())
 		return GetSpecialVoice()
+	if(chem_effects[CE_VOICEMIMIC])
+		return chem_effects[CE_VOICEMIMIC]
 	return real_name
 
 /mob/living/carbon/human/proc/SetSpecialVoice(var/new_voice)
@@ -148,22 +150,22 @@
 	returns[3] = speech_problem_flag
 	return returns
 
-/mob/living/carbon/human/handle_message_mode(message_mode, message, verb, speaking, list/used_radios, alt_name)
+/mob/living/carbon/human/handle_message_mode(message_mode, message, verb, speaking, list/used_radios, alt_name, speech_volume)
 	switch(message_mode)
 		if("intercom")
 			if(!src.restrained())
 				for(var/obj/item/device/radio/intercom/I in view(1))
-					I.talk_into(src, message, null, verb, speaking)
+					I.talk_into(src, message, null, verb, speaking, speech_volume)
 					I.add_fingerprint(src)
 					used_radios += I
 		if("headset")
 			if(l_ear && istype(l_ear, /obj/item/device/radio))
 				var/obj/item/device/radio/R = l_ear
-				R.talk_into(src, message, null, verb, speaking)
+				R.talk_into(src, message, null, verb, speaking, speech_volume)
 				used_radios += l_ear
 			else if(r_ear && istype(r_ear, /obj/item/device/radio))
 				var/obj/item/device/radio/R = r_ear
-				R.talk_into(src, message, null, verb, speaking)
+				R.talk_into(src, message, null, verb, speaking, speech_volume)
 				used_radios += r_ear
 		if("right ear")
 			var/obj/item/device/radio/R
@@ -172,7 +174,7 @@
 			if(!R && r_ear && istype(r_ear, /obj/item/device/radio))
 				R = r_ear
 			if(R)
-				R.talk_into(src, message, null, verb, speaking)
+				R.talk_into(src, message, null, verb, speaking, speech_volume)
 				used_radios += R
 		if("left ear")
 			var/obj/item/device/radio/R
@@ -181,7 +183,7 @@
 			if(!R && l_ear && istype(l_ear, /obj/item/device/radio))
 				R = l_ear
 			if(R)
-				R.talk_into(src, message, null, verb, speaking)
+				R.talk_into(src, message, null, verb, speaking, speech_volume)
 				used_radios += R
 		if("whisper")
 			whisper_say(message, speaking, alt_name)
@@ -189,10 +191,10 @@
 		else
 			if(message_mode)
 				if(l_ear && istype(l_ear, /obj/item/device/radio))
-					if(l_ear.talk_into(src, message, message_mode, verb, speaking))
+					if(l_ear.talk_into(src, message, message_mode, verb, speaking, speech_volume))
 						used_radios += l_ear
 				if(!used_radios.len && r_ear && istype(r_ear, /obj/item/device/radio))
-					if(r_ear.talk_into(src, message, message_mode, verb, speaking))
+					if(r_ear.talk_into(src, message, message_mode, verb, speaking, speech_volume))
 						used_radios += r_ear
 
 /mob/living/carbon/human/handle_speech_sound()

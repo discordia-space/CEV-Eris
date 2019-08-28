@@ -323,22 +323,22 @@
 /obj/item/weapon/reagent_containers/syringe/inaprovaline
 	name = "syringe (inaprovaline)"
 	desc = "Contains inaprovaline - used to stabilize patients."
-	preloaded = list("inaprovaline" = 15)
+	preloaded_reagents = list("inaprovaline" = 15)
 
 /obj/item/weapon/reagent_containers/syringe/antitoxin
 	name = "syringe (anti-toxin)"
 	desc = "Contains anti-toxins."
-	preloaded = list("anti_toxin" = 15)
+	preloaded_reagents = list("anti_toxin" = 15)
 
 /obj/item/weapon/reagent_containers/syringe/antiviral
 	name = "syringe (spaceacillin)"
 	desc = "Contains antiviral agents."
-	preloaded = list("spaceacillin" = 15)
+	preloaded_reagents = list("spaceacillin" = 15)
 
 /obj/item/weapon/reagent_containers/syringe/drugs
 	name = "syringe (drugs)"
 	desc = "Contains aggressive drugs meant for torture."
-	preloaded = list("space_drugs" = 5, "mindbreaker" = 5, "cryptobiolin" = 5)
+	preloaded_reagents = list("space_drugs" = 5, "mindbreaker" = 5, "cryptobiolin" = 5)
 
 /obj/item/weapon/reagent_containers/syringe/ld50_syringe/choral
-	preloaded = list("chloralhydrate" = 50)
+	preloaded_reagents = list("chloralhydrate" = 50)
