@@ -59,3 +59,5 @@
 
 	var/image/static_overlay // For static overlays on living mobs
 	mob_classification = CLASSIFICATION_ORGANIC
+
+	var/list/chem_effects = list()

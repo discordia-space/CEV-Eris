@@ -42,19 +42,7 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/item/weapon/gun/projectile/mk58,
 		/obj/item/weapon/gun/projectile/shotgun/doublebarrel,
 		/obj/item/weapon/gun/projectile/shotgun/pump/combat,
-		/obj/item/weapon/gun/projectile/automatic/wt550,
-		/obj/item/weapon/gun/projectile/automatic/z8)
-
-/datum/supply_drop_loot/ballistics
-	name = "Ballistics"
-	container = /obj/structure/largecrate
-/datum/supply_drop_loot/ballistics/New()
-	..()
-	contents = list(
-		/obj/item/weapon/gun/projectile/mk58,
-		/obj/item/weapon/gun/projectile/shotgun/doublebarrel,
-		/obj/item/weapon/gun/projectile/shotgun/pump/combat,
-		/obj/item/weapon/gun/projectile/automatic/wt550,
+		/obj/item/weapon/gun/projectile/automatic/idaho,
 		/obj/item/weapon/gun/projectile/automatic/z8)
 
 /datum/supply_drop_loot/seeds
