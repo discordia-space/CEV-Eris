@@ -7,6 +7,7 @@
 	var/chem_temp = T20C
 	var/atom/my_atom = null
 
+
 /datum/reagents/New(var/max = 100, atom/A = null)
 	..()
 	maximum_volume = max
@@ -22,6 +23,29 @@
 			if(!D.name)
 				continue
 			chemical_reagents_list[D.id] = D
+
+/datum/reagents/proc/get_average_reagents_state()
+	var/solid = 0
+	var/liquid = 0
+	var/gas = 0
+	for(var/datum/reagent/R in reagent_list)
+		switch(R.reagent_state)
+			if(SOLID)
+				solid++
+			if(LIQUID)
+				liquid++
+			if(GAS)
+				gas++
+	if(solid >= liquid)
+		if(solid >= gas)
+			return SOLID
+		else
+			return GAS
+	else
+		if(liquid >= gas)
+			return LIQUID
+		else
+			return GAS
 
 /datum/reagents/Destroy()
 	. = ..()
@@ -415,11 +439,35 @@
 /datum/reagents/proc/touch_turf(var/turf/target)
 	if(!target || !istype(target) || !target.simulated)
 		return
+	if(istype(target, /turf/simulated/open))
+		var/turf/simulated/open/T = target
+		if(T.isOpen())
+			return
 
+	var/handled = TRUE
 	for(var/datum/reagent/current in reagent_list)
-		current.touch_turf(target, current.volume)
-
+		if(!current.touch_turf(target, current.volume))
+			handled = FALSE
+	if(!handled)
+		switch(get_average_reagents_state())
+			if(LIQUID)
+				var/obj/effect/decal/cleanable/splashed_reagents/dirtoverlay = locate(/obj/effect/decal/cleanable/splashed_reagents, target)
+				if (!dirtoverlay)
+					dirtoverlay = new/obj/effect/decal/cleanable/splashed_reagents(target)
+					dirtoverlay.alpha = min(total_volume * 30, 255)
+					dirtoverlay.color = get_color()
+				else
+					dirtoverlay.alpha = min(dirtoverlay.alpha + total_volume * 30, 255)
+					dirtoverlay.color = BlendRGB(dirtoverlay.color, get_color(), 0.6)
+			if(SOLID)
+				var/obj/effect/decal/cleanable/piled_reagents/dirtoverlay = locate(/obj/effect/decal/cleanable/piled_reagents, target)
+				if (!dirtoverlay)
+					dirtoverlay = new/obj/effect/decal/cleanable/piled_reagents(target)
+					dirtoverlay.color = get_color()
+				else
+					dirtoverlay.color = BlendRGB(dirtoverlay.color, get_color(), 0.8)
 	update_total()
+	return handled
 
 /datum/reagents/proc/touch_obj(var/obj/target)
 	if(!target || !istype(target) || !target.simulated)
@@ -466,9 +514,11 @@
 /datum/reagents/proc/trans_to_turf(var/turf/target, var/amount = 1, var/multiplier = 1, var/copy = 0) // Turfs don't have any reagents (at least, for now). Just touch it.
 	if(!target || !target.simulated)
 		return
+	
 
 	var/datum/reagents/R = new /datum/reagents(amount * multiplier)
 	. = trans_to_holder(R, amount, multiplier, copy)
+
 	R.touch_turf(target)
 	return
 

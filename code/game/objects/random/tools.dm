@@ -58,6 +58,9 @@
 				/obj/item/device/lighting/toggleable/flashlight = 10,
 				/obj/item/weapon/tank/jetpack/carbondioxide = 1.5,
 				/obj/item/weapon/tank/jetpack/oxygen = 1,
+				/obj/item/weapon/storage/makeshift_grinder = 2,
+				/obj/item/device/makeshift_electrolyser = 1,
+				/obj/item/device/makeshift_centrifuge = 1,
 				/obj/item/robot_parts/robot_component/jetpack = 0.75,))
 
 
