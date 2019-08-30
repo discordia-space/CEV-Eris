@@ -1,13 +1,20 @@
 #ignore misc BYOND files
 Thumbs.db
+*.sav
 *.log
 *.int
 *.rsc
 *.dmb
 *.lk
 *.backup
+*.before
 tools/
 data/
 cfg/
+tmp/
 build_log.txt
+__pycache__
+
+#vscode
 .vscode
+.history

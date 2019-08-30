@@ -16,6 +16,12 @@
 
 	siemens_coefficient = 0.9
 
+/obj/item/clothing/under/rank/warden/skirt
+	name = "Gunnery Sergeant jumpskirt"
+	desc = "It's made of a slightly sturdier material than standard jumpskirts, to allow for more robust protection. It has the words \"Gunnery Sergeant\" written on the shoulders."
+	icon_state = "warden_skirt"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+
 /obj/item/clothing/head/warden
 	name = "Gunnery Sergeant hat"
 	desc = "It's a special helmet issued to the Warden of a securiy force."
@@ -30,6 +36,12 @@
 
 	siemens_coefficient = 0.9
 
+/obj/item/clothing/under/rank/security/skirt
+	name = "Ironhammer Operative's jumpskirt"
+	desc = "It's made of a slightly sturdier material than standard jumpskirts, to allow for robust protection."
+	icon_state = "security_skirt"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+
 /obj/item/clothing/under/rank/medspec
 	name = "Medical Specialist's jumpsuit"
 	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for robust protection. It has the words \"Medical Specialist\" written on the shoulders."
@@ -38,6 +50,11 @@
 
 	siemens_coefficient = 0.9
 
+/obj/item/clothing/under/rank/medspec/skirt
+	name = "Medical Specialist's jumpskirt"
+	desc = "It's made of a slightly sturdier material than standard jumpskirts, to allow for robust protection. It has the words \"Medical Specialist\" written on the shoulders."
+	icon_state = "medspec_skirt"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
 /obj/item/clothing/under/tactical
 	name = "tactical jumpsuit"
@@ -104,6 +121,11 @@
 
 	siemens_coefficient = 0.8
 
+/obj/item/clothing/under/rank/ih_commander/skirt
+	name = "Ironhammer Commander's jumpskirt"
+	desc = "It's a jumpskirt worn by those few with the dedication to achieve the position of \"Ironhammer Commander\". It has additional armor to protect the wearer."
+	icon_state = "hos_skirt"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
 /obj/item/clothing/head/HoS
 	name = "Ironhammer Commander Hat"
@@ -150,5 +172,9 @@
  * Navy uniforms
  */
 
-
-
+/obj/item/clothing/under/rank/cadet
+	name = "Ironhammer Cadet's jumpskirt"
+	desc = "It's a sailor's uniform used for cadets in training, though more frequently in acts of hazing."
+	icon_state = "cadet"
+	item_state = "cadet"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS

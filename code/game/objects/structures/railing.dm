@@ -284,7 +284,7 @@
 	climbers |= user
 
 	var/delay = (issmall(user) ? 20 : 34)
-	var/duration = max(delay * user.stats.getDelayMult(STAT_VIG, STAT_LEVEL_EXPERT), delay * 0.66)
+	var/duration = max(delay * user.stats.getMult(STAT_VIG, STAT_LEVEL_EXPERT), delay * 0.66)
 	if(!do_after(user, duration))
 		climbers -= user
 		return

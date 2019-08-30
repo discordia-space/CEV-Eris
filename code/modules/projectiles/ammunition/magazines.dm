@@ -76,28 +76,6 @@
 	icon_state = "9x19pr"
 	ammo_type = /obj/item/ammo_casing/c9mm/rubber
 
-/obj/item/ammo_magazine/mc9mmt
-	name = "top mounted magazine (9mm)"
-	icon_state = "9mmt"
-	mag_type = MAGAZINE
-	mag_well = MAG_WELL_SMG
-	ammo_type = /obj/item/ammo_casing/c9mm
-	matter = list(MATERIAL_STEEL = 3)
-	caliber = "9mm"
-	max_ammo = 20
-	multiple_sprites = 1
-
-/obj/item/ammo_magazine/mc9mmt/empty
-	initial_ammo = 0
-
-/obj/item/ammo_magazine/mc9mmt/practice
-	name = "top mounted magazine (9mm practice)"
-	ammo_type = /obj/item/ammo_casing/c9mm/practice
-
-/obj/item/ammo_magazine/mc9mmt/rubber
-	name = "top mounted magazine (9mm rubber)"
-	ammo_type = /obj/item/ammo_casing/c9mm/rubber
-
 /obj/item/ammo_magazine/smg9mm
 	name = "smg magazine (9mm)"
 	icon_state = "smg9mml"

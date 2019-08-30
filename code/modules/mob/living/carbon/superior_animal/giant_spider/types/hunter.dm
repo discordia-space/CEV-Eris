@@ -9,3 +9,5 @@
 	melee_damage_upper = 20
 	poison_per_bite = 5
 	move_to_delay = 4
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/spider/hunter
+	meat_amount = 4

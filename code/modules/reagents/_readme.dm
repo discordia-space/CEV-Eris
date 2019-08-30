@@ -217,13 +217,13 @@ About Reagents:
 		on_mob_life(var/mob/living/carbon/M, var/alien, var/location)
 			Makes necessary checks and calls one of affect procs.
 
-		affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+		affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 			How reagent affects mob when injected. [removed] is the amount of reagent that has been removed this tick. [alien] is the mob's reagent flag.
 
-		affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+		affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 			Ditto, ingested. Defaults to affect_blood with halved dose.
 
-		affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+		affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 			Ditto, touching.
 
 		overdose(var/mob/living/carbon/M, var/alien)
