@@ -55,6 +55,12 @@
 	user.set_machine(src)
 	onclose(user, "artanalyser")
 
+// Special paper for the science tool
+/obj/item/weapon/paper/artifact_info
+	var/artifact_type
+	var/artifact_first_effect
+	var/artifact_second_effect
+
 /obj/machinery/artifact_analyser/Process()
 	if(scan_in_progress && world.time > scan_completion_time)
 		//finish scanning
@@ -73,19 +79,24 @@
 			results = get_scan_info(scanned_object)
 
 		src.visible_message("<b>[name]</b> states, \"Scanning complete.\"")
-		var/obj/item/weapon/paper/P = new(src.loc)
+		var/obj/item/weapon/paper/artifact_info/P = new(src.loc)
 		P.name = "[src] report #[++report_num]"
 		P.info = "<b>[src] analysis report #[report_num]</b><br>"
 		P.info += "<br>"
 		P.info += "\icon[scanned_object] [results]"
 		P.stamped = list(/obj/item/weapon/stamp)
 		P.overlays = list("paper_stamped")
-
-		if(scanned_object && istype(scanned_object, /obj/machinery/artifact))
-			var/obj/machinery/artifact/A = scanned_object
-			A.anchored = 0
-			A.being_used = 0
-			scanned_object = null
+		if(scanned_object)
+			P.artifact_type = scanned_object.type
+			if(istype(scanned_object, /obj/machinery/artifact))
+				var/obj/machinery/artifact/A = scanned_object
+				A.anchored = 0
+				A.being_used = 0
+				scanned_object = null
+				if(A.my_effect)
+					P.artifact_first_effect = A.my_effect.effect_type
+				if(A.secondary_effect)
+					P.artifact_second_effect = A.secondary_effect.effect_type
 
 /obj/machinery/artifact_analyser/Topic(href, href_list)
 	if(href_list["begin_scan"])

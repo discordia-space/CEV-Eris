@@ -15,9 +15,9 @@
 
 	var/speed = 1
 
-/obj/machinery/r_n_d/protolathe/New()
+/obj/machinery/r_n_d/protolathe/Initialize()
+	. = ..()
 	materials = default_material_composition.Copy()
-	..()
 
 /obj/machinery/r_n_d/protolathe/Process()
 	..()
@@ -28,24 +28,26 @@
 		busy = FALSE
 		update_icon()
 		return
-	var/datum/design/D = queue[1]
-	if(canBuild(D))
+	var/datum/rnd_queue_design/RNDD = queue[1]
+	var/datum/design/D = RNDD.design
+	if(canBuild(RNDD))
 		if(progress == 0)
 			print_pre(D)
 		busy = TRUE
 		progress += speed
-		if(progress >= D.time)
-			build(D)
+		if(progress >= D.time * RNDD.amount)
+			build(RNDD)
 			progress = 0
-			removeFromQueue(1)
+			queue -= RNDD
 			if(linked_console)
-				linked_console.updateUsrDialog()
+				SSnano.update_uis(linked_console)
 			print_post(D)
 		update_icon()
 	else
 		if(busy)
-			visible_message(SPAN_NOTICE("\icon[src]\The [src] flashes: insufficient materials: [getLackingMaterials(D)]."))
+			visible_message(SPAN_NOTICE("\icon[src]\The [src] flashes: insufficient materials: [getLackingMaterials(RNDD)]."))
 			busy = FALSE
+			progress = 0
 			update_icon()
 
 /obj/machinery/r_n_d/protolathe/proc/TotalMaterials() //returns the total of all the stored materials. Makes code neater.
@@ -75,7 +77,7 @@
 		if(materials[f] > 0)
 			var/path = material_stack_type(f)
 			if(path)
-				var/obj/item/stack/S = new f(loc)
+				var/obj/item/stack/S = new path(loc)
 				S.amount = materials[f]
 	..()
 
@@ -130,6 +132,8 @@
 		return TRUE
 	if(is_robot_module(I))
 		return FALSE
+	if(stat)
+		return TRUE
 	if (user.a_intent != I_HURT)
 		loadMaterials(I, user)
 	else
@@ -171,7 +175,8 @@
 				to_chat(user, SPAN_NOTICE("You add [amount] [material] sheet\s to \the [src]. Material storage is [TotalMaterials()]/[max_material_storage] full."))
 
 	busy = FALSE
-	linked_console.updateUsrDialog()
+	if(linked_console)
+		SSnano.update_uis(linked_console)
 	return TRUE
 
 /obj/machinery/r_n_d/protolathe/examine(mob/user)
@@ -182,49 +187,57 @@
 	var/obj/effect/temp_visual/resourceInsertion/protolathe/effect = new(src.loc)
 	effect.setMaterial(name)
 
-/obj/machinery/r_n_d/protolathe/proc/addToQueue(datum/design/D)
-	queue += D
-	return
+/obj/machinery/r_n_d/protolathe/proc/queue_design(datum/design/D, amount = 1)
+	var/datum/rnd_queue_design/RNDD = new /datum/rnd_queue_design(D, amount)
+	queue += RNDD
 
-/obj/machinery/r_n_d/protolathe/proc/removeFromQueue(var/index)
-	queue.Cut(index, index + 1)
-	return
+/obj/machinery/r_n_d/protolathe/proc/clear_queue()
+	queue = list()
+	progress = 0
 
-/obj/machinery/r_n_d/protolathe/proc/canBuild(datum/design/D)
+/obj/machinery/r_n_d/protolathe/proc/canBuild(datum/rnd_queue_design/RNDD)
+	var/datum/design/D = RNDD.design
 	for(var/M in D.materials)
-		if(materials[M] < D.materials[M])
+		if(materials[M] < D.materials[M]*RNDD.amount)
 			return FALSE
 	for(var/C in D.chemicals)
-		if(!reagents.has_reagent(C, D.chemicals[C]))
+		if(!reagents.has_reagent(C, D.chemicals[C] * RNDD.amount))
 			return FALSE
 	return TRUE
 
-/obj/machinery/r_n_d/protolathe/proc/getLackingMaterials(datum/design/D)
+/obj/machinery/r_n_d/protolathe/proc/check_craftable_amount_by_material(datum/design/D, mat)
+	var/A = materials[mat]
+	A = A / max(1 , (D.materials[mat])) // loaded material / required material
+	return A
+
+/obj/machinery/r_n_d/protolathe/proc/getLackingMaterials(datum/rnd_queue_design/RNDD)
 	var/ret = ""
+	var/datum/design/D = RNDD.design
 	for(var/M in D.materials)
-		if(materials[M] < D.materials[M])
+		if(materials[M] < D.materials[M]*RNDD.amount)
 			if(ret != "")
 				ret += ", "
-			ret += "[D.materials[M] - materials[M]] [M]"
+			ret += "[(D.materials[M]*RNDD.amount) - materials[M]] [M]"
 	for(var/C in D.chemicals)
-		if(!reagents.has_reagent(C, D.chemicals[C]))
+		if(!reagents.has_reagent(C, (D.chemicals[C] * RNDD.amount)))
 			if(ret != "")
 				ret += ", "
 			ret += C
 	return ret
 
-/obj/machinery/r_n_d/protolathe/proc/build(datum/design/D)
+/obj/machinery/r_n_d/protolathe/proc/build(datum/rnd_queue_design/RNDD)
 	var/power = active_power_usage
+	var/datum/design/D = RNDD.design
 	for(var/M in D.materials)
-		power += round(D.materials[M] / 5, 0.01)
+		power += round(D.materials[M] / 5, 0.01) * RNDD.amount
 	power = max(active_power_usage, power)
 	use_power(power)
 	for(var/M in D.materials)
-		materials[M] = max(0, materials[M] - D.materials[M])
+		materials[M] = max(0, materials[M] - (D.materials[M] * RNDD.amount))
 	for(var/C in D.chemicals)
-		reagents.remove_reagent(C, D.chemicals[C])
-
-	D.Fabricate(get_turf(src), 1, src)
+		reagents.remove_reagent(C, (D.chemicals[C] * RNDD.amount))
+	for(var/i in 1 to RNDD.amount)
+		D.Fabricate(get_turf(src), 1, src)
 
 /obj/machinery/r_n_d/protolathe/proc/print_pre(datum/design/D)
 	return

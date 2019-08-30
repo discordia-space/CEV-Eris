@@ -1,17 +1,25 @@
+/*
+	Research subsystem. Manages the static part of R&D, aka designs, technology nodes and such.
+	Does NOT handle tech trees since they're supposed to be instantiated per console, to track user's progress.
+	It holds instantiated designs, instantiated technologies (nodes) and tech tree types.
+	It sets research datums' designs and creates a new tree for each datum.
+*/
+
 SUBSYSTEM_DEF(research)
 	name = "Research"
 	flags = SS_NO_FIRE
 	init_order = INIT_ORDER_DEFAULT
 
-	// Design datums:
-	var/list/design_ids = list()	// id = datum
-	var/list/all_designs = list()	// just datums
+	var/list/all_designs = list()	// All design datums
+	var/list/starting_designs = list() // List of designs starts_unlocked = TRUE
+	var/list/all_tech_trees = list() // All tech tree typepaths (keys) associated to a list of their tech node instances (list(values))
+	var/list/all_tech_nodes = list() // All tech nodes
 
-	var/designs_initialized = FALSE
+	var/research_initialized = FALSE
 
 	// If a research holder or a design file is created before SS is initialized, put it here and initialize it later.
-	var/list/research_holders_to_init = list()
 	var/list/design_files_to_init = list()
+	var/list/research_files_to_init = list()
 
 /datum/controller/subsystem/research/Initialize()
 	for(var/R in subtypesof(/datum/design))
@@ -21,28 +29,30 @@ SUBSYSTEM_DEF(research)
 			continue
 
 		all_designs += design
+		if(design.starts_unlocked)
+			starting_designs += design
 
-		// Design ID is string or path.
-		// If path, make it accessible in both path and text form.
-		design_ids[design.id] = design
-		design_ids["[design.id]"] = design
-
-	generate_integrated_circuit_designs()
-
-	for(var/d in all_designs)
-		var/datum/design/design = d
 		var/datum/computer_file/binary/design/design_file = new
 		design_file.design = design
 		design_file.on_design_set()
 		design.file = design_file
 
-	designs_initialized = TRUE
+	for(var/T in subtypesof(/datum/tech))
+		all_tech_trees[T] = list()
 
-	// Initialize research holders that were created before
-	for(var/research in research_holders_to_init)
-		initialize_designs(research)
-	research_holders_to_init = list()
+	for(var/T in subtypesof(/datum/technology))
+		var/datum/technology/tech = new T
+		all_tech_nodes += tech
+		if(tech.tech_type in all_tech_trees)
+			all_tech_trees[tech.tech_type] += tech
+		else
+			WARNING("Unknown tech_type '[tech.tech_type]' in technology '[tech.name]'")
 
+	generate_integrated_circuit_designs()
+
+	research_initialized = TRUE
+	for(var/i in research_files_to_init)
+		initialize_research_datum(i)
 	// Initialize design files that were created before
 	for(var/file in design_files_to_init)
 		initialize_design_file(file)
@@ -60,42 +70,16 @@ SUBSYSTEM_DEF(research)
 		design.id = "ic-[lowertext(IC.name)]"
 		design.build_path = IC.type
 
-		if(length(IC.origin_tech))
-			design.req_tech = IC.origin_tech.Copy()
-		else
-			design.req_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2)
-
 		design.AssembleDesignInfo()
 
 
 		all_designs += design
 
-		// Design ID is string or path.
-		// If path, make it accessible in both path and text form.
-		design_ids[design.id] = design
-		design_ids["[design.id]"] = design
-
-
-/datum/controller/subsystem/research/proc/initialize_designs(datum/research/research)
-	// If designs are already generated, initialized right away.
-	// If not, add them to the list to be initialized later.
-	if(designs_initialized)
-		for(var/datum/design/D in all_designs)
-			if(!D.req_tech)
-				continue
-
-			research.possible_designs += D
-			research.possible_design_ids[D.id] = D
-			research.possible_design_ids["[D.id]"] = D
-		research.RefreshResearch()
-	else
-		research_holders_to_init += research
-
 /datum/controller/subsystem/research/proc/initialize_design_file(datum/computer_file/binary/design/design_file)
 	// If designs are already generated, initialized right away.
 	// If not, add them to the list to be initialized later.
-	if(designs_initialized)
-		var/datum/design/design = design_ids[design_file.design]
+	if(research_initialized)
+		var/datum/design/design = locate(design_file.design) in all_designs
 		if(design)
 			design_file.design = design
 			design_file.on_design_set()
@@ -104,3 +88,15 @@ SUBSYSTEM_DEF(research)
 
 	else
 		design_files_to_init += design_file
+
+/datum/controller/subsystem/research/proc/initialize_research_datum(datum/research/R)
+	if(!research_initialized)
+		research_files_to_init += R
+		return
+	for(var/i in all_tech_trees)
+		var/datum/tech/T = new i
+		T.max_level = all_tech_trees[i].len
+		R.researched_tech[T] = list()
+	for(var/i in starting_designs)
+		R.known_designs += i
+	

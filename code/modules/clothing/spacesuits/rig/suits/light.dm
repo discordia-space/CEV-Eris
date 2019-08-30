@@ -4,7 +4,7 @@
 	desc = "A lighter, less armoured rig suit."
 	icon_state = "ninja_rig"
 	suit_type = "light suit"
-	armor = list(melee = 50, bullet = 35, laser = 35, energy = 30, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 50, bullet = 35, energy = 30, bomb = 25, bio = 0, rad = 0)
 	emp_protection = 10
 	slowdown = 0
 	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL | DRAG_AND_DROP_UNEQUIP | EQUIP_SOUNDS
@@ -75,7 +75,7 @@
 	suit_type = "ominous"
 	desc = "A unique, vaccum-proof suit of nano-enhanced armor designed specifically for Spider Clan assassins."
 	icon_state = "ninja_rig"
-	armor = list(melee = 65, bullet = 45, laser = 45, energy = 35, bomb = 25, bio = 100, rad = 30)
+	armor = list(melee = 65, bullet = 45, energy = 35, bomb = 25, bio = 100, rad = 30)
 	emp_protection = 40 //change this to 30 if too high.
 	slowdown = 0
 

@@ -30,6 +30,8 @@
 
 	var/initialized = FALSE
 
+	var/list/preloaded_reagents = null
+
 /atom/New(loc, ...)
 	init_plane()
 	update_plane()
@@ -61,6 +63,16 @@
 		update_light()
 
 	update_plane()
+
+	if(preloaded_reagents)
+		if(!reagents)
+			var/volume = 0
+			for(var/reagent in preloaded_reagents)
+				volume += preloaded_reagents[reagent]
+			create_reagents(volume)
+		for(var/reagent in preloaded_reagents)
+			reagents.add_reagent(reagent, preloaded_reagents[reagent])
+
 
 	return INITIALIZE_HINT_NORMAL
 
@@ -132,7 +144,7 @@
 
 
 /atom/proc/bullet_act(obj/item/projectile/P, def_zone)
-	P.on_hit(src, 0, def_zone)
+	P.on_hit(src, def_zone)
 	. = FALSE
 
 /atom/proc/in_contents_of(container)//can take class or object instance as argument

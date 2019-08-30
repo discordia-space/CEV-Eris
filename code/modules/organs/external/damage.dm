@@ -112,7 +112,7 @@
 
 	return update_damstate()
 
-/obj/item/organ/external/proc/heal_damage(brute, burn, internal = 0, robo_repair = 0)
+/obj/item/organ/external/heal_damage(brute, burn, internal = 0, robo_repair = 0)
 	if(BP_IS_ROBOTIC(src) && !robo_repair)
 		return
 

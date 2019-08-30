@@ -240,11 +240,11 @@
 
 	interface_name = "contact datajack"
 	interface_desc = "An induction-powered high-throughput datalink suitable for hacking encrypted networks."
-	var/list/stored_research
+	var/datum/research/files
 
 /obj/item/rig_module/datajack/New()
 	..()
-	stored_research = list()
+	files = new(src)
 
 /obj/item/rig_module/datajack/engage(atom/target)
 	if(!..())
@@ -271,6 +271,7 @@
 		return 1
 
 	// I fucking hate R&D code. This typecheck spam would be totally unnecessary in a sane setup.
+	// true, but your code is also equally shit
 	else if(istype(input_device,/obj/machinery))
 		var/datum/research/incoming_files
 		if(istype(input_device,/obj/machinery/computer/rdconsole))
@@ -283,42 +284,18 @@
 			var/obj/machinery/mecha_part_fabricator/input_machine = input_device
 			incoming_files = input_machine.files
 
-		if(!incoming_files || !incoming_files.known_tech || !incoming_files.known_tech.len)
+		if(!incoming_files || !incoming_files.researched_nodes.len)
 			to_chat(user, SPAN_WARNING("Memory failure. There is nothing accessible stored on this terminal."))
 		else
 			// Maybe consider a way to drop all your data into a target repo in the future.
-			if(load_data(incoming_files.known_tech))
+			if(load_data(incoming_files))
 				to_chat(user, "<font color='blue'>Download successful; local and remote repositories synchronized.</font>")
 			else
 				to_chat(user, SPAN_WARNING("Scan complete. There is nothing useful stored on this terminal."))
-		return 1
-	return 0
-
-/obj/item/rig_module/datajack/proc/load_data(incoming_data)
-	if(islist(incoming_data))
-		for(var/entry in incoming_data)
-			. += load_data(entry)
-		return
-
-	if(istype(incoming_data, /obj/item/weapon/computer_hardware/hard_drive))
-		var/obj/item/weapon/computer_hardware/hard_drive/disk = incoming_data
-		for(var/f in disk.find_files_by_type(/datum/computer_file/binary/tech))
-			var/datum/computer_file/binary/tech/tech_file = f
-			. += load_data(tech_file.tech)
-		return
-
-	if(istype(incoming_data, /datum/tech))
-		var/datum/tech/new_data = incoming_data
-		for(var/datum/tech/current_data in stored_research)
-			if(current_data.id == new_data.id)
-				if(current_data.level < new_data.level)
-					current_data.level = new_data.level
-					return TRUE
-				return FALSE
-
-		stored_research += new_data.Copy()
 		return TRUE
-	return FALSE
+
+/obj/item/rig_module/datajack/proc/load_data(datum/research/incoming_files)
+	return files.download_from(incoming_files)
 
 /obj/item/rig_module/electrowarfare_suite
 
