@@ -90,19 +90,13 @@
 			if(is_new_area && is_destination_turf)
 				destination.loc.Entered(src, origin)
 
+	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, origin, destination)
+
 	if((!isturf(origin) || !isturf(destination)) || origin.z != destination.z)
 		update_plane()
 
 	return 1
 
-/atom/movable/proc/forceMoveOld(atom/destination)
-	if(destination)
-		if(loc)
-			loc.Exited(src)
-		loc = destination
-		loc.Entered(src)
-		return 1
-	return 0
 
 //called when src is thrown into hit_atom
 /atom/movable/proc/throw_impact(atom/hit_atom, var/speed)
@@ -380,6 +374,8 @@
 
 	if((!isturf(loc) || !isturf(oldloc)) || loc.z != oldloc.z)
 		update_plane()
+
+	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, oldloc, loc)
 
 // Wrapper of step() that also sets glide size to a specific value.
 /proc/step_glide(var/atom/movable/am, var/dir, var/glide_size_override)
