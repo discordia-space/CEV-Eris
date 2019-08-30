@@ -237,10 +237,46 @@
 		var/atom/A = atom_type
 		.[initial(A.name)] = atom_type
 	. = sortAssoc(.)
-
 /proc/atomtype2nameassoclist(var/atom_type)
 	return atomtypes2nameassoclist(typesof(atom_type))
 
 //Splits the text of a file at seperator and returns them in a list.
 /world/proc/file2list(filename, seperator="\n")
 	return splittext(file2text(filename), seperator)
+
+/proc/type2parent(child)
+	var/string_type = "[child]"
+	var/last_slash = findlasttext(string_type, "/")
+	if(last_slash == 1)
+		switch(child)
+			if(/datum)
+				return null
+			if(/obj || /mob)
+				return /atom/movable
+			if(/area || /turf)
+				return /atom
+			else
+				return /datum
+	return text2path(copytext(string_type, 1, last_slash))
+
+//returns a string the last bit of a type, without the preceeding '/'
+/proc/type2top(the_type)
+	//handle the builtins manually
+	if(!ispath(the_type))
+		return
+	switch(the_type)
+		if(/datum)
+			return "datum"
+		if(/atom)
+			return "atom"
+		if(/obj)
+			return "obj"
+		if(/mob)
+			return "mob"
+		if(/area)
+			return "area"
+		if(/turf)
+			return "turf"
+		else //regex everything else (works for /proc too)
+			return lowertext(replacetext("[the_type]", "[type2parent(the_type)]/", ""))
+

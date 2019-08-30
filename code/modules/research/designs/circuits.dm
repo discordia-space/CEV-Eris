@@ -1,6 +1,6 @@
 /datum/design/research/circuit
 	build_type = IMPRINTER
-	chemicals = list("sacid" = 20) //Acid is used for inscribing circuits, but intentionally not part of the final reagents
+	chemicals = list("silicon" = 15)
 
 /datum/design/research/circuit/AssembleDesignName(atom/temp_atom)
 	..()
