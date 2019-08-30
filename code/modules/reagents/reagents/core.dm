@@ -10,6 +10,7 @@
 	glass_icon_state = "glass_red"
 	glass_name = "tomato juice"
 	glass_desc = "Are you sure this is tomato juice?"
+	nerve_system_accumulations = 0
 
 /datum/reagent/blood/initialize_data(var/newdata)
 	..()
@@ -26,23 +27,24 @@
 
 /datum/reagent/blood/touch_turf(var/turf/simulated/T)
 	if(!istype(T) || volume < 3)
-		return
+		return TRUE
 	if(!data["donor"] || istype(data["donor"], /mob/living/carbon/human))
 		blood_splatter(T, src, 1)
 	else if(istype(data["donor"], /mob/living/carbon/alien))
 		var/obj/effect/decal/cleanable/blood/B = blood_splatter(T, src, 1)
 		if(B)
 			B.blood_DNA["UNKNOWN DNA STRUCTURE"] = "X*"
+	return TRUE
 
-/datum/reagent/blood/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/blood/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 
 	var/effective_dose = dose
 	if(issmall(M)) effective_dose *= 2
 
 	if(effective_dose > 5)
-		M.adjustToxLoss(removed)
+		M.adjustToxLoss(1 * effect_multiplier)
 	if(effective_dose > 15)
-		M.adjustToxLoss(removed)
+		M.adjustToxLoss(1 * effect_multiplier)
 	if(data && data["virus2"])
 		var/list/vlist = data["virus2"]
 		if(vlist.len)
@@ -51,7 +53,7 @@
 				if(V.spreadtype == "Contact")
 					infect_virus2(M, V.getcopy())
 
-/datum/reagent/blood/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/blood/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(data && data["virus2"])
 		var/list/vlist = data["virus2"]
 		if(vlist.len)
@@ -62,7 +64,7 @@
 	if(data && data["antibodies"])
 		M.antibodies |= data["antibodies"]
 
-/datum/reagent/blood/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/blood/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.inject_blood(src, volume)
 	remove_self(volume)
 
@@ -75,7 +77,7 @@
 	reagent_state = LIQUID
 	color = "#0050F0"
 
-/datum/reagent/antibodies/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/antibodies/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(src.data)
 		M.antibodies |= src.data["antibodies"]
 	..()
@@ -92,10 +94,11 @@
 	glass_icon_state = "glass_clear"
 	glass_name = "water"
 	glass_desc = "The father of all refreshments."
-
+	nerve_system_accumulations = 0
+	
 /datum/reagent/water/touch_turf(var/turf/simulated/T)
 	if(!istype(T))
-		return
+		return TRUE
 
 	var/datum/gas_mixture/environment = T.return_air()
 	var/min_temperature = T0C + 100 // 100C, the boiling point of water
@@ -116,6 +119,7 @@
 
 	else if(volume >= 10)
 		T.wet_floor(1)
+	return TRUE
 
 /datum/reagent/water/touch_obj(var/obj/O)
 	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/monkeycube))
@@ -138,15 +142,15 @@
 			remove_self(amount)
 		*/
 
-/datum/reagent/water/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/water/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(isslime(M))
 		var/mob/living/carbon/slime/S = M
-		S.adjustToxLoss(8 * removed) // Babies have 150 health, adults have 200; So, 10 units and 13.5
+		S.adjustToxLoss(0.8 * effect_multiplier) // Babies have 150 health, adults have 200; So, 10 units and 13.5
 		if(!S.client)
 			if(S.Target) // Like cats
 				S.Target = null
 				++S.Discipline
-		if(dose == removed)
+		if(dose >= MTR(effect_multiplier, CHEM_TOUCH))
 			S.visible_message(SPAN_WARNING("[S]'s flesh sizzles where the water touches it!"), SPAN_DANGER("Your flesh burns in the water!"))
 
 /datum/reagent/fuel
@@ -165,11 +169,10 @@
 /datum/reagent/fuel/touch_turf(var/turf/T)
 	new /obj/effect/decal/cleanable/liquid_fuel(T, volume)
 	remove_self(volume)
-	return
+	return TRUE
 
-/datum/reagent/fuel/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(issmall(M)) removed *= 2
-	M.adjustToxLoss(2 * removed)
+/datum/reagent/fuel/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	M.adjustToxLoss(0.2 * issmall(M) ? effect_multiplier * 2 : effect_multiplier)
 
 /datum/reagent/fuel/touch_mob(var/mob/living/L, var/amount)
 	if(istype(L))

@@ -51,6 +51,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	origin_tech = list(TECH_MATERIAL = 1)
 	slot_flags = SLOT_EARS
 	attack_verb = list("burnt", "singed")
+	preloaded_reagents = list("sulfur" = 3, "potassium" = 3, "hydrazine" = 3, "carbon" = 5)
 
 /obj/item/weapon/flame/match/Process()
 	if(isliving(loc))
@@ -105,6 +106,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/zippomes = "USER lights NAME with FLAME"
 	var/weldermes = "USER lights NAME with FLAME"
 	var/ignitermes = "USER lights NAME with FLAME"
+	preloaded_reagents = list("nicotine" = 5)
 
 /obj/item/clothing/mask/smokable/New()
 	..()

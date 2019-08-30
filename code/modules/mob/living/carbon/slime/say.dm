@@ -27,7 +27,7 @@
 /mob/living/carbon/slime/say_understands(var/other)
 	return isslime(other) || ..()
 
-/mob/living/carbon/slime/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "", var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
+/mob/living/carbon/slime/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "", var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol, speech_volume)
 	if (speaker in Friends)
 		speech_buffer = list()
 		speech_buffer.Add(speaker)

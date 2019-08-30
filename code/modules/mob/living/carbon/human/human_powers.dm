@@ -192,8 +192,10 @@
 		var/mob/living/carbon/human/H = M
 		if(H.species.name == src.species.name)
 			return
-		to_chat(H, "\red Your nose begins to bleed...")
-		H.drip(1)
+
+		to_chat(H, SPAN_WARNING("Your nose begins to bleed..."))
+		H.drip_blood(1)
+
 
 /mob/living/carbon/human/proc/regurgitate()
 	set name = "Regurgitate"

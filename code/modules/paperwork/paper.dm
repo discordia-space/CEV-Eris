@@ -29,64 +29,55 @@
 	var/list/offset_y[0] //usage by the photocopier
 	var/rigged = 0
 	var/spam_flag = 0
+	var/crumpled = FALSE
 
 	var/const/deffont = "Verdana"
 	var/const/signfont = "Times New Roman"
 	var/const/crayonfont = "Comic Sans MS"
 
-//lipstick wiping is in code/game/objects/items/weapons/cosmetics.dm!
-
-/obj/item/weapon/paper/New(loc, text, title)
-	..()
+/obj/item/weapon/paper/New(loc, text,title)
+	..(loc)
 	pixel_y = rand(-8, 8)
 	pixel_x = rand(-9, 9)
-	stamps = ""
-
 	set_content(text ? text : info, title)
-
-	if(name != "paper")
-		desc = "This is a paper titled '" + name + "'."
 
 /obj/item/weapon/paper/proc/set_content(text,title)
 	if(title)
 		name = title
-	info = rhtml_encode(text)
-	info = replacetext(info, "\n", "<BR>")
-	info = parsepencode(info)
-	spawn(2)
-		update_icon()
-		update_space(info)
-		updateinfolinks()
+	info = html_encode(text)
+	info = parsepencode(text)
+	update_icon()
+	update_space(info)
+	updateinfolinks()
 
 /obj/item/weapon/paper/update_icon()
-	if(icon_state == "paper_talisman")
+	if (icon_state == "paper_talisman")
 		return
-	if(info)
+	else if (info)
 		icon_state = "paper_words"
-		return
-	icon_state = "paper"
+	else
+		icon_state = "paper"
 
 /obj/item/weapon/paper/proc/update_space(var/new_text)
 	if(!new_text)
-		return
-
-	free_space -= length(strip_html_properly(new_text))
+		free_space -= length(strip_html_properly(new_text))
 
 /obj/item/weapon/paper/examine(mob/user)
-	..()
+	. = ..()
+	if(name != "sheet of paper")
+		to_chat(user, "It's titled '[name]'.")
 	if(in_range(user, src) || isghost(user))
 		show_content(usr)
 	else
-		to_chat(user, SPAN_NOTICE("You have to go closer if you want to read it."))
-	return
+		to_chat(user, "<span class='notice'>You have to go closer if you want to read it.</span>")
 
-/obj/item/weapon/paper/proc/show_content(var/mob/user, var/forceshow=0)
-	if(!(ishuman(user) || isghost(user) || issilicon(user)) && !forceshow)
-		user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
-		onclose(user, "[name]")
-	else
-		user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info][stamps]</BODY></HTML>", "window=[name]")
-		onclose(user, "[name]")
+/obj/item/weapon/paper/proc/show_content(mob/user, forceshow)
+	var/can_read = (istype(user, /mob/living/carbon/human) || isghost(user) || istype(user, /mob/living/silicon)) || forceshow
+	if(!forceshow && istype(user,/mob/living/silicon/ai))
+		var/mob/living/silicon/ai/AI = user
+		can_read = get_dist(src, AI.camera) < 2
+	user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY bgcolor='[color]'>[can_read ? info : stars(info)][stamps]</BODY></HTML>", "window=[name]")
+	onclose(user, "[name]")
 
 /obj/item/weapon/paper/verb/rename()
 	set name = "Rename paper"
@@ -102,44 +93,30 @@
 	// We check loc one level up, so we can rename in clipboards and such. See also: /obj/item/weapon/photo/rename()
 	if((loc == usr || loc.loc && loc.loc == usr) && usr.stat == 0 && n_name)
 		name = n_name
-		if(n_name != "paper")
-			desc = "This is a paper titled '" + name + "'."
-
 		add_fingerprint(usr)
-	return
 
 /obj/item/weapon/paper/attack_self(mob/living/user as mob)
-	if(user.a_intent == I_HURT)
-		if(icon_state == "scrap")
+	if (user.a_intent == I_HURT)
+		if (crumpled)
 			user.show_message(SPAN_WARNING("\The [src] is already crumpled."))
 			return
 		//crumple dat paper
 		info = stars(info,85)
 		user.visible_message("\The [user] crumples \the [src] into a ball!")
-		icon_state = "scrap"
+		icon_state = "[icon_state]_crumpled"
+		playsound(loc, 'sound/effects/paper_crumpling.ogg', 40, 1)
+		crumpled = TRUE
 		return
 	user.examinate(src)
 	if(rigged && (Holiday == "April Fool's Day"))
-		if(spam_flag == 0)
+		if (spam_flag == 0)
 			spam_flag = 1
 			playsound(loc, 'sound/items/bikehorn.ogg', 50, 1)
 			spawn(20)
 				spam_flag = 0
-	return
 
-/obj/item/weapon/paper/attack_ai(var/mob/living/silicon/ai/user as mob)
-	var/dist
-	if(istype(user) && user.camera) //is AI
-		dist = get_dist(src, user.camera)
-	else //cyborg or AI not seeing through a camera
-		dist = get_dist(src, user)
-	if(dist < 2)
-		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info][stamps]</BODY></HTML>", "window=[name]")
-		onclose(usr, "[name]")
-	else
-		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
-		onclose(usr, "[name]")
-	return
+/obj/item/weapon/paper/attack_ai(var/mob/living/silicon/ai/user)
+	show_content(user)
 
 /obj/item/weapon/paper/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(user.targeted_organ == BP_EYES)
@@ -174,10 +151,10 @@
 		else
 			istart = findtext(info, "<span class=\"paper_field\">", laststart)
 
-		if(istart==0)
+		if(istart == 0)
 			return // No field found with matching id
 
-		laststart = istart+1
+		laststart = istart + 1
 		locid++
 		if(locid == id)
 			var/iend = 1
@@ -186,11 +163,10 @@
 			else
 				iend = findtext(info, "</span>", istart)
 
-			//textindex = istart+26
 			textindex = iend
 			break
 
-	if(links)
+	if (links)
 		var/before = copytext(info_links, 1, textindex)
 		var/after = copytext(info_links, textindex)
 		info_links = before + text + after
@@ -203,7 +179,7 @@
 /obj/item/weapon/paper/proc/updateinfolinks()
 	info_links = info
 	var/i = 0
-	for(i=1,i<=fields,i++)
+	for(i = 1, i<=fields, i++)
 		addtofield(i, "<font face=\"[deffont]\"><A href='?src=\ref[src];write=[i]'>write</A></font>", 1)
 	info_links = info_links + "<font face=\"[deffont]\"><A href='?src=\ref[src];write=end'>write</A></font>"
 
@@ -218,55 +194,18 @@
 	update_icon()
 
 /obj/item/weapon/paper/proc/get_signature(var/obj/item/weapon/pen/P, mob/user as mob)
-	if(P && istype(P, /obj/item/weapon/pen))
+	if (P && istype(P, /obj/item/weapon/pen))
 		return P.get_signature(user)
 	return (user && user.real_name) ? user.real_name : "Anonymous"
 
-/obj/item/weapon/paper/proc/parsepencode(var/t, var/obj/item/weapon/pen/P, mob/user as mob, var/iscrayon = 0)
-	t = cp1251_to_utf8(t)
+/obj/item/weapon/paper/proc/parsepencode(t, obj/item/weapon/pen/P, mob/user, iscrayon)
+	if (length(t) == 0)
+		return ""
 
-	t = replacetext(t, "\[center\]", "<center>")
-	t = replacetext(t, "\[/center\]", "</center>")
-	t = replacetext(t, "\[br\]", "<BR>")
-	t = replacetext(t, "\[b\]", "<B>")
-	t = replacetext(t, "\[/b\]", "</B>")
-	t = replacetext(t, "\[i\]", "<I>")
-	t = replacetext(t, "\[/i\]", "</I>")
-	t = replacetext(t, "\[u\]", "<U>")
-	t = replacetext(t, "\[/u\]", "</U>")
-	t = replacetext(t, "\[time\]", "[stationtime2text()]")
-	t = replacetext(t, "\[date\]", "[stationdate2text()]")
-	t = replacetext(t, "\[large\]", "<font size=\"4\">")
-	t = replacetext(t, "\[/large\]", "</font>")
-	t = replacetext(t, "\[sign\]", "<font face=\"[signfont]\"><i>[get_signature(P, user)]</i></font>")
-	t = replacetext(t, "\[field\]", "<span class=\"paper_field\"></span>")
+	if (findtext(t, "\[sign\]"))
+		t = replacetext(t, "\[sign\]", "<font face=\"[signfont]\"><i>[get_signature(P, user)]</i></font>")
 
-	t = replacetext(t, "\[h1\]", "<H1>")
-	t = replacetext(t, "\[/h1\]", "</H1>")
-	t = replacetext(t, "\[h2\]", "<H2>")
-	t = replacetext(t, "\[/h2\]", "</H2>")
-	t = replacetext(t, "\[h3\]", "<H3>")
-	t = replacetext(t, "\[/h3\]", "</H3>")
-	t = replacetext(t, "&gt;", ">")
-	t = replacetext(t, "&lt;", "<")
-
-	if(!iscrayon)
-		t = replacetext(t, "\[*\]", "<li>")
-		t = replacetext(t, "\[hr\]", "<HR>")
-		t = replacetext(t, "\[small\]", "<font size = \"1\">")
-		t = replacetext(t, "\[/small\]", "</font>")
-		t = replacetext(t, "\[list\]", "<ul>")
-		t = replacetext(t, "\[/list\]", "</ul>")
-		t = replacetext(t, "\[table\]", "<table border=1 cellspacing=0 cellpadding=3 style='border: 1px solid black;'>")
-		t = replacetext(t, "\[/table\]", "</td></tr></table>")
-		t = replacetext(t, "\[grid\]", "<table>")
-		t = replacetext(t, "\[/grid\]", "</td></tr></table>")
-		t = replacetext(t, "\[row\]", "</td><tr>")
-		t = replacetext(t, "\[cell\]", "<td>")
-		t = replacetext(t, "\[logo\]", "<img src = ntlogo.png>")
-
-		t = "<font face=\"[deffont]\" color=[P ? P.colour : "black"]>[t]</font>"
-	else // If it is a crayon, and he still tries to use these, make them empty!
+	if (iscrayon) // If it is a crayon, and he still tries to use these, make them empty!
 		t = replacetext(t, "\[*\]", "")
 		t = replacetext(t, "\[hr\]", "")
 		t = replacetext(t, "\[small\]", "")
@@ -275,22 +214,26 @@
 		t = replacetext(t, "\[/list\]", "")
 		t = replacetext(t, "\[table\]", "")
 		t = replacetext(t, "\[/table\]", "")
+		t = replacetext(t, "\[grid\]", "")
+		t = replacetext(t, "\[/grid\]", "")
 		t = replacetext(t, "\[row\]", "")
 		t = replacetext(t, "\[cell\]", "")
 		t = replacetext(t, "\[logo\]", "")
 
+	if (iscrayon)
 		t = "<font face=\"[crayonfont]\" color=[P ? P.colour : "black"]><b>[t]</b></font>"
+	else
+		t = "<font face=\"[deffont]\" color=[P ? P.colour : "black"]>[t]</font>"
 
+	t = pencode2html(t)
 
-//	t = replacetext(t, "#", "") // Junk converted to nothing!
-
-//Count the fields
+	//Count the fields
 	var/laststart = 1
 	while(1)
 		var/i = findtext(t, "<span class=\"paper_field\">", laststart)	//</span>
-		if(i==0)
+		if(i == 0)
 			break
-		laststart = i+1
+		laststart = i + 1
 		fields++
 
 	return t
@@ -350,19 +293,8 @@
 		// if paper is not in usr, then it must be near them, or in a clipboard or folder, which must be in or near usr
 		if(src.loc != usr && !src.Adjacent(usr) && !((istype(src.loc, /obj/item/weapon/clipboard) || istype(src.loc, /obj/item/weapon/folder)) && (src.loc.loc == usr || src.loc.Adjacent(usr)) ) )
 			return
-/*
-		t = checkhtml(t)
 
-		// check for exploits
-		for(var/bad in paper_blacklist)
-			if(findtext(t,bad))
-				to_chat(usr, "\blue You think to yourself, \"Hm.. this is only paper...\"")
-				log_admin("PAPER: [usr] ([usr.ckey]) tried to use forbidden word in [src]: [bad].")
-				message_admins("PAPER: [usr] ([usr.ckey]) tried to use forbidden word in [src]: [bad].")
-				return
-*/
-
-		var last_fields_value = fields
+		var/last_fields_value = fields
 
 		//t = html_encode(t)
 		t = replacetext(t, "\n", "<BR>")
@@ -382,7 +314,7 @@
 		playsound(src,'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.ogg',40,1)
 		update_space(t)
 
-		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]") // Update the window
+		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY bgcolor='[color]'>[info_links][stamps]</BODY></HTML>", "window=[name]") // Update the window
 
 		update_icon()
 
@@ -446,7 +378,7 @@
 		return B
 
 	else if(istype(P, /obj/item/weapon/pen))
-		if(icon_state == "scrap")
+		if(crumpled)
 			to_chat(usr, SPAN_WARNING("\The [src] is too crumpled to write on."))
 			return
 
@@ -454,7 +386,7 @@
 		if ( istype(RP) && RP.mode == 2 )
 			RP.RenamePaper(user,src)
 		else
-			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]")
+			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY bgcolor='[color]'>[info_links][stamps]</BODY></HTML>", "window=[name]")
 		return
 
 	else if(istype(P, /obj/item/weapon/stamp))
@@ -464,7 +396,8 @@
 		stamps += (stamps=="" ? "<HR>" : "<BR>") + "<i>This paper has been stamped with the [P.name].</i>"
 
 		var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
-		var/{x; y;}
+		var/x
+		var/y
 		if(istype(P, /obj/item/weapon/stamp/captain))
 			x = rand(-2, 0)
 			y = rand(-1, 2)
@@ -517,20 +450,9 @@
 	name = "DJ Listening Outpost"
 	info = "<B>Welcome new owner!</B><BR><BR>You have purchased the latest in listening equipment. The telecommunication setup we created is the best in listening to common and private radio fequencies. Here is a step by step guide to start listening in on those saucy radio channels:<br><ol><li>Equip yourself with a multi-tool</li><li>Use the multitool on each machine, that is the broadcaster, receiver and the relay.</li><li>Turn all the machines on, it has already been configured for you to listen on.</li></ol> Simple as that. Now to listen to the private channels, you'll have to configure the intercoms, located on the front desk. Here is a list of frequencies for you to listen on.<br><ul><li>145.7 - Common Channel</li><li>144.7 - Private AI Channel</li><li>135.9 - Security Channel</li><li>135.7 - Engineering Channel</li><li>135.5 - Medical Channel</li><li>135.3 - Command Channel</li><li>135.1 - Science Channel</li><li>134.9 - Mining Channel</li><li>134.7 - Cargo Channel</li>"
 
-/obj/item/weapon/paper/flag
-	icon_state = "flag_neutral"
-	item_state = "paper"
-	anchored = 1.0
-
 /obj/item/weapon/paper/jobs
 	name = "Job Information"
 	info = "Information on all formal jobs that can be assigned on Space Station 13 can be found on this document.<BR>\nThe data will be in the following form.<BR>\nGenerally lower ranking positions come first in this list.<BR>\n<BR>\n<B>Job Name</B>   general access>lab access-engine access-systems access (atmosphere control)<BR>\n\tJob Description<BR>\nJob Duties (in no particular order)<BR>\nTips (where applicable)<BR>\n<BR>\n<B>Research Assistant</B> 1>1-0-0<BR>\n\tThis is probably the lowest level position. Anyone who enters the space station after the initial job\nassignment will automatically receive this position. Access with this is restricted. First Officer should\nappropriate the correct level of assistance.<BR>\n1. Assist the researchers.<BR>\n2. Clean up the labs.<BR>\n3. Prepare materials.<BR>\n<BR>\n<B>Staff Assistant</B> 2>0-0-0<BR>\n\tThis position assists the security officer in his duties. The staff assisstants should primarily br\npatrolling the ship waiting until they are needed to maintain ship safety.\n(Addendum: Updated/Elevated Security Protocols admit issuing of low level weapons to security personnel)<BR>\n1. Patrol ship/Guard key areas<BR>\n2. Assist security officer<BR>\n3. Perform other security duties.<BR>\n<BR>\n<B>Technical Assistant</B> 1>0-0-1<BR>\n\tThis is yet another low level position. The technical assistant helps the engineer and the statian\ntechnician with the upkeep and maintenance of the station. This job is very important because it usually\ngets to be a heavy workload on station technician and these helpers will alleviate that.<BR>\n1. Assist Station technician and Engineers.<BR>\n2. Perform general maintenance of station.<BR>\n3. Prepare materials.<BR>\n<BR>\n<B>Medical Assistant</B> 1>1-0-0<BR>\n\tThis is the fourth position yet it is slightly less common. This position doesn't have much power\noutside of the med bay. Consider this position like a nurse who helps to upkeep medical records and the\nmaterials (filling syringes and checking vitals)<BR>\n1. Assist the medical personnel.<BR>\n2. Update medical files.<BR>\n3. Prepare materials for medical operations.<BR>\n<BR>\n<B>Research Technician</B> 2>3-0-0<BR>\n\tThis job is primarily a step up from research assistant. These people generally do not get their own lab\nbut are more hands on in the experimentation process. At this level they are permitted to work as consultants to\nthe others formally.<BR>\n1. Inform superiors of research.<BR>\n2. Perform research alongside of official researchers.<BR>\n<BR>\n<B>Detective</B> 3>2-0-0<BR>\n\tThis job is in most cases slightly boring at best. Their sole duty is to\nperform investigations of crine scenes and analysis of the crime scene. This\nalleviates SOME of the burden from the security officer. This person's duty\nis to draw conclusions as to what happened and testify in court. Said person\nalso should stroe the evidence ly.<BR>\n1. Perform crime-scene investigations/draw conclusions.<BR>\n2. Store and catalogue evidence properly.<BR>\n3. Testify to superiors/inquieries on findings.<BR>\n<BR>\n<B>Station Technician</B> 2>0-2-3<BR>\n\tPeople assigned to this position must work to make sure all the systems aboard Space Station 13 are operable.\nThey should primarily work in the computer lab and repairing faulty equipment. They should work with the\natmospheric technician.<BR>\n1. Maintain SS13 systems.<BR>\n2. Repair equipment.<BR>\n<BR>\n<B>Atmospheric Technician</B> 3>0-0-4<BR>\n\tThese people should primarily work in the atmospheric control center and lab. They have the very important\njob of maintaining the delicate atmosphere on SS13.<BR>\n1. Maintain atmosphere on SS13<BR>\n2. Research atmospheres on the space station. (safely please!)<BR>\n<BR>\n<B>Engineer</B> 2>1-3-0<BR>\n\tPeople working as this should generally have detailed knowledge as to how the propulsion systems on SS13\nwork. They are one of the few classes that have unrestricted access to the engine area.<BR>\n1. Upkeep the engine.<BR>\n2. Prevent fires in the engine.<BR>\n3. Maintain a safe orbit.<BR>\n<BR>\n<B>Medical Researcher</B> 2>5-0-0<BR>\n\tThis position may need a little clarification. Their duty is to make sure that all experiments are safe and\nto conduct experiments that may help to improve the station. They will be generally idle until a new laboratory\nis constructed.<BR>\n1. Make sure the station is kept safe.<BR>\n2. Research medical properties of materials studied of Space Station 13.<BR>\n<BR>\n<B>Scientist</B> 2>5-0-0<BR>\n\tThese people study the properties, particularly the toxic properties, of materials handled on SS13.\nTechnically they can also be called Plasma Technicians as plasma is the material they routinly handle.<BR>\n1. Research plasma<BR>\n2. Make sure all plasma is properly handled.<BR>\n<BR>\n<B>Medical Doctor (Officer)</B> 2>0-0-0<BR>\n\tPeople working this job should primarily stay in the medical area. They should make sure everyone goes to\nthe medical bay for treatment and examination. Also they should make sure that medical supplies are kept in\norder.<BR>\n1. Heal wounded people.<BR>\n2. Perform examinations of all personnel.<BR>\n3. Moniter usage of medical equipment.<BR>\n<BR>\n<B>Security Officer</B> 3>0-0-0<BR>\n\tThese people should attempt to keep the peace inside the station and make sure the station is kept safe. One\nside duty is to assist in repairing the station. They also work like general maintenance personnel. They are not\ngiven a weapon and must use their own resources.<BR>\n(Addendum: Updated/Elevated Security Protocols admit issuing of weapons to security personnel)<BR>\n1. Maintain order.<BR>\n2. Assist others.<BR>\n3. Repair structural problems.<BR>\n<BR>\n<B>Ironhammer Commander</B> 4>5-2-2<BR>\n\tPeople assigned as Ironhammer Commander should issue orders to the security staff. They should\nalso carefully moderate the usage of all security equipment. All security matters should be reported to this person.<BR>\n1. Oversee security.<BR>\n2. Assign patrol duties.<BR>\n3. Protect the station and staff.<BR>\n<BR>\n<B>First Officer</B> 4>4-2-2<BR>\n\tPeople assigned as First Officer will find themselves moderating all actions done by personnel. \nAlso they have the ability to assign jobs and access levels.<BR>\n1. Assign duties.<BR>\n2. Moderate personnel.<BR>\n3. Moderate research. <BR>\n<BR>\n<B>Captain</B> 5>5-5-5 (unrestricted station wide access)<BR>\n\tThis is the highest position youi can aquire on Space Station 13. They are allowed anywhere inside the\nspace station and therefore should protect their ID card. They also have the ability to assign positions\nand access levels. They should not abuse their power.<BR>\n1. Assign all positions on SS13<BR>\n2. Inspect the station for any problems.<BR>\n3. Perform administrative duties.<BR>\n"
-
-/obj/item/weapon/paper/photograph
-	name = "photo"
-	icon_state = "photo"
-	var/photo_id = 0.0
-	item_state = "paper"
 
 /obj/item/weapon/paper/sop
 	name = "paper- 'Standard Operating Procedure'"
@@ -538,15 +460,44 @@
 
 /obj/item/weapon/paper/crumpled
 	name = "paper scrap"
-	icon_state = "scrap"
+	icon_state = "paper_crumpled"
+	crumpled = TRUE
 
 /obj/item/weapon/paper/crumpled/update_icon()
+	if (icon_state == "paper_crumpled_bloodied")
+		return
+	else if (info)
+		icon_state = "paper_words_crumpled"
+	else
+		icon_state = "paper_crumpled"
 	return
 
 /obj/item/weapon/paper/crumpled/bloody
-	icon_state = "scrap_bloodied"
+	icon_state = "paper_crumpled_bloodied"
 
 /obj/item/weapon/paper/neopaper
 	name = "sheet of odd paper"
-	icon_state = "neopaper"
+	icon_state = "paper_neo"
 
+/obj/item/weapon/paper/neopaper/update_icon()
+	if(info)
+		icon_state = "paper_neo_words"
+	else
+		icon_state = "paper_neo"
+	return
+
+/obj/item/weapon/paper/crumpled/neo
+	name = "odd paper scrap"
+	icon_state = "paper_neo_crumpled"
+
+/obj/item/weapon/paper/crumpled/neo/update_icon()
+	if (icon_state == "paper_neo_crumpled_bloodied")
+		return
+	else if (info)
+		icon_state = "paper_neo_words_crumpled"
+	else
+		icon_state = "paper_neo_crumpled"
+	return
+
+/obj/item/weapon/paper/crumpled/neo/bloody
+	icon_state = "paper_neo_crumpled_bloodied"
