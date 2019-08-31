@@ -33,3 +33,16 @@
 /obj/structure/closet/coffin/Destroy()
 	occupant = null
 	return ..()
+
+/obj/structure/closet/coffin/spawnercorpse
+	name = "coffin"
+	desc = "It's a burial receptacle for the dearly departed."
+	icon_state = "coffin"
+	welded = 1
+
+	New()
+		..()
+		var/atom/A = pick(/obj/landmark/corpse/chef, /obj/landmark/corpse/doctor, /obj/landmark/corpse/engineer, /obj/landmark/corpse/engineer/rig, /obj/landmark/corpse/clown, \
+		/obj/landmark/corpse/scientist, /obj/landmark/corpse/miner, /obj/landmark/corpse/miner/rig, /obj/landmark/corpse/bridgeofficer, /obj/landmark/corpse/commander, \
+		/obj/landmark/corpse/russian)
+		new A
