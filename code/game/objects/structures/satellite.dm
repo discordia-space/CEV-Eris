@@ -1,6 +1,3 @@
-/////////////////////SATELLITE
-////////////////////////////////
-
 /obj/structure/satellite
 	icon = 'icons/obj/machines/excelsior/objects.dmi'
 	icon_state = "sputnik"
@@ -48,6 +45,3 @@
 				death = 1
 				var/mystat = pick(STAT_MEC, STAT_COG, STAT_TGH, STAT_VIG, STAT_BIO)
 				user:stats.changeStat(mystat, user:stats:getStat(mystat) + 20)
-
-/////////////////////SATELLITE
-////////////////////////////////

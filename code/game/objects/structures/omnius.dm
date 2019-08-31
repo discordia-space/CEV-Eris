@@ -1,5 +1,3 @@
-/////////////////////OMNIUS
-////////////////////////////////
 /obj/structure/omnius
 	name = "omnius generator"
 	icon_state = "omnius"
@@ -67,5 +65,3 @@
 			teleport()
 			sleep(660)
 			cooldown = 0
-/////////////////////OMNIUS
-////////////////////////////////

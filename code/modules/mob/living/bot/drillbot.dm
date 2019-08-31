@@ -1,7 +1,3 @@
-
-/////////////////MINING BOTS
-////////////////////////////////
-
 /mob/living/bot/miningonestar
 	name = "One Star Bot"
 	health = 20
@@ -84,6 +80,3 @@
 			UnarmedAttack(AST)
 		else
 			walk_to(src,AST,1,5,0)
-
-/////////////////MINING BOTS
-////////////////////////////////
