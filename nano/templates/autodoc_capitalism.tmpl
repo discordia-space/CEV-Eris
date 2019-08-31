@@ -1,0 +1,63 @@
+<div style="min-width: 480px">
+	{{if data.patient_name != 0}}
+	<div class="item"><b>Good day, {{:data.patient_name}}, your balance is {{:data.patient_money}}</b></div>
+    {{else}}
+    <div class="item"><b>You need to log in with your card. </b>{{:helper.link('Login', '', {'login':1}, null)}}</div>
+	{{/if}}
+    {{if data.active}}
+    <div class='notice'>SURGERY IN PROCESS</div>
+    {{/if}}
+	{{:helper.link('Scan: '+data.scan_cost,            '',		{'scan':1},		data.active? 'disabled':null)}}
+	{{:helper.link('Process all: '+data.total_cost,    '',		{'full':1},     data.active? 'disabled':null)}}
+	{{:helper.link('Process picked: '+data.custom_cost,'check',	{'picked':1},   data.active? 'disabled':null, 'greenButton')}}
+	{{:helper.link('Abort',                            '',		{'stop':1},     data.active? null:'disabled', data.active?'redButton':null)}}
+	<br>
+	{{if data.active}}{{:helper.displayBar(data.progress, 0, 1)}}<br>{{/if}}
+	<div class="item">
+        <h3>Overall Status</h3>
+        <div class="itemLabel">Brute damage: <div style="float:right; margin-right:6px"><b>{{:helper.round(data.over_brute)}}</b></div></div>
+        <div class="itemContent">
+            {{:helper.displayBar(	data.over_brute, 0, 100, 	(data.over_brute <= 25) ? 'good' : (data.over_brute <= 50) ? 'average' : 'bad')}}</div>
+        <div class="itemLabel">Burn severity: <div style="float:right; margin-right:6px"><b>{{:helper.round(data.over_burn)}}</b></div></div>
+        <div class="itemContent">
+            {{:helper.displayBar(	data.over_burn, 0, 100, 	(data.over_burn <= 25) ? 'good' : (data.over_burn <= 50) ? 'average' : 'bad')}}</div>
+        <div class="itemLabel">Toxin content: <div style="float:right; margin-right:6px"><b>{{:helper.round(data.over_tox)}}</b></div></div>
+        <div class="itemContent">
+            {{:helper.displayBar(	data.over_tox, 0, 100, 		(data.over_tox <= 25) ? 'good' : (data.over_tox <= 50) ? 'average' : 'bad')}}</div>
+        <div class="itemLabel">Respiratory damage: <div style="float:right; margin-right:6px"><b>{{:helper.round(data.over_oxy)}}</b></div></div>
+        <div class="itemContent">
+            {{:helper.displayBar(	data.over_oxy, 0, 100, 		(data.over_oxy <= 25) ? 'good' : (data.over_oxy <= 50) ? 'average' : 'bad')}}</div>
+        <div class="itemLabel">Blood level: <div style="float:right; margin-right:6px"><b>{{:helper.round(data.blood_amount)}}</b></div></div>
+        <div class="itemContent">
+			{{:helper.displayBar(	data.blood_amount, 0, 100, 	(data.blood_amount >= 85) ? 'good' : (data.blood_amount >= 60) ? 'average' : 'bad')}}</div>
+			
+        {{:helper.link('Toxin kelation: '+data.toxin_cost,  data.antitox_picked?'check':null,	{'toggle':'antitox', 	'id':1},	(data.antitox && !data.active)?	null:'disabled')}}
+        {{:helper.link('Replenish blood: '+data.blood_cost, data.blood_picked?'check':null,		{'toggle':'blood', 		'id':1},	(data.blood && !data.active)? 	null:'disabled')}}
+        {{:helper.link('Dialysis: '+data.dialysis_cost,     data.dialysis_picked?'check':null,	{'toggle':'dialysis', 	'id':1},	(data.dialysis && !data.active)? null:'disabled')}}
+	</div>
+	<h3>Organ Status</h3>
+	{{for data.organs}}
+	<div class="item">
+		{{if value.internal}}
+			<div class="itemLabel"><b>{{:value.name}}</b></div>
+			<div class="itemContent" style="color:red">
+			<b>Organ damage: {{:helper.round(value.inner_damage)}}</b>
+			</div><br>
+			{{:helper.link('Fix damage: '+data.damage_cost,         value.damage_picked?'check':null,	{'toggle':'damage',	 'id':value.id},    (value.damage && !data.active)? 	 null:'disabled')}}
+		{{else}}
+			<div class="itemLabel"><b>{{:value.name}}</b></div>
+			<div class="itemContent">
+				<b style="color:red">	Brute damage: {{:helper.round(value.brute_damage)}} </b>
+				<b style="color:orange">Burn damage: {{:helper.round(value.burn_damage)}} </b>
+			</div><br>
+			{{:helper.link('Fix damage: '+data.damage_cost,         value.damage_picked?'check':null,	{'toggle':'damage',	 'id':value.id},    (value.damage && !data.active)?		null:'disabled')}}
+			{{:helper.link('Treat wounds: '+data.wound_cost,        value.wound_picked?'check':null,	{'toggle':'wound',	 'id':value.id},    (value.wound && !data.active)?		null:'disabled')}}
+			{{:helper.link('Close IB: '+data.ib_cost,               value.ib_picked?'check':null,		{'toggle':'ib',		 'id':value.id},    (value.ib && !data.active)?			null:'disabled')}}
+			{{:helper.link('Shrapnel removal: '+data.shrapnel_cost, value.shrapnel_picked?'check':null,	{'toggle':'shrapnel','id':value.id},    (value.shrapnel && !data.active)?	null:'disabled')}}
+			{{:helper.link('Mend Fracture: '+data.fracture_cost,    value.fracture_picked?'check':null,	{'toggle':'fracture','id':value.id},    (value.fracture && !data.active)?	null:'disabled')}}
+		{{/if}}
+	</div>
+	{{empty}}
+	<div class="item"><b>No injuries found!</b></div>
+	{{/for}}
+</div>
