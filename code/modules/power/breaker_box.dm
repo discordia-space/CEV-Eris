@@ -18,6 +18,7 @@
 	var/directions = list(1,2,4,8,5,6,9,10)
 	var/RCon_tag = "NO_TAG"
 	var/update_locked = 0
+	circuit = /obj/item/weapon/circuitboard/breakerbox
 
 /obj/machinery/power/breakerbox/Destroy()
 	. = ..()
@@ -82,16 +83,16 @@
 			update_locked = 0
 	busy = 0
 
-/obj/machinery/power/breakerbox/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/power/breakerbox/attackby(var/obj/item/W as obj, var/mob/user as mob)
+	if(default_deconstruction(W, user))
+		return
+	if(default_part_replacement(W, user))
+		return
 	if(istype(W, /obj/item/weapon/tool/multitool))
 		var/newtag = input(user, "Enter new RCON tag. Use \"NO_TAG\" to disable RCON or leave empty to cancel.", "SMES RCON system") as text
 		if(newtag)
 			RCon_tag = newtag
 			to_chat(user, SPAN_NOTICE("You changed the RCON tag to: [newtag]"))
-
-
-
-
 
 /obj/machinery/power/breakerbox/proc/set_state(var/state)
 	on = state
