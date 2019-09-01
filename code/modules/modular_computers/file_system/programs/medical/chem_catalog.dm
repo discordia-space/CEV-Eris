@@ -16,36 +16,19 @@
 
 /datum/nano_module/chem_catalog
 	name = "Chemistry Catalog"
-	var/datum/selectedEntry
+	var/datum/catalog_entry/reagent/selectedEntry
+	var/datum/catalog/catalog
+
+/datum/nano_module/chem_catalog/New()
+	. = ..()
+	catalog = GLOB.catalogs[CATALOG_REAGENTS]
 
 /datum/nano_module/chem_catalog/ui_data(mob/user)
 	var/list/data = host.initial_data()
-	var/list/user_access = get_record_access(user)
 	if(selectedEntry)
-
-	var/list/not_claimed_bounties = list()
-	var/list/claimed_bounties = list()
-	for(var/datum/reagent/R in chemical_reagents_list)
-
-	
-		if(!R.claimedby_id_card)
-			not_claimed_bounties.Add(list(list(
-				"name" = R.field_from_name("Title").get_value(),
-				"desc" = R.field_from_name("Job description").get_value(),
-				"reward" = R.field_from_name("Reward").get_value(),
-				"status" = R.claimedby_id_card ? "Claimed" : "Not claimed",
-				"id" = R.uid
-			)))
-		else
-			claimed_bounties.Add(list(list(
-				"name" = R.field_from_name("Title").get_value(),
-				"desc" = R.field_from_name("Job description").get_value(),
-				"reward" = R.field_from_name("Reward").get_value(),
-				"status" = R.claimedby_id_card ? "Claimed" : "Not claimed",
-				"id" = R.uid
-			)))
-	data["not_claimed_bounties"] = not_claimed_bounties
-	data["claimed_bounties"] = claimed_bounties
+		data += selectedEntry.ui_data(user)
+	else
+		data += catalog.ui_data(user)
 	return data
 
 /datum/nano_module/chem_catalog/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = GLOB.default_state)
@@ -56,29 +39,11 @@
 		ui = new(user, src, ui_key, "chem_catalog.tmpl", name, 700, 540, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)
+		if(selectedEntry)
+			ui.add_template("catalog_entry", selectedEntry.associated_template)
+		else
+			ui.add_template("catalog", catalog.associated_template)
 		ui.open()
-
-
-/datum/nano_module/chem_catalog/proc/get_record_access(var/mob/user)
-	var/list/user_access = using_access || user.GetAccess()
-
-	var/obj/item/modular_computer/PC = nano_host()
-	if(istype(PC) && PC.computer_emagged)
-		user_access = user_access.Copy()
-		user_access |= access_syndicate
-
-	return user_access
-
-/datum/nano_module/chem_catalog/proc/edit_field(var/mob/user, var/field_ID)
-	if(!selectedEntry)
-		return
-	var/datum/report_field/F = selectedEntry.field_from_ID(field_ID)
-	if(!F)
-		return
-	if(!F.verify_access_edit(get_record_access(user)))
-		to_chat(user, "<span class='notice'>\The [nano_host()] flashes an \"Access Denied\" warning.</span>")
-		return
-	F.ask_value(user)
 
 /datum/nano_module/chem_catalog/Topic(href, href_list)
 	if(..())
@@ -106,38 +71,3 @@
 			return
 		print_text(record_to_html(selectedEntry, get_record_access(usr)), usr)
 		return 1
-
-	if(href_list["sign_up"])
-		var/datum/report_field/array/signed_people/SP = selectedEntry.field_from_name("People who signed for job")
-		if(usr in SP.get_raw())
-			return
-		SP.add_value(usr)
-		return 1
-
-	if(href_list["publish"])
-		if(!selectedEntry)
-			return
-		if(!selectedEntry.publish(usr))
-			to_chat(usr, "<span class='notice'>\The [nano_host()] flashes an \"Insufficient Data\" warning.</span>")
-			return
-		selectedEntry = null
-		return 1
-
-	if(href_list["remove"])
-		if(!selectedEntry)
-			return
-		if(selectedEntry.claimedby_id_card)
-			selectedEntry = null
-			return 1
-		var/datum/report_field/array/signed_people/SP = selectedEntry.field_from_name("People who signed for job")
-		var/mob/living/carbon/human/H = input(usr, "Select value", "Give reward to ?", SP.get_raw()) as null|anything in SP.get_raw()
-		if(selectedEntry.remove(H))
-			selectedEntry = null
-		else
-			to_chat(usr, "<span class='notice'>\The [nano_host()] flashes \"Error occured during reward transfer\" .</span>")
-		return 1
-
-	if(href_list["edit_field"])
-		edit_field(usr, text2num(href_list["edit_field"]))
-		return 1
-		

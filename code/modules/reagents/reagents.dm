@@ -8,6 +8,7 @@
 		if(!D.name)
 			continue
 		chemical_reagents_list[D.id] = D
+		create_catalog_entry(D, CATALOG_REAGENTS)
 
 
 /datum/reagent
