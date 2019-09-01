@@ -29,21 +29,6 @@
 
 	unlocks_designs = list(/datum/design/research/item/flash)
 
-/datum/technology/advanced_nonlethal
-	name = "Advanced Non-Lethal"
-	desc = "Advanced Non-Lethal"
-	tech_type = RESEARCH_COMBAT
-
-	x = 0.3
-	y = 0.3
-	icon = "stunrevolver"
-
-	required_technologies = list(/datum/technology/basic_nonlethal)
-	required_tech_levels = list()
-	cost = 1500
-
-	unlocks_designs = list(/datum/design/research/item/weapon/stunrevolver, /datum/design/research/item/ammo/shotgun_stun)
-
 /datum/technology/weapon_recharging
 	name = "Weapon Recharging"
 	desc = "Weapon Recharging"
@@ -53,33 +38,53 @@
 	y = 0.5
 	icon = "recharger"
 
-	required_technologies = list(/datum/technology/advanced_nonlethal)
+	required_technologies = list(
+								/datum/technology/basic_combat
+								)
 	required_tech_levels = list()
 	cost = 1000
 
-	unlocks_designs = list()
+	unlocks_designs = list(
+							/datum/design/research/circuit/recharger
+							)
 
-/datum/technology/sec_computers
+/datum/technology/advanced_nonlethal
+	name = "Advanced Non-Lethal"
+	desc = "Advanced Non-Lethal"
+	tech_type = RESEARCH_COMBAT
+
+	x = 0.5
+	y = 0.3
+	icon = "stunrevolver"
+
+	required_technologies = list(/datum/technology/weapon_recharging)
+	required_tech_levels = list()
+	cost = 1500
+
+	unlocks_designs = list(/datum/design/research/item/weapon/stunrevolver, /datum/design/research/item/ammo/shotgun_stun)
+
+
+/*/datum/technology/sec_computers
 	name = "Security Computers"
 	desc = "Security Computers"
 	tech_type = RESEARCH_COMBAT
 
-	x = 0.1
-	y = 0.7
+	x = 0.2
+	y = 0.6
 	icon = "seccomputer"
 
 	required_technologies = list(/datum/technology/basic_combat)
 	required_tech_levels = list()
 	cost = 500
 
-	unlocks_designs = list(/datum/design/research/circuit/secdata, /datum/design/research/circuit/prisonmanage)
+	unlocks_designs = list(/datum/design/research/circuit/secdata, /datum/design/research/circuit/prisonmanage)*/
 
 /datum/technology/basic_lethal
 	name = "Basic Lethal Weapons"
 	desc = "Basic Lethal Weapons"
 	tech_type = RESEARCH_COMBAT
 
-	x = 0.7
+	x = 0.6
 	y = 0.5
 	icon = "ammobox"
 
@@ -90,8 +95,8 @@
 	unlocks_designs = list(/datum/design/research/item/weapon/large_grenade)
 
 /datum/technology/exotic_weaponry
-	name = "Exotic Weaponry"
-	desc = "Exotic Weaponry"
+	name = "Experemental Weaponry"
+	desc = "Experemental Weaponry"
 	tech_type = RESEARCH_COMBAT
 
 	x = 0.7
@@ -105,11 +110,11 @@
 	unlocks_designs = list(/datum/design/research/item/weapon/temp_gun)
 
 /datum/technology/adv_exotic_weaponry
-	name = "Advanced Exotic Weaponry"
-	desc = "Advanced Exotic Weaponry"
+	name = "Advanced Experemental Weaponry"
+	desc = "Advanced Experemental Weaponry"
 	tech_type = RESEARCH_COMBAT
 
-	x = 0.9
+	x = 0.8
 	y = 0.3
 	icon = "teslagun"
 
@@ -132,7 +137,9 @@
 	required_tech_levels = list()
 	cost = 2000
 
-	unlocks_designs = list("smg")
+	unlocks_designs = list(
+							/datum/design/research/item/weapon/c20r
+						)
 
 /datum/technology/laser_weaponry
 	name = "Laser Weaponry"
@@ -140,7 +147,7 @@
 	tech_type = RESEARCH_COMBAT
 
 	x = 0.9
-	y = 0.7
+	y = 0.5
 	icon = "gun"
 
 	required_technologies = list(/datum/technology/adv_lethal, /datum/technology/adv_exotic_weaponry)

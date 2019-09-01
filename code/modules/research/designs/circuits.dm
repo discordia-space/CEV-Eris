@@ -199,6 +199,11 @@
 	sort_string = "HACAC"
 	category = CAT_MACHINE
 
+/datum/design/research/circuit/recharger
+	name = "recharger"
+	build_path = /obj/item/weapon/circuitboard/recharger
+	sort_string = "HACAD"
+
 /datum/design/research/circuit/atmosalerts
 	name = "atmosphere alert console"
 	build_path = /obj/item/weapon/circuitboard/atmos_alert
