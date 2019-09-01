@@ -393,6 +393,7 @@
 	var/turf/wearer_loc = null
 
 /obj/item/rig_module/autodoc/New()
+	..()
 	autodoc_processor = new()
 	autodoc_processor.holder = src
 	autodoc_processor.damage_heal_amount = 20
@@ -428,4 +429,9 @@
 	return
 /obj/item/rig_module/autodoc/deactivate()
 	return
-	
+
+/obj/item/rig_module/autodoc/comercial/New()
+	..()
+	autodoc_processor = new/datum/autodoc/capitalist_autodoc()
+	autodoc_processor.holder = src
+	autodoc_processor.damage_heal_amount = 20

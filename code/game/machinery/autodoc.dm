@@ -1,4 +1,4 @@
-obj/machinery/autodoc
+/obj/machinery/autodoc
 	var/mob/living/carbon/occupant
 	var/datum/autodoc/autodoc_processor
 	var/locked
@@ -12,15 +12,20 @@ obj/machinery/autodoc
 	use_power = 1
 	idle_power_usage = 60
 	active_power_usage = 10000
+
 /obj/machinery/autodoc/New()
 	. = ..()
 	autodoc_processor = new/datum/autodoc/capitalist_autodoc()
 	autodoc_processor.holder = src
+	autodoc_processor.damage_heal_amount = 20
+
+
 /obj/machinery/autodoc/relaymove(mob/user as mob)
 	if (user.stat)
 		return
 	src.go_out()
 	return
+
 /obj/machinery/autodoc/attackby(obj/item/I, mob/living/user)
 	if(default_deconstruction(I, user))
 		return
@@ -29,7 +34,7 @@ obj/machinery/autodoc
 	..()
 
 /obj/machinery/autodoc/verb/eject()
-	set src in oview(1)
+	set src in view(1)
 	set category = "Object"
 	set name = "Eject Autodoc"
 
@@ -40,7 +45,7 @@ obj/machinery/autodoc
 	return
 
 /obj/machinery/autodoc/verb/move_inside()
-	set src in oview(1)
+	set src in view(1)
 	set category = "Object"
 	set name = "Enter Autodoc"
 
@@ -117,7 +122,9 @@ obj/machinery/autodoc
 		return
 	set_occupant(target)
 	src.add_fingerprint(user)
+	update_icon()
 	return
+
 /obj/machinery/autodoc/Process()
 	if(stat & (NOPOWER|BROKEN))
 		autodoc_processor.stop()
@@ -127,12 +134,14 @@ obj/machinery/autodoc
 		ui_interact(occupant)
 	update_icon()
 
-/obj/machinery/autodoc/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open = 2, datum/topic_state/state =  GLOB.default_state)
-	return autodoc_processor.ui_interact(user, ui_key, ui, force_open, state)
+/obj/machinery/autodoc/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FORCE_OPEN, var/datum/topic_state/state = GLOB.default_state)
+	autodoc_processor.ui_interact(user, ui_key, ui, force_open, state)
+
 /obj/machinery/autodoc/Topic(href, href_list)
 	return autodoc_processor.Topic(href, href_list)
+
 /obj/machinery/autodoc/update_icon()
-	if(stat & (NOPOWER|BROKEN))
+	if(stat & (NOPOWER|BROKEN) || !occupant)
 		icon_state = "powered_off"
 	else
 		icon_state = "powered_on"
