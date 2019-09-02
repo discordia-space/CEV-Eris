@@ -4,7 +4,7 @@
 	damage = 40
 	damage_type = BRUTE
 	nodamage = 0
-	check_armour = "bullet"
+	check_armour = ARMOR_BULLET
 	embed = 1
 	sharp = 0
 	hitsound_wall = "ric_sound"

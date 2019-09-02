@@ -2,8 +2,8 @@
 /datum/computer_file/binary/tech
 	filetype = "RDF"
 	size = 8
-	var/datum/tech/tech = null
+	var/datum/technology/node = null
 
-/datum/computer_file/binary/tech/proc/set_tech(datum/tech/new_tech)
-	tech = new_tech
-	filename = sanitizeFileName(lowertext(tech.name))
+/datum/computer_file/binary/tech/proc/set_tech(datum/technology/new_tech)
+	node = new_tech
+	filename = sanitizeFileName(lowertext(node.name))

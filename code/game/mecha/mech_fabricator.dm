@@ -93,10 +93,15 @@
 		return
 
 	if(href_list["build"])
-		add_to_queue(text2num(href_list["build"]))
+		var/datum/design/D = locate(href_list["build"]) in files.known_designs
+		if(D)
+			add_to_queue(D)
 
 	if(href_list["remove"])
-		remove_from_queue(text2num(href_list["remove"]))
+		var/num = text2num(href_list["remove"])
+		if(num)
+			num = CLAMP(num, 1, queue.len)
+			remove_from_queue(num)
 
 	if(href_list["category"])
 		if(href_list["category"] in categories)
@@ -112,7 +117,7 @@
 
 	return 1
 
-/obj/machinery/mecha_part_fabricator/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/mecha_part_fabricator/attackby(obj/item/I, mob/user)
 	if(busy)
 		to_chat(user, SPAN_NOTICE("\icon[src]\The [src] is busy. Please wait for completion of previous operation."))
 		return TRUE
@@ -128,7 +133,7 @@
 	else
 		return ..()
 
-/obj/machinery/mecha_part_fabricator/proc/loadMaterials(var/obj/item/stack/material/S, var/mob/user)
+/obj/machinery/mecha_part_fabricator/proc/loadMaterials(obj/item/stack/material/S, mob/user)
 	if(!istype(user))
 		return
 
@@ -187,8 +192,7 @@
 	else
 		busy = FALSE
 
-/obj/machinery/mecha_part_fabricator/proc/add_to_queue(var/index)
-	var/datum/design/D = files.known_designs[index]
+/obj/machinery/mecha_part_fabricator/proc/add_to_queue(datum/design/D)
 	queue += D
 	update_busy()
 
@@ -232,11 +236,11 @@
 
 /obj/machinery/mecha_part_fabricator/proc/get_build_options(var/mob/user)
 	. = list()
-	for(var/i = 1 to files.known_designs.len)
-		var/datum/design/D = files.known_designs[i]
+	for(var/i in files.known_designs)
+		var/datum/design/D = i
 		if(!(D.build_type & MECHFAB))
 			continue
-		. += list(list("name" = D.name, "id" = i, "category" = D.category, "resources" = get_design_resources(D), "time" = get_design_time(D), "icon" = getAtomCacheFilename(D.build_path)))
+		. += list(list("name" = D.name, "id" = "\ref[D]", "category" = D.category, "resources" = get_design_resources(D), "time" = get_design_time(D), "icon" = getAtomCacheFilename(D.build_path)))
 
 /obj/machinery/mecha_part_fabricator/proc/get_design_resources(datum/design/D)
 	var/list/F = list()
@@ -285,11 +289,7 @@
 	for(var/obj/machinery/computer/rdconsole/RDC in get_area_all_atoms(get_area(src)))
 		if(!RDC.sync)
 			continue
-		for(var/datum/tech/T in RDC.files.known_tech)
-			files.AddTech2Known(T)
-		for(var/datum/design/D in RDC.files.known_designs)
-			files.AddDesign2Known(D)
-		files.RefreshResearch()
+		files.download_from(RDC.files)
 		sync_message = "Sync complete."
 	update_categories()
 

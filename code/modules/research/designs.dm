@@ -18,8 +18,21 @@ other types of metals and chemistry for reagents).
 */
 //Note: More then one of these can be added to a design.
 
+/datum/rnd_queue_design
+	var/name
+	var/datum/design/design
+	var/amount
+
+/datum/rnd_queue_design/New(datum/design/D, Amount)
+	name = D.name
+	if(Amount > 1)
+		name = "[name] x[Amount]"
+
+	design = D
+	amount = Amount
+
 /datum/design/research				//Datum for object designs, used in construction
-	req_tech = list()				//IDs of that techs the object originated from and the minimum level requirements.
+	starts_unlocked = FALSE
 
 /datum/design/research/item
 	build_type = AUTOLATHE | PROTOLATHE
@@ -27,37 +40,34 @@ other types of metals and chemistry for reagents).
 /datum/design/research/item/mechfab
 	build_type = MECHFAB
 	category = "Misc"
-	req_tech = list(TECH_MATERIAL = 1)
 
 
 /datum/design/research/item/flash
 	name = "flash"
-	req_tech = list(TECH_MAGNET = 3, TECH_COMBAT = 2)
 	build_type = AUTOLATHE | MECHFAB
 	build_path = /obj/item/device/flash
 	category = "Misc"
 
-
+/datum/design/research/item/science_tool
+	name = "science tool"
+	build_path = /obj/item/device/science_tool
 
 /datum/design/research/item/hud
 	name_category = "HUD glasses"
 
 /datum/design/research/item/hud/health
 	name = "health scanner"
-	req_tech = list(TECH_BIO = 2, TECH_MAGNET = 3)
 	build_path = /obj/item/clothing/glasses/hud/health
 	sort_string = "GAAAA"
 
 /datum/design/research/item/hud/security
 	name = "security records"
-	req_tech = list(TECH_MAGNET = 3, TECH_COMBAT = 2)
 	build_path = /obj/item/clothing/glasses/hud/security
 	sort_string = "GAAAB"
 
 /datum/design/research/item/mesons
 	name = "Optical meson scanners"
 	desc = "Using the meson-scanning technology those glasses allow you to see through walls, floor or anything else."
-	req_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2)
 	build_path = /obj/item/clothing/glasses/powered/meson
 	sort_string = "GAAAC"
 
@@ -68,7 +78,6 @@ other types of metals and chemistry for reagents).
 
 /datum/design/research/item/medical/robot_scanner
 	desc = "A hand-held scanner able to diagnose robotic injuries."
-	req_tech = list(TECH_MAGNET = 3, TECH_BIO = 2, TECH_ENGINEERING = 3)
 	build_path = /obj/item/device/robotanalyzer
 	sort_string = "MACFA"
 
@@ -79,19 +88,16 @@ other types of metals and chemistry for reagents).
 
 /datum/design/research/item/medical/adv_mass_spectrometer
 	desc = "A device for analyzing chemicals in blood and their quantities."
-	req_tech = list(TECH_BIO = 2, TECH_MAGNET = 4)
 	build_path = /obj/item/device/scanner/mass_spectrometer/adv
 	sort_string = "MACAB"
 
 /datum/design/research/item/medical/reagent_scanner
 	desc = "A device for identifying chemicals."
-	req_tech = list(TECH_BIO = 2, TECH_MAGNET = 2)
 	build_path = /obj/item/device/scanner/reagent_scanner
 	sort_string = "MACBA"
 
 /datum/design/research/item/medical/adv_reagent_scanner
 	desc = "A device for identifying chemicals and their proportions."
-	req_tech = list(TECH_BIO = 2, TECH_MAGNET = 4)
 	build_path = /obj/item/device/scanner/reagent_scanner/adv
 	sort_string = "MACBB"
 
@@ -101,27 +107,23 @@ other types of metals and chemistry for reagents).
 /datum/design/research/item/beaker/noreact
 	name = "cryostasis"
 	desc = "A cryostasis beaker that allows for chemical storage without reactions. Can hold up to 50 units."
-	req_tech = list(TECH_MATERIAL = 2)
 	build_path = /obj/item/weapon/reagent_containers/glass/beaker/noreact
 	sort_string = "MADAA"
 
 /datum/design/research/item/beaker/bluespace
 	name = "bluespace"
 	desc = "A bluespace beaker, powered by experimental bluespace technology and Element Cuban combined with the Compound Pete. Can hold up to 300 units."
-	req_tech = list(TECH_BLUESPACE = 2, TECH_MATERIAL = 6)
 	build_path = /obj/item/weapon/reagent_containers/glass/beaker/bluespace
 	sort_string = "MADAB"
 
 /datum/design/research/item/medical/nanopaste
 	desc = "A tube of paste containing swarms of repair nanites. Very effective in repairing robotic machinery."
-	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
 	build_path = /obj/item/stack/nanopaste
 	sort_string = "MBAAA"
 
 /datum/design/research/item/scalpel_laser
 	name = "Basic Laser Scalpel"
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field."
-	req_tech = list(TECH_BIO = 2, TECH_MATERIAL = 2, TECH_MAGNET = 2)
 	build_path = /obj/item/weapon/tool/scalpel/laser
 	sort_string = "MBBAA"
 
@@ -131,26 +133,22 @@ other types of metals and chemistry for reagents).
 /datum/design/research/item/light_replacer
 	name = "light replacer"
 	desc = "A device to automatically replace lights. Refill with working lightbulbs."
-	req_tech = list(TECH_MAGNET = 3, TECH_MATERIAL = 4)
 	build_path = /obj/item/device/lightreplacer
 	sort_string = "VAAAH"
 
 /datum/design/research/item/paicard
 	name = "'pAI', personal artificial intelligence device"
-	req_tech = list(TECH_DATA = 2)
 	build_path = /obj/item/device/paicard
 	sort_string = "VABAI"
 
 /datum/design/research/item/intellicard
 	name = "'intelliCard', AI preservation and transportation system"
 	desc = "Allows for the construction of an intelliCard."
-	req_tech = list(TECH_DATA = 4, TECH_MATERIAL = 4)
 	build_path = /obj/item/device/aicard
 	sort_string = "VACAA"
 
 /datum/design/research/item/posibrain
 	name = "Positronic brain"
-	req_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 6, TECH_BLUESPACE = 2, TECH_DATA = 4)
 	build_type = PROTOLATHE | MECHFAB
 	build_path = /obj/item/device/mmi/digital/posibrain
 	category = "Misc"
@@ -158,7 +156,6 @@ other types of metals and chemistry for reagents).
 
 /datum/design/research/item/mmi
 	name = "Man-machine interface"
-	req_tech = list(TECH_DATA = 2, TECH_BIO = 3)
 	build_type = PROTOLATHE | MECHFAB
 	build_path = /obj/item/device/mmi
 	category = "Misc"
@@ -166,7 +163,6 @@ other types of metals and chemistry for reagents).
 
 /datum/design/research/item/mmi_radio
 	name = "Radio-enabled man-machine interface"
-	req_tech = list(TECH_DATA = 2, TECH_BIO = 4)
 	build_type = PROTOLATHE | MECHFAB
 	build_path = /obj/item/device/mmi/radio_enabled
 	category = "Misc"
@@ -174,21 +170,18 @@ other types of metals and chemistry for reagents).
 
 /datum/design/research/item/beacon
 	name = "Bluespace tracking beacon design"
-	req_tech = list(TECH_BLUESPACE = 1)
 	build_path = /obj/item/device/radio/beacon
 	sort_string = "VADAA"
 
 /datum/design/research/item/bag_holding
 	name = "'Bag of Holding', an infinite capacity bag prototype"
 	desc = "Using localized pockets of bluespace this bag prototype offers incredible storage capacity with the contents weighting nothing. It's a shame the bag itself is pretty heavy."
-	req_tech = list(TECH_BLUESPACE = 4, TECH_MATERIAL = 6)
 	build_path = /obj/item/weapon/storage/backpack/holding
 	sort_string = "VAEAA"
 
 /datum/design/research/item/binaryencrypt
 	name = "Binary encryption key"
 	desc = "Allows for deciphering the binary channel on-the-fly."
-	req_tech = list(TECH_ILLEGAL = 2)
 	build_path = /obj/item/device/encryptionkey/binary
 	sort_string = "VASAA"
 

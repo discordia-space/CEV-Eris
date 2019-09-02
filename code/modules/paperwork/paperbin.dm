@@ -98,9 +98,9 @@ obj/item/weapon/paper_bin/MouseDrop(over_object)
 
 
 /obj/item/weapon/paper_bin/examine(mob/user)
-	..()
+	. = ..()
 	if(get_dist(src, user) <= 1)
-		if(amount)
+		if (amount)
 			to_chat(user, "<span class='notice'>There " + (amount > 1 ? "are [amount] papers" : "is one paper") + " in the bin.</span>")
 		else
 			to_chat(user, SPAN_NOTICE("There are no papers in the bin."))
@@ -110,7 +110,7 @@ obj/item/weapon/paper_bin/MouseDrop(over_object)
 
 
 /obj/item/weapon/paper_bin/update_icon()
-	if(amount < 1)
+	if (amount < 1)
 		icon_state = "paper_bin0"
 	else
 		icon_state = "paper_bin1"

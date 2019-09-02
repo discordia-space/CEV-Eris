@@ -22,6 +22,8 @@
 	var/uses_charge = 0
 	var/list/charge_costs = null
 	var/list/datum/matter_synth/synths = null
+	var/consumable = TRUE	// Will the stack disappear entirely once the amount is used up?
+	var/splittable = TRUE	// Is the stack capable of being splitted?
 	var/novariants = TRUE //Determines whether the item should update it's sprites based on amount.
 
 	//If either of these two are set to nonzero values, the stack will have randomised quantity on spawn
@@ -220,7 +222,7 @@
 		return 0
 	if(!uses_charge)
 		amount -= used
-		if (amount <= 0)
+		if (amount <= 0 && consumable)	// Only proceed with deletion if the item is supposed to disappear entirely after being used up
 			if(usr)
 				usr.remove_from_mob(src)
 			qdel(src) //should be safe to qdel immediately since if someone is still using this stack it will persist for a little while longer
@@ -279,6 +281,8 @@
 
 //creates a new stack with the specified amount
 /obj/item/stack/proc/split(var/tamount)
+	if (!splittable)
+		return null
 	if (!amount)
 		return null
 	if(uses_charge)

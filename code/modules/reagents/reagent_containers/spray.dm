@@ -98,18 +98,18 @@
 /obj/item/weapon/reagent_containers/spray/cleaner
 	name = "space cleaner"
 	desc = "BLAM!-brand non-foaming space cleaner!"
-	preloaded = list("cleaner" = 250)
+	preloaded_reagents = list("cleaner" = 250)
 
 /obj/item/weapon/reagent_containers/spray/cleaner/drone
 	name = "space cleaner"
 	desc = "BLAM!-brand non-foaming space cleaner!"
 	volume = 50
-	preloaded = list("cleaner" = 50)
+	preloaded_reagents = list("cleaner" = 50)
 
 /obj/item/weapon/reagent_containers/spray/sterilizine
 	name = "sterilizine"
 	desc = "Great for hiding incriminating bloodstains and sterilizing scalpels."
-	preloaded = list("sterilizine" = 250)
+	preloaded_reagents = list("sterilizine" = 250)
 
 /obj/item/weapon/reagent_containers/spray/pepper
 	name = "pepperspray"
@@ -120,7 +120,7 @@
 	possible_transfer_amounts = null
 	volume = 40
 	var/safety = 1
-	preloaded = list("condensedcapsaicin" = 40)
+	preloaded_reagents = list("condensedcapsaicin" = 40)
 
 /obj/item/weapon/reagent_containers/spray/pepper/examine(mob/user)
 	if(..(user, 1))
@@ -145,7 +145,7 @@
 	amount_per_transfer_from_this = 1
 	possible_transfer_amounts = null
 	volume = 10
-	preloaded = list("water" = 10)
+	preloaded_reagents = list("water" = 10)
 
 /obj/item/weapon/reagent_containers/spray/chemsprayer
 	name = "chem sprayer"
@@ -187,7 +187,7 @@
 	icon_state = "plantbgone"
 	item_state = "plantbgone"
 	volume = 100
-	preloaded = list("plantbgone" = 100)
+	preloaded_reagents = list("plantbgone" = 100)
 
 /obj/item/weapon/reagent_containers/spray/plantbgone/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
 	if(!proximity) return

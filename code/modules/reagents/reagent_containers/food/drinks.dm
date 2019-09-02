@@ -133,7 +133,7 @@
 	icon_state = "milk"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
-	preloaded = list("milk" = 50)
+	preloaded_reagents = list("milk" = 50)
 
 /obj/item/weapon/reagent_containers/food/drinks/soymilk
 	name = "SoyMilk"
@@ -141,7 +141,7 @@
 	icon_state = "soymilk"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
-	preloaded = list("soymilk" = 50)
+	preloaded_reagents = list("soymilk" = 50)
 
 /obj/item/weapon/reagent_containers/food/drinks/coffee
 	name = "Robust Coffee"
@@ -150,7 +150,7 @@
 	center_of_mass = list("x"=15, "y"=10)
 	base_icon = "cup"
 	filling_states = "100"
-	preloaded = list("coffee" = 30)
+	preloaded_reagents = list("coffee" = 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/ice
 	name = "Ice Cup"
@@ -159,7 +159,7 @@
 	center_of_mass = list("x"=15, "y"=10)
 	base_icon = "cup"
 	filling_states = "100"
-	preloaded = list("ice" = 30)
+	preloaded_reagents = list("ice" = 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/h_chocolate
 	name = "Dutch Hot Coco"
@@ -167,7 +167,7 @@
 	icon_state = "hot_coco"
 	item_state = "coffee"
 	center_of_mass = list("x"=15, "y"=13)
-	preloaded = list("hot_coco" = 30)
+	preloaded_reagents = list("hot_coco" = 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/dry_ramen
 	name = "Cup Ramen"
@@ -176,7 +176,7 @@
 	center_of_mass = list("x"=16, "y"=11)
 	base_icon = "cup"
 	filling_states = "100"
-	preloaded = list("dry_ramen" = 30)
+	preloaded_reagents = list("dry_ramen" = 30)
 
 
 /obj/item/weapon/reagent_containers/food/drinks/sillycup
@@ -386,9 +386,9 @@
 /obj/item/weapon/reagent_containers/food/drinks/tea/black
 	name = "cup of black tea"
 	desc = "A tall plastic cup of hot black tea."
-	preloaded = list("tea" = 30)
+	preloaded_reagents = list("tea" = 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/tea/green
 	name = "cup of green tea"
 	desc = "A tall plastic cup of hot green tea."
-	preloaded = list("greentea" = 30)
+	preloaded_reagents = list("greentea" = 30)

@@ -175,24 +175,28 @@
 	if(!buckled_mob)	return
 
 	if(propelled)
-		var/mob/living/occupant = unbuckle_mob()
 
+		var/mob/living/occupant = unbuckle_mob()
 		var/def_zone = ran_zone()
-		var/blocked = occupant.run_armor_check(def_zone, "melee")
+
 		occupant.throw_at(A, 3, propelled)
-		occupant.apply_effect(6, STUN, blocked)
-		occupant.apply_effect(6, WEAKEN, blocked)
-		occupant.apply_effect(6, STUTTER, blocked)
-		occupant.apply_damage(10, BRUTE, def_zone, blocked)
+		occupant.apply_effect(6, STUN, occupant.getarmor(def_zone, ARMOR_MELEE))
+		occupant.apply_effect(6, WEAKEN, occupant.getarmor(def_zone, ARMOR_MELEE))
+		occupant.apply_effect(6, STUTTER, occupant.getarmor(def_zone, ARMOR_MELEE))
+		occupant.damage_through_armor(6, BRUTE, def_zone, ARMOR_MELEE)
+
 		playsound(src.loc, 'sound/weapons/punch1.ogg', 50, 1, -1)
+
 		if(isliving(A))
+
 			var/mob/living/victim = A
 			def_zone = ran_zone()
-			blocked = victim.run_armor_check(def_zone, "melee")
-			victim.apply_effect(6, STUN, blocked)
-			victim.apply_effect(6, WEAKEN, blocked)
-			victim.apply_effect(6, STUTTER, blocked)
-			victim.apply_damage(10, BRUTE, def_zone, blocked)
+
+			victim.apply_effect(6, STUN, victim.getarmor(def_zone, ARMOR_MELEE))
+			victim.apply_effect(6, WEAKEN, victim.getarmor(def_zone, ARMOR_MELEE))
+			victim.apply_effect(6, STUTTER, victim.getarmor(def_zone, ARMOR_MELEE))
+			victim.damage_through_armor(6, BRUTE, def_zone, ARMOR_MELEE)
+
 		occupant.visible_message(SPAN_DANGER("[occupant] crashed into \the [A]!"))
 
 /obj/structure/bed/chair/office/light
@@ -275,3 +279,12 @@
 	name = "bar chair"
 	desc = "Modern design and soft pad. Served up with the drink and great company."
 	icon_state = "bar_chair"
+
+//onestar
+/obj/structure/bed/chair/custom/onestar
+	name = "onestar chair"
+	desc = "A duranium chair manufactured by OneStar. Doesn't look very comfortable."
+	icon_state = "onestar_chair_grey"
+
+/obj/structure/bed/chair/custom/onestar/red
+	icon_state = "onestar_chair_red"

@@ -37,7 +37,7 @@
 	var/area/alarm_area
 	var/buildstage = 2 //2 is built, 1 is building, 0 is frame.
 
-	var/target_temperature = T0C+20
+	var/target_temperature = T0C + 20
 	var/regulating_temperature = 0
 
 	var/datum/radio_frequency/radio_connection
@@ -69,7 +69,7 @@
 	TLV["carbon dioxide"] = list(-1.0, -1.0,   5,  10) // Partial pressure, kpa
 	TLV["plasma"] =			list(-1.0, -1.0, 0.2, 0.5) // Partial pressure, kpa
 	TLV["other"] =			list(-1.0, -1.0, 0.5, 1.0) // Partial pressure, kpa
-	TLV["pressure"] =		list(0,ONE_ATMOSPHERE*0.10,ONE_ATMOSPHERE*1.40,ONE_ATMOSPHERE*1.60) /* kpa */
+	TLV["pressure"] =		list(0, ONE_ATMOSPHERE * 0.10, ONE_ATMOSPHERE * 1.40, ONE_ATMOSPHERE * 1.60) /* kpa */
 	TLV["temperature"] =	list(20, 40, 140, 160) // K
 	target_temperature = 90
 
@@ -265,11 +265,23 @@
 
 /obj/machinery/alarm/update_icon()
 	if(wiresexposed)
-		icon_state = "alarmx"
+		switch(buildstage)
+			if(2)
+				icon_state = "alarm_build2"
+			if(1)
+				icon_state = "alarm_build1"
+			if(0)
+				icon_state = "alarm_build0"
 		set_light(0)
 		return
-	if((stat & (NOPOWER|BROKEN)) || shorted)
-		icon_state = "alarmp"
+
+	if(stat & (BROKEN))
+		icon_state = "alarm_broken"
+		set_light(0)
+		return
+
+	if((stat & (NOPOWER)) || shorted)
+		icon_state = "alarm_unpowered"
 		set_light(0)
 		return
 
@@ -283,10 +295,10 @@
 			icon_state = "alarm0"
 			new_color = COLOR_LIGHTING_GREEN_BRIGHT
 		if (1)
-			icon_state = "alarm2" //yes, alarm2 is yellow alarm
+			icon_state = "alarm1"
 			new_color = COLOR_LIGHTING_ORANGE_MACHINERY
 		if (2)
-			icon_state = "alarm1"
+			icon_state = "alarm2"
 			new_color = COLOR_LIGHTING_RED_MACHINERY
 
 	set_light(l_range = 1.5, l_power = 0.2, l_color = new_color)
@@ -882,7 +894,7 @@ FIRE ALARM
 	var/time = 10.0
 	var/timing = 0.0
 	var/lockdownbyai = 0
-	anchored = 1.0
+	anchored = 1
 	use_power = 1
 	idle_power_usage = 2
 	active_power_usage = 6
@@ -897,19 +909,19 @@ FIRE ALARM
 	if(wiresexposed)
 		switch(buildstage)
 			if(2)
-				icon_state="fire_b2"
+				icon_state="fire_build2"
 			if(1)
-				icon_state="fire_b1"
+				icon_state="fire_build1"
 			if(0)
-				icon_state="fire_b0"
+				icon_state="fire_build0"
 		set_light(0)
 		return
 
 	if(stat & BROKEN)
-		icon_state = "firex"
+		icon_state = "fire_broken"
 		set_light(0)
 	else if(stat & NOPOWER)
-		icon_state = "firep"
+		icon_state = "fire_unpowered"
 		set_light(0)
 	else
 		var/area/area = get_area(src)
@@ -926,7 +938,7 @@ FIRE ALARM
 
 /obj/machinery/firealarm/fire_act(datum/gas_mixture/air, temperature, volume)
 	if(src.detecting)
-		if(temperature > T0C+200)
+		if(temperature > T0C + 200)
 			src.alarm()			// added check of detector status here
 	return
 
@@ -1009,7 +1021,7 @@ FIRE ALARM
 			if(buildstage == 0)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, , required_stat = STAT_MEC))
 					to_chat(user, "You remove the fire alarm assembly from the wall!")
-					new /obj/item/frame/air_alarm(get_turf(user))
+					new /obj/item/frame/fire_alarm(get_turf(user))
 					qdel(src)
 			return
 

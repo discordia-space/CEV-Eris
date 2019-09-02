@@ -61,6 +61,10 @@
 		msg_admin_attack("[user] ([user.ckey]) placed [target] ([target.ckey]) in a disposals unit. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>)")
 		return TRUE
 
+/obj/machinery/disposal/MouseDrop_T(var/obj/item/I, mob/user, src_location, over_location, src_control, over_control, params)
+	
+
+
 // attack by item places it in to disposal
 /obj/machinery/disposal/attackby(var/obj/item/I, var/mob/user)
 	if(stat & BROKEN || !I || !user)
@@ -139,58 +143,88 @@
 
 // mouse drop another mob or self
 //
-/obj/machinery/disposal/MouseDrop_T(mob/target, mob/user)
-	if(user.stat || !user.canmove || !istype(target))
+/obj/machinery/disposal/MouseDrop_T(atom/movable/A, mob/user)
+	if(istype(A, /mob))
+		var/mob/target = A
+		if(user.stat || !user.canmove)
+			return
+		if(target.buckled || get_dist(user, src) > 1 || get_dist(user, target) > 1)
+			return
+
+		//animals cannot put mobs other than themselves into disposal
+		if(isanimal(user) && target != user)
+			return
+
+		src.add_fingerprint(user)
+		var/target_loc = target.loc
+		var/msg
+		for (var/mob/V in viewers(usr))
+			if(target == user && !user.stat && !user.weakened && !user.stunned && !user.paralysis)
+				V.show_message("[usr] starts climbing into the disposal.", 3)
+			if(target != user && !user.restrained() && !user.stat && !user.weakened && !user.stunned && !user.paralysis)
+				if(target.anchored) return
+				V.show_message("[usr] starts stuffing [target.name] into the disposal.", 3)
+
+		var/delay = 20
+		if(!do_after(usr, max(delay * usr.stats.getMult(STAT_VIG, STAT_LEVEL_EXPERT), delay * 0.66), src))
+			return
+		if(target_loc != target.loc)
+			return
+		if(target == user && !user.incapacitated(INCAPACITATION_ALL))	// if drop self, then climbed in
+												// must be awake, not stunned or whatever
+			msg = "[user.name] climbs into the [src]."
+			to_chat(user, "You climb into the [src].")
+		else if(target != user && !user.restrained() && !user.stat && !user.weakened && !user.stunned && !user.paralysis)
+			msg = "[user.name] stuffs [target.name] into the [src]!"
+			to_chat(user, "You stuff [target.name] into the [src]!")
+
+			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Has placed [target.name] ([target.ckey]) in disposals.</font>")
+			target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been placed in disposals by [user.name] ([user.ckey])</font>")
+			msg_admin_attack("[user] ([user.ckey]) placed [target] ([target.ckey]) in a disposals unit. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+		else
+			return
+		if (target.client)
+			target.client.perspective = EYE_PERSPECTIVE
+			target.client.eye = src
+
+		target.simple_move_animation(src)
+		target.forceMove(src)
+
+		for (var/mob/C in viewers(src))
+			if(C == user)
+				continue
+			C.show_message(msg, 3)
+
+		update()
 		return
-	if(target.buckled || get_dist(user, src) > 1 || get_dist(user, target) > 1)
+	else if (istype(A, /obj/item))
+		var/obj/item/I = A
+		if(!Adjacent(user) || !I.Adjacent(user) || user.stat)
+			return ..()
+		if(istype(I, /obj/item/weapon/storage/bag/trash))
+			var/obj/item/weapon/storage/bag/trash/T = I
+			to_chat(user, SPAN_NOTICE("You empty the bag."))
+			for(var/obj/item/O in T.contents)
+				T.remove_from_storage(O,src)
+			T.update_icon()
+			update()
+			return
+		
+		if(!I)
+			return
+
+		I.add_fingerprint(user)
+		I.forceMove(src)
+		to_chat(user, "You place \the [I] into the [src].")
+		for(var/mob/M in viewers(src))
+			if(M == user)
+				continue
+			M.show_message("[user.name] places \the [I] into the [src].", 3)
+			playsound(src.loc, 'sound/machines/vending_drop.ogg', 100, 1)
+
+		update()
 		return
-
-	//animals cannot put mobs other than themselves into disposal
-	if(isanimal(user) && target != user)
-		return
-
-	src.add_fingerprint(user)
-	var/target_loc = target.loc
-	var/msg
-	for (var/mob/V in viewers(usr))
-		if(target == user && !user.stat && !user.weakened && !user.stunned && !user.paralysis)
-			V.show_message("[usr] starts climbing into the disposal.", 3)
-		if(target != user && !user.restrained() && !user.stat && !user.weakened && !user.stunned && !user.paralysis)
-			if(target.anchored) return
-			V.show_message("[usr] starts stuffing [target.name] into the disposal.", 3)
-
-	var/delay = 20
-	if(!do_after(usr, max(delay * usr.stats.getDelayMult(STAT_VIG, STAT_LEVEL_EXPERT), delay * 0.66), src))
-		return
-	if(target_loc != target.loc)
-		return
-	if(target == user && !user.incapacitated(INCAPACITATION_ALL))	// if drop self, then climbed in
-											// must be awake, not stunned or whatever
-		msg = "[user.name] climbs into the [src]."
-		to_chat(user, "You climb into the [src].")
-	else if(target != user && !user.restrained() && !user.stat && !user.weakened && !user.stunned && !user.paralysis)
-		msg = "[user.name] stuffs [target.name] into the [src]!"
-		to_chat(user, "You stuff [target.name] into the [src]!")
-
-		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Has placed [target.name] ([target.ckey]) in disposals.</font>")
-		target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been placed in disposals by [user.name] ([user.ckey])</font>")
-		msg_admin_attack("[user] ([user.ckey]) placed [target] ([target.ckey]) in a disposals unit. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
-	else
-		return
-	if (target.client)
-		target.client.perspective = EYE_PERSPECTIVE
-		target.client.eye = src
-
-	target.simple_move_animation(src)
-	target.forceMove(src)
-
-	for (var/mob/C in viewers(src))
-		if(C == user)
-			continue
-		C.show_message(msg, 3)
-
-	update()
-	return
+	. = ..()
 
 // attempt to move while inside
 /obj/machinery/disposal/relaymove(mob/user as mob)

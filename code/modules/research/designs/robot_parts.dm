@@ -1,5 +1,6 @@
 /datum/design/research/item/mechfab/robot
-	category = "Robot"
+	category = CAT_ROBOT
+	starts_unlocked = TRUE
 
 /datum/design/research/item/mechfab/robot/exoskeleton
 	name = "Robot exoskeleton"
@@ -32,6 +33,8 @@
 
 /datum/design/research/item/mechfab/robot/component
 	name_category = "robot component"
+	category = CAT_ROBOT
+	starts_unlocked = TRUE
 
 /datum/design/research/item/mechfab/robot/component/binary_communication_device
 	name = "Binary communication device"
@@ -62,34 +65,39 @@
 	name = "Jetpack module"
 	desc = "Self refilling jetpack that makes the unit suitable for EVA work."
 	build_path = /obj/item/robot_parts/robot_component/jetpack
+	starts_unlocked = FALSE
 
 
 
 // Robot updates
 /datum/design/research/item/robot_upgrade
 	build_type = MECHFAB
-	category = "Cyborg Upgrade Modules"
+	category = CAT_ROBOT
 	name_category = "robot upgrade"
 
 /datum/design/research/item/robot_upgrade/rename
 	name = "Rename module"
 	desc = "Used to rename a cyborg."
 	build_path = /obj/item/borg/upgrade/rename
+	starts_unlocked = TRUE
 
 /datum/design/research/item/robot_upgrade/reset
 	name = "Reset module"
 	desc = "Used to reset a cyborg's module. Destroys any other upgrades applied to the robot."
 	build_path = /obj/item/borg/upgrade/reset
+	starts_unlocked = TRUE
 
 /datum/design/research/item/robot_upgrade/floodlight
 	name = "Floodlight module"
 	desc = "Used to boost cyborg's integrated light intensity."
 	build_path = /obj/item/borg/upgrade/floodlight
+	starts_unlocked = TRUE
 
 /datum/design/research/item/robot_upgrade/restart
 	name = "Emergency restart module"
 	desc = "Used to force a restart of a disabled-but-repaired robot, bringing it back online."
 	build_path = /obj/item/borg/upgrade/restart
+	starts_unlocked = TRUE
 
 /datum/design/research/item/robot_upgrade/vtec
 	name = "VTEC module"
@@ -109,5 +117,4 @@
 /datum/design/research/item/robot_upgrade/syndicate
 	name = "Illegal upgrade"
 	desc = "Allows for the construction of lethal upgrades for cyborgs."
-	req_tech = list(TECH_COMBAT = 4, TECH_ILLEGAL = 3)
 	build_path = /obj/item/borg/upgrade/syndicate

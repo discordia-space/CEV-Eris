@@ -794,3 +794,17 @@ default behaviour is:
 		if(A)
 			A.static_overlays |= static_overlay
 			A.client.images |= static_overlay
+
+/mob/living/proc/vomit()
+	return
+
+/mob/living/proc/adjustNutrition(var/amount)
+	nutrition += amount
+	nutrition = max(0,min(nutrition, max_nutrition))	//clamp the value
+
+/mob/living/proc/is_asystole()
+	return FALSE
+
+//Makes a blood drop, leaking amt units of blood from the mob
+/mob/living/proc/drip_blood(var/amt as num)
+	blood_splatter(src,src)

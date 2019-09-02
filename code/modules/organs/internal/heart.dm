@@ -8,13 +8,28 @@
 	var/pulse = PULSE_NORM
 	var/heartbeat = 0
 	var/efficiency = 1
+	var/open
+
+/obj/item/organ/internal/heart/open
+	open = 1
 
 /obj/item/organ/internal/heart/Process()
 	if(owner)
 		handle_pulse()
 		if(pulse)	handle_heartbeat()
 		handle_blood()
+		//plug before baymed
+		var/blood_volume = owner.get_blood_oxygenation()
+		if(blood_volume < BLOOD_VOLUME_SURVIVE)
+			if(!owner.chem_effects[CE_STABLE] || prob(60))
+				owner.adjustBrainLoss(0.5)
 	..()
+
+/obj/item/organ/internal/heart/proc/is_working()
+	if(!is_usable())
+		return FALSE
+
+	return pulse > PULSE_NONE || BP_IS_ROBOTIC(src) || (owner.status_flags & FAKEDEATH)
 
 /obj/item/organ/internal/heart/proc/handle_pulse()
 	if(owner.stat == DEAD || BP_IS_ROBOTIC(src))

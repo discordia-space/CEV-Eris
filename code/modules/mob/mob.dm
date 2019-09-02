@@ -1204,3 +1204,6 @@ mob/proc/yank_out_object()
 		return
 	var/obj/screen/zone_sel/selector = mob.HUDneed["damage zone"]
 	selector.set_selected_zone(next_list_item(mob.targeted_organ,zones))
+/mob/proc/set_stat(var/new_stat)
+	. = stat != new_stat
+	stat = new_stat

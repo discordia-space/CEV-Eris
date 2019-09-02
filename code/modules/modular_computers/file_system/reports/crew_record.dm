@@ -98,7 +98,7 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 	if(H)
 		var/stats = list()
 		for(var/statName in ALL_STATS)
-			var/points = H.stats.getStat(statName,Pure = TRUE)
+			var/points = H.stats.getStat(statName,pure = TRUE)
 			if(points > STAT_LEVEL_NONE)
 				stats += "[statName]: [points] ([statPointsToLevel(points)])"
 

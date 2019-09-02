@@ -43,7 +43,7 @@
 	var/obj/item/mecha_parts/mecha_equipment/thruster/thruster = null
 
 	//the values in this list show how much damage will pass through, not how much will be absorbed.
-	var/list/damage_absorption = list("brute"=0.8,"fire"=1.2,"bullet"=0.9,"laser"=1,"energy"=1,"bomb"=1)
+	var/list/damage_absorption = list("brute"=0.8,"fire"=1.2,"bullet"=0.9,"energy"=1,"bomb"=1)
 	var/obj/item/weapon/cell/large/cell
 	var/state = 0
 	var/list/log = new
@@ -305,9 +305,9 @@
 /obj/mecha/proc/drop_item()//Derpfix, but may be useful in future for engineering exosuits.
 	return
 
-/obj/mecha/hear_talk(mob/M as mob, text)
+/obj/mecha/hear_talk(mob/M as mob, text, verb, datum/language/speaking, speech_volume)
 	if(M==occupant && radio.broadcasting)
-		radio.talk_into(M, text)
+		radio.talk_into(M, text, speech_volume = speech_volume)
 
 ////////////////////////////
 ///// Action processing ////
