@@ -52,10 +52,10 @@
 	if(usr.stat)
 		return
 	if(src.occupant)
-		usr << SPAN_WARNING("The autodoc is already occupied!")
+		to_chat(user, SPAN_WARNING("The autodoc is already occupied!"))
 		return
 	if(usr.abiotic())
-		usr << SPAN_WARNING("The subject cannot have abiotic items on.")
+		to_chat(user, SPAN_WARNING("The subject cannot have abiotic items on."))
 		return
 	set_occupant(usr)
 	src.add_fingerprint(usr)
@@ -90,13 +90,13 @@
 
 /obj/machinery/autodoc/affect_grab(var/mob/user, var/mob/target)
 	if (src.occupant)
-		user << SPAN_NOTICE("The autodoc is already occupied!")
+		to_chat(user, SPAN_NOTICE("The autodoc is already occupied!"))
 		return
 	if(target.buckled)
-		user << SPAN_NOTICE("Unbuckle the subject before attempting to move them.")
+		to_chat(user, SPAN_NOTICE("Unbuckle the subject before attempting to move them."))
 		return
 	if(target.abiotic())
-		user << SPAN_NOTICE("Subject cannot have abiotic items on.")
+		to_chat(user, SPAN_NOTICE("Subject cannot have abiotic items on."))
 		return
 	set_occupant(target)
 	src.add_fingerprint(user)
@@ -106,13 +106,13 @@
 	if(!ismob(target))
 		return
 	if (src.occupant)
-		user << SPAN_WARNING("The autodoc is already occupied!")
+		to_chat(user, SPAN_WARNING("The autodoc is already occupied!"))
 		return
 	if (target.abiotic())
-		user << SPAN_WARNING("Subject cannot have abiotic items on.")
+		to_chat(user, SPAN_WARNING("Subject cannot have abiotic items on."))
 		return
 	if (target.buckled)
-		user << SPAN_NOTICE("Unbuckle the subject before attempting to move them.")
+		to_chat(user, SPAN_NOTICE("Unbuckle the subject before attempting to move them."))
 		return
 	user.visible_message(
 		SPAN_NOTICE("\The [user] begins placing \the [target] into \the [src]."),
