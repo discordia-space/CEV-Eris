@@ -3,7 +3,7 @@
 /datum/sanity
 	var/level
 	var/flags
-	var/owner
+	var/mob/living/carbon/human/owner
 
 /datum/sanity/New(mob/living/carbon/human/H)
 	owner = H
