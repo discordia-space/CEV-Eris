@@ -204,9 +204,9 @@
 
 /obj/structure/closet/secure_closet/courtroom/populate_contents()
 	new /obj/item/clothing/shoes/color/brown(src)
-	new /obj/item/weapon/paper/Court(src)
-	new /obj/item/weapon/paper/Court(src)
-	new /obj/item/weapon/paper/Court(src)
+	new /obj/item/weapon/paper/court(src)
+	new /obj/item/weapon/paper/court(src)
+	new /obj/item/weapon/paper/court(src)
 	new /obj/item/weapon/pen(src)
 	new /obj/item/clothing/suit/judgerobe(src)
 	new /obj/item/clothing/head/powdered_wig(src)
