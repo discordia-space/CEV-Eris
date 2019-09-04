@@ -1,0 +1,11 @@
+{{if data.browse_stage == "list"}}
+	<table style="width:100%">
+		<tr><td>Name<th style="width:25%">State<th style="width:35%">Type
+		{{for data.entries}}
+			<tr class="candystripe">
+			<td style="background-color: #8daf6a;">{{:helper.link(value.name, '', {'set_active' : value.id})}}
+			<td style="background-color: #8daf6a;">{{:value.reagent_state}}
+			<td style="background-color: #8daf6a;">{{:value.reagent_type}}
+		{{/for}}
+	</table>
+{{/if}}

@@ -1,0 +1,42 @@
+{{if data.browse_stage == "entry"}}
+	{{:helper.link('PRINT', '', {'print_active' : 1})}}{{:helper.link('BACK', '', {'clear_active' : 1}, null, 'floatRight')}}
+	<br><br>
+	<div class="item">
+		<h2>{{:data.name}}</h2>
+	</div>
+	<div class="item">
+		<h4>Specifications:</h4>
+		<div class="itemLabel">
+			Type:
+		</div>
+		<div class="itemContent">
+			{{:data.reagent_type}}
+		</div>
+		<div class="itemLabel">
+			State:
+		</div>
+		<div class="itemContent">
+			{{:data.reagent_state}}
+		</div>
+		<div class="itemLabel">
+			Metabolism:
+		</div>
+		<div class="itemContent">
+			<table style="width:100%">
+				<tr>{{:data.metabolism_blood}}u/s in blood.
+				{{if data.metabolism_stomach}}
+					<tr>{{:data.metabolism_stomach}}u/s in stomach.
+				{{else}}
+					<tr>{{:data.metabolism_blood/2}}u/s in stomach.
+				{{/if}}
+			</table>
+		</div>
+		<h4>Description:</h4>
+		<div class="item">
+			{{:data.description}}
+		</div>
+		<div class="item">
+			{{:data.taste}}
+		</div>
+	</div>
+{{/if}}

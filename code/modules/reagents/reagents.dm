@@ -9,7 +9,8 @@
 			continue
 		chemical_reagents_list[D.id] = D
 		create_catalog_entry(D, CATALOG_REAGENTS)
-
+	var/datum/catalog/C = GLOB.catalogs[CATALOG_REAGENTS]
+	C.associated_template = "catalog_list_reagents.tmpl"
 
 /datum/reagent
 	var/name = "Reagent"
