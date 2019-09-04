@@ -139,6 +139,93 @@
 	rating = 3
 	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
 
+
+//one star stock parts (rating 4)
+
+/obj/item/weapon/stock_parts/capacitor/one_star
+	name = "one star capacitor"
+	desc = "A super-high capacity capacitor used in the construction of a variety of devices."
+	icon_state = "one_capacitor"
+	origin_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
+	rating = 4
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+
+/obj/item/weapon/stock_parts/scanning_module/one_star
+	name = "one star scanning module"
+	desc = "A compact, high resolution phasic scanning module used in the construction of certain devices."
+	icon_state = "one_scan_module"
+	origin_tech = list(TECH_MAGNET = 5)
+	rating = 4
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+
+/obj/item/weapon/stock_parts/manipulator/one_star
+	name = "one star manipulator"
+	desc = "A tiny little manipulator used in the construction of certain devices."
+	icon_state = "one_mani"
+	origin_tech = list(TECH_MATERIAL = 5, TECH_DATA = 2)
+	rating = 4
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
+
+/obj/item/weapon/stock_parts/micro_laser/one_star
+	name = "one star micro-laser"
+	icon_state = "one_laser"
+	desc = "A tiny laser used in certain devices."
+	origin_tech = list(TECH_MAGNET = 5)
+	rating = 4
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+
+/obj/item/weapon/stock_parts/matter_bin/one_star
+	name = "one star matter bin"
+	desc = "A container for hold compressed matter awaiting re-construction."
+	icon_state = "one_matter"
+	origin_tech = list(TECH_MATERIAL = 5)
+	rating = 4
+	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
+
+
+//alien stock parts (rating 6)
+
+/obj/item/weapon/stock_parts/capacitor/alien_capacitor
+	name = "Exothermal Seal"
+	desc = "A can-shaped brass component, covered in scratch marks and weathered by time. A faint humming can be heard coming from its inner workings. Seems like it can be used in construction of certain devices."
+	icon_state = "alien_capacitor"
+	origin_tech = list(TECH_POWER = 5, TECH_MATERIAL = 5)
+	rating = 6
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 3)
+
+/obj/item/weapon/stock_parts/scanning_module/alien
+	name = "Optical receptor"
+	desc = "A device, closely resembling a human eye. The pupil dilates and contracts when exposed to different materials. Seems like it can be used in construction of certain devices."
+	icon_state = "alien_scan_module"
+	origin_tech = list(TECH_MAGNET = 5)
+	rating = 6
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+
+/obj/item/weapon/stock_parts/manipulator/alien
+	name = "Gripper"
+	desc = "This strange chunk of metal opens and closes its claws, as if it was a freshly cut crab arm. Seems like it can be used in construction of certain devices."
+	icon_state = "alien_mani"
+	origin_tech = list(TECH_MATERIAL = 5, TECH_DATA = 2)
+	rating = 6
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
+
+/obj/item/weapon/stock_parts/micro_laser/alien
+	name = "Pico-emitter"
+	icon_state = "alien_laser"
+	desc = "A bright glass orb with a port on its back. It glows faint blue from time to time. Seems like it can be used in construction of certain devices."
+	origin_tech = list(TECH_MAGNET = 5)
+	rating = 6
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+
+/obj/item/weapon/stock_parts/matter_bin/alien
+	name = "Recepticle"
+	desc = "A twisted and time-weathered metal contraption, that's slightly warm to the touch. Seems like it can be used in construction of certain devices."
+	icon_state = "alien_matter"
+	origin_tech = list(TECH_MATERIAL = 5)
+	rating = 6
+	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
+
+
 // Subspace stock parts
 
 /obj/item/weapon/stock_parts/subspace/ansible
