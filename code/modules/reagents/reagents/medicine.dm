@@ -514,7 +514,7 @@
 /datum/reagent/quickclot  
 	name = "Quickclot"
 	id = "quickclot"
-	description = "Temporarily stops\\oppresses any internal and internal bleeding."
+	description = "Temporarily stops\\oppresses any internal and external bleeding."
 	taste_description = "metal"
 	reagent_state = LIQUID
 	color = "#a6b85b"
@@ -534,7 +534,7 @@
 	M.add_chemical_effect(CE_BLOODCLOT, min(1, 0.20))
 
 /datum/reagent/ossisine   
-	name = "ossisine"
+	name = "Ossisine"
 	id = "ossisine"
 	description = "Paralyses user and restores broken bones."
 	taste_description = "calcium"
@@ -606,7 +606,7 @@
 /datum/reagent/polystem
 	name = "Polystem"
 	id = "polystem"
-	description = "Polystem boosts natural body regeneration. "
+	description = "Polystem boosts natural body regeneration."
 	taste_description = "bitterness"
 	taste_mult = 3
 	reagent_state = LIQUID
@@ -704,7 +704,7 @@
 /datum/reagent/haloperidol
 	name = "Haloperidol"
 	id = "haloperidol"
-	description = "Purges chems from bloodstream, lowers NSA and sedates patient. An overdose of haloperidol can be fatal. "
+	description = "Purges chems from bloodstream, lowers NSA and sedates patient. An overdose of haloperidol can be fatal."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#ba1f04"
