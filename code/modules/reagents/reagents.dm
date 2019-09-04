@@ -8,9 +8,6 @@
 		if(!D.name)
 			continue
 		chemical_reagents_list[D.id] = D
-		create_catalog_entry(D, CATALOG_REAGENTS)
-	var/datum/catalog/C = GLOB.catalogs[CATALOG_REAGENTS]
-	C.associated_template = "catalog_list_reagents.tmpl"
 
 /datum/reagent
 	var/name = "Reagent"
@@ -54,6 +51,14 @@
 	var/constant_metabolism = FALSE	// if metabolism factor should not change with volume or blood circulation
 
 	var/nerve_system_accumulations = 5 // Nerve system accumulations
+
+	// Catalog stuff
+	var/reagent_type = "Toxin"
+	var/blood_affect_description
+	var/ingested_description
+	var/touched_description
+	var/overdose_description
+	var/withdrawal_description
 
 /datum/reagent/proc/remove_self(amount) // Shortcut
 	holder.remove_reagent(id, amount)

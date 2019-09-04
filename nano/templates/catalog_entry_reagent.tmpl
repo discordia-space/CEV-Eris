@@ -1,3 +1,5 @@
+<!-- 
+ -->
 {{if data.browse_stage == "entry"}}
 	{{:helper.link('PRINT', '', {'print_active' : 1})}}{{:helper.link('BACK', '', {'clear_active' : 1}, null, 'floatRight')}}
 	<br><br>
@@ -6,17 +8,19 @@
 	</div>
 	<div class="item">
 		<h4>Specifications:</h4>
-		<div class="itemLabel">
-			Type:
-		</div>
-		<div class="itemContent">
-			{{:data.reagent_type}}
-		</div>
+		{{if data.reagent_type}}
+			<div class="itemLabel">
+				Type:
+			</div>
+			<div class="itemContent">
+				{{:data.reagent_type}}
+			</div>
+		{{/if}}
 		<div class="itemLabel">
 			State:
 		</div>
 		<div class="itemContent">
-			{{:data.reagent_state}}
+			{{:data.reagent_state}} at room temperature.
 		</div>
 		<div class="itemLabel">
 			Metabolism:
@@ -31,6 +35,57 @@
 				{{/if}}
 			</table>
 		</div>
+		<div class="itemLabel">
+			Nerve system accomulation:
+		</div>
+		<div class="itemContent">
+			{{:data.nsa}}
+		</div>
+		
+		{{if data.heating_decompose || data.chilling_decompose}}
+			<div class="itemLabel">
+				Decomposition:
+			</div>
+			<div class="itemContent">
+				<table style="width:100%">
+					{{if data.heating_decompose}}
+						<tr>Heating: {{:data.heating_decompose}}
+					{{/if}}
+					{{if data.chilling_decompose}}
+						<tr>Chilling: {{:data.chilling_decompose}}
+					{{/if}}
+				</table>
+			</div>
+		{{/if}}
+		{{if data.chemical_reaction_result_amount}}
+			<div class="itemLabel">
+				Recipe:
+			</div>
+			<div class="itemContent">
+				{{for data.chemical_reaction_reagents}}
+					{{:value.parts}}{{:value.reagent}}<br>
+				{{/for}}
+				{{for data.chemical_reaction_catalyst}}
+					{{:value.parts}}{{:value.reagent}}<br>
+				{{/for}}
+				{{:data.chemical_reaction_result_amount}}
+			</div>
+		{{/if}}
+		<div class="itemLabel">
+			Is scannable:
+		</div>
+		<div class="itemContent">
+			{{:data.scannable}}
+		</div>
+		{{if data.overdose}}
+			<div class="itemLabel">
+				Overdose at:
+			</div>
+			<div class="itemContent">
+				{{:data.overdose}}u.
+			</div>
+		{{/if}}
+
 		<h4>Description:</h4>
 		<div class="item">
 			{{:data.description}}
@@ -38,5 +93,38 @@
 		<div class="item">
 			{{:data.taste}}
 		</div>
+		<div class="item">
+			Has <span class='colorBox' style='background-color:{{:data.color}}'></span> coloration.
+		</div>
+		{{if data.addiction_chance}}
+			<div class="item">
+				{{:data.addiction_chance}}
+			</div>
+		{{/if}}
+		{{if data.blood_affect_description}}
+			<div class="item">
+				{{:data.blood_affect_description}}
+			</div>
+		{{/if}}
+		{{if data.ingested_description}}
+			<div class="item">
+				{{:data.ingested_description}}
+			</div>
+		{{/if}}
+		{{if data.touched_description}}
+			<div class="item">
+				{{:data.touched_description}}
+			</div>
+		{{/if}}
+		{{if data.overdose_description}}
+			<div class="item">
+				{{:data.overdose_description}}
+			</div>
+		{{/if}}
+		{{if data.withdrawal_description}}
+			<div class="item">
+				{{:data.withdrawal_description}}
+			</div>
+		{{/if}}
 	</div>
 {{/if}}

@@ -10,7 +10,7 @@
 	color = "#696969" // ( ͡° ͜ʖ ͡°)
 	metabolism = REM/2
 	heating_point = 523
-	heating_products = list("toxin")
+	heating_products = list("nanites")
 	scannable = 1
 
 /datum/reagent/nanites/proc/eat_blood(var/mob/living/carbon/M) // Yam !
@@ -44,6 +44,8 @@
 	name = "Raw Industrial Nanobots"
 	id = "nanites"
 	description = "Microscopic construction robots."
+	heating_point = null
+	heating_products = null
 
 /datum/reagent/nanites/capped/will_occur(var/mob/living/carbon/M, var/alien, var/location)
 	return FALSE
@@ -55,6 +57,8 @@
 	taste_description = "slimey metal"
 	color = "#535E66"
 	metabolism = REM/4
+	heating_point = null
+	heating_products = null
 
 /datum/reagent/nanites/dead/eat_blood(var/mob/living/carbon/M)
 	return
@@ -70,6 +74,8 @@
 	name = "Raw Uncapped Nanobots"
 	id = "uncap nanites"
 	description = "Microscopic construction robots."
+	heating_point = null
+	heating_products = null
 
 /datum/reagent/nanites/uncapped/will_occur(var/mob/living/carbon/M, var/alien, var/location)
 	if(type == /datum/reagent/nanites/uncapped) // only derived classes are consumed
@@ -228,6 +234,8 @@
 	name = "Control Booster Utility (uncapped nanobots)"
 	id = "cbu"
 	description = "Microscopic construction robots."
+	heating_point = 523
+	heating_products = list("uncap nanites")
 
 /datum/reagent/nanites/uncapped/control_booster_utility/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(..())
@@ -239,6 +247,8 @@
 	name = "Control Booster Combat (uncapped nanobots)"
 	id = "cbc"
 	description = "Microscopic construction robots."
+	heating_point = 523
+	heating_products = list("uncap nanites")
 
 /datum/reagent/nanites/uncapped/control_booster_combat/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(..())
@@ -251,6 +261,8 @@
 	id = "nanovoice"
 	description = "Changes users voice. You should hit them first, just in case..."
 	var/voiceName = "Unknown"
+	heating_point = 523
+	heating_products = list("uncap nanites")
 
 /datum/reagent/nanites/uncapped/voice_mimic/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(..())
@@ -261,6 +273,8 @@
 	id = "nanohands"
 	description = "Microscopic construction robots."
 	var/uni_identity
+	heating_point = 523
+	heating_products = list("uncap nanites")
 
 /datum/reagent/nanites/uncapped/dynamic_handprints/on_mob_add(mob/living/L)
 	..()

@@ -13,17 +13,6 @@
 	maximum_volume = max
 	my_atom = A
 
-	//I dislike having these here but map-objects are initialised before world/New() is called. >_>
-	if(!chemical_reagents_list)
-		//Chemical Reagents - Initialises all /datum/reagent into a list indexed by reagent id
-		var/paths = typesof(/datum/reagent) - /datum/reagent
-		chemical_reagents_list = list()
-		for(var/path in paths)
-			var/datum/reagent/D = new path()
-			if(!D.name)
-				continue
-			chemical_reagents_list[D.id] = D
-
 /datum/reagents/proc/get_average_reagents_state()
 	var/solid = 0
 	var/liquid = 0
