@@ -192,6 +192,18 @@
 /datum/chemical_reaction/proc/send_data(var/datum/reagents/holder, var/reaction_limit)
 	return null
 
+/datum/chemical_reaction/ui_data()
+	var/list/dat = list()
+	if(required_reagents)
+		dat["reagents"] = list()
+		for(var/id in required_reagents)
+			dat["reagents"] += list(list("reagent" = get_reagent_name_by_id(id), "parts" = "[required_reagents[id]] part\s of "))
+	if(required_reagents)
+		dat["catalyst"] = list()
+		for(var/id in catalysts)
+			dat["catalyst"] += list(list("reagent" = get_reagent_name_by_id(id), "units" = catalysts[id]))
+	dat["result_amount"] = "Results in [result_amount] part\s of substance."
+	return dat
 /* Common reactions */
 
 /datum/chemical_reaction/inaprovaline
@@ -859,6 +871,11 @@
 
 /datum/chemical_reaction/slime
 	var/required = null
+
+/datum/chemical_reaction/slime/ui_data()
+	var/list/dat = ..()
+	dat["additional_info"] = "Should take place inside of <span id='uiCatalogEntryLink'>[required]</span>"
+	return dat
 
 /datum/chemical_reaction/slime/can_happen(var/datum/reagents/holder)
 	if(holder.my_atom && istype(holder.my_atom, required))

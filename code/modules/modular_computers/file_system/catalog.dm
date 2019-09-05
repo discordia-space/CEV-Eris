@@ -10,7 +10,8 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	// Reagents
 	for(var/V in chemical_reagents_list)
 		var/datum/reagent/D = chemical_reagents_list[V]
-		create_catalog_entry(D, CATALOG_REAGENTS)
+		if(D.appear_in_default_catalog)
+			create_catalog_entry(D, CATALOG_REAGENTS)
 	var/datum/catalog/C = GLOB.catalogs[CATALOG_REAGENTS]
 	C.associated_template = "catalog_list_reagents.tmpl"
 	return 1
@@ -28,7 +29,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 				qdel(GLOB.catalogs[catalog_id])
 				GLOB.catalogs.Remove(catalog_id)
 				return FALSE
-			log_debug("Unsupported type passed to /proc/create_catalog_entry()")
+			error("Unsupported type passed to /proc/create_catalog_entry()")
 			return FALSE
 		if(catalog_id)
 			var/datum/catalog/C = GLOB.catalogs[catalog_id]
@@ -56,14 +57,14 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 /datum/catalog/proc/remove_entry(var/datum/catalog_entry/entry)
 	entry_list.Remove(entry)
 
-/datum/catalog/ui_data(mob/user, ui_key = "main")
+/datum/catalog/ui_data(mob/user, ui_key = "main", var/search_value)
 	var/list/data = list()
 	var/list/entries_data = list()
 	for(var/datum/catalog_entry/E in entry_list)
-		entries_data.Add(list(E.catalog_ui_data(user, ui_key)))
+		if(!search_value || findtext(E.title, search_value))
+			entries_data.Add(list(E.catalog_ui_data(user, ui_key)))
 	data["entries"] = entries_data
 	return data
-
 
 /datum/catalog_entry
 	var/thing_type
@@ -106,13 +107,13 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	var/touched_description
 	var/overdose_description
 	var/withdrawal_description
-	var/list/chemical_reaction_reagents = list()
-	var/chemical_reaction_result_amount
-	var/list/chemical_reaction_catalyst = list()
+	var/other_effect_description
+	var/list/recipe_data
+	var/list/can_be_found_in
 
 /datum/catalog_entry/reagent/New(var/datum/reagent/V)
 	if(!istype(V))
-		log_debug("wrong usage of [src.type]")
+		error("wrong usage of [src.type]")
 		qdel(src)
 		return
 	..()
@@ -130,7 +131,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 		var/amount = 1
 		for(var/id in V.heating_products)
 			heating_decompose += "[get_reagent_name_by_id(id)]"
-			if(amount > 1 && V.heating_products.len > amount)
+			if(V.heating_products.len > amount)
 				heating_decompose += "/"
 			amount++
 		heating_decompose += " at [V.heating_point]k."
@@ -139,7 +140,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 		var/amount = 1
 		for(var/id in V.chilling_products)
 			chilling_decompose += "[get_reagent_name_by_id(id)]"
-			if(amount > 1 && V.chilling_products.len > amount)
+			if(V.chilling_products.len > amount)
 				chilling_decompose += "/"
 			amount++
 		chilling_decompose += " at [V.chilling_point]k."
@@ -148,12 +149,9 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	overdose = V.overdose ? V.overdose : null
 	var/list/recipes = GLOB.chemical_reactions_list_by_result[V.id]
 	if(recipes)
-		var/datum/chemical_reaction/R = recipes[1]
-		for(var/id in R.required_reagents)
-			chemical_reaction_reagents.Add(list(list("reagent" = get_reagent_name_by_id(id), "parts" = "[R.required_reagents[id]] part\s of ")))
-		for(var/id in R.catalysts)
-			chemical_reaction_catalyst.Add(list(list("reagent" = get_reagent_name_by_id(id), "parts" = "[R.catalysts[id]] part\s of ")))
-		chemical_reaction_result_amount = "Results in [R.result_amount] part\s of substance."
+		recipe_data = list()
+		for(var/datum/chemical_reaction/R in recipes)
+			recipe_data += list(R.ui_data())
 	// DESCRIPTION
 	description = V.description
 	taste = "Has [V.taste_mult > 1 ? "strong" : V.taste_mult < 1 ? "weak" : ""] taste of [V.taste_description]."
@@ -164,11 +162,10 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	ingested_description = V.ingested_description
 	touched_description = V.touched_description
 	if(V.overdose && !V.overdose_description)
-		log_world("Reagent has overdose but no description, fix dat.")
+		error("Reagent has overdose but no description, fix dat.")
 	overdose_description = V.overdose_description
-	if(V.withdrawal_threshold && !V.withdrawal_description)
-		log_world("Reagent has withdrawal threshold but no description, fix dat.")
 	withdrawal_description = V.withdrawal_description
+	other_effect_description = V.other_effect_description
 	
 
 /datum/catalog_entry/reagent/catalog_ui_data(mob/user, ui_key = "main")
@@ -192,9 +189,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	data["scannable"] = scannable
 	data["overdose"] = overdose
 
-	data["chemical_reaction_reagents"] = chemical_reaction_reagents
-	data["chemical_reaction_result_amount"] = chemical_reaction_result_amount
-	data["chemical_reaction_catalyst"] = chemical_reaction_catalyst
+	data["recipe_data"] = recipe_data
 
 	// DESCRIPTION
 	data["description"] = description
@@ -206,13 +201,14 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	data["touched_description"] = touched_description
 	data["overdose_description"] = overdose_description
 	data["withdrawal_description"] = withdrawal_description
+	data["other_effect_description"] = other_effect_description
 	return data
 
 /datum/catalog_entry/atom
 
 /datum/catalog_entry/atom/New(var/atom/V)
 	if(!istype(V))
-		log_debug("wrong usage of [src.type]")
+		error("wrong usage of [src.type]")
 		qdel(src)
 		return
 	title = V.name

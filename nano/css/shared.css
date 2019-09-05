@@ -34,6 +34,11 @@ body {
     text-align: center;
 }
 
+#uiCatalogEntryLink {
+    clear: both;
+    padding: 8px;
+}
+
 hr {
     background-color: #40628a;
     height: 1px;

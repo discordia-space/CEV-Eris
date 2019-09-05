@@ -2,6 +2,7 @@
 	scannable = 1
 	metabolism = REM/4
 	constant_metabolism = TRUE
+	reagent_type = "Stimulator"
 
 /datum/reagent/stim/mbr
 	name = "Machine binding ritual"

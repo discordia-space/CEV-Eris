@@ -29,7 +29,7 @@ GLOBAL_LIST_EMPTY(customMobModifications)
 
 // adds stat to recipe of applying recipes
 /datum/mobModification/proc/addData()
-	log_debug("[type] doesnt have addValues().")
+	error("[type] doesnt have addValues().")
 	return -1
 
 // sets data by calling addData() multiple times where data is list of arguments

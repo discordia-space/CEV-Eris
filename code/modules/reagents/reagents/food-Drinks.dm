@@ -1,6 +1,8 @@
+/datum/reagent/organic
+	reagent_type = "Organic"
 /* Food */
 
-/datum/reagent/nutriment
+/datum/reagent/organic/nutriment
 	name = "Nutriment"
 	id = "nutriment"
 	description = "All the vitamins, minerals, and carbohydrates the body needs in pure form."
@@ -12,8 +14,7 @@
 	var/injectable = 0
 	color = "#664330"
 
-/datum/reagent/nutriment/mix_data(var/list/newdata, var/newamount)
-
+/datum/reagent/organic/nutriment/mix_data(var/list/newdata, var/newamount)
 	if(!islist(newdata) || !newdata.len)
 		return
 	for(var/i in 1 to newdata.len)
@@ -32,39 +33,39 @@
 				data -= data[i]
 				data -= null
 
-/datum/reagent/nutriment/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/organic/nutriment/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(!injectable)
 		M.adjustToxLoss(0.1 * effect_multiplier)
 		return
 	affect_ingest(M, alien, effect_multiplier)
 
-/datum/reagent/nutriment/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/organic/nutriment/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	// Small bodymass, more effect from lower volume.
 	M.heal_organ_damage(0.5 * issmall(M) ? effect_multiplier * 2 : effect_multiplier, 0)
 	M.adjustNutrition(nutriment_factor * issmall(M) ? effect_multiplier * 2 : effect_multiplier) // For hunger and fatness
 	M.add_chemical_effect(CE_BLOODRESTORE, 0.4 * issmall(M) ? effect_multiplier * 2 : effect_multiplier)
 
-/datum/reagent/nutriment/glucose
+/datum/reagent/organic/nutriment/glucose
 	name = "Glucose"
 	id = "glucose"
 	color = "#FFFFFF"
 
 	injectable = 1
 
-/datum/reagent/nutriment/protein
+/datum/reagent/organic/nutriment/protein
 	name = "Animal Protein"
 	taste_description = "some sort of protein"
 	id = "protein"
 	color = "#440000"
 
 
-/datum/reagent/nutriment/protein/egg
+/datum/reagent/organic/nutriment/protein/egg
 	name = "Egg Yolk"
 	taste_description = "egg"
 	id = "egg"
 	color = "#FFFFAA"
 
-/datum/reagent/nutriment/honey
+/datum/reagent/organic/nutriment/honey
 	name = "Honey"
 	id = "honey"
 	description = "A golden yellow syrup, loaded with sugary sweetness."
@@ -72,7 +73,7 @@
 	nutriment_factor = 10
 	color = "#FFFF00"
 
-/datum/reagent/nutriment/flour
+/datum/reagent/organic/nutriment/flour
 	name = "flour"
 	id = "flour"
 	description = "This is what you rub all over yourself to pretend to be a ghost."
@@ -81,12 +82,12 @@
 	nutriment_factor = 1
 	color = "#FFFFFF"
 
-/datum/reagent/nutriment/flour/touch_turf(var/turf/simulated/T)
+/datum/reagent/organic/nutriment/flour/touch_turf(var/turf/simulated/T)
 	if(!istype(T, /turf/space))
 		new /obj/effect/decal/cleanable/flour(T)
 	return TRUE
 
-/datum/reagent/nutriment/coco
+/datum/reagent/organic/nutriment/coco
 	name = "Coco Powder"
 	id = "coco"
 	description = "A fatty, bitter paste made from coco beans."
@@ -96,7 +97,7 @@
 	nutriment_factor = 5
 	color = "#302000"
 
-/datum/reagent/nutriment/soysauce
+/datum/reagent/organic/nutriment/soysauce
 	name = "Soysauce"
 	id = "soysauce"
 	description = "A salty sauce made from the soy plant."
@@ -106,7 +107,7 @@
 	nutriment_factor = 2
 	color = "#792300"
 
-/datum/reagent/nutriment/ketchup
+/datum/reagent/organic/nutriment/ketchup
 	name = "Ketchup"
 	id = "ketchup"
 	description = "Ketchup, catsup, whatever. It's tomato paste."
@@ -115,7 +116,7 @@
 	nutriment_factor = 5
 	color = "#731008"
 
-/datum/reagent/nutriment/rice
+/datum/reagent/organic/nutriment/rice
 	name = "Rice"
 	id = "rice"
 	description = "Enjoy the great taste of nothing."
@@ -125,7 +126,7 @@
 	nutriment_factor = 1
 	color = "#FFFFFF"
 
-/datum/reagent/nutriment/cherryjelly
+/datum/reagent/organic/nutriment/cherryjelly
 	name = "Cherry Jelly"
 	id = "cherryjelly"
 	description = "Totally the best. Only to be spread on foods with excellent lateral symmetry."
@@ -135,7 +136,7 @@
 	nutriment_factor = 1
 	color = "#801E28"
 
-/datum/reagent/nutriment/cornoil
+/datum/reagent/organic/nutriment/cornoil
 	name = "Corn Oil"
 	id = "cornoil"
 	description = "An oil derived from various types of corn."
@@ -145,7 +146,7 @@
 	nutriment_factor = 20
 	color = "#302000"
 
-/datum/reagent/nutriment/cornoil/touch_turf(var/turf/simulated/T)
+/datum/reagent/organic/nutriment/cornoil/touch_turf(var/turf/simulated/T)
 	if(!istype(T))
 		return TRUE
 
@@ -161,7 +162,7 @@
 		T.wet_floor()
 	return TRUE
 
-/datum/reagent/nutriment/virus_food
+/datum/reagent/organic/nutriment/virus_food
 	name = "Virus Food"
 	id = "virusfood"
 	description = "A mixture of water, milk, and oxygen. Virus cells can use this mixture to reproduce."
@@ -171,7 +172,7 @@
 	nutriment_factor = 2
 	color = "#899613"
 
-/datum/reagent/nutriment/sprinkles
+/datum/reagent/organic/nutriment/sprinkles
 	name = "Sprinkles"
 	id = "sprinkles"
 	description = "Multi-colored little bits of sugar, commonly found on donuts. Loved by cops."
@@ -179,7 +180,7 @@
 	nutriment_factor = 1
 	color = "#FF00FF"
 
-/datum/reagent/nutriment/mint
+/datum/reagent/organic/nutriment/mint
 	name = "Mint"
 	id = "mint"
 	description = "Also known as Mentha."
@@ -187,7 +188,7 @@
 	reagent_state = LIQUID
 	color = "#CF3600"
 
-/datum/reagent/lipozine // The anti-nutriment.
+/datum/reagent/other/lipozine // The anti-nutriment.
 	name = "Lipozine"
 	id = "lipozine"
 	description = "A chemical compound that causes a powerful fat-burning reaction."
@@ -196,12 +197,12 @@
 	color = "#BBEDA4"
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/lipozine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/other/lipozine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.nutrition = max(M.nutrition - 1 * effect_multiplier, 0)
 
 /* Non-food stuff like condiments */
 
-/datum/reagent/sodiumchloride
+/datum/reagent/other/sodiumchloride
 	name = "Table Salt"
 	id = "sodiumchloride"
 	description = "A salt made of sodium chloride. Commonly used to season food."
@@ -210,7 +211,7 @@
 	color = "#FFFFFF"
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/blackpepper
+/datum/reagent/organic/blackpepper
 	name = "Black Pepper"
 	id = "blackpepper"
 	description = "A powder ground from peppercorns. *AAAACHOOO*"
@@ -218,7 +219,7 @@
 	reagent_state = SOLID
 	color = "#000000"
 
-/datum/reagent/enzyme
+/datum/reagent/organic/enzyme
 	name = "Universal Enzyme"
 	id = "enzyme"
 	description = "A universal enzyme used in the preperation of certain chemicals and foods."
@@ -228,7 +229,7 @@
 	color = "#365E30"
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/frostoil
+/datum/reagent/organic/frostoil
 	name = "Frost Oil"
 	id = "frostoil"
 	description = "A special oil that noticably chills the body. Extracted from Ice Peppers."
@@ -237,7 +238,7 @@
 	reagent_state = LIQUID
 	color = "#B31008"
 
-/datum/reagent/frostoil/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/organic/frostoil/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.bodytemperature = max(M.bodytemperature - 10 * TEMPERATURE_DAMAGE_COEFFICIENT, 0)
 	if(prob(1))
 		M.emote("shiver")
@@ -245,7 +246,7 @@
 		M.bodytemperature = max(M.bodytemperature - rand(10,20), 0)
 	holder.remove_reagent("capsaicin", 5)
 
-/datum/reagent/capsaicin
+/datum/reagent/organic/capsaicin
 	name = "Capsaicin Oil"
 	id = "capsaicin"
 	description = "This is what makes chilis hot."
@@ -258,10 +259,10 @@
 	var/discomfort_message = "<span class='danger'>Your insides feel uncomfortably hot!</span>"
 	var/slime_temp_adj = 10
 
-/datum/reagent/capsaicin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/organic/capsaicin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.adjustToxLoss(0.05 * effect_multiplier)
 
-/datum/reagent/capsaicin/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/organic/capsaicin/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.species && (H.species.flags & (NO_PAIN)))
@@ -278,7 +279,7 @@
 		M.bodytemperature += rand(0, 15) + slime_temp_adj
 	holder.remove_reagent("frostoil", 5)
 
-/datum/reagent/capsaicin/condensed
+/datum/reagent/organic/capsaicin/condensed
 	name = "Condensed Capsaicin"
 	id = "condensedcapsaicin"
 	description = "A chemical agent used for self-defense and in police work."
@@ -292,7 +293,7 @@
 	discomfort_message = "<span class='danger'>You feel like your insides are burning!</span>"
 	slime_temp_adj = 15
 
-/datum/reagent/capsaicin/condensed/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/organic/capsaicin/condensed/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	var/eyes_covered = 0
 	var/mouth_covered = 0
 	var/no_pain = 0
@@ -340,7 +341,7 @@
 		M.Stun(5)
 		M.Weaken(5)
 
-/datum/reagent/condensedcapsaicin/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/organic/capsaicin/condensed/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.species && (H.species.flags & NO_PAIN))
@@ -368,6 +369,7 @@
 	var/adj_drowsy = 0
 	var/adj_sleepy = 0
 	var/adj_temp = 0
+	reagent_type = "Drink"
 
 /datum/reagent/drink/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.adjustToxLoss(0.2) // Probably not a good idea; not very deadly though

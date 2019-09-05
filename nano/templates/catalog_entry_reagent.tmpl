@@ -4,7 +4,7 @@
 	{{:helper.link('PRINT', '', {'print_active' : 1})}}{{:helper.link('BACK', '', {'clear_active' : 1}, null, 'floatRight')}}
 	<br><br>
 	<div class="item">
-		<h2>{{:data.name}}</h2>
+		<h1>{{:data.name}}</h1>
 	</div>
 	<div class="item">
 		<h4>Specifications:</h4>
@@ -13,14 +13,14 @@
 				Type:
 			</div>
 			<div class="itemContent">
-				{{:data.reagent_type}}
+				{{:data.reagent_type}}.
 			</div>
 		{{/if}}
 		<div class="itemLabel">
-			State:
+			Phase:
 		</div>
 		<div class="itemContent">
-			{{:data.reagent_state}} at room temperature.
+			{{:data.reagent_state}} at STP.
 		</div>
 		<div class="itemLabel">
 			Metabolism:
@@ -36,10 +36,10 @@
 			</table>
 		</div>
 		<div class="itemLabel">
-			Nerve system accomulation:
+			Nerve system accumulation:
 		</div>
 		<div class="itemContent">
-			{{:data.nsa}}
+			{{:data.nsa}} units.
 		</div>
 		
 		{{if data.heating_decompose || data.chilling_decompose}}
@@ -47,35 +47,40 @@
 				Decomposition:
 			</div>
 			<div class="itemContent">
-				<table style="width:100%">
-					{{if data.heating_decompose}}
-						<tr>Heating: {{:data.heating_decompose}}
-					{{/if}}
-					{{if data.chilling_decompose}}
-						<tr>Chilling: {{:data.chilling_decompose}}
-					{{/if}}
-				</table>
+				{{if data.heating_decompose}}
+					Heating: {{:data.heating_decompose}}
+				{{/if}}
+				{{if data.chilling_decompose}}
+					Chilling: {{:data.chilling_decompose}}
+				{{/if}}
 			</div>
 		{{/if}}
-		{{if data.chemical_reaction_result_amount}}
+		{{if data.recipe_data}}
 			<div class="itemLabel">
 				Recipe:
 			</div>
 			<div class="itemContent">
-				{{for data.chemical_reaction_reagents}}
-					{{:value.parts}}{{:value.reagent}}<br>
+				{{for data.recipe_data}}
+					<div class="statusDisplay" style="overflow: auto;">
+						{{for value.reagents :val:val_i}}
+							{{:val.parts}}{{:val.reagent}}<br>
+						{{/for}}
+						{{for value.catalyst :val:val_i}}
+							In presense of {{:val.units}}u of {{:val.reagent}}<br>
+						{{/for}}
+						{{if value.additional_info}}
+							{{:value.additional_info}}
+						{{/if}}
+						{{:value.result_amount}}
+					</div>
 				{{/for}}
-				{{for data.chemical_reaction_catalyst}}
-					{{:value.parts}}{{:value.reagent}}<br>
-				{{/for}}
-				{{:data.chemical_reaction_result_amount}}
 			</div>
 		{{/if}}
 		<div class="itemLabel">
 			Is scannable:
 		</div>
 		<div class="itemContent">
-			{{:data.scannable}}
+			{{:data.scannable}}.
 		</div>
 		{{if data.overdose}}
 			<div class="itemLabel">
@@ -124,6 +129,11 @@
 		{{if data.withdrawal_description}}
 			<div class="item">
 				{{:data.withdrawal_description}}
+			</div>
+		{{/if}}
+		{{if data.other_effect_description}}
+			<div class="item">
+				{{:data.other_effect_description}}
 			</div>
 		{{/if}}
 	</div>

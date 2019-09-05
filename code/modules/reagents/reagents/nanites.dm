@@ -2,7 +2,7 @@
 #define NANOBOTS_BLOOD_DRAIN 0.003
 
 /datum/reagent/nanites
-	name = "Nanomachines" // son
+	name = ""
 	id = "dont use these"
 	description = "Microscopic construction robots."
 	taste_description = "slimey metal"
@@ -12,9 +12,10 @@
 	heating_point = 523
 	heating_products = list("nanites")
 	scannable = 1
+	reagent_type = "Nanites"
 
 /datum/reagent/nanites/proc/eat_blood(var/mob/living/carbon/M) // Yam !
-	var/datum/reagent/blood/B = M.get_blood()
+	var/datum/reagent/organic/blood/B = M.get_blood()
 	// blood regeneratin 0.1 u every tick so with NANOBOTS_BLOOD_DRAIN = 0.003 human can sustain 30u nanobots without losing blood
 	if(B && B.volume)
 		B.remove_self(volume * NANOBOTS_BLOOD_DRAIN)
@@ -236,6 +237,7 @@
 	description = "Microscopic construction robots."
 	heating_point = 523
 	heating_products = list("uncap nanites")
+	reagent_type = "Nanites/Stimulator"
 
 /datum/reagent/nanites/uncapped/control_booster_utility/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(..())
@@ -249,6 +251,7 @@
 	description = "Microscopic construction robots."
 	heating_point = 523
 	heating_products = list("uncap nanites")
+	reagent_type = "Nanites/Stimulator"
 
 /datum/reagent/nanites/uncapped/control_booster_combat/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(..())

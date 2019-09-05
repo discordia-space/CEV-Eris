@@ -10,7 +10,7 @@
 		chemical_reagents_list[D.id] = D
 
 /datum/reagent
-	var/name = "Reagent"
+	var/name = ""
 	var/id = "reagent"
 	var/description = "A non-descript chemical."
 	var/taste_description = "old rotten bandaids"
@@ -53,12 +53,14 @@
 	var/nerve_system_accumulations = 5 // Nerve system accumulations
 
 	// Catalog stuff
-	var/reagent_type = "Toxin"
+	var/appear_in_default_catalog = TRUE
+	var/reagent_type = "FIX DAT SHIT IMIDIATLY"
 	var/blood_affect_description
 	var/ingested_description
 	var/touched_description
 	var/overdose_description
 	var/withdrawal_description
+	var/other_effect_description
 
 /datum/reagent/proc/remove_self(amount) // Shortcut
 	holder.remove_reagent(id, amount)
