@@ -383,3 +383,13 @@
 	req_tech = list(TECH_MAGNET = 3, TECH_POWER = 4)
 	build_path = /obj/item/weapon/circuitboard/shield_cap
 	sort_string = "VAAAC"*/
+
+/datum/design/research/circuit/telesci/console
+	name = "TeleSci Console"
+	build_path = /obj/item/weapon/circuitboard/telesci_console
+	sort_string = "VAAAD"
+
+/datum/design/research/circuit/telesci/hub
+	name = "TeleSci Hub"
+	build_path = /obj/item/weapon/circuitboard/telesci_pad
+	sort_string = "VAAAE"
