@@ -1,18 +1,3 @@
-/datum/technology/monitoring
-	name = "Monitoring"
-	desc = "Monitoring"
-	tech_type = RESEARCH_ENGINEERING
-
-	x = 0.2
-	y = 0.4
-	icon = "monitoring"
-
-	required_technologies = list(/datum/technology/basic_engineering)
-	required_tech_levels = list()
-	cost = 500
-
-	unlocks_designs = list(/datum/design/research/circuit/atmosalerts, /datum/design/research/circuit/air_management)
-
 // TO ADD: vendor design
 /datum/technology/basic_engineering
 	name = "Basic Engineering"
@@ -20,7 +5,7 @@
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.1
-	y = 0.4
+	y = 0.5
 	icon = "wrench"
 
 	required_technologies = list()
@@ -31,6 +16,22 @@
 						 /datum/design/research/item/part/basic_matter_bin, /datum/design/research/circuit/arcade_battle,
 						 /datum/design/research/circuit/arcade_orion_trail, /datum/design/research/circuit/autolathe,
 						 /datum/design/research/item/light_replacer, /datum/design/autolathe/tool/weldermask, /datum/design/research/item/mesons)
+
+/datum/technology/monitoring
+	name = "Monitoring"
+	desc = "Monitoring"
+	tech_type = RESEARCH_ENGINEERING
+
+	x = 0.2
+	y = 0.7
+	icon = "monitoring"
+
+	required_technologies = list(/datum/technology/basic_engineering)
+	required_tech_levels = list()
+	cost = 500
+
+	unlocks_designs = list(/datum/design/research/circuit/atmosalerts, /datum/design/research/circuit/air_management)
+
 // TO ADD: space_heater
 /datum/technology/ice_and_fire
 	name = "Ice And Fire"
@@ -38,7 +39,7 @@
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.2
-	y = 0.6
+	y = 0.8
 	icon = "spaceheater"
 
 	required_technologies = list(/datum/technology/monitoring)
@@ -48,13 +49,13 @@
 	unlocks_designs = list(/datum/design/research/circuit/gas_heater, /datum/design/research/circuit/gas_cooler)
 
 // TO ADD: idcardconsole
-/datum/technology/adv_engineering
-	name = "Advanced Engineering"
-	desc = "Advanced Engineering"
+/datum/technology/adv_replication
+	name = "Advanced Replication"
+	desc = "Advanced Replication"
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.3
-	y = 0.4
+	y = 0.7
 	icon = "rd"
 
 	required_technologies = list(/datum/technology/monitoring)
@@ -71,24 +72,34 @@
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.3
-	y = 0.2
+	y = 0.8
 	icon = "pda"
 
-	required_technologies = list(/datum/technology/adv_engineering)
+	required_technologies = list(/datum/technology/adv_replication)
 	required_tech_levels = list()
 	cost = 1000
 
-	unlocks_designs = list(/datum/design/research/item/modularcomponent/portabledrive/basic, /datum/design/research/item/modularcomponent/portabledrive/normal,
-						/datum/design/research/item/modularcomponent/portabledrive/advanced, /datum/design/research/item/modularcomponent/disk/normal,
-						/datum/design/research/item/modularcomponent/disk/advanced, /datum/design/research/item/modularcomponent/disk/super,
-						/datum/design/research/item/modularcomponent/disk/cluster, /datum/design/research/item/modularcomponent/disk/small,
-						/datum/design/research/item/modularcomponent/disk/micro, /datum/design/research/item/modularcomponent/netcard/basic,
-						/datum/design/research/item/modularcomponent/netcard/advanced, /datum/design/research/item/modularcomponent/netcard/wired,
-						/datum/design/research/item/modularcomponent/cardslot, /datum/design/research/item/modularcomponent/nanoprinter,
-						/datum/design/research/item/modularcomponent/teslalink, /datum/design/research/item/modularcomponent/cpu,
-						/datum/design/research/item/modularcomponent/cpu/small, /datum/design/research/item/modularcomponent/cpu/photonic,
-						/datum/design/research/item/modularcomponent/cpu/photonic/small
-	)
+	unlocks_designs = list(
+							/datum/design/research/item/modularcomponent/portabledrive/basic,
+							/datum/design/research/item/modularcomponent/portabledrive/normal,
+							/datum/design/research/item/modularcomponent/portabledrive/advanced,
+							/datum/design/research/item/modularcomponent/disk/normal,
+							/datum/design/research/item/modularcomponent/disk/advanced,
+							/datum/design/research/item/modularcomponent/disk/super,
+							/datum/design/research/item/modularcomponent/disk/cluster,
+							/datum/design/research/item/modularcomponent/disk/small,
+							/datum/design/research/item/modularcomponent/disk/micro,
+							/datum/design/research/item/modularcomponent/netcard/basic,
+							/datum/design/research/item/modularcomponent/netcard/advanced,
+							/datum/design/research/item/modularcomponent/netcard/wired,
+							/datum/design/research/item/modularcomponent/cardslot,
+							/datum/design/research/item/modularcomponent/nanoprinter,
+							/datum/design/research/item/modularcomponent/teslalink,
+							/datum/design/research/item/modularcomponent/cpu,
+							/datum/design/research/item/modularcomponent/cpu/small,
+							/datum/design/research/item/modularcomponent/cpu/photonic,
+							/datum/design/research/item/modularcomponent/cpu/photonic/small
+						)
 
 // Make this its own tech tree?
 /datum/technology/custom_circuits
@@ -96,19 +107,23 @@
 	desc = "Custom Circuits"
 	tech_type = RESEARCH_ENGINEERING
 
-	x = 0.3
-	y = 0.6
-	icon = "tesla" // TODO: Get a better icon
+	x = 0.4
+	y = 0.8
+	icon = "tesla"
 
-	required_technologies = list(/datum/technology/adv_engineering)
+	required_technologies = list(/datum/technology/adv_replication)
 	required_tech_levels = list()
 	cost = 1000
 
-	unlocks_designs = list(/datum/design/research/item/wirer, /datum/design/research/item/debugger,
-						/datum/design/research/item/custom_circuit_assembly, /datum/design/research/item/custom_circuit_assembly/medium,
-						/datum/design/research/item/custom_circuit_assembly/drone, /datum/design/research/item/custom_circuit_assembly/large,
-						/datum/design/research/item/custom_circuit_assembly/implant
-	)
+	unlocks_designs = list(
+							/datum/design/research/item/wirer,
+							/datum/design/research/item/debugger,
+							/datum/design/research/item/custom_circuit_assembly,
+							/datum/design/research/item/custom_circuit_assembly/medium,
+							/datum/design/research/item/custom_circuit_assembly/drone,
+							/datum/design/research/item/custom_circuit_assembly/large,
+							/datum/design/research/item/custom_circuit_assembly/implant
+							)
 /* No tesla engine?
 /datum/technology/tesla
 	name = "Tesla"
@@ -119,7 +134,7 @@
 	y = 0.2
 	icon = "tesla"
 
-	required_technologies = list(/datum/technology/adv_engineering)
+	required_technologies = list(/datum/technology/basic_engineering)
 	required_tech_levels = list()
 	cost = 2000
 
@@ -133,37 +148,39 @@
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.4
-	y = 0.4
+	y = 0.6
 	icon = "advmop"
 
-	required_technologies = list(/datum/technology/adv_engineering)
+	required_technologies = list(/datum/technology/basic_engineering)
 	required_tech_levels = list()
 	cost = 500
 
 	unlocks_designs = list(/datum/design/research/circuit/ordercomp, /datum/design/research/circuit/supplycomp)
 
+//TOOLS BRANCH
 // TO ADD: ore_redemption, mining_equipment_vendor, mining_fabricator?
 /datum/technology/basic_mining
 	name = "Basic Mining"
 	desc = "Basic Mining"
 	tech_type = RESEARCH_ENGINEERING
 
-	x = 0.5
+	x = 0.3
 	y = 0.4
 	icon = "drill"
 
-	required_technologies = list(/datum/technology/supplyanddemand)
+	required_technologies = list(/datum/technology/basic_engineering)
 	required_tech_levels = list()
 	cost = 1000
 
 	unlocks_designs = list(/datum/design/research/item/weapon/mining/drill)
+
 
 /datum/technology/advanced_mining
 	name = "Advanced Mining"
 	desc = "Advanced Mining"
 	tech_type = RESEARCH_ENGINEERING
 
-	x = 0.6
+	x = 0.4
 	y = 0.4
 	icon = "jackhammer"
 
@@ -171,8 +188,31 @@
 	required_tech_levels = list()
 	cost = 2000
 
-	unlocks_designs = list(/datum/design/research/circuit/miningdrill, /datum/design/research/circuit/miningdrillbrace,
-						/datum/design/research/item/weapon/mining/drill_diamond, /datum/design/research/item/weapon/mining/jackhammer)
+	unlocks_designs = list(	/datum/design/research/circuit/miningdrill,
+							/datum/design/research/circuit/miningdrillbrace,
+							/datum/design/research/item/weapon/mining/drill_diamond,
+							/datum/design/research/item/weapon/mining/jackhammer
+							)
+
+/datum/technology/adv_tools
+	name = "Advanced Tools"
+	desc = "Advanced Tools"
+	tech_type = RESEARCH_ENGINEERING
+
+	x = 0.6
+	y = 0.4
+	icon = "jawsoflife"
+
+	required_technologies = list(/datum/technology/super_adv_engineering,
+								/datum/technology/advanced_mining
+								)
+	required_tech_levels = list()
+	cost = 2000
+
+	unlocks_designs = list(	/datum/design/autolathe/tool/pneumatic_crowbar,
+							/datum/design/autolathe/tool/rcd,
+							/datum/design/autolathe/tool/rcd_ammo
+							)
 /*
 /datum/technology/basic_handheld
 	name = "Basic Handheld"
@@ -183,7 +223,7 @@
 	y = 0.6
 	icon = "pda"
 
-	required_technologies = list(/datum/technology/adv_engineering)
+	required_technologies = list(/datum/technology/basic_engineering)
 	required_tech_levels = list()
 	cost = 500
 
@@ -209,23 +249,23 @@
 	desc = "Advanced Parts"
 	tech_type = RESEARCH_ENGINEERING
 
-	x = 0.7
-	y = 0.5
+	x = 0.2
+	y = 0.2
 	icon = "advmatterbin"
 
-	required_technologies = list(/datum/technology/advanced_mining)
+	required_technologies = list(/datum/technology/basic_engineering)
 	required_tech_levels = list()
 	cost = 1000
 
 	unlocks_designs = list(/datum/design/research/item/part/high_micro_laser, /datum/design/research/item/part/adv_matter_bin)
 
 /datum/technology/ultra_parts
-	name = "Ultra Parts"
-	desc = "Ultra Parts"
+	name = "Super Parts"
+	desc = "Super Parts"
 	tech_type = RESEARCH_ENGINEERING
 
-	x = 0.8
-	y = 0.5
+	x = 0.4
+	y = 0.2
 	icon = "supermatterbin"
 
 	required_technologies = list(/datum/technology/adv_parts)
@@ -233,8 +273,23 @@
 	cost = 2000
 
 	unlocks_designs = list(/datum/design/research/item/part/ultra_micro_laser, /datum/design/research/item/part/super_matter_bin, /datum/design/research/item/medical/nanopaste)
-/*
-/datum/technology/telescience
+
+/datum/technology/super_adv_engineering
+	name = "Progressive Engineering"
+	desc = "Progressive Engineering"
+	tech_type = RESEARCH_ENGINEERING
+
+	x = 0.5
+	y = 0.3
+	icon = "rped"
+
+	required_technologies = list(/datum/technology/ultra_parts)
+	required_tech_levels = list()
+	cost = 1500
+
+	unlocks_designs = list(/datum/design/research/item/part/RPED, /datum/design/research/circuit/secure_airlock)
+
+/*/datum/technology/telescience
 	name = "Telescience"
 	desc = "telescience"
 	tech_type = RESEARCH_ENGINEERING
@@ -264,33 +319,5 @@
 
 	unlocks_designs = list("quadultra_micro_laser", "bluespace_matter_bin")
 */
-/datum/technology/super_adv_engineering
-	name = "Super Advanced Engineering"
-	desc = "Super Advanced Engineering"
-	tech_type = RESEARCH_ENGINEERING
 
-	x = 0.8
-	y = 0.7
-	icon = "rped"
 
-	required_technologies = list(/datum/technology/ultra_parts)
-	required_tech_levels = list()
-	cost = 1500
-
-	unlocks_designs = list(/datum/design/research/item/part/RPED, /datum/design/research/circuit/secure_airlock)
-
-/datum/technology/adv_tools
-	name = "Advanced Tools"
-	desc = "Advanced Tools"
-	tech_type = RESEARCH_ENGINEERING
-
-	x = 0.8
-	y = 0.9
-	icon = "jawsoflife"
-
-	required_technologies = list(/datum/technology/super_adv_engineering)
-	required_tech_levels = list()
-	cost = 2000
-
-	unlocks_designs = list(/datum/design/autolathe/tool/pneumatic_crowbar, /datum/design/autolathe/tool/rcd,
-						/datum/design/autolathe/tool/rcd_ammo)

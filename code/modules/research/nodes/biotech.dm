@@ -48,8 +48,8 @@
 	desc = "Advanced Medical Machines"
 	tech_type = RESEARCH_BIOTECH
 
-	x = 0.25
-	y = 0.6
+	x = 0.3 //0.25
+	y = 0.65 //0.6
 	icon = "sleeper"
 
 	required_technologies = list(/datum/technology/basic_med_machines)
@@ -63,8 +63,8 @@
 	desc = "Hydroponics"
 	tech_type = RESEARCH_BIOTECH
 
-	x = 0.1
-	y = 0.6
+	x = 0.2
+	y = 0.9
 	icon = "hydroponics"
 
 	required_technologies = list(/datum/technology/basic_biotech)
@@ -72,6 +72,25 @@
 	cost = 400
 
 	unlocks_designs = list(/datum/design/research/circuit/biogenerator)
+
+/datum/technology/portable_chemistry
+	name = "Portable Chemistry"
+	desc = "Portable Chemistry"
+	tech_type = RESEARCH_BIOTECH
+
+	x = 0.4
+	y = 0.8
+	icon = "chemdisp"
+
+	required_technologies = list(	/datum/technology/basic_biotech,
+									/datum/technology/hydroponics
+								)
+	required_tech_levels = list()
+	cost = 700
+
+	unlocks_designs = list(	/datum/design/research/circuit/chemmaster,
+							/datum/design/research/circuit/chem_heater
+							)
 /*
 /datum/technology/basic_food_processing
 	name = "Basic Food Processing"
@@ -134,6 +153,28 @@
 
 	unlocks_designs = list(/datum/design/research/item/implant/chemical, /datum/design/research/item/part/adv_sensor,
 						/datum/design/research/item/part/nano_mani)
+
+/datum/technology/portable_biotech
+	name = "Portable Biotech"
+	desc = "Portable Biotech"
+	tech_type = RESEARCH_BIOTECH
+
+	x = 0.65
+	y = 0.8
+	icon = "rignuclearreactor"
+
+	required_technologies = list(/datum/technology/improved_biotech,
+								/datum/technology/portable_chemistry
+								)
+	required_tech_levels = list()
+	cost = 1000
+
+	unlocks_designs = list(	/datum/design/research/item/autodoc,
+							/datum/design/research/item/autodoc_comercial,
+							/datum/design/research/item/chem_dispenser,
+							/datum/design/research/item/medhud
+							)
+
 /*
 /datum/technology/med_teleportation
 	name = "Medical Teleportation"
@@ -167,22 +208,6 @@
 						/datum/design/research/item/medical/adv_mass_spectrometer, /datum/design/research/item/medical/adv_reagent_scanner,
 						/datum/design/research/item/weapon/chemsprayer, /datum/design/research/item/weapon/rapidsyringe)
 
-/datum/technology/portable_chemistry
-	name = "Portable Chemistry"
-	desc = "Portable Chemistry"
-	tech_type = RESEARCH_BIOTECH
-
-	x = 0.7
-	y = 0.9
-	icon = "chemdisp"
-
-	required_technologies = list(/datum/technology/advanced_biotech)
-	required_tech_levels = list()
-	cost = 1500
-
-	unlocks_designs = list(/datum/design/research/circuit/chemmaster,
-						/datum/design/research/circuit/chem_heater)
-
 /datum/technology/top_biotech
 	name = "Top-tier Biotech"
 	desc = "Top-tier Biotech"
@@ -192,7 +217,9 @@
 	y = 0.7
 	icon = "scalpelmanager"
 
-	required_technologies = list(/datum/technology/advanced_biotech)
+	required_technologies = list(	/datum/technology/advanced_biotech,
+									/datum/technology/portable_biotech
+								)
 	required_tech_levels = list()
 	cost = 2000
 

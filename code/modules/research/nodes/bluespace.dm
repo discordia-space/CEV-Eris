@@ -66,21 +66,6 @@
 						/datum/design/research/item/part/subspace_amplifier, /datum/design/research/item/part/subspace_treatment, 
 						/datum/design/research/item/part/subspace_analyzer, /datum/design/research/item/part/subspace_crystal,
 						/datum/design/research/item/part/subspace_transmitter)
-
-/datum/technology/bluespace_shield
-	name = "Bluespace Shields"
-	desc = "Bluespace Shields"
-	tech_type = RESEARCH_BLUESPACE
-
-	x = 0.4
-	y = 0.4
-	icon = "shield"
-
-	required_technologies = list(/datum/technology/bluespace_telecommunications)
-	required_tech_levels = list()
-	cost = 1500
-
-	unlocks_designs = list(/datum/design/research/circuit/shield/hull)
 /*
 /datum/technology/transmission_encryption
 	name = "Transmission Encryption"
@@ -97,6 +82,38 @@
 
 	unlocks_designs = list()
 */
+/datum/technology/spatial_scan
+	name = "Spatial Analyzing"
+	desc = "Spatial Analyzing"
+	tech_type = RESEARCH_BLUESPACE
+	icon = "pda"
+
+
+	x = 0.5
+	y = 0.4
+	required_technologies = list(/datum/technology/basic_bluespace)
+	cost = 800
+
+	unlocks_designs = list(	/datum/design/research/item/ano_scanner,
+							/datum/design/research/item/beacon_locator,
+							/datum/design/research/item/gps
+							)
+
+/datum/technology/bluespace_shield
+	name = "Bluespace Shields"
+	desc = "Bluespace Shields"
+	tech_type = RESEARCH_BLUESPACE
+
+	x = 0.4
+	y = 0.4
+	icon = "shield"
+
+	required_technologies = list(/datum/technology/spatial_scan)
+	required_tech_levels = list()
+	cost = 1500
+
+	unlocks_designs = list(/datum/design/research/circuit/shield/hull)
+
 /datum/technology/teleportation
 	name = "Teleportation"
 	desc = "Teleportation"
@@ -106,7 +123,7 @@
 	y = 0.6
 	icon = "teleporter"
 
-	required_technologies = list(/datum/technology/bluespace_telecommunications)
+	required_technologies = list(/datum/technology/spatial_scan)
 	required_tech_levels = list()
 	cost = 1500
 
@@ -125,8 +142,10 @@
 	required_tech_levels = list()
 	cost = 2000
 
-	unlocks_designs = list(/datum/design/research/item/beaker/bluespace, /datum/design/research/item/beaker/noreact,
-						/datum/design/research/item/bag_holding, )
+	unlocks_designs = list(	/datum/design/research/item/beaker/bluespace,
+							/datum/design/research/item/beaker/noreact,
+							/datum/design/research/item/bag_holding
+							)
 /*
 /datum/technology/bluespace_rped
 	name = "Bluespace RPED"
