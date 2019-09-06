@@ -4,16 +4,6 @@
 	var/current_track = ""
 	var/obj/item/holder = null
 	var/list/songs = list(
-		"Space Oddity" = 'sound/music/space_oddity.ogg',
-		"Space Dwarfs" = 'sound/music/b12_combined_start.ogg',
-		"Space Asshole" = 'sound/music/space_asshole.ogg',
-		"HQ" = 'sound/music/deus_ex_unatco_nervous_testpilot_remix.ogg',
-		"Faunts Das Malefitz" = 'sound/music/faunts-das_malefitz.ogg',
-		"Neon Fever" = 'sound/music/i_am_waiting_for_you_last_summer_neon_fever.ogg',
-		"My Beautiful Escape" = 'sound/music/nervous_testpilot _my_beautiful_escape.ogg',
-		"Skytown" = 'sound/music/paradise_cracked_skytown.ogg',
-		"Paradise Cracked" = 'sound/music/paradise_cracked_title03.ogg',
-		"Irritations" = 'sound/music/tonspender_irritations.ogg',
 	)
 
 /obj/item/device/player/New(var/obj/item/holder)
