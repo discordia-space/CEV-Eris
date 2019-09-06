@@ -1,7 +1,10 @@
 <!-- 
  -->
-{{if data.browse_stage == "entry"}}
-	{{:helper.link('PRINT', '', {'print_active' : 1})}}{{:helper.link('BACK', '', {'clear_active' : 1}, null, 'floatRight')}}
+{{if data.catalog_browse_stage == "entry" || data.catalog_browse_stage == "entry_entry"}}
+	{{if data.print_avaliable}}
+		{{:helper.link('PRINT', '', {'print_active' : 1})}}
+	{{/if}}
+	{{:helper.link('BACK', '', {'go_back_entry' : 1}, null, 'floatRight')}}
 	<br><br>
 	<div class="item">
 		<h1>{{:data.name}}</h1>
@@ -134,6 +137,13 @@
 		{{if data.other_effect_description}}
 			<div class="item">
 				{{:data.other_effect_description}}
+			</div>
+		{{/if}}
+		{{if data.can_be_found_in}}
+			<div class="statusDisplay" style="overflow: auto;">
+				{{for data.can_be_found_in}}
+					<span class='uiCatalogEntryLink'>{{:value.type}}</span>
+				{{/for}}
 			</div>
 		{{/if}}
 	</div>

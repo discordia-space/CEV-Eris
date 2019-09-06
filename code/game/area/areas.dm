@@ -15,6 +15,8 @@
 	plane = BLACKNESS_PLANE
 	layer = AREA_LAYER
 	var/ship_area = FALSE
+	create_icon_asset = FALSE
+	contribute_to_defalt_catalog = FALSE
 
 /area/New()
 	icon_state = ""

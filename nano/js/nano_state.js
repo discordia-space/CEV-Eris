@@ -111,7 +111,29 @@ NanoStateClass.prototype.onUpdate = function (data) {
         if (NanoTemplate.templateExists('mapFooter'))
         {
             $("#uiMapFooter").html(NanoTemplate.parse('mapFooter', data)); // render the 'mapFooter' template to the #uiMapFooter div
-        }
+		}
+		$(".uiCatalogEntryLink").replaceWith(function(n){
+			var entry;
+			for (var i in data['potential_catalog_data'])
+			{	
+				var E = data['potential_catalog_data'][i]
+				if(E['entry_type'] == document.getElementsByClassName("uiCatalogEntryLink")[n].innerHTML)
+					entry = E;
+					break;
+			}
+			if(!entry)
+				return 'COULD NOT FIND ENTRY'
+			var text = entry['entry_name']
+			var parameters = "{'set_active_entry' : " + entry['entry_type'] + "}";
+			
+			var iconHtml = '<img style= "margin-bottom:-8px" src=' + entry['entry_img_path'] + ' height=24 width=24>';
+
+			var elementIdHtml = '';
+		
+
+			return '<div unselectable="on" class="link linkActive hasIcon" data-href="' + NanoUtility.generateHref(parameters) + '" ' + elementIdHtml + '>' + iconHtml + text + '</div>';
+		  });
+		
     }
     catch(error)
     {

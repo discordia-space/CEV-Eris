@@ -18,6 +18,7 @@
 	var/spray_size = 3
 	var/list/spray_sizes = list(1,3)
 	volume = 250
+	contribute_to_defalt_reagent_catalog = FALSE
 
 /obj/item/weapon/reagent_containers/spray/New()
 	..()

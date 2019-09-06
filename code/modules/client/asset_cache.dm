@@ -160,8 +160,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 /var/global/list/asset_datums = list()
 
 /datum/asset
-	// If asset is trivial it's download will be transfered to end of queue
-	var/isTrivial = TRUE
+	
 
 //get a assetdatum or make a new one
 /proc/get_asset_datum(var/type)
@@ -210,35 +209,49 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 		var/datum/design/design = D
 
 		var/filename = sanitizeFileName("[design.build_path].png")
-		var/icon/I = getFlatTypeIcon(design.build_path)
-		register_asset(filename, I)
-		assets[filename] = I
+		if(!asset_cache.cache[filename])
+			var/icon/I = getFlatTypeIcon(design.build_path)
+			register_asset(filename, I)
+			assets[filename] = I
 
 		design.ui_data["icon"] = filename
 
+// Ohh boy...
+/datum/asset/simple/all_atoms/register(var/atom/A)
+	if(!istype(A))
+		return
+	var/filename = sanitizeFileName("[A.type].png")
+	if(asset_cache.cache[filename])
+		return
+	var/icon/I = getFlatIcon(A)
+	register_asset(filename, I)
+	assets[filename] = I
 
 /datum/asset/simple/craft/register()
 	for(var/name in SScraft.categories)
 		for(var/datum/craft_recipe/CR in SScraft.categories[name])
 			if(CR.result)
 				var/filename = sanitizeFileName("[CR.result].png")
-				var/icon/I = getFlatTypeIcon(CR.result)
-				register_asset(filename, I)
-				assets[filename] = I
+				if(!asset_cache.cache[filename])
+					var/icon/I = getFlatTypeIcon(CR.result)
+					register_asset(filename, I)
+					assets[filename] = I
 
 			for(var/datum/craft_step/CS in CR.steps)
 				if(CS.reqed_type)
 					var/filename = sanitizeFileName("[CS.reqed_type].png")
-					var/icon/I = getFlatTypeIcon(CS.reqed_type)
-					register_asset(filename, I)
-					assets[filename] = I
+					if(!asset_cache.cache[filename])
+						var/icon/I = getFlatTypeIcon(CS.reqed_type)
+						register_asset(filename, I)
+						assets[filename] = I
 
 /datum/asset/simple/materials/register()
 	for(var/type in subtypesof(/obj/item/stack/material) - typesof(/obj/item/stack/material/cyborg))
 		var/filename = sanitizeFileName("[type].png")
-		var/icon/I = getFlatTypeIcon(type)
-		register_asset(filename, I)
-		assets[filename] = I
+		if(!asset_cache.cache[filename])
+			var/icon/I = getFlatTypeIcon(type)
+			register_asset(filename, I)
+			assets[filename] = I
 
 /datum/asset/simple/pda
 	assets = list(
@@ -270,7 +283,6 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 	)
 
 /datum/asset/nanoui
-	isTrivial = FALSE
 	var/list/common = list()
 
 	var/list/common_dirs = list(
@@ -333,15 +345,11 @@ var/decl/asset_cache/asset_cache = new()
 	cache = new
 
 /proc/send_assets()
-	var/list/datum/asset/trivialAssets = list()
-	for(var/type in typesof(/datum/asset) - list(/datum/asset, /datum/asset/simple))
-		var/datum/asset/A = new type()
-		if(A.isTrivial)
-			trivialAssets += A
-		else
-			A.register()
-	for(var/datum/asset/A in trivialAssets)
-		A.register()
+	//we will create nanoui assets first so it will be first in assets list
+	get_asset_datum(/datum/asset/nanoui)
+	for(var/type in typesof(/datum/asset) - list(/datum/asset, /datum/asset/simple, /datum/asset/nanoui))
+		get_asset_datum(type)
+	
 
 	for(var/client/C in clients)
 		// Doing this to a client too soon after they've connected can cause issues, also the proc we call sleeps.

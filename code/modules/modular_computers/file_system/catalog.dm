@@ -1,7 +1,15 @@
-#define ENTRY_TYPE_REAGENT "reagent"
-
 #define CATALOG_REAGENTS "reagents"
 
+/*
+	important notes
+	catalogs are handled in /datum/nano_module, check there
+	important procs are:
+		browse_catalog_entry()
+		browse_catalog()
+		refresh_catalog_browsing()
+
+
+*/
 
 GLOBAL_LIST_EMPTY(catalogs)
 GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
@@ -34,7 +42,16 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 		if(catalog_id)
 			var/datum/catalog/C = GLOB.catalogs[catalog_id]
 			C.add_entry(GLOB.all_catalog_entries_by_type[thing.type])
+	else if(catalog_id)
+		var/datum/catalog/C = GLOB.catalogs[catalog_id]
+		if(!C.entry_list.Find(GLOB.all_catalog_entries_by_type[thing.type]))
+			C.add_entry(GLOB.all_catalog_entries_by_type[thing.type])
 	return TRUE
+
+/proc/get_catalog_entry(var/type)
+	if(GLOB.all_catalog_entries_by_type[type])
+		return GLOB.all_catalog_entries_by_type[type]
+	error("Catalog Entry with type [type] was not found.")
 
 /datum/catalog
 	var/id
@@ -73,6 +90,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	var/description
 	var/associated_template
 	var/thing_nature 	// reagent/weapon/device/etc.
+	var/list/can_be_found_in = list()
 
 /datum/catalog_entry/New(var/datum/V)
 	thing_type = V.type
@@ -109,7 +127,13 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	var/withdrawal_description
 	var/other_effect_description
 	var/list/recipe_data
-	var/list/can_be_found_in
+
+/datum/catalog_entry/proc/add_to_can_be_found(var/atom/A)
+	for(var/V in can_be_found_in)
+		var/list/L = V
+		if(is_associative(L) && L["type"] == A.type)
+			return
+	can_be_found_in.Add(list(list("type" = A.type)))
 
 /datum/catalog_entry/reagent/New(var/datum/reagent/V)
 	if(!istype(V))
@@ -166,7 +190,6 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	overdose_description = V.overdose_description
 	withdrawal_description = V.withdrawal_description
 	other_effect_description = V.other_effect_description
-	
 
 /datum/catalog_entry/reagent/catalog_ui_data(mob/user, ui_key = "main")
 	var/list/data = ..()
@@ -202,9 +225,11 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	data["overdose_description"] = overdose_description
 	data["withdrawal_description"] = withdrawal_description
 	data["other_effect_description"] = other_effect_description
+	data["can_be_found_in"] = can_be_found_in.len ? can_be_found_in : null
 	return data
 
 /datum/catalog_entry/atom
+	associated_template = "catalog_entry_atom.tmpl"
 
 /datum/catalog_entry/atom/New(var/atom/V)
 	if(!istype(V))
@@ -213,4 +238,17 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 		return
 	title = V.name
 	description = V.desc
+	image_path = getAtomCacheFilename(V)
 	..()
+
+/datum/catalog_entry/atom/ui_data(mob/user, ui_key = "main")
+	var/list/data = list()
+
+	// SPECIFICTS
+	data["name"] = title
+	data["entry_image_path"] = image_path
+
+	// DESCRIPTION
+	data["description"] = description
+	data["can_be_found_in"] = can_be_found_in.len ? can_be_found_in : null
+	return data

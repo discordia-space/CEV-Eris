@@ -227,6 +227,7 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	var/generate_asteroid= FALSE
 	var/tmp/z_level
 	var/height = -1	///< The number of Z-Levels in the map.
+	contribute_to_defalt_catalog = FALSE
 
 
 // If the height is more than 1, we mark all contained levels as connected.

@@ -31,6 +31,10 @@
 	var/initialized = FALSE
 
 	var/list/preloaded_reagents = null
+	var/contribute_to_defalt_catalog = TRUE
+	var/contribute_to_defalt_reagent_catalog = TRUE
+	var/contribute_to_defalt_container_info = TRUE
+	var/create_icon_asset = TRUE
 
 /atom/New(loc, ...)
 	init_plane()
@@ -64,6 +68,19 @@
 
 	update_plane()
 
+	if(create_icon_asset)
+		var/datum/asset/simple/all_atoms/AAA = get_asset_datum(/datum/asset/simple/all_atoms)
+		AAA.register(src)
+
+	if(contribute_to_defalt_catalog)
+		create_catalog_entry(src)
+
+	if(contribute_to_defalt_container_info)
+		if(istype(loc, /obj/item/weapon/storage))
+			var/datum/catalog_entry/E = get_catalog_entry(src.type)
+			if(E)
+				E.add_to_can_be_found(loc)
+	
 	if(preloaded_reagents)
 		if(!reagents)
 			var/volume = 0
@@ -72,6 +89,12 @@
 			create_reagents(volume)
 		for(var/reagent in preloaded_reagents)
 			reagents.add_reagent(reagent, preloaded_reagents[reagent])
+			if(contribute_to_defalt_reagent_catalog)
+				var/datum/reagent/R = chemical_reagents_list[reagent]
+				var/datum/catalog_entry/reagent/E = get_catalog_entry(R.type)
+				if(E)
+					E.add_to_can_be_found(src)
+	
 
 
 	return INITIALIZE_HINT_NORMAL

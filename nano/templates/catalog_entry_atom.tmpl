@@ -1,0 +1,27 @@
+<!-- 
+ -->
+{{if data.catalog_browse_stage == "entry"}}
+	{{if data.print_avaliable}}
+		{{:helper.link('PRINT', '', {'print_active' : 1})}}
+	{{/if}}
+	{{:helper.link('BACK', '', {'go_back_entry' : 1}, null, 'floatRight')}}
+	<br><br>
+	<div class="item">
+		<h1>{{:data.name}}</h1>
+	</div>
+	<div class = "statusDisplayItem" style="float: right;">
+		<img src={{:data.entry_image_path}} width = 128px>
+	</div>
+		<h4>Description:</h4>
+		<div class="item">
+			{{:data.description}}
+		</div>
+		{{if data.can_be_found_in}}
+			<div class="statusDisplay" style="overflow: auto;">
+				{{for data.can_be_found_in}}
+					<span class='uiCatalogEntryLink'>{{:value.type}}</span>
+				{{/for}}
+			</div>
+		{{/if}}
+	</div>
+{{/if}}
