@@ -68,51 +68,24 @@
 	return CS.apply(I, user, target, src)
 
 /datum/craft_recipe/proc/build_batch(mob/living/user, amount)
+	if(!amount)
+		return
 	if(steps.len > 1)
 		warning("Attempted to batch craft a multi-step recipe: [name]")
 		try_build(user)
 		return
 
-	if(!can_build(user, get_turf(user)))
-		return
-
-	var/datum/craft_step/CS = steps[1]
-
-	var/resamt = 0
-	while(resamt < amount)
-		var/obj/item/I = CS.find_item(user)
-
-		if(!I)
-			to_chat(user, SPAN_WARNING("You can't find required item!"))
+	var/obj/item/CR = try_build(user)
+	while(--amount)
+		var/obj/item/stack/S = try_build(user)
+		if(!S)
 			break
-
-		//Robots can craft things on the floor
-		if(ishuman(user) && !I.is_held())
-			to_chat(user, SPAN_WARNING("You should hold [I] in hands for doing that!"))
-			break
-
-		if(!CS.apply(I, user, null, src))
-			break
-
-		++resamt
-
-	if(!resamt)
-		return
-
-	if(ispath(result, /obj/item/stack))
-		var/obj/item/CR = new result(null, resamt)
-		CR.dir = user.dir
-		CR.Created(user)
-		if(flags & CRAFT_ON_FLOOR)
-			CR.forceMove(user.loc, MOVED_DROP)
-		else
-			user.put_in_hands(CR)
-	else
-		while(resamt--)
-			var/obj/item/CR = new result(null)
-			CR.dir = user.dir
-			CR.Created(user)
-			CR.forceMove(user.loc, MOVED_DROP)
+		if(istype(S))
+			if(CR.Adjacent(user))
+				S.transfer_to(CR)
+			else
+				//someone ninja'd the result stack so make new one
+				CR = S
 
 /datum/craft_recipe/proc/try_build(mob/living/user)
 	if(!can_build(user, get_turf(user)))
@@ -144,3 +117,4 @@
 		CR.forceMove(user.loc, MOVED_DROP)
 	else
 		user.put_in_hands(CR)
+	return CR
