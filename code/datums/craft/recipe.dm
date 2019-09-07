@@ -71,7 +71,7 @@
 	if(!amount)
 		return
 	if(steps.len > 1)
-		warning("Attempted to batch craft a multi-step recipe: [name]")
+		warning("A multi-step recipe has BATCH_CRAFT flag: [name]. It should not!")
 		try_build(user)
 		return
 
