@@ -932,6 +932,7 @@
 #include "code\game\objects\items\weapons\circuitboards\machinery\commsantenna.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\excelsior.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\mech_recharger.dm"
+#include "code\game\objects\items\weapons\circuitboards\machinery\medical.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\mining_drill.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\neotheology.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\pacman.dm"
