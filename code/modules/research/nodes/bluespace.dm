@@ -1,6 +1,6 @@
 /datum/technology/basic_bluespace
 	name = "Basic 'Blue-space'"
-	desc = "Basic 'Blue-space'"
+	desc = "Basic blue-space probing."
 	tech_type = RESEARCH_BLUESPACE
 
 	x = 0.2
@@ -14,8 +14,8 @@
 	unlocks_designs = list(/datum/design/research/item/beacon)
 
 /datum/technology/radio_transmission
-	name = "Radio Transmission"
-	desc = "Radio Transmission"
+	name = "Blue-space Transmission"
+	desc = "Blue-space broadcasting and receiving basics."
 	tech_type = RESEARCH_BLUESPACE
 
 	x = 0.2
@@ -29,8 +29,8 @@
 	unlocks_designs = list()
 
 /datum/technology/telecommunications
-	name = "Telecommunications"
-	desc = "Telecommunications"
+	name = "Roots\' Telecommunications"
+	desc = "Parts for telecommunications. Hyperwave filtering method. Subspace ansible. Subspace transmition and analyzing method. Advanced bluespace broadcasting and receiving. Transmition system monitoring."
 	tech_type = RESEARCH_BLUESPACE
 
 	x = 0.2
@@ -39,13 +39,26 @@
 
 	required_technologies = list(/datum/technology/radio_transmission)
 	required_tech_levels = list()
-	cost = 600
+	cost = 1000
 
-	unlocks_designs = list(/datum/design/research/circuit/comconsole)
+	unlocks_designs = list(	/datum/design/research/circuit/comconsole,
+							/datum/design/research/circuit/message_monitor,
+							/datum/design/research/circuit/comm_monitor,
+							/datum/design/research/circuit/comm_server,
+							/datum/design/research/circuit/tcom/receiver,
+							/datum/design/research/circuit/tcom/broadcaster,
+
+							/datum/design/research/item/part/subspace_ansible,
+							/datum/design/research/item/part/hyperwave_filter, 
+							/datum/design/research/item/part/subspace_amplifier,
+							/datum/design/research/item/part/subspace_treatment, 
+							/datum/design/research/item/part/subspace_analyzer,
+							/datum/design/research/item/part/subspace_crystal,
+							/datum/design/research/item/part/subspace_transmitter)
 
 /datum/technology/bluespace_telecommunications
-	name = "Bluespace Telecommunications"
-	desc = "Bluespace Telecommunications"
+	name = "Advanced Telecommunications"
+	desc = "Advanced telecommunications machinery. Decryption method. Relays\' system. Complex sorting of machinery. Data storing system. Network relay."
 	tech_type = RESEARCH_BLUESPACE
 
 	x = 0.4
@@ -54,18 +67,16 @@
 
 	required_technologies = list(/datum/technology/telecommunications)
 	required_tech_levels = list()
-	cost = 1000
+	cost = 800
 
-	unlocks_designs = list(/datum/design/research/circuit/comm_monitor, /datum/design/research/circuit/comm_server,
-						/datum/design/research/circuit/message_monitor, /datum/design/research/circuit/tcom/receiver,
-						/datum/design/research/circuit/tcom/bus, /datum/design/research/circuit/tcom/hub,
-						/datum/design/research/circuit/tcom/relay, /datum/design/research/circuit/tcom/processor,
-						/datum/design/research/circuit/tcom/server, /datum/design/research/circuit/tcom/broadcaster,
-						/datum/design/research/circuit/ntnet_relay,
-						/datum/design/research/item/part/subspace_ansible, /datum/design/research/item/part/hyperwave_filter, 
-						/datum/design/research/item/part/subspace_amplifier, /datum/design/research/item/part/subspace_treatment, 
-						/datum/design/research/item/part/subspace_analyzer, /datum/design/research/item/part/subspace_crystal,
-						/datum/design/research/item/part/subspace_transmitter)
+	unlocks_designs = list( 
+							/datum/design/research/circuit/tcom/bus,
+							/datum/design/research/circuit/tcom/hub,
+							/datum/design/research/circuit/tcom/processor,
+							/datum/design/research/circuit/tcom/server,
+							/datum/design/research/circuit/tcom/relay,
+							/datum/design/research/circuit/ntnet_relay
+						)
 /*
 /datum/technology/transmission_encryption
 	name = "Transmission Encryption"
@@ -84,7 +95,7 @@
 */
 /datum/technology/spatial_scan
 	name = "Spatial Analyzing"
-	desc = "Spatial Analyzing"
+	desc = "Basics of spatial analyze, generally using for location of beacons and anomaly analyzing."
 	tech_type = RESEARCH_BLUESPACE
 	icon = "pda"
 
@@ -101,7 +112,7 @@
 
 /datum/technology/bluespace_shield
 	name = "Bluespace Shields"
-	desc = "Bluespace Shields"
+	desc = "Improved light-shields with using of bluespace technologies."
 	tech_type = RESEARCH_BLUESPACE
 
 	x = 0.4
@@ -116,7 +127,7 @@
 
 /datum/technology/teleportation
 	name = "Teleportation"
-	desc = "Teleportation"
+	desc = "Creating a worm hole through a bluespace, safely transporting objects through it."
 	tech_type = RESEARCH_BLUESPACE
 
 	x = 0.6
@@ -130,8 +141,8 @@
 	unlocks_designs = list(/datum/design/research/circuit/teleconsole)
 
 /datum/technology/bluespace_tools
-	name = "Bluespace Tools"
-	desc = "Bluespace Tools"
+	name = "Advanced Bluespace Tech"
+	desc = "In-Bluespace storing method, allowing store objects/reagents in bluespace. And The method of separate storage of reagents."
 	tech_type = RESEARCH_BLUESPACE
 
 	x = 0.8
@@ -144,7 +155,8 @@
 
 	unlocks_designs = list(	/datum/design/research/item/beaker/bluespace,
 							/datum/design/research/item/beaker/noreact,
-							/datum/design/research/item/bag_holding
+							/datum/design/research/item/bag_holding,
+							/datum/design/research/item/weapon/bluespace_harpoon
 							)
 /*
 /datum/technology/bluespace_rped
