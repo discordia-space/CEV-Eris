@@ -181,7 +181,7 @@
 /datum/reagent/drug/sanguinum
 	name = "Sanguinum"
 	id = "sanguinum"
-	description = ""
+	description = "Forces bone marrow to produce more blood than usual. Have irritating side effects"
 	taste_description = "metal"
 	reagent_state = LIQUID
 	color = "#e06270"
