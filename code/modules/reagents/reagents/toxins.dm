@@ -27,7 +27,7 @@
 /datum/reagent/toxin/plasticide
 	name = "Plasticide"
 	id = "plasticide"
-	description = "Liquid plastic, do not eat."
+	description = "Liquid plastic used in creating plastic sheets."
 	taste_description = "plastic"
 	reagent_state = LIQUID
 	color = "#CF3600"
@@ -36,7 +36,7 @@
 /datum/reagent/toxin/oil
 	name = "Oil"
 	id = "oil"
-	description = "Crude oil, somehow connected to frequent invasions."
+	description = "Crude oil, commonly found on habitable planets."
 	taste_description = "money"
 	reagent_state = LIQUID
 	color = "#0C0C0C"
@@ -158,7 +158,7 @@
 /datum/reagent/toxin/potassium_chlorophoride
 	name = "Potassium Chlorophoride"
 	id = "potassium_chlorophoride"
-	description = "A specific chemical based on Potassium Chloride to stop the heart for surgery. Not safe to eat!"
+	description = "A specific chemical based on Potassium Chloride to stop the heart for surgery."
 	taste_description = "salt"
 	reagent_state = SOLID
 	color = "#FFFFFF"
@@ -226,7 +226,7 @@
 /datum/reagent/toxin/plantbgone
 	name = "Plant-B-Gone"
 	id = "plantbgone"
-	description = "A harmful toxic mixture to kill plantlife. Do not ingest!"
+	description = "A harmful toxic mixture to kill plantlife."
 	taste_mult = 1
 	reagent_state = LIQUID
 	color = "#49002E"
@@ -273,7 +273,7 @@
 /datum/reagent/toxin/mutagen
 	name = "Unstable mutagen"
 	id = "mutagen"
-	description = "Might cause unpredictable mutations. Keep away from children."
+	description = "Might cause unpredictable mutations."
 	taste_description = "slime"
 	taste_mult = 0.9
 	reagent_state = LIQUID
@@ -305,7 +305,7 @@
 /datum/reagent/medicine/slimejelly
 	name = "Slime Jelly"
 	id = "slimejelly"
-	description = "A gooey semi-liquid produced from one of the deadliest lifeforms in existence. SO REAL."
+	description = "A gooey semi-liquid produced from one of the deadliest lifeforms in existence."
 	taste_description = "slime"
 	taste_mult = 1.3
 	reagent_state = LIQUID
@@ -467,7 +467,7 @@
 /datum/reagent/toxin/diplopterum
 	name = "Diplopterum"
 	id = "diplopterum"
-	description = "Harvested from roaches."
+	description = "Can be found in tissues of the roaches."
 	taste_description = "sludge"
 	reagent_state = LIQUID
 	color = "#c9bed2"
