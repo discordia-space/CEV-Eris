@@ -30,7 +30,7 @@
 
 /datum/technology/telecommunications
 	name = "Roots\' Telecommunications"
-	desc = "Parts for telecommunications. Hyperwave filtering method. Subspace ansible. Subspace transmition and analyzing method. Advanced bluespace broadcasting and receiving. Transmition system monitoring."
+	desc = "Components required for telecomunication machinery"
 	tech_type = RESEARCH_BLUESPACE
 
 	x = 0.2
@@ -58,7 +58,7 @@
 
 /datum/technology/bluespace_telecommunications
 	name = "Advanced Telecommunications"
-	desc = "Advanced telecommunications machinery. Decryption method. Relays\' system. Complex sorting of machinery. Data storing system. Network relay."
+	desc = "Telecomunication circuits"
 	tech_type = RESEARCH_BLUESPACE
 
 	x = 0.4
@@ -112,7 +112,7 @@
 
 /datum/technology/bluespace_shield
 	name = "Bluespace Shields"
-	desc = "Improved light-shields with using of bluespace technologies."
+	desc = "Improved light-shields based on bluespace technologies."
 	tech_type = RESEARCH_BLUESPACE
 
 	x = 0.4
@@ -161,7 +161,7 @@
 /*
 /datum/technology/bluespace_rped
 	name = "Bluespace RPED"
-	desc = "Bluespace RPED"
+	desc = "Bluespace Rapid Part Exchange Device."
 	tech_type = RESEARCH_BLUESPACE
 
 	x = 0.8
