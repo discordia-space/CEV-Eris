@@ -1,6 +1,6 @@
 /datum/technology/basic_biotech
 	name = "Basic Biotech"
-	desc = "Basic biotech micro manipulations and scanning method."
+	desc = "Allows basic matter scanning and manipulation."
 	tech_type = RESEARCH_BIOTECH
 
 	x = 0.1
@@ -17,7 +17,7 @@
 
 /datum/technology/basic_med_machines
 	name = "Basic Medical Machines"
-	desc = "Basic medical databases and surgical monitoring."
+	desc = "Adds basic medical databases and surgical monitoring."
 	tech_type = RESEARCH_BIOTECH
 
 	x = 0.25
@@ -49,7 +49,7 @@
 */
 /datum/technology/adv_med_machines
 	name = "Advanced Medical Machines"
-	desc = "Advanced Medical manipulations and fast scan and injection system."
+	desc = "Adds advanced Medical Machinery with advanced scan and injection systems."
 	tech_type = RESEARCH_BIOTECH
 
 	x = 0.3 //0.25
@@ -64,7 +64,7 @@
 
 /datum/technology/hydroponics
 	name = "Hydroponics"
-	desc = "The method of reassembling biomaterials. The flora genetic modifying method."
+	desc = "Allows biomanipulating and genetic sequence modification for flora."
 	tech_type = RESEARCH_BIOTECH
 
 	x = 0.2
@@ -80,7 +80,7 @@
 
 /datum/technology/portable_chemistry
 	name = "Portable Chemistry"
-	desc = "Portable bottle generating and reagent separation. Portable heating system, space for system required: 30 cubic millimeters."
+	desc = "Adds new machinery for reagent separation and heating system."
 	tech_type = RESEARCH_BIOTECH
 
 	x = 0.4
@@ -129,7 +129,7 @@
 */
 /datum/technology/basic_medical_tools
 	name = "Basic Medical Tools"
-	desc = "Mass Spectrometry method. Experimental surgical, laser tools. Medical sensors intergrated hud in hud-glass."
+	desc = "Adds experimental surgical and medical tools."
 	tech_type = RESEARCH_BIOTECH
 
 	x = 0.4
@@ -148,7 +148,7 @@
 
 /datum/technology/improved_biotech
 	name = "Improved Biotech"
-	desc = "Improved micro manipulations, advaced scanning method. Chemical implant, be careful."
+	desc = "Improved matter scanning and manipulation."
 	tech_type = RESEARCH_BIOTECH
 
 	x = 0.55
@@ -166,7 +166,7 @@
 
 /datum/technology/portable_biotech
 	name = "Portable Biotech"
-	desc = "Portable injection and scan method, capitalists' and not capitalists portable sleeper. Integrated medical sensors hud with hardsuits' systems."
+	desc = "Adds new configurations to portable sleeper. Integrated medical sensors hud with hardsuits systems."
 	tech_type = RESEARCH_BIOTECH
 
 	x = 0.65
@@ -188,7 +188,7 @@
 /*
 /datum/technology/med_teleportation
 	name = "Medical Teleportation"
-	desc = "Medical Teleportation"
+	desc = "Emergency Recovery Beacons for teleportation."
 	tech_type = RESEARCH_BIOTECH
 
 	x = 0.7
@@ -203,7 +203,7 @@
 */
 /datum/technology/advanced_biotech
 	name = "Advanced Biotech"
-	desc = "Top-tier micro manipulations systems. Top-tier scan method. Upgraded mass spectrometry. Advaced sprayer. Machinegunlike syringe-gun."
+	desc = "Top-tier medical machinery with advanced machinery parts."
 	tech_type = RESEARCH_BIOTECH
 
 	x = 0.7
@@ -224,7 +224,7 @@
 
 /datum/technology/top_biotech
 	name = "Augmentations' Biotech"
-	desc = "Augmentations for body, this tech using almost all previous technologies."
+	desc = "Unlocks advanced augmentations."
 	tech_type = RESEARCH_BIOTECH
 
 	x = 0.85
