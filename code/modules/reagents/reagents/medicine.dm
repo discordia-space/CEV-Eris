@@ -270,7 +270,7 @@
 /datum/reagent/medicine/imidazoline
 	name = "Imidazoline"
 	id = "imidazoline"
-	description = "Heals eye damage"
+	description = "Helps naturally regenerate and restore eye cells."
 	taste_description = "dull toxin"
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -518,7 +518,7 @@
 /datum/reagent/medicine/quickclot
 	name = "Quickclot"
 	id = "quickclot"
-	description = "Temporarily stops\\oppresses any internal and internal bleeding."
+	description = "Temporarily oppresses any internal and internal bleeding."
 	taste_description = "metal"
 	reagent_state = LIQUID
 	color = "#a6b85b"
@@ -540,7 +540,7 @@
 /datum/reagent/medicine/ossisine   
 	name = "ossisine"
 	id = "ossisine"
-	description = "Paralyses user and restores broken bones."
+	description = "Paralyses user and restores broken bones. Medicate in critical conditions only."
 	taste_description = "calcium"
 	reagent_state = LIQUID
 	color = "#660679"
@@ -582,7 +582,7 @@
 /datum/reagent/medicine/kyphotorin 
 	name = "Kyphotorin"
 	id = "kyphotorin"
-	description = "Allows patient to grow back limbs, yet by sacrificing lots of blood and nutrients, also deals random damage to body parts, extremely painful and needs constant medical attention when applied."
+	description = "Allows patient to grow back limbs. Extremely painful to user and needs constant medical attention when applied."
 	taste_description = "metal"
 	reagent_state = LIQUID
 	color = "#7d88e6"
@@ -610,7 +610,7 @@
 /datum/reagent/medicine/polystem
 	name = "Polystem"
 	id = "polystem"
-	description = "Polystem boosts natural body regeneration. "
+	description = "Polystem boosts natural body regeneration."
 	taste_description = "bitterness"
 	taste_mult = 3
 	reagent_state = LIQUID
@@ -629,7 +629,7 @@
 /datum/reagent/medicine/detox
 	name = "Detox"
 	id = "detox"
-	description = "Boost value of NSA randomly."
+	description = "Boosts neural regeneration, allowing neural system to tolerate more chemicals without permament damage."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#229e08"
@@ -694,7 +694,7 @@
 /datum/reagent/medicine/aminazine
 	name = "Aminazine"
 	id = "aminazine"
-	description = "Opresses withdrawal effects for some time."
+	description = "Medication designed to opresses withdrawal effects for some time."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#88336f"
@@ -708,7 +708,7 @@
 /datum/reagent/medicine/haloperidol
 	name = "Haloperidol"
 	id = "haloperidol"
-	description = "Purges chems from bloodstream, lowers NSA and sedates patient. An overdose of haloperidol can be fatal. "
+	description = "Quick sedative for emergencies. While sedating patient it purges chemicals from bloodstream. An overdose of haloperidol can be fatal."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#ba1f04"
@@ -754,7 +754,7 @@
 /datum/reagent/medicine/vomitol
 	name = "Vomitol"
 	id = "vomitol"
-	description = "Forces patient to vomit for some time - results in total cleaning of his stomach. Has extremely unpleasant taste."
+	description = "Forces patient to vomit - results in total cleaning of his stomach. Has extremely unpleasant taste."
 	taste_description = "worst thing in the world"
 	reagent_state = LIQUID
 	color = "#a6b85b"
