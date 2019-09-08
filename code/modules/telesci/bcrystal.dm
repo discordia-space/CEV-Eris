@@ -18,7 +18,7 @@
 //	reagents.add_reagent("bluespace_dust", blink_range)
 
 /obj/item/bluespace_crystal/attack_self(mob/user)
-	user.visible_message("<span class='warning'>[user] crushes [src]!</span>", "<span class='danger'>You crush [src]!</span>")
+	user.visible_message(SPAN_WARNING("[user] crushes [src]!"), SPAN_DANGER("You crush [src]!"))
 	var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 	sparks.set_up(5, 0, get_turf(user))
 	sparks.start()
@@ -37,7 +37,7 @@
 
 /obj/item/bluespace_crystal/throw_impact(atom/hit_atom)
 	if(!..()) // not caught in mid-air
-		visible_message("<span class='notice'>[src] fizzles and disappears upon impact!</span>")
+		visible_message(SPAN_NOTICE("[src] fizzles and disappears upon impact!"))
 		var/turf/T = get_turf(hit_atom)
 		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 		sparks.set_up(5, 0, T)

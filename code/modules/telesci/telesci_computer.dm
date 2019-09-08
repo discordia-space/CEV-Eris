@@ -49,7 +49,7 @@
 /obj/machinery/computer/telescience/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/bluespace_crystal))
 		if(crystals.len >= max_crystals)
-			to_chat(user, "<span class='warning'>There are not enough crystal slots.</span>")
+			to_chat(user, SPAN_WARNING("There are not enough crystal slots."))
 			return
 		user.drop_item(src)
 		crystals += W
@@ -61,13 +61,13 @@
 			inserted_gps = W
 			user.unEquip(W)
 			W.forceMove(src)
-			user.visible_message("[user] inserts [W] into \the [src]'s GPS device slot.", "<span class='notice'>You insert [W] into \the [src]'s GPS device slot.</span>")
+			user.visible_message("[user] inserts [W] into \the [src]'s GPS device slot.", SPAN_NOTTICE("<span class='notice'>You insert [W] into \the [src]'s GPS device slot.</span>"))
 	else if(istype(W, /obj/item/weapon/tool/multitool))
 		var/obj/item/weapon/tool/multitool/M = W
 		if(M.buffer_object && istype(M.buffer_object, /obj/machinery/telepad))
 			telepad = M.buffer_object
 			M.buffer_object = null
-			to_chat(user, "<span class='caution'>You upload the data from the [W.name]'s buffer.</span>")
+			to_chat(user, SPAN_WARNING("You upload the data from the [W.name]'s buffer."))
 	else
 		..()
 

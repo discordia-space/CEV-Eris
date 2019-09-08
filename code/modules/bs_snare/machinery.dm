@@ -59,8 +59,8 @@
 					teleport_back(M)
 					mobs += M
 	if(length(mobs) == 0)
-		playsound('sound/machines/buzz-sigh.ogg')
-		playsound('sound/voice/bfreeze.ogg')
+		playsound(src.loc, 'sound/machines/buzz-sigh.ogg')
+		playsound(src.loc, 'sound/voice/bfreeze.ogg', 50, 1)
 		audible_message(SPAN_WARNING("The [src.name] buzzes and state \'SNARE EITHER DISABLED OR NOT AVAILABLE, TRY TO PROBE IT AGAIN, IF YOU ARE SURE THAT THE SNARE IN A GOOD CONDITION OR CONNECTED TO USER.\'"),
 						SPAN_WARNING("The [src.name] buzzes and state something."),
 						hearing_distance = 5
@@ -92,7 +92,7 @@
 	circuit = /obj/item/weapon/circuitboard/bssilk_cons
 
 	icon_keyboard = "rd_key"
-	icon_screen = "ai-fixer-404"
+	icon_screen = "telesci"
 
 	var/hub_id = ""
 	var/obj/machinery/bssilk_hub/connected_hub = null
