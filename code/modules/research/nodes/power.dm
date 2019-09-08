@@ -1,6 +1,6 @@
 /datum/technology/basic_power
 	name = "Basic Power Storing"
-	desc = "Basic power storing and control system."
+	desc = "Basic power storing and control systems."
 	tech_type = RESEARCH_POWERSTORAGE
 
 	x = 0.1
@@ -23,7 +23,7 @@
 
 /datum/technology/advanced_power
 	name = "Advanced Power Storing"
-	desc = "Advanced Power Storing"
+	desc = "Advanced powercells"
 	tech_type = RESEARCH_POWERSTORAGE
 
 	x = 0.2
@@ -42,7 +42,7 @@
 
 /datum/technology/advanced_power_storage
 	name = "Advanced Power Storage (SMES)"
-	desc = "Advanced Power Storage (SMES)"
+	desc = "Required for stable power output"
 	tech_type = RESEARCH_POWERSTORAGE
 
 	x = 0.25
@@ -57,7 +57,7 @@
 
 /datum/technology/energy_distribution
 	name = "Energy Distribution"
-	desc = "Breaker boxes, that give more comfortable control of powernets."
+	desc = "Breaker boxes, that give more control of powernets."
 	tech_type = RESEARCH_POWERSTORAGE
 
 	x = 0.5
@@ -72,7 +72,7 @@
 
 /datum/technology/super_power
 	name = "Super Power Storing"
-	desc = "Super Power Storing"
+	desc = "Super Powercells"
 	tech_type = RESEARCH_POWERSTORAGE
 
 	x = 0.4
@@ -126,7 +126,7 @@
 
 /datum/technology/advanced_power_generation
 	name = "Basic Fusion Power"
-	desc = "MRSPACMAN, fusion generator, need tritium for power generation."
+	desc = "MRSPACMAN working on tritium."
 	tech_type = RESEARCH_POWERSTORAGE
 
 	x = 0.4
@@ -156,7 +156,7 @@
 
 /datum/technology/bluespace_power
 	name = "Fusion Based Power"
-	desc = "Power cells based on bluespace and fusion power."
+	desc = "Best powercells accessible."
 	tech_type = RESEARCH_POWERSTORAGE
 
 	x = 0.8
