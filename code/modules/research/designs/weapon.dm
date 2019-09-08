@@ -58,6 +58,10 @@
 	build_path = /obj/item/weapon/gun/energy/floragun
 	sort_string = "TBAAA"
 
+/datum/design/research/item/weapon/bluespace_harpoon
+	build_path = /obj/item/weapon/bluespace_harpoon
+	sort_string = "TBAAB"
+
 // Ammo
 /datum/design/research/item/ammo
 	name_category = "ammunition"

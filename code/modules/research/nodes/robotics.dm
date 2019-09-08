@@ -11,14 +11,16 @@
 	required_tech_levels = list()
 	cost = 0
 
-	unlocks_designs = list(/datum/design/research/circuit/mech_recharger, /datum/design/research/circuit/recharge_station,
-						/datum/design/research/item/medical/robot_scanner, /datum/design/research/item/mmi)
+	unlocks_designs = list(	/datum/design/research/circuit/mech_recharger,
+							/datum/design/research/circuit/recharge_station,
+							/datum/design/research/item/medical/robot_scanner,
+							/datum/design/research/item/mmi)
 
 //MECHA BRANCH
 
 /datum/technology/exosuit_robotics
-	name = "Exosuit Robotics"
-	desc = "Exosuit Robotics"
+	name = "Basic Exosuit Robotics"
+	desc = "Exosuit control systems. Exosuit-miner basics. "
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.5
@@ -32,7 +34,6 @@
 	unlocks_designs = list(
 							/datum/design/research/circuit/mechacontrol,
 							/datum/design/research/circuit/mechfab,
-							/datum/design/research/circuit/robocontrol,
 							/datum/design/research/circuit/dronecontrol,
 							/datum/design/research/circuit/mecha/ripley_main,
 							/datum/design/research/circuit/mecha/ripley_peri
@@ -40,7 +41,7 @@
 
 /datum/technology/mech_odysseus
 	name = "Odyssey"
-	desc = "Odyssey"
+	desc = "Odyssey - the medical exosuit."
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.8
@@ -51,12 +52,13 @@
 	required_tech_levels = list()
 	cost = 500
 
-	unlocks_designs = list(/datum/design/research/circuit/mecha/odysseus_main, /datum/design/research/circuit/mecha/odysseus_peri)
+	unlocks_designs = list(	/datum/design/research/circuit/mecha/odysseus_main,
+							/datum/design/research/circuit/mecha/odysseus_peri)
 
 
 /datum/technology/mech_gygax
 	name = "Gygax"
-	desc = "Gygax"
+	desc = "Gygax - the killer exosuit."
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.8
@@ -90,7 +92,7 @@
 */
 /datum/technology/mech_durand
 	name = "Durand"
-	desc = "Durand"
+	desc = "Durand - the knight exosuit."
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.7
@@ -101,12 +103,14 @@
 	required_tech_levels = list()
 	cost = 2000
 
-	unlocks_designs = list(/datum/design/research/circuit/mecha/durand_main, /datum/design/research/circuit/mecha/durand_peri, /datum/design/research/circuit/mecha/durand_targ)
+	unlocks_designs = list(	/datum/design/research/circuit/mecha/durand_main,
+							/datum/design/research/circuit/mecha/durand_peri,
+							/datum/design/research/circuit/mecha/durand_targ)
 
 
 /datum/technology/mech_phazon
 	name = "Phazon"
-	desc = "Phazon"
+	desc = "Phazon - the battle scout exosuit"
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.8
@@ -117,13 +121,15 @@
 	required_tech_levels = list() // Add some bluespace requirement?
 	cost = 4000
 
-	unlocks_designs = list(/datum/design/research/circuit/mecha/phazon_main, /datum/design/research/circuit/mecha/phazon_peri, /datum/design/research/circuit/mecha/phazon_targ)
+	unlocks_designs = list(	/datum/design/research/circuit/mecha/phazon_main,
+							/datum/design/research/circuit/mecha/phazon_peri,
+							/datum/design/research/circuit/mecha/phazon_targ)
 
 
 //Mech Modules
 /datum/technology/mech_modules_core
 	name = "Exosuit Modules Technology"
-	desc = "Exosuit Modules Technology"
+	desc = "Roots of exosuits' modularity."
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.25
@@ -217,7 +223,7 @@
 
 /datum/technology/mech_heavy_weaponry_modules
 	name = "Exosuit Heavy Weaponry"
-	desc = "Exosuit Heavy Weaponry"
+	desc = "Integration of hand lethal weapon in exosuit system."
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.1
@@ -237,7 +243,7 @@
 
 /datum/technology/cyborg_robo
 	name = "AI Robotics"
-	desc = "AI Robotics"
+	desc = "Positron links. Man-Machine Interface. Cyborg control systems. Artificial Intelegence mobile storages."
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.5
@@ -252,12 +258,13 @@
 							/datum/design/research/item/posibrain,
 							/datum/design/research/item/mmi_radio,
 							/datum/design/research/item/intellicard,
-							/datum/design/research/item/paicard
+							/datum/design/research/item/paicard,
+							/datum/design/research/circuit/robocontrol
 							)
 
 /datum/technology/artificial_intelligence
 	name = "Artificial intelligence"
-	desc = "Artificial intelligence"
+	desc = "Construction and programming of artificial intelligence."
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.4
@@ -275,7 +282,7 @@
 
 /datum/technology/artificial_intelligence_laws
 	name = "Artificial intelligence: LAWS"
-	desc = "Artificial intelligence: LAWS"
+	desc = "Artificial intelligence laws sets."
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.4
@@ -306,8 +313,8 @@
 							)
 
 /datum/technology/robot_modules
-	name = "Cyborg Components"
-	desc = "Cyborg Components"
+	name = "Advanced Cyborg Components"
+	desc = "Advanced Cyborg Components"
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.6
