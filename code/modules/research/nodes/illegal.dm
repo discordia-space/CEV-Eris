@@ -1,6 +1,6 @@
 /datum/technology/binary_encryption_key
 	name = "Binary Encrpytion Key"
-	desc = "Encrpytion Key that allow to receive binary communication (This type of communication using by AI and cyborgs)."
+	desc = "Encrpytion Key that allow to receive binary communication used by AI and cyborgs."
 	tech_type = RESEARCH_ILLEGAL
 
 	x = 0.1
@@ -63,7 +63,7 @@
 
 /datum/technology/borg_syndicate_module
 	name = "Borg Illegal Weapons Upgrade"
-	desc = "Borg Illegal Weapons Upgrade"
+	desc = "Module with questionable ethics"
 	tech_type = RESEARCH_ILLEGAL
 
 	x = 0.9
