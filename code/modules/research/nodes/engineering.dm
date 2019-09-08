@@ -25,7 +25,7 @@
 
 /datum/technology/monitoring
 	name = "Monitoring"
-	desc = "Connection to vesel atmos system."
+	desc = "Machinery designed to manage vessel atmos."
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.2
@@ -138,7 +138,7 @@
 /* No tesla engine?
 /datum/technology/tesla
 	name = "Tesla"
-	desc = "Tesla"
+	desc = "Tesla engine machinery"
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.3
@@ -155,7 +155,7 @@
 // TO ADD: advmop?, holosign, spraycan, spacesuit & helmet?, glowsticks_adv, stimpack
 /datum/technology/supplyanddemand
 	name = "Supply And Demand"
-	desc = "Supply And Demand"
+	desc = "Machinery required for working supply."
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.4
@@ -172,7 +172,7 @@
 // TO ADD: ore_redemption, mining_equipment_vendor, mining_fabricator?
 /datum/technology/basic_mining
 	name = "Basic Mining"
-	desc = "Mining handdrill technology."
+	desc = "Mining handheld drill technology."
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.3
@@ -188,7 +188,7 @@
 
 /datum/technology/advanced_mining
 	name = "Advanced Mining"
-	desc = "Static drill, improved handrill."
+	desc = "Allows more complex drill designs."
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.4
@@ -207,7 +207,7 @@
 
 /datum/technology/adv_tools
 	name = "Advanced Tools"
-	desc = "Matter replication technology. Pneumatics integration in crowbar."
+	desc = "Matter replication technology."
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.6
@@ -227,7 +227,7 @@
 /*
 /datum/technology/basic_handheld
 	name = "Basic Handheld"
-	desc = "Basic Handheld"
+	desc = "Basic PDA technologies."
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.3
@@ -242,7 +242,7 @@
 
 /datum/technology/adv_handheld
 	name = "Advanced Handheld"
-	desc = "Advanced Handheld"
+	desc = "Advanced PDA technologies."
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.6
@@ -257,7 +257,7 @@
 */
 /datum/technology/adv_parts
 	name = "Advanced Parts"
-	desc = "Advanced Parts"
+	desc = "Advanced machinery parts."
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.2
@@ -272,7 +272,7 @@
 
 /datum/technology/ultra_parts
 	name = "Super Parts"
-	desc = "Super Parts"
+	desc = "State of the art machinery parts."
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.4
@@ -303,7 +303,7 @@
 /*
 /datum/technology/bluespace_parts
 	name = "Bluespace Parts"
-	desc = "Bluespace Parts"
+	desc = "Theoretically best parts possible to manufacture."
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.9
