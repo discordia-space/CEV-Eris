@@ -16,7 +16,7 @@
 // TO ADD: synth flashes?
 /datum/technology/basic_nonlethal
 	name = "Basic Non-Lethal"
-	desc = "Basic Non-Lethal"
+	desc = "Basic weaponry for non-lethal takedowns"
 	tech_type = RESEARCH_COMBAT
 
 	x = 0.3
@@ -31,7 +31,7 @@
 
 /datum/technology/weapon_recharging
 	name = "Weapon Recharging"
-	desc = "Weapon Recharging"
+	desc = "Weapon Recharger circuit"
 	tech_type = RESEARCH_COMBAT
 
 	x = 0.5
@@ -50,7 +50,7 @@
 
 /datum/technology/advanced_nonlethal
 	name = "Advanced Non-Lethal"
-	desc = "Electrical-shock weapon and ammo."
+	desc = "Electroshock based weaponry."
 	tech_type = RESEARCH_COMBAT
 
 	x = 0.5
@@ -68,7 +68,7 @@
 
 /*/datum/technology/sec_computers
 	name = "Security Computers"
-	desc = "Security Computers"
+	desc = "Security data and prison manage terminals."
 	tech_type = RESEARCH_COMBAT
 
 	x = 0.2
@@ -98,7 +98,7 @@
 
 /datum/technology/exotic_weaponry
 	name = "Experemental Weaponry"
-	desc = "Remote temperature controling weapon."
+	desc = "Working exotic prototypes, which can be used as weapons."
 	tech_type = RESEARCH_COMBAT
 
 	x = 0.7
@@ -113,7 +113,7 @@
 
 /datum/technology/adv_exotic_weaponry
 	name = "Advanced Experemental Weaponry"
-	desc = "Specisl weapon system using plasma as catalyst. Special weapon core prototipe that deal DNA damage to target."
+	desc = "Advanced prototype weaponry for guranteed takedown."
 	tech_type = RESEARCH_COMBAT
 
 	x = 0.8
@@ -130,7 +130,7 @@
 
 /datum/technology/adv_lethal
 	name = "Advanced Lethal Weapons"
-	desc = "Advanced machinegun system"
+	desc = "Advanced machinegun system."
 	tech_type = RESEARCH_COMBAT
 
 	x = 0.7
@@ -147,7 +147,7 @@
 
 /datum/technology/laser_weaponry
 	name = "Laser Weaponry"
-	desc = "Laser Weaponry"
+	desc = "Assault laser weapons."
 	tech_type = RESEARCH_COMBAT
 
 	x = 0.9
