@@ -1,6 +1,6 @@
 /datum/technology/basic_robotics
 	name = "Basic Robotics"
-	desc = "Basic Robotics"
+	desc = "Basic required for smooth operation"
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.5
@@ -20,7 +20,7 @@
 
 /datum/technology/exosuit_robotics
 	name = "Basic Exosuit Robotics"
-	desc = "Exosuit control systems. Exosuit-miner basics. "
+	desc = "Exosuit control systems and basic exosuits"
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.5
@@ -41,7 +41,7 @@
 
 /datum/technology/mech_odysseus
 	name = "Odyssey"
-	desc = "Odyssey - the medical exosuit."
+	desc = "Exosuit designed for medical emergencies"
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.8
@@ -58,7 +58,7 @@
 
 /datum/technology/mech_gygax
 	name = "Gygax"
-	desc = "Gygax - the killer exosuit."
+	desc = "Exosuit with great combat capabilites"
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.8
@@ -77,7 +77,7 @@
 /*
 /datum/technology/mech_gyrax_ultra
 	name = "Gygax Ultra"
-	desc = "Gygax Ultra"
+	desc = "State of the art combat exosuit."
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.4
@@ -92,7 +92,7 @@
 */
 /datum/technology/mech_durand
 	name = "Durand"
-	desc = "Durand - the knight exosuit."
+	desc = "Combat exosuit with advanced defencive capabilities"
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.7
@@ -110,7 +110,7 @@
 
 /datum/technology/mech_phazon
 	name = "Phazon"
-	desc = "Phazon - the battle scout exosuit"
+	desc = "Exosuit with experimental phazing system"
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.8
@@ -144,7 +144,7 @@
 
 /datum/technology/mech_utility_modules
 	name = "Exosuit Utility Modules"
-	desc = "Exosuit Utility Modules"
+	desc = "Modules designed to provide utility capabilities."
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.15
@@ -204,7 +204,7 @@
 
 /datum/technology/mech_weaponry_modules
 	name = "Exosuit Weaponry"
-	desc = "Exosuit Weaponry"
+	desc = "Basic exosuit weaponry"
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.2
@@ -223,7 +223,7 @@
 
 /datum/technology/mech_heavy_weaponry_modules
 	name = "Exosuit Heavy Weaponry"
-	desc = "Integration of hand lethal weapon in exosuit system."
+	desc = "Advanced beam weaponry"
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.1
@@ -243,7 +243,7 @@
 
 /datum/technology/cyborg_robo
 	name = "AI Robotics"
-	desc = "Positron links. Man-Machine Interface. Cyborg control systems. Artificial Intelegence mobile storages."
+	desc = "Necessity for a robot manufacturing"
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.5
@@ -314,7 +314,7 @@
 
 /datum/technology/robot_modules
 	name = "Advanced Cyborg Components"
-	desc = "Advanced Cyborg Components"
+	desc = "Advanced utility modules for cyborgs."
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.6
