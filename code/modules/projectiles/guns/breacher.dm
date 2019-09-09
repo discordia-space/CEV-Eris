@@ -166,7 +166,7 @@
 		icon_state = "Hatton_box0"
 
 /obj/item/weapon/hatton_magazine/moebius
-	name = "Moebius BT \"Sigmafort\" gas tube"
+	name = "Moebius BT \"Q-del\" gas tube"
 	icon_state = "Moebius_box1"
 	matter = list(MATERIAL_PLASMA = 10, MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 2)
 	charge = 2
@@ -200,8 +200,10 @@
 	return
 
 /obj/item/weapon/hatton/moebius
-	name = "Moebius BT \"Sigmafort\""
-	desc = "More an instrument than a weapon, this breaching tool was designed for emergency situations."
+	name = "Moebius BT \"Q-del\""
+	desc = {"This breaching tool was reverse engineered from the \"Hatton\" design.
+	Despite the Excelsior \"Hatton\" being traded on the free market through Technomancer League channels,
+	this device suffers from a wide number of reliability issues stemming from it being lathe printed."}
 	icon_state = "Moebius_Hammer_1"
 	item_state = "Moebius_Hammer_1"
 	matter = list(MATERIAL_PLASTEEL = 8, MATERIAL_SILVER = 5, MATERIAL_PLASTIC = 5)
