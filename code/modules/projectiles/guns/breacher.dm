@@ -3,9 +3,9 @@
 //There's also a robot version which uses power instead of gas tubes.
 
 /obj/item/weapon/hatton
-	name = "Excelsior BD \"Hatton\""
-	desc = "More an instrument than a weapon, this breaching device was designed for emergency situations."
-	icon = 'icons/obj/guns/hatton.dmi'
+	name = "Excelsior PH \"Hatton\""
+	desc = "More an instrument than a weapon, this pressure hammer was designed for emergency situations."
+	icon = 'icons/obj/guns/breacher.dmi'
 	icon_state = "Hatton_Hammer_1"
 	item_state = "Hatton_Hammer_1"
 	flags = PASSTABLE | CONDUCT
@@ -14,7 +14,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	attack_verb = list("struck", "hit", "bashed")
 	price_tag = 1000
-	var/obj/item/weapon/hatton_magazine/magazine = new()
+	var/obj/item/weapon/hatton_magazine/magazine
 	var/fire_sound = 'sound/weapons/pulse.ogg'
 	var/fire_cooldown = 0
 	var/last_fired = 0
@@ -30,10 +30,10 @@
 	overlays.Cut()
 	if(magazine)
 		if(magazine.charge)
-			icon_state="Hatton_Hammer_1"
+			icon_state = "Hatton_Hammer_1"
 			overlays += icon(icon, "[magazine.charge]/3")
 		else
-			icon_state="Hatton_Hammer_1_empty"
+			icon_state = "Hatton_Hammer_1_empty"
 			overlays += icon(icon, "1/3")
 	else
 		icon_state="Hatton_Hammer_0"
@@ -144,16 +144,16 @@
 
 // Magazine
 /obj/item/weapon/hatton_magazine
-	name = "Excelsior BD \"Hatton\" gas tube"
-	icon = 'icons/obj/guns/hatton.dmi'
+	name = "Excelsior PH \"Hatton\" gas tube"
+	icon = 'icons/obj/guns/breacher.dmi'
 	icon_state = "Hatton_box1"
 	w_class = ITEM_SIZE_SMALL
 	//m_amt = 15
 	origin_tech = list(TECH_MATERIAL = 2)
-	matter = list(MATERIAL_PLASMA=10, MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 2)
+	matter = list(MATERIAL_PLASMA = 10, MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 2)
 	price_tag = 100
 
-	var/charge=3
+	var/charge = 3
 
 /obj/item/weapon/hatton_magazine/Initialize()
 	. = ..()
@@ -161,10 +161,21 @@
 
 /obj/item/weapon/hatton_magazine/update_icon()
 	if(charge)
-		icon_state="Hatton_box1"
+		icon_state = "Hatton_box1"
 	else
-		icon_state="Hatton_box0"
+		icon_state = "Hatton_box0"
 
+/obj/item/weapon/hatton_magazine/moebius
+	name = "Moebius PH \"Sigmafort\" gas tube"
+	icon_state = "Moebius_box1"
+	matter = list(MATERIAL_PLASMA = 10, MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 2)
+	charge = 2
+
+/obj/item/weapon/hatton_magazine/moebius/update_icon()
+	if(charge)
+		icon_state = "Moebius_box1"
+	else
+		icon_state = "Moebius_box0"
 
 
 //Variants
@@ -188,6 +199,34 @@
 /obj/item/weapon/hatton/robot/attack_self(mob/living/user as mob)
 	return
 
+/obj/item/weapon/hatton/moebius
+	name = "Moebius PH \"Sigmafort\""
+	desc = "More an instrument than a weapon, this breaching device was designed for emergency situations."
+	icon_state = "Moebius_Hammer_1"
+	item_state = "Moebius_Hammer_1"
+	matter = list(MATERIAL_PLASTEEL = 8, MATERIAL_SILVER = 5, MATERIAL_PLASTIC = 5)
+
+/obj/item/weapon/hatton/moebius/update_icon()
+	overlays.Cut()
+	if(magazine)
+		if(magazine.charge)
+			icon_state = "Moebius_Hammer_1"
+			overlays += icon(icon, "[magazine.charge]/3")
+		else
+			icon_state = "Moebius_Hammer_1_empty"
+			overlays += icon(icon, "1/3")
+	else
+		icon_state = "Moebius_Hammer_0"
+
+/obj/item/weapon/hatton/moebius/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/weapon/hatton_magazine/moebius))
+		if(!magazine)
+			user.drop_item()
+			magazine = W
+			magazine.loc = src
+			update_icon()
+			return
+	return
 
 //reactions
 
