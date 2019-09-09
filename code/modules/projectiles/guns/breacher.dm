@@ -3,8 +3,8 @@
 //There's also a robot version which uses power instead of gas tubes.
 
 /obj/item/weapon/hatton
-	name = "Excelsior PH \"Hatton\""
-	desc = "More an instrument than a weapon, this pressure hammer was designed for emergency situations."
+	name = "Excelsior BT \"Hatton\""
+	desc = "More an instrument than a weapon, this breaching tool was designed for emergency situations."
 	icon = 'icons/obj/guns/breacher.dmi'
 	icon_state = "Hatton_Hammer_1"
 	item_state = "Hatton_Hammer_1"
@@ -144,7 +144,7 @@
 
 // Magazine
 /obj/item/weapon/hatton_magazine
-	name = "Excelsior PH \"Hatton\" gas tube"
+	name = "Excelsior BT \"Hatton\" gas tube"
 	icon = 'icons/obj/guns/breacher.dmi'
 	icon_state = "Hatton_box1"
 	w_class = ITEM_SIZE_SMALL
@@ -166,7 +166,7 @@
 		icon_state = "Hatton_box0"
 
 /obj/item/weapon/hatton_magazine/moebius
-	name = "Moebius PH \"Sigmafort\" gas tube"
+	name = "Moebius BT \"Sigmafort\" gas tube"
 	icon_state = "Moebius_box1"
 	matter = list(MATERIAL_PLASMA = 10, MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 2)
 	charge = 2
@@ -200,8 +200,8 @@
 	return
 
 /obj/item/weapon/hatton/moebius
-	name = "Moebius PH \"Sigmafort\""
-	desc = "More an instrument than a weapon, this breaching device was designed for emergency situations."
+	name = "Moebius BT \"Sigmafort\""
+	desc = "More an instrument than a weapon, this breaching tool was designed for emergency situations."
 	icon_state = "Moebius_Hammer_1"
 	item_state = "Moebius_Hammer_1"
 	matter = list(MATERIAL_PLASTEEL = 8, MATERIAL_SILVER = 5, MATERIAL_PLASTIC = 5)
