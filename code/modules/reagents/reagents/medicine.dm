@@ -170,8 +170,6 @@
 	overdose = 60
 	scannable = 1
 	metabolism = 0.02
-	blood_affect_description = "Applies mild painkiller effect when assimilated."
-	overdose_description = "Overdosing results in alterations in perception, mood and behavior."
 
 /datum/reagent/medicine/paracetamol/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.add_chemical_effect(CE_PAINKILLER, 50)

@@ -62,12 +62,6 @@
 	// Catalog stuff
 	var/appear_in_default_catalog = TRUE
 	var/reagent_type = "FIX DAT SHIT IMIDIATLY"
-	var/blood_affect_description
-	var/ingested_description
-	var/touched_description
-	var/overdose_description
-	var/withdrawal_description
-	var/other_effect_description
 
 /datum/reagent/proc/remove_self(amount) // Shortcut
 	holder.remove_reagent(id, amount)

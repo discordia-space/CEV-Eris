@@ -95,7 +95,8 @@ SUBSYSTEM_DEF(atoms)
 		qdeleted = TRUE
 	else if(!get_turf(A) && !A.can_be_created_in_nullspace)
 		if(SScatalog_setup.initialized)
-			CRASH("[A.type] was created in nullspace, but it doesnt suppose to.")
+			if(SSticker.current_state >= GAME_STATE_PLAYING)
+				CRASH("[A.type] was created in nullspace, but it doesnt suppose to.")
 		spawn()
 			qdel(A)
 		qdeleted = TRUE

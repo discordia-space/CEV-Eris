@@ -30,18 +30,7 @@
 
 	var/initialized = FALSE
 	var/can_be_created_in_nullspace = FALSE
-
 	var/list/preloaded_reagents = null
-	// should this atom have catalog entry
-	// this is set to FALSE for not gameplay atoms like areas, landmarks etc
-	var/contribute_to_catalog = TRUE
-	// this will add atom to can_be_found reagent entry
-	// this is set to FALSE for things like beakers and pills 
-	var/contribute_to_reagent_catalog = TRUE
-	// this will add atom to can_be_found storage item enry
-	var/contribute_to_container_catalog = TRUE
-	// will create icon asset that will be send to players
-	var/create_icon_asset = TRUE
 
 /atom/New(loc, ...)
 	init_plane()

@@ -17,6 +17,31 @@
 		<div class="item">
 			{{:data.description}}
 		</div>
+		{{if data.catalog_info_level_one}}
+			<div class="item">
+				{{:data.catalog_info_level_one}}
+			</div>
+		{{/if}}
+		{{if data.catalog_info_level_two}}
+			<div class="item">
+				{{:data.catalog_info_level_two}}
+			</div>
+		{{/if}}
+		{{if data.catalog_info_level_three}}
+			<div class="item">
+				{{:data.catalog_info_level_three}}
+			</div>
+		{{/if}}
+		{{if data.catalog_info_level_four}}
+			<div class="item">
+				{{:data.catalog_info_level_four}}
+			</div>
+		{{/if}}
+		{{if data.catalog_info_level_ooc}}
+			<div class="item">
+				{{:data.catalog_info_level_ooc}}
+			</div>
+		{{/if}}
 		{{if data.can_be_found_in}}
 			<div class="statusDisplay" style="overflow: auto;">
 				<table style="width:100%">

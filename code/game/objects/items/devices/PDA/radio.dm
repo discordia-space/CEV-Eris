@@ -117,6 +117,8 @@
 	// create a new QM cartridge, and register to receive bot control & beacon message
 	New()
 		. = ..()
+		if(!get_turf(src))
+			return
 		spawn(5)
 			SSradio.add_object(src, control_freq, filter = RADIO_MULEBOT)
 			SSradio.add_object(src, beacon_freq, filter = RADIO_NAVBEACONS)
