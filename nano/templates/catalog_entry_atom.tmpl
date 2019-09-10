@@ -12,15 +12,18 @@
 	<div class = "statusDisplayItem" style="float: right;">
 		<img src={{:data.entry_image_path}} width = 128px>
 	</div>
+	<div class="item">
 		<h4>Description:</h4>
 		<div class="item">
 			{{:data.description}}
 		</div>
 		{{if data.can_be_found_in}}
 			<div class="statusDisplay" style="overflow: auto;">
-				{{for data.can_be_found_in}}
-					<span class='uiCatalogEntryLink'>{{:value.type}}</span>
-				{{/for}}
+				<table style="width:100%">
+					{{for data.can_be_found_in}}
+						<tr>{{:helper.catalogEntryLink(value.type)}}
+					{{/for}}
+				</table>
 			</div>
 		{{/if}}
 	</div>

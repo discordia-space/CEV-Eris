@@ -98,7 +98,7 @@ nanoui is used to open and update nano browser uis
 
 	add_common_assets()
 	var/datum/asset/assets = get_asset_datum(/datum/asset/nanoui)
-	assets.send(user, ntemplate_filename)
+	assets.send(user)
 
 //Do not qdel nanouis. Use close() instead.
 /datum/nanoui/Destroy()

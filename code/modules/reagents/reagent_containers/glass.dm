@@ -19,7 +19,7 @@
 
 	var/label_text = ""
 
-	contribute_to_defalt_reagent_catalog = FALSE
+	contribute_to_reagent_catalog = FALSE
 
 	var/list/can_be_placed_into = list(
 		/obj/machinery/chem_master/,

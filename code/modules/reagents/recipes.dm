@@ -197,11 +197,11 @@
 	if(required_reagents)
 		dat["reagents"] = list()
 		for(var/id in required_reagents)
-			dat["reagents"] += list(list("reagent" = get_reagent_name_by_id(id), "parts" = "[required_reagents[id]] part\s of "))
+			dat["reagents"] += list(list("type" = get_reagent_type_by_id(id), "reagent" = get_reagent_name_by_id(id), "parts" = "[required_reagents[id]] part\s of "))
 	if(required_reagents)
 		dat["catalyst"] = list()
 		for(var/id in catalysts)
-			dat["catalyst"] += list(list("reagent" = get_reagent_name_by_id(id), "units" = catalysts[id]))
+			dat["catalyst"] += list(list("type" = get_reagent_type_by_id(id), "reagent" = get_reagent_name_by_id(id), "units" = catalysts[id]))
 	dat["result_amount"] = "Results in [result_amount] part\s of substance."
 	return dat
 /* Common reactions */

@@ -5,13 +5,16 @@
 	var/obj/item/device/electronic_assembly/implant/IC = null
 	is_legal = TRUE
 
-/obj/item/weapon/implant/integrated_circuit/New()
-	..()
+/obj/item/weapon/implant/integrated_circuit/Initialize(mapload, d)
+	. = ..()
+	if(.)
+		return
 	IC = new(src)
 	IC.implant = src
 
 /obj/item/weapon/implant/integrated_circuit/Destroy()
-	IC.implant = null
+	if(IC)
+		IC.implant = null
 	qdel(IC)
 	. = ..()
 

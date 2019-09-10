@@ -117,8 +117,10 @@ Class Procs:
 	var/obj/item/weapon/circuitboard/circuit = null
 	var/frame_type = FRAME_DEFAULT
 
-/obj/machinery/Initialize(mapload, d=0)
+/obj/machinery/Initialize(mapload, d = 0)
 	. = ..()
+	if(.)
+		return
 	if(d)
 		set_dir(d)
 	InitCircuit()
@@ -236,7 +238,9 @@ Class Procs:
 			component_parts += new item(null, circuit.req_components[item])
 		else
 			for(var/j = 1 to circuit.req_components[item])
-				component_parts += new item
+				var/atom/movable/I = new item(src)
+				I.forceMove(NULLSPACE)
+				component_parts += I
 
 	RefreshParts()
 

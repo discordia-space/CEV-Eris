@@ -112,9 +112,11 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 		return 0
 
 
-/obj/machinery/telecomms/New()
+/obj/machinery/telecomms/Initialize(mapload, d)
+	. = ..()
+	if(.)
+		return
 	telecomms_list += src
-	..()
 
 	//Set the listening_levels if there's none.
 	if(!listening_levels || !listening_levels.len)
@@ -133,6 +135,8 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 /obj/machinery/telecomms/Initialize()
 	. = ..()
+	if(!get_turf(src))
+		return
 	if(autolinkers.len)
 		// Links nearby machines
 		if(!long_range_link)

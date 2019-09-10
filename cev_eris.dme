@@ -229,6 +229,7 @@
 #include "code\controllers\subsystems\vote.dm"
 #include "code\controllers\subsystems\wireless.dm"
 #include "code\controllers\subsystems\xenoarch.dm"
+#include "code\controllers\subsystems\initialization\catalog_setup.dm"
 #include "code\controllers\subsystems\initialization\character_setup.dm"
 #include "code\controllers\subsystems\processing\mobs.dm"
 #include "code\controllers\subsystems\processing\nano.dm"
@@ -2498,4 +2499,5 @@
 #include "maps\CEVEris\datums\reports.dm"
 #include "maps\encounters\asteroid\asteroid.dm"
 #include "maps\encounters\spacefortress\spacefortress.dm"
+#include "maps\other\purgatory.dmm"
 // END_INCLUDE

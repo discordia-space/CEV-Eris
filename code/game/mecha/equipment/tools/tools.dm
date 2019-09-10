@@ -215,13 +215,6 @@
 	var/spray_amount = 5	//units of liquid per particle. 5 is enough to wet the floor - it's a big fire extinguisher, so should be fine
 	var/max_water = 1000
 
-	New()
-		reagents = new/datum/reagents(max_water)
-		reagents.my_atom = src
-		reagents.add_reagent("water", max_water)
-		..()
-		return
-
 	action(atom/target) //copypasted from extinguisher. TODO: Rewrite from scratch.
 		if(!action_checks(target) || get_dist(chassis, target)>3) return
 		if(get_dist(chassis, target)>2) return
@@ -274,6 +267,10 @@
 	on_reagent_change()
 		return
 
+/obj/item/mecha_parts/mecha_equipment/tool/extinguisher/Initialize(mapload, ...)
+	. = ..()
+	create_reagents(max_water)
+	reagents.add_reagent("water", max_water)
 
 /obj/item/mecha_parts/mecha_equipment/tool/rcd
 	name = "mounted RCD"

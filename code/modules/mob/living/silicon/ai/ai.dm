@@ -324,6 +324,11 @@ var/list/ai_verbs_default = list(
 	invisibility = 100
 
 /obj/machinery/ai_powersupply/New(var/mob/living/silicon/ai/ai=null)
+	. = ..()
+	if(!ai)
+		if(SSticker.current_state >= GAME_STATE_PLAYING)
+			error("[type] no ai passed.")
+		return
 	powered_ai = ai
 	powered_ai.psupply = src
 	forceMove(powered_ai.loc)

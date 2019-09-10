@@ -41,7 +41,10 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 	if(client.cache.Find(asset_name) || client.sending.Find(asset_name))
 		return 0
 
-	client << browse_rsc(asset_cache.cache[asset_name], asset_name)
+	if(asset_cache.prioritized_cache[asset_name])
+		client << browse_rsc(asset_cache.prioritized_cache[asset_name], asset_name)
+	else
+		client << browse_rsc(asset_cache.cache[asset_name], asset_name)
 	if(!verify || !winexists(client, "asset_cache_browser")) // Can't access the asset cache browser, rip.
 		if (client)
 			client.cache += asset_name
@@ -93,6 +96,8 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 	for(var/asset in unreceived)
 		if (asset in asset_cache.cache)
 			client << browse_rsc(asset_cache.cache[asset], asset)
+		else if (asset in asset_cache.prioritized_cache)
+			client << browse_rsc(asset_cache.prioritized_cache[asset], asset)
 
 	if(!verify || !winexists(client, "asset_cache_browser")) // Can't access the asset cache browser, rip.
 		if (client)
@@ -135,8 +140,11 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 
 //This proc "registers" an asset, it adds it to the cache for further use, you cannot touch it from this point on or you'll fuck things up.
 //if it's an icon or something be careful, you'll have to copy it before further use.
-/proc/register_asset(var/asset_name, var/asset)
-	asset_cache.cache[asset_name] = asset
+/proc/register_asset(var/asset_name, var/asset, var/prioritized = FALSE)
+	if(prioritized)
+		asset_cache.prioritized_cache[asset_name] = asset
+	else
+		asset_cache.cache[asset_name] = asset
 
 //Generated names do not include file extention.
 //Used mainly for code that deals with assets in a generic way
@@ -284,17 +292,18 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 
 /datum/asset/nanoui
 	var/list/common = list()
+	var/list/priority = list()
 
-	var/list/common_dirs = list(
+	var/list/prioritized_dirs = list(
 		"nano/css/",
-		"nano/images/",
-		"nano/images/status_icons/",
-		"nano/images/modular_computers/",
+		"nano/templates/",
 		"nano/js/"
 	)
-	var/list/uncommon_dirs = list(
-		"nano/templates/",
-		"news_articles/images/"
+	var/list/common_dirs = list(
+		"news_articles/images/",
+		"nano/images/",
+		"nano/images/status_icons/",
+		"nano/images/modular_computers/"
 	)
 
 /datum/asset/nanoui/register()
@@ -306,12 +315,13 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 				if(fexists(path + filename))
 					common[filename] = fcopy_rsc(path + filename)
 					register_asset(filename, common[filename])
-	for (var/path in uncommon_dirs)
+	for (var/path in prioritized_dirs)
 		var/list/filenames = flist(path)
 		for(var/filename in filenames)
 			if(copytext(filename, length(filename)) != "/") // Ignore directories.
 				if(fexists(path + filename))
-					register_asset(filename, fcopy_rsc(path + filename))
+					priority[filename] = fcopy_rsc(path + filename)
+					register_asset(filename, priority[filename], TRUE)
 
 	var/list/mapnames = list()
 	for(var/z in maps_data.station_levels)
@@ -325,12 +335,9 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 				common[filename] = fcopy_rsc(file_path)
 				register_asset(filename, common[filename])
 
-/datum/asset/nanoui/send(client, uncommon)
-	if(!islist(uncommon))
-		uncommon = list(uncommon)
-
-	send_asset_list(client, uncommon, FALSE)
+/datum/asset/nanoui/send(client)
 	send_asset_list(client, common, TRUE)
+	send_asset_list(client, priority, FALSE)
 
 /*
 	Asset cache
@@ -339,21 +346,22 @@ var/decl/asset_cache/asset_cache = new()
 
 /decl/asset_cache
 	var/list/cache
+	var/list/prioritized_cache
 
 /decl/asset_cache/New()
 	..()
 	cache = new
+	prioritized_cache = new
 
 /proc/send_assets()
-	//we will create nanoui assets first so it will be first in assets list
-	get_asset_datum(/datum/asset/nanoui)
-	for(var/type in typesof(/datum/asset) - list(/datum/asset, /datum/asset/simple, /datum/asset/nanoui))
+	for(var/type in typesof(/datum/asset) - list(/datum/asset, /datum/asset/simple))
 		get_asset_datum(type)
 	
 
 	for(var/client/C in clients)
 		// Doing this to a client too soon after they've connected can cause issues, also the proc we call sleeps.
 		spawn(10)
+			getFilesSlow(C, asset_cache.prioritized_cache, FALSE)
 			getFilesSlow(C, asset_cache.cache, FALSE)
 
 	return TRUE

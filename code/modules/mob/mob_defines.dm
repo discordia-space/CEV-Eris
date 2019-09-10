@@ -3,6 +3,7 @@
 	layer = 4.0
 	animate_movement = 2
 	flags = PROXMOVE
+	can_be_created_in_nullspace = TRUE
 	var/datum/mind/mind
 
 	movement_handlers = list(

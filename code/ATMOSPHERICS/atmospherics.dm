@@ -33,7 +33,10 @@ Pipelines + Other Objects -> Pipe network
 	var/obj/machinery/atmospherics/node1
 	var/obj/machinery/atmospherics/node2
 
-/obj/machinery/atmospherics/New()
+/obj/machinery/atmospherics/Initialize(mapload, d)
+	. = ..()
+	if(.)
+		return
 	if(!icon_manager)
 		icon_manager = new()
 
@@ -43,7 +46,7 @@ Pipelines + Other Objects -> Pipe network
 
 	if(!pipe_color_check(pipe_color))
 		pipe_color = null
-	..()
+	
 
 /obj/machinery/atmospherics/proc/atmos_init()
 	return

@@ -91,10 +91,13 @@
 /datum/nano_module/proc/browse_catalog(var/datum/catalog/catalog_to_browse, var/mob/user)
 	if(!catalog_to_browse)
 		return FALSE
+	var/datum/nanoui/ui = SSnano.get_open_ui(user, src, "main")
+	if(!ui)
+		return FALSE
 	entry_history = list()
 	selected_entry = null
 	catalog = catalog_to_browse
-	var/datum/nanoui/ui = SSnano.get_open_ui(user, src, "main")
+	
 	ui.add_template("catalog", catalog.associated_template)
 	
 	catalog_browse_stage = CATALOG_BROWSE_STAGE_LIST

@@ -17,6 +17,7 @@
 /datum/reagent/organic/nutriment/mix_data(var/list/newdata, var/newamount)
 	if(!islist(newdata) || !newdata.len)
 		return
+	..()
 	for(var/i in 1 to newdata.len)
 		if(!(newdata[i] in data))
 			data.Add(newdata[i])

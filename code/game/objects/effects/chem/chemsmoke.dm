@@ -66,9 +66,17 @@
 /////////////////////////////////////////////
 // Chem Smoke Effect System
 /////////////////////////////////////////////
+/chem_holder
+	parent_type = /atom/movable
+	can_be_created_in_nullspace = TRUE
+	contribute_to_catalog = FALSE
+	contribute_to_reagent_catalog = FALSE
+	contribute_to_container_catalog = FALSE
+	create_icon_asset = FALSE
+
 /datum/effect/effect/system/smoke_spread/chem
 	smoke_type = /obj/effect/effect/smoke/chem
-	var/obj/chemholder
+	var/chem_holder/chemholder
 	var/range
 	var/list/targetTurfs
 	var/list/wallList
@@ -88,7 +96,7 @@
 
 /datum/effect/effect/system/smoke_spread/chem/New()
 	..()
-	chemholder = new/obj()
+	chemholder = new()
 	chemholder.create_reagents(500)
 
 //Sets up the chem smoke effect

@@ -32,7 +32,7 @@
 	return 1
 
 /mob/living/carbon/superior_animal/roach/support/Life()
-	..()
+	. = ..()
 	if(stat != CONSCIOUS)
 		return
 

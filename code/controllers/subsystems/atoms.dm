@@ -37,8 +37,8 @@ SUBSYSTEM_DEF(atoms)
 		for(var/I in atoms)
 			var/atom/A = I
 			if(!A.initialized)
-				if(InitAtom(I, mapload_arg))
-					atoms -= I
+				InitAtom(I, mapload_arg)
+				atoms -= I
 				CHECK_TICK
 	else
 		count = 0
@@ -90,11 +90,20 @@ SUBSYSTEM_DEF(atoms)
 				qdeleted = TRUE
 			else
 				BadInitializeCalls[the_type] |= BAD_INIT_NO_HINT
-
+	
 	if(!A)	//possible harddel
+		qdeleted = TRUE
+	else if(!get_turf(A) && !A.can_be_created_in_nullspace)
+		if(SScatalog_setup.initialized)
+			CRASH("[A.type] was created in nullspace, but it doesnt suppose to.")
+		spawn()
+			qdel(A)
 		qdeleted = TRUE
 	else if(!A.initialized)
 		BadInitializeCalls[the_type] |= BAD_INIT_DIDNT_INIT
+	
+	if(A)
+		SScatalog_setup.register_atom(A)
 
 	return qdeleted || QDELING(A)
 

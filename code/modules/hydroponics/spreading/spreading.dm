@@ -60,7 +60,7 @@
 	spread_chance = 0
 
 /obj/effect/plant/New(var/newloc, var/datum/seed/newseed, var/obj/effect/plant/newparent)
-	..()
+	. = ..()
 
 	if(!newparent)
 		parent = src

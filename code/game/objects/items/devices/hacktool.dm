@@ -7,18 +7,21 @@
 	var/list/supported_types
 	var/datum/topic_state/default/must_hack/hack_state
 
-/obj/item/weapon/tool/multitool/hacktool/New()
-	..()
+/obj/item/weapon/tool/multitool/hacktool/Initialize(mapload, d)
+	. = ..()
+	if(.)
+		return
 	known_targets = list()
 	max_known_targets = 5 + rand(1,3)
 	supported_types = list(/obj/machinery/door/airlock)
 	hack_state = new(src)
 
 /obj/item/weapon/tool/multitool/hacktool/Destroy()
-	for(var/T in known_targets)
-		var/atom/target = T
-		GLOB.destroyed_event.unregister(target, src)
-	known_targets.Cut()
+	if(known_targets)
+		for(var/T in known_targets)
+			var/atom/target = T
+			GLOB.destroyed_event.unregister(target, src)
+		known_targets.Cut()
 	qdel(hack_state)
 	hack_state = null
 	return ..()

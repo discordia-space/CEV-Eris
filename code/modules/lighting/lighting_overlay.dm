@@ -16,7 +16,7 @@
 
 	var/needs_update = FALSE
 	create_icon_asset = FALSE
-	contribute_to_defalt_catalog = FALSE
+	contribute_to_catalog = FALSE
 
 
 /atom/movable/lighting_overlay/New(var/atom/loc, var/no_update = FALSE)

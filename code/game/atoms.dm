@@ -29,11 +29,18 @@
 	var/auto_init = TRUE
 
 	var/initialized = FALSE
+	var/can_be_created_in_nullspace = FALSE
 
 	var/list/preloaded_reagents = null
-	var/contribute_to_defalt_catalog = TRUE
-	var/contribute_to_defalt_reagent_catalog = TRUE
-	var/contribute_to_defalt_container_info = TRUE
+	// should this atom have catalog entry
+	// this is set to FALSE for not gameplay atoms like areas, landmarks etc
+	var/contribute_to_catalog = TRUE
+	// this will add atom to can_be_found reagent entry
+	// this is set to FALSE for things like beakers and pills 
+	var/contribute_to_reagent_catalog = TRUE
+	// this will add atom to can_be_found storage item enry
+	var/contribute_to_container_catalog = TRUE
+	// will create icon asset that will be send to players
 	var/create_icon_asset = TRUE
 
 /atom/New(loc, ...)
@@ -44,11 +51,22 @@
 		args[1] = do_initialize == INITIALIZATION_INNEW_MAPLOAD
 		if(SSatoms.InitAtom(src, args))
 			//we were deleted
-			return
-
+			return ..()
 	var/list/created = SSatoms.created_atoms
 	if(created)
 		created += src
+	//preloads variables at creation
+	// taken from code\modules\maps\reader.dm
+	if(_preloader && (src.type == _preloader.target_path))//in case the instanciated atom is creating other atoms in New()
+		_preloader.load(src)
+
+	// Incase any lighting vars are on in the typepath we turn the light on in New().
+	if(light_power && light_range)
+		update_light()
+
+	if(opacity && isturf(loc))
+		var/turf/T = loc
+		T.has_opaque_atom = TRUE // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
 
 
 //Called after New if the map is being loaded. mapload = TRUE
@@ -68,19 +86,6 @@
 
 	update_plane()
 
-	if(create_icon_asset)
-		var/datum/asset/simple/all_atoms/AAA = get_asset_datum(/datum/asset/simple/all_atoms)
-		AAA.register(src)
-
-	if(contribute_to_defalt_catalog)
-		create_catalog_entry(src)
-
-	if(contribute_to_defalt_container_info)
-		if(istype(loc, /obj/item/weapon/storage))
-			var/datum/catalog_entry/E = get_catalog_entry(src.type)
-			if(E)
-				E.add_to_can_be_found(loc)
-	
 	if(preloaded_reagents)
 		if(!reagents)
 			var/volume = 0
@@ -89,19 +94,39 @@
 			create_reagents(volume)
 		for(var/reagent in preloaded_reagents)
 			reagents.add_reagent(reagent, preloaded_reagents[reagent])
-			if(contribute_to_defalt_reagent_catalog)
-				var/datum/reagent/R = chemical_reagents_list[reagent]
-				var/datum/catalog_entry/reagent/E = get_catalog_entry(R.type)
-				if(E)
-					E.add_to_can_be_found(src)
-	
 
-
-	return INITIALIZE_HINT_NORMAL
+	if(!get_turf(src) && !can_be_created_in_nullspace)
+		return INITIALIZE_HINT_LATELOAD
+	else
+		return INITIALIZE_HINT_NORMAL
 
 //called if Initialize returns INITIALIZE_HINT_LATELOAD
 /atom/proc/LateInitialize()
 	return
+
+/atom/proc/catalog_initialize()
+	if(!contribute_to_catalog)
+		return
+
+	if(icon_state && create_icon_asset)
+		var/datum/asset/simple/all_atoms/AAA = get_asset_datum(/datum/asset/simple/all_atoms)
+		AAA.register(src)
+
+	create_catalog_entry(src)
+
+	if(contribute_to_container_catalog)
+		if(istype(loc, /obj/item/weapon/storage))
+			var/datum/catalog_entry/E = get_catalog_entry(src.type)
+			if(E)
+				E.add_to_can_be_found(loc)
+	
+	if(reagents && reagents.reagent_list)
+		for(var/reagent in reagents.reagent_list)
+			var/datum/reagent/R = reagent
+			var/datum/catalog_entry/reagent/E = get_catalog_entry(R.type)
+			if(E)
+				E.add_to_can_be_found(src)
+	return TRUE
 
 /atom/Destroy()
 	QDEL_NULL(reagents)

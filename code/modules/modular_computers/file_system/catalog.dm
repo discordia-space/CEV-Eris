@@ -9,20 +9,12 @@
 		refresh_catalog_browsing()
 
 
+	
+
 */
 
 GLOBAL_LIST_EMPTY(catalogs)
 GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
-
-/hook/startup/proc/createCatalogs()
-	// Reagents
-	for(var/V in chemical_reagents_list)
-		var/datum/reagent/D = chemical_reagents_list[V]
-		if(D.appear_in_default_catalog)
-			create_catalog_entry(D, CATALOG_REAGENTS)
-	var/datum/catalog/C = GLOB.catalogs[CATALOG_REAGENTS]
-	C.associated_template = "catalog_list_reagents.tmpl"
-	return 1
 
 /proc/create_catalog_entry(var/datum/thing, var/catalog_id)
 	if(catalog_id && !GLOB.catalogs[catalog_id])
@@ -151,23 +143,20 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 		metabolism_stomach = V.ingest_met
 	nerve_system_accumulations = V.nerve_system_accumulations
 	if(V.heating_products && V.heating_point)
-		heating_decompose = "Into "
-		var/amount = 1
+		var/list/dat = list()
+		dat["types"] = list()
 		for(var/id in V.heating_products)
-			heating_decompose += "[get_reagent_name_by_id(id)]"
-			if(V.heating_products.len > amount)
-				heating_decompose += "/"
-			amount++
-		heating_decompose += " at [V.heating_point]k."
+			dat["types"] += get_reagent_type_by_id(id)
+		dat["temp"] = V.heating_point
+		heating_decompose = dat
+
 	if(V.chilling_products && V.chilling_point)
-		chilling_decompose = "Into "
-		var/amount = 1
+		var/list/dat = list()
+		dat["types"] = list()
 		for(var/id in V.chilling_products)
-			chilling_decompose += "[get_reagent_name_by_id(id)]"
-			if(V.chilling_products.len > amount)
-				chilling_decompose += "/"
-			amount++
-		chilling_decompose += " at [V.chilling_point]k."
+			dat["types"] += get_reagent_type_by_id(id)
+		dat["temp"] = V.chilling_point
+		chilling_decompose = dat
 		
 	scannable = V.scannable ? "Yes" : "No"
 	overdose = V.overdose ? V.overdose : null

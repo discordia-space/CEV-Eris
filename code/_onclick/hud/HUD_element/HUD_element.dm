@@ -12,6 +12,7 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 
 	layer = HUD_LAYER
 	plane = HUD_PLANE
+	can_be_created_in_nullspace = TRUE
 	//mouse_opacity = 2
 
 	var/list/HUD_element/_elements //child elements

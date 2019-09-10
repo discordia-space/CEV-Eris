@@ -62,8 +62,10 @@
 	report_danger_level = 0
 	breach_detection = 0
 
-/obj/machinery/alarm/server/New()
-	..()
+/obj/machinery/alarm/server/Initialize(mapload, d)
+	. = ..()
+	if(.)
+		return
 	req_access = list(access_rd, access_atmospherics, access_engine_equip)
 	TLV["oxygen"] =			list(-1.0, -1.0,-1.0,-1.0) // Partial pressure, kpa
 	TLV["carbon dioxide"] = list(-1.0, -1.0,   5,  10) // Partial pressure, kpa
@@ -80,23 +82,31 @@
 	return ..()
 
 /obj/machinery/alarm/New(var/loc, var/dir, var/building = 0)
+	. = ..()
 	if(building)
+		buildstage = 0
+
+/obj/machinery/alarm/Initialize(mapload, d)
+	. = ..()
+	if(.)
+		return
+	if(!buildstage)
 		if(dir)
 			src.set_dir(dir)
 
-		buildstage = 0
 		wiresexposed = 1
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
 		update_icon()
 
-	..()
-
-	if(!building)
+	if(buildstage == 2)
 		first_run()
 
 /obj/machinery/alarm/proc/first_run()
 	alarm_area = get_area(src)
+	if(!alarm_area)
+		error("Alarm cant find an area - [type] - [x]:[y]:[z]")
+		return
 	area_uid = alarm_area.uid
 	if (name == "alarm")
 		name = "[strip_improper(alarm_area.name)] Air Alarm"
@@ -115,9 +125,10 @@
 
 /obj/machinery/alarm/Initialize()
 	. = ..()
-	set_frequency(frequency)
-	if(buildstage == 2 && !master_is_operating())
-		elect_master()
+	if(get_turf(src))
+		set_frequency(frequency)
+		if(buildstage == 2 && !master_is_operating())
+			elect_master()
 
 /obj/machinery/alarm/Process()
 	if((stat & (NOPOWER|BROKEN)) || shorted || buildstage != 2)
@@ -283,6 +294,10 @@
 	if((stat & (NOPOWER)) || shorted)
 		icon_state = "alarm_unpowered"
 		set_light(0)
+		return
+
+	if(!alarm_area)
+		error("Alarm cant find an area - [type] - [x]:[y]:[z]")
 		return
 
 	var/icon_level = danger_level
@@ -1154,23 +1169,20 @@ FIRE ALARM
 
 
 
-/obj/machinery/firealarm/New(loc, dir, building)
-	..()
-
+/obj/machinery/firealarm/Initialize(mapload, d)
+	. = ..()
+	if(.)
+		return
 	if(loc)
 		src.loc = loc
 
 	if(dir)
 		src.set_dir(dir)
 
-	if(building)
-		buildstage = 0
+	if(!buildstage)
 		wiresexposed = 1
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
-
-/obj/machinery/firealarm/Initialize()
-	. = ..()
 
 /*
 FIRE ALARM CIRCUIT

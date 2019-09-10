@@ -328,12 +328,12 @@
 	if(chosen_species && use_species_name)
 		// Have to recheck admin due to no usr at roundstart. Latejoins are fine though.
 		if(is_species_whitelisted(chosen_species) || has_admin_rights())
-			new_character = new(loc, use_species_name)
+			new_character = new(PURGATORY, use_species_name)
 
 	if(!new_character)
-		new_character = new(loc)
+		new_character = new(PURGATORY)
 
-	new_character.lastarea = get_area(loc)
+	new_character.lastarea = get_area(PURGATORY)
 
 	for(var/lang in client.prefs.alternate_languages)
 		var/datum/language/chosen_language = all_languages[lang]

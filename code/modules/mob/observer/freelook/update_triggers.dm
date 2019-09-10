@@ -17,7 +17,7 @@
 	return ..()
 
 /turf/simulated/New()
-	..()
+	. = ..()
 	updateVisibility(src)
 
 
@@ -28,7 +28,7 @@
 	return ..()
 
 /obj/structure/New()
-	..()
+	. = ..()
 	updateVisibility(src)
 
 // EFFECTS
@@ -38,7 +38,7 @@
 	return ..()
 
 /obj/effect/New()
-	..()
+	. = ..()
 	updateVisibility(src)
 
 // DOORS

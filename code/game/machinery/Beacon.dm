@@ -12,8 +12,10 @@
 	var/obj/item/device/radio/beacon/Beacon
 
 	New()
-		..()
+		. = ..()
 		var/turf/T = loc
+		if(!T)
+			return
 		Beacon = new /obj/item/device/radio/beacon
 		Beacon.invisibility = INVISIBILITY_MAXIMUM
 		Beacon.loc = T

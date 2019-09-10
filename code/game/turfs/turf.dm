@@ -30,7 +30,7 @@
 								// This is a more generic way of handling open space turfs
 	var/is_wall = FALSE 	//True for wall turfs, but also true if they contain a low wall object
 	create_icon_asset = FALSE
-	contribute_to_defalt_catalog = FALSE
+	contribute_to_catalog = FALSE
 
 /turf/New()
 	..()

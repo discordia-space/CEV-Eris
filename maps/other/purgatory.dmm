@@ -1,0 +1,8 @@
+"a" = (/turf/unsimulated/floor{density = 1},/area/space)
+"b" = (/obj/map_data/purgatory,/turf/unsimulated/floor,/area/space)
+
+(1,1,1) = {"
+aaa
+aba
+aaa
+"}

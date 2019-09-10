@@ -10,6 +10,7 @@ var/list/all_integrated_circuits = list()
 	icon = 'icons/obj/electronic_assemblies.dmi'
 	icon_state = "template"
 	w_class = ITEM_SIZE_TINY
+	can_be_created_in_nullspace = TRUE
 	var/obj/item/device/electronic_assembly/assembly = null // Reference to the assembly holding this circuit, if any.
 	var/extended_desc = null
 	var/list/inputs = list()

@@ -19,14 +19,15 @@
 		amount_per_transfer_from_this = N
 
 /obj/item/weapon/reagent_containers/New()
+	. = ..()
 	if(!possible_transfer_amounts)
 		src.verbs -= /obj/item/weapon/reagent_containers/verb/set_APTFT
-	create_reagents(volume)
-	if(preloaded_reagents)
-		for(var/reagent in preloaded_reagents)
-			reagents.add_reagent(reagent, preloaded_reagents[reagent])
-	..()
 
+/obj/item/weapon/reagent_containers/Initialize(mapload, ...)
+	. = ..()
+	// this works only for empty containers, preloaded items have their reagents created in atom init
+	if(!reagents)
+		create_reagents(volume)
 
 /obj/item/weapon/reagent_containers/attack_self(mob/user as mob)
 	return

@@ -383,7 +383,7 @@
 	..()
 	if(is_proximity_sensor(W))
 		qdel(W)
-		var/obj/item/weapon/toolbox_tiles_sensor/B = new /obj/item/weapon/toolbox_tiles_sensor()
+		var/obj/item/weapon/toolbox_tiles_sensor/B = new /obj/item/weapon/toolbox_tiles_sensor(user)
 		B.created_name = created_name
 		user.put_in_hands(B)
 		to_chat(user, SPAN_NOTICE("You add the sensor to the toolbox and tiles!"))

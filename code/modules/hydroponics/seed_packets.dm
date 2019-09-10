@@ -12,6 +12,8 @@ var/global/list/plant_seed_sprites = list()
 	var/modified = 0
 
 /obj/item/seeds/Initialize()
+	if(!get_turf(src))
+		return
 	update_seed()
 	return ..()
 

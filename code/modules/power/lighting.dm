@@ -233,10 +233,10 @@
 		on = 1
 
 	var/area/location = get_area(loc)
-	if(location.area_light_color)
+	if(location && location.area_light_color)
 		brightness_color = location.area_light_color
-
-	update(0)
+	if(location)
+		update(0)
 
 /obj/machinery/light/Destroy()
 	var/area/A = get_area(src)

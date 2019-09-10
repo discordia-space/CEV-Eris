@@ -25,20 +25,6 @@ var/global/list/cached_icons = list()
 		else
 			return ..()
 
-	New()
-		if(paint_type && lentext(paint_type) > 0)
-			name = paint_type + " " + name
-		..()
-		reagents.add_reagent("water", volume*3/5)
-		reagents.add_reagent("plasticide", volume/5)
-		if(paint_type == "white") //why don't white crayons exist
-			reagents.add_reagent("aluminum", volume/5)
-		else if (paint_type == "black")
-			reagents.add_reagent("carbon", volume/5)
-		else
-			reagents.add_reagent("crayon_dust_[paint_type]", volume/5)
-		reagents.handle_reactions()
-
 	red
 		icon_state = "paint_red"
 		paint_type = "red"
@@ -66,4 +52,20 @@ var/global/list/cached_icons = list()
 	white
 		icon_state = "paint_white"
 		paint_type = "white"
+
+/obj/item/weapon/reagent_containers/glass/paint/Initialize(mapload, ...)
+	. = ..()
+	
+	if(paint_type && lentext(paint_type) > 0)
+		name = paint_type + " " + name
+	
+	reagents.add_reagent("water", volume*3/5)
+	reagents.add_reagent("plasticide", volume/5)
+	if(paint_type == "white") //why don't white crayons exist
+		reagents.add_reagent("aluminum", volume/5)
+	else if (paint_type == "black")
+		reagents.add_reagent("carbon", volume/5)
+	else
+		reagents.add_reagent("crayon_dust_[paint_type]", volume/5)
+	reagents.handle_reactions()
 

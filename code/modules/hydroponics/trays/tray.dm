@@ -36,7 +36,7 @@
 	var/cycledelay = 150       // Delay per cycle.
 	var/closed_system          // If set, the tray will attempt to take atmos from a pipe.
 	var/force_update           // Set this to bypass the cycle time check.
-	var/obj/temp_chem_holder   // Something to hold reagents during process_reagents()
+	var/chem_holder/temp_chem_holder   // Something to hold reagents during process_reagents()
 	var/labelled
 
 	// Seed details/line data.

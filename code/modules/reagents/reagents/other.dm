@@ -78,6 +78,7 @@
 	return color
 
 /datum/reagent/other/paint/initialize_data(var/newdata)
+	..()
 	color = newdata
 	return
 

@@ -10,7 +10,7 @@
 
 /obj/item/weapon/grown/New(newloc,planttype)
 
-	..()
+	. = ..()
 
 	var/datum/reagents/R = new/datum/reagents(50)
 	reagents = R

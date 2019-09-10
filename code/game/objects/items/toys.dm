@@ -320,9 +320,9 @@
 	icon_state = "sunflower"
 	item_state = "sunflower"
 	var/empty = 0
-	flags
 
-/obj/item/toy/waterflower/New()
+/obj/item/toy/waterflower/Initialize()
+	. = ..()
 	var/datum/reagents/R = new/datum/reagents(10)
 	reagents = R
 	R.my_atom = src

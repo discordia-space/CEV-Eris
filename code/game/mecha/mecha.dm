@@ -109,8 +109,10 @@
 
 	return cell.drain_power(drain_check)
 
-/obj/mecha/New()
-	..()
+/obj/mecha/Initialize(mapload, d)
+	. = ..()
+	if(.)
+		return
 	events = new
 
 	update_icon()

@@ -24,8 +24,10 @@
 	level = BELOW_PLATING_LEVEL
 	layer = GAS_SCRUBBER_LAYER
 
-/obj/machinery/atmospherics/unary/outlet_injector/New()
-	..()
+/obj/machinery/atmospherics/unary/outlet_injector/Initialize(mapload, d)
+	. = ..()
+	if(.)
+		return
 	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP + 500	//Give it a small reservoir for injecting. Also allows it to have a higher flow rate limit than vent pumps, to differentiate injectors a bit more.
 
 /obj/machinery/atmospherics/unary/outlet_injector/update_icon()

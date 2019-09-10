@@ -6,7 +6,10 @@
 
 
 /obj/item/craft/New(loc, new_recipe)
-	..(loc)
+	. = ..()
+	if(!new_recipe)
+		error("[type] no recipe passed.")
+		return
 	recipe = new_recipe
 	src.name = "crafting [recipe.name]"
 	src.icon_state = recipe.icon_state

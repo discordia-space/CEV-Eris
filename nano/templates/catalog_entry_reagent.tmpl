@@ -51,10 +51,18 @@
 			</div>
 			<div class="itemContent">
 				{{if data.heating_decompose}}
-					Heating: {{:data.heating_decompose}}
+					Heating: Into 
+					{{for data.heating_decompose}}
+						{{:helper.catalogEntryLink(value)}}
+					{{/for}}
+					at {{data.heating_decompose.temp}}k.
 				{{/if}}
 				{{if data.chilling_decompose}}
-					Chilling: {{:data.chilling_decompose}}
+					Chilling: Into 
+					{{for data.chilling_decompose.types}}
+						{{:helper.catalogEntryLink(value)}}
+					{{/for}}
+					at {{data.chilling_decompose.temp}}k.
 				{{/if}}
 			</div>
 		{{/if}}
@@ -66,10 +74,10 @@
 				{{for data.recipe_data}}
 					<div class="statusDisplay" style="overflow: auto;">
 						{{for value.reagents :val:val_i}}
-							{{:val.parts}}{{:val.reagent}}<br>
+							{{:val.parts}}{{:helper.catalogEntryLink(val.type)}}<br>
 						{{/for}}
 						{{for value.catalyst :val:val_i}}
-							In presense of {{:val.units}}u of {{:val.reagent}}<br>
+							In presense of {{:val.units}}u of {{:helper.catalogEntryLink(val.type)}}<br>
 						{{/for}}
 						{{if value.additional_info}}
 							{{:value.additional_info}}
@@ -141,9 +149,11 @@
 		{{/if}}
 		{{if data.can_be_found_in}}
 			<div class="statusDisplay" style="overflow: auto;">
-				{{for data.can_be_found_in}}
-					<span class='uiCatalogEntryLink'>{{:value.type}}</span>
-				{{/for}}
+				<table style="width:100%">
+					{{for data.can_be_found_in}}
+						<tr>{{:helper.catalogEntryLink(value.type)}}
+					{{/for}}
+				</table>
 			</div>
 		{{/if}}
 	</div>

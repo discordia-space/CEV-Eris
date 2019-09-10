@@ -27,12 +27,11 @@
 	var/atom/target
 	var/frustration = 0
 
-/mob/living/bot/farmbot/New()
-	..()
-	spawn(5)
-		tank = locate() in contents
-		if(!tank)
-			tank = new /obj/structure/reagent_dispensers/watertank(src)
+/mob/living/bot/farmbot/Initialize()
+	. = ..()
+	tank = locate() in contents
+	if(!tank)
+		tank = new /obj/structure/reagent_dispensers/watertank(src)
 
 /mob/living/bot/farmbot/attack_hand(var/mob/user as mob)
 	. = ..()
@@ -317,12 +316,11 @@
 	var/created_name = "Farmbot"
 	w_class = ITEM_SIZE_NORMAL
 
-	New()
-		..()
-		spawn(4) // If an admin spawned it, it won't have a watertank it, so lets make one for em!
-			var tank = locate(/obj/structure/reagent_dispensers/watertank) in contents
-			if(!tank)
-				new /obj/structure/reagent_dispensers/watertank(src)
+/obj/item/weapon/farmbot_arm_assembly/Initialize()
+	. = ..()
+	var tank = locate(/obj/structure/reagent_dispensers/watertank) in contents
+	if(!tank)
+		new /obj/structure/reagent_dispensers/watertank(src)
 
 
 /obj/structure/reagent_dispensers/watertank/attackby(var/obj/item/robot_parts/S, mob/user as mob)

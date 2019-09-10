@@ -233,16 +233,14 @@
 	var/mob/living/H = holder.wearer
 
 	if(target)
-		var/obj/item/firing = new fabrication_type()
-		firing.forceMove(get_turf(src))
+		var/obj/item/firing = new fabrication_type(get_turf(src))
 		H.visible_message(SPAN_DANGER("[H] launches \a [firing]!"))
 		firing.throw_at(target,fire_force,fire_distance)
 	else
 		if(H.l_hand && H.r_hand)
 			to_chat(H, SPAN_DANGER("Your hands are full."))
 		else
-			var/obj/item/new_weapon = new fabrication_type()
-			new_weapon.forceMove(H)
+			var/obj/item/new_weapon = new fabrication_type(H)
 			to_chat(H, "<font color='blue'><b>You quickly fabricate \a [new_weapon].</b></font>")
 			H.put_in_hands(new_weapon)
 

@@ -6,6 +6,8 @@
 /obj/mecha/working/Initialize()
 	. = ..()
 	var/turf/T = get_turf(src)
+	if(!T)
+		return
 	if(isPlayerLevel(T.z))
 		new /obj/item/mecha_parts/mecha_tracking(src)
 	return

@@ -8,11 +8,6 @@
 	var/on = 0 //Are we currently active??
 	var/menu_message = ""
 
-	New()
-		..()
-		if (istype(loc.loc, /obj/item/device/pda))
-			hostpda = loc.loc
-
 	proc/post_signal(var/freq, var/key, var/value, var/key2, var/value2, var/key3, var/value3, s_filter)
 
 		//world << "Post: [freq]: [key]=[value], [key2]=[value2]"
@@ -35,6 +30,13 @@
 
 	proc/generate_menu()
 
+/obj/item/radio/integrated/Initialize(mapload, ...)
+	. = ..()
+	if(!loc)
+		return
+	if (istype(loc.loc, /obj/item/device/pda))
+		hostpda = loc.loc
+
 /obj/item/radio/integrated/beepsky
 	var/list/botlist = null		// list of bots
 	var/mob/living/bot/secbot/active 	// the active bot; if null, show bot list
@@ -44,7 +46,7 @@
 
 	// create a new QM cartridge, and register to receive bot control & beacon message
 	New()
-		..()
+		. = ..()
 		spawn(5)
 			SSradio.add_object(src, control_freq, filter = RADIO_SECBOT)
 
@@ -114,7 +116,7 @@
 
 	// create a new QM cartridge, and register to receive bot control & beacon message
 	New()
-		..()
+		. = ..()
 		spawn(5)
 			SSradio.add_object(src, control_freq, filter = RADIO_MULEBOT)
 			SSradio.add_object(src, beacon_freq, filter = RADIO_NAVBEACONS)
@@ -216,6 +218,8 @@
 
 	Initialize()
 		. = ..()
+		if(.)
+			return
 
 		if (src.frequency < PUBLIC_LOW_FREQ || src.frequency > PUBLIC_HIGH_FREQ)
 			src.frequency = sanitize_frequency(src.frequency)
