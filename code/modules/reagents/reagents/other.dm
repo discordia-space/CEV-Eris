@@ -409,7 +409,7 @@
 /datum/reagent/other/aranecolmin
 	name = "Aranecolmin"
 	id = "aranecolmin"
-	description = ""
+	description = "Weak antitoxin used by warrior spiders. Speeds up metabolism immensely."
 	taste_description = "sludge"
 	reagent_state = LIQUID
 	color = "#acc107"
