@@ -484,7 +484,7 @@
 
 	return ..()
 
-/obj/item/weapon/storage/verb/quick_empty()
+/obj/item/weapon/storage/verb/quick_empty(var/turf/target)
 	set name = "Empty Contents"
 	set category = "Object"
 
@@ -492,6 +492,10 @@
 		return
 
 	var/turf/T = get_turf(src)
+	if(isturf(target))
+		T = target
+	else
+		T = get_turf(src)
 	if(!istype(T))
 		return
 	hide_from(usr)
