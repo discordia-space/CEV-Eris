@@ -484,18 +484,14 @@
 
 	return ..()
 
-/obj/item/weapon/storage/verb/quick_empty(var/turf/target)
+/obj/item/weapon/storage/verb/quick_empty()
 	set name = "Empty Contents"
 	set category = "Object"
 
 	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
 		return
 
-	var/turf/T
-	if(isturf(target))
-		T = target
-	else
-		T = get_turf(src)
+	var/turf/T = get_turf(src)
 	if(!istype(T))
 		return
 	hide_from(usr)
