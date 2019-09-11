@@ -309,7 +309,7 @@
 
 /obj/machinery/hivemind_machine/node/Initialize()
 	. = ..()
-	if(!.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	if(!hive_mind_ai)
 		hive_mind_ai = new /datum/hivemind
