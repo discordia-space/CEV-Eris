@@ -107,7 +107,7 @@ NanoBaseHelpers = function ()
 				}
 				if (typeof elementClass == 'undefined' || !elementClass)
 				{
-					elementClass = 'link';
+					elementClass = '';
 				}
 				var elementIdHtml = '';
 				if (typeof elementId != 'undefined' && elementId)
@@ -116,9 +116,9 @@ NanoBaseHelpers = function ()
 				}
 				if (typeof status != 'undefined' && status)
 				{
-					return '<div unselectable="on" class="link ' + iconClass + ' ' + elementClass + ' ' + status + '" ' + elementIdHtml + '>' + iconHtml + text + '</div>';
+					return '<span unselectable="on" class="link noFloat ' + iconClass + ' ' + elementClass + ' ' + status + '" ' + elementIdHtml + '>' + iconHtml + text + '</span>';
 				}
-				return '<div unselectable="on" class="link linkActive ' + iconClass + ' ' + elementClass + '" data-href="' + NanoUtility.generateHref(parameters) + '" ' + elementIdHtml + '>' + iconHtml + text + '</div>';
+				return '<span unselectable="on" class="link linkActive noFloat ' + iconClass + ' ' + elementClass + '" data-href="' + NanoUtility.generateHref(parameters) + '" ' + elementIdHtml + '>' + iconHtml + text + '</span>';
 			},
 			formatNumber: function(x) {
 				// From http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript

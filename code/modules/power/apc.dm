@@ -165,12 +165,16 @@
 	return cell.drain_power(drain_check, surge, amount)
 
 /obj/machinery/power/apc/New(turf/loc, var/ndir, var/building=0)
+	. = ..()
+	
 	wires = new(src)
 
 	// offset 28 pixels in direction of dir
 	// this allows the APC to be embedded in a wall, yet still inside an area
 	if(building)
 		buildstage = 0
+	else
+		buildstage = 1
 	if (buildstage == 0)
 		set_dir(ndir)
 	src.tdir = dir		// to fix Vars bug
@@ -181,7 +185,8 @@
 
 /obj/machinery/power/apc/Initialize(mapload, d)
 	. = ..()
-
+	if(. == INITIALIZE_HINT_NO_LOC)
+		return
 	if(buildstage == 1)
 		init()
 	else 

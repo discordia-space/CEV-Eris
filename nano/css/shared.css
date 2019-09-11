@@ -510,6 +510,10 @@ div.notice {
     clear: both;
 }
 
+.noFloat {
+    float: none;
+}
+
 .clearLeft {
     clear: left;
 }

@@ -16,7 +16,7 @@
 
 /obj/machinery/portable_atmospherics/hydroponics/soil/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	verbs -= /obj/machinery/portable_atmospherics/hydroponics/verb/close_lid_verb
 	verbs -= /obj/machinery/portable_atmospherics/hydroponics/verb/remove_label

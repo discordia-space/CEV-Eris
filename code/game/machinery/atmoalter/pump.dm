@@ -23,7 +23,7 @@
 
 /obj/machinery/portable_atmospherics/powered/pump/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	cell = new/obj/item/weapon/cell/medium/high(src)
 

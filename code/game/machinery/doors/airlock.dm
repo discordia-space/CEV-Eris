@@ -1275,6 +1275,7 @@ There are 9 wires.
 	return ..(M)
 
 /obj/machinery/door/airlock/New(var/newloc, var/obj/structure/door_assembly/assembly=null)
+	. = ..()
 	//if assembly is given, create the new door from the assembly
 	if (assembly && istype(assembly))
 		assembly_type = assembly.type

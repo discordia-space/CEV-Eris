@@ -11,6 +11,18 @@
 
 	for(var/path in paths)
 		var/datum/chemical_reaction/D = new path()
+		for(var/id in D.required_reagents)
+			if(!is_reagent_with_id_exist(id))
+				error("recipe [D.type] created incorectly,\[required_reagents\] reagent with id \"[id]\" does not exist.")
+		for(var/id in D.catalysts)
+			if(!is_reagent_with_id_exist(id))
+				error("recipe [D.type] created incorectly,\[catalysts\] reagent with id [id] does not exist.")
+		for(var/id in D.inhibitors)
+			if(!is_reagent_with_id_exist(id))
+				error("recipe [D.type] created incorectly,\[inhibitors\] reagent with id [id] does not exist.")
+		for(var/id in D.byproducts)
+			if(!is_reagent_with_id_exist(id))
+				error("recipe [D.type] created incorectly,\[byproducts\] reagent with id [id] does not exist.")
 		if(D.required_reagents && D.required_reagents.len)
 			if(D.result)
 				if(!GLOB.chemical_reactions_list_by_result[D.result])
@@ -1700,7 +1712,7 @@
 
 /datum/chemical_reaction/luminol
 	result = "luminol"
-	required_reagents = list("hydrogen" = 2, "carbon" = 2, "ammonia" = 2)
+	required_reagents = list("hydrazine" = 2, "carbon" = 2, "ammonia" = 2)
 	result_amount = 6
 	
 /datum/chemical_reaction/mbr
@@ -1798,19 +1810,19 @@
 
 /datum/chemical_reaction/menace
 	result = "menace"
-	required_reagents = list("turbo" = 1, "boxer" = 1, "ultra violence" = 1)
+	required_reagents = list("turbo" = 1, "boxer" = 1, "violence ultra" = 1)
 	result_amount = 3
 	maximum_temperature = 363
 	minimum_temperature = 358
 
 /datum/chemical_reaction/sanguinum
 	result = "sanguinum"
-	required_reagents = list("bicardine" = 1, "spaceacillin" = 1, "mercury" = 1)
+	required_reagents = list("bicaridine" = 1, "spaceacillin" = 1, "mercury" = 1)
 	result_amount = 3
 
 /datum/chemical_reaction/kyphotorin
 	result = "kyphotorin"
-	required_reagents = list("perdaxon" = 1, "mutagen" = 1, "clonexadon" = 1)
+	required_reagents = list("peridaxon" = 1, "mutagen" = 1, "clonexadone" = 1)
 	result_amount = 3
 
 /datum/chemical_reaction/vomitol
@@ -1831,12 +1843,12 @@
 
 /datum/chemical_reaction/ossisine
 	result = "ossisine"
-	required_reagents = list("soporific" = 1, "clonexadone" = 1, "bicardine" = 1)
+	required_reagents = list("stoxin" = 1, "clonexadone" = 1, "bicaridine" = 1)
 	result_amount = 3
 
 /datum/chemical_reaction/instant_ice
 	result = "instant_ice"
-	required_reagents = list("hydrazine" = 1, "acetone" = 1, "salt" = 1)
+	required_reagents = list("hydrazine" = 1, "acetone" = 1, "sodiumchloride" = 1)
 	result_amount = 3
 
 /datum/chemical_reaction/instant_ice_with_water

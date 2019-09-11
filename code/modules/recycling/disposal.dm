@@ -32,7 +32,7 @@
 // find the attached trunk (if present) and init gas resvr.
 /obj/machinery/disposal/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	spawn(5)
 		trunk = locate() in src.loc
@@ -706,7 +706,7 @@
 // new pipe, set the icon_state as on map
 /obj/structure/disposalpipe/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	base_icon_state = icon_state
 	return
@@ -1018,7 +1018,7 @@
 
 /obj/structure/disposalpipe/up/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	update()
 
@@ -1248,7 +1248,7 @@
 
 /obj/structure/disposalpipe/sortjunction/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	if(sortType) tagger_locations |= sortType
 

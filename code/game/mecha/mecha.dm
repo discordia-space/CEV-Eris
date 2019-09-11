@@ -111,7 +111,7 @@
 
 /obj/mecha/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	events = new
 

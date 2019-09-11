@@ -49,7 +49,7 @@
 
 /obj/machinery/door/firedoor/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 
 	var/area/A = get_area(src)

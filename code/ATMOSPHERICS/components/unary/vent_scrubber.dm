@@ -35,7 +35,7 @@
 
 /obj/machinery/atmospherics/unary/vent_scrubber/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	air_contents.volume = ATMOS_DEFAULT_VOLUME_FILTER
 

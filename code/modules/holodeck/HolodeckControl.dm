@@ -26,7 +26,7 @@
 
 /obj/machinery/computer/HolodeckControl/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	linkedholodeck = locate(linkedholodeck_area)
 	supported_programs = list()
@@ -348,7 +348,7 @@
 
 /obj/machinery/computer/HolodeckControl/Exodus/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	supported_programs = list(
 	"Empty Court" 		= "emptycourt",

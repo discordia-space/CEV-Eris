@@ -563,3 +563,12 @@ ADMIN_VERB_ADD(/client/proc/toggleUIDebugMode, R_DEBUG, FALSE)
 		UI.toggleDebugMode()
 	else
 		log_debug("This mob has no UI.")
+
+ADMIN_VERB_ADD(/client/proc/open_catalog, R_DEBUG, FALSE)
+/client/proc/open_catalog()
+	set category = "Debug"
+	set name = "Open catalog database"
+	set desc = "Open catalog database"
+
+	var/datum/nano_module/appearance_changer/AC = new(usr)
+	AC.ui_interact(usr)

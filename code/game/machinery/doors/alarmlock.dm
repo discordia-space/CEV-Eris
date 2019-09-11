@@ -11,7 +11,7 @@
 
 /obj/machinery/door/airlock/alarmlock/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	air_connection = new
 

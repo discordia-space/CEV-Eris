@@ -50,7 +50,7 @@
 
 /obj/structure/largecrate/animal/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	for(var/i = 1;i<=held_count;i++)
 		new held_type(src)

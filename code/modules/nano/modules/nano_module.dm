@@ -76,12 +76,16 @@
 /datum/nano_module/proc/browse_catalog_entry(var/datum/catalog_entry/entry_to_browse, var/mob/user)
 	if(!entry_to_browse)
 		return FALSE
+	var/datum/nanoui/ui = SSnano.get_open_ui(user, src, "main")
+	if(!ui)
+		return FALSE
 	if(selected_entry && selected_entry != entry_to_browse)
 		entry_history.Add(selected_entry)
 
 	selected_entry = entry_to_browse
-	var/datum/nanoui/ui = SSnano.get_open_ui(user, src, "main")
+	
 	ui.add_template("catalogEntry", selected_entry.associated_template)
+
 	catalog_browse_stage = CATALOG_BROWSE_STAGE_ENTRY
 	ui.reinitialise(new_initial_data = ui_data(user))
 	return TRUE
@@ -111,7 +115,6 @@
 		return 1
 
 	if(href_list["set_active_entry"])
-		to_world("link worked")
 		var/ID = text2path(href_list["set_active_entry"])
 		var/datum/catalog_entry/E = GLOB.all_catalog_entries_by_type[ID]
 		browse_catalog_entry(E, usr)
@@ -121,14 +124,14 @@
 		if(entry_history.len)
 			selected_entry = entry_history[entry_history.len]
 			entry_history.Remove(selected_entry)
+			browse_catalog_entry(selected_entry, usr)
 		else if(catalog)
-			selected_entry = null
-			catalog_browse_stage = CATALOG_BROWSE_STAGE_LIST
+			browse_catalog(catalog, usr)
 		else
 			selected_entry = null
 			catalog_browse_stage = CATALOG_BROWSE_STAGE_NONE
-
-		return 1
+			return 1
+		return 0
 
 	if(href_list["print_active"])
 		if(!selected_entry)

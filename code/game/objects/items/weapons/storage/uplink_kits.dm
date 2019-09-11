@@ -81,7 +81,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/imp_freedom/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	new /obj/item/weapon/implanter/freedom(src)
 
@@ -90,7 +90,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/imp_compress/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	new /obj/item/weapon/implanter/compressed(src)
 
@@ -99,7 +99,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/imp_explosive/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	new /obj/item/weapon/implanter/explosive(src)
 
@@ -108,7 +108,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/imp_uplink/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	//Turn off passive gain for boxed implant uplinks. To prevent exploits of gathering tons of free TC
 	var/obj/item/weapon/implanter/uplink/U1 = new /obj/item/weapon/implanter/uplink(src)
@@ -121,7 +121,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/space/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	new /obj/item/clothing/suit/space/syndicate(src)
 	new /obj/item/clothing/head/helmet/space/syndicate(src)
@@ -134,7 +134,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/chameleon/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	new /obj/item/clothing/under/chameleon(src)
 	new /obj/item/clothing/head/chameleon(src)
@@ -152,7 +152,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/clerical/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	new /obj/item/weapon/stamp/chameleon(src)
 	new /obj/item/weapon/pen/chameleon(src)
@@ -166,7 +166,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/spy/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	new /obj/item/device/spy_bug(src)
 	new /obj/item/device/spy_bug(src)
@@ -182,7 +182,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/g9mm/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	new /obj/item/weapon/gun/projectile/clarissa(src)
 	new /obj/item/weapon/silencer(src)
@@ -193,7 +193,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/toxin/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	new /obj/item/weapon/reagent_containers/glass/beaker/vial/random/toxin(src)
 	new /obj/item/weapon/reagent_containers/syringe(src)
@@ -245,7 +245,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/ewar_voice/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	new /obj/item/rig_module/electrowarfare_suite(src)
 	new /obj/item/rig_module/voice(src)

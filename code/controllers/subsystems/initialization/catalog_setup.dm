@@ -45,18 +45,20 @@ SUBSYSTEM_DEF(catalog_setup)
 	for(var/type in types_to_create)
 		// if you came here looking why your object runtimes at roundstart here is solution for you
 		// first of all, move all your initialisation code from New() to Initialize()
-		// if base call of Initialize has returned something (its INITIALIZE_HINT_LATELOAD) then this means it has no place in this world
+		// if base call of Initialize has returned INITIALIZE_HINT_NO_LOC then this means it was created in nullspace
 		// if object havent found itself a place after LateInitialize() it got qdeled later
 		// you need to add check that will break your init if object created in nullspace 
 		//	. = ..()
 		//	if(.) 
 		//		return
+		// or just add get_turf(src) check, i dont care
 		// if your object is supposed to be created in null space change atom's var can_be_created_in_nullspace to TRUE
 		var/atom/A = new type()
 		if(A)
 			register_atom(A)
 			if(!QDESTROYING(A))
-				spawn()
+				// we need to wait otherwise references are broken immediately
+				spawn(10)
 					qdel(A)
 	send_assets()
 	. = ..()

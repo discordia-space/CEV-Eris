@@ -10,9 +10,9 @@
 		<h1>{{:data.name}}</h1>
 	</div>
 	<div class = "statusDisplayItem" style="float: right;">
-		<img src={{:data.entry_image_path}} width = 128px>
+		<img src={{:data.entry_image_path}} width = 64px>
 	</div>
-	<div class="item">
+	<div class="item" style="float: left;">
 		<h4>Description:</h4>
 		<div class="item">
 			{{:data.description}}
@@ -43,6 +43,7 @@
 			</div>
 		{{/if}}
 		{{if data.can_be_found_in}}
+			<h4>Can be found in:</h4>
 			<div class="statusDisplay" style="overflow: auto;">
 				<table style="width:100%">
 					{{for data.can_be_found_in}}

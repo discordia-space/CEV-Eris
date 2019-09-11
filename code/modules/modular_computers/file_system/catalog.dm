@@ -1,5 +1,3 @@
-#define CATALOG_REAGENTS "reagents"
-
 /*
 	important notes
 	catalogs are handled in /datum/nano_module, check there
@@ -8,9 +6,7 @@
 		browse_catalog()
 		refresh_catalog_browsing()
 
-
-	
-
+	TODO: add access level that will show more info
 */
 /datum
 	var/catalog_info_level_one
@@ -33,6 +29,30 @@
 
 GLOBAL_LIST_EMPTY(catalogs)
 GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
+
+/hook/startup/proc/createCatalogs()
+	// Reagents
+	for(var/V in chemical_reagents_list)
+		var/datum/reagent/D = chemical_reagents_list[V]
+		if(D.appear_in_default_catalog)
+			create_catalog_entry(D, CATALOG_REAGENTS)
+			create_catalog_entry(D, CATALOG_ALL)
+			if(istype(D, /datum/reagent/drink) || istype(D, /datum/reagent/ethanol))
+				if(D.type == /datum/reagent/ethanol)
+					create_catalog_entry(D, CATALOG_CHEMISTRY)
+				create_catalog_entry(D, CATALOG_DRINKS)
+			else
+				create_catalog_entry(D, CATALOG_CHEMISTRY)
+			
+	var/datum/catalog/C = GLOB.catalogs[CATALOG_REAGENTS]
+	C.associated_template = "catalog_list_reagents.tmpl"
+	C = GLOB.catalogs[CATALOG_CHEMISTRY]
+	C.associated_template = "catalog_list_reagents.tmpl"
+	C = GLOB.catalogs[CATALOG_DRINKS]
+	C.associated_template = "catalog_list_reagents.tmpl"
+	C = GLOB.catalogs[CATALOG_ALL]
+	C.associated_template = "catalog_list_general.tmpl"
+	return 1
 
 /proc/create_catalog_entry(var/datum/thing, var/catalog_id)
 	if(catalog_id && !GLOB.catalogs[catalog_id])
@@ -211,7 +231,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	return data
 
 /datum/catalog_entry/reagent/ui_data(mob/user, ui_key = "main")
-	var/list/data = list()
+	var/list/data = ..()
 
 	// SPECIFICTS
 	data["name"] = title
@@ -243,13 +263,14 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 		error("wrong usage of [src.type]")
 		qdel(src)
 		return
+	..()
 	title = V.name
 	description = V.desc
 	image_path = getAtomCacheFilename(V)
-	..()
+	
 
 /datum/catalog_entry/atom/ui_data(mob/user, ui_key = "main")
-	var/list/data = list()
+	var/list/data = ..()
 
 	// SPECIFICTS
 	data["name"] = title

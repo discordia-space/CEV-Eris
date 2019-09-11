@@ -64,7 +64,7 @@
 
 /obj/machinery/alarm/server/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	req_access = list(access_rd, access_atmospherics, access_engine_equip)
 	TLV["oxygen"] =			list(-1.0, -1.0,-1.0,-1.0) // Partial pressure, kpa
@@ -88,7 +88,7 @@
 
 /obj/machinery/alarm/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	if(!buildstage)
 		if(dir)
@@ -1171,7 +1171,7 @@ FIRE ALARM
 
 /obj/machinery/firealarm/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	if(loc)
 		src.loc = loc

@@ -15,3 +15,13 @@
 		return D.type
 
 	return "REAGENT NOT FOUND"
+
+/proc/is_reagent_with_id_exist(var/id)
+	if(!chemical_reagents_list.len)
+		error("REAGENTS NOT INITIALISED")
+		return FALSE
+	var/datum/reagent/D = chemical_reagents_list[id]
+	if(D)
+		return TRUE
+
+	return FALSE

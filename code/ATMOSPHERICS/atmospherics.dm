@@ -35,7 +35,7 @@ Pipelines + Other Objects -> Pipe network
 
 /obj/machinery/atmospherics/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	if(!icon_manager)
 		icon_manager = new()

@@ -85,6 +85,14 @@ SUBSYSTEM_DEF(atoms)
 					late_loaders += A
 				else
 					A.LateInitialize(arglist(arguments))
+			if(INITIALIZE_HINT_NO_LOC)
+				if(A.LateInitialize(arglist(arguments)) == INITIALIZE_HINT_NO_LOC)
+					qdeleted = TRUE
+					spawn(10)
+						qdel(A)
+					if(SScatalog_setup.initialized)
+						if(SSticker.current_state >= GAME_STATE_PLAYING)
+							CRASH("[A.type] was created in nullspace, but it doesnt suppose to.")
 			if(INITIALIZE_HINT_QDEL)
 				qdel(A)
 				qdeleted = TRUE
@@ -93,16 +101,8 @@ SUBSYSTEM_DEF(atoms)
 	
 	if(!A)	//possible harddel
 		qdeleted = TRUE
-	else if(!get_turf(A) && !A.can_be_created_in_nullspace)
-		if(SScatalog_setup.initialized)
-			if(SSticker.current_state >= GAME_STATE_PLAYING)
-				CRASH("[A.type] was created in nullspace, but it doesnt suppose to.")
-		spawn()
-			qdel(A)
-		qdeleted = TRUE
-	else if(!A.initialized)
+	else if(!A.initialized && !qdeleted)
 		BadInitializeCalls[the_type] |= BAD_INIT_DIDNT_INIT
-	
 	if(A)
 		SScatalog_setup.register_atom(A)
 

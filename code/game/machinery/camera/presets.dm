@@ -79,7 +79,7 @@ var/global/list/engineering_networks = list(
 
 /obj/machinery/camera/emp_proof/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	upgradeEmpProof()
 
@@ -99,7 +99,7 @@ var/global/list/engineering_networks = list(
 
 /obj/machinery/camera/xray/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	upgradeXRay()
 
@@ -107,7 +107,7 @@ var/global/list/engineering_networks = list(
 
 /obj/machinery/camera/motion/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	upgradeMotion()
 
@@ -122,7 +122,7 @@ var/global/list/engineering_networks = list(
 
 /obj/machinery/camera/all/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	upgradeEmpProof()
 	upgradeXRay()

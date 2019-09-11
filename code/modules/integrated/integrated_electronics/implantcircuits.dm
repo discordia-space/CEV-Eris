@@ -7,7 +7,7 @@
 
 /obj/item/weapon/implant/integrated_circuit/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	IC = new(src)
 	IC.implant = src

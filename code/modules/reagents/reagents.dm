@@ -8,13 +8,6 @@
 		if(!D.name)
 			continue
 		chemical_reagents_list[D.id] = D
-	// Reagents
-	for(var/V in chemical_reagents_list)
-		var/datum/reagent/D = chemical_reagents_list[V]
-		if(D.appear_in_default_catalog)
-			create_catalog_entry(D, CATALOG_REAGENTS)
-	var/datum/catalog/C = GLOB.catalogs[CATALOG_REAGENTS]
-	C.associated_template = "catalog_list_reagents.tmpl"
 
 /datum/reagent
 	var/name = ""

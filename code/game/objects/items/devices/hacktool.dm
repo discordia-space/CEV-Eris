@@ -9,7 +9,7 @@
 
 /obj/item/weapon/tool/multitool/hacktool/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	known_targets = list()
 	max_known_targets = 5 + rand(1,3)

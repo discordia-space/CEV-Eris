@@ -465,9 +465,9 @@
 	..()
 	L.set_light(0)
 
-/datum/reagent/other/instant_ice  
+/datum/reagent/other/instantice
 	name = "InstantIce"
-	id = "instantice"
+	id = "instant_ice"
 	description = "Will cool reagents inside container when mixed with water to -50C"
 	taste_description = "nothing"
 	reagent_state = LIQUID

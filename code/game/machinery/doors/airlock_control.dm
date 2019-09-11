@@ -141,7 +141,7 @@
 	update_icon()
 
 /obj/machinery/door/airlock/New()
-	..()
+	. = ..()
 
 	set_frequency(frequency)
 

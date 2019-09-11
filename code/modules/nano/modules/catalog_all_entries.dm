@@ -1,18 +1,3 @@
-/*
-
-*/
-
-/datum/computer_file/program/chem_catalog
-	filename = "chemCatalog"
-	filedesc = "MIRC"
-	extended_desc = "Moebious Internal Reagent Catalogue - Electronic catalog containing all information about basic chemical reactions and reagents."
-	program_icon_state = "generic"
-	program_key_state = "generic_key"
-	size = 2
-	available_on_ntnet = 1
-	nanomodule_path = /datum/nano_module/chem_catalog
-	usage_flags = PROGRAM_ALL
-
 /datum/nano_module/chem_catalog
 	name = "Chemistry Catalog"
 
@@ -31,5 +16,5 @@
 		return 1
 
 	if(href_list["greet"])
-		browse_catalog(GLOB.catalogs[CATALOG_CHEMISTRY], usr)
+		browse_catalog(GLOB.catalogs[CATALOG_ALL], usr)
 		return 0

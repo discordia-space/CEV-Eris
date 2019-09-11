@@ -119,7 +119,7 @@ Class Procs:
 
 /obj/machinery/Initialize(mapload, d = 0)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 	if(d)
 		set_dir(d)

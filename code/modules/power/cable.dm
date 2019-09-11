@@ -79,7 +79,7 @@ var/list/possible_cable_coil_colours = list(
 
 /obj/structure/cable/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 
 	// ensure d1 & d2 reflect the icon_state for entering and exiting cable

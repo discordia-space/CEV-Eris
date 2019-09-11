@@ -85,13 +85,16 @@
 			reagents.add_reagent(reagent, preloaded_reagents[reagent])
 
 	if(!get_turf(src) && !can_be_created_in_nullspace)
-		return INITIALIZE_HINT_LATELOAD
+		return INITIALIZE_HINT_NO_LOC
 	else
 		return INITIALIZE_HINT_NORMAL
 
 //called if Initialize returns INITIALIZE_HINT_LATELOAD
 /atom/proc/LateInitialize()
-	return
+	if(!get_turf(src) && !can_be_created_in_nullspace)
+		return INITIALIZE_HINT_NO_LOC
+	else
+		return INITIALIZE_HINT_NORMAL
 
 /atom/proc/catalog_initialize()
 	if(!contribute_to_catalog)
@@ -101,7 +104,7 @@
 		var/datum/asset/simple/all_atoms/AAA = get_asset_datum(/datum/asset/simple/all_atoms)
 		AAA.register(src)
 
-	create_catalog_entry(src)
+	create_catalog_entry(src, CATALOG_ALL)
 
 	if(contribute_to_container_catalog)
 		if(istype(loc, /obj/item/weapon/storage))
@@ -109,7 +112,7 @@
 			if(E)
 				E.add_to_can_be_found(loc)
 	
-	if(reagents && reagents.reagent_list)
+	if(reagents && reagents.reagent_list && contribute_to_reagent_catalog)
 		for(var/reagent in reagents.reagent_list)
 			var/datum/reagent/R = reagent
 			var/datum/catalog_entry/reagent/E = get_catalog_entry(R.type)

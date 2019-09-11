@@ -38,7 +38,7 @@
 
 /obj/machinery/camera/Initialize(mapload, d)
 	. = ..()
-	if(.)
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
 
 	wires = new(src)
