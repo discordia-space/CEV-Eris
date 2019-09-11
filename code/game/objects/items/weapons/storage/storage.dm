@@ -491,7 +491,7 @@
 	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
 		return
 
-	var/turf/T = get_turf(src)
+	var/turf/T
 	if(isturf(target))
 		T = target
 	else
