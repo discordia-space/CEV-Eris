@@ -570,5 +570,8 @@ ADMIN_VERB_ADD(/client/proc/open_catalog, R_DEBUG, FALSE)
 	set name = "Open catalog database"
 	set desc = "Open catalog database"
 
-	var/datum/nano_module/appearance_changer/AC = new(usr)
-	AC.ui_interact(usr)
+	if(!istype(usr.mob, /mob/living/carbon/human))
+		to_chat(usr, SPAN_WARNING("Must be human"))
+		return
+	var/datum/nano_module/catalog/C = new(usr)
+	C.ui_interact(usr)

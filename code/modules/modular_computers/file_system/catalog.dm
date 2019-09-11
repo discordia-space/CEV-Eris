@@ -266,6 +266,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	..()
 	title = V.name
 	description = V.desc
+	thing_nature = "Atom"
 	image_path = getAtomCacheFilename(V)
 	
 
