@@ -35,6 +35,8 @@
 	var/duties = ""
 	var/loyalties = ""
 
+	var/background_restricted = FALSE
+
 	//Character stats modifers
 	var/list/stat_modifiers = list()
 
@@ -146,6 +148,10 @@
 		to_chat(feedback, "<span class='boldannounce'>NT is restricted from command and security roles due to conflict of intertest.</span>")
 		return TRUE
 
+	if(is_background_restricted(prefs.background))
+		to_chat(feedback, "<span class='boldannounce'>Your background conflicts with chosen job.</span>")
+		return TRUE
+
 	if(minimum_character_age && (prefs.age < minimum_character_age))
 		to_chat(feedback, "<span class='boldannounce'>Not old enough. Minimum character age is [minimum_character_age].</span>")
 		return TRUE
@@ -158,6 +164,15 @@
 			return TRUE
 
 	return FALSE
+
+/datum/job/proc/is_background_restricted(list/datum/background/backgrounds)
+	. = background_restricted
+	for(var/bg in backgrounds)
+		var/datum/background/background = all_backgrounds[bg][backgrounds[bg]]
+		if(type in background.restricted_jobs)
+			return TRUE
+		if(type in background.allowed_jobs)
+			. = FALSE
 
 //	Creates mannequin with equipment for current job and stores it for future reference
 //	used for preview

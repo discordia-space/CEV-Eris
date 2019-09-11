@@ -235,6 +235,8 @@
 	if(!character.isSynthetic())
 		character.nutrition = rand(250, 450)
 
+	for(var/bg in background)
+		all_backgrounds[bg][background[bg]].apply(character)
 
 
 /datum/preferences/proc/open_load_dialog(mob/user)
