@@ -2455,7 +2455,6 @@
 #include "code\modules\tables\update_triggers.dm"
 #include "code\modules\telesci\bcrystal.dm"
 #include "code\modules\telesci\circuits.dm"
-#include "code\modules\telesci\gps.dm"
 #include "code\modules\telesci\telepads.dm"
 #include "code\modules\telesci\telesci_computer.dm"
 #include "code\modules\tips_and_tricks\gameplay.dm"
