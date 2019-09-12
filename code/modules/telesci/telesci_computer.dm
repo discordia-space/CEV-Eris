@@ -61,7 +61,7 @@
 			inserted_gps = W
 			user.unEquip(W)
 			W.forceMove(src)
-			user.visible_message("[user] inserts [W] into \the [src]'s GPS device slot.", SPAN_NOTTICE("<span class='notice'>You insert [W] into \the [src]'s GPS device slot.</span>"))
+			user.visible_message("[user] inserts [W] into \the [src]'s GPS device slot.", SPAN_NOTICE("<span class='notice'>You insert [W] into \the [src]'s GPS device slot.</span>"))
 	else if(istype(W, /obj/item/weapon/tool/multitool))
 		var/obj/item/weapon/tool/multitool/M = W
 		if(M.buffer_object && istype(M.buffer_object, /obj/machinery/telepad))
