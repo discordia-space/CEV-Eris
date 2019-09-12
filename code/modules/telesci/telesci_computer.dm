@@ -179,7 +179,7 @@
 			temp_msg = "Powering up bluespace crystals.<BR>Please wait."
 
 
-		spawn(round(proj_data.time) * 10) // in seconds
+		spawn(round(proj_data.time) SECONDS) // in seconds
 			if(!telepad)
 				return
 			if(telepad.stat & NOPOWER)
@@ -217,7 +217,7 @@
 				if(ROI.anchored)
 					if(isliving(ROI))
 						var/mob/living/L = ROI
-						if(L.buckled)
+						if(L.incapacitated(INCAPACITATION_BUCKLED_PARTIALLY))
 							// TP people on office chairs
 							if(L.buckled.anchored)
 								continue
