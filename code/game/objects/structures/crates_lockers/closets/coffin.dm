@@ -40,9 +40,9 @@
 	icon_state = "coffin"
 	welded = 1
 
-	New()
-		..()
-		var/atom/A = pick(/obj/landmark/corpse/chef, /obj/landmark/corpse/doctor, /obj/landmark/corpse/engineer, /obj/landmark/corpse/engineer/rig, /obj/landmark/corpse/clown, \
-		/obj/landmark/corpse/scientist, /obj/landmark/corpse/miner, /obj/landmark/corpse/miner/rig, /obj/landmark/corpse/bridgeofficer, /obj/landmark/corpse/commander, \
-		/obj/landmark/corpse/russian)
-		new A
+/obj/structure/closet/coffin/spawnercorpse/New()
+	..()
+	var/atom/A = pick(/obj/landmark/corpse/chef, /obj/landmark/corpse/doctor, /obj/landmark/corpse/engineer, /obj/landmark/corpse/engineer/rig, /obj/landmark/corpse/clown, \
+	/obj/landmark/corpse/scientist, /obj/landmark/corpse/miner, /obj/landmark/corpse/miner/rig, /obj/landmark/corpse/bridgeofficer, /obj/landmark/corpse/commander, \
+	/obj/landmark/corpse/russian)
+	new A

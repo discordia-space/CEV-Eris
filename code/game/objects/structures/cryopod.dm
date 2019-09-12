@@ -6,8 +6,8 @@
 	icon = 'icons/obj/machines/excelsior/objects.dmi'
 	icon_state = "cryopod"
 	var/mob/spawnmob
-	var/spawnname
-	var/spawnsurname
+	var/spawn_role
+	var/spawn_faction
 	var/outfit_type // The outfit the employee will be dressed in, if any
 	var/stat_modifiers = list(
 		STAT_MEC = 25,
@@ -28,22 +28,21 @@
 	if(!spawnmob)
 		for(var/mob/observer/O in world)
 			if(!spawnmob)
-				//var/turf/T = get_turf(src.loc)
-				var/response = alert(O, "Are you -sure- you want to become a [spawnname] [spawnsurname]?.","Are you sure?","Near Ghost", "Random","Cancel")
-				if(response == "Cancel") return  //Hit the wrong key...again.
+				var/response = alert(O, "Are you -sure- you want to become a [spawn_faction] [spawn_role]?.","Are you sure?","Yes","Cancel",)
+				if(response == "Cancel") continue  //Hit the wrong key...again.
 
 				if(!spawnmob)
 					spawnmob = new /mob/living/carbon/human(src.loc)
 					spawnmob.ckey = O.ckey
-					justequip(spawnmob, spawnname, spawnsurname, outfit_type)
+					justequip(spawnmob, spawn_faction, spawn_role, outfit_type)
 					add_stats(spawnmob)
 		if(!spawnmob)
 			spawnmob = new /mob/living/carbon/superior_animal/roach(src.loc)
 
 /obj/structure/cryopod_spawner/ironhammer
 	outfit_type = /decl/hierarchy/outfit/job/security/ihoper
-	spawnname = "Ironhammer"
-	spawnsurname = "Marine"
+	spawn_faction = "Ironhammer"
+	spawn_role = "Marine"
 
 	stat_modifiers = list(
 		STAT_ROB = 40,
@@ -53,8 +52,8 @@
 
 /obj/structure/cryopod_spawner/medical
 	outfit_type = /decl/hierarchy/outfit/job/medical/doctor
-	spawnname = "Moebius"
-	spawnsurname = "Doctor"
+	spawn_faction = "Moebius"
+	spawn_role = "Doctor"
 
 	stat_modifiers = list(
 		STAT_MEC = 25,
@@ -64,8 +63,8 @@
 
 /obj/structure/cryopod_spawner/technomancer
 	outfit_type = /decl/hierarchy/outfit/job/engineering/exultant
-	spawnname = "Technomancer"
-	spawnsurname = "Exultant"
+	spawn_faction = "Technomancer"
+	spawn_role = "Exultant"
 
 	stat_modifiers = list(
 		STAT_MEC = 40,
@@ -76,8 +75,8 @@
 
 /obj/structure/cryopod_spawner/serbian
 	outfit_type = /decl/hierarchy/outfit/antagonist/mercenary/equipped
-	spawnname = "Serbian"
-	spawnsurname = "Operative"
+	spawn_faction = "Serbian"
+	spawn_role = "Operative"
 
 	stat_modifiers = list(
 		STAT_ROB = 40,

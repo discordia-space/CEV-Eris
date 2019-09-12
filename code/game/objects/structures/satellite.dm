@@ -43,5 +43,6 @@
 		if(istype(user, /mob/living/carbon/human))
 			if(death == 0)
 				death = 1
+				var/mob/living/carbon/human/H = user
 				var/mystat = pick(STAT_MEC, STAT_COG, STAT_TGH, STAT_VIG, STAT_BIO)
-				user:stats.changeStat(mystat, user:stats:getStat(mystat) + 20)
+				H.stats.changeStat(mystat, H.stats:getStat(mystat) + 20)

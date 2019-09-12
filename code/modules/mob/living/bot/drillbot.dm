@@ -14,11 +14,14 @@
 		sleep(rand(10,20))
 		A:gets_dug()
 
+/mob/living/bot/miningonestar/Destroy()
+	loot = null
+
 /mob/living/bot/miningonestar/death()
-	loot.loc = src.loc
+	loot.forceMove(loc)
 	explode()
 
-/mob/living/bot/miningonestar/resources/New()
+/mob/living/bot/miningonestar/resources/Initialize()
 	..()
 	update_icons()
 
@@ -46,7 +49,7 @@
 		else
 			walk_to(src,H,1,5,0)
 
-/mob/living/bot/miningonestar/resources/agressive/with_support/New()
+/mob/living/bot/miningonestar/resources/agressive/with_support/Initialize()
 	..()
 	update_icons()
 

@@ -5,20 +5,18 @@
 	var/cooldown = 0
 
 	attack_hand(mob/living/user as mob)
-		if(cooldown == 0)
-			cooldown = 1
-			emp_in(src.loc, 1, 1, 0)
-			sleep(460)
-			cooldown = 0
+		var/last_use
+
+		if(world.time < last_use + 46 SECONDS)
+			return
+		last_use = world.time
+		emp_in(src.loc, 1, 1, 0)
 
 /obj/structure/omnius/proc/emp_in(turf/epicenter, heavy_range, light_range, log=0)
 	for(var/mob/M in range(heavy_range, epicenter))
-		M << 'sound/effects/EMPulse.ogg'
+		playsound(loc, 'sound/effects/EMPulse.ogg')
 
 	for(var/atom/T in range(light_range, epicenter))
-		#ifdef EMPDEBUG
-		var/time = world.timeofday
-		#endif
 		var/distance = get_dist(epicenter, T)
 		if(distance < heavy_range)
 			T.emp_act(1)
@@ -29,10 +27,6 @@
 				T.emp_act(2)
 		else if(distance <= light_range)
 			T.emp_act(2)
-		#ifdef EMPDEBUG
-		if((world.timeofday - time) >= EMPDEBUG)
-			log_and_message_admins("EMPDEBUG: [T.name] - [T.type] - took [world.timeofday - time]ds to process emp_act()!")
-		#endif
 	return 1
 
 /obj/structure/omnius/emitter/proc/shoot()
@@ -57,11 +51,12 @@
 
 	proc/teleport()
 		for(var/mob/living/carbon/human/H in range(7, src))
-			H.loc = locate(x + rand(-14, 14), y + rand(-14, 14), z)
+			H.forceMove(locate(x + rand(-14, 14), y + rand(-14, 14), z))
 
 	attack_hand(mob/living/user as mob)
-		if(cooldown == 0)
-			cooldown = 1
-			teleport()
-			sleep(660)
-			cooldown = 0
+		var/last_use
+
+		if(world.time < last_use + 66 SECONDS)
+			return
+		last_use = world.time
+		teleport()
