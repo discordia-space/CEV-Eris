@@ -86,7 +86,8 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 				set_glide_size(DELAY2GLIDESIZE(move_to_delay))
 				walk_to(src, target_mob, 1, move_to_delay)
 			if(ranged && istype(src, /mob/living/simple_animal/hostile/megafauna))
-				sleep(rand(src:megafauna_min_cooldown,src:megafauna_max_cooldown))
+				var/mob/living/simple_animal/hostile/megafauna/megafauna = src
+				sleep(rand(megafauna.megafauna_min_cooldown,megafauna.megafauna_max_cooldown))
 				if(istype(src, /mob/living/simple_animal/hostile/megafauna/one_star))
 					if(prob(rand(15,25)))
 						stance = HOSTILE_STANCE_ATTACKING
