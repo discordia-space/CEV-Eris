@@ -67,6 +67,25 @@
 	var/datum/craft_step/CS = steps[step]
 	return CS.apply(I, user, target, src)
 
+/datum/craft_recipe/proc/build_batch(mob/living/user, amount)
+	if(!amount)
+		return
+	if(steps.len > 1)
+		warning("A multi-step recipe has BATCH_CRAFT flag: [name]. It should not!")
+		try_build(user)
+		return
+
+	var/obj/item/CR = try_build(user)
+	while(--amount)
+		var/obj/item/stack/S = try_build(user)
+		if(!S)
+			break
+		if(istype(S))
+			if(CR.Adjacent(user))
+				S.transfer_to(CR)
+			else
+				//someone ninja'd the result stack so make new one
+				CR = S
 
 /datum/craft_recipe/proc/try_build(mob/living/user)
 	if(!can_build(user, get_turf(user)))
@@ -98,3 +117,4 @@
 		CR.forceMove(user.loc, MOVED_DROP)
 	else
 		user.put_in_hands(CR)
+	return CR

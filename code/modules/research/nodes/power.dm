@@ -1,6 +1,6 @@
 /datum/technology/basic_power
 	name = "Basic Power Storing"
-	desc = "Basic Power Storing"
+	desc = "Basic power storing and control system."
 	tech_type = RESEARCH_POWERSTORAGE
 
 	x = 0.1
@@ -11,11 +11,15 @@
 	required_tech_levels = list()
 	cost = 0
 
-	unlocks_designs = list(/datum/design/research/circuit/powermonitor, /datum/design/research/circuit/pacman, /datum/design/research/item/part/basic_capacitor,
-						/datum/design/research/item/powercell/large/basic, /datum/design/research/item/powercell/large/high,
-						/datum/design/research/item/powercell/medium/basic, /datum/design/research/item/powercell/medium/high,
-						/datum/design/research/item/powercell/small/basic, /datum/design/research/item/powercell/small/high,
-						/datum/design/research/circuit/batteryrack)
+	unlocks_designs = list(	/datum/design/research/circuit/powermonitor,
+							/datum/design/research/item/part/basic_capacitor,
+							/datum/design/research/item/powercell/large/basic,
+							/datum/design/research/item/powercell/large/high,
+							/datum/design/research/item/powercell/medium/basic,
+							/datum/design/research/item/powercell/medium/high,
+							/datum/design/research/item/powercell/small/basic,
+							/datum/design/research/item/powercell/small/high,
+							/datum/design/research/circuit/batteryrack)
 
 /datum/technology/advanced_power
 	name = "Advanced Power Storing"
@@ -30,8 +34,11 @@
 	required_tech_levels = list()
 	cost = 200
 
-	unlocks_designs = list(/datum/design/research/item/part/adv_capacitor, /datum/design/research/item/powercell/large/super,
-						/datum/design/research/item/powercell/medium/super, /datum/design/research/item/powercell/small/super)
+	unlocks_designs = list(	/datum/design/research/item/part/adv_capacitor,
+							/datum/design/research/item/powercell/large/super,
+							/datum/design/research/item/powercell/medium/super,
+							/datum/design/research/item/powercell/small/super
+							)
 
 /datum/technology/advanced_power_storage
 	name = "Advanced Power Storage (SMES)"
@@ -50,7 +57,7 @@
 
 /datum/technology/energy_distribution
 	name = "Energy Distribution"
-	desc = "Energy Distribution"
+	desc = "Breaker boxes, that give more comfortable control of powernets."
 	tech_type = RESEARCH_POWERSTORAGE
 
 	x = 0.5
@@ -78,13 +85,16 @@
 	required_tech_levels = list()
 	cost = 1200
 
-	unlocks_designs = list(/datum/design/research/item/part/super_capacitor, /datum/design/research/item/powercell/large/hyper,
-						/datum/design/research/item/powercell/medium/hyper, /datum/design/research/item/powercell/small/hyper,
-						/datum/design/research/item/part/smes_coil/super_io, /datum/design/research/item/part/smes_coil/super_capacity)
+	unlocks_designs = list(	/datum/design/research/item/part/super_capacitor,
+							/datum/design/research/item/powercell/large/hyper,
+							/datum/design/research/item/powercell/medium/hyper,
+							/datum/design/research/item/powercell/small/hyper,
+							/datum/design/research/item/part/smes_coil/super_io,
+							/datum/design/research/item/part/smes_coil/super_capacity)
 
 /datum/technology/solar_power
 	name = "Basic Power Generation"
-	desc = "Solar Power"
+	desc = "Solar panels control, PACMAN MK1."
 	tech_type = RESEARCH_POWERSTORAGE
 
 	x = 0.1
@@ -95,11 +105,13 @@
 	required_tech_levels = list()
 	cost = 400
 
-	unlocks_designs = list(/datum/design/research/circuit/solarcontrol)
+	unlocks_designs = list(	/datum/design/research/circuit/solarcontrol,
+							/datum/design/research/circuit/pacman
+						)
 
 /datum/technology/improved_power_generation
 	name = "Improved Power Generation"
-	desc = "Improved Power Generation"
+	desc = "PACMAN MK2, uranium based power."
 	tech_type = RESEARCH_POWERSTORAGE
 
 	x = 0.25
@@ -113,8 +125,8 @@
 	unlocks_designs = list(/datum/design/research/circuit/superpacman)
 
 /datum/technology/advanced_power_generation
-	name = "Advanced Power Generation"
-	desc = "Advanced Power Generation"
+	name = "Basic Fusion Power"
+	desc = "MRSPACMAN, fusion generator, need tritium for power generation."
 	tech_type = RESEARCH_POWERSTORAGE
 
 	x = 0.4
@@ -129,7 +141,7 @@
 
 /datum/technology/fusion_power_generation
 	name = "Fusion Power Generation"//"R-UST Mk. 8"
-	desc = "Fusion Power Generation"//"R-UST Mk. 8"
+	desc = "R-UST Tokamak MK 8"//"R-UST Mk. 8"
 	tech_type = RESEARCH_POWERSTORAGE
 
 	x = 0.6
@@ -144,7 +156,7 @@
 
 /datum/technology/bluespace_power
 	name = "Fusion Based Power"
-	desc = "Fusion Based Power"
+	desc = "Power cells based on bluespace and fusion power."
 	tech_type = RESEARCH_POWERSTORAGE
 
 	x = 0.8

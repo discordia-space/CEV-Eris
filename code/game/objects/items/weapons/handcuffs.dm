@@ -29,6 +29,7 @@
 		return
 
 	if(C.handcuffed)
+		to_chat(user,SPAN_WARNING("\The [C] is already handcuffed."))
 		return
 
 	if (C == user) //cool shit bro
@@ -46,6 +47,9 @@
 				cuff_delay /= 2 //0.75
 			if(G.state >= GRAB_KILL)
 				cuff_delay = 0
+	if(C.handcuffed)
+		to_chat(user,SPAN_WARNING("\The [C] is already handcuffed."))
+		return
 	place_handcuffs(C, user, cuff_delay)
 
 /obj/item/weapon/handcuffs/proc/place_handcuffs(var/mob/living/carbon/target, var/mob/user, var/delay)
@@ -84,7 +88,7 @@
 		cuffs = new(get_turf(user))
 	else
 		user.drop_from_inventory(cuffs)
-	cuffs.loc = target
+	cuffs.forceMove(target)
 	target.handcuffed = cuffs
 	target.update_inv_handcuffed()
 	return 1

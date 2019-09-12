@@ -1,7 +1,7 @@
 // TO ADD: vendor design
 /datum/technology/basic_engineering
 	name = "Basic Engineering"
-	desc = "Basic"
+	desc = "Basic enginering designs and circuits."
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.1
@@ -12,14 +12,20 @@
 	required_tech_levels = list()
 	cost = 0
 
-	unlocks_designs = list(/datum/design/research/item/science_tool, /datum/design/research/item/part/basic_micro_laser,
-						 /datum/design/research/item/part/basic_matter_bin, /datum/design/research/circuit/arcade_battle,
-						 /datum/design/research/circuit/arcade_orion_trail, /datum/design/research/circuit/autolathe,
-						 /datum/design/research/item/light_replacer, /datum/design/autolathe/tool/weldermask, /datum/design/research/item/mesons)
+	unlocks_designs = list(	/datum/design/research/item/science_tool,
+							/datum/design/research/item/part/basic_micro_laser,
+							/datum/design/research/item/part/basic_matter_bin,
+							/datum/design/research/circuit/arcade_battle,
+							/datum/design/research/circuit/arcade_orion_trail,
+							/datum/design/research/circuit/autolathe,
+							/datum/design/research/item/light_replacer,
+							/datum/design/autolathe/tool/weldermask,
+							/datum/design/research/item/mesons
+						)
 
 /datum/technology/monitoring
 	name = "Monitoring"
-	desc = "Monitoring"
+	desc = "Connection to vesel atmos system."
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.2
@@ -35,7 +41,7 @@
 // TO ADD: space_heater
 /datum/technology/ice_and_fire
 	name = "Ice And Fire"
-	desc = "Ice And Fire"
+	desc = "Basic designs of gas heaters and coolers."
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.2
@@ -51,7 +57,7 @@
 // TO ADD: idcardconsole
 /datum/technology/adv_replication
 	name = "Advanced Replication"
-	desc = "Advanced Replication"
+	desc = "RnD machines and consoles."
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.3
@@ -62,13 +68,18 @@
 	required_tech_levels = list()
 	cost = 1000
 
-	unlocks_designs = list(/datum/design/research/circuit/rdconsole, /datum/design/research/circuit/rdservercontrol, /datum/design/research/circuit/rdserver,
-					 /datum/design/research/circuit/destructive_analyzer, /datum/design/research/circuit/protolathe, /datum/design/research/circuit/circuit_imprinter)
+	unlocks_designs = list(	/datum/design/research/circuit/rdconsole,
+							/datum/design/research/circuit/rdservercontrol,
+							/datum/design/research/circuit/rdserver,
+							/datum/design/research/circuit/destructive_analyzer,
+							/datum/design/research/circuit/protolathe,
+							/datum/design/research/circuit/circuit_imprinter
+						)
 
 // Make this its own tech tree?
 /datum/technology/modular_components
 	name = "Modular Components"
-	desc = "Modular Components"
+	desc = "Components for modular computers."
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.3
@@ -104,7 +115,7 @@
 // Make this its own tech tree?
 /datum/technology/custom_circuits
 	name = "Custom Circuits"
-	desc = "Custom Circuits"
+	desc = "Integral Ciruits"
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.4
@@ -161,7 +172,7 @@
 // TO ADD: ore_redemption, mining_equipment_vendor, mining_fabricator?
 /datum/technology/basic_mining
 	name = "Basic Mining"
-	desc = "Basic Mining"
+	desc = "Mining handdrill technology."
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.3
@@ -177,7 +188,7 @@
 
 /datum/technology/advanced_mining
 	name = "Advanced Mining"
-	desc = "Advanced Mining"
+	desc = "Static drill, improved handrill."
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.4
@@ -196,15 +207,15 @@
 
 /datum/technology/adv_tools
 	name = "Advanced Tools"
-	desc = "Advanced Tools"
+	desc = "Matter replication technology. Pneumatics integration in crowbar."
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.6
 	y = 0.4
 	icon = "jawsoflife"
 
-	required_technologies = list(/datum/technology/super_adv_engineering,
-								/datum/technology/advanced_mining
+	required_technologies = list(	/datum/technology/super_adv_engineering,
+									/datum/technology/advanced_mining
 								)
 	required_tech_levels = list()
 	cost = 2000
@@ -276,7 +287,7 @@
 
 /datum/technology/super_adv_engineering
 	name = "Progressive Engineering"
-	desc = "Progressive Engineering"
+	desc = "Rapid Part Exchange technology and secure airlocks electronics."
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.5
@@ -289,21 +300,7 @@
 
 	unlocks_designs = list(/datum/design/research/item/part/RPED, /datum/design/research/circuit/secure_airlock)
 
-/*/datum/technology/telescience
-	name = "Telescience"
-	desc = "telescience"
-	tech_type = RESEARCH_ENGINEERING
-
-	x = 0.8
-	y = 0.3
-	icon = "telescience"
-
-	required_technologies = list(/datum/technology/ultra_parts)
-	required_tech_levels = list()
-	cost = 3000
-
-	unlocks_designs = list("telepad_concole", "telepad")
-
+/*
 /datum/technology/bluespace_parts
 	name = "Bluespace Parts"
 	desc = "Bluespace Parts"

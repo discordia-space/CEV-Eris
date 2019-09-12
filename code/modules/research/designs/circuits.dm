@@ -61,6 +61,12 @@
 	sort_string = "FAGAA"
 	category = CAT_MEDI
 
+/datum/design/research/circuit/sleeper
+	name = "Sleeper"
+	build_path = /obj/item/weapon/circuitboard/sleeper
+	sort_string = "FAGAB"
+	category = CAT_MEDI
+
 /datum/design/research/circuit/clonepod
 	name = "clone pod"
 	build_path = /obj/item/weapon/circuitboard/clonepod

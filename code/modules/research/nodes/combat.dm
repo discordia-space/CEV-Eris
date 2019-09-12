@@ -1,6 +1,6 @@
 /datum/technology/basic_combat
 	name = "Basic Combat Systems"
-	desc = "Basic Combat Systems"
+	desc = "Basic combat systems and integration of security database HUD in glasses."
 	tech_type = RESEARCH_COMBAT
 
 	x = 0.1
@@ -11,7 +11,7 @@
 	required_tech_levels = list()
 	cost = 0
 
-	unlocks_designs = list()
+	unlocks_designs = list(/datum/design/research/item/hud/security)
 
 // TO ADD: synth flashes?
 /datum/technology/basic_nonlethal
@@ -50,7 +50,7 @@
 
 /datum/technology/advanced_nonlethal
 	name = "Advanced Non-Lethal"
-	desc = "Advanced Non-Lethal"
+	desc = "Electrical-shock weapon and ammo."
 	tech_type = RESEARCH_COMBAT
 
 	x = 0.5
@@ -61,7 +61,9 @@
 	required_tech_levels = list()
 	cost = 1500
 
-	unlocks_designs = list(/datum/design/research/item/weapon/stunrevolver, /datum/design/research/item/ammo/shotgun_stun)
+	unlocks_designs = list(	/datum/design/research/item/weapon/stunrevolver,
+							/datum/design/research/item/ammo/shotgun_stun
+						)
 
 
 /*/datum/technology/sec_computers
@@ -81,7 +83,7 @@
 
 /datum/technology/basic_lethal
 	name = "Basic Lethal Weapons"
-	desc = "Basic Lethal Weapons"
+	desc = "Chemical grenade design with anti-acid coating inside."
 	tech_type = RESEARCH_COMBAT
 
 	x = 0.6
@@ -96,7 +98,7 @@
 
 /datum/technology/exotic_weaponry
 	name = "Experemental Weaponry"
-	desc = "Experemental Weaponry"
+	desc = "Remote temperature controling weapon."
 	tech_type = RESEARCH_COMBAT
 
 	x = 0.7
@@ -111,7 +113,7 @@
 
 /datum/technology/adv_exotic_weaponry
 	name = "Advanced Experemental Weaponry"
-	desc = "Advanced Experemental Weaponry"
+	desc = "Specisl weapon system using plasma as catalyst. Special weapon core prototipe that deal DNA damage to target."
 	tech_type = RESEARCH_COMBAT
 
 	x = 0.8
@@ -122,11 +124,13 @@
 	required_tech_levels = list()
 	cost = 5000
 
-	unlocks_designs = list(/datum/design/research/item/weapon/decloner, /datum/design/research/item/weapon/plasmapistol)
+	unlocks_designs = list(	/datum/design/research/item/weapon/decloner,
+							/datum/design/research/item/weapon/plasmapistol
+						)
 
 /datum/technology/adv_lethal
 	name = "Advanced Lethal Weapons"
-	desc = "Advanced Lethal Weapons"
+	desc = "Advanced machinegun system"
 	tech_type = RESEARCH_COMBAT
 
 	x = 0.7
