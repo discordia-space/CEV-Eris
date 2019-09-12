@@ -389,3 +389,24 @@
 	req_tech = list(TECH_MAGNET = 3, TECH_POWER = 4)
 	build_path = /obj/item/weapon/circuitboard/shield_cap
 	sort_string = "VAAAC"*/
+
+//BS
+/datum/design/research/circuit/telesci/console
+	name = "TeleSci Console"
+	build_path = /obj/item/weapon/circuitboard/telesci_console
+	sort_string = "VAAAD"
+
+/datum/design/research/circuit/telesci/hub
+	name = "TeleSci Pad"
+	build_path = /obj/item/weapon/circuitboard/telesci_pad
+	sort_string = "VAAAE"
+
+/datum/design/research/circuit/bssilk/console
+	name = "Bluespace Snare Control Console"
+	build_path = /obj/item/weapon/circuitboard/bssilk_cons
+	sort_string = "VAAAK"
+
+/datum/design/research/circuit/bssilk/hub
+	name = "Bluespace Snare Hub"
+	build_path = /obj/item/weapon/circuitboard/bssilk_hub
+	sort_string = "VAAAG"

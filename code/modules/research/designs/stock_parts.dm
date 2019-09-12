@@ -97,6 +97,11 @@
 	build_path = /obj/item/weapon/stock_parts/subspace/transmitter
 	sort_string = "UAAAG"
 
+/datum/design/research/item/part/artificialbscrystal
+	name = "Artificial BlueSpace Crystal"
+	build_path = /obj/item/bluespace_crystal/artificial
+	sort_string = "VAAAF"
+
 
 // SMES coils
 /datum/design/research/item/part/smes_coil
@@ -114,7 +119,6 @@
 /datum/design/research/item/part/smes_coil/super_capacity
 	build_path = /obj/item/weapon/smes_coil/super_capacity
 	sort_string = "UAAAK"
-
 
 // RPED
 /datum/design/research/item/part/RPED
