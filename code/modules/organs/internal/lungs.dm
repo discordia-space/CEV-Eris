@@ -37,7 +37,7 @@
 	if(is_bruised())
 		if(prob(2))
 			spawn owner.emote("me", 1, "coughs up blood!")
-			owner.drip(10)
+			owner.drip_blood(10)
 		if(prob(4))
 			spawn owner.emote("me", 1, "gasps for air!")
 			owner.losebreath += 15
@@ -117,7 +117,7 @@
 			owner.co2_alert = 0
 
 		if(!owner.co2_alert && word && prob(warn_prob))
-			owner << SPAN_WARNING("You feel [word].")
+			to_chat(owner, SPAN_WARNING("You feel [word]."))
 			owner.adjustOxyLoss(oxyloss)
 			owner.co2_alert = alert
 
@@ -159,7 +159,7 @@
 		var/damage = 0
 		if(breath.temperature <= species.cold_level_1)
 			if(prob(20))
-				owner << SPAN_DANGER("You feel your face freezing and icicles forming in your lungs!")
+				to_chat(owner, SPAN_DANGER("You feel your face freezing and icicles forming in your lungs!"))
 
 			switch(breath.temperature)
 				if(species.cold_level_3 to species.cold_level_2)
@@ -173,7 +173,7 @@
 			owner.fire_alert = 1
 		else if(breath.temperature >= species.heat_level_1)
 			if(prob(20))
-				owner << SPAN_DANGER("You feel your face burning and a searing heat in your lungs!")
+				to_chat(owner, SPAN_DANGER("You feel your face burning and a searing heat in your lungs!"))
 
 			switch(breath.temperature)
 				if(species.heat_level_1 to species.heat_level_2)

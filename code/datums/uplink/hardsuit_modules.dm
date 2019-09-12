@@ -19,6 +19,16 @@
 	item_cost = 4
 	path = /obj/item/weapon/storage/box/syndie_kit/ewar_voice
 
+/datum/uplink_item/item/chem_injector
+	name = "Mounted chemical injector"
+	item_cost = 8
+	path = /obj/item/rig_module/chem_dispenser
+
+/datum/uplink_item/item/portable_autodoc
+	name = "Portable autodoc"
+	item_cost = 16
+	path = /obj/item/rig_module/autodoc
+
 /datum/uplink_item/item/hardsuit_modules/maneuvering_jets
 	name = "Maneuvering Jets"
 	item_cost = 4

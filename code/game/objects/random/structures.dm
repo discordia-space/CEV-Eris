@@ -15,6 +15,8 @@
 				/obj/structure/reagent_dispensers/watertank = 6,\
 				/obj/structure/largecrate = 2,\
 				/obj/structure/ore_box = 2,\
+				/obj/structure/reagent_dispensers/bidon = 4 ,\
+				/obj/structure/reagent_dispensers/bidon/advanced = 1 ,\
 				/obj/structure/dispenser/oxygen = 1))
 
 /obj/random/structures/low_chance

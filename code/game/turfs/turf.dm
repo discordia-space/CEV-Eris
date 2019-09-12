@@ -1,6 +1,6 @@
 /turf
 	icon = 'icons/turf/floors.dmi'
-	level = 1
+	level = BELOW_PLATING_LEVEL
 	var/holy = 0
 	var/diffused = 0 //If above zero, shields can't be on this turf. Set by floor diffusers only
 	//This is not a boolean. Multiple diffusers can stack and set it to 2, 3, etc
@@ -94,7 +94,7 @@
 
 /turf/Enter(atom/movable/mover as mob|obj, atom/forget as mob|obj|turf|area)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
-		usr << SPAN_WARNING("Movement is admin-disabled.") //This is to identify lag problems
+		to_chat(usr, SPAN_WARNING("Movement is admin-disabled.")) //This is to identify lag problems
 		return
 
 	..()
@@ -140,7 +140,7 @@ var/const/enterloopsanity = 100
 /turf/Entered(atom/atom as mob|obj)
 
 	if(movement_disabled)
-		usr << SPAN_WARNING("Movement is admin-disabled.") //This is to identify lag problems
+		to_chat(usr, SPAN_WARNING("Movement is admin-disabled.")) //This is to identify lag problems
 		return
 	..()
 

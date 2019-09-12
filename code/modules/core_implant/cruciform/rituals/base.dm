@@ -54,7 +54,7 @@
 		var/obj/item/weapon/implant/core_implant/cruciform/CI = target.get_core_implant()
 
 		if((istype(CI) && CI.get_module(CRUCIFORM_PRIEST)) || prob(50))
-			target << SPAN_DANGER("[H], faithful cruciform follower, cries for salvation!")
+			to_chat(target, SPAN_DANGER("[H], faithful cruciform follower, cries for salvation!"))
 	return TRUE
 
 /datum/ritual/cruciform/base/reveal
@@ -66,28 +66,30 @@
 /datum/ritual/cruciform/base/reveal/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
 	var/was_triggired = FALSE
 	if(prob(20)) //Aditional fail chance that hidded from user
-		H << SPAN_NOTICE("There is nothing there. You feel safe.")
+		to_chat(H, SPAN_NOTICE("There is nothing there. You feel safe."))
 		return TRUE
 	for (var/mob/living/carbon/superior_animal/S in range(14, H))
 		if (S.stat != DEAD)
-			H << SPAN_WARNING("Adversaries are near. You can feel something nasty and hostile.")
+			to_chat(H, SPAN_WARNING("Adversaries are near. You can feel something nasty and hostile."))
 			was_triggired = TRUE
 			break
 
 	if (!was_triggired)
 		for (var/mob/living/simple_animal/hostile/S in range(14, H))
 			if (S.stat != DEAD)
-				H << SPAN_WARNING("Adversaries are near. You can feel something nasty and hostile.")
+				to_chat(H, SPAN_WARNING("Adversaries are near. You can feel something nasty and hostile."))
 				was_triggired = TRUE
 				break
 	if (prob(80) && (locate(/obj/structure/wire_splicing) in view(7, H))) //Add more traps later
-		H << SPAN_WARNING("Something wrong with this area. Tread carefully.")
+		to_chat(H, SPAN_WARNING("Something wrong with this area. Tread carefully."))
 		was_triggired = TRUE
 	if (prob(20))
 		for(var/mob/living/carbon/human/target in range(14, H))
 			if(target.mind && target.mind.changeling)
-				H << SPAN_DANGER("Something's ire is upon you! Twisted and evil mind touches you for a moment, leaving you in cold sweat.")
+				to_chat(H, SPAN_DANGER("Something's ire is upon you! Twisted and evil mind touches you for a moment, leaving you in cold sweat."))
 				was_triggired = TRUE
 	if (!was_triggired)
-		H << SPAN_NOTICE("There is nothing there. You feel safe.")
+		to_chat(H, SPAN_NOTICE("There is nothing there. You feel safe."))
 	return TRUE
+
+

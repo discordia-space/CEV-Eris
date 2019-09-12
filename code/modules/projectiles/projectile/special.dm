@@ -4,7 +4,7 @@
 	damage = 0
 	damage_type = BURN
 	nodamage = 1
-	check_armour = "energy"
+	check_armour = ARMOR_ENERGY
 
 
 	on_hit(var/atom/target, var/blocked = 0)
@@ -16,7 +16,7 @@
 	name ="explosive bolt"
 	icon_state= "bolter"
 	damage = 50
-	check_armour = "bullet"
+	check_armour = ARMOR_BULLET
 	sharp = 1
 	edge = 1
 
@@ -45,7 +45,7 @@
 	damage = 0
 	damage_type = BURN
 	nodamage = 1
-	check_armour = "energy"
+	check_armour = ARMOR_ENERGY
 	var/temperature = 300
 
 
@@ -62,7 +62,7 @@
 	damage = 0
 	damage_type = BRUTE
 	nodamage = 1
-	check_armour = "bullet"
+	check_armour = ARMOR_BULLET
 
 	Bump(atom/A as mob|obj|turf|area)
 		if(A == firer)
@@ -91,7 +91,7 @@
 	damage = 0
 	damage_type = TOX
 	nodamage = 1
-	check_armour = "energy"
+	check_armour = ARMOR_ENERGY
 
 	on_hit(var/atom/target, var/blocked = 0)
 		var/mob/living/M = target
@@ -124,7 +124,7 @@
 	damage = 0
 	damage_type = TOX
 	nodamage = 1
-	check_armour = "energy"
+	check_armour = ARMOR_ENERGY
 
 	on_hit(var/atom/target, var/blocked = 0)
 		var/mob/M = target

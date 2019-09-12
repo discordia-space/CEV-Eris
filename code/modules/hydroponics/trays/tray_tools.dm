@@ -24,7 +24,7 @@
 
 /obj/item/device/scanner/analyzer/plant_analyzer/proc/print_report(var/mob/living/user)
 	if(!last_data)
-		user << "There is no scan data to print."
+		to_chat(user, "There is no scan data to print.")
 		return
 	if(!cell_use_check(3))
 		return
@@ -75,7 +75,7 @@
 		grown_reagents = H.reagents
 
 	if(!grown_seed)
-		user << SPAN_DANGER("[src] can tell you nothing about \the [target].")
+		to_chat(user, SPAN_DANGER("[src] can tell you nothing about \the [target]."))
 		return
 
 	flick("hydro2", src)

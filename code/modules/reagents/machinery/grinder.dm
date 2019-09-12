@@ -29,6 +29,59 @@
 	icon_state = "juicer"+num2text(!isnull(beaker))
 	return
 
+/obj/machinery/reagentgrinder/MouseDrop_T(atom/movable/I, mob/user, src_location, over_location, src_control, over_control, params)
+	if(!Adjacent(user) || !I.Adjacent(user) || user.stat)
+		return ..()
+	if(istype(I, /obj/item/weapon/reagent_containers) && I.is_open_container() && !beaker)
+		I.forceMove(src)
+		src.beaker = I
+		to_chat(user, SPAN_NOTICE("You add [I] to [src]."))
+		updateUsrDialog()
+		update_icon()
+		return
+
+	if(holdingitems && holdingitems.len >= limit)
+		to_chat(user, "The machine cannot hold anymore items.")
+		return
+
+	var/obj/item/O = I
+	
+	if(!istype(O))
+		return
+
+	if(istype(O,/obj/item/weapon/storage/bag/plants))
+		var/obj/item/weapon/storage/bag/plants/bag = O
+		var/failed = 1
+		for(var/obj/item/G in O.contents)
+			if(!G.reagents || !G.reagents.total_volume)
+				continue
+			failed = 0
+			bag.remove_from_storage(G, src)
+			holdingitems += G
+			if(holdingitems && holdingitems.len >= limit)
+				break
+
+		if(failed)
+			to_chat(user, "Nothing in the plant bag is usable.")
+			return
+
+		if(!O.contents.len)
+			to_chat(user, "You empty \the [O] into \the [src].")
+		else
+			to_chat(user, "You fill \the [src] from \the [O].")
+
+		updateUsrDialog()
+		return
+
+	if(!sheet_reagents[O.type] && (!O.reagents || !O.reagents.total_volume))
+		to_chat(user, "\The [O] is not suitable for blending.")
+		return
+	O.add_fingerprint(user)
+	O.forceMove(src)
+	holdingitems += O
+	updateUsrDialog()
+	. = ..()
+
 /obj/machinery/reagentgrinder/attackby(var/obj/item/O as obj, var/mob/user as mob)
 
 	if (istype(O,/obj/item/weapon/reagent_containers/glass) || \
@@ -51,7 +104,7 @@
 		return
 
 	if(holdingitems && holdingitems.len >= limit)
-		usr << "The machine cannot hold anymore items."
+		to_chat(usr, "The machine cannot hold anymore items.")
 		return 1
 
 	if(!istype(O))
@@ -70,19 +123,19 @@
 				break
 
 		if(failed)
-			user << "Nothing in the plant bag is usable."
+			to_chat(user, "Nothing in the plant bag is usable.")
 			return 1
 
 		if(!O.contents.len)
-			user << "You empty \the [O] into \the [src]."
+			to_chat(user, "You empty \the [O] into \the [src].")
 		else
-			user << "You fill \the [src] from \the [O]."
+			to_chat(user, "You fill \the [src] from \the [O].")
 
 		src.updateUsrDialog()
 		return 0
 
 	if(!sheet_reagents[O.type] && (!O.reagents || !O.reagents.total_volume))
-		user << "\The [O] is not suitable for blending."
+		to_chat(user, "\The [O] is not suitable for blending.")
 		return 1
 
 	user.remove_from_mob(O)
@@ -231,6 +284,9 @@
 					if(QDELETED(stack))
 						holdingitems -= stack
 					beaker.reagents.add_reagent(sheet_reagents[stack.type], (amount_to_take*REAGENTS_PER_SHEET))
+					if(stack.reagents)
+						for(var/datum/reagent/R in stack.reagents.reagent_list)
+							reagents.add_reagent(R.id, R.volume)
 					continue
 
 		if(O.reagents)
@@ -241,4 +297,138 @@
 			if (beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
 				break
 
+/obj/item/weapon/storage/makeshift_grinder
+	name = "makeshift grinder"
+	desc = "Mortar and pestle to grind ingridients."
+	icon = 'icons/obj/machines/chemistry.dmi'
+	icon_state = "mortar"
+	storage_slots = 3
+	unacidable = 1
+	var/amount_per_transfer_from_this = 10
+	var/possible_transfer_amounts = list(5,10,30,60)
+	reagent_flags = REFILLABLE | DRAINABLE
+
+/obj/item/weapon/storage/makeshift_grinder/Initialize(mapload, ...)
+	. = ..()
+	create_reagents(60)
+
+/obj/item/weapon/storage/makeshift_grinder/attack_self(mob/user)
+	var/time_to_finish = 60 - (40 * user.stats.getMult(STAT_TGH, STAT_LEVEL_ADEPT))
+	var/datum/repeating_sound/toolsound = new/datum/repeating_sound(8,time_to_finish,0.15, src, 'sound/effects/impacts/thud2.ogg', 50, 1)
+	user.visible_message(SPAN_NOTICE("[user] grind contents of \the [src]."), SPAN_NOTICE("You starting to grind contents of \the [src]."))
+	if(do_after(user,time_to_finish))
+		grind()
+		update_icon()
+		refresh_all()
+		if (toolsound)
+			toolsound.stop()
+			toolsound = null
+
+/obj/item/weapon/storage/makeshift_grinder/proc/grind()
+	// Sanity check.
+	if (!reagents || (reagents.total_volume >= reagents.maximum_volume))
+		return
+
+	// Process.
+	for (var/obj/item/O in src.contents)
+		var/remaining_volume = reagents.maximum_volume - reagents.total_volume
+		if(remaining_volume <= 0)
+			break
+
+		if(get_material_name_by_stack_type(O.type))
+			var/obj/item/stack/stack = O
+			if(istype(stack))
+				var/amount_to_take = max(0,min(stack.amount,round(remaining_volume/REAGENTS_PER_SHEET)))
+				if(amount_to_take)
+					stack.use(amount_to_take)	
+					if(QDELETED(stack))
+						src.contents.Remove(O)
+					reagents.add_reagent(get_material_name_by_stack_type(stack.type), (amount_to_take*REAGENTS_PER_SHEET))
+					if(stack.reagents)
+						for(var/datum/reagent/R in stack.reagents.reagent_list)
+							reagents.add_reagent(R.id, R.volume)
+					continue
+
+		if(O.reagents)
+			O.reagents.trans_to(reagents, min(O.reagents.total_volume, remaining_volume))
+			if(O.reagents.total_volume == 0)
+				qdel(O)
+				src.contents.Remove(O)
+			if (reagents.total_volume >= reagents.maximum_volume)
+				break
+
+/obj/item/weapon/storage/makeshift_grinder/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/weapon/reagent_containers))
+		var/obj/item/weapon/reagent_containers/container = I
+		if(!container.standard_pour_into(user, src))
+			. = ..()
+	else
+		. = ..()
+	update_icon()
+
+/obj/item/weapon/storage/makeshift_grinder/afterattack(atom/target, mob/user, flag)
+	// Ensure we don't splash beakers and similar containers.
+	if(user.a_intent == I_HURT)
+		if(!istype(target))
+			return FALSE
+
+		if(!reagents.total_volume)
+			to_chat(user, SPAN_NOTICE("[src] is empty."))
+			return TRUE
+
+		user.visible_message(
+			SPAN_DANGER("[target] has been splashed with something by [user]!"),
+			SPAN_NOTICE("You splash the solution onto [target].")
+		)
+
+		reagents.splash(target, reagents.total_volume)
+		update_icon()
+		return TRUE
+	else
+		if(!target.is_refillable())
+			if(istype(target, /obj/item/weapon/reagent_containers))
+				var/obj/item/weapon/reagent_containers/container = target
+				container.is_closed_message(user)
+				return TRUE
+			// Otherwise don't care about splashing.
+			else
+				return ..()
+
+		if(!reagents.total_volume)
+			to_chat(user, SPAN_NOTICE("[src] is empty."))
+			return TRUE
+
+		if(!target.reagents.get_free_space())
+			to_chat(user, SPAN_NOTICE("[target] is full."))
+			return TRUE
+
+		var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
+		playsound(src,'sound/effects/Liquid_transfer_mono.ogg',50,1)
+		to_chat(user, SPAN_NOTICE("You transfer [trans] units of the solution to [target]."))
+	update_icon()
+
+/obj/item/weapon/storage/makeshift_grinder/verb/set_APTFT() //set amount_per_transfer_from_this
+	set name = "Set transfer amount"
+	set category = "Object"
+	set src in range(0)
+	var/N = input("Amount per transfer from this:","[src]") as null|anything in possible_transfer_amounts
+	if(N)
+		amount_per_transfer_from_this = N
+
+/obj/item/weapon/storage/makeshift_grinder/examine(mob/user)
+	if(!..(user, 2))
+		return
+	if(contents.len)
+		to_chat(user, SPAN_NOTICE("It has something inside."))
+	if(reagents.total_volume)
+		to_chat(user, SPAN_NOTICE("It's filled with [reagents.total_volume]/[reagents.maximum_volume] units of reagents."))
+
+
+/obj/item/weapon/storage/makeshift_grinder/update_icon()
+	. = ..()
+	cut_overlays()
+	if(reagents.total_volume)
+		var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[icon_state]100")
+		filling.color = reagents.get_color()
+		add_overlay(filling)
 #undef REAGENTS_PER_SHEET

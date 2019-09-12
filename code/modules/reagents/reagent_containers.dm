@@ -8,7 +8,7 @@
 	var/possible_transfer_amounts = list(5,10,15,25,30)
 	var/volume = 30
 	var/filling_states				// List of percentages full that have icons
-	var/list/preloaded = null
+	
 
 /obj/item/weapon/reagent_containers/verb/set_APTFT() //set amount_per_transfer_from_this
 	set name = "Set transfer amount"
@@ -22,9 +22,9 @@
 	if(!possible_transfer_amounts)
 		src.verbs -= /obj/item/weapon/reagent_containers/verb/set_APTFT
 	create_reagents(volume)
-	if(preloaded)
-		for(var/reagent in preloaded)
-			reagents.add_reagent(reagent, preloaded[reagent])
+	if(preloaded_reagents)
+		for(var/reagent in preloaded_reagents)
+			reagents.add_reagent(reagent, preloaded_reagents[reagent])
 	..()
 
 
@@ -163,6 +163,8 @@
 	reagents.trans_to_mob(target, issmall(user) ? ceil(amount_per_transfer_from_this/2) : amount_per_transfer_from_this, CHEM_INGEST)
 
 	feed_sound(user)
+	if(istype(src, /obj/item/weapon/reagent_containers/pill))
+		qdel(src) //pills are swallowed whole, so delete it here
 	return TRUE
 
 /obj/item/weapon/reagent_containers/proc/standard_pour_into(mob/user, atom/target) // This goes into afterattack and yes, it's atom-level
@@ -171,24 +173,60 @@
 		if(istype(target, /obj/item/weapon/reagent_containers))
 			var/obj/item/weapon/reagent_containers/container = target
 			container.is_closed_message(user)
-			return TRUE
+			return FALSE
 		// Otherwise don't care about splashing.
 		else
 			return FALSE
 
 	if(!is_drainable())
 		is_closed_message(user)
-		return TRUE
+		return FALSE
 
 	if(!reagents.total_volume)
 		to_chat(user, SPAN_NOTICE("[src] is empty."))
-		return TRUE
+		return FALSE
 
 	if(!target.reagents.get_free_space())
 		to_chat(user, SPAN_NOTICE("[target] is full."))
-		return TRUE
+		return FALSE
 
 	var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
 	playsound(src,'sound/effects/Liquid_transfer_mono.ogg',50,1)
 	to_chat(user, SPAN_NOTICE("You transfer [trans] units of the solution to [target]."))
 	return TRUE
+
+// if amount_per_reagent is null or zero it will transfer all
+/obj/item/weapon/reagent_containers/proc/separate_solution(var/list/obj/item/weapon/reagent_containers/accepting_containers, var/amount_per_reagent, var/list/ignore_reagents_ids)
+	if(!is_drainable())
+		return FALSE
+	if(!reagents.total_volume)
+		return FALSE
+	
+	// nothing to separate
+	if(reagents.reagent_list.len <= 1)
+		return FALSE
+	var/list/obj/item/weapon/reagent_containers/containers = accepting_containers.Copy()
+	for(var/obj/item/weapon/reagent_containers/C in containers)
+		if(!C.is_refillable())
+			containers.Remove(C)
+	if(!containers.len)
+		return FALSE
+	for(var/datum/reagent/R in reagents.reagent_list)
+		if(R.id in ignore_reagents_ids)
+			continue
+		var/amount_to_transfer = amount_per_reagent ? amount_per_reagent : R.volume
+		for(var/obj/item/weapon/reagent_containers/C in containers)
+			if(!amount_to_transfer)
+				break
+			if(!C.reagents.get_free_space())
+				containers.Remove(C)
+				continue
+			
+			var/amount = min(C.reagents.get_free_space(), amount_to_transfer)
+			if(!C.reagents.total_volume || C.reagents.has_reagent(R.id))
+				C.reagents.add_reagent(R.id, amount, R.get_data())
+				reagents.remove_reagent(R.id, amount)
+				amount_to_transfer = max(0,amount_to_transfer - amount)
+	return TRUE
+		
+		

@@ -1,7 +1,7 @@
 /obj/item/stack/medical
 	name = "medical pack"
 	singular_name = "medical pack"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/stack/items.dmi'
 	amount = 5
 	max_amount = 5
 	w_class = ITEM_SIZE_SMALL
@@ -10,15 +10,18 @@
 	var/heal_brute = 0
 	var/heal_burn = 0
 	price_tag = 10
+	var/automatic_charge_overlays = FALSE	//Do we handle overlays with base update_icon()? | Stolen from TG egun code
+	var/charge_sections = 5		// How many indicator blips are there?
+	var/charge_x_offset = 2		//The spacing between each charge indicator. Should be 2 to leave a 1px gap between each blip.
 
 /obj/item/stack/medical/attack(mob/living/M, mob/living/user)
 	var/types = M.get_classification()
 	if (!(types & CLASSIFICATION_ORGANIC))
-		user << SPAN_WARNING("\The [src] cannot be applied to [M]!")
+		to_chat(user, SPAN_WARNING("\The [src] cannot be applied to [M]!"))
 		return 1
 
 	if ( ! (ishuman(user) || issilicon(user)) )
-		user << SPAN_WARNING("You don't have the dexterity to do this!")
+		to_chat(user, SPAN_WARNING("You don't have the dexterity to do this!"))
 		return 1
 
 	if (ishuman(M))
@@ -31,11 +34,11 @@
 
 		if(affecting.organ_tag == BP_HEAD)
 			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
-				user << SPAN_WARNING("You can't apply [src] through [H.head]!")
+				to_chat(user, SPAN_WARNING("You can't apply [src] through [H.head]!"))
 				return 1
 		else
 			if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
-				user << SPAN_WARNING("You can't apply [src] through [H.wear_suit]!")
+				to_chat(user, SPAN_WARNING("You can't apply [src] through [H.wear_suit]!"))
 				return 1
 
 		if(BP_IS_ROBOTIC(affecting))
@@ -47,7 +50,7 @@
 				)
 				if (do_after(user, 30, M))
 					if(prob(10 + user.stats.getStat(STAT_BIO)))
-						user << SPAN_NOTICE("You have managed to waste less [src].")
+						to_chat(user, SPAN_NOTICE("You have managed to waste less [src]."))
 					else
 						use(1)
 					user.visible_message( \
@@ -56,15 +59,15 @@
 					)
 				M.updatehealth()
 				return 1
-				
-			user << SPAN_WARNING("This isn't useful at all on a robotic limb.")
+
+			to_chat(user, SPAN_WARNING("This isn't useful at all on a robotic limb."))
 			return 1
 
 		H.UpdateDamageIcon()
 
 	else
 		if (!M.bruteloss && !M.fireloss)
-			user << "<span class='notice'> [M] seems healthy, there are no wounds to treat! </span>"
+			to_chat(user, "<span class='notice'> [M] seems healthy, there are no wounds to treat! </span>")
 			return 1
 
 		user.visible_message( \
@@ -75,7 +78,7 @@
 		if (do_after(user, 30, M))
 			M.heal_organ_damage((src.heal_brute * (1+med_skill/50)/2), (src.heal_burn * (1+med_skill/50)/2))
 			if(prob(10 + med_skill))
-				user << SPAN_NOTICE("You have managed to waste less [src].")
+				to_chat(user, SPAN_NOTICE("You have managed to waste less [src]."))
 			else
 				use(1)
 			user.visible_message( \
@@ -85,6 +88,27 @@
 
 	M.updatehealth()
 
+/obj/item/stack/medical/update_icon()
+	if(QDELETED(src)) //Checks if the item has been deleted
+		return	//If it has, do nothing
+	..()
+	if(!automatic_charge_overlays)	//Checks if the item has this feature enabled
+		return	//If it does not, do nothing
+	var/ratio = CEILING(CLAMP(amount / max_amount, 0, 1) * charge_sections, 1)
+	cut_overlays()
+	var/iconState = "[icon_state]_charge"
+	if(!amount)	//Checks if there are still charges left in the item
+		return //If it does not, do nothing, as the overlays have been cut before this already.
+	else
+		var/mutable_appearance/charge_overlay = mutable_appearance(icon, iconState)
+		for(var/i = ratio, i >= 1, i--)
+			charge_overlay.pixel_x = charge_x_offset * (i - 1)
+			add_overlay(charge_overlay)
+
+/obj/item/stack/medical/Initialize()
+	. = ..()
+	update_icon()
+
 /obj/item/stack/medical/bruise_pack
 	name = "roll of gauze"
 	singular_name = "gauze length"
@@ -92,6 +116,7 @@
 	icon_state = "brutepack"
 	origin_tech = list(TECH_BIO = 1)
 	heal_brute = 4
+	preloaded_reagents = list("silicon" = 4, "ethanol" = 8)
 
 /obj/item/stack/medical/bruise_pack/attack(mob/living/carbon/M, mob/living/user)
 	if(..())
@@ -107,7 +132,7 @@
 
 		if(affecting.open == 0)
 			if(affecting.is_bandaged())
-				user << SPAN_WARNING("The wounds on [M]'s [affecting.name] have already been bandaged.")
+				to_chat(user, SPAN_WARNING("The wounds on [M]'s [affecting.name] have already been bandaged."))
 				return 1
 			else
 				user.visible_message(
@@ -123,7 +148,7 @@
 					if(used == amount)
 						break
 					if(!do_mob(user, M, W.damage/5))
-						user << SPAN_NOTICE("You must stand still to bandage wounds.")
+						to_chat(user, SPAN_NOTICE("You must stand still to bandage wounds."))
 						break
 					if (W.current_stage <= W.max_bleeding_stage)
 						user.visible_message(
@@ -153,22 +178,22 @@
 							else
 								to_chat(user, "<span class='[pain > 50 ? "danger" : "warning"]'>Your amateur actions caused you [pain > 50 ? "alot of " : ""]pain.</span>")
 					if(prob(10 + user.stats.getStat(STAT_BIO)))
-						user << SPAN_NOTICE("You have managed to waste less [src].")
+						to_chat(user, SPAN_NOTICE("You have managed to waste less [src]."))
 					else
 						used++
 				affecting.update_damages()
 				if(used == amount)
 					if(affecting.is_bandaged())
-						user << SPAN_WARNING("\The [src] is used up.")
+						to_chat(user, SPAN_WARNING("\The [src] is used up."))
 					else
-						user << SPAN_WARNING("\The [src] is used up, but there are more wounds to treat on \the [affecting.name].")
+						to_chat(user, SPAN_WARNING("\The [src] is used up, but there are more wounds to treat on \the [affecting.name]."))
 				use(used)
 		else
 			if (can_operate(H))        //Checks if mob is lying down on table for surgery
 				if (do_surgery(H,user,src))
 					return
 			else
-				user << SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a bandage!")
+				to_chat(user, SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a bandage!"))
 
 /obj/item/stack/medical/bruise_pack/handmade
 	name = "non sterile bandage"
@@ -184,6 +209,7 @@
 	icon_state = "ointment"
 	heal_burn = 4
 	origin_tech = list(TECH_BIO = 1)
+	preloaded_reagents = list("silicon" = 4, "carbon" = 8)
 
 /obj/item/stack/medical/ointment/attack(mob/living/carbon/M, mob/living/user)
 	if(..())
@@ -199,7 +225,7 @@
 
 		if(affecting.open == 0)
 			if(affecting.is_salved())
-				user << SPAN_WARNING("The wounds on [M]'s [affecting.name] have already been salved.")
+				to_chat(user, SPAN_WARNING("The wounds on [M]'s [affecting.name] have already been salved."))
 				return 1
 			else
 				user.visible_message(
@@ -207,14 +233,14 @@
 					SPAN_NOTICE("You start salving the wounds on [M]'s [affecting.name].")
 				)
 				if(!do_mob(user, M, 10))
-					user << SPAN_NOTICE("You must stand still to salve wounds.")
+					to_chat(user, SPAN_NOTICE("You must stand still to salve wounds."))
 					return 1
 				user.visible_message(
 					SPAN_NOTICE("[user] salved wounds on [M]'s [affecting.name]."),
 					SPAN_NOTICE("You salved wounds on [M]'s [affecting.name].")
 				)
 				if(prob(10 + user.stats.getStat(STAT_BIO)))
-					user << SPAN_NOTICE("You have managed to waste less [src].")
+					to_chat(user, SPAN_NOTICE("You have managed to waste less [src]."))
 				else
 					use(1)
 				affecting.salve()
@@ -233,7 +259,7 @@
 				if (do_surgery(H,user,src))
 					return
 			else
-				user << SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a [src]!")
+				to_chat(user, SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a [src]!"))
 
 /obj/item/stack/medical/advanced/bruise_pack
 	name = "advanced trauma kit"
@@ -242,10 +268,17 @@
 	icon_state = "traumakit"
 	heal_brute = 8
 	origin_tech = list(TECH_BIO = 2)
+	automatic_charge_overlays = TRUE
+	consumable = FALSE	// Will the stack disappear entirely once the amount is used up?
+	splittable = FALSE	// Is the stack capable of being splitted?
+	preloaded_reagents = list("silicon" = 4, "ethanol" = 10, "lithium" = 4)
 
 /obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M, mob/living/user)
 	if(..())
 		return 1
+
+	if(amount < 1)
+		return
 
 	if(!ishuman(M))
 		return
@@ -259,7 +292,7 @@
 
 	if(affecting.open == 0)
 		if(affecting.is_bandaged() && affecting.is_disinfected())
-			user << SPAN_WARNING("The wounds on [M]'s [affecting.name] have already been treated.")
+			to_chat(user, SPAN_WARNING("The wounds on [M]'s [affecting.name] have already been treated."))
 			return 1
 		else
 			user.visible_message(
@@ -275,7 +308,7 @@
 				if(used == amount)
 					break
 				if(!do_mob(user, M, W.damage/5))
-					user << SPAN_NOTICE("You must stand still to bandage wounds.")
+					to_chat(user, SPAN_NOTICE("You must stand still to bandage wounds."))
 					break
 				if (W.current_stage <= W.max_bleeding_stage)
 					user.visible_message(
@@ -296,7 +329,7 @@
 				W.disinfect()
 				W.heal_damage(heal_brute)
 				if(prob(10 + user.stats.getStat(STAT_BIO)))
-					user << SPAN_NOTICE("You have managed to waste less [src].")
+					to_chat(user, SPAN_NOTICE("You have managed to waste less [src]."))
 				else
 					used++
 			affecting.update_damages()
@@ -312,16 +345,17 @@
 						to_chat(user, "<span class='[pain > 50 ? "danger" : "warning"]'>Your amateur actions caused you [pain > 50 ? "alot of " : ""]pain.</span>")
 			if(used == amount)
 				if(affecting.is_bandaged())
-					user << SPAN_WARNING("\The [src] is used up.")
+					to_chat(user, SPAN_WARNING("\The [src] is used up."))
 				else
-					user << SPAN_WARNING("\The [src] is used up, but there are more wounds to treat on \the [affecting.name].")
+					to_chat(user, SPAN_WARNING("\The [src] is used up, but there are more wounds to treat on \the [affecting.name]."))
 			use(used)
+			update_icon()
 	else
 		if (can_operate(H))        //Checks if mob is lying down on table for surgery
 			if (do_surgery(H,user,src))
 				return
 		else
-			user << SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a bandage!")
+			to_chat(user, SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a bandage!"))
 
 /obj/item/stack/medical/advanced/ointment
 	name = "advanced burn kit"
@@ -330,11 +364,17 @@
 	icon_state = "burnkit"
 	heal_burn = 8
 	origin_tech = list(TECH_BIO = 2)
-
+	automatic_charge_overlays = TRUE
+	consumable = FALSE	// Will the stack disappear entirely once the amount is used up?
+	splittable = FALSE	// Is the stack capable of being splitted?
+	preloaded_reagents = list("silicon" = 4, "ethanol" = 10, "mercury" = 4)
 
 /obj/item/stack/medical/advanced/ointment/attack(mob/living/carbon/M, mob/living/user)
 	if(..())
 		return 1
+
+	if(amount < 1)
+		return
 
 	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -346,7 +386,7 @@
 
 		if(affecting.open == 0)
 			if(affecting.is_salved())
-				user << SPAN_WARNING("The wounds on [M]'s [affecting.name] have already been salved.")
+				to_chat(user, SPAN_WARNING("The wounds on [M]'s [affecting.name] have already been salved."))
 				return 1
 			else
 				user.visible_message(
@@ -354,7 +394,7 @@
 					SPAN_NOTICE("You start salving the wounds on [M]'s [affecting.name].")
 				)
 				if(!do_mob(user, M, 10))
-					user << SPAN_NOTICE("You must stand still to salve wounds.")
+					to_chat(user, SPAN_NOTICE("You must stand still to salve wounds."))
 					return 1
 				user.visible_message(
 					SPAN_NOTICE("[user] covers wounds on [M]'s [affecting.name] with regenerative membrane."),
@@ -362,9 +402,10 @@
 				)
 				affecting.heal_damage(0,heal_burn)
 				if(prob(10 + user.stats.getStat(STAT_BIO)))
-					user << SPAN_NOTICE("You have managed to waste less [src].")
+					to_chat(user, SPAN_NOTICE("You have managed to waste less [src]."))
 				else
 					use(1)
+					update_icon()
 				affecting.salve()
 				// user's stat check that causing pain if they are amateurs
 				if(user && user.stats.getStat(STAT_BIO) < STAT_LEVEL_BASIC)
@@ -381,7 +422,7 @@
 				if (do_surgery(H,user,src))
 					return
 			else
-				user << SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a bandage!")
+				to_chat(user, SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a bandage!"))
 
 /obj/item/stack/medical/splint
 	name = "medical splints"
@@ -404,10 +445,10 @@
 
 		var/limb = affecting.name
 		if(!(affecting.organ_tag in list(BP_L_ARM,BP_R_ARM,BP_L_LEG ,BP_R_LEG)))
-			user << SPAN_DANGER("You can't apply a splint there!")
+			to_chat(user, SPAN_DANGER("You can't apply a splint there!"))
 			return
 		if(affecting.status & ORGAN_SPLINTED)
-			user << SPAN_DANGER("[M]'s [limb] is already splinted!")
+			to_chat(user, SPAN_DANGER("[M]'s [limb] is already splinted!"))
 			return
 		if (M != user)
 			user.visible_message(
@@ -417,7 +458,7 @@
 			)
 		else
 			if((!user.hand && affecting.organ_tag == BP_R_ARM) || (user.hand && affecting.organ_tag == BP_L_ARM))
-				user << SPAN_DANGER("You can't apply a splint to the arm you're using!")
+				to_chat(user, SPAN_DANGER("You can't apply a splint to the arm you're using!"))
 				return
 			user.visible_message(
 				SPAN_DANGER("[user] starts to apply \the [src] to their [limb]."),
@@ -447,7 +488,7 @@
 					return
 			affecting.status |= ORGAN_SPLINTED
 			if(prob(10 + user.stats.getStat(STAT_BIO)))
-				user << SPAN_NOTICE("You have managed to waste less [src].")
+				to_chat(user, SPAN_NOTICE("You have managed to waste less [src]."))
 			else
 				use(1)
 		return

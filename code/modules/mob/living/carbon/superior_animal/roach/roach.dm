@@ -13,8 +13,8 @@
 	turns_per_move = 4
 	turns_since_move = 0
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/roachmeat
-	meat_amount = 3
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat
+	meat_amount = 2
 
 	maxHealth = 10
 	health = 10

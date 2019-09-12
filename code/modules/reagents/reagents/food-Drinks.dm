@@ -6,7 +6,7 @@
 	description = "All the vitamins, minerals, and carbohydrates the body needs in pure form."
 	taste_mult = 4
 	reagent_state = SOLID
-	metabolism = REM * 4
+	metabolism = REM * 5
 	var/nutriment_factor = 30 // Per unit
 	var/regen_factor = 0.8 //Used for simple animal health regeneration
 	var/injectable = 0
@@ -32,17 +32,17 @@
 				data -= data[i]
 				data -= null
 
-/datum/reagent/nutriment/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/nutriment/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(!injectable)
-		M.adjustToxLoss(0.1 * removed)
+		M.adjustToxLoss(0.1 * effect_multiplier)
 		return
-	affect_ingest(M, alien, removed)
+	affect_ingest(M, alien, effect_multiplier)
 
-/datum/reagent/nutriment/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	if(issmall(M)) removed *= 2 // Small bodymass, more effect from lower volume.
-	M.heal_organ_damage(0.5 * removed, 0)
-	M.nutrition += nutriment_factor * removed // For hunger and fatness
-	M.add_chemical_effect(CE_BLOODRESTORE, 4 * removed)
+/datum/reagent/nutriment/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	// Small bodymass, more effect from lower volume.
+	M.heal_organ_damage(0.5 * issmall(M) ? effect_multiplier * 2 : effect_multiplier, 0)
+	M.adjustNutrition(nutriment_factor * issmall(M) ? effect_multiplier * 2 : effect_multiplier) // For hunger and fatness
+	M.add_chemical_effect(CE_BLOODRESTORE, 0.4 * issmall(M) ? effect_multiplier * 2 : effect_multiplier)
 
 /datum/reagent/nutriment/glucose
 	name = "Glucose"
@@ -84,6 +84,7 @@
 /datum/reagent/nutriment/flour/touch_turf(var/turf/simulated/T)
 	if(!istype(T, /turf/space))
 		new /obj/effect/decal/cleanable/flour(T)
+	return TRUE
 
 /datum/reagent/nutriment/coco
 	name = "Coco Powder"
@@ -146,7 +147,7 @@
 
 /datum/reagent/nutriment/cornoil/touch_turf(var/turf/simulated/T)
 	if(!istype(T))
-		return
+		return TRUE
 
 	var/hotspot = (locate(/obj/fire) in T)
 	if(hotspot && !istype(T, /turf/space))
@@ -158,6 +159,7 @@
 
 	if(volume >= 3)
 		T.wet_floor()
+	return TRUE
 
 /datum/reagent/nutriment/virus_food
 	name = "Virus Food"
@@ -194,8 +196,8 @@
 	color = "#BBEDA4"
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/lipozine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.nutrition = max(M.nutrition - 10 * removed, 0)
+/datum/reagent/lipozine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	M.nutrition = max(M.nutrition - 1 * effect_multiplier, 0)
 
 /* Non-food stuff like condiments */
 
@@ -235,7 +237,7 @@
 	reagent_state = LIQUID
 	color = "#B31008"
 
-/datum/reagent/frostoil/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/frostoil/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.bodytemperature = max(M.bodytemperature - 10 * TEMPERATURE_DAMAGE_COEFFICIENT, 0)
 	if(prob(1))
 		M.emote("shiver")
@@ -256,22 +258,22 @@
 	var/discomfort_message = "<span class='danger'>Your insides feel uncomfortably hot!</span>"
 	var/slime_temp_adj = 10
 
-/datum/reagent/capsaicin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.adjustToxLoss(0.5 * removed)
+/datum/reagent/capsaicin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	M.adjustToxLoss(0.05 * effect_multiplier)
 
-/datum/reagent/capsaicin/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/capsaicin/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.species && (H.species.flags & (NO_PAIN)))
 			return
 	if(dose < agony_dose)
 		if(prob(5) || dose == metabolism) //dose == metabolism is a very hacky way of forcing the message the first time this procs
-			M << discomfort_message
+			to_chat(M, discomfort_message)
 	else
 		M.apply_effect(agony_amount, AGONY, 0)
 		if(prob(5))
 			M.custom_emote(2, "[pick("dry heaves!","coughs!","splutters!")]")
-			M << SPAN_DANGER("You feel like your insides are burning!")
+			to_chat(M, SPAN_DANGER("You feel like your insides are burning!"))
 	if(isslime(M))
 		M.bodytemperature += rand(0, 15) + slime_temp_adj
 	holder.remove_reagent("frostoil", 5)
@@ -290,7 +292,7 @@
 	discomfort_message = "<span class='danger'>You feel like your insides are burning!</span>"
 	slime_temp_adj = 15
 
-/datum/reagent/capsaicin/condensed/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/capsaicin/condensed/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	var/eyes_covered = 0
 	var/mouth_covered = 0
 	var/no_pain = 0
@@ -338,13 +340,13 @@
 		M.Stun(5)
 		M.Weaken(5)
 
-/datum/reagent/condensedcapsaicin/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/condensedcapsaicin/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.species && (H.species.flags & NO_PAIN))
 			return
 	if(dose == metabolism)
-		M << SPAN_DANGER("You feel like your insides are burning!")
+		to_chat(M, SPAN_DANGER("You feel like your insides are burning!"))
 	else
 		M.apply_effect(4, AGONY, 0)
 		if(prob(5))
@@ -367,12 +369,12 @@
 	var/adj_sleepy = 0
 	var/adj_temp = 0
 
-/datum/reagent/drink/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.adjustToxLoss(removed) // Probably not a good idea; not very deadly though
+/datum/reagent/drink/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	M.adjustToxLoss(0.2) // Probably not a good idea; not very deadly though
 	return
 
-/datum/reagent/drink/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	M.nutrition += nutrition * removed
+/datum/reagent/drink/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	M.nutrition += nutrition * effect_multiplier
 	M.dizziness = max(0, M.dizziness + adj_dizzy)
 	M.drowsyness = max(0, M.drowsyness + adj_drowsy)
 	M.sleeping = max(0, M.sleeping + adj_sleepy)
@@ -416,9 +418,9 @@
 	glass_name = "carrot juice"
 	glass_desc = "It is just like a carrot but without crunching."
 
-/datum/reagent/drink/carrotjuice/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/carrotjuice/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
-	M.reagents.add_reagent("imidazoline", removed * 0.2)
+	M.reagents.add_reagent("imidazoline", effect_multiplier * 0.1)
 
 /datum/reagent/drink/grapejuice
 	name = "Grape Juice"
@@ -455,9 +457,9 @@
 	glass_name = "lime juice"
 	glass_desc = "It's some sweet-sour lime juice"
 
-/datum/reagent/drink/limejuice/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/limejuice/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
-	M.adjustToxLoss(-0.5 * removed)
+	M.adjustToxLoss(-0.05 * effect_multiplier)
 
 /datum/reagent/drink/orangejuice
 	name = "Orange juice"
@@ -470,9 +472,9 @@
 	glass_name = "orange juice"
 	glass_desc = "Vitamins! Yay!"
 
-/datum/reagent/drink/orangejuice/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/orangejuice/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
-	M.adjustOxyLoss(-2 * removed)
+	M.adjustOxyLoss(-0.2 * effect_multiplier)
 
 /datum/reagent/toxin/poisonberryjuice // It has more in common with toxins than drinks... but it's a juice
 	name = "Poison Berry Juice"
@@ -509,9 +511,9 @@
 	glass_name = "tomato juice"
 	glass_desc = "Are you sure this is tomato juice?"
 
-/datum/reagent/drink/tomatojuice/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/tomatojuice/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
-	M.heal_organ_damage(0, 0.5 * removed)
+	M.heal_organ_damage(0, 0.05 * effect_multiplier)
 
 /datum/reagent/drink/watermelonjuice
 	name = "Watermelon Juice"
@@ -537,10 +539,10 @@
 	glass_name = "milk"
 	glass_desc = "White and nutritious goodness!"
 
-/datum/reagent/drink/milk/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/milk/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
-	M.heal_organ_damage(0.5 * removed, 0)
-	holder.remove_reagent("capsaicin", 10 * removed)
+	M.heal_organ_damage(0.05 * effect_multiplier, 0)
+	holder.remove_reagent("capsaicin", 1 * effect_multiplier)
 
 /datum/reagent/drink/milk/cream
 	name = "Cream"
@@ -579,9 +581,9 @@
 	glass_name = "black tea"
 	glass_desc = "Tasty black tea. It has antioxidants; it's good for you!"
 
-/datum/reagent/drink/tea/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/tea/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
-	M.adjustToxLoss(-0.5 * removed)
+	M.adjustToxLoss(-0.05 * effect_multiplier)
 
 /datum/reagent/drink/tea/icetea
 	name = "Iced Tea"
@@ -630,10 +632,18 @@
 	glass_name = "coffee"
 	glass_desc = "Don't drop it, or you'll send scalding liquid and glass shards everywhere."
 
-/datum/reagent/drink/coffee/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/coffee/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
 	if(adj_temp > 0)
-		holder.remove_reagent("frostoil", 10 * removed)
+		holder.remove_reagent("frostoil", 1 * effect_multiplier)
+	// Coffee is really bad for you with busted kidneys.
+	var/mob/living/carbon/human/H = M
+	var/obj/item/organ/internal/kidneys/K = H.internal_organs_by_name[BP_KIDNEYS]
+	if (istype(K))
+		if(K.is_bruised())
+			M.adjustToxLoss(0.1)
+		else if(K.is_broken())
+			M.adjustToxLoss(0.3)
 	M.add_chemical_effect(CE_PULSE, 1)
 
 /datum/reagent/drink/coffee/overdose(var/mob/living/carbon/M, var/alien)
@@ -665,9 +675,9 @@
 	glass_desc = "A nice and refrshing beverage while you are reading."
 	glass_center_of_mass = list("x"=15, "y"=9)
 
-/datum/reagent/drink/coffee/soy_latte/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/coffee/soy_latte/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
-	M.heal_organ_damage(0.5 * removed, 0)
+	M.heal_organ_damage(0.05 * effect_multiplier, 0)
 
 /datum/reagent/drink/coffee/cafe_latte
 	name = "Cafe Latte"
@@ -682,9 +692,9 @@
 	glass_desc = "A nice, strong and refreshing beverage while you are reading."
 	glass_center_of_mass = list("x"=15, "y"=9)
 
-/datum/reagent/drink/coffee/cafe_latte/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/coffee/cafe_latte/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
-	M.heal_organ_damage(0.5 * removed, 0)
+	M.heal_organ_damage(0.05 * effect_multiplier, 0)
 
 /datum/reagent/drink/hot_coco
 	name = "Hot Chocolate"
@@ -804,7 +814,7 @@
 	glass_desc = "The secret of the sanctuary of the Libarian..."
 	glass_center_of_mass = list("x"=16, "y"=9)
 
-/datum/reagent/drink/rewriter/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/rewriter/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
 	M.make_jittery(5)
 
@@ -822,12 +832,12 @@
 	glass_desc = "Don't cry, Don't raise your eye, It's only nuclear wasteland"
 	glass_center_of_mass = list("x"=16, "y"=6)
 
-/datum/reagent/drink/nuka_cola/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/nuka_cola/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
 	M.add_chemical_effect(CE_SPEEDBOOST, 1)
-	M.make_jittery(20)
-	M.druggy = max(M.druggy, 30)
-	M.dizziness += 5
+	M.make_jittery(20 * effect_multiplier)
+	M.druggy = max(M.druggy, 30 * effect_multiplier)
+	M.dizziness += 5 * effect_multiplier
 	M.drowsyness = 0
 
 /datum/reagent/drink/grenadine
@@ -921,15 +931,15 @@
 	glass_desc = "A healthy mixture of juices, guaranteed to keep you healthy until the next toolboxing takes place."
 	glass_center_of_mass = list("x"=16, "y"=8)
 
-/datum/reagent/drink/doctor_delight/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/doctor_delight/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
-	M.adjustOxyLoss(-4 * removed)
-	M.heal_organ_damage(2 * removed, 2 * removed)
-	M.adjustToxLoss(-2 * removed)
+	M.adjustOxyLoss(-0.4 * effect_multiplier)
+	M.heal_organ_damage(0.2 * effect_multiplier, 0.2 * effect_multiplier)
+	M.adjustToxLoss(-0.2 * effect_multiplier)
 	if(M.dizziness)
-		M.dizziness = max(0, M.dizziness - 15)
+		M.dizziness = max(0, M.dizziness - 15 * effect_multiplier)
 	if(M.confused)
-		M.confused = max(0, M.confused - 5)
+		M.confused = max(0, M.confused - 5 * effect_multiplier)
 
 /datum/reagent/drink/dry_ramen
 	name = "Dry Ramen"
@@ -959,7 +969,7 @@
 	color = "#302000"
 	nutrition = 5
 
-/datum/reagent/drink/hell_ramen/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/hell_ramen/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
 	M.bodytemperature += 10 * TEMPERATURE_DAMAGE_COEFFICIENT
 
@@ -1032,9 +1042,9 @@
 	glass_desc = "A freezing pint of beer"
 	glass_center_of_mass = list("x"=16, "y"=8)
 
-/datum/reagent/ethanol/beer/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/ethanol/beer/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
-	M.jitteriness = max(M.jitteriness - 3, 0)
+	M.jitteriness = max(M.jitteriness - 3 * effect_multiplier, 0)
 
 /datum/reagent/ethanol/bluecuracao
 	name = "Blue Curacao"
@@ -1077,9 +1087,9 @@
 	glass_desc = "Now you want to Pray for a pirate suit, don't you?"
 	glass_center_of_mass = list("x"=16, "y"=12)
 
-/datum/reagent/ethanol/deadrum/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/ethanol/deadrum/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
-	M.dizziness +=5
+	M.dizziness += 5 * effect_multiplier
 
 /datum/reagent/ethanol/gin
 	name = "Gin"
@@ -1098,13 +1108,13 @@
 /datum/reagent/ethanol/coffee
 	overdose = 45
 
-/datum/reagent/ethanol/coffee/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/ethanol/coffee/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
-	M.dizziness = max(0, M.dizziness - 5)
-	M.drowsyness = max(0, M.drowsyness - 3)
-	M.sleeping = max(0, M.sleeping - 2)
+	M.dizziness = max(0, M.dizziness - 5 * effect_multiplier)
+	M.drowsyness = max(0, M.drowsyness - 3 * effect_multiplier)
+	M.sleeping = max(0, M.sleeping - 2 * effect_multiplier)
 	if(M.bodytemperature > 310)
-		M.bodytemperature = max(310, M.bodytemperature - (5 * TEMPERATURE_DAMAGE_COEFFICIENT))
+		M.bodytemperature = max(310, M.bodytemperature - (5 * TEMPERATURE_DAMAGE_COEFFICIENT) * effect_multiplier)
 
 /datum/reagent/ethanol/coffee/overdose(var/mob/living/carbon/M, var/alien)
 	M.make_jittery(5)
@@ -1189,12 +1199,12 @@
 	glass_name = "Thirteen Loko"
 	glass_desc = "This is a container of Thirteen Loko, it appears to be of the highest quality. The drink, not the container."
 
-/datum/reagent/ethanol/thirteenloko/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/ethanol/thirteenloko/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
-	M.drowsyness = max(0, M.drowsyness - 7)
+	M.drowsyness = max(0, M.drowsyness - 7 * effect_multiplier)
 	if (M.bodytemperature > 310)
-		M.bodytemperature = max(310, M.bodytemperature - (5 * TEMPERATURE_DAMAGE_COEFFICIENT))
-	M.make_jittery(5)
+		M.bodytemperature = max(310, M.bodytemperature - (5 * TEMPERATURE_DAMAGE_COEFFICIENT) * effect_multiplier)
+	M.make_jittery(5 * effect_multiplier)
 	M.add_chemical_effect(CE_PULSE, 2)
 
 /datum/reagent/ethanol/vermouth
@@ -1224,9 +1234,9 @@
 	glass_desc = "It contain wodka. Xynta."
 	glass_center_of_mass = list("x"=16, "y"=12)
 
-/datum/reagent/ethanol/vodka/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/ethanol/vodka/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
-	M.apply_effect(max(M.radiation - 1 * removed, 0), IRRADIATE, check_protection = 0)
+	M.apply_effect(max(M.radiation - 0.1 * effect_multiplier, 0), IRRADIATE, check_protection = 0)
 
 /datum/reagent/ethanol/whiskey
 	name = "Whiskey"
@@ -1267,10 +1277,10 @@
 	glass_desc = "It looks like wine, but more dark."
 	glass_center_of_mass = list("x"=15, "y"=7)
 
-/datum/reagent/ethanol/ntcahors/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/ethanol/ntcahors/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
-	M.adjust_hallucination(-9 * removed)
-	M.adjustToxLoss(-5 * removed)
+	M.adjust_hallucination(-0.9 * effect_multiplier)
+	M.adjustToxLoss(-0.5 * effect_multiplier)
 
 // Cocktails
 
@@ -1439,7 +1449,7 @@
 	glass_desc = "Heavy, hot and strong. Just like the Iron fist of the LAW."
 	glass_center_of_mass = list("x"=18, "y"=10)
 
-/datum/reagent/ethanol/beepsky_smash/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/ethanol/beepsky_smash/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
 	M.Stun(2)
 
@@ -1856,9 +1866,9 @@
 	glass_desc = "A drink that is guaranteed to knock you silly."
 	glass_center_of_mass = list("x"=16, "y"=8)
 
-/datum/reagent/ethanol/neurotoxin/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/ethanol/neurotoxin/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
-	M.Weaken(3)
+	M.Weaken(3 * effect_multiplier)
 	M.add_chemical_effect(CE_PULSE, -1)
 
 /datum/reagent/ethanol/patron
@@ -1889,18 +1899,18 @@
 	glass_desc = "A black ichor with an oily purple sheer on top. Are you sure you should drink this?"
 	glass_center_of_mass = list("x"=16, "y"=5)
 
-/datum/reagent/ethanol/pwine/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/ethanol/pwine/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
 	if(dose > 30)
-		M.adjustToxLoss(2 * removed)
+		M.adjustToxLoss(0.2 * effect_multiplier)
 	if(dose > 60 && ishuman(M) && prob(5))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/heart/L = H.internal_organs_by_name[BP_HEART]
 		if (L && istype(L))
 			if(dose < 120)
-				L.take_damage(10 * removed, 0)
+				L.take_damage(1 * effect_multiplier, 0)
 			else
-				L.take_damage(100, 0)
+				L.take_damage(10 * effect_multiplier, 0)
 
 /datum/reagent/ethanol/red_mead
 	name = "Red Mead"

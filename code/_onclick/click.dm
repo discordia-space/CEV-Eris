@@ -333,7 +333,7 @@
 		nutrition = max(nutrition - rand(1, 5), 0)
 		handle_regular_hud_updates()
 	else
-		src << SPAN_WARNING("You're out of energy!  You need food!")
+		to_chat(src, SPAN_WARNING("You're out of energy!  You need food!"))
 
 // Simple helper to face what you clicked on, in case it should be needed in more than one place
 /atom/movable/proc/face_atom(var/atom/A)

@@ -20,3 +20,31 @@
 #define MECHFAB			(1<<4)
 
 #define ORGAN_GROWER	(1<<6)
+
+
+#define RESEARCH_ENGINEERING   /datum/tech/engineering
+#define RESEARCH_BIOTECH       /datum/tech/biotech
+#define RESEARCH_COMBAT        /datum/tech/combat
+#define RESEARCH_POWERSTORAGE  /datum/tech/powerstorage
+#define RESEARCH_BLUESPACE     /datum/tech/bluespace
+#define RESEARCH_ROBOTICS      /datum/tech/robotics
+#define RESEARCH_ILLEGAL       /datum/tech/illegal
+
+
+// Design categories
+#define CAT_MISC        "Misc"
+#define CAT_COMP        "Computers"
+#define CAT_AI          "AI"
+#define CAT_POWER       "Power"
+#define CAT_MACHINE     "Machines"
+#define CAT_TCOM        "Telecommunications"
+#define CAT_BLUE        "Bluespace"
+#define CAT_WEAPON      "Weapons"
+#define CAT_ROBOT       "Robot"
+#define CAT_STOCKPARTS  "Stock Parts"
+#define CAT_PROSTHESIS  "Prosthesis"
+#define CAT_MINING      "Mining"
+#define CAT_MECHA       "Exosuits"
+#define CAT_MODCOMP     "Modular Computers"
+#define CAT_CIRCUITS    "Circuits"
+#define CAT_MEDI        "Medical"

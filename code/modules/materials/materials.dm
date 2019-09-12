@@ -136,10 +136,10 @@ var/list/name_to_material
 // Placeholders for light tiles and rglass.
 /material/proc/build_rod_product(var/mob/user, var/obj/item/stack/used_stack, var/obj/item/stack/target_stack)
 	if(!rod_product)
-		user << SPAN_WARNING("You cannot make anything out of \the [target_stack]")
+		to_chat(user, SPAN_WARNING("You cannot make anything out of \the [target_stack]"))
 		return
 	if(used_stack.get_amount() < 1 || target_stack.get_amount() < 1)
-		user << SPAN_WARNING("You need one rod and one sheet of [display_name] to make anything useful.")
+		to_chat(user, SPAN_WARNING("You need one rod and one sheet of [display_name] to make anything useful."))
 		return
 	used_stack.use(1)
 	target_stack.use(1)
@@ -149,15 +149,15 @@ var/list/name_to_material
 
 /material/proc/build_wired_product(var/mob/user, var/obj/item/stack/used_stack, var/obj/item/stack/target_stack)
 	if(!wire_product)
-		user << SPAN_WARNING("You cannot make anything out of \the [target_stack]")
+		to_chat(user, SPAN_WARNING("You cannot make anything out of \the [target_stack]"))
 		return
 	if(used_stack.get_amount() < 5 || target_stack.get_amount() < 1)
-		user << SPAN_WARNING("You need five wires and one sheet of [display_name] to make anything useful.")
+		to_chat(user, SPAN_WARNING("You need five wires and one sheet of [display_name] to make anything useful."))
 		return
 
 	used_stack.use(5)
 	target_stack.use(1)
-	user << SPAN_NOTICE("You attach wire to the [name].")
+	to_chat(user, SPAN_NOTICE("You attach wire to the [name]."))
 	var/obj/item/product = new wire_product(get_turf(user))
 	if(!(user.l_hand && user.r_hand))
 		user.put_in_hands(product)
@@ -397,12 +397,12 @@ var/list/name_to_material
 		return 0
 
 	if(!user.IsAdvancedToolUser())
-		user << SPAN_WARNING("This task is too complex for your clumsy hands.")
+		to_chat(user, SPAN_WARNING("This task is too complex for your clumsy hands."))
 		return 1
 
 	var/turf/T = user.loc
 	if(!istype(T))
-		user << SPAN_WARNING("You must be standing on open flooring to build a window.")
+		to_chat(user, SPAN_WARNING("You must be standing on open flooring to build a window."))
 		return 1
 
 	var/title = "Sheet-[used_stack.name] ([used_stack.get_amount()] sheet\s left)"
@@ -436,13 +436,13 @@ var/list/name_to_material
 				failed_to_build = 1
 			if(!failed_to_build && choice == "Windoor")
 				if(!is_reinforced())
-					user << SPAN_WARNING("This material is not reinforced enough to use for a door.")
+					to_chat(user, SPAN_WARNING("This material is not reinforced enough to use for a door."))
 					return
 				if((locate(/obj/structure/windoor_assembly) in T.contents) || (locate(/obj/machinery/door/window) in T.contents))
 					failed_to_build = 1
 
 		if(failed_to_build)
-			user << SPAN_WARNING("There is no room in this location.")
+			to_chat(user, SPAN_WARNING("There is no room in this location."))
 			return 1
 
 	else
@@ -456,11 +456,11 @@ var/list/name_to_material
 
 
 		if (!mount)
-			user << SPAN_WARNING("Full windows must be mounted on a low wall infront of you.")
+			to_chat(user, SPAN_WARNING("Full windows must be mounted on a low wall infront of you."))
 			return 1
 
 		if (locate(/obj/structure/window) in t)
-			user << SPAN_WARNING("The target tile must be clear of other windows")
+			to_chat(user, SPAN_WARNING("The target tile must be clear of other windows"))
 			return 1
 
 		//building will be successful, lets set the build location
@@ -476,7 +476,7 @@ var/list/name_to_material
 		build_path = created_window
 
 	if(used_stack.get_amount() < sheets_needed)
-		user << SPAN_WARNING("You need at least [sheets_needed] sheets to build this.")
+		to_chat(user, SPAN_WARNING("You need at least [sheets_needed] sheets to build this."))
 		return 1
 
 	// Build the structure and update sheet count etc.
@@ -669,6 +669,14 @@ var/list/name_to_material
 	if(istype(M) && locate(/obj/item/organ/internal/xenos/hivenode) in M.internal_organs)
 		return 1
 	return 0
+
+/material/biomatter
+	name = MATERIAL_BIOMATTER
+	stack_type = /obj/item/stack/material/biomatter
+	icon_colour = "#F48042"
+	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2)
+	sheet_singular_name = "sheet"
+	sheet_plural_name = "sheets"
 
 //TODO PLACEHOLDERS:
 /material/leather

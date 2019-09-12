@@ -32,6 +32,7 @@
 
 /datum/event/radiation_storm/start()
 	make_maint_all_access()
+	SSweather.run_weather(/datum/weather/rad_storm)
 
 /datum/event/radiation_storm/tick()
 	if(activeFor == enterBelt)
@@ -63,7 +64,7 @@
 			H.apply_effect((rand(15,30)),IRRADIATE)
 			if(prob(4))
 				H.apply_effect((rand(20,60)),IRRADIATE)
-				if (prob(max(0, 100 - H.getarmor(null, "rad"))))
+				if (prob(max(0, 100 - H.getarmor(null, ARMOR_RAD))))
 					if (prob(75))
 						randmutb(H) // Applies bad mutation
 					else

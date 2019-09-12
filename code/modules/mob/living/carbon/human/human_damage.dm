@@ -170,21 +170,21 @@
 			if (candidates.len)
 				var/obj/item/organ/external/O = pick(candidates)
 				O.mutate()
-				src << "<span class = 'notice'>Something is not right with your [O.name]...</span>"
+				to_chat(src, "<span class = 'notice'>Something is not right with your [O.name]...</span>")
 				return
 	else
 		if (prob(heal_prob))
 			for (var/obj/item/organ/external/O in organs)
 				if (O.status & ORGAN_MUTATED)
 					O.unmutate()
-					src << "<span class = 'notice'>Your [O.name] is shaped normally again.</span>"
+					to_chat(src, "<span class = 'notice'>Your [O.name] is shaped normally again.</span>")
 					return
 
 	if (getCloneLoss() < 1)
 		for (var/obj/item/organ/external/O in organs)
 			if (O.status & ORGAN_MUTATED)
 				O.unmutate()
-				src << "<span class = 'notice'>Your [O.name] is shaped normally again.</span>"
+				to_chat(src, "<span class = 'notice'>Your [O.name] is shaped normally again.</span>")
 	BITSET(hud_updateflag, HEALTH_HUD)
 
 // Defined here solely to take species flags into account without having to recast at mob/living level.
@@ -212,17 +212,59 @@
 	return ..()
 
 /mob/living/carbon/human/adjustToxLoss(var/amount)
-	if(species.flags & NO_POISON)
-		toxloss = 0
-	else
-		amount = amount*species.toxins_mod
-		..(amount)
+	if((species.flags & NO_POISON) || isSynthetic())
+		return
+
+	var/heal = amount < 0
+	amount = abs(amount)
+
+	if (!heal)
+		amount = amount * species.toxins_mod
+		if (CE_ANTITOX in chem_effects)
+			amount *= 1 - (chem_effects[CE_ANTITOX] * 0.25)
+
+	var/list/pick_organs = shuffle(internal_organs.Copy())
+
+	// Prioritize damaging our filtration organs first.
+	var/obj/item/organ/internal/kidneys/kidneys = internal_organs_by_name[BP_KIDNEYS]
+	if(kidneys)
+		pick_organs -= kidneys
+		pick_organs.Insert(1, kidneys)
+	var/obj/item/organ/internal/liver/liver = internal_organs_by_name[BP_LIVER]
+	if(liver)
+		pick_organs -= liver
+		pick_organs.Insert(1, liver)
+
+	// Move the brain to the very end since damage to it is vastly more dangerous
+	// (and isn't technically counted as toxloss) than general organ damage.
+	var/obj/item/organ/internal/brain/brain = internal_organs_by_name[BP_BRAIN]
+	if(brain)
+		pick_organs -= brain
+		pick_organs += brain
+
+	for(var/internal in pick_organs)
+		var/obj/item/organ/internal/I = internal
+		if(amount <= 0)
+			break
+		if(heal)
+			if(I.damage < amount)
+				amount -= I.damage
+				I.damage = 0
+			else
+				I.damage -= amount
+				amount = 0
+		else
+			var/cap_dam = I.max_damage - I.damage
+			if(amount >= cap_dam)
+				I.take_internal_damage(cap_dam, silent=TRUE)
+				amount -= cap_dam
+			else
+				I.take_internal_damage(amount, silent=TRUE)
+				amount = 0
 
 /mob/living/carbon/human/setToxLoss(var/amount)
-	if(species.flags & NO_POISON)
-		toxloss = 0
-	else
-		..()
+	if(!(species.flags & NO_POISON) && !isSynthetic())
+		adjustToxLoss(getToxLoss()-amount)
 
 ////////////////////////////////////////////
 
@@ -245,11 +287,11 @@
 //Heals ONE external organ, organ gets randomly selected from damaged ones.
 //It automatically updates damage overlays if necesary
 //It automatically updates health status
-/mob/living/carbon/human/heal_organ_damage(var/brute, var/burn)
+/mob/living/carbon/human/heal_organ_damage(var/brute, var/burn, var/additionally_brute_percent = 0, var/additionaly_burn_percent = 0)
 	var/list/obj/item/organ/external/parts = get_damaged_organs(brute,burn)
 	if(!parts.len)	return
 	var/obj/item/organ/external/picked = pick(parts)
-	if(picked.heal_damage(brute,burn))
+	if(picked.heal_damage(brute + (picked.brute_dam/100 * additionally_brute_percent),burn + (picked.burn_dam/100 * additionaly_burn_percent)))
 		UpdateDamageIcon()
 		BITSET(hud_updateflag, HEALTH_HUD)
 	updatehealth()
@@ -351,23 +393,21 @@ This function restores all organs.
 		zone = BP_HEAD
 	return organs_by_name[zone]
 
-/mob/living/carbon/human/apply_damage(var/damage = 0, var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/sharp = 0, var/edge = 0, var/obj/used_weapon = null)
+/mob/living/carbon/human/apply_damage(var/damage = 0, var/damagetype = BRUTE, var/def_zone = null, var/sharp = 0, var/edge = 0, var/obj/used_weapon = null)
 
 	//visible_message("Hit debug. [damage] | [damagetype] | [def_zone] | [blocked] | [sharp] | [used_weapon]")
 
 	//Handle other types of damage
-	if(!stat && damagetype != BRUTE && damagetype != BURN)
+	if(damagetype != BRUTE && damagetype != BURN)
 		if(damagetype == HALLOSS && !(species && (species.flags & NO_PAIN)))
-			if ((damage > 25 && prob(20)) || (damage > 50 && prob(60)))
+			if (!stat && (damage > 25 && prob(20)) || (damage > 50 && prob(60)))
 				emote("scream")
 
-		..(damage, damagetype, def_zone, blocked)
+		..(damage, damagetype, def_zone)
 		return 1
 
 	//Handle BRUTE and BURN damage
 	handle_suit_punctures(damagetype, damage, def_zone)
-
-	if(blocked >= 2)	return 0
 
 	var/obj/item/organ/external/organ = null
 	if(isorgan(def_zone))
@@ -376,9 +416,6 @@ This function restores all organs.
 		if(!def_zone)	def_zone = ran_zone(def_zone)
 		organ = get_organ(check_zone(def_zone))
 	if(!organ)	return 0
-
-	if(blocked)
-		damage = (damage/(blocked+1))
 
 	switch(damagetype)
 		if(BRUTE)

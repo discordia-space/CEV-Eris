@@ -1,47 +1,62 @@
+#define ARMOR_AGONY_COEFFICIENT 0.6
+#define ARMOR_GDR_COEFFICIENT 0.1
 
-/*
-	run_armor_check(a,b)
-	args
-	a:def_zone - What part is getting hit, if null will check entire body
-	b:attack_flag - What type of attack, bullet, laser, energy, melee
+//This calculation replaces old run_armor_check in favor of more complex and better system
+//If you need to do something else with armor - just use getarmor() proc and do with those numbers all you want
+//Random absorb system was a cancer, and was removed from all across the codebase. Don't recreate it. Clockrigger 2019
 
-	Returns
-	0 - no block
-	1 - halfblock
-	2 - fullblock
-*/
-/mob/living/proc/run_armor_check(var/def_zone = null, var/attack_flag = "melee", var/armour_pen = 0, var/absorb_text = null, var/soften_text = null)
-	if(armour_pen >= 100)
-		return 0 //might as well just skip the processing
+/mob/living/proc/damage_through_armor(var/damage = 0, var/damagetype = BRUTE, var/def_zone = null, var/attack_flag = ARMOR_MELEE, var/armour_pen = 0, var/used_weapon = null, var/sharp = 0, var/edge = 0)
 
+	if(damage == 0)
+		return FALSE
+
+	//GDR - guaranteed damage reduction. It's a value that deducted from damage before all calculations
 	var/armor = getarmor(def_zone, attack_flag)
-	var/absorb = 0
+	var/guaranteed_damage_red = armor * ARMOR_GDR_COEFFICIENT
+	var/armor_effectiveness = max(0, ( armor - armour_pen ) )
+	var/effective_damage = damage - guaranteed_damage_red
 
-	//Roll armour
-	if(prob(armor))
-		absorb += 1
-	if(prob(armor))
-		absorb += 1
+	if(effective_damage <= 0)
+		show_message(SPAN_NOTICE("Your armor absorbs the blow!"))
+		return FALSE
 
-	//Roll penetration
-	if(prob(armour_pen))
-		absorb -= 1
-	if(prob(armour_pen))
-		absorb -= 1
+	//Here we can remove edge or sharpness from the blow
+	if ( (sharp || edge) && prob ( getarmor (def_zone, attack_flag) ) )
+		sharp = 0
+		edge = 0
 
-	if(absorb >= 2)
-		if(absorb_text)
-			show_message("[absorb_text]")
-		else
-			show_message(SPAN_WARNING("Your armor absorbs the blow!"))
-		return 2
-	if(absorb == 1)
-		if(absorb_text)
-			show_message("[soften_text]",4)
-		else
-			show_message(SPAN_WARNING("Your armor softens the blow!"))
-		return 1
-	return 0
+
+	//Feedback
+	//In order to show both target and everyone around that armor is actually working, we are going to send message for both of them
+	//Goon/tg chat should take care of spam issue on this one
+
+	if(armor_effectiveness >= 74)
+		visible_message(SPAN_NOTICE("[src] armor easily absorbs the blow!"),
+						SPAN_NOTICE("Your armor reduced the impact greatly!"))
+
+	else if(armor_effectiveness >= 49)
+		visible_message(SPAN_NOTICE("[src] armor abosrbs most of the damage!"),
+						SPAN_NOTICE("Your armor protects you from impact!"))
+
+	else if(armor_effectiveness >= 24)
+		show_message(SPAN_NOTICE("Your armor reduced impact for a bit."))
+
+	//No armor? Damage as usual
+	if(armor_effectiveness == 0)
+		apply_damage(effective_damage, damagetype, def_zone, used_weapon, sharp, edge)
+
+	//Here we split damage in two parts, where armor value will determine how much damage will get through
+	else
+		//Pain part of the damage, that simulates impact from armor absorbtion
+		//For balance purposes, it's lowered by ARMOR_AGONY_COEFFICIENT
+		var/agony_gamage = round( ( effective_damage * armor_effectiveness * ARMOR_AGONY_COEFFICIENT ) / 100 )
+		stun_effect_act(0, agony_gamage, def_zone)
+
+		//Actual part of the damage that passed through armor
+		var/actual_damage = round ( ( effective_damage * ( 100 - armor_effectiveness ) ) / 100 )
+		apply_damage(actual_damage, damagetype, def_zone, used_weapon, sharp, edge)
+
+	return TRUE
 
 
 //if null is passed for def_zone, then this should return something appropriate for all zones (e.g. area effect damage)
@@ -64,37 +79,36 @@
 	//Stun Beams
 	if(P.taser_effect)
 		stun_effect_act(0, P.agony, def_zone, P)
-		src << SPAN_WARNING("You have been hit by [P]!")
+		to_chat(src, SPAN_WARNING("You have been hit by [P]!"))
 		qdel(P)
-		return
+		return TRUE
 
-	//Armor
-	var/absorb = run_armor_check(def_zone, P.check_armour, P.armor_penetration)
-	var/proj_sharp = is_sharp(P)
-	var/proj_edge = has_edge(P)
-	if ((proj_sharp || proj_edge) && prob(getarmor(def_zone, P.check_armour)))
-		proj_sharp = 0
-		proj_edge = 0
-
+	//Armor and damage
 	if(!P.nodamage)
-		apply_damage(P.damage, P.damage_type, def_zone, absorb, 0, P, sharp=proj_sharp, edge=proj_edge)
-	P.on_hit(src, absorb, def_zone)
-	return absorb
+		damage_through_armor(P.damage, P.damage_type, def_zone, P.check_armour, armour_pen = P.armor_penetration, used_weapon = P, sharp=is_sharp(P), edge=has_edge(P))
+
+	return TRUE
 
 //Handles the effects of "stun" weapons
 /mob/living/proc/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null)
 	flash_pain()
 
-	if (stun_amount)
-		Stun(stun_amount)
-		Weaken(stun_amount)
-		apply_effect(STUTTER, stun_amount)
-		apply_effect(EYE_BLUR, stun_amount)
+	//For not bloating damage_through_armor here is simple armor calculation for stun time
+	var/armor_coefficient = max(0, 1 - getarmor(def_zone, ARMOR_ENERGY) / 100)
 
-	if (agony_amount)
-		apply_damage(agony_amount, HALLOSS, def_zone, 0, used_weapon)
-		apply_effect(STUTTER, agony_amount/10)
-		apply_effect(EYE_BLUR, agony_amount/10)
+	//If armor is 100 or more, we just skeeping it
+	if (stun_amount && armor_coefficient)
+
+		Stun(stun_amount * armor_coefficient)
+		Weaken(stun_amount * armor_coefficient)
+		apply_effect(STUTTER, stun_amount * armor_coefficient)
+		apply_effect(EYE_BLUR, stun_amount * armor_coefficient)
+
+	if (agony_amount && armor_coefficient)
+
+		apply_damage(agony_amount * armor_coefficient, HALLOSS, def_zone, 0, used_weapon)
+		apply_effect(STUTTER, agony_amount * armor_coefficient)
+		apply_effect(EYE_BLUR, agony_amount * armor_coefficient)
 
 /mob/living/proc/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0)
 	  return 0 //only carbon liveforms have this proc
@@ -108,38 +122,32 @@
 /mob/living/proc/resolve_item_attack(obj/item/I, mob/living/user, var/target_zone)
 	return target_zone
 
-//Called when the mob is hit with an item in combat. Returns the blocked result
+//Called when the mob is hit with an item in combat.
 /mob/living/proc/hit_with_weapon(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
 	visible_message(SPAN_DANGER("[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] with [I.name] by [user]!"))
 
-	var/blocked = run_armor_check(hit_zone, "melee")
-	standard_weapon_hit_effects(I, user, effective_force, blocked, hit_zone)
+	standard_weapon_hit_effects(I, user, effective_force, hit_zone)
 
 	if(I.damtype == BRUTE && prob(33)) // Added blood for whacking non-humans too
 		var/turf/simulated/location = get_turf(src)
 		if(istype(location)) location.add_blood_floor(src)
 
-	return blocked
+	return
 
 //returns 0 if the effects failed to apply for some reason, 1 otherwise.
-/mob/living/proc/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/blocked, var/hit_zone)
-	if(!effective_force || blocked >= 2)
-		return 0
+/mob/living/proc/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
+	if(!effective_force)
+		return FALSE
 
 	//Hulk modifier
 	if(HULK in user.mutations)
 		effective_force *= 2
 
 	//Apply weapon damage
-	var/weapon_sharp = is_sharp(I)
-	var/weapon_edge = has_edge(I)
-	if(prob(max(getarmor(hit_zone, "melee") - I.armor_penetration, 0))) //melee armour provides a chance to turn sharp/edge weapon attacks into blunt ones
-		weapon_sharp = 0
-		weapon_edge = 0
-
-	apply_damage(effective_force, I.damtype, hit_zone, blocked, sharp=weapon_sharp, edge=weapon_edge, used_weapon=I)
-
-	return 1
+	if (damage_through_armor(effective_force, I.damtype, hit_zone, ARMOR_MELEE, I.armor_penetration, used_weapon = I, sharp = is_sharp(I), edge = has_edge(I)))
+		return TRUE
+	else
+		return FALSE
 
 //this proc handles being hit by a thrown atom
 /mob/living/hitby(atom/movable/AM as mob|obj,var/speed = THROWFORCE_SPEED_DIVISOR)//Standardization and logging -Sieve
@@ -162,10 +170,8 @@
 			IgniteMob()
 
 		src.visible_message(SPAN_WARNING("[src] has been hit by [O]."))
-		var/armor = run_armor_check(null, "melee")
 
-		if(armor < 2)
-			apply_damage(throw_damage, dtype, null, armor, is_sharp(O), has_edge(O), O)
+		damage_through_armor(throw_damage, dtype, null, ARMOR_MELEE, null, used_weapon = O, sharp = is_sharp(O), edge = has_edge(O))
 
 		O.throwing = 0		//it hit, so stop moving
 
@@ -289,11 +295,6 @@
 	adjust_fire_stacks(2)
 	IgniteMob()
 
-/mob/living/proc/irradiate(amount)
-	if(amount)
-		var/blocked = run_armor_check(null, "rad")
-		apply_effect(amount, IRRADIATE, blocked)
-
 /mob/living/proc/get_cold_protection()
 	return 0
 
@@ -382,4 +383,3 @@
 			hud_used.hide_actions_toggle.screen_loc = hud_used.ButtonNumberToScreenCoords(button_number+1)
 			//hud_used.SetButtonCoords(hud_used.hide_actions_toggle,button_number+1)
 		client.screen += hud_used.hide_actions_toggle*/
-

@@ -14,7 +14,7 @@
 	var/damage = 0                    // Current damage to the organ
 
 	// Type of modification, (If you ever need to apply several types make this a bit flag)
-	var/nature = MODIFICATION_ORGANIC 
+	var/nature = MODIFICATION_ORGANIC
 
 	// Reference data.
 	var/mob/living/carbon/human/owner // Current mob owning the organ.
@@ -30,6 +30,9 @@
 	var/min_broken_damage = 30        // Damage before becoming broken
 	var/max_damage                    // Damage cap
 	var/rejecting                     // Is this organ already being rejected?
+	matter = list(MATERIAL_BIOMATTER = 20)
+
+	var/death_time // limits organ self recovery
 
 /obj/item/organ/Destroy()
 	if(owner)
@@ -93,6 +96,7 @@
 	damage = max_damage
 	status |= ORGAN_DEAD
 	STOP_PROCESSING(SSobj, src)
+	death_time = world.time
 	if(dead_icon)
 		icon_state = dead_icon
 	if(owner && vital)
@@ -148,7 +152,7 @@
 /obj/item/organ/examine(mob/user)
 	..(user)
 	if(status & ORGAN_DEAD)
-		user << SPAN_NOTICE("The decay has set in.")
+		to_chat(user, SPAN_NOTICE("The decay has set in."))
 
 /obj/item/organ/proc/handle_germ_effects()
 	//** Handle the effects of infections
@@ -331,3 +335,15 @@
 			blood_DNA = list()
 		blood_DNA[H.dna.unique_enzymes] = H.dna.b_type
 	STOP_PROCESSING(SSobj, src)
+
+/obj/item/organ/proc/heal_damage(amount)
+	return
+
+/obj/item/organ/proc/can_recover()
+	return (max_damage > 0) && !(status & ORGAN_DEAD) || death_time >= world.time - ORGAN_RECOVERY_THRESHOLD
+
+/obj/item/organ/proc/can_feel_pain()
+	return (!BP_IS_ROBOTIC(src) && (!species || !(species.flags & NO_PAIN)))
+
+/obj/item/organ/proc/is_usable()
+	return !(status & (ORGAN_CUT_AWAY|ORGAN_MUTATED|ORGAN_DEAD))

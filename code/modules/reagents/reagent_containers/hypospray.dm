@@ -22,7 +22,7 @@
 
 /obj/item/weapon/reagent_containers/hypospray/attack(mob/living/M as mob, mob/user as mob)
 	if(!reagents.total_volume)
-		user << SPAN_WARNING("[src] is empty.")
+		to_chat(user, SPAN_WARNING("[src] is empty."))
 		return
 	if (!istype(M))
 		return
@@ -73,7 +73,7 @@
 	var/contained = reagents.log_list()
 	var/trans = reagents.trans_to_mob(M, amount_per_transfer_from_this, CHEM_BLOOD)
 	admin_inject_log(user, M, src, contained, trans)
-	user << SPAN_NOTICE("[trans] units injected. [reagents.total_volume] units remaining in \the [src].")
+	to_chat(user, SPAN_NOTICE("[trans] units injected. [reagents.total_volume] units remaining in \the [src]."))
 	return
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector
@@ -86,7 +86,7 @@
 	amount_per_transfer_from_this = 5
 	reagent_flags = REFILLABLE | DRAINABLE | AMOUNT_VISIBLE
 	volume = 5
-	preloaded = list("inaprovaline" = 5)
+	preloaded_reagents = list("inaprovaline" = 5)
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/on_reagent_change()
 	..()
@@ -98,3 +98,16 @@
 		icon_state = initial(icon_state)
 	else
 		icon_state = "[initial(icon_state)]0"
+
+
+/obj/item/weapon/reagent_containers/hypospray/verb/empty()
+
+	set name = "Empty Hypospray"
+	set category = "Object"
+	set src in usr
+
+	if (alert(usr, "Are you sure you want to empty that?", "Empty Bottle:", "Yes", "No") != "Yes")
+		return
+	if(isturf(usr.loc))
+		to_chat(usr, SPAN_NOTICE("You empty \the [src] onto the floor."))
+		reagents.splash(usr.loc, reagents.total_volume)

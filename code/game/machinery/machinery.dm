@@ -203,7 +203,7 @@ Class Procs:
 	if(user.lying || user.stat)
 		return 1
 	if (!user.IsAdvancedToolUser())
-		usr << SPAN_WARNING("You don't have the dexterity to do this!")
+		to_chat(usr, SPAN_WARNING("You don't have the dexterity to do this!"))
 		return 1
 
 	if (ishuman(user))
@@ -212,7 +212,7 @@ Class Procs:
 			visible_message(SPAN_WARNING("[H] stares cluelessly at [src]."))
 			return 1
 		else if(prob(H.getBrainLoss()))
-			user << SPAN_WARNING("You momentarily forget how to use \the [src].")
+			to_chat(user, SPAN_WARNING("You momentarily forget how to use \the [src]."))
 			return 1
 
 	src.add_fingerprint(user)
@@ -242,6 +242,24 @@ Class Procs:
 
 /obj/machinery/proc/RefreshParts() //Placeholder proc for machines that are built using frames.
 	return
+
+/obj/machinery/proc/max_part_rating(var/type) //returns max rating of installed part type or null on error(keep in mind that all parts have to match that raiting).
+	if(!istype(type,/obj/item/weapon/stock_parts))
+		return
+	var/list/obj/item/weapon/stock_parts/parts = list()
+	for(var/list/obj/item/weapon/stock_parts/P in component_parts)
+		if(istype(P, type))
+			parts.Add(P)
+	if(!parts.len)
+		return
+	var/rating = 1
+	for(var/obj/item/weapon/stock_parts/P in parts)
+		if(P.rating < rating)
+			return rating
+		else
+			rating = P.rating
+		
+	return rating
 
 /obj/machinery/proc/assign_uid()
 	uid = gl_uid
@@ -286,10 +304,10 @@ Class Procs:
 
 		if(QUALITY_PRYING)
 			if(!panel_open)
-				user << SPAN_NOTICE("You cant get to the components of \the [src], remove the cover.")
+				to_chat(user, SPAN_NOTICE("You cant get to the components of \the [src], remove the cover."))
 				return TRUE
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_HARD, required_stat = STAT_MEC))
-				user << SPAN_NOTICE("You remove the components of \the [src] with [I].")
+				to_chat(user, SPAN_NOTICE("You remove the components of \the [src] with [I]."))
 				dismantle()
 			return TRUE
 
@@ -298,7 +316,7 @@ Class Procs:
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
 				updateUsrDialog()
 				panel_open = !panel_open
-				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
+				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
 				update_icon()
 			return TRUE
 
@@ -327,14 +345,14 @@ Class Procs:
 						component_parts -= A
 						component_parts += B
 						B.loc = null
-						user << SPAN_NOTICE("[A.name] replaced with [B.name].")
+						to_chat(user, SPAN_NOTICE("[A.name] replaced with [B.name]."))
 						break
 			update_icon()
 			RefreshParts()
 	else
-		user << SPAN_NOTICE("Following parts detected in the machine:")
+		to_chat(user, SPAN_NOTICE("Following parts detected in the machine:"))
 		for(var/var/obj/item/C in component_parts)
-			user << SPAN_NOTICE("    [C.name]")
+			to_chat(user, SPAN_NOTICE("    [C.name]"))
 	return 1
 
 /obj/machinery/proc/create_frame(var/type)

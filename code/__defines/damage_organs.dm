@@ -25,6 +25,15 @@
 #define FIRE_DAMAGE_MODIFIER 0.0215 // Higher values result in more external fire damage to the skin. (default 0.0215)
 #define  AIR_DAMAGE_MODIFIER 2.025  // More means less damage from hot air scalding lungs, less = more damage. (default 2.025)
 
+//Armor defines
+
+#define ARMOR_MELEE			"melee"
+#define ARMOR_BULLET		"bullet"
+#define ARMOR_ENERGY		"energy"
+#define ARMOR_BOMB			"bomb"
+#define ARMOR_BIO			"bio"
+#define ARMOR_RAD			"rad"
+
 
 // Organs.
 #define BP_MOUTH    "mouth"
@@ -116,8 +125,6 @@
 #define MODIFICATION_LIFELIKE 3	// Robotic, made to appear organic
 #define MODIFICATION_REMOVED 4	// Removed completly
 
-#define ORGAN_PROCESS_ACCURACY 10
-
 // Damage above this value must be repaired with surgery.
 #define ROBOLIMB_SELF_REPAIR_CAP 30
 
@@ -128,3 +135,6 @@
 #define INFECTION_LEVEL_ONE   100
 #define INFECTION_LEVEL_TWO   500
 #define INFECTION_LEVEL_THREE 1000
+
+#define ORGAN_RECOVERY_THRESHOLD (5 MINUTES)
+

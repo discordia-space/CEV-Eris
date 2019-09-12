@@ -126,7 +126,7 @@
 			set_pixel_click_offset(O, params, animate=TRUE)
 			return
 		else
-			user << SPAN_WARNING("[O] is too heavy for you to move!")
+			to_chat(user, SPAN_WARNING("[O] is too heavy for you to move!"))
 			return
 
 	return ..()
@@ -325,7 +325,7 @@
 		//Since we have everything in a bitfield, we can compare the diagonals against it.
 		//If both of its cardinals are here, the diagonal will be too
 		if ((wall_dirs_bitfield & d) == d)
-			if (debug)	world << "Connected to a diagonal wall, [direction_to_text(d)] [d], Bitfield [wall_dirs_bitfield]"
+			if (debug)	to_chat(world, "Connected to a diagonal wall, [direction_to_text(d)] [d], Bitfield [wall_dirs_bitfield]")
 			wall_dirs |= (d)
 			connection_dirs |= d
 
@@ -394,23 +394,23 @@
 
 		if(QUALITY_WELDING)
 			if (locate(/obj/structure/window in loc))
-				user << SPAN_NOTICE("You must remove the window mounted on this wall before it can be repaired or deconstructed")
+				to_chat(user, SPAN_NOTICE("You must remove the window mounted on this wall before it can be repaired or deconstructed"))
 				return
 			if(locate(/obj/effect/overlay/wallrot) in src)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You burn away the fungi with \the [I].")
+					to_chat(user, SPAN_NOTICE("You burn away the fungi with \the [I]."))
 					for(var/obj/effect/overlay/wallrot/WR in src)
 						qdel(WR)
 					return
 			if(health < maxhealth)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You repair the damage to [src].")
+					to_chat(user, SPAN_NOTICE("You repair the damage to [src]."))
 					take_damage(maxhealth - health)
 					return
 			if(isnull(construction_stage))
-				user << SPAN_NOTICE("You begin removing the outer plating...")
+				to_chat(user, SPAN_NOTICE("You begin removing the outer plating..."))
 				if(I.use_tool(user, src, WORKTIME_LONG, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You remove the outer plating.")
+					to_chat(user, SPAN_NOTICE("You remove the outer plating."))
 					dismantle_wall()
 					user.visible_message(SPAN_WARNING("The wall was torn open by [user]!"))
 					return
@@ -475,18 +475,18 @@
 /obj/structure/low_wall/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
 	var/obj/occupied = turf_is_crowded()
 	if(occupied)
-		user << SPAN_DANGER("There's \a [occupied] in the way.")
+		to_chat(user, SPAN_DANGER("There's \a [occupied] in the way."))
 		return
 	if(state < GRAB_AGGRESSIVE || target.loc==src.loc)
 		if(user.a_intent == I_HURT)
 			if(prob(15))
 				target.Weaken(5)
-			target.apply_damage(12, def_zone = BP_HEAD)
+			target.damage_through_armor(12, BRUTE, BP_HEAD, ARMOR_MELEE)
 			visible_message(SPAN_DANGER("[user] slams [target]'s face against \the [src]!"))
 			playsound(loc, 'sound/weapons/tablehit1.ogg', 50, 1)
 
 		else
-			user << SPAN_DANGER("You need a better grip to do that!")
+			to_chat(user, SPAN_DANGER("You need a better grip to do that!"))
 			return
 	else
 		target.forceMove(loc)

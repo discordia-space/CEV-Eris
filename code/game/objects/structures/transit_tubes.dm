@@ -102,11 +102,11 @@ obj/structure/ex_act(severity)
 /obj/structure/transit_tube/Bumped(mob/AM as mob|obj)
 	var/obj/structure/transit_tube/T = locate() in AM.loc
 	if(T)
-		AM << SPAN_WARNING("The tube's support pylons block your way.")
+		to_chat(AM, SPAN_WARNING("The tube's support pylons block your way."))
 		return ..()
 	else
 		AM.loc = src.loc
-		AM << "<span class='info'>You slip under the tube.</span>"
+		to_chat(AM, "<span class='info'>You slip under the tube.</span>")
 
 
 /obj/structure/transit_tube/station/New(loc)
@@ -118,7 +118,7 @@ obj/structure/ex_act(severity)
 	if(!pod_moving && icon_state == "open" && ismob(AM))
 		for(var/obj/structure/transit_tube_pod/pod in loc)
 			if(pod.contents.len)
-				AM << SPAN_NOTICE("The pod is already occupied.")
+				to_chat(AM, SPAN_NOTICE("The pod is already occupied."))
 				return
 			else if(!pod.moving && pod.dir in directions())
 				AM.loc = pod

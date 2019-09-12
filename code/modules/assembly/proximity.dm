@@ -110,7 +110,7 @@
 
 /obj/item/device/assembly/prox_sensor/interact(mob/user as mob)//TODO: Change this to the wires thingy
 	if(!secured)
-		user << SPAN_WARNING("The [name] is unsecured!")
+		to_chat(user, SPAN_WARNING("The [name] is unsecured!"))
 		return
 	var/second = time % 60
 	var/minute = (time - second) / 60

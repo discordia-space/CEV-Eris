@@ -15,18 +15,18 @@
 
 /obj/item/weapon/coreimplant_upgrade/attack(var/mob/living/carbon/human/target, var/mob/living/user, var/target_zone)
 	if(!ishuman(target) || !module)
-		user << SPAN_WARNING("This upgrade is blank.")
+		to_chat(user, SPAN_WARNING("This upgrade is blank."))
 		return
 
 	var/obj/item/weapon/implant/core_implant/I = target.get_core_implant()
 
 	if(!I || !istype(I, implant_type) || !I.active || !I.wearer)
-		user << SPAN_WARNING("[target] doesn't have an impant to install [src].")
+		to_chat(user, SPAN_WARNING("[target] doesn't have an impant to install [src]."))
 		return
 
 	for(var/U in I.upgrades)
 		if(istype(I,src.type))
-			user << SPAN_WARNING("[target] already have this upgrade.")
+			to_chat(user, SPAN_WARNING("[target] already have this upgrade."))
 			return
 
 	user.visible_message(SPAN_DANGER("[user] attempts to install [src] in \the [target]'s [I]."),
@@ -39,7 +39,7 @@
 		on_install(target,user,target_zone)
 		implant.upgrades.Add(src)
 		implant.add_module(module)
-		user << SPAN_NOTICE("You are successfully installed [src] in the [target]'s \the [I].")
+		to_chat(user, SPAN_NOTICE("You are successfully installed [src] in the [target]'s \the [I]."))
 		return
 
 	..()

@@ -36,7 +36,7 @@
 	if(locked && !emagged)
 		locked = 0
 		emagged = 1
-		user << SPAN_WARNING("You short out [src]'s maintenance hatch lock.")
+		to_chat(user, SPAN_WARNING("You short out [src]'s maintenance hatch lock."))
 		log_and_message_admins("emagged [src]'s maintenance hatch lock")
 		return 1
 
@@ -49,16 +49,16 @@
 	..(user)
 	if (src.health < maxhealth)
 		if (src.health > maxhealth/3)
-			user << SPAN_WARNING("[src]'s parts look loose.")
+			to_chat(user, SPAN_WARNING("[src]'s parts look loose."))
 		else
-			user << SPAN_DANGER("[src]'s parts look very loose!")
+			to_chat(user, SPAN_DANGER("[src]'s parts look very loose!"))
 	return
 
 /obj/machinery/bot/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/tool/screwdriver))
 		if(!locked)
 			open = !open
-			user << "<span class='notice'>Maintenance panel is now [src.open ? "opened" : "closed"].</span>"
+			to_chat(user, "<span class='notice'>Maintenance panel is now [src.open ? "opened" : "closed"].</span>")
 	else if(istype(W, /obj/item/weapon/tool/weldingtool))
 		if(health < maxhealth)
 			if(open)
@@ -66,9 +66,9 @@
 				user.visible_message(SPAN_WARNING("[user] repairs [src]!"),SPAN_NOTICE("You repair [src]!"))
 				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			else
-				user << SPAN_NOTICE("Unable to repair with the maintenance panel closed.")
+				to_chat(user, SPAN_NOTICE("Unable to repair with the maintenance panel closed."))
 		else
-			user << SPAN_NOTICE("[src] does not need a repair.")
+			to_chat(user, SPAN_NOTICE("[src] does not need a repair."))
 	else
 		if(hasvar(W,"force") && hasvar(W,"damtype"))
 			switch(W.damtype)

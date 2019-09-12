@@ -135,7 +135,7 @@ var/list/global/excelsior_teleporters = list() //This list is used to make turre
 		if (buy_list.Find(ordered_item))
 			var/order_energy_cost = buy_list[ordered_item]["price"]
 			if(order_energy_cost > energy)
-				usr << SPAN_WARNING("Not enough energy.")
+				to_chat(usr, SPAN_WARNING("Not enough energy."))
 				return 0
 
 			processing_order = TRUE

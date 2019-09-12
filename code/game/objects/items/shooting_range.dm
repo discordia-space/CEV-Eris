@@ -36,7 +36,7 @@
 	if(QUALITY_WELDING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			overlays.Cut()
-			user << SPAN_NOTICE("You slice off [src]'s uneven chunks of aluminum and scorch marks.")
+			to_chat(user, SPAN_NOTICE("You slice off [src]'s uneven chunks of aluminum and scorch marks."))
 			return
 
 
@@ -58,10 +58,10 @@
 			if(ishuman(user))
 				if(!user.get_active_hand())
 					user.put_in_hands(src)
-					user << "You take the target out of the stake."
+					to_chat(user, "You take the target out of the stake.")
 			else
 				src.loc = get_turf(user)
-				user << "You take the target out of the stake."
+				to_chat(user, "You take the target out of the stake.")
 
 			stake.pinned_target = null
 			return
@@ -96,7 +96,7 @@
 		if(hp <= 0)
 			for(var/mob/O in oviewers())
 				if ((O.client && !( O.blinded )))
-					O << SPAN_WARNING("\The [src] breaks into tiny pieces and collapses!")
+					to_chat(O, SPAN_WARNING("\The [src] breaks into tiny pieces and collapses!"))
 			qdel(src)
 
 		// Create a temporary object to represent the damage

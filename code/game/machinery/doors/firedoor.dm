@@ -76,9 +76,9 @@
 		return
 
 	if(pdiff >= FIREDOOR_MAX_PRESSURE_DIFF)
-		user << SPAN_WARNING("WARNING: Current pressure differential is [pdiff]kPa! Opening door may result in injury!")
+		to_chat(user, SPAN_WARNING("WARNING: Current pressure differential is [pdiff]kPa! Opening door may result in injury!"))
 
-	user << "<b>Sensor readings:</b>"
+	to_chat(user, "<b>Sensor readings:</b>")
 	for(var/index = 1; index <= tile_info.len; index++)
 		var/o = "&nbsp;&nbsp;"
 		switch(index)
@@ -92,7 +92,7 @@
 				o += "WEST: "
 		if(tile_info[index] == null)
 			o += SPAN_WARNING("DATA UNAVAILABLE")
-			user << o
+			to_chat(user, o)
 			continue
 		var/celsius = convert_k2c(tile_info[index][1])
 		var/pressure = tile_info[index][2]
@@ -100,14 +100,14 @@
 		o += "[celsius]&deg;C</span> "
 		o += "<span style='color:blue'>"
 		o += "[pressure]kPa</span></li>"
-		user << o
+		to_chat(user, o)
 
 	if(islist(users_to_open) && users_to_open.len)
 		var/users_to_open_string = users_to_open[1]
 		if(users_to_open.len >= 2)
 			for(var/i = 2 to users_to_open.len)
 				users_to_open_string += ", [users_to_open[i]]"
-		user << "These people have opened \the [src] during an alert: [users_to_open_string]."
+		to_chat(user, "These people have opened \the [src] during an alert: [users_to_open_string].")
 
 /obj/machinery/door/firedoor/Bumped(atom/AM)
 	if(p_open || operating)
@@ -136,7 +136,7 @@
 		return//Already doing something.
 
 	if(blocked)
-		user << SPAN_WARNING("\The [src] is welded solid!")
+		to_chat(user, SPAN_WARNING("\The [src] is welded solid!"))
 		return
 
 	var/alarmed = lockdown || checkAlarmed()
@@ -146,14 +146,14 @@
 	if(answer == "No")
 		return
 	if(user.incapacitated() || (get_dist(src, user) > 1  && !issilicon(user)))
-		user << "You must remain able bodied and close to \the [src] in order to use it."
+		to_chat(user, "You must remain able bodied and close to \the [src] in order to use it.")
 		return
 	if(density && (stat & (BROKEN|NOPOWER))) //can still close without power
-		user << "\The [src] is not functioning, you'll have to force it open manually."
+		to_chat(user, "\The [src] is not functioning, you'll have to force it open manually.")
 		return
 
 	if(density && alarmed && !allowed(user))
-		user << SPAN_WARNING("Access denied.  Please wait for authorities to arrive, or for the alert to clear.")
+		to_chat(user, SPAN_WARNING("Access denied.  Please wait for authorities to arrive, or for the alert to clear."))
 		return
 	else
 		user.visible_message("<span class='notice'>\The [src] [density ? "open" : "close"]s for \the [user].</span>",\
@@ -201,7 +201,7 @@
 					update_icon()
 					return
 			else
-				user << SPAN_NOTICE("You must close \the [src] first.")
+				to_chat(user, SPAN_NOTICE("You must close \the [src] first."))
 			return
 
 		if(QUALITY_PRYING)
@@ -222,7 +222,7 @@
 					return
 				return
 			if(blocked)
-				user << SPAN_DANGER("\The [src] is welded shut!")
+				to_chat(user, SPAN_DANGER("\The [src] is welded shut!"))
 				return
 			if(!operating)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
@@ -366,44 +366,6 @@
 	if(do_set_light)
 		set_light(1.5, 0.5, COLOR_SUN)
 
-//These are playing merry hell on ZAS.  Sorry fellas :(
-
-/obj/machinery/door/firedoor/border_only
-/*
-	icon = 'icons/obj/doors/edge_Doorfire.dmi'
-	glass = 1 //There is a glass window so you can see through the door
-			  //This is needed due to BYOND limitations in controlling visibility
-	heat_proof = 1
-	air_properties_vary_with_direction = 1
-
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-		if(istype(mover) && mover.checkpass(PASSGLASS))
-			return 1
-		if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
-			if(air_group) return 0
-			return !density
-		else
-			return 1
-
-	CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
-		if(istype(mover) && mover.checkpass(PASSGLASS))
-			return 1
-		if(get_dir(loc, target) == dir)
-			return !density
-		else
-			return 1
-
-
-	update_nearby_tiles(need_rebuild)
-		var/turf/simulated/source = loc
-		var/turf/simulated/destination = get_step(source,dir)
-
-		update_heat_protection(loc)
-
-		if(istype(source)) SSair.tiles_to_update += source
-		if(istype(destination)) SSair.tiles_to_update += destination
-		return 1
-*/
 
 /obj/machinery/door/firedoor/multi_tile
 	icon = 'icons/obj/doors/DoorHazard2x1.dmi'

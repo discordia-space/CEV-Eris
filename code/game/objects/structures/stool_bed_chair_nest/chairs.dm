@@ -17,7 +17,7 @@
 	if(!padding_material && istype(W, /obj/item/assembly/shock_kit))
 		var/obj/item/assembly/shock_kit/SK = W
 		if(!SK.status)
-			user << SPAN_NOTICE("\The [SK] is not ready to be attached!")
+			to_chat(user, SPAN_NOTICE("\The [SK] is not ready to be attached!"))
 			return
 		user.drop_item()
 		var/obj/structure/bed/chair/e_chair/E = new (src.loc, material.name)
@@ -175,24 +175,28 @@
 	if(!buckled_mob)	return
 
 	if(propelled)
-		var/mob/living/occupant = unbuckle_mob()
 
+		var/mob/living/occupant = unbuckle_mob()
 		var/def_zone = ran_zone()
-		var/blocked = occupant.run_armor_check(def_zone, "melee")
+
 		occupant.throw_at(A, 3, propelled)
-		occupant.apply_effect(6, STUN, blocked)
-		occupant.apply_effect(6, WEAKEN, blocked)
-		occupant.apply_effect(6, STUTTER, blocked)
-		occupant.apply_damage(10, BRUTE, def_zone, blocked)
+		occupant.apply_effect(6, STUN, occupant.getarmor(def_zone, ARMOR_MELEE))
+		occupant.apply_effect(6, WEAKEN, occupant.getarmor(def_zone, ARMOR_MELEE))
+		occupant.apply_effect(6, STUTTER, occupant.getarmor(def_zone, ARMOR_MELEE))
+		occupant.damage_through_armor(6, BRUTE, def_zone, ARMOR_MELEE)
+
 		playsound(src.loc, 'sound/weapons/punch1.ogg', 50, 1, -1)
+
 		if(isliving(A))
+
 			var/mob/living/victim = A
 			def_zone = ran_zone()
-			blocked = victim.run_armor_check(def_zone, "melee")
-			victim.apply_effect(6, STUN, blocked)
-			victim.apply_effect(6, WEAKEN, blocked)
-			victim.apply_effect(6, STUTTER, blocked)
-			victim.apply_damage(10, BRUTE, def_zone, blocked)
+
+			victim.apply_effect(6, STUN, victim.getarmor(def_zone, ARMOR_MELEE))
+			victim.apply_effect(6, WEAKEN, victim.getarmor(def_zone, ARMOR_MELEE))
+			victim.apply_effect(6, STUTTER, victim.getarmor(def_zone, ARMOR_MELEE))
+			victim.damage_through_armor(6, BRUTE, def_zone, ARMOR_MELEE)
+
 		occupant.visible_message(SPAN_DANGER("[occupant] crashed into \the [A]!"))
 
 /obj/structure/bed/chair/office/light
@@ -208,6 +212,10 @@
 	overlays += I
 
 // Chair types
+
+//This should be removed and need replace all wooden chairs with custom wooden type (at map)
+//Don't want to broke something. Clock will do it, cause he's working with the map
+//from here
 /obj/structure/bed/chair/wood
 	name = "wooden chair"
 	desc = "Old is never too old to not be in fashion."
@@ -230,3 +238,53 @@
 
 /obj/structure/bed/chair/wood/wings
 	icon_state = "wooden_chair_wings"
+
+//to here
+
+
+/obj/structure/bed/chair/custom
+	applies_material_colour = 0
+
+/obj/structure/bed/chair/custom/update_icon()
+	return
+
+/obj/structure/bed/chair/custom/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/stack) || istype(W, /obj/item/weapon/tool/wirecutters))
+		return
+	..()
+
+/obj/structure/bed/chair/custom/New(var/newloc)
+	. = ..()
+	var/image/I = image(icon, "[icon_state]_over")
+	I.layer = FLY_LAYER
+	overlays += I
+
+
+//wooden
+/obj/structure/bed/chair/custom/wood
+	name = "wooden chair"
+	desc = "Old is never too old to not be in fashion."
+	icon_state = "wooden_chair"
+
+/obj/structure/bed/chair/custom/wood/New(var/newloc)
+	..(newloc, "wood")
+
+
+/obj/structure/bed/chair/custom/wood/wings
+	icon_state = "wooden_chair_wings"
+
+
+//modern
+/obj/structure/bed/chair/custom/bar_special
+	name = "bar chair"
+	desc = "Modern design and soft pad. Served up with the drink and great company."
+	icon_state = "bar_chair"
+
+//onestar
+/obj/structure/bed/chair/custom/onestar
+	name = "onestar chair"
+	desc = "A duranium chair manufactured by OneStar. Doesn't look very comfortable."
+	icon_state = "onestar_chair_grey"
+
+/obj/structure/bed/chair/custom/onestar/red
+	icon_state = "onestar_chair_red"

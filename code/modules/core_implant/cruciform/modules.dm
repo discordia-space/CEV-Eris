@@ -89,13 +89,13 @@
 		if(istype(H.mind))
 			for(var/law in laws)
 				H.mind.store_memory(law)
-				H << SPAN_WARNING("[law]")
+				to_chat(H, SPAN_WARNING("[law]"))
 
 /datum/core_module/cruciform/obey/uninstall()
 	if(implant && ishuman(implant.wearer))
 		var/mob/living/carbon/human/H = implant.wearer
 		var/txt = "<span class='info'>You are unslavered. Now you can to not obey the laws.</span>"
-		H << txt
+		to_chat(H, txt)
 		H.mind.store_memory(txt)
 
 
@@ -130,7 +130,7 @@
 			implant.wearer.client.images += I
 		implant.use_power(1)
 		if(implant.power < 1)
-			implant.wearer << SPAN_WARNING("Your cruciform pings. The energy is low.")
+			to_chat(implant.wearer, SPAN_WARNING("Your cruciform pings. The energy is low."))
 			implant.remove_module(src)
 
 ///////////
@@ -149,7 +149,8 @@
 /datum/core_module/rituals/cruciform/base
 	ritual_types = list(/datum/ritual/cruciform/base,
 	/datum/ritual/targeted/cruciform/base,
-	/datum/ritual/group/cruciform)
+	/datum/ritual/group/cruciform,
+	/datum/ritual/cruciform/machines)
 
 
 /datum/core_module/rituals/cruciform/priest

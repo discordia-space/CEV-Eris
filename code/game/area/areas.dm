@@ -1,6 +1,10 @@
+#define STARTUP_STAGE 1
+#define MAIN_STAGE 2
+#define WIND_DOWN_STAGE 3
+#define END_STAGE 4
+//weather defines
+
 // Areas.dm
-
-
 
 // ===
 /area
@@ -132,6 +136,20 @@
 	return
 
 /area/proc/updateicon()
+
+	///////weather
+
+	var/weather_icon
+	for(var/V in SSweather.processing)
+		var/datum/weather/W = V
+		if(W.stage != END_STAGE && (src in get_areas(/area)))
+			W.update_areas()
+			weather_icon = TRUE
+	if(!weather_icon)
+		icon_state = null
+
+	////////////weather
+
 	if ((fire || eject || party || atmosalm == 2) && (!requires_power||power_environ) && !istype(src, /area/space))//If it doesn't require power, can still activate this proc.
 		if(fire)
 			for(var/obj/machinery/light/L in src)
@@ -312,7 +330,7 @@ var/list/mob/living/forced_ambiance_list = new
 		else
 			H.AdjustStunned(1)
 			H.AdjustWeakened(1)
-		mob << SPAN_NOTICE("The sudden appearance of gravity makes you fall to the floor!")
+		to_chat(mob, SPAN_NOTICE("The sudden appearance of gravity makes you fall to the floor!"))
 
 /area/proc/prison_break()
 	var/obj/machinery/power/apc/theAPC = get_apc()

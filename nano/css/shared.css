@@ -58,6 +58,10 @@ hr {
     padding: 0px 4px 4px 0px;
 }
 
+.onlyIcon {
+    padding: 0px 0px 4px 0px;
+}
+
 a:hover, .zoomLink:hover, .linkActive:hover {
     background: #507aac;
 }
@@ -267,7 +271,7 @@ div.notice {
     margin: 4px 0 0 0;
     clear: both;
     display: flex;
-    align-content: : wrap;
+    align-content: wrap;
     align-items: stretch;
 
 }
@@ -757,11 +761,11 @@ div.display {
 }
 
 div.display header {
-    display: block;
-    position: relative;
-    width: 100%;
-    padding: 0 4px;
-    margin-bottom: 6px;
+	display: block;
+	position: relative;
+	width: 100%;
+	padding: 0 4px;
+	margin-bottom: 6px;
 	line-height: 100%;
 
 	color: #fff;
@@ -775,9 +779,9 @@ div.display header .buttonRight {
 }
 
 div.display h1, div.display h2, div.display h3, div.display h4, div.display h5, div.display h6 {
-    display: inline-block;
-    margin: 0;
-    padding: 6px 0;
+	display: inline-block;
+	margin: 0;
+	padding: 6px 0;
 }
 
 div.display article {
@@ -787,7 +791,171 @@ div.display article {
 }
 
 section {
-    display: table-row;
-    width: 100%;
+	display: table-row;
+	width: 100%;
 }
 
+
+#sciTechTreeContainer {
+	position: relative;
+	width: 99%;
+	height: 590px;
+	overflow: hidden;
+	border: 1px solid #40628a;
+	background: url(nanomapBackground.png);
+}
+
+/* [Tooltips of description] */
+.sciTechTreeIcon span {
+    display			: none; 
+    padding 		: 10px; 
+    margin-left 	: 8px; 
+    width          	: 200px;
+    z-index			: 999;
+}
+.sciTechTreeIcon:hover span {
+	display			: inline;
+	position		: absolute;
+	background		: #717177;
+	border			: 4px solid #666;
+	color 			: #d1d1dd;
+	text-align 		: center;
+	white-space: pre-line;
+}
+img.sciTechTreeIconToolTip {
+    background-image: url(science.png);
+}
+/* [/Tooltips of description] */
+.sciTechTreeIcon {
+	position: absolute;
+	width: 32px;
+	height: 32px;
+	background-image: url(science.png);
+	background-position: -0px -0px;
+	background-repeat: no-repeat;
+	zoom: 1;
+}
+
+.sciTechTreeIconBox {
+	width: 32px;
+	height: 32px;
+}
+
+.sciTechResearched {
+	background: #2f943c;
+}
+
+.sciTechResearched:hover {
+    background: #3fB44c;
+}
+
+.sciTechCantResearch {
+	background: #942f3c;
+}
+
+.sciTechCantResearch:hover {
+    background: #B43f4c;
+}
+
+.sciTechSelected {
+	background: #3333cc;
+}
+
+.sciTechSelected:hover {
+    background: #3333cf;
+}
+
+.icon-gun { background-position: 0px 0px; }
+.icon-diamond { background-position: -32px 0px; }
+.icon-cell { background-position: -64px 0px; }
+.icon-wrench { background-position: -96px 0px; }
+.icon-telescience { background-position: -128px 0px; }
+.icon-monitoring { background-position: -160px 0px; }
+.icon-rd { background-position: -192px 0px; }
+.icon-tesla { background-position: -224px 0px; }
+
+.icon-spaceheater { background-position: 0px -32px; }
+.icon-pda { background-position: -32px -32px; }
+.icon-goldpda { background-position: -64px -32px; }
+.icon-advmop { background-position: -96px -32px; }
+.icon-drill { background-position: -128px -32px; }
+.icon-jackhammer { background-position: -160px -32px; }
+.icon-advmatterbin { background-position: -192px -32px; }
+.icon-supermatterbin { background-position: -224px -32px; }
+
+.icon-bluespacematterbin { background-position: 0px -64px; }
+.icon-rped { background-position: -32px -64px; }
+.icon-jawsoflife { background-position: -64px -64px; }
+.icon-healthanalyzer { background-position: -96px -64px; }
+.icon-hydroponics { background-position: -128px -64px; }
+.icon-microwave { background-position: -160px -64px; }
+.icon-candymachine { background-position: -192px -64px; }
+.icon-operationcomputer { background-position: -224px -64px; }
+
+.icon-vialbox { background-position: 0px -96px; }
+.icon-sleeper { background-position: -32px -96px; }
+.icon-medhud { background-position: -64px -96px; }
+.icon-handheldmonitor { background-position: -96px -96px; }
+.icon-medbeacon { background-position: -128px -96px; }
+.icon-rapidsyringegun { background-position: -160px -96px; }
+.icon-scalpelmanager { background-position: -192px -96px; }
+.icon-stunbaton { background-position: -224px -96px; }
+
+.icon-seccomputer { background-position: 0px -128px; }
+.icon-flash { background-position: -32px -128px; }
+.icon-recharger { background-position: -64px -128px; }
+.icon-ammobox { background-position: -96px -128px; }
+.icon-submachinegun { background-position: -128px -128px; }
+.icon-tempgun { background-position: -160px -128px; }
+.icon-teslagun { background-position: -192px -128px; }
+.icon-stunrevolver { background-position: -224px -128px; }
+
+.icon-supercell { background-position: 0px -160px; }
+.icon-hypercell { background-position: -32px -160px; }
+.icon-bluespacecell { background-position: -64px -160px; }
+.icon-solarcontrol { background-position: -96px -160px; }
+.icon-generator { background-position: -128px -160px; }
+.icon-supergenerator { background-position: -160px -160px; }
+.icon-smes { background-position: -192px -160px; }
+.icon-gps { background-position: -224px -160px; }
+
+.icon-headset { background-position: 0px -192px; }
+.icon-communications { background-position: -32px -192px; }
+.icon-radiogrid { background-position: -64px -192px; }
+.icon-bluespacething { background-position: -96px -192px; }
+.icon-teleporter { background-position: -128px -192px; }
+.icon-bluespacerped { background-position: -160px -192px; }
+.icon-bagofholding { background-position: -192px -192px; }
+.icon-cyborganalyzer { background-position: -224px -192px; }
+
+.icon-ripley { background-position: 0px -224px; }
+.icon-odyssey { background-position: -32px -224px; }
+.icon-posbrain { background-position: -64px -224px; }
+.icon-aicard { background-position: -96px -224px; }
+.icon-gygax { background-position: -128px -224px; }
+.icon-gygaxultra { background-position: -160px -224px; }
+.icon-durand { background-position: -192px -224px; }
+.icon-vindicator { background-position: -224px -224px; }
+
+.icon-mechgrenadelauncher { background-position: 0px -256px; }
+.icon-mechlaser { background-position: -32px -256px; }
+.icon-mechrcd { background-position: -64px -256px; }
+.icon-mecharmor { background-position: -96px -256px; }
+.icon-mechteleporter { background-position: -128px -256px; }
+.icon-rigscanner { background-position: -160px -256px; }
+.icon-rigtaser { background-position: -192px -256px; }
+.icon-rignuclearreactor { background-position: -224px -256px; }
+
+.icon-shield { background-position: 0px -288px; }
+.icon-fusion { background-position: -32px -288px; }
+.icon-chemdisp { background-position: -64px -288px; }
+.icon-binarykey { background-position: -96px -288px; }
+.icon-chamelion { background-position: -128px -288px; }
+.icon-freedom { background-position: -160px -288px; }
+.icon-module { background-position: -192px -288px; }
+.icon-borgmodule { background-position: -224px -288px; }
+
+.sciMenuButton {
+    width: 300px;
+    float: left;
+}

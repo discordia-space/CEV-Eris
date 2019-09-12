@@ -11,10 +11,46 @@
 	..()
 
 	handle_viruses()
-
+	handle_nsa()
 	// Increase germ_level regularly
 	if(germ_level < GERM_LEVEL_AMBIENT && prob(30))	//if you're just standing there, you shouldn't get more germs beyond an ambient level
 		germ_level++
+
+/mob/living/carbon/proc/adjust_nsa(value, tag)
+	if(!tag)
+		crash_with("no tag given to adjust_nsa()")
+		return
+	nerve_system_accumulations[tag] = value
+
+/mob/living/carbon/proc/remove_nsa(tag)
+	if(nerve_system_accumulations[tag])
+		nerve_system_accumulations.Remove(tag)
+
+/mob/living/carbon/proc/get_nsa()
+	var/accumulatedNSA
+	for(var/tag in nerve_system_accumulations)
+		accumulatedNSA += nerve_system_accumulations[tag]
+	return accumulatedNSA
+
+/mob/living/carbon/proc/handle_nsa()
+	if(get_nsa() > nsa_threshold)
+		nsa_breached_effect()
+
+/mob/living/carbon/proc/nsa_breached_effect()
+	apply_effect(3, STUTTER)
+	make_jittery(10)
+	make_dizzy(10)
+	druggy = max(druggy, 40)
+	if(prob(5))
+		emote(pick("twitch", "drool", "moan", "blink_r", "shiver"))	
+	else if (prob(10))
+		var/direction = pick(cardinal)
+		if(MayMove(direction))
+			DoMove(direction)
+	else if(prob(20))
+		Weaken(10)
+		if(prob(5))
+			Stun(rand(1,5))
 
 /mob/living/carbon/Destroy()
 	qdel(ingested)
@@ -90,7 +126,7 @@
 		if (H.hand)
 			temp = H.organs_by_name[BP_L_ARM]
 		if(temp && !temp.is_usable())
-			H << "\red You can't use your [temp.name]"
+			to_chat(H, "\red You can't use your [temp.name]")
 			return
 
 
@@ -323,7 +359,7 @@
 	set category = "IC"
 
 	if(usr.sleeping)
-		usr << "\red You are already sleeping"
+		to_chat(usr, "\red You are already sleeping")
 		return
 	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
 		usr.sleeping = 20 //Short nap
@@ -343,7 +379,7 @@
 		return 0
 	stop_pulling()
 	if (slipped_on)
-		src << SPAN_WARNING("You slipped on [slipped_on]!")
+		to_chat(src, SPAN_WARNING("You slipped on [slipped_on]!"))
 		playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
 	Stun(stun_duration)
 	Weaken(Floor(stun_duration/2))
@@ -386,3 +422,6 @@
 
 /mob/living/carbon/proc/has_appendage(var/limb_check)
 	return 0
+
+/mob/living/carbon/proc/need_breathe()
+	return TRUE

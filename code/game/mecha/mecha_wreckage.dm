@@ -37,7 +37,7 @@
 
 		if(QUALITY_WIRE_CUTTING)
 			if(salvage_num <= 0 || !isemptylist(wirecutters_salvage))
-				user << "You don't see anything that can be removed with [I]."
+				to_chat(user, "You don't see anything that can be removed with [I].")
 				return
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 				var/type = prob(70)?pick(wirecutters_salvage):null
@@ -46,13 +46,13 @@
 					user.visible_message("[user] cuts [N] from [src].", "You cut [N] from [src].")
 					salvage_num--
 				else
-					user << "You failed to salvage anything valuable from [src]."
+					to_chat(user, "You failed to salvage anything valuable from [src].")
 					return
 			return
 
 		if(QUALITY_WELDING)
 			if(salvage_num <= 0 || !isemptylist(welder_salvage))
-				user << "You don't see anything that can be cut with [I]."
+				to_chat(user, "You don't see anything that can be cut with [I].")
 				return
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 				if(type)
@@ -63,13 +63,13 @@
 					salvage_num--
 					return
 				else
-					user << "You failed to salvage anything valuable from [src]."
+					to_chat(user, "You failed to salvage anything valuable from [src].")
 					return
 			return
 
 		if(QUALITY_PRYING)
 			if(!isemptylist(crowbar_salvage))
-				user << "You don't see anything that can be pried with [I]."
+				to_chat(user, "You don't see anything that can be pried with [I].")
 				return
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 				var/obj/S = pick(crowbar_salvage)

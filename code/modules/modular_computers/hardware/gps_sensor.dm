@@ -20,7 +20,7 @@
 
 /obj/item/weapon/computer_hardware/gps_sensor/examine(mob/user)
 	..()
-	user << "Serial number is [gps.serialNumber]."
+	to_chat(user, "Serial number is [gps.serialNumber].")
 
 /obj/item/weapon/computer_hardware/gps_sensor/check_functionality()
 	if (!gps || !gps.serialNumber )

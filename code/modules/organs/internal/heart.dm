@@ -8,13 +8,28 @@
 	var/pulse = PULSE_NORM
 	var/heartbeat = 0
 	var/efficiency = 1
+	var/open
+
+/obj/item/organ/internal/heart/open
+	open = 1
 
 /obj/item/organ/internal/heart/Process()
 	if(owner)
 		handle_pulse()
 		if(pulse)	handle_heartbeat()
 		handle_blood()
+		//plug before baymed
+		var/blood_volume = owner.get_blood_oxygenation()
+		if(blood_volume < BLOOD_VOLUME_SURVIVE)
+			if(!owner.chem_effects[CE_STABLE] || prob(60))
+				owner.adjustBrainLoss(0.5)
 	..()
+
+/obj/item/organ/internal/heart/proc/is_working()
+	if(!is_usable())
+		return FALSE
+
+	return pulse > PULSE_NONE || BP_IS_ROBOTIC(src) || (owner.status_flags & FAKEDEATH)
 
 /obj/item/organ/internal/heart/proc/handle_pulse()
 	if(owner.stat == DEAD || BP_IS_ROBOTIC(src))
@@ -66,7 +81,7 @@
 	switch(blood_volume)
 		if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
 			if(prob(1))
-				owner << SPAN_WARNING("You feel [pick("dizzy","woosey","faint")]")
+				to_chat(owner, SPAN_WARNING("You feel [pick("dizzy","woosey","faint")]"))
 			if(owner.getOxyLoss() < 20)
 				owner.adjustOxyLoss(3)
 		if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
@@ -76,12 +91,12 @@
 			owner.adjustOxyLoss(1)
 			if(prob(15))
 				owner.Paralyse(rand(1,3))
-				owner << SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]")
+				to_chat(owner, SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]"))
 		if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
 			owner.adjustOxyLoss(5)
 			owner.adjustToxLoss(3)
 			if(prob(15))
-				owner << SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]")
+				to_chat(owner, SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]"))
 		else if(blood_volume < BLOOD_VOLUME_SURVIVE)
 			owner.death()
 

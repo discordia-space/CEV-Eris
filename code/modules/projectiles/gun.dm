@@ -398,7 +398,7 @@
 	var/mob/living/carbon/human/M = user
 
 	mouthshoot = TRUE
-	M.visible_message(SPAN_DANGER("[user] sticks their gun in their mouth, ready to pull the trigger..."))
+	M.visible_message(SPAN_DANGER("[user] points their gun at their head, ready to pull the trigger..."))
 	if(!do_after(user, 40, progress=0))
 		M.visible_message(SPAN_NOTICE("[user] decided life was worth living"))
 		mouthshoot = FALSE
@@ -424,7 +424,7 @@
 		in_chamber.on_hit(M)
 		if (in_chamber.damage_type != HALLOSS)
 			log_and_message_admins("[key_name(user)] commited suicide using \a [src]")
-			user.apply_damage(in_chamber.damage*2.5, in_chamber.damage_type, BP_HEAD, used_weapon = "Point blank shot in the mouth with \a [in_chamber]", sharp=1)
+			user.apply_damage(in_chamber.damage*2.5, in_chamber.damage_type, BP_HEAD, used_weapon = "Point blank shot in the head with \a [in_chamber]", sharp=1)
 			user.death()
 		else
 			to_chat(user, SPAN_NOTICE("Ow..."))

@@ -147,22 +147,22 @@
 
 /mob/living/simple_animal/updatehealth()
 	..()
-	if (health <= 0)
+	if (health <= 0 && stat != DEAD)
 		death()
 
 /mob/living/simple_animal/examine(mob/user)
 	..()
 	if(hunger_enabled)
 		if (!nutrition)
-			user << SPAN_DANGER("It looks starving!")
+			to_chat(user, SPAN_DANGER("It looks starving!"))
 		else if (nutrition < max_nutrition *0.5)
-			user << SPAN_NOTICE("It looks hungry.")
+			to_chat(user, SPAN_NOTICE("It looks hungry."))
 		else if ((reagents.total_volume > 0 && nutrition > max_nutrition *0.75) || nutrition > max_nutrition *0.9)
-			user << "It looks full and contented."
+			to_chat(user, "It looks full and contented.")
 	if (health < maxHealth * 0.5)
-		user << SPAN_DANGER("It looks badly wounded!")
+		to_chat(user, SPAN_DANGER("It looks badly wounded!"))
 	else if (health < maxHealth)
-		user << SPAN_WARNING("It looks wounded.")
+		to_chat(user, SPAN_WARNING("It looks wounded."))
 
 /mob/living/simple_animal/Life()
 	..()
@@ -281,7 +281,7 @@
 			nutrition = max(0,min(nutrition, max_nutrition))//clamp the value
 		else
 			if (prob(3))
-				src << "You feel hungry..."
+				to_chat(src, "You feel hungry...")
 
 		if (!reagents || !reagents.total_volume)
 			return
@@ -384,7 +384,7 @@
 /mob/living/simple_animal/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
 
 	if(effective_force <= resistance)
-		user << SPAN_DANGER("This weapon is ineffective, it does no damage.")
+		to_chat(user, SPAN_DANGER("This weapon is ineffective, it does no damage."))
 		return 2
 	effective_force -= resistance
 	.=..(O, user, effective_force, hit_zone)
@@ -610,7 +610,7 @@
 		wake_up()
 	else if (!resting)
 		fall_asleep()
-	src << span("notice","You are now [resting ? "resting" : "getting up"]")
+	to_chat(src, span("notice","You are now [resting ? "resting" : "getting up"]"))
 	update_icons()
 
 

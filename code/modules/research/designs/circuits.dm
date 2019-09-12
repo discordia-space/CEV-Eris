@@ -1,7 +1,6 @@
 /datum/design/research/circuit
 	build_type = IMPRINTER
-	req_tech = list(TECH_DATA = 2)
-	chemicals = list("sacid" = 20) //Acid is used for inscribing circuits, but intentionally not part of the final reagents
+	chemicals = list("silicon" = 15)
 
 /datum/design/research/circuit/AssembleDesignName(atom/temp_atom)
 	..()
@@ -22,294 +21,316 @@
 
 /datum/design/research/circuit/arcade_battle
 	name = "battle arcade machine"
-	req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/weapon/circuitboard/arcade/battle
 	sort_string = "MAAAA"
+	category = CAT_MISC
 
 /datum/design/research/circuit/arcade_orion_trail
 	name = "orion trail arcade machine"
-	req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/weapon/circuitboard/arcade/orion_trail
 	sort_string = "MABAA"
+	category = CAT_MISC
 
 /datum/design/research/circuit/secdata
 	name = "security records console"
 	build_path = /obj/item/weapon/circuitboard/secure_data
 	sort_string = "DABAA"
+	category = CAT_COMP
 
 /datum/design/research/circuit/prisonmanage
 	name = "prisoner management console"
 	build_path = /obj/item/weapon/circuitboard/prisoner
 	sort_string = "DACAA"
+	category = CAT_COMP
 
 /datum/design/research/circuit/med_data
 	name = "medical records console"
 	build_path = /obj/item/weapon/circuitboard/med_data
 	sort_string = "FAAAA"
+	category = CAT_COMP
 
 /datum/design/research/circuit/operating
 	name = "patient monitoring console"
 	build_path = /obj/item/weapon/circuitboard/operating
 	sort_string = "FACAA"
+	category = CAT_COMP
 
 /datum/design/research/circuit/scan_console
 	name = "DNA machine"
 	build_path = /obj/item/weapon/circuitboard/scan_consolenew
 	sort_string = "FAGAA"
+	category = CAT_MEDI
+
+/datum/design/research/circuit/sleeper
+	name = "Sleeper"
+	build_path = /obj/item/weapon/circuitboard/sleeper
+	sort_string = "FAGAB"
+	category = CAT_MEDI
 
 /datum/design/research/circuit/clonepod
 	name = "clone pod"
-	req_tech = list(TECH_DATA = 3, TECH_BIO = 3)
 	build_path = /obj/item/weapon/circuitboard/clonepod
 	sort_string = "FAGAE"
+	category = CAT_MEDI
 
 /datum/design/research/circuit/clonescanner
 	name = "cloning scanner"
-	req_tech = list(TECH_DATA = 3, TECH_BIO = 3)
 	build_path = /obj/item/weapon/circuitboard/clonescanner
 	sort_string = "FAGAG"
+	category = CAT_MEDI
 
 /datum/design/research/circuit/chemmaster
 	name = "ChemMaster 3000"
-	req_tech = list(TECH_DATA = 2, TECH_BIO = 2)
 	build_path = /obj/item/weapon/circuitboard/chemmaster
 	sort_string = "FAHAA"
+	category = CAT_MEDI
 
 /datum/design/research/circuit/chem_heater
 	name = "Chemical Heater"
-	req_tech = list(TECH_DATA = 2, TECH_BIO = 2)
 	build_path = /obj/item/weapon/circuitboard/chem_heater
 	sort_string = "FAHAB"
+	category = CAT_MEDI
 
 /datum/design/research/circuit/teleconsole
 	name = "teleporter control console"
-	req_tech = list(TECH_DATA = 3, TECH_BLUESPACE = 2)
 	build_path = /obj/item/weapon/circuitboard/teleporter
 	sort_string = "HAAAA"
+	category = CAT_BLUE
 
 /datum/design/research/circuit/robocontrol
 	name = "robotics control console"
-	req_tech = list(TECH_DATA = 4)
 	build_path = /obj/item/weapon/circuitboard/robotics
 	sort_string = "HAAAB"
+	category = CAT_COMP
 
 /datum/design/research/circuit/mechacontrol
 	name = "exosuit control console"
-	req_tech = list(TECH_DATA = 3)
 	build_path = /obj/item/weapon/circuitboard/mecha_control
 	sort_string = "HAAAC"
+	category = CAT_COMP
 
 /datum/design/research/circuit/rdconsole
 	name = "R&D control console"
-	req_tech = list(TECH_DATA = 4)
 	build_path = /obj/item/weapon/circuitboard/rdconsole
 	sort_string = "HAAAE"
+	category = CAT_COMP
 
 /datum/design/research/circuit/aifixer
 	name = "AI integrity restorer"
-	req_tech = list(TECH_DATA = 3, TECH_BIO = 2)
 	build_path = /obj/item/weapon/circuitboard/aifixer
 	sort_string = "HAAAF"
+	category = CAT_COMP
 
 /datum/design/research/circuit/comm_monitor
 	name = "telecommunications monitoring console"
-	req_tech = list(TECH_DATA = 3)
 	build_path = /obj/item/weapon/circuitboard/comm_monitor
 	sort_string = "HAACA"
+	category = CAT_TCOM
 
 /datum/design/research/circuit/comm_server
 	name = "telecommunications server monitoring console"
-	req_tech = list(TECH_DATA = 3)
 	build_path = /obj/item/weapon/circuitboard/comm_server
 	sort_string = "HAACB"
+	category = CAT_TCOM
 
 /datum/design/research/circuit/message_monitor
 	name = "messaging monitor console"
-	req_tech = list(TECH_DATA = 5)
 	build_path = /obj/item/weapon/circuitboard/message_monitor
 	sort_string = "HAACC"
+	category = CAT_TCOM
 
 /datum/design/research/circuit/aiupload
 	name = "AI upload console"
-	req_tech = list(TECH_DATA = 4)
 	build_path = /obj/item/weapon/circuitboard/aiupload
 	sort_string = "HAABA"
+	category = CAT_COMP
 
 /datum/design/research/circuit/borgupload
 	name = "cyborg upload console"
-	req_tech = list(TECH_DATA = 4)
 	build_path = /obj/item/weapon/circuitboard/borgupload
 	sort_string = "HAABB"
+	category = CAT_COMP
 
 /datum/design/research/circuit/destructive_analyzer
 	name = "destructive analyzer"
-	req_tech = list(TECH_DATA = 2, TECH_MAGNET = 2, TECH_ENGINEERING = 2)
 	build_path = /obj/item/weapon/circuitboard/destructive_analyzer
 	sort_string = "HABAA"
+	category = CAT_COMP
 
 /datum/design/research/circuit/protolathe
 	name = "protolathe"
-	req_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
 	build_path = /obj/item/weapon/circuitboard/protolathe
 	sort_string = "HABAB"
+	category = CAT_MACHINE
 
 /datum/design/research/circuit/circuit_imprinter
 	name = "circuit imprinter"
-	req_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
 	build_path = /obj/item/weapon/circuitboard/circuit_imprinter
 	sort_string = "HABAC"
+	category = CAT_MACHINE
 
 /datum/design/research/circuit/autolathe
 	name = "autolathe"
-	req_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
 	build_path = /obj/item/weapon/circuitboard/autolathe
 	sort_string = "HABAD"
+	category = CAT_MACHINE
 
 /datum/design/research/circuit/rdservercontrol
 	name = "R&D server control console"
-	req_tech = list(TECH_DATA = 3)
 	build_path = /obj/item/weapon/circuitboard/rdservercontrol
 	sort_string = "HABBA"
+	category = CAT_COMP
 
 /datum/design/research/circuit/rdserver
 	name = "R&D server"
-	req_tech = list(TECH_DATA = 3)
 	build_path = /obj/item/weapon/circuitboard/rdserver
 	sort_string = "HABBB"
+	category = CAT_MACHINE
 
 /datum/design/research/circuit/mechfab
 	name = "exosuit fabricator"
-	req_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
 	build_path = /obj/item/weapon/circuitboard/mechfab
 	sort_string = "HABAE"
+	category = CAT_MACHINE
 
 /datum/design/research/circuit/mech_recharger
 	name = "mech recharger"
-	req_tech = list(TECH_DATA = 2, TECH_POWER = 2, TECH_ENGINEERING = 2)
 	build_path = /obj/item/weapon/circuitboard/mech_recharger
 	sort_string = "HACAA"
+	category = CAT_MACHINE
 
 /datum/design/research/circuit/recharge_station
 	name = "cyborg recharge station"
-	req_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 2)
 	build_path = /obj/item/weapon/circuitboard/recharge_station
 	sort_string = "HACAC"
+	category = CAT_MACHINE
+
+/datum/design/research/circuit/recharger
+	name = "recharger"
+	build_path = /obj/item/weapon/circuitboard/recharger
+	sort_string = "HACAD"
 
 /datum/design/research/circuit/atmosalerts
 	name = "atmosphere alert console"
 	build_path = /obj/item/weapon/circuitboard/atmos_alert
 	sort_string = "JAAAA"
+	category = CAT_COMP
 
 /datum/design/research/circuit/air_management
 	name = "atmosphere monitoring console"
 	build_path = /obj/item/weapon/circuitboard/air_management
 	sort_string = "JAAAB"
+	category = CAT_COMP
 
 /datum/design/research/circuit/dronecontrol
 	name = "drone control console"
-	req_tech = list(TECH_DATA = 4)
 	build_path = /obj/item/weapon/circuitboard/drone_control
 	sort_string = "JAAAD"
+	category = CAT_COMP
 
 /datum/design/research/circuit/powermonitor
 	name = "power monitoring console"
 	build_path = /obj/item/weapon/circuitboard/powermonitor
 	sort_string = "JAAAE"
+	category = CAT_COMP
 
 /datum/design/research/circuit/solarcontrol
 	name = "solar control console"
 	build_path = /obj/item/weapon/circuitboard/solar_control
 	sort_string = "JAAAF"
+	category = CAT_COMP
 
 /datum/design/research/circuit/pacman
 	name = "PACMAN-type generator"
-	req_tech = list(TECH_DATA = 3, TECH_PLASMA = 3, TECH_POWER = 3, TECH_ENGINEERING = 3)
 	build_path = /obj/item/weapon/circuitboard/pacman
 	sort_string = "JBAAA"
+	category = CAT_POWER
 
 /datum/design/research/circuit/superpacman
 	name = "SUPERPACMAN-type generator"
-	req_tech = list(TECH_DATA = 3, TECH_POWER = 4, TECH_ENGINEERING = 4)
 	build_path = /obj/item/weapon/circuitboard/pacman/super
 	sort_string = "JBAAB"
+	category = CAT_POWER
 
 /datum/design/research/circuit/mrspacman
 	name = "MRSPACMAN-type generator"
-	req_tech = list(TECH_DATA = 3, TECH_POWER = 5, TECH_ENGINEERING = 5)
 	build_path = /obj/item/weapon/circuitboard/pacman/mrs
 	sort_string = "JBAAC"
+	category = CAT_POWER
 
 /datum/design/research/circuit/batteryrack
 	name = "cell rack PSU"
-	req_tech = list(TECH_POWER = 3, TECH_ENGINEERING = 2)
 	build_path = /obj/item/weapon/circuitboard/batteryrack
 	sort_string = "JBABA"
+	category = CAT_POWER
 
 /datum/design/research/circuit/smes_cell
 	name = "'SMES' superconductive magnetic energy storage"
 	desc = "Allows for the construction of circuit boards used to build a SMES."
-	req_tech = list(TECH_POWER = 7, TECH_ENGINEERING = 5)
 	build_path = /obj/item/weapon/circuitboard/smes
 	sort_string = "JBABB"
+	category = CAT_POWER
 
 /datum/design/research/circuit/gas_heater
 	name = "gas heating system"
-	req_tech = list(TECH_POWER = 2, TECH_ENGINEERING = 1)
 	build_path = /obj/item/weapon/circuitboard/unary_atmos/heater
 	sort_string = "JCAAA"
+	category = CAT_MACHINE
 
 /datum/design/research/circuit/gas_cooler
 	name = "gas cooling system"
-	req_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2)
 	build_path = /obj/item/weapon/circuitboard/unary_atmos/cooler
 	sort_string = "JCAAB"
+	category = CAT_MACHINE
 
 /datum/design/research/circuit/secure_airlock
 	name = "secure airlock electronics"
 	desc =  "Allows for the construction of a tamper-resistant airlock electronics."
-	req_tech = list(TECH_DATA = 3)
 	build_path = /obj/item/weapon/airlock_electronics/secure
 	sort_string = "JDAAA"
+	category = CAT_MISC
 
 /datum/design/research/circuit/ordercomp
 	name = "supply ordering console"
 	build_path = /obj/item/weapon/circuitboard/ordercomp
 	sort_string = "KAAAA"
+	category = CAT_COMP
 
 /datum/design/research/circuit/supplycomp
 	name = "supply control console"
-	req_tech = list(TECH_DATA = 3)
 	build_path = /obj/item/weapon/circuitboard/supplycomp
 	sort_string = "KAAAB"
+	category = CAT_COMP
 
 /datum/design/research/circuit/biogenerator
 	name = "biogenerator"
-	req_tech = list(TECH_DATA = 2)
 	build_path = /obj/item/weapon/circuitboard/biogenerator
 	sort_string = "KBAAA"
+	category = CAT_MACHINE
 
 /datum/design/research/circuit/miningdrill
 	name = "mining drill head"
-	req_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1)
 	build_path = /obj/item/weapon/circuitboard/miningdrill
 	sort_string = "KCAAA"
+	category = CAT_MINING
 
 /datum/design/research/circuit/miningdrillbrace
 	name = "mining drill brace"
-	req_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1)
 	build_path = /obj/item/weapon/circuitboard/miningdrillbrace
 	sort_string = "KCAAB"
+	category = CAT_MINING
 
 /datum/design/research/circuit/comconsole
 	name = "communications console"
 	build_path = /obj/item/weapon/circuitboard/communications
 	sort_string = "LAAAA"
+	category = CAT_COMP
 
 
 // Telecomms
 /datum/design/research/circuit/tcom
-	req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4)
 	name_category = "telecommunications machinery"
+	category = CAT_TCOM
 
 /datum/design/research/circuit/tcom/server
 	name = "server mainframe"
@@ -333,33 +354,29 @@
 
 /datum/design/research/circuit/tcom/relay
 	name = "relay mainframe"
-	req_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 4, TECH_BLUESPACE = 3)
 	build_path = /obj/item/weapon/circuitboard/telecomms/relay
 	sort_string = "PAAAE"
 
 /datum/design/research/circuit/tcom/broadcaster
 	name = "subspace broadcaster"
-	req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4, TECH_BLUESPACE = 2)
 	build_path = /obj/item/weapon/circuitboard/telecomms/broadcaster
 	sort_string = "PAAAF"
 
 /datum/design/research/circuit/tcom/receiver
 	name = "subspace receiver"
-	req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 3, TECH_BLUESPACE = 2)
 	build_path = /obj/item/weapon/circuitboard/telecomms/receiver
 	sort_string = "PAAAG"
 
 /datum/design/research/circuit/ntnet_relay
 	name = "NTNet Quantum Relay"
-	req_tech = list(TECH_DATA = 4)
 	build_path = /obj/item/weapon/circuitboard/ntnet_relay
 	sort_string = "WAAAA"
 
 
 // Shield Generators
 /datum/design/research/circuit/shield
-	req_tech = list(TECH_BLUESPACE = 4, TECH_PLASMA = 3)
 	name_category = "shield generator"
+	category = CAT_MISC
 
 /datum/design/research/circuit/shield/hull
 	name = "hull"

@@ -65,9 +65,9 @@
 	..(user)
 	if(in_range(src, user) || src.loc == user)
 		if(src.secured)
-			user << SPAN_NOTICE("\The [src] is ready!")
+			to_chat(user, SPAN_NOTICE("\The [src] is ready!"))
 		else
-			user << SPAN_NOTICE("\The [src] can be attached!")
+			to_chat(user, SPAN_NOTICE("\The [src] can be attached!"))
 
 
 /obj/item/device/assembly_holder/HasProximity(atom/movable/AM as mob|obj)
@@ -108,15 +108,15 @@
 	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_COG))
 			if(!left_assembly || !right_assembly)
-				user << SPAN_WARNING("Assembly part missing!")
+				to_chat(user, SPAN_WARNING("Assembly part missing!"))
 				return
 			left_assembly.toggle_secure()
 			right_assembly.toggle_secure()
 			secured = !secured
 			if(secured)
-				user << SPAN_NOTICE("\The [src] is ready!")
+				to_chat(user, SPAN_NOTICE("\The [src] is ready!"))
 			else
-				user << SPAN_NOTICE("\The [src] can now be taken apart!")
+				to_chat(user, SPAN_NOTICE("\The [src] can now be taken apart!"))
 			update_icon()
 			return
 	..()
@@ -126,7 +126,7 @@
 	src.add_fingerprint(user)
 	if(src.secured)
 		if(!left_assembly || !right_assembly)
-			user << SPAN_WARNING("Assembly part missing!")
+			to_chat(user, SPAN_WARNING("Assembly part missing!"))
 			return
 		if(istype(left_assembly,right_assembly.type))//If they are the same type it causes issues due to window code
 			switch(alert("Which side would you like to use?",,"Left","Right"))
@@ -165,11 +165,11 @@
 		master.receive_signal()
 
 
-/obj/item/device/assembly_holder/hear_talk(mob/living/M as mob, msg, verb, datum/language/speaking)
+/obj/item/device/assembly_holder/hear_talk(mob/living/M as mob, msg, verb, datum/language/speaking, speech_volume)
 	if(right_assembly)
-		right_assembly.hear_talk(M, msg, verb, speaking)
+		right_assembly.hear_talk(M, msg, verb, speaking, speech_volume)
 	if(left_assembly)
-		left_assembly.hear_talk(M, msg, verb, speaking)
+		left_assembly.hear_talk(M, msg, verb, speaking, speech_volume)
 
 
 
@@ -214,18 +214,18 @@
 		if(!istype(tmr,/obj/item/device/assembly/timer))
 			tmr = holder.right_assembly
 		if(!istype(tmr,/obj/item/device/assembly/timer))
-			usr << SPAN_NOTICE("This detonator has no timer.")
+			to_chat(usr, SPAN_NOTICE("This detonator has no timer."))
 			return
 
 		if(tmr.timing)
-			usr << SPAN_NOTICE("Clock is ticking already.")
+			to_chat(usr, SPAN_NOTICE("Clock is ticking already."))
 		else
 			var/ntime = input("Enter desired time in seconds", "Time", "5") as num
 			if (ntime>0 && ntime<1000)
 				tmr.time = ntime
 				name = initial(name) + "([tmr.time] secs)"
-				usr << SPAN_NOTICE("Timer set to [tmr.time] seconds.")
+				to_chat(usr, SPAN_NOTICE("Timer set to [tmr.time] seconds."))
 			else
-				usr << "<span class='notice'>Timer can't be [ntime<=0?"negative":"more than 1000 seconds"].</span>"
+				to_chat(usr, "<span class='notice'>Timer can't be [ntime<=0?"negative":"more than 1000 seconds"].</span>")
 	else
-		usr << "<span class='notice'>You cannot do this while [usr.stat?"unconscious/dead":"restrained"].</span>"
+		to_chat(usr, "<span class='notice'>You cannot do this while [usr.stat?"unconscious/dead":"restrained"].</span>")

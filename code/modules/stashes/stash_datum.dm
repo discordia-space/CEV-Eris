@@ -267,7 +267,7 @@ This file contains the underlying code for stash datums
 	if (istype(spawning_loc, /obj/item/weapon/storage))
 		var/obj/item/weapon/storage/S = spawning_loc
 		S.expand_to_fit()
-		S.level = 1
+		S.level = BELOW_PLATING_LEVEL
 		T.levelupdate()
 
 
@@ -283,7 +283,7 @@ This file contains the underlying code for stash datums
 	// Going thru the list to hide under the floor
 	for(var/obj/item/remains/R in results)
 		// Better hide remains under the tile.
-		R.level = 1
+		R.level = BELOW_PLATING_LEVEL
 		T.levelupdate()
 
 

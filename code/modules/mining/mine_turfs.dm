@@ -121,9 +121,9 @@
 		if(QUALITY_EXCAVATION)
 			var/excavation_amount = input("How deep are you going to dig?", "Excavation depth", 0)
 			if(excavation_amount)
-				user << SPAN_NOTICE("You start exacavating [src].")
+				to_chat(user, SPAN_NOTICE("You start exacavating [src]."))
 				if(I.use_tool(user, src, WORKTIME_SLOW, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_COG))
-					user << SPAN_NOTICE("You finish exacavating [src].")
+					to_chat(user, SPAN_NOTICE("You finish exacavating [src]."))
 					if(finds && finds.len)
 						var/datum/find/F = finds[1]
 						if(round(excavation_level + excavation_amount) == F.excavation_required)
@@ -201,9 +201,9 @@
 			if(finds && finds.len)
 				//Chance to destroy / extract any finds here
 				fail_message = ". <b>[pick("There is a crunching noise [I] collides with some different rock.","Part of the rock face crumbles away.","Something breaks under [I].")]</b>"
-			user <<  SPAN_NOTICE("You start digging the [src]. [fail_message ? fail_message : ""]")
+			to_chat(user, SPAN_NOTICE("You start digging the [src]. [fail_message ? fail_message : ""]"))
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
-				user << SPAN_NOTICE("You finish digging the [src].")
+				to_chat(user, SPAN_NOTICE("You finish digging the [src]."))
 				if(fail_message && prob(90))
 					if(prob(25))
 						excavate_find(5, finds[1])
@@ -250,7 +250,7 @@
 		var/obj/item/device/measuring_tape/P = I
 		user.visible_message(SPAN_NOTICE("\The [user] extends [P] towards [src]."),SPAN_NOTICE("You extend [P] towards [src]."))
 		if(do_after(user,25, src))
-			user << SPAN_NOTICE("\icon[P] [src] has been excavated to a depth of [2*excavation_level]cm.")
+			to_chat(user, SPAN_NOTICE("\icon[P] [src] has been excavated to a depth of [2*excavation_level]cm."))
 		return
 
 	else
@@ -286,7 +286,7 @@
 		if(prob(50))
 			pain = 1
 		for(var/mob/living/M in range(src, 200))
-			M << "<font color='red'><b>[pick("A high pitched [pick("keening","wailing","whistle")]","A rumbling noise like [pick("thunder","heavy machinery")]")] somehow penetrates your mind before fading away!</b></font>"
+			to_chat(M, "<font color='red'><b>[pick("A high pitched [pick("keening","wailing","whistle")]","A rumbling noise like [pick("thunder","heavy machinery")]")] somehow penetrates your mind before fading away!</b></font>")
 			if(pain)
 				if (M.HUDtech.Find("pain"))
 					flick("pain",M.HUDtech["pain"])
@@ -439,10 +439,10 @@
 
 	if(QUALITY_DIGGING in I.tool_qualities)
 		if (dug)
-			user << SPAN_WARNING("This area has already been dug")
+			to_chat(user, SPAN_WARNING("This area has already been dug"))
 			return
 		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_DIGGING, FAILCHANCE_EASY, required_stat = STAT_ROB))
-			user << SPAN_NOTICE("You dug a hole.")
+			to_chat(user, SPAN_NOTICE("You dug a hole."))
 			gets_dug()
 
 	else

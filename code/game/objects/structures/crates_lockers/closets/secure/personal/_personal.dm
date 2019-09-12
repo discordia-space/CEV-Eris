@@ -36,7 +36,7 @@
 		if(!src.registered_name && has_access(access_occupy, list(), I.GetAccess()))
 			src.registered_name = I.registered_name
 			name = "[initial(name)] ([registered_name])"
-			user << SPAN_NOTICE("You occupied [src].")
+			to_chat(user, SPAN_NOTICE("You occupied [src]."))
 			return
 
 	return ..()
@@ -61,9 +61,9 @@
 	if(ishuman(usr))
 		src.add_fingerprint(usr)
 		if (src.locked || !src.registered_name)
-			usr << SPAN_WARNING("You need to unlock it first.")
+			to_chat(usr, SPAN_WARNING("You need to unlock it first."))
 		else if (src.broken)
-			usr << SPAN_WARNING("It appears to be broken.")
+			to_chat(usr, SPAN_WARNING("It appears to be broken."))
 		else
 			if (src.opened)
 				if(!src.close())

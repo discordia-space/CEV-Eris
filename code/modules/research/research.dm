@@ -1,42 +1,27 @@
 /*
-General Explination:
+General Explanation:
 The research datum is the "folder" where all the research information is stored in a R&D console. It's also a holder for all the
-various procs used to manipulate it. It has four variables and seven procs:
+various procs used to manipulate it.
 
 Variables:
-- possible_tech is a list of all the /datum/tech that can potentially be researched by the player. The RefreshResearch() proc
-(explained later) only goes through those when refreshing what you know. Generally, possible_tech contains ALL of the existing tech
-but it is possible to add tech to the game that DON'T start in it (example: Xeno tech). Generally speaking, you don't want to mess
-with these since they should be the default version of the datums. They're actually stored in a list rather then using typesof to
-refer to them since it makes it a bit easier to search through them for specific information.
-- know_tech is the companion list to possible_tech. It's the tech you can actually research and improve. Until it's added to this
-list, it can't be improved. All the tech in this list are visible to the player.
-- possible_designs is functionally identical to possbile_tech except it's for /datum/design.
-- known_designs is functionally identical to known_tech except it's for /datum/design
+- known_designs: A list of instantiated design datums known by this research datum.
+- design_categories_protolathe: Same as above, but filtered by build_type.
+- design_categories_imprinter: Ditto.
+- researched_tech: An associative list of instantiated tech trees (/datum/tech), with a value of a list containing known instantiated technology nodes (/datum/technology)
+- researched_nodes: All the known researched technology nodes.
+- experiments: experiments datum.
+- research_points: a number value representing points. Only meaningful for the rd console currently.
 
 Procs:
-- TechHasReqs: Used by other procs (specifically RefreshResearch) to see whether all of a tech's requirements are currently in
-known_tech and at a high enough level.
-- DesignHasReqs: Same as TechHasReqs but for /datum/design and known_design.
-- AddTech2Known: Adds a /datum/tech to known_tech. It checks to see whether it already has that tech (if so, it just replaces it). If
-it doesn't have it, it adds it. Note: It does NOT check possible_tech at all. So if you want to add something strange to it (like
-a player made tech?) you can.
-- AddDesign2Known: Same as AddTech2Known except for /datum/design and known_designs.
-- RefreshResearch: This is the workhorse of the R&D system. It updates the /datum/research holder and adds any unlocked tech paths
-and designs you have reached the requirements for. It only checks through possible_tech and possible_designs, however, so it won't
-accidentally add "secret" tech to it.
-- UpdateTech is used as part of the actual researching process. It takes an ID and finds techs with that same ID in known_tech. When
-it finds it, it checks to see whether it can improve it at all. If the known_tech's level is less then or equal to
-the inputted level, it increases the known tech's level to the inputted level -1 or know tech's level +1 (whichever is higher).
-
-The tech datums are the actual "tech trees" that you improve through researching. Each one has five variables:
-- Name:		Pretty obvious. This is often viewable to the players.
-- Desc:		Pretty obvious. Also player viewable.
-- ID:		This is the unique ID of the tech that is used by the various procs to find and/or maniuplate it.
-- Level:	This is the current level of the tech. All techs start at 1 and have a max of 20. Devices and some techs require a certain
-level in specific techs before you can produce them.
-- Req_tech:	This is a list of the techs required to unlock this tech path. If left blank, it'll automatically be loaded into the
-research holder datum.
+- IsResearched(datum/technology/T): Is T in researched_nodes?
+- CanResearch(datum/technology/T): Can T be researched (checks T cost, if T's associated tree is shown and if we have the required tech levels/nodes).
+- UnlockTechology(datum/technology/T, force = FALSE): Unlocks a technology node T for src. Safe (uses the procs above). Adds T to the needed lists, and adds its designs too.
+														Setting force to true ignores T's cost. 
+- download_from(datum/research/O): Downloads data from O. The result is the union of src and O. 
+- forget_techology(datum/technology/T): Removes T from src. 
+- forget_all(tech_type): Forget all the technology nodes associated to a tree with type tech_type. 
+- AddDesign2Known(datum/design/D): Add design to known_designs. 
+- check_item_for_tech(obj/item/I): Unlocks a hidden tech tree if the item has the tree's item_tech_req in its origin_tech.
 
 */
 /***************************************************************
@@ -45,185 +30,210 @@ research holder datum.
 ***************************************************************/
 
 /datum/research								//Holder for all the existing, archived, and known tech. Individual to console.
-	var/list/known_tech = list()			//List of locally known tech. Datum/tech go here.
-	var/list/possible_designs = list()		//List of all designs.
-	var/list/possible_design_ids = list()	//List of all designs.
-	var/list/known_designs = list()			//List of available designs.
+	var/list/known_designs = list()			//List of available designs (at base reliability).
+	var/list/design_categories_protolathe = list()
+	var/list/design_categories_imprinter = list()
 
-//Insert techs into possible_tech here. Known_tech automatically updated.
+	var/list/researched_tech = list() // Tree = list(of_researched_tech)
+	var/list/researched_nodes = list() // All research nodes
+
+	var/datum/experiment_data/experiments
+
+	var/research_points = 0
+
 /datum/research/New()
 	..()
-	for(var/T in subtypesof(/datum/tech))
-		known_tech += new T(src)
+	SSresearch.initialize_research_datum(src)
+	experiments = new /datum/experiment_data()
 
-	SSresearch.initialize_designs(src)
+/datum/research/proc/IsResearched(datum/technology/T)
+	return (T in researched_nodes)
 
-/datum/tech/proc/getCost(current_level = null)
-	// Calculates tech disk's supply points sell cost
-	if(!current_level)
-		current_level = initial(level)
-
-	if(current_level >= level)
-		return 0
-
-	var/cost = 0
-	for(var/i = current_level + 1 to level)
-		if(i == initial(level))
-			continue
-		cost += i*rare
-
-	return cost
-
-/datum/research/techonly
-
-/datum/research/techonly/New()
-	for(var/T in subtypesof(/datum/tech))
-		known_tech += new T(src)
-	RefreshResearch()
-
-//Checks to see if design has all the required pre-reqs.
-//Input: datum/design; Output: 0/1 (false/true)
-/datum/research/proc/DesignHasReqs(datum/design/D)
-	if(!D.req_tech) // Not discoverable in R&D.
+/datum/research/proc/CanResearch(datum/technology/T)
+	if(T.cost > research_points)
 		return FALSE
+	var/datum/tech/mytree = locate(T.tech_type) in researched_tech
+	if(!mytree || !mytree.shown) // invalid tech_type or hidden tree, no bypassing safeties!
+		return
 
-	if(!D.req_tech.len)
-		return TRUE
+	for(var/tree in T.required_tech_levels)
+		var/datum/tech/tech_tree = locate(tree) in researched_tech
+		var/level = T.required_tech_levels[tree]
 
-	var/list/k_tech = list()
+		if(tech_tree.level < level)
+			return FALSE
 
-	for(var/datum/tech/known in known_tech)
-		k_tech[known.id] = known.level
-
-	for(var/req in D.req_tech)
-		if(isnull(k_tech[req]) || k_tech[req] < D.req_tech[req])
+	for(var/tech in T.required_technologies)
+		var/datum/technology/tech_node = locate(tech) in SSresearch.all_tech_nodes
+		if(!IsResearched(tech_node))
 			return FALSE
 
 	return TRUE
 
-//Adds a tech to known_tech list. Checks to make sure there aren't duplicates and updates existing tech's levels if needed.
-//Input: datum/tech; Output: Null
-/datum/research/proc/AddTech2Known(datum/tech/T)
-	for(var/datum/tech/known in known_tech)
-		if(T.id == known.id)
-			if(T.level > known.level)
-				known.level = T.level
-			return
+/datum/research/proc/UnlockTechology(datum/technology/T, force = FALSE)
+	if(IsResearched(T))
+		return FALSE
+	if(!CanResearch(T) && !force)
+		return FALSE
+	researched_nodes += T
+	var/datum/tech/tree = locate(T.tech_type) in researched_tech
+	researched_tech[tree] += T
+	if(!force)
+		research_points -= T.cost
+	tree.level += 1
+
+	for(var/D in T.unlocks_designs)
+		var/datum/design/design = locate(D) in SSresearch.all_designs
+		if(design)
+			AddDesign2Known(design)
+	return TRUE
+
+/datum/research/proc/download_from(datum/research/O)
+	for(var/t in O.researched_tech)
+		var/datum/tech/tree = t
+		var/datum/tech/our_tree = locate(tree.type) in researched_tech
+
+		if(tree.shown && !our_tree.shown)
+			our_tree.shown = tree.shown
+			. = TRUE // we actually updated something
+
+		for(var/tech in O.researched_tech[t])
+			var/datum/technology/T = tech
+			if(UnlockTechology(T, force = TRUE))
+				. = TRUE // we actually updated something
+	experiments.merge_with(O.experiments)
+
+/datum/research/proc/forget_techology(datum/technology/T)
+	if(!IsResearched(T))
+		return
+	var/datum/tech/tree = locate(T.tech_type) in researched_tech
+	if(!tree)
+		return
+	tree.level -= 1
+	researched_tech[tree] -= T
+	researched_nodes -= T
+
+	for(var/D in T.unlocks_designs)
+		known_designs -= D
+
+/datum/research/proc/forget_random_technology()
+	if(researched_nodes.len > 0)
+		var/datum/technology/T = pick(researched_nodes)
+		forget_techology(T)
+
+/datum/research/proc/forget_all(tech_type)
+	var/datum/tech/tree = locate(tech_type) in researched_tech
+	if(!tree)
+		return
+	tree.level = 1
+	researched_nodes -= researched_tech[tree] // Remove all the nodes of the tree from the general researched nodes list
+	for(var/tech in researched_tech[tree])
+		var/datum/technology/T = tech
+		for(var/D in T.unlocks_designs)
+			known_designs -= D
 
 /datum/research/proc/AddDesign2Known(datum/design/D)
 	if(D in known_designs)
 		return
 
-	if(!known_designs.len) // Special case
-		known_designs.Add(D)
+	known_designs += D
+	var/cat = D.category ? D.category : "Unspecified"
+	if(D.build_type & PROTOLATHE)
+		design_categories_protolathe |= cat
+	else if(D.build_type & IMPRINTER)
+		design_categories_imprinter |= cat
+
+
+// Unlocks hidden tech trees
+/datum/research/proc/check_item_for_tech(obj/item/I)
+	var/list/temp_tech = I.origin_tech
+	if(!temp_tech.len)
 		return
 
-	for(var/i = 1 to known_designs.len)
-		var/datum/design/A = known_designs[i]
-		if(A.id == D.id) // We are guaranteed to reach this if the ids are the same, because sort_string will also be the same
-			return
-		if(A.sort_string > D.sort_string)
-			known_designs.Insert(i, D)
-			return
-	known_designs.Add(D)
+	for(var/tree in researched_tech)
+		var/datum/tech/T = tree
+		if(T.shown || !T.item_tech_req)
+			continue
 
-//Refreshes known_tech and known_designs list
-//Input/Output: n/a
-/datum/research/proc/RefreshResearch()
-	for(var/datum/design/PD in possible_designs)
-		if(DesignHasReqs(PD))
-			AddDesign2Known(PD)
-	for(var/datum/tech/T in known_tech)
-		T = between(0, T.level, 20)
-
-//Refreshes the levels of a given tech.
-//Input: Tech's ID and Level; Output: null
-/datum/research/proc/UpdateTech(var/ID, var/level)
-	for(var/datum/tech/KT in known_tech)
-		if(KT.id == ID && KT.level <= level)
-			KT.level = max(KT.level + 1, level - 1)
-	return
-
-// A simple helper proc to find the name of a tech with a given ID.
-/proc/CallTechName(var/ID)
-	for(var/T in subtypesof(/datum/tech))
-		var/datum/tech/check_tech = T
-		if(initial(check_tech.id) == ID)
-			return  initial(check_tech.name)
-
+		for(var/item_tech in temp_tech)
+			if(item_tech == T.item_tech_req)
+				T.shown = TRUE
+				return
 
 /***************************************************************
-**						Technology Datums					  **
-**	Includes all the various technoliges and what they make.  **
+**						Technology Trees					  **
 ***************************************************************/
 
-/datum/tech //Datum of individual technologies.
-	var/name = "name"					//Name of the technology.
-	var/desc = "description"			//General description of what it does and what it makes.
-	var/id = "id"						//An easily referenced ID. Must be alphanumeric, lower-case, and no symbols.
-	var/level = 1						//A simple number scale of the research level. Level 0 = Secret tech.
-	var/rare = 1						//How much CentCom wants to get that tech. Used in supply shuttle tech cost calculation.
+/datum/tech	//Datum of individual technologies.
+	var/name = "name"          //Name of the technology.
+	var/shortname = "name"
+	var/desc = "description"   //General description of what it does and what it makes.
+	var/level = 0              //A simple number scale of the research level.
+	var/rare = 1               //How much CentCom wants to get that tech. Used in supply shuttle tech cost calculation.
+	var/max_level              //Calculated based on the ammount of technologies
+	var/shown = TRUE           //Used to hide tech that is not supposed to be shown from the start
+	var/item_tech_req          //Deconstructing items with this tech will unlock this tech tree
 
-/datum/tech/proc/Copy()
-	var/datum/tech/new_tech = new type
-	new_tech.level = level
-	return new_tech
-
-/datum/tech/materials
-	name = "Materials Research"
-	desc = "Development of new and improved materials."
-	id = TECH_MATERIAL
+//Trunk Technologies (don't require any other techs and you start knowning them).
 
 /datum/tech/engineering
 	name = "Engineering Research"
+	shortname = "Engineering"
 	desc = "Development of new and improved engineering parts."
-	id = TECH_ENGINEERING
-
-/datum/tech/plasmatech
-	name = "Plasma Research"
-	desc = "Research into the mysterious substance colloqually known as 'plasma'."
-	id = TECH_PLASMA
-	rare = 3
-
-/datum/tech/powerstorage
-	name = "Power Manipulation Technology"
-	desc = "The various technologies behind the storage and generation of electicity."
-	id = TECH_POWER
-
-/datum/tech/bluespace
-	name = "'Blue-space' Research"
-	desc = "Research into the sub-reality known as 'blue-space'"
-	id = TECH_BLUESPACE
-	rare = 2
 
 /datum/tech/biotech
 	name = "Biological Technology"
+	shortname = "Biological"
 	desc = "Research into the deeper mysteries of life and organic substances."
-	id = TECH_BIO
 
 /datum/tech/combat
 	name = "Combat Systems Research"
+	shortname = "Combat Systems"
 	desc = "The development of offensive and defensive systems."
-	id = TECH_COMBAT
 
-/datum/tech/magnets
-	name = "Electromagnetic Spectrum Research"
-	desc = "Research into the electromagnetic spectrum. No clue how they actually work, though."
-	id = TECH_MAGNET
+/datum/tech/powerstorage
+	name = "Power Manipulation Technology"
+	shortname = "Power Manipulation"
+	desc = "The various technologies behind the storage and generation of electicity."
 
-/datum/tech/programming
-	name = "Data Theory Research"
-	desc = "The development of new computer and artificial intelligence and data storage systems."
-	id = TECH_DATA
+/datum/tech/bluespace
+	name = "'Blue-space' Research"
+	shortname = "Blue-space"
+	desc = "Research into the sub-reality known as 'blue-space'."
+	rare = 2
 
-/datum/tech/syndicate
+/datum/tech/robotics
+	name = "Robotics Research"
+	shortname = "Robotics"
+	desc = "Research into the exosuits"
+
+/datum/tech/illegal
 	name = "Illegal Technologies Research"
-	desc = "The study of technologies that violate standard government regulations."
-	id = TECH_ILLEGAL
-	level = 0
+	shortname = "Illegal Tech"
+	desc = "The study of technologies that violate standard Nanotrasen regulations."
+	rare = 3
+	shown = FALSE
+	item_tech_req = TECH_ILLEGAL // research any traitor item and this tech will show up
 
-/datum/tech/arcane
-	name = "Arcane Research"
-	desc = "Research into the occult and arcane field for use in practical science"
-	id = TECH_ARCANE
-	level = 0
+/datum/technology
+	var/name = "name"
+	var/desc = "description"                // Not used because lazy
+	var/tech_type                           // Which tech tree does this techology belongs to (path/define)
+
+	var/x = 0.5                             // Position on the tech tree map, 0 - left, 1 - right
+	var/y = 0.5                             // 0 - down, 1 - top
+	var/icon = "gun"                        // css class of techology icon, defined in shared.css
+
+	var/list/required_technologies = list() // Paths of techologies that are required to be unlocked before this one. Should have same tech_type
+	var/list/required_tech_levels = list()  // list(/datum/tech/biotech = 5, ...) Paths and required levels of tech
+	var/cost = 100                          // How much research points required to unlock this techology
+
+	var/list/unlocks_designs = list()       // Paths of designs that this technology unlocks
+
+/datum/technology/proc/getCost()
+	// Calculates tech disk's supply points sell cost
+	var/datum/tech/tree = locate(tech_type) in SSresearch.all_tech_trees
+	if(tree)
+		return (cost/100)*initial(tree.rare)
+	else
+		return cost/100

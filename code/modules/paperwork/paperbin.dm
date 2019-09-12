@@ -22,10 +22,10 @@
 				if (H.hand)
 					temp = H.organs_by_name[BP_L_ARM]
 				if(temp && !temp.is_usable())
-					user << SPAN_NOTICE("You try to move your [temp.name], but cannot!")
+					to_chat(user, SPAN_NOTICE("You try to move your [temp.name], but cannot!"))
 					return
 
-				user << SPAN_NOTICE("You pick up the [src].")
+				to_chat(user, SPAN_NOTICE("You pick up the [src]."))
 				user.put_in_hands(src)
 
 	return
@@ -38,7 +38,7 @@
 			if (H.hand)
 				temp = H.organs_by_name[BP_L_ARM]
 			if(temp && !temp.is_usable())
-				user << SPAN_NOTICE("You try to move your [temp.name], but cannot!")
+				to_chat(user, SPAN_NOTICE("You try to move your [temp.name], but cannot!"))
 				return
 		var/response = ""
 		if(!papers.len > 0)
@@ -67,9 +67,9 @@
 					P = new /obj/item/weapon/paper/carbon
 
 			user.put_in_hands(P)
-			user << SPAN_NOTICE("You take [P] out of the [src].")
+			to_chat(user, SPAN_NOTICE("You take [P] out of the [src]."))
 		else
-			user << SPAN_NOTICE("[src] is empty!")
+			to_chat(user, SPAN_NOTICE("[src] is empty!"))
 
 		add_fingerprint(user)
 		return
@@ -91,26 +91,26 @@ obj/item/weapon/paper_bin/MouseDrop(over_object)
 
 	user.drop_item()
 	i.loc = src
-	user << SPAN_NOTICE("You put [i] in [src].")
+	to_chat(user, SPAN_NOTICE("You put [i] in [src]."))
 	papers.Add(i)
 	update_icon()
 	amount++
 
 
 /obj/item/weapon/paper_bin/examine(mob/user)
-	..()
+	. = ..()
 	if(get_dist(src, user) <= 1)
-		if(amount)
-			user << "<span class='notice'>There " + (amount > 1 ? "are [amount] papers" : "is one paper") + " in the bin.</span>"
+		if (amount)
+			to_chat(user, "<span class='notice'>There " + (amount > 1 ? "are [amount] papers" : "is one paper") + " in the bin.</span>")
 		else
-			user << SPAN_NOTICE("There are no papers in the bin.")
+			to_chat(user, SPAN_NOTICE("There are no papers in the bin."))
 	else
-		user << SPAN_NOTICE("If you got closer you could see how much paper is in it.")
+		to_chat(user, SPAN_NOTICE("If you got closer you could see how much paper is in it."))
 	return
 
 
 /obj/item/weapon/paper_bin/update_icon()
-	if(amount < 1)
+	if (amount < 1)
 		icon_state = "paper_bin0"
 	else
 		icon_state = "paper_bin1"

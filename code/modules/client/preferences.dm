@@ -75,7 +75,7 @@
 		return
 
 	if(!get_mob_by_key(client_ckey))
-		user << SPAN_DANGER("No mob exists for the given client!")
+		to_chat(user, SPAN_DANGER("No mob exists for the given client!"))
 		close_load_dialog(user)
 		return
 
@@ -116,7 +116,7 @@
 		if(config.forumurl)
 			user << link(config.forumurl)
 		else
-			user << SPAN_DANGER("The forum URL is not set in the server configuration.")
+			to_chat(user, SPAN_DANGER("The forum URL is not set in the server configuration."))
 			return
 	ShowChoices(usr)
 	return 1

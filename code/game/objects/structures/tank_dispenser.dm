@@ -55,11 +55,11 @@
 			I.loc = src
 			oxytanks.Add(I)
 			oxygentanks++
-			user << SPAN_NOTICE("You put [I] in [src].")
+			to_chat(user, SPAN_NOTICE("You put [I] in [src]."))
 			if(oxygentanks < 5)
 				update_icon()
 		else
-			user << SPAN_NOTICE("[src] is full.")
+			to_chat(user, SPAN_NOTICE("[src] is full."))
 		updateUsrDialog()
 		return
 	if(istype(I, /obj/item/weapon/tank/plasma))
@@ -68,20 +68,20 @@
 			I.loc = src
 			platanks.Add(I)
 			plasmatanks++
-			user << SPAN_NOTICE("You put [I] in [src].")
+			to_chat(user, SPAN_NOTICE("You put [I] in [src]."))
 			if(oxygentanks < 6)
 				update_icon()
 		else
-			user << SPAN_NOTICE("[src] is full.")
+			to_chat(user, SPAN_NOTICE("[src] is full."))
 		updateUsrDialog()
 		return
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 			if(anchored)
-				user << SPAN_NOTICE("You lean down and unwrench [src].")
+				to_chat(user, SPAN_NOTICE("You lean down and unwrench [src]."))
 				anchored = 0
 			else
-				user << SPAN_NOTICE("You wrench [src] into place.")
+				to_chat(user, SPAN_NOTICE("You wrench [src] into place."))
 				anchored = 1
 			return
 
@@ -99,7 +99,7 @@
 				else
 					O = new /obj/item/weapon/tank/oxygen(loc)
 				O.loc = loc
-				usr << SPAN_NOTICE("You take [O] out of [src].")
+				to_chat(usr, SPAN_NOTICE("You take [O] out of [src]."))
 				oxygentanks--
 				update_icon()
 		if(href_list["plasma"])
@@ -111,7 +111,7 @@
 				else
 					P = new /obj/item/weapon/tank/plasma(loc)
 				P.loc = loc
-				usr << SPAN_NOTICE("You take [P] out of [src].")
+				to_chat(usr, SPAN_NOTICE("You take [P] out of [src]."))
 				plasmatanks--
 				update_icon()
 		playsound(usr.loc, 'sound/machines/Custom_extout.ogg', 100, 1)

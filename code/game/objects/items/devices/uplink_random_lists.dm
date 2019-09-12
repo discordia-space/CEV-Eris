@@ -92,5 +92,5 @@ var/datum/uplink_random_selection/default_uplink_selection = new/datum/uplink_ra
 #ifdef DEBUG
 /proc/debug_uplink_item_assoc_list()
 	for(var/key in uplink.items_assoc)
-		world << "[key] - [uplink.items_assoc[key]]"
+		to_chat(world, "[key] - [uplink.items_assoc[key]]")
 #endif

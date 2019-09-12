@@ -5,6 +5,7 @@
 	icon_state = "sleeper_0"
 	density = 1
 	anchored = 1
+	circuit = /obj/item/weapon/circuitboard/sleeper
 	var/mob/living/carbon/human/occupant = null
 	var/list/available_chemicals = list("inaprovaline" = "Inaprovaline", "stoxin" = "Soporific", "paracetamol" = "Paracetamol", "anti_toxin" = "Dylovene", "dexalin" = "Dexalin")
 	var/obj/item/weapon/reagent_containers/glass/beaker = null
@@ -99,7 +100,7 @@
 		return 1
 
 	if(usr == occupant)
-		usr << SPAN_WARNING("You can't reach the controls from the inside.")
+		to_chat(usr, SPAN_WARNING("You can't reach the controls from the inside."))
 		return
 
 	add_fingerprint(usr)
@@ -131,7 +132,7 @@
 			I.loc = src
 			user.visible_message(SPAN_NOTICE("\The [user] adds \a [I] to \the [src]."), SPAN_NOTICE("You add \a [I] to \the [src]."))
 		else
-			user << SPAN_WARNING("\The [src] has a beaker already.")
+			to_chat(user, SPAN_WARNING("\The [src] has a beaker already."))
 		return
 
 /obj/machinery/sleeper/affect_grab(var/mob/user, var/mob/target)
@@ -170,7 +171,7 @@
 	if(stat & (BROKEN|NOPOWER))
 		return
 	if(occupant)
-		user << SPAN_WARNING("\The [src] is already occupied.")
+		to_chat(user, SPAN_WARNING("\The [src] is already occupied."))
 		return
 
 	if(M == user)
@@ -180,7 +181,7 @@
 
 	if(do_after(user, 20, src))
 		if(occupant)
-			user << SPAN_WARNING("\The [src] is already occupied.")
+			to_chat(user, SPAN_WARNING("\The [src] is already occupied."))
 			return
 		M.stop_pulling()
 		if(M.client)
@@ -221,8 +222,8 @@
 		if(occupant.reagents.get_reagent_amount(chemical) + amount <= 20)
 			use_power(amount * CHEM_SYNTH_ENERGY)
 			occupant.reagents.add_reagent(chemical, amount)
-			user << "Occupant now has [occupant.reagents.get_reagent_amount(chemical)] units of [available_chemicals[chemical]] in their bloodstream."
+			to_chat(user, "Occupant now has [occupant.reagents.get_reagent_amount(chemical)] units of [available_chemicals[chemical]] in their bloodstream.")
 		else
-			user << "The subject has too many chemicals."
+			to_chat(user, "The subject has too many chemicals.")
 	else
-		user << "There's no suitable occupant in \the [src]."
+		to_chat(user, "There's no suitable occupant in \the [src].")

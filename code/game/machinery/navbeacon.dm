@@ -10,7 +10,7 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 	icon_state = "navbeacon0-f"
 	name = "navigation beacon"
 	desc = "A radio beacon used for bot navigation."
-	level = 1		// underfloor
+	level = BELOW_PLATING_LEVEL		// underfloor
 	layer = LOW_OBJ_LAYER
 	anchored = 1
 
@@ -125,12 +125,12 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 			if(open)
 				if (src.allowed(user))
 					src.locked = !src.locked
-					user << "Controls are now [src.locked ? "locked." : "unlocked."]"
+					to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 				else
-					user << SPAN_WARNING("Access denied.")
+					to_chat(user, SPAN_WARNING("Access denied."))
 				updateDialog()
 			else
-				user << "You must open the cover first!"
+				to_chat(user, "You must open the cover first!")
 		return
 
 	attack_ai(var/mob/user)
@@ -149,7 +149,7 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 			return		// prevent intraction when T-scanner revealed
 
 		if(!open && !ai)	// can't alter controls if not open, unless you're an AI
-			user << "The beacon's control cover is closed."
+			to_chat(user, "The beacon's control cover is closed.")
 			return
 
 

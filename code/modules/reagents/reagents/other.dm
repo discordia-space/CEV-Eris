@@ -62,6 +62,7 @@
 /datum/reagent/paint/touch_turf(var/turf/T)
 	if(istype(T) && !istype(T, /turf/space))
 		T.color = color
+	return TRUE
 
 /datum/reagent/paint/touch_obj(var/obj/O)
 	if(istype(O))
@@ -119,10 +120,10 @@
 	glass_name = "golden cup"
 	glass_desc = "It's magic. We don't have to explain it."
 
-/datum/reagent/adminordrazine/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
-	affect_blood(M, alien, removed)
+/datum/reagent/adminordrazine/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	affect_blood(M, alien, effect_multiplier)
 
-/datum/reagent/adminordrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/adminordrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.setCloneLoss(0)
 	M.setOxyLoss(0)
 	M.radiation = 0
@@ -169,11 +170,11 @@
 	reagent_state = SOLID
 	color = "#B8B8C0"
 
-/datum/reagent/uranium/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
-	affect_ingest(M, alien, removed)
+/datum/reagent/uranium/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	affect_ingest(M, alien, effect_multiplier)
 
-/datum/reagent/uranium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.apply_effect(5 * removed, IRRADIATE, 0)
+/datum/reagent/uranium/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	M.apply_effect(effect_multiplier, IRRADIATE, 0)
 
 /datum/reagent/uranium/touch_turf(var/turf/T)
 	if(volume >= 3)
@@ -181,7 +182,9 @@
 			var/obj/effect/decal/cleanable/greenglow/glow = locate(/obj/effect/decal/cleanable/greenglow, T)
 			if(!glow)
 				new /obj/effect/decal/cleanable/greenglow(T)
-			return
+			return TRUE
+	return TRUE
+	
 
 /datum/reagent/adrenaline
 	name = "Adrenaline"
@@ -191,15 +194,19 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 
-/datum/reagent/adrenaline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/adrenaline/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.SetParalysis(0)
 	M.SetWeakened(0)
+	M.stats.addTempStat(STAT_TGH, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "adrenaline")
 	M.adjustToxLoss(rand(3))
+
+/datum/reagent/adrenaline/withdrawal_act(mob/living/carbon/M)
+	M.adjustOxyLoss(15)
 
 /datum/reagent/water/holywater/touch_turf(var/turf/T)
 	if(volume >= 5)
 		T.holy = 1
-	return
+	return TRUE
 
 /datum/reagent/diethylamine
 	name = "Diethylamine"
@@ -241,14 +248,14 @@
 			W.thermite = 1
 			W.overlays += image('icons/effects/effects.dmi',icon_state = "#673910")
 			remove_self(5)
-	return
+	return TRUE
 
 /datum/reagent/thermite/touch_mob(var/mob/living/L, var/amount)
 	if(istype(L))
 		L.adjust_fire_stacks(amount / 5)
 
-/datum/reagent/thermite/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.adjustFireLoss(3 * removed)
+/datum/reagent/thermite/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	M.adjustFireLoss(3 * 0.6)
 
 /datum/reagent/space_cleaner
 	name = "Space cleaner"
@@ -275,8 +282,9 @@
 			M.adjustToxLoss(rand(5, 10))
 
 	T.color = "white"
+	return TRUE
 
-/datum/reagent/space_cleaner/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/space_cleaner/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(M.r_hand)
 		M.r_hand.clean_blood()
 	if(M.l_hand)
@@ -314,9 +322,10 @@
 
 /datum/reagent/lube/touch_turf(var/turf/simulated/T)
 	if(!istype(T))
-		return
+		return TRUE
 	if(volume >= 1)
 		T.wet_floor(2)
+	return TRUE
 
 /datum/reagent/silicate
 	name = "Silicate"
@@ -349,7 +358,7 @@
 	reagent_state = LIQUID
 	color = "#808080"
 
-/datum/reagent/nitroglycerin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/nitroglycerin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
 	M.add_chemical_effect(CE_PULSE, 2)
 
@@ -390,3 +399,94 @@
 
 /datum/reagent/luminol/touch_mob(var/mob/living/L)
 	L.reveal_blood()
+
+
+/datum/reagent/aranecolmin
+	name = "Aranecolmin"
+	id = "aranecolmin"
+	description = ""
+	taste_description = "sludge"
+	reagent_state = LIQUID
+	color = "#acc107"
+	overdose = REAGENTS_OVERDOSE
+	addiction_chance = 10
+	nerve_system_accumulations = 5
+
+/datum/reagent/aranecolmin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	M.add_chemical_effect(CE_ANTITOX, 0.3)
+	if(M.bloodstr)
+		for(var/current in M.bloodstr.reagent_list)
+			var/datum/reagent/toxin/pararein/R = current
+			if(istype(R))
+				R.metabolism = initial(R.metabolism) * 3
+
+/datum/reagent/aranecolmin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	M.add_chemical_effect(CE_ANTITOX, 0.3)
+	if(M.bloodstr)
+		for(var/current in M.bloodstr.reagent_list)
+			var/datum/reagent/toxin/pararein/R = current
+			if(istype(R))
+				R.metabolism = initial(R.metabolism) * 3
+				break
+
+/datum/reagent/aranecolmin/on_mob_delete(mob/living/carbon/M)
+	..()
+	if(istype(M))
+		if(M.bloodstr)
+			for(var/current in M.bloodstr.reagent_list)
+				var/datum/reagent/toxin/pararein/R = current
+				if(istype(R))
+					R.metabolism = initial(R.metabolism)
+					break
+
+
+/datum/reagent/vomitol
+	name = "Vomitol"
+	id = "vomitol"
+	description = "Forces patient to vomit for some time - results in total cleaning of his stomach. Has extremely unpleasant taste."
+	taste_description = "worst thing in the world"
+	reagent_state = LIQUID
+	color = "#a6b85b"
+	overdose = REAGENTS_OVERDOSE
+
+/datum/reagent/vomitol/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	if(prob(10 * effect_multiplier))
+		M.vomit()
+
+/datum/reagent/arectine 
+	name = "Arectine"
+	id = "arectine"
+	description = "Makes user emit light."
+	taste_description = "fireflies"
+	reagent_state = LIQUID
+	color = "#a6b85b"
+	overdose = 25
+	addiction_chance = 5
+
+/datum/reagent/arectine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	M.set_light(2.5)
+
+/datum/reagent/arectine/overdose(var/mob/living/carbon/M, var/alien)
+	if(prob(10))
+		M.IgniteMob()
+
+/datum/reagent/fuhrerole/on_mob_delete(mob/living/L)
+	..()
+	L.set_light(0)
+
+/datum/reagent/instant_ice  
+	name = "InstantIce"
+	id = "instantice"
+	description = "Will cool reagents inside container when mixed with water to -50C"
+	taste_description = "nothing"
+	reagent_state = LIQUID
+	color = "#bbc5f0"
+
+/datum/reagent/biomatter
+	name = "Biomatter"
+	id = "biomatter"
+	description = "A goo of unknown to you origin. Its better to stay that way."
+	taste_description = "vomit"
+	reagent_state = LIQUID
+	color = "#527f4f"
+

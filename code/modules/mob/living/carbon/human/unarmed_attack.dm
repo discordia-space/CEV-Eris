@@ -41,14 +41,14 @@ var/global/list/sparring_attack_cache = list()
 /datum/unarmed_attack/proc/get_unarmed_damage()
 	return damage
 
-/datum/unarmed_attack/proc/apply_effects(var/mob/living/carbon/human/user,var/mob/living/carbon/human/target,var/armour,var/attack_damage,var/zone)
+/datum/unarmed_attack/proc/apply_effects(var/mob/living/carbon/human/user,var/mob/living/carbon/human/target,var/attack_damage,var/zone)
 
 	if(target.stat == DEAD)
 		return
 
 	var/stun_chance = rand(0, 100)
 
-	if(attack_damage >= 5 && armour < 2 && !(target == user) && stun_chance <= attack_damage * 5) // 25% standard chance
+	if(attack_damage >= 5 && !(target == user) && stun_chance <= attack_damage * 5) // 25% standard chance
 		switch(zone) // strong punches can have effects depending on where they hit
 			if(BP_HEAD, BP_MOUTH, BP_EYES)
 				// Induce blurriness
@@ -56,7 +56,7 @@ var/global/list/sparring_attack_cache = list()
 					SPAN_DANGER("[target] looks momentarily disoriented."),
 					SPAN_DANGER("You see stars.")
 				)
-				target.apply_effect(attack_damage*2, EYE_BLUR, armour)
+				target.apply_effect(attack_damage*2, EYE_BLUR)
 			if(BP_L_ARM)
 				if (target.l_hand)
 					// Disarm left hand
@@ -84,23 +84,23 @@ var/global/list/sparring_attack_cache = list()
 						target.visible_message(SPAN_DANGER("[target] slams into [T]!"))
 					if(prob(50))
 						target.set_dir(reverse_dir[target.dir])
-					target.apply_effect(attack_damage * 0.4, WEAKEN, armour)
+					target.apply_effect(attack_damage * 0.4, WEAKEN)
 			if(BP_GROIN)
 				target.visible_message(
 					SPAN_WARNING("[target] looks like \he is in pain!"),
 					SPAN_WARNING((target.gender=="female") ? "Oh god that hurt!" : "Oh no, not your[pick("testicles", "crown jewels", "clockweights", "family jewels", "marbles", "bean bags", "teabags", "sweetmeats", "goolies")]!")
 				)
-				target.apply_effects(stutter = attack_damage * 2, agony = attack_damage* 3, blocked = armour)
+				target.apply_effects(stutter = attack_damage * 2, agony = attack_damage* 3)
 			if(BP_L_LEG, BP_R_LEG)
 				if(!target.lying)
 					target.visible_message(SPAN_WARNING("[target] gives way slightly."))
-					target.apply_effect(attack_damage*3, AGONY, armour)
-	else if(attack_damage >= 5 && !(target == user) && (stun_chance + attack_damage * 5 >= 100) && armour < 2) // Chance to get the usual throwdown as well (25% standard chance)
+					target.apply_effect(attack_damage*3, AGONY)
+	else if(attack_damage >= 5 && !(target == user) && (stun_chance + attack_damage * 5 >= 100) ) // Chance to get the usual throwdown as well (25% standard chance)
 		if(!target.lying)
 			target.visible_message("<span class='danger'>[target] [pick("slumps", "falls", "drops")] down to the ground!</span>")
 		else
 			target.visible_message(SPAN_DANGER("[target] has been weakened!"))
-		target.apply_effect(3, WEAKEN, armour)
+		target.apply_effect(3, WEAKEN)
 
 /datum/unarmed_attack/proc/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
@@ -112,7 +112,7 @@ var/global/list/sparring_attack_cache = list()
 	eyes.take_damage(rand(3,4), 1)
 
 	user.visible_message(SPAN_DANGER("[user] presses \his [eye_attack_text] into [target]'s [eyes.name]!"))
-	target << SPAN_DANGER("You experience[(target.species.flags & NO_PAIN)? "" : " immense pain as you feel" ] [eye_attack_text_victim] being pressed into your [eyes.name][(target.species.flags & NO_PAIN)? "." : "!"]")
+	to_chat(target, SPAN_DANGER("You experience[(target.species.flags & NO_PAIN)? "" : " immense pain as you feel" ] [eye_attack_text_victim] being pressed into your [eyes.name][(target.species.flags & NO_PAIN)? "." : "!"]"))
 
 /datum/unarmed_attack/bite
 	attack_verb = list("bit")

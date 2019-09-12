@@ -15,12 +15,12 @@
 	set src in usr
 
 	if(!usr.loc || !usr.loc.loc || !istype(usr.loc.loc, /obj/item/rig_module))
-		usr << "You are not loaded into a hardsuit."
+		to_chat(usr, "You are not loaded into a hardsuit.")
 		return
 
 	var/obj/item/rig_module/module = usr.loc.loc
 	if(!module.holder)
-		usr << "Your module is not installed in a hardsuit."
+		to_chat(usr, "Your module is not installed in a hardsuit.")
 		return
 
 	module.holder.ui_interact(usr, nano_state = GLOB.contained_state)
@@ -166,9 +166,9 @@
 		if(istype(ai_card, /obj/item/device/aicard))
 			if(integrated_ai && !integrated_ai.stat)
 				if(user)
-					user << SPAN_DANGER("You cannot eject your currently stored AI. Purge it manually.")
+					to_chat(user, SPAN_DANGER("You cannot eject your currently stored AI. Purge it manually."))
 				return 0
-			user << SPAN_DANGER("You purge the remaining scraps of data from your previous AI, freeing it for use.")
+			to_chat(user, SPAN_DANGER("You purge the remaining scraps of data from your previous AI, freeing it for use."))
 			if(integrated_ai)
 				integrated_ai.ghostize()
 				qdel(integrated_ai)
@@ -211,8 +211,8 @@
 				user.drop_from_inventory(ai)
 				ai.forceMove(src)
 				ai_card = ai
-				ai_mob << "<font color='blue'>You have been transferred to \the [holder]'s [src].</font>"
-				user << "<font color='blue'>You load [ai_mob] into \the [holder]'s [src].</font>"
+				to_chat(ai_mob, "<font color='blue'>You have been transferred to \the [holder]'s [src].</font>")
+				to_chat(user, "<font color='blue'>You load [ai_mob] into \the [holder]'s [src].</font>")
 
 			integrated_ai = ai_mob
 
@@ -220,9 +220,9 @@
 				integrated_ai = null
 				eject_ai()
 		else
-			user << SPAN_WARNING("There is no active AI within \the [ai].")
+			to_chat(user, SPAN_WARNING("There is no active AI within \the [ai]."))
 	else
-		user << SPAN_WARNING("There is no active AI within \the [ai].")
+		to_chat(user, SPAN_WARNING("There is no active AI within \the [ai]."))
 	update_verb_holder()
 	return
 
@@ -240,11 +240,11 @@
 
 	interface_name = "contact datajack"
 	interface_desc = "An induction-powered high-throughput datalink suitable for hacking encrypted networks."
-	var/list/stored_research
+	var/datum/research/files
 
 /obj/item/rig_module/datajack/New()
 	..()
-	stored_research = list()
+	files = new(src)
 
 /obj/item/rig_module/datajack/engage(atom/target)
 	if(!..())
@@ -271,6 +271,7 @@
 		return 1
 
 	// I fucking hate R&D code. This typecheck spam would be totally unnecessary in a sane setup.
+	// true, but your code is also equally shit
 	else if(istype(input_device,/obj/machinery))
 		var/datum/research/incoming_files
 		if(istype(input_device,/obj/machinery/computer/rdconsole))
@@ -283,42 +284,18 @@
 			var/obj/machinery/mecha_part_fabricator/input_machine = input_device
 			incoming_files = input_machine.files
 
-		if(!incoming_files || !incoming_files.known_tech || !incoming_files.known_tech.len)
-			user << SPAN_WARNING("Memory failure. There is nothing accessible stored on this terminal.")
+		if(!incoming_files || !incoming_files.researched_nodes.len)
+			to_chat(user, SPAN_WARNING("Memory failure. There is nothing accessible stored on this terminal."))
 		else
 			// Maybe consider a way to drop all your data into a target repo in the future.
-			if(load_data(incoming_files.known_tech))
-				user << "<font color='blue'>Download successful; local and remote repositories synchronized.</font>"
+			if(load_data(incoming_files))
+				to_chat(user, "<font color='blue'>Download successful; local and remote repositories synchronized.</font>")
 			else
-				user << SPAN_WARNING("Scan complete. There is nothing useful stored on this terminal.")
-		return 1
-	return 0
-
-/obj/item/rig_module/datajack/proc/load_data(incoming_data)
-	if(islist(incoming_data))
-		for(var/entry in incoming_data)
-			. += load_data(entry)
-		return
-
-	if(istype(incoming_data, /obj/item/weapon/computer_hardware/hard_drive))
-		var/obj/item/weapon/computer_hardware/hard_drive/disk = incoming_data
-		for(var/f in disk.find_files_by_type(/datum/computer_file/binary/tech))
-			var/datum/computer_file/binary/tech/tech_file = f
-			. += load_data(tech_file.tech)
-		return
-
-	if(istype(incoming_data, /datum/tech))
-		var/datum/tech/new_data = incoming_data
-		for(var/datum/tech/current_data in stored_research)
-			if(current_data.id == new_data.id)
-				if(current_data.level < new_data.level)
-					current_data.level = new_data.level
-					return TRUE
-				return FALSE
-
-		stored_research += new_data.Copy()
+				to_chat(user, SPAN_WARNING("Scan complete. There is nothing useful stored on this terminal."))
 		return TRUE
-	return FALSE
+
+/obj/item/rig_module/datajack/proc/load_data(datum/research/incoming_files)
+	return files.download_from(incoming_files)
 
 /obj/item/rig_module/electrowarfare_suite
 
@@ -374,7 +351,7 @@
 
 	if(interfaced_with)
 		if(holder && holder.wearer)
-			holder.wearer << "<span class = 'warning'>Your power sink retracts as the module deactivates.</span>"
+			to_chat(holder.wearer, "<span class = 'warning'>Your power sink retracts as the module deactivates.</span>")
 		drain_complete()
 	interfaced_with = null
 	total_power_drained = 0
@@ -406,7 +383,7 @@
 	if(target.drain_power(1) <= 0)
 		return 0
 
-	H << "<span class = 'danger'>You begin draining power from [target]!</span>"
+	to_chat(H, "<span class = 'danger'>You begin draining power from [target]!</span>")
 	interfaced_with = target
 	drain_loc = interfaced_with.loc
 
@@ -438,17 +415,17 @@
 	playsound(H.loc, 'sound/effects/sparks2.ogg', 50, 1)
 
 	if(!holder.cell)
-		H << "<span class = 'danger'>Your power sink flashes an error; there is no cell in your rig.</span>"
+		to_chat(H, "<span class = 'danger'>Your power sink flashes an error; there is no cell in your rig.</span>")
 		drain_complete(H)
 		return
 
 	if(!interfaced_with || !interfaced_with.Adjacent(H) || !(interfaced_with.loc == drain_loc))
-		H << "<span class = 'warning'>Your power sink retracts into its casing.</span>"
+		to_chat(H, "<span class = 'warning'>Your power sink retracts into its casing.</span>")
 		drain_complete(H)
 		return
 
 	if(holder.cell.fully_charged())
-		H << "<span class = 'warning'>Your power sink flashes an amber light; your rig cell is full.</span>"
+		to_chat(H, "<span class = 'warning'>Your power sink flashes an amber light; your rig cell is full.</span>")
 		drain_complete(H)
 		return
 
@@ -456,7 +433,7 @@
 	var/to_drain = min(40000, ((holder.cell.maxcharge - holder.cell.charge) / CELLRATE))
 	var/target_drained = interfaced_with.drain_power(0,0,to_drain)
 	if(target_drained <= 0)
-		H << "<span class = 'danger'>Your power sink flashes a red light; there is no power left in [interfaced_with].</span>"
+		to_chat(H, "<span class = 'danger'>Your power sink flashes a red light; there is no power left in [interfaced_with].</span>")
 		drain_complete(H)
 		return
 
@@ -468,9 +445,9 @@
 /obj/item/rig_module/power_sink/proc/drain_complete(var/mob/living/M)
 
 	if(!interfaced_with)
-		if(M) M << "<font color='blue'><b>Total power drained:</b> [round(total_power_drained/1000)]kJ.</font>"
+		if(M) to_chat(M, "<font color='blue'><b>Total power drained:</b> [round(total_power_drained/1000)]kJ.</font>")
 	else
-		if(M) M << "<font color='blue'><b>Total power drained from [interfaced_with]:</b> [round(total_power_drained/1000)]kJ.</font>"
+		if(M) to_chat(M, "<font color='blue'><b>Total power drained from [interfaced_with]:</b> [round(total_power_drained/1000)]kJ.</font>")
 		interfaced_with.drain_power(0,1,0) // Damage the victim.
 
 	drain_loc = null

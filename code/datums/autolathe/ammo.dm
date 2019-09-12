@@ -30,10 +30,6 @@
 	name = "magazine (.45, flash)"
 	build_path = /obj/item/ammo_magazine/c45m/flash
 
-/datum/design/autolathe/ammo/magazine_mc9mmt_rubber
-	name = "top mounted magazine (9mm rubber)"
-	build_path = /obj/item/ammo_magazine/mc9mmt/rubber
-
 /datum/design/autolathe/ammo/magazine_sl357
 	name = "speed loader (.357)"
 	build_path = /obj/item/ammo_magazine/sl357
@@ -65,10 +61,6 @@
 /datum/design/autolathe/ammo/magazine_smg10mm
 	name = "SMG magazine (10mm)"
 	build_path = /obj/item/ammo_magazine/smg10mm
-
-/datum/design/autolathe/ammo/magazine_mc9mmt
-	name = "top mounted magazine (9mm)"
-	build_path = /obj/item/ammo_magazine/mc9mmt
 
 /datum/design/autolathe/ammo/magazine_a556
 	name = "magazine (5.56mm)"

@@ -16,7 +16,12 @@
 	icon_state = "filingcabinet"
 	density = 1
 	anchored = 1
-
+	var/list/can_hold = list(
+		/obj/item/weapon/paper,
+		/obj/item/weapon/folder,
+		/obj/item/weapon/photo,
+		/obj/item/weapon/paper_bundle,
+		/obj/item/weapon/sample)
 
 /obj/structure/filingcabinet/chestdrawer
 	name = "chest drawer"
@@ -30,40 +35,36 @@
 /obj/structure/filingcabinet/Initialize()
 	. = ..()
 	for(var/obj/item/I in loc)
-		if(istype(I, /obj/item/weapon/paper) || istype(I, /obj/item/weapon/folder) || istype(I, /obj/item/weapon/photo) || istype(I, /obj/item/weapon/paper_bundle))
-			I.loc = src
+		if(is_type_in_list(I, can_hold))
+			I.forceMove(src)
 
 
 /obj/structure/filingcabinet/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/paper) || istype(I, /obj/item/weapon/folder) || istype(I, /obj/item/weapon/photo) || istype(I, /obj/item/weapon/paper_bundle))
-		user << SPAN_NOTICE("You put [I] in [src].")
+	if(is_type_in_list(I, can_hold))
+		to_chat(user, SPAN_NOTICE("You put [I] in [src]."))
 		user.drop_item()
 		I.loc = src
-		icon_state = "[initial(icon_state)]-open"
-		sleep(5)
-		icon_state = initial(icon_state)
+		flick("[initial(icon_state)]-open",src)
 		updateUsrDialog()
 	else if(I.get_tool_type(usr, list(QUALITY_BOLT_TURNING), src))
 		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 			anchored = !anchored
-			user << "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>"
+			to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
 	else
-		user << SPAN_NOTICE("You can't put [I] in [src]!")
+		to_chat(user, SPAN_NOTICE("You can't put [I] in [src]!"))
 
 
 /obj/structure/filingcabinet/attack_hand(mob/user as mob)
 	if(contents.len <= 0)
-		user << SPAN_NOTICE("\The [src] is empty.")
+		to_chat(user, SPAN_NOTICE("\The [src] is empty."))
 		return
 
 	user.set_machine(src)
-	var/dat = "<center><table>"
+	var/dat = list("<center><table>")
 	for(var/obj/item/P in src)
 		dat += "<tr><td><a href='?src=\ref[src];retrieve=\ref[P]'>[P.name]</a></td></tr>"
 	dat += "</table></center>"
-	user << browse("<html><head><title>[name]</title></head><body>[dat]</body></html>", "window=filingcabinet;size=350x300")
-
-	return
+	user << browse("<html><head><title>[name]</title></head><body>[jointext(dat,null)]</body></html>", "window=filingcabinet;size=350x300")
 
 /obj/structure/filingcabinet/attack_tk(mob/user)
 	if(anchored)
@@ -78,9 +79,9 @@
 			I.loc = loc
 			if(prob(25))
 				step_rand(I)
-			user << SPAN_NOTICE("You pull \a [I] out of [src] at random.")
+			to_chat(user, SPAN_NOTICE("You pull \a [I] out of [src] at random."))
 			return
-	user << SPAN_NOTICE("You find nothing in [src].")
+	to_chat(user, SPAN_NOTICE("You find nothing in [src]."))
 
 /obj/structure/filingcabinet/Topic(href, href_list)
 	if(href_list["retrieve"])
@@ -91,10 +92,7 @@
 		if(istype(P) && (P.loc == src) && src.Adjacent(usr))
 			usr.put_in_hands(P)
 			updateUsrDialog()
-			icon_state = "[initial(icon_state)]-open"
-			spawn(0)
-				sleep(5)
-				icon_state = initial(icon_state)
+			flick("[initial(icon_state)]-open",src)
 
 
 /*

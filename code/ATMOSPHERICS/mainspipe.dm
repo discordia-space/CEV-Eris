@@ -68,7 +68,7 @@ obj/machinery/atmospherics/mains_pipe
 		aux.nodes.len = nodes.len
 
 	hide(var/i)
-		if(level == 1 && istype(loc, /turf/simulated))
+		if(level == BELOW_PLATING_LEVEL && istype(loc, /turf/simulated))
 			invisibility = i ? 101 : 0
 		update_icon()
 
@@ -181,15 +181,15 @@ obj/machinery/atmospherics/mains_pipe/simple
 		..() // initialize internal pipes
 
 		var/turf/T = src.loc			// hide if turf is not intact
-		if(level == 1 && !T.is_plating()) hide(1)
+		if(level == BELOW_PLATING_LEVEL && !T.is_plating()) hide(1)
 		update_icon()
 
 	hidden
-		level = 1
+		level = BELOW_PLATING_LEVEL
 		icon_state = "intact-f"
 
 	visible
-		level = 2
+		level = ABOVE_PLATING_LEVEL
 		icon_state = "intact"
 
 obj/machinery/atmospherics/mains_pipe/manifold
@@ -243,18 +243,18 @@ obj/machinery/atmospherics/mains_pipe/manifold
 		..() // initialize internal pipes
 
 		var/turf/T = src.loc			// hide if turf is not intact
-		if(level == 1 && !T.is_plating()) hide(1)
+		if(level == BELOW_PLATING_LEVEL && !T.is_plating()) hide(1)
 		update_icon()
 
 	update_icon()
 		icon_state = "manifold[invisibility ? "-f" : "" ]"
 
 	hidden
-		level = 1
+		level = BELOW_PLATING_LEVEL
 		icon_state = "manifold-f"
 
 	visible
-		level = 2
+		level = ABOVE_PLATING_LEVEL
 		icon_state = "manifold"
 
 obj/machinery/atmospherics/mains_pipe/manifold4w
@@ -293,18 +293,18 @@ obj/machinery/atmospherics/mains_pipe/manifold4w
 		..() // initialize internal pipes
 
 		var/turf/T = src.loc			// hide if turf is not intact
-		if(level == 1 && !T.is_plating()) hide(1)
+		if(level == BELOW_PLATING_LEVEL && !T.is_plating()) hide(1)
 		update_icon()
 
 	update_icon()
 		icon_state = "manifold4w[invisibility ? "-f" : "" ]"
 
 	hidden
-		level = 1
+		level = BELOW_PLATING_LEVEL
 		icon_state = "manifold4w-f"
 
 	visible
-		level = 2
+		level = ABOVE_PLATING_LEVEL
 		icon_state = "manifold4w"
 
 obj/machinery/atmospherics/mains_pipe/split
@@ -354,7 +354,7 @@ obj/machinery/atmospherics/mains_pipe/split
 					N1.merge(N2)
 
 		var/turf/T = src.loc			// hide if turf is not intact
-		if(level == 1 && !T.is_plating()) hide(1)
+		if(level == BELOW_PLATING_LEVEL && !T.is_plating()) hide(1)
 		update_icon()
 
 	update_icon()
@@ -371,11 +371,11 @@ obj/machinery/atmospherics/mains_pipe/split
 			split_node = supply
 
 		hidden
-			level = 1
+			level = BELOW_PLATING_LEVEL
 			icon_state = "split-supply-f"
 
 		visible
-			level = 2
+			level = ABOVE_PLATING_LEVEL
 			icon_state = "split-supply"
 
 	scrubbers
@@ -386,11 +386,11 @@ obj/machinery/atmospherics/mains_pipe/split
 			split_node = scrubbers
 
 		hidden
-			level = 1
+			level = BELOW_PLATING_LEVEL
 			icon_state = "split-scrubbers-f"
 
 		visible
-			level = 2
+			level = ABOVE_PLATING_LEVEL
 			icon_state = "split-scrubbers"
 
 	aux
@@ -401,11 +401,11 @@ obj/machinery/atmospherics/mains_pipe/split
 			split_node = aux
 
 		hidden
-			level = 1
+			level = BELOW_PLATING_LEVEL
 			icon_state = "split-aux-f"
 
 		visible
-			level = 2
+			level = ABOVE_PLATING_LEVEL
 			icon_state = "split-aux"
 
 obj/machinery/atmospherics/mains_pipe/split3
@@ -475,7 +475,7 @@ obj/machinery/atmospherics/mains_pipe/split3
 					N1.merge(N2)
 
 		var/turf/T = src.loc			// hide if turf is not intact
-		if(level == 1 && !T.is_plating()) hide(1)
+		if(level == BELOW_PLATING_LEVEL && !T.is_plating()) hide(1)
 		update_icon()
 
 	update_icon()
@@ -493,11 +493,11 @@ obj/machinery/atmospherics/mains_pipe/split3
 		return A
 
 	hidden
-		level = 1
+		level = BELOW_PLATING_LEVEL
 		icon_state = "split-t-f"
 
 	visible
-		level = 2
+		level = ABOVE_PLATING_LEVEL
 		icon_state = "split-t"
 
 obj/machinery/atmospherics/mains_pipe/cap
@@ -525,15 +525,15 @@ obj/machinery/atmospherics/mains_pipe/cap
 		..()
 
 		var/turf/T = src.loc	// hide if turf is not intact
-		if(level == 1 && !T.is_plating()) hide(1)
+		if(level == BELOW_PLATING_LEVEL && !T.is_plating()) hide(1)
 		update_icon()
 
 	hidden
-		level = 1
+		level = BELOW_PLATING_LEVEL
 		icon_state = "cap-f"
 
 	visible
-		level = 2
+		level = ABOVE_PLATING_LEVEL
 		icon_state = "cap"
 
 //TODO: Get Mains valves working!
@@ -557,11 +557,11 @@ obj/machinery/atmospherics/mains_pipe/valve
 	update_icon(animation)
 		var/turf/simulated/floor = loc
 		var/hide = istype(floor) ? floor.intact : 0
-		level = 1
+		level = BELOW_PLATING_LEVEL
 		for(var/obj/machinery/atmospherics/mains_pipe/node in nodes)
-			if(node.level == 2)
+			if(node.level == ABOVE_PLATING_LEVEL)
 				hide = 0
-				level = 2
+				level = ABOVE_PLATING_LEVEL
 				break
 
 		if(animation)
@@ -649,7 +649,7 @@ obj/machinery/atmospherics/mains_pipe/valve
 
 		attack_hand(mob/user as mob)
 			if(!src.allowed(user))
-				user << SPAN_WARNING("Access denied.")
+				to_chat(user, SPAN_WARNING("Access denied."))
 				return
 			..()
 
@@ -674,11 +674,11 @@ obj/machinery/atmospherics/mains_pipe/valve
 		update_icon(animation)
 			var/turf/simulated/floor = loc
 			var/hide = istype(floor) ? floor.intact : 0
-			level = 1
+			level = BELOW_PLATING_LEVEL
 			for(var/obj/machinery/atmospherics/mains_pipe/node in nodes)
-				if(node.level == 2)
+				if(node.level == ABOVE_PLATING_LEVEL)
 					hide = 0
-					level = 2
+					level = ABOVE_PLATING_LEVEL
 					break
 
 			if(animation)

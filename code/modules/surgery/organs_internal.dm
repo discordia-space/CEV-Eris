@@ -273,11 +273,11 @@
 		return 0
 
 	if(BP_IS_ROBOTIC(affected) && !BP_IS_ROBOTIC(O))
-		user << SPAN_DANGER("You cannot install a naked organ into a robotic body.")
+		to_chat(user, SPAN_DANGER("You cannot install a naked organ into a robotic body."))
 		return SURGERY_FAILURE
 
 	if(!target.species)
-		user << SPAN_DANGER("You have no idea what species this person is. Report this on the bug tracker.")
+		to_chat(user, SPAN_DANGER("You have no idea what species this person is. Report this on the bug tracker."))
 		return SURGERY_FAILURE
 
 	var/o_is = (O.gender == PLURAL) ? "are" : "is"
@@ -286,22 +286,22 @@
 
 	if(target.species.has_organ[O.organ_tag])
 		if(O.damage > (O.max_damage * 0.75))
-			user << SPAN_WARNING("\The [O.organ_tag] [o_is] in no state to be transplanted.")
+			to_chat(user, SPAN_WARNING("\The [O.organ_tag] [o_is] in no state to be transplanted."))
 			return SURGERY_FAILURE
 
 		if(!target.internal_organs_by_name[O.organ_tag])
 			organ_missing = 1
 		else
-			user << SPAN_WARNING("\The [target] already has [o_a][O.organ_tag].")
+			to_chat(user, SPAN_WARNING("\The [target] already has [o_a][O.organ_tag]."))
 			return SURGERY_FAILURE
 
 		if(O && affected.organ_tag == O.parent_organ)
 			organ_compatible = 1
 		else
-			user << SPAN_WARNING("\The [O.organ_tag] [o_do] normally go in \the [affected.name].")
+			to_chat(user, SPAN_WARNING("\The [O.organ_tag] [o_do] normally go in \the [affected.name]."))
 			return SURGERY_FAILURE
 	else
-		user << SPAN_WARNING("You're pretty sure [target.species.name_plural] don't normally have [o_a][O.organ_tag].")
+		to_chat(user, SPAN_WARNING("You're pretty sure [target.species.name_plural] don't normally have [o_a][O.organ_tag]."))
 		return SURGERY_FAILURE
 
 	return ..() && organ_missing && organ_compatible

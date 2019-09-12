@@ -31,7 +31,7 @@
 				qdel(src)
 		else
 			//Ability fail, delete ourselves
-			owner.mob << "For some reason you can't use [handler_name] ability"
+			to_chat(owner.mob, "For some reason you can't use [handler_name] ability")
 			qdel(src)
 
 		return FALSE //As long as we're not clicking a hud object, we drop the click
@@ -155,11 +155,11 @@
 
 /datum/click_handler/changeling/use_ability(mob/living/carbon/human/user,atom/target) //Check can mob use a ability
 	if (user.stat == DEAD)
-		user << "No! You dead!"
+		to_chat(user, "No! You dead!")
 		user.kill_CH()
 		return 0
 	if (istype(user.loc, /obj/mecha))
-		user << "Cannot use [handler_name] in mecha!"
+		to_chat(user, "Cannot use [handler_name] in mecha!")
 		user.kill_CH()
 		return 0
 

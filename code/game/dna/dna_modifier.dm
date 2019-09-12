@@ -89,13 +89,13 @@
 	if (usr.stat)
 		return
 	if (!ishuman(usr) && !issmall(usr)) //Make sure they're a mob that has dna
-		usr << SPAN_NOTICE("Try as you might, you can not climb up into the scanner.")
+		to_chat(usr, SPAN_NOTICE("Try as you might, you can not climb up into the scanner."))
 		return
 	if (src.occupant)
-		usr << SPAN_WARNING("The scanner is already occupied!")
+		to_chat(usr, SPAN_WARNING("The scanner is already occupied!"))
 		return
 	if (usr.abiotic())
-		usr << SPAN_WARNING("The subject cannot have abiotic items on.")
+		to_chat(usr, SPAN_WARNING("The subject cannot have abiotic items on."))
 		return
 	usr.stop_pulling()
 	put_in(usr)
@@ -104,10 +104,10 @@
 
 /obj/machinery/dna_scannernew/affect_grab(var/mob/user, var/mob/target)
 	if (src.occupant)
-		user << SPAN_WARNING("The scanner is already occupied!")
+		to_chat(user, SPAN_WARNING("The scanner is already occupied!"))
 		return
 	if (target.abiotic())
-		user << SPAN_WARNING("The subject cannot have abiotic items on.")
+		to_chat(user, SPAN_WARNING("The subject cannot have abiotic items on."))
 		return
 	put_in(target)
 	src.add_fingerprint(user)
@@ -117,7 +117,7 @@
 /obj/machinery/dna_scannernew/attackby(var/obj/item/weapon/item as obj, var/mob/user as mob)
 	if(istype(item, /obj/item/weapon/reagent_containers/glass))
 		if(beaker)
-			user << SPAN_WARNING("A beaker is already loaded into the machine.")
+			to_chat(user, SPAN_WARNING("A beaker is already loaded into the machine."))
 			return
 		beaker = item
 		user.drop_from_inventory(item)
@@ -136,13 +136,13 @@
 		if(!M.client && M.mind)
 			for(var/mob/observer/ghost/ghost in GLOB.player_list)
 				if(ghost.mind == M.mind)
-					ghost << {"
+					to_chat(ghost, {"
 						<font color = #330033 size = 3>
 						<b>Your corpse has been placed into a cloning scanner.
 						Return to your body if you want to be resurrected/cloned!</b>
 						(Verbs -> Ghost -> Re-enter corpse)
 						</font>
-					"}
+					"})
 					break
 	return
 
@@ -222,7 +222,7 @@
 			user.drop_from_inventory(I)
 			I.forceMove(src)
 			src.disk = I
-			user << "You insert [I]."
+			to_chat(user, "You insert [I].")
 			SSnano.update_uis(src) // update all UIs attached to src
 			return
 	else

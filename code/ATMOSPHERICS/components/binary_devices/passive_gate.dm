@@ -5,7 +5,7 @@
 /obj/machinery/atmospherics/binary/passive_gate
 	icon = 'icons/atmos/passive_gate.dmi'
 	icon_state = "map"
-	level = 1
+	level = BELOW_PLATING_LEVEL
 
 	name = "pressure regulator"
 	desc = "A one-way air valve that can be used to regulate input or output pressure, and flow rate. Does not require power."
@@ -170,7 +170,7 @@
 		return
 	src.add_fingerprint(usr)
 	if(!src.allowed(user))
-		user << SPAN_WARNING("Access denied.")
+		to_chat(user, SPAN_WARNING("Access denied."))
 		return
 	usr.set_machine(src)
 	ui_interact(user)
@@ -245,15 +245,15 @@
 	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
 		return ..()
 	if (unlocked)
-		user << SPAN_WARNING("You cannot unwrench \the [src], turn it off first.")
+		to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], turn it off first."))
 		return 1
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
 	if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
-		user << SPAN_WARNING("You cannot unwrench \the [src], it too exerted due to internal pressure.")
+		to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], it too exerted due to internal pressure."))
 		add_fingerprint(user)
 		return 1
-	user << SPAN_NOTICE("You begin to unfasten \the [src]...")
+	to_chat(user, SPAN_NOTICE("You begin to unfasten \the [src]..."))
 	if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 		user.visible_message( \
 			SPAN_NOTICE("\The [user] unfastens \the [src]."), \

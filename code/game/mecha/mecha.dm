@@ -43,7 +43,7 @@
 	var/obj/item/mecha_parts/mecha_equipment/thruster/thruster = null
 
 	//the values in this list show how much damage will pass through, not how much will be absorbed.
-	var/list/damage_absorption = list("brute"=0.8,"fire"=1.2,"bullet"=0.9,"laser"=1,"energy"=1,"bomb"=1)
+	var/list/damage_absorption = list("brute"=0.8,"fire"=1.2,"bullet"=0.9,"energy"=1,"bomb"=1)
 	var/obj/item/weapon/cell/large/cell
 	var/state = 0
 	var/list/log = new
@@ -287,27 +287,27 @@
 	var/integrity = health/initial(health)*100
 	switch(integrity)
 		if(85 to 100)
-			user << "It's fully intact."
+			to_chat(user, "It's fully intact.")
 		if(65 to 85)
-			user << "It's slightly damaged."
+			to_chat(user, "It's slightly damaged.")
 		if(45 to 65)
-			user << "It's badly damaged."
+			to_chat(user, "It's badly damaged.")
 		if(25 to 45)
-			user << "It's heavily damaged."
+			to_chat(user, "It's heavily damaged.")
 		else
-			user << "It's falling apart."
+			to_chat(user, "It's falling apart.")
 	if(equipment && equipment.len)
-		user << "It's equipped with:"
+		to_chat(user, "It's equipped with:")
 		for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
-			user << "\icon[ME] [ME]"
+			to_chat(user, "\icon[ME] [ME]")
 
 
 /obj/mecha/proc/drop_item()//Derpfix, but may be useful in future for engineering exosuits.
 	return
 
-/obj/mecha/hear_talk(mob/M as mob, text)
+/obj/mecha/hear_talk(mob/M as mob, text, verb, datum/language/speaking, speech_volume)
 	if(M==occupant && radio.broadcasting)
-		radio.talk_into(M, text)
+		radio.talk_into(M, text, speech_volume = speech_volume)
 
 ////////////////////////////
 ///// Action processing ////
@@ -405,7 +405,7 @@
 /obj/mecha/relaymove(mob/user,direction)
 	if(user != src.occupant) //While not "realistic", this piece is player friendly.
 		user.forceMove(get_turf(src))
-		user << "You climb out from [src]"
+		to_chat(user, "You climb out from [src]")
 		return 0
 	if(connected_port)
 		if(world.time - last_message > 20)
@@ -744,12 +744,12 @@ assassination method if you time it right*/
 				src.hit_damage(damage=15, is_melee=1)
 				src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 				playsound(src.loc, 'sound/weapons/slash.ogg', 50, 1, -1)
-				user << SPAN_DANGER("You slash at the armored suit!")
+				to_chat(user, SPAN_DANGER("You slash at the armored suit!"))
 				visible_message(SPAN_DANGER("\The [user] slashes at [src.name]'s armor!"))
 			else
 				src.log_append_to_last("Armor saved.")
 				playsound(src.loc, 'sound/weapons/slash.ogg', 50, 1, -1)
-				user << SPAN_DANGER("Your claws had no effect!")
+				to_chat(user, SPAN_DANGER("Your claws had no effect!"))
 				src.occupant_message(SPAN_NOTICE("\The [user]'s claws are stopped by the armor."))
 				visible_message(SPAN_WARNING("\The [user] rebounds off [src.name]'s armor!"))
 		else
@@ -854,14 +854,14 @@ assassination method if you time it right*/
 		src.take_damage(6)
 		src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 		playsound(src.loc, 'sound/effects/blobattack.ogg', 50, 1, -1)
-		user << SPAN_DANGER("You smash at the armored suit!")
+		to_chat(user, SPAN_DANGER("You smash at the armored suit!"))
 		for (var/mob/V in viewers(src))
 			if(V.client && !(V.blinded))
 				V.show_message(SPAN_DANGER("\The [user] smashes against [src.name]'s armor!"), 1)
 	else
 		src.log_append_to_last("Armor saved.")
 		playsound(src.loc, 'sound/effects/blobattack.ogg', 50, 1, -1)
-		user << SPAN_WARNING("Your attack had no effect!")
+		to_chat(user, SPAN_WARNING("Your attack had no effect!"))
 		src.occupant_message(SPAN_WARNING("\The [user]'s attack is stopped by the armor."))
 		for (var/mob/V in viewers(src))
 			if(V.client && !(V.blinded))
@@ -908,12 +908,12 @@ assassination method if you time it right*/
 		if(QUALITY_BOLT_TURNING)
 			if(state == 1)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You undo the securing bolts.")
+					to_chat(user, SPAN_NOTICE("You undo the securing bolts."))
 					state = 2
 					return
 			if(state == 2)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You tighten the securing bolts.")
+					to_chat(user, SPAN_NOTICE("You tighten the securing bolts."))
 					state = 1
 					return
 			return
@@ -921,13 +921,13 @@ assassination method if you time it right*/
 		if(QUALITY_WELDING)
 			if(user.a_intent != I_HURT)
 				if(src.health >= initial(src.health))
-					user << SPAN_NOTICE("The [src.name] is at full integrity")
+					to_chat(user, SPAN_NOTICE("The [src.name] is at full integrity"))
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					if (hasInternalDamage(MECHA_INT_TANK_BREACH))
 						clearInternalDamage(MECHA_INT_TANK_BREACH)
-						user << SPAN_NOTICE("You repair the damaged gas tank.")
+						to_chat(user, SPAN_NOTICE("You repair the damaged gas tank."))
 					if(src.health<initial(src.health))
-						user << SPAN_NOTICE("You repair some damage to [src.name].")
+						to_chat(user, SPAN_NOTICE("You repair some damage to [src.name]."))
 						user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 						src.health += min(10, initial(src.health)-src.health)
 					return
@@ -936,14 +936,14 @@ assassination method if you time it right*/
 		if(QUALITY_PRYING)
 			if(state == 2)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You open the hatch to the power unit.")
+					to_chat(user, SPAN_NOTICE("You open the hatch to the power unit."))
 					state = 3
 					if(!cell)
 						state = 4
 					return
 			if(state == 3)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You close the hatch to the power unit")
+					to_chat(user, SPAN_NOTICE("You close the hatch to the power unit"))
 					state = 2
 					return
 			return
@@ -951,32 +951,32 @@ assassination method if you time it right*/
 		if(QUALITY_SCREW_DRIVING)
 			if(hasInternalDamage(MECHA_INT_TEMP_CONTROL))
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You repair the damaged temperature controller.")
+					to_chat(user, SPAN_NOTICE("You repair the damaged temperature controller."))
 					clearInternalDamage(MECHA_INT_TEMP_CONTROL)
 					return
 			if(state == 3 && src.cell)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You unscrew and pry out the powercell.")
+					to_chat(user, SPAN_NOTICE("You unscrew and pry out the powercell."))
 					src.cell.forceMove(src.loc)
 					src.cell = null
 					state = 4
 					src.log_message("Powercell removed.")
 			if(state == 4 && src.cell)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You screw the cell in place.")
+					to_chat(user, SPAN_NOTICE("You screw the cell in place."))
 					state = 3
 					return
 			return
 
 		if(QUALITY_PULSING)
 			if(state >= 3 && src.occupant)
-				user << "You attempt to eject the pilot using the maintenance controls."
+				to_chat(user, "You attempt to eject the pilot using the maintenance controls.")
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					if(src.occupant.stat)
 						src.go_out()
 						src.log_message("[src.occupant] was ejected using the maintenance controls.")
 					else
-						user << SPAN_WARNING("Your attempt is rejected.")
+						to_chat(user, SPAN_WARNING("Your attempt is rejected."))
 						src.occupant_message(SPAN_WARNING("An attempt to eject you was made using the maintenance controls."))
 						src.log_message("Eject attempt made using maintenance controls - rejected.")
 					return
@@ -993,7 +993,7 @@ assassination method if you time it right*/
 				E.attach(src)
 				user.visible_message("[user] attaches [I] to [src]", "You attach [I] to [src]")
 			else
-				user << "You were unable to attach [I] to [src]"
+				to_chat(user, "You were unable to attach [I] to [src]")
 		return
 	var/obj/item/weapon/card/id/id_card = I.GetIdCard()
 	if(id_card)
@@ -1002,18 +1002,18 @@ assassination method if you time it right*/
 				output_maintenance_dialog(id_card, user)
 				return
 			else
-				user << SPAN_WARNING("Invalid ID: Access denied.")
+				to_chat(user, SPAN_WARNING("Invalid ID: Access denied."))
 		else
-			user << SPAN_WARNING("Maintenance protocols disabled by operator.")
+			to_chat(user, SPAN_WARNING("Maintenance protocols disabled by operator."))
 
 	else if(istype(I, /obj/item/stack/cable_coil))
 		if(state == 3 && hasInternalDamage(MECHA_INT_SHORT_CIRCUIT))
 			var/obj/item/stack/cable_coil/CC = I
 			if(CC.use(2))
 				clearInternalDamage(MECHA_INT_SHORT_CIRCUIT)
-				user << "You replace the fused wires."
+				to_chat(user, "You replace the fused wires.")
 			else
-				user << "There's not enough wire to finish the task."
+				to_chat(user, "There's not enough wire to finish the task.")
 		return
 
 	else if(istype(I, /obj/item/weapon/cell/large))
@@ -1026,7 +1026,7 @@ assassination method if you time it right*/
 				src.log_message("Powercell installed")
 				state = 4
 			else
-				user << "There's already a powercell installed."
+				to_chat(user, "There's already a powercell installed.")
 		return
 
 	else if(istype(I, /obj/item/mecha_parts/mecha_tracking))
@@ -1039,7 +1039,7 @@ assassination method if you time it right*/
 		src.log_message("Attacked by [I]. Attacker - [user]")
 
 		if(deflect_hit(is_melee=1))
-			user << SPAN_DANGER("\The [I] bounces off [src.name].")
+			to_chat(user, SPAN_DANGER("\The [I] bounces off [src.name]."))
 			src.log_append_to_last("Armor saved.")
 		else
 			src.occupant_message("<font color='red'><b>[user] hits [src] with [I].</b></font>")
@@ -1218,23 +1218,23 @@ assassination method if you time it right*/
 		return
 
 	if (usr.buckled)
-		usr << SPAN_WARNING("You can't climb into the exosuit while buckled!")
+		to_chat(usr, SPAN_WARNING("You can't climb into the exosuit while buckled!"))
 		return
 
 	src.log_message("[usr] tries to move in.")
 	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
 		if(C.handcuffed)
-			usr << SPAN_DANGER("Kinda hard to climb in while handcuffed don't you think?")
+			to_chat(usr, SPAN_DANGER("Kinda hard to climb in while handcuffed don't you think?"))
 			return
 	if (src.occupant)
 		usr << sound('sound/mecha/UI_SCI-FI_Tone_Deep_Wet_15_stereo_error.ogg',channel = 4, volume = 100)
-		usr << SPAN_DANGER("The [src.name] is already occupied!")
+		to_chat(usr, SPAN_DANGER("The [src.name] is already occupied!"))
 		src.log_append_to_last("Permission denied.")
 		return
 /*
 	if (usr.abiotic())
-		usr << SPAN_NOTICE("Subject cannot have abiotic items on.")
+		to_chat(usr, SPAN_NOTICE("Subject cannot have abiotic items on."))
 		return
 */
 	var/passed
@@ -1245,12 +1245,12 @@ assassination method if you time it right*/
 		passed = 1
 	if(!passed)
 		usr << sound('sound/mecha/UI_SCI-FI_Tone_Deep_Wet_15_stereo_error.ogg',channel = 4, volume = 100)
-		usr << SPAN_WARNING("Access denied")
+		to_chat(usr, SPAN_WARNING("Access denied"))
 		src.log_append_to_last("Permission denied.")
 		return
 	for(var/mob/living/carbon/slime/M in range(1,usr))
 		if(M.Victim == usr)
-			usr << "You're too busy getting your life sucked out of you."
+			to_chat(usr, "You're too busy getting your life sucked out of you.")
 			return
 //	usr << "You start climbing into [src.name]"
 
@@ -1260,9 +1260,9 @@ assassination method if you time it right*/
 		if(!src.occupant)
 			moved_inside(usr)
 		else if(src.occupant!=usr)
-			usr << "[src.occupant] was faster. Try better next time, loser."
+			to_chat(usr, "[src.occupant] was faster. Try better next time, loser.")
 	else
-		usr << "You stop entering the exosuit."
+		to_chat(usr, "You stop entering the exosuit.")
 	return
 
 /obj/mecha/proc/moved_inside(var/mob/living/carbon/human/H as mob)
@@ -1397,7 +1397,7 @@ assassination method if you time it right*/
 
 			occupant.SetStunned(5)
 			occupant.SetWeakened(5)
-			occupant << "You were blown out of the mech!"
+			to_chat(occupant, "You were blown out of the mech!")
 	*/
 		src.log_message("[mob_container] moved out.")
 		occupant.reset_view()
@@ -1683,7 +1683,7 @@ assassination method if you time it right*/
 /obj/mecha/proc/occupant_message(message as text)
 	if(message)
 		if(src.occupant && src.occupant.client)
-			src.occupant << "\icon[src] [message]"
+			to_chat(src.occupant, "\icon[src] [message]")
 	return
 
 /obj/mecha/proc/log_message(message as text,red=null)
@@ -1813,11 +1813,11 @@ assassination method if you time it right*/
 			if(state==0)
 				state = 1
 				user << sound('sound/mecha/UI_SCI-FI_Tone_Deep_Wet_22_stereo_complite.ogg',channel=4, volume=100)
-				user << "The securing bolts are now exposed."
+				to_chat(user, "The securing bolts are now exposed.")
 			else if(state==1)
 				state = 0
 				user << sound('sound/mecha/UI_SCI-FI_Tone_Deep_Wet_22_stereo_complite.ogg',channel=4, volume=100)
-				user << "The securing bolts are now hidden."
+				to_chat(user, "The securing bolts are now hidden.")
 			output_maintenance_dialog(m_filter.getObj("id_card"),user)
 		return
 	if(href_list["set_internal_tank_valve"] && state >=1)
@@ -1828,7 +1828,7 @@ assassination method if you time it right*/
 			var/new_pressure = input(user,"Input new output pressure","Pressure setting",internal_tank_valve) as num
 			if(new_pressure)
 				internal_tank_valve = new_pressure
-				user << "The internal pressure valve has been set to [internal_tank_valve]kPa."
+				to_chat(user, "The internal pressure valve has been set to [internal_tank_valve]kPa.")
 	if(href_list["remove_passenger"] && state >= 1)
 		var/mob/user = m_filter.getMob("user")
 		var/list/passengers = list()
@@ -1837,7 +1837,7 @@ assassination method if you time it right*/
 				passengers["[P.occupant]"] = P
 
 		if (!passengers)
-			user << SPAN_WARNING("There are no passengers to remove.")
+			to_chat(user, SPAN_WARNING("There are no passengers to remove."))
 			return
 
 		var/pname = input(user, "Choose a passenger to forcibly remove.", "Forcibly Remove Passenger") as null|anything in passengers
@@ -1896,11 +1896,11 @@ assassination method if you time it right*/
 	if(href_list["maint_reset_dna"])
 		if(src.dna_reset_allowed(usr))
 			usr << sound('sound/mecha/UI_SCI-FI_Tone_10_stereo.ogg',channel=4, volume=100)
-			usr << SPAN_NOTICE("DNA-Lock has been reverted.")
+			to_chat(usr, SPAN_NOTICE("DNA-Lock has been reverted."))
 			src.dna = null
 		else
 			usr << sound('sound/mecha/UI_SCI-FI_Tone_Deep_Wet_15_stereo_error.ogg',channel=4, volume=100)
-			usr << SPAN_WARNING("Invalid ID: Higher clearance is required.")
+			to_chat(usr, SPAN_WARNING("Invalid ID: Higher clearance is required."))
 			return
 	if(href_list["repair_int_control_lost"])
 		if(usr != src.occupant)

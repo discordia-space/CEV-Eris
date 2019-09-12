@@ -12,7 +12,7 @@
 
 	anchored = 1
 	density = 0
-	level = 1
+	level = BELOW_PLATING_LEVEL
 	var/alarm = 0
 	var/enabled = 1
 	var/list/diffused_turfs = list()

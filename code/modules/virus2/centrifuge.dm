@@ -6,7 +6,6 @@
 	var/curing
 	var/isolating
 	CheckFaceFlag = 0
-	circuit = /obj/item/weapon/circuitboard/centrifuge
 	var/obj/item/weapon/reagent_containers/glass/beaker/vial/sample = null
 	var/datum/disease2/disease/virus2 = null
 
@@ -16,7 +15,7 @@
 
 	if(istype(O,/obj/item/weapon/reagent_containers/glass/beaker/vial))
 		if(sample)
-			user << "\The [src] is already loaded."
+			to_chat(user, "\The [src] is already loaded.")
 			return
 
 		sample = O

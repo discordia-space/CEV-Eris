@@ -36,24 +36,24 @@
 	. = ..(user)
 
 	if(health == maxhealth)
-		user << SPAN_NOTICE("It looks fully intact.")
+		to_chat(user, SPAN_NOTICE("It looks fully intact."))
 	else
 		var/perc = health / maxhealth
 		if(perc > 0.75)
-			user << SPAN_NOTICE("It has a few cracks.")
+			to_chat(user, SPAN_NOTICE("It has a few cracks."))
 		else if(perc > 0.5)
-			user << SPAN_WARNING("It looks slightly damaged.")
+			to_chat(user, SPAN_WARNING("It looks slightly damaged."))
 		else if(perc > 0.25)
-			user << SPAN_WARNING("It looks moderately damaged.")
+			to_chat(user, SPAN_WARNING("It looks moderately damaged."))
 		else
-			user << SPAN_DANGER("It looks heavily damaged.")
+			to_chat(user, SPAN_DANGER("It looks heavily damaged."))
 	if(silicate)
 		if (silicate < 30)
-			user << SPAN_NOTICE("It has a thin layer of silicate.")
+			to_chat(user, SPAN_NOTICE("It has a thin layer of silicate."))
 		else if (silicate < 70)
-			user << SPAN_NOTICE("It is covered in silicate.")
+			to_chat(user, SPAN_NOTICE("It is covered in silicate."))
 		else
-			user << SPAN_NOTICE("There is a thick layer of silicate covering it.")
+			to_chat(user, SPAN_NOTICE("There is a thick layer of silicate covering it."))
 
 
 //Subtracts resistance from damage then applies it
@@ -184,7 +184,7 @@
 	if(istype(O) && O.checkpass(PASSGLASS))
 		return 1
 	if(get_dir(O.loc, target) == dir)
-		return 0
+		return !density
 	return 1
 
 
@@ -254,18 +254,18 @@
 	switch(state)
 		if(GRAB_PASSIVE)
 			visible_message(SPAN_WARNING("[user] slams [target] against \the [src]!"))
-			target.apply_damage(7)
+			target.damage_through_armor(6, BRUTE, BP_HEAD, ARMOR_MELEE)
 			hit(10)
 		if(GRAB_AGGRESSIVE)
 			visible_message(SPAN_DANGER("[user] bashes [target] against \the [src]!"))
-			if(prob(50))
+			if(prob(30))
 				target.Weaken(1)
-			target.apply_damage(10)
+			target.damage_through_armor(8, BRUTE, BP_HEAD, ARMOR_MELEE)
 			hit(15)
 		if(GRAB_NECK)
 			visible_message(SPAN_DANGER("<big>[user] crushes [target] against \the [src]!</big>"))
 			target.Weaken(5)
-			target.apply_damage(20)
+			target.damage_through_armor(12, BRUTE, BP_HEAD, ARMOR_MELEE)
 			hit(20)
 	admin_attack_log(user, target,
 		"Smashed [key_name(target)] against \the [src]",
@@ -295,12 +295,12 @@
 			if(QUALITY_SEALING)
 				user.visible_message("[user] starts sealing up cracks in [src] with the [I]", "You start sealing up cracks in [src] with the [I]")
 				if (I.use_tool(user, src, 60 + ((maxhealth - health)*3), QUALITY_SEALING, FAILCHANCE_NORMAL, STAT_MEC))
-					user << SPAN_NOTICE("The [src] looks pretty solid now!")
+					to_chat(user, SPAN_NOTICE("The [src] looks pretty solid now!"))
 					health = maxhealth
 			if(QUALITY_BOLT_TURNING)
 				if(!anchored && (!state || !reinf))
 					if(!glasstype)
-						user << SPAN_NOTICE("You're not sure how to dismantle \the [src] properly.")
+						to_chat(user, SPAN_NOTICE("You're not sure how to dismantle \the [src] properly."))
 						return
 					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						visible_message(SPAN_NOTICE("[user] dismantles \the [src]."))
@@ -316,7 +316,7 @@
 				if(reinf && state <= 1)
 					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						state = 1 - state
-						user << (state ? SPAN_NOTICE("You have pried the window into the frame.") : SPAN_NOTICE("You have pried the window out of the frame."))
+						to_chat(user, (state ? SPAN_NOTICE("You have pried the window into the frame.") : SPAN_NOTICE("You have pried the window out of the frame.")))
 				return 1 //No whacking the window with tools unless harm intent
 
 
@@ -325,17 +325,17 @@
 					if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						state = 3 - state
 						update_nearby_icons()
-						user << (state == 1 ? SPAN_NOTICE("You have unfastened the window from the frame.") : SPAN_NOTICE("You have fastened the window to the frame."))
+						to_chat(user, (state == 1 ? SPAN_NOTICE("You have unfastened the window from the frame.") : SPAN_NOTICE("You have fastened the window to the frame.")))
 						return
 				if(reinf && state == 0)
 					if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						set_anchored(!anchored)
-						user << (anchored ? SPAN_NOTICE("You have fastened the frame to the floor.") : SPAN_NOTICE("You have unfastened the frame from the floor."))
+						to_chat(user, (anchored ? SPAN_NOTICE("You have fastened the frame to the floor.") : SPAN_NOTICE("You have unfastened the frame from the floor.")))
 						return
 				if(!reinf)
 					if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY))
 						set_anchored(!anchored)
-						user << (anchored ? SPAN_NOTICE("You have fastened the window to the floor.") : SPAN_NOTICE("You have unfastened the window."))
+						to_chat(user, (anchored ? SPAN_NOTICE("You have fastened the window to the floor.") : SPAN_NOTICE("You have unfastened the window.")))
 						return
 				return 1 //No whacking the window with tools unless harm intent
 
@@ -374,7 +374,7 @@
 		return 0
 
 	if(anchored)
-		usr << "It is fastened to the floor therefore you can't rotate it!"
+		to_chat(usr, "It is fastened to the floor therefore you can't rotate it!")
 		return 0
 
 	update_nearby_tiles(need_rebuild=1) //Compel updates before
@@ -393,7 +393,7 @@
 		return 0
 
 	if(anchored)
-		usr << "It is fastened to the floor therefore you can't rotate it!"
+		to_chat(usr, "It is fastened to the floor therefore you can't rotate it!")
 		return 0
 
 	update_nearby_tiles(need_rebuild=1) //Compel updates before

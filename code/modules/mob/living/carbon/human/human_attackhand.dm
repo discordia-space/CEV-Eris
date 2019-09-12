@@ -16,7 +16,7 @@
 		if(H.hand)
 			temp = H.organs_by_name[BP_L_ARM]
 		if(!temp || !temp.is_usable())
-			H << "\red You can't use your hand."
+			to_chat(H, "\red You can't use your hand.")
 			return
 
 	..()
@@ -35,7 +35,6 @@
 				visible_message("\red <B>[H] has attempted to punch [src]!</B>")
 				return 0
 			var/obj/item/organ/external/affecting = get_organ(ran_zone(H.targeted_organ))
-			var/armor_block = run_armor_check(affecting, "melee")
 
 			if(HULK in H.mutations)
 				damage += 5
@@ -44,10 +43,10 @@
 
 			visible_message("\red <B>[H] has punched [src]!</B>")
 
-			apply_damage(damage, HALLOSS, affecting, armor_block)
+			damage_through_armor(damage, HALLOSS, affecting, ARMOR_MELEE)
 			if(damage >= 9)
 				visible_message("\red <B>[H] has weakened [src]!</B>")
-				apply_effect(4, WEAKEN, armor_block)
+				apply_effect(4, WEAKEN, getarmor(affecting, ARMOR_MELEE))
 
 			return
 
@@ -58,16 +57,16 @@
 		if(I_HELP)
 			if(istype(H) && health < HEALTH_THRESHOLD_CRIT && health > HEALTH_THRESHOLD_DEAD)
 				if(!H.check_has_mouth())
-					H << SPAN_DANGER("You don't have a mouth, you cannot perform CPR!")
+					to_chat(H, SPAN_DANGER("You don't have a mouth, you cannot perform CPR!"))
 					return
 				if(!check_has_mouth())
-					H << SPAN_DANGER("They don't have a mouth, you cannot perform CPR!")
+					to_chat(H, SPAN_DANGER("They don't have a mouth, you cannot perform CPR!"))
 					return
 				if((H.head && (H.head.body_parts_covered & FACE)) || (H.wear_mask && (H.wear_mask.body_parts_covered & FACE)))
-					H << SPAN_NOTICE("Remove your mask!")
+					to_chat(H, SPAN_NOTICE("Remove your mask!"))
 					return 0
 				if((head && (head.body_parts_covered & FACE)) || (wear_mask && (wear_mask.body_parts_covered & FACE)))
-					H << SPAN_NOTICE("Remove [src]'s mask!")
+					to_chat(H, SPAN_NOTICE("Remove [src]'s mask!"))
 					return 0
 
 				if (!cpr_time)
@@ -86,8 +85,8 @@
 				adjustOxyLoss(-(min(getOxyLoss(), cpr_efficiency)))
 				updatehealth()
 				H.visible_message(SPAN_DANGER("\The [H] performs CPR on \the [src]!"))
-				src << SPAN_NOTICE("You feel a breath of fresh air enter your lungs. It feels good.")
-				H << SPAN_WARNING("Repeat at least every 7 seconds.")
+				to_chat(src, SPAN_NOTICE("You feel a breath of fresh air enter your lungs. It feels good."))
+				to_chat(H, SPAN_WARNING("Repeat at least every 7 seconds."))
 
 			else
 				help_shake_act(M)
@@ -98,14 +97,14 @@
 				return 0
 			for(var/obj/item/weapon/grab/G in src.grabbed_by)
 				if(G.assailant == M)
-					M << SPAN_NOTICE("You already grabbed [src].")
+					to_chat(M, SPAN_NOTICE("You already grabbed [src]."))
 					return
 			if(w_uniform)
 				w_uniform.add_fingerprint(M)
 
 			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src)
 			if(buckled)
-				M << SPAN_NOTICE("You cannot grab [src], \he is buckled in!")
+				to_chat(M, SPAN_NOTICE("You cannot grab [src], \he is buckled in!"))
 			if(!G)	//the grab will delete itself in New if affecting is anchored
 				return
 			M.put_in_active_hand(G)
@@ -125,7 +124,7 @@
 					G.activate(M)
 					update_inv_wear_mask()
 				else
-					M << SPAN_WARNING("\The [G] is already primed! Run!")
+					to_chat(M, SPAN_WARNING("\The [G] is already primed! Run!"))
 				return
 
 			if(!istype(H))
@@ -139,7 +138,7 @@
 			var/obj/item/organ/external/affecting = get_organ(hit_zone)
 
 			if(!affecting || affecting.is_stump())
-				M << SPAN_DANGER("They are missing that limb!")
+				to_chat(M, SPAN_DANGER("They are missing that limb!"))
 				return 1
 
 			switch(src.a_intent)
@@ -212,7 +211,7 @@
 			msg_admin_attack("[key_name(H)] [miss_type ? (miss_type == 1 ? "has missed" : "was blocked by") : "has [pick(attack.attack_verb)]"] [key_name(src)]")
 
 			if(miss_type)
-				return 0
+				return FALSE
 
 			var/real_damage = stat_damage
 			real_damage += attack.get_unarmed_damage(H)
@@ -223,12 +222,11 @@
 				stat_damage *= 2
 			real_damage = max(1, real_damage)
 
-			var/armour = run_armor_check(affecting, "melee")
 			// Apply additional unarmed effects.
-			attack.apply_effects(H, src, armour, stat_damage, hit_zone)
+			attack.apply_effects(H, src, getarmor(affecting, ARMOR_MELEE), stat_damage, hit_zone)
 
 			// Finally, apply damage to target
-			apply_damage(real_damage, (attack.deal_halloss ? HALLOSS : BRUTE), affecting, armour, sharp=attack.sharp, edge=attack.edge)
+			damage_through_armor(real_damage, (attack.deal_halloss ? HALLOSS : BRUTE), affecting, ARMOR_MELEE, sharp = attack.sharp, edge = attack.edge)
 
 		if(I_DISARM)
 			M.attack_log += text("\[[time_stamp()]\] <font color='red'>Disarmed [src.name] ([src.ckey])</font>")
@@ -257,13 +255,9 @@
 			var/randn = rand(1, 100)
 			randn = max(1, randn - H.stats.getStat(STAT_ROB))
 			if(!(species.flags & NO_SLIP) && randn <= 20)
-				var/armor_check = run_armor_check(affecting, "melee", armour_pen = H.stats.getStat(STAT_ROB))
-				apply_effect(3, WEAKEN, armor_check)
+				apply_effect(3, WEAKEN, getarmor(affecting, ARMOR_MELEE))
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-				if(armor_check < 2)
-					visible_message(SPAN_DANGER("[M] has pushed [src]!"))
-				else
-					visible_message(SPAN_WARNING("[M] attempted to push [src]!"))
+				visible_message(SPAN_DANGER("[M] has pushed [src]!"))
 				return
 
 			if(randn <= 50)
@@ -298,10 +292,9 @@
 
 	var/dam_zone = pick(organs_by_name)
 	var/obj/item/organ/external/affecting = get_organ(ran_zone(dam_zone))
-	var/armor_block = run_armor_check(affecting, "melee")
-	apply_damage(damage, BRUTE, affecting, armor_block)
+	damage_through_armor(damage, BRUTE, affecting, ARMOR_MELEE)
 	updatehealth()
-	return 1
+	return TRUE
 
 //Used to attack a joint through grabbing
 /mob/living/carbon/human/proc/grab_joint(var/mob/living/user, var/def_zone)

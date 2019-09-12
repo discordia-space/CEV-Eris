@@ -172,7 +172,7 @@
 							// if he is not lets show him what actually happened
 							H.can_inject(user, TRUE)
 							return
-				
+
 				else if(!L.can_inject(user, TRUE))
 					return
 
@@ -213,7 +213,7 @@
 			else
 				trans = reagents.trans_to(target, amount_per_transfer_from_this)
 			to_chat(user, SPAN_NOTICE("You inject [trans] units of the solution. [src] now contains [src.reagents.total_volume] units."))
-				
+
 
 
 /obj/item/weapon/reagent_containers/syringe/update_icon()
@@ -262,7 +262,7 @@
 		if((user != target) && H.check_shields(7, src, user, "\the [src]"))
 			return
 
-		if (target != user && H.getarmor(target_zone, "melee") > 5 && prob(50))
+		if (target != user && H.getarmor(target_zone, ARMOR_MELEE) > 5 && prob(50))
 			for(var/mob/O in viewers(world.view, user))
 				O.show_message(text("\red <B>[user] tries to stab [target] in \the [hit_area] with [src.name], but the attack is deflected by armor!</B>"), 1)
 			user.remove_from_mob(src)
@@ -323,22 +323,22 @@
 /obj/item/weapon/reagent_containers/syringe/inaprovaline
 	name = "syringe (inaprovaline)"
 	desc = "Contains inaprovaline - used to stabilize patients."
-	preloaded = list("inaprovaline" = 15)
+	preloaded_reagents = list("inaprovaline" = 15)
 
 /obj/item/weapon/reagent_containers/syringe/antitoxin
 	name = "syringe (anti-toxin)"
 	desc = "Contains anti-toxins."
-	preloaded = list("anti_toxin" = 15)
+	preloaded_reagents = list("anti_toxin" = 15)
 
 /obj/item/weapon/reagent_containers/syringe/antiviral
 	name = "syringe (spaceacillin)"
 	desc = "Contains antiviral agents."
-	preloaded = list("spaceacillin" = 15)
+	preloaded_reagents = list("spaceacillin" = 15)
 
 /obj/item/weapon/reagent_containers/syringe/drugs
 	name = "syringe (drugs)"
 	desc = "Contains aggressive drugs meant for torture."
-	preloaded = list("space_drugs" = 5, "mindbreaker" = 5, "cryptobiolin" = 5)
+	preloaded_reagents = list("space_drugs" = 5, "mindbreaker" = 5, "cryptobiolin" = 5)
 
 /obj/item/weapon/reagent_containers/syringe/ld50_syringe/choral
-	preloaded = list("chloralhydrate" = 50)
+	preloaded_reagents = list("chloralhydrate" = 50)
