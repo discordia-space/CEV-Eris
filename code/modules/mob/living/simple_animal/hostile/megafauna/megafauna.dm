@@ -13,7 +13,6 @@
 	var/robust_searching = TRUE //By default, mobs have a simple searching method, set this to 1 for the more scrutinous searching (stat_attack, stat_exclusive, etc), should be disabled on most mobs
 	var/stat_attack = DEAD
 	var/atom/target
-	//atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	maxbodytemp = INFINITY
 	mob_size = MOB_SIZE_LARGE
@@ -33,53 +32,27 @@
 
 /mob/living/simple_animal/hostile/megafauna/Initialize(mapload)
 	. = ..()
-	//apply_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
-	ADD_TRAIT(src, TRAIT_NO_TELEPORT, MEGAFAUNA_TRAIT)
 	for(var/action_type in attack_action_types)
 		var/datum/action/innate/megafauna_attack/attack_action = new action_type()
 		attack_action.Grant(src)
-	//if(small_sprite_type)
-	//	var/datum/action/small_sprite/small_action = new small_sprite_type()
-	//	small_action.Grant(src)
-
-/mob/living/simple_animal/hostile/megafauna/Move()
-	if(nest && nest.parent && get_dist(nest.parent, src) > nest_range)
-		var/turf/closest = get_turf(nest.parent)
-		for(var/i = 1 to nest_range)
-			closest = get_step(closest, get_dir(closest, src))
-		forceMove(closest) // someone teleported out probably and the megafauna kept chasing them
-		target = null
-		return
-	return ..()
 
 /mob/living/simple_animal/hostile/megafauna/proc/prevent_content_explosion()
 	return TRUE
 
 /mob/living/simple_animal/hostile/megafauna/death(gibbed, var/list/force_grant)
-	if(health > 0)
+	if(health <= 0)
+		qdel(src)
 		return
-	else
-		//var/datum/status_effect/crusher_damage/C = has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
-		//var/crusher_kill = FALSE
-		//if(C && crusher_loot && C.total_damage >= maxHealth * 0.6)
-		//spawn_crusher_loot()
-		//  crusher_kill = TRUE
-		..()
-
-//mob/living/simple_animal/hostile/megafauna/proc/spawn_crusher_loot()
-//	loot = crusher_loot
 
 /mob/living/simple_animal/hostile/megafauna/gib()
-	if(health > 0)
+	if(health <= 0)
+		qdel(src)
 		return
-	else
-		..()
 
 /mob/living/simple_animal/hostile/megafauna/dust(just_ash, drop_items, force)
-	if(!force && health > 0)
+	if(health <= 0)
+		qdel(src)
 		return
-	else
-		..()
 
 /mob/living/simple_animal/hostile/megafauna/AttackingTarget()
 	if(recovery_time >= world.time)
@@ -97,8 +70,8 @@
 	if(!L)
 		return FALSE
 	visible_message(
-		"<span class='danger'>[src] devours [L]!</span>",
-		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
+		SPAN_DANGER("[src] devours [L]!</span>"),
+		SPAN_DANGER("You feast on [L], restoring your health!"))
 	if(client)
 		adjustBruteLoss(-L.maxHealth/2)
 	L.gib()
@@ -121,7 +94,6 @@
 
 /datum/action/innate/megafauna_attack
 	name = "Megafauna Attack"
-	//icon_icon = 'icons/mob/actions/actions_animal.dmi'
 	button_icon_state = ""
 	var/mob/living/simple_animal/hostile/megafauna/M
 	var/chosen_message
@@ -153,7 +125,6 @@
 			shake_camera(M, 4, 3)
 	visible_message(SPAN_DANGER(pick("Prepare to die!", "JUSTICE", "Run!")))
 	sleep(rand(megafauna_min_cooldown, megafauna_max_cooldown))
-
 
 /mob/living/simple_animal/hostile/megafauna/proc/spiral_shoot(negative = pick(TRUE, FALSE), counter_start = 8)
 	var/turf/start_turf = get_step(src, pick(GLOB.alldirs))
