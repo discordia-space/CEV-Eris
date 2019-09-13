@@ -142,7 +142,7 @@ It focuses on spawning large numbers of moderate-to-weak monsters, and includes 
 		if (EVENT_LEVEL_MAJOR)
 			chosen_mob = pick(possible_mobs_major)
 			num_spawns_per_area = possible_mobs_major[chosen_mob]
-	num_spawns_per_area *= rand_decimal(0.75, 1.5)
+	num_spawns_per_area *= RAND_DECIMAL(0.75, 1.5)
 	num_spawns_per_area = round(num_spawns_per_area, 1)
 
 	switch(chosen_mob)

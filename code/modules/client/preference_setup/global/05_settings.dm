@@ -126,7 +126,7 @@
 	if(!cp)
 		return FALSE
 
-	var/next_option = next_in_list(prefs.preference_values[cp.key], cp.options)
+	var/next_option = next_list_item(prefs.preference_values[cp.key], cp.options)
 	return set_preference(preference, next_option)
 
 /mob/proc/get_preference_value(var/preference)
