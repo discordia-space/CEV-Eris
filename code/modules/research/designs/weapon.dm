@@ -62,6 +62,13 @@
 	build_path = /obj/item/weapon/bluespace_harpoon
 	sort_string = "TBAAB"
 
+/datum/design/research/item/weapon/hatton
+	name = "Excelsior BT \"Hatton\""
+	desc = "More an instrument than a weapon, this breaching tool was designed for emergency situations."
+	build_path = /obj/item/weapon/hatton
+	sort_string = "TBAAD"
+
+
 // Ammo
 /datum/design/research/item/ammo
 	name_category = "ammunition"
@@ -72,3 +79,10 @@
 	desc = "A stunning shell for a shotgun."
 	build_path = /obj/item/ammo_casing/shotgun/stunshell
 	sort_string = "TAACB"
+
+/datum/design/research/item/ammo/hatton
+	name = "shotgun, stun"
+	desc = "A stunning shell for a shotgun."
+	build_path = /obj/item/weapon/hatton_magazine
+	sort_string = "TAACC"
+
