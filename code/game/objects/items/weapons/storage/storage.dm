@@ -477,30 +477,31 @@
 			if(collectItems(get_turf(A), user))
 				return TRUE
 	//Clicking on tile with no collectible items will empty it, if it has the verb to do that.
-	if(src.verbs.Find(/obj/item/weapon/storage/verb/quick_empty))
-		if(isturf(A))
-			src.quick_empty(A)
+	if(allow_quick_empty))
+		if(isturf(A) && !A.density)
+			dump_it(A)
 			return TRUE
-
 	return ..()
 
-/obj/item/weapon/storage/verb/quick_empty(var/turf/target)
+/obj/item/weapon/storage/verb/quick_empty()
 	set name = "Empty Contents"
 	set category = "Object"
+	set src in view(1)
 
 	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
 		return
 
-	var/turf/T
-	if(isturf(target))
-		T = target
-	else
-		T = get_turf(src)
+	var/turf/T = get_turf(src)
 	if(!istype(T))
+		return
+	dump_it(T)
+
+/obj/item/weapon/storage/proc/dump_it(var/turf/target) //he bought?
+	if(!isturf(target))
 		return
 	hide_from(usr)
 	for(var/obj/item/I in contents)
-		remove_from_storage(I, T)
+		remove_from_storage(I, target)
 
 /obj/item/weapon/storage/New()
 	..()
