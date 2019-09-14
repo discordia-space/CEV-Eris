@@ -4,13 +4,13 @@
 	icon = 'icons/obj/machines/excelsior/objects.dmi'
 	var/cooldown = 0
 
-	attack_hand(mob/living/user as mob)
-		var/last_use
+/obj/structure/omnius/attack_hand(mob/living/user as mob)
+	var/last_use
 
-		if(world.time < last_use + 46 SECONDS)
-			return
-		last_use = world.time
-		emp_in(src.loc, 1, 1, 0)
+	if(world.time < last_use + 46 SECONDS)
+		return
+	last_use = world.time
+	emp_in(src.loc, 1, 1, 0)
 
 /obj/structure/omnius/proc/emp_in(turf/epicenter, heavy_range, light_range, log=0)
 	for(var/mob/M in range(heavy_range, epicenter))
@@ -44,19 +44,19 @@
 /obj/structure/omnius/emitter
 	var/shooting = 0
 
-	attack_hand(mob/living/user as mob)
-		shoot()
+/obj/structure/omnius/emitter/attack_hand(mob/living/user as mob)
+	shoot()
 
 /obj/structure/omnius/teleporter
 
-	proc/teleport()
-		for(var/mob/living/carbon/human/H in range(7, src))
-			H.forceMove(locate(x + rand(-14, 14), y + rand(-14, 14), z))
+/obj/structure/omnius/teleporter/proc/teleport()
+	for(var/mob/living/carbon/human/H in range(7, src))
+		H.forceMove(locate(x + rand(-14, 14), y + rand(-14, 14), z))
 
-	attack_hand(mob/living/user as mob)
-		var/last_use
+/obj/structure/omnius/teleporter/attack_hand(mob/living/user as mob)
+	var/last_use
 
-		if(world.time < last_use + 66 SECONDS)
-			return
-		last_use = world.time
-		teleport()
+	if(world.time < last_use + 66 SECONDS)
+		return
+	last_use = world.time
+	teleport()

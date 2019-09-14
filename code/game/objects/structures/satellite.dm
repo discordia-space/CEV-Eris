@@ -3,12 +3,12 @@
 	icon_state = "sputnik"
 	var/cooldown = 0
 
-	attack_hand(mob/living/user as mob)
-		if(cooldown == 0)
-			cooldown = 1
-			emp_in(src.loc, 4, 6, 0)
-			sleep(360)
-			cooldown = 0
+/obj/structure/satellite/attack_hand(mob/living/user as mob)
+	if(cooldown == 0)
+		cooldown = 1
+		emp_in(src.loc, 4, 6, 0)
+		sleep(360)
+		cooldown = 0
 
 /obj/structure/satellite/proc/emp_in(turf/epicenter, heavy_range, light_range, log=0)
 	for(var/mob/M in range(heavy_range, epicenter))
@@ -39,10 +39,10 @@
 /obj/structure/satellite/science
 	var/death = 0
 
-	attack_hand(mob/living/user as mob)
-		if(istype(user, /mob/living/carbon/human))
-			if(death == 0)
-				death = 1
-				var/mob/living/carbon/human/H = user
-				var/mystat = pick(STAT_MEC, STAT_COG, STAT_TGH, STAT_VIG, STAT_BIO)
-				H.stats.changeStat(mystat, H.stats:getStat(mystat) + 20)
+/obj/structure/satellite/science/attack_hand(mob/living/user as mob)
+	if(istype(user, /mob/living/carbon/human))
+		if(death == 0)
+			death = 1
+			var/mob/living/carbon/human/H = user
+			var/mystat = pick(STAT_MEC, STAT_COG, STAT_TGH, STAT_VIG, STAT_BIO)
+			H.stats.changeStat(mystat, H.stats:getStat(mystat) + 20)
