@@ -113,3 +113,21 @@
 	armor = list(melee = 0, bullet = 0, energy = 60, bomb = 0, bio = 100, rad = 100)
 	flags_inv = HIDEJUMPSUIT|HIDETAIL
 	price_tag = 100
+
+/*
+*  Ozk Suit
+*/
+/obj/item/clothing/suit/radiation
+	name = "Military radiation suit"
+	desc = "A suit that protects against radiation. Label: Does not include Vokda."
+	icon_state = "ozk_suit"
+	item_state = "ozk_suit"
+	w_class = ITEM_SIZE_LARGE//bulky item
+	gas_transfer_coefficient = 0.90
+	permeability_coefficient = 0.50
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	extra_allowed = list(/obj/item/clothing/mask/gas/ozk_mask)
+	slowdown = 1.0
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 60, rad = 70)
+	flags_inv = HIDEJUMPSUIT|HIDETAIL
+	price_tag = 100

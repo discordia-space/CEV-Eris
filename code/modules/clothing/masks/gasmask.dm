@@ -106,3 +106,11 @@
 	desc = "Twoooo!"
 	icon_state = "owl"
 	body_parts_covered = HEAD|FACE|EYES
+
+/obj/item/clothing/mask/gas/ozk_mask
+	name = "russian military gas mask"
+	desc = "Russian military gas mask, dosen't come with vodka blyat !"
+	icon_state = "ozk_mask"
+	item_state = "ozk_mask"
+	armor = list(melee = 0, bullet = 0, laser = 2,energy = 2, bomb = 0, bio = 90, rad = 70)
+	body_parts_covered = HEAD|FACE|EYES
