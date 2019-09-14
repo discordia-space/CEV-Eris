@@ -86,7 +86,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 			loaded_item = I
 			to_chat(user, SPAN_NOTICE("You add \the [I] to \the [src]."))
 			flick("d_analyzer_la", src)
-			addtimer(CALLBACK(src, .proc/reset_busy), 1 SECOND)
+			addtimer(CALLBACK(src, .proc/reset_busy), 1 SECONDS)
 			return TRUE
 	return
 
