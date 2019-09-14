@@ -49,7 +49,7 @@
 	if(active)
 		to_chat(usr, SPAN_WARNING("Autodoc already in use"))
 		return FALSE
-	
+
 	scanned_patchnotes = new()
 	picked_patchnotes = new()
 
@@ -81,7 +81,7 @@
 				if(BP_IS_ROBOTIC(external))
 					continue
 				patchnote.surgery_operations |= AUTODOC_DAMAGE
-		
+
 		if(AUTODOC_FRACTURE in possible_operations)
 			if(external.status & ORGAN_BROKEN)
 				patchnote.surgery_operations |= AUTODOC_FRACTURE
@@ -95,7 +95,7 @@
 				if(wound.internal)
 					if(AUTODOC_IB in possible_operations)
 						patchnote.surgery_operations |= AUTODOC_IB
-				else 
+				else
 					if(AUTODOC_OPEN_WOUNDS in possible_operations)
 						if(!wound.is_treated())
 							patchnote.surgery_operations |= AUTODOC_OPEN_WOUNDS
@@ -121,7 +121,7 @@
 			patient.vessel.remove_any(pumped + 1)
 			if(!pumped)
 				patchnote.surgery_operations &= ~AUTODOC_DIALYSIS
-		
+
 		else if (patchnote.surgery_operations & AUTODOC_BLOOD)
 			var/datum/reagent/blood/blood = patient.vessel.reagent_list[1]
 			blood.volume += damage_heal_amount
@@ -135,7 +135,7 @@
 			if(internal.damage < 0) internal.damage = 0
 			if(!internal.damage) patchnote.surgery_operations &= ~AUTODOC_DAMAGE
 			return !internal.damage
-		
+
 		external.heal_damage(damage_heal_amount, damage_heal_amount)
 		if(!external.brute_dam && !external.burn_dam) patchnote.surgery_operations &= ~AUTODOC_DAMAGE
 
@@ -181,10 +181,10 @@
 			current_step++
 		else if(process_note(picked_patchnotes[current_step]))
 			current_step++
-	
+
 /datum/autodoc/proc/fail()
 	current_step++
-	
+
 /datum/autodoc/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 2, var/datum/topic_state/state)
 	if(!patient)
 		if(ui)
@@ -211,7 +211,7 @@
 	data["blood_amount"] = patient.vessel.get_reagent_amount("blood") / patient.species.blood_volume * 100
 
 	var/list/organs = list()
-	
+
 	var/i = 0
 	if(!scanned_patchnotes.len)
 		data["antitox"] = FALSE
@@ -219,7 +219,7 @@
 
 		data["dialysis"] = FALSE
 		data["dialysis_picked"] = FALSE
-			
+
 		data["blood"] = FALSE
 		data["blood_picked"] = FALSE
 	else
@@ -233,11 +233,11 @@
 
 				data["dialysis"] = note.surgery_operations & AUTODOC_DIALYSIS
 				data["dialysis_picked"] = picked_patchnotes[i].surgery_operations & AUTODOC_DIALYSIS
-				
+
 				data["blood"] = note.surgery_operations & AUTODOC_BLOOD
 				data["blood_picked"] = picked_patchnotes[i].surgery_operations & AUTODOC_BLOOD
 				continue
-			
+
 			if(istype(note.organ, /obj/item/organ/internal))
 				var/obj/item/organ/internal/internal = note.organ
 				organ["name"] = internal.name
@@ -287,9 +287,9 @@
 		active = TRUE
 		spawn()
 			while(active)
-				sleep(1 SECOND)
+				sleep(1 SECONDS)
 				Process()
-	
+
 
 /datum/autodoc/Topic(href, href_list)
 	if(..()) return TRUE
@@ -327,7 +327,7 @@
 		else
 			picked_patchnotes[id].surgery_operations |= op
 	return TRUE
-	
+
 
 
 /datum/autodoc/capitalist_autodoc
@@ -386,7 +386,7 @@
 	total_cost = recalc_costs(scanned_patchnotes)
 
 /datum/autodoc/capitalist_autodoc/proc/recalc_costs(var/list/notes)
-	var/cost = 0 
+	var/cost = 0
 	for(var/datum/autodoc_patchnote/patchnote in notes)
 		if(patchnote.surgery_operations & AUTODOC_TOXIN)
 			cost += AUTODOC_TOXIN_COST
