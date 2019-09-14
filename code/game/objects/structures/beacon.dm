@@ -11,7 +11,6 @@
 		playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)	//Plays a beep
 		nosignal = 1
 
-/obj/structure/strangebeacon/bots //who you gonna call
 /obj/structure/strangebeacon/bots/attack_hand(mob/living/user as mob)
 	if(nosignal == 0)
 		var/counter = 0
@@ -21,8 +20,6 @@
 			counter++
 			new /mob/living/bot/miningonestar/resources/agressive ( get_step(src, pick(GLOB.cardinal)) )
 		nosignal = 1
-
-/obj/structure/strangebeacon/pods
 
 /obj/structure/strangebeacon/pods/proc/call_droppod()
 	if(nosignal == 0)
@@ -37,7 +34,6 @@
 /obj/structure/strangebeacon/pods/attack_hand(mob/living/user as mob)
 	addtimer(CALLBACK(src, .proc/call_droppod), rand(100,300))
 
-/obj/structure/strangebeacon/bombard
 /obj/structure/strangebeacon/bombard/attack_hand(mob/living/user as mob)
 	var/counter = 0
 	var/counterfinish = rand(2,4)

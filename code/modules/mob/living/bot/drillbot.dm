@@ -34,7 +34,6 @@
 	var/atom/A = pick(/obj/item/stack/material/plasma/random, /obj/item/stack/material/iron/random, /obj/item/stack/material/gold/random, /obj/item/stack/material/diamond/random, /obj/item/stack/material/uranium/random)
 	loot = new A
 
-/mob/living/bot/miningonestar/resources/agressive
 /mob/living/bot/miningonestar/resources/agressive/Life()
 	..()
 	if(health <= 0)
@@ -69,7 +68,6 @@
 		counter++
 		new /mob/living/bot/miningonestar/resources/agressive ( locate( get_step(src, pick(NORTH, WEST, EAST, SOUTH) ) ))
 
-/mob/living/bot/miningonestar/resources/in_work
 /mob/living/bot/miningonestar/resources/in_work/Life()
 	..()
 	if(health <= 0)

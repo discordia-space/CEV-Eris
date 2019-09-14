@@ -37,12 +37,12 @@
 	return 1
 
 /obj/structure/satellite/science
-	var/death = 0
+	var/nosignal = 0
 
 /obj/structure/satellite/science/attack_hand(mob/living/user as mob)
 	if(istype(user, /mob/living/carbon/human))
-		if(death == 0)
-			death = 1
+		if(nosignal == 0)
+			nosignal = 1
 			var/mob/living/carbon/human/H = user
 			var/mystat = pick(STAT_MEC, STAT_COG, STAT_TGH, STAT_VIG, STAT_BIO)
 			H.stats.changeStat(mystat, H.stats:getStat(mystat) + 20)

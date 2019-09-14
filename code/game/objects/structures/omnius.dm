@@ -1,10 +1,10 @@
-/obj/structure/omnius
-	name = "omnius generator"
-	icon_state = "omnius"
+/obj/structure/ominous
+	name = "ominous generator"
+	icon_state = "ominous"
 	icon = 'icons/obj/machines/excelsior/objects.dmi'
 	var/cooldown = 0
 
-/obj/structure/omnius/attack_hand(mob/living/user as mob)
+/obj/structure/ominous/attack_hand(mob/living/user as mob)
 	var/last_use
 
 	if(world.time < last_use + 46 SECONDS)
@@ -12,7 +12,7 @@
 	last_use = world.time
 	emp_in(src.loc, 1, 1, 0)
 
-/obj/structure/omnius/proc/emp_in(turf/epicenter, heavy_range, light_range, log=0)
+/obj/structure/ominous/proc/emp_in(turf/epicenter, heavy_range, light_range, log=0)
 	for(var/mob/M in range(heavy_range, epicenter))
 		playsound(loc, 'sound/effects/EMPulse.ogg')
 
@@ -29,7 +29,7 @@
 			T.emp_act(2)
 	return 1
 
-/obj/structure/omnius/emitter/proc/shoot()
+/obj/structure/ominous/emitter/proc/shoot()
 	if(shooting == 0)
 		shooting = 1
 		while(cooldown < 80)
@@ -41,19 +41,19 @@
 		cooldown = 0
 	shooting = 0
 
-/obj/structure/omnius/emitter
+/obj/structure/ominous/emitter
 	var/shooting = 0
 
-/obj/structure/omnius/emitter/attack_hand(mob/living/user as mob)
+/obj/structure/ominous/emitter/attack_hand(mob/living/user as mob)
 	shoot()
 
-/obj/structure/omnius/teleporter
+/obj/structure/ominous/teleporter
 
-/obj/structure/omnius/teleporter/proc/teleport()
+/obj/structure/ominous/teleporter/proc/teleport()
 	for(var/mob/living/carbon/human/H in range(7, src))
 		H.forceMove(locate(x + rand(-14, 14), y + rand(-14, 14), z))
 
-/obj/structure/omnius/teleporter/attack_hand(mob/living/user as mob)
+/obj/structure/ominous/teleporter/attack_hand(mob/living/user as mob)
 	var/last_use
 
 	if(world.time < last_use + 66 SECONDS)
