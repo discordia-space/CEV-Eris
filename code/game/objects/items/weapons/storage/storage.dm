@@ -477,7 +477,7 @@
 			if(collectItems(get_turf(A), user))
 				return TRUE
 	//Clicking on tile with no collectible items will empty it, if it has the verb to do that.
-	if(allow_quick_empty))
+	if(allow_quick_empty)
 		if(isturf(A) && !A.density)
 			dump_it(A)
 			return TRUE
