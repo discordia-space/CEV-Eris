@@ -42,7 +42,7 @@
 	)
 
 /obj/item/weapon/circuitboard/excelsior_teleporter
-	name = T_BOARD("excelsior excelsior teleporter")
+	name = T_BOARD("excelsior teleporter")
 	build_path = /obj/machinery/complant_teleporter
 	board_type = "machine"
 	origin_tech = list(TECH_DATA = 3, TECH_BLUESPACE = 3, TECH_ILLEGAL = 2)
