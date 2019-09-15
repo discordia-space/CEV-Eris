@@ -12,6 +12,9 @@
 
 
 /obj/item/stack/nanopaste/attack(mob/living/M as mob, mob/user as mob)
+	if(!get_amount())
+		to_chat(user, SPAN_NOTICE("Recharge medicine synthesizer"))
+		return
 	if(..())
 		return 1
 	if (!istype(M) || !istype(user))
