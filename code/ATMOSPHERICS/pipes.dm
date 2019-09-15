@@ -89,7 +89,8 @@
 		add_fingerprint(user)
 		return 1
 
-	to_chat(user, SPAN_NOTICE("You can't unfasten \the [src] with this tool."))
+	if(istype(I,/obj/item/weapon/tool/wrench))
+		to_chat(user, SPAN_NOTICE("You begin to unfasten \the [src]..."))
 
 	if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 		user.visible_message( \
