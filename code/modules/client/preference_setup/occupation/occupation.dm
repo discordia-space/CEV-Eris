@@ -139,6 +139,8 @@
 			bad_message = "\[MINIMUM CHARACTER AGE: [job.minimum_character_age]]"
 		else if(user.client && job.is_religion_restricted(user.client.prefs.religion))
 			bad_message = "\[CONFLICT OF INTEREST: RELIGION]"
+		else if(user.client && job.is_background_restricted(user.client.prefs.background))
+			bad_message = "\[CONFLICT OF INTEREST: BACKGROUND]"
 
 		if(("Assistant" in pref.job_low) && (rank != "Assistant"))
 			. += "<a href='?src=\ref[src];set_skills=[rank]'><font color=grey>[rank]</font></a></td><td></td></tr>"

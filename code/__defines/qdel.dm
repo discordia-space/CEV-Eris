@@ -14,12 +14,13 @@
 #define GC_QUEUE_HARDDELETE 3
 #define GC_QUEUE_COUNT 3 //increase this when adding more steps.
 
+// Delete "item" and nullify var, where it was.
+#define QDEL_NULL(item) if(item) { qdel(item); item = null }
+#define QDEL_NULL_LIST(x) if(x) { for(var/y in x) { qdel(y) } ; x = null }
+
 #define GC_QUEUED_FOR_QUEUING -1
 #define GC_QUEUED_FOR_HARD_DEL -2
 #define GC_CURRENTLY_BEING_QDELETED -3
-
-// Delete "item" and nullify var, where it was.
-#define QDEL_NULL(item) if(item) { qdel(item); item = null }
 
 /**
  * Delete `item` after `time` passed.

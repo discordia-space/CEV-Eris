@@ -591,7 +591,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 
 /obj/structure/burrow/proc/pull_mob(mob/living/L)
 	if (!L.incapacitated())//Can't flee if you're stunned
-		walk_to(L, src, 1, L.move_to_delay*rand_decimal(1,1.5))
+		walk_to(L, src, 1, L.move_to_delay*RAND_DECIMAL(1,1.5))
 //We randomise the move delay a bit so that mobs don't just move in sync like particles of dust being sucked up
 
 

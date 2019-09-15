@@ -34,3 +34,6 @@
 #define R_HOST 0x7F // Used for debug/mock only
 
 #define R_MAXPERMISSION 0x40 // This holds the maximum value for a permission. It is used in iteration, so keep it updated.
+
+#define ADMIN_VERB_ADD(path, rights, keep)\
+	world/registrate_verbs() {..(); cmd_registrate_verb(path, rights, keep);}
