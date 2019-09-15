@@ -5,7 +5,7 @@ SUBSYSTEM_DEF(pai)
 	var/inquirer = null
 	var/list/pai_candidates = list()
 	var/list/asked = list()
-	var/askDelay = 1 MINUTE
+	var/askDelay = 1 MINUTES
 
 /datum/controller/subsystem/pai/Topic(href, href_list[])
 	if(href_list["download"])
