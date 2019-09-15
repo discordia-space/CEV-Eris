@@ -227,7 +227,7 @@
 
 /datum/technology/improved_tools
 	name = "Improved-Advanced Tools"
-	desc = "Matter replication technology. Pneumatics integration in crowbar."
+	desc = "Fast matter deconstruction technology."
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.7
@@ -236,7 +236,7 @@
 
 	required_technologies = list(/datum/technology/adv_tools)
 	required_tech_levels = list()
-	cost = 1000
+	cost = 1200
 
 	unlocks_designs = list(	/datum/design/research/item/weapon/hatton,
 							/datum/design/research/item/ammo/hatton

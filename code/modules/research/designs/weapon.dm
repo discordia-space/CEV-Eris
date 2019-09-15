@@ -63,9 +63,11 @@
 	sort_string = "TBAAB"
 
 /datum/design/research/item/weapon/hatton
-	name = "Excelsior BT \"Hatton\""
-	desc = "More an instrument than a weapon, this breaching tool was designed for emergency situations."
-	build_path = /obj/item/weapon/hatton
+	name = "Moebius BT \"Q-del\""
+	desc = "This breaching tool was reverse engineered from the \"Hatton\" design.\
+			Despite the Excelsior \"Hatton\" being traded on the free market through Technomancer League channels,\
+			this device suffers from a wide number of reliability issues stemming from it being lathe printed."
+	build_path = /obj/item/weapon/hatton/moebius
 	sort_string = "TBAAD"
 
 
@@ -81,8 +83,7 @@
 	sort_string = "TAACB"
 
 /datum/design/research/item/ammo/hatton
-	name = "shotgun, stun"
-	desc = "A stunning shell for a shotgun."
-	build_path = /obj/item/weapon/hatton_magazine
+	name = "Moebius BT \"Q-del\" gas tube"
+	build_path = /obj/item/weapon/hatton_magazine/moebius
 	sort_string = "TAACC"
 
