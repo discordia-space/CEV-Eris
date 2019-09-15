@@ -116,7 +116,7 @@
 				to_chat(usr, SPAN_NOTICE("[src]'s motors resist your effort."))
 		return
 	if(istype(I, /obj/item/stack/material) && I.get_material_name() == "plasteel")
-		var/amt = Ceiling((maxhealth - health)/150)
+		var/amt = CEILING((maxhealth - health)/150, 1)
 		if(!amt)
 			to_chat(usr, SPAN_NOTICE("\The [src] is already fully repaired."))
 			return

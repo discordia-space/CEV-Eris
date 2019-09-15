@@ -41,7 +41,7 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 		. = GLOB.sound_channels.request(sound_id)
 		if(!.)
 			return
-	
+
 	var/sound_tokens = sound_tokens_by_sound_id[sound_id]
 	if(!sound_tokens)
 		sound_tokens = list()
@@ -101,7 +101,7 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 	return ..()
 
 /datum/sound_token/proc/set_volume(var/new_volume)
-	new_volume = Clamp(new_volume, 0, 100)
+	new_volume = CLAMP(new_volume, 0, 100)
 	if(sound.volume != new_volume)
 		sound.volume = new_volume
 		update_listeners()
@@ -200,7 +200,7 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 	sound.z = source_turf.y - listener_turf.y
 	sound.y = 1
 
-	sound.priority = Clamp(255 - distance, 0, 255)
+	sound.priority = CLAMP(255 - distance, 0, 255)
 	update_listener(listener)
 
 /datum/sound_token/proc/update_listeners()

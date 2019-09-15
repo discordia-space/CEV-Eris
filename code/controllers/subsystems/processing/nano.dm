@@ -35,7 +35,7 @@ PROCESSING_SUBSYSTEM_DEF(nano)
 	else if (force_open == NANOUI_REINITIALIZE)
 		ui.reinitialise(new_initial_data=data)
 		return ui;
-	
+
 	ui.push_data(data)
 
 	return ui
@@ -146,8 +146,8 @@ PROCESSING_SUBSYSTEM_DEF(nano)
 /datum/controller/subsystem/processing/nano/proc/ui_opened(datum/nanoui/ui)
 	var/src_object_key = "\ref[ui.src_object]"
 	LAZYINITLIST(open_uis[src_object_key])
-	LAZYDISTINCTADD(open_uis[src_object_key][ui.ui_key], ui)
-	LAZYDISTINCTADD(ui.user.open_uis, ui)
+	LAZYOR(open_uis[src_object_key][ui.ui_key], ui)
+	LAZYOR(ui.user.open_uis, ui)
 	START_PROCESSING(SSnano, ui)
 
  /**

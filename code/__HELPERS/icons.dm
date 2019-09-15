@@ -863,9 +863,9 @@ proc/adjust_brightness(var/color, var/value)
 	if (!value) return color
 
 	var/list/RGB = ReadRGB(color)
-	RGB[1] = Clamp(RGB[1]+value, 0, 255)
-	RGB[2] = Clamp(RGB[2]+value, 0, 255)
-	RGB[3] = Clamp(RGB[3]+value, 0, 255)
+	RGB[1] = CLAMP(RGB[1]+value, 0, 255)
+	RGB[2] = CLAMP(RGB[2]+value, 0, 255)
+	RGB[3] = CLAMP(RGB[3]+value, 0, 255)
 	return rgb(RGB[1],RGB[2],RGB[3])
 
 
@@ -876,9 +876,9 @@ proc/adjust_HSV(var/color, var/list/values)
 
 	var/hsv_string = RGBtoHSV(color)
 	var/list/HSV = ReadHSV(hsv_string)
-	HSV[1] = Clamp(HSV[1]+values[1], 0, 255)
-	HSV[2] = Clamp(HSV[2]+values[2], 0, 255)
-	HSV[3] = Clamp(HSV[3]+values[3], 0, 255)
+	HSV[1] = CLAMP(HSV[1]+values[1], 0, 255)
+	HSV[2] = CLAMP(HSV[2]+values[2], 0, 255)
+	HSV[3] = CLAMP(HSV[3]+values[3], 0, 255)
 	return HSVtoRGB(hsv(HSV[1],HSV[2],HSV[3], null))
 
 //Uses a list of values to overwrite HSV components of a color
@@ -890,11 +890,11 @@ proc/set_HSV(var/color, var/list/values)
 	var/hsv_string = RGBtoHSV(color)
 	var/list/HSV = ReadHSV(hsv_string)
 	if (!isnull(values[1]))
-		HSV[1] = Clamp(values[1], 0, 255)
+		HSV[1] = CLAMP(values[1], 0, 255)
 	if (!isnull(values[2]))
-		HSV[2] = Clamp(values[2], 0, 255)
+		HSV[2] = CLAMP(values[2], 0, 255)
 	if (!isnull(values[3]))
-		HSV[3] = Clamp(values[3], 0, 255)
+		HSV[3] = CLAMP(values[3], 0, 255)
 	return HSVtoRGB(hsv(HSV[1],HSV[2],HSV[3], null))
 
 proc/sort_atoms_by_layer(var/list/atoms)
@@ -985,8 +985,8 @@ proc/set_pixel_click_offset(var/atom/A, var/params, var/animate = FALSE)
 
 	//We really need vector math, this will do for now ~Nanako
 	if (animate)
-		var/target_x = Clamp(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
-		var/target_y = Clamp(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
+		var/target_x = CLAMP(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
+		var/target_y = CLAMP(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
 
 		//Get the distance in pixels, used for the animation time so it slides at a consistent speed
 		var/pixeldist_x = abs(A.pixel_x - target_x)
@@ -999,8 +999,8 @@ proc/set_pixel_click_offset(var/atom/A, var/params, var/animate = FALSE)
 		return
 	else
 		//Clamp it so that the icon never moves more than 16 pixels in either direction (thus leaving the table turf)
-		A.pixel_x = Clamp(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
-		A.pixel_y = Clamp(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
+		A.pixel_x = CLAMP(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
+		A.pixel_y = CLAMP(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
 
 //Calculate average color of an icon and store it in global list for future use
 proc/get_average_color(var/icon, var/icon_state, var/image_dir)
