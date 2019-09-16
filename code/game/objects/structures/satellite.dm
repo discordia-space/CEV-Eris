@@ -27,7 +27,7 @@
 					T.emp_act(2)
 			else if(distance <= light_range)
 				T.emp_act(2)
-	return 1
+	return TRUE
 
 /obj/structure/satellite/science
 	var/nosignal = FALSE

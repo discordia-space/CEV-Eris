@@ -21,7 +21,7 @@
 		var/distance = get_dist(epicenter, T)
 		if(distance <= heavy_range)
 			T.emp_act(1)
-	return 1
+	return TRUE
 
 /obj/structure/ominous/emitter/proc/shoot()
 	if(shooting == FALSE)
