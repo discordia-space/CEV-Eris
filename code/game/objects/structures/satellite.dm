@@ -1,48 +1,41 @@
 /obj/structure/satellite
 	icon = 'icons/obj/machines/excelsior/objects.dmi'
 	icon_state = "sputnik"
-	var/cooldown = 0
+	desc = "It looks like ancient satellite."
+	var/cooldown = FALSE
 
 /obj/structure/satellite/attack_hand(mob/living/user as mob)
-	if(cooldown == 0)
-		cooldown = 1
+	if(cooldown == FALSE)
+		cooldown = TRUE
 		emp_in(src.loc, 4, 6, 0)
 		sleep(360)
-		cooldown = 0
+		cooldown = FALSE
 
 /obj/structure/satellite/proc/emp_in(turf/epicenter, heavy_range, light_range, log=0)
 	for(var/mob/M in range(heavy_range, epicenter))
-		M << 'sound/effects/EMPulse.ogg'
+		playsound(loc, 'sound/effects/EMPulse.ogg')
 
 	for(var/atom/T in range(light_range, epicenter))
-		#ifdef EMPDEBUG
-		var/time = world.timeofday
-		#endif
 		var/distance = get_dist(epicenter, T)
-		if(distance < 2)
-			distance = light_range + 1
-		if(distance < heavy_range)
-			T.emp_act(1)
-		else if(distance == heavy_range)
-			if(prob(50))
+		if(distance > 1)
+			if(distance < heavy_range)
 				T.emp_act(1)
-			else
+			else if(distance == heavy_range)
+				if(prob(50))
+					T.emp_act(1)
+				else
+					T.emp_act(2)
+			else if(distance <= light_range)
 				T.emp_act(2)
-		else if(distance <= light_range)
-			T.emp_act(2)
-		#ifdef EMPDEBUG
-		if((world.timeofday - time) >= EMPDEBUG)
-			log_and_message_admins("EMPDEBUG: [T.name] - [T.type] - took [world.timeofday - time]ds to process emp_act()!")
-		#endif
 	return 1
 
 /obj/structure/satellite/science
-	var/nosignal = 0
+	var/nosignal = FALSE
 
 /obj/structure/satellite/science/attack_hand(mob/living/user as mob)
 	if(istype(user, /mob/living/carbon/human))
-		if(nosignal == 0)
-			nosignal = 1
+		if(nosignal == FALSE)
+			nosignal = TRUE
 			var/mob/living/carbon/human/H = user
 			var/mystat = pick(STAT_MEC, STAT_COG, STAT_TGH, STAT_VIG, STAT_BIO)
 			H.stats.changeStat(mystat, H.stats:getStat(mystat) + 20)

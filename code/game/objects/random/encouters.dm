@@ -16,12 +16,12 @@
 
 /obj/random/spawner/encouter
 	spawn_nothing_percentage = 0
-	var/justspawn = 1
+	var/justspawn = TRUE
 	var/list/obj/randspawn = list()
 
 /obj/random/spawner/encouter/item_to_spawn()
 	..()
-	if(justspawn == 1)
+	if(justspawn == TRUE)
 		return pick(randspawn)
 
 /obj/random/spawner/encouter/mine

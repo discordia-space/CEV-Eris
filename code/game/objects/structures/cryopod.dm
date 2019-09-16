@@ -5,6 +5,7 @@
 /obj/structure/cryopod_spawner
 	icon = 'icons/obj/machines/excelsior/objects.dmi'
 	icon_state = "cryopod"
+	desc = "It looks like ancient cryopod."
 	var/mob/spawnmob
 	var/spawn_role
 	var/spawn_faction

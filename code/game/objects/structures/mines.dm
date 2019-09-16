@@ -1,6 +1,6 @@
 /obj/structure/mine
 	name = "Excelsior Mine"
-	desc = "An anti-personnel mine. IFF technology grants safe passage to Excelsior agents, and a mercifully brief end to others."
+	desc = "It looks like ancient, and rather dangerous mine."
 	icon = 'icons/obj/machines/excelsior/objects.dmi'
 	icon_state = "mine"
 

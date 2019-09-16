@@ -1,8 +1,9 @@
 /obj/structure/ominous
 	name = "ominous generator"
 	icon_state = "ominous"
+	desc = "It looks like ancient, and strange generator."
 	icon = 'icons/obj/machines/excelsior/objects.dmi'
-	var/cooldown = 0
+	var/cooldown = FALSE
 
 /obj/structure/ominous/attack_hand(mob/living/user as mob)
 	var/last_use
@@ -18,31 +19,24 @@
 
 	for(var/atom/T in range(light_range, epicenter))
 		var/distance = get_dist(epicenter, T)
-		if(distance < heavy_range)
+		if(distance <= heavy_range)
 			T.emp_act(1)
-		else if(distance == heavy_range)
-			if(prob(50))
-				T.emp_act(1)
-			else
-				T.emp_act(2)
-		else if(distance <= light_range)
-			T.emp_act(2)
 	return 1
 
 /obj/structure/ominous/emitter/proc/shoot()
-	if(shooting == 0)
-		shooting = 1
+	if(shooting == FALSE)
+		shooting = TRUE
 		while(cooldown < 80)
 			cooldown++
 			sleep(rand(1,2))
 			var/obj/item/projectile/beam/emitter/A = new /obj/item/projectile/beam/emitter( src.loc )
 			A.damage = round(2000/DAMAGE_POWER_TRANSFER)
 			A.launch( get_step(src.loc, pick(SOUTH, NORTH, WEST, EAST, SOUTHEAST, SOUTHWEST, NORTHEAST, NORTHWEST)) )
-		cooldown = 0
-	shooting = 0
+		cooldown = FALSE
+	shooting = FALSE
 
 /obj/structure/ominous/emitter
-	var/shooting = 0
+	var/shooting = FALSE
 
 /obj/structure/ominous/emitter/attack_hand(mob/living/user as mob)
 	shoot()
