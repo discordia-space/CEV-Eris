@@ -1,3 +1,8 @@
+// File contains:
+// - statverbs subsystem
+// - statverb datum defenation
+// - statverb related atom code
+
 SUBSYSTEM_DEF(statverbs)
 	name = "statverbs"
 	flags = SS_NO_INIT|SS_NO_FIRE
@@ -12,7 +17,7 @@ SUBSYSTEM_DEF(statverbs)
 	SV.try_action(user, target, tmp_name)
 
 
-
+// Statverb datum //
 /datum/statverb
 	var/name
 	var/required_stat = STAT_MEC
@@ -24,20 +29,20 @@ SUBSYSTEM_DEF(statverbs)
 	if(!istype(user))
 		return
 	if(!target in view(user))
-		user << SPAN_WARNING("You're too far from [saved_name]")
+		to_chat(user, SPAN_WARNING("You're too far from [saved_name]"))
 		return FALSE
 
 	if(base_range == RANGE_ADJACENT)
 		if(!target.Adjacent(user))
-			user << SPAN_WARNING("You should be adjacent to [target]")
+			to_chat(user, SPAN_WARNING("You should be adjacent to [target]"))
 			return FALSE
 	else
 		if(get_dist(user, target) > base_range)
-			user << SPAN_WARNING("You're too far from [target]")
+			to_chat(user, SPAN_WARNING("You're too far from [target]"))
 			return FALSE
 
 	if(user.stats.getStat(required_stat) < minimal_stat)
-		user << SPAN_WARNING("You're not skilled enought in [required_stat]")
+		to_chat(user, SPAN_WARNING("You're not skilled enought in [required_stat]"))
 		return FALSE
 
 	action(user, target)
@@ -46,7 +51,7 @@ SUBSYSTEM_DEF(statverbs)
 
 
 
-
+// Atom part //
 /atom
 	var/list/statverbs
 
@@ -63,8 +68,18 @@ SUBSYSTEM_DEF(statverbs)
 	var/list/paths = statverbs
 	statverbs = new
 	for(var/path in paths)
-		var/datum/statverb/SV = path
-		statverbs[initial(SV.required_stat)] = path
+		add_statverb(path)
+
+/atom/proc/add_statverb(path)
+	if(!statverbs)
+		statverbs = new
+	var/datum/statverb/SV = path
+	statverbs[initial(SV.required_stat)] = path
+
+/atom/proc/remove_statverb(path)
+	statverbs -= path
+
+
 
 /atom/proc/show_stat_verbs()
 	if(statverbs && statverbs.len)
@@ -80,17 +95,19 @@ SUBSYSTEM_DEF(statverbs)
 		SSstatverbs.call_verb(usr, src, src.statverbs[href_list["statverb"]], href_list["obj_name"])
 
 
-/*
-//Testing
-/obj
-	statverbs = list(
-		/datum/statverb/testing
-	)
+// Example
+
+/turf/simulated/floor/initalize_statverbs()
+	if(flooring && (flooring.flags & TURF_REMOVE_CROWBAR))
+		add_statverb(/datum/statverb/remove_plating)
+
+/datum/statverb/remove_plating
+	name = "Remove plating"
+	required_stat = STAT_ROB
+	minimal_stat  = STAT_LEVEL_ADEPT
+
+/datum/statverb/remove_plating/action(user, turf/simulated/floor/target)
+	if(target.flooring & target.flooring.flags & TURF_REMOVE_CROWBAR)
+		target.make_plating()
 
 
-/datum/statverb/testing
-	name = "Testing"
-
-/datum/statverb/testing/action(user)
-	user << "Go on on on on"
-*/
