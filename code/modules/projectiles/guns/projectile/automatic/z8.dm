@@ -23,7 +23,7 @@
 
 	firemodes = list(
 		SEMI_AUTO_NODELAY,
-		list(mode_name="3-round bursts", burst=3,    fire_delay=null, move_delay=4,     icon="burst"),
+		BURST_3_ROUND,
 		list(mode_name="fire grenades",  burst=null, fire_delay=null, move_delay=null,  icon="grenade", use_launcher=1)
 		)
 

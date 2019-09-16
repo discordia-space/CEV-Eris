@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/projectile/automatic/maxim
+/obj/item/weapon/gun/projectile/automatic/maxim //This is currently deprecated unless someone can code up heavy machine gun mechanics.
 	name = "Excelsior machine gun"
 	desc = ""
 	icon_state = "maxim"
