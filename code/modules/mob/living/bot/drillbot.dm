@@ -1,5 +1,6 @@
 /mob/living/bot/miningonestar
 	name = "One Star Bot"
+	desc = "it looks like a drillbot. Ancient drillbot"
 	health = 20
 	maxHealth = 20
 	icon = 'icons/obj/aibots.dmi'
