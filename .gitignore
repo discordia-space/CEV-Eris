@@ -8,6 +8,7 @@ Thumbs.db
 *.lk
 *.backup
 *.before
+*~Stashed changes
 tools/
 data/
 cfg/

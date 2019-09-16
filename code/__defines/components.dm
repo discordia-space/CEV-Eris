@@ -41,6 +41,7 @@
 // /turf signals
 
 // /atom/movable signals
+#define COMSIG_MOVABLE_MOVED "movable_moved"					//from base of atom/movable/Moved(): (/atom, origin_loc, new_loc)
 
 // /mob signals
 

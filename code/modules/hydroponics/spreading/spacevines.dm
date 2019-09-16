@@ -54,7 +54,7 @@
 	for (var/a in origin.plantspread_burrows)
 		var/obj/structure/burrow/B = locate(a)
 		if (istype(B))
-			spawn(rand_decimal(5, 30))
+			spawn(RAND_DECIMAL(5, 30))
 				B.break_open() //Break the floor at each of the burrows it spreads to
 				log_and_message_admins("Spacevines spread to burrow [jumplink(B)]")
 

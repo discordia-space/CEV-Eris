@@ -641,6 +641,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					"icon" =           "[tech_node.icon]",
 					"isresearched" =   "[files.IsResearched(tech_node)]",
 					"canresearch" =    "[files.CanResearch(tech_node)]",
+					"description" =		"[tech_node.desc]"
 				)
 				tech_list += list(tech_data)
 

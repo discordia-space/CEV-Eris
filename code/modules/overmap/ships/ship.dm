@@ -89,8 +89,8 @@
 	return res
 
 /obj/effect/overmap/ship/proc/adjust_speed(n_x, n_y)
-	speed[1] = round(Clamp(speed[1] + n_x, -default_delay, default_delay),0.1)
-	speed[2] = round(Clamp(speed[2] + n_y, -default_delay, default_delay),0.1)
+	speed[1] = round(CLAMP(speed[1] + n_x, -default_delay, default_delay),0.1)
+	speed[2] = round(CLAMP(speed[2] + n_y, -default_delay, default_delay),0.1)
 	for(var/zz in map_z)
 		if(is_still())
 			toggle_move_stars(zz)

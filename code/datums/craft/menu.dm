@@ -56,6 +56,7 @@
 			"icon" = getAtomCacheFilename(CR.result),
 			"ref"  = "\ref[CR]",
 			"desc" = CR.get_description(),
+			"batch" = CR.flags & CRAFT_BATCH
 		)
 	var/list/items = list()
 	for(var/datum/craft_recipe/recipe in SScraft.categories[curr_category])
@@ -82,7 +83,18 @@
 
 	if(href_list["build"])
 		var/datum/craft_recipe/CR = locate(href_list["build"])
-		CR.try_build(usr)
+		var/amount = href_list["amount"]
+		if(amount && (CR.flags & CRAFT_BATCH))
+			if(amount == "input")
+				amount = input("How many \"[CR.name]\" you want to craft?", "Craft batch") as null|num
+			else
+				amount = text2num(amount)
+			amount = CLAMP(amount, 0, 50)
+			if(!amount)
+				return
+			CR.build_batch(usr, amount)
+		else
+			CR.try_build(usr)
 	else if(href_list["view_vars"] && check_rights())
 		usr.client.debug_variables(locate(href_list["view_vars"]))
 	else if(href_list["category"])

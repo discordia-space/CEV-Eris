@@ -77,7 +77,7 @@
 	return TRUE
 
 /datum/reagent/nanites/arad
-	name = "A-rad (nanobots)"
+	name = "A-Rad (nanobots)"
 	id = "arad nanites"
 	description = "Microscopic construction robots."
 
@@ -92,7 +92,7 @@
 		
 
 /datum/reagent/nanites/implant_medics
-	name = "Implant Medics (nanobots)"
+	name = "Implantoids (nanobots)"
 	id = "implant nanites"
 	description = "Microscopic construction robots."
 

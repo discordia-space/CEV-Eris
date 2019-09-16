@@ -169,7 +169,7 @@
 
 	//whatever we were doing with docking: stop it, then redock
 	force_undock()
-	spawn(1 SECOND)
+	spawn(1 SECONDS)
 		dock()
 
 //returns 1 if the shuttle is getting ready to move, but is not in transit yet

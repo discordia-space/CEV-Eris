@@ -85,3 +85,11 @@
 		custom_appearance = custom_table_appearance["Bar - special"] //bar table
 		reinforced = get_material_by_name(MATERIAL_STEEL)
 		..()
+
+/obj/structure/table/onestar
+	icon_state = "onestar_preview"
+	New()
+		material = get_material_by_name(MATERIAL_STEEL)
+		custom_appearance = custom_table_appearance["OneStar"] //one star table
+		reinforced = get_material_by_name(MATERIAL_STEEL)
+		..()

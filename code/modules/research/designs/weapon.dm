@@ -22,6 +22,12 @@
 	build_path = /obj/item/weapon/gun/energy/lasercannon
 	sort_string = "TAAAC"
 
+/datum/design/research/item/weapon/c20r
+	name = "C20R-prototype"
+	desc = "The C-20r is a lightweight and rapid-firing SMG. Uses 10mm rounds."
+	build_path = /obj/item/weapon/gun/projectile/automatic/c20r
+	sort_string = "TAAAF"
+
 /datum/design/research/item/weapon/plasmapistol
 	build_path = /obj/item/weapon/gun/energy/toxgun
 	sort_string = "TAAAD"
@@ -52,6 +58,9 @@
 	build_path = /obj/item/weapon/gun/energy/floragun
 	sort_string = "TBAAA"
 
+/datum/design/research/item/weapon/bluespace_harpoon
+	build_path = /obj/item/weapon/bluespace_harpoon
+	sort_string = "TBAAB"
 
 // Ammo
 /datum/design/research/item/ammo
