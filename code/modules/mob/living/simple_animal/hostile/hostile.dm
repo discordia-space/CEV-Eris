@@ -29,11 +29,24 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 	var/aggro_vision_range = 9 //If a mob is aggro, we search in this radius. Defaults to 9 to keep in line with original simple mob aggro radius
 	var/approaching_target = FALSE //We should dodge now
 
+/mob/living/simple_animal/hostile/proc/get_view_range()
+	var/valueofview = vision_range
+	if(istype(src, /mob/living/simple_animal/hostile/megafauna/one_star))
+		if(istype(src.loc, /turf))
+			var/turf/TURF = src.loc
+			if(TURF.get_lumcount() > 0)
+				valueofview = 10
+			else
+				valueofview = 4
+		else
+			valueofview = 0
+	return valueofview
+
 /mob/living/simple_animal/hostile/proc/FindTarget()
 
 	var/atom/T = null
 	stop_automated_movement = 0
-	for(var/atom/A in ListTargets(10))
+	for(var/atom/A in ListTargets(get_view_range()))
 
 		if(A == src)
 			continue
@@ -241,7 +254,6 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 	stance = HOSTILE_STANCE_IDLE
 	target_mob = null
 	return
-
 
 /mob/living/simple_animal/hostile/proc/Shoot(var/target, var/start, var/user, var/bullet = 0)
 	if(target == start)

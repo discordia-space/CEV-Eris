@@ -10,23 +10,16 @@
 	environment_smash = ENVIRONMENT_SMASH_WALLS
 	light_range = 3
 	faction = list("mining", "boss")
-	var/robust_searching = TRUE //By default, mobs have a simple searching method, set this to 1 for the more scrutinous searching (stat_attack, stat_exclusive, etc), should be disabled on most mobs
-	var/stat_attack = DEAD
 	var/atom/target
 	minbodytemp = 0
 	maxbodytemp = INFINITY
 	mob_size = MOB_SIZE_LARGE
 	layer = LARGE_MOB_LAYER //Looks weird with them slipping under mineral walls and cameras and shit otherwise
 	mouse_opacity = MOUSE_OPACITY_OPAQUE // Easier to click on in melee, they're giant targets anyway
-	var/list/crusher_loot
-	var/elimination = 0
 	var/anger_modifier = 0
 	var/recovery_time = 0
-	var/true_spawn = TRUE // if this is a megafauna that should grant achievements, or have a gps signal
-	var/nest_range = 10
 	var/chosen_attack = 1 // chosen attack num
 	var/list/attack_action_types = list()
-	var/small_sprite_type
 	var/megafauna_min_cooldown = 10
 	var/megafauna_max_cooldown = 20
 
@@ -142,11 +135,11 @@
 			counter = 16
 		shoot_projectile(start_turf, counter * 22.5)
 
-/mob/living/simple_animal/hostile/megafauna/proc/shoot_projectile(turf/marker, set_angle)
-	if(!isnum(set_angle) && (!marker || marker == loc))
+/mob/living/simple_animal/hostile/megafauna/proc/shoot_projectile(turf/marker)
+	if(!marker || marker == loc)
 		return
 	var/turf/startloc = get_turf(src)
-	var/obj/item/projectile/P = new /obj/item/projectile/beam/heavylaser(startloc)
+	var/obj/item/projectile/P = new projectiletype(startloc)
 	P.firer = src
 	if(target)
 		P.original = target

@@ -25,15 +25,7 @@
 	var/health_marker_2 = 0//900
 	var/health_marker_3 = 0//100
 
-/mob/living/simple_animal/hostile/megafauna/hivemind_tyrant/shoot_projectile(turf/marker, set_angle)
-	if(!isnum(set_angle) && (!marker || marker == loc))
-		return
-	var/turf/startloc = get_turf(src)
-	var/obj/item/projectile/P = new /obj/item/projectile/goo(startloc)
-	P.firer = src
-	if(target)
-		P.original = target
-	P.launch(get_step(marker, pick(NORTH, SOUTH, WEST, EAST, NORTHWEST, NORTHEAST, SOUTHEAST, SOUTHWEST)))
+	projectiletype = /obj/item/projectile/goo
 
 /mob/living/simple_animal/hostile/megafauna/hivemind_tyrant/death()
 	..()
