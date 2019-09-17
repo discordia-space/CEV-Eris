@@ -217,7 +217,7 @@
 			var/limb_path = organ_data["path"]
 			var/obj/item/organ/external/O = new limb_path(src)
 			organ_data["descriptor"] = O.name
-			var/datum/reagent/blood/B = locate(/datum/reagent/blood) in vessel.reagent_list
+			var/datum/reagent/organic/blood/B = locate(/datum/reagent/organic/blood) in vessel.reagent_list
 			blood_splatter(src,B,1)
 			O.set_dna(dna)
 			update_body()

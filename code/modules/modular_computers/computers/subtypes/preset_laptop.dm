@@ -113,3 +113,4 @@
 	hard_drive.store_file(new/datum/computer_file/program/game())
 	hard_drive.store_file(new/datum/computer_file/program/reports())
 	hard_drive.store_file(new/datum/computer_file/program/bounty_board_app())
+	hard_drive.store_file(new/datum/computer_file/program/chem_catalog())

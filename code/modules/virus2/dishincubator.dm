@@ -71,7 +71,7 @@
 	data["blood_already_infected"] = null
 
 	if (beaker)
-		var/datum/reagent/blood/B = locate(/datum/reagent/blood) in beaker.reagents.reagent_list
+		var/datum/reagent/organic/blood/B = locate(/datum/reagent/organic/blood) in beaker.reagents.reagent_list
 		data["can_breed_virus"] = dish && dish.virus2 && B
 
 		if (B)
@@ -190,7 +190,7 @@
 		if (!dish)
 			return 1
 
-		var/datum/reagent/blood/B = locate(/datum/reagent/blood) in beaker.reagents.reagent_list
+		var/datum/reagent/organic/blood/B = locate(/datum/reagent/organic/blood) in beaker.reagents.reagent_list
 		if (!B)
 			return 1
 

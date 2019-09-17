@@ -102,7 +102,7 @@
 
 	//Blood regeneration if there is some space
 	if(blood_volume_raw < species.blood_volume)
-		var/datum/reagent/blood/B = owner.get_blood(owner.vessel)
+		var/datum/reagent/organic/blood/B = owner.get_blood(owner.vessel)
 		B.volume += 0.1 // regenerate blood VERY slowly
 		if(CE_BLOODRESTORE in owner.chem_effects)
 			B.volume += owner.chem_effects[CE_BLOODRESTORE]

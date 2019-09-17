@@ -216,3 +216,14 @@
 #define PREF_SAVELOAD_COOLDOWN 4 //Should be sufficiently hard to achieve without a broken mouse or autoclicker while still fulfilling its intended goal.
 
 #define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I, /client) ? I : (istype(I, /datum/mind) ? I:current?:client : null)))
+
+// a place where atoms can be created instead of nullspace
+// dont store anything there, only create temporary
+#define PURGATORY (GLOB.purgatory_loc ? GLOB.purgatory_loc : error("Purgatory was not created."))
+// You can store items in nullspace but dont crete items there
+#define NULLSPACE (locate(0,0,0))
+
+#define CATALOG_REAGENTS "reagents"
+#define CATALOG_CHEMISTRY "chemistry"
+#define CATALOG_DRINKS "drinks"
+#define CATALOG_ALL "all"

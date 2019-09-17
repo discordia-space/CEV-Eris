@@ -966,3 +966,26 @@ Checks if a list has the same entries and values as an element of big.
 		if(ispath(path, type))
 			return 1
 	return 0
+
+/proc/parse_for_paths(var/list/data)
+	if(!islist(data) || !data.len)
+		return list()
+	var/list/types = list()
+	if(is_associative(data))
+		for(var/tag in data)
+			if(ispath(tag))
+				types.Add(tag)
+			else if(islist(tag))
+				types.Add(parse_for_paths(tag))
+			
+			if(ispath(data[tag]))
+				types.Add(data[tag])
+			else if(islist(data[tag]))
+				types.Add(parse_for_paths(data[tag]))
+	else
+		for(var/value in data)
+			if(ispath(value))
+				types.Add(value)
+			else if(islist(value))
+				types.Add(parse_for_paths(value))
+	return uniquelist(types)
