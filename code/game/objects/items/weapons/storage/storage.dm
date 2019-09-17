@@ -10,7 +10,7 @@
 	var/list/cant_hold = new/list() //List of objects which this item can't store (in effect only if can_hold isn't set)
 	var/list/is_seeing = new/list() //List of mobs which are currently seeing the contents of this item's storage
 	var/max_w_class = ITEM_SIZE_NORMAL //Max size of objects that this object can store (in effect only if can_hold isn't set)
-	var/max_storage_space = 8 //The sum of the storage costs of all the items in this storage item.
+	var/max_storage_space = null //Total storage cost of items this can hold. Will be autoset based on storage_slots if left null.
 	var/storage_slots = null //The number of storage slots in this container.
 	var/use_to_pickup //Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
 	var/display_contents_with_number //Set this to make the storage item group contents of the same type and display them as a number.
@@ -514,6 +514,9 @@
 	else
 		verbs -= /obj/item/weapon/storage/verb/toggle_gathering_mode
 
+	if(isnull(max_storage_space) && !isnull(storage_slots))
+		max_storage_space = storage_slots*BASE_STORAGE_COST(max_w_class)
+	
 	spawn(5)
 		var/total_storage_space = 0
 		for(var/obj/item/I in contents)
@@ -597,10 +600,11 @@
 	return depth
 
 /obj/item/proc/get_storage_cost()
-	if (storage_cost)
-		return storage_cost
+	//If you want to prevent stuff above a certain w_class from being stored, use max_w_class
+	if (reduced_storage_cost)
+		return REDUCED_STORAGE_COST(w_class)
 	else
-		return 2**(w_class-1) //1,2,4,8,16,...
+		return BASE_STORAGE_COST(w_class)
 
 
 //Useful for spilling the contents of containers all over the floor

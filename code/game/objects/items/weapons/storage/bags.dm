@@ -36,7 +36,7 @@
 	max_w_class = ITEM_SIZE_SMALL
 	can_hold = list() // any
 	cant_hold = list(/obj/item/weapon/disk/nuclear)
-	max_storage_space = ITEM_SIZE_SMALL * 12
+	max_storage_space = DEFAULT_BELT_STORAGE
 
 /obj/item/weapon/storage/bag/trash/update_icon()
 	if(contents.len == 0)
@@ -51,7 +51,7 @@
 
 //The custodial robot gets a larger bag since it only has one and no cart
 /obj/item/weapon/storage/bag/trash/robot
-	max_storage_space = ITEM_SIZE_SMALL * 48
+	max_storage_space = DEFAULT_BELT_STORAGE * 2
 
 /obj/item/weapon/storage/bag/trash/robot/update_icon()
 	if(contents.len == 0)
@@ -107,7 +107,9 @@
 	max_storage_space = 100
 	max_w_class = ITEM_SIZE_NORMAL
 	w_class = ITEM_SIZE_SMALL
-	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/grown,/obj/item/seeds,/obj/item/weapon/grown)
+	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/grown,
+		/obj/item/seeds,
+		/obj/item/weapon/grown)
 
 
 // -----------------------------
@@ -129,8 +131,6 @@
 	allow_quick_empty = 1 // this function is superceded
 	New()
 		..()
-		//verbs -= /obj/item/weapon/storage/verb/quick_empty
-		//verbs += /obj/item/weapon/storage/bag/sheetsnatcher/quick_empty
 
 	can_be_inserted(obj/item/W as obj, stop_messages = 0)
 		if(!istype(W,/obj/item/stack/material))
@@ -237,4 +237,5 @@
 	max_storage_space = 100
 	max_w_class = ITEM_SIZE_NORMAL
 	w_class = ITEM_SIZE_SMALL
-	can_hold = list(/obj/item/weapon/coin,/obj/item/weapon/spacecash)
+	can_hold = list(/obj/item/weapon/coin,
+		/obj/item/weapon/spacecash)
