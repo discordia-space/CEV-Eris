@@ -117,7 +117,7 @@ SUBSYSTEM_DEF(statverbs)
 				SPAN_DANGER("[user] roughly tore plating off from [target]!"),
 				"You tore plating off from [target]"
 			)
-			target.make_plating(TRUE)
+			target.make_plating(FALSE)
 		else
 			var/target_name = target ? "[target]" : "the floor"
 			user.visible_message(

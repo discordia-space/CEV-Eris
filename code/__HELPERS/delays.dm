@@ -19,10 +19,10 @@
 	max_delay = max
 
 /datum/delay_controller/proc/setDelay(var/delay)
-	next_allowed = world.time + Clamp(delay, min_delay, max_delay)
+	next_allowed = world.time + CLAMP(delay, min_delay, max_delay)
 
 /datum/delay_controller/proc/setDelayMin(var/delay)
-    next_allowed = max(world.time + Clamp(delay, min_delay, max_delay), next_allowed)
+    next_allowed = max(world.time + CLAMP(delay, min_delay, max_delay), next_allowed)
 
 /datum/delay_controller/proc/addDelay(var/delay)
 	var/current_delay = max(0, next_allowed - world.time)

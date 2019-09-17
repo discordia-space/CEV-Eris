@@ -140,6 +140,26 @@
 
 	unlocks_designs = list(/datum/design/research/circuit/teleconsole)
 
+/datum/technology/adv_spatial_scan
+	name = "Advanced Spatial Analyzing"
+	desc = "Advanced Spatial Analyzing"
+	tech_type = RESEARCH_BLUESPACE
+	icon = "telescience"
+
+
+	x = 0.5
+	y = 0.6
+	required_technologies = list(/datum/technology/teleportation)
+	cost = 800
+
+	unlocks_designs = list(	/datum/design/research/circuit/telesci/console,
+							/datum/design/research/circuit/telesci/hub,
+							/datum/design/research/item/part/artificialbscrystal,
+							/datum/design/research/circuit/bssilk/hub,
+							/datum/design/research/circuit/bssilk/console,
+							/datum/design/research/item/bs_snare
+							)
+
 /datum/technology/bluespace_tools
 	name = "Advanced Bluespace Tech"
 	desc = "In-Bluespace storing method, allowing store objects/reagents in bluespace. And The method of separate storage of reagents."
