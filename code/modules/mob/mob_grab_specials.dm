@@ -56,7 +56,7 @@
 	else
 		attacker << SPAN_WARNING("[attacker] [pick("bent", "twisted")] [target]'s [organ.name] into a jointlock!")
 		to_chat(target, SPAN_DANGER("You feel extreme pain!"))
-		affecting.adjustHalLoss(Clamp(0, 60-affecting.halloss, 30)) //up to 60 halloss
+		affecting.adjustHalLoss(CLAMP(0, 60-affecting.halloss, 30)) //up to 60 halloss
 
 
 /obj/item/weapon/grab/proc/attack_eye(mob/living/carbon/human/target, mob/living/carbon/human/attacker)

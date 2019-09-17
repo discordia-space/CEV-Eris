@@ -76,7 +76,7 @@
 	var/result = null
 	var/A = get_pin_data(IC_INPUT, 1)
 	if(isnum(A))
-		result = Tan(A)
+		result = TAN(A)
 
 	set_pin_data(IC_OUTPUT, 1, result)
 	push_data()
@@ -96,7 +96,7 @@
 	var/result = null
 	var/A = get_pin_data(IC_INPUT, 1)
 	if(isnum(A))
-		result = Csc(A)
+		result = CSC(A)
 
 	set_pin_data(IC_OUTPUT, 1, result)
 	push_data()
@@ -117,7 +117,7 @@
 	var/result = null
 	var/A = get_pin_data(IC_INPUT, 1)
 	if(isnum(A))
-		result = Sec(A)
+		result = SEC(A)
 
 	set_pin_data(IC_OUTPUT, 1, result)
 	push_data()
@@ -138,7 +138,7 @@
 	var/result = null
 	var/A = get_pin_data(IC_INPUT, 1)
 	if(isnum(A))
-		result = Cot(A)
+		result = COT(A)
 
 	set_pin_data(IC_OUTPUT, 1, result)
 	push_data()

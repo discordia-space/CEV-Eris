@@ -95,3 +95,21 @@
 #define ATMOSTANK_CO2           25000 // CO2 and PH are not critically important for station, only for toxins and alternative coolants, no need to store a lot of those.
 #define ATMOSTANK_PLASMA        25000
 #define ATMOSTANK_NITROUSOXIDE  10000 // N2O doesn't have a real useful use, i guess it's on station just to allow refilling of sec's riot control canisters?
+
+#define R_IDEAL_GAS_EQUATION       8.31    // kPa*L/(K*mol).
+#define ONE_ATMOSPHERE             101.325 // kPa.
+#define IDEAL_GAS_ENTROPY_CONSTANT 1164    // (mol^3 * s^3) / (kg^3 * L).
+
+// Radiation constants.
+#define STEFAN_BOLTZMANN_CONSTANT    5.6704e-8 // W/(m^2*K^4).
+#define COSMIC_RADIATION_TEMPERATURE 3.15      // K.
+#define AVERAGE_SOLAR_RADIATION      200       // W/m^2. Kind of arbitrary. Really this should depend on the sun position much like solars.
+#define RADIATOR_OPTIMUM_PRESSURE    3771      // kPa at 20 C. This should be higher as gases aren't great conductors until they are dense. Used the critical pressure for air.
+#define GAS_CRITICAL_TEMPERATURE     132.65    // K. The critical point temperature for air.
+
+#define RADIATOR_EXPOSED_SURFACE_AREA_RATIO 0.04 // (3 cm + 100 cm * sin(3deg))/(2*(3+100 cm)). Unitless ratio.
+#define HUMAN_EXPOSED_SURFACE_AREA          5.2 //m^2, surface area of 1.7m (H) x 0.46m (D) cylinder
+
+#define T0C  273.15 //    0.0 degrees celcius
+#define T20C 293.15 //   20.0 degrees celcius
+#define TCMB 2.7    // -270.3 degrees celcius

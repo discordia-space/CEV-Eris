@@ -76,7 +76,7 @@
 
 			var/progress = progress()
 			E.pixel_y = (max * progress) - 12 //-12 makes it offset down from the player a bit
-			E.pixel_x = rand_decimal(-4,4) //Slight side to side randomness so it looks chaotic
+			E.pixel_x = RAND_DECIMAL(-4,4) //Slight side to side randomness so it looks chaotic
 			E.alpha = (255 - (255 * progress))*2 //Fade out as the player does, but less so
 			E.layer = M.layer-0.01 //Match the player's layer so it doesn't render over foreground turfs when moving downwards
 

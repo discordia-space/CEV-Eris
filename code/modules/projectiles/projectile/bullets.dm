@@ -83,7 +83,7 @@
 	var/remaining = pellets - pellet_loss
 	if (remaining < 0)
 		return 0
-	return round_prob(remaining)
+	return ROUND_PROB(remaining)
 
 /obj/item/projectile/bullet/pellet/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier)
 

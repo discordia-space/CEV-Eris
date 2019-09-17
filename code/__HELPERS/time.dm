@@ -16,7 +16,7 @@
 
 var/roundstart_hour = 0
 var/station_date = ""
-var/next_station_date_change = 1 DAY
+var/next_station_date_change = 1 DAYS
 
 #define station_adjusted_time(time) time2text(time + station_time_in_ticks, "hh:mm")
 #define worldtime2stationtime(time) time2text(roundstart_hour HOURS + time, "hh:mm")
@@ -30,12 +30,12 @@ var/next_station_date_change = 1 DAY
 /proc/stationdate2text()
 	var/update_time = FALSE
 	if(station_time_in_ticks > next_station_date_change)
-		next_station_date_change += 1 DAY
+		next_station_date_change += 1 DAYS
 		update_time = TRUE
 	if(!station_date || update_time)
-		var/extra_days = round(station_time_in_ticks / (1 DAY)) DAYS
+		var/extra_days = round(station_time_in_ticks / (1 DAYS)) DAYS
 		var/timeofday = world.timeofday + extra_days
-		station_date = num2text((text2num(time2text(timeofday, "YYYY"))+544)) + "-" + time2text(timeofday, "MM-DD")
+		station_date = num2text((text2num(time2text(timeofday, "YYYY")) + 544)) + "-" + time2text(timeofday, "MM-DD")
 	return station_date
 
 /proc/time_stamp()
