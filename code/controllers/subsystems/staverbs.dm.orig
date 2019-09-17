@@ -106,6 +106,7 @@ SUBSYSTEM_DEF(statverbs)
 	required_stat = STAT_ROB
 	minimal_stat  = STAT_LEVEL_ADEPT
 
+<<<<<<< HEAD
 /datum/statverb/remove_plating/action(mob/user, turf/simulated/floor/target)
 	if(target.flooring && target.flooring.flags & TURF_REMOVE_CROWBAR)
 		user.visible_message(
@@ -117,7 +118,7 @@ SUBSYSTEM_DEF(statverbs)
 				SPAN_DANGER("[user] roughly tore plating off from [target]!"),
 				"You tore plating off from [target]"
 			)
-			target.make_plating(FALSE)
+			target.make_plating(TRUE)
 		else
 			var/target_name = target ? "[target]" : "the floor"
 			user.visible_message(
@@ -126,5 +127,10 @@ SUBSYSTEM_DEF(statverbs)
 			)
 
 
+=======
+/datum/statverb/remove_plating/action(user, turf/simulated/floor/target)
+	if(target.flooring & target.flooring.flags & TURF_REMOVE_CROWBAR)
+		target.make_plating()
+>>>>>>> master
 
 
