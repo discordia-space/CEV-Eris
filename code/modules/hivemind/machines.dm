@@ -341,7 +341,8 @@
 
 
 /obj/machinery/hivemind_machine/node/Destroy()
-	hive_mind_ai.hives.Remove(src)
+	if(hive_mind_ai)
+		hive_mind_ai.hives.Remove(src)
 	check_for_other()
 	for(var/obj/effect/plant/hivemind/wire in my_wireweeds)
 		remove_wireweed(wire)

@@ -10,7 +10,7 @@ SUBSYSTEM_DEF(catalog_setup)
 /datum/controller/subsystem/catalog_setup/Initialize() // the rest atoms
 	// Atoms
 	// Entries for atoms created when they initialized
-	var/list/types_to_create = subtypesof(/atom)	// OOF
+	var/list/types_to_create = subtypesof(/obj)	// OOF
 	var/list/inited_types = list()
 	for(var/_type in initialized_atoms_types)
 		inited_types += _type
@@ -19,10 +19,7 @@ SUBSYSTEM_DEF(catalog_setup)
 	types_to_create.Remove(typesof(/obj/effect))
 	types_to_create.Remove(typesof(/obj/random))
 	types_to_create.Remove(typesof(/obj/landmark))
-	types_to_create.Remove(typesof(/turf))
-	types_to_create.Remove(typesof(/atom/movable/lighting_overlay))
 	types_to_create.Remove(typesof(/obj/map_data))
-	types_to_create.Remove(typesof(/area))
 	types_to_create.Remove(typesof(/mob))
 	types_to_create.Remove(typesof(/obj/test))
 	types_to_create.Remove(typesof(/obj/item/craft))
@@ -34,12 +31,7 @@ SUBSYSTEM_DEF(catalog_setup)
 							/obj/secbot_listener,
 							/obj/singularity,
 							/obj/skeleton,
-							/obj/fire,
-							/atom/movable/overlay,
-							/stat_client_preference,
-							/stat_rig_module,
-							/stat_silicon_subsystem,
-							/atom/movable)
+							/obj/fire)
 
 	
 	for(var/type in types_to_create)

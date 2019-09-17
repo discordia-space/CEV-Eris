@@ -165,7 +165,9 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	var/taste
 	var/nerve_system_accumulations
 	var/heating_decompose
+	var/heating_point
 	var/chilling_decompose
+	var/chilling_point
 	var/color
 	var/scannable
 	var/overdose
@@ -199,16 +201,16 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 		dat["types"] = list()
 		for(var/id in V.heating_products)
 			dat["types"] += get_reagent_type_by_id(id)
-		dat["temp"] = V.heating_point
 		heating_decompose = dat
+		heating_point = V.heating_point
 
 	if(V.chilling_products && V.chilling_point)
 		var/list/dat = list()
 		dat["types"] = list()
 		for(var/id in V.chilling_products)
 			dat["types"] += get_reagent_type_by_id(id)
-		dat["temp"] = V.chilling_point
 		chilling_decompose = dat
+		chilling_point = V.chilling_point
 		
 	scannable = V.scannable ? "Yes" : "No"
 	overdose = V.overdose ? V.overdose : null
@@ -241,7 +243,9 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	data["metabolism_stomach"] = metabolism_stomach
 	data["nsa"] = nerve_system_accumulations
 	data["heating_decompose"] = heating_decompose
+	data["heating_point"] = heating_point
 	data["chilling_decompose"] = chilling_decompose
+	data["chilling_point"] = chilling_point
 	data["scannable"] = scannable
 	data["overdose"] = overdose
 

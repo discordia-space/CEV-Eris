@@ -48,6 +48,8 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	stat &= ~BROKEN
 
 /obj/machinery/gravity_generator/part/Destroy()
+	if(!get_turf(src))
+		return ..()
 	set_broken()
 	if(main_part)
 		qdel(main_part)

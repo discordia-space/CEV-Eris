@@ -886,7 +886,7 @@
 
 /datum/chemical_reaction/slime/ui_data()
 	var/list/dat = ..()
-	dat["additional_info"] = "Should take place inside of <span class='uiCatalogEntryLink'>[required]</span>"
+	dat["required_object"] = required
 	return dat
 
 /datum/chemical_reaction/slime/can_happen(var/datum/reagents/holder)

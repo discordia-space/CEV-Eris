@@ -29,14 +29,12 @@
 			Metabolism:
 		</div>
 		<div class="itemContent">
-			<table style="width:100%">
-				<tr>{{:data.metabolism_blood}}u/s in blood.
-				{{if data.metabolism_stomach}}
-					<tr>{{:data.metabolism_stomach}}u/s in stomach.
-				{{else}}
-					<tr>{{:data.metabolism_blood/2}}u/s in stomach.
-				{{/if}}
-			</table>
+			{{:data.metabolism_blood}}u/s in blood.
+			{{if data.metabolism_stomach}}
+				<br>{{:data.metabolism_stomach}}u/s in stomach.
+			{{else}}
+				<br>{{:data.metabolism_blood/2}}u/s in stomach.
+			{{/if}}
 		</div>
 		<div class="itemLabel">
 			Nerve system accumulation:
@@ -55,14 +53,14 @@
 					{{for data.heating_decompose.types}}
 						{{:helper.catalogEntryLink(value)}}
 					{{/for}}
-					at {{data.heating_decompose.temp}}k.
+					 at {{:data.heating_point}}k.
 				{{/if}}
 				{{if data.chilling_decompose}}
 					Chilling: Into 
 					{{for data.chilling_decompose.types}}
 						{{:helper.catalogEntryLink(value)}}
 					{{/for}}
-					at {{data.chilling_decompose.temp}}k.
+					 at {{:data.chilling_point}}k.
 				{{/if}}
 			</div>
 		{{/if}}
@@ -79,8 +77,8 @@
 						{{for value.catalyst :val:val_i}}
 							In presense of {{:val.units}}u of {{:helper.catalogEntryLink(val.type)}}<br>
 						{{/for}}
-						{{if value.additional_info}}
-							{{:value.additional_info}}
+						{{if value.required_object}}
+							Should take place inside of {{:helper.catalogEntryLink(value.required_object)}}.
 						{{/if}}
 						{{:value.result_amount}}
 					</div>

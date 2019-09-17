@@ -968,8 +968,8 @@ Checks if a list has the same entries and values as an element of big.
 	return 0
 
 /proc/parse_for_paths(var/list/data)
-	if(!islist(data))
-		return
+	if(!islist(data) || !data.len)
+		return list()
 	var/list/types = list()
 	if(is_associative(data))
 		for(var/tag in data)
@@ -989,27 +989,3 @@ Checks if a list has the same entries and values as an element of big.
 			else if(islist(value))
 				types.Add(parse_for_paths(value))
 	return uniquelist(types)
-/*
-	/proc/parse_for_paths(var/list/data)
-	var/list/types = list()
-	if(is_associative(data))
-		for(var/tag in data)
-			if(ispath(tag))
-				to_world("[tag]")
-				types += tag
-			else if(islist(tag))
-				types += parse_for_paths(tag)
-
-			if(ispath(data[tag]))
-				to_world(data[tag])
-				types += data[tag]
-			else if(islist(data[tag]))
-				types += parse_for_paths(data[tag])
-	else
-		for(var/value in data)
-			if(ispath(value))
-				types += value
-			else if(islist(value))
-				types += parse_for_paths(value)
-	
-	return uniquelist(types)*/
