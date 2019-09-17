@@ -224,6 +224,24 @@
 							/datum/design/autolathe/tool/rcd,
 							/datum/design/autolathe/tool/rcd_ammo
 							)
+
+/datum/technology/improved_tools
+	name = "Improved-Advanced Tools"
+	desc = "Fast matter deconstruction technology."
+	tech_type = RESEARCH_ENGINEERING
+
+	x = 0.7
+	y = 0.5
+	icon = "jawsoflife"
+
+	required_technologies = list(/datum/technology/adv_tools)
+	required_tech_levels = list()
+	cost = 1200
+
+	unlocks_designs = list(	/datum/design/research/item/weapon/hatton,
+							/datum/design/research/item/ammo/hatton
+							)
+
 /*
 /datum/technology/basic_handheld
 	name = "Basic Handheld"
