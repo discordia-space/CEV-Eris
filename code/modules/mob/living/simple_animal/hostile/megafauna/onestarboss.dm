@@ -36,6 +36,14 @@
 	icon_state = initial(icon_state)
 
 /mob/living/simple_animal/hostile/megafauna/one_star/FindTarget()
+	if(istype(src.loc, /turf))
+		var/turf/TURF = src.loc
+		if(TURF.get_lumcount() < 1)
+			vision_range = 4
+		else
+			vision_range = 10
+	else
+		vision_range = 0
 	. = ..()
 	if(.)
 		icon_state = "onestar_boss"
@@ -48,7 +56,6 @@
 	if(isliving(target_mob))
 		var/mob/living/L = target_mob
 		L.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
-		L.electrocute_act(10, src, safety = TRUE) //safety = TRUE means we don't check gloves...
 		return L
 	if(istype(target_mob,/obj/mecha))
 		var/obj/mecha/M = target_mob

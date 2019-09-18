@@ -37,7 +37,7 @@
 	for(var/obj/machinery/hivemind_machine/node/NODE in world)
 		NODES.Add(NODE.loc)
 	if(length(NODES) > 0)
-		loc = pick(NODES)
+		forceMove(pick(NODES))
 
 /mob/living/simple_animal/hostile/megafauna/hivemind_tyrant/proc/delhivetech()
 	var/othertyrant = 0

@@ -157,7 +157,7 @@
 	ranged_cooldown = world.time + 30
 	var/turf/U = get_turf(src)
 	for(var/T in RANGE_TURFS(12, U) - U)
-		dir = get_dir(T, target_mob)
+		set_dir(get_dir(T, target_mob))
 		if(get_dir(T, U) == get_dir(T, target_mob))
 			if(prob(15))
 				sleep(rand(0,1))
