@@ -448,7 +448,7 @@
 /datum/reagent/toxin/pararein
 	name = "Pararein"
 	id = "pararein"
-	description = "Venom used by spiders"
+	description = "Venom used by spiders."
 	taste_description = "sludge"
 	reagent_state = LIQUID
 	color = "#a37d9c"

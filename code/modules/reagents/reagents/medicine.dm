@@ -516,7 +516,7 @@
 /datum/reagent/medicine/quickclot
 	name = "Quickclot"
 	id = "quickclot"
-	description = "Temporarily oppresses any internal and internal bleeding."
+	description = "Temporarily stops\\oppresses any internal and external bleeding."
 	taste_description = "metal"
 	reagent_state = LIQUID
 	color = "#a6b85b"
@@ -535,8 +535,8 @@
 /datum/reagent/medicine/quickclot/overdose(var/mob/living/carbon/M, var/alien)
 	M.add_chemical_effect(CE_BLOODCLOT, min(1, 0.20))
 
-/datum/reagent/medicine/ossisine   
-	name = "ossisine"
+/datum/reagent/ossisine   
+	name = "Ossisine"
 	id = "ossisine"
 	description = "Paralyses user and restores broken bones. Medicate in critical conditions only."
 	taste_description = "calcium"
@@ -706,7 +706,7 @@
 /datum/reagent/medicine/haloperidol
 	name = "Haloperidol"
 	id = "haloperidol"
-	description = "Quick sedative for emergencies. While sedating patient it purges chemicals from bloodstream. An overdose of haloperidol can be fatal."
+	description = "Purges chems from bloodstream, lowers NSA and sedates patient. An overdose of haloperidol can be fatal."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#ba1f04"

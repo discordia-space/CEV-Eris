@@ -505,10 +505,10 @@
 	var/brightness = get_pin_data(IC_INPUT, 4)
 
 	if(isnum(R) && isnum(G) && isnum(B) && isnum(brightness))
-		R = Clamp(R, 0, 255)
-		G = Clamp(G, 0, 255)
-		B = Clamp(B, 0, 255)
-		brightness = Clamp(brightness, 0, 6)
+		R = CLAMP(R, 0, 255)
+		G = CLAMP(G, 0, 255)
+		B = CLAMP(B, 0, 255)
+		brightness = CLAMP(brightness, 0, 6)
 		light_rgb = rgb(R, G, B)
 		light_brightness = brightness
 
@@ -588,8 +588,8 @@
 		var/selected_sound = sounds[ID.data]
 		if(!selected_sound)
 			return
-		vol.data = Clamp(vol.data, 0, 100)
-		frequency.data = round(Clamp(frequency.data, 0, 1))
+		vol.data = CLAMP(vol.data, 0, 100)
+		frequency.data = round(CLAMP(frequency.data, 0, 1))
 		playsound(get_turf(src), selected_sound, vol.data, frequency.data, -1)
 
 /obj/item/integrated_circuit/output/sound/beeper

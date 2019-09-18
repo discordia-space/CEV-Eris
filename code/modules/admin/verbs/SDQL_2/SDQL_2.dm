@@ -569,7 +569,7 @@ ADMIN_VERB_ADD(/client/proc/SDQL2_query, R_DEBUG, FALSE)
 		else if (expression[start + 1] == "\[" && islist(v))
 			var/list/L = v
 			var/index = SDQL_expression(source, expression[start + 2])
-			if (isnum(index) && (!IsInteger(index) || L.len < index))
+			if (isnum(index) && (!ISINTEGER(index) || L.len < index))
 				to_chat(usr, SPAN_DANGER("Invalid list index: [index]"))
 				return null
 

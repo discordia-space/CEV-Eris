@@ -53,7 +53,7 @@
 /obj/item/integrated_circuit/reagent/injector/proc/inject_amount()
 	var/amount = get_pin_data(IC_INPUT, 2)
 	if(isnum(amount))
-		return Clamp(amount, 0, 30)
+		return CLAMP(amount, 0, 30)
 
 /obj/item/integrated_circuit/reagent/injector/proc/inject_check(atom/movable/target)
 	if(!target.Adjacent(get_turf(src)))
@@ -111,7 +111,7 @@
 /obj/item/integrated_circuit/reagent/pump/on_data_written()
 	var/datum/integrated_io/amount = inputs[3]
 	if(isnum(amount.data))
-		amount.data = Clamp(amount.data, 0, 50)
+		amount.data = CLAMP(amount.data, 0, 50)
 		transfer_amount = amount.data
 
 /obj/item/integrated_circuit/reagent/pump/do_work()

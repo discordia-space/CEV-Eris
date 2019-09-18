@@ -23,6 +23,13 @@
 		{{:data.cur_item.desc}}
 		</br>
 		{{:helper.link("Build", null, {'build' : data.cur_item.ref})}}
+		{{if data.cur_item.batch}}
+			{{:helper.link("", 'plus', {'build' : data.cur_item.ref, 'amount' : 'input'})}}
+			{{:helper.link("x5", null, {'build' : data.cur_item.ref, 'amount' : 5})}}
+			{{:helper.link("x10", null, {'build' : data.cur_item.ref, 'amount' : 10})}}
+			{{:helper.link("x25", null, {'build' : data.cur_item.ref, 'amount' : 25})}}
+			{{:helper.link("x50", null, {'build' : data.cur_item.ref, 'amount' : 50})}}
+		{{/if}}
 		{{if data.is_admin}}
 			{{:helper.link("View variables", null, {'view_vars' : data.cur_item.ref})}}
 		{{/if}}

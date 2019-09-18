@@ -82,7 +82,7 @@
 			icon_state += "-broken"
 		else if(health < maxhealth)
 			var/ratio = health / maxhealth
-			ratio = Ceiling(ratio * 4) * 25
+			ratio = CEILING(ratio * 4, 1) * 25
 			overlays += "damage[ratio]"
 	else
 		icon_state = "open"
@@ -100,7 +100,7 @@
 
 	else
 		var/ratio = health / maxhealth
-		ratio = Ceiling(ratio * 4) * 25
+		ratio = CEILING(ratio * 4, 1) * 25
 		overlays.Cut()
 		flick("opening[ratio]", src)
 
@@ -125,7 +125,7 @@
 
 	else
 		var/ratio = health / maxhealth
-		ratio = Ceiling(ratio * 4) * 25
+		ratio = CEILING(ratio * 4, 1) * 25
 		flick("closing[ratio]", src)
 
 	density = 1

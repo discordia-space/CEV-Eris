@@ -250,7 +250,6 @@
 	result_amount = 3
 
 /datum/chemical_reaction/silicate
-	
 	result = "silicate"
 	required_reagents = list("aluminum" = 1, "silicon" = 1, "acetone" = 1)
 	result_amount = 3

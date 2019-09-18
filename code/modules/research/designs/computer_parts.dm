@@ -50,7 +50,7 @@
 // Network cards
 /datum/design/research/item/modularcomponent/netcard
 	build_type = IMPRINTER
-	chemicals = list("sacid" = 20)
+	chemicals = list("silicon" = 20)
 
 /datum/design/research/item/modularcomponent/netcard/basic
 	build_path = /obj/item/weapon/computer_hardware/network_card
@@ -89,7 +89,7 @@
 // Processor
 /datum/design/research/item/modularcomponent/cpu
 	build_type = IMPRINTER
-	chemicals = list("sacid" = 20)
+	chemicals = list("silicon" = 20)
 	name = "computer processor unit"
 	build_path = /obj/item/weapon/computer_hardware/processor_unit
 	sort_string = "VBAAW"
@@ -101,7 +101,7 @@
 
 /datum/design/research/item/modularcomponent/cpu/photonic
 	name = "computer photonic processor unit"
-	chemicals = list("sacid" = 40)
+	chemicals = list("silicon" = 40)
 	build_path = /obj/item/weapon/computer_hardware/processor_unit/photonic
 	sort_string = "VBAAY"
 

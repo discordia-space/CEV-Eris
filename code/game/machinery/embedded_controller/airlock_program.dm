@@ -110,7 +110,7 @@
 	switch(command)
 		if("cycle_ext")
 			//If airlock is already cycled in this direction, just toggle the doors.
-			if(!memory["purge"] && IsInRange(memory["external_sensor_pressure"], memory["chamber_sensor_pressure"] * 0.95, memory["chamber_sensor_pressure"] * 1.05))
+			if(!memory["purge"] && ISINRANGE(memory["external_sensor_pressure"], memory["chamber_sensor_pressure"] * 0.95, memory["chamber_sensor_pressure"] * 1.05))
 				//Cycling to exterior will close the inner door then open the outer door, if we're already in the pressure range
 				toggleDoor(memory["interior_status"], tag_interior_door, memory["secure"], "close")
 				toggleDoor(memory["exterior_status"], tag_exterior_door, memory["secure"], "open")
@@ -120,7 +120,7 @@
 				begin_cycle_out()
 
 		if("cycle_int")
-			if(!memory["purge"] && IsInRange(memory["internal_sensor_pressure"], memory["chamber_sensor_pressure"] * 0.95, memory["chamber_sensor_pressure"] * 1.05))
+			if(!memory["purge"] && ISINRANGE(memory["internal_sensor_pressure"], memory["chamber_sensor_pressure"] * 0.95, memory["chamber_sensor_pressure"] * 1.05))
 				//Cycling to interior will close the inner door then open the outer door, if we're already in the pressure range
 				toggleDoor(memory["exterior_status"], tag_exterior_door, memory["secure"], "close")
 				toggleDoor(memory["interior_status"], tag_interior_door, memory["secure"], "open")
