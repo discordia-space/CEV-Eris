@@ -402,6 +402,7 @@
 #include "code\datums\repositories\crew\~defines.dm"
 #include "code\datums\setup_option\background.dm"
 #include "code\datums\setup_option\core_implant.dm"
+#include "code\datums\setup_option\core_implants.dm"
 #include "code\datums\setup_option\setup_option.dm"
 #include "code\datums\topic\admin.dm"
 #include "code\datums\topic\topic_handlers.dm"
