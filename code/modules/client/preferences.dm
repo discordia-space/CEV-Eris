@@ -191,7 +191,6 @@
 	character.facial_color = facial_color
 	character.skin_color = skin_color
 
-	character.religion = religion
 	character.s_tone = s_tone
 
 	QDEL_NULL_LIST(character.worn_underwear)

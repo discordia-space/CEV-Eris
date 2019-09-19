@@ -93,7 +93,6 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 	// Misc cultural info.
 	//set_homeSystem(H ? html_decode(H.get_cultural_value(TAG_HOMEWORLD)) : "Unset")
 	//set_faction(H ? html_decode(H.get_cultural_value(TAG_FACTION)) : "Unset")
-	set_religion(H ? H.religion : "Unset")
 
 	if(H)
 		var/stats = list()
@@ -212,7 +211,6 @@ FIELD_NUM("Account",account, null, access_change_ids)
 // MEDICAL RECORDS
 FIELD_LIST("Blood Type", bloodtype, GLOB.blood_types, access_moebius, access_moebius)
 FIELD_LONG("Medical Record", medRecord, access_moebius, access_moebius)
-FIELD_SHORT("Religion", religion, access_moebius, access_moebius)
 
 // SECURITY RECORDS
 FIELD_LIST("Criminal Status", criminalStatus, GLOB.security_statuses, access_security, access_security)
