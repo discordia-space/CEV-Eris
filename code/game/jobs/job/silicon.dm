@@ -18,13 +18,6 @@
 /datum/job/ai/is_position_available()
 	return (empty_playable_ai_cores.len != 0)
 
-// Being an AI overrides religion and background
-/datum/job/ai/is_religion_restricted()
-	return FALSE
-
-/datum/job/ai/is_background_restricted()
-	return FALSE
-
 /obj/landmark/join/start/AI
 	icon_state = "player-grey"
 	name = "AI"

@@ -35,7 +35,7 @@
 	var/duties = ""
 	var/loyalties = ""
 
-	var/background_restricted = FALSE
+	var/setup_restricted = FALSE
 
 	//Character stats modifers
 	var/list/stat_modifiers = list()
@@ -144,12 +144,8 @@
 	return (current_positions < total_positions) || (total_positions == -1)
 
 /datum/job/proc/is_restricted(datum/preferences/prefs, feedback)
-	if(is_religion_restricted(prefs.religion))
-		to_chat(feedback, "<span class='boldannounce'>NT is restricted from command and security roles due to conflict of intertest.</span>")
-		return TRUE
-
-	if(is_background_restricted(prefs.background))
-		to_chat(feedback, "<span class='boldannounce'>Your background conflicts with chosen job.</span>")
+	if(is_setup_restricted(prefs.setup_options))
+		to_chat(feedback, "<span class='boldannounce'>[setup_restricted ? "The job requires you to pick a specific setup option." : "The job conflicts with one of your setup options."]</span>")
 		return TRUE
 
 	if(minimum_character_age && (prefs.age < minimum_character_age))
@@ -158,20 +154,13 @@
 
 	return FALSE
 
-/datum/job/proc/is_religion_restricted(religion)
-	if(religion == "NeoTheology")
-		if((department_flag & (IRONHAMMER | COMMAND)) && department != DEPARTMENT_CHURCH)
+/datum/job/proc/is_setup_restricted(list/options)
+	. = setup_restricted
+	for(var/category in options)
+		var/datum/category_item/setup_option/option = SScharacter_setup.setup_options[category][options[category]]
+		if(type in option.restricted_jobs)
 			return TRUE
-
-	return FALSE
-
-/datum/job/proc/is_background_restricted(list/datum/background/backgrounds)
-	. = background_restricted
-	for(var/bg in backgrounds)
-		var/datum/background/background = all_backgrounds[bg][backgrounds[bg]]
-		if(type in background.restricted_jobs)
-			return TRUE
-		if(type in background.allowed_jobs)
+		if(type in option.allowed_jobs)
 			. = FALSE
 
 //	Creates mannequin with equipment for current job and stores it for future reference
