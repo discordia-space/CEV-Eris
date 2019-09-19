@@ -6,19 +6,19 @@
 	var/global/list/l_organs = list(BP_EYES, BP_L_ARM, BP_GROIN, BP_L_LEG)
 	var/global/list/internal_organs = list("chest2", BP_HEART, BP_LUNGS, BP_LIVER)
 
-/datum/category_item/player_setup_item/augmentation
+/datum/category_item/player_setup_item/augmentation/modifications
 	name = "Augmentation"
 	sort_order = 1
 
-/datum/category_item/player_setup_item/augmentation/load_character(var/savefile/S)
+/datum/category_item/player_setup_item/augmentation/modifications/load_character(var/savefile/S)
 	from_file(S["modifications_data"], pref.modifications_data)
 	from_file(S["modifications_colors"], pref.modifications_colors)
 
-/datum/category_item/player_setup_item/augmentation/save_character(var/savefile/S)
+/datum/category_item/player_setup_item/augmentation/modifications/save_character(var/savefile/S)
 	to_file(S["modifications_data"], pref.modifications_data)
 	to_file(S["modifications_colors"], pref.modifications_colors)
 
-/datum/category_item/player_setup_item/augmentation/sanitize_character()
+/datum/category_item/player_setup_item/augmentation/modifications/sanitize_character()
 	if(!pref.modifications_data)
 		pref.modifications_data = list()
 
@@ -30,7 +30,7 @@
 			pref.modifications_colors[tag] = "#000000"
 
 
-/datum/category_item/player_setup_item/augmentation/content(var/mob/user)
+/datum/category_item/player_setup_item/augmentation/modifications/content(var/mob/user)
 	if(!pref.preview_icon)
 		pref.update_preview_icon(naked = TRUE)
 	if(pref.preview_north && pref.preview_south && pref.preview_east && pref.preview_west)
@@ -47,15 +47,20 @@
 
 	dat +=  "<script language='javascript'> [js_byjax] function set(param, value) {window.location='?src=\ref[src];'+param+'='+value;}</script>"
 	dat += "<table style='max-height:400px;height:410px; margin-left:250px; margin-right:250px'>"
-	dat += "<tr style='vertical-align:top'><td><div style='max-width:230px;width:230px;height:100%;overflow-y:auto;border-right:1px solid;padding:3px'>"
-	dat += modifications_types[pref.current_organ]
-	dat += "</div></td><td style='margin-left:10px;width-max:310px;width:310px;'>"
+	dat += "<tr style='vertical-align:top'>"
+	if(pref.modifications_allowed())
+		dat += "<td><div style='max-width:230px;width:230px;height:100%;overflow-y:auto;border-right:1px solid;padding:3px'>"
+		dat += modifications_types[pref.current_organ]
+		dat += "</div></td>"
+	dat += "<td style='margin-left:10px;width-max:310px;width:310px;'>"
 	dat += "<table><tr><td style='width:115px; text-align:right; margin-right:10px;'>"
 
 	for(var/organ in pref.r_organs)
 		var/datum/body_modification/mod = pref.get_modification(organ)
 		var/disp_name = mod ? mod.short_name : "Nothing"
-		if(organ == pref.current_organ)
+		if(!pref.modifications_allowed())
+			dat += "<a class='linkOff'><b>[organ_tag_to_name[organ]]</b></a>"
+		else if(organ == pref.current_organ)
 			dat += "<div><a class='Organs_active' href='?src=\ref[src];organ=[organ]'><b>[organ_tag_to_name[organ]]</b></a>"
 		else
 			dat += "<a href='?src=\ref[src];organ=[organ]'><b>[organ_tag_to_name[organ]]</b></a>"
@@ -72,7 +77,9 @@
 		var/disp_name = mod ? mod.short_name : "Nothing"
 		if(mod.hascolor)
 			dat += "<div><a href='?src=\ref[src];color=[organ]'><span class='color_holder_box' style='background-color:[pref.modifications_colors[organ]]'></span></a>"
-		if(organ == pref.current_organ)
+		if(!pref.modifications_allowed())
+			dat += "<a class='linkOff'><b>[organ_tag_to_name[organ]]</b></a>"
+		else if(organ == pref.current_organ)
 			dat += "<a class='Organs_active' href='?src=\ref[src];organ=[organ]'><b>[organ_tag_to_name[organ]]</b></a>"
 		else
 			dat += "<a href='?src=\ref[src];organ=[organ]'><b>[organ_tag_to_name[organ]]</b></a>"
@@ -92,7 +99,10 @@
 			dat += "<td width='33%'><b><span style='background-color:pink'>[organ_tag_to_name[organ]]</span></b>"
 		else
 			dat += "<td width='33%'><b>[organ_tag_to_name[organ]]</b>"
-		dat += "<br><a href='?src=\ref[src];organ=[organ]'>[disp_name]</a></td>"
+		if(!pref.modifications_allowed())
+			dat += "<br><a class='linkOff'>[disp_name]</a></td>"
+		else
+			dat += "<br><a href='?src=\ref[src];organ=[organ]'>[disp_name]</a></td>"
 
 		if(++counter >= 3)
 			dat += "</tr><tr align='center'>"
@@ -102,8 +112,14 @@
 
 	return jointext(dat,null)
 
+/datum/preferences/proc/modifications_allowed()
+	for(var/category in setup_options)
+		if(!get_option(category).allow_modifications)
+			return FALSE
+	return TRUE
+
 /datum/preferences/proc/get_modification(var/organ)
-	if(!organ || !modifications_data[organ])
+	if(!modifications_allowed() || !organ || !modifications_data[organ])
 		return new/datum/body_modification/none
 	return modifications_data[organ]
 
@@ -122,7 +138,7 @@
 			check_child_modifications(child_organ)
 	return
 
-/datum/category_item/player_setup_item/augmentation/OnTopic(var/href, list/href_list, mob/user)
+/datum/category_item/player_setup_item/augmentation/modifications/OnTopic(var/href, list/href_list, mob/user)
 	if(href_list["organ"])
 		pref.current_organ = href_list["organ"]
 		return TOPIC_REFRESH_UPDATE_PREVIEW

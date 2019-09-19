@@ -213,6 +213,7 @@
 
 	character.force_update_limbs()
 	character.update_mutations(0)
+	character.update_implants(0)
 
 
 	character.update_body(0)
