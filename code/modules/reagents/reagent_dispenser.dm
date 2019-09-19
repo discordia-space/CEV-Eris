@@ -296,6 +296,7 @@
 	desc = "Bulk Industrial Dispenser Omnitech-Nanochem. A canister with acid-resistant linings intended for handling big volumes of chemicals."
 	icon = 'icons/obj/machines/chemistry.dmi'
 	icon_state = "bidon"
+	matter = list(MATERIAL_STEEL = 16, MATERIAL_GLASS = 8, MATERIAL_PLASTIC = 6)
 	reagent_flags = AMOUNT_VISIBLE
 	amount_per_transfer_from_this = 30
 	possible_transfer_amounts = list(10,30,60,120,200)
@@ -310,6 +311,7 @@
 	name = "stasis B.I.D.O.N. canister"
 	desc = "An advanced B.I.D.O.N. canister with stasis function."
 	icon_state = "bidon_adv"
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_GLASS = 12, MATERIAL_SILVER = 8)
 	reagent_flags = TRANSPARENT
 	filling_states = list(20,40,60,80,100)
 	volume = 900

@@ -181,10 +181,11 @@
 	return 1 // update UIs attached to this object
 
 /obj/item/device/makeshift_centrifuge
-	name = "makeshift centrifuge"
-	desc = "A handmade centrifuge with manual mechanism."
+	name = "manual centrifuge"
+	desc = "A centrifuge with manual mechanism."
 	icon = 'icons/obj/machines/chemistry.dmi'
 	icon_state = "centrifuge_makeshift"
+	matter = list(MATERIAL_STEEL = 4)
 	var/obj/item/weapon/reagent_containers/mainBeaker
 	var/list/obj/item/weapon/reagent_containers/separationBeakers = list()
 	var/beakerSlots = 2
