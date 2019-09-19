@@ -450,7 +450,7 @@
 			creatures[name] = O
 
 
-	for(var/mob/M in sortAtom(SSmobs.mob_list))
+	for(var/mob/M in sortNames(SSmobs.mob_list))
 		var/name = M.name
 		if (names.Find(name))
 			namecounts[name]++
@@ -1203,8 +1203,7 @@ mob/proc/yank_out_object()
 	if(!check_has_body_select())
 		return
 	var/obj/screen/zone_sel/selector = mob.HUDneed["damage zone"]
-	selector.set_selected_zone(next_in_list(mob.targeted_organ,zones))
-
+	selector.set_selected_zone(next_list_item(mob.targeted_organ,zones))
 /mob/proc/set_stat(var/new_stat)
 	. = stat != new_stat
 	stat = new_stat

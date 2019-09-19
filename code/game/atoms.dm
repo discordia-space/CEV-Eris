@@ -274,6 +274,8 @@ its easier to just keep the beam vertical.
 	else
 		user.visible_message("<font size=1>[user.name] looks at [src].</font>", "\icon[src] This is [full_name] [suffix]")
 
+	to_chat(user, show_stat_verbs()) //rewrite to show_stat_verbs(user)?
+
 	if(desc)
 		to_chat(user, desc)
 

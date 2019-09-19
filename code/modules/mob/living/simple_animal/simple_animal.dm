@@ -149,7 +149,7 @@
 
 /mob/living/simple_animal/updatehealth()
 	..()
-	if (health <= 0)
+	if (health <= 0 && stat != DEAD)
 		death()
 
 /mob/living/simple_animal/examine(mob/user)
