@@ -176,6 +176,9 @@
 //Multi-z
 #define FALL_GIB_DAMAGE 999
 
+//distance
+#define RANGE_ADJACENT -1
+
 //Core implants
 #define CORE_ACTIVATED /datum/core_module/activatable
 #define GROUP_RITUAL_COOLDOWN 45*60*10
