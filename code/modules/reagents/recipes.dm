@@ -1908,8 +1908,8 @@
 	maximum_temperature = INFINITY
 	minimum_temperature = 363
 
-/datum/chemical_reaction/adrenalin
-	result = "adrenalin"
+/datum/chemical_reaction/adrenaline
+	result = "adrenaline"
 	required_reagents = list("blood" = 3, "dexalin" = 1)
 	result_amount = 4
 	maximum_temperature = INFINITY

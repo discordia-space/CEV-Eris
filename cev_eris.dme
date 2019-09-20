@@ -2287,6 +2287,7 @@
 #include "code\modules\research\designs\rigmodules.dm"
 #include "code\modules\research\designs\robot_parts.dm"
 #include "code\modules\research\designs\stock_parts.dm"
+#include "code\modules\research\designs\structures.dm"
 #include "code\modules\research\designs\weapon.dm"
 #include "code\modules\research\nodes\biotech.dm"
 #include "code\modules\research\nodes\bluespace.dm"
