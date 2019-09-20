@@ -819,6 +819,7 @@ Checks if a list has the same entries and values as an element of big.
 				types.Add(value)
 			else if(islist(value))
 				types.Add(parse_for_paths(value))
+	return uniquelist(types)
 
 //return first thing in L which has var/varname == value
 //this is typecaste as list/L, but you could actually feed it an atom instead.
