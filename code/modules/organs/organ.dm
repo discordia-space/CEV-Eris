@@ -126,7 +126,7 @@
 		return
 
 	if(!owner)
-		var/datum/reagent/blood/B = locate(/datum/reagent/blood) in reagents.reagent_list
+		var/datum/reagent/organic/blood/B = locate(/datum/reagent/organic/blood) in reagents.reagent_list
 		if(B && prob(40))
 			reagents.remove_reagent("blood",0.1)
 			blood_splatter(src,B,1)
@@ -286,7 +286,7 @@
 	forceMove(get_turf(owner))
 	START_PROCESSING(SSobj, src)
 	rejecting = null
-	var/datum/reagent/blood/organ_blood = locate(/datum/reagent/blood) in reagents.reagent_list
+	var/datum/reagent/organic/blood/organ_blood = locate(/datum/reagent/organic/blood) in reagents.reagent_list
 	if(!organ_blood || !organ_blood.data["blood_DNA"])
 		owner.vessel.trans_to(src, 5, 1, 1)
 
@@ -303,7 +303,7 @@
 
 	if(!istype(target)) return
 
-	var/datum/reagent/blood/transplant_blood = locate(/datum/reagent/blood) in reagents.reagent_list
+	var/datum/reagent/organic/blood/transplant_blood = locate(/datum/reagent/organic/blood) in reagents.reagent_list
 	transplant_data = list()
 	if(!transplant_blood)
 		transplant_data["species"] =    target.species.name

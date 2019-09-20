@@ -101,7 +101,7 @@
 		var/field_name = href_list["search"]
 		var/search = sanitize(input("Enter the value for search for.") as null|text)
 		if(!search)
-			return
+			return 1
 		for(var/datum/computer_file/report/crew_record/R in GLOB.all_crew_records)
 			var/datum/report_field/field = R.field_from_name(field_name)
 			if(lowertext(field.get_value()) == lowertext(search))

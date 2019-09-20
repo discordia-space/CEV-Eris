@@ -50,7 +50,7 @@
 		dat = "Virus production in progress"
 	else if(container)
 		// see if there's any blood in the container
-		var/datum/reagent/blood/B = locate(/datum/reagent/blood) in container.reagents.reagent_list
+		var/datum/reagent/organic/blood/B = locate(/datum/reagent/organic/blood) in container.reagents.reagent_list
 
 		if(B)
 			dat = "Blood sample inserted."
@@ -98,7 +98,7 @@
 /obj/machinery/computer/curer/proc/createcure(var/obj/item/weapon/reagent_containers/container)
 	var/obj/item/weapon/reagent_containers/glass/beaker/product = new(src.loc)
 
-	var/datum/reagent/blood/B = locate() in container.reagents.reagent_list
+	var/datum/reagent/organic/blood/B = locate() in container.reagents.reagent_list
 
 	var/list/data = list()
 	data["antibodies"] = B.data["antibodies"]

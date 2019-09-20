@@ -9,9 +9,8 @@
 			continue
 		chemical_reagents_list[D.id] = D
 
-
 /datum/reagent
-	var/name = "Reagent"
+	var/name = ""
 	var/id = "reagent"
 	var/description = "A non-descript chemical."
 	var/taste_description = "old rotten bandaids"
@@ -52,6 +51,10 @@
 	var/constant_metabolism = FALSE	// if metabolism factor should not change with volume or blood circulation
 
 	var/nerve_system_accumulations = 5 // Nerve system accumulations
+
+	// Catalog stuff
+	var/appear_in_default_catalog = TRUE
+	var/reagent_type = "FIX DAT SHIT IMIDIATLY"
 
 /datum/reagent/proc/remove_self(amount) // Shortcut
 	holder.remove_reagent(id, amount)
@@ -163,6 +166,8 @@
 	return
 
 /datum/reagent/proc/mix_data(var/newdata, var/newamount) // You have a reagent with data, and new reagent with its own data get added, how do you deal with that?
+	if(!data)
+		data = list()
 	return
 
 /datum/reagent/proc/get_data() // Just in case you have a reagent that handles data differently.
