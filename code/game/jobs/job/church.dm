@@ -9,7 +9,7 @@
 	supervisors = "the NeoTheology Church"
 	selection_color = "#ecd37d"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 25)
-	access = list(access_morgue, access_chapel_office, access_crematorium, access_maint_tunnels)
+	cruciform_access = list(access_morgue, access_chapel_office, access_crematorium, access_maint_tunnels)
 	wage = WAGE_PROFESSIONAL //The church has deep pockets
 	department_account_access = TRUE
 	outfit_type = /decl/hierarchy/outfit/job/chaplain
