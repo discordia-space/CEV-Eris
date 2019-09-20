@@ -101,6 +101,9 @@
 		dat += "Perks:<br>"
 		for(var/perk in selected_option.perks)
 			var/datum/perk/P = perk
+			if(initial(P.icon))
+				preference_mob() << browse_rsc(icon(initial(P.icon),initial(P.icon_state)), "perk_[initial(P.name)].png")
+				dat += "<img style='vertical-align: middle;width=18px;height=18px;' src='perk_[initial(P.name)].png'/>"
 			dat += "[initial(P.name)]<br>"
 		dat += "<br>"
 

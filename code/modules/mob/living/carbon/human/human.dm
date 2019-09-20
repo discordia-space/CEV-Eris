@@ -91,6 +91,8 @@
 		var/obj/item/weapon/implant/core_implant/cruciform/C = get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 		if (C)
 			stat("Cruciform", "[C.power]/[C.max_power]")
+	else if(mind)
+		statpanel("Perks",src.stats.perk_stat)
 
 /mob/living/carbon/human/ex_act(severity)
 	if(!blinded)
