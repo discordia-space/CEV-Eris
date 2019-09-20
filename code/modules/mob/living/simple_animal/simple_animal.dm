@@ -8,6 +8,8 @@
 	mob_swap_flags = MONKEY|SLIME|SIMPLE_ANIMAL
 	mob_push_flags = MONKEY|SLIME|SIMPLE_ANIMAL
 
+	var/datum/component/spawner/nest
+
 	var/show_stat_health = TRUE	//does the percentage health show in the stat panel for the mob
 
 	var/icon_living = ""
