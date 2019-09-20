@@ -98,7 +98,7 @@ nanoui is used to open and update nano browser uis
 
 	add_common_assets()
 	var/datum/asset/assets = get_asset_datum(/datum/asset/nanoui)
-	assets.send(user, ntemplate_filename)
+	assets.send(user)
 
 //Do not qdel nanouis. Use close() instead.
 /datum/nanoui/Destroy()
@@ -220,7 +220,17 @@ nanoui is used to open and update nano browser uis
 	var/list/send_data = list("config" = config_data)
 
 	if (!isnull(data))
+		var/list/types = parse_for_paths(data)
+
+		var/list/potential_catalog_data = list()
+		for(var/type in types)
+			var/datum/catalog_entry/E = get_catalog_entry(type)
+			if(E)
+				potential_catalog_data.Add(list(list("entry_name" = E.title, "entry_img_path" = E.image_path, "entry_type" = E.thing_type)))
+
+		send_data["potential_catalog_data"] = potential_catalog_data
 		send_data["data"] = data
+		
 
 	return send_data
 
@@ -343,6 +353,7 @@ nanoui is used to open and update nano browser uis
 /datum/nanoui/proc/use_on_close_logic(state)
 	on_close_logic = state
 
+
  /**
   * Return the HTML for this UI
   *
@@ -369,6 +380,7 @@ nanoui is used to open and update nano browser uis
 		template_data_json = strip_improper(json_encode(templates))
 
 	var/list/send_data = get_send_data(initial_data)
+
 	var/initial_data_json = replacetext(replacetext(json_encode(send_data), "&#34;", "&amp;#34;"), "'", "&#39;")
 	initial_data_json = strip_improper(initial_data_json);
 
@@ -379,7 +391,7 @@ nanoui is used to open and update nano browser uis
 <html>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<head>
-		<meta http-equiv="X-UA-Compatible" content="IE=8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<script type='text/javascript'>
 			function receiveUpdateData(jsonString)
 			{

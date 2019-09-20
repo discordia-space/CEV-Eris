@@ -1,6 +1,8 @@
-/* Paint and crayons */
+/datum/reagent/other
+	reagent_type = "Other"
 
-/datum/reagent/crayon_dust
+/* Paint and crayons */
+/datum/reagent/other/crayon_dust
 	name = "Crayon dust"
 	id = "crayon_dust"
 	description = "Intensely coloured powder obtained by grinding crayons."
@@ -9,47 +11,47 @@
 	color = "#888888"
 	overdose = 5
 
-/datum/reagent/crayon_dust/red
+/datum/reagent/other/crayon_dust/red
 	name = "Red crayon dust"
 	id = "crayon_dust_red"
 	color = "#FE191A"
 
-/datum/reagent/crayon_dust/orange
+/datum/reagent/other/crayon_dust/orange
 	name = "Orange crayon dust"
 	id = "crayon_dust_orange"
 	color = "#FFBE4F"
 
-/datum/reagent/crayon_dust/yellow
+/datum/reagent/other/crayon_dust/yellow
 	name = "Yellow crayon dust"
 	id = "crayon_dust_yellow"
 	color = "#FDFE7D"
 
-/datum/reagent/crayon_dust/green
+/datum/reagent/other/crayon_dust/green
 	name = "Green crayon dust"
 	id = "crayon_dust_green"
 	color = "#18A31A"
 
-/datum/reagent/crayon_dust/blue
+/datum/reagent/other/crayon_dust/blue
 	name = "Blue crayon dust"
 	id = "crayon_dust_blue"
 	color = "#247CFF"
 
-/datum/reagent/crayon_dust/purple
+/datum/reagent/other/crayon_dust/purple
 	name = "Purple crayon dust"
 	id = "crayon_dust_purple"
 	color = "#CC0099"
 
-/datum/reagent/crayon_dust/grey //Mime
+/datum/reagent/other/crayon_dust/grey //Mime
 	name = "Grey crayon dust"
 	id = "crayon_dust_grey"
 	color = "#808080"
 
-/datum/reagent/crayon_dust/brown //Rainbow
+/datum/reagent/other/crayon_dust/brown //Rainbow
 	name = "Brown crayon dust"
 	id = "crayon_dust_brown"
 	color = "#846F35"
 
-/datum/reagent/paint
+/datum/reagent/other/paint
 	name = "Paint"
 	id = "paint"
 	description = "This paint will stick to almost any object."
@@ -59,27 +61,28 @@
 	overdose = REAGENTS_OVERDOSE * 0.5
 	color_weight = 20
 
-/datum/reagent/paint/touch_turf(var/turf/T)
+/datum/reagent/other/paint/touch_turf(var/turf/T)
 	if(istype(T) && !istype(T, /turf/space))
 		T.color = color
 	return TRUE
 
-/datum/reagent/paint/touch_obj(var/obj/O)
+/datum/reagent/other/paint/touch_obj(var/obj/O)
 	if(istype(O))
 		O.color = color
 
-/datum/reagent/paint/touch_mob(var/mob/M)
+/datum/reagent/other/paint/touch_mob(var/mob/M)
 	if(istype(M) && !isobserver(M)) //painting observers: not allowed
 		M.color = color //maybe someday change this to paint only clothes and exposed body parts for human mobs.
 
-/datum/reagent/paint/get_data()
+/datum/reagent/other/paint/get_data()
 	return color
 
-/datum/reagent/paint/initialize_data(var/newdata)
+/datum/reagent/other/paint/initialize_data(var/newdata)
+	..()
 	color = newdata
 	return
 
-/datum/reagent/paint/mix_data(var/newdata, var/newamount)
+/datum/reagent/other/paint/mix_data(var/newdata, var/newamount)
 	var/list/colors = list(0, 0, 0, 0)
 	var/tot_w = 0
 
@@ -119,6 +122,7 @@
 	glass_icon_state = "golden_cup"
 	glass_name = "golden cup"
 	glass_desc = "It's magic. We don't have to explain it."
+	appear_in_default_catalog = FALSE
 
 /datum/reagent/adminordrazine/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	affect_blood(M, alien, effect_multiplier)
@@ -146,7 +150,7 @@
 	M.sleeping = 0
 	M.jitteriness = 0
 
-/datum/reagent/gold
+/datum/reagent/metal/gold
 	name = "Gold"
 	id = "gold"
 	description = "Gold is a dense, soft, shiny metal and the most malleable and ductile metal known."
@@ -154,7 +158,7 @@
 	reagent_state = SOLID
 	color = "#F7C430"
 
-/datum/reagent/silver
+/datum/reagent/metal/silver
 	name = "Silver"
 	id = "silver"
 	description = "A soft, white, lustrous transition metal, it has the highest electrical conductivity of any element and the highest thermal conductivity of any metal."
@@ -162,7 +166,7 @@
 	reagent_state = SOLID
 	color = "#D0D0D0"
 
-/datum/reagent/uranium
+/datum/reagent/metal/uranium
 	name ="Uranium"
 	id = "uranium"
 	description = "A silvery-white metallic chemical element in the actinide series, weakly radioactive."
@@ -170,13 +174,13 @@
 	reagent_state = SOLID
 	color = "#B8B8C0"
 
-/datum/reagent/uranium/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/metal/uranium/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	affect_ingest(M, alien, effect_multiplier)
 
-/datum/reagent/uranium/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/metal/uranium/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.apply_effect(effect_multiplier, IRRADIATE, 0)
 
-/datum/reagent/uranium/touch_turf(var/turf/T)
+/datum/reagent/metal/uranium/touch_turf(var/turf/T)
 	if(volume >= 3)
 		if(!istype(T, /turf/space))
 			var/obj/effect/decal/cleanable/greenglow/glow = locate(/obj/effect/decal/cleanable/greenglow, T)
@@ -193,6 +197,7 @@
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#C8A5DC"
+	reagent_type = "Organic/Stimulator"
 
 /datum/reagent/adrenaline/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.SetParalysis(0)
@@ -208,7 +213,7 @@
 		T.holy = 1
 	return TRUE
 
-/datum/reagent/diethylamine
+/datum/reagent/other/diethylamine
 	name = "Diethylamine"
 	id = "diethylamine"
 	description = "A secondary amine, mildly corrosive."
@@ -216,7 +221,7 @@
 	reagent_state = LIQUID
 	color = "#604030"
 
-/datum/reagent/surfactant // Foam precursor
+/datum/reagent/other/surfactant // Foam precursor
 	name = "Azosurfactant"
 	id = "surfactant"
 	description = "A isocyanate liquid that forms a foam when mixed with water."
@@ -224,7 +229,7 @@
 	reagent_state = LIQUID
 	color = "#9E6B38"
 
-/datum/reagent/foaming_agent // Metal foaming agent. This is lithium hydride. Add other recipes (e.g. LiH + H2O -> LiOH + H2) eventually.
+/datum/reagent/other/foaming_agent // Metal foaming agent. This is lithium hydride. Add other recipes (e.g. LiH + H2O -> LiOH + H2) eventually.
 	name = "Foaming agent"
 	id = "foaming_agent"
 	description = "A agent that yields metallic foam when mixed with light metal and a strong acid."
@@ -232,7 +237,7 @@
 	reagent_state = SOLID
 	color = "#664B63"
 
-/datum/reagent/thermite
+/datum/reagent/other/thermite
 	name = "Thermite"
 	id = "thermite"
 	description = "Thermite produces an aluminothermic reaction known as a thermite reaction. Can be used to melt walls."
@@ -241,7 +246,7 @@
 	color = "#673910"
 	touch_met = 50
 
-/datum/reagent/thermite/touch_turf(var/turf/T)
+/datum/reagent/other/thermite/touch_turf(var/turf/T)
 	if(volume >= 5)
 		if(istype(T, /turf/simulated/wall))
 			var/turf/simulated/wall/W = T
@@ -250,14 +255,14 @@
 			remove_self(5)
 	return TRUE
 
-/datum/reagent/thermite/touch_mob(var/mob/living/L, var/amount)
+/datum/reagent/other/thermite/touch_mob(var/mob/living/L, var/amount)
 	if(istype(L))
 		L.adjust_fire_stacks(amount / 5)
 
-/datum/reagent/thermite/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/other/thermite/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.adjustFireLoss(3 * 0.6)
 
-/datum/reagent/space_cleaner
+/datum/reagent/other/space_cleaner
 	name = "Space cleaner"
 	id = "cleaner"
 	description = "A compound used to clean things. Now with 50% more sodium hypochlorite!"
@@ -266,11 +271,11 @@
 	color = "#A5F0EE"
 	touch_met = 50
 
-/datum/reagent/space_cleaner/touch_obj(var/obj/O)
+/datum/reagent/other/space_cleaner/touch_obj(var/obj/O)
 	O.clean_blood()
 	O.color = "white"
 
-/datum/reagent/space_cleaner/touch_turf(var/turf/T)
+/datum/reagent/other/space_cleaner/touch_turf(var/turf/T)
 	if(volume >= 1)
 		if(istype(T, /turf/simulated))
 			var/turf/simulated/S = T
@@ -284,7 +289,7 @@
 	T.color = "white"
 	return TRUE
 
-/datum/reagent/space_cleaner/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/other/space_cleaner/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(M.r_hand)
 		M.r_hand.clean_blood()
 	if(M.l_hand)
@@ -312,7 +317,7 @@
 	M.clean_blood()
 	M.color = "white"
 
-/datum/reagent/lube // TODO: spraying on borgs speeds them up
+/datum/reagent/other/lube // TODO: spraying on borgs speeds them up
 	name = "Space Lube"
 	id = "lube"
 	description = "Lubricant is a substance introduced between two moving surfaces to reduce the friction and wear between them. giggity."
@@ -320,14 +325,14 @@
 	reagent_state = LIQUID
 	color = "#009CA8"
 
-/datum/reagent/lube/touch_turf(var/turf/simulated/T)
+/datum/reagent/other/lube/touch_turf(var/turf/simulated/T)
 	if(!istype(T))
 		return TRUE
 	if(volume >= 1)
 		T.wet_floor(2)
 	return TRUE
 
-/datum/reagent/silicate
+/datum/reagent/other/silicate
 	name = "Silicate"
 	id = "silicate"
 	description = "A compound that can be used to reinforce glass."
@@ -335,14 +340,14 @@
 	reagent_state = LIQUID
 	color = "#C7FFFF"
 
-/datum/reagent/silicate/touch_obj(var/obj/O)
+/datum/reagent/other/silicate/touch_obj(var/obj/O)
 	if(istype(O, /obj/structure/window))
 		var/obj/structure/window/W = O
 		W.apply_silicate(volume)
 		remove_self(volume)
 	return
 
-/datum/reagent/glycerol
+/datum/reagent/other/glycerol
 	name = "Glycerol"
 	id = "glycerol"
 	description = "Glycerol is a simple polyol compound. Glycerol is sweet-tasting and of low toxicity."
@@ -350,7 +355,7 @@
 	reagent_state = LIQUID
 	color = "#808080"
 
-/datum/reagent/nitroglycerin
+/datum/reagent/other/nitroglycerin
 	name = "Nitroglycerin"
 	id = "nitroglycerin"
 	description = "Nitroglycerin is a heavy, colorless, oily, explosive liquid obtained by nitrating glycerol."
@@ -358,11 +363,11 @@
 	reagent_state = LIQUID
 	color = "#808080"
 
-/datum/reagent/nitroglycerin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/other/nitroglycerin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
 	M.add_chemical_effect(CE_PULSE, 2)
 
-/datum/reagent/coolant
+/datum/reagent/other/coolant
 	name = "Coolant"
 	id = "coolant"
 	description = "Industrial cooling substance."
@@ -371,14 +376,14 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 
-/datum/reagent/ultraglue
+/datum/reagent/other/ultraglue
 	name = "Ultra Glue"
 	id = "glue"
 	description = "An extremely powerful bonding agent."
 	taste_description = "a special education class"
 	color = "#FFFFCC"
 
-/datum/reagent/woodpulp
+/datum/reagent/other/woodpulp
 	name = "Wood Pulp"
 	id = "woodpulp"
 	description = "A mass of wood fibers."
@@ -386,7 +391,7 @@
 	reagent_state = LIQUID
 	color = "#B97A57"
 
-/datum/reagent/luminol
+/datum/reagent/other/luminol
 	name = "Luminol"
 	id = "luminol"
 	description = "A compound that interacts with blood on the molecular level."
@@ -394,17 +399,17 @@
 	reagent_state = LIQUID
 	color = "#F2F3F4"
 
-/datum/reagent/luminol/touch_obj(var/obj/O)
+/datum/reagent/other/luminol/touch_obj(var/obj/O)
 	O.reveal_blood()
 
-/datum/reagent/luminol/touch_mob(var/mob/living/L)
+/datum/reagent/other/luminol/touch_mob(var/mob/living/L)
 	L.reveal_blood()
 
 
-/datum/reagent/aranecolmin
+/datum/reagent/other/aranecolmin
 	name = "Aranecolmin"
 	id = "aranecolmin"
-	description = ""
+	description = "Weak antitoxin used by warrior spiders. Speeds up metabolism immensely."
 	taste_description = "sludge"
 	reagent_state = LIQUID
 	color = "#acc107"
@@ -412,7 +417,7 @@
 	addiction_chance = 10
 	nerve_system_accumulations = 5
 
-/datum/reagent/aranecolmin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/other/aranecolmin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.add_chemical_effect(CE_ANTITOX, 0.3)
 	if(M.bloodstr)
 		for(var/current in M.bloodstr.reagent_list)
@@ -420,7 +425,7 @@
 			if(istype(R))
 				R.metabolism = initial(R.metabolism) * 3
 
-/datum/reagent/aranecolmin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/other/aranecolmin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.add_chemical_effect(CE_ANTITOX, 0.3)
 	if(M.bloodstr)
 		for(var/current in M.bloodstr.reagent_list)
@@ -429,7 +434,7 @@
 				R.metabolism = initial(R.metabolism) * 3
 				break
 
-/datum/reagent/aranecolmin/on_mob_delete(mob/living/carbon/M)
+/datum/reagent/other/aranecolmin/on_mob_delete(mob/living/carbon/M)
 	..()
 	if(istype(M))
 		if(M.bloodstr)
@@ -439,21 +444,7 @@
 					R.metabolism = initial(R.metabolism)
 					break
 
-
-/datum/reagent/vomitol
-	name = "Vomitol"
-	id = "vomitol"
-	description = "Forces patient to vomit for some time - results in total cleaning of his stomach. Has extremely unpleasant taste."
-	taste_description = "worst thing in the world"
-	reagent_state = LIQUID
-	color = "#a6b85b"
-	overdose = REAGENTS_OVERDOSE
-
-/datum/reagent/vomitol/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	if(prob(10 * effect_multiplier))
-		M.vomit()
-
-/datum/reagent/arectine 
+/datum/reagent/other/arectine 
 	name = "Arectine"
 	id = "arectine"
 	description = "Makes user emit light."
@@ -463,26 +454,26 @@
 	overdose = 25
 	addiction_chance = 5
 
-/datum/reagent/arectine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/other/arectine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.set_light(2.5)
 
-/datum/reagent/arectine/overdose(var/mob/living/carbon/M, var/alien)
+/datum/reagent/other/arectine/overdose(var/mob/living/carbon/M, var/alien)
 	if(prob(10))
 		M.IgniteMob()
 
-/datum/reagent/fuhrerole/on_mob_delete(mob/living/L)
+/datum/reagent/other/arectine/on_mob_delete(mob/living/L)
 	..()
 	L.set_light(0)
 
-/datum/reagent/instant_ice  
+/datum/reagent/other/instantice
 	name = "InstantIce"
-	id = "instantice"
+	id = "instant_ice"
 	description = "Will cool reagents inside container when mixed with water to -50C"
 	taste_description = "nothing"
 	reagent_state = LIQUID
 	color = "#bbc5f0"
 
-/datum/reagent/biomatter
+/datum/reagent/organic/biomatter
 	name = "Biomatter"
 	id = "biomatter"
 	description = "A goo of unknown to you origin. Its better to stay that way."

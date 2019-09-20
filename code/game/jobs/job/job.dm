@@ -3,6 +3,7 @@
 	//The name of the job
 	var/title = "NOPE"
 	var/list/access = list()				// Useful for servers which either have fewer players, so each person needs to fill more than one role, or servers which like to give more access, so players can't hide forever in their super secure departments (I'm looking at you, chemistry!)
+	var/list/cruciform_access = list()		// Assign this access into cruciform if target has it
 	var/list/software_on_spawn = list()		// Defines the software files that spawn on tablets and labtops
 	var/list/core_upgrades = list()			// Defines the upgrades that would be installed into core implant on spawn, if any.
 	var/flag = NONE							// Bitflags for the job
@@ -39,6 +40,7 @@
 
 	//Character stats modifers
 	var/list/stat_modifiers = list()
+	
 
 /datum/job/proc/equip(var/mob/living/carbon/human/H, var/alt_title)
 	var/decl/hierarchy/outfit/outfit = get_outfit()

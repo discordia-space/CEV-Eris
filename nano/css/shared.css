@@ -455,6 +455,14 @@ div.notice {
 	background: #000000;
 }
 
+.colorBox {
+	display: inline-block; 
+	width: 20px; 
+	height: 8px; 
+	border:1px solid #000; 
+	padding: 0px;
+}
+
 /*used in xenobio2 computer*/
 
 .displayBarBeaker {
@@ -504,6 +512,10 @@ div.notice {
 
 .clearBoth {
     clear: both;
+}
+
+.noFloat {
+    float: none;
 }
 
 .clearLeft {
@@ -959,3 +971,4 @@ img.sciTechTreeIconToolTip {
     width: 300px;
     float: left;
 }
+
