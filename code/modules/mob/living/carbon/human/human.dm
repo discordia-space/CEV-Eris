@@ -1127,6 +1127,10 @@ var/list/rank_prefix = list(\
 	for(var/obj/item/organ/organ in (organs|internal_organs))
 		qdel(organ)
 
+	var/obj/item/weapon/implant/core_implant/CI = get_core_implant()
+	if(CI)
+		qdel(CI)
+
 	if(organs.len)
 		organs.Cut()
 	if(internal_organs.len)
@@ -1167,9 +1171,9 @@ var/list/rank_prefix = list(\
 				var/organ_type = species.has_organ[tag]
 				new organ_type(src)
 
-		// Qualifies for a cruciform: spawn it and install it
-		if(Pref.religion == "NeoTheology" || (mind && mind.assigned_job && mind.assigned_job.department == DEPARTMENT_CHURCH))
-			var/obj/item/weapon/implant/core_implant/cruciform/C = new /obj/item/weapon/implant/core_implant/cruciform
+		var/datum/category_item/setup_option/core_implant/I = Pref.get_option("Core implant")
+		if(I.implant_type)
+			var/obj/item/weapon/implant/core_implant/C = new I.implant_type
 			C.install(src)
 			C.activate()
 

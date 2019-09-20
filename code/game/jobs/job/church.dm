@@ -50,6 +50,8 @@
 		Recover and clone the faithful dead.<br>\
 		Hold funerals for the dead heathens."
 
+	setup_restricted = TRUE
+
 /obj/landmark/join/start/chaplain
 	name = "NeoTheology Preacher"
 	icon_state = "player-black"
