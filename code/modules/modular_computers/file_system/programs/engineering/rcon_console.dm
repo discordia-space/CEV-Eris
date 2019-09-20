@@ -40,7 +40,7 @@
 		"RCON_tag" = SMES.RCon_tag
 		)))
 
-	data["smes_info"] = sortByKey(smeslist, "RCON_tag")
+	data["smes_info"] = sortTim(smeslist, /proc/cmp_smeslist_rcon_tag)
 
 	// BREAKER DATA (simplified view)
 	var/list/breakerlist[0]

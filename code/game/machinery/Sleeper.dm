@@ -5,6 +5,7 @@
 	icon_state = "sleeper_0"
 	density = 1
 	anchored = 1
+	circuit = /obj/item/weapon/circuitboard/sleeper
 	var/mob/living/carbon/human/occupant = null
 	var/list/available_chemicals = list("inaprovaline" = "Inaprovaline", "stoxin" = "Soporific", "paracetamol" = "Paracetamol", "anti_toxin" = "Dylovene", "dexalin" = "Dexalin")
 	var/obj/item/weapon/reagent_containers/glass/beaker = null

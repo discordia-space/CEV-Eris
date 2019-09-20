@@ -41,7 +41,7 @@
 
 //The faction datum processes to tick down the mission timer
 /datum/objective/timed/merc/Process()
-	mission_timer -= 1 SECOND
+	mission_timer -= 1 SECONDS
 	if (!ended && mission_timer <= 0)
 		end_mission()
 

@@ -5,8 +5,8 @@
 /datum/hivemind_sdp
 	var/name = "Self-Defense Protocol"
 	var/obj/machinery/hivemind_machine/master
-	var/cooldown = 		1 SECOND
-	var/silent = 		FALSE
+	var/cooldown = 1 SECONDS
+	var/silent = FALSE
 	//internal
 	var/current_cooldown = 0
 	var/hp_percent = 0

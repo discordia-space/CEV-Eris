@@ -22,6 +22,12 @@
 	build_path = /obj/item/weapon/gun/energy/lasercannon
 	sort_string = "TAAAC"
 
+/datum/design/research/item/weapon/c20r
+	name = "C20R-prototype"
+	desc = "The C-20r is a lightweight and rapid-firing SMG. Uses 10mm rounds."
+	build_path = /obj/item/weapon/gun/projectile/automatic/c20r
+	sort_string = "TAAAF"
+
 /datum/design/research/item/weapon/plasmapistol
 	build_path = /obj/item/weapon/gun/energy/toxgun
 	sort_string = "TAAAD"
@@ -52,6 +58,18 @@
 	build_path = /obj/item/weapon/gun/energy/floragun
 	sort_string = "TBAAA"
 
+/datum/design/research/item/weapon/bluespace_harpoon
+	build_path = /obj/item/weapon/bluespace_harpoon
+	sort_string = "TBAAB"
+
+/datum/design/research/item/weapon/hatton
+	name = "Moebius BT \"Q-del\""
+	desc = "This breaching tool was reverse engineered from the \"Hatton\" design.\
+			Despite the Excelsior \"Hatton\" being traded on the free market through Technomancer League channels,\
+			this device suffers from a wide number of reliability issues stemming from it being lathe printed."
+	build_path = /obj/item/weapon/hatton/moebius
+	sort_string = "TBAAD"
+
 
 // Ammo
 /datum/design/research/item/ammo
@@ -63,3 +81,9 @@
 	desc = "A stunning shell for a shotgun."
 	build_path = /obj/item/ammo_casing/shotgun/stunshell
 	sort_string = "TAACB"
+
+/datum/design/research/item/ammo/hatton
+	name = "Moebius BT \"Q-del\" gas tube"
+	build_path = /obj/item/weapon/hatton_magazine/moebius
+	sort_string = "TAACC"
+
