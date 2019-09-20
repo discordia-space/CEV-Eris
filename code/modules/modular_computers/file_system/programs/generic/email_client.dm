@@ -499,7 +499,7 @@
 		var/new_search = sanitize(input("Enter the value for search for.") as null|text)
 		if(!new_search || new_search == "")
 			search = ""
-			return
+			return 1
 		search = new_search
 		return 1
 

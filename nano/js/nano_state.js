@@ -60,7 +60,18 @@ NanoStateClass.prototype.onUpdate = function (data) {
             if (NanoTemplate.templateExists('layoutHeader'))
             {
                 $("#uiHeaderContent").html(NanoTemplate.parse('layoutHeader', data));
-            }
+			}
+			var templates = NanoTemplate.getTemplates();
+			for (var key in templates) {
+				// this will ignore templates that are custom handled
+				// add your template here if you are adding custom handilng 
+				var handledTemplates = ['main', 'layout', 'layoutHeader', 'mapContent', 'mapHeader', 'mapFooter'];
+				if (handledTemplates.indexOf(key) > -1) {
+					continue;
+				}
+				$("#uiContent").append(NanoTemplate.parse(key, data));
+			}
+			
             this.contentRendered = true;
         }
         if (NanoTemplate.templateExists('mapContent'))
@@ -100,7 +111,8 @@ NanoStateClass.prototype.onUpdate = function (data) {
         if (NanoTemplate.templateExists('mapFooter'))
         {
             $("#uiMapFooter").html(NanoTemplate.parse('mapFooter', data)); // render the 'mapFooter' template to the #uiMapFooter div
-        }
+		}
+		
     }
     catch(error)
     {

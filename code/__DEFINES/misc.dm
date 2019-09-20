@@ -261,3 +261,14 @@
 #define cast_new(type, num, args...) if((num) == 1) { new type(args) } else { for(var/i in 1 to num) { new type(args) } }
 
 #define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I, /client) ? I : (istype(I, /datum/mind) ? I:current?:client : null)))
+
+// a place where atoms can be created instead of nullspace
+// dont store anything there, only create temporary
+#define PURGATORY (GLOB.purgatory_loc ? GLOB.purgatory_loc : error("Purgatory was not created."))
+// You can store items in nullspace but dont crete items there
+#define NULLSPACE (null)
+
+#define CATALOG_REAGENTS "reagents"
+#define CATALOG_CHEMISTRY "chemistry"
+#define CATALOG_DRINKS "drinks"
+#define CATALOG_ALL "all"
