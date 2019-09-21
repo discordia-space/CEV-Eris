@@ -65,7 +65,7 @@
 	)
 
 	var/tmp/datum/wires/autolathe/wires = null
-	var/list/unsuitable_materials = list("biomatter")
+	var/list/unsuitable_materials = list(MATERIAL_BIOMATTER)
 
 /obj/machinery/autolathe/bioprinter
 	name = "NeoTheology Bioprinter"
