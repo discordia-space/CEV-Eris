@@ -7,7 +7,7 @@
 	return pickweight(list(/mob/living/carbon/superior_animal/roach = 9,
 				/mob/living/carbon/superior_animal/roach/tank = 2,
 				/mob/living/carbon/superior_animal/roach/toxic = 2,
-				/mob/living/carbon/superior_animal/roach/nanites = 2,
+				/mob/living/carbon/superior_animal/roach/nanite = 2,
 				/mob/living/carbon/superior_animal/roach/hunter = 4,
 				/mob/living/carbon/superior_animal/roach/support = 4,
 				/mob/living/carbon/superior_animal/roach/fuhrer = 0.5))
