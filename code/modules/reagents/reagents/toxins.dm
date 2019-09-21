@@ -10,6 +10,7 @@
 	color = "#CF3600"
 	metabolism = REM * 0.05 // 0.01 by default. They last a while and slowly kill you.
 	var/strength = 0.05 // How much damage it deals per unit
+	reagent_type = "Toxin"
 
 /datum/reagent/toxin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(strength)
@@ -26,7 +27,7 @@
 /datum/reagent/toxin/plasticide
 	name = "Plasticide"
 	id = "plasticide"
-	description = "Liquid plastic, do not eat."
+	description = "Liquid plastic used in creating plastic sheets."
 	taste_description = "plastic"
 	reagent_state = LIQUID
 	color = "#CF3600"
@@ -35,7 +36,7 @@
 /datum/reagent/toxin/oil
 	name = "Oil"
 	id = "oil"
-	description = "Crude oil, somehow connected to frequent invasions."
+	description = "Crude oil, commonly found on habitable planets."
 	taste_description = "money"
 	reagent_state = LIQUID
 	color = "#0C0C0C"
@@ -66,6 +67,7 @@
 	nerve_system_accumulations = 5
 	heating_point = 523
 	heating_products = list("toxin")
+	reagent_type = "Toxin/Stimulator"
 
 /datum/reagent/toxin/carpotoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	var/mob/living/carbon/human/H = M
@@ -156,7 +158,7 @@
 /datum/reagent/toxin/potassium_chlorophoride
 	name = "Potassium Chlorophoride"
 	id = "potassium_chlorophoride"
-	description = "A specific chemical based on Potassium Chloride to stop the heart for surgery. Not safe to eat!"
+	description = "A specific chemical based on Potassium Chloride to stop the heart for surgery."
 	taste_description = "salt"
 	reagent_state = SOLID
 	color = "#FFFFFF"
@@ -224,7 +226,7 @@
 /datum/reagent/toxin/plantbgone
 	name = "Plant-B-Gone"
 	id = "plantbgone"
-	description = "A harmful toxic mixture to kill plantlife. Do not ingest!"
+	description = "A harmful toxic mixture to kill plantlife."
 	taste_mult = 1
 	reagent_state = LIQUID
 	color = "#49002E"
@@ -252,8 +254,9 @@
 	color = "#8E18A9"
 	power = 10
 	meltdose = 4
+	
 
-/datum/reagent/lexorin
+/datum/reagent/toxin/lexorin
 	name = "Lexorin"
 	id = "lexorin"
 	description = "Lexorin temporarily stops respiration. Causes tissue damage."
@@ -262,29 +265,29 @@
 	color = "#C8A5DC"
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/lexorin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/toxin/lexorin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.take_organ_damage(0.3 * effect_multiplier, 0)
 	if(M.losebreath < 15)
 		M.losebreath++
 
-/datum/reagent/mutagen
+/datum/reagent/toxin/mutagen
 	name = "Unstable mutagen"
 	id = "mutagen"
-	description = "Might cause unpredictable mutations. Keep away from children."
+	description = "Might cause unpredictable mutations."
 	taste_description = "slime"
 	taste_mult = 0.9
 	reagent_state = LIQUID
 	color = "#13BC5E"
 
-/datum/reagent/mutagen/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/toxin/mutagen/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(prob(33))
 		affect_blood(M, alien, effect_multiplier)
 
-/datum/reagent/mutagen/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/toxin/mutagen/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(prob(67))
 		affect_blood(M, alien, effect_multiplier)
 
-/datum/reagent/mutagen/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/toxin/mutagen/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	var/mob/living/carbon/human/H = M
 	if(istype(H) && (H.species.flags & NO_SCAN))
 		return
@@ -299,23 +302,23 @@
 			M.UpdateAppearance()
 	M.apply_effect(1 * effect_multiplier, IRRADIATE, 0)
 
-/datum/reagent/slimejelly
+/datum/reagent/medicine/slimejelly
 	name = "Slime Jelly"
 	id = "slimejelly"
-	description = "A gooey semi-liquid produced from one of the deadliest lifeforms in existence. SO REAL."
+	description = "A gooey semi-liquid produced from one of the deadliest lifeforms in existence."
 	taste_description = "slime"
 	taste_mult = 1.3
 	reagent_state = LIQUID
 	color = "#801E28"
 
-/datum/reagent/slimejelly/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/medicine/slimejelly/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(prob(10))
 		to_chat(M, SPAN_DANGER("Your insides are burning!"))
 		M.adjustToxLoss(rand(10, 30) * effect_multiplier)
 	else if(prob(40))
 		M.heal_organ_damage(2.5 * effect_multiplier, 0)
 
-/datum/reagent/soporific
+/datum/reagent/medicine/soporific
 	name = "Soporific"
 	id = "stoxin"
 	description = "An effective hypnotic used to treat insomnia."
@@ -325,7 +328,7 @@
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/soporific/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/medicine/soporific/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	var/effective_dose = dose
 	if(issmall(M))
 		effective_dose *= 2
@@ -344,7 +347,7 @@
 		M.drowsyness = max(M.drowsyness, 60)
 	M.add_chemical_effect(CE_PULSE, -1)
 
-/datum/reagent/chloralhydrate
+/datum/reagent/medicine/chloralhydrate
 	name = "Chloral Hydrate"
 	id = "chloralhydrate"
 	description = "A powerful sedative."
@@ -354,7 +357,7 @@
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE * 0.5
 
-/datum/reagent/chloralhydrate/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/medicine/chloralhydrate/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	var/effective_dose = dose
 	if(issmall(M))
 		effective_dose *= 2
@@ -371,7 +374,7 @@
 	if(effective_dose > 1)
 		M.adjustToxLoss(effect_multiplier * 0.1)
 
-/datum/reagent/chloralhydrate/beer2 //disguised as normal beer for use by emagged brobots
+/datum/reagent/medicine/chloralhydrate/beer2 //disguised as normal beer for use by emagged brobots
 	name = "Beer"
 	id = "beer2"
 	description = "An alcoholic beverage made from malted grains, hops, yeast, and water. The fermentation appears to be incomplete." //If the players manage to analyze this, they deserve to know something is wrong.
@@ -386,7 +389,7 @@
 
 /* Transformations */
 
-/datum/reagent/slimetoxin
+/datum/reagent/toxin/slimetoxin
 	name = "Mutation Toxin"
 	id = "mutationtoxin"
 	description = "A corruptive toxin produced by slimes."
@@ -394,14 +397,14 @@
 	reagent_state = LIQUID
 	color = "#13BC5E"
 
-/datum/reagent/slimetoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/toxin/slimetoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.species.name != "Slime")
 			to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
 			H.set_species("Slime")
 
-/datum/reagent/aslimetoxin
+/datum/reagent/toxin/aslimetoxin
 	name = "Advanced Mutation Toxin"
 	id = "amutationtoxin"
 	description = "An advanced corruptive toxin produced by slimes."
@@ -409,7 +412,7 @@
 	reagent_state = LIQUID
 	color = "#13BC5E"
 
-/datum/reagent/aslimetoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier) // TODO: check if there's similar code anywhere else
+/datum/reagent/toxin/aslimetoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier) // TODO: check if there's similar code anywhere else
 	if(HAS_TRANSFORMATION_MOVEMENT_HANDLER(M))
 		return
 	to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
@@ -434,7 +437,7 @@
 		new_mob.key = M.key
 	qdel(M)
 
-/datum/reagent/xenomicrobes
+/datum/reagent/other/xenomicrobes
 	name = "Xenomicrobes"
 	id = "xenomicrobes"
 	description = "Microbes with an entirely alien cellular structure."
@@ -464,7 +467,7 @@
 /datum/reagent/toxin/diplopterum
 	name = "Diplopterum"
 	id = "diplopterum"
-	description = "Harvested from roaches."
+	description = "Can be found in tissues of the roaches."
 	taste_description = "sludge"
 	reagent_state = LIQUID
 	color = "#c9bed2"
@@ -474,6 +477,7 @@
 	nerve_system_accumulations = 5
 	heating_point = 573
 	heating_products = list("radium", "acetone", "hydrazine", "nutriment")
+	reagent_type = "Toxin/Stimulator"
 
 /datum/reagent/toxin/diplopterum/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
@@ -493,7 +497,7 @@
 	else
 		M.adjustToxLoss(strength)
 
-/datum/reagent/seligitillin
+/datum/reagent/toxin/seligitillin
 	name = "Seligitillin"
 	id = "seligitillin"
 	description = "Promotes blood clotting. Harvested from Seuche roaches."
@@ -506,7 +510,7 @@
 	heating_point = 573
 	heating_products = list("radium", "ammonia", "sulfur", "nutriment")
 
-/datum/reagent/seligitillin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/toxin/seligitillin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.add_chemical_effect(CE_BLOODCLOT, 0.2)
 	M.heal_organ_damage(0.2 * effect_multiplier, 0, 3)
 	var/mob/living/carbon/human/H = M
@@ -515,10 +519,10 @@
 			if(W.internal)
 				W.heal_damage(1 * effect_multiplier)
 
-/datum/reagent/seligitillin/withdrawal_act(mob/living/carbon/M)
+/datum/reagent/toxin/seligitillin/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_ADEPT, STIM_TIME, "seligitillin_w")
 
-/datum/reagent/seligitillin/overdose(var/mob/living/carbon/M, var/alien)
+/datum/reagent/toxin/seligitillin/overdose(var/mob/living/carbon/M, var/alien)
 	var/mob/living/carbon/human/H = M
 	var/obj/item/organ/internal/heart/S = H.internal_organs_by_name[BP_HEART]
 	if (istype(S))
@@ -539,6 +543,7 @@
 	nerve_system_accumulations = 5
 	heating_point = 573
 	heating_products = list("radium", "aluminum", "tungsten", "nutriment")
+	reagent_type = "Toxin/Stimulator"
 
 /datum/reagent/toxin/starkellin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
@@ -561,6 +566,7 @@
 	strength = 0.2
 	heating_point = 573
 	heating_products = list("radium", "mercury", "sugar", "nutriment")
+	reagent_type = "Toxin/Stimulator"
 
 /datum/reagent/toxin/gewaltine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
@@ -574,7 +580,7 @@
 /datum/reagent/toxin/gewaltine/overdose(var/mob/living/carbon/M, var/alien)
 	M.adjustCloneLoss(2)
 		
-/datum/reagent/fuhrerole
+/datum/reagent/toxin/fuhrerole
 	name = "Fuhrerole"
 	id = "fuhrerole"
 	description = "Harvested from Fuhrer roaches."
@@ -587,17 +593,17 @@
 	heating_point = 573
 	heating_products = list("radium", "mercury", "lithium", "nutriment")
 
-/datum/reagent/fuhrerole/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/toxin/fuhrerole/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.faction = "roach"
 
-/datum/reagent/fuhrerole/on_mob_delete(mob/living/L)
+/datum/reagent/toxin/fuhrerole/on_mob_delete(mob/living/L)
 	..()
 	L.faction = initial(L.faction)
 
-/datum/reagent/fuhrerole/withdrawal_act(mob/living/carbon/M)
+/datum/reagent/toxin/fuhrerole/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_BASIC, STIM_TIME, "fuhrerole_w")
 	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, STIM_TIME, "fuhrerole_w")
 
-/datum/reagent/fuhrerole/overdose(var/mob/living/carbon/M, var/alien)
+/datum/reagent/toxin/fuhrerole/overdose(var/mob/living/carbon/M, var/alien)
 	M.add_chemical_effect(CE_SPEECH_VOLUME, rand(3,4))
 	M.adjustBrainLoss(0.5)

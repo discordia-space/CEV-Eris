@@ -315,6 +315,9 @@ var/const/NO_EMAG_ACT = -50
 /obj/item/weapon/card/id/chaplain
 	icon_state = "id_chaplain"
 
+/obj/item/weapon/card/id/church
+	icon_state = "id_nt"
+
 /obj/item/weapon/card/id/black
 	icon_state = "id_black"
 

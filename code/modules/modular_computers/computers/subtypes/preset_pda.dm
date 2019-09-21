@@ -48,6 +48,9 @@
 	icon_state = "pda-nt"
 	scanner_type = /obj/item/weapon/computer_hardware/scanner/reagent
 
+/obj/item/modular_computer/pda/church
+	icon_state = "pda-neo"
+
 /obj/item/modular_computer/pda/heads
 	name = "command PDA"
 	icon_state = "pda-h"

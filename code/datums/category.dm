@@ -24,6 +24,12 @@
 	categories.Cut()
 	return ..()
 
+/datum/category_collection/proc/operator[](idx)
+	return categories_by_name[idx]
+
+/datum/category_collection/proc/operator[]=(idx, B)
+	categories_by_name[idx] = B
+
 /******************
 * Category Groups *
 ******************/
@@ -60,6 +66,12 @@
 
 datum/category_group/dd_SortValue()
 	return name
+
+/datum/category_group/proc/operator[](idx)
+	return items_by_name[idx]
+
+/datum/category_group/proc/operator[]=(idx, B)
+	items_by_name[idx] = B
 
 
 /*****************
