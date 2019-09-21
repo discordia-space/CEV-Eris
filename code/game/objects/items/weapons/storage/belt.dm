@@ -170,3 +170,8 @@
 	can_hold = list(
 		"/obj/item/clothing/mask/luchador"
 		)
+
+/obj/item/weapon/storage/belt/church
+	name = "NeoTheology belt"
+	desc = "Waist-held holy items."
+	icon_state = "ntbelt"
