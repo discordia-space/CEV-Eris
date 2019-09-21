@@ -22,12 +22,17 @@
 	var/obj/structure/reagent_dispensers/biomatter/container
 	var/last_time_used = 0
 
+/obj/machinery/biomatter_solidifier/New()
+	. = ..()
+	overlays += image(icon = src.icon, icon_state = "tube", layer = LOW_OBJ_LAYER, dir = port_dir)
 
 /obj/machinery/biomatter_solidifier/update_icon()
 	if(active)
 		icon_state = initial(icon_state) + "_on"
 	else
 		icon_state = initial(icon_state)
+	overlays = list()
+	overlays += image(icon = src.icon, icon_state = "tube", layer = LOW_OBJ_LAYER, dir = port_dir)
 
 
 /obj/machinery/biomatter_solidifier/Process()
@@ -70,9 +75,9 @@
 				container.pixel_y += CONTAINER_PIXEL_OFFSET
 			if(NORTH)
 				container.pixel_y -= CONTAINER_PIXEL_OFFSET
-			if(EAST)
-				container.pixel_x += CONTAINER_PIXEL_OFFSET
 			if(WEST)
+				container.pixel_x += CONTAINER_PIXEL_OFFSET
+			if(EAST)
 				container.pixel_x -= CONTAINER_PIXEL_OFFSET
 		playsound(src, 'sound/machines/airlock_ext_close.ogg', 60, 1)
 		to_chat(user, SPAN_NOTICE("You attached [tank] to [src]."))
@@ -88,7 +93,7 @@
 			toxin_attack(user)
 		else
 			to_chat(user, SPAN_WARNING("There are already connected container."))
-
+	update_icon()
 
 /obj/machinery/biomatter_solidifier/attack_hand(mob/user)
 	if(world.time >= last_time_used + 2 SECONDS)

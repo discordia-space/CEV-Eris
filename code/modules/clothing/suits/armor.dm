@@ -32,6 +32,20 @@
 	armor = list(melee = 30, bullet = 30, energy = 15, bomb = 15, bio = 0, rad = 0)
 	price_tag = 150
 
+/obj/item/clothing/suit/armor/vest/botanist
+	name = "Botanist armor"
+	desc = "Every rose has its thorn."
+	icon_state = "botanist"
+
+/obj/item/clothing/suit/armor/vest/acolyte
+	name = "Acolyte armor"
+	desc = "Worn heavy, steadfast in the name of God."
+	icon_state = "acolyte"
+
+/obj/item/clothing/suit/armor/vest/custodian
+	name = "Custodian armor"
+	desc = "Someone's gotta clean this mess."
+	icon_state = "custodian"
 
 /obj/item/clothing/suit/armor/riot
 	name = "riot suit"

@@ -560,6 +560,8 @@
 
 		if(CE_PAINKILLER in chem_effects)
 			analgesic = chem_effects[CE_PAINKILLER]
+		if(!(CE_ALCOHOL in chem_effects))
+			stats.getPerk(/datum/perk/inspiration)?.deactivate()
 
 		var/total_plasmaloss = 0
 		for(var/obj/item/I in src)
