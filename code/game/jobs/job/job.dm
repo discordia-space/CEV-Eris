@@ -40,7 +40,8 @@
 
 	//Character stats modifers
 	var/list/stat_modifiers = list()
-	
+
+	var/list/perks = list()
 
 /datum/job/proc/equip(var/mob/living/carbon/human/H, var/alt_title)
 	var/decl/hierarchy/outfit/outfit = get_outfit()
@@ -59,6 +60,9 @@
 		return FALSE
 	for(var/name in src.stat_modifiers)
 		target.stats.changeStat(name, stat_modifiers[name])
+	for(var/perk in perks)
+		var/datum/perk/P = new perk
+		P.teach(target.stats)
 
 	return TRUE
 

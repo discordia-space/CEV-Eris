@@ -122,6 +122,12 @@
 	icon_state = "securitypack"
 	item_state_slots = null
 
+/obj/item/weapon/storage/backpack/church
+	name = "NeoTheology backpack"
+	desc = "For carrying all your holy needs."
+	icon_state = "ntpack"
+	item_state_slots = null
+
 //Used by mercs
 /obj/item/weapon/storage/backpack/military
 	name = "MOLLE pack"
@@ -206,5 +212,12 @@
 		slot_l_hand_str = "satchel-cap",
 		slot_r_hand_str = "satchel-cap",
 		)
+	max_storage_space = 24
+	worn_access = TRUE
+
+/obj/item/weapon/storage/backpack/satchel/church
+	name = "NeoTheology satchel"
+	desc = "Slightly more accessible means for your holy goods."
+	icon_state = "satchel-nt"
 	max_storage_space = 24
 	worn_access = TRUE

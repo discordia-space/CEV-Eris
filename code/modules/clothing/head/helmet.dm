@@ -18,6 +18,21 @@
 	w_class = ITEM_SIZE_NORMAL
 	price_tag = 100
 
+/obj/item/clothing/head/helmet/botanist
+	name = "Botanist helmet"
+	desc = "Don't want anything getting in your eyes."
+	icon_state = "botanist"
+
+/obj/item/clothing/head/helmet/acolyte
+	name = "Acolyte helmet"
+	desc = "Even the most devout deserve head protection."
+	icon_state = "acolyte"
+
+/obj/item/clothing/head/helmet/custodian
+	name = "Custodian helmet"
+	desc = "Why not look cool while you do your job?"
+	icon_state = "custodian"
+
 /obj/item/clothing/head/helmet/swat
 	name = "\improper SWAT helmet"
 	desc = "They're often used by highly trained Swat Members."
