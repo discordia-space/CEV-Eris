@@ -17,8 +17,8 @@
 	wage = WAGE_NONE // Makes his own money
 	stat_modifiers = list(
 		STAT_ROB = 15,
-		STAT_TGH = 15
-		STAT_VIG = 15
+		STAT_TGH = 15,
+		STAT_VIG = 15,
 	)
 	outfit_type = /decl/hierarchy/outfit/job/service/bartender //Re-using this.
 	description = "As the Club Manager, you run the club aboard CEV Eris. Provide the crewmembers with drinks, food, and entertainment.<br>\
@@ -40,7 +40,7 @@
 	title = "Club Worker"
 	flag = CLUBWORKER
 	department = DEPARTMENT_CIVILIAN
-	dpeartment_flag = SERVICE
+	department_flag = SERVICE
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the Club Manager"
@@ -49,10 +49,10 @@
 	access = list(access_bar, access_kitchen)
 	initial_balance = 750
 	wage = WAGE_NONE //They should get paid by the club owner, otherwise you know what to do.
-	state_modifiers = list(
-		STAT_ROB = 10
-		STAT_TGH = 10
-		STAT_VIG = 5
+	stat_modifiers = list(
+		STAT_ROB = 10,
+		STAT_TGH = 10,
+		STAT_VIG = 5,
 	)
 	outfit_type = /decl/hierarchy/outfit/job/service/waiter
 	description = "As a Club Worker, you work for the Club Manager. Your job is to fulfill your duties in running the Club and making sure all the customers are satisfied.<br>\
@@ -71,7 +71,7 @@
 /obj/landmark/join/start/clubworker
 	name = "Club Worker"
 	icon_state = "player-grey"
-	join_tag = /datum/join/clubworker
+	join_tag = /datum/job/clubworker
 
 /*/datum/job/bartender   --- Commented out for new job. Will probably remove later.
 	title = "Bartender"

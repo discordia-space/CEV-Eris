@@ -18,7 +18,7 @@
 
 /decl/hierarchy/outfit/job/service/waiter
 	name = OUTFIT_JOB_NAME("Waiter")
-	uniform = /obj/item/clothing/under/rank/waiter
+	uniform = /obj/item/clothing/under/waiter
 	id_type = /obj/item/weapon/card/id/white
 	pda_type = /obj/item/modular_computer/pda
 
