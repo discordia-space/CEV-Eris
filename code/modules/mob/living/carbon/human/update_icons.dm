@@ -823,6 +823,7 @@ var/global/list/damage_icon_parts = list()
 		drop_r_hand()
 		drop_l_hand()
 		stop_pulling()	//TODO: should be handled elsewhere
+		handcuffed.equip_slot = slot_handcuffed
 
 		var/image/standing
 		if(handcuffed.icon_override)

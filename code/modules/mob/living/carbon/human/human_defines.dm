@@ -30,9 +30,6 @@
 
 	var/datum/backpack_setup/backpack_setup
 
-	// General information
-	var/religion = ""
-
 	//Equipment slots
 	var/obj/item/wear_suit = null
 	var/obj/item/w_uniform = null

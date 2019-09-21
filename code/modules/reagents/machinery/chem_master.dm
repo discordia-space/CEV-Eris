@@ -83,7 +83,7 @@
 			var/dat = ""
 			if(!condi)
 				if(href_list["name"] == "Blood")
-					var/datum/reagent/blood/G
+					var/datum/reagent/organic/blood/G
 					for(var/datum/reagent/F in R.reagent_list)
 						if(F.name == href_list["name"])
 							G = F
@@ -126,10 +126,10 @@
 						if (count > max_pill_count)
 							alert("Maximum supported pills amount is [max_pill_count]","Error.","Ok")
 							return
-						count = Clamp(count, 1, max_pill_count)
+						count = CLAMP(count, 1, max_pill_count)
 					if("By volume")
 						amount_per_pill = input("Select the volume that single pill should contain.", "Max [R.total_volume]", 5) as num
-						amount_per_pill = Clamp(amount_per_pill, 1, R.total_volume)
+						amount_per_pill = CLAMP(amount_per_pill, 1, R.total_volume)
 					else
 						return
 			else

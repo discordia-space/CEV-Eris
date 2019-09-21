@@ -57,7 +57,7 @@
 		var/new_search = sanitize(input("Enter the value for search for.") as null|text)
 		if(!new_search || new_search == "")
 			search = ""
-			return
+			return 1
 		search = new_search
 		return 1
 
@@ -70,11 +70,11 @@
 	var/list/crewmembers = list()
 	for(var/z_level in maps_data.station_levels)
 		crewmembers += crew_repository.health_data(z_level)
-	crewmembers = sortByKey(crewmembers, "name")
+	crewmembers = sortNames(crewmembers)
 	//now lets get problematic crewmembers in separate list so they could be shown first
 	var/list/crewmembers_problematic = list()
 	var/list/crewmembers_goodbois = list()
-	
+
 	for(var/i = 1, i <=crewmembers.len, i++)
 		var/list/entry = crewmembers[i]
 		if(!search || findtext(entry["name"],search))

@@ -35,6 +35,7 @@
 	steps = list(
 		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL)
 	)
+	flags = CRAFT_BATCH
 	related_stats = list(STAT_COG)
 
 /datum/craft_recipe/box

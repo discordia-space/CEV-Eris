@@ -143,6 +143,9 @@
 	penetrating = 2
 	can_ricochet = TRUE
 
+/obj/item/projectile/bullet/a556/nomuzzle
+	muzzle_type = null
+
 /obj/item/projectile/bullet/a556/practice
 	name = "practice bullet"
 	damage = DAMAGE_556 * PRACTICE_DAMAGE_MULTIPLIER

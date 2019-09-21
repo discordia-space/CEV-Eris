@@ -137,8 +137,8 @@
 			bad_message = "\[IN [(available_in_days)] DAYS]"*/
 		else if(job.minimum_character_age && user.client && (user.client.prefs.age < job.minimum_character_age))
 			bad_message = "\[MINIMUM CHARACTER AGE: [job.minimum_character_age]]"
-		else if(user.client && job.is_religion_restricted(user.client.prefs.religion))
-			bad_message = "\[CONFLICT OF INTEREST: RELIGION]"
+		else if(user.client && job.is_setup_restricted(user.client.prefs.setup_options))
+			bad_message = "\[SETUP RESTRICTED]"
 
 		if(("Assistant" in pref.job_low) && (rank != "Assistant"))
 			. += "<a href='?src=\ref[src];set_skills=[rank]'><font color=grey>[rank]</font></a></td><td></td></tr>"
@@ -329,6 +329,15 @@
 		job_desc += "<ul>"
 		for (var/a in job.stat_modifiers)
 			job_desc += "<li>[a]: [job.stat_modifiers[a]]</li>"
+		job_desc += "</ul>"
+	else
+		job_desc += "None"
+	job_desc += "<h1 style='padding: 0px;'>Perks:</h1>"
+	if (job.perks.len)
+		job_desc += "<ul>"
+		for (var/a in job.perks)
+			var/datum/perk/P = a
+			job_desc += "<li>[initial(P.name)]</li>"
 		job_desc += "</ul>"
 	else
 		job_desc += "None"

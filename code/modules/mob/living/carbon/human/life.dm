@@ -232,7 +232,7 @@
 			speech_problem_flag = 1
 			gene.OnMobLife(src)
 
-	radiation = Clamp(radiation,0,100)
+	radiation = CLAMP(radiation,0,100)
 
 	if (radiation)
 		var/damage = 0
@@ -560,6 +560,8 @@
 
 		if(CE_PAINKILLER in chem_effects)
 			analgesic = chem_effects[CE_PAINKILLER]
+		if(!(CE_ALCOHOL in chem_effects))
+			stats.getPerk(/datum/perk/inspiration)?.deactivate()
 
 		var/total_plasmaloss = 0
 		for(var/obj/item/I in src)

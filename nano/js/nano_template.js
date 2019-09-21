@@ -90,7 +90,10 @@ var NanoTemplate = function () {
         addTemplate: function (key, templateString) {
             _templates[key] = templateString;
         },
-        templateExists: function (key) {
+        getTemplates: function () {
+            return _templates;
+		},
+		templateExists: function (key) {
             return _templates.hasOwnProperty(key);
         },
         parse: function (templateKey, data) {

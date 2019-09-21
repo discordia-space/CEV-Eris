@@ -8,6 +8,8 @@
 	mob_swap_flags = MONKEY|SLIME|SIMPLE_ANIMAL
 	mob_push_flags = MONKEY|SLIME|SIMPLE_ANIMAL
 
+	var/datum/component/spawner/nest
+
 	var/show_stat_health = TRUE	//does the percentage health show in the stat panel for the mob
 
 	var/icon_living = ""
@@ -147,7 +149,7 @@
 
 /mob/living/simple_animal/updatehealth()
 	..()
-	if (health <= 0)
+	if (health <= 0 && stat != DEAD)
 		death()
 
 /mob/living/simple_animal/examine(mob/user)
@@ -288,8 +290,8 @@
 
 		for(var/datum/reagent/current in reagents.reagent_list)
 			var/removed = min(current.metabolism*digest_factor, current.volume)
-			if (istype(current, /datum/reagent/nutriment))//If its food, it feeds us
-				var/datum/reagent/nutriment/N = current
+			if (istype(current, /datum/reagent/organic/nutriment))//If its food, it feeds us
+				var/datum/reagent/organic/nutriment/N = current
 				nutrition += removed*N.nutriment_factor
 				var/heal_amount = removed*N.regen_factor
 				if (bruteloss > 0)
