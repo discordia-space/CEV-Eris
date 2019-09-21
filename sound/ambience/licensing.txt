@@ -1,0 +1,4 @@
+ambicha1.ogg, ambicha2.ogg, ambicha3.ogg, ambicha4.ogg is "If You and I were Friends" from Gingiva OST, by John Clowder. Grandfathered In.
+	It has been cropped for use in-game.
+ambimine.ogg, ambispace.ogg is "Bad Apple!!" from Lotus Land Story, by ZUN. Grandfathered In.
+	It has been cropped for use in-game, and has been speed adjusted.

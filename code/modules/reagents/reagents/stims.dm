@@ -2,11 +2,12 @@
 	scannable = 1
 	metabolism = REM/4
 	constant_metabolism = TRUE
+	reagent_type = "Stimulator"
 
 /datum/reagent/stim/mbr
 	name = "Machine binding ritual"
 	id = "machine binding ritual"
-	description = ""
+	description = "A ethanol based stimulator. Used as ritual drink during technomancers initiation into tribe."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#5f95e2"
@@ -35,7 +36,7 @@
 /datum/reagent/stim/cherrydrops
 	name = "Cherry Drops"
 	id = "cherry drops"
-	description = ""
+	description = "Stimulator designed to enchant cognitive capabilities. Quite common in scientific circles."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#9bd70f"
@@ -58,7 +59,7 @@
 /datum/reagent/stim/pro_surgeon
 	name = "ProSurgeon"
 	id = "prosurgeon"
-	description = ""
+	description = "A stimulating drug, used to reduce tremor to minimum. Common in medical facilities."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#2d867a"
@@ -86,7 +87,7 @@
 /datum/reagent/stim/violence
 	name = "Violence"
 	id = "violence"
-	description = ""
+	description = "Stimulator famous for it's ability to increase peak muscle strength. Popular among criminal elements."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#75aea5"
@@ -112,7 +113,7 @@
 /datum/reagent/stim/bouncer
 	name = "Bouncer"
 	id = "bouncer"
-	description = ""
+	description = "Stimulator that boost regenerative capabilities. Quite often issued to crew operating in hazard enviroments."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#682f93"
@@ -136,7 +137,7 @@
 /datum/reagent/stim/steady
 	name = "Steady"
 	id = "steady"
-	description = ""
+	description = "Stimulator with ability to enchant reaction time. Usual find in mercenary groups."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#334183"
@@ -165,7 +166,7 @@
 /datum/reagent/stim/machine_spirit
 	name = "Machine Spirit"
 	id = "machine spirit"
-	description = ""
+	description = "Potent ethanol based stimulator. Used to initiate technomancer into inner cirle."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#9eb236"
@@ -196,7 +197,7 @@
 /datum/reagent/stim/grape_drops
 	name = "Grape Drops"
 	id = "grape drops"
-	description = ""
+	description = "Powerful stimulator which boosts creativity. Often used by scientists."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#eb5783"
@@ -222,7 +223,7 @@
 /datum/reagent/stim/ultra_surgeon
 	name = "UltraSurgeon"
 	id = "ultrasurgeon"
-	description = ""
+	description = "Strong stimulating drug, which stabilizes muscle motility. Used as last resort during complex surgeries."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#0c07c4"
@@ -252,7 +253,7 @@
 /datum/reagent/stim/violence_ultra
 	name = "Violence Ultra"
 	id = "violence ultra"
-	description = ""
+	description = "Effective electrolyte based muscle stimulant. Often used by most violent gangs"
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#3d3362"
@@ -281,7 +282,7 @@
 /datum/reagent/stim/boxer
 	name = "Boxer"
 	id = "boxer"
-	description = ""
+	description = "Stimulator which boosts robustness of human body. Known for its use by boxers"
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#0ed750"
@@ -306,7 +307,7 @@
 /datum/reagent/stim/turbo
 	name = "TURBO"
 	id = "turbo"
-	description = ""
+	description = "Potent mix of cardiovascular and neuro stimulators. Used by sharpshooters to increase accuracy."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#f22168"
@@ -338,7 +339,7 @@
 /datum/reagent/stim/party_drops
 	name = "Party Drops"
 	id = "party drops"
-	description = ""
+	description = "Stimulating substance which pumps intelectual capabilities to theoretical maximum. Used as delicacy by some high ranking scientists."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#ffb3b7"
@@ -370,7 +371,7 @@
 /datum/reagent/stim/menace
 	name = "MENACE"
 	id = "menace"
-	description = ""
+	description = "Awfully potent stimulant. Notorious for its usage by suicide troops."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#ffb3b7"

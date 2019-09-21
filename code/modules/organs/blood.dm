@@ -50,7 +50,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 
 //Resets blood data
 /mob/living/carbon/human/proc/fixblood()
-	for(var/datum/reagent/blood/B in vessel.reagent_list)
+	for(var/datum/reagent/organic/blood/B in vessel.reagent_list)
 		if(B.id == "blood")
 			B.data = list(	"donor"=src,"viruses"=null,"species"=species.name,"blood_DNA"=dna.unique_enzymes,"blood_colour"= species.blood_color,"blood_type"=dna.b_type,	\
 							"resistances"=null,"trace_chem"=null, "virus2" = null, "antibodies" = list())
@@ -113,7 +113,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 /mob/living/carbon/proc/take_blood(obj/item/weapon/reagent_containers/container, var/amount)
 
 	var/datum/reagent/B = get_blood()
-	if(!B) B = new /datum/reagent/blood
+	if(!B) B = new /datum/reagent/organic/blood
 	B.holder = container
 	B.volume += amount
 
@@ -152,7 +152,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 	vessel.remove_reagent("blood",amount) // Removes blood if human
 
 //Transfers blood from container ot vessels
-/mob/living/carbon/proc/inject_blood(var/datum/reagent/blood/injected, var/amount)
+/mob/living/carbon/proc/inject_blood(var/datum/reagent/organic/blood/injected, var/amount)
 	if (!injected || !istype(injected))
 		return
 	var/list/sniffles = virus_copylist(injected.data["virus2"])
@@ -168,14 +168,14 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 	reagents.update_total()
 
 //Transfers blood from reagents to vessel, respecting blood types compatability.
-/mob/living/carbon/human/inject_blood(var/datum/reagent/blood/injected, var/amount)
+/mob/living/carbon/human/inject_blood(var/datum/reagent/organic/blood/injected, var/amount)
 
 	if(species.flags & NO_BLOOD)
 		reagents.add_reagent("blood", amount, injected.data)
 		reagents.update_total()
 		return
 
-	var/datum/reagent/blood/our = get_blood()
+	var/datum/reagent/organic/blood/our = get_blood()
 
 	if (!injected || !our)
 		return
@@ -189,10 +189,10 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 
 //Gets human's own blood.
 /mob/living/carbon/proc/get_blood()
-	var/datum/reagent/blood/res = locate() in vessel.reagent_list //Grab some blood
+	var/datum/reagent/organic/blood/res = locate() in vessel.reagent_list //Grab some blood
 	if(res) // Make sure there's some blood at all
 		if(res.data["donor"] != src) //If it's not theirs, then we look for theirs
-			for(var/datum/reagent/blood/D in vessel.reagent_list)
+			for(var/datum/reagent/organic/blood/D in vessel.reagent_list)
 				if(D.data["donor"] == src)
 					return D
 	return res
@@ -220,7 +220,7 @@ proc/blood_incompatible(donor,receiver,donor_species,receiver_species)
 		//AB is a universal receiver.
 	return 0
 
-proc/blood_splatter(var/target,var/datum/reagent/blood/source,var/large)
+proc/blood_splatter(var/target,var/datum/reagent/organic/blood/source,var/large)
 
 	var/obj/effect/decal/cleanable/blood/B
 	var/decal_type = /obj/effect/decal/cleanable/blood/splatter

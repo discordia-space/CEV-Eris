@@ -190,6 +190,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 	var/list/msg_syndicate = list()
 	var/list/msg_cargo = list()
 	var/list/msg_service = list()
+	var/list/msg_nt = list()
 
 
 
@@ -215,6 +216,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 		BR.msg_syndicate = msg_syndicate
 		BR.msg_cargo = msg_cargo
 		BR.msg_service = msg_service
+		BR.msg_nt = msg_nt
 
 		BR.messages = messages
 
