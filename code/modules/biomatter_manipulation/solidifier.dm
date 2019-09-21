@@ -31,6 +31,9 @@
 		icon_state = initial(icon_state) + "_on"
 	else
 		icon_state = initial(icon_state)
+	if(container)
+		overlays = list()
+		overlays += image(icon = src.icon, icon_state = "tube", layer = LOW_OBJ_LAYER, dir = port_dir)
 
 
 /obj/machinery/biomatter_solidifier/Process()
@@ -91,7 +94,7 @@
 			toxin_attack(user)
 		else
 			to_chat(user, SPAN_WARNING("There are already connected container."))
-
+	update_icon()
 
 /obj/machinery/biomatter_solidifier/attack_hand(mob/user)
 	if(world.time >= last_time_used + 2 SECONDS)
