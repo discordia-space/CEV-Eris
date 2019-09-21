@@ -494,10 +494,12 @@
 	var/turf/T = get_turf(src)
 	if(!istype(T))
 		return
-	dump_it(T)
+	dump_it(T, usr)
 
 /obj/item/weapon/storage/proc/dump_it(var/turf/target) //he bought?
 	if(!isturf(target))
+		return
+	if(!Adjacent(usr))
 		return
 	hide_from(usr)
 	for(var/obj/item/I in contents)
