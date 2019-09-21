@@ -327,12 +327,13 @@
 	var/turf/T = get_turf(src)
 	if(!istype(T))
 		return
-	dump_it(T)
+	dump_it(T, usr)
 
 /obj/item/ammo_magazine/proc/dump_it(var/turf/target) //bogpilled
 	if(!istype(target))
 		return
-
+	if(!Adjacent(usr))
+		return
 	if(!stored_ammo.len)
 		to_chat(usr, SPAN_NOTICE("[src] is already empty!"))
 		return
