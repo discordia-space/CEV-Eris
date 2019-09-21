@@ -30,26 +30,6 @@
 	id_type = /obj/item/weapon/card/id/ltgrey
 	pda_type = /obj/item/modular_computer/pda
 
-/decl/hierarchy/outfit/job/service/gardener
-	name = OUTFIT_JOB_NAME("Gardener")
-	uniform = /obj/item/clothing/under/rank/hydroponics
-	suit = /obj/item/clothing/suit/apron
-	gloves = /obj/item/clothing/gloves/botanic_leather
-	r_pocket = /obj/item/device/scanner/analyzer/plant_analyzer
-	id_type = /obj/item/weapon/card/id/hydro
-	pda_type = /obj/item/modular_computer/pda
-
-/decl/hierarchy/outfit/job/service/gardener/New()
-	..()
-	//backpack_overrides[/decl/backpack_outfit/backpack]      = /obj/item/weapon/storage/backpack/hydroponics;
-	//backpack_overrides[/decl/backpack_outfit/satchel]       = /obj/item/weapon/storage/backpack/satchel/hyd;
-
-
-/decl/hierarchy/outfit/job/service/janitor
-	name = OUTFIT_JOB_NAME("Janitor")
-	uniform = /obj/item/clothing/under/rank/janitor
-	pda_type = /obj/item/modular_computer/pda
-
 /decl/hierarchy/outfit/job/service/actor/clown
 	name = OUTFIT_JOB_NAME("Clown")
 	uniform = /obj/item/clothing/under/rank/clown
