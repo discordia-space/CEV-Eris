@@ -51,6 +51,11 @@
 	icon_state = "srv_cypherkey"
 	channels = list("NT Voice" = 1)
 
+/obj/item/device/encryptionkey/headset_church
+	name = "Neotheology radio encryption key"
+	icon_state = "nt_cypherkey"
+	channels = list("NT Voice" = 1)
+
 /obj/item/device/encryptionkey/headset_sci
 	name = "moebius science radio encryption key"
 	icon_state = "sci_cypherkey"
