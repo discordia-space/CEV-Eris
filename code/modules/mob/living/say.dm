@@ -10,10 +10,11 @@ var/list/department_radio_keys = list(
 	":e" = "Engineering", ".e" = "Engineering",
 	":s" = "Security",	".s" = "Security",
 	":w" = "whisper",		".w" = "whisper",
-	":t" = "Mercenary",	".t" = "Mercenary",
+	":y" = "Mercenary",	".y" = "Mercenary",
 	":u" = "Supply",		".u" = "Supply",
 	":v" = "Service",		".v" = "Service",
 	":p" = "AI Private",	".p" = "AI Private",
+	":t" = "NT Voice",		".t" = "NT Voice",
 
 	//kinda localization -- rastaf0
 	//same keys as above, but on russian keyboard layout. This file uses cp1251 as encoding.
@@ -27,8 +28,9 @@ var/list/department_radio_keys = list(
 	":ó" = "Engineering",	".ó" = "Engineering",
 	":û" = "Security",	".û" = "Security",
 	":ö" = "whisper",		".ö" = "whisper",
-	":å" = "Mercenary",	".å" = "Mercenary",
-	":é" = "Supply",	".é" = "Supply"
+	":í" = "Mercenary",	".í" = "Mercenary",
+	":é" = "Supply",	".é" = "Supply",
+	":å" = "NT Voice",		".å" = "NT Voice"
 )
 
 

@@ -104,8 +104,6 @@ var/global/list/organ_tag_to_name = list(
 	lungs  = "Lungs", liver = "Liver"
 	)
 
-var/global/list/all_backgrounds = list()
-
 // Visual nets
 var/list/datum/visualnet/visual_nets = list()
 var/datum/visualnet/camera/cameranet = new()
@@ -261,14 +259,6 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 		//Rituals which are just categories for subclasses will have a null phrase
 		if (R.phrase)
 			GLOB.all_rituals[R.name] = R
-
-	//Backgrounds
-	paths = subtypesof(/datum/background)
-	for(var/T in paths)
-		var/datum/background/B = new T
-		if(!all_backgrounds[B.category])
-			all_backgrounds[B.category] = list()
-		all_backgrounds[B.category][B.name] = B
 
 	return 1
 

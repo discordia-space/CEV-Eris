@@ -36,16 +36,19 @@ var/const/PARAMEDIC			=(1<<7)
 
 
 var/const/FIRSTOFFICER		=(1<<0)
-var/const/BARTENDER			=(1<<1)
-var/const/BOTANIST			=(1<<2)
-var/const/CHEF				=(1<<3)
-var/const/JANITOR			=(1<<4)
-var/const/MERCHANT			=(1<<5)
-var/const/GUILDTECH			=(1<<6)
-var/const/MINER				=(1<<7)
-var/const/CHAPLAIN			=(1<<8)
-var/const/ACTOR				=(1<<9)
-var/const/ASSISTANT			=(1<<10)
+var/const/CLUBMANAGER		=(1<<1)
+var/const/CLUBWORKER		=(1<<2)
+var/const/MERCHANT			=(1<<3)
+var/const/GUILDTECH			=(1<<4)
+var/const/MINER				=(1<<5)
+var/const/ACTOR				=(1<<6)
+var/const/ASSISTANT			=(1<<7)
+
+
+var/const/CHAPLAIN			=(1<<0)
+var/const/ACOLYTE			=(1<<1)
+var/const/JANITOR			=(1<<2)
+var/const/BOTANIST			=(1<<3)
 
 
 var/list/assistant_occupations = list()

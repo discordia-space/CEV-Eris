@@ -123,7 +123,7 @@
 				patchnote.surgery_operations &= ~AUTODOC_DIALYSIS
 
 		else if (patchnote.surgery_operations & AUTODOC_BLOOD)
-			var/datum/reagent/blood/blood = patient.vessel.reagent_list[1]
+			var/datum/reagent/organic/blood/blood = patient.vessel.reagent_list[1]
 			blood.volume += damage_heal_amount
 			if(blood.volume >= patient.vessel.total_volume)
 				patchnote.surgery_operations &= ~AUTODOC_BLOOD

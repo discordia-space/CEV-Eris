@@ -248,7 +248,7 @@
 
 //Picks a random element from a list based on a weighting system:
 //1. Adds up the total of weights for each element
-//2. Gets a number between 1 and that total
+//2. Gets the total from 0% to 100% of previous total value.
 //3. For each element in the list, subtracts its weighting from that number
 //4. If that makes the number 0 or less, return that element.
 /proc/pickweight(list/L, base_weight = 1)
@@ -259,9 +259,9 @@
 			L[item] = base_weight
 		total += L[item]
 
-	total = rand(1, total)
+	total = rand() * total
 	for (item in L)
-		total -=L [item]
+		total -= L[item]
 		if (total <= 0)
 			return item
 
@@ -797,6 +797,29 @@ Checks if a list has the same entries and values as an element of big.
 		if(ispath(path, type))
 			return 1
 	return 0
+
+/proc/parse_for_paths(var/list/data)
+	if(!islist(data) || !data.len)
+		return list()
+	var/list/types = list()
+	if(is_associative(data))
+		for(var/tag in data)
+			if(ispath(tag))
+				types.Add(tag)
+			else if(islist(tag))
+				types.Add(parse_for_paths(tag))
+			
+			if(ispath(data[tag]))
+				types.Add(data[tag])
+			else if(islist(data[tag]))
+				types.Add(parse_for_paths(data[tag]))
+	else
+		for(var/value in data)
+			if(ispath(value))
+				types.Add(value)
+			else if(islist(value))
+				types.Add(parse_for_paths(value))
+	return uniquelist(types)
 
 //return first thing in L which has var/varname == value
 //this is typecaste as list/L, but you could actually feed it an atom instead.
