@@ -2281,6 +2281,7 @@
 #include "code\modules\research\research.dm"
 #include "code\modules\research\server.dm"
 #include "code\modules\research\designs\ai_boards.dm"
+#include "code\modules\research\designs\biomatter_designs.dm"
 #include "code\modules\research\designs\cell.dm"
 #include "code\modules\research\designs\circuits.dm"
 #include "code\modules\research\designs\computer_parts.dm"
