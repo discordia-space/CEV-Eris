@@ -31,9 +31,8 @@
 		icon_state = initial(icon_state) + "_on"
 	else
 		icon_state = initial(icon_state)
-	if(container)
-		overlays = list()
-		overlays += image(icon = src.icon, icon_state = "tube", layer = LOW_OBJ_LAYER, dir = port_dir)
+	overlays = list()
+	overlays += image(icon = src.icon, icon_state = "tube", layer = LOW_OBJ_LAYER, dir = port_dir)
 
 
 /obj/machinery/biomatter_solidifier/Process()
@@ -76,9 +75,9 @@
 				container.pixel_y += CONTAINER_PIXEL_OFFSET
 			if(NORTH)
 				container.pixel_y -= CONTAINER_PIXEL_OFFSET
-			if(EAST)
-				container.pixel_x += CONTAINER_PIXEL_OFFSET
 			if(WEST)
+				container.pixel_x += CONTAINER_PIXEL_OFFSET
+			if(EAST)
 				container.pixel_x -= CONTAINER_PIXEL_OFFSET
 		playsound(src, 'sound/machines/airlock_ext_close.ogg', 60, 1)
 		to_chat(user, SPAN_NOTICE("You attached [tank] to [src]."))
