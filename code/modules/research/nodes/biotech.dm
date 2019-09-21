@@ -94,7 +94,9 @@
 	cost = 700
 
 	unlocks_designs = list(	/datum/design/research/circuit/chemmaster,
-							/datum/design/research/circuit/chem_heater
+							/datum/design/research/circuit/chem_heater,
+							/datum/design/research/item/makeshift_centrifuge,
+							/datum/design/research/structure/bidon
 							)
 /*
 /datum/technology/basic_food_processing
@@ -182,7 +184,8 @@
 	unlocks_designs = list(	/datum/design/research/item/autodoc,
 							/datum/design/research/item/autodoc_comercial,
 							/datum/design/research/item/chem_dispenser,
-							/datum/design/research/item/medhud
+							/datum/design/research/item/medhud,
+							/datum/design/research/structure/bidonadv
 							)
 
 /*

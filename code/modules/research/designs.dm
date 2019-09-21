@@ -127,6 +127,13 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/weapon/tool/scalpel/laser
 	sort_string = "MBBAA"
 
+/datum/design/research/item/makeshift_centrifuge
+	name = "Portable centrifuge"
+	desc = "A centrifuge with manual mechanism."
+	build_path = /obj/item/device/makeshift_centrifuge
+	sort_string = "MBBAA"
+	
+
 
 
 
