@@ -45,6 +45,9 @@
 	new /obj/item/device/flash(src)
 	new /obj/item/weapon/storage/pouch/pistol_holster(src)
 
+/obj/structure/closet/secure_closet/reinforced/preacher
+	name = "Preacher's locker"
+
 /obj/structure/closet/secure_closet/reinforced/hos
 	name = "Ironhammer Commander locker"
 	req_access = list(access_hos)

@@ -198,6 +198,13 @@ var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
 	var/datum/category_collection/player_setup_collection/psc = category.collection
 	pref = psc.preferences
 
+	if(!isnull(option_category))
+		if(!istext(option_category) || !SScharacter_setup.setup_options[option_category])
+			warning("Wrong initial option_category: [option_category]")
+			option_category = null
+		else
+			option_category = SScharacter_setup.setup_options[option_category]
+
 /datum/category_item/player_setup_item/Destroy()
 	pref = null
 	return ..()
@@ -209,13 +216,15 @@ var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
 * Called when the item is asked to load per character settings
 */
 /datum/category_item/player_setup_item/proc/load_character(var/savefile/S)
-	return
+	if(option_category)
+		pref.load_option(S, option_category)
 
 /*
 * Called when the item is asked to save per character settings
 */
 /datum/category_item/player_setup_item/proc/save_character(var/savefile/S)
-	return
+	if(option_category)
+		pref.save_option(S, option_category)
 
 /*
 * Called when the item is asked to load user/global settings
@@ -239,6 +248,8 @@ var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
 	return
 
 /datum/category_item/player_setup_item/proc/sanitize_character()
+	if(option_category)
+		pref.sanitize_option(option_category)
 	return
 
 /datum/category_item/player_setup_item/proc/sanitize_preferences()

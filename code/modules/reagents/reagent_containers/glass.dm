@@ -144,3 +144,8 @@
 		name = base_name
 	else
 		name = "[base_name] ([label_text])"
+
+/obj/item/weapon/reagent_containers/glass/MouseDrop(obj/over_object,src_location,over_location)
+	. = ..()
+	if(istype(over_object, /obj/structure/reagent_dispensers))
+		reagents.trans_to(over_object, amount_per_transfer_from_this, ignore_isinjectable = 1)

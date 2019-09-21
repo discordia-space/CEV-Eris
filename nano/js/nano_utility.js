@@ -63,6 +63,7 @@ $(document).ready(function () {
 	NanoUtility.init();
 	NanoStateManager.init();
 	NanoTemplate.init();
+	NanoBaseHelpers.init();
 });
 
 if (!Array.prototype.indexOf)

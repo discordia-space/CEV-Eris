@@ -64,7 +64,7 @@
 		if (HOME)
 			if (sample)
 				var/list/pathogen_pool[0]
-				for(var/datum/reagent/blood/B in sample.reagents.reagent_list)
+				for(var/datum/reagent/organic/blood/B in sample.reagents.reagent_list)
 					var/list/virus = B.data["virus2"]
 					for (var/ID in virus)
 						var/datum/disease2/disease/V = virus[ID]
@@ -185,7 +185,7 @@
 
 			P.info += "<hr>"
 
-			for(var/datum/reagent/blood/B in sample.reagents.reagent_list)
+			for(var/datum/reagent/organic/blood/B in sample.reagents.reagent_list)
 				var/mob/living/carbon/human/D = B.data["donor"]
 				P.info += "<large><u>[D.get_species()] [B.name]:</u></large><br>[B.data["blood_DNA"]]<br>"
 
