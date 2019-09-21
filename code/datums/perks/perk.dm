@@ -9,7 +9,7 @@
 	name = target_perk.name
 	desc = target_perk.desc
 	icon = target_perk.icon
-	icon_state = target_perk.icon_state + (target_perk.toggleable ? target_perk.is_active() ? "-on" : "-off" : null)
+	icon_state = target_perk.icon_state + (target_perk.is_active() ? "-on" : "-off")
 
 /obj/effect/statclick/perk/Click()
 	target_perk.on_click()
@@ -42,11 +42,9 @@
 		toggle(usr)
 
 /datum/perk/proc/toggle()
-	if(is_active())
-		deactivate(holder)
+	if(is_active() && deactivate(holder))
 		to_chat(usr, "You deactivate [src]")
-	else
-		activate(holder)
+	else if(activate(holder))
 		to_chat(usr, "You activate [src]")
 
 /datum/perk/proc/teach(datum/stat_holder/S)
@@ -67,12 +65,18 @@
 		deactivate()
 
 /datum/perk/proc/activate()
+	if(is_active())
+		return FALSE
 	active = TRUE
 	update_stat()
+	return TRUE
 
 /datum/perk/proc/deactivate()
+	if(!is_active())
+		return FALSE
 	active = FALSE
 	update_stat()
+	return TRUE
 
 /datum/perk/proc/is_active()
 	return active
