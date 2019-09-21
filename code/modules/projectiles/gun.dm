@@ -219,7 +219,7 @@
 	if(!special_check(user))
 		return
 
-
+	user.stats.getPerk(/datum/perk/oyvey)?.deactivate()
 
 	var/shoot_time = (burst - 1)* burst_delay
 	user.setClickCooldown(shoot_time) //no clicking on things while shooting

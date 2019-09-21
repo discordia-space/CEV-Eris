@@ -6,14 +6,18 @@
 	toggleable = TRUE
 
 /datum/perk/combat/activate()
+	. = ..()
+	if(!.)
+		return
 	if(holder.combat_style)
 		holder.combat_style.deactivate(holder)
 	holder.combat_style = src
-	..()
 
 /datum/perk/combat/deactivate()
+	. = ..()
+	if(!.)
+		return
 	holder.combat_style = null
-	..()
 
 /datum/perk/combat/is_active()
 	return holder.combat_style == src
