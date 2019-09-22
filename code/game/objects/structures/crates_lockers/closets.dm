@@ -234,15 +234,6 @@
 		src.togglelock(user)
 
 /obj/structure/closet/proc/CanToggleLock(var/mob/user, var/obj/item/weapon/card/id/id_card)
-	if (istype(user))
-		id_card = id_card || user.GetIdCard()
-
-	if (istype(id_card))
-		if(check_access_list(id_card.GetAccess()))
-			return TRUE
-		else
-			return check_access_list(user.GetAccess())
-
 	return allowed(user)
 
 /obj/structure/closet/proc/set_locked(var/newlocked, mob/user = null)
