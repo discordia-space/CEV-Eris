@@ -482,10 +482,11 @@
 	designs = list(
 		/datum/design/autolathe/biomatter/meat,
 		/datum/design/autolathe/biomatter/milk,
-		/datum/design/autolathe/biomatter/ez,
+
 		/datum/design/autolathe/biomatter/ez,
 		/datum/design/autolathe/biomatter/l4z,
 		/datum/design/autolathe/biomatter/rh,
+
 		/datum/design/autolathe/biomatter/wallet,
 		/datum/design/autolathe/biomatter/botanic_leather,
 		/datum/design/autolathe/biomatter/leather/satchel,
@@ -496,6 +497,7 @@
 		/datum/design/autolathe/biomatter/belt/security,
 		/datum/design/autolathe/biomatter/belt/medical/emt,
 		/datum/design/autolathe/biomatter/belt/misc/champion,
+
 		/datum/design/autolathe/biomatter/medical/bruise,
 		/datum/design/autolathe/biomatter/medical/splints,
 		/datum/design/autolathe/biomatter/medical/ointment,
