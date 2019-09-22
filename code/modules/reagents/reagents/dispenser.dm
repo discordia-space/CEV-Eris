@@ -114,11 +114,11 @@
 		L.adjust_fire_stacks(amount / 15)
 
 /datum/reagent/ethanol/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	M.adjustToxLoss(0.2 * toxicity * issmall(M) ? effect_multiplier * 2 : effect_multiplier)
+	M.adjustToxLoss(0.2 * toxicity * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
 	return
 
 /datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	M.nutrition += nutriment_factor * issmall(M) ? effect_multiplier * 2 : effect_multiplier
+	M.adjustNutrition(nutriment_factor * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
 	var/strength_mod = 1
 
 	M.add_chemical_effect(CE_ALCOHOL, 1)
@@ -270,7 +270,7 @@
 	color = "#C7C7C7"
 
 /datum/reagent/metal/radium/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	M.apply_effect(1 * issmall(M) ? effect_multiplier * 2 : effect_multiplier, IRRADIATE, 0) // Radium may increase your chances to cure a disease
+	M.apply_effect(1 * (issmall(M) ? effect_multiplier * 2 : effect_multiplier), IRRADIATE, 0) // Radium may increase your chances to cure a disease
 	if(M.virus2.len)
 		for(var/ID in M.virus2)
 			var/datum/disease2/disease/V = M.virus2[ID]
@@ -303,7 +303,7 @@
 	reagent_type = "Acid"
 
 /datum/reagent/acid/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	M.take_organ_damage(0, issmall(M) ? effect_multiplier * 2: effect_multiplier * power * 2)
+	M.take_organ_damage(0, (issmall(M) ? effect_multiplier * 2: effect_multiplier * power * 2))
 
 /datum/reagent/acid/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier) // This is the most interesting
 	if(ishuman(M))
@@ -415,7 +415,7 @@
 	glass_desc = "The organic compound commonly known as table sugar and sometimes called saccharose. This white, odorless, crystalline powder has a pleasing, sweet taste."
 
 /datum/reagent/organic/sugar/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	M.adjustNutrition(0.3 * effect_multiplier)
+	M.adjustNutrition(4 * effect_multiplier)
 
 /datum/reagent/sulfur
 	name = "Sulfur"
