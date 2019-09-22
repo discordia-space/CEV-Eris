@@ -173,7 +173,7 @@
 	return TRUE
 
 /datum/reagent/toxin/fuel/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	M.adjustToxLoss(0.2 * issmall(M) ? effect_multiplier * 2 : effect_multiplier)
+	M.adjustToxLoss(0.2 * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
 
 /datum/reagent/toxin/fuel/touch_mob(var/mob/living/L, var/amount)
 	if(istype(L))
