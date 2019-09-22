@@ -238,7 +238,10 @@
 		id_card = id_card || user.GetIdCard()
 
 	if (istype(id_card))
-		return check_access_list(id_card.GetAccess())
+		if(check_access_list(id_card.GetAccess()))
+			return TRUE
+		else
+			return check_access_list(user.GetAccess())
 
 	return allowed(user)
 
