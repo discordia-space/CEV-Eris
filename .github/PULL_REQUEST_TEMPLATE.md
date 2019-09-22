@@ -13,21 +13,9 @@
 <hr>
 </details>
 
-## Why It's Good For The Game
-<details>
-<summary>
-	Why It's Good For The Game
-</summary>
-<hr>
-
-<!-- Please add a short description here of why you think these changes would benefit the game. If you can't justify it in words, it might not be worth adding. -->
-	
-<hr>
-</details>
-
 ## Changelog
 :cl:
-add: Added new things
+<!--add: Added new things
 add: Added more things
 del: Removed old things
 tweak: tweaked a few things
@@ -42,7 +30,7 @@ code: changed some code
 refactor: refactored some code
 config: changed some config setting
 admin: messed with admin stuff
-server: something server ops should know
+server: something server ops should know-->
 /:cl:
 
 <!-- Both :cl:'s are required for the changelog to work! You can put your name to the right of the first :cl: if you want to overwrite your GitHub username as author ingame. -->
