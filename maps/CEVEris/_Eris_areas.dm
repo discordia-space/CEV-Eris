@@ -18,6 +18,10 @@
 	forced_ambience = list('sound/ambience/maintambience.ogg')
 	area_light_color = COLOR_LIGHTING_MAINT_DARK
 
+/area/eris/maintenance/junk
+	name = "Junk Beacon"
+	icon_state = "disposal"
+
 /area/eris/maintenance/disposal
 	name = "Waste Disposal"
 	icon_state = "disposal"
@@ -505,6 +509,16 @@
 	ambience = list('sound/ambience/ambicha1.ogg','sound/ambience/ambicha2.ogg','sound/ambience/ambicha3.ogg','sound/ambience/ambicha4.ogg')
 	sound_env = LARGE_ENCLOSED
 
+/area/eris/neotheology/storage
+	name = "\improper Church Storage"
+	icon_state = "erisyellow"
+	area_light_color = COLOR_LIGHTING_NEOTHEOLOGY_BRIGHT
+
+/area/eris/neotheology/bioreactor
+	name = "\improper Church Bioreactor Room"
+	icon_state = "erisblue"
+	area_light_color = COLOR_LIGHTING_NEOTHEOLOGY_BRIGHT
+
 /area/eris/neotheology/office
 	name = "\improper Chapel Office"
 	icon_state = "chapeloffice"
@@ -986,7 +1000,9 @@
 	name = "Supply Shuttle Hangar"
 	icon_state = "erisblue"
 
-
+/area/eris/quartermaster/misc
+	name = "\improper Cargo Barracks"
+	icon_state = "erisyellow"
 
 
 
