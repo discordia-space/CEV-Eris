@@ -1006,13 +1006,19 @@ There are 9 wires.
 						qdel(src)
 						return
 					else if(locked)
-						user << SPAN_NOTICE("The airlock's bolts prevent it from being forced.")
+						to_chat(user, SPAN_NOTICE("The airlock's bolts prevents it from being forced."))
 					else if(arePowerSystemsOn())
 						if(I.open_powered)
-							if(I.use_tool(user, src, WORKTIME_LONG, tool_type, FAILCHANCE_ZERO,  required_stat = STAT_ROB))
+							if(I.use_tool(user, src, WORKTIME_LONG, tool_type, FAILCHANCE_NORMAL,  required_stat = STAT_ROB))
 								toggle(I)
+							else
+								to_chat(user, SPAN_WARNING("You damage the airlock."))
+								src.take_damage(rand(5, 30))
+								if( (health / maxhealth) < 0.75 && rand() < 0.5 )	// If damage is sufficent, the airlock will bolt down with enough of luck.
+									lock()
+									to_chat(user, SPAN_WARNING("The airlock locks down from your attempts."))
 						else
-							user << SPAN_NOTICE("The airlock's motors resist your efforts to force it.")
+							to_chat(user, SPAN_NOTICE("The airlock's motors resist your efforts to force it."))
 					else
 						toggle(I)
 
