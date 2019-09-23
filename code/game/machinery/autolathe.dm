@@ -71,6 +71,7 @@
 	name = "NeoTheology Bioprinter"
 	desc = "NeoTheology machine for printing things using biomass."
 	unsuitable_materials = list()
+	circuit = /obj/item/weapon/circuitboard/neotheology/bioprinter
 
 /obj/machinery/autolathe/Initialize()
 	. = ..()

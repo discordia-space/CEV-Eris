@@ -148,3 +148,15 @@
 		/obj/item/weapon/stock_parts/micro_laser = 1,
 		/obj/item/weapon/stock_parts/capacitor = 1
 	)
+
+/obj/item/weapon/circuitboard/neotheology/bioprinter
+	name = T_BOARD("biomatter printer")
+	build_path = /obj/machinery/autolathe/bioprinter
+	board_type = "machine"
+	origin_tech = list(TECH_DATA = 2)
+	req_components = list(
+		/obj/item/weapon/stock_parts/matter_bin = 3,
+		/obj/item/weapon/stock_parts/manipulator = 2,
+		/obj/item/weapon/stock_parts/micro_laser = 1,
+		/obj/item/weapon/stock_parts/console_screen = 1
+	)
