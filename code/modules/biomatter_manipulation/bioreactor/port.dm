@@ -9,3 +9,4 @@
 	layer = LOW_OBJ_LAYER
 	density = FALSE
 	idle_power_usage = 80
+	circuit = /obj/item/weapon/circuitboard/neotheology/bioreactor_port
