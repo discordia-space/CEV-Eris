@@ -140,7 +140,7 @@
 		else if(user.client && job.is_setup_restricted(user.client.prefs.setup_options))
 			bad_message = "\[SETUP RESTRICTED]"
 
-		if(("Assistant" in pref.job_low) && (rank != "Assistant"))
+		if((ASSISTANT_TITLE in pref.job_low) && (rank != ASSISTANT_TITLE))
 			. += "<a href='?src=\ref[src];set_skills=[rank]'><font color=grey>[rank]</font></a></td><td></td></tr>"
 			continue
 		if(bad_message)
@@ -156,7 +156,7 @@
 
 		. += "</a></td><td width='40%'>"
 
-		if(rank == "Assistant")//Assistant is special
+		if(rank == ASSISTANT_TITLE)//Assistant is special
 			. += "<a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_LOW]'>"
 			. += "[(rank in pref.job_low) ? "<font color=#55cc55>" : ""]\[Yes\][(rank in pref.job_low) ? "</font>" : ""]"
 			//. += "\[Yes\]"
@@ -276,8 +276,8 @@
 	//First of all, we check if the user has opted to query any specific job by clicking the ? button
 	if(job_info_selected_rank)
 		job = SSjob.GetJob(job_info_selected_rank)
-	else if("Assistant" in pref.job_low)
-		job = SSjob.GetJob("Assistant")
+	else if(ASSISTANT_TITLE in pref.job_low)
+		job = SSjob.GetJob(ASSISTANT_TITLE)
 	else
 		//If not, then we'll attempt to get the job they have set as high priority, if any
 		job = SSjob.GetJob(pref.job_high)
@@ -380,7 +380,7 @@
 	if(!job)
 		return 0
 
-	if(role == "Assistant")
+	if(role == ASSISTANT_TITLE)
 		if(level == JOB_LEVEL_NEVER)
 			pref.job_low -= job.title
 		else
