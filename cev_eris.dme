@@ -261,6 +261,7 @@
 #include "code\datums\autolathe\ammo.dm"
 #include "code\datums\autolathe\autolathe_datums.dm"
 #include "code\datums\autolathe\basic_stuff.dm"
+#include "code\datums\autolathe\biomatter.dm"
 #include "code\datums\autolathe\cells.dm"
 #include "code\datums\autolathe\circuits.dm"
 #include "code\datums\autolathe\clothing.dm"
