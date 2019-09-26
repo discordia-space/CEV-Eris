@@ -325,7 +325,12 @@
 
 	//Here we have a right-floating textbox that shows user's stats
 	job_desc +="<div style='border: 1px solid grey; float: right; margin-right: 20px; padding: 8px; line-height: 120%;'> <h1 style='padding: 0px;'>Stats:</h1>"
-	if (job.stat_modifiers.len)
+	if(job.title == ASSISTANT_TITLE)
+		job_desc += "<ul>"
+		for (var/a in ALL_STATS)
+			job_desc += "<li>[a]: ???</li>"
+		job_desc += "</ul>"
+	else if (job.stat_modifiers.len)
 		job_desc += "<ul>"
 		for (var/a in job.stat_modifiers)
 			job_desc += "<li>[a]: [job.stat_modifiers[a]]</li>"

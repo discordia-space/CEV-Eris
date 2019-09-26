@@ -15,6 +15,7 @@
 	var/supervisors = null					// Supervisors, who this person answers to directly
 	var/selection_color = "#ffffff"			// Selection screen color
 	var/list/alt_titles
+	var/list/datum/job_flavor/random_flavors = list(null)
 
 	var/req_admin_notify					// If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
 	var/department = null					// Does this position have a department tag?
@@ -55,11 +56,17 @@
 	. = . || outfit_type
 	. = outfit_by_type(.)
 
-/datum/job/proc/add_stats(var/mob/living/carbon/human/target)
+/datum/job/proc/add_stats(var/mob/living/carbon/human/target, datum/job_flavor/flavor)
 	if(!ishuman(target))
 		return FALSE
-	for(var/name in src.stat_modifiers)
-		target.stats.changeStat(name, stat_modifiers[name])
+
+	if(flavor)
+		for(var/name in flavor.stat_modifiers)
+			target.stats.changeStat(name, flavor.stat_modifiers[name])
+	else
+		for(var/name in src.stat_modifiers)
+			target.stats.changeStat(name, stat_modifiers[name])
+
 	for(var/perk in perks)
 		var/datum/perk/P = new perk
 		P.teach(target.stats)

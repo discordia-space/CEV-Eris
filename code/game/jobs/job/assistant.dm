@@ -44,3 +44,8 @@ As an assistant, you should strive to help out anyone you can. Or at least, anyo
 	name = ASSISTANT_TITLE
 	icon_state = "player-grey"
 	join_tag = /datum/job/assistant
+
+/datum/job/assistant/New()
+	..()
+	for(var/alt in subtypesof(/datum/job_flavor/assistant))
+		random_flavors[alt] = new alt

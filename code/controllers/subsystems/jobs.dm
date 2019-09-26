@@ -300,6 +300,8 @@ SUBSYSTEM_DEF(job)
 	var/datum/job/job = GetJob(rank)
 	var/list/spawn_in_storage = list()
 
+	var/datum/job_flavor/flavor = pick(job.random_flavors)
+
 	if(job)
 
 		//Equip custom gear loadout.
@@ -316,8 +318,8 @@ SUBSYSTEM_DEF(job)
 			desired_name = H.real_name
 			ntnet_global.create_email(H, desired_name, domain)
 		// END EMAIL GENERATION
-		job.equip(H, H.mind ? H.mind.role_alt_title : "")
-		job.add_stats(H)
+		job.equip(H, flavor ? flavor.title : H.mind ? H.mind.role_alt_title : "")
+		job.add_stats(H, flavor)
 		job.add_additiional_language(H)
 
 
