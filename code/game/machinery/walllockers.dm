@@ -1,4 +1,4 @@
-n/obj/structure/walllocker
+/obj/structure/walllocker
 	name = "Wall Locker"
 	icon = 'icons/obj/lockwall.dmi'
 	icon_state = "emerg"

@@ -6,18 +6,14 @@
 	var/list/access_occupy = list()
 	icon_state = "secure"
 
-/obj/structure/closet/secure_closet/personal/CanToggleLock(var/mob/user, var/obj/item/weapon/card/id/id_card)
-	if(istype(user))
-		id_card = id_card || user.GetIdCard()
+/obj/structure/closet/secure_closet/personal/CanToggleLock(var/mob/user)
+	var/obj/item/weapon/card/id/id_card = user.GetIdCard()
 
-	if(istype(id_card))
-		if(id_card.registered_name == registered_name)
-			return TRUE
+	if(id_card.registered_name == registered_name)
+		return TRUE
 
-		if(!registered_name && has_access(access_occupy, list(), id_card.GetAccess()))
-			return TRUE
-
-	return ..()
+	if(!registered_name && ..())
+		return TRUE
 
 /obj/structure/closet/secure_closet/personal/attackby(obj/item/W, mob/living/user)
 	if (src.opened)

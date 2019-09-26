@@ -213,7 +213,7 @@
 		return
 	update_icon()
 
-/obj/structure/closet/proc/togglelock(mob/user as mob, var/obj/item/weapon/card/id/id_card)
+/obj/structure/closet/proc/togglelock(mob/user as mob)
 	var/ctype = istype(src,/obj/structure/closet/crate) ? "crate" : "closet"
 	if(!secure)
 		return
@@ -224,7 +224,7 @@
 	if(src.broken)
 		to_chat(user, SPAN_WARNING("The [ctype] appears to be broken."))
 		return
-	if(CanToggleLock(user, id_card))
+	if(CanToggleLock(user))
 		set_locked(!locked, user)
 	else
 		to_chat(user, SPAN_NOTICE("Access Denied"))
@@ -233,13 +233,7 @@
 	if(Adjacent(user))
 		src.togglelock(user)
 
-/obj/structure/closet/proc/CanToggleLock(var/mob/user, var/obj/item/weapon/card/id/id_card)
-	if (istype(user))
-		id_card = id_card || user.GetIdCard()
-
-	if (istype(id_card))
-		return check_access_list(id_card.GetAccess())
-
+/obj/structure/closet/proc/CanToggleLock(var/mob/user)
 	return allowed(user)
 
 /obj/structure/closet/proc/set_locked(var/newlocked, mob/user = null)
