@@ -85,6 +85,7 @@
 /obj/structure/closet/acolyte/populate_contents()
 	new /obj/item/clothing/under/rank/church(src)
 	new /obj/item/weapon/storage/belt/church(src)
+	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/device/radio/headset/church(src)
 	new /obj/item/clothing/gloves/thick(src)
 	new /obj/item/clothing/suit/armor/vest/acolyte(src)

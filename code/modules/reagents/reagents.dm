@@ -61,8 +61,11 @@
 
 /datum/reagent/proc/consumed_amount(mob/living/carbon/M, var/alien, var/location)
 	var/removed = metabolism
-	if(ingest_met && (location == CHEM_INGEST))
-		removed = ingest_met
+	if(location == CHEM_INGEST)
+		if(ingest_met)
+			removed = ingest_met
+		else
+			removed = removed/2
 	if(touch_met && (location == CHEM_TOUCH))
 		removed = touch_met
 	// on half of overdose, chemicals will start be metabolized faster, 
@@ -150,7 +153,7 @@
 	return
 
 /datum/reagent/proc/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	affect_blood(M, alien, effect_multiplier * 0.5)
+	affect_blood(M, alien, effect_multiplier * 0.8)	// some of chemicals lost in digestive process
 	return
 
 /datum/reagent/proc/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)

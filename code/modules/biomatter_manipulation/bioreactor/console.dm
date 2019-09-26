@@ -7,6 +7,7 @@
 	icon_state = "screen"
 	layer = ABOVE_MOB_LAYER + 0.1
 	idle_power_usage = 350
+	circuit = /obj/item/weapon/circuitboard/neotheology/bioreactor_metrics
 
 /obj/machinery/multistructure/bioreactor_part/console/Initialize()
 	. = ..()
