@@ -203,12 +203,12 @@
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/hos
 
-/obj/item/device/radio/headset/headset_nt
-	name = "NT radio headset"
-	desc = "A headset for NT deciple."
-	icon_state = "headset"
+/obj/item/device/radio/headset/church
+	name = "NeoTheology headset"
+	desc = "If you listen closely you can hear God."
+	icon_state = "nt_headset"
 	item_state = "headset"
-	ks2type = /obj/item/device/encryptionkey/headset_nt
+	ks2type = /obj/item/device/encryptionkey/headset_church
 
 /obj/item/device/radio/headset/attackby(obj/item/weapon/W as obj, mob/user as mob)
 //	..()

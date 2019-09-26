@@ -52,3 +52,25 @@
 	name = "low chance random rare material"
 	icon_state = "material-orange-low"
 	spawn_nothing_percentage = 60
+
+/obj/random/material_ore
+	name = "random ore"
+	icon_state = "material-black"
+
+
+/obj/random/material_ore/item_to_spawn()
+	return pickweight(list(/obj/item/weapon/ore/coal = 4,\
+				/obj/item/weapon/ore/glass = 5,\
+				/obj/item/weapon/ore/gold = 3,\
+				/obj/item/weapon/ore/hydrogen = 2,\
+				/obj/item/weapon/ore/iron = 4,\
+				/obj/item/weapon/ore/osmium = 2,\
+				/obj/item/weapon/ore/plasma = 3,\
+				/obj/item/weapon/ore/silver = 2,\
+				/obj/item/weapon/ore/uranium = 1,\
+				/obj/item/weapon/ore/diamond = 1))
+
+/obj/random/material_ore/low_chance
+	name = "low chance random ore"
+	icon_state = "material-black-low"
+	spawn_nothing_percentage = 60

@@ -292,7 +292,7 @@
 			var/removed = min(current.metabolism*digest_factor, current.volume)
 			if (istype(current, /datum/reagent/organic/nutriment))//If its food, it feeds us
 				var/datum/reagent/organic/nutriment/N = current
-				nutrition += removed*N.nutriment_factor
+				adjustNutrition(removed*N.nutriment_factor)
 				var/heal_amount = removed*N.regen_factor
 				if (bruteloss > 0)
 					var/n = min(heal_amount, bruteloss)

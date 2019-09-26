@@ -331,6 +331,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/item/stack/rods/random,
 		/obj/item/weapon/material/shard,
 		/obj/random/junk/nondense,
+		/obj/random/material_ore,
 		/obj/random/pack/rare = 0.3,
 		/obj/random/tool_upgrade = 1,
 		/obj/random/mecha_equipment = 2
@@ -378,6 +379,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/random/pack/tech_loot = 3,
 		/obj/random/powercell,
 		/obj/random/circuitboard,
+		/obj/random/material_ore,
 		/obj/random/pack/rare,//No weight on this, rare loot is pretty likely to appear in scientific scrap
 		/obj/random/tool_upgrade,
 		/obj/random/mecha_equipment)
@@ -398,6 +400,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/random/lowkeyrandom = 4,
 		/obj/random/junk/nondense = 3,
 		/obj/item/stack/rods/random = 2,
+		/obj/random/material_ore,
 		/obj/item/weapon/material/shard,
 		/obj/random/pack/rare = 0.3
 	)

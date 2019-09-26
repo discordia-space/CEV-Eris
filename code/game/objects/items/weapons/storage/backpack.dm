@@ -120,6 +120,12 @@
 	icon_state = "securitypack"
 	item_state_slots = null
 
+/obj/item/weapon/storage/backpack/church
+	name = "NeoTheology backpack"
+	desc = "For carrying all your holy needs."
+	icon_state = "ntpack"
+	item_state_slots = null
+
 /obj/item/weapon/storage/backpack/captain
 	name = "captain's backpack"
 	desc = "It's a special backpack made exclusively for officers."
@@ -160,7 +166,6 @@
 	name = "satchel"
 	desc = "A trendy looking satchel."
 	icon_state = "satchel-norm"
-	worn_access = TRUE
 
 /obj/item/weapon/storage/backpack/satchel/eng
 	name = "industrial satchel"
@@ -170,7 +175,6 @@
 		slot_l_hand_str = "engiepack",
 		slot_r_hand_str = "engiepack",
 		)
-	worn_access = TRUE
 
 /obj/item/weapon/storage/backpack/satchel/med
 	name = "medical satchel"
@@ -180,7 +184,6 @@
 		slot_l_hand_str = "medicalpack",
 		slot_r_hand_str = "medicalpack",
 		)
-	worn_access = TRUE
 
 /obj/item/weapon/storage/backpack/satchel/sec
 	name = "security satchel"
@@ -190,7 +193,6 @@
 		slot_l_hand_str = "securitypack",
 		slot_r_hand_str = "securitypack",
 		)
-	worn_access = TRUE
 
 /obj/item/weapon/storage/backpack/satchel/cap
 	name = "captain's satchel"
@@ -200,4 +202,8 @@
 		slot_l_hand_str = "satchel-cap",
 		slot_r_hand_str = "satchel-cap",
 		)
-	worn_access = TRUE
+
+/obj/item/weapon/storage/backpack/satchel/church
+	name = "NeoTheology satchel"
+	desc = "Slightly more accessible means for your holy goods."
+	icon_state = "satchel-nt"

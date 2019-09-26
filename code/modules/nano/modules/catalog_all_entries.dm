@@ -6,8 +6,8 @@
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "chemistry_catalog.tmpl", name, 640, 700, state = state)
-		refresh_catalog_browsing(user)
 		ui.set_initial_data(data)
+		refresh_catalog_browsing(user)
 		ui.auto_update_layout = 1
 		ui.open()
 

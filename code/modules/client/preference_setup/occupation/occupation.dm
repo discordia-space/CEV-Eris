@@ -332,6 +332,15 @@
 		job_desc += "</ul>"
 	else
 		job_desc += "None"
+	job_desc += "<h1 style='padding: 0px;'>Perks:</h1>"
+	if (job.perks.len)
+		job_desc += "<ul>"
+		for (var/a in job.perks)
+			var/datum/perk/P = a
+			job_desc += "<li>[initial(P.name)]</li>"
+		job_desc += "</ul>"
+	else
+		job_desc += "None"
 	job_desc +="</div>"
 
 	if(job.alt_titles)
