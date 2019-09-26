@@ -83,7 +83,7 @@
 			var/dat = ""
 			if(!condi)
 				if(href_list["name"] == "Blood")
-					var/datum/reagent/blood/G
+					var/datum/reagent/organic/blood/G
 					for(var/datum/reagent/F in R.reagent_list)
 						if(F.name == href_list["name"])
 							G = F

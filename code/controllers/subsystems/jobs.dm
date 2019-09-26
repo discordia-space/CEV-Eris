@@ -391,6 +391,7 @@ SUBSYSTEM_DEF(job)
 	var/obj/item/weapon/implant/core_implant/C = H.get_core_implant()
 	if(C)
 		C.install_default_modules_by_job(job)
+		C.access.Add(job.cruciform_access)
 
 	BITSET(H.hud_updateflag, ID_HUD)
 	BITSET(H.hud_updateflag, SPECIALROLE_HUD)
