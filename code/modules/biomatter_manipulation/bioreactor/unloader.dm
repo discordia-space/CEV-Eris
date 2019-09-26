@@ -8,6 +8,8 @@
 	active_power_usage = 180
 	var/dir_output = NORTH
 
+	circuit = /obj/item/weapon/circuitboard/neotheology/bioreactor_unloader
+
 
 /obj/machinery/multistructure/bioreactor_part/unloader/Process()
 	if(!MS)
