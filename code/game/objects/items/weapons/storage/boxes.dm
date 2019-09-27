@@ -24,7 +24,7 @@
 	desc = "It's just an ordinary box."
 	icon_state = "box"
 	item_state = "syringe_kit"
-	max_storage_space = DEFAULT_BOX_STORAGE
+	max_storage_space = DEFAULT_NORMAL_STORAGE
 	var/foldable = /obj/item/stack/material/cardboard	// BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
 	var/maxHealth = 20	//health is already defined
 
@@ -716,7 +716,7 @@
 	foldable = null
 	max_w_class = ITEM_SIZE_NORMAL
 	can_hold = list(/obj/item/organ, /obj/item/weapon/reagent_containers/food, /obj/item/weapon/reagent_containers/glass)
-	max_storage_space = 21
+	max_storage_space = DEFAULT_NORMAL_STORAGE * 1.25
 	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
 
 /obj/item/weapon/storage/box/autolathe_blank

@@ -355,7 +355,7 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 	desc = "A conveyor belt assembly, used for the assembly of conveyor belt systems."
 	icon = 'icons/obj/machines/conveyor.dmi'
 	icon_state = "conveyor_loose"
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 	var/id = "" //inherited by the belt
 
 /obj/item/construct/conveyor/attackby(obj/item/I, mob/user, params)
@@ -386,7 +386,7 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 	desc = "A conveyor control switch assembly. When set up, it'll control any and all conveyor belts it is linked to."
 	icon = 'icons/obj/machines/conveyor.dmi'
 	icon_state = "switch"
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 	var/id = "" //inherited by the switch
 
 /obj/item/construct/conveyor_switch/New(loc, new_id)

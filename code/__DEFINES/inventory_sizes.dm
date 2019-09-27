@@ -1,27 +1,30 @@
-// The below should be used to define an item's w_class variable.
-// Example: w_class = ITEM_SIZE_LARGE
-// This allows the addition of future w_classes without needing to change every file.
-#define ITEM_SIZE_TINY           1
-#define ITEM_SIZE_SMALL          2
-#define ITEM_SIZE_NORMAL         3
-#define ITEM_SIZE_LARGE          4
-#define ITEM_SIZE_HUGE           5
-#define ITEM_SIZE_GARGANTUAN     6
-#define ITEM_SIZE_NO_CONTAINER INFINITY // Use this to forbid item from being placed in a container.
+//ITEM INVENTORY WEIGHT, FOR w_class
 
-/*
-	The values below are not yet in use.
-*/
+/// Usually items smaller then a human hand, (e.g. playing cards, lighter, scalpel, coins/holochips)
+#define ITEM_SIZE_TINY           1
+/// Pockets can hold small and tiny items, (e.g. flashlight, multitool, grenades, GPS device)
+#define ITEM_SIZE_SMALL          2
+/// Standard backpacks can carry tiny, small & normal items, (e.g. fire extinguisher, stun baton, gas mask, metal sheets)
+#define ITEM_SIZE_NORMAL         3
+/// Items that can be wielded or equipped, (e.g. defibrillator, backpack, space suits)
+#define ITEM_SIZE_BULKY          4
+/// Usually represents objects that require two hands to operate, (e.g. shotgun, two-handed melee weapons)
+#define ITEM_SIZE_HUGE           5
+/// Essentially means it cannot be picked up or placed in an inventory, (e.g. mech parts, safe)
+#define ITEM_SIZE_GARGANTUAN     6
+// Use this to forbid item from being placed in a container.
+#define ITEM_SIZE_NO_CONTAINER INFINITY 
+
 
 #define BASE_STORAGE_COST(w_class) (2**(w_class-1)) //1,2,4,8,16,...
 #define REDUCED_STORAGE_COST(w_class) (2**(w_class-2)) //0.5,1,2,4,8,...
 
 //linear increase. Using many small storage containers is more space-efficient than using large ones,
 //in exchange for being limited in the w_class of items that will fit
-#define BASE_STORAGE_CAPACITY(w_class) (7*(w_class-1))
+#define BASE_STORAGE_CAPACITY(w_class) (8*(w_class-1))
 
-#define DEFAULT_BACKPACK_STORAGE  BASE_STORAGE_CAPACITY(6)  //35 after BASE_STORAGE_CAPACITY calculation
-#define DEFAULT_BELT_STORAGE      BASE_STORAGE_CAPACITY(5)  //28 after BASE_STORAGE_CAPACITY calculation
-#define DEFAULT_SATCHEL_STORAGE   BASE_STORAGE_CAPACITY(4)  //21 after BASE_STORAGE_CAPACITY calculation
-#define DEFAULT_POUCH_STORAGE     BASE_STORAGE_CAPACITY(3)  //14 after BASE_STORAGE_CAPACITY calculation
-#define DEFAULT_BOX_STORAGE       BASE_STORAGE_CAPACITY(2)  //07 after BASE_STORAGE_CAPACITY calculation
+#define DEFAULT_GARGANTUAN_STORAGE BASE_STORAGE_CAPACITY(6)  //40 after BASE_STORAGE_CAPACITY calculation
+#define DEFAULT_HUGE_STORAGE       BASE_STORAGE_CAPACITY(5)  //32 after BASE_STORAGE_CAPACITY calculation
+#define DEFAULT_BULKY_STORAGE      BASE_STORAGE_CAPACITY(4)  //24 after BASE_STORAGE_CAPACITY calculation
+#define DEFAULT_NORMAL_STORAGE     BASE_STORAGE_CAPACITY(3)  //16 after BASE_STORAGE_CAPACITY calculation
+#define DEFAULT_SMALL_STORAGE      BASE_STORAGE_CAPACITY(2)  //08 after BASE_STORAGE_CAPACITY calculation

@@ -18,8 +18,8 @@
 		)
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
-	max_w_class = ITEM_SIZE_LARGE
-	max_storage_space = DEFAULT_BACKPACK_STORAGE
+	max_w_class = ITEM_SIZE_BULKY
+	max_storage_space = DEFAULT_HUGE_STORAGE
 	var/worn_access = FALSE
 
 /obj/item/weapon/storage/backpack/New()
@@ -76,8 +76,8 @@
 	desc = "A backpack that opens into a localized pocket of Blue Space."
 	origin_tech = list(TECH_BLUESPACE = 4)
 	icon_state = "holdingpack"
-	max_w_class = ITEM_SIZE_LARGE
-	max_storage_space = DEFAULT_BACKPACK_STORAGE * 2
+	max_w_class = ITEM_SIZE_BULKY
+	max_storage_space = DEFAULT_HUGE_STORAGE * 2
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_GOLD = 10, MATERIAL_DIAMOND = 5, MATERIAL_URANIUM = 5)
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -144,7 +144,7 @@
 	desc = "Designed for planetary infantry, holds a lot of equipment."
 	icon_state = "militarypack"
 	item_state_slots = null
-	max_storage_space = DEFAULT_BACKPACK_STORAGE + 10
+	max_storage_space = DEFAULT_HUGE_STORAGE + 10
 
 /*
  * Satchel Types
@@ -154,7 +154,7 @@
 	name = "leather satchel"
 	desc = "It's a very fancy satchel made with fine leather."
 	icon_state = "satchel"
-	max_storage_space = DEFAULT_SATCHEL_STORAGE
+	max_storage_space = DEFAULT_BULKY_STORAGE
 	worn_access = TRUE
 
 /obj/item/weapon/storage/backpack/satchel/withwallet

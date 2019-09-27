@@ -6,7 +6,7 @@
 	item_state = "utility"
 	storage_slots = 7
 	max_w_class = ITEM_SIZE_NORMAL
-	max_storage_space = DEFAULT_BELT_STORAGE
+	max_storage_space = DEFAULT_NORMAL_STORAGE
 	slot_flags = SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined")
 

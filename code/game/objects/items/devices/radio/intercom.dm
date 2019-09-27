@@ -4,7 +4,7 @@
 	icon_state = "intercom"
 	anchored = 1
 	slot_flags = null
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 	canhear_range = 2
 	flags = CONDUCT | NOBLOODY
 	var/number = 0

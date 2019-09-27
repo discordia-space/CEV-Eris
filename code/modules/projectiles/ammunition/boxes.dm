@@ -125,7 +125,7 @@
 	name = "ammunition box (5.56mm)"
 	icon_state = "box556mm"
 	matter = list(MATERIAL_STEEL = 10)
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 	caliber = "a556"
 	ammo_type = /obj/item/ammo_casing/a556
 	max_ammo = 80
@@ -139,7 +139,7 @@
 	name = "ammunition box (6.5mm)"
 	icon_state = "box65mm"
 	matter = list(MATERIAL_STEEL = 10)
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 	caliber = "6.5mm"
 	ammo_type = /obj/item/ammo_casing/c65
 	max_ammo = 80
@@ -153,7 +153,7 @@
 	name = "ammunition box (7.62mm)"
 	icon_state = "box762mm"
 	matter = list(MATERIAL_STEEL = 10)
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 	caliber = "a762"
 	ammo_type = /obj/item/ammo_casing/a762
 	mag_type = SPEEDLOADER | MAGAZINE
@@ -210,7 +210,7 @@
 	name = "ammunition box (14.5mm)"
 	icon_state = "box145mm"
 	matter = list(MATERIAL_STEEL = 8)
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 	caliber = "14.5mm"
 	ammo_type = /obj/item/ammo_casing/a145
 	max_ammo = 30

@@ -96,7 +96,7 @@
 	icon_state = "sword0"
 	active_force = WEAPON_FORCE_ROBUST
 	active_throwforce = WEAPON_FORCE_ROBUST
-	active_w_class = ITEM_SIZE_LARGE
+	active_w_class = ITEM_SIZE_BULKY
 	force = WEAPON_FORCE_HARMLESS
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 1
@@ -179,7 +179,7 @@
 	throwforce = 1  //Throwing or dropping the item deletes it.
 	throw_speed = 1
 	throw_range = 1
-	w_class = ITEM_SIZE_LARGE//So you can't hide it in your pocket or some such.
+	w_class = ITEM_SIZE_BULKY//So you can't hide it in your pocket or some such.
 	flags = NOBLOODY
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	var/mob/living/creator

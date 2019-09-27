@@ -16,6 +16,7 @@
 
 //  Generic non-item
 /obj/item/weapon/storage/bag
+	icon = 'icons/obj/storage.dmi'
 	allow_quick_gather = 1
 	allow_quick_empty = 1
 	display_contents_with_number = 1
@@ -32,11 +33,11 @@
 	icon_state = "trashbag0"
 	item_state = "trashbag"
 
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 	max_w_class = ITEM_SIZE_SMALL
 	can_hold = list() // any
 	cant_hold = list(/obj/item/weapon/disk/nuclear)
-	max_storage_space = DEFAULT_BELT_STORAGE
+	max_storage_space = ITEM_SIZE_BULKY
 
 /obj/item/weapon/storage/bag/trash/update_icon()
 	if(contents.len == 0)
@@ -51,7 +52,7 @@
 
 //The custodial robot gets a larger bag since it only has one and no cart
 /obj/item/weapon/storage/bag/trash/robot
-	max_storage_space = DEFAULT_BELT_STORAGE * 2
+	max_storage_space = ITEM_SIZE_BULKY * 2
 
 /obj/item/weapon/storage/bag/trash/robot/update_icon()
 	if(contents.len == 0)
@@ -68,14 +69,14 @@
 //        Plastic Bag
 // -----------------------------
 
-/obj/item/weapon/storage/bag/plasticbag
+/obj/item/weapon/storage/bag/plastic
 	name = "plastic bag"
 	desc = "It's a very flimsy, very noisy alternative to a bag."
 	icon = 'icons/obj/trash.dmi'
 	icon_state = "plasticbag"
 	item_state = "plasticbag"
 
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 	max_w_class = ITEM_SIZE_SMALL
 	can_hold = list() // any
 	cant_hold = list(/obj/item/weapon/disk/nuclear)
@@ -106,7 +107,7 @@
 	icon_state = "plantbag"
 	max_storage_space = 100
 	max_w_class = ITEM_SIZE_NORMAL
-	w_class = ITEM_SIZE_SMALL
+	w_class = ITEM_SIZE_NORMAL
 	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/grown,
 		/obj/item/seeds,
 		/obj/item/weapon/grown)
@@ -229,13 +230,14 @@
 //           Cash Bag
 // -----------------------------
 
-/obj/item/weapon/storage/bag/cash
-	name = "cash bag"
+/obj/item/weapon/storage/bag/money
+	name = "money bag"
 	icon = 'icons/obj/storage.dmi'
-	icon_state = "cashbag"
+	icon_state = "moneybag"
 	desc = "A bag for carrying lots of cash. It's got a big dollar sign printed on the front."
+	storage_slots = 40
 	max_storage_space = 100
 	max_w_class = ITEM_SIZE_NORMAL
-	w_class = ITEM_SIZE_SMALL
+	w_class = ITEM_SIZE_HUGE
 	can_hold = list(/obj/item/weapon/coin,
 		/obj/item/weapon/spacecash)
