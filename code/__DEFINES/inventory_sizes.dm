@@ -21,10 +21,10 @@
 
 //linear increase. Using many small storage containers is more space-efficient than using large ones,
 //in exchange for being limited in the w_class of items that will fit
-#define BASE_STORAGE_CAPACITY(w_class) (8*(w_class-1))
+#define BASE_STORAGE_CAPACITY(w_class) (10*(w_class-1))
 
-#define DEFAULT_GARGANTUAN_STORAGE BASE_STORAGE_CAPACITY(6)  //40 after BASE_STORAGE_CAPACITY calculation
-#define DEFAULT_HUGE_STORAGE       BASE_STORAGE_CAPACITY(5)  //32 after BASE_STORAGE_CAPACITY calculation
-#define DEFAULT_BULKY_STORAGE      BASE_STORAGE_CAPACITY(4)  //24 after BASE_STORAGE_CAPACITY calculation
-#define DEFAULT_NORMAL_STORAGE     BASE_STORAGE_CAPACITY(3)  //16 after BASE_STORAGE_CAPACITY calculation
-#define DEFAULT_SMALL_STORAGE      BASE_STORAGE_CAPACITY(2)  //08 after BASE_STORAGE_CAPACITY calculation
+#define DEFAULT_GARGANTUAN_STORAGE BASE_STORAGE_CAPACITY(6)  //50 after BASE_STORAGE_CAPACITY calculation
+#define DEFAULT_HUGE_STORAGE       BASE_STORAGE_CAPACITY(5)  //40 after BASE_STORAGE_CAPACITY calculation
+#define DEFAULT_BULKY_STORAGE      BASE_STORAGE_CAPACITY(4)  //30 after BASE_STORAGE_CAPACITY calculation
+#define DEFAULT_NORMAL_STORAGE     BASE_STORAGE_CAPACITY(3)  //20 after BASE_STORAGE_CAPACITY calculation
+#define DEFAULT_SMALL_STORAGE      BASE_STORAGE_CAPACITY(2)  //10 after BASE_STORAGE_CAPACITY calculation

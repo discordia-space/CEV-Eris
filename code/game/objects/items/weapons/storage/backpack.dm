@@ -154,7 +154,7 @@
 	name = "leather satchel"
 	desc = "It's a very fancy satchel made with fine leather."
 	icon_state = "satchel"
-	max_storage_space = DEFAULT_BULKY_STORAGE
+	max_storage_space = DEFAULT_HUGE_STORAGE * 0.7
 	worn_access = TRUE
 
 /obj/item/weapon/storage/backpack/satchel/withwallet
