@@ -6,7 +6,7 @@
 	if(istype(victim))
 		var/hazard_protection = victim.getarmor(null, "bio")
 		if(!hazard_protection)
-			victim.apply_damage(damage, TOX)
+			victim.apply_damage(damage * victim.reagent_permeability(), TOX)
 
 
 //this proc spill some biomass on the floor
