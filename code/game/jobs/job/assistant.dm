@@ -1,5 +1,5 @@
 /datum/job/assistant
-	title = "Assistant"
+	title = ASSISTANT_TITLE
 	flag = ASSISTANT
 	department = DEPARTMENT_CIVILIAN
 	department_flag = CIVILIAN
@@ -41,6 +41,11 @@ As an assistant, you should strive to help out anyone you can. Or at least, anyo
 	loyalties = "Your loyalty is yours to decide"
 
 /obj/landmark/join/start/assistant
-	name = "Assistant"
+	name = ASSISTANT_TITLE
 	icon_state = "player-grey"
 	join_tag = /datum/job/assistant
+
+/datum/job/assistant/New()
+	..()
+	for(var/alt in subtypesof(/datum/job_flavor/assistant))
+		random_flavors[alt] = new alt
