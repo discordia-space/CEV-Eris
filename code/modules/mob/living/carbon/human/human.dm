@@ -1130,7 +1130,9 @@ var/list/rank_prefix = list(\
 		qdel(organ)
 
 	var/obj/item/weapon/implant/core_implant/CI = get_core_implant()
+	var/checkprefcruciform = FALSE	// To reset the cruciform to original form
 	if(CI)
+		checkprefcruciform = TRUE
 		qdel(CI)
 
 	if(organs.len)
@@ -1178,6 +1180,8 @@ var/list/rank_prefix = list(\
 			var/obj/item/weapon/implant/core_implant/C = new I.implant_type
 			C.install(src)
 			C.activate()
+			C.install_default_modules_by_job(mind.assigned_job)
+			C.access.Add(mind.assigned_job.cruciform_access)
 
 	else
 		var/organ_type = null
@@ -1189,6 +1193,15 @@ var/list/rank_prefix = list(\
 		for(var/organ_tag in species.has_organ)
 			organ_type = species.has_organ[organ_tag]
 			new organ_type(src)
+		
+		if(checkprefcruciform)
+			var/datum/category_item/setup_option/core_implant/I = client.prefs.get_option("Core implant")
+			if(I.implant_type)
+				var/obj/item/weapon/implant/core_implant/C = new I.implant_type
+				C.install(src)
+				C.activate()
+				C.install_default_modules_by_job(mind.assigned_job)
+				C.access.Add(mind.assigned_job.cruciform_access)
 
 	species.organs_spawned(src)
 
