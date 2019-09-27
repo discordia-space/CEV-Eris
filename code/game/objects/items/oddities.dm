@@ -54,7 +54,7 @@
 /obj/item/weapon/oddity/proc/claim(mob/user as mob)
 	if(!claimed)
 		claimed = TRUE
-		name = "[user.name]'s [name]"
+		name = "[user.name] [name]"
 		return TRUE
 	else
 		return FALSE
@@ -80,7 +80,7 @@
 	icon_state = "coin"
 	oddity_stats = list(
 		STAT_ROB = 5,
-		STAT_THG = 5,
+		STAT_TGH = 5,
 	)
 
 /obj/item/weapon/oddity/common/photo_landscape
@@ -89,7 +89,7 @@
 	icon_state = "photo_landscape"
 	oddity_stats = list(
 		STAT_COG = 5,
-		STAT_THG = 5,
+		STAT_TGH = 5,
 	)
 
 /obj/item/weapon/oddity/common/photo_coridor
@@ -98,7 +98,7 @@
 	icon_state = "photo_corridor"
 	oddity_stats = list(
 		STAT_MEC = 5,
-		STAT_THG = 5,
+		STAT_TGH = 5,
 	)
 
 /obj/item/weapon/oddity/common/photo_eyes
@@ -107,7 +107,7 @@
 	icon_state = "photo_corridor"
 	oddity_stats = list(
 		STAR_ROB = 6,
-		STAT_THG = 6,
+		STAT_TGH = 6,
 		STAT_VIG = 6,
 	)
 
@@ -123,7 +123,7 @@
 
 /obj/item/weapon/oddity/common/paper_crumpled
 	name = "turn-out page"
-	desc = "This is ALMOST makes sense."
+	desc = "This ALMOST makes sense."
 	icon_state = "paper_crumpled"
 	oddity_stats = list(
 		STAT_MEC = 6,
@@ -147,13 +147,13 @@
 	icon_state = "book_eyes"
 	oddity_stats = list(
 		STAR_ROB = 9,
-		STAT_THG = 9,
+		STAT_TGH = 9,
 		STAT_VIG = 9,
 	)
 
 /obj/item/weapon/oddity/common/book_omega
 	name = "occult book"
-	desc = "That's mostly does not make any logical sense. However, those stories are at least interesting."
+	desc = "This mostly does not make any sense. However, those stories are at least interesting."
 	icon_state = "book_omega"
 	oddity_stats = list(
 		STAT_BIO = 6,
@@ -176,7 +176,7 @@
 	icon_state = "old_money"
 	oddity_stats = list(
 		STAT_ROB = 4,
-		STAT_THG = 4,
+		STAT_TGH = 4,
 	)
 
 /obj/item/weapon/oddity/common/healthscanner
