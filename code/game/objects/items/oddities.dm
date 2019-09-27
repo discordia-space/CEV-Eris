@@ -37,7 +37,7 @@
 		var/stat_change = rand (2, oddity_stats[chosen_stat])
 		user.stats.changeStat(chosen_stat, stat_change)
 		claim(user)
-		to_chat(user, SPAN_NOTICE("Something sparks in your mind as you examine the [name]. A brief moment of understanding to this item's past granting you insight to a bigger picture. \
+		to_chat(user, SPAN_NOTICE("Something sparks in your mind as you examine the [initial(name)]. A brief moment of understanding to this item's past granting you insight to a bigger picture. \
 									Your [chosen_stat] skill is increased by [stat_change]"))
 
 	if(oddity_perks)
