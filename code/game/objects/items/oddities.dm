@@ -67,7 +67,7 @@
 //Common - you can find those everywhere
 /obj/item/weapon/oddity/common/blueprint
 	name = "strange blueprint"
-	desc = "You can't figure out what exactly this is. This is probably don't even works."
+	desc = "There's no telling what this design is supposed to be. Whatever could be built from this likely wouldn't work."
 	icon_state = "blueprint"
 	oddity_stats = list(
 		STAT_COG = 5,
@@ -76,7 +76,7 @@
 
 /obj/item/weapon/oddity/common/coin
 	name = "strange coin"
-	desc = "It look more like collectible rather than actual curency. But you can't figure out the alloy it made from."
+	desc = "It appears to be more of a collectible than any sort of actual currency. What metal it's made from seems to be a mystery.."
 	icon_state = "coin"
 	oddity_stats = list(
 		STAT_ROB = 5,
@@ -85,7 +85,7 @@
 
 /obj/item/weapon/oddity/common/photo_landscape
 	name = "alien landscape photo"
-	desc = "There some ire about this planet."
+	desc = "There is some ire about the planet in this photograph.."
 	icon_state = "photo_landscape"
 	oddity_stats = list(
 		STAT_COG = 5,
@@ -94,7 +94,7 @@
 
 /obj/item/weapon/oddity/common/photo_coridor
 	name = "surreal maint photo"
-	desc = "Something wrong, yet so familiar about this place."
+	desc = "he corridor in this photograph looks familiar, though something seems wrong about it; as if everything in it was replaced with an exact replica of itself."
 	icon_state = "photo_corridor"
 	oddity_stats = list(
 		STAT_MEC = 5,
@@ -103,7 +103,7 @@
 
 /obj/item/weapon/oddity/common/photo_eyes
 	name = "observer photo"
-	desc = "What the fuck is this even."
+	desc = "Just looking at this photo sparks a primal fear in your heart."
 	icon_state = "photo_corridor"
 	oddity_stats = list(
 		STAR_ROB = 6,
@@ -153,7 +153,7 @@
 
 /obj/item/weapon/oddity/common/book_omega
 	name = "occult book"
-	desc = "This mostly does not make any sense. However, those stories are at least interesting."
+	desc = "Most of the stories in this book seem to be the writing of mad men. But at least the stories are interesting."
 	icon_state = "book_omega"
 	oddity_stats = list(
 		STAT_BIO = 6,
@@ -191,7 +191,7 @@
 
 /obj/item/weapon/oddity/common/old_pda
 	name = "broken pda"
-	desc = "This is old, Nanotrasen era PDA, issued to employes of this corporation all over the galaxy."
+	desc = "An old Nanotrasen era PDA. These were issued to their employees all throughout the galaxy."
 	icon_state = "old_pda"
 	item_state = "electronic"
 	oddity_stats = list(
@@ -207,5 +207,62 @@
 		STAT_ROB = 6,
 		STAT_TGH = 6,
 	)
+
+/obj/item/weapon/oddity/common/teddy
+	name = "teddy bear"
+	desc = "He will there for you, im tough times."
+	icon_state = "teddy"
+	oddity_stats = list(
+		STAT_ROB = 7,
+		STAT_TGH = 7,
+		STAT_VIG = 7,
+	)
+
+/obj/item/weapon/oddity/common/old_knife
+	name = "old knife"
+	desc = "Is this blood older then you? You can't tell, and will never know."
+	icon_state = "old_knife"
+	structure_damage_factor = STRUCTURE_DAMAGE_BLADE
+	tool_qualities = list(QUALITY_CUTTING = 20,  QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
+	force = WEAPON_FORCE_DANGEROUS
+	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	slot_flags = SLOT_BELT
+	sharp = 1
+	edge = 1
+
+	oddity_stats = list(
+		STAT_ROB = 5,
+		STAT_TGH = 5,
+		STAT_VIG = 5,
+	)
+
+/obj/item/weapon/oddity/common/old_id
+	name = "old id"
+	desc = "There is story behind this name. Untold, and cruel fate."
+	icon_state = "old_id"
+	oddity_stats = list(
+		STAT_VIG = 9,
+	)
+
+/obj/item/weapon/oddity/common/old_radio
+	name = "old radio"
+	desc = "Close your eyes, bring it closer and listen. You can almost hear it, in the edge of your consciousness. The World is ticking."
+	icon_state = "old_radio"
+	oddity_stats = list(
+		STAT_COG = 9,
+		STAT_VIG = 9,
+	)
+
+/obj/item/weapon/oddity/common/paper_bundle
+	name = "paper bundle"
+	desc = "Somewhere there, there is a truth, hidden under all of this scrap."
+	icon_state = "paper_bundle"
+	oddity_stats = list(
+		STAT_BIO = 6,
+		STAR_ROB = 6,
+		STAT_VIG = 6,
+	)
+
 
 #undef MINIMUM_ODDITY_STAT
