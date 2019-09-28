@@ -1,43 +1,68 @@
 var/list/department_radio_keys = list(
-	"r" = "right ear",
-	"l" = "left ear",
-	"i" = "intercom",
-	"h" = "department",
-	"+" = "special",	//activate radio-specific special functions
-	"c" = "Command",
-	"n" = "Science",
-	"m" = "Medical",
-	"e" = "Engineering",
-	"s" = "Security",
-	"w" = "whisper",
-	"y" = "Mercenary",
-	"u" = "Supply",
-	"v" = "Service",
-	"p" = "AI Private",
-	"t" = "NT Voice",
+	":r" = "right ear",	".r" = "right ear",
+	":l" = "left ear",	".l" = "left ear",
+	":i" = "intercom",	".i" = "intercom",
+	":h" = "department",	".h" = "department",
+	":+" = "special",		".+" = "special", //activate radio-specific special functions
+	":c" = "Command",		".c" = "Command",
+	":n" = "Science",		".n" = "Science",
+	":m" = "Medical",		".m" = "Medical",
+	":e" = "Engineering", ".e" = "Engineering",
+	":s" = "Security",	".s" = "Security",
+	":w" = "whisper",		".w" = "whisper",
+	":y" = "Mercenary",	".y" = "Mercenary",
+	":u" = "Supply",		".u" = "Supply",
+	":v" = "Service",		".v" = "Service",
+	":p" = "AI Private",	".p" = "AI Private",
+	":t" = "NT Voice",		".t" = "NT Voice",
+
+	//kinda localization -- rastaf0
+	//same keys as above, but on russian keyboard layout. This file uses cp1251 as encoding.
+	":ê" = "right ear",	".ê" = "right ear",
+	":ä" = "left ear",	".ä" = "left ear",
+	":ø" = "intercom",	".ø" = "intercom",
+	":ð" = "department",	".ð" = "department",
+	":ñ" = "Command",		".ñ" = "Command",
+	":ò" = "Science",		".ò" = "Science",
+	":ü" = "Medical",		".ü" = "Medical",
+	":ó" = "Engineering",	".ó" = "Engineering",
+	":û" = "Security",	".û" = "Security",
+	":ö" = "whisper",		".ö" = "whisper",
+	":í" = "Mercenary",	".í" = "Mercenary",
+	":é" = "Supply",	".é" = "Supply",
+	":å" = "NT Voice",		".å" = "NT Voice"
 )
 
-var/list/channel_to_radio_key = new
 
-/proc/get_radio_key_from_channel(var/channel)
-	. = channel_to_radio_key[channel]
-	if(!.)
+var/list/channel_to_radio_key = new
+proc/get_radio_key_from_channel(var/channel)
+	var/key = channel_to_radio_key[channel]
+	if(!key)
 		for(var/radio_key in department_radio_keys)
 			if(department_radio_keys[radio_key] == channel)
-				channel_to_radio_key[channel] = radio_key
-				return radio_key
+				key = radio_key
+				break
+		if(!key)
+			key = ""
+		channel_to_radio_key[channel] = key
 
+	return key
 
 /mob/living/proc/binarycheck()
-	return
 
-/mob/living/carbon/human/binarycheck()
-	if(l_ear || r_ear)
+	if(istype(src, /mob/living/silicon/pai))
+		return
+
+	if(!ishuman(src))
+		return
+
+	var/mob/living/carbon/human/H = src
+	if(H.l_ear || H.r_ear)
 		var/obj/item/device/radio/headset/dongle
-		if(istype(l_ear, /obj/item/device/radio/headset))
-			dongle = l_ear
+		if(istype(H.l_ear, /obj/item/device/radio/headset))
+			dongle = H.l_ear
 		else
-			dongle = r_ear
+			dongle = H.r_ear
 		if(!istype(dongle))
 			return FALSE
 		if(dongle.translate_binary)

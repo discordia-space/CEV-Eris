@@ -154,7 +154,7 @@
 		return standard_mode
 
 	if(length(message) >= 2)
-		var/channel_prefix =  sanitize_key(copytext(message, 2, 3))
+		var/channel_prefix =  sanitize_key(copytext(message, 1, 3))
 		return department_radio_keys[channel_prefix]
 
 	return null
