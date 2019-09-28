@@ -12,7 +12,7 @@
 	matter = list(MATERIAL_STEEL = 25)
 	edge = TRUE
 	sharp = TRUE
-	var/deployed = 0
+	var/deployed = FALSE
 
 	var/base_damage = 20
 	var/fail_damage = 5
