@@ -74,6 +74,16 @@
 	unsuitable_materials = list()
 	circuit = /obj/item/weapon/circuitboard/neotheology/bioprinter
 
+/obj/machinery/autolathe/bioprinter/update_icon()
+	overlays.Cut()
+
+	icon_state = "bio_autolathe"
+	if(panel_open)
+		overlays.Add(image(icon, "bio_autolathe_p"))
+
+	if(working && !error) // if error, work animation looks awkward.
+		icon_state = "bio_autolathe_n"
+
 /obj/machinery/autolathe/Initialize()
 	. = ..()
 	wires = new(src)
