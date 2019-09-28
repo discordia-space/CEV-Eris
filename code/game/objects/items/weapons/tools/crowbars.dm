@@ -7,7 +7,7 @@
 	force = WEAPON_FORCE_PAINFUL
 	worksound = WORKSOUND_EASY_CROWBAR
 	w_class = ITEM_SIZE_NORMAL
-	storage_cost = ITEM_SIZE_NORMAL //It's long and thin so it doesn't grow exponentially
+	reduced_storage_cost = TRUE //It's long and thin so it doesn't grow exponentially
 	origin_tech = list(TECH_ENGINEERING = 1)
 	matter = list(MATERIAL_STEEL = 4)
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")

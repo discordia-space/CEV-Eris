@@ -6,7 +6,7 @@
 	item_state = "utility"
 	storage_slots = 7
 	max_w_class = ITEM_SIZE_NORMAL
-	max_storage_space = 28
+	max_storage_space = DEFAULT_NORMAL_STORAGE
 	slot_flags = SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined")
 
@@ -64,7 +64,7 @@
 	new /obj/item/weapon/tool/wirecutters(src)
 	new /obj/item/stack/cable_coil/random(src)
 
-//Mostlyfull toolbelt has a high chance - but not guaranteed - to contain each common tool
+//Mostly full toolbelt has a high chance - but not guaranteed - to contain each common tool
 /obj/item/weapon/storage/belt/utility/mostlyfull/New()
 	..()
 	if (prob(65))

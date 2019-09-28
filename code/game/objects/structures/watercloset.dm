@@ -57,7 +57,7 @@
 			return
 
 	if(cistern && !isrobot(user)) //STOP PUTTING YOUR MODULES IN THE TOILET.
-		if(I.w_class >= ITEM_SIZE_LARGE)
+		if(I.w_class >= ITEM_SIZE_BULKY)
 			to_chat(user, SPAN_NOTICE("\The [I] does not fit."))
 			return
 		if(w_items + I.w_class > ITEM_SIZE_HUGE)

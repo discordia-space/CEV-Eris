@@ -46,7 +46,7 @@
 		to_chat(user, SPAN_NOTICE("You find putting an evidence bag in another evidence bag to be slightly absurd."))
 		return
 
-	if(I.w_class >= ITEM_SIZE_LARGE)
+	if(I.w_class >= ITEM_SIZE_BULKY)
 		to_chat(user, SPAN_NOTICE("[I] won't fit in [src]."))
 		return
 
