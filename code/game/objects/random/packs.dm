@@ -101,6 +101,7 @@ They generally give more random result and can provide more divercity in spawn.
 
 /obj/random/pack/rare/item_to_spawn()
 	return pickweight(list(
+					/obj/random/common_oddities = 8,
 					/obj/random/material_rare = 3,
 					/obj/random/tool/advanced = 5,
 					/obj/random/gun_normal = 2,
