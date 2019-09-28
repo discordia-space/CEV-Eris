@@ -33,19 +33,31 @@
 	price_tag = 150
 
 /obj/item/clothing/suit/armor/vest/botanist
-	name = "Botanist armor"
+	name = "Argolyte attire"
 	desc = "Every rose has its thorn."
 	icon_state = "botanist"
+	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	armor = list(melee = 35, bullet = 20, energy = 20, bomb = 25, bio = 100, rad = 80)
+	flags_inv = HIDEJUMPSUIT
 
 /obj/item/clothing/suit/armor/vest/acolyte
 	name = "Acolyte armor"
 	desc = "Worn heavy, steadfast in the name of God."
 	icon_state = "acolyte"
+	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	armor = list(melee = 35, bullet = 20, energy = 20, bomb = 25, bio = 100, rad = 80)
+	flags_inv = HIDEJUMPSUIT
 
 /obj/item/clothing/suit/armor/vest/custodian
 	name = "Custodian armor"
 	desc = "Someone's gotta clean this mess."
 	icon_state = "custodian"
+	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	armor = list(melee = 35, bullet = 20, energy = 20, bomb = 25, bio = 100, rad = 80)
+	flags_inv = HIDEJUMPSUIT
 
 /obj/item/clothing/suit/armor/riot
 	name = "riot suit"
