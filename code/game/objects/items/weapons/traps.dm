@@ -180,13 +180,12 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	update_icon()
 	STOP_PROCESSING(SSobj, src)
 
-//Attempting to resist out of a beartrap will not work, and you'll get nothing but pain for trying
+//Attempting to resist out of a beartrap will be counted as using your hand on the trap.
 /obj/item/weapon/beartrap/resist_buckle(var/mob/user)
 	if (user == buckled_mob && !user.stunned)
 		//We check stunned here, and a failure stuns the victim. This prevents someone from just spam-resisting and instantly killing themselves
 		if (user.client)
-			fail_attempt(user)
-			to_chat(user, SPAN_WARNING("Struggling out of this isn't going to work, you'll need to try to release \the [src] with your hands or a tool"))
+			attack_hand(user)
 		else
 			//Fallback behaviour for possible future use of NPCs
 			attempt_release(user, null)
