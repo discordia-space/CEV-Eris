@@ -24,7 +24,7 @@
 
 /obj/item/weapon/oddity/attack_self(mob/user as mob)
 
-	if(!claim(user))
+	if(claimed)
 		to_chat(user, SPAN_NOTICE("This item is already someone's inspiration."))
 		return FALSE
 
