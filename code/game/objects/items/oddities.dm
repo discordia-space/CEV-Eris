@@ -76,7 +76,7 @@
 
 /obj/item/weapon/oddity/common/coin
 	name = "strange coin"
-	desc = "It appears to be more of a collectible than any sort of actual currency. What metal it's made from seems to be a mystery.."
+	desc = "It appears to be more of a collectible than any sort of actual currency. What metal it's made from seems to be a mystery."
 	icon_state = "coin"
 	oddity_stats = list(
 		STAT_ROB = 5,
@@ -85,7 +85,7 @@
 
 /obj/item/weapon/oddity/common/photo_landscape
 	name = "alien landscape photo"
-	desc = "There is some ire about the planet in this photograph.."
+	desc = "There is some ire about the planet in this photograph."
 	icon_state = "photo_landscape"
 	oddity_stats = list(
 		STAT_COG = 5,
@@ -94,7 +94,7 @@
 
 /obj/item/weapon/oddity/common/photo_coridor
 	name = "surreal maint photo"
-	desc = "he corridor in this photograph looks familiar, though something seems wrong about it; as if everything in it was replaced with an exact replica of itself."
+	desc = "The corridor in this photograph looks familiar, though something seems wrong about it; as if everything in it was replaced with an exact replica of itself."
 	icon_state = "photo_corridor"
 	oddity_stats = list(
 		STAT_MEC = 5,
