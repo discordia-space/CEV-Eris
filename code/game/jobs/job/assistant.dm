@@ -44,6 +44,4 @@ As an vagabond, you should strive to help out anyone you can. Or at least, anyon
 /datum/job/assistant/New()
 	..()
 	for(var/alt in subtypesof(/datum/job_flavor/assistant))
-		random_flavors[alt] = new alt
-
-
+		random_flavors += new alt
