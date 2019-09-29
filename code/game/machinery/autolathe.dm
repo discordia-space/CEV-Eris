@@ -74,16 +74,6 @@
 	unsuitable_materials = list()
 	circuit = /obj/item/weapon/circuitboard/neotheology/bioprinter
 
-/obj/machinery/autolathe/bioprinter/update_icon()
-	overlays.Cut()
-
-	icon_state = "bio_autolathe"
-	if(panel_open)
-		overlays.Add(image(icon, "bio_autolathe_p"))
-
-	if(working && !error) // if error, work animation looks awkward.
-		icon_state = "bio_autolathe_n"
-
 /obj/machinery/autolathe/Initialize()
 	. = ..()
 	wires = new(src)
@@ -498,7 +488,7 @@
 
 
 /obj/machinery/autolathe/proc/res_load()
-	flick("autolathe_o", src)
+	flick("[icon_state]_o", src)
 
 
 /obj/machinery/autolathe/proc/can_print(datum/computer_file/binary/design/design_file)
@@ -573,12 +563,13 @@
 /obj/machinery/autolathe/update_icon()
 	overlays.Cut()
 
-	icon_state = "autolathe"
+	icon_state = initial(icon_state)
+
 	if(panel_open)
-		overlays.Add(image(icon, "autolathe_p"))
+		overlays.Add(image(icon, "[icon_state]_p"))
 
 	if(working && !error) // if error, work animation looks awkward.
-		icon_state = "autolathe_n"
+		icon_state = "[icon_state]_n"
 
 /obj/machinery/autolathe/proc/consume_materials(datum/design/design)
 	for(var/material in design.materials)
