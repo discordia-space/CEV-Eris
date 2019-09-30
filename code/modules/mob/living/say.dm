@@ -1,41 +1,25 @@
 var/list/department_radio_keys = list(
-	":r" = "right ear",	".r" = "right ear",
-	":l" = "left ear",	".l" = "left ear",
-	":i" = "intercom",	".i" = "intercom",
-	":h" = "department",	".h" = "department",
-	":+" = "special",		".+" = "special", //activate radio-specific special functions
-	":c" = "Command",		".c" = "Command",
-	":n" = "Science",		".n" = "Science",
-	":m" = "Medical",		".m" = "Medical",
-	":e" = "Engineering", ".e" = "Engineering",
-	":s" = "Security",	".s" = "Security",
-	":w" = "whisper",		".w" = "whisper",
-	":y" = "Mercenary",	".y" = "Mercenary",
-	":u" = "Supply",		".u" = "Supply",
-	":v" = "Service",		".v" = "Service",
-	":p" = "AI Private",	".p" = "AI Private",
-	":t" = "NT Voice",		".t" = "NT Voice",
-
-	//kinda localization -- rastaf0
-	//same keys as above, but on russian keyboard layout. This file uses cp1251 as encoding.
-	":ê" = "right ear",	".ê" = "right ear",
-	":ä" = "left ear",	".ä" = "left ear",
-	":ø" = "intercom",	".ø" = "intercom",
-	":ð" = "department",	".ð" = "department",
-	":ñ" = "Command",		".ñ" = "Command",
-	":ò" = "Science",		".ò" = "Science",
-	":ü" = "Medical",		".ü" = "Medical",
-	":ó" = "Engineering",	".ó" = "Engineering",
-	":û" = "Security",	".û" = "Security",
-	":ö" = "whisper",		".ö" = "whisper",
-	":í" = "Mercenary",	".í" = "Mercenary",
-	":é" = "Supply",	".é" = "Supply",
-	":å" = "NT Voice",		".å" = "NT Voice"
+	"r" = "right ear",
+	"l" = "left ear",
+	"i" = "intercom",
+	"h" = "department",
+	"+" = "special",	 //activate radio-specific special functions
+	"c" = "Command",
+	"n" = "Science",
+	"m" = "Medical",
+	"e" = "Engineering",
+	"s" = "Security",
+	"w" = "whisper",
+	"y" = "Mercenary",
+	"u" = "Supply",
+	"v" = "Service",
+	"p" = "AI Private",
+	"t" = "NT Voice",
 )
 
 
 var/list/channel_to_radio_key = new
-proc/get_radio_key_from_channel(var/channel)
+/proc/get_radio_key_from_channel(var/channel)
 	var/key = channel_to_radio_key[channel]
 	if(!key)
 		for(var/radio_key in department_radio_keys)
