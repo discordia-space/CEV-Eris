@@ -133,7 +133,7 @@ var/list/mob_hat_cache = list()
 	if(!laws) laws = new law_type
 
 	//Stats must be initialised before creating the module
-	stats = new /datum/stat_holder
+	stats = new /datum/stat_holder(src)
 	if(!module) module = new module_type(src)
 
 	flavor_text = "It's a tiny little repair drone. The casing is stamped with an corporate logo and the subscript: '[company_name] Recursive Repair Systems: Fixing Tomorrow's Problem, Today!'"

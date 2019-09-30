@@ -23,6 +23,8 @@
 		access_external_airlocks
 	)
 
+	perks = list(/datum/perk/intimidation/menacing_presence, /datum/perk/military_training)
+
 	stat_modifiers = list(
 		STAT_ROB = 40,
 		STAT_TGH = 30,
@@ -79,6 +81,8 @@
 		access_external_airlocks
 	)
 
+	perks = list(/datum/perk/military_training)
+
 	stat_modifiers = list(
 		STAT_ROB = 25,
 		STAT_TGH = 25,
@@ -128,6 +132,8 @@
 		access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels,
 		access_external_airlocks
 	)
+
+	perks = list(/datum/perk/military_training)
 
 	stat_modifiers = list(
 		STAT_BIO = 15,
@@ -181,6 +187,8 @@
 		access_security, access_moebius, access_sec_doors, access_medspec, access_morgue, access_maint_tunnels, access_medical_equip
 	)
 
+	perks = list(/datum/perk/military_training)
+
 	stat_modifiers = list(
 		STAT_BIO = 25,
 		STAT_TGH = 5,
@@ -231,6 +239,8 @@
 		access_security, access_moebius, access_engine, access_mailsorting,access_eva,
 		access_sec_doors, access_brig, access_maint_tunnels, access_morgue, access_external_airlocks
 	)
+
+	perks = list(/datum/perk/military_training)
 
 	stat_modifiers = list(
 		STAT_ROB = 25,

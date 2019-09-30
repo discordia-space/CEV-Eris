@@ -5,7 +5,12 @@
 	var/list/obj/effect/statclick/perk/perk_stat = list()
 	var/datum/perk/combat/combat_style
 
-/datum/stat_holder/New()
+	var/mob/assigned_mob
+
+/datum/stat_holder/New(var/mob/M)
+	if(!istype(M))
+		error("wrong usage of stat_holder")
+	assigned_mob = M
 	for(var/sttype in subtypesof(/datum/stat))
 		var/datum/stat/S = new sttype
 		stat_list[S.name] = S
@@ -114,6 +119,8 @@
 
 /datum/stat_holder/proc/addTempStat(statName, Value, timeDelay, id = null)
 	var/datum/stat/S = stat_list[statName]
+	if(!S)
+		error("couldnt find stat with name [statName].")
 	S.addModif(timeDelay, Value, id)
 
 /datum/stat/proc/addModif(delay, affect, id)

@@ -109,7 +109,7 @@
 	if(effective_dose < 1)
 		M.apply_effect(3, STUTTER)
 		M.make_dizzy(5)
-		M.stats.addTempStat(STAT_COG, STAT_LEVEL_BASIC, STIM_TIME, "psilocybin")
+		M.stats.addTempStat(STAT_COG, STAT_LEVEL_BASIC, BUFF_TIME, "psilocybin")
 		M.hallucination(50, 50)
 		if(prob(5))
 			M.emote(pick("twitch", "giggle"))
@@ -125,7 +125,7 @@
 		M.make_jittery(10)
 		M.make_dizzy(10)
 		M.druggy = max(M.druggy, 40)
-		M.stats.addTempStat(STAT_COG, STAT_LEVEL_ADEPT, STIM_TIME, "psilocybin")
+		M.stats.addTempStat(STAT_COG, STAT_LEVEL_ADEPT, BUFF_TIME, "psilocybin")
 		M.hallucination(100, 50)
 		if(prob(15))
 			M.emote(pick("twitch", "giggle"))
@@ -147,7 +147,7 @@
 	M.add_chemical_effect(CE_PAINKILLER, 5 * effect_multiplier)
 
 /datum/reagent/drug/nicotine/withdrawal_act(mob/living/carbon/M)
-	M.stats.addTempStat(STAT_BIO, -STAT_LEVEL_BASIC, STIM_TIME, "nicotine_w")
+	M.stats.addTempStat(STAT_BIO, -STAT_LEVEL_BASIC, BUFF_TIME, "nicotine_w")
 
 /datum/reagent/drug/nicotine/overdose(var/mob/living/carbon/M, var/alien)
 	M.add_side_effect("Headache", 11)
@@ -198,9 +198,9 @@
 		M.drip_blood(10)
 
 /datum/reagent/drug/sanguinum/withdrawal_act(mob/living/carbon/M)
-	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, STIM_TIME, "sanguinum_w")
-	M.stats.addTempStat(STAT_COG, -STAT_LEVEL_BASIC, STIM_TIME, "sanguinum_w")
-	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_BASIC, STIM_TIME, "sanguinum_w")
+	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, BUFF_TIME, "sanguinum_w")
+	M.stats.addTempStat(STAT_COG, -STAT_LEVEL_BASIC, BUFF_TIME, "sanguinum_w")
+	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_BASIC, BUFF_TIME, "sanguinum_w")
 
 /datum/reagent/drug/sanguinum/overdose(var/mob/living/carbon/M, var/alien)
 	var/mob/living/carbon/human/H = M

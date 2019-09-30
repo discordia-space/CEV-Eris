@@ -271,9 +271,14 @@ var/list/rank_prefix = list(\
 		name = get_id_rank() + name
 	return name
 
+/mob/living/carbon/human/proc/is_face_covered()
+	if((wear_mask && (wear_mask.flags_inv&HIDEFACE)) || (head && (head.flags_inv&HIDEFACE)))	//Wearing a mask which hides our face, use id-name if possible	//Likewise for hats
+		return TRUE
+	return FALSE
+
 //repurposed proc. Now it combines get_id_name() and get_face_name() to determine a mob's name variable. Made into a seperate proc as it'll be useful elsewhere
 /mob/living/carbon/human/proc/get_visible_name()
-	if((wear_mask && (wear_mask.flags_inv&HIDEFACE)) || (head && (head.flags_inv&HIDEFACE)))	//Wearing a mask which hides our face, use id-name if possible	//Likewise for hats
+	if(is_face_covered())
 		return rank_prefix_name(get_id_name())
 
 	var/face_name = get_face_name()

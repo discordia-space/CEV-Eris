@@ -198,7 +198,7 @@ var/list/ai_verbs_default = list(
 	//The AI gets 100 in all three knowledge stats.
 		//These are only ever used to operate machinery and software
 	//It doesnt get any physical stats, like robustness, since its a disembodied mind
-	stats = new /datum/stat_holder
+	stats = new /datum/stat_holder(src)
 	stats.changeStat(STAT_BIO, 100)
 	stats.changeStat(STAT_MEC, 100)
 	stats.changeStat(STAT_COG, 100)

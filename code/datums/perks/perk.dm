@@ -80,3 +80,11 @@
 
 /datum/perk/proc/is_active()
 	return active
+
+/mob/proc/has_perk(perk_type)
+	if(!stats)
+		return FALSE
+	for(var/datum/perk/P in stats.perks)
+		if(P.type == perk_type)
+			return TRUE
+	return FALSE

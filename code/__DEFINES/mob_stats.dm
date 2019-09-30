@@ -17,3 +17,6 @@
 
 #define STAT_LEVEL_MIN      0 // Min stat value selectable
 #define STAT_LEVEL_MAX      60 // Max stat value selectable
+
+//Basis of stats temporary effects.
+#define BUFF_TIME 1 SECONDS
