@@ -455,7 +455,7 @@
 
 //for sorting entries by their associated values, rather than keys.
 /proc/sortAssoc(list/L, order=1)
-	return sortTim(L, order >= 0 ? /proc/cmp_name_asc : /proc/cmp_name_dsc, TRUE) //third argument for fetching L[L[i]] instead of L[i]
+	return sortTim(L, order >= 0 ? /proc/cmp_text_asc : /proc/cmp_text_dsc, TRUE) //third argument for fetching L[L[i]] instead of L[i]
 
 // Returns the key based on the index
 #define KEYBYINDEX(L, index) (((index <= length(L)) && (index > 0)) ? L[index] : null)
@@ -808,7 +808,7 @@ Checks if a list has the same entries and values as an element of big.
 				types.Add(tag)
 			else if(islist(tag))
 				types.Add(parse_for_paths(tag))
-			
+
 			if(ispath(data[tag]))
 				types.Add(data[tag])
 			else if(islist(data[tag]))
