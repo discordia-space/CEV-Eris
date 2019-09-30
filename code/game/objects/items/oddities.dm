@@ -106,7 +106,7 @@
 	desc = "Just looking at this photo sparks a primal fear in your heart."
 	icon_state = "photo_corridor"
 	oddity_stats = list(
-		STAR_ROB = 6,
+		STAT_ROB = 6,
 		STAT_TGH = 6,
 		STAT_VIG = 6,
 	)
@@ -146,7 +146,7 @@
 	desc = "This book details the information on some cyber creatures. Who did this, how this is even possible?"
 	icon_state = "book_eyes"
 	oddity_stats = list(
-		STAR_ROB = 9,
+		STAT_ROB = 9,
 		STAT_TGH = 9,
 		STAT_VIG = 9,
 	)
@@ -157,7 +157,7 @@
 	icon_state = "book_omega"
 	oddity_stats = list(
 		STAT_BIO = 6,
-		STAR_ROB = 6,
+		STAT_ROB = 6,
 		STAT_VIG = 6,
 	)
 
@@ -166,12 +166,12 @@
 	desc = "Oh, how quickly we forgot."
 	icon_state = "book_bible"
 	oddity_stats = list(
-		STAR_ROB = 5,
+		STAT_ROB = 5,
 		STAT_VIG = 5,
 	)
 
 /obj/item/weapon/oddity/common/old_money
-	name = "old_money"
+	name = "old money"
 	desc = "It's not like organization that issues this exist now."
 	icon_state = "old_money"
 	oddity_stats = list(
@@ -260,7 +260,7 @@
 	icon_state = "paper_bundle"
 	oddity_stats = list(
 		STAT_BIO = 6,
-		STAR_ROB = 6,
+		STAT_ROB = 6,
 		STAT_VIG = 6,
 	)
 
