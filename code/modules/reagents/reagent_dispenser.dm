@@ -164,6 +164,10 @@
 			test.Shift(EAST,6)
 			overlays += test
 
+	var/obj/item/weapon/tool/T = I
+	if(istype(T) && T.use_fuel_cost)
+		return 0
+
 	return ..()
 
 
