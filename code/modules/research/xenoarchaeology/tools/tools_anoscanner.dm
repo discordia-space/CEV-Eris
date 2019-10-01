@@ -51,9 +51,14 @@
 /obj/item/device/ano_scanner/proc/scan()
 	set background = 1
 
-	last_scan_time = world.time
 	nearest_artifact_distance = -1
+
 	var/turf/cur_turf = get_turf(src)
+	if(!cur_turf)
+		return
+
+	last_scan_time = world.time
+
 	for(var/turf/simulated/mineral/T in SSxenoarch.artifact_spawning_turfs)
 		if(T.artifact_find)
 			if(T.z == cur_turf.z)
