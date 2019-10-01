@@ -53,6 +53,11 @@
 	. = ..()
 
 /obj/machinery/chem_master/attackby(var/obj/item/weapon/B as obj, var/mob/user as mob)
+	if(default_deconstruction(B, user))
+		return
+
+	if(default_part_replacement(B, user))
+		return
 
 	if(istype(B, /obj/item/weapon/reagent_containers/glass))
 
