@@ -10,11 +10,11 @@
 	min_broken_damage = 35
 	w_class = ITEM_SIZE_HUGE
 	body_part = UPPER_TORSO
-	vital = 1
+	vital = TRUE
 	amputation_point = "spine"
 	joint = "neck"
 	dislocated = -1
-	cannot_amputate = 1
+	cannot_amputate = TRUE
 	parent_organ = null
 	encased = "ribcage"
 
@@ -26,7 +26,7 @@
 	min_broken_damage = 35
 	w_class = ITEM_SIZE_BULKY
 	body_part = LOWER_TORSO
-	vital = 1
+	vital = TRUE
 	parent_organ = BP_CHEST
 	amputation_point = "lumbar"
 	joint = "hip"
@@ -40,13 +40,13 @@
 	min_broken_damage = 35
 	w_class = ITEM_SIZE_NORMAL
 	body_part = HEAD
-	vital = 1
+	vital = TRUE
 	parent_organ = BP_CHEST
 	joint = "jaw"
 	amputation_point = "neck"
 	encased = "skull"
 	drop_on_remove = list(slot_head, slot_glasses, slot_l_ear, slot_r_ear, slot_wear_mask)
-	var/can_intake_reagents = 1
+	functions = BODYPART_REAGENT_INTAKE
 
 /obj/item/organ/external/head/removed()
 	if(owner)

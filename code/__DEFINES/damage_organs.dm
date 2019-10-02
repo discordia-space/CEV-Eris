@@ -115,6 +115,11 @@
 #define ORGAN_DEAD       (1<<5)
 #define ORGAN_MUTATED    (1<<6)
 
+// Body part functions
+#define BODYPART_GRASP				(1<<0)
+#define BODYPART_STAND				(1<<1)
+#define BODYPART_REAGENT_INTAKE		(1<<2)
+
 #define DROPLIMB_EDGE 0
 #define DROPLIMB_BLUNT 1
 #define DROPLIMB_BURN 2
@@ -137,4 +142,3 @@
 #define INFECTION_LEVEL_THREE 1000
 
 #define ORGAN_RECOVERY_THRESHOLD (5 MINUTES)
-

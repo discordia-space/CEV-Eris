@@ -56,8 +56,8 @@
 	var/obj/item/organ_module/active/module = null
 
 	// Joint/state stuff.
-	var/can_grasp			// It would be more appropriate if these two were named "affects_grasp" and "affects_stand" at this point
-	var/can_stand			// Modifies stance tally/ability to stand.
+	var/functions = NONE	// Functions performed by body part. Bitflag, see _defines/mobs.dm for possible values.
+
 	var/disfigured = 0		// Scarred/burned beyond recognition.
 	var/cannot_amputate		// Impossible to amputate.
 	var/cannot_break		// Impossible to fracture.
@@ -118,8 +118,9 @@
 	src.w_class = desc.w_class
 	src.parent_organ = desc.parent_organ
 	src.body_part = desc.body_part
+	src.functions = desc.functions
 
-/obj/item/organ/external/replaced(var/mob/living/carbon/human/target)
+/obj/item/organ/external/replaced(mob/living/carbon/human/target)
 	owner = target
 	forceMove(owner)
 	if(istype(owner))
