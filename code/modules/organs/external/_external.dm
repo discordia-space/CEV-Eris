@@ -71,13 +71,16 @@
 	var/stage = 0
 	var/cavity = 0
 
-/obj/item/organ/external/New(var/mob/living/carbon/holder,var/datum/organ_description/OD)
+/obj/item/organ/external/New(mob/living/carbon/holder, datum/organ_description/OD)
 	..(holder)
+
+	if(OD)
+		set_description(OD)
+
 	if(owner)
-		if(OD)
-			set_description(OD)
 		replaced(owner)
 		sync_colour_to_human(owner)
+
 	spawn(1)
 		update_icon()
 
@@ -105,7 +108,7 @@
 
 	return ..()
 
-/obj/item/organ/external/proc/set_description(var/datum/organ_description/desc)
+/obj/item/organ/external/proc/set_description(datum/organ_description/desc)
 	src.name = desc.name
 	src.organ_tag = desc.organ_tag
 	src.amputation_point = desc.amputation_point
@@ -1022,7 +1025,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	return !is_dislocated() && !(status & (ORGAN_MUTATED|ORGAN_DEAD))
 
 /obj/item/organ/external/proc/has_internal_bleeding()
-	for(var/datum/wound/W in wounds) 
+	for(var/datum/wound/W in wounds)
 		if(W.internal)
 			return TRUE
 	return FALSE
