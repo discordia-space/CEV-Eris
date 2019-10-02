@@ -1,4 +1,6 @@
-/datum/design/autolathe/biomatter/materials = list("biomatter" = 6)
+/datum/design/autolathe/biomatter
+	materials = list("biomatter" = 6)
+
 /datum/design/autolathe/biomatter/meat
 	name = "Meat"
 	build_path = /obj/item/weapon/reagent_containers/food/snacks/meat
@@ -34,7 +36,9 @@
 	build_path = /obj/item/clothing/gloves/botanic_leather
 	materials = list("biomatter" = 25)
 
-/datum/design/autolathe/biomatter/leather/materials = list("biomatter" = 40)
+/datum/design/autolathe/biomatter/leather
+	materials = list("biomatter" = 40)
+
 /datum/design/autolathe/biomatter/leather/satchel
 	name = "Leather Satchel"
 	build_path = /obj/item/weapon/storage/backpack/satchel
@@ -48,7 +52,9 @@
 	build_path = /obj/item/weapon/storage/bag/cash
 
 
-/datum/design/autolathe/biomatter/belt/materials = list("biomatter" = 30)
+/datum/design/autolathe/biomatter/belt
+	materials = list("biomatter" = 30)
+
 /datum/design/autolathe/biomatter/belt/utility
 	name = "Utility belt"
 	build_path = /obj/item/weapon/storage/belt/utility
@@ -72,7 +78,9 @@
 //[/THINGS]
 
 //[MED]
-/datum/design/autolathe/biomatter/medical/materials = list("biomatter" = 10)
+/datum/design/autolathe/biomatter/medical
+	materials = list("biomatter" = 10)
+
 /datum/design/autolathe/biomatter/medical/bruise
 	name = "Roll of gauze"
 	build_path = /obj/item/stack/medical/bruise_pack
@@ -85,10 +93,14 @@
 	name = "Ointment"
 	build_path = /obj/item/stack/medical/ointment
 
-/datum/design/autolathe/biomatter/medical/advanced/materials = list("biomatter" = 20)
+
+/datum/design/autolathe/biomatter/medical/advanced
+	materials = list("biomatter" = 20)
+
 /datum/design/autolathe/biomatter/medical/advanced/bruise
 	name = "Advanced trauma kit"
-	build_path = /obj/item/stack/medical/advanced/ointment
+	build_path = /obj/item/stack/medical/advanced/bruise_pack
+
 /datum/design/autolathe/biomatter/medical/advanced/ointment
 	name = "Advanced burn kit"
 	build_path = /obj/item/stack/medical/advanced/ointment
