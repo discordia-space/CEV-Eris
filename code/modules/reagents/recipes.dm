@@ -186,7 +186,6 @@
 		to_splash.handle_reactions()
 		to_splash.splash(get_turf(holder.my_atom), to_splash.total_volume, 1, FALSE, to_splash.total_volume, to_splash.total_volume)
 		qdel(to_splash)
-	holder.handle_reactions()
 
 
 //called after processing reactions, if they occurred
