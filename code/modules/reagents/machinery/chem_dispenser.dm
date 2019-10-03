@@ -2,10 +2,9 @@
 #define LIQUID 2
 #define GAS 3
 
-#define chemical_dispenser_ENERGY_COST	0.1	//How many energy points do we use per unit of chemical?
+#define chemical_dispenser_ENERGY_COST (CHEM_SYNTH_ENERGY * CELLRATE) //How many cell charge do we use per unit of chemical?
 #define BOTTLE_SPRITES list("bottle-1", "bottle-2", "bottle-3", "bottle-4") //list of available bottle sprites
 #define REAGENTS_PER_SHEET 20
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -19,10 +18,10 @@
 	anchored = TRUE
 	use_power = NO_POWER_USE // Handles power use in Process()
 	layer = BELOW_OBJ_LAYER
+	circuit = /obj/item/weapon/circuitboard/chemical_dispenser
 
 	var/ui_title = "Chem Dispenser 5000"
-	var/energy = 100
-	var/max_energy = 100
+	var/obj/item/weapon/cell/cell
 	var/amount = 30
 	var/accept_beaker = TRUE //At TRUE, ONLY accepts beakers.
 	var/recharged = 0
@@ -39,13 +38,14 @@
 	var/list/hacked_reagents = list()
 	var/obj/item/weapon/reagent_containers/beaker = null
 
+/obj/machinery/chemical_dispenser/RefreshParts()
+	cell = locate() in component_parts
+
 /obj/machinery/chemical_dispenser/proc/recharge()
 	if(stat & (BROKEN|NOPOWER)) return
-	var/addenergy = 6
-	var/oldenergy = energy
-	energy = min(energy + addenergy, max_energy)
-	if(energy != oldenergy)
-		use_power(CHEM_SYNTH_ENERGY / chemical_dispenser_ENERGY_COST) // This thing uses up "alot" of power (this is still low as shit for creating reagents from thin air)
+	var/addenergy = cell.give(min(6, cell.maxcharge*cell.max_chargerate))
+	if(addenergy)
+		use_power(addenergy / CELLRATE)
 		SSnano.update_uis(src) // update all UIs attached to src
 
 /obj/machinery/chemical_dispenser/power_change()
@@ -79,8 +79,8 @@
 /obj/machinery/chemical_dispenser/ui_data()
 	var/list/data = list()
 	data["amount"] = amount
-	data["energy"] = round(energy)
-	data["maxEnergy"] = round(max_energy)
+	data["energy"] = round(cell.charge)
+	data["maxEnergy"] = round(cell.maxcharge)
 	data["accept_beaker"] = accept_beaker
 
 	var/list/chemicals = list()
@@ -124,10 +124,8 @@
 			var/datum/reagents/R = B.reagents
 			var/space = R.maximum_volume - R.total_volume
 
-			//uses 1 energy per 10 units.
-			var/added_amount = min(amount, energy / chemical_dispenser_ENERGY_COST, space)
+			var/added_amount = min(amount, cell.charge / chemical_dispenser_ENERGY_COST, space)
 			R.add_reagent(href_list["dispense"], added_amount)
-			energy = max(energy - added_amount * chemical_dispenser_ENERGY_COST, 0)
 
 	if(href_list["ejectBeaker"])
 		if(beaker)
@@ -151,7 +149,14 @@
 		return
 	. = ..()
 
-/obj/machinery/chemical_dispenser/attackby(obj/item/weapon/reagent_containers/B, mob/living/user)
+/obj/machinery/chemical_dispenser/attackby(obj/item/I, mob/living/user)
+	if(default_deconstruction(I, user))
+		return
+
+	if(default_part_replacement(I, user))
+		return
+
+	var/obj/item/weapon/reagent_containers/B = I
 	if(beaker)
 		to_chat(user, "Something is already loaded into the machine.")
 		return

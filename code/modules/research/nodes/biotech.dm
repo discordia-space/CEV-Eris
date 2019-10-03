@@ -94,6 +94,7 @@
 	cost = 700
 
 	unlocks_designs = list(	/datum/design/research/circuit/chemmaster,
+							/datum/design/research/circuit/chemical_dispenser,
 							/datum/design/research/circuit/chem_heater,
 							/datum/design/research/item/makeshift_centrifuge,
 							/datum/design/research/structure/bidon
