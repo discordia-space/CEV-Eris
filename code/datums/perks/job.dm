@@ -71,7 +71,7 @@
 	targets.Remove(holder.assigned_mob)
 	for(var/mob/M in targets)
 		for(var/stat_name in stats_to_debuff)
-			M.stats.addTempStat(stat_name, M.has_perk(/datum/perk/military_training) ? (stats_to_debuff[stat_name]/2) : stats_to_debuff[stat_name], BUFF_TIME, "[name] of [holder.assigned_mob]")
+			M.stats.addTempStat(stat_name, M.stats.getPerk(/datum/perk/military_training) ? (stats_to_debuff[stat_name]/2) : stats_to_debuff[stat_name], BUFF_TIME, "[name] of [holder.assigned_mob]")
 	if(show_message)
 		if(prob(75))	// some chance to remove steady messages
 			holder.assigned_mob.visible_message(SPAN_WARNING("[holder.assigned_mob] looks [pick(list("scary","terrifying","unsettling"))]."), "", range = 4)
