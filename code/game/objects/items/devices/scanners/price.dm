@@ -1,4 +1,4 @@
-/obj/item/device/scanner/export_scanner
+/obj/item/device/scanner/price
 	name = "export scanner"
 	desc = "A device used to check objects against Commercial database."
 	icon = 'icons/obj/reader.dmi'
@@ -13,21 +13,21 @@
 
 	var/obj/machinery/computer/supplycomp/cargo_console = null
 
-/obj/item/device/scanner/export_scanner/examine(mob/user)
+/obj/item/device/scanner/price/examine(mob/user)
 	..()
 	if(!cargo_console)
 		to_chat(user, "<span class='notice'>The [src] is currently not linked to a cargo console.</span>")
 
-/obj/item/device/scanner/export_scanner/is_valid_scan_target(atom/movable/target)
+/obj/item/device/scanner/price/is_valid_scan_target(atom/movable/target)
 	return istype(target)
 
-/obj/item/device/scanner/export_scanner/can_use(mob/user)
+/obj/item/device/scanner/price/can_use(mob/user)
 	if(!istype(cargo_console))
 		to_chat(user, SPAN_WARNING("You must link [src] to a cargo console first!"))
 		return
 	return ..()
 
-/obj/item/device/scanner/export_scanner/scan(atom/movable/target, mob/user)
+/obj/item/device/scanner/price/scan(atom/movable/target, mob/user)
 	scan_title = "Price estimations"
 	var/data = list()
 	// Before you fix it:
@@ -48,7 +48,7 @@
 	scan_data = jointext(scan_data, "<br>")
 	show_results(scan_data)
 
-/obj/item/device/scanner/export_scanner/afterattack(atom/A, mob/user, proximity)
+/obj/item/device/scanner/price/afterattack(atom/A, mob/user, proximity)
 	if(!proximity)
 		return
 	if(istype(A, /obj/machinery/computer/supplycomp))

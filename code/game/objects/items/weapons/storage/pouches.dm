@@ -73,7 +73,7 @@
 	max_w_class = ITEM_SIZE_NORMAL
 
 	can_hold = list(
-		/obj/item/device/scanner/healthanalyzer,
+		/obj/item/device/scanner/health,
 		/obj/item/weapon/dnainjector,
 		/obj/item/weapon/reagent_containers/dropper,
 		/obj/item/weapon/reagent_containers/glass/beaker,

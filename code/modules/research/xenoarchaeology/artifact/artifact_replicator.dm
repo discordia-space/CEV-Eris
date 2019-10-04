@@ -33,7 +33,7 @@
 	/obj/item/device/camera,\
 	/obj/item/device/flash,\
 	/obj/item/device/lighting/toggleable/flashlight,\
-	/obj/item/device/scanner/healthanalyzer,\
+	/obj/item/device/scanner/health,\
 	/obj/item/weapon/tool/multitool,\
 	/obj/item/device/paicard,\
 	/obj/item/device/radio,\

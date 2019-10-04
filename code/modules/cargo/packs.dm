@@ -105,8 +105,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/price_scanner
 	name = "Export scanners"
-	contains = list(/obj/item/device/scanner/export_scanner,
-					/obj/item/device/scanner/export_scanner)
+	contains = list(/obj/item/device/scanner/price,
+					/obj/item/device/scanner/price)
 	cost = 700
 	crate_name = "Export scanners crate"
 	group = "Operations"

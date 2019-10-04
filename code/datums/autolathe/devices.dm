@@ -8,7 +8,7 @@
 
 /datum/design/autolathe/device/healthanalyzer
 	name = "health analyzer"
-	build_path = /obj/item/device/scanner/healthanalyzer
+	build_path = /obj/item/device/scanner/health
 
 /datum/design/autolathe/device/slime_scanner
 	name = "slime scanner"
@@ -36,7 +36,7 @@
 
 /datum/design/autolathe/device/export_scanner
 	name = "export scanner"
-	build_path = /obj/item/device/scanner/export_scanner
+	build_path = /obj/item/device/scanner/price
 
 /datum/design/autolathe/device/implanter
 	name = "implanter"

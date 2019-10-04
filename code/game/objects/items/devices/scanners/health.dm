@@ -1,5 +1,5 @@
 
-/obj/item/device/scanner/healthanalyzer
+/obj/item/device/scanner/health
 	name = "health analyzer"
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject."
 	icon_state = "health"
@@ -15,16 +15,16 @@
 	window_width = 600
 	window_height = 400
 
-/obj/item/device/scanner/healthanalyzer/is_valid_scan_target(atom/O)
+/obj/item/device/scanner/health/is_valid_scan_target(atom/O)
 	return istype(O, /mob/living) || istype(O, /obj/structure/closet/body_bag)
 
-/obj/item/device/scanner/healthanalyzer/scan(atom/A, mob/user)
+/obj/item/device/scanner/health/scan(atom/A, mob/user)
 	scan_data = medical_scan_action(A, user, src, mode)
 	scan_title = "Health scan - [A]"
 	show_results(user)
 	flick("health2", src)
 
-/obj/item/device/scanner/healthanalyzer/verb/toggle_mode()
+/obj/item/device/scanner/health/verb/toggle_mode()
 	set name = "Switch Verbosity"
 	set category = "Object"
 
