@@ -29,7 +29,7 @@
 	/mob/living/simple_animal/hostile/mimic,\
 	/mob/living/simple_animal/hostile/viscerator,\
 	/mob/living/simple_animal/hostile/hivebot,\
-	/obj/item/device/scanner/analyzer,\
+	/obj/item/device/scanner/gas,\
 	/obj/item/device/camera,\
 	/obj/item/device/flash,\
 	/obj/item/device/lighting/toggleable/flashlight,\

@@ -22,7 +22,7 @@
 	return ..()
 
 /obj/machinery/cellshower/attackby(obj/item/I as obj, mob/user as mob)
-	if(I.type == /obj/item/device/scanner/analyzer)
+	if(QUALITY_PULSING in I.tool_qualities)
 		to_chat(user, SPAN_NOTICE("The water temperature seems to be [watertemp]."))
 
 /obj/machinery/cellshower/Process()

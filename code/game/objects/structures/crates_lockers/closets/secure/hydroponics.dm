@@ -8,7 +8,7 @@
 	new /obj/item/weapon/storage/belt/church(src)
 	new /obj/item/weapon/storage/bag/plants(src)
 	new /obj/item/clothing/under/rank/hydroponics(src)
-	new /obj/item/device/scanner/analyzer/plant_analyzer(src)
+	new /obj/item/device/scanner/plant(src)
 	new /obj/item/device/radio/headset/church(src)
 	new /obj/item/clothing/mask/bandana/botany(src)
 	new /obj/item/weapon/material/minihoe(src)

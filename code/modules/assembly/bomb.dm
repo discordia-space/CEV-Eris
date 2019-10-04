@@ -63,9 +63,6 @@
 		if(ABORT_CHECK)
 			return
 
-	if(istype(I, /obj/item/device/scanner/analyzer))
-		bombtank.attackby(I, user)
-		return
 
 	..()
 

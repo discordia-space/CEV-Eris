@@ -17,7 +17,7 @@
 				/obj/item/weapon/cigbutt = 4,
 				/obj/item/device/t_scanner = 2,
 				/obj/random/voidsuit/damaged = 3,
-				/obj/item/device/scanner/analyzer = 2,
+				/obj/item/device/scanner/gas = 2,
 				/obj/item/device/scanner/healthanalyzer = 2,
 				/obj/item/weapon/storage/belt/utility/full = 6,
 				/obj/item/weapon/storage/belt/medical = 6,

@@ -135,12 +135,6 @@
 				else
 					to_chat(user, SPAN_NOTICE("Nothing happens."))
 					return
-
-	else if (istype(I, /obj/item/device/scanner/analyzer))
-		var/obj/item/device/scanner/analyzer/A = I
-		A.analyze_gases(src, user)
-		return
-
 	return
 
 

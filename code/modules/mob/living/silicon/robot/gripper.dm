@@ -238,7 +238,7 @@
 		/obj/item/device/assembly,//For building bots and similar complex R&D devices
 		/obj/item/device/scanner/healthanalyzer,//For building medibots
 		/obj/item/weapon/disk,
-		/obj/item/device/scanner/analyzer/plant_analyzer,//For farmbot construction
+		/obj/item/device/scanner/plant,//For farmbot construction
 		/obj/item/weapon/material/minihoe,//Farmbots and xenoflora
 		/obj/item/weapon/computer_hardware
 		)

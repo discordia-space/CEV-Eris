@@ -104,12 +104,12 @@
 		/obj/item/device/radio/headset,
 		/obj/item/stack/cable_coil,
 		/obj/item/device/t_scanner,
-		/obj/item/device/scanner/analyzer,
+		/obj/item/device/scanner/gas,
 		/obj/item/taperoll/engineering,
 		/obj/item/device/robotanalyzer,
 		/obj/item/weapon/material/minihoe,
 		/obj/item/weapon/material/hatchet,
-		/obj/item/device/scanner/analyzer/plant_analyzer,
+		/obj/item/device/scanner/plant,
 		/obj/item/weapon/extinguisher/mini,
 		/obj/item/weapon/hand_labeler,
 		/obj/item/clothing/gloves,
@@ -138,10 +138,10 @@
 		/obj/item/device/lighting/toggleable/flashlight,
 		/obj/item/stack/cable_coil,
 		/obj/item/device/t_scanner,
-		/obj/item/device/scanner/analyzer,
+		/obj/item/device/scanner/gas,
 		/obj/item/taperoll/engineering,
 		/obj/item/device/robotanalyzer,
-		/obj/item/device/scanner/analyzer/plant_analyzer,
+		/obj/item/device/scanner/plant,
 		/obj/item/weapon/extinguisher/mini
 		)
 
