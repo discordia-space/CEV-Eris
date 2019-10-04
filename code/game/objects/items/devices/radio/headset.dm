@@ -95,21 +95,21 @@
 	desc = "Made specifically for the roboticists who cannot decide between departments."
 	icon_state = "rob_headset"
 	item_state = "headset"
-	ks2type = /obj/item/device/encryptionkey/headset_rob
+	ks2type = /obj/item/device/encryptionkey/headset_moebius
 
 /obj/item/device/radio/headset/headset_med
 	name = "medical radio headset"
 	desc = "A headset for the trained staff of the medbay."
 	icon_state = "med_headset"
 	item_state = "headset"
-	ks2type = /obj/item/device/encryptionkey/headset_med
+	ks2type = /obj/item/device/encryptionkey/headset_moebius
 
 /obj/item/device/radio/headset/headset_sci
 	name = "science radio headset"
 	desc = "A sciency headset. Like usual."
 	icon_state = "com_headset"
 	item_state = "headset"
-	ks2type = /obj/item/device/encryptionkey/headset_sci
+	ks2type = /obj/item/device/encryptionkey/headset_moebius
 
 /obj/item/device/radio/headset/headset_com
 	name = "command radio headset"
@@ -145,7 +145,7 @@
 	desc = "Headset of the researching God."
 	icon_state = "com_headset"
 	item_state = "headset"
-	ks2type = /obj/item/device/encryptionkey/heads/rd
+	ks2type = /obj/item/device/encryptionkey/heads/moebius
 
 /obj/item/device/radio/headset/heads/hos
 	name = "ironhammer commander headset"
@@ -166,7 +166,7 @@
 	desc = "The headset of the highly trained medical chief."
 	icon_state = "com_headset"
 	item_state = "headset"
-	ks2type = /obj/item/device/encryptionkey/heads/cmo
+	ks2type = /obj/item/device/encryptionkey/heads/moebius
 
 /obj/item/device/radio/headset/heads/hop
 	name = "first officer's headset"

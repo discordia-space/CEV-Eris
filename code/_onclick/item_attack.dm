@@ -81,7 +81,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	user.do_attack_animation(M)
 
-	user.stats.getPerk(/datum/perk/oyvey)?.deactivate()
+	user.stats.getPerk(/datum/perk/timeismoney)?.deactivate()
 
 	var/hit_zone = M.resolve_item_attack(src, user, target_zone)
 	if(hit_zone)

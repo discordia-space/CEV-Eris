@@ -32,7 +32,7 @@
 
 	if(shock_stage >= 10) tally += 3
 
-	if(stats.getPerk(/datum/perk/oyvey)?.is_active())
+	if(stats.getPerk(/datum/perk/timeismoney)?.is_active())
 		tally -= 2
 
 	if (bodytemperature < 283.222)

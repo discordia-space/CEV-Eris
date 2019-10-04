@@ -1713,7 +1713,7 @@
 	result = "luminol"
 	required_reagents = list("hydrazine" = 2, "carbon" = 2, "ammonia" = 2)
 	result_amount = 6
-	
+
 /datum/chemical_reaction/mbr
 	result = "machine binding ritual"
 	required_reagents = list("coffee" = 2, "diplopterum" = 1, "sugar" = 1, "ethanol" = 1)
@@ -1783,8 +1783,8 @@
 	result = "bouncer"
 	required_reagents = list("violence" = 1, "fuhrerole" = 1, "hyperzine" = 1)
 	result_amount = 3
-	maximum_temperature = 303
-	minimum_temperature = 333
+	maximum_temperature = 333
+	minimum_temperature = 303
 
 /datum/chemical_reaction/boxer
 	result = "boxer"
@@ -1887,19 +1887,19 @@
 	result = "addictol"
 	required_reagents = list("mercury" = 2, "purger" = 2, "impedrezene" = 2)
 	result_amount = 3
-	
+
 /datum/chemical_reaction/aminazine
 	result = "aminazine"
 	required_reagents = list("purger" = 1, "alkysine" = 1)
 	result_amount = 2
-	
+
 /datum/chemical_reaction/haloperidol
 	result = "haloperidol"
 	required_reagents = list("anti_toxin" = 2, "leporazine" = 1)
 	result_amount = 3
 	maximum_temperature = 340
 	minimum_temperature = 290
-	
+
 /datum/chemical_reaction/ethanol
 	result = "ethanol"
 	required_reagents = list("water" = 3, "sugar" = 1)
@@ -1950,7 +1950,7 @@
 	result_amount = 3
 	maximum_temperature = 270
 	minimum_temperature = 0
-	
+
 /datum/chemical_reaction/glue
 	result = "glue"
 	required_reagents = list("plasticide" = 1, "ethanol" = 1, "carbon" = 1)

@@ -53,7 +53,7 @@ Your second loyalty is to the guild. Ensure it retains good relations with priva
 
 	outfit_type = /decl/hierarchy/outfit/job/cargo/merchant
 
-	perks = list(/datum/perk/oyvey)
+	perks = list(/datum/perk/timeismoney)
 
 /obj/landmark/join/start/merchant
 	name = "Guild Merchant"

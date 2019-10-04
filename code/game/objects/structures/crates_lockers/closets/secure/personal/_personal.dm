@@ -9,7 +9,7 @@
 /obj/structure/closet/secure_closet/personal/CanToggleLock(var/mob/user)
 	var/obj/item/weapon/card/id/id_card = user.GetIdCard()
 
-	if(id_card.registered_name == registered_name)
+	if(id_card && id_card.registered_name == registered_name)
 		return TRUE
 
 	if(!registered_name && ..())
