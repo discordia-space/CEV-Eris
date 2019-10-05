@@ -16,7 +16,6 @@
 
 /obj/item/device/scanner/reagent/scan(obj/O, mob/user)
 	scan_data = reagent_scan_results(O, details)
-	scan_data = jointext(scan_data, "<br>")
 	scan_title = "Reagents scan - [O]"
 	user.show_message(SPAN_NOTICE(scan_data))
 
@@ -29,6 +28,7 @@
 	var/one_percent = O.reagents.total_volume / 100
 	for (var/datum/reagent/R in O.reagents.reagent_list)
 		. += "[R][details ? ": [R.volume / one_percent]%" : ""]"
+	. = jointext(., "<br>")
 
 /obj/item/device/scanner/reagent/adv
 	name = "advanced reagent scanner"

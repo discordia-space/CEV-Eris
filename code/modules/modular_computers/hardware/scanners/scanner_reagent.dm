@@ -16,7 +16,7 @@
 		return
 	var/dat = reagent_scan_results(target)
 	if(driver && driver.using_scanner)
-		driver.data_buffer = jointext(dat, "\[br\]")
+		driver.data_buffer = dat
 		if(!SSnano.update_uis(driver.NM))
 			holder2.run_program(driver.filename)
 			driver.NM.ui_interact(user)

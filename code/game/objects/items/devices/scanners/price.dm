@@ -29,23 +29,12 @@
 
 /obj/item/device/scanner/price/scan(atom/movable/target, mob/user)
 	scan_title = "Price estimations"
-	var/data = list()
-	// Before you fix it:
-	// yes, checking manifests is a part of intended functionality.
-	var/price = export_item_and_contents(target, cargo_console.contraband, cargo_console.emagged, dry_run=TRUE)
-
-	if(price)
-		data += "<span class='notice'>Scanned [target], value: <b>[price]</b> \
-			credits[target.contents.len ? " (contents included)" : ""].</span>"
-	else
-		data += "<span class='warning'>Scanned [target], no export value. \
-			</span>"
+	
 	if(!scan_data)
-		scan_data = jointext(data, "<br>")
+		scan_data = price_scan_results(target)
 	else
-		scan_data += "<br>[jointext(data, "<br>")]"
+		scan_data += "<br>[price_scan_results(target)]"
 	flick("reader1", src)
-	scan_data = jointext(scan_data, "<br>")
 	show_results(scan_data)
 
 /obj/item/device/scanner/price/afterattack(atom/A, mob/user, proximity)
@@ -58,3 +47,19 @@
 			to_chat(user, SPAN_NOTICE("Scanner linked to [C]."))
 			return
 	return ..()
+
+/proc/price_scan_results(var/atom/movable/target)
+	var/data = list()
+	// Before you fix it:
+	// yes, checking manifests is a part of intended functionality.
+	var/price = export_item_and_contents(target, cargo_console.contraband, cargo_console.emagged, dry_run=TRUE)
+
+	if(price)
+		data += "<span class='notice'>Scanned [target], value: <b>[price]</b> \
+			credits[target.contents.len ? " (contents included)" : ""].</span>"
+	else
+		data += "<span class='warning'>Scanned [target], no export value. \
+			</span>"
+	
+	data = jointext(data, "<br>")
+	return data
