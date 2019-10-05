@@ -1,7 +1,3 @@
-/*
-
-*/
-
 /datum/computer_file/program/chem_catalog
 	filename = "chemCatalog"
 	filedesc = "MIRC"

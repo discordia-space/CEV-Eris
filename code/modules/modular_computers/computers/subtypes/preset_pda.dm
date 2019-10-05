@@ -106,6 +106,14 @@
 /obj/item/modular_computer/pda/roboticist
 	icon_state = "pda-robot"
 
+/obj/item/modular_computer/pda/club_worker
+	icon_state = "pda-club"
+
+/obj/item/modular_computer/pda/club_worker/install_default_programs()
+	..()
+	hard_drive.store_file(new /datum/computer_file/program/drink_catalog())
+
+
 // PDA box
 /obj/item/weapon/storage/box/PDAs
 	name = "box of spare PDAs"
