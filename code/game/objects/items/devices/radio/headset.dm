@@ -182,6 +182,13 @@
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/merchant
 
+/obj/item/device/radio/headset/heads/preacher
+	name = "neotheology preacher's headset"
+	desc = "The headset of the man who leads you to god."
+	icon_state = "nt_com_headset"
+	item_state = "headset"
+	ks2type = /obj/item/device/encryptionkey/heads/preacher
+
 /obj/item/device/radio/headset/headset_cargo
 	name = "supply radio headset"
 	desc = "A headset used by Merchant slaves."
@@ -204,7 +211,7 @@
 	ks2type = /obj/item/device/encryptionkey/heads/hos
 
 /obj/item/device/radio/headset/church
-	name = "NeoTheology headset"
+	name = "neotheology headset"
 	desc = "If you listen closely you can hear God."
 	icon_state = "nt_headset"
 	item_state = "headset"

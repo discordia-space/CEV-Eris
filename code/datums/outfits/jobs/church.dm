@@ -12,9 +12,10 @@
 
 /decl/hierarchy/outfit/job/church/chaplain
 	name = OUTFIT_JOB_NAME("NeoTheology Preacher")
+	l_ear = /obj/item/device/radio/headset/heads/preacher
 	id_type = /obj/item/weapon/card/id/chaplain
 	uniform = /obj/item/clothing/under/rank/chaplain
-	suit = /obj/item/clothing/suit/chaplain_hoodie
+	suit = /obj/item/clothing/suit/chaplain_hoodie/coat
 	shoes = /obj/item/clothing/shoes/reinforced
 	gloves = /obj/item/clothing/gloves/thick
 	backpack_contents = list(/obj/item/weapon/book/ritual/cruciform/priest = 1)

@@ -112,6 +112,11 @@
 	icon_state = "qm_cypherkey"
 	channels = list("Supply" = 1, "Command" = 1)
 
+/obj/item/device/encryptionkey/heads/preacher
+	name = "NeoTheology Preacher radio encryption key"
+	icon_state = "preach_cypherkey"
+	channels = list("NT Voice" = 1, "Command" = 1)
+
 /obj/item/device/encryptionkey/headset_cargo
 	name = "Asters Guild radio encryption key"
 	icon_state = "cargo_cypherkey"

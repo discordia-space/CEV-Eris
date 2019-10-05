@@ -9,7 +9,15 @@
 	supervisors = "the NeoTheology Church"
 	selection_color = "#ecd37d"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 25)
-	cruciform_access = list(access_morgue, access_chapel_office, access_crematorium, access_hydroponics, access_janitor, access_maint_tunnels)
+
+	cruciform_access = list(
+		access_morgue, access_chapel_office, access_crematorium, access_hydroponics, access_janitor, access_maint_tunnels
+	)
+
+	access = list(
+		access_RC_announce, access_keycard_auth, access_heads, access_sec_doors
+	)
+
 	wage = WAGE_PROFESSIONAL //The church has deep pockets
 	department_account_access = TRUE
 	outfit_type = /decl/hierarchy/outfit/job/church/chaplain
@@ -112,7 +120,7 @@
 	selection_color = "#ecd37d"
 	//alt_titles = list("Hydroponicist")
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_JIVE = 80)
-	cruciform_access = list(access_hydroponics, access_morgue, access_crematorium, access_maint_tunnels,)
+	cruciform_access = list(access_hydroponics, access_morgue, access_crematorium, access_maint_tunnels)
 	wage = WAGE_PROFESSIONAL
 
 	outfit_type = /decl/hierarchy/outfit/job/church/gardener
