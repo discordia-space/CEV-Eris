@@ -7,6 +7,9 @@
 /proc/cmp_name_dsc(atom/a, atom/b)
 	return sorttext(a.name, b.name)
 
+/proc/cmp_catalog_entry_asc(var/datum/catalog_entry/a, var/datum/catalog_entry/b)
+	return sorttext(b.title, a.title)
+
 /proc/cmp_numeric_asc(a,b)
 	return a - b
 
