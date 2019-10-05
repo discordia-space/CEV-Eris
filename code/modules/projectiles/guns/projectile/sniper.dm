@@ -6,7 +6,7 @@
 	w_class = ITEM_SIZE_HUGE
 	force = WEAPON_FORCE_PAINFUL
 	slot_flags = SLOT_BACK
-	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
+	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 2, TECH_ILLEGAL = 2)
 	caliber = "14.5mm"
 	recoil = 0.2 //due to new dynamic crosshair recoil system, in order to hit something we need to have low recoil on it, but 0.2 will allow random misses as well
 	handle_casings = HOLD_CASINGS
