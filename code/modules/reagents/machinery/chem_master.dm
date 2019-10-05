@@ -71,8 +71,8 @@
 		if (usr.unEquip(B, src))
 			src.beaker = B
 			to_chat(user, "You add the beaker to the machine!")
-			src.updateUsrDialog()
 			icon_state = "mixer1"
+		updateUsrDialog()
 
 	return
 
@@ -147,6 +147,7 @@
 				beaker = null
 				reagents.clear_reagents()
 				icon_state = "mixer0"
+
 		else if (href_list["createpill"] || href_list["createpill_multiple"])
 			var/count = 0
 			var/amount_per_pill = 0

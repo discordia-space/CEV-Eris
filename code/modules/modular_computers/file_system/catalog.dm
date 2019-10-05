@@ -60,12 +60,16 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 			
 	var/datum/catalog/C = GLOB.catalogs[CATALOG_REAGENTS]
 	C.associated_template = "catalog_list_reagents.tmpl"
+	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
 	C = GLOB.catalogs[CATALOG_CHEMISTRY]
 	C.associated_template = "catalog_list_reagents.tmpl"
+	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
 	C = GLOB.catalogs[CATALOG_DRINKS]
 	C.associated_template = "catalog_list_reagents.tmpl"
+	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
 	C = GLOB.catalogs[CATALOG_ALL]
 	C.associated_template = "catalog_list_general.tmpl"
+	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
 	return 1
 
 /proc/create_catalog_entry(var/datum/thing, var/catalog_id)
@@ -122,7 +126,8 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	var/list/data = list()
 	var/list/entries_data = list()
 	for(var/datum/catalog_entry/E in entry_list)
-		if(!search_value || findtext(E.title, search_value))
+		var/datum/catalog_entry/reagent/RE = E
+		if(!search_value || findtext(E.title, search_value) || (istype(RE) && findtext(RE.reagent_type, search_value)))
 			entries_data.Add(list(E.catalog_ui_data(user, ui_key)))
 	data["entries"] = entries_data
 	return data
