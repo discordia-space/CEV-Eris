@@ -353,7 +353,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	associated_template = "catalog_entry_drink.tmpl"
 	var/temperature
 	var/nutrition
-	var/taste_description
+	var/taste
 	var/strength
 	var/list/recipe_data
 
@@ -372,7 +372,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	title = V.name
 	description = V.description
 
-	taste_description = V.taste_description
+	taste = "Has [V.taste_mult > 1 ? "strong" : V.taste_mult < 1 ? "weak" : ""] taste of [V.taste_description]."
 	if(istype(V, /datum/reagent/drink))
 		var/datum/reagent/drink/D = V
 		if(D.adj_temp)
@@ -381,7 +381,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 			nutrition = D.nutrition > 1 ? "High" : "Low"
 		thing_nature = "Drink"
 		
-	else if(ispath(V, /datum/reagent/ethanol))
+	else if(istype(V, /datum/reagent/ethanol))
 		var/datum/reagent/ethanol/E = V
 		if(E.adj_temp)
 			temperature = E.adj_temp > 0 ? "Warm" : "Cold"
@@ -405,7 +405,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 
 	data["temperature"] = temperature
 	data["nutrition"] = nutrition
-	data["taste_description"] = taste_description
+	data["taste"] = taste
 	data["strength"] = strength
 	data["recipe_data"] = recipe_data
 

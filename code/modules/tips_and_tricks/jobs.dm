@@ -15,6 +15,10 @@
     jobs_list = list(/datum/job/merchant, /datum/job/cargo_tech)
     tipText = "As a guild merchant, you should be buying up valuable things from scavengers and reselling them for a profit. Buy anything of value that's brought to you."
 
+/tipsAndTricks/jobs/guild_price_scanner
+    jobs_list = list(/datum/job/merchant, /datum/job/cargo_tech)
+    tipText = "There is a price scanner that can help you evaluate items. Your PDA also has this scanner installed ."
+
 /tipsAndTricks/jobs/captain_leader
     jobs_list = list(/datum/job/captain)
     tipText = "A good leader's orders are always obeyed- because a good leader never gives an order that won't be obeyed."
@@ -79,6 +83,18 @@
     jobs_list = list(/datum/job/cmo, /datum/job/doctor, /datum/job/chemist, /datum/job/psychiatrist, /datum/job/paramedic)
     tipText = "Inaprovaline and dylovene can be mixed together in a container to produce tricordazine - a mild regenerative compound that can treat brute/burns/toxin damage and even suffocation. Best of all, it has no overdose risk."
 
+/tipsAndTricks/jobs/reagent_scanner_pda
+    jobs_list = list(/datum/job/cmo, /datum/job/doctor, /datum/job/chemist, /datum/job/psychiatrist, /datum/job/paramedic)
+    tipText = "There is a reagent scanner integraged in your PDA."
+
+/tipsAndTricks/jobs/medical_scanner_pda
+    jobs_list = list(/datum/job/cmo, /datum/job/doctor, /datum/job/psychiatrist, /datum/job/paramedic)
+    tipText = "Your PDA has integrated medical scanner."
+
+/tipsAndTricks/jobs/gas_scanner_pda
+    jobs_list = list(/datum/job/cmo, /datum/job/technomancer)
+    tipText = "Inside of your PDA is installed gas scanner."
+
 /tipsAndTricks/jobs/carbonPills
     jobs_list = list(/datum/job/cmo, /datum/job/doctor, /datum/job/chemist, /datum/job/psychiatrist, /datum/job/paramedic)
     tipText = "Pills containing pure carbon can be ingested to treat cases of poisoning and accidental overdoes. 1u of carbon will remove 1u of anything in the stomach. This will not, however, purge chemicals in the bloodstream, nor will injecting carbon have the same effect."
@@ -107,10 +123,6 @@
     jobs_list = list(/datum/job/chemist)
     tipText = "You can make grenades for various purposes, from harmful (like explosion or EMPs) to helpful (like cleaning and weed killing)."
 
-/tipsAndTricks/jobs/acidForNerds
-    jobs_list = list(/datum/job/chemist)
-    tipText = "Your colleagues from the science wing will often need more sulphuric acid for their circuits."
-
 /tipsAndTricks/jobs/cyborgsDontBreathe
     jobs_list = list(/datum/job/cyborg)
     tipText = "As a cyborg, you don't need oxygen/pressure to survive. You're also quite resistant to heat. Use it to your advantage."
@@ -131,6 +143,11 @@
     jobs_list = list(/datum/job/captain, /datum/job/cmo, /datum/job/chief_engineer, /datum/job/ihc, /datum/job/hop, /datum/job/rd)
     tipText = "As a member of the command staff, you have the access to change the AI's laws. Don't be afraid to add custom laws to guide the AI in certain direction."
 
+/tipsAndTricks/jobs/pda_paper_scanner
+    jobs_list = list(/datum/job/captain, /datum/job/cmo, /datum/job/chief_engineer, /datum/job/ihc, /datum/job/hop, /datum/job/rd)
+    tipText = "Your PDA has integrated paper scanner and printer."
+
+
 /tipsAndTricks/jobs/aiCanBeMoved
     jobs_list = list(/datum/job/ai)
     tipText = "The AI core can be unwrenched and moved to a safer location, but is trackable by power consumption."
@@ -143,9 +160,13 @@
     jobs_list = list(/datum/job/roboticist)
     tipText = "You can enhance the human body by installing prosthetics and modifications."
 
-/tipsAndTricks/jobs/moreAcidForAnCircuitPrinting
-    jobs_list = list(/datum/job/rd, /datum/job/scientist, /datum/job/roboticist)
-    tipText = "You can get more sulphuric acid for circuits from the chemist."
+/tipsAndTricks/jobs/chem_app
+    jobs_list = list(/datum/job/rd, /datum/job/scientist, /datum/job/roboticist, /datum/job/cmo, /datum/job/doctor, /datum/job/paramedic)
+    tipText = "There is programm in your PDA called MIRC (Moebious Internal Reagent Catalogue) that can help you with chemistry."
+
+/tipsAndTricks/jobs/drink_app
+    jobs_list = list(/datum/job/clubworker, /datum/job/clubmanager)
+    tipText = "There is programm in your PDA called Neon Cocktails that can help you with making drinks."
 
 /tipsAndTricks/jobs/bots
     jobs_list = list(/datum/job/rd, /datum/job/scientist, /datum/job/roboticist)

@@ -73,11 +73,6 @@
 		<div class="item">
 			Has <span class='colorBox' style='background-color:{{:data.color}}'></span> coloration.
 		</div>
-		{{if data.addiction_chance}}
-			<div class="item">
-				{{:data.addiction_chance}}
-			</div>
-		{{/if}}
 		{{if data.catalog_info_level_one}}
 			<div class="item">
 				{{:data.catalog_info_level_one}}
@@ -101,16 +96,6 @@
 		{{if data.catalog_info_level_ooc}}
 			<div class="item">
 				{{:data.catalog_info_level_ooc}}
-			</div>
-		{{/if}}
-		{{if data.can_be_found_in}}
-			<h4>Can be found in:</h4>
-			<div class="statusDisplay" style="overflow: auto;">
-				<table style="width:100%;  overflow-wrap: break-all;">
-					{{for data.can_be_found_in}}
-						<tr>{{:helper.catalogEntryLink(value.type)}}
-					{{/for}}
-				</table>
 			</div>
 		{{/if}}
 	</div>
