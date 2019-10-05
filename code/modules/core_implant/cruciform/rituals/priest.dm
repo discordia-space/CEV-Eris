@@ -56,7 +56,7 @@
 	desc = "A reunion of a spirit with it's new body, ritual of activation of a crucifrom, lying on the body. The process requires NeoTheology's special altar on which a body stripped of clothes is to be placed."
 
 /datum/ritual/cruciform/priest/reincarnation/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
-	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform)
+	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform, FALSE)
 
 	if(!CI)
 		fail("There is no cruciform on this one", user, C)
@@ -170,7 +170,7 @@
 	desc = "This litany will command cruciform to detach from bearer. If the one bearing it is dead. You will be able to  use it in scanner for Resurrection."
 
 /datum/ritual/cruciform/priest/ejection/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
-	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform)
+	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform, FALSE)
 
 	if(!CI)
 		fail("There is no cruciform on this one", user, C)

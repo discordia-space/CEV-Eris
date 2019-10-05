@@ -42,6 +42,9 @@
 		sleep(impact_speed)
 		var/turf/newloc = pick(flooring_near_beacon)
 		flooring_near_beacon -= newloc
-		new /obj/effect/falling_effect(newloc, /obj/random/scrap/moderate_weighted)
+		if(prob(30))
+			new /obj/effect/falling_effect(newloc, /obj/random/scrap/sparse_weighted)
+		else
+			new /obj/effect/falling_effect(newloc, /obj/random/scrap/moderate_weighted)
 	active = FALSE
 	icon_state = "beacon0"

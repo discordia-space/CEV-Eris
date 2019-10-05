@@ -3,7 +3,7 @@
 	desc = "A weapon that uses advanced pulse-based beam generation technology to emit powerful laser blasts. Due to its complexity and cost, it is rarely seen in use, except by specialists."
 	icon_state = "pulse"
 	item_state = null	//so the human update icon uses the icon_state instead.
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BELT|SLOT_BACK
 	force = WEAPON_FORCE_PAINFUL
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 7, MATERIAL_URANIUM = 8)

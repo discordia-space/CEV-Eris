@@ -45,6 +45,9 @@
 	new /obj/item/device/flash(src)
 	new /obj/item/weapon/storage/pouch/pistol_holster(src)
 
+/obj/structure/closet/secure_closet/reinforced/preacher
+	name = "Preacher's locker"
+
 /obj/structure/closet/secure_closet/reinforced/hos
 	name = "Ironhammer Commander locker"
 	req_access = list(access_hos)
@@ -204,9 +207,9 @@
 
 /obj/structure/closet/secure_closet/courtroom/populate_contents()
 	new /obj/item/clothing/shoes/color/brown(src)
-	new /obj/item/weapon/paper/Court(src)
-	new /obj/item/weapon/paper/Court(src)
-	new /obj/item/weapon/paper/Court(src)
+	new /obj/item/weapon/paper/court(src)
+	new /obj/item/weapon/paper/court(src)
+	new /obj/item/weapon/paper/court(src)
 	new /obj/item/weapon/pen(src)
 	new /obj/item/clothing/suit/judgerobe(src)
 	new /obj/item/clothing/head/powdered_wig(src)

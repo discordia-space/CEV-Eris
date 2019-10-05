@@ -250,7 +250,7 @@
 			playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
 			src.icon_state = "swordblue"
 			src.item_state = "swordblue"
-			src.w_class = ITEM_SIZE_LARGE
+			src.w_class = ITEM_SIZE_BULKY
 		else
 			to_chat(user, SPAN_NOTICE("You push the plastic blade back down into the handle."))
 			playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
@@ -816,7 +816,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "cultblade"
 	item_state = "cultblade"
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 	attack_verb = list("attacked", "slashed", "stabbed", "poked")
 
 /obj/item/weapon/inflatable_duck

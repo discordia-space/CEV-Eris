@@ -8,8 +8,8 @@ SUBSYSTEM_DEF(economy)
 	init_order = INIT_ORDER_LATELOAD
 
 	wait = 300 //Ticks once per 30 seconds
-	var/payday_interval = 1 HOUR
-	var/next_payday = 1 HOUR
+	var/payday_interval = 1 HOURS
+	var/next_payday = 1 HOURS
 
 /datum/controller/subsystem/economy/Initialize()
 	.=..()
@@ -67,7 +67,7 @@ SUBSYSTEM_DEF(economy)
 		//Ok lets get their job to determine how much we'll pay them
 		var/datum/job/temp_job = SSjob.GetJob(R.get_job())
 		if(!istype(temp_job))
-			temp_job = SSjob.GetJob("Assistant")
+			temp_job = SSjob.GetJob(ASSISTANT_TITLE)
 		if(!istype(temp_job))
 			continue
 

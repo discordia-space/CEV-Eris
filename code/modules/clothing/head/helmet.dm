@@ -18,6 +18,30 @@
 	w_class = ITEM_SIZE_NORMAL
 	price_tag = 100
 
+/obj/item/clothing/head/helmet/botanist
+	name = "Argolyte hood"
+	desc = "Don't want anything getting in your eyes."
+	icon_state = "botanist"
+	armor = list(melee = 35, bullet = 20, energy = 20, bomb = 25, bio = 100, rad = 80)
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
+	body_parts_covered = HEAD|FACE|EARS
+
+/obj/item/clothing/head/helmet/acolyte
+	name = "Acolyte hood"
+	desc = "Even the most devout deserve head protection."
+	icon_state = "acolyte"
+	armor = list(melee = 35, bullet = 20, energy = 20, bomb = 25, bio = 100, rad = 80)
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
+	body_parts_covered = HEAD|FACE|EARS
+
+/obj/item/clothing/head/helmet/custodian
+	name = "Custodian helmet"
+	desc = "Cleaning floors is more dangerous than it looks."
+	icon_state = "custodian"
+	armor = list(melee = 35, bullet = 20, energy = 20, bomb = 25, bio = 100, rad = 80)
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
+	body_parts_covered = HEAD|FACE|EARS
+
 /obj/item/clothing/head/helmet/swat
 	name = "\improper SWAT helmet"
 	desc = "They're often used by highly trained Swat Members."

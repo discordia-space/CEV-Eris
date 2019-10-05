@@ -35,7 +35,7 @@
 	find_or_create_burrow(get_turf(src))
 
 	//Lets decide how long to wait
-	var/delay = rand_decimal(1, delaymax)
+	var/delay = RAND_DECIMAL(1, delaymax)
 
 	addtimer(CALLBACK(src, .obj/effect/spawner/maintshroom/delayed/spawn_shroom), delay)
 	alpha = 0 //Make it invisible

@@ -34,7 +34,7 @@
 			L.take_damage(3, 0)
 
 /datum/reagent/stim/cherrydrops
-	name = "Cherry drops"
+	name = "Cherry Drops"
 	id = "cherry drops"
 	description = "Stimulator designed to enchant cognitive capabilities. Quite common in scientific circles."
 	taste_description = "bitterness"
@@ -337,7 +337,7 @@
 		M.paralysis = max(M.paralysis, 20)
 
 /datum/reagent/stim/party_drops
-	name = "Party drops"
+	name = "Party Drops"
 	id = "party drops"
 	description = "Stimulating substance which pumps intelectual capabilities to theoretical maximum. Used as delicacy by some high ranking scientists."
 	taste_description = "bitterness"

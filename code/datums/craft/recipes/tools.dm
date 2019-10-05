@@ -159,10 +159,45 @@
 /datum/craft_recipe/tool/fuel_tank
 	name = "Tool mod: Expanded fuel tank"
 	result = /obj/item/weapon/tool_upgrade/augment/fuel_tank
-	steps = list(/obj/item/weapon/tool_upgrade/augment/fuel_tank)
 
 	steps = list(
 		list(/obj/item/weapon/weldpack, 1, "time" = 30),
 		list(QUALITY_SAWING, 10, "time" = 120),//Disassemble the backpack
 		list(QUALITY_BOLT_TURNING, 10, 40), //And open some valves
 	)
+
+/datum/craft_recipe/tool/makeshift_centrifuge
+	name = "Manual centrifuge"
+	result = /obj/item/device/makeshift_centrifuge
+
+	steps = list(
+		list(CRAFT_MATERIAL, 4, MATERIAL_STEEL),
+		list(QUALITY_SAWING, 10, "time" = 80),
+		list(/obj/item/stack/rods, 2, 30),
+		list(QUALITY_WIRE_CUTTING, 10, 20),
+		list(QUALITY_WELDING, 10, "time" = 70)
+	)
+
+/datum/craft_recipe/tool/makeshift_grinder
+	name = "Mortar and pestle"
+	result = /obj/item/weapon/storage/makeshift_grinder
+
+	steps = list(
+		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL),
+		list(QUALITY_WIRE_CUTTING, 10, 20),
+		list(QUALITY_PRYING, 10, 80),
+		list(/obj/item/stack/rods, 1, 30)
+	)
+
+/datum/craft_recipe/tool/makeshift_electrolyser
+	name = "Makeshift electrolyser"
+	result = /obj/item/device/makeshift_electrolyser
+
+	steps = list(
+		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL),
+		list(QUALITY_WIRE_CUTTING, 10, 20),
+		list(/obj/item/stack/cable_coil, 30, "time" = 10),
+		list(QUALITY_WIRE_CUTTING, 10, 20),
+		list(/obj/item/stack/rods, 2, 30)
+	)
+

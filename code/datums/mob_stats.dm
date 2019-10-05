@@ -1,6 +1,10 @@
 /datum/stat_holder
 	var/list/stat_list = list()
 
+	var/list/datum/perk/perks = list()
+	var/list/obj/effect/statclick/perk/perk_stat = list()
+	var/datum/perk/combat/combat_style
+
 /datum/stat_holder/New()
 	for(var/sttype in subtypesof(/datum/stat))
 		var/datum/stat/S = new sttype
@@ -74,10 +78,16 @@
         return
     return 1 - max(0,min(1,getStat(statName, pure)/statCap))
 
+/datum/stat_holder/proc/getPerk(perkType)
+	return locate(perkType) in perks
+
 /datum/stat_holder/proc/Clone()
 	var/datum/stat_holder/new_stat = new()
 	for (var/S in stat_list)
 		new_stat.changeStat(S, src.getStat(S))
+	for (var/datum/perk/P in perks)
+		var/datum/perk/new_perk = new P.type
+		new_perk.teach(new_stat)
 	return new_stat
 
 /datum/stat_mod

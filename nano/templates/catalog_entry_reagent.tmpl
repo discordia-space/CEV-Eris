@@ -64,6 +64,20 @@
 				{{/if}}
 			</div>
 		{{/if}}
+		{{if data.result_of_decomposition_in}}
+			<div class="itemLabel">
+				Result of decomposition:
+			</div>
+			<div class="itemContent">
+				<div class="statusDisplay">
+					<table>
+						{{for data.result_of_decomposition_in}}
+							<tr>{{:helper.catalogEntryLink(value)}}
+						{{/for}}
+					</table>
+				</div>
+			</div>
+		{{/if}}
 		{{if data.recipe_data}}
 			<div class="itemLabel">
 				Recipe:
@@ -97,6 +111,20 @@
 			</div>
 			<div class="itemContent">
 				{{:data.overdose}}u.
+			</div>
+		{{/if}}
+		{{if data.can_be_used_in}}
+			<div class="itemLabel">
+				Takes part in reactions:
+			</div>
+			<div class="itemContent">
+				<div class="statusDisplay" style="overflow: auto;">
+						<table>
+						{{for data.can_be_used_in}}
+							<tr>{{:helper.catalogEntryLink(value)}}
+						{{/for}}
+					</table>
+				</div>
 			</div>
 		{{/if}}
 

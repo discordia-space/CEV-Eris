@@ -288,7 +288,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 /obj/item/device/pda/New()
 	..()
 	PDAs += src
-	PDAs = sortAtom(PDAs)
+	PDAs = sortNames(PDAs)
 	if(default_cartridge)
 		cartridge = new default_cartridge(src)
 	new /obj/item/weapon/pen(src)
@@ -517,9 +517,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 //NOTE: graphic resources are loaded on client login
 /obj/item/device/pda/attack_self(mob/user as mob)
-	var/datum/asset/assets = get_asset_datum(/datum/asset/simple/pda)
-	assets.send(user)
-
 	user.set_machine(src)
 
 	if(active_uplink_check(user))

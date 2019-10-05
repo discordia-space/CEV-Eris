@@ -299,9 +299,7 @@
 	dat += "Choose from the following open/valid positions:<br>"
 	for(var/datum/job/job in SSjob.occupations)
 		if(job && IsJobAvailable(job.title))
-			if(job.minimum_character_age && (client.prefs.age < job.minimum_character_age))
-				continue
-			if(job.is_religion_restricted(client.prefs.religion))
+			if(job.is_restricted(client.prefs))
 				continue
 			var/active = 0
 			// Only players with the job assigned and AFK for less than 10 minutes count as active

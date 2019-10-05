@@ -6,6 +6,7 @@
 	var/maximum_volume = 100
 	var/chem_temp = T20C
 	var/atom/my_atom = null
+	var/rotating = FALSE
 
 
 /datum/reagents/New(var/max = 100, atom/A = null)
@@ -366,7 +367,7 @@
 //not directly injected into the contents. It first calls touch, then the appropriate trans_to_*() or splash_mob().
 //If for some reason touch effects are bypassed (e.g. injecting stuff directly into a reagent container or person),
 //call the appropriate trans_to_*() proc.
-/datum/reagents/proc/trans_to(datum/target, amount = 1, multiplier = 1, copy = 0)
+/datum/reagents/proc/trans_to(datum/target, amount = 1, multiplier = 1, copy = 0, ignore_isinjectable = 0)
 	if(istype(target, /datum/reagents))
 		return trans_to_holder(target, amount, multiplier, copy)
 
@@ -376,7 +377,7 @@
 			return splash_mob(target, amount, multiplier, copy)
 		if(isturf(target))
 			return trans_to_turf(target, amount, multiplier, copy)
-		if(isobj(target) && A.is_injectable())
+		if(isobj(target) && (A.is_injectable() || ignore_isinjectable))
 			return trans_to_obj(target, amount, multiplier, copy)
 	return 0
 
@@ -511,7 +512,7 @@
 /datum/reagents/proc/trans_to_turf(var/turf/target, var/amount = 1, var/multiplier = 1, var/copy = 0) // Turfs don't have any reagents (at least, for now). Just touch it.
 	if(!target || !target.simulated)
 		return
-	
+
 
 	var/datum/reagents/R = new /datum/reagents(amount * multiplier)
 	. = trans_to_holder(R, amount, multiplier, copy)

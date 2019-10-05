@@ -62,7 +62,7 @@
 	desc = "A suit that protects against low pressure environments. \"CEV Eris\" is written in large block letters on the back."
 	icon_state = "space"
 	item_state = "s_suit"
-	w_class = ITEM_SIZE_LARGE//bulky item
+	w_class = ITEM_SIZE_BULKY//bulky item
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
 	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL | COVER_PREVENT_MANIPULATION

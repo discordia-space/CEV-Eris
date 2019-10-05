@@ -24,7 +24,7 @@ NanoBaseHelpers = function ()
 				if (typeof icon != 'undefined' && icon)
 				{
 					iconHtml = '<div class="uiLinkPendingIcon"></div><div class="uiIcon16 icon-' + icon + '"></div>';
-					iconClass = 'hasIcon';
+					iconClass = text ? 'hasIcon' : 'onlyIcon';
 				}
 
 				if (typeof elementClass == 'undefined' || !elementClass)
@@ -94,7 +94,7 @@ NanoBaseHelpers = function ()
 						}
 				}
 				if(!entry)
-					return 'COULD NOT FIND ENTRY' + type;
+					return 'COULD NOT FIND ENTRY(' + type + ')';
 				var text = entry['entry_name']
 				var parameters = {"set_active_entry" : entry['entry_type']};
 				

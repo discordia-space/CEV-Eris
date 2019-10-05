@@ -44,7 +44,7 @@
 /datum/lobbyscreen/neotheology
 	image_file = 'icons/title_screens/neotheology.png'
 	possibleMusic = list(
-		'sound/music/lobby/turu31333.ogg')
+		'sound/music/lobby/Duke_Gneiss-Neotheology.ogg')
 
 /datum/lobbyscreen/proc/play_music(client/C)
 	if(!musicTrack)

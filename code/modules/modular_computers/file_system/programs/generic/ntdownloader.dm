@@ -16,11 +16,11 @@
 	var/datum/computer_file/program/downloaded_file = null
 	var/hacked_download = 0
 	var/download_completion = 0 //GQ of downloaded data.
-	
+
 	var/download_netspeed = 0 //The base download speed in GQ/sec
 	var/download_netspeed_temp = 0 //A modified version that is download_netspeed with random variance added
 	var/netspeed_variance = 0.15 //Allow speed to vary 15% up or down
-	
+
 	var/downloaderror = ""
 	var/list/downloads_queue[0]
 	var/file_info //For logging, can be faked by antags.
@@ -118,7 +118,7 @@
 			download_netspeed = NTNETSPEED_HIGHSIGNAL
 		if(3)
 			download_netspeed = NTNETSPEED_ETHERNET
-	download_netspeed *= rand_decimal(1-netspeed_variance, 1+netspeed_variance)
+	download_netspeed *= RAND_DECIMAL(1-netspeed_variance, 1+netspeed_variance)
 	download_netspeed = round(download_netspeed, 0.001)
 	download_completion += download_netspeed
 

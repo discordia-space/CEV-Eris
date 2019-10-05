@@ -111,11 +111,9 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 
 //Gets blood from mob to the container, preserving all data in it.
 /mob/living/carbon/proc/take_blood(obj/item/weapon/reagent_containers/container, var/amount)
-
-	var/datum/reagent/B = get_blood()
-	if(!B) B = new /datum/reagent/organic/blood
+	var/datum/reagent/B = new /datum/reagent/organic/blood
 	B.holder = container
-	B.volume += amount
+	B.volume = amount
 
 	//set reagent data
 	B.data["donor"] = src
@@ -284,9 +282,9 @@ proc/blood_splatter(var/target,var/datum/reagent/organic/blood/source,var/large)
 //Get fluffy numbers
 /mob/living/carbon/human/proc/get_blood_pressure()
 	if(status_flags & FAKEDEATH)
-		return "[Floor(120+rand(-5,5))*0.25]/[Floor(80+rand(-5,5)*0.25)]"
+		return "[FLOOR(120+rand(-5,5), 1)*0.25]/[FLOOR(80+rand(-5,5)*0.25, 1)]"
 	var/blood_result = get_blood_circulation()
-	return "[Floor((120+rand(-5,5))*(blood_result/100))]/[Floor((80+rand(-5,5))*(blood_result/100))]"
+	return "[FLOOR((120+rand(-5,5))*(blood_result/100), 1)]/[FLOOR((80+rand(-5,5))*(blood_result/100), 1)]"
 
 //Percentage of maximum blood volume, affected by the condition of circulation organs, affected by the oxygen loss. What ultimately matters for brain
 /mob/living/carbon/proc/get_blood_oxygenation()

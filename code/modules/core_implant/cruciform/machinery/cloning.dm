@@ -397,13 +397,37 @@
 	if(default_part_replacement(I, user))
 		return
 
+	if (istype(I, /obj/item/stack/material/biomatter))
+		var/obj/item/stack/material/biomatter/B = I
+		if (B.biomatter_in_sheet && B.amount)
+			var/sheets_amount_to_transphere = input(user, "How many sheets you want to load?", "Biomatter melting", 1) as num
+			if(sheets_amount_to_transphere)
+				var/total_transphere_from_stack = 0
+				var/i = 1
+				while(i <= sheets_amount_to_transphere)
+					reagents.add_reagent("biomatter", B.biomatter_in_sheet)
+					total_transphere_from_stack += B.biomatter_in_sheet
+					i++
+				B.use(sheets_amount_to_transphere)
+				user.visible_message(
+									"[user.name] inserted \the [B.name]'s sheets in \the [name].",
+									"You inserted \the [B.name] in  (in amount: [sheets_amount_to_transphere]) \the [name].\
+									And after that you see how the counter on \the [name] is incremented by [total_transphere_from_stack]."
+									)
+				ping()
+			else
+				to_chat(user, SPAN_WARNING("You can't insert [sheets_amount_to_transphere] in [name]"))
+			return
+		else
+			to_chat(user, SPAN_WARNING("\The [B.name] is exhausted and can't be melted to biomatter. "))
+
 	if(istype(I, /obj/item/weapon/reagent_containers) && I.is_open_container())
 		var/obj/item/weapon/reagent_containers/container = I
 		if(container.reagents.get_reagent_amount("biomatter") == container.reagents.total_volume)
 			container.reagents.trans_to_holder(reagents, container.amount_per_transfer_from_this)
-			to_chat(user, SPAN_NOTICE("You transfer some of biomatter from [container] to [src]."))
+			to_chat(user, SPAN_NOTICE("You transfer some of biomatter from \the [container] to \the [name]."))
 		else
-			to_chat(user, SPAN_NOTICE("You need clear biomatter to fill [src]."))
+			to_chat(user, SPAN_NOTICE("You need clear biomatter to fill \the [name]."))
 
 
 /obj/machinery/neotheology/biomass_container/update_icon()

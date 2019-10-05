@@ -59,7 +59,7 @@
 		else
 			user.visible_message(SPAN_WARNING("[user] begins to do [H]'s lips with \the [src]."), \
 								 SPAN_NOTICE("You begin to apply \the [src]."))
-			if(do_after(user, 20, H) && do_after(H, 20, needshand = 0))	//user needs to keep their active hand, H does not.
+			if(do_mob(user, H, 30))	//user needs to keep their active hand, H does not.
 				user.visible_message(SPAN_NOTICE("[user] does [H]'s lips with \the [src]."), \
 									 SPAN_NOTICE("You apply \the [src]."))
 				H.lip_style = colour

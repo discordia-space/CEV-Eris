@@ -1,0 +1,102 @@
+<!-- 
+ -->
+{{if data.catalog_browse_stage == "entry" || data.catalog_browse_stage == "entry_entry"}}
+	{{if data.print_avaliable}}
+		{{:helper.link('PRINT', '', {'print_active' : 1})}}
+	{{/if}}
+	{{:helper.link('BACK', '', {'go_back_entry' : 1}, null, 'floatRight')}}
+	<br><br>
+	<div class="item">
+		<h1>{{:data.name}}</h1>
+	</div>
+	<div class="item">
+		<h4>Specifications:</h4>
+		<div class="itemLabel">
+			Type:
+		</div>
+		<div class="itemContent">
+			{{:data.thing_nature}}.
+		</div>
+		{{if data.strength}}
+			<div class="itemLabel">
+				Alchohol strength:
+			</div>
+			<div class="itemContent">
+				{{:data.strength}}.
+			</div>
+		{{/if}}
+		{{if data.temperature}}
+			<div class="itemLabel">
+				Served:
+			</div>
+			<div class="itemContent">
+				{{:data.temperature}}.
+			</div>
+		{{/if}}
+		{{if data.nutrition}}
+			<div class="itemLabel">
+				Nourishment:
+			</div>
+			<div class="itemContent">
+				{{:data.nutrition}}.
+			</div>
+		{{/if}}
+		{{if data.recipe_data}}
+			<div class="itemLabel">
+				Recipe:
+			</div>
+			<div class="itemContent">
+				{{for data.recipe_data}}
+					<div class="statusDisplay" style="overflow: auto;">
+						{{for value.reagents :val:val_i}}
+							{{:val.parts}}{{:helper.catalogEntryLink(val.type)}}<br>
+						{{/for}}
+						{{for value.catalyst :val:val_i}}
+							In presense of {{:val.units}}u of {{:helper.catalogEntryLink(val.type)}}<br>
+						{{/for}}
+						{{if value.required_object}}
+							Should take place inside of {{:helper.catalogEntryLink(value.required_object)}}.
+						{{/if}}
+						{{:value.result_amount}}
+					</div>
+				{{/for}}
+			</div>
+		{{/if}}
+		
+		<h4>Description:</h4>
+		<div class="item">
+			{{:data.description}}
+		</div>
+		<div class="item">
+			{{:data.taste}}
+		</div>
+		<div class="item">
+			Has <span class='colorBox' style='background-color:{{:data.color}}'></span> coloration.
+		</div>
+		{{if data.catalog_info_level_one}}
+			<div class="item">
+				{{:data.catalog_info_level_one}}
+			</div>
+		{{/if}}
+		{{if data.catalog_info_level_two}}
+			<div class="item">
+				{{:data.catalog_info_level_two}}
+			</div>
+		{{/if}}
+		{{if data.catalog_info_level_three}}
+			<div class="item">
+				{{:data.catalog_info_level_three}}
+			</div>
+		{{/if}}
+		{{if data.catalog_info_level_four}}
+			<div class="item">
+				{{:data.catalog_info_level_four}}
+			</div>
+		{{/if}}
+		{{if data.catalog_info_level_ooc}}
+			<div class="item">
+				{{:data.catalog_info_level_ooc}}
+			</div>
+		{{/if}}
+	</div>
+{{/if}}

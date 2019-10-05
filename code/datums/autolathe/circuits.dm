@@ -61,5 +61,16 @@
 	build_path = /obj/item/weapon/circuitboard/excelsior_turret
 
 /datum/design/autolathe/circuit/centrifuge
-	name = "isolation centrifuge"
+	name = "centrifuge"
 	build_path = /obj/item/weapon/circuitboard/centrifuge
+
+/datum/design/autolathe/circuit/electrolyzer
+	name = "electrolyzer"
+	build_path = /obj/item/weapon/circuitboard/electrolyzer
+
+/datum/design/autolathe/circuit/reagentgrinder
+	name = "reagent grinder"
+	build_path = /obj/item/weapon/circuitboard/reagentgrinder
+
+
+

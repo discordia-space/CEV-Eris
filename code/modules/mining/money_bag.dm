@@ -7,7 +7,7 @@
 	flags = CONDUCT
 	force = 10.0
 	throwforce = 2.0
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 
 /obj/item/weapon/moneybag/attack_hand(user as mob)
 	if (!is_held())

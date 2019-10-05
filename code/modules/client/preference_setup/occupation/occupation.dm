@@ -137,10 +137,10 @@
 			bad_message = "\[IN [(available_in_days)] DAYS]"*/
 		else if(job.minimum_character_age && user.client && (user.client.prefs.age < job.minimum_character_age))
 			bad_message = "\[MINIMUM CHARACTER AGE: [job.minimum_character_age]]"
-		else if(user.client && job.is_religion_restricted(user.client.prefs.religion))
-			bad_message = "\[CONFLICT OF INTEREST: RELIGION]"
+		else if(user.client && job.is_setup_restricted(user.client.prefs.setup_options))
+			bad_message = "\[SETUP RESTRICTED]"
 
-		if(("Assistant" in pref.job_low) && (rank != "Assistant"))
+		if((ASSISTANT_TITLE in pref.job_low) && (rank != ASSISTANT_TITLE))
 			. += "<a href='?src=\ref[src];set_skills=[rank]'><font color=grey>[rank]</font></a></td><td></td></tr>"
 			continue
 		if(bad_message)
@@ -156,7 +156,7 @@
 
 		. += "</a></td><td width='40%'>"
 
-		if(rank == "Assistant")//Assistant is special
+		if(rank == ASSISTANT_TITLE)//Assistant is special
 			. += "<a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_LOW]'>"
 			. += "[(rank in pref.job_low) ? "<font color=#55cc55>" : ""]\[Yes\][(rank in pref.job_low) ? "</font>" : ""]"
 			//. += "\[Yes\]"
@@ -276,8 +276,8 @@
 	//First of all, we check if the user has opted to query any specific job by clicking the ? button
 	if(job_info_selected_rank)
 		job = SSjob.GetJob(job_info_selected_rank)
-	else if("Assistant" in pref.job_low)
-		job = SSjob.GetJob("Assistant")
+	else if(ASSISTANT_TITLE in pref.job_low)
+		job = SSjob.GetJob(ASSISTANT_TITLE)
 	else
 		//If not, then we'll attempt to get the job they have set as high priority, if any
 		job = SSjob.GetJob(pref.job_high)
@@ -325,10 +325,24 @@
 
 	//Here we have a right-floating textbox that shows user's stats
 	job_desc +="<div style='border: 1px solid grey; float: right; margin-right: 20px; padding: 8px; line-height: 120%;'> <h1 style='padding: 0px;'>Stats:</h1>"
-	if (job.stat_modifiers.len)
+	if(job.title == ASSISTANT_TITLE)
+		job_desc += "<ul>"
+		for (var/a in ALL_STATS)
+			job_desc += "<li>[a]: ???</li>"
+		job_desc += "</ul>"
+	else if (job.stat_modifiers.len)
 		job_desc += "<ul>"
 		for (var/a in job.stat_modifiers)
 			job_desc += "<li>[a]: [job.stat_modifiers[a]]</li>"
+		job_desc += "</ul>"
+	else
+		job_desc += "None"
+	job_desc += "<h1 style='padding: 0px;'>Perks:</h1>"
+	if (job.perks.len)
+		job_desc += "<ul>"
+		for (var/a in job.perks)
+			var/datum/perk/P = a
+			job_desc += "<li>[initial(P.name)]</li>"
 		job_desc += "</ul>"
 	else
 		job_desc += "None"
@@ -371,7 +385,7 @@
 	if(!job)
 		return 0
 
-	if(role == "Assistant")
+	if(role == ASSISTANT_TITLE)
 		if(level == JOB_LEVEL_NEVER)
 			pref.job_low -= job.title
 		else

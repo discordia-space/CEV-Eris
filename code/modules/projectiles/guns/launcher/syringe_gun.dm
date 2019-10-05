@@ -66,10 +66,10 @@
 	desc = "A spring-loaded rifle designed to fire syringes to incapacitate unruly patients from a distance."
 	icon_state = "syringegun"
 	item_state = "syringegun"
-	w_class = ITEM_SIZE_NORMAL|SLOT_HOLSTER
+	w_class = ITEM_SIZE_NORMAL
 	force = 7
 	matter = list(MATERIAL_PLASTIC = 8, MATERIAL_GLASS = 2)
-	slot_flags = SLOT_BELT
+	slot_flags = SLOT_BELT|SLOT_HOLSTER
 
 	fire_sound = 'sound/weapons/empty.ogg'
 	fire_sound_text = "a metallic thunk"

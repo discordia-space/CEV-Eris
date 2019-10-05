@@ -8,6 +8,7 @@
 	use_power = 1
 	idle_power_usage = 5
 	active_power_usage = 100
+	circuit = /obj/item/weapon/circuitboard/reagentgrinder
 	var/inuse = 0
 	var/obj/item/weapon/reagent_containers/beaker = null
 	var/limit = 10
@@ -20,6 +21,14 @@
 		/obj/item/stack/material/silver = MATERIAL_SILVER,
 		/obj/item/stack/material/mhydrogen = "hydrogen"
 		)
+
+/obj/item/weapon/circuitboard/reagentgrinder
+	name = T_BOARD("reagent grinder")
+	build_path = /obj/machinery/reagentgrinder
+	origin_tech = list(TECH_BIO = 1)
+	req_components = list(
+		/obj/item/weapon/stock_parts/manipulator = 2
+	)
 
 /obj/machinery/reagentgrinder/Initialize()
 	. = ..()

@@ -99,7 +99,7 @@
 		
 
 /datum/reagent/nanites/implant_medics
-	name = "Implant Medics"
+	name = "Implantoids"
 	id = "implant nanites"
 	description = "Microscopic construction robots programmed to repair implants."
 
