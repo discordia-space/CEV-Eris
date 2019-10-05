@@ -44,7 +44,7 @@
 		new /obj/item/weapon/tool/wrench(src)
 		new /obj/item/weapon/tool/weldingtool(src)
 		new /obj/item/weapon/tool/crowbar(src)
-		new /obj/item/device/scanner/analyzer(src)
+		new /obj/item/device/scanner/gas(src)
 		new /obj/item/weapon/tool/wirecutters(src)
 
 /obj/item/weapon/storage/toolbox/electrical

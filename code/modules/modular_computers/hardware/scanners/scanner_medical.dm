@@ -7,10 +7,10 @@
 		return
 	if (!scan_power_use())
 		return
-// TODO: enable after baymed
-	//var/dat = medical_scan_action(target, user, holder2, 1)	// TODO: fix after baymed
-	/*
+	var/dat = medical_scan_action(target, user, holder2, 1)
 	if(dat && driver && driver.using_scanner)
-		driver.data_buffer = html2pencode(dat)
-		SSnano.update_uis(driver.NM)
-	*/
+		driver.data_buffer = dat
+		if(!SSnano.update_uis(driver.NM))
+			holder2.run_program(driver.filename)
+			driver.NM.ui_interact(user)
+	

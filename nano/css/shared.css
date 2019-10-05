@@ -236,6 +236,17 @@ abbr {
     margin: 4px 0 4px 0;
 }
 
+.danger
+{
+	color: #ff0000;	
+	font-weight: bold;
+}
+.warning
+{
+	color: #ff0000;	
+	font-style: italic;
+}
+
 .notice.icon {
     padding: 2px 4px 0 20px;
 }

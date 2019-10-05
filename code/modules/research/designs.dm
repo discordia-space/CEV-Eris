@@ -93,12 +93,12 @@ other types of metals and chemistry for reagents).
 
 /datum/design/research/item/medical/reagent_scanner
 	desc = "A device for identifying chemicals."
-	build_path = /obj/item/device/scanner/reagent_scanner
+	build_path = /obj/item/device/scanner/reagent
 	sort_string = "MACBA"
 
 /datum/design/research/item/medical/adv_reagent_scanner
 	desc = "A device for identifying chemicals and their proportions."
-	build_path = /obj/item/device/scanner/reagent_scanner/adv
+	build_path = /obj/item/device/scanner/reagent/adv
 	sort_string = "MACBB"
 
 /datum/design/research/item/beaker

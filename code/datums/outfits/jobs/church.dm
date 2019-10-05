@@ -30,7 +30,7 @@
 	uniform = /obj/item/clothing/under/rank/church
 	suit = /obj/item/clothing/suit/apron
 	gloves = /obj/item/clothing/gloves/botanic_leather
-	r_pocket = /obj/item/device/scanner/analyzer/plant_analyzer
+	r_pocket = /obj/item/device/scanner/plant
 
 /decl/hierarchy/outfit/job/church/janitor
 	name = OUTFIT_JOB_NAME("Janitor")

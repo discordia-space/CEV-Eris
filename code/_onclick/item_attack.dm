@@ -42,6 +42,9 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 /atom/movable/attackby(obj/item/I, mob/living/user)
 	if(!(I.flags & NOBLUDGEON))
+		if(user.client && user.a_intent == I_HELP)
+			return
+
 		user.do_attack_animation(src)
 		if (I.hitsound)
 			playsound(loc, I.hitsound, 50, 1, -1)

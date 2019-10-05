@@ -72,6 +72,10 @@
 		if(!save_scan(name))
 			to_chat(usr, "Scan save failed.")
 
+	if(href_list["clear"])
+		data_buffer = ""
+		return 1
+
 	if(.)
 		SSnano.update_uis(NM)
 

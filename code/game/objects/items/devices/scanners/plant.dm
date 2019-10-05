@@ -1,56 +1,51 @@
-//Analyzer, pestkillers, weedkillers, nutrients, hatchets, cutters.
 
-/obj/item/device/scanner/analyzer/plant_analyzer
+/obj/item/device/scanner/plant
 	name = "plant analyzer"
+	desc = "A hand-held botanical scanner used to analyze plants."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "hydro"
 	item_state = "analyzer"
+
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
-	var/form_title
-	var/last_data
 
-/obj/item/device/scanner/analyzer/plant_analyzer/proc/print_report_verb()
-	set name = "Print Plant Report"
-	set category = "Object"
-	set src = usr
+	var/global/list/valid_targets = list(
+		/obj/item/weapon/reagent_containers/food/snacks/grown,
+		/obj/item/weapon/grown,
+		/obj/machinery/portable_atmospherics/hydroponics,
+		/obj/machinery/beehive,
+		/obj/item/seeds
+	)
 
-	print_report(usr)
+/obj/item/device/scanner/plant/is_valid_scan_target(atom/O)
+	if(is_type_in_list(O, valid_targets))
+		return TRUE
+	return FALSE
 
-/obj/item/device/scanner/analyzer/plant_analyzer/Topic(href, href_list)
-	if(..())
-		return
-	if(href_list["print"])
-		print_report(usr)
+/obj/item/device/scanner/plant/scan(atom/A, mob/user)
+	scan_title = "[A] at [get_area(A)]"
+	scan_data = plant_scan_results(A)
+	flick("hydro2", src)
+	show_results(user)
 
-/obj/item/device/scanner/analyzer/plant_analyzer/proc/print_report(var/mob/living/user)
-	if(!last_data)
-		to_chat(user, "There is no scan data to print.")
-		return
-	if(!cell_use_check(3))
-		return
-	var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(get_turf(src))
-	P.name = "paper - [form_title]"
-	P.info = "[last_data]"
-	if(ishuman(user))
-		user.put_in_hands(P)
-	user.visible_message("\The [src] spits out a piece of paper.")
-	return
-
-/obj/item/device/scanner/analyzer/plant_analyzer/attack_self(mob/user as mob)
-	if(user.incapacitated())
-		return
-	print_report(user)
-	return 0
-
-/obj/item/device/scanner/analyzer/plant_analyzer/afterattack(obj/target, mob/user, flag)
-	if(!cell_use_check(5))
-		return
-	if(!flag) return
-
+/proc/plant_scan_results(obj/target)
 	var/datum/seed/grown_seed
 	var/datum/reagents/grown_reagents
-	if(istype(target,/obj/structure/table))
-		return ..()
+
+	var/dat = list()
+	if(istype(target, /obj/machinery/beehive))
+		var/obj/machinery/beehive/BH = target
+		dat += SPAN_NOTICE("Scan result of \the [BH]...")
+		dat += "Beehive is [BH.bee_count ? "[round(BH.bee_count)]% full" : "empty"].[BH.bee_count > 90 ? " Colony is ready to split." : ""]"
+		if(BH.frames)
+			dat += "[BH.frames] frames installed, [round(BH.honeycombs / 100)] filled."
+			if(BH.honeycombs < BH.frames * 100)
+				dat += "Next frame is [round(BH.honeycombs % 100)]% full."
+		else
+			dat += "No frames installed."
+		if(BH.smoked)
+			dat += "The hive is smoked."
+		return jointext(dat, "<br>")
+	
 	else if(istype(target,/obj/item/weapon/reagent_containers/food/snacks/grown))
 
 		var/obj/item/weapon/reagent_containers/food/snacks/grown/G = target
@@ -74,14 +69,8 @@
 		grown_seed = H.seed
 		grown_reagents = H.reagents
 
-	if(!grown_seed)
-		to_chat(user, SPAN_DANGER("[src] can tell you nothing about \the [target]."))
-		return
-
-	flick("hydro2", src)
-	form_title = "[grown_seed.seed_name] (#[grown_seed.uid])"
-	var/dat = "<h3>Plant data for [form_title]</h3>"
-	user.visible_message(SPAN_NOTICE("[user] runs the scanner over \the [target]."))
+	var/form_title = "[grown_seed.seed_name] (#[grown_seed.uid])"
+	dat += "<h3>Plant data for [form_title]</h3>"
 
 	dat += "<h2>General Data</h2>"
 
@@ -205,10 +194,5 @@
 
 	if(grown_seed.get_trait(TRAIT_CONSUME_GASSES))
 		dat += "<br>It will remove gas from the environment."
-
-	if(dat)
-		last_data = dat
-		dat += "<br><br>\[<a href='?src=\ref[src];print=1'>print report</a>\]"
-		user << browse(dat,"window=plant_analyzer")
-
-	return
+		
+	return JOINTEXT(dat)

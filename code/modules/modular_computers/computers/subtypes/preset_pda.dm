@@ -66,9 +66,6 @@
 	icon_state = "pda-h"
 	scanner_type = /obj/item/weapon/computer_hardware/scanner/paper
 
-/obj/item/modular_computer/pda/heads/paperpusher
-//	stored_pen = /obj/item/weapon/pen/fancy
-
 /obj/item/modular_computer/pda/heads/hop
 	icon_state = "pda-hop"
 	scanner_type = /obj/item/weapon/computer_hardware/scanner/paper
@@ -98,7 +95,7 @@
 
 /obj/item/modular_computer/pda/cargo
 	icon_state = "pda-sup"
-	scanner_type = /obj/item/weapon/computer_hardware/scanner/paper
+	scanner_type = /obj/item/weapon/computer_hardware/scanner/price
 
 /obj/item/modular_computer/pda/syndicate
 	icon_state = "pda-syn"
