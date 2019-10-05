@@ -71,6 +71,7 @@
 	new /obj/item/weapon/storage/bag/trash(src)
 	new /obj/item/clothing/shoes/galoshes(src)
 	new /obj/item/weapon/mop(src)
+	new /obj/item/weapon/soap/nanotrasen(src)
 	new /obj/item/weapon/storage/pouch/small_generic(src) // Because I feel like poor janitor gets it bad.
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/church(src)
