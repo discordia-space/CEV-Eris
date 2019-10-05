@@ -67,6 +67,7 @@
 		return
 	if(!can_use(user))
 		return
+			
 	if(is_valid_scan_target(A) && A.simulated)
 		user.visible_message(SPAN_NOTICE("[user] runs \the [src] over \the [A]."), range = 2)
 		if(scan_sound)
@@ -133,6 +134,7 @@
 		to_chat(user, "You clear data buffer on [src].")
 		scan_data = null
 		scan_title = null
+		user << browse(null, "window=scanner")
 		return 1
 
 /obj/item/device/scanner/proc/print_report(var/mob/living/user)
@@ -142,3 +144,7 @@
 	var/obj/item/weapon/paper/P = new(get_turf(src), scan_data, "paper - [scan_title]")
 	user.put_in_hands(P)
 	user.visible_message("\The [src] spits out a piece of paper.")
+
+/obj/item/device/scanner/examine(mob/user)
+	if(..(user, 2) && scan_data)
+		show_results(user)

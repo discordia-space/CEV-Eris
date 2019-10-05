@@ -31,11 +31,11 @@
 	scan_title = "Price estimations"
 	
 	if(!scan_data)
-		scan_data = price_scan_results(target)
+		scan_data = price_scan_results(target, cargo_console.contraband, cargo_console.emagged)
 	else
-		scan_data += "<br>[price_scan_results(target)]"
+		scan_data += "<br>[price_scan_results(target, cargo_console.contraband, cargo_console.emagged)]"
 	flick("reader1", src)
-	show_results(scan_data)
+	show_results(user)
 
 /obj/item/device/scanner/price/afterattack(atom/A, mob/user, proximity)
 	if(!proximity)
@@ -48,11 +48,11 @@
 			return
 	return ..()
 
-/proc/price_scan_results(var/atom/movable/target)
-	var/data = list()
+/proc/price_scan_results(var/atom/movable/target, var/contraband = 0, var/emag = 0)
+	var/list/data = list()
 	// Before you fix it:
 	// yes, checking manifests is a part of intended functionality.
-	var/price = export_item_and_contents(target, cargo_console.contraband, cargo_console.emagged, dry_run=TRUE)
+	var/price = export_item_and_contents(target, contraband, emag, dry_run=TRUE)
 
 	if(price)
 		data += "<span class='notice'>Scanned [target], value: <b>[price]</b> \
