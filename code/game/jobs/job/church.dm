@@ -10,7 +10,12 @@
 	selection_color = "#ecd37d"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 25)
 	//cruciform_access = list(access_morgue, access_chapel_office, access_crematorium, access_hydroponics, access_janitor, access_maint_tunnels) -Removed until access sticks after cloning/aheals
-	access = list(access_morgue, access_chapel_office, access_crematorium, access_hydroponics, access_janitor, access_maint_tunnels)
+
+	access = list(
+		access_morgue, access_chapel_office, access_crematorium, access_hydroponics, access_janitor, access_maint_tunnels,
+		access_RC_announce, access_keycard_auth, access_heads, access_secdoors
+	)
+
 	wage = WAGE_PROFESSIONAL //The church has deep pockets
 	department_account_access = TRUE
 	outfit_type = /decl/hierarchy/outfit/job/church/chaplain
