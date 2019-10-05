@@ -185,7 +185,7 @@
 /obj/item/device/radio/headset/heads/preacher
 	name = "neotheology preacher's headset"
 	desc = "The headset of the man who leads you to god."
-	icon_state = "nt_headset"
+	icon_state = "nt_com_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/preacher
 

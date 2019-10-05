@@ -13,7 +13,7 @@
 
 	access = list(
 		access_morgue, access_chapel_office, access_crematorium, access_hydroponics, access_janitor, access_maint_tunnels,
-		access_RC_announce, access_keycard_auth, access_heads, access_secdoors
+		access_RC_announce, access_keycard_auth, access_heads, access_sec_doors
 	)
 
 	wage = WAGE_PROFESSIONAL //The church has deep pockets
