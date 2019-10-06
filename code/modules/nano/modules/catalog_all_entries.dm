@@ -1,5 +1,6 @@
 /datum/nano_module/catalog
 	name = "Catalog"
+	allowed_free_roaming = TRUE
 
 /datum/nano_module/catalog/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_REINITIALIZE, state = GLOB.default_state)
 	var/list/data = ui_data(user)

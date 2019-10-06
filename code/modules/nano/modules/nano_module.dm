@@ -81,10 +81,10 @@
 	if(selected_entry && selected_entry != entry_to_browse)
 		// this basically will prevent roaming endlesly through entries if thats not allowed
 		// only one entry not inside of catalog is allowed to open
-		if(!allowed_free_roaming && entry_history.len)
+		if(!allowed_free_roaming)
 			if(!catalog)
 				return FALSE
-			if(!catalog.has_entry(entry_history[entry_history.len]))
+			if(!catalog.has_entry(selected_entry))
 				return FALSE
 		entry_history.Add(selected_entry)
 
