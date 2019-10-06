@@ -227,6 +227,8 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	var/generate_asteroid= FALSE
 	var/tmp/z_level
 	var/height = -1	///< The number of Z-Levels in the map.
+	contribute_to_catalog = FALSE
+	can_be_created_in_nullspace = TRUE
 
 
 // If the height is more than 1, we mark all contained levels as connected.
@@ -269,4 +271,18 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	generate_asteroid = TRUE
 	is_accessable_level = TRUE
 	height = 1
+
+// a place to where you temporary spawn objects instead of nullspace
+/obj/map_data/purgatory
+	name = "Purgatory Level"
+	is_player_level = FALSE
+	is_contact_level = FALSE
+	is_accessable_level = FALSE
+	height = 1
+
+GLOBAL_VAR(purgatory_loc)
+/obj/map_data/purgatory/New(var/atom/nloc)
+	..()
+	GLOB.purgatory_loc = nloc
+
 

@@ -15,6 +15,9 @@
 	plane = BLACKNESS_PLANE
 	layer = AREA_LAYER
 	var/ship_area = FALSE
+	create_icon_asset = FALSE
+	contribute_to_catalog = FALSE
+	can_be_created_in_nullspace = FALSE
 
 /area/New()
 	icon_state = ""
@@ -29,7 +32,7 @@
 		power_equip = 0
 		power_environ = 0
 
-	..()
+	. = ..()
 
 /area/Initialize()
 	. = ..()
@@ -38,7 +41,6 @@
 		power_equip = 0
 		power_environ = 0
 	power_change()		// all machines set to current power level, also updates lighting icon
-
 
 /area/proc/get_cameras()
 	var/list/cameras = list()

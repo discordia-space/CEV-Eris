@@ -24,8 +24,10 @@
 	var/list/supported_programs
 	var/list/restricted_programs
 
-/obj/machinery/computer/HolodeckControl/New()
-	..()
+/obj/machinery/computer/HolodeckControl/Initialize(mapload, d)
+	. = ..()
+	if(. == INITIALIZE_HINT_NO_LOC)
+		return
 	linkedholodeck = locate(linkedholodeck_area)
 	supported_programs = list()
 	restricted_programs = list()
@@ -247,8 +249,9 @@
 
 
 /obj/machinery/computer/HolodeckControl/proc/loadProgram(var/datum/holodeck_program/HP, var/check_delay = 1)
-	if(!HP)
+	if(!HP || !linkedholodeck)
 		return
+	
 	var/area/A = locate(HP.target)
 	if(!A)
 		return
@@ -334,8 +337,8 @@
 	//Turn it back to the regular non-holographic room
 	loadProgram(holodeck_programs["turnoff"], 0)
 
-
-	linkedholodeck.has_gravity = TRUE
+	if(linkedholodeck)
+		linkedholodeck.has_gravity = TRUE
 
 	active = 0
 	use_power = 1
@@ -343,8 +346,10 @@
 /obj/machinery/computer/HolodeckControl/Exodus
 	linkedholodeck_area = /area/holodeck/alphadeck
 
-/obj/machinery/computer/HolodeckControl/Exodus/New()
-	..()
+/obj/machinery/computer/HolodeckControl/Exodus/Initialize(mapload, d)
+	. = ..()
+	if(. == INITIALIZE_HINT_NO_LOC)
+		return
 	supported_programs = list(
 	"Empty Court" 		= "emptycourt",
 	"Basketball Court" 	= "basketball",

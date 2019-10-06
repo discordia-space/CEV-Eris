@@ -62,7 +62,7 @@
 			return
 
 /obj/structure/New()
-	..()
+	. = ..()
 	if(climbable)
 		verbs += /obj/structure/proc/climb_on
 

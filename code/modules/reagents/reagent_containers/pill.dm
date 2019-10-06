@@ -11,6 +11,7 @@
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
 	volume = 60
+	contribute_to_reagent_catalog = FALSE
 
 /obj/item/weapon/reagent_containers/pill/Initialize()
 	. = ..()

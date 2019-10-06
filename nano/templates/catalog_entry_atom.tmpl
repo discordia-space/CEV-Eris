@@ -1,0 +1,56 @@
+<!-- 
+ -->
+{{if data.catalog_browse_stage == "entry"}}
+	{{if data.print_avaliable}}
+		{{:helper.link('PRINT', '', {'print_active' : 1})}}
+	{{/if}}
+	{{:helper.link('BACK', '', {'go_back_entry' : 1}, null, 'floatRight')}}
+	<br><br>
+	<div class="item">
+		<h1>{{:data.name}}</h1>
+	</div>
+	<div class = "statusDisplayItem" style="float: right;">
+		<img src={{:data.entry_image_path}} width = 64px>
+	</div>
+	<div class="item" style="float: left;">
+		<h4>Description:</h4>
+		<div class="item">
+			{{:data.description}}
+		</div>
+		{{if data.catalog_info_level_one}}
+			<div class="item">
+				{{:data.catalog_info_level_one}}
+			</div>
+		{{/if}}
+		{{if data.catalog_info_level_two}}
+			<div class="item">
+				{{:data.catalog_info_level_two}}
+			</div>
+		{{/if}}
+		{{if data.catalog_info_level_three}}
+			<div class="item">
+				{{:data.catalog_info_level_three}}
+			</div>
+		{{/if}}
+		{{if data.catalog_info_level_four}}
+			<div class="item">
+				{{:data.catalog_info_level_four}}
+			</div>
+		{{/if}}
+		{{if data.catalog_info_level_ooc}}
+			<div class="item">
+				{{:data.catalog_info_level_ooc}}
+			</div>
+		{{/if}}
+		{{if data.can_be_found_in}}
+			<h4>Can be found in:</h4>
+			<div class="statusDisplay" style="overflow: auto;">
+				<table style="width:100%">
+					{{for data.can_be_found_in}}
+						<tr>{{:helper.catalogEntryLink(value.type)}}
+					{{/for}}
+				</table>
+			</div>
+		{{/if}}
+	</div>
+{{/if}}

@@ -20,15 +20,18 @@
 	opacity = 0
 	health = 120
 
-/obj/structure/alien/resin/New()
-	..()
+/obj/structure/alien/resin/Initialize(mapload, d)
+	. = ..()
+	if(. == INITIALIZE_HINT_NO_LOC)
+		return
 	var/turf/T = get_turf(src)
 	T.thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
 
 /obj/structure/alien/resin/Destroy()
 	var/turf/T = get_turf(src)
-	T.thermal_conductivity = initial(T.thermal_conductivity)
-	. = ..()
+	if(T)
+		T.thermal_conductivity = initial(T.thermal_conductivity)
+	return ..()
 
 /obj/structure/alien/resin/attack_hand(var/mob/user)
 	if (HULK in user.mutations)

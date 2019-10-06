@@ -308,10 +308,12 @@
 
 
 /obj/machinery/hivemind_machine/node/Initialize()
+	. = ..()
+	if(. == INITIALIZE_HINT_NO_LOC)
+		return
 	if(!hive_mind_ai)
 		hive_mind_ai = new /datum/hivemind
-	..()
-
+	
 	hive_mind_ai.hives.Add(src)
 	hive_mind_ai.level_up()
 
@@ -339,7 +341,8 @@
 
 
 /obj/machinery/hivemind_machine/node/Destroy()
-	hive_mind_ai.hives.Remove(src)
+	if(hive_mind_ai)
+		hive_mind_ai.hives.Remove(src)
 	check_for_other()
 	for(var/obj/effect/plant/hivemind/wire in my_wireweeds)
 		remove_wireweed(wire)
@@ -381,7 +384,10 @@
 
 
 /obj/machinery/hivemind_machine/node/name_pick()
-	name = "[hive_mind_ai.name] [hive_mind_ai.surname]" + " [rand(999)]"
+	if(hive_mind_ai)
+		name = "[hive_mind_ai.name] [hive_mind_ai.surname]" + " [rand(999)]"
+	else
+		name = "Hivemind"
 
 
 //There we binding or un-binding hive with wire

@@ -13,8 +13,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/New(newloc,planttype)
-
-	..()
+	. = ..()
 	if(!dried_type)
 		dried_type = type
 	src.pixel_x = rand(-5.0, 5)
@@ -49,6 +48,10 @@
 
 	potency = seed.get_trait(TRAIT_POTENCY)
 
+/obj/item/weapon/reagent_containers/food/snacks/grown/Initialize()
+	. = ..()
+	if(!seed)
+		return
 	for(var/rid in seed.chems)
 		var/list/reagent_data = seed.chems[rid]
 		if(reagent_data && reagent_data.len)

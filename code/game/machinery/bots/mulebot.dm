@@ -57,6 +57,8 @@
 
 /obj/machinery/bot/mulebot/New()
 	..()
+	if(get_turf(src))
+		return
 	wires = new(src)
 	botcard = new(src)
 	botcard.access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_merchant, access_mining, access_mining_station)

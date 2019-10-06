@@ -37,9 +37,10 @@
 	sprite_name = "miniFE"
 
 /obj/item/weapon/extinguisher/New()
+	. = ..()
 	create_reagents(max_water)
 	reagents.add_reagent("water", max_water)
-	..()
+	
 
 /obj/item/weapon/extinguisher/attack_self(mob/user as mob)
 	safety = !safety

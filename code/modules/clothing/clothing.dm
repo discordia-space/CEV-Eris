@@ -113,6 +113,8 @@
 	var/obj/item/master_item = null
 
 /obj/item/clothing/ears/offear/New(var/obj/O)
+	if(!O)
+		return ..()
 	name = O.name
 	desc = O.desc
 	icon = O.icon

@@ -17,8 +17,9 @@
 
 /obj/machinery/computer/cloning/Initialize()
 	. = ..()
-	set_extension(src, /datum/extension/multitool, /datum/extension/multitool/cryo, list(/proc/is_operable))
-	updatemodules()
+	if(get_turf(src))
+		set_extension(src, /datum/extension/multitool, /datum/extension/multitool/cryo, list(/proc/is_operable))
+		updatemodules()
 
 /obj/machinery/computer/cloning/Destroy()
 	releasecloner()

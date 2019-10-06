@@ -41,7 +41,10 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 	if(client.cache.Find(asset_name) || client.sending.Find(asset_name))
 		return 0
 
-	client << browse_rsc(asset_cache.cache[asset_name], asset_name)
+	if(asset_cache.prioritized_cache[asset_name])
+		client << browse_rsc(asset_cache.prioritized_cache[asset_name], asset_name)
+	else
+		client << browse_rsc(asset_cache.cache[asset_name], asset_name)
 	if(!verify || !winexists(client, "asset_cache_browser")) // Can't access the asset cache browser, rip.
 		if (client)
 			client.cache += asset_name
@@ -93,6 +96,8 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 	for(var/asset in unreceived)
 		if (asset in asset_cache.cache)
 			client << browse_rsc(asset_cache.cache[asset], asset)
+		else if (asset in asset_cache.prioritized_cache)
+			client << browse_rsc(asset_cache.prioritized_cache[asset], asset)
 
 	if(!verify || !winexists(client, "asset_cache_browser")) // Can't access the asset cache browser, rip.
 		if (client)
@@ -135,8 +140,11 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 
 //This proc "registers" an asset, it adds it to the cache for further use, you cannot touch it from this point on or you'll fuck things up.
 //if it's an icon or something be careful, you'll have to copy it before further use.
-/proc/register_asset(var/asset_name, var/asset)
-	asset_cache.cache[asset_name] = asset
+/proc/register_asset(var/asset_name, var/asset, var/prioritized = FALSE)
+	if(prioritized)
+		asset_cache.prioritized_cache[asset_name] = asset
+	else
+		asset_cache.cache[asset_name] = asset
 
 //Generated names do not include file extention.
 //Used mainly for code that deals with assets in a generic way
@@ -160,8 +168,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 /var/global/list/asset_datums = list()
 
 /datum/asset
-	// If asset is trivial it's download will be transfered to end of queue
-	var/isTrivial = TRUE
+	
 
 //get a assetdatum or make a new one
 /proc/get_asset_datum(var/type)
@@ -210,50 +217,64 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 		var/datum/design/design = D
 
 		var/filename = sanitizeFileName("[design.build_path].png")
-		var/icon/I = getFlatTypeIcon(design.build_path)
-		register_asset(filename, I)
-		assets[filename] = I
+		if(!asset_cache.cache[filename])
+			var/icon/I = getFlatTypeIcon(design.build_path)
+			register_asset(filename, I)
+			assets[filename] = I
 
 		design.ui_data["icon"] = filename
 
+// Ohh boy...
+/datum/asset/simple/all_atoms/register(var/atom/A)
+	if(!istype(A))
+		return
+	var/filename = sanitizeFileName("[A.type].png")
+	if(asset_cache.cache[filename])
+		return
+	var/icon/I = getFlatIcon(A)
+	register_asset(filename, I)
+	assets[filename] = I
 
 /datum/asset/simple/craft/register()
 	for(var/name in SScraft.categories)
 		for(var/datum/craft_recipe/CR in SScraft.categories[name])
 			if(CR.result)
 				var/filename = sanitizeFileName("[CR.result].png")
-				var/icon/I = getFlatTypeIcon(CR.result)
-				register_asset(filename, I)
-				assets[filename] = I
+				if(!asset_cache.cache[filename])
+					var/icon/I = getFlatTypeIcon(CR.result)
+					register_asset(filename, I)
+					assets[filename] = I
 
 			for(var/datum/craft_step/CS in CR.steps)
 				if(CS.reqed_type)
 					var/filename = sanitizeFileName("[CS.reqed_type].png")
-					var/icon/I = getFlatTypeIcon(CS.reqed_type)
-					register_asset(filename, I)
-					assets[filename] = I
+					if(!asset_cache.cache[filename])
+						var/icon/I = getFlatTypeIcon(CS.reqed_type)
+						register_asset(filename, I)
+						assets[filename] = I
 
 /datum/asset/simple/materials/register()
 	for(var/type in subtypesof(/obj/item/stack/material) - typesof(/obj/item/stack/material/cyborg))
 		var/filename = sanitizeFileName("[type].png")
-		var/icon/I = getFlatTypeIcon(type)
-		register_asset(filename, I)
-		assets[filename] = I
+		if(!asset_cache.cache[filename])
+			var/icon/I = getFlatTypeIcon(type)
+			register_asset(filename, I)
+			assets[filename] = I
 
 /datum/asset/nanoui
-	isTrivial = FALSE
 	var/list/common = list()
+	var/list/priority = list()
 
-	var/list/common_dirs = list(
+	var/list/prioritized_dirs = list(
 		"nano/css/",
-		"nano/images/",
-		"nano/images/status_icons/",
-		"nano/images/modular_computers/",
+		"nano/templates/",
 		"nano/js/"
 	)
-	var/list/uncommon_dirs = list(
-		"nano/templates/",
-		"news_articles/images/"
+	var/list/common_dirs = list(
+		"news_articles/images/",
+		"nano/images/",
+		"nano/images/status_icons/",
+		"nano/images/modular_computers/"
 	)
 
 /datum/asset/nanoui/register()
@@ -265,12 +286,13 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 				if(fexists(path + filename))
 					common[filename] = fcopy_rsc(path + filename)
 					register_asset(filename, common[filename])
-	for (var/path in uncommon_dirs)
+	for (var/path in prioritized_dirs)
 		var/list/filenames = flist(path)
 		for(var/filename in filenames)
 			if(copytext(filename, length(filename)) != "/") // Ignore directories.
 				if(fexists(path + filename))
-					register_asset(filename, fcopy_rsc(path + filename))
+					priority[filename] = fcopy_rsc(path + filename)
+					register_asset(filename, priority[filename], TRUE)
 
 	var/list/mapnames = list()
 	for(var/z in maps_data.station_levels)
@@ -284,12 +306,9 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 				common[filename] = fcopy_rsc(file_path)
 				register_asset(filename, common[filename])
 
-/datum/asset/nanoui/send(client, uncommon)
-	if(!islist(uncommon))
-		uncommon = list(uncommon)
-
-	send_asset_list(client, uncommon, FALSE)
+/datum/asset/nanoui/send(client)
 	send_asset_list(client, common, TRUE)
+	send_asset_list(client, priority, FALSE)
 
 /*
 	Asset cache
@@ -298,25 +317,22 @@ var/decl/asset_cache/asset_cache = new()
 
 /decl/asset_cache
 	var/list/cache
+	var/list/prioritized_cache
 
 /decl/asset_cache/New()
 	..()
 	cache = new
+	prioritized_cache = new
 
 /proc/send_assets()
-	var/list/datum/asset/trivialAssets = list()
 	for(var/type in typesof(/datum/asset) - list(/datum/asset, /datum/asset/simple))
-		var/datum/asset/A = new type()
-		if(A.isTrivial)
-			trivialAssets += A
-		else
-			A.register()
-	for(var/datum/asset/A in trivialAssets)
-		A.register()
+		get_asset_datum(type)
+	
 
 	for(var/client/C in clients)
 		// Doing this to a client too soon after they've connected can cause issues, also the proc we call sleeps.
 		spawn(10)
+			getFilesSlow(C, asset_cache.prioritized_cache, FALSE)
 			getFilesSlow(C, asset_cache.cache, FALSE)
 
 	return TRUE

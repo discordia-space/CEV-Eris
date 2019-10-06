@@ -21,6 +21,9 @@
 	var/process_flag = FALSE
 	var/hideflag = 0
 	var/list/image/ovrls = list()
+	create_icon_asset = FALSE
+	contribute_to_catalog = FALSE
+	can_be_created_in_nullspace = TRUE
 
 /obj/screen/New(_name = "unnamed", mob/living/_parentmob, _icon, _icon_state)//(_name = "unnamed", _screen_loc = "7,7", mob/living/_parentmob, _icon, _icon_state)
 	src.parentmob = _parentmob
@@ -31,7 +34,6 @@
 	if (_icon_state)
 		src.icon_state = _icon_state
 	..()
-
 
 /obj/screen/Process()
 	return

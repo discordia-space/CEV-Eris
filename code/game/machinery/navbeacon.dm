@@ -24,7 +24,9 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 	req_access = list(access_engine)
 
 	New()
-		..()
+		. = ..()
+		if(!.)
+			return
 
 		set_codes()
 
@@ -251,6 +253,7 @@ Transponder Codes:<UL>"}
 					updateDialog()
 
 /obj/machinery/navbeacon/Destroy()
-	navbeacons.Remove(src)
+	if(navbeacons)
+		navbeacons.Remove(src)
 	SSradio.remove_object(src, freq)
 	. = ..()

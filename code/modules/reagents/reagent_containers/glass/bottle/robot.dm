@@ -13,7 +13,7 @@
 	reagent = "inaprovaline"
 
 	New()
-		..()
+		. = ..()
 		reagents.add_reagent("inaprovaline", 60)
 
 
@@ -23,5 +23,5 @@
 	reagent = "anti_toxin"
 
 	New()
-		..()
+		. = ..()
 		reagents.add_reagent("anti_toxin", 60)

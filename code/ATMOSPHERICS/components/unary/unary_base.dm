@@ -6,13 +6,6 @@
 
 	var/datum/pipe_network/network
 
-	New()
-		..()
-		initialize_directions = dir
-		air_contents = new
-
-		air_contents.volume = 200
-
 // Housekeeping and pipe network stuff below
 	network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
 		if(reference == node1)
@@ -24,17 +17,6 @@
 		new_network.normal_members += src
 
 		return null
-
-	Destroy()
-		loc = null
-
-		if(node1)
-			node1.disconnect(src)
-			qdel(network)
-
-		node1 = null
-
-		. = ..()
 
 	atmos_init()
 		if(node1) return
@@ -88,3 +70,25 @@
 		update_underlays()
 
 		return null
+
+/obj/machinery/atmospherics/unary/New()
+	. = ..()
+	
+	air_contents = new
+	air_contents.volume = 200
+
+/obj/machinery/atmospherics/unary/Initialize(mapload, d)
+	. = ..()
+	initialize_directions = dir
+	
+/obj/machinery/atmospherics/unary/Destroy()
+	loc = null
+
+	if(node1)
+		node1.disconnect(src)
+		qdel(network)
+
+	node1 = null
+	
+	qdel(air_contents)
+	. = ..()

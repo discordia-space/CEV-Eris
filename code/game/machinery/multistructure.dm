@@ -105,8 +105,9 @@
 
 /obj/machinery/multistructure/Initialize()
 	. = ..()
-	// Will attempt to create MS on spawn
-	check_MS()
+	if(get_turf(src))
+		// Will attempt to create MS on spawn
+		check_MS()
 
 
 /obj/machinery/multistructure/attackby(var/obj/item/I, var/mob/user)

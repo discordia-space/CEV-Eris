@@ -37,8 +37,8 @@ SUBSYSTEM_DEF(atoms)
 		for(var/I in atoms)
 			var/atom/A = I
 			if(!A.initialized)
-				if(InitAtom(I, mapload_arg))
-					atoms -= I
+				InitAtom(I, mapload_arg)
+				atoms -= I
 				CHECK_TICK
 	else
 		count = 0
@@ -85,16 +85,26 @@ SUBSYSTEM_DEF(atoms)
 					late_loaders += A
 				else
 					A.LateInitialize(arglist(arguments))
+			if(INITIALIZE_HINT_NO_LOC)
+				if(A.LateInitialize(arglist(arguments)) == INITIALIZE_HINT_NO_LOC)
+					qdeleted = TRUE
+					spawn(10)
+						qdel(A)
+					if(SScatalog_setup.initialized)
+						if(SSticker.current_state >= GAME_STATE_PLAYING)
+							CRASH("[A.type] was created in nullspace, but it doesnt suppose to.")
 			if(INITIALIZE_HINT_QDEL)
 				qdel(A)
 				qdeleted = TRUE
 			else
 				BadInitializeCalls[the_type] |= BAD_INIT_NO_HINT
-
+	
 	if(!A)	//possible harddel
 		qdeleted = TRUE
-	else if(!A.initialized)
+	else if(!A.initialized && !qdeleted)
 		BadInitializeCalls[the_type] |= BAD_INIT_DIDNT_INIT
+	if(A)
+		SScatalog_setup.register_atom(A)
 
 	return qdeleted || QDELING(A)
 

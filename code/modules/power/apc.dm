@@ -118,6 +118,8 @@
 	var/global/list/status_overlays_equipment
 	var/global/list/status_overlays_lighting
 	var/global/list/status_overlays_environ
+	// building = 0, completed = 1 
+	var/buildstage
 
 /obj/machinery/power/apc/updateDialog()
 	if (stat & (BROKEN|MAINT))
@@ -163,21 +165,31 @@
 	return cell.drain_power(drain_check, surge, amount)
 
 /obj/machinery/power/apc/New(turf/loc, var/ndir, var/building=0)
-	..()
+	. = ..()
+	
 	wires = new(src)
 
 	// offset 28 pixels in direction of dir
 	// this allows the APC to be embedded in a wall, yet still inside an area
-	if (building)
+	if(building)
+		buildstage = 0
+	else
+		buildstage = 1
+	if (buildstage == 0)
 		set_dir(ndir)
 	src.tdir = dir		// to fix Vars bug
 	set_dir(SOUTH)
 
 	pixel_x = (src.tdir & 3)? 0 : (src.tdir == 4 ? 28 : -28)
 	pixel_y = (src.tdir & 3)? (src.tdir ==1 ? 28 : -28) : 0
-	if (building==0)
+
+/obj/machinery/power/apc/Initialize(mapload, d)
+	. = ..()
+	if(. == INITIALIZE_HINT_NO_LOC)
+		return
+	if(buildstage == 1)
 		init()
-	else
+	else 
 		area = get_area(src)
 		area.apc = src
 		opened = 1
@@ -187,12 +199,13 @@
 		src.update_icon()
 
 /obj/machinery/power/apc/Destroy()
-	src.update()
-	area.apc = null
-	area.power_light = 0
-	area.power_equip = 0
-	area.power_environ = 0
-	area.power_change()
+	if(area)
+		src.update()
+		area.apc = null
+		area.power_light = 0
+		area.power_equip = 0
+		area.power_environ = 0
+		area.power_change()
 	qdel(wires)
 	wires = null
 	qdel(terminal)

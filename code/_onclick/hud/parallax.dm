@@ -2,6 +2,7 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 
 /obj/parallax_screen
 	icon = 'icons/parallax.dmi'
+	can_be_created_in_nullspace = TRUE
 
 /obj/parallax_screen/New()
 	icon_state = GLOB.random_parallax
@@ -16,8 +17,11 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 	var/mob/owner
 	var/obj/parallax_screen/parallax_screen
 	var/list/layers = list()
+	can_be_created_in_nullspace = TRUE
 
 /obj/parallax/New(mob/M)
+	if(!M)
+		return ..()
 	owner = M
 	owner.parallax = src
 	parallax_screen = new /obj/parallax_screen

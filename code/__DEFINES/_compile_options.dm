@@ -2,3 +2,5 @@
 								// 1 will enable set background. 0 will disable set background.
 
 #define DOOR_CRUSH_DAMAGE 15
+
+#define TESTING 1

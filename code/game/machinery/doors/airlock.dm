@@ -1275,8 +1275,7 @@ There are 9 wires.
 	return ..(M)
 
 /obj/machinery/door/airlock/New(var/newloc, var/obj/structure/door_assembly/assembly=null)
-	..()
-
+	. = ..()
 	//if assembly is given, create the new door from the assembly
 	if (assembly && istype(assembly))
 		assembly_type = assembly.type
@@ -1311,6 +1310,8 @@ There are 9 wires.
 		wires = new/datum/wires/airlock(src)
 
 /obj/machinery/door/airlock/Initialize()
+	if(!get_turf(src))
+		return ..()
 	if(src.closeOtherId != null)
 		for (var/obj/machinery/door/airlock/A in world)
 			if(A.closeOtherId == src.closeOtherId && A != src)

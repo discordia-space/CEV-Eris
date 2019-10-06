@@ -369,7 +369,7 @@
 
 
 /obj/machinery/neotheology/biomass_container/New()
-	..()
+	. = ..()
 	create_reagents(biomass_capacity)
 	if(SSticker.current_state != GAME_STATE_PLAYING)
 		reagents.add_reagent("biomatter", 300)

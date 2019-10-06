@@ -30,8 +30,10 @@
 
 // create a new disposal
 // find the attached trunk (if present) and init gas resvr.
-/obj/machinery/disposal/New()
-	..()
+/obj/machinery/disposal/Initialize(mapload, d)
+	. = ..()
+	if(. == INITIALIZE_HINT_NO_LOC)
+		return
 	spawn(5)
 		trunk = locate() in src.loc
 		if(!trunk)
@@ -526,6 +528,7 @@
 	var/has_mob = FALSE //If it contains a mob
 
 	var/partialTag = "" //set by a partial tagger the first time round, then put in destinationTag if it goes through again.
+	can_be_created_in_nullspace = TRUE
 
 
 	// initialize a holder from the contents of a disposal unit
@@ -699,11 +702,14 @@
 	var/base_icon_state	// initial icon state on map
 	var/sortType = list()
 	var/subtype = SORT_TYPE_NORMAL
-	// new pipe, set the icon_state as on map
-	New()
-		..()
-		base_icon_state = icon_state
+
+// new pipe, set the icon_state as on map
+/obj/structure/disposalpipe/Initialize(mapload, d)
+	. = ..()
+	if(. == INITIALIZE_HINT_NO_LOC)
 		return
+	base_icon_state = icon_state
+	return
 
 
 	// pipe is deleted
@@ -761,6 +767,8 @@
 	// update the icon_state to reflect hidden status
 /obj/structure/disposalpipe/proc/update()
 	var/turf/T = src.loc
+	if(!istype(T))
+		return
 	hide(!T.is_plating() && !istype(T,/turf/space))	// space never hides pipes
 
 // hide called by levelupdate if turf intact status changes
@@ -991,7 +999,7 @@
 	icon_state = "pipe-s"
 
 	New()
-		..()
+		. = ..()
 		if(icon_state == "pipe-s")
 			pipe_dir = dir | turn(dir, 180)
 		else
@@ -1005,10 +1013,14 @@
 	icon_state = "pipe-u"
 
 /obj/structure/disposalpipe/up/New()
-	..()
+	. = ..()
 	pipe_dir = dir
+
+/obj/structure/disposalpipe/up/Initialize(mapload, d)
+	. = ..()
+	if(. == INITIALIZE_HINT_NO_LOC)
+		return
 	update()
-	return
 
 /obj/structure/disposalpipe/up/nextdir(var/fromdir)
 	var/nextdir
@@ -1054,7 +1066,7 @@
 	icon_state = "pipe-d"
 
 /obj/structure/disposalpipe/down/New()
-	..()
+	. = ..()
 	pipe_dir = dir
 	update()
 	return
@@ -1109,7 +1121,7 @@
 	icon_state = "pipe-j1"
 
 /obj/structure/disposalpipe/junction/New()
-	..()
+	. = ..()
 	if(icon_state == "pipe-j1")
 		pipe_dir = dir | turn(dir, -90) | turn(dir,180)
 	else if(icon_state == "pipe-j2")
@@ -1234,8 +1246,10 @@
 
 	pipe_dir = sortdir | posdir | negdir
 
-/obj/structure/disposalpipe/sortjunction/New()
+/obj/structure/disposalpipe/sortjunction/Initialize(mapload, d)
 	. = ..()
+	if(. == INITIALIZE_HINT_NO_LOC)
+		return
 	if(sortType) tagger_locations |= sortType
 
 	updatedir()
@@ -1329,7 +1343,7 @@
 	var/obj/linked 	// the linked obj/machinery/disposal or obj/disposaloutlet
 
 /obj/structure/disposalpipe/trunk/New()
-	..()
+	. = ..()
 	pipe_dir = dir
 	spawn(1)
 		getlinked()
@@ -1419,18 +1433,16 @@
 					// i.e. will be treated as an empty turf
 	desc = "A broken piece of disposal pipe."
 
-	New()
-		..()
-		update()
-		return
+/obj/structure/disposalpipe/broken/New()
+	. = ..()
+	update()
 
-	// called when welded
-	// for broken pipe, remove and turn into scrap
-
-	welded()
-//		var/obj/item/scrap/S = new(src.loc)
-//		S.set_components(200,0,0)
-		qdel(src)
+// called when welded
+// for broken pipe, remove and turn into scrap
+/obj/structure/disposalpipe/broken/welded()
+//	var/obj/item/scrap/S = new(src.loc)
+//	S.set_components(200,0,0)
+	qdel(src)
 
 // the disposal outlet machine
 
@@ -1447,7 +1459,7 @@
 	var/mode = 0
 
 	New()
-		..()
+		. = ..()
 
 		spawn(1)
 			target = get_ranged_target_turf(src, dir, 10)

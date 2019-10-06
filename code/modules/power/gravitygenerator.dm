@@ -48,6 +48,8 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	stat &= ~BROKEN
 
 /obj/machinery/gravity_generator/part/Destroy()
+	if(!get_turf(src))
+		return ..()
 	set_broken()
 	if(main_part)
 		qdel(main_part)
@@ -80,8 +82,11 @@ var/const/GRAV_NEEDS_WRENCH = 3
 
 /obj/machinery/gravity_generator/main/station/Initialize()
 	. = ..()
+	if(!get_turf(src))
+		return
 	setup_parts()
-	middle.overlays += "activated"
+	if(middle)
+		middle.overlays += "activated"
 	//Set ourselves in the global var
 	if (!GLOB.active_gravity_generator)
 		GLOB.active_gravity_generator = src
@@ -92,6 +97,8 @@ var/const/GRAV_NEEDS_WRENCH = 3
 
 /obj/machinery/gravity_generator/main/station/admin/Initialize()
 	. = ..()
+	if(!get_turf(src))
+		return
 	grav_on()
 
 //
@@ -116,6 +123,8 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	var/broken_state = 0
 
 /obj/machinery/gravity_generator/main/Destroy() // If we somehow get deleted, remove all of our other parts.
+	if(!get_turf(src))
+		return ..()
 	investigate_log("was destroyed!", "gravity")
 	on = 0
 	grav_off()
@@ -126,6 +135,8 @@ var/const/GRAV_NEEDS_WRENCH = 3
 
 /obj/machinery/gravity_generator/main/proc/setup_parts()
 	var/turf/our_turf = get_turf(src)
+	if(!our_turf)
+		return
 	// 9x9 block obtained from the bottom middle of the block
 	var/list/spawn_turfs = block(locate(our_turf.x - 1, our_turf.y + 2, our_turf.z), locate(our_turf.x + 1, our_turf.y, our_turf.z))
 	var/count = 10
@@ -152,7 +163,8 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	for(var/obj/machinery/gravity_generator/M in parts)
 		if(!(M.stat & BROKEN))
 			M.set_broken()
-	middle.overlays.Cut()
+	if(middle)
+		middle.overlays.Cut()
 	charge_count = 0
 	breaker = 0
 	grav_off()

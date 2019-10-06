@@ -79,23 +79,22 @@ RSF
 
 	switch(mode)
 		if(1)
-			product = new /obj/item/clothing/mask/smokable/cigarette()
+			product = new /obj/item/clothing/mask/smokable/cigarette(get_turf(A))
 			used_energy = 10
 		if(2)
-			product = new /obj/item/weapon/reagent_containers/food/drinks/drinkingglass()
+			product = new /obj/item/weapon/reagent_containers/food/drinks/drinkingglass(get_turf(A))
 			used_energy = 50
 		if(3)
-			product = new /obj/item/weapon/paper()
+			product = new /obj/item/weapon/paper(get_turf(A))
 			used_energy = 10
 		if(4)
-			product = new /obj/item/weapon/pen()
+			product = new /obj/item/weapon/pen(get_turf(A))
 			used_energy = 50
 		if(5)
-			product = new /obj/item/weapon/storage/pill_bottle/dice()
+			product = new /obj/item/weapon/storage/pill_bottle/dice(get_turf(A))
 			used_energy = 200
 
 	to_chat(user, "Dispensing [product ? product : "product"]...")
-	product.loc = get_turf(A)
 
 	if(isrobot(user))
 		var/mob/living/silicon/robot/R = user

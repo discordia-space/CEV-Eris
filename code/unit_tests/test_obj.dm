@@ -1,6 +1,7 @@
 /obj/test
 	name = "A test object. You shall never see this."
 	desc = "A test object. You shall never see this."
+	can_be_created_in_nullspace = TRUE
 
 /obj/test/New(var/atom/loc, var/is_test)
 	..()

@@ -9,10 +9,6 @@
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "brain1"
 
-/mob/living/carbon/brain/New()
-	..()
-	create_reagents(1000)
-
 /mob/living/carbon/brain/Destroy()
 	if(key)	//If there is a mob connected to this thing. Have to check key twice to avoid false death reporting.
 		if(stat!=DEAD)	//If not dead.

@@ -69,7 +69,7 @@
 *******************************/
 //Fuel and cell spawn
 /obj/item/weapon/tool/New()
-	..()
+	. = ..()
 	if(!cell && suitable_cell)
 		cell = new suitable_cell(src)
 

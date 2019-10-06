@@ -29,7 +29,7 @@
 	var/auto_init = TRUE
 
 	var/initialized = FALSE
-
+	var/can_be_created_in_nullspace = FALSE
 	var/list/preloaded_reagents = null
 
 /atom/New(loc, ...)
@@ -40,11 +40,22 @@
 		args[1] = do_initialize == INITIALIZATION_INNEW_MAPLOAD
 		if(SSatoms.InitAtom(src, args))
 			//we were deleted
-			return
-
+			return ..()
 	var/list/created = SSatoms.created_atoms
 	if(created)
 		created += src
+	//preloads variables at creation
+	// taken from code\modules\maps\reader.dm
+	if(_preloader && (src.type == _preloader.target_path))//in case the instanciated atom is creating other atoms in New()
+		_preloader.load(src)
+
+	// Incase any lighting vars are on in the typepath we turn the light on in New().
+	if(light_power && light_range)
+		update_light()
+
+	if(opacity && isturf(loc))
+		var/turf/T = loc
+		T.has_opaque_atom = TRUE // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
 
 
 //Called after New if the map is being loaded. mapload = TRUE
@@ -73,12 +84,41 @@
 		for(var/reagent in preloaded_reagents)
 			reagents.add_reagent(reagent, preloaded_reagents[reagent])
 
-
-	return INITIALIZE_HINT_NORMAL
+	if(!get_turf(src) && !can_be_created_in_nullspace)
+		return INITIALIZE_HINT_NO_LOC
+	else
+		return INITIALIZE_HINT_NORMAL
 
 //called if Initialize returns INITIALIZE_HINT_LATELOAD
 /atom/proc/LateInitialize()
-	return
+	if(!get_turf(src) && !can_be_created_in_nullspace)
+		return INITIALIZE_HINT_NO_LOC
+	else
+		return INITIALIZE_HINT_NORMAL
+
+/atom/proc/catalog_initialize()
+	if(!contribute_to_catalog)
+		return
+
+	if(icon_state && create_icon_asset)
+		var/datum/asset/simple/all_atoms/AAA = get_asset_datum(/datum/asset/simple/all_atoms)
+		AAA.register(src)
+
+	create_catalog_entry(src, CATALOG_ALL)
+
+	if(contribute_to_container_catalog)
+		if(istype(loc, /obj/item/weapon/storage))
+			var/datum/catalog_entry/E = get_catalog_entry(src.type)
+			if(E)
+				E.add_to_can_be_found(loc)
+	
+	if(reagents && reagents.reagent_list && contribute_to_reagent_catalog)
+		for(var/reagent in reagents.reagent_list)
+			var/datum/reagent/R = reagent
+			var/datum/catalog_entry/reagent/E = get_catalog_entry(R.type)
+			if(E)
+				E.add_to_can_be_found(src)
+	return TRUE
 
 /atom/Destroy()
 	QDEL_NULL(reagents)

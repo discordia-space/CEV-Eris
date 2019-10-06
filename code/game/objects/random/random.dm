@@ -7,6 +7,8 @@
 	var/max_amount = 1
 	var/spread_range = 0
 	var/has_postspawn = FALSE
+	create_icon_asset = FALSE
+	contribute_to_catalog = FALSE
 
 // creates a new object and deletes itself
 /obj/random/Initialize()

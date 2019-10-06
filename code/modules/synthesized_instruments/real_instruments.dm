@@ -12,6 +12,7 @@
 	var/datum/nano_module/echo_editor/echo_editor
 
 /datum/real_instrument/New(obj/who, datum/sound_player/how, datum/instrument/what)
+	. = ..()
 	player = how
 	owner = who
 	maximum_lines = GLOB.musical_config.max_lines
@@ -195,6 +196,7 @@
 /datum/real_instrument/Destroy()
 	QDEL_NULL(player)
 	owner = null
+	. = ..()
 
 /obj/structure/synthesized_instrument
 	var/datum/real_instrument/real_instrument
@@ -267,6 +269,8 @@
 
 /obj/item/device/synthesized_instrument/Initialize()
 	. = ..()
+	if(!get_turf(src))
+		return
 	for (var/type in typesof(path))
 		var/datum/instrument/new_instrument = new type
 		if (!new_instrument.id) continue

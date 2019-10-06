@@ -563,3 +563,15 @@ ADMIN_VERB_ADD(/client/proc/toggleUIDebugMode, R_DEBUG, FALSE)
 		UI.toggleDebugMode()
 	else
 		log_debug("This mob has no UI.")
+
+ADMIN_VERB_ADD(/client/proc/open_catalog, R_DEBUG, FALSE)
+/client/proc/open_catalog()
+	set category = "Debug"
+	set name = "Open catalog database"
+	set desc = "Open catalog database"
+
+	if(!istype(usr, /mob/living/carbon/human))
+		to_chat(usr, SPAN_WARNING("Must be human"))
+		return
+	var/datum/nano_module/catalog/C = new(usr)
+	C.ui_interact(usr)

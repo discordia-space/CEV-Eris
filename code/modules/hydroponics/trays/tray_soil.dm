@@ -14,8 +14,10 @@
 	else
 		..()
 
-/obj/machinery/portable_atmospherics/hydroponics/soil/New()
-	..()
+/obj/machinery/portable_atmospherics/hydroponics/soil/Initialize(mapload, d)
+	. = ..()
+	if(. == INITIALIZE_HINT_NO_LOC)
+		return
 	verbs -= /obj/machinery/portable_atmospherics/hydroponics/verb/close_lid_verb
 	verbs -= /obj/machinery/portable_atmospherics/hydroponics/verb/remove_label
 	verbs -= /obj/machinery/portable_atmospherics/hydroponics/verb/setlight
@@ -32,7 +34,11 @@
 	icon_state = "blank"
 
 /obj/machinery/portable_atmospherics/hydroponics/soil/invisible/New(var/newloc,var/datum/seed/newseed)
-	..()
+	. = ..()
+	if(!newseed)
+		if(SSticker.current_state >= GAME_STATE_PLAYING)
+			error("[type] no seed passed.")
+		return
 	seed = newseed
 	dead = 0
 	age = 1

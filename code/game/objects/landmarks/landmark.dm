@@ -8,6 +8,8 @@
 	invisibility = 101
 	layer = MID_LANDMARK_LAYER
 	var/delete_me = FALSE
+	create_icon_asset = FALSE
+	contribute_to_catalog = FALSE
 
 /obj/landmark/New()
 	..()

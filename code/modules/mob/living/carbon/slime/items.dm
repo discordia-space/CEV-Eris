@@ -27,7 +27,7 @@
 			qdel(O)
 
 /obj/item/slime_extract/New()
-	..()
+	. = ..()
 	create_reagents(100)
 	reagents.add_reagent("slimejelly", 30)
 

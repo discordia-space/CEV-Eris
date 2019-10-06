@@ -36,8 +36,10 @@
 	var/affected_by_emp_until = 0
 	var/last_shown_time = 0
 
-/obj/machinery/camera/New()
-	..()
+/obj/machinery/camera/Initialize(mapload, d)
+	. = ..()
+	if(. == INITIALIZE_HINT_NO_LOC)
+		return
 
 	wires = new(src)
 	assembly = new(src)

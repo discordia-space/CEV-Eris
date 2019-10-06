@@ -652,7 +652,7 @@ proc
 		if(GLOB.initialTypeIcon[path])
 			return GLOB.initialTypeIcon[path]
 		else
-			var/atom/A = new path()
+			var/atom/A = new path(PURGATORY)
 			GLOB.initialTypeIcon[path] = getFlatIcon(A, defdir, deficon, defstate, defblend, always_use_defdir)
 			qdel(A)
 			return GLOB.initialTypeIcon[path]

@@ -15,6 +15,8 @@
 	blend_mode       = BLEND_OVERLAY
 
 	var/needs_update = FALSE
+	create_icon_asset = FALSE
+	contribute_to_catalog = FALSE
 
 
 /atom/movable/lighting_overlay/New(var/atom/loc, var/no_update = FALSE)

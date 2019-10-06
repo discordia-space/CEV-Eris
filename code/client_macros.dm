@@ -1,5 +1,7 @@
 /client
 	control_freak = CONTROL_FREAK_ALL | CONTROL_FREAK_MACROS | CONTROL_FREAK_SKIN
+	var/tmp/running_find_references
+	var/tmp/last_find_references = 0
 
 var/list/registered_macros_by_ckey_
 

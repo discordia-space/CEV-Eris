@@ -19,6 +19,8 @@
 
 	var/label_text = ""
 
+	contribute_to_reagent_catalog = FALSE
+
 	var/list/can_be_placed_into = list(
 		/obj/machinery/chem_master/,
 		/obj/machinery/chemical_dispenser,

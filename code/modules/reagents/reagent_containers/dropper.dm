@@ -12,6 +12,7 @@
 	slot_flags = SLOT_EARS
 	volume = 5
 	reagent_flags = TRANSPARENT
+	contribute_to_reagent_catalog = FALSE
 
 /obj/item/weapon/reagent_containers/dropper/afterattack(atom/target, mob/user, proximity)
 	if(!target.reagents || !proximity)

@@ -103,7 +103,7 @@
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 
 /obj/item/weapon/pen/reagent/sleepy/New()
-	..()
+	. = ..()
 	reagents.add_reagent("chloralhydrate", 22)	//Used to be 100 sleep toxin//30 Chloral seems to be fatal, reducing it to 22./N
 
 
@@ -114,7 +114,7 @@
 	origin_tech = "materials=2;syndicate=5"
 
 /obj/item/weapon/pen/reagent/paralysis/New()
-	..()
+	. = ..()
 	reagents.add_reagent("zombiepowder", 10)
 	reagents.add_reagent("cryptobiolin", 15)
 
@@ -193,8 +193,9 @@
 	var/grindable = TRUE //normal crayons are grindable, rainbow and mime aren't
 
 	New()
+		. = ..()
 		name = "[colourName] crayon"
 		if(grindable)
 			create_reagents(20)
 			reagents.add_reagent("crayon_dust_[colourName]", 20)
-		..()
+		
