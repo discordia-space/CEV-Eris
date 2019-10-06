@@ -10,6 +10,7 @@
 	var/list/using_access = list()
 
 	var/list/datum/catalog_entry/entry_history = list()
+	var/allowed_free_roaming = FALSE	//if true you can open entries that not in catalog indefinetly
 	var/datum/catalog_entry/selected_entry
 	var/datum/catalog/catalog
 	var/catalog_browse_stage = CATALOG_BROWSE_STAGE_NONE
@@ -78,6 +79,13 @@
 	if(!ui)
 		return FALSE
 	if(selected_entry && selected_entry != entry_to_browse)
+		// this basically will prevent roaming endlesly through entries if thats not allowed
+		// only one entry not inside of catalog is allowed to open
+		if(!allowed_free_roaming && entry_history.len)
+			if(!catalog)
+				return FALSE
+			if(!catalog.has_entry(entry_history[entry_history.len]))
+				return FALSE
 		entry_history.Add(selected_entry)
 
 	selected_entry = entry_to_browse
@@ -124,6 +132,17 @@
 			entry_history.Remove(selected_entry)
 			browse_catalog_entry(selected_entry, usr)
 		else if(catalog)
+			browse_catalog(catalog, usr)
+		else
+			selected_entry = null
+			catalog_browse_stage = CATALOG_BROWSE_STAGE_NONE
+			return 1
+		return 0
+	
+	if(href_list["go_back_to_main"])
+		entry_history = list()
+		selected_entry = null
+		if(catalog)
 			browse_catalog(catalog, usr)
 		else
 			selected_entry = null

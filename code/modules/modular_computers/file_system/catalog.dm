@@ -119,6 +119,10 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 		if(E.thing_type == ispath(thing) ? thing : thing.type)
 			return E
 
+/datum/catalog/proc/has_entry(var/datum/catalog_entry/entry)
+	if(entry_list.Find(entry))
+		return TRUE
+
 /datum/catalog/proc/add_entry(var/datum/catalog_entry/entry)
 	entry_list.Add(entry)
 
