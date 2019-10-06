@@ -166,7 +166,6 @@ SUBSYSTEM_DEF(garbage)
 				var/datum/qdel_item/I = items[type]
 				if(!I.failures)
 					var/msg = "GC: -- \ref[D] | [type] was unable to be GC'd --"
-					D.find_references()
 					if(I.coords)
 						msg += "GC: -- \ref[D] | location is X=[I.coords.x_pos], Y=[I.coords.y_pos], Z=[I.coords.z_pos] --"
 					else

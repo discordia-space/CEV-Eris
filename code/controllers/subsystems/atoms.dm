@@ -37,8 +37,8 @@ SUBSYSTEM_DEF(atoms)
 		for(var/I in atoms)
 			var/atom/A = I
 			if(!A.initialized)
-				InitAtom(I, mapload_arg)
-				atoms -= I
+				if(InitAtom(I, mapload_arg))
+					atoms -= I
 				CHECK_TICK
 	else
 		count = 0

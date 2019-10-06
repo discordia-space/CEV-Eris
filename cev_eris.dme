@@ -2551,5 +2551,5 @@
 #include "maps\CEVEris\datums\reports.dm"
 #include "maps\encounters\asteroid\asteroid.dm"
 #include "maps\encounters\spacefortress\spacefortress.dm"
-#include "maps\other\purgatory.dmm"
+#include "maps\other\purgatory.dm"
 // END_INCLUDE
