@@ -1,0 +1,16 @@
+<div class='statusDisplay'>
+	{{if data.currentItem}}
+		<center><b><h2>SMELTING...</h2></b>
+		<hr></hr>
+		<h3>Loaded item: {{:data.currentItem}}</h3></center><br>
+		<div class="itemLabel">
+			Progress:
+		</div>
+		<div class="itemContent">
+			{{:helper.displayBar(data.progress, 0, 100, 'highlight')}}
+		</div>
+
+	{{else}}
+		<center><b><h2>NO ITEM</h2></b></center>
+	{{/if}}
+</div>
