@@ -204,6 +204,8 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 	var/emojis = 0
 
+	var/random_submap_orientation = FALSE // If true, submaps loaded automatically can be rotated.
+
 /datum/configuration/New()
 	fill_storyevents_list()
 
@@ -630,6 +632,9 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if("starlight")
 					config.starlight = value ? value : 0
+
+				if("random_submap_orientation")
+					config.random_submap_orientation = 1
 
 				if("ert_species")
 					config.ert_species = splittext(value, ";")
