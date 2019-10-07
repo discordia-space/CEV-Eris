@@ -13,6 +13,9 @@
 	// based on levels of manipulators
 	var/speed = 5
 
+	// based on levels of matter bins
+	var/storage_capacity = 60
+
 	var/list/stored_material = list()
 
 	var/output_side = null //by default it will be reversed smelter's dir
@@ -23,6 +26,7 @@
 
 	var/forbidden_materials = list(MATERIAL_CARDBOARD,MATERIAL_WOOD,MATERIAL_BIOMATTER)
 
+
 /obj/machinery/smelter/Initialize()
 	. = ..()
 	if(!output_side)
@@ -32,6 +36,7 @@
 /obj/machinery/smelter/Destroy()
 	if(current_item)
 		current_item.forceMove(get_turf(src))
+	eject_all_material()
 	return ..()
 
 
@@ -78,15 +83,7 @@
 /obj/machinery/smelter/proc/smelt()
 	smelt_item(current_item)
 	current_item = null
-
-	for(var/material in stored_material)
-		var/obj/item/stack/material/stack_type = material_stack_type(material)
-		var/stack_size = initial(stack_type.max_amount)
-		while(stored_material[material] >= 1)
-			var/ejected_amount = min(stack_size, round(stored_material[material]))
-			var/obj/item/stack/material/S = new stack_type(src, ejected_amount)
-			eject(S)
-			stored_material[material] -= ejected_amount
+	eject_overflow()
 
 
 /obj/machinery/smelter/proc/smelt_item(obj/smelting)
@@ -137,6 +134,28 @@
 	O.forceMove(get_step(src, output_side))
 
 
+/obj/machinery/smelter/proc/eject_material_stack(material)
+	var/obj/item/stack/material/stack_type = material_stack_type(material)
+	var/ejected_amount = min(initial(stack_type.max_amount), round(stored_material[material]), storage_capacity)
+	var/obj/item/stack/material/S = new stack_type(src, ejected_amount)
+	eject(S)
+	stored_material[material] -= ejected_amount
+
+
+/obj/machinery/smelter/proc/eject_all_material(material = null)
+	if(!material)
+		for(var/mat in stored_material)
+			eject_all_material(mat)
+	while(stored_material[material] >= 1)
+		eject_material_stack(material)
+
+
+/obj/machinery/smelter/proc/eject_overflow()
+	for(var/material in stored_material)
+		while(stored_material[material] > storage_capacity)
+			eject_material_stack(material)
+
+
 /obj/machinery/smelter/RefreshParts()
 	..()
 
@@ -146,6 +165,13 @@
 		manipulator_rating += M.rating
 		++manipulator_count
 	speed = initial(speed)*(manipulator_rating/manipulator_count)
+
+	var/mb_rating = 0
+	var/mb_count = 0
+	for(var/obj/item/weapon/stock_parts/matter_bin/MB in component_parts)
+		mb_rating += MB.rating
+		++mb_count
+	storage_capacity = round(initial(storage_capacity)*(mb_rating/mb_count))
 
 
 /obj/machinery/smelter/attackby(var/obj/item/I, var/mob/user)
@@ -167,6 +193,14 @@
 	data["currentItem"] = current_item?.name
 	data["progress"] = progress
 
+	var/list/M = list()
+	for(var/mtype in stored_material)
+		if(stored_material[mtype] < 1)
+			continue
+		M.Add(list(list("name" = mtype, "count" = stored_material[mtype])))
+	data["materials"] = M
+	data["capacity"] = storage_capacity
+
 	return data
 
 
@@ -179,3 +213,18 @@
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
+
+
+/obj/machinery/smelter/Topic(href, href_list)
+	if (..()) return TRUE
+
+	if(href_list["eject"])
+		var/material = href_list["eject"]
+
+		if(material in stored_material)
+			eject_all_material(material)
+		else
+			eject_all_material()
+
+	SSnano.update_uis(src)
+	return FALSE
