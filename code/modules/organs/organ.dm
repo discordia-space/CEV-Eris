@@ -4,35 +4,36 @@
 	germ_level = 0
 
 	// Strings.
-	var/organ_tag = "organ"           // Unique identifier.
-	var/parent_organ = BP_CHEST       // Organ holding this object.
+	var/surgery_name					// A special name that replaces item name in surgery messages
+	var/organ_tag = "organ"				// Unique identifier.
+	var/parent_organ = BP_CHEST			// Organ holding this object.
 	var/dead_icon
 
 	// Status tracking.
-	var/status = 0                    // Various status flags
-	var/vital                         // Lose a vital limb, die immediately.
-	var/damage = 0                    // Current damage to the organ
+	var/status = NONE					// Various status flags
+	var/vital = FALSE					// Lose a vital limb, die immediately.
+	var/damage = 0						// Current damage to the organ
 
 	// Type of modification, (If you ever need to apply several types make this a bit flag)
 	var/nature = MODIFICATION_ORGANIC
 
 	// Reference data.
-	var/mob/living/carbon/human/owner // Current mob owning the organ.
+	var/mob/living/carbon/human/owner	// Current mob owning the organ.
 	var/obj/item/organ/external/parent
-	var/list/transplant_data          // Transplant match data.
-	var/list/autopsy_data = list()    // Trauma data for forensics.
-	var/list/trace_chemicals = list() // Traces of chemicals in the organ.
+	var/list/transplant_data			// Transplant match data.
+	var/list/autopsy_data = list()		// Trauma data for forensics.
+	var/list/trace_chemicals = list()	// Traces of chemicals in the organ.
 	var/datum/dna/dna
 	var/datum/species/species
 
 	// Damage vars.
-	var/min_bruised_damage = 10       // Damage before considered bruised
-	var/min_broken_damage = 30        // Damage before becoming broken
-	var/max_damage                    // Damage cap
-	var/rejecting                     // Is this organ already being rejected?
+	var/min_bruised_damage = 10			// Damage before considered bruised
+	var/min_broken_damage = 30			// Damage before becoming broken
+	var/max_damage						// Damage cap
+	var/rejecting						// Is this organ already being rejected?
 	matter = list(MATERIAL_BIOMATTER = 20)
 
-	var/death_time // limits organ self recovery
+	var/death_time						// limits organ self recovery
 
 /obj/item/organ/Destroy()
 	if(owner)
@@ -48,7 +49,7 @@
 /obj/item/organ/proc/update_health()
 	return
 
-/obj/item/organ/New(var/mob/living/carbon/holder, var/datum/organ_description/OD)
+/obj/item/organ/New(mob/living/carbon/holder, datum/organ_description/OD)
 	..(holder)
 	var/internal = !istype(src, /obj/item/organ/external)
 	create_reagents(5)
@@ -105,7 +106,19 @@
 /obj/item/organ/get_item_cost()
 	if((status & ORGAN_DEAD) || species != all_species["Human"]) //No dead or monkey organs!
 		return 0
-	..()
+	return ..()
+
+
+// Checks if the organ is in a freezer, an MMI or a stasis bag - it will not be processed then
+/obj/item/organ/proc/is_in_stasis()
+	if(istype(loc, /obj/item/device/mmi))
+		return TRUE
+
+	if(istype(loc, /obj/structure/closet/body_bag/cryobag) || istype(loc, /obj/structure/closet/crate/freezer) || istype(loc, /obj/item/weapon/storage/box/freezer))
+		return TRUE
+
+	return FALSE
+
 
 /obj/item/organ/Process()
 
@@ -116,10 +129,9 @@
 	if(status & ORGAN_DEAD)
 		return
 	// Don't process if we're in a freezer, an MMI or a stasis bag.or a freezer or something I dunno
-	if(istype(loc,/obj/item/device/mmi))
+	if(is_in_stasis())
 		return
-	if(istype(loc,/obj/structure/closet/body_bag/cryobag) || istype(loc,/obj/structure/closet/crate/freezer) || istype(loc,/obj/item/weapon/storage/box/freezer))
-		return
+
 	//Process infections
 	if (BP_IS_ROBOTIC(src) || (owner && owner.species && (owner.species.flags & IS_PLANT)))
 		germ_level = 0

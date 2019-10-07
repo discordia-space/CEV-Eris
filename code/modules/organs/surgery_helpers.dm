@@ -1,0 +1,51 @@
+
+// Spread germs from surgeon to the organ
+/obj/item/organ/proc/spread_germs_from(mob/living/carbon/human/user, obj/item/tool)
+	if(!istype(user)) // Robots and such are considered sterile
+		return
+
+	var/new_germ_level = user.germ_level
+	if(user.gloves)
+		new_germ_level = user.gloves.germ_level
+
+	if(tool)
+		new_germ_level = max(new_germ_level, tool.germ_level)
+
+	germ_level = max(germ_level, new_germ_level) //as funny as scrubbing microbes out with clean gloves is - no.
+
+
+// Get a name to be displayed in surgery messages
+/obj/item/organ/proc/get_surgery_name()
+	if(!owner)	// Loose organ shows its own name only
+		return src
+
+	// Attached one refers to its current owner too
+	if(surgery_name)
+		return "[owner]'s [surgery_name]"
+	else
+		return "[owner]'s [name]"
+
+
+// Status data used in UI windows
+/obj/item/organ/proc/get_status_data()
+	var/list/status_data = list()
+	status_data["cut_away"] = status & ORGAN_CUT_AWAY
+	status_data["bleeding"] = status & ORGAN_BLEEDING
+	status_data["broken"] = status & ORGAN_BROKEN
+	status_data["destroyed"] = status & ORGAN_DESTROYED
+	status_data["splintered"] = status & ORGAN_SPLINTED
+	status_data["dead"] = status & ORGAN_DEAD
+	status_data["mutated"] = status & ORGAN_MUTATED
+	status_data["robotic"] = BP_IS_ROBOTIC(src)
+
+	return status_data
+
+
+/obj/item/organ/proc/get_surgery_target()
+	return owner ? owner : src
+
+
+/obj/item/organ/proc/owner_custom_pain(message, flash_strength)
+	if(BP_IS_ORGANIC(src) && !(status & ORGAN_DEAD) && ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.custom_pain(message, flash_strength)

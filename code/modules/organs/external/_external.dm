@@ -18,8 +18,8 @@
 	var/tally = 0
 
 	// Strings
-	var/broken_description             // fracture string if any.
-	var/damage_state = "00"            // Modifier used for generating the on-mob damage overlay for this limb.
+	var/broken_description				// fracture string if any.
+	var/damage_state = "00"				// Modifier used for generating the on-mob damage overlay for this limb.
 	var/damage_msg = "\red You feel an intense pain"
 
 	// Damage vars.
@@ -305,7 +305,7 @@
 		owner.verbs -= /mob/living/carbon/human/proc/undislocate
 
 /obj/item/organ/external/proc/setBleeding()
-	if(BP_IS_ROBOTIC(src) || owner.species.flags & NO_BLOOD)
+	if(BP_IS_ROBOTIC(src) || !owner || (owner.species.flags & NO_BLOOD))
 		return FALSE
 	status |= ORGAN_BLEEDING
 	return TRUE
@@ -344,8 +344,7 @@ This function completely restores a damaged organ to perfect condition.
 	owner.updatehealth()
 
 
-/obj/item/organ/external/proc/createwound(var/type = CUT, var/damage)
-
+/obj/item/organ/external/proc/createwound(type = CUT, damage)
 	if(damage == 0)
 		return
 
@@ -357,7 +356,7 @@ This function completely restores a damaged organ to perfect condition.
 	if(damage > 15 && type != BURN && local_damage > 30 && prob(damage) && !BP_IS_ROBOTIC(src))
 		var/datum/wound/internal_bleeding/I = new (min(damage - 15, 15))
 		wounds += I
-		owner.custom_pain("You feel something rip in your [name]!", 1)
+		owner_custom_pain("You feel something rip in your [name]!", 1)
 
 	// first check whether we can widen an existing wound
 	if(wounds.len > 0 && prob(max(50+(number_wounds-1)*10,90)))
@@ -371,7 +370,7 @@ This function completely restores a damaged organ to perfect condition.
 			if(compatible_wounds.len)
 				var/datum/wound/W = pick(compatible_wounds)
 				W.open_wound(damage)
-				if(prob(25))
+				if(owner && prob(25))
 					if(BP_IS_ROBOTIC(src))
 						owner.visible_message(
 							SPAN_DANGER("The damage to [owner.name]'s [name] worsens."),
@@ -696,8 +695,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 				"<span class='moderate'><b>Your [src.name] flashes away into ashes!</b></span>",\
 				SPAN_DANGER("You hear a crackling sound[gore]."))
 		if(DROPLIMB_BLUNT)
-			var/gore = "[BP_IS_ROBOTIC(src) ? "": " in shower of gore"]"
-			var/gore_sound = "[BP_IS_ROBOTIC(src) ? "rending sound of tortured metal" : "sickening splatter of gore"]"
+			var/gore = BP_IS_ROBOTIC(src) ? "": " in shower of gore"
+			var/gore_sound = BP_IS_ROBOTIC(src) ? "rending sound of tortured metal" : "sickening splatter of gore"
 			owner.visible_message(
 				SPAN_DANGER("\The [owner]'s [src.name] explodes[gore]!"),\
 				"<span class='moderate'><b>Your [src.name] explodes[gore]!</b></span>",\
@@ -711,8 +710,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(parent_organ)
 		var/datum/wound/lost_limb/W = new (src, disintegrate, clean)
 		if(clean)
-			parent_organ.wounds |= W
-			parent_organ.update_damages()
+			if(!BP_IS_ROBOTIC(src))
+				parent_organ.wounds |= W
+				parent_organ.update_damages()
 		else
 			var/obj/item/organ/external/stump/stump = new (victim, 0, src)
 			stump.wounds |= W
