@@ -191,6 +191,9 @@
 		/datum/design/autolathe/circuit/helm,
 		/datum/design/autolathe/circuit/nav,
 		/datum/design/autolathe/circuit/centrifuge,
+		/datum/design/autolathe/circuit/electrolyzer,
+		/datum/design/autolathe/circuit/reagentgrinder,
+
 	)
 
 
@@ -327,7 +330,6 @@
 		/datum/design/autolathe/gun/revolver_deckard,
 		/datum/design/autolathe/gun/revolver,
 		/datum/design/autolathe/gun/idaho, //smgs
-		/datum/design/autolathe/gun/wt550,
 		/datum/design/autolathe/gun/IH_smg,
 		/datum/design/autolathe/gun/atreides,
 		/datum/design/autolathe/gun/smg_sol, //other
@@ -364,7 +366,6 @@
 		/datum/design/autolathe/ammo/sl_c138_rubber, //speed loaders
 		/datum/design/autolathe/ammo/sl_cl44_rubber,
 		/datum/design/autolathe/ammo/smg9mm_rubber, //smg mags
-		/datum/design/autolathe/ammo/magazine_mc9mmt_rubber,
 		/datum/design/autolathe/ammo/c45smg_rubber,
 		/datum/design/autolathe/ammo/SMG_sol_rubber, //other mags
 		/datum/design/autolathe/ammo/a556_practice,
@@ -390,7 +391,6 @@
 		/datum/design/autolathe/ammo/sl_cl44_brute,
 		/datum/design/autolathe/ammo/magazine_sl357,
 		/datum/design/autolathe/ammo/smg9mm_brute, //smg mags
-		/datum/design/autolathe/ammo/magazine_mc9mmt,
 		/datum/design/autolathe/ammo/c45smg_brute,
 		/datum/design/autolathe/ammo/magazine_smg10mm,
 		/datum/design/autolathe/ammo/SMG_sol_brute, //other mags
@@ -474,4 +474,36 @@
 		/datum/design/autolathe/tool/jackhammer_onestar,
 		/datum/design/autolathe/tool/drill_onestar,
 		/datum/design/autolathe/tool/weldertool_onestar
+	)
+
+
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/neotheology
+	disk_name = "NeoTeology Pack"
+	icon_state = "neotheology"
+
+	designs = list(
+		/datum/design/autolathe/biomatter/meat,
+		/datum/design/autolathe/biomatter/milk,
+
+		/datum/design/autolathe/biomatter/ez,
+		/datum/design/autolathe/biomatter/l4z,
+		/datum/design/autolathe/biomatter/rh,
+
+		/datum/design/autolathe/biomatter/wallet,
+		/datum/design/autolathe/biomatter/botanic_leather,
+		/datum/design/autolathe/biomatter/leather/satchel,
+		/datum/design/autolathe/biomatter/leather/leather_jacket,
+		/datum/design/autolathe/biomatter/leather/cash_bag,
+		/datum/design/autolathe/biomatter/belt/utility,
+		/datum/design/autolathe/biomatter/belt/medical,
+		/datum/design/autolathe/biomatter/belt/security,
+		/datum/design/autolathe/biomatter/belt/medical/emt,
+		/datum/design/autolathe/biomatter/belt/misc/champion,
+
+		/datum/design/autolathe/biomatter/medical/bruise,
+		/datum/design/autolathe/biomatter/medical/splints,
+		/datum/design/autolathe/biomatter/medical/ointment,
+		/datum/design/autolathe/biomatter/medical/advanced/bruise,
+		/datum/design/autolathe/biomatter/medical/advanced/ointment,
 	)

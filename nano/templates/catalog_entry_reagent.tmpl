@@ -1,0 +1,182 @@
+<!-- 
+ -->
+{{if data.catalog_browse_stage == "entry" || data.catalog_browse_stage == "entry_entry"}}
+	{{if data.print_avaliable}}
+		{{:helper.link('PRINT', '', {'print_active' : 1})}}
+	{{/if}}
+	{{:helper.link('BACK', '', {'go_back_entry' : 1}, null, 'floatRight')}}
+	<br><br>
+	<div class="item">
+		<h1>{{:data.name}}</h1>
+	</div>
+	<div class="item">
+		<h4>Specifications:</h4>
+		{{if data.reagent_type}}
+			<div class="itemLabel">
+				Type:
+			</div>
+			<div class="itemContent">
+				{{:data.reagent_type}}.
+			</div>
+		{{/if}}
+		<div class="itemLabel">
+			Phase:
+		</div>
+		<div class="itemContent">
+			{{:data.reagent_state}} at STP.
+		</div>
+		<div class="itemLabel">
+			Metabolism:
+		</div>
+		<div class="itemContent">
+			{{:data.metabolism_blood}}u/s in blood.
+			{{if data.metabolism_stomach}}
+				<br>{{:data.metabolism_stomach}}u/s in stomach.
+			{{else}}
+				<br>{{:data.metabolism_blood/2}}u/s in stomach.
+			{{/if}}
+		</div>
+		<div class="itemLabel">
+			Nerve system accumulation:
+		</div>
+		<div class="itemContent">
+			{{:data.nsa}} units.
+		</div>
+		
+		{{if data.heating_decompose || data.chilling_decompose}}
+			<div class="itemLabel">
+				Decomposition:
+			</div>
+			<div class="itemContent">
+				{{if data.heating_decompose}}
+					Heating: Into 
+					{{for data.heating_decompose.types}}
+						{{:helper.catalogEntryLink(value)}}
+					{{/for}}
+					 at {{:data.heating_point}}k.
+				{{/if}}
+				{{if data.chilling_decompose}}
+					Chilling: Into 
+					{{for data.chilling_decompose.types}}
+						{{:helper.catalogEntryLink(value)}}
+					{{/for}}
+					 at {{:data.chilling_point}}k.
+				{{/if}}
+			</div>
+		{{/if}}
+		{{if data.result_of_decomposition_in}}
+			<div class="itemLabel">
+				Result of decomposition:
+			</div>
+			<div class="itemContent">
+				<div class="statusDisplay">
+					<table>
+						{{for data.result_of_decomposition_in}}
+							<tr>{{:helper.catalogEntryLink(value)}}
+						{{/for}}
+					</table>
+				</div>
+			</div>
+		{{/if}}
+		{{if data.recipe_data}}
+			<div class="itemLabel">
+				Recipe:
+			</div>
+			<div class="itemContent">
+				{{for data.recipe_data}}
+					<div class="statusDisplay" style="overflow: auto;">
+						{{for value.reagents :val:val_i}}
+							{{:val.parts}}{{:helper.catalogEntryLink(val.type)}}<br>
+						{{/for}}
+						{{for value.catalyst :val:val_i}}
+							In presense of {{:val.units}}u of {{:helper.catalogEntryLink(val.type)}}<br>
+						{{/for}}
+						{{if value.required_object}}
+							Should take place inside of {{:helper.catalogEntryLink(value.required_object)}}.
+						{{/if}}
+						{{:value.result_amount}}
+					</div>
+				{{/for}}
+			</div>
+		{{/if}}
+		<div class="itemLabel">
+			Is scannable:
+		</div>
+		<div class="itemContent">
+			{{:data.scannable}}.
+		</div>
+		{{if data.overdose}}
+			<div class="itemLabel">
+				Overdose at:
+			</div>
+			<div class="itemContent">
+				{{:data.overdose}}u.
+			</div>
+		{{/if}}
+		{{if data.can_be_used_in}}
+			<div class="itemLabel">
+				Takes part in reactions:
+			</div>
+			<div class="itemContent">
+				<div class="statusDisplay" style="overflow: auto;">
+						<table>
+						{{for data.can_be_used_in}}
+							<tr>{{:helper.catalogEntryLink(value)}}
+						{{/for}}
+					</table>
+				</div>
+			</div>
+		{{/if}}
+
+		<h4>Description:</h4>
+		<div class="item">
+			{{:data.description}}
+		</div>
+		<div class="item">
+			{{:data.taste}}
+		</div>
+		<div class="item">
+			Has <span class='colorBox' style='background-color:{{:data.color}}'></span> coloration.
+		</div>
+		{{if data.addiction_chance}}
+			<div class="item">
+				{{:data.addiction_chance}}
+			</div>
+		{{/if}}
+		{{if data.catalog_info_level_one}}
+			<div class="item">
+				{{:data.catalog_info_level_one}}
+			</div>
+		{{/if}}
+		{{if data.catalog_info_level_two}}
+			<div class="item">
+				{{:data.catalog_info_level_two}}
+			</div>
+		{{/if}}
+		{{if data.catalog_info_level_three}}
+			<div class="item">
+				{{:data.catalog_info_level_three}}
+			</div>
+		{{/if}}
+		{{if data.catalog_info_level_four}}
+			<div class="item">
+				{{:data.catalog_info_level_four}}
+			</div>
+		{{/if}}
+		{{if data.catalog_info_level_ooc}}
+			<div class="item">
+				{{:data.catalog_info_level_ooc}}
+			</div>
+		{{/if}}
+		{{if data.can_be_found_in}}
+			<h4>Can be found in:</h4>
+			<div class="statusDisplay" style="overflow: auto;">
+				<table style="width:100%;  overflow-wrap: break-all;">
+					{{for data.can_be_found_in}}
+						<tr>{{:helper.catalogEntryLink(value.type)}}
+					{{/for}}
+				</table>
+			</div>
+		{{/if}}
+	</div>
+{{/if}}

@@ -156,7 +156,7 @@
 	use_power(5)
 
 	active = 1
-	icon_state = "launcheract"
+	icon_state = "launcher1"
 
 	for(var/obj/machinery/sparker/M in SSmachines.machinery)
 		if (M.id == id)
@@ -169,7 +169,7 @@
 
 	sleep(50)
 
-	icon_state = "launcherbtt"
+	icon_state = "launcher0"
 	active = 0
 
 	return

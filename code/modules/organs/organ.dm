@@ -32,6 +32,8 @@
 	var/rejecting                     // Is this organ already being rejected?
 	matter = list(MATERIAL_BIOMATTER = 20)
 
+	var/death_time // limits organ self recovery
+
 /obj/item/organ/Destroy()
 	if(owner)
 		if(src in owner.contents)
@@ -94,6 +96,7 @@
 	damage = max_damage
 	status |= ORGAN_DEAD
 	STOP_PROCESSING(SSobj, src)
+	death_time = world.time
 	if(dead_icon)
 		icon_state = dead_icon
 	if(owner && vital)
@@ -123,7 +126,7 @@
 		return
 
 	if(!owner)
-		var/datum/reagent/blood/B = locate(/datum/reagent/blood) in reagents.reagent_list
+		var/datum/reagent/organic/blood/B = locate(/datum/reagent/organic/blood) in reagents.reagent_list
 		if(B && prob(40))
 			reagents.remove_reagent("blood",0.1)
 			blood_splatter(src,B,1)
@@ -283,7 +286,7 @@
 	forceMove(get_turf(owner))
 	START_PROCESSING(SSobj, src)
 	rejecting = null
-	var/datum/reagent/blood/organ_blood = locate(/datum/reagent/blood) in reagents.reagent_list
+	var/datum/reagent/organic/blood/organ_blood = locate(/datum/reagent/organic/blood) in reagents.reagent_list
 	if(!organ_blood || !organ_blood.data["blood_DNA"])
 		owner.vessel.trans_to(src, 5, 1, 1)
 
@@ -300,7 +303,7 @@
 
 	if(!istype(target)) return
 
-	var/datum/reagent/blood/transplant_blood = locate(/datum/reagent/blood) in reagents.reagent_list
+	var/datum/reagent/organic/blood/transplant_blood = locate(/datum/reagent/organic/blood) in reagents.reagent_list
 	transplant_data = list()
 	if(!transplant_blood)
 		transplant_data["species"] =    target.species.name
@@ -332,3 +335,15 @@
 			blood_DNA = list()
 		blood_DNA[H.dna.unique_enzymes] = H.dna.b_type
 	STOP_PROCESSING(SSobj, src)
+
+/obj/item/organ/proc/heal_damage(amount)
+	return
+
+/obj/item/organ/proc/can_recover()
+	return (max_damage > 0) && !(status & ORGAN_DEAD) || death_time >= world.time - ORGAN_RECOVERY_THRESHOLD
+
+/obj/item/organ/proc/can_feel_pain()
+	return (!BP_IS_ROBOTIC(src) && (!species || !(species.flags & NO_PAIN)))
+
+/obj/item/organ/proc/is_usable()
+	return !(status & (ORGAN_CUT_AWAY|ORGAN_MUTATED|ORGAN_DEAD))

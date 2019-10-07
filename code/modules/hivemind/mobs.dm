@@ -552,7 +552,7 @@
 	melee_damage_upper = 15
 	mob_size = MOB_LARGE
 	attacktext = "crushes"
-	ability_cooldown = 1 MINUTE
+	ability_cooldown = 1 MINUTES
 	speak_chance = 5
 	speed = 16
 	//internals
@@ -876,7 +876,7 @@
 	animate(src, pixel_x=init_px + 16*pick(-1, 1), time=5)
 	animate(pixel_x=init_px, time=6, easing=SINE_EASING)
 	animate(filters[1], size = 5, time = 5, flags = ANIMATION_PARALLEL)
-	addtimer(CALLBACK(src, .proc/phase_jump, new_place), 0.5 SECOND)
+	addtimer(CALLBACK(src, .proc/phase_jump, new_place), 0.5 SECONDS)
 
 
 //second part - is jump to target

@@ -13,7 +13,7 @@
 	var/burning = null
 	var/hitsound = null
 	var/worksound = null
-	var/storage_cost = null
+	var/reduced_storage_cost = FALSE //Changes the get_storage_cost proc in storage.dm to use a different function to lower storage space.
 	var/no_attack_log = 0			//If it's an item we don't want to log attack_logs with, set this to 1
 	pass_flags = PASSTABLE
 
@@ -163,7 +163,7 @@
 		R.activate_module(src)
 //		R.hud_used.update_robot_modules_display()
 
-/obj/item/proc/talk_into(mob/M, text)
+/obj/item/proc/talk_into(mob/living/M, message, channel, var/verb = "says", var/datum/language/speaking = null, var/speech_volume)
 	return
 
 /obj/item/proc/moved(mob/user as mob, old_loc as turf)

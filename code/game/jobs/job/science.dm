@@ -32,9 +32,10 @@
 
 	// TODO: enable after baymed
 	software_on_spawn = list(/datum/computer_file/program/comm,
-							 ///datum/computer_file/program/aidiag,
-							 /datum/computer_file/program/camera_monitor,
-							 /datum/computer_file/program/reports)
+							///datum/computer_file/program/aidiag,
+							/datum/computer_file/program/camera_monitor,
+							/datum/computer_file/program/chem_catalog,
+							/datum/computer_file/program/reports)
 
 	description = "You are the head of the moebius research branch, tasked with directing shipboard research to new and profitable discoveries."
 
@@ -68,6 +69,8 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 
 	//alt_titles = list("Moebius Xenobiologist")
 	outfit_type = /decl/hierarchy/outfit/job/science/scientist
+
+	software_on_spawn = list(/datum/computer_file/program/chem_catalog)
 
 	access = list(
 		access_robotics, access_tox, access_tox_storage, access_moebius, access_xenobiology, access_xenoarch,
@@ -127,6 +130,8 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 	access = list(
 		access_robotics, access_tox, access_tox_storage, access_tech_storage, access_morgue, access_moebius
 	) //As a job that handles so many corpses, it makes sense for them to have morgue access.
+
+	software_on_spawn = list(/datum/computer_file/program/chem_catalog)
 
 	stat_modifiers = list(
 		STAT_MEC = 30,

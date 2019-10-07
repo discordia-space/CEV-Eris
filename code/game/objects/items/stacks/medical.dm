@@ -116,6 +116,7 @@
 	icon_state = "brutepack"
 	origin_tech = list(TECH_BIO = 1)
 	heal_brute = 4
+	preloaded_reagents = list("silicon" = 4, "ethanol" = 8)
 
 /obj/item/stack/medical/bruise_pack/attack(mob/living/carbon/M, mob/living/user)
 	if(..())
@@ -208,6 +209,7 @@
 	icon_state = "ointment"
 	heal_burn = 4
 	origin_tech = list(TECH_BIO = 1)
+	preloaded_reagents = list("silicon" = 4, "carbon" = 8)
 
 /obj/item/stack/medical/ointment/attack(mob/living/carbon/M, mob/living/user)
 	if(..())
@@ -269,7 +271,7 @@
 	automatic_charge_overlays = TRUE
 	consumable = FALSE	// Will the stack disappear entirely once the amount is used up?
 	splittable = FALSE	// Is the stack capable of being splitted?
-
+	preloaded_reagents = list("silicon" = 4, "ethanol" = 10, "lithium" = 4)
 
 /obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M, mob/living/user)
 	if(..())
@@ -365,6 +367,7 @@
 	automatic_charge_overlays = TRUE
 	consumable = FALSE	// Will the stack disappear entirely once the amount is used up?
 	splittable = FALSE	// Is the stack capable of being splitted?
+	preloaded_reagents = list("silicon" = 4, "ethanol" = 10, "mercury" = 4)
 
 /obj/item/stack/medical/advanced/ointment/attack(mob/living/carbon/M, mob/living/user)
 	if(..())

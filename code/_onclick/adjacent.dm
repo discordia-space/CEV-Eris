@@ -105,22 +105,6 @@ Quick adjacency (to turf):
 			return loc.Adjacent(neighbor, recurse - 1)
 		return FALSE
 	return ..()
-/*
-	Special case: This allows you to reach a door when it is visally on top of,
-	but technically behind, a fire door
-
-	You could try to rewrite this to be faster, but I'm not sure anything would be.
-	This can be safely removed if border firedoors are ever moved to be on top of doors
-	so they can be interacted with without opening the door.
-*/
-/obj/machinery/door/Adjacent(var/atom/neighbor)
-	var/obj/machinery/door/firedoor/border_only/BOD = locate() in loc
-	if(BOD)
-		BOD.throwpass = TRUE // allow click to pass
-		. = ..()
-		BOD.throwpass = FALSE
-		return .
-	return ..()
 
 /*
 	Check if obj block pass in any direction like windows, windor, etc

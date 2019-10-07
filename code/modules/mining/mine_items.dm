@@ -22,7 +22,7 @@
 	new /obj/item/weapon/cell/medium(src)
 	new /obj/item/weapon/cell/small(src)
 	new /obj/item/weapon/tool_upgrade/augment/fuel_tank(src)
-	new /obj/item/device/scanner/analyzer(src)
+	new /obj/item/device/scanner/gas(src)
 	new /obj/item/weapon/storage/bag/ore(src)
 	new /obj/item/device/lighting/toggleable/flashlight/heavy(src)
 	new /obj/item/weapon/tool/shovel(src)

@@ -9,6 +9,8 @@
 	move_to_delay = 7
 	mob_size = MOB_MEDIUM
 	density = 1
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/panzer
+
 
 
 

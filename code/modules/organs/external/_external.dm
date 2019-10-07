@@ -562,19 +562,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 		// Internal wounds get worse over time. Low temperatures (cryo) stop them.
 		if(W.internal && owner.bodytemperature >= 170)
-			var/bicardose = owner.reagents.get_reagent_amount("bicaridine")
-			var/inaprovaline = owner.reagents.get_reagent_amount("inaprovaline")
-			//bicaridine and inaprovaline stop internal wounds from growing bigger with time,
+			//meds can stop internal wounds from growing bigger with time,
 			// unless it is so small that it is already healing
-			if(!(W.can_autoheal() || (bicardose && inaprovaline)))
+			if(!(W.can_autoheal() || owner.chem_effects[CE_STABLE] || owner.chem_effects[CE_BLOODCLOT] > 0.1))
 				W.open_wound(0.05 * wound_update_accuracy)
-			if(bicardose >= 30)	//overdose of bicaridine begins healing IB
-				W.damage = max(0, W.damage - 0.2)
-
-			//line should possibly be moved to handle_blood, so all the bleeding stuff is in one place.
-			owner.vessel.remove_reagent("blood", wound_update_accuracy * W.damage/75)
-			if(prob(1 * wound_update_accuracy))
-				owner.custom_pain("You feel a stabbing pain in your [name]!",1)
 
 		// slow healing
 		var/heal_amt = 0
@@ -589,6 +580,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 		heal_amt = heal_amt * ORGAN_REGENERATION_MULTIPLIER
 		// amount of healing is spread over all the wounds
 		heal_amt = heal_amt / (wounds.len + 1)
+		//treated wounds heal faster
+		if(W.is_treated())
+			heal_amt = heal_amt * 1.3
+		// bloodcloting promotes natural healing
+		if(owner.chem_effects[CE_BLOODCLOT])
+			heal_amt *= 1 + owner.chem_effects[CE_BLOODCLOT]
 		// making it look prettier on scanners
 		heal_amt = round(heal_amt,0.1)
 		W.heal_damage(heal_amt)
@@ -837,14 +834,15 @@ Note that amputating the affected organ does in fact remove the infection from t
 		W.germ_level = 0
 	return rval
 
-/obj/item/organ/external/proc/clamp()
-	var/rval = 0
+/obj/item/organ/external/proc/clamp_wounds()
+	var/rval = FALSE
+
 	src.stopBleeding()
 	for(var/datum/wound/W in wounds)
 		if(W.internal)
 			continue
 		rval |= !W.clamped
-		W.clamped = 1
+		W.clamped = TRUE
 	return rval
 
 /obj/item/organ/external/proc/fracture()
@@ -916,9 +914,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(W.germ_level > INFECTION_LEVEL_ONE)
 			return 1
 	return 0
-
-/obj/item/organ/external/proc/is_usable()
-	return !is_dislocated() && !(status & (ORGAN_MUTATED|ORGAN_DEAD))
 
 /obj/item/organ/external/proc/is_malfunctioning()
 	return (BP_IS_ROBOTIC(src) && (brute_dam + burn_dam) >= 10 && prob(brute_dam + burn_dam))
@@ -1023,3 +1018,11 @@ Note that amputating the affected organ does in fact remove the infection from t
 					flavor_text += "a ton of [wound]\s"
 		return english_list(flavor_text)
 
+/obj/item/organ/external/is_usable()
+	return !is_dislocated() && !(status & (ORGAN_MUTATED|ORGAN_DEAD))
+
+/obj/item/organ/external/proc/has_internal_bleeding()
+	for(var/datum/wound/W in wounds) 
+		if(W.internal)
+			return TRUE
+	return FALSE

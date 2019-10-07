@@ -229,7 +229,7 @@
 	if (active)
 		force = 30
 		icon_state = "sword[item_color]"
-		w_class = ITEM_SIZE_LARGE
+		w_class = ITEM_SIZE_BULKY
 		playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
 		to_chat(user, SPAN_NOTICE("[src] is now active."))
 	else
@@ -251,7 +251,7 @@
 	name = "basketball"
 	item_state = "basketball"
 	desc = "Here's your chance, do your dance at the Space Jam."
-	w_class = ITEM_SIZE_LARGE //Stops people from hiding it in their bags/pockets
+	w_class = ITEM_SIZE_BULKY //Stops people from hiding it in their bags/pockets
 
 /obj/structure/holohoop
 	name = "basketball hoop"

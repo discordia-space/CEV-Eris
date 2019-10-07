@@ -91,6 +91,8 @@
 		var/obj/item/weapon/implant/core_implant/cruciform/C = get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 		if (C)
 			stat("Cruciform", "[C.power]/[C.max_power]")
+	else if(mind)
+		statpanel("Perks",src.stats.perk_stat)
 
 /mob/living/carbon/human/ex_act(severity)
 	if(!blinded)
@@ -677,7 +679,7 @@ var/list/rank_prefix = list(\
 		return 0
 	return 1
 
-/mob/living/carbon/human/proc/vomit()
+/mob/living/carbon/human/vomit()
 
 	if(!check_has_mouth())
 		return
@@ -939,6 +941,8 @@ var/list/rank_prefix = list(\
 /mob/living/carbon/human/proc/get_full_print()
 	if(!dna ||!dna.uni_identity)
 		return
+	if(chem_effects[CE_DYNAMICFINGERS])
+		return md5(chem_effects[CE_DYNAMICFINGERS])
 	return md5(dna.uni_identity)
 
 /mob/living/carbon/human/clean_blood(var/clean_feet)
@@ -1125,6 +1129,12 @@ var/list/rank_prefix = list(\
 	for(var/obj/item/organ/organ in (organs|internal_organs))
 		qdel(organ)
 
+	var/obj/item/weapon/implant/core_implant/CI = get_core_implant()
+	var/checkprefcruciform = FALSE	// To reset the cruciform to original form
+	if(CI)
+		checkprefcruciform = TRUE
+		qdel(CI)
+
 	if(organs.len)
 		organs.Cut()
 	if(internal_organs.len)
@@ -1165,11 +1175,13 @@ var/list/rank_prefix = list(\
 				var/organ_type = species.has_organ[tag]
 				new organ_type(src)
 
-		// Qualifies for a cruciform: spawn it and install it
-		if(Pref.religion == "NeoTheology" || (mind && mind.assigned_job && mind.assigned_job.department == DEPARTMENT_CHURCH))
-			var/obj/item/weapon/implant/core_implant/cruciform/C = new /obj/item/weapon/implant/core_implant/cruciform
+		var/datum/category_item/setup_option/core_implant/I = Pref.get_option("Core implant")
+		if(I.implant_type)
+			var/obj/item/weapon/implant/core_implant/C = new I.implant_type
 			C.install(src)
 			C.activate()
+			C.install_default_modules_by_job(mind.assigned_job)
+			C.access.Add(mind.assigned_job.cruciform_access)
 
 	else
 		var/organ_type = null
@@ -1181,6 +1193,15 @@ var/list/rank_prefix = list(\
 		for(var/organ_tag in species.has_organ)
 			organ_type = species.has_organ[organ_tag]
 			new organ_type(src)
+		
+		if(checkprefcruciform)
+			var/datum/category_item/setup_option/core_implant/I = client.prefs.get_option("Core implant")
+			if(I.implant_type)
+				var/obj/item/weapon/implant/core_implant/C = new I.implant_type
+				C.install(src)
+				C.activate()
+				C.install_default_modules_by_job(mind.assigned_job)
+				C.access.Add(mind.assigned_job.cruciform_access)
 
 	species.organs_spawned(src)
 
@@ -1472,20 +1493,6 @@ var/list/rank_prefix = list(\
 		return FALSE
 	return (species && species.has_organ[organ_check])
 
-/mob/living/carbon/human/has_appendage(var/appendage_check)	//returns TRUE if found, type of organ modification if limb is robotic, FALSE if not found
-
-	if (appendage_check == BP_CHEST)
-		return TRUE
-
-	var/obj/item/organ/external/appendage
-	appendage = organs_by_name[appendage_check]
-
-	if(appendage && !appendage.is_stump())
-		if(BP_IS_ROBOTIC(appendage))
-			return appendage.nature
-		else return TRUE
-	return FALSE
-
 /mob/living/carbon/human/proc/check_self_for_injuries()
 	if(stat)
 		return
@@ -1535,3 +1542,9 @@ var/list/rank_prefix = list(\
 			status_text = SPAN_WARNING(english_list(status))
 
 		src.show_message("My [org.name] is [status_text].",1)
+
+/mob/living/carbon/human/need_breathe()
+	if(!(mNobreath in mutations))
+		return TRUE
+	else
+		return FALSE

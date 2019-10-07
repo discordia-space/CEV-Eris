@@ -400,16 +400,19 @@
 				
 				{{for data.techs}}
 					<div style="position: absolute; left: {{:value.x}}%; bottom: {{:value.y}}%;margin-left: -20px;margin-bottom: -20px;">
-						{{:helper.link("<div class='sciTechTreeIcon icon-"+value.icon+"'></div>", '', {'select_technology' : value.id}, null, "link sciTechTreeIconBox "+" "+((value.canresearch==0 && value.isresearched!=1)?'sciTechCantResearch':'')+" "+((value.isresearched==1)?'sciTechResearched':'')+" "+((value.id == data.selected_technology_id)?'sciTechSelected':'') )}}
+						{{:helper.link("<div class='sciTechTreeIcon icon-"+value.icon+"'><span><img align='center' class='sciTechTreeIconToolTip icon-"+value.icon+"'><br><b>"+value.name+"</b><hr>"+value.description+"</span></div>", '', {'select_technology' : value.id}, null, "link sciTechTreeIconBox "+" "+((value.canresearch==0 && value.isresearched!=1)?'sciTechCantResearch':'')+" "+((value.isresearched==1)?'sciTechResearched':'')+" "+((value.id == data.selected_technology_id)?'sciTechSelected':'') )}}
 					</div>
 				{{/for}}
 			</div>
 		</td>
 			<td style="width: 200px" valign="top">
 				{{if data.selected_technology}}
-					<b>Name</b></br>
+					<b>Name</b><br>
 					{{:data.selected_technology.name}}
-					</br></br>
+					<br><br>
+					<b>Description</b><br>
+					{{:data.selected_technology.desc}}
+					<br><br>
 					<b>Cost</b></br>
 					{{:data.selected_technology.cost}} Research Points
 					</br></br>

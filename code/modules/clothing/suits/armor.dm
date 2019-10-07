@@ -32,6 +32,32 @@
 	armor = list(melee = 30, bullet = 30, energy = 15, bomb = 15, bio = 0, rad = 0)
 	price_tag = 150
 
+/obj/item/clothing/suit/armor/vest/botanist
+	name = "Argolyte attire"
+	desc = "Every rose has its thorn."
+	icon_state = "botanist"
+	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	armor = list(melee = 35, bullet = 20, energy = 20, bomb = 25, bio = 100, rad = 80)
+	flags_inv = HIDEJUMPSUIT
+
+/obj/item/clothing/suit/armor/vest/acolyte
+	name = "Acolyte armor"
+	desc = "Worn heavy, steadfast in the name of God."
+	icon_state = "acolyte"
+	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	armor = list(melee = 35, bullet = 20, energy = 20, bomb = 25, bio = 100, rad = 80)
+	flags_inv = HIDEJUMPSUIT
+
+/obj/item/clothing/suit/armor/vest/custodian
+	name = "Custodian armor"
+	desc = "Someone's gotta clean this mess."
+	icon_state = "custodian"
+	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	armor = list(melee = 35, bullet = 20, energy = 20, bomb = 25, bio = 100, rad = 80)
+	flags_inv = HIDEJUMPSUIT
 
 /obj/item/clothing/suit/armor/riot
 	name = "riot suit"
@@ -246,7 +272,7 @@
 	desc = "A heavily armored suit that protects against moderate damage."
 	icon_state = "heavy"
 	item_state = "swat_suit"
-	w_class = ITEM_SIZE_LARGE//bulky item
+	w_class = ITEM_SIZE_BULKY//bulky item
 	gas_transfer_coefficient = 0.90
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	slowdown = 3

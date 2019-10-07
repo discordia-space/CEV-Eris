@@ -236,7 +236,7 @@ LINEN BINS
 		amount++
 		to_chat(user, SPAN_NOTICE("You put [I] in [src]."))
 	//make sure there's sheets to hide it among, make sure nothing else is hidden in there.
-	else if(amount && !hidden && I.w_class < ITEM_SIZE_LARGE)
+	else if(amount && !hidden && I.w_class < ITEM_SIZE_BULKY)
 		user.drop_item()
 		I.loc = src
 		hidden = I

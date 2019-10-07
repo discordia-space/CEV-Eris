@@ -5,7 +5,7 @@
 	icon_state = "generic"
 	density = 1
 	layer = BELOW_OBJ_LAYER
-	w_class = ITEM_SIZE_HUGE
+	w_class = ITEM_SIZE_NO_CONTAINER
 	var/locked = FALSE
 	var/broken = FALSE
 	var/horizontal = FALSE
@@ -78,7 +78,7 @@
 		// adjust locker size to hold all items with 5 units of free store room
 		var/content_size = 0
 		for(I in src.contents)
-			content_size += Ceiling(I.w_class/2)
+			content_size += CEILING(I.w_class * 0.5, 1)
 		if(content_size > storage_capacity-5)
 			storage_capacity = content_size + 5
 
@@ -87,7 +87,7 @@
 		var/content_size = 0
 		for(var/obj/item/I in src.contents)
 			if(!I.anchored)
-				content_size += Ceiling(I.w_class/2)
+				content_size += CEILING(I.w_class * 0.5, 1)
 		if(!content_size)
 			to_chat(user, "It is empty.")
 		else if(storage_capacity > content_size*4)
@@ -213,7 +213,7 @@
 		return
 	update_icon()
 
-/obj/structure/closet/proc/togglelock(mob/user as mob, var/obj/item/weapon/card/id/id_card)
+/obj/structure/closet/proc/togglelock(mob/user as mob)
 	var/ctype = istype(src,/obj/structure/closet/crate) ? "crate" : "closet"
 	if(!secure)
 		return
@@ -224,7 +224,7 @@
 	if(src.broken)
 		to_chat(user, SPAN_WARNING("The [ctype] appears to be broken."))
 		return
-	if(CanToggleLock(user, id_card))
+	if(CanToggleLock(user))
 		set_locked(!locked, user)
 	else
 		to_chat(user, SPAN_NOTICE("Access Denied"))
@@ -233,13 +233,7 @@
 	if(Adjacent(user))
 		src.togglelock(user)
 
-/obj/structure/closet/proc/CanToggleLock(var/mob/user, var/obj/item/weapon/card/id/id_card)
-	if (istype(user))
-		id_card = id_card || user.GetIdCard()
-
-	if (istype(id_card))
-		return check_access_list(id_card.GetAccess())
-
+/obj/structure/closet/proc/CanToggleLock(var/mob/user)
 	return allowed(user)
 
 /obj/structure/closet/proc/set_locked(var/newlocked, mob/user = null)
@@ -273,7 +267,7 @@
 /obj/structure/closet/proc/store_items(var/stored_units)
 	var/added_units = 0
 	for(var/obj/item/I in src.loc)
-		var/item_size = Ceiling(I.w_class / 2)
+		var/item_size = CEILING(I.w_class / 2, 1)
 		if(stored_units + added_units + item_size > storage_capacity)
 			continue
 		if(!I.anchored)

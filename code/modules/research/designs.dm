@@ -93,12 +93,12 @@ other types of metals and chemistry for reagents).
 
 /datum/design/research/item/medical/reagent_scanner
 	desc = "A device for identifying chemicals."
-	build_path = /obj/item/device/scanner/reagent_scanner
+	build_path = /obj/item/device/scanner/reagent
 	sort_string = "MACBA"
 
 /datum/design/research/item/medical/adv_reagent_scanner
 	desc = "A device for identifying chemicals and their proportions."
-	build_path = /obj/item/device/scanner/reagent_scanner/adv
+	build_path = /obj/item/device/scanner/reagent/adv
 	sort_string = "MACBB"
 
 /datum/design/research/item/beaker
@@ -126,6 +126,13 @@ other types of metals and chemistry for reagents).
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field."
 	build_path = /obj/item/weapon/tool/scalpel/laser
 	sort_string = "MBBAA"
+
+/datum/design/research/item/makeshift_centrifuge
+	name = "Portable centrifuge"
+	desc = "A centrifuge with manual mechanism."
+	build_path = /obj/item/device/makeshift_centrifuge
+	sort_string = "MBBAA"
+	
 
 
 

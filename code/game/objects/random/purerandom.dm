@@ -6,7 +6,6 @@
 /obj/random/lowkeyrandom/item_to_spawn()
 	return pickweight(list(
 				/obj/item/weapon/storage/box/shotgunammo/beanbags = 1,
-				/obj/item/ammo_magazine/mc9mmt/rubber = 1,
 				/obj/item/weapon/storage/box/matches = 3,
 				/obj/item/stack/material/cardboard = 2,
 				/obj/item/weapon/cell/large = 3,
@@ -18,8 +17,8 @@
 				/obj/item/weapon/cigbutt = 4,
 				/obj/item/device/t_scanner = 2,
 				/obj/random/voidsuit/damaged = 3,
-				/obj/item/device/scanner/analyzer = 2,
-				/obj/item/device/scanner/healthanalyzer = 2,
+				/obj/item/device/scanner/gas = 2,
+				/obj/item/device/scanner/health = 2,
 				/obj/item/weapon/storage/belt/utility/full = 6,
 				/obj/item/weapon/storage/belt/medical = 6,
 				/obj/item/weapon/storage/belt/security = 6,

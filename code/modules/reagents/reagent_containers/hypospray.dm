@@ -86,7 +86,7 @@
 	amount_per_transfer_from_this = 5
 	reagent_flags = REFILLABLE | DRAINABLE | AMOUNT_VISIBLE
 	volume = 5
-	preloaded = list("inaprovaline" = 5)
+	preloaded_reagents = list("inaprovaline" = 5)
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/on_reagent_change()
 	..()

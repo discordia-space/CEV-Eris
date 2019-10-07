@@ -5,7 +5,7 @@
 	desc = "A tank of compressed gas for use as propulsion in zero-gravity areas. Use with caution."
 	icon_state = "jetpack"
 	gauge_icon = null
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 	item_state = "jetpack"
 	force = WEAPON_FORCE_PAINFUL
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD

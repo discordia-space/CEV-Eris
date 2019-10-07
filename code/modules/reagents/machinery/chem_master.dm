@@ -10,7 +10,6 @@
 	use_power = 1
 	idle_power_usage = 20
 	var/obj/item/weapon/reagent_containers/glass/beaker = null
-	var/obj/item/weapon/storage/pill_bottle/loaded_pill_bottle = null
 	var/mode = 0
 	var/condi = 0
 	var/useramount = 30 // Last used amount
@@ -18,7 +17,7 @@
 	var/bottlesprite = "bottle-1" //yes, strings
 	var/pillsprite = "1"
 	var/client/has_sprites = list()
-	var/max_pill_count = 20
+	var/max_pill_count = 24
 	reagent_flags = OPENCONTAINER
 
 /obj/machinery/chem_master/RefreshParts()
@@ -43,7 +42,25 @@
 			if (prob(50))
 				qdel(src)
 
+/obj/machinery/chem_master/MouseDrop_T(atom/movable/I, mob/user, src_location, over_location, src_control, over_control, params)
+	if(!Adjacent(user) || !I.Adjacent(user) || user.stat)
+		return ..()
+	if(istype(I, /obj/item/weapon/reagent_containers) && I.is_open_container() && !beaker)
+		I.forceMove(src)
+		I.add_fingerprint(user)
+		src.beaker = I
+		to_chat(user, SPAN_NOTICE("You add [I] to [src]."))
+		updateUsrDialog()
+		icon_state = "mixer1"
+		return
+	. = ..()
+
 /obj/machinery/chem_master/attackby(var/obj/item/weapon/B as obj, var/mob/user as mob)
+	if(default_deconstruction(B, user))
+		return
+
+	if(default_part_replacement(B, user))
+		return
 
 	if(istype(B, /obj/item/weapon/reagent_containers/glass))
 
@@ -54,30 +71,15 @@
 		if (usr.unEquip(B, src))
 			src.beaker = B
 			to_chat(user, "You add the beaker to the machine!")
-			src.updateUsrDialog()
 			icon_state = "mixer1"
+		updateUsrDialog()
 
-	else if(istype(B, /obj/item/weapon/storage/pill_bottle))
-
-		if(src.loaded_pill_bottle)
-			to_chat(user, "A pill bottle is already loaded into the machine.")
-			return
-
-
-		if (usr.unEquip(B, src))
-			src.loaded_pill_bottle = B
-			to_chat(user, "You add the pill bottle into the dispenser slot!")
-			src.updateUsrDialog()
 	return
 
 /obj/machinery/chem_master/Topic(href, href_list)
 	if(..())
 		return 1
 
-	if (href_list["ejectp"])
-		if(loaded_pill_bottle)
-			loaded_pill_bottle.loc = src.loc
-			loaded_pill_bottle = null
 	else if(href_list["close"])
 		usr << browse(null, "window=chemmaster")
 		usr.unset_machine()
@@ -89,7 +91,7 @@
 			var/dat = ""
 			if(!condi)
 				if(href_list["name"] == "Blood")
-					var/datum/reagent/blood/G
+					var/datum/reagent/organic/blood/G
 					for(var/datum/reagent/F in R.reagent_list)
 						if(F.name == href_list["name"])
 							G = F
@@ -108,7 +110,7 @@
 		else if (href_list["add"])
 			if(href_list["amount"])
 				var/id = href_list["add"]
-				var/amount = Clamp(text2num(href_list["amount"]), 0, reagents.get_free_space())
+				var/amount = CLAMP(text2num(href_list["amount"]), 0, reagents.get_free_space())
 				R.trans_id_to(src, id, amount)
 				if(reagents.get_free_space() < 1)
 					to_chat(usr, SPAN_WARNING("The [name] is full!"))
@@ -120,7 +122,7 @@
 		else if (href_list["remove"])
 			if(href_list["amount"])
 				var/id = href_list["remove"]
-				var/amount = Clamp(text2num(href_list["amount"]), 0, beaker.reagents.get_free_space())
+				var/amount = CLAMP(text2num(href_list["amount"]), 0, beaker.reagents.get_free_space())
 				if(mode)
 					reagents.trans_id_to(beaker, id, amount)
 					if(beaker.reagents.get_free_space() < 1)
@@ -145,27 +147,45 @@
 				beaker = null
 				reagents.clear_reagents()
 				icon_state = "mixer0"
+
 		else if (href_list["createpill"] || href_list["createpill_multiple"])
-			var/count = 1
+			var/count = 0
+			var/amount_per_pill = 0
 
-			if(reagents.total_volume/count < 1) //Sanity checking.
+			if(!reagents.total_volume) //Sanity checking.
 				return
-
+			var/create_pill_bottle = FALSE
 			if (href_list["createpill_multiple"])
-				count = input("Select the number of pills to make.", "Max [max_pill_count]", pillamount) as num
-				count = Clamp(count, 1, max_pill_count)
+				if(alert("Create bottle ?","Container.","Yes","No") == "Yes")
+					create_pill_bottle = TRUE
+				switch(alert("How to create pills.","Choose method.","By amount","By volume"))
+					if("By amount")
+						count = input("Select the number of pills to make.", "Max [max_pill_count]", pillamount) as num
+						if (count > max_pill_count)
+							alert("Maximum supported pills amount is [max_pill_count]","Error.","Ok")
+							return
+						count = CLAMP(count, 1, max_pill_count)
+					if("By volume")
+						amount_per_pill = input("Select the volume that single pill should contain.", "Max [R.total_volume]", 5) as num
+						amount_per_pill = CLAMP(amount_per_pill, 1, reagents.total_volume)
+					else
+						return
+			else
+				count = 1
 
-			if(reagents.total_volume/count < 1) //Sanity checking.
-				return
+			if(count)
+				if(reagents.total_volume < count) //Sanity checking.
+					return
+				amount_per_pill = reagents.total_volume/count
 
-			var/amount_per_pill = reagents.total_volume/count
 			if (amount_per_pill > 60) amount_per_pill = 60
 
 			var/name = sanitizeSafe(input(usr,"Name:","Name your pill!","[reagents.get_master_reagent_name()] ([amount_per_pill] units)"), MAX_NAME_LEN)
-
-			if(reagents.total_volume/count < 1) //Sanity checking.
-				return
-			while (count--)
+			var/obj/item/weapon/storage/pill_bottle/PB
+			if(create_pill_bottle)
+				PB = new(get_turf(src))
+				PB.name = "[PB.name] ([name])"
+			while (reagents.total_volume)
 				var/obj/item/weapon/reagent_containers/pill/P = new/obj/item/weapon/reagent_containers/pill(src.loc)
 				if(!name) name = reagents.get_master_reagent_name()
 				P.name = "[name] pill"
@@ -173,10 +193,9 @@
 				P.pixel_y = rand(-7, 7)
 				P.icon_state = "pill"+pillsprite
 				reagents.trans_to_obj(P,amount_per_pill)
-				if(src.loaded_pill_bottle)
-					if(loaded_pill_bottle.contents.len < loaded_pill_bottle.max_storage_space)
-						P.loc = loaded_pill_bottle
-						src.updateUsrDialog()
+				if(PB)
+					P.forceMove(PB)
+					src.updateUsrDialog()
 
 		else if (href_list["createbottle"])
 			if(!condi)
@@ -188,7 +207,7 @@
 				P.pixel_y = rand(-7, 7)
 				P.icon_state = bottlesprite
 				reagents.trans_to_obj(P,60)
-				P.update_icon()
+				P.toggle_lid()
 			else
 				var/obj/item/weapon/reagent_containers/food/condiment/P = new/obj/item/weapon/reagent_containers/food/condiment(src.loc)
 				reagents.trans_to_obj(P,50)
@@ -233,18 +252,10 @@
 	var/dat = ""
 	if(!beaker)
 		dat = "Please insert beaker.<BR>"
-		if(src.loaded_pill_bottle)
-			dat += "<A href='?src=\ref[src];ejectp=1'>Eject Pill Bottle \[[loaded_pill_bottle.contents.len]/[loaded_pill_bottle.max_storage_space]\]</A><BR><BR>"
-		else
-			dat += "No pill bottle inserted.<BR><BR>"
 		dat += "<A href='?src=\ref[src];close=1'>Close</A>"
 	else
 		var/datum/reagents/R = beaker:reagents
 		dat += "<A href='?src=\ref[src];eject=1'>Eject beaker and Clear Buffer</A><BR>"
-		if(src.loaded_pill_bottle)
-			dat += "<A href='?src=\ref[src];ejectp=1'>Eject Pill Bottle \[[loaded_pill_bottle.contents.len]/[loaded_pill_bottle.max_storage_space]\]</A><BR><BR>"
-		else
-			dat += "No pill bottle inserted.<BR><BR>"
 		if(!R.total_volume)
 			dat += "Beaker is empty."
 		else

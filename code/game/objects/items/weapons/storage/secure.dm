@@ -149,7 +149,7 @@
 	force = WEAPON_FORCE_NORMAL
 	throw_speed = 1
 	throw_range = 4
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 
 	attack_hand(mob/user as mob)
 		if ((src.loc == user) && (src.locked == 1))

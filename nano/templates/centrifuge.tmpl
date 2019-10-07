@@ -1,0 +1,130 @@
+<div class="item">
+	<h3>Control panel</h3>
+</div>
+{{if !data.minimal}}
+	<div class="item">
+		{{:helper.link(data.on ? 'Busy' : 'Start spin cycle', 'play', { 'power' : 1 }, data.on ? 'selected' : !data.mainBeaker ? 'disabled' : null)}}
+	</div>
+{{/if}}
+<div class="itemLabel">
+	Status: 
+</div>
+{{if data.on}}
+	<div class="itemContent">
+		<div class="statusDisplay">
+			<span class="good">
+				Spinning...
+			</span>
+		</div>
+	</div>
+{{else}}
+	<div class="itemContent">
+		<div class="statusDisplay">
+			<span style="color: #4d4d4d; font-weight: bold;">
+				Idle
+			</span>
+		</div>
+	</div>
+{{/if}}
+{{if !data.minimal}}
+	{{if data.on}}
+		<div class="itemLabel">
+			Time left: 
+		</div>
+		<div class="itemContent">
+			{{:data.timeLeft}}
+		</div>
+	{{/if}}
+{{/if}}
+<div class="item">
+	<h4>Settings:</h4>
+</div>
+	<div class="itemLabel">
+		Mode: 
+	</div>
+	<div class="itemContent">
+		{{:helper.link('Separation', '', { 'setMode' : 0 }, data.mode == 0 ? 'selected' : data.on ? 'disabled' : null)}}
+		{{:helper.link('Synthesis',  '', { 'setMode' : 1 }, data.mode == 1 ? 'selected' : data.on ? 'disabled' : null)}}
+		{{if !data.minimal}}
+			{{:helper.link('Isolation',  '', { 'setMode' : 2 }, data.mode == 2 ? 'selected' : data.on ? 'disabled' : null)}}
+		{{/if}}
+	</div>
+{{if data.cycleTime}}
+	<div class="itemLabel">
+		Cycle time: 
+	</div>
+	<div class="itemContent">
+		{{:helper.link('5',  'clock', { 'setTime' : 5  }, data.cycleTime == 5  ? 'selected' : data.on || data.mode == 2 ? 'disabled' : null)}}
+		{{:helper.link('10', 'clock', { 'setTime' : 10 }, data.cycleTime == 10 ? 'selected' : data.on || data.mode == 2 ? 'disabled' : null)}}
+		{{:helper.link('15', 'clock', { 'setTime' : 15 }, data.cycleTime == 15 ? 'selected' : data.on || data.mode == 2 ? 'disabled' : null)}}
+		{{:helper.link('30', 'clock', { 'setTime' : 30 }, data.cycleTime == 30 ? 'selected' : data.on || data.mode == 2 ? 'disabled' : null)}}
+		{{:helper.link('60', 'clock', { 'setTime' : 60 }, data.cycleTime == 60 ? 'selected' : data.on || data.mode == 2 ? 'disabled' : null)}}
+	</div>
+{{/if}}
+
+<div class="item">
+	Supported up to {{:data.maxBeakers}} separation beakers.
+	{{if data.UPS}}
+		Separation rating is {{:data.UPS}}u per second.
+	{{/if}}
+</div>
+
+
+<div class="item">
+	<div class="itemLabel">
+		<h3>Main Beaker</h3>
+	</div>
+</div>
+<div class="statusDisplay" style="min-height: 60px;">
+	<div class="item">
+		<div class="itemContent" style="width: 100%;">
+			{{if data.mainBeaker}}
+				Volume:&nbsp;{{:helper.fixed(data.mainBeaker.total_volume)}}&nbsp;/&nbsp;{{:data.mainBeaker.maximum_volume}}<br>
+				{{for data.mainBeaker.contents}}
+					<span class="highlight">{{:helper.fixed(value.volume)}} units of {{:value.name}}</span><br>
+				{{empty}}
+					<span class="bad">
+						Beaker is empty
+					</span>
+				{{/for}}
+			{{else}}
+				<span class="average"><i>
+					No beaker loaded
+				</i></span>
+			{{/if}}
+			{{:helper.link('Eject Beaker', 'eject', {'ejectBeaker' : 0}, data.mainBeaker ? null : 'disabled', 'floatRight')}}
+		</div>
+	</div>
+</div>
+<div class="item">
+	<h3>Separation beakers:</h3>
+</div>
+<table style="width:100%">
+	<tr>
+		{{for data.beakers}}
+			<td class="candystripe">
+				<div class="statusDisplay" style="min-height: 60px;">
+					<div class="item">
+						<div class="itemContent">
+							{{if value.maximum_volume}}
+								Volume:&nbsp;{{:helper.fixed(value.total_volume)}}&nbsp;/&nbsp;{{:value.maximum_volume}}<br>
+								{{for value.contents :content:content_i}}
+									<span class="highlight">{{:helper.fixed(content.volume)}} units of {{:content.name}}</span><br>
+								{{empty}}
+									<span class="bad">
+										Beaker is empty
+									</span>
+								{{/for}}
+							{{else}}
+								<span class="average"><i>
+									No beaker loaded
+								</i></span>
+							{{/if}}
+						</div>
+					</div>
+					{{:helper.link('Eject Beaker', 'eject', {'ejectBeaker' : value.slot}, value.maximum_volume ? null : 'disabled')}}
+				</div>
+			</td>
+		{{/for}}
+	</tr>
+</table>

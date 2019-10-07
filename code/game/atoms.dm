@@ -30,6 +30,8 @@
 
 	var/initialized = FALSE
 
+	var/list/preloaded_reagents = null
+
 /atom/New(loc, ...)
 	init_plane()
 	update_plane()
@@ -61,6 +63,16 @@
 		update_light()
 
 	update_plane()
+
+	if(preloaded_reagents)
+		if(!reagents)
+			var/volume = 0
+			for(var/reagent in preloaded_reagents)
+				volume += preloaded_reagents[reagent]
+			create_reagents(volume)
+		for(var/reagent in preloaded_reagents)
+			reagents.add_reagent(reagent, preloaded_reagents[reagent])
+
 
 	return INITIALIZE_HINT_NORMAL
 
@@ -261,6 +273,8 @@ its easier to just keep the beam vertical.
 		to_chat(user, "\icon[src] This is [full_name] [suffix]")
 	else
 		user.visible_message("<font size=1>[user.name] looks at [src].</font>", "\icon[src] This is [full_name] [suffix]")
+
+	to_chat(user, show_stat_verbs()) //rewrite to show_stat_verbs(user)?
 
 	if(desc)
 		to_chat(user, desc)

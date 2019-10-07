@@ -177,7 +177,7 @@ Ccomp's first proc.
 
 	var/list/mobs = list()
 	var/list/ghosts = list()
-	var/list/sortmob = sortAtom(SSmobs.mob_list)                           // get the mob list.
+	var/list/sortmob = sortNames(SSmobs.mob_list)                           // get the mob list.
 	var/any=0
 	for(var/mob/observer/ghost/M in sortmob)
 		mobs.Add(M)                                             //filter it where it's only ghosts
@@ -364,7 +364,7 @@ ADMIN_VERB_ADD(/client/proc/respawn_character, R_FUN, FALSE)
 		G_found.mind.transfer_to(new_character)	//be careful when doing stuff like this! I've already checked the mind isn't in use
 	else
 		new_character.mind_initialize()
-	if(!new_character.mind.assigned_role)	new_character.mind.assigned_role = "Assistant"//If they somehow got a null assigned role.
+	if(!new_character.mind.assigned_role)	new_character.mind.assigned_role = ASSISTANT_TITLE//If they somehow got a null assigned role.
 
 	//DNA
 	if(record_found)//Pull up their name from database records if they did have a mind.

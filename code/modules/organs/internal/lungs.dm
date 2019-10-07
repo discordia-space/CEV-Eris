@@ -37,7 +37,7 @@
 	if(is_bruised())
 		if(prob(2))
 			spawn owner.emote("me", 1, "coughs up blood!")
-			owner.drip(10)
+			owner.drip_blood(10)
 		if(prob(4))
 			spawn owner.emote("me", 1, "gasps for air!")
 			owner.losebreath += 15
@@ -124,7 +124,7 @@
 	// Too much poison in the air.
 	if(toxins_pp > safe_toxins_max)
 		var/ratio = (poison/safe_toxins_max) * 10
-		owner.reagents.add_reagent("toxin", Clamp(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
+		owner.reagents.add_reagent("toxin", CLAMP(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
 		breath.adjust_gas(poison_type, -poison/6, update = 0) //update after
 		owner.plasma_alert = 1
 	else

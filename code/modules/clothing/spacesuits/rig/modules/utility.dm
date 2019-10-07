@@ -35,7 +35,7 @@
 	interface_name = "health scanner"
 	interface_desc = "Shows an informative health readout when used on a subject."
 
-	device_type = /obj/item/device/scanner/healthanalyzer
+	device_type = /obj/item/device/scanner/health
 
 /obj/item/rig_module/device/drill
 	name = "hardsuit drill mount"
@@ -380,4 +380,58 @@
 	jets.holder = null
 	jets.trail.set_up(jets)
 
-/obj/item/rig_module/foam_sprayer
+/obj/item/rig_module/autodoc
+	name = "autodoc module"
+	desc = "A complex surgery system for almost all your needs."
+	use_power_cost = 10
+	active = 1
+	usable = 1
+
+	interface_name = "Autodoc"
+	interface_desc = "Module with set of instruments that is capable to preform surgery on user"
+	var/datum/autodoc/autodoc_processor
+	var/turf/wearer_loc = null
+
+/obj/item/rig_module/autodoc/New()
+	..()
+	autodoc_processor = new()
+	autodoc_processor.holder = src
+	autodoc_processor.damage_heal_amount = 20
+
+/obj/item/rig_module/autodoc/engage()
+	if(!..())
+		return 0
+	if(autodoc_processor.active)
+		autodoc_processor.stop()
+	autodoc_processor.set_patient(holder.wearer)
+	ui_interact(usr)
+	return 1
+/obj/item/rig_module/autodoc/Topic(href, href_list)
+	return autodoc_processor.Topic(href, href_list)
+/obj/item/rig_module/autodoc/Process()
+	if(..())
+		autodoc_processor.stop()
+	if(autodoc_processor.active)
+		if(wearer_loc == null) 
+			wearer_loc = get_turf(holder.wearer)
+		if(wearer_loc != get_turf(holder.wearer))
+			autodoc_processor.fail()
+		passive_power_cost = 5
+		engage_string = "Abort operations"
+	else
+		engage_string = "Interact"
+		passive_power_cost = 0
+		wearer_loc = null
+	
+/obj/item/rig_module/autodoc/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nano_ui/master_ui, datum/topic_state/state = GLOB.deep_inventory_state)
+	autodoc_processor.ui_interact(user, ui_key, ui, force_open, state = GLOB.deep_inventory_state)
+/obj/item/rig_module/autodoc/activate()
+	return
+/obj/item/rig_module/autodoc/deactivate()
+	return
+
+/obj/item/rig_module/autodoc/comercial/New()
+	..()
+	autodoc_processor = new/datum/autodoc/capitalist_autodoc()
+	autodoc_processor.holder = src
+	autodoc_processor.damage_heal_amount = 20

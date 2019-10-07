@@ -105,8 +105,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/price_scanner
 	name = "Export scanners"
-	contains = list(/obj/item/device/export_scanner,
-					/obj/item/device/export_scanner)
+	contains = list(/obj/item/device/scanner/price,
+					/obj/item/device/scanner/price)
 	cost = 700
 	crate_name = "Export scanners crate"
 	group = "Operations"
@@ -927,7 +927,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/reagent_containers/glass/bottle/ammonia,
 					/obj/item/weapon/material/hatchet,
 					/obj/item/weapon/material/minihoe,
-					/obj/item/device/scanner/analyzer/plant_analyzer,
+					/obj/item/device/scanner/plant,
 					/obj/item/clothing/gloves/botanic_leather,
 					/obj/item/clothing/suit/apron) // Updated with new things
 	cost = 900
@@ -1367,3 +1367,24 @@ datum/supply_pack/randomised/rigmods
 	crate_name = "Surplus Rig Modules"
 	containertype = /obj/structure/closet/crate
 	group = "Operations"
+
+/datum/supply_pack/nanites
+	name = "Raw Nanites"
+	contains = list(
+		/obj/item/weapon/reagent_containers/glass/beaker/vial/nanites
+	)
+	cost = 1500
+	crate_name = "Raw Nanites Container"
+	group = "Medical / Science"
+	containertype = /obj/structure/closet/crate/medical
+
+/datum/supply_pack/uncapnanites
+	name = "Raw Uncapped Nanites"
+	contains = list(
+		/obj/item/weapon/reagent_containers/glass/beaker/vial/uncapnanites
+	)
+	cost = 2000
+	crate_name = "Raw Nanites Container"
+	group = "Medical / Science"
+	contraband = TRUE
+	containertype = /obj/structure/closet/crate/medical

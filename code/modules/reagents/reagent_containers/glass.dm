@@ -37,12 +37,13 @@
 		/obj/machinery/disposal,
 		/mob/living/simple_animal/cow,
 		/mob/living/simple_animal/hostile/retaliate/goat,
-		/obj/machinery/computer/centrifuge,
 		/obj/machinery/sleeper,
 		/obj/machinery/smartfridge/,
 		/obj/machinery/biogenerator,
 		/obj/machinery/constructable_frame,
-		/obj/machinery/radiocarbon_spectrometer
+		/obj/machinery/radiocarbon_spectrometer,
+		/obj/machinery/centrifuge, 
+		/obj/machinery/electrolyzer
 		)
 
 /obj/item/weapon/reagent_containers/glass/New()
@@ -143,3 +144,8 @@
 		name = base_name
 	else
 		name = "[base_name] ([label_text])"
+
+/obj/item/weapon/reagent_containers/glass/MouseDrop(obj/over_object,src_location,over_location)
+	. = ..()
+	if(istype(over_object, /obj/structure/reagent_dispensers))
+		reagents.trans_to(over_object, amount_per_transfer_from_this, ignore_isinjectable = 1)

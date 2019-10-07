@@ -1,0 +1,14 @@
+<img src='moebus_logo.png' style ="display: block; margin: auto; width: 50%;">
+<div class='item' style="text-align: center;">
+	<h2>Moebius reagent catalog</h2>
+</div>
+{{if !data.catalog_browse_stage}}
+	<div class='item' style="text-align: center;">
+		Welcome to Moebious Internal Reagent Database. 
+		<table align="center">
+			<tr>
+				<td>{{:helper.link('Browse', '', {'greet' : 1})}}</td>
+			</tr>
+		</table>
+	</div>
+{{/if}}

@@ -102,14 +102,14 @@
 /obj/item/weapon/reagent_containers/glass/fertilizer/ez
 	name = "bottle of E-Z-Nutrient"
 	icon_state = "bottle16"
-	preloaded = list("eznutrient" = 60)
+	preloaded_reagents = list("eznutrient" = 60)
 
 /obj/item/weapon/reagent_containers/glass/fertilizer/l4z
 	name = "bottle of Left 4 Zed"
 	icon_state = "bottle18"
-	preloaded = list("left4zed" = 60)
+	preloaded_reagents = list("left4zed" = 60)
 
 /obj/item/weapon/reagent_containers/glass/fertilizer/rh
 	name = "bottle of Robust Harvest"
 	icon_state = "bottle15"
-	preloaded = list("robustharvest" = 60)
+	preloaded_reagents = list("robustharvest" = 60)

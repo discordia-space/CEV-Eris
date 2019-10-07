@@ -6,6 +6,8 @@
 	var/maximum_volume = 100
 	var/chem_temp = T20C
 	var/atom/my_atom = null
+	var/rotating = FALSE
+
 
 /datum/reagents/New(var/max = 100, atom/A = null)
 	..()
@@ -22,6 +24,29 @@
 			if(!D.name)
 				continue
 			chemical_reagents_list[D.id] = D
+
+/datum/reagents/proc/get_average_reagents_state()
+	var/solid = 0
+	var/liquid = 0
+	var/gas = 0
+	for(var/datum/reagent/R in reagent_list)
+		switch(R.reagent_state)
+			if(SOLID)
+				solid++
+			if(LIQUID)
+				liquid++
+			if(GAS)
+				gas++
+	if(solid >= liquid)
+		if(solid >= gas)
+			return SOLID
+		else
+			return GAS
+	else
+		if(liquid >= gas)
+			return LIQUID
+		else
+			return GAS
 
 /datum/reagents/Destroy()
 	. = ..()
@@ -345,7 +370,7 @@
 //not directly injected into the contents. It first calls touch, then the appropriate trans_to_*() or splash_mob().
 //If for some reason touch effects are bypassed (e.g. injecting stuff directly into a reagent container or person),
 //call the appropriate trans_to_*() proc.
-/datum/reagents/proc/trans_to(datum/target, amount = 1, multiplier = 1, copy = 0)
+/datum/reagents/proc/trans_to(datum/target, amount = 1, multiplier = 1, copy = 0, ignore_isinjectable = 0)
 	if(istype(target, /datum/reagents))
 		return trans_to_holder(target, amount, multiplier, copy)
 
@@ -355,7 +380,7 @@
 			return splash_mob(target, amount, multiplier, copy)
 		if(isturf(target))
 			return trans_to_turf(target, amount, multiplier, copy)
-		if(isobj(target) && A.is_injectable())
+		if(isobj(target) && (A.is_injectable() || ignore_isinjectable))
 			return trans_to_obj(target, amount, multiplier, copy)
 	return 0
 
@@ -415,11 +440,35 @@
 /datum/reagents/proc/touch_turf(var/turf/target)
 	if(!target || !istype(target) || !target.simulated)
 		return
+	if(istype(target, /turf/simulated/open))
+		var/turf/simulated/open/T = target
+		if(T.isOpen())
+			return
 
+	var/handled = TRUE
 	for(var/datum/reagent/current in reagent_list)
-		current.touch_turf(target, current.volume)
-
+		if(!current.touch_turf(target, current.volume))
+			handled = FALSE
+	if(!handled)
+		switch(get_average_reagents_state())
+			if(LIQUID)
+				var/obj/effect/decal/cleanable/splashed_reagents/dirtoverlay = locate(/obj/effect/decal/cleanable/splashed_reagents, target)
+				if (!dirtoverlay)
+					dirtoverlay = new/obj/effect/decal/cleanable/splashed_reagents(target)
+					dirtoverlay.alpha = min(total_volume * 30, 255)
+					dirtoverlay.color = get_color()
+				else
+					dirtoverlay.alpha = min(dirtoverlay.alpha + total_volume * 30, 255)
+					dirtoverlay.color = BlendRGB(dirtoverlay.color, get_color(), 0.6)
+			if(SOLID)
+				var/obj/effect/decal/cleanable/piled_reagents/dirtoverlay = locate(/obj/effect/decal/cleanable/piled_reagents, target)
+				if (!dirtoverlay)
+					dirtoverlay = new/obj/effect/decal/cleanable/piled_reagents(target)
+					dirtoverlay.color = get_color()
+				else
+					dirtoverlay.color = BlendRGB(dirtoverlay.color, get_color(), 0.8)
 	update_total()
+	return handled
 
 /datum/reagents/proc/touch_obj(var/obj/target)
 	if(!target || !istype(target) || !target.simulated)
@@ -467,8 +516,10 @@
 	if(!target || !target.simulated)
 		return
 
+
 	var/datum/reagents/R = new /datum/reagents(amount * multiplier)
 	. = trans_to_holder(R, amount, multiplier, copy)
+
 	R.touch_turf(target)
 	return
 

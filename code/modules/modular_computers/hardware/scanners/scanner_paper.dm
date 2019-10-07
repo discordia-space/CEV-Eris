@@ -26,3 +26,4 @@
 
 /obj/item/weapon/computer_hardware/scanner/paper/do_on_attackby(mob/user, atom/target)
 	do_on_afterattack(user, target, TRUE)
+	return TRUE

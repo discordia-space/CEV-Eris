@@ -17,7 +17,7 @@
  * Values are found in code/__defines/inventory_sizes.dm
  */
 /obj/structure/get_fall_damage(var/turf/from, var/turf/dest)
-	var/damage = (w_class == ITEM_SIZE_NO_CONTAINER ? ITEM_SIZE_LARGE : w_class) * 10
+	var/damage = (w_class == ITEM_SIZE_NO_CONTAINER ? ITEM_SIZE_BULKY : w_class) * 10
 
 	if (from && dest)
 		damage *= abs(from.z - dest.z)
@@ -132,7 +132,7 @@
 	climbers |= user
 
 	var/delay = (issmall(user) ? 20 : 34)
-	var/duration = max(delay * user.stats.getDelayMult(STAT_VIG, STAT_LEVEL_EXPERT), delay * 0.66)
+	var/duration = max(delay * user.stats.getMult(STAT_VIG, STAT_LEVEL_EXPERT), delay * 0.66)
 	if(!do_after(user, duration, src))
 		climbers -= user
 		return

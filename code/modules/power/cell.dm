@@ -5,7 +5,7 @@
 /obj/item/weapon/cell //Basic type of the cells, should't be used by itself
 	name = "power cell"
 	desc = "A rechargable electrochemical power cell."
-	icon = 'icons/obj/power.dmi'
+	icon = 'icons/obj/power_cells.dmi'
 	icon_state = "b_st"
 	item_state = "cell"
 	origin_tech = list(TECH_POWER = 1)
@@ -83,7 +83,7 @@
 
 	overlays.Cut()
 	if (charge_status != null)
-		overlays += image('icons/obj/power.dmi', "[icon_state]_[charge_status]")
+		overlays += image('icons/obj/power_cells.dmi', "[icon_state]_[charge_status]")
 
 	last_charge_status = charge_status
 

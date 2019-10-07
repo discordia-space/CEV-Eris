@@ -49,3 +49,10 @@
 
 /obj/item/weapon/gun/energy/cassad
 	parent_type = /obj/item/weapon/gun/energy/pulse/cassad
+
+/obj/machinery/door/firedoor/border_only
+	parent_type = /obj/machinery/door/firedoor
+
+
+/obj/item/weapon/storage/bag/cash
+	parent_type = /obj/item/weapon/storage/bag/money

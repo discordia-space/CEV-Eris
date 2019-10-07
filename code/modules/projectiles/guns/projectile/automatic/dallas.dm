@@ -6,7 +6,7 @@
 		It's used by elite mercenaries, assassins or bald marines. Makes you feel like a space marine when you hold it."
 	icon_state = "dallas"
 	item_state = "dallas"
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_HUGE
 	force = WEAPON_FORCE_PAINFUL
 	caliber = "10x24"
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1)

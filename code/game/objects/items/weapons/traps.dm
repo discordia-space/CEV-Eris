@@ -12,7 +12,7 @@
 	matter = list(MATERIAL_STEEL = 25)
 	edge = TRUE
 	sharp = TRUE
-	var/deployed = 0
+	var/deployed = FALSE
 
 	var/base_damage = 20
 	var/fail_damage = 5
@@ -76,7 +76,7 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 			if (user == buckled_mob)
 				reduction *= 0.66 //But it helps less if you don't have good leverage
 			difficulty -= reduction
-			I.consume_resources(time_to_escape*3, user)
+			I.consume_resources(time_to_escape * 3, user)
 
 		if (issilicon(user))
 			difficulty += 5 //Robots are less dextrous
@@ -93,15 +93,15 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	//Firstly a visible message
 	if (buckled_mob == user)
 		user.visible_message(
-			"<span class='notice'>\The [user] tries to free themselves from \the [src].</span>",
-			"<span class='notice'>You carefully begin to free yourself from \the [src].</span>",
-			"<span class='notice'>You hear metal creaking.</span>"
+			SPAN_NOTICE("\The [user] tries to free themselves from \the [src]."),
+			SPAN_NOTICE("You carefully begin to free yourself from \the [src]."),
+			SPAN_NOTICE("You hear metal creaking.")
 			)
 	else
 		user.visible_message(
-			"<span class='notice'>\The [user] tries to free \the [buckled_mob] from \the [src].</span>",
-			"<span class='notice'>You carefully begin to free \the [buckled_mob] from \the [src].</span>",
-			"<span class='notice'>You hear metal creaking.</span>"
+			SPAN_NOTICE("\The [user] tries to free \the [buckled_mob] from \the [src]."),
+			SPAN_NOTICE("You carefully begin to free \the [buckled_mob] from \the [src]."),
+			SPAN_NOTICE("You hear metal creaking.")
 			)
 
 	//Play a metal creaking sound
@@ -122,9 +122,9 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 
 	//You succeeded yay
 	user.visible_message(
-			"<span class='notice'>[user] successfully releases [buckled_mob] from \the [src].</span>",
-			"<span class='notice'>You successfully release [buckled_mob] from \the [src].</span>",
-			"<span class='notice'>You hear metal creaking.</span>"
+			SPAN_NOTICE("[user] successfully releases [buckled_mob] from \the [src]."),
+			SPAN_NOTICE("You successfully release [buckled_mob] from \the [src]."),
+			SPAN_DANGER("You hear metal creaking.")
 			)
 	release_mob()
 
@@ -173,20 +173,19 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	return (user.IsAdvancedToolUser() && !user.stat && user.Adjacent(src))
 
 /obj/item/weapon/beartrap/proc/release_mob()
-	//user.visible_message("<span class='notice'>\The [buckled_mob] has been freed from \the [src] by \the [user].</span>")
 	unbuckle_mob()
-	anchored = 0
+	anchored = FALSE
+	deployed = FALSE
 	can_buckle = initial(can_buckle)
 	update_icon()
 	STOP_PROCESSING(SSobj, src)
 
-//Attempting to resist out of a beartrap will not work, and you'll get nothing but pain for trying
+//Attempting to resist out of a beartrap will be counted as using your hand on the trap.
 /obj/item/weapon/beartrap/resist_buckle(var/mob/user)
 	if (user == buckled_mob && !user.stunned)
 		//We check stunned here, and a failure stuns the victim. This prevents someone from just spam-resisting and instantly killing themselves
 		if (user.client)
-			fail_attempt(user)
-			to_chat(user, SPAN_WARNING("Struggling out of this isn't going to work, you'll need to try to release \the [src] with your hands or a tool"))
+			attack_hand(user)
 		else
 			//Fallback behaviour for possible future use of NPCs
 			attempt_release(user, null)
@@ -200,27 +199,23 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	..()
 	if(!deployed && can_use(user))
 		user.visible_message(
-			"<span class='danger'>[user] starts to deploy \the [src].</span>",
-			"<span class='danger'>You begin deploying \the [src]!</span>",
+			SPAN_DANGER("[user] starts to deploy \the [src]."),
+			SPAN_DANGER("You begin deploying \the [src]!"),
 			"You hear the slow creaking of a spring."
 			)
 
 		if (do_after(user, 25))
 			user.visible_message(
-				"<span class='danger'>[user] has deployed \the [src].</span>",
-				"<span class='danger'>You have deployed \the [src]!</span>",
+				SPAN_DANGER("[user] has deployed \the [src]."),
+				SPAN_DANGER("You have deployed \the [src]!"),
 				"You hear a latch click loudly."
 				)
 
 			aware_mobs = list()
-			deployed = 1
+			deployed = TRUE
 			user.drop_from_inventory(src)
 			update_icon()
-			anchored = 1
-
-
-
-
+			anchored = TRUE
 
 /***********************************
 	Hurting Mobs
@@ -263,9 +258,9 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	if(L.lying)
 		target_zone = ran_zone()
 	else
-		target_zone = pick("l_leg", "r_leg")
+		target_zone = pick(BP_L_LEG, BP_R_LEG)
 
-	deployed = 0
+	deployed = FALSE
 	can_buckle = initial(can_buckle)
 	playsound(src, 'sound/effects/impacts/beartrap_shut.ogg', 100, 1,10,10)//Really loud snapping sound
 
@@ -278,9 +273,9 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 
 	//trap the victim in place
 	set_dir(L.dir)
-	can_buckle = 1
+	can_buckle = TRUE
 	buckle_mob(L)
-	to_chat(L, "<span class='danger'>The steel jaws of \the [src] bite into you, trapping you in place!</span>")
+	to_chat(L, SPAN_DANGER("The steel jaws of \the [src] bite into you, trapping you in place!"))
 
 
 	//If the victim is nonhuman and has no client, start processing.
@@ -299,7 +294,7 @@ Very rarely it might escape
 
 	//If its dead or gone, stop processing
 	//Also stop if a player took control of it, they can try to free themselves
-	if (QDELETED(L) || L.stat == DEAD || L.loc != loc || L.client)
+	if (QDELETED(L) || L.is_dead() || L.loc != loc || L.client)
 		release_mob()		// Reset the trap properly if the roach was gibbed during the processing.
 		return PROCESS_KILL
 
@@ -319,14 +314,14 @@ Very rarely it might escape
 		if(("\ref[L]" in aware_mobs) && MOVING_DELIBERATELY(L))
 			return ..()
 		L.visible_message(
-			"<span class='danger'>[L] steps on \the [src].</span>",
-			"<span class='danger'>You step on \the [src]!</span>",
+			SPAN_DANGER("[L] steps on \the [src]."),
+			SPAN_DANGER("You step on \the [src]!"),
 			"<b>You hear a loud metallic snap!</b>"
 			)
 		attack_mob(L)
 		if(!buckled_mob)
-			anchored = 0
-		deployed = 0
+			anchored = FALSE
+		deployed = FALSE
 		update_icon()
 	..()
 
@@ -405,8 +400,10 @@ Very rarely it might escape
 
 /obj/item/weapon/beartrap/armed
 	deployed = TRUE
+	anchored = TRUE
 
 
 
 /obj/item/weapon/beartrap/makeshift/armed
 	deployed = TRUE
+	anchored = TRUE

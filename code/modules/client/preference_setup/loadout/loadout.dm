@@ -19,7 +19,7 @@ var/list/gear_datums = list()
 /hook/startup/proc/populate_gear_list()
 
 	//create a list of gear datums to sort
-	for(var/geartype in typesof(/datum/gear)-/datum/gear)
+	for(var/geartype in subtypesof(/datum/gear))
 		var/datum/gear/G = geartype
 		if(initial(G.category) == geartype)
 			continue

@@ -734,7 +734,7 @@
 		return
 
 	else
-		if( !(istype(I, /obj/item/device/robotanalyzer) || istype(I, /obj/item/device/scanner/healthanalyzer)) )
+		if( !(istype(I, /obj/item/device/robotanalyzer) || istype(I, /obj/item/device/scanner/health)) )
 			spark_system.start()
 		return ..()
 
@@ -767,7 +767,7 @@
 
 //Robots take half damage from basic attacks.
 /mob/living/silicon/robot/attack_generic(var/mob/user, var/damage, var/attack_message)
-	return ..(user,Floor(damage/2),attack_message)
+	return ..(user,FLOOR(damage * 0.5, 1),attack_message)
 
 /mob/living/silicon/robot/proc/allowed(mob/M)
 	//check if it doesn't require any access at all

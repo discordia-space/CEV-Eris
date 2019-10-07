@@ -8,13 +8,28 @@
 	var/pulse = PULSE_NORM
 	var/heartbeat = 0
 	var/efficiency = 1
+	var/open
+
+/obj/item/organ/internal/heart/open
+	open = 1
 
 /obj/item/organ/internal/heart/Process()
 	if(owner)
 		handle_pulse()
 		if(pulse)	handle_heartbeat()
 		handle_blood()
+		//plug before baymed
+		var/blood_volume = owner.get_blood_oxygenation()
+		if(blood_volume < BLOOD_VOLUME_SURVIVE)
+			if(!owner.chem_effects[CE_STABLE] || prob(60))
+				owner.adjustBrainLoss(0.5)
 	..()
+
+/obj/item/organ/internal/heart/proc/is_working()
+	if(!is_usable())
+		return FALSE
+
+	return pulse > PULSE_NONE || BP_IS_ROBOTIC(src) || (owner.status_flags & FAKEDEATH)
 
 /obj/item/organ/internal/heart/proc/handle_pulse()
 	if(owner.stat == DEAD || BP_IS_ROBOTIC(src))
@@ -29,7 +44,7 @@
 		if(owner.status_flags & FAKEDEATH || owner.chem_effects[CE_NOPULSE])
 			pulse = PULSE_NONE		//pretend that we're dead. unlike actual death, can be inflienced by meds
 
-		pulse = Clamp(pulse + owner.chem_effects[CE_PULSE], PULSE_SLOW, PULSE_2FAST)
+		pulse = CLAMP(pulse + owner.chem_effects[CE_PULSE], PULSE_SLOW, PULSE_2FAST)
 
 /obj/item/organ/internal/heart/proc/handle_heartbeat()
 	if(pulse >= PULSE_2FAST || owner.shock_stage >= 10 || istype(get_turf(owner), /turf/space))
@@ -87,7 +102,7 @@
 
 	//Blood regeneration if there is some space
 	if(blood_volume_raw < species.blood_volume)
-		var/datum/reagent/blood/B = owner.get_blood(owner.vessel)
+		var/datum/reagent/organic/blood/B = owner.get_blood(owner.vessel)
 		B.volume += 0.1 // regenerate blood VERY slowly
 		if(CE_BLOODRESTORE in owner.chem_effects)
 			B.volume += owner.chem_effects[CE_BLOODRESTORE]
