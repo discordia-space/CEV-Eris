@@ -67,7 +67,7 @@
 	var/got_neoteo = FALSE
 	for(var/mob/living/carbon/human/mob in range(area_radius, src))
 		if(mob)
-			var/obj/item/weapon/implant/core_implant/I = mob.get_core_implant()
+			var/obj/item/weapon/implant/core_implant/I = mob.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 			if(I && I.active && I.wearer)
 				if(I.power < I.max_power)	I.power += nt_buff_power
 				for(var/r_tag in mob.personal_ritual_cooldowns)
