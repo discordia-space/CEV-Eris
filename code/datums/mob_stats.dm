@@ -16,6 +16,12 @@
 	var/datum/stat/S = stat_list[statName]
 	S.remove_modifier(id)
 
+/datum/stat_holder/proc/getTempStat(statName, id)
+	if(!id)
+		crash_with("no id passed to getTempStat(")
+	var/datum/stat/S = stat_list[statName]
+	return S.get_modifier(id)
+
 /datum/stat_holder/proc/changeStat(statName, Value)
 	var/datum/stat/S = stat_list[statName]
 	S.changeValue(Value)
@@ -134,6 +140,12 @@
 		if(SM.id == id)
 			mods.Remove(SM)
 			return
+
+/datum/stat/proc/get_modifier(id)
+	for(var/elem in mods)
+		var/datum/stat_mod/SM = elem
+		if(SM.id == id)
+			return SM
 
 /datum/stat/proc/changeValue(affect)
 	value = value + affect
