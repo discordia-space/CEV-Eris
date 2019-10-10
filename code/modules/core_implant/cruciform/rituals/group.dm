@@ -10,6 +10,13 @@
 		return FALSE
 	return TRUE
 
+/datum/ritual/group/cruciform/step_check(mob/living/carbon/human/H)
+	for(var/obj/machinery/power/nt_obelisk/O in range(7,H))
+		if(O.stat || !O.active || get_dist(H, O) > O.area_radius)
+			continue
+		return TRUE
+	return FALSE
+
 /datum/ritual/group/cruciform/mechanical
 	name = "Mechanical"
 	desc = "Boosts Mechanical stat to 3 + 1 for each participant."

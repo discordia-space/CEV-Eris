@@ -16,6 +16,9 @@
 		return FALSE
 	return ..()
 
+/datum/ritual/group/proc/step_check(mob/living/carbon/human/H)
+	return TRUE
+
 /datum/ritual/group/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C, targets)
 	if(!effect_type)
 		return FALSE
@@ -81,13 +84,13 @@
 
 	if(user == implant.wearer)
 		if(phrases.len > 2)
-			if(phrase == phrases[2])
+			if(phrase == phrases[2] && ritual.step_check(user))
 				next_phrase()
 			else
 				effect.trigger_fail(implant.wearer,participants)
 				implant.remove_module(src)
 		else
-			if(phrase == phrases[2] && participants.len)	//It's a group ritual, isn't it?
+			if(phrase == phrases[2] && ritual.step_check(user) && participants.len)	//It's a group ritual, isn't it?
 				effect.trigger_success(implant.wearer,participants)
 				implant.remove_module(src)
 			else
@@ -96,7 +99,7 @@
 
 	else
 		if(first || (user in participants))
-			if(phrase == phrases[1] && !(user in correct_participants))
+			if(phrase == phrases[1] && !(user in correct_participants) && ritual.step_check(user))
 				correct_participants.Add(user)
 			else
 				participants.Remove(user)
