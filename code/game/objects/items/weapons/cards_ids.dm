@@ -90,29 +90,33 @@ var/const/NO_EMAG_ACT = -50
 	return 1
 
 /obj/item/weapon/card/id
-	name = "identification card"
-	desc = "A card used to provide ID and determine access across the ship."
-	icon_state = "id"
-	item_state = "card-id"
-	slot_flags = SLOT_ID
+	name							=	"identification card"
+	desc							=	"A card used to provide ID and determine access across the ship."
+	icon_state						=	"id"
+	item_state						=	"card-id"
+	slot_flags						=	SLOT_ID
 
-	var/access = list()
-	var/registered_name = "Unknown" // The name registered_name on the card
-	var/list/associated_email_login = list("login" = "", "password" = "")
-	var/associated_account_number = 0
+	var/access						=	list()
+	var/registered_name				=	"Unknown" // The name registered_name on the card
+	var/list/associated_email_login	=	list("login" = "", "password" = "")
+	var/associated_account_number	=	0
 
-	var/age = "\[UNSET\]"
-	var/blood_type = "\[UNSET\]"
-	var/dna_hash = "\[UNSET\]"
-	var/fingerprint_hash = "\[UNSET\]"
-	var/sex = "\[UNSET\]"
+	var/age							=	"\[UNSET\]"
+	var/blood_type					=	"\[UNSET\]"
+	var/dna_hash					=	"\[UNSET\]"
+	var/fingerprint_hash			=	"\[UNSET\]"
+	var/sex							=	"\[UNSET\]"
 	var/icon/front
 	var/icon/side
 
 	//alt titles are handled a bit weirdly in order to unobtrusively integrate into existing ID system
-	var/assignment = null	//can be alt title or the actual job
-	var/rank = null			//actual job
-	var/dorm = 0			// determines if this ID has claimed a dorm already
+	var/assignment					=	null	//can be alt title or the actual job
+	var/preassigment_title			=	null	//Prefix for var/assigment
+	var/mainassigment_title			=	null	//Center for var/assigment
+	var/customisible_mainassigment	=	0		//Can anyone change mainassigment_title
+
+	var/rank						=	null			//actual job
+	var/dorm						=	0			// determines if this ID has claimed a dorm already
 
 	var/formal_name_prefix
 	var/formal_name_suffix
@@ -134,12 +138,17 @@ var/const/NO_EMAG_ACT = -50
 		user << browse_rsc(side, "side.png")
 	var/datum/browser/popup = new(user, "idcard", name, 600, 250)
 	popup.set_content(dat())
-	popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
+	popup.set_title_image(usr.browse_rsc_icon(icon, icon_state))
 	popup.open()
 	return
 
 /obj/item/weapon/card/id/proc/update_name()
-	name = "[src.registered_name]'s ID Card ([src.assignment])"
+	if(mainassigment_title)
+		if(preassigment_title)
+			assignment = "[preassigment_title] [mainassigment_title]"
+		else
+			assignment = mainassigment_title
+	name = "[registered_name]'s ID Card ([assignment])"
 
 /obj/item/weapon/card/id/proc/set_id_photo(var/mob/M)
 	front = getFlatIcon(M, SOUTH, always_use_defdir = 1)
@@ -175,10 +184,22 @@ var/const/NO_EMAG_ACT = -50
 	dat += "</tr></table>"
 	return dat
 
+/obj/item/weapon/card/id/proc/show_card_to_view(mob/user as mob)
+	user.visible_message("\The [user] shows you: \icon[src] [name]. The assignment on the card: [assignment]",\
+		"You flash your ID card: \icon[src] [name]. The assignment on the card: [assignment]")
 /obj/item/weapon/card/id/attack_self(mob/user as mob)
-	user.visible_message("\The [user] shows you: \icon[src] [src.name]. The assignment on the card: [src.assignment]",\
-		"You flash your ID card: \icon[src] [src.name]. The assignment on the card: [src.assignment]")
-
+	update_name()
+	if(!customisible_mainassigment)
+		show_card_to_view(user)
+	else
+		switch(alert("Change your main assigment title of show it?", "[name]", "Show", "Change assigment"))
+			if("Show")
+				show_card_to_view(user)
+			if("Change assigment")
+				var/input_title = input("Input your new main assigment title", "[name]", mainassigment_title)
+				if(input_title)
+					mainassigment_title = input_title
+					update_name()
 	src.add_fingerprint(user)
 	return
 
@@ -193,7 +214,7 @@ var/const/NO_EMAG_ACT = -50
 	set category = "Object"
 	set src in usr
 
-	to_chat(usr, text("\icon[] []: The current assignment on the card is [].", src, src.name, src.assignment))
+	to_chat(usr, text("\icon[] []: The current assignment on the card is [].", src, name, assignment))
 	to_chat(usr, "The blood type on the card is [blood_type].")
 	to_chat(usr, "The DNA hash on the card is [dna_hash].")
 	to_chat(usr, "The fingerprint hash on the card is [fingerprint_hash].")
