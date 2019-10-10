@@ -17,6 +17,16 @@
 		return TRUE
 	return FALSE
 
+/datum/group_ritual_effect/cruciform/stat
+	var/stat_buff
+
+/datum/group_ritual_effect/cruciform/stat/success(var/mob/living/M, var/cnt)
+	if(cnt < 3 || !stat_buff)
+		return
+	var/obj/machinery/power/nt_obelisk/O
+	O = O // "unused variable" yourself
+	O.stat_buff = stat_buff
+
 /datum/ritual/group/cruciform/mechanical
 	name = "Mechanical"
 	desc = "Boosts Mechanical stat to 3 + 1 for each participant."
@@ -33,11 +43,10 @@
 		"Perfruere vita cum uxore quam diligis cunctis diebus vitae instabilitatis tuae qui dati sunt tibi sub sole omni tempore vanitatis tuae haec est enim pars in vita et in labore tuo quod laboras sub sole.",
 		"Amen."
 	)
-	effect_type = /datum/group_ritual_effect/cruciform/mechanical
+	effect_type = /datum/group_ritual_effect/cruciform/stat/mechanical
 
-/datum/group_ritual_effect/cruciform/mechanical/success(var/mob/living/M, var/cnt)
-	var/stat = 3 + cnt
-	M.stats.changeStat(STAT_MEC, stat)
+/datum/group_ritual_effect/cruciform/stat/mechanical
+	stat_buff = STAT_MEC
 
 
 /datum/ritual/group/cruciform/cognition
@@ -53,11 +62,10 @@
 		"Et veniebant de cunctis populis ad audiendam sapientiam Salomonis et ab universis regibus terrae qui audiebant sapientiam eius.",
 		"Amen."
 	)
-	effect_type = /datum/group_ritual_effect/cruciform/cognition
+	effect_type = /datum/group_ritual_effect/cruciform/stat/cognition
 
-/datum/group_ritual_effect/cruciform/cognition/success(var/mob/living/M, var/cnt)
-	var/stat = 3 + cnt
-	M.stats.changeStat(STAT_COG, stat)
+/datum/group_ritual_effect/cruciform/stat/cognition
+	stat_buff = STAT_COG
 
 
 
@@ -74,11 +82,10 @@
 		"Egressi autem circumibant per castella evangelizantes et curantes ubique.",
 		"Amen."
 	)
-	effect_type = /datum/group_ritual_effect/cruciform/biology
+	effect_type = /datum/group_ritual_effect/cruciform/stat/biology
 
-/datum/group_ritual_effect/cruciform/biology/success(var/mob/living/M, var/cnt)
-	var/stat = 3 + cnt
-	M.stats.changeStat(STAT_BIO, stat)
+/datum/group_ritual_effect/cruciform/stat/biology
+	stat_buff = STAT_BIO
 
 
 /datum/ritual/group/cruciform/robustness
@@ -94,11 +101,10 @@
 		"Scito igitur quod non propter iustitias tuas Dominus Deus tuus dederit tibi terram hanc optimam in possessionem cum durissimae cervicis sis populus.",
 		"Amen."
 	)
-	effect_type = /datum/group_ritual_effect/cruciform/robustness
+	effect_type = /datum/group_ritual_effect/cruciform/stat/robustness
 
-/datum/group_ritual_effect/cruciform/robustness/success(var/mob/living/M, var/cnt)
-	var/stat = 3 + cnt
-	M.stats.changeStat(STAT_ROB, stat)
+/datum/group_ritual_effect/cruciform/stat/robustness
+	stat_buff = STAT_ROB
 
 
 /datum/ritual/group/cruciform/toughness
@@ -115,11 +121,10 @@
 		"A summo caeli egressio eius et occursus eius usque ad summum eius nec est qui se abscondat a calore eius.",
 		"Amen."
 	)
-	effect_type = /datum/group_ritual_effect/cruciform/toughness
+	effect_type = /datum/group_ritual_effect/cruciform/stat/toughness
 
-/datum/group_ritual_effect/cruciform/toughness/success(var/mob/living/M, var/cnt)
-	var/stat = 3 + cnt
-	M.stats.changeStat(STAT_TGH, stat)
+/datum/group_ritual_effect/cruciform/stat/toughness
+	stat_buff = STAT_TGH
 
 
 /datum/ritual/group/cruciform/crusade
@@ -140,17 +145,13 @@
 	effect_type = /datum/group_ritual_effect/cruciform/crusade
 
 /datum/group_ritual_effect/cruciform/crusade/success(var/mob/living/M, var/cnt)
+	if(cnt < 6)
+		return
 	var/obj/item/weapon/implant/core_implant/CI = M.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 	if(CI)
-		if(cnt >= 2)
-			var/datum/ritual/cruciform/crusader/C = /datum/ritual/cruciform/crusader/brotherhood
-			CI.known_rituals |= initial(C.name)
-
-		if(cnt >= 3)
-			var/datum/ritual/cruciform/crusader/C = /datum/ritual/cruciform/crusader/battle_call
-			CI.known_rituals |= initial(C.name)
-
-		if(cnt >= 4)
-			var/datum/ritual/cruciform/crusader/C = /datum/ritual/cruciform/crusader/flash
-			CI.known_rituals |= initial(C.name)
-
+		var/datum/ritual/cruciform/crusader/C = /datum/ritual/cruciform/crusader/brotherhood
+		CI.known_rituals |= initial(C.name)
+		C = /datum/ritual/cruciform/crusader/battle_call
+		CI.known_rituals |= initial(C.name)
+		C = /datum/ritual/cruciform/crusader/flash
+		CI.known_rituals |= initial(C.name)
