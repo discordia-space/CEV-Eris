@@ -1,23 +1,29 @@
-var/group_global_cooldown = 0
-
 /datum/ritual/group
 	name = "group ritual"
 	desc = ""
 	phrase = null
 	power = 0
 	category = "Group"
-	cooldown = TRUE
 	var/list/phrases = list()
 	var/effect_type = null
+
+	cooldown = TRUE
+	cooldown_time = 1 SECONDS
+	cooldown_category = "group"
+
+/datum/ritual/group/pre_check(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C, targets)
+	if(is_on_cooldown(H))
+		return FALSE
+	return ..()
 
 /datum/ritual/group/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C, targets)
 	if(!effect_type)
 		return FALSE
 
 	var/datum/core_module/group_ritual/GR = new
+	GR.ritual = src
 	GR.implant_type = C.implant_type
 	GR.phrases = phrases
-	GR.cooldown = cooldown
 	GR.effect = new effect_type
 	GR.effect.succ_message = success_message
 	GR.effect.fail_message = fail_message
@@ -51,8 +57,8 @@ var/group_global_cooldown = 0
 	var/list/correct_participants = list()
 	var/list/phrases = list()
 	var/first = TRUE
-	var/cooldown = TRUE
 
+	var/datum/ritual/group/ritual
 	var/datum/group_ritual_effect/effect = null
 
 /datum/core_module/group_ritual/set_up()
@@ -62,14 +68,11 @@ var/group_global_cooldown = 0
 	if(!effect)
 		return FALSE
 
-	return !cooldown || world.time >= group_global_cooldown
+	return TRUE
 
 /datum/core_module/group_ritual/uninstall()
 	if(!effect)
 		return
-
-	if(cooldown)
-		group_global_cooldown = world.time + GROUP_RITUAL_COOLDOWN
 
 
 /datum/core_module/group_ritual/proc/hear(var/mob/user, var/phrase)
@@ -106,9 +109,6 @@ var/group_global_cooldown = 0
 	correct_participants = list()
 	to_chat(implant.wearer, SPAN_NOTICE("There is [participants.len] followers continuing the ritual."))
 
-
-/datum/core_module/group_ritual/proc/d_reset_cooldown()
-	group_global_cooldown = 0
 
 ////////////////////////
 

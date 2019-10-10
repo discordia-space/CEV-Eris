@@ -4,6 +4,8 @@
 	fail_message = "The Cruciform feels cold against your chest."
 
 /datum/ritual/group/cruciform/pre_check(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C, targets)
+	if(!..())
+		return FALSE
 	if(!C.get_module(CRUCIFORM_PRIEST) && !C.get_module(CRUCIFORM_INQUISITOR))
 		return FALSE
 	return TRUE

@@ -108,23 +108,35 @@
 	return L
 
 /obj/item/weapon/implant/core_implant/hear_talk(mob/living/carbon/human/H, message, verb, datum/language/speaking, speech_volume)
+	var/group_ritual_leader = FALSE
 	for(var/datum/core_module/group_ritual/GR in src.modules)
 		GR.hear(H, message)
+		group_ritual_leader = TRUE
 
 	if(wearer != H)
-		return
+		if(H.get_core_implant() && !group_ritual_leader)
+			addtimer(CALLBACK(src, .proc/hear_other, H, message), 0) // let H's own implant hear first
+	else
+		for(var/RT in known_rituals)
+			var/datum/ritual/R = GLOB.all_rituals[RT]
+			if(R.compare(message))
+				if(R.power > src.power)
+					to_chat(H, SPAN_DANGER("Not enough energy for the [R.name]."))
+					return
+				if(!R.is_allowed(src))
+					to_chat(H, SPAN_DANGER("You are not allowed to perform [R.name]."))
+					return
+				R.activate(H, src, R.get_targets(message))
+				return
 
-	for(var/RT in known_rituals)
-		var/datum/ritual/R = GLOB.all_rituals[RT]
-		if(R.compare(message))
-			if(R.power > src.power)
-				to_chat(H, SPAN_DANGER("Not enough energy for the [R.name]."))
-				return
-			if(!R.is_allowed(src))
-				to_chat(H, SPAN_DANGER("You are not allowed to perform [R.name]."))
-				return
-			R.activate(H, src, R.get_targets(message))
-			return
+/obj/item/weapon/implant/core_implant/proc/hear_other(mob/living/carbon/human/H, message)
+	var/datum/core_module/group_ritual/GR = H.get_core_implant().get_module(/datum/core_module/group_ritual)
+	if(GR?.ritual.name in known_rituals)
+		if(message == GR.phrases[1])
+			if(do_after(wearer, length(message)*0.25))
+				if(GR)
+					GR.ritual.set_personal_cooldown(wearer)
+				wearer.say(message)
 
 
 /obj/item/weapon/implant/core_implant/proc/use_power(var/value)
