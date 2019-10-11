@@ -24,7 +24,6 @@
 	var/obj/item/weapon/cell/cell
 	var/amount = 30
 	var/accept_beaker = TRUE //At TRUE, ONLY accepts beakers.
-	var/recharged = 0
 	var/hackedcheck = FALSE
 	var/list/dispensable_reagents = list(
 		"hydrazine","lithium","carbon",
@@ -53,11 +52,8 @@
 	SSnano.update_uis(src) // update all UIs attached to src
 
 /obj/machinery/chemical_dispenser/Process()
-	if(recharged <= 0)
+	if(cell && cell.percent() < 100)
 		recharge()
-		recharged = 15
-	else
-		recharged -= 1
 
 /obj/machinery/chemical_dispenser/Initialize()
 	. = ..()
