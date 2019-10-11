@@ -32,7 +32,7 @@
 
 	circuit = /obj/item/weapon/circuitboard/sorter
 	// based on levels of manipulators
-	var/speed = 10
+	var/speed = 20
 	// based on levels of scanners
 	var/number_of_settings = 2
 	var/input_side = SOUTH
@@ -149,7 +149,7 @@
 	for(var/obj/item/weapon/stock_parts/scanning_module/S in component_parts)
 		num_settings += S.rating
 	number_of_settings = num_settings * 2
-	speed = manipulator_rating*5
+	speed = manipulator_rating*10
 
 
 /obj/machinery/sorter/attackby(var/obj/item/I, var/mob/user)
