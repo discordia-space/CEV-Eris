@@ -69,7 +69,7 @@ var/list/holder_mob_icon_cache = list()
 
 
 /obj/item/weapon/holder/borer
-	origin_tech = list(TECH_BIO = 6)
+	origin_tech = list(TECH_BIO = 8)
 
 /obj/item/weapon/holder/Process()
 	if (!contained)
