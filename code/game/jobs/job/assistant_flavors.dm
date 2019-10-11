@@ -17,21 +17,21 @@
 	customisible_mainassigment = 1
 
 /datum/job_flavor/assistant/cattleexport
-	prefixtitle		=	"Cattle Export Vehicle \"Eris\""
-	maintitle		=	"Veterinarian"
+	prefixtitle = "Cattle Export Vehicle \"Eris\""
+	maintitle = "Veterinarian"
 
 /datum/job_flavor/assistant/cattleexport/shepherd
-	maintitle		=	"Shepherd"
+	maintitle = "Shepherd"
 
 /datum/job_flavor/assistant/colonyexpansion
-	prefixtitle		=	"Colony Expansion Vehicle \"Eris\""
-	maintitle		=	"Colonist"
+	prefixtitle = "Colony Expansion Vehicle \"Eris\""
+	maintitle = "Colonist"
 
 /datum/job_flavor/assistant/colonyexpansion/geoengineer
-	maintitle		=	"Geoengineer"
+	maintitle = "Geoengineer"
 
 /datum/job_flavor/assistant/colonyexpansion/ecologist
-	maintitle		=	"Ecologist"
+	maintitle = "Ecologist"
 	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 8,
@@ -42,9 +42,9 @@
 	)
 
 /datum/job_flavor/assistant/commandevac
-	prefixtitle		=	"Command Evacuation Vehicle \"Eris\""
-	maintitle		=	"Ensign"
-	stat_modifiers	=	list(
+	prefixtitle = "Command Evacuation Vehicle \"Eris\""
+	maintitle = "Ensign"
+	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 16,
 		STAT_BIO = 8,
@@ -54,7 +54,7 @@
 	)
 
 /datum/job_flavor/assistant/commandevac/pilot
-	maintitle		=	"Pilot"
+	maintitle = "Pilot"
 	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 8,
@@ -79,8 +79,8 @@
 	)
 
 /datum/job_flavor/assistant/combateng
-	prefixtitle		=	"Combat Engineer Vehicle \"Eris\" "
-	maintitle		=	"Field Engineer"
+	prefixtitle = "Combat Engineer Vehicle \"Eris\" "
+	maintitle = "Field Engineer"
 	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 8,
@@ -91,15 +91,15 @@
 	)
 
 /datum/job_flavor/assistant/cosmicheskiyvelikohod
-	prefixtitle		=	"Cosmicheskiy Edinstveniy Velikohod \"Eris\""
-	maintitle		=	"Politruk"
+	prefixtitle = "Cosmicheskiy Edinstveniy Velikohod \"Eris\""
+	maintitle = "Politruk"
 
 /datum/job_flavor/assistant/cosmicheskiyvelikohod/krasnoarmeets
-	maintitle		=	"Krasnoarmeets"
+	maintitle = "Krasnoarmeets"
 
 /datum/job_flavor/assistant/cosmicheskiyvelikohod/kosmonavt
-	maintitle		=	"Kosmonavt"
-	stat_modifiers 	=	list(
+	maintitle = "Kosmonavt"
+	stat_modifiers = list(
 		STAT_ROB = 16,
 		STAT_TGH = 16,
 		STAT_BIO = 16,
@@ -109,19 +109,19 @@
 	)
 
 /datum/job_flavor/assistant/czechemigration
-	prefixtitle		=	"Czech Emigration Vessel \"Eris\""
-	maintitle		=	"Registration Officer"
+	prefixtitle = "Czech Emigration Vessel \"Eris\""
+	maintitle = "Registration Officer"
 
 /datum/job_flavor/assistant/czechemigration/refugee
-	maintitle		=	"Refugee"
+	maintitle = "Refugee"
 
 /datum/job_flavor/assistant/czechemigration/mig_officer
-	maintitle		=	"Emigration Officer"
+	maintitle = "Emigration Officer"
 
 /datum/job_flavor/assistant/cockroachexile
-	prefixtitle		=	"Cockroach Exile Vessel \"Eris\""
-	maintitle		=	"Protein Farmer"
-	stat_modifiers	=	list(
+	prefixtitle = "Cockroach Exile Vessel \"Eris\""
+	maintitle = "Protein Farmer"
+	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 8,
 		STAT_BIO = 16,
@@ -131,8 +131,8 @@
 	)
 
 /datum/job_flavor/assistant/cockroachexile/biotechnician
-	maintitle		=	"Biotechnician"
-	stat_modifiers	=	list(
+	maintitle = "Biotechnician"
+	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 8,
 		STAT_BIO = 16,
@@ -142,8 +142,8 @@
 	)
 
 /datum/job_flavor/assistant/cockroachexile/bioterror_spec
-	maintitle		=	"Bioterror Specialist"
-	stat_modifiers	=	list(
+	maintitle = "Bioterror Specialist"
+	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 8,
 		STAT_BIO = 16,
@@ -153,9 +153,9 @@
 	)
 
 /datum/job_flavor/assistant/capitalextermination
-	prefixtitle		=	"Capital Extermination Vessel \"Eris\""
-	maintitle		=	"Bomber"
-	stat_modifiers	=	list(
+	prefixtitle = "Capital Extermination Vessel \"Eris\""
+	maintitle = "Bomber"
+	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 8,
 		STAT_BIO = 8,
@@ -165,8 +165,8 @@
 	)
 
 /datum/job_flavor/assistant/capitalextermination/m_arms
-	maintitle		=	"Master at Arms"
-	stat_modifiers	=	list(
+	maintitle = "Master at Arms"
+	stat_modifiers = list(
 		STAT_ROB = 16,
 		STAT_TGH = 16,
 		STAT_BIO = 8,
@@ -176,8 +176,8 @@
 	)
 
 /datum/job_flavor/assistant/capitalextermination/loader
-	maintitle		=	"Loader"
-	stat_modifiers	=	list(
+	maintitle = "Loader"
+	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 16,
 		STAT_BIO = 8,
@@ -196,9 +196,9 @@
 	maintitle = "Breeder"
 
 /datum/job_flavor/assistant/corpentertain
-	prefixtitle		=	"Corporate Entertain Vehicle \"Eris\""
-	maintitle		=	"Mixologist"
-	stat_modifiers	=	list(
+	prefixtitle = "Corporate Entertain Vehicle \"Eris\""
+	maintitle = "Mixologist"
+	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 8,
 		STAT_BIO = 16,
@@ -207,27 +207,27 @@
 	)
 
 /datum/job_flavor/assistant/corpentertain/stripper
-	maintitle		=	"Stripper"
+	maintitle = "Stripper"
 
 /datum/job_flavor/assistant/corpentertain/officiant
-	maintitle		=	"Officiant"
+	maintitle = "Officiant"
 
 /datum/job_flavor/assistant/emigratorclass
-	prefixtitle		=	"Class \"Emigrator\" Vessel \"Eris\""
-	maintitle		=	"Quartermaster"
+	prefixtitle = "Class \"Emigrator\" Vessel \"Eris\""
+	maintitle = "Quartermaster"
 
 /datum/job_flavor/assistant/emigratorclass/deck_chief
-	maintitle		=	"Deck Chief"
+	maintitle = "Deck Chief"
 
 /datum/job_flavor/assistant/emigratorclass/deck_tech
-	maintitle		=	"Deck Technician"
+	maintitle = "Deck Technician"
 
 /datum/job_flavor/assistant/cristianera
-	prefixtitle		=	"Christian Era Vector \"Eris\""
-	maintitle		=	"Patriarch"
+	prefixtitle = "Christian Era Vector \"Eris\""
+	maintitle = "Patriarch"
 
 /datum/job_flavor/assistant/cristianera/protodeacon
-	maintitle		=	"Protodeacon"
+	maintitle = "Protodeacon"
 
 /datum/job_flavor/assistant/cristianera/archimandrite
-	maintitle		=	"Archimandrite"
+	maintitle = "Archimandrite"

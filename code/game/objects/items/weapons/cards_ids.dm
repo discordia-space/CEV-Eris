@@ -90,33 +90,33 @@ var/const/NO_EMAG_ACT = -50
 	return 1
 
 /obj/item/weapon/card/id
-	name							=	"identification card"
-	desc							=	"A card used to provide ID and determine access across the ship."
-	icon_state						=	"id"
-	item_state						=	"card-id"
-	slot_flags						=	SLOT_ID
+	name = "identification card"
+	desc = "A card used to provide ID and determine access across the ship."
+	icon_state = "id"
+	item_state = "card-id"
+	slot_flags = SLOT_ID
 
-	var/access						=	list()
-	var/registered_name				=	"Unknown" // The name registered_name on the card
-	var/list/associated_email_login	=	list("login" = "", "password" = "")
-	var/associated_account_number	=	0
+	var/access = list()
+	var/registered_name = "Unknown" // The name registered_name on the card
+	var/list/associated_email_login = list("login" = "", "password" = "")
+	var/associated_account_number = 0
 
-	var/age							=	"\[UNSET\]"
-	var/blood_type					=	"\[UNSET\]"
-	var/dna_hash					=	"\[UNSET\]"
-	var/fingerprint_hash			=	"\[UNSET\]"
-	var/sex							=	"\[UNSET\]"
+	var/age = "\[UNSET\]"
+	var/blood_type = "\[UNSET\]"
+	var/dna_hash = "\[UNSET\]"
+	var/fingerprint_hash = "\[UNSET\]"
+	var/sex = "\[UNSET\]"
 	var/icon/front
 	var/icon/side
 
 	//alt titles are handled a bit weirdly in order to unobtrusively integrate into existing ID system
-	var/assignment					=	null	//can be alt title or the actual job
-	var/preassigment_title			=	null	//Prefix for var/assigment
-	var/mainassigment_title			=	null	//Center for var/assigment
-	var/customisible_mainassigment	=	0		//Can anyone change mainassigment_title
+	var/assignment = null						//can be alt title or the actual job
+	var/preassigment_title = null				//Prefix for var/assigment
+	var/mainassigment_title = null				//Center for var/assigment
+	var/customisible_mainassigment =	0		//Can anyone change mainassigment_title
 
-	var/rank						=	null			//actual job
-	var/dorm						=	0			// determines if this ID has claimed a dorm already
+	var/rank = null			//actual job
+	var/dorm = 0			// determines if this ID has claimed a dorm already
 
 	var/formal_name_prefix
 	var/formal_name_suffix
