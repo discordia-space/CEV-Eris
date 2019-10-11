@@ -13,6 +13,7 @@
 	cell_type = /obj/item/weapon/cell/medium
 	sel_mode = 2
 	charge_cost = 75
+	recoil_buildup = 0.1 //pulse weapons have a bit more recoil
 
 	firemodes = list(
 		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun, fire_sound='sound/weapons/Taser.ogg', fire_delay=null, charge_cost=null, icon="stun"),

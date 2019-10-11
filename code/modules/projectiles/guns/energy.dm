@@ -6,6 +6,9 @@
 	fire_sound = 'sound/weapons/Taser.ogg'
 	fire_sound_text = "laser blast"
 
+	recoil_buildup = 0.05 //energy weapons have little to no recoil
+
+
 	var/charge_cost = 100 //How much energy is needed to fire.
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/medium
