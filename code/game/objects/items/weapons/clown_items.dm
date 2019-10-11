@@ -25,6 +25,7 @@
 	throwforce = 0
 	throw_speed = 4
 	throw_range = 20
+	matter = list(MATERIAL_BIOMATTER = 12)
 
 /obj/item/weapon/soap/New()
 	..()

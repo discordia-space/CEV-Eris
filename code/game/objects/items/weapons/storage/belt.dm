@@ -8,6 +8,7 @@
 	max_w_class = ITEM_SIZE_NORMAL
 	max_storage_space = DEFAULT_NORMAL_STORAGE
 	slot_flags = SLOT_BELT
+	matter = list(MATERIAL_BIOMATTER = 4, MATERIAL_PLASTIC = 5)
 	attack_verb = list("whipped", "lashed", "disciplined")
 
 	var/show_above_suit = 0
