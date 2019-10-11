@@ -18,7 +18,8 @@
 
 	var/list/stored_material = list()
 
-	var/output_side = null //by default it will be reversed smelter's dir
+	var/input_side = SOUTH
+	var/output_side = null //by default it will be reversed input_side
 
 	var/progress = 0
 
@@ -30,7 +31,7 @@
 /obj/machinery/smelter/Initialize()
 	. = ..()
 	if(!output_side)
-		output_side = reverse_direction(dir)
+		output_side = reverse_direction(input_side)
 
 
 /obj/machinery/smelter/Destroy()
@@ -68,7 +69,7 @@
 
 
 /obj/machinery/smelter/proc/grab()
-	for(var/obj/item/I in get_step(src, dir))
+	for(var/obj/item/I in get_step(src, input_side))
 		if(I.anchored)
 			continue
 		I.forceMove(src)
