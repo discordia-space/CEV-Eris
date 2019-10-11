@@ -42,27 +42,55 @@
 	icon_state = "dirt"
 	mouse_opacity = 0
 
-/obj/effect/decal/cleanable/splashed_reagents
-	name = "splashed liquid"
+/obj/effect/decal/cleanable/reagents
 	desc = "Someone should clean that up."
 	gender = PLURAL
 	density = FALSE
 	anchored = TRUE
 	icon = 'icons/obj/reagentfillings.dmi'
-	icon_state = "splashed"
 	mouse_opacity = 0
 	random_rotation = FALSE
 
-/obj/effect/decal/cleanable/piled_reagents
+/obj/effect/decal/cleanable/reagents/proc/add_reagents(var/datum/reagents/reagents_to_add)
+	var/space_to_add = reagents_to_add.total_volume - reagents.get_free_space() 
+	if(space_to_add > 0)
+		create_reagents(space_to_add, TRUE)
+	reagents_to_add.trans_to_holder(reagents, reagents_to_add.total_volume)
+
+/obj/effect/decal/cleanable/reagents/New(var/datum/reagents/reagents_to_add = null)
+	. = ..()
+	if(reagents_to_add && reagents_to_add.total_volume)
+		reagents = reagents_to_add
+		color = reagents.get_color()
+
+/obj/effect/decal/cleanable/reagents/splashed
+	name = "splashed liquid"
+	icon_state = "splashed"
+
+/obj/effect/decal/cleanable/reagents/splashed/New(var/datum/reagents/reagents_to_add = null)
+	. = ..()
+	if(reagents)
+		alpha = min(reagents.total_volume * 30, 255)
+		START_PROCESSING(SSobj, src)
+
+/obj/effect/decal/cleanable/reagents/splashed/add_reagents(var/datum/reagents/reagents_to_add)
+	alpha = min(alpha + reagents_to_add.total_volume * 30, 255)
+	color = BlendRGB(color, reagents_to_add.get_color(), 0.6)
+	..()
+
+/obj/effect/decal/cleanable/reagents/splashed/Process()
+	if(!reagents.total_volume)
+		STOP_PROCESSING(SSobj, src)
+		return
+	reagents.remove_any(0.05)
+
+/obj/effect/decal/cleanable/reagents/piled
 	name = "powder pile"
-	desc = "Someone should clean that up."
-	gender = PLURAL
-	density = FALSE
-	anchored = TRUE
-	icon = 'icons/obj/reagentfillings.dmi'
 	icon_state = "powderpile"
-	mouse_opacity = 0
-	random_rotation = FALSE
+
+/obj/effect/decal/cleanable/reagents/piled/add_reagents(var/datum/reagents/reagents_to_add)
+	color = BlendRGB(color, reagents_to_add.get_color(), 0.8)
+	..()
 
 /obj/effect/decal/cleanable/flour
 	name = "flour"

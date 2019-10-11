@@ -607,3 +607,37 @@
 /datum/reagent/toxin/fuhrerole/overdose(var/mob/living/carbon/M, var/alien)
 	M.add_chemical_effect(CE_SPEECH_VOLUME, rand(3,4))
 	M.adjustBrainLoss(0.5)
+
+/datum/reagent/toxin/biomatter
+	name = "Biomatter"
+	id = "biomatter"
+	description = "A goo of unknown to you origin. Its better to stay that way."
+	taste_description = "vomit"
+	reagent_state = LIQUID
+	color = "#527f4f"
+	strength = 0.3
+
+/datum/reagent/toxin/biomatter/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	..()
+	M.take_organ_damage(0, effect_multiplier * strength)
+
+/datum/reagent/toxin/biomatter/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	..()
+	if(prob(10 - (5 * M.stats.getMult(STAT_TGH))))
+		M.vomit()
+
+/datum/reagent/toxin/biomatter/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	..()
+	if(prob(5 - (4 * M.stats.getMult(STAT_TGH))))
+		M.vomit()
+
+/datum/reagent/toxin/biomatter/touch_turf(var/turf/T)
+	if(volume >= 5)
+		if(volume >= 45)
+			spill_biomass(T, alldirs)
+		else if(volume >= 25)
+			spill_biomass(T, cardinal)
+		else
+			spill_biomass(T)
+		remove_self(volume)
+		return TRUE
