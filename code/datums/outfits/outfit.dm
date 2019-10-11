@@ -74,16 +74,12 @@ var/list/outfits_decls_by_type_
 		J.toggle()
 		J.toggle_valve()
 
-/decl/hierarchy/outfit/proc/equip(mob/living/carbon/human/H, var/rank, var/assignment, var/equip_adjustments, var/assigment_prefix = null, var/assigment_main = null, var/is_customisible_idmainassigment = null)
+/decl/hierarchy/outfit/proc/equip(mob/living/carbon/human/H, var/rank, var/assignment, var/equip_adjustments)
 	equip_base(H, equip_adjustments)
 
 	rank = id_pda_assignment || rank
 	assignment = id_pda_assignment || assignment || rank
-	var/obj/item/weapon/card/id/W
-	if(!assigment_main)
-		W = equip_id(H, rank, assignment, equip_adjustments)
-	else
-		W = equip_id(H, rank, assignment, equip_adjustments, list(assigment_prefix, assigment_main), is_customisible_idmainassigment)
+	var/obj/item/weapon/card/id/W = equip_id(H, rank, assignment, equip_adjustments)
 	if(W)
 		rank = W.rank
 		assignment = W.assignment
@@ -165,7 +161,7 @@ var/list/outfits_decls_by_type_
 	if(H.species && !(OUTFIT_ADJUSTMENT_SKIP_SURVIVAL_GEAR & equip_adjustments))
 		H.species.equip_survival_gear(H, flags&OUTFIT_EXTENDED_SURVIVAL)
 
-/decl/hierarchy/outfit/proc/equip_id(var/mob/living/carbon/human/H, var/rank, var/assignment, var/equip_adjustments, var/list/prefix_n_mainasignment = list(), var/is_customisible_mainassigment)
+/decl/hierarchy/outfit/proc/equip_id(var/mob/living/carbon/human/H, var/rank, var/assignment, var/equip_adjustments)
 	if(!id_slot || !id_type)
 		return
 	if(OUTFIT_ADJUSTMENT_SKIP_ID_PDA & equip_adjustments)
@@ -177,15 +173,8 @@ var/list/outfits_decls_by_type_
 		W.desc = id_desc
 	if(rank)
 		W.rank = rank
-	if(!prefix_n_mainasignment.len)
-		if(assignment)
-			W.assignment = assignment
-	else
-		W.preassigment_title	=	prefix_n_mainasignment[1]
-		W.mainassigment_title	=	prefix_n_mainasignment[2]
-		W.update_name()
-	if(is_customisible_mainassigment)
-		W.customisible_mainassigment = 1
+	if(assignment)
+		W.assignment = assignment
 	H.set_id_info(W)
 	if(H.equip_to_slot_or_store_or_drop(W, id_slot))
 		return W
