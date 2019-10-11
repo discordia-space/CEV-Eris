@@ -20,6 +20,7 @@
 
 	var/input_side = SOUTH
 	var/output_side = null //by default it will be reversed input_side
+	var/refuse_output_side = EAST
 
 	var/progress = 0
 
@@ -75,7 +76,7 @@
 		I.forceMove(src)
 		var/list/materials = result_materials(I)
 		if(!materials?.len || !are_valid_materials(materials))
-			eject(I)
+			eject(I, refuse_output_side)
 			return
 		current_item = I
 		return
@@ -92,7 +93,7 @@
 
 	if(materials)
 		if(!are_valid_materials(materials))
-			eject(smelting)
+			eject(smelting, refuse_output_side)
 			return
 
 		for(var/material in materials)
@@ -131,15 +132,15 @@
 	return O.get_matter()
 
 
-/obj/machinery/smelter/proc/eject(obj/O)
-	O.forceMove(get_step(src, output_side))
+/obj/machinery/smelter/proc/eject(obj/O, output_dir)
+	O.forceMove(get_step(src, output_dir))
 
 
 /obj/machinery/smelter/proc/eject_material_stack(material)
 	var/obj/item/stack/material/stack_type = material_stack_type(material)
 	var/ejected_amount = min(initial(stack_type.max_amount), round(stored_material[material]), storage_capacity)
 	var/obj/item/stack/material/S = new stack_type(src, ejected_amount)
-	eject(S)
+	eject(S, output_side)
 	stored_material[material] -= ejected_amount
 
 
