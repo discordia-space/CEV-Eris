@@ -44,17 +44,11 @@
 
 	var/list/perks = list()
 
-/datum/job/proc/equip(var/mob/living/carbon/human/H, var/alt_title,  var/assgim_main = null, var/assgim_prefix = null, var/is_customisible_idmassigment = null)
+/datum/job/proc/equip(var/mob/living/carbon/human/H, var/alt_title)
 	var/decl/hierarchy/outfit/outfit = get_outfit()
 	if(!outfit)
 		return FALSE
-	if(!assgim_main)
-		. = outfit.equip(H, title, alt_title)
-	else
-		if(is_customisible_idmassigment)
-			. = outfit.equip(H, title, alt_title, null, assgim_prefix, assgim_main, is_customisible_idmassigment)
-		else
-			. = outfit.equip(H, title, alt_title, null, assgim_prefix, assgim_main)
+	. = outfit.equip(H, title, alt_title)
 
 /datum/job/proc/get_outfit(var/alt_title)
 	if(alt_title && alt_titles)
