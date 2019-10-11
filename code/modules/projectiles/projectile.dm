@@ -79,9 +79,9 @@
 	damage = initial(damage)*newmult
 
 /obj/item/projectile/proc/on_hit(var/atom/target, var/blocked = 0, var/def_zone = null)
-	if(blocked >= 2)		return 0//Full block
 	if(!isliving(target))	return 0
 	if(isanimal(target))	return 0
+	if(blocked >= 2)		return 0//Full block
 	var/mob/living/L = target
 	L.apply_effects(stun, weaken, paralyze, irradiate, stutter, eyeblur, drowsy, agony) // add in AGONY!
 	return TRUE
