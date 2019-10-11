@@ -10,7 +10,7 @@
 	force = WEAPON_FORCE_PAINFUL
 	slot_flags = 0
 	caliber = "a762"
-	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 2)
+	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_BOX

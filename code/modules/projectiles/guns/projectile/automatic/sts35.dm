@@ -6,7 +6,7 @@
 	w_class = ITEM_SIZE_BULKY
 	force = WEAPON_FORCE_PAINFUL
 	caliber = "a762"
-	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1)
+	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 1)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_CIVI_RIFLE|MAG_WELL_AK
