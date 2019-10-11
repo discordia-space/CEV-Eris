@@ -208,7 +208,7 @@
 	var/list/tm = matter.Copy()
 	//Every point of damage reduces matter by 2% of total
 	for (var/mat in tm)
-		tm[mat] *= 1 - (health/max_health)
+		tm[mat] *= health / max_health
 
 	return tm
 
