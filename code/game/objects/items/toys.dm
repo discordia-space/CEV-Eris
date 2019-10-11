@@ -319,14 +319,7 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "sunflower"
 	item_state = "sunflower"
-	var/empty = 0
-	flags
-
-/obj/item/toy/waterflower/New()
-	var/datum/reagents/R = new/datum/reagents(10)
-	reagents = R
-	R.my_atom = src
-	R.add_reagent("water", 10)
+	preloaded_reagents = list("water" = 10)
 
 /obj/item/toy/waterflower/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	return
@@ -345,12 +338,8 @@
 		return
 
 	else if (src.reagents.total_volume < 1)
-		src.empty = 1
 		to_chat(user, SPAN_NOTICE("Your flower has run dry!"))
 		return
-
-	else
-		src.empty = 0
 
 
 		var/obj/effect/decal/D = new/obj/effect/decal/(get_turf(src))

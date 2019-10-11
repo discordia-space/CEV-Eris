@@ -209,6 +209,14 @@
 		return 0
 
 	update_total()
+
+	if(amount > get_free_space())
+		if(istype(my_atom, /obj/item/weapon/reagent_containers/food))
+			// you should not be able to manage food reagents, so this should be fine
+			my_atom.create_reagents(amount - get_free_space(), TRUE)
+		else if(SSticker.current_state < GAME_STATE_PLAYING)
+			error("[my_atom.type] has not enough free space at pre game start, this is a code error.")
+	
 	amount = min(amount, get_free_space())
 
 	for(var/datum/reagent/current in reagent_list)
@@ -583,5 +591,11 @@
 
 /* Atom reagent creation - use it all the time */
 
-/atom/proc/create_reagents(max_vol)
-	reagents = new /datum/reagents(max_vol, src)
+/atom/proc/create_reagents(max_vol, var/no_error = FALSE)
+	if(!reagents)
+		reagents = new /datum/reagents(max_vol, src)
+	else
+		if(!no_error)
+			warning("[type] atom already had reagents, adjusting volume. Perhaps it was preloaded.")
+		reagents.maximum_volume += max_vol
+

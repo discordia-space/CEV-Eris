@@ -22,11 +22,7 @@
 	if(!possible_transfer_amounts)
 		src.verbs -= /obj/item/weapon/reagent_containers/verb/set_APTFT
 	create_reagents(volume)
-	if(preloaded_reagents)
-		for(var/reagent in preloaded_reagents)
-			reagents.add_reagent(reagent, preloaded_reagents[reagent])
 	..()
-
 
 /obj/item/weapon/reagent_containers/attack_self(mob/user as mob)
 	return
