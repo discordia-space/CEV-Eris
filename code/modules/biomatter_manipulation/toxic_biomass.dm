@@ -53,7 +53,10 @@
 
 /obj/effect/decal/cleanable/solid_biomass/Process()
 	for(var/mob/living/creature in mobs_in_view(1, src))
-		toxin_attack(creature, rand(4, 8))
+		var/hazard_protection = creature.getarmor(null, "bio")
+		if(!hazard_protection && prob(5))	// proper protecting handling should be done instead of this
+			to_chat(creature, SPAN_DANGER("You inhale something disgusting. U-ugh. It's probably not good for your health."))
+		toxin_attack(creature, rand(2, 6))
 
 
 /obj/effect/decal/cleanable/solid_biomass/attackby(var/obj/item/I, var/mob/user)
