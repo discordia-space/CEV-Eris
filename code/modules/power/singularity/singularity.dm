@@ -2,7 +2,7 @@
 
 /obj/singularity/
 	name = "gravitational singularity"
-	desc = "A gravitational singularity."
+	desc = "A swirling, churning vortex of impossible darkness that threatens to swallow anything and everything that gets too close. Gazing into its infinite depth makes your head ache."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "singularity_s1"
 	anchored = 1
@@ -124,7 +124,7 @@
 	switch (temp_allowed_size)
 		if (STAGE_ONE)
 			name = "gravitational singularity"
-			desc = "A gravitational singularity."
+			desc = "A swirling, churning vortex of impossible darkness that threatens to swallow anything and everything that gets too close. Gazing into its infinite depth makes your head ache."
 			current_size = STAGE_ONE
 			icon = 'icons/obj/singularity.dmi'
 			icon_state = "singularity_s1"
@@ -141,7 +141,7 @@
 			visible_message(SPAN_NOTICE("The singularity has shrunk to a rather pitiful size."))
 		if (STAGE_TWO) //1 to 3 does not check for the turfs if you put the gens right next to a 1x1 then its going to eat them.
 			name = "gravitational singularity"
-			desc = "A gravitational singularity."
+			desc = "A swirling, churning vortex of impossible darkness that threatens to swallow anything and everything that gets too close. Gazing into its infinite depth makes your head ache."
 			current_size = STAGE_TWO
 			icon = 'icons/effects/96x96.dmi'
 			icon_state = "singularity_s3"
@@ -162,7 +162,7 @@
 		if (STAGE_THREE)
 			if ((check_turfs_in(1, 2)) && (check_turfs_in(2, 2)) && (check_turfs_in(4, 2)) && (check_turfs_in(8, 2)))
 				name = "gravitational singularity"
-				desc = "A gravitational singularity."
+				desc = "A swirling, churning vortex of impossible darkness that threatens to swallow anything and everything that gets too close. Gazing into its infinite depth makes your head ache."
 				current_size = STAGE_THREE
 				icon = 'icons/effects/160x160.dmi'
 				icon_state = "singularity_s5"
@@ -183,7 +183,7 @@
 		if(STAGE_FOUR)
 			if ((check_turfs_in(1, 3)) && (check_turfs_in(2, 3)) && (check_turfs_in(4, 3)) && (check_turfs_in(8, 3)))
 				name = "gravitational singularity"
-				desc = "A gravitational singularity."
+				desc = "A swirling, churning vortex of impossible darkness that threatens to swallow anything and everything that gets too close. Gazing into its infinite depth makes your head ache."
 				current_size = STAGE_FOUR
 				icon = 'icons/effects/224x224.dmi'
 				icon_state = "singularity_s7"
@@ -203,7 +203,7 @@
 					visible_message(SPAN_NOTICE("Miraculously, the singularity reduces in size, and can be contained."))
 		if(STAGE_FIVE) //This one also lacks a check for gens because it eats everything.
 			name = "gravitational singularity"
-			desc = "A gravitational singularity."
+			desc = "A swirling, churning vortex of impossible darkness that threatens to swallow anything and everything that gets too close. Gazing into its infinite depth makes your head ache."
 			current_size = STAGE_FIVE
 			icon = 'icons/effects/288x288.dmi'
 			icon_state = "singularity_s9"
@@ -221,7 +221,7 @@
 				visible_message(SPAN_WARNING("The singularity miraculously reduces in size and loses its supermatter properties."))
 		if(STAGE_SUPER)//SUPERSINGULO
 			name = "super gravitational singularity"
-			desc = "A gravitational singularity with the properties of supermatter. <b>It has the power to destroy worlds.</b>"
+			desc = "A swirling, churning vortex of impossible darkness that threatens to swallow anything and everything that gets too close. Its power of infinite consumption and matter obliteration has been fused with the properties of an unstable, explosive substance with the blasting power of a small star going supernova. <b>This was a terrible, horrible idea.</b>"
 			current_size = STAGE_SUPER
 			icon = 'icons/effects/352x352.dmi'
 			icon_state = "singularity_s11"//uh, whoever drew that, you know that black holes are supposed to look dark right? What's this, the clown's singulo?

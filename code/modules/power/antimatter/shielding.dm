@@ -9,7 +9,7 @@ proc/cardinalrange(var/center)
 
 /obj/machinery/am_shielding
 	name = "antimatter reactor section"
-	desc = "This device was built using a plasma life-form that seems to increase plasma's natural ability to react with neutrinos while reducing the combustibility."
+	desc = "A device built using a plasma-based life-form with the ability to increase plasma's natural ability to react with neutrinos while reducing its combustibility."
 
 	icon = 'icons/obj/machines/antimatter.dmi'
 	icon_state = "shield"
@@ -186,7 +186,7 @@ proc/cardinalrange(var/center)
 
 /obj/item/device/am_shielding_container
 	name = "packaged antimatter reactor section"
-	desc = "A small storage unit containing an antimatter reactor section.  To use place near an antimatter control unit or deployed antimatter reactor section and use a multitool to activate this package."
+	desc = "A small storage unit containing an antimatter reactor section.  To use it, place it near an antimatter control unit or deployed antimatter reactor section and use a multitool to activate this package."
 	icon = 'icons/obj/machines/antimatter.dmi'
 	icon_state = "box"
 	item_state = "electronic"
