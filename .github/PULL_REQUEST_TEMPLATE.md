@@ -2,17 +2,9 @@
 <!-- You can view Contributing.MD for a detailed description of the pull request process. -->
 
 ## About The Pull Request
-<details>
-<summary>
-	About The Pull Request
-</summary>
-<hr>
+
 
 <!-- Describe The Pull Request. Please be sure every change is documented or this can delay review and even discourage maintainers from merging your PR! -->
-	
-<hr>
-</details>
-
 ## Changelog
 :cl:
 <!--add: Added new things
