@@ -94,18 +94,6 @@
 			B.fill()
 		update_icon()
 		return
-	else if(istype(I, /obj/item/device/scanner/analyzer/plant_analyzer))
-		to_chat(user, SPAN_NOTICE("Scan result of \the [src]..."))
-		to_chat(user, "Beehive is [bee_count ? "[round(bee_count)]% full" : "empty"].[bee_count > 90 ? " Colony is ready to split." : ""]")
-		if(frames)
-			to_chat(user, "[frames] frames installed, [round(honeycombs / 100)] filled.")
-			if(honeycombs < frames * 100)
-				to_chat(user, "Next frame is [round(honeycombs % 100)]% full.")
-		else
-			to_chat(user, "No frames installed.")
-		if(smoked)
-			to_chat(user, "The hive is smoked.")
-		return 1
 	else if(istype(I, /obj/item/weapon/tool/screwdriver))
 		if(bee_count)
 			to_chat(user, SPAN_NOTICE("You can't dismantle \the [src] with these bees inside."))

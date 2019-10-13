@@ -7,7 +7,7 @@
 		/obj/item/weapon/tool/wrench,
 		/obj/item/weapon/tool/weldingtool,
 		/obj/item/weapon/tool/crowbar,
-		/obj/item/device/scanner/analyzer,
+		/obj/item/device/scanner/gas,
 		/obj/item/weapon/tool/wirecutters,
 		/obj/item/weapon/tool/multitool
 	)

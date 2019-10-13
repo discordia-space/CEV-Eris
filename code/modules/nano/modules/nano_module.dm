@@ -38,9 +38,7 @@
 /datum/nano_module/proc/get_access(mob/user)
 	. = using_access
 	if(istype(user))
-		var/obj/item/weapon/card/id/I = user.GetIdCard()
-		if(I)
-			. |= I.access
+		. |= user.GetAccess()
 
 /datum/nano_module/proc/check_access(var/mob/user, var/access)
 	if(!access)
@@ -64,19 +62,19 @@
 
 // refreshes catalog browsing 
 // must be always called after creating nanoUI
-/datum/nano_module/proc/refresh_catalog_browsing(var/mob/user)
+/datum/nano_module/proc/refresh_catalog_browsing(var/mob/user, var/datum/nanoui/ui)
 	if(selected_entry)
-		browse_catalog_entry(selected_entry, user)
+		browse_catalog_entry(selected_entry, user, ui)
 		return
 	if(catalog)
-		browse_catalog(catalog, user)
+		browse_catalog(catalog, user, ui)
 		return
 
 // browses catalog entry and refreshes UI
-/datum/nano_module/proc/browse_catalog_entry(var/datum/catalog_entry/entry_to_browse, var/mob/user)
+/datum/nano_module/proc/browse_catalog_entry(var/datum/catalog_entry/entry_to_browse, var/mob/user, var/datum/nanoui/_ui)
 	if(!entry_to_browse)
 		return FALSE
-	var/datum/nanoui/ui = SSnano.get_open_ui(user, src, "main")
+	var/datum/nanoui/ui = _ui ? _ui : SSnano.get_open_ui(user, src, "main")
 	if(!ui)
 		return FALSE
 	if(selected_entry && selected_entry != entry_to_browse)
@@ -92,10 +90,10 @@
 
 // browses catalog and refreshes UI
 // resets all entry history
-/datum/nano_module/proc/browse_catalog(var/datum/catalog/catalog_to_browse, var/mob/user)
+/datum/nano_module/proc/browse_catalog(var/datum/catalog/catalog_to_browse, var/mob/user, var/datum/nanoui/_ui)
 	if(!catalog_to_browse)
 		return FALSE
-	var/datum/nanoui/ui = SSnano.get_open_ui(user, src, "main")
+	var/datum/nanoui/ui = _ui ? _ui : SSnano.get_open_ui(user, src, "main")
 	if(!ui)
 		return FALSE
 	entry_history = list()

@@ -313,7 +313,7 @@
 
 /obj/random/cloth/shoes
 	name = "random shoes"
-	desc = "This is a random shoes"
+	desc = "This is a random pair of shoes."
 	icon_state = "armor-grey"
 
 /obj/random/cloth/shoes/item_to_spawn()

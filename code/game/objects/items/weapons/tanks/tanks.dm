@@ -73,10 +73,6 @@ var/list/global/tank_gauge_cache = list()
 	..()
 	if (istype(src.loc, /obj/item/assembly))
 		icon = src.loc
-
-	if ((istype(W, /obj/item/device/scanner/analyzer)) && get_dist(user, src) <= 1)
-		var/obj/item/device/scanner/analyzer/A = W
-		A.analyze_gases(src, user)
 	else if (istype(W,/obj/item/latexballon))
 		var/obj/item/latexballon/LB = W
 		LB.blow(src)

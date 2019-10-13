@@ -11,7 +11,7 @@
 	desc = "The peak of thousands of years of laundry evolution."
 
 	w_class = ITEM_SIZE_HUGE
-	max_w_class = ITEM_SIZE_LARGE
+	max_w_class = ITEM_SIZE_BULKY
 	max_storage_space = 25 //20 for clothes + a bit of additional space for non-clothing items that were worn on body
 	storage_slots = 14
 	use_to_pickup = 1

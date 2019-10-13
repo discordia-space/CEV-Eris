@@ -50,7 +50,7 @@
 		affected.setBleeding()
 
 	affected.createwound(CUT, 1)
-	affected.clamp()
+	affected.clamp_wounds()
 	spread_germs_to_organ(affected, user)
 
 /datum/surgery_step/generic/cut_with_laser/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -118,7 +118,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("\blue [user] clamps bleeders in [target]'s [affected.name] with \the [tool].",	\
 	"\blue You clamp bleeders in [target]'s [affected.name] with \the [tool].")
-	affected.clamp()
+	affected.clamp_wounds()
 	spread_germs_to_organ(affected, user)
 
 /datum/surgery_step/generic/clamp_bleeders/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)

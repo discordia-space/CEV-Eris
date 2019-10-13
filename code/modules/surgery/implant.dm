@@ -230,7 +230,8 @@
 		if (prob(fail_prob))
 			user.visible_message("\red You scrape something inside [target]'s [affected.name]." )
 			var/obj/item/weapon/implant/imp = affected.implants[1]
-			spawn(25)
-				if (QDELETED(imp))
-					return
-				imp.malfunction(1)
+			if(istype(imp))
+				spawn(25)
+					if (QDELETED(imp))
+						return
+					imp.malfunction(1)

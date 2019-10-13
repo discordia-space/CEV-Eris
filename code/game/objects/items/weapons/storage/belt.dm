@@ -6,8 +6,9 @@
 	item_state = "utility"
 	storage_slots = 7
 	max_w_class = ITEM_SIZE_NORMAL
-	max_storage_space = 28
+	max_storage_space = DEFAULT_NORMAL_STORAGE
 	slot_flags = SLOT_BELT
+	matter = list(MATERIAL_BIOMATTER = 4, MATERIAL_PLASTIC = 5)
 	attack_verb = list("whipped", "lashed", "disciplined")
 
 	var/show_above_suit = 0
@@ -39,12 +40,12 @@
 		/obj/item/device/radio/headset,
 		/obj/item/stack/cable_coil,
 		/obj/item/device/t_scanner,
-		/obj/item/device/scanner/analyzer,
+		/obj/item/device/scanner/gas,
 		/obj/item/taperoll/engineering,
 		/obj/item/device/robotanalyzer,
 		/obj/item/weapon/material/minihoe,
 		/obj/item/weapon/material/hatchet,
-		/obj/item/device/scanner/analyzer/plant_analyzer,
+		/obj/item/device/scanner/plant,
 		/obj/item/weapon/extinguisher/mini,
 		/obj/item/weapon/hand_labeler,
 		/obj/item/clothing/gloves,
@@ -64,7 +65,7 @@
 	new /obj/item/weapon/tool/wirecutters(src)
 	new /obj/item/stack/cable_coil/random(src)
 
-//Mostlyfull toolbelt has a high chance - but not guaranteed - to contain each common tool
+//Mostly full toolbelt has a high chance - but not guaranteed - to contain each common tool
 /obj/item/weapon/storage/belt/utility/mostlyfull/New()
 	..()
 	if (prob(65))
@@ -98,7 +99,7 @@
 	icon_state = "medicalbelt"
 	item_state = "medical"
 	can_hold = list(
-		/obj/item/device/scanner/healthanalyzer,
+		/obj/item/device/scanner/health,
 		/obj/item/weapon/dnainjector,
 		/obj/item/device/radio/headset,
 		/obj/item/weapon/reagent_containers/dropper,

@@ -102,7 +102,7 @@ SUBSYSTEM_DEF(job)
 		if(job.minimum_character_age && (player.client.prefs.age < job.minimum_character_age))
 			continue
 
-		if(istype(job, GetJob("Assistant"))) // We don't want to give him assistant, that's boring!
+		if(istype(job, GetJob(ASSISTANT_TITLE))) // We don't want to give him assistant, that's boring!
 			continue
 
 		if(job in command_positions) //If you want a command position, select it!
@@ -222,7 +222,7 @@ SUBSYSTEM_DEF(job)
 	Debug("AC1, Candidates: [assistant_candidates.len]")
 	for(var/mob/new_player/player in assistant_candidates)
 		Debug("AC1 pass, Player: [player]")
-		AssignRole(player, "Assistant")
+		AssignRole(player, ASSISTANT_TITLE)
 		assistant_candidates -= player
 	Debug("DO, AC1 end")
 
@@ -282,7 +282,7 @@ SUBSYSTEM_DEF(job)
 	for(var/mob/new_player/player in unassigned)
 		if(player.client.prefs.alternate_option == BE_ASSISTANT)
 			Debug("AC2 Assistant located, Player: [player]")
-			AssignRole(player, "Assistant")
+			AssignRole(player, ASSISTANT_TITLE)
 
 	//For ones returning to lobby
 	for(var/mob/new_player/player in unassigned)
@@ -300,6 +300,8 @@ SUBSYSTEM_DEF(job)
 	var/datum/job/job = GetJob(rank)
 	var/list/spawn_in_storage = list()
 
+	var/datum/job_flavor/flavor = pick(job.random_flavors)
+
 	if(job)
 
 		//Equip custom gear loadout.
@@ -316,8 +318,8 @@ SUBSYSTEM_DEF(job)
 			desired_name = H.real_name
 			ntnet_global.create_email(H, desired_name, domain)
 		// END EMAIL GENERATION
-		job.equip(H, H.mind ? H.mind.role_alt_title : "")
-		job.add_stats(H)
+		job.equip(H, flavor ? flavor.title : H.mind ? H.mind.role_alt_title : "")
+		job.add_stats(H, flavor)
 		job.add_additiional_language(H)
 
 

@@ -22,7 +22,7 @@
 /decl/hierarchy/outfit/job/cargo/mining
 	name = OUTFIT_JOB_NAME("Guild Miner")
 	uniform = /obj/item/clothing/under/rank/miner
-	pda_type = /obj/item/modular_computer/pda/science
+	pda_type = /obj/item/modular_computer/pda/moebius/science
 	backpack_contents = list(/obj/item/weapon/tool/crowbar = 1, /obj/item/weapon/storage/bag/ore = 1)
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL
 

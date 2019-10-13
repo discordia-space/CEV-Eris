@@ -29,7 +29,7 @@
 			list(name="Utility belt", cost=300, path=/obj/item/weapon/storage/belt/utility),
 			list(name="Leather Satchel", cost=400, path=/obj/item/weapon/storage/backpack/satchel),
 			list(name="Leather jacket", cost=400, /obj/item/clothing/suit/storage/leather_jacket),
-			list(name="Cash Bag", cost=400, path=/obj/item/weapon/storage/bag/cash),
+			list(name="Cash Bag", cost=400, path=/obj/item/weapon/storage/bag/money),
 			list(name="Medical belt", cost=300, path=/obj/item/weapon/storage/belt/medical),
 			list(name="Security belt", cost=300, path=/obj/item/weapon/storage/belt/security),
 			list(name="EMT belt", cost=300, path=/obj/item/weapon/storage/belt/medical/emt),

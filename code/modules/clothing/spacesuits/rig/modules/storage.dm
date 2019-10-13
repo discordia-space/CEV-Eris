@@ -3,7 +3,7 @@
 	name = "internal storage compartment"
 	desc = "A storage container designed to be installed in a RIG suit. Allows a few items to be stored inside"
 	var/obj/item/weapon/storage/internal/container = null
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 
 	//The default iconstate is actually really perfect for this, it looks like a reinforced box
 	//Duplicate specify it here incase it gets changed in the parent in future

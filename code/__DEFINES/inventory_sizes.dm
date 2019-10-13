@@ -1,40 +1,30 @@
-// Storage
+//ITEM INVENTORY WEIGHT, FOR w_class
 
-/*
-	A note on w_classes - this is an attempt to describe the w_classes currently in use
-	with an attempt at providing examples of the kinds of things that fit each w_class
-
-	1 - tiny items - things like screwdrivers and pens, sheets of paper
-	2 - small items - things that can fit in a pocket
-	3 - normal items
-	4 - large items - the largest things you can fit in a backpack
-	5 - bulky items - backpacks are this size, for reference
-	6 - human sized objects
-	7 - things that are large enough to contain humans, like closets, but smaller than entire turfs
-	8 - things that take up an entire turf, like wall girders or door assemblies
-*/
-
-// The below should be used to define an item's w_class variable.
-// Example: w_class = ITENSIZE_LARGE
-// This allows the addition of future w_classes without needing to change every file.
+/// Usually items smaller then a human hand, (e.g. playing cards, lighter, scalpel, coins/holochips)
 #define ITEM_SIZE_TINY           1
+/// Pockets can hold small and tiny items, (e.g. flashlight, multitool, grenades, GPS device)
 #define ITEM_SIZE_SMALL          2
+/// Standard backpacks can carry tiny, small & normal items, (e.g. fire extinguisher, stun baton, gas mask, metal sheets)
 #define ITEM_SIZE_NORMAL         3
-#define ITEM_SIZE_LARGE          4
+/// Items that can be wielded or equipped, (e.g. defibrillator, backpack, space suits)
+#define ITEM_SIZE_BULKY          4
+/// Usually represents objects that require two hands to operate, (e.g. shotgun, two-handed melee weapons)
 #define ITEM_SIZE_HUGE           5
+/// Essentially means it cannot be picked up or placed in an inventory, (e.g. mech parts, safe)
 #define ITEM_SIZE_GARGANTUAN     6
-#define ITEM_SIZE_NO_CONTAINER INFINITY // Use this to forbid item from being placed in a container.
+// Use this to forbid item from being placed in a container.
+#define ITEM_SIZE_NO_CONTAINER INFINITY 
 
-/*
-	The values below are not yet in use.
-*/
 
-#define base_storage_cost(w_class) (2**(w_class-1)) //1,2,4,8,16,...
+#define BASE_STORAGE_COST(w_class) (2**(w_class-1)) //1,2,4,8,16,...
+#define REDUCED_STORAGE_COST(w_class) (2**(w_class-2)) //0.5,1,2,4,8,...
 
 //linear increase. Using many small storage containers is more space-efficient than using large ones,
 //in exchange for being limited in the w_class of items that will fit
-#define base_storage_capacity(w_class) (7*(w_class-1))
+#define BASE_STORAGE_CAPACITY(w_class) (10*(w_class-1))
 
-#define DEFAULT_BACKPACK_STORAGE base_storage_capacity(5)
-#define DEFAULT_LARGEBOX_STORAGE base_storage_capacity(4)
-#define DEFAULT_BOX_STORAGE      base_storage_capacity(3)
+#define DEFAULT_GARGANTUAN_STORAGE BASE_STORAGE_CAPACITY(6)  //50 after BASE_STORAGE_CAPACITY calculation
+#define DEFAULT_HUGE_STORAGE       BASE_STORAGE_CAPACITY(5)  //40 after BASE_STORAGE_CAPACITY calculation
+#define DEFAULT_BULKY_STORAGE      BASE_STORAGE_CAPACITY(4)  //30 after BASE_STORAGE_CAPACITY calculation
+#define DEFAULT_NORMAL_STORAGE     BASE_STORAGE_CAPACITY(3)  //20 after BASE_STORAGE_CAPACITY calculation
+#define DEFAULT_SMALL_STORAGE      BASE_STORAGE_CAPACITY(2)  //10 after BASE_STORAGE_CAPACITY calculation

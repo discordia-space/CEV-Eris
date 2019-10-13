@@ -48,7 +48,7 @@
 
 /datum/craft_recipe/plastic_bag
 	name = "plastic bag"
-	result = /obj/item/weapon/storage/bag/plasticbag
+	result = /obj/item/weapon/storage/bag/plastic
 	steps = list(
 		list(CRAFT_MATERIAL, 1, MATERIAL_PLASTIC)
 	)

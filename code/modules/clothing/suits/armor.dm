@@ -21,31 +21,43 @@
 
 /obj/item/clothing/suit/armor/vest/security
 	name = "security armor"
-	desc = "An armored vest that protects against some damage. This one have Ironhammer Security signs. Not designed for serious operations."
+	desc = "An armored vest that protects against some damage. This one features Ironhammer Security iconography. Not designed for serious operations."
 	icon_state = "armorsec"
 	item_state = "armor"
 
 /obj/item/clothing/suit/armor/vest/handmade
 	name = "handmade armor vest"
-	desc = "An armored vest of uncertain quality. Provides a good protection against physical damage, for piece of crap."
+	desc = "An armored vest of dubious quality. Provides decent protection against physical damage, for a piece of crap."
 	icon_state = "hm_armorvest"
 	armor = list(melee = 30, bullet = 30, energy = 15, bomb = 15, bio = 0, rad = 0)
 	price_tag = 150
 
 /obj/item/clothing/suit/armor/vest/botanist
-	name = "Botanist armor"
-	desc = "Every rose has its thorn."
+	name = "Argolyte attire"
+	desc = "Every rose has its thorns."
 	icon_state = "botanist"
+	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	armor = list(melee = 35, bullet = 20, energy = 20, bomb = 25, bio = 100, rad = 80)
+	flags_inv = HIDEJUMPSUIT
 
 /obj/item/clothing/suit/armor/vest/acolyte
 	name = "Acolyte armor"
 	desc = "Worn heavy, steadfast in the name of God."
 	icon_state = "acolyte"
+	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	armor = list(melee = 35, bullet = 20, energy = 20, bomb = 25, bio = 100, rad = 80)
+	flags_inv = HIDEJUMPSUIT
 
 /obj/item/clothing/suit/armor/vest/custodian
 	name = "Custodian armor"
 	desc = "Someone's gotta clean this mess."
 	icon_state = "custodian"
+	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	armor = list(melee = 35, bullet = 20, energy = 20, bomb = 25, bio = 100, rad = 80)
+	flags_inv = HIDEJUMPSUIT
 
 /obj/item/clothing/suit/armor/riot
 	name = "riot suit"
@@ -135,7 +147,7 @@
 //When the wearer gets hit, this armor will teleport the user a short distance away (to safety or to more danger, no one knows. That's the fun of it!)
 /obj/item/clothing/suit/armor/reactive
 	name = "reactive teleport armor"
-	desc = "Someone separated our Research Director from their own head!"
+	desc = "Someone separated our Research Director's head from their body!"
 	var/active = 0.0
 	icon_state = "reactiveoff"
 	item_state = "reactiveoff"
@@ -188,7 +200,7 @@
 
 /obj/item/clothing/suit/armor/tactical
 	name = "tactical armor"
-	desc = "A suit of armor most often used by Special Weapons and Tactics squads. Includes padded vest with pockets along with shoulder and kneeguards."
+	desc = "A suit of armor most often used by Special Weapons and Tactics squads. Includes padded vest with pockets along with protective plates on the shoulders and knees."
 	icon_state = "swatarmor"
 	item_state = "armor"
 	var/obj/item/weapon/gun/holstered = null
@@ -218,7 +230,7 @@
 	if(!holster.holstered)
 		var/obj/item/W = usr.get_active_hand()
 		if(!istype(W, /obj/item))
-			to_chat(usr, SPAN_WARNING("You need your gun equiped to holster it."))
+			to_chat(usr, SPAN_WARNING("You need to equip your gun before you can holster it."))
 			return
 		holster.holster(W, usr)
 	else
@@ -260,7 +272,7 @@
 	desc = "A heavily armored suit that protects against moderate damage."
 	icon_state = "heavy"
 	item_state = "swat_suit"
-	w_class = ITEM_SIZE_LARGE//bulky item
+	w_class = ITEM_SIZE_BULKY//bulky item
 	gas_transfer_coefficient = 0.90
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	slowdown = 3

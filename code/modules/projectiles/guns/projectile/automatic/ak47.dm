@@ -6,7 +6,7 @@
 		 This is a high-quality copy, which has an automatic fire mode."
 	icon_state = "black-AK"
 	item_state = "black-AK"
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 	force = WEAPON_FORCE_PAINFUL
 	caliber = "a762"
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 4)

@@ -56,6 +56,11 @@
 	icon_state = "sci_cypherkey"
 	channels = list("Science" = 1)
 
+/obj/item/device/encryptionkey/headset_moebius
+	name = "Moebius laboratories encryption key"
+	icon_state = "sci_cypherkey"
+	channels = list("Science" = 1, "Medical" = 1)
+
 /obj/item/device/encryptionkey/headset_com
 	name = "Eris command radio encryption key"
 	icon_state = "com_cypherkey"
@@ -76,6 +81,11 @@
 	name = "expedition overseer's encryption key"
 	icon_state = "rd_cypherkey"
 	channels = list("Science" = 1, "Command" = 1)
+
+/obj/item/device/encryptionkey/heads/moebius
+	name = "Moebius command encryption key"
+	icon_state = "rd_cypherkey"
+	channels = list("Science" = 1, "Medical" = 1, "Command" = 1)
 
 /obj/item/device/encryptionkey/heads/hos
 	name = "Ironhammer commander's encryption key"
@@ -101,6 +111,11 @@
 	name = "Asters Merchant radio encryption key"
 	icon_state = "qm_cypherkey"
 	channels = list("Supply" = 1, "Command" = 1)
+
+/obj/item/device/encryptionkey/heads/preacher
+	name = "NeoTheology Preacher radio encryption key"
+	icon_state = "preach_cypherkey"
+	channels = list("NT Voice" = 1, "Command" = 1)
 
 /obj/item/device/encryptionkey/headset_cargo
 	name = "Asters Guild radio encryption key"

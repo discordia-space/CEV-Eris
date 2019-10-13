@@ -60,12 +60,16 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 			
 	var/datum/catalog/C = GLOB.catalogs[CATALOG_REAGENTS]
 	C.associated_template = "catalog_list_reagents.tmpl"
+	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
 	C = GLOB.catalogs[CATALOG_CHEMISTRY]
 	C.associated_template = "catalog_list_reagents.tmpl"
+	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
 	C = GLOB.catalogs[CATALOG_DRINKS]
-	C.associated_template = "catalog_list_reagents.tmpl"
+	C.associated_template = "catalog_list_drinks.tmpl"
+	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
 	C = GLOB.catalogs[CATALOG_ALL]
 	C.associated_template = "catalog_list_general.tmpl"
+	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
 	return 1
 
 /proc/create_catalog_entry(var/datum/thing, var/catalog_id)
@@ -73,7 +77,10 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 		GLOB.catalogs[catalog_id] = new /datum/catalog(catalog_id)
 	if(!GLOB.all_catalog_entries_by_type[thing.type])
 		if(istype(thing, /datum/reagent))
-			GLOB.all_catalog_entries_by_type[thing.type] = new /datum/catalog_entry/reagent(thing)
+			if(istype(thing, /datum/reagent/drink) || (istype(thing, /datum/reagent/ethanol) && thing.type != /datum/reagent/ethanol))
+				GLOB.all_catalog_entries_by_type[thing.type] = new /datum/catalog_entry/drink(thing)
+			else
+				GLOB.all_catalog_entries_by_type[thing.type] = new /datum/catalog_entry/reagent(thing)
 		else if(istype(thing, /atom))
 			GLOB.all_catalog_entries_by_type[thing.type] = new /datum/catalog_entry/atom(thing)
 		else
@@ -122,7 +129,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	var/list/data = list()
 	var/list/entries_data = list()
 	for(var/datum/catalog_entry/E in entry_list)
-		if(!search_value || findtext(E.title, search_value))
+		if(!search_value || E.search_value(search_value))
 			entries_data.Add(list(E.catalog_ui_data(user, ui_key)))
 	data["entries"] = entries_data
 	return data
@@ -144,6 +151,11 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	catalog_info_level_four = V.catalog_info_level_four
 	catalog_info_level_ooc = V.catalog_info_level_ooc
 	
+/datum/catalog_entry/proc/search_value(var/value)
+	if(findtext(title, value))
+		return TRUE
+	if(findtext(thing_nature, value))
+		return TRUE
 
 /datum/catalog_entry/ui_data(mob/user, ui_key = "main")
 	var/list/data = list()
@@ -189,6 +201,12 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	var/list/recipe_data
 	var/list/result_of_decomposition_in
 	var/list/can_be_used_in
+
+/datum/catalog_entry/reagent/search_value(var/value)
+	if(..())
+		return TRUE
+	if(findtext(reagent_type, value))
+		return TRUE
 
 /datum/catalog_entry/reagent/proc/add_decomposition_from(var/reagent_type)
 	if(!result_of_decomposition_in)
@@ -319,6 +337,78 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	// SPECIFICTS
 	data["name"] = title
 	data["entry_image_path"] = image_path
+
+	// DESCRIPTION
+	data["description"] = description
+	data["catalog_info_level_one"] = catalog_info_level_one
+	data["catalog_info_level_two"] = catalog_info_level_two
+	data["catalog_info_level_three"] = catalog_info_level_three
+	data["catalog_info_level_four"] = catalog_info_level_four
+	data["catalog_info_level_ooc"] = catalog_info_level_ooc
+	data["can_be_found_in"] = can_be_found_in.len ? can_be_found_in : null
+	return data
+
+
+/datum/catalog_entry/drink
+	associated_template = "catalog_entry_drink.tmpl"
+	var/temperature
+	var/nutrition
+	var/taste
+	var/strength
+	var/list/recipe_data
+
+/datum/catalog_entry/drink/search_value(var/value)
+	if(..())
+		return TRUE
+	if(findtext(strength, value))
+		return TRUE
+
+/datum/catalog_entry/drink/New(var/datum/reagent/V)
+	if(!istype(V))
+		error("wrong usage of [src.type]")
+		qdel(src)
+		return
+	..()
+	title = V.name
+	description = V.description
+
+	taste = "Has [V.taste_mult > 1 ? "strong" : V.taste_mult < 1 ? "weak" : ""] taste of [V.taste_description]."
+	if(istype(V, /datum/reagent/drink))
+		var/datum/reagent/drink/D = V
+		if(D.adj_temp)
+			temperature = D.adj_temp > 0 ? "Warm" : "Cold"
+		if(D.nutrition)
+			nutrition = D.nutrition > 1 ? "High" : "Low"
+		thing_nature = "Drink"
+		
+	else if(istype(V, /datum/reagent/ethanol))
+		var/datum/reagent/ethanol/E = V
+		if(E.adj_temp)
+			temperature = E.adj_temp > 0 ? "Warm" : "Cold"
+		if(E.nutriment_factor)
+			nutrition = E.nutriment_factor > 1 ? "High" : "Low"
+		strength = E.strength <= 15 ? "Light" : E.strength <= 50 ? "Strong" : "Knocking out"
+		thing_nature = "Alchohol drink"
+	
+	var/list/recipes = GLOB.chemical_reactions_list_by_result[V.id]
+	if(recipes)
+		recipe_data = list()
+		for(var/datum/chemical_reaction/R in recipes)
+			recipe_data += list(R.ui_data())
+
+/datum/catalog_entry/drink/ui_data(mob/user, ui_key = "main")
+	var/list/data = ..()
+
+	// SPECIFICTS
+	data["name"] = title
+	data["entry_image_path"] = image_path
+
+	data["temperature"] = temperature
+	data["nutrition"] = nutrition
+	data["taste"] = taste
+	data["strength"] = strength
+	data["recipe_data"] = recipe_data
+
 
 	// DESCRIPTION
 	data["description"] = description

@@ -16,13 +16,13 @@
 	holder.removeTempStat(STAT_COG, "Exotic Inspiration")
 	holder.removeTempStat(STAT_MEC, "Exotic Inspiration")
 
-/datum/perk/oyvey
-	name = "Oy Vey"
+/datum/perk/timeismoney
+	name = "Time is Money"
 	var/cooldown_time = 0
 	active = FALSE
 	toggleable = TRUE
 
-/datum/perk/oyvey/activate()
+/datum/perk/timeismoney/activate()
 	if(world.time < cooldown_time)
 		return FALSE
 	cooldown_time = world.time + 7 MINUTES

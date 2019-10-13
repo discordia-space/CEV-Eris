@@ -4,7 +4,7 @@
 	uniform = /obj/item/clothing/under/rank/scientist
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/science
 	shoes = /obj/item/clothing/shoes/jackboots
-	pda_type = /obj/item/modular_computer/pda/science
+	pda_type = /obj/item/modular_computer/pda/moebius/science
 	id_type = /obj/item/weapon/card/id/sci
 
 /decl/hierarchy/outfit/job/science/New()

@@ -181,7 +181,6 @@
 
 //Core implants
 #define CORE_ACTIVATED /datum/core_module/activatable
-#define GROUP_RITUAL_COOLDOWN 45*60*10
 
 //Cruciform
 #define CRUCIFORM_COMMON /datum/core_module/rituals/cruciform/base
@@ -202,7 +201,7 @@
 #define MOUSE_OPACITY_OPAQUE 2
 
 //Filters
-#define AMBIENT_OCCLUSION filter(type="drop_shadow", x=0, y=-2, size=4, border=4, color="#04080FAA")
+#define AMBIENT_OCCLUSION filter(type="drop_shadow", x=0, y=-2, size=4, color="#04080FAA")
 
 //Built-in email accounts
 #define EMAIL_DOCUMENTS "document.server@internal-services.net"

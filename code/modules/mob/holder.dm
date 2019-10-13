@@ -69,7 +69,7 @@ var/list/holder_mob_icon_cache = list()
 
 
 /obj/item/weapon/holder/borer
-	origin_tech = list(TECH_BIO = 6)
+	origin_tech = list(TECH_BIO = 8)
 
 /obj/item/weapon/holder/Process()
 	if (!contained)
@@ -471,7 +471,7 @@ var/list/holder_mob_icon_cache = list()
 	item_state = "drone"
 	origin_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 5)
 	slot_flags = SLOT_HEAD
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 	//contained_sprite = 1 //Part of contained sprite overhaul, not yet ported
 
 /obj/item/weapon/holder/drone/heavy

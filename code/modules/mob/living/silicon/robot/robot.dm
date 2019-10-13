@@ -734,7 +734,7 @@
 		return
 
 	else
-		if( !(istype(I, /obj/item/device/robotanalyzer) || istype(I, /obj/item/device/scanner/healthanalyzer)) )
+		if( !(istype(I, /obj/item/device/robotanalyzer) || istype(I, /obj/item/device/scanner/health)) )
 			spark_system.start()
 		return ..()
 
