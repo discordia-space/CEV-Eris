@@ -241,7 +241,7 @@
 /mob/living/simple_animal/mouse/death()
 	layer = MOB_LAYER
 	if (stat != DEAD)
-		if(ckey || prob(35)))
+		if(ckey || prob(35))
 			squeak_loud(0)//deathgasp
 
 		addtimer(CALLBACK(src, .proc/dust), decompose_time)
