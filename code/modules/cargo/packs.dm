@@ -1296,7 +1296,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	group = "Miscellaneous"
 
 /datum/supply_pack/randomised/guns
-	num_contained = 2
+	num_contained = 4
 	contains = list(/obj/random/gun_cheap,
                 /obj/random/gun_normal,
                 /obj/random/gun_energy_cheap,
