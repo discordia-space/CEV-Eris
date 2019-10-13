@@ -119,7 +119,7 @@
 			if(BURN)
 				adjustFireLoss(Proj.damage)
 
-	Proj.on_hit(src,2)
+	Proj.on_hit(src)
 	updatehealth()
 	return 2
 
