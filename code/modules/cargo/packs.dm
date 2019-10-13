@@ -1297,12 +1297,48 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/randomised/guns
 	num_contained = 2
-	contains = list(/obj/random/gun_cheap,
-				/obj/random/gun_normal,
-				/obj/random/gun_energy_cheap,
-				/obj/random/gun_shotgun)
+	contains = list(/obj/item/weapon/gun/projectile/automatic/ak47/fs,
+					/obj/item/weapon/gun/projectile/automatic/atreides,
+					/obj/item/weapon/gun/projectile/automatic/c20r,
+					/obj/item/weapon/gun/projectile/automatic/idaho,
+					/obj/item/weapon/gun/projectile/automatic/sts35,
+					/obj/item/weapon/gun/projectile/automatic/z8,
+					/obj/item/weapon/gun/projectile/clarissa,
+					/obj/item/weapon/gun/projectile/clarissa/makarov,
+					/obj/item/weapon/gun/projectile/colt,
+					/obj/item/weapon/gun/projectile/deagle,
+					/obj/item/weapon/gun/projectile/giskard,
+					/obj/item/weapon/gun/projectile/handmade_pistol,
+					/obj/item/weapon/gun/projectile/lamia,
+					/obj/item/weapon/gun/projectile/mk58,
+					/obj/item/weapon/gun/projectile/mk58/wood,
+					/obj/item/weapon/gun/projectile/olivaw,
+					/obj/item/weapon/gun/projectile/silenced,
+					/obj/item/weapon/gun/projectile/revolver/consul,
+					/obj/item/weapon/gun/projectile/revolver/deckard,
+					/obj/item/weapon/gun/projectile/revolver/detective,
+					/obj/item/weapon/gun/projectile/revolver,
+					/obj/item/weapon/gun/projectile/shotgun/bull,
+					/obj/item/weapon/gun/projectile/shotgun/doublebarrel,
+					/obj/item/weapon/gun/projectile/shotgun/pump,
+					/obj/item/weapon/gun/projectile/shotgun/pump/combat,
+					/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn,
+					/obj/item/weapon/gun/projectile/shotgun/pump/gladstone,
+					/obj/item/weapon/gun/energy/cassad,
+					/obj/item/weapon/gun/energy/gun,
+					/obj/item/weapon/gun/energy/gun/martin,
+					/obj/item/weapon/gun/energy/ionrifle,
+					/obj/item/weapon/gun/energy/laser,
+					/obj/item/weapon/gun/energy/retro,
+					/obj/item/weapon/gun/energy/taser,
+					/obj/item/weapon/gun/energy/stunrevolver,
+					/obj/item/weapon/gun/energy/temperature,
+					/obj/item/weapon/gun/projectile/automatic/IH_smg,
+					/obj/item/weapon/gun/projectile/IH_sidearm,
+					/obj/item/weapon/gun/projectile/automatic/IH_heavyrifle,
+					/obj/item/weapon/gun/projectile/automatic/IH_machinepistol)
 	name = "Surplus Weaponry"
-	cost = 3000
+	cost = 2000
 	crate_name = "Surplus Weapons Crate"
 	containertype = /obj/structure/closet/crate/secure/weapon
 	group = "Security"
