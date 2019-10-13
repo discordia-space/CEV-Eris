@@ -253,7 +253,7 @@
 
 //Mice can bite mobs, deals 1 damage, and stuns the mouse for a second
 /mob/living/simple_animal/mouse/AltClickOn(A)
-	if (!canClick()) //This has to be here because anything but normal leftclicks doesn't use a click cooldown. It would be easy to fix, but there may be unintended consequences
+	if (!can_click()) //This has to be here because anything but normal leftclicks doesn't use a click cooldown. It would be easy to fix, but there may be unintended consequences
 		return
 	melee_damage_upper = melee_damage_lower //We set the damage to 1 so we can hurt things
 	attack_sound = pick(list('sound/effects/creatures/nibble1.ogg', 'sound/effects/creatures/nibble2.ogg'))
