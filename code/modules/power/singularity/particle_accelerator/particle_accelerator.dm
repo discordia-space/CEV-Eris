@@ -60,7 +60,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 
 /obj/structure/particle_accelerator
 	name = "Particle Accelerator"
-	desc = "Part of a Particle Accelerator."
+	desc = "A large component of an even larger particle accelerator."
 	icon = 'icons/obj/machines/particle_accelerator2.dmi'
 	icon_state = "none"
 	anchored = 0
@@ -80,7 +80,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 
 /obj/structure/particle_accelerator/end_cap
 	name = "Alpha Particle Generation Array"
-	desc_holder = "This is where Alpha particles are generated from \[REDACTED\]"
+	desc_holder = "This is where Alpha particles are generated from the \[REDACTED\] via a carefully designed \[REDACTED\]."
 	icon_state = "end_cap"
 	reference = "end_cap"
 
@@ -114,11 +114,11 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 /obj/structure/particle_accelerator/examine(mob/user)
 	switch(src.construction_state)
 		if(0)
-			src.desc = text("A [name], looks like it's not attached to the flooring.")
+			src.desc = text("A [name]. It's not attached to the floor.")
 		if(1)
-			src.desc = text("A [name], it is missing some cables.")
+			src.desc = text("A [name]. It's missing some cables.")
 		if(2)
-			src.desc = text("A [name], the panel is open.")
+			src.desc = text("A [name]. The panel is open.")
 		if(3)
 			src.desc = text("The [name] is assembled.")
 			if(powered)
@@ -264,7 +264,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 
 /obj/machinery/particle_accelerator
 	name = "Particle Accelerator"
-	desc = "Part of a Particle Accelerator."
+	desc = "A large component of an even larger particle accelerator."
 	icon = 'icons/obj/machines/particle_accelerator2.dmi'
 	icon_state = "none"
 	anchored = 0

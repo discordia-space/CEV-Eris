@@ -1,6 +1,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/meat
 	name = "meat"
-	desc = "A slab of meat."
+	desc = "A slab of meat cut from a nondescript animal. The core ingredient in thousands upon thousands of food recipes, in one way or another."
 	icon_state = "meat"
 	health = 180
 	filling_color = "#FF1C1C"
@@ -22,7 +22,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/syntiflesh
 	name = "synthetic meat"
-	desc = "A synthetic slab of flesh."
+	desc = "A synthetic slab of flesh. You probably won't not be able to not tell the difference from the real thing maybe!"
 
 // Seperate definitions because some food likes to know if it's human.
 // TODO: rewrite kitchen code to check a var on the meat item so we can remove
@@ -36,7 +36,7 @@
 	desc = "Tastes like... well, you know."
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat
-	desc = "Gross piece of roach meat."
+	desc = "A slab of sickly-green bubbling meat cut from a giant roach. You swear you can see it still twitching occasionally. Delicious!"
 	icon_state = "xenomeat"
 	filling_color = "#E2FFDE"
 
@@ -56,7 +56,7 @@
 	preloaded_reagents = list("protein" = 6, "blattedin" = 6, "gewaltine" = 8, "diplopterum" = 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/spider
-	desc = "Bloaty piece of spider meat."
+	desc = "A bloated slab of sickly-green meat cut from a spider. The venom just gives it more flavor. Delicious!"
 	icon_state = "xenomeat"
 	filling_color = "#E2FFDE"
 
@@ -64,7 +64,7 @@
 	preloaded_reagents = list("protein" = 7, "pararein" = 12)
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/spider/hunter
-	desc = "Bloaty piece of spider meat."
+	desc = "A bloated slab of sickly-green meat cut from a spider. The venom just gives it more flavor. Delicious!"
 	icon_state = "xenomeat"
 	filling_color = "#E2FFDE"
 
@@ -72,7 +72,7 @@
 	preloaded_reagents = list("protein" = 9, "aranecolmin" = 8, "pararein" = 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/spider/nurse
-	desc = "Bloaty piece of spider meat."
+	desc = "A bloated slab of sickly-green meat cut from a spider. The venom just gives it more flavor. Delicious!"
 	icon_state = "xenomeat"
 	filling_color = "#E2FFDE"
 
@@ -81,7 +81,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/carp
 	name = "carp fillet"
-	desc = "Juicy carp fillet."
+	desc = "A juicy fillet cut from a carp. The potent and powerful venom they produce just gives it a unique tang. Delicious!"
 	icon_state = "fishfillet"
 	filling_color = "#FFDEFE"
 	center_of_mass = list("x"=17, "y"=13)
@@ -90,7 +90,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/bearmeat
 	name = "bear meat"
-	desc = "A very manly slab of meat."
+	desc = "A slab of meat so manly you can almost smell the concentrated testosterone in it."
 	icon_state = "bearmeat"
 	filling_color = "#DB0000"
 	bitesize = 3
@@ -99,7 +99,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/xenomeat
 	name = "meat"
-	desc = "A slab of green meat. Smells like acid."
+	desc = "A fatty cut of bright-green meat. The overwhelmingly powerful smell of the acid within burns your sinuses and makes your eyes water."
 	icon_state = "xenomeat"
 	filling_color = "#43DE18"
 	bitesize = 6
