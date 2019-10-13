@@ -1323,8 +1323,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/gun/projectile/shotgun/pump,
 					/obj/item/weapon/gun/projectile/shotgun/pump/combat,
 					/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn,
-					/obj/item/weapon/gun/projectile/shotgun/pump/gladstone,
-					/obj/item/weapon/gun/energy/cassad,
 					/obj/item/weapon/gun/energy/gun,
 					/obj/item/weapon/gun/energy/gun/martin,
 					/obj/item/weapon/gun/energy/ionrifle,
