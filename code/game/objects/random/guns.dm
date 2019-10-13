@@ -3,10 +3,10 @@
 	icon_state = "gun-grey"
 
 /obj/random/gun_cheap/item_to_spawn()
-	return pickweight(list(/obj/item/weapon/gun/projectile/mk58 = 3,\
+	return pickweight(list(/obj/item/weapon/gun/projectile/mk58 = 2,\
 				/obj/item/weapon/gun/projectile/mk58/wood = 1,\
 				/obj/item/weapon/gun/projectile/revolver/detective = 1,\
-				/obj/item/weapon/gun/projectile/giskard = 4,\
+				/obj/item/weapon/gun/projectile/giskard = 2,\
 				/obj/item/weapon/gun/projectile/shotgun/pump = 2,\
 				/obj/item/weapon/gun/projectile/olivaw = 2))
 
@@ -24,13 +24,13 @@
 
 /obj/random/gun_normal/item_to_spawn()
 	return pickweight(list(/obj/item/weapon/gun/projectile/lamia = 2,\
-				/obj/item/weapon/gun/projectile/automatic/idaho = 1,\
-				/obj/item/weapon/gun/projectile/automatic/atreides = 1,\
+				/obj/item/weapon/gun/projectile/automatic/idaho = 2,\
+				/obj/item/weapon/gun/projectile/automatic/atreides = 2,\
 				/obj/item/weapon/gun/projectile/deagle = 2,\
-				/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 2,\
-				/obj/item/weapon/gun/projectile/colt = 4,\
-				/obj/item/weapon/gun/projectile/revolver/consul = 4,\
-				/obj/item/weapon/gun/projectile/revolver = 4,\
+				/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 1,\
+				/obj/item/weapon/gun/projectile/colt = 2,\
+				/obj/item/weapon/gun/projectile/revolver/consul = 2,\
+				/obj/item/weapon/gun/projectile/revolver = 2,\
 				/obj/item/weapon/gun/projectile/automatic/IH_heavyrifle = 1,\
 				/obj/item/weapon/gun/projectile/IH_sidearm = 2,\
 				/obj/item/weapon/gun/projectile/automatic/IH_machinepistol = 2,\
@@ -71,7 +71,7 @@
 				/obj/item/weapon/gun/projectile/shotgun/bull = 2,
 				/obj/item/weapon/gun/projectile/shotgun/doublebarrel = 2,
 				/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn = 2,
-				/obj/item/weapon/gun/projectile/shotgun/pump/combat = 1,
+				/obj/item/weapon/gun/projectile/shotgun/pump/combat = 2,
 				/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 1))
 
 /obj/random/gun_shotgun/low_chance
