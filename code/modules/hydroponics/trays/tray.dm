@@ -388,10 +388,10 @@
 
 /obj/machinery/portable_atmospherics/hydroponics/attackby(obj/item/I, var/mob/user as mob)
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_SHOVELING, QUALITY_CUTTING, QUALITY_BOLT_TURNING), src)
+	var/tool_type = I.get_tool_type(user, list(QUALITY_LANDSCAPING, QUALITY_CUTTING, QUALITY_BOLT_TURNING), src)
 	switch(tool_type)
 
-		if(QUALITY_SHOVELING)
+		if(QUALITY_LANDSCAPING)
 			if(weedlevel == 0)
 				to_chat(user, SPAN_WARNING("This plot is completely devoid of weeds. It doesn't need uprooting."))
 				return

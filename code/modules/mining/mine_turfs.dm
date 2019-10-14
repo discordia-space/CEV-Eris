@@ -437,12 +437,12 @@
 
 /turf/simulated/floor/asteroid/attackby(obj/item/I, mob/user)
 
-	if(QUALITY_DIGGING in I.tool_qualities)
+	if(QUALITY_SHOVELING in I.tool_qualities)
 		if (dug)
-			to_chat(user, SPAN_WARNING("This area has already been dug"))
+			to_chat(user, SPAN_WARNING("This area has already been shoveled out"))
 			return
-		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_DIGGING, FAILCHANCE_EASY, required_stat = STAT_ROB))
-			to_chat(user, SPAN_NOTICE("You dug a hole."))
+		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SHOVELING, FAILCHANCE_EASY, required_stat = STAT_ROB))
+			to_chat(user, SPAN_NOTICE("You shoveled out a hole."))
 			gets_dug()
 
 	else

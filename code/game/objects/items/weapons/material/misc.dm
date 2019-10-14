@@ -32,7 +32,7 @@
 	attack_verb = list("stabbed", "chopped", "cut")
 	applies_material_colour = 1
 
-/obj/item/weapon/material/minihoe // -- Numbers
+/obj/item/weapon/material/minihoe
 	name = "mini hoe"
 	desc = "It's used for removing weeds or scratching your back."
 	icon = 'icons/obj/weapons.dmi'
@@ -40,7 +40,7 @@
 	item_state = "hoe"
 	force_divisor = 0.25 // 5 with weight 20 (steel)
 	thrown_force_divisor = 0.25 // as above
-	tool_qualities = list(QUALITY_SHOVELING = 10)
+	tool_qualities = list(QUALITY_LANDSCAPING = 30, QUALITY_SHOVELING = 10)
 	w_class = ITEM_SIZE_SMALL
 	attack_verb = list("slashed", "sliced", "cut", "clawed")
 
@@ -58,4 +58,4 @@
 	slot_flags = SLOT_BACK
 	origin_tech = "materials=2;combat=2"
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
-	tool_qualities = list(QUALITY_CUTTING = 20)
+	tool_qualities = list(QUALITY_LANDSCAPING = 40, QUALITY_CUTTING = 20)

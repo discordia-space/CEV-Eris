@@ -15,9 +15,10 @@
 #define QUALITY_DRILLING				"drilling"
 #define QUALITY_SAWING					"sawing"
 #define QUALITY_BONE_SETTING			"bone setting"
-#define QUALITY_SHOVELING				"shoveling"
-#define QUALITY_DIGGING					"digging"
-#define QUALITY_EXCAVATION				"excavation"
+#define QUALITY_LANDSCAPING				"landscaping"
+#define QUALITY_SHOVELING				"shoveling" //digging through soft material, such as scrap piles or dirt.
+#define QUALITY_DIGGING					"digging" //digging through hard material, such as rocks.
+#define QUALITY_EXCAVATION				"excavation" //digging around an area to safely remove something, such as artifacts.
 #define QUALITY_CUTTING					"cutting"
 #define QUALITY_LASER_CUTTING			"laser cutting"	//laser scalpels and e-swords - bloodless cutting
 #define QUALITY_ADHESIVE				"adhesive"

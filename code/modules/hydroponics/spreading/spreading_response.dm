@@ -64,8 +64,8 @@
 	else
 		//Gardening tools can cut down vines quickly
 		var/tool_type = null
-		if (W.has_quality(QUALITY_SHOVELING))
-			tool_type = QUALITY_SHOVELING
+		if (W.has_quality(QUALITY_LANDSCAPING))
+			tool_type = QUALITY_LANDSCAPING
 		else if (W.has_quality(QUALITY_CUTTING))
 			tool_type = QUALITY_CUTTING
 		else if (W.has_quality(QUALITY_WELDING))
