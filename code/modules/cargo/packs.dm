@@ -1296,13 +1296,13 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	group = "Miscellaneous"
 
 /datum/supply_pack/randomised/guns
-	num_contained = 2
+	num_contained = 4
 	contains = list(/obj/random/gun_cheap,
-				/obj/random/gun_normal,
-				/obj/random/gun_energy_cheap,
-				/obj/random/gun_shotgun)
+                /obj/random/gun_normal,
+                /obj/random/gun_energy_cheap,
+                /obj/random/gun_shotgun)
 	name = "Surplus Weaponry"
-	cost = 3000
+	cost = 2000
 	crate_name = "Surplus Weapons Crate"
 	containertype = /obj/structure/closet/crate/secure/weapon
 	group = "Security"
