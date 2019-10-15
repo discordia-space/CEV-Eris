@@ -26,11 +26,8 @@
 	item_state = "syringe_kit"
 	max_storage_space = DEFAULT_NORMAL_STORAGE
 	var/foldable = /obj/item/stack/material/cardboard	// BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
-	var/maxHealth = 20	//health is already defined
+	health = 20
 
-/obj/item/weapon/storage/box/Initialize()
-	health = maxHealth
-	.=..()
 
 /obj/item/weapon/storage/box/proc/damage(var/severity)
 	health -= severity
@@ -45,11 +42,7 @@
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*2)
 	if (istype(user, /mob/living))
 		var/mob/living/L = user
-		var/damage
-		if (!L.mob_size)
-			damage = 3//A safety incase i forgot to set a mob_size on something
-		else
-			damage = L.mob_size//he bigger you are, the faster it tears
+		var/damage = L.mob_size ? L.mob_size : MOB_MINISCULE
 
 		if (!damage || damage <= 0)
 			return
@@ -59,11 +52,11 @@
 		var/toplay = pick(list('sound/effects/creatures/nibble1.ogg','sound/effects/creatures/nibble2.ogg'))
 		playsound(loc, toplay, 50, 1, 2)
 		shake_animation()
-		sleep(5)
-		if ((health-damage) <= 0)
-			L.visible_message("<span class='danger'>[L] tears open the [src], spilling its contents everywhere!</span>", "<span class='danger'>You tear open the [src], spilling its contents everywhere!</span>")
-		damage(damage)
-	..()
+		spawn(5)
+			if ((health-damage) <= 0)
+				L.visible_message("<span class='danger'>[L] tears open \the [src], spilling its contents everywhere!</span>", "<span class='danger'>You tear open the [src], spilling its contents everywhere!</span>")
+			damage(damage)
+		..()
 
 // BubbleWrap - A box can be folded up to make card
 /obj/item/weapon/storage/box/attack_self(mob/user as mob)
