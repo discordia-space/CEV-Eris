@@ -41,7 +41,7 @@
 	icon_state = "ihs_rig"
 	helm_type = /obj/item/clothing/head/helmet/space/rig/ihs_combat
 	suit_type = "ironhammer hardsuit"
-	armor = list(melee = 50, bullet = 40, energy = 40, bomb = 60, bio = 100, rad = 70)
+	armor = list(melee = 60, bullet = 60, energy = 50, bomb = 60, bio = 100, rad = 70)
 	slowdown = 1.5 //so you must choose between good prot but you're slow as hell and meh prot but you can outrun turtle
 	offline_slowdown = 3
 	offline_vision_restriction = 0
