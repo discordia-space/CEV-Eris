@@ -97,6 +97,9 @@
 
 /obj/machinery/alarm/proc/first_run()
 	alarm_area = get_area(src)
+	if(!alarm_area)
+		error("Alarm cant find an area - [type] - [x]:[y]:[z]")
+		return
 	area_uid = alarm_area.uid
 	if (name == "alarm")
 		name = "[strip_improper(alarm_area.name)] Air Alarm"
@@ -283,6 +286,10 @@
 	if((stat & (NOPOWER)) || shorted)
 		icon_state = "alarm_unpowered"
 		set_light(0)
+		return
+
+	if(!alarm_area)
+		error("Alarm cant find an area - [type] - [x]:[y]:[z]")
 		return
 
 	var/icon_level = danger_level
@@ -1168,9 +1175,6 @@ FIRE ALARM
 		wiresexposed = 1
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
-
-/obj/machinery/firealarm/Initialize()
-	. = ..()
 
 /*
 FIRE ALARM CIRCUIT
