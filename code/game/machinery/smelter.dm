@@ -24,7 +24,7 @@
 
 	var/progress = 0
 
-	var/obj/item/current_item
+	var/obj/current_item
 
 	var/forbidden_materials = list(MATERIAL_CARDBOARD,MATERIAL_WOOD,MATERIAL_BIOMATTER)
 
@@ -70,15 +70,15 @@
 
 
 /obj/machinery/smelter/proc/grab()
-	for(var/obj/item/I in get_step(src, input_side))
-		if(I.anchored)
+	for(var/obj/O in get_step(src, input_side))
+		if(O.anchored)
 			continue
-		I.forceMove(src)
-		var/list/materials = result_materials(I)
+		O.forceMove(src)
+		var/list/materials = result_materials(O)
 		if(!materials?.len || !are_valid_materials(materials))
-			eject(I, refuse_output_side)
+			eject(O, refuse_output_side)
 			return
-		current_item = I
+		current_item = O
 		return
 
 
