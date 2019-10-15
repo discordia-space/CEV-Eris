@@ -212,17 +212,3 @@
 	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, STIM_TIME, "sanguinum_w")
 	M.stats.addTempStat(STAT_COG, -STAT_LEVEL_BASIC, STIM_TIME, "sanguinum_w")
 	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_BASIC, STIM_TIME, "sanguinum_w")
-
-/datum/reagent/drug/sanguinum/overdose(var/mob/living/carbon/M, var/alien)
-	var/mob/living/carbon/human/H = M
-	if(istype(H))
-		var/list/obj/item/organ/external/bodyParts = locate(/obj/item/organ/external) in H.organs_by_name
-		var/chanceToRupture = 30
-		for(var/obj/item/organ/external/E in bodyParts)
-			if(E.has_internal_bleeding())
-				chanceToRupture -= 10
-		chanceToRupture = max(0,chanceToRupture)
-		if(prob(chanceToRupture))
-			var/list/obj/item/organ/external/unluckyPart = pick(bodyParts)
-			var/datum/wound/internal_bleeding/I = new (15)
-			unluckyPart.wounds += I

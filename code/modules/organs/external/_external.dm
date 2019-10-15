@@ -348,16 +348,6 @@ This function completely restores a damaged organ to perfect condition.
 	if(damage == 0)
 		return
 
-	//moved this before the open_wound check
-	// so that having many small wounds for example doesn't somehow protect you from taking internal damage
-	// (because of the return)
-	//Possibly trigger an internal wound, too.
-	var/local_damage = brute_dam + burn_dam + damage
-	if(damage > 15 && type != BURN && local_damage > 30 && prob(damage) && !BP_IS_ROBOTIC(src))
-		var/datum/wound/internal_bleeding/I = new (min(damage - 15, 15))
-		wounds += I
-		owner_custom_pain("You feel something rip in your [name]!", 1)
-
 	// first check whether we can widen an existing wound
 	if(wounds.len > 0 && prob(max(50+(number_wounds-1)*10,90)))
 		if((type == CUT || type == BRUISE) && damage >= 5)
