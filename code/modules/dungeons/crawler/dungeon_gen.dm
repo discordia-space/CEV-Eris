@@ -55,7 +55,9 @@
 			sleep(250)
 	var/path_to_end = list()
 	var/obj/crawler/room_controller/starting_room = pick(lane1)//picking starting room
+	var/obj/crawler/room_controller/exit_room = pick(lane4)//picking exit room
 	path_to_end += starting_room
 	occupied_rooms += starting_room
 	while(!generated)
+		generate_the_fucking_dungeon_please()
 
