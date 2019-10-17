@@ -77,7 +77,8 @@
 	new /obj/item/clothing/accessory/badge/hos(src)
 	new /obj/item/weapon/storage/pouch/pistol_holster(src)
 	new /obj/item/weapon/storage/pouch/baton_holster(src)
-
+	new /obj/item/weapon/rig/ihs_combat/equipped(src)
+	
 /obj/structure/closet/secure_closet/warden
 	name = "Gunnery Sergeant's locker"
 	req_access = list(access_armory)
@@ -104,6 +105,7 @@
 	new /obj/item/clothing/accessory/badge/warden(src)
 	new /obj/item/weapon/storage/pouch/pistol_holster(src)
 	new /obj/item/weapon/storage/pouch/baton_holster(src)
+	new /obj/item/weapon/rig/ihs_combat/equipped(src)
 
 /obj/structure/closet/secure_closet/personal/security
 	name = "Ironhammer Operative locker"
