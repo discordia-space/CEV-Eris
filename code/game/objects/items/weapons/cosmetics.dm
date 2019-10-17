@@ -6,6 +6,7 @@
 	icon_state = "lipstick"
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
+	matter = list(MATERIAL_BIOMATTER = 2)
 	var/colour = "red"
 	var/open = 0
 

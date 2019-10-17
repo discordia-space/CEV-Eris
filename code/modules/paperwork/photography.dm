@@ -94,6 +94,7 @@ var/global/photo_count = 0
 	icon_state = "album"
 	item_state = "briefcase"
 	can_hold = list(/obj/item/weapon/photo)
+	matter = list(MATERIAL_BIOMATTER = 4)
 
 
 /*********

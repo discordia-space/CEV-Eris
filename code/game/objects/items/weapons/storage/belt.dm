@@ -8,6 +8,7 @@
 	max_w_class = ITEM_SIZE_NORMAL
 	max_storage_space = DEFAULT_NORMAL_STORAGE
 	slot_flags = SLOT_BELT
+	matter = list(MATERIAL_BIOMATTER = 4, MATERIAL_PLASTIC = 5)
 	attack_verb = list("whipped", "lashed", "disciplined")
 
 	var/show_above_suit = 0
@@ -29,7 +30,7 @@
 
 
 /obj/item/weapon/storage/belt/utility
-	name = "tool-belt" //Carn: utility belt is nicer, but it bamboozles the text parsing.
+	name = "tool belt"
 	desc = "Can hold various tools."
 	icon_state = "utilitybelt"
 	item_state = "utility"
@@ -63,23 +64,6 @@
 	new /obj/item/weapon/tool/crowbar(src)
 	new /obj/item/weapon/tool/wirecutters(src)
 	new /obj/item/stack/cable_coil/random(src)
-
-//Mostly full toolbelt has a high chance - but not guaranteed - to contain each common tool
-/obj/item/weapon/storage/belt/utility/mostlyfull/New()
-	..()
-	if (prob(65))
-		new /obj/item/weapon/tool/screwdriver(src)
-	if (prob(65))
-		new /obj/item/weapon/tool/wrench(src)
-	if (prob(65))
-		new /obj/item/weapon/tool/weldingtool(src)
-	if (prob(65))
-		new /obj/item/weapon/tool/crowbar(src)
-	if (prob(65))
-		new /obj/item/weapon/tool/wirecutters(src)
-	if (prob(65))
-		new /obj/item/stack/cable_coil/random(src)
-
 
 /obj/item/weapon/storage/belt/utility/atmostech/New()
 	..()

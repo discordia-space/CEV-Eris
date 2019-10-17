@@ -59,11 +59,11 @@ datum/category_group/underwear/dd_SortValue()
 /datum/category_item/underwear/proc/is_default(var/gender)
 	return is_default
 
-/datum/category_item/underwear/proc/create_underwear(var/list/metadata, var/iconfile)	//we iconfile from bodybuild
+/datum/category_item/underwear/proc/create_underwear(var/atom/location, var/list/metadata, var/iconfile)	//we iconfile from bodybuild
 	if(!underwear_type)
 		return
 
-	var/obj/item/underwear/UW = new underwear_type()
+	var/obj/item/underwear/UW = new underwear_type(location)
 	UW.SetName(underwear_name)
 	UW.gender = underwear_gender
 	UW.icon = iconfile

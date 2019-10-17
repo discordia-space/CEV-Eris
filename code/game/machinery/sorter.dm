@@ -32,20 +32,27 @@
 
 	circuit = /obj/item/weapon/circuitboard/sorter
 	// based on levels of manipulators
-	var/speed = 10
+	var/speed = 20
 	// based on levels of scanners
 	var/number_of_settings = 2
+	var/input_side = SOUTH
 	var/accept_output_side = EAST
-	var/refuse_output_side = null		//by default it will be reversed sorter's dir
+	var/refuse_output_side = null //by default it will be reversed input_side
 
 	var/progress = 0
 
 	var/list/sort_settings = list()
-	var/obj/item/current_item
+	var/obj/current_item
 
 	//UI vars
 	var/list/custom_rule = list("accept", "sort_type", "value", "amount")
 	var/new_rule_ui = FALSE
+
+
+/obj/machinery/sorter/Initialize()
+	. = ..()
+	if(!refuse_output_side)
+		refuse_output_side = reverse_direction(input_side)
 
 
 /obj/machinery/sorter/Destroy()
@@ -110,28 +117,31 @@
 /obj/machinery/sorter/proc/grab()
 	if(current_item)
 		return
-	var/turf/T = get_step(src, dir)
-	var/obj/item/O = locate(/obj/item) in T
-	if(istype(O) && !O.anchored)
+	var/turf/T = get_step(src, input_side)
+	for(var/obj/O in T)
+		if(O.anchored)
+			continue
+		var/obj/structure/closet/C = O
+		if(istype(C))
+			C.open()
 		current_item = O
 		O.forceMove(src)
+		if(istype(C) && !C.opened)
+			eject()
+			return
 		state("scanning now: [O]...")
+		return
 
 
 /obj/machinery/sorter/proc/eject(var/sorted = FALSE)
 	if(!current_item)
 		return
-	var/output_dir
-	if(refuse_output_side)
-		output_dir = refuse_output_side
-	else
-		output_dir = reverse_direction(dir)
 	var/turf/T
 	if(sorted)
 		T = get_step(src, accept_output_side)
 		state("[current_item] accepted.")
 	else
-		T = get_step(src, output_dir)
+		T = get_step(src, refuse_output_side)
 		state("[current_item] refused.")
 	if(T)
 		current_item.forceMove(T)
@@ -147,7 +157,7 @@
 	for(var/obj/item/weapon/stock_parts/scanning_module/S in component_parts)
 		num_settings += S.rating
 	number_of_settings = num_settings * 2
-	speed = manipulator_rating*5
+	speed = manipulator_rating*10
 
 
 /obj/machinery/sorter/attackby(var/obj/item/I, var/mob/user)

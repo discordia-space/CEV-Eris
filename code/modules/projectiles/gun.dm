@@ -30,7 +30,6 @@
 	var/fire_sound = 'sound/weapons/Gunshot.ogg'
 
 	var/fire_sound_text = "gunshot"
-	var/recoil = 0		//screen shake
 	var/recoil_buildup = 0.2 //How quickly recoil builds up
 
 	var/muzzle_flash = 3
@@ -63,7 +62,10 @@
 	var/obj/item/weapon/silencer/silenced = null //The installed silencer, if any
 	var/silencer_type = null //The type of silencer that could be installed in us, if we don't have one
 	var/fire_sound_silenced = 'sound/weapons/Gunshot_silenced.wav' //Firing sound used when silenced
-	var/datum/timedevent/recoil_timer //Allows for recoil buildup, this is reset when you don't fire your gun for N seconds (affected by vig)
+
+	var/recoil = 0
+	var/last_recoil_update = 0
+	var/recoil_timer
 
 /obj/item/weapon/gun/get_item_cost(export)
 	if(export)
@@ -303,27 +305,79 @@
 
 		if(muzzle_flash)
 			set_light(muzzle_flash)
-	//We've successfully fired a shot! Now we add recoil, and add a delay to remove the recoil (2s, affected by vig)
-	recoil += recoil_buildup*10 //Course wanted noticeable recoil. EX: 0.2 buildup * 10 = 2
-	var/skill_offset = user.stats.getStat(STAT_VIG)/50 //For example, IH have 40 VIG so this translates into a 0.8s cooldown reduction,meaning they can fire double as fast. Feel free to change this, Course!
-	var/recoil_reset_time = 20 //After you fire your shot, you must wait 2 seconds for it to become accurate again
-	recoil_reset_time -= skill_offset
-	recoil -= skill_offset //People with VIG are better at controlling sprays
-
-	if(!recoil_timer || QDELETED(recoil_timer)) //If there is not already an active recoil timer, make a new one
-		addtimer(CALLBACK(src, .proc/reset_recoil), recoil_reset_time)
-	else //There is already a recoil timer, so add onto its reset time.
-		recoil_timer.timeToRun += recoil_reset_time
-	if(recoil)
-		update_cursor(user)
+	handle_recoil(user)
 	update_icon()
 
-/obj/item/weapon/gun/proc/reset_recoil() //Clear all our recoil, CSGO style
-	var/mob/living/M = loc
-	if(istype(M) && recoil)
-		update_cursor(M) //Show that their recoil has diminished
-	recoil = 0
-	recoil_timer = null //Remove the timer object's reference to avoid null pointer
+/obj/item/weapon/gun/proc/handle_recoil(mob/user)
+	var/added_recoil = recoil_buildup*10 //Course wanted noticeable recoil. EX: 0.2 buildup * 10 = 2
+	if(added_recoil)
+		recoil += added_recoil
+		update_recoil(user)
+
+#define BASE_ACCURACY_REGEN 0.85 //Recoil reduction per ds with 0 VIG
+#define VIG_ACCURACY_REGEN  0.02 //Recoil reduction per ds per VIG
+#define MIN_ACCURACY_REGEN  0.25 //How low can we get with negative VIG
+/obj/item/weapon/gun/proc/calc_reduction(mob/user = loc)
+	if(!istype(user))
+		return 0
+	return max(BASE_ACCURACY_REGEN + user.stats.getStat(STAT_VIG)*VIG_ACCURACY_REGEN, MIN_ACCURACY_REGEN)
+
+//Called to get current recoil value
+/obj/item/weapon/gun/proc/calc_recoil(mob/user)
+	if(!recoil || !last_recoil_update)
+		return 0
+	if(!istype(user))
+		recoil = 0
+		last_recoil_update = 0
+	else
+		var/time = world.time - last_recoil_update
+		if(time)
+			recoil -= time * calc_reduction(user)
+			if(recoil <= 0)
+				recoil = 0
+				last_recoil_update = 0
+			else
+				last_recoil_update = world.time
+	return recoil
+
+//Called after setting recoil
+/obj/item/weapon/gun/proc/update_recoil(mob/user)
+	if(recoil <= 0)
+		recoil = 0
+		last_recoil_update = 0
+	else
+		if(last_recoil_update)
+			calc_recoil(user)
+		else
+			last_recoil_update = world.time
+	deltimer(recoil_timer)
+	recoil_timer = null
+	update_recoil_cursor(user)
+
+/obj/item/weapon/gun/proc/update_recoil_cursor(mob/living/user = loc)
+	if(!istype(user))
+		return
+
+	update_cursor(user)
+
+	var/bottom = 0
+	switch(recoil)
+		if(0 to 0.5)
+			;
+		if(0.5 to 1)
+			bottom = 0.5
+		if(1 to 1.5)
+			bottom = 1
+		if(1.5 to 2)
+			bottom = 1.5
+		if(2 to 3)
+			bottom = 2
+		if(3 to INFINITY)
+			bottom = 3
+	if(bottom)
+		var/reduction = calc_reduction(user)
+		if(reduction > 0)
+			recoil_timer = addtimer(CALLBACK(src, .proc/update_recoil_cursor), 1 + (recoil - bottom) / reduction)
 
 /obj/item/weapon/gun/proc/process_point_blank(obj/projectile, mob/user, atom/target)
 	var/obj/item/projectile/P = projectile
@@ -346,12 +400,14 @@
 				damage_mult = 1.5
 	P.damage *= damage_mult
 
-/obj/item/weapon/gun/proc/process_accuracy(obj/projectile, mob/user, atom/target, dispersion) //Applies the actual bullet spread
+/obj/item/weapon/gun/proc/process_accuracy(obj/projectile, mob/user, atom/target, dispersion = 0) //Applies the actual bullet spread
 	var/obj/item/projectile/P = projectile
 	if(!istype(P))
 		return
-	if(recoil)
+	if(calc_recoil(user))
 		dispersion += recoil/2
+		if(zoom)
+			dispersion += recoil*zoom_factor/2 //recoil is worse when looking through a scope
 	P.dispersion = dispersion
 
 	if (aim_targets && (target in aim_targets))
@@ -367,7 +423,7 @@
 		P.set_clickpoint(params)
 	var/lower_offset = 0
 	var/upper_offset = 0
-	if(recoil)
+	if(calc_recoil(user))
 		lower_offset = -recoil*20
 		upper_offset = recoil*20
 	if(iscarbon(user))
@@ -447,18 +503,8 @@
 	var/view_size = round(world.view + zoom_factor)
 
 	zoom(zoom_offset, view_size)
-	if(zoom)
-		if(recoil)
-			recoil = round(recoil*zoom_factor+1) //recoil is worse when looking through a scope
 	update_cursor(user)
 	update_hud_actions()
-
-//make sure accuracy and recoil are reset regardless of how the item is unzoomed.
-/obj/item/weapon/gun/zoom()
-	..()
-	if(!zoom)
-		recoil = initial(recoil)
-	update_cursor(usr)
 
 /obj/item/weapon/gun/examine(mob/user)
 	..()

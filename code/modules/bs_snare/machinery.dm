@@ -81,7 +81,7 @@
 	target.forceMove(loc)
 
 /obj/machinery/bssilk_hub/Destroy()
-	..()
+	. = ..()
 	if(connected_console) connected_console.connected_hub = null
 	connected_console = null
 
@@ -98,7 +98,7 @@
 	var/obj/machinery/bssilk_hub/connected_hub = null
 
 /obj/machinery/computer/bssilk_control/Destroy()
-	..()
+	. = ..()
 	if(connected_hub) connected_hub.connected_console = null
 	connected_hub = null
 

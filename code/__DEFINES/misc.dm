@@ -181,7 +181,6 @@
 
 //Core implants
 #define CORE_ACTIVATED /datum/core_module/activatable
-#define GROUP_RITUAL_COOLDOWN 45*60*10
 
 //Cruciform
 #define CRUCIFORM_COMMON /datum/core_module/rituals/cruciform/base

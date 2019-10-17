@@ -10,6 +10,7 @@
 	storage_slots = 1
 	max_w_class = ITEM_SIZE_SMALL
 	max_storage_space = DEFAULT_SMALL_STORAGE
+	matter = list(MATERIAL_BIOMATTER = 12)
 	attack_verb = list("pouched")
 
 	var/sliding_behavior = FALSE

@@ -21,7 +21,7 @@ meteor_act
 		if(shield_check < 0)
 			return shield_check
 		else
-			P.on_hit(src, 2, def_zone)
+			P.on_hit(src, def_zone)
 			return 2
 	//Checking abosrb for spawning shrapnel
 	.=..(P , def_zone)

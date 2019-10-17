@@ -211,7 +211,6 @@
 	if(!(opened ? close(user) : open(user)))
 		to_chat(user, SPAN_NOTICE("It won't budge!"))
 		return
-	update_icon()
 
 /obj/structure/closet/proc/togglelock(mob/user as mob)
 	var/ctype = istype(src,/obj/structure/closet/crate) ? "crate" : "closet"
