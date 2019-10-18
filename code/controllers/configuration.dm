@@ -207,6 +207,8 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/webhook_url
 	var/webhook_key
 
+	var/security_scaling_coeff
+
 /datum/configuration/New()
 	fill_storyevents_list()
 
@@ -667,6 +669,8 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if("webhook_url")
 					config.webhook_url = value
+				if("security_scaling_coeff")
+					config.security_scaling_coeff = value
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
 

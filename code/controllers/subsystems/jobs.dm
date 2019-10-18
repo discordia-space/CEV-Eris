@@ -210,6 +210,9 @@ SUBSYSTEM_DEF(job)
 	if(unassigned.len == 0)
 		return FALSE
 
+	//Scale number of open ironhammer operatives slots to population
+	setup_officer_positions()
+
 	//Shuffle players and jobs
 	unassigned = shuffle(unassigned)
 
@@ -433,6 +436,47 @@ proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
 					loadout_taken_slots.Add(G.slot)
 
 	return spawn_in_storage
+
+/datum/controller/subsystem/job/proc/setup_officer_positions()
+	var/datum/job/J = SSjob.GetJob("Ironhammer Operative")
+	var/datum/job/K = SSjob.GetJob("Ironhammer Medical Specialist")
+	var/datum/job/I = SSjob.GetJob("Ironhammer Inspector")
+	if(!J)
+		CRASH("setup_officer_positions(): Ironhammer Operative job is missing")
+	if(!K)
+		CRASH("setup_officer_positions(): Ironhammer Medical Specialist job is missing")
+	if(!I)
+		CRASH("setup_officer_positions(): Ironhammer Inspector job is missing")
+
+	var/ssc = (config.security_scaling_coeff)
+	if(ssc > 0)
+		if(J.spawn_positions > 0)
+			var/officer_positions = min(10, max(J.spawn_positions, round(unassigned.len / ssc))) //Scale between configured minimum and 10 officers
+			//JobDebug("Setting open Ironhammer Operative positions to [officer_positions]") // We don't really have a logging system.
+			J.total_positions = officer_positions
+			J.spawn_positions = officer_positions
+
+			if(K.spawn_positions > 0)
+				if(officer_positions > 6)
+					K.total_positions += 1
+					K.spawn_positions += 1
+			if(I.spawn_positions > 0)
+				if(officer_positions > 6)
+					I.total_positions += 1
+					I.spawn_positions += 1
+
+	//Spawn some extra eqipment lockers if we have more than 5 officers
+	var/equip_needed = J.total_positions
+	if(equip_needed < 0) // -1: infinite available slots
+		equip_needed = 10
+	for(var/i=equip_needed-6, i>0, i--)
+		if(GLOB.secequipment.len)
+			var/spawnloc = GLOB.secequipment[1]
+			new /obj/structure/closet/secure_closet/personal/security(spawnloc)
+			GLOB.secequipment -= spawnloc
+		else //We ran out of spare locker spawns!
+			break
+
 
 /datum/controller/subsystem/job/proc/LoadJobs(jobsfile) //ran during round setup, reads info from jobs.txt -- Urist
 	if(!config.load_jobs_from_txt)

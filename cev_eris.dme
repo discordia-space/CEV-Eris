@@ -1045,6 +1045,7 @@
 #include "code\game\objects\landmarks\machinery.dm"
 #include "code\game\objects\landmarks\mob.dm"
 #include "code\game\objects\landmarks\storyevent.dm"
+#include "code\game\objects\landmarks\structure.dm"
 #include "code\game\objects\random\ammo.dm"
 #include "code\game\objects\random\booze.dm"
 #include "code\game\objects\random\boxes.dm"
