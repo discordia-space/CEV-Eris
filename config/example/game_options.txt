@@ -42,3 +42,6 @@ REVIVAL_BRAIN_LIFE -1
 
 ## Remove the # in front of this config option to have loyalty implants spawn by default on your server.
 #USE_LOYALTY_IMPLANTS
+
+## Set to 0 to disable scaling and use default numbers instead.
+SECURITY_SCALING_COEFF 8

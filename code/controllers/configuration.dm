@@ -669,8 +669,6 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if("webhook_url")
 					config.webhook_url = value
-				if("security_scaling_coeff")
-					config.security_scaling_coeff = value
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
 
@@ -702,7 +700,8 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if("use_loyalty_implants")
 					config.use_loyalty_implants = 1
-
+				if("security_scaling_coeff")
+					config.security_scaling_coeff = value
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
 
