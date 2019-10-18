@@ -1,7 +1,7 @@
 /obj/machinery/smelter
 	name = "smelter"
-	icon = 'icons/obj/machines/sorter.dmi' //placeholder
-	icon_state = "sorter" //placeholder
+	icon = 'icons/obj/machines/sorter.dmi'
+	icon_state = "smelter"
 	density = TRUE
 	anchored = TRUE
 	use_power = 1
@@ -45,9 +45,9 @@
 /obj/machinery/smelter/update_icon()
 	..()
 	if(progress)
-		icon_state = "sorter-process" //placeholder
+		icon_state = "smelter-process"
 	else
-		icon_state = "sorter" //placeholder
+		icon_state = "smelter"
 
 
 /obj/machinery/smelter/Process()
