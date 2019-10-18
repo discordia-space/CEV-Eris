@@ -99,6 +99,7 @@
 	active_w_class = ITEM_SIZE_BULKY
 	force = WEAPON_FORCE_HARMLESS
 	throwforce = WEAPON_FORCE_HARMLESS
+	armor_penetration = 100
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEM_SIZE_SMALL
