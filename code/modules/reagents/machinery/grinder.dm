@@ -372,7 +372,7 @@
 		if(!container.standard_pour_into(user, src))
 			. = ..()
 	else
-		. = ..()
+		to_chat(user, SPAN_NOTICE("\icon[I] \the [I] seems to you that it is not suitable for a [src] \icon[src]"))
 	update_icon()
 
 /obj/item/weapon/storage/makeshift_grinder/afterattack(atom/target, mob/user, flag)
