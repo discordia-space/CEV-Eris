@@ -38,6 +38,8 @@
 	if(activeFor == enterBelt)
 		command_announcement.Announce("The station has entered the radiation belt. Please remain in a sheltered area until we have passed the radiation belt.", "Anomaly Alert")
 		radiate()
+		for(var/datum/weather/rad_storm/R in SSweather.processing)
+			R.start()
 
 	if(activeFor >= enterBelt && activeFor <= leaveBelt)
 		postStartTicks++
@@ -47,6 +49,8 @@
 		radiate()
 
 	else if(activeFor == leaveBelt)
+		for(var/datum/weather/rad_storm/R in SSweather.processing)
+			R.wind_down()
 		command_announcement.Announce("The station has passed the radiation belt. Please report to medbay if you experience any unusual symptoms. Maintenance will lose all access again shortly.", "Anomaly Alert")
 
 /datum/event/radiation_storm/proc/radiate()

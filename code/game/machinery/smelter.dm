@@ -1,7 +1,7 @@
 /obj/machinery/smelter
 	name = "smelter"
-	icon = 'icons/obj/machines/sorter.dmi' //placeholder
-	icon_state = "sorter" //placeholder
+	icon = 'icons/obj/machines/sorter.dmi'
+	icon_state = "smelter"
 	density = TRUE
 	anchored = TRUE
 	use_power = 1
@@ -24,7 +24,7 @@
 
 	var/progress = 0
 
-	var/obj/item/current_item
+	var/obj/current_item
 
 	var/forbidden_materials = list(MATERIAL_CARDBOARD,MATERIAL_WOOD,MATERIAL_BIOMATTER)
 
@@ -45,9 +45,9 @@
 /obj/machinery/smelter/update_icon()
 	..()
 	if(progress)
-		icon_state = "sorter-process" //placeholder
+		icon_state = "smelter-process"
 	else
-		icon_state = "sorter" //placeholder
+		icon_state = "smelter"
 
 
 /obj/machinery/smelter/Process()
@@ -70,15 +70,15 @@
 
 
 /obj/machinery/smelter/proc/grab()
-	for(var/obj/item/I in get_step(src, input_side))
-		if(I.anchored)
+	for(var/obj/O in get_step(src, input_side))
+		if(O.anchored)
 			continue
-		I.forceMove(src)
-		var/list/materials = result_materials(I)
+		O.forceMove(src)
+		var/list/materials = result_materials(O)
 		if(!materials?.len || !are_valid_materials(materials))
-			eject(I, refuse_output_side)
+			eject(O, refuse_output_side)
 			return
-		current_item = I
+		current_item = O
 		return
 
 

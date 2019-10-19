@@ -42,7 +42,7 @@
 	var/progress = 0
 
 	var/list/sort_settings = list()
-	var/obj/item/current_item
+	var/obj/current_item
 
 	//UI vars
 	var/list/custom_rule = list("accept", "sort_type", "value", "amount")
@@ -118,11 +118,19 @@
 	if(current_item)
 		return
 	var/turf/T = get_step(src, input_side)
-	var/obj/item/O = locate(/obj/item) in T
-	if(istype(O) && !O.anchored)
+	for(var/obj/O in T)
+		if(O.anchored)
+			continue
+		var/obj/structure/closet/C = O
+		if(istype(C))
+			C.open()
 		current_item = O
 		O.forceMove(src)
+		if(istype(C) && !C.opened)
+			eject()
+			return
 		state("scanning now: [O]...")
+		return
 
 
 /obj/machinery/sorter/proc/eject(var/sorted = FALSE)
