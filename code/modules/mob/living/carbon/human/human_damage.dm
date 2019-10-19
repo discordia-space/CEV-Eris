@@ -220,7 +220,7 @@
 
 /mob/living/carbon/human/setToxLoss(var/amount)
 	if(!(species.flags & NO_POISON) && !isSynthetic())
-		adjustToxLoss(getToxLoss()-amount)
+		adjustToxLoss(amount-getToxLoss())
 
 ////////////////////////////////////////////
 
