@@ -38,7 +38,7 @@
 
 	min_broken_damage = 60
 	max_damage = 100
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 
 	body_part = LOWER_TORSO
 	joint = "hip"

@@ -60,7 +60,7 @@
 	throwforce = WEAPON_FORCE_PAINFUL
 	throw_speed = 1
 	throw_range = 4
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 	origin_tech = list(TECH_MATERIAL = 2)
 	matter = list(MATERIAL_GLASS = 3, MATERIAL_STEEL = 10)
 	price_tag = 500
@@ -179,7 +179,7 @@
 	if (active)
 		force = WEAPON_FORCE_PAINFUL
 		update_icon()
-		w_class = ITEM_SIZE_LARGE
+		w_class = ITEM_SIZE_BULKY
 		playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
 		to_chat(user, SPAN_NOTICE("\The [src] is now active."))
 

@@ -4,6 +4,7 @@
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "folder"
 	w_class = ITEM_SIZE_SMALL
+	matter = list(MATERIAL_BIOMATTER = 2)
 
 /obj/item/weapon/folder/blue
 	desc = "A blue folder."

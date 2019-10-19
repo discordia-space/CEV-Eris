@@ -5,7 +5,8 @@
 	taste_description = "chicken"
 	reagent_state = LIQUID
 	color = "#0F4800"
-	strength = 5
+	strength = 0.15
+	var/heal_strength = 5
 	metabolism = REM * 0.1
 
 	heating_point = T0C + 260
@@ -19,6 +20,6 @@
 				bug.blattedin_revives_left = max(0, bug.blattedin_revives_left - 1)
 				bug.rejuvenate()
 		else
-			bug.heal_organ_damage(strength*removed)
+			bug.heal_organ_damage(heal_strength*removed)
 	else
 		.=..()

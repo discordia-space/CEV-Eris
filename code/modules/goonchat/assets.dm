@@ -1,4 +1,5 @@
 /datum/asset/group/goonchat
+	isTrivial = FALSE
 	children = list(
 		/datum/asset/simple/jquery,
 		/datum/asset/simple/goonchat,

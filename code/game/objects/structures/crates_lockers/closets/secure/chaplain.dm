@@ -3,8 +3,9 @@
 	req_access = list(access_chapel_office)
 	icon_state = "head_preacher"
 
-/obj/structure/closet/secure_closet/chaplain/reinforced/populate_contents()
+/obj/structure/closet/secure_closet/reinforced/chaplain/populate_contents()
 	new /obj/item/clothing/under/rank/chaplain(src)
+	new /obj/item/device/radio/headset/church(src)
 	new /obj/item/clothing/under/rank/chaplain(src)
 	new /obj/item/weapon/storage/belt/church(src)
 	new /obj/item/clothing/shoes/reinforced(src)

@@ -244,13 +244,15 @@ Class Procs:
 	return
 
 /obj/machinery/proc/max_part_rating(var/type) //returns max rating of installed part type or null on error(keep in mind that all parts have to match that raiting).
-	if(!istype(type,/obj/item/weapon/stock_parts))
+	if(!type)
+		error("max_part_rating() wrong usage")
 		return
 	var/list/obj/item/weapon/stock_parts/parts = list()
 	for(var/list/obj/item/weapon/stock_parts/P in component_parts)
 		if(istype(P, type))
 			parts.Add(P)
 	if(!parts.len)
+		error("max_part_rating() havent found any parts")
 		return
 	var/rating = 1
 	for(var/obj/item/weapon/stock_parts/P in parts)
@@ -269,10 +271,7 @@ Class Procs:
 	for(var/mob/O in hearers(src, null))
 		O.show_message("\icon[src] <span class = 'notice'>[msg]</span>", 2)
 
-/obj/machinery/proc/ping(text=null)
-	if (!text)
-		text = "\The [src] pings."
-
+/obj/machinery/proc/ping(text="\The [src] pings.")
 	state(text, "blue")
 	playsound(src.loc, 'sound/machines/ping.ogg', 50, 0)
 

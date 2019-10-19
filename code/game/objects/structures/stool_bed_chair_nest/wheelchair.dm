@@ -196,3 +196,35 @@
 /proc/equip_wheelchair(mob/living/carbon/human/H) //Proc for spawning in a wheelchair if a new character has no legs. Used in new_player.dm
 	var/obj/structure/bed/chair/wheelchair/W = new(H.loc)
 	W.buckle_mob(H)
+
+/obj/item/wheelchair
+	name = "wheelchair"
+	desc = "A folded wheelchair that can be carried around."
+	icon = 'icons/obj/furniture.dmi'
+	icon_state = "wheelchair_folded"
+	w_class = ITEM_SIZE_HUGE
+	var/obj/structure/bed/chair/wheelchair/unfolded
+
+/obj/item/wheelchair/attack_self(mob/user)
+	if(unfolded)
+		unfolded.forceMove(get_turf(src))
+	else
+		new/obj/structure/bed/chair/wheelchair(get_turf(src))
+	qdel(src)
+
+/obj/structure/bed/chair/wheelchair/MouseDrop(over_object, src_location, over_location)
+	..()
+	if(over_object == usr && Adjacent(usr))
+		if(!ishuman(usr) || usr.incapacitated())
+			return
+		if(buckled_mob)
+			return 0
+		if(pulling)
+			return 0 // You can't fold a wheelchair when somebody holding the handles.
+		visible_message("[usr] collapses \the [src.name].")
+		var/obj/item/wheelchair/R = new/obj/item/wheelchair(get_turf(src))
+		R.name = src.name
+		R.color = src.color
+		R.unfolded = src
+		src.forceMove(R)
+		return

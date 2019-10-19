@@ -168,6 +168,8 @@ SUBSYSTEM_DEF(garbage)
 					var/msg = "GC: -- \ref[D] | [type] was unable to be GC'd --"
 					if(I.coords)
 						msg += "GC: -- \ref[D] | location is X=[I.coords.x_pos], Y=[I.coords.y_pos], Z=[I.coords.z_pos] --"
+					else
+						msg += "GC: -- \ref[D] | location is nullspace --"
 					log_to_dd(msg)
 				I.failures++
 			if (GC_QUEUE_HARDDELETE)

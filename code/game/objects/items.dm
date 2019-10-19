@@ -13,7 +13,7 @@
 	var/burning = null
 	var/hitsound = null
 	var/worksound = null
-	var/storage_cost = null
+	var/reduced_storage_cost = FALSE //Changes the get_storage_cost proc in storage.dm to use a different function to lower storage space.
 	var/no_attack_log = 0			//If it's an item we don't want to log attack_logs with, set this to 1
 	pass_flags = PASSTABLE
 
@@ -406,7 +406,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		to_chat(usr, "Your visor gets in the way of looking through the [devicename]")
 		cannotzoom = 1
 	else if(!zoom && usr.get_active_hand() != src)
-		to_chat(usr, "You are too distracted to look through the [devicename], perhaps if it was in your active hand this might work better")
+		to_chat(usr, "You are too distracted to look through the [devicename]. Perhaps if it was in your active hand you could look through it.")
 		cannotzoom = 1
 
 	if(!zoom && !cannotzoom)

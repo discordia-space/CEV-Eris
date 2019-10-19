@@ -143,17 +143,22 @@
 	//now mobs
 	var/speech_bubble_test = say_test(message)
 	var/image/speech_bubble = image('icons/mob/talk.dmi',src,"h[speech_bubble_test]")
-	spawn(30) qdel(speech_bubble)
+	QDEL_IN(speech_bubble, 30)
 
+	var/list/speech_bubble_recipients = list()
 	for(var/mob/M in listening)
-		M << speech_bubble
+		if(M.client)
+			speech_bubble_recipients |= M.client
 		M.hear_say(message, verb, speaking, alt_name, italics, src)
 
 	if (eavesdropping.len)
 		var/new_message = stars(message)	//hopefully passing the message twice through stars() won't hurt... I guess if you already don't understand the language, when they speak it too quietly to hear normally you would be able to catch even less.
 		for(var/mob/M in eavesdropping)
-			M << speech_bubble
+			if(M.client)
+				speech_bubble_recipients |= M.client
 			M.hear_say(new_message, verb, speaking, alt_name, italics, src)
+
+	animate_speechbubble(speech_bubble, speech_bubble_recipients, 30)
 
 	if (watching.len)
 		var/rendered = "<span class='game say'><span class='name'>[src.name]</span> [not_heard].</span>"

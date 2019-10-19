@@ -3,7 +3,7 @@
 	l_ear = /obj/item/device/radio/headset/headset_med
 	shoes = /obj/item/clothing/shoes/reinforced
 	id_type = /obj/item/weapon/card/id/med
-	pda_type = /obj/item/modular_computer/pda/medical
+	pda_type = /obj/item/modular_computer/pda/moebius/medical
 	pda_slot = slot_l_store
 
 /decl/hierarchy/outfit/job/medical/New()
@@ -32,7 +32,7 @@
 	uniform = /obj/item/clothing/under/rank/chemist
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/chemist
 	id_type = /obj/item/weapon/card/id/chem
-	pda_type = /obj/item/modular_computer/pda/chemistry
+	pda_type = /obj/item/modular_computer/pda/moebius/chemistry
 
 /decl/hierarchy/outfit/job/medical/chemist/New()
 	..()

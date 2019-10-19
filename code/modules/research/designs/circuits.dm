@@ -91,6 +91,12 @@
 	sort_string = "FAHAB"
 	category = CAT_MEDI
 
+/datum/design/research/circuit/chemical_dispenser
+	name = "Chemical Dispenser"
+	build_path = /obj/item/weapon/circuitboard/chemical_dispenser
+	sort_string = "FAHAC"
+	category = CAT_MEDI
+
 /datum/design/research/circuit/teleconsole
 	name = "teleporter control console"
 	build_path = /obj/item/weapon/circuitboard/teleporter

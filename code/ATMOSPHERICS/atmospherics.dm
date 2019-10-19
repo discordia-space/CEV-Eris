@@ -78,6 +78,8 @@ obj/machinery/atmospherics/proc/check_connect_types(obj/machinery/atmospherics/a
 	return (atmos1.connect_types & pipe2.connect_types)
 
 /obj/machinery/atmospherics/proc/check_icon_cache(var/safety = 0)
+	if(!SSatoms.initialized)
+		return 0
 	if(!istype(icon_manager))
 		if(!safety) //to prevent infinite loops
 			icon_manager = new()

@@ -152,17 +152,17 @@ What is the naming convention for planes or layers?
 
 //HUD layer defines
 
-#define FULLSCREEN_PLANE 32000
+#define FULLSCREEN_PLANE 9900
 #define FLASH_LAYER 18
 #define FULLSCREEN_LAYER 18.1
 #define UI_DAMAGE_LAYER 18.2
 
-#define HUD_PLANE 32680
+#define HUD_PLANE 9910
 #define HUD_LAYER 19
-#define ABOVE_HUD_PLANE 32690
+#define ABOVE_HUD_PLANE 9920
 #define ABOVE_HUD_LAYER 20
 
-#define CINEMATIC_PLANE 32700
+#define CINEMATIC_PLANE 9950
 #define CINEMATIC_LAYER 21
 
 #define BELOW_PLATING_LEVEL 1

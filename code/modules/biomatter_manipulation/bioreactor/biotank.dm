@@ -27,6 +27,8 @@
 	var/pipes_opened = FALSE
 	var/pipes_cleanness = 100
 
+	circuit = /obj/item/weapon/circuitboard/neotheology/bioreactor_biotank
+
 
 /obj/machinery/multistructure/bioreactor_part/biotank_platform/Initialize()
 	. = ..()
@@ -47,7 +49,7 @@
 		return
 	switch(get_dirtiness_level())
 		if(DIRT_LVL_LOW)
-			to_chat(user, SPAN_NOTICE("Pipes are weared a bit, it's slightly dirty. You see a signs of biomattir inside these pipes."))
+			to_chat(user, SPAN_NOTICE("Pipes are weared a bit, it's slightly dirty. You see a signs of biomass inside these pipes."))
 		if(DIRT_LVL_MEDIUM)
 			to_chat(user, SPAN_WARNING("It's very dirty. Solid biomass block atleast half of space inside the pipes. Better to clean it up."))
 		if(DIRT_LVL_HIGH)
