@@ -27,7 +27,7 @@
 	max_storage_space = DEFAULT_NORMAL_STORAGE
 	var/foldable = /obj/item/stack/material/cardboard	// BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
 	var/maxHealth = 20	//health is already defined
-
+	cant_hold += /obj/item/weapon/gun/projectile/automatic/sts35
 /obj/item/weapon/storage/box/Initialize()
 	health = maxHealth
 	.=..()
