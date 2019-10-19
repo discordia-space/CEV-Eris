@@ -3,7 +3,7 @@
 	desc = "The rugged STS-35 is a durable automatic weapon, popular on frontier worlds. Uses 7.62mm rounds. This one is unmarked."
 	icon_state = "sts"
 	item_state = "sts"
-	w_class = ITEM_SIZE_BULKY
+	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_PAINFUL
 	caliber = "a762"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 1)
@@ -17,7 +17,7 @@
 	unload_sound 	= 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/ltrifle_cock.ogg'
-
+	
 
 	firemodes = list(
 		FULL_AUTO_400,
