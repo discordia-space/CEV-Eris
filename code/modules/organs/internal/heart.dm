@@ -80,8 +80,7 @@
 	//Effects of bloodloss
 	switch(blood_volume)
 		if (blood_volume > BLOOD_VOLUME_SAFE && BP_IS_ROBOTIC(src))
-			if(owner.getOxyLoss() < 20)
-				owner.adjustOxyLoss(-0.5)
+			owner.adjustOxyLoss(-0.5)
 		if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
 			if(prob(1))
 				to_chat(owner, SPAN_WARNING("You feel [pick("dizzy","woosey","faint")]"))
