@@ -83,9 +83,6 @@
 		owner.reagents.add_reagent(/datum/reagent/medicine/tramadol, 10)
 		dose_available = FALSE
 		used_dose()
-/obj/item/organ/heart/cybernetic/upgraded/used_dose()
-	. = ..()
-	addtimer(VARSET_CALLBACK(src, dose_available, TRUE), 5 MINUTES)
 
 	//Effects of bloodloss
 	switch(blood_volume)
@@ -110,7 +107,7 @@
 				to_chat(owner, SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]"))
 		else if(blood_volume < BLOOD_VOLUME_SURVIVE)
 			owner.death()
-		
+
 	//Blood regeneration if there is some space
 	if(blood_volume_raw < species.blood_volume)
 		var/datum/reagent/organic/blood/B = owner.get_blood(owner.vessel)
@@ -124,3 +121,6 @@
 			owner.nutrition -= 10
 		else if(owner.nutrition >= 200)
 			owner.nutrition -= 3
+/obj/item/organ/heart/proc/used_dose()
+	. = ..()
+	addtimer(VARSET_CALLBACK(src, dose_available, TRUE), 5 MINUTES)
