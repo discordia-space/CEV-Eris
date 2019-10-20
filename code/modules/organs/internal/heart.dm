@@ -79,7 +79,7 @@
 
 	//Effects of bloodloss
 	switch(blood_volume)
-		if (BLOOD_VOLUME_SAFE to BLOOD_VOLUME_FULL && BP_IS_ROBOTIC(src))
+		if (blood_volume > BLOOD_VOLUME_SAFE && BP_IS_ROBOTIC(src))
 			if(owner.getOxyLoss() < 20)
 				owner.adjustOxyLoss(-0.5)
 		if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
