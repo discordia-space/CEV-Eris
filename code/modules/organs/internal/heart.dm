@@ -79,6 +79,9 @@
 
 	//Effects of bloodloss
 	switch(blood_volume)
+		if (BLOOD_VOLUME_SAFE to BLOOD_VOLUME_FULL && BP_IS_ROBOTIC(src))
+			if(owner.getOxyLoss() < 30)
+				owner.adjustOxyLoss(-3)
 		if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
 			if(prob(1))
 				to_chat(owner, SPAN_WARNING("You feel [pick("dizzy","woosey","faint")]"))
@@ -99,7 +102,7 @@
 				to_chat(owner, SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]"))
 		else if(blood_volume < BLOOD_VOLUME_SURVIVE)
 			owner.death()
-
+		
 	//Blood regeneration if there is some space
 	if(blood_volume_raw < species.blood_volume)
 		var/datum/reagent/organic/blood/B = owner.get_blood(owner.vessel)
