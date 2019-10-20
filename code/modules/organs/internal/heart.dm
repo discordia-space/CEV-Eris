@@ -121,6 +121,6 @@
 			owner.nutrition -= 10
 		else if(owner.nutrition >= 200)
 			owner.nutrition -= 3
-/obj/item/organ/heart/proc/used_dose()
+/obj/item/organ/internal/heart/proc/used_dose()
 	. = ..()
 	addtimer(VARSET_CALLBACK(src, dose_available, TRUE), 5 MINUTES)
