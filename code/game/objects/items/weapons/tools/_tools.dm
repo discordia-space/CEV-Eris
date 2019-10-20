@@ -207,6 +207,8 @@
 /obj/item/weapon/tool/ui_data(mob/user)
 	var/list/data = list()
 
+	data["tool_qualities"] = english_list(tool_qualities)
+
 	data["precision"] = precision
 	data["precision_state"] = precision > 0 ? "good" : precision < 0 ? "bad" : ""
 
