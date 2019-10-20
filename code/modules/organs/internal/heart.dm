@@ -123,4 +123,6 @@
 			owner.nutrition -= 3
 /obj/item/organ/internal/heart/proc/used_dose()
 	. = ..()
-	addtimer(VARSET_CALLBACK(src, dose_available, TRUE), 5 MINUTES)
+	addtimer(CALLBACK(src, .proc/dose_available), 5 MINUTES)
+/obj/item/organ/internal/heart/proc/dose_available()
+	dose_available = TRUE
