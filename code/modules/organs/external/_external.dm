@@ -56,7 +56,7 @@
 	var/obj/item/organ_module/active/module = null
 
 	// Joint/state stuff.
-	var/functions = NONE	// Functions performed by body part. Bitflag, see _defines/mobs.dm for possible values.
+	var/functions = NONE	// Functions performed by body part. Bitflag, see _defines/damage_organs.dm for possible values.
 
 	var/disfigured = 0		// Scarred/burned beyond recognition.
 	var/cannot_amputate		// Impossible to amputate.

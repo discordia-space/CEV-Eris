@@ -119,6 +119,7 @@
 #define BODYPART_GRASP				(1<<0)
 #define BODYPART_STAND				(1<<1)
 #define BODYPART_REAGENT_INTAKE		(1<<2)
+#define BODYPART_GAS_INTAKE			(1<<3)
 
 #define DROPLIMB_EDGE 0
 #define DROPLIMB_BLUNT 1

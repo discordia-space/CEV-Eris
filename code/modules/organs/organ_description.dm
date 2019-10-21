@@ -58,7 +58,7 @@
 	amputation_point = "neck"
 	parent_organ = BP_CHEST
 	drop_on_remove = list(slot_glasses,slot_head,slot_l_ear,slot_r_ear,slot_wear_mask)
-	functions = BODYPART_REAGENT_INTAKE
+	functions = BODYPART_REAGENT_INTAKE | BODYPART_GAS_INTAKE
 
 /datum/organ_description/arm
 	max_damage = 50
