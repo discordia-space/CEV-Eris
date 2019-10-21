@@ -899,21 +899,6 @@ var/list/datum/dna/hivemind_bank = list()
 	return 1
 
 
-/mob/proc/changeling_prepare_unfat_sting()
-	set category = "Changeling"
-	set name = "Unfat Sting (5)"
-	set desc = "Sting target"
-	check_CH("Unfat Sting",/datum/click_handler/changeling/changeling_unfat_sting)
-	return
-
-/mob/proc/changeling_unfat_sting(atom/A)
-	var/mob/living/carbon/T = changeling_sting(5,A)
-	if(!T)	return 0
-	to_chat(T, SPAN_DANGER("You feel a small prick as stomach churns violently and you become to feel skinnier."))
-	T.nutrition -= 100
-	return 1
-
-
 /mob/proc/changeling_prepare_DEATHsting()
 	set category = "Changeling"
 	set name = "Death Sting (40)"

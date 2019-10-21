@@ -32,19 +32,6 @@
 		return
 
 	src.gender = gender
-	var/datum/body_build/B = src.body_build
-	body_build = get_body_build(gender, B.name)
-	regenerate_icons() //This is overkill, but we do need to update all of the clothing. Maybe there's a more precise call
-	//reset_hair()
-	//update_body()
-	//update_dna()
-	return 1
-
-/mob/living/carbon/human/proc/change_build(var/build)
-	if(build == body_build.name)
-		return
-
-	body_build = get_body_build(gender, build)
 	regenerate_icons() //This is overkill, but we do need to update all of the clothing. Maybe there's a more precise call
 	//reset_hair()
 	//update_body()

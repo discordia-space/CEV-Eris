@@ -395,12 +395,6 @@ This function restores all organs.
 /mob/living/carbon/human/get_fall_damage(var/turf/from, var/turf/dest)
 	var/damage = 15
 
-	//Fatties land harder
-	if (body_build.index == FAT)
-		damage *= 2
-	else if (body_build.index == SLIM)
-		damage *= 0.75
-
 	if (from && dest)
 		damage *= abs(from.z - dest.z)
 

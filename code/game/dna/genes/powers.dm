@@ -104,8 +104,8 @@
 		if(probinj(_prob,(flags&MUTCHK_FORCED)))
 			return 1
 
-	OnDrawUnderlays(var/mob/M,var/g,var/fat)
-		return "fire[fat]_s"
+	OnDrawUnderlays(var/mob/M,var/g)
+		return "fire_s"
 
 /datum/dna/gene/basic/noprints
 	name="No Prints"
@@ -159,12 +159,8 @@
 			return 0
 		return ..(M,flags)
 
-	OnDrawUnderlays(var/mob/M,var/g,var/fat)
-		if(fat)
-			return "hulk_[fat]_s"
-		else
-			return "hulk_[g]_s"
-		return 0
+	OnDrawUnderlays(var/mob/M,var/g)
+		return "hulk_[g]_s"
 
 	OnMobLife(var/mob/living/carbon/human/M)
 		if(!istype(M)) return
@@ -192,4 +188,4 @@
 	New()
 		block=TELEBLOCK
 	OnDrawUnderlays(var/mob/M,var/g,var/fat)
-		return "telekinesishead[fat]_s"
+		return "telekinesishead_s"

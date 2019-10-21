@@ -14,11 +14,9 @@
 
 /obj/item/organ/external/robotic/update_icon()
 	var/gender = "m"
-	var/body = ""
 	if(owner)
 		gender = owner.gender == FEMALE ? "f" : "m"
-		body = owner.body_build.index
-	icon_state = "[organ_tag]_[gender][body]"
+	icon_state = "[organ_tag]_[gender]"
 	mob_icon = icon(force_icon, icon_state)
 	return mob_icon
 
