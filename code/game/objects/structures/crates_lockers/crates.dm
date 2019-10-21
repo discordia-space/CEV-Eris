@@ -281,6 +281,9 @@
 	desc = "A crate with a lock on it, painted in the scheme of the station's botanists."
 	icon_state = "hydrosecurecrate"
 
+/obj/structure/closet/crate/secure/hydrosec/prelocked
+	req_access = list(access_hydroponics)
+
 /obj/structure/closet/crate/secure/bin
 	name = "secure bin"
 	desc = "A secure bin."
@@ -349,6 +352,18 @@
 	name = "hydroponics crate"
 	desc = "All you need to destroy those pesky weeds and pests."
 	icon_state = "hydrocrate"
+
+/obj/structure/closet/crate/hydroponics/randomseeds/populate_contents()
+	new /obj/item/seeds/random(src)
+	new /obj/item/seeds/random(src)
+	new /obj/item/seeds/random(src)
+	new /obj/item/seeds/random(src)
+	new /obj/item/seeds/random(src)
+	new /obj/item/seeds/random(src)
+	new /obj/item/seeds/random(src)
+	new /obj/item/seeds/random(src)
+	new /obj/item/seeds/random(src)
+	new /obj/item/seeds/random(src)
 
 /obj/structure/closet/crate/secure/weapon
 	desc = "A secure weapons crate."
