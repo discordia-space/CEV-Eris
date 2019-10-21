@@ -24,7 +24,7 @@
 	firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
-		list(mode_name="short bursts",   burst=5, fire_delay=null, move_delay=6,     icon="burst"),
+		BURST_5_ROUND
 		)
 
 /obj/item/weapon/gun/projectile/automatic/ak47/update_icon()
@@ -45,5 +45,5 @@
 
 	firemodes = list(
 	SEMI_AUTO_NODELAY,
-	list(mode_name="short bursts",   burst=5, fire_delay=null, move_delay=6,     icon="burst"),
+	BURST_5_ROUND
 	)
