@@ -21,7 +21,7 @@
 	req_access = list(access_hydroponics)
 	icon_state = "agrolyte"
 
-/obj/structure/closet/secure_closet/personal/hydroponics/populate_contents()
+/obj/structure/closet/secure_closet/personal/agrolyte/populate_contents()
 	new /obj/item/clothing/suit/apron(src)
 	new /obj/item/weapon/storage/belt/church(src)
 	new /obj/item/weapon/storage/bag/plants(src)

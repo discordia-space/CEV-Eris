@@ -353,18 +353,6 @@
 	desc = "All you need to destroy those pesky weeds and pests."
 	icon_state = "hydrocrate"
 
-/obj/structure/closet/crate/hydroponics/randomseeds/populate_contents()
-	new /obj/item/seeds/random(src)
-	new /obj/item/seeds/random(src)
-	new /obj/item/seeds/random(src)
-	new /obj/item/seeds/random(src)
-	new /obj/item/seeds/random(src)
-	new /obj/item/seeds/random(src)
-	new /obj/item/seeds/random(src)
-	new /obj/item/seeds/random(src)
-	new /obj/item/seeds/random(src)
-	new /obj/item/seeds/random(src)
-
 /obj/structure/closet/crate/secure/weapon
 	desc = "A secure weapons crate."
 	name = "Weapons crate"
