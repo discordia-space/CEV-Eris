@@ -9,7 +9,7 @@
 	var/heartbeat = 0
 	var/efficiency = 1
 	var/open
-	var/dose_available = TRUE
+
 /obj/item/organ/internal/heart/open
 	open = 1
 
@@ -76,13 +76,7 @@
 		blood_volume *= 0.6
 	else if(damage > 1)
 		blood_volume *= 0.8
-	if (blood_volume > BLOOD_VOLUME_SAFE && BP_IS_ROBOTIC(src))
-		owner.adjustOxyLoss(-0.5)
-	if (dose_available && BP_IS_ROBOTIC(src) && owner.health == HEALTH_THRESHOLD_SOFTCRIT)
-		owner.reagents.add_reagent(/datum/reagent/medicine/inaprovaline, 10)
-		owner.reagents.add_reagent(/datum/reagent/medicine/tramadol, 10)
-		dose_available = FALSE
-		used_dose()
+
 
 	//Effects of bloodloss
 	switch(blood_volume)
@@ -121,8 +115,3 @@
 			owner.nutrition -= 10
 		else if(owner.nutrition >= 200)
 			owner.nutrition -= 3
-/obj/item/organ/internal/heart/proc/used_dose()
-	. = ..()
-	addtimer(CALLBACK(src, .proc/dose_available), 5 MINUTES)
-/obj/item/organ/internal/heart/proc/dose_available()
-	dose_available = TRUE
