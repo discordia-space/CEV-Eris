@@ -43,3 +43,6 @@
 
 #define SEMI_AUTO_NODELAY	list(mode_name="semiauto", burst=1, fire_delay=0, move_delay=null, icon="semi")
 
+#define BURST_3_ROUND		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4, icon="burst")
+#define BURST_5_ROUND		list(mode_name="5-round bursts", burst=5, fire_delay=null, move_delay=6, icon="burst")
+#define BURST_8_ROUND		list(mode_name="8-round bursts", burst=8, fire_delay=null, move_delay=8, icon="burst")

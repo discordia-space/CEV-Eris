@@ -3,9 +3,9 @@
 	desc = "A window."
 	icon = 'icons/obj/structures.dmi'
 
-	density = 1
+	density = TRUE
 	layer = ABOVE_OBJ_LAYER //Just above doors
-	anchored = 1.0
+	anchored = TRUE
 	flags = ON_BORDER
 	var/maxhealth = 20
 	var/resistance = RESISTANCE_NONE	//Incoming damage is reduced by this flat amount before being subtracted from health. Defines found in code\__defines\weapons.dm

@@ -17,10 +17,10 @@
 //  Generic non-item
 /obj/item/weapon/storage/bag
 	icon = 'icons/obj/storage.dmi'
-	allow_quick_gather = 1
-	allow_quick_empty = 1
-	display_contents_with_number = 1
-	use_to_pickup = 1
+	allow_quick_gather = TRUE
+	allow_quick_empty = TRUE
+	display_contents_with_number = TRUE
+	use_to_pickup = TRUE
 	slot_flags = SLOT_BELT
 
 // -----------------------------
@@ -37,7 +37,7 @@
 	max_w_class = ITEM_SIZE_SMALL
 	can_hold = list() // any
 	cant_hold = list(/obj/item/weapon/disk/nuclear)
-	max_storage_space = ITEM_SIZE_BULKY
+	max_storage_space = DEFAULT_BULKY_STORAGE
 
 /obj/item/weapon/storage/bag/trash/update_icon()
 	if(contents.len == 0)
@@ -52,7 +52,7 @@
 
 //The custodial robot gets a larger bag since it only has one and no cart
 /obj/item/weapon/storage/bag/trash/robot
-	max_storage_space = ITEM_SIZE_BULKY * 2
+	max_storage_space = DEFAULT_BULKY_STORAGE * 2
 
 /obj/item/weapon/storage/bag/trash/robot/update_icon()
 	if(contents.len == 0)
@@ -78,6 +78,7 @@
 
 	w_class = ITEM_SIZE_BULKY
 	max_w_class = ITEM_SIZE_SMALL
+	max_storage_space = DEFAULT_BULKY_STORAGE
 	can_hold = list() // any
 	cant_hold = list(/obj/item/weapon/disk/nuclear)
 
@@ -128,7 +129,7 @@
 	var/capacity = 300; //the number of sheets it can carry.
 	w_class = ITEM_SIZE_NORMAL
 	storage_slots = 7
-	allow_quick_empty = 1 // this function is superceded
+	allow_quick_empty = TRUE // this function is superceded
 
 /obj/item/weapon/storage/bag/sheetsnatcher/New()
 	..()
@@ -223,7 +224,6 @@
 
 /obj/item/weapon/storage/bag/sheetsnatcher/borg
 	name = "sheet snatcher 9000"
-	desc = ""
 	capacity = 500//Borgs get more because >specialization
 
 // -----------------------------
