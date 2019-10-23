@@ -623,7 +623,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		src.setBleeding()
 
 	//Bone fractures
-	if(config.bones_can_break && brute_dam > min_broken_damage * ORGAN_HEALTH_MULTIPLIER && !BP_IS_ROBOTIC(src))
+	if(src.should_fracture())
 		src.fracture()
 
 //Returns 1 if damage_state changed
@@ -839,6 +839,11 @@ Note that amputating the affected organ does in fact remove the infection from t
 		W.clamped = TRUE
 	return rval
 
+// Checks if the limb should get fractured by now
+/obj/item/organ/external/proc/should_fracture()
+	return config.bones_can_break && !BP_IS_ROBOTIC(src) && brute_dam > (min_broken_damage * ORGAN_HEALTH_MULTIPLIER)
+
+// Fracture the bone in the limb
 /obj/item/organ/external/proc/fracture()
 	if(BP_IS_ROBOTIC(src))
 		return	//ORGAN_BROKEN doesn't have the same meaning for robot limbs
@@ -865,7 +870,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	// This is mostly for the ninja suit to stop ninja being so crippled by breaks.
 	// TODO: consider moving this to a suit proc or process() or something during
 	// hardsuit rewrite.
-	if(owner && !(status & ORGAN_SPLINTED) && ishuman(owner))
+	if(ishuman(owner) && !(status & ORGAN_SPLINTED))
 
 		var/mob/living/carbon/human/H = owner
 
@@ -879,16 +884,16 @@ Note that amputating the affected organ does in fact remove the infection from t
 			to_chat(owner, SPAN_NOTICE("You feel \the [suit] constrict about your [name], supporting it."))
 			status |= ORGAN_SPLINTED
 			suit.supporting_limbs |= src
-	return
+
 
 /obj/item/organ/external/proc/mend_fracture()
-	if(BP_IS_ROBOTIC(src))
-		return 0	//ORGAN_BROKEN doesn't have the same meaning for robot limbs
-	if(brute_dam > min_broken_damage * ORGAN_HEALTH_MULTIPLIER)
-		return 0	//will just immediately fracture again
+	if(should_fracture())
+		return FALSE	//will just immediately fracture again
 
 	status &= ~ORGAN_BROKEN
-	return 1
+	status &= ~ORGAN_SPLINTED
+	perma_injury = 0
+	return TRUE
 
 /obj/item/organ/external/proc/mutate()
 	if(BP_IS_ROBOTIC(src))
