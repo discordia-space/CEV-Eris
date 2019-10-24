@@ -6,7 +6,7 @@
 		 This is a high-quality copy, which has an automatic fire mode."
 	icon_state = "black-AK"
 	item_state = "black-AK"
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 	force = WEAPON_FORCE_PAINFUL
 	caliber = "a762"
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 4)
@@ -24,7 +24,7 @@
 	firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
-		list(mode_name="short bursts",   burst=5, fire_delay=null, move_delay=6,     icon="burst"),
+		BURST_5_ROUND
 		)
 
 /obj/item/weapon/gun/projectile/automatic/ak47/update_icon()
@@ -45,5 +45,5 @@
 
 	firemodes = list(
 	SEMI_AUTO_NODELAY,
-	list(mode_name="short bursts",   burst=5, fire_delay=null, move_delay=6,     icon="burst"),
+	BURST_5_ROUND
 	)

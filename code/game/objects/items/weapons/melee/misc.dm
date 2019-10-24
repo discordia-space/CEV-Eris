@@ -19,7 +19,7 @@
 	item_state = "hm_hammer"
 	force = WEAPON_FORCE_PAINFUL
 	throwforce = WEAPON_FORCE_PAINFUL
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 	origin_tech = list(TECH_COMBAT = 3)
 	attack_verb = list("robusted", "slammed")
 	var/reinforced = FALSE

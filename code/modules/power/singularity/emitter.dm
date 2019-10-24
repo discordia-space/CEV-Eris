@@ -197,7 +197,7 @@
 
 	if(istype(I, /obj/item/weapon/card/id) || istype(I, /obj/item/modular_computer))
 		if(emagged)
-			to_chat(user, SPAN_WARNING("The lock seems to be broken."))
+			to_chat(user, SPAN_WARNING("The lock seems to be broken!"))
 			return
 		if(src.allowed(user))
 			if(active)
@@ -216,5 +216,5 @@
 	if(!emagged)
 		locked = 0
 		emagged = 1
-		user.visible_message("[user.name] emags [src].",SPAN_WARNING("You short out the lock."))
+		user.visible_message("[user.name] swipes an emag on [src]. It crackles and sparks violently.",SPAN_WARNING("You short out the lock. It crackles and sparks violently."))
 		return 1

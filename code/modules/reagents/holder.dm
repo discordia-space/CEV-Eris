@@ -6,6 +6,7 @@
 	var/maximum_volume = 100
 	var/chem_temp = T20C
 	var/atom/my_atom = null
+	var/rotating = FALSE
 
 
 /datum/reagents/New(var/max = 100, atom/A = null)
@@ -369,7 +370,7 @@
 //not directly injected into the contents. It first calls touch, then the appropriate trans_to_*() or splash_mob().
 //If for some reason touch effects are bypassed (e.g. injecting stuff directly into a reagent container or person),
 //call the appropriate trans_to_*() proc.
-/datum/reagents/proc/trans_to(datum/target, amount = 1, multiplier = 1, copy = 0)
+/datum/reagents/proc/trans_to(datum/target, amount = 1, multiplier = 1, copy = 0, ignore_isinjectable = 0)
 	if(istype(target, /datum/reagents))
 		return trans_to_holder(target, amount, multiplier, copy)
 
@@ -379,7 +380,7 @@
 			return splash_mob(target, amount, multiplier, copy)
 		if(isturf(target))
 			return trans_to_turf(target, amount, multiplier, copy)
-		if(isobj(target) && A.is_injectable())
+		if(isobj(target) && (A.is_injectable() || ignore_isinjectable))
 			return trans_to_obj(target, amount, multiplier, copy)
 	return 0
 
@@ -448,24 +449,6 @@
 	for(var/datum/reagent/current in reagent_list)
 		if(!current.touch_turf(target, current.volume))
 			handled = FALSE
-	if(!handled)
-		switch(get_average_reagents_state())
-			if(LIQUID)
-				var/obj/effect/decal/cleanable/splashed_reagents/dirtoverlay = locate(/obj/effect/decal/cleanable/splashed_reagents, target)
-				if (!dirtoverlay)
-					dirtoverlay = new/obj/effect/decal/cleanable/splashed_reagents(target)
-					dirtoverlay.alpha = min(total_volume * 30, 255)
-					dirtoverlay.color = get_color()
-				else
-					dirtoverlay.alpha = min(dirtoverlay.alpha + total_volume * 30, 255)
-					dirtoverlay.color = BlendRGB(dirtoverlay.color, get_color(), 0.6)
-			if(SOLID)
-				var/obj/effect/decal/cleanable/piled_reagents/dirtoverlay = locate(/obj/effect/decal/cleanable/piled_reagents, target)
-				if (!dirtoverlay)
-					dirtoverlay = new/obj/effect/decal/cleanable/piled_reagents(target)
-					dirtoverlay.color = get_color()
-				else
-					dirtoverlay.color = BlendRGB(dirtoverlay.color, get_color(), 0.8)
 	update_total()
 	return handled
 
@@ -514,12 +497,25 @@
 /datum/reagents/proc/trans_to_turf(var/turf/target, var/amount = 1, var/multiplier = 1, var/copy = 0) // Turfs don't have any reagents (at least, for now). Just touch it.
 	if(!target || !target.simulated)
 		return
-	
+
 
 	var/datum/reagents/R = new /datum/reagents(amount * multiplier)
 	. = trans_to_holder(R, amount, multiplier, copy)
 
-	R.touch_turf(target)
+	if(!R.touch_turf(target))	//if touch turf was not handled
+		switch(R.get_average_reagents_state())
+			if(LIQUID)
+				var/obj/effect/decal/cleanable/reagents/splashed/dirtoverlay = locate(/obj/effect/decal/cleanable/reagents/splashed, target)
+				if (!dirtoverlay)
+					dirtoverlay = new/obj/effect/decal/cleanable/reagents/splashed(target, reagents_to_add = R)
+				else
+					dirtoverlay.add_reagents(R)
+			if(SOLID)
+				var/obj/effect/decal/cleanable/reagents/piled/dirtoverlay = locate(/obj/effect/decal/cleanable/reagents/piled, target)
+				if (!dirtoverlay)
+					dirtoverlay = new/obj/effect/decal/cleanable/reagents/piled(target, reagents_to_add =  R)
+				else
+					dirtoverlay.add_reagents(R)
 	return
 
 /datum/reagents/proc/trans_to_obj(var/obj/target, var/amount = 1, var/multiplier = 1, var/copy = 0) // Objects may or may not; if they do, it's probably a beaker or something and we need to transfer properly; otherwise, just touch.

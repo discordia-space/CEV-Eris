@@ -53,6 +53,7 @@
 /obj/item/weapon/computer_hardware/scanner/proc/do_on_afterattack(mob/user, atom/target, proximity)
 
 /obj/item/weapon/computer_hardware/scanner/proc/do_on_attackby(mob/user, atom/target)
+	return FALSE
 
 /obj/item/weapon/computer_hardware/scanner/proc/can_use_scanner(mob/user, atom/target, proximity = TRUE)
 	if(!check_functionality())

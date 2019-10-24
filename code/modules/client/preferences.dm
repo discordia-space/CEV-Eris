@@ -191,7 +191,6 @@
 	character.facial_color = facial_color
 	character.skin_color = skin_color
 
-	character.religion = religion
 	character.s_tone = s_tone
 
 	QDEL_NULL_LIST(character.worn_underwear)
@@ -203,7 +202,7 @@
 			var/underwear_item_name = all_underwear[underwear_category_name]
 			var/datum/category_item/underwear/UWD = underwear_category.items_by_name[underwear_item_name]
 			var/metadata = all_underwear_metadata[underwear_category_name]
-			var/obj/item/underwear/UW = UWD.create_underwear(metadata, character.body_build.underwear_icon)
+			var/obj/item/underwear/UW = UWD.create_underwear(character, metadata, character.body_build.underwear_icon)
 			if(UW)
 				UW.ForceEquipUnderwear(character, FALSE)
 		else
@@ -213,6 +212,7 @@
 
 	character.force_update_limbs()
 	character.update_mutations(0)
+	character.update_implants(0)
 
 
 	character.update_body(0)
@@ -235,8 +235,8 @@
 	if(!character.isSynthetic())
 		character.nutrition = rand(250, 450)
 
-	for(var/bg in background)
-		all_backgrounds[bg][background[bg]].apply(character)
+	for(var/options_name in setup_options)
+		get_option(options_name).apply(character)
 
 
 /datum/preferences/proc/open_load_dialog(mob/user)

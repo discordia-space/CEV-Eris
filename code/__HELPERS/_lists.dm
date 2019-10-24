@@ -248,7 +248,7 @@
 
 //Picks a random element from a list based on a weighting system:
 //1. Adds up the total of weights for each element
-//2. Gets a number between 1 and that total
+//2. Gets the total from 0% to 100% of previous total value.
 //3. For each element in the list, subtracts its weighting from that number
 //4. If that makes the number 0 or less, return that element.
 /proc/pickweight(list/L, base_weight = 1)
@@ -259,9 +259,9 @@
 			L[item] = base_weight
 		total += L[item]
 
-	total = rand(1, total)
+	total = rand() * total
 	for (item in L)
-		total -=L [item]
+		total -= L[item]
 		if (total <= 0)
 			return item
 
@@ -455,7 +455,7 @@
 
 //for sorting entries by their associated values, rather than keys.
 /proc/sortAssoc(list/L, order=1)
-	return sortTim(L, order >= 0 ? /proc/cmp_name_asc : /proc/cmp_name_dsc, TRUE) //third argument for fetching L[L[i]] instead of L[i]
+	return sortTim(L, order >= 0 ? /proc/cmp_text_asc : /proc/cmp_text_dsc, TRUE) //third argument for fetching L[L[i]] instead of L[i]
 
 // Returns the key based on the index
 #define KEYBYINDEX(L, index) (((index <= length(L)) && (index > 0)) ? L[index] : null)
@@ -798,6 +798,29 @@ Checks if a list has the same entries and values as an element of big.
 			return 1
 	return 0
 
+/proc/parse_for_paths(var/list/data)
+	if(!islist(data) || !data.len)
+		return list()
+	var/list/types = list()
+	if(is_associative(data))
+		for(var/tag in data)
+			if(ispath(tag))
+				types.Add(tag)
+			else if(islist(tag))
+				types.Add(parse_for_paths(tag))
+
+			if(ispath(data[tag]))
+				types.Add(data[tag])
+			else if(islist(data[tag]))
+				types.Add(parse_for_paths(data[tag]))
+	else
+		for(var/value in data)
+			if(ispath(value))
+				types.Add(value)
+			else if(islist(value))
+				types.Add(parse_for_paths(value))
+	return uniquelist(types)
+
 //return first thing in L which has var/varname == value
 //this is typecaste as list/L, but you could actually feed it an atom instead.
 //completely safe to use
@@ -845,18 +868,6 @@ Checks if a list has the same entries and values as an element of big.
 		used_key_list[input_key] = 1
 	return input_key
 
-#if DM_VERSION > 512
-#error Remie said that lummox was adding a way to get a lists
-#error contents via list.values, if that is true remove this
-#error otherwise, update the version and bug lummox
-#endif
-//Flattens a keyed list into a list of it's contents
-/proc/flatten_list(list/key_list)
-	if(!islist(key_list))
-		return null
-	. = list()
-	for(var/key in key_list)
-		. |= key_list[key]
 
 /proc/make_associative(list/flat_list)
 	. = list()

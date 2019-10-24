@@ -143,6 +143,9 @@
 	penetrating = 2
 	can_ricochet = TRUE
 
+/obj/item/projectile/bullet/a556/nomuzzle
+	muzzle_type = null
+
 /obj/item/projectile/bullet/a556/practice
 	name = "practice bullet"
 	damage = DAMAGE_556 * PRACTICE_DAMAGE_MULTIPLIER
@@ -219,7 +222,7 @@
 
 /obj/item/projectile/bullet/a50
 	damage = DAMAGE_50
-	armor_penetration = ARMOR_PENETRATION_HIGH_CALIBER_PISTOL * RUBBER_PENETRATION_MULTIPLIER
+	armor_penetration = ARMOR_PENETRATION_HIGH_CALIBER_PISTOL
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/a50/rubber

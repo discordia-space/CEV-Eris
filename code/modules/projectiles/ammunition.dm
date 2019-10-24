@@ -311,34 +311,36 @@
 
 /obj/item/ammo_magazine/resolve_attackby(atom/A, mob/user)
 	//Clicking on tile with no collectible items will empty it, if it has the verb to do that.
-	if(isturf(A))
-		src.quick_empty(A)
+	if(isturf(A) && !A.density)
+		dump_it(A)
 		return TRUE
 	return ..()
 
-/obj/item/ammo_magazine/verb/quick_empty(var/turf/target)
+/obj/item/ammo_magazine/verb/quick_empty()
 	set name = "Empty Ammo Container"
 	set category = "Object"
+	set src in view(1)
 
 	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
 		return
 
-	var/turf/T
-	if(isturf(target))
-		T = target
-	else
-		T = get_turf(src)
-
+	var/turf/T = get_turf(src)
 	if(!istype(T))
 		return
+	dump_it(T, usr)
 
+/obj/item/ammo_magazine/proc/dump_it(var/turf/target) //bogpilled
+	if(!istype(target))
+		return
+	if(!Adjacent(usr))
+		return
 	if(!stored_ammo.len)
 		to_chat(usr, SPAN_NOTICE("[src] is already empty!"))
 		return
 	to_chat(usr, SPAN_NOTICE("You take out ammo from [src]."))
 	for(var/i=1 to stored_ammo.len)
 		var/obj/item/ammo_casing/C = removeCasing()
-		C.forceMove(T)
+		C.forceMove(target)
 		C.set_dir(pick(cardinal))
 	update_icon()
 

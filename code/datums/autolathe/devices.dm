@@ -1,18 +1,18 @@
 /datum/design/autolathe/device/analyzer
 	name = "analyzer"
-	build_path = /obj/item/device/scanner/analyzer
+	build_path = /obj/item/device/scanner/gas
 
 /datum/design/autolathe/device/plant_analyzer
 	name = "plant analyzer"
-	build_path = /obj/item/device/scanner/analyzer/plant_analyzer
+	build_path = /obj/item/device/scanner/plant
 
 /datum/design/autolathe/device/healthanalyzer
 	name = "health analyzer"
-	build_path = /obj/item/device/scanner/healthanalyzer
+	build_path = /obj/item/device/scanner/health
 
 /datum/design/autolathe/device/slime_scanner
 	name = "slime scanner"
-	build_path = /obj/item/device/scanner/slime_scanner
+	build_path = /obj/item/device/scanner/xenobio
 
 /datum/design/autolathe/device/antibody_scanner
 	name = "antibody scanner"
@@ -36,7 +36,7 @@
 
 /datum/design/autolathe/device/export_scanner
 	name = "export scanner"
-	build_path = /obj/item/device/export_scanner
+	build_path = /obj/item/device/scanner/price
 
 /datum/design/autolathe/device/implanter
 	name = "implanter"

@@ -86,7 +86,10 @@
 		CtrlAltClickOn(A)
 		return 1
 	if(modifiers["middle"])
-		MiddleClickOn(A)
+		if(modifiers["shift"])
+			ShiftMiddleClickOn(A)
+		else
+			MiddleClickOn(A)
 		return 1
 	if(modifiers["shift"])
 		ShiftClickOn(A)
@@ -234,6 +237,9 @@
 	swap_hand()
 	return
 
+/mob/proc/ShiftMiddleClickOn(var/atom/A)
+	pointed(A)
+
 // In case of use break glass
 /*
 /atom/proc/MiddleClick(var/mob/M as mob)
@@ -248,6 +254,7 @@
 /mob/proc/ShiftClickOn(var/atom/A)
 	A.ShiftClick(src)
 	return
+
 /atom/proc/ShiftClick(var/mob/user)
 	if(user.client && user.client.eye == user)
 		user.examinate(src)

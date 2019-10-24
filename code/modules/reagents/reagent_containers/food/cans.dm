@@ -14,14 +14,14 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle
 	name = "bottled water"
-	desc = "Simple clean water of unknown origin. You think that maybe you dont want to know it."
+	desc = "A bottle of simple, clean water of unknown origin. You probably don't want to know where it came from."
 	icon_state = "waterbottle"
 	center_of_mass = list("x"=15, "y"=8)
 	preloaded_reagents = list("water" = 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/space_mountain_wind
 	name = "\improper Space Mountain Wind"
-	desc = "Blows right through you like a space wind."
+	desc = "Blows right through you like a gust of space wind."
 	icon_state = "space_mountain_wind"
 	center_of_mass = list("x"=16, "y"=10)
 	preloaded_reagents = list("spacemountainwind" = 30)

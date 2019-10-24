@@ -64,7 +64,7 @@
 	item_state = "medical_voidsuit"
 	extra_allowed = list(
 		/obj/item/weapon/storage/firstaid,
-		/obj/item/device/scanner/healthanalyzer,
+		/obj/item/device/scanner/health,
 		/obj/item/stack/medical,
 		/obj/item/roller
 	)

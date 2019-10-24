@@ -17,7 +17,7 @@
  * Twohanded
  */
 /obj/item/weapon/material/twohanded
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 	var/wielded = 0
 	var/force_wielded = 0
 	var/force_unwielded
@@ -82,7 +82,7 @@
 	sharp = 1
 	edge = 1
 	tool_qualities = list(QUALITY_CUTTING = 10, QUALITY_PRYING = 20)
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	force_wielded = 30
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
@@ -108,7 +108,7 @@
 	desc = "A haphazardly-constructed yet still deadly weapon of ancient design."
 	force = WEAPON_FORCE_PAINFUL
 	structure_damage_factor = STRUCTURE_DAMAGE_WEAK
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	force_divisor = 0.33          // 22 when wielded with hardness 15 (glass)
 	unwielded_force_divisor = 0.2 // 14 when unwielded based on above

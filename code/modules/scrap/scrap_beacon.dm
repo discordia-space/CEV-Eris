@@ -3,6 +3,7 @@
 	desc = "This machine generates directional gravity rays which catch trash orbiting around."
 	icon = 'icons/obj/structures/scrap/scrap_beacon.dmi'
 	icon_state = "beacon0"
+	w_class = ITEM_SIZE_TITANIC
 	anchored = TRUE
 	density = TRUE
 	layer = MOB_LAYER + 1
@@ -42,6 +43,9 @@
 		sleep(impact_speed)
 		var/turf/newloc = pick(flooring_near_beacon)
 		flooring_near_beacon -= newloc
-		new /obj/effect/falling_effect(newloc, /obj/random/scrap/moderate_weighted)
+		if(prob(30))
+			new /obj/effect/falling_effect(newloc, /obj/random/scrap/sparse_weighted)
+		else
+			new /obj/effect/falling_effect(newloc, /obj/random/scrap/moderate_weighted)
 	active = FALSE
 	icon_state = "beacon0"

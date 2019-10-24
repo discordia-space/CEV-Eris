@@ -690,10 +690,12 @@
 	proc/cooltime()
 		if (src.warm)
 			spawn(4200)
-				src.warm = 0
-				for(var/reagent in heated_reagents)
-					src.reagents.del_reagent(reagent)
-				src.name = initial(name)
+				if(src)
+					src.warm = 0
+					src.name = initial(name)
+					if(src.reagents)
+						for(var/reagent in heated_reagents)
+							src.reagents.del_reagent(reagent)
 
 /obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket
 	name = "\improper Sin-pocket"

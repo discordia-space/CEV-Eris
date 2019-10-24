@@ -73,7 +73,7 @@ nanoui is used to open and update nano browser uis
   *
   * @return /nanoui new nanoui object
   */
-/datum/nanoui/New(nuser, nsrc_object, nui_key, ntemplate_filename, ntitle = 0, nwidth = 0, nheight = 0, var/atom/nref = null, var/datum/nanoui/master_ui = null, var/datum/topic_state/state = GLOB.default_state)
+/datum/nanoui/New(nuser, nsrc_object, nui_key, ntemplate_filename, ntitle = 0, nwidth = 0, nheight = 0, atom/nref, datum/nanoui/master_ui, datum/topic_state/state = GLOB.default_state)
 	user = nuser
 	src_object = nsrc_object
 	ui_key = nui_key
@@ -97,8 +97,14 @@ nanoui is used to open and update nano browser uis
 		ref = nref
 
 	add_common_assets()
-	var/datum/asset/assets = get_asset_datum(/datum/asset/nanoui)
-	assets.send(user, ntemplate_filename)
+	if(user.client)
+		var/datum/asset/assets = get_asset_datum(/datum/asset/directories/nanoui)
+
+		// Avoid opening the window if the resources are not loaded yet.
+		if(!assets.check_sent(user.client))
+			to_chat(user, "Resources are still loading. Please wait.")
+			assets.send(user.client)
+			close()
 
 //Do not qdel nanouis. Use close() instead.
 /datum/nanoui/Destroy()
@@ -122,6 +128,7 @@ nanoui is used to open and update nano browser uis
 	add_script("nano_base_callbacks.js") // The NanoBaseCallbacks JS, this is used to set up (before and after update) callbacks which are common to all UIs
 	add_script("nano_base_helpers.js") // The NanoBaseHelpers JS, this is used to set up template helpers which are common to all UIs
 	add_stylesheet("shared.css") // this CSS sheet is common to all UIs
+	add_stylesheet("tgui.css") // this CSS sheet is common to all UIs
 	add_stylesheet("icons.css") // this CSS sheet is common to all UIs
 
  /**
@@ -220,7 +227,17 @@ nanoui is used to open and update nano browser uis
 	var/list/send_data = list("config" = config_data)
 
 	if (!isnull(data))
+		var/list/types = parse_for_paths(data)
+
+		var/list/potential_catalog_data = list()
+		for(var/type in types)
+			var/datum/catalog_entry/E = get_catalog_entry(type)
+			if(E)
+				potential_catalog_data.Add(list(list("entry_name" = E.title, "entry_img_path" = E.image_path, "entry_type" = E.thing_type)))
+
+		send_data["potential_catalog_data"] = potential_catalog_data
 		send_data["data"] = data
+
 
 	return send_data
 
@@ -343,6 +360,7 @@ nanoui is used to open and update nano browser uis
 /datum/nanoui/proc/use_on_close_logic(state)
 	on_close_logic = state
 
+
  /**
   * Return the HTML for this UI
   *
@@ -369,6 +387,7 @@ nanoui is used to open and update nano browser uis
 		template_data_json = strip_improper(json_encode(templates))
 
 	var/list/send_data = get_send_data(initial_data)
+
 	var/initial_data_json = replacetext(replacetext(json_encode(send_data), "&#34;", "&amp;#34;"), "'", "&#39;")
 	initial_data_json = strip_improper(initial_data_json);
 
@@ -379,7 +398,7 @@ nanoui is used to open and update nano browser uis
 <html>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<head>
-		<meta http-equiv="X-UA-Compatible" content="IE=8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<script type='text/javascript'>
 			function receiveUpdateData(jsonString)
 			{
@@ -417,7 +436,7 @@ nanoui is used to open and update nano browser uis
   * @return nothing
   */
 /datum/nanoui/proc/open()
-	if(!user.client)
+	if(!user || !user.client)
 		return
 
 	if(!src_object)
@@ -483,10 +502,9 @@ nanoui is used to open and update nano browser uis
 		return
 	var/params = "\ref[src]"
 
-	spawn(2)
-		if(!user || !user.client)
-			return
-		winset(user, window_id, "on-close=\"nanoclose [params]\"")
+	if(!user || !user.client)
+		return
+	winset(user, window_id, "on-close=\"nanoclose [params]\"")
 
  /**
   * Push data to an already open UI window

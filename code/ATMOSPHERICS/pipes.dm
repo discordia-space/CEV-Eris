@@ -1103,10 +1103,6 @@
 	if(istype(W, /obj/item/device/pipe_painter))
 		return
 
-	if(istype(W, /obj/item/device/scanner/analyzer) && in_range(user, src))
-		var/obj/item/device/scanner/analyzer/A = W
-		A.analyze_gases(src, user)
-
 /obj/machinery/atmospherics/pipe/tank/air
 	name = "Pressure Tank (Air)"
 	icon_state = "air_map"

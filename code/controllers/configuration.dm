@@ -204,6 +204,9 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 	var/emojis = 0
 
+	var/webhook_url
+	var/webhook_key
+
 /datum/configuration/New()
 	fill_storyevents_list()
 
@@ -658,7 +661,12 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if("emojis")
 					config.emojis = 1
+				
+				if("webhook_key")
+					config.webhook_key = value
 
+				if("webhook_url")
+					config.webhook_url = value
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
 

@@ -9,9 +9,8 @@
 			continue
 		chemical_reagents_list[D.id] = D
 
-
 /datum/reagent
-	var/name = "Reagent"
+	var/name = ""
 	var/id = "reagent"
 	var/description = "A non-descript chemical."
 	var/taste_description = "old rotten bandaids"
@@ -53,13 +52,20 @@
 
 	var/nerve_system_accumulations = 5 // Nerve system accumulations
 
+	// Catalog stuff
+	var/appear_in_default_catalog = TRUE
+	var/reagent_type = "FIX DAT SHIT IMIDIATLY"
+
 /datum/reagent/proc/remove_self(amount) // Shortcut
 	holder.remove_reagent(id, amount)
 
 /datum/reagent/proc/consumed_amount(mob/living/carbon/M, var/alien, var/location)
 	var/removed = metabolism
-	if(ingest_met && (location == CHEM_INGEST))
-		removed = ingest_met
+	if(location == CHEM_INGEST)
+		if(ingest_met)
+			removed = ingest_met
+		else
+			removed = removed/2
 	if(touch_met && (location == CHEM_TOUCH))
 		removed = touch_met
 	// on half of overdose, chemicals will start be metabolized faster, 
@@ -147,7 +153,7 @@
 	return
 
 /datum/reagent/proc/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	affect_blood(M, alien, effect_multiplier * 0.5)
+	affect_blood(M, alien, effect_multiplier * 0.8)	// some of chemicals lost in digestive process
 	return
 
 /datum/reagent/proc/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
@@ -163,6 +169,8 @@
 	return
 
 /datum/reagent/proc/mix_data(var/newdata, var/newamount) // You have a reagent with data, and new reagent with its own data get added, how do you deal with that?
+	if(!data)
+		data = list()
 	return
 
 /datum/reagent/proc/get_data() // Just in case you have a reagent that handles data differently.

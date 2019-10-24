@@ -17,6 +17,9 @@
 	name = T_BOARD("electrolyzer")
 	build_path = /obj/machinery/electrolyzer
 	origin_tech = list(TECH_BIO = 3)
+	req_components = list(
+		/obj/item/weapon/stock_parts/capacitor = 1
+	)
 
 // returns FALSE on errors TRUE on success and -1 if nothing to do
 /proc/electrolysis(var/obj/item/weapon/reagent_containers/primary_beaker, var/obj/item/weapon/reagent_containers/secondary_beaker, var/amount)

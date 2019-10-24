@@ -9,7 +9,8 @@
 	slot_flags = SLOT_BELT //Pouches can be worn on belt
 	storage_slots = 1
 	max_w_class = ITEM_SIZE_SMALL
-	max_storage_space = base_storage_capacity(ITEM_SIZE_NORMAL)
+	max_storage_space = DEFAULT_SMALL_STORAGE
+	matter = list(MATERIAL_BIOMATTER = 12)
 	attack_verb = list("pouched")
 
 	var/sliding_behavior = FALSE
@@ -40,7 +41,7 @@
 	icon_state = "small_generic"
 	item_state = "small_generic"
 	storage_slots = null //Uses generic capacity
-	max_storage_space = ITEM_SIZE_TINY * 3
+	max_storage_space = DEFAULT_SMALL_STORAGE * 0.5
 	max_w_class = ITEM_SIZE_SMALL
 
 /obj/item/weapon/storage/pouch/medium_generic
@@ -49,7 +50,7 @@
 	icon_state = "medium_generic"
 	item_state = "medium_generic"
 	storage_slots = null //Uses generic capacity
-	max_storage_space = ITEM_SIZE_TINY * 5
+	max_storage_space = DEFAULT_SMALL_STORAGE
 	max_w_class = ITEM_SIZE_NORMAL
 
 /obj/item/weapon/storage/pouch/large_generic
@@ -60,7 +61,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	slot_flags = SLOT_BELT | SLOT_DENYPOCKET
 	storage_slots = null //Uses generic capacity
-	max_storage_space = ITEM_SIZE_TINY * 10
+	max_storage_space = DEFAULT_NORMAL_STORAGE
 	max_w_class = ITEM_SIZE_NORMAL
 
 /obj/item/weapon/storage/pouch/medical_supply
@@ -73,7 +74,7 @@
 	max_w_class = ITEM_SIZE_NORMAL
 
 	can_hold = list(
-		/obj/item/device/scanner/healthanalyzer,
+		/obj/item/device/scanner/health,
 		/obj/item/weapon/dnainjector,
 		/obj/item/weapon/reagent_containers/dropper,
 		/obj/item/weapon/reagent_containers/glass/beaker,
@@ -104,12 +105,12 @@
 		/obj/item/device/radio/headset,
 		/obj/item/stack/cable_coil,
 		/obj/item/device/t_scanner,
-		/obj/item/device/scanner/analyzer,
+		/obj/item/device/scanner/gas,
 		/obj/item/taperoll/engineering,
 		/obj/item/device/robotanalyzer,
 		/obj/item/weapon/material/minihoe,
 		/obj/item/weapon/material/hatchet,
-		/obj/item/device/scanner/analyzer/plant_analyzer,
+		/obj/item/device/scanner/plant,
 		/obj/item/weapon/extinguisher/mini,
 		/obj/item/weapon/hand_labeler,
 		/obj/item/clothing/gloves,
@@ -138,10 +139,10 @@
 		/obj/item/device/lighting/toggleable/flashlight,
 		/obj/item/stack/cable_coil,
 		/obj/item/device/t_scanner,
-		/obj/item/device/scanner/analyzer,
+		/obj/item/device/scanner/gas,
 		/obj/item/taperoll/engineering,
 		/obj/item/device/robotanalyzer,
-		/obj/item/device/scanner/analyzer/plant_analyzer,
+		/obj/item/device/scanner/plant,
 		/obj/item/weapon/extinguisher/mini
 		)
 
@@ -238,7 +239,7 @@
 	item_state = "baton_holster"
 
 	storage_slots = 1
-	max_w_class = ITEM_SIZE_LARGE
+	max_w_class = ITEM_SIZE_BULKY
 
 	can_hold = list(
 		/obj/item/weapon/melee,

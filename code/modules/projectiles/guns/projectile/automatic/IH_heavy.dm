@@ -4,7 +4,7 @@
 	desc = "A high end military grade assault rifle, designed as a modern ballistic infantry weapon. Primarily used by and produced for IH troops. Uses 5.56mm rounds."
 	icon_state = "IH_heavyrifle"
 	item_state = "IH_heavyrifle"
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_HUGE
 	force = WEAPON_FORCE_PAINFUL
 	caliber = "a556"
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1)
@@ -25,7 +25,7 @@
 	firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,     icon="burst")
+		BURST_3_ROUND
 		)
 
 /obj/item/weapon/gun/projectile/automatic/IH_heavyrifle/update_icon()

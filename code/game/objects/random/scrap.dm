@@ -33,8 +33,8 @@
 
 /obj/random/scrap/dense_weighted/item_to_spawn()
 		return pickweight(list(
-						/obj/structure/scrap/poor/large = 70,
-						/obj/structure/scrap/poor/structure = 70,
+						/obj/structure/scrap/poor/large = 110,
+						/obj/structure/scrap/poor/structure = 90,
 						/obj/structure/scrap/large = 20,
 						/obj/structure/scrap/medical/large = 14,
 						/obj/structure/scrap/science/large = 14,
@@ -81,13 +81,13 @@
 
 /obj/random/scrap/sparse_weighted/item_to_spawn()
 		return pickweight(list(
-						/obj/structure/scrap/poor = 100,
-						/obj/structure/scrap = 18,
+						/obj/structure/scrap/poor = 122,
+						/obj/structure/scrap = 40,
 						/obj/structure/scrap/medical = 12,
 						/obj/structure/scrap/science = 12,
 						/obj/structure/scrap/vehicle = 18,
-						/obj/structure/scrap/cloth = 24,
-						/obj/structure/scrap/food = 36,
+						/obj/structure/scrap/cloth = 30,
+						/obj/structure/scrap/food = 52,
 						/obj/structure/scrap/guns = 3
 					))
 

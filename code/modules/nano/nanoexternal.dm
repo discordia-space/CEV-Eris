@@ -1,6 +1,22 @@
  // This file contains all Nano procs/definitions for external classes/objects
 
  /**
+  * A "panic button" verb to close all UIs on current mob.
+  * Use it when the bug with UI not opening (because the server still considers it open despite it being closed on client) pops up.
+  * Feel free to remove it once the bug is confirmed to be fixed.
+  *
+  * @return nothing
+  */
+/client/verb/resetnano()
+	set name = "Reset NanoUI"
+	set category = "OOC"
+
+	var/ui_amt = length(mob.open_uis)
+	for(var/datum/nanoui/ui in mob.open_uis)
+		ui.close()
+	to_chat(src, "[ui_amt] UI windows reset.")
+
+ /**
   * Called when a Nano UI window is closed
   * This is how Nano handles closed windows
   * It must be a verb so that it can be called using winset

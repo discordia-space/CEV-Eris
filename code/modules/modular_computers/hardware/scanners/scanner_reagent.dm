@@ -14,8 +14,9 @@
 		return
 	if (!scan_power_use())
 		return
-	/*var/dat = reagent_scan_results(target)	// TODO: fix after baymed
+	var/dat = reagent_scan_results(target)
 	if(driver && driver.using_scanner)
-		driver.data_buffer = jointext(dat, "\[br\]")
-		SSnano.update_uis(driver.NM)
-	to_chat(user, "<span class = 'notice'>[jointext(dat, "<br>")]</span>")*/
+		driver.data_buffer = dat
+		if(!SSnano.update_uis(driver.NM))
+			holder2.run_program(driver.filename)
+			driver.NM.ui_interact(user)

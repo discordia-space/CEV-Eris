@@ -13,7 +13,6 @@
 	var/burning = null
 	var/hitsound = null
 	var/worksound = null
-	var/storage_cost = null
 	var/no_attack_log = 0			//If it's an item we don't want to log attack_logs with, set this to 1
 	pass_flags = PASSTABLE
 
@@ -120,16 +119,22 @@
 	var/message
 	var/size
 	switch(w_class)
-		if(1)
+		if(ITEM_SIZE_TINY)
 			size = "tiny"
-		if(2)
+		if(ITEM_SIZE_SMALL)
 			size = "small"
-		if(3)
+		if(ITEM_SIZE_NORMAL)
 			size = "normal-sized"
-		if(4)
+		if(ITEM_SIZE_BULKY)
 			size = "bulky"
-		if(5)
+		if(ITEM_SIZE_HUGE)
 			size = "huge"
+		if(ITEM_SIZE_GARGANTUAN)
+			size = "gargantuan"
+		if(ITEM_SIZE_COLOSSAL)
+			size = "colossal"
+		if(ITEM_SIZE_TITANIC)
+			size = "titanic"
 	message += "\nIt is a [size] item."
 
 	for(var/Q in tool_qualities)
@@ -406,7 +411,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		to_chat(usr, "Your visor gets in the way of looking through the [devicename]")
 		cannotzoom = 1
 	else if(!zoom && usr.get_active_hand() != src)
-		to_chat(usr, "You are too distracted to look through the [devicename], perhaps if it was in your active hand this might work better")
+		to_chat(usr, "You are too distracted to look through the [devicename]. Perhaps if it was in your active hand you could look through it.")
 		cannotzoom = 1
 
 	if(!zoom && !cannotzoom)

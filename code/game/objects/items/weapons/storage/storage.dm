@@ -10,13 +10,13 @@
 	var/list/cant_hold = new/list() //List of objects which this item can't store (in effect only if can_hold isn't set)
 	var/list/is_seeing = new/list() //List of mobs which are currently seeing the contents of this item's storage
 	var/max_w_class = ITEM_SIZE_NORMAL //Max size of objects that this object can store (in effect only if can_hold isn't set)
-	var/max_storage_space = 8 //The sum of the storage costs of all the items in this storage item.
+	var/max_storage_space = null //Total storage cost of items this can hold. Will be autoset based on storage_slots if left null.
 	var/storage_slots = null //The number of storage slots in this container.
-	var/use_to_pickup //Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
-	var/display_contents_with_number //Set this to make the storage item group contents of the same type and display them as a number.
-	var/allow_quick_empty //Set this variable to allow the object to have the 'empty' verb, which dumps all the contents on the floor.
-	var/allow_quick_gather //Set this variable to allow the object to have the 'toggle mode' verb, which quickly collects all items from a tile.
-	var/collection_mode = 1 //0 = pick one at a time, 1 = pick all on tile
+	var/use_to_pickup = null //Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
+	var/display_contents_with_number = null //Set this to make the storage item group contents of the same type and display them as a number.
+	var/allow_quick_empty = null //Set this variable to allow the object to have the 'empty' verb, which dumps all the contents on the floor.
+	var/allow_quick_gather = null //Set this variable to allow the object to have the 'toggle mode' verb, which quickly collects all items from a tile.
+	var/collection_mode = TRUE //0 = pick one at a time, 1 = pick all on tile
 	var/use_sound = "rustle" //sound played when used. null for no sound.
 
 /HUD_element/threePartBox/storageBackground
@@ -477,30 +477,33 @@
 			if(collectItems(get_turf(A), user))
 				return TRUE
 	//Clicking on tile with no collectible items will empty it, if it has the verb to do that.
-	if(src.verbs.Find(/obj/item/weapon/storage/verb/quick_empty))
-		if(isturf(A))
-			src.quick_empty(A)
+	if(allow_quick_empty)
+		if(isturf(A) && !A.density)
+			dump_it(A)
 			return TRUE
-
 	return ..()
 
-/obj/item/weapon/storage/verb/quick_empty(var/turf/target)
+/obj/item/weapon/storage/verb/quick_empty()
 	set name = "Empty Contents"
 	set category = "Object"
+	set src in view(1)
 
 	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
 		return
 
-	var/turf/T
-	if(isturf(target))
-		T = target
-	else
-		T = get_turf(src)
+	var/turf/T = get_turf(src)
 	if(!istype(T))
+		return
+	dump_it(T, usr)
+
+/obj/item/weapon/storage/proc/dump_it(var/turf/target) //he bought?
+	if(!isturf(target))
+		return
+	if(!Adjacent(usr))
 		return
 	hide_from(usr)
 	for(var/obj/item/I in contents)
-		remove_from_storage(I, T)
+		remove_from_storage(I, target)
 
 /obj/item/weapon/storage/New()
 	..()
@@ -514,6 +517,9 @@
 	else
 		verbs -= /obj/item/weapon/storage/verb/toggle_gathering_mode
 
+	if(isnull(max_storage_space) && !isnull(storage_slots))
+		max_storage_space = storage_slots*BASE_STORAGE_COST(max_w_class)
+	
 	spawn(5)
 		var/total_storage_space = 0
 		for(var/obj/item/I in contents)
@@ -597,15 +603,12 @@
 	return depth
 
 /obj/item/proc/get_storage_cost()
-	if (storage_cost)
-		return storage_cost
-	else
-		return 2**(w_class-1) //1,2,4,8,16,...
+	return BASE_STORAGE_COST(w_class) //If you want to prevent stuff above a certain w_class from being stored, use max_w_class
 
 
 //Useful for spilling the contents of containers all over the floor
 /obj/item/weapon/storage/proc/spill(var/dist = 2, var/turf/T = null)
-	if (!T || !istype(T, /turf))//If its not on the floor this might cause issues
+	if (!istype(T))//If its not on the floor this might cause issues
 		T = get_turf(src)
 
 	for (var/obj/O in contents)

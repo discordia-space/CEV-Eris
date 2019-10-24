@@ -2,7 +2,7 @@
 	name = "bluespace snare hub"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "tele0"
-	w_class = ITEM_SIZE_NO_CONTAINER
+	w_class = ITEM_SIZE_GARGANTUAN
 	density = 0
 	anchored = 1
 	interact_offline = 1
@@ -81,7 +81,7 @@
 	target.forceMove(loc)
 
 /obj/machinery/bssilk_hub/Destroy()
-	..()
+	. = ..()
 	if(connected_console) connected_console.connected_hub = null
 	connected_console = null
 
@@ -98,7 +98,7 @@
 	var/obj/machinery/bssilk_hub/connected_hub = null
 
 /obj/machinery/computer/bssilk_control/Destroy()
-	..()
+	. = ..()
 	if(connected_hub) connected_hub.connected_console = null
 	connected_hub = null
 

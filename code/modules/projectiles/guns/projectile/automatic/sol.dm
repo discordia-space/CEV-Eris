@@ -3,7 +3,7 @@
 	desc = "A standard-issue weapon used by Ironhammer operatives. Compact and reliable. Uses 6.5x39 rounds."
 	icon_state = "sol-para"
 	item_state = "sol"
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 	ammo_mag = "ih_sol"
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_IH
@@ -18,7 +18,7 @@
 
 	firemodes = list(
 		SEMI_AUTO_NODELAY,
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,     icon="burst"),
+		BURST_3_ROUND
 		)
 
 /obj/item/weapon/gun/projectile/automatic/sol/proc/update_charge()
