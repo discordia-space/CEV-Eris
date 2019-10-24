@@ -20,7 +20,7 @@
 	firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,     icon="burst"),
+		BURST_3_ROUND
 		)
 
 /obj/item/weapon/gun/projectile/automatic/idaho/update_icon()

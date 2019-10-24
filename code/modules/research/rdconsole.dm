@@ -54,7 +54,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	var/sync   = 1		//If sync = 0, it doesn't show up on Server Control Console
 	var/can_research = TRUE   //Is this console capable of researching
 
-	req_access = list(access_moebius)	//Data and setting manipulation requires scientist access.
+	req_access = list(access_research_equipment) //Data and setting manipulation requires scientist access.
 
 	var/datum/tech/selected_tech_tree
 	var/datum/technology/selected_technology

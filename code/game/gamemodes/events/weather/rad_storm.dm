@@ -3,13 +3,13 @@
 	name = "radiation storm"
 	desc = "A cloud of intense radiation passes through the area dealing rad damage to those who are unprotected."
 
-	telegraph_duration = 400
+	telegraph_duration = 0
 	telegraph_message = "<span class='danger'>The air begins to grow warm.</span>"
 
 	weather_message = "<span class='userdanger'><i>You feel waves of heat wash over you! Find shelter!</i></span>"
 	weather_overlay = "ash_storm"
-	weather_duration_lower = 600
-	weather_duration_upper = 1500
+	weather_duration_lower = 0
+	weather_duration_upper = 0
 	weather_color = "green"
 	weather_sound = 'sound/misc/bloblarm.ogg'
 
