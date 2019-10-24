@@ -45,7 +45,24 @@
 	return owner ? owner : src
 
 
+// Flickers a pain message to the user, if the body part can feel pain at all
 /obj/item/organ/proc/owner_custom_pain(message, flash_strength)
 	if(BP_IS_ORGANIC(src) && !(status & ORGAN_DEAD) && ishuman(owner))
 		var/mob/living/carbon/human/H = owner
 		H.custom_pain(message, flash_strength)
+
+
+// Get a list of surgically treatable conditions
+// To be overridden in subtypes
+/obj/item/organ/proc/get_conditions()
+	return list()
+
+// Is body part open for most surgerical operations?
+// To be overridden in subtypes
+/obj/item/organ/proc/is_open()
+	return FALSE
+
+// Handling of attacks in organ-centric surgery - called from attackby and attack_hand
+// To be overridden in subtypes
+/obj/item/organ/proc/do_surgery(mob/living/user, obj/item/tool)
+	return FALSE

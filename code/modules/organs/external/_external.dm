@@ -241,29 +241,6 @@
 			to_chat(usr, SPAN_DANGER("There is \a [I] sticking out of it."))
 	return
 
-/obj/item/organ/external/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	switch(stage)
-		if(0)
-			if(istype(W,/obj/item/weapon/tool/scalpel))
-				user.visible_message(SPAN_DANGER("<b>[user]</b> cuts [src] open with [W]!"))
-				stage++
-				return
-		if(1)
-			if(istype(W,/obj/item/weapon/tool/retractor))
-				user.visible_message(SPAN_DANGER("<b>[user]</b> cracks [src] open like an egg with [W]!"))
-				stage++
-				return
-		if(2)
-			if(istype(W,/obj/item/weapon/tool/hemostat))
-				if(contents.len)
-					var/obj/item/removing = pick(contents)
-					user.put_in_hands(removing)
-					user.visible_message(SPAN_DANGER("<b>[user]</b> extracts [removing] from [src] with [W]!"))
-				else
-					user.visible_message(SPAN_DANGER("<b>[user]</b> fishes around fruitlessly in [src] with [W]."))
-				return
-	..()
-
 /obj/item/organ/external/proc/get_tally()
 	if(status & ORGAN_SPLINTED)
 		return 0.5
@@ -1025,3 +1002,11 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(W.internal)
 			return TRUE
 	return FALSE
+
+// Is body part open for most surgerical operations?
+/obj/item/organ/external/is_open()
+	// Robotic body parts only have to be screwed open. Organic ones need to have skin retracted too.
+	if(BP_IS_ROBOTIC(src))
+		return open
+	else
+		return open == 2

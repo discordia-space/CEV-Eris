@@ -82,6 +82,18 @@
 	if(internal)
 		update_icon()
 
+// Surgery hooks
+/obj/item/organ/attack_self(mob/living/user)
+	if(do_surgery(user, null))
+		return
+	return ..()
+
+/obj/item/organ/attackby(obj/item/I, mob/living/user)
+	if(do_surgery(user, I))
+		return
+	return ..()
+
+
 /obj/item/organ/proc/set_dna(var/datum/dna/new_dna)
 	if(new_dna)
 		dna = new_dna.Clone()
@@ -355,7 +367,7 @@
 	return (max_damage > 0) && !(status & ORGAN_DEAD) || death_time >= world.time - ORGAN_RECOVERY_THRESHOLD
 
 /obj/item/organ/proc/can_feel_pain()
-	return (!BP_IS_ROBOTIC(src) && (!species || !(species.flags & NO_PAIN)))
+	return !BP_IS_ROBOTIC(src) && !(status & ORGAN_DEAD) && (!species || !(species.flags & NO_PAIN))
 
 /obj/item/organ/proc/is_usable()
 	return !(status & (ORGAN_CUT_AWAY|ORGAN_MUTATED|ORGAN_DEAD))
