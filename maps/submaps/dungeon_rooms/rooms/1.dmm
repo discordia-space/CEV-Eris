@@ -1,0 +1,19 @@
+"a" = (/turf/simulated/wall,/area/crawler)
+"b" = (/obj/crawler/crawler_wallbreaker,/turf/simulated/wall,/area/crawler)
+"c" = (/turf/simulated/floor/tiled/dark/gray_perforated,/area/crawler)
+"d" = (/obj/crawler/crawler_wallbreaker/vertical,/turf/simulated/wall,/area/crawler)
+"e" = (/obj/machinery/light/small,/turf/simulated/floor/tiled/dark/gray_perforated,/area/crawler)
+"f" = (/obj/structure/closet/onestar/tier1,/turf/simulated/floor/tiled/dark/gray_perforated,/area/crawler)
+"g" = (/obj/structure/closet/onestar/tier1/mineral,/turf/simulated/floor/tiled/dark/gray_perforated,/area/crawler)
+
+(1,1,1) = {"
+aaaaabbbaaaaa
+accccccccccca
+accfccccccccd
+dcccccccccccd
+dcccccccccccd
+dcccccccccccd
+acgcccccccccd
+aecccccccccca
+aaaabbbbbaaaa
+"}

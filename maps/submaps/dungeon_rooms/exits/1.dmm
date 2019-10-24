@@ -1,0 +1,23 @@
+"a" = (/turf/simulated/wall,/area/crawler)
+"b" = (/obj/crawler/crawler_wallbreaker,/turf/simulated/wall,/area/crawler)
+"c" = (/turf/simulated/floor/tiled/dark/gray_perforated,/area/crawler)
+"d" = (/turf/simulated/floor/carpet,/area/crawler)
+"e" = (/obj/crawler/crawler_wallbreaker/vertical,/turf/simulated/wall,/area/crawler)
+"f" = (/obj/rogue/telebeacon,/turf/simulated/floor/carpet,/area/crawler)
+"g" = (/obj/machinery/light,/turf/simulated/floor/tiled/dark/gray_perforated,/area/crawler)
+"h" = (/obj/structure/closet/onestar/tier3/normal,/turf/simulated/floor/tiled/dark/gray_perforated,/area/crawler)
+"i" = (/obj/structure/closet/onestar/tier2/normal,/turf/simulated/floor/tiled/dark/gray_perforated,/area/crawler)
+"j" = (/obj/structure/closet/onestar/tier3/special,/turf/simulated/floor/tiled/dark/gray_perforated,/area/crawler)
+"k" = (/obj/structure/closet/onestar/tier2/mineral,/turf/simulated/floor/tiled/dark/gray_perforated,/area/crawler)
+
+(1,1,1) = {"
+aaaaaabaaaaaa
+accccccccccca
+achccdddccica
+accccdcccccca
+eccccdfdcccce
+accccdcccccca
+acjccdddcckca
+acccccgccccca
+aaaaaabaaaaaa
+"}

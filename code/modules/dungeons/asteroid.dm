@@ -143,38 +143,22 @@
 
 
 /datum/rogue/asteroid/predef/teleporter
-	width = 6
 	type_wall	= /turf/simulated/wall/untinted/onestar
 	type_under	= /turf/simulated/floor/plating
 
 	New()
 		..()
-		spot_add(1,2,type_under) //--
-		spot_add(1,3,type_under) //Left end of teleporter pad
-		spot_add(1,4,type_under) //
-		spot_add(1,5,type_under) //--
-
-		spot_add(5,2,type_under) //--
-		spot_add(5,3,type_under) //Right end of teleporter pad
-		spot_add(5,4,type_under) //--
-		spot_add(5,5,type_under) //--
-
-		spot_add(2,4,type_under) //--
-		spot_add(3,4,type_under) //Top and
-		spot_add(4,4,type_under) //bottom of
-		spot_add(5,4,type_under) //bottom of
-		spot_add(2,2,type_under) //teleporter
-		spot_add(3,2,type_under) //pad
-		spot_add(4,2,type_under) //--
-		spot_add(5,2,type_under) //--
-
-		spot_add(2,3,type_under) //Left floor
-		spot_add(3,3,type_under) //Mid floor
-		spot_add(4,3,type_under) //Mid floor
-		spot_add(5,3,type_under) //Right floor
-
-
-		spot_add(3,3,/obj/rogue/teleporter) //Teleporter
+		spot_add(1,1,type_under) //Bottom left corner
+		spot_add(1,2,type_under)
+		spot_add(1,3,type_under)
+		spot_add(2,1,type_under)
+		spot_add(2,2,type_under) //Center floor
+		spot_add(2,2,/obj/rogue/teleporter)
+		spot_add(2,2,/obj/crawler/teleport_marker)
+		spot_add(2,3,type_under)
+		spot_add(3,1,type_under)
+		spot_add(3,2,type_under)
+		spot_add(3,3,type_under) //Bottom right corner
 
 /obj/asteroid_generator
 	name = "asteroid generator"

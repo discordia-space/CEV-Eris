@@ -1,12 +1,9 @@
-/obj/rogue/telebeacon
-	name = "ancient beacon"
-	icon = 'icons/obj/bluespace_beacon.dmi'
-	icon_state = "beacon_off"
-
 /obj/rogue/teleporter //the teleporter itself
 	name = "ancient teleporter"
 	icon = 'icons/obj/bluespace_portal.dmi'
 	icon_state = "bluespace_portal"
+	w_class = ITEM_SIZE_NO_CONTAINER
+	pixel_x = -16
 	var/charging = FALSE
 	var/charge = 0
 	var/charge_max = 50
@@ -21,6 +18,10 @@
 		/mob/living/simple_animal/hostile/viscerator)//duplicates to rig chances towards spawning more weaker enemies, but in favour of generally spawning more enemies
 	var/turfs_around = list()
 	var/victims_to_teleport = list()
+	var/obj/crawler/spawnpoint/target = null
+	anchored = 1
+	unacidable = 1
+	density = 1
 
 /obj/rogue/teleporter/New()
 	for(var/turf/T in orange(7, src))
@@ -28,8 +29,12 @@
 
 /obj/rogue/teleporter/attack_hand(var/mob/user as mob)
 	if(!charge)
-		to_chat(user, "You activate the teleporter. A strange rumbling fills the area around you.")
-		start_teleporter_event()
+		target = locate(/obj/crawler/spawnpoint)
+		if(target)
+			to_chat(user, "You activate the teleporter. A strange rumbling fills the area around you.")
+			start_teleporter_event()
+		else
+			to_chat(user, "Nothing seems to happen.")
 	else if(charging)
 		to_chat(user, "The teleporter needs time to charge.")
 
@@ -81,6 +86,11 @@
 
 	for(var/mob/living/silicon/robot/R in range(8, src))//Borgs too
 		victims_to_teleport += R
+
+	for(var/mob/living/M in victims_to_teleport)
+		M.x = target.x
+		M.y = target.y
+		M.z = target.z
 
 	new /obj/structure/scrap/science/large(src.loc)
 
@@ -154,3 +164,49 @@
 		O.Weaken(flash_time)
 
 		sleep(10)
+
+
+/obj/rogue/telebeacon
+	name = "ancient beacon"
+	icon = 'icons/obj/bluespace_beacon.dmi'
+	icon_state = "beacon_off"
+	var/victims_to_teleport = list()
+	var/turf/target = null
+	var/active = FALSE
+	w_class = ITEM_SIZE_NO_CONTAINER
+	anchored = 1
+	unacidable = 1
+	density = 1
+	var/t_x
+	var/t_y
+	var/t_z
+
+
+
+
+/obj/rogue/telebeacon/New()
+	target = locate(/obj/crawler/teleport_marker)
+	t_x = target.x
+	t_y = target.y
+	t_z = target.z
+
+/obj/rogue/telebeacon/attack_hand(var/mob/user as mob)
+	if(!active)
+		target = locate(/obj/crawler/teleport_marker)
+		if(target)
+			to_chat(user, "You activate the beacon. It starts glowing softly.")
+			active = 1
+			icon_state = "beacon_on"
+		else
+			to_chat(user, "The beacon has no destination, Ahelp this.")
+	else if(active)
+		for(var/mob/living/carbon/human/H in range(8, src))//Only human mobs are allowed, otherwise you'd end up with a fuckton of cockroaches in space
+			victims_to_teleport += H
+
+		for(var/mob/living/silicon/robot/R in range(8, src))//Borgs too
+			victims_to_teleport += R
+
+		for(var/mob/living/M in victims_to_teleport)
+			M.x = t_x
+			M.y = t_y
+			M.z = t_z
