@@ -3,7 +3,7 @@
 	icon = 'icons/obj/bluespace_portal.dmi'
 	desc = "A rugged and battered piece of technology from before, seems barely operational."
 	icon_state = "bluespace_portal"
-	w_class = ITEM_SIZE_NO_CONTAINER
+	w_class = ITEM_SIZE_GARGANTUAN
 	pixel_x = -16
 	var/charging = FALSE
 	var/charge = 0
@@ -197,7 +197,7 @@
 	var/victims_to_teleport = list()
 	var/turf/target = null
 	var/active = FALSE
-	w_class = ITEM_SIZE_NO_CONTAINER
+	w_class = ITEM_SIZE_GARGANTUAN
 	anchored = 1
 	unacidable = 1
 	density = 1
