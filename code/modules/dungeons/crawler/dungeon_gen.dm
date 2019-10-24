@@ -193,24 +193,6 @@
 			testing("Created the end")
 			break
 
-/*if(is_generated(room_generating))
-			//picking the next room
-			var/next = pick(get_adjacent(room_generating))
-			if(prob(70))//so it doesn't alway hit the side and only then go down
-				if(next)
-					room_generating = next
-				else
-					room_generating = get_room_num_under(room_generating) //if there is no available rooms on the sides, go down
-			if (get_room_num_under(room_generating) && !next)
-				room_generating = get_room_num_under(room_generating)
-			else
-				generating = 0
-				generate_room(room_generating, "end")
-				break
-		else
-			occupied_rooms += get_room_by_num(room_generating)
-			generate_room(room_generating, "normal")*/
-
 
 	sleep(200)
 	var/obj/crawler/room_controller/previous_room = starting_room

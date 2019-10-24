@@ -50,7 +50,8 @@
 		walls_to_break += get_step(T, NORTH)
 		walls_to_break += get_step(T, SOUTH)
 	for(var/turf/W in walls_to_break)
-		new /turf/simulated/floor/tiled/dark/gray_perforated(W)
+		var/turf/simulated/floor/tiled/dark/gray_perforated/newfloor = new /turf/simulated/floor/tiled/dark/gray_perforated(W)
+		newfloor.lighting_build_overlay()
 
 
 

@@ -1,12 +1,14 @@
 /obj/rogue/teleporter //the teleporter itself
 	name = "ancient teleporter"
 	icon = 'icons/obj/bluespace_portal.dmi'
+	desc = "A rugged and battered piece of technology from before, seems barely operational."
 	icon_state = "bluespace_portal"
 	w_class = ITEM_SIZE_NO_CONTAINER
 	pixel_x = -16
 	var/charging = FALSE
 	var/charge = 0
 	var/charge_max = 50
+	var/flickering = 0
 	var/ticks_before_next_summon = 2
 	var/mobgenlist = list(
 		/mob/living/simple_animal/hostile/bear,
@@ -36,7 +38,10 @@
 		else
 			to_chat(user, "Nothing seems to happen.")
 	else if(charging)
-		to_chat(user, "The teleporter needs time to charge.")
+		if(flickering)
+			to_chat(user, "The portal looks too unstable to pass through!")
+		else
+			to_chat(user, "The teleporter needs time to charge.")
 
 /obj/rogue/teleporter/proc/start_teleporter_event()
 	charging = TRUE
@@ -56,8 +61,25 @@
 	end_teleporter_event()
 
 /obj/rogue/teleporter/proc/summon_mobs()
+	var/max_mobs = 3
+	var/min_mobs = 1
+	var/monsoon_coefficient = 1
+
+	switch(GLOB.storyteller.config_tag)
+		if("warrior")
+			max_mobs = 5
+			min_mobs = 2
+			monsoon_coefficient = 2
+		if("healer")
+			max_mobs = 2
+			monsoon_coefficient = 0.5
+		if("jester")//because it's funnier this way
+			max_mobs = rand(0, 7)
+			min_mobs = rand(0, 3)
+			monsoon_coefficient = (rand(5, 30)/10)
+
 	ticks_before_next_summon = rand(5, 15)
-	var/mobs_to_spawn = rand(1, 3)
+	var/mobs_to_spawn = rand(min_mobs, max_mobs)
 	while(mobs_to_spawn)
 		var/mobchoice = pick(mobgenlist)
 		var/mob/living/simple_animal/newmob = new mobchoice(pick(turfs_around))
@@ -65,11 +87,11 @@
 		sparks.set_up(3, 0, get_turf(newmob.loc))
 		sparks.start()
 		newmob.faction = "asteroid_belt" //so they won't just kill each other
-		if(prob(10)) //elite mobs, rare, but more annoying
+		if(prob(10 * monsoon_coefficient)) //elite mobs, rare, but more annoying
 			newmob.maxHealth = newmob.maxHealth * 1.2
 			newmob.health = newmob.maxHealth
 			newmob.color = "green"
-		else if(prob(10))
+		else if(prob(10 * monsoon_coefficient))
 			newmob.harm_intent_damage = newmob.harm_intent_damage * 1.5
 			newmob.melee_damage_lower = newmob.melee_damage_lower * 1.5
 			newmob.melee_damage_upper = newmob.melee_damage_upper * 1.5
@@ -130,6 +152,7 @@
 
 	overlays.Add(image(icon, icon_state = "portal_failing"))
 	visible_message("The portal starts flickering!")
+	flickering = 1
 	sleep(100)
 	update_icon()
 
@@ -168,6 +191,7 @@
 
 /obj/rogue/telebeacon
 	name = "ancient beacon"
+	desc = "A metallic pylon, covered in rust. It seems still operational."
 	icon = 'icons/obj/bluespace_beacon.dmi'
 	icon_state = "beacon_off"
 	var/victims_to_teleport = list()
@@ -184,15 +208,10 @@
 
 
 
-/obj/rogue/telebeacon/New()
-	target = locate(/obj/crawler/teleport_marker)
-	t_x = target.x
-	t_y = target.y
-	t_z = target.z
-
 /obj/rogue/telebeacon/attack_hand(var/mob/user as mob)
-	if(!active)
+	if(!target)
 		target = locate(/obj/crawler/teleport_marker)
+	if(!active)
 		if(target)
 			to_chat(user, "You activate the beacon. It starts glowing softly.")
 			active = 1
@@ -200,6 +219,8 @@
 		else
 			to_chat(user, "The beacon has no destination, Ahelp this.")
 	else if(active)
+		to_chat(user, "You reach out and touch the beacon. A strange feeling envelops you.")
+
 		for(var/mob/living/carbon/human/H in range(8, src))//Only human mobs are allowed, otherwise you'd end up with a fuckton of cockroaches in space
 			victims_to_teleport += H
 
@@ -207,6 +228,10 @@
 			victims_to_teleport += R
 
 		for(var/mob/living/M in victims_to_teleport)
-			M.x = t_x
-			M.y = t_y
-			M.z = t_z
+			M.x = target.x
+			M.y = target.y
+			M.z = target.z
+			sleep(1)
+			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+			sparks.set_up(3, 0, get_turf(loc))
+			sparks.start()
