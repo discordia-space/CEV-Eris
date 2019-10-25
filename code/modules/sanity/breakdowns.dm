@@ -1,9 +1,12 @@
 /datum/breakdown/positive
+	start_message_span = "bold notice"
 
 /datum/breakdown/negative
+	start_message_span = "danger"
 	restore_sanity_pre = 25
 
 /datum/breakdown/common
+	start_message_span = "danger"
 	restore_sanity_pre = 25
 
 
@@ -162,7 +165,7 @@
 			"laughs and twitches in the same time!"
 		))
 		holder.owner.custom_emote(message=emote)
-	else
+	else if(!holder.owner.incapacitated())
 		var/obj/item/W = holder.owner.get_active_hand()
 		if(W)
 			W.attack(holder.owner, holder.owner, ran_zone())
@@ -361,9 +364,11 @@
 			objectname = initial(target.name)
 			break
 	if(!target)
-		var/mob/living/carbon/human/H = pick((GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - holder.owner)
-		target = pick(H.organs)
-		objectname = "[H.real_name]'s [target.name]"
+		var/list/candidates = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - holder.owner
+		if(candidates.len)
+			var/mob/living/carbon/human/H = pick(candidates)
+			target = pick(H.organs)
+			objectname = "[H.real_name]'s [target.name]"
 
 /datum/breakdown/common/obsession/can_occur()
 	return !!target
@@ -386,7 +391,7 @@
 			"You feel warmth of the [objectname] in your head.",
 			"You suffered so long to achieve greatness! The sacred [objectname] is now yours. Only yours."
 		))
-		to_chat(holder.owner, message)
+		to_chat(holder.owner, SPAN_NOTICE(message))
 		holder.restoreLevel(70)
 		conclude()
 		return FALSE
@@ -403,7 +408,7 @@
 			"Your minds whispers to you with the only words in their silent throats: [objectname].",
 			"You know that only salvation from your sins is [objectname]."
 		))
-		to_chat(holder.owner, message)
+		to_chat(holder.owner, SPAN_NOTICE(message))
 
 /datum/breakdown/common/obsession/occur()
 	for(var/stat in ALL_STATS)
@@ -438,14 +443,14 @@
 
 /datum/breakdown/common/kleptomania/update()
 	. = ..()
-	if(!.)
+	if(!. || holder.owner.incapacitated())
 		return
 	if(world.time >= pickup_time)
 		pickup_time = world.time + KLEPTOMANIA_COOLDOWN
 		var/list/obj/item/candidates = oview(1, holder.owner)
 		while(candidates.len)
 			var/obj/item/I = pick(candidates)
-			if(!istype(I) || !I.Adjacent(holder.owner) || !I.pre_pickup(holder.owner))
+			if(!istype(I) || I.anchored || !I.Adjacent(holder.owner) || !I.pre_pickup(holder.owner))
 				candidates -= I
 				continue
 			if(!holder.owner.put_in_hands(I) && prob(50))

@@ -2,6 +2,7 @@
 	var/name
 	var/datum/sanity/holder
 
+	var/start_message_span
 	var/list/start_messages
 	var/list/end_messages
 
@@ -31,7 +32,7 @@
 
 /datum/breakdown/proc/occur()
 	if(start_messages)
-		to_chat(holder.owner,pick(start_messages))
+		to_chat(holder.owner, span(start_message_span, pick(start_messages)))
 	if(restore_sanity_pre)
 		holder.restoreLevel(restore_sanity_pre)
 	if(duration == 0)
@@ -43,7 +44,7 @@
 
 /datum/breakdown/proc/conclude()
 	if(end_messages)
-		to_chat(holder.owner,pick(end_messages))
+		to_chat(holder.owner,SPAN_NOTICE(pick(end_messages)))
 	if(restore_sanity_post)
 		holder.restoreLevel(restore_sanity_post)
 	qdel(src)

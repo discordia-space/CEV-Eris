@@ -6,7 +6,7 @@
 		"You have no power over your body!",
 		"The only thing under your control is your senses!"
 	)
-	return pick(messages)
+	return SPAN_WARNING(pick(messages))
 
 /mob/living/carbon/human/proc/get_language_blackout_message()
 	var/static/list/messages = list(
@@ -17,7 +17,7 @@
 		"Your brain forgot how to speak. Have you ever spoke for real?",
 		"You try to recall what is \"language\" but you can't."
 	)
-	return pick(messages)
+	return SPAN_WARNING(pick(messages))
 
 /mob/living/carbon/human/say_wrapper()
 	if(suppress_communication)
