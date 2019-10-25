@@ -94,4 +94,4 @@
 	var/language_blackout = 0
 	var/suppress_communication = 0
 
-	var/war_is_hell = 0
+	var/flashbacks = 0

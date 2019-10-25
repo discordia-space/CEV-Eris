@@ -75,11 +75,11 @@
 	restore_sanity_pre = holder.max_level
 
 /datum/breakdown/positive/concentration/occur()
-	++holder.godmode
+	++holder.sanity_invulnerability
 	return ..()
 
 /datum/breakdown/positive/concentration/conclude()
-	--holder.godmode
+	--holder.sanity_invulnerability
 	..()
 
 
@@ -517,9 +517,9 @@
 	)
 
 /datum/breakdown/common/ptsd/occur()
-	++holder.owner.war_is_hell
+	++holder.owner.flashbacks
 	return ..()
 
 /datum/breakdown/common/ptsd/conclude()
-	--holder.owner.war_is_hell
+	--holder.owner.flashbacks
 	..()

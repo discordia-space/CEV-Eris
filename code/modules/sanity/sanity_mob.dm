@@ -25,7 +25,7 @@
 	var/flags
 	var/mob/living/carbon/human/owner
 
-	var/godmode = 0
+	var/sanity_invulnerability = 0
 	var/level
 	var/max_level = 100
 
@@ -56,7 +56,7 @@
 
 /datum/sanity/proc/handle_view()
 	. = 0
-	if(godmode)
+	if(sanity_invulnerability)
 		return
 	var/vig = owner.stats.getStat(STAT_VIG)
 	for(var/atom/A in view(owner.client ? owner.client : owner))
@@ -123,13 +123,13 @@
 
 
 /datum/sanity/proc/changeLevel(amount)
-	if(godmode && amount < 0)
+	if(sanity_invulnerability && amount < 0)
 		return
 	level = CLAMP(level + amount, 0, max_level)
 	updateLevel()
 
 /datum/sanity/proc/setLevel(amount)
-	if(godmode)
+	if(sanity_invulnerability)
 		restoreLevel(amount)
 		return
 	level = amount

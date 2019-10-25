@@ -1,4 +1,4 @@
-/mob/living/carbon/human/proc/suppressed_message()
+/mob/living/carbon/human/proc/get_suppressed_message()
 	var/static/list/messages = list(
 		"You try to do something, but your brain refuses to. ",
 		"Body is no more yours! The sentience from deep now reign.",
@@ -8,7 +8,7 @@
 	)
 	return pick(messages)
 
-/mob/living/carbon/human/proc/language_blackout_message()
+/mob/living/carbon/human/proc/get_language_blackout_message()
 	var/static/list/messages = list(
 		"Your mumbling doesn't make any sense even to yourself!",
 		"Your tongue twitches in agony trying to speak!",
@@ -21,31 +21,31 @@
 
 /mob/living/carbon/human/say_wrapper()
 	if(suppress_communication)
-		to_chat(src, suppressed_message())
+		to_chat(src, get_suppressed_message())
 		return
 	..()
 
 /mob/living/carbon/human/say_verb(message as text)
 	if(suppress_communication)
-		to_chat(src, suppressed_message())
+		to_chat(src, get_suppressed_message())
 		return
 	..()
 
 /mob/living/carbon/human/me_wrapper()
 	if(suppress_communication)
-		to_chat(src, suppressed_message())
+		to_chat(src, get_suppressed_message())
 		return
 	..()
 
 /mob/living/carbon/human/me_verb(message as text)
 	if(suppress_communication)
-		to_chat(src, suppressed_message())
+		to_chat(src, get_suppressed_message())
 		return
 	..()
 
 /mob/living/carbon/human/say(var/message)
 	if(language_blackout)
-		to_chat(src, language_blackout_message())
+		to_chat(src, get_language_blackout_message())
 		return FALSE
 	var/alt_name = ""
 	if(name != rank_prefix_name(GetVoice()))
