@@ -1,9 +1,12 @@
 /datum/breakdown/positive
+	start_message_span = "bold notice"
 
 /datum/breakdown/negative
+	start_message_span = "danger"
 	restore_sanity_pre = 25
 
 /datum/breakdown/common
+	start_message_span = "danger"
 	restore_sanity_pre = 25
 
 
@@ -388,7 +391,7 @@
 			"You feel warmth of the [objectname] in your head.",
 			"You suffered so long to achieve greatness! The sacred [objectname] is now yours. Only yours."
 		))
-		to_chat(holder.owner, message)
+		to_chat(holder.owner, SPAN_NOTICE(message))
 		holder.restoreLevel(70)
 		conclude()
 		return FALSE
@@ -405,7 +408,7 @@
 			"Your minds whispers to you with the only words in their silent throats: [objectname].",
 			"You know that only salvation from your sins is [objectname]."
 		))
-		to_chat(holder.owner, message)
+		to_chat(holder.owner, SPAN_NOTICE(message))
 
 /datum/breakdown/common/obsession/occur()
 	for(var/stat in ALL_STATS)
