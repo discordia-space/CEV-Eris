@@ -41,18 +41,18 @@
 	if(H.client)
 		H.client.mouse_pointer_icon = initial(H.client.mouse_pointer_icon)
 		var/icon/scaled = 'icons/obj/gun_cursors/standard/standard1.dmi' //Default cursor
-		switch(recoil)
+		switch(calc_recoil(H))
 			if(0 to 0.5)
 				scaled = 'icons/obj/gun_cursors/standard/standard1.dmi'
-			if(0.5 to 0.9)
+			if(0.5 to 1)
 				scaled = 'icons/obj/gun_cursors/standard/standard2.dmi'
 			if(1 to 1.5)
 				scaled = 'icons/obj/gun_cursors/standard/standard3.dmi'
-			if(1.6 to 1.9)
+			if(1.5 to 2)
 				scaled = 'icons/obj/gun_cursors/standard/standard4.dmi'
 			if(2 to 3)
 				scaled = 'icons/obj/gun_cursors/standard/standard5.dmi'
-			if(3.1 to INFINITY)
+			if(3 to INFINITY)
 				scaled = 'icons/obj/gun_cursors/standard/standard6.dmi' //Catch. If we're above these numbers of recoil
 		if(scaled)
 			H.client.mouse_pointer_icon = scaled

@@ -12,7 +12,7 @@
 	uniform = /obj/item/clothing/under/rank/bartender
 	head = /obj/item/clothing/head/that
 	id_type = /obj/item/weapon/card/id/white
-	pda_type = /obj/item/modular_computer/pda
+	pda_type = /obj/item/modular_computer/pda/club_worker
 	backpack_contents = list(/obj/item/ammo_casing/shotgun/beanbag = 4)
 
 
@@ -20,7 +20,7 @@
 	name = OUTFIT_JOB_NAME("Waiter")
 	uniform = /obj/item/clothing/under/waiter
 	id_type = /obj/item/weapon/card/id/white
-	pda_type = /obj/item/modular_computer/pda
+	pda_type = /obj/item/modular_computer/pda/club_worker
 
 /decl/hierarchy/outfit/job/service/chef
 	name = OUTFIT_JOB_NAME("Chef")

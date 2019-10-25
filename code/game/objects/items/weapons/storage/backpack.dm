@@ -20,6 +20,7 @@
 	slot_flags = SLOT_BACK
 	max_w_class = ITEM_SIZE_BULKY
 	max_storage_space = DEFAULT_HUGE_STORAGE
+	matter = list(MATERIAL_BIOMATTER = 10, MATERIAL_PLASTIC = 2)
 	var/worn_access = FALSE
 
 /obj/item/weapon/storage/backpack/New()

@@ -28,7 +28,7 @@
 
 		icon_state = pick("ointment","firefirstaid")
 
-		new /obj/item/device/scanner/healthanalyzer( src )
+		new /obj/item/device/scanner/health( src )
 		new /obj/item/weapon/reagent_containers/hypospray/autoinjector( src )
 		new /obj/item/stack/medical/ointment( src )
 		new /obj/item/stack/medical/ointment( src )
@@ -49,7 +49,7 @@
 		new /obj/item/stack/medical/bruise_pack(src)
 		new /obj/item/stack/medical/ointment(src)
 		new /obj/item/stack/medical/ointment(src)
-		new /obj/item/device/scanner/healthanalyzer(src)
+		new /obj/item/device/scanner/health(src)
 		new /obj/item/weapon/reagent_containers/hypospray/autoinjector( src )
 		return
 
@@ -71,7 +71,7 @@
 		new /obj/item/weapon/reagent_containers/pill/antitox( src )
 		new /obj/item/weapon/reagent_containers/pill/antitox( src )
 		new /obj/item/weapon/reagent_containers/pill/antitox( src )
-		new /obj/item/device/scanner/healthanalyzer( src )
+		new /obj/item/device/scanner/health( src )
 		return
 
 /obj/item/weapon/storage/firstaid/o2
@@ -89,7 +89,7 @@
 		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
 		new /obj/item/weapon/reagent_containers/hypospray/autoinjector( src )
 		new /obj/item/weapon/reagent_containers/syringe/inaprovaline( src )
-		new /obj/item/device/scanner/healthanalyzer( src )
+		new /obj/item/device/scanner/health( src )
 		return
 
 /obj/item/weapon/storage/firstaid/adv
@@ -168,9 +168,12 @@
 	icon = 'icons/obj/chemical.dmi'
 	item_state = "contsolid"
 	w_class = ITEM_SIZE_SMALL
-	can_hold = list(/obj/item/weapon/reagent_containers/pill,/obj/item/weapon/dice,/obj/item/weapon/paper)
-	allow_quick_gather = 1
-	use_to_pickup = 1
+	can_hold = list(/obj/item/weapon/reagent_containers/pill,
+		/obj/item/weapon/dice,
+		/obj/item/weapon/paper
+		)
+	allow_quick_gather = TRUE
+	use_to_pickup = TRUE
 	use_sound = null
 	matter = list(MATERIAL_PLASTIC = 1)
 	max_storage_space = 12

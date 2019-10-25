@@ -191,6 +191,9 @@
 		/datum/design/autolathe/circuit/helm,
 		/datum/design/autolathe/circuit/nav,
 		/datum/design/autolathe/circuit/centrifuge,
+		/datum/design/autolathe/circuit/electrolyzer,
+		/datum/design/autolathe/circuit/reagentgrinder,
+
 	)
 
 

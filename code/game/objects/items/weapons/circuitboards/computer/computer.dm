@@ -119,8 +119,12 @@
 	build_path = /obj/machinery/computer/diseasesplicer
 
 /obj/item/weapon/circuitboard/centrifuge
-	name = T_BOARD("isolation centrifuge")
+	name = T_BOARD("centrifuge")
 	build_path = /obj/machinery/centrifuge
+	origin_tech = list(TECH_DATA = 2, TECH_BIO = 2)
+	req_components = list(
+		/obj/item/weapon/stock_parts/manipulator = 3
+	)
 
 /obj/item/weapon/circuitboard/helm
 	name = T_BOARD("helm control console")

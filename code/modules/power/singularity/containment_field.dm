@@ -2,7 +2,7 @@
 
 /obj/machinery/containment_field
 	name = "Containment Field"
-	desc = "An energy field."
+	desc = "A crackling, humming field of electromagnetic energy. Its kinetic force is more than enough to halt the course of a gravitational singularity, so it's probably not safe for you to touch."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "Contain_F"
 	anchored = 1

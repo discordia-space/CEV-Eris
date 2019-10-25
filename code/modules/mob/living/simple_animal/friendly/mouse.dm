@@ -2,7 +2,6 @@
 	name = "mouse"
 	real_name = "mouse"
 	desc = "It's a small, disgusting rodent, often found being annoying, and aiding in the spread of disease."
-
 	icon = 'icons/mob/mouse.dmi'
 	icon_state = "mouse_gray"
 	item_state = "mouse_gray"
@@ -15,28 +14,19 @@
 	emote_hear = list("squeeks","squeaks","squiks")
 	emote_see = list("runs in a circle", "shakes", "scritches at something")
 	eat_sounds = list('sound/effects/creatures/nibble1.ogg','sound/effects/creatures/nibble2.ogg')
-	var/soft_squeaks = list('sound/effects/creatures/mouse_squeaks_1.ogg',
-	'sound/effects/creatures/mouse_squeaks_2.ogg',
-	'sound/effects/creatures/mouse_squeaks_3.ogg',
-	'sound/effects/creatures/mouse_squeaks_4.ogg')
-	var/last_softsqueak = null//Used to prevent the same soft squeak twice in a row
-	var/squeals = 5//Spam control.
-	var/maxSqueals = 5//SPAM PROTECTION
-	var/last_squealgain = 0// #TODO-FUTURE: Remove from life() once something else is created
-	var/squeakcooldown = 0
 	pass_flags = PASSTABLE
 	speak_chance = 5
 	turns_per_move = 5
 	see_in_dark = 6
 	maxHealth = 5
 	health = 5
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	melee_damage_upper = 0
+	melee_damage_lower = 1
+	attacktext = "bitten"
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "stomps on"
 	density = 0
-	meat_amount = 1
-	var/body_color //brown, gray and white, leave blank for random
 	layer = MOB_LAYER
 	mob_size = MOB_MINISCULE
 	min_oxy = 16 //Require atleast 16kPA oxygen
@@ -50,15 +40,29 @@
 	max_scan_interval = 20
 	seek_speed = 1
 	speed = 1
-
 	can_pull_size = ITEM_SIZE_TINY
 	can_pull_mobs = MOB_PULL_NONE
 
-	var/decompose_time = 18000
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_amount = 1
+
 	can_burrow = TRUE
 
 	//kitchen_tag = "rodent" //This is part of cooking overhaul, not yet ported
 
+	var/decompose_time = 30 MINUTES
+
+	var/body_color //brown, gray and white, leave blank for random
+
+	var/soft_squeaks = list('sound/effects/creatures/mouse_squeaks_1.ogg',
+	'sound/effects/creatures/mouse_squeaks_2.ogg',
+	'sound/effects/creatures/mouse_squeaks_3.ogg',
+	'sound/effects/creatures/mouse_squeaks_4.ogg')
+	var/last_softsqueak = null//Used to prevent the same soft squeak twice in a row
+	var/squeals = 5//Spam control.
+	var/maxSqueals = 5//SPAM PROTECTION
+	var/last_squealgain = 0// #TODO-FUTURE: Remove from life() once something else is created
+	var/squeakcooldown = 0
 
 
 /mob/living/simple_animal/mouse/New()
@@ -236,24 +240,27 @@
 
 /mob/living/simple_animal/mouse/death()
 	layer = MOB_LAYER
-	if (stat != DEAD && (ckey || prob(35)))
-		squeak_loud(0)//deathgasp
+	if (stat != DEAD)
+		if(ckey || prob(35))
+			squeak_loud(0)//deathgasp
 
-
+		addtimer(CALLBACK(src, .proc/dust), decompose_time)
 
 	..()
 
 /mob/living/simple_animal/mouse/dust()
-	..(anim = "dust_[body_color]", remains = /obj/item/remains/mouse, iconfile = 'icons/mob/mouse.dmi')
+	..(anim = "dust_[body_color]", remains = /obj/item/remains/mouse, iconfile = icon)
 
-
+//Mice can bite mobs, deals 1 damage, and stuns the mouse for a second
 /mob/living/simple_animal/mouse/AltClickOn(A)
-	if (istype(A, /mob/living) && Adjacent(A))
-		var/mob/living/L = A
-		face_atom(L)
-		L.attack_generic(src, 1, "bitten")
-		setClickCooldown(15)
-		set_move_cooldown(10)
+	if (!can_click()) //This has to be here because anything but normal leftclicks doesn't use a click cooldown. It would be easy to fix, but there may be unintended consequences
+		return
+	melee_damage_upper = melee_damage_lower //We set the damage to 1 so we can hurt things
+	attack_sound = pick(list('sound/effects/creatures/nibble1.ogg', 'sound/effects/creatures/nibble2.ogg'))
+	UnarmedAttack(A, Adjacent(A))
+	melee_damage_upper = 0 //Set it back to zero so we're not biting with every normal click
+	setClickCooldown(DEFAULT_ATTACK_COOLDOWN*2) //Unarmed attack already applies a cooldown, but it's not long enough
+
 
 /*
  * Mouse types

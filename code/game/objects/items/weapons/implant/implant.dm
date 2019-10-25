@@ -119,7 +119,7 @@
 	icon_state = initial(icon_state)
 	malfunction = initial(malfunction)
 
-/obj/item/weapon/implant/proc/get_mob_overlay(var/gender, var/body_build)
+/obj/item/weapon/implant/proc/get_mob_overlay(var/gender)
 	return null
 
 /obj/item/weapon/implant/Destroy()

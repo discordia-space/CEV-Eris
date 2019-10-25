@@ -5,7 +5,7 @@
 	icon_state = "generic"
 	density = 1
 	layer = BELOW_OBJ_LAYER
-	w_class = ITEM_SIZE_NO_CONTAINER
+	w_class = ITEM_SIZE_GARGANTUAN
 	var/locked = FALSE
 	var/broken = FALSE
 	var/horizontal = FALSE
@@ -211,7 +211,6 @@
 	if(!(opened ? close(user) : open(user)))
 		to_chat(user, SPAN_NOTICE("It won't budge!"))
 		return
-	update_icon()
 
 /obj/structure/closet/proc/togglelock(mob/user as mob)
 	var/ctype = istype(src,/obj/structure/closet/crate) ? "crate" : "closet"

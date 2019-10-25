@@ -12,11 +12,11 @@
 	var/max_w_class = ITEM_SIZE_NORMAL //Max size of objects that this object can store (in effect only if can_hold isn't set)
 	var/max_storage_space = null //Total storage cost of items this can hold. Will be autoset based on storage_slots if left null.
 	var/storage_slots = null //The number of storage slots in this container.
-	var/use_to_pickup //Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
-	var/display_contents_with_number //Set this to make the storage item group contents of the same type and display them as a number.
-	var/allow_quick_empty //Set this variable to allow the object to have the 'empty' verb, which dumps all the contents on the floor.
-	var/allow_quick_gather //Set this variable to allow the object to have the 'toggle mode' verb, which quickly collects all items from a tile.
-	var/collection_mode = 1 //0 = pick one at a time, 1 = pick all on tile
+	var/use_to_pickup = null //Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
+	var/display_contents_with_number = null //Set this to make the storage item group contents of the same type and display them as a number.
+	var/allow_quick_empty = null //Set this variable to allow the object to have the 'empty' verb, which dumps all the contents on the floor.
+	var/allow_quick_gather = null //Set this variable to allow the object to have the 'toggle mode' verb, which quickly collects all items from a tile.
+	var/collection_mode = TRUE //0 = pick one at a time, 1 = pick all on tile
 	var/use_sound = "rustle" //sound played when used. null for no sound.
 
 /HUD_element/threePartBox/storageBackground
@@ -603,16 +603,12 @@
 	return depth
 
 /obj/item/proc/get_storage_cost()
-	//If you want to prevent stuff above a certain w_class from being stored, use max_w_class
-	if (reduced_storage_cost)
-		return REDUCED_STORAGE_COST(w_class)
-	else
-		return BASE_STORAGE_COST(w_class)
+	return BASE_STORAGE_COST(w_class) //If you want to prevent stuff above a certain w_class from being stored, use max_w_class
 
 
 //Useful for spilling the contents of containers all over the floor
 /obj/item/weapon/storage/proc/spill(var/dist = 2, var/turf/T = null)
-	if (!T || !istype(T, /turf))//If its not on the floor this might cause issues
+	if (!istype(T))//If its not on the floor this might cause issues
 		T = get_turf(src)
 
 	for (var/obj/O in contents)

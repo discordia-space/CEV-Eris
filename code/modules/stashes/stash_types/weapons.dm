@@ -53,8 +53,8 @@
 	/obj/item/weapon/storage/toolbox/emergency = 50,
 	/obj/item/clothing/suit/armor/laserproof = 30,
 	/obj/item/clothing/suit/armor/laserproof = 30,
-	/obj/item/weapon/storage/belt/utility/mostlyfull = 70,
-	/obj/item/weapon/storage/belt/utility/mostlyfull = 70)
+	/obj/item/weapon/storage/belt/utility/full = 70,
+	/obj/item/weapon/storage/belt/utility/full = 70)
 
 //Variant of the above with slightly deeper story
 /datum/stash/weapon/mutiny_AI/robots

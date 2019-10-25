@@ -10,7 +10,6 @@
 	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_lying_buckled_and_verb_status() call.
 
 /mob/living/carbon/human/New(var/new_loc, var/new_species = null)
-	body_build = get_body_build(gender)
 
 	if(!dna)
 		dna = new /datum/dna(null)
@@ -1193,7 +1192,7 @@ var/list/rank_prefix = list(\
 		for(var/organ_tag in species.has_organ)
 			organ_type = species.has_organ[organ_tag]
 			new organ_type(src)
-		
+
 		if(checkprefcruciform)
 			var/datum/category_item/setup_option/core_implant/I = client.prefs.get_option("Core implant")
 			if(I.implant_type)

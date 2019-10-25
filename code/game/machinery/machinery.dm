@@ -98,7 +98,7 @@ Class Procs:
 /obj/machinery
 	name = "machinery"
 	icon = 'icons/obj/stationobjs.dmi'
-	w_class = ITEM_SIZE_NO_CONTAINER
+	w_class = ITEM_SIZE_GARGANTUAN
 
 	var/stat = 0
 	var/emagged = 0
@@ -244,13 +244,15 @@ Class Procs:
 	return
 
 /obj/machinery/proc/max_part_rating(var/type) //returns max rating of installed part type or null on error(keep in mind that all parts have to match that raiting).
-	if(!istype(type,/obj/item/weapon/stock_parts))
+	if(!type)
+		error("max_part_rating() wrong usage")
 		return
 	var/list/obj/item/weapon/stock_parts/parts = list()
 	for(var/list/obj/item/weapon/stock_parts/P in component_parts)
 		if(istype(P, type))
 			parts.Add(P)
 	if(!parts.len)
+		error("max_part_rating() havent found any parts")
 		return
 	var/rating = 1
 	for(var/obj/item/weapon/stock_parts/P in parts)

@@ -57,7 +57,7 @@
 	. = outfit_by_type(.)
 
 /datum/job/proc/add_stats(var/mob/living/carbon/human/target, datum/job_flavor/flavor)
-	if(!ishuman(target))
+	if(!istype(target))
 		return FALSE
 
 	if(flavor)

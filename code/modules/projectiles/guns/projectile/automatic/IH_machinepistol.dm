@@ -5,7 +5,7 @@
 	item_state = "IH_mp"
 	w_class = ITEM_SIZE_NORMAL
 	caliber = "9mm"
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
+	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	ammo_type = "/obj/item/ammo_casing/c9mm"
 	load_method = MAGAZINE
@@ -23,7 +23,7 @@
 	firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,     icon="burst"),
+		BURST_3_ROUND
 		)
 
 /obj/item/weapon/gun/projectile/automatic/IH_machinepistol/update_icon()

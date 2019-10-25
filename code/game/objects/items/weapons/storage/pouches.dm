@@ -10,6 +10,7 @@
 	storage_slots = 1
 	max_w_class = ITEM_SIZE_SMALL
 	max_storage_space = DEFAULT_SMALL_STORAGE
+	matter = list(MATERIAL_BIOMATTER = 12)
 	attack_verb = list("pouched")
 
 	var/sliding_behavior = FALSE
@@ -73,7 +74,7 @@
 	max_w_class = ITEM_SIZE_NORMAL
 
 	can_hold = list(
-		/obj/item/device/scanner/healthanalyzer,
+		/obj/item/device/scanner/health,
 		/obj/item/weapon/dnainjector,
 		/obj/item/weapon/reagent_containers/dropper,
 		/obj/item/weapon/reagent_containers/glass/beaker,
@@ -104,12 +105,12 @@
 		/obj/item/device/radio/headset,
 		/obj/item/stack/cable_coil,
 		/obj/item/device/t_scanner,
-		/obj/item/device/scanner/analyzer,
+		/obj/item/device/scanner/gas,
 		/obj/item/taperoll/engineering,
 		/obj/item/device/robotanalyzer,
 		/obj/item/weapon/material/minihoe,
 		/obj/item/weapon/material/hatchet,
-		/obj/item/device/scanner/analyzer/plant_analyzer,
+		/obj/item/device/scanner/plant,
 		/obj/item/weapon/extinguisher/mini,
 		/obj/item/weapon/hand_labeler,
 		/obj/item/clothing/gloves,
@@ -138,10 +139,10 @@
 		/obj/item/device/lighting/toggleable/flashlight,
 		/obj/item/stack/cable_coil,
 		/obj/item/device/t_scanner,
-		/obj/item/device/scanner/analyzer,
+		/obj/item/device/scanner/gas,
 		/obj/item/taperoll/engineering,
 		/obj/item/device/robotanalyzer,
-		/obj/item/device/scanner/analyzer/plant_analyzer,
+		/obj/item/device/scanner/plant,
 		/obj/item/weapon/extinguisher/mini
 		)
 

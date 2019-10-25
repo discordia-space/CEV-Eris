@@ -214,6 +214,7 @@
 		var/obj/item/weapon/paper/R = new(src.loc)
 		R.name = "Body scan report"
 		R.info = format_occupant_data(src.connected.get_occupant_data())
+		R.update_icon()
 
 
 /obj/machinery/bodyscanner/proc/get_occupant_data()

@@ -25,6 +25,7 @@
 		/obj/item/weapon/stamp)
 	slot_flags = SLOT_ID
 
+	matter = list(MATERIAL_BIOMATTER = 4)
 	var/obj/item/weapon/card/id/front_id = null
 
 

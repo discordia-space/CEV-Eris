@@ -20,10 +20,8 @@
 
 /obj/item/weapon/gun/projectile/lamia/update_icon()
 	..()
-
-	if(!ammo_magazine)
-		icon_state = initial(icon_state)
-	else if(!ammo_magazine.stored_ammo.len)
-		icon_state = initial(icon_state) + "_empty"
+	if(ammo_magazine)
+		icon_state = "lamia-[round(ammo_magazine.stored_ammo.len,4)]"
 	else
-		icon_state = initial(icon_state) + "_full"
+		icon_state = "lamia"
+	return

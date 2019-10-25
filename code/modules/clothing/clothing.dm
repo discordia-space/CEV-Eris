@@ -404,7 +404,7 @@ BLIND     // can't see anything
 		/obj/item/device/suit_cooling_unit,
 		/obj/item/weapon/cell,
 		/obj/item/weapon/storage/fancy,
-		/obj/item/weapon/flame,
+		/obj/item/weapon/flamethrower,
 		/obj/item/device/lighting,
 		/obj/item/device/scanner,
 		/obj/item/weapon/reagent_containers/spray,

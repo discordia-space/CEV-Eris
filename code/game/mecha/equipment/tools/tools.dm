@@ -383,7 +383,7 @@
 	name = "teleporter"
 	desc = "An exosuit module that allows exosuits to teleport to any position in view."
 	icon_state = "mecha_teleport"
-	origin_tech = list(TECH_BLUESPACE = 10)
+	origin_tech = list(TECH_BLUESPACE = 6)
 	equip_cooldown = 150
 	energy_drain = 1000
 	range = RANGED

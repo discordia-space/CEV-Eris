@@ -105,8 +105,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/price_scanner
 	name = "Export scanners"
-	contains = list(/obj/item/device/export_scanner,
-					/obj/item/device/export_scanner)
+	contains = list(/obj/item/device/scanner/price,
+					/obj/item/device/scanner/price)
 	cost = 700
 	crate_name = "Export scanners crate"
 	group = "Operations"
@@ -927,7 +927,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/reagent_containers/glass/bottle/ammonia,
 					/obj/item/weapon/material/hatchet,
 					/obj/item/weapon/material/minihoe,
-					/obj/item/device/scanner/analyzer/plant_analyzer,
+					/obj/item/device/scanner/plant,
 					/obj/item/clothing/gloves/botanic_leather,
 					/obj/item/clothing/suit/apron) // Updated with new things
 	cost = 900
@@ -1296,13 +1296,13 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	group = "Miscellaneous"
 
 /datum/supply_pack/randomised/guns
-	num_contained = 2
+	num_contained = 4
 	contains = list(/obj/random/gun_cheap,
-				/obj/random/gun_normal,
-				/obj/random/gun_energy_cheap,
-				/obj/random/gun_shotgun)
+                /obj/random/gun_normal,
+                /obj/random/gun_energy_cheap,
+                /obj/random/gun_shotgun)
 	name = "Surplus Weaponry"
-	cost = 3000
+	cost = 2000
 	crate_name = "Surplus Weapons Crate"
 	containertype = /obj/structure/closet/crate/secure/weapon
 	group = "Security"
