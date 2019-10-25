@@ -64,6 +64,7 @@
 	var/obj/machinery/power/nt_obelisk/obelisk = locate(/obj/machinery/power/nt_obelisk) in range(7, src)
 	if(obelisk || obelisk.active)
 		qdel(src)
+		return
 	if (anchor)
 		offset_to(anchor, 8)
 
