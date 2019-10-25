@@ -367,7 +367,7 @@
 		var/list/candidates = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - holder.owner
 		if(candidates.len)
 			var/mob/living/carbon/human/H = pick(candidates)
-			target = pick(H.organs)
+			target = pick(H.organs - H.organs_by_name[BP_CHEST])
 			objectname = "[H.real_name]'s [target.name]"
 
 /datum/breakdown/common/obsession/can_occur()
