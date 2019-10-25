@@ -42,7 +42,7 @@
 	cell = locate() in component_parts
 
 /obj/machinery/chemical_dispenser/proc/recharge()
-	if(stat & (BROKEN|NOPOWER) || !cell) return
+	if(stat & (BROKEN|NOPOWER)) return
 	var/addenergy = cell.give(min(6, cell.maxcharge*cell.max_chargerate))
 	if(addenergy)
 		use_power(addenergy / CELLRATE)
