@@ -73,10 +73,10 @@
 
 /obj/structure/closet/custodial
 	name = "custodial closet"
-	desc = "It's a storage unit for janitorial clothes and gear."
+	desc = "It's a storage unit for purifying clothes and gear."
 	icon_state = "custodian"
 
-/obj/structure/closet/jcloset/populate_contents()
+/obj/structure/closet/custodial/populate_contents()
 	new /obj/item/clothing/under/rank/church(src)
 	new /obj/item/weapon/storage/belt/church(src)
 	new /obj/item/device/radio/headset/church(src)
