@@ -1,6 +1,6 @@
 /datum/component/atom_sanity
 	var/affect = 1
-	var/desc = ""
+	var/desc
 
 /datum/component/atom_sanity/Initialize(value, new_desc)
 	if(!istype(parent, /atom))
@@ -11,15 +11,15 @@
 
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/onMoved)
 
-	onMoved(null, A.loc)
+	onMoved(null, null, A.loc)
 
-/datum/component/atom_sanity/proc/onMoved(oldloc, newloc)
+/datum/component/atom_sanity/proc/onMoved(_, oldloc, newloc)
 	if(isturf(oldloc))
 		var/area/current_area = get_area(oldloc) //Actually new area is curret
 		var/datum/area_sanity/AS = current_area.sanity
 		AS.unregister(src)
 	if(isturf(newloc))
-		var/area/new_area = get_area(oldloc) //Actually new area is curret
+		var/area/new_area = get_area(newloc) //Actually new area is curret
 		var/datum/area_sanity/AS = new_area.sanity
 		AS.register(src)
 

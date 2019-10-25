@@ -48,6 +48,15 @@
 		sync_organ_dna()
 	make_blood()
 
+	sanity = new(src)
+
+	fabric_image = image('icons/effects/fabric_symbols.dmi', src, pick(icon_states('icons/effects/fabric_symbols.dmi', 2)))
+	fabric_image.pixel_x = rand(-1,1)
+	fabric_image.pixel_y = rand(-1,1)
+	fabric_image.color = RANDOM_RGB
+	fabric_image.override = TRUE
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_FABRIC_NEW, fabric_image)
+
 /mob/living/carbon/human/Destroy()
 	GLOB.human_mob_list -= src
 	for(var/organ in organs)
@@ -1547,3 +1556,11 @@ var/list/rank_prefix = list(\
 		return TRUE
 	else
 		return FALSE
+
+/mob/living/carbon/human/playsound_local(turf/source, soundin)
+	var/static/list/pewpew = gunshot_sound+casing_sound+ric_sound+miss_sound+explosion_sound+bullet_hit_object_sound
+	if(war_is_hell)
+		soundin = get_sfx(soundin)
+		if(!(soundin in pewpew+gun_interact_sound))
+			soundin = pick(pewpew)
+	..()

@@ -1,10 +1,10 @@
 /area
-	var/datum/area_sanity/sanity
+	var/datum/area_sanity/sanity = new
 
 /datum/area_sanity
 	var/affect = 0
-	var/list/positive_flavors
-	var/list/negative_flavors
+	var/list/positive_flavors = new
+	var/list/negative_flavors = new
 
 
 /datum/area_sanity/proc/register(datum/component/atom_sanity/AS)

@@ -67,6 +67,9 @@
 	if(!gibbed && deathmessage != "no message") // This is gross, but reliable. Only brains use it.
 		src.visible_message("<b>\The [src.name]</b> [deathmessage]")
 
+	for(var/mob/living/carbon/human/H in oviewers(src))
+		H.sanity.onSeeDeath(src)
+
 	stat = DEAD
 	update_lying_buckled_and_verb_status()
 	reset_plane_and_layer()
