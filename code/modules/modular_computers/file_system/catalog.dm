@@ -8,24 +8,6 @@
 
 	TODO: add access level that will show more info
 */
-/datum
-	var/catalog_info_level_one
-	var/catalog_info_level_two
-	var/catalog_info_level_three
-	var/catalog_info_level_four
-	var/catalog_info_level_ooc
-
-/atom
-	// should this atom have catalog entry
-	// this is set to FALSE for not gameplay atoms like areas, landmarks etc
-	var/contribute_to_catalog = TRUE
-	// this will add atom to can_be_found reagent entry
-	// this is set to FALSE for things like beakers and pills 
-	var/contribute_to_reagent_catalog = TRUE
-	// this will add atom to can_be_found storage item enry
-	var/contribute_to_container_catalog = TRUE
-	// will create icon asset that will be send to players
-	var/create_icon_asset = TRUE
 
 GLOBAL_LIST_EMPTY(catalogs)
 GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
@@ -141,15 +123,9 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	var/description
 	var/associated_template
 	var/thing_nature 	// reagent/weapon/device/etc.
-	var/list/can_be_found_in = list()
 
 /datum/catalog_entry/New(var/datum/V)
 	thing_type = V.type
-	catalog_info_level_one = V.catalog_info_level_one
-	catalog_info_level_two = V.catalog_info_level_two
-	catalog_info_level_three = V.catalog_info_level_three
-	catalog_info_level_four = V.catalog_info_level_four
-	catalog_info_level_ooc = V.catalog_info_level_ooc
 	
 /datum/catalog_entry/proc/search_value(var/value)
 	if(findtext(title, value))
@@ -161,14 +137,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	var/list/data = list()
 	data["id"] = thing_type
 	data["thing_nature"] = thing_nature
-	
-	data["catalog_info_level_one"] = catalog_info_level_one
-	data["catalog_info_level_two"] = catalog_info_level_two
-	data["catalog_info_level_three"] = catalog_info_level_three
-	data["catalog_info_level_four"] = catalog_info_level_four
-	data["catalog_info_level_ooc"] = catalog_info_level_ooc
 
-	data["can_be_found_in"] = can_be_found_in.len ? can_be_found_in : null
 	return data
 
 // this used to get ui_data for list
@@ -223,13 +192,6 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 		if(V == reagent_type)
 			return
 	can_be_used_in.Add(reagent_type)
-
-/datum/catalog_entry/proc/add_to_can_be_found(var/atom/A)
-	for(var/V in can_be_found_in)
-		var/list/L = V
-		if(is_associative(L) && L["type"] == A.type)
-			return
-	can_be_found_in.Add(list(list("type" = A.type)))
 
 /datum/catalog_entry/reagent/New(var/datum/reagent/V)
 	if(!istype(V))
@@ -340,12 +302,6 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 
 	// DESCRIPTION
 	data["description"] = description
-	data["catalog_info_level_one"] = catalog_info_level_one
-	data["catalog_info_level_two"] = catalog_info_level_two
-	data["catalog_info_level_three"] = catalog_info_level_three
-	data["catalog_info_level_four"] = catalog_info_level_four
-	data["catalog_info_level_ooc"] = catalog_info_level_ooc
-	data["can_be_found_in"] = can_be_found_in.len ? can_be_found_in : null
 	return data
 
 
@@ -412,10 +368,4 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 
 	// DESCRIPTION
 	data["description"] = description
-	data["catalog_info_level_one"] = catalog_info_level_one
-	data["catalog_info_level_two"] = catalog_info_level_two
-	data["catalog_info_level_three"] = catalog_info_level_three
-	data["catalog_info_level_four"] = catalog_info_level_four
-	data["catalog_info_level_ooc"] = catalog_info_level_ooc
-	data["can_be_found_in"] = can_be_found_in.len ? can_be_found_in : null
 	return data
