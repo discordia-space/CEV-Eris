@@ -13,8 +13,29 @@
 	mag_well = MAG_WELL_PISTOL
 	magazine_type = /obj/item/ammo_magazine/c45m
 	recoil = 0.4 //less than regular pistol because of integrated silencer
+	
 
 //This comes with a preinstalled silencer
 /obj/item/weapon/gun/projectile/silenced/Initialize()
 	.=..()
 	apply_silencer(new /obj/item/weapon/silencer/integrated(src), null)
+	
+
+/obj/item/weapon/gun/projectile/silenced/update_icon()
+	..()
+
+	var/iconstring = initial(icon_state)
+	var/itemstring = initial(item_state)
+
+	if (ammo_magazine)
+		iconstring += "_mag"
+
+	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
+		iconstring += "_slide"
+
+	icon_state = iconstring
+	item_state = itemstring
+
+/obj/item/weapon/gun/projectile/silenced/Initialize()
+	. = ..()
+	update_icon()
