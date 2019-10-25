@@ -12,12 +12,14 @@
 #define ITEM_SIZE_HUGE           5
 /// Essentially means it cannot be picked up or placed in an inventory, (e.g. mech parts, safe)
 #define ITEM_SIZE_GARGANTUAN     6
-// Use this to forbid item from being placed in a container.
-#define ITEM_SIZE_NO_CONTAINER INFINITY 
+/// For something large which takes an entire tile, (e.g. a full glass window, or a girder)
+#define ITEM_SIZE_COLOSSAL       7
+/// Something so large that it extends beyond the confines of its tile, (e.g. scrap beacon)
+#define ITEM_SIZE_TITANIC        8
+
 
 
 #define BASE_STORAGE_COST(w_class) (2**(w_class-1)) //1,2,4,8,16,...
-#define REDUCED_STORAGE_COST(w_class) (2**(w_class-2)) //0.5,1,2,4,8,...
 
 //linear increase. Using many small storage containers is more space-efficient than using large ones,
 //in exchange for being limited in the w_class of items that will fit

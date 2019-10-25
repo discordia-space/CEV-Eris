@@ -5,7 +5,7 @@
 	icon_state = "generic"
 	density = 1
 	layer = BELOW_OBJ_LAYER
-	w_class = ITEM_SIZE_NO_CONTAINER
+	w_class = ITEM_SIZE_GARGANTUAN
 	var/locked = FALSE
 	var/broken = FALSE
 	var/horizontal = FALSE

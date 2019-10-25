@@ -147,21 +147,6 @@
 		else
 			H.gender = MALE
 
-		//Body build
-		var/bodybuild = "Default"
-		var/list/body_builds = male_body_builds
-
-		if(H.gender == FEMALE)
-			body_builds = female_body_builds
-
-		var/bodybuildind = dna.GetUIValueRange(DNA_UI_BODYBUILD,body_builds.len)
-
-		if(body_builds.len < bodybuildind)
-			bodybuildind = body_builds.len
-
-		bodybuild = body_builds[bodybuildind]
-		H.body_build = get_body_build(H.gender, bodybuild)
-
 		//Hair
 		var/hair = dna.GetUIValueRange(DNA_UI_HAIR_STYLE,GLOB.hair_styles_list.len)
 		if((0 < hair) && (hair <= GLOB.hair_styles_list.len))

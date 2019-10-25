@@ -87,11 +87,6 @@ default behaviour is:
 			if(a_intent == I_HELP || src.restrained())
 				now_pushing = FALSE
 				return
-			if(ishuman(tmob) && (FAT in tmob.mutations))
-				if(prob(40) && !(FAT in src.mutations))
-					to_chat(src, "<span class='danger'>You fail to push [tmob]'s fat ass out of the way.</span>")
-					now_pushing = FALSE
-					return
 			if(tmob.r_hand && istype(tmob.r_hand, /obj/item/weapon/shield/riot))
 				if(prob(99))
 					now_pushing = FALSE
