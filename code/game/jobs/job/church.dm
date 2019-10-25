@@ -1,8 +1,9 @@
 /datum/job/chaplain
 	title = "NeoTheology Preacher"
 	flag = CHAPLAIN
+	head_position = 1
 	department = DEPARTMENT_CHURCH
-	department_flag = CHURCH
+	department_flag = CHURCH | COMMAND
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
@@ -66,14 +67,14 @@
 	join_tag = /datum/job/chaplain
 
 /datum/job/acolyte
-	title = "Neotheology Acolyte"
+	title = "NeoTheology Acolyte"
 	flag = ACOLYTE
 	department = DEPARTMENT_CHURCH
 	department_flag = CHURCH
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the Neotheology Preacher"
+	supervisors = "the NeoTheology Preacher"
 	selection_color = "#ecd37d"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 	cruciform_access = list(access_morgue, access_crematorium, access_maint_tunnels, access_hydroponics)
@@ -91,7 +92,7 @@
 		CRUCIFORM_PRIEST
 	)
 
-	description = "You serve the Neotheology Preacher as a disciple of the Faith.<br>\
+	description = "You serve the NeoTheology Preacher as a disciple of the Faith.<br>\
 	<br>\
 	The sacred duties of operating the bioreactor and managing biomass for the church's holy cloner falls to you.<br>\
 	<br>\
@@ -109,14 +110,14 @@
 	join_tag = /datum/job/acolyte
 
 /datum/job/hydro
-	title = "Neotheology Agrolyte"
+	title = "NeoTheology Agrolyte"
 	flag = BOTANIST
 	department = DEPARTMENT_CHURCH
 	department_flag = CHURCH
 	faction = "CEV Eris"
 	total_positions = 3
 	spawn_positions = 3
-	supervisors = "the Neotheology Preacher"
+	supervisors = "the NeoTheology Preacher"
 	selection_color = "#ecd37d"
 	//alt_titles = list("Hydroponicist")
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_JIVE = 80)
@@ -143,19 +144,19 @@
 	setup_restricted = TRUE
 
 /obj/landmark/join/start/hydro
-	name = "Neotheology Agrolyte"
+	name = "NeoTheology Agrolyte"
 	icon_state = "player-black"
 	join_tag = /datum/job/hydro
 
 /datum/job/janitor
-	title = "Neotheology Custodian"
+	title = "NeoTheology Custodian"
 	flag = JANITOR
 	department = DEPARTMENT_CHURCH
 	department_flag = CHURCH
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the Neotheology Preacher"
+	supervisors = "the NeoTheology Preacher"
 	selection_color = "#ecd37d"
 	//alt_titles = list("Custodian","Sanitation Technician")
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_JIVE = 80)
@@ -182,6 +183,6 @@
 	setup_restricted = TRUE
 
 /obj/landmark/join/start/janitor
-	name = "Neotheology Custodian"
+	name = "NeoTheology Custodian"
 	icon_state = "player-black"
 	join_tag = /datum/job/janitor
