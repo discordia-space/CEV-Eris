@@ -325,6 +325,7 @@ This file contains the underlying code for stash datums
 	var/obj/item/weapon/paper/note = new note_paper_type(spawner.loc)
 	create_note_content()
 	note.info = lore
+	note.update_icon()
 
 	//If theres a photo, attach it to the note
 	if (map_image)
