@@ -77,7 +77,7 @@
 	icon_state = anchored ? "circ-assembled" : "circ-unassembled"
 	overlays.Cut()
 	if (stat & (BROKEN|NOPOWER) || !anchored)
-		return 1
+		return
 	if (last_pressure_delta > 0 && recent_moles_transferred > 0)
 		if (temperature_overlay)
 			overlays += image('icons/obj/machines/thermoelectric.dmi', temperature_overlay)
@@ -88,7 +88,7 @@
 	else
 		overlays += image('icons/obj/machines/thermoelectric.dmi', "circ-off")
 
-	return 1
+	return
 
 /obj/machinery/atmospherics/binary/circulator/attackby(obj/item/I, mob/user)
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
