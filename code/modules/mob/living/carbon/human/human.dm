@@ -10,7 +10,6 @@
 	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_lying_buckled_and_verb_status() call.
 
 /mob/living/carbon/human/New(var/new_loc, var/new_species = null)
-	body_build = get_body_build(gender)
 
 	if(!dna)
 		dna = new /datum/dna(null)
@@ -48,6 +47,15 @@
 		dna.real_name = real_name
 		sync_organ_dna()
 	make_blood()
+
+	sanity = new(src)
+
+	fabric_image = image('icons/effects/fabric_symbols.dmi', src, pick(icon_states('icons/effects/fabric_symbols.dmi', 2)))
+	fabric_image.pixel_x = rand(-1,1)
+	fabric_image.pixel_y = rand(-1,1)
+	fabric_image.color = RANDOM_RGB
+	fabric_image.override = TRUE
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_FABRIC_NEW, fabric_image)
 
 /mob/living/carbon/human/Destroy()
 	GLOB.human_mob_list -= src
@@ -1193,7 +1201,7 @@ var/list/rank_prefix = list(\
 		for(var/organ_tag in species.has_organ)
 			organ_type = species.has_organ[organ_tag]
 			new organ_type(src)
-		
+
 		if(checkprefcruciform)
 			var/datum/category_item/setup_option/core_implant/I = client.prefs.get_option("Core implant")
 			if(I.implant_type)
@@ -1548,3 +1556,11 @@ var/list/rank_prefix = list(\
 		return TRUE
 	else
 		return FALSE
+
+/mob/living/carbon/human/playsound_local(turf/source, soundin)
+	var/static/list/pewpew = gunshot_sound+casing_sound+ric_sound+miss_sound+explosion_sound+bullet_hit_object_sound
+	if(flashbacks)
+		soundin = get_sfx(soundin)
+		if(!(soundin in pewpew+gun_interact_sound))
+			soundin = pick(pewpew)
+	..()

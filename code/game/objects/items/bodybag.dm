@@ -16,7 +16,7 @@
 
 /obj/item/weapon/storage/box/bodybags
 	name = "body bags"
-	desc = "This box contains body bags."
+	desc = "This box contains a number of body bags."
 	icon_state = "bodybags"
 	New()
 		..()
@@ -59,7 +59,7 @@
 	//..() //Doesn't need to run the parent. Since when can fucking bodybags be welded shut? -Agouri
 		return
 	else if(istype(W, /obj/item/weapon/tool/wirecutters))
-		to_chat(user, "You cut the tag off the bodybag")
+		to_chat(user, "You cut the tag off the bodybag.")
 		src.name = "body bag"
 		src.overlays.Cut()
 		return
@@ -89,7 +89,7 @@
 
 /obj/item/bodybag/cryobag
 	name = "stasis bag"
-	desc = "A folded, non-reusable bag designed to prevent additional damage to an occupant, especially useful if short on time or in \
+	desc = "A folded, non-reusable bag designed to prevent additional damage to an occupant. Especially useful if short on time or in \
 	a hostile enviroment."
 	icon = 'icons/obj/cryobag.dmi'
 	icon_state = "bodybag_folded"
@@ -103,8 +103,8 @@
 
 /obj/structure/closet/body_bag/cryobag
 	name = "stasis bag"
-	desc = "A non-reusable plastic bag designed to prevent additional damage to an occupant, especially useful if short on time or in \
-	a hostile enviroment."
+	desc = "A non-reusable plastic bag designed to prevent additional damage to an occupant. Especially useful if short on time or in \
+	a hostile enviroment. This one features a much more advanced design that preserves its occupant in cryostasis."
 	icon = 'icons/obj/cryobag.dmi'
 	item_path = /obj/item/bodybag/cryobag
 	store_misc = 0
@@ -128,7 +128,7 @@
 		O.name = "used stasis bag"
 		O.icon = src.icon
 		O.icon_state = "bodybag_used"
-		O.desc = "Pretty useless now.."
+		O.desc = "A used bodybag. It's nothing but trash now."
 		qdel(src)
 
 /obj/structure/closet/body_bag/cryobag/Entered(atom/movable/AM)

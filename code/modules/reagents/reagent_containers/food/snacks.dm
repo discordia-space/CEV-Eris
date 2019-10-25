@@ -16,9 +16,12 @@
 	var/list/nutriment_desc = list("food" = 1)
 	center_of_mass = list("x"=16, "y"=16)
 	w_class = ITEM_SIZE_SMALL
+	var/sanity_gain = 0.2 //Per bite
+
 
 /obj/item/weapon/reagent_containers/food/snacks/Initialize()
 	. = ..()
+
 	if(nutriment_amt)
 		reagents.add_reagent("nutriment", nutriment_amt, nutriment_desc)
 
@@ -104,10 +107,11 @@
 		if(reagents)			//Handle ingestion of the reagent.
 			playsound(M.loc,pick(M.eat_sounds), rand(10,50), 1)
 			if(reagents.total_volume)
-				if(reagents.total_volume > bitesize)
-					reagents.trans_to_mob(M, bitesize, CHEM_INGEST)
-				else
-					reagents.trans_to_mob(M, reagents.total_volume, CHEM_INGEST)
+				var/amount_eaten = min(reagents.total_volume, bitesize)
+				reagents.trans_to_mob(M, amount_eaten, CHEM_INGEST)
+				var/mob/living/carbon/human/H = M
+				if(istype(H))
+					H.sanity.onEat(src, amount_eaten)
 				bitecount++
 				On_Consume(M, user)
 			return 1

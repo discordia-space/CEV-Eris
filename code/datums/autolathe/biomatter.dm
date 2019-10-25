@@ -49,7 +49,7 @@
 
 /datum/design/autolathe/biomatter/leather/cash_bag
 	name = "Cash Bag"
-	build_path = /obj/item/weapon/storage/bag/cash
+	build_path = /obj/item/weapon/storage/bag/money
 
 
 /datum/design/autolathe/biomatter/belt

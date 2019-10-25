@@ -167,27 +167,22 @@ abbr {
 
 .white {
     color: white;
-    font-weight: bold;
 }
 
 .good {
     color: #4f7529;
-    font-weight: bold;
 }
 
 .average {
     color: #cd6500;
-    font-weight: bold;
 }
 
 .bad {
     color: #ee0000;
-    font-weight: bold;
 }
 
 .idle {
     color: #272727;
-    font-weight: bold;
 }
 
 .redButton {
@@ -773,52 +768,6 @@ th.bot {
 	background-color: rgba(0, 0, 0, 0.16);
 }
 
-div.display {
-	width: 100%;
-	padding: 4px;
-	margin: 6px 0;
-	box-sizing: border-box;
-
-	background-color: rgba(0,0,0,.33);
-	box-shadow: inset 0 0 5px rgba(0,0,0,.5);
-}
-
-div.display header {
-	display: block;
-	position: relative;
-	width: 100%;
-	padding: 0 4px;
-	margin-bottom: 6px;
-	line-height: 100%;
-
-	color: #fff;
-	border-bottom: 2px solid #40628a;
-}
-
-div.display header .buttonRight {
-	position: absolute;
-	bottom: 6px;
-	right: 4px;
-}
-
-div.display h1, div.display h2, div.display h3, div.display h4, div.display h5, div.display h6 {
-	display: inline-block;
-	margin: 0;
-	padding: 6px 0;
-}
-
-div.display article {
-	display: table;
-	width: 100%;
-	border-collapse: collapse;
-}
-
-section {
-	display: table-row;
-	width: 100%;
-}
-
-
 #sciTechTreeContainer {
 	position: relative;
 	width: 99%;
@@ -830,20 +779,24 @@ section {
 
 /* [Tooltips of description] */
 .sciTechTreeIcon span {
-    display			: none; 
-    padding 		: 10px; 
-    margin-left 	: 8px; 
-    width          	: 200px;
-    z-index			: 999;
+	visibility		: hidden;
+	opacity			: 0;
+	transition		: opacity 0.3s linear;
+	padding			: 10px; 
+	margin-left		: 8px; 
+	width			: 200px;
+	z-index			: 999;
 }
 .sciTechTreeIcon:hover span {
-	display			: inline;
+	visibility		: visible;
+	opacity			: 1;
 	position		: absolute;
 	background		: #717177;
 	border			: 4px solid #666;
-	color 			: #d1d1dd;
-	text-align 		: center;
-	white-space: pre-line;
+	border-radius	: 5px;
+	color			: #d1d1dd;
+	text-align		: center;
+	white-space		: pre-line;
 }
 img.sciTechTreeIconToolTip {
     background-image: url(science.png);

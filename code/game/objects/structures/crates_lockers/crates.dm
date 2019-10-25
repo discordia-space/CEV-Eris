@@ -29,8 +29,8 @@
 	playsound(src.loc, 'sound/machines/click.ogg', 15, 1, -3)
 	for(var/obj/O in src)
 		O.forceMove(get_turf(src))
-//	icon_state = icon_opened
 	src.opened = TRUE
+	update_icon()
 
 	if(climbable)
 		structure_shaken()
@@ -56,8 +56,8 @@
 		O.forceMove(src)
 		itemcount++
 
-//	icon_state = icon_closed
 	src.opened = FALSE
+	update_icon()
 	return TRUE
 
 /obj/structure/closet/crate/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -280,6 +280,9 @@
 	name = "secure hydroponics crate"
 	desc = "A crate with a lock on it, painted in the scheme of the station's botanists."
 	icon_state = "hydrosecurecrate"
+
+/obj/structure/closet/crate/secure/hydrosec/prelocked
+	req_access = list(access_hydroponics)
 
 /obj/structure/closet/crate/secure/bin
 	name = "secure bin"

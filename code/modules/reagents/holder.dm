@@ -457,24 +457,6 @@
 	for(var/datum/reagent/current in reagent_list)
 		if(!current.touch_turf(target, current.volume))
 			handled = FALSE
-	if(!handled)
-		switch(get_average_reagents_state())
-			if(LIQUID)
-				var/obj/effect/decal/cleanable/splashed_reagents/dirtoverlay = locate(/obj/effect/decal/cleanable/splashed_reagents, target)
-				if (!dirtoverlay)
-					dirtoverlay = new/obj/effect/decal/cleanable/splashed_reagents(target)
-					dirtoverlay.alpha = min(total_volume * 30, 255)
-					dirtoverlay.color = get_color()
-				else
-					dirtoverlay.alpha = min(dirtoverlay.alpha + total_volume * 30, 255)
-					dirtoverlay.color = BlendRGB(dirtoverlay.color, get_color(), 0.6)
-			if(SOLID)
-				var/obj/effect/decal/cleanable/piled_reagents/dirtoverlay = locate(/obj/effect/decal/cleanable/piled_reagents, target)
-				if (!dirtoverlay)
-					dirtoverlay = new/obj/effect/decal/cleanable/piled_reagents(target)
-					dirtoverlay.color = get_color()
-				else
-					dirtoverlay.color = BlendRGB(dirtoverlay.color, get_color(), 0.8)
 	update_total()
 	return handled
 
@@ -528,7 +510,20 @@
 	var/datum/reagents/R = new /datum/reagents(amount * multiplier)
 	. = trans_to_holder(R, amount, multiplier, copy)
 
-	R.touch_turf(target)
+	if(!R.touch_turf(target))	//if touch turf was not handled
+		switch(R.get_average_reagents_state())
+			if(LIQUID)
+				var/obj/effect/decal/cleanable/reagents/splashed/dirtoverlay = locate(/obj/effect/decal/cleanable/reagents/splashed, target)
+				if (!dirtoverlay)
+					dirtoverlay = new/obj/effect/decal/cleanable/reagents/splashed(target, reagents_to_add = R)
+				else
+					dirtoverlay.add_reagents(R)
+			if(SOLID)
+				var/obj/effect/decal/cleanable/reagents/piled/dirtoverlay = locate(/obj/effect/decal/cleanable/reagents/piled, target)
+				if (!dirtoverlay)
+					dirtoverlay = new/obj/effect/decal/cleanable/reagents/piled(target, reagents_to_add =  R)
+				else
+					dirtoverlay.add_reagents(R)
 	return
 
 /datum/reagents/proc/trans_to_obj(var/obj/target, var/amount = 1, var/multiplier = 1, var/copy = 0) // Objects may or may not; if they do, it's probably a beaker or something and we need to transfer properly; otherwise, just touch.

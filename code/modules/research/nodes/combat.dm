@@ -142,7 +142,8 @@
 	cost = 2000
 
 	unlocks_designs = list(
-							/datum/design/research/item/weapon/c20r
+							/datum/design/research/item/weapon/c20r,
+							/datum/design/research/item/ammo/c20r_ammo
 						)
 
 /datum/technology/laser_weaponry

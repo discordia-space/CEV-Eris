@@ -44,7 +44,7 @@
 		if(injecting)
 			user << "Theres already a fuel rod in the injector!"
 			return
-		user << "You insert the rod into the injector"
+		user << "You insert the rod into the injector."
 		injecting = 1
 		var/fuel = F.fuel
 		qdel(F)
@@ -57,7 +57,7 @@
 		if(injecting)
 			user << "Theres already a fuel rod in the injector!"
 			return
-		user << "You insert the rod into the injector"
+		user << "You insert the rod into the injector."
 		injecting = 1
 		var/fuel = F.fuel
 		qdel(F)

@@ -93,7 +93,7 @@ var/global/list/rad_collectors = list()
 			to_chat(user, "\red The [src] needs to be secured to the floor first.")
 			return
 		if(src.P)
-			to_chat(user, "\red There's already a plasma tank loaded.")
+			to_chat(user, "\red The [src] already has a plasma tank loaded.")
 			return
 		user.drop_item()
 		src.P = I
@@ -108,7 +108,7 @@ var/global/list/rad_collectors = list()
 				to_chat(user, "The controls are now [src.locked ? "locked." : "unlocked."]")
 			else
 				src.locked = 0 //just in case it somehow gets locked
-				to_chat(user, "\red The controls can only be locked when the [src] is active")
+				to_chat(user, "\red The controls can only be locked when the [src] is active.")
 		else
 			to_chat(user, "\red Access denied!")
 		return

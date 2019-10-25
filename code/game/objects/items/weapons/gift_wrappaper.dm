@@ -135,6 +135,7 @@
 	desc = "You can use this to wrap items in."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "wrap_paper"
+	matter = list(MATERIAL_BIOMATTER = 4)
 	var/amount = 20.0
 
 /obj/item/weapon/wrapping_paper/attackby(obj/item/weapon/W as obj, mob/user as mob)

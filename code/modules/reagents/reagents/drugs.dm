@@ -14,6 +14,7 @@
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE
 	addiction_chance = 100
+	sanity_gain = 1.5
 
 /datum/reagent/drug/space_drugs/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.druggy = max(M.druggy, 15 * effect_multiplier)
@@ -22,6 +23,7 @@
 	if(prob(7 * effect_multiplier))
 		M.emote(pick("twitch", "drool", "moan", "giggle"))
 	M.add_chemical_effect(CE_PULSE, -1)
+	..()
 
 
 /datum/reagent/drug/serotrotium
@@ -35,10 +37,12 @@
 	overdose = REAGENTS_OVERDOSE
 	addiction_threshold = 20
 	addiction_chance = 10
+	sanity_gain = 1.5
 
 /datum/reagent/drug/serotrotium/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(prob(7 * effect_multiplier))
 		M.emote(pick("twitch", "drool", "moan", "gasp"))
+	..()
 
 
 /datum/reagent/drug/cryptobiolin
@@ -50,10 +54,12 @@
 	color = "#000055"
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE
+	sanity_gain = 1
 
 /datum/reagent/drug/cryptobiolin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.make_dizzy(4 * effect_multiplier)
 	M.confused = max(M.confused, 20 * effect_multiplier)
+	..()
 
 
 /datum/reagent/drug/impedrezene
@@ -64,6 +70,7 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 	overdose = REAGENTS_OVERDOSE
+	sanity_gain = 1
 
 /datum/reagent/drug/impedrezene/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.jitteriness = max(M.jitteriness - (5 * effect_multiplier), 0)
@@ -73,6 +80,7 @@
 		M.drowsyness = max(M.drowsyness, 3 * effect_multiplier)
 	if(prob(10))
 		M.emote("drool")
+	..()
 
 
 /datum/reagent/drug/mindbreaker
@@ -100,10 +108,11 @@
 	addiction_chance = 10
 	nerve_system_accumulations = 40
 	reagent_type = "Drugs/Stimulator"
+	sanity_gain = 1.5
 
 /datum/reagent/drug/psilocybin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.druggy = max(M.druggy, 30 * effect_multiplier)
-	
+
 	var/effective_dose = dose
 	if(issmall(M)) effective_dose *= 2
 	if(effective_dose < 1)
@@ -129,6 +138,8 @@
 		M.hallucination(100, 50)
 		if(prob(15))
 			M.emote(pick("twitch", "giggle"))
+
+	..()
 
 /datum/reagent/drug/nicotine
 	name = "Nicotine"
@@ -193,7 +204,7 @@
 /datum/reagent/drug/sanguinum/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.add_chemical_effect(CE_BLOODRESTORE, 1.6 * effect_multiplier)
 	if(prob(2))
-		spawn 
+		spawn
 			M.emote("me", 1, "coughs up blood!")
 		M.drip_blood(10)
 

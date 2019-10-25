@@ -16,7 +16,7 @@
 
 /obj/item/weapon/spike
 	name = "alloy spike"
-	desc = "It's about a foot of weird silver metal with a wicked point."
+	desc = "A foot-long pointed stick made of a strange, silvery metal."
 	sharp = 1
 	edge = 0
 	throwforce = 5
@@ -27,7 +27,7 @@
 
 /obj/item/weapon/arrow/quill
 	name = "vox quill"
-	desc = "A wickedly barbed quill from some bizarre animal."
+	desc = "An alien-looking barbed quill plucked from who-knows-what kind of creature. It might work as a crossbow projectile."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "quill"
 	item_state = "quill"
@@ -35,12 +35,12 @@
 
 /obj/item/weapon/arrow/rod
 	name = "metal rod"
-	desc = "Don't cry for me, Orithena."
+	desc = "A projectile for a crossbow. Don't cry for me, Orithena."
 	icon_state = "metal-rod"
 
 /obj/item/weapon/arrow/rod/removed(mob/user)
 	if(throwforce == 15) // The rod has been superheated - we don't want it to be useable when removed from the bow.
-		to_chat(user, "[src] shatters into a scattering of overstressed metal shards as it leaves the crossbow.")
+		to_chat(user, "[src] shatters into dozens of superheated metal shards as soon as it is launched from the crossbow!")
 		var/obj/item/weapon/material/shard/shrapnel/S = new()
 		S.loc = get_turf(src)
 		qdel(src)
@@ -124,7 +124,7 @@
 
 		if(tension >= max_tension)
 			tension = max_tension
-			to_chat(user, "[src] clunks as you draw the string to its maximum tension!")
+			to_chat(user, "[src] gives a satisfying clunk as the string is pulled back as far as it can go!")
 			return
 
 		user.visible_message("[usr] draws back the string of [src]!",SPAN_NOTICE("You continue drawing back the string of [src]!"))
@@ -182,7 +182,7 @@
 	if(bolt.throwforce >= 15) return
 	if(!istype(bolt,/obj/item/weapon/arrow/rod)) return
 
-	to_chat(user, SPAN_NOTICE("[bolt] plinks and crackles as it begins to glow red-hot."))
+	to_chat(user, SPAN_NOTICE("[bolt] sparks and crackles as it gives off a red-hot glow."))
 	bolt.throwforce = 15
 	bolt.icon_state = "metal-rod-superheated"
 	cell.use(500)
@@ -211,12 +211,12 @@
 /obj/item/weapon/crossbowframe/examine(mob/user)
 	..(user)
 	switch(buildstate)
-		if(0) to_chat(user, "Some rods should work for a frame." )
-		if(1) to_chat(user, "It has a loose rod frame in place. Welding it should secure it.")
-		if(2) to_chat(user, "It has a steel backbone welded in place. Will need some cables to attach the cell to.")
-		if(3) to_chat(user, "It has a steel backbone and a cell mount installed. Some plastic should flex enough for the lath.")
-		if(4) to_chat(user, "It has a steel backbone, plastic lath and a cell mount installed. Now some cables for the string.")
-		if(5) to_chat(user, "It has a steel cable loosely strung across the lath. And now to tighten it up with a screwdriver!")
+		if(0) to_chat(user, "Some metal rods would work as a frame." )
+		if(1) to_chat(user, "It has a loose metal rod frame in place. Welding it will secure it.")
+		if(2) to_chat(user, "It has a steel backbone welded in place. It needs some cables to attach the cell to.")
+		if(3) to_chat(user, "It has a steel backbone and a cell mount installed. It needs some plastic to give it a flexible lath.")
+		if(4) to_chat(user, "It has a steel backbone, plastic lath and a cell mount installed. Now it needs some cables for the bowstring.")
+		if(5) to_chat(user, "It has a steel cable loosely strung across the lath. All it needs now is to be tightened up with a screwdriver!")
 
 /obj/item/weapon/crossbowframe/attackby(obj/item/I, mob/user)
 
@@ -233,7 +233,7 @@
 		if(QUALITY_WELDING)
 			if(buildstate == 1)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					to_chat(user, SPAN_NOTICE("You weld the rods into place."))
+					to_chat(user, SPAN_NOTICE("You weld the rods together as a frame."))
 					buildstate++
 					update_icon()
 					return
@@ -242,7 +242,7 @@
 		if(QUALITY_SCREW_DRIVING)
 			if(buildstate == 5)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					to_chat(user, SPAN_NOTICE("You secure the crossbow's various parts."))
+					to_chat(user, SPAN_NOTICE("You tighten up the crossbow's components."))
 					new /obj/item/weapon/gun/launcher/crossbow(get_turf(src))
 					qdel(src)
 			return
@@ -254,41 +254,41 @@
 		if(buildstate == 0)
 			var/obj/item/stack/rods/R = I
 			if(R.use(3))
-				to_chat(user, SPAN_NOTICE("You assemble a backbone of rods around the wooden stock."))
+				to_chat(user, SPAN_NOTICE("You bunch the rods around the wooden frame."))
 				buildstate++
 				update_icon()
 			else
-				to_chat(user, SPAN_NOTICE("You need at least three rods to complete this task."))
+				to_chat(user, SPAN_NOTICE("You need at least three metal rods to reinforce the frame."))
 			return
 
 	else if(istype(I,/obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/C = I
 		if(buildstate == 2)
 			if(C.use(5))
-				to_chat(user, SPAN_NOTICE("You wire a crude cell mount into the top of the crossbow."))
+				to_chat(user, SPAN_NOTICE("You wire a crude cell mount onto the top of the crossbow."))
 				buildstate++
 				update_icon()
 			else
-				to_chat(user, SPAN_NOTICE("You need at least five segments of cable coil to complete this task."))
+				to_chat(user, SPAN_NOTICE("You need at least five segments of cable coil to wire the cell mount."))
 			return
 		else if(buildstate == 4)
 			if(C.use(5))
-				to_chat(user, SPAN_NOTICE("You string a steel cable across the crossbow's lath."))
+				to_chat(user, SPAN_NOTICE("You string the steel cable across the lath of the crossbow, making a suitable bowstring."))
 				buildstate++
 				update_icon()
 			else
-				to_chat(user, SPAN_NOTICE("You need at least five segments of cable coil to complete this task."))
+				to_chat(user, SPAN_NOTICE("You need at least five segments of cable coil to use for a bowstring."))
 			return
 
 	else if(istype(I,/obj/item/stack/material) && I.get_material_name() == "plastic")
 		if(buildstate == 3)
 			var/obj/item/stack/material/P = I
 			if(P.use(3))
-				to_chat(user, SPAN_NOTICE("You assemble and install a heavy plastic lath onto the crossbow."))
+				to_chat(user, SPAN_NOTICE("You mold the plastic into a lathe and install it onto the crossbow."))
 				buildstate++
 				update_icon()
 			else
-				to_chat(user, SPAN_NOTICE("You need at least three plastic sheets to complete this task."))
+				to_chat(user, SPAN_NOTICE("You need at least three plastic sheets to create the crossbow's lathe."))
 			return
 
 	else
@@ -299,12 +299,12 @@
 */////////////////////////////
 /obj/item/weapon/arrow/RCD
 	name = "flashforged bolt"
-	desc = "The ultimate ghetto deconstruction implement."
+	desc = "The ultimate ghetto 'deconstruction' implement."
 	throwforce = 4
 
 /obj/item/weapon/gun/launcher/crossbow/RCD
 	name = "rapid crossbow device"
-	desc = "A hacked together RCD turns an innocent construction tool into the penultimate deconstruction tool. Flashforges bolts using matter units when the string is drawn back."
+	desc = "A hacked together RCD turns an innocent construction tool into the penultimate 'deconstruction' tool. Flashforges projectiles using matter units when the string is drawn back."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "rxb"
 	slot_flags = null

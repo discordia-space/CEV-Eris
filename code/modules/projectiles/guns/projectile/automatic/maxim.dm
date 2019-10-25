@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/projectile/automatic/maxim
+/obj/item/weapon/gun/projectile/automatic/maxim //This is currently deprecated unless someone can code up heavy machine gun mechanics.
 	name = "Excelsior machine gun"
 	desc = ""
 	icon_state = "maxim"
@@ -8,7 +8,7 @@
 	slot_flags = 0
 	max_shells = 96
 	caliber = "a762"
-	origin_tech = list(TECH_COMBAT = 7, TECH_MATERIAL = 2, TECH_ILLEGAL = 2)
+	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	ammo_type = "/obj/item/ammo_casing/a762"
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PAN

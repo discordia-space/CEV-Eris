@@ -1,10 +1,61 @@
+/mob/living/carbon/human/proc/get_suppressed_message()
+	var/static/list/messages = list(
+		"You try to do something, but your brain refuses to. ",
+		"Body is no more yours! The sentience from deep now reign.",
+		"Your actions are drowning in your brain helplessly.",
+		"You have no power over your body!",
+		"The only thing under your control is your senses!"
+	)
+	return pick(messages)
+
+/mob/living/carbon/human/proc/get_language_blackout_message()
+	var/static/list/messages = list(
+		"Your mumbling doesn't make any sense even to yourself!",
+		"Your tongue twitches in agony trying to speak!",
+		"Your mouth moves silently, trying to perform so called speech.",
+		"Each word you can think of disappears calmly in your brain.",
+		"Your brain forgot how to speak. Have you ever spoke for real?",
+		"You try to recall what is \"language\" but you can't."
+	)
+	return pick(messages)
+
+/mob/living/carbon/human/say_wrapper()
+	if(suppress_communication)
+		to_chat(src, get_suppressed_message())
+		return
+	..()
+
+/mob/living/carbon/human/say_verb(message as text)
+	if(suppress_communication)
+		to_chat(src, get_suppressed_message())
+		return
+	..()
+
+/mob/living/carbon/human/me_wrapper()
+	if(suppress_communication)
+		to_chat(src, get_suppressed_message())
+		return
+	..()
+
+/mob/living/carbon/human/me_verb(message as text)
+	if(suppress_communication)
+		to_chat(src, get_suppressed_message())
+		return
+	..()
+
 /mob/living/carbon/human/say(var/message)
+	if(language_blackout)
+		to_chat(src, get_language_blackout_message())
+		return FALSE
 	var/alt_name = ""
 	if(name != rank_prefix_name(GetVoice()))
 		alt_name = "(as [rank_prefix_name(get_id_name())])"
 
 	message = capitalize_cp1251(sanitize(message))
-	..(message, alt_name = alt_name)
+	. = ..(message, alt_name = alt_name)
+
+	if(.)
+		SEND_SIGNAL(src, COMSIG_HUMAN_SAY, message)
 
 /mob/living/carbon/human/proc/forcesay(list/append)
 	if(stat == CONSCIOUS)
@@ -41,6 +92,9 @@
 				winset(client, "input", "text=[null]")
 
 /mob/living/carbon/human/say_understands(var/mob/other, var/datum/language/speaking = null)
+
+	if(language_blackout)
+		return 0
 
 	if(has_brain_worms()) //Brain worms translate everything. Even mice and alien speak.
 		return 1
