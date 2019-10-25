@@ -586,4 +586,7 @@ wink, yawn, swish, sway/wag, fastsway/qwag, stopsway/swag"})
 	set desc = "Sets a description which will be shown when someone examines you."
 	set category = "IC"
 
+	if(suppress_communication)
+		return FALSE
+
 	pose =  sanitize(input(usr, "This is [src]. [get_visible_gender() == MALE ? "He" : get_visible_gender() == FEMALE ? "She" : "They"] [get_visible_gender() == NEUTER ? "are" : "is"]...", "Pose", null)  as text)

@@ -1,11 +1,11 @@
-#define STAT_VALUE_DEFAULT				0
+#define STAT_VALUE_DEFAULT	0
 
-#define STAT_MEC						"Mechanical"
-#define STAT_COG						"Cognition"
-#define STAT_BIO						"Biology"
-#define STAT_ROB						"Robustness"
-#define STAT_TGH						"Toughness"
-#define STAT_VIG						"Vigilance"
+#define STAT_MEC			"Mechanical"
+#define STAT_COG			"Cognition"
+#define STAT_BIO			"Biology"
+#define STAT_ROB			"Robustness"
+#define STAT_TGH			"Toughness"
+#define STAT_VIG			"Vigilance"
 
 #define ALL_STATS	list(STAT_MEC,STAT_COG,STAT_BIO,STAT_ROB,STAT_TGH,STAT_VIG)
 

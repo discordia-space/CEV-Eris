@@ -220,7 +220,7 @@
 
 /mob/living/carbon/human/setToxLoss(var/amount)
 	if(!(species.flags & NO_POISON) && !isSynthetic())
-		adjustToxLoss(getToxLoss()-amount)
+		adjustToxLoss(amount-getToxLoss())
 
 ////////////////////////////////////////////
 
@@ -360,6 +360,7 @@ This function restores all organs.
 				emote("scream")
 
 		..(damage, damagetype, def_zone)
+		sanity.onDamage(damage)
 		return 1
 
 	//Handle BRUTE and BURN damage
@@ -384,6 +385,8 @@ This function restores all organs.
 			damage = damage*species.burn_mod
 			if(organ.take_damage(0, damage, sharp, edge, used_weapon))
 				UpdateDamageIcon()
+
+	sanity.onDamage(damage)
 
 	// Will set our damageoverlay icon to the next level, which will then be set back to the normal level the next mob.Life().
 	updatehealth()

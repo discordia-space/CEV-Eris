@@ -31,6 +31,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	var/big_item_chance = 40
 	var/obj/big_item
 	var/list/ways = list("pokes around in", "searches", "scours", "digs through", "rummages through", "goes through","picks through")
+	sanity_damage = 0.1
 
 /obj/structure/scrap/proc/make_cube()
 	var/obj/container = new /obj/structure/scrap_cube(loc, loot_max)

@@ -33,6 +33,8 @@
 	randpixel = 12
 	overkill_gib = 16
 
+	sanity_damage = 0.5
+
 //When roaches die near a leader, the leader may call for reinforcements
 /mob/living/carbon/superior_animal/roach/death()
 	.=..()
