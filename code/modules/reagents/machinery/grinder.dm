@@ -370,7 +370,7 @@
 	if(istype(I, /obj/item/weapon/reagent_containers))
 		var/obj/item/weapon/reagent_containers/container = I
 		if(!container.standard_pour_into(user, src)) . = ..()
-	else if (LAZYLEN(O.reagents) . = ..()
+	else if (LAZYLEN(I.reagents)) . = ..()
 	else to_chat(user, SPAN_NOTICE("\icon[I] \the [I] seems that it is not suitable for a \icon[src] [src]."))
 	update_icon()
 
