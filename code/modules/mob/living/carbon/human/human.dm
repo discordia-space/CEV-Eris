@@ -50,12 +50,7 @@
 
 	sanity = new(src)
 
-	fabric_image = image('icons/effects/fabric_symbols.dmi', src, pick(icon_states('icons/effects/fabric_symbols.dmi', 2)))
-	fabric_image.pixel_x = rand(-1,1)
-	fabric_image.pixel_y = rand(-1,1)
-	fabric_image.color = RANDOM_RGB
-	fabric_image.override = TRUE
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_FABRIC_NEW, fabric_image)
+	AddComponent(/datum/component/fabric)
 
 /mob/living/carbon/human/Destroy()
 	GLOB.human_mob_list -= src
