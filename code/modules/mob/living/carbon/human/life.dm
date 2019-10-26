@@ -75,8 +75,6 @@
 		if(!client)
 			species.handle_npc(src)
 
-		sanity.onLife()
-
 	if(!handle_some_updates())
 		return											//We go ahead and process them 5 times for HUD images and other stuff though.
 

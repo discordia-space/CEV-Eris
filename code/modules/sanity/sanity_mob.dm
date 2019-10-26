@@ -42,9 +42,12 @@
 /datum/sanity/New(mob/living/carbon/human/H)
 	owner = H
 	level = max_level
+	RegisterSignal(owner, COMSIG_MOB_LIFE, .proc/onLife)
 	RegisterSignal(owner, COMSIG_HUMAN_SAY, .proc/onSay)
 
 /datum/sanity/proc/onLife()
+	if(owner.stat == DEAD || owner.in_stasis)
+		return
 	var/affect = SANITY_PASSIVE_GAIN
 	if(owner.stat)
 		changeLevel(affect)

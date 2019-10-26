@@ -220,8 +220,8 @@
 	. = ..()
 	if(!.)
 		return
-	holder.owner.Weaken(2)
-	holder.owner.Stun(2)
+	holder.owner.Weaken(3)
+	holder.owner.Stun(3)
 	if(prob(50))
 		holder.owner.emote("scream")
 	else
