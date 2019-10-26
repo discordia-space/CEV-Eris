@@ -363,7 +363,11 @@
 	required_reagents = list("inaprovaline" = 2, "blattedin" = 1)
 	inhibitors = list("sugar" = 1) // Messes up with inaprovaline
 	result_amount = 3
-
+/datum/chemical_reaction/meralyne
+	result = "meralyne"
+	required_reagents = list("bicaridine" = 1, "inaprovaline" = 1, "iron" = 1)
+	inhibitors = list("sugar" = 1) // Messes up with inaprovaline
+	result_amount = 3
 /datum/chemical_reaction/hyperzine
 	result = "hyperzine"
 	required_reagents = list("sugar" = 1, "phosphorus" = 1, "sulfur" = 1)
