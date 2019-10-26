@@ -5,8 +5,6 @@
 // Damage received from unpleasant stuff in view
 #define SANITY_DAMAGE_VIEW(damage, vig, dist) ((damage) * SANITY_DAMAGE_MOD * (1.2 - (vig) / STAT_LEVEL_MAX) * (1 - (dist)/15))
 
-#define SANITY_DAMAGE_THRESHOLD_VIEW 20
-
 // Damage received from body damage
 #define SANITY_DAMAGE_HURT(damage, vig) ((damage) / 5 * SANITY_DAMAGE_MOD * (1.2 - (vig) / STAT_LEVEL_MAX))
 
@@ -34,6 +32,8 @@
 	var/positive_prob = 20
 	var/negative_prob = 30
 
+	var/view_damage_threshold = 20
+
 	var/say_time = 0
 	var/breakdown_time = 0
 
@@ -52,7 +52,7 @@
 	if(!(owner.sdisabilities & BLIND) && !owner.blinded)
 		affect += handle_area()
 		affect -= handle_view()
-	changeLevel(max(affect, min(SANITY_DAMAGE_THRESHOLD_VIEW - level, 0)))
+	changeLevel(max(affect, min(view_damage_threshold - level, 0)))
 	handle_breakdowns()
 	handle_level()
 
