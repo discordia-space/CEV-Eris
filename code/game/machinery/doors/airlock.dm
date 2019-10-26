@@ -592,8 +592,8 @@ There are 9 wires.
 	set category = "Object"
 	set src in view(1)
 
-	if(!usr)
-		log_debug("Verb 'Wedge item' bugged and called without usr.")
+	if(!istype(usr, /mob/living))
+		to_chat(usr, SPAN_WARNING("You can't do this."))
 		return
 	var/obj/item/weapon/tool/T = usr.get_active_hand()
 	if(istype(T) && T.w_class >= ITEM_SIZE_NORMAL) // We do the checks before proc call, because see "proc overhead".
@@ -609,8 +609,8 @@ There are 9 wires.
 	set category = "Object"
 	set src in view(1)
 
-	if(!usr)
-		log_debug("Verb 'Remove Blockage' bugged and called without usr.")
+	if(!istype(usr, /mob/living))
+		to_chat(usr, SPAN_WARNING("You can't do this."))
 		return
 	if(wedged_item)
 		if(usr && !wedged_item.use_tool(usr, src, WORKTIME_NEAR_INSTANT, QUALITY_PRYING, FAILCHANCE_ZERO, list(STAT_MEC, STAT_ROB)))
