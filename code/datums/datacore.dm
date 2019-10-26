@@ -131,10 +131,10 @@ var/global/ManifestJSON
 		for(name in car)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[car[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
-	if(civ.len > 0)
+	if(chr.len > 0)
 		dat += "<tr><th colspan=3>Church</th></tr>"
 		for(name in chr)
-			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[civ[name]]</td><td>[isactive[name]]</td></tr>"
+			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[chr[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
 	if(civ.len > 0)
 		dat += "<tr><th colspan=3>Civilian</th></tr>"
@@ -425,7 +425,7 @@ var/global/ManifestJSON
 			chr[++chr.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && chr.len != 1)
-				chr.Swap(1, sci.len)
+				chr.Swap(1, chr.len)
 
 		if(real_rank in civilian_positions)
 			civ[++civ.len] = list("name" = name, "rank" = rank, "active" = isactive)
@@ -447,7 +447,7 @@ var/global/ManifestJSON
 		"eng" = eng,
 		"med" = med,
 		"sci" = sci,
-		"chr" = civ,
+		"chr" = chr,
 		"civ" = civ,
 		"bot" = bot,
 		"misc" = misc
