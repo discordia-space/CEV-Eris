@@ -186,12 +186,6 @@
 /datum/species/proc/get_bodytype()
 	return name
 
-/datum/species/proc/get_body_build(var/gender, var/prefered)
-	for(var/BBT in typesof(/datum/body_build))
-		var/datum/body_build/BB = new BBT
-		if((!prefered || BB.name == prefered) && (gender in genders))
-			return BB
-
 
 /datum/species/proc/get_environment_discomfort(var/mob/living/carbon/human/H, var/msg_type)
 

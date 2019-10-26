@@ -281,6 +281,9 @@
 	desc = "A crate with a lock on it, painted in the scheme of the station's botanists."
 	icon_state = "hydrosecurecrate"
 
+/obj/structure/closet/crate/secure/hydrosec/prelocked
+	req_access = list(access_hydroponics)
+
 /obj/structure/closet/crate/secure/bin
 	name = "secure bin"
 	desc = "A secure bin."

@@ -73,9 +73,6 @@ GLOBAL_LIST_EMPTY(all_rituals)//List of all rituals
 GLOBAL_LIST_EMPTY(global_ritual_cooldowns) // internal lists. Use ritual's cooldown_category
 
 //Preferences stuff
-	//Bodybuilds
-var/global/list/male_body_builds = list()
-var/global/list/female_body_builds = list()
 	//Hairstyles
 GLOBAL_LIST_EMPTY(hair_styles_list)        //stores /datum/sprite_accessory/hair indexed by name
 GLOBAL_LIST_EMPTY(facial_hair_styles_list) //stores /datum/sprite_accessory/facial_hair indexed by name
@@ -149,15 +146,6 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 /proc/makeDatumRefLists()
 
 	var/list/paths
-
-	//Bodybuilds
-	paths = typesof(/datum/body_build)
-	for(var/path in paths)
-		var/datum/body_build/B = new path()
-		if (B.gender == FEMALE)
-			female_body_builds[B.name] = B
-		else
-			male_body_builds[B.name] = B
 
 	//Hair - Initialise all /datum/sprite_accessory/hair into an list indexed by hair-style name
 	paths = typesof(/datum/sprite_accessory/hair) - /datum/sprite_accessory/hair

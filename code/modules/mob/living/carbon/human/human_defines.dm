@@ -19,8 +19,6 @@
 	var/damage_multiplier = 1 //multiplies melee combat damage
 	var/icon_update = 1 //whether icon updating shall take place
 
-	var/datum/body_build/body_build = null
-
 	var/lip_style = null	//no lipstick by default- arguably misleading, as it could be used for general makeup
 
 	var/age = 30		//Player's age (pure fluff)
@@ -86,3 +84,14 @@
 	var/stance_damage = 0 //Whether this mob's ability to stand has been affected
 	var/identifying_gender // In case the human identifies as another gender than it's biological
 	mob_classification = CLASSIFICATION_ORGANIC | CLASSIFICATION_HUMANOID
+
+	var/datum/sanity/sanity = null
+
+	var/shock_resist = 0 // Resistance to paincrit
+
+	var/image/fabric_image
+
+	var/language_blackout = 0
+	var/suppress_communication = 0
+
+	var/flashbacks = 0

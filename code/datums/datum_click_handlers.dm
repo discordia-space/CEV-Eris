@@ -210,13 +210,6 @@
 	..()
 	return user.changeling_transformation_sting(target, chosen_dna)
 
-/datum/click_handler/changeling/changeling_unfat_sting
-	handler_name = "Unfat Sting"
-
-/datum/click_handler/changeling/changeling_unfat_sting/use_ability(mob/living/carbon/human/user,atom/target)
-	..()
-	return user.changeling_unfat_sting(target)
-
 /datum/click_handler/changeling/changeling_DEATHsting
 	handler_name = "Death Sting"
 
