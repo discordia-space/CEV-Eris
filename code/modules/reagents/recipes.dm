@@ -365,7 +365,7 @@
 	result_amount = 3
 /datum/chemical_reaction/meralyne
 	result = "meralyne"
-	required_reagents = list("hyperzine" = 1, "dexalinp" = 1, "blattedin" = 2, "tramadol" = 1)
+	required_reagents = list("hyperzine" = 1, "blattedin" = 2, "tramadol" = 1)
 	result_amount = 2
 
 /datum/chemical_reaction/hyperzine
