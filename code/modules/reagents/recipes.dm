@@ -365,9 +365,9 @@
 	result_amount = 3
 /datum/chemical_reaction/meralyne
 	result = "meralyne"
-	required_reagents = list("bicaridine" = 1, "inaprovaline" = 1, "iron" = 1)
-	inhibitors = list("sugar" = 1) // Messes up with inaprovaline
-	result_amount = 3
+	required_reagents = list("hyperzine" = 1, "inaprovaline" = 1, "blattedin" = 2, "tramadol" = 1)
+	result_amount = 2
+
 /datum/chemical_reaction/hyperzine
 	result = "hyperzine"
 	required_reagents = list("sugar" = 1, "phosphorus" = 1, "sulfur" = 1)
