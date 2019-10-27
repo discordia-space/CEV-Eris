@@ -835,8 +835,6 @@
 	if(!..(user,2))
 		return
 
-	ui_interact(user)
-
 	if(use_power_cost)
 		if(!cell)
 			to_chat(user, SPAN_WARNING("There is no cell inside to power the tool"))
