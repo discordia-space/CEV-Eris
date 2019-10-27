@@ -67,10 +67,7 @@
 	var/area/my_area = get_area(owner)
 	if(!my_area)
 		return 0
-	var/leng = 0
-	for(var/turf/T in my_area.contents)
-		++leng
-	. = my_area.sanity.affect / leng
+	. = my_area.sanity.affect
 	if(. < 0)
 		. *= owner.stats.getStat(STAT_VIG) / STAT_LEVEL_MAX
 

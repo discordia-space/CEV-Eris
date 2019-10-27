@@ -16,6 +16,8 @@
 /datum/component/atom_sanity/proc/onMoved(_, oldloc, newloc)
 	if(isturf(oldloc))
 		var/area/current_area = get_area(oldloc) //Actually new area is curret
+		if(isturf(newloc) && current_area == get_area(newloc))
+			return
 		var/datum/area_sanity/AS = current_area.sanity
 		AS.unregister(src)
 	if(isturf(newloc))
