@@ -160,6 +160,15 @@
 	new /obj/item/device/spy_bug(src)
 	new /obj/item/device/spy_monitor(src)
 
+/obj/item/weapon/storage/box/syndie_kit/dartgun
+	name  = "dartgun kit"
+	desc = "Just like a mosquito bite."
+
+/obj/item/weapon/storage/box/syndie_kit/dartgun/New()
+	..()
+	new /obj/item/weapon/gun/projectile/dartgun(src)
+	new /obj/item/ammo_magazine/chemdart(src)
+
 /obj/item/weapon/storage/box/syndie_kit/g9mm
 	name = "\improper Smooth operator"
 	desc = "9mm with silencer kit."

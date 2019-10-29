@@ -158,6 +158,7 @@
 #define MAG_WELL_AK			16	//AKs
 #define MAG_WELL_BOX		32	//Lmgs with box mags
 #define MAG_WELL_PAN		64	//Lmgs with pan mags
+#define MAG_WELL_DART       128 //Dartgun mag
 
 //An item that holds casings and can be used to put them inside guns
 /obj/item/ammo_magazine
