@@ -7,7 +7,7 @@
 /datum/uplink_item/item/visible_weapons/dartgun
 	name = "Dart Gun"
 	item_cost = 4
-	path = /obj/item/weapon/gun/projectile/dartgun
+	path = /obj/item/weapon/storage/box/syndie_kit/dartgun
 
 /datum/uplink_item/item/visible_weapons/crossbow
 	name = "Energy Crossbow"
