@@ -223,22 +223,6 @@
 	new /obj/item/ammo_casing/a145(src)
 	new /obj/item/weapon/gun/projectile/heavysniper(src)
 
-
-
-/obj/item/weapon/storage/box/syndie_kit/dartgun/New()
-	..()
-	new /obj/item/weapon/gun/projectile/dartgun(src)
-	new /obj/item/ammo_magazine/chemdart(src)
-
-/obj/item/weapon/storage/box/syndie_kit/g9mm
-	name = "\improper Smooth operator"
-	desc = "9mm with silencer kit."
-
-/obj/item/weapon/storage/box/syndie_kit/g9mm/New()
-	..()
-	new /obj/item/weapon/gun/projectile/clarissa(src)
-	new /obj/item/weapon/silencer(src)
-
 /obj/item/weapon/storage/box/syndie_kit/toxin
 	name = "toxin kit"
 	desc = "An apple will not be enough to keep the doctor away after this."
