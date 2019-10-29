@@ -25,7 +25,8 @@
 	..()
 	if(climbable)
 		verbs += /obj/structure/proc/climb_on
-	update_icon(FALSE)
+	spawn(0)
+		update_icon(FALSE)
 
 /obj/structure/railing/Created(var/mob/user)
 	anchored = FALSE
