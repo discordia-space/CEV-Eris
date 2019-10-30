@@ -22,7 +22,7 @@
 	icon_state = "grey_railing0"
 
 /obj/structure/railing/Initialize()
-	..()
+	. = ..()
 	update_icon(FALSE)
 
 /obj/structure/railing/New(loc)
