@@ -204,8 +204,8 @@
 /obj/item/weapon/storage/box/syndie_kit/sts35
 	name = "Assault rifle box"
 	desc = "Assault rifle kit"
-	icon_state = "syndicate"
-	item_state = "toolbox_syndi"
+	icon_state = "box_of_doom_big"
+	w_class = ITEM_SIZE_HUGE
 
 /obj/item/weapon/storage/box/syndie_kit/sts35/New()
 	..()
@@ -215,8 +215,8 @@
 /obj/item/weapon/storage/box/syndie_kit/antimaterial_rifle
 	name = "Sniper rifle box"
 	desc = "Sniper rifle kit. One shot for real men."
-	icon_state = "syndicate"
-	item_state = "toolbox_syndi"
+	icon_state = "box_of_doom_big"
+	w_class = ITEM_SIZE_HUGE
 
 /obj/item/weapon/storage/box/syndie_kit/antimaterial_rifle/New()
 	..()
