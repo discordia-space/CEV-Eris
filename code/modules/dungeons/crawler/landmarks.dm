@@ -51,6 +51,7 @@
 		walls_to_break += get_step(T, SOUTH)
 	for(var/turf/W in walls_to_break)
 		var/turf/simulated/floor/tiled/dark/gray_perforated/newfloor = new /turf/simulated/floor/tiled/dark/gray_perforated(W)
+		sleep(1)
 		newfloor.lighting_build_overlay()
 
 
@@ -83,6 +84,9 @@
 	var/roomnum = 1
 	var/room_x = 1
 	var/room_y = 1
+	var/under = 0
+	var/above = 0
+	var/datum/map_template/dungeon_template/template = null
 
 /obj/crawler/room_controller/New()
 	if(loc && istype(loc.loc,/area/crawler))

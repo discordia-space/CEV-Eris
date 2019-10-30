@@ -9,16 +9,23 @@
 	mappath = 'maps/submaps/dungeon_rooms/rooms/2.dmm'
 
 /datum/map_template/dungeon_template/room/three
-	name = "Dungeon room - 2"
+	name = "Dungeon room - 3"
 	desc = "Enjoy your stay."
 	mappath = 'maps/submaps/dungeon_rooms/rooms/3.dmm'
 
 /datum/map_template/dungeon_template/room/four
-	name = "Dungeon room - 3"
+	name = "Dungeon room - 4"
 	desc = "Enjoy your stay."
 	mappath = 'maps/submaps/dungeon_rooms/rooms/4.dmm'
 
 /datum/map_template/dungeon_template/room/five
-	name = "Dungeon room - 4"
+	name = "Dungeon room - 5"
 	desc = "Enjoy your stay."
 	mappath = 'maps/submaps/dungeon_rooms/rooms/5.dmm'
+
+/datum/map_template/dungeon_template/room/six
+	name = "Dungeon room - 6"
+	desc = "Enjoy your stay."
+	mappath = 'maps/submaps/dungeon_rooms/rooms/6.dmm'
+	directional_flags = list("south", "east", "west")
+
