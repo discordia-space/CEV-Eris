@@ -65,3 +65,51 @@
 	if(!bolt_open)
 		return
 	..()
+
+/obj/item/weapon/weaponparts
+	name = "weaponpart"
+	desc = "how did you get it?"
+	icon = 'icons/obj/buildingobject.dmi'
+
+/obj/item/weapon/weaponparts/heavysniper/disassembled
+	name = "Disassembled sniper rifle"
+	desc = "This is a disassembled sniper rifle. You need to attach the stock."
+	icon_state = "sniperd"
+
+/obj/item/weapon/weaponparts/heavysniper/stocked
+	name = "Disassembled sniper rifle with stock"
+	desc = "This is a disassembled sniper rifle with stock. Now attach the barrel."
+	icon_state = "snipersd"
+
+/obj/item/weapon/weaponparts/heavysniper/stock
+	name = "Sniper rifle stock"
+	desc = "This is a stock from a sniper rifle."
+	icon_state = "sniperstock"
+
+
+/*/obj/item/weapon/weaponparts/heavysniper/optical_sight
+	name = "Sniper rifle optical sight"
+	desc = "This is a optical sight from a sniper rifle."
+	icon_state = "sniperoptic"*/  //for optical sight, later'll do it
+
+
+/obj/item/weapon/weaponparts/heavysniper/barrel
+	name = "Sniper rifle barrel"
+	desc = "This is a barrel from a sniper rifle."
+	icon_state = "sniperbarrel"
+
+/obj/item/weapon/weaponparts/heavysniper/disassembled/attackby(obj/item/W as obj, mob/user as mob)
+	if (istype(W,/obj/item/weapon/weaponparts/heavysniper/stock))
+		to_chat(user, "You attach the stock to the sniper")
+		new /obj/item/weapon/weaponparts/heavysniper/stocked(user.loc)
+		qdel(W)
+		qdel(src)
+		return
+
+/obj/item/weapon/weaponparts/heavysniper/stocked/attackby(obj/item/W as obj, mob/user as mob)
+	if (istype(W,/obj/item/weapon/weaponparts/heavysniper/barrel))
+		to_chat(user, "You attach the barrel to the sniper")
+		new /obj/item/weapon/gun/projectile/heavysniper(user.loc)
+		qdel(W)
+		qdel(src)
+		return
