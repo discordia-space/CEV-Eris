@@ -639,7 +639,8 @@
 			var/mob/living/carbon/human/H = src
 			if (H.sanity.level <= 35)
 				var/loss_stat = round((100 - H.sanity.level) / 6)
-				return rand(stats.getStat(typeOfStat) - loss_stat, stats.getStat(typeOfStat))		
+				var/false_stat = rand(stats.getStat(typeOfStat) - loss_stat, stats.getStat(typeOfStat))	
+				return abs(false_stat)	
 			return stats.getStat(typeOfStat)
 		return 0
 /mob/Stat()
