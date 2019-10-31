@@ -648,7 +648,7 @@
 			stat("Station Time", stationtime2text())
 			stat("Round Duration", roundduration2text())
 			for( stat in ALL_STATS)
-       			stat("[stat]:", getStatStats(stat))
+				stat("[stat]:", getStatStats(stat))
 		if(client.holder)
 			if(statpanel("Status"))
 				stat("Location:", "([x], [y], [z]) [loc]")
