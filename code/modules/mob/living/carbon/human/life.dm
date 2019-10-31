@@ -75,10 +75,6 @@
 		if(!client)
 			species.handle_npc(src)
 
-		sanity.onLife()
-
-	handle_fabric()
-
 	if(!handle_some_updates())
 		return											//We go ahead and process them 5 times for HUD images and other stuff though.
 
@@ -1031,9 +1027,3 @@
 		return
 	if(XRAY in mutations)
 		sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
-
-/mob/living/carbon/human/proc/handle_fabric()
-	fabric_image.icon_state = pick(icon_states('icons/effects/fabric_symbols.dmi', 2))
-	fabric_image.pixel_x = rand(-1,1)
-	fabric_image.pixel_y = rand(-1,1)
-	fabric_image.color = RANDOM_RGB
