@@ -718,3 +718,34 @@ var/list/flooring_types
 	has_damage_range = 6
 	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK | TURF_HIDES_THINGS
 	can_paint = null
+
+
+//==========Derelict==============
+
+/decl/flooring/tiling/derelict/china1
+	name = "floor"
+	icon_base = "derelict1"
+	icon = 'icons/turf/flooring/china_derelict.dmi'
+	build_type = /obj/item/stack/tile/derelict/china1
+	footstep_sound = "floor"
+
+/decl/flooring/tiling/derelict/china2
+	name = "floor"
+	icon_base = "derelict2"
+	icon = 'icons/turf/flooring/china_derelict.dmi'
+	build_type = /obj/item/stack/tile/derelict/china2
+	footstep_sound = "floor"
+
+/decl/flooring/tiling/derelict/china3
+	name = "floor"
+	icon_base = "derelict3"
+	icon = 'icons/turf/flooring/china_derelict.dmi'
+	build_type = /obj/item/stack/tile/derelict/china3
+	footstep_sound = "floor"
+
+/decl/flooring/tiling/derelict/china4
+	name = "floor"
+	icon_base = "derelict4"
+	icon = 'icons/turf/flooring/china_derelict.dmi'
+	build_type = /obj/item/stack/tile/derelict/china4
+	footstep_sound = "floor"

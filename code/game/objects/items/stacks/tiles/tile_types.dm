@@ -416,3 +416,20 @@
 	name = "dark monofloor tile"
 	singular_name = "dark monofloor tile"
 	icon_state = "tile_dark_monofloor"
+
+
+/obj/item/stack/tile/derelict/china1
+	name = "china tile"
+	singular_name = "china tile"
+
+/obj/item/stack/tile/derelict/china2
+	name = "china tile"
+	singular_name = "china tile"
+
+/obj/item/stack/tile/derelict/china3
+	name = "china tile"
+	singular_name = "china tile"
+
+/obj/item/stack/tile/derelict/china4
+	name = "china tile"
+	singular_name = "china tile"

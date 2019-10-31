@@ -293,9 +293,6 @@
 
 
 
-
-
-
 /turf/simulated/floor/tiled/cafe
 	name = "floor"
 	icon = 'icons/turf/flooring/tiles.dmi'
@@ -420,6 +417,31 @@
 	oxygen = 0
 	nitrogen = 0
 	temperature = TCMB
+
+
+/turf/simulated/floor/tiled/derelict/china1
+	name = "floor"
+	icon = 'icons/turf/flooring/china_derelict.dmi'
+	icon_state = "derelict1"
+	initial_flooring = /decl/flooring/tiling/derelict/china1
+
+/turf/simulated/floor/tiled/derelict/china2
+	name = "floor"
+	icon = 'icons/turf/flooring/china_derelict.dmi'
+	icon_state = "derelict2"
+	initial_flooring = /decl/flooring/tiling/derelict/china2
+
+/turf/simulated/floor/tiled/derelict/china3
+	name = "floor"
+	icon = 'icons/turf/flooring/china_derelict.dmi'
+	icon_state = "derelict3"
+	initial_flooring = /decl/flooring/tiling/derelict/china3
+
+/turf/simulated/floor/tiled/derelict/china4
+	name = "floor"
+	icon = 'icons/turf/flooring/china_derelict.dmi'
+	icon_state = "derelict4"
+	initial_flooring = /decl/flooring/tiling/derelict/china4
 
 
 // Placeholders
