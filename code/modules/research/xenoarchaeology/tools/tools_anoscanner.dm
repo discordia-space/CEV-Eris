@@ -7,6 +7,7 @@
 	item_state = "lampgreen"
 	w_class = ITEM_SIZE_SMALL
 	slot_flags = SLOT_BELT
+	matter = list(MATERIAL_STEEL = 5, MATERIAL_GLASS = 5)
 	var/nearest_artifact_id = "unknown"
 	var/nearest_artifact_distance = -1
 	var/last_scan_time = 0
