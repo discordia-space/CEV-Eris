@@ -635,7 +635,7 @@
 	if (SSticker.current_state != GAME_STATE_PREGAME)
 		var/mob/living/carbon/human/H
 		if(ishuman(src))
-			return H.stats.getStat(typeOfStat)
+			return H.mind.stats.getStat(typeOfStat)
 		return 0
 /mob/Stat()
 	..()
