@@ -86,13 +86,6 @@
 	desc = "This is a stock from a sniper rifle."
 	icon_state = "sniperstock"
 
-
-/*/obj/item/weapon/weaponparts/heavysniper/optical_sight
-	name = "Sniper rifle optical sight"
-	desc = "This is a optical sight from a sniper rifle."
-	icon_state = "sniperoptic"*/  //for optical sight, later'll do it
-
-
 /obj/item/weapon/weaponparts/heavysniper/barrel
 	name = "sniper rifle barrel"
 	desc = "This is a barrel from a sniper rifle."
