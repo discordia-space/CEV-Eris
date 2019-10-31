@@ -635,7 +635,6 @@
 	if (SSticker.current_state != GAME_STATE_PREGAME)
 		
 		if(ishuman(src))
-			
 			return stats.getStat(typeOfStat)
 		return 0
 /mob/Stat()
