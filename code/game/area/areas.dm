@@ -29,6 +29,8 @@
 		power_equip = 0
 		power_environ = 0
 
+	sanity = new(src)
+
 	..()
 
 /area/Initialize()
@@ -38,8 +40,6 @@
 		power_equip = 0
 		power_environ = 0
 	power_change()		// all machines set to current power level, also updates lighting icon
-
-	sanity = new(src)
 
 
 /area/proc/get_cameras()
