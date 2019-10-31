@@ -42,7 +42,7 @@
 	make_dizzy(10)
 	druggy = max(druggy, 40)
 	if(prob(5))
-		emote(pick("twitch", "drool", "moan", "blink_r", "shiver"))	
+		emote(pick("twitch", "drool", "moan", "blink_r", "shiver"))
 	else if (prob(10))
 		var/direction = pick(cardinal)
 		if(MayMove(direction))
@@ -297,6 +297,8 @@
 	if (istype(item, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = item
 		item = G.throw_held() //throw the person instead of the grab
+		if(!item) return
+		unEquip(G, loc)
 		if(ismob(item))
 			var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
 			var/turf/end_T = get_turf(target)
