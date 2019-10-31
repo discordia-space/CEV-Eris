@@ -632,10 +632,11 @@
 	for(var/mob/M in viewers())
 		M.see(message)
 /mob/proc/getStatStats(typeOfStat)
-	var/mob/living/carbon/human/H
-	if(ishuman(src))
-		return H.stats.getStat(typeOfStat)
-	return 0
+	if (SSticker.current_state != GAME_STATE_PREGAME)
+		var/mob/living/carbon/human/H
+		if(ishuman(src))
+			return H.stats.getStat(typeOfStat)
+		return 0
 /mob/Stat()
 	..()
 	. = (is_client_active(10 MINUTES))
