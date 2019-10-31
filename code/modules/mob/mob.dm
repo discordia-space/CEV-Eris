@@ -635,8 +635,7 @@
 	var/mob/living/carbon/human/H
 	if(ishuman(src))
 		return H.stats.getStat(typeOfStat)
-	else
-		return 0
+	return 0
 /mob/Stat()
 	..()
 	. = (is_client_active(10 MINUTES))
@@ -648,7 +647,7 @@
 			stat("Round Duration", roundduration2text())
 			stat("MEC STAT:", getStatStats(STAT_MEC))
 			stat("COG STAT:", getStatStats(STAT_COG))
-			stat("BIO Stat:", getStatStats(STAT_BIO))
+			stat("BIO STAT:", getStatStats(STAT_BIO))
 			stat("ROB STAT:", getStatStats(STAT_ROB))
 			stat("TGH STAT:", getStatStats(STAT_TGH))
 			stat("VIG STAT:", getStatStats(STAT_VIG))
