@@ -72,17 +72,17 @@
 	icon = 'icons/obj/buildingobject.dmi'
 
 /obj/item/weapon/weaponparts/heavysniper/disassembled
-	name = "Disassembled sniper rifle"
+	name = "disassembled sniper rifle"
 	desc = "This is a disassembled sniper rifle. You need to attach the stock."
 	icon_state = "sniperd"
 
 /obj/item/weapon/weaponparts/heavysniper/stocked
-	name = "Disassembled sniper rifle with stock"
+	name = "disassembled sniper rifle with stock"
 	desc = "This is a disassembled sniper rifle with stock. Now attach the barrel."
 	icon_state = "snipersd"
 
 /obj/item/weapon/weaponparts/heavysniper/stock
-	name = "Sniper rifle stock"
+	name = "sniper rifle stock"
 	desc = "This is a stock from a sniper rifle."
 	icon_state = "sniperstock"
 
@@ -94,7 +94,7 @@
 
 
 /obj/item/weapon/weaponparts/heavysniper/barrel
-	name = "Sniper rifle barrel"
+	name = "sniper rifle barrel"
 	desc = "This is a barrel from a sniper rifle."
 	icon_state = "sniperbarrel"
 
