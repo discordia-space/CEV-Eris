@@ -418,18 +418,18 @@
 	icon_state = "tile_dark_monofloor"
 
 
-/obj/item/stack/tile/derelict/china1
-	name = "china tile"
-	singular_name = "china tile"
+/obj/item/stack/tile/derelict/white_red_edges
+	name = "one star floor tile"
+	singular_name = "one star floor tile"
 
-/obj/item/stack/tile/derelict/china2
-	name = "china tile"
-	singular_name = "china tile"
+/obj/item/stack/tile/derelict/white_small_edges
+	name = "one star floor tile"
+	singular_name = "one star floor tile"
 
-/obj/item/stack/tile/derelict/china3
-	name = "china tile"
-	singular_name = "china tile"
+/obj/item/stack/tile/derelict/red_white_edges
+	name = "one star floor tile"
+	singular_name = "one star floor tile"
 
-/obj/item/stack/tile/derelict/china4
-	name = "china tile"
-	singular_name = "china tile"
+/obj/item/stack/tile/derelict/white_big_edges
+	name = "one star floor tile"
+	singular_name = "one star floor tile"

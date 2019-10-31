@@ -722,30 +722,30 @@ var/list/flooring_types
 
 //==========Derelict==============
 
-/decl/flooring/tiling/derelict/china1
+/decl/flooring/tiling/derelict
 	name = "floor"
 	icon_base = "derelict1"
-	icon = 'icons/turf/flooring/china_derelict.dmi'
-	build_type = /obj/item/stack/tile/derelict/china1
+	icon = 'icons/turf/flooring/derelict.dmi'
 	footstep_sound = "floor"
 
-/decl/flooring/tiling/derelict/china2
+/decl/flooring/tiling/derelict/white_red_edges
+	name = "floor"
+	icon_base = "derelict1"
+	build_type = /obj/item/stack/tile/derelict/white_red_edges
+
+
+/decl/flooring/tiling/derelict/white_small_edges
 	name = "floor"
 	icon_base = "derelict2"
-	icon = 'icons/turf/flooring/china_derelict.dmi'
-	build_type = /obj/item/stack/tile/derelict/china2
-	footstep_sound = "floor"
+	build_type = /obj/item/stack/tile/derelict/white_small_edges
 
-/decl/flooring/tiling/derelict/china3
+
+/decl/flooring/tiling/derelict/red_white_edges
 	name = "floor"
 	icon_base = "derelict3"
-	icon = 'icons/turf/flooring/china_derelict.dmi'
-	build_type = /obj/item/stack/tile/derelict/china3
-	footstep_sound = "floor"
+	build_type = /obj/item/stack/tile/derelict/red_white_edges
 
-/decl/flooring/tiling/derelict/china4
+/decl/flooring/tiling/derelict/white_big_edges
 	name = "floor"
 	icon_base = "derelict4"
-	icon = 'icons/turf/flooring/china_derelict.dmi'
-	build_type = /obj/item/stack/tile/derelict/china4
-	footstep_sound = "floor"
+	build_type = /obj/item/stack/tile/derelict/white_big_edges
