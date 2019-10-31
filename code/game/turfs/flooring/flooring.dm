@@ -718,3 +718,34 @@ var/list/flooring_types
 	has_damage_range = 6
 	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK | TURF_HIDES_THINGS
 	can_paint = null
+
+
+//==========Derelict==============
+
+/decl/flooring/tiling/derelict
+	name = "floor"
+	icon_base = "derelict1"
+	icon = 'icons/turf/flooring/derelict.dmi'
+	footstep_sound = "floor"
+
+/decl/flooring/tiling/derelict/white_red_edges
+	name = "floor"
+	icon_base = "derelict1"
+	build_type = /obj/item/stack/tile/derelict/white_red_edges
+
+
+/decl/flooring/tiling/derelict/white_small_edges
+	name = "floor"
+	icon_base = "derelict2"
+	build_type = /obj/item/stack/tile/derelict/white_small_edges
+
+
+/decl/flooring/tiling/derelict/red_white_edges
+	name = "floor"
+	icon_base = "derelict3"
+	build_type = /obj/item/stack/tile/derelict/red_white_edges
+
+/decl/flooring/tiling/derelict/white_big_edges
+	name = "floor"
+	icon_base = "derelict4"
+	build_type = /obj/item/stack/tile/derelict/white_big_edges
