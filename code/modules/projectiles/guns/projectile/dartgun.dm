@@ -40,6 +40,7 @@
 	ammo_type = /obj/item/ammo_casing/chemdart
 	max_ammo = 5
 	multiple_sprites = 1
+	mag_well = MAG_WELL_DART
 
 /obj/item/weapon/gun/projectile/dartgun
 	name = "dart gun"
@@ -55,6 +56,7 @@
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/chemdart
 	auto_eject = 0
+	mag_well = MAG_WELL_DART
 
 	var/list/beakers = list() //All containers inside the gun.
 	var/list/mixing = list() //Containers being used for mixing.

@@ -7,7 +7,7 @@
 /datum/uplink_item/item/visible_weapons/dartgun
 	name = "Dart Gun"
 	item_cost = 4
-	path = /obj/item/weapon/gun/projectile/dartgun
+	path = /obj/item/weapon/storage/box/syndie_kit/dartgun
 
 /datum/uplink_item/item/visible_weapons/crossbow
 	name = "Energy Crossbow"
@@ -32,20 +32,20 @@
 /datum/uplink_item/item/visible_weapons/revolver
 	name = "Revolver"
 	item_cost = 7
-	path = /obj/item/weapon/gun/projectile/revolver
+	path = /obj/item/weapon/storage/box/syndie_kit/revolver
 
 //These are for traitors (or other antags, perhaps) to have the option of purchasing some merc gear.
 /datum/uplink_item/item/visible_weapons/submachinegun
 	name = "Submachine Gun"
 	item_cost = 7
-	path = /obj/item/weapon/gun/projectile/automatic/c20r
+	path = /obj/item/weapon/storage/box/syndie_kit/c20r
 
 /datum/uplink_item/item/visible_weapons/assaultrifle
 	name = "Assault Rifle"
 	item_cost = 8
-	path = /obj/item/weapon/gun/projectile/automatic/sts35
+	path = /obj/item/weapon/storage/box/syndie_kit/sts35
 
 /datum/uplink_item/item/visible_weapons/heavysniper
 	name = "Anti-materiel Rifle"
 	item_cost = 20
-	path = /obj/item/weapon/gun/projectile/heavysniper
+	path = /obj/item/weapon/storage/box/syndie_kit/antimaterial_rifle

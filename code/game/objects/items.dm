@@ -13,7 +13,6 @@
 	var/burning = null
 	var/hitsound = null
 	var/worksound = null
-	var/reduced_storage_cost = FALSE //Changes the get_storage_cost proc in storage.dm to use a different function to lower storage space.
 	var/no_attack_log = 0			//If it's an item we don't want to log attack_logs with, set this to 1
 	pass_flags = PASSTABLE
 
@@ -120,16 +119,22 @@
 	var/message
 	var/size
 	switch(w_class)
-		if(1)
+		if(ITEM_SIZE_TINY)
 			size = "tiny"
-		if(2)
+		if(ITEM_SIZE_SMALL)
 			size = "small"
-		if(3)
+		if(ITEM_SIZE_NORMAL)
 			size = "normal-sized"
-		if(4)
+		if(ITEM_SIZE_BULKY)
 			size = "bulky"
-		if(5)
+		if(ITEM_SIZE_HUGE)
 			size = "huge"
+		if(ITEM_SIZE_GARGANTUAN)
+			size = "gargantuan"
+		if(ITEM_SIZE_COLOSSAL)
+			size = "colossal"
+		if(ITEM_SIZE_TITANIC)
+			size = "titanic"
 	message += "\nIt is a [size] item."
 
 	for(var/Q in tool_qualities)

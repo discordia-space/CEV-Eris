@@ -175,7 +175,6 @@
 		else if(firstspace == name_length)
 			real_name += "[pick(GLOB.last_names)]"
 	character.fully_replace_character_name(newname = real_name)
-	character.body_build = get_body_build(gender, body_build)
 	character.gender = gender
 	character.age = age
 	character.b_type = b_type
@@ -202,7 +201,7 @@
 			var/underwear_item_name = all_underwear[underwear_category_name]
 			var/datum/category_item/underwear/UWD = underwear_category.items_by_name[underwear_item_name]
 			var/metadata = all_underwear_metadata[underwear_category_name]
-			var/obj/item/underwear/UW = UWD.create_underwear(character, metadata, character.body_build.underwear_icon)
+			var/obj/item/underwear/UW = UWD.create_underwear(character, metadata, 'icons/inventory/underwear/mob.dmi')
 			if(UW)
 				UW.ForceEquipUnderwear(character, FALSE)
 		else

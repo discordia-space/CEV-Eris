@@ -21,6 +21,13 @@
 	var/list/oddity_stats
 	var/list/oddity_perks
 
+	var/sanity_value = 1
+
+
+/obj/item/weapon/oddity/Initialize()
+	. = ..()
+	AddComponent(/datum/component/atom_sanity, sanity_value, "")
+
 
 /obj/item/weapon/oddity/attack_self(mob/user as mob)
 

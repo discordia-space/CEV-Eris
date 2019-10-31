@@ -16,6 +16,7 @@
 	icon_state = "donutbox"
 	name = "donut box"
 	var/startswith = 6
+	max_storage_space = 12 //The amount of starting donuts multiplied by the donut item size to keep only exact space requirement met.
 	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/donut)
 	foldable = /obj/item/stack/material/cardboard
 

@@ -52,6 +52,8 @@
 
 	var/nerve_system_accumulations = 5 // Nerve system accumulations
 
+	var/sanity_gain
+
 	// Catalog stuff
 	var/appear_in_default_catalog = TRUE
 	var/reagent_type = "FIX DAT SHIT IMIDIATLY"
@@ -68,7 +70,7 @@
 			removed = removed/2
 	if(touch_met && (location == CHEM_TOUCH))
 		removed = touch_met
-	// on half of overdose, chemicals will start be metabolized faster, 
+	// on half of overdose, chemicals will start be metabolized faster,
 	// also blood circulation affects chemical strength (meaining if target has low blood volume or has something that lowers blood circulation chemicals will be consumed less and effect will diminished)
 	if(location == CHEM_BLOOD)
 		if(!constant_metabolism)
@@ -78,7 +80,7 @@
 				removed = CLAMP(metabolism * volume/(REAGENTS_OVERDOSE/2) * M.get_blood_circulation()/100, metabolism * REAGENTS_MIN_EFFECT_MULTIPLIER, metabolism * REAGENTS_MAX_EFFECT_MULTIPLIER)
 	removed = round(removed, 0.01)
 	removed = min(removed, volume)
-		
+
 	return removed
 
 // "Removed" to multiplier
@@ -133,7 +135,7 @@
 		return
 
 	var/removed = consumed_amount(M, alien, location)
-	
+
 	max_dose = max(volume, max_dose)
 	dose = min(dose + removed, max_dose)
 	if(overdose && (dose > overdose) && (location != CHEM_TOUCH))
@@ -150,6 +152,10 @@
 	return
 
 /datum/reagent/proc/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	if(sanity_gain)
+		var/mob/living/carbon/human/H = M
+		if(istype(H))
+			H.sanity.onChem(src, effect_multiplier)
 	return
 
 /datum/reagent/proc/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)

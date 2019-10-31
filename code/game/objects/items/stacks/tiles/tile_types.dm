@@ -416,3 +416,20 @@
 	name = "dark monofloor tile"
 	singular_name = "dark monofloor tile"
 	icon_state = "tile_dark_monofloor"
+
+
+/obj/item/stack/tile/derelict/white_red_edges
+	name = "one star floor tile"
+	singular_name = "one star floor tile"
+
+/obj/item/stack/tile/derelict/white_small_edges
+	name = "one star floor tile"
+	singular_name = "one star floor tile"
+
+/obj/item/stack/tile/derelict/red_white_edges
+	name = "one star floor tile"
+	singular_name = "one star floor tile"
+
+/obj/item/stack/tile/derelict/white_big_edges
+	name = "one star floor tile"
+	singular_name = "one star floor tile"

@@ -6,7 +6,6 @@
 		var/datum/species/current_species = all_species[species]
 		if(!current_species) current_species = all_species[SPECIES_HUMAN]
 		gender = pick(current_species.genders)
-		body_build = pick(list("Slim", "Default", "Fat"))
 		h_style = random_hair_style(gender, species)
 		f_style = random_facial_hair_style(gender, species)
 		if(current_species)

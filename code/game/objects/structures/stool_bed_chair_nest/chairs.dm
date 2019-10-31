@@ -35,6 +35,13 @@
 		rotate()
 	return
 
+/obj/structure/bed/chair/dismantle()
+	if(material)
+		new material.stack_type(loc, 5)
+	if(padding_material)
+		padding_material.place_sheet(get_turf(src))
+	qdel(src)
+
 /obj/structure/bed/chair/post_buckle_mob()
 	update_icon()
 

@@ -29,6 +29,8 @@
 		power_equip = 0
 		power_environ = 0
 
+	sanity = new(src)
+
 	..()
 
 /area/Initialize()

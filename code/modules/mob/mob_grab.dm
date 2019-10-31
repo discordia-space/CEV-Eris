@@ -28,7 +28,7 @@
 	layer = 21
 	abstract = 1
 	item_state = "nothing"
-	w_class = ITEM_SIZE_NO_CONTAINER
+	w_class = ITEM_SIZE_COLOSSAL
 
 /obj/proc/affect_grab(var/mob/user, var/mob/target, var/state)
 	return FALSE

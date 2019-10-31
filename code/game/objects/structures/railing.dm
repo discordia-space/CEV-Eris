@@ -21,11 +21,14 @@
 	icon_modifier = "grey_"
 	icon_state = "grey_railing0"
 
+/obj/structure/railing/Initialize()
+	. = ..()
+	update_icon(FALSE)
+
 /obj/structure/railing/New(loc)
 	..()
 	if(climbable)
 		verbs += /obj/structure/proc/climb_on
-	update_icon(FALSE)
 
 /obj/structure/railing/Created(var/mob/user)
 	anchored = FALSE
