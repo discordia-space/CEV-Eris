@@ -58,6 +58,9 @@
 
 
 /mob/living/proc/resist_grab()
+	var/mob/living/carbon/C = src
+	if(istype(C) && C.handcuffed)
+		return
 	var/resisting = 0
 	for(var/obj/O in requests)
 		requests.Remove(O)
