@@ -35,6 +35,13 @@
 
 	sanity_damage = 0.5
 
+/mob/living/carbon/superior_animal/roach/New()
+	. = ..()
+	if(rand(1, 10) <= 3)
+		var/list/possible_mutations = subtypesof(/datum/mutation)
+		var/picked_mutation = pick(possible_mutations)
+		mutations += new picked_mutation
+
 //When roaches die near a leader, the leader may call for reinforcements
 /mob/living/carbon/superior_animal/roach/death()
 	.=..()

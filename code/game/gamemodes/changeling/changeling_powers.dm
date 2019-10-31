@@ -47,6 +47,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	verbs += /datum/changeling/proc/EvolutionMenu
 	add_language(LANGUAGE_CHANGELING)
 
+	dna.add_random_mutations(4, 7)
 
 	var/lesser_form = isMonkey()
 

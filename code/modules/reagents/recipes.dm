@@ -2049,3 +2049,8 @@
 	result = "nanovoice"
 	required_reagents = list("uncap nanites" = 1, "synaptizine" = 1)
 	result_amount = 1
+
+/datum/chemical_reaction/kognim
+	result = "kognim"
+	required_reagents = list("radium" = 1, "ryetalyn" = 2, "synaptizine" = 1)
+	result_amount = 4

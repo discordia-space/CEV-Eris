@@ -641,3 +641,13 @@
 			spill_biomass(T)
 		remove_self(volume)
 		return TRUE
+
+/datum/reagent/toxin/kognim
+	name = "Kognim"
+	id = "kognim"
+	description = "A chemical needed to scan mutations."
+	taste_description = "deoxyribonucleic acid"
+	reagent_state = LIQUID
+	color = "#6685C7"
+	strength = 0.02
+	metabolism = REM * 0.2

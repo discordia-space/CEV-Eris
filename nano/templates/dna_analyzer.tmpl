@@ -1,0 +1,93 @@
+{{if data.error}}
+	<h5 class='average'>ERROR</h5>
+	<div class='notice'>
+		<center>{{:data.error}}</center>
+	</div>
+	<p>
+		Contact your local system administrator.
+	</p>
+{{else}}
+	{{if data.show_topnav}}
+		<div class='itemGroup' style="text-align: center; height: 22px;">
+			{{:helper.link("Mutations List", '', { 'change_screen' : 'dnalist'}, data.screen == "dnalist" ? 'selected':null)}}
+			{{:helper.link("Settings", '', { 'change_screen' : 'settings'}, data.screen == "settings" ? 'selected':null)}}
+		</div>
+	{{/if}}
+	{{if data.screen=="settings"}}
+		<div style="text-align: center;">
+			<div class='item'>
+				{{:helper.link("Sync Database with Network", 'transferthick-e-w', {'sync' : 1}, data.sync ? null : 'disabled')}}
+			</div>
+			<div class='item'>
+				{{:helper.link("Connect to Research Network", 'lightbulb', {'togglesync' : 1}, data.sync ? 'disabled' : null)}}
+			</div>
+			<div class='item'>
+				{{:helper.link("Disconnect from Research Network", 'cancel', {'togglesync' : 1}, data.sync ? null : 'disabled')}}
+			</div>
+			<div class='item'>
+				{{:helper.link("Lock Console", 'locked', {'lock' : 1})}}
+				{{:helper.link("Reset DNA Database", 'trash', {'reset' : 1})}}
+			</div>
+			<div class='item'>
+				{{:helper.link("Re-sync with Nearby Devices", 'link', {'find_device' : 1})}}
+			</div>
+			<div class='item'>
+				{{:helper.link("Disconnect DNA Imprinter", 'close', {'disconnect' : 1}, data.has_dna_imprinter ? null : 'disabled')}}
+			</div>
+		</div>
+	{{/if}}
+	{{if data.screen == "dnalist"}}
+		<table>
+			<tr>
+				<th>Tier</th>
+				<th>Name</th>
+				<th colspan="2">Genocode</th>
+				<th colspan="2">Options</th>
+			</tr>
+			{{for data.mutations_list}}
+				<tr class="candystripe">
+					<td><span style="border-radius: 50%; border:solid black 1px; padding: 5px; width: 15px; height: 15px;">{{:value.tier}}</span></td>
+					<td>{{:value.name}}</td>
+					<td>{{:value.genocode1}}</td>
+					<td>{{:value.genocode2}}</td>
+					<td>{{:helper.link("Research", 'lightbulb', {'research' : value.index})}}</td>
+					<td>{{:helper.link("Remove", 'trash', {'remove' : value.index})}}</td>
+				</tr>
+			{{/for}}
+		</table>
+	{{/if}}
+	{{if data.screen == "working"}}
+		<h5 class='average'>Program is currently busy.</h5>
+		<div class='notice'>
+		<center>Working...</center>
+		</div>
+		<p>
+		Thank you for your patience!
+		</p>
+	{{/if}}
+	{{if data.screen == "research"}}
+		// RESEARCH IN PROGRESS //
+		<table>
+			<tr>
+				<th>Option</th>
+				<th colspan="2">Genocode</th>
+			</tr>
+			{{for data.available_mutations}}
+				<tr>
+					<td>{{:helper.link("Pick", '', {'pick' : value.index})}}</td>
+					<td>{{:value.genocode1}}</td>
+					<td>{{:value.genocode2}}</td>
+				</tr>
+			{{/for}}
+		</table>
+	{{/if}}
+	{{if data.screen == "locked"}}
+		<h5 class='average'>The DNA Analyze Program</h5>
+		<div class='notice'>
+		<center>PROGRAM LOCKED</center>
+		</div>
+		<p>
+		{{:helper.link("Unlock", 'unlocked', {'unlock' : 1})}}
+		</p>
+	{{/if}}
+{{/if}}
