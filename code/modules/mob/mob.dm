@@ -635,6 +635,7 @@
 	if (SSticker.current_state != GAME_STATE_PREGAME)
 		
 		if(ishuman(src))
+			
 			return stats.getStat(typeOfStat)
 		return 0
 /mob/Stat()
@@ -646,12 +647,8 @@
 			stat("Storyteller", "[master_storyteller]")
 			stat("Station Time", stationtime2text())
 			stat("Round Duration", roundduration2text())
-			stat("MEC STAT:", getStatStats(STAT_MEC))
-			stat("COG STAT:", getStatStats(STAT_COG))
-			stat("BIO STAT:", getStatStats(STAT_BIO))
-			stat("ROB STAT:", getStatStats(STAT_ROB))
-			stat("TGH STAT:", getStatStats(STAT_TGH))
-			stat("VIG STAT:", getStatStats(STAT_VIG))
+			for( stat in ALL_STATS)
+       			stat("[stat]:", getStatStats(stat))
 		if(client.holder)
 			if(statpanel("Status"))
 				stat("Location:", "([x], [y], [z]) [loc]")
