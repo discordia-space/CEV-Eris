@@ -631,7 +631,12 @@
 /mob/proc/show_viewers(message)
 	for(var/mob/M in viewers())
 		M.see(message)
-
+/mob/proc/getStatStats(typeOfStat)
+	var/mob/living/carbon/human/H
+	if(ishuman(src))
+		return H.stats.getStat(typeOfStat)
+	else
+		return 0
 /mob/Stat()
 	..()
 	. = (is_client_active(10 MINUTES))
@@ -641,7 +646,12 @@
 			stat("Storyteller", "[master_storyteller]")
 			stat("Station Time", stationtime2text())
 			stat("Round Duration", roundduration2text())
-
+			stat("MEC STAT:", getStatStats(STAT_MEC))
+			stat("COG STAT:", getStatStats(STAT_COG))
+			stat("BIO Stat:", getStatStats(STAT_BIO))
+			stat("ROB STAT:", getStatStats(STAT_ROB))
+			stat("TGH STAT:", getStatStats(STAT_TGH))
+			stat("VIG STAT:", getStatStats(STAT_VIG))
 		if(client.holder)
 			if(statpanel("Status"))
 				stat("Location:", "([x], [y], [z]) [loc]")
