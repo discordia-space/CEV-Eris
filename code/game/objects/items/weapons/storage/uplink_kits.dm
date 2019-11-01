@@ -221,7 +221,9 @@
 /obj/item/weapon/storage/box/syndie_kit/antimaterial_rifle/New()
 	..()
 	new /obj/item/ammo_casing/a145(src)
-	new /obj/item/weapon/gun/projectile/heavysniper(src)
+	new /obj/item/weapon/weaponparts/heavysniper/disassembled(src)
+	new /obj/item/weapon/weaponparts/heavysniper/stock(src)
+	new /obj/item/weapon/weaponparts/heavysniper/barrel(src)
 
 /obj/item/weapon/storage/box/syndie_kit/toxin
 	name = "toxin kit"

@@ -46,6 +46,6 @@
 	path = /obj/item/weapon/storage/box/syndie_kit/sts35
 
 /datum/uplink_item/item/visible_weapons/heavysniper
-	name = "Anti-materiel Rifle"
+	name = "Anti-material Rifle"
 	item_cost = 20
 	path = /obj/item/weapon/storage/box/syndie_kit/antimaterial_rifle
