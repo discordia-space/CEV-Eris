@@ -87,7 +87,8 @@
 				H.visible_message(SPAN_DANGER("\The [H] performs CPR on \the [src]!"))
 				to_chat(src, SPAN_NOTICE("You feel a breath of fresh air enter your lungs. It feels good."))
 				to_chat(H, SPAN_WARNING("Repeat at least every 7 seconds."))
-
+			else if(can_operate(src, M) && do_surgery(src, M, null))
+				return 1
 			else
 				help_shake_act(M)
 			return 1

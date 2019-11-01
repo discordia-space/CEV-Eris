@@ -65,6 +65,7 @@
 
 	return null
 
+
 // Is body part open for most surgerical operations?
 /obj/item/organ/internal/is_open()
 	var/obj/item/organ/external/limb = get_limb()
@@ -73,3 +74,29 @@
 		return limb.is_open()
 	else
 		return TRUE
+
+
+// Gets a list of surgically treatable conditions
+/obj/item/organ/internal/get_conditions()
+	var/list/conditions_list = ..()
+	var/list/condition
+
+	if(damage > 0)
+		if(BP_IS_ROBOTIC(src))
+			condition = list(
+				"name" = "Damage",
+				"fix_name" = "Repair",
+				"step" = "[/datum/surgery_step/robotic/fix_organ]",
+				"organ" = "\ref[src]"
+			)
+		else
+			condition = list(
+				"name" = "Damage",
+				"fix_name" = "Heal",
+				"step" = "[/datum/surgery_step/fix_organ]",
+				"organ" = "\ref[src]"
+			)
+
+		conditions_list.Add(list(condition))
+
+	return conditions_list

@@ -41,15 +41,27 @@
 	return status_data
 
 
+// Atom to use in do_after targeting for the surgery
 /obj/item/organ/proc/get_surgery_target()
-	return owner ? owner : src
+	if(owner)
+		return owner
+
+	if(istype(loc, /obj/item/organ))
+		return loc
+
+	return src
 
 
-// Flickers a pain message to the user, if the body part can feel pain at all
+// Flickers a pain message to the owner, if the body part can feel pain at all
 /obj/item/organ/proc/owner_custom_pain(message, flash_strength)
-	if(BP_IS_ORGANIC(src) && !(status & ORGAN_DEAD) && ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.custom_pain(message, flash_strength)
+	if(can_feel_pain() && istype(owner))
+		owner.custom_pain(message, flash_strength)
+
+
+// Deals agony damage to the owner, if the body part can feel pain at all
+/obj/item/organ/proc/owner_pain(strength)
+	if(can_feel_pain() && istype(owner) && strength)
+		owner.apply_effect(strength, AGONY, armor_value = 0, check_protection = FALSE)
 
 
 // Get a list of surgically treatable conditions
@@ -57,10 +69,12 @@
 /obj/item/organ/proc/get_conditions()
 	return list()
 
+
 // Is body part open for most surgerical operations?
 // To be overridden in subtypes
 /obj/item/organ/proc/is_open()
 	return FALSE
+
 
 // Handling of attacks in organ-centric surgery - called from attackby and attack_hand
 // To be overridden in subtypes

@@ -64,10 +64,14 @@
 	var/joint = "joint"		// Descriptive string used in dislocation.
 	var/amputation_point	// Descriptive string used in amputation.
 	var/dislocated = 0		// If you target a joint, you can dislocate the limb, impairing it's usefulness and causing pain
-	var/encased				// Needs to be opened with a saw to access the organs.
+	var/encased				// Needs to be opened with a saw to access certain organs.
+
+	var/cavity_name = "cavity"				// Name of body part's cavity, displayed during cavity implant surgery
+	var/cavity_max_w_class = ITEM_SIZE_TINY	// Max w_class of cavity implanted items
 
 	// Surgery vars.
 	var/open = 0
+	var/diagnosed = FALSE
 	var/stage = 0
 	var/cavity = 0
 
@@ -160,7 +164,7 @@
 		//large items and non-item objs fall to the floor, everything else stays
 		var/obj/item/I = implant
 		if(istype(I) && I.w_class < ITEM_SIZE_NORMAL)
-			implant.loc = get_turf(owner)
+			implant.forceMove(get_turf(owner))
 		else
 			implant.loc = src
 	implants.Cut()
@@ -192,6 +196,8 @@
 
 	if(redraw_mob)
 		victim.update_body()
+
+	SSnano.update_uis(src)
 
 /obj/item/organ/external/proc/activate_module()
 	set name = "Activate module"
@@ -318,6 +324,7 @@ This function completely restores a damaged organ to perfect condition.
 			implanted_object.loc = get_turf(src)
 			implants -= implanted_object
 
+	SSnano.update_uis(src)
 	owner.updatehealth()
 
 
@@ -602,6 +609,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	//Bone fractures
 	if(src.should_fracture())
 		src.fracture()
+
+	SSnano.update_uis(src)
 
 //Returns 1 if damage_state changed
 /obj/item/organ/external/proc/update_damstate()
@@ -1010,3 +1019,52 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return open
 	else
 		return open == 2
+
+// Gets a list of surgically treatable conditions
+/obj/item/organ/external/get_conditions()
+	var/list/conditions_list = ..()
+	var/list/condition
+
+	if(BP_IS_ROBOTIC(src))
+		if(brute_dam > 0)
+			condition = list(
+				"name" = "Hull dents",
+				"fix_name" = "Repair",
+				"step" = "[/datum/surgery_step/robotic/fix_brute]"
+			)
+			conditions_list.Add(list(condition))
+
+		if(burn_dam > 0)
+			condition = list(
+				"name" = "Damaged wiring",
+				"fix_name" = "Replace",
+				"step" = "[/datum/surgery_step/robotic/fix_burn]"
+			)
+			conditions_list.Add(list(condition))
+
+	else if(BP_IS_ORGANIC(src))
+		if(status & ORGAN_BLEEDING)
+			condition = list(
+				"name" = "Bleeding",
+				"fix_name" = "Clamp",
+				"step" = "[/datum/surgery_step/fix_bleeding]"
+			)
+			conditions_list.Add(list(condition))
+
+		if(status & ORGAN_BROKEN)
+			condition = list(
+				"name" = "Bone fracture",
+				"fix_name" = "Mend",
+				"step" = "[/datum/surgery_step/fix_bone]"
+			)
+			conditions_list.Add(list(condition))
+
+		if(status & ORGAN_DEAD)
+			condition = list(
+				"name" = "Necrosis",
+				"fix_name" = "Treat",
+				"step" = "[/datum/surgery_step/fix_necrosis]"
+			)
+			conditions_list.Add(list(condition))
+
+	return conditions_list

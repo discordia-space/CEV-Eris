@@ -18,6 +18,8 @@
 	cannot_amputate = TRUE
 	parent_organ = null
 	encased = "ribcage"
+	cavity_name = "thoracic cavity"
+	cavity_max_w_class = ITEM_SIZE_NORMAL
 
 /obj/item/organ/external/groin
 	name = "lower body"
@@ -32,6 +34,8 @@
 	parent_organ = BP_CHEST
 	amputation_point = "lumbar"
 	joint = "hip"
+	cavity_name = "abdominal cavity"
+	cavity_max_w_class = ITEM_SIZE_SMALL
 	dislocated = -1
 
 /obj/item/organ/external/head
@@ -48,6 +52,7 @@
 	joint = "jaw"
 	amputation_point = "neck"
 	encased = "skull"
+	cavity_name = "cranial cavity"
 	drop_on_remove = list(slot_head, slot_glasses, slot_l_ear, slot_r_ear, slot_wear_mask)
 	functions = BODYPART_REAGENT_INTAKE
 
@@ -67,3 +72,15 @@
 				disfigure("brute")
 		if (burn_dam > 40)
 			disfigure("burn")
+
+/obj/item/organ/external/head/get_conditions()
+	var/list/conditions_list = ..()
+	if(disfigured)
+		var/list/condition = list(
+			"name" = "Disfigured face",
+			"fix_name" = "Restore",
+			"step" = "[/datum/surgery_step/fix_face]"
+		)
+		conditions_list.Add(list(condition))
+
+	return conditions_list
