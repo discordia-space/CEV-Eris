@@ -92,7 +92,7 @@ var/global/list/limb_icon_cache = list()
 			mob_icon.Blend(eyes.get_icon(), ICON_OVERLAY)
 
 	if(owner.lip_style && (species && (species.appearance_flags & HAS_LIPS)))
-		var/icon/lip_icon = new/icon('icons/mob/human_face.dmi', "lips[owner.lip_style][owner.body_build.index]")
+		var/icon/lip_icon = new/icon('icons/mob/human_face.dmi', "lips[owner.lip_style]")
 		mob_icon.Blend(lip_icon, ICON_OVERLAY)
 
 	if(!BP_IS_ROBOTIC(src))
@@ -120,7 +120,7 @@ var/global/list/limb_icon_cache = list()
 		return
 	if(appearance_test.simple_setup)
 		var/gender = owner.gender == FEMALE ? "_f" : "_m"
-		icon_state = "[organ_tag][gender][owner.body_build.index]"
+		icon_state = "[organ_tag][gender]"
 	else
 		var/gender = "_m"
 		if (dna && dna.GetUIState(DNA_UI_GENDER))
@@ -128,7 +128,7 @@ var/global/list/limb_icon_cache = list()
 		else if(owner && owner.gender == FEMALE)
 			gender = "_f"
 
-		icon_state = "[organ_tag][gender][owner.body_build.index][is_stump()?"_s":""]"
+		icon_state = "[organ_tag][gender][is_stump()?"_s":""]"
 
 	if(!appearance_test.get_species_sprite)
 		icon = 'icons/mob/human_races/r_human.dmi'

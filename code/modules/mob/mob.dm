@@ -148,6 +148,7 @@
 
 
 /mob/proc/Life()
+	SEND_SIGNAL(src, COMSIG_MOB_LIFE)
 //	if(organStructure)
 //		organStructure.ProcessOrgans()
 	//handle_typing_indicator() //You said the typing indicator would be fine. The test determined that was a lie.
@@ -631,7 +632,17 @@
 /mob/proc/show_viewers(message)
 	for(var/mob/M in viewers())
 		M.see(message)
-
+/mob/proc/getStatStats(typeOfStat)
+	if (SSticker.current_state != GAME_STATE_PREGAME)
+		
+		if(ishuman(src))
+			var/mob/living/carbon/human/H = src
+			if (H.sanity.level <= 35)
+				var/loss_stat = round((100 - H.sanity.level) / 6)
+				var/false_stat = rand(stats.getStat(typeOfStat) - loss_stat, stats.getStat(typeOfStat))	
+				return abs(false_stat)	
+			return stats.getStat(typeOfStat)
+		return 0
 /mob/Stat()
 	..()
 	. = (is_client_active(10 MINUTES))
@@ -641,7 +652,8 @@
 			stat("Storyteller", "[master_storyteller]")
 			stat("Station Time", stationtime2text())
 			stat("Round Duration", roundduration2text())
-
+			for( stat in ALL_STATS)
+				stat("[stat]:", getStatStats(stat))
 		if(client.holder)
 			if(statpanel("Status"))
 				stat("Location:", "([x], [y], [z]) [loc]")

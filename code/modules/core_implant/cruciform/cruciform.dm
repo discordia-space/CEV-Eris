@@ -13,9 +13,9 @@ var/list/disciples = list()
 	power_regen = 0.5
 	price_tag = 500
 
-/obj/item/weapon/implant/core_implant/cruciform/get_mob_overlay(gender, body_build)
+/obj/item/weapon/implant/core_implant/cruciform/get_mob_overlay(gender)
 	gender = (gender == MALE) ? "m" : "f"
-	return image('icons/mob/human_races/cyberlimbs/neotheology.dmi', "[icon_state]_[gender][body_build]")
+	return image('icons/mob/human_races/cyberlimbs/neotheology.dmi', "[icon_state]_[gender]")
 
 /obj/item/weapon/implant/core_implant/cruciform/hard_eject()
 	if(!ishuman(wearer))

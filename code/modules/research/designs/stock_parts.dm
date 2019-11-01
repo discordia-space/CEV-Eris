@@ -102,7 +102,6 @@
 	build_path = /obj/item/bluespace_crystal/artificial
 	sort_string = "VAAAF"
 
-
 // SMES coils
 /datum/design/research/item/part/smes_coil
 	build_path = /obj/item/weapon/smes_coil

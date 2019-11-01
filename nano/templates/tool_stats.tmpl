@@ -1,0 +1,123 @@
+<!-- 
+
+ -->
+<div class="item">
+	<h3>Specifications:</h3>
+	<div class="statusDisplay" style="overflow: auto;">
+		{{if data.tool_qualities}}
+			<div class="itemLabel">
+				Tool qualities:
+			</div>
+			<div class="itemContent">
+				{{for data.tool_qualities}}
+					<div>
+						{{:value.name}}: 
+						{{:helper.displayBar(value.number, 0, 100, null, value.number)}}
+					</div>
+				{{/for}}
+			</div>
+		{{/if}}
+		<div class="itemLabel">
+			Tool health:
+		</div>
+		<div class="itemContent">
+			{{:helper.displayBar(data.health, 0, data.health_max, data.health <= data.health_threshold ? 'bad' : data.health < data.health_max ? 'average' : '', data.health + ' / ' + data.health_max)}}
+		</div>
+		{{if data.degradation > 0}}
+			<div class="itemLabel">
+				Tool degradation rate:
+			</div>
+			<div class="itemContent">
+				{{:helper.displayBar(data.degradation, 0, data.degradation_max, data.degradation_state, data.degradation)}}
+			</div>
+		{{/if}}
+		<div class="itemLabel">
+			Precision:
+		</div>
+		<div class="itemContent">
+			{{:helper.displayBar(data.precision, -100, 100, data.precision_state, data.precision + '%')}}
+		</div>
+		<div class="itemLabel">
+			Speed:
+		</div>
+		<div class="itemContent">
+			{{:helper.displayBar(data.workspeed, 0, data.workspeed_max, data.workspeed_state, data.workspeed)}}
+		</div>
+		
+		{{if data.use_power_cost}}
+			<h4>Power:</h4>
+			{{if data.cell_charge}}
+				<div class="itemLabel">
+					Cell rating:
+				</div>
+				<div class="itemContent">
+					{{:helper.displayBar(data.cell_charge, 0, 100, data.cell_charge <= 25 ? 'bad' : data.cell_charge < 100 ? 'average' : '', data.cell_charge + '%')}}
+				</div>
+			{{else}}
+				<div class="average">
+					No cell installed.
+				</div>
+			{{/if}}
+			<div class="itemLabel">
+				Power usage:
+			</div>
+			<div class="itemContent">
+				{{:helper.displayBar(data.use_power_cost, 0, data.use_power_cost_max, data.use_power_cost_state, data.use_power_cost)}}
+			</div>
+		{{/if}}
+		{{if data.use_fuel_cost}}
+			<h4>Fuel:</h4>
+			{{if data.fuel}}
+				<div class="itemLabel">
+					Fuel volume:
+				</div>
+				<div class="itemContent">
+					{{:helper.displayBar(data.fuel.total_volume, 0, data.fuel.maximum_volume, data.fuel.total_volume <= data.fuel.total_volume * 0.25 ? 'bad' : data.fuel.total_volume < data.fuel.maximum_volume ? 'average' : '', data.fuel.total_volume + ' / ' + data.fuel.maximum_volume)}}
+				</div>
+				{{for data.fuel.contents}}
+					<span class="highlight">{{:helper.fixed(value.volume)}} units of {{:value.name}}</span><br>
+				{{/for}}
+			{{/if}}
+			<div class="itemLabel">
+				Fuel usage:
+			</div>
+			<div class="itemContent">
+				{{:helper.displayBar(data.use_fuel_cost, 0, data.use_fuel_cost_max, data.use_fuel_cost_state, data.use_fuel_cost)}}
+			</div>
+		{{/if}}
+		<div class="itemLabel">
+			Damage capabilities:
+		</div>
+		<div class="itemContent">
+			{{:helper.displayBar(data.force, 0, data.force_max, '', data.force)}}
+		</div>
+
+		{{if data.extra_volume}}
+			<div class="itemLabel">
+				Extra tank volume:
+			</div>
+			<div class="itemContent">
+				{{:data.extra_volume}}u
+			</div>
+		{{/if}}
+	</div>
+</div>
+
+<div class="item">
+	<h3>Attachments:</h3>
+	Supports up to {{:data.upgrades_max}} attachments.
+
+	{{if data.attachments}}
+		<div class="statusDisplay" style="overflow: auto;">
+			<table style="width:100%;  overflow-wrap: break-all;">
+				{{for data.attachments}}
+					<tr>
+					<div class="item" style="margin: 0px">
+						<div style ='float: left; height: 24px; width: 24px; margin: 4px' class='statusDisplayItem'><img src= {{:value.icon}} height=24 width=24></div>
+						{{:value.name}}
+					</div>
+				{{/for}}
+			</table>
+		</div>
+	{{/if}}
+</div>

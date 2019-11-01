@@ -220,7 +220,7 @@
 
 /mob/living/carbon/human/setToxLoss(var/amount)
 	if(!(species.flags & NO_POISON) && !isSynthetic())
-		adjustToxLoss(getToxLoss()-amount)
+		adjustToxLoss(amount-getToxLoss())
 
 ////////////////////////////////////////////
 
@@ -360,6 +360,7 @@ This function restores all organs.
 				emote("scream")
 
 		..(damage, damagetype, def_zone)
+		sanity.onDamage(damage)
 		return 1
 
 	//Handle BRUTE and BURN damage
@@ -385,6 +386,8 @@ This function restores all organs.
 			if(organ.take_damage(0, damage, sharp, edge, used_weapon))
 				UpdateDamageIcon()
 
+	sanity.onDamage(damage)
+
 	// Will set our damageoverlay icon to the next level, which will then be set back to the normal level the next mob.Life().
 	updatehealth()
 	BITSET(hud_updateflag, HEALTH_HUD)
@@ -394,12 +397,6 @@ This function restores all organs.
 //Falling procs
 /mob/living/carbon/human/get_fall_damage(var/turf/from, var/turf/dest)
 	var/damage = 15
-
-	//Fatties land harder
-	if (body_build.index == FAT)
-		damage *= 2
-	else if (body_build.index == SLIM)
-		damage *= 0.75
 
 	if (from && dest)
 		damage *= abs(from.z - dest.z)

@@ -10,7 +10,7 @@ GLOBAL_LIST_EMPTY(gps_by_type)
 	w_class = 2
 	slot_flags = SLOT_BELT
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BLUESPACE = 2)
-	matter = list(MATERIAL_ALUMINIUM = 250, MATERIAL_STEEL = 250, MATERIAL_GLASS = 50)
+	matter = list(MATERIAL_STEEL = 25, MATERIAL_GLASS = 5)
 	var/gps_prefix = "COM"
 	var/gpstag = "COM0"
 	var/emped = 0

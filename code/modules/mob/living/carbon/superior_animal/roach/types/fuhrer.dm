@@ -20,6 +20,7 @@
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/fuhrer
 	meat_amount = 6
 
+	sanity_damage = 1
 
 
 

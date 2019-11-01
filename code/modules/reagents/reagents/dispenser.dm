@@ -103,6 +103,7 @@
 	var/adj_temp = 0
 	var/targ_temp = 310
 	var/halluci = 0
+	var/sanity_gain_ingest = 0.5
 
 	glass_icon_state = "glass_clear"
 	glass_name = "ethanol"
@@ -160,6 +161,10 @@
 	if(halluci)
 		M.adjust_hallucination(halluci, halluci)
 
+	var/mob/living/carbon/human/H = M
+	if(istype(H))
+		H.sanity.onAlcohol(src, effect_multiplier)
+
 /datum/reagent/ethanol/touch_obj(var/obj/O)
 	if(istype(O, /obj/item/weapon/paper))
 		var/obj/item/weapon/paper/paperaffected = O
@@ -203,7 +208,7 @@
 	taste_description = "metal"
 	reagent_state = SOLID
 	color = "#353535"
-	
+
 
 /datum/reagent/metal/iron/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.add_chemical_effect(CE_BLOODRESTORE, 0.8 * effect_multiplier)
@@ -245,7 +250,7 @@
 	reagent_state = SOLID
 	color = "#832828"
 	reagent_type = "Reactive nonmetal"
-	
+
 
 /datum/reagent/metal/potassium
 	name = "Potassium"

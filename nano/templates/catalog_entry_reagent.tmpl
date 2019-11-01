@@ -143,40 +143,5 @@
 				{{:data.addiction_chance}}
 			</div>
 		{{/if}}
-		{{if data.catalog_info_level_one}}
-			<div class="item">
-				{{:data.catalog_info_level_one}}
-			</div>
-		{{/if}}
-		{{if data.catalog_info_level_two}}
-			<div class="item">
-				{{:data.catalog_info_level_two}}
-			</div>
-		{{/if}}
-		{{if data.catalog_info_level_three}}
-			<div class="item">
-				{{:data.catalog_info_level_three}}
-			</div>
-		{{/if}}
-		{{if data.catalog_info_level_four}}
-			<div class="item">
-				{{:data.catalog_info_level_four}}
-			</div>
-		{{/if}}
-		{{if data.catalog_info_level_ooc}}
-			<div class="item">
-				{{:data.catalog_info_level_ooc}}
-			</div>
-		{{/if}}
-		{{if data.can_be_found_in}}
-			<h4>Can be found in:</h4>
-			<div class="statusDisplay" style="overflow: auto;">
-				<table style="width:100%;  overflow-wrap: break-all;">
-					{{for data.can_be_found_in}}
-						<tr>{{:helper.catalogEntryLink(value.type)}}
-					{{/for}}
-				</table>
-			</div>
-		{{/if}}
 	</div>
 {{/if}}
