@@ -14,6 +14,7 @@
 #define STAT_LEVEL_ADEPT    25
 #define STAT_LEVEL_EXPERT   40
 #define STAT_LEVEL_PROF     60
+#define STAT_LEVEL_GODLIKE	80
 
 #define STAT_LEVEL_MIN      0 // Min stat value selectable
 #define STAT_LEVEL_MAX      60 // Max stat value selectable
