@@ -11,15 +11,15 @@
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_SMG
 	magazine_type = /obj/item/ammo_magazine/smg9mm
-	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 3)
+	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 3)
 	price_tag = 2000
 	damage_multiplier = 0.6
-	recoil = 0.7 //slightly more than a standart pistol due to auto-firing mode
+	recoil = 0.8 
 	recoil_buildup = 0.1 //smg level
 
 	firemodes = list(
-		FULL_AUTO_400,
-		BURST_3_ROUND
+		FULL_AUTO_600,
+		SEMI_AUTO_NODELAY
 		)
 
 /obj/item/weapon/gun/projectile/automatic/drozd/update_icon()
