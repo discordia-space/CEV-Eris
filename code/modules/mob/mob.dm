@@ -632,17 +632,7 @@
 /mob/proc/show_viewers(message)
 	for(var/mob/M in viewers())
 		M.see(message)
-/mob/proc/getStatStats(typeOfStat)
-	if (SSticker.current_state != GAME_STATE_PREGAME)
-		
-		if(ishuman(src))
-			var/mob/living/carbon/human/H = src
-			if (H.sanity.level <= 35)
-				var/loss_stat = round((100 - H.sanity.level) / 6)
-				var/false_stat = rand(stats.getStat(typeOfStat) - loss_stat, stats.getStat(typeOfStat))	
-				return abs(false_stat)	
-			return stats.getStat(typeOfStat)
-		return 0
+
 /mob/Stat()
 	..()
 	. = (is_client_active(10 MINUTES))
@@ -652,8 +642,7 @@
 			stat("Storyteller", "[master_storyteller]")
 			stat("Station Time", stationtime2text())
 			stat("Round Duration", roundduration2text())
-			for( stat in ALL_STATS)
-				stat("[stat]:", getStatStats(stat))
+
 		if(client.holder)
 			if(statpanel("Status"))
 				stat("Location:", "([x], [y], [z]) [loc]")
@@ -1068,6 +1057,57 @@ mob/proc/yank_out_object()
 		to_chat(usr, "You are now not facing anything.")
 	else
 		to_chat(usr, "You are now facing [dir2text(facing_dir)].")
+
+/mob/verb/browse_mine_stats()
+	set name		= "Show Stats Values"
+	set desc		= "Browse your character stats."
+	set category	= "IC"
+	set src			= usr
+
+	browse_src_stats(src)
+
+/mob/proc/browse_src_stats(mob/user)
+	var/aditonalcss = {"
+		<style>
+			table, th, td {
+				border: #3333aa solid 1px;
+				border-radius: 5px;
+				padding: 5px;
+				text-align: center;
+			}
+			th{
+				background:#633;
+			}
+		</style>
+	"}
+	var/table_header = "<th>Stat's Name<th>Stat's Value"
+	var/list/S = list()
+	for(var/TS in ALL_STATS)
+		S += "<td>[TS]<td>[getStatStats(TS)]"
+	var/data = {"
+		[aditonalcss]
+		[user == src ? "Your stats:" : "[name]'s stats"]
+		<table>
+			<tr>[table_header]
+			<tr>[S.Join("<tr>")]
+		</table>
+	"}
+
+	var/datum/browser/B = new(src, "StatsBrowser","[user == src ? "Your stats:" : "[name]'s stats"]", 220, 345)
+	B.set_content(data)
+	B.set_window_options("can_resize=0;can_minimize=0")
+	B.open()
+
+/mob/proc/getStatStats(typeOfStat)
+	if (SSticker.current_state != GAME_STATE_PREGAME)
+		if(ishuman(src))
+			var/mob/living/carbon/human/H = src
+			if (H.sanity.level <= 35)
+				var/loss_stat = round((100 - H.sanity.level) / 6)
+				var/false_stat = rand(stats.getStat(typeOfStat) - loss_stat, stats.getStat(typeOfStat))
+				return abs(false_stat)
+			return stats.getStat(typeOfStat)
+		return 0
 
 /mob/proc/set_face_dir(var/newdir)
 	if(!isnull(facing_dir) && newdir == facing_dir)
