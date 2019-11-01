@@ -2175,6 +2175,7 @@
 #include "code\modules\projectiles\guns\projectile\automatic\atreides.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\c20r.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\dallas.dm"
+#include "code\modules\projectiles\guns\projectile\automatic\drozd.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\idaho.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\IH_heavy.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\IH_machinepistol.dm"
