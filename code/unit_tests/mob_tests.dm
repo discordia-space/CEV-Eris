@@ -65,7 +65,7 @@ proc/create_test_mob_with_mind(var/turf/mobloc = null, var/mobtype = /mob/living
 	var/list/test_result = list("result" = FAILURE, "msg"    = "", "mobref" = null)
 
 	if(isnull(mobloc))
-		mobloc = pick_spawn_location("Cryogenic Storage")
+		mobloc = pick_spawn_location("Aft Cryogenic Storage")
 	if(!mobloc)
 		test_result["msg"] = "Unable to find a location to create test mob"
 		return test_result
