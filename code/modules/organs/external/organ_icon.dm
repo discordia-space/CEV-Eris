@@ -115,14 +115,10 @@ var/global/list/limb_icon_cache = list()
 	return mob_icon
 
 /obj/item/organ/external/update_icon(regenerate = 0)
-
-	var/body_build_index = ""
 	var/gender = "_m"
-	if(owner)
-		body_build_index = owner.body_build.index
 
 	if(appearance_test.simple_setup)
-		var/gender = owner.gender == FEMALE ? "_f" : "_m"
+		gender = owner.gender == FEMALE ? "_f" : "_m"
 		icon_state = "[organ_tag][gender]"
 	else
 		if (dna && dna.GetUIState(DNA_UI_GENDER))
