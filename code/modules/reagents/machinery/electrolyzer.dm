@@ -197,7 +197,7 @@
 			beaker = null
 			update_icon()
 
-	if(href_list["ejectSecondary"] && beaker)
+	if(href_list["ejectSecondary"] && separation_beaker)
 		on = FALSE
 		if(separation_beaker)
 			separation_beaker.forceMove(get_turf(src))
