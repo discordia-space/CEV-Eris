@@ -45,6 +45,7 @@
 #define COMSIG_MOVABLE_MOVED "movable_moved"					//from base of atom/movable/Moved(): (/atom, origin_loc, new_loc)
 
 // /mob signals
+#define COMSIG_MOB_LIFE  "mob_life"                             //from mob/Life()
 #define COMSIG_MOB_LOGIN "mob_login"                            //from mob/Login()
 
 // /mob/living signals

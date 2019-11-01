@@ -160,6 +160,9 @@
 	new /obj/item/device/spy_bug(src)
 	new /obj/item/device/spy_monitor(src)
 
+
+
+// Guns
 /obj/item/weapon/storage/box/syndie_kit/dartgun
 	name  = "dartgun kit"
 	desc = "Just like a mosquito bite."
@@ -169,6 +172,7 @@
 	new /obj/item/weapon/gun/projectile/dartgun(src)
 	new /obj/item/ammo_magazine/chemdart(src)
 
+
 /obj/item/weapon/storage/box/syndie_kit/g9mm
 	name = "\improper Smooth operator"
 	desc = "9mm with silencer kit."
@@ -177,6 +181,49 @@
 	..()
 	new /obj/item/weapon/gun/projectile/clarissa(src)
 	new /obj/item/weapon/silencer(src)
+	new /obj/item/ammo_magazine/mc9mm(src)
+
+/obj/item/weapon/storage/box/syndie_kit/c20r
+	name = "C-20r box"
+	desc = "C-20r kit"
+
+/obj/item/weapon/storage/box/syndie_kit/c20r/New()
+	..()
+	new /obj/item/weapon/gun/projectile/automatic/c20r(src)
+	new /obj/item/ammo_magazine/smg10mm(src)
+
+/obj/item/weapon/storage/box/syndie_kit/revolver
+	name = "Revolver box"
+	desc = "Revolver kit"
+
+/obj/item/weapon/storage/box/syndie_kit/revolver/New()
+	..()
+	new /obj/item/weapon/gun/projectile/revolver(src)
+	new /obj/item/ammo_magazine/sl357(src)
+
+/obj/item/weapon/storage/box/syndie_kit/sts35
+	name = "Assault rifle box"
+	desc = "Assault rifle kit"
+	icon_state = "box_of_doom_big"
+	w_class = ITEM_SIZE_HUGE
+
+/obj/item/weapon/storage/box/syndie_kit/sts35/New()
+	..()
+	new /obj/item/weapon/gun/projectile/automatic/sts35(src)
+	new /obj/item/ammo_magazine/c762_short(src)
+
+/obj/item/weapon/storage/box/syndie_kit/antimaterial_rifle
+	name = "Sniper rifle box"
+	desc = "Sniper rifle kit. One shot for real men."
+	icon_state = "box_of_doom_big"
+	w_class = ITEM_SIZE_HUGE
+
+/obj/item/weapon/storage/box/syndie_kit/antimaterial_rifle/New()
+	..()
+	new /obj/item/ammo_casing/a145(src)
+	new /obj/item/weapon/weaponparts/heavysniper/disassembled(src)
+	new /obj/item/weapon/weaponparts/heavysniper/stock(src)
+	new /obj/item/weapon/weaponparts/heavysniper/barrel(src)
 
 /obj/item/weapon/storage/box/syndie_kit/toxin
 	name = "toxin kit"
