@@ -409,6 +409,7 @@
 #include "code\datums\setup_option\core_implant.dm"
 #include "code\datums\setup_option\core_implants.dm"
 #include "code\datums\setup_option\setup_option.dm"
+#include "code\datums\setup_option\backgrounds\origin.dm"
 #include "code\datums\topic\admin.dm"
 #include "code\datums\topic\topic_handlers.dm"
 #include "code\datums\topic\world.dm"
