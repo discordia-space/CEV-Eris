@@ -68,6 +68,10 @@ var/list/science_positions = list(JOBS_SCIENCE)
 //BS12 EDIT
 var/list/cargo_positions = list(JOBS_CARGO)
 
+
+var/list/church_positions = list(JOBS_CHURCH)
+
+
 var/list/civilian_positions = list(JOBS_CIVILIAN)
 
 
