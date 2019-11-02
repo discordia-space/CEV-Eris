@@ -1,0 +1,38 @@
+"a" = (/turf/simulated/wall/untinted/onestar_reinforced,/area/crawler)
+"b" = (/obj/crawler/crawler_wallbreaker,/turf/simulated/wall/untinted/onestar_reinforced,/area/crawler)
+"c" = (/obj/structure/closet/secure_closet/personal,/turf/simulated/floor/tiled/derelict,/area/crawler)
+"d" = (/obj/structure/closet/onestar/tier3/special,/turf/simulated/floor/tiled/derelict,/area/crawler)
+"e" = (/turf/simulated/floor/tiled/derelict,/area/crawler)
+"f" = (/obj/structure/grille,/turf/simulated/floor/tiled/derelict/white_small_edges,/area/crawler)
+"g" = (/turf/simulated/floor/tiled/derelict/white_small_edges,/area/crawler)
+"h" = (/obj/machinery/light/floor,/turf/simulated/floor/tiled/derelict/white_small_edges,/area/crawler)
+"i" = (/obj/machinery/light/floor,/turf/simulated/floor/tiled/derelict/white_big_edges,/area/crawler)
+"j" = (/obj/structure/railing/grey{dir = 1},/obj/machinery/light/floor,/turf/simulated/floor/tiled/derelict,/area/crawler)
+"k" = (/obj/structure/railing/grey{dir = 1},/turf/simulated/floor/tiled/derelict,/area/crawler)
+"l" = (/obj/crawler/crawler_wallbreaker/vertical,/turf/simulated/wall/untinted/onestar_reinforced,/area/crawler)
+"m" = (/turf/simulated/floor/bluegrid,/area/crawler)
+"n" = (/turf/simulated/floor/tiled/derelict/white_big_edges,/area/crawler)
+"o" = (/obj/structure/table/onestar,/turf/simulated/floor/tiled/derelict/white_small_edges,/area/crawler)
+"p" = (/obj/structure/target_stake,/turf/simulated/floor/tiled/derelict/white_big_edges,/area/crawler)
+"q" = (/obj/crawler/crawler_wallbreaker/vertical,/turf/simulated/floor/bluegrid,/area/crawler)
+"r" = (/obj/structure/safe/floor{contents = newlist(/obj/random/credits/c1000)},/obj/item/weapon/tool/crowbar/onestar,/turf/simulated/floor/tiled/derelict,/area/crawler)
+"s" = (/obj/structure/railing/grey,/obj/machinery/light/floor,/turf/simulated/floor/tiled/derelict,/area/crawler)
+"t" = (/obj/structure/railing/grey,/turf/simulated/floor/tiled/derelict,/area/crawler)
+"u" = (/obj/structure/window/reinforced{dir = 8},/obj/machinery/door/window/northleft,/obj/structure/table/rack,/obj/random/gun_normal,/obj/random/gun_normal,/obj/random/gun_cheap,/turf/simulated/floor/tiled/derelict,/area/crawler)
+"v" = (/obj/structure/window/reinforced{dir = 4},/obj/machinery/door/window/northright,/obj/structure/table/rack,/obj/random/gun_shotgun,/obj/random/gun_normal,/obj/random/gun_cheap,/turf/simulated/floor/tiled/derelict,/area/crawler)
+"w" = (/obj/structure/table/onestar,/obj/random/gun_normal,/obj/random/gun_cheap,/turf/simulated/floor/tiled/derelict,/area/crawler)
+"x" = (/obj/structure/mopbucket,/turf/simulated/floor/tiled/derelict/white_small_edges,/area/crawler)
+"y" = (/obj/random/mob/roomba,/turf/simulated/floor/tiled/derelict/white_small_edges,/area/crawler)
+"z" = (/obj/structure/table/onestar,/obj/random/gun_energy_cheap,/obj/random/gun_cheap,/turf/simulated/floor/tiled/derelict,/area/crawler)
+
+(1,1,1) = {"
+aaaaabbbaaaaa
+acccdefggggga
+ahggyiajkkekl
+mggggnoeeepel
+mggggnoeeerel
+qggggnoeeepel
+ahgygiasttetl
+auvwzefggggxa
+aaaabbbbbaaaa
+"}

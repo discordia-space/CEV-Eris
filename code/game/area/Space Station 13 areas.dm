@@ -914,3 +914,12 @@ var/list/centcom_areas = list (
 )
 
 
+//Rouguelike Mining
+/area/asteroid/rogue
+	icon_state = "away"
+	name = "Asteroid belt"
+	var/asteroid_spawns = list()
+	var/mob_spawns = list()
+	var/teleporter_spawns = list()
+	var/teleporter
+

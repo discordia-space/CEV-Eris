@@ -2,7 +2,7 @@
 	name = "Type - 0315"
 	desc = "Love and concrete."
 
-	faction = "hive"
+	faction = "onestar"
 
 	icon = 'icons/mob/64x64.dmi'
 	icon_state = "onestar_boss_unpowered"
