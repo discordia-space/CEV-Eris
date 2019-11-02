@@ -78,6 +78,10 @@
 	name = "Excelsior 7.62x39 AK-47"
 	build_path = /obj/item/weapon/gun/projectile/automatic/ak47
 
+/datum/design/autolathe/gun/vintorez
+	name = "Excelsior 9mm \"Vintorez\""
+	build_path = /obj/item/weapon/gun/projectile/automatic/vintorez
+
 /datum/design/autolathe/gun/ak47_fs
 	name = "FS AR 7.62x39 \"Kalashnikov\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/fs
