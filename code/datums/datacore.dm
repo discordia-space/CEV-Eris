@@ -21,6 +21,7 @@ var/global/ManifestJSON
 	var/list/med = new()
 	var/list/sci = new()
 	var/list/car = new()
+	var/list/chr = new()
 	var/list/civ = new()
 	var/list/bot = new()
 	var/list/misc = new()
@@ -74,6 +75,9 @@ var/global/ManifestJSON
 		if(real_rank in cargo_positions)
 			car[name] = rank
 			department = 1
+		if(real_rank in church_positions)
+			chr[name] = rank
+			department = 1
 		if(real_rank in civilian_positions)
 			civ[name] = rank
 			department = 1
@@ -126,6 +130,11 @@ var/global/ManifestJSON
 		dat += "<tr><th colspan=3>Guild</th></tr>"
 		for(name in car)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[car[name]]</td><td>[isactive[name]]</td></tr>"
+			even = !even
+	if(chr.len > 0)
+		dat += "<tr><th colspan=3>Church</th></tr>"
+		for(name in chr)
+			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[chr[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
 	if(civ.len > 0)
 		dat += "<tr><th colspan=3>Civilian</th></tr>"
@@ -369,6 +378,7 @@ var/global/ManifestJSON
 	var/eng[0]
 	var/med[0]
 	var/sci[0]
+	var/chr[0]
 	var/civ[0]
 	var/bot[0]
 	var/misc[0]
@@ -411,6 +421,12 @@ var/global/ManifestJSON
 			if(depthead && sci.len != 1)
 				sci.Swap(1, sci.len)
 
+		if(real_rank in church_positions)
+			chr[++chr.len] = list("name" = name, "rank" = rank, "active" = isactive)
+			department = 1
+			if(depthead && chr.len != 1)
+				chr.Swap(1, chr.len)
+
 		if(real_rank in civilian_positions)
 			civ[++civ.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
@@ -431,6 +447,7 @@ var/global/ManifestJSON
 		"eng" = eng,
 		"med" = med,
 		"sci" = sci,
+		"chr" = chr,
 		"civ" = civ,
 		"bot" = bot,
 		"misc" = misc

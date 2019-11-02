@@ -1,7 +1,7 @@
 datum/preferences
 	var/gender = MALE					//gender of character (well duh)
 	var/age = 30						//age of character
-	var/spawnpoint = "Cryogenic Storage" 			//where this character will spawn
+	var/spawnpoint = "Aft Cryogenic Storage" 			//where this character will spawn
 	var/real_name						//our character's name
 	var/be_random_name = 0				//whether we are a random name every round
 

@@ -106,6 +106,10 @@
 	name = "FS MP 9x19 \"Molly\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/IH_machinepistol
 
+/datum/design/autolathe/gun/drozd
+	name = "Excelsior 9x19 \"Drozd\""
+	build_path = /obj/item/weapon/gun/projectile/automatic/drozd
+
 /datum/design/autolathe/gun/z8
 	name = "FS CAR 5.56x45mm \"Z8 Bulldog\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/z8
