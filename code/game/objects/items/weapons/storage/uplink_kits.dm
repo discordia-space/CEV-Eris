@@ -78,6 +78,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/imp_freedom
 	name = "boxed freedom implant (with injector)"
+	desc = "A box with freedom implant inside. Install it in your hand or leg, chose emote. You can remove instantly handcuffs or legcuffs with your emotion. Have a small amount of uses."
 
 /obj/item/weapon/storage/box/syndie_kit/imp_freedom/New()
 	new /obj/item/weapon/implanter/freedom(src)
@@ -85,6 +86,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/imp_compress
 	name = "box (C)"
+	desc = "A box with compressed implanter inside. Choose an item with this implant, install it inside you and choose emote to activate it. Take your chosen item whenever you want by your chosen emotion. One use."
 
 /obj/item/weapon/storage/box/syndie_kit/imp_compress/New()
 	new /obj/item/weapon/implanter/compressed(src)
@@ -92,6 +94,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/imp_explosive
 	name = "box (E)"
+	desc = "A box with explosive implant inside. When you use it on yours enemy, you can choose three ways to use it: destroy limb, destroy your enemy or make a small explosion. Activation by phrase you choose too. One use."
 
 /obj/item/weapon/storage/box/syndie_kit/imp_explosive/New()
 	new /obj/item/weapon/implanter/explosive(src)
@@ -99,6 +102,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/imp_uplink
 	name = "boxed uplink implant (with injector)"
+	desc = "Uplink inside your head."
 
 /obj/item/weapon/storage/box/syndie_kit/imp_uplink/New()
 	//Turn off passive gain for boxed implant uplinks. To prevent exploits of gathering tons of free TC
