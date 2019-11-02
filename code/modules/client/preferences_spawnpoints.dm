@@ -200,8 +200,8 @@
 		return TRUE
 	return FALSE
 
-
-
+//Starboard Cryogenics
+/datum/spawnpoint/cryo/starboard
 
 
 /**********************

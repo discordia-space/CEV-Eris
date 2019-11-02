@@ -89,8 +89,6 @@
 
 	var/shock_resist = 0 // Resistance to paincrit
 
-	var/image/fabric_image
-
 	var/language_blackout = 0
 	var/suppress_communication = 0
 

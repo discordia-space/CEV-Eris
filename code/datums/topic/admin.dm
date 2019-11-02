@@ -380,11 +380,13 @@
 	//Security (Red)
 	body += source.formatJobGroup(M, "Security Positions", "ffddf0", "securitydept", security_positions)
 	//Engineering (Yellow)
-	body += source.formatJobGroup(M, "Engineering Positions", "fff5cc", "engineeringdept", engineering_positions)
+	body += source.formatJobGroup(M, "Engineering Positions", "d5c88f", "engineeringdept", engineering_positions)
 	//Medical (White)
 	body += source.formatJobGroup(M, "Medical Positions", "ffeef0", "medicaldept", medical_positions)
 	//Science (Purple)
 	body += source.formatJobGroup(M, "Science Positions", "e79fff", "sciencedept", science_positions)
+	//Church (Gold)
+	body += source.formatJobGroup(M, "Church Positions", "ecd37d", "churchdept", church_positions)
 	//Civilian (Grey)
 	body += source.formatJobGroup(M, "Civilian Positions", "dddddd", "civiliandept", civilian_positions)
 	//Non-Human (Green)
@@ -445,6 +447,11 @@
 				joblist += temp.title
 		if("sciencedept")
 			for(var/jobPos in science_positions)
+				var/datum/job/temp = SSjob.GetJob(jobPos)
+				if(!temp) continue
+				joblist += temp.title
+		if("churchdept")
+			for(var/jobPos in church_positions)
 				var/datum/job/temp = SSjob.GetJob(jobPos)
 				if(!temp) continue
 				joblist += temp.title

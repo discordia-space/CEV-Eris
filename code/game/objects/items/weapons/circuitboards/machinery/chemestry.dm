@@ -31,3 +31,13 @@
 		/obj/item/weapon/stock_parts/console_screen = 1,
 		/obj/item/weapon/cell = 1
 	)
+/obj/item/weapon/circuitboard/electrolyzer
+	name = T_BOARD("Electrolyzer")
+	build_path = /obj/machinery/electrolyzer
+	board_type = "machine"
+	origin_tech = list(TECH_BIO = 3)
+	req_components = list(
+		/obj/item/weapon/stock_parts/capacitor = 1,
+	)
+
+	

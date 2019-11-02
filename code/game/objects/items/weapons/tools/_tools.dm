@@ -1076,7 +1076,7 @@
 	screen_loc = "8,1:13"
 	minloc = "7,2:13"
 	name = "Tool information"
-	icon_state = "safety1"
+	icon_state = "info"
 
 /obj/item/weapon/tool/ui_action_click(mob/living/user, action_name)
 	switch(action_name)

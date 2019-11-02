@@ -220,8 +220,8 @@
 	. = ..()
 	if(!.)
 		return
-	holder.owner.Weaken(2)
-	holder.owner.Stun(2)
+	holder.owner.Weaken(3)
+	holder.owner.Stun(3)
 	if(prob(50))
 		holder.owner.emote("scream")
 	else
@@ -290,10 +290,10 @@
 /datum/breakdown/negative/fabric/occur()
 	RegisterSignal(SSdcs, COMSIG_GLOB_FABRIC_NEW, .proc/add_image)
 	RegisterSignal(holder.owner, COMSIG_MOB_LOGIN, .proc/update_client_images)
-	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
-		if(H == holder.owner)
+	for(var/datum/component/fabric/F in GLOB.fabric_list)
+		if(F.parent == holder.owner)
 			continue
-		add_image(null, H.fabric_image)
+		add_image(null, F.fabric_image)
 	++holder.owner.language_blackout
 	return ..()
 
