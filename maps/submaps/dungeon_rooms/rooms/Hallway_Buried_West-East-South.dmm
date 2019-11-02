@@ -1,0 +1,22 @@
+"a" = (/turf/simulated/wall/untinted/onestar_reinforced,/area/crawler)
+"b" = (/obj/crawler/crawler_wallbreaker,/turf/simulated/wall/untinted/onestar_reinforced,/area/crawler)
+"c" = (/turf/simulated/mineral/random/high_chance,/area/crawler)
+"d" = (/turf/simulated/floor/tiled/derelict/white_small_edges,/area/crawler)
+"e" = (/obj/machinery/light/floor,/turf/simulated/floor/tiled/derelict/white_small_edges,/area/crawler)
+"f" = (/obj/crawler/crawler_wallbreaker/vertical,/turf/simulated/wall/untinted/onestar_reinforced,/area/crawler)
+"g" = (/turf/simulated/floor/bluegrid,/area/crawler)
+"h" = (/turf/simulated/floor/tiled/derelict,/area/crawler)
+"i" = (/obj/crawler/crawler_wallbreaker/vertical,/turf/simulated/floor/bluegrid,/area/crawler)
+"k" = (/obj/crawler/crawler_wallbreaker,/turf/simulated/floor/bluegrid,/area/crawler)
+
+(1,1,1) = {"
+aaaaabbbaaaaa
+accccdcccccca
+aeccddccccccf
+ghhhhcccccchi
+ghhhhccccchhi
+ihhhcccccchhi
+aedcccccccdef
+adcccccccddda
+aaaabkkkbaaaa
+"}

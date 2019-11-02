@@ -6,7 +6,7 @@
 "f" = (/obj/crawler/crawler_wallbreaker/vertical,/turf/simulated/wall,/area/crawler)
 "g" = (/obj/random/knife,/turf/simulated/floor/tiled/dark/gray_perforated,/area/crawler)
 "h" = (/obj/random/material_resources/low_chance,/turf/simulated/floor/tiled/dark/gray_perforated,/area/crawler)
-"i" = (/obj/machinery/light,/turf/simulated/floor/tiled/dark/gray_perforated,/area/crawler)
+"i" = (/obj/machinery/light/floor,/turf/simulated/floor/tiled/dark/gray_perforated,/area/crawler)
 "j" = (/obj/structure/closet/onestar/tier3,/turf/simulated/floor/tiled/dark/gray_perforated,/area/crawler)
 
 (1,1,1) = {"
