@@ -63,7 +63,7 @@
 		return TRUE
 
 	// Organs
-	if(istype(I, /obj/item/organ))
+	if(istype(I, /obj/item/organ/internal))
 		var/obj/item/organ/organ = I
 
 		// Technical limitation
@@ -127,7 +127,7 @@
 		owner.update_implants()
 
 	// Organs
-	else if(istype(I, /obj/item/organ))
+	else if(istype(I, /obj/item/organ/internal))
 		var/obj/item/organ/organ = I
 		organ.replaced(owner, src)
 

@@ -1012,6 +1012,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 			return TRUE
 	return FALSE
 
+/obj/item/organ/external/drop_location()
+	if(owner)
+		return owner.drop_location()
+	else
+		return ..()
+
 // Is body part open for most surgerical operations?
 /obj/item/organ/external/is_open()
 	// Robotic body parts only have to be screwed open. Organic ones need to have skin retracted too.
