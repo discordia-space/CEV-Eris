@@ -12,12 +12,9 @@
 	origin_tech = list(TECH_COMBAT=5, TECH_MAGNET=3, TECH_BIO=4, TECH_ILLEGAL=2)
 	allowed_organs = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG)
 
-/obj/item/weapon/implant/freedom/New()
-	activation_emote = pick("blink", "blink_r", "eyebrow", "chuckle", "twitch_s", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
-	uses = rand(1, 5)
-
 /obj/item/weapon/implant/freedom/trigger(emote, mob/living/carbon/source)
 	if (src.uses < 1)
+		to_chat (source, "You don't feel anything")
 		return
 	if (emote == src.activation_emote)
 		src.uses--
@@ -50,8 +47,14 @@
 /obj/item/weapon/implant/freedom/on_install(mob/living/carbon/source, obj/item/organ/O)
 	if(O.organ_tag in list(BP_L_LEG, BP_R_LEG))
 		install_organ = INSTALL_FOOTS
-		source.mind.store_memory("Freedom implant can be activated by using the [activation_emote] emote, <B>say *[activation_emote]</B> to attempt to activate.", 0, 0)
-		to_chat(source, "The implanted freedom implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.")
+
+/obj/item/weapon/implant/freedom/on_install(mob/living/source)
+
+	activation_emote = input("Choose activation emote:") in list("blink", "blink_r", "eyebrow", "chuckle", "twitch_s", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
+	uses = rand(2, 5)
+	if(source.mind)
+		source.mind.store_memory("Freedom matter implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.", 0, 0)
+	to_chat(source, "The freedom implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.")
 
 /obj/item/weapon/implant/freedom/get_data()
 	var/data = {"
