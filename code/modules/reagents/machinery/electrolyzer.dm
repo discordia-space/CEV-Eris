@@ -13,13 +13,7 @@
 	var/convertion_coefficient = 2
 	var/on = FALSE
 
-/obj/item/weapon/circuitboard/electrolyzer
-	name = T_BOARD("electrolyzer")
-	build_path = /obj/machinery/electrolyzer
-	origin_tech = list(TECH_BIO = 3)
-	req_components = list(
-		/obj/item/weapon/stock_parts/capacitor = 1
-	)
+
 
 // returns FALSE on errors TRUE on success and -1 if nothing to do
 /proc/electrolysis(var/obj/item/weapon/reagent_containers/primary_beaker, var/obj/item/weapon/reagent_containers/secondary_beaker, var/amount)
@@ -203,7 +197,7 @@
 			beaker = null
 			update_icon()
 
-	if(href_list["ejectSecondary"] && beaker)
+	if(href_list["ejectSecondary"] && separation_beaker)
 		on = FALSE
 		if(separation_beaker)
 			separation_beaker.forceMove(get_turf(src))
