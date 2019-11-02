@@ -7,17 +7,29 @@
 	return organ.is_open() && organ.can_add_item(tool, user)
 
 /datum/surgery_step/insert_item/begin_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
-	user.visible_message(
-		SPAN_NOTICE("[user] starts inserting [tool] into [organ.get_surgery_name()]."),
-		SPAN_NOTICE("You start inserting [tool] into [organ.get_surgery_name()].")
-	)
+	if(istype(tool, /obj/item/organ/external) || istype(tool, /obj/item/prosthesis))
+		user.visible_message(
+			SPAN_NOTICE("[user] starts connecting [tool] to [organ.get_surgery_name()]."),
+			SPAN_NOTICE("You start connecting [tool] to [organ.get_surgery_name()].")
+		)
+	else
+		user.visible_message(
+			SPAN_NOTICE("[user] starts inserting [tool] into [organ.get_surgery_name()]."),
+			SPAN_NOTICE("You start inserting [tool] into [organ.get_surgery_name()].")
+		)
 	organ.owner_custom_pain("The pain in your [organ.name] is living hell!", 1)
 
 /datum/surgery_step/insert_item/end_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
-	user.visible_message(
-		SPAN_NOTICE("[user] inserts [tool] into [organ.get_surgery_name()]."),
-		SPAN_NOTICE("You insert [tool] into [organ.get_surgery_name()].")
-	)
+	if(istype(tool, /obj/item/organ/external) || istype(tool, /obj/item/prosthesis))
+		user.visible_message(
+			SPAN_NOTICE("[user] connects [tool] to [organ.get_surgery_name()]."),
+			SPAN_NOTICE("You connect [tool] to [organ.get_surgery_name()].")
+		)
+	else
+		user.visible_message(
+			SPAN_NOTICE("[user] inserts [tool] into [organ.get_surgery_name()]."),
+			SPAN_NOTICE("You insert [tool] into [organ.get_surgery_name()].")
+		)
 	organ.add_item(tool, user)
 	if(BP_IS_ORGANIC(organ))
 		playsound(get_turf(organ), 'sound/effects/squelch1.ogg', 50, 1)
@@ -92,6 +104,53 @@
 
 		return TRUE
 
+	// Limbs
+	else if(istype(I, /obj/item/organ/external))
+		var/obj/item/organ/external/limb = I
+
+		// Can't attach a limb to another loose limb
+		if(!owner)
+			return FALSE
+
+		var/o_a =  (limb.gender == PLURAL) ? "" : "a "
+
+		if(isnull(owner.species.has_limbs[limb.organ_tag]))
+			to_chat(user, SPAN_WARNING("You're pretty sure [owner.species.name_plural] don't normally have [o_a][limb.organ_tag]."))
+			return FALSE
+
+		if(owner.get_organ(limb.organ_tag))
+			to_chat(user, SPAN_WARNING("\The [owner] already has [o_a][limb.organ_tag]."))
+			return FALSE
+
+		if(limb.parent_organ != organ_tag)
+			to_chat(user, SPAN_WARNING("You can't attach [limb] to [get_surgery_name()]!"))
+			return FALSE
+
+		return TRUE
+
+
+	// Prosthesis
+	// TODO: ditch them, make them into proper limbs instead.
+	else if(istype(I, /obj/item/prosthesis))
+		var/obj/item/prosthesis/prosthesis = I
+
+		// Can't attach a limb to another loose limb
+		if(!owner)
+			return FALSE
+
+		for(var/part_name in prosthesis.part)
+			if(owner.get_organ(part_name))
+				continue
+			var/datum/organ_description/organ_data = owner.species.has_limbs[part_name]
+			if(!organ_data || organ_data.parent_organ != organ_tag)
+				continue
+
+			return TRUE
+
+		return FALSE
+
+
+
 	// Cavity implants
 	var/total_volume = I.w_class
 	for(var/obj/item/item in implants)
@@ -126,10 +185,38 @@
 		implant.install(owner, organ_tag)
 		owner.update_implants()
 
-	// Organs
+	// Internal organs
 	else if(istype(I, /obj/item/organ/internal))
 		var/obj/item/organ/organ = I
 		organ.replaced(owner, src)
+
+	// Limbs
+	else if(istype(I, /obj/item/organ/external))
+		var/obj/item/organ/external/limb = I
+		limb.replaced(owner)
+
+		owner.update_body()
+		owner.updatehealth()
+		owner.UpdateDamageIcon()
+
+
+	// Prosthesis
+	// TODO: ditch them, make them into proper limbs instead.
+	else if(istype(I, /obj/item/prosthesis))
+		var/obj/item/prosthesis/prosthesis = I
+
+		for(var/part_name in prosthesis.part)
+			if(owner.get_organ(part_name))
+				continue
+			var/datum/organ_description/organ_data = owner.species.has_limbs[part_name]
+			if(!organ_data || organ_data.parent_organ != organ_tag)
+				continue
+			var/new_limb_type = prosthesis.part[part_name]
+			new new_limb_type(owner, organ_data)
+
+		owner.update_body()
+		owner.updatehealth()
+		owner.UpdateDamageIcon()
 
 	// Cavity implants
 	else

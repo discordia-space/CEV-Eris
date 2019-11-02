@@ -82,11 +82,11 @@
 		contents_list.Add(list(organ_data))
 
 	for(var/i in implants)
-		if(QDELETED(i))
-			implants -= i
+		var/atom/movable/implant = i
+		if(QDELETED(implant))
+			implants -= implant
 			continue
 
-		var/atom/movable/implant = i
 		var/list/implant_data = list()
 
 		implant_data["name"] = implant.name

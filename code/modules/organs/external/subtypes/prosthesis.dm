@@ -7,7 +7,7 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	matter = list(MATERIAL_STEEL = 10)
-	var/list/part = null // Order of args is important for installing robolimbs.
+	var/list/part = list() // Order of args is important for installing robolimbs.
 	dir = SOUTH
 
 
