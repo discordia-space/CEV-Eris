@@ -78,7 +78,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/imp_freedom
 	name = "boxed freedom implant (with injector)"
-	desc = "A box with freedom implant inside. Install it in your hand or leg, chose emote. You can remove instantly handcuffs or legcuffs with your emotion.Have a small amount of uses."
+	desc = "A box with freedom implant inside. Install it in your hand or leg, chose emote. You can remove instantly handcuffs or legcuffs with your emotion. Have a small amount of uses."
 
 /obj/item/weapon/storage/box/syndie_kit/imp_freedom/New()
 	new /obj/item/weapon/implanter/freedom(src)
