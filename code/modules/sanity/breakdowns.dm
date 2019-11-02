@@ -1,13 +1,16 @@
 /datum/breakdown/positive
 	start_message_span = "bold notice"
+	icon_state = "positive"
 
 /datum/breakdown/negative
 	start_message_span = "danger"
 	restore_sanity_pre = 25
+	icon_state = "negative"
 
 /datum/breakdown/common
 	start_message_span = "danger"
 	restore_sanity_pre = 25
+	icon_state = "negative"
 
 
 
