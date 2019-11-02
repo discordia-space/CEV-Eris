@@ -129,7 +129,7 @@
 		return
 
 	for (var/obj/item/organ/external/E in organs)
-		if(!E || !E.can_grasp || (E.status & ORGAN_SPLINTED))
+		if(!E || !(E.functions & BODYPART_GRASP) || (E.status & ORGAN_SPLINTED))
 			continue
 
 		if(E.is_broken() || E.is_dislocated())
@@ -240,7 +240,7 @@
 			var/obj/item/organ/external/O = E
 			if (heal && (O.damage > 0 || O.status & (ORGAN_BROKEN) || O.has_internal_bleeding()))
 				O.status &= ~ORGAN_BROKEN
-				for(var/datum/wound/W in O.wounds) 
+				for(var/datum/wound/W in O.wounds)
 					if(W.internal)
 						O.wounds.Remove(W)
 						qdel(W)

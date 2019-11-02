@@ -50,7 +50,7 @@ section .cell, section .content, section .label, section .line {
     margin: 0;
     text-align: left;
     vertical-align: middle;
-    padding: 3px 2px;
+    padding: 3px 5px 3px 2px;
 }
 
 section .label {

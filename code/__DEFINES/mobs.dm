@@ -196,3 +196,4 @@
 #define SPECIES_HUMAN       "Human"
 
 #define RANDOM_BLOOD_TYPE pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
+

@@ -2,11 +2,11 @@
 //////////////////////////////////////////////////////////////////
 //				GENERIC	RIBCAGE SURGERY							//
 //////////////////////////////////////////////////////////////////
-/datum/surgery_step/open_encased
+/datum/old_surgery_step/open_encased
 	priority = 2
 	can_infect = 1
 	blood_level = 1
-/datum/surgery_step/open_encased/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/old_surgery_step/open_encased/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 	if (!hasorgans(target))
 		return 0
@@ -15,19 +15,18 @@
 	return affected && !BP_IS_ROBOTIC(affected) && affected.encased && affected.open >= 2
 
 
-/datum/surgery_step/open_encased/saw
-	requedQuality = QUALITY_SAWING
+/datum/old_surgery_step/open_encased/saw
+	required_tool_quality = QUALITY_SAWING
 
-	min_duration = 50
-	max_duration = 70
+	duration = 60
 
-/datum/surgery_step/open_encased/saw/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/old_surgery_step/open_encased/saw/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if (!hasorgans(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	return ..() && affected && affected.open == 2
 
-/datum/surgery_step/open_encased/saw/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/old_surgery_step/open_encased/saw/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 	if (!hasorgans(target))
 		return
@@ -38,7 +37,7 @@
 	target.custom_pain("Something hurts horribly in your [affected.name]!",1)
 	..()
 
-/datum/surgery_step/open_encased/saw/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/old_surgery_step/open_encased/saw/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 	if (!hasorgans(target))
 		return
@@ -48,7 +47,7 @@
 	"\blue You have cut [target]'s [affected.encased] open with \the [tool].")
 	affected.open = 2.5
 
-/datum/surgery_step/open_encased/saw/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/old_surgery_step/open_encased/saw/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 	if (!hasorgans(target))
 		return
@@ -61,19 +60,18 @@
 	affected.fracture()
 
 
-/datum/surgery_step/open_encased/retract
-	requedQuality = QUALITY_RETRACTING
+/datum/old_surgery_step/open_encased/retract
+	required_tool_quality = QUALITY_RETRACTING
 
-	min_duration = 30
-	max_duration = 40
+	duration = 40
 
-/datum/surgery_step/open_encased/retract/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/old_surgery_step/open_encased/retract/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if (!hasorgans(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	return ..() && affected && affected.open == 2.5
 
-/datum/surgery_step/open_encased/retract/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/old_surgery_step/open_encased/retract/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 	if (!hasorgans(target))
 		return
@@ -85,7 +83,7 @@
 	target.custom_pain("Something hurts horribly in your [affected.name]!",1)
 	..()
 
-/datum/surgery_step/open_encased/retract/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/old_surgery_step/open_encased/retract/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 	if (!hasorgans(target))
 		return
@@ -97,7 +95,7 @@
 
 	affected.open = 3
 
-/datum/surgery_step/open_encased/retract/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/old_surgery_step/open_encased/retract/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 	if (!hasorgans(target))
 		return
@@ -110,20 +108,19 @@
 	affected.createwound(BRUISE, 20)
 	affected.fracture()
 
-/datum/surgery_step/open_encased/close
+/datum/old_surgery_step/open_encased/close
 	requedQuality = QUALITY_RETRACTING
 
-	min_duration = 20
-	max_duration = 40
+	duration = 30
 
-/datum/surgery_step/open_encased/close/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/old_surgery_step/open_encased/close/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 	if (!hasorgans(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	return ..() && affected && affected.open == 3
 
-/datum/surgery_step/open_encased/close/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/old_surgery_step/open_encased/close/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 	if (!hasorgans(target))
 		return
@@ -135,7 +132,7 @@
 	target.custom_pain("Something hurts horribly in your [affected.name]!",1)
 	..()
 
-/datum/surgery_step/open_encased/close/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/old_surgery_step/open_encased/close/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 	if (!hasorgans(target))
 		return
@@ -147,7 +144,7 @@
 
 	affected.open = 2.5
 
-/datum/surgery_step/open_encased/close/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/old_surgery_step/open_encased/close/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 	if (!hasorgans(target))
 		return
@@ -166,20 +163,19 @@
 			user.visible_message(SPAN_DANGER("A wayward piece of [target]'s [affected.encased] pierces \his [O.name]!"))
 			O.bruise()
 
-/datum/surgery_step/open_encased/mend
-	requedQuality = QUALITY_BONE_SETTING
+/datum/old_surgery_step/open_encased/mend
+	required_tool_quality = QUALITY_BONE_SETTING
 
-	min_duration = 20
-	max_duration = 40
+	duration = 30
 
-/datum/surgery_step/open_encased/mend/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/old_surgery_step/open_encased/mend/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 	if (!hasorgans(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	return ..() && affected && affected.open == 2.5
 
-/datum/surgery_step/open_encased/mend/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/old_surgery_step/open_encased/mend/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 	if (!hasorgans(target))
 		return
@@ -191,7 +187,7 @@
 	target.custom_pain("Something hurts horribly in your [affected.name]!",1)
 	..()
 
-/datum/surgery_step/open_encased/mend/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/old_surgery_step/open_encased/mend/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 	if (!hasorgans(target))
 		return

@@ -55,7 +55,9 @@
 
 	switch(M.a_intent)
 		if(I_HELP)
-			if(istype(H) && health < HEALTH_THRESHOLD_CRIT && health > HEALTH_THRESHOLD_DEAD)
+			if(can_operate(src, M) && do_surgery(src, M, null))
+				return 1
+			else if(istype(H) && health < HEALTH_THRESHOLD_CRIT && health > HEALTH_THRESHOLD_DEAD)
 				if(!H.check_has_mouth())
 					to_chat(H, SPAN_DANGER("You don't have a mouth, you cannot perform CPR!"))
 					return
@@ -87,7 +89,6 @@
 				H.visible_message(SPAN_DANGER("\The [H] performs CPR on \the [src]!"))
 				to_chat(src, SPAN_NOTICE("You feel a breath of fresh air enter your lungs. It feels good."))
 				to_chat(H, SPAN_WARNING("Repeat at least every 7 seconds."))
-
 			else
 				help_shake_act(M)
 			return 1

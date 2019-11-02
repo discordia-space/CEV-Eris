@@ -28,16 +28,15 @@
 	else
 		damage = between(0, src.damage + amount, max_damage)
 
-		//only show this if the organ is not robotic
-		if(owner && can_feel_pain() && parent_organ && (amount > 5 || prob(10)))
-			var/obj/item/organ/external/parent = owner.get_organ(parent_organ)
-			if(parent && !silent)
-				var/degree = ""
-				if(is_bruised())
-					degree = " a lot"
-				if(damage < 5)
-					degree = " a bit"
-				owner.custom_pain("Something inside your [parent.name] hurts[degree].", amount, affecting = parent)
+	if(!silent && (amount > 5 || prob(10)))
+		var/obj/item/organ/external/parent = get_limb()
+		if(parent)
+			var/degree = ""
+			if(is_bruised())
+				degree = " a lot"
+			if(damage < 5)
+				degree = " a bit"
+			owner_custom_pain("Something inside your [parent.name] hurts[degree].", amount)
 
 /obj/item/organ/internal/proc/handle_regeneration()
 	if(!damage || BP_IS_ROBOTIC(src) || !owner || owner.chem_effects[CE_TOXIN] || owner.is_asystole())
@@ -48,9 +47,56 @@
 /obj/item/organ/internal/is_usable()
 	return ..() && !is_broken()
 
-/obj/item/organ/internal/heal_damage(amount , var/natural = TRUE)
+/obj/item/organ/internal/heal_damage(amount, natural = TRUE)
 	if (natural && !can_recover())
 		return
 	if(owner.chem_effects[CE_BLOODCLOT])
 		amount *= 1 + owner.chem_effects[CE_BLOODCLOT]
 	damage = between(0, damage - round(amount, 0.1), max_damage)
+
+
+// Gets the limb this organ is located in, if any
+/obj/item/organ/internal/proc/get_limb()
+	if(owner)
+		return owner.get_organ(parent_organ)
+
+	else if(istype(loc, /obj/item/organ/external))
+		return loc
+
+	return null
+
+
+// Is body part open for most surgerical operations?
+/obj/item/organ/internal/is_open()
+	var/obj/item/organ/external/limb = get_limb()
+
+	if(limb)
+		return limb.is_open()
+	else
+		return TRUE
+
+
+// Gets a list of surgically treatable conditions
+/obj/item/organ/internal/get_conditions()
+	var/list/conditions_list = ..()
+	var/list/condition
+
+	if(damage > 0)
+		if(BP_IS_ROBOTIC(src))
+			condition = list(
+				"name" = "Damage",
+				"fix_name" = "Repair",
+				"step" = "[/datum/surgery_step/robotic/fix_organ]",
+				"organ" = "\ref[src]"
+			)
+		else
+			condition = list(
+				"name" = "Damage",
+				"fix_name" = "Heal",
+				"step" = "[/datum/surgery_step/fix_organ]",
+				"organ" = "\ref[src]"
+			)
+
+		conditions_list.Add(list(condition))
+
+	return conditions_list
