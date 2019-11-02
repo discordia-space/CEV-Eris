@@ -100,6 +100,13 @@
 	new /obj/item/weapon/implanter/explosive(src)
 	..()
 
+/obj/item/weapon/storage/box/syndie_kit/imp_spying
+	name = "box (S)"
+
+/obj/item/weapon/storage/box/syndie_kit/imp_spying/New()
+	new /obj/item/weapon/implanter/spying(src)
+	..()
+
 /obj/item/weapon/storage/box/syndie_kit/imp_uplink
 	name = "boxed uplink implant (with injector)"
 	desc = "Uplink inside your head."
@@ -287,6 +294,16 @@
 	..()
 	new /obj/item/rig_module/electrowarfare_suite(src)
 	new /obj/item/rig_module/voice(src)
+
+/obj/item/weapon/storage/box/syndie_kit/spy_sensor
+	name = "sensor kit"
+
+/obj/item/weapon/storage/box/syndie_kit/spy_sensor/New()
+	..()
+	new /obj/item/device/spy_sensor(src)
+	new /obj/item/device/spy_sensor(src)
+	new /obj/item/device/spy_sensor(src)
+	new /obj/item/device/spy_sensor(src)
 
 
 /obj/item/weapon/storage/secure/briefcase/money

@@ -18,6 +18,7 @@
 	var/list/allowed_organs = list()
 	var/position_flag = 0
 	var/external = FALSE
+	var/cruciform_resist = FALSE
 
 /obj/item/weapon/implant/attackby(obj/item/weapon/I as obj, mob/user as mob)
 	..()

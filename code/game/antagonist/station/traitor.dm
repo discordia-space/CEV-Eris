@@ -5,13 +5,6 @@
 	bantype = ROLE_TRAITOR
 	antaghud_indicator = "hudtraitor"
 
-	objective_quantity = 3
-
-	possible_objectives = list(/datum/objective/assassinate = 30,
-	/datum/objective/brig = 15,
-	/datum/objective/harm = 15,
-	/datum/objective/steal = 30)
-
 	survive_objective = /datum/objective/escape
 
 	stat_modifiers = list(
@@ -72,6 +65,8 @@
 /datum/antagonist/traitor/synth
 	id = ROLE_TRAITOR_SYNTH
 	only_human = FALSE
+
+	objective_quantity = 3
 
 	possible_objectives = list(
 	/datum/objective/assassinate = 100,
