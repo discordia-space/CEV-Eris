@@ -1,0 +1,37 @@
+/obj/item/device/mind_fryer
+	name = "mind fryer"
+	icon_state = "locator" //placeholder
+	var/datum/antag_contract/derail/contract
+	var/datum/mind/owner
+	var/list/mob/living/carbon/human/victims
+
+/obj/item/device/mind_fryer/attack_self(mob/user)
+	if(owner == user.mind)
+		return
+	owner = user.mind
+	to_chat(user, "You claim \the [src].")
+
+/obj/item/device/mind_fryer/verb/activate()
+	set name = "Activate"
+	set category = "Object"
+	if(usr.incapacitated())
+		return
+	for(var/datum/antag_contract/derail/C in GLOB.all_antag_contracts)
+		if(C.completed)
+			continue
+		contract = C
+		break
+	victims = list(owner.current)
+	START_PROCESSING(SSobj, src)
+
+/obj/item/device/mind_fryer/Process()
+	for(var/mob/living/carbon/human/H in view(src))
+		if(H.get_species() != "Human" || (H in victims))
+			continue
+		H.sanity.onPsyDamage(2)
+
+/obj/item/device/mind_fryer/proc/reg_break(mob/living/carbon/human/victim)
+	victims += victim
+	if(victims.len > contract?.count)
+		contract.report(src)
+		contract = null
