@@ -15,7 +15,7 @@
 	set name = "Launch"
 	set category = "Object"
 	set src in oview(1)
-	if(usr.incapacitated())
+	if(usr.incapacitated() || !Adjacent(usr))
 		return
 	if(!(locate(/area/space) in oview(src)))
 		to_chat(usr, "\The [src.name] must be placed near space.")
