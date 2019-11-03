@@ -16,7 +16,7 @@
 
 /obj/item/weapon/grenade/proc/clown_check(var/mob/living/user)
 	if((CLUMSY in user.mutations) && prob(50))
-		user << SPAN_WARNING("Huh? How does this thing work?")
+		to_chat(user, SPAN_WARNING("Huh? How does this thing work?"))
 
 		activate(user)
 		add_fingerprint(user)
@@ -28,17 +28,17 @@
 /obj/item/weapon/grenade/examine(mob/user)
 	if(..(user, 0))
 		if(det_time > 1)
-			user << "The timer is set to [det_time/10] seconds."
+			to_chat(user, "The timer is set to [det_time/10] seconds.")
 			return
 		if(det_time == null)
 			return
-		user << "\The [src] is set for instant detonation."
+		to_chat(user, "\The [src] is set for instant detonation.")
 
 
 /obj/item/weapon/grenade/attack_self(mob/user as mob)
 	if(!active)
 		if(clown_check(user))
-			user << SPAN_WARNING("You prime \the [name]! [det_time/10] seconds!")
+			to_chat(user, SPAN_WARNING("You prime \the [name]! [det_time/10] seconds!"))
 
 			activate(user)
 			add_fingerprint(user)
@@ -60,7 +60,7 @@
 	playsound(loc, 'sound/weapons/armbomb.ogg', 75, 1, -3)
 
 	if(variance)
-		det_time *= rand_between(1-variance, 1+variance)
+		det_time *= RAND_DECIMAL(1-variance, 1+variance)
 
 	spawn(det_time)
 		prime()
@@ -79,16 +79,16 @@
 			switch(det_time)
 				if (1)
 					det_time = 10
-					user << SPAN_NOTICE("You set the [name] for 1 second detonation time.")
+					to_chat(user, SPAN_NOTICE("You set the [name] for 1 second detonation time."))
 				if (10)
 					det_time = 30
-					user << SPAN_NOTICE("You set the [name] for 3 second detonation time.")
+					to_chat(user, SPAN_NOTICE("You set the [name] for 3 second detonation time."))
 				if (30)
 					det_time = 50
-					user << SPAN_NOTICE("You set the [name] for 5 second detonation time.")
+					to_chat(user, SPAN_NOTICE("You set the [name] for 5 second detonation time."))
 				if (50)
 					det_time = 1
-					user << SPAN_NOTICE("You set the [name] for instant detonation.")
+					to_chat(user, SPAN_NOTICE("You set the [name] for instant detonation."))
 			add_fingerprint(user)
 	..()
 	return

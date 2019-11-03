@@ -141,7 +141,7 @@
 			start(dir)
 		return TRUE
 	else if (istext(.))
-		M << SPAN_NOTICE(.)
+		to_chat(M, SPAN_NOTICE(.))
 	return FALSE
 
 /*
@@ -173,7 +173,6 @@
 
 	spawn()
 		handle_ticking()
-
 	if (!do_after(mob, duration, M, needs_hands))
 		abort()
 		return
@@ -192,11 +191,19 @@
 /datum/vertical_travel_method/proc/finish()
 	animating = FALSE
 	reset_values()
+
+	//this is bullshit, but animation is always halted on z change. Vars such as floating remain the same
+	//So we gotta "prepare" it right after successful zmove
+	var/mob/mob = M
+	if(istype(mob, /mob))
+		mob.stop_floating()
+		mob.update_floating()
+	// end_of_dirty_bullshit.dm
+
 	M.forceMove(destination)
 	if (prob(slip_chance))
 		slip()
 	announce_end()
-
 
 /datum/vertical_travel_method/proc/get_destination()
 	destination = (direction == UP) ? GetAbove(origin) : GetBelow(origin)
@@ -282,4 +289,4 @@
 	M.Move(target)
 	if (ismob(M))
 		mob.Weaken(2)
-	mob << SPAN_DANGER("You lose control and slip into freefall")
+	to_chat(mob, SPAN_DANGER("You lose control and slip into freefall"))

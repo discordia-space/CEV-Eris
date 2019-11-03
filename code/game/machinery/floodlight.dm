@@ -6,18 +6,25 @@
 	icon_state = "flood00"
 	density = 1
 	var/on = 0
-	var/obj/item/weapon/cell/large/high/cell = null
+	var/obj/item/weapon/cell/large/cell = null
 	var/use = 200 // 200W light
 	var/unlocked = 0
 	var/open = 0
 	var/brightness_on = 8		//can't remember what the maxed out value is
 	light_power = 2
 
-/obj/machinery/floodlight/New()
-	src.cell = new(src)
-	cell.maxcharge = 1000
-	cell.charge = 1000 // 41minutes @ 200W
+/obj/machinery/floodlight/Initialize()
+	. = ..()
+	cell = new /obj/item/weapon/cell/large(src)
+
+/obj/machinery/floodlight/get_cell()
+	return cell
+
+/obj/machinery/floodlight/handle_atom_del(atom/A)
 	..()
+	if(A == cell)
+		cell = null
+		update_icon()
 
 /obj/machinery/floodlight/update_icon()
 	overlays.Cut()
@@ -70,17 +77,15 @@
 		turn_off(1)
 	else
 		if(!turn_on(1))
-			user << "You try to turn on \the [src] but it does not work."
+			to_chat(user, "You try to turn on \the [src] but it does not work.")
 
 
-/obj/machinery/floodlight/attack_hand(mob/user as mob)
+/obj/machinery/floodlight/attack_hand(mob/user)
 	if(open && cell)
+		cell.forceMove(get_turf(src))
 		if(ishuman(user))
 			if(!user.get_active_hand())
 				user.put_in_hands(cell)
-				cell.loc = user.loc
-		else
-			cell.loc = loc
 
 		cell.add_fingerprint(user)
 		cell.update_icon()
@@ -88,7 +93,7 @@
 		src.cell = null
 		on = 0
 		set_light(0)
-		user << "You remove the power cell"
+		to_chat(user, "You remove the power cell")
 		update_icon()
 		return
 
@@ -96,7 +101,7 @@
 		turn_off(1)
 	else
 		if(!turn_on(1))
-			user << "You try to turn on \the [src] but it does not work."
+			to_chat(user, "You try to turn on \the [src] but it does not work.")
 
 	update_icon()
 
@@ -116,11 +121,11 @@
 					if(open)
 						open = 0
 						overlays = null
-						user << SPAN_NOTICE("You crowbar the battery panel in place.")
+						to_chat(user, SPAN_NOTICE("You crowbar the battery panel in place."))
 					else
 						if(unlocked)
 							open = 1
-							user << SPAN_NOTICE("You remove the battery panel.")
+							to_chat(user, SPAN_NOTICE("You remove the battery panel."))
 					update_icon()
 				return
 			return
@@ -129,7 +134,7 @@
 			var/used_sound = unlocked ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, instant_finish_tier = 30, forced_sound = used_sound))
 				unlocked = !unlocked
-				user << SPAN_NOTICE("You [unlocked ? "screw" : "unscrew"] the battery panel of \the [src] with [I].")
+				to_chat(user, SPAN_NOTICE("You [unlocked ? "screw" : "unscrew"] the battery panel of \the [src] with [I]."))
 				update_icon()
 				return
 			return
@@ -140,10 +145,10 @@
 	if (istype(I, /obj/item/weapon/cell/large))
 		if(open)
 			if(cell)
-				user << SPAN_WARNING("There is a power cell already installed.")
+				to_chat(user, SPAN_WARNING("There is a power cell already installed."))
 			else
 				user.drop_item()
-				I.loc = src
+				I.forceMove(src)
 				cell = I
-				user << SPAN_NOTICE("You insert the power cell.")
+				to_chat(user, SPAN_NOTICE("You insert the power cell."))
 		update_icon()

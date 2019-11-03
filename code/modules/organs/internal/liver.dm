@@ -14,41 +14,52 @@
 
 	if (germ_level > INFECTION_LEVEL_ONE)
 		if(prob(1))
-			owner << SPAN_WARNING("Your skin itches.")
+			to_chat(owner, SPAN_WARNING("Your skin itches."))
 	if (germ_level > INFECTION_LEVEL_TWO)
 		if(prob(1))
 			spawn owner.vomit()
 
-	if(owner.life_tick % ORGAN_PROCESS_ACCURACY == 0)
+	//Detox can heal small amounts of damage
+	if (damage < max_damage && !owner.chem_effects[CE_TOXIN])
+		heal_damage(0.2 * owner.chem_effects[CE_ANTITOX])
 
-		//High toxins levels are dangerous
-		if(owner.getToxLoss() >= 60 && !owner.reagents.has_reagent("anti_toxin"))
-			//Healthy liver suffers on its own
-			if (src.damage < min_broken_damage)
-				src.damage += 0.2 * ORGAN_PROCESS_ACCURACY
-			//Damaged one shares the fun
-			else
-				var/obj/item/organ/O = pick(owner.internal_organs)
-				if(O)
-					O.damage += 0.2  * ORGAN_PROCESS_ACCURACY
+	// Get the effectiveness of the liver.
+	var/filter_effect = 3
+	if(is_bruised())
+		filter_effect -= 1
+	if(is_broken())
+		filter_effect -= 2
+	// Robotic organs filter better but don't get benefits from dylovene for filtering.
+	if(BP_IS_ROBOTIC(src))
+		filter_effect += 1
+	else if(owner.chem_effects[CE_ANTITOX])
+		filter_effect += owner.chem_effects[CE_ANTITOX]
+	// If you're not filtering well, you're in trouble. Ammonia buildup to toxic levels and damage from alcohol
+	if(filter_effect < 2)
+		if(owner.chem_effects[CE_ALCOHOL])
+			owner.adjustToxLoss(0.5 * max(2 - filter_effect, 0) * (owner.chem_effects[CE_ALCOHOL_TOXIC] + 0.5 * owner.chem_effects[CE_ALCOHOL]))
+	else if(!owner.chem_effects[CE_ALCOHOL] && !owner.chem_effects[CE_TOXIN] && !owner.radiation && damage > 0) // Heal a bit if needed and we're not busy. This allows recovery from low amounts of toxloss.
+		heal_damage(0.1 * filter_effect)
+		// this will filter some toxins out of owners body
+		owner.adjustToxLoss(-(filter_effect * 0.1))
 
-		//Detox can heal small amounts of damage
-		if (src.damage && src.damage < src.min_bruised_damage && owner.reagents.has_reagent("anti_toxin"))
-			src.damage -= 0.2 * ORGAN_PROCESS_ACCURACY
 
-		if(src.damage < 0)
-			src.damage = 0
+	if(owner.chem_effects[CE_ALCOHOL_TOXIC])
+		take_internal_damage(owner.chem_effects[CE_ALCOHOL_TOXIC], prob(90)) // Chance to warn them
 
-		// Get the effectiveness of the liver.
-		var/filter_effect = 3
-		if(is_bruised())
-			filter_effect -= 1
-		if(is_broken())
-			filter_effect -= 2
+	
 
-		// Do some reagent processing.
-		if(owner.chem_effects[CE_ALCOHOL_TOXIC])
-			if(filter_effect < 3)
-				owner.adjustToxLoss(owner.chem_effects[CE_ALCOHOL_TOXIC] * 0.1 * ORGAN_PROCESS_ACCURACY)
-			else
-				take_damage(owner.chem_effects[CE_ALCOHOL_TOXIC] * 0.1 * ORGAN_PROCESS_ACCURACY, prob(1)) // Chance to warn them
+	//Blood regeneration if there is some space
+	owner.regenerate_blood(0.1 + owner.chem_effects[CE_BLOODRESTORE])
+
+	// Blood loss or liver damage make you lose nutriments
+	var/blood_volume = owner.get_blood_volume()
+	if(blood_volume < BLOOD_VOLUME_SAFE || is_bruised())
+		if(owner.nutrition >= 300)
+			owner.adjustNutrition(-10)
+		else if(owner.nutrition >= 200)
+			owner.adjustNutrition(-3)
+
+//We got it covered in Process with more detailed thing
+/obj/item/organ/internal/liver/handle_regeneration()
+	return

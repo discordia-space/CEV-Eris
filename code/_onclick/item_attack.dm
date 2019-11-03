@@ -42,6 +42,9 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 /atom/movable/attackby(obj/item/I, mob/living/user)
 	if(!(I.flags & NOBLUDGEON))
+		if(user.client && user.a_intent == I_HELP)
+			return
+
 		user.do_attack_animation(src)
 		if (I.hitsound)
 			playsound(loc, I.hitsound, 50, 1, -1)
@@ -54,7 +57,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 /mob/living/attackby(obj/item/I, mob/living/user, var/params)
 	if(!ismob(user))
 		return FALSE
-	if(can_operate(src) && do_surgery(src, user, I)) //Surgery
+	if(can_operate(src, user) && do_surgery(src, user, I)) //Surgery
 		return TRUE
 	return I.attack(src, user, user.targeted_organ)
 
@@ -81,6 +84,8 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	user.do_attack_animation(M)
 
+	user.stats.getPerk(/datum/perk/timeismoney)?.deactivate()
+
 	var/hit_zone = M.resolve_item_attack(src, user, target_zone)
 	if(hit_zone)
 		apply_hit_effect(M, user, hit_zone)
@@ -98,4 +103,5 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	var/power = force
 	if(HULK in user.mutations)
 		power *= 2
-	return target.hit_with_weapon(src, user, power, hit_zone)
+	target.hit_with_weapon(src, user, power, hit_zone)
+	return

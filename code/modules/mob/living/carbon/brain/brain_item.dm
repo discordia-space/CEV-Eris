@@ -46,15 +46,15 @@
 	if(H.mind)
 		H.mind.transfer_to(brainmob)
 
-	brainmob << SPAN_NOTICE("You feel slightly disoriented. That's normal when you're just a [initial(src.name)].")
+	to_chat(brainmob, SPAN_NOTICE("You feel slightly disoriented. That's normal when you're just a [initial(src.name)]."))
 	callHook("debrain", list(brainmob))
 
 /obj/item/organ/internal/brain/examine(mob/user) // -- TLE
 	..(user)
 	if(brainmob && brainmob.client)//if thar be a brain inside... the brain.
-		user << "You can feel the small spark of life still left in this one."
+		to_chat(user, "You can feel the small spark of life still left in this one.")
 	else
-		user << "This one seems particularly lifeless. Perhaps it will regain some of its luster later.."
+		to_chat(user, "This one seems particularly lifeless. Perhaps it will regain some of its luster later..")
 
 /obj/item/organ/internal/brain/removed(mob/living/user)
 	name = "[owner.real_name]'s brain"
@@ -85,13 +85,11 @@
 /obj/item/organ/internal/brain/slime
 	name = "slime core"
 	desc = "A complex, organic knot of jelly and crystalline particles."
-	robotic = 2
 	icon = 'icons/mob/slimes.dmi'
 	icon_state = "green slime extract"
 
 /obj/item/organ/internal/brain/golem
 	name = "chem"
 	desc = "A tightly furled roll of paper, covered with indecipherable runes."
-	robotic = 2
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "scroll"

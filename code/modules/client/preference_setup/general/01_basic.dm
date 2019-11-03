@@ -1,12 +1,9 @@
 datum/preferences
 	var/gender = MALE					//gender of character (well duh)
 	var/age = 30						//age of character
-	var/spawnpoint = "Cryogenic Storage" 			//where this character will spawn
+	var/spawnpoint = "Aft Cryogenic Storage" 			//where this character will spawn
 	var/real_name						//our character's name
 	var/be_random_name = 0				//whether we are a random name every round
-
-	//Some faction information.
-	var/religion = "None"               //Religious association.
 
 /datum/category_item/player_setup_item/physical/basic
 	name = "Basic"
@@ -18,7 +15,6 @@ datum/preferences
 	from_file(S["spawnpoint"],            pref.spawnpoint)
 	from_file(S["real_name"],             pref.real_name)
 	from_file(S["name_is_always_random"], pref.be_random_name)
-	from_file(S["religion"], 			  pref.religion)
 
 /datum/category_item/player_setup_item/physical/basic/save_character(var/savefile/S)
 	to_file(S["gender"],                  pref.gender)
@@ -26,7 +22,6 @@ datum/preferences
 	to_file(S["spawnpoint"],              pref.spawnpoint)
 	to_file(S["real_name"],               pref.real_name)
 	to_file(S["name_is_always_random"],   pref.be_random_name)
-	to_file(S["religion"], 				  pref.religion)
 
 /datum/category_item/player_setup_item/physical/basic/sanitize_character()
 	var/datum/species/S = all_species[pref.species ? pref.species : SPECIES_HUMAN]
@@ -35,8 +30,7 @@ datum/preferences
 	pref.gender             = sanitize_inlist(pref.gender, S.genders, pick(S.genders))
 	pref.spawnpoint         = sanitize_inlist(pref.spawnpoint, get_late_spawntypes(), initial(pref.spawnpoint))
 	pref.be_random_name     = sanitize_integer(pref.be_random_name, 0, 1, initial(pref.be_random_name))
-	if(!pref.religion)
-		pref.religion =    "None"
+
 	// This is a bit noodly. If pref.cultural_info[TAG_CULTURE] is null, then we haven't finished loading/sanitizing, which means we might purge
 	// numbers or w/e from someone's name by comparing them to the map default. So we just don't bother sanitizing at this point otherwise.
 	/*
@@ -57,7 +51,6 @@ datum/preferences
 	. += "<b>Gender:</b> <a href='?src=\ref[src];gender=1'><b>[gender2text(pref.gender)]</b></a><br>"
 	. += "<b>Age:</b> <a href='?src=\ref[src];age=1'>[pref.age]</a><br>"
 	. += "<b>Spawn Point</b>: <a href='?src=\ref[src];spawnpoint=1'>[pref.spawnpoint]</a><br>"
-	. += "<b>Religion:</b> <a href='?src=\ref[src];religion=1'>[pref.religion]</a><br>"
 
 	. = jointext(.,null)
 
@@ -72,7 +65,7 @@ datum/preferences
 				pref.real_name = new_name
 				return TOPIC_REFRESH
 			else
-				user << SPAN_WARNING("Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .")
+				to_chat(user, SPAN_WARNING("Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and ."))
 				return TOPIC_NOACTION
 
 	else if(href_list["random_name"])
@@ -104,10 +97,6 @@ datum/preferences
 		var/choice = input(user, "Where would you like to spawn when late-joining?") as null|anything in spawnkeys
 		if(!choice || !get_late_spawntypes()[choice] || !CanUseTopic(user))	return TOPIC_NOACTION
 		pref.spawnpoint = choice
-		return TOPIC_REFRESH
-
-	else if(href_list["religion"])
-		pref.religion = input("Religion") in list("None", "Neotheology")
 		return TOPIC_REFRESH
 
 	return ..()

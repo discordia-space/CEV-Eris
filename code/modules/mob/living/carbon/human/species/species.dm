@@ -1,7 +1,7 @@
 /*
 	Datum-based species. Should make for much cleaner and easier to maintain race code.
 */
-
+#define SPECIES_BLOOD_DEFAULT 560
 /datum/species
 
 	// Descriptors and strings.
@@ -186,12 +186,6 @@
 /datum/species/proc/get_bodytype()
 	return name
 
-/datum/species/proc/get_body_build(var/gender, var/prefered)
-	for(var/BBT in typesof(/datum/body_build))
-		var/datum/body_build/BB = new BBT
-		if((!prefered || BB.name == prefered) && (gender in genders))
-			return BB
-
 
 /datum/species/proc/get_environment_discomfort(var/mob/living/carbon/human/H, var/msg_type)
 
@@ -209,10 +203,10 @@
 	switch(msg_type)
 		if("cold")
 			if(!covered)
-				H << SPAN_DANGER("[pick(cold_discomfort_strings)]")
+				to_chat(H, SPAN_DANGER("[pick(cold_discomfort_strings)]"))
 		if("heat")
 			if(covered)
-				H << SPAN_DANGER("[pick(heat_discomfort_strings)]")
+				to_chat(H, SPAN_DANGER("[pick(heat_discomfort_strings)]"))
 
 /datum/species/proc/sanitize_name(var/name)
 	return sanitizeName(name)

@@ -65,7 +65,7 @@
 /datum/export/analyzer
 	cost = 5
 	unit_name = "analyzer"
-	export_types = list(/obj/item/device/scanner/analyzer)
+	export_types = list(/obj/item/device/scanner/gas)
 
 /datum/export/analyzer/t_scanner
 	cost = 10

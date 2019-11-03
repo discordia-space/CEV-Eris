@@ -18,10 +18,19 @@
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/medium
 
-/obj/item/weapon/bluespace_harpoon/New()
-	..()
+/obj/item/weapon/bluespace_harpoon/Initialize()
+	. = ..()
 	if(!cell && suitable_cell)
 		cell = new suitable_cell(src)
+
+/obj/item/weapon/bluespace_harpoon/get_cell()
+	return cell
+
+/obj/item/weapon/bluespace_harpoon/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+		update_icon()
 
 /obj/item/weapon/bluespace_harpoon/afterattack(atom/A, mob/user as mob)
 	if(istype(A, /obj/item/weapon/storage/))
@@ -30,20 +39,20 @@
 		return
 
 	if(!cell || !cell.checked_use(100))
-		user << SPAN_WARNING("[src] battery is dead or missing.")
+		to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
 		return
 	if(!user || !A || user.machine)
 		return
 	if(transforming)
-		user << "<span class = 'warning'>You can't fire while [src] transforming!</span>"
+		to_chat(user, "<span class = 'warning'>You can't fire while [src] transforming!</span>")
 		return
 
 	playsound(user, 'sound/weapons/wave.ogg', 60, 1)
 
 	for(var/mob/O in oviewers(src))
 		if ((O.client && !( O.blinded )))
-			O << "<span class = 'warning'>[user] fire from [src]</span>"
-	user << "<span class = 'warning'>You fire from [src]</span>"
+			to_chat(O, "<span class = 'warning'>[user] fire from [src]</span>")
+	to_chat(user, "<span class = 'warning'>You fire from [src]</span>")
 
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(4, 1, A)
@@ -78,7 +87,7 @@
 		return
 	mode = !mode
 	transforming = TRUE
-	user << "<span class = 'notice'>You change [src] mode to [mode ? "transmiting" : "receiving"].</span>"
+	to_chat(user, "<span class = 'notice'>You change [src] mode to [mode ? "transmiting" : "receiving"].</span>")
 	update_icon()
 	flick("harpoon-[mode]-change", src)
 	spawn(13)	//Average length of transforming animation
@@ -89,7 +98,7 @@
 
 /obj/item/weapon/bluespace_harpoon/examine(var/mob/user, var/dist = -1)
 	..(user, dist)
-	user << "<span class='notice'>Mode set to [mode ? "transmiting" : "receiving"].</span>"
+	to_chat(user, "<span class='notice'>Mode set to [mode ? "transmiting" : "receiving"].</span>")
 
 /obj/item/weapon/bluespace_harpoon/MouseDrop(over_object)
 	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))

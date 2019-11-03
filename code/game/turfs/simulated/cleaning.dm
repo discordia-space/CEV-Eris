@@ -17,9 +17,6 @@
 	addtimer(CALLBACK(src, .proc/unwet_floor, TRUE), rand(1 MINUTES, 1.5 MINUTES), TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /turf/simulated/proc/unwet_floor(var/check_very_wet)
-	if(check_very_wet && wet >= 2)
-		return
-
 	wet = 0
 	if(wet_overlay)
 		overlays -= wet_overlay
@@ -43,7 +40,7 @@
 			if(istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
 				qdel(O)
 	else
-		user << SPAN_WARNING("\The [source] is too dry to wash that.")
+		to_chat(user, SPAN_WARNING("\The [source] is too dry to wash that."))
 	source.reagents.trans_to_turf(src, 1, 10)	//10 is the multiplier for the reaction effect. probably needed to wet the floor properly.
 
 
@@ -60,7 +57,7 @@
 	if(source.reagents.has_reagent("water", 1) || source.reagents.has_reagent("cleaner", 1))
 		source.reagents.trans_to_turf(src, 1, 10)
 	else
-		user << SPAN_WARNING("\The [source] is too dry to wash that.")
+		to_chat(user, SPAN_WARNING("\The [source] is too dry to wash that."))
 		return
 
 	for (count;count > 0;count--)
@@ -107,7 +104,7 @@
 				B.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
 				B.virus2 = virus_copylist(M.virus2)
 			return 1 //we bloodied the floor
-		blood_splatter(src,M.get_blood(M.vessel),1)
+		blood_splatter(src,M.get_blood(),1)
 		return 1 //we bloodied the floor
 	return 0
 

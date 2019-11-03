@@ -17,6 +17,7 @@
 	icon = 'icons/obj/food.dmi'
 	icon_state = "donutbox6"
 	name = "donut box"
+	max_storage_space = 8
 	var/icon_type = "donut"
 
 /obj/item/weapon/storage/fancy/update_icon(var/itemremoved = 0)
@@ -29,11 +30,11 @@
 		return
 
 	if(contents.len <= 0)
-		user << "There are no [src.icon_type]s left in the box."
+		to_chat(user, "There are no [src.icon_type]s left in the box.")
 	else if(contents.len == 1)
-		user << "There is one [src.icon_type] left in the box."
+		to_chat(user, "There is one [src.icon_type] left in the box.")
 	else
-		user << "There are [src.contents.len] [src.icon_type]s in the box."
+		to_chat(user, "There are [src.contents.len] [src.icon_type]s in the box.")
 
 	return
 
@@ -114,10 +115,10 @@
 	if(istype(W,/obj/item/weapon/pen/crayon))
 		switch(W:colourName)
 			if("mime")
-				usr << "This crayon is too sad to be contained in this box."
+				to_chat(usr, "This crayon is too sad to be contained in this box.")
 				return
 			if("rainbow")
-				usr << "This crayon is too powerful to be contained in this box."
+				to_chat(usr, "This crayon is too powerful to be contained in this box.")
 				return
 	..()
 
@@ -164,7 +165,7 @@
 		var/obj/item/clothing/mask/smokable/cigarette/cig = locate() in src
 
 		if(!cig)
-			user << SPAN_NOTICE("Looks like the packet is out of cigarettes.")
+			to_chat(user, SPAN_NOTICE("Looks like the packet is out of cigarettes."))
 			return
 
 		user.equip_to_slot_if_possible(cig, slot_wear_mask)

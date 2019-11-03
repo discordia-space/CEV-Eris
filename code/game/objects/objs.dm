@@ -27,11 +27,11 @@
 		if (corporation)
 			if (corporation in global.global_corporations)
 				var/datum/corporation/C = global_corporations[corporation]
-				user << "<font color='[C.textcolor]'>You think this [src.name] create a \
+				to_chat(user, "<font color='[C.textcolor]'>You think this [src.name] create a \
 				<IMG CLASS=icon SRC=\ref[C.icon] ICONSTATE='[C.icon_state]'>\
-				[C.name]. [C.about]</font>"
+				[C.name]. [C.about]</font>")
 			else
-				user << "You think this [src.name] create a [corporation]."
+				to_chat(user, "You think this [src.name] create a [corporation].")
 	return distance == -1 || (get_dist(src, user) <= distance)
 
 
@@ -47,15 +47,17 @@
 	// Instead any such checks are made in CanUseTopic()
 	if(CanUseTopic(usr, state, href_list) == STATUS_INTERACTIVE)
 		CouldUseTopic(usr)
-		return 0
+		return OnTopic(usr, href_list, state)
 
 	CouldNotUseTopic(usr)
 	return 1
 
-/obj/CanUseTopic(var/mob/user, var/datum/topic_state/state)
+/obj/proc/OnTopic(mob/user, href_list, datum/topic_state/state)
+	return TOPIC_NOACTION
+
+/obj/CanUseTopic(mob/user, datum/topic_state/state)
 	if(user.CanUseObjTopic(src))
 		return ..()
-	user << SPAN_DANGER("\icon[src]Access Denied!")
 	return STATUS_CLOSE
 
 /mob/living/silicon/CanUseObjTopic(var/obj/O)
@@ -174,9 +176,9 @@
 	invisibility = hide ? INVISIBILITY_MAXIMUM : initial(invisibility)
 
 /obj/proc/hides_under_flooring()
-	return level == 1
+	return level == BELOW_PLATING_LEVEL
 
-/obj/proc/hear_talk(mob/M as mob, text, verb, datum/language/speaking)
+/obj/proc/hear_talk(mob/M as mob, text, verb, datum/language/speaking, speech_volume)
 	if(talking_atom)
 		talking_atom.catchMessage(text, M)
 /*
@@ -227,15 +229,15 @@
 //To be called from things that spill objects on the floor.
 //Makes an object move around randomly for a couple of tiles
 /obj/proc/tumble(var/dist = 2)
+	set waitfor = FALSE
 	if (dist >= 1)
-		spawn()
-			dist += rand(0,1)
-			for(var/i = 1, i <= dist, i++)
-				if(src)
-					step(src, pick(NORTH,SOUTH,EAST,WEST))
-					sleep(rand(2,4))
+		dist += rand(0,1)
+		for(var/i = 1, i <= dist, i++)
+			if(src)
+				step(src, pick(NORTH,SOUTH,EAST,WEST))
+				sleep(rand(2,4))
 
 
 //Intended for gun projectiles, but defined at this level for various things that aren't of projectile type
 /obj/proc/multiply_projectile_damage(var/newmult)
-	throwforce = initial(throwforce)*newmult
+	throwforce = initial(throwforce) * newmult

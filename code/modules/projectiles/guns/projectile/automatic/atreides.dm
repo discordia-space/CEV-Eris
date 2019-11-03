@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/automatic/atreides
 	name = "FS SMG .45 \"Atreides\""
-	desc = "The Atreides is a replica of an old and popular SMG. Uses .45 rounds."
+	desc = "The Atreides is a replica of an old and popular SMG. It has a strong kick. Uses .45 rounds."
 	icon_state = "mac"
 	item_state = "mac"
 	w_class = ITEM_SIZE_NORMAL
@@ -13,12 +13,14 @@
 	magazine_type = /obj/item/ammo_magazine/c45smg
 	matter = list(MATERIAL_PLASTEEL = 16, MATERIAL_PLASTIC = 4)
 	price_tag = 2000
-	damage_multiplier = 0.65
+	damage_multiplier = 0.75 //unnerfed it up from 0.65 because 45 and 10 got swapped
+	recoil = 0.9 //sucks with new system so brough it from 1.2 to 0.9 at least
+	recoil_buildup = 0.1 //smg level
 
 	firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    dispersion=list(0.0, 0.6, 0.6), icon="burst"),
+		BURST_3_ROUND
 		)
 
 /obj/item/weapon/gun/projectile/automatic/atreides/update_icon()

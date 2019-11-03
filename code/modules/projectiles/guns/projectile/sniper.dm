@@ -6,10 +6,9 @@
 	w_class = ITEM_SIZE_HUGE
 	force = WEAPON_FORCE_PAINFUL
 	slot_flags = SLOT_BACK
-	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
+	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2, TECH_ILLEGAL = 2)
 	caliber = "14.5mm"
-	recoil = 2 //extra kickback
-	//fire_sound = 'sound/weapons/sniper.ogg'
+	recoil = 0.2 //due to new dynamic crosshair recoil system, in order to hit something we need to have low recoil on it, but 0.2 will allow random misses as well
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING
 	max_shells = 1
@@ -66,3 +65,53 @@
 	if(!bolt_open)
 		return
 	..()
+
+/obj/item/weapon/weaponparts
+	name = "weaponpart"
+	desc = "how did you get it?"
+	icon = 'icons/obj/buildingobject.dmi'
+
+/obj/item/weapon/weaponparts/heavysniper/disassembled
+	name = "disassembled sniper rifle"
+	desc = "This is a disassembled sniper rifle. You need to attach the stock."
+	icon_state = "sniperd"
+
+/obj/item/weapon/weaponparts/heavysniper/stocked
+	name = "disassembled sniper rifle with stock"
+	desc = "This is a disassembled sniper rifle with stock. Now attach the barrel."
+	icon_state = "snipersd"
+
+/obj/item/weapon/weaponparts/heavysniper/stock
+	name = "sniper rifle stock"
+	desc = "This is a stock from a sniper rifle."
+	icon_state = "sniperstock"
+
+/obj/item/weapon/weaponparts/heavysniper/barrel
+	name = "sniper rifle barrel"
+	desc = "This is a barrel from a sniper rifle."
+	icon_state = "sniperbarrel"
+
+/obj/item/weapon/weaponparts/heavysniper/disassembled/attackby(obj/item/W, mob/user)
+    if(istype(W,/obj/item/weapon/weaponparts/heavysniper/stock))
+        to_chat(user, "You attach the barrel to the sniper")
+        var/obj/item/weapon/weaponparts/heavysniper/stocked/HS = new (get_turf(src))
+        if(loc == user)
+            equip_slot = user.get_inventory_slot(src)
+            if(equip_slot in list(slot_r_hand, slot_l_hand))
+                user.drop_from_inventory(src)
+                user.equip_to_slot_if_possible(HS, equip_slot)
+            qdel(W)
+            qdel(src)
+
+
+/obj/item/weapon/weaponparts/heavysniper/stocked/attackby(obj/item/W, mob/user)
+    if(istype(W,/obj/item/weapon/weaponparts/heavysniper/barrel))
+        to_chat(user, "You attach the barrel to the sniper")
+        var/obj/item/weapon/gun/projectile/heavysniper/HS = new (get_turf(src))
+        if(loc == user)
+            equip_slot = user.get_inventory_slot(src)
+            if(equip_slot in list(slot_r_hand, slot_l_hand))
+                user.drop_from_inventory(src)
+                user.equip_to_slot_if_possible(HS, equip_slot)
+            qdel(W)
+            qdel(src)

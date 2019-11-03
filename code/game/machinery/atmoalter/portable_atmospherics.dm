@@ -119,28 +119,22 @@
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 			if(connected_port)
 				disconnect()
-				user << SPAN_NOTICE("You disconnect \the [src] from the port.")
+				to_chat(user, SPAN_NOTICE("You disconnect \the [src] from the port."))
 				update_icon()
 				return
 			else
 				var/obj/machinery/atmospherics/portables_connector/possible_port = locate(/obj/machinery/atmospherics/portables_connector/) in loc
 				if(possible_port)
 					if(connect(possible_port))
-						user << SPAN_NOTICE("You connect \the [src] to the port.")
+						to_chat(user, SPAN_NOTICE("You connect \the [src] to the port."))
 						update_icon()
 						return
 					else
-						user << SPAN_NOTICE("\The [src] failed to connect to the port.")
+						to_chat(user, SPAN_NOTICE("\The [src] failed to connect to the port."))
 						return
 				else
-					user << SPAN_NOTICE("Nothing happens.")
+					to_chat(user, SPAN_NOTICE("Nothing happens."))
 					return
-
-	else if (istype(I, /obj/item/device/scanner/analyzer))
-		var/obj/item/device/scanner/analyzer/A = I
-		A.analyze_gases(src, user)
-		return
-
 	return
 
 
@@ -158,10 +152,19 @@
 		return 1
 	return 0
 
+/obj/machinery/portable_atmospherics/powered/get_cell()
+	return cell
+
+/obj/machinery/portable_atmospherics/powered/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+		update_icon()
+
 /obj/machinery/portable_atmospherics/powered/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/cell/large))
 		if(cell)
-			user << "There is already a power cell installed."
+			to_chat(user, "There is already a power cell installed.")
 			return
 
 		var/obj/item/weapon/cell/large/C = I
@@ -190,7 +193,7 @@
 
 		if(QUALITY_SCREW_DRIVING)
 			if(!cell)
-				user << SPAN_WARNING("There is no power cell installed.")
+				to_chat(user, SPAN_WARNING("There is no power cell installed."))
 				return
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				user.visible_message(SPAN_NOTICE("[user] opens the panel on [src] and removes [cell]."), SPAN_NOTICE("You open the panel on [src] and remove [cell]."))
@@ -205,21 +208,21 @@
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				if(connected_port)
 					disconnect()
-					user << SPAN_NOTICE("You disconnect \the [src] from the port.")
+					to_chat(user, SPAN_NOTICE("You disconnect \the [src] from the port."))
 					update_icon()
 					return
 				else
 					var/obj/machinery/atmospherics/portables_connector/possible_port = locate(/obj/machinery/atmospherics/portables_connector/) in loc
 					if(possible_port)
 						if(connect(possible_port))
-							user << SPAN_NOTICE("You connect \the [src] to the port.")
+							to_chat(user, SPAN_NOTICE("You connect \the [src] to the port."))
 							update_icon()
 							return
 						else
-							user << SPAN_NOTICE("\The [src] failed to connect to the port.")
+							to_chat(user, SPAN_NOTICE("\The [src] failed to connect to the port."))
 							return
 					else
-						user << SPAN_NOTICE("Nothing happens.")
+						to_chat(user, SPAN_NOTICE("Nothing happens."))
 						return
 			return
 

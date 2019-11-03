@@ -7,6 +7,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 
 /obj/effect
 	var/random_rotation = 0 //If 1, pick a random cardinal direction. if 2, pick a randomised angle
+	var/random_offset = 0
 
 /obj/effect/effect
 	name = "effect"
@@ -16,8 +17,8 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	pass_flags = PASSTABLE | PASSGRILLE
 
 
-/obj/effect/New()
-	.=..()
+/obj/effect/Initialize(mapload, ...)
+	. = ..()
 	if (random_rotation)
 		var/matrix/M = transform
 		if (random_rotation == 1)
@@ -27,6 +28,11 @@ would spawn and follow the beaker, even if it is carried or thrown.
 			M.Turn(rand(0,360))
 
 		transform = M
+	if(random_offset)
+		pixel_x += rand(-random_offset,random_offset)
+		pixel_y += rand(-random_offset,random_offset)
+
+
 
 /obj/effect/Destroy()
 	if(reagents)
@@ -418,10 +424,10 @@ steam.start() -- spawns the effect
 			s.start()
 
 			for(var/mob/M in viewers(5, location))
-				M << SPAN_WARNING("The solution violently explodes.")
+				to_chat(M, SPAN_WARNING("The solution violently explodes."))
 			for(var/mob/M in viewers(1, location))
 				if (prob (50 * amount))
-					M << SPAN_WARNING("The explosion knocks you down.")
+					to_chat(M, SPAN_WARNING("The explosion knocks you down."))
 					M.Weaken(rand(1,5))
 			return
 		else
@@ -444,7 +450,7 @@ steam.start() -- spawns the effect
 				flash = (amount/4) * flashing_factor
 
 			for(var/mob/M in viewers(8, location))
-				M << SPAN_WARNING("The solution violently explodes.")
+				to_chat(M, SPAN_WARNING("The solution violently explodes."))
 
 			explosion(
 				location,

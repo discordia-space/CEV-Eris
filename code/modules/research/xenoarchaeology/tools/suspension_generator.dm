@@ -30,6 +30,12 @@
 /obj/machinery/suspension_gen/get_cell()
 	return cell
 
+/obj/machinery/suspension_gen/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+		update_icon()
+
 /obj/machinery/suspension_gen/Process()
 	if (!suspension_field)
 		return

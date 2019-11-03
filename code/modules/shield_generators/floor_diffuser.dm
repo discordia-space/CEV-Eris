@@ -12,7 +12,7 @@
 
 	anchored = 1
 	density = 0
-	level = 1
+	level = BELOW_PLATING_LEVEL
 	var/alarm = 0
 	var/enabled = 1
 	var/list/diffused_turfs = list()
@@ -100,3 +100,6 @@
 	to_chat(user, "It is [enabled ? "enabled" : "disabled"].")
 	if(alarm)
 		to_chat(user, "A red LED labeled \"Proximity Alarm\" is blinking on the control panel.")
+
+/obj/machinery/shield_diffuser/ex_act(severity)
+	return

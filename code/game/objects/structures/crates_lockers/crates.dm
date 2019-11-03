@@ -29,8 +29,8 @@
 	playsound(src.loc, 'sound/machines/click.ogg', 15, 1, -3)
 	for(var/obj/O in src)
 		O.forceMove(get_turf(src))
-//	icon_state = icon_opened
 	src.opened = TRUE
+	update_icon()
 
 	if(climbable)
 		structure_shaken()
@@ -56,8 +56,8 @@
 		O.forceMove(src)
 		itemcount++
 
-//	icon_state = icon_closed
 	src.opened = FALSE
+	update_icon()
 	return TRUE
 
 /obj/structure/closet/crate/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -68,21 +68,21 @@
 	else if(istype(W, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/C = W
 		if(rigged)
-			user << SPAN_NOTICE("[src] is already rigged!")
+			to_chat(user, SPAN_NOTICE("[src] is already rigged!"))
 			return
 		if (C.use(1))
-			user  << SPAN_NOTICE("You rig [src].")
+			to_chat(user, SPAN_NOTICE("You rig [src]."))
 			rigged = TRUE
 			return
 	else if(istype(W, /obj/item/device/radio/electropack))
 		if(rigged)
-			user  << SPAN_NOTICE("You attach [W] to [src].")
+			to_chat(user, SPAN_NOTICE("You attach [W] to [src]."))
 			user.drop_item()
 			W.forceMove(src)
 			return
 	else if(istype(W, /obj/item/weapon/tool/wirecutters))
 		if(rigged)
-			user  << SPAN_NOTICE("You cut away the wiring.")
+			to_chat(user, SPAN_NOTICE("You cut away the wiring."))
 			playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
 			rigged = FALSE
 			return
@@ -280,6 +280,9 @@
 	name = "secure hydroponics crate"
 	desc = "A crate with a lock on it, painted in the scheme of the station's botanists."
 	icon_state = "hydrosecurecrate"
+
+/obj/structure/closet/crate/secure/hydrosec/prelocked
+	req_access = list(access_hydroponics)
 
 /obj/structure/closet/crate/secure/bin
 	name = "secure bin"

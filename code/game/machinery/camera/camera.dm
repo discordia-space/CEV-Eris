@@ -144,7 +144,7 @@
 		if(QUALITY_WELDING)
 			if((wires.CanDeconstruct() || (stat & BROKEN)))
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You weld the assembly securely into place.")
+					to_chat(user, SPAN_NOTICE("You weld the assembly securely into place."))
 					if(assembly)
 						assembly.loc = src.loc
 						assembly.anchored = 1
@@ -154,10 +154,10 @@
 						assembly.dir = src.dir
 						if(stat & BROKEN)
 							assembly.state = 2
-							user << SPAN_NOTICE("You repaired \the [src] frame.")
+							to_chat(user, SPAN_NOTICE("You repaired \the [src] frame."))
 						else
 							assembly.state = 1
-							user << SPAN_NOTICE("You cut \the [src] free from the wall.")
+							to_chat(user, SPAN_NOTICE("You cut \the [src] free from the wall."))
 							new /obj/item/stack/cable_coil(src.loc, length=2)
 						assembly = null //so qdel doesn't eat it.
 					qdel(src)
@@ -186,7 +186,7 @@
 		var/mob/living/U = user
 		var/list/mob/viewers = list()
 		if(last_shown_time < world.time)
-			U << "You hold \a [I.name] up to the camera ..."
+			to_chat(U, "You hold \a [I.name] up to the camera ...")
 			for(var/mob/O in GLOB.living_mob_list)
 				if(!O.client)
 					continue
@@ -203,11 +203,11 @@
 					continue
 				if(istype(O, /mob/living/silicon/ai))
 					if(U.name == "Unknown")
-						O << "<b>[U]</b> holds \a [I.name] up to one of your cameras ..."
+						to_chat(O, "<b>[U]</b> holds \a [I.name] up to one of your cameras ...")
 					else
-						O << "<b><a href='byond://?src=\ref[O];track2=\ref[O];track=\ref[U];trackname=[U.name]'>[U]</a></b> holds \a [I.name] up to one of your cameras ..."
+						to_chat(O, "<b><a href='byond://?src=\ref[O];track2=\ref[O];track=\ref[U];trackname=[U.name]'>[U]</a></b> holds \a [I.name] up to one of your cameras ...")
 				else
-					O << "<b>[U]</b> holds \a [I.name] up to the camera ..."
+					to_chat(O, "<b>[U]</b> holds \a [I.name] up to the camera ...")
 
 				if(istype(I, /obj/item/weapon/paper))
 					var/obj/item/weapon/paper/X = I
@@ -218,13 +218,13 @@
 
 	else if (istype(I, /obj/item/weapon/camera_bug))
 		if (!src.can_use())
-			user << SPAN_WARNING("Camera non-functional.")
+			to_chat(user, SPAN_WARNING("Camera non-functional."))
 			return
 		if (src.bugged)
-			user << SPAN_NOTICE("Camera bug removed.")
+			to_chat(user, SPAN_NOTICE("Camera bug removed."))
 			src.bugged = 0
 		else
-			user << SPAN_NOTICE("Camera bugged.")
+			to_chat(user, SPAN_NOTICE("Camera bugged."))
 			src.bugged = 1
 
 	else if(I.damtype == BRUTE || I.damtype == BURN) //bashing cameras
@@ -375,7 +375,7 @@
 		return
 
 	if(stat & BROKEN)
-		user << SPAN_WARNING("\The [src] is broken.")
+		to_chat(user, SPAN_WARNING("\The [src] is broken."))
 		return
 
 	user.set_machine(src)

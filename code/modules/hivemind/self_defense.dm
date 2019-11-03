@@ -5,8 +5,8 @@
 /datum/hivemind_sdp
 	var/name = "Self-Defense Protocol"
 	var/obj/machinery/hivemind_machine/master
-	var/cooldown = 		1 SECOND
-	var/silent = 		FALSE
+	var/cooldown = 1 SECONDS
+	var/silent = FALSE
 	//internal
 	var/current_cooldown = 0
 	var/hp_percent = 0
@@ -73,7 +73,8 @@
 		if(victim.stat == CONSCIOUS && victim.faction != HIVE_FACTION)
 			victim.Weaken(5)
 			step_away(victim, master)
-			victim.apply_damage(rand(5, 10), BRUTE)
+			victim.damage_through_armor(10, BURN, BP_HEAD, ARMOR_ENERGY)
+
 	set_cooldown()
 
 

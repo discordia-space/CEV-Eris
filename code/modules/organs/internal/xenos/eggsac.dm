@@ -14,13 +14,13 @@
 	set category = "Abilities"
 
 	if(!config.aliens_allowed)
-		owner << "You begin to lay an egg, but hesitate. You suspect it isn't allowed."
+		to_chat(owner, "You begin to lay an egg, but hesitate. You suspect it isn't allowed.")
 		//verbs -= /obj/item/organ/internal/xenos/eggsac/proc/lay_egg
 		return
 
 	var/turf/target = get_turf(src)
 	if(locate(/obj/structure/alien/egg) in target)
-		owner << "There's already an egg here."
+		to_chat(owner, "There's already an egg here.")
 		return
 
 	if(check_alien_ability(75, TRUE))
@@ -33,20 +33,20 @@
 	set category = "Abilities"
 
 	if(!M.Adjacent(owner))
-		owner << SPAN_WARNING("They are too far away.")
+		to_chat(owner, SPAN_WARNING("They are too far away."))
 		return
 
 	if(!M.mind)
-		owner << SPAN_WARNING("This mindless flesh adds nothing to the hive.")
+		to_chat(owner, SPAN_WARNING("This mindless flesh adds nothing to the hive."))
 		return
 
 	if(M.species.get_bodytype() == "Xenomorph" || !isnull(M.internal_organs_by_name[BP_HIVE]))
-		owner << SPAN_WARNING("They are already part of the hive.")
+		to_chat(owner, SPAN_WARNING("They are already part of the hive."))
 		return
 
 	var/obj/item/organ/affecting = M.get_organ(BP_CHEST)
-	if(!affecting || (affecting.robotic >= ORGAN_ROBOT))
-		owner << SPAN_WARNING("This form is not compatible with our physiology.")
+	if(!affecting || BP_IS_ROBOTIC(affecting))
+		to_chat(owner, SPAN_WARNING("This form is not compatible with our physiology."))
 		return
 
 	src.visible_message(
@@ -57,7 +57,7 @@
 		return
 
 	//TODO: instead affecting.robotic use M.isSyntetic()
-	if(M.species.get_bodytype() == "Xenomorph" || !isnull(M.internal_organs_by_name[BP_HIVE]) || !affecting || (affecting.robotic >= ORGAN_ROBOT))
+	if(M.species.get_bodytype() == "Xenomorph" || !isnull(M.internal_organs_by_name[BP_HIVE]) || !affecting || BP_IS_ROBOTIC(affecting))
 		return
 
 	if(!check_alien_ability(500, TRUE))

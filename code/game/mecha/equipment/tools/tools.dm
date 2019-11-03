@@ -20,6 +20,9 @@
  * /obj/item/mecha_parts/mecha_equipment/thruster
  */
 
+/obj/item/mecha_parts/mecha_equipment/tool
+	matter = list(MATERIAL_STEEL = 15)
+
 /obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp
 	name = "hydraulic clamp"
 	icon_state = "mecha_clamp"
@@ -152,6 +155,7 @@
 	desc = "This is an upgraded version of the drill that'll pierce the heavens! (Can be attached to: Combat and Engineering Exosuits)"
 	icon_state = "mecha_diamond_drill"
 	origin_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
+	matter = list(MATERIAL_STEEL = 15, MATERIAL_DIAMOND = 3)
 	equip_cooldown = 20
 	force = 15
 
@@ -279,6 +283,7 @@
 	equip_cooldown = 10
 	energy_drain = 250
 	range = MELEE|RANGED
+	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASMA = 15, MATERIAL_URANIUM = 15)
 	var/mode = 0 //0 - deconstruct, 1 - wall or floor, 2 - airlock.
 	var/disabled = 0 //malf
 
@@ -378,7 +383,7 @@
 	name = "teleporter"
 	desc = "An exosuit module that allows exosuits to teleport to any position in view."
 	icon_state = "mecha_teleport"
-	origin_tech = list(TECH_BLUESPACE = 10)
+	origin_tech = list(TECH_BLUESPACE = 6)
 	equip_cooldown = 150
 	energy_drain = 1000
 	range = RANGED
@@ -558,7 +563,8 @@
 	name = "\improper CCW armor booster"
 	desc = "Close-combat armor booster. Boosts exosuit armor against armed melee attacks. Requires energy to operate."
 	icon_state = "mecha_abooster_ccw"
-	origin_tech = list(TECH_MATERIAL = 3)
+	origin_tech = list(TECH_MATERIAL = 4)
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_SILVER = 5)
 	deflect_coeff = 1.15
 	damage_coeff = 0.8
 	melee = 1
@@ -582,6 +588,7 @@
 	desc = "Ranged-weaponry armor booster. Boosts exosuit armor against ranged attacks. Completely blocks taser shots, but requires energy to operate."
 	icon_state = "mecha_abooster_proj"
 	origin_tech = list(TECH_MATERIAL = 4)
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_GOLD = 5)
 	deflect_coeff = 1.15
 	damage_coeff = 0.8
 	melee = 0
@@ -607,6 +614,7 @@
 	equip_cooldown = 20
 	energy_drain = 100
 	range = 0
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_GOLD = 10, MATERIAL_SILVER = 2, MATERIAL_GLASS = 5)
 	var/health_boost = 2
 	var/datum/global_iterator/pr_repair_droid
 	var/icon/droid_overlay
@@ -698,6 +706,7 @@
 	desc = "Wirelessly drains energy from any available power channel in area. The performance index is quite low."
 	icon_state = "tesla"
 	origin_tech = list(TECH_MAGNET = 4, TECH_ILLEGAL = 2)
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_GOLD = 2, MATERIAL_SILVER = 3, MATERIAL_GLASS = 2)
 	equip_cooldown = 10
 	energy_drain = 0
 	range = 0
@@ -786,6 +795,7 @@
 	equip_cooldown = 10
 	energy_drain = 0
 	range = MELEE
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_SILVER = 5, MATERIAL_GLASS = 1)
 	var/datum/global_iterator/pr_mech_generator
 	var/coeff = 100
 	var/obj/item/stack/material/fuel
@@ -866,7 +876,7 @@
 		if(isnull(result))
 			user.visible_message("[user] tries to shove [weapon] into [src]. What a dumb-ass.",SPAN_WARNING("[fuel] traces minimal. [weapon] cannot be used as fuel."))
 		else if(!result)
-			user << "Unit is full."
+			to_chat(user, "Unit is full.")
 		else
 			user.visible_message("[user] loads [src] with [fuel].","[result] unit\s of [fuel] successfully loaded.")
 		return
@@ -920,6 +930,7 @@
 	desc = "Generates power using uranium. Pollutes the environment."
 	icon_state = "tesla"
 	origin_tech = list(TECH_POWER = 3, TECH_ENGINEERING = 3)
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_SILVER = 5, MATERIAL_GLASS = 10)
 	max_fuel = 50000
 	fuel_per_cycle_idle = 10
 	fuel_per_cycle_active = 30
@@ -942,7 +953,7 @@
 		if(..())
 			for(var/mob/living/carbon/M in view(EG.chassis))
 				if(ishuman(M))
-					M.apply_effect((EG.rad_per_cycle*3),IRRADIATE,0)
+					M.apply_effect((EG.rad_per_cycle*3),IRRADIATE)
 				else
 					M.apply_effect(EG.rad_per_cycle, IRRADIATE)
 		return 1
@@ -1015,6 +1026,7 @@
 	desc = "A mountable passenger compartment for exo-suits. Rather cramped."
 	icon_state = "mecha_abooster_ccw"
 	origin_tech = list(TECH_ENGINEERING = 1, TECH_BIO = 1)
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_GLASS = 5)
 	energy_drain = 10
 	range = MELEE
 	equip_cooldown = 20
@@ -1025,7 +1037,7 @@
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/destroy()
 	for(var/atom/movable/AM in src)
 		AM.forceMove(get_turf(src))
-		AM << SPAN_DANGER("You tumble out of the destroyed [src.name]!")
+		to_chat(AM, SPAN_DANGER("You tumble out of the destroyed [src.name]!"))
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/Exit(atom/movable/O)
@@ -1042,9 +1054,9 @@
 			log_message("\The [user] boarded.")
 			occupant_message("\The [user] boarded.")
 		else if(src.occupant != user)
-			user << SPAN_WARNING("[src.occupant] was faster. Try better next time, loser.")
+			to_chat(user, SPAN_WARNING("[src.occupant] was faster. Try better next time, loser."))
 	else
-		user << "You stop entering the exosuit."
+		to_chat(user, "You stop entering the exosuit.")
 
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/verb/eject()
 	set name = "Eject"
@@ -1054,7 +1066,7 @@
 
 	if(usr != occupant)
 		return
-	occupant << "You climb out from \the [src]."
+	to_chat(occupant, "You climb out from \the [src].")
 	go_out()
 	occupant_message("[occupant] disembarked.")
 	log_message("[occupant] disembarked.")
@@ -1116,18 +1128,18 @@
 		return
 
 	if (!isturf(usr.loc))
-		usr << SPAN_DANGER("You can't reach the passenger compartment from here.")
+		to_chat(usr, SPAN_DANGER("You can't reach the passenger compartment from here."))
 		return
 
 	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
 		if(C.handcuffed)
-			usr << SPAN_DANGER("Kinda hard to climb in while handcuffed don't you think?")
+			to_chat(usr, SPAN_DANGER("Kinda hard to climb in while handcuffed don't you think?"))
 			return
 
 	for(var/mob/living/carbon/slime/M in range(1,usr))
 		if(M.Victim == usr)
-			usr << SPAN_DANGER("You're too busy getting your life sucked out of you.")
+			to_chat(usr, SPAN_DANGER("You're too busy getting your life sucked out of you."))
 			return
 
 	//search for a valid passenger compartment
@@ -1147,13 +1159,13 @@
 	//didn't find anything
 	switch (feedback)
 		if (OCCUPIED)
-			usr << SPAN_DANGER("The passenger compartment is already occupied!")
+			to_chat(usr, SPAN_DANGER("The passenger compartment is already occupied!"))
 		if (LOCKED)
-			usr << SPAN_WARNING("The passenger compartment hatch is locked!")
+			to_chat(usr, SPAN_WARNING("The passenger compartment hatch is locked!"))
 		if (OCCUPIED|LOCKED)
-			usr << SPAN_DANGER("All of the passenger compartments are already occupied or locked!")
+			to_chat(usr, SPAN_DANGER("All of the passenger compartments are already occupied or locked!"))
 		if (0)
-			usr << SPAN_WARNING("\The [src] doesn't have a passenger compartment.")
+			to_chat(usr, SPAN_WARNING("\The [src] doesn't have a passenger compartment."))
 
 #undef LOCKED
 #undef OCCUPIED

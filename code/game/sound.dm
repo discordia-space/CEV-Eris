@@ -117,6 +117,44 @@ var/list/gunshot_sound = list('sound/weapons/Gunshot.ogg',
 	'sound/weapons/Gunshot4.ogg'
 )*/
 
+var/list/gun_interact_sound = list(
+	'sound/weapons/guns/interact/batrifle_cock.ogg',
+	'sound/weapons/guns/interact/batrifle_magin.ogg',
+	'sound/weapons/guns/interact/batrifle_magout.ogg',
+	'sound/weapons/guns/interact/bullet_insert2.ogg',
+	'sound/weapons/guns/interact/bullet_insert.ogg',
+	'sound/weapons/guns/interact/hpistol_cock.ogg',
+	'sound/weapons/guns/interact/hpistol_magin.ogg',
+	'sound/weapons/guns/interact/hpistol_magout.ogg',
+	'sound/weapons/guns/interact/lmg_close.ogg',
+	'sound/weapons/guns/interact/lmg_cock.ogg',
+	'sound/weapons/guns/interact/lmg_magin.ogg',
+	'sound/weapons/guns/interact/lmg_magout.ogg',
+	'sound/weapons/guns/interact/lmg_open.ogg',
+	'sound/weapons/guns/interact/ltrifle_cock.ogg',
+	'sound/weapons/guns/interact/ltrifle_magin.ogg',
+	'sound/weapons/guns/interact/ltrifle_magout.ogg',
+	'sound/weapons/guns/interact/m41_cocked.ogg',
+	'sound/weapons/guns/interact/m41_reload.ogg',
+	'sound/weapons/guns/interact/pistol_cock.ogg',
+	'sound/weapons/guns/interact/pistol_magin.ogg',
+	'sound/weapons/guns/interact/pistol_magout.ogg',
+	'sound/weapons/guns/interact/rev_cock.ogg',
+	'sound/weapons/guns/interact/rev_magin.ogg',
+	'sound/weapons/guns/interact/rev_magout.ogg',
+	'sound/weapons/guns/interact/rifle_boltback.ogg',
+	'sound/weapons/guns/interact/rifle_boltforward.ogg',
+	'sound/weapons/guns/interact/rifle_load.ogg',
+	'sound/weapons/guns/interact/selector.ogg',
+	'sound/weapons/guns/interact/sfrifle_cock.ogg',
+	'sound/weapons/guns/interact/sfrifle_magin.ogg',
+	'sound/weapons/guns/interact/sfrifle_magout.ogg',
+	'sound/weapons/guns/interact/shotgun_insert.ogg',
+	'sound/weapons/guns/interact/smg_cock.ogg',
+	'sound/weapons/guns/interact/smg_magin.ogg',
+	'sound/weapons/guns/interact/smg_magout.ogg'
+)
+
 var/list/short_equipement_sound = list(
 	'sound/misc/inventory/short_1.ogg',
 	'sound/misc/inventory/short_2.ogg',
@@ -332,7 +370,8 @@ var/const/FALLOFF_SOUNDS = 0.5
 
 		if(istype(src,/mob/living/))
 			var/mob/living/M = src
-			if (M.hallucination)
+			var/mob/living/carbon/C = src
+			if (istype(C) && C.hallucination_power > 50 && C.chem_effects[CE_MIND] < 1)
 				S.environment = PSYCHOTIC
 			else if (M.druggy)
 				S.environment = DRUGGED
@@ -357,18 +396,6 @@ var/const/FALLOFF_SOUNDS = 0.5
 				S.environment = A.sound_env
 
 	src << S
-
-/client/proc/playtitlemusic()
-	if(!SSticker.login_music)
-		return
-	if(get_preference_value(/datum/client_preference/play_lobby_music) == GLOB.PREF_YES)
-		sound_to(src, sound(SSticker.login_music, repeat = 0, wait = 0, volume = 85, channel = GLOB.lobby_sound_channel))
-
-/client/proc/stoptitlemusic()
-	if(!SSticker.login_music)
-		return
-	sound_to(src, sound(null, repeat = 0, wait = 0, volume = 85, channel = GLOB.lobby_sound_channel))
-
 
 /proc/get_rand_frequency()
 	return rand(32000, 55000) //Frequency stuff only works with 45kbps oggs.
@@ -482,7 +509,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 	//Setup the next sound
 	var/nextinterval = interval
 	if (variance)
-		nextinterval *= rand_between(1-variance, 1+variance)
+		nextinterval *= RAND_DECIMAL(1-variance, 1+variance)
 
 	//Set the next timer handle
 	timer_handle = addtimer(CALLBACK(src, .proc/do_sound, TRUE), nextinterval, TIMER_STOPPABLE)

@@ -31,10 +31,22 @@
 
 
 /obj/item/clothing/under/rank/chaplain
-	desc = "Ceremonial robe of Neotheology preacher."
+	desc = "Ceremonial robe of NeoTheology preacher."
 	name = "preacher's robe"
 	icon_state = "preacher"
 	item_state = "w_suit"
+
+/obj/item/clothing/under/rank/acolyte
+	desc = "Ceremonial garb of NeoTheology disciples."
+	name = "acolyte's vestments"
+	icon_state = "acolyte"
+	item_state = "acolyte"
+
+/obj/item/clothing/under/rank/church
+	desc = "Smells like incense."
+	name = "Church Attire"
+	icon_state = "church"
+	item_state = "church"
 
 /obj/item/clothing/under/rank/chef
 	desc = "It's an apron which is given only to the most <b>hardcore</b> chefs in space."
@@ -74,7 +86,7 @@
 	icon_state = "janitor"
 
 	item_state = "janitor"
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 30, rad = 0)
+	armor = list(melee = 0, bullet = 0, energy = 0, bomb = 0, bio = 30, rad = 0)
 
 
 /obj/item/clothing/under/librarian

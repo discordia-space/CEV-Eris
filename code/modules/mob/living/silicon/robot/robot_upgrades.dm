@@ -6,13 +6,14 @@
 	desc = "Protected by FRM."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "cyborg_upgrade"
+	matter = list(MATERIAL_STEEL = 10)
 	var/locked = 0
-	var/require_module = 0
+	var/require_module = FALSE
 	var/installed = 0
 
 /obj/item/borg/upgrade/proc/action(var/mob/living/silicon/robot/R)
 	if(R.stat == DEAD)
-		usr << SPAN_WARNING("The [src] will not function on a deceased robot.")
+		to_chat(usr, SPAN_WARNING("The [src] will not function on a deceased robot."))
 		return 1
 	return 0
 
@@ -21,7 +22,7 @@
 	name = "robotic module reset board"
 	desc = "Used to reset a cyborg's module. Destroys any other upgrades applied to the robot."
 	icon_state = "cyborg_upgrade1"
-	require_module = 1
+	require_module = TRUE
 
 /obj/item/borg/upgrade/reset/action(var/mob/living/silicon/robot/R)
 	if(..()) return 0
@@ -63,23 +64,24 @@
 	if(..()) return 0
 
 	if(R.intenselight)
-		usr << "This cyborg's light was already upgraded"
+		to_chat(usr, "This cyborg's light was already upgraded")
 		return 0
 	else
 		R.intenselight = 1
 		R.update_robot_light()
-		R << "Lighting systems upgrade detected."
+		to_chat(R, "Lighting systems upgrade detected.")
 	return 1
 
 /obj/item/borg/upgrade/restart
 	name = "robot emergency restart module"
 	desc = "Used to force a restart of a disabled-but-repaired robot, bringing it back online."
 	icon_state = "cyborg_upgrade1"
+	matter = list(MATERIAL_STEEL = 6, MATERIAL_GLASS = 5)
 
 
 /obj/item/borg/upgrade/restart/action(var/mob/living/silicon/robot/R)
 	if(R.health < 0)
-		usr << "You have to repair the robot before using this module!"
+		to_chat(usr, "You have to repair the robot before using this module!")
 		return 0
 
 	if(!R.key)
@@ -99,7 +101,8 @@
 	name = "robotic VTEC Module"
 	desc = "Used to kick in a robot's VTEC systems, increasing their speed."
 	icon_state = "cyborg_upgrade2"
-	require_module = 1
+	matter = list(MATERIAL_STEEL = 8, MATERIAL_GLASS = 6, MATERIAL_GOLD = 5)
+	require_module = TRUE
 
 /obj/item/borg/upgrade/vtec/action(var/mob/living/silicon/robot/R)
 	if(..())
@@ -113,15 +116,16 @@
 	name = "robotic Rapid Taser Cooling Module"
 	desc = "Used to cool a mounted taser, increasing the potential current in it and thus its recharge rate."
 	icon_state = "cyborg_upgrade3"
-	require_module = 1
+	matter = list(MATERIAL_STEEL = 8, MATERIAL_GLASS = 6, MATERIAL_GOLD = 2, MATERIAL_DIAMOND = 2)
+	require_module = TRUE
 
 
 /obj/item/borg/upgrade/tasercooler/action(var/mob/living/silicon/robot/R)
 	if(..()) return 0
 
 	if(!R.module || !(type in R.module.supported_upgrades))
-		R << "Upgrade mounting error!  No suitable hardpoint detected!"
-		usr << "There's no mounting point for the module!"
+		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
+		to_chat(usr, "There's no mounting point for the module!")
 		return 0
 
 	var/obj/item/weapon/gun/energy/taser/mounted/cyborg/T = locate() in R.module
@@ -130,12 +134,12 @@
 	if(!T)
 		T = locate() in R.module.modules
 	if(!T)
-		usr << "This robot has had its taser removed!"
+		to_chat(usr, "This robot has had its taser removed!")
 		return 0
 
 	if(T.recharge_time <= 2)
-		R << "Maximum cooling achieved for this hardpoint!"
-		usr << "There's no room for another cooling unit!"
+		to_chat(R, "Maximum cooling achieved for this hardpoint!")
+		to_chat(usr, "There's no room for another cooling unit!")
 		return 0
 
 	else
@@ -147,14 +151,14 @@
 	name = "mining robot jetpack"
 	desc = "A carbon dioxide jetpack suitable for low-gravity mining operations."
 	icon_state = "cyborg_upgrade3"
-	require_module = 1
+	require_module = TRUE
 
 /obj/item/borg/upgrade/jetpack/action(var/mob/living/silicon/robot/R)
 	if(..()) return 0
 
 	if(!R.module || !(type in R.module.supported_upgrades))
-		R << "Upgrade mounting error!  No suitable hardpoint detected!"
-		usr << "There's no mounting point for the module!"
+		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
+		to_chat(usr, "There's no mounting point for the module!")
 		return 0
 	else
 		R.module.modules += new/obj/item/weapon/tank/jetpack/carbondioxide
@@ -168,14 +172,15 @@
 	name = "engineering robot RCD"
 	desc = "A rapid construction device module for use during construction operations."
 	icon_state = "cyborg_upgrade3"
-	require_module = 1
+	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASMA = 10, MATERIAL_URANIUM = 10)
+	require_module = TRUE
 
 /obj/item/borg/upgrade/rcd/action(var/mob/living/silicon/robot/R)
 	if(..()) return 0
 
 	if(!R.module || !(type in R.module.supported_upgrades))
-		R << "Upgrade mounting error!  No suitable hardpoint detected!"
-		usr << "There's no mounting point for the module!"
+		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
+		to_chat(usr, "There's no mounting point for the module!")
 		return 0
 	else
 		R.module.modules += new/obj/item/weapon/rcd/borg(R.module)
@@ -186,7 +191,8 @@
 	name = "illegal equipment module"
 	desc = "Unlocks the hidden, deadlier functions of a robot"
 	icon_state = "cyborg_upgrade3"
-	require_module = 1
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_GLASS = 15, MATERIAL_DIAMOND = 10)
+	require_module = TRUE
 
 /obj/item/borg/upgrade/syndicate/action(var/mob/living/silicon/robot/R)
 	if(..()) return 0

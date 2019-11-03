@@ -13,6 +13,9 @@
 	if(!..())
 		return
 
+	if(ismob(A) && a_intent != I_HELP)
+		stats.getPerk(/datum/perk/timeismoney)?.deactivate()
+
 	// Special glove functions:
 	// If the gloves do anything, have them return 1 to stop
 	// normal attack_hand() here.
@@ -52,7 +55,8 @@
 
 			visible_message(SPAN_WARNING("[src] starts climbing onto \the [A]!"))
 			shadow.visible_message(SPAN_WARNING("[shadow] starts climbing onto \the [A]!"))
-			if(do_after(src, 50, helper))
+			var/delay = 50
+			if(do_after(src, max(delay * src.stats.getMult(STAT_VIG, STAT_LEVEL_EXPERT), delay * 0.66), helper))
 				visible_message(SPAN_WARNING("[src] climbs onto \the [A]!"))
 				shadow.visible_message(SPAN_WARNING("[shadow] climbs onto \the [A]!"))
 				src.Move(T)

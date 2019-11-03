@@ -79,12 +79,12 @@
 /obj/item/weapon/melee/energy/axe/activate(mob/living/user)
 	icon_state = "axe1"
 	..()
-	user << SPAN_NOTICE("\The [src] is now energized.")
+	to_chat(user, SPAN_NOTICE("\The [src] is now energized."))
 
 /obj/item/weapon/melee/energy/axe/deactivate(mob/living/user)
 	icon_state = initial(icon_state)
 	..()
-	user << SPAN_NOTICE("\The [src] is de-energized. It's just a regular axe now.")
+	to_chat(user, SPAN_NOTICE("\The [src] is de-energized. It's just a regular axe now."))
 
 /*
  * Energy Sword
@@ -96,7 +96,7 @@
 	icon_state = "sword0"
 	active_force = WEAPON_FORCE_ROBUST
 	active_throwforce = WEAPON_FORCE_ROBUST
-	active_w_class = ITEM_SIZE_LARGE
+	active_w_class = ITEM_SIZE_BULKY
 	force = WEAPON_FORCE_HARMLESS
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 1
@@ -127,9 +127,12 @@
 /obj/item/weapon/melee/energy/sword/purple/New()
 	blade_color = "purple"
 
+/obj/item/weapon/melee/energy/sword/pirate/New()
+	blade_color = "cutlass"
+
 /obj/item/weapon/melee/energy/sword/activate(mob/living/user)
 	if(!active)
-		user << SPAN_NOTICE("\The [src] is now energized.")
+		to_chat(user, SPAN_NOTICE("\The [src] is now energized."))
 	icon_state = "sword[blade_color]"
 	..()
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -137,7 +140,7 @@
 
 /obj/item/weapon/melee/energy/sword/deactivate(mob/living/user)
 	if(active)
-		user << SPAN_NOTICE("\The [src] deactivates!")
+		to_chat(user, SPAN_NOTICE("\The [src] deactivates!"))
 	icon_state = initial(icon_state)
 	..()
 	attack_verb = list()
@@ -159,10 +162,6 @@
 	desc = "Arrrr matey."
 	icon_state = "cutlass0"
 
-/obj/item/weapon/melee/energy/sword/pirate/activate(mob/living/user)
-	icon_state = "cutlass1"
-	..()
-
 /*
  *Energy Blade
  */
@@ -180,7 +179,7 @@
 	throwforce = 1  //Throwing or dropping the item deletes it.
 	throw_speed = 1
 	throw_range = 1
-	w_class = ITEM_SIZE_LARGE//So you can't hide it in your pocket or some such.
+	w_class = ITEM_SIZE_BULKY//So you can't hide it in your pocket or some such.
 	flags = NOBLOODY
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	var/mob/living/creator

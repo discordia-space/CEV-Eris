@@ -60,7 +60,7 @@
 /obj/machinery/atmospherics/unary/freezer/attack_hand(mob/user as mob)
 	ui_interact(user)
 
-/obj/machinery/atmospherics/unary/freezer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/atmospherics/unary/freezer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	// this is the data which will be sent to the ui
 	var/data[0]
 	data["on"] = use_power ? 1 : 0
@@ -97,9 +97,9 @@
 	if(href_list["toggleStatus"])
 		use_power = !use_power
 		if(use_power)
-			usr << "[src] turned on."
+			to_chat(usr, "[src] turned on.")
 		else
-			usr << "[src] turned off."
+			to_chat(usr, "[src] turned off.")
 		update_icon()
 	if(href_list["temp"])
 		var/amount = text2num(href_list["temp"])
@@ -181,4 +181,4 @@
 /obj/machinery/atmospherics/unary/freezer/examine(mob/user)
 	..(user)
 	if(panel_open)
-		user << "The maintenance hatch is open."
+		to_chat(user, "The maintenance hatch is open.")

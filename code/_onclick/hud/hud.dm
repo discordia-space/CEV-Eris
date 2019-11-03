@@ -2,16 +2,11 @@
 	The global hud:
 	Uses the same visual objects for all players.
 */
-var/datum/global_hud/global_hud = new()
-var/list/global_huds = list(
-		global_hud.druggy,
-		global_hud.blurry,
-		global_hud.vimpaired,
-		global_hud.darkMask,
-		global_hud.nvg,
-		global_hud.thermal,
-		global_hud.meson,
-		global_hud.science)
+
+// Initialized in ticker.dm, see proc/setup_huds()
+var/datum/global_hud/global_hud
+var/list/global_huds
+
 /*
 /datum/hud/var/obj/screen/grab_intent
 /datum/hud/var/obj/screen/hurt_intent
@@ -263,11 +258,11 @@ datum/hud/New(mob/owner)
 	set hidden = 1
 
 	if(!hud_used)
-		usr << SPAN_WARNING("This mob type does not use a HUD.")
+		to_chat(usr, SPAN_WARNING("This mob type does not use a HUD."))
 		return
 
 	if(!ishuman(src))
-		usr << SPAN_WARNING("Inventory hiding is currently only supported for human mobs, sorry.")
+		to_chat(usr, SPAN_WARNING("Inventory hiding is currently only supported for human mobs, sorry."))
 		return
 
 	if(!client) return

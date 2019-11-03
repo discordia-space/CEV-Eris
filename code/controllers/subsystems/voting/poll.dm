@@ -182,4 +182,4 @@
 
 
 	log_vote(text)
-	world << "<font color='purple'>[text]</font>"
+	to_chat(world, "<font color='purple'>[text]</font>")

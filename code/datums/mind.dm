@@ -67,6 +67,8 @@
 	var/datum/stat_holder/stats = null
 
 	var/last_activity = 0
+
+	var/list/knownCraftRecipes = list()
 	/*
 		The world time when this mind was last in a mob, controlled by a client which did something.
 		Only updated once per minute, set by the inactivity subsystem
@@ -180,7 +182,7 @@
 				if(antag.create_antagonist(src))
 					log_admin("[key_name_admin(usr)] made [key_name(src)] into a [antag.role_text].")
 				else
-					usr << SPAN_WARNING("[src] could not be made into a [antag.role_text]!")
+					to_chat(usr, SPAN_WARNING("[src] could not be made into a [antag.role_text]!"))
 
 	else if(href_list["role_edit"])
 		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in joblist
@@ -326,7 +328,7 @@
 //HUMAN
 /mob/living/carbon/human/mind_initialize()
 	..()
-	if(!mind.assigned_role)	mind.assigned_role = "Assistant"	//defualt
+	if(!mind.assigned_role)	mind.assigned_role = ASSISTANT_TITLE	//defualt
 
 //slime
 /mob/living/carbon/slime/mind_initialize()

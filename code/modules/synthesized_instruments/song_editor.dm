@@ -13,11 +13,11 @@
 
 
 /datum/nano_module/song_editor/proc/pages()
-	return Ceiling(src.song.lines.len / GLOB.musical_config.song_editor_lines_per_page)
+	return CEILING(song.lines.len / GLOB.musical_config.song_editor_lines_per_page, 1)
 
 
 /datum/nano_module/song_editor/proc/current_page()
-	return src.song.current_line > 0 ? Ceiling(src.song.current_line / GLOB.musical_config.song_editor_lines_per_page) : src.page
+	return song.current_line > 0 ? CEILING(song.current_line / GLOB.musical_config.song_editor_lines_per_page, 1) : page
 
 
 /datum/nano_module/song_editor/proc/page_bounds(page_num)
@@ -26,7 +26,7 @@
 		min(GLOB.musical_config.song_editor_lines_per_page * page_num, src.song.lines.len))
 
 
-/datum/nano_module/song_editor/ui_interact(mob/user, ui_key = "song_editor", var/datum/nanoui/ui = null, var/force_open = 0)
+/datum/nano_module/song_editor/ui_interact(mob/user, ui_key = "song_editor", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/list/data = list()
 
 	var/current_page = src.current_page()

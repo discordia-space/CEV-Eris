@@ -41,11 +41,6 @@
 			if(owner.change_gender(href_list["gender"]))
 				cut_and_generate_data()
 				return 1
-	if(href_list["build"])
-		if(can_change(APPEARANCE_BUILD))
-			if(owner.change_build(href_list["build"]))
-				cut_and_generate_data()
-				return 1
 	//if(href_list["skin_tone"])
 		// TODO: enable after baymed
 		/*if(can_change_skin_tone())
@@ -94,7 +89,7 @@
 
 	return 0
 
-/datum/nano_module/appearance_changer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = GLOB.default_state)
+/datum/nano_module/appearance_changer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
 	if(!owner || !owner.species)
 		return
 
@@ -106,7 +101,6 @@
 		data["name"] = owner.real_name
 	data["specimen"] = owner.species.name
 	data["gender"] = owner.gender
-	data["build"] = owner.body_build.name
 	data["change_race"] = can_change(APPEARANCE_RACE)
 	if(data["change_race"])
 		var/species[0]
@@ -120,16 +114,6 @@
 		for(var/gender in owner.species.genders)
 			genders[++genders.len] =  list("gender_name" = gender2text(gender), "gender_key" = gender)
 		data["genders"] = genders
-
-	data["change_build"] = can_change(APPEARANCE_BUILD)
-	if(data["change_build"])
-		data["builds"] = list()
-		if (owner.gender == MALE)
-			for (var/a in male_body_builds)
-				data["builds"] += a
-		else
-			for (var/a in female_body_builds)
-				data["builds"] += a
 
 	data["change_skin_tone"] = can_change_skin_tone()
 	data["change_skin_color"] = can_change_skin_color()

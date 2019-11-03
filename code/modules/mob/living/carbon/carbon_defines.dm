@@ -11,11 +11,9 @@
 	// total amount of wounds on mob, used to spread out healing and the like over all wounds
 	var/obj/item/handcuffed = null //Whether or not the mob is handcuffed
 	var/obj/item/legcuffed = null  //Same as handcuffs but for legs. Bear traps use this.
-	//Surgery info
-	var/datum/surgery_status/op_stage = new/datum/surgery_status
 	//Active emote/pose
 	var/pose = null
-	var/list/chem_effects = list()
+
 	var/datum/reagents/metabolism/bloodstr = null
 	var/datum/reagents/metabolism/ingested = null
 	var/datum/reagents/metabolism/touching = null
@@ -30,3 +28,7 @@
 
 
 	var/obj/item/weapon/tank/internal = null//Human/Monkey
+
+	//TODO: move to brain
+	var/list/nerve_system_accumulations = list() // Nerve system accumulations
+	var/nsa_threshold = 100

@@ -35,13 +35,13 @@
 
 	switch(src.stage)
 		if(1)
-			user << "It's an empty frame."
+			to_chat(user, "It's an empty frame.")
 			return
 		if(2)
-			user << "It's wired."
+			to_chat(user, "It's wired.")
 			return
 		if(3)
-			user << "The casing is closed."
+			to_chat(user, "The casing is closed.")
 			return
 
 /obj/machinery/light_construct/attackby(obj/item/I, mob/user)
@@ -109,7 +109,7 @@
 		if(QUALITY_BOLT_TURNING)
 			if(stage == 1)
 				if (src.stage == 1)
-					user << "You begin deconstructing \a [src]."
+					to_chat(user, "You begin deconstructing \a [src].")
 					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 						new /obj/item/stack/material/steel( get_turf(src.loc), sheets_refunded )
 						user.visible_message("[user.name] deconstructs [src].", \
@@ -339,7 +339,7 @@
 	if(!damage)
 		return
 	if(status == LIGHT_EMPTY||status == LIGHT_BROKEN)
-		user << "That object is useless to you."
+		to_chat(user, "That object is useless to you.")
 		return
 	if(!(status == LIGHT_OK||status == LIGHT_BURNED))
 		return
@@ -358,13 +358,13 @@
 /obj/machinery/light/examine(mob/user)
 	switch(status)
 		if(LIGHT_OK)
-			user << "[desc] It is turned [on? "on" : "off"]."
+			to_chat(user, "[desc] It is turned [on? "on" : "off"].")
 		if(LIGHT_EMPTY)
-			user << "[desc] The [fitting] has been removed."
+			to_chat(user, "[desc] The [fitting] has been removed.")
 		if(LIGHT_BURNED)
-			user << "[desc] The [fitting] is burnt out."
+			to_chat(user, "[desc] The [fitting] is burnt out.")
 		if(LIGHT_BROKEN)
-			user << "[desc] The [fitting] has been smashed."
+			to_chat(user, "[desc] The [fitting] has been smashed.")
 
 
 
@@ -383,14 +383,14 @@
 	// attempt to insert light
 	if(istype(I, /obj/item/weapon/light))
 		if(status != LIGHT_EMPTY)
-			user << "There is a [fitting] already inserted."
+			to_chat(user, "There is a [fitting] already inserted.")
 			return
 		else
 			src.add_fingerprint(user)
 			var/obj/item/weapon/light/L = I
 			if(istype(L, light_type))
 				status = L.status
-				user << "You insert the [L.name]."
+				to_chat(user, "You insert the [L.name].")
 				switchcount = L.switchcount
 				rigged = L.rigged
 				brightness_range = L.brightness_range
@@ -409,7 +409,7 @@
 
 					explode()
 			else
-				user << "This type of light requires a [fitting]."
+				to_chat(user, "This type of light requires a [fitting].")
 				return
 
 		// attempt to break the light
@@ -420,7 +420,7 @@
 
 		if(prob(1+I.force * 5))
 
-			user << "You hit the light, and it smashes!"
+			to_chat(user, "You hit the light, and it smashes!")
 			for(var/mob/M in viewers(src))
 				if(M == user)
 					continue
@@ -432,7 +432,7 @@
 			broken()
 
 		else
-			user << "You hit the light!"
+			to_chat(user, "You hit the light!")
 
 	// attempt to stick weapon into light socket
 	else if(status == LIGHT_EMPTY)
@@ -457,7 +457,7 @@
 				qdel(src)
 				return
 
-		user << "You stick \the [I] into the light socket!"
+		to_chat(user, "You stick \the [I] into the light socket!")
 		if(has_power() && (I.flags & CONDUCT))
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 			s.set_up(3, 1, src)
@@ -506,7 +506,7 @@
 	add_fingerprint(user)
 
 	if(status == LIGHT_EMPTY)
-		user << "There is no [fitting] in this light."
+		to_chat(user, "There is no [fitting] in this light.")
 		return
 
 	if(ishuman(user))
@@ -534,14 +534,14 @@
 			prot = 1
 
 		if(prot > 0 || (COLD_RESISTANCE in user.mutations))
-			user << "You remove the light [fitting]"
+			to_chat(user, "You remove the light [fitting]")
 		else if(TK in user.mutations)
-			user << "You telekinetically remove the light [fitting]."
+			to_chat(user, "You telekinetically remove the light [fitting].")
 		else
-			user << "You try to remove the light [fitting], but it's too hot and you don't want to burn your hand."
+			to_chat(user, "You try to remove the light [fitting], but it's too hot and you don't want to burn your hand.")
 			return				// if burned, don't remove the light
 	else
-		user << "You remove the light [fitting]."
+		to_chat(user, "You remove the light [fitting].")
 
 	// create a light tube/bulb item and put it in the user's hand
 	var/obj/item/weapon/light/L = new light_type()
@@ -566,10 +566,10 @@
 
 /obj/machinery/light/attack_tk(mob/user)
 	if(status == LIGHT_EMPTY)
-		user << "There is no [fitting] in this light."
+		to_chat(user, "There is no [fitting] in this light.")
 		return
 
-	user << "You telekinetically remove the light [fitting]."
+	to_chat(user, "You telekinetically remove the light [fitting].")
 	// create a light tube/bulb item and put it in the user's hand
 	var/obj/item/weapon/light/L = new light_type()
 	L.status = status
@@ -681,6 +681,7 @@
 	var/brightness_range = 2 //how much light it gives off
 	var/brightness_power = 1
 	var/brightness_color = null
+	preloaded_reagents = list("silicon" = 10, "tungsten" = 5)
 
 /obj/item/weapon/light/tube
 	name = "light tube"
@@ -754,7 +755,7 @@
 	if(istype(I, /obj/item/weapon/reagent_containers/syringe))
 		var/obj/item/weapon/reagent_containers/syringe/S = I
 
-		user << "You inject the solution into the [src]."
+		to_chat(user, "You inject the solution into the [src].")
 
 		if(S.reagents.has_reagent("plasma", 5))
 

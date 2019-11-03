@@ -57,7 +57,7 @@
 		if(!istype(target_slot))  // They aren't holding anything valid and there's nothing to remove, why are we even here?
 			return
 		if(!target_slot.canremove)
-			user << SPAN_WARNING("You cannot remove \the [src]'s [target_slot.name].")
+			to_chat(user, SPAN_WARNING("You cannot remove \the [src]'s [target_slot.name]."))
 			return
 		stripping = 1
 
@@ -83,7 +83,7 @@
 // Empty out everything in the target's pockets.
 /mob/living/carbon/human/proc/empty_pockets(var/mob/living/user)
 	if(!r_store && !l_store)
-		user << SPAN_WARNING("\The [src] has nothing in their pockets.")
+		to_chat(user, SPAN_WARNING("\The [src] has nothing in their pockets."))
 		return
 	if(r_store)
 		unEquip(r_store)
@@ -98,7 +98,7 @@
 	if(istype(wear_suit,/obj/item/clothing/suit/space))
 		var/obj/item/clothing/suit/space/suit = wear_suit
 		if(suit.supporting_limbs && suit.supporting_limbs.len)
-			user << SPAN_WARNING("You cannot remove the splints - [src]'s [suit] is supporting some of the breaks.")
+			to_chat(user, SPAN_WARNING("You cannot remove the splints - [src]'s [suit] is supporting some of the breaks."))
 			can_reach_splints = 0
 
 	if(can_reach_splints)
@@ -113,7 +113,7 @@
 		if(removed_splint)
 			visible_message(SPAN_DANGER("\The [user] removes \the [src]'s splints!"))
 		else
-			user << SPAN_WARNING("\The [src] has no splints to remove.")
+			to_chat(user, SPAN_WARNING("\The [src] has no splints to remove."))
 
 // Set internals on or off.
 /mob/living/carbon/human/proc/toggle_internals(var/mob/living/user)

@@ -31,7 +31,7 @@
 	//This is a key value list of datacore records and their total owed wage
 	//When payday comes, accounts in the department are added here, and removed once the balance is paid off
 	//They are not removed until they are paid, so multiple paydays could rollover and stack up if unpaid
-	var/list/pending_wages()
+	var/list/pending_wages
 
 	// The total of the values in the above wage list. Just cached for convenience
 	var/pending_wage_total = 0
@@ -103,10 +103,10 @@
 	funding_source = "Moebius Corp."
 
 /datum/department/church
-	name = "Church of Neotheology"
+	name = "Church of NeoTheology"
 	id = DEPARTMENT_CHURCH
 	funding_type = FUNDING_EXTERNAL
-	funding_source = "Church of Neotheology"
+	funding_source = "Church of NeoTheology"
 
 
 
@@ -124,5 +124,4 @@
 	*/
 	account_initial_balance = 7500
 	funding_type = FUNDING_NONE
-
 

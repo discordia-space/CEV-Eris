@@ -8,8 +8,8 @@ SUBSYSTEM_DEF(atoms)
 	init_order = INIT_ORDER_ATOMS
 	flags = SS_NO_FIRE
 
-	var/initialized = INITIALIZATION_INSSATOMS
-	var/old_initialized
+	var/init_state = INITIALIZATION_INSSATOMS
+	var/old_init_state
 
 	var/list/late_loaders
 	var/list/created_atoms
@@ -17,15 +17,15 @@ SUBSYSTEM_DEF(atoms)
 	var/list/BadInitializeCalls = list()
 
 /datum/controller/subsystem/atoms/Initialize(timeofday)
-	initialized = INITIALIZATION_INNEW_MAPLOAD
+	init_state = INITIALIZATION_INNEW_MAPLOAD
 	InitializeAtoms()
 	return ..()
 
 /datum/controller/subsystem/atoms/proc/InitializeAtoms(list/atoms)
-	if(initialized == INITIALIZATION_INSSATOMS)
+	if(init_state == INITIALIZATION_INSSATOMS)
 		return
 
-	initialized = INITIALIZATION_INNEW_MAPLOAD
+	init_state = INITIALIZATION_INNEW_MAPLOAD
 
 	LAZYINITLIST(late_loaders)
 
@@ -50,7 +50,7 @@ SUBSYSTEM_DEF(atoms)
 
 	report_progress("Initialized [count] atom\s")
 
-	initialized = INITIALIZATION_INNEW_REGULAR
+	init_state = INITIALIZATION_INNEW_REGULAR
 
 	if(late_loaders.len)
 		for(var/I in late_loaders)
@@ -102,17 +102,17 @@ SUBSYSTEM_DEF(atoms)
 	..("Bad Initialize Calls:[BadInitializeCalls.len]")
 
 /datum/controller/subsystem/atoms/proc/map_loader_begin()
-	old_initialized = initialized
-	initialized = INITIALIZATION_INSSATOMS
+	old_init_state = init_state
+	init_state = INITIALIZATION_INSSATOMS
 
 /datum/controller/subsystem/atoms/proc/map_loader_stop()
-	initialized = old_initialized
+	init_state = old_init_state
 
 /datum/controller/subsystem/atoms/Recover()
-	initialized = SSatoms.initialized
-	if(initialized == INITIALIZATION_INNEW_MAPLOAD)
+	init_state = SSatoms.init_state
+	if(init_state == INITIALIZATION_INNEW_MAPLOAD)
 		InitializeAtoms()
-	old_initialized = SSatoms.old_initialized
+	old_init_state = SSatoms.old_init_state
 	BadInitializeCalls = SSatoms.BadInitializeCalls
 
 /datum/controller/subsystem/atoms/proc/InitLog()
@@ -141,7 +141,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_display_init_log, R_DEBUG, null)
 	set desc = "Displays a list of things that didn't handle Initialize() properly."
 
 	if(!LAZYLEN(SSatoms.BadInitializeCalls))
-		usr << SPAN_NOTICE("BadInit list is empty.")
+		to_chat(usr, SPAN_NOTICE("BadInit list is empty."))
 	else
 		usr << browse(replacetext(SSatoms.InitLog(), "\n", "<br>"), "window=initlog")
 

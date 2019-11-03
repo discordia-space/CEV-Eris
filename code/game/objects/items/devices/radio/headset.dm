@@ -41,8 +41,8 @@
 	if(!(..(user, 1) && radio_desc))
 		return
 
-	user << "The following channels are available:"
-	user << radio_desc
+	to_chat(user, "The following channels are available:")
+	to_chat(user, radio_desc)
 
 /obj/item/device/radio/headset/handle_message_mode(mob/living/M as mob, message, channel)
 	if (channel == "special")
@@ -95,21 +95,21 @@
 	desc = "Made specifically for the roboticists who cannot decide between departments."
 	icon_state = "rob_headset"
 	item_state = "headset"
-	ks2type = /obj/item/device/encryptionkey/headset_rob
+	ks2type = /obj/item/device/encryptionkey/headset_moebius
 
 /obj/item/device/radio/headset/headset_med
 	name = "medical radio headset"
 	desc = "A headset for the trained staff of the medbay."
 	icon_state = "med_headset"
 	item_state = "headset"
-	ks2type = /obj/item/device/encryptionkey/headset_med
+	ks2type = /obj/item/device/encryptionkey/headset_moebius
 
 /obj/item/device/radio/headset/headset_sci
 	name = "science radio headset"
 	desc = "A sciency headset. Like usual."
 	icon_state = "com_headset"
 	item_state = "headset"
-	ks2type = /obj/item/device/encryptionkey/headset_sci
+	ks2type = /obj/item/device/encryptionkey/headset_moebius
 
 /obj/item/device/radio/headset/headset_com
 	name = "command radio headset"
@@ -145,7 +145,7 @@
 	desc = "Headset of the researching God."
 	icon_state = "com_headset"
 	item_state = "headset"
-	ks2type = /obj/item/device/encryptionkey/heads/rd
+	ks2type = /obj/item/device/encryptionkey/heads/moebius
 
 /obj/item/device/radio/headset/heads/hos
 	name = "ironhammer commander headset"
@@ -166,7 +166,7 @@
 	desc = "The headset of the highly trained medical chief."
 	icon_state = "com_headset"
 	item_state = "headset"
-	ks2type = /obj/item/device/encryptionkey/heads/cmo
+	ks2type = /obj/item/device/encryptionkey/heads/moebius
 
 /obj/item/device/radio/headset/heads/hop
 	name = "first officer's headset"
@@ -181,6 +181,13 @@
 	icon_state = "com_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/merchant
+
+/obj/item/device/radio/headset/heads/preacher
+	name = "neotheology preacher's headset"
+	desc = "The headset of the man who leads you to god."
+	icon_state = "nt_com_headset"
+	item_state = "headset"
+	ks2type = /obj/item/device/encryptionkey/heads/preacher
 
 /obj/item/device/radio/headset/headset_cargo
 	name = "supply radio headset"
@@ -202,6 +209,13 @@
 	icon_state = "com_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/hos
+
+/obj/item/device/radio/headset/church
+	name = "neotheology headset"
+	desc = "If you listen closely you can hear God."
+	icon_state = "nt_headset"
+	item_state = "headset"
+	ks2type = /obj/item/device/encryptionkey/headset_church
 
 /obj/item/device/radio/headset/attackby(obj/item/weapon/W as obj, mob/user as mob)
 //	..()
@@ -233,14 +247,14 @@
 					keyslot2 = null
 
 			recalculateChannels()
-			user << "You pop out the encryption keys in the headset!"
+			to_chat(user, "You pop out the encryption keys in the headset!")
 
 		else
-			user << "This headset doesn't have any encryption keys!  How useless..."
+			to_chat(user, "This headset doesn't have any encryption keys!  How useless...")
 
 	if(istype(W, /obj/item/device/encryptionkey/))
 		if(keyslot1 && keyslot2)
-			user << "The headset can't hold another key!"
+			to_chat(user, "The headset can't hold another key!")
 			return
 
 		if(!keyslot1)

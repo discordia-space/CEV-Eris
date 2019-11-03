@@ -54,7 +54,7 @@
 
 /mob/living/bot/secbot/ed209/RangedAttack(var/atom/A)
 	if(last_shot + shot_delay > world.time)
-		src << "You are not ready to fire yet!"
+		to_chat(src, "You are not ready to fire yet!")
 		return
 
 	last_shot = world.time
@@ -101,7 +101,7 @@
 		if(QUALITY_WELDING)
 			if(build_step == 3)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You welded the vest to [src].")
+					to_chat(user, SPAN_NOTICE("You welded the vest to [src]."))
 					build_step++
 					name = "shielded frame assembly"
 					return
@@ -110,7 +110,7 @@
 		if(QUALITY_SCREW_DRIVING)
 			if(build_step == 8)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("Taser gun attached.")
+					to_chat(user, SPAN_NOTICE("Taser gun attached."))
 					build_step++
 					name = "armed [name]"
 					return
@@ -125,7 +125,7 @@
 				user.drop_item()
 				qdel(I)
 				build_step++
-				user << SPAN_NOTICE("You add the robot leg to [src].")
+				to_chat(user, SPAN_NOTICE("You add the robot leg to [src]."))
 				playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 				name = "legs/frame assembly"
 				if(build_step == 1)
@@ -140,7 +140,7 @@
 				user.drop_item()
 				qdel(I)
 				build_step++
-				user << SPAN_NOTICE("You add the armor to [src].")
+				to_chat(user, SPAN_NOTICE("You add the armor to [src]."))
 				playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 				name = "vest/legs/frame assembly"
 				item_state = "ed209_shell"
@@ -151,7 +151,7 @@
 				user.drop_item()
 				qdel(I)
 				build_step++
-				user << SPAN_NOTICE("You add the helmet to [src].")
+				to_chat(user, SPAN_NOTICE("You add the helmet to [src]."))
 				playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 				name = "covered and shielded frame assembly"
 				item_state = "ed209_hat"
@@ -162,7 +162,7 @@
 				user.drop_item()
 				qdel(I)
 				build_step++
-				user << SPAN_NOTICE("You add the prox sensor to [src].")
+				to_chat(user, SPAN_NOTICE("You add the prox sensor to [src]."))
 				playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 				name = "covered, shielded and sensored frame assembly"
 				item_state = "ed209_prox"
@@ -172,13 +172,13 @@
 			if(istype(I, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = I
 				if (C.get_amount() < 1)
-					user << SPAN_WARNING("You need one coil of wire to wire [src].")
+					to_chat(user, SPAN_WARNING("You need one coil of wire to wire [src]."))
 					return
-				user << SPAN_NOTICE("You start to wire [src].")
+				to_chat(user, SPAN_NOTICE("You start to wire [src]."))
 				if(do_after(user, 40, src) && build_step == 6)
 					if(C.use(1))
 						build_step++
-						user << SPAN_NOTICE("You wire the ED-209 assembly.")
+						to_chat(user, SPAN_NOTICE("You wire the ED-209 assembly."))
 						playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 						name = "wired ED-209 assembly"
 				return
@@ -187,7 +187,7 @@
 			if(istype(I, /obj/item/weapon/gun/energy/taser))
 				name = "taser ED-209 assembly"
 				build_step++
-				user << SPAN_NOTICE("You add [I] to [src].")
+				to_chat(user, SPAN_NOTICE("You add [I] to [src]."))
 				playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 				item_state = "ed209_taser"
 				icon_state = "ed209_taser"
@@ -197,7 +197,7 @@
 		if(9)
 			if(istype(I, /obj/item/weapon/cell/large))
 				build_step++
-				user << SPAN_NOTICE("You complete the ED-209.")
+				to_chat(user, SPAN_NOTICE("You complete the ED-209."))
 				var/turf/T = get_turf(src)
 				new /mob/living/bot/secbot/ed209(T,created_name,lasercolor)
 				user.drop_item()

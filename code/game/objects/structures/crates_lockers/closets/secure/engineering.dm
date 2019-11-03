@@ -22,10 +22,6 @@
 	new /obj/item/weapon/tool/multitool(src)
 	new /obj/item/device/flash(src)
 	new /obj/item/taperoll/engineering(src)
-	new /obj/item/weapon/hatton(src)
-	new /obj/item/weapon/hatton_magazine(src)
-	new /obj/item/weapon/hatton_magazine(src)
-	new /obj/item/weapon/hatton_magazine(src)
 	new /obj/item/weapon/storage/pouch/engineering_supply(src)
 
 /obj/structure/closet/secure_closet/engineering_electrical
@@ -87,6 +83,6 @@
 	new /obj/item/device/radio/headset/headset_eng(src)
 	new /obj/item/clothing/suit/storage/hazardvest(src)
 	new /obj/item/clothing/mask/gas(src)
-	new /obj/item/clothing/glasses/meson(src)
+	new /obj/item/clothing/glasses/powered/meson(src)
 	new /obj/item/weapon/cartridge/engineering(src)
 	new /obj/item/taperoll/engineering(src)

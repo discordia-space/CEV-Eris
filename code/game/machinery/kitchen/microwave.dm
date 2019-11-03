@@ -102,7 +102,7 @@
 				return
 
 //If we dont fix it with code above - return
-		user << SPAN_WARNING("It's broken!")
+		to_chat(user, SPAN_WARNING("It's broken!"))
 		return
 
 	else if(src.dirty==100) // The microwave is all dirty so can't be used!
@@ -121,11 +121,11 @@
 				src.icon_state = "mw"
 				src.reagent_flags = OPENCONTAINER
 		else //Otherwise bad luck!!
-			user << SPAN_WARNING("It's dirty!")
+			to_chat(user, SPAN_WARNING("It's dirty!"))
 			return 1
 	else if(is_type_in_list(I,acceptable_items))
 		if (contents.len>=max_n_of_items)
-			user << SPAN_WARNING("This [src] is full of ingredients, you cannot put more.")
+			to_chat(user, SPAN_WARNING("This [src] is full of ingredients, you cannot put more."))
 			return 1
 		if(istype(I, /obj/item/stack) && I:get_amount() > 1) // This is bad, but I can't think of how to change it
 			var/obj/item/stack/S = I
@@ -151,7 +151,7 @@
 			return 1
 		for (var/datum/reagent/R in I.reagents.reagent_list)
 			if (!(R.id in acceptable_reagents))
-				user << SPAN_WARNING("Your [I] contains components unsuitable for cookery.")
+				to_chat(user, SPAN_WARNING("Your [I] contains components unsuitable for cookery."))
 				return 1
 		return
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
@@ -167,12 +167,12 @@
 			src.anchored = !src.anchored
 	else
 
-		user << SPAN_WARNING("You have no idea what you can cook with this [I].")
+		to_chat(user, SPAN_WARNING("You have no idea what you can cook with this [I]."))
 	..()
 	src.updateUsrDialog()
 
 /obj/machinery/microwave/affect_grab(var/mob/user, var/mob/target)
-	user << SPAN_WARNING("This is ridiculous. You can not fit \the [target] in this [src].")
+	to_chat(user, SPAN_WARNING("This is ridiculous. You can not fit \the [target] in this [src]."))
 	return FALSE
 
 /obj/machinery/microwave/attack_ai(mob/user as mob)
@@ -214,7 +214,7 @@
 				display_name = "Turnovers"
 				items_measures[display_name] = "turnover"
 				items_measures_p[display_name] = "turnovers"
-			if (istype(O,/obj/item/weapon/reagent_containers/food/snacks/carpmeat))
+			if (istype(O,/obj/item/weapon/reagent_containers/food/snacks/meat/carp))
 				items_measures[display_name] = "fillet of meat"
 				items_measures_p[display_name] = "fillets of meat"
 			items_counts[display_name]++
@@ -352,7 +352,7 @@
 	if (src.reagents.total_volume)
 		src.dirty++
 	src.reagents.clear_reagents()
-	usr << SPAN_NOTICE("You dispose of the microwave contents.")
+	to_chat(usr, SPAN_NOTICE("You dispose of the microwave contents."))
 	src.updateUsrDialog()
 
 /obj/machinery/microwave/proc/muck_start()

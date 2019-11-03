@@ -5,6 +5,7 @@
 	steps = list(
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
 	)
+	related_stats = list(STAT_MEC)
 
 /datum/craft_recipe/airlock/standard
 	name = "standard airlock assembly"

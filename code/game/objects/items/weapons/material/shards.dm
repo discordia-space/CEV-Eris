@@ -29,7 +29,7 @@
 
 	//Shards must be made of some matter
 	if (!amount)
-		amount = rand_between(0.1, 1)
+		amount = round(RAND_DECIMAL(0.1, 1), 0.1)
 
 	//Overwrite whatever was populated before. A shard contains <1 unit of a single material
 	matter = list(material.name = amount)
@@ -93,7 +93,7 @@
 //Allows you to weld together similar shards in a tile to create useful sheets
 /obj/item/weapon/material/shard/proc/merge_shards(obj/item/I, mob/user)
 	if (!istype(loc, /turf))
-		user << SPAN_WARNING("You need to lay the shards down on a surface to do this!")
+		to_chat(user, SPAN_WARNING("You need to lay the shards down on a surface to do this!"))
 		return
 
 	var/list/shards = list()
@@ -107,13 +107,13 @@
 
 	//If there's less than one unit of material in total, we can't do anything
 	if (total < 1)
-		user << SPAN_WARNING("There's not enough [material.name] in [shards.len < 2 ? "this piece" : "these [shards.len] pieces"] to make anything useful. Gather more.")
+		to_chat(user, SPAN_WARNING("There's not enough [material.name] in [shards.len < 2 ? "this piece" : "these [shards.len] pieces"] to make anything useful. Gather more."))
 		return
 
 
 	//Alright, we've got enough to make at least one sheet!
 	var/obj/item/stack/output = null //This stack will contain the sheets
-	user << SPAN_NOTICE("You start welding the [name]s into useful material sheets...")
+	to_chat(user, SPAN_NOTICE("You start welding the [name]s into useful material sheets..."))
 
 	//Do a tool operation for each shard
 	for (var/obj/item/weapon/material/shard/S in shards)
@@ -155,14 +155,14 @@
 			if(H.shoes)
 				return
 
-			M << SPAN_DANGER("You step on \the [src]!")
+			to_chat(M, SPAN_DANGER("You step on \the [src]!"))
 
 			var/list/check = list(BP_L_LEG, BP_R_LEG)
 			while(check.len)
 				var/picked = pick(check)
 				var/obj/item/organ/external/affecting = H.get_organ(picked)
 				if(affecting)
-					if(affecting.robotic >= ORGAN_ROBOT)
+					if(BP_IS_ROBOTIC(affecting))
 						return
 					if(affecting.take_damage(5, 0))
 						H.UpdateDamageIcon()
@@ -180,6 +180,10 @@
 /obj/item/weapon/material/shard/shrapnel/New(loc)
 
 	..(loc, MATERIAL_STEEL)
+
+/obj/item/weapon/material/shard/shrapnel/scrap
+	name = "scrap metal"
+	amount = 1
 
 /obj/item/weapon/material/shard/plasma/New(loc)
 	..(loc, MATERIAL_PLASMAGLASS)

@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(vote)
 	name = "Vote"
-	wait = 1 SECOND
+	wait = 1 SECONDS
 	flags = SS_KEEP_TIMING | SS_NO_INIT
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 
@@ -19,7 +19,9 @@ SUBSYSTEM_DEF(vote)
 		interface_client(C)
 
 /datum/controller/subsystem/vote/proc/interface_client(client/C)
-	C << browse(interface(C),"window=vote;size=400x750;can_close=0;can_resize=0;can_minimize=0")
+	var/datum/browser/panel = new(C.mob, "Vote","Vote", 500, 650)
+	panel.set_content(interface(C))
+	panel.open()
 
 /datum/controller/subsystem/vote/fire()
 	if(active_vote)
@@ -58,7 +60,7 @@ SUBSYSTEM_DEF(vote)
 
 	var/text = "[poll.name] vote started by [poll.initiator]."
 	log_vote(text)
-	world << {"<font color='purple'><b>[text]</b>\nType <b>vote</b> or click <a href='?src=\ref[src]'>here</a> to place your votes. <br>You have [poll.time] seconds to vote.</font>"}
+	to_chat(world, {"<font color='purple'><b>[text]</b>\nType <b>vote</b> or click <a href='?src=\ref[src]'>here</a> to place your votes. <br>You have [poll.time] seconds to vote.</font>"})
 	sound_to(world, sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = GLOB.vote_sound_channel))
 
 	return TRUE
@@ -150,7 +152,7 @@ SUBSYSTEM_DEF(vote)
 
 		data += "</ul><hr>"
 	data += "<a href='?src=\ref[src];close=1' style='position:absolute;right:50px'>Close</a></body></html>"
-	return russian_to_utf8(data)
+	return russian_to_utf8(data, TRUE)
 
 
 /datum/controller/subsystem/vote/Topic(href,href_list[],hsrc)

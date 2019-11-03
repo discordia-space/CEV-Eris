@@ -1,5 +1,5 @@
 /datum/job/assistant
-	title = "Assistant"
+	title = ASSISTANT_TITLE
 	flag = ASSISTANT
 	department = DEPARTMENT_CIVILIAN
 	department_flag = CIVILIAN
@@ -21,25 +21,27 @@
 		STAT_TGH = 8,
 		STAT_BIO = 8,
 		STAT_MEC = 8,
+		STAT_VIG = 8,
 		STAT_COG = 8
 	)
 
-	description = "You are not part of the crew. Or at least, you don't hold an official rank. You will not be paid a wage.<br>\
-Where did you come from, why are you here? These things are up to you.<br>\
+	description = "You are a vagabond, journeying through the vast expanses of space upon the CEV Eris. You will not be paid a wage.<br>\
+Though this does not mean you have no home, as the Eris is your home. Whatever planet you may have came from a now distant memory.<br>\
 
-Perhaps you're a stowaway, sneaked onboard with cargo and not discovered until your old world was already a speck on the star chart<br>\
-Perhaps you are a passenger, who paid for transit. Where are you going, or what are you running from?<br>\
-Perhaps you're a friend, relative, spouse or lover of an existing crewmember. How can you support them in their work?<br>\
-Perhaps you're a young apprentice, taken onboard with promise of starting a new and exciting career.<br>\
-Perhaps you're a former prisoner. Served your time and ready to join the crew.<br>\
-Perhaps you were marooned on an asteroid and rescued by Eris.<br>\
-
-Your story is yours to write. What matters is, you're here now, and you should find purpose.<br>\
-As an assistant, you should strive to help out anyone you can. Or at least, anyone who offers you a paying job. Find a way to make money, stay out of trouble, and survive."
+You remember boarding the Eris sometime in your past, when it had a different purpose and a different captain.<br>\
+Over time you've become accustomed to the dangers of this ship.<br>\
+The ID you wear likely not even your own. At least as far as you can remember.<br>\
+But this chunk of plastic still can be a rare oddity, that can change your character.<br>\
+As an vagabond, you should strive to help out anyone you can. Or at least, anyone who offers you a paying job. Find a way to make money, stay out of trouble, and survive."
 
 	loyalties = "Your loyalty is yours to decide"
 
 /obj/landmark/join/start/assistant
-	name = "Assistant"
+	name = ASSISTANT_TITLE
 	icon_state = "player-grey"
 	join_tag = /datum/job/assistant
+
+/datum/job/assistant/New()
+	..()
+	for(var/alt in subtypesof(/datum/job_flavor/assistant))
+		random_flavors += new alt

@@ -1,8 +1,8 @@
 /obj/machinery/mecha_part_fabricator
+	name = "exosuit fabricator"
+	desc = "A machine used for construction of robots and mechas."
 	icon = 'icons/obj/robotics.dmi'
 	icon_state = "fab-idle"
-	name = "Exosuit Fabricator"
-	desc = "A machine used for construction of robotcs and mechas."
 	density = 1
 	anchored = 1
 	use_power = 1
@@ -24,13 +24,9 @@
 	var/category = null
 	var/sync_message = ""
 
-/obj/machinery/mecha_part_fabricator/New()
-	..()
-	files = new /datum/research(src) //Setup the research data holder.
-
 /obj/machinery/mecha_part_fabricator/Initialize()
 	. = ..()
-	update_categories()
+	files = new /datum/research(src)
 
 /obj/machinery/mecha_part_fabricator/Process()
 	..()
@@ -44,7 +40,7 @@
 		use_power = 1
 	update_icon()
 
-/obj/machinery/mecha_part_fabricator/dismantle()
+/obj/machinery/mecha_part_fabricator/on_deconstruction()
 	for(var/f in materials)
 		eject_materials(f, -1)
 	..()
@@ -66,8 +62,11 @@
 		return
 	ui_interact(user)
 
-/obj/machinery/mecha_part_fabricator/ui_interact(var/mob/user, var/ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/mecha_part_fabricator/ui_interact(var/mob/user, var/ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/data[0]
+
+	if(!length(categories))
+		update_categories()
 
 	var/datum/design/current = queue.len ? queue[1] : null
 	if(current)
@@ -94,10 +93,15 @@
 		return
 
 	if(href_list["build"])
-		add_to_queue(text2num(href_list["build"]))
+		var/datum/design/D = locate(href_list["build"]) in files.known_designs
+		if(D)
+			add_to_queue(D)
 
 	if(href_list["remove"])
-		remove_from_queue(text2num(href_list["remove"]))
+		var/num = text2num(href_list["remove"])
+		if(num)
+			num = CLAMP(num, 1, queue.len)
+			remove_from_queue(num)
 
 	if(href_list["category"])
 		if(href_list["category"] in categories)
@@ -113,9 +117,9 @@
 
 	return 1
 
-/obj/machinery/mecha_part_fabricator/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/mecha_part_fabricator/attackby(obj/item/I, mob/user)
 	if(busy)
-		user << SPAN_NOTICE("\icon[src]\The [src] is busy. Please wait for completion of previous operation.")
+		to_chat(user, SPAN_NOTICE("\icon[src]\The [src] is busy. Please wait for completion of previous operation."))
 		return TRUE
 
 	if(default_deconstruction(I, user))
@@ -129,12 +133,12 @@
 	else
 		return ..()
 
-/obj/machinery/mecha_part_fabricator/proc/loadMaterials(var/obj/item/stack/material/S, var/mob/user)
+/obj/machinery/mecha_part_fabricator/proc/loadMaterials(obj/item/stack/material/S, mob/user)
 	if(!istype(user))
 		return
 
 	if(!istype(S, /obj/item/stack/material))
-		user << SPAN_NOTICE("You cannot insert this item into \the [src]!")
+		to_chat(user, SPAN_NOTICE("You cannot insert this item into \the [src]!"))
 		return
 
 	var/material = S.get_material_name()
@@ -143,7 +147,7 @@
 		return ..()
 
 	if(materials[material] >= res_max_amount)
-		user << "\icon[src]\The [src] cannot hold more [material]."
+		to_chat(user, "\icon[src]\The [src] cannot hold more [material].")
 
 	var/amount = round(input("How many sheets do you want to add?") as num)
 
@@ -162,7 +166,7 @@
 	if(do_after(usr, 16, src))
 		res_load(material)
 		if(S.use(amount))
-			user << SPAN_NOTICE("You add [amount] [material] sheet\s to \the [src].")
+			to_chat(user, SPAN_NOTICE("You add [amount] [material] sheet\s to \the [src]."))
 			if(!(material in materials))
 				materials[material] = 0
 			materials[material] += amount
@@ -188,8 +192,7 @@
 	else
 		busy = FALSE
 
-/obj/machinery/mecha_part_fabricator/proc/add_to_queue(var/index)
-	var/datum/design/D = files.known_designs[index]
+/obj/machinery/mecha_part_fabricator/proc/add_to_queue(datum/design/D)
 	queue += D
 	update_busy()
 
@@ -199,7 +202,7 @@
 	queue.Cut(index, index + 1)
 	update_busy()
 
-/obj/machinery/mecha_part_fabricator/proc/can_build(var/datum/design/D)
+/obj/machinery/mecha_part_fabricator/proc/can_build(datum/design/D)
 	for(var/M in D.materials)
 		if(materials[M] < round(D.materials[M] * mat_efficiency, 0.01))
 			return FALSE
@@ -219,12 +222,8 @@
 		return
 	for(var/M in D.materials)
 		materials[M] = max(0, round(materials[M] - D.materials[M] * mat_efficiency, 0.01))
-	if(D.build_path)
-		var/obj/new_item = D.Fabricate(loc, src)
-		if(mat_efficiency != 1)
-			if(new_item.matter && new_item.matter.len > 0)
-				for(var/i in new_item.matter)
-					new_item.matter[i] = round(new_item.matter[i] * mat_efficiency, 0.01)
+
+	D.Fabricate(get_turf(src), mat_efficiency, src)
 
 	remove_from_queue(1)
 	print_post(D)
@@ -237,28 +236,29 @@
 
 /obj/machinery/mecha_part_fabricator/proc/get_build_options(var/mob/user)
 	. = list()
-	for(var/i = 1 to files.known_designs.len)
-		var/datum/design/D = files.known_designs[i]
-		if(!D.build_path || !(D.build_type & MECHFAB))
+	for(var/i in files.known_designs)
+		var/datum/design/D = i
+		if(!(D.build_type & MECHFAB))
 			continue
-		. += list(list("name" = D.name, "id" = i, "category" = D.category, "resourses" = get_design_resourses(D), "time" = get_design_time(D), "icon" = getAtomCacheFilename(D.build_path)))
+		. += list(list("name" = D.name, "id" = "\ref[D]", "category" = D.category, "resources" = get_design_resources(D), "time" = get_design_time(D), "icon" = getAtomCacheFilename(D.build_path)))
 
-/obj/machinery/mecha_part_fabricator/proc/get_design_resourses(var/datum/design/D)
+/obj/machinery/mecha_part_fabricator/proc/get_design_resources(datum/design/D)
 	var/list/F = list()
 	for(var/T in D.materials)
 		F += "[capitalize(T)]: [D.materials[T] * mat_efficiency]"
 	return english_list(F, and_text = ", ")
 
-/obj/machinery/mecha_part_fabricator/proc/get_design_time(var/datum/design/D)
+/obj/machinery/mecha_part_fabricator/proc/get_design_time(datum/design/D)
 	return time2text(round(10 * D.time / speed), "mm:ss")
 
 /obj/machinery/mecha_part_fabricator/proc/update_categories()
 	categories = list()
 	for(var/datum/design/D in files.known_designs)
-		if(!D.build_path || !(D.build_type & MECHFAB))
+		if(!(D.build_type & MECHFAB))
 			continue
 		categories |= D.category
-	if(!category || !(category in categories))
+
+	if((!category || !(category in categories)) && length(categories))
 		category = categories[1]
 
 /obj/machinery/mecha_part_fabricator/proc/get_materials()
@@ -289,20 +289,15 @@
 	for(var/obj/machinery/computer/rdconsole/RDC in get_area_all_atoms(get_area(src)))
 		if(!RDC.sync)
 			continue
-		for(var/datum/tech/T in RDC.files.known_tech)
-			files.AddTech2Known(T)
-		for(var/datum/design/D in RDC.files.known_designs)
-			files.AddDesign2Known(D)
-		files.RefreshResearch()
+		files.download_from(RDC.files)
 		sync_message = "Sync complete."
 	update_categories()
 
-/obj/machinery/mecha_part_fabricator/proc/print_pre(var/datum/design/D)
+/obj/machinery/mecha_part_fabricator/proc/print_pre(datum/design/D)
 	return
 
-/obj/machinery/mecha_part_fabricator/proc/print_post(var/datum/design/D)
+/obj/machinery/mecha_part_fabricator/proc/print_post(datum/design/D)
 	visible_message("\icon[src]\The [src] flashes, indicating that \the [D] is complete.", range = 3)
 	if(!queue.len)
 		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1 -3)
 		visible_message("\icon[src]\The [src] pings indicating that queue is complete.")
-	return

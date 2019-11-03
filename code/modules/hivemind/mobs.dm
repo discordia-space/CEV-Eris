@@ -552,7 +552,7 @@
 	melee_damage_upper = 15
 	mob_size = MOB_LARGE
 	attacktext = "crushes"
-	ability_cooldown = 1 MINUTE
+	ability_cooldown = 1 MINUTES
 	speak_chance = 5
 	speed = 16
 	//internals
@@ -608,7 +608,7 @@
 	//when we have passenger, we torture him
 	//I'd like to tidy this up so the damage type is linked to specific speech arrays.
 	if(passenger && prob(15))
-		passenger.apply_damage(rand(5, 10), pick(BRUTE, BURN, TOX))
+		passenger.damage_through_armor(rand(10,15), pick(BRUTE, BURN, TOX), attack_flag = ARMOR_MELEE)
 		to_chat(passenger, SPAN_DANGER(pick(
 								"A woman's arm grabs your neck!", "Lips whisper, \" This is the womb of your rebirth... \"", "Hot breath flows over your ear, \" You will enjoy bliss when this is over... \"",
 								"A whirring drill bit bores through your chest!", "Something is crushing your ribs!", "Some blood-hot liquid covers you!",
@@ -707,7 +707,7 @@
 					pilot = TRUE
 					return
 
-				H.hallucination = rand(30, 90)
+				H.hallucination(rand(30, 90), 100)
 		//if mob is dead, we just rebuild it
 		if(passenger.stat == DEAD && !safely)
 			dead_body_restoration(passenger)
@@ -876,7 +876,7 @@
 	animate(src, pixel_x=init_px + 16*pick(-1, 1), time=5)
 	animate(pixel_x=init_px, time=6, easing=SINE_EASING)
 	animate(filters[1], size = 5, time = 5, flags = ANIMATION_PARALLEL)
-	addtimer(CALLBACK(src, .proc/phase_jump, new_place), 0.5 SECOND)
+	addtimer(CALLBACK(src, .proc/phase_jump, new_place), 0.5 SECONDS)
 
 
 //second part - is jump to target

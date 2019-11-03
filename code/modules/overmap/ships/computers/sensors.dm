@@ -24,7 +24,7 @@
 			sensors = S
 			break
 
-/obj/machinery/computer/sensors/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/computer/sensors/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	if(!linked)
 		return
 
@@ -101,7 +101,7 @@
 			if(!CanInteract(usr,state))
 				return
 			if (nrange)
-				sensors.set_range(Clamp(nrange, 1, world.view))
+				sensors.set_range(CLAMP(nrange, 1, world.view))
 			return 1
 		if (href_list["toggle"])
 			sensors.toggle()
@@ -132,10 +132,10 @@
 /obj/machinery/shipsensors/attackby(obj/item/weapon/W, mob/user)
 	var/damage = max_health - health
 	if(damage && (QUALITY_WELDING in W.tool_qualities))
-		user << "<span class='notice'>You start repairing the damage to [src].</span>"
+		to_chat(user, "<span class='notice'>You start repairing the damage to [src].</span>")
 		if(W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_ROB))
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
-			user << "<span class='notice'>You finish repairing the damage to [src].</span>"
+			to_chat(user, "<span class='notice'>You finish repairing the damage to [src].</span>")
 			take_damage(-damage)
 		return
 	..()
@@ -158,13 +158,13 @@
 /obj/machinery/shipsensors/examine(mob/user)
 	. = ..()
 	if(health <= 0)
-		user << "\The [src] is wrecked."
+		to_chat(user, "\The [src] is wrecked.")
 	else if(health < max_health * 0.25)
-		user << "<span class='danger'>\The [src] looks like it's about to break!</span>"
+		to_chat(user, "<span class='danger'>\The [src] looks like it's about to break!</span>")
 	else if(health < max_health * 0.5)
-		user << "<span class='danger'>\The [src] looks seriously damaged!</span>"
+		to_chat(user, "<span class='danger'>\The [src] looks seriously damaged!</span>")
 	else if(health < max_health * 0.75)
-		user << "\The [src] shows signs of damage!"
+		to_chat(user, "\The [src] shows signs of damage!")
 
 /obj/machinery/shipsensors/bullet_act(var/obj/item/projectile/Proj)
 	take_damage(Proj.get_structure_damage())

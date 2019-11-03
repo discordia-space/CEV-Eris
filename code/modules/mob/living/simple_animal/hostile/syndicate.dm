@@ -68,7 +68,7 @@
 			visible_message("\red \b [src] blocks the [O] with its shield! ")
 		//user.do_attack_animation(src)
 	else
-		usr << "\red This weapon is ineffective, it does no damage."
+		to_chat(usr, "\red This weapon is ineffective, it does no damage.")
 		visible_message("\red [user] gently taps [src] with the [O]. ")
 
 
@@ -96,8 +96,8 @@
 	corpse = /obj/landmark/corpse/syndicatecommando
 	speed = 0
 
-/mob/living/simple_animal/hostile/syndicate/melee/space/allow_spacemove(var/check_drift = 0)
-	return
+/mob/living/simple_animal/hostile/syndicate/melee/space/allow_spacemove()
+	return ..()
 
 /mob/living/simple_animal/hostile/syndicate/ranged
 	ranged = 1
@@ -124,8 +124,8 @@
 	corpse = /obj/landmark/corpse/syndicatecommando
 	speed = 0
 
-/mob/living/simple_animal/hostile/syndicate/ranged/space/allow_spacemove(var/check_drift = 0)
-	return
+/mob/living/simple_animal/hostile/syndicate/ranged/space/allow_spacemove()
+	return ..()
 
 
 

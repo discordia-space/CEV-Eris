@@ -235,7 +235,7 @@
 /obj/machinery/lapvend/attack_hand(var/mob/user)
 	ui_interact(user)
 
-/obj/machinery/lapvend/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/lapvend/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	if(stat & (BROKEN | NOPOWER | MAINT))
 		if(ui)
 			ui.close()
@@ -266,7 +266,7 @@
 
 obj/machinery/lapvend/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(inoperable())
-		user << SPAN_WARNING("[src] is not responding.")
+		to_chat(user, SPAN_WARNING("[src] is not responding."))
 		return
 	var/obj/item/weapon/card/id/I = W.GetIdCard()
 	// Awaiting payment state

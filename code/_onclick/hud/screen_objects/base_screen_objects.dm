@@ -186,50 +186,49 @@
 	var/list/PL = params2list(params)
 	var/icon_x = text2num(PL["icon-x"])
 	var/icon_y = text2num(PL["icon-y"])
-	var/old_selecting = parentmob.targeted_organ //We're only going to update_icon() if there's been a change
+	var/selecting
 
 	switch(icon_y)
 		if(1 to 9) //Legs
 			switch(icon_x)
 				if(10 to 15)
-					parentmob.targeted_organ = BP_R_LEG
+					selecting = BP_R_LEG
 				if(17 to 22)
-					parentmob.targeted_organ = BP_L_LEG
+					selecting = BP_L_LEG
 				else
 					return TRUE
 		if(10 to 13) //Arms and groin
 			switch(icon_x)
 				if(8 to 11)
-					parentmob.targeted_organ = BP_R_ARM
+					selecting = BP_R_ARM
 				if(12 to 20)
-					parentmob.targeted_organ = BP_GROIN
+					selecting = BP_GROIN
 				if(21 to 24)
-					parentmob.targeted_organ = BP_L_ARM
+					selecting = BP_L_ARM
 				else
 					return TRUE
 		if(14 to 22) //Chest and arms to shoulders
 			switch(icon_x)
 				if(8 to 11)
-					parentmob.targeted_organ = BP_R_ARM
+					selecting = BP_R_ARM
 				if(12 to 20)
-					parentmob.targeted_organ = BP_CHEST
+					selecting = BP_CHEST
 				if(21 to 24)
-					parentmob.targeted_organ = BP_L_ARM
+					selecting = BP_L_ARM
 				else
 					return TRUE
 		if(23 to 30) //Head, but we need to check for eye or mouth
 			if(icon_x in 12 to 20)
-				parentmob.targeted_organ = BP_HEAD
+				selecting = BP_HEAD
 				switch(icon_y)
 					if(23 to 24)
 						if(icon_x in 15 to 17)
-							parentmob.targeted_organ = BP_MOUTH
+							selecting = BP_MOUTH
 					if(25 to 27)
 						if(icon_x in 14 to 18)
-							parentmob.targeted_organ = BP_EYES
+							selecting = BP_EYES
 
-	if(old_selecting != parentmob.targeted_organ)
-		update_icon()
+	set_selected_zone(selecting)
 	return TRUE
 
 /obj/screen/zone_sel/New()
@@ -239,6 +238,12 @@
 /obj/screen/zone_sel/update_icon()
 	overlays.Cut()
 	overlays += image('icons/mob/zone_sel.dmi', "[parentmob.targeted_organ]")
+
+/obj/screen/zone_sel/proc/set_selected_zone(bodypart)
+	var/old_selecting = parentmob.targeted_organ
+	if(old_selecting != bodypart)
+		parentmob.targeted_organ = bodypart
+		update_icon()
 //--------------------------------------------------ZONE SELECT END---------------------------------------------------------
 
 /obj/screen/text
@@ -318,7 +323,7 @@
 	src.overlays -= ovrls["act_hand"]
 	if (src.slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand))
 		src.overlays += ovrls["act_hand"]
-/*	if (src.slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand)) //Если данный элемент ХУДа отображает левую
+/*	if (src.slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand)) // if display left
 		src.icon_state = "act_hand[src.slot_id==slot_l_hand ? "-l" : "-r"]"
 	else
 		src.icon_state = "hand[src.slot_id==slot_l_hand ? "-l" : "-r"]"*/
@@ -355,20 +360,14 @@
 //			icon_state = "health_numb"
 			overlays += ovrls["health0"]
 		else
-			switch(parentmob:hal_screwyhud)
-				if(1)	overlays += ovrls["health6"]
-				if(2)	overlays += ovrls["health7"]
-				else
-				//switch(health - halloss)
-					switch(100 - ((parentmob:species.flags & NO_PAIN) ? 0 : parentmob:traumatic_shock))
-					//switch(100 - parentmob.traumatic_shock)
-						if(100 to INFINITY)		overlays += ovrls["health0"]
-						if(80 to 100)			overlays += ovrls["health1"]
-						if(60 to 80)			overlays += ovrls["health2"]
-						if(40 to 60)			overlays += ovrls["health3"]
-						if(20 to 40)			overlays += ovrls["health4"]
-						if(0 to 20)				overlays += ovrls["health5"]
-						else					overlays += ovrls["health6"]
+			switch(100 - ((parentmob:species.flags & NO_PAIN) ? 0 : parentmob:traumatic_shock))
+				if(100 to INFINITY)		overlays += ovrls["health0"]
+				if(80 to 100)			overlays += ovrls["health1"]
+				if(60 to 80)			overlays += ovrls["health2"]
+				if(40 to 60)			overlays += ovrls["health3"]
+				if(20 to 40)			overlays += ovrls["health4"]
+				if(0 to 20)				overlays += ovrls["health5"]
+				else					overlays += ovrls["health6"]
 
 /obj/screen/health/DEADelize()
 	overlays.Cut()
@@ -537,7 +536,7 @@
 /obj/screen/toxin/update_icon()
 	var/mob/living/carbon/human/H = parentmob
 	overlays.Cut()
-	if(H.hal_screwyhud == 4 || H.plasma_alert)
+	if(H.plasma_alert)
 		overlays += ovrls["tox1"]
 //		icon_state = "tox1"
 //	else
@@ -569,7 +568,7 @@
 /obj/screen/oxygen/update_icon()
 	var/mob/living/carbon/human/H = parentmob
 	overlays.Cut()
-	if(H.hal_screwyhud == 3 || H.oxygen_alert)
+	if(H.oxygen_alert)
 		overlays += ovrls["oxy1"]
 //		icon_state = "oxy1"
 //	else
@@ -637,7 +636,7 @@ obj/screen/fire/DEADelize()
 		if(!C.stat && !C.stunned && !C.paralysis && !C.restrained())
 			if(C.internal)
 				C.internal = null
-				C << SPAN_NOTICE("No longer running on internals.")
+				to_chat(C, SPAN_NOTICE("No longer running on internals."))
 				overlays.Cut()
 			else
 
@@ -648,7 +647,7 @@ obj/screen/fire/DEADelize()
 						no_mask = 1
 
 				if(no_mask)
-					C << SPAN_NOTICE("You are not wearing a suitable mask or helmet.")
+					to_chat(C, SPAN_NOTICE("You are not wearing a suitable mask or helmet."))
 					return TRUE
 				else
 					var/list/nicename = null
@@ -692,6 +691,8 @@ obj/screen/fire/DEADelize()
 								if ("oxygen")
 									if(t.air_contents.gas["oxygen"] && !t.air_contents.gas["plasma"])
 										contents.Add(t.air_contents.gas["oxygen"])
+									else if(istype(t, /obj/item/weapon/tank/onestar_regenerator))
+										contents.Add(BREATH_MOLES*2)
 									else
 										contents.Add(0)
 
@@ -722,12 +723,12 @@ obj/screen/fire/DEADelize()
 					//We've determined the best container now we set it as our internals
 
 					if(best)
-						C << SPAN_NOTICE("You are now running on internals from [tankcheck[best]] [from] your [nicename[best]].")
+						to_chat(C, SPAN_NOTICE("You are now running on internals from [tankcheck[best]] [from] your [nicename[best]]."))
 						playsound(usr, 'sound/effects/Custom_internals.ogg', 50, -5)
 						C.internal = tankcheck[best]
 
 					if(!C.internal)
-						C << "<span class='notice'>You don't have a[breathes=="oxygen" ? "n oxygen" : addtext(" ", breathes)] tank.</span>"
+						to_chat(C, "<span class='notice'>You don't have a[breathes=="oxygen" ? "n oxygen" : addtext(" ", breathes)] tank.</span>")
 					update_icon()
 
 /obj/screen/internal/update_icon()
@@ -831,7 +832,7 @@ obj/screen/fire/DEADelize()
 
 
 /obj/screen/mov_intent/Click()
-	var/move_intent_type = next_in_list(usr.move_intent.type, usr.move_intents)
+	var/move_intent_type = next_list_item(usr.move_intent.type, usr.move_intents)
 	var/decl/move_intent/newintent = decls_repository.get_decl(move_intent_type)
 	if (newintent.can_enter(parentmob, TRUE))
 		parentmob.move_intent = newintent
@@ -1113,137 +1114,6 @@ obj/screen/fire/DEADelize()
 		var/obj/item/clothing/glasses/G = H.wearing_rig.getCurrentGlasses()
 		if (G && H.wearing_rig.visor.active)
 			overlays |= G.overlay
-
-
-/*	if(owner.gun_move_icon)
-		if(!(target_permissions & TARGET_CAN_MOVE))
-			owner.gun_move_icon.icon_state = "no_walk0"
-			owner.gun_move_icon.name = "Allow Movement"
-		else
-			owner.gun_move_icon.icon_state = "no_walk1"
-			owner.gun_move_icon.name = "Disallow Movement"
-
-	if(owner.item_use_icon)
-		if(!(target_permissions & TARGET_CAN_CLICK))
-			owner.item_use_icon.icon_state = "no_item0"
-			owner.item_use_icon.name = "Allow Item Use"
-		else
-			owner.item_use_icon.icon_state = "no_item1"
-			owner.item_use_icon.name = "Disallow Item Use"
-
-	if(owner.radio_use_icon)
-		if(!(target_permissions & TARGET_CAN_RADIO))
-			owner.radio_use_icon.icon_state = "no_radio0"
-			owner.radio_use_icon.name = "Allow Radio Use"
-		else
-			owner.radio_use_icon.icon_state = "no_radio1"
-			owner.radio_use_icon.name = "Disallow Radio Use"*/
-//-----------------------Gun Mod------------------------------
-/obj/screen/gun
-	name = "gun"
-	icon = 'icons/mob/screen/ErisStyle.dmi'
-	master = null
-	dir = 2
-
-/obj/screen/gun/Click(location, control, params)
-	if(!usr)
-		return
-	return TRUE
-
-/obj/screen/gun/New()
-	..()
-	if(!parentmob.aiming)
-		parentmob.aiming = new(parentmob)
-	update_icon()
-
-/obj/screen/gun/mode
-	name = "Toggle Gun Mode"
-	icon_state = "gun0"
-	screen_loc = "15,2"
-
-
-/obj/screen/gun/mode/Click(location, control, params)
-	if(..())
-		var/mob/living/user = parentmob
-		if(istype(user))
-			if(!user.aiming) user.aiming = new(user)
-			user.aiming.toggle_active()
-			update_icon()
-		return TRUE
-	return FALSE
-
-/obj/screen/gun/mode/update_icon()
-	icon_state = "gun[parentmob.aiming.active]"
-
-/obj/screen/gun/move
-	name = "Allow Movement"
-	icon_state = "no_walk0"
-	screen_loc = "15,3"
-
-/obj/screen/gun/move/Click(location, control, params)
-	if(..())
-		var/mob/living/user = parentmob
-		if(istype(user))
-			if(!user.aiming) user.aiming = new(user)
-			user.aiming.toggle_permission(TARGET_CAN_MOVE)
-			update_icon()
-		return TRUE
-	return FALSE
-
-/obj/screen/gun/move/update_icon()
-	if(!(parentmob.aiming.target_permissions & TARGET_CAN_MOVE))
-		icon_state = "no_walk0"
-//			owner.gun_move_icon.name = "Allow Movement"
-	else
-		icon_state = "no_walk1"
-//			owner.gun_move_icon.name = "Disallow Movement"
-
-/obj/screen/gun/item
-	name = "Allow Item Use"
-	icon_state = "no_items0"
-	screen_loc = "14,2"
-
-/obj/screen/gun/item/Click(location, control, params)
-	if(..())
-		var/mob/living/user = parentmob
-		if(istype(user))
-			if(!user.aiming) user.aiming = new(user)
-			user.aiming.toggle_permission(TARGET_CAN_CLICK)
-			update_icon()
-		return TRUE
-	return FALSE
-
-/obj/screen/gun/item/update_icon()
-	if(!(parentmob.aiming.target_permissions & TARGET_CAN_CLICK))
-		icon_state = "no_items0"
-//			owner.item_use_icon.name = "Allow Item Use"
-	else
-		icon_state = "no_items1"
-//			owner.item_use_icon.name = "Disallow Item Use"
-
-/obj/screen/gun/radio
-	name = "Allow Radio Use"
-	icon_state = "no_radio0"
-	screen_loc = "14,3"
-
-/obj/screen/gun/radio/Click(location, control, params)
-	if(..())
-		var/mob/living/user = parentmob
-		if(istype(user))
-			if(!user.aiming) user.aiming = new(user)
-			user.aiming.toggle_permission(TARGET_CAN_RADIO)
-			update_icon()
-		return TRUE
-	return FALSE
-
-/obj/screen/gun/radio/update_icon()
-	if(!(parentmob.aiming.target_permissions & TARGET_CAN_RADIO))
-		icon_state = "no_radio0"
-//			owner.radio_use_icon.name = "Allow Radio Use"
-	else
-		icon_state = "no_radio1"
-//			owner.radio_use_icon.name = "Disallow Radio Use"
-//-----------------------Gun Mod End------------------------------
 
 //-----------------------toggle_invetory------------------------------
 /obj/screen/toggle_invetory

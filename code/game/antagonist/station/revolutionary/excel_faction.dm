@@ -10,7 +10,7 @@
     Our third phase is expansion. Aquire implants, prosthetics or robotic parts and convert them into new implants. These can be injected into the oppressed to formally induct them to the Revolution. Use their labor to produce the weapons of their liberation.\n\n\
     When the People are ready, break the chains of the oppressor and seize control of the ship"
 
-	hud_indicator = "hudexcelsior"
+	hud_indicator = "excelsior"
 
 	possible_antags = list(ROLE_EXCELSIOR_REV)
 	verbs = list(/datum/faction/excelsior/proc/communicate_verb)
@@ -40,12 +40,12 @@
 
 	var/turf/LM = landmark.get_loc()
 
-	new /obj/item/weapon/disk/autolathe_disk/excelsior(LM)
+	new /obj/item/weapon/computer_hardware/hard_drive/portable/design/excelsior(LM)
 	new /obj/item/weapon/circuitboard/excelsiorautolathe(LM)
 	new /obj/item/weapon/circuitboard/excelsior_teleporter(LM)
 
 	for (var/datum/antagonist/A in members)
-		A.owner.current << SPAN_NOTICE("Use your excelsior supply stash. [landmark.navigation]")
+		to_chat(A.owner.current, SPAN_NOTICE("Use your excelsior supply stash. [landmark.navigation]"))
 		A.owner.store_memory("Excelsior stash. [landmark.navigation]")
 
 

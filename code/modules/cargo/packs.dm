@@ -105,8 +105,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/price_scanner
 	name = "Export scanners"
-	contains = list(/obj/item/device/export_scanner,
-					/obj/item/device/export_scanner)
+	contains = list(/obj/item/device/scanner/price,
+					/obj/item/device/scanner/price)
 	cost = 700
 	crate_name = "Export scanners crate"
 	group = "Operations"
@@ -130,12 +130,12 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/fsenergy
 	name = "FS Energy Weapons"
-	contains = list(/obj/item/weapon/gun/energy/cassad,
+	contains = list(/obj/item/weapon/gun/energy/pulse/cassad,
 				/obj/item/weapon/gun/energy/gun,
 				/obj/item/weapon/gun/energy/gun,
 				/obj/item/weapon/gun/energy/gun/martin,
 				/obj/item/weapon/gun/energy/gun/martin)
-	cost = 3500
+	cost = 6000
 	containertype = /obj/structure/closet/crate/secure/weapon
 	crate_name = "FS Energy Weapons"
 	group = "Security"
@@ -167,7 +167,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 				/obj/item/weapon/gun/energy/laser,
 				/obj/item/weapon/gun/energy/taser,
 				/obj/item/weapon/gun/energy/taser)
-	cost = 3500
+	cost = 5000
 	containertype = /obj/structure/closet/crate/secure/weapon
 	crate_name = "FS Energy Weapons"
 	group = "Security"
@@ -219,7 +219,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/suit/armor/riot,
 					/obj/item/clothing/head/helmet/riot,
 					/obj/item/clothing/suit/armor/riot)
-	cost = 6000
+	cost = 6100
 	containertype = /obj/structure/closet/crate/secure
 	crate_name = "IH Riot gear crate"
 	group = "Security"
@@ -510,7 +510,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	name = "120 wooden planks"
 	contains = list(/obj/item/stack/material/wood)
 	amount = 120
-	cost = 500
+	cost = 2500
 	containertype = /obj/structure/closet/crate
 	crate_name = "Wooden planks crate"
 	group = "Engineering"
@@ -654,8 +654,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/mecha_ripley
 	name = "Circuit Crate (\"Ripley\" APLU)"
-	contains = list(/obj/item/weapon/book/manual/ripley_build_and_repair,
-					/obj/item/weapon/circuitboard/mecha/ripley/main, //TEMPORARY due to lack of circuitboard printer
+	contains = list(/obj/item/weapon/circuitboard/mecha/ripley/main, //TEMPORARY due to lack of circuitboard printer
 					/obj/item/weapon/circuitboard/mecha/ripley/peripherals) //TEMPORARY due to lack of circuitboard printer
 	cost = 3000
 	containertype = /obj/structure/closet/crate/secure/scisecurecrate
@@ -927,7 +926,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/reagent_containers/glass/bottle/ammonia,
 					/obj/item/weapon/material/hatchet,
 					/obj/item/weapon/material/minihoe,
-					/obj/item/device/scanner/analyzer/plant_analyzer,
+					/obj/item/device/scanner/plant,
 					/obj/item/clothing/gloves/botanic_leather,
 					/obj/item/clothing/suit/apron) // Updated with new things
 	cost = 900
@@ -1296,13 +1295,13 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	group = "Miscellaneous"
 
 /datum/supply_pack/randomised/guns
-	num_contained = 2
+	num_contained = 4
 	contains = list(/obj/random/gun_cheap,
-				/obj/random/gun_normal,
-				/obj/random/gun_energy_cheap,
-				/obj/random/gun_shotgun)
+                /obj/random/gun_normal,
+                /obj/random/gun_energy_cheap,
+                /obj/random/gun_shotgun)
 	name = "Surplus Weaponry"
-	cost = 3000
+	cost = 2000
 	crate_name = "Surplus Weapons Crate"
 	containertype = /obj/structure/closet/crate/secure/weapon
 	group = "Security"
@@ -1367,3 +1366,24 @@ datum/supply_pack/randomised/rigmods
 	crate_name = "Surplus Rig Modules"
 	containertype = /obj/structure/closet/crate
 	group = "Operations"
+
+/datum/supply_pack/nanites
+	name = "Raw Nanites"
+	contains = list(
+		/obj/item/weapon/reagent_containers/glass/beaker/vial/nanites
+	)
+	cost = 1500
+	crate_name = "Raw Nanites Container"
+	group = "Medical / Science"
+	containertype = /obj/structure/closet/crate/medical
+
+/datum/supply_pack/uncapnanites
+	name = "Raw Uncapped Nanites"
+	contains = list(
+		/obj/item/weapon/reagent_containers/glass/beaker/vial/uncapnanites
+	)
+	cost = 2000
+	crate_name = "Raw Nanites Container"
+	group = "Medical / Science"
+	contraband = TRUE
+	containertype = /obj/structure/closet/crate/medical

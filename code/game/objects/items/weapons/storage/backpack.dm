@@ -16,10 +16,11 @@
 		slot_l_hand_str = "backpack",
 		slot_r_hand_str = "backpack",
 		)
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
-	max_w_class = ITEM_SIZE_LARGE
-	max_storage_space = 40
+	max_w_class = ITEM_SIZE_BULKY
+	max_storage_space = DEFAULT_HUGE_STORAGE
+	matter = list(MATERIAL_BIOMATTER = 10, MATERIAL_PLASTIC = 2)
 	var/worn_access = FALSE
 
 /obj/item/weapon/storage/backpack/New()
@@ -76,14 +77,13 @@
 	desc = "A backpack that opens into a localized pocket of Blue Space."
 	origin_tech = list(TECH_BLUESPACE = 4)
 	icon_state = "holdingpack"
-	max_w_class = ITEM_SIZE_LARGE
-	max_storage_space = 100
-	storage_cost = 29
+	max_w_class = ITEM_SIZE_BULKY
+	max_storage_space = DEFAULT_HUGE_STORAGE * 2
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_GOLD = 10, MATERIAL_DIAMOND = 5, MATERIAL_URANIUM = 5)
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
 		if(istype(W, /obj/item/weapon/storage/backpack/holding))
-			user << SPAN_WARNING("The Bluespace interfaces of the two devices conflict and malfunction.")
+			to_chat(user, SPAN_WARNING("The Bluespace interfaces of the two devices conflict and malfunction."))
 			qdel(W)
 			return
 		..()
@@ -99,7 +99,6 @@
 	desc = "Space Santa uses this to deliver toys to all the nice children in space in Christmas! Wow, it's pretty big!"
 	icon_state = "giftbag0"
 	item_state = "giftbag"
-	w_class = ITEM_SIZE_LARGE
 	max_w_class = ITEM_SIZE_NORMAL
 	max_storage_space = 400 // can store a ton of shit!
 	item_state_slots = null
@@ -122,13 +121,11 @@
 	icon_state = "securitypack"
 	item_state_slots = null
 
-//Used by mercs
-/obj/item/weapon/storage/backpack/military
-	name = "MOLLE pack"
-	desc = "Designed for planetary infantry, holds a lot of equipment."
-	icon_state = "militarypack"
+/obj/item/weapon/storage/backpack/church
+	name = "NeoTheology backpack"
+	desc = "For carrying all your holy needs."
+	icon_state = "ntpack"
 	item_state_slots = null
-	max_storage_space = 50
 
 /obj/item/weapon/storage/backpack/captain
 	name = "captain's backpack"
@@ -142,6 +139,14 @@
 	icon_state = "engiepack"
 	item_state_slots = null
 
+//Used by mercs
+/obj/item/weapon/storage/backpack/military
+	name = "MOLLE pack"
+	desc = "Designed for planetary infantry, holds a lot of equipment."
+	icon_state = "militarypack"
+	item_state_slots = null
+	max_storage_space = DEFAULT_HUGE_STORAGE + 10
+
 /*
  * Satchel Types
  */
@@ -150,7 +155,7 @@
 	name = "leather satchel"
 	desc = "It's a very fancy satchel made with fine leather."
 	icon_state = "satchel"
-	max_storage_space = 24
+	max_storage_space = DEFAULT_HUGE_STORAGE * 0.7
 	worn_access = TRUE
 
 /obj/item/weapon/storage/backpack/satchel/withwallet
@@ -162,8 +167,6 @@
 	name = "satchel"
 	desc = "A trendy looking satchel."
 	icon_state = "satchel-norm"
-	max_storage_space = 24
-	worn_access = TRUE
 
 /obj/item/weapon/storage/backpack/satchel/eng
 	name = "industrial satchel"
@@ -173,8 +176,6 @@
 		slot_l_hand_str = "engiepack",
 		slot_r_hand_str = "engiepack",
 		)
-	max_storage_space = 24
-	worn_access = TRUE
 
 /obj/item/weapon/storage/backpack/satchel/med
 	name = "medical satchel"
@@ -184,8 +185,6 @@
 		slot_l_hand_str = "medicalpack",
 		slot_r_hand_str = "medicalpack",
 		)
-	max_storage_space = 24
-	worn_access = TRUE
 
 /obj/item/weapon/storage/backpack/satchel/sec
 	name = "security satchel"
@@ -195,8 +194,6 @@
 		slot_l_hand_str = "securitypack",
 		slot_r_hand_str = "securitypack",
 		)
-	max_storage_space = 24
-	worn_access = TRUE
 
 /obj/item/weapon/storage/backpack/satchel/cap
 	name = "captain's satchel"
@@ -206,5 +203,8 @@
 		slot_l_hand_str = "satchel-cap",
 		slot_r_hand_str = "satchel-cap",
 		)
-	max_storage_space = 24
-	worn_access = TRUE
+
+/obj/item/weapon/storage/backpack/satchel/church
+	name = "NeoTheology satchel"
+	desc = "Slightly more accessible means for your holy goods."
+	icon_state = "satchel-nt"

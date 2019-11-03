@@ -51,6 +51,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	origin_tech = list(TECH_MATERIAL = 1)
 	slot_flags = SLOT_EARS
 	attack_verb = list("burnt", "singed")
+	preloaded_reagents = list("sulfur" = 3, "potassium" = 3, "hydrazine" = 3, "carbon" = 5)
 
 /obj/item/weapon/flame/match/Process()
 	if(isliving(loc))
@@ -105,6 +106,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/zippomes = "USER lights NAME with FLAME"
 	var/weldermes = "USER lights NAME with FLAME"
 	var/ignitermes = "USER lights NAME with FLAME"
+	preloaded_reagents = list("nicotine" = 5)
 
 /obj/item/clothing/mask/smokable/New()
 	..()
@@ -119,9 +121,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		return
 	if(location)
 		location.hotspot_expose(700, 5)
+	var/mob/living/carbon/human/C = loc
+	if(istype(C))
+		C.sanity.onSmoke(src)
 	if(reagents && reagents.total_volume) // check if it has any reagents at all
 		if(ishuman(loc))
-			var/mob/living/carbon/human/C = loc
 			if (src == C.wear_mask && C.check_has_mouth()) // if it's in the human/monkey mouth, transfer reagents to the mob
 				reagents.trans_to_mob(C, REM, CHEM_INGEST, 0.2) // Most of it is not inhaled... balance reasons.
 		else // else just remove some of the reagents
@@ -162,7 +166,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(ismob(loc))
 			var/mob/living/M = loc
 			if (!nomessage)
-				M << SPAN_NOTICE("Your [name] goes out.")
+				to_chat(M, SPAN_NOTICE("Your [name] goes out."))
 			M.remove_from_mob(src) //un-equip it so the overlays can update
 			M.update_inv_wear_mask(0)
 			M.update_inv_l_hand(0)
@@ -174,7 +178,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(ismob(loc))
 			var/mob/living/M = loc
 			if (!nomessage)
-				M << SPAN_NOTICE("Your [name] goes out, and you empty the ash.")
+				to_chat(M, SPAN_NOTICE("Your [name] goes out, and you empty the ash."))
 			lit = 0
 			icon_state = icon_off
 			item_state = icon_off
@@ -250,12 +254,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(istype(glass)) //you can dip cigarettes into beakers
 		var/transfered = glass.reagents.trans_to_obj(src, chem_volume)
 		if(transfered)	//if reagents were transfered, show the message
-			user << SPAN_NOTICE("You dip \the [src] into \the [glass].")
+			to_chat(user, SPAN_NOTICE("You dip \the [src] into \the [glass]."))
 		else			//if not, either the beaker was empty, or the cigarette was full
 			if(!glass.reagents.total_volume)
-				user << SPAN_NOTICE("[glass] is empty.")
+				to_chat(user, SPAN_NOTICE("[glass] is empty."))
 			else
-				user << SPAN_NOTICE("[src] is full.")
+				to_chat(user, SPAN_NOTICE("[src] is full."))
 
 /obj/item/clothing/mask/smokable/cigarette/attack_self(mob/user as mob)
 	if(lit == 1)
@@ -376,10 +380,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if (istype(W, /obj/item/weapon/reagent_containers/food/snacks))
 		var/obj/item/weapon/reagent_containers/food/snacks/grown/G = W
 		if (!G.dry)
-			user << SPAN_NOTICE("[G] must be dried before you stuff it into [src].")
+			to_chat(user, SPAN_NOTICE("[G] must be dried before you stuff it into [src]."))
 			return
 		if (smoketime)
-			user << SPAN_NOTICE("[src] is already packed.")
+			to_chat(user, SPAN_NOTICE("[src] is already packed."))
 			return
 		smoketime = 1000
 		if(G.reagents)
@@ -453,7 +457,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				if(prob(95))
 					user.visible_message(SPAN_NOTICE("After a few attempts, [user] manages to light the [src]."))
 				else
-					user << SPAN_WARNING("You burn yourself while lighting the lighter.")
+					to_chat(user, SPAN_WARNING("You burn yourself while lighting the lighter."))
 					if (user.l_hand == src)
 						user.apply_damage(2, BURN, BP_L_ARM)
 					else

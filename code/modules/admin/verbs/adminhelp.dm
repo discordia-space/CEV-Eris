@@ -4,12 +4,12 @@
 	set name = "Adminhelp"
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		usr << "\red Speech is currently admin-disabled."
+		to_chat(usr, "\red Speech is currently admin-disabled.")
 		return
 
 	//handle muting and automuting
 	if(prefs.muted & MUTE_ADMINHELP)
-		src << "<font color='red'>Error: Admin-PM: You cannot send adminhelps (Muted).</font>"
+		to_chat(src, "<font color='red'>Error: Admin-PM: You cannot send adminhelps (Muted).</font>")
 		return
 
 	adminhelped = 1 //Determines if they get the message to reply by clicking the name.
@@ -30,7 +30,7 @@
 		return
 
 	//show it to the person adminhelping too
-	src << "<font color='blue'>PM to-<b>Staff </b>: [msg]</font>"
+	to_chat(src, "<font color='blue'>PM to-<b>Staff </b>: [msg]</font>")
 	log_admin("HELP: [key_name(src)]: [msg]")
 
 	var/mentor_msg = "\blue <b><font color=red>Request for Help: </font>[get_options_bar(mob, 4, 1, 1, 0)]:</b> [msg]"
@@ -44,9 +44,9 @@
 			if(X.get_preference_value(/datum/client_preference/staff/play_adminhelp_ping) == GLOB.PREF_HEAR)
 				X << 'sound/effects/adminhelp.ogg'
 			if(X.holder.rights == R_MENTOR)
-				X << mentor_msg		// Mentors won't see coloring of names on people with special_roles (Antags, etc.)
+				to_chat(X, mentor_msg)		// Mentors won't see coloring of names on people with special_roles (Antags, etc.)
 			else
-				X << msg
+				to_chat(X, msg)
 
 	return
 

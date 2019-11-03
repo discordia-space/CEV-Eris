@@ -69,11 +69,10 @@
 	)
 
 	if(!start.CanZPass(mover, direction))
-		to_chat(src, SPAN_WARNING("\The [start] under you is in the way."))
+		to_chat(src, SPAN_WARNING("You can't leave this place in this direction."))
 		return FALSE
-
-	if(!destination.CanZPass(mover, direction))
-		to_chat(src, SPAN_WARNING("The ceiling above you is in the way."))
+	if(!destination.CanZPass(mover, (direction == UP ? DOWN : UP) ))
+		to_chat(src, SPAN_WARNING("\The [destination] blocks you."))
 		return FALSE
 
 	// Check for blocking atoms at the destination.
@@ -151,6 +150,7 @@
 
 // Humans and borgs have jetpacks which allows them to override gravity! Or rather,
 // they can have them. So we override and check.
+/* Maybe next time.
 /mob/living/carbon/human/CanAvoidGravity()
 	if (!restrained())
 		var/obj/item/weapon/tank/jetpack/thrust = get_jetpack()
@@ -167,6 +167,7 @@
 		return TRUE
 
 	return ..()
+*/
 
 /**
  * An overridable proc used by SSfalling to determine whether or not an atom
@@ -218,10 +219,7 @@
 /mob/living/carbon/human/can_fall(turf/below, turf/simulated/open/dest = src.loc)
 	// Special condition for jetpack mounted folk!
 	if (!restrained())
-		var/obj/item/weapon/tank/jetpack/thrust = get_jetpack()
-
-		if (thrust && thrust.stabilization_on &&\
-			!lying && thrust.allow_thrust(0.01, src))
+		if (CanAvoidGravity())
 			return FALSE
 
 	return ..()
@@ -233,9 +231,7 @@
 	return FALSE
 
 /mob/living/silicon/robot/can_fall(turf/below, turf/simulated/open/dest = src.loc)
-	var/obj/item/weapon/tank/jetpack/thrust = get_jetpack()
-
-	if (thrust && thrust.stabilization_on && thrust.allow_thrust(0.02, src))
+	if (CanAvoidGravity())
 		return FALSE
 
 	return ..()

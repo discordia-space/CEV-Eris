@@ -148,21 +148,25 @@
 			occupant.throw_at(A, 3, 3, propelled)
 
 		var/def_zone = ran_zone()
-		var/blocked = occupant.run_armor_check(def_zone, "melee")
-		occupant.throw_at(A, 3, 3, propelled)
-		occupant.apply_effect(6, STUN, blocked)
-		occupant.apply_effect(6, WEAKEN, blocked)
-		occupant.apply_effect(6, STUTTER, blocked)
-		occupant.apply_damage(10, BRUTE, def_zone, blocked)
+
+		occupant.throw_at(A, 3, propelled)
+		occupant.apply_effect(6, STUN, occupant.getarmor(def_zone, ARMOR_MELEE))
+		occupant.apply_effect(6, WEAKEN, occupant.getarmor(def_zone, ARMOR_MELEE))
+		occupant.apply_effect(6, STUTTER, occupant.getarmor(def_zone, ARMOR_MELEE))
+		occupant.damage_through_armor(6, BRUTE, def_zone, ARMOR_MELEE)
+
 		playsound(src.loc, 'sound/weapons/punch1.ogg', 50, 1, -1)
+
 		if(isliving(A))
+
 			var/mob/living/victim = A
 			def_zone = ran_zone()
-			blocked = victim.run_armor_check(def_zone, "melee")
-			victim.apply_effect(6, STUN, blocked)
-			victim.apply_effect(6, WEAKEN, blocked)
-			victim.apply_effect(6, STUTTER, blocked)
-			victim.apply_damage(10, BRUTE, def_zone, blocked)
+
+			victim.apply_effect(6, STUN, victim.getarmor(def_zone, ARMOR_MELEE))
+			victim.apply_effect(6, WEAKEN, victim.getarmor(def_zone, ARMOR_MELEE))
+			victim.apply_effect(6, STUTTER, victim.getarmor(def_zone, ARMOR_MELEE))
+			victim.damage_through_armor(6, BRUTE, def_zone, ARMOR_MELEE)
+
 		if(pulling)
 			occupant.visible_message(SPAN_DANGER("[pulling] has thrusted \the [name] into \the [A], throwing \the [occupant] out of it!"))
 			admin_attack_log(pulling, occupant, "Crashed their victim into \an [A].", "Was crashed into \an [A].", "smashed into \the [A] using")
@@ -192,3 +196,35 @@
 /proc/equip_wheelchair(mob/living/carbon/human/H) //Proc for spawning in a wheelchair if a new character has no legs. Used in new_player.dm
 	var/obj/structure/bed/chair/wheelchair/W = new(H.loc)
 	W.buckle_mob(H)
+
+/obj/item/wheelchair
+	name = "wheelchair"
+	desc = "A folded wheelchair that can be carried around."
+	icon = 'icons/obj/furniture.dmi'
+	icon_state = "wheelchair_folded"
+	w_class = ITEM_SIZE_HUGE
+	var/obj/structure/bed/chair/wheelchair/unfolded
+
+/obj/item/wheelchair/attack_self(mob/user)
+	if(unfolded)
+		unfolded.forceMove(get_turf(src))
+	else
+		new/obj/structure/bed/chair/wheelchair(get_turf(src))
+	qdel(src)
+
+/obj/structure/bed/chair/wheelchair/MouseDrop(over_object, src_location, over_location)
+	..()
+	if(over_object == usr && Adjacent(usr))
+		if(!ishuman(usr) || usr.incapacitated())
+			return
+		if(buckled_mob)
+			return 0
+		if(pulling)
+			return 0 // You can't fold a wheelchair when somebody holding the handles.
+		visible_message("[usr] collapses \the [src.name].")
+		var/obj/item/wheelchair/R = new/obj/item/wheelchair(get_turf(src))
+		R.name = src.name
+		R.color = src.color
+		R.unfolded = src
+		src.forceMove(R)
+		return

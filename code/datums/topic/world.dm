@@ -96,6 +96,7 @@
 			"sci" = science_positions,
 			"car" = cargo_positions,
 			"civ" = civilian_positions,
+			"chr" = church_positions,
 			"bot" = nonhuman_positions
 		)
 
@@ -230,11 +231,11 @@
 	C.irc_admin = input["sender"]
 
 	C << 'sound/effects/adminhelp.ogg'
-	C << message
+	to_chat(C, message)
 
 
 	for(var/client/A in admins)
 		if(A != C)
-			A << amessage
+			to_chat(A, amessage)
 
 	return "Message Successful"

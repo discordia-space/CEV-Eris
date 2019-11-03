@@ -36,7 +36,7 @@
 
 /obj/item/device/taperecorder/examine(mob/user)
 	if(..(user, 1) && open_panel)
-		usr << "The wire panel is open."
+		to_chat(usr, "The wire panel is open.")
 
 /obj/item/device/taperecorder/attackby(obj/item/I, mob/user, params)
 	if(!mydrive && istype(I, /obj/item/weapon/computer_hardware/hard_drive/portable))
@@ -48,7 +48,7 @@
 	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			open_panel = !open_panel
-			usr << SPAN_NOTICE("You [open_panel ? "open" : "close"] the wire panel.")
+			to_chat(usr, SPAN_NOTICE("You [open_panel ? "open" : "close"] the wire panel."))
 		return
 
 	else if(istool(I))
@@ -70,7 +70,9 @@
 	else
 		icon_state = "taperecorder_idle"
 
-/obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, var/verb="says", datum/language/speaking=null)
+/obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, var/verb="says", datum/language/speaking=null, speech_volume)
+	if(speech_volume)
+		msg = "<FONT size='[speech_volume]'>[msg]</FONT>"
 	if(audio_file && recording)
 		audio_file.timestamp += audio_file.used_capacity
 
@@ -102,17 +104,17 @@
 	if(!emagged)
 		emagged = 1
 		recording = 0
-		user << SPAN_WARNING("PZZTTPFFFT")
+		to_chat(user, SPAN_WARNING("PZZTTPFFFT"))
 		update_icon()
 		return 1
 	else
-		user << SPAN_WARNING("It is already emagged!")
+		to_chat(user, SPAN_WARNING("It is already emagged!"))
 
 /obj/item/device/taperecorder/proc/explode()
 	var/turf/T = get_turf(loc)
 	if(ismob(loc))
 		var/mob/M = loc
-		M << SPAN_DANGER("\The [src] explodes!")
+		to_chat(M, SPAN_DANGER("\The [src] explodes!"))
 	if(T)
 		T.hotspot_expose(700,125)
 		explosion(T, -1, -1, 0, 4)
@@ -174,7 +176,7 @@
 		return
 	if(emagged)
 		if(show_message)
-			usr << SPAN_WARNING("The recorder makes a scratchy noise.")
+			to_chat(usr, SPAN_WARNING("The recorder makes a scratchy noise."))
 		return
 
 	if(!audio_file)
@@ -186,7 +188,7 @@
 	if(audio_file.used_capacity < audio_file.max_capacity)
 		icon_state = "taperecorder_recording"
 		if(show_message)
-			usr << SPAN_NOTICE("Recording started.")
+			to_chat(usr, SPAN_NOTICE("Recording started."))
 		recording = 1
 		audio_file.timestamp += audio_file.used_capacity
 		audio_file.storedinfo += "\[[time2text(audio_file.used_capacity * 10,"mm:ss")]\] Recording started."
@@ -202,7 +204,7 @@
 		update_icon()
 		return
 	else if(show_message)
-		usr << SPAN_NOTICE("The file is full.")
+		to_chat(usr, SPAN_NOTICE("The file is full."))
 
 
 /obj/item/device/taperecorder/proc/stop(var/show_message = 1)
@@ -211,7 +213,7 @@
 		return
 	if(emagged)
 		if(show_message)
-			usr << SPAN_WARNING("The recorder makes a scratchy noise.")
+			to_chat(usr, SPAN_WARNING("The recorder makes a scratchy noise."))
 		return
 	playsound(loc, 'sound/machines/button.ogg', 100, 1)
 	if(recording)
@@ -222,7 +224,7 @@
 		for(var/entry in audio_file.storedinfo)
 			audio_file.stored_data += "[entry]<br>"
 		if(show_message)
-			usr << SPAN_NOTICE("Recording stopped.")
+			to_chat(usr, SPAN_NOTICE("Recording stopped."))
 		icon_state = "taperecorder_idle"
 		return
 	else if(playing)
@@ -239,22 +241,22 @@
 		return
 	if(emagged)
 		if(show_message)
-			usr << SPAN_WARNING("The recorder makes a scratchy noise.")
+			to_chat(usr, SPAN_WARNING("The recorder makes a scratchy noise."))
 		return
 	if(!audio_file)
 		if(show_message)
-			usr << SPAN_WARNING("The recorder beeps. No file selected.")
+			to_chat(usr, SPAN_WARNING("The recorder beeps. No file selected."))
 		return
 	if(recording || playing)
 		if(show_message)
-			usr << SPAN_NOTICE("You can't clear the memory while playing or recording!")
+			to_chat(usr, SPAN_NOTICE("You can't clear the memory while playing or recording!"))
 		return
 	else
 		if(audio_file.storedinfo)	audio_file.storedinfo.Cut()
 		if(audio_file.timestamp)	audio_file.timestamp.Cut()
 		audio_file.used_capacity = 0
 		if(show_message)
-			usr << SPAN_NOTICE("File cleared.")
+			to_chat(usr, SPAN_NOTICE("File cleared."))
 		return
 	playsound(loc, 'sound/machines/button.ogg', 100, 1)
 
@@ -265,20 +267,20 @@
 		return
 	if(!audio_file)
 		if(show_message)
-			usr << SPAN_WARNING("The recorder beeps. No file selected.")
+			to_chat(usr, SPAN_WARNING("The recorder beeps. No file selected."))
 		return
 	if(recording)
 		if(show_message)
-			usr << SPAN_NOTICE("You can't playback when recording!")
+			to_chat(usr, SPAN_NOTICE("You can't playback when recording!"))
 		return
 	if(playing)
 		if(show_message)
-			usr << SPAN_NOTICE("You're already playing!")
+			to_chat(usr, SPAN_NOTICE("You're already playing!"))
 		return
 	playing = 1
 	icon_state = "taperecorder_playing"
 	if(show_message)
-		usr << SPAN_NOTICE("Playing started.")
+		to_chat(usr, SPAN_NOTICE("Playing started."))
 	playsound(loc, 'sound/machines/button.ogg', 100, 1)
 	var/used = audio_file.used_capacity	//to stop runtimes when you eject the tape
 	var/max = audio_file.max_capacity
@@ -332,13 +334,13 @@
 
 	if(emagged)
 		if(show_message)
-			usr << SPAN_WARNING("The recorder makes a scratchy noise.")
+			to_chat(usr, SPAN_WARNING("The recorder makes a scratchy noise."))
 		return
 	if(!mydrive)
 		return
 	if(recording || playing)
 		if(show_message)
-			usr << SPAN_NOTICE("You can't switch to another file while playing or recording!")
+			to_chat(usr, SPAN_NOTICE("You can't switch to another file while playing or recording!"))
 		return
 	playsound(loc, 'sound/machines/button.ogg', 100, 1)
 	var/list/audio_list = list()
@@ -369,7 +371,7 @@
 		audio_file = F
 	else
 		if(show_message)
-			usr << SPAN_WARNING("The recorder beeps. The file was unable to be saved.")
+			to_chat(usr, SPAN_WARNING("The recorder beeps. The file was unable to be saved."))
 		return
 
 /obj/item/device/taperecorder/attack_self(mob/user)

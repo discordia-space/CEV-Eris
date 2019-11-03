@@ -119,21 +119,21 @@
 
 /obj/structure/multiz/ladder/proc/climb(var/mob/M, var/delay)
 	if(!target || !istype(target.loc, /turf))
-		M << SPAN_NOTICE("\The [src] is incomplete and can't be climbed.")
+		to_chat(M, SPAN_NOTICE("\The [src] is incomplete and can't be climbed."))
 		return
 
 	var/turf/T = target.loc
 	var/mob/tempMob
 	for(var/atom/A in T)
 		if(!A.CanPass(M))
-			M << SPAN_NOTICE("\A [A] is blocking \the [src].")
+			to_chat(M, SPAN_NOTICE("\A [A] is blocking \the [src]."))
 			return
 		else if (A.density && istype(A, /mob))
 			tempMob = A
 			continue
 
 	if (tempMob)
-		M << SPAN_NOTICE("\A [tempMob] is blocking \the [src], making it harder to climb.")
+		to_chat(M, SPAN_NOTICE("\A [tempMob] is blocking \the [src], making it harder to climb."))
 		delay = delay * 1.5
 
 	//Robots are a quarter ton of steel and most of them lack legs or arms of any appreciable sorts.
@@ -161,6 +161,9 @@
 			"You hear the grunting and clanging of a metal ladder being used."
 		)
 		playsound(src, pick(climb_sound), 100, 1, 5,5)
+
+		delay = max(delay * M.stats.getMult(STAT_VIG, STAT_LEVEL_EXPERT), delay * 0.66) 
+
 
 	if(do_after(M, delay, src))
 		M.forceMove(T)

@@ -15,7 +15,7 @@
 	var/is_centcom = 0
 	var/show_assignments = 0
 
-/datum/nano_module/program/card_mod/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = GLOB.default_state)
+/datum/nano_module/program/card_mod/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
 	var/list/data = host.initial_data()
 
 	data["src"] = "\ref[src]"
@@ -26,7 +26,7 @@
 		data["have_id_slot"] = !!program.computer.card_slot
 		data["have_printer"] = !!program.computer.nano_printer
 		data["authenticated"] = program.can_run(user)
-		if(!program.computer.card_slot || !program.computer.card_slot.can_write)
+		if(!program.computer.card_slot)
 			mod_mode = 0 //We can't modify IDs when there is no card reader
 	else
 		data["have_id_slot"] = 0
@@ -54,6 +54,7 @@
 	//data["exploration_jobs"] = format_jobs(exploration_positions)
 	data["service_jobs"] = format_jobs(civilian_positions)
 	data["supply_jobs"] = format_jobs(cargo_positions)
+	data["church_jobs"] = format_jobs(church_positions)
 	//data["civilian_jobs"] = format_jobs(civilian_positions)
 	data["centcom_jobs"] = format_jobs(get_all_centcom_jobs())
 
@@ -117,6 +118,8 @@
 	var/obj/item/weapon/card/id/id_card
 	if (computer.card_slot)
 		id_card = computer.card_slot.stored_card
+	if (!user_id_card)
+		return
 
 	var/datum/nano_module/program/card_mod/module = NM
 	switch(href_list["action"])

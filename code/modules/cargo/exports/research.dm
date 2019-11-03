@@ -1,25 +1,16 @@
 // Sell tech levels
 /datum/export/tech
 	cost = 500
-	unit_name = "technology data disk"
-	export_types = list(/obj/item/weapon/disk/tech_disk)
-	var/list/techLevels = list()
+	unit_name = "technology data"
+	export_types = list(/obj/item/weapon/computer_hardware/hard_drive)
 
 /datum/export/tech/get_cost(obj/O)
-	var/obj/item/weapon/disk/tech_disk/D = O
+	var/obj/item/weapon/computer_hardware/hard_drive/D = O
 	var/cost = 0
-	for(var/V in D.stored)
-		if(!V)
-			continue
-		var/datum/tech/tech = V
-		cost += tech.getCost(techLevels[tech.id])
+
+	for(var/f in D.find_files_by_type(/datum/computer_file/binary/tech))
+		var/datum/computer_file/binary/tech/T = f
+		cost += T.node.getCost()
+
 	return ..() * cost
 
-/datum/export/tech/sell_object(obj/O)
-	..()
-	var/obj/item/weapon/disk/tech_disk/D = O
-	for(var/V in D.stored)
-		if(!V)
-			continue
-		var/datum/tech/tech = V
-		techLevels[tech.id] = tech.level

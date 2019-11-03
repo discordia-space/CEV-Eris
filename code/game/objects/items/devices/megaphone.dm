@@ -13,24 +13,33 @@
 	var/insults = 0
 	var/list/insultmsg = list("FUCK EVERYONE!", "I'M A TATER!", "ALL SECURITY TO SHOOT ME ON SIGHT!", "I HAVE A BOMB!", "CAPTAIN IS A COMDOM!")
 
-/obj/item/device/megaphone/New()
-	..()
+/obj/item/device/megaphone/Initialize()
+	. = ..()
 	if(!cell && suitable_cell)
 		cell = new suitable_cell(src)
+
+/obj/item/device/megaphone/get_cell()
+	return cell
+
+/obj/item/device/megaphone/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+		update_icon()
 
 /obj/item/device/megaphone/attack_self(mob/living/user as mob)
 	if (user.client)
 		if(user.client.prefs.muted & MUTE_IC)
-			src << SPAN_WARNING("You cannot speak in IC (muted).")
+			to_chat(src, SPAN_WARNING("You cannot speak in IC (muted)."))
 			return
 	if(!ishuman(user))
-		user << SPAN_WARNING("You don't know how to use this!")
+		to_chat(user, SPAN_WARNING("You don't know how to use this!"))
 		return
 	if(user.silent)
 		return
 
 	if(!cell || !cell.checked_use(5))
-		user << SPAN_WARNING("[src] battery is dead or missing.")
+		to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
 		return
 	var/message = sanitize(input(user, "Shout a message?", "Megaphone", null)  as text)
 	if(!message)
@@ -44,7 +53,7 @@
 					O.show_message("<B>[user]</B> broadcasts, <FONT size=3>\"[pick(insultmsg)]\"</FONT>",2) // 2 stands for hearable message
 				insults--
 			else
-				user << SPAN_WARNING("*BZZZZzzzzzt*")
+				to_chat(user, SPAN_WARNING("*BZZZZzzzzzt*"))
 		else
 			for(var/mob/O in (viewers(user)))
 				O.show_message("<B>[user]</B> broadcasts, <FONT size=3>\"[message]\"</FONT>",2) // 2 stands for hearable message
@@ -60,7 +69,7 @@
 
 /obj/item/device/megaphone/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
-		user << SPAN_WARNING("You overload \the [src]'s voice synthesizer.")
+		to_chat(user, SPAN_WARNING("You overload \the [src]'s voice synthesizer."))
 		emagged = TRUE
 		insults = rand(1, 3)//to prevent dickflooding
 		return TRUE

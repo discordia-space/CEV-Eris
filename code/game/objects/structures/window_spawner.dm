@@ -53,7 +53,7 @@
 
 /obj/effect/window_lwall_spawn/reinforced
 	name = "reinforced window low-wall spawner"
-	icon_state = "sp_full_window"
+	icon_state = "sp_full_window_reinforced"
 	win_path = /obj/structure/window/reinforced/full
 
 /obj/effect/window_lwall_spawn/smartspawn
@@ -81,7 +81,7 @@
 
 /obj/effect/window_lwall_spawn/plasma/reinforced
 	name = "reinforced plasma window low-wall spawner"
-	icon_state = "sp_full_window_plasma"
+	icon_state = "sp_full_window_plasma_reinforced"
 	win_path = /obj/structure/window/reinforced/plasma/full
 
 /obj/effect/window_lwall_spawn/smartspawnplasma

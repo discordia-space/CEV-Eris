@@ -36,17 +36,17 @@
 	if(!pre_check(H,C,targets))
 		return
 	if(!force && !check_success(C))
-		H << SPAN_DANGER("[fail_message]")
+		to_chat(H, SPAN_DANGER("[fail_message]"))
 		failed(H, C, targets, TRUE)
 	else
 		if(perform(H, C, targets))
 			C.use_power(src.power)
-			H << SPAN_NOTICE("[success_message]")
+			to_chat(H, SPAN_NOTICE("[success_message]"))
 
 /datum/ritual/proc/fail(var/message, mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C, targets)
 	if(!message)
 		message = fail_message
-	H << SPAN_DANGER("[message]")
+	to_chat(H, SPAN_DANGER("[message]"))
 	failed(H, C, targets)
 
 /datum/ritual/proc/check_success(obj/item/weapon/implant/core_implant/C)
@@ -77,26 +77,21 @@
 /datum/ritual/proc/set_global_cooldown()
 	if(src.cooldown)
 		GLOB.global_ritual_cooldowns[src.cooldown_category] = TRUE
-		addtimer(CALLBACK(src, .proc/reset_cooldown), src.cooldown_time)
+		addtimer(CALLBACK(src, .proc/reset_global_cooldown), src.cooldown_time)
+//resets personal cooldown for user if he's not nil or resets global cooldown, internal proc
+/datum/ritual/proc/reset_global_cooldown()
+	GLOB.global_ritual_cooldowns[src.cooldown_category] = FALSE
 
 //sets personal cooldown for user of ritual's cooldown category
 /datum/ritual/proc/set_personal_cooldown(mob/living/carbon/human/user)
 	if(src.cooldown)
-		user.personal_ritual_cooldowns[src.cooldown_category] = TRUE
-		addtimer(CALLBACK(src, .proc/reset_cooldown, user), src.cooldown_time)
-
-//resets personal cooldown for user if he's not nil or resets global cooldown, internal proc
-/datum/ritual/proc/reset_cooldown(mob/living/carbon/human/user)
-	if(user)
-		user.personal_ritual_cooldowns[src.cooldown_category] = FALSE
-	else
-		GLOB.global_ritual_cooldowns[src.cooldown_category] = FALSE
+		user.personal_ritual_cooldowns[src.cooldown_category] = world.time + src.cooldown_time
 
 //check's if ritual at personal or global cooldown
 /datum/ritual/proc/is_on_cooldown(mob/living/carbon/human/user)
 	if(GLOB.global_ritual_cooldowns[src.cooldown_category])
 		return TRUE
-	if(user.personal_ritual_cooldowns[src.cooldown_category])
+	if(user.personal_ritual_cooldowns[src.cooldown_category] > world.time)
 		return TRUE
 	return FALSE
 
@@ -123,14 +118,26 @@
 	return L
 
 
-//Getting implants (from mobs usually)
-/proc/get_coreimplant(var/ctype = /obj/item/weapon/implant/core_implant, var/mob/living/H)
-	var/obj/item/weapon/implant/core_implant/CI = locate(ctype) in H
-	return CI
+//Getting implants
+/mob/living/proc/get_core_implant(ctype = null, req_activated = TRUE)
+	for(var/obj/item/weapon/implant/core_implant/I in src)
+		if(ctype && !istype(I, ctype))
+			continue
 
-/proc/get_implant_from_victim(var/mob/living/carbon/human/user, var/ctype = /obj/item/weapon/implant/core_implant)
+		if(I.wearer != src)
+			continue
+
+		if(req_activated && !I.active)
+			continue
+
+		return I
+
+	return null
+
+/proc/get_implant_from_victim(mob/living/carbon/human/user, ctype = null, req_activated = TRUE)
 	var/mob/living/L = get_victim(user)
-	return get_coreimplant(ctype, L)
+	if(L)
+		return L.get_core_implant(ctype, req_activated)
 
 
 //Getting other objects

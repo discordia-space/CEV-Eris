@@ -3,6 +3,7 @@
 	name = "ammunition box"
 	desc = "Gun ammunition stored in a shiny new box. You can see caliber information on the label."
 	mag_type = SPEEDLOADER	//To prevent load in magazine filled guns
+	icon = 'icons/obj/ammo.dmi'
 	multiple_sprites = 1
 	reload_delay = 30
 	ammo_mag = "box"
@@ -10,7 +11,7 @@
 /obj/item/ammo_magazine/ammobox/resolve_attackby(atom/A, mob/user)
 	if(isturf(A) && locate(/obj/item/ammo_casing) in A || istype(A, /obj/item/ammo_casing))
 		if(!do_after(user, src.reload_delay, src))
-			user << SPAN_WARNING("You stoped scooping ammo into [src].")
+			to_chat(user, SPAN_WARNING("You stoped scooping ammo into [src]."))
 			return
 		if(collectAmmo(get_turf(A), user))
 			return TRUE
@@ -32,7 +33,7 @@
 		if(.)
 			user.visible_message(SPAN_NOTICE("[user] scoopes some ammo in [src]."),SPAN_NOTICE("You scoop some ammo in [src]."),SPAN_NOTICE("You hear metal clanging."))
 		else
-			user << SPAN_NOTICE("You fail to pick anything up with \the [src].")
+			to_chat(user, SPAN_NOTICE("You fail to pick anything up with \the [src]."))
 	update_icon()
 
 /obj/item/ammo_magazine/ammobox/a10mm
@@ -124,7 +125,7 @@
 	name = "ammunition box (5.56mm)"
 	icon_state = "box556mm"
 	matter = list(MATERIAL_STEEL = 10)
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 	caliber = "a556"
 	ammo_type = /obj/item/ammo_casing/a556
 	max_ammo = 80
@@ -138,7 +139,7 @@
 	name = "ammunition box (6.5mm)"
 	icon_state = "box65mm"
 	matter = list(MATERIAL_STEEL = 10)
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 	caliber = "6.5mm"
 	ammo_type = /obj/item/ammo_casing/c65
 	max_ammo = 80
@@ -152,32 +153,11 @@
 	name = "ammunition box (7.62mm)"
 	icon_state = "box762mm"
 	matter = list(MATERIAL_STEEL = 10)
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 	caliber = "a762"
 	ammo_type = /obj/item/ammo_casing/a762
 	mag_type = SPEEDLOADER | MAGAZINE
 	max_ammo = 80
-
-//Special appearance for serb ammobox. Identical functionality though
-/obj/item/ammo_magazine/ammobox/a762/pk
-	name = "PK munitions box (7.62mm)"
-	desc = "An off brand box of 7.62mm rounds, designed to be shipped with the PK machine gun"
-	icon_state = "pk_box"
-
-/obj/item/ammo_magazine/ammobox/a762/pk/update_icon()
-	if (!stored_ammo.len)
-		icon_state = "pk_box-0"
-		return
-	if (stored_ammo.len == max_ammo)
-		icon_state = "pk_box"
-		return
-
-	var/number = 0
-	if (stored_ammo.len && max_ammo)
-		var/percent = (stored_ammo.len / max_ammo) * 100
-		number = round(percent, 25)
-	icon_state = "pk_box-[number]"
-
 
 /obj/item/ammo_magazine/ammobox/c357
 	name = "ammunition box (.357)"
@@ -230,7 +210,7 @@
 	name = "ammunition box (14.5mm)"
 	icon_state = "box145mm"
 	matter = list(MATERIAL_STEEL = 8)
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 	caliber = "14.5mm"
 	ammo_type = /obj/item/ammo_casing/a145
 	max_ammo = 30

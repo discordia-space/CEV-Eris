@@ -6,16 +6,25 @@
 	action_button_name = "Toggle Power Glove"
 	price_tag = 500
 	var/stunforce = 0
-	var/agonyforce = 60
+	var/agonyforce = 50
 	var/status = FALSE		//whether the thing is on or not
 	var/hitcost = 100
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/medium
 
-/obj/item/clothing/gloves/stungloves/New()
-	..()
+/obj/item/clothing/gloves/stungloves/Initialize()
+	. = ..()
 	cell = new /obj/item/weapon/cell/medium/high(src)
 	update_icon()
+
+/obj/item/clothing/gloves/stungloves/get_cell()
+	return cell
+
+/obj/item/clothing/gloves/stungloves/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+		update_icon()
 
 /obj/item/clothing/gloves/stungloves/proc/deductcharge(var/power_drain)
 	if(cell)
@@ -38,22 +47,22 @@
 		return
 
 	if(cell)
-		user <<SPAN_NOTICE("Power Glove is [round(cell.percent())]% charged.")
+		to_chat(user, SPAN_NOTICE("Power Glove is [round(cell.percent())]% charged."))
 	if(!cell)
-		user <<SPAN_WARNING("Power Glove does not have a power source installed.")
+		to_chat(user, SPAN_WARNING("Power Glove does not have a power source installed."))
 
 /obj/item/clothing/gloves/stungloves/attack_self(mob/user)
 	if(cell && cell.charge > hitcost)
 		status = !status
-		user << "<span class='notice'>[src] is now [status ? "on" : "off"].</span>"
+		to_chat(user, "<span class='notice'>[src] is now [status ? "on" : "off"].</span>")
 		playsound(loc, "sparks", 75, 1, -1)
 		update_icon()
 	else
 		status = FALSE
 		if(!cell)
-			user << SPAN_WARNING("[src] does not have a power source!")
+			to_chat(user, SPAN_WARNING("[src] does not have a power source!"))
 		else
-			user << SPAN_WARNING("[src] is out of charge.")
+			to_chat(user, SPAN_WARNING("[src] is out of charge."))
 	add_fingerprint(user)
 
 /obj/item/clothing/gloves/stungloves/ui_action_click()

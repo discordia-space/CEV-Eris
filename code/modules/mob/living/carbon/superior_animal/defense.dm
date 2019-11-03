@@ -48,12 +48,12 @@
 				return 0
 			for(var/obj/item/weapon/grab/G in src.grabbed_by)
 				if(G.assailant == M)
-					M << SPAN_NOTICE("You already grabbed [src].")
+					to_chat(M, SPAN_NOTICE("You already grabbed [src]."))
 					return
 
 			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src)
 			if(buckled)
-				M << SPAN_NOTICE("You cannot grab [src], \he is buckled in!")
+				to_chat(M, SPAN_NOTICE("You cannot grab [src], \he is buckled in!"))
 			if(!G) //the grab will delete itself in New if affecting is anchored
 				return
 
@@ -193,6 +193,12 @@
 /mob/living/carbon/superior_animal/gib(var/anim = icon_gib, var/do_gibs = 1)
 	if (!anim)
 		anim = 0
+
+	sleep(1)
+
+	for(var/obj/item/I in src)
+		drop_from_inventory(I)
+		I.throw_at(get_edge_target_turf(src,pick(alldirs)), rand(1,3), round(30/I.w_class))
 
 	playsound(src.loc, 'sound/effects/splat.ogg', max(10,min(50,maxHealth)), 1)
 	. = ..(anim,do_gibs)

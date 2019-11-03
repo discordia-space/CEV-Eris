@@ -1,6 +1,6 @@
 /turf
 	icon = 'icons/turf/floors.dmi'
-	level = 1
+	level = BELOW_PLATING_LEVEL
 	var/holy = 0
 	var/diffused = 0 //If above zero, shields can't be on this turf. Set by floor diffusers only
 	//This is not a boolean. Multiple diffusers can stack and set it to 2, 3, etc
@@ -94,7 +94,7 @@
 
 /turf/Enter(atom/movable/mover as mob|obj, atom/forget as mob|obj|turf|area)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
-		usr << SPAN_WARNING("Movement is admin-disabled.") //This is to identify lag problems
+		to_chat(usr, SPAN_WARNING("Movement is admin-disabled.")) //This is to identify lag problems
 		return
 
 	..()
@@ -140,7 +140,7 @@ var/const/enterloopsanity = 100
 /turf/Entered(atom/atom as mob|obj)
 
 	if(movement_disabled)
-		usr << SPAN_WARNING("Movement is admin-disabled.") //This is to identify lag problems
+		to_chat(usr, SPAN_WARNING("Movement is admin-disabled.")) //This is to identify lag problems
 		return
 	..()
 
@@ -151,15 +151,20 @@ var/const/enterloopsanity = 100
 
 	if(ismob(A))
 		var/mob/M = A
+
+		M.update_floating()
 		if(M.check_gravity() || M.incorporeal_move)
 			M.inertia_dir = 0
 		else
 			if(!M.allow_spacemove())
 				inertial_drift(M)
 			else
-				M.inertia_dir = 0
+				if(M.allow_spacemove() == TRUE)
+					M.update_floating(FALSE)
+					M.inertia_dir = 0
+				else if(M.check_dense_object())
+					M.inertia_dir = 0
 
-		M.update_floating() // no check_dense_object() proc in arg because it will make this line more costly for almost zero reward in my opinion.
 		if(isliving(M))
 			var/mob/living/L = M
 			L.handle_footstep(src)
@@ -186,7 +191,7 @@ var/const/enterloopsanity = 100
 	if(!(A.last_move))	return
 	if((istype(A, /mob/) && src.x > 2 && src.x < (world.maxx - 1) && src.y > 2 && src.y < (world.maxy-1)))
 		var/mob/M = A
-		if(M.allow_spacemove())
+		if(M.allow_spacemove() == TRUE)
 			M.inertia_dir  = 0
 			return
 		spawn(5)
@@ -267,3 +272,6 @@ var/const/enterloopsanity = 100
 		sound =  footstep_sound(flooring.footstep_sound)
 
 	return sound
+
+/turf/AllowDrop()
+	return TRUE

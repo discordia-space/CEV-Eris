@@ -32,11 +32,14 @@
 
 /datum/event/radiation_storm/start()
 	make_maint_all_access()
+	SSweather.run_weather(/datum/weather/rad_storm)
 
 /datum/event/radiation_storm/tick()
 	if(activeFor == enterBelt)
 		command_announcement.Announce("The station has entered the radiation belt. Please remain in a sheltered area until we have passed the radiation belt.", "Anomaly Alert")
 		radiate()
+		for(var/datum/weather/rad_storm/R in SSweather.processing)
+			R.start()
 
 	if(activeFor >= enterBelt && activeFor <= leaveBelt)
 		postStartTicks++
@@ -46,6 +49,8 @@
 		radiate()
 
 	else if(activeFor == leaveBelt)
+		for(var/datum/weather/rad_storm/R in SSweather.processing)
+			R.wind_down()
 		command_announcement.Announce("The station has passed the radiation belt. Please report to medbay if you experience any unusual symptoms. Maintenance will lose all access again shortly.", "Anomaly Alert")
 
 /datum/event/radiation_storm/proc/radiate()
@@ -63,7 +68,7 @@
 			H.apply_effect((rand(15,30)),IRRADIATE)
 			if(prob(4))
 				H.apply_effect((rand(20,60)),IRRADIATE)
-				if (prob(max(0, 100 - H.getarmor(null, "rad"))))
+				if (prob(max(0, 100 - H.getarmor(null, ARMOR_RAD))))
 					if (prob(75))
 						randmutb(H) // Applies bad mutation
 					else

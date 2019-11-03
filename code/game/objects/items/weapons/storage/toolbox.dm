@@ -6,10 +6,11 @@
 	item_state = "toolbox_red"
 	flags = CONDUCT
 	force = WEAPON_FORCE_PAINFUL
+	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
 	throwforce = WEAPON_FORCE_NORMAL
 	throw_speed = 1
 	throw_range = 7
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 	max_w_class = ITEM_SIZE_NORMAL
 	max_storage_space = 14 //enough to hold all starting contents
 	origin_tech = list(TECH_COMBAT = 1)
@@ -43,7 +44,7 @@
 		new /obj/item/weapon/tool/wrench(src)
 		new /obj/item/weapon/tool/weldingtool(src)
 		new /obj/item/weapon/tool/crowbar(src)
-		new /obj/item/device/scanner/analyzer(src)
+		new /obj/item/device/scanner/gas(src)
 		new /obj/item/weapon/tool/wirecutters(src)
 
 /obj/item/weapon/storage/toolbox/electrical

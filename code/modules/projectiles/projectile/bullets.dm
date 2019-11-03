@@ -4,20 +4,20 @@
 	damage = 40
 	damage_type = BRUTE
 	nodamage = 0
-	check_armour = "bullet"
-	embed = 1
+	check_armour = ARMOR_BULLET
+	embed = TRUE
 	sharp = 0
 	hitsound_wall = "ric_sound"
 	var/mob_passthrough_check = 0
 
 	muzzle_type = /obj/effect/projectile/bullet/muzzle
 
-/obj/item/projectile/bullet/on_hit(var/atom/target, var/blocked = 0)
-	if (..(target, blocked))
+/obj/item/projectile/bullet/on_hit(atom/target)
+	if (..(target))
 		var/mob/living/L = target
 		shake_camera(L, 3, 2)
 
-/obj/item/projectile/bullet/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier)
+/obj/item/projectile/bullet/attack_mob(var/mob/living/target_mob, distance, miss_modifier)
 	if(penetrating > 0 && damage > 20 && prob(damage))
 		mob_passthrough_check = 1
 	else
@@ -83,7 +83,7 @@
 	var/remaining = pellets - pellet_loss
 	if (remaining < 0)
 		return 0
-	return round_prob(remaining)
+	return ROUND_PROB(remaining)
 
 /obj/item/projectile/bullet/pellet/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier)
 

@@ -4,7 +4,7 @@ obj/machinery/atmospherics/pipe/simple/heat_exchanging
 	icon_state = "intact"
 	pipe_icon = "hepipe"
 	color = "#404040"
-	level = 2
+	level = ABOVE_PLATING_LEVEL
 	connect_types = CONNECT_TYPE_HE
 	layer = GAS_PIPE_VISIBLE_LAYER
 	var/initialize_directions_he
@@ -108,7 +108,7 @@ obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction
 	icon = 'icons/atmos/junction.dmi'
 	icon_state = "intact"
 	pipe_icon = "hejunction"
-	level = 2
+	level = ABOVE_PLATING_LEVEL
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_HE
 	minimum_temperature_difference = 300
 

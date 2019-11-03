@@ -13,7 +13,7 @@
 	antag_plural = "soldiers"
 	welcome_text = WELCOME_SERBS
 
-	hud_indicator = "hudexcelsior"
+	hud_indicator = "mercenary"
 
 	possible_antags = list(ROLE_MERCENARY)
 
@@ -21,12 +21,9 @@
 
 	var/objectives_num
 	var/list/possible_objectives = list(
-	// /datum/objective/download = 30,
-	/datum/objective/debrain = 10,
-	/datum/objective/harm = 20,
+	/datum/objective/harm = 15,
 	/datum/objective/steal = 55,
 	/datum/objective/assassinate = 35,
-	/datum/objective/protect = 15,
 	/datum/objective/abduct = 15)
 	var/objective_quantity = 6
 
@@ -66,6 +63,3 @@ This could potentially return a list of thousands of atoms, but thats fine. Its 
 		contents |= get_area_contents(a)
 
 	return contents
-
-
-

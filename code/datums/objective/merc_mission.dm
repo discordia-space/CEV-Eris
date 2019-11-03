@@ -41,7 +41,7 @@
 
 //The faction datum processes to tick down the mission timer
 /datum/objective/timed/merc/Process()
-	mission_timer -= 1 SECOND
+	mission_timer -= 1 SECONDS
 	if (!ended && mission_timer <= 0)
 		end_mission()
 
@@ -65,7 +65,7 @@
 
 	//This is one of the few times a world << call is actually intended functionality.
 	//This is not a debug message, it outputs the result of the mission, it should remain in
-	world << owner_faction.print_success()
+	to_chat(world, owner_faction.print_success())
 
 
 

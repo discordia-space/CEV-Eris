@@ -5,7 +5,7 @@
 	icon_state = "generic"
 	density = 1
 	layer = BELOW_OBJ_LAYER
-	w_class = ITEM_SIZE_HUGE
+	w_class = ITEM_SIZE_GARGANTUAN
 	var/locked = FALSE
 	var/broken = FALSE
 	var/horizontal = FALSE
@@ -78,31 +78,26 @@
 		// adjust locker size to hold all items with 5 units of free store room
 		var/content_size = 0
 		for(I in src.contents)
-			content_size += Ceiling(I.w_class/2)
+			content_size += CEILING(I.w_class * 0.5, 1)
 		if(content_size > storage_capacity-5)
 			storage_capacity = content_size + 5
-
-
-
-
-
 
 /obj/structure/closet/examine(mob/user)
 	if(..(user, 1) && !opened)
 		var/content_size = 0
 		for(var/obj/item/I in src.contents)
 			if(!I.anchored)
-				content_size += Ceiling(I.w_class/2)
+				content_size += CEILING(I.w_class * 0.5, 1)
 		if(!content_size)
-			user << "It is empty."
+			to_chat(user, "It is empty.")
 		else if(storage_capacity > content_size*4)
-			user << "It is barely filled."
+			to_chat(user, "It is barely filled.")
 		else if(storage_capacity > content_size*2)
-			user << "It is less than half full."
+			to_chat(user, "It is less than half full.")
 		else if(storage_capacity > content_size)
-			user << "There is still some free space."
+			to_chat(user, "There is still some free space.")
 		else
-			user << "It is full."
+			to_chat(user, "It is full.")
 
 /obj/structure/closet/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0 || wall_mounted)) return 1
@@ -115,7 +110,7 @@
 	for(var/mob/living/L in T)
 		if(L.anchored || horizontal && L.mob_size > 0 && L.density)
 			if(user)
-				user << SPAN_DANGER("There's something large on top of [src], preventing it from opening.")
+				to_chat(user, SPAN_DANGER("There's something large on top of [src], preventing it from opening."))
 			return FALSE
 	return TRUE
 
@@ -214,37 +209,30 @@
 
 /obj/structure/closet/proc/toggle(mob/living/user)
 	if(!(opened ? close(user) : open(user)))
-		user << SPAN_NOTICE("It won't budge!")
+		to_chat(user, SPAN_NOTICE("It won't budge!"))
 		return
-	update_icon()
 
-/obj/structure/closet/proc/togglelock(mob/user as mob, var/obj/item/weapon/card/id/id_card)
+/obj/structure/closet/proc/togglelock(mob/user as mob)
 	var/ctype = istype(src,/obj/structure/closet/crate) ? "crate" : "closet"
 	if(!secure)
 		return
 
 	if(src.opened)
-		user << SPAN_NOTICE("Close the [ctype] first.")
+		to_chat(user, SPAN_NOTICE("Close the [ctype] first."))
 		return
 	if(src.broken)
-		user << SPAN_WARNING("The [ctype] appears to be broken.")
+		to_chat(user, SPAN_WARNING("The [ctype] appears to be broken."))
 		return
-	if(CanToggleLock(user, id_card))
+	if(CanToggleLock(user))
 		set_locked(!locked, user)
 	else
-		user << SPAN_NOTICE("Access Denied")
+		to_chat(user, SPAN_NOTICE("Access Denied"))
 
 /obj/structure/closet/AltClick(mob/user as mob)
 	if(Adjacent(user))
 		src.togglelock(user)
 
-/obj/structure/closet/proc/CanToggleLock(var/mob/user, var/obj/item/weapon/card/id/id_card)
-	if (istype(user))
-		id_card = id_card || user.GetIdCard()
-
-	if (istype(id_card))
-		return check_access_list(id_card.GetAccess())
-
+/obj/structure/closet/proc/CanToggleLock(var/mob/user)
 	return allowed(user)
 
 /obj/structure/closet/proc/set_locked(var/newlocked, mob/user = null)
@@ -278,7 +266,7 @@
 /obj/structure/closet/proc/store_items(var/stored_units)
 	var/added_units = 0
 	for(var/obj/item/I in src.loc)
-		var/item_size = Ceiling(I.w_class / 2)
+		var/item_size = CEILING(I.w_class / 2, 1)
 		if(stored_units + added_units + item_size > storage_capacity)
 			continue
 		if(!I.anchored)
@@ -407,7 +395,7 @@
 					playsound(src.loc, 'sound/items/glitch.ogg', 70, 1, -1)
 
 				hack_stage++
-				user << SPAN_NOTICE("Multitool blinks <b>([hack_stage]/[hack_require])</b> on screen.")
+				to_chat(user, SPAN_NOTICE("Multitool blinks <b>([hack_stage]/[hack_require])</b> on screen."))
 			else if(hack_stage >= hack_require)
 				locked = FALSE
 				broken = TRUE
@@ -453,7 +441,7 @@
 		return
 
 	if(!src.open())
-		user << SPAN_NOTICE("It won't budge!")
+		to_chat(user, SPAN_NOTICE("It won't budge!"))
 
 /obj/structure/closet/attack_hand(mob/user as mob)
 	src.add_fingerprint(user)
@@ -466,7 +454,7 @@
 /obj/structure/closet/attack_self_tk(mob/user as mob)
 	src.add_fingerprint(user)
 	if(!src.toggle())
-		usr << SPAN_NOTICE("It won't budge!")
+		to_chat(usr, SPAN_NOTICE("It won't budge!"))
 
 /obj/structure/closet/emag_act(var/remaining_charges, var/mob/user)
 	if(!broken)
@@ -474,7 +462,7 @@
 		broken = TRUE
 		update_icon()
 		playsound(src.loc, "sparks", 60, 1)
-		user << SPAN_NOTICE("You unlock \the [src].")
+		to_chat(user, SPAN_NOTICE("You unlock \the [src]."))
 		return TRUE
 
 /obj/structure/closet/emp_act(severity)
@@ -502,7 +490,7 @@
 		src.add_fingerprint(usr)
 		src.toggle(usr)
 	else
-		usr << SPAN_WARNING("This mob type can't use this verb.")
+		to_chat(usr, SPAN_WARNING("This mob type can't use this verb."))
 
 /obj/structure/closet/verb/verb_togglelock()
 	set src in oview(1) // One square distance
@@ -516,7 +504,7 @@
 		src.add_fingerprint(usr)
 		src.togglelock(usr)
 	else
-		usr << SPAN_WARNING("This mob type can't use this verb.")
+		to_chat(usr, SPAN_WARNING("This mob type can't use this verb."))
 
 /obj/structure/closet/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
 	overlays.Cut()
@@ -570,7 +558,7 @@
 	escapee.setClickCooldown(100)
 
 	//okay, so the closet is either welded or locked... resist!!!
-	escapee << SPAN_WARNING("You lean on the back of \the [src] and start pushing the door open. (this will take about [breakout_time] minutes)")
+	to_chat(escapee, SPAN_WARNING("You lean on the back of \the [src] and start pushing the door open. (this will take about [breakout_time] minutes)"))
 
 	visible_message(SPAN_DANGER("\The [src] begins to shake violently!"))
 
@@ -593,7 +581,7 @@
 
 	//Well then break it!
 	breakout = 0
-	escapee << SPAN_WARNING("You successfully break out!")
+	to_chat(escapee, SPAN_WARNING("You successfully break out!"))
 	visible_message(SPAN_DANGER("\The [escapee] successfully broke out of \the [src]!"))
 	playsound(src.loc, 'sound/effects/grillehit.ogg', 100, 1)
 	break_open()
@@ -613,3 +601,6 @@
 	var/shake_dir = pick(-1, 1)
 	animate(src, transform=turn(matrix(), 8*shake_dir), pixel_x=init_px + 2*shake_dir, time=1)
 	animate(transform=null, pixel_x=init_px, time=6, easing=ELASTIC_EASING)
+
+/obj/structure/closet/AllowDrop()
+	return TRUE

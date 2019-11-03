@@ -302,3 +302,13 @@ JOIN_UNASSIGNED
 
 ## Clients will be unable to connect unless their build is equal to or higher than this (a number, e.g. 1000)
 #MINIMUM_BYOND_BUILD
+
+## Time in minutes before empty server will restart	
+EMPTY_SERVER_RESTART_TIME 30
+
+## EMOJI ###
+## Comment this out if you want to disable emojis
+EMOJIS
+
+WEBHOOK_URL http://localhost:44303/webhook/en
+WEBHOOK_KEY testkey

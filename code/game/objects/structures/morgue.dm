@@ -140,12 +140,16 @@
 	if (occupant && occupant.mind && occupant.mind.key && occupant.stat == DEAD)
 		//Whoever inhabited this body is long gone, we need some black magic to find where and who they are now
 		var/mob/M = key2mob(occupant.mind.key)
-		if (!(M.get_respawn_bonus("CORPSE_HANDLING")))
-			//We send a message to the occupant's current mob - probably a ghost, but who knows.
-			M << SPAN_NOTICE("Your remains have been collected and properly stored. Your crew respawn time is reduced by 8 minutes.")
-			M << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
+		if (!M)
+			return
+		if (M.stat != DEAD)
+			return // no more bonuses for alive mobs
+		if (M.get_respawn_bonus("CORPSE_HANDLING"))
+			return // we got this one already
+		//We send a message to the occupant's current mob - probably a ghost, but who knows.
+		to_chat(M, SPAN_NOTICE("Your remains have been collected and properly stored. Your crew respawn time is reduced by 8 minutes."))
+		M << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
 
-		//Going safely to cryo will allow the patient to respawn more quickly
 		M.set_respawn_bonus("CORPSE_HANDLING", 8 MINUTES)
 
 
@@ -272,7 +276,7 @@
 	if (user != O)
 		for(var/mob/B in viewers(user, 3))
 			if ((B.client && !( B.blinded )))
-				B << SPAN_WARNING("\The [user] stuffs [O] into [src]!")
+				to_chat(B, SPAN_WARNING("\The [user] stuffs [O] into [src]!"))
 	return
 
 
@@ -350,7 +354,7 @@
 //		src:loc:firelevel = src:loc:poison
 //		return
 	if (cremating)
-		usr << SPAN_WARNING("It's locked.")
+		to_chat(usr, SPAN_WARNING("It's locked."))
 		return
 	if ((connected) && (locked == 0))
 		for(var/atom/movable/A as mob|obj in connected.loc)
@@ -424,7 +428,7 @@
 
 	else
 		if(!isemptylist(search_contents_for(/obj/item/weapon/disk/nuclear)))
-			usr << "You get the feeling that you shouldn't cremate one of the items in the cremator."
+			to_chat(usr, "You get the feeling that you shouldn't cremate one of the items in the cremator.")
 			return
 
 		for (var/mob/M in viewers(src))
@@ -506,7 +510,7 @@
 	if (user != O)
 		for(var/mob/B in viewers(user, 3))
 			if ((B.client && !( B.blinded )))
-				B << (SPAN_WARNING("[user] stuffs [O] into [src]!"))
+				to_chat(B, (SPAN_WARNING("[user] stuffs [O] into [src]!")))
 			//Foreach goto(99)
 	return
 
@@ -530,4 +534,4 @@
 				if (!C.cremating)
 					C.cremate(user)
 	else
-		usr << SPAN_WARNING("Access denied.")
+		to_chat(usr, SPAN_WARNING("Access denied."))

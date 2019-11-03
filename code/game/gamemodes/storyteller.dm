@@ -93,20 +93,20 @@ GLOBAL_DATUM(storyteller, /datum/storyteller)
 
 	if(announce)
 		if(!engineer && !command)
-			world << "<b><font color='[tcol]'>A command officer and technomancer are required to start round.</font></b>"
+			to_chat(world, "<b><font color='[tcol]'>A command officer and technomancer are required to start round.</font></b>")
 		else if(!engineer)
-			world << "<b><font color='[tcol]'>Technomancer is required to start round.</font></b>"
+			to_chat(world, "<b><font color='[tcol]'>Technomancer is required to start round.</font></b>")
 		else if(!command)
-			world << "<b><font color='[tcol]'>A command officer is required to start round.</font></b>"
+			to_chat(world, "<b><font color='[tcol]'>A command officer is required to start round.</font></b>")
 
 	if(GLOB.player_list.len <= 10)
-		world << "<i>But there's less than 10 players, so this requirement will be ignored.</i>"
+		to_chat(world, "<i>But there's less than 10 players, so this requirement will be ignored.</i>")
 		return TRUE
 
 	return FALSE
 
 /datum/storyteller/proc/announce()
-	world << "<b><font size=3>Storyteller is [name].</font> <br>[welcome]</b>"
+	to_chat(world, "<b><font size=3>Storyteller is [name].</font> <br>[welcome]</b>")
 
 /datum/storyteller/proc/set_up()
 	build_event_pools()
@@ -222,10 +222,10 @@ GLOBAL_DATUM(storyteller, /datum/storyteller)
 			points[a] += delta
 
 /datum/storyteller/proc/handle_points()
-	points[EVENT_LEVEL_MUNDANE] += 1 * (gain_mult_mundane) * (rand_between(1-variance, 1+variance))
-	points[EVENT_LEVEL_MODERATE] += 1 * (gain_mult_moderate) * (rand_between(1-variance, 1+variance))
-	points[EVENT_LEVEL_MAJOR] += 1 * (gain_mult_major) * (rand_between(1-variance, 1+variance))
-	points[EVENT_LEVEL_ROLESET] += 1 * (gain_mult_roleset) * (rand_between(1-variance, 1+variance))
+	points[EVENT_LEVEL_MUNDANE] += 1 * (gain_mult_mundane) * (RAND_DECIMAL(1-variance, 1+variance))
+	points[EVENT_LEVEL_MODERATE] += 1 * (gain_mult_moderate) * (RAND_DECIMAL(1-variance, 1+variance))
+	points[EVENT_LEVEL_MAJOR] += 1 * (gain_mult_major) * (RAND_DECIMAL(1-variance, 1+variance))
+	points[EVENT_LEVEL_ROLESET] += 1 * (gain_mult_roleset) * (RAND_DECIMAL(1-variance, 1+variance))
 	check_thresholds()
 
 /datum/storyteller/proc/check_thresholds()

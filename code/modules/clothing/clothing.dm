@@ -16,6 +16,12 @@
 	//Used for hardsuits. If false, this piece cannot be retracted while the core module is engaged
 	var/retract_while_active = TRUE
 
+/obj/item/clothing/Initialize(mapload, ...)
+	. = ..()
+	if(!matter)
+		matter = list()
+	matter.Add(list(MATERIAL_BIOMATTER = 5 * w_class))	// based of item size
+
 /obj/item/clothing/Destroy()
 	for(var/obj/item/clothing/accessory/A in accessories)
 		qdel(A)
@@ -49,7 +55,12 @@
 			if(!do_after(user,equip_delay,src))
 				return TRUE //A nonzero return value will cause the equipping operation to fail
 
-
+// To catch MouseDrop on clothing
+/obj/item/clothing/MouseDrop(over_object)
+	if(!(item_flags & DRAG_AND_DROP_UNEQUIP))
+		return ..()
+	if(!pre_equip(usr, over_object))
+		..()
 
 ///////////////////////////////////////////////////////////////////////
 // Ears: headsets, earmuffs and tiny objects
@@ -124,63 +135,6 @@
 	slot_flags = SLOT_EARS | SLOT_TWOEARS
 
 
-/obj/item/clothing/ears/earmuffs/mp3
-	name = "headphones with MP3"
-	desc = "It is a black portable wireless stereo head hanging, blue LCD display built-in FM radio Mp3 headset."
-	icon_state = "headphones"
-	item_state = "headphones"
-	action_button_name = "action_music"
-	var/obj/item/device/player/player = null
-	var/tick_cost = 0.1
-	var/obj/item/weapon/cell/cell = null
-	var/suitable_cell = /obj/item/weapon/cell/small
-
-/obj/item/clothing/ears/earmuffs/mp3/New()
-	..()
-	player = new(src)
-	START_PROCESSING(SSobj, src)
-	if(!cell && suitable_cell)
-		cell = new suitable_cell(src)
-
-
-
-/obj/item/clothing/ears/earmuffs/mp3/update_icon()
-	overlays.Cut()
-	..() //blood overlay, etc.
-	if(player.current_track)
-		overlays += "headphones_on"
-
-/obj/item/clothing/ears/earmuffs/mp3/ui_action_click()
-	player.OpenInterface(usr)
-
-/obj/item/clothing/ears/earmuffs/mp3/dropped(var/mob/user)
-	..()
-	player.stop(user)
-
-/obj/item/clothing/ears/earmuffs/mp3/equipped(var/mob/user, var/slot)
-	..()
-	if(cell && cell.checked_use(tick_cost))
-		player.active = TRUE
-		player.play(user)
-
-/obj/item/clothing/ears/earmuffs/mp3/Process()
-	if(player.active)
-		if(!cell || !cell.checked_use(tick_cost))
-			if(ismob(src.loc))
-				player.outofenergy()
-				src.loc << SPAN_WARNING("[src] flashes with error - LOW POWER.")
-
-
-/obj/item/clothing/ears/earmuffs/mp3/MouseDrop(over_object)
-	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
-		cell = null
-	else
-		return ..()
-
-/obj/item/clothing/ears/earmuffs/mp3/attackby(obj/item/C, mob/living/user)
-	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
-		src.cell = C
-
 ///////////////////////////////////////////////////////////////////////
 //Glasses
 /*
@@ -223,7 +177,7 @@ BLIND     // can't see anything
 /obj/item/clothing/gloves/attackby(obj/item/weapon/W, mob/user)
 	if(istype(W, /obj/item/weapon/tool/wirecutters) || istype(W, /obj/item/weapon/tool/scalpel))
 		if (clipped)
-			user << SPAN_NOTICE("The [src] have already been clipped!")
+			to_chat(user, SPAN_NOTICE("The [src] have already been clipped!"))
 			update_icon()
 			return
 
@@ -256,10 +210,10 @@ BLIND     // can't see anything
 /obj/item/clothing/head/attack_self(mob/user)
 	if(brightness_on)
 		if(!isturf(user.loc))
-			user << "You cannot turn the light on while in this [user.loc]"
+			to_chat(user, "You cannot turn the light on while in this [user.loc]")
 			return
 		on = !on
-		user << "You [on ? "enable" : "disable"] the helmet light."
+		to_chat(user, "You [on ? "enable" : "disable"] the helmet light.")
 		update_flashlight(user)
 	else
 		return ..(user)
@@ -297,9 +251,9 @@ BLIND     // can't see anything
 	if(!success)
 		return 0
 	else if(success == 2)
-		user << SPAN_WARNING("You are already wearing a hat.")
+		to_chat(user, SPAN_WARNING("You are already wearing a hat."))
 	else if(success == 1)
-		user << SPAN_NOTICE("You crawl under \the [src].")
+		to_chat(user, SPAN_NOTICE("You crawl under \the [src]."))
 	return 1
 
 /obj/item/clothing/head/update_icon(var/mob/user)
@@ -370,7 +324,7 @@ BLIND     // can't see anything
 		return
 
 	if(!holding)
-		usr << SPAN_WARNING("\The [src] has no knife.")
+		to_chat(usr, SPAN_WARNING("\The [src] has no knife."))
 		return
 
 	holding.forceMove(get_turf(usr))
@@ -379,7 +333,7 @@ BLIND     // can't see anything
 		usr.visible_message(SPAN_DANGER("\The [usr] pulls a knife out of their boot!"))
 		holding = null
 	else
-		usr << SPAN_WARNING("You need an empty, unbroken hand to do that.")
+		to_chat(usr, SPAN_WARNING("You need an empty, unbroken hand to do that."))
 		holding.forceMove(src)
 
 	if(!holding)
@@ -412,7 +366,7 @@ BLIND     // can't see anything
 		)
 	if(can_hold_knife && is_type_in_list(I, knifes))
 		if(holding)
-			user << SPAN_WARNING("\The [src] is already holding \a [holding].")
+			to_chat(user, SPAN_WARNING("\The [src] is already holding \a [holding]."))
 			return
 		if(user.unEquip(I, src))
 			holding = I
@@ -450,13 +404,13 @@ BLIND     // can't see anything
 		/obj/item/device/suit_cooling_unit,
 		/obj/item/weapon/cell,
 		/obj/item/weapon/storage/fancy,
-		/obj/item/weapon/flame,
+		/obj/item/weapon/flamethrower,
 		/obj/item/device/lighting,
 		/obj/item/device/scanner,
 		/obj/item/weapon/reagent_containers/spray,
 		/obj/item/device/radio,
 		/obj/item/clothing/mask)
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 0, bullet = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	slot_flags = SLOT_OCLOTHING
 	var/blood_overlay_type = "suit"
 	siemens_coefficient = 0.9
@@ -479,7 +433,7 @@ BLIND     // can't see anything
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	permeability_coefficient = 0.90
 	slot_flags = SLOT_ICLOTHING
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 0, bullet = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	w_class = ITEM_SIZE_NORMAL
 	var/has_sensor = 1 //For the crew computer 2 = unable to change mode
 	var/sensor_mode = 0
@@ -512,20 +466,20 @@ BLIND     // can't see anything
 	..(user)
 	switch(src.sensor_mode)
 		if(0)
-			user << "Its sensors appear to be disabled."
+			to_chat(user, "Its sensors appear to be disabled.")
 		if(1)
-			user << "Its binary life sensors appear to be enabled."
+			to_chat(user, "Its binary life sensors appear to be enabled.")
 		if(2)
-			user << "Its vital tracker appears to be enabled."
+			to_chat(user, "Its vital tracker appears to be enabled.")
 		if(3)
-			user << "Its vital tracker and tracking beacon appear to be enabled."
+			to_chat(user, "Its vital tracker and tracking beacon appear to be enabled.")
 
 /obj/item/clothing/under/proc/set_sensors(var/mob/M)
 	if(has_sensor >= 2)
-		usr << "The controls are locked."
+		to_chat(usr, "The controls are locked.")
 		return 0
 	if(has_sensor <= 0)
-		usr << "This suit does not have any sensors."
+		to_chat(usr, "This suit does not have any sensors.")
 		return 0
 
 	if(sensor_mode == 3)
@@ -536,13 +490,13 @@ BLIND     // can't see anything
 	if (src.loc == usr)
 		switch(sensor_mode)
 			if(0)
-				usr << "You disable your suit's remote sensing equipment."
+				to_chat(usr, "You disable your suit's remote sensing equipment.")
 			if(1)
-				usr << "Your suit will now report whether you are live or dead."
+				to_chat(usr, "Your suit will now report whether you are live or dead.")
 			if(2)
-				usr << "Your suit will now report your vital lifesigns."
+				to_chat(usr, "Your suit will now report your vital lifesigns.")
 			if(3)
-				usr << "Your suit will now report your vital lifesigns as well as your coordinate position."
+				to_chat(usr, "Your suit will now report your vital lifesigns as well as your coordinate position.")
 	else if (ismob(loc))
 		switch(sensor_mode)
 			if(0)

@@ -2,7 +2,7 @@
 	name = "NT MER \"Valkyrie\""
 	desc = "\"Valkyrie\" is an older design of Nanotrasen, \"Lightfall\" was based on it. A designated marksman rifle capable of shooting powerful ionized beams, this is a weapon for killing from a distance."
 	icon_state = "sniper"
-	item_state = "laser"
+	item_state = "sniper"
 	fire_sound = 'sound/weapons/marauder.ogg'
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 5, TECH_POWER = 4)
 	projectile_type = /obj/item/projectile/beam/sniper
@@ -10,7 +10,7 @@
 	charge_cost = 300
 	fire_delay = 35
 	force = 10
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 8, MATERIAL_SILVER = 9, MATERIAL_URANIUM = 6)
 	price_tag = 5000
 	cell_type = /obj/item/weapon/cell/medium

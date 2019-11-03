@@ -21,14 +21,14 @@
 	    "A relic from a bygone age.")
 
 	germ_level = pick(80,110,160)
-	price_tag *= rand_between(0.1, 0.6) //Tank the price of it
+	price_tag *= RAND_DECIMAL(0.1, 0.6) //Tank the price of it
 
 	//Deplete matter and matter_reagents
 	for (var/a in matter)
-		matter[a] *= rand_between(0.5, 1)
+		matter[a] *= RAND_DECIMAL(0.5, 1)
 
 	for (var/a in matter_reagents)
-		matter_reagents[a] *= rand_between(0.5, 1)
+		matter_reagents[a] *= RAND_DECIMAL(0.5, 1)
 
 	for(var/obj/item/sub_item in contents)
 		if (prob(80))
@@ -50,7 +50,7 @@
 /obj/item/weapon/tool/make_old()
 	.=..()
 	if (.)
-		unreliability += rand(40, 150) * degradation
+		adjustToolHealth(-(rand(40, 150) * degradation))
 
 /obj/item/weapon/storage/make_old()
 	.=..()
@@ -79,7 +79,7 @@
 //Make sure old pills always hide their contents too
 /obj/item/weapon/reagent_containers/pill/make_old()
 	name = "pill"
-	desc = "some kind of pill. The imprints have worn away"
+	desc = "Some kind of pill. The imprints have worn away."
 	.=..()
 
 /obj/structure/reagent_dispensers/make_old()
@@ -113,7 +113,7 @@
 /obj/item/weapon/cell/make_old()
 	.=..()
 	if (.)
-		charge = min(charge, rand_between(0, maxcharge))
+		charge = min(charge, RAND_DECIMAL(0, maxcharge))
 		if(prob(10))
 			rigged = TRUE
 			if(prob(80))
@@ -134,7 +134,7 @@
 
 /obj/item/weapon/grenade/make_old()
 	..()
-	det_time = rand_between(0, det_time)
+	det_time = RAND_DECIMAL(0, det_time)
 
 /obj/item/weapon/tank/make_old()
 	.=..()
@@ -174,13 +174,12 @@
 		if(prob(30))
 			slowdown += pick(0.5, 0.5, 1, 1.5)
 		if(prob(40))
-			armor["melee"] = rand(0, armor["melee"])
-			armor["bullet"] = rand(0, armor["bullet"])
-			armor["laser"] = rand(0, armor["laser"])
-			armor["energy"] = rand(0, armor["energy"])
-			armor["bomb"] = rand(0, armor["bomb"])
-			armor["bio"] = rand(0, armor["bio"])
-			armor["rad"] = rand(0, armor["rad"])
+			armor[ARMOR_MELEE] = rand(0, armor[ARMOR_MELEE])
+			armor[ARMOR_BULLET] = rand(0, armor[ARMOR_BULLET])
+			armor[ARMOR_ENERGY] = rand(0, armor[ARMOR_ENERGY])
+			armor[ARMOR_BOMB] = rand(0, armor[ARMOR_BOMB])
+			armor[ARMOR_BIO] = rand(0, armor[ARMOR_BIO])
+			armor[ARMOR_RAD] = rand(0, armor[ARMOR_RAD])
 		if(prob(40))
 			heat_protection = rand(0, round(heat_protection * 0.5))
 		if(prob(40))
@@ -301,7 +300,11 @@
 
 
 /obj/mecha/make_old()
-	.=..()
+	. = ..()
+
+	// Mech log is clean. No one knows when was this mech manufactured, or what happened to it before it was found.
+	log = list()
+
 	if (.)
 		//Now we determine the exosuit's condition
 		switch (rand(0,100))
@@ -311,13 +314,11 @@
 			if (4 to 10)
 			//Poorly maintained.
 			//The internal airtank and power cell will be somewhat depleted, otherwise intact
-				var/P = rand(0,50)
-				P /= 100
+				var/P = rand(0,50) / 100
 				if (cell)//Set the cell to a random charge below 50%
 					cell.charge =  cell.maxcharge * P
 
-				P = rand(50,100)
-				P /= 100
+				P = rand(50,100) / 100
 				if(internal_tank)//remove 50-100% of airtank contents
 					internal_tank.air_contents.remove(internal_tank.air_contents.total_moles * P)
 
@@ -326,20 +327,17 @@
 			//Wear and tear
 			//Hull has light to moderate damage, tank and cell are depleted
 			//Any equipment will have a 25% chance to be lost
-				var/P = rand(0,30)
-				P /= 100
+				var/P = rand(0,30) / 100
 				if (cell)//Set the cell to a random charge below 50%
 					cell.charge =  cell.maxcharge * P
 
-				P = rand(70,100)
-				P /= 100
+				P = rand(70,100) / 100
 				if(internal_tank)//remove 50-100% of airtank contents
 					internal_tank.air_contents.remove(internal_tank.air_contents.total_moles * P)
 
 				lose_equipment(25)//Lose modules
 
-				P = rand(10,100)//Set hull integrity
-				P /= 100
+				P = rand(10,100) / 100 //Set hull integrity
 				health = initial(health)*P
 
 
@@ -355,21 +353,18 @@
 				if (prob(50))//Remove cell
 					cell = null
 				else
-					P = rand(0,20)//or deplete it
-					P /= 100
+					P = rand(0,20) / 100 //or deplete it
 					if (cell)//Set the cell to a random charge below 50%
 						cell.charge = cell.maxcharge * P
 
-				P = rand(80,100)
-				P /= 100//Deplete tank
+				P = rand(80,100) / 100 //Deplete tank
 				if(internal_tank)//remove 50-100% of airtank contents
 					internal_tank.air_contents.remove(internal_tank.air_contents.total_moles * P)
 
 				lose_equipment(50)//Lose modules
 				random_internal_damage(15)//Internal damage
 
-				P = rand(5,50)//Set hull integrity
-				P /= 100
+				P = rand(5,50) / 100 //Set hull integrity
 				health = initial(health)*P
 				misconfigure_systems(15)
 
@@ -386,13 +381,11 @@
 				if (prob(15))
 					cell.rigged = 1//Powercell will explode if you use it
 				else if (prob(50))//Remove cell
-					cell = null
+					QDEL_NULL(cell)
 
 				if (cell)
-					P = rand(0,20)//or deplete it
-					P /= 100
-					if (cell)//Set the cell to a random charge below 50%
-						cell.charge =  cell.maxcharge * P
+					P = rand(0,20) / 100 //or deplete it
+					cell.charge =  cell.maxcharge * P
 
 				lose_equipment(90)//Lose modules
 				random_internal_damage(50)//Internal damage
@@ -401,8 +394,7 @@
 					qdel(internal_tank)//Then delete it
 					internal_tank = null
 
-				P = rand(5,50)//Set hull integrity
-				P /= 100
+				P = rand(5,50)/ 100 //Set hull integrity
 				health = initial(health)*P
 				misconfigure_systems(45)
 

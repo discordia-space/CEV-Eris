@@ -32,12 +32,17 @@
 	damtype = "fire"
 	force = WEAPON_FORCE_DANGEROUS
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 4)
-	tool_qualities = list(QUALITY_CUTTING = 50, QUALITY_WIRE_CUTTING = 20, QUALITY_LASER_CUTTING = 40)
+	tool_qualities = list(QUALITY_CUTTING = 40, QUALITY_WIRE_CUTTING = 20, QUALITY_LASER_CUTTING = 40)
 	degradation = 0.11
 	use_power_cost = 0.12
 	suitable_cell = /obj/item/weapon/cell/small
 	max_upgrades = 4
 
+// Laser cutting overrides normal cutting
+/obj/item/weapon/tool/scalpel/laser/get_tool_type(mob/living/user, list/required_qualities, atom/use_on, datum/callback/CB)
+	if(QUALITY_LASER_CUTTING in required_qualities)
+		required_qualities -= QUALITY_CUTTING
+	return ..(user, required_qualities, use_on, CB)
 
 //A makeshift knife, for doing all manner of cutting and stabbing tasks in a half-assed manner
 /obj/item/weapon/tool/shiv

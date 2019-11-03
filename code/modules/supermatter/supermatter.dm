@@ -107,7 +107,8 @@
 			if(ishuman(mob))
 				//Hilariously enough, running into a closet should make you get hit the hardest.
 				var/mob/living/carbon/human/H = mob
-				H.hallucination += max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(mob, src) + 1)) ) )
+				var/power = min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(mob, src) + 1)) )
+				H.adjust_hallucination(power, power)
 			var/rads = DETONATION_RADS * sqrt( 1 / (get_dist(mob, src) + 1) )
 			mob.apply_effect(rads, IRRADIATE)
 	spawn(pull_time)
@@ -255,9 +256,11 @@
 		env.merge(removed)
 
 	for(var/mob/living/carbon/human/H in view(src, min(7, round(sqrt(power/6))))) // If they can see it without mesons on.  Bad on them.
-		if(!istype(H.glasses, /obj/item/clothing/glasses/meson))
-			if (!(istype(H.wearing_rig, /obj/item/weapon/rig) && istype(H.wearing_rig.getCurrentGlasses(), /obj/item/clothing/glasses/meson)))
-				H.hallucination = max(0, min(200, H.hallucination + power * config_hallucination_power * sqrt( 1 / max(1,get_dist(H, src)) ) ) )
+		if(!istype(H.glasses, /obj/item/clothing/glasses/powered/meson))
+			if (!(istype(H.wearing_rig, /obj/item/weapon/rig) && istype(H.wearing_rig.getCurrentGlasses(), /obj/item/clothing/glasses/powered/meson)))
+				var/effect = max(0, min(200, power * config_hallucination_power * sqrt( 1 / max(1,get_dist(H, src)))) )
+				H.adjust_hallucination(effect, 0.25*effect)
+				H.add_side_effect("Headache", 11)
 
 	//adjusted range so that a power of 170 (pretty high) results in 9 tiles, roughly the distance from the core to the engine monitoring room.
 	//note that the rads given at the maximum range is a constant 0.2 - as power increases the maximum range merely increases.
@@ -303,7 +306,7 @@
 	Consume(user)
 
 // This is purely informational UI that may be accessed by AIs or robots
-/obj/machinery/power/supermatter/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/power/supermatter/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/data[0]
 
 	data["integrity_percentage"] = round(get_integrity())
@@ -348,7 +351,7 @@
 	if (W.has_quality(QUALITY_SEALING) && damage > 0)
 		user.visible_message("[user] starts sealing up cracks in [src] with the [W]", "You start sealing up cracks in [src] with the [W]")
 		if (W.use_tool(user, src, 140, QUALITY_SEALING, FAILCHANCE_VERY_HARD, STAT_MEC))
-			user << SPAN_NOTICE("Your insane actions are somehow paying off.")
+			to_chat(user, SPAN_NOTICE("Your insane actions are somehow paying off."))
 			user.apply_effect(100, IRRADIATE)
 			damage = 0
 			return
@@ -406,7 +409,7 @@
 		if(ishuman(A))
 			var/mob/living/carbon/human/H = A
 			if(!H.lying)
-				H << SPAN_DANGER("A strong gravitational force slams you to the ground!")
+				to_chat(H, SPAN_DANGER("A strong gravitational force slams you to the ground!"))
 				H.Weaken(20)
 
 

@@ -5,14 +5,11 @@ see multiz/movement.dm for some info.
 	if(z == A.z) //moving FROM this turf
 		return direction == UP //can't go below
 	else
-		if(direction == UP) //on a turf below, trying to enter
-			return 0
-		if(direction == DOWN) //on a turf above, trying to enter
-			return !density
+		return !density
 
 /turf/simulated/open/CanZPass(atom/A, direction)
 	var/obj/effect/shield/turf_shield = getEffectShield()
-	if(locate(/obj/structure/catwalk, src) || (turf_shield && turf_shield.CanPass(A)))
+	if(locate(/obj/structure/catwalk, src) || (turf_shield && !turf_shield.CanPass(A)))
 		if(z == A.z)
 			if(direction == DOWN)
 				return 0
@@ -22,13 +19,16 @@ see multiz/movement.dm for some info.
 
 /turf/space/CanZPass(atom/A, direction)
 	var/obj/effect/shield/turf_shield = getEffectShield()
-	if(locate(/obj/structure/catwalk, src) || (turf_shield && turf_shield.CanPass(A)))
+	if(locate(/obj/structure/catwalk, src) || (turf_shield && !turf_shield.CanPass(A)))
 		if(z == A.z)
 			if(direction == DOWN)
 				return 0
 		else if(direction == UP)
 			return 0
 	return 1
+
+/turf/simulated/floor/CanZPass(atom/A, direction)
+	return direction != DOWN
 /////////////////////////////////////
 
 /turf/simulated/open
@@ -189,7 +189,7 @@ see multiz/movement.dm for some info.
 			return
 		var/obj/item/stack/rods/R = C
 		if (R.use(1))
-			user << SPAN_NOTICE("Constructing support lattice ...")
+			to_chat(user, SPAN_NOTICE("Constructing support lattice ..."))
 			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
 			ReplaceWithLattice()
 		return
@@ -209,7 +209,7 @@ see multiz/movement.dm for some info.
 			if (S.get_amount() < 4)
 				return
 
-			user << SPAN_NOTICE("You start constructing underplating on the lattice.")
+			to_chat(user, SPAN_NOTICE("You start constructing underplating on the lattice."))
 			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
 			if(do_after(user,80, src))
 				qdel(L)
@@ -217,7 +217,7 @@ see multiz/movement.dm for some info.
 				ChangeTurf(/turf/simulated/floor/plating/under)
 			return
 		else
-			user << SPAN_WARNING("The plating is going to need some support.")
+			to_chat(user, SPAN_WARNING("The plating is going to need some support."))
 
 	if(istype(C, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/coil = C

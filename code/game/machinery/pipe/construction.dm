@@ -63,7 +63,7 @@ Buildable meters
 	icon_state = "simple"
 	item_state = "buildpipe"
 	w_class = ITEM_SIZE_NORMAL
-	level = 2
+	level = ABOVE_PLATING_LEVEL
 
 /obj/item/pipe/can_fall()
 	var/turf/below = GetBelow(get_turf(src))
@@ -1167,7 +1167,7 @@ Buildable meters
 	icon = 'icons/obj/pipe-item.dmi'
 	icon_state = "meter"
 	item_state = "buildpipe"
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 
 /obj/item/pipe_meter/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
 	..()

@@ -69,8 +69,11 @@
 	//At messiness of 2 or below, triggering when walking on a catwalk is impossible
 	//Above that it becomes possible, so we will change the layer to make it poke through catwalks
 	if (messiness > 2)
-		layer = LOW_OBJ_LAYER
+		layer = LOW_OBJ_LAYER  // I wont do such stuff on splicing "reinforcement". Take it as nasty feature
 
+/obj/structure/wire_splicing/examine(mob/user)
+	..()
+	to_chat(user, "It has [messiness] wire[messiness > 1?"s":""] dangling around")
 
 /obj/structure/wire_splicing/Crossed(AM as mob|obj)
 	if(isliving(AM))
@@ -94,18 +97,45 @@
 			if(C.powernet)
 				C.powernet.trigger_warning()
 			if(user.stunned)
-				user << SPAN_WARNING("You got electrocuted by wire splicing!")
+				to_chat(user, SPAN_WARNING("You got electrocuted by wire splicing!"))
 				return TRUE
 
 /obj/structure/wire_splicing/attackby(obj/item/I, mob/user)
 	if(QUALITY_WIRE_CUTTING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WIRE_CUTTING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			if(!shock(user, 100))
-				user << SPAN_NOTICE("You remove the splicing.")
+				to_chat(user, SPAN_NOTICE("You remove the splicing."))
 				qdel(src)
 
 	if(QUALITY_CUTTING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_CUTTING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			if(!shock(user, 100))
-				user << SPAN_NOTICE("You remove the splicing.")
+				to_chat(user, SPAN_NOTICE("You remove the splicing."))
 				qdel(src)
+
+	if(istype(I, /obj/item/stack/cable_coil) && user.a_intent == I_HURT)
+		if(messiness >= 10)
+			messiness = 10
+			to_chat(user, SPAN_WARNING("Enough."))
+			return
+		// keep goin!
+		var/obj/item/stack/cable_coil/coil = I
+		if(coil.get_amount() >= 1)
+			to_chat(user, SPAN_NOTICE("You started to wire to this pile of wires..."))
+			if(shock(user)) //check if he got his insulation gloves
+				return 		//he didn't
+			if(do_after(src, 20))
+				if(shock(user)) //check if he got his insulation gloves. Again.
+					return
+				var/fail_chance = FAILCHANCE_HARD - user.stats.getStat(STAT_MEC) // 72 for assistant
+				if(prob(fail_chance))
+					if(!shock(user, FALSE)) //why not
+						to_chat(user, SPAN_WARNING("You failed to finish your task with [src.name]! There was a [fail_chance]% chance to screw this up."))
+					return
+				if(messiness >= 10)
+					messiness = 10
+				//all clear, update things
+				coil.use(1)
+				messiness += 1
+				icon_state = "wire_splicing[messiness]"
+				to_chat(user, SPAN_NOTICE("You added one more wire."))

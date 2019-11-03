@@ -137,7 +137,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 
 /obj/machinery/message_server/attack_hand(user as mob)
 //	user << "\blue There seem to be some parts missing from this server. They should arrive on the station in a few days, give or take a few CentCom delays."
-	user << "You toggle PDA message passing from [active ? "On" : "Off"] to [active ? "Off" : "On"]"
+	to_chat(user, "You toggle PDA message passing from [active ? "On" : "Off"] to [active ? "Off" : "On"]")
 	active = !active
 	update_icon()
 
@@ -149,7 +149,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 		spamfilter_limit += round(MESSAGE_SERVER_DEFAULT_SPAM_LIMIT / 2)
 		user.drop_item()
 		qdel(O)
-		user << "You install additional memory and processors into message server. Its filtering capabilities been enhanced."
+		to_chat(user, "You install additional memory and processors into message server. Its filtering capabilities been enhanced.")
 	else
 		..(O, user)
 
@@ -190,6 +190,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 	var/list/msg_syndicate = list()
 	var/list/msg_cargo = list()
 	var/list/msg_service = list()
+	var/list/msg_nt = list()
 
 
 
@@ -215,6 +216,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 		BR.msg_syndicate = msg_syndicate
 		BR.msg_cargo = msg_cargo
 		BR.msg_service = msg_service
+		BR.msg_nt = msg_nt
 
 		BR.messages = messages
 

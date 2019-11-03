@@ -1,0 +1,74 @@
+<div class="item">
+  <div class="itemLabel">
+    Power:
+  </div>
+  <div class="itemContent">
+    {{:helper.link('On', 'power', { 'turn_on' : 1 },  !data.has_power ? 'disabled' : data.on ? 'selected' : null)}}{{:helper.link('Off', 'close', { 'turn_off' : 1 }, !data.has_power ? 'disabled' : !data.on ? 'selected' : null)}}
+  </div>
+</div>
+<table style="width:100%">
+	<tr>
+		<td class="candystripe">
+			<div class="item">
+				<div class="item">
+					Beaker
+				</div>
+				<div class="itemContent">
+					{{:helper.link('Eject Beaker', 'eject', {'eject' : 1}, data.beaker ? null : 'disabled', '')}}
+				</div>
+			</div>
+			<div class="statusDisplay" style="min-height: 180px;">
+				<div class="item">
+					<div class="itemContent" style="width: 100%;">
+						{{if data.beaker}}
+							Volume:&nbsp;{{:helper.fixed(data.beaker.total_volume)}}&nbsp;/&nbsp;{{:data.beaker.maximum_volume}}<br>
+							Temperature:&nbsp;{{:helper.fixed(data.beaker.chem_temp)}} K<br>
+							{{for data.beaker.contents}}
+								<span class="highlight">{{:helper.fixed(value.volume)}} units of {{:value.name}}</span><br>
+							{{empty}}
+								<span class="bad">
+									Beaker is empty
+								</span>
+							{{/for}}
+						{{else}}
+							<span class="average"><i>
+								No beaker loaded
+							</i></span>
+						{{/if}}
+					</div>
+				</div>
+			</div>
+		</td>
+		<td class="candystripe">
+			<div class="item">
+				<div class="item">
+					Separation Beaker
+				</div>
+				<div class="itemContent">
+					{{:helper.link('Eject Beaker', 'ejectSecondary', {'ejectSecondary' : 1}, data.separation_beaker ? null : 'disabled', '')}}
+				</div>
+			</div>
+			<div class="statusDisplay" style="min-height: 180px;">
+				<div class="item" >
+					<div class="itemContent" style="width: 100%">
+						{{if data.separation_beaker}}
+							Volume:&nbsp;{{:helper.fixed(data.separation_beaker.total_volume)}}&nbsp;/&nbsp;{{:data.separation_beaker.maximum_volume}}<br>
+							Temperature:&nbsp;{{:helper.fixed(data.separation_beaker.chem_temp)}} K<br>
+							{{for data.separation_beaker.contents}}
+								<span class="highlight">{{:helper.fixed(value.volume)}} units of {{:value.name}}</span><br>
+							{{empty}}
+								<span class="bad">
+									Beaker is empty
+								</span>
+							{{/for}}
+						{{else}}
+							<span class="average"><i>
+								No beaker loaded
+							</i></span>
+						{{/if}}
+					</div>
+				</div>
+			</div>
+		</td>
+	</tr>
+</table>

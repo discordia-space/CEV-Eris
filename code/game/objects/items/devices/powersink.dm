@@ -5,7 +5,7 @@
 	desc = "A nulling power sink which drains energy from electrical systems."
 	icon_state = "powersink0"
 	item_state = "electronic"
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 	flags = CONDUCT
 	throwforce = WEAPON_FORCE_PAINFUL
 	throw_speed = 1
@@ -38,7 +38,7 @@
 				if(isturf(T) && !!T.is_plating())
 					attached = locate() in T
 					if(!attached)
-						user << "No exposed cable here to attach to."
+						to_chat(user, "No exposed cable here to attach to.")
 						return
 					else
 						anchored = 1
@@ -46,7 +46,7 @@
 						src.visible_message(SPAN_NOTICE("[user] attaches [src] to the cable!"))
 						return
 				else
-					user << "Device must be placed over an exposed cable to attach to it."
+					to_chat(user, "Device must be placed over an exposed cable to attach to it.")
 					return
 			else
 				if (mode == 2)

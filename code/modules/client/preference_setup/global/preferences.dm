@@ -92,9 +92,9 @@ var/list/_client_preferences_by_type
 /datum/client_preference/play_lobby_music/changed(var/mob/preference_mob, var/new_value)
 	if(new_value == GLOB.PREF_YES)
 		if(isnewplayer(preference_mob))
-			preference_mob.client.playtitlemusic()
+			GLOB.lobbyScreen.play_music(preference_mob.client)
 	else
-		preference_mob.client.stoptitlemusic()
+		GLOB.lobbyScreen.stop_music(preference_mob.client)
 
 /datum/client_preference/play_ambiance
 	description ="Play ambience"
@@ -168,16 +168,6 @@ var/list/_client_preferences_by_type
 	key = "SHOW_PROGRESS"
 	options = list(GLOB.PREF_SHOW, GLOB.PREF_HIDE)
 
-/datum/client_preference/tgui_style
-	description ="tgui Style"
-	key = "TGUI_FANCY"
-	options = list(GLOB.PREF_FANCY, GLOB.PREF_PLAIN)
-
-/datum/client_preference/tgui_monitor
-	description ="tgui Monitor"
-	key = "TGUI_MONITOR"
-	options = list(GLOB.PREF_PRIMARY, GLOB.PREF_ALL)
-
 /datum/client_preference/browser_style
 	description = "Fake NanoUI Browser Style"
 	key = "BROWSER_STYLED"
@@ -210,6 +200,10 @@ var/list/_client_preferences_by_type
 /datum/client_preference/play_instruments
 	description ="Play instruments"
 	key = "SOUND_INSTRUMENTS"
+
+/datum/client_preference/gun_cursor
+	description = "Enable gun crosshair"
+	key = "GUN_CURSOR"
 
 /********************
 * General Staff Preferences *

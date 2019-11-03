@@ -35,7 +35,7 @@
 		return ..()
 
 	if(reagents.total_volume < amount_per_transfer_from_this)
-		user << SPAN_NOTICE("\The [src] is empty!")
+		to_chat(user, SPAN_NOTICE("\The [src] is empty!"))
 		return
 
 	Spray_at(A, user, proximity)
@@ -74,13 +74,13 @@
 /obj/item/weapon/reagent_containers/spray/attack_self(var/mob/user)
 	if(!possible_transfer_amounts)
 		return
-	amount_per_transfer_from_this = next_in_list(amount_per_transfer_from_this, possible_transfer_amounts)
-	spray_size = next_in_list(spray_size, spray_sizes)
-	user << SPAN_NOTICE("You adjusted the pressure nozzle. You'll now use [amount_per_transfer_from_this] units per spray.")
+	amount_per_transfer_from_this = next_list_item(amount_per_transfer_from_this, possible_transfer_amounts)
+	spray_size = next_list_item(spray_size, spray_sizes)
+	to_chat(user, SPAN_NOTICE("You adjusted the pressure nozzle. You'll now use [amount_per_transfer_from_this] units per spray."))
 
 /obj/item/weapon/reagent_containers/spray/examine(mob/user)
 	if(..(user, 0) && loc == user)
-		user << "[round(reagents.total_volume)] units left."
+		to_chat(user, "[round(reagents.total_volume)] units left.")
 
 /obj/item/weapon/reagent_containers/spray/verb/empty()
 
@@ -91,25 +91,25 @@
 	if (alert(usr, "Are you sure you want to empty that?", "Empty Bottle:", "Yes", "No") != "Yes")
 		return
 	if(isturf(usr.loc))
-		usr << SPAN_NOTICE("You empty \the [src] onto the floor.")
+		to_chat(usr, SPAN_NOTICE("You empty \the [src] onto the floor."))
 		reagents.splash(usr.loc, reagents.total_volume)
 
 //space cleaner
 /obj/item/weapon/reagent_containers/spray/cleaner
 	name = "space cleaner"
 	desc = "BLAM!-brand non-foaming space cleaner!"
-	preloaded = list("cleaner" = 250)
+	preloaded_reagents = list("cleaner" = 250)
 
 /obj/item/weapon/reagent_containers/spray/cleaner/drone
 	name = "space cleaner"
 	desc = "BLAM!-brand non-foaming space cleaner!"
 	volume = 50
-	preloaded = list("cleaner" = 50)
+	preloaded_reagents = list("cleaner" = 50)
 
 /obj/item/weapon/reagent_containers/spray/sterilizine
 	name = "sterilizine"
 	desc = "Great for hiding incriminating bloodstains and sterilizing scalpels."
-	preloaded = list("sterilizine" = 250)
+	preloaded_reagents = list("sterilizine" = 250)
 
 /obj/item/weapon/reagent_containers/spray/pepper
 	name = "pepperspray"
@@ -120,19 +120,19 @@
 	possible_transfer_amounts = null
 	volume = 40
 	var/safety = 1
-	preloaded = list("condensedcapsaicin" = 40)
+	preloaded_reagents = list("condensedcapsaicin" = 40)
 
 /obj/item/weapon/reagent_containers/spray/pepper/examine(mob/user)
 	if(..(user, 1))
-		user << "The safety is [safety ? "on" : "off"]."
+		to_chat(user, "The safety is [safety ? "on" : "off"].")
 
 /obj/item/weapon/reagent_containers/spray/pepper/attack_self(var/mob/user)
 	safety = !safety
-	usr << "<span class = 'notice'>You switch the safety [safety ? "on" : "off"].</span>"
+	to_chat(usr, "<span class = 'notice'>You switch the safety [safety ? "on" : "off"].</span>")
 
 /obj/item/weapon/reagent_containers/spray/pepper/Spray_at(atom/A as mob|obj)
 	if(safety)
-		usr << "<span class = 'warning'>The safety is on!</span>"
+		to_chat(usr, "<span class = 'warning'>The safety is on!</span>")
 		return
 	..()
 
@@ -145,12 +145,12 @@
 	amount_per_transfer_from_this = 1
 	possible_transfer_amounts = null
 	volume = 10
-	preloaded = list("water" = 10)
+	preloaded_reagents = list("water" = 10)
 
 /obj/item/weapon/reagent_containers/spray/chemsprayer
 	name = "chem sprayer"
 	desc = "A utility used to spray large amounts of reagent in a given area."
-	icon = 'icons/obj/gun.dmi'
+	icon = 'icons/obj/weapons.dmi'
 	icon_state = "chemsprayer"
 	item_state = "chemsprayer"
 	throwforce = 3
@@ -187,7 +187,7 @@
 	icon_state = "plantbgone"
 	item_state = "plantbgone"
 	volume = 100
-	preloaded = list("plantbgone" = 100)
+	preloaded_reagents = list("plantbgone" = 100)
 
 /obj/item/weapon/reagent_containers/spray/plantbgone/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
 	if(!proximity) return

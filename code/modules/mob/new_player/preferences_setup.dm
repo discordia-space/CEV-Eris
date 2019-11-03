@@ -6,7 +6,6 @@
 		var/datum/species/current_species = all_species[species]
 		if(!current_species) current_species = all_species[SPECIES_HUMAN]
 		gender = pick(current_species.genders)
-		body_build = pick(list("Slim", "Default", "Fat"))
 		h_style = random_hair_style(gender, species)
 		f_style = random_facial_hair_style(gender, species)
 		if(current_species)
@@ -202,8 +201,8 @@
 		var/datum/job/previewJob
 		if(equip_preview_mob && SSjob)
 			// Determine what job is marked as 'High' priority, and dress them up as such.
-			if("Assistant" in job_low)
-				previewJob = SSjob.GetJob("Assistant")
+			if(ASSISTANT_TITLE in job_low)
+				previewJob = SSjob.GetJob(ASSISTANT_TITLE)
 			else
 				for(var/datum/job/job in SSjob.occupations)
 					if(job.title == job_high)

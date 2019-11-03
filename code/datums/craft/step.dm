@@ -92,45 +92,53 @@
 	if(req_amount && istype(I, /obj/item/stack))
 		var/obj/item/stack/S = I
 		if(!S.can_use(req_amount))
-			user << "Not enough items in [I]"
+			to_chat(user, "Not enough items in [I]")
 			return
+
+	var/new_time = time // for reqed_type or raw materials
+	if(reqed_type || !reqed_quality)
+		if(recipe.related_stats)
+			var/mastery_factor = min(user.stats.getAvgStat(recipe.related_stats)/STAT_LEVEL_PROF, 1) //we will assume that STAT_LEVEL_PROF is highest value of mastery
+			mastery_factor *= 0.66 //	we want cut no more than 2/3 of time
+			var/time_reduction_factor = max(0, 1 - mastery_factor)
+			new_time *= time_reduction_factor
 
 	if(reqed_type)
 		if(!istype(I, reqed_type))
-			user << "Wrong item!"
+			to_chat(user, "Wrong item!")
 			return
 		if (!is_valid_to_consume(I, user))
-			user << "That item can't be used for crafting!"
+			to_chat(user, "That item can't be used for crafting!")
 			return
 
 		if(req_amount && istype(I, /obj/item/stack))
 			var/obj/item/stack/S = I
 			if(S.get_amount() < req_amount)
-				user << "Not enough items in [I]"
+				to_chat(user, "Not enough items in [I]")
 				return
-
 
 		if(target)
 			announce_action(start_msg, user, I, target)
-		if(!do_after(user, time, target || user))
+
+		if(!do_after(user, new_time, target || user))
 			return
 
 	else if(reqed_quality)
 		var/q = I.get_tool_quality(reqed_quality)
 		if(!q)
-			user << SPAN_WARNING("Wrong type of tool. You need a tool with [reqed_quality] quality")
+			to_chat(user, SPAN_WARNING("Wrong type of tool. You need a tool with [reqed_quality] quality"))
 			return
 		if(target)
 			announce_action(start_msg, user, I, target)
-		if(!I.use_tool(user, target || user, time, reqed_quality, FAILCHANCE_NORMAL, list(STAT_SUM, STAT_MEC, STAT_COG)))
-			user << SPAN_WARNING("Work aborted")
+		if(!I.use_tool(user, target || user, time, reqed_quality, FAILCHANCE_NORMAL, list(STAT_MEC, STAT_COG)))
+			to_chat(user, SPAN_WARNING("Work aborted"))
 			return
 
 		if(q < reqed_quality_level)
-			user << SPAN_WARNING("That tool is too crude for the task. You need a tool with [reqed_quality_level] [reqed_quality] quality. This tool only has [q] [reqed_quality]")
+			to_chat(user, SPAN_WARNING("That tool is too crude for the task. You need a tool with [reqed_quality_level] [reqed_quality] quality. This tool only has [q] [reqed_quality]"))
 			return
 	else
-		if(!do_after(user, time, target || user))
+		if(!do_after(user, new_time, target || user))
 			return
 
 	if (target)
@@ -144,7 +152,7 @@
 		if(istype(I, /obj/item/stack))
 			var/obj/item/stack/S = I
 			if(!S.use(req_amount))
-				user << SPAN_WARNING("Not enough items in [S]. It has [S.get_amount()] units and we need [req_amount]")
+				to_chat(user, SPAN_WARNING("Not enough items in [S]. It has [S.get_amount()] units and we need [req_amount]"))
 				return FALSE
 		else if (reqed_type) //No deleting tools
 			qdel(I)
@@ -193,8 +201,6 @@
 			//Okay, so we found something that matches
 			if (is_valid_to_consume(I, user))
 				return I
-
-
 
 	else if(reqed_quality)
 		var/best_value = 0

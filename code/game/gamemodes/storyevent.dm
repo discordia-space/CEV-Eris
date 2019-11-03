@@ -68,15 +68,15 @@
 /datum/storyevent/proc/can_trigger(var/severity, var/mob/report)
 	.=TRUE
 	if (!enabled)
-		if (report) report << SPAN_NOTICE("Failure: The event is disabled")
+		if (report) to_chat(report, SPAN_NOTICE("Failure: The event is disabled"))
 		return FALSE
 
-	if ((ocurrences_max) > 0 && (ocurrences >= ocurrences_max))
-		if (report) report << SPAN_NOTICE("Failure: The event has already triggered the maximum number of times for a single round")
+	if (ocurrences_max > 0 && ocurrences >= ocurrences_max)
+		if (report) to_chat(report, SPAN_NOTICE("Failure: The event has already triggered the maximum number of times for a single round"))
 		return FALSE
 
 	if(processing && is_processing())
-		if (report) report << SPAN_NOTICE("Failure: This event is already processing")
+		if (report) to_chat(report, SPAN_NOTICE("Failure: This event is already processing"))
 		return FALSE
 
 	//IF this is a wrapper for a random event, we'll check if that event can trigger
@@ -84,7 +84,7 @@
 		//We have to create a new one, but New doesn't really do anything for events
 		var/datum/event/E = new event_type(src, severity)
 		if (!E.can_trigger())
-			if (report) report << SPAN_NOTICE("Failure: Event can't trigger for specific unknown reasons")
+			if (report) to_chat(report, SPAN_NOTICE("Failure: Event can't trigger for specific unknown reasons"))
 			.=FALSE
 		//Clean it up after we're done
 		qdel(E)

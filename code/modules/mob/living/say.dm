@@ -1,39 +1,25 @@
 var/list/department_radio_keys = list(
-	":r" = "right ear",	".r" = "right ear",
-	":l" = "left ear",	".l" = "left ear",
-	":i" = "intercom",	".i" = "intercom",
-	":h" = "department",	".h" = "department",
-	":+" = "special",		".+" = "special", //activate radio-specific special functions
-	":c" = "Command",		".c" = "Command",
-	":n" = "Science",		".n" = "Science",
-	":m" = "Medical",		".m" = "Medical",
-	":e" = "Engineering", ".e" = "Engineering",
-	":s" = "Security",	".s" = "Security",
-	":w" = "whisper",		".w" = "whisper",
-	":t" = "Mercenary",	".t" = "Mercenary",
-	":u" = "Supply",		".u" = "Supply",
-	":v" = "Service",		".v" = "Service",
-	":p" = "AI Private",	".p" = "AI Private",
-
-	//kinda localization -- rastaf0
-	//same keys as above, but on russian keyboard layout. This file uses cp1251 as encoding.
-	":ê" = "right ear",	".ê" = "right ear",
-	":ä" = "left ear",	".ä" = "left ear",
-	":ø" = "intercom",	".ø" = "intercom",
-	":ð" = "department",	".ð" = "department",
-	":ñ" = "Command",		".ñ" = "Command",
-	":ò" = "Science",		".ò" = "Science",
-	":ü" = "Medical",		".ü" = "Medical",
-	":ó" = "Engineering",	".ó" = "Engineering",
-	":û" = "Security",	".û" = "Security",
-	":ö" = "whisper",		".ö" = "whisper",
-	":å" = "Mercenary",	".å" = "Mercenary",
-	":é" = "Supply",	".é" = "Supply"
+	"r" = "right ear",
+	"l" = "left ear",
+	"i" = "intercom",
+	"h" = "department",
+	"+" = "special",	 //activate radio-specific special functions
+	"c" = "Command",
+	"n" = "Science",
+	"m" = "Medical",
+	"e" = "Engineering",
+	"s" = "Security",
+	"w" = "whisper",
+	"y" = "Mercenary",
+	"u" = "Supply",
+	"v" = "Service",
+	"p" = "AI Private",
+	"t" = "NT Voice",
 )
 
 
 var/list/channel_to_radio_key = new
-proc/get_radio_key_from_channel(var/channel)
+/proc/get_radio_key_from_channel(var/channel)
 	var/key = channel_to_radio_key[channel]
 	if(!key)
 		for(var/radio_key in department_radio_keys)
@@ -94,10 +80,10 @@ proc/get_radio_key_from_channel(var/channel)
 	returns[3] = speech_problem_flag
 	return returns
 
-/mob/living/proc/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name)
+/mob/living/proc/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name, speech_volume)
 	if(message_mode == "intercom")
 		for(var/obj/item/device/radio/intercom/I in view(1, null))
-			I.talk_into(src, message, verb, speaking)
+			I.talk_into(src, message, verb, speaking, speech_volume)
 			used_radios += I
 	return 0
 
@@ -114,10 +100,18 @@ proc/get_radio_key_from_channel(var/channel)
 		return "asks"
 	return verb
 
+// returns message
+/mob/living/proc/getSpeechVolume(var/message)
+	var/volume = chem_effects[CE_SPEECH_VOLUME] ? round(chem_effects[CE_SPEECH_VOLUME]) : 2	// 2 is default text size in byond chat
+	var/ending = copytext(message, length(message))
+	if(ending == "!")
+		volume ++
+	return volume
+
 /mob/living/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="")
 	if(client)
 		if(client.prefs.muted&MUTE_IC)
-			src << "\red You cannot speak in IC (Muted)."
+			to_chat(src, "\red You cannot speak in IC (Muted).")
 			return
 
 	if(stat)
@@ -126,7 +120,7 @@ proc/get_radio_key_from_channel(var/channel)
 		return
 
 	if(is_muzzled())
-		src << SPAN_DANGER("You're muzzled and cannot speak!")
+		to_chat(src, SPAN_DANGER("You're muzzled and cannot speak!"))
 		return
 
 	var/prefix = copytext(message,1,2)
@@ -154,6 +148,7 @@ proc/get_radio_key_from_channel(var/channel)
 	else
 		speaking = get_default_language()
 
+	message = capitalize(message)
 	// This is broadcast to all mobs with the language,
 	// irrespective of distance or anything else.
 	if(speaking && speaking.flags&HIVEMIND)
@@ -174,16 +169,17 @@ proc/get_radio_key_from_channel(var/channel)
 		return 0
 
 	var/list/obj/item/used_radios = new
-	if(handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name))
+
+
+	if(handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name, getSpeechVolume(message)))
 		return TRUE
 
 	var/list/handle_v = handle_speech_sound()
 	var/sound/speech_sound = handle_v[1]
-	var/sound_vol = handle_v[2]
+	var/sound_vol = handle_v[2] * (chem_effects[CE_SPEECH_VOLUME] ? chem_effects[CE_SPEECH_VOLUME] : 1)
 
 	var/italics = FALSE
 	var/message_range = world.view
-
 	//speaking into radios
 	if(used_radios.len)
 		italics = TRUE
@@ -225,7 +221,7 @@ proc/get_radio_key_from_channel(var/channel)
 		if(pressure < ONE_ATMOSPHERE * 0.4)
 			italics = TRUE
 			sound_vol *= 0.5 //muffle the sound a bit, so it's like we're actually talking through contact
-		var/falloff = (message_range+3) //A wider radius where you're heard, but only quietly. This means you can hear people offscreen.
+		var/falloff = (message_range + round(3 * (chem_effects[CE_SPEECH_VOLUME] ? chem_effects[CE_SPEECH_VOLUME] : 1))) //A wider radius where you're heard, but only quietly. This means you can hear people offscreen.
 		//DO NOT FUCKING CHANGE THIS TO GET_OBJ_OR_MOB_AND_BULLSHIT() -- Hugs and Kisses ~Ccomp
 		var/list/hear = hear(message_range, T)
 		var/list/hear_falloff = hear(falloff, T)
@@ -262,22 +258,21 @@ proc/get_radio_key_from_channel(var/channel)
 		var/mob/M = X
 		if(M.client)
 			speech_bubble_recipients += M.client
-		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
+		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol, getSpeechVolume(message))
 	for(var/X in listening_falloff)
 		if(!ismob(X))
 			continue
 		var/mob/M = X
-		var/falloff_message = "<font size='0.2'>[message]</font>" //make font fucking small
 		if(M.client)
 			speech_bubble_recipients += M.client
-		M.hear_say(falloff_message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
+		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol, 1)
 
 	animate_speechbubble(speech_bubble, speech_bubble_recipients, 30)
 
 	for(var/obj/O in listening_obj)
 		spawn(0)
 			if(O) //It's possible that it could be deleted in the meantime.
-				O.hear_talk(src, message, verb, speaking)
+				O.hear_talk(src, message, verb, speaking, getSpeechVolume(message))
 
 
 	log_say("[name]/[key] : [message]")
@@ -310,7 +305,7 @@ proc/get_radio_key_from_channel(var/channel)
 	return name
 
 /mob/living/hear_say(message, verb = "says", datum/language/language = null, alt_name = "", italics = FALSE,\
-		mob/speaker = null, speech_sound, sound_vol)
+		mob/speaker = null, speech_sound, sound_vol, speech_volume)
 	if(!client)
 		return
 
@@ -318,7 +313,7 @@ proc/get_radio_key_from_channel(var/channel)
 		// INNATE is the flag for audible-emote-language, so we don't want to show an "x talks but you cannot hear them" message if it's set
 		if(!language || !language.flags&INNATE)
 			if(speaker == src)
-				src << SPAN_WARNING("You cannot hear yourself speak!")
+				to_chat(src, SPAN_WARNING("You cannot hear yourself speak!"))
 			else
 				var/speaker_name = speaker.name
 				if(ishuman(speaker))

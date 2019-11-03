@@ -6,15 +6,15 @@
 	embed = 1 //the dart is shot fast enough to pierce space suits, so I guess splintering inside the target can be a thing. Should be rare due to low damage.
 	var/reagent_amount = 15
 	kill_count = 15 //shorter range
-	
+
 	muzzle_type = null
 
 /obj/item/projectile/bullet/chemdart/New()
 	reagents = new/datum/reagents(reagent_amount)
 	reagents.my_atom = src
 
-/obj/item/projectile/bullet/chemdart/on_hit(var/atom/target, var/blocked = 0, var/def_zone = null)
-	if(blocked < 2 && isliving(target))
+/obj/item/projectile/bullet/chemdart/on_hit(atom/target, def_zone = null)
+	if(isliving(target))
 		var/mob/living/L = target
 		if(L.can_inject(target_zone=def_zone))
 			reagents.trans_to_mob(L, reagent_amount, CHEM_BLOOD)
@@ -40,6 +40,7 @@
 	ammo_type = /obj/item/ammo_casing/chemdart
 	max_ammo = 5
 	multiple_sprites = 1
+	mag_well = MAG_WELL_DART
 
 /obj/item/weapon/gun/projectile/dartgun
 	name = "dart gun"
@@ -55,6 +56,7 @@
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/chemdart
 	auto_eject = 0
+	mag_well = MAG_WELL_DART
 
 	var/list/beakers = list() //All containers inside the gun.
 	var/list/mixing = list() //Containers being used for mixing.
@@ -97,25 +99,25 @@
 	//	return
 	..()
 	if (beakers.len)
-		user << "\blue [src] contains:"
+		to_chat(user, SPAN_NOTICE("[src] contains:"))
 		for(var/obj/item/weapon/reagent_containers/glass/beaker/B in beakers)
 			if(B.reagents && B.reagents.reagent_list.len)
 				for(var/datum/reagent/R in B.reagents.reagent_list)
-					user << "\blue [R.volume] units of [R.name]"
+					to_chat(user, SPAN_NOTICE("[R.volume] units of [R.name]"))
 
 /obj/item/weapon/gun/projectile/dartgun/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/weapon/reagent_containers/glass))
 		if(!istype(I, beaker_type))
-			user << "\blue [I] doesn't seem to fit into [src]."
+			to_chat(user, SPAN_NOTICE("[I] doesn't seem to fit into [src]."))
 			return
 		if(beakers.len >= max_beakers)
-			user << "\blue [src] already has [max_beakers] beakers in it - another one isn't going to fit!"
+			to_chat(user, SPAN_NOTICE("[src] already has [max_beakers] beakers in it - another one isn't going to fit!"))
 			return
 		var/obj/item/weapon/reagent_containers/glass/beaker/B = I
 		user.drop_item()
 		B.loc = src
 		beakers += B
-		user << "\blue You slot [B] into [src]."
+		to_chat(user, SPAN_NOTICE("You slot [B] into [src]."))
 		src.updateUsrDialog()
 		return 1
 	..()
@@ -186,7 +188,7 @@
 		if(index <= beakers.len)
 			if(beakers[index])
 				var/obj/item/weapon/reagent_containers/glass/beaker/B = beakers[index]
-				usr << "You remove [B] from [src]."
+				to_chat(usr,  "You remove [B] from [src].")
 				mixing -= B
 				beakers -= B
 				B.loc = get_turf(src)

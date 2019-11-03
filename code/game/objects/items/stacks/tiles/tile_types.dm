@@ -9,12 +9,15 @@
  */
 
 /obj/item/stack/tile
-	name = "tile"
-	singular_name = "tile"
+	name = "broken tile"
+	singular_name = "broken tile"
 	icon = 'icons/obj/stack/tile.dmi'
-	icon_state = "tile"
-	desc = "A non-descript floor tile"
+	desc = "This should not exist."
 	w_class = ITEM_SIZE_NORMAL
+	force = WEAPON_FORCE_HARMLESS
+	throwforce = WEAPON_FORCE_WEAK
+	throw_speed = 3
+	throw_range = 7
 	max_amount = 60
 
 /obj/item/stack/tile/New()
@@ -30,10 +33,6 @@
 	singular_name = "grass floor tile"
 	desc = "A patch of grass like they often use on golf courses."
 	icon_state = "tile_grass"
-	force = WEAPON_FORCE_NORMAL
-	throwforce = WEAPON_FORCE_NORMAL
-	throw_speed = 5
-	throw_range = 20
 	flags = 0
 	origin_tech = list(TECH_BIO = 1)
 
@@ -47,8 +46,6 @@
 	icon_state = "tile_wood"
 	force = WEAPON_FORCE_NORMAL
 	throwforce = WEAPON_FORCE_NORMAL
-	throw_speed = 5
-	throw_range = 20
 	flags = 0
 
 /obj/item/stack/tile/wood/cyborg
@@ -67,10 +64,6 @@
 	singular_name = "red carpet"
 	desc = "A piece of carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile_carpet"
-	force = WEAPON_FORCE_NORMAL
-	throwforce = WEAPON_FORCE_NORMAL
-	throw_speed = 5
-	throw_range = 20
 	flags = 0
 
 /obj/item/stack/tile/carpet/bcarpet
@@ -110,10 +103,8 @@
 	desc = "Could work as a pretty decent throwing weapon."
 	icon_state = "tile"
 	force = WEAPON_FORCE_NORMAL
-	matter = list(MATERIAL_STEEL = 1)
 	throwforce = WEAPON_FORCE_PAINFUL
-	throw_speed = 5
-	throw_range = 20
+	matter = list(MATERIAL_STEEL = 1)
 	flags = CONDUCT
 
 /obj/item/stack/tile/floor/cyborg
@@ -240,6 +231,21 @@
 	name = "steel monofloor tile"
 	singular_name = "steel monofloor tile"
 	icon_state = "tile_steel_monofloor"
+
+/obj/item/stack/tile/floor/steel/bar_flat
+	name = "steel bar flat tile"
+	singular_name = "steel bar flat tile"
+	icon_state = "tile_steel_bar_flat"
+
+/obj/item/stack/tile/floor/steel/bar_dance
+	name = "steel bar dance tile"
+	singular_name = "steel bar dance tile"
+	icon_state = "tile_steel_bar_dance"
+
+/obj/item/stack/tile/floor/steel/bar_light
+	name = "steel bar light tile"
+	singular_name = "steel bar light tile"
+	icon_state = "tile_steel_bar_light"
 
 /*
  * Plastic
@@ -410,3 +416,20 @@
 	name = "dark monofloor tile"
 	singular_name = "dark monofloor tile"
 	icon_state = "tile_dark_monofloor"
+
+
+/obj/item/stack/tile/derelict/white_red_edges
+	name = "one star floor tile"
+	singular_name = "one star floor tile"
+
+/obj/item/stack/tile/derelict/white_small_edges
+	name = "one star floor tile"
+	singular_name = "one star floor tile"
+
+/obj/item/stack/tile/derelict/red_white_edges
+	name = "one star floor tile"
+	singular_name = "one star floor tile"
+
+/obj/item/stack/tile/derelict/white_big_edges
+	name = "one star floor tile"
+	singular_name = "one star floor tile"

@@ -17,6 +17,11 @@
 	survive_objective = /datum/objective/escape
 	allow_neotheology = FALSE
 
+	stat_modifiers = list(
+		STAT_TGH = 5,
+		STAT_VIG = 15
+	)
+
 /datum/antagonist/changeling/get_special_objective_text()
 	if(owner && owner.changeling)
 		return "<br><b>Changeling ID:</b> [owner.changeling.changelingID].<br><b>Genomes Absorbed:</b> [owner.changeling.absorbedcount]"
@@ -24,16 +29,18 @@
 /datum/antagonist/changeling/special_init()
 	owner.current.make_changeling()
 
-/datum/antagonist/changeling/can_become_antag(var/datum/mind/player)
-	if(..())
-		if(player.current)
-			if(ishuman(player.current))
-				var/mob/living/carbon/human/H = player.current
-				if(H.isSynthetic())
-					return FALSE
-				if(H.species.flags & NO_SCAN)
-					return FALSE
-				if(H.get_cruciform())
-					return FALSE
-				return TRUE
+/datum/antagonist/changeling/can_become_antag(datum/mind/player)
+	if(..() && ishuman(player.current))
+		var/mob/living/carbon/human/H = player.current
+		if(H.isSynthetic())
+			return FALSE
+		if(H.species.flags & NO_SCAN)
+			return FALSE
+		return TRUE
 	return FALSE
+
+/datum/antagonist/changeling/equip()
+	var/mob/living/L = owner.current
+
+	for(var/name in stat_modifiers)
+		L.stats.changeStat(name, stat_modifiers[name])

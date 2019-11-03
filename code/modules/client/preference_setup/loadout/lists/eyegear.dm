@@ -27,17 +27,18 @@
 
 /datum/gear/eyes/sciencegoggles
 	display_name = "Science Goggles"
-	path = /obj/item/clothing/glasses/science
+	path = /obj/item/clothing/glasses/powered/science
+	allowed_roles = list(JOBS_SCIENCE)
 
 /datum/gear/eyes/security
 	display_name = "Security HUD"
 	path = /obj/item/clothing/glasses/hud/security
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Ironhammer Gunnery Sergeant")
+	allowed_roles = list(JOBS_SECURITY)
 
 /datum/gear/eyes/medical
 	display_name = "Medical HUD"
 	path = /obj/item/clothing/glasses/hud/health
-	allowed_roles = list("Moebius Doctor","Moebius Biolab Officer","Moebius Chemist","Moebius Paramedic")
+	allowed_roles = list(JOBS_MEDICAL)
 
 /datum/gear/eyes/shades
 	display_name = "Sunglasses, fat"

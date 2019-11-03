@@ -46,27 +46,27 @@
 /datum/storyevent/roleset/proc/candidates_list(var/antag, var/report)
 	var/datum/antagonist/temp = GLOB.all_antag_types[antag]
 	if(!istype(temp))
-		if (report) report << SPAN_NOTICE("Failure: Unable to locate antag datum: -[temp]-[temp.type]- for antag [antag]")
+		if (report) to_chat(report, SPAN_NOTICE("Failure: Unable to locate antag datum: -[temp]-[temp.type]- for antag [antag]"))
 		return list()
 	var/list/candidates = list()
 	for(var/datum/mind/candidate in SSticker.minds)
 		if(!candidate.current)
-			if (report) report << SPAN_NOTICE("Failure: [candidate] has no mob")
+			if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] has no mob"))
 			continue
 		if(!temp.can_become_antag(candidate, report))
-			if (report) report << SPAN_NOTICE("Failure: [candidate] can't become this antag")
+			if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] can't become this antag"))
 			continue
 		if(!antagonist_suitable(candidate, temp))
-			if (report) report << SPAN_NOTICE("Failure: [candidate] is not antagonist suitable")
+			if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] is not antagonist suitable"))
 			continue
 		if(!(temp.bantype in candidate.current.client.prefs.be_special_role))
-			if (report) report << SPAN_NOTICE("Failure: [candidate] has special role [temp.bantype] disabled")
+			if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] has special role [temp.bantype] disabled"))
 			continue
 		if(GLOB.storyteller && GLOB.storyteller.one_role_per_player && candidate.antagonist.len)
-			if (report) report << SPAN_NOTICE("Failure: [candidate] is already a [candidate.antagonist[1]] and can't be two antags")
+			if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] is already a [candidate.antagonist[1]] and can't be two antags"))
 			continue
 		if(player_is_antag_id(candidate,antag))
-			if (report) report << SPAN_NOTICE("Failure: [candidate] is already a [antag]")
+			if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] is already a [antag]"))
 			continue
 		candidates.Add(candidate)
 	return shuffle(candidates)
@@ -84,20 +84,20 @@
 	if(temp.outer)
 		for(var/mob/observer/candidate in GLOB.player_list)
 			if(!candidate.client)
-				if (report) report << SPAN_NOTICE("Failure: [candidate] is disconnected")
+				if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] is disconnected"))
 				continue
 
 			//Lets check if we asked them recently to prevent spam
 			if ((candidate.key in request_log))
 				var/last_request = request_log[candidate.key]
 				if ((world.time - last_request) < request_timeout)
-					if (report) report << SPAN_NOTICE("Failure: [candidate] was already asked too recently")
+					if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] was already asked too recently"))
 					continue
 			if(!temp.can_become_antag_ghost(candidate))
-				if (report) report << SPAN_NOTICE("Failure: [candidate] can't become this antag from ghost")
+				if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] can't become this antag from ghost"))
 				continue
 			if(!(temp.bantype in candidate.client.prefs.be_special_role))
-				if (report) report << SPAN_NOTICE("Failure: [candidate] has special role [temp.bantype] disabled")
+				if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] has special role [temp.bantype] disabled"))
 				continue
 
 			any_candidates = TRUE
@@ -107,6 +107,7 @@
 				spawn()
 					request_log[candidate.key] = world.time //Record this request so we don't spam them repeatedly
 					usr = candidate
+					usr << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever when he's chosen to decide.
 					if(alert("Do you want to become the [temp.role_text]? Hurry up, you have 60 seconds to make choice!","Antag lottery","OH YES","No, I'm autist") == "OH YES")
 						if(!agree_time_out)
 							candidates.Add(candidate)
@@ -184,7 +185,12 @@
 		if (success_quantity > 1)
 			success_percent = success_quantity / target_quantity
 		cancel(severity, success_percent)
-
+			
+		if ( success_quantity > 0 )
+			// At least one antag has spawned
+			return TRUE
+		else
+			return FALSE
 
 //Tests if its possible for us to trigger, by compiling candidate lists but doing nothing with them
 /datum/storyevent/roleset/can_trigger(var/severity = EVENT_LEVEL_ROLESET, var/report)
@@ -196,7 +202,7 @@
 
 	if (possible_candidates.len > 0)
 		return TRUE
-	if (report) report << SPAN_NOTICE("Failure: No candidates found")
+	if (report) to_chat(report, SPAN_NOTICE("Failure: No candidates found"))
 	return FALSE
 
 

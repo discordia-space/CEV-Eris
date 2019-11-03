@@ -106,7 +106,7 @@ var/savefile/Banlist
 
 	Banlist.cd = "/base"
 	if ( Banlist.dir.Find("[ckey][computerid]") )
-		usr << text("\red Ban already exists.")
+		to_chat(usr, text("\red Ban already exists."))
 		return 0
 	else
 		Banlist.dir.Add("[ckey][computerid]")
@@ -119,6 +119,7 @@ var/savefile/Banlist
 		Banlist["temp"] << temp
 		if (temp)
 			Banlist["minutes"] << bantimestamp
+		notes_add(ckey, "Banned - [reason]")
 	return 1
 
 /proc/RemoveBan(foldername)

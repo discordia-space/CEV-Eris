@@ -1,15 +1,19 @@
 /obj/item/weapon/disk
 	name = "disk"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/discs.dmi'
+	icon_state = "blue"
+	item_state = "card-id"
+	w_class = ITEM_SIZE_SMALL
+	flags = CONDUCT
+	force = WEAPON_FORCE_WEAK
+	throwforce = WEAPON_FORCE_WEAK
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_STEEL = 1)
 
 //The return of data disks?? Just for transferring between genetics machine/cloning machine.
 //TO-DO: Make the genetics machine accept them.
 /obj/item/weapon/disk/data
 	name = "Cloning Data Disk"
-	icon = 'icons/obj/discs.dmi'
-	icon_state = "purple" //Gosh I hope syndies don't mistake them for the nuke disk.
-	item_state = "card-id"
-	w_class = ITEM_SIZE_SMALL
+	icon_state = "purple"
 	var/datum/dna2/record/buf = null
 	var/read_only = FALSE //Well,it's still a floppy disk
 
@@ -24,11 +28,11 @@
 
 /obj/item/weapon/disk/data/attack_self(mob/user as mob)
 	read_only = !read_only
-	user << "You flip the write-protect tab to [read_only ? "protected" : "unprotected"]."
+	to_chat(user, "You flip the write-protect tab to [read_only ? "protected" : "unprotected"].")
 
 /obj/item/weapon/disk/data/examine(mob/user)
 	..(user)
-	user << text("The write-protect tab is set to [read_only ? "protected" : "unprotected"].")
+	to_chat(user, text("The write-protect tab is set to [read_only ? "protected" : "unprotected"]."))
 	return
 
 

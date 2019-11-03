@@ -23,7 +23,7 @@
 			playsound(loc, S.use_sound, 50, 1, -5)
 			user.visible_message(SPAN_NOTICE("[user.name] empties the [S] into the box"), SPAN_NOTICE("You empty the [S] into the box."), SPAN_NOTICE("You hear a rustling sound"))
 		else
-			user << SPAN_WARNING("There's no ore inside the [S] to empty into here")
+			to_chat(user, SPAN_WARNING("There's no ore inside the [S] to empty into here"))
 	update_ore_count()
 
 	return
@@ -40,8 +40,8 @@
 			stored_ore[O.name] = 1
 
 /obj/structure/ore_box/examine(mob/user)
-	user << "That's an [src]."
-	user << desc
+	to_chat(user, "That's an [src].")
+	to_chat(user, desc)
 
 	// Borgs can now check contents too.
 	if((!ishuman(user)) && (!isrobot(user)))
@@ -53,16 +53,16 @@
 	add_fingerprint(user)
 
 	if(!contents.len)
-		user << "It is empty."
+		to_chat(user, "It is empty.")
 		return
 
 	if(world.time > last_update + 10)
 		update_ore_count()
 		last_update = world.time
 
-	user << "It holds:"
+	to_chat(user, "It holds:")
 	for(var/ore in stored_ore)
-		user << "- [stored_ore[ore]] [ore]"
+		to_chat(user, "- [stored_ore[ore]] [ore]")
 	return
 
 
@@ -72,26 +72,26 @@
 	set src in view(1)
 
 	if(!ishuman(usr)) //Only living, intelligent creatures with hands can empty ore boxes.
-		usr << "\red You are physically incapable of emptying the ore box."
+		to_chat(usr, "\red You are physically incapable of emptying the ore box.")
 		return
 
 	if( usr.stat || usr.restrained() )
 		return
 
 	if(!Adjacent(usr)) //You can only empty the box if you can physically reach it
-		usr << "You cannot reach the ore box."
+		to_chat(usr, "You cannot reach the ore box.")
 		return
 
 	add_fingerprint(usr)
 
 	if(contents.len < 1)
-		usr << "\red The ore box is empty"
+		to_chat(usr, "\red The ore box is empty")
 		return
 
 	for (var/obj/item/weapon/ore/O in contents)
 		contents -= O
 		O.loc = src.loc
-	usr << "\blue You empty the ore box"
+	to_chat(usr, "\blue You empty the ore box")
 
 	return
 

@@ -3,19 +3,19 @@
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "ice_1"
 	damage = 20
-	check_armour = "energy"
+	check_armour = ARMOR_ENERGY
 
 /obj/item/projectile/forcebolt/strong
 	name = "force bolt"
 
-/obj/item/projectile/forcebolt/on_hit(var/atom/movable/target, var/blocked = 0)
+/obj/item/projectile/forcebolt/on_hit(atom/movable/target)
 	if(istype(target))
 		var/throwdir = get_dir(firer,target)
 		target.throw_at(get_edge_target_turf(target, throwdir),10,10)
 		return 1
 
 /*
-/obj/item/projectile/forcebolt/strong/on_hit(var/atom/target, var/blocked = 0)
+/obj/item/projectile/forcebolt/strong/on_hit(var/atom/target)
 
 	// NONE OF THIS WORKS. DO NOT USE.
 	var/throwdir = null

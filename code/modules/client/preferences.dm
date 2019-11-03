@@ -12,6 +12,8 @@
 	var/last_ip
 	var/last_id
 
+	var/save_load_cooldown
+
 	//game-preferences
 	var/lastchangelog = ""				//Saved changlog filesize to detect if there was a change
 
@@ -54,6 +56,7 @@
 		load_path(client.ckey)
 		load_preferences()
 		load_and_update_character()
+
 	sanitize_preferences()
 	if(client && istype(client.mob, /mob/new_player))
 		var/mob/new_player/np = client.mob
@@ -72,9 +75,15 @@
 		return
 
 	if(!get_mob_by_key(client_ckey))
-		user << SPAN_DANGER("No mob exists for the given client!")
+		to_chat(user, SPAN_DANGER("No mob exists for the given client!"))
 		close_load_dialog(user)
 		return
+
+	if(!path && !IsGuestKey(user.client.key))
+		error("Prefs failed to setup (datum): [user.client.ckey]")
+		load_path(user.client.ckey)
+		load_preferences()
+		load_and_update_character()
 
 	var/dat = "<html><body><center>"
 
@@ -107,10 +116,18 @@
 		if(config.forumurl)
 			user << link(config.forumurl)
 		else
-			user << SPAN_DANGER("The forum URL is not set in the server configuration.")
+			to_chat(user, SPAN_DANGER("The forum URL is not set in the server configuration."))
 			return
 	ShowChoices(usr)
 	return 1
+
+/datum/preferences/proc/check_cooldown()
+	if(save_load_cooldown != world.time && (save_load_cooldown + PREF_SAVELOAD_COOLDOWN > world.time))
+		return FALSE
+
+	save_load_cooldown = world.time
+	return TRUE
+
 
 /datum/preferences/Topic(href, list/href_list)
 	if(..())
@@ -158,7 +175,6 @@
 		else if(firstspace == name_length)
 			real_name += "[pick(GLOB.last_names)]"
 	character.fully_replace_character_name(newname = real_name)
-	character.body_build = get_body_build(gender, body_build)
 	character.gender = gender
 	character.age = age
 	character.b_type = b_type
@@ -174,7 +190,6 @@
 	character.facial_color = facial_color
 	character.skin_color = skin_color
 
-	character.religion = religion
 	character.s_tone = s_tone
 
 	QDEL_NULL_LIST(character.worn_underwear)
@@ -186,7 +201,7 @@
 			var/underwear_item_name = all_underwear[underwear_category_name]
 			var/datum/category_item/underwear/UWD = underwear_category.items_by_name[underwear_item_name]
 			var/metadata = all_underwear_metadata[underwear_category_name]
-			var/obj/item/underwear/UW = UWD.create_underwear(metadata, character.body_build.underwear_icon)
+			var/obj/item/underwear/UW = UWD.create_underwear(character, metadata, 'icons/inventory/underwear/mob.dmi')
 			if(UW)
 				UW.ForceEquipUnderwear(character, FALSE)
 		else
@@ -196,6 +211,7 @@
 
 	character.force_update_limbs()
 	character.update_mutations(0)
+	character.update_implants(0)
 
 
 	character.update_body(0)
@@ -216,8 +232,10 @@
 	character.gen_record = gen_record
 	character.exploit_record = exploit_record
 	if(!character.isSynthetic())
-		character.nutrition = rand(140,360)
+		character.nutrition = rand(250, 450)
 
+	for(var/options_name in setup_options)
+		get_option(options_name).apply(character)
 
 
 /datum/preferences/proc/open_load_dialog(mob/user)

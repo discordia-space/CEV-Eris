@@ -5,7 +5,6 @@
 	unset_machine()
 	qdel(hud_used)
 	if(client)
-		remove_screen_obj_references()
 		for(var/atom/movable/AM in client.screen)
 			qdel(AM)
 		client.screen = list()
@@ -21,31 +20,7 @@
 	return
 
 /mob/proc/take_overall_damage(var/brute, var/burn, var/used_weapon = null)
-
-/mob/proc/remove_screen_obj_references()//FIX THIS SHIT
-//	flash = null
-//	blind = null
-	hands = null
-	pullin = null
-	purged = null
-//	internals = null
-//	oxygen = null
-	i_select = null
-	m_select = null
-//	toxin = null
-//	fire = null
-//	bodytemp = null
-//	healths = null
-//	throw_icon = null
-//	nutrition_icon = null
-//	pressure = null
-//	damageoverlay = null
-//	pain = null
-//	item_use_icon = null
-//	gun_move_icon = null
-//	gun_setting_icon = null
-//	spell_masters = null
-	zone_sel = null
+	return
 
 /mob/Initialize()
 	START_PROCESSING(SSmobs, src)
@@ -55,7 +30,6 @@
 		GLOB.living_mob_list += src
 	move_intent = decls_repository.get_decl(move_intent)
 	. = ..()
-
 
 /mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
 
@@ -78,9 +52,9 @@
 					return
 	// Added voice muffling for Issue 41.
 	if(stat == UNCONSCIOUS || sleeping > 0)
-		src << "<I>... You can almost hear someone talking ...</I>"
+		to_chat(src, "<I>... You can almost hear someone talking ...</I>")
 	else
-		src << msg
+		to_chat(src, msg)
 	return
 
 // Show a message to all mobs and objects in sight of this one
@@ -174,6 +148,7 @@
 
 
 /mob/proc/Life()
+	SEND_SIGNAL(src, COMSIG_MOB_LIFE)
 //	if(organStructure)
 //		organStructure.ProcessOrgans()
 	//handle_typing_indicator() //You said the typing indicator would be fine. The test determined that was a lie.
@@ -249,7 +224,7 @@
 	set category = "IC"
 
 	if((is_blind(src) || usr.stat) && !isobserver(src))
-		src << "<span class='notice'>Something is there but you can't see it.</span>"
+		to_chat(src, "<span class='notice'>Something is there but you can't see it.</span>")
 		return 1
 
 	face_atom(A)
@@ -341,7 +316,7 @@
 	if(mind)
 		mind.show_memory(src)
 	else
-		src << "The game appears to have misplaced your mind datum, so we can't show you your notes."
+		to_chat(src, "The game appears to have misplaced your mind datum, so we can't show you your notes.")
 
 /mob/verb/add_memory(msg as message)
 	set name = "Add Note"
@@ -352,7 +327,7 @@
 	if(mind)
 		mind.store_memory(msg)
 	else
-		src << "The game appears to have misplaced your mind datum, so we can't show you your notes."
+		to_chat(src, "The game appears to have misplaced your mind datum, so we can't show you your notes.")
 
 /mob/proc/store_memory(msg as message, popup, sane = 1)
 	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
@@ -371,7 +346,7 @@
 /mob/proc/update_flavor_text()
 	set src in usr
 	if(usr != src)
-		usr << "No."
+		to_chat(usr, "No.")
 	var/msg = sanitize(input(usr,"Set the flavor text in your 'examine' verb. Can also be used for OOC notes about your character.","Flavor Text",rhtml_decode(flavor_text)) as message|null, extra = 0)
 
 	if(msg != null)
@@ -432,7 +407,7 @@
 	if(client.holder && (client.holder.rights & R_ADMIN))
 		is_admin = 1
 	else if(stat != DEAD || isnewplayer(src))
-		usr << "\blue You must be observing to use this!"
+		to_chat(usr, "\blue You must be observing to use this!")
 		return
 
 	if(is_admin && stat == DEAD)
@@ -476,7 +451,7 @@
 			creatures[name] = O
 
 
-	for(var/mob/M in sortAtom(SSmobs.mob_list))
+	for(var/mob/M in sortNames(SSmobs.mob_list))
 		var/name = M.name
 		if (names.Find(name))
 			namecounts[name]++
@@ -572,22 +547,22 @@
 		return
 
 	if (AM.anchored)
-		src << "<span class='warning'>It won't budge!</span>"
+		to_chat(src, "<span class='warning'>It won't budge!</span>")
 		return
 
 	var/mob/M = AM
 	if(ismob(AM))
 
 		if(!can_pull_mobs || !can_pull_size)
-			src << "<span class='warning'>It won't budge!</span>"
+			to_chat(src, "<span class='warning'>It won't budge!</span>")
 			return
 
 		if((mob_size < M.mob_size) && (can_pull_mobs != MOB_PULL_LARGER))
-			src << "<span class='warning'>It won't budge!</span>"
+			to_chat(src, "<span class='warning'>It won't budge!</span>")
 			return
 
 		if((mob_size == M.mob_size) && (can_pull_mobs == MOB_PULL_SMALLER))
-			src << "<span class='warning'>It won't budge!</span>"
+			to_chat(src, "<span class='warning'>It won't budge!</span>")
 			return
 
 		// If your size is larger than theirs and you have some
@@ -602,7 +577,7 @@
 	else if(isobj(AM))
 		var/obj/I = AM
 		if(!can_pull_size || can_pull_size < I.w_class)
-			src << "<span class='warning'>It won't budge!</span>"
+			to_chat(src, "<span class='warning'>It won't budge!</span>")
 			return
 
 	if(pulling)
@@ -621,7 +596,7 @@
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		if(H.pull_damage())
-			src << "\red <B>Pulling \the [H] in their current condition would probably be a bad idea.</B>"
+			to_chat(src, "\red <B>Pulling \the [H] in their current condition would probably be a bad idea.</B>")
 
 	//Attempted fix for people flying away through space when cuffed and dragged.
 	if(ismob(AM))
@@ -651,7 +626,7 @@
 /mob/proc/see(message)
 	if(!is_active())
 		return 0
-	src << message
+	to_chat(src, message)
 	return 1
 
 /mob/proc/show_viewers(message)
@@ -938,11 +913,11 @@ mob/proc/yank_out_object()
 	usr.setClickCooldown(20)
 
 	if(usr.stat == 1)
-		usr << "You are unconcious and cannot do that!"
+		to_chat(usr, "You are unconcious and cannot do that!")
 		return
 
 	if(usr.restrained())
-		usr << "You are restrained and cannot do that!"
+		to_chat(usr, "You are restrained and cannot do that!")
 		return
 
 	var/mob/S = src
@@ -956,17 +931,17 @@ mob/proc/yank_out_object()
 	valid_objects = get_visible_implants(0)
 	if(!valid_objects.len)
 		if(self)
-			src << "You have nothing stuck in your body that is large enough to remove."
+			to_chat(src, "You have nothing stuck in your body that is large enough to remove.")
 		else
-			U << "[src] has nothing stuck in their wounds that is large enough to remove."
+			to_chat(U, "[src] has nothing stuck in their wounds that is large enough to remove.")
 		return
 
 	var/obj/item/weapon/selection = input("What do you want to yank out?", "Embedded objects") in valid_objects
 
 	if(self)
-		src << "<span class='warning'>You attempt to get a good grip on [selection] in your body.</span>"
+		to_chat(src, "<span class='warning'>You attempt to get a good grip on [selection] in your body.</span>")
 	else
-		U << "<span class='warning'>You attempt to get a good grip on [selection] in [S]'s body.</span>"
+		to_chat(U, "<span class='warning'>You attempt to get a good grip on [selection] in [S]'s body.</span>")
 
 	if(!do_mob(U, S, 30))
 		return
@@ -993,11 +968,6 @@ mob/proc/yank_out_object()
 		affected.implants -= selection
 		H.shock_stage+=20
 		affected.take_damage((selection.w_class * 3), 0, 0, 1, "Embedded object extraction")
-
-		if(prob(selection.w_class * 5)) //I'M SO ANEMIC I COULD JUST -DIE-.
-			var/datum/wound/internal_bleeding/I = new (min(selection.w_class * 5, 15))
-			affected.wounds += I
-			H.custom_pain("Something tears wetly in your [affected] as [selection] is pulled free!", 1)
 
 		if (ishuman(U))
 			var/mob/living/carbon/human/human_user = U
@@ -1084,9 +1054,60 @@ mob/proc/yank_out_object()
 	set_face_dir()
 
 	if(!facing_dir)
-		usr << "You are now not facing anything."
+		to_chat(usr, "You are now not facing anything.")
 	else
-		usr << "You are now facing [dir2text(facing_dir)]."
+		to_chat(usr, "You are now facing [dir2text(facing_dir)].")
+
+/mob/verb/browse_mine_stats()
+	set name		= "Show Stats Values"
+	set desc		= "Browse your character stats."
+	set category	= "IC"
+	set src			= usr
+
+	browse_src_stats(src)
+
+/mob/proc/browse_src_stats(mob/user)
+	var/aditonalcss = {"
+		<style>
+			table, th, td {
+				border: #3333aa solid 1px;
+				border-radius: 5px;
+				padding: 5px;
+				text-align: center;
+			}
+			th{
+				background:#633;
+			}
+		</style>
+	"}
+	var/table_header = "<th>Stat's Name<th>Stat's Value"
+	var/list/S = list()
+	for(var/TS in ALL_STATS)
+		S += "<td>[TS]<td>[getStatStats(TS)]"
+	var/data = {"
+		[aditonalcss]
+		[user == src ? "Your stats:" : "[name]'s stats"]
+		<table>
+			<tr>[table_header]
+			<tr>[S.Join("<tr>")]
+		</table>
+	"}
+
+	var/datum/browser/B = new(src, "StatsBrowser","[user == src ? "Your stats:" : "[name]'s stats"]", 220, 345)
+	B.set_content(data)
+	B.set_window_options("can_resize=0;can_minimize=0")
+	B.open()
+
+/mob/proc/getStatStats(typeOfStat)
+	if (SSticker.current_state != GAME_STATE_PREGAME)
+		if(ishuman(src))
+			var/mob/living/carbon/human/H = src
+			if (H.sanity.level <= 35)
+				var/loss_stat = round((100 - H.sanity.level) / 6)
+				var/false_stat = rand(stats.getStat(typeOfStat) - loss_stat, stats.getStat(typeOfStat))
+				return abs(false_stat)
+			return stats.getStat(typeOfStat)
+		return 0
 
 /mob/proc/set_face_dir(var/newdir)
 	if(!isnull(facing_dir) && newdir == facing_dir)
@@ -1163,14 +1184,14 @@ mob/proc/yank_out_object()
 /mob/proc/check_CH(CH_name as text, var/CH_type, var/second_arg = null)
 	if(!src.client.CH || !istype(src.client.CH, CH_type))//(src.client.CH.handler_name != CH_name))
 		src.client.CH = new CH_type(client, second_arg)
-		src << SPAN_WARNING("You prepare [CH_name].")
+		to_chat(src, SPAN_WARNING("You prepare [CH_name]."))
 	else
 		kill_CH()
 	return
 
 /mob/proc/kill_CH()
 	if (src.client.CH)
-		src << SPAN_NOTICE ("You unprepare [src.client.CH.handler_name].")
+		to_chat(src, SPAN_NOTICE ("You unprepare [src.client.CH.handler_name]."))
 		qdel(src.client.CH)
 
 
@@ -1184,3 +1205,52 @@ mob/proc/yank_out_object()
 
 /mob/proc/get_face_name()
 	return name
+
+/client/proc/check_has_body_select()
+	return mob && mob.HUDneed && mob.HUDneed["damage zone"]
+
+/client/verb/body_toggle_head()
+	set name = "body-toggle-head"
+	set hidden = TRUE
+	set category = "OOC"
+	toggle_zone_sel(list(BP_HEAD,BP_EYES,BP_MOUTH))
+
+/client/verb/body_r_arm()
+	set name = "body-r-arm"
+	set hidden = TRUE
+	set category = "OOC"
+	toggle_zone_sel(list(BP_R_ARM))
+
+/client/verb/body_l_arm()
+	set name = "body-l-arm"
+	set hidden = TRUE
+	toggle_zone_sel(list(BP_L_ARM))
+
+/client/verb/body_chest()
+	set name = "body-chest"
+	set hidden = TRUE
+	toggle_zone_sel(list(BP_CHEST))
+
+/client/verb/body_groin()
+	set name = "body-groin"
+	set hidden = TRUE
+	toggle_zone_sel(list(BP_GROIN))
+
+/client/verb/body_r_leg()
+	set name = "body-r-leg"
+	set hidden = TRUE
+	toggle_zone_sel(list(BP_R_LEG))
+
+/client/verb/body_l_leg()
+	set name = "body-l-leg"
+	set hidden = TRUE
+	toggle_zone_sel(list(BP_L_LEG))
+
+/client/proc/toggle_zone_sel(list/zones)
+	if(!check_has_body_select())
+		return
+	var/obj/screen/zone_sel/selector = mob.HUDneed["damage zone"]
+	selector.set_selected_zone(next_list_item(mob.targeted_organ,zones))
+/mob/proc/set_stat(var/new_stat)
+	. = stat != new_stat
+	stat = new_stat

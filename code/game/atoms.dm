@@ -2,7 +2,7 @@
 	layer = TURF_LAYER
 	plane = GAME_PLANE
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
-	var/level = 2
+	var/level = ABOVE_PLATING_LEVEL
 	var/flags = 0
 	var/list/fingerprints
 	var/list/fingerprintshidden
@@ -30,10 +30,14 @@
 
 	var/initialized = FALSE
 
+	var/list/preloaded_reagents = null
+
+	var/sanity_damage = 0
+
 /atom/New(loc, ...)
 	init_plane()
 	update_plane()
-	var/do_initialize = SSatoms.initialized
+	var/do_initialize = SSatoms.init_state
 	if(do_initialize > INITIALIZATION_INSSATOMS)
 		args[1] = do_initialize == INITIALIZATION_INNEW_MAPLOAD
 		if(SSatoms.InitAtom(src, args))
@@ -61,6 +65,16 @@
 		update_light()
 
 	update_plane()
+
+	if(preloaded_reagents)
+		if(!reagents)
+			var/volume = 0
+			for(var/reagent in preloaded_reagents)
+				volume += preloaded_reagents[reagent]
+			create_reagents(volume)
+		for(var/reagent in preloaded_reagents)
+			reagents.add_reagent(reagent, preloaded_reagents[reagent])
+
 
 	return INITIALIZE_HINT_NORMAL
 
@@ -132,7 +146,7 @@
 
 
 /atom/proc/bullet_act(obj/item/projectile/P, def_zone)
-	P.on_hit(src, 0, def_zone)
+	P.on_hit(src, def_zone)
 	. = FALSE
 
 /atom/proc/in_contents_of(container)//can take class or object instance as argument
@@ -168,6 +182,9 @@
 			found += A.search_contents_for(path, filter_path)
 	return found
 
+//This proc is called on the location of an atom when the atom is Destroy()'d
+/atom/proc/handle_atom_del(atom/A)
+	return
 
 
 
@@ -255,12 +272,14 @@ its easier to just keep the beam vertical.
 			full_name += "oil-stained [name][infix]."
 
 	if(isobserver(user))
-		user << "\icon[src] This is [full_name] [suffix]"
+		to_chat(user, "\icon[src] This is [full_name] [suffix]")
 	else
 		user.visible_message("<font size=1>[user.name] looks at [src].</font>", "\icon[src] This is [full_name] [suffix]")
 
+	to_chat(user, show_stat_verbs()) //rewrite to show_stat_verbs(user)?
+
 	if(desc)
-		user << desc
+		to_chat(user, desc)
 
 	if(reagents)
 		if(reagent_flags & TRANSPARENT)
@@ -619,7 +638,7 @@ its easier to just keep the beam vertical.
 
 //This proc is called when objects are created during the round by players.
 //This allows them to behave differently from objects that are mapped in, adminspawned, or purchased
-/atom/proc/Created()
+/atom/proc/Created(var/mob/user)
 	return
 	//Should be called when:
 		//An item is printed at an autolathe or protolathe **COMPLETE**
@@ -682,3 +701,12 @@ its easier to just keep the beam vertical.
 		result += a
 		result |= a.get_recursive_contents()
 	return result
+
+/atom/proc/AllowDrop()
+	return FALSE
+
+/atom/proc/drop_location()
+	var/atom/L = loc
+	if(!L)
+		return null
+	return L.AllowDrop() ? L : L.drop_location()

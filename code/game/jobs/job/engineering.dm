@@ -27,6 +27,7 @@
 		STAT_MEC = 40,
 		STAT_COG = 20,
 		STAT_TGH = 15,
+		STAT_VIG = 10,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/comm,
@@ -46,6 +47,8 @@ You are to keep the ship running and constantly improve it as much as you are ab
 	loyalties = "Your first loyalty is to your pride. The engineering department is your territory, and machinery across the station are your responsibility. Do not tolerate others interfering with them, intruding on your space, or questioning your competence. You don't need inspections, oversight or micromanagement. Outsiders should only enter your spaces by invitation, or out of necessity. Even the captain and other command staff are no exception.<br>\
 
 Your second loyalty is to your clan. Ensure they are paid, fed and safe. Don't risk their lives unnecessarily. If an area is infested with monsters, there's no reason to risk lives trying to repair anything inside there. If one of your people is imprisoned, endangered or accused, you should fight for them. Treat every technomancer like your family"
+
+	perks = list(/datum/perk/inspiration)
 
 /obj/landmark/join/start/chief_engineer
 	name = "Technomancer Exultant"
@@ -111,6 +114,8 @@ Eris is your home, your life, and your livelihood. Take pride in it, and in your
 	loyalties = "	As a technomancer, your first loyalty is to your fellow technomancers. Ensure they are safe and well supplied, defend them, assist them, and share everything with them. If problems arise between you, ask the Exultant to rule on it. Don't snitch on your fellow clanmates by calling ironhammer. The Technomancer Exultant is the chief of your clan, and in many ways a father figure. Trust in their wisdom and follow their instructions above anyone else's.<br>\
 	<br>\
 	Your second loyalty is to your ship. Unlike most of your crew, who would simply go home, Eris IS your home. Avoid abandoning ship at all costs. This is where you live and it's worth sacrificing for. Take pride in your work, and make eris something to be cherished."
+
+	perks = list(/datum/perk/inspiration)
 
 /obj/landmark/join/start/technomancer
 	name = "Technomancer"

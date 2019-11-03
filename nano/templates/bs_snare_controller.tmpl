@@ -1,0 +1,25 @@
+<h1>
+	Welcome to Snare Control!
+</h1><br>
+
+{{:helper.link('Refresh Snaring Connection', null, {'resync' : 1}, null)}}
+{{:helper.link('Set Hub ID', null, {'set_id' : 1}, null)}}<br><br>
+
+Hub ID: {{:data.hub_id}}<br>
+
+{{if data.fail_connect}}
+	<b>ERROR: Fail to establish connection with hub!</b>
+{{else}}
+	<b>HUB with ID {{:data.hub_id}} connected</b><br>
+	<h2>
+		Available Snare:<br>
+	</h2>
+	Snare Status:<br>
+	{{if data.snare_id}}
+		<font color = "#00ff00">SNARE CONNECTED</font><br>
+		<b>Snare ID:</b> {{:data.snare_id}}<br>
+	{{else}}
+		<font color="#ff0000"><b>SNARE NOT FOUND</b></font><br>
+	{{/if}}
+	{{:helper.link('Return Snared Entity Back', 'undefined', {'get_snaring' : 1}, null)}}
+{{/if}}

@@ -38,7 +38,7 @@
 		return
 	if(O.get_tool_type(user, list(QUALITY_SCREW_DRIVING), src) && emag)
 		//Stops people from just unscrewing the monitor and putting it back to get the console working again.
-		user << SPAN_WARNING("It is too hot to mess with!")
+		to_chat(user, SPAN_WARNING("It is too hot to mess with!"))
 		return
 
 	..()
@@ -62,7 +62,7 @@
 			update_icon()
 			return 1
 		else
-			user << SPAN_NOTICE("A no server error appears on the screen.")
+			to_chat(user, SPAN_NOTICE("A no server error appears on the screen."))
 
 /obj/machinery/computer/message_monitor/update_icon()
 	if(emag || hacking)
@@ -263,10 +263,10 @@
 
 /obj/machinery/computer/message_monitor/proc/BruteForce(mob/user as mob)
 	if(isnull(linkedServer))
-		user << SPAN_WARNING("Could not complete brute-force: Linked Server Disconnected!")
+		to_chat(user, SPAN_WARNING("Could not complete brute-force: Linked Server Disconnected!"))
 	else
 		var/currentKey = src.linkedServer.decryptkey
-		user << SPAN_WARNING("Brute-force completed! The key is '[currentKey]'.")
+		to_chat(user, SPAN_WARNING("Brute-force completed! The key is '[currentKey]'."))
 	src.hacking = 0
 	update_icon()
 	src.screen = 0 // Return the screen back to normal
@@ -419,7 +419,7 @@
 							if(!P.owner || P.toff || P.hidden) continue
 							sendPDAs += P
 						if(PDAs && PDAs.len > 0)
-							customrecepient = input(usr, "Select a PDA from the list.") as null|anything in sortAtom(sendPDAs)
+							customrecepient = input(usr, "Select a PDA from the list.") as null|anything in sortNames(sendPDAs)
 						else
 							customrecepient = null
 

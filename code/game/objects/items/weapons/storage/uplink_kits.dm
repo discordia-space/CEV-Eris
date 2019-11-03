@@ -35,7 +35,7 @@
 
 			if("murder")
 				new /obj/item/weapon/melee/energy/sword(src)
-				new /obj/item/clothing/glasses/thermal/syndi(src)
+				new /obj/item/clothing/glasses/powered/thermal/syndi(src)
 				new /obj/item/weapon/card/emag(src)
 				new /obj/item/clothing/shoes/syndigaloshes(src)
 				return
@@ -78,6 +78,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/imp_freedom
 	name = "boxed freedom implant (with injector)"
+	desc = "A box with freedom implant inside. Install it in your hand or leg, chose emote. You can remove instantly handcuffs or legcuffs with your emotion. Have a small amount of uses."
 
 /obj/item/weapon/storage/box/syndie_kit/imp_freedom/New()
 	new /obj/item/weapon/implanter/freedom(src)
@@ -85,6 +86,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/imp_compress
 	name = "box (C)"
+	desc = "A box with compressed implanter inside. Choose an item with this implant, install it inside you and choose emote to activate it. Take your chosen item whenever you want by your chosen emotion. One use."
 
 /obj/item/weapon/storage/box/syndie_kit/imp_compress/New()
 	new /obj/item/weapon/implanter/compressed(src)
@@ -92,13 +94,22 @@
 
 /obj/item/weapon/storage/box/syndie_kit/imp_explosive
 	name = "box (E)"
+	desc = "A box with explosive implant inside. When you use it on yours enemy, you can choose three ways to use it: destroy limb, destroy your enemy or make a small explosion. Activation by phrase you choose too. One use."
 
 /obj/item/weapon/storage/box/syndie_kit/imp_explosive/New()
 	new /obj/item/weapon/implanter/explosive(src)
 	..()
 
+/obj/item/weapon/storage/box/syndie_kit/imp_spying
+	name = "box (S)"
+
+/obj/item/weapon/storage/box/syndie_kit/imp_spying/New()
+	new /obj/item/weapon/implanter/spying(src)
+	..()
+
 /obj/item/weapon/storage/box/syndie_kit/imp_uplink
 	name = "boxed uplink implant (with injector)"
+	desc = "Uplink inside your head."
 
 /obj/item/weapon/storage/box/syndie_kit/imp_uplink/New()
 	//Turn off passive gain for boxed implant uplinks. To prevent exploits of gathering tons of free TC
@@ -160,6 +171,19 @@
 	new /obj/item/device/spy_bug(src)
 	new /obj/item/device/spy_monitor(src)
 
+
+
+// Guns
+/obj/item/weapon/storage/box/syndie_kit/dartgun
+	name  = "dartgun kit"
+	desc = "Just like a mosquito bite."
+
+/obj/item/weapon/storage/box/syndie_kit/dartgun/New()
+	..()
+	new /obj/item/weapon/gun/projectile/dartgun(src)
+	new /obj/item/ammo_magazine/chemdart(src)
+
+
 /obj/item/weapon/storage/box/syndie_kit/g9mm
 	name = "\improper Smooth operator"
 	desc = "9mm with silencer kit."
@@ -168,6 +192,49 @@
 	..()
 	new /obj/item/weapon/gun/projectile/clarissa(src)
 	new /obj/item/weapon/silencer(src)
+	new /obj/item/ammo_magazine/mc9mm(src)
+
+/obj/item/weapon/storage/box/syndie_kit/c20r
+	name = "C-20r box"
+	desc = "C-20r kit"
+
+/obj/item/weapon/storage/box/syndie_kit/c20r/New()
+	..()
+	new /obj/item/weapon/gun/projectile/automatic/c20r(src)
+	new /obj/item/ammo_magazine/smg10mm(src)
+
+/obj/item/weapon/storage/box/syndie_kit/revolver
+	name = "Revolver box"
+	desc = "Revolver kit"
+
+/obj/item/weapon/storage/box/syndie_kit/revolver/New()
+	..()
+	new /obj/item/weapon/gun/projectile/revolver(src)
+	new /obj/item/ammo_magazine/sl357(src)
+
+/obj/item/weapon/storage/box/syndie_kit/sts35
+	name = "Assault rifle box"
+	desc = "Assault rifle kit"
+	icon_state = "box_of_doom_big"
+	w_class = ITEM_SIZE_HUGE
+
+/obj/item/weapon/storage/box/syndie_kit/sts35/New()
+	..()
+	new /obj/item/weapon/gun/projectile/automatic/sts35(src)
+	new /obj/item/ammo_magazine/c762_short(src)
+
+/obj/item/weapon/storage/box/syndie_kit/antimaterial_rifle
+	name = "Sniper rifle box"
+	desc = "Sniper rifle kit. One shot for real men."
+	icon_state = "box_of_doom_big"
+	w_class = ITEM_SIZE_HUGE
+
+/obj/item/weapon/storage/box/syndie_kit/antimaterial_rifle/New()
+	..()
+	new /obj/item/ammo_casing/a145(src)
+	new /obj/item/weapon/weaponparts/heavysniper/disassembled(src)
+	new /obj/item/weapon/weaponparts/heavysniper/stock(src)
+	new /obj/item/weapon/weaponparts/heavysniper/barrel(src)
 
 /obj/item/weapon/storage/box/syndie_kit/toxin
 	name = "toxin kit"
@@ -227,6 +294,16 @@
 	..()
 	new /obj/item/rig_module/electrowarfare_suite(src)
 	new /obj/item/rig_module/voice(src)
+
+/obj/item/weapon/storage/box/syndie_kit/spy_sensor
+	name = "sensor kit"
+
+/obj/item/weapon/storage/box/syndie_kit/spy_sensor/New()
+	..()
+	new /obj/item/device/spy_sensor(src)
+	new /obj/item/device/spy_sensor(src)
+	new /obj/item/device/spy_sensor(src)
+	new /obj/item/device/spy_sensor(src)
 
 
 /obj/item/weapon/storage/secure/briefcase/money

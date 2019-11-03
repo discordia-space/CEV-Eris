@@ -11,7 +11,7 @@
 	desc = "The peak of thousands of years of laundry evolution."
 
 	w_class = ITEM_SIZE_HUGE
-	max_w_class = ITEM_SIZE_LARGE
+	max_w_class = ITEM_SIZE_BULKY
 	max_storage_space = 25 //20 for clothes + a bit of additional space for non-clothing items that were worn on body
 	storage_slots = 14
 	use_to_pickup = 1
@@ -28,17 +28,17 @@
 		if (user.hand)
 			temp = H.get_organ(BP_L_ARM)
 		if(!temp)
-			user << SPAN_WARNING("You need two hands to pick this up!")
+			to_chat(user, SPAN_WARNING("You need two hands to pick this up!"))
 			return
 
 	if(user.get_inactive_hand())
-		user << SPAN_WARNING("You need your other hand to be empty")
+		to_chat(user, SPAN_WARNING("You need your other hand to be empty"))
 		return
 	return ..()
 
 /obj/item/weapon/storage/laundry_basket/attack_self(mob/user as mob)
 	var/turf/T = get_turf(user)
-	user << SPAN_NOTICE("You dump the [src]'s contents onto \the [T].")
+	to_chat(user, SPAN_NOTICE("You dump the [src]'s contents onto \the [T]."))
 	return ..()
 
 /obj/item/weapon/storage/laundry_basket/pre_pickup(mob/user)

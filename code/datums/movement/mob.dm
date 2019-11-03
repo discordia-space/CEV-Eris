@@ -14,7 +14,7 @@
 	return MOVEMENT_STOP
 
 /datum/movement_handler/mob/relayed_movement/proc/AddAllowedMover(var/mover)
-	LAZYDISTINCTADD(allowed_movers, mover)
+	LAZYOR(allowed_movers, mover)
 
 /datum/movement_handler/mob/relayed_movement/proc/RemoveAllowedMover(var/mover)
 	LAZYREMOVE(allowed_movers, mover)
@@ -100,7 +100,7 @@
 // Space movement
 /datum/movement_handler/mob/space/DoMove(var/direction, var/mob/mover)
 	if(!mob.check_gravity())
-		var/allowmove = mob.allow_spacemove(0)
+		var/allowmove = mob.allow_spacemove()
 		if(!allowmove)
 			return MOVEMENT_HANDLED
 		else if(allowmove == -1 && mob.handle_spaceslipping()) //Check to see if we slipped
@@ -113,7 +113,7 @@
 		return MOVEMENT_PROCEED
 
 	if(!mob.check_gravity())
-		if(!mob.allow_spacemove(0))
+		if(!mob.allow_spacemove())
 			return MOVEMENT_STOP
 	return MOVEMENT_PROCEED
 

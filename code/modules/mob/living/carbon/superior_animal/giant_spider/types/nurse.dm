@@ -15,6 +15,8 @@
 	poison_per_bite = 2
 	var/atom/cocoon_target
 	poison_type = "stoxin"
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/spider/nurse
+	meat_amount = 3
 	var/fed = 0
 
 /mob/living/carbon/superior_animal/giant_spider/nurse/attemptAttackOnTarget()
@@ -23,7 +25,7 @@
 		var/mob/living/carbon/human/H = target
 		if(prob(poison_per_bite))
 			var/obj/item/organ/external/O = safepick(H.organs)
-			if(O && !(O.robotic >= ORGAN_ROBOT))
+			if(O && !BP_IS_ROBOTIC(O))
 				var/eggs = new /obj/effect/spider/eggcluster(O, src)
 				O.implants += eggs
 
@@ -132,7 +134,7 @@
 										var/mob/living/carbon/human/H = M
 										if (H.get_blood_volume() >= 1)
 											src.visible_message(SPAN_WARNING("\The [src] sticks a proboscis into \the [cocoon_target] and sucks a viscous substance out."))
-											H.drip(H.species.blood_volume)
+											H.drip_blood(H.species.blood_volume)
 											fed++
 
 									C = C || new(targetTurf)

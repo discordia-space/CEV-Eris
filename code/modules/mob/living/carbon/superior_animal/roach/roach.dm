@@ -13,8 +13,8 @@
 	turns_per_move = 4
 	turns_since_move = 0
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/roachmeat
-	meat_amount = 3
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat
+	meat_amount = 2
 
 	maxHealth = 10
 	health = 10
@@ -32,6 +32,8 @@
 	acceptableTargetDistance = 3 //consider all targets within this range equally
 	randpixel = 12
 	overkill_gib = 16
+
+	sanity_damage = 0.5
 
 //When roaches die near a leader, the leader may call for reinforcements
 /mob/living/carbon/superior_animal/roach/death()

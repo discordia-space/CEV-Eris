@@ -21,7 +21,7 @@
 	text = "Restart Round"
 
 /datum/vote_choice/restart/on_win()
-	world << "<b>World restarting due to vote...<b>"
+	to_chat(world, "<b>World restarting due to vote...<b>")
 	sleep(50)
 	log_game("Rebooting due to restart vote")
 	world.Reboot()
@@ -84,7 +84,7 @@
 /datum/poll/storyteller/Process()
 	if(pregame && SSticker.current_state != GAME_STATE_PREGAME)
 		SSvote.stop_vote()
-		world << "<b>Voting aborted due to game start.</b>"
+		to_chat(world, "<b>Voting aborted due to game start.</b>")
 	return
 
 
@@ -93,7 +93,7 @@
 	if (SSticker.current_state == GAME_STATE_PREGAME)
 		pregame = TRUE
 		round_progressing = FALSE
-		world << "<b>Game start has been delayed due to voting.</b>"
+		to_chat(world, "<b>Game start has been delayed due to voting.</b>")
 
 //If one wins, on_end is called after on_win, so the new storyteller will be set in master_storyteller
 /datum/poll/storyteller/on_end()
@@ -109,11 +109,30 @@
 	set_storyteller(config.pick_storyteller(master_storyteller), announce = !(pregame)) //This does the actual work //Even if master storyteller is null, this will pick the default
 	if (pregame)
 		round_progressing = TRUE
-		world << "<b>The game will start in [SSticker.pregame_timeleft] seconds.</b>"
+		to_chat(world, "<b>The game will start in [SSticker.pregame_timeleft] seconds.</b>")
 		spawn(10 SECONDS)
 			var/tipsAndTricks/T = SStips.getRandomTip()
 			if(T)
-				to_chat(world, SStips.formatTip(T, "Random Tip: "))
+				var/typeText = ""
+				if(istype(T, /tipsAndTricks/gameplay))
+					typeText = "Gameplay"
+				else if(istype(T, /tipsAndTricks/mobs))
+					var/tipsAndTricks/mobs/MT = T
+					var/mob/M = pick(MT.mobs_list)
+					// I suppose this will be obsolete someday
+					if(M == /mob/living/carbon/human)
+						typeText = "Human"
+					else
+						typeText = initial(M.name)
+				else if(istype(T, /tipsAndTricks/roles))
+					var/tipsAndTricks/roles/RT = T
+					var/datum/antagonist/A = pick(RT.roles_list)
+					typeText = initial(A.role_text)
+				else if(istype(T, /tipsAndTricks/jobs))
+					var/tipsAndTricks/jobs/JT = T
+					var/datum/job/J = pick(JT.jobs_list)
+					typeText = initial(J.title)
+				to_chat(world, SStips.formatTip(T, "Random Tip \[[typeText]\]: "))
 	pregame = FALSE
 
 /datum/vote_choice/storyteller
@@ -166,7 +185,7 @@
 		return 0 //Shouldnt be possible, but safety
 
 	var/mob/M = C.mob
-	if (!M || isghost(M) || isnewplayer(M))
+	if (!M || isghost(M) || isnewplayer(M) || ismouse(M) || isdrone(M))
 		return VOTE_WEIGHT_LOW
 
 	var/datum/mind/mind = M.mind
@@ -236,7 +255,7 @@
 	can_unvote = FALSE
 	see_votes = TRUE
 
-	question = input("What's your vote question?","Custom vote","Custom vote question")
+	question = cyrillic_to_unicode(input("What's your vote question?","Custom vote","Custom vote question"))
 
 	var/choice_text = ""
 	var/ch_num = 1
@@ -245,7 +264,7 @@
 		ch_num += 1
 		if(choice_text != "")
 			var/datum/vote_choice/custom/C = new
-			C.text = choice_text
+			C.text = cyrillic_to_unicode(choice_text)
 			choices.Add(C)
 	while(choice_text != "" && ch_num < 10)
 

@@ -30,7 +30,7 @@ SUBSYSTEM_DEF(job)
 		occupations_by_name[job.title] = job
 
 	if(!occupations.len)
-		world << SPAN_WARNING("Error setting up jobs, no job datums found!")
+		to_chat(world, SPAN_WARNING("Error setting up jobs, no job datums found!"))
 		return FALSE
 
 	return TRUE
@@ -102,7 +102,7 @@ SUBSYSTEM_DEF(job)
 		if(job.minimum_character_age && (player.client.prefs.age < job.minimum_character_age))
 			continue
 
-		if(istype(job, GetJob("Assistant"))) // We don't want to give him assistant, that's boring!
+		if(istype(job, GetJob(ASSISTANT_TITLE))) // We don't want to give him assistant, that's boring!
 			continue
 
 		if(job in command_positions) //If you want a command position, select it!
@@ -222,7 +222,7 @@ SUBSYSTEM_DEF(job)
 	Debug("AC1, Candidates: [assistant_candidates.len]")
 	for(var/mob/new_player/player in assistant_candidates)
 		Debug("AC1 pass, Player: [player]")
-		AssignRole(player, "Assistant")
+		AssignRole(player, ASSISTANT_TITLE)
 		assistant_candidates -= player
 	Debug("DO, AC1 end")
 
@@ -282,7 +282,7 @@ SUBSYSTEM_DEF(job)
 	for(var/mob/new_player/player in unassigned)
 		if(player.client.prefs.alternate_option == BE_ASSISTANT)
 			Debug("AC2 Assistant located, Player: [player]")
-			AssignRole(player, "Assistant")
+			AssignRole(player, ASSISTANT_TITLE)
 
 	//For ones returning to lobby
 	for(var/mob/new_player/player in unassigned)
@@ -300,6 +300,8 @@ SUBSYSTEM_DEF(job)
 	var/datum/job/job = GetJob(rank)
 	var/list/spawn_in_storage = list()
 
+	var/datum/job_flavor/flavor = pick(job.random_flavors)
+
 	if(job)
 
 		//Equip custom gear loadout.
@@ -308,13 +310,6 @@ SUBSYSTEM_DEF(job)
 
 		//Equip job items and language stuff
 		job.setup_account(H)
-		job.equip(H, H.mind ? H.mind.role_alt_title : "")
-		job.add_stats(H)
-		job.add_additiional_language(H)
-
-
-		job.apply_fingerprints(H)
-		spawn_in_storage = EquipCustomLoadout(H, job)
 		// EMAIL GENERATION
 		if(rank != "Robot" && rank != "AI")		//These guys get their emails later.
 			var/domain
@@ -323,8 +318,16 @@ SUBSYSTEM_DEF(job)
 			desired_name = H.real_name
 			ntnet_global.create_email(H, desired_name, domain)
 		// END EMAIL GENERATION
+		job.equip(H, flavor ? flavor.title : H.mind ? H.mind.role_alt_title : "")
+		job.add_stats(H, flavor)
+		job.add_additiional_language(H)
+
+
+		job.apply_fingerprints(H)
+		spawn_in_storage = EquipCustomLoadout(H, job)
+
 	else
-		H << "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator."
+		to_chat(H, "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator.")
 
 	H.job = rank
 
@@ -372,13 +375,13 @@ SUBSYSTEM_DEF(job)
 			W.buckled_mob = H
 			W.add_fingerprint(H)
 
-	H << "<B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B>"
+	to_chat(H, "<B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B>")
 
 	if(job.supervisors)
-		H << "<b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>"
+		to_chat(H, "<b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>")
 
 	if(job.req_admin_notify)
-		H << "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>"
+		to_chat(H, "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>")
 
 	//Gives glasses to the vision impaired
 	if(H.disabilities & NEARSIGHTED)
@@ -387,11 +390,10 @@ SUBSYSTEM_DEF(job)
 			var/obj/item/clothing/glasses/G = H.glasses
 			G.prescription = 1
 
-	if(H.religion == "Neotheology" && !locate(/obj/item/weapon/implant/core_implant/cruciform, H))
-		var/obj/item/weapon/implant/core_implant/cruciform/C = new /obj/item/weapon/implant/core_implant/cruciform(H)
-
-		C.install(H)
-		C.activate()
+	var/obj/item/weapon/implant/core_implant/C = H.get_core_implant()
+	if(C)
+		C.install_default_modules_by_job(job)
+		C.access.Add(job.cruciform_access)
 
 	BITSET(H.hud_updateflag, ID_HUD)
 	BITSET(H.hud_updateflag, SPECIALROLE_HUD)
@@ -545,7 +547,7 @@ proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
 			if(SP.can_spawn(H, rank))
 				return SP
 			else
-				to_chat(H, SPAN_WARNING("Unable to spawn you at [SP.name]."))// you will be assigned default one which is \"[SP.display_name]\".")
+				to_chat(H, SPAN_WARNING("Unable to spawn you at [SP.name].")) // you will be assigned default one which is \"[SP.display_name]\"."
 
 	// No spawn point? Something is fucked.
 	// Pick the default one.

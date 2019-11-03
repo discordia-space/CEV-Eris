@@ -20,7 +20,7 @@
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SUPPLY //connects to regular and supply pipes
 
 	var/area/initial_loc
-	level = 1
+	level = BELOW_PLATING_LEVEL
 	layer = GAS_SCRUBBER_LAYER
 	var/area_uid
 	var/id_tag = null
@@ -116,7 +116,7 @@
 	if(!istype(T))
 		return
 
-	if(!T.is_plating() && node1 && node1.level == 1 && istype(node1, /obj/machinery/atmospherics/pipe))
+	if(!T.is_plating() && node1 && node1.level == BELOW_PLATING_LEVEL && istype(node1, /obj/machinery/atmospherics/pipe))
 		vent_icon += "h"
 
 	if(welded)
@@ -134,7 +134,7 @@
 		var/turf/T = get_turf(src)
 		if(!istype(T))
 			return
-		if(!T.is_plating() && node1 && node1.level == 1 && istype(node1, /obj/machinery/atmospherics/pipe))
+		if(!T.is_plating() && node1 && node1.level == BELOW_PLATING_LEVEL && istype(node1, /obj/machinery/atmospherics/pipe))
 			return
 		else
 			if(node1)
@@ -345,7 +345,7 @@
 	switch(tool_type)
 
 		if(QUALITY_WELDING)
-			user << SPAN_NOTICE("Now welding the vent.")
+			to_chat(user, SPAN_NOTICE("Now welding the vent."))
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				if(!welded)
 					user.visible_message(SPAN_NOTICE("\The [user] welds the vent shut."), SPAN_NOTICE("You weld the vent shut."), "You hear welding.")
@@ -362,20 +362,20 @@
 
 		if(QUALITY_BOLT_TURNING)
 			if (!(stat & NOPOWER) && use_power)
-				user << SPAN_WARNING("You cannot unwrench \the [src], turn it off first.")
+				to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], turn it off first."))
 				return 1
 			var/turf/T = src.loc
 			if (node1 && node1.level==1 && isturf(T) && !T.is_plating())
-				user << SPAN_WARNING("You must remove the plating first.")
+				to_chat(user, SPAN_WARNING("You must remove the plating first."))
 				return 1
 			var/datum/gas_mixture/int_air = return_air()
 			var/datum/gas_mixture/env_air = loc.return_air()
 			if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
-				user << SPAN_WARNING("You cannot unwrench \the [src], it is too exerted due to internal pressure.")
+				to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], it is too exerted due to internal pressure."))
 				add_fingerprint(user)
 				return 1
 
-			user << SPAN_NOTICE("You begin to unfasten \the [src]...")
+			to_chat(user, SPAN_NOTICE("You begin to unfasten \the [src]..."))
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				user.visible_message( \
 					SPAN_NOTICE("\The [user] unfastens \the [src]."), \
@@ -393,11 +393,11 @@
 
 /obj/machinery/atmospherics/unary/vent_pump/examine(mob/user)
 	if(..(user, 1))
-		user << "A small gauge in the corner reads [round(last_flow_rate, 0.1)] L/s; [round(last_power_draw)] W"
+		to_chat(user, "A small gauge in the corner reads [round(last_flow_rate, 0.1)] L/s; [round(last_power_draw)] W")
 	else
-		user << "You are too far away to read the gauge."
+		to_chat(user, "You are too far away to read the gauge.")
 	if(welded)
-		user << "It seems welded shut."
+		to_chat(user, "It seems welded shut.")
 
 /obj/machinery/atmospherics/unary/vent_pump/power_change()
 	var/old_stat = stat
