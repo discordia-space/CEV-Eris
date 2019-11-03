@@ -367,19 +367,15 @@ datum/wound/puncture/massive
 	stages = list("carbonised area" = 50, "healing carbonised area" = 20, "massive burn scar" = 0)
 	damage_type = BURN
 
-/** INTERNAL BLEEDING **/
-/datum/wound/internal_bleeding
-	internal = 1
-	stages = list("severed artery" = 30, "cut artery" = 20, "damaged artery" = 10, "bruised artery" = 5)
-	autoheal_cutoff = 5
-	max_bleeding_stage = 4	//all stages bleed. It's called internal bleeding after all.
-
 /** EXTERNAL ORGAN LOSS **/
 /datum/wound/lost_limb
 
 /datum/wound/lost_limb/New(var/obj/item/organ/external/lost_limb, var/losstype, var/clean)
 	var/damage_amt = lost_limb.max_damage
-	if(clean) damage_amt /= 2
+	if(clean)
+		damage_amt /= 2
+	if(BP_IS_ROBOTIC(lost_limb))
+		damage_amt /= 2
 
 	switch(losstype)
 		if(DROPLIMB_EDGE, DROPLIMB_BLUNT)

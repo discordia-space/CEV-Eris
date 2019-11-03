@@ -1,0 +1,25 @@
+"a" = (/turf/simulated/floor/tiled/white/gray_perforated,/area/space)
+"b" = (/obj/structure/bed/chair/custom/onestar/red,/turf/simulated/floor/tiled/white/gray_perforated,/area/space)
+"c" = (/obj/structure/bed/chair/custom/onestar,/turf/simulated/floor/tiled/white/gray_perforated,/area/space)
+"d" = (/obj/structure/table/onestar,/turf/simulated/floor/tiled/white/gray_perforated,/area/space)
+"e" = (/obj/structure/closet/onestar/tier1,/turf/simulated/floor/tiled/white/gray_perforated,/area/space)
+"f" = (/obj/structure/closet/onestar/tier2,/turf/simulated/floor/tiled/white/gray_perforated,/area/space)
+"g" = (/obj/structure/closet/onestar/tier3,/turf/simulated/floor/tiled/white/gray_perforated,/area/space)
+"h" = (/obj/crawler/crawler_chanceblock,/turf/simulated/floor/tiled/white/gray_perforated,/area/space)
+"i" = (/obj/crawler/crawler_chanceblock_danger,/turf/simulated/floor/tiled/white/gray_perforated,/area/space)
+"j" = (/obj/random/mob/roaches,/turf/simulated/floor/tiled/white/gray_perforated,/area/space)
+"k" = (/obj/random/mob/roaches/low_chance,/turf/simulated/floor/tiled/white/gray_perforated,/area/space)
+"l" = (/obj/random/mob/spiders,/turf/simulated/floor/tiled/white/gray_perforated,/area/space)
+"m" = (/obj/random/mob/spiders/low_chance,/turf/simulated/floor/tiled/white/gray_perforated,/area/space)
+
+(1,1,1) = {"
+aaaaaaaaaaaaa
+abcdefghijkaa
+almaaaaaaaaaa
+aaaaaaaaaaaaa
+aaaaaaaaaaaaa
+aaaaaaaaaaaaa
+aaaaaaaaaaaaa
+aaaaaaaaaaaaa
+aaaaaaaaaaaaa
+"}

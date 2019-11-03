@@ -98,6 +98,8 @@ var/list/disciples = list()
 			var/obj/item/weapon/implant/R = O
 			if(R.wearer != wearer)
 				continue
+			if(R.cruciform_resist)
+				continue
 			wearer.visible_message(SPAN_DANGER("[R.name] rips through [wearer]'s [R.part]."),\
 			SPAN_DANGER("[R.name] rips through your [R.part]."))
 			R.part.take_damage(rand(20,40))

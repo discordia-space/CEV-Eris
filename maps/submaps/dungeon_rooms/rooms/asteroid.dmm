@@ -1,0 +1,32 @@
+"a" = (/turf/simulated/wall,/area/crawler)
+"b" = (/obj/crawler/crawler_wallbreaker,/turf/simulated/wall,/area/crawler)
+"c" = (/turf/space,/area/crawler)
+"d" = (/obj/structure/lattice,/turf/space,/area/crawler)
+"e" = (/turf/simulated/mineral,/area/crawler)
+"f" = (/turf/simulated/floor/plating/under,/area/crawler)
+"g" = (/turf/simulated/floor/asteroid,/area/crawler)
+"h" = (/obj/machinery/computer,/turf/simulated/floor/plating/under,/area/crawler)
+"i" = (/turf/simulated/floor/bluegrid,/area/crawler)
+"j" = (/obj/effect/floor_decal/asteroid,/obj/machinery/floodlight,/turf/simulated/floor/asteroid,/area/crawler)
+"k" = (/obj/structure/inflatable/wall,/turf/simulated/floor/asteroid,/area/crawler)
+"l" = (/obj/structure/railing,/obj/structure/lattice,/turf/space,/area/crawler)
+"m" = (/obj/structure/lattice,/obj/structure/grille,/obj/structure/window/reinforced/full,/turf/space,/area/crawler)
+"n" = (/obj/effect/floor_decal/asteroid,/turf/simulated/floor/plating/under,/area/crawler)
+"o" = (/obj/effect/floor_decal/asteroid,/turf/simulated/floor/asteroid,/area/crawler)
+"p" = (/obj/structure/inflatable/door,/turf/simulated/floor/asteroid,/area/crawler)
+"q" = (/obj/structure/catwalk,/turf/space,/area/crawler)
+"r" = (/obj/structure/catwalk,/obj/machinery/door/airlock/external,/turf/space,/area/crawler)
+"s" = (/obj/crawler/crawler_wallbreaker/vertical,/turf/simulated/wall,/area/crawler)
+"t" = (/obj/structure/railing{dir = 1},/obj/structure/lattice,/turf/space,/area/crawler)
+
+(1,1,1) = {"
+aaaaabbbaaaaa
+acdeeeeeccdca
+aeeeffeeeeeaa
+aeghifjeeklmi
+aegffnopgpqri
+seeggooeeetmi
+adeeeeeeccdaa
+acdcccdcccdca
+aaaabbbbbaaaa
+"}

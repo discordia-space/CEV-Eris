@@ -1,0 +1,30 @@
+"a" = (/turf/simulated/wall/untinted/onestar_reinforced,/area/crawler)
+"b" = (/obj/crawler/crawler_wallbreaker,/turf/simulated/wall/untinted/onestar_reinforced,/area/crawler)
+"c" = (/turf/simulated/floor/tiled/dark/techfloor,/area/crawler)
+"d" = (/turf/simulated/floor/plating/under,/area/crawler)
+"e" = (/turf/simulated/floor/tiled/derelict/white_small_edges,/area/crawler)
+"f" = (/obj/structure/lattice,/obj/structure/grille,/obj/structure/window/reinforced/full,/turf/space,/area/crawler)
+"g" = (/obj/crawler/crawler_wallbreaker/vertical,/turf/simulated/wall/untinted/onestar_reinforced,/area/crawler)
+"h" = (/turf/space,/area/crawler)
+"i" = (/obj/structure/railing,/turf/space,/area/crawler)
+"j" = (/obj/machinery/light/floor,/turf/simulated/floor/tiled/derelict/white_small_edges,/area/crawler)
+"k" = (/obj/crawler/crawler_wallbreaker/vertical,/turf/simulated/floor/bluegrid,/area/crawler)
+"l" = (/obj/structure/catwalk,/turf/space,/area/crawler)
+"m" = (/obj/structure/catwalk,/obj/machinery/door/airlock/external,/turf/space,/area/crawler)
+"n" = (/obj/structure/railing{dir = 1},/turf/space,/area/crawler)
+"o" = (/obj/structure/railing/grey{dir = 4},/turf/simulated/floor/tiled/dark/techfloor,/area/crawler)
+"p" = (/obj/structure/railing/grey{dir = 4},/obj/structure/railing/grey,/turf/simulated/floor/plating/under,/area/crawler)
+"q" = (/obj/structure/railing/grey{dir = 4},/obj/structure/railing/grey{dir = 1},/turf/simulated/floor/plating/under,/area/crawler)
+"r" = (/turf/simulated/floor/tiled/derelict,/area/crawler)
+
+(1,1,1) = {"
+aaaaabbbaaaaa
+acddddddoejea
+adafffaapeeeg
+adfhhhifrrrrk
+adfhhhlmrrrrk
+gdfhhhnfrrrrk
+adafffaaqeeeg
+acddddddoejea
+aaaabbbbbaaaa
+"}

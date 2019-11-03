@@ -19,6 +19,20 @@
 	item_cost = 10
 	path = /obj/item/weapon/storage/box/syndie_kit/imp_explosive
 
+/datum/uplink_item/item/implants/imp_spying
+	name = "Spying Implant"
+	item_cost = 1
+	path = /obj/item/weapon/storage/box/syndie_kit/imp_spying
+	antag_roles = list(ROLE_TRAITOR)
+
+/datum/uplink_item/item/implants/imp_spying/buy(obj/item/device/uplink/U)
+	. = ..()
+	if(.)
+		var/obj/item/weapon/storage/box/syndie_kit/imp_spying/B = .
+		var/obj/item/weapon/implanter/spying/I = locate() in B
+		var/obj/item/weapon/implant/spying/S = I.implant
+		S.owner = U.uplink_owner
+
 /datum/uplink_item/item/implants/imp_uplink
 	name = "Uplink Implant"
 	path = /obj/item/weapon/storage/box/syndie_kit/imp_uplink

@@ -2,6 +2,8 @@
 	var/name
 	var/datum/sanity/holder
 
+	var/icon_state
+
 	var/start_message_span
 	var/list/start_messages
 	var/list/end_messages
@@ -31,6 +33,9 @@
 	return TRUE
 
 /datum/breakdown/proc/occur()
+	var/image/img = image('icons/effects/insanity_statuses.dmi', holder.owner)
+	holder.owner << img
+	flick(icon_state, img)
 	if(start_messages)
 		to_chat(holder.owner, span(start_message_span, pick(start_messages)))
 	if(restore_sanity_pre)

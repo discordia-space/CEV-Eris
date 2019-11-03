@@ -1,0 +1,20 @@
+"a" = (/turf/simulated/wall/untinted/onestar_reinforced,/area/crawler)
+"b" = (/obj/crawler/crawler_wallbreaker,/turf/simulated/wall/untinted/onestar_reinforced,/area/crawler)
+"c" = (/turf/simulated/floor/tiled/derelict,/area/crawler)
+"d" = (/obj/machinery/light/floor,/turf/simulated/floor/tiled/derelict,/area/crawler)
+"e" = (/turf/simulated/floor/bluegrid,/area/crawler)
+"f" = (/obj/machinery/light/floor/built,/turf/simulated/floor/tiled/derelict,/area/crawler)
+"g" = (/obj/crawler/crawler_wallbreaker/vertical,/turf/simulated/wall/untinted/onestar_reinforced,/area/crawler)
+"h" = (/obj/crawler/spawnpoint,/turf/simulated/floor/bluegrid,/area/crawler)
+
+(1,1,1) = {"
+aaaaaabaaaaaa
+accccccccccca
+accdceeecfcca
+accccecccccca
+gcccceheccccg
+accccccecccca
+accdceeecfcca
+accccccccccca
+aaaaaabaaaaaa
+"}
