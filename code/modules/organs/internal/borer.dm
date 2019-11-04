@@ -1,6 +1,15 @@
 //CORTICAL BORER ORGANS.
-/obj/item/organ/borer/Process()
 
+/obj/item/organ/internal/borer
+	name = "cortical borer"
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "borer"
+	organ_tag = BP_BRAIN
+	desc = "A disgusting space slug."
+	parent_organ = BP_HEAD
+	vital = 1
+
+/obj/item/organ/internal/borer/Process()
 	// Borer husks regenerate health, feel no pain, and are resistant to stuns and brainloss.
 	for(var/chem in list("tricordrazine","tramadol","hyperzine","alkysine"))
 		if(owner.reagents.get_reagent_amount(chem) < 3)
@@ -21,23 +30,13 @@
 			goo.basecolor = "#412464"
 			goo.update_icon()
 
-/obj/item/organ/borer
-	name = "cortical borer"
-	icon = 'icons/obj/objects.dmi'
-	icon_state = "borer"
-	organ_tag = BP_BRAIN
-	desc = "A disgusting space slug."
-	parent_organ = BP_HEAD
-	vital = 1
-
-/obj/item/organ/borer/removed(var/mob/living/user)
-
-	..()
-
+/obj/item/organ/internal/borer/removed(mob/living/user)
 	var/mob/living/simple_animal/borer/B = owner.has_brain_worms()
 	if(B)
 		B.leave_host()
 		B.ckey = owner.ckey
+
+	..()
 
 	spawn(0)
 		qdel(src)

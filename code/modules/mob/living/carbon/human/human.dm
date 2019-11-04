@@ -975,32 +975,32 @@ var/list/rank_prefix = list(\
 
 	return
 
-/mob/living/carbon/human/get_visible_implants(var/class = 0)
-
+/mob/living/carbon/human/get_visible_implants()
 	var/list/visible_implants = list()
-	for(var/obj/item/organ/external/organ in src.organs)
-		for(var/obj/item/weapon/O in organ.implants)
-			if(!istype(O,/obj/item/weapon/implant) && (O.w_class > class) && !istype(O,/obj/item/weapon/material/shard/shrapnel))
-				visible_implants += O
 
-	return(visible_implants)
+	for(var/obj/item/organ/external/organ in organs)
+		for(var/obj/item/I in (organ.implants & organ.embedded))
+			visible_implants += I
+
+	return visible_implants
 
 /mob/living/carbon/human/embedded_needs_process()
-	for(var/obj/item/organ/external/organ in src.organs)
+	for(var/obj/item/organ/external/organ in organs)
 		for(var/obj/item/O in organ.implants)
-			if(!istype(O, /obj/item/weapon/implant)) //implant type items do not cause embedding effects, see handle_embedded_objects()
-				return 1
-	return 0
+			if(is_sharp(O))	// Only sharp items can cause issues
+				return TRUE
+	return FALSE
 
 /mob/living/carbon/human/proc/handle_embedded_objects()
 
-	for(var/obj/item/organ/external/organ in src.organs)
+	for(var/obj/item/organ/external/organ in organs)
 		if(organ.status & ORGAN_SPLINTED) //Splints prevent movement.
 			continue
+
 		for(var/obj/item/O in organ.implants)
-			if(!istype(O,/obj/item/weapon/implant) && prob(5)) //Moving with things stuck in you could be bad.
-				// All kinds of embedded objects cause bleeding.
-				if(species.flags & NO_PAIN)
+			// Shrapnel hurts when you move, and implanting knives is a bad idea
+			if(prob(5) && is_sharp(O))
+				if(!organ.can_feel_pain())
 					to_chat(src, SPAN_WARNING("You feel [O] moving inside your [organ.name]."))
 				else
 					var/msg = pick( \
