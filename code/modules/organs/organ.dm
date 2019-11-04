@@ -367,7 +367,25 @@
 	return (max_damage > 0) && !(status & ORGAN_DEAD) || death_time >= world.time - ORGAN_RECOVERY_THRESHOLD
 
 /obj/item/organ/proc/can_feel_pain()
-	return !BP_IS_ROBOTIC(src) && !(status & ORGAN_DEAD) && (!species || !(species.flags & NO_PAIN))
+	if(!owner)
+		return FALSE
+
+	if(BP_IS_ROBOTIC(src))
+		return FALSE
+
+	if(status & ORGAN_DEAD)
+		return FALSE
+
+	if(species && (species.flags & NO_PAIN))
+		return FALSE
+
+	if(owner.stat >= UNCONSCIOUS)
+		return FALSE
+
+	if(owner.analgesic >= 100)
+		return FALSE
+
+	return TRUE
 
 /obj/item/organ/proc/is_usable()
 	return !(status & (ORGAN_CUT_AWAY|ORGAN_MUTATED|ORGAN_DEAD))
