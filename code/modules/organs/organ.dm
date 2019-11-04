@@ -294,7 +294,24 @@
 		if (3)
 			take_damage(1)
 
+// Gets the limb this organ is located in, if any
+/obj/item/organ/proc/get_limb()
+	if(owner)
+		return owner.get_organ(parent_organ)
+
+	else if(istype(loc, /obj/item/organ/external))
+		return loc
+
+	return null
+
 /obj/item/organ/proc/removed(mob/living/user)
+	var/obj/item/organ/external/affected = get_limb()
+
+	if(affected)
+		affected.internal_organs -= src
+		forceMove(affected.drop_location())
+	else
+		forceMove(get_turf(src))
 
 	if(!istype(owner))
 		return
@@ -304,10 +321,6 @@
 	owner.internal_organs_by_name -= null
 	owner.internal_organs -= src
 
-	var/obj/item/organ/external/affected = owner.get_organ(parent_organ)
-	if(affected) affected.internal_organs -= src
-
-	forceMove(get_turf(owner))
 	START_PROCESSING(SSobj, src)
 	rejecting = null
 	var/datum/reagent/organic/blood/organ_blood = locate(/datum/reagent/organic/blood) in reagents.reagent_list
