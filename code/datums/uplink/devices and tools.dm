@@ -98,3 +98,58 @@
 	name = "Hacked Supply Beacon (DANGER!)"
 	item_cost = 14
 	path = /obj/item/supply_beacon
+
+/datum/uplink_item/item/tools/mind_fryer
+	name = "Mind Fryer"
+	item_cost = 3
+	path = /obj/item/device/mind_fryer
+
+/datum/uplink_item/item/tools/mind_fryer/buy(obj/item/device/uplink/U)
+	. = ..()
+	if(.)
+		var/obj/item/device/mind_fryer/M = .
+		M.owner = U.uplink_owner
+
+/datum/uplink_item/item/tools/spy_sensor
+	name = "Spying Sensor (4x)"
+	item_cost = 1
+	path = /obj/item/weapon/storage/box/syndie_kit/spy_sensor
+	antag_roles = list(ROLE_TRAITOR)
+
+/datum/uplink_item/item/tools/spy_sensor/buy(obj/item/device/uplink/U)
+	. = ..()
+	if(.)
+		var/obj/item/weapon/storage/box/syndie_kit/spy_sensor/B = .
+		for(var/obj/item/device/spy_sensor/S in B)
+			S.owner = U.uplink_owner
+
+/datum/uplink_item/item/tools/bsdm
+	name = "Blue Space Direct Mail Unit"
+	item_cost = 1
+	path = /obj/item/weapon/storage/bsdm
+	antag_roles = list(ROLE_TRAITOR)
+
+/datum/uplink_item/item/tools/bsdm/can_view(obj/item/device/uplink/U)
+	return ..() && (U.bsdm_time > world.time)
+
+/datum/uplink_item/item/tools/bsdm/buy(obj/item/device/uplink/U)
+	. = ..()
+	if(.)
+		var/obj/item/weapon/storage/bsdm/B = .
+		B.owner = U.uplink_owner
+
+/datum/uplink_item/item/tools/bsdm_free
+	name = "Blue Space Direct Mail Unit"
+	item_cost = 0
+	path = /obj/item/weapon/storage/bsdm
+	antag_roles = list(ROLE_TRAITOR)
+
+/datum/uplink_item/item/tools/bsdm_free/can_view(obj/item/device/uplink/U)
+	return ..() && (U.bsdm_time <= world.time)
+
+/datum/uplink_item/item/tools/bsdm_free/buy(obj/item/device/uplink/U)
+	. = ..()
+	if(.)
+		var/obj/item/weapon/storage/bsdm/B = .
+		B.owner = U.uplink_owner
+		U.bsdm_time = world.time + 10 MINUTES

@@ -24,6 +24,7 @@
 // These are signals which can be listened to by any component on any parent
 // start global signals with "!", this used to be necessary but now it's just a formatting choice
 //Example #define COMSIG_GLOB_NEW_Z "!new_z"								//from base of datum/controller/subsystem/mapping/proc/add_new_zlevel(): (list/args)
+#define COMSIG_GLOB_FABRIC_NEW "!fabric_new"                    //(image/fabric)
 
 //////////////////////////////////////////////////////////////////
 
@@ -44,12 +45,15 @@
 #define COMSIG_MOVABLE_MOVED "movable_moved"					//from base of atom/movable/Moved(): (/atom, origin_loc, new_loc)
 
 // /mob signals
+#define COMSIG_MOB_LIFE  "mob_life"                             //from mob/Life()
+#define COMSIG_MOB_LOGIN "mob_login"                            //from mob/Login()
 
 // /mob/living signals
 
 // /mob/living/carbon signals
 
 // /mob/living/carbon/human signals
+#define COMSIG_HUMAN_SAY "human_say"                            //from mob/living/carbon/human/say(): (message)
 
 // /datum/species signals
 

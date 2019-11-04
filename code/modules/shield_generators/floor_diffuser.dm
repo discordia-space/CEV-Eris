@@ -100,3 +100,6 @@
 	to_chat(user, "It is [enabled ? "enabled" : "disabled"].")
 	if(alarm)
 		to_chat(user, "A red LED labeled \"Proximity Alarm\" is blinking on the control panel.")
+
+/obj/machinery/shield_diffuser/ex_act(severity)
+	return

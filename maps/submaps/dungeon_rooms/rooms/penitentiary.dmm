@@ -1,0 +1,40 @@
+"a" = (/turf/simulated/wall/untinted/onestar_reinforced,/area/crawler)
+"b" = (/obj/crawler/crawler_wallbreaker,/turf/simulated/wall/untinted/onestar_reinforced,/area/crawler)
+"c" = (/obj/structure/railing/grey{dir = 4},/turf/simulated/floor/plating/under,/area/crawler)
+"d" = (/obj/structure/catwalk,/turf/simulated/floor/plating/under,/area/crawler)
+"e" = (/turf/simulated/floor/tiled/derelict/red_white_edges,/area/crawler)
+"f" = (/turf/simulated/floor/tiled/dark/brown_perforated,/area/crawler)
+"g" = (/turf/simulated/floor/tiled/dark/brown_platform,/area/crawler)
+"h" = (/obj/machinery/light/floor,/turf/simulated/floor/tiled/dark/brown_platform,/area/crawler)
+"i" = (/obj/structure/table/onestar,/turf/simulated/floor/tiled/dark/brown_perforated,/area/crawler)
+"j" = (/turf/simulated/floor/plating/under,/area/crawler)
+"k" = (/obj/structure/railing/grey,/obj/structure/railing/grey{dir = 4},/turf/simulated/floor/plating/under,/area/crawler)
+"l" = (/obj/machinery/computer/prisoner{dir = 4},/turf/simulated/floor/tiled/dark/brown_perforated,/area/crawler)
+"m" = (/obj/structure/bed/chair/custom/onestar/red,/turf/simulated/floor/tiled/dark/brown_platform,/area/crawler)
+"n" = (/obj/structure/railing/grey,/turf/simulated/floor/plating/under,/area/crawler)
+"o" = (/obj/crawler/crawler_wallbreaker/vertical,/turf/simulated/wall/untinted/onestar_reinforced,/area/crawler)
+"p" = (/obj/machinery/light/floor,/turf/simulated/floor/tiled/derelict,/area/crawler)
+"q" = (/obj/effect/floor_decal/industrial/warning{dir = 4},/turf/simulated/floor/tiled/derelict,/area/crawler)
+"r" = (/obj/structure/catwalk,/turf/simulated/floor/tiled/derelict,/area/crawler)
+"s" = (/obj/structure/sign/faction/one_star,/turf/simulated/wall/untinted/onestar_reinforced,/area/crawler)
+"t" = (/obj/random/mob/roomba,/turf/simulated/floor/tiled/derelict,/area/crawler)
+"u" = (/turf/simulated/floor/tiled/derelict,/area/crawler)
+"v" = (/obj/effect/floor_decal/industrial/warning/corner{dir = 4},/turf/simulated/floor/tiled/derelict,/area/crawler)
+"w" = (/obj/effect/floor_decal/industrial/warning{dir = 1},/turf/simulated/floor/tiled/derelict,/area/crawler)
+"y" = (/obj/structure/bed,/turf/simulated/floor/tiled/dark/brown_platform,/area/crawler)
+"z" = (/obj/structure/window/reinforced{dir = 1},/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor/tiled/dark/brown_perforated,/area/crawler)
+"A" = (/obj/machinery/door/window/northright,/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor/tiled/dark/brown_perforated,/area/crawler)
+"B" = (/obj/machinery/door/window/northleft,/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor/tiled/dark/brown_perforated,/area/crawler)
+"C" = (/obj/structure/low_wall/onestar,/obj/effect/window_lwall_spawn/smartspawn/onestar,/turf/simulated/floor/tiled/dark/brown_perforated,/area/crawler)
+
+(1,1,1) = {"
+aaaaabbbaaaaa
+acdefghgiajja
+akdalgmgianno
+bqrsaCCCasuub
+bvwuuuuutuuub
+buuputpuupuub
+azAazAaBzaBzo
+aygaygagyagya
+aaaabbbbbaaaa
+"}

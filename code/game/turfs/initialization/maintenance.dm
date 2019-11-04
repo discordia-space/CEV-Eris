@@ -2,7 +2,7 @@
 	if(T.density)
 		return
 	// Quick and dirty check to avoid placing things inside windows
-	if(locate(/obj/structure/grille, T))
+	if(locate(/obj/structure/low_wall || /obj/structure/grille, T))
 		return
 
 	var/cardinal_turfs = T.CardinalTurfs()
@@ -12,6 +12,8 @@
 		new path(T)
 	if(prob(2))
 		new /obj/effect/decal/cleanable/blood/oil(T)
+	if(prob(1))
+		new /mob/living/simple_animal/mouse(T)
 	if(prob(25))	// Keep in mind that only "corners" get any sort of web
 		attempt_web(T, cardinal_turfs)
 

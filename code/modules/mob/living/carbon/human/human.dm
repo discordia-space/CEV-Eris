@@ -10,7 +10,6 @@
 	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_lying_buckled_and_verb_status() call.
 
 /mob/living/carbon/human/New(var/new_loc, var/new_species = null)
-	body_build = get_body_build(gender)
 
 	if(!dna)
 		dna = new /datum/dna(null)
@@ -48,6 +47,10 @@
 		dna.real_name = real_name
 		sync_organ_dna()
 	make_blood()
+
+	sanity = new(src)
+
+	AddComponent(/datum/component/fabric)
 
 /mob/living/carbon/human/Destroy()
 	GLOB.human_mob_list -= src
@@ -674,10 +677,10 @@ var/list/rank_prefix = list(\
 
 /mob/living/carbon/human/proc/check_has_mouth()
 	// Todo, check stomach organ when implemented.
-	var/obj/item/organ/external/head/H = get_organ(BP_HEAD)
-	if(!H || !H.can_intake_reagents)
-		return 0
-	return 1
+	var/obj/item/organ/external/H = get_organ(BP_HEAD)
+	if(!H || !(H.functions & BODYPART_REAGENT_INTAKE))
+		return FALSE
+	return TRUE
 
 /mob/living/carbon/human/vomit()
 
@@ -1193,7 +1196,7 @@ var/list/rank_prefix = list(\
 		for(var/organ_tag in species.has_organ)
 			organ_type = species.has_organ[organ_tag]
 			new organ_type(src)
-		
+
 		if(checkprefcruciform)
 			var/datum/category_item/setup_option/core_implant/I = client.prefs.get_option("Core implant")
 			if(I.implant_type)
@@ -1316,7 +1319,7 @@ var/list/rank_prefix = list(\
 	if (flavor_text && flavor_text != "" && !shrink)
 		var/msg = trim(replacetext(flavor_text, "\n", " "))
 		if(!msg) return ""
-		if(lentext(msg) <= 40)
+		if(length(msg) <= 40)
 			return "<font color='blue'>[russian_to_cp1251(msg)]</font>"
 		else
 			return "<font color='blue'>[copytext_preserve_html(russian_to_cp1251(msg), 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a></font>"
@@ -1548,3 +1551,12 @@ var/list/rank_prefix = list(\
 		return TRUE
 	else
 		return FALSE
+
+/mob/living/carbon/human/playsound_local(turf/source, soundin, vol)
+	var/static/list/pewpew = gunshot_sound+casing_sound+ric_sound+miss_sound+explosion_sound+bullet_hit_object_sound
+	if(flashbacks)
+		soundin = get_sfx(soundin)
+		if(!(soundin in pewpew+gun_interact_sound))
+			soundin = pick(pewpew)
+			vol /= 2
+	..()

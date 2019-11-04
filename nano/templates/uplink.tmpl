@@ -13,6 +13,9 @@ Used In File(s): \code\game\objects\items\devices\uplinks.dm
 	<div class="itemContent">
 		{{:helper.link('Request Items', 'gear', {'menu' : 0}, null, 'fixedLeftWider')}}
 		{{:helper.link('Exploitable Information', 'gear', {'menu' : 2}, null, 'fixedLeftWider')}}
+		{{if data.has_contracts}}
+			{{:helper.link('Contracts', 'gear', {'menu' : 3}, null, 'fixedLeftWider')}}
+		{{/if}}
 		{{:helper.link('Return', 'arrowreturn-1-w', {'return' : 1}, null, 'fixedLeft')}}
 		{{:helper.link('Close', 'gear', {'lock' : "1"}, null, 'fixedLeft')}}
 	</div>
@@ -86,4 +89,30 @@ Used In File(s): \code\game\objects\items\devices\uplinks.dm
             </div>
         </div>
     </div>
+{{else data.menu == 3}}
+	<h2>Available contracts:</h2>
+	<table style="width:100%">
+	<tr>
+	<td>Title</td>
+	<th style="width:50%">Description</th>
+	<th style="width:12%">Reward</th>
+	<th style="width:18%">Status</th>
+	</tr>
+	{{for data.available_contracts}}
+		<tr class="candystripe">
+		<td style="background-color: #8daf6a;">{{:value.name}}</td>
+		<td style="background-color: #8daf6a;">{{:value.desc}}</td>
+		<td style="background-color: #8daf6a;">{{:value.reward}}</td>
+		<td style="background-color: #8daf6a;">{{:value.status}}</td>
+		</tr>
+	{{/for}}
+	{{for data.completed_contracts}}
+		<tr class="candystripe">
+		<td style="background-color: #aa5f61;">{{:value.name}}</td>
+		<td style="background-color: #aa5f61;">{{:value.desc}}</td>
+		<td style="background-color: #aa5f61;">{{:value.reward}}</td>
+		<td style="background-color: #aa5f61;">{{:value.status}}</td>
+		</tr>
+	{{/for}}
+	</table>
 {{/if}}

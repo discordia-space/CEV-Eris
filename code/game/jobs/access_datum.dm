@@ -482,7 +482,11 @@
 	id = access_cent_captain
 	desc = "Code Gold"
 	access_type = ACCESS_TYPE_CENTCOM
-
+/var/const/access_research_equipment = 110 //RnD Console Access
+/datum/access/research_equipment
+	id = access_research_equipment
+	desc = "Research Console"
+	access_type = ACCESS_REGION_RESEARCH 
 /***************
 * Antag access *
 ***************/

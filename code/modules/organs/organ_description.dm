@@ -12,8 +12,7 @@
 	var/joint = "neck"
 	var/parent_organ = null
 	var/icon_position = null
-	var/can_grasp = FALSE
-	var/can_stand = FALSE
+	var/functions = NONE
 	var/list/drop_on_remove = null
 
 /datum/organ_description/proc/create_organ(var/mob/living/carbon/human/H)
@@ -59,13 +58,14 @@
 	amputation_point = "neck"
 	parent_organ = BP_CHEST
 	drop_on_remove = list(slot_glasses,slot_head,slot_l_ear,slot_r_ear,slot_wear_mask)
+	functions = BODYPART_REAGENT_INTAKE | BODYPART_GAS_INTAKE
 
 /datum/organ_description/arm
 	max_damage = 50
 	min_broken_damage = 50
 	w_class = ITEM_SIZE_NORMAL
 	parent_organ = BP_CHEST
-	can_grasp = TRUE
+	functions = BODYPART_GRASP
 
 /datum/organ_description/arm/left
 	name = "left arm"
@@ -86,7 +86,7 @@
 	min_broken_damage = 50
 	w_class = ITEM_SIZE_NORMAL
 	parent_organ = BP_GROIN
-	can_stand = TRUE
+	functions = BODYPART_STAND
 
 /datum/organ_description/leg/left
 	name = "left leg"

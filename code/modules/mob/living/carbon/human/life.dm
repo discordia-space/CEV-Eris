@@ -75,7 +75,6 @@
 		if(!client)
 			species.handle_npc(src)
 
-
 	if(!handle_some_updates())
 		return											//We go ahead and process them 5 times for HUD images and other stuff though.
 
@@ -786,6 +785,8 @@
 
 	if(health < (HEALTH_THRESHOLD_SOFTCRIT - src.stats.getStat(STAT_TGH)))// health 0 - stat makes you immediately collapse
 		shock_stage = max(shock_stage, 61)
+	else if(shock_resist)
+		shock_stage = min(shock_stage, 58)
 
 	if(traumatic_shock >= 80)
 		shock_stage += 1
@@ -795,6 +796,8 @@
 		shock_stage = min(shock_stage, 160)
 		shock_stage = max(shock_stage-1, 0)
 		return
+
+	sanity.onShock(shock_stage)
 
 	if(shock_stage == 10)
 		to_chat(src, "<span class='danger'>[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!</span>")

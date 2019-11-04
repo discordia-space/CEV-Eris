@@ -3,6 +3,9 @@ SUBSYSTEM_DEF(mapping)
 	init_order = INIT_ORDER_MAPPING
 	flags = SS_NO_FIRE
 
+	var/list/map_templates = list()
+	var/dmm_suite/maploader = null
+
 /datum/controller/subsystem/mapping/Initialize(start_timeofday)
 
 	if(config.generate_asteroid)
@@ -28,6 +31,9 @@ SUBSYSTEM_DEF(mapping)
 	else
 		testing("Overmap generation disabled in config.")
 
+//	world.max_z_changed() // This is to set up the player z-level list, maxz hasn't actually changed (probably)
+	maploader = new()
+	load_map_templates()
 
 
 
@@ -67,4 +73,15 @@ SUBSYSTEM_DEF(mapping)
 		else
 			testing("Overmap failed to create events.")
 			return FALSE
+	return TRUE
+
+
+
+/datum/controller/subsystem/mapping/proc/load_map_templates()
+	for(var/T in subtypesof(/datum/map_template))
+		var/datum/map_template/template = T
+		if(!(initial(template.mappath))) // If it's missing the actual path its probably a base type or being used for inheritence.
+			continue
+		template = new T()
+		map_templates[template.name] = template
 	return TRUE

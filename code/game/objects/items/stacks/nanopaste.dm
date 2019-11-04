@@ -47,8 +47,7 @@
 					)
 				else
 					to_chat(user, SPAN_NOTICE("Nothing to fix here."))
-		
-			if (can_operate(H))        //Checks if mob is lying down on table for surgery
+			if (can_operate(H, user))        //Checks if mob is lying down on table for surgery
 				if (do_surgery(H,user,src))
 					return
 			else

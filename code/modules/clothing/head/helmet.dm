@@ -18,7 +18,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	price_tag = 100
 
-/obj/item/clothing/head/helmet/botanist
+/obj/item/clothing/head/helmet/agrolyte
 	name = "Argolyte hood"
 	desc = "Don't want anything getting in your eyes."
 	icon_state = "botanist"

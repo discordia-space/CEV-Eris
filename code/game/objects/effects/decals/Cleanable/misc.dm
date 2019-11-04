@@ -149,6 +149,7 @@
 	icon_state = "vomit_1"
 	random_icon_states = list("vomit_1", "vomit_2", "vomit_3", "vomit_4")
 	var/list/viruses = list()
+	sanity_damage = 1
 
 	Destroy()
 		. = ..()

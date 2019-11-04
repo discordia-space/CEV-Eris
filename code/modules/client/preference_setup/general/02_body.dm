@@ -2,7 +2,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 /datum/preferences
 	var/species = SPECIES_HUMAN
-	var/body_build = "Default"			//character body build name
 
 	var/b_type = "A+"					//blood type (not-chooseable)
 
@@ -39,7 +38,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	from_file(S["disabilities"], pref.disabilities)
 	pref.preview_icon = null
 	from_file(S["bgstate"], pref.bgstate)
-	from_file(S["body_build"], pref.body_build)
 	from_file(S["eyes_color"], pref.eyes_color)
 	from_file(S["skin_color"], pref.skin_color)
 	from_file(S["hair_color"], pref.hair_color)
@@ -55,7 +53,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	to_file(S["b_type"], pref.b_type)
 	to_file(S["disabilities"], pref.disabilities)
 	to_file(S["bgstate"], pref.bgstate)
-	to_file(S["body_build"], pref.body_build)
 	to_file(S["eyes_color"], pref.eyes_color)
 	to_file(S["skin_color"], pref.skin_color)
 	to_file(S["hair_color"], pref.hair_color)
@@ -65,7 +62,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	pref.h_style		= sanitize_inlist(pref.h_style, GLOB.hair_styles_list, initial(pref.h_style))
 	pref.f_style		= sanitize_inlist(pref.f_style, GLOB.facial_hair_styles_list, initial(pref.f_style))
 	pref.b_type			= sanitize_text(pref.b_type, initial(pref.b_type))
-	pref.body_build 	= sanitize_inlist(pref.body_build, list("Slim", "Default", "Fat"), "Default")
 	pref.hair_color		= iscolor(pref.hair_color) ? pref.hair_color : "#000000"
 	pref.facial_color	= iscolor(pref.facial_color) ? pref.facial_color : "#000000"
 	pref.skin_color		= iscolor(pref.skin_color) ? pref.skin_color : "#000000"
@@ -95,7 +91,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	. += "(<a href='?src=\ref[src];random=1'>&reg;</A>)"
 	. += "<br>"
 
-	. += "Body Shape: <a href='?src=\ref[src];body_build=1'><b>[pref.body_build]</b></a><br>"
 	. += "Blood Type: <a href='?src=\ref[src];blood_type=1'>[pref.b_type]</a><br>"
 
 	. += "Base Colour: <a href='?src=\ref[src];base_skin=1'>[pref.s_base]</a><br>"
@@ -156,9 +151,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 					pref.body_descriptors[desc_id] = descriptor.chargen_value_descriptors[choice]
 					return TOPIC_REFRESH
 	*/
-	else if(href_list["body_build"])
-		pref.body_build = input("Body Shape", "Body") in list("Default", "Slim", "Fat")
-		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["blood_type"])
 		var/new_b_type = input(user, "Choose your character's blood-type:", CHARACTER_PREFERENCE_INPUT_TITLE) as null|anything in valid_bloodtypes

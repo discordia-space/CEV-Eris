@@ -3,9 +3,9 @@
 	desc = "A window."
 	icon = 'icons/obj/structures.dmi'
 
-	density = 1
+	density = TRUE
 	layer = ABOVE_OBJ_LAYER //Just above doors
-	anchored = 1.0
+	anchored = TRUE
 	flags = ON_BORDER
 	var/maxhealth = 20
 	var/resistance = RESISTANCE_NONE	//Incoming damage is reduced by this flat amount before being subtracted from health. Defines found in code\__defines\weapons.dm
@@ -527,6 +527,7 @@
 	alpha = 120
 	maxhealth = 40
 	resistance = RESISTANCE_NONE
+	flags = null
 
 /obj/structure/window/plasmabasic
 	name = "plasma window"
@@ -547,6 +548,7 @@
 	alpha = 150
 	maxhealth = 200
 	resistance = RESISTANCE_AVERAGE
+	flags = null
 
 /obj/structure/window/reinforced
 	name = "reinforced window"
@@ -575,6 +577,7 @@
 	alpha = 150
 	maxhealth = 80
 	resistance = RESISTANCE_FRAGILE
+	flags = null
 
 /obj/structure/window/reinforced/plasma
 	name = "reinforced plasma window"
@@ -595,6 +598,7 @@
 	alpha = 150
 	maxhealth = 250
 	resistance = RESISTANCE_IMPROVED
+	flags = null
 
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
@@ -631,6 +635,7 @@
 	dir = SOUTH|EAST
 	icon = 'icons/obj/structures/windows.dmi'
 	icon_state = "fwindow"
+	flags = null
 
 /obj/structure/window/reinforced/polarized/proc/toggle()
 	if(opacity)

@@ -32,6 +32,8 @@
 
 	var/list/preloaded_reagents = null
 
+	var/sanity_damage = 0
+
 /atom/New(loc, ...)
 	init_plane()
 	update_plane()

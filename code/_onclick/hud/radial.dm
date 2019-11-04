@@ -305,6 +305,6 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	menu.show_to(user)
 	menu.wait(user, anchor, require_near)
 	var/answer = menu.selected_choice
-	qdel(menu)
 	GLOB.radial_menus -= uniqueid
+	qdel(menu)
 	return answer

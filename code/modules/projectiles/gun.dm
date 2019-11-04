@@ -48,14 +48,6 @@
 	var/sel_mode = 1 //index of the currently selected mode
 	var/list/firemodes = list()
 
-	//aiming system stuff
-	var/keep_aim = 1 	//1 for keep shooting until aim is lowered
-						//0 for one bullet after tarrget moves and aim is lowered
-	var/multi_aim = 0 //Used to determine if you can target multiple people.
-	var/tmp/list/mob/living/aim_targets //List of who yer targeting.
-	var/tmp/mob/living/last_moved_mob //Used to fire faster at more than one person.
-	var/tmp/told_cant_shoot = 0 //So that it doesn't spam them with the fact they cannot hit them.
-	var/tmp/lock_time = -100
 	var/mouthshoot = FALSE //To stop people from suiciding twice... >.>
 
 	/*	SILENCER HANDLING */
@@ -112,8 +104,6 @@
 		if(!islist(i))
 			qdel(i)
 	firemodes = null
-	aim_targets = null
-	last_moved_mob = null
 	return ..()
 
 /obj/item/weapon/gun/update_wear_icon()
@@ -409,9 +399,6 @@
 		if(zoom)
 			dispersion += recoil*zoom_factor/2 //recoil is worse when looking through a scope
 	P.dispersion = dispersion
-
-	if (aim_targets && (target in aim_targets))
-		P.dispersion -= 0.3//less dispersion is better - radius = round(dispersion*9, 1), it is also accepts negative values
 
 //does the actual launching of the projectile
 /obj/item/weapon/gun/proc/process_projectile(obj/projectile, mob/user, atom/target, var/target_zone, var/params=null)

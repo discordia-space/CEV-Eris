@@ -21,7 +21,8 @@ GLOBAL_LIST_EMPTY(chemical_reactions_list_by_result)					//list of all /datum/ch
 var/global/list/chemical_reagents_list				//list of all /datum/reagent datums indexed by reagent id. Used by chemistry stuff
 var/global/list/landmarks_list = list()				//list of all landmarks created
 var/global/list/shuttle_landmarks_list = list()		//list of all /obj/effect/shuttle_landmark.
-var/global/list/surgery_steps = list()				//list of all surgery steps  |BS12
+var/global/list/old_surgery_steps = list()			//list of all old-style (not bound to organs) surgery steps
+GLOBAL_LIST_EMPTY(surgery_steps)					//list of all new organ-based surgery steps
 var/global/list/mechas_list = list()				//list of all mechs. Used by hostile mobs target tracking.
 
 
@@ -73,9 +74,6 @@ GLOBAL_LIST_EMPTY(all_rituals)//List of all rituals
 GLOBAL_LIST_EMPTY(global_ritual_cooldowns) // internal lists. Use ritual's cooldown_category
 
 //Preferences stuff
-	//Bodybuilds
-var/global/list/male_body_builds = list()
-var/global/list/female_body_builds = list()
 	//Hairstyles
 GLOBAL_LIST_EMPTY(hair_styles_list)        //stores /datum/sprite_accessory/hair indexed by name
 GLOBAL_LIST_EMPTY(facial_hair_styles_list) //stores /datum/sprite_accessory/facial_hair indexed by name
@@ -150,33 +148,29 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 
 	var/list/paths
 
-	//Bodybuilds
-	paths = typesof(/datum/body_build)
-	for(var/path in paths)
-		var/datum/body_build/B = new path()
-		if (B.gender == FEMALE)
-			female_body_builds[B.name] = B
-		else
-			male_body_builds[B.name] = B
-
 	//Hair - Initialise all /datum/sprite_accessory/hair into an list indexed by hair-style name
-	paths = typesof(/datum/sprite_accessory/hair) - /datum/sprite_accessory/hair
+	paths = subtypesof(/datum/sprite_accessory/hair)
 	for(var/path in paths)
 		var/datum/sprite_accessory/hair/H = new path()
 		GLOB.hair_styles_list[H.name] = H
 
 	//Facial Hair - Initialise all /datum/sprite_accessory/facial_hair into an list indexed by facialhair-style name
-	paths = typesof(/datum/sprite_accessory/facial_hair) - /datum/sprite_accessory/facial_hair
+	paths = subtypesof(/datum/sprite_accessory/facial_hair)
 	for(var/path in paths)
 		var/datum/sprite_accessory/facial_hair/H = new path()
 		GLOB.facial_hair_styles_list[H.name] = H
 
 
 	//Surgery Steps - Initialize all /datum/surgery_step into a list
-	paths = typesof(/datum/surgery_step)-/datum/surgery_step
+	paths = subtypesof(/datum/surgery_step)
+	for(var/path in paths)
+		var/datum/surgery_step/S = new path
+		GLOB.surgery_steps[path] = S
+
+	paths = subtypesof(/datum/old_surgery_step)
 	for(var/T in paths)
-		var/datum/surgery_step/S = new T
-		surgery_steps += S
+		var/datum/old_surgery_step/S = new T
+		old_surgery_steps += S
 	sort_surgeries()
 
 	//List of job department datums
@@ -186,7 +180,7 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 		all_departments[D.id] = D
 
 	//List of job datums
-	paths = typesof(/datum/job)-/datum/job
+	paths = subtypesof(/datum/job)
 	paths -= exclude_jobs
 	for(var/T in paths)
 		var/datum/job/J = new T
@@ -211,7 +205,7 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 
 
 	//Languages and species.
-	paths = typesof(/datum/language)-/datum/language
+	paths = subtypesof(/datum/language)
 	for(var/T in paths)
 		var/datum/language/L = new T
 		all_languages[L.name] = L
@@ -222,7 +216,7 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 			language_keys[lowertext(L.key)] = L
 
 	var/rkey = 0
-	paths = typesof(/datum/species)-/datum/species
+	paths = subtypesof(/datum/species)
 	for(var/T in paths)
 		rkey++
 		var/datum/species/S = new T
@@ -235,18 +229,18 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 			whitelisted_species += S.name
 
 	//Posters
-	paths = typesof(/datum/poster) - /datum/poster - /datum/poster/wanted
+	paths = subtypesof(/datum/poster) - /datum/poster/wanted
 	for(var/T in paths)
 		var/datum/poster/P = new T
 		poster_designs += P
 
 	//Corporations
-	paths = typesof(/datum/corporation) - /datum/corporation
+	paths = subtypesof(/datum/corporation)
 	for(var/T in paths)
 		var/datum/corporation/C = new T
 		global.global_corporations[C.name] = C
 
-	paths = typesof(/datum/hud) - /datum/hud
+	paths = subtypesof(/datum/hud)
 	for(var/T in paths)
 		var/datum/hud/C = new T
 		global.HUDdatums[C.name] = C

@@ -26,6 +26,7 @@
 
 
 /obj/machinery/smartfridge/secure
+	name = "\improper Secure SmartFridge"
 	is_secure = 1
 
 
@@ -35,19 +36,18 @@
 *   Seed Storage
 ********************/
 /obj/machinery/smartfridge/seeds
-	name = "\improper MegaSeed Servitor"
+	name = "\improper Refrigerated Seeds Storage"
 	desc = "When you need seeds fast!"
-	icon = 'icons/obj/vending.dmi'
-	icon_state = "seeds"
-	icon_on = "seeds"
-	icon_off = "seeds-off"
 
 /obj/machinery/smartfridge/seeds/accept_check(var/obj/item/O as obj)
 	if(istype(O,/obj/item/seeds/))
 		return 1
 	return 0
 
-
+/obj/machinery/smartfridge/kitchen
+	name = "\improper Agro-Club Fridge"
+	desc = "The panel says it won't allow anyone without access to the kitchen or hydroponics."
+	req_one_access = list(access_hydroponics,access_kitchen)
 
 
 

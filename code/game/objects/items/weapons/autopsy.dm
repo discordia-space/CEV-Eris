@@ -180,7 +180,7 @@
 	if(!istype(M))
 		return
 
-	if(!can_operate(M))
+	if(!can_operate(M, user))
 		to_chat(user, SPAN_WARNING("You need to lay the cadaver down on a table first!"))
 		return
 

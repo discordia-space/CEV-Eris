@@ -74,7 +74,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 	for(var/obj/item/organ/external/temp in organs)
 		if(!(temp.status & ORGAN_BLEEDING) || BP_IS_ROBOTIC(temp))
 			continue
-		for(var/datum/wound/W in temp.wounds) 
+		for(var/datum/wound/W in temp.wounds)
 			if(W.bleeding())
 				if(W.internal)
 					var/removed = W.damage/75
@@ -87,7 +87,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 					blood_max += W.damage * WOUND_BLEED_MULTIPLIER
 		if (temp.open)
 			blood_max += OPEN_ORGAN_BLEED_AMOUNT  //Yer stomach is cut open
-	
+
 	// bloodclotting slows bleeding
 	if(chem_effects[CE_BLOODCLOT])
 		blood_max *=  1 - chem_effects[CE_BLOODCLOT]
@@ -202,8 +202,8 @@ proc/blood_incompatible(donor,receiver,donor_species,receiver_species)
 		if(donor_species != receiver_species)
 			return 1
 
-	var/donor_antigen = copytext(donor,1,lentext(donor))
-	var/receiver_antigen = copytext(receiver,1,lentext(receiver))
+	var/donor_antigen = copytext(donor,1,length(donor))
+	var/receiver_antigen = copytext(receiver,1,length(receiver))
 	var/donor_rh = (findtext(donor,"+")>0)
 	var/receiver_rh = (findtext(receiver,"+")>0)
 
@@ -329,10 +329,10 @@ proc/blood_splatter(var/target,var/datum/reagent/organic/blood/source,var/large)
 			if(PULSE_2FAST, PULSE_THREADY)
 				pulse_mod *= 1.25
 		blood_volume *= max(0.3, (1-(heart.damage / heart.max_damage))) * pulse_mod
-	
+
 	if(!heart.open && chem_effects[CE_BLOODCLOT])
 		blood_volume *= max(0, 1-chem_effects[CE_BLOODCLOT])
-	
+
 	return min(blood_volume, 100)
 
 /mob/living/carbon/human/proc/regenerate_blood(var/amount)

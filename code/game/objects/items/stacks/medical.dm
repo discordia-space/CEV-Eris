@@ -190,7 +190,7 @@
 						to_chat(user, SPAN_WARNING("\The [src] is used up, but there are more wounds to treat on \the [affecting.name]."))
 				use(used)
 		else
-			if (can_operate(H))        //Checks if mob is lying down on table for surgery
+			if (can_operate(H, user))        //Checks if mob is lying down on table for surgery
 				if (do_surgery(H,user,src))
 					return
 			else
@@ -256,7 +256,7 @@
 						else
 							to_chat(user, "<span class='[pain > 50 ? "danger" : "warning"]'>Your amateur actions caused you [pain > 50 ? "alot of " : ""]pain.</span>")
 		else
-			if (can_operate(H))        //Checks if mob is lying down on table for surgery
+			if (can_operate(H, user))        //Checks if mob is lying down on table for surgery
 				if (do_surgery(H,user,src))
 					return
 			else
@@ -352,7 +352,7 @@
 			use(used)
 			update_icon()
 	else
-		if (can_operate(H))        //Checks if mob is lying down on table for surgery
+		if (can_operate(H, user))        //Checks if mob is lying down on table for surgery
 			if (do_surgery(H,user,src))
 				return
 		else
@@ -419,7 +419,7 @@
 						else
 							to_chat(user, "<span class='[pain > 50 ? "danger" : "warning"]'>Your amateur actions caused you [pain > 50 ? "alot of " : ""]pain.</span>")
 		else
-			if (can_operate(H))        //Checks if mob is lying down on table for surgery
+			if (can_operate(H, user))        //Checks if mob is lying down on table for surgery
 				if (do_surgery(H,user,src))
 					return
 			else
