@@ -18,9 +18,6 @@
 
 /obj/item/clothing/Initialize(mapload, ...)
 	. = ..()
-	if(!matter)
-		matter = list()
-	matter.Add(list(MATERIAL_BIOMATTER = 5 * w_class))	// based of item size
 
 /obj/item/clothing/Destroy()
 	for(var/obj/item/clothing/accessory/A in accessories)
