@@ -56,24 +56,20 @@
 				var/obj/item/target = M
 				//if we found biomatter, let's start processing
 				//it will slowly disappear. Time based at size of object and we manipulate with its alpha (we also check for it)
-				to_world("PRE CHECK")
 				if((MATERIAL_BIOMATTER in target.matter) || istype(target,/obj/item/clothing))
 					target.alpha -= round(100 / target.w_class)
 					var/icon/I = new(target.icon, icon_state = target.icon_state)
 					//we turn this things to degenerate sprite a bit
 					I.Turn(rand(-10, 10))
-					to_world("degrading thing")
 					target.icon = I
 					if(target.alpha <= 50)
 						if(istype(target,/obj/item/clothing))
 							var/clothingbiomatter
 							clothingbiomatter = 5 * target.w_class
 							MS_bioreactor.biotank_platform.take_amount(clothingbiomatter)
-							to_world("gave CLOTH: [target.name] matter to thing")
 						else
 							MS_bioreactor.biotank_platform.take_amount(target.matter[MATERIAL_BIOMATTER])
 							target.matter -= MATERIAL_BIOMATTER
-							to_world("gave ITEM [target.name] thing matter to thing")
 						MS_bioreactor.biotank_platform.pipes_wearout(target.w_class)
 							//if we have other matter, let's spit it out
 						for(var/material in target.matter)
@@ -83,10 +79,8 @@
 								waste.amount = target.matter[material]
 								waste.update_strings()
 							target.matter -= material
-						to_world("CONSUMING [target.name]")
 						consume(target)
 				else
-					to_world("REFUSED")
 					target.forceMove(MS_bioreactor.misc_output)
 	else
 		//if our machine is non operational, let's go idle powermode and pump out solution
