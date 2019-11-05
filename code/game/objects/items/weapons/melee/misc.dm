@@ -98,7 +98,7 @@
 		playsound(src.loc, 'sound/effects/bang.ogg', 45, 1)
 		user.visible_message(SPAN_WARNING("[src] breaks in hands of [user]!"))
 
-/obj/item/weapon/tool/power_hammer
+/obj/item/weapon/tool/pickaxe/power_hammer
 	name = "Power Hammer"
 	desc = "Technomancer Powered Hammer that can be used for breaching or combat. Very Robust."
 	icon_state = "hm_spikeclub"
@@ -120,8 +120,8 @@
 /obj/item/weapon/melee/nailstick
 	name = "nailed stick"
 	desc = "Stick with some nails in it. Looks sharp enough."
-	icon_state = "hm_spikeclub"
-	item_state = "hm_spikeclub"
+	icon_state = "jackhammer"
+	item_state = "jackhammer"
 	force = WEAPON_FORCE_PAINFUL
 	throwforce = WEAPON_FORCE_PAINFUL
 	w_class = ITEM_SIZE_NORMAL
