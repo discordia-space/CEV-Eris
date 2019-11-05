@@ -150,7 +150,6 @@
 		return FALSE
 
 
-
 	// Cavity implants
 	var/total_volume = I.w_class
 	for(var/obj/item/item in implants)
@@ -248,6 +247,7 @@
 
 	if(I in implants)
 		implants -= I
+		embedded -= I
 
 		if(istype(I, /obj/item/weapon/implant))
 			var/obj/item/weapon/implant/implant = I

@@ -139,14 +139,6 @@ proc/do_old_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 			H.update_surgery()
 		return	1	  												//don't want to do weapony things after surgery
 
-	if (user.a_intent == I_HELP)
-		to_chat(user, SPAN_WARNING("You can't see any useful way to use [tool] on [M]."))
-
-		if (tool.tool_qualities)
-			return 1 //Prevents attacking the patient when trying to do surgery
-			//We check if tool qualities is populated here, so that, if it's not, we can return zero
-			//This will allow afterattack to be called for things which aren't exactly surgery tools, such as the autopsy scanner
-
 	return 0
 
 proc/sort_surgeries()

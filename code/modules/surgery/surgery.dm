@@ -155,34 +155,39 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		return FALSE
 
 	var/zone = user.targeted_organ
+	var/obj/item/organ/external/affected
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 
-		if(!hasorgans(H))
-			return FALSE
+		affected = H.get_organ(zone)
+		if(affected)
+			// Self-surgery sanity check: no operating on your right arm with a tool held in your right hand
+			if(M == user)
+				var/obj/item/held_item
+				if(affected.organ_tag == BP_L_ARM)
+					held_item = H.l_hand
 
-		var/obj/item/organ/external/affected = H.get_organ(zone)
-		if(!affected)
-			return FALSE
+				else if(affected.organ_tag == BP_R_ARM)
+					held_item = H.r_hand
 
-		// Self-surgery sanity check: no operating on your right arm with a tool held in your right hand
-		if(M == user)
-			var/obj/item/held_item
-			if(affected.organ_tag == BP_L_ARM)
-				held_item = H.l_hand
+				if(held_item)
+					to_chat(user, SPAN_WARNING("You cannot operate on your [affected.name] while holding [held_item] in it!"))
+					return TRUE
 
-			else if(affected.organ_tag == BP_R_ARM)
-				held_item = H.r_hand
-
-			if(held_item)
-				to_chat(user, SPAN_WARNING("You cannot operate on your [affected.name] while holding [held_item] in it!"))
+			if(affected.do_surgery(user, tool))
 				return TRUE
 
-		if(affected.do_surgery(user, tool))
-			return TRUE
+	// Invoke legacy surgery code
+	if(!do_old_surgery(M, user, tool))
+		if(affected && affected.open && tool.tool_qualities)
+			// Open or update surgery UI
+			affected.ui_interact(user)
 
-	return do_old_surgery(M, user, tool)
+			to_chat(user, SPAN_WARNING("You can't see any useful way to use [tool] on [M]."))
+			return 1 //Prevents attacking the patient when trying to do surgery
+			//We check if tool qualities is populated here, so that, if it's not, we can return zero
+			//This will allow afterattack to be called for things which aren't exactly surgery tools, such as the autopsy scanner
 
 
 // Some surgery steps can be ran just by clicking a limb with a tool, old surgery style

@@ -42,8 +42,9 @@
 	var/datum/firemode/current_mode = firemodes[sel_mode]
 	switch(current_mode.name)
 		if("stun") overlays += "taser_pdw"
-		if("lethal") overlays += "lazer_pdw"
+		if("kill") overlays += "lazer_pdw"
 
 /obj/item/weapon/gun/energy/gun/martin/update_icon()
 	overlays.Cut()
-	update_mode()
+	if(cell && cell.charge >= charge_cost) //no overlay if we dont have any power
+		update_mode()

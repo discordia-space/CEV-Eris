@@ -73,6 +73,7 @@
 	var/inhale_pp = (inhaling/breath.total_moles)*breath_pressure
 	var/toxins_pp = (poison/breath.total_moles)*breath_pressure
 	var/exhaled_pp = (exhaling/breath.total_moles)*breath_pressure
+	
 	// Not enough to breathe
 	if(inhale_pp < safe_pressure_min)
 		if(prob(20))
@@ -95,7 +96,6 @@
 		var/warn_prob
 		var/oxyloss
 		var/alert
-
 		if(exhaled_pp > safe_exhaled_max)
 			word = pick("extremely dizzy","short of breath","faint","confused")
 			warn_prob = 15
@@ -122,6 +122,7 @@
 			owner.co2_alert = alert
 
 	// Too much poison in the air.
+	
 	if(toxins_pp > safe_toxins_max)
 		var/ratio = (poison/safe_toxins_max) * 10
 		owner.reagents.add_reagent("toxin", CLAMP(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
