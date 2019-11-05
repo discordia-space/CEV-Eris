@@ -300,7 +300,7 @@
 /obj/item/weapon/arrow/RCD
 	name = "flashforged bolt"
 	desc = "The ultimate ghetto 'deconstruction' implement."
-	throwforce = 4
+	throwforce = 10
 
 /obj/item/weapon/gun/launcher/crossbow/RCD
 	name = "rapid crossbow device"
@@ -308,10 +308,10 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "rxb"
 	slot_flags = null
-	draw_time = 10
+	draw_time = 5
 	var/stored_matter = 0
-	var/max_stored_matter = 40
-	var/boltcost = 10
+	var/max_stored_matter = 60
+	var/boltcost = 5
 
 /obj/item/weapon/gun/launcher/crossbow/RCD/proc/genBolt(var/mob/user)
 	if(stored_matter >= boltcost && !bolt)
@@ -334,10 +334,10 @@
 
 /obj/item/weapon/gun/launcher/crossbow/RCD/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/rcd_ammo))
-		if((stored_matter + 10) > max_stored_matter)
+		if((stored_matter + 20) > max_stored_matter)
 			to_chat(user, "<span class='notice'>The RXD can't hold that many additional matter-units.</span>")
 			return
-		stored_matter += 10
+		stored_matter += 20
 		qdel(W)
 		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 		to_chat(user, "<span class='notice'>The RXD now holds [stored_matter]/[max_stored_matter] matter-units.</span>")
