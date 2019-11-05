@@ -1,4 +1,4 @@
-#define UPGRADE_COOLDOWN	75
+#define UPGRADE_COOLDOWN	50
 #define UPGRADE_KILL_TIMER	100
 
 ///Process_Grab()
