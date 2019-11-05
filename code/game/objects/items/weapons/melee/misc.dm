@@ -101,8 +101,8 @@
 /obj/item/weapon/tool/power_hammer
 	name = "Power Hammer"
 	desc = "Technomancer Powered Hammer that can be used for breaching or combat. Very Robust."
-	icon_state = "hm_hammer"
-	item_state = "hm_hammer"
+	icon_state = "hm_spikeclub"
+	item_state = "hm_spikeclub"
 	slot_flags = SLOT_BACK
 	force = WEAPON_FORCE_ROBUST
 	throwforce = WEAPON_FORCE_ROBUST
