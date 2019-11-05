@@ -98,7 +98,25 @@
 		playsound(src.loc, 'sound/effects/bang.ogg', 45, 1)
 		user.visible_message(SPAN_WARNING("[src] breaks in hands of [user]!"))
 
-
+/obj/item/weapon/tool/power_hammer
+	name = "Power Hammer"
+	desc = "Technomancer Powered Hammer that can be used for breaching or combat. Very Robust."
+	icon_state = "hm_hammer"
+	item_state = "hm_hammer"
+	slot_flags = SLOT_BACK
+	force = WEAPON_FORCE_ROBUST
+	throwforce = WEAPON_FORCE_ROBUST
+	toggleable = TRUE
+	switched_on_force = WEAPON_FORCE_ROBUST * 1.25
+	degradation = 0.0
+	passive_fuel_cost = 0.15
+	max_fuel = 60
+	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 8, MATERIAL_PLASTEEL = 5)
+	w_class = ITEM_SIZE_BULKY
+	origin_tech = list(TECH_COMBAT = 3)
+	attack_verb = list("robusted", "slammed")
+	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
+	
 /obj/item/weapon/melee/nailstick
 	name = "nailed stick"
 	desc = "Stick with some nails in it. Looks sharp enough."
