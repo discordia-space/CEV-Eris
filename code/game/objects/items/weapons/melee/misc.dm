@@ -101,8 +101,8 @@
 /obj/item/weapon/tool/pickaxe/power_hammer
 	name = "Power Hammer"
 	desc = "Technomancer Powered Hammer that can be used for breaching or combat. Very Robust."
-	icon_state = "hm_spikeclub"
-	item_state = "hm_spikeclub"
+	icon_state = "jackhammer"
+	item_state = "jackhammer"
 	slot_flags = SLOT_BACK
 	force = WEAPON_FORCE_ROBUST
 	throwforce = WEAPON_FORCE_ROBUST
@@ -116,12 +116,20 @@
 	origin_tech = list(TECH_COMBAT = 3)
 	attack_verb = list("robusted", "slammed")
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
-	
+/obj/item/weapon/tool/pickaxe/power_hammer/turn_on(mob/user)
+
+	to_chat(user, SPAN_NOTICE("You turn on [src], and ready yourself to crush some skulls."))
+	..()
+/obj/item/weapon/tool/pickaxe/power_hammer/turn_off(mob/user)
+
+	to_chat(user, SPAN_NOTICE("You turn off the repulsor field, and the [src] stops humming."))
+	..()
+
 /obj/item/weapon/melee/nailstick
 	name = "nailed stick"
 	desc = "Stick with some nails in it. Looks sharp enough."
-	icon_state = "jackhammer"
-	item_state = "jackhammer"
+	icon_state = "hm_spikeclub"
+	item_state = "hm_spikeclub"
 	force = WEAPON_FORCE_PAINFUL
 	throwforce = WEAPON_FORCE_PAINFUL
 	w_class = ITEM_SIZE_NORMAL
