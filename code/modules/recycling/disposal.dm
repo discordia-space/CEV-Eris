@@ -62,7 +62,7 @@
 		return TRUE
 
 /obj/machinery/disposal/MouseDrop_T(var/obj/item/I, mob/user, src_location, over_location, src_control, over_control, params)
-	
+
 
 
 // attack by item places it in to disposal
@@ -209,7 +209,7 @@
 			T.update_icon()
 			update()
 			return
-		
+
 		if(!I)
 			return
 
@@ -585,10 +585,20 @@
 		if(!loc)
 			return // check if we got GC'd
 
-		if(has_mob && prob(3))
+		if(has_mob && prob(5))
 			for(var/mob/living/H in src)
-				if(!isdrone(H)) //Drones use the mailing code to move through the disposal system,
-					H.take_overall_damage(20, 0, "Blunt Trauma")//horribly maim any living creature jumping down disposals.  c'est la vie
+				if(isdrone(H)) //Drones use the mailing code to move through the disposal system,
+					continue
+
+				// Hurt any living creature jumping down disposals
+				var/multiplier = 1
+
+				// STAT_MEC or STAT_TGH help you reduce disposal damage, with no damage being recieved at all at STAT_LEVEL_EXPERT
+				if(H.stats)
+					multiplier = min(H.stats.getMult(STAT_MEC, STAT_LEVEL_EXPERT), H.stats.getMult(STAT_TGH, STAT_LEVEL_EXPERT))
+
+				if(multiplier > 0)
+					H.take_overall_damage(8 * multiplier, 0, "Blunt Trauma")
 
 		var/obj/structure/disposalpipe/current = loc
 		last = current
