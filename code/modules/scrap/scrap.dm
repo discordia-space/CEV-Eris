@@ -181,6 +181,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 			if(O == loot || O == big_item)
 				continue
 			total_storage_space += O.get_storage_cost()
+			O.forceMove(loot)
 			num--
 	loot.max_storage_space = max(10, total_storage_space)
 	update_icon()
