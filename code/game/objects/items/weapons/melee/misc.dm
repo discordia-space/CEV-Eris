@@ -104,7 +104,6 @@
 	icon_state = "jackhammer"
 	item_state = "jackhammer"
 	slot_flags = SLOT_BACK
-	
 	force = WEAPON_FORCE_ROBUST
 	throwforce = WEAPON_FORCE_ROBUST
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 2, MATERIAL_PLASTEEL = 4)
