@@ -132,6 +132,9 @@
 /obj/item/stack/rods/make_old()
 	return
 
+/obj/item/weapon/ore/make_old()
+	return
+
 /obj/item/weapon/grenade/make_old()
 	..()
 	det_time = RAND_DECIMAL(0, det_time)
