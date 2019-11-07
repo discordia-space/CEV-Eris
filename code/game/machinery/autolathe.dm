@@ -67,6 +67,15 @@
 	var/tmp/datum/wires/autolathe/wires = null
 	var/list/unsuitable_materials = list(MATERIAL_BIOMATTER)
 
+/obj/machinery/autolathe/techno_forge
+	name = "Technomancer Forge"
+	desc = "Special brand Technomancer autolathe, produces items faster and cheaper than a regular autolathe."
+	icon_state = "autolathe"
+	circuit = /obj/item/weapon/circuitboard/techno_forge
+	speed = 4
+	mat_efficiency = 2
+	queue_max = 10
+
 /obj/machinery/autolathe/bioprinter
 	name = "NeoTheology Bioprinter"
 	desc = "NeoTheology machine for printing things using biomass."

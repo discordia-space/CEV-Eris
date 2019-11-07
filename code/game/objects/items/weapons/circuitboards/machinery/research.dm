@@ -30,6 +30,17 @@
 		/obj/item/weapon/stock_parts/console_screen = 1
 	)
 
+/obj/item/weapon/circuitboard/techno_forge
+	name = T_BOARD("Technomancer Forge")
+	build_path = /obj/machinery/autolathe/techno_forge
+	board_type = "machine"
+	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2)
+	req_components = list(
+		/obj/item/weapon/stock_parts/matter_bin = 3,
+		/obj/item/weapon/stock_parts/manipulator = 1,
+		/obj/item/weapon/stock_parts/console_screen = 1
+	)	
+
 /obj/item/weapon/circuitboard/autolathe_disk_cloner
 	name = T_BOARD("autolathe disk cloner")
 	build_path = /obj/machinery/autolathe_disk_cloner
