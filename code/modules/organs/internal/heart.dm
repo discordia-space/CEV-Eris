@@ -77,8 +77,10 @@
 	else if(damage > 1)
 		blood_volume *= 0.8
 
+
 	//Effects of bloodloss
 	switch(blood_volume)
+
 		if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
 			if(prob(1))
 				to_chat(owner, SPAN_WARNING("You feel [pick("dizzy","woosey","faint")]"))

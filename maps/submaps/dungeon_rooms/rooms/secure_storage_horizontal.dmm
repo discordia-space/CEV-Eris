@@ -1,0 +1,31 @@
+"a" = (/turf/simulated/wall/untinted/onestar_reinforced,/area/crawler)
+"b" = (/obj/crawler/crawler_wallbreaker,/turf/simulated/wall/untinted/onestar_reinforced,/area/crawler)
+"c" = (/obj/structure/grille,/turf/simulated/floor/plating/under,/area/crawler)
+"d" = (/obj/structure/closet/onestar/tier3,/turf/simulated/floor/tiled/dark/brown_perforated,/area/crawler)
+"e" = (/obj/structure/railing/grey,/turf/simulated/floor/plating/under,/area/crawler)
+"f" = (/turf/simulated/floor/plating/under,/area/crawler)
+"g" = (/obj/machinery/door/blast/shutters,/turf/simulated/floor/tiled/dark/brown_perforated,/area/crawler)
+"h" = (/obj/crawler/crawler_wallbreaker/vertical,/turf/simulated/wall/untinted/onestar_reinforced,/area/crawler)
+"i" = (/obj/structure/railing/grey,/obj/structure/railing/grey{dir = 4},/obj/machinery/light/floor,/turf/simulated/floor/plating/under,/area/crawler)
+"j" = (/obj/structure/catwalk,/turf/simulated/floor/plating/under,/area/crawler)
+"k" = (/obj/structure/railing/grey,/obj/structure/railing/grey{dir = 8},/turf/simulated/floor/plating/under,/area/crawler)
+"l" = (/obj/structure/railing/grey,/obj/structure/railing/grey{dir = 8},/obj/machinery/light/floor,/turf/simulated/floor/plating/under,/area/crawler)
+"m" = (/obj/structure/railing/grey{dir = 1},/obj/structure/railing/grey{dir = 4},/obj/machinery/light/floor,/turf/simulated/floor/plating/under,/area/crawler)
+"n" = (/obj/structure/railing/grey,/obj/structure/railing/grey{dir = 4},/turf/simulated/floor/plating/under,/area/crawler)
+"o" = (/obj/structure/railing/grey{dir = 1},/obj/structure/railing/grey{dir = 8},/obj/machinery/light/floor,/turf/simulated/floor/plating/under,/area/crawler)
+"p" = (/obj/structure/railing/grey{dir = 1},/obj/structure/railing/grey{dir = 8},/turf/simulated/floor/plating/under,/area/crawler)
+"q" = (/obj/structure/catwalk,/obj/random/mob/roomba,/turf/simulated/floor/plating/under,/area/crawler)
+"s" = (/obj/structure/railing/grey{dir = 1},/turf/simulated/floor/plating/under,/area/crawler)
+"t" = (/obj/structure/railing/grey{dir = 1},/obj/structure/railing/grey{dir = 4},/turf/simulated/floor/plating/under,/area/crawler)
+
+(1,1,1) = {"
+aaaaabbbaaaaa
+accadacadacca
+aefagafagafeh
+hjkijleijlnjh
+hjqjjjjqjjqjh
+hjpmjosmjotjh
+hsfagafagafsh
+accadacadacca
+aaaabbbbbaaaa
+"}

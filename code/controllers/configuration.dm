@@ -204,6 +204,8 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 	var/emojis = 0
 
+	var/random_submap_orientation = FALSE // If true, submaps loaded automatically can be rotated.
+
 	var/webhook_url
 	var/webhook_key
 
@@ -634,6 +636,9 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 				if("starlight")
 					config.starlight = value ? value : 0
 
+				if("random_submap_orientation")
+					config.random_submap_orientation = 1
+
 				if("ert_species")
 					config.ert_species = splittext(value, ";")
 					if(!config.ert_species.len)
@@ -661,7 +666,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if("emojis")
 					config.emojis = 1
-				
+
 				if("webhook_key")
 					config.webhook_key = value
 

@@ -57,7 +57,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 /mob/living/attackby(obj/item/I, mob/living/user, var/params)
 	if(!ismob(user))
 		return FALSE
-	if(can_operate(src) && do_surgery(src, user, I)) //Surgery
+	if(can_operate(src, user) && do_surgery(src, user, I)) //Surgery
 		return TRUE
 	return I.attack(src, user, user.targeted_organ)
 

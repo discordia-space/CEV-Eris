@@ -18,6 +18,7 @@
 	var/list/allowed_organs = list()
 	var/position_flag = 0
 	var/external = FALSE
+	var/cruciform_resist = FALSE
 
 /obj/item/weapon/implant/attackby(obj/item/weapon/I as obj, mob/user as mob)
 	..()
@@ -43,7 +44,7 @@
 	return external
 
 //return TRUE for implanter icon update.
-/obj/item/weapon/implant/proc/install(var/mob/living/target, var/organ, var/mob/user)
+/obj/item/weapon/implant/proc/install(mob/living/target, organ, mob/user)
 	var/obj/item/organ/external/affected
 	if (ishuman(target))
 		var/mob/living/carbon/human/H = target
@@ -73,6 +74,7 @@
 	if(affected)
 		affected.implants += src
 		part = affected
+		SSnano.update_uis(affected) // Update surgery UI window, if any
 
 	on_install(target, affected)
 	wearer.update_implants()

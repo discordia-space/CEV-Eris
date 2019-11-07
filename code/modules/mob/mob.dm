@@ -356,7 +356,7 @@
 	if (flavor_text && flavor_text != "")
 		var/msg = trim(replacetext(flavor_text, "\n", " "))
 		if(!msg) return ""
-		if(lentext(msg) <= 40)
+		if(length(msg) <= 40)
 			return "<font color='blue'>[russian_to_cp1251(msg)]</font>"
 		else
 			return "<font color='blue'>[copytext_preserve_html(russian_to_cp1251(msg), 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a></font>"
@@ -892,11 +892,10 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 		flick("weak_pain", HUDtech["pain"])
 
 
-/mob/proc/get_visible_implants(var/class = 0)
+/mob/proc/get_visible_implants()
 	var/list/visible_implants = list()
 	for(var/obj/item/O in embedded)
-		if(O.w_class > class)
-			visible_implants += O
+		visible_implants += O
 	return visible_implants
 
 /mob/proc/embedded_needs_process()
@@ -928,7 +927,7 @@ mob/proc/yank_out_object()
 	if(S == U)
 		self = 1 // Removing object from yourself.
 
-	valid_objects = get_visible_implants(0)
+	valid_objects = get_visible_implants()
 	if(!valid_objects.len)
 		if(self)
 			to_chat(src, "You have nothing stuck in your body that is large enough to remove.")
@@ -952,7 +951,7 @@ mob/proc/yank_out_object()
 		visible_message("<span class='warning'><b>[src] rips [selection] out of their body.</b></span>","<span class='warning'><b>You rip [selection] out of your body.</b></span>")
 	else
 		visible_message("<span class='warning'><b>[usr] rips [selection] out of [src]'s body.</b></span>","<span class='warning'><b>[usr] rips [selection] out of your body.</b></span>")
-	valid_objects = get_visible_implants(0)
+	valid_objects = get_visible_implants()
 	if(valid_objects.len == 1) //Yanking out last object - removing verb.
 		src.verbs -= /mob/proc/yank_out_object
 
@@ -966,13 +965,9 @@ mob/proc/yank_out_object()
 					affected = organ
 
 		affected.implants -= selection
+		affected.embedded -= selection
 		H.shock_stage+=20
 		affected.take_damage((selection.w_class * 3), 0, 0, 1, "Embedded object extraction")
-
-		if(prob(selection.w_class * 5)) //I'M SO ANEMIC I COULD JUST -DIE-.
-			var/datum/wound/internal_bleeding/I = new (min(selection.w_class * 5, 15))
-			affected.wounds += I
-			H.custom_pain("Something tears wetly in your [affected] as [selection] is pulled free!", 1)
 
 		if (ishuman(U))
 			var/mob/living/carbon/human/human_user = U

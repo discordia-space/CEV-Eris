@@ -12,7 +12,7 @@ mob/var/next_pain_time = 0
 // partname is the name of a body part
 // amount is a num from 1 to 100
 mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0)
-	if(stat >= 1)
+	if(stat >= UNCONSCIOUS)
 		return
 	if(species && (species.flags & NO_PAIN))
 		return
@@ -54,14 +54,10 @@ mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0
 
 // message is the custom message to be displayed
 // flash_strength is 0 for weak pain flash, 1 for strong pain flash
-mob/living/carbon/human/proc/custom_pain(var/message, var/flash_strength)
-	if(stat >= 1)
+mob/living/carbon/human/proc/custom_pain(message, flash_strength)
+	if(stat >= UNCONSCIOUS)
 		return
 	if(species.flags & NO_PAIN)
-		return
-	if(reagents.has_reagent("tramadol"))
-		return
-	if(reagents.has_reagent("oxycodone"))
 		return
 	if(analgesic)
 		return

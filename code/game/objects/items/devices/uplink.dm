@@ -24,6 +24,8 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	//The total uses is only increased when this is a whole number
 	var/gain_progress = 0.0
 
+	var/bsdm_time = 0
+
 /obj/item/device/uplink/nano_host()
 	return loc
 
@@ -117,6 +119,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	data["welcome"] = welcome
 	data["crystals"] = uses
 	data["menu"] = nanoui_menu
+	data["has_contracts"] = player_is_antag_id(uplink_owner, ROLE_TRAITOR)
 	data += nanoui_data
 
 	// update the ui if it exists, returns null if no ui is passed/found
@@ -160,6 +163,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	return 1
 
 /obj/item/device/uplink/hidden/proc/update_nano_data()
+	nanoui_data["menu"] = nanoui_menu
 	if(nanoui_menu == 0)
 		var/categories[0]
 		for(var/datum/uplink_category/category in uplink.categories)
@@ -172,7 +176,10 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 
 			if(item.can_view(src))
 				var/cost = item.cost(uses)
-				if(!cost) cost = "???"
+				if(cost == 0)
+					cost = "Free"
+				else if(!cost)
+					cost = "???"
 				items[++items.len] = list("name" = item.name, "description" = replacetext(item.description(), "\n", "<br>"), "can_buy" = item.can_buy(src), "cost" = cost, "ref" = "\ref[item]")
 
 		nanoui_data["items"] = items
@@ -200,6 +207,22 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 
 				nanoui_data["exploit_exists"] = 1
 				break
+	else if(nanoui_menu == 3 && player_is_antag_id(uplink_owner, ROLE_TRAITOR))
+		var/list/available_contracts = list()
+		var/list/completed_contracts = list()
+		for(var/datum/antag_contract/C in GLOB.all_antag_contracts)
+			var/list/entry = list(list(
+				"name" = C.name,
+				"desc" = C.desc,
+				"reward" = C.reward,
+				"status" = C.completed ? "Fulfilled" : "Available"
+			))
+			if(!C.completed)
+				available_contracts.Add(entry)
+			else
+				completed_contracts.Add(entry)
+		nanoui_data["available_contracts"] = available_contracts
+		nanoui_data["completed_contracts"] = completed_contracts
 
 // I placed this here because of how relevant it is.
 // You place this in your uplinkable item to check if an uplink is active or not.

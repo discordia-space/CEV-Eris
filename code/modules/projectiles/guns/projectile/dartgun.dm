@@ -75,17 +75,12 @@
 	update_icon()
 
 /obj/item/weapon/gun/projectile/dartgun/update_icon()
-	if(!ammo_magazine)
-		icon_state = "dartgun-empty"
-		return 1
-
-	if(!ammo_magazine.stored_ammo || ammo_magazine.stored_ammo.len)
-		icon_state = "dartgun-0"
-	else if(ammo_magazine.stored_ammo.len > 5)
-		icon_state = "dartgun-5"
+	..()
+	if(ammo_magazine)
+		icon_state = "dartgun-[round(ammo_magazine.stored_ammo.len,1)]"
 	else
-		icon_state = "dartgun-[ammo_magazine.stored_ammo.len]"
-	return 1
+		icon_state = "dartgun-empty"
+	return
 
 /obj/item/weapon/gun/projectile/dartgun/consume_next_projectile()
 	. = ..()

@@ -11,6 +11,9 @@
 // Damage received from shock
 #define SANITY_DAMAGE_SHOCK(shock, vig) ((shock) / 50 * SANITY_DAMAGE_MOD * (1.2 - (vig) / STAT_LEVEL_MAX))
 
+// Damage received from psy effects
+#define SANITY_DAMAGE_PSY(damage, vig) (damage * SANITY_DAMAGE_MOD * (2 - (vig) / STAT_LEVEL_MAX))
+
 // Damage received from seeing someone die
 #define SANITY_DAMAGE_DEATH(vig) (10 * SANITY_DAMAGE_MOD * (1 - (vig) / STAT_LEVEL_MAX))
 
@@ -97,6 +100,9 @@
 /datum/sanity/proc/onDamage(amount)
 	changeLevel(-SANITY_DAMAGE_HURT(amount, owner.stats.getStat(STAT_VIG)))
 
+/datum/sanity/proc/onPsyDamage(amount)
+	changeLevel(-SANITY_DAMAGE_PSY(amount, owner.stats.getStat(STAT_VIG)))
+
 /datum/sanity/proc/onSeeDeath(mob/M)
 	if(ishuman(M))
 		changeLevel(-SANITY_DAMAGE_DEATH(owner.stats.getStat(STAT_VIG)))
@@ -148,6 +154,9 @@
 
 /datum/sanity/proc/breakdown()
 	breakdown_time = world.time + SANITY_COOLDOWN_BREAKDOWN
+
+	for(var/obj/item/device/mind_fryer/M in oview(owner))
+		M.reg_break(owner)
 
 	var/list/possible_results
 	if(prob(positive_prob))
