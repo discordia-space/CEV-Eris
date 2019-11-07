@@ -238,3 +238,9 @@
 	desc = "An orange piece of cloth, worn on the head."
 	icon_state = "orange_bandana"
 	body_parts_covered = 0
+
+/obj/item/clothing/head/gnome_hat
+	name = "Gnome cap"
+	icon_state = "gnome_hat"
+	desc = "This hat belongs to Noggin Clontith."
+	flags_inv = BLOCKHAIR
