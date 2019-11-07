@@ -106,3 +106,8 @@
 	desc = "Twoooo!"
 	icon_state = "owl"
 	body_parts_covered = HEAD|FACE|EYES
+
+/obj/item/clothing/mask/gas/gnome_beard
+	name = "gnome beard"
+	desc = "A close-fitting tactical beard that can be connected to an air supply."
+	icon_state = "gnome_beard"
