@@ -179,3 +179,8 @@
 	icon_state = "blue_blazer"
 	item_state = "blue_blazer"
 
+/obj/item/clothing/under/gnome_suit
+	name = "Gnome's formal uniform"
+	desc = "An gnome's formal-wear. Why an gnome needs formal-wear is still unknown."
+	icon_state = "gnome_suit"
+	item_state = "b_suit"
