@@ -73,7 +73,7 @@
 	icon_state = "autolathe"
 	circuit = /obj/item/weapon/circuitboard/techno_forge
 	speed = 4
-	mat_efficiency = 2
+	mat_efficiency = 0.5
 	queue_max = 10
 
 /obj/machinery/autolathe/bioprinter
