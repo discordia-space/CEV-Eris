@@ -669,8 +669,7 @@
 	speed = man_rating*3
 	mat_efficiency = 1.1 - man_rating * 0.1
 
-
-
+/obj/machinery/autolathe/techno_forge/RefreshParts()
 
 //Cancels the current construction
 /obj/machinery/autolathe/proc/abort()
