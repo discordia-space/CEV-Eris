@@ -666,10 +666,10 @@
 
 	storage_capacity = round(initial(storage_capacity)*(mb_rating/3))
 
-	speed = man_rating*3
+	speed += man_rating*3 
 	mat_efficiency = (mat_efficiency + 0.1) - (man_rating * 0.1)
 
-/obj/machinery/autolathe/techno_forge/RefreshParts()
+
 
 //Cancels the current construction
 /obj/machinery/autolathe/proc/abort()
