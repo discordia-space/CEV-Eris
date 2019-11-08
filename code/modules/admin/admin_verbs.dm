@@ -331,6 +331,21 @@ ADMIN_VERB_ADD(/client/proc/object_talk, R_FUN, FALSE)
 		for (var/mob/V in hearers(mob.control_object))
 			V.show_message("<b>[mob.control_object.name]</b> says: \"" + msg + "\"", 2)
 
+ADMIN_VERB_ADD(/client/proc/enable_profiler, R_DEBUG, FALSE)
+/client/proc/enable_profiler() // -- TLE
+	set category = "Debug"
+	set name = "Enable Profiler"
+	set desc = "Access BYOND's proc performance profiler"
+
+	if(!check_rights(R_DEBUG))
+		return
+
+	log_admin("[key_name(usr)] has enabled performance profiler. This may cause lag.")
+	message_admins("[key_name_admin(usr)] has enabled performance profiler. This may cause lag.", 1)
+
+	// Give profiler access
+	world.SetConfig("APP/admin", ckey, "role=admin")
+	to_chat(src, "Press <a href='?debug=profile'>here</a> to access profiler panel. It will replace verb panel, and you may have to wait a couple of seconds for it to display.")
 
 ADMIN_VERB_ADD(/client/proc/kill_air, R_DEBUG, FALSE)
 /client/proc/kill_air() // -- TLE

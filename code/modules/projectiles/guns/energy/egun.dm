@@ -4,7 +4,7 @@
 	icon_state = "energystun100"
 	item_state = null	//so the human update icon uses the icon_state instead.
 	fire_sound = 'sound/weapons/Taser.ogg'
-	charge_cost = 150
+	charge_cost = 100
 	matter = list(MATERIAL_PLASTEEL = 13, MATERIAL_PLASTIC = 6, MATERIAL_SILVER = 6)
 	price_tag = 2500
 
@@ -21,30 +21,24 @@
 	name = "mounted energy gun"
 	self_recharge = 1
 	use_external_power = 1
+	safety = FALSE
 	restrict_safety = TRUE
 
 /obj/item/weapon/gun/energy/gun/martin
 	name = "FS PDW E \"Martin\""
-	desc = "Last chance gun."
-	icon_state = "PDW"
+	desc = "Martin is essentialy downscaled Spider Rose, made for IH employees and civilians to use it as personal self defence weapon."
+	icon_state = "PDWstun100"
 	item_state = "gun"
-	charge_meter = FALSE
 	w_class = ITEM_SIZE_SMALL
 	charge_cost = 50
-	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
-	matter = list(MATERIAL_PLASTEEL = 8, MATERIAL_PLASTIC = 4, MATERIAL_SILVER = 1)
-	price_tag = 1400
-	modifystate = null
+	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 1)
+	matter = list(MATERIAL_PLASTEEL = 8, MATERIAL_PLASTIC = 4, MATERIAL_SILVER = 2)
+	price_tag = 1000
+	modifystate = "PDWstun"
 	suitable_cell = /obj/item/weapon/cell/small
 	cell_type = /obj/item/weapon/cell/small
 
-/obj/item/weapon/gun/energy/gun/martin/proc/update_mode()
-	var/datum/firemode/current_mode = firemodes[sel_mode]
-	switch(current_mode.name)
-		if("stun") overlays += "taser_pdw"
-		if("kill") overlays += "lazer_pdw"
-
-/obj/item/weapon/gun/energy/gun/martin/update_icon()
-	overlays.Cut()
-	if(cell && cell.charge >= charge_cost) //no overlay if we dont have any power
-		update_mode()
+	firemodes = list(
+		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun, modifystate="PDWstun", fire_sound='sound/weapons/Taser.ogg', icon="stun"),
+		list(mode_name="kill", projectile_type=/obj/item/projectile/beam, modifystate="PDWkill", fire_sound='sound/weapons/Laser.ogg', icon="kill"),
+		)
