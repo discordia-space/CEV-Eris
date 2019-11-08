@@ -58,9 +58,6 @@
 
 
 /mob/living/proc/resist_grab()
-	var/mob/living/carbon/C = src
-	if(istype(C) && C.handcuffed)
-		return
 	var/resisting = 0
 	for(var/obj/O in requests)
 		requests.Remove(O)
@@ -82,6 +79,9 @@
 					qdel(G)
 	if(resisting)
 		visible_message("<span class='danger'>[src] resists!</span>")
+
+/mob/living/carbon/resist_grab()
+	return !handcuffed && ..()
 
 /mob/living/carbon/process_resist()
 
