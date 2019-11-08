@@ -53,7 +53,7 @@
 
 /datum/antagonist/Topic(href, href_list)
 	if(!check_rights(R_ADMIN))
-		return
+		return TRUE
 
 	if(href_list["select_antagonist"])
 		if(!owner)
