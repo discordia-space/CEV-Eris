@@ -89,8 +89,7 @@
 				if(player.ready)totalPlayersReady++
 
 /mob/new_player/Topic(href, href_list[])
-	if(src != usr || !client)
-		return 0
+	if(!client)	return 0
 
 	if(href_list["show_preferences"])
 		client.prefs.ShowChoices(src)

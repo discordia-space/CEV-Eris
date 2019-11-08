@@ -232,8 +232,7 @@ It focuses on spawning large numbers of moderate-to-weak monsters, and includes 
 			var/obj/structure/burrow/B = chosen_burrows[b]
 			if (QDELETED(B))
 				continue
-			var/area/A = get_area(B)
-			areanames += strip_improper(A.name)
+			areanames += strip_improper(get_area(B).name)
 		if (areanames.len)
 			switch(severity)
 				if (EVENT_LEVEL_MUNDANE)
