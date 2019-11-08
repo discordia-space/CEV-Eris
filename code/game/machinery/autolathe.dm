@@ -666,7 +666,7 @@
 
 	storage_capacity = round(initial(storage_capacity)*(mb_rating/3))
 
-	speed += man_rating*3 
+	speed = man_rating*3 + 2  
 	mat_efficiency = (mat_efficiency + 0.1) - (man_rating * 0.1)
 
 
