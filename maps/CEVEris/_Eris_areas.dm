@@ -825,6 +825,11 @@
 	icon_state = "erisblue"
 	area_light_color = COLOR_LIGHTING_SCI_DARK
 
+/area/eris/medical/paramedic
+	name = "\improper Paramedic Closet"
+	icon_state = "erisyellow"
+	area_light_color = COLOR_LIGHTING_SCI_DARK
+
 /area/eris/medical/medbay/iso
 	name = "Isolation Wing"
 	icon_state = "erisgreen"

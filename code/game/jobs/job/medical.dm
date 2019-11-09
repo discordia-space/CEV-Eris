@@ -17,7 +17,8 @@
 	access = list(
 		access_moebius, access_medical_equip, access_morgue, access_genetics, access_heads,
 		access_chemistry, access_virology, access_cmo, access_surgery, access_RC_announce,
-		access_keycard_auth, access_sec_doors, access_psychiatrist, access_eva, access_maint_tunnels, access_external_airlocks
+		access_keycard_auth, access_sec_doors, access_psychiatrist, access_eva, access_maint_tunnels,
+		access_external_airlocks, access_paramedic
 	)
 
 	ideal_character_age = 50
@@ -211,7 +212,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 
 	outfit_type = /decl/hierarchy/outfit/job/medical/paramedic
 	access = list(
-		access_moebius, access_medical_equip, access_morgue, access_surgery,
+		access_moebius, access_medical_equip, access_morgue, access_surgery, access_paramedic,
 		access_eva, access_maint_tunnels, access_external_airlocks, access_psychiatrist
 	)
 
