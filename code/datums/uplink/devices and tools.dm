@@ -72,7 +72,7 @@
 
 /datum/uplink_item/item/tools/thermal
 	name = "Thermal Imaging Lenses"
-	item_cost = 6
+	item_cost = 10
 	path = /obj/item/clothing/glasses/powered/thermal/lens
 
 /datum/uplink_item/item/tools/powersink
