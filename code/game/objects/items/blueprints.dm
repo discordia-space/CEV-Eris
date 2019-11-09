@@ -45,7 +45,7 @@
 			edit_area()
 
 /obj/item/blueprints/interact()
-	var/area/A = get_area()
+	var/area/A = get_area(usr)
 	var/text = {"<HTML><head><title>[src]</title></head><BODY>
 <h2>[station_name()] blueprints</h2>
 <small>Property of [company_name]. For heads of staff only. Store in high-secure storage.</small><hr>
@@ -72,13 +72,7 @@ move an amendment</a> to the drawing.</p>
 	usr << browse(text, "window=blueprints")
 	onclose(usr, "blueprints")
 
-
-/obj/item/blueprints/proc/get_area()
-	var/turf/T = get_turf(usr)
-	var/area/A = T.loc
-	return A
-
-/obj/item/blueprints/proc/get_area_type(var/area/A = get_area())
+/obj/item/blueprints/proc/get_area_type(var/area/A = get_area(usr))
 	if(istype(A, /area/space))
 		return AREA_SPACE
 	var/list/SPECIALS = list(
@@ -143,7 +137,7 @@ move an amendment</a> to the drawing.</p>
 
 
 /obj/item/blueprints/proc/edit_area()
-	var/area/A = get_area()
+	var/area/A = get_area(usr)
 	//world << "DEBUG: edit_area"
 	var/prevname = "[A.name]"
 	var/str = sanitizeSafe(input("New area name:","Blueprint Editing", prevname), MAX_NAME_LEN)
