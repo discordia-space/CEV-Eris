@@ -73,7 +73,7 @@
 /obj/item/clothing/glasses/powered/thermal/lens
 	name = "Thermal lenses"
 	desc = "Lenses for glasses."
-	active = TRUE //if it FALSE it changes icon_state to deactivated thermal sprite
+	toggleable = FALSE
 	icon_state = "thermal_lens"
 	body_parts_covered = 0
 	slot_flags = 0

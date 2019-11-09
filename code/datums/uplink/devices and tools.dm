@@ -71,6 +71,11 @@
 	path = /obj/item/weapon/storage/box/syndie_kit/space
 
 /datum/uplink_item/item/tools/thermal
+	name = "Thermal Imaging Glasses"
+	item_cost = 6
+	path = /obj/item/clothing/glasses/powered/thermal/syndi
+
+/datum/uplink_item/item/tools/thermal_lens
 	name = "Thermal Imaging Lenses"
 	item_cost = 10
 	path = /obj/item/clothing/glasses/powered/thermal/lens
