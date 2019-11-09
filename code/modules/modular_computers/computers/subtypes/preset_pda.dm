@@ -40,7 +40,7 @@
 /obj/item/modular_computer/pda/moebius/install_default_programs()
 	..()
 	hard_drive.store_file(new /datum/computer_file/program/chem_catalog())
-	
+
 /obj/item/modular_computer/pda/moebius/install_default_hardware()
 	..()
 	qdel(hard_drive)
@@ -57,6 +57,11 @@
 /obj/item/modular_computer/pda/moebius/chemistry
 	icon_state = "pda-m"
 	scanner_type = /obj/item/weapon/computer_hardware/scanner/reagent
+
+
+/obj/item/modular_computer/pda/moebius/chemistry/install_default_programs()
+	..()
+	hard_drive.store_file(new /datum/computer_file/program/chem_catalog())
 
 /obj/item/modular_computer/pda/church
 	icon_state = "pda-neo"
@@ -81,6 +86,10 @@
 /obj/item/modular_computer/pda/heads/cmo
 	icon_state = "pda-cmo"
 	scanner_type = /obj/item/weapon/computer_hardware/scanner/medical
+
+/obj/item/modular_computer/pda/heads/cmo/install_default_programs()
+	..()
+	hard_drive.store_file(new /datum/computer_file/program/chem_catalog())
 
 /obj/item/modular_computer/pda/heads/rd
 	icon_state = "pda-rd"

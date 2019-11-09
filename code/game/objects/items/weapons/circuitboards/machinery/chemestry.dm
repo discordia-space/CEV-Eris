@@ -29,7 +29,7 @@
 		/obj/item/weapon/stock_parts/capacitor = 1,
 		/obj/item/weapon/stock_parts/manipulator = 1,
 		/obj/item/weapon/stock_parts/console_screen = 1,
-		/obj/item/weapon/cell = 1
+		/obj/item/weapon/cell/medium = 1
 	)
 /obj/item/weapon/circuitboard/electrolyzer
 	name = T_BOARD("Electrolyzer")

@@ -3,7 +3,7 @@
 	set category = "IC"
 
 	if(!stat && can_click())
-		setClickCooldown(20)
+		setClickCooldown(10)
 		resist_grab()
 		if(!weakened)
 			process_resist()
@@ -79,6 +79,9 @@
 					qdel(G)
 	if(resisting)
 		visible_message("<span class='danger'>[src] resists!</span>")
+
+/mob/living/carbon/resist_grab()
+	return !handcuffed && ..()
 
 /mob/living/carbon/process_resist()
 

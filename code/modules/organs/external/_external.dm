@@ -49,6 +49,7 @@
 	var/list/children = list()			// Sub-limbs.
 	var/list/internal_organs = list()	// Internal organs of this body part
 	var/list/implants = list()			// Currently implanted objects.
+	var/list/embedded = list()			// Currently implanted objects that can be pulled out
 	var/max_size = 0
 
 	var/list/drop_on_remove = null
@@ -903,7 +904,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 /obj/item/organ/external/proc/is_malfunctioning()
 	return (BP_IS_ROBOTIC(src) && (brute_dam + burn_dam) >= 10 && prob(brute_dam + burn_dam))
 
-/obj/item/organ/external/proc/embed(var/obj/item/weapon/W, var/silent = 0)
+/obj/item/organ/external/proc/embed(obj/item/W, silent = 0)
 	if(!owner || loc != owner)
 		return
 	if(ismob(W.loc))
@@ -913,9 +914,13 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(!silent)
 		owner.visible_message("<span class='danger'>\The [W] sticks in the wound!</span>")
 	implants += W
+
+	if(!istype(W, /obj/item/weapon/material/shard/shrapnel))
+		embedded += W
+		owner.verbs += /mob/proc/yank_out_object
+
 	owner.embedded_flag = 1
 	W.add_blood(owner)
-	owner.verbs += /mob/proc/yank_out_object
 	W.loc = owner
 
 /obj/item/organ/external/proc/disfigure(var/type = "brute")

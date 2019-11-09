@@ -16,7 +16,7 @@
 /obj/item/organ_module/proc/remove(obj/item/organ/external/E)
 	E.module = null
 	E.implants -= src
-	src.forceMove(get_turf(E))
+	src.forceMove(E.drop_location())
 	onRemove(E)
 
 /obj/item/organ_module/proc/onRemove(obj/item/organ/external/E)

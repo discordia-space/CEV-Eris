@@ -145,15 +145,18 @@ datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/machines)
 
 /datum/controller/subsystem/machines/proc/process_machinery(resumed = 0)
 	if (!resumed)
-		nextProcessingListPosition = 1 //fresh start, otherwise from saved posisition
+		src.nextProcessingListPosition = 1 //fresh start, otherwise from saved posisition
 
 	//localizations
 	var/list/local_list = machinery
 	var/obj/machinery/thing
 	var/wait = src.wait
+	var/nextProcessingListPosition = src.nextProcessingListPosition
+	if(!nextProcessingListPosition)
+		return
 
 	var/tickCheckPeriod = round(local_list.len/16+1) //pause process at most every 1/16th length of list
-	while(nextProcessingListPosition && (nextProcessingListPosition <= local_list.len)) //until position is valid
+	while(nextProcessingListPosition <= local_list.len) //until position is valid
 		thing = local_list[nextProcessingListPosition]
 		nextProcessingListPosition++
 
@@ -167,9 +170,10 @@ datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/machines)
 
 		if(!(nextProcessingListPosition%tickCheckPeriod)) //pauses only tickCheckPeriod-th processed thing
 			if (MC_TICK_CHECK)
+				src.nextProcessingListPosition = nextProcessingListPosition
 				return
 
-	nextProcessingListPosition = 0 //entire list was processed
+	src.nextProcessingListPosition = 0 //entire list was processed
 
 /datum/controller/subsystem/machines/proc/process_powernets(resumed = 0)
 	if (!resumed)

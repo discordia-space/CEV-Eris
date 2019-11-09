@@ -61,7 +61,10 @@
 // Deals agony damage to the owner, if the body part can feel pain at all
 /obj/item/organ/proc/owner_pain(strength)
 	if(can_feel_pain() && istype(owner) && strength)
-		owner.apply_effect(strength, AGONY, armor_value = 0, check_protection = FALSE)
+		var/multiplier = min(0, 1 - (owner.analgesic / 100))
+
+		if(multiplier)
+			owner.apply_effect(strength * multiplier, AGONY, armor_value = 0, check_protection = FALSE)
 
 
 // Get a list of surgically treatable conditions

@@ -356,7 +356,7 @@
 /obj/screen/health/update_icon()
 	if(parentmob:stat != DEAD)
 		overlays.Cut()
-		if (parentmob:analgesic > 100)
+		if (parentmob:analgesic >= 100)
 //			icon_state = "health_numb"
 			overlays += ovrls["health0"]
 		else
