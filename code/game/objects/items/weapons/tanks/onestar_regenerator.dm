@@ -13,10 +13,9 @@
 	volume = 2
 
 
-/obj/item/weapon/tank/onestar_regenerator/New()
-		..()
-		ensure_breath()
-		return
+/obj/item/weapon/tank/onestar_regenerator/Initialize(mapload, ...)
+	. = ..()
+	ensure_breath()
 
 /obj/item/weapon/tank/onestar_regenerator/examine(mob/user)
 	. = ..(user, 0)
@@ -24,7 +23,7 @@
 
 /obj/item/weapon/tank/onestar_regenerator/remove_air(amount)
 	var/datum/gas_mixture/M = air_contents.remove(amount)
-	if(istype(loc,/mob/living/carbon))
+	if(istype(loc, /mob/living/carbon))
 		var/mob/living/carbon/C = loc
 		if(C.internal == src)
 			ensure_breath()

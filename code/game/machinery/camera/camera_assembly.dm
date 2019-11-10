@@ -55,10 +55,12 @@
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You weld the assembly securely into place."))
 					state = 2
+					return
 			if(state == 2)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You unweld the assembly from its place."))
 					state = 1
+					return
 			return
 
 		if(QUALITY_WIRE_CUTTING)

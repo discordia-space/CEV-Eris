@@ -137,6 +137,10 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 		//find the client for a ckey if they are connected and associate them with the new admin datum
 		D.associate(directory[ckey])
 
+	//Clear profile access
+	for(var/A in world.GetConfig("admin"))
+		world.SetConfig("APP/admin", A, null)
+
 
 // TODO: finally rework database schema with separate permissions table
 /proc/load_permissions(var/player_id)

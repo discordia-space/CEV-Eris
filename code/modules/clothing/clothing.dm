@@ -155,6 +155,8 @@ BLIND     // can't see anything
 	var/vision_flags = 0
 	var/darkness_view = 0//Base human is 2
 	var/see_invisible = -1
+	var/have_lenses = 0
+	var/protection = 0
 
 ///////////////////////////////////////////////////////////////////////
 //Gloves
@@ -307,7 +309,8 @@ BLIND     // can't see anything
 
 	var/can_hold_knife
 	var/obj/item/holding
-
+	var/noslip = 0
+	var/module_inside = 0
 
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
@@ -356,6 +359,17 @@ BLIND     // can't see anything
 
 /obj/item/clothing/shoes/attackby(var/obj/item/I, var/mob/user)
 	var/global/knifes
+	if(istype(I,/obj/item/noslipmodule))
+		if (item_flags != 0)
+			noslip = item_flags
+		module_inside = 1
+		to_chat(user, "You attached no slip sole")
+		permeability_coefficient = 0.05
+		item_flags = NOSLIP | SILENT
+		origin_tech = list(TECH_ILLEGAL = 3)
+		siemens_coefficient = 0 // DAMN BOI
+		qdel(I)
+
 	if(!knifes)
 		knifes = list(
 			/obj/item/weapon/material/knife,
@@ -376,6 +390,22 @@ BLIND     // can't see anything
 	else
 		return ..()
 
+/obj/item/clothing/shoes/verb/detach_noslipmodule()
+	set name = "Detach acccessory"
+	set category = "Object"
+	set src in view(1)
+
+	if (module_inside == 1 )
+		if (noslip != 0)
+			item_flags = noslip
+		var/obj/item/noslipmodule/NSM = new()
+		usr.put_in_hands(NSM)
+	else to_chat(usr, "You haven't got any accessories in your shoes")
+
+
+
+
+
 /obj/item/clothing/shoes/update_icon()
 	overlays.Cut()
 	if(holding)
@@ -384,6 +414,7 @@ BLIND     // can't see anything
 
 /obj/item/clothing/shoes/proc/handle_movement(var/turf/walking, var/running)
 	return
+
 
 ///////////////////////////////////////////////////////////////////////
 //Suit
