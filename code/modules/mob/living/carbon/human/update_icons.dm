@@ -630,10 +630,10 @@ var/global/list/damage_icon_parts = list()
 		var/t_state
 		if(s_store.item_state_slots && s_store.item_state_slots[slot_s_store_str])
 			t_state = s_store.item_state_slots[slot_s_store_str]
-		else if(s_store.icon_state)
-			t_state = s_store.icon_state
-		else
+		else if(s_store.item_state)
 			t_state = s_store.item_state
+		else
+			t_state = s_store.icon_state
 
 		//Determine the icon to use
 		var/t_icon
