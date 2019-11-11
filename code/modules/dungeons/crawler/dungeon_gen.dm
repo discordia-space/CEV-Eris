@@ -13,7 +13,7 @@
 	var/generating = 0
 	var/area/crawler/myarea
 	var/rooms = list()
-	var/occupied_rooms = list()
+	var/list/occupied_rooms = list()
 	var/starting_lane = list()
 	var/list/start_room_templates = list()
 	var/list/room_templates = list()
@@ -224,18 +224,18 @@
 	while(generating)
 		if(is_generated(room_generating))
 			var/next = pick(get_adjacent(room_generating))
-			if(prob(70) && next)//so it doesn't alway hit the side and only then go down
+			if(prob(85) && next)//so it doesn't alway hit the side and only then go down
 				room_generating = next
 				continue
 			var/under = get_room_num_under(room_generating)
 			if(under)
-				testing("under room number is:")
+				//testing("under room number is:")
 				var/obj/crawler/room_controller/c_room = get_room_by_num(room_generating)
 				c_room.above = 1
 				room_generating = under
 				c_room = get_room_by_num(room_generating)
 				c_room.under = 1 //so rooms with dead ends on top and bottom don't generate on top of each other, blocking the path. Hacky, but I found no workaround
-				testing(room_generating)
+				//testing(room_generating)
 				continue
 			else
 				generating = 0
@@ -243,15 +243,15 @@
 					room_generating = next
 		if(generating)
 			occupied_rooms += get_room_by_num(room_generating)
-			testing("Scheduled the mundane room with number:")
-			testing(room_generating)
+			//testing("Scheduled the mundane room with number:")
+			//testing(room_generating)
 		else
 			var/obj/crawler/room_controller/endroom = get_room_by_num(room_generating)
 			endroom.end_room = TRUE
 			occupied_rooms += endroom
-			testing("end room number is:")
-			testing(room_generating)
-			testing("Scheduledx the end")
+			//testing("end room number is:")
+			//testing(room_generating)
+			//testing("Scheduledx the end")
 			break
 
 
@@ -270,14 +270,14 @@
 	sleep(200)
 	previous_room = starting_room
 	for(var/obj/crawler/room_controller/c_room in occupied_rooms)
-		testing(c_room.roomnum)
+		//testing(c_room.roomnum)
 		if(c_room == previous_room)
 			continue
 		else
 			previous_room.connect(c_room)
 		previous_room = c_room
 
-	var/secret_rooms = rand(10, 20)
+	var/secret_rooms = rand(15, occupied_rooms.len * 2)
 	while(secret_rooms > 0)
 		var/obj/crawler/room_controller/occupied_room = pick(occupied_rooms)
 		var/list/neighbors = get_all_free_neighbors(occupied_room.roomnum)
@@ -298,8 +298,17 @@
 			continue
 		else
 			generate_room(c_room.roomnum, "blocker")
-
-
+	testing("beginning dungeon initialization!")
+	var/datum/map_template/dungeon_template/init_template = starting_room.template
+	var/list/bounds = list(1.#INF, 1.#INF, 1.#INF, -1.#INF, -1.#INF, -1.#INF)
+	bounds[MAP_MINX] = 1
+	bounds[MAP_MINY] = 146
+	bounds[MAP_MINZ] = z
+	bounds[MAP_MAXX] = 210
+	bounds[MAP_MAXY] = 1
+	bounds[MAP_MAXZ] = z
+	init_template.initTemplateBounds(bounds)
+	testing("finished dungeon initialization!")
 
 	sleep(1)
 	for(var/turf/simulated/wall/W in block(locate(1, 1, z), locate(210, 146, z)))
@@ -315,31 +324,31 @@
 		disallowed_dirs += NORTH
 	for(var/i in disallowed_dirs)
 		if(i in  r_template.directional_flags)
-			testing("Couldn't generate!")
+			//testing("Couldn't generate!")
 			return 0
-	testing("CAN GENERATE!")
+	//testing("CAN GENERATE!")
 	return 1
 
 /obj/crawler/map_maker/proc/can_connect(var/roomnumber, var/prevnum, var/datum/map_template/dungeon_template/r_template)
 	var/rc_dir = get_dir(get_room_by_num(roomnumber), get_room_by_num(prevnum))
 	var/cr_dir = get_dir(get_room_by_num(prevnum), get_room_by_num(roomnumber))
-	testing(roomnumber)
-	testing(prevnum)
-	testing(dir2text(rc_dir))
-	testing(dir2text(cr_dir))
+	//testing(roomnumber)
+	//testing(prevnum)
+	//testing(dir2text(rc_dir))
+	//testing(dir2text(cr_dir))
 	var/can_connect = 0
 	var/obj/crawler/room_controller/pr_r = get_room_by_num(prevnum)
 	var/datum/map_template/dungeon_template/prev_template = pr_r.template
 	for(var/t_dir in r_template.directional_flags)
 		if (t_dir == dir2text(rc_dir))
 			can_connect = can_connect + 1
-			testing("can connect - 1")
+			//testing("can connect - 1")
 	for(var/t_dir in prev_template.directional_flags)
 		if (t_dir == dir2text(cr_dir))
 			can_connect = can_connect + 1
-			testing("can connect - 2")
+			//testing("can connect - 2")
 	if(can_connect == 2)
-		testing("CONNECTED = 1")
+		//testing("CONNECTED = 1")
 		return 1
 	else
 		return 0
@@ -354,14 +363,14 @@
 	switch(roomtype)
 		if("blocker")
 			r_template = blocker_temp
-			r_template.load(T, centered = TRUE, orientation = SOUTH)
+			r_template.load(T, centered = TRUE, orientation = SOUTH, post_init = 1)
 		if("start")
-			testing("Generated the start")
+			//testing("Generated the start")
 			r_template = pick(start_room_templates)
-			r_template.load(T, centered = TRUE, orientation = SOUTH)
+			r_template.load(T, centered = TRUE, orientation = SOUTH, post_init = 1)
 		if("end")
 			r_template = pick(end_room_templates)
-			r_template.load(T, centered = TRUE, orientation = SOUTH)
+			r_template.load(T, centered = TRUE, orientation = SOUTH, post_init = 1)
 		if("normal")
 			r_template = pick(room_templates)
 			while(disallowed)
@@ -376,28 +385,28 @@
 				else if (!c_room.above)
 					if(prob(40))
 						r_template = pick(horizontal_room_templates)
-				testing("Repeating - [get_room_by_num(prevnum).template.name] - [r_template.name]")
+				//testing("Repeating - [get_room_by_num(prevnum).template.name] - [r_template.name]")
 				if(can_generate(roomnumber, r_template))
 					if(can_connect(roomnumber, prevnum, r_template))
-						testing("yote")
+						//testing("yote")
 						disallowed = 0
-			r_template.load(T, centered = TRUE, orientation = SOUTH)
+			r_template.load(T, centered = TRUE, orientation = SOUTH, post_init = 1)
 
 		if("dead_end")
-			var/tries = 5
+			var/tries = 7
 			r_template = pick(special_rooms)
 			while(tries)
 				tries--
 				r_template = pick(special_rooms)
 				sleep(2)
-				testing("DEAD END REPEAT - [get_room_by_num(prevnum).template.name] - [r_template.name]")
+				//testing("DEAD END REPEAT - [get_room_by_num(prevnum).template.name] - [r_template.name]")
 				if(can_generate(roomnumber, r_template))
 					if(can_connect(roomnumber, prevnum, r_template))
-						testing("yote")
+						//testing("yote")
 						tries = 0
 						disallowed = 0
 			if(!disallowed)
-				r_template.load(T, centered = TRUE, orientation = SOUTH)
+				r_template.load(T, centered = TRUE, orientation = SOUTH, post_init = 1)
 	c_room.template = r_template
 	if(!disallowed)
 		return 1

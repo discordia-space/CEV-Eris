@@ -150,6 +150,10 @@
 	sleep(100)
 	update_icon()
 
+	for(var/mob/living/simple_animal/A in target.loc.loc)
+		spawn(1)
+			A.stasis = FALSE
+
 	overlays.Add(image(icon, icon_state = "portal_failing"))
 	visible_message("The portal starts flickering!")
 	flickering = 1

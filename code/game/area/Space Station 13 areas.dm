@@ -917,7 +917,7 @@ var/list/centcom_areas = list (
 //Rouguelike Mining
 /area/asteroid/rogue
 	icon_state = "away"
-	name = "Asteroid belt"
+	name = "Asteroid Belt"
 	var/asteroid_spawns = list()
 	var/mob_spawns = list()
 	var/teleporter_spawns = list()

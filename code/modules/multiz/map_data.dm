@@ -225,6 +225,7 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	var/is_contact_level = FALSE // Defines Z-levels which, for example, a Code Red announcement may affect
 	var/is_accessable_level = TRUE // Prob modifier for random access (space travelling)
 	var/generate_asteroid= FALSE
+	var/is_sealed = FALSE //No transit at map edge
 	var/tmp/z_level
 	var/height = -1	///< The number of Z-Levels in the map.
 
@@ -233,6 +234,9 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 /obj/map_data/New(var/atom/nloc)
 	..()
 	z_level = nloc.z
+
+	if(is_sealed)
+		maps_data.sealed_levels |= z_level
 
 	if(height <= 0)
 		CRASH("Map data height not set. ([name], [z_level])")
