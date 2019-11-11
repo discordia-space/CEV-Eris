@@ -1,8 +1,10 @@
 /obj/item/weapon/gun/energy/ionrifle
 	name = "NT IR \"Halicon\""
 	desc = "The NT IR Halicon is a man-portable anti-armor weapon designed to disable mechanical threats, produced by NeoTheology. Not the best of its type, but gets the job done."
+	icon = 'icons/obj/guns/energy/iongun.dmi'
 	icon_state = "ionrifle"
 	item_state = "ionrifle"
+	item_charge_meter = TRUE
 	fire_sound = 'sound/weapons/Laser.ogg'
 	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 4)
 	w_class = ITEM_SIZE_HUGE
@@ -17,9 +19,12 @@
 /obj/item/weapon/gun/energy/ionrifle/emp_act(severity)
 	..(max(severity, 2)) //so it doesn't EMP itself, I guess
 
-/obj/item/weapon/gun/energy/ionrifle/update_icon()
-	..()
+/obj/item/weapon/gun/energy/ionrifle/update_icon(ignore_inhands)
+	..(TRUE)
 	if(!cell || cell.charge < charge_cost)
-		item_state = "ionrifle-empty"
+		set_item_state("-empty", hands = TRUE)
 	else
-		item_state = initial(item_state)
+		set_item_state(null, hands = TRUE)
+	//Update here instead of parent proc because we override hands icon
+	if(!ignore_inhands)
+		update_wear_icon()

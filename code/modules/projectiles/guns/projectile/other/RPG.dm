@@ -3,6 +3,7 @@
 	desc = "A modified ancient rocket-propelled grenade launcher, this design is centuries old, but well preserved. \
 			Modification altered gun mechanism to take much more compact, but sligtly less devastating in close quaters rockets and remove backfire. \
 			Their priming and proplusion was altered too for more robust speed, so it has strong recoil."
+	icon = 'icons/obj/guns/projectile/rocket.dmi'
 	icon_state = "rocket" //placeholder, needs new sprites
 	item_state = "rocket" //placeholder, needs new sprites
 	w_class = ITEM_SIZE_HUGE

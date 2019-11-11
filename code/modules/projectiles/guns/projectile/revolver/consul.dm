@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/projectile/revolver/consul
 	name = "FS REV .44 \"Consul\""
 	desc = "When you badly need this case to be closed. Uses .44 rounds."
+	icon = 'icons/obj/guns/projectile/inspector.dmi'
 	icon_state = "inspector"
 	item_state = "revolver"
 	drawChargeMeter = FALSE

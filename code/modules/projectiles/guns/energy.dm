@@ -15,7 +15,9 @@
 	var/cell_type = /obj/item/weapon/cell/medium/high
 	var/projectile_type = /obj/item/projectile/beam/practice
 	var/modifystate
-	var/charge_meter = 1	//if set, the icon state will be chosen based on the current charge
+	var/charge_meter = TRUE //if set, the icon state will be chosen based on the current charge
+	var/item_modifystate
+	var/item_charge_meter = FALSE //same as above for item state
 
 	//self-recharging
 	var/self_recharge = 0	//if set, the weapon will recharge itself
@@ -112,6 +114,11 @@
 			icon_state = "[modifystate][ratio]"
 		else
 			icon_state = "[initial(icon_state)][ratio]"
+
+		if(item_charge_meter)
+			set_item_state("-[item_modifystate][ratio]")
+	if(!item_charge_meter && item_modifystate)
+		set_item_state("-[item_modifystate]")
 	if(!ignore_inhands)
 		update_wear_icon()
 
