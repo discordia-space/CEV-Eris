@@ -15,6 +15,7 @@
 /obj/item/weapon/gun/energy/laser/mounted
 	self_recharge = TRUE
 	use_external_power = TRUE
+	safety = FALSE
 	restrict_safety = TRUE
 
 /obj/item/weapon/gun/energy/laser/practice
@@ -71,4 +72,5 @@ obj/item/weapon/gun/energy/retro
 	self_recharge = TRUE
 	use_external_power = TRUE
 	recharge_time = 10
+	safety = FALSE
 	restrict_safety = TRUE

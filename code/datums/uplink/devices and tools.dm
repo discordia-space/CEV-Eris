@@ -6,9 +6,9 @@
 
 /datum/uplink_item/item/tools/toolbox
 	name = "Fully Loaded Toolbox"
-	item_cost = 2
+	item_cost = 5
 	path = /obj/item/weapon/storage/toolbox/syndicate
-
+	desc = "Danger. Very robust. Filled with advanced tools."
 /datum/uplink_item/item/tools/shield_diffuser
 	name = "Shield Diffuser"
 	item_cost = 4
@@ -74,6 +74,11 @@
 	name = "Thermal Imaging Glasses"
 	item_cost = 6
 	path = /obj/item/clothing/glasses/powered/thermal/syndi
+
+/datum/uplink_item/item/tools/thermal_lens
+	name = "Thermal Imaging Lenses"
+	item_cost = 10
+	path = /obj/item/clothing/glasses/powered/thermal/lens
 
 /datum/uplink_item/item/tools/powersink
 	name = "Powersink (DANGER!)"

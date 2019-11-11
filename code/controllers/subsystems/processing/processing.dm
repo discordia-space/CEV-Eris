@@ -26,16 +26,19 @@ SUBSYSTEM_DEF(processing)
 
 /datum/controller/subsystem/processing/fire(resumed = 0)
 	if (!resumed)
-		nextProcessingListPosition = 1 //fresh start, otherwise from saved posisition
+		src.nextProcessingListPosition = 1 //fresh start, otherwise from saved posisition
 
 	//localizations
 	var/times_fired = src.times_fired
 	var/list/local_list = processing
 	var/datum/thing
 	var/wait = src.wait
+	var/nextProcessingListPosition = src.nextProcessingListPosition
+	if(!nextProcessingListPosition)
+		return
 
 	var/tickCheckPeriod = round(local_list.len/16+1) //pause process at most every 1/16th length of list
-	while(nextProcessingListPosition && (nextProcessingListPosition <= local_list.len)) //until position is valid
+	while(nextProcessingListPosition <= local_list.len) //until position is valid
 		thing = local_list[nextProcessingListPosition]
 		nextProcessingListPosition++
 
@@ -47,9 +50,10 @@ SUBSYSTEM_DEF(processing)
 
 		if(!(nextProcessingListPosition%tickCheckPeriod)) //pauses only every tickCheckPeriod-th processed thing
 			if (MC_TICK_CHECK)
+				src.nextProcessingListPosition = nextProcessingListPosition
 				return
 
-	nextProcessingListPosition = 0 //entire list was processed
+	src.nextProcessingListPosition = 0 //entire list was processed
 
 /datum/controller/subsystem/processing/proc/toggle_debug()
 	if(!check_rights(R_DEBUG))

@@ -14,6 +14,10 @@
 	name = "infrared sensor"
 	build_path = /obj/item/device/assembly/infra
 
+/datum/design/autolathe/part/voice_analyzer
+	name = "voice analyzer"
+	build_path = /obj/item/device/assembly/voice
+
 /datum/design/autolathe/part/timer
 	name = "timer"
 	build_path = /obj/item/device/assembly/timer

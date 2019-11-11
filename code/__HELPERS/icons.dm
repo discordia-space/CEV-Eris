@@ -330,7 +330,8 @@ icon
  */
 
 proc/ReadRGB(rgb)
-	if(!rgb) return
+	if(!rgb)
+		return list(0xFF, 0xFF, 0xFF)
 
 	// interpret the HSV or HSVA value
 	var/i=1, start=1
