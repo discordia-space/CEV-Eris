@@ -751,7 +751,7 @@
 		M.sleeping = max(M.sleeping, 20)
 		M.drowsyness = max(M.drowsyness, 60)
 	M.add_chemical_effect(CE_PULSE, -1)
-	M.nsa_threshold /= 2
+	M.nerve_system_accumulations /= 2
 
 
 /datum/reagent/medicine/haloperidol/overdose(var/mob/living/carbon/M, var/alien)
@@ -761,7 +761,7 @@
 	..()
 	var/mob/living/carbon/C = L
 	if(istype(C))
-		C.nsa_threshold = initial(C.nsa_threshold)
+		C.nerve_system_accumulations *= 2
 
 /datum/reagent/medicine/vomitol
 	name = "Vomitol"
