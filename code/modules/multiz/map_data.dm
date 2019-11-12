@@ -182,6 +182,9 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	if(MD.is_accessable_level)
 		accessable_levels[num2text(level)] = MD.is_accessable_level
 
+	if(MD.is_sealed)
+		sealed_levels += z_level
+
 /datum/maps_data/proc/get_empty_zlevel()
 	if(empty_levels == null)
 		world.maxz++
@@ -234,9 +237,6 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 /obj/map_data/New(var/atom/nloc)
 	..()
 	z_level = nloc.z
-
-	if(is_sealed)
-		maps_data.sealed_levels |= z_level
 
 	if(height <= 0)
 		CRASH("Map data height not set. ([name], [z_level])")

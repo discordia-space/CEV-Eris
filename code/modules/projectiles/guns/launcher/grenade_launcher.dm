@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/launcher/grenade
 	name = "NT GL \"Protector\""
 	desc = "A bulky pump-action grenade launcher. Holds up to 6 grenades in a revolving magazine."
+	icon = 'icons/obj/guns/launcher/riotgun.dmi'
 	icon_state = "riotgun"
 	item_state = "riotgun"
 	w_class = ITEM_SIZE_BULKY
@@ -135,9 +136,9 @@
 /obj/item/weapon/gun/launcher/grenade/lenar
 	name = "FS GL \"Lenar\""
 	desc = "A more than bulky pump-action grenade launcher. Holds up to 6 grenades in a revolving magazine."
+	icon = 'icons/obj/guns/launcher/grenadelauncher.dmi'
 	icon_state = "Grenadelauncher_PMC"
 	item_state = "pneumatic"
-	item_state_slots = list(slot_back_str = "pneumatic")
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	matter = list(MATERIAL_PLASTEEL = 30, MATERIAL_PLASTIC = 10)

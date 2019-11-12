@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/projectile/automatic/IH_smg
 	name = "FS SMG 9x19 \"Straylight\""
 	desc = "A compact and lightweight submachinegun that sprays small rounds rapidly. Sacrifices a fire selector to cut mass, so it requires a careful hand. Uses 9mm rounds."
+	icon = 'icons/obj/guns/projectile/IH_smg.dmi'
 	icon_state = "IH_smg"
 	item_state = "IH_smg"
 	w_class = ITEM_SIZE_NORMAL
@@ -25,7 +26,7 @@
 
 /obj/item/weapon/gun/projectile/automatic/IH_smg/update_icon()
 	var/iconstring = initial(icon_state)
-	var/itemstring = initial(item_state)
+	var/itemstring = ""
 
 	if (ammo_magazine)
 		iconstring += "_mag"
@@ -35,4 +36,4 @@
 		itemstring += "_s"
 
 	icon_state = iconstring
-	item_state = itemstring
+	set_item_state(itemstring)

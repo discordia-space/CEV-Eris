@@ -64,6 +64,7 @@
 /obj/item/weapon/gun/launcher/syringe
 	name = "syringe gun"
 	desc = "A spring-loaded rifle designed to fire syringes to incapacitate unruly patients from a distance."
+	icon = 'icons/obj/guns/launcher/syringegun.dmi'
 	icon_state = "syringegun"
 	item_state = "syringegun"
 	w_class = ITEM_SIZE_NORMAL
@@ -139,6 +140,7 @@
 /obj/item/weapon/gun/launcher/syringe/rapid
 	name = "syringe gun revolver"
 	desc = "A modification of the syringe gun design, using a rotating cylinder to store up to five syringes. The spring still needs to be drawn between shots."
+	icon = 'icons/obj/guns/launcher/rapidsyringegun.dmi'
 	icon_state = "rapidsyringegun"
 	item_state = "rapidsyringegun"
 	max_darts = 5

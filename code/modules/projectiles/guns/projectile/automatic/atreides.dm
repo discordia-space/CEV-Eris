@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/projectile/automatic/atreides
 	name = "FS SMG .45 \"Atreides\""
 	desc = "The Atreides is a replica of an old and popular SMG. It has a strong kick. Uses .45 rounds."
+	icon = 'icons/obj/guns/projectile/mac.dmi'
 	icon_state = "mac"
 	item_state = "mac"
 	w_class = ITEM_SIZE_NORMAL
@@ -27,8 +28,8 @@
 	..()
 	if(ammo_magazine)
 		icon_state = "[initial(icon_state)]-full"
-		item_state = "[initial(item_state)]-full"
+		set_item_state("-full")
 	else
 		icon_state = initial(icon_state)
-		item_state = initial(item_state)
+		set_item_state()
 	return

@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/projectile/automatic
 	name = "automatic projectile gun"
 	desc = "A debug firearm, which should be reported if present in-game. Uses 9mm rounds."
+	icon = 'icons/obj/guns/projectile/generic_smg.dmi'
 	icon_state = "generic_smg"
 	w_class = ITEM_SIZE_NORMAL
 	load_method = SPEEDLOADER //Default is speedloader because all might not have magazine sprites.

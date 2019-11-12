@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/launcher/pneumatic
 	name = "pneumatic cannon"
 	desc = "A large gas-powered cannon."
+	icon = 'icons/obj/guns/launcher/pneumatic.dmi'
 	icon_state = "pneumatic"
 	item_state = "pneumatic"
 	slot_flags = SLOT_BACK
@@ -126,10 +127,10 @@
 /obj/item/weapon/gun/launcher/pneumatic/update_icon()
 	if(tank)
 		icon_state = "pneumatic-tank"
-		item_state = "pneumatic-tank"
+		set_item_state("-tank")
 	else
 		icon_state = "pneumatic"
-		item_state = "pneumatic"
+		set_item_state(null)
 
 	update_wear_icon()
 

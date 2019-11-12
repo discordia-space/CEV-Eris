@@ -626,18 +626,30 @@ var/global/list/damage_icon_parts = list()
 
 /mob/living/carbon/human/update_inv_s_store(var/update_icons=1)
 	if(s_store)
-		var/store_icon = get_gender_icon(gender, "s_store")
-		var/t_state = s_store.item_state
-		if(!t_state)	t_state = s_store.icon_state
+		//Determine the state to use
+		var/t_state
+		if(s_store.item_state_slots && s_store.item_state_slots[slot_s_store_str])
+			t_state = s_store.item_state_slots[slot_s_store_str]
+		else if(s_store.item_state)
+			t_state = s_store.item_state
+		else
+			t_state = s_store.icon_state
+
+		//Determine the icon to use
+		var/t_icon
+		if(s_store.item_icons && (slot_s_store_str in s_store.item_icons))
+			t_icon = s_store.item_icons[slot_s_store_str]
+		else
+			t_icon = get_gender_icon(gender, "s_store")
 
 		//Special case here. We will check if the suit store icon contains our desired iconstate
 		//If not we will use the mob's back icon instead. This allows reusing back icons for shoulder-slung guns
-		var/icon/test = new (store_icon)
+		var/icon/test = new (t_icon)
 		if (!(t_state in icon_states(test)))
-			store_icon = get_back_icon(s_store)
+			t_icon = get_back_icon(s_store)
 
 
-		overlays_standing[SUIT_STORE_LAYER]	= image(icon = store_icon, icon_state = t_state)
+		overlays_standing[SUIT_STORE_LAYER]	= image(icon = t_icon, icon_state = t_state)
 	else
 		overlays_standing[SUIT_STORE_LAYER]	= null
 	if(update_icons)   update_icons()

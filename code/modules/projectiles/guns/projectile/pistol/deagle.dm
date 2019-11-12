@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/projectile/deagle
 	name = "FS HG .50 \"Avasarala\""
 	desc = "An obvious replica of an old Earth \"Desert Eagle\". Robust and straight, this is a gun for a leader, not just an officer."
+	icon = 'icons/obj/guns/projectile/deagle.dmi'
 	icon_state = "deagle"
 	item_state = "revolver"
 	force = WEAPON_FORCE_PAINFUL
