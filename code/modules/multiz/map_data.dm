@@ -183,7 +183,7 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 		accessable_levels[num2text(level)] = MD.is_accessable_level
 
 	if(MD.is_sealed)
-		sealed_levels += z_level
+		sealed_levels += level
 
 /datum/maps_data/proc/get_empty_zlevel()
 	if(empty_levels == null)
