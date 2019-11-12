@@ -27,6 +27,11 @@
 	desc = "The C-20r is a lightweight and rapid-firing SMG. Uses 10mm rounds."
 	build_path = /obj/item/weapon/gun/projectile/automatic/c20r
 	sort_string = "TAAAF"
+/datum/design/research/item/weapon/revolver
+	name = ".357 Miller"
+	desc = "The .357 Miller is a revolver that packs a punch. Uses .357 rounds."
+	build_path = /obj/item/weapon/gun/projectile/revolver
+	sort_string = "TAAAG"
 
 /datum/design/research/item/weapon/plasmapistol
 	build_path = /obj/item/weapon/gun/energy/toxgun
@@ -91,3 +96,8 @@
 	desc = "10mm SMG magazine for the C-20r"
 	build_path = /obj/item/ammo_magazine/smg10mm
 	sort_string = "TAACD"
+/datum/design/research/item/ammo/357_ammo
+	name = ".357 Miller "
+	desc = "A .357 Speed Loader for the Miller Revolver."
+	build_path = /obj/item/ammo_magazine/sl357
+	sort_string = "TAACF"

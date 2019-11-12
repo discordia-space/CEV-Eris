@@ -139,11 +139,13 @@
 
 	required_technologies = list(/datum/technology/basic_lethal)
 	required_tech_levels = list()
-	cost = 2000
+	cost = 2700
 
 	unlocks_designs = list(
 							/datum/design/research/item/weapon/c20r,
-							/datum/design/research/item/ammo/c20r_ammo
+							/datum/design/research/item/ammo/c20r_ammo,
+							/datum/design/research/item/weapon/revolver
+							/datum/design/research/item/ammo/357_ammo
 						)
 
 /datum/technology/laser_weaponry
