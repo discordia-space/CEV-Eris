@@ -14,6 +14,7 @@
 	minbodytemp = 0
 	maxbodytemp = INFINITY
 	mob_size = MOB_SIZE_LARGE
+	status_flags = 0 //No pushing, no stunning, no paralyze and no weaken.
 	layer = LARGE_MOB_LAYER //Looks weird with them slipping under mineral walls and cameras and shit otherwise
 	mouse_opacity = MOUSE_OPACITY_OPAQUE // Easier to click on in melee, they're giant targets anyway
 	var/anger_modifier = 0

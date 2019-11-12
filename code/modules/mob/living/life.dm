@@ -3,17 +3,19 @@
 	set background = BACKGROUND_ENABLED
 
 	..()
-	life_cycles_before_scan--
-	if(!life_cycles_before_scan)
-		if(check_surrounding_area(7))
-			activate_ai()
-			life_cycles_before_scan = 3
+	if(config.enable_mob_sleep)
+		if(life_cycles_before_scan > 0)
+			life_cycles_before_scan--
+		else
+			if(check_surrounding_area(7))
+				activate_ai()
+				life_cycles_before_scan = 3
 
-	if(life_cycles_before_sleep)
-		life_cycles_before_sleep--
+		if(life_cycles_before_sleep)
+			life_cycles_before_sleep--
 
-	if(life_cycles_before_sleep < 1 && !AI_inactive)
-		AI_inactive = TRUE
+		if(life_cycles_before_sleep < 1 && !AI_inactive)
+			AI_inactive = TRUE
 
 
 	if(!stasis)

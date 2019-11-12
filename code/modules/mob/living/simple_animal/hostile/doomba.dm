@@ -86,10 +86,14 @@
 	alpha = 128
 
 /obj/random/mob/roomba/item_to_spawn()
-	return pickweight(list(/mob/living/simple_animal/hostile/roomba = 5,
-				/mob/living/simple_animal/hostile/roomba/slayer = 3,
-				/mob/living/simple_animal/hostile/roomba/boomba = 1,
-				/mob/living/simple_animal/hostile/roomba/gun_ba = 2))
+	return pickweight(list(/mob/living/simple_animal/hostile/roomba = 17,
+				/mob/living/simple_animal/hostile/roomba/slayer = 15,
+				/mob/living/simple_animal/hostile/roomba/boomba = 7,
+				/mob/living/simple_animal/hostile/roomba/gun_ba = 10,
+				/mob/living/simple_animal/hostile/onestar_custodian = 25,
+				/mob/living/simple_animal/hostile/onestar_custodian/chef = 10,
+				/mob/living/simple_animal/hostile/onestar_custodian/engineer = 15,
+				))
 
 /obj/random/mob/roomba/post_spawn(var/list/spawns)
 	for(var/mob/living/simple_animal/A in spawns)
