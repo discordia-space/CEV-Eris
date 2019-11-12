@@ -1,7 +1,9 @@
 /obj/item/weapon/gun/energy/gun/nuclear
 	name = "Prototype: advanced energy gun"
 	desc = "An energy gun with an experimental miniaturized reactor."
+	icon = 'icons/obj/guns/energy/nucgun.dmi'
 	icon_state = "nucgun"
+	item_charge_meter = TRUE
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 5, TECH_POWER = 3)
 	slot_flags = SLOT_BELT
 	force = WEAPON_FORCE_PAINFUL //looks heavier than a pistol
@@ -32,6 +34,7 @@
 	var/ratio = cell.charge / cell.maxcharge
 	ratio = round(ratio, 0.25) * 100
 	overlays += "nucgun-[ratio]"
+	set_item_state("-[ratio]")
 
 /obj/item/weapon/gun/energy/gun/nuclear/proc/update_reactor()
 	if(lightfail)

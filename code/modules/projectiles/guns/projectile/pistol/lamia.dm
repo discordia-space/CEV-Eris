@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/projectile/lamia
 	name = "FS HG .44 \"Lamia\""
 	desc = "FS HG .44 \"Lamia\", a heavy pistol of Ironhammer enforcers. Uses .44 rounds."
+	icon = 'icons/obj/guns/projectile/lamia.dmi'
 	icon_state = "lamia"
 	item_state = "lamia"
 	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'

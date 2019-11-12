@@ -2,6 +2,7 @@
 	name = "FS SG \"Bull\""
 	desc = "A \"Frozen Star\" double-barreled pump-action shotgun. Marvel of engineering, this gun is often used by Ironhammer tactical units. \
 			Due to shorter than usual barrels, damage are somewhat lower and recoil kicks slightly harder, but possibility to fire two barrels at once overshadows all bad design flaws."
+	icon = 'icons/obj/guns/projectile/PeaceWalker.dmi'
 	icon_state = "PeaceWalker"
 	item_state = "PW"
 	load_method = SINGLE_CASING|SPEEDLOADER

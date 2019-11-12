@@ -3,12 +3,14 @@
 	name = "gun"
 	desc = "It's a gun. It's pretty terrible, though."
 	icon = 'icons/obj/guns/projectile.dmi'
-	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items/lefthand_guns.dmi',
-		slot_r_hand_str = 'icons/mob/items/righthand_guns.dmi',
-		)
 	icon_state = "giskard_old"
 	item_state = "gun"
+	item_state_slots = list(
+		slot_l_hand_str = "lefthand",
+		slot_r_hand_str = "righthand",
+		slot_back_str   = "back",
+		slot_s_store_str= "onsuit",
+		)
 	flags =  CONDUCT
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	matter = list(MATERIAL_STEEL = 6)
@@ -59,6 +61,9 @@
 	var/last_recoil_update = 0
 	var/recoil_timer
 
+	var/icon_contained = TRUE
+	var/static/list/item_icons_cache = list()
+
 /obj/item/weapon/gun/get_item_cost(export)
 	if(export)
 		return ..() * 0.5 //Guns should be sold in the player market.
@@ -98,6 +103,16 @@
 		action.owner = src
 		hud_actions += action
 
+	if(icon_contained)
+		if(!item_icons_cache[type])
+			item_icons_cache[type] = list(
+				slot_l_hand_str = icon,
+				slot_r_hand_str = icon,
+				slot_back_str = icon,
+				slot_s_store_str = icon,
+			)
+		item_icons = item_icons_cache[type]
+
 
 /obj/item/weapon/gun/Destroy()
 	for(var/i in firemodes)
@@ -105,6 +120,17 @@
 			qdel(i)
 	firemodes = null
 	return ..()
+
+/obj/item/weapon/gun/proc/set_item_state(state, hands = FALSE, back = FALSE, onsuit = FALSE)
+	if(!(hands || back || onsuit))
+		hands = back = onsuit = TRUE
+	if(hands)
+		item_state_slots[slot_l_hand_str] = "lefthand"  + state
+		item_state_slots[slot_r_hand_str] = "righthand" + state
+	if(back)
+		item_state_slots[slot_back_str]   = "back"      + state
+	if(onsuit)
+		item_state_slots[slot_s_store_str]= "onsuit"    + state
 
 /obj/item/weapon/gun/update_wear_icon()
 	if(requires_two_hands)

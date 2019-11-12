@@ -48,7 +48,7 @@
 /obj/item/weapon/gun/launcher/crossbow
 	name = "powered crossbow"
 	desc = "A 2557AD twist on an old classic. Pick up that can."
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/guns/launcher/crossbow-solid.dmi'
 	icon_state = "crossbow"
 	item_state = "crossbow-solid"
 	fire_sound = 'sound/weapons/punchmiss.ogg' // TODO: Decent THWOK noise.
@@ -305,7 +305,7 @@
 /obj/item/weapon/gun/launcher/crossbow/RCD
 	name = "rapid crossbow device"
 	desc = "A hacked together RCD turns an innocent construction tool into the penultimate 'deconstruction' tool. Flashforges projectiles using matter units when the string is drawn back."
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/guns/launcher/rxb.dmi'
 	icon_state = "rxb"
 	slot_flags = null
 	draw_time = 10
