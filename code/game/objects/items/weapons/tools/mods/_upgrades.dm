@@ -147,7 +147,7 @@
 /obj/item/weapon/tool_upgrade/proc/apply(var/obj/item/weapon/tool/T, var/mob/user)
 
 	if (user)
-		var/WORKTIME_TOOL_UPGRADE = WORKTIME_NORMAL - (round(user.stat.getStat(STAT_MEC) / 10, 10) * 10)
+		var/WORKTIME_TOOL_UPGRADE = WORKTIME_NORMAL - (round(user.stat.getStat(STAT_MEC), 10))
 		user.visible_message(SPAN_NOTICE("[user] starts applying [src] to [T]"), SPAN_NOTICE("You start applying [src] to [T]"))
 		if (!use_tool(user = user, target =  T, base_time = WORKTIME_TOOL_UPGRADE, required_quality = null, fail_chance = FAILCHANCE_ZERO, required_stat = null, forced_sound = WORKSOUND_WRENCHING))
 			return
