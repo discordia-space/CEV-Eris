@@ -96,8 +96,8 @@
 	desc = "10mm SMG magazine for the C-20r"
 	build_path = /obj/item/ammo_magazine/smg10mm
 	sort_string = "TAACD"
-/datum/design/research/item/ammo/357_ammo
-	name = ".357 Miller "
-	desc = "A .357 Speed Loader for the Miller Revolver."
+/datum/design/research/item/ammo/harris_ammo
+	name = ".357 Harris Speed Loader"
+	desc = "A .357 Speed Loader for the Harris Revolver."
 	build_path = /obj/item/ammo_magazine/sl357
 	sort_string = "TAACF"
