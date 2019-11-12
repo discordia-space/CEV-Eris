@@ -28,9 +28,9 @@
 	build_path = /obj/item/weapon/gun/projectile/automatic/c20r
 	sort_string = "TAAAF"
 /datum/design/research/item/weapon/revolver
-	name = ".357 Miller"
-	desc = "The .357 Miller is a revolver that packs a punch. Uses .357 rounds."
-	build_path = /obj/item/weapon/gun/projectile/revolver
+	name = ".357 Harris"
+	desc = "The .357 Harris is a revolver that packs a punch but less so due to copyright infringement of FS property. Uses .357 rounds."
+	build_path = /obj/item/weapon/gun/projectile/revolver/moebius_knockoff
 	sort_string = "TAAAG"
 
 /datum/design/research/item/weapon/plasmapistol

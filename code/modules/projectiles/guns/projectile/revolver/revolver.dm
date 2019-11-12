@@ -53,3 +53,11 @@
 
 /obj/item/weapon/gun/projectile/revolver/update_icon()
 	update_charge()
+
+/obj/item/weapon/gun/projectile/revolver/moebius_knockoff
+	name = "Moebius Industries REV .357 \"Harris\""
+	desc = "The \"Moebius Industries\" \"Harris\" is a revolver of choice for Moebius personnel, but it is of lesser quality than a genuine FS Miller. Uses old-school .357 ammo."
+	price_tag = 1800
+	damage_multiplier = 0.9
+	icon_state = "moebius_revolver"
+	item_state = "moebius_revolver"
