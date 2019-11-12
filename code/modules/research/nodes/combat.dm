@@ -145,7 +145,7 @@
 							/datum/design/research/item/weapon/c20r,
 							/datum/design/research/item/ammo/c20r_ammo,
 							/datum/design/research/item/weapon/revolver,
-							/datum/design/research/item/ammo/357_ammo,)
+							/datum/design/research/item/ammo/357_ammo)
 
 /datum/technology/laser_weaponry
 	name = "Laser Weaponry"
