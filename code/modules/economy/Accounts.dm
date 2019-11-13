@@ -37,11 +37,15 @@
 	var/time = ""
 	var/source_terminal = ""
 
-/datum/transaction/New(var/amount = 0, var/target_name, var/purpose, var/source_terminal)
+/datum/transaction/New(amount = 0, target_name, purpose, source_terminal)
 	src.amount = amount
 	src.target_name = target_name
 	src.purpose = purpose
 	src.source_terminal = source_terminal
+
+	if(istype(source_terminal, /atom))
+		var/atom/terminal_atom = source_terminal
+		src.source_terminal = "[terminal_atom.name] at [get_area(terminal_atom)]"
 
 	src.date = current_date_string
 	src.time = stationtime2text()
