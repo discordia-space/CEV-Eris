@@ -121,7 +121,7 @@ SUBSYSTEM_DEF(supply)
 		if(!SP.contraband)
 			slip = new /obj/item/weapon/paper/manifest(A)
 			slip.is_copy = 0
-			slip.info = "<h3>[command_name()] Shipping Manifest</h3><hr><br>"
+			slip.info = "<h3>Shipping Manifest</h3><hr><br>"
 			slip.info +="Order #[SO.ordernum]<br>"
 			slip.info +="Destination: [station_name]<br>"
 			slip.info +="[shoppinglist.len] PACKAGES IN THIS SHIPMENT<br>"
