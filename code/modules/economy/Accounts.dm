@@ -78,7 +78,7 @@
 	return T
 
 
-/proc/create_account(var/new_owner_name = "Default user", var/starting_funds = 0, var/obj/machinery/account_database/source_db)
+/proc/create_account(new_owner_name = "Default user", starting_funds = 0, obj/machinery/account_database/source_db)
 
 	//create a new account
 	var/datum/money_account/M = new()
@@ -137,7 +137,7 @@
 	return M
 
 //Charges an account a certain amount of money which is functionally just removed from existence
-/proc/charge_to_account(var/attempt_account_number, var/target_name, var/purpose, var/terminal_id, var/amount)
+/proc/charge_to_account(attempt_account_number, target_name, purpose, terminal_id, amount)
 	var/datum/money_account/D = get_account(attempt_account_number)
 	if (D)
 		//create a transaction log entry
@@ -147,7 +147,7 @@
 	return FALSE
 
 //Creates money from nothing and deposits it in an account
-/proc/deposit_to_account(var/attempt_account_number, var/source_name, var/purpose, var/terminal_id, var/amount)
+/proc/deposit_to_account(attempt_account_number, source_name, purpose, terminal_id, amount)
 	var/datum/money_account/D = get_account(attempt_account_number)
 	if (D)
 		//create a transaction log entry
@@ -157,7 +157,7 @@
 	return FALSE
 
 //Transfers funds from one account to another
-/proc/transfer_funds(var/source_account, var/target_account, var/purpose, var/terminal_id, var/amount)
+/proc/transfer_funds(source_account, target_account, purpose, terminal_id, amount)
 	var/datum/money_account/source = get_account(source_account)
 	var/datum/money_account/target = get_account(target_account)
 
@@ -188,7 +188,21 @@
 	if((!D.security_level && !force_security) || D.remote_access_pin == attempt_pin_number)
 		return D
 
+
 /proc/get_account(account_number)
+	// For convinience's sake
+	if(istype(account_number, /datum/money_account))
+		return account_number
+
 	for(var/datum/money_account/D in all_money_accounts)
 		if(D.account_number == account_number)
 			return D
+
+
+// Accepts both account numbers and actual account datums
+/proc/get_account_credits(account_number)
+	var/datum/money_account/account = get_account(account_number)
+	if(!account || !account.is_valid())
+		return 0
+
+	return account.money

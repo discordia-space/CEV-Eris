@@ -30,7 +30,7 @@ SUBSYSTEM_DEF(supply)
 
 
 /datum/controller/subsystem/supply/stat_entry()
-	..("Credits: [get_supply_credits()]")
+	..("Credits: [get_account_credits(department_accounts[DEPARTMENT_GUILD])]")
 
 //To stop things being sent to centcomm which should not be sent to centcomm. Recursively checks for these types.
 /datum/controller/subsystem/supply/proc/forbidden_atoms_check(atom/A)
@@ -162,15 +162,6 @@ SUBSYSTEM_DEF(supply)
 
 	shoppinglist.Cut()
 	return
-
-
-//Returns the credits in the guild account, which is used for purchasing things
-/proc/get_supply_credits()
-	var/datum/money_account/GA = department_accounts["Guild"]
-	if (!GA)
-		return 0
-
-	return GA.money
 
 //Deducts credits from the guild account to pay for external purchases
 /proc/pay_supply_cost(var/source_name, var/purpose, var/terminal_id, var/amount)
