@@ -38,23 +38,24 @@
 	src.reason = reason
 
 /datum/supply_order/proc/generateRequisition(turf/T)
-	var/obj/item/weapon/paper/P = new(T)
+	var/obj/item/weapon/paper/reqform = new(T)
 
-	P.name = "Requisition Form - #[id] ([object.name])"
-	P.info += "<h3>[station_name()] Supply Requisition Form</h3><hr>"
-	P.info += "Order #[id]<br>"
-	P.info += "Item: [object.name]<br>"
-	P.info += "Access Restrictions: [get_access_desc(object.access)]<br>"
-	P.info += "Requested by: [orderer]<br>"
-	P.info += "Rank: [orderer_rank]<br>"
-	P.info += "Contents:<br>"
-	P.info += object.true_manifest
-	P.info += "Comment: [reason]<br>"
-	P.info += "<hr>"
-	P.info += "STAMP BELOW TO APPROVE THIS REQUISITION:<br>"
+	reqform.name = "requisition form - #[id] ([object.name])"
+	reqform.info += "<h3>[station_name()] Supply Requisition Form</h3><hr>"
+	reqform.info += "Order #[id]<br>"
+	reqform.info += "Item: [object.name]<br>"
+	reqform.info += "Access Restrictions: [get_access_desc(object.access)]<br>"
+	reqform.info += "Requested by: [orderer]<br>"
+	reqform.info += "Rank: [orderer_rank]<br>"
+	reqform.info += "Contents:<br>"
+	reqform.info += object.true_manifest
+	if(reason)
+		reqform.info += "Reason: [reason]<br>"
+	reqform.info += "<hr>"
+	reqform.info += "STAMP BELOW TO APPROVE THIS REQUISITION:<br>"
 
-	P.update_icon()
-	return P
+	reqform.update_icon()
+	return reqform
 
 /datum/supply_order/proc/generateManifest(obj/structure/closet/crate/C)
 	var/obj/item/weapon/paper/manifest/P = new(C, id, object.cost)

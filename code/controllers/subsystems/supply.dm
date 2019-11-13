@@ -73,7 +73,7 @@ SUBSYSTEM_DEF(supply)
 	msg += "<br>Total exports value: [points] credits.<br>"
 	exports.Cut()
 
-	var/datum/money_account/GA = department_accounts["Guild"]
+	var/datum/money_account/GA = department_accounts[DEPARTMENT_GUILD]
 	var/datum/transaction/T = new(points, "Asters Guild", "Exports", "Asters Automated Trading System")
 	T.apply_to(GA)
 
@@ -113,7 +113,7 @@ SUBSYSTEM_DEF(supply)
 		var/datum/supply_pack/SP = SO.object
 
 		var/obj/A = new SP.containertype(pickedloc)
-		A.name = "[SP.name][SO.comment ? " ([SO.comment])":"" ]"
+		A.name = "[SP.name][SO.reason ? " ([SO.reason])":"" ]"
 
 		//supply manifest generation begin
 
@@ -122,7 +122,7 @@ SUBSYSTEM_DEF(supply)
 			slip = new /obj/item/weapon/paper/manifest(A)
 			slip.is_copy = 0
 			slip.info = "<h3>Shipping Manifest</h3><hr><br>"
-			slip.info +="Order #[SO.ordernum]<br>"
+			slip.info +="Order #[SO.id]<br>"
 			slip.info +="Destination: [station_name]<br>"
 			slip.info +="[shoppinglist.len] PACKAGES IN THIS SHIPMENT<br>"
 			slip.info +="CONTENTS:<br><ul>"
@@ -159,18 +159,15 @@ SUBSYSTEM_DEF(supply)
 		if(slip)
 			slip.info += "</ul><br>"
 			slip.info += "CHECK CONTENTS AND STAMP BELOW THE LINE TO CONFIRM RECEIPT OF GOODS<hr>"
+			slip.update_icon()
 
 	shoppinglist.Cut()
 	return
 
 //Deducts credits from the guild account to pay for external purchases
-/proc/pay_supply_cost(var/source_name, var/purpose, var/terminal_id, var/amount)
-	var/datum/money_account/GA = department_accounts["Guild"]
+/proc/pay_for_order(datum/supply_order/order, terminal)
+	var/datum/money_account/GA = department_accounts[DEPARTMENT_GUILD]
 	if (!GA)
 		return FALSE
 
-	if (GA.money < amount)
-		return FALSE
-
-	charge_to_account(GA.account_number, source_name, purpose, terminal_id, amount)
-	return TRUE
+	return charge_to_account(GA.account_number, order.orderer, "Order of [order.object.name]", terminal, order.object.cost)

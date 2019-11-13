@@ -57586,7 +57586,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/computer/ordercomp,
+/obj/machinery/computer/supplycomp/order,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/quartermaster/office)
 "cyH" = (
