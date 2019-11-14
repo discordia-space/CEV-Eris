@@ -31,8 +31,20 @@
 
 /obj/item/weapon/gun/projectile/automatic/c20r/update_icon()
 	..()
-	if(ammo_magazine)
-		icon_state = "c20r-[round(ammo_magazine.stored_ammo.len,4)]"
-	else
-		icon_state = "c20r"
-	return
+
+	var/iconstring = initial(icon_state)
+	var/itemstring = ""
+
+	if (ammo_magazine)
+		iconstring += "_mag"
+
+	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
+		iconstring += "_slide"
+
+
+	icon_state = iconstring
+	set_item_state(itemstring)
+
+/obj/item/weapon/gun/projectile/automatic/c20r/Initialize()
+	. = ..()
+	update_icon()

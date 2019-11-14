@@ -21,8 +21,17 @@
 
 /obj/item/weapon/gun/projectile/lamia/update_icon()
 	..()
-	if(ammo_magazine)
-		icon_state = "lamia-[round(ammo_magazine.stored_ammo.len,2)]"
-	else
-		icon_state = "lamia"
-	return
+
+	var/iconstring = initial(icon_state)
+
+	if (ammo_magazine)
+		iconstring += "-[round(ammo_magazine.stored_ammo.len,4)]"
+
+	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
+		iconstring += "_slide"
+
+	icon_state = iconstring
+
+/obj/item/weapon/gun/projectile/lamia/Initialize()
+	. = ..()
+	update_icon()

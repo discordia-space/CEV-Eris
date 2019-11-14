@@ -28,18 +28,24 @@
 		)
 
 /obj/item/weapon/gun/projectile/automatic/IH_machinepistol/update_icon()
+	..()
+
 	var/iconstring = initial(icon_state)
 	var/itemstring = ""
 
 	if (ammo_magazine)
 		iconstring += "_mag"
 
-		if(!ammo_magazine.stored_ammo.len)
-			iconstring += "_slide"
+	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
+		iconstring += "_slide"
 
 	if (silenced)
 		iconstring += "_s"
 		itemstring += "_s"
 
 	icon_state = iconstring
-	set_item_state(itemstring)
+	item_state = itemstring
+
+/obj/item/weapon/gun/projectile/automatic/IH_machinepistol/Initialize()
+	. = ..()
+	update_icon()
