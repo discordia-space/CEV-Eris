@@ -592,7 +592,7 @@ There are 9 wires.
 	set category = "Object"
 	set src in view(1)
 
-	if(!istype(usr, /mob/living))
+	if(!isliving(usr))
 		to_chat(usr, SPAN_WARNING("You can't do this."))
 		return
 	var/obj/item/weapon/tool/T = usr.get_active_hand()
@@ -609,7 +609,7 @@ There are 9 wires.
 	set category = "Object"
 	set src in view(1)
 
-	if(!istype(usr, /mob/living))
+	if(!isliving(usr))
 		to_chat(usr, SPAN_WARNING("You can't do this."))
 		return
 	if(wedged_item)
