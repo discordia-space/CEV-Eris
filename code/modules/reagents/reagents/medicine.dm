@@ -751,21 +751,31 @@
 		M.sleeping = max(M.sleeping, 20)
 		M.drowsyness = max(M.drowsyness, 60)
 	M.add_chemical_effect(CE_PULSE, -1)
-	for (var/tag in M.nerve_system_accumulations)
-		var/nsa_value = M.get_nsa_value(tag)/2
-		M.adjust_nsa(nsa_value, tag)
+	
 
 
 /datum/reagent/medicine/haloperidol/overdose(var/mob/living/carbon/M, var/alien)
 	M.adjustToxLoss(6)
 
+/datum/reagent/medicine/haloperidol/on_mob_add(mob/living/L)
+	..()
+	var/mob/living/carbon/C = L
+	if(istype(C))
+		var/datum/reagent/toxin/haloperidol/R
+		for (var/tag in C.nerve_system_accumulations)
+			var/nsa_value = C.get_nsa_value(tag)/2
+			if(!istype(R,tag))
+				C.adjust_nsa(nsa_value, tag)
+
 /datum/reagent/medicine/haloperidol/on_mob_delete(mob/living/L)
 	..()
 	var/mob/living/carbon/C = L
 	if(istype(C))
+		var/datum/reagent/toxin/haloperidol/R
 		for (var/tag in C.nerve_system_accumulations)
-			var/nsa_value = C.get_nsa_value(tag)/2
-			C.adjust_nsa(nsa_value, tag)
+			var/nsa_value = C.get_nsa_value(tag)*2
+			if(!istype(R,tag))
+				C.adjust_nsa(nsa_value, tag)
 
 
 /datum/reagent/medicine/vomitol
