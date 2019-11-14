@@ -1,6 +1,6 @@
 /obj/item/device/mind_fryer
 	name = "mind fryer"
-	icon_state = "locator" //placeholder
+	icon_state = "mind_fryer"
 	var/datum/antag_contract/derail/contract
 	var/datum/mind/owner
 	var/list/mob/living/carbon/human/victims
@@ -17,6 +17,7 @@
 	set src in view(1)
 	if(usr.incapacitated() || !Adjacent(usr))
 		return
+	icon_state = "mind_fryer_deploy"
 	for(var/datum/antag_contract/derail/C in GLOB.all_antag_contracts)
 		if(C.completed)
 			continue
@@ -30,6 +31,7 @@
 	for(var/mob/living/carbon/human/H in view(src))
 		if(H.get_species() != "Human" || (H in victims))
 			continue
+		icon_state = "mind_fryer_running"
 		H.sanity.onPsyDamage(2)
 
 /obj/item/device/mind_fryer/proc/reg_break(mob/living/carbon/human/victim)
