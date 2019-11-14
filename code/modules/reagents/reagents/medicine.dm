@@ -763,7 +763,8 @@
 	var/mob/living/carbon/C = L
 	if(istype(C))
 		for (var/tag in C.nerve_system_accumulations)
-			C.adjust_nsa(M.get_nsa_value(tag)/2, tag)
+			var/nsa_value = M.get_nsa_value(tag)/2
+			C.adjust_nsa(nsa_value, tag)
 
 
 /datum/reagent/medicine/vomitol
