@@ -751,7 +751,7 @@
 		M.sleeping = max(M.sleeping, 20)
 		M.drowsyness = max(M.drowsyness, 60)
 	M.add_chemical_effect(CE_PULSE, -1)
-	for (var/tag in nerve_system_accumulations)
+	for (var/tag in nerve_system_accumulations[])
 		M.adjust_nsa(tag / 2 , tag)
 
 
@@ -762,7 +762,7 @@
 	..()
 	var/mob/living/carbon/C = L
 	if(istype(C))
-		for (var/tag in nerve_system_accumulations)
+		for (var/tag in nerve_system_accumulations[])
 			C.adjust_nsa(tag / 2 , tag)
 
 	
