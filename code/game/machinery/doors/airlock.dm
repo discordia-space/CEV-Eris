@@ -587,38 +587,38 @@ There are 9 wires.
 	verbs -= /obj/machinery/door/airlock/proc/try_wedge_item
 	verbs += /obj/machinery/door/airlock/proc/take_out_wedged_item
 
-/obj/machinery/door/airlock/proc/try_wedge_item(mob/living/user)
+/obj/machinery/door/airlock/proc/try_wedge_item()
 	set name = "Wedge item"
 	set category = "Object"
 	set src in view(1)
 
-	if(!user)
-		user = usr
-
-	var/obj/item/weapon/tool/T = user.get_active_hand()
+	if(!isliving(usr))
+		to_chat(usr, SPAN_WARNING("You can't do this."))
+		return
+	var/obj/item/weapon/tool/T = usr.get_active_hand()
 	if(istype(T) && T.w_class >= ITEM_SIZE_NORMAL) // We do the checks before proc call, because see "proc overhead".
 		if(!density)
-			user.drop_item()
+			usr.drop_item()
 			force_wedge_item(T)
-			to_chat(user, SPAN_NOTICE("You wedge [T] into [src]."))
+			to_chat(usr, SPAN_NOTICE("You wedge [T] into [src]."))
 		else
-			to_chat(user, SPAN_NOTICE("[T] can't be wedged into [src], while [src] is open."))
+			to_chat(usr, SPAN_NOTICE("[T] can't be wedged into [src], while [src] is open."))
 
-/obj/machinery/door/airlock/proc/take_out_wedged_item(mob/living/user)
+/obj/machinery/door/airlock/proc/take_out_wedged_item()
 	set name = "Remove Blockage"
 	set category = "Object"
 	set src in view(1)
 
-	if(!user)
-		user = usr
-
+	if(!isliving(usr))
+		to_chat(usr, SPAN_WARNING("You can't do this."))
+		return
 	if(wedged_item)
-		if(user && !wedged_item.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_PRYING, FAILCHANCE_ZERO, list(STAT_MEC, STAT_ROB)))
+		if(usr && !wedged_item.use_tool(usr, src, WORKTIME_NEAR_INSTANT, QUALITY_PRYING, FAILCHANCE_ZERO, list(STAT_MEC, STAT_ROB)))
 			return
 		wedged_item.forceMove(loc)
-		if(user)
-			user.put_in_hands(wedged_item)
-			to_chat(user, SPAN_NOTICE("You took [wedged_item] out of [src]."))
+		if(usr)
+			usr.put_in_hands(wedged_item)
+			to_chat(usr, SPAN_NOTICE("You took [wedged_item] out of [src]."))
 		wedged_item = null
 		verbs -= /obj/machinery/door/airlock/proc/take_out_wedged_item
 		verbs += /obj/machinery/door/airlock/proc/try_wedge_item
@@ -626,7 +626,7 @@ There are 9 wires.
 
 /obj/machinery/door/airlock/AltClick(mob/user)
 	if(Adjacent(user))
-		try_wedge_item(user)
+		wedged_item ? take_out_wedged_item() : try_wedge_item()
 
 /obj/machinery/door/airlock/MouseDrop(obj/over_object)
 	if(ishuman(usr) && usr == over_object && !usr.incapacitated() && Adjacent(usr))
