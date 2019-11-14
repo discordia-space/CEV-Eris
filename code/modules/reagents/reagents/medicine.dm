@@ -752,7 +752,8 @@
 		M.drowsyness = max(M.drowsyness, 60)
 	M.add_chemical_effect(CE_PULSE, -1)
 	for (var/tag in M.nerve_system_accumulations)
-		M.adjust_nsa(M.get_nsa_value(tag)/2, tag)
+		var/nsa_value = M.get_nsa_value(tag)/2
+		M.adjust_nsa(nsa_value, tag)
 
 
 /datum/reagent/medicine/haloperidol/overdose(var/mob/living/carbon/M, var/alien)
@@ -763,7 +764,7 @@
 	var/mob/living/carbon/C = L
 	if(istype(C))
 		for (var/tag in C.nerve_system_accumulations)
-			var/nsa_value = M.get_nsa_value(tag)/2
+			var/nsa_value = C.get_nsa_value(tag)/2
 			C.adjust_nsa(nsa_value, tag)
 
 
