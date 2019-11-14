@@ -223,7 +223,7 @@
 	if(earnings_account.money < buying_price)
 		to_chat(user, SPAN_WARNING("[src] flashes a message: Account is unable to make this purchase."))
 		return
-	var/datum/transaction/T = new(-buying_price, "[user.name] (via [name])", "Sale of [R.product_name]", name)
+	var/datum/transaction/T = new(-buying_price, "[user.name]", "Sale of [R.product_name]", src)
 	T.apply_to(earnings_account)
 
 	R.add_product(W)
@@ -545,7 +545,7 @@
 		// Okay to move the money at this point
 
 		// create entry in the purchaser's account log
-		var/datum/transaction/T = new(-currently_vending.price, "[earnings_account.get_name()] (via [name])", "Purchase of [currently_vending.product_name]", name)
+		var/datum/transaction/T = new(-currently_vending.price, earnings_account.get_name(), "Purchase of [currently_vending.product_name]", src)
 		T.apply_to(customer_account)
 
 		// Give the vendor the money. We use the account owner name, which means
@@ -559,8 +559,8 @@
  *
  *  Called after the money has already been taken from the customer.
  */
-/obj/machinery/vending/proc/credit_purchase(var/target as text)
-	var/datum/transaction/T = new(currently_vending.price, target, "Purchase of [currently_vending.product_name]", name)
+/obj/machinery/vending/proc/credit_purchase(target)
+	var/datum/transaction/T = new(currently_vending.price, target, "Purchase of [currently_vending.product_name]", src)
 	T.apply_to(earnings_account)
 
 /obj/machinery/vending/attack_ai(mob/user as mob)
