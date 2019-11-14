@@ -751,8 +751,8 @@
 		M.sleeping = max(M.sleeping, 20)
 		M.drowsyness = max(M.drowsyness, 60)
 	M.add_chemical_effect(CE_PULSE, -1)
-	for (var/accumulation in nerve_system_accumulations)
-		M.adjust_nsa(accumulation.value / 2 , accumulation.tag)
+	for (var/tag in nerve_system_accumulations)
+		M.adjust_nsa(tag / 2 , tag)
 
 
 /datum/reagent/medicine/haloperidol/overdose(var/mob/living/carbon/M, var/alien)
@@ -762,8 +762,7 @@
 	..()
 	var/mob/living/carbon/C = L
 	if(istype(C))
-		for (var/accumulation in nerve_system_accumulations)
-		M.adjust_nsa(accumulation.value * 2 , accumulation.tag)
+
 	
 /datum/reagent/medicine/vomitol
 	name = "Vomitol"
