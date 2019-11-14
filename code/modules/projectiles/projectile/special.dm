@@ -152,3 +152,27 @@
 	nodamage = TRUE
 	damage_type = HALLOSS
 	muzzle_type = /obj/effect/projectile/bullet/muzzle
+
+
+/obj/item/projectile/flamer_lob
+	name = "blob of fuel"
+	icon_state = "fireball"
+	damage = 20
+	damage_type = BURN
+	check_armour = ARMOR_MELEE
+	var/life = 3
+
+
+/obj/item/projectile/flamer_lob/New()
+	.=..()
+
+/obj/item/projectile/flamer_lob/Move(var/atom/A)
+	.=..()
+	life--
+	var/turf/T = get_turf(src)
+	new/obj/effect/decal/cleanable/liquid_fuel(T, 1 , 1)
+	T.hotspot_expose((T20C*2) + 380,500)
+	if(!life)
+		qdel(src)
+
+

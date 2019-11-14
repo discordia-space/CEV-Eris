@@ -3,57 +3,72 @@
 	set background = BACKGROUND_ENABLED
 
 	..()
+	if(config.enable_mob_sleep)
+		if(life_cycles_before_scan > 0)
+			life_cycles_before_scan--
+		else
+			if(check_surrounding_area(7))
+				activate_ai()
+				life_cycles_before_scan = 3
 
-	if (HasMovementHandler(/datum/movement_handler/mob/transformation/))
-		return
-	if(!loc)
-		return
-	var/datum/gas_mixture/environment = loc.return_air()
+		if(life_cycles_before_sleep)
+			life_cycles_before_sleep--
 
-	if(stat != DEAD)
-		//Breathing, if applicable
-		handle_breathing()
+		if(life_cycles_before_sleep < 1 && !AI_inactive)
+			AI_inactive = TRUE
 
-		//Mutations and radiation
-		handle_mutations_and_radiation()
 
-		//Chemicals in the body
-		handle_chemicals_in_body()
+	if(!stasis)
+		if (HasMovementHandler(/datum/movement_handler/mob/transformation/))
+			return
+		if(!loc)
+			return
+		var/datum/gas_mixture/environment = loc.return_air()
 
-		//Blood
-		handle_blood()
+		if(stat != DEAD)
+			//Breathing, if applicable
+			handle_breathing()
 
-		//Random events (vomiting etc)
-		handle_random_events()
+			//Mutations and radiation
+			handle_mutations_and_radiation()
 
-		. = 1
+			//Chemicals in the body
+			handle_chemicals_in_body()
 
-	//Handle temperature/pressure differences between body and environment
-	if(environment)
-		handle_environment(environment)
+			//Blood
+			handle_blood()
 
-	//Check if we're on fire
-	handle_fire()
+			//Random events (vomiting etc)
+			handle_random_events()
 
-	//stuff in the stomach
-	handle_stomach()
+			. = 1
 
-	update_pulling()
+		//Handle temperature/pressure differences between body and environment
+		if(environment)
+			handle_environment(environment)
 
-	for(var/obj/item/weapon/grab/G in src)
-		G.Process()
+		//Check if we're on fire
+		handle_fire()
 
-	blinded = 0 // Placing this here just show how out of place it is.
-	// human/handle_regular_status_updates() needs a cleanup, as blindness should be handled in handle_disabilities()
-	if(handle_regular_status_updates()) // Status & health update, are we dead or alive etc.
-		handle_disabilities() // eye, ear, brain damages
-		handle_status_effects() //all special effects, stunned, weakened, jitteryness, hallucination, sleeping, etc
+		//stuff in the stomach
+		handle_stomach()
 
-	handle_actions()
+		update_pulling()
 
-	update_lying_buckled_and_verb_status()
+		for(var/obj/item/weapon/grab/G in src)
+			G.Process()
 
-	handle_regular_hud_updates()
+		blinded = 0 // Placing this here just show how out of place it is.
+		// human/handle_regular_status_updates() needs a cleanup, as blindness should be handled in handle_disabilities()
+		if(handle_regular_status_updates()) // Status & health update, are we dead or alive etc.
+			handle_disabilities() // eye, ear, brain damages
+			handle_status_effects() //all special effects, stunned, weakened, jitteryness, hallucination, sleeping, etc
+
+		handle_actions()
+
+		update_lying_buckled_and_verb_status()
+
+		handle_regular_hud_updates()
 
 /mob/living/proc/handle_breathing()
 	return

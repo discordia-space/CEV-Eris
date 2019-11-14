@@ -3,3 +3,4 @@
 	name = "Dungeon"
 	is_player_level = TRUE
 	height = 1
+	is_sealed = TRUE

@@ -65,6 +65,17 @@ They generally give more random result and can provide more divercity in spawn.
 	spawn_nothing_percentage = 70
 
 
+/obj/random/pack/tech_loot/onestar
+	name = "Random technical One Star loot"
+	icon_state = "tool-red"
+	desc = "This is a random technical loot."
+
+/obj/random/pack/tech_loot/onestar/item_to_spawn()
+	return pickweight(list(/obj/item/weapon/stock_parts/capacitor/one_star = 1,
+	/obj/item/weapon/stock_parts/scanning_module/one_star = 1,
+	/obj/item/weapon/stock_parts/manipulator/one_star = 1,
+	/obj/item/weapon/stock_parts/micro_laser/one_star = 1,
+	/obj/item/weapon/stock_parts/matter_bin/one_star = 1))
 
 
 //This will be spawned in rare closets

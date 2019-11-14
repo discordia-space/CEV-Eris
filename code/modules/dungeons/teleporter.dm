@@ -150,6 +150,12 @@
 	sleep(100)
 	update_icon()
 
+	for(var/mob/living/simple_animal/A in target.loc.loc)
+		spawn(1)
+			if(A)
+				A.stasis = FALSE
+				A.activate_ai()
+
 	overlays.Add(image(icon, icon_state = "portal_failing"))
 	visible_message("The portal starts flickering!")
 	flickering = 1
@@ -186,7 +192,7 @@
 					flick("flash", O.HUDtech["flash"])
 		O.Weaken(flash_time)
 
-		sleep(10)
+		sleep(1)
 
 
 /obj/rogue/telebeacon

@@ -310,5 +310,9 @@ EMPTY_SERVER_RESTART_TIME 30
 ## Comment this out if you want to disable emojis
 EMOJIS
 
+## MOB AI SLEEPING ###
+## Uncomment this out if you want to disable mob AI sleeping 
+#ENABLE_MOB_SLEEP
+
 WEBHOOK_URL http://localhost:44303/webhook/en
 WEBHOOK_KEY testkey

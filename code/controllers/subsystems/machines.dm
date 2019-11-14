@@ -82,7 +82,8 @@ if(current_step == this_step || (check_resumed && !resumed)) {\
 datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/machines)
 	set background=1
 
-	report_progress("Initializing atmos machinery")
+	if(!Master.current_runlevel)//So it only does it at roundstart
+		report_progress("Initializing atmos machinery")
 	for(var/obj/machinery/atmospherics/A in machines)
 		A.atmos_init()
 		CHECK_TICK
@@ -95,8 +96,8 @@ datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/machines)
 			var/obj/machinery/atmospherics/unary/vent_scrubber/T = U
 			T.broadcast_status()
 		CHECK_TICK
-
-	report_progress("Initializing pipe networks")
+	if(!Master.current_runlevel)//So it only does it at roundstart
+		report_progress("Initializing pipe networks")
 	for(var/obj/machinery/atmospherics/machine in machines)
 		machine.build_network()
 		CHECK_TICK

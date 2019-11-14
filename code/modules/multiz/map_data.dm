@@ -182,6 +182,9 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	if(MD.is_accessable_level)
 		accessable_levels[num2text(level)] = MD.is_accessable_level
 
+	if(MD.is_sealed)
+		sealed_levels += level
+
 /datum/maps_data/proc/get_empty_zlevel()
 	if(empty_levels == null)
 		world.maxz++
@@ -225,6 +228,7 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	var/is_contact_level = FALSE // Defines Z-levels which, for example, a Code Red announcement may affect
 	var/is_accessable_level = TRUE // Prob modifier for random access (space travelling)
 	var/generate_asteroid= FALSE
+	var/is_sealed = FALSE //No transit at map edge
 	var/tmp/z_level
 	var/height = -1	///< The number of Z-Levels in the map.
 
