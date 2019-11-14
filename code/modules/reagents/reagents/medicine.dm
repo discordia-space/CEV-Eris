@@ -762,7 +762,7 @@
 	..()
 	var/mob/living/carbon/C = L
 	if(istype(C))
-		for (var/tag in M.nerve_system_accumulations)
+		for (var/tag in C.nerve_system_accumulations)
 			C.adjust_nsa(tag * 2 , tag)
 
 	
