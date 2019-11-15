@@ -31,3 +31,10 @@
 	qdel(hard_drive)
 	qdel(network_card)
 	qdel(scanner)
+
+
+/obj/item/modular_computer/console/break_apart()
+	..()
+	var/datum/effect/effect/system/smoke_spread/S = new/datum/effect/effect/system/smoke_spread()
+	S.set_up(6, 0, src)
+	S.start()
