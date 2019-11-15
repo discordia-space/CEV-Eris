@@ -16,7 +16,7 @@
 	/obj/item/weapon/storage/pouch/baton_holster = 3
 	))
 
-/obj/random/gun_normal/low_chance
+/obj/random/pouch/low_chance
 	name = "low chance random pouch"
 	icon_state = "box-green-low"
 	spawn_nothing_percentage = 80

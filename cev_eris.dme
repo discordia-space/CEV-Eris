@@ -1080,6 +1080,7 @@
 #include "code\game\objects\random\purerandom.dm"
 #include "code\game\objects\random\random.dm"
 #include "code\game\objects\random\rig.dm"
+#include "code\game\objects\random\science.dm"
 #include "code\game\objects\random\scrap.dm"
 #include "code\game\objects\random\structures.dm"
 #include "code\game\objects\random\surgerytools.dm"
