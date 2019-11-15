@@ -103283,10 +103283,6 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/storage/primary)
-"ewx" = (
-/obj/machinery/camera/network/third_section,
-/turf/simulated/floor/dirt,
-/area/space)
 "ewy" = (
 /obj/machinery/camera/network/third_section{
 	dir = 8
@@ -223271,7 +223267,7 @@ aaa
 aaa
 aaa
 aaa
-ewx
+aaa
 aaa
 aaa
 aaa
