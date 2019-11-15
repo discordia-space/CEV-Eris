@@ -2,8 +2,8 @@
 	name = "FS CAR 5.56x45mm \"Z8 Bulldog\""
 	desc = "The Z8 Bulldog is an older bullpup carbine model, made by \"Frozen Star\". It includes an underbarrel grenade launcher which is compatible with most modern grenade types. Uses 5.56mm rounds."
 	icon = 'icons/obj/guns/projectile/carabine.dmi'
-	icon_state = "carbine"
-	item_state = "z8carbine"
+	icon_state = "z8"
+	item_state = "z8"
 	w_class = ITEM_SIZE_BULKY
 	force = WEAPON_FORCE_PAINFUL
 	caliber = "a556"
@@ -60,10 +60,20 @@
 
 /obj/item/weapon/gun/projectile/automatic/z8/update_icon()
 	..()
-	if(ammo_magazine)
-		icon_state = "carbine-[round(ammo_magazine.stored_ammo.len,4)]"
-	else
-		icon_state = "carbine"
+
+	var/iconstring = initial(icon_state)
+
+	if (ammo_magazine)
+		iconstring += "_mag"
+
+	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
+		iconstring += "_slide"
+
+	icon_state = iconstring
+
+/obj/item/weapon/gun/projectile/automatic/z8/Initialize()
+	. = ..()
+	update_icon()
 
 /obj/item/weapon/gun/projectile/automatic/z8/examine(mob/user)
 	..()

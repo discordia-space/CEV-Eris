@@ -31,10 +31,20 @@
 
 /obj/item/weapon/gun/projectile/automatic/IH_heavyrifle/update_icon()
 	..()
-	if(ammo_magazine)
-		icon_state = "[initial(icon_state)]-full"
-		set_item_state("-full")
-	else
-		icon_state = initial(icon_state)
-		set_item_state()
-	return
+
+	var/iconstring = initial(icon_state)
+	var/itemstring = initial(item_state)
+
+	if (ammo_magazine)
+		iconstring += "_mag"
+		itemstring += "_mag"
+
+	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
+		iconstring += "_slide"
+
+	icon_state = iconstring
+	item_state = itemstring
+
+/obj/item/weapon/gun/projectile/automatic/IH_heavyrifle/Initialize()
+	. = ..()
+	update_icon()
