@@ -754,6 +754,7 @@
 	name = "Yeetus"
 	},
 /obj/structure/disposalpipe/trunk,
+/obj/machinery/shield_diffuser,
 /turf/simulated/floor/hull{
 	flooring_override = "hullcenter18";
 	icon_state = "hullcenter18";
@@ -1166,6 +1167,7 @@
 	locked = 1;
 	name = "External Security Airlock"
 	},
+/obj/machinery/shield_diffuser,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
 "acQ" = (
@@ -6410,6 +6412,7 @@
 	locked = 1;
 	name = "External Second Section Airlock - 2"
 	},
+/obj/machinery/shield_diffuser,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/maintenance/section2deck5port)
 "aox" = (
@@ -11955,6 +11958,7 @@
 	locked = 1;
 	name = "External Third Section Airlock - 3"
 	},
+/obj/machinery/shield_diffuser,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/maintenance/section3deck2starboard)
 "aBf" = (
@@ -21236,6 +21240,7 @@
 	locked = 1;
 	name = "External Atmospherics Airlock"
 	},
+/obj/machinery/shield_diffuser,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/maintenance/section4deck5port)
 "aXh" = (
@@ -38778,6 +38783,7 @@
 	locked = 1;
 	name = "External Third Section Airlock - 1"
 	},
+/obj/machinery/shield_diffuser,
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section3deck1central)
 "bIo" = (
@@ -57552,6 +57558,7 @@
 	locked = 1;
 	name = "External Post Airlock"
 	},
+/obj/machinery/shield_diffuser,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/engineering/post)
 "cyB" = (
@@ -62496,6 +62503,7 @@
 	pixel_y = -10;
 	req_one_access = list(13,48)
 	},
+/obj/machinery/shield_diffuser,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/miningdock)
 "cJA" = (
@@ -62531,6 +62539,7 @@
 	name = "Mining Dock Airlock";
 	req_access = list(13)
 	},
+/obj/machinery/shield_diffuser,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/miningdock)
 "cJD" = (
@@ -64465,6 +64474,7 @@
 	locked = 1;
 	name = "External Engineering E.V.A. Atmospherics Airlock"
 	},
+/obj/machinery/shield_diffuser,
 /turf/simulated/floor/tiled/steel,
 /area/eris/engineering/engeva)
 "cOi" = (
@@ -77125,6 +77135,7 @@
 	locked = 1;
 	name = "External Medbay Airlock"
 	},
+/obj/machinery/shield_diffuser,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/medical/medeva)
 "dqf" = (
@@ -80162,6 +80173,7 @@
 	locked = 1;
 	name = "External Third Section Airlock - 2"
 	},
+/obj/machinery/shield_diffuser,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/maintenance/section3deck2port)
 "dwM" = (
@@ -80752,6 +80764,7 @@
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/maintenance/oldbridge)
 "dyp" = (
+/obj/machinery/shield_diffuser,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/rnd/docking)
 "dyq" = (
@@ -80917,6 +80930,7 @@
 	req_access = list(13);
 	tag = "icon-door_closed"
 	},
+/obj/machinery/shield_diffuser,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/rnd/docking)
 "dyI" = (
@@ -87137,6 +87151,7 @@
 	dir = 4;
 	icon_state = "intact"
 	},
+/obj/machinery/shield_diffuser,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/engineering/engine_room)
 "dMi" = (
@@ -90908,6 +90923,7 @@
 	pixel_y = 24;
 	sensor_dir = 8
 	},
+/obj/machinery/shield_diffuser,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/maintenance/section2deck1port)
 "dVc" = (
@@ -91064,6 +91080,7 @@
 	pixel_x = 0;
 	pixel_y = -25
 	},
+/obj/machinery/shield_diffuser,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/maintenance/section2deck1port)
 "dVs" = (
