@@ -29,7 +29,7 @@
 
 /obj/item/weapon/tool/medmultitool/medimplant
 	name = "Medical Omnitool"
-	desc = "An all-in-one medical tool implant based on the legendary One Star model. While convenient, it is less efficient than advanced surgical tools, such as laser scalpels, and requires a battery."
+	desc = "An all-in-one medical tool implant based on the legendary One Star model. While convenient, it is less efficient than more advanced surgical tools, such as laser scalpels, and requires a power cell."
 	icon_state = "medimplant"
 	worksound = WORKSOUND_DRIVER_TOOL
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_GLASS = 2)
@@ -58,13 +58,11 @@
 	var/buffer_name
 	var/atom/buffer_object
 
-/obj/item/weapon/tool/engimplant/Destroy()
+/obj/item/weapon/tool/engimplant/Destroy() // code for omnitool buffers was copied from multitools.dm
 	unregister_buffer(buffer_object)
 	return ..()
 
 /obj/item/weapon/tool/engimplant/proc/get_buffer(var/typepath)
-	// Only allow clearing the buffer name when someone fetches the buffer.
-	// Means you cannot be sure the source hasn't been destroyed until the very moment it's needed.
 	get_buffer_name(TRUE)
 	if(buffer_object && (!typepath || istype(buffer_object, typepath)))
 		return buffer_object
