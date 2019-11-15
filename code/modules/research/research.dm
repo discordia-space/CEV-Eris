@@ -16,11 +16,11 @@ Procs:
 - IsResearched(datum/technology/T): Is T in researched_nodes?
 - CanResearch(datum/technology/T): Can T be researched (checks T cost, if T's associated tree is shown and if we have the required tech levels/nodes).
 - UnlockTechology(datum/technology/T, force = FALSE): Unlocks a technology node T for src. Safe (uses the procs above). Adds T to the needed lists, and adds its designs too.
-														Setting force to true ignores T's cost. 
-- download_from(datum/research/O): Downloads data from O. The result is the union of src and O. 
-- forget_techology(datum/technology/T): Removes T from src. 
-- forget_all(tech_type): Forget all the technology nodes associated to a tree with type tech_type. 
-- AddDesign2Known(datum/design/D): Add design to known_designs. 
+														Setting force to true ignores T's cost.
+- download_from(datum/research/O): Downloads data from O. The result is the union of src and O.
+- forget_techology(datum/technology/T): Removes T from src.
+- forget_all(tech_type): Forget all the technology nodes associated to a tree with type tech_type.
+- AddDesign2Known(datum/design/D): Add design to known_designs.
 - check_item_for_tech(obj/item/I): Unlocks a hidden tech tree if the item has the tree's item_tech_req in its origin_tech.
 
 */
@@ -38,6 +38,8 @@ Procs:
 	var/list/researched_nodes = list() // All research nodes
 
 	var/datum/experiment_data/experiments
+
+	var/known_research_file_ids = list()
 
 	var/research_points = 0
 
@@ -101,6 +103,7 @@ Procs:
 			var/datum/technology/T = tech
 			if(UnlockTechology(T, force = TRUE))
 				. = TRUE // we actually updated something
+	known_research_file_ids |= O.known_research_file_ids
 	experiments.merge_with(O.experiments)
 
 /datum/research/proc/forget_techology(datum/technology/T)
@@ -159,6 +162,32 @@ Procs:
 			if(item_tech == T.item_tech_req)
 				T.shown = TRUE
 				return
+
+/datum/research/proc/is_research_file_type(datum/computer_file/file)
+	if(istype(file, /datum/computer_file/binary/research_points))
+		return TRUE
+
+	return FALSE
+
+/datum/research/proc/can_load_file(datum/computer_file/file)
+	if(istype(file, /datum/computer_file/binary/research_points))
+		var/datum/computer_file/binary/research_points/research_points_file = file
+		return !(research_points_file.research_id in known_research_file_ids)
+
+	return FALSE
+
+/datum/research/proc/load_file(datum/computer_file/file)
+	if(!can_load_file(file))
+		return FALSE
+
+	if(istype(file, /datum/computer_file/binary/research_points))
+		var/datum/computer_file/binary/research_points/research_points_file = file
+		known_research_file_ids += research_points_file.research_id
+		research_points += research_points_file.size * 1000
+		return TRUE
+
+	return FALSE
+
 
 /***************************************************************
 **						Technology Trees					  **
