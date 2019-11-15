@@ -357,18 +357,13 @@
 
 	license = 20
 	designs = list(
-		/datum/design/autolathe/ammo/mg_cl32_rubber, //pistol mags
-		/datum/design/autolathe/ammo/magazine_mc9mm_rubber,
-		/datum/design/autolathe/ammo/magazine_c45m_rubber,
-		/datum/design/autolathe/ammo/magazine_a10mm_rubber,
-		/datum/design/autolathe/ammo/mg_cl44_rubber,
-		/datum/design/autolathe/ammo/mg_a50_rubber,
-		/datum/design/autolathe/ammo/sl_c138_rubber, //speed loaders
-		/datum/design/autolathe/ammo/sl_cl44_rubber,
-		/datum/design/autolathe/ammo/smg9mm_rubber, //smg mags
-		/datum/design/autolathe/ammo/c45smg_rubber,
+		/datum/design/autolathe/ammo/magazine_pistol_rubber, //pistol mags
+		/datum/design/autolathe/ammo/mg_magnum_rubber,
+		/datum/design/autolathe/ammo/sl_pistol_rubber, //speed loaders
+		/datum/design/autolathe/ammo/sl_magnum_rubber,
+		/datum/design/autolathe/ammo/smg_rubber, //smg mags
 		/datum/design/autolathe/ammo/SMG_sol_rubber, //other mags
-		/datum/design/autolathe/ammo/a556_practice,
+		/datum/design/autolathe/ammo/srifle_practice,
 		/datum/design/autolathe/ammo/shotgun_blanks, //shells
 		/datum/design/autolathe/ammo/shotgun_flash,
 		/datum/design/autolathe/ammo/stunshell,
@@ -381,23 +376,16 @@
 
 	license = 20
 	designs = list(
-		/datum/design/autolathe/ammo/mg_cl32_brute, //pistol mags
-		/datum/design/autolathe/ammo/magazine_mc9mm,
-		/datum/design/autolathe/ammo/magazine_c45m,
-		/datum/design/autolathe/ammo/magazine_a10mm,
-		/datum/design/autolathe/ammo/mg_cl44_brute,
-		/datum/design/autolathe/ammo/mg_a50,
-		/datum/design/autolathe/ammo/sl_c138_brute, //speed loaders
-		/datum/design/autolathe/ammo/sl_cl44_brute,
-		/datum/design/autolathe/ammo/magazine_sl357,
-		/datum/design/autolathe/ammo/smg9mm_brute, //smg mags
-		/datum/design/autolathe/ammo/c45smg_brute,
-		/datum/design/autolathe/ammo/magazine_smg10mm,
+		/datum/design/autolathe/ammo/magazine_pistol, //pistol mags
+		/datum/design/autolathe/ammo/mg_magnum_brute,
+		/datum/design/autolathe/ammo/sl_pistol_brute, //speed loaders
+		/datum/design/autolathe/ammo/sl_magnum_brute,
+		/datum/design/autolathe/ammo/smg_brute, //smg mags
 		/datum/design/autolathe/ammo/SMG_sol_brute, //other mags
-		/datum/design/autolathe/ammo/a556,
-		/datum/design/autolathe/ammo/ih556,
-		/datum/design/autolathe/ammo/c762_short,
-		/datum/design/autolathe/ammo/c762_long,
+		/datum/design/autolathe/ammo/srifle,
+		/datum/design/autolathe/ammo/ihsrifle,
+		/datum/design/autolathe/ammo/lrifle_short,
+		/datum/design/autolathe/ammo/lrifle_long,
 		/datum/design/autolathe/ammo/shotgun_pellet, //shells
 		/datum/design/autolathe/ammo/shotgun
 	)
@@ -421,10 +409,10 @@
 		/datum/design/autolathe/gun/makarov,
 		/datum/design/autolathe/gun/drozd,
 		/datum/design/autolathe/sec/silencer,
-		/datum/design/autolathe/ammo/magazine_mc9mm,
+		/datum/design/autolathe/ammo/magazine_pistol,
 		/datum/design/autolathe/gun/ak47,
-		/datum/design/autolathe/ammo/c762_long,
-		/datum/design/autolathe/ammo/box_a762,
+		/datum/design/autolathe/ammo/lrifle_long,
+		/datum/design/autolathe/ammo/box_lrifle,
 		/datum/design/autolathe/device/excelsiormine,
 		/datum/design/autolathe/sec/beartrap,
 		/datum/design/autolathe/clothing/excelsior_armor,
@@ -453,10 +441,10 @@
 		/datum/design/autolathe/gun/makarov,
 		/datum/design/autolathe/gun/drozd,
 		/datum/design/autolathe/sec/silencer,
-		/datum/design/autolathe/ammo/magazine_mc9mm,
+		/datum/design/autolathe/ammo/magazine_pistol,
 		/datum/design/autolathe/gun/ak47,
-		/datum/design/autolathe/ammo/c762_long,
-		/datum/design/autolathe/ammo/box_a762,
+		/datum/design/autolathe/ammo/lrifle_long,
+		/datum/design/autolathe/ammo/box_lrifle,
 		/datum/design/autolathe/device/excelsiormine,
 		/datum/design/autolathe/sec/beartrap,
 		/datum/design/autolathe/clothing/excelsior_armor,

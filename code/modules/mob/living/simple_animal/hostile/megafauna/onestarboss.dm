@@ -21,7 +21,7 @@
 	megafauna_min_cooldown = 30
 	megafauna_max_cooldown = 60
 
-	projectiletype = /obj/item/projectile/bullet/a556/nomuzzle
+	projectiletype = /obj/item/projectile/bullet/srifle/nomuzzle
 
 /mob/living/simple_animal/hostile/megafauna/one_star/death()
 	..()
