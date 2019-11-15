@@ -59514,6 +59514,12 @@
 "cCx" = (
 /obj/structure/table/standard,
 /obj/item/weapon/reagent_containers/food/snacks/mint,
+/obj/item/weapon/reagent_containers/food/condiment/saltshaker{
+	step_x = -3
+	},
+/obj/item/weapon/reagent_containers/food/condiment/peppermill{
+	step_x = 3
+	},
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
 "cCy" = (
@@ -108386,6 +108392,26 @@
 	},
 /turf/simulated/open,
 /area/eris/engineering/gravity_generator)
+"ijn" = (
+/obj/structure/table/bar_special,
+/obj/item/weapon/reagent_containers/food/condiment/peppermill{
+	step_x = 3
+	},
+/obj/item/weapon/reagent_containers/food/condiment/saltshaker{
+	step_x = -3
+	},
+/turf/simulated/floor/tiled/steel/bar_light,
+/area/eris/crew_quarters/bar)
+"kcK" = (
+/obj/structure/table/bar_special,
+/obj/item/weapon/reagent_containers/food/condiment/saltshaker{
+	step_x = 3
+	},
+/obj/item/weapon/reagent_containers/food/condiment/peppermill{
+	step_x = -3
+	},
+/turf/simulated/floor/tiled/steel/bar_light,
+/area/eris/crew_quarters/bar)
 
 (1,1,1) = {"
 aaa
@@ -168092,12 +168118,12 @@ cin
 cis
 cje
 cjA
-cjQ
+kcK
 cjQ
 ckn
 ckL
 cjA
-cjQ
+ijn
 cjQ
 clX
 cjq
