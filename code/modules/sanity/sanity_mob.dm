@@ -299,16 +299,16 @@ var/list/sanity_mirages = list()
 	)
 
 	if(level<40 && level>20)
-		if(prob(80))
+		if(prob(2))
 			var/emote = pick(list(
 			"shivers",
 			"stares at something blindly for a moment.",
-			" looks disoriented for a moment."
+			"looks disoriented for a moment."
 		))
 			owner.custom_emote(message=emote)
 
 	else if (level<=20)
-		if(prob(5))
+		if(prob(2))
 			var/emote = pick(list(
 				"have a zombie stare",
 				"is about to snap.",
@@ -326,10 +326,12 @@ var/list/sanity_mirages = list()
 		if(prob(5))
 			to_chat(owner, SPAN_DANGER("\icon['icons/effects/fabric_symbols_20.dmi'][pick(sanity_quotes_20)]"))
 
-	if(level<=20)
+	if(level<=20) //sounds without to_chat texts
 		if(prob(0.1))
 			owner.playsound_local(owner, pick(sanity_sounds_without_text), 50, 0, 8, null, 8)
 	
+//Sounds with to_chat texts
+
 	if(level <= 20)
 		if(prob(0.1))
 			owner.playsound_local(owner, 'sound/hallucinations/i_see_you1.ogg', 50, 0, 8, null, 8)
@@ -349,6 +351,7 @@ var/list/sanity_mirages = list()
 		if(prob(0.1))
 			owner.playsound_local(owner, 'sound/sanity/very_evil_laugh.ogg', 50, 0, 8, null, 8)
 			to_chat(owner, SPAN_DANGER("You hear an evil laugh"))
+
 
 
 		if(level < 20) //hallucinations from icons/obj/sanity_hallucinations.dmi
