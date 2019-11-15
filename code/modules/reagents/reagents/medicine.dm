@@ -761,20 +761,16 @@
 	..()
 	var/mob/living/carbon/C = L
 	if(istype(C))
-		var/datum/reagent/toxin/haloperidol/R
 		for (var/tag in C.nerve_system_accumulations)
 			var/nsa_value = C.get_nsa_value(tag)/2
-			if(!istype(tag,R))
 				C.adjust_nsa(nsa_value, tag)
 
 /datum/reagent/medicine/haloperidol/on_mob_delete(mob/living/L)
 	..()
 	var/mob/living/carbon/C = L
 	if(istype(C))
-		var/datum/reagent/toxin/haloperidol/R
 		for (var/tag in C.nerve_system_accumulations)
 			var/nsa_value = C.get_nsa_value(tag)*2
-			if(!istype(tag,R))
 				C.adjust_nsa(nsa_value, tag)
 
 
