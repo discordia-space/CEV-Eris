@@ -22,6 +22,7 @@
 	zoom_factor = 0.2
 	recoil = 0.8
 	recoil_buildup = 0.1 //smg level
+	silencer_type = /obj/item/weapon/silencer
 
 	firemodes = list(
 		FULL_AUTO_400,
@@ -41,6 +42,8 @@
 	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
 		iconstring += "_slide"
 
+	if (silenced)
+		iconstring += "_s"
 
 	icon_state = iconstring
 	set_item_state(itemstring)
