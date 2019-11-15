@@ -205,6 +205,7 @@
 	if(src.ricochet_id != 0)
 		if(src.ricochet_id == Proj.ricochet_id)
 			src.ricochet_id = 0
+			new /obj/effect/sparks(get_turf(Proj))
 			return PROJECTILE_CONTINUE
 		src.ricochet_id = 0
 	var/proj_damage = Proj.get_structure_damage()
@@ -227,6 +228,7 @@
 			take_damage(min(proj_damage - damagediff, 100))
 			visible_message("<span class='danger'>The [Proj] ricochets from the surface of wall!</span>")
 			projectile_reflection(Proj)
+			new /obj/effect/sparks(get_turf(Proj))
 			return PROJECTILE_CONTINUE // complete projectile permutation
 
 	//cut some projectile damage here and not in projectile.dm, because we need not to all things what are using get_str_dam() becomes thin and weak.
