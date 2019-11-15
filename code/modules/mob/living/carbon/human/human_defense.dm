@@ -38,6 +38,51 @@ meteor_act
 			organ.embed(SP)
 
 
+/mob/living/carbon/human/hit_impact(damage)
+	if(stat)
+		return
+	if(damage < 20)
+		..()
+		return
+
+	visible_message(SPAN_WARNING("[src] stumbles around."))
+	step(src, pick(cardinal))
+
+	for(var/atom/movable/A in oview(1))
+		if(!A.Adjacent(src) || prob(50))
+			continue
+
+		//Set usr to src for calling verbs
+		var/_usr = usr
+		usr = src
+
+		if(istype(A, /obj/structure/table))
+			var/obj/structure/table/T = A
+			if (!T.can_touch(src) || T.flipped != 0 || !T.flip(get_cardinal_dir(src, T)))
+				continue
+			if(T.climbable)
+				T.structure_shaken()
+			playsound(T,'sound/machines/Table_Fall.ogg',100,1)
+
+		else if(istype(A, /obj/machinery/door))
+			var/obj/machinery/door/D = A
+			D.Bumped(src)
+
+		else if(istype(A, /obj/machinery/button))
+			A.attack_hand(src)
+
+		else if(istype(A, /obj/structure/bed/chair))
+			var/obj/structure/bed/chair/C = A
+			C.rotate()
+
+		else if(istype(A, /obj/item) || prob(33))
+			if(A.anchored)
+				continue
+			step(A, pick(cardinal))
+
+		usr = _usr
+
+
 /mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
 
 	var/obj/item/organ/external/affected = get_organ(check_zone(def_zone))
