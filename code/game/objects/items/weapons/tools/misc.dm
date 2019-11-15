@@ -30,12 +30,16 @@
 	name = "Medical Omnitool"
 	desc = "An all-in-one medical tool implant based on the legendary One Star model. While convenient, it is less efficient than more advanced surgical tools, such as laser scalpels, and requires a power cell."
 	icon_state = "medimplant"
+	force = WEAPON_FORCE_PAINFUL
+	sharp = TRUE
+	edge = TRUE
 	worksound = WORKSOUND_DRIVER_TOOL
-	matter = list(MATERIAL_STEEL = 3, MATERIAL_GLASS = 2)
 	flags = CONDUCT
 	tool_qualities = list(QUALITY_CLAMPING = 30, QUALITY_RETRACTING = 30, QUALITY_BONE_SETTING = 30, QUALITY_CAUTERIZING = 30, QUALITY_SAWING = 15, QUALITY_CUTTING = 30, QUALITY_WIRE_CUTTING = 15)
-
-	use_power_cost = 0.5
+	degradation = 0.5
+	workspeed = 0.8
+	
+	use_power_cost = 1.2
 	suitable_cell = /obj/item/weapon/cell/medium
 
 	max_upgrades = 1
@@ -44,14 +48,16 @@
 	name = "Engineering Omnitool"
 	desc = "An all-in-one engineering tool implant. Convenient to use and more effective than the basics, but much less efficient than customized or more specialized tools."
 	icon_state = "engimplant"
+	force = WEAPON_FORCE_DANGEROUS
 	worksound = WORKSOUND_DRIVER_TOOL
+	flags = CONDUCT
 	tool_qualities = list(QUALITY_SCREW_DRIVING = 35, QUALITY_BOLT_TURNING = 35, QUALITY_DRILLING = 15, QUALITY_WELDING = 30, QUALITY_CAUTERIZING = 10, QUALITY_PRYING = 25, QUALITY_DIGGING = 20, QUALITY_PULSING = 30, QUALITY_WIRE_CUTTING = 30)
-
-	use_power_cost = 0.5
+	degradation = 0.5
+	workspeed = 0.8
+	
+	use_power_cost = 0.8
 	suitable_cell = /obj/item/weapon/cell/medium
 
-	create_hot_spot = TRUE
-	glow_color = COLOR_BLUE
 	max_upgrades = 1
 
 	var/buffer_name
