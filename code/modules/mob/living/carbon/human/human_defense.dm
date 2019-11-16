@@ -38,23 +38,25 @@ meteor_act
 			organ.embed(SP)
 
 
-/mob/living/carbon/human/hit_impact(damage)
-	if(stat)
+/mob/living/carbon/human/hit_impact(damage, dir)
+	if(incapacitated(INCAPACITATION_DEFAULT|INCAPACITATION_BUCKLED_PARTIALLY))
 		return
-	if(damage < 20)
+	if(damage < stats.getStat(STAT_TGH))
 		..()
 		return
 
-	visible_message(SPAN_WARNING("[src] stumbles around."))
-	step(src, pick(cardinal))
+	var/r_dir = reverse_dir[dir]
+	var/hit_dirs = (r_dir in cardinal) ? r_dir : list(r_dir & NORTH|SOUTH, r_dir & EAST|WEST)
+
+	var/stumbled = FALSE
+
+	if(prob(60 - stats.getStat(STAT_TGH)))
+		stumbled = TRUE
+		step(src, pick(cardinal - hit_dirs))
 
 	for(var/atom/movable/A in oview(1))
-		if(!A.Adjacent(src) || prob(50))
+		if(!A.Adjacent(src) || prob(50 + stats.getStat(STAT_TGH)))
 			continue
-
-		//Set usr to src for calling verbs
-		var/_usr = usr
-		usr = src
 
 		if(istype(A, /obj/structure/table))
 			var/obj/structure/table/T = A
@@ -71,16 +73,17 @@ meteor_act
 		else if(istype(A, /obj/machinery/button))
 			A.attack_hand(src)
 
-		else if(istype(A, /obj/structure/bed/chair))
-			var/obj/structure/bed/chair/C = A
-			C.rotate()
-
 		else if(istype(A, /obj/item) || prob(33))
 			if(A.anchored)
 				continue
 			step(A, pick(cardinal))
 
-		usr = _usr
+		else
+			continue
+		stumbled = TRUE
+
+	if(stumbled)
+		visible_message(SPAN_WARNING("[src] stumbles around."))
 
 
 /mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
