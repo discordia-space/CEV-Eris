@@ -11,3 +11,18 @@
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL
 	recoil = 0.5 //regular pistol kick
+
+
+/obj/item/weapon/gun/projectile/colt/update_icon()
+	..()
+
+	var/iconstring = initial(icon_state)
+
+	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
+		iconstring += "_slide"
+
+	icon_state = iconstring
+
+/obj/item/weapon/gun/projectile/colt/Initialize()
+	. = ..()
+	update_icon()
