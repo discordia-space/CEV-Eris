@@ -287,7 +287,6 @@ meteor_act
 			new /obj/effect/overlay/temp/dir_setting/bloodsplatter(src.loc, splatter_dir, blood_color)
 			target_loca.add_blood(src)
 
-	receive_damage()
 	return TRUE
 
 /mob/living/carbon/human/proc/attack_joint(var/obj/item/organ/external/organ, var/obj/item/W)

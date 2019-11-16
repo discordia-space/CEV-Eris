@@ -572,7 +572,6 @@
 			new /obj/effect/overlay/temp/dir_setting/bloodsplatter(target_mob.loc, splatter_dir, blood_color)
 			if(prob(50))
 				target_loca.add_blood(L)
-	target_mob.receive_damage()
 
 	return TRUE
 
