@@ -38,6 +38,54 @@ meteor_act
 			organ.embed(SP)
 
 
+/mob/living/carbon/human/hit_impact(damage, dir)
+	if(incapacitated(INCAPACITATION_DEFAULT|INCAPACITATION_BUCKLED_PARTIALLY))
+		return
+	if(damage < stats.getStat(STAT_TGH))
+		..()
+		return
+
+	var/r_dir = reverse_dir[dir]
+	var/hit_dirs = (r_dir in cardinal) ? r_dir : list(r_dir & NORTH|SOUTH, r_dir & EAST|WEST)
+
+	var/stumbled = FALSE
+
+	if(prob(60 - stats.getStat(STAT_TGH)))
+		stumbled = TRUE
+		step(src, pick(cardinal - hit_dirs))
+
+	for(var/atom/movable/A in oview(1))
+		if(!A.Adjacent(src) || prob(50 + stats.getStat(STAT_TGH)))
+			continue
+
+		if(istype(A, /obj/structure/table))
+			var/obj/structure/table/T = A
+			if (!T.can_touch(src) || T.flipped != 0 || !T.flip(get_cardinal_dir(src, T)))
+				continue
+			if(T.climbable)
+				T.structure_shaken()
+			playsound(T,'sound/machines/Table_Fall.ogg',100,1)
+
+		else if(istype(A, /obj/machinery/door))
+			var/obj/machinery/door/D = A
+			D.Bumped(src)
+
+		else if(istype(A, /obj/machinery/button))
+			A.attack_hand(src)
+
+		else if(istype(A, /obj/item) || prob(33))
+			if(A.anchored)
+				continue
+			step(A, pick(cardinal))
+
+		else
+			continue
+		stumbled = TRUE
+
+	if(stumbled)
+		visible_message(SPAN_WARNING("[src] stumbles around."))
+
+
 /mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
 
 	var/obj/item/organ/external/affected = get_organ(check_zone(def_zone))
