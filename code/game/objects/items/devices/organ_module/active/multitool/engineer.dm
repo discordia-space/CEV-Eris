@@ -1,10 +1,7 @@
 /obj/item/organ_module/active/multitool/engineer
 	name = "embedded Technomancer multitool"
-	desc = "An engineering multitool designed to be embedded in the arm for fast, easy use. Frequently used by Technomancers."
-	verb_name = "Deploy engineering tool"
-	items = list(
-		/obj/item/weapon/tool/engimplant,
-		/obj/item/device/t_scanner,
-		/obj/item/device/scanner/gas
-
-	)
+	desc = "An all-in-one engineering tool implant. Convenient to use and more effective than the basics, but much less efficient than customized or more specialized tools."
+	verb_name = "Deploy engineering omnitool"
+	icon_state = "multitool"
+	allowed_organs = list(BP_R_ARM, BP_L_ARM)
+	holding_type = /obj/item/weapon/tool/engimplant

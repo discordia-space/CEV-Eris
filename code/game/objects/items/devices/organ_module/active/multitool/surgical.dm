@@ -1,9 +1,7 @@
 /obj/item/organ_module/active/multitool/surgical
 	name = "embedded surgical multitool"
-	desc = "A surgical multitool designed by Moebius to be embedded into an arm. One of the most popular augments among Moebius scientists and doctors, and sometimes used by criminal types for the array of potential weapons it holds."
-	verb_name = "Deploy surgical tool"
-	items = list(
-		/obj/item/weapon/tool/medmultitool/medimplant,
-		/obj/item/device/scanner/health
-
-	)
+	desc = "An all-in-one medical tool implant based on the legendary One Star model. While convenient, it is less efficient than more advanced surgical tools, such as laser scalpels, and requires a power cell."
+	verb_name = "Deploy surgical omnitool"
+	icon_state = "multitool"
+	allowed_organs = list(BP_R_ARM, BP_L_ARM)
+	holding_type = /obj/item/weapon/tool/medmultitool/medimplant
