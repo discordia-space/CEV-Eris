@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/projectile/giskard
 	name = "FS HG .35 Auto \"Giskard\""
 	desc = "That's the \"Frozen Star\" popular non-lethal pistol. Can even fit into the pocket! Uses holdout .35 Auto mags."
+	icon = 'icons/obj/guns/projectile/giskard.dmi'
 	icon_state = "giskard"
 	item_state = "pistol"
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
@@ -21,7 +22,7 @@
 	..()
 
 	var/iconstring = initial(icon_state)
-	var/itemstring = initial(item_state)
+	var/itemstring = ""
 
 	if (ammo_magazine)
 		iconstring += "_mag"
@@ -34,7 +35,7 @@
 		itemstring += "_s"
 
 	icon_state = iconstring
-	item_state = itemstring
+	set_item_state(itemstring)
 
 /obj/item/weapon/gun/projectile/giskard/Initialize()
 	. = ..()

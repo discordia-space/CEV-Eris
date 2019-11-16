@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/projectile/silenced
 	name = "FS HG .35 Auto \"Mandella\""
 	desc = "A small, quiet,  easily concealable gun. Uses standard .35 Auto mags. Has an integrated silencer which can't be removed."
+	icon = 'icons/obj/guns/projectile/mandella.dmi'
 	icon_state = "mandella"
 	item_state = "pistol_s"
 	w_class = ITEM_SIZE_NORMAL
@@ -26,7 +27,6 @@
 	..()
 
 	var/iconstring = initial(icon_state)
-	var/itemstring = initial(item_state)
 
 	if (ammo_magazine)
 		iconstring += "_mag"
@@ -35,7 +35,6 @@
 		iconstring += "_slide"
 
 	icon_state = iconstring
-	item_state = itemstring
 
 /obj/item/weapon/gun/projectile/silenced/Initialize()
 	. = ..()

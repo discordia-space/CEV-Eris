@@ -338,7 +338,7 @@ SUBSYSTEM_DEF(job)
 		if(department_account)
 			remembered_info += "<b>Your department's account number is:</b> #[department_account.account_number]<br>"
 			remembered_info += "<b>Your department's account pin is:</b> [department_account.remote_access_pin]<br>"
-			remembered_info += "<b>Your department's account funds are:</b> [CREDS][department_account.money]<br>"
+			remembered_info += "<b>Your department's account funds are:</b> [department_account.money][CREDS]<br>"
 		if(job.head_position)
 			remembered_info += "<b>Your part of nuke code:</b> [SSticker.get_next_nuke_code_part()]<br>"
 			department_account.owner_name = H.real_name //Register them as the point of contact for this account

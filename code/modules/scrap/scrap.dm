@@ -170,16 +170,20 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	for(var/A in loot)
 		loot.remove_from_storage(A,src)
 
+	var/total_storage_space = 0
+
 	if(contents.len)
 		contents = shuffle(contents)
-		var/num = rand(2,loot_min)
+		var/num = rand(2, loot_min)
 		for(var/obj/item/O in contents)
 			if(!num)
 				break
 			if(O == loot || O == big_item)
 				continue
+			total_storage_space += O.get_storage_cost()
 			O.forceMove(loot)
 			num--
+	loot.max_storage_space = max(10, total_storage_space)
 	update_icon()
 
 /obj/structure/scrap/proc/randomize_image(image/I)

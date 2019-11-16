@@ -140,7 +140,7 @@
 
 /obj/item/weapon/oddity/common/paper_omega
 	name = "collection of obscure reports"
-	desc = "Even the authors seem to be rather skeptical about their findings. Yet they are not connected to each other, but results are simular."
+	desc = "Even the authors seem to be rather skeptical about their findings. Yet they are not connected to each other, but results are similar."
 	icon_state = "paper_omega"
 	oddity_stats = list(
 		STAT_MEC = 8,
@@ -179,7 +179,7 @@
 
 /obj/item/weapon/oddity/common/old_money
 	name = "old money"
-	desc = "It's not like organization that issues this exist now."
+	desc = "It's not like organization that issued this exist now."
 	icon_state = "old_money"
 	oddity_stats = list(
 		STAT_ROB = 4,
@@ -187,7 +187,7 @@
 	)
 
 /obj/item/weapon/oddity/common/healthscanner
-	name = "odd healthscanner"
+	name = "odd health scanner"
 	desc = "It's broken and stuck on some really strange readings. Was this even human?"
 	icon_state = "healthscanner"
 	item_state = "electronic"
@@ -217,7 +217,7 @@
 
 /obj/item/weapon/oddity/common/teddy
 	name = "teddy bear"
-	desc = "He will there for you, im tough times."
+	desc = "He will there for you, in tough times."
 	icon_state = "teddy"
 	oddity_stats = list(
 		STAT_ROB = 7,

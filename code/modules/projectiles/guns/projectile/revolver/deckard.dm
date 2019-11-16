@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/projectile/revolver/deckard
 	name = "FS REV .40 Magnum \"Deckard\""
 	desc = "A rare, custom-built revolver. Use when there is no time for Voight-Kampff test. Uses .40 Magnum rounds."
+	icon = 'icons/obj/guns/projectile/deckard.dmi'
 	icon_state = "deckard"
 	caliber = "magnum"
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)

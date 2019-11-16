@@ -144,6 +144,7 @@
 		/datum/design/autolathe/part/signaler,
 		/datum/design/autolathe/part/sensor_infra,
 		/datum/design/autolathe/part/timer,
+		/datum/design/autolathe/part/voice_analyzer,
 		/datum/design/autolathe/part/sensor_prox,
 		/datum/design/autolathe/part/camera_assembly,
 		/datum/design/autolathe/part/laserguide,

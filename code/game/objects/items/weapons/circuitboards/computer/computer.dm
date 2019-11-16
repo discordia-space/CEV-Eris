@@ -136,7 +136,7 @@
 
 /obj/item/weapon/circuitboard/ordercomp
 	name = T_BOARD("supply ordering console")
-	build_path = /obj/machinery/computer/ordercomp
+	build_path = /obj/machinery/computer/supplycomp/order
 	origin_tech = list(TECH_DATA = 2)
 
 /obj/item/weapon/circuitboard/mining_shuttle

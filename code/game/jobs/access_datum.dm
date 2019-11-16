@@ -383,7 +383,12 @@
 	desc = "Medical Specialist"
 	region = ACCESS_REGION_SECURITY
 
-// /var/const/free_access_id = 68
+/var/const/access_paramedic = 68 // Paramedic's closet
+/datum/access/paramedic
+	id = access_paramedic
+	desc = "Paramedic's Office"
+	region = ACCESS_REGION_MEDBAY
+
 // /var/const/free_access_id = 69
 
 /**************

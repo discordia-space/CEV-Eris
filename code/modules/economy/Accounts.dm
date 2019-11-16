@@ -37,11 +37,15 @@
 	var/time = ""
 	var/source_terminal = ""
 
-/datum/transaction/New(var/amount = 0, var/target_name, var/purpose, var/source_terminal)
+/datum/transaction/New(amount = 0, target_name, purpose, source_terminal)
 	src.amount = amount
 	src.target_name = target_name
 	src.purpose = purpose
 	src.source_terminal = source_terminal
+
+	if(istype(source_terminal, /atom))
+		var/atom/terminal_atom = source_terminal
+		src.source_terminal = "[terminal_atom.name] at [get_area(terminal_atom)]"
 
 	src.date = current_date_string
 	src.time = stationtime2text()
@@ -74,7 +78,7 @@
 	return T
 
 
-/proc/create_account(var/new_owner_name = "Default user", var/starting_funds = 0, var/obj/machinery/account_database/source_db)
+/proc/create_account(new_owner_name = "Default user", starting_funds = 0, obj/machinery/account_database/source_db)
 
 	//create a new account
 	var/datum/money_account/M = new()
@@ -91,7 +95,7 @@
 		//set a random date, time and location some time over the past few decades
 		T.date = "[num2text(rand(1,31))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], 25[rand(10,56)]"
 		T.time = "[rand(0,24)]:[rand(11,59)]"
-		T.source_terminal = "NTGalaxyNet Terminal #[rand(111,1111)]"
+		T.source_terminal = "Asters Guild Banking Terminal #[rand(111,1111)]"
 
 		M.account_number = rand(11111, 99999)
 	else
@@ -112,10 +116,10 @@
 		R.info += "<i>Account holder:</i> [M.owner_name]<br>"
 		R.info += "<i>Account number:</i> [M.account_number]<br>"
 		R.info += "<i>Account pin:</i> [M.remote_access_pin]<br>"
-		R.info += "<i>Starting balance:</i> [CREDS][M.money]<br>"
+		R.info += "<i>Starting balance:</i> [M.money][CREDS]<br>"
 		R.info += "<i>Date and time:</i> [stationtime2text()], [current_date_string]<br><br>"
 		R.info += "<i>Creation terminal ID:</i> [source_db.machine_id]<br>"
-		R.info += "<i>Authorised NT officer overseeing creation:</i> [source_db.held_card.registered_name]<br>"
+		R.info += "<i>Authorised official overseeing creation:</i> [source_db.held_card.registered_name]<br>"
 
 		//stamp the paper
 		var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
@@ -133,7 +137,7 @@
 	return M
 
 //Charges an account a certain amount of money which is functionally just removed from existence
-/proc/charge_to_account(var/attempt_account_number, var/target_name, var/purpose, var/terminal_id, var/amount)
+/proc/charge_to_account(attempt_account_number, target_name, purpose, terminal_id, amount)
 	var/datum/money_account/D = get_account(attempt_account_number)
 	if (D)
 		//create a transaction log entry
@@ -143,7 +147,7 @@
 	return FALSE
 
 //Creates money from nothing and deposits it in an account
-/proc/deposit_to_account(var/attempt_account_number, var/source_name, var/purpose, var/terminal_id, var/amount)
+/proc/deposit_to_account(attempt_account_number, source_name, purpose, terminal_id, amount)
 	var/datum/money_account/D = get_account(attempt_account_number)
 	if (D)
 		//create a transaction log entry
@@ -153,7 +157,7 @@
 	return FALSE
 
 //Transfers funds from one account to another
-/proc/transfer_funds(var/source_account, var/target_account, var/purpose, var/terminal_id, var/amount)
+/proc/transfer_funds(source_account, target_account, purpose, terminal_id, amount)
 	var/datum/money_account/source = get_account(source_account)
 	var/datum/money_account/target = get_account(target_account)
 
@@ -184,7 +188,21 @@
 	if((!D.security_level && !force_security) || D.remote_access_pin == attempt_pin_number)
 		return D
 
+
 /proc/get_account(account_number)
+	// For convinience's sake
+	if(istype(account_number, /datum/money_account))
+		return account_number
+
 	for(var/datum/money_account/D in all_money_accounts)
 		if(D.account_number == account_number)
 			return D
+
+
+// Accepts both account numbers and actual account datums
+/proc/get_account_credits(account_number)
+	var/datum/money_account/account = get_account(account_number)
+	if(!account || !account.is_valid())
+		return 0
+
+	return account.money

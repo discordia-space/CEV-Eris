@@ -17,12 +17,14 @@
 	return ..()
 
 /obj/item/weapon/gun/energy/lasertag/blue
+	icon = 'icons/obj/guns/energy/bluetag.dmi'
 	icon_state = "bluetag"
 	item_state = "bluetag"
 	projectile_type = /obj/item/projectile/beam/lastertag/blue
 	required_vest = /obj/item/clothing/suit/bluetag
 
 /obj/item/weapon/gun/energy/lasertag/red
+	icon = 'icons/obj/guns/energy/redtag.dmi'
 	icon_state = "redtag"
 	item_state = "redtag"
 	projectile_type = /obj/item/projectile/beam/lastertag/red

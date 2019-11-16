@@ -1,4 +1,3 @@
-/var/datum/lighting_corner/dummy/dummy_lighting_corner = new
 // Because we can control each corner of every lighting overlay.
 // And corners get shared between multiple turfs (unless you're on the corners of the map, then 1 corner doesn't).
 // For the record: these should never ever ever be deleted, even if the turf doesn't have dynamic lighting.
@@ -96,6 +95,9 @@
 
 /datum/lighting_corner/proc/update_overlays()
 	// Cache these values a head of time so 4 individual lighting overlays don't all calculate them individually.
+	var/lum_r = src.lum_r
+	var/lum_g = src.lum_g
+	var/lum_b = src.lum_b
 	var/mx = max(lum_r, lum_g, lum_b) // Scale it so 1 is the strongest lum, if it is above 1.
 	. = 1 // factor
 	if (mx > 1)
@@ -111,9 +113,10 @@
 
 	for (var/TT in masters)
 		var/turf/T = TT
-		if (T.lighting_overlay && !T.lighting_overlay.needs_update)
-			T.lighting_overlay.needs_update = TRUE
-			global.lighting_update_overlays += T.lighting_overlay
+		var/atom/movable/lighting_overlay/O = T.lighting_overlay
+		if (O && !O.needs_update)
+			O.needs_update = TRUE
+			global.lighting_update_overlays += O
 
 
 /datum/lighting_corner/dummy/New()

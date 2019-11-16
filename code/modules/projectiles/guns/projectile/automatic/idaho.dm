@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/projectile/automatic/idaho
-	name = "FS SMG .35 Auto \"Idaho\""
+	name = "FS SMG .30 Auto \"Idaho\""
 	desc = "The Idaho is a cheap self-defence weapon, mass-produced by \"Frozen Star\" for paramilitary and private use. Uses 30 Auto rounds."
+	icon = 'icons/obj/guns/projectile/idaho.dmi'
 	icon_state = "idaho"
 	item_state = "idaho"
 	w_class = ITEM_SIZE_NORMAL
@@ -28,8 +29,8 @@
 	..()
 	if(ammo_magazine)
 		icon_state = "[initial(icon_state)]-full"
-		item_state = "[initial(item_state)]-full"
+		set_item_state("-full")
 	else
 		icon_state = initial(icon_state)
-		item_state = initial(item_state)
+		set_item_state()
 	return

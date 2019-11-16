@@ -74,7 +74,6 @@
 		SPAN_NOTICE("You keep the incision open on [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.open = 2
-	organ.try_autodiagnose(user)
 	organ.ui_interact(user)
 
 /datum/surgery_step/retract_skin/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)

@@ -147,8 +147,9 @@
 /obj/item/weapon/tool_upgrade/proc/apply(var/obj/item/weapon/tool/T, var/mob/user)
 
 	if (user)
+	
 		user.visible_message(SPAN_NOTICE("[user] starts applying [src] to [T]"), SPAN_NOTICE("You start applying [src] to [T]"))
-		if (!use_tool(user = user, target =  T, base_time = WORKTIME_NORMAL, required_quality = null, fail_chance = FAILCHANCE_EASY, required_stat = STAT_MEC, forced_sound = WORKSOUND_WRENCHING))
+		if (!use_tool(user = user, target =  T, base_time = WORKTIME_FAST, required_quality = null, fail_chance = FAILCHANCE_ZERO, required_stat = STAT_MEC, forced_sound = WORKSOUND_WRENCHING))
 			return
 		to_chat(user, SPAN_NOTICE("You have successfully installed [src] in [T]"))
 		user.drop_from_inventory(src)

@@ -48,7 +48,9 @@ SUBSYSTEM_DEF(atoms)
 				++count
 				CHECK_TICK
 
-	report_progress("Initialized [count] atom\s")
+	if(!Master.current_runlevel)//So it only does it at roundstart
+		report_progress("Initialized [count] atom\s")
+
 
 	init_state = INITIALIZATION_INNEW_REGULAR
 
@@ -56,7 +58,8 @@ SUBSYSTEM_DEF(atoms)
 		for(var/I in late_loaders)
 			var/atom/A = I
 			A.LateInitialize(arglist(mapload_arg))
-		report_progress("Late initialized [late_loaders.len] atom\s")
+		if(!Master.current_runlevel)//So it only does it at roundstart
+			report_progress("Late initialized [late_loaders.len] atom\s")
 		late_loaders.Cut()
 
 	if(atoms)

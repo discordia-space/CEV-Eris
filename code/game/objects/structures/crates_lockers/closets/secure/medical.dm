@@ -41,7 +41,7 @@
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/medic(src)
 	else
-		new /obj/item/weapon/storage/backpack/satchel/norm(src)
+		new /obj/item/weapon/storage/backpack/satchel/med(src)
 	switch(pick("blue", "green", "purple"))
 		if ("blue")
 			new /obj/item/clothing/under/rank/medical/blue(src)
@@ -72,6 +72,40 @@
 	new /obj/item/weapon/storage/belt/medical/(src)
 	new /obj/item/weapon/storage/belt/medical/(src)
 	new /obj/item/clothing/suit/storage/surgical_apron(src)
+
+/obj/structure/closet/secure_closet/personal/paramedic
+	name = "moebius paramedic's locker"
+	req_access = list(access_cmo)
+	access_occupy = list(access_paramedic)
+	icon_state = "med"
+
+/obj/structure/closet/secure_closet/personal/paramedic/populate_contents()
+	if(prob(50))
+		new /obj/item/weapon/storage/backpack/medic(src)
+	else
+		new /obj/item/weapon/storage/backpack/satchel/med(src)
+	switch(pick("blue", "green", "purple"))
+		if ("blue")
+			new /obj/item/clothing/under/rank/medical/blue(src)
+			new /obj/item/clothing/head/surgery/blue(src)
+		if ("green")
+			new /obj/item/clothing/under/rank/medical/green(src)
+			new /obj/item/clothing/head/surgery/green(src)
+		if ("purple")
+			new /obj/item/clothing/under/rank/medical/purple(src)
+			new /obj/item/clothing/head/surgery/purple(src)
+	new /obj/item/clothing/under/rank/medical(src)
+	new /obj/item/device/flash(src)
+	new /obj/item/device/lighting/toggleable/flashlight(src)
+	new /obj/item/device/radio(src)
+	new /obj/item/weapon/tool/crowbar(src)
+	new /obj/item/weapon/extinguisher/mini(src)
+	new /obj/item/clothing/shoes/reinforced(src)
+	new /obj/item/device/radio/headset/headset_med(src)
+	new /obj/item/taperoll/medical(src)
+	new /obj/item/weapon/storage/belt/medical/emt(src)
+	new /obj/item/clothing/suit/storage/hazardvest(src)
+	new /obj/item/weapon/storage/pouch/medical_supply(src)
 
 /obj/structure/closet/secure_closet/reinforced/CMO
 	name = "moebius biolab officer's locker"

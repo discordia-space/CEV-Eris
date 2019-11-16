@@ -1,3 +1,5 @@
+#define REAGENTS_PER_SHEET 20
+
 /obj/machinery/reagentgrinder
 	name = "All-In-One Grinder"
 	icon = 'icons/obj/kitchen.dmi'

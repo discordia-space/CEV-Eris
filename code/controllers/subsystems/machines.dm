@@ -82,7 +82,8 @@ if(current_step == this_step || (check_resumed && !resumed)) {\
 datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/machines)
 	set background=1
 
-	report_progress("Initializing atmos machinery")
+	if(!Master.current_runlevel)//So it only does it at roundstart
+		report_progress("Initializing atmos machinery")
 	for(var/obj/machinery/atmospherics/A in machines)
 		A.atmos_init()
 		CHECK_TICK
@@ -95,8 +96,8 @@ datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/machines)
 			var/obj/machinery/atmospherics/unary/vent_scrubber/T = U
 			T.broadcast_status()
 		CHECK_TICK
-
-	report_progress("Initializing pipe networks")
+	if(!Master.current_runlevel)//So it only does it at roundstart
+		report_progress("Initializing pipe networks")
 	for(var/obj/machinery/atmospherics/machine in machines)
 		machine.build_network()
 		CHECK_TICK
@@ -145,15 +146,18 @@ datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/machines)
 
 /datum/controller/subsystem/machines/proc/process_machinery(resumed = 0)
 	if (!resumed)
-		nextProcessingListPosition = 1 //fresh start, otherwise from saved posisition
+		src.nextProcessingListPosition = 1 //fresh start, otherwise from saved posisition
 
 	//localizations
 	var/list/local_list = machinery
 	var/obj/machinery/thing
 	var/wait = src.wait
+	var/nextProcessingListPosition = src.nextProcessingListPosition
+	if(!nextProcessingListPosition)
+		return
 
 	var/tickCheckPeriod = round(local_list.len/16+1) //pause process at most every 1/16th length of list
-	while(nextProcessingListPosition && (nextProcessingListPosition <= local_list.len)) //until position is valid
+	while(nextProcessingListPosition <= local_list.len) //until position is valid
 		thing = local_list[nextProcessingListPosition]
 		nextProcessingListPosition++
 
@@ -167,9 +171,10 @@ datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/machines)
 
 		if(!(nextProcessingListPosition%tickCheckPeriod)) //pauses only tickCheckPeriod-th processed thing
 			if (MC_TICK_CHECK)
+				src.nextProcessingListPosition = nextProcessingListPosition
 				return
 
-	nextProcessingListPosition = 0 //entire list was processed
+	src.nextProcessingListPosition = 0 //entire list was processed
 
 /datum/controller/subsystem/machines/proc/process_powernets(resumed = 0)
 	if (!resumed)

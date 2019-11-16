@@ -125,8 +125,8 @@ var/global/datum/computer_file/data/email_account/service/payroll/payroll_mailer
 	department.account_pin = department_account.remote_access_pin
 
 	//create an entry in the account transaction log for when it was created
-	var/datum/transaction/T = new(department.account_initial_balance, department_account.owner_name, "Account creation", "Biesel GalaxyNet Terminal #277")
-	T.date = "2nd April, 2555"
+	var/datum/transaction/T = new(department.account_initial_balance, department_account.owner_name, "Account creation", "Asters Guild Terminal #277")
+	T.date = "2 April, 2555"
 	T.time = "11:24"
 
 	//add the account

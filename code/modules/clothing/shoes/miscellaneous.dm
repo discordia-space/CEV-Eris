@@ -1,3 +1,10 @@
+//No-slip module for shoes
+/obj/item/noslipmodule
+	name = "no slip sole"
+	desc = "Attach it to your shoe."
+	icon = 'icons/inventory/feet/icon.dmi'
+	icon_state = "no_slip_sole"
+
 /obj/item/clothing/shoes/syndigaloshes
 	desc = "A pair of brown shoes. They seem to have extra grip."
 	name = "brown shoes"

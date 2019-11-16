@@ -9,7 +9,7 @@
 		slot_l_hand_str = "eng_helm",
 		slot_r_hand_str = "eng_helm",
 		)
-	armor = list(melee = 40, bullet = 35, energy = 5, bomb = 35, bio = 100, rad = 90)
+	armor = list(melee = 40, bullet = 35, energy = 5, bomb = 35, bio = 100, rad = 100)
 
 /obj/item/clothing/suit/space/void/engineering
 	name = "engineering voidsuit"
@@ -17,7 +17,7 @@
 	icon_state = "rig-engineering"
 	item_state = "eng_voidsuit"
 	slowdown = 1
-	armor = list(melee = 40, bullet = 35, energy = 5, bomb = 35, bio = 100, rad = 90)
+	armor = list(melee = 40, bullet = 35, energy = 5, bomb = 35, bio = 100, rad = 100)
 	extra_allowed = list(
 		/obj/item/weapon/storage/toolbox,
 		/obj/item/weapon/storage/briefcase/inflatable,

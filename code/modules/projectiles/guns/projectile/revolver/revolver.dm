@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/projectile/revolver
 	name = "FS REV .40 Magnum \"Miller\""
 	desc = "The \"Frozen Star\" \"Miller\" is a revolver of choice when you absolutely, positively need to make a hole in someone. Uses .40 Magnum ammo."
+	icon = 'icons/obj/guns/projectile/revolver.dmi'
 	icon_state = "revolver"
 	item_state = "revolver"
 	caliber = "magnum"

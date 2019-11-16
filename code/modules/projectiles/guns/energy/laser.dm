@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/energy/laser
 	name = "NT LG \"Lightfall\""
 	desc = "\"NeoTheology\" brand laser carbine. Deadly and radiant, like the ire of God it represents."
+	icon = 'icons/obj/guns/energy/laser.dmi'
 	icon_state = "laser"
 	item_state = "laser"
 	fire_sound = 'sound/weapons/Laser.ogg'
@@ -15,6 +16,7 @@
 /obj/item/weapon/gun/energy/laser/mounted
 	self_recharge = TRUE
 	use_external_power = TRUE
+	safety = FALSE
 	restrict_safety = TRUE
 
 /obj/item/weapon/gun/energy/laser/practice
@@ -26,6 +28,7 @@
 
 obj/item/weapon/gun/energy/retro
 	name = "OS LG \"Cog\""
+	icon = 'icons/obj/guns/energy/retro.dmi'
 	icon_state = "retro"
 	item_state = "retro"
 	desc = "A One Star cheaply produced laser gun. In the distant past - this was the main weapon of low-rank police forces, billions of copies of this gun were made. They are ubiquitous."
@@ -39,8 +42,10 @@ obj/item/weapon/gun/energy/retro
 
 /obj/item/weapon/gun/energy/captain
 	name = "NT LG \"Destiny\""
+	icon = 'icons/obj/guns/energy/capgun.dmi'
 	icon_state = "caplaser"
 	item_state = "caplaser"
+	item_charge_meter = TRUE
 	desc = "This weapon is old, yet still robust and reliable. It's marked with old Nanotrasen brand, a distant reminder of what this corporation was, before the Church took control of everything."
 	force = WEAPON_FORCE_PAINFUL
 	fire_sound = 'sound/weapons/Laser.ogg'
@@ -54,8 +59,10 @@ obj/item/weapon/gun/energy/retro
 /obj/item/weapon/gun/energy/lasercannon
 	name = "Prototype: laser cannon"
 	desc = "With the laser cannon, the lasing medium is enclosed in a tube lined with uranium-235 and subjected to high neutron flux in a nuclear reactor core. This incredible technology may help YOU achieve high excitation rates with small laser volumes!"
+	icon = 'icons/obj/guns/energy/lascannon.dmi'
 	icon_state = "lasercannon"
 	item_state = "lasercannon"
+	item_charge_meter = TRUE
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3)
 	w_class = ITEM_SIZE_HUGE
@@ -66,9 +73,14 @@ obj/item/weapon/gun/energy/retro
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_SILVER = 4, MATERIAL_URANIUM = 1)
 	price_tag = 3000
 
+/obj/item/weapon/gun/proc/set_item_state
+	item_state_slots[slot_back_str] = "back"
+	item_state_slots[slot_s_store_str]= "onsuit"
+
 /obj/item/weapon/gun/energy/lasercannon/mounted
 	name = "mounted laser cannon"
 	self_recharge = TRUE
 	use_external_power = TRUE
 	recharge_time = 10
+	safety = FALSE
 	restrict_safety = TRUE
