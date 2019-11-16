@@ -64,7 +64,15 @@
 	return 0
 
 
+/mob/living/proc/hit_impact(damage, dir)
+	if(incapacitated(INCAPACITATION_DEFAULT|INCAPACITATION_BUCKLED_PARTIALLY))
+		return
+	shake_animation(damage)
+
+
 /mob/living/bullet_act(var/obj/item/projectile/P, var/def_zone)
+	var/hit_dir = get_dir(P, src)
+
 	if (P.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		IgniteMob()
 
@@ -83,8 +91,12 @@
 		qdel(P)
 		return TRUE
 
+	if(P.knockback)
+		throw_at(get_edge_target_turf(src, hit_dir), P.knockback, P.knockback)
+
 	//Armor and damage
 	if(!P.nodamage)
+		hit_impact(P.damage, hit_dir)
 		damage_through_armor(P.damage, P.damage_type, def_zone, P.check_armour, armour_pen = P.armor_penetration, used_weapon = P, sharp=is_sharp(P), edge=has_edge(P))
 
 	P.on_hit(src, def_zone)

@@ -27,8 +27,22 @@
 		BURST_5_ROUND
 		)
 
-/obj/item/weapon/gun/projectile/automatic/sts35/update_icon(var/ignore_inhands)
+
+/obj/item/weapon/gun/projectile/automatic/sts35/update_icon()
 	..()
-	icon_state = "[initial(icon_state)][ammo_magazine? "-[ammo_magazine.max_ammo]": ""]"
-	if(!ignore_inhands)
-		update_wear_icon()
+
+	var/iconstring = initial(icon_state)
+	var/itemstring = ""
+
+	if (ammo_magazine)
+		iconstring += "[ammo_magazine? "_mag[ammo_magazine.max_ammo]": ""]"
+
+	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
+		iconstring += "_slide"
+
+	icon_state = iconstring
+	item_state = itemstring
+
+/obj/item/weapon/gun/projectile/automatic/sts35/Initialize()
+	. = ..()
+	update_icon()

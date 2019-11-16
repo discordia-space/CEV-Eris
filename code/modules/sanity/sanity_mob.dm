@@ -1,6 +1,6 @@
 #define SANITY_PASSIVE_GAIN 0.2
 
-#define SANITY_DAMAGE_MOD 0.7
+#define SANITY_DAMAGE_MOD 0.5
 
 // Damage received from unpleasant stuff in view
 #define SANITY_DAMAGE_VIEW(damage, vig, dist) ((damage) * SANITY_DAMAGE_MOD * (1.2 - (vig) / STAT_LEVEL_MAX) * (1 - (dist)/15))

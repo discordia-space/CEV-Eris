@@ -45,6 +45,7 @@ obj/item/weapon/gun/energy/retro
 	icon = 'icons/obj/guns/energy/capgun.dmi'
 	icon_state = "caplaser"
 	item_state = "caplaser"
+	item_charge_meter = TRUE
 	desc = "This weapon is old, yet still robust and reliable. It's marked with old Nanotrasen brand, a distant reminder of what this corporation was, before the Church took control of everything."
 	force = WEAPON_FORCE_PAINFUL
 	fire_sound = 'sound/weapons/Laser.ogg'
@@ -71,6 +72,10 @@ obj/item/weapon/gun/energy/retro
 	fire_delay = 20
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_SILVER = 4, MATERIAL_URANIUM = 1)
 	price_tag = 3000
+
+/obj/item/weapon/gun/proc/set_item_state
+	item_state_slots[slot_back_str] = "back"
+	item_state_slots[slot_s_store_str]= "onsuit"
 
 /obj/item/weapon/gun/energy/lasercannon/mounted
 	name = "mounted laser cannon"

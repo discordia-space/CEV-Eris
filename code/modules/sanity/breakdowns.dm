@@ -33,11 +33,11 @@
 	return holder.owner.maxHealth - holder.owner.health > STALWART_THRESHOLD
 
 /datum/breakdown/positive/stalwart/conclude()
-	holder.owner.adjustBruteLoss(-15)
-	holder.owner.adjustCloneLoss(-5)
-	holder.owner.adjustFireLoss(-15)
-	holder.owner.adjustOxyLoss(-25)
-	holder.owner.adjustToxLoss(-15)
+	holder.owner.adjustBruteLoss(-25)
+	holder.owner.adjustCloneLoss(-10)
+	holder.owner.adjustFireLoss(-25)
+	holder.owner.adjustOxyLoss(-45)
+	holder.owner.adjustToxLoss(-25)
 	holder.owner.reagents.add_reagent("tramadol", 5)
 	..()
 
@@ -205,7 +205,7 @@
 
 /datum/breakdown/negative/hysteric
 	name = "Hysteric"
-	duration = 2 MINUTES
+	duration = 1.5 MINUTES
 	restore_sanity_post = 50
 
 	start_messages = list(
@@ -246,7 +246,7 @@
 
 /datum/breakdown/negative/delusion
 	//name = "Delusion"
-	duration = 5 MINUTES
+	duration = 1 MINUTES
 	restore_sanity_post = 50
 
 	start_messages = list(
@@ -276,7 +276,7 @@
 
 /datum/breakdown/negative/fabric
 	name = "The Fabric"
-	duration = 10 MINUTES
+	duration = 3 MINUTES
 	var/list/image/images = list()
 
 	start_messages = list(
@@ -429,7 +429,7 @@
 
 /datum/breakdown/common/kleptomania
 	name = "Kleptomania"
-	duration = 20 MINUTES
+	duration = 5 MINUTES
 	restore_sanity_post = 50
 	var/pickup_time = 0
 
@@ -510,7 +510,7 @@
 
 /datum/breakdown/common/ptsd
 	name = "PTSD"
-	duration = 10 MINUTES
+	duration = 2 MINUTES
 	restore_sanity_post = 50
 
 	start_messages = list(

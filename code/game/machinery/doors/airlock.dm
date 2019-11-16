@@ -44,6 +44,8 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	var/datum/wifi/receiver/button/door/wifi_receiver
 	var/obj/item/wedged_item
 
+	damage_smoke = TRUE
+
 /obj/machinery/door/airlock/attack_generic(var/mob/user, var/damage)
 	if(stat & (BROKEN|NOPOWER))
 		if(damage >= 10)

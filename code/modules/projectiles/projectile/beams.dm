@@ -1,6 +1,8 @@
 /obj/item/projectile/beam
 	name = "laser"
 	icon_state = "laser"
+	mob_hit_sound = list('sound/effects/gore/sear.ogg')
+	hitsound_wall = 'sound/weapons/guns/misc/laser_searwall.ogg'
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	damage = 30
 	damage_type = BURN

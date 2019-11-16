@@ -25,15 +25,25 @@
 		FULL_AUTO_600)
 
 /obj/item/weapon/gun/projectile/automatic/IH_smg/update_icon()
+	..()
+
 	var/iconstring = initial(icon_state)
-	var/itemstring = ""
+	var/itemstring = initial(item_state)
 
 	if (ammo_magazine)
 		iconstring += "_mag"
+		itemstring += "_mag"
+
+	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
+		iconstring += "_slide"
 
 	if (silenced)
 		iconstring += "_s"
 		itemstring += "_s"
 
 	icon_state = iconstring
-	set_item_state(itemstring)
+	item_state = itemstring
+
+/obj/item/weapon/gun/projectile/automatic/IH_smg/Initialize()
+	. = ..()
+	update_icon()
