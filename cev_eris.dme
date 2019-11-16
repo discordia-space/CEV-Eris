@@ -2397,6 +2397,7 @@
 #include "code\modules\sanity\sanity_area.dm"
 #include "code\modules\sanity\sanity_atom.dm"
 #include "code\modules\sanity\sanity_mob.dm"
+#include "code\modules\sanity\sanity_procs.dm"
 #include "code\modules\scrap\oldificator.dm"
 #include "code\modules\scrap\scrap.dm"
 #include "code\modules\scrap\scrap_beacon.dm"
