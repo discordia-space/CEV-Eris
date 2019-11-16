@@ -139,7 +139,8 @@
 	new /obj/item/device/flash(src)
 	new /obj/item/weapon/reagent_containers/hypospray(src)
 	new /obj/item/weapon/storage/pouch/medical_supply(src)
-
+	new /obj/item/organ_module/active/multitool/surgical(src) 
+	
 /obj/structure/closet/secure_closet/animal
 	name = "animal control closet"
 	req_access = list(access_surgery)
