@@ -11310,7 +11310,7 @@
 	pixel_x = 7;
 	pixel_y = 25;
 	req_access = list(3);
-	step_x = 0
+	pixel_x = 0
 	},
 /turf/simulated/floor/tiled/dark,
 /area/eris/security/warden)
@@ -59515,10 +59515,10 @@
 /obj/structure/table/standard,
 /obj/item/weapon/reagent_containers/food/snacks/mint,
 /obj/item/weapon/reagent_containers/food/condiment/saltshaker{
-	step_x = -3
+	pixel_x = -3
 	},
 /obj/item/weapon/reagent_containers/food/condiment/peppermill{
-	step_x = 3
+	pixel_x = 3
 	},
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
@@ -88913,7 +88913,7 @@
 	id = "shieldroom";
 	name = "Shield Generator Shutters";
 	pixel_x = 25;
-	step_x = 0
+	pixel_x = 0
 	},
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/engineering/shield_generator)
@@ -108391,20 +108391,20 @@
 "ijn" = (
 /obj/structure/table/bar_special,
 /obj/item/weapon/reagent_containers/food/condiment/peppermill{
-	step_x = 3
+	pixel_x = 3
 	},
 /obj/item/weapon/reagent_containers/food/condiment/saltshaker{
-	step_x = -3
+	pixel_x = -3
 	},
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
 "kcK" = (
 /obj/structure/table/bar_special,
 /obj/item/weapon/reagent_containers/food/condiment/saltshaker{
-	step_x = 3
+	pixel_x = 3
 	},
 /obj/item/weapon/reagent_containers/food/condiment/peppermill{
-	step_x = -3
+	pixel_x = -3
 	},
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
