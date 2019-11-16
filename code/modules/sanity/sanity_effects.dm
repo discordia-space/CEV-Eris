@@ -18,7 +18,7 @@
 		if(!A.desc)
 			candidates -= A
 			continue
-		to_chat(owner, SPAN_NOTICE("You hear a whisper, \"<i>[A.desc]</i>\""))
+		owner.whisper_say(A.desc, alt_name = owner.name != owner.rank_prefix_name(owner.GetVoice()) ? "(as [owner.rank_prefix_name(owner.get_id_name())])" : "")
 		break
 
 /datum/sanity/proc/effect_hallucination()
