@@ -4,6 +4,7 @@
 	icon = 'icons/obj/guns/energy/sniper.dmi'
 	icon_state = "sniper"
 	item_state = "sniper"
+	item_charge_meter = TRUE
 	fire_sound = 'sound/weapons/marauder.ogg'
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 5, TECH_POWER = 4)
 	projectile_type = /obj/item/projectile/beam/sniper
@@ -16,3 +17,4 @@
 	price_tag = 5000
 	cell_type = /obj/item/weapon/cell/medium
 	zoom_factor = 2.0
+
