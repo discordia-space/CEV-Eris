@@ -171,11 +171,11 @@
 /datum/category_item/setup_option/background/origin/nss_forecaster
 	name = "NSS \"Forecaster\""
 	desc = "Designed to serve as large, FTL capable mining platform by the first days of NanoTrasen. \
-			And it was used for that, until stars started coming back from Null Sector. \
+			And it was used for that, until stars started coming back from Null Space. \
 			In order to salvage those wonders first, NanoTrasen has sent this platform, reworked to serve as a local forward operating base, and renamed it to Central Command. \
-			The war broke out, and without any support from the mainland, after relentless attacks from the Syndicate, and the destruction of many stations under CentComm’s control, such as NSS 13 “Exodus”, they surrendered to Syndicate. \
-			Now it’s an independent station under Ironhammer control, that oversees the spread of Null Sector artifacts, or at least is trying to. \
-			It’s a place for grand deals to be made, friends to be sold, a place where people run from law and boring life,for a fresh start in Null Sector. \
+			The war broke out, and without any support from the mainland, after relentless attacks from the Syndicate, and the destruction of many stations under CentComm’s control, such as NSS 13 \"Exodus\", they surrendered to Syndicate. \
+			Now it’s an independent station under Ironhammer control, that oversees the spread of Null Space artifacts, or at least is trying to. \
+			It’s a place for grand deals to be made, friends to be sold, a place where people run from law and boring life,for a fresh start in Null Space. \
 			And - in most cases - die a horrible death in the end."
 
 	stat_modifiers = list(

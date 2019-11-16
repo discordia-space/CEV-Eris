@@ -3,6 +3,7 @@
 	var/datum/sanity/holder
 
 	var/icon_state
+	var/breakdown_sound
 
 	var/start_message_span
 	var/list/start_messages
@@ -36,6 +37,7 @@
 	var/image/img = image('icons/effects/insanity_statuses.dmi', holder.owner)
 	holder.owner << img
 	flick(icon_state, img)
+	holder.owner.playsound_local(get_turf(holder.owner), breakdown_sound, 100)
 	if(start_messages)
 		to_chat(holder.owner, span(start_message_span, pick(start_messages)))
 	if(restore_sanity_pre)

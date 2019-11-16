@@ -25,6 +25,9 @@
 /mob/living/carbon/proc/remove_nsa(tag)
 	if(nerve_system_accumulations[tag])
 		nerve_system_accumulations.Remove(tag)
+/mob/living/carbon/proc/get_nsa_value(tag)
+	if(nerve_system_accumulations[tag])
+		return nerve_system_accumulations[tag]
 
 /mob/living/carbon/proc/get_nsa()
 	var/accumulatedNSA
