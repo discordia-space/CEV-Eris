@@ -46,6 +46,8 @@ true, and the mob is not yet deleted, so we need to check that as well*/
 		var/embed_chance = (damage - embed_threshold)*I.embed_mult
 		if (embed_chance > 0 && prob(embed_chance))
 			src.embed(I, hit_zone)
+	
+	receive_damage()
 
 	return TRUE
 
