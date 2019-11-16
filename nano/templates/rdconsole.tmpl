@@ -85,6 +85,7 @@
 					Disk capacity: <div style="width: 90%">{{:helper.displayBar(data.disk_used, 0, data.disk_size, 'good', data.disk_used + "GQ / " + data.disk_size + "GQ")}}</div>
 					{{:helper.link("Disk Designs Management", 'save', {'go_screen' : 'disk_management_designs'}, null, 'sciMenuButton')}}
 					{{:helper.link("Disk Technology Management", 'save', {'go_screen' : 'disk_management_tech'}, null, 'sciMenuButton')}}
+					{{:helper.link("Disk Research Data Management", 'save', {'go_screen' : 'disk_management_data'}, null, 'sciMenuButton')}}
 					{{:helper.link("Eject", 'eject', {'eject_disk' : 1}, null, 'sciMenuButton')}}
 				</div>
 			{{else}}
@@ -458,7 +459,7 @@
 		{{for data.disk_designs}}
 			<div class="item">
 				{{:value.name}}
-				{{:helper.link("", 'trash', {'delete_disk_design' : value.id}, data.disk_read_only==1 ? 'disabled' : null)}}
+				{{:helper.link("", 'trash', {'delete_disk_file' : value.id}, data.disk_read_only==1 ? 'disabled' : null)}}
 				{{:helper.link("", 'arrowthick-1-e', {'download_disk_design' : value.id}, value.can_download==1 ? null : 'disabled')}}
 			</div>
 		{{empty}}
@@ -501,7 +502,7 @@
 		{{for data.disk_tech_nodes}}
 			<div class="item">
 				{{:value.name}}
-				{{:helper.link("", 'trash', {'delete_disk_node' : value.id},data.disk_read_only==1 ? 'disabled' : null)}}
+				{{:helper.link("", 'trash', {'delete_disk_file' : value.id},data.disk_read_only==1 ? 'disabled' : null)}}
 				{{:helper.link("", 'arrowthick-1-e', {'download_disk_node' : value.id})}}
 				</div>
 		{{empty}}
@@ -522,5 +523,27 @@
 		</td>
 		</tr>
 		</table>
+	{{/if}}
+{{/if}}
+{{if data.screen == "disk_management_data"}}
+	<table style="width: 30%">
+	<div class='item'>
+	<tr><td>{{:helper.link("Back", 'arrowreturn-1-w', {'go_screen' : 'main'},null,'fixedLeft')}}</td></tr>
+	<tr><td>Disk capacity:</td><td style="width: 100%"><div style="width: 50%">{{:helper.displayBar(data.disk_used, 0, data.disk_size, 'good', data.disk_used + "GQ / " + data.disk_size + "GQ")}}</div></td>
+	</div>
+	</table>
+	{{if data.has_disk}}
+		<div class="statusDisplayRecords">
+		Detected research data files:
+		{{for data.disk_research_data}}
+			<div class="item">
+				{{:value.name}}
+				{{:helper.link("", 'trash', {'delete_disk_file' : value.id},data.disk_read_only==1 ? 'disabled' : null)}}
+				{{:helper.link("", 'arrowthick-1-e', {'download_disk_data' : value.id}, value.can_download==1 ? null : 'disabled')}}
+				</div>
+		{{empty}}
+			<div class="item">The disk has no accessible research data files stored on it.</div>
+		{{/for}}
+		</div>
 	{{/if}}
 {{/if}}

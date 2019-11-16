@@ -16,7 +16,7 @@ doesn't have toxins access.
 
 When a R&D console is destroyed or even partially disassembled, you lose all research data on it. However, there are two ways around
 this dire fate:
-- The easiest way is to go to the settings menu and select "Sync Database with Network." That causes it to upload 
+- The easiest way is to go to the settings menu and select "Sync Database with Network." That causes it to upload
 it's data to every other device in the game. Each console has a "disconnect from network" option that'll will cause data base sync
 operations to skip that console. This is useful if you want to make a "public" R&D console or, for example, give the engineers
 a circuit imprinter with certain designs on it and don't want it accidentally updating. The downside of this method is that you have
@@ -35,6 +35,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 #define SCREEN_LOCKED "locked"
 #define SCREEN_DISK_DESIGNS "disk_management_designs"
 #define SCREEN_DISK_TECH "disk_management_tech"
+#define SCREEN_DISK_DATA "disk_management_data"
 
 /obj/machinery/computer/rdconsole
 	name = "R&D control console"
@@ -111,15 +112,9 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			return
 
 		user.drop_item()
-		D.loc = src
+		D.forceMove(src)
 		disk = D
 		to_chat(user, SPAN_NOTICE("You add \the [D] to the machine."))
-	else if(istype(D, /obj/item/weapon/disk/research_points)) // Special disks (just normal items) that can be slapped on the console for an immediate point boost.
-		var/obj/item/weapon/disk/research_points/disk = D
-		to_chat(user, SPAN_NOTICE("[name] received [disk.stored_points] research points from [disk.name]."))
-		files.research_points += disk.stored_points
-		user.drop_item()
-		qdel(disk)
 	else if(istype(D, /obj/item/device/science_tool)) // Used when you want to upload autopsy/other scanned data to the console
 		var/research_points = files.experiments.read_science_tool(D)
 		if(research_points > 0)
@@ -138,7 +133,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	if(!emagged)
 		playsound(loc, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = TRUE
-		user << SPAN_NOTICE("You disable the security protocols.")
+		to_chat(user, SPAN_NOTICE("You disable the security protocols."))
 		return TRUE
 
 /obj/machinery/computer/rdconsole/proc/reset_screen() // simply resets the screen to the main screen and updates the UIs
@@ -184,47 +179,28 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		if(disk)
 			disk.forceMove(get_turf(src))
 			disk = null
-	if(href_list["delete_disk_design"]) // User is attempting to delete a design from the loaded disk.
+	if(href_list["delete_disk_file"]) // User is attempting to delete a file from the loaded disk.
 		if(disk)
-			var/list/disk_design_files = disk.find_files_by_type(/datum/computer_file/binary/design)
-			for(var/f in disk_design_files)
-				var/datum/computer_file/binary/design/design_file = f
-				if("\ref[design_file.design]" == href_list["delete_disk_design"])
-					disk.remove_file(design_file)
-					break
+			var/datum/computer_file/file = locate(href_list["delete_disk_file"]) in disk.stored_files
+			disk.remove_file(file)
+
 	if(href_list["download_disk_design"]) // User is attempting to download (disk->rdconsole) a design from the disk.
 		if(disk)
-			var/list/disk_design_files = disk.find_files_by_type(/datum/computer_file/binary/design)
-			for(var/f in disk_design_files)
-				var/datum/computer_file/binary/design/design_file = f
-				if(design_file.copy_protected)
-					continue
-				if("\ref[design_file.design]" == href_list["download_disk_design"])
-					files.AddDesign2Known(design_file.design)
-					griefProtection() //Update CentComm too
-					break
+			var/datum/computer_file/binary/design/file = locate(href_list["download_disk_design"]) in disk.stored_files
+			if(file && !file.copy_protected)
+				files.AddDesign2Known(file.design)
+				griefProtection() //Update CentComm too
 	if(href_list["upload_disk_design"]) // User is attempting to upload (rdconsole->disk) a design to the disk.
 		if(disk)
 			var/datum/design/D = locate(href_list["upload_disk_design"]) in files.known_designs
 			if(D)
 				disk.store_file(D.file.clone())
-	if(href_list["delete_disk_node"]) // User is attempting to delete a technology node from the disk.
-		if(disk)
-			var/list/disk_node_files = disk.find_files_by_type(/datum/computer_file/binary/tech)
-			for(var/f in disk_node_files)
-				var/datum/computer_file/binary/tech/node_file = f
-				if("\ref[node_file.node]" == href_list["delete_disk_node"])
-					disk.remove_file(node_file)
-					break
 	if(href_list["download_disk_node"]) // User is attempting to download (disk->rdconsole) a technology node from the disk.
 		if(disk)
-			var/list/disk_node_files = disk.find_files_by_type(/datum/computer_file/binary/tech)
-			for(var/f in disk_node_files)
-				var/datum/computer_file/binary/tech/node_file = f
-				if("\ref[node_file.node]" == href_list["download_disk_node"])
-					files.UnlockTechology(node_file.node, TRUE)
-					griefProtection() //Update CentComm too
-					break
+			var/datum/computer_file/binary/tech/file = locate(href_list["download_disk_node"]) in disk.stored_files
+			if(file)
+				files.UnlockTechology(file.node, TRUE)
+				griefProtection()
 	if(href_list["upload_disk_node"]) // User is attempting to upload (rdconsole->disk) a technology node to the disk.
 		if(disk)
 			var/datum/technology/T = locate(href_list["upload_disk_node"]) in files.researched_nodes
@@ -232,6 +208,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				var/datum/computer_file/binary/tech/tech_file = new
 				tech_file.set_tech(T)
 				disk.store_file(tech_file)
+	if(href_list["download_disk_data"])
+		if(disk)
+			var/datum/computer_file/file = locate(href_list["download_disk_data"]) in disk.stored_files
+			if(file)
+				files.load_file(file)
 	if(href_list["toggle_settings"]) // User wants to see the settings.
 		if(allowed(usr) || emagged)
 			show_settings = !show_settings
@@ -453,7 +434,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	if(..())
 		return
 	ui_interact(user)
-	
+
 
 /obj/machinery/computer/rdconsole/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null) // Here we go again
 	if((screen == SCREEN_PROTO && !linked_lathe) || (screen == SCREEN_IMPRINTER && !linked_imprinter))
@@ -539,9 +520,9 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		if(disk)
 			var/list/disk_designs = list()
 			var/list/disk_design_files = disk.find_files_by_type(/datum/computer_file/binary/design)
-			for(var/design_file in disk_design_files)
-				var/datum/computer_file/binary/design/d_file = design_file
-				disk_designs += list(list("name" = d_file.design.name, "id" = "\ref[d_file.design]", "can_download" = !d_file.copy_protected))
+			for(var/f in disk_design_files)
+				var/datum/computer_file/binary/design/d_file = f
+				disk_designs += list(list("name" = d_file.design.name, "id" = "\ref[d_file]", "can_download" = !d_file.copy_protected))
 			data["disk_designs"] = disk_designs
 			var/list/known_designs = list()
 			for(var/i in files.known_designs)
@@ -555,13 +536,24 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			var/list/disk_technology_files = disk.find_files_by_type(/datum/computer_file/binary/tech)
 			for(var/f in disk_technology_files)
 				var/datum/computer_file/binary/tech/tech_file = f
-				disk_tech_nodes += list(list("name" = tech_file.node.name, "id" = "\ref[tech_file.node]"))
+				disk_tech_nodes += list(list("name" = tech_file.node.name, "id" = "\ref[tech_file]"))
 			data["disk_tech_nodes"] = disk_tech_nodes
 			var/list/known_nodes = list()
 			for(var/i in files.researched_nodes)
 				var/datum/technology/T = i
 				known_nodes += list(list("name" = T.name, "id" = "\ref[T]"))
 			data["known_nodes"] = known_nodes
+	if(screen == SCREEN_DISK_DATA)
+		if(disk)
+			var/list/disk_research_data = list()
+			var/list/disk_data_files = disk.find_files_by_type(/datum/computer_file/binary)
+			for(var/f in disk_data_files)
+				var/datum/computer_file/binary/data_file = f
+				if(!files.is_research_file_type(f))
+					continue
+
+				disk_research_data += list(list("name" = "[data_file.filename].[data_file.filetype]", "id" = "\ref[data_file]", "can_download" = files.can_load_file(data_file)))
+			data["disk_research_data"] = disk_research_data
 	if(screen == SCREEN_PROTO)
 		if(linked_lathe)
 			data["search_text"] = search_text
