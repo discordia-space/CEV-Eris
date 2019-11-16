@@ -180,6 +180,16 @@
 	..()
 	hard_drive.store_file(new/datum/computer_file/program/library())
 
+// Prison
+obj/item/modular_computer/console/preset/prison/install_default_programs()
+	..()
+	var/datum/computer_file/program/ntnetdownload/NTNT = locate(/datum/computer_file/program/ntnetdownload) in hard_drive.stored_files
+	hard_drive.remove_file(NTNT)
+	hard_drive.store_file(new/datum/computer_file/program/game())
+	hard_drive.store_file(new/datum/computer_file/program/chatclient())
+	hard_drive.store_file(new/datum/computer_file/program/wordprocessor())
+	hard_drive.store_file(new/datum/computer_file/program/nttransfer())
+
 //Dock control
 /*
 /obj/item/modular_computer/console/preset/dock/install_default_hardware()
