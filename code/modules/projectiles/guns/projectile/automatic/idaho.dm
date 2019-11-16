@@ -1,5 +1,5 @@
 /obj/item/weapon/gun/projectile/automatic/idaho
-	name = "FS SMG .35 Auto \"Idaho\""
+	name = "FS SMG .30 Auto \"Idaho\""
 	desc = "The Idaho is a cheap self-defence weapon, mass-produced by \"Frozen Star\" for paramilitary and private use. Uses 30 Auto rounds."
 	icon = 'icons/obj/guns/projectile/idaho.dmi'
 	icon_state = "idaho"
