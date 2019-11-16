@@ -40,12 +40,8 @@
 /obj/machinery/power/apc/critical
 	is_critical = 1
 
-/obj/machinery/power/apc/high
-	cell_type = /obj/item/weapon/cell/large/high
-
 // Construction site APC, starts turned off
-/obj/machinery/power/apc/high/inactive
-	cell_type = /obj/item/weapon/cell/large/high
+/obj/machinery/power/apc/inactive
 	lighting = 0
 	equipment = 0
 	environ = 0
@@ -61,6 +57,9 @@
 
 /obj/machinery/power/apc/hyper
 	cell_type = /obj/item/weapon/cell/large/hyper
+
+/obj/machinery/power/apc/hyper/critical
+	is_critical = 1
 
 /obj/machinery/power/apc
 	name = "area power controller"

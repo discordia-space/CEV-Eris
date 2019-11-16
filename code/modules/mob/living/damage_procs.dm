@@ -9,6 +9,7 @@
 	standard 0 if fail
 */
 /mob/living/proc/apply_damage(var/damage = 0,var/damagetype = BRUTE, var/def_zone = null, var/used_weapon = null, var/sharp = 0, var/edge = 0)
+	activate_ai()
 	switch(damagetype)
 
 		if(BRUTE)
@@ -38,7 +39,7 @@
 
 
 /mob/living/proc/apply_damages(var/brute = 0, var/burn = 0, var/tox = 0, var/oxy = 0, var/clone = 0, var/halloss = 0, var/def_zone = null)
-
+	activate_ai()
 	if(brute)	apply_damage(brute, BRUTE, def_zone)
 	if(burn)	apply_damage(burn, BURN, def_zone)
 	if(tox)		apply_damage(tox, TOX, def_zone)
@@ -51,6 +52,7 @@
 
 
 /mob/living/proc/apply_effect(var/effect = 0,var/effecttype = STUN, var/armor_value = 0, var/check_protection = 1)
+	activate_ai()
 
 	if(!effect)
 		return FALSE
@@ -85,7 +87,7 @@
 
 
 /mob/living/proc/apply_effects(var/stun = 0, var/weaken = 0, var/paralyze = 0, var/irradiate = 0, var/stutter = 0, var/eyeblur = 0, var/drowsy = 0, var/agony = 0, var/armor_value = 0)
-
+	activate_ai()
 	if(stun)		apply_effect(stun, STUN, armor_value)
 	if(weaken)		apply_effect(weaken, WEAKEN, armor_value)
 	if(paralyze)	apply_effect(paralyze, PARALYZE, armor_value)
@@ -105,6 +107,7 @@
 
 // damage ONE external organ, organ gets randomly selected from damaged ones.
 /mob/living/proc/take_organ_damage(var/brute, var/burn, var/emp=0)
+	activate_ai()
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	adjustBruteLoss(brute)
@@ -127,6 +130,7 @@
 
 
 /mob/living/get_fall_damage(var/turf/from, var/turf/dest)
+	activate_ai()
 	var/damage = min(15, maxHealth*0.4)
 
 	//If damage is multiplied by the number of floors you fall simultaneously
@@ -135,6 +139,7 @@
 	return damage
 
 /mob/living/fall_impact(var/turf/from, var/turf/dest)
+	activate_ai()
 	var/damage = get_fall_damage(from, dest)
 	if (damage > 0)
 		take_overall_damage(damage)

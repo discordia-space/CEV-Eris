@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/projectile/mk58
 	name = "NT HG .35 Auto \"Mk58\""
 	desc = "The NT Mk58 is a cheap, ubiquitous sidearm, that was produced by a NanoTrasen subsidiary. Uses standard .35 Auto mags."
+	icon = 'icons/obj/guns/projectile/mk58.dmi'
 	icon_state = "mk58"
 	item_state = "pistol"
 	caliber = "pistol"

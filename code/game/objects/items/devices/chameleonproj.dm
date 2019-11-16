@@ -29,6 +29,7 @@
 	toggle()
 
 /obj/item/device/chameleon/afterattack(atom/target, mob/user , proximity)
+	if (istype(target, /obj/item/weapon/storage)) return
 	if(!proximity) return
 	if(!active_dummy)
 		if(istype(target,/obj/item) && !istype(target, /obj/item/weapon/disk/nuclear))

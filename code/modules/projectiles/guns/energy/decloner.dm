@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/energy/decloner
 	name = "Prototype: biological demolecularisor"
 	desc = "A gun that discharges high amounts of controlled radiation to slowly break a target into component elements."
+	icon = 'icons/obj/guns/energy/decloner.dmi'
 	icon_state = "decloner"
 	item_state = "decloner"
 	fire_sound = 'sound/weapons/pulse3.ogg'

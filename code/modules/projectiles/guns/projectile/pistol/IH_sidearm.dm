@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/projectile/IH_sidearm
 	name = "FS HG \"Paco\""
 	desc = "A modern and reliable sidearm for the soldier in the field. Commonly issued as a sidearm to Ironhammer Operatives. Uses standard .35 Auto mags."
+	icon = 'icons/obj/guns/projectile/IH_sidearm.dmi'
 	icon_state = "IH_sidearm"
 	item_state = "IH_sidearm"
 	w_class = ITEM_SIZE_NORMAL
@@ -24,7 +25,7 @@
 	..()
 
 	var/iconstring = initial(icon_state)
-	var/itemstring = initial(item_state)
+	var/itemstring = ""
 
 	if (ammo_magazine)
 		iconstring += "_mag"
@@ -37,7 +38,7 @@
 		itemstring += "_s"
 
 	icon_state = iconstring
-	item_state = itemstring
+	set_item_state(itemstring)
 
 /obj/item/weapon/gun/projectile/IH_sidearm/Initialize()
 	. = ..()

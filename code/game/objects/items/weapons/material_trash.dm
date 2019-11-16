@@ -38,6 +38,7 @@
 /obj/item/weapon/material_trash/circuit
 	name = "burnt circuit"
 	desc = "A burnt circuit that can be recycled in an autolathe."
+	w_class = ITEM_SIZE_SMALL
 	icon_state = "circuit0"
 	matter_chances = list(
 		list(MATERIAL_GLASS, 100, 4),
@@ -56,6 +57,7 @@
 /obj/item/weapon/material_trash/device
 	name = "broken device"
 	desc = "A broken device that can be recycled in an autolathe."
+	w_class = ITEM_SIZE_SMALL
 	icon_state = "device0"
 	matter_chances = list(
 		list(MATERIAL_STEEL, 100, 10),

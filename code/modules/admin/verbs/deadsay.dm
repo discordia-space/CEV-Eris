@@ -27,6 +27,6 @@ ADMIN_VERB_ADD(/client/proc/dsay, R_ADMIN|R_DEBUG|R_MOD, TRUE)
 	if (!msg)
 		return
 
-	say_dead_direct("<span class='name'>[stafftype]([src.holder.fakekey ? src.holder.fakekey : src.key])</span> says, <span class='message'>\"[msg]\"</span>")
+	say_dead_direct("<span class='name'>[stafftype]([src.holder.fakekey ? src.holder.fakekey : src.key])</span> says, <span class='message linkify'>\"[msg]\"</span>")
 
 

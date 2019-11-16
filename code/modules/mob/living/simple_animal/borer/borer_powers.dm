@@ -168,7 +168,7 @@
 
 	H.add_language(LANGUAGE_CORTICAL)
 
-	if(host.stat == 2)
+	if(host.stat == DEAD)
 		H.verbs |= /mob/living/carbon/human/proc/jumpstart
 
 	H.verbs |= /mob/living/carbon/human/proc/psychic_whisper
@@ -183,7 +183,7 @@
 
 	H.ChangeToHusk()
 
-	var/obj/item/organ/borer/B = new(H)
+	var/obj/item/organ/internal/borer/B = new(H)
 	H.internal_organs_by_name[BP_BRAIN] = B
 	H.internal_organs |= B
 

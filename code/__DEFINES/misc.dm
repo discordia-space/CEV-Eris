@@ -280,3 +280,5 @@
 #define CATALOG_CHEMISTRY "chemistry"
 #define CATALOG_DRINKS "drinks"
 #define CATALOG_ALL "all"
+
+#define get_area(A) (get_step(A, 0)?.loc)

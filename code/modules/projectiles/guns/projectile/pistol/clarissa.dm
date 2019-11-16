@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/projectile/clarissa
 	name = "FS HG .35 Auto \"Clarissa\""
 	desc = "A small, easily concealable, but somewhat underpowered gun. Uses highcap .35 Auto mags."
+	icon = 'icons/obj/guns/projectile/clarissa.dmi'
 	icon_state = "clarissa"
 	item_state = "clarissa"
 	w_class = ITEM_SIZE_SMALL
@@ -21,7 +22,7 @@
 	..()
 
 	var/iconstring = initial(icon_state)
-	var/itemstring = initial(item_state)
+	var/itemstring = ""
 
 	if (ammo_magazine)
 		iconstring += "_mag"
@@ -34,12 +35,13 @@
 		itemstring += "_s"
 
 	icon_state = iconstring
-	item_state = itemstring
+	set_item_state(itemstring)
 
 
 /obj/item/weapon/gun/projectile/clarissa/makarov
 	name = "Excelsior .35 Auto \"Makarov\""
 	desc = "Old-designed pistol of space communists. Small and easily concealable. Uses .35 Auto rounds."
+	icon = 'icons/obj/guns/projectile/makarov.dmi'
 	icon_state = "makarov"
 	damage_multiplier = 1
 	price_tag = 1400

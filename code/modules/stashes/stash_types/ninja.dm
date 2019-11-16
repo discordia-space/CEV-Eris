@@ -7,20 +7,11 @@
 	base_type = /datum/stash/ninja
 	weight = 0.2
 	nonmaint_reroll = 100
-	contents_list_base = list(/obj/item/weapon/rig/light/ninja = 1, /obj/item/weapon/material/star/ninja = 4)
-	contents_list_random = list(/obj/item/weapon/material/sword/katana = 75,
-		/obj/item/weapon/gun/energy/crossbow/ninja = 60,
+	contents_list_base = list(/obj/item/weapon/storage/box/smokes)
+	contents_list_random = list(
+		
 		/obj/item/weapon/storage/box/anti_photons = 60,
-		/obj/item/weapon/storage/box/smokes = 60,
-		/obj/item/weapon/gun/projectile/silenced = 50,
-		/obj/item/weapon/material/star/ninja = 70,
-		/obj/item/weapon/material/star/ninja = 70,
-		/obj/item/weapon/material/star/ninja = 70,
-		/obj/item/weapon/material/star/ninja = 70,
-		/obj/item/weapon/material/star/ninja = 70,
-		/obj/item/weapon/material/star/ninja = 70,
-		/obj/item/weapon/material/star/ninja = 70,
-		/obj/item/weapon/material/star/ninja = 70,)
+		/obj/item/weapon/gun/projectile/silenced = 50)
 
 /datum/stash/ninja/haiku
 	lore = "Swift electric ghost<br>\

@@ -33,20 +33,20 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/S = H.get_organ(user.targeted_organ)
 
-		if(S && S.open == 1)
+		if(S)
 			if(BP_IS_ROBOTIC(S))
 				if(S.get_damage())
 					user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-					S.heal_damage(15, 15, robo_repair = 1)
-					H.updatehealth()
-					use(1)
+					if(use(1))
+						S.heal_damage(15, 15, robo_repair = 1)
+					
+					
 					user.visible_message(
 						"<span class='notice'>\The [user] applies some nanite paste at[user != M ? " \the [M]'s" : " \the"][S.name] with \the [src].</span>",
 						"<span class='notice'>You apply some nanite paste at [user == M ? "your" : "[M]'s"] [S.name].</span>"
 					)
 				else
 					to_chat(user, SPAN_NOTICE("Nothing to fix here."))
-		else
 			if (can_operate(H, user))        //Checks if mob is lying down on table for surgery
 				if (do_surgery(H,user,src))
 					return

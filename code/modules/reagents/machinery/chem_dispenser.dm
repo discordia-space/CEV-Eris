@@ -4,7 +4,6 @@
 
 #define chemical_dispenser_ENERGY_COST (CHEM_SYNTH_ENERGY * CELLRATE) //How many cell charge do we use per unit of chemical?
 #define BOTTLE_SPRITES list("bottle-1", "bottle-2", "bottle-3", "bottle-4") //list of available bottle sprites
-#define REAGENTS_PER_SHEET 20
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -21,7 +20,7 @@
 	circuit = /obj/item/weapon/circuitboard/chemical_dispenser
 
 	var/ui_title = "Chem Dispenser 5000"
-	var/obj/item/weapon/cell/cell
+	var/obj/item/weapon/cell/medium/cell
 	var/amount = 30
 	var/accept_beaker = TRUE //At TRUE, ONLY accepts beakers.
 	var/hackedcheck = FALSE
@@ -42,7 +41,7 @@
 
 /obj/machinery/chemical_dispenser/proc/recharge()
 	if(stat & (BROKEN|NOPOWER)) return
-	var/addenergy = cell.give(min(6, cell.maxcharge*cell.max_chargerate))
+	var/addenergy = cell.give(min(24, cell.maxcharge*cell.max_chargerate))
 	if(addenergy)
 		use_power(addenergy / CELLRATE)
 		SSnano.update_uis(src) // update all UIs attached to src
@@ -57,7 +56,6 @@
 
 /obj/machinery/chemical_dispenser/Initialize()
 	. = ..()
-	recharge()
 	dispensable_reagents = sortList(dispensable_reagents)
 
 

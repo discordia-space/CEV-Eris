@@ -38,8 +38,3 @@
 	name = "viscerator grenade"
 	item_cost = 4
 	path = /obj/item/weapon/grenade/spawnergrenade/manhacks
-
-/datum/uplink_item/item/grenades/blob
-	name = "bioweapon sample"
-	item_cost = 20
-	path = /obj/item/weapon/grenade/spawnergrenade/blob

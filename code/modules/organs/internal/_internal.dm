@@ -13,6 +13,7 @@
 	if(owner)
 		for(var/proc_path in owner_verbs)
 			verbs += proc_path
+
 /obj/item/organ/internal/Process()
 	..()
 	handle_regeneration()
@@ -53,18 +54,6 @@
 	if(owner.chem_effects[CE_BLOODCLOT])
 		amount *= 1 + owner.chem_effects[CE_BLOODCLOT]
 	damage = between(0, damage - round(amount, 0.1), max_damage)
-
-
-// Gets the limb this organ is located in, if any
-/obj/item/organ/internal/proc/get_limb()
-	if(owner)
-		return owner.get_organ(parent_organ)
-
-	else if(istype(loc, /obj/item/organ/external))
-		return loc
-
-	return null
-
 
 // Is body part open for most surgerical operations?
 /obj/item/organ/internal/is_open()

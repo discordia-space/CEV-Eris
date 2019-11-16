@@ -526,7 +526,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/electrical
 	name = "Electrical maintenance crate"
-	contains = list (/obj/item/weapon/storage/toolbox/electrical,
+	contains = list(/obj/item/weapon/storage/toolbox/electrical,
 					/obj/item/weapon/storage/toolbox/electrical,
 					/obj/item/clothing/gloves/insulated,
 					/obj/item/clothing/gloves/insulated,
@@ -568,6 +568,15 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	cost = 1500
 	containertype = /obj/structure/closet/crate
 	crate_name = "Tool upgrade Crate"
+	group = "Engineering"
+
+/datum/supply_pack/omnitool
+	contains = list(/obj/item/weapon/tool/omnitool,
+					/obj/item/weapon/tool/omnitool)
+	name = "\"Munchkin 5000\" omnitool"
+	cost = 2500
+	containertype = /obj/structure/closet/crate
+	crate_name = "omnitool crate"
 	group = "Engineering"
 
 /datum/supply_pack/fueltank
