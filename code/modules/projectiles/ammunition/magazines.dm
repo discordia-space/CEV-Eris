@@ -12,10 +12,10 @@
 
 /obj/item/ammo_magazine/pistol/update_icon()	//temp fix till sprites can be updated
 	if (!stored_ammo.len)
-		icon_state = "[icon_state]-0"
+		icon_state = "[initial(icon_state)]-0"
 		return
 	else
-		icon_state = "[icon_state]-10"
+		icon_state = "[initial(icon_state)]-8"
 		return
 
 /obj/item/ammo_magazine/pistol/empty
@@ -52,10 +52,10 @@
 
 /obj/item/ammo_magazine/lpistol/update_icon()	//temp fix till sprites can be updated
 	if (!stored_ammo.len)
-		icon_state = "[icon_state]-0"
+		icon_state = "[initial(icon_state)]-0"
 		return
 	else
-		icon_state = "[icon_state]-8"
+		icon_state = "[initial(icon_state)]-8"
 		return
 
 /obj/item/ammo_magazine/lpistol/empty
@@ -92,10 +92,10 @@
 
 /obj/item/ammo_magazine/hpistol/update_icon()	//temp fix till sprites can be updated
 	if (!stored_ammo.len)
-		icon_state = "[icon_state]-0"
+		icon_state = "[initial(icon_state)]-0"
 		return
 	else
-		icon_state = "[icon_state]-7"
+		icon_state = "[initial(icon_state)]-7"
 		return
 
 /obj/item/ammo_magazine/hpistol/empty
@@ -119,13 +119,14 @@
 
 /////////////SMG/////////////
 /obj/item/ammo_magazine/smg
-	name = "smg magazine (30 Auto)"
+	name = "smg magazine (.35 Auto)"
 	icon_state = "smg9mml"
+	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_SMG
-	ammo_type = /obj/item/ammo_casing/pistol
 	matter = list(MATERIAL_STEEL = 4)
-	caliber = "smg"
+	caliber = "pisol"
+	ammo_type = /obj/item/ammo_casing/pistol
 	max_ammo = 35
 	multiple_sprites = 1
 
@@ -140,7 +141,7 @@
 
 /obj/item/ammo_magazine/smg/hv
 	name = "smg magazine (.35 Auto high-velocity)"
-	icon_state = "smg9mmr"
+	icon_state = "smg9mmhv"
 	ammo_type = /obj/item/ammo_casing/pistol/hv
 
 /////////////Rifle/////////////

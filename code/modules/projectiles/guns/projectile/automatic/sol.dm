@@ -1,5 +1,5 @@
 /obj/item/weapon/gun/projectile/automatic/sol
-	name = "FS CAR 22.5 Rin \"Sol\""
+	name = "FS CAR .25 \"Sol\""
 	desc = "A standard-issue weapon used by Ironhammer operatives. Compact and reliable. Uses .25 Caseless Rifle rounds."
 	icon_state = "sol-para"
 	item_state = "sol"
