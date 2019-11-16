@@ -6,6 +6,7 @@
 	is_contact_level = TRUE
 	is_accessable_level = TRUE
 	height = 1
+	is_sealed = TRUE
 
 
 /obj/effect/overmap/sector/spaceruins
@@ -19,7 +20,7 @@
 	known = 1
 
 /obj/effect/shuttle_landmark/spaceruins/nav1
-	name = "Abandoned Space Ruins Navpoint #1"
+	name = "Abandoned Space Ruins #1"
 	icon_state = "shuttle-green"
 	landmark_tag = "nav_ruin_1"
 	base_turf = /turf/space

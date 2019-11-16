@@ -113,11 +113,15 @@
 /obj/item/weapon/cell/make_old()
 	.=..()
 	if (.)
-		charge = min(charge, RAND_DECIMAL(0, maxcharge))
+		// It's silly to have old self-charging cells spawn partially discharged
+		if(!autorecharging)
+			charge = min(charge, RAND_DECIMAL(0, maxcharge))
+
 		if(prob(10))
 			rigged = TRUE
 			if(prob(80))
 				charge = maxcharge  //make it BOOM hard
+		update_icon()
 
 /obj/item/weapon/stock_parts/make_old()
 	.=..()
@@ -130,6 +134,9 @@
 	return
 
 /obj/item/stack/rods/make_old()
+	return
+
+/obj/item/weapon/ore/make_old()
 	return
 
 /obj/item/weapon/grenade/make_old()

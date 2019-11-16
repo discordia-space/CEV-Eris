@@ -70,13 +70,13 @@ var/list/global/map_templates = list()
 				atmos_machines += A
 	atoms |= areas
 
-	admin_notice("<span class='danger'>Initializing newly created atom(s) in submap.</span>", R_DEBUG)
+	////admin_notice("<span class='danger'>Initializing newly created atom(s) in submap.</span>", R_DEBUG)
 	SSatoms.InitializeAtoms(atoms)
 
-	admin_notice("<span class='danger'>Initializing atmos pipenets and machinery in submap.</span>", R_DEBUG)
+	//admin_notice("<span class='danger'>Initializing atmos pipenets and machinery in submap.</span>", R_DEBUG)
 	SSmachines.setup_atmos_machinery(atmos_machines)
 
-	admin_notice("<span class='danger'>Rebuilding powernets due to submap creation.</span>", R_DEBUG)
+	//admin_notice("<span class='danger'>Rebuilding powernets due to submap creation.</span>", R_DEBUG)
 	SSmachines.setup_powernets_for_cables(cables)
 
 	// Ensure all machines in loaded areas get notified of power status
@@ -84,7 +84,7 @@ var/list/global/map_templates = list()
 		var/area/A = I
 		A.power_change()
 
-	admin_notice("<span class='danger'>Submap initializations finished.</span>", R_DEBUG)
+	//admin_notice("<span class='danger'>Submap initializations finished.</span>", R_DEBUG)
 
 /datum/map_template/proc/load_new_z(var/centered = FALSE, var/orientation = SOUTH)
 	var/x = 1
@@ -105,7 +105,7 @@ var/list/global/map_templates = list()
 	log_game("Z-level [name] loaded at at [x],[y],[world.maxz]")
 	return TRUE
 
-/datum/map_template/proc/load(turf/T, centered = FALSE, orientation = SOUTH)
+/datum/map_template/proc/load(turf/T, centered = FALSE, orientation = SOUTH, var/post_init = 0)
 	var/old_T = T
 	if(centered)
 		T = locate(T.x - round(((orientation & NORTH|SOUTH) ? width : height)/2) , T.y - round(((orientation & NORTH|SOUTH) ? height : width)/2) , T.z)
@@ -127,7 +127,8 @@ var/list/global/map_templates = list()
 //		repopulate_sorted_areas()
 
 	//initialize things that are normally initialized after map load
-	initTemplateBounds(bounds)
+	if(!post_init)
+		initTemplateBounds(bounds)
 
 	log_game("[name] loaded at at [T.x],[T.y],[T.z]")
 	loaded++
@@ -142,15 +143,15 @@ var/list/global/map_templates = list()
 	return block(placement, locate(placement.x+((orientation & NORTH|SOUTH) ? width : height)-1, placement.y+((orientation & NORTH|SOUTH) ? height : width)-1, placement.z))
 
 /datum/map_template/proc/annihilate_bounds(turf/origin, centered = FALSE, orientation = SOUTH)
-	var/deleted_atoms = 0
-	admin_notice("<span class='danger'>Annihilating objects in submap loading locatation.</span>", R_DEBUG)
+	//var/deleted_atoms = 0
+	//admin_notice("<span class='danger'>Annihilating objects in submap loading locatation.</span>", R_DEBUG)
 	var/list/turfs_to_clean = get_affected_turfs(origin, centered, orientation)
 	if(turfs_to_clean.len)
 		for(var/turf/T in turfs_to_clean)
 			for(var/atom/movable/AM in T)
-				++deleted_atoms
+			//	++deleted_atoms
 				qdel(AM)
-	admin_notice("<span class='danger'>Annihilated [deleted_atoms] objects.</span>", R_DEBUG)
+	//admin_notice("<span class='danger'>Annihilated [deleted_atoms] objects.</span>", R_DEBUG)
 
 
 //for your ever biggening badminnery kevinz000
@@ -164,13 +165,13 @@ var/list/global/map_templates = list()
 	set background = TRUE
 
 	if(!z_levels || !z_levels.len)
-		admin_notice("seed_submaps() was not given any Z-levels.", R_DEBUG)
+		//admin_notice("seed_submaps() was not given any Z-levels.", R_DEBUG)
 		return
 
 	for(var/zl in z_levels)
 		var/turf/T = locate(1, 1, zl)
 		if(!T)
-			admin_notice("Z level [zl] does not exist - Not generating submaps", R_DEBUG)
+			//admin_notice("Z level [zl] does not exist - Not generating submaps", R_DEBUG)
 			return
 
 	var/overall_sanity = 100 // If the proc fails to place a submap more than this, the whole thing aborts.
@@ -208,7 +209,7 @@ var/list/global/map_templates = list()
 				chosen_template = pick(potential_submaps)
 
 		else // We're out of submaps.
-			admin_notice("Submap loader had no submaps to pick from with [budget] left to spend.", R_DEBUG)
+			//admin_notice("Submap loader had no submaps to pick from with [budget] left to spend.", R_DEBUG)
 			break
 
 		CHECK_TICK
@@ -250,7 +251,7 @@ var/list/global/map_templates = list()
 			if(!valid)
 				continue
 
-			admin_notice("Submap \"[chosen_template.name]\" placed at ([T.x], [T.y], [T.z])\n", R_DEBUG)
+			//admin_notice("Submap \"[chosen_template.name]\" placed at ([T.x], [T.y], [T.z])\n", R_DEBUG)
 
 			// Do loading here.
 			chosen_template.load(T, centered = TRUE, orientation=orientation) // This is run before the main map's initialization routine, so that can initilize our submaps for us instead.
@@ -287,8 +288,8 @@ var/list/global/map_templates = list()
 		else
 			pretty_submap_list += "<b>[submap_name]</b>"
 
-	if(!overall_sanity)
+/*	if(!overall_sanity)
 		admin_notice("Submap loader gave up with [budget] left to spend.", R_DEBUG)
 	else
 		admin_notice("Submaps loaded.", R_DEBUG)
-	admin_notice("Loaded: [english_list(pretty_submap_list)]", R_DEBUG)
+	admin_notice("Loaded: [english_list(pretty_submap_list)]", R_DEBUG) */

@@ -144,10 +144,10 @@
 
 /obj/item/weapon/storage/deferred/crate/saw
 	name = "infantry support crate"
-	desc = "A crate containing two Pulemyot Kalashnikova light machine guns, and 640 rounds of 7.62mm ammunition."
+	desc = "A crate containing two Pulemyot Kalashnikova light machine guns, and 640 rounds of .30 ammunition."
 	icon_state = "old_weaponcrate"
 	initial_contents = list(/obj/item/weapon/gun/projectile/automatic/lmg/pk = 2,
-	/obj/item/ammo_magazine/a762/pk = 8)
+	/obj/item/ammo_magazine/lrifle/pk = 8)
 
 
 /obj/item/weapon/storage/deferred/crate/ak
@@ -155,7 +155,7 @@
 	desc = "A crate containing six FS AK-47 rifles, and plenty of magazines."
 	icon_state = "old_weaponcrate"
 	initial_contents = list(/obj/item/weapon/gun/projectile/automatic/ak47/fs  = 6,
-	/obj/item/ammo_magazine/c762_long = 18)
+	/obj/item/ammo_magazine/lrifle_long = 18)
 
 /obj/item/weapon/storage/deferred/crate/grenadier
 	name = "grenadier crate"
@@ -196,10 +196,10 @@
 
 /obj/item/weapon/storage/deferred/crate/sidearm
 	name = "sidearm crate"
-	desc = "A crate containing six Makarov 9mm pistols, 200 rounds of 9mm ammunition, and six fixed-blade combat knives."
+	desc = "A crate containing six Makarov .35 pistols, 200 rounds of .35 ammunition, and six fixed-blade combat knives."
 	icon_state = "old_weaponcrate"
 	initial_contents = list(/obj/item/weapon/gun/projectile/clarissa/makarov = 6,
-	/obj/item/ammo_magazine/mc9mm  = 20,
+	/obj/item/ammo_magazine/pistol  = 20,
 	/obj/item/weapon/material/knife/boot = 6)
 
 /obj/item/weapon/storage/deferred/crate/cells

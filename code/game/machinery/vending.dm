@@ -223,7 +223,7 @@
 	if(earnings_account.money < buying_price)
 		to_chat(user, SPAN_WARNING("[src] flashes a message: Account is unable to make this purchase."))
 		return
-	var/datum/transaction/T = new(-buying_price, "[user.name] (via [name])", "Sale of [R.product_name]", name)
+	var/datum/transaction/T = new(-buying_price, "[user.name]", "Sale of [R.product_name]", src)
 	T.apply_to(earnings_account)
 
 	R.add_product(W)
@@ -545,7 +545,7 @@
 		// Okay to move the money at this point
 
 		// create entry in the purchaser's account log
-		var/datum/transaction/T = new(-currently_vending.price, "[earnings_account.get_name()] (via [name])", "Purchase of [currently_vending.product_name]", name)
+		var/datum/transaction/T = new(-currently_vending.price, earnings_account.get_name(), "Purchase of [currently_vending.product_name]", src)
 		T.apply_to(customer_account)
 
 		// Give the vendor the money. We use the account owner name, which means
@@ -559,8 +559,8 @@
  *
  *  Called after the money has already been taken from the customer.
  */
-/obj/machinery/vending/proc/credit_purchase(var/target as text)
-	var/datum/transaction/T = new(currently_vending.price, target, "Purchase of [currently_vending.product_name]", name)
+/obj/machinery/vending/proc/credit_purchase(target)
+	var/datum/transaction/T = new(currently_vending.price, target, "Purchase of [currently_vending.product_name]", src)
 	T.apply_to(earnings_account)
 
 /obj/machinery/vending/attack_ai(mob/user as mob)
@@ -1003,30 +1003,34 @@
 	/obj/item/weapon/reagent_containers/spray/pepper = 6,
 	/obj/item/weapon/gun/projectile/olivaw = 5,
 	/obj/item/weapon/gun/projectile/giskard = 5,
+	/obj/item/weapon/gun/energy/gun/martin = 5,
 	/obj/item/weapon/gun/projectile/revolver/detective = 5,
 	/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3,
 	/obj/item/weapon/gun/projectile/shotgun/pump = 3,
-	/obj/item/ammo_magazine/cl32/rubber = 20,
-	/obj/item/ammo_magazine/sl38/rubber = 20,
-	/obj/item/ammo_magazine/ammobox/c38/rubber = 20,
-	/obj/item/ammo_magazine/ammobox/cl32/rubber = 20,
+	/obj/item/ammo_magazine/pistol/rubber = 20,
+	/obj/item/ammo_magazine/hpistol/rubber = 20,
+	/obj/item/ammo_magazine/lpistol/rubber = 20,
+	/obj/item/ammo_magazine/slpistol/rubber = 20,
+	/obj/item/ammo_magazine/ammobox/pistol/rubber = 20,
+	/obj/item/ammo_magazine/ammobox/pistol/rubber = 20,
 	/obj/item/weapon/storage/box/shotgunammo/beanbags = 10,
 	/obj/item/weapon/storage/box/shotgunammo/flashshells = 10,
 	/obj/item/weapon/storage/box/shotgunammo/blanks = 10,
 	/obj/item/clothing/accessory/holster = 5,
 	/obj/item/weapon/storage/pouch/pistol_holster = 5)
 
-	contraband = list(/obj/item/ammo_magazine/sl38 = 20,
-	/obj/item/ammo_magazine/cl32 = 20,
-	/obj/item/ammo_magazine/ammobox/cl32 = 20,
-	/obj/item/ammo_magazine/ammobox/c38 = 20,
+	contraband = list(/obj/item/ammo_magazine/slpistol = 20,
+	/obj/item/ammo_magazine/pistol = 20,
+	/obj/item/ammo_magazine/lpistol = 20,
+	/obj/item/ammo_magazine/hpistol = 20,
+	/obj/item/ammo_magazine/ammobox/pistol = 20,
 	/obj/item/weapon/storage/box/shotgunammo/slug = 10,
 	/obj/item/weapon/storage/box/shotgunammo/buckshot = 10,
 	/obj/item/weapon/material/hatchet/tacknife = 6)
-	prices = list(/obj/item/device/flash = 600,/obj/item/weapon/reagent_containers/spray/pepper = 800,  /obj/item/weapon/gun/projectile/olivaw = 1600, /obj/item/weapon/gun/projectile/giskard = 1200, /obj/item/weapon/gun/projectile/revolver/detective = 2500, /obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3700,
-					/obj/item/weapon/gun/projectile/shotgun/pump = 2000, /obj/item/ammo_magazine/cl32/rubber = 300, /obj/item/ammo_magazine/sl38/rubber = 400, /obj/item/ammo_magazine/ammobox/c38/rubber = 400, /obj/item/ammo_magazine/ammobox/cl32/rubber = 500,
+	prices = list(/obj/item/device/flash = 600,/obj/item/weapon/reagent_containers/spray/pepper = 800,  /obj/item/weapon/gun/projectile/olivaw = 1600, /obj/item/weapon/gun/projectile/giskard = 1200, /obj/item/weapon/gun/energy/gun/martin = 1500, /obj/item/weapon/gun/projectile/revolver/detective = 2500, /obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3700,
+					/obj/item/weapon/gun/projectile/shotgun/pump = 2000, /obj/item/ammo_magazine/lpistol/rubber = 300, /obj/item/ammo_magazine/slpistol/rubber = 400, /obj/item/ammo_magazine/ammobox/pistol/rubber = 400, /obj/item/ammo_magazine/ammobox/pistol/rubber = 500,
 					/obj/item/weapon/storage/box/shotgunammo/beanbags = 300, /obj/item/weapon/storage/box/shotgunammo/flashshells = 300, /obj/item/weapon/storage/box/shotgunammo/blanks = 50, /obj/item/clothing/accessory/holster = 150, /obj/item/weapon/storage/pouch/pistol_holster =150,
-					/obj/item/ammo_magazine/sl38 = 400, /obj/item/ammo_magazine/cl32 = 300, /obj/item/ammo_magazine/ammobox/cl32 = 500, /obj/item/ammo_magazine/ammobox/c38 = 400, /obj/item/weapon/storage/box/shotgunammo/slug = 300, /obj/item/weapon/storage/box/shotgunammo/buckshot = 300, /obj/item/weapon/material/hatchet/tacknife = 600)
+					/obj/item/ammo_magazine/slpistol = 400, /obj/item/ammo_magazine/lpistol = 300, /obj/item/ammo_magazine/ammobox/pistol = 400, /obj/item/weapon/storage/box/shotgunammo/slug = 300, /obj/item/weapon/storage/box/shotgunammo/buckshot = 300, /obj/item/weapon/material/hatchet/tacknife = 600)
 
 //This one's from bay12
 /obj/machinery/vending/cart
@@ -1136,11 +1140,11 @@
 					/obj/item/weapon/grenade/chem_grenade/teargas = 8,
 					/obj/item/device/flash = 8,
 					/obj/item/weapon/reagent_containers/spray/pepper = 8,
-					/obj/item/ammo_magazine/sol65/rubber = 8,
-					/obj/item/ammo_magazine/a10mm/rubber = 8,
-					/obj/item/ammo_magazine/smg9mm/rubber = 4,
-					/obj/item/ammo_magazine/sl44/rubber = 4,
-					/obj/item/ammo_magazine/cl44/rubber = 4,
+					/obj/item/ammo_magazine/ihclrifle/rubber = 8,
+					/obj/item/ammo_magazine/pistol/rubber = 8,
+					/obj/item/ammo_magazine/smg/rubber = 4,
+					/obj/item/ammo_magazine/slmagnum/rubber = 4,
+					/obj/item/ammo_magazine/magnum/rubber = 4,
 					/obj/item/weapon/storage/box/shotgunammo/beanbags = 2,
 					/obj/item/device/hailer = 8,
 					/obj/item/taperoll/police = 8,

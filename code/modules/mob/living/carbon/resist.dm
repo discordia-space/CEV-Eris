@@ -74,11 +74,14 @@
 					qdel(G)
 			if(GRAB_NECK)
 				//If the you move when grabbing someone then it's easier for them to break free. Same if the affected mob is immune to stun.
-				if (((world.time - G.assailant.l_move_time < 30 || !stunned) && prob(15)) || prob(3))
+				if (((world.time - G.assailant.l_move_time < 30 || !stunned) && prob(15)) || prob(5))
 					visible_message("<span class='warning'>[src] has broken free of [G.assailant]'s headlock!</span>")
 					qdel(G)
 	if(resisting)
 		visible_message("<span class='danger'>[src] resists!</span>")
+
+/mob/living/carbon/resist_grab()
+	return !handcuffed && ..()
 
 /mob/living/carbon/process_resist()
 

@@ -213,10 +213,8 @@
 		E= null
 	if(!E)
 		if(organ_type in BP_ALL_LIMBS)
-			var/list/organ_data = species.has_limbs[organ_type]
-			var/limb_path = organ_data["path"]
-			var/obj/item/organ/external/O = new limb_path(src)
-			organ_data["descriptor"] = O.name
+			var/datum/organ_description/organ_data = species.has_limbs[organ_type]
+			var/obj/item/organ/external/O = organ_data.create_organ(src)
 			var/datum/reagent/organic/blood/B = locate(/datum/reagent/organic/blood) in vessel.reagent_list
 			blood_splatter(src,B,1)
 			O.set_dna(dna)

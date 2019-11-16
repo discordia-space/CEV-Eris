@@ -8,27 +8,25 @@
 				/obj/item/weapon/storage/box/shotgunammo/slug = 2,
 				/obj/item/weapon/storage/box/shotgunammo/stunshells = 1,
 				/obj/item/weapon/storage/box/shotgunammo/buckshot = 3,
-				/obj/item/ammo_magazine/ammobox/c357 = 1,
-				/obj/item/ammo_magazine/ammobox/c65mm = 1,
-				/obj/item/ammo_magazine/ammobox/c65mm/rubber = 2,
-				/obj/item/ammo_magazine/ammobox/c38 = 1,
-				/obj/item/ammo_magazine/ammobox/c38/rubber = 2,
-				/obj/item/ammo_magazine/ammobox/cl32 = 1,
-				/obj/item/ammo_magazine/ammobox/cl32/rubber = 2,
-				/obj/item/ammo_magazine/ammobox/c9mm = 1,
-				/obj/item/ammo_magazine/ammobox/c9mm/rubber = 2,
-				/obj/item/ammo_magazine/a10mm = 2,
-				/obj/item/ammo_magazine/a10mm/rubber = 2,
-				/obj/item/ammo_magazine/c45smg = 1,
-				/obj/item/ammo_magazine/c45smg/rubber = 1,
-				/obj/item/ammo_magazine/smg9mm = 1,
-				/obj/item/ammo_magazine/smg9mm/rubber = 1,
-				/obj/item/ammo_magazine/c45m = 2,
-				/obj/item/ammo_magazine/c45m/rubber = 4,
-				/obj/item/ammo_magazine/c45m/flash = 4,
-				/obj/item/ammo_magazine/sl357 = 2,
-				/obj/item/ammo_magazine/sl38 = 3,
-				/obj/item/ammo_magazine/sl38/rubber = 4))
+				/obj/item/ammo_magazine/ammobox/magnum = 1,
+				/obj/item/ammo_magazine/ammobox/clrifle = 1,
+				/obj/item/ammo_magazine/ammobox/clrifle/rubber = 2,
+				/obj/item/ammo_magazine/ammobox/pistol = 1,
+				/obj/item/ammo_magazine/ammobox/pistol/rubber = 2,
+				/obj/item/ammo_magazine/smg = 1,
+				/obj/item/ammo_magazine/smg/rubber = 1,
+				/obj/item/ammo_magazine/pistol = 2,
+				/obj/item/ammo_magazine/pistol/rubber = 4,
+				/obj/item/ammo_magazine/pistol/flash = 4,
+				/obj/item/ammo_magazine/lpistol = 1,
+				/obj/item/ammo_magazine/lpistol/rubber = 1,
+				/obj/item/ammo_magazine/lpistol/flash = 2,
+				/obj/item/ammo_magazine/hpistol = 1,
+				/obj/item/ammo_magazine/hpistol/rubber = 2,
+				/obj/item/ammo_magazine/hpistol/flash = 2,
+				/obj/item/ammo_magazine/slmagnum = 2,
+				/obj/item/ammo_magazine/slpistol = 3,
+				/obj/item/ammo_magazine/slpistol/rubber = 4))
 
 
 /obj/random/ammo/low_chance
@@ -63,14 +61,14 @@
 	icon_state = "ammo-blue"
 
 /obj/random/ammo_ihs/item_to_spawn()
-	return pick(/obj/item/ammo_magazine/sol65/rubber,
-				/obj/item/ammo_magazine/sol65,
-				/obj/item/ammo_magazine/ammobox/c65mm,
-				/obj/item/ammo_magazine/ammobox/c65mm/rubber,
-				/obj/item/ammo_magazine/sl44/rubber,
-				/obj/item/ammo_magazine/sl44,
-				/obj/item/ammo_magazine/cl44/rubber,
-				/obj/item/ammo_magazine/cl44,
+	return pick(/obj/item/ammo_magazine/ihclrifle/rubber,
+				/obj/item/ammo_magazine/ihclrifle,
+				/obj/item/ammo_magazine/ammobox/clrifle,
+				/obj/item/ammo_magazine/ammobox/clrifle/rubber,
+				/obj/item/ammo_magazine/magnum/rubber,
+				/obj/item/ammo_magazine/slmagnum,
+				/obj/item/ammo_magazine/magnum/rubber,
+				/obj/item/ammo_magazine/magnum,
 				/obj/item/weapon/cell/medium/high)
 
 /obj/random/ammo_ihs/low_chance
@@ -89,14 +87,9 @@
 	return pickweight(list(/obj/item/weapon/storage/box/shotgunammo/beanbags = 4,
 				/obj/item/weapon/storage/box/shotgunammo = 2,
 				/obj/item/weapon/storage/box/shotgunammo/slug = 1,
-				/obj/item/ammo_magazine/ammobox/c38 = 1,
-				/obj/item/ammo_magazine/ammobox/c38/rubber = 2,
-				/obj/item/ammo_magazine/ammobox/cl32 = 1,
-				/obj/item/ammo_magazine/ammobox/cl32/rubber = 2,
-				/obj/item/ammo_magazine/sl38/rubber = 2,
-				/obj/item/weapon/cell/medium = 1,
-				/obj/item/ammo_magazine/cl32/rubber = 6,
-				/obj/item/ammo_magazine/cl32 = 1))
+				/obj/item/ammo_magazine/ammobox/pistol = 1,
+				/obj/item/ammo_magazine/ammobox/pistol/rubber = 6,
+				/obj/item/weapon/cell/medium = 1))
 
 /obj/random/ammo_lowcost/low_chance
 	name = "low chance random low tier ammunition"

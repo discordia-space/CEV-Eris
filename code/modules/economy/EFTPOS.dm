@@ -91,7 +91,7 @@
 			dat += "<a href='?src=\ref[src];choice=toggle_lock'>Back[transaction_paid ? "" : " (authentication required)"]</a><br><br>"
 
 			dat += "Transaction purpose: <b>[transaction_purpose]</b><br>"
-			dat += "Value: <b>[CREDS][transaction_amount]</b><br>"
+			dat += "Value: <b>[transaction_amount][CREDS]</b><br>"
 			dat += "Linked account: <b>[linked_account ? linked_account.owner_name : "None"]</b><hr>"
 			if(transaction_paid)
 				dat += "<i>This transaction has been processed successfully.</i><hr>"
@@ -102,7 +102,7 @@
 			dat += "<a href='?src=\ref[src];choice=toggle_lock'>Lock in new transaction</a><br><br>"
 
 			dat += "<a href='?src=\ref[src];choice=trans_purpose'>Transaction purpose: [transaction_purpose]</a><br>"
-			dat += "Value: <a href='?src=\ref[src];choice=trans_value'>[CREDS][transaction_amount]</a><br>"
+			dat += "Value: <a href='?src=\ref[src];choice=trans_value'>[transaction_amount][CREDS]</a><br>"
 			dat += "Linked account: <a href='?src=\ref[src];choice=link_account'>[linked_account ? linked_account.owner_name : "None"]</a><hr>"
 			dat += "<a href='?src=\ref[src];choice=change_code'>Change access code</a><br>"
 			dat += "<a href='?src=\ref[src];choice=change_id'>Change EFTPOS ID</a><br>"

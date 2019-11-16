@@ -214,6 +214,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 		if (issuperioranimal(L))
 			//If its a superior animal, then we'll set their mob target to this burrow
 			var/mob/living/carbon/superior_animal/SA = L
+			SA.activate_ai()
 			SA.target_mob = src //Tell them to target this burrow
 			SA.stance = HOSTILE_STANCE_ATTACK //This should make them walk over and attack it
 

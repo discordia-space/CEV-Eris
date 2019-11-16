@@ -38,8 +38,6 @@
 	)
 	organ.open = !organ.open
 	organ.diagnosed = FALSE
-	if(organ.open)
-		organ.try_autodiagnose(user)
 	organ.ui_interact(user)
 
 

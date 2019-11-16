@@ -36,7 +36,7 @@
 		brainmob = null
 	. = ..()
 
-/obj/item/organ/internal/brain/proc/transfer_identity(var/mob/living/carbon/H)
+/obj/item/organ/internal/brain/proc/transfer_identity(mob/living/carbon/H)
 	name = "\the [H]'s [initial(src.name)]"
 	brainmob = new(src)
 	brainmob.name = H.real_name
@@ -57,16 +57,14 @@
 		to_chat(user, "This one seems particularly lifeless. Perhaps it will regain some of its luster later..")
 
 /obj/item/organ/internal/brain/removed(mob/living/user)
-	name = "[owner.real_name]'s brain"
+	if(istype(owner))
+		name = "[owner.real_name]'s brain"
 
-	var/mob/living/simple_animal/borer/borer = owner.has_brain_worms()
+		var/mob/living/simple_animal/borer/borer = owner.has_brain_worms()
+		if(borer)
+			borer.detatch() //Should remove borer if the brain is removed - RR
 
-	if(borer)
-		borer.detatch() //Should remove borer if the brain is removed - RR
-
-	var/obj/item/organ/internal/brain/B = src
-	if(istype(B) && istype(owner))
-		B.transfer_identity(owner)
+		transfer_identity(owner)
 
 	..()
 

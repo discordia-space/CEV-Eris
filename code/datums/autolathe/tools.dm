@@ -120,7 +120,7 @@
 
 /datum/design/autolathe/tool/advanced_circularsaw
 	name = "advanced circular saw"
-	build_path = /obj/item/weapon/tool/saw/advanced_circular
+	build_path = /obj/item/weapon/tool/saw/circular/advanced
 
 /datum/design/autolathe/tool/chainsaw
 	name = "chainsaw"

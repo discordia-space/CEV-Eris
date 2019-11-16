@@ -20,6 +20,7 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 	var/ranged_ignores_vision
 	stop_automated_movement_when_pulled = 0
 	var/destroy_surroundings = 1
+	var/fire_verb = "fires"
 	a_intent = I_HURT
 	can_burrow = TRUE
 	hunger_enabled = 0//Until automated eating mechanics are enabled, disable hunger for hostile mobs
@@ -194,30 +195,31 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 /mob/living/simple_animal/hostile/Life()
 
 	. = ..()
-	if(!.)
-		walk(src, 0)
-		return 0
-	if(client)
-		return 0
+	if(!stasis && !AI_inactive)
+		if(!.)
+			walk(src, 0)
+			return 0
+		if(client)
+			return 0
 
-	if(!stat)
-		switch(stance)
-			if(HOSTILE_STANCE_IDLE)
-				target_mob = FindTarget()
+		if(!stat)
+			switch(stance)
+				if(HOSTILE_STANCE_IDLE)
+					target_mob = FindTarget()
 
-			if(HOSTILE_STANCE_ATTACK)
-				if(destroy_surroundings)
-					DestroySurroundings()
-				MoveToTarget()
+				if(HOSTILE_STANCE_ATTACK)
+					if(destroy_surroundings)
+						DestroySurroundings()
+					MoveToTarget()
 
-			if(HOSTILE_STANCE_ATTACKING)
-				if(destroy_surroundings)
-					DestroySurroundings()
-				AttackTarget()
+				if(HOSTILE_STANCE_ATTACKING)
+					if(destroy_surroundings)
+						DestroySurroundings()
+					AttackTarget()
 
 /mob/living/simple_animal/hostile/proc/OpenFire(target_mob)
 	var/target = target_mob
-	visible_message("\red <b>[src]</b> fires at [target]!", 1)
+	visible_message("\red <b>[src]</b> [fire_verb] at [target]!", 1)
 
 	if(rapid)
 		spawn(1)

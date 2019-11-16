@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn
 	name = "sawn-off shotgun"
 	desc = "Omar's coming!"
+	icon = 'icons/obj/guns/projectile/sawnshotgun.dmi'
 	icon_state = "sawnshotgun"
 	item_state = "sawnshotgun"
 	slot_flags = SLOT_BELT|SLOT_HOLSTER

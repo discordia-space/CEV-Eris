@@ -20,7 +20,7 @@
 				/obj/item/weapon/tool/wrench/big_wrench = 2,
 				/obj/item/weapon/tool/saw = 8,
 				/obj/item/weapon/tool/saw/circular = 2,
-				/obj/item/weapon/tool/saw/advanced_circular = 1,
+				/obj/item/weapon/tool/saw/circular/advanced = 1,
 				/obj/item/weapon/tool/saw/chain = 0.5,
 				/obj/item/weapon/tool/shovel = 5,
 				/obj/item/weapon/tool/shovel/spade = 2.5,
@@ -92,7 +92,7 @@
 				/obj/item/weapon/tool/crowbar/pneumatic = 3,
 				/obj/item/weapon/tool/wrench/big_wrench = 3,
 				/obj/item/weapon/tool/weldingtool/advanced = 3,
-				/obj/item/weapon/tool/saw/advanced_circular = 2,
+				/obj/item/weapon/tool/saw/circular/advanced = 2,
 				/obj/item/weapon/tool/saw/chain = 1,
 				/obj/item/weapon/tool/pickaxe/diamonddrill = 2,
 				/obj/item/weapon/tool/tape_roll/fiber = 2,
@@ -118,4 +118,22 @@
 /obj/random/toolbox/low_chance
 	name = "low chance random toolbox"
 	icon_state = "box-green-low"
+	spawn_nothing_percentage = 60
+
+
+/obj/random/tool/advanced/onestar
+	name = "random onestar tool"
+
+
+/obj/random/tool/advanced/onestar/item_to_spawn()
+	return pickweight(list(/obj/item/weapon/tool/crowbar/onestar = 1,
+						/obj/item/weapon/tool/medmultitool = 1,
+						/obj/item/weapon/tool/pickaxe/onestar = 1,
+						/obj/item/weapon/tool/pickaxe/jackhammer/onestar = 1,
+						/obj/item/weapon/tool/pickaxe/drill/onestar = 1,
+						/obj/item/weapon/tool/screwdriver/combi_driver/onestar = 1,
+						/obj/item/weapon/tool/weldingtool/onestar = 1))
+
+/obj/random/tool/advanced/onestar/low_chance
+	icon_state = "tool-orange-low"
 	spawn_nothing_percentage = 60
