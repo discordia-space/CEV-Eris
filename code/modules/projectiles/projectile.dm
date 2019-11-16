@@ -18,7 +18,8 @@
 	pass_flags = PASSTABLE
 	mouse_opacity = 0
 	var/bumped = FALSE		//Prevents it from hitting more than one guy at once
-	var/hitsound_wall = ""//"ricochet"
+	var/hitsound_wall = "ricochet"
+	var/list/mob_hit_sound = list('sound/effects/gore/bullethit2.ogg', 'sound/effects/gore/bullethit3.ogg') //Sound it makes when it hits a mob. It's a list so you can put multiple hit sounds there.
 	var/def_zone = ""	//Aiming at
 	var/mob/firer = null//Who shot it
 	var/silenced = FALSE	//Attack message
@@ -89,7 +90,8 @@
 // generate impact effect
 /obj/item/projectile/proc/on_impact(atom/A)
 	impact_effect(effect_transform)
-	playsound(src, "hitsound_wall", 50, 1, -2)
+	if(!ismob(A))
+		playsound(src, hitsound_wall, 50, 1, -2)
 	return
 
 //Checks if the projectile is eligible for embedding. Not that it necessarily will.
@@ -536,6 +538,8 @@
 	else
 		visible_message(SPAN_DANGER("\The [target_mob] is hit by \the [src] in the [parse_zone(def_zone)]!"))//X has fired Y is now given by the guns so you cant tell who shot you if you could not see the shooter
 
+	playsound(target_mob, pick(mob_hit_sound), 40, 1)
+
 	//admin logs
 	if(!no_attack_log)
 		if(ismob(firer))
@@ -552,6 +556,22 @@
 	//sometimes bullet_act() will want the projectile to continue flying
 	if (result == PROJECTILE_CONTINUE)
 		return FALSE
+
+	if(isliving(target_mob))
+		var/turf/target_loca = get_turf(target_mob)
+		var/mob/living/L = target_mob
+		if(damage && damage_type == BRUTE)
+			var/splatter_dir = dir
+			if(starting)
+				splatter_dir = get_dir(starting, target_loca)
+				target_loca = get_step(target_loca, splatter_dir)
+			var/blood_color = "#C80000"
+			if(ishuman(target_mob))
+				var/mob/living/carbon/human/H = target_mob
+				blood_color = H.species.blood_color
+			new /obj/effect/overlay/temp/dir_setting/bloodsplatter(target_mob.loc, splatter_dir, blood_color)
+			if(prob(50))
+				target_loca.add_blood(L)
 
 	return TRUE
 

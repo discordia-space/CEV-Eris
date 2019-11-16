@@ -277,6 +277,15 @@ meteor_act
 						update_inv_glasses(0)
 				if(BP_CHEST)
 					bloody_body(src)
+			//All this is copypasta'd from projectile code. Basically there's a cool splat animation when someone gets hit by something.
+			var/splatter_dir = dir
+			var/turf/target_loca = get_turf(src)
+			splatter_dir = get_dir(user, target_loca)
+			target_loca = get_step(target_loca, splatter_dir)
+			var/blood_color = "#C80000"
+			blood_color = src.species.blood_color
+			new /obj/effect/overlay/temp/dir_setting/bloodsplatter(src.loc, splatter_dir, blood_color)
+			target_loca.add_blood(src)
 
 	return TRUE
 
