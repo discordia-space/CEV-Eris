@@ -19,10 +19,10 @@
 	item_cost = 6
 	path = /obj/item/weapon/melee/energy/sword
 
-/datum/uplink_item/item/visible_weapons/g9mm
-	name = "Silenced 9mm"
+/datum/uplink_item/item/visible_weapons/pistol
+	name = "Silenced .35 Auto"
 	item_cost = 6
-	path = /obj/item/weapon/storage/box/syndie_kit/g9mm
+	path = /obj/item/weapon/storage/box/syndie_kit/pistol
 
 /datum/uplink_item/item/visible_weapons/riggedlaser
 	name = "Exosuit (APLU) Rigged Laser"

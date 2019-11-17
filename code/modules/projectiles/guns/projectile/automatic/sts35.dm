@@ -1,17 +1,17 @@
 /obj/item/weapon/gun/projectile/automatic/sts35
 	name = "STS-35"
-	desc = "The rugged STS-35 is a durable automatic weapon, popular on frontier worlds. Uses 7.62mm rounds. This one is unmarked."
+	desc = "The rugged STS-35 is a durable automatic weapon, popular on frontier worlds. Uses .30 Rifle rounds. This one is unmarked."
 	icon = 'icons/obj/guns/projectile/sts.dmi'
 	icon_state = "sts"
 	item_state = "sts"
 	w_class = ITEM_SIZE_BULKY
 	force = WEAPON_FORCE_PAINFUL
-	caliber = "a762"
+	caliber = "lrifle"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 1)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
-	mag_well = MAG_WELL_CIVI_RIFLE|MAG_WELL_AK
-	magazine_type = /obj/item/ammo_magazine/c762_short
+	mag_well = MAG_WELL_RIFLE
+	magazine_type = /obj/item/ammo_magazine/lrifle_short
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)
 	price_tag = 3300
 	fire_sound = 'sound/weapons/guns/fire/ltrifle_fire.ogg'

@@ -45,8 +45,8 @@
 /area/outpost/abandoned)
 "ao" = (
 /obj/effect/floor_decal/rust,
-/obj/item/ammo_magazine/c45m,
-/obj/item/ammo_magazine/c45m,
+/obj/item/ammo_magazine/smg,
+/obj/item/ammo_magazine/smg,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "ap" = (
@@ -449,8 +449,8 @@
 /area/outpost/abandoned)
 "ch" = (
 /obj/structure/table/rack,
-/obj/item/ammo_magazine/c45m,
-/obj/item/ammo_magazine/c45m,
+/obj/item/ammo_magazine/smg,
+/obj/item/ammo_magazine/smg,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "ci" = (

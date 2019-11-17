@@ -718,10 +718,10 @@
 	name = "ammo crate";
 	req_access = list(63)
 	},
-/obj/item/ammo_magazine/ammobox/c9mm/rubber,
-/obj/item/ammo_magazine/ammobox/c9mm/rubber,
-/obj/item/ammo_magazine/ammobox/a10mm/rubber,
-/obj/item/ammo_magazine/ammobox/a10mm/rubber,
+/obj/item/ammo_magazine/ammobox/pistol/rubber,
+/obj/item/ammo_magazine/ammobox/pistol/rubber,
+/obj/item/ammo_magazine/ammobox/pistol/rubber,
+/obj/item/ammo_magazine/ammobox/pistol/rubber,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
 "abV" = (
@@ -880,10 +880,10 @@
 	name = "ammo crate";
 	req_access = list(63)
 	},
-/obj/item/ammo_magazine/ammobox/c65mm/rubber,
-/obj/item/ammo_magazine/ammobox/c65mm/rubber,
-/obj/item/ammo_magazine/ammobox/c65mm/rubber,
-/obj/item/ammo_magazine/ammobox/c65mm/rubber,
+/obj/item/ammo_magazine/ammobox/clrifle/rubber,
+/obj/item/ammo_magazine/ammobox/clrifle/rubber,
+/obj/item/ammo_magazine/ammobox/clrifle/rubber,
+/obj/item/ammo_magazine/ammobox/clrifle/rubber,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
 "aco" = (
@@ -891,10 +891,10 @@
 	name = "ammo crate";
 	req_access = list(63)
 	},
-/obj/item/ammo_magazine/ammobox/c44/rubber,
-/obj/item/ammo_magazine/ammobox/c44/rubber,
-/obj/item/ammo_magazine/ammobox/c44/rubber,
-/obj/item/ammo_magazine/ammobox/c44/rubber,
+/obj/item/ammo_magazine/ammobox/magnum/rubber,
+/obj/item/ammo_magazine/ammobox/magnum/rubber,
+/obj/item/ammo_magazine/ammobox/magnum/rubber,
+/obj/item/ammo_magazine/ammobox/magnum/rubber,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
 "acp" = (
@@ -11310,7 +11310,7 @@
 	pixel_x = 7;
 	pixel_y = 25;
 	req_access = list(3);
-	step_x = 0
+	pixel_x = 0
 	},
 /turf/simulated/floor/tiled/dark,
 /area/eris/security/warden)
@@ -21218,14 +21218,14 @@
 /area/eris/engineering/wastingroom)
 "aXf" = (
 /obj/structure/table/rack,
-/obj/item/ammo_magazine/smg9mm,
-/obj/item/ammo_magazine/smg9mm,
-/obj/item/ammo_magazine/smg9mm,
-/obj/item/ammo_magazine/smg9mm,
-/obj/item/ammo_magazine/smg9mm,
-/obj/item/ammo_magazine/smg9mm,
-/obj/item/ammo_magazine/smg9mm,
-/obj/item/ammo_magazine/smg9mm,
+/obj/item/ammo_magazine/smg,
+/obj/item/ammo_magazine/smg,
+/obj/item/ammo_magazine/smg,
+/obj/item/ammo_magazine/smg,
+/obj/item/ammo_magazine/smg,
+/obj/item/ammo_magazine/smg,
+/obj/item/ammo_magazine/smg,
+/obj/item/ammo_magazine/smg,
 /obj/machinery/door/blast/shutters/glass{
 	id = "Armoury";
 	name = "Armoury showcase"
@@ -22394,28 +22394,28 @@
 	name = "ammo crate";
 	req_access = list(63)
 	},
-/obj/item/ammo_magazine/ammobox/c65mm,
-/obj/item/ammo_magazine/ammobox/c65mm,
-/obj/item/ammo_magazine/ammobox/c9mm,
-/obj/item/ammo_magazine/ammobox/c9mm,
+/obj/item/ammo_magazine/ammobox/clrifle,
+/obj/item/ammo_magazine/ammobox/clrifle,
+/obj/item/ammo_magazine/ammobox/pistol,
+/obj/item/ammo_magazine/ammobox/pistol,
 /obj/machinery/door/blast/shutters/glass{
 	id = "Armoury";
 	name = "Armoury showcase"
 	},
-/obj/item/ammo_magazine/ammobox/a10mm,
-/obj/item/ammo_magazine/ammobox/a10mm,
-/obj/item/ammo_magazine/a10mm,
-/obj/item/ammo_magazine/a10mm,
-/obj/item/ammo_magazine/a10mm,
-/obj/item/ammo_magazine/a10mm,
-/obj/item/ammo_magazine/a10mm,
-/obj/item/ammo_magazine/a10mm,
-/obj/item/ammo_magazine/a10mm,
-/obj/item/ammo_magazine/a10mm,
+/obj/item/ammo_magazine/ammobox/magnum,
+/obj/item/ammo_magazine/ammobox/magnum,
+/obj/item/ammo_magazine/magnum,
+/obj/item/ammo_magazine/magnum,
+/obj/item/ammo_magazine/magnum,
+/obj/item/ammo_magazine/magnum,
+/obj/item/ammo_magazine/magnum,
+/obj/item/ammo_magazine/magnum,
+/obj/item/ammo_magazine/magnum,
+/obj/item/ammo_magazine/magnum,
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo,
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo,
-/obj/item/ammo_magazine/ammobox/a556,
-/obj/item/ammo_magazine/ammobox/a556,
+/obj/item/ammo_magazine/ammobox/srifle,
+/obj/item/ammo_magazine/ammobox/srifle,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "aZC" = (
@@ -81073,12 +81073,12 @@
 /area/eris/command/bridge)
 "dyY" = (
 /obj/structure/table/rack,
-/obj/item/ammo_magazine/a50,
-/obj/item/ammo_magazine/a50,
-/obj/item/ammo_magazine/a50,
-/obj/item/ammo_magazine/a50,
-/obj/item/ammo_magazine/a50,
-/obj/item/ammo_magazine/a50,
+/obj/item/ammo_magazine/magnum,
+/obj/item/ammo_magazine/magnum,
+/obj/item/ammo_magazine/magnum,
+/obj/item/ammo_magazine/magnum,
+/obj/item/ammo_magazine/magnum,
+/obj/item/ammo_magazine/magnum,
 /obj/machinery/door/blast/shutters/glass{
 	id = "BridgeArmoury";
 	name = "Armoury showcase"
@@ -81089,17 +81089,17 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/item/ammo_magazine/ammobox/c50,
-/obj/item/ammo_magazine/ammobox/c50,
+/obj/item/ammo_magazine/ammobox/magnum,
+/obj/item/ammo_magazine/ammobox/magnum,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/command/bridge)
 "dyZ" = (
 /obj/structure/table/rack,
-/obj/item/ammo_magazine/a50/rubber,
-/obj/item/ammo_magazine/a50/rubber,
-/obj/item/ammo_magazine/a50/rubber,
-/obj/item/ammo_magazine/a50/rubber,
-/obj/item/ammo_magazine/a50/rubber,
+/obj/item/ammo_magazine/magnum/rubber,
+/obj/item/ammo_magazine/magnum/rubber,
+/obj/item/ammo_magazine/magnum/rubber,
+/obj/item/ammo_magazine/magnum/rubber,
+/obj/item/ammo_magazine/magnum/rubber,
 /obj/machinery/door/blast/shutters/glass{
 	id = "BridgeArmoury";
 	name = "Armoury showcase"
@@ -81107,9 +81107,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
-/obj/item/ammo_magazine/a50/rubber,
-/obj/item/ammo_magazine/ammobox/c50/rubber,
-/obj/item/ammo_magazine/ammobox/c50/rubber,
+/obj/item/ammo_magazine/magnum/rubber,
+/obj/item/ammo_magazine/ammobox/magnum/rubber,
+/obj/item/ammo_magazine/ammobox/magnum/rubber,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/command/bridge)
 "dza" = (
@@ -88913,7 +88913,7 @@
 	id = "shieldroom";
 	name = "Shield Generator Shutters";
 	pixel_x = 25;
-	step_x = 0
+	pixel_x = 0
 	},
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/engineering/shield_generator)
@@ -91663,12 +91663,12 @@
 	id = "Armoury";
 	name = "Armoury showcase"
 	},
-/obj/item/ammo_magazine/ih556,
-/obj/item/ammo_magazine/ih556,
-/obj/item/ammo_magazine/ih556,
-/obj/item/ammo_magazine/ih556,
-/obj/item/ammo_magazine/ih556,
-/obj/item/ammo_magazine/ih556,
+/obj/item/ammo_magazine/ihsrifle,
+/obj/item/ammo_magazine/ihsrifle,
+/obj/item/ammo_magazine/ihsrifle,
+/obj/item/ammo_magazine/ihsrifle,
+/obj/item/ammo_magazine/ihsrifle,
+/obj/item/ammo_magazine/ihsrifle,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "dWB" = (
@@ -99290,14 +99290,14 @@
 	id = "Armoury";
 	name = "Armoury showcase"
 	},
-/obj/item/ammo_magazine/sol65,
-/obj/item/ammo_magazine/sol65,
-/obj/item/ammo_magazine/sol65,
-/obj/item/ammo_magazine/sol65,
-/obj/item/ammo_magazine/sol65,
-/obj/item/ammo_magazine/sol65,
-/obj/item/ammo_magazine/sol65,
-/obj/item/ammo_magazine/sol65,
+/obj/item/ammo_magazine/ihclrifle,
+/obj/item/ammo_magazine/ihclrifle,
+/obj/item/ammo_magazine/ihclrifle,
+/obj/item/ammo_magazine/ihclrifle,
+/obj/item/ammo_magazine/ihclrifle,
+/obj/item/ammo_magazine/ihclrifle,
+/obj/item/ammo_magazine/ihclrifle,
+/obj/item/ammo_magazine/ihclrifle,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "enX" = (
