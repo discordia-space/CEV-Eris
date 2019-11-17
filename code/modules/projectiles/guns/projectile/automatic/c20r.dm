@@ -32,22 +32,12 @@
 		)
 
 /obj/item/weapon/gun/projectile/automatic/c20r/update_icon()
-	..()
-
-	var/iconstring = initial(icon_state)
-	var/itemstring = ""
-
-	if (ammo_magazine)
-		iconstring += "_mag"
-
+	overlays.Cut()
+	icon_state = "[initial(icon_state)][silenced ? "_s" : ""]"
+	if(ammo_magazine)
+		overlays += "mag[silenced ? "_s" : ""][ammo_magazine.ammo_color]"
 	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
-		iconstring += "_slide"
-
-	if (silenced)
-		iconstring += "_s"
-
-	icon_state = iconstring
-	set_item_state(itemstring)
+		overlays += "slide[silenced ? "_s" : ""]"
 
 /obj/item/weapon/gun/projectile/automatic/c20r/Initialize()
 	. = ..()

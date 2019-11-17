@@ -121,27 +121,32 @@
 /obj/item/ammo_magazine/smg
 	name = "smg magazine (.35 Auto)"
 	icon_state = "smg9mml"
+	ammo_color = "-l"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_SMG
 	matter = list(MATERIAL_STEEL = 4)
-	caliber = "pisol"
+	caliber = "pistol"
 	ammo_type = /obj/item/ammo_casing/pistol
 	max_ammo = 35
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/smg/empty
 	icon_state = "smg9mm"
+	ammo_color = ""
 	initial_ammo = 0
+
 
 /obj/item/ammo_magazine/smg/rubber
 	name = "smg magazine (.35 Auto rubber)"
 	icon_state = "smg9mmr"
+	ammo_color = "-r"
 	ammo_type = /obj/item/ammo_casing/pistol/rubber
 
 /obj/item/ammo_magazine/smg/hv
 	name = "smg magazine (.35 Auto high-velocity)"
 	icon_state = "smg9mmhv"
+	ammo_color = "-hv"
 	ammo_type = /obj/item/ammo_casing/pistol/hv
 
 /////////////Rifle/////////////

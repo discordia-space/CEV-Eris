@@ -176,6 +176,8 @@
 	throw_speed = 4
 	throw_range = 10
 
+	var/ammo_color = ""		//For use in modular sprites
+
 	var/list/stored_ammo = list()
 	var/mag_type = SPEEDLOADER //ammo_magazines can only be used with compatible guns. This is not a bitflag, the load_method var on guns is.
 	var/mag_well = MAG_WELL_GENERIC
