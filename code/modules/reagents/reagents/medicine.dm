@@ -88,6 +88,7 @@
 	M.adjust_hallucination(-0.9 * effect_multiplier)
 	M.adjustToxLoss(-((0.4 + (M.getToxLoss() * 0.05)) * effect_multiplier))
 	M.add_chemical_effect(CE_ANTITOX, 1)
+	holder.remove_reagent("pararein", 0.2 * effect_multiplier)
 
 /datum/reagent/medicine/dexalin
 	name = "Dexalin"
