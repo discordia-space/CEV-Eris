@@ -139,11 +139,13 @@
 	icon_type = "cigarette"
 	reagent_flags = REFILLABLE | NO_REACT
 
+/*
 /obj/item/weapon/storage/fancy/cigarettes/New()
 	..()
 	for(var/i = 1 to storage_slots)
 		new /obj/item/clothing/mask/smokable/cigarette(src)
 	create_reagents(15 * storage_slots)//so people can inject cigarettes without opening a packet, now with being able to inject the whole one
+*/
 
 /obj/item/weapon/storage/fancy/cigarettes/update_icon()
 	icon_state = "[initial(icon_state)][contents.len]"
@@ -172,11 +174,27 @@
 	else
 		..()
 
+/obj/item/weapon/storage/fancy/cigarettes/generic
+	New()
+		..()
+		for(var/i = 1 to storage_slots)
+			new /obj/item/clothing/mask/smokable/cigarette(src)
+		create_reagents(15 * storage_slots)
+		fill_cigarre_package(src,list("nicotine" = 5))
+
 /obj/item/weapon/storage/fancy/cigarettes/dromedaryco
 	name = "\improper DromedaryCo packet"
 	desc = "A packet of six imported DromedaryCo cancer sticks. A label on the packaging reads, \"Wouldn't a slow death make a change?\""
 	icon_state = "Dpacket"
 	item_state = "Dpacket"
+
+	New()
+		..()
+		for(var/i = 1 to storage_slots)
+			new /obj/item/clothing/mask/smokable/cigarette(src)
+		create_reagents(15 * storage_slots)
+		fill_cigarre_package(src,list("nicotine" = 15))
+
 
 /obj/item/weapon/storage/fancy/cigarettes/killthroat
 	name = "\improper AcmeCo packet"
@@ -186,7 +204,107 @@
 
 	New()
 		..()
-		fill_cigarre_package(src,list("fuel" = 15))
+		for(var/i = 1 to storage_slots)
+			new /obj/item/clothing/mask/smokable/cigarette(src)
+		create_reagents(15 * storage_slots)
+		fill_cigarre_package(src,list("nicotine" = 10, "fuel" = 5))
+
+//////////////////
+//NEW CIGARETTES//
+//////////////////
+
+/obj/item/weapon/storage/fancy/cigarettes/frozennova
+	name = "\improper Frozen Nova packet"
+	desc = "FS Brand Cigarette mostly sold to IronHammer PMC on distant worlds, hard hitting, standardized, sleek and clean. Ready in the packs, tightly pressed to each other."
+	icon_state = "frozennova_packet"
+	item_state = "cigpacket"
+
+/obj/item/weapon/storage/fancy/cigarettes/frozennova/New()
+	..()
+	for(var/i = 1 to storage_slots)
+		new /obj/item/clothing/mask/smokable/cigarette/frozennova(src)
+	create_reagents(15 * storage_slots)
+	fill_cigarre_package(src,list("nicotine" = 10))
+
+/obj/item/weapon/storage/fancy/cigarettes/ishimuraspecial
+	name = "\improper Ishimura Special packet"
+	desc = "For the times when you really need to forget, says the advertisement but usually people only have nightmares from this type of cigarettes except the kind of people who get off from it."
+	icon_state = "ishimuraspecial_packet"
+	item_state = "cigpacket"
+
+/obj/item/weapon/storage/fancy/cigarettes/ishimuraspecial/New()
+	..()
+	for(var/i = 1 to storage_slots)
+		new /obj/item/clothing/mask/smokable/cigarette/ishimuraspecial(src)
+	create_reagents(15 * storage_slots)
+	fill_cigarre_package(src,list("nicotine" = 5, "haloperidol" = 5))
+
+/obj/item/weapon/storage/fancy/cigarettes/roacheyes
+	name = "\improper Roach Eyes packet"
+	desc = "This cigarette brand would typically seen in the mouth of a bum in hive cities or in some slums, but the company maintains the quality at acceptable levels. Barely holds up to it really "
+	icon_state = "roacheyes_packet"
+	item_state = "cigpacket"
+
+/obj/item/weapon/storage/fancy/cigarettes/roacheyes/New()
+	..()
+	for(var/i = 1 to storage_slots)
+		new /obj/item/clothing/mask/smokable/cigarette/roacheyes(src)
+	create_reagents(15 * storage_slots)
+	fill_cigarre_package(src,list("woodpulp" = 5,"nicotine" = 5, "arectine" = 3, "blattedin" = 2))
+
+/obj/item/weapon/storage/fancy/cigarettes/tannhausergate
+	name = "\improper Tannhauser Gate packet"
+	desc = "Premium Cigarettes for a handful of people who can afford to smoke daily, each cigarette is said to have a taste processor and filter that increases flavor and effect. It almost feels like you didnt just smoke nicotine-infused grass!"
+	icon_state = "tannhausergate_packet"
+	item_state = "cigpacket"
+
+/obj/item/weapon/storage/fancy/cigarettes/tannhausergate/New()
+	..()
+	for(var/i = 1 to storage_slots)
+		new /obj/item/clothing/mask/smokable/cigarette/tannhausergate(src)
+	create_reagents(15 * storage_slots)
+	fill_cigarre_package(src,list("methylphenidate" = 5, "nicotine" = 3))
+
+/obj/item/weapon/storage/fancy/cigarettes/brouzouf
+	name = "\improper Brouzouf Message packet"
+	desc = "The longest-lasting brand of cigarettes, that survived even darkest times in recent human history."
+	icon_state = "brouzouf_packet"
+	item_state = "cigpacket"
+
+/obj/item/weapon/storage/fancy/cigarettes/brouzouf/New()
+	..()
+	for(var/i = 1 to storage_slots)
+		new /obj/item/clothing/mask/smokable/cigarette/brouzouf(src)
+	create_reagents(15 * storage_slots)
+	fill_cigarre_package(src,list("nicotine" = 5, "bouncer" = 5))
+
+/obj/item/weapon/storage/fancy/cigarettes/shodans
+	name = "\improper Shodan's packet"
+	desc = "Face on the pack looks uncanny, usually smoked by wannabe hackers because of some stupid inside joke."
+	icon_state = "shodans_packet"
+	item_state = "cigpacket"
+
+/obj/item/weapon/storage/fancy/cigarettes/shodans/New()
+	..()
+	for(var/i = 1 to storage_slots)
+		new /obj/item/clothing/mask/smokable/cigarette/shodans(src)
+	create_reagents(15 * storage_slots)
+	fill_cigarre_package(src,list("nicotine" = 5, "cherry drops" = 5))
+
+/obj/item/weapon/storage/fancy/cigarettes/toha
+	name = "\improper TOHA Heavy Industries packet"
+	desc = "The cigarette is thick and massive for its type, looks almost sterile, made on far-off worlds which no one really knows. People wonder if this tobacco even \"real\"?"
+	icon_state = "toha_packet"
+	item_state = "cigpacket"
+
+/obj/item/weapon/storage/fancy/cigarettes/toha/New()
+	..()
+	for(var/i = 1 to storage_slots)
+		new /obj/item/clothing/mask/smokable/cigarette/toha(src)
+	create_reagents(15 * storage_slots)
+	fill_cigarre_package(src,list("nicotine" = 5,  "silver" = 5, "tricordrazine" = 3, "gold" = 2))
+
+/////////////////////
 
 /obj/item/weapon/storage/fancy/cigar
 	name = "cigar case"

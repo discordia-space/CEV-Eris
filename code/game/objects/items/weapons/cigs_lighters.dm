@@ -237,6 +237,55 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	weldermes = "<span class='notice'>USER casually lights the NAME with FLAME.</span>"
 	ignitermes = "<span class='notice'>USER fiddles with FLAME, and manages to light their NAME.</span>"
 
+/obj/item/clothing/mask/smokable/cigarette/frozennova
+	name = "frozen nova cigarette"
+	icon_state = "frozennova_cig"
+	icon_on = "frozennova_cigon"  //Note - these are in masks.dmi not in cigarette.dmi
+	icon_off = "frozennova_cig"
+	type_butt = /obj/item/weapon/cigbutt/frozennova
+
+/obj/item/clothing/mask/smokable/cigarette/ishimuraspecial
+	name = "ishimura special cigarette"
+	icon_state = "ishimuraspecial_cig"
+	icon_on = "ishimuraspecial_cigon"  //Note - these are in masks.dmi not in cigarette.dmi
+	icon_off = "ishimuraspecial_cig"
+	type_butt = /obj/item/weapon/cigbutt/ishimuraspecial
+
+/obj/item/clothing/mask/smokable/cigarette/roacheyes
+	name = "roach eyes cigarette"
+	icon_state = "roacheyes_cig"
+	icon_on = "roacheyes_cigon"  //Note - these are in masks.dmi not in cigarette.dmi
+	icon_off = "roacheyes_cig"
+	type_butt = /obj/item/weapon/cigbutt/roacheyes
+
+/obj/item/clothing/mask/smokable/cigarette/tannhausergate
+	name = "tannhauser gate cigarette"
+	icon_state = "tannhausergate_cig"
+	icon_on = "tannhausergate_cigon"  //Note - these are in masks.dmi not in cigarette.dmi
+	icon_off = "tannhausergate_cig"
+	type_butt = /obj/item/weapon/cigbutt/tannhausergate
+
+/obj/item/clothing/mask/smokable/cigarette/brouzouf
+	name = "brouzouf message cigarette"
+	icon_state = "brouzouf_cig"
+	icon_on = "brouzouf_cigon"  //Note - these are in masks.dmi not in cigarette.dmi
+	icon_off = "brouzouf_cig"
+	type_butt = /obj/item/weapon/cigbutt/brouzouf
+
+/obj/item/clothing/mask/smokable/cigarette/shodans
+	name = "shodan's cigarette"
+	icon_state = "shodans_cig"
+	icon_on = "shodans_cigon"  //Note - these are in masks.dmi not in cigarette.dmi
+	icon_off = "shodans_cig"
+	type_butt = /obj/item/weapon/cigbutt/shodans
+
+/obj/item/clothing/mask/smokable/cigarette/toha
+	name = "TOHA Heavy Industries cigarette"
+	icon_state = "toha_cig"
+	icon_on = "toha_cigon"  //Note - these are in masks.dmi not in cigarette.dmi
+	icon_off = "toha_cig"
+	type_butt = /obj/item/weapon/cigbutt/toha
+
 /obj/item/clothing/mask/smokable/cigarette/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 
@@ -322,6 +371,41 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	name = "cigar butt"
 	desc = "A manky old cigar butt."
 	icon_state = "cigarbutt"
+
+/obj/item/weapon/cigbutt/frozennova
+	name = "frozen nova cigarette butt"
+	desc = "A manky old cigar butt."
+	icon_state = "frozennova_cigbutt"
+
+/obj/item/weapon/cigbutt/ishimuraspecial
+	name = "ishimura special cigarette butt"
+	desc = "A manky old cigar butt."
+	icon_state = "ishimuraspecial_cigbutt"
+
+/obj/item/weapon/cigbutt/roacheyes
+	name = "roach eyes cigarette butt"
+	desc = "A manky old cigar butt."
+	icon_state = "roacheyes_cigbutt"
+
+/obj/item/weapon/cigbutt/tannhausergate
+	name = "tannhauser gate cigarette butt"
+	desc = "A manky old cigar butt."
+	icon_state = "tannhausergate_cigbutt"
+
+/obj/item/weapon/cigbutt/brouzouf
+	name = "brouzouf cigarette butt"
+	desc = "A manky old cigar butt."
+	icon_state = "brouzouf_cigbutt"
+
+/obj/item/weapon/cigbutt/shodans
+	name = "shodans cigarette butt"
+	desc = "A manky old cigar butt."
+	icon_state = "shodans_cigbutt"
+
+/obj/item/weapon/cigbutt/toha
+	name = "toha heavy industries cigarette butt"
+	desc = "A manky old cigar butt."
+	icon_state = "toha_cigbutt"
 
 /////////////////
 //SMOKING PIPES//
