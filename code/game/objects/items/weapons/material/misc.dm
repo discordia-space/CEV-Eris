@@ -27,10 +27,10 @@
 	name = "tactical knife"
 	desc = "You'd be killing loads of people if this was Medal of Valor: Heroes of Space."
 	icon = 'icons/obj/weapons.dmi'
-	icon_state = "tacknife"
+	icon_state = "tacknife_guard"
 	item_state = "knife"
 	attack_verb = list("stabbed", "chopped", "cut")
-	applies_material_colour = 1
+	applies_material_colour = 0
 
 /obj/item/weapon/material/minihoe // -- Numbers
 	name = "mini hoe"

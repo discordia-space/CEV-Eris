@@ -1100,12 +1100,7 @@ mob/proc/yank_out_object()
 
 /mob/proc/getStatStats(typeOfStat)
 	if (SSticker.current_state != GAME_STATE_PREGAME)
-		if(ishuman(src))
-			var/mob/living/carbon/human/H = src
-			if (H.sanity.level <= 35)
-				var/loss_stat = round((100 - H.sanity.level) / 6)
-				var/false_stat = rand(stats.getStat(typeOfStat) - loss_stat, stats.getStat(typeOfStat))
-				return abs(false_stat)
+		if(stats)
 			return stats.getStat(typeOfStat)
 		return 0
 

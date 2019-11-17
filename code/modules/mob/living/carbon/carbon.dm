@@ -25,6 +25,9 @@
 /mob/living/carbon/proc/remove_nsa(tag)
 	if(nerve_system_accumulations[tag])
 		nerve_system_accumulations.Remove(tag)
+/mob/living/carbon/proc/get_nsa_value(tag)
+	if(nerve_system_accumulations[tag])
+		return nerve_system_accumulations[tag]
 
 /mob/living/carbon/proc/get_nsa()
 	var/accumulatedNSA
@@ -237,8 +240,12 @@
 				H.w_uniform.add_fingerprint(M)
 
 			var/show_ssd
+			var/target_organ_exists = FALSE
 			var/mob/living/carbon/human/H = src
-			if(istype(H)) show_ssd = H.species.show_ssd
+			if(istype(H))
+				show_ssd = H.species.show_ssd
+				var/obj/item/organ/external/O = H.get_organ(M.targeted_organ)
+				target_organ_exists = (O && O.is_usable())
 			if(show_ssd && !client && !teleop)
 				M.visible_message(SPAN_NOTICE("[M] shakes [src] trying to wake [t_him] up!"), \
 				SPAN_NOTICE("You shake [src], but they do not respond... Maybe they have S.S.D?"))
@@ -248,6 +255,16 @@
 					src.resting = 0
 				M.visible_message(SPAN_NOTICE("[M] shakes [src] trying to wake [t_him] up!"), \
 									SPAN_NOTICE("You shake [src] trying to wake [t_him] up!"))
+			else if((M.targeted_organ == BP_HEAD) && target_organ_exists)
+				M.visible_message(SPAN_NOTICE("[M] pats [src]'s head."), \
+									SPAN_NOTICE("You pat [src]'s head."))
+			else if(M.targeted_organ == BP_R_ARM || M.targeted_organ == BP_L_ARM)
+				if(target_organ_exists)
+					M.visible_message(SPAN_NOTICE("[M] shakes hands with [src]."), \
+										SPAN_NOTICE("You shake hands with [src]."))
+				else
+					M.visible_message(SPAN_NOTICE("[M] holds out \his hand to [src]."), \
+										SPAN_NOTICE("You hold out your hand to [src]."))
 			else
 				var/mob/living/carbon/human/hugger = M
 				if(istype(hugger))

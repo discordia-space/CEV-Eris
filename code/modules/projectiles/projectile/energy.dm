@@ -4,6 +4,8 @@
 	damage = 0
 	damage_type = BURN
 	check_armour = ARMOR_ENERGY
+	mob_hit_sound = list('sound/effects/gore/sear.ogg')
+	hitsound_wall = 'sound/weapons/guns/misc/laser_searwall.ogg'
 
 	heat = 100
 
@@ -47,6 +49,7 @@
 /obj/item/projectile/energy/electrode
 	name = "electrode"
 	icon_state = "spark"
+	mob_hit_sound = list('sound/weapons/tase.ogg')
 	nodamage = 1
 	taser_effect = 1
 	agony = 40

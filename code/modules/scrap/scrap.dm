@@ -384,6 +384,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/random/pack/tech_loot = 4,
 		/obj/random/powercell,
 		/obj/random/circuitboard,
+		/obj/random/science,
 		/obj/random/material_ore,
 		/obj/random/common_oddities = 0.5,
 		/obj/random/pack/rare,//No weight on this, rare loot is pretty likely to appear in scientific scrap

@@ -75,9 +75,9 @@
 	desc = "A bloated slab of sickly-green meat cut from a spider. The venom just gives it more flavor. Delicious!"
 	icon_state = "xenomeat"
 	filling_color = "#E2FFDE"
-
+	
 	bitesize = 6
-	preloaded_reagents = list("protein" = 8, "stoxin" = 8)
+	preloaded_reagents = list("protein" = 8, "pararein" = 8)
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/carp
 	name = "carp fillet"

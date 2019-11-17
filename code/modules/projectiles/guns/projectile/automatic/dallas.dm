@@ -4,6 +4,7 @@
 	name = "PAR 10x24 \"Dallas\""
 	desc = "Dallas is a pulse-action air-cooled automatic assault rifle made by unknown manufacturer. This weapon is very rare, but deadly efficient. \
 		It's used by elite mercenaries, assassins or bald marines. Makes you feel like a space marine when you hold it."
+	icon = 'icons/obj/guns/projectile/dallas.dmi'
 	icon_state = "dallas"
 	item_state = "dallas"
 	w_class = ITEM_SIZE_HUGE

@@ -45,6 +45,7 @@
 /obj/item/weapon/gun/projectile/dartgun
 	name = "dart gun"
 	desc = "Zeng-Hu Pharmaceutical's entry into the arms market, the Z-H P Artemis is a gas-powered dart gun capable of delivering chemical cocktails swiftly across short distances."
+	icon = 'icons/obj/guns/projectile/dartgun.dmi'
 	icon_state = "dartgun-empty"
 	item_state = null
 
@@ -78,8 +79,10 @@
 	..()
 	if(ammo_magazine)
 		icon_state = "dartgun-[round(ammo_magazine.stored_ammo.len,1)]"
+		set_item_state("-[round(ammo_magazine.stored_ammo.len,1)]")
 	else
 		icon_state = "dartgun-empty"
+		set_item_state("-empty")
 	return
 
 /obj/item/weapon/gun/projectile/dartgun/consume_next_projectile()

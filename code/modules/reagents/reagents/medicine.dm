@@ -88,6 +88,7 @@
 	M.adjust_hallucination(-0.9 * effect_multiplier)
 	M.adjustToxLoss(-((0.4 + (M.getToxLoss() * 0.05)) * effect_multiplier))
 	M.add_chemical_effect(CE_ANTITOX, 1)
+	holder.remove_reagent("pararein", 0.2 * effect_multiplier)
 
 /datum/reagent/medicine/dexalin
 	name = "Dexalin"
@@ -751,17 +752,28 @@
 		M.sleeping = max(M.sleeping, 20)
 		M.drowsyness = max(M.drowsyness, 60)
 	M.add_chemical_effect(CE_PULSE, -1)
-	M.nsa_threshold /= 2
+	
 
 
 /datum/reagent/medicine/haloperidol/overdose(var/mob/living/carbon/M, var/alien)
 	M.adjustToxLoss(6)
 
+/datum/reagent/medicine/haloperidol/on_mob_add(mob/living/L)
+	..()
+	var/mob/living/carbon/C = L
+	if(istype(C))
+		for (var/tag in C.nerve_system_accumulations)
+			var/nsa_value = C.get_nsa_value(tag)/2
+				C.adjust_nsa(nsa_value, tag)
+
 /datum/reagent/medicine/haloperidol/on_mob_delete(mob/living/L)
 	..()
 	var/mob/living/carbon/C = L
 	if(istype(C))
-		C.nsa_threshold = initial(C.nsa_threshold)
+		for (var/tag in C.nerve_system_accumulations)
+			var/nsa_value = C.get_nsa_value(tag)*2
+				C.adjust_nsa(nsa_value, tag)
+
 
 /datum/reagent/medicine/vomitol
 	name = "Vomitol"

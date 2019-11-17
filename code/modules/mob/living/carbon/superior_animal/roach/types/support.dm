@@ -36,6 +36,9 @@
 	if(stat != CONSCIOUS)
 		return
 
+	if(stat != AI_inactive)
+		return
+
 	gas_sac.add_reagent("blattedin", 1)
 
 	if(prob(7))

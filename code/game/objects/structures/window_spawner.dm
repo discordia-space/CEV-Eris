@@ -39,6 +39,13 @@
 			return
 		activate()
 		return INITIALIZE_HINT_QDEL
+	else
+		if(activated)
+			return
+		activate()
+		spawn(10)
+			qdel(src)
+
 
 /obj/effect/window_lwall_spawn/proc/handle_window_spawn(var/obj/structure/window/W)
 	new win_path(loc)

@@ -27,7 +27,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 				create_catalog_entry(D, CATALOG_CHEMISTRY)
 	// second run to add decompose results
 	for(var/V in chemical_reagents_list)
-		var/datum/reagent/D = chemical_reagents_list[V]	
+		var/datum/reagent/D = chemical_reagents_list[V]
 		if(D.heating_products && D.heating_point)
 			for(var/id in D.heating_products)
 				var/datum/catalog_entry/reagent/E = get_catalog_entry(get_reagent_type_by_id(id))
@@ -39,7 +39,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 				var/datum/catalog_entry/reagent/E = get_catalog_entry(D.type)
 				if(E)
 					E.add_decomposition_from(D.type)
-			
+
 	var/datum/catalog/C = GLOB.catalogs[CATALOG_REAGENTS]
 	C.associated_template = "catalog_list_reagents.tmpl"
 	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
@@ -84,7 +84,6 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 /proc/get_catalog_entry(var/type)
 	if(GLOB.all_catalog_entries_by_type[type])
 		return GLOB.all_catalog_entries_by_type[type]
-	error("Catalog Entry with type [type] was not found.")
 
 /datum/catalog
 	var/id
@@ -126,7 +125,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 
 /datum/catalog_entry/New(var/datum/V)
 	thing_type = V.type
-	
+
 /datum/catalog_entry/proc/search_value(var/value)
 	if(findtext(title, value))
 		return TRUE
@@ -223,7 +222,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 			dat["types"] += get_reagent_type_by_id(id)
 		chilling_decompose = dat
 		chilling_point = V.chilling_point
-		
+
 	scannable = V.scannable ? "Yes" : "No"
 	overdose = V.overdose ? V.overdose : null
 	var/list/recipes = GLOB.chemical_reactions_list_by_result[V.id]
@@ -274,7 +273,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	data["description"] = description
 	data["taste"] = taste
 	data["color"] = color
-	data["addiction_chance"] = addiction_chance 
+	data["addiction_chance"] = addiction_chance
 
 	return data
 
@@ -291,7 +290,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	description = V.desc
 	thing_nature = "Atom"
 	image_path = getAtomCacheFilename(V)
-	
+
 
 /datum/catalog_entry/atom/ui_data(mob/user, ui_key = "main")
 	var/list/data = ..()
@@ -336,7 +335,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 		if(D.nutrition)
 			nutrition = D.nutrition > 1 ? "High" : "Low"
 		thing_nature = "Drink"
-		
+
 	else if(istype(V, /datum/reagent/ethanol))
 		var/datum/reagent/ethanol/E = V
 		if(E.adj_temp)
@@ -345,7 +344,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 			nutrition = E.nutriment_factor > 1 ? "High" : "Low"
 		strength = E.strength <= 15 ? "Light" : E.strength <= 50 ? "Strong" : "Knocking out"
 		thing_nature = "Alchohol drink"
-	
+
 	var/list/recipes = GLOB.chemical_reactions_list_by_result[V.id]
 	if(recipes)
 		recipe_data = list()

@@ -3,7 +3,7 @@
 	set category = "IC"
 
 	if(!stat && can_click())
-		setClickCooldown(10)
+		setClickCooldown(20)
 		resist_grab()
 		if(!weakened)
 			process_resist()

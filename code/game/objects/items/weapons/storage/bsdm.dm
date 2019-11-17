@@ -1,7 +1,8 @@
 /obj/item/weapon/storage/bsdm
 	name = "\improper BSDM unit"
 	desc = "A Blue Space Direct Mail unit."
-	icon_state = "box_of_doom" // placeholder
+	icon_state = "bsdm"
+	item_state = "bsdm"
 	max_storage_space = DEFAULT_NORMAL_STORAGE
 	var/datum/mind/owner
 
@@ -10,11 +11,13 @@
 		return
 	owner = user.mind
 	to_chat(user, "You claim \the [src].")
-
+	icon_state = "bsdm_sealed"
+	
 /obj/item/weapon/storage/bsdm/verb/activate()
 	set name = "Launch"
 	set category = "Object"
 	set src in oview(1)
+	icon_state = "bsdm_teleporting"
 	if(usr.incapacitated() || !Adjacent(usr))
 		return
 	if(!(locate(/area/space) in oview(src)))

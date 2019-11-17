@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/projectile/automatic/drozd
 	name = "Excelsior 9mm \"Drozd\""
 	desc = "An excellent fully automatic submachinegun. Famous for it's perfomance in close quarters. Uses 9mm rounds."
+	icon = 'icons/obj/guns/projectile/drozd.dmi'
 	icon_state = "drozd"
 	item_state = "drozd"
 	w_class = ITEM_SIZE_NORMAL
@@ -23,11 +24,10 @@
 		)
 
 /obj/item/weapon/gun/projectile/automatic/drozd/update_icon()
-	var/iconstring = initial(icon_state)
-	var/itemstring = initial(item_state)
+	var/state = ""
 
 	if (ammo_magazine)
-		iconstring += "_mag"
+		state += "_mag"
 
-	icon_state = iconstring
-	item_state = itemstring
+	icon_state = initial(icon_state) + state
+	set_item_state(state)

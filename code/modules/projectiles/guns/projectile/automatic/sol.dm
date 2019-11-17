@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/projectile/automatic/sol
 	name = "FS CAR 6.5x39 \"Sol\""
 	desc = "A standard-issue weapon used by Ironhammer operatives. Compact and reliable. Uses 6.5x39 rounds."
+	icon = 'icons/obj/guns/projectile/sol.dmi'
 	icon_state = "sol-para"
 	item_state = "sol"
 	w_class = ITEM_SIZE_BULKY
@@ -32,6 +33,7 @@
 
 /obj/item/weapon/gun/projectile/automatic/sol/update_icon()
 	icon_state = initial(icon_state) + (ammo_magazine ?  "-full" : "")
+	set_item_state(ammo_magazine ?  "-full" : "", back = TRUE)
 	overlays.Cut()
 	update_charge()
 

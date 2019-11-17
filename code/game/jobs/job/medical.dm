@@ -18,13 +18,15 @@
 		access_moebius, access_medical_equip, access_morgue, access_genetics, access_heads,
 		access_chemistry, access_virology, access_cmo, access_surgery, access_RC_announce,
 		access_keycard_auth, access_sec_doors, access_psychiatrist, access_eva, access_maint_tunnels,
-		access_external_airlocks, access_paramedic
+		access_external_airlocks, access_paramedic, access_research_equipment
 	)
 
 	ideal_character_age = 50
 
 	stat_modifiers = list(
-		STAT_BIO = 40,
+		STAT_BIO = 50,
+		STAT_MEC = 10,
+		STAT_COG = 25
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/comm,
@@ -76,7 +78,8 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 	)
 
 	stat_modifiers = list(
-		STAT_BIO = 30,
+		STAT_BIO = 40,
+		STAT_COG = 10
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/suit_sensors,
@@ -134,7 +137,8 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 
 	stat_modifiers = list(
 		STAT_COG = 10,
-		STAT_BIO = 30,
+		STAT_MEC = 10,
+		STAT_BIO = 30
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/chem_catalog,
@@ -184,6 +188,8 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 
 	stat_modifiers = list(
 		STAT_BIO = 25,
+		STAT_COG = 15,
+		STAT_VIG = 5
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/suit_sensors,
@@ -213,7 +219,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 	outfit_type = /decl/hierarchy/outfit/job/medical/paramedic
 	access = list(
 		access_moebius, access_medical_equip, access_morgue, access_surgery, access_paramedic,
-		access_eva, access_maint_tunnels, access_external_airlocks, access_psychiatrist
+		access_eva, access_maint_tunnels, access_external_airlocks
 	)
 
 	stat_modifiers = list(

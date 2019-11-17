@@ -169,97 +169,100 @@
 /mob/living/simple_animal/Life()
 	..()
 
-	if(stat == DEAD)
-		return 0
+	if(!stasis)
 
-	if(health <= 0)
-		death()
-		return
+		if(stat == DEAD)
+			return 0
 
-	if(health > maxHealth)
-		health = maxHealth
+		if(health <= 0)
+			death()
+			return
 
-	handle_stunned()
-	handle_weakened()
-	handle_paralysed()
-	handle_supernatural()
+		if(health > maxHealth)
+			health = maxHealth
 
-	process_food()
-	handle_foodscanning()
+		handle_stunned()
+		handle_weakened()
+		handle_paralysed()
+		handle_supernatural()
 
-	//Atmos
-	var/atmos_suitable = 1
+		process_food()
+		handle_foodscanning()
 
-	var/atom/A = loc
+		//Atmos
+		var/atmos_suitable = 1
 
-	if(istype(A,/turf))
-		var/turf/T = A
+		var/atom/A = loc
 
-		var/datum/gas_mixture/Environment = T.return_air()
+		if(istype(A,/turf))
+			var/turf/T = A
 
-		if(Environment)
+			var/datum/gas_mixture/Environment = T.return_air()
 
-			if( abs(Environment.temperature - bodytemperature) > 40 )
-				bodytemperature += ((Environment.temperature - bodytemperature) / 5)
+			if(Environment)
 
-			if(min_oxy)
-				if(Environment.gas["oxygen"] < min_oxy)
-					atmos_suitable = 0
-			if(max_oxy)
-				if(Environment.gas["oxygen"] > max_oxy)
-					atmos_suitable = 0
-			if(min_tox)
-				if(Environment.gas["plasma"] < min_tox)
-					atmos_suitable = 0
-			if(max_tox)
-				if(Environment.gas["plasma"] > max_tox)
-					atmos_suitable = 0
-			if(min_n2)
-				if(Environment.gas["nitrogen"] < min_n2)
-					atmos_suitable = 0
-			if(max_n2)
-				if(Environment.gas["nitrogen"] > max_n2)
-					atmos_suitable = 0
-			if(min_co2)
-				if(Environment.gas["carbon_dioxide"] < min_co2)
-					atmos_suitable = 0
-			if(max_co2)
-				if(Environment.gas["carbon_dioxide"] > max_co2)
-					atmos_suitable = 0
+				if( abs(Environment.temperature - bodytemperature) > 40 )
+					bodytemperature += ((Environment.temperature - bodytemperature) / 5)
 
-	//Atmos effect
-	if(bodytemperature < minbodytemp)
-		fire_alert = 2
-		adjustBruteLoss(cold_damage_per_tick)
-	else if(bodytemperature > maxbodytemp)
-		fire_alert = 1
-		adjustBruteLoss(heat_damage_per_tick)
-	else
-		fire_alert = 0
+				if(min_oxy)
+					if(Environment.gas["oxygen"] < min_oxy)
+						atmos_suitable = 0
+				if(max_oxy)
+					if(Environment.gas["oxygen"] > max_oxy)
+						atmos_suitable = 0
+				if(min_tox)
+					if(Environment.gas["plasma"] < min_tox)
+						atmos_suitable = 0
+				if(max_tox)
+					if(Environment.gas["plasma"] > max_tox)
+						atmos_suitable = 0
+				if(min_n2)
+					if(Environment.gas["nitrogen"] < min_n2)
+						atmos_suitable = 0
+				if(max_n2)
+					if(Environment.gas["nitrogen"] > max_n2)
+						atmos_suitable = 0
+				if(min_co2)
+					if(Environment.gas["carbon_dioxide"] < min_co2)
+						atmos_suitable = 0
+				if(max_co2)
+					if(Environment.gas["carbon_dioxide"] > max_co2)
+						atmos_suitable = 0
 
-	if(!atmos_suitable)
-		adjustBruteLoss(unsuitable_atoms_damage)
+		//Atmos effect
+		if(bodytemperature < minbodytemp)
+			fire_alert = 2
+			adjustBruteLoss(cold_damage_per_tick)
+		else if(bodytemperature > maxbodytemp)
+			fire_alert = 1
+			adjustBruteLoss(heat_damage_per_tick)
+		else
+			fire_alert = 0
 
-	//Speaking
-	if(!client && speak_chance)
-		if(rand(0,200) < speak_chance)
-			visible_emote(emote_see)
-			speak_audio()
+		if(!atmos_suitable)
+			adjustBruteLoss(unsuitable_atoms_damage)
 
-	if(incapacitated())
-		return 1
+		if(!AI_inactive)
+			//Speaking
+			if(!client && speak_chance)
+				if(rand(0,200) < speak_chance)
+					visible_emote(emote_see)
+					speak_audio()
 
-	//Movement
-	turns_since_move++
-	if(!client && !stop_automated_movement && wander && !anchored)
-		if(isturf(loc) && !incapacitated() && canmove)		//This is so it only moves if it's not inside a closet, gentics machine, etc.
-			if(turns_since_move >= turns_per_move)
-				if(!(stop_automated_movement_when_pulled && pulledby)) //Soma animals don't move when pulled
-					var/moving_to = 0 // otherwise it always picks 4, fuck if I know.   Did I mention fuck BYOND
-					moving_to = pick(cardinal)
-					set_dir(moving_to)			//How about we turn them the direction they are moving, yay.
-					step_glide(src, moving_to, DELAY2GLIDESIZE(0.5 SECONDS))
-					turns_since_move = 0
+			if(incapacitated())
+				return 1
+
+			//Movement
+			turns_since_move++
+			if(!client && !stop_automated_movement && wander && !anchored)
+				if(isturf(loc) && !incapacitated() && canmove)		//This is so it only moves if it's not inside a closet, gentics machine, etc.
+					if(turns_since_move >= turns_per_move)
+						if(!(stop_automated_movement_when_pulled && pulledby)) //Soma animals don't move when pulled
+							var/moving_to = 0 // otherwise it always picks 4, fuck if I know.   Did I mention fuck BYOND
+							moving_to = pick(cardinal)
+							set_dir(moving_to)			//How about we turn them the direction they are moving, yay.
+							step_glide(src, moving_to, DELAY2GLIDESIZE(0.5 SECONDS))
+							turns_since_move = 0
 
 	return 1
 
