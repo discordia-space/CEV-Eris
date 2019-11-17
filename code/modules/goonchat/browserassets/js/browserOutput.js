@@ -21,7 +21,8 @@ window.onerror = function(msg, url, line, col, error) {
 
 //Globals
 window.status = 'Output';
-var $messages, $subOptions, $subAudio, $selectedSub, $contextMenu, $filterMessages, $last_message;
+var $messages, $subOptions, $subAudio, $selectedSub, $contextMenu;
+var last_messages = [];
 var opts = {
 	//General
 	'messageCount': 0, //A count...of messages...
@@ -71,6 +72,7 @@ var opts = {
 	'defaultMusicVolume': 25,
 
 	'messageCombining': true,
+	'messageCombiningCount': 20,
 
 };
 var replaceRegexes = {};
@@ -366,27 +368,35 @@ function output(message, flag) {
 
 	var handled = false;
 	if (opts.messageCombining) {
-		var lastmessages = $messages.children('div.entry:last-child').last();
-		if (lastmessages.length && $last_message && $last_message == trimmed_message) {
-			var badge = lastmessages.children('.r').last();
-			if (badge.length) {
-				badge = badge.detach();
-				badge.text(parseInt(badge.text()) + 1);
-			} else {
-				badge = $('<span/>', {'class': 'r', 'text': 2});
-			}
-			lastmessages.html(message);
-			lastmessages.find('[replaceRegex]').each(replaceRegex);
-			lastmessages.append(badge);
-			badge.animate({
-				"font-size": "0.9em"
-			}, 100, function() {
+		var index = $.inArray(trimmed_message, last_messages);
+		if(index != -1) {
+			var back_index = last_messages.length - index;
+			var lastmessage = $messages.children('div.entry:nth-last-child(' + back_index + ')').last();
+			if (lastmessage.length) {
+				var badge = lastmessage.children('.r').last();
+				if (badge.length) {
+					badge = badge.detach();
+					badge.text(parseInt(badge.text()) + 1);
+				} else {
+					badge = $('<span/>', {'class': 'r', 'text': 2});
+				}
+				lastmessage.html(message);
+				lastmessage.find('[replaceRegex]').each(replaceRegex);
+				lastmessage.append(badge);
 				badge.animate({
-					"font-size": "0.7em"
-				}, 100);
-			});
-			opts.messageCount--;
-			handled = true;
+					"font-size": "0.9em"
+				}, 100, function() {
+					badge.animate({
+						"font-size": "0.7em"
+					}, 100);
+				});
+				opts.messageCount--;
+				if(back_index > 1) {
+					$messages[0].appendChild(lastmessage[0]);
+					last_messages.push(last_messages.splice(index, 1)[0]);
+				}
+				handled = true;
+			}
 		}
 	}
 
@@ -401,7 +411,9 @@ function output(message, flag) {
 
 		$(entry).find('[replaceRegex]').each(replaceRegex);
 
-		$last_message = trimmed_message;
+		if(last_messages.push(trimmed_message) >= opts.messageCombiningCount) {
+			last_messages.shift();
+		}
 		$messages[0].appendChild(entry);
 		$(entry).find("img.icon").error(iconError);
 
