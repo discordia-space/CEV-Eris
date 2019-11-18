@@ -19,6 +19,8 @@
 /obj/item/weapon/gun/energy/crossbow/ninja
 	name = "energy dart thrower"
 	projectile_type = /obj/item/projectile/energy/dart
+	safety = FALSE
+	restrict_safety = TRUE
 
 /obj/item/weapon/gun/energy/crossbow/largecrossbow
 	name = "NT EC \"Themis\""
