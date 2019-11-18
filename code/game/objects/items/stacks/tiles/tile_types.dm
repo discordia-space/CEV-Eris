@@ -117,31 +117,31 @@
 	stacktype = /obj/item/stack/tile/floor
 	build_type = /obj/item/stack/tile/floor
 
-var/list/cyborg_floor = list(
-	"steel techfloor" = /obj/item/stack/tile/floor/steel/techfloor,
-	"gray platform" =  /obj/item/stack/tile/floor/steel/gray_platform,
-	"cafe floor tile" = /obj/item/stack/tile/floor/cafe,
-	"maint floor tile" = /obj/item/stack/tile/floor/techmaint,
-	"perforated maint floor tile" = /obj/item/stack/tile/floor/techmaint/perforated,
-	"panel maint floor tile" = /obj/item/stack/tile/floor/techmaint/panels,
-	"cargo maint floor tile" = /obj/item/stack/tile/floor/techmaint/cargo,
-	"steel techfloor tile with vents" = /obj/item/stack/tile/floor/steel/techfloor_grid,
-	"steel brown perforated tile" = /obj/item/stack/tile/floor/steel/brown_perforated,
-	"steel gray perforated tile" = /obj/item/stack/tile/floor/steel/gray_perforated,
-	"steel cargo tile" = /obj/item/stack/tile/floor/steel/cargo,
-	"steel bar flat tile" = /obj/item/stack/tile/floor/steel/bar_flat,
-	"steel bar dance tile" = /obj/item/stack/tile/floor/steel/bar_dance,
-	"steel bar light tile" = /obj/item/stack/tile/floor/steel/bar_light,
-	"white floor tile" = /obj/item/stack/tile/floor/white,
-	"white cargo tile" = /obj/item/stack/tile/floor/white/cargo,
-	"red carpet" = /obj/item/stack/tile/carpet,
-	"black carpet" = /obj/item/stack/tile/carpet/bcarpet,
-	"blue carpet" = /obj/item/stack/tile/carpet/blucarpet,
-	"turquoise carpet" = /obj/item/stack/tile/carpet/turcarpet,
-	"silver blue carpet" = /obj/item/stack/tile/carpet/sblucarpet,
-	"purple carpet" = /obj/item/stack/tile/carpet/purcarpet,
-	"orange carpet" = /obj/item/stack/tile/carpet/oracarpet
-)
+	var/list/cyborg_floor = list(
+		"steel techfloor" = /obj/item/stack/tile/floor/steel/techfloor,
+		"gray platform" =  /obj/item/stack/tile/floor/steel/gray_platform,
+		"cafe floor tile" = /obj/item/stack/tile/floor/cafe,
+		"maint floor tile" = /obj/item/stack/tile/floor/techmaint,
+		"perforated maint floor tile" = /obj/item/stack/tile/floor/techmaint/perforated,
+		"panel maint floor tile" = /obj/item/stack/tile/floor/techmaint/panels,
+		"cargo maint floor tile" = /obj/item/stack/tile/floor/techmaint/cargo,
+		"steel techfloor tile with vents" = /obj/item/stack/tile/floor/steel/techfloor_grid,
+		"steel brown perforated tile" = /obj/item/stack/tile/floor/steel/brown_perforated,
+		"steel gray perforated tile" = /obj/item/stack/tile/floor/steel/gray_perforated,
+		"steel cargo tile" = /obj/item/stack/tile/floor/steel/cargo,
+		"steel bar flat tile" = /obj/item/stack/tile/floor/steel/bar_flat,
+		"steel bar dance tile" = /obj/item/stack/tile/floor/steel/bar_dance,
+		"steel bar light tile" = /obj/item/stack/tile/floor/steel/bar_light,
+		"white floor tile" = /obj/item/stack/tile/floor/white,
+		"white cargo tile" = /obj/item/stack/tile/floor/white/cargo,
+		"red carpet" = /obj/item/stack/tile/carpet,
+		"black carpet" = /obj/item/stack/tile/carpet/bcarpet,
+		"blue carpet" = /obj/item/stack/tile/carpet/blucarpet,
+		"turquoise carpet" = /obj/item/stack/tile/carpet/turcarpet,
+		"silver blue carpet" = /obj/item/stack/tile/carpet/sblucarpet,
+		"purple carpet" = /obj/item/stack/tile/carpet/purcarpet,
+		"orange carpet" = /obj/item/stack/tile/carpet/oracarpet
+	)
 
 /obj/item/stack/tile/floor/cyborg/afterattack(var/atom/A, var/mob/user, proximity, params)
 	if(!proximity)
