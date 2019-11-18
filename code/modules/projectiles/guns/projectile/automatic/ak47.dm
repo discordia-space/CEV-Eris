@@ -1,7 +1,7 @@
 /obj/item/weapon/gun/projectile/automatic/ak47
-	name = "Excelsior 7.62x39 AKMS"
+	name = "Excelsior .30 AKMS"
 	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
-		 This is a copy of an ancient semi-automatic rifle chambered for 7.62x39. If it won't fire, percussive maintenance should get it working again. \
+		 This is a copy of an ancient semi-automatic rifle chambered for .30 Rifle. If it won't fire, percussive maintenance should get it working again. \
 		 It is known for its easy maintenance, and low price. This gun is not in active military service anymore, but has become ubiquitous among criminals and insurgents. \
 		 This is a high-quality copy, which has an automatic fire mode."
 	icon = 'icons/obj/guns/projectile/ak.dmi'
@@ -10,12 +10,12 @@
 	var/item_suffix = "-black"
 	w_class = ITEM_SIZE_BULKY
 	force = WEAPON_FORCE_PAINFUL
-	caliber = "a762"
+	caliber = "lrifle"
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 4)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
-	mag_well = MAG_WELL_AK|MAG_WELL_CIVI_RIFLE
-	magazine_type = /obj/item/ammo_magazine/c762_long
+	mag_well = MAG_WELL_RIFLE
+	magazine_type = /obj/item/ammo_magazine/lrifle
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
 	price_tag = 3500
 	fire_sound = 'sound/weapons/guns/fire/ltrifle_fire.ogg'
@@ -35,9 +35,9 @@
 	icon_state = "[initial(icon_state)][ammo_magazine? "-[ammo_magazine.max_ammo]": ""]"
 
 /obj/item/weapon/gun/projectile/automatic/ak47/fs
-	name = "FS AR 7.62x39 \"Kalashnikov\""
+	name = "FS AR .30 \"Kalashnikov\""
 	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
-		 This is a copy of an ancient semi-automatic rifle chambered for 7.62x39. If it won't fire, percussive maintenance should get it working again. \
+		 This is a copy of an ancient semi-automatic rifle chambered for .30 Rifle. If it won't fire, percussive maintenance should get it working again. \
 		 It is known for its easy maintenance, and low price. This gun is not in active military service anymore, but has become ubiquitous among criminals and insurgents. \
 		 This copy, in fact, is a reverse-engineered poor-quality copy of a more perfect copy of an ancient rifle, therefore it can fire only in bursts instead of auto-fire."
 	icon_state = "AK"

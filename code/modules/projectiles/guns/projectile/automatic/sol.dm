@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/automatic/sol
-	name = "FS CAR 6.5x39 \"Sol\""
-	desc = "A standard-issue weapon used by Ironhammer operatives. Compact and reliable. Uses 6.5x39 rounds."
+	name = "FS CAR .25 CS \"Sol\""
+	desc = "A standard-issue weapon used by Ironhammer operatives. Compact and reliable. Uses .25 Caseless Rifle rounds."
 	icon = 'icons/obj/guns/projectile/sol.dmi'
 	icon_state = "sol-para"
 	item_state = "sol"
@@ -9,7 +9,7 @@
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_IH
 	auto_eject = 1
-	caliber = "6.5mm"
+	caliber = "clrifle"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)
@@ -38,7 +38,7 @@
 	update_charge()
 
 /obj/item/weapon/gun/projectile/automatic/sol/rds
-	desc = "A standard-issue weapon used by Ironhammer operatives. Compact and reliable. Uses 6.5x39 rounds. This one comes with red dot sight."
+	desc = "A standard-issue weapon used by Ironhammer operatives. Compact and reliable. Uses .25 Caseless Rifle rounds. This one comes with red dot sight."
 	icon_state = "sol-eot"
 	price_tag = 2350
 	zoom_factor = 0.2

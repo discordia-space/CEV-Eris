@@ -2202,6 +2202,7 @@
 #include "code\modules\projectiles\guns\projectile\automatic\maxim.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\sol.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\sts35.dm"
+#include "code\modules\projectiles\guns\projectile\automatic\vintorez.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\z8.dm"
 #include "code\modules\projectiles\guns\projectile\other\RPG.dm"
 #include "code\modules\projectiles\guns\projectile\pistol\clarissa.dm"

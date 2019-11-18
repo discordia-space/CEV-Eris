@@ -4,12 +4,13 @@
 	icon = 'icons/obj/guns/projectile/hm_pistol.dmi'
 	icon_state = "hm_pistol"
 	item_state = "pistol"
-	caliber = ".38"
+	caliber = "pistol"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	load_method = SINGLE_CASING
 	max_shells = 1
-	ammo_type = /obj/item/ammo_casing/c38
+	ammo_type = /obj/item/ammo_casing/pistol
+	damage_multiplier = 1.36
 	var/chamber_open = FALSE
 	var/jammed = FALSE
 	var/jam_chance = 15

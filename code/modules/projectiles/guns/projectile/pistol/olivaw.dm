@@ -1,18 +1,18 @@
 /obj/item/weapon/gun/projectile/olivaw
-	name = "FS HG .32 \"Olivaw\""
-	desc = "That's a \"Frozen Star\" popular non-lethal pistol. This one seems to have a two-round burst-fire mode. Uses .32 rounds."
+	name = "FS HG .35 Auto \"Olivaw\""
+	desc = "That's a \"Frozen Star\" popular non-lethal pistol. This one seems to have a two-round burst-fire mode. Uses holdout .35 Auto mags."
 	icon = 'icons/obj/guns/projectile/olivawcivil.dmi'
 	icon_state = "olivawcivil"
 	item_state = "pistol"
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
-	caliber = ".32"
-	ammo_mag = "mag_cl32"
+	caliber = "pistol"
+	ammo_mag = "mag_lpistol"
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
 	load_method = MAGAZINE
-	mag_well = MAG_WELL_PISTOL
+	mag_well = MAG_WELL_L_PISTOL
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
 	price_tag = 800
-	damage_multiplier = 1.2
+	damage_multiplier = 1.1 //To match orginal damage
 	recoil = 0.4 //low-caliber peashooter, but more complicated and robust than giskard so less than normal recoil
 
 	firemodes = list(
