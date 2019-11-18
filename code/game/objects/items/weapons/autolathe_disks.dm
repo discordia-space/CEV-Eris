@@ -5,6 +5,7 @@
 	max_capacity = 1024	// Up to 255 designs, automatically reduced to the nearest power of 2
 	origin_tech = list(TECH_DATA = 3) // Most design disks end up being 64 to 128 GQ
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 2, MATERIAL_GOLD = 0.5)
+	license = -1
 	var/list/designs = list()
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/install_default_files()
@@ -13,7 +14,7 @@
 	for(var/design_typepath in designs)
 		var/datum/computer_file/binary/design/D = new
 		D.set_design_type(design_typepath)
-		if(license)
+		if(license > 0)
 			D.set_copy_protection(TRUE)
 
 		store_file(D)
@@ -33,7 +34,7 @@
 	disk_name = "Asters Basic Tool Pack"
 	icon_state = "guild"
 
-	license = 0
+	license = -1
 	designs = list(
 		/datum/design/autolathe/tool/hatchet,
 		/datum/design/autolathe/tool/minihoe,
@@ -61,7 +62,7 @@
 	disk_name = "Asters Miscellaneous Pack"
 	icon_state = "guild"
 
-	license = 0
+	license = -1
 	designs = list(
 		/datum/design/autolathe/misc/flashlight,
 		/datum/design/autolathe/tool/ducttape,
@@ -400,7 +401,7 @@
 	desc = "Seize it."
 	icon_state = "excelsior"
 
-	license = 0
+	license = -1
 	designs = list(
 		/datum/design/autolathe/circuit/autolathe_excelsior,
 		/datum/design/autolathe/circuit/shieldgen_excelsior,
@@ -444,7 +445,7 @@
 	desc = "The back has a machine etching: \"We stand for organized terror - this should be frankly admitted. Terror is an absolute necessity during times of revolution.\""
 	icon_state = "excelsior"
 
-	license = 0
+	license = -1
 	designs = list(
 		/datum/design/autolathe/gun/makarov,
 		/datum/design/autolathe/gun/drozd,
@@ -485,6 +486,7 @@
 	disk_name = "NeoTeology Pack"
 	icon_state = "neotheology"
 
+	license = -1
 	designs = list(
 		/datum/design/autolathe/biomatter/meat,
 		/datum/design/autolathe/biomatter/milk,
