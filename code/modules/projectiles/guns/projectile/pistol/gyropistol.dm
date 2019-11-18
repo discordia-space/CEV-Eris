@@ -4,7 +4,7 @@
 	icon = 'icons/obj/guns/projectile/gyropistol.dmi'
 	icon_state = "gyropistol"
 	item_state = "pistol"
-	caliber = "75"
+	caliber = "70"
 	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'
 	origin_tech = list(TECH_COMBAT = 3)
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)

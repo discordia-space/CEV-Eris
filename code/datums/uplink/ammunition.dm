@@ -5,38 +5,33 @@
 	item_cost = 4
 	category = /datum/uplink_category/ammunition
 
-/datum/uplink_item/item/ammo/mc9mm
-	name = "9mm"
+/datum/uplink_item/item/ammo/pistol
+	name = ".35 Auto"
 	item_cost = 1
-	path = /obj/item/ammo_magazine/mc9mm/highvelocity
+	path = /obj/item/ammo_magazine/pistol/highvelocity
 
-/datum/uplink_item/item/ammo/a10mm
-	name = "10mm"
-	item_cost = 1
-	path = /obj/item/ammo_magazine/a10mm/hv
-
-/datum/uplink_item/item/ammo/smg10mm
-	name = "smg 10mm"
+/datum/uplink_item/item/ammo/smg
+	name = "smg .35 Auto"
 	item_cost = 2
-	path = /obj/item/ammo_magazine/smg10mm/hv
+	path = /obj/item/ammo_magazine/smg/hv
 
 /datum/uplink_item/item/ammo/darts
 	name = "Darts"
 	item_cost = 1
 	path = /obj/item/ammo_magazine/chemdart
 
-/datum/uplink_item/item/ammo/a357
-	name = ".357"
+/datum/uplink_item/item/ammo/magnum
+	name = ".40 magnum speed loader"
 	item_cost = 1
-	path = /obj/item/ammo_magazine/sl357/highvelocity
+	path = /obj/item/ammo_magazine/magnum/hv
 
-/datum/uplink_item/item/ammo/a762
-	name = "7.62mm"
+/datum/uplink_item/item/ammo/lrifle
+	name = ".30 Rifle"
 	item_cost = 3
-	path = /obj/item/ammo_magazine/c762_long/highvelocity
+	path = /obj/item/ammo_magazine/lrifle_long/highvelocity
 
 /datum/uplink_item/item/ammo/sniperammo
-	name = "14.5mm"
+	name = ".60 Anti Material"
 	item_cost = 3
 	path = /obj/item/weapon/storage/box/sniperammo
 

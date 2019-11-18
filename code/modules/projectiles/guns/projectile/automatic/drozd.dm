@@ -1,17 +1,17 @@
 /obj/item/weapon/gun/projectile/automatic/drozd
-	name = "Excelsior 9mm \"Drozd\""
-	desc = "An excellent fully automatic submachinegun. Famous for it's perfomance in close quarters. Uses 9mm rounds."
+	name = "Excelsior .35 Auto \"Drozd\""
+	desc = "An excellent fully automatic submachinegun. Famous for it's perfomance in close quarters. Uses .35 Auto rounds."
 	icon = 'icons/obj/guns/projectile/drozd.dmi'
 	icon_state = "drozd"
 	item_state = "drozd"
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_PAINFUL
-	caliber = "9mm"
+	caliber = "pistol"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
-	ammo_type = "/obj/item/ammo_casing/c9mm"
+	ammo_type = "/obj/item/ammo_casing/pistol"
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_SMG
-	magazine_type = /obj/item/ammo_magazine/smg9mm
+	magazine_type = /obj/item/ammo_magazine/smg
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 3)
 	price_tag = 2000
 	damage_multiplier = 0.5

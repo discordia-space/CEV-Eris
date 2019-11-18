@@ -16,6 +16,7 @@
 /datum/design/research/item/mecha/hydraulic_clamp
 	name = "Hydraulic clamp"
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp
+	starts_unlocked = TRUE
 
 /datum/design/research/item/mecha/drill
 	name = "Drill"
