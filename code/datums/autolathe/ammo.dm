@@ -62,7 +62,6 @@
 	name = "magazine (.20 Rifle)"
 	build_path = /obj/item/ammo_magazine/srifle
 
-
 /datum/design/autolathe/ammo/SMG_sol_rubber
 	name = "magazine (.25 caseless Rifle rubber)"
 	build_path = /obj/item/ammo_magazine/ihclrifle/rubber
