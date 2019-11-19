@@ -41,7 +41,7 @@
 		iconstring += "_slide"
 
 	icon_state = iconstring
-	item_state = itemstring
+	set_item_state(itemstring)
 
 /obj/item/weapon/gun/projectile/automatic/sts35/Initialize()
 	. = ..()

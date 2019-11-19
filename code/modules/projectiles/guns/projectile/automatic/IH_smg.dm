@@ -28,7 +28,7 @@
 	..()
 
 	var/iconstring = initial(icon_state)
-	var/itemstring = initial(item_state)
+	var/itemstring = ""
 
 	if (ammo_magazine)
 		iconstring += "_mag"
@@ -42,7 +42,7 @@
 		itemstring += "_s"
 
 	icon_state = iconstring
-	item_state = itemstring
+	set_item_state(itemstring)
 
 /obj/item/weapon/gun/projectile/automatic/IH_smg/Initialize()
 	. = ..()
