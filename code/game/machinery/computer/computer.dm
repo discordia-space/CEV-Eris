@@ -135,6 +135,9 @@
 		playsound(src, "keyboard", 100, 1, 0)
 
 /obj/machinery/computer/attack_hand(mob/user as mob)//check mob direction
+	if (stat & NOPOWER)
+		to_chat(user, SPAN_NOTICE("Computer is unpowered"))
+		return
 	if(..())
 		return 1
 	if(!issilicon(user))
