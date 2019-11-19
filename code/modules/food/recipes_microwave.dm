@@ -131,6 +131,54 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/mimeburger
 
+/datum/recipe/kampferburger
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat,
+		/obj/item/weapon/reagent_containers/food/snacks/bun
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/kampferburger
+
+/datum/recipe/panzerburger
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/panzer,
+		/obj/item/weapon/reagent_containers/food/snacks/bun
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/panzerburger
+
+/datum/recipe/jagerburger
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/jager,
+		/obj/item/weapon/reagent_containers/food/snacks/bun
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/jagerburger
+
+/datum/recipe/seucheburger
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/seuche,
+		/obj/item/weapon/reagent_containers/food/snacks/bun
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/seucheburger
+
+/datum/recipe/bigroachburger
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat,
+		/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/seuche,
+		/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/panzer,
+		/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/jager,
+		/obj/item/weapon/reagent_containers/food/snacks/bun,
+		/obj/item/weapon/reagent_containers/food/snacks/egg
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/bigroachburger
+
+/datum/recipe/fuhrerburger
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/fuhrer,
+		/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/fuhrer,
+		/obj/item/weapon/reagent_containers/food/snacks/bun,
+		/obj/item/weapon/reagent_containers/food/snacks/egg
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/fuhrerburger
+
 /datum/recipe/hotdog
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/bun,

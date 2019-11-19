@@ -1,6 +1,6 @@
 #define SANITY_PASSIVE_GAIN 0.2
 
-#define SANITY_DAMAGE_MOD 0.7
+#define SANITY_DAMAGE_MOD 0.5
 
 // Damage received from unpleasant stuff in view
 #define SANITY_DAMAGE_VIEW(damage, vig, dist) ((damage) * SANITY_DAMAGE_MOD * (1.2 - (vig) / STAT_LEVEL_MAX) * (1 - (dist)/15))
@@ -39,6 +39,7 @@
 
 	var/say_time = 0
 	var/breakdown_time = 0
+	var/spook_time = 0
 
 	var/list/datum/breakdown/breakdowns = list()
 
@@ -85,16 +86,22 @@
 			breakdowns -= B
 
 /datum/sanity/proc/handle_level()
-	if(level < 40)
-		if(prob(5))
-			to_chat(owner, SPAN_NOTICE("You hear something squeezing through the ventilation ducts."))
+	if(level < 40 && world.time >= spook_time)
+		spook_time = world.time + rand(1 MINUTES, 8 MINUTES) - (40 - level) * 1 SECONDS //Each missing sanity point below 40 decreases cooldown by a second
 
-	if(level < 20)
-		if(prob(5))
-			owner.playsound_local(owner, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
-			spawn(2)
-				owner.playsound_local(owner, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
-			to_chat(owner, SPAN_DANGER("You hear a horrifying wail!"))
+		var/static/list/effects_40 = list(
+			.proc/effect_emote = 25,
+			.proc/effect_quote = 50
+		)
+		var/static/list/effects_30 = effects_40 + list(
+			.proc/effect_sound = 1,
+			.proc/effect_whisper = 25,
+		)
+		var/static/list/effects_20 = effects_30 + list(
+			.proc/effect_hallucination = 30
+		)
+
+		call(src, pickweight(level < 30 ? level < 20 ? effects_20 : effects_30 : effects_40))()
 
 
 /datum/sanity/proc/onDamage(amount)

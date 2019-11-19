@@ -176,7 +176,7 @@
 	metabolism = REM * 0.15
 	overdose = REAGENTS_OVERDOSE * 0.66
 	withdrawal_threshold = 10
-	nerve_system_accumulations = 70
+	nerve_system_accumulations = 55
 	reagent_type = "Drug/Stimulator"
 
 /datum/reagent/drug/hyperzine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)

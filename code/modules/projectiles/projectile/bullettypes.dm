@@ -248,6 +248,7 @@
 	icon_state = "slug"
 	damage = DAMAGE_SLUG
 	armor_penetration = ARMOR_PENETRATION_SLUG
+	knockback = 1
 
 /obj/item/projectile/bullet/shotgun/beanbag		//because beanbags are not bullets
 	name = "beanbag"
@@ -265,6 +266,7 @@
 	agony = DAMAGE_SLUG * PRACTICE_AGONY_MULTIPLIER
 	armor_penetration = ARMOR_PENETRATION_SLUG * PRACTICE_PENETRATION_MULTIPLIER
 	embed = FALSE
+	knockback = 0
 
 //Should do about 80 damage at 1 tile distance (adjacent), and 50 damage at 3 tiles distance.
 //Overall less damage than slugs in exchange for more damage at very close range and more embedding
@@ -275,6 +277,7 @@
 	pellets = 6
 	range_step = 1
 	spread_step = 10
+	knockback = 1
 
 /obj/item/projectile/bullet/pellet/shotgun/Initialize()
 	. = ..()

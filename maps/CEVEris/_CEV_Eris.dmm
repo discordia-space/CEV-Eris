@@ -59515,10 +59515,10 @@
 /obj/structure/table/standard,
 /obj/item/weapon/reagent_containers/food/snacks/mint,
 /obj/item/weapon/reagent_containers/food/condiment/saltshaker{
-	step_x = -3
+	pixel_x = -3
 	},
 /obj/item/weapon/reagent_containers/food/condiment/peppermill{
-	step_x = 3
+	pixel_x = 3
 	},
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
@@ -108391,20 +108391,20 @@
 "ijn" = (
 /obj/structure/table/bar_special,
 /obj/item/weapon/reagent_containers/food/condiment/peppermill{
-	step_x = 3
+	pixel_x = 3
 	},
 /obj/item/weapon/reagent_containers/food/condiment/saltshaker{
-	step_x = -3
+	pixel_x = -3
 	},
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
 "kcK" = (
 /obj/structure/table/bar_special,
 /obj/item/weapon/reagent_containers/food/condiment/saltshaker{
-	step_x = 3
+	pixel_x = 3
 	},
 /obj/item/weapon/reagent_containers/food/condiment/peppermill{
-	step_x = -3
+	pixel_x = -3
 	},
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
