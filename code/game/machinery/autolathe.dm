@@ -22,9 +22,10 @@
 	active_power_usage = 2000
 	circuit = /obj/item/weapon/circuitboard/autolathe
 
+	var/default_disk
 	var/obj/item/weapon/computer_hardware/hard_drive/portable/disk = null
 
-	var/list/stored_material =  list()
+	var/list/stored_material = list()
 	var/storage_capacity = 120
 
 	var/obj/item/weapon/reagent_containers/glass/container = null
@@ -77,6 +78,8 @@
 /obj/machinery/autolathe/Initialize()
 	. = ..()
 	wires = new(src)
+	if(have_disk && default_disk)
+		disk = new default_disk(src)
 
 /obj/machinery/autolathe/Destroy()
 	if(wires)
