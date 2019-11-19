@@ -119,3 +119,10 @@
 	caliber = "antim"
 	ammo_type = /obj/item/ammo_casing/antim
 	max_ammo = 30
+
+/obj/item/ammo_magazine/ammobox/lrifle_small
+	name = "FS .30 ammo pack"
+	icon_state = "box_lrifle"
+	caliber = "lrifle"
+	ammo_type = /obj/item/ammo_casing/lrifle
+	max_ammo = 10
