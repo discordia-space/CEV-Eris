@@ -151,14 +151,15 @@
 #define MAGAZINE 		4	//The magazine item itself goes inside the gun
 
 #define MAG_WELL_GENERIC	0	//Guns without special magwells
-#define MAG_WELL_PISTOL		1	//Pistols
-#define MAG_WELL_SMG		2	//smgs
-#define MAG_WELL_CIVI_RIFLE	4	//Normal non IH or AK rifles
-#define MAG_WELL_IH			8	//IH guns
-#define MAG_WELL_AK			16	//AKs
-#define MAG_WELL_BOX		32	//Lmgs with box mags
-#define MAG_WELL_PAN		64	//Lmgs with pan mags
-#define MAG_WELL_DART       128 //Dartgun mag
+#define MAG_WELL_L_PISTOL	1	//Pistols
+#define MAG_WELL_PISTOL		2
+#define MAG_WELL_H_PISTOL	4	//High cap Pistols
+#define MAG_WELL_SMG		8	//smgs
+#define MAG_WELL_RIFLE		16	//Normal non-IH rifles
+#define MAG_WELL_IH			32	//IH guns
+#define MAG_WELL_BOX		64	//Lmgs with box mags
+#define MAG_WELL_PAN		128	//Lmgs with pan mags
+#define MAG_WELL_DART       256 //Dartgun mag
 
 //An item that holds casings and can be used to put them inside guns
 /obj/item/ammo_magazine
@@ -174,6 +175,8 @@
 	w_class = ITEM_SIZE_SMALL
 	throw_speed = 4
 	throw_range = 10
+
+	var/ammo_color = ""		//For use in modular sprites
 
 	var/list/stored_ammo = list()
 	var/mag_type = SPEEDLOADER //ammo_magazines can only be used with compatible guns. This is not a bitflag, the load_method var on guns is.

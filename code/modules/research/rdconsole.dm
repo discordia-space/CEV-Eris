@@ -482,7 +482,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		if(linked_destroy)
 			if(linked_destroy.loaded_item)
 				// TODO: If you're refactoring origin_tech, remove this shit. Thank you from the past!
-				var/list/tech_names = list("materials" = "Materials", "engineering" = "Engineering", "phorontech" = "Phoron", "powerstorage" = "Power", "bluespace" = "Blue-space", "biotech" = "Biotech", "combat" = "Combat", "magnets" = "Electromagnetic", "programming" = "Programming", "syndicate" = "Illegal")
+				var/list/tech_names = list(TECH_MATERIAL = "Materials", TECH_ENGINEERING = "Engineering", TECH_PLASMA = "Phoron", TECH_POWER = "Power", TECH_BLUESPACE = "Blue-space", TECH_BIO = "Biotech", TECH_COMBAT = "Combat", TECH_MAGNET = "Electromagnetic", TECH_DATA = "Programming", TECH_ILLEGAL = "Illegal")
 
 				var/list/temp_tech = linked_destroy.loaded_item.origin_tech
 				var/list/item_data = list()
