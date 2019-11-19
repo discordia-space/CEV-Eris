@@ -68,12 +68,6 @@
 	var/tmp/datum/wires/autolathe/wires = null
 	var/list/unsuitable_materials = list(MATERIAL_BIOMATTER)
 
-/obj/machinery/autolathe/bioprinter
-	name = "NeoTheology Bioprinter"
-	desc = "NeoTheology machine for printing things using biomass."
-	icon_state = "bio_autolathe"
-	unsuitable_materials = list()
-	circuit = /obj/item/weapon/circuitboard/neotheology/bioprinter
 
 /obj/machinery/autolathe/Initialize()
 	. = ..()

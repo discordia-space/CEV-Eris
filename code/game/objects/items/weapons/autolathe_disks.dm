@@ -482,33 +482,59 @@
 
 
 
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/neotheology
-	disk_name = "NeoTeology Pack"
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_bioprinter
+	disk_name = "NeoTeology Bioprinter Production"
 	icon_state = "neotheology"
 
 	license = -1
 	designs = list(
-		/datum/design/autolathe/biomatter/meat,
-		/datum/design/autolathe/biomatter/milk,
+		/datum/design/bioprinter/meat,
+		/datum/design/bioprinter/milk,
 
-		/datum/design/autolathe/biomatter/ez,
-		/datum/design/autolathe/biomatter/l4z,
-		/datum/design/autolathe/biomatter/rh,
+		/datum/design/bioprinter/ez,
+		/datum/design/bioprinter/l4z,
+		/datum/design/bioprinter/rh,
 
-		/datum/design/autolathe/biomatter/wallet,
-		/datum/design/autolathe/biomatter/botanic_leather,
-		/datum/design/autolathe/biomatter/leather/satchel,
-		/datum/design/autolathe/biomatter/leather/leather_jacket,
-		/datum/design/autolathe/biomatter/leather/cash_bag,
-		/datum/design/autolathe/biomatter/belt/utility,
-		/datum/design/autolathe/biomatter/belt/medical,
-		/datum/design/autolathe/biomatter/belt/security,
-		/datum/design/autolathe/biomatter/belt/medical/emt,
-		/datum/design/autolathe/biomatter/belt/misc/champion,
+		/datum/design/bioprinter/wallet,
+		/datum/design/bioprinter/botanic_leather,
+		/datum/design/bioprinter/leather/satchel,
+		/datum/design/bioprinter/leather/leather_jacket,
+		/datum/design/bioprinter/leather/cash_bag,
+		/datum/design/bioprinter/belt/utility,
+		/datum/design/bioprinter/belt/medical,
+		/datum/design/bioprinter/belt/security,
+		/datum/design/bioprinter/belt/medical/emt,
+		/datum/design/bioprinter/belt/misc/champion,
 
-		/datum/design/autolathe/biomatter/medical/bruise,
-		/datum/design/autolathe/biomatter/medical/splints,
-		/datum/design/autolathe/biomatter/medical/ointment,
-		/datum/design/autolathe/biomatter/medical/advanced/bruise,
-		/datum/design/autolathe/biomatter/medical/advanced/ointment,
+		/datum/design/bioprinter/medical/bruise,
+		/datum/design/bioprinter/medical/splints,
+		/datum/design/bioprinter/medical/ointment,
+		/datum/design/bioprinter/medical/advanced/bruise,
+		/datum/design/bioprinter/medical/advanced/ointment,
+	)
+
+// Same as the other NT disk, minus the medical designs. Spawns in public access bioprinters.
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_bioprinter_public
+	disk_name = "NeoTeology Bioprinter Pack"
+	icon_state = "neotheology"
+
+	license = -1
+	designs = list(
+		/datum/design/bioprinter/meat,
+		/datum/design/bioprinter/milk,
+
+		/datum/design/bioprinter/ez,
+		/datum/design/bioprinter/l4z,
+		/datum/design/bioprinter/rh,
+
+		/datum/design/bioprinter/wallet,
+		/datum/design/bioprinter/botanic_leather,
+		/datum/design/bioprinter/leather/satchel,
+		/datum/design/bioprinter/leather/leather_jacket,
+		/datum/design/bioprinter/leather/cash_bag,
+		/datum/design/bioprinter/belt/utility,
+		/datum/design/bioprinter/belt/medical,
+		/datum/design/bioprinter/belt/security,
+		/datum/design/bioprinter/belt/medical/emt,
+		/datum/design/bioprinter/belt/misc/champion,
 	)

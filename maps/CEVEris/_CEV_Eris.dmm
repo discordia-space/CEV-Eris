@@ -44695,7 +44695,7 @@
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/crew_quarters/janitor)
 "bUI" = (
-/obj/machinery/autolathe/bioprinter,
+/obj/machinery/autolathe/bioprinter/disk,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/neotheology/bioreactor)
 "bUJ" = (
@@ -105714,7 +105714,6 @@
 /area/space)
 "eBl" = (
 /obj/structure/table/standard,
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/neotheology,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/neotheology/bioreactor)
 "eBm" = (

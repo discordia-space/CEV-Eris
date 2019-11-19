@@ -709,6 +709,8 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 						build_types += "protolathe"
 					if(D.build_type & AUTOLATHE)
 						build_types += "autolathe"
+					if(D.build_type & BIOPRINTER)
+						build_types += "bioprinter"
 					if(D.build_type & MECHFAB)
 						build_types += "exosuit fabricator"
 					if(D.build_type & ORGAN_GROWER)
