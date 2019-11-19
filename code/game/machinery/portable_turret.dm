@@ -598,6 +598,8 @@ var/list/turret_icons
 /obj/machinery/porta_turret/proc/target(var/mob/living/target)
 	if(disabled)
 		return
+	if(istype(target, /mob/living/simple_animal/hostile/roomba))
+		return
 	if(target)
 		last_target = target
 		spawn()
