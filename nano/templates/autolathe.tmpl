@@ -5,60 +5,19 @@ Used In File(s): \code\game\machinery\autolathe.dm
 
 <div style="display: table; width:100%">
 
-
 <div style="display: table-row">
-
-	<div class="fixedLeft" style="width:50%; display: table-cell">
-		<div class="block">
-			<div class="item">
-				<div class="itemLabelWidest"><b>Loaded materials</b></div>
-			</div>
-			{{for data.materials}}
-				<div class="item">
-					<div class="itemLabelNarrow">{{:value.name}}</div> 
-					<div class="itemContentNarrow">{{:value.count}}/{{:data.mat_capacity}}</div>
-					<div class="itemLabelNarrow">{{:helper.link('', 'eject', {'eject_material' : value.name}, null, 'statusValue')}}</b></div>
-				</div>
-			{{empty}}
-				<div class="item">
-					<div class="itemLabelNarrow">empty</div> 
-				</div>
-			{{/for}}
-			<div class="item">
-				{{:helper.link('INSERT MATERIALS', '', {'insert' : 1}, null, 'bigButton')}}
-			</div>
-		</div>
+	{{if data.have_materials && data.have_reagents}}
+	<div class="fixedLeft" style="width:48%; display: table-cell; padding: 0 1%">
+		{{#def._materials}}
 	</div>
-	
-	<div class="fixedLeft" style="width:50%; display: table-cell">
-		<div class="block">
-			<div class="item">
-				<div class="itemLabelWidest"><b>Inserted beaker</b></div>
-			</div>
-			{{if data.container}}
-				{{for data.reagents}}
-					<div class="item">
-						<div class="itemLabelWider">{{:value.name}} </div>
-						<div class="itemContentWidest">{{:value.count}}</div>
-					</div>
-				{{empty}}
-					<div class="item">
-						<div class="itemLabelWidest">empty</div>
-					</div>
-				{{/for}}
-				<div class="item">
-					<div class="itemContentWidest">{{:helper.link('', 'eject', {'eject_container' : 1}, null, 'statusValue')}}</b></div>
-				</div>
-			{{else}}
-				<div class="item">
-					<div class="itemLabelWidest">not inserted</div>
-				</div>
-				<div class="item">
-					<div class="itemContentWidest">{{:helper.link('insert', 'eject', {'insert_beaker' : 1}, null, 'statusValue')}}</b></div>
-				</div>
-			{{/if}}
-		</div>
+	<div class="fixedLeft" style="width:48%; display: table-cell; padding: 0 1%">
+		{{#def._reagents}}
 	</div>
+	{{else data.have_materials}}
+		{{#def._materials}}
+	{{else data.have_reagents}}
+		{{#def._reagents}}
+	{{/if}}
 
 </div>
 
@@ -100,7 +59,8 @@ Used In File(s): \code\game\machinery\autolathe.dm
 						<div class="item">
 							<div class="itemLabelWidest">Materials</div>
 							{{for value.materials :material:material_i}}
-								<div class="itemContentWidest">{{:material.name}}: {{:material.req}}</div>
+								{{material.amount = Math.round((material.req * data.mat_efficiency) * 10) / 10;}}
+								<div class="itemContentWidest">{{:material.name}}: {{:material.amount}}</div>
 							{{/for}}
 						</div>
 						{{/if}}
@@ -108,7 +68,8 @@ Used In File(s): \code\game\machinery\autolathe.dm
 						<div class="item">
 							<div class="itemLabelWidest">Reagents</div>
 							{{for value.chemicals :chemical:chemical_i}}
-								<div class="itemContentWidest">{{:chemical.name}}: {{:chemical.req}}</div>
+								{{chemical.amount = Math.round((chemical.req * data.mat_efficiency) * 10) / 10;}}
+								<div class="itemContentWidest">{{:chemical.name}}: {{:chemical.amount}}</div>
 							{{/for}}
 						</div>
 						{{/if}}
@@ -167,7 +128,8 @@ Used In File(s): \code\game\machinery\autolathe.dm
 					<div class="item">
 						<div class="itemLabelWidest">Materials</div>
 						{{for data.current.materials :material:material_i}}
-							<div class="itemContentWidest">{{:material.name}}: {{:material.req}}</div>
+							{{material.amount = Math.round((chemical.req * data.mat_efficiency) * 10) / 10;}}
+							<div class="itemContentWidest">{{:material.name}}: {{:material.amount}}</div>
 						{{/for}}
 					</div>
 					{{/if}}
@@ -175,7 +137,8 @@ Used In File(s): \code\game\machinery\autolathe.dm
 					<div class="item">
 						<div class="itemLabelWidest">Reagents</div>
 						{{for data.current.chemicals :chemical:chemical_i}}
-							<div class="itemContentWidest">{{:chemical.name}}: {{:chemical.req}}</div>
+							{{chemical.amount = Math.round((chemical.req * data.mat_efficiency) * 10) / 10;}}
+							<div class="itemContentWidest">{{:chemical.name}}: {{:chemical.amount}}</div>
 						{{/for}}
 					</div>
 					{{/if}}
@@ -197,12 +160,10 @@ Used In File(s): \code\game\machinery\autolathe.dm
 							<div style ='position: absolute; top: 10px; right: 10px; max-height:24px; max-width:24px; height:24px; width:24px; margin-left:0px' class='statusDisplayItem'><img src= {{:value.icon}} height=24 width=24></div>
 							{{if value.error >= 2}}
 								<div class="bad">{{:value.name}}</div>
+							{{else value.error == 1}}
+								<div class="average">{{:value.name}}</div>
 							{{else}}
-								{{if value.error == 1}}
-									<div class="average">{{:value.name}}</div>
-								{{else}}
-									{{:value.name}}
-								{{/if}}	
+								{{:value.name}}
 							{{/if}}				
 						</div>
 						<div class="itemLabelWidest">

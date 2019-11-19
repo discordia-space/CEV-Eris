@@ -191,7 +191,11 @@
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "autolathe.tmpl", "Autolathe", 550, 655)
+		ui = new(user, src, ui_key, "autolathe.tmpl", capitalize(name), 550, 655)
+		// template keys starting with _ are not appended to the UI automatically and have to be called manually
+		ui.add_template("_materials", "autolathe_materials.tmpl")
+		ui.add_template("_reagents", "autolathe_reagents.tmpl")
+
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window

@@ -1,0 +1,29 @@
+<div class="display">
+	<header><h3>Inserted beaker</h3></header>
+
+	<article>
+	{{if data.container}}
+		{{for data.reagents}}
+			<section>
+				{{value.amount = Math.round(value.count * 10) / 10;}}
+				<span class="label">{{:value.name}}</span>
+				<div class="content">{{:value.amount}}</div>
+			</section>
+		{{empty}}
+			<section>
+				<span class="label">Empty</span>
+			</section>
+		{{/for}}
+		<section>
+			<div class="content">{{:helper.link('', 'eject', {'eject_container' : 1}, null, 'statusValue')}}</div>
+		</section>
+	{{else}}
+		<section>
+			<span class="label">Not inserted</span>
+		</section>
+		<section>
+			<div class="content">{{:helper.link('Insert', 'eject', {'insert_beaker' : 1}, null, 'statusValue')}}</div>
+		</section>
+	{{/if}}
+	</article>
+</div>
