@@ -598,7 +598,7 @@ var/list/turret_icons
 /obj/machinery/porta_turret/proc/target(var/mob/living/target)
 	if(disabled)
 		return
-	if(istype(target, /mob/living/simple_animal/hostile/roomba))
+	if(istype(target, /mob/living/simple_animal/hostile/roomba)) //so turrets can't attac roombas
 		return
 	if(target)
 		last_target = target
@@ -633,6 +633,8 @@ var/list/turret_icons
 /obj/machinery/porta_turret/proc/launch_projectile(mob/living/target)
 	update_icon()
 	var/obj/item/projectile/A
+	if(istype(target, /mob/living/simple_animal/hostile/roomba)) //because if turret close it spam in chat with attack logs
+		return
 	if(emagged || lethal)
 		A = new eprojectile(loc)
 		playsound(loc, eshot_sound, 75, 1)
