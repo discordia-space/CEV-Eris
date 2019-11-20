@@ -18,47 +18,46 @@
 	density = 1
 	anchored = 1
 	layer = BELOW_OBJ_LAYER
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 2000
 	circuit = /obj/item/weapon/circuitboard/autolathe
 
-	var/default_disk
 	var/obj/item/weapon/computer_hardware/hard_drive/portable/disk = null
 
 	var/list/stored_material = list()
-	var/storage_capacity = 120
-
 	var/obj/item/weapon/reagent_containers/glass/container = null
+
 	var/show_category = "All"
+	var/unfolded = null
 
 	var/hacked = FALSE
 	var/disabled = FALSE
 	var/shocked = FALSE
-	var/paused = FALSE
 
 	var/working = FALSE
-	var/anim = 0
-
+	var/paused = FALSE
 	var/error = null
-
-	var/unfolded = null
+	var/progress = 0
 
 	var/datum/computer_file/binary/design/current_file = null
 	var/list/queue = list()
 	var/queue_max = 8
 
+	var/storage_capacity = 120
 	var/speed = 2
-
-	var/progress = 0
-
 	var/mat_efficiency = 1
 
+	var/default_disk	// The disk that spawns in autolathe by default
+
+	// Various autolathe functions that can be disabled in subtypes
 	var/have_disk = TRUE
 	var/have_reagents = TRUE
 	var/have_materials = TRUE
 
-	var/list/error_messages = list(
+	var/list/unsuitable_materials = list(MATERIAL_BIOMATTER)
+
+	var/global/list/error_messages = list(
 		ERR_NOLICENSE = "Disk licenses have been exhausted.",
 		ERR_NOTFOUND = "Design data not found.",
 		ERR_NOMATERIAL = "Not enough materials.",
@@ -67,7 +66,6 @@
 	)
 
 	var/tmp/datum/wires/autolathe/wires = null
-	var/list/unsuitable_materials = list(MATERIAL_BIOMATTER)
 
 	// A vis_contents hack for materials loading animation.
 	var/tmp/atom/movable/flicker_overlay/image_load
@@ -210,7 +208,7 @@
 		// open the new ui window
 		ui.open()
 
-/obj/machinery/autolathe/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/autolathe/attackby(obj/item/I, mob/user)
 	if(default_deconstruction(I, user))
 		return
 
@@ -220,7 +218,7 @@
 	if(istype(I, /obj/item/weapon/computer_hardware/hard_drive/portable))
 		insert_disk(user)
 
-	if(istype(I,/obj/item/stack))
+	if(istype(I, /obj/item/stack))
 		eat(user)
 
 	user.set_machine(src)
@@ -239,7 +237,6 @@
 		return
 
 	add_fingerprint(usr)
-
 	usr.set_machine(src)
 
 	if(href_list["insert"])
@@ -263,8 +260,7 @@
 				return
 
 			var/num = input("Enter sheets number to eject. 0-[stored_material[material]]","Eject",0) as num
-
-			if(!Adjacent(usr))
+			if(!CanUseTopic(usr))
 				return
 
 			num = min(max(num,0), stored_material[material])
@@ -297,7 +293,7 @@
 
 			if(href_list["several"])
 				amount = input("How many \"[design_file.design.name]\" you want to print ?", "Print several") as null|num
-				if(..() || !(design_file in design_list()))
+				if(!CanUseTopic(usr) || !(design_file in design_list()))
 					return
 
 			// Copy the designs that are not copy protected so they can be printed even if the disk is ejected.
@@ -406,7 +402,7 @@
 	if(istype(eating, /obj/item/weapon/computer_hardware/hard_drive/portable))
 		var/obj/item/weapon/computer_hardware/hard_drive/portable/disk = eating
 		if(disk.license)
-			to_chat(user, SPAN_NOTICE("\The [src] refuses to accept \the [eating] as it has non-null license."))
+			to_chat(user, SPAN_WARNING("\The [src] refuses to accept \the [eating] as it has non-null license."))
 			return
 
 	var/filltype = 0       // Used to determine message.
@@ -539,7 +535,7 @@
 	flick("[initial(icon_state)]_load", image_load)
 	if(material)
 		image_load_material.color = material.icon_colour
-		image_load_material.alpha = max(255 * material.opacity, 200)
+		image_load_material.alpha = max(255 * material.opacity, 200) // The icons are too transparent otherwise
 		flick("[initial(icon_state)]_load_m", image_load_material)
 
 
@@ -581,28 +577,29 @@
 		update_icon()
 		return
 
-	if(anim < world.time)
-		if(current_file)
-			var/err = can_print(current_file)
+	if(current_file)
+		var/err = can_print(current_file)
 
-			if(err == ERR_OK)
-				error = null
-
-				working = TRUE
-				progress += speed
-
-			else if(err in error_messages)
-				error = error_messages[err]
-			else
-				error = "Unknown error."
-
-			if(current_file.design && progress >= current_file.design.time)
-				finish_construction()
-
-		else
+		if(err == ERR_OK)
 			error = null
-			working = FALSE
-			next_file()
+
+			working = TRUE
+			progress += speed
+
+		else if(err in error_messages)
+			error = error_messages[err]
+		else
+			error = "Unknown error."
+
+		if(current_file.design && progress >= current_file.design.time)
+			finish_construction()
+
+	else
+		error = null
+		working = FALSE
+		next_file()
+
+	use_power = working ? ACTIVE_POWER_USE : IDLE_POWER_USE
 
 	special_process()
 	update_icon()

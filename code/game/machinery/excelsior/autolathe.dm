@@ -3,17 +3,14 @@
 	desc = "It produces items using metal and glass."
 	icon = 'icons/obj/machines/excelsior/autolathe.dmi'
 	icon_state = "stanok"
-	density = 1
-	anchored = 1
-	use_power = 1
-	idle_power_usage = 10
-	active_power_usage = 2000
 	circuit = /obj/item/weapon/circuitboard/excelsiorautolathe
 
-	storage_capacity = 150
+	speed = 4
+	storage_capacity = 240
+	unsuitable_materials = list()	// Can use biomatter too.
 
-/obj/machinery/autolathe/excelsior/New()
-	..()
+/obj/machinery/autolathe/excelsior/Initialize()
+	. = ..()
 	container = new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
 
 /obj/machinery/autolathe/excelsior/update_icon()
