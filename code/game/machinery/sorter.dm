@@ -3,6 +3,7 @@
 
 #define SORT_TYPE_MATERIAL "material"
 #define SORT_TYPE_REAGENT "reagent"
+#define YES_TAKE_CLOTHING 1
 /*
 	Sorter will sort items based on rules
 */
@@ -11,13 +12,13 @@
 	var/sort_type
 	var/value
 	var/amount
-
-/datum/sort_rule/New(var/accept, var/type, var/value, var/amount)
+	var/take_clothing
+/datum/sort_rule/New(var/accept, var/type, var/value, var/amount, var/take_clothing)
 	src.accept = accept
 	src.sort_type = type
 	src.value = value
 	src.amount = amount
-
+	src.take_clothing = take_clothing
 
 
 /obj/machinery/sorter
@@ -109,7 +110,11 @@
 					sorted = rule.accept
 					if(!sorted)
 						break
-
+			if(YES_TAKE_CLOTHING)
+				if (istype(item_to_sort,/obj/item/clothing))
+					sorted = rule.accept
+					if(!sorted)
+						break
 	eject(sorted)
 	return
 
@@ -271,7 +276,7 @@
 
 /obj/machinery/sorter/biomatter/Initialize()
 	. = ..()
-	sort_settings += new /datum/sort_rule(SORT_INCLUDE, SORT_TYPE_MATERIAL, MATERIAL_BIOMATTER, 1)
+	sort_settings += new /datum/sort_rule(SORT_INCLUDE, SORT_TYPE_MATERIAL, MATERIAL_BIOMATTER, 1, YES_TAKE_CLOTHING)
 
 
 #undef SORT_EXCLUDE
