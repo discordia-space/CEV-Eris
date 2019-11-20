@@ -13,6 +13,7 @@
 /obj/machinery/autolathe
 	name = "autolathe"
 	desc = "It produces items using metal and glass."
+	icon = 'icons/obj/machines/autolathe.dmi'
 	icon_state = "autolathe"
 	density = 1
 	anchored = 1
@@ -68,16 +69,27 @@
 	var/tmp/datum/wires/autolathe/wires = null
 	var/list/unsuitable_materials = list(MATERIAL_BIOMATTER)
 
+	// A vis_contents hack for materials loading animation.
+	var/tmp/atom/movable/flicker_overlay/image_load
+	var/tmp/atom/movable/flicker_overlay/image_load_material
 
 /obj/machinery/autolathe/Initialize()
 	. = ..()
 	wires = new(src)
+
+	image_load = new(src)
+	image_load_material = new(src)
+	vis_contents += image_load
+	vis_contents += image_load_material
+
 	if(have_disk && default_disk)
 		disk = new default_disk(src)
 
 /obj/machinery/autolathe/Destroy()
-	if(wires)
-		QDEL_NULL(wires)
+	QDEL_NULL(wires)
+	vis_contents.Cut()
+	QDEL_NULL(image_load)
+	QDEL_NULL(image_load_material)
 	return ..()
 
 
@@ -402,21 +414,28 @@
 	var/total_used = 0     // Amount of material used.
 	var/mass_per_sheet = 0 // Amount of material constituting one sheet.
 
+	var/list/total_material_gained = list()
+
 	for(var/obj/O in eating.GetAllContents(includeSelf = TRUE))
 		var/list/_matter = O.get_matter()
 		if(_matter)
 			for(var/material in _matter)
-				if(material in unsuitable_materials) continue
+				if(material in unsuitable_materials)
+					continue
+
 				if(!(material in stored_material))
 					stored_material[material] = 0
 
-				if(stored_material[material] >= storage_capacity)
+				if(!(material in total_material_gained))
+					total_material_gained[material] = 0
+
+				if(stored_material[material] + total_material_gained[material] >= storage_capacity)
 					continue
 
 				var/total_material = _matter[material]
 
 				//If it's a stack, we eat multiple sheets.
-				if(istype(O,/obj/item/stack))
+				if(istype(O, /obj/item/stack))
 					var/obj/item/stack/material/stack = O
 					total_material *= stack.get_amount()
 
@@ -426,7 +445,7 @@
 				else
 					filltype = 2
 
-				stored_material[material] += total_material
+				total_material_gained[material] += total_material
 				total_used += total_material
 				mass_per_sheet += O.matter[material]
 
@@ -448,24 +467,34 @@
 	if(!filltype && !reagents_filltype)
 		to_chat(user, SPAN_NOTICE("\The [src] is full or this thing isn't suitable for this autolathe type. Try remove material from [src] in order to insert more."))
 		return
-	else if(filltype == 1)
-		to_chat(user, SPAN_NOTICE("You fill \the [src] to capacity with \the [eating]."))
+
+	// Determine what was the main material
+	var/main_material
+	var/main_material_amt = 0
+	for(var/material in total_material_gained)
+		stored_material[material] += total_material_gained[material]
+		if(total_material_gained[material] > main_material_amt)
+			main_material_amt = total_material_gained[material]
+			main_material = material
+
+	if(istype(eating, /obj/item/stack))
+		res_load(get_material_by_name(main_material)) // Play insertion animation.
+		var/obj/item/stack/stack = eating
+		var/used_sheets = min(stack.get_amount(), round(total_used/mass_per_sheet))
+
+		to_chat(user, SPAN_NOTICE("You add [used_sheets] [main_material] [stack.singular_name]\s to \the [src]."))
+
+		if(!stack.use(used_sheets))
+			qdel(stack)	// Protects against weirdness
 	else
-		to_chat(user, SPAN_NOTICE("You fill \the [src] with \the [eating]."))
+		res_load() // Play insertion animation.
+		to_chat(user, SPAN_NOTICE("You recycle \the [eating] in \the [src]."))
+		qdel(eating)
 
 	if(reagents_filltype == 1)
 		to_chat(user, SPAN_NOTICE("Some liquid flowed to \the [container]."))
 	else if(reagents_filltype == 2)
-		to_chat(user, SPAN_NOTICE("Some liquid flowed to the floor from autolathe beaker slot."))
-
-	res_load() // Plays metal insertion animation. Work out a good way to work out a fitting animation. ~Z
-
-	if(istype(eating, /obj/item/stack))
-		var/obj/item/stack/stack = eating
-		stack.use(total_used/mass_per_sheet)
-	else
-		user.remove_from_mob(eating)
-		qdel(eating)
+		to_chat(user, SPAN_NOTICE("Some liquid flowed to the floor from \the [src]."))
 
 
 
@@ -478,18 +507,40 @@
 
 	return disk.find_files_by_type(/datum/computer_file/binary/design)
 
+/obj/machinery/autolathe/update_icon()
+	overlays.Cut()
+
+	icon_state = initial(icon_state)
+
+	if(panel_open)
+		overlays.Add(image(icon, "[icon_state]_panel"))
+
+	if(stat & NOPOWER)
+		return
+
+	if(working) // if paused, work animation looks awkward.
+		if(paused || error)
+			icon_state = "[icon_state]_pause"
+		else
+			icon_state = "[icon_state]_work"
+
 //Procs for handling print animation
 /obj/machinery/autolathe/proc/print_pre()
-	return
+	flick("[initial(icon_state)]_start", src)
 
 /obj/machinery/autolathe/proc/print_post()
+	flick("[initial(icon_state)]_finish", src)
 	if(!current_file && !queue.len)
 		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1 -3)
 		visible_message("\The [src] pings, indicating that queue is complete.")
 
 
-/obj/machinery/autolathe/proc/res_load()
-	flick("[icon_state]_o", src)
+/obj/machinery/autolathe/proc/res_load(material/material)
+	flick("[initial(icon_state)]_load", image_load)
+	if(material)
+		image_load_material.color = material.icon_colour
+		image_load_material.alpha = max(255 * material.opacity, 200)
+		flick("[initial(icon_state)]_load_m", image_load_material)
 
 
 /obj/machinery/autolathe/proc/can_print(datum/computer_file/binary/design/design_file)
@@ -526,9 +577,7 @@
 
 /obj/machinery/autolathe/Process()
 	if(stat & NOPOWER)
-		if(working)
-			print_post()
-			working = FALSE
+		working = FALSE
 		update_icon()
 		return
 
@@ -560,18 +609,6 @@
 	SSnano.update_uis(src)
 
 
-
-/obj/machinery/autolathe/update_icon()
-	overlays.Cut()
-
-	icon_state = initial(icon_state)
-
-	if(panel_open)
-		overlays.Add(image(icon, "[icon_state]_p"))
-
-	if(working && !error) // if error, work animation looks awkward.
-		icon_state = "[icon_state]_n"
-
 /obj/machinery/autolathe/proc/consume_materials(datum/design/design)
 	for(var/material in design.materials)
 		stored_material[material] = max(0, stored_material[material] - SANITIZE_LATHE_COST(design.materials[material]))
@@ -592,6 +629,7 @@
 		queue.Cut(1, 2) // Cut queue[1]
 	else
 		working = FALSE
+	update_icon()
 
 /obj/machinery/autolathe/proc/special_process()
 	return
@@ -668,10 +706,10 @@
 /obj/machinery/autolathe/proc/abort()
 	if(working)
 		print_post()
-		working = FALSE
 	current_file = null
 	paused = TRUE
 	working = FALSE
+	update_icon()
 
 //Finishing current construction
 /obj/machinery/autolathe/proc/finish_construction()
@@ -727,3 +765,16 @@
 #undef ERR_NOREAGENT
 #undef ERR_NOLICENSE
 #undef SANITIZE_LATHE_COST
+
+// You (still) can't flicker overlays in BYOND, and this is a vis_contents hack to provide the same functionality.
+// Used for materials loading animation.
+/atom/movable/flicker_overlay
+	name = ""
+	icon_state = ""
+	mouse_opacity = 0
+
+/atom/movable/flicker_overlay/New(atom/loc)
+	..()
+	icon = loc.icon
+	layer = loc.layer + 0.1
+	plane = loc.plane
