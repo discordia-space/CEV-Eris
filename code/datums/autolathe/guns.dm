@@ -82,6 +82,10 @@
 	name = "FS AR 7.62x39 \"Kalashnikov\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/fs
 
+/datum/design/autolathe/gun/vintorez
+	name = "Excelsior .20 \"Vintorez\""
+	build_path = /obj/item/weapon/gun/projectile/automatic/vintorez
+
 /datum/design/autolathe/gun/idaho
 	name = "FS SMG 9x19 \"Idaho\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/idaho
