@@ -110,11 +110,11 @@
 					sorted = rule.accept
 					if(!sorted)
 						break
-	if(rule.take_clothing == 1)
-		if (istype(item_to_sort,/obj/item/clothing))
-			sorted = rule.accept
-				if(!sorted)
-					break
+
+			if (istype(item_to_sort,/obj/item/clothing))
+				sorted = rule.accept
+					if(!sorted)
+						break
 	eject(sorted)
 	return
 
