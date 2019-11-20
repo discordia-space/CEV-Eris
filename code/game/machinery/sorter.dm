@@ -110,11 +110,11 @@
 					sorted = rule.accept
 					if(!sorted)
 						break
-			if(YES_TAKE_CLOTHING)
-				if (istype(item_to_sort,/obj/item/clothing))
-					sorted = rule.accept
-					if(!sorted)
-						break
+	if(rule.take_clothing == 1)
+		if (istype(item_to_sort,/obj/item/clothing))
+			sorted = rule.accept
+				if(!sorted)
+					break
 	eject(sorted)
 	return
 
@@ -276,7 +276,7 @@
 
 /obj/machinery/sorter/biomatter/Initialize()
 	. = ..()
-	sort_settings += new /datum/sort_rule(SORT_INCLUDE, SORT_TYPE_MATERIAL, MATERIAL_BIOMATTER, 1, YES_TAKE_CLOTHING)
+	sort_settings += new /datum/sort_rule(SORT_INCLUDE, SORT_TYPE_MATERIAL, MATERIAL_BIOMATTER, 1, 1)
 
 
 #undef SORT_EXCLUDE
@@ -284,3 +284,4 @@
 
 #undef SORT_TYPE_MATERIAL
 #undef SORT_TYPE_REAGENT
+#undef YES_TAKE_CLOTHING
