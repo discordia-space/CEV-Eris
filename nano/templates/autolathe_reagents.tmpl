@@ -5,7 +5,7 @@
 	{{if data.container}}
 		{{for data.reagents}}
 			<section>
-				{{value.amount = Math.round(value.count * 10) / 10;}}
+				{{value.amount = Math.round(value.count * 100) / 100;}}
 				<span class="label">{{:value.name}}</span>
 				<div class="content">{{:value.amount}}</div>
 			</section>

@@ -5,7 +5,7 @@
 	{{for data.materials}}
 		<section>
 			<span class="label">{{:value.name.toTitleCase()}}</span>
-			{{value.amount = Math.round(value.count * 10) / 10;}}
+			{{value.amount = Math.round(value.count * 100) / 100;}}
 			<div class="content">{{:value.amount}}/{{:data.mat_capacity}}</div>
 			<div class="content">{{:helper.link('', 'eject', {'eject_material' : value.name}, null, 'statusValue')}}</div>
 		</section>

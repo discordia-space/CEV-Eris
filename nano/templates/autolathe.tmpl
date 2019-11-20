@@ -59,7 +59,7 @@ Used In File(s): \code\game\machinery\autolathe.dm
 						<div class="item">
 							<div class="itemLabelWidest">Materials</div>
 							{{for value.materials :material:material_i}}
-								{{material.amount = Math.round((material.req * data.mat_efficiency) * 10) / 10;}}
+								{{material.amount = Math.round((material.req * data.mat_efficiency) * 100) / 100;}}
 								<div class="itemContentWidest">{{:material.name}}: {{:material.amount}}</div>
 							{{/for}}
 						</div>
@@ -68,7 +68,7 @@ Used In File(s): \code\game\machinery\autolathe.dm
 						<div class="item">
 							<div class="itemLabelWidest">Reagents</div>
 							{{for value.chemicals :chemical:chemical_i}}
-								{{chemical.amount = Math.round((chemical.req * data.mat_efficiency) * 10) / 10;}}
+								{{chemical.amount = Math.round((chemical.req * data.mat_efficiency) * 100) / 100;}}
 								<div class="itemContentWidest">{{:chemical.name}}: {{:chemical.amount}}</div>
 							{{/for}}
 						</div>
@@ -128,7 +128,7 @@ Used In File(s): \code\game\machinery\autolathe.dm
 					<div class="item">
 						<div class="itemLabelWidest">Materials</div>
 						{{for data.current.materials :material:material_i}}
-							{{material.amount = Math.round((chemical.req * data.mat_efficiency) * 10) / 10;}}
+							{{material.amount = Math.round((material.req * data.mat_efficiency) * 100) / 100;}}
 							<div class="itemContentWidest">{{:material.name}}: {{:material.amount}}</div>
 						{{/for}}
 					</div>
@@ -137,7 +137,7 @@ Used In File(s): \code\game\machinery\autolathe.dm
 					<div class="item">
 						<div class="itemLabelWidest">Reagents</div>
 						{{for data.current.chemicals :chemical:chemical_i}}
-							{{chemical.amount = Math.round((chemical.req * data.mat_efficiency) * 10) / 10;}}
+							{{chemical.amount = Math.round((chemical.req * data.mat_efficiency) * 100) / 100;}}
 							<div class="itemContentWidest">{{:chemical.name}}: {{:chemical.amount}}</div>
 						{{/for}}
 					</div>
