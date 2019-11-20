@@ -684,20 +684,27 @@
 	eject_disk()
 	..()
 
-//Updates overall lathe storage size.
+//Updates lathe material storage size, production speed and material efficiency.
 /obj/machinery/autolathe/RefreshParts()
 	..()
 	var/mb_rating = 0
-	var/man_rating = 0
+	var/mb_amount = 0
 	for(var/obj/item/weapon/stock_parts/matter_bin/MB in component_parts)
 		mb_rating += MB.rating
+		mb_amount++
+
+	storage_capacity = round(initial(storage_capacity)*(mb_rating/mb_amount))
+
+	var/man_rating = 0
+	var/man_amount = 0
 	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
 		man_rating += M.rating
+		man_amount++
 
-	storage_capacity = round(initial(storage_capacity)*(mb_rating/3))
+	man_rating -= man_amount
 
-	speed = man_rating*3
-	mat_efficiency = 1.1 - man_rating * 0.1
+	speed = initial(speed) + man_rating
+	mat_efficiency = max(0.2, 1.0 - (man_rating * 0.1))
 
 
 
