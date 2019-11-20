@@ -84,9 +84,9 @@
 					det_time = 30
 					to_chat(user, SPAN_NOTICE("You set the [name] for 3 second detonation time."))
 				if (30)
-					det_time = 50
-					to_chat(user, SPAN_NOTICE("You set the [name] for 5 second detonation time."))
-				if (50)
+					det_time = 40
+					to_chat(user, SPAN_NOTICE("You set the [name] for 4 second detonation time."))
+				if (40)
 					det_time = 1
 					to_chat(user, SPAN_NOTICE("You set the [name] for instant detonation."))
 			add_fingerprint(user)
