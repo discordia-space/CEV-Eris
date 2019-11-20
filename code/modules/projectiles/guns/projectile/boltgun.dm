@@ -13,7 +13,7 @@
 	damage_multiplier = 1.5
 	recoil = 0.2 //same as AMR
 	handle_casings = HOLD_CASINGS
-	load_method = SINGLE_CASING
+	load_method = SINGLE_CASING|SPEEDLOADER
 	max_shells = 5
 	ammo_type = /obj/item/ammo_magazine/lrifle
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
