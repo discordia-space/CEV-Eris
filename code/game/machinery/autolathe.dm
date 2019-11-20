@@ -54,7 +54,7 @@
 	var/have_disk = TRUE
 	var/have_reagents = TRUE
 	var/have_materials = TRUE
-
+	var/have_recycling = TRUE
 	var/list/unsuitable_materials = list(MATERIAL_BIOMATTER)
 
 	var/global/list/error_messages = list(
@@ -395,8 +395,12 @@
 	if(is_robot_module(eating))
 		return FALSE
 
-	if(!eating.matter || !eating.matter.len)
-		to_chat(user, SPAN_NOTICE("\The [eating] does not contain significant amounts of useful materials and cannot be accepted."))
+	if(!have_recycling && !istype(eating, /obj/item/stack))
+		to_chat(user, SPAN_WARNING("[src] does not support material recycling."))
+		return FALSE
+
+	if(!length(eating.get_matter()))
+		to_chat(user, SPAN_WARNING("\The [eating] does not contain significant amounts of useful materials and cannot be accepted."))
 		return FALSE
 
 	if(istype(eating, /obj/item/weapon/computer_hardware/hard_drive/portable))
