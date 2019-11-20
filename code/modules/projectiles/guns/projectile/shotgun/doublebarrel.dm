@@ -49,14 +49,8 @@
 			user.visible_message(SPAN_DANGER("The shotgun goes off!"), SPAN_DANGER("The shotgun goes off in your face!"))
 			return
 		if(A.use_tool(user, src, WORKTIME_FAST, QUALITY_SAWING, FAILCHANCE_NORMAL, required_stat = STAT_COG))
-			icon_state = "sawnshotgun"
-			item_state = "sawnshotgun"
-			w_class = ITEM_SIZE_NORMAL
-			force = WEAPON_FORCE_PAINFUL
-			slot_flags &= ~SLOT_BACK	//you can't sling it on your back
-			slot_flags |= (SLOT_BELT|SLOT_HOLSTER) //but you can wear it on your belt (poorly concealed under a trenchcoat, ideally) - or in a holster, why not.
-			name = "sawn-off shotgun"
-			desc = "Omar's coming!"
+			qdel(src)
+			new /obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn(usr.loc)
 			to_chat(user, SPAN_WARNING("You shorten the barrel of \the [src]!"))
 	else
 		..()
