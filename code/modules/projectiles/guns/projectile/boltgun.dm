@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/projectile/boltgun
 	name = "Excelsior .30 \"Kardashev-Mosin\""
-	desc = "Cool spear with the ability to shoot."
+	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours.\
+			If you’re on a budget, it’s a darn good rifle for just about everything."
 	icon = 'icons/obj/guns/projectile/boltgun.dmi'
 	icon_state = "boltgun"
 	item_state = "boltgun"
@@ -16,7 +17,7 @@
 	max_shells = 5
 	ammo_type = /obj/item/ammo_magazine/lrifle
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
-	reload_sound 	= 'sound/weapons/guns/interact/rifle_load.ogg'
+	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
 	price_tag = 2000
 	var/bolt_open = 0
@@ -88,6 +89,7 @@
 /obj/item/weapon/gun/projectile/boltgun/fs
 	name = "FS .30 \"Kardashev-Mosin\""
 	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours.\
+			If you’re on a budget, it’s a darn good rifle for just about everything.\
 			This copy, in fact, is a reverse-engineered poor-quality copy of a more perfect copy of an ancient rifle"
 	icon_state = "boltgun_wood"
 	item_suffix  = "_wood"
