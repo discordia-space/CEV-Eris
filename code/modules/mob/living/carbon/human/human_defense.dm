@@ -23,6 +23,10 @@ meteor_act
 		else
 			P.on_hit(src, def_zone)
 			return 2
+
+	for(var/obj/item/clothing/suit/space/SS in src.get_equipped_items())
+		if(SS.breaches <= 0)
+			return 0
 	//Checking abosrb for spawning shrapnel
 	.=..(P , def_zone)
 
@@ -443,7 +447,8 @@ meteor_act
 	if(!istype(wear_suit,/obj/item/clothing/suit/space)) return
 	var/obj/item/clothing/suit/space/SS = wear_suit
 	var/penetrated_dam = max(0,(damage - SS.breach_threshold))
-	if(penetrated_dam) SS.create_breaches(damtype, penetrated_dam)
+	if(prob(penetrated_dam*20)) SS.create_breaches(damtype, penetrated_dam) // changed into a probability calculation based on the degree of penetration by Plasmatik
+																			// at maximum penetration, breaches are always created, at 1 penetration, they have a 20% chance to form
 
 /mob/living/carbon/human/reagent_permeability()
 	var/perm = 0

@@ -352,6 +352,11 @@
 				M.drop_from_inventory(piece)
 			piece.forceMove(src)
 
+	if(active == TRUE)
+		cell.use(0.11)
+	return
+
+
 	if(!istype(wearer) || loc != wearer || wearer.back != src || canremove || !cell || cell.charge <= 0)
 		if(!cell || cell.charge <= 0)
 			if(electrified > 0)
