@@ -51,7 +51,7 @@
 
 
 
-/mob/living/proc/apply_effect(var/effect = 0,var/effecttype = STUN, var/armor_value = 0, var/check_protection = 1)
+/mob/living/proc/apply_effect(var/effect = 0,var/effecttype = STUN, var/armor_value = 0, var/check_protection = 1, var/def_zone = null)
 	activate_ai()
 
 	if(!effect)
@@ -69,7 +69,8 @@
 		if(PARALYZE)
 			Paralyse(effect)
 		if(AGONY)
-			halloss += effect // Useful for objects that cause "subdual" damage. PAIN!
+			var/agony_protection = check_protection ? getarmor(def_zone, ARMOR_BULLET) / 100 : 0
+			halloss += max((1 - agony_protection) * effect, 0) // Useful for objects that cause "subdual" damage. PAIN!
 		if(IRRADIATE)
 			var/rad_protection = check_protection ? getarmor(null, ARMOR_RAD) / 100 : 0
 			radiation += max((1 - rad_protection) * effect, 0)//Rads auto check armor
@@ -86,7 +87,7 @@
 	return TRUE
 
 
-/mob/living/proc/apply_effects(var/stun = 0, var/weaken = 0, var/paralyze = 0, var/irradiate = 0, var/stutter = 0, var/eyeblur = 0, var/drowsy = 0, var/agony = 0, var/armor_value = 0)
+/mob/living/proc/apply_effects(var/stun = 0, var/weaken = 0, var/paralyze = 0, var/irradiate = 0, var/stutter = 0, var/eyeblur = 0, var/drowsy = 0, var/agony = 0, var/armor_value = 0, var/def_zone = null)
 	activate_ai()
 	if(stun)		apply_effect(stun, STUN, armor_value)
 	if(weaken)		apply_effect(weaken, WEAKEN, armor_value)
@@ -95,7 +96,7 @@
 	if(stutter)		apply_effect(stutter, STUTTER, armor_value)
 	if(eyeblur)		apply_effect(eyeblur, EYE_BLUR, armor_value)
 	if(drowsy)		apply_effect(drowsy, DROWSY, armor_value)
-	if(agony)		apply_effect(agony, AGONY, armor_value)
+	if(agony)		apply_effect(agony, AGONY, armor_value, def_zone)
 	return 1
 
 
