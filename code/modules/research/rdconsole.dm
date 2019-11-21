@@ -396,9 +396,9 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				var/can_build_chem
 				var/iconName = getAtomCacheFilename(D.build_path)
 				for(var/M in D.materials)
-					if(build_type == PROTOLATHE)
+					if(build_type & PROTOLATHE)
 						can_build = linked_lathe.check_craftable_amount_by_material(D, M)
-					if(build_type == IMPRINTER)
+					if(build_type & IMPRINTER)
 						can_build = linked_imprinter.check_craftable_amount_by_material(D, M)
 					var/material/mat = get_material_by_name(M)
 					if(can_build < 1)
@@ -407,7 +407,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 						temp_material += " [D.materials[M]] [mat.display_name]"
 					can_build = min(can_build,maximum)
 				for(var/C in D.chemicals)
-					if(build_type == IMPRINTER)
+					if(build_type & IMPRINTER)
 						can_build_chem = linked_imprinter.check_craftable_amount_by_chemical(D, C)
 					var/datum/reagent/R = chemical_reagents_list[C] // this is how you do it, you don't fucking new every possible reagent till you find a match
 					if(can_build_chem < 1)
@@ -527,7 +527,8 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			var/list/known_designs = list()
 			for(var/i in files.known_designs)
 				var/datum/design/D = i
-				if(!D.starts_unlocked) // doesn't make much sense to copy starting designs around.
+				if(!D.starts_unlocked && !(D.build_type & (AUTOLATHE | BIOPRINTER)))
+					// doesn't make much sense to copy starting designs around, unless you can use them in lathes
 					known_designs += list(list("name" = D.name, "id" = "\ref[D]"))
 			data["known_designs"] = known_designs
 	if(screen == SCREEN_DISK_TECH)
