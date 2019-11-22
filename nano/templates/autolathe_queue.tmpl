@@ -16,7 +16,7 @@
 			{{if data.error}}
 				<div class="bad">{{:data.error}}</div>
 			{{else}}
-				{{:helper.displayBar(data.progress / data.current.time, 0, 1, 'good', data.progress + "/" + data.current.time)}}
+				{{:helper.displayBar(data.progress / data.current.time, 0, 1, 'good', Math.round((data.progress / data.current.time) * 100) + "%")}}
 			{{/if}}
 			</div>
 		</div>
@@ -34,8 +34,7 @@
 			<div class="item">
 				<div class="itemLabelWidest">Reagents</div>
 				{{for data.current.chemicals :chemical:chemical_i}}
-					{{chemical.amount = Math.round((chemical.req * data.mat_efficiency) * 100) / 100;}}
-					<div class="itemContentWidest">{{:chemical.name}}: {{:chemical.amount}}</div>
+					<div class="itemContentWidest">{{:chemical.name}}: {{:Math.round(chemical.req * 100) / 100}}</div>
 				{{/for}}
 			</div>
 			{{/if}}
@@ -52,7 +51,7 @@
 {{if data.queue_max}}
 <div class="block" style ='position: relative;'>
 	<div class="item">
-		<div class="itemLabelWidest">Queue: {{:data.queue_len}}/{{:data.queue_max}} </div>
+		<div class="itemLabelWidest">Queue: {{:data.queue.length}}/{{:data.queue_max}} </div>
 		{{for data.queue}}
 			<div class="item">
 				<div class="itemContentWidest" style ='position: relative;'>

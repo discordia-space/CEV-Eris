@@ -22,8 +22,7 @@
 					<div class="item">
 						<div class="itemLabelWidest">Reagents</div>
 						{{for value.chemicals :chemical:chemical_i}}
-							{{chemical.amount = Math.round((chemical.req * data.mat_efficiency) * 100) / 100;}}
-							<div class="itemContentWidest">{{:chemical.name}}: {{:chemical.amount}}</div>
+							<div class="itemContentWidest">{{:chemical.name}}: {{:Math.round(chemical.req * 100) / 100}}</div>
 						{{/for}}
 					</div>
 					{{/if}}

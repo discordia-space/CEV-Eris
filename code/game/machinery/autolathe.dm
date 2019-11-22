@@ -96,6 +96,36 @@
 	return ..()
 
 
+// Also used by R&D console UI.
+/obj/machinery/autolathe/proc/materials_data()
+	var/list/data = list()
+
+	data["mat_efficiency"] = mat_efficiency
+	data["mat_capacity"] = storage_capacity
+
+	data["container"] = !!container
+	if(container && container.reagents)
+		var/list/L = list()
+		for(var/datum/reagent/R in container.reagents.reagent_list)
+			var/list/LE = list("name" = R.name, "amount" = R.volume)
+			L.Add(list(LE))
+
+		data["reagents"] = L
+
+	var/list/M = list()
+	for(var/mtype in stored_material)
+		if(stored_material[mtype] <= 0)
+			continue
+
+		var/material/MAT = get_material_by_name(mtype)
+		var/list/ME = list("name" = MAT.display_name, "id" = mtype, "amount" = stored_material[mtype], "ejectable" = !!MAT.stack_type)
+
+		M.Add(list(ME))
+
+	data["materials"] = M
+
+	return data
+
 
 /obj/machinery/autolathe/ui_data()
 	var/list/data = list()
@@ -110,8 +140,6 @@
 
 	data["unfolded"] = unfolded
 
-	data["mat_efficiency"] = mat_efficiency
-	data["mat_capacity"] = storage_capacity
 	data["speed"] = speed
 
 	if(disk)
@@ -127,6 +155,8 @@
 
 	data["special_actions"] = special_actions
 
+	data |= materials_data()
+
 	var/list/L = list()
 	for(var/d in design_list())
 		var/datum/computer_file/binary/design/design_file = d
@@ -134,30 +164,6 @@
 			L.Add(list(design_file.ui_data()))
 	data["designs"] = L
 
-	data["container"] = !!container
-	if(container && container.reagents)
-		L = list()
-		for(var/datum/reagent/R in container.reagents.reagent_list)
-			var/list/LE = list("name" = R.name, "count" = "[R.volume]")
-
-			L.Add(list(LE))
-
-		data["reagents"] = L
-
-	var/list/M = list()
-	for(var/mtype in stored_material)
-		if(stored_material[mtype] <= 0)
-			continue
-
-		var/list/ME = list("name" = mtype, "count" = stored_material[mtype], "ejectable" = TRUE)
-
-		var/material/MAT = get_material_by_name(mtype)
-		if(!MAT.stack_type)
-			ME["ejectable"] = FALSE
-
-		M.Add(list(ME))
-
-	data["materials"] = M
 
 	if(current_file)
 		data["current"] = current_file.ui_data()
@@ -195,7 +201,6 @@
 		Q.Add(list(QR))
 
 	data["queue"] = Q
-	data["queue_len"] = queue.len
 	data["queue_max"] = queue_max
 
 	return data
@@ -233,6 +238,11 @@
 
 	if(istype(I, /obj/item/stack))
 		eat(user)
+		return
+
+	if(istype(I, /obj/item/weapon/reagent_containers/glass))
+		insert_beaker(user)
+		return
 
 	user.set_machine(src)
 	ui_interact(user)
@@ -319,16 +329,8 @@
 				if(!CanUseTopic(usr) || !(design_file in design_list()))
 					return
 
-			// Copy the designs that are not copy protected so they can be printed even if the disk is ejected.
-			if(!design_file.copy_protected)
-				design_file = design_file.clone()
+			queue_design(design_file, amount)
 
-			while(amount && queue.len < queue_max)
-				queue.Add(design_file)
-				amount--
-
-			if(!current_file)
-				next_file()
 		return 1
 
 	if(href_list["remove_from_queue"])
@@ -393,13 +395,16 @@
 		return
 
 	var/obj/item/eating = user.get_active_hand()
-
 	if(!istype(eating))
+		return
+
+	if(!have_reagents)
+		to_chat(user, SPAN_WARNING("[src] has no slot for a beaker."))
 		return
 
 	if(istype(eating, /obj/item/weapon/reagent_containers/glass))
 		if(container)
-			to_chat(user, SPAN_NOTICE("There's already \a [container] inside [src]."))
+			to_chat(user, SPAN_WARNING("There's already \a [container] inside [src]."))
 			return
 		user.unEquip(eating, src)
 		container = eating
@@ -525,6 +530,33 @@
 	else if(reagents_filltype == 2)
 		to_chat(user, SPAN_NOTICE("Some liquid flowed to the floor from \the [src]."))
 
+
+/obj/machinery/autolathe/proc/queue_design(datum/computer_file/binary/design/design_file, amount=1)
+	if(!design_file || !amount)
+		return
+
+	// Copy the designs that are not copy protected so they can be printed even if the disk is ejected.
+	if(!design_file.copy_protected)
+		design_file = design_file.clone()
+
+	while(amount && queue.len < queue_max)
+		queue.Add(design_file)
+		amount--
+
+	if(!current_file)
+		next_file()
+
+/obj/machinery/autolathe/proc/clear_queue()
+	queue.Cut()
+
+/obj/machinery/autolathe/proc/check_craftable_amount_by_material(datum/design/design, material)
+	return stored_material[material] / max(1, SANITIZE_LATHE_COST(design.materials[material])) // loaded material / required material
+
+/obj/machinery/autolathe/proc/check_craftable_amount_by_chemical(datum/design/design, reagent)
+	if(!container || !container.reagents)
+		return 0
+
+	return container.reagents.get_reagent_amount(reagent) / max(1, design.chemicals[reagent])
 
 
 //////////////////////////////////////////
@@ -683,7 +715,7 @@
 
 
 	if (whole_amount)
-		var/obj/item/stack/material/S = new M.stack_type(get_turf(src))
+		var/obj/item/stack/material/S = new M.stack_type(drop_location())
 
 		//Accounting for the possibility of too much to fit in one stack
 		if (whole_amount <= S.max_amount)
@@ -695,13 +727,13 @@
 			S.amount = whole_amount % S.max_amount
 
 			for(var/i = 0; i < fullstacks; i++)
-				var/obj/item/stack/material/MS = new M.stack_type(get_turf(src))
+				var/obj/item/stack/material/MS = new M.stack_type(drop_location())
 				MS.amount = MS.max_amount
 
 
 	//And if there's any remainder, we eject that as a shard
 	if (remainder)
-		new /obj/item/weapon/material/shard(loc, material, _amount = remainder)
+		new /obj/item/weapon/material/shard(drop_location(), material, _amount = remainder)
 
 	//The stored material gets the amount (whole+remainder) subtracted
 	stored_material[material] -= amount
@@ -766,7 +798,7 @@
 
 /obj/machinery/autolathe/proc/fabricate_design(datum/design/design)
 	consume_materials(design)
-	design.Fabricate(get_turf(src), mat_efficiency, src)
+	design.Fabricate(drop_location(), mat_efficiency, src)
 
 	working = FALSE
 	current_file = null
