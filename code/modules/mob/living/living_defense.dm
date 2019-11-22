@@ -136,7 +136,10 @@
 	//If armor is 100 or more, we just skeeping it
 	if (agony_amount && armor_coefficient)
 
-		apply_damage((agony_amount * armor_coefficient)/2, HALLOSS, def_zone, 0, used_weapon)
+		var/applied_agony = agony_amount * armor_coefficient
+		if (armor_coefficient < 1)
+			applied_agony = applied_agony / 2
+		apply_damage(applied_agony, HALLOSS, def_zone, 0, used_weapon)
 
 /mob/living/proc/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0)
 	  return 0 //only carbon liveforms have this proc
