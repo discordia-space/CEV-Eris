@@ -98,6 +98,10 @@
 	if(!P.nodamage)
 		hit_impact(P.damage, hit_dir)
 		damage_through_armor(P.damage, P.damage_type, def_zone, P.check_armour, armour_pen = P.armor_penetration, used_weapon = P, sharp=is_sharp(P), edge=has_edge(P))
+	
+	if(P.agony > 0 && !P.taser_effect)
+		rubber_effect_act(P.agony, def_zone, P)
+		to_chat(src, SPAN_WARNING("You have been hit by [P]!"))
 
 	P.on_hit(src, def_zone)
 	return TRUE
@@ -122,6 +126,17 @@
 		apply_damage(agony_amount * armor_coefficient, HALLOSS, def_zone, 0, used_weapon)
 		apply_effect(STUTTER, agony_amount * armor_coefficient)
 		apply_effect(EYE_BLUR, agony_amount * armor_coefficient)
+
+/mob/living/proc/rubber_effect_act(var/agony_amount, var/def_zone, var/used_weapon=null)
+	flash_pain()
+
+	//For not bloating damage_through_armor here is simple armor calculation for agony time
+	var/armor_coefficient = max(0, 1 - getarmor(def_zone, ARMOR_BULLET) / 100)
+
+	//If armor is 100 or more, we just skeeping it
+	if (agony_amount && armor_coefficient)
+
+		apply_damage(agony_amount * armor_coefficient, HALLOSS, def_zone, 0, used_weapon)
 
 /mob/living/proc/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0)
 	  return 0 //only carbon liveforms have this proc

@@ -84,7 +84,7 @@
 	if(!isliving(target))	return 0
 	if(isanimal(target))	return 0
 	var/mob/living/L = target
-	L.apply_effects(stun, weaken, paralyze, irradiate, stutter, eyeblur, drowsy, agony, 0, def_zone)
+	L.apply_effects(stun, weaken, paralyze, irradiate, stutter, eyeblur, drowsy)
 	return TRUE
 
 // generate impact effect
