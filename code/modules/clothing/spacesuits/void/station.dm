@@ -82,7 +82,7 @@
 		slot_r_hand_str = "sec_helm",
 		)
 
-	armor = list(melee = 60, bullet = 60, energy = 40, bomb = 35, bio = 100, rad = 60)
+	armor = list((melee = 45, bullet = 50, energy = 40, bomb = 35, bio = 100, rad = 60)
 	siemens_coefficient = 0.7
 	light_overlay = "helmet_light_ihs"
 
