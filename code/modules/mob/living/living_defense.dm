@@ -103,7 +103,7 @@
 	if(P.agony > 0 && istype(P,/obj/item/projectile/bullet))
 		hit_impact(P.agony, hit_dir)
 		damage_through_armor(P.agony, HALLOSS, def_zone, P.check_armour, armour_pen = P.armor_penetration, used_weapon = P, sharp = is_sharp(P), edge = has_edge(P))
-		to_chat(src, SPAN_WARNING("You have been hit by [P]!"))
+
 
 	P.on_hit(src, def_zone)
 	return TRUE
