@@ -50,13 +50,3 @@
 	if(!(icon_state in icon_states(icon)))
 		icon_state = "protolathe_metal"
 	..()
-
-/obj/effect/temp_visual/resourceInsertion/mechfab
-	icon = 'icons/obj/robotics.dmi'
-	duration = 12
-
-/obj/effect/temp_visual/resourceInsertion/mechfab/setMaterial(var/material)
-	icon_state = "fab-load-[material]"
-	if(!(icon_state in icon_states(icon)))
-		icon_state = "fab-load-metal"
-	..()
