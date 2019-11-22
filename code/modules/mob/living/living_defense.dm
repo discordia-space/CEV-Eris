@@ -50,7 +50,7 @@
 		//Pain part of the damage, that simulates impact from armor absorbtion
 		//For balance purposes, it's lowered by ARMOR_AGONY_COEFFICIENT
 		var/agony_gamage = round( ( effective_damage * armor_effectiveness * ARMOR_AGONY_COEFFICIENT ) / 100 )
-		stun_effect_act(0, agony_gamage, def_zone)
+		apply_effect(agony_gamage, AGONY)
 
 		//Actual part of the damage that passed through armor
 		var/actual_damage = round ( ( effective_damage * ( 100 - armor_effectiveness ) ) / 100 )
