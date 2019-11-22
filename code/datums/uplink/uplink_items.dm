@@ -35,10 +35,6 @@ var/datum/uplink/uplink = new()
 /datum/uplink_item/item
 	var/path = null
 
-/datum/uplink_item/New()
-	..()
-	antag_roles = list()
-
 /datum/uplink_item/proc/buy(var/obj/item/device/uplink/U, var/mob/user)
 	var/extra_args = extra_args(user)
 	if(!extra_args)
