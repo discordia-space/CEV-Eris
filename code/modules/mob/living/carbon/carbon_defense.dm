@@ -60,10 +60,7 @@ true, and the mob is not yet deleted, so we need to check that as well*/
 
 // Knifing
 /mob/living/carbon/proc/attack_throat(obj/item/W, obj/item/weapon/grab/G, mob/user)
-	//presumably, if they are wearing a helmet that stops pressure effects, then it probably covers the throat as well
-	var/obj/item/clothing/head/helmet = get_equipped_item(slot_head)
-	if(istype(helmet) && (helmet.canremove == 0))
-		return 0
+
 	if(!W.edge || !W.force || W.damtype != BRUTE)
 		return 0 //unsuitable weapon
 

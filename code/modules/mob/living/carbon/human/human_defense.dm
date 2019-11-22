@@ -23,13 +23,7 @@ meteor_act
 		else
 			P.on_hit(src, def_zone)
 			return 2
-	//Checking to see if we're wearing a spacesuit and whether it's been punctured.if not, we cannot embed shrapnel... usually. it still happens very rarely when blunt attacks deal high enough damage.
-	for(var/obj/item/clothing/suit/space/SS in src.get_equipped_items())
-		for(var/obj/item/weapon/rig/R in src.get_equipped_items())
-			if(R.active == FALSE) // check equipped items for RIG toggle state, FALSE means it won't protect from shrapnel
-				return 0
-		if(!SS.breaches)
-			return 0
+
 	//Checking absorb for spawning shrapnel
 	.=..(P , def_zone)
 
