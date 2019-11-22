@@ -28,8 +28,9 @@
 	var/list/stored_material = list()
 	var/obj/item/weapon/reagent_containers/glass/container = null
 
-	var/show_category = "All"
 	var/unfolded = null
+	var/show_category
+	var/list/categories
 
 	var/hacked = FALSE
 	var/disabled = FALSE
@@ -55,6 +56,8 @@
 	var/have_reagents = TRUE
 	var/have_materials = TRUE
 	var/have_recycling = TRUE
+	var/have_design_selector = TRUE
+
 	var/list/unsuitable_materials = list(MATERIAL_BIOMATTER)
 
 	var/global/list/error_messages = list(
@@ -98,6 +101,7 @@
 	data["have_disk"] = have_disk
 	data["have_reagents"] = have_reagents
 	data["have_materials"] = have_materials
+	data["have_design_selector"] = have_design_selector
 
 	data["error"] = error
 	data["paused"] = paused
@@ -115,24 +119,26 @@
 			"read_only" = disk.read_only
 		)
 
+	if(categories)
+		data["categories"] = categories
+		data["show_category"] = show_category
 
 	var/list/L = list()
 	for(var/d in design_list())
 		var/datum/computer_file/binary/design/design_file = d
-		L.Add(list(design_file.ui_data()))
+		if(!show_category || design_file.design.category == show_category)
+			L.Add(list(design_file.ui_data()))
 	data["designs"] = L
 
-	data["container"] = FALSE
-	if(container)
-		data["container"] = TRUE
-		if(container.reagents)
-			L = list()
-			for(var/datum/reagent/R in container.reagents.reagent_list)
-				var/list/LE = list("name" = R.name, "count" = "[R.volume]")
+	data["container"] = !!container
+	if(container && container.reagents)
+		L = list()
+		for(var/datum/reagent/R in container.reagents.reagent_list)
+			var/list/LE = list("name" = R.name, "count" = "[R.volume]")
 
-				L.Add(list(LE))
+			L.Add(list(LE))
 
-			data["reagents"] = L
+		data["reagents"] = L
 
 	var/list/M = list()
 	for(var/mtype in stored_material)
@@ -199,9 +205,12 @@
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "autolathe.tmpl", capitalize(name), 550, 655)
+
 		// template keys starting with _ are not appended to the UI automatically and have to be called manually
 		ui.add_template("_materials", "autolathe_materials.tmpl")
 		ui.add_template("_reagents", "autolathe_reagents.tmpl")
+		ui.add_template("_designs", "autolathe_designs.tmpl")
+		ui.add_template("_queue", "autolathe_queue.tmpl")
 
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
@@ -250,6 +259,9 @@
 
 	if(href_list["insert_beaker"])
 		insert_beaker(usr)
+
+	if(href_list["category"] && categories && (href_list["category"] in categories))
+		show_category = href_list["category"]
 
 	if(!current_file || paused)
 		if(href_list["eject_material"])
