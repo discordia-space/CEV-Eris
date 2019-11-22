@@ -42,6 +42,18 @@ Used In File(s): \code\game\machinery\autolathe.dm
 </div>
 {{/if}}
 
+{{if data.special_actions}}
+<div class="fixedWidest" style="width:100%; display: table-row">
+	<div class="block" style="padding: 0px 4px 2px 4px">
+	{{for data.special_actions}}
+		<div class="item">
+		{{:helper.link(value.name, value.icon, {'action' : value.action})}}
+		</div>
+	{{/for}}
+	</div>
+</div>
+{{/if}}
+
 {{if data.categories}}
 <div class="fixedWidest" style="width:100%; display: table-row">
 	<div class="block" style="padding: 0px 4px 2px 4px">

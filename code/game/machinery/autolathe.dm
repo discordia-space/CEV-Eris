@@ -32,6 +32,8 @@
 	var/show_category
 	var/list/categories
 
+	var/list/special_actions
+
 	var/hacked = FALSE
 	var/disabled = FALSE
 	var/shocked = FALSE
@@ -122,6 +124,8 @@
 	if(categories)
 		data["categories"] = categories
 		data["show_category"] = show_category
+
+	data["special_actions"] = special_actions
 
 	var/list/L = list()
 	for(var/d in design_list())
@@ -251,18 +255,22 @@
 
 	if(href_list["insert"])
 		eat(usr)
+		return 1
 
 	if(href_list["disk"])
 		if(disk)
 			eject_disk()
 		else
 			insert_disk(usr)
+		return 1
 
 	if(href_list["insert_beaker"])
 		insert_beaker(usr)
+		return 1
 
 	if(href_list["category"] && categories && (href_list["category"] in categories))
 		show_category = href_list["category"]
+		return 1
 
 	if(!current_file || paused)
 		if(href_list["eject_material"])
@@ -279,6 +287,7 @@
 			num = min(max(num,0), stored_material[material])
 
 			eject(material, num)
+			return 1
 
 		if(href_list["eject_container"])
 			container.forceMove(src.loc)
@@ -289,6 +298,7 @@
 					L.put_in_active_hand(container)
 
 			container = null
+			return 1
 
 
 	if(href_list["add_to_queue"])
@@ -319,36 +329,42 @@
 
 			if(!current_file)
 				next_file()
+		return 1
 
 	if(href_list["remove_from_queue"])
 		var/ind = text2num(href_list["remove_from_queue"])
 		if(ind >= 1 && ind <= queue.len)
 			queue.Cut(ind, ind + 1)
+		return 1
 
 	if(href_list["move_up_queue"])
 		var/ind = text2num(href_list["move_up_queue"])
 		if(ind >= 2 && ind <= queue.len)
 			queue.Swap(ind, ind - 1)
+		return 1
 
 	if(href_list["move_down_queue"])
 		var/ind = text2num(href_list["move_down_queue"])
 		if(ind >= 1 && ind <= queue.len-1)
 			queue.Swap(ind, ind + 1)
+		return 1
 
 
 	if(href_list["abort_print"])
 		abort()
+		return 1
 
 	if(href_list["pause"])
 		paused = !paused
+		return 1
 
 	if(href_list["unfold"])
 		if(unfolded == href_list["unfold"])
 			unfolded = null
 		else
 			unfolded = href_list["unfold"]
+		return 1
 
-	return 1
 
 /obj/machinery/autolathe/proc/insert_disk(mob/living/user)
 	if(!istype(user))
