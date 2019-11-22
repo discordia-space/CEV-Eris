@@ -713,10 +713,16 @@
 	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
 		man_rating += M.rating
 		man_amount++
-
 	man_rating -= man_amount
 
-	speed = initial(speed) + man_rating
+	var/las_rating = 0
+	var/las_amount = 0
+	for(var/obj/item/weapon/stock_parts/micro_laser/M in component_parts)
+		las_rating += M.rating
+		las_amount++
+	las_rating -= las_amount
+
+	speed = initial(speed) + man_rating + las_rating
 	mat_efficiency = max(0.2, 1.0 - (man_rating * 0.1))
 
 
