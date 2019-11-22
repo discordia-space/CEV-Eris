@@ -44,7 +44,7 @@
 		itemstring += "_s"
 
 	icon_state = iconstring
-	item_state = itemstring
+	set_item_state(itemstring)
 
 /obj/item/weapon/gun/projectile/automatic/IH_machinepistol/Initialize()
 	. = ..()

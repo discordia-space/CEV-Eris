@@ -128,9 +128,9 @@
 		item_state_slots[slot_l_hand_str] = "lefthand"  + state
 		item_state_slots[slot_r_hand_str] = "righthand" + state
 	if(back)
-		item_state_slots[slot_back_str]   = "back"
+		item_state_slots[slot_back_str]   = "back"      + state
 	if(onsuit)
-		item_state_slots[slot_s_store_str]= "onsuit"
+		item_state_slots[slot_s_store_str]= "onsuit"    + state
 
 /obj/item/weapon/gun/update_wear_icon()
 	if(requires_two_hands)
