@@ -29,24 +29,27 @@
 
 /obj/item/weapon/reagent_containers/glass/beaker/tungsten
 	name = "beaker (tungsten)"
-	preloaded_reagents = list("tungsten" = 50)
+	preloaded_reagents = list("tungsten" = 60)
 
 /obj/item/weapon/reagent_containers/glass/beaker/oxygen
 	name = "beaker (oxygen)"
-	preloaded_reagents = list("oxygen" = 50)
+	preloaded_reagents = list("oxygen" = 60)
 
 /obj/item/weapon/reagent_containers/glass/beaker/sodium
 	name = "beaker (sodium)"
-	preloaded_reagents = list("sodium" = 50)
+	preloaded_reagents = list("sodium" = 60)
 
 /obj/item/weapon/reagent_containers/glass/beaker/lithium
 	name = "beaker (lithium)"
-	preloaded_reagents = list("lithium" = 50)
+	preloaded_reagents = list("lithium" = 60)
 
 /obj/item/weapon/reagent_containers/glass/beaker/water
 	name = "beaker (water)"
-	preloaded_reagents = list("water" = 50)
+	preloaded_reagents = list("water" = 60)
 
 /obj/item/weapon/reagent_containers/glass/beaker/fuel
 	name = "beaker (fuel)"
-	preloaded_reagents = list("fuel" = 50)
+	preloaded_reagents = list("fuel" = 60)
+
+/obj/item/weapon/reagent_containers/glass/beaker/silicon
+	preloaded_reagents = list("silicon" = 60)

@@ -22786,7 +22786,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "bag" = (
-/obj/machinery/r_n_d/circuit_imprinter,
+/obj/machinery/autolathe/rnd/imprinter/loaded,
 /obj/machinery/button/remote/blast_door{
 	id = "maint_hatch_rnd";
 	name = "Maintenance Hatch Control";
@@ -22989,7 +22989,7 @@
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/security/main)
 "baE" = (
-/obj/machinery/r_n_d/protolathe,
+/obj/machinery/autolathe/rnd/protolathe/loaded,
 /obj/machinery/light{
 	dir = 8
 	},

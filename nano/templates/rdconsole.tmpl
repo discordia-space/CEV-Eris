@@ -6,8 +6,7 @@
 	<p>
 	Thank you for your patience!
 	</p>
-{{/if}}
-{{if data.screen == "locked"}}
+{{else data.screen == "locked"}}
 	<h5 class='average'>The R&amp;D Console</h5>
 	<div class='notice'>
 	<center>SYSTEM LOCKED</center>
@@ -16,8 +15,9 @@
 	{{:helper.link("Unlock", 'unlocked', {'unlock' : 1})}}
 	</p>
 {{/if}}
-{{if !data.screen || data.screen == "main"}}
 
+
+{{if !data.screen || data.screen == "main"}}
 <table style="width: 100%">
 	<tr>
 		<td valign="top">
@@ -126,84 +126,6 @@
 					</div>
 				</div>
 			</div>
-			<H2>Protolathe Material Storage</H2>
-			<div class="statusDisplayRecords">
-				<div class="item">
-					<div class="itemContent" style="width: 100%;">
-							{{if data.protolathe_data}}
-								<table class="fixed" style="width: 100%">
-								<tr>
-									<td><span class="average">Total capacity</span></td><td colspan="2"><div style="width: 95%">{{:helper.displayBar(data.protolathe_data.total_materials, 0, data.protolathe_data.max_material_storage, 'good', data.protolathe_data.total_materials+"/"+data.protolathe_data.max_material_storage)}}</div></td>
-								</tr>
-								{{for data.protolathe_data.materials}}
-								<tr>
-									<td><span class="average">{{:value.name}}</span></td><td>{{:value.ammount}}</td>
-									<td>
-									{{if value.can_eject_one}}
-										{{:helper.link("Eject", '', {'lathe_ejectsheet' : value.id, 'lathe_ejectsheet_amt' : 1})}}
-									{{/if}}
-									{{if value.can_eject_five}}
-										{{:helper.link("5x", '', {'lathe_ejectsheet' : value.id, 'lathe_ejectsheet_amt' : 5})}}
-									{{/if}}
-									{{if value.can_eject_one}}
-										{{:helper.link("All", '', {'lathe_ejectsheet' : value.id, 'lathe_ejectsheet_amt' : 50})}}
-									{{/if}}
-									</td>
-								</tr>
-								{{/for}}
-								</table>
-							{{else}}
-								<span class="average">No protolathe detected</span>
-							{{/if}}
-					</div>
-				</div>
-			</div>
-			<H3>Circuit Imprinter Material Storage</H3>
-			<div class="statusDisplayRecords">
-				<div class="item">
-					<div class="itemContent" style="width: 100%;">
-							{{if data.imprinter_data}}
-								<table class="fixed" style="width: 100%">
-								<tr>
-									<td><span class="average">Material capacity</span></td><td colspan="2"><div style="width: 95%">{{:helper.displayBar(data.imprinter_data.total_materials, 0, data.imprinter_data.max_material_storage, 'good', data.imprinter_data.total_materials+"/"+data.imprinter_data.max_material_storage)}}</div></td>
-								</tr>
-								<tr>
-									<td><span class="average">Reagent capacity</span></td><td colspan="2"><div style="width: 95%">{{:helper.displayBar(data.imprinter_data.total_volume, 0, data.imprinter_data.maximum_volume, 'good', data.imprinter_data.total_volume+"/"+data.imprinter_data.maximum_volume)}}</div>{{:helper.link("Purge", '', {'imprinter_purgeall' : 1})}}</td>
-								</tr>
-								{{for data.imprinter_data.reagents}}
-								<tr>
-									<td><span class="average">{{:value.name}}</span></td><td>{{:value.volume}}</td>
-									<td>
-									{{if value.volume > 0}}
-										{{:helper.link("Purge", '', {'imprinter_purge' : value.id})}}
-									{{/if}}
-									</td>
-								</tr>
-								{{/for}}
-								
-								{{for data.imprinter_data.materials}}
-								<tr>
-									<td><span class="average">{{:value.name}}</span></td><td>{{:value.ammount}}</td>
-									<td>
-									{{if value.can_eject_one}}
-										{{:helper.link("Eject", '', {'imprinter_ejectsheet' : value.id, 'imprinter_ejectsheet_amt' : 1})}}
-									{{/if}}
-									{{if value.can_eject_five}}
-										{{:helper.link("5x", '', {'imprinter_ejectsheet' : value.id, 'imprinter_ejectsheet_amt' : 5})}}
-									{{/if}}
-									{{if value.can_eject_one}}
-										{{:helper.link("All", '', {'imprinter_ejectsheet' : value.id, 'imprinter_ejectsheet_amt' : 50})}}
-									{{/if}}
-									</td>
-								</tr>
-								{{/for}}
-								</table>
-							{{else}}
-								<span class="average">No circuit imprinter detected</span>
-							{{/if}}
-					</div>
-				</div>
-			</div>
 		</td>
 	</tr>
 </table>
@@ -224,8 +146,7 @@
 							<table class="fixed" style="border-collapse: collapse;"><tr><td style="padding:0; margin:0;">
 							{{if data.screen == "protolathe"}}
 								<H2>Protolathe Menu:</H2>
-							{{/if}}
-							{{if data.screen == "circuit_imprinter"}}
+							{{else data.screen == "circuit_imprinter"}}
 								<H2>Circuit Imprinter Menu:</H2>
 							{{/if}}
 							</td><td style="padding:0; margin:0;padding-left: 10px">
@@ -249,6 +170,14 @@
 											</td>
 											<td style="width: 70%">
 												{{:helper.link(value.name, '', {'build' : value.id, 'amount': 1}, value.can_create >= 1 ? null : 'disabled')}}
+												{{if data.screen == "protolathe"}}
+													{{if value.can_create >= 3}}
+														{{:helper.link('x3', '', {'build' : value.id, 'amount': 3})}}
+													{{/if}}
+													{{if value.can_create >= 5}}
+														{{:helper.link('x5', '', {'build' : value.id, 'amount': 5})}}
+													{{/if}}
+												{{/if}}
 											</td>
 											<td style="width: 100%" align="right">
 												{{if value.temp_material}}
@@ -256,16 +185,6 @@
 												{{/if}}
 												{{if value.temp_chemical}}
 													{{:value.temp_chemical}}
-												{{/if}}
-												</div></td>
-											<td align="right">
-												{{if data.screen == "protolathe"}}
-													{{if value.can_create >= 5}}
-														{{:helper.link('x5', '', {'build' : value.id, 'amount': 5})}}
-													{{/if}}
-													{{if value.can_create >= 10}}
-														{{:helper.link('x10', '', {'build' : value.id, 'amount': 10})}}
-													{{/if}}
 												{{/if}}
 											</td>
 										</tr>
@@ -280,96 +199,52 @@
 				</div>
 			</td>
 			<td style="width: 430px" valign="top">
-				{{if data.protolathe_data}}
-				<H2>Protolathe Material Storage</H2>
+				<h3>Material Storage</h3>
 				<div class="statusDisplayRecords">
 					<div class="item">
 						<div class="itemContent" style="width: 100%;">
 							<table class="fixed" style="width: 100%">
-							<tr>
-								<td><span class="average">Total capacity</span></td><td colspan="2"><div style="width: 95%">{{:helper.displayBar(data.protolathe_data.total_materials, 0, data.protolathe_data.max_material_storage, 'good', data.protolathe_data.total_materials+"/"+data.protolathe_data.max_material_storage)}}</div></td>
-							</tr>
-							{{for data.protolathe_data.materials}}
-							<tr>
-								<td><span class="average">{{:value.name}}</span></td><td>{{:value.ammount}}</td>
-								<td>
-								{{if value.can_eject_one}}
-									{{:helper.link("Eject", '', {'lathe_ejectsheet' : value.id, 'lathe_ejectsheet_amt' : 1})}}
-								{{/if}}
-								{{if value.can_eject_five}}
-									{{:helper.link("5x", '', {'lathe_ejectsheet' : value.id, 'lathe_ejectsheet_amt' : 5})}}
-								{{/if}}
-								{{if value.can_eject_one}}
-									{{:helper.link("All", '', {'lathe_ejectsheet' : value.id, 'lathe_ejectsheet_amt' : 50})}}
-								{{/if}}
-								</td>
-							</tr>
-							{{/for}}
-							</table>
-						</div>
-					</div>
-				</div>
-				{{/if}}
-				{{if data.imprinter_data}}
-				<H3>Circuit Imprinter Material Storage</H3>
-				<div class="statusDisplayRecords">
-					<div class="item">
-						<div class="itemContent" style="width: 100%;">
-							<table class="fixed" style="width: 100%">
-							<tr>
-								<td><span class="average">Material capacity</span></td><td colspan="2"><div style="width: 95%">{{:helper.displayBar(data.imprinter_data.total_materials, 0, data.imprinter_data.max_material_storage, 'good', data.imprinter_data.total_materials+"/"+data.imprinter_data.max_material_storage)}}</div></td>
-							</tr>
-							<tr>
-								<td><span class="average">Reagent capacity</span></td><td colspan="2"><div style="width: 95%">{{:helper.displayBar(data.imprinter_data.total_volume, 0, data.imprinter_data.maximum_volume, 'good', data.imprinter_data.total_volume+"/"+data.imprinter_data.maximum_volume)}}</div>{{:helper.link("Purge", '', {'imprinter_purgeall' : 1})}}</td>
-							</tr>
-							{{for data.imprinter_data.reagents}}
-							<tr>
-								<td><span class="average">{{:value.name}}</span></td><td>{{:value.volume}}</td>
-								<td>
-								{{if value.volume > 0}}
-									{{:helper.link("Purge", '', {'imprinter_purge' : value.id})}}
-								{{/if}}
-								</td>
-							</tr>
+				
+							{{for data.materials_data.reagents}}
+							<tr><td><span class="average">{{:value.name}}</span></td><td>{{:Math.round(value.amount * 100) / 100}}</td></tr>
 							{{/for}}
 							
-							{{for data.imprinter_data.materials}}
+							{{for data.materials_data.materials}}
 							<tr>
-								<td><span class="average">{{:value.name}}</span></td><td>{{:value.ammount}}</td>
+								<td><span class="average">{{:value.name.toTitleCase()}}</span></td>
+								<td>{{:Math.round(value.amount * 100) / 100}}/{{:data.materials_data.mat_capacity}}</td>
 								<td>
-								{{if value.can_eject_one}}
-									{{:helper.link("Eject", '', {'imprinter_ejectsheet' : value.id, 'imprinter_ejectsheet_amt' : 1})}}
-								{{/if}}
-								{{if value.can_eject_five}}
-									{{:helper.link("5x", '', {'imprinter_ejectsheet' : value.id, 'imprinter_ejectsheet_amt' : 5})}}
-								{{/if}}
-								{{if value.can_eject_one}}
-									{{:helper.link("All", '', {'imprinter_ejectsheet' : value.id, 'imprinter_ejectsheet_amt' : 50})}}
+								{{if value.amount && value.ejectable}}
+									{{:helper.link("Eject x1", '', {'eject_sheet' : value.id, 'amount' : 1})}}
+									{{:helper.link("x5", '', {'eject_sheet' : value.id, 'amount' : 5}, value.amount >= 5 ? "" : "disabled")}}
+									{{:helper.link("All", '', {'eject_sheet' : value.id, 'amount' : 1000})}}
 								{{/if}}
 								</td>
 							</tr>
 							{{/for}}
+				
+							{{if (!data.materials_data.materials || !data.materials_data.materials.length) && (!data.materials_data.reagents || !data.materials_data.reagents.length)}}
+								Empty
+							{{/if}}
 							</table>
 						</div>
 					</div>
 				</div>
-				{{/if}}
-				<H3>Queue information</H3>
+
+				<h3>Queue information</h3>
 				<div class="statusDisplayRecords">
 					<div class="item">
 						<div class="itemContent" style="width: 100%;">
-							{{if (data.queue_data.queue.length > 0)}}
+							{{for data.queue}}
+								{{:index + 1}}) {{:value}}<br/>
+							{{empty}}
+								Empty
+							{{/for}}
+							{{if data.queue.length > 0}}
 								<div class="item">
 									{{:helper.link("Clear", '', {'clear_queue' : 1})}}
 								</div>
 							{{/if}}
-							<span class="average">Queue:</span><br/>
-							{{if data.queue_data.queue.length == 0}}
-								Empty
-							{{/if}}
-							{{for data.queue_data.queue}}
-								{{:index + 1}}) {{:value}}<br/>
-							{{/for}}
 						</div>
 					</div>
 				</div>
@@ -414,14 +289,18 @@
 					<b>Description</b><br>
 					{{:data.selected_technology.desc}}
 					<br><br>
-					<b>Cost</b></br>
-					{{:data.selected_technology.cost}} Research Points
-					</br></br>
-					<b>Requirements</b></br>
-					{{for data.selected_technology.requirements}}
-						<span style="color: {{:value.isgood?'#00FF00':'#FF0000'}}">{{:value.text}}</span></br>
-					{{/for}}
-					</br>
+					{{if data.selected_technology.cost}}
+						<b>Cost</b></br>
+						{{:data.selected_technology.cost}} Research Points
+						</br></br>
+					{{/if}}
+					{{if data.selected_technology.requirements.length}}
+						<b>Requirements</b></br>
+						{{for data.selected_technology.requirements}}
+							<span style="color: {{:value.isgood?'#00FF00':'#FF0000'}}">{{:value.text}}</span></br>
+						{{/for}}
+						</br>
+					{{/if}}
 					<b>Unlocks</b></br>
 					{{for data.selected_technology.unlocks}}
 						- {{:value.text}} ({{:value.build_types}})</br>
@@ -459,8 +338,8 @@
 		{{for data.disk_designs}}
 			<div class="item">
 				{{:value.name}}
-				{{:helper.link("", 'trash', {'delete_disk_file' : value.id}, data.disk_read_only==1 ? 'disabled' : null)}}
-				{{:helper.link("", 'arrowthick-1-e', {'download_disk_design' : value.id}, value.can_download==1 ? null : 'disabled')}}
+				{{:helper.link("", 'trash', {'delete_disk_file' : value.id}, data.disk_read_only ? 'disabled' : null)}}
+				{{:helper.link("", 'arrowthick-1-e', {'download_disk_design' : value.id}, value.can_download ? null : 'disabled')}}
 			</div>
 		{{empty}}
 			<div class="item">The disk has no accessible design files stored on it.</div>
@@ -472,7 +351,7 @@
 		<div class="statusDisplayRecords">
 		Local designs:
 		{{for data.known_designs}}
-			<div class="item">{{:helper.link("", 'arrowthick-1-w', {'upload_disk_design' : value.id}, data.disk_read_only==1 ? 'disabled' : null)}} {{:value.name}}</div>
+			<div class="item">{{:helper.link("", 'arrowthick-1-w', {'upload_disk_design' : value.id}, data.disk_read_only ? 'disabled' : null)}} {{:value.name}}</div>
 		{{empty}}
 			<div class="item">The local database has no design data.</div>
 		{{/for}}
@@ -502,7 +381,7 @@
 		{{for data.disk_tech_nodes}}
 			<div class="item">
 				{{:value.name}}
-				{{:helper.link("", 'trash', {'delete_disk_file' : value.id},data.disk_read_only==1 ? 'disabled' : null)}}
+				{{:helper.link("", 'trash', {'delete_disk_file' : value.id}, data.disk_read_only ? 'disabled' : null)}}
 				{{:helper.link("", 'arrowthick-1-e', {'download_disk_node' : value.id})}}
 				</div>
 		{{empty}}
@@ -515,7 +394,7 @@
 		<div class="statusDisplayRecords">
 		Local technology nodes:
 		{{for data.known_nodes}}
-			<div class="item">{{:helper.link("", 'arrowthick-1-w', {'upload_disk_node' : value.id}, data.disk_read_only==1 ? 'disabled' : null)}} {{:value.name}}</div>
+			<div class="item">{{:helper.link("", 'arrowthick-1-w', {'upload_disk_node' : value.id}, data.disk_read_only ? 'disabled' : null)}} {{:value.name}}</div>
 		{{empty}}
 			<div class="item">The local database has no technology data.</div>
 		{{/for}}
@@ -538,8 +417,8 @@
 		{{for data.disk_research_data}}
 			<div class="item">
 				{{:value.name}}
-				{{:helper.link("", 'trash', {'delete_disk_file' : value.id},data.disk_read_only==1 ? 'disabled' : null)}}
-				{{:helper.link("", 'arrowthick-1-e', {'download_disk_data' : value.id}, value.can_download==1 ? null : 'disabled')}}
+				{{:helper.link("", 'trash', {'delete_disk_file' : value.id},data.disk_read_only ? 'disabled' : null)}}
+				{{:helper.link("", 'arrowthick-1-e', {'download_disk_data' : value.id}, value.can_download ? null : 'disabled')}}
 				</div>
 		{{empty}}
 			<div class="item">The disk has no accessible research data files stored on it.</div>
