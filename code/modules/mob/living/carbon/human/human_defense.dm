@@ -23,11 +23,14 @@ meteor_act
 		else
 			P.on_hit(src, def_zone)
 			return 2
-
+	//Checking to see if we're wearing a spacesuit and whether it's been punctured.if not, we cannot embed shrapnel... usually. it still happens very rarely when blunt attacks deal high enough damage.
 	for(var/obj/item/clothing/suit/space/SS in src.get_equipped_items())
-		if(SS.breaches <= 0)
+		for(var/obj/item/weapon/rig/R in src.get_equipped_items())
+			if(R.active == FALSE) // check equipped items for RIG toggle state, FALSE means it won't protect from shrapnel
+				return 0
+		if(!SS.breaches)
 			return 0
-	//Checking abosrb for spawning shrapnel
+	//Checking absorb for spawning shrapnel
 	.=..(P , def_zone)
 
 	var/check_absorb = .
@@ -447,7 +450,7 @@ meteor_act
 	if(!istype(wear_suit,/obj/item/clothing/suit/space)) return
 	var/obj/item/clothing/suit/space/SS = wear_suit
 	var/penetrated_dam = max(0,(damage - SS.breach_threshold))
-	if(prob(penetrated_dam*20)) SS.create_breaches(damtype, penetrated_dam) // changed into a probability calculation based on the degree of penetration by Plasmatik
+	if(prob(20(penetrated_dam * SS.resilience))) SS.create_breaches(damtype, penetrated_dam) // changed into a probability calculation based on the degree of penetration by Plasmatik. you can tune resilience to drastically change breaching chances.
 																			// at maximum penetration, breaches are always created, at 1 penetration, they have a 20% chance to form
 
 /mob/living/carbon/human/reagent_permeability()

@@ -22,7 +22,8 @@
 
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-	breach_threshold = 36
+	breach_threshold = 5
+	resilience = 0.09
 	can_breach = 1
 
 	//Inbuilt devices.

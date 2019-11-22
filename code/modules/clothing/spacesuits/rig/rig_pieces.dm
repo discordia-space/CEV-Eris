@@ -23,6 +23,7 @@
 
 /obj/item/clothing/shoes/magboots/rig
 	name = "boots"
+	item_flags = COVER_PREVENT_MANIPULATION
 	body_parts_covered = LEGS
 	cold_protection = LEGS
 	heat_protection = LEGS
@@ -39,8 +40,8 @@
 	flags_inv =          HIDEJUMPSUIT|HIDETAIL
 	item_flags =         STOPPRESSUREDAMAGE|THICKMATERIAL|AIRTIGHT|COVER_PREVENT_MANIPULATION
 	slowdown = 0
-	breach_threshold = 44
-	resilience = 0.25
+	breach_threshold = 5
+	resilience = 0.087
 	can_breach = 1
 	supporting_limbs = list()
 	retract_while_active = FALSE
