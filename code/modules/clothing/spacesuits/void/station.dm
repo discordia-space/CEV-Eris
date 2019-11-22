@@ -91,7 +91,7 @@
 	icon_state = "ihvoidsuit"
 	desc = "A bulky suit that protects against hazardous, low pressure environments. Sacrifices mobility for protection"
 	item_state = "ihvoidsuit"
-	armor = list(melee = 60, bullet = 60, energy = 40, bomb = 35, bio = 100, rad = 60)
+	armor = list(melee = 45, bullet = 50, energy = 40, bomb = 35, bio = 100, rad = 60)
 	siemens_coefficient = 0.7
 
 //Atmospherics Rig (BS12)
