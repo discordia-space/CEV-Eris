@@ -69,8 +69,8 @@
 		if(PARALYZE)
 			Paralyse(effect)
 		if(AGONY)
-			var/agony_protection = check_protection ? getarmor(def_zone, ARMOR_BULLET) / 50 : 0
-			halloss += max((1 - agony_protection) * effect, 0) // Useful for objects that cause "subdual" damage. PAIN!
+			var/agony_protection = check_protection ? max(0, 1 - getarmor(def_zone, ARMOR_BULLET) / 100)
+			halloss += effect * agony_protection // Useful for objects that cause "subdual" damage. PAIN!
 		if(IRRADIATE)
 			var/rad_protection = check_protection ? getarmor(null, ARMOR_RAD) / 100 : 0
 			radiation += max((1 - rad_protection) * effect, 0)//Rads auto check armor
