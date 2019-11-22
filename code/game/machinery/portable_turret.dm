@@ -13,6 +13,9 @@
 	icon_state = "turretCover"
 	anchored = 1
 
+/obj/machinery/porta_turret
+	name = "one star turret"
+
 	density = 0
 	use_power = 1				//this turret uses and requires power
 	idle_power_usage = 50		//when inactive, this turret takes up constant 50 Equipment power
@@ -531,6 +534,11 @@ var/list/turret_icons
 
 	return TURRET_PRIORITY_TARGET	//if the perp has passed all previous tests, congrats, it is now a "shoot-me!" nominee
 
+/obj/machinery/porta_turret/One_star/assess_living(var/mob/living/L)
+	..()
+	if(istype(L,/mob/living/simple_animal/hostile/roomba))
+		return TURRET_NOT_TARGET
+
 /obj/machinery/porta_turret/proc/assess_perp(var/mob/living/carbon/human/H)
 	if(!H || !istype(H))
 		return 0
@@ -598,8 +606,6 @@ var/list/turret_icons
 /obj/machinery/porta_turret/proc/target(var/mob/living/target)
 	if(disabled)
 		return
-	if(istype(target, /mob/living/simple_animal/hostile/roomba)) //so turrets can't attack roombas
-		return
 	if(target)
 		last_target = target
 		spawn()
@@ -633,8 +639,6 @@ var/list/turret_icons
 /obj/machinery/porta_turret/proc/launch_projectile(mob/living/target)
 	update_icon()
 	var/obj/item/projectile/A
-	if(istype(target, /mob/living/simple_animal/hostile/roomba)) //because if turret closed it spam in chat with attack logs
-		return
 	if(emagged || lethal)
 		A = new eprojectile(loc)
 		playsound(loc, eshot_sound, 75, 1)
