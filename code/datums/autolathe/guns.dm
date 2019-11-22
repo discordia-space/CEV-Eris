@@ -82,6 +82,10 @@
 	name = "FS AR 7.62x39 \"Kalashnikov\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/fs
 
+/datum/design/autolathe/gun/vintorez
+	name = "Excelsior .20 \"Vintorez\""
+	build_path = /obj/item/weapon/gun/projectile/automatic/vintorez
+
 /datum/design/autolathe/gun/idaho
 	name = "FS SMG 9x19 \"Idaho\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/idaho
@@ -90,8 +94,16 @@
 	name = "FS SMG .45 \"Atreides\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/atreides
 
+/datum/design/autolathe/gun/boltgun
+	name = "Excelsior .30 \"Kardashev-Mosin\""
+	build_path = /obj/item/weapon/gun/projectile/boltgun
+
+/datum/design/autolathe/gun/boltgun_fs
+	name = "FS .30 \"Kardashev-Mosin\""
+	build_path = /obj/item/weapon/gun/projectile/boltgun/fs
+
 /datum/design/autolathe/gun/heavysniper
-	name = "NT AMR \"Penetrator\""
+	name = "NT AMR .60 \"Penetrator\""
 	build_path = /obj/item/weapon/gun/projectile/heavysniper
 
 /datum/design/autolathe/gun/IH_sidearm

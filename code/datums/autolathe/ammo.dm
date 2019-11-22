@@ -62,7 +62,6 @@
 	name = "magazine (.20 Rifle)"
 	build_path = /obj/item/ammo_magazine/srifle
 
-
 /datum/design/autolathe/ammo/SMG_sol_rubber
 	name = "magazine (.25 caseless Rifle rubber)"
 	build_path = /obj/item/ammo_magazine/ihclrifle/rubber
@@ -94,6 +93,10 @@
 /datum/design/autolathe/ammo/sl_pistol_brute
 	name = "speed loader (.35 Auto hollow point)"
 	build_path = /obj/item/ammo_magazine/slpistol
+
+/datum/design/autolathe/ammo/sl_lrifle
+	name = "ammo strip (.30 Rifle)"
+	build_path = /obj/item/ammo_magazine/sllrifle
 
 /datum/design/autolathe/ammo/lrifle_short
 	name = "short magazine (.30 Rifle)"
