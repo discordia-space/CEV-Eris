@@ -23,13 +23,6 @@
 	if(prob(getarmor(hit_zone, ARMOR_MELEE))) //melee armour provides a chance to turn sharp/edge weapon attacks into blunt ones
 		weapon_sharp = 0
 		weapon_edge = 0
-		for(var/obj/item/clothing/suit/space/SS in src.get_equipped_items()) //checks if we're wearing a space suit
-			for(var/obj/item/weapon/rig/R in src.get_equipped_items()) //if so, checks if the space suit we're wearing is a rig
-				if(R.active == FALSE) // conditional loop checking for RIG toggle state
-					break
-			if(!SS.breaches) // checks for punctures in the space suit. if none are present, only blunt damage can be dealt.
-				weapon_sharp = 0
-				weapon_edge = 0
 
 		hit_impact(effective_force)
 		damage_through_armor(effective_force, I.damtype, hit_zone, ARMOR_MELEE, armour_pen = I.armor_penetration, used_weapon = I, sharp = weapon_sharp, edge = weapon_edge)
