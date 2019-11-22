@@ -22,6 +22,7 @@
 	reload_sound 	= 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	zoom_factor = 0.4
+	recoil_buildup = 3
 
 	firemodes = list(
 		FULL_AUTO_400,

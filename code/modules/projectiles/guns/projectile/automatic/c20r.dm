@@ -21,8 +21,7 @@
 	cocked_sound 	= 'sound/weapons/guns/interact/sfrifle_cock.ogg'
 	zoom_factor = 0.2
 	damage_multiplier = 1.1
-	recoil = 0.8
-	recoil_buildup = 0.1 //smg level
+	recoil_buildup = 4 //smg level
 	silencer_type = /obj/item/weapon/silencer
 
 	firemodes = list(

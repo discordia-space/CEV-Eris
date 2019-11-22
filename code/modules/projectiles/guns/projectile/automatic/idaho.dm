@@ -16,8 +16,7 @@
 	price_tag = 1600
 	damage_multiplier = 0.75
 	damage_multiplier = 1.1
-	recoil = 0.8
-	recoil_buildup = 0.1 //smg level
+	recoil_buildup = 2.5 //smg level
 
 	firemodes = list(
 		FULL_AUTO_400,

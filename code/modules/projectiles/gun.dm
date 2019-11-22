@@ -25,6 +25,7 @@
 	hud_actions = list()
 
 	var/damage_multiplier = 1 //Multiplies damage of projectiles fired from this gun
+	var/penetration_multiplier = 1 //Multiplies armor penetration of projectiles fired from this gun
 	var/burst = 1
 	var/fire_delay = 6 	//delay after shooting before the gun can be used again
 	var/burst_delay = 2	//delay between shots, if firing in bursts
@@ -32,7 +33,7 @@
 	var/fire_sound = 'sound/weapons/Gunshot.ogg'
 
 	var/fire_sound_text = "gunshot"
-	var/recoil_buildup = 0.2 //How quickly recoil builds up
+	var/recoil_buildup = 2 //How quickly recoil builds up
 
 	var/muzzle_flash = 3
 	var/requires_two_hands
@@ -255,6 +256,8 @@
 
 		projectile.multiply_projectile_damage(damage_multiplier)
 
+		projectile.multiply_projectile_penetration(penetration_multiplier)
+
 		if(pointblank)
 			process_point_blank(projectile, user, target)
 
@@ -325,13 +328,27 @@
 	update_icon()
 
 /obj/item/weapon/gun/proc/handle_recoil(mob/user)
-	var/added_recoil = recoil_buildup*10 //Course wanted noticeable recoil. EX: 0.2 buildup * 10 = 2
-	if(added_recoil)
-		recoil += added_recoil
+	if(recoil_buildup)
+		recoil += recoil_buildup
+
+		if(dual_wielding) //to nerf make it less overpowered, you will suffer even more recoil
+			recoil += recoil_buildup * 0.5 //it still depends on a gun you fire
+			var/obj/item/weapon/gun/off_hand
+			var/mob/living/carbon/human/H = user
+			if(H.r_hand == src && istype(H.l_hand, /obj/item/weapon/gun))
+				off_hand = H.l_hand
+
+			else if(H.l_hand == src && istype(H.r_hand, /obj/item/weapon/gun))
+				off_hand = H.r_hand
+
+			if(off_hand)
+				off_hand.recoil += off_hand.recoil_buildup * 0.5
+
+		to_chat(world, SPAN_WARNING("DEBUG: [name] Recoil:[recoil]"))
 		update_recoil(user)
 
-#define BASE_ACCURACY_REGEN 0.85 //Recoil reduction per ds with 0 VIG
-#define VIG_ACCURACY_REGEN  0.02 //Recoil reduction per ds per VIG
+#define BASE_ACCURACY_REGEN 0.50 //Recoil reduction per ds with 0 VIG
+#define VIG_ACCURACY_REGEN  0.03 //Recoil reduction per ds per VIG
 #define MIN_ACCURACY_REGEN  0.25 //How low can we get with negative VIG
 /obj/item/weapon/gun/proc/calc_reduction(mob/user = loc)
 	if(!istype(user))

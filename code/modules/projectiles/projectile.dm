@@ -80,6 +80,9 @@
 /obj/item/projectile/multiply_projectile_damage(newmult)
 	damage = initial(damage) * newmult
 
+/obj/item/projectile/multiply_projectile_penetration(newmult)
+	armor_penetration = initial(armor_penetration) * newmult
+
 /obj/item/projectile/proc/on_hit(atom/target, def_zone = null)
 	if(!isliving(target))	return 0
 	if(isanimal(target))	return 0

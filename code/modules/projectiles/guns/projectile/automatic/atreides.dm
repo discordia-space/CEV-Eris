@@ -16,7 +16,7 @@
 	price_tag = 2000
 	damage_multiplier = 0.89 //unnerfed it up from 0.65 because 45 and 10 got swapped //matched to orginal -shaz
 	recoil = 0.9 //sucks with new system so brough it from 1.2 to 0.9 at least
-	recoil_buildup = 0.1 //smg level
+	recoil_buildup = 4 //smg level
 
 	firemodes = list(
 		FULL_AUTO_400,
