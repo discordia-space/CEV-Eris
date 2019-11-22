@@ -119,6 +119,9 @@ var/list/channel_to_radio_key = new
 			return say_dead(message)
 		return
 
+	if(HUSK in mutations)
+		return
+
 	if(is_muzzled())
 		to_chat(src, SPAN_DANGER("You're muzzled and cannot speak!"))
 		return
