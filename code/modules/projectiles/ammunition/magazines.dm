@@ -308,6 +308,16 @@
 	max_ammo = 96
 	multiple_sprites = 1
 
+/obj/item/ammo_magazine/sllrifle
+	name = "ammo strip (.30 Rifle)"
+	icon_state = "lrifle"
+	icon = 'icons/obj/ammo_speed.dmi'
+	caliber = "lrifle"
+	matter = list(MATERIAL_STEEL = 3)
+	ammo_type = /obj/item/ammo_casing/lrifle
+	max_ammo = 5
+	multiple_sprites = 1
+
 /obj/item/ammo_magazine/slpistol
 	name = "speed loader (.35 Special)"
 	icon_state = "38l"
