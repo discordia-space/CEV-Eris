@@ -73,8 +73,8 @@
 	var/tmp/datum/wires/autolathe/wires = null
 
 	// A vis_contents hack for materials loading animation.
-	var/tmp/atom/movable/flicker_overlay/image_load
-	var/tmp/atom/movable/flicker_overlay/image_load_material
+	var/tmp/obj/effect/flicker_overlay/image_load
+	var/tmp/obj/effect/flicker_overlay/image_load_material
 
 /obj/machinery/autolathe/Initialize()
 	. = ..()
@@ -843,12 +843,12 @@
 
 // You (still) can't flicker overlays in BYOND, and this is a vis_contents hack to provide the same functionality.
 // Used for materials loading animation.
-/atom/movable/flicker_overlay
+/obj/effect/flicker_overlay
 	name = ""
 	icon_state = ""
 	mouse_opacity = 0
 
-/atom/movable/flicker_overlay/New(atom/loc)
+/obj/effect/flicker_overlay/New(atom/loc)
 	..()
 	icon = loc.icon
 	layer = loc.layer + 0.1
