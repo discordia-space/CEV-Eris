@@ -16,6 +16,7 @@
 	var/invuln = null
 	var/bugged = 0
 	var/obj/item/weapon/camera_assembly/assembly = null
+	var/taped = 0
 
 	var/toughness = 5 //sorta fragile
 
@@ -119,6 +120,10 @@
 	cameranet.updateVisibility(src, 0)
 
 /obj/machinery/camera/attack_hand(mob/living/carbon/human/user as mob)
+	if (taped == 1)
+		taped = 0
+		set_status(1)
+		to_chat(user, "You take tape from camera")
 	if(!istype(user))
 		return
 
@@ -173,7 +178,6 @@
 				return
 			return
 
-
 		if(ABORT_CHECK)
 			return
 
@@ -185,6 +189,12 @@
 	else if (can_use() && isliving(user) && user.a_intent != I_HURT)
 		var/mob/living/U = user
 		var/list/mob/viewers = list()
+		if(istype(I, /obj/item/weapon/ducttape )|| istype(I, /obj/item/weapon/tool/tape_roll))
+			set_status(0)
+			deactivate(null, 0)
+			taped = 1
+			to_chat(U, "You taped the camera")
+			return
 		if(last_shown_time < world.time)
 			to_chat(U, "You hold \a [I.name] up to the camera ...")
 			for(var/mob/O in GLOB.living_mob_list)
