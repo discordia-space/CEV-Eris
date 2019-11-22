@@ -239,6 +239,7 @@
 		return TRUE
 
 	user.set_machine(src)
+	wires.Interact(user)
 	ui_interact(user)
 
 /obj/machinery/autolathe/Topic(href, href_list)
