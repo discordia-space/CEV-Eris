@@ -536,7 +536,7 @@ var/list/turret_icons
 
 /obj/machinery/porta_turret/One_star/assess_living(var/mob/living/L)
 	..()
-	if(istype(L,/mob/living/simple_animal/hostile/roomba))
+	if(istype(L,/mob/living/simple_animal/hostile/roomba) && (L.faction = "onestar"))
 		return TURRET_NOT_TARGET
 
 /obj/machinery/porta_turret/proc/assess_perp(var/mob/living/carbon/human/H)
