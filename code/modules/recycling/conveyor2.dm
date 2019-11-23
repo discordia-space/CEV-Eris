@@ -84,8 +84,7 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 		id = S.id
 		to_chat(user, SPAN_NOTICE("You link [I] with [src]."))
 	else if(user.a_intent != I_HURT)
-		if(user.drop_item())
-			I.forceMove(loc)
+		user.unEquip(I, loc)
 	else
 		return ..()
 

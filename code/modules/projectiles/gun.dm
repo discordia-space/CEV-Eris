@@ -25,6 +25,7 @@
 	hud_actions = list()
 
 	var/damage_multiplier = 1 //Multiplies damage of projectiles fired from this gun
+	var/penetration_multiplier = 1 //Multiplies armor penetration of projectiles fired from this gun
 	var/burst = 1
 	var/fire_delay = 6 	//delay after shooting before the gun can be used again
 	var/burst_delay = 2	//delay between shots, if firing in bursts
@@ -32,7 +33,7 @@
 	var/fire_sound = 'sound/weapons/Gunshot.ogg'
 
 	var/fire_sound_text = "gunshot"
-	var/recoil_buildup = 0.2 //How quickly recoil builds up
+	var/recoil_buildup = 2 //How quickly recoil builds up
 
 	var/muzzle_flash = 3
 	var/requires_two_hands
@@ -251,9 +252,9 @@
 			handle_click_empty(user)
 			break
 
-		process_accuracy(projectile, user, target)
-
 		projectile.multiply_projectile_damage(damage_multiplier)
+
+		projectile.multiply_projectile_penetration(penetration_multiplier)
 
 		if(pointblank)
 			process_point_blank(projectile, user, target)
@@ -325,14 +326,26 @@
 	update_icon()
 
 /obj/item/weapon/gun/proc/handle_recoil(mob/user)
-	var/added_recoil = recoil_buildup*10 //Course wanted noticeable recoil. EX: 0.2 buildup * 10 = 2
-	if(added_recoil)
-		recoil += added_recoil
+	if(recoil_buildup)
+		recoil += recoil_buildup
+
+		if(dual_wielding) //to nerf make it less overpowered, you will suffer even more recoil
+			recoil += recoil_buildup * 0.5 //it still depends on a gun you fire
+			var/obj/item/weapon/gun/off_hand
+			var/mob/living/carbon/human/H = user
+			if(H.r_hand == src && istype(H.l_hand, /obj/item/weapon/gun))
+				off_hand = H.l_hand
+
+			else if(H.l_hand == src && istype(H.r_hand, /obj/item/weapon/gun))
+				off_hand = H.r_hand
+
+			if(off_hand)
+				off_hand.recoil += off_hand.recoil_buildup * 0.5
+
+			recoil = min(MAX_ACCURACY_OFFSET, recoil) //No sense in building up recoil to numbers that wan't affect it anymore
 		update_recoil(user)
 
-#define BASE_ACCURACY_REGEN 0.85 //Recoil reduction per ds with 0 VIG
-#define VIG_ACCURACY_REGEN  0.02 //Recoil reduction per ds per VIG
-#define MIN_ACCURACY_REGEN  0.25 //How low can we get with negative VIG
+
 /obj/item/weapon/gun/proc/calc_reduction(mob/user = loc)
 	if(!istype(user))
 		return 0
@@ -348,7 +361,12 @@
 	else
 		var/time = world.time - last_recoil_update
 		if(time)
-			recoil -= time * calc_reduction(user)
+			//About the following code. This code is a mess, and we SHOULD NOT USE WORLD TIME FOR RECOIL
+			//If anything, recoil should be a human var
+			//But until that done, here is a way to cut down a recoil for sure with time
+			var/timed_reduction = min(time**2, 400)
+			recoil -= timed_reduction * calc_reduction(user)
+
 			if(recoil <= 0)
 				recoil = 0
 				last_recoil_update = 0
@@ -378,18 +396,18 @@
 
 	var/bottom = 0
 	switch(recoil)
-		if(0 to 0.5)
+		if(0 to 10)
 			;
-		if(0.5 to 1)
-			bottom = 0.5
-		if(1 to 1.5)
-			bottom = 1
-		if(1.5 to 2)
-			bottom = 1.5
-		if(2 to 3)
-			bottom = 2
-		if(3 to INFINITY)
-			bottom = 3
+		if(10 to 20)
+			bottom = 10
+		if(20 to 30)
+			bottom = 20
+		if(30 to 50)
+			bottom = 30
+		if(50 to MAX_ACCURACY_OFFSET)
+			bottom = 50
+		if(MAX_ACCURACY_OFFSET to INFINITY)
+			bottom = MAX_ACCURACY_OFFSET
 	if(bottom)
 		var/reduction = calc_reduction(user)
 		if(reduction > 0)
@@ -397,8 +415,12 @@
 
 /obj/item/weapon/gun/proc/process_point_blank(obj/projectile, mob/user, atom/target)
 	var/obj/item/projectile/P = projectile
+
 	if(!istype(P))
 		return //default behaviour only applies to true projectiles
+
+	if(dual_wielding)
+		return //dual wielding deal too much damage as it is, so no point blank for it
 
 	//default point blank multiplier
 	var/damage_mult = 1.3
@@ -416,15 +438,6 @@
 				damage_mult = 1.5
 	P.damage *= damage_mult
 
-/obj/item/weapon/gun/proc/process_accuracy(obj/projectile, mob/user, atom/target, dispersion = 0) //Applies the actual bullet spread
-	var/obj/item/projectile/P = projectile
-	if(!istype(P))
-		return
-	if(calc_recoil(user))
-		dispersion += recoil/2
-		if(zoom)
-			dispersion += recoil*zoom_factor/2 //recoil is worse when looking through a scope
-	P.dispersion = dispersion
 
 //does the actual launching of the projectile
 /obj/item/weapon/gun/proc/process_projectile(obj/projectile, mob/user, atom/target, var/target_zone, var/params=null)
@@ -434,31 +447,13 @@
 
 	if(params)
 		P.set_clickpoint(params)
-	var/lower_offset = 0
-	var/upper_offset = 0
+	var/offset = 0
 	if(calc_recoil(user))
-		lower_offset = -recoil*20
-		upper_offset = recoil*20
-	if(iscarbon(user))
-		var/mob/living/carbon/mob = user
-		var/aim_coeff = mob.stats.getStat(STAT_VIG)/10 //Allows for security to be better at aiming
-		if(aim_coeff > 0)//EG. 60 which is the max, turns into 6. Giving a sizeable accuracy bonus.
-			lower_offset += aim_coeff
-			upper_offset -= aim_coeff
-		if(mob.shock_stage > 120)	//shooting while in shock
-			lower_offset *= 15 //A - * a - is a +
-			upper_offset *= 15
-		else if(mob.shock_stage > 70)
-			lower_offset *= 10 //A - * a - is a +
-			upper_offset *= 10
+		offset += recoil
+	offset = min(offset, MAX_ACCURACY_OFFSET)
+	offset = rand(-offset, offset)
 
-	var/x_offset = 0
-	var/y_offset = 0
-	x_offset = rand(lower_offset, upper_offset) //Recoil fucks up the spread of your bullets
-	y_offset = rand(lower_offset, upper_offset)
-
-
-	return !P.launch_from_gun(target, user, src, target_zone, x_offset, y_offset)
+	return !P.launch_from_gun(target, user, src, target_zone, angle_offset = offset)
 
 //Suicide handling.
 /obj/item/weapon/gun/proc/handle_suicide(mob/living/user)

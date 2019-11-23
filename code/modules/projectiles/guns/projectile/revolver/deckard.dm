@@ -8,6 +8,7 @@
 	max_shells = 5
 	ammo_type = /obj/item/ammo_casing/magnum/rubber
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
-	damage_multiplier = 1.1 //slightly more damaging because only 5 shots
-	price_tag = 1900 //one of most robust revolvers here
-	recoil = 0.7 //slightly less because custom-built and pricy
+	price_tag = 3100 //one of most robust revolvers here
+	damage_multiplier = 1.35
+	penetration_multiplier = 1.65
+	recoil_buildup = 40

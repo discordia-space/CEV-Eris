@@ -44,3 +44,5 @@
 
 	for(var/name in stat_modifiers)
 		L.stats.changeStat(name, stat_modifiers[name])
+
+	setup_uplink_source(L, 5)

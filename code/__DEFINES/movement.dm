@@ -9,7 +9,7 @@
 #endif
 
 
-#define JETPACK_MOVE_COST	0.025
+#define JETPACK_MOVE_COST	0.005
 
 
 #define HAS_TRANSFORMATION_MOVEMENT_HANDLER(X) X.HasMovementHandler(/datum/movement_handler/mob/transformation)

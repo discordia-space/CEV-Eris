@@ -19,6 +19,8 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	var/datum/mind/uplink_owner = null
 	var/used_TC = 0
 
+	var/list/owner_roles = new
+
 
 	var/passive_gain = 0.1 //Number of telecrystals this uplink gains per minute.
 	//The total uses is only increased when this is a whole number
@@ -119,7 +121,8 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	data["welcome"] = welcome
 	data["crystals"] = uses
 	data["menu"] = nanoui_menu
-	data["has_contracts"] = player_is_antag_id(uplink_owner, ROLE_TRAITOR)
+	data["has_contracts"] = uplink_owner ? player_is_antag_in_list(uplink_owner, ROLES_CONTRACT)\
+	                                     : !!length(owner_roles & ROLES_CONTRACT)
 	data += nanoui_data
 
 	// update the ui if it exists, returns null if no ui is passed/found
@@ -207,7 +210,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 
 				nanoui_data["exploit_exists"] = 1
 				break
-	else if(nanoui_menu == 3 && player_is_antag_id(uplink_owner, ROLE_TRAITOR))
+	else if(nanoui_menu == 3 && (uplink_owner ? player_is_antag_in_list(uplink_owner, ROLES_CONTRACT) : !!length(owner_roles & ROLES_CONTRACT)))
 		var/list/available_contracts = list()
 		var/list/completed_contracts = list()
 		for(var/datum/antag_contract/C in GLOB.all_antag_contracts)
@@ -281,12 +284,18 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	var/telecrystals = 100
 	density = TRUE
 	anchored = TRUE
+	var/owner_roles //Can be a list of roles or a single role
 
 /obj/structure/uplink/New()
 	uplink = new(src, null, telecrystals)
 	uplink.update_nano_data()
 	uplink.emplaced = TRUE
+	if(owner_roles)
+		uplink.owner_roles |= owner_roles
 	..()
 
 /obj/structure/uplink/attack_hand(var/mob/user)
 	uplink.trigger(user)
+
+/obj/structure/uplink/mercenary
+	owner_roles = ROLE_MERCENARY

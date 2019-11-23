@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/boltgun
 	name = "Excelsior .30 \"Kardashev-Mosin\""
-	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours.\
+	desc = "Weapon for hunting, or endless trench warfare.\
 			If you’re on a budget, it’s a darn good rifle for just about everything."
 	icon = 'icons/obj/guns/projectile/boltgun.dmi'
 	icon_state = "boltgun"
@@ -10,11 +10,13 @@
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	caliber = "lrifle"
-	damage_multiplier = 1.5
-	recoil = 0.2 //same as AMR
+	fire_delay = 12 // double the standart
+	damage_multiplier = 1.4
+	penetration_multiplier  = 1.5
+	recoil_buildup = 40 //same as AMR
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING|SPEEDLOADER
-	max_shells = 5
+	max_shells = 10
 	ammo_type = /obj/item/ammo_magazine/lrifle
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
@@ -88,11 +90,10 @@
 
 /obj/item/weapon/gun/projectile/boltgun/fs
 	name = "FS .30 \"Kardashev-Mosin\""
-	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours.\
+	desc = "Weapon for hunting, or endless trench warfare.\
 			If you’re on a budget, it’s a darn good rifle for just about everything.\
 			This copy, in fact, is a reverse-engineered poor-quality copy of a more perfect copy of an ancient rifle"
 	icon_state = "boltgun_wood"
 	item_suffix  = "_wood"
 	recoil = 0.4 // Double the excel variant
-	fire_delay = 12 // double the standart
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)

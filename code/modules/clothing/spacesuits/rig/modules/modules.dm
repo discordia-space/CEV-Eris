@@ -34,7 +34,7 @@
 
 	var/use_power_cost = 0              // Power used when single-use ability called.
 	var/active_power_cost = 0           // Power used when turned on.
-	var/passive_power_cost = 0          // Power used when turned off.
+	var/passive_power_cost = 0        // Power used when turned off.
 
 	var/list/charges                    // Associative list of charge types and remaining numbers.
 	var/charge_selected                 // Currently selected option used for charge dispensing.

@@ -19,7 +19,9 @@
 	var/recentpump = 0 // to prevent spammage
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
 	price_tag = 2200
-	recoil = 0.9 //gladstone will be straight-up upgrade for those
+	damage_multiplier = 1.1
+	penetration_multiplier = 1.1
+	recoil_buildup = 20
 
 /obj/item/weapon/gun/projectile/shotgun/pump/consume_next_projectile()
 	if(chambered)

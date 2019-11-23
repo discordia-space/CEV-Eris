@@ -24,8 +24,8 @@
 		weapon_sharp = 0
 		weapon_edge = 0
 
-	hit_impact(effective_force)
-	damage_through_armor(effective_force, I.damtype, hit_zone, ARMOR_MELEE, armour_pen = I.armor_penetration, used_weapon = I, sharp = weapon_sharp, edge = weapon_edge)
+		hit_impact(effective_force)
+		damage_through_armor(effective_force, I.damtype, hit_zone, ARMOR_MELEE, armour_pen = I.armor_penetration, used_weapon = I, sharp = weapon_sharp, edge = weapon_edge)
 
 /*Its entirely possible that we were gibbed or dusted by the above. Check if we still exist before
 continuing. Being gibbed or dusted has a 1.5 second delay, during which it sets the transforming var to
@@ -73,11 +73,7 @@ true, and the mob is not yet deleted, so we need to check that as well*/
 		return 0
 
 	var/damage_mod = 1
-	//presumably, if they are wearing a helmet that stops pressure effects, then it probably covers the throat as well
-	var/obj/item/clothing/head/helmet = get_equipped_item(slot_head)
-	if(istype(helmet) && (helmet.body_parts_covered & HEAD) && (helmet.flags & STOPPRESSUREDAMAGE))
-		//we don't do an armor_check here because this is not an impact effect like a weapon swung with momentum, that either penetrates or glances off.
-		damage_mod = 1.0 - (helmet.armor[ARMOR_MELEE]/100)
+
 
 	var/total_damage = 0
 	for(var/i in 1 to 3)

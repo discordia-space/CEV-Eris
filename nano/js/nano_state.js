@@ -69,6 +69,10 @@ NanoStateClass.prototype.onUpdate = function (data) {
 				if (handledTemplates.indexOf(key) > -1) {
 					continue;
 				}
+				// alternatively, start template key with _ to mark it as custom handled
+				if (key.charAt(0) == '_') {
+					continue;
+				}
 				$("#uiContent").append(NanoTemplate.parse(key, data));
 			}
 			

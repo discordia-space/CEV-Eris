@@ -1,12 +1,12 @@
 /datum/design/research/item/mecha_tracking
 	name = "Exosuit tracking beacon"
-	build_type = MECHFAB
+	build_type = AUTOLATHE | MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_tracking
 	category = CAT_MECHA
 	starts_unlocked = TRUE
 
 /datum/design/research/item/mecha
-	build_type = MECHFAB
+	build_type = AUTOLATHE | MECHFAB
 	category = CAT_MECHA
 
 /datum/design/research/item/mecha/AssembleDesignDesc()

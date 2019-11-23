@@ -16,6 +16,7 @@
 #define IMPRINTER		(1<<0)	//For circuits. Uses glass/chemicals.
 #define PROTOLATHE		(1<<1)	//New stuff. Uses glass/metal/chemicals
 #define AUTOLATHE		(1<<2)
+#define BIOPRINTER		(1<<3)
 
 #define MECHFAB			(1<<4)
 
