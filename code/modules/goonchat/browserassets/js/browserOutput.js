@@ -254,6 +254,10 @@ function iconError(E) {
 	}, opts.imageRetryDelay);
 }
 
+function outputBatch() {
+	$.each(arguments, function (_, message) {output(message)});
+}
+
 //Send a message to the client
 function output(message, flag) {
 	if (typeof message === 'undefined') {

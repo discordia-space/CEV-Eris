@@ -11,7 +11,7 @@ SUBSYSTEM_DEF(chat)
 /datum/controller/subsystem/chat/fire()
 	for(var/i in payload)
 		var/client/C = i
-		C << output(payload[C], "browseroutput:output")
+		C << output(list2params(payload[C]), "browseroutput:outputBatch")
 		payload -= C
 
 		if(MC_TICK_CHECK)
@@ -29,15 +29,11 @@ SUBSYSTEM_DEF(chat)
 	if(target == world)
 		target = clients
 
-	//Some macros remain in the string even after parsing and fuck up the eventual output
-	message = replacetext(message, "\improper", "")
-	message = replacetext(message, "\proper", "")
 	if(handle_whitespace)
 		message = replacetext(message, "\n", "<br>")
 		message = replacetext(message, "\t", "[FOURSPACES][FOURSPACES]")
-	message += "<br>"
 
-        //Replace expanded \icon macro with icon2html
+	//Replace expanded \icon macro with icon2html
 	//regex/Replace with a proc won't work here because icon2html takes target as an argument and there is no way to pass it to the replacement proc
 	//not even hacks with reassigning usr work
 	var/regex/i = new(@/<IMG CLASS=icon SRC=(\[[^]]+])(?: ICONSTATE='([^']+)')?>/, "g")
@@ -59,7 +55,8 @@ SUBSYSTEM_DEF(chat)
 
 	//url_encode it TWICE, this way any UTF-8 characters are able to be decoded by the Javascript.
 	//Do the double-encoding here to save nanoseconds
-	var/twiceEncoded = url_encode(url_encode(message))
+	//Second encoding is done in list2params in output
+	var/encoded = url_encode(message)
 
 	if(islist(target))
 		for(var/I in target)
@@ -72,7 +69,7 @@ SUBSYSTEM_DEF(chat)
 				C.chatOutput.messageQueue += message
 				continue
 
-			payload[C] += twiceEncoded
+			LAZYADD(payload[C], encoded)
 
 	else
 		var/client/C = CLIENT_FROM_VAR(target) //Grab us a client if possible
@@ -84,4 +81,4 @@ SUBSYSTEM_DEF(chat)
 			C.chatOutput.messageQueue += message
 			return
 
-		payload[C] += twiceEncoded
+		LAZYADD(payload[C], encoded)
