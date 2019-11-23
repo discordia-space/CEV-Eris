@@ -12,24 +12,11 @@ Don't add new keyword/IDs if they are made from an existing one (such as rods wh
 
 Design Guidlines
 - When adding new designs, check rdreadme.dm to see what kind of things have already been made and where new stuff is needed.
-- A single sheet of anything is 2000 units of material. Materials besides metal/glass require help from other jobs (mining for
+- A single sheet of anything is 1 unit of material. Materials besides metal/glass require help from other jobs (mining for
 other types of metals and chemistry for reagents).
 
 */
-//Note: More then one of these can be added to a design.
 
-/datum/rnd_queue_design
-	var/name
-	var/datum/design/design
-	var/amount
-
-/datum/rnd_queue_design/New(datum/design/D, Amount)
-	name = D.name
-	if(Amount > 1)
-		name = "[name] x[Amount]"
-
-	design = D
-	amount = Amount
 
 /datum/design/research				//Datum for object designs, used in construction
 	starts_unlocked = FALSE
@@ -132,7 +119,7 @@ other types of metals and chemistry for reagents).
 	desc = "A centrifuge with manual mechanism."
 	build_path = /obj/item/device/makeshift_centrifuge
 	sort_string = "MBBAA"
-	
+
 
 
 

@@ -7,24 +7,50 @@
 	var/datum/mind/owner
 
 /obj/item/weapon/storage/bsdm/attack_self(mob/user)
-	if(owner == user.mind)
-		return
-	owner = user.mind
-	to_chat(user, "You claim \the [src].")
-	icon_state = "bsdm_sealed"
-	
-/obj/item/weapon/storage/bsdm/verb/activate()
-	set name = "Launch"
-	set category = "Object"
-	set src in oview(1)
-	icon_state = "bsdm_teleporting"
-	if(usr.incapacitated() || !Adjacent(usr))
-		return
-	if(!(locate(/area/space) in oview(src)))
-		to_chat(usr, "\The [src.name] must be placed near space.")
-		return
+	ui_interact(user)
+
+/obj/item/weapon/storage/bsdm/interact(mob/user)
+	ui_interact(user)
+
+/obj/item/weapon/storage/bsdm/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
+	var/data[0]
+
+	data["can_launch"] = !!(locate(/area/space) in view(get_turf(src)))
+	data["owner"] = owner.name
+	data["is_owner"] = owner == user.mind
+	data["contracts"] = list()
+
 	for(var/datum/antag_contract/item/C in GLOB.all_antag_contracts)
-		if(C.completed)
+		if(C.completed || !C.check(src))
 			continue
-		C.on_container(src)
-	qdel(src)
+		data["contracts"].Add(list(list(
+			"name" = C.name,
+			"desc" = C.desc,
+			"reward" = C.reward
+		)))
+
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "bsdm.tmpl", "[name]", 400, 430)
+		ui.set_initial_data(data)
+		ui.open()
+
+/obj/item/weapon/storage/bsdm/Topic(href, href_list)
+	if(..())
+		return 1
+
+	if (href_list["launch"])
+		if(!(locate(/area/space) in view(get_turf(src))))
+			return
+		for(var/datum/antag_contract/item/C in GLOB.all_antag_contracts)
+			if(C.completed)
+				continue
+			C.on_container(src)
+		qdel(src)
+
+	else if (href_list["owner"])
+		owner = usr.mind
+		. = 1
+
+	if(.)
+		SSnano.update_uis(src)

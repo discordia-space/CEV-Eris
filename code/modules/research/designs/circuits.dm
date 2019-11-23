@@ -1,6 +1,6 @@
 /datum/design/research/circuit
 	build_type = IMPRINTER
-	chemicals = list("silicon" = 15)
+	chemicals = list("silicon" = 5)
 
 /datum/design/research/circuit/AssembleDesignName(atom/temp_atom)
 	..()

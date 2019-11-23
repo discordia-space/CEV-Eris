@@ -16,14 +16,7 @@ var/const/AUTOLATHE_DISABLE_WIRE = 4
 
 /datum/wires/autolathe/CanUse()
 	var/obj/machinery/autolathe/A = holder
-	if(A.panel_open)
-		return 1
-	return 0
-
-/datum/wires/autolathe/Interact(var/mob/living/user)
-	if(CanUse(user))
-		var/obj/machinery/autolathe/V = holder
-		V.attack_hand(user)
+	return A.panel_open
 
 /datum/wires/autolathe/UpdateCut(index, mended)
 	var/obj/machinery/autolathe/A = holder

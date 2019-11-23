@@ -12,6 +12,7 @@ SUBSYSTEM_DEF(research)
 
 	var/list/all_designs = list()	// All design datums
 	var/list/starting_designs = list() // List of designs starts_unlocked = TRUE
+	var/list/statting_technologies = list() // List of technologies that have no cost and no unlock requirements
 	var/list/all_tech_trees = list() // All tech tree typepaths (keys) associated to a list of their tech node instances (list(values))
 	var/list/all_tech_nodes = list() // All tech nodes
 
@@ -43,6 +44,10 @@ SUBSYSTEM_DEF(research)
 	for(var/T in subtypesof(/datum/technology))
 		var/datum/technology/tech = new T
 		all_tech_nodes += tech
+
+		if(!tech.cost && !length(tech.required_technologies) && !length(tech.required_tech_levels))
+			statting_technologies += tech
+
 		if(tech.tech_type in all_tech_trees)
 			all_tech_trees[tech.tech_type] += tech
 		else
@@ -97,6 +102,9 @@ SUBSYSTEM_DEF(research)
 		var/datum/tech/T = new i
 		T.max_level = all_tech_trees[i].len
 		R.researched_tech[T] = list()
-	for(var/i in starting_designs)
-		R.known_designs += i
-	
+
+	R.known_designs |= starting_designs
+
+	for(var/tech in statting_technologies)
+		R.UnlockTechology(tech, initial = TRUE)
+

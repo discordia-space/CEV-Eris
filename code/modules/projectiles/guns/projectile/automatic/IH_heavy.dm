@@ -22,6 +22,7 @@
 	reload_sound 	= 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	zoom_factor = 0.4
+	recoil_buildup = 7
 
 	firemodes = list(
 		FULL_AUTO_400,
@@ -33,7 +34,7 @@
 	..()
 
 	var/iconstring = initial(icon_state)
-	var/itemstring = initial(item_state)
+	var/itemstring = ""
 
 	if (ammo_magazine)
 		iconstring += "_mag"
@@ -43,7 +44,7 @@
 		iconstring += "_slide"
 
 	icon_state = iconstring
-	item_state = itemstring
+	set_item_state(itemstring)
 
 /obj/item/weapon/gun/projectile/automatic/IH_heavyrifle/Initialize()
 	. = ..()

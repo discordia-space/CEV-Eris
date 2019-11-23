@@ -1,6 +1,7 @@
 /obj/machinery/autolathe_disk_cloner
 	name = "Autolathe disk cloner"
 	desc = "Machine used for copying recipes from unprotected autolathe disks."
+	icon = 'icons/obj/machines/disk_cloner.dmi'
 	icon_state = "disk_cloner"
 	circuit = /obj/item/weapon/circuitboard/autolathe_disk_cloner
 	density = 1

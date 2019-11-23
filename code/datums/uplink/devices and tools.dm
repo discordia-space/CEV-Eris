@@ -108,6 +108,7 @@
 	name = "Mind Fryer"
 	item_cost = 3
 	path = /obj/item/device/mind_fryer
+	antag_roles = list()
 
 /datum/uplink_item/item/tools/mind_fryer/buy(obj/item/device/uplink/U)
 	. = ..()
@@ -119,7 +120,7 @@
 	name = "Spying Sensor (4x)"
 	item_cost = 1
 	path = /obj/item/weapon/storage/box/syndie_kit/spy_sensor
-	antag_roles = list(ROLE_TRAITOR)
+	antag_roles = ROLES_CONTRACT
 
 /datum/uplink_item/item/tools/spy_sensor/buy(obj/item/device/uplink/U)
 	. = ..()
@@ -132,7 +133,7 @@
 	name = "Blue Space Direct Mail Unit"
 	item_cost = 1
 	path = /obj/item/weapon/storage/bsdm
-	antag_roles = list(ROLE_TRAITOR)
+	antag_roles = ROLES_CONTRACT
 
 /datum/uplink_item/item/tools/bsdm/can_view(obj/item/device/uplink/U)
 	return ..() && (U.bsdm_time > world.time)
@@ -147,7 +148,7 @@
 	name = "Blue Space Direct Mail Unit"
 	item_cost = 0
 	path = /obj/item/weapon/storage/bsdm
-	antag_roles = list(ROLE_TRAITOR)
+	antag_roles = ROLES_CONTRACT
 
 /datum/uplink_item/item/tools/bsdm_free/can_view(obj/item/device/uplink/U)
 	return ..() && (U.bsdm_time <= world.time)
