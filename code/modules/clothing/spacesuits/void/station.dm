@@ -62,14 +62,14 @@
 	name = "medical voidsuit"
 	desc = "A special suit that protects against hazardous, low pressure environments. Has minor radiation shielding."
 	item_state = "medical_voidsuit"
-	slowdown = 0.35
+	slowdown = 0.25
 	extra_allowed = list(
 		/obj/item/weapon/storage/firstaid,
 		/obj/item/device/scanner/health,
 		/obj/item/stack/medical,
 		/obj/item/roller
 	)
-	armor = list(melee = 25, bullet = 15, energy = 5, bomb = 35, bio = 100, rad = 100)
+	armor = list(melee = 25, bullet = 25, energy = 15, bomb = 35, bio = 100, rad = 100)
 
 	//Security
 /obj/item/clothing/head/helmet/space/void/security
@@ -82,7 +82,7 @@
 		slot_r_hand_str = "sec_helm",
 		)
 
-	armor = list((melee = 45, bullet = 50, energy = 40, bomb = 35, bio = 100, rad = 60)
+	armor = list(melee = 45, bullet = 50, energy = 40, bomb = 35, bio = 100, rad = 60)
 	siemens_coefficient = 0.7
 	light_overlay = "helmet_light_ihs"
 
