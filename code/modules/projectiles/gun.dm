@@ -252,8 +252,6 @@
 			handle_click_empty(user)
 			break
 
-		process_accuracy(projectile, user, target)
-
 		projectile.multiply_projectile_damage(damage_multiplier)
 
 		projectile.multiply_projectile_penetration(penetration_multiplier)
@@ -433,15 +431,6 @@
 				damage_mult = 1.5
 	P.damage *= damage_mult
 
-/obj/item/weapon/gun/proc/process_accuracy(obj/projectile, mob/user, atom/target, dispersion = 0) //Applies the actual bullet spread
-	var/obj/item/projectile/P = projectile
-	if(!istype(P))
-		return
-	if(calc_recoil(user))
-		dispersion += recoil/2
-		if(zoom)
-			dispersion += recoil*zoom_factor/2 //recoil is worse when looking through a scope
-	P.dispersion = dispersion
 
 //does the actual launching of the projectile
 /obj/item/weapon/gun/proc/process_projectile(obj/projectile, mob/user, atom/target, var/target_zone, var/params=null)
@@ -451,31 +440,13 @@
 
 	if(params)
 		P.set_clickpoint(params)
-	var/lower_offset = 0
-	var/upper_offset = 0
+	var/offset = 5
 	if(calc_recoil(user))
-		lower_offset = -recoil*20
-		upper_offset = recoil*20
-	if(iscarbon(user))
-		var/mob/living/carbon/mob = user
-		var/aim_coeff = mob.stats.getStat(STAT_VIG)/10 //Allows for security to be better at aiming
-		if(aim_coeff > 0)//EG. 60 which is the max, turns into 6. Giving a sizeable accuracy bonus.
-			lower_offset += aim_coeff
-			upper_offset -= aim_coeff
-		if(mob.shock_stage > 120)	//shooting while in shock
-			lower_offset *= 15 //A - * a - is a +
-			upper_offset *= 15
-		else if(mob.shock_stage > 70)
-			lower_offset *= 10 //A - * a - is a +
-			upper_offset *= 10
+		offset += recoil * 5
+	offset = min(offset, 75)
+	offset = rand(-offset, offset)
 
-	var/x_offset = 0
-	var/y_offset = 0
-	x_offset = rand(lower_offset, upper_offset) //Recoil fucks up the spread of your bullets
-	y_offset = rand(lower_offset, upper_offset)
-
-
-	return !P.launch_from_gun(target, user, src, target_zone, x_offset, y_offset)
+	return !P.launch_from_gun(target, user, src, target_zone, angle_offset = offset)
 
 //Suicide handling.
 /obj/item/weapon/gun/proc/handle_suicide(mob/living/user)
