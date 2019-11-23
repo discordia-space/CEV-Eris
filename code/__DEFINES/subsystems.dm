@@ -73,7 +73,6 @@
 #define INIT_OPEN_SPACE -150
 #define INIT_ORDER_CRAFT -175
 #define INIT_ORDER_LATELOAD -180
-#define INIT_ORDER_CHAT -200 //Should be last to ensure chat remains smooth during init.
 
 // SS runlevels
 

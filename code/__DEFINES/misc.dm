@@ -282,6 +282,3 @@
 #define CATALOG_ALL "all"
 
 #define get_area(A) (get_step(A, 0)?.loc)
-
-//Misc text define. Does 4 spaces. Used as a makeshift tabulator.
-#define FOURSPACES "&nbsp;&nbsp;&nbsp;&nbsp;"
