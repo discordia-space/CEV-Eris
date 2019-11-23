@@ -17,7 +17,7 @@
 	price_tag = 2500 //good smg with normal recoil and silencer possibility
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	damage_multiplier = 0.7
-	recoil_buildup = 2
+	recoil_buildup = 2.5
 	silencer_type = /obj/item/weapon/silencer
 
 	firemodes = list(

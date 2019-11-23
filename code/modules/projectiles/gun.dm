@@ -1,3 +1,8 @@
+#define BASE_ACCURACY_REGEN 2 //Recoil reduction per ds with 0 VIG
+#define VIG_ACCURACY_REGEN  0.2 //Recoil reduction per ds per VIG
+#define MIN_ACCURACY_REGEN  1 //How low can we get with negative VIG
+#define MAX_ACCURACY_OFFSET  75 //It's both how big gun recoil can build up, and how hard you can miss
+
 //Parent gun type. Guns are weapons that can be aimed at mobs and act over a distance
 /obj/item/weapon/gun
 	name = "gun"
@@ -342,12 +347,12 @@
 			if(off_hand)
 				off_hand.recoil += off_hand.recoil_buildup * 0.5
 
+			recoil = min(MAX_ACCURACY_OFFSET, recoil) //No sense in building up recoil to numbers that wan't affect it anymore
+
 		to_chat(world, SPAN_WARNING("DEBUG: [name] Recoil:[recoil]"))
 		update_recoil(user)
 
-#define BASE_ACCURACY_REGEN 0.50 //Recoil reduction per ds with 0 VIG
-#define VIG_ACCURACY_REGEN  0.03 //Recoil reduction per ds per VIG
-#define MIN_ACCURACY_REGEN  0.25 //How low can we get with negative VIG
+
 /obj/item/weapon/gun/proc/calc_reduction(mob/user = loc)
 	if(!istype(user))
 		return 0
@@ -393,17 +398,17 @@
 
 	var/bottom = 0
 	switch(recoil)
-		if(0 to 0.5)
+		if(0 to 10)
 			;
-		if(0.5 to 1)
+		if(10 to 20)
 			bottom = 0.5
-		if(1 to 1.5)
+		if(20 to 30)
 			bottom = 1
-		if(1.5 to 2)
+		if(30 to 50)
 			bottom = 1.5
-		if(2 to 3)
+		if(50 to MAX_ACCURACY_OFFSET)
 			bottom = 2
-		if(3 to INFINITY)
+		if(MAX_ACCURACY_OFFSET to INFINITY)
 			bottom = 3
 	if(bottom)
 		var/reduction = calc_reduction(user)
@@ -412,8 +417,12 @@
 
 /obj/item/weapon/gun/proc/process_point_blank(obj/projectile, mob/user, atom/target)
 	var/obj/item/projectile/P = projectile
+
 	if(!istype(P))
 		return //default behaviour only applies to true projectiles
+
+	if(dual_wielding)
+		return //dual wielding deal too much damage as it is, so no point blank for it
 
 	//default point blank multiplier
 	var/damage_mult = 1.3
@@ -442,9 +451,11 @@
 		P.set_clickpoint(params)
 	var/offset = 5
 	if(calc_recoil(user))
-		offset += recoil * 5
-	offset = min(offset, 75)
+		offset += recoil
+	offset = min(offset, MAX_ACCURACY_OFFSET)
 	offset = rand(-offset, offset)
+
+	to_chat(world, SPAN_WARNING("DEBUG: [name] resulting offset: [offset]"))
 
 	return !P.launch_from_gun(target, user, src, target_zone, angle_offset = offset)
 
