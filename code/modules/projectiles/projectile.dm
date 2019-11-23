@@ -34,8 +34,6 @@
 	var/p_x = 16
 	var/p_y = 16 // the pixel location of the tile that the player clicked. Default is the center
 
-	var/dispersion = 0.0
-
 	var/can_ricochet = FALSE // defines if projectile can or cannot ricochet.
 	var/ricochet_id = 0 // if the projectile ricochets, it gets its unique id in order to process iteractions with adjacent walls correctly.
 
@@ -80,6 +78,9 @@
 /obj/item/projectile/multiply_projectile_damage(newmult)
 	damage = initial(damage) * newmult
 
+/obj/item/projectile/multiply_projectile_penetration(newmult)
+	armor_penetration = initial(armor_penetration) * newmult
+
 /obj/item/projectile/proc/on_hit(atom/target, def_zone = null)
 	if(!isliving(target))	return 0
 	if(isanimal(target))	return 0
@@ -121,12 +122,6 @@
 	if(mouse_control["icon-y"])
 		p_y = text2num(mouse_control["icon-y"])
 
-	//randomize clickpoint a bit based on dispersion
-	if(dispersion)
-		var/radius = round((dispersion*0.443)*world.icon_size*0.8) //0.443 = sqrt(pi)/4 = 2a, where a is the side length of a square that shares the same area as a circle with diameter = dispersion
-		p_x = between(0, p_x + rand(-radius, radius), world.icon_size)
-		p_y = between(0, p_y + rand(-radius, radius), world.icon_size)
-
 //called to launch a projectile
 /obj/item/projectile/proc/launch(atom/target, target_zone, x_offset=0, y_offset=0, angle_offset=0)
 	var/turf/curloc = get_turf(src)
@@ -150,7 +145,7 @@
 	return FALSE
 
 //called to launch a projectile from a gun
-/obj/item/projectile/proc/launch_from_gun(atom/target, mob/user, obj/item/weapon/gun/launcher, target_zone, x_offset=0, y_offset=0)
+/obj/item/projectile/proc/launch_from_gun(atom/target, mob/user, obj/item/weapon/gun/launcher, target_zone, x_offset=0, y_offset=0, angle_offset)
 	if(user == target) //Shooting yourself
 		user.bullet_act(src, target_zone)
 		qdel(src)
@@ -162,7 +157,7 @@
 	shot_from = launcher.name
 	silenced = launcher.item_flags & SILENT
 
-	return launch(target, target_zone, x_offset, y_offset)
+	return launch(target, target_zone, x_offset, y_offset, angle_offset)
 
 //Used to change the direction of the projectile in flight.
 /obj/item/projectile/proc/redirect(new_x, new_y, atom/starting_loc, mob/new_firer=null)
@@ -670,6 +665,8 @@
 
 		before_move()
 		Move(location.return_turf())
+		pixel_x = location.pixel_x
+		pixel_y = location.pixel_y
 
 		if(!bumped && !isturf(original))
 			if(loc == get_turf(original))
@@ -689,22 +686,16 @@
 /obj/item/projectile/proc/before_move()
 	return FALSE
 
-/obj/item/projectile/proc/setup_trajectory(turf/startloc, turf/targloc, var/x_offset = 0, var/y_offset = 0)
+/obj/item/projectile/proc/setup_trajectory(turf/startloc, turf/targloc, x_offset = 0, y_offset = 0, angle_offset)
 	// setup projectile state
 	starting = startloc
 	current = startloc
 	yo = targloc.y - startloc.y + y_offset
 	xo = targloc.x - startloc.x + x_offset
 
-	// trajectory dispersion
-	var/offset = 0
-	if(dispersion)
-		var/radius = round(dispersion*9, 1)
-		offset = rand(-radius, radius)
-
 	// plot the initial trajectory
 	trajectory = new()
-	trajectory.setup(starting, original, pixel_x, pixel_y, angle_offset=offset)
+	trajectory.setup(starting, original, pixel_x, pixel_y, angle_offset)
 
 	// generate this now since all visual effects the projectile makes can use it
 	effect_transform = new()

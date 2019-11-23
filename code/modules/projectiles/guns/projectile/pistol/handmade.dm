@@ -11,6 +11,7 @@
 	max_shells = 1
 	ammo_type = /obj/item/ammo_casing/pistol
 	damage_multiplier = 1.36
+	recoil_buildup = 45
 	var/chamber_open = FALSE
 	var/jammed = FALSE
 	var/jam_chance = 15

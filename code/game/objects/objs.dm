@@ -241,3 +241,7 @@
 //Intended for gun projectiles, but defined at this level for various things that aren't of projectile type
 /obj/proc/multiply_projectile_damage(var/newmult)
 	throwforce = initial(throwforce) * newmult
+
+//Same for AP
+/obj/proc/multiply_projectile_penetration(var/newmult)
+	armor_penetration = initial(armor_penetration) * newmult

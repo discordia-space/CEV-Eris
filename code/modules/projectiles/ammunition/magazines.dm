@@ -209,7 +209,7 @@
 	max_ammo = 30
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/ihclrifler/empty
+/obj/item/ammo_magazine/ihclrifle/empty
 	icon_state = "mg_ih_sol"
 	initial_ammo = 0
 
