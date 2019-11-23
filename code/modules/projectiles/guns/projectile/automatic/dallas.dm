@@ -22,7 +22,7 @@
 	reload_sound 	= 'sound/weapons/guns/interact/m41_reload.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/m41_cocked.ogg'
 	damage_multiplier = 1.7
-	recoil_buildup = 1 //advanced pulse weapon
+	recoil_buildup = 6
 
 	firemodes = list(
 		FULL_AUTO_400,

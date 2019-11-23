@@ -15,7 +15,7 @@
 	matter = list(MATERIAL_PLASTEEL = 16, MATERIAL_PLASTIC = 4)
 	price_tag = 2000
 	damage_multiplier = 0.9
-	recoil_buildup = 4
+	recoil_buildup = 5
 
 	firemodes = list(
 		FULL_AUTO_400,

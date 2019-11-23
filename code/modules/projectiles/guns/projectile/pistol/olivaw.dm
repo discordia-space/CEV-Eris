@@ -12,8 +12,9 @@
 	mag_well = MAG_WELL_L_PISTOL
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
 	price_tag = 800
-	damage_multiplier = 1.1 //To match orginal damage
-	recoil = 0.4 //low-caliber peashooter, but more complicated and robust than giskard so less than normal recoil
+	damage_multiplier = 1.1
+	penetration_multiplier = 1.1
+	recoil_buildup = 6
 
 	firemodes = list(
 		list(mode_name="semiauto",       burst=1, fire_delay=1.2, move_delay=null, 				icon="semi"),

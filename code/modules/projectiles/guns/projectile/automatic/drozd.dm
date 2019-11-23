@@ -43,6 +43,6 @@
 	icon_state = iconstring
 	item_state = itemstring
 
-/obj/item/weapon/gun/projectile/automatic/sts35/Initialize()
+/obj/item/weapon/gun/projectile/automatic/drozd/Initialize()
 	. = ..()
 	update_icon()

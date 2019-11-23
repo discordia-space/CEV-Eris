@@ -15,8 +15,9 @@
 	mag_well = MAG_WELL_L_PISTOL
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_WOOD = 4)
 	price_tag = 600
-	damage_multiplier = 0.9 //To match orginal damage
-	recoil = 0.2 //peashooter tier gun
+	damage_multiplier = 1
+	penetration_multiplier = 0.9
+	recoil_buildup = 2
 
 /obj/item/weapon/gun/projectile/giskard/update_icon()
 	..()

@@ -86,12 +86,12 @@ There are important things regarding this file:
 
 //Revolvers and high-caliber pistols
 /obj/item/projectile/bullet/magnum
-	damage = 42
+	damage = 36
 	armor_penetration = 10
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/magnum/hv
-	damage = 45
+	damage = 38
 	armor_penetration = 15
 	penetrating = 1
 	step_delay = 0.75
@@ -99,7 +99,7 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/magnum/rubber
 	name = "rubber bullet"
 	damage = 8
-	agony = 40
+	agony = 32
 	armor_penetration = 0
 	embed = FALSE
 	sharp = FALSE
@@ -118,7 +118,7 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/shotgun
 	name = "slug"
 	icon_state = "slug"
-	damage = 36
+	damage = 34
 	armor_penetration = 12
 	knockback = 1
 

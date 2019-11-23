@@ -19,7 +19,9 @@
 	unload_sound 	= 'sound/weapons/guns/interact/batrifle_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/batrifle_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/batrifle_cock.ogg'
-	recoil = 0.8 //it's carbine plus not 7.62
+	recoil_buildup = 6
+	penetration_multiplier = 1.1
+	damage_multiplier = 1.1
 	zoom_factor = 0.2
 
 	firemodes = list(

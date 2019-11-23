@@ -14,8 +14,8 @@
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_H_PISTOL
 	silencer_type = /obj/item/weapon/silencer
-	damage_multiplier = 0.8
-	recoil = 0.4 //slightly less than normal 0.5 for pistol due to lower caliber
+	damage_multiplier = 0.9
+	recoil_buildup = 19
 
 
 /obj/item/weapon/gun/projectile/clarissa/update_icon()
@@ -43,5 +43,6 @@
 	desc = "Old-designed pistol of space communists. Small and easily concealable. Uses .35 Auto rounds."
 	icon = 'icons/obj/guns/projectile/makarov.dmi'
 	icon_state = "makarov"
-	damage_multiplier = 1
+	damage_multiplier = 1.2
+	recoil_buildup = 21
 	price_tag = 1400
