@@ -52,20 +52,26 @@
 			if(istype(M, /obj/item))
 				if(M.anchored)
 					continue
+
 				var/obj/item/target = M
 				//if we found biomatter, let's start processing
 				//it will slowly disappear. Time based at size of object and we manipulate with its alpha (we also check for it)
-				if(MATERIAL_BIOMATTER in target.matter)
+				if((MATERIAL_BIOMATTER in target.matter) || istype(target,/obj/item/clothing))
 					target.alpha -= round(100 / target.w_class)
 					var/icon/I = new(target.icon, icon_state = target.icon_state)
 					//we turn this things to degenerate sprite a bit
 					I.Turn(rand(-10, 10))
 					target.icon = I
 					if(target.alpha <= 50)
-						MS_bioreactor.biotank_platform.take_amount(target.matter[MATERIAL_BIOMATTER])
+						if(istype(target,/obj/item/clothing))
+							var/clothingbiomatter
+							clothingbiomatter = 5 * target.w_class
+							MS_bioreactor.biotank_platform.take_amount(clothingbiomatter)
+						else
+							MS_bioreactor.biotank_platform.take_amount(target.matter[MATERIAL_BIOMATTER])
+							target.matter -= MATERIAL_BIOMATTER
 						MS_bioreactor.biotank_platform.pipes_wearout(target.w_class)
-						target.matter -= MATERIAL_BIOMATTER
-						//if we have other matter, let's spit it out
+							//if we have other matter, let's spit it out
 						for(var/material in target.matter)
 							var/stack_type = material_stack_type(material_display_name(material))
 							if(stack_type)
