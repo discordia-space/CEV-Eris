@@ -6,8 +6,8 @@
 	desc = "A sleek and dangerous hardsuit for active combat."
 	icon_state = "security_rig"
 	suit_type = "combat hardsuit"
-	armor = list(melee = 70, bullet = 70, energy = 60, bomb = 80, bio = 100, rad = 60)
-	slowdown = 1.35 //same as serbs
+	armor = list(melee = 60, bullet = 60, energy = 60, bomb = 60, bio = 100, rad = 60)
+	slowdown = 1.3 //same as serbs
 	offline_slowdown = 3
 	offline_vision_restriction = 1
 

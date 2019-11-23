@@ -17,7 +17,7 @@
 	slowdown = 1.3
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
-	armor = list(melee = 60, bullet = 70, energy = 60, bomb = 70, bio = 100, rad = 30)
+	armor = list(melee = 70, bullet = 60, energy = 60, bomb = 70, bio = 100, rad = 30)
 	siemens_coefficient = 0.35
 	species_restricted = list("Human")
 
