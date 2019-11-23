@@ -1,8 +1,3 @@
-#define BASE_ACCURACY_REGEN 2 //Recoil reduction per ds with 0 VIG
-#define VIG_ACCURACY_REGEN  0.2 //Recoil reduction per ds per VIG
-#define MIN_ACCURACY_REGEN  1 //How low can we get with negative VIG
-#define MAX_ACCURACY_OFFSET  75 //It's both how big gun recoil can build up, and how hard you can miss
-
 //Parent gun type. Guns are weapons that can be aimed at mobs and act over a distance
 /obj/item/weapon/gun
 	name = "gun"
@@ -401,15 +396,15 @@
 		if(0 to 10)
 			;
 		if(10 to 20)
-			bottom = 0.5
+			bottom = 10
 		if(20 to 30)
-			bottom = 1
+			bottom = 20
 		if(30 to 50)
-			bottom = 1.5
+			bottom = 30
 		if(50 to MAX_ACCURACY_OFFSET)
-			bottom = 2
+			bottom = 50
 		if(MAX_ACCURACY_OFFSET to INFINITY)
-			bottom = 3
+			bottom = MAX_ACCURACY_OFFSET
 	if(bottom)
 		var/reduction = calc_reduction(user)
 		if(reduction > 0)
