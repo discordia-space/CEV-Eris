@@ -14,14 +14,14 @@
 			</section>
 		{{/for}}
 		<section>
-			<div class="content">{{:helper.link('Remove', '', {'eject_container' : 1}, null, 'statusValue')}}</div>
+			<div class="content">{{:helper.link('Remove', '', {'container' : 1}, null, 'statusValue')}}</div>
 		</section>
 	{{else}}
 		<section>
 			<span class="label">Not inserted</span>
 		</section>
 		<section>
-			<div class="content">{{:helper.link('Insert', 'eject', {'insert_beaker' : 1}, null, 'statusValue')}}</div>
+			<div class="content">{{:helper.link('Insert', 'eject', {'container' : 1}, null, 'statusValue')}}</div>
 		</section>
 	{{/if}}
 	</article>

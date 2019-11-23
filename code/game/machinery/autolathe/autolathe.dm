@@ -1,4 +1,3 @@
-
 #define SANITIZE_LATHE_COST(n) round(n * mat_efficiency, 0.01)
 
 
@@ -34,6 +33,7 @@
 
 	var/list/special_actions
 
+	// Used by wires - unused for now
 	var/hacked = FALSE
 	var/disabled = FALSE
 	var/shocked = FALSE
@@ -228,20 +228,21 @@
 
 /obj/machinery/autolathe/attackby(obj/item/I, mob/user)
 	if(default_deconstruction(I, user))
+		wires.Interact(user)
 		return
 
 	if(default_part_replacement(I, user))
 		return
 
 	if(istype(I, /obj/item/weapon/computer_hardware/hard_drive/portable))
-		insert_disk(user)
+		insert_disk(user, I)
 
 	if(istype(I, /obj/item/stack))
-		eat(user)
+		eat(user, I)
 		return
 
 	if(istype(I, /obj/item/weapon/reagent_containers/glass))
-		insert_beaker(user)
+		insert_beaker(user, I)
 		return
 
 	user.set_machine(src)
@@ -253,8 +254,8 @@
 		return TRUE
 
 	user.set_machine(src)
-	wires.Interact(user)
 	ui_interact(user)
+	wires.Interact(user)
 
 /obj/machinery/autolathe/Topic(href, href_list)
 	if(..())
@@ -269,46 +270,37 @@
 
 	if(href_list["disk"])
 		if(disk)
-			eject_disk()
+			eject_disk(usr)
 		else
 			insert_disk(usr)
 		return 1
 
-	if(href_list["insert_beaker"])
-		insert_beaker(usr)
+	if(href_list["container"])
+		if(container)
+			eject_beaker(usr)
+		else
+			insert_beaker(usr)
 		return 1
 
 	if(href_list["category"] && categories && (href_list["category"] in categories))
 		show_category = href_list["category"]
 		return 1
 
-	if(!current_file || paused)
-		if(href_list["eject_material"])
-			var/material = href_list["eject_material"]
-			var/material/M = get_material_by_name(material)
+	if(href_list["eject_material"] && (!current_file || paused || error))
+		var/material = href_list["eject_material"]
+		var/material/M = get_material_by_name(material)
 
-			if(!M.stack_type)
-				return
+		if(!M.stack_type)
+			return
 
-			var/num = input("Enter sheets number to eject. 0-[stored_material[material]]","Eject",0) as num
-			if(!CanUseTopic(usr))
-				return
+		var/num = input("Enter sheets number to eject. 0-[stored_material[material]]","Eject",0) as num
+		if(!CanUseTopic(usr))
+			return
 
-			num = min(max(num,0), stored_material[material])
+		num = min(max(num,0), stored_material[material])
 
-			eject(material, num)
-			return 1
-
-		if(href_list["eject_container"])
-			container.forceMove(src.loc)
-
-			if(isliving(usr))
-				var/mob/living/L = usr
-				if(istype(L))
-					L.put_in_active_hand(container)
-
-			container = null
-			return 1
+		eject(material, num)
+		return 1
 
 
 	if(href_list["add_to_queue"])
@@ -368,62 +360,116 @@
 		return 1
 
 
-/obj/machinery/autolathe/proc/insert_disk(mob/living/user)
-	if(!istype(user))
+/obj/machinery/autolathe/proc/insert_disk(mob/living/user, obj/item/weapon/computer_hardware/hard_drive/portable/inserted_disk)
+	if(!inserted_disk && istype(user))
+		inserted_disk = user.get_active_hand()
+
+	if(!istype(inserted_disk))
 		return
 
-	var/obj/item/eating = user.get_active_hand()
-
-	if(!istype(eating))
+	if(!Adjacent(user) && !Adjacent(inserted_disk))
 		return
 
-	if(istype(eating, /obj/item/weapon/computer_hardware/hard_drive/portable))
-		if(!have_disk)
-			return
-
-		if(disk)
-			to_chat(user, SPAN_NOTICE("There's already \a [disk] inside [src]."))
-			return
-		user.unEquip(eating, src)
-		disk = eating
-		to_chat(user, SPAN_NOTICE("You put \the [eating] into [src]."))
-		SSnano.update_uis(src)
-
-
-/obj/machinery/autolathe/proc/insert_beaker(mob/living/user)
-	if(!istype(user))
+	if(!have_disk)
+		to_chat(user, SPAN_WARNING("[src] has no slot for a data disk."))
 		return
 
-	var/obj/item/eating = user.get_active_hand()
-	if(!istype(eating))
+	if(disk)
+		to_chat(user, SPAN_NOTICE("There's already \a [disk] inside [src]."))
+		return
+
+	if(istype(user) && (inserted_disk in user))
+		user.unEquip(inserted_disk, src)
+
+	inserted_disk.forceMove(src)
+	disk = inserted_disk
+	to_chat(user, SPAN_NOTICE("You insert \the [inserted_disk] into [src]."))
+	SSnano.update_uis(src)
+
+
+/obj/machinery/autolathe/proc/insert_beaker(mob/living/user, obj/item/weapon/reagent_containers/glass/beaker)
+	if(!beaker && istype(user))
+		beaker = user.get_active_hand()
+
+	if(!istype(beaker))
+		return
+
+	if(!Adjacent(user) && !Adjacent(beaker))
 		return
 
 	if(!have_reagents)
 		to_chat(user, SPAN_WARNING("[src] has no slot for a beaker."))
 		return
 
-	if(istype(eating, /obj/item/weapon/reagent_containers/glass))
-		if(container)
-			to_chat(user, SPAN_WARNING("There's already \a [container] inside [src]."))
-			return
-		user.unEquip(eating, src)
-		container = eating
-		to_chat(user, SPAN_NOTICE("You put \the [eating] into [src]."))
-		SSnano.update_uis(src)
-
-/obj/machinery/autolathe/proc/eat(mob/living/user)
-	if(!istype(user))
+	if(container)
+		to_chat(user, SPAN_WARNING("There's already \a [container] inside [src]."))
 		return
 
-	var/obj/item/eating = user.get_active_hand()
+	if(istype(user) && (beaker in user))
+		user.unEquip(beaker, src)
+
+	beaker.forceMove(src)
+	container = beaker
+	to_chat(user, SPAN_NOTICE("You put \the [beaker] into [src]."))
+	SSnano.update_uis(src)
+
+
+/obj/machinery/autolathe/proc/eject_beaker(mob/living/user)
+	if(!container)
+		return
+
+	if(current_file && !paused && !error)
+		return
+
+	container.forceMove(drop_location())
+	to_chat(usr, SPAN_NOTICE("You remove \the [container] from \the [src]."))
+
+	if(istype(user) && Adjacent(user))
+		user.put_in_active_hand(container)
+
+	container = null
+
+
+//This proc ejects the autolathe disk, but it also does some DRM fuckery to prevent exploits
+/obj/machinery/autolathe/proc/eject_disk(mob/living/user)
+	if(!disk)
+		return
+
+	var/list/design_list = design_list()
+
+	// Go through the queue and remove any recipes we find which came from this disk
+	for(var/design in queue)
+		if(design in design_list)
+			queue -= design
+
+	//Check the current too
+	if(current_file in design_list)
+		//And abort it if it came from this disk
+		abort()
+
+
+	//Digital Rights have been successfully managed. The corporations win again.
+	//Now they will graciously allow you to eject the disk
+	disk.forceMove(drop_location())
+	to_chat(usr, SPAN_NOTICE("You remove \the [disk] from \the [src]."))
+
+	if(istype(user) && Adjacent(user))
+		user.put_in_active_hand(disk)
+
+	disk = null
+
+
+/obj/machinery/autolathe/proc/eat(mob/living/user, obj/item/eating)
+	if(!eating && istype(user))
+		eating = user.get_active_hand()
 
 	if(!istype(eating))
-		return
+		return FALSE
 
 	if(stat)
-		return
+		return FALSE
 
-	if(eating.loc != user && !istype(eating, /obj/item/stack))
+	if(!Adjacent(user) && !Adjacent(eating))
 		return FALSE
 
 	if(is_robot_module(eating))
@@ -441,7 +487,7 @@
 		var/obj/item/weapon/computer_hardware/hard_drive/portable/disk = eating
 		if(disk.license)
 			to_chat(user, SPAN_WARNING("\The [src] refuses to accept \the [eating] as it has non-null license."))
-			return
+			return FALSE
 
 	var/filltype = 0       // Used to determine message.
 	var/reagents_filltype = 0
@@ -805,34 +851,6 @@
 	print_post()
 	next_file()
 
-//This proc ejects the autolathe disk, but it also does some DRM fuckery to prevent exploits
-/obj/machinery/autolathe/proc/eject_disk()
-	if(!disk)
-		return
-
-	var/list/design_list = design_list()
-
-	// Go through the queue and remove any recipes we find which came from this disk
-	for(var/design in queue)
-		if(design in design_list)
-			queue -= design
-
-	//Check the current too
-	if(current_file in design_list)
-		//And abort it if it came from this disk
-		abort()
-
-
-	//Digital Rights have been successfully managed. The corporations win again.
-	//Now they will graciously allow you to eject the disk
-	disk.forceMove(get_turf(src))
-
-	if(isliving(usr))
-		var/mob/living/L = usr
-		if(istype(L))
-			L.put_in_active_hand(disk)
-
-	disk = null
 
 #undef ERR_OK
 #undef ERR_NOTFOUND
