@@ -1,5 +1,5 @@
 /obj/item/weapon/gun/projectile/automatic/bulldog
-	name = "Syndicate SG \"Bulldog\""
+	name = "Syndicate SG \"Foxhound\""
 	desc = "A semi-auto, mag-fed shotgun for combat in narrow corridors, nicknamed 'Bulldog' by boarding parties. \
 	Compatible only with specialized 8-round drum magazines."
 	icon = 'icons/obj/guns/projectile/bulldog.dmi'
