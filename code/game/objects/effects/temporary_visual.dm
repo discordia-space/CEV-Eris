@@ -34,29 +34,3 @@
 	if(set_dir)
 		dir = set_dir
 	. = ..()
-
-/obj/effect/temp_visual/resourceInsertion
-	randomdir = FALSE
-
-/obj/effect/temp_visual/resourceInsertion/proc/setMaterial(var/material)
-	return
-
-/obj/effect/temp_visual/resourceInsertion/protolathe
-	icon = 'icons/obj/machines/research.dmi'
-	duration = 8
-
-/obj/effect/temp_visual/resourceInsertion/protolathe/setMaterial(var/material)
-	icon_state = "protolathe_[material]"
-	if(!(icon_state in icon_states(icon)))
-		icon_state = "protolathe_metal"
-	..()
-
-/obj/effect/temp_visual/resourceInsertion/mechfab
-	icon = 'icons/obj/robotics.dmi'
-	duration = 12
-
-/obj/effect/temp_visual/resourceInsertion/mechfab/setMaterial(var/material)
-	icon_state = "fab-load-[material]"
-	if(!(icon_state in icon_states(icon)))
-		icon_state = "fab-load-metal"
-	..()

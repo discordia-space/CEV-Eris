@@ -282,8 +282,8 @@
 		else if(istype(input_device,/obj/machinery/r_n_d/server))
 			var/obj/machinery/r_n_d/server/input_machine = input_device
 			incoming_files = input_machine.files
-		else if(istype(input_device,/obj/machinery/mecha_part_fabricator))
-			var/obj/machinery/mecha_part_fabricator/input_machine = input_device
+		else if(istype(input_device,/obj/machinery/autolathe/mechfab))
+			var/obj/machinery/autolathe/mechfab/input_machine = input_device
 			incoming_files = input_machine.files
 
 		if(!incoming_files || !incoming_files.researched_nodes.len)
