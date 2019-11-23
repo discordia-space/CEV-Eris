@@ -35,6 +35,7 @@
 	disruptive = 0
 	activates_on_touch = 1
 
+
 	engage_string = "Eject AI"
 	activate_string = "Enable Dataspike"
 	deactivate_string = "Disable Dataspike"
@@ -231,6 +232,7 @@
 	name = "datajack module"
 	desc = "A simple induction datalink module."
 	icon_state = "datajack"
+	passive_power_cost = 0
 	toggleable = 1
 	activates_on_touch = 1
 	usable = 0
@@ -304,6 +306,8 @@
 	icon_state = "ewar"
 	toggleable = 1
 	usable = 0
+	passive_power_cost = 0
+	active_power_cost = 0.08
 
 	activate_string = "Enable Countermeasures"
 	deactivate_string = "Disable Countermeasures"
@@ -334,6 +338,7 @@
 	desc = "An heavy-duty power sink."
 	icon_state = "powersink"
 	toggleable = 1
+	passive_power_cost = 0
 	activates_on_touch = 1
 	disruptive = 0
 

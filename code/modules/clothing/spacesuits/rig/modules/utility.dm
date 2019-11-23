@@ -25,6 +25,7 @@
 	toggleable = 0
 	disruptive = 0
 
+
 	var/device_type
 	var/obj/item/device
 
@@ -34,6 +35,7 @@
 	icon_state = "scanner"
 	interface_name = "health scanner"
 	interface_desc = "Shows an informative health readout when used on a subject."
+
 
 	device_type = /obj/item/device/scanner/health
 
@@ -46,6 +48,7 @@
 	suit_overlay_active = "mounted-drill"
 	suit_overlay_inactive = "mounted-drill"
 	use_power_cost = 0.1
+
 
 	device_type = /obj/item/weapon/tool/pickaxe/diamonddrill/rig
 
@@ -60,6 +63,7 @@
 	selectable = 0
 	device_type = /obj/item/device/ano_scanner
 
+
 /obj/item/rig_module/device/orescanner
 	name = "ore scanner module"
 	desc = "A clunky old ore scanner."
@@ -70,6 +74,7 @@
 	usable = 1
 	selectable = 0
 	device_type = /obj/item/weapon/mining_scanner
+
 
 /obj/item/rig_module/device/rcd
 	name = "RCD mount"
@@ -113,6 +118,7 @@
 	selectable = 0
 	toggleable = 0
 	disruptive = 0
+
 
 	engage_string = "Inject"
 
@@ -259,6 +265,7 @@
 	toggleable = 0
 	disruptive = 0
 
+
 	engage_string = "Configure Synthesiser"
 
 	interface_name = "voice synthesiser"
@@ -311,6 +318,7 @@
 	toggleable = 1
 	selectable = 0
 	disruptive = 0
+
 
 	suit_overlay_active = "maneuvering_active"
 	suit_overlay_inactive = null //"maneuvering_inactive"
@@ -387,6 +395,7 @@
 	active = 1
 	usable = 1
 
+
 	interface_name = "Autodoc"
 	interface_desc = "Module with set of instruments that is capable to preform surgery on user"
 	var/datum/autodoc/autodoc_processor
@@ -412,7 +421,7 @@
 	if(..())
 		autodoc_processor.stop()
 	if(autodoc_processor.active)
-		if(wearer_loc == null) 
+		if(wearer_loc == null)
 			wearer_loc = get_turf(holder.wearer)
 		if(wearer_loc != get_turf(holder.wearer))
 			autodoc_processor.fail()
@@ -422,7 +431,7 @@
 		engage_string = "Interact"
 		passive_power_cost = 0
 		wearer_loc = null
-	
+
 /obj/item/rig_module/autodoc/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nano_ui/master_ui, datum/topic_state/state = GLOB.deep_inventory_state)
 	autodoc_processor.ui_interact(user, ui_key, ui, force_open, state = GLOB.deep_inventory_state)
 /obj/item/rig_module/autodoc/activate()

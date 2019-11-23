@@ -27,7 +27,7 @@
 	armor = list(melee = 40, bullet = 35, energy = 35, bomb = 35, bio = 100, rad = 40)
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-	siemens_coefficient = 0.2
+	siemens_coefficient = 0.1
 	permeability_coefficient = 0.1
 	unacidable = 1
 
@@ -351,6 +351,11 @@
 				M = piece.loc
 				M.drop_from_inventory(piece)
 			piece.forceMove(src)
+
+	if(active == TRUE) // dains power from the cell whenever the suit is sealed
+		cell.use(0.36)
+	return
+
 
 	if(!istype(wearer) || loc != wearer || wearer.back != src || canremove || !cell || cell.charge <= 0)
 		if(!cell || cell.charge <= 0)

@@ -12,8 +12,8 @@
 
 	var/can_breach = 1                      // Set to 0 to disregard all breaching.
 	var/list/breaches = list()              // Breach datum container.
-	var/resilience = 0.2                    // Multiplier that turns damage into breach class. 1 is 100% of damage to breach, 0.1 is 10%. 0.2 -> 50 brute/burn damage to cause 10 breach damage
-	var/breach_threshold = 3                // Min damage before a breach is possible. Damage is subtracted by this amount, it determines the "hardness" of the suit.
+	var/resilience = 0.1                    // Multiplier that turns damage into breach class. 1 is 100% of damage to breach, 0.1 is 10%. 0.2 -> 50 brute/burn damage to cause 10 breach damage
+	var/breach_threshold = 3                // Min attack damage before a breach is possible. Damage is subtracted by this amount, it determines the "hardness" of the suit.
 	var/damage = 0                          // Current total damage
 	var/brute_damage = 0                    // Specifically brute damage.
 	var/burn_damage = 0                     // Specifically burn damage.
@@ -85,7 +85,6 @@ var/global/list/breach_burn_descriptors = list(
 	calc_breach_damage()
 
 /obj/item/clothing/suit/space/proc/create_breaches(var/damtype, var/amount)
-
 	amount -= src.breach_threshold
 	amount *= src.resilience
 
@@ -241,3 +240,5 @@ var/global/list/breach_burn_descriptors = list(
 	if(can_breach && breaches && breaches.len)
 		for(var/datum/breach/B in breaches)
 			to_chat(user, "\red <B>It has \a [B.descriptor].</B>")
+
+
