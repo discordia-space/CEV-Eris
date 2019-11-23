@@ -3,7 +3,7 @@
 
 #define SORT_TYPE_MATERIAL "material"
 #define SORT_TYPE_REAGENT "reagent"
-#define YES_TAKE_CLOTHING 1
+
 /*
 	Sorter will sort items based on rules
 */
@@ -284,4 +284,3 @@
 
 #undef SORT_TYPE_MATERIAL
 #undef SORT_TYPE_REAGENT
-#undef YES_TAKE_CLOTHING
