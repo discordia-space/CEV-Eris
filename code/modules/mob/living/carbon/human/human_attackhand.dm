@@ -232,6 +232,7 @@
 
 			// Finally, apply damage to target
 			damage_through_armor(real_damage, (attack.deal_halloss ? HALLOSS : BRUTE), affecting, ARMOR_MELEE, sharp = attack.sharp, edge = attack.edge)
+			hit_impact(real_damage, get_step(H, src))
 
 		if(I_DISARM)
 			if(M.stats.combat_style?.disarm_act())
@@ -301,6 +302,7 @@
 	var/obj/item/organ/external/affecting = get_organ(ran_zone(dam_zone))
 	damage_through_armor(damage, BRUTE, affecting, ARMOR_MELEE)
 	updatehealth()
+	hit_impact(damage, get_step(user, src))
 	return TRUE
 
 //Used to attack a joint through grabbing
