@@ -212,7 +212,7 @@
 "ed" = (/obj/structure/holostool,/obj/effect/floor_decal/carpet{dir = 8},/turf/simulated/floor/holofloor/carpet,/area/holodeck/source_meetinghall)
 "ee" = (/obj/structure/holostool,/turf/simulated/floor/holofloor/carpet,/area/holodeck/source_meetinghall)
 "ef" = (/obj/structure/holostool,/obj/effect/floor_decal/carpet{dir = 4},/turf/simulated/floor/holofloor/carpet,/area/holodeck/source_meetinghall)
-"eg" = (/obj/machinery/light{dir = 8; icon_state = "tube1"; pixel_y = 0},/obj/structure/uplink,/turf/simulated/shuttle/floor{icon_state = "floor6"},/area/shuttle/mercenary)
+"eg" = (/obj/machinery/light{dir = 8; icon_state = "tube1"; pixel_y = 0},/obj/structure/uplink/mercenary,/turf/simulated/shuttle/floor{icon_state = "floor6"},/area/shuttle/mercenary)
 "eh" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/bag/money,/turf/unsimulated/floor{dir = 8; icon_state = "wood"},/area/wizard_station)
 "ei" = (/turf/simulated/shuttle/wall{icon_state = "wall3"},/area/space)
 "ej" = (/obj/structure/window/reinforced/holowindow/disappearing{dir = 1},/turf/simulated/floor/holofloor/tiled,/area/holodeck/source_thunderdomecourt)

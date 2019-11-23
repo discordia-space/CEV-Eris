@@ -155,6 +155,12 @@ GLOBAL_LIST_EMPTY(faction_types)
 			return TRUE
 	return FALSE
 
+/proc/player_is_antag_in_list(datum/mind/player, list/a_ids)
+	for(var/datum/antagonist/antag in player.antagonist)
+		if(antag.id in a_ids)
+			return TRUE
+	return FALSE
+
 /proc/get_antags_list(var/a_type)
 	if(!a_type)
 		return current_antags
