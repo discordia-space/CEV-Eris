@@ -2192,6 +2192,7 @@
 #include "code\modules\projectiles\guns\projectile\sniper.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\ak47.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\atreides.dm"
+#include "code\modules\projectiles\guns\projectile\automatic\bulldog.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\c20r.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\dallas.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\drozd.dm"
