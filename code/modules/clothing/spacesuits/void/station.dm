@@ -55,7 +55,7 @@
 		slot_l_hand_str = "medical_helm",
 		slot_r_hand_str = "medical_helm",
 		)
-	armor = list(melee = 25, bullet = 15, energy = 5, bomb = 35, bio = 100, rad = 100)
+	armor = list(melee = 25, bullet = 15, energy = 15, bomb = 35, bio = 100, rad = 100)
 
 /obj/item/clothing/suit/space/void/medical
 	icon_state = "rig-medical"
