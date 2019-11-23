@@ -343,8 +343,6 @@
 				off_hand.recoil += off_hand.recoil_buildup * 0.5
 
 			recoil = min(MAX_ACCURACY_OFFSET, recoil) //No sense in building up recoil to numbers that wan't affect it anymore
-
-		to_chat(world, SPAN_WARNING("DEBUG: [name] Recoil:[recoil]"))
 		update_recoil(user)
 
 
@@ -368,8 +366,6 @@
 			//But until that done, here is a way to cut down a recoil for sure with time
 			var/timed_reduction = min(time**2, 400)
 			recoil -= timed_reduction * calc_reduction(user)
-
-			to_chat(world, SPAN_WARNING("DEBUG: [name] timed reduction: [timed_reduction]"))
 
 			if(recoil <= 0)
 				recoil = 0
@@ -456,8 +452,6 @@
 		offset += recoil
 	offset = min(offset, MAX_ACCURACY_OFFSET)
 	offset = rand(-offset, offset)
-
-	to_chat(world, SPAN_WARNING("DEBUG: [name] resulting offset: [offset]"))
 
 	return !P.launch_from_gun(target, user, src, target_zone, angle_offset = offset)
 
