@@ -5,6 +5,7 @@
 	icon_state = "clarissa"
 	item_state = "clarissa"
 	w_class = ITEM_SIZE_SMALL
+	can_dual = 1
 	caliber = "pistol"
 	silenced = 0
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)

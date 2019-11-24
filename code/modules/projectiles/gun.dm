@@ -38,6 +38,7 @@
 	var/muzzle_flash = 3
 	var/requires_two_hands
 	var/dual_wielding
+	var/can_dual = 0 // Controls whether guns can be dual-wielded (firing two at once).
 	var/wielded_icon = "gun_wielded"
 	var/zoom_factor = 0 //How much to scope in when using weapon
 
@@ -190,6 +191,11 @@
 	var/obj/item/weapon/gun/off_hand   //DUAL WIELDING
 	if(ishuman(user) && user.a_intent == "harm")
 		var/mob/living/carbon/human/H = user
+
+		if(!can_dual)
+			dual_wielding = FALSE
+			goto skip
+
 		if(H.r_hand == src && istype(H.l_hand, /obj/item/weapon/gun))
 			off_hand = H.l_hand
 			dual_wielding = TRUE
@@ -203,10 +209,10 @@
 		if(off_hand && off_hand.can_hit(user))
 			spawn(1)
 			off_hand.Fire(A,user,params)
-	else
-		dual_wielding = FALSE
-
-	Fire(A,user,params) //Otherwise, fire normally.
+		else
+			dual_wielding = FALSE
+	skip:
+		Fire(A,user,params) //Otherwise, fire normally.
 
 /obj/item/weapon/gun/attack(atom/A, mob/living/user, def_zone)
 	if (A == user && user.targeted_organ == BP_MOUTH && !mouthshoot)
