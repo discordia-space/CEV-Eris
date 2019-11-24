@@ -27,6 +27,9 @@
 /obj/machinery/power/nt_obelisk/New()
 	..()
 
+/obj/machinery/power/nt_obelisk/attack_hand(mob/user)
+	return
+
 /obj/machinery/attack_hand(mob/user as mob)
 	return
 

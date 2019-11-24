@@ -67,8 +67,7 @@
 	return 0
 
 /obj/machinery/computer/helm/attack_hand(var/mob/user as mob)
-	if (stat & NOPOWER)
-		return
+
 	if(..())
 		user.unset_machine()
 		manual_control = 0
