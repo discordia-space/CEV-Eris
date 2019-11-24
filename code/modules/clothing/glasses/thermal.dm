@@ -92,7 +92,7 @@
 		have_lenses = 1
 		qdel(Z)
 
-/obj/item/clothing/glasses/powered/thermal/attackby(obj/item/X, var/mob/user)
+/obj/item/clothing/glasses/powered/thermal/attackby(obj/item/X, mob/user)
 	if(istype(X, /obj/item/clothing/glasses/powered/thermal/lens))
 		to_chat(usr, "This glasses already have thermal implant")
 	if(istype(X, suitable_cell) && !cell && insert_item(X, user))

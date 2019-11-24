@@ -191,7 +191,6 @@
 		var/list/mob/viewers = list()
 		if(istype(I, /obj/item/weapon/ducttape )|| istype(I, /obj/item/weapon/tool/tape_roll))
 			set_status(0)
-			deactivate(null, 0)
 			taped = 1
 			to_chat(U, "You taped the camera")
 			return

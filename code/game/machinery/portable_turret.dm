@@ -13,7 +13,7 @@
 	icon_state = "turretCover"
 	anchored = 1
 
-/obj/machinery/porta_turret
+/obj/machinery/porta_turret/One_star
 	name = "one star turret"
 
 	density = 0
