@@ -192,7 +192,7 @@
 	..()
 	new /obj/item/weapon/gun/projectile/clarissa(src)
 	new /obj/item/weapon/silencer(src)
-	new /obj/item/ammo_magazine/pistol(src)
+	new /obj/item/ammo_magazine/hpistol(src)
 
 /obj/item/weapon/storage/box/syndie_kit/c20r
 	name = "C-20r box"

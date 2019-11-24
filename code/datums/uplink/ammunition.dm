@@ -8,7 +8,7 @@
 /datum/uplink_item/item/ammo/pistol
 	name = ".35 Auto"
 	item_cost = 1
-	path = /obj/item/ammo_magazine/pistol/highvelocity
+	path = /obj/item/ammo_magazine/hpistol/highvelocity
 
 /datum/uplink_item/item/ammo/smg
 	name = "smg .35 Auto"

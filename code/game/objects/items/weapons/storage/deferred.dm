@@ -199,7 +199,7 @@
 	desc = "A crate containing six Makarov .35 pistols, 200 rounds of .35 ammunition, and six fixed-blade combat knives."
 	icon_state = "old_weaponcrate"
 	initial_contents = list(/obj/item/weapon/gun/projectile/clarissa/makarov = 6,
-	/obj/item/ammo_magazine/pistol  = 20,
+	/obj/item/ammo_magazine/hpistol = 20,
 	/obj/item/weapon/material/knife/boot = 6)
 
 /obj/item/weapon/storage/deferred/crate/cells
