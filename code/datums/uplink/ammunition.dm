@@ -31,8 +31,8 @@
 	path = /obj/item/ammo_magazine/lrifle_long/highvelocity
 
 /datum/uplink_item/item/ammo/m12
-	name = "empty M12 shotgun mag"
-	item_cost = 1
+	name = "M12 shotgun mag with slugs"
+	item_cost = 2
 	path = /obj/item/ammo_magazine/m12
 
 /datum/uplink_item/item/ammo/m12/beanbag
@@ -45,15 +45,20 @@
 	item_cost = 2
 	path = /obj/item/ammo_magazine/m12/pellet
 
-/datum/uplink_item/item/ammo/m12/slug
+/datum/uplink_item/item/ammo/m12
 	name = "M12 shotgun mag with slugs"
 	item_cost = 2
-	path = /obj/item/ammo_magazine/m12/slug
+	path = /obj/item/ammo_magazine/m12
 
 /datum/uplink_item/item/ammo/m12/stun
-	name = "M12 shotgun mag with tazershots"
+	name = "M12 shotgun mag with taser shells"
 	item_cost = 4
 	path = /obj/item/ammo_magazine/m12/stun
+
+/datum/uplink_item/item/ammo/m12/empty
+	name = "empty M12 shotgun mag"
+	item_cost = 1
+	path = /obj/item/ammo_magazine/m12
 
 /datum/uplink_item/item/ammo/sniperammo
 	name = ".60 Anti Material"
