@@ -47,8 +47,8 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	var/obj/item/weapon/computer_hardware/hard_drive/portable/disk = null	//Stores the data disk.
 
 	var/obj/machinery/r_n_d/destructive_analyzer/linked_destroy = null	//Linked Destructive Analyzer
-	var/obj/machinery/r_n_d/protolathe/linked_lathe             = null	//Linked Protolathe
-	var/obj/machinery/r_n_d/circuit_imprinter/linked_imprinter  = null	//Linked Circuit Imprinter
+	var/obj/machinery/autolathe/rnd/protolathe/linked_lathe = null		//Linked Protolathe
+	var/obj/machinery/autolathe/rnd/imprinter/linked_imprinter = null	//Linked Circuit Imprinter
 
 	var/screen = SCREEN_MAIN	//Which screen is currently showing.
 	var/id     = 0			//ID of the computer (for server restrictions).
@@ -66,21 +66,27 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	var/search_text
 
 /obj/machinery/computer/rdconsole/proc/SyncRDevices() //Makes sure it is properly sync'ed up with the devices attached to it (if any).
-	for(var/obj/machinery/r_n_d/D in range(3, src))
+	for(var/obj/machinery/r_n_d/destructive_analyzer/D in range(3, src))
 		if(!isnull(D.linked_console) || D.panel_open)
 			continue
-		if(istype(D, /obj/machinery/r_n_d/destructive_analyzer))
-			if(isnull(linked_destroy))
-				linked_destroy = D
-				D.linked_console = src
-		else if(istype(D, /obj/machinery/r_n_d/protolathe))
+		if(isnull(linked_destroy))
+			linked_destroy = D
+			D.linked_console = src
+
+	for(var/obj/machinery/autolathe/rnd/D in range(3, src))
+		if(!isnull(D.linked_console) || D.panel_open)
+			continue
+
+		if(istype(D, /obj/machinery/autolathe/rnd/protolathe))
 			if(isnull(linked_lathe))
 				linked_lathe = D
 				D.linked_console = src
-		else if(istype(D, /obj/machinery/r_n_d/circuit_imprinter))
+
+		else if(istype(D, /obj/machinery/autolathe/rnd/imprinter))
 			if(isnull(linked_imprinter))
 				linked_imprinter = D
 				D.linked_console = src
+
 
 /obj/machinery/computer/rdconsole/proc/griefProtection() //Have it automatically push research to the centcomm server so wild griffins can't fuck up R&D's work
 	for(var/obj/machinery/r_n_d/server/centcom/C in SSmachines.machinery)
@@ -144,15 +150,28 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	files.check_item_for_tech(I)
 	files.research_points += files.experiments.get_object_research_value(I)
 	files.experiments.do_research_object(I)
-	if(linked_lathe && I.matter)
-		for(var/t in I.matter)
-			if(t in linked_lathe.materials)
-				linked_lathe.materials[t] += I.matter[t] * linked_destroy.decon_mod
-				linked_lathe.materials[t] = min(linked_lathe.materials[t], linked_lathe.max_material_storage)
+	var/list/matter = I.get_matter()
+	if(linked_lathe && matter)
+		for(var/t in matter)
+			if(t in linked_lathe.unsuitable_materials)
+				continue
+
+			if(!linked_lathe.stored_material[t])
+				linked_lathe.stored_material[t] = 0
+
+			linked_lathe.stored_material[t] += matter[t] * linked_destroy.decon_mod
+			linked_lathe.stored_material[t] = min(linked_lathe.stored_material[t], linked_lathe.storage_capacity)
 
 /obj/machinery/computer/rdconsole/Topic(href, href_list) // Oh boy here we go.
 	if(..())
 		return 1
+
+	var/obj/machinery/autolathe/rnd/target_device
+	if(screen == SCREEN_PROTO && linked_lathe)
+		target_device = linked_lathe
+	else if(screen == SCREEN_IMPRINTER && linked_imprinter)
+		target_device = linked_imprinter
+
 	if(href_list["select_tech_tree"]) // User selected a tech tree.
 		var/datum/tech/tech_tree = locate(href_list["select_tech_tree"]) in files.researched_tech
 		if(tech_tree && tech_tree.shown)
@@ -177,7 +196,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			search_text = ""
 	if(href_list["eject_disk"]) // User is ejecting the disk.
 		if(disk)
-			disk.forceMove(get_turf(src))
+			disk.forceMove(drop_location())
 			disk = null
 	if(href_list["delete_disk_file"]) // User is attempting to delete a file from the loaded disk.
 		if(disk)
@@ -238,15 +257,6 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			selected_protolathe_category = what_cat
 		if(screen == SCREEN_IMPRINTER)
 			selected_imprinter_category = what_cat
-	if(href_list["build"] && screen == SCREEN_PROTO && linked_lathe) // User wants to build something with the protolathe.
-		var/amount = CLAMP(text2num(href_list["amount"]), 1, 10)
-		var/datum/design/being_built = locate(href_list["build"]) in files.known_designs
-		if(being_built && amount && linked_lathe)
-			linked_lathe.queue_design(being_built, amount)
-	if(href_list["build"] && screen == SCREEN_IMPRINTER && linked_imprinter) // User wants to build something with the imprinter.
-		var/datum/design/being_built = locate(href_list["build"]) in files.known_designs
-		if(being_built && linked_imprinter)
-			linked_imprinter.queue_design(being_built)
 	if(href_list["search"]) // User is searching for a specific design.
 		var/input = sanitizeSafe(input(usr, "Enter text to search", "Searching") as null|text, MAX_LNAME_LEN)
 		search_text = input
@@ -260,11 +270,6 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				selected_imprinter_category = null
 			else
 				selected_imprinter_category = "Search Results"
-	if(href_list["clear_queue"]) // User's clearing a queue.
-		if(screen == SCREEN_PROTO && linked_lathe)
-			linked_lathe.clear_queue()
-		if(screen == SCREEN_IMPRINTER && linked_imprinter)
-			linked_imprinter.clear_queue()
 	if(href_list["deconstruct"]) // User is deconstructing an item.
 		if(linked_destroy)
 			if(linked_destroy.deconstruct_item())
@@ -272,16 +277,19 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	if(href_list["eject_item"]) // User is ejecting an item from the linked_destroy.
 		if(linked_destroy)
 			linked_destroy.eject_item()
-	if(href_list["imprinter_purgeall"] && linked_imprinter) // Purging the linked_destroy reagents
-		linked_imprinter.reagents.clear_reagents()
-	if(href_list["imprinter_purge"] && linked_imprinter)
-		linked_imprinter.reagents.del_reagent(href_list["imprinter_purge"]) // Purging a specific reagent
-	if(href_list["lathe_ejectsheet"] && linked_lathe) // Ejecting sheets from the protolathe
-		var/desired_num_sheets = text2num(href_list["lathe_ejectsheet_amt"])
-		linked_lathe.eject(href_list["lathe_ejectsheet"], desired_num_sheets)
-	if(href_list["imprinter_ejectsheet"] && linked_imprinter) // Ejecting sheets from the imprinter
-		var/desired_num_sheets = text2num(href_list["imprinter_ejectsheet_amt"])
-		linked_imprinter.eject(href_list["imprinter_ejectsheet"], desired_num_sheets)
+
+	if(href_list["build"])
+		var/amount = CLAMP(text2num(href_list["amount"]), 1, 10)
+		var/datum/design/being_built = locate(href_list["build"]) in files.known_designs
+		if(being_built && target_device)
+			target_device.queue_design(being_built.file, amount)
+	if(href_list["clear_queue"]) // Clearing a queue
+		if(target_device)
+			target_device.clear_queue()
+	if(href_list["eject_sheet"]) // Removing material sheets
+		if(target_device)
+			target_device.eject(href_list["eject_sheet"], text2num(href_list["amount"]))
+
 	if(href_list["find_device"]) // Connect with the local devices
 		screen = SCREEN_WORKING
 		addtimer(CALLBACK(src, .proc/find_devices), 2 SECONDS)
@@ -334,52 +342,6 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			S.produce_heat(100)
 	reset_screen()
 
-/obj/machinery/computer/rdconsole/proc/get_protolathe_data()
-	var/list/protolathe_list = list(
-		"max_material_storage" =             linked_lathe.max_material_storage,
-		"total_materials" =                  linked_lathe.TotalMaterials(),
-	)
-	var/list/material_list = list()
-	for(var/M in linked_lathe.materials)
-		var/material/material = get_material_by_name(M)
-		material_list += list(list(
-			"id" =             M,
-			"name" =           material.display_name,
-			"ammount" =        linked_lathe.materials[M],
-			"can_eject_one" =  linked_lathe.materials[M] >= 1,
-			"can_eject_five" = linked_lathe.materials[M] >= 5,
-		))
-	protolathe_list["materials"] = material_list
-	return protolathe_list
-
-/obj/machinery/computer/rdconsole/proc/get_imprinter_data()
-	var/list/imprinter_list = list(
-		"max_material_storage" =             linked_imprinter.max_material_storage,
-		"total_materials" =                  linked_imprinter.TotalMaterials(),
-		"total_volume" =                     linked_imprinter.reagents.total_volume,
-		"maximum_volume" =                   linked_imprinter.reagents.maximum_volume,
-	)
-	var/list/printer_reagent_list = list()
-	for(var/datum/reagent/R in linked_imprinter.reagents.reagent_list)
-		printer_reagent_list += list(list(
-			"id" =             R.id,
-			"name" =           R.name,
-			"volume" =         R.volume,
-		))
-	imprinter_list["reagents"] = printer_reagent_list
-	var/list/material_list = list()
-	for(var/M in linked_imprinter.materials)
-		var/material/material = get_material_by_name(M)
-		material_list += list(list(
-			"id" =             M,
-			"name" =           material.display_name,
-			"ammount" =        linked_imprinter.materials[M],
-			"can_eject_one" =  linked_imprinter.materials[M] >= 1,
-			"can_eject_five" = linked_imprinter.materials[M] >= 5,
-		))
-	imprinter_list["materials"] = material_list
-	return imprinter_list
-
 
 /obj/machinery/computer/rdconsole/proc/get_possible_designs_data(build_type, category) // Builds the design list for the UI
 	var/list/designs_list = list()
@@ -396,9 +358,9 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				var/can_build_chem
 				var/iconName = getAtomCacheFilename(D.build_path)
 				for(var/M in D.materials)
-					if(build_type == PROTOLATHE)
+					if(build_type & PROTOLATHE)
 						can_build = linked_lathe.check_craftable_amount_by_material(D, M)
-					if(build_type == IMPRINTER)
+					if(build_type & IMPRINTER)
 						can_build = linked_imprinter.check_craftable_amount_by_material(D, M)
 					var/material/mat = get_material_by_name(M)
 					if(can_build < 1)
@@ -407,7 +369,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 						temp_material += " [D.materials[M]] [mat.display_name]"
 					can_build = min(can_build,maximum)
 				for(var/C in D.chemicals)
-					if(build_type == IMPRINTER)
+					if(build_type & IMPRINTER)
 						can_build_chem = linked_imprinter.check_craftable_amount_by_chemical(D, C)
 					var/datum/reagent/R = chemical_reagents_list[C] // this is how you do it, you don't fucking new every possible reagent till you find a match
 					if(can_build_chem < 1)
@@ -473,16 +435,10 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			tech_tree_list += list(tech_tree_data)
 		data[SCREEN_TREES] = tech_tree_list
 
-		if(linked_lathe)
-			data["protolathe_data"] = get_protolathe_data()
-
-		if(linked_imprinter)
-			data["imprinter_data"] = get_imprinter_data()
-
 		if(linked_destroy)
 			if(linked_destroy.loaded_item)
 				// TODO: If you're refactoring origin_tech, remove this shit. Thank you from the past!
-				var/list/tech_names = list(TECH_MATERIAL = "Materials", TECH_ENGINEERING = "Engineering", TECH_PLASMA = "Phoron", TECH_POWER = "Power", TECH_BLUESPACE = "Blue-space", TECH_BIO = "Biotech", TECH_COMBAT = "Combat", TECH_MAGNET = "Electromagnetic", TECH_DATA = "Programming", TECH_ILLEGAL = "Illegal")
+				var/list/tech_names = list(TECH_MATERIAL = "Materials", TECH_ENGINEERING = "Engineering", TECH_PLASMA = "Plasma", TECH_POWER = "Power", TECH_BLUESPACE = "Blue-space", TECH_BIO = "Biotech", TECH_COMBAT = "Combat", TECH_MAGNET = "Electromagnetic", TECH_DATA = "Programming", TECH_ILLEGAL = "Illegal")
 
 				var/list/temp_tech = linked_destroy.loaded_item.origin_tech
 				var/list/item_data = list()
@@ -527,7 +483,8 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			var/list/known_designs = list()
 			for(var/i in files.known_designs)
 				var/datum/design/D = i
-				if(!D.starts_unlocked) // doesn't make much sense to copy starting designs around.
+				if(!D.starts_unlocked && !(D.build_type & (AUTOLATHE | BIOPRINTER)))
+					// doesn't make much sense to copy starting designs around, unless you can use them in lathes
 					known_designs += list(list("name" = D.name, "id" = "\ref[D]"))
 			data["known_designs"] = known_designs
 	if(screen == SCREEN_DISK_TECH)
@@ -554,47 +511,40 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 				disk_research_data += list(list("name" = "[data_file.filename].[data_file.filetype]", "id" = "\ref[data_file]", "can_download" = files.can_load_file(data_file)))
 			data["disk_research_data"] = disk_research_data
-	if(screen == SCREEN_PROTO)
-		if(linked_lathe)
+	if(screen == SCREEN_PROTO || screen == SCREEN_IMPRINTER)
+		var/obj/machinery/autolathe/rnd/target_device
+		var/list/design_categories
+		var/selected_category
+
+		if(screen == SCREEN_PROTO && linked_lathe)
+			target_device = linked_lathe
+			design_categories = files.design_categories_protolathe
+			selected_category = selected_protolathe_category
+		else if(screen == SCREEN_IMPRINTER && linked_imprinter)
+			target_device = linked_imprinter
+			design_categories = files.design_categories_imprinter
+			selected_category = selected_imprinter_category
+
+		if(target_device)
 			data["search_text"] = search_text
-			data["protolathe_data"] = get_protolathe_data()
-			data["all_categories"] = files.design_categories_protolathe
+			data["materials_data"] = target_device.materials_data()
+
+			data["all_categories"] = design_categories
 			if(search_text)
 				data["all_categories"] = list("Search Results") + data["all_categories"]
 
-			if((!selected_protolathe_category || !(selected_protolathe_category in data["all_categories"])) && files.design_categories_protolathe.len)
-				selected_protolathe_category = files.design_categories_protolathe[1]
+			if((!selected_category || !(selected_category in data["all_categories"])) && design_categories.len)
+				selected_category = design_categories[1]
 
-			if(selected_protolathe_category)
-				data["selected_category"] = selected_protolathe_category
-				data["possible_designs"] = get_possible_designs_data(PROTOLATHE, selected_protolathe_category)
-
-			var/list/queue_list = list()
-			queue_list["queue"] = list()
-			for(var/datum/rnd_queue_design/RNDD in linked_lathe.queue)
-				queue_list["queue"] += RNDD.name
-			data["queue_data"] = queue_list
-
-	if(screen == SCREEN_IMPRINTER)
-		if(linked_imprinter)
-			data["search_text"] = search_text
-			data["imprinter_data"] = get_imprinter_data()
-			data["all_categories"] = files.design_categories_imprinter
-			if(search_text)
-				data["all_categories"] = list("Search Results") + data["all_categories"]
-
-			if((!selected_imprinter_category || !(selected_imprinter_category in data["all_categories"])) && files.design_categories_imprinter.len)
-				selected_imprinter_category = files.design_categories_imprinter[1]
-
-			if(selected_imprinter_category)
-				data["selected_category"] = selected_imprinter_category
-				data["possible_designs"] = get_possible_designs_data(IMPRINTER, selected_imprinter_category)
+			if(selected_category)
+				data["selected_category"] = selected_category
+				data["possible_designs"] = get_possible_designs_data(target_device == linked_lathe ? PROTOLATHE : IMPRINTER, selected_category)
 
 			var/list/queue_list = list()
-			queue_list["queue"] = list()
-			for(var/datum/rnd_queue_design/RNDD in linked_imprinter.queue)
-				queue_list["queue"] += RNDD.name
-			data["queue_data"] = queue_list
+			for(var/f in target_device.queue)
+				var/datum/computer_file/binary/design/file = f
+				queue_list += file.design.name
+			data["queue"] = queue_list
 
 	// All the info needed for displaying tech trees
 	if(screen == SCREEN_TREES)
@@ -709,6 +659,8 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 						build_types += "protolathe"
 					if(D.build_type & AUTOLATHE)
 						build_types += "autolathe"
+					if(D.build_type & BIOPRINTER)
+						build_types += "bioprinter"
 					if(D.build_type & MECHFAB)
 						build_types += "exosuit fabricator"
 					if(D.build_type & ORGAN_GROWER)

@@ -47,7 +47,7 @@
 	name = "plasma crystals"
 	icon_state = "ore_plasma"
 	origin_tech = list(TECH_MATERIAL = 2)
-	material = "plasma"
+	material = MATERIAL_PLASMA
 
 /obj/item/weapon/ore/silver
 	name = "native silver ore"

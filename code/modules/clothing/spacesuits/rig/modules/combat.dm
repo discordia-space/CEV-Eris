@@ -12,6 +12,7 @@
 	name = "mounted flash"
 	desc = "You are the law."
 	icon_state = "flash"
+	use_power_cost = 2
 	interface_name = "mounted flash"
 	interface_desc = "Stuns your target by blinding them with a bright light."
 	device_type = /obj/item/device/flash
@@ -96,6 +97,7 @@
 	selectable = 1
 	usable = 1
 	module_cooldown = 0
+
 	icon_state = "lcannon"
 
 	engage_string = "Configure"
@@ -128,6 +130,8 @@
 	desc = "A forearm-mounted energy projector."
 	icon_state = "egun"
 
+
+
 	interface_name = "mounted energy gun"
 	interface_desc = "A forearm-mounted suit-powered energy gun."
 
@@ -138,6 +142,7 @@
 	name = "mounted taser"
 	desc = "A palm-mounted nonlethal energy projector."
 	icon_state = "taser"
+
 
 	usable = 0
 

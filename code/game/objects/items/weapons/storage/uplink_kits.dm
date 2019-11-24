@@ -223,6 +223,17 @@
 	new /obj/item/weapon/gun/projectile/automatic/sts35(src)
 	new /obj/item/ammo_magazine/lrifle_short(src)
 
+/obj/item/weapon/storage/box/syndie_kit/bulldog
+	name = "Bulldog box"
+	desc = "Bulldog kit with one M12 buckshot mag"
+	icon_state = "box_of_doom_big"
+	w_class = ITEM_SIZE_HUGE
+
+/obj/item/weapon/storage/box/syndie_kit/bulldog/New()
+	..()
+	new /obj/item/weapon/gun/projectile/automatic/bulldog(src)
+	new /obj/item/ammo_magazine/m12/pellet(src)
+
 /obj/item/weapon/storage/box/syndie_kit/antimaterial_rifle
 	name = "Sniper rifle box"
 	desc = "Sniper rifle kit. One shot for real men."

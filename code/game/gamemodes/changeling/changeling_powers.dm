@@ -12,7 +12,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	var/changelingID = "Changeling"
 	var/geneticdamage = 0
 	var/isabsorbing = 0
-	var/geneticpoints = 25
+	var/geneticpoints = 20
 	var/purchasedpowers = list()
 	var/mimicing = ""
 
@@ -66,14 +66,15 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 			if(!(P in src.verbs))
 				src.verbs += P.verbpath
 
-	mind.changeling.absorbed_dna |= dna
+	if(!(HUSK in mutations))
+		mind.changeling.absorbed_dna |= dna
 
-	var/mob/living/carbon/human/H = src
-	if(istype(H))
-		mind.changeling.absorbed_species += H.species.name
+		var/mob/living/carbon/human/H = src
+		if(istype(H))
+			mind.changeling.absorbed_species += H.species.name
 
-	for(var/language in languages)
-		mind.changeling.absorbed_languages |= language
+		for(var/language in languages)
+			mind.changeling.absorbed_languages |= language
 
 	return 1
 
@@ -239,7 +240,20 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 
 	T.death(0)
 	T.Drain()
+	if(prob(30))
+		addtimer(CALLBACK(T, /mob/living/carbon/human/proc/changeling_raise), rand(5 MINUTES, 8 MINUTES))
+
 	return 1
+
+
+/mob/living/carbon/human/proc/changeling_raise()
+	if(!client)
+		var/mob/observer/ghost/G = draft_ghost(ROLE_CHANGELING, ROLE_BANTYPE_CHANGELING)
+		if(!client && G) //Original client may have reconnected during poll
+			client = G.client
+	revive()
+	make_changeling()
+	update_lying_buckled_and_verb_status()
 
 
 //Change our DNA to that of somebody we've absorbed.
@@ -263,6 +277,12 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	var/datum/dna/chosen_dna = changeling.GetDNA(S)
 	if(!chosen_dna)
 		return
+
+	if(HUSK in mutations)
+		mutations -= HUSK
+		var/mob/living/carbon/human/H = src
+		if(istype(H))
+			H.update_body(0)
 
 	changeling.chem_charges -= 5
 	src.visible_message(SPAN_WARNING("[src] transforms!"))

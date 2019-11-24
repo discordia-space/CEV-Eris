@@ -18873,7 +18873,7 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/security/main)
 "aRX" = (
-/obj/machinery/mecha_part_fabricator,
+/obj/machinery/autolathe/mechfab,
 /obj/structure/noticeboard{
 	pixel_y = 32
 	},
@@ -19163,7 +19163,7 @@
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/security/main)
 "aSB" = (
-/obj/machinery/mecha_part_fabricator,
+/obj/machinery/autolathe/mechfab,
 /obj/machinery/alarm{
 	pixel_y = 26
 	},
@@ -22786,7 +22786,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "bag" = (
-/obj/machinery/r_n_d/circuit_imprinter,
+/obj/machinery/autolathe/rnd/imprinter/loaded,
 /obj/machinery/button/remote/blast_door{
 	id = "maint_hatch_rnd";
 	name = "Maintenance Hatch Control";
@@ -22989,7 +22989,7 @@
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/security/main)
 "baE" = (
-/obj/machinery/r_n_d/protolathe,
+/obj/machinery/autolathe/rnd/protolathe/loaded,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -44695,7 +44695,7 @@
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/crew_quarters/janitor)
 "bUI" = (
-/obj/machinery/autolathe/bioprinter,
+/obj/machinery/autolathe/bioprinter/disk,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/neotheology/bioreactor)
 "bUJ" = (
@@ -105714,7 +105714,6 @@
 /area/space)
 "eBl" = (
 /obj/structure/table/standard,
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/neotheology,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/neotheology/bioreactor)
 "eBm" = (

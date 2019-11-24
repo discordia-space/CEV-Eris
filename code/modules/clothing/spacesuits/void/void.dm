@@ -22,10 +22,8 @@
 
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-
-	//Breach thresholds, should ideally be inherited by most (if not all) voidsuits.
-	//With 0.2 resiliance, will reach 10 breach damage after 3 laser carbine blasts or 8 smg hits.
-	breach_threshold = 18
+	breach_threshold = 5
+	resilience = 0.09
 	can_breach = 1
 
 	//Inbuilt devices.

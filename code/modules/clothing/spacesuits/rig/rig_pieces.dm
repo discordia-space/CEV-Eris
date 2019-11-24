@@ -4,7 +4,7 @@
 
 /obj/item/clothing/head/helmet/space/rig
 	name = "helmet"
-	item_flags = THICKMATERIAL
+	item_flags = 		 THICKMATERIAL|COVER_PREVENT_MANIPULATION
 	flags_inv = 		 HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES
 	heat_protection =    HEAD|FACE|EYES
@@ -13,7 +13,7 @@
 
 /obj/item/clothing/gloves/rig
 	name = "gauntlets"
-	item_flags = THICKMATERIAL
+	item_flags = THICKMATERIAL|COVER_PREVENT_MANIPULATION
 	overslot = 1
 	body_parts_covered = ARMS
 	heat_protection =    ARMS
@@ -23,6 +23,7 @@
 
 /obj/item/clothing/shoes/magboots/rig
 	name = "boots"
+	item_flags = COVER_PREVENT_MANIPULATION
 	body_parts_covered = LEGS
 	cold_protection = LEGS
 	heat_protection = LEGS
@@ -37,12 +38,10 @@
 	heat_protection =    UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	cold_protection =    UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	flags_inv =          HIDEJUMPSUIT|HIDETAIL
-	item_flags =              STOPPRESSUREDAMAGE | THICKMATERIAL | AIRTIGHT
+	item_flags =         STOPPRESSUREDAMAGE|THICKMATERIAL|AIRTIGHT|COVER_PREVENT_MANIPULATION
 	slowdown = 0
-	//will reach 10 breach damage after 25 laser carbine blasts, 3 revolver hits, or ~1 PTR hit.
-	// Completely immune to smg or sts hits.
-	breach_threshold = 38
-	resilience = 0.2
+	breach_threshold = 5
+	resilience = 0.087
 	can_breach = 1
 	supporting_limbs = list()
 	retract_while_active = FALSE
@@ -78,7 +77,7 @@
 	body_parts_covered = HEAD|FACE|EYES
 	heat_protection =    HEAD|FACE|EYES
 	cold_protection =    HEAD|FACE|EYES
-	flags =              THICKMATERIAL|AIRTIGHT
+	flags =              THICKMATERIAL|AIRTIGHT|COVER_PREVENT_MANIPULATION
 
 /obj/item/clothing/suit/lightrig
 	name = "suit"
@@ -87,7 +86,7 @@
 	heat_protection =    UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	cold_protection =    UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	flags_inv =          HIDEJUMPSUIT
-	flags =              THICKMATERIAL
+	flags =              THICKMATERIAL|COVER_PREVENT_MANIPULATION
 
 /obj/item/clothing/shoes/lightrig
 	name = "boots"
