@@ -3,7 +3,8 @@
 	desc = "A Blue Space Direct Mail unit."
 	icon_state = "bsdm"
 	item_state = "bsdm"
-	max_storage_space = DEFAULT_NORMAL_STORAGE
+	max_storage_space = DEFAULT_BULKY_STORAGE
+	max_w_class = ITEM_SIZE_BULKY
 	var/datum/mind/owner
 
 /obj/item/weapon/storage/bsdm/attack_self(mob/user)
