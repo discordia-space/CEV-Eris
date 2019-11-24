@@ -8,7 +8,7 @@
 /datum/uplink_item/item/ammo/pistol
 	name = ".35 Auto"
 	item_cost = 1
-	path = /obj/item/ammo_magazine/pistol/highvelocity
+	path = /obj/item/ammo_magazine/hpistol/highvelocity
 
 /datum/uplink_item/item/ammo/smg
 	name = "smg .35 Auto"
@@ -44,11 +44,6 @@
 	name = "M12 shotgun mag with buckshot"
 	item_cost = 2
 	path = /obj/item/ammo_magazine/m12/pellet
-
-/datum/uplink_item/item/ammo/m12
-	name = "M12 shotgun mag with slugs"
-	item_cost = 2
-	path = /obj/item/ammo_magazine/m12
 
 /datum/uplink_item/item/ammo/m12/stun
 	name = "M12 shotgun mag with taser shells"

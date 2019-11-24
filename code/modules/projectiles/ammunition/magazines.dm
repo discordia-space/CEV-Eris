@@ -377,7 +377,7 @@
 /obj/item/ammo_magazine/magnum/hv
 	name = "magazine (40 Magnum high-velocity)"
 	icon_state = "mg_ih_pst_44hv"
-	ammo_type = /obj/item/ammo_casing/pistol/hv
+	ammo_type = /obj/item/ammo_casing/magnum/hv
 
 /obj/item/ammo_magazine/caps
 	name = "speed loader (caps)"
