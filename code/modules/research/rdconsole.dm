@@ -483,7 +483,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			var/list/known_designs = list()
 			for(var/i in files.known_designs)
 				var/datum/design/D = i
-				if(!D.starts_unlocked && !(D.build_type & (AUTOLATHE | BIOPRINTER)))
+				if(!(D.starts_unlocked && !(D.build_type & (AUTOLATHE | BIOPRINTER))))
 					// doesn't make much sense to copy starting designs around, unless you can use them in lathes
 					known_designs += list(list("name" = D.name, "id" = "\ref[D]"))
 			data["known_designs"] = known_designs
