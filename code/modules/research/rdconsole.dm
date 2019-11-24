@@ -540,6 +540,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				data["selected_category"] = selected_category
 				data["possible_designs"] = get_possible_designs_data(target_device == linked_lathe ? PROTOLATHE : IMPRINTER, selected_category)
 
+			if(target_device.current_file)
+				data["device_current"] = target_device.current_file.design.name
+
+			data["device_error"] = target_device.error
+
 			var/list/queue_list = list()
 			for(var/f in target_device.queue)
 				var/datum/computer_file/binary/design/file = f

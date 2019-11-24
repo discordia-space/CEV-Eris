@@ -231,14 +231,22 @@
 					</div>
 				</div>
 
-				<h3>Queue information</h3>
+				<h3>Construction information</h3>
 				<div class="statusDisplayRecords">
 					<div class="item">
 						<div class="itemContent" style="width: 100%;">
+							{{if data.device_current}}
+								Constructing: {{:data.device_current}}<br/>
+								{{if data.device_error}}
+									<div class="bad">{{:data.device_error}}</div>
+								{{/if}}
+								<br/>
+							{{/if}}
+							Queue:<br/>
 							{{for data.queue}}
 								{{:index + 1}}) {{:value}}<br/>
 							{{empty}}
-								Empty
+								Empty<br/>
 							{{/for}}
 							{{if data.queue.length > 0}}
 								<div class="item">
