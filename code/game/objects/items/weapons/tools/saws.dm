@@ -41,7 +41,7 @@
 	name = "advanced circular saw"
 	desc = "You think you can cut anything with it."
 	icon_state = "advanced_saw"
-	matter = list(MATERIAL_STEEL = 6, MATERIAL_PLASTIC = 2)
+	matter = list(MATERIAL_STEEL = 6, MATERIAL_PLASTEEL = 1, MATERIAL_PLASTIC = 2)
 	tool_qualities = list(QUALITY_SAWING = 50, QUALITY_CUTTING = 40, QUALITY_WIRE_CUTTING = 40)
 	degradation = 0.7
 	use_power_cost = 0.22
@@ -54,7 +54,7 @@
 	hitsound = WORKSOUND_CHAINSAW
 	worksound = WORKSOUND_CHAINSAW
 	force = WEAPON_FORCE_ROBUST
-	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 3)
+	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 3)
 	tool_qualities = list(QUALITY_SAWING = 60, QUALITY_CUTTING = 50, QUALITY_WIRE_CUTTING = 20)
 	max_upgrades = 4
 	use_fuel_cost = 0.1
