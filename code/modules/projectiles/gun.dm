@@ -192,10 +192,6 @@
 	if(ishuman(user) && user.a_intent == "harm")
 		var/mob/living/carbon/human/H = user
 
-		if(!can_dual)
-			dual_wielding = FALSE
-			goto skip
-
 		if(H.r_hand == src && istype(H.l_hand, /obj/item/weapon/gun))
 			off_hand = H.l_hand
 			dual_wielding = TRUE
@@ -206,12 +202,14 @@
 		else
 			dual_wielding = FALSE
 
-		if(off_hand && off_hand.can_hit(user))
+		if(!can_dual)
+			dual_wielding = FALSE
+		else if(off_hand && off_hand.can_hit(user))
 			spawn(1)
 			off_hand.Fire(A,user,params)
 		else
 			dual_wielding = FALSE
-	skip:
+	:
 		Fire(A,user,params) //Otherwise, fire normally.
 
 /obj/item/weapon/gun/attack(atom/A, mob/living/user, def_zone)
