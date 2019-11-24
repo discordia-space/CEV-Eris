@@ -209,7 +209,7 @@
 			off_hand.Fire(A,user,params)
 		else
 			dual_wielding = FALSE
-	:
+
 		Fire(A,user,params) //Otherwise, fire normally.
 
 /obj/item/weapon/gun/attack(atom/A, mob/living/user, def_zone)
