@@ -207,10 +207,10 @@
 		else if(off_hand && off_hand.can_hit(user))
 			spawn(1)
 			off_hand.Fire(A,user,params)
-		else
-			dual_wielding = FALSE
+	else
+		dual_wielding = FALSE
 
-		Fire(A,user,params) //Otherwise, fire normally.
+	Fire(A,user,params) //Otherwise, fire normally.
 
 /obj/item/weapon/gun/attack(atom/A, mob/living/user, def_zone)
 	if (A == user && user.targeted_organ == BP_MOUTH && !mouthshoot)
