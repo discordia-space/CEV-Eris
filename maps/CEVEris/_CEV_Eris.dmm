@@ -406,9 +406,9 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck5central)
 "abl" = (
-/obj/random/pack/machine,
-/turf/simulated/floor/tiled/techmaint_panels,
-/area/eris/maintenance/section1deck5central)
+/obj/machinery/teleblocker/command,
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/security/bs_interference)
 "abm" = (
 /obj/machinery/atmospherics/pipe/tank/air,
 /turf/simulated/floor/tiled/techmaint,
@@ -528,9 +528,8 @@
 /turf/simulated/floor/tiled/dark/danger,
 /area/eris/security/range)
 "abA" = (
-/obj/random/closet_tech/low_chance,
-/turf/simulated/floor/tiled/techmaint_panels,
-/area/eris/maintenance/section1deck5central)
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/security/bs_interference)
 "abB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -601,8 +600,13 @@
 	name = "Security Maintenance";
 	req_access = list(1)
 	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/techmaint_cargo,
-/area/eris/maintenance/section1deck5central)
+/area/eris/security/bs_interference)
 "abJ" = (
 /obj/structure/table/rack,
 /obj/random/lowkeyrandom,
@@ -2498,6 +2502,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck5central)
 "agd" = (
@@ -2807,6 +2816,11 @@
 	icon_state = "4-8"
 	},
 /obj/random/traps/low_chance,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck5central)
 "agG" = (
@@ -108387,6 +108401,15 @@
 	},
 /turf/simulated/open,
 /area/eris/engineering/gravity_generator)
+"fPY" = (
+/obj/structure/catwalk,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/plating/under,
+/area/eris/security/bs_interference)
 "ijn" = (
 /obj/structure/table/bar_special,
 /obj/item/weapon/reagent_containers/food/condiment/peppermill{
@@ -108407,6 +108430,51 @@
 	},
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
+"lsW" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/eris/security/prisoncells)
+"lUD" = (
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/plating,
+/area/eris/security/bs_interference)
+"nqq" = (
+/turf/simulated/wall/r_wall,
+/area/eris/security/bs_interference)
+"opC" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/maintenance_security{
+	name = "Security Maintenance";
+	req_access = list(1)
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint_cargo,
+/area/eris/maintenance/section1deck5central)
+"rbb" = (
+/obj/machinery/teleblocker/security,
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/security/bs_interference)
+"rLl" = (
+/obj/structure/catwalk,
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "North APC";
+	pixel_y = 28
+	},
+/turf/simulated/floor/plating/under,
+/area/eris/security/bs_interference)
 
 (1,1,1) = {"
 aaa
@@ -131487,8 +131555,8 @@ aaR
 aaR
 aaR
 aaR
-dzi
-dzi
+nqq
+nqq
 afs
 afs
 afs
@@ -131688,9 +131756,9 @@ acL
 aaR
 abF
 abF
-dzi
+nqq
 abl
-dzn
+rbb
 afs
 aga
 aga
@@ -131890,9 +131958,9 @@ acM
 aaR
 aaR
 abF
-dzq
+lUD
 abA
-dzn
+abA
 afs
 agb
 agb
@@ -132092,13 +132160,13 @@ acN
 adl
 aaR
 abG
-dzi
-abl
-aex
+nqq
+rLl
+fPY
 abI
-agd
-agd
-abI
+lsW
+lsW
+opC
 agc
 agF
 agO
@@ -132294,8 +132362,8 @@ acO
 adz
 aaR
 abF
-dzi
-dzi
+nqq
+nqq
 afs
 afD
 agd

@@ -100,8 +100,9 @@
 	if(!..()) return 0
 
 	var/mob/living/carbon/human/H = holder.wearer
+	var/turf/user_turf = H.loc
 
-	if(!istype(H.loc, /turf))
+	if(!istype(user_turf))
 		to_chat(H, SPAN_WARNING("You cannot teleport out of your current location."))
 		return 0
 
@@ -110,6 +111,11 @@
 		T = get_turf(target)
 	else
 		T = get_teleport_loc(get_turf(H), H, rand(5, 9))
+
+	for(var/obj/machinery/teleblocker/TB in GLOB.teleblockers)
+		if(!TB.can_teleport(user_turf, T))
+			to_chat(H, "<span class = 'warning'>Something is interfering with \the [src]!</span>")
+			return 0
 
 	if(!T || T.density)
 		to_chat(H, SPAN_WARNING("You cannot teleport into solid walls."))

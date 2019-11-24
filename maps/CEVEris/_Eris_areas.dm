@@ -946,6 +946,12 @@
 	icon_state = "hammerblue"
 	is_maintenance = TRUE
 
+/area/eris/security/bs_interference
+	name = "Security Bluespace Interference Room"
+	flags = AREA_FLAG_RAD_SHIELDED
+	icon_state = "hammerblue"
+	is_maintenance = TRUE
+
 /area/eris/security/barracks
 	name = "Ironhammer Barracks"
 	icon_state = "hammerblue"

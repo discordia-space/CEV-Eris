@@ -37,14 +37,27 @@
 		return
 	else if(istype(A, /obj/structure/table/) && (get_dist(A, user) <= 1))
 		return
-
-	if(!cell || !cell.checked_use(100))
-		to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
-		return
 	if(!user || !A || user.machine)
 		return
 	if(transforming)
 		to_chat(user, "<span class = 'warning'>You can't fire while [src] transforming!</span>")
+		return
+
+	var/turf/AtomTurf = get_turf(A)
+	var/turf/UserTurf = get_turf(user)
+
+	for(var/obj/machinery/teleblocker/T in GLOB.teleblockers)
+		if(mode)
+			if(!T.can_teleport(UserTurf, AtomTurf))
+				to_chat(user, "<span class = 'warning'>Something is interfering with [src]!</span>")
+				return
+		else
+			if(!T.can_teleport(AtomTurf, UserTurf))
+				to_chat(user, "<span class = 'warning'>Something is interfering with [src]!</span>")
+				return
+
+	if(!cell || !cell.checked_use(100))
+		to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
 		return
 
 	playsound(user, 'sound/weapons/wave.ogg', 60, 1)
@@ -57,9 +70,6 @@
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(4, 1, A)
 	s.start()
-
-	var/turf/AtomTurf = get_turf(A)
-	var/turf/UserTurf = get_turf(user)
 
 	if(mode)
 		teleport(UserTurf, AtomTurf)
