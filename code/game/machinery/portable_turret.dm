@@ -13,9 +13,6 @@
 	icon_state = "turretCover"
 	anchored = 1
 
-/obj/machinery/porta_turret/One_star
-	name = "one star turret"
-
 	density = 0
 	use_power = 1				//this turret uses and requires power
 	idle_power_usage = 50		//when inactive, this turret takes up constant 50 Equipment power
@@ -64,6 +61,9 @@
 	var/wrenching = 0
 	var/last_target			//last target fired at, prevents turrets from erratically firing at all valid targets in range
 
+/obj/machinery/porta_turret/One_star
+	name = "one star turret"
+
 /obj/machinery/porta_turret/crescent
 	enabled = 0
 	ailock = 1
@@ -73,6 +73,8 @@
 	check_records = 1
 	check_weapons = 1
 	check_anomalies = 1
+
+
 
 /obj/machinery/porta_turret/stationary
 	ailock = 1
