@@ -37,7 +37,7 @@
 
 	storage_capacity = 120
 
-	have_reagents = FALSE
+	have_reagents = TRUE
 
 
 /obj/machinery/autolathe/rnd/imprinter
