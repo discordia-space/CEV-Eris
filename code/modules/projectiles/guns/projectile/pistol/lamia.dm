@@ -8,6 +8,7 @@
 	caliber = "magnum"
 	ammo_mag = "mag_magnum"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
+	can_dual = 1
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL
 	auto_eject = 1
