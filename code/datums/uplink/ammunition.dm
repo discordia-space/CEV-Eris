@@ -45,11 +45,6 @@
 	item_cost = 2
 	path = /obj/item/ammo_magazine/m12/pellet
 
-/datum/uplink_item/item/ammo/m12
-	name = "M12 shotgun mag with slugs"
-	item_cost = 2
-	path = /obj/item/ammo_magazine/m12
-
 /datum/uplink_item/item/ammo/m12/stun
 	name = "M12 shotgun mag with taser shells"
 	item_cost = 4
