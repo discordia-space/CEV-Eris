@@ -10,7 +10,7 @@
 		/obj/item/clothing/mask/smokable/cigarette/,
 		/obj/item/device/lighting/toggleable/flashlight/pen,
 		/obj/item/seeds,
-		/obj/item/stack/medical,
+		/obj/item/weapon/reagent_containers/pill,
 		/obj/item/weapon/coin,
 		/obj/item/weapon/dice,
 		/obj/item/weapon/disk,
