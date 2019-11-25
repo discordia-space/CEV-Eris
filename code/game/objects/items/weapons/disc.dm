@@ -19,7 +19,7 @@
 
 /obj/item/weapon/disk/data/New()
 	..()
-	var/diskcolor = pick(red,blue,green,purple,black)
+	var/diskcolor = pick("red","blue","green","purple","black")
 	icon_state = "data-[diskcolor]"
 
 /obj/item/weapon/disk/data/proc/initializeDisk()
