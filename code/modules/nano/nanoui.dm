@@ -492,6 +492,20 @@ nanoui is used to open and update nano browser uis
 
 
  /**
+  * Verify if this UI window is actually open on client's side
+  *
+  * @return is_open boolean - if the UI is actually open on client.
+  */
+/datum/nanoui/proc/verify_open()
+	// Debug output
+	to_chat(user, "DEBUG: UI test [winexists(user, window_id)] [winget(user, window_id, "on-close;is_visible;is_disabled")]")
+
+	if(winexists(user, window_id))
+		return TRUE
+
+	return FALSE
+
+ /**
   * Push data to an already open UI window
   *
   * @return nothing
@@ -501,11 +515,6 @@ nanoui is used to open and update nano browser uis
 		return // Closed
 	if (status == STATUS_DISABLED && !force_push)
 		return // Cannot update UI, no visibility
-
-	// Workaround for NanoUI being stuck
-	if(!winexists(user, window_id))
-		close()
-		return
 
 	var/list/send_data = get_send_data(data)
 
