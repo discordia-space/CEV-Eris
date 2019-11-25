@@ -137,9 +137,9 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 
 		if(!important && world.time > (last_batch_start + 5 SECONDS))
 			to_chat(client, "DEBUG: slow asset send is sleeping")
-			sleep(0.5 SECONDS)
+			sleep(1 SECONDS)
 			last_batch_start = world.time
-			// Every 5 seconds of transmission, sleep for half a second.
+			// Every 5 seconds of transmission, sleep for 1 second.
 			// Give other browse calls (newly opened UIs) a chance to slip in if we are sending hundreds of pics.
 		else
 			sleep(0)
