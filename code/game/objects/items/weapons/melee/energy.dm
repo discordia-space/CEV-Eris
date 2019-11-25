@@ -94,8 +94,8 @@
 	name = "energy sword"
 	desc = "May the Force be with you."
 	icon_state = "sword0"
-	active_force = WEAPON_FORCE_ROBUST
-	active_throwforce = WEAPON_FORCE_ROBUST
+	active_force = 40 // Go forth and slay, padawan
+	active_throwforce = 40
 	active_w_class = ITEM_SIZE_BULKY
 	force = WEAPON_FORCE_HARMLESS
 	throwforce = WEAPON_FORCE_HARMLESS
