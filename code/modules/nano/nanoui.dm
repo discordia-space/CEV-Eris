@@ -103,7 +103,6 @@ nanoui is used to open and update nano browser uis
 		// Avoid opening the window if the resources are not loaded yet.
 		if(!assets.check_sent(user.client))
 			to_chat(user, "Resources are still loading. Please wait.")
-			assets.send(user.client)
 			close()
 
 //Do not qdel nanouis. Use close() instead.
@@ -449,9 +448,9 @@ nanoui is used to open and update nano browser uis
 		return // Will be closed by update_status().
 
 	user << browse(get_html(), "window=[window_id];[window_size][window_options]")
+	winset(user, window_id, "on-close=\"nanoclose [params]\"")
+
 	winset(user, "mapwindow.map", "focus=true") // return keyboard focus to map
-	on_close_winset()
-	//onclose(user, window_id)
 	SSnano.ui_opened(src)
 
  /**
@@ -491,20 +490,6 @@ nanoui is used to open and update nano browser uis
 	master_ui = null
 	qdel(src)
 
- /**
-  * Set the UI window to call the nanoclose verb when the window is closed
-  * This allows Nano to handle closed windows
-  *
-  * @return nothing
-  */
-/datum/nanoui/proc/on_close_winset()
-	if(!user.client)
-		return
-	var/params = "\ref[src]"
-
-	if(!user || !user.client)
-		return
-	winset(user, window_id, "on-close=\"nanoclose [params]\"")
 
  /**
   * Push data to an already open UI window
