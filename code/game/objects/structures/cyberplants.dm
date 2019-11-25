@@ -28,6 +28,8 @@
 		COLOR_LIGHTING_CYAN_BRIGHT
 	)
 
+	var/sanity_value = 0.2
+
 /obj/structure/cyberplant/Initialize()
 	..()
 	change_plant(plant)
@@ -36,6 +38,8 @@
 	update_icon()
 
 	set_light(brightness_on, brightness_on/2)
+
+	AddComponent(/datum/component/atom_sanity, sanity_value, "")
 
 /obj/structure/cyberplant/update_icon()
 	..()
