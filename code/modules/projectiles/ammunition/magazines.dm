@@ -439,4 +439,4 @@
 	name = "ammo drum (12 gauge)"
 	icon_state = "m12"
 	initial_ammo = 0
- 	ammo_color = ""
+ 	ammo_color = null
