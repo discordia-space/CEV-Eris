@@ -502,6 +502,11 @@ nanoui is used to open and update nano browser uis
 	if (status == STATUS_DISABLED && !force_push)
 		return // Cannot update UI, no visibility
 
+	// Workaround for NanoUI being stuck
+	if(!winexists(user, window_id))
+		close()
+		return
+
 	var/list/send_data = get_send_data(data)
 
 //	to_chat(user, list2json_usecache(send_data))// used for debugging //NANO DEBUG HOOK
