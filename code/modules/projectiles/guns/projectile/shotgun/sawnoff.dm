@@ -5,6 +5,7 @@
 	icon_state = "sawnshotgun"
 	item_state = "sawnshotgun"
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
+	can_dual = 1
 	ammo_type = /obj/item/ammo_casing/shotgun/pellet
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
 	w_class = ITEM_SIZE_NORMAL

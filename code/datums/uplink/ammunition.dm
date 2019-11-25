@@ -8,7 +8,7 @@
 /datum/uplink_item/item/ammo/pistol
 	name = ".35 Auto HV"
 	item_cost = 1
-	path = /obj/item/ammo_magazine/pistol/highvelocity
+	path = /obj/item/ammo_magazine/hpistol/highvelocity
 
 /datum/uplink_item/item/ammo/smg
 	name = "smg .35 Auto HV"
@@ -33,6 +33,11 @@
 /datum/uplink_item/item/ammo/m12/empty
 	name = "empty M12 shotgun mag"
 	item_cost = 1
+
+/datum/uplink_item/item/ammo/m12
+	name = "M12 shotgun mag with slugs"
+	item_cost = 2
+
 	path = /obj/item/ammo_magazine/m12
 
 /datum/uplink_item/item/ammo/m12/beanbag
@@ -45,21 +50,20 @@
 	item_cost = 2
 	path = /obj/item/ammo_magazine/m12/pellet
 
-/datum/uplink_item/item/ammo/m12/slug
-	name = "M12 shotgun mag with slugs"
-	item_cost = 2
-	path = /obj/item/ammo_magazine/m12
-
 /datum/uplink_item/item/ammo/m12/stun
-	name = "M12 shotgun mag with tazershots"
+	name = "M12 shotgun mag with taser shells"
 	item_cost = 4
 	path = /obj/item/ammo_magazine/m12/stun
+
+/datum/uplink_item/item/ammo/m12/empty
+	name = "empty M12 shotgun mag"
+	item_cost = 1
+	path = /obj/item/ammo_magazine/m12
 
 /datum/uplink_item/item/ammo/sniperammo
 	name = ".60 Anti Material"
 	item_cost = 3
 	path = /obj/item/weapon/storage/box/sniperammo
-
 
 //Super-class cells, better than what you'll find in a vendor,
 //but not as good as the best maint loot, so scavenging is still encouraged

@@ -72,11 +72,11 @@
 
 /datum/design/autolathe/ammo/sl_magnum_rubber
 	name = "speed loader (.40 Magnum rubber)"
-	build_path = /obj/item/ammo_magazine/magnum/rubber
+	build_path = /obj/item/ammo_magazine/slmagnum/rubber
 
 /datum/design/autolathe/ammo/sl_magnum_brute
 	name = "speed loader (.40 Magnum hollow point)"
-	build_path = /obj/item/ammo_magazine/magnum
+	build_path = /obj/item/ammo_magazine/slmagnum
 
 /datum/design/autolathe/ammo/mg_magnum_rubber
 	name = "magazine (.40 Magnum rubber)"

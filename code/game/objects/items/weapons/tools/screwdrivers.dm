@@ -36,7 +36,7 @@
 	icon_state = "combi_driver"
 	w_class = ITEM_SIZE_NORMAL
 	worksound = WORKSOUND_DRIVER_TOOL
-	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 2)
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 1, MATERIAL_PLASTIC = 2)
 	tool_qualities = list(QUALITY_SCREW_DRIVING = 50, QUALITY_BOLT_TURNING = 50, QUALITY_DRILLING = 20)
 	degradation = 0.7
 	use_power_cost = 0.24
