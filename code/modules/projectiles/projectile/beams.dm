@@ -134,8 +134,8 @@
 /obj/item/projectile/beam/sniper
 	name = "sniper beam"
 	icon_state = "xray"
-	damage = 80
-	armor_penetration = 50
+	damage = 60
+	armor_penetration = 60
 	stun = 3
 	weaken = 3
 	stutter = 3
