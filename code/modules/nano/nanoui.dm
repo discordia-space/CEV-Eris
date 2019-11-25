@@ -498,7 +498,7 @@ nanoui is used to open and update nano browser uis
   */
 /datum/nanoui/proc/verify_open()
 	// Debug output
-	to_chat(user, "DEBUG: UI test [winexists(user, window_id)] [winget(user, window_id, "on-close;is_visible;is_disabled")]")
+	to_chat(user, "DEBUG: UI test [winexists(user, window_id)] [winget(user, window_id, "on-close;is-visible;is-disabled")]")
 
 	if(winexists(user, window_id))
 		return TRUE
