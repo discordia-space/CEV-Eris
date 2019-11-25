@@ -498,9 +498,7 @@ nanoui is used to open and update nano browser uis
   */
 /datum/nanoui/proc/verify_open()
 	var/list/window_params = params2list(winget(user, window_id, "on-close;is-visible"))
-
-	// Debug output
-	to_chat(user, "DEBUG: UI test [window_params["on-close"]] [window_params["is-visible"]] [!!window_params["on-close"]] [!!window_params["is-visible"]]")
+	window_params["is-visible"] = (window_params["is-visible"] == "true")
 
 	if(window_params["on-close"] && window_params["is-visible"])
 		return TRUE

@@ -126,7 +126,6 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 //The proc calls procs that sleep for long times.
 /proc/getFilesSlow(client/client, list/files, register_assets = TRUE, important = TRUE)
 	var/last_batch_start = world.time
-	to_chat(client, "DEBUG: slow asset send initiated, [length(files)] assets, important: [important]")
 
 	for(var/file in files)
 		if (!client)
@@ -136,7 +135,6 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 		send_asset(client, file)
 
 		if(!important && world.time > (last_batch_start + 5 SECONDS))
-			to_chat(client, "DEBUG: slow asset send is sleeping")
 			sleep(1 SECONDS)
 			last_batch_start = world.time
 			// Every 5 seconds of transmission, sleep for 1 second.
