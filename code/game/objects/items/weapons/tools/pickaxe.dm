@@ -137,7 +137,7 @@
 	tool_qualities = list(QUALITY_EXCAVATION = 10, QUALITY_DRILLING = 20)
 	switched_off_qualities = list(QUALITY_EXCAVATION = 10, QUALITY_DRILLING = 20)
 	switched_on_qualities = list(QUALITY_DIGGING = 50, QUALITY_DRILLING = 20)
-	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 2, MATERIAL_DIAMOND = 1)
+	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_DIAMOND = 1)
 	origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 4, TECH_ENGINEERING = 5)
 	max_upgrades = 4
 	degradation = 0.1

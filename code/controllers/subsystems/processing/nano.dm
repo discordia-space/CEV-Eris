@@ -34,7 +34,7 @@ PROCESSING_SUBSYSTEM_DEF(nano)
 
 	else if (force_open == NANOUI_REINITIALIZE)
 		ui.reinitialise(new_initial_data=data)
-		return ui;
+		return ui
 
 	ui.push_data(data)
 
@@ -56,6 +56,11 @@ PROCESSING_SUBSYSTEM_DEF(nano)
 
 	for (var/datum/nanoui/ui in open_uis[src_object_key][ui_key])
 		if (ui.user == user)
+			// This fixes the UI being broken when it's registred as open on serverside, but is actually closed on client.
+			// We check if the UI is actually open on client, and force it to re-open if it isn't.
+			if(!ui.verify_open())
+				ui.close()
+				return null
 			return ui
 
  /**

@@ -8,6 +8,7 @@
 	silencer_type = /obj/item/weapon/silencer
 	caliber = "pistol"
 	w_class = ITEM_SIZE_SMALL
+	can_dual = 1
 	fire_delay = 0.6
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 3)
 	load_method = MAGAZINE

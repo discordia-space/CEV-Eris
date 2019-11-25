@@ -377,7 +377,7 @@
 /obj/item/ammo_magazine/magnum/hv
 	name = "magazine (40 Magnum high-velocity)"
 	icon_state = "mg_ih_pst_44hv"
-	ammo_type = /obj/item/ammo_casing/pistol/hv
+	ammo_type = /obj/item/ammo_casing/magnum/hv
 
 /obj/item/ammo_magazine/caps
 	name = "speed loader (caps)"
@@ -412,6 +412,7 @@
 	mag_well =  MAG_WELL_RIFLE
 	caliber = "shotgun"
 	ammo_type = /obj/item/ammo_casing/shotgun
+	matter = list(MATERIAL_STEEL = 6)
 	multiple_sprites = 1
 	max_ammo = 8
 	ammo_color = "-slug"
@@ -419,43 +420,23 @@
 /obj/item/ammo_magazine/m12/pellet
 	name = "ammo drum (12 gauge pellet)"
 	icon_state = "m12_pellets"
-	mag_type = MAGAZINE
-	mag_well =  MAG_WELL_RIFLE
-	caliber = "shotgun"
 	ammo_type = /obj/item/ammo_casing/shotgun/pellet
-	multiple_sprites = 1
-	max_ammo = 8
 	ammo_color = "-pellets"
 
 /obj/item/ammo_magazine/m12/stun
 	name = "ammo drum (12 gauge stun)"
 	icon_state = "m12_stun"
-	mag_type = MAGAZINE
-	mag_well =  MAG_WELL_RIFLE
-	caliber = "shotgun"
 	ammo_type = /obj/item/ammo_casing/shotgun/stunshell
-	multiple_sprites = 1
-	max_ammo = 8
 	ammo_color = "-stun"
 
 /obj/item/ammo_magazine/m12/beanbag
 	name = "ammo drum (12 gauge beanbag)"
 	icon_state = "m12_beanbag"
-	mag_type = MAGAZINE
-	mag_well =  MAG_WELL_RIFLE
-	caliber = "shotgun"
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
-	multiple_sprites = 1
-	max_ammo = 8
 	ammo_color = "-beanbag"
 
 /obj/item/ammo_magazine/m12/empty
 	name = "ammo drum (12 gauge)"
 	icon_state = "m12"
-	mag_type = MAGAZINE
-	mag_well =  MAG_WELL_RIFLE
-	caliber = "shotgun"
-	ammo_type = /obj/item/ammo_casing/shotgun
-	multiple_sprites = 1
-	max_ammo = 8
 	initial_ammo = 0
+  ammo_color = ""
