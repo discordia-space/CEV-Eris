@@ -200,7 +200,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 	getFilesSlow(client, assets, register_assets = FALSE, important = !isTrivial)
 
 /datum/asset/proc/send_subset(client, list/subset)
-	send_asset_list(client, (assets & subset), verify=TRUE)
+	send_asset_list(client, (assets & subset), verify)
 
 // Check if all the assets were already sent
 /datum/asset/proc/check_sent(client/client)
