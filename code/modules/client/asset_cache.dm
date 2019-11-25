@@ -199,19 +199,9 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 /datum/asset/proc/send_slow(client)
 	getFilesSlow(client, assets, register_assets = FALSE, important = !isTrivial)
 
-/datum/asset/proc/send_subset(client, list/subset)
-	send_asset_list(client, (assets & subset), verify)
-
 // Check if all the assets were already sent
-/datum/asset/proc/check_sent(client/client)
-	if(length(assets & client.cache) == length(assets))
-		return TRUE
-	return FALSE
-
-/datum/asset/proc/check_sent_subset(client/client, list/subset)
-	subset = (assets & subset)
-
-	if(length(subset & client.cache) == length(subset))
+/datum/asset/proc/check_sent(client/C)
+	if(length(assets & C.cache) == length(assets))
 		return TRUE
 	return FALSE
 
@@ -251,22 +241,10 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 		var/datum/asset/A = get_asset_datum(type)
 		A.send_slow(client)
 
-/datum/asset/group/send_subset(client, subset)
-	for(var/type in children)
-		var/datum/asset/A = get_asset_datum(type)
-		A.send_subset(client, subset)
-
 /datum/asset/group/check_sent(client)
 	for(var/type in children)
 		var/datum/asset/A = get_asset_datum(type)
 		A.check_sent(client)
-
-/datum/asset/group/check_sent_subset(client, subset)
-	for(var/type in children)
-		var/datum/asset/A = get_asset_datum(type)
-		if(!A.check_sent_subset(client, subset))
-			return FALSE
-	return TRUE
 
 
 //DEFINITIONS FOR ASSET DATUMS START HERE.
@@ -318,13 +296,10 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 		"nano/js/",
 		"nano/css/",
 		"nano/images/",
+		"nano/templates/",
 		"nano/images/status_icons/",
 		"nano/images/modular_computers/",
 	)
-
-/datum/asset/directories/nanoui_templates
-	dirs = list("nano/templates/")
-
 
 /datum/asset/directories/images_news
 	dirs = list("news_articles/images/")
