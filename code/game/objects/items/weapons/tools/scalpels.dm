@@ -4,6 +4,7 @@
 	icon_state = "scalpel_t3"
 	flags = CONDUCT
 	force = WEAPON_FORCE_PAINFUL
+	armor_penetration = 8
 	sharp = TRUE
 	edge = TRUE
 	w_class = ITEM_SIZE_TINY

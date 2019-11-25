@@ -12,12 +12,12 @@ There are important things regarding this file:
 //Low-caliber pistols and SMGs
 /obj/item/projectile/bullet/pistol
 	damage = 24
-	armor_penetration = 5
+	armor_penetration = 15
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/pistol/hv
 	damage = 28
-	armor_penetration = 10
+	armor_penetration = 20
 	penetrating = 1
 	step_delay = 0.75
 
@@ -40,8 +40,8 @@ There are important things regarding this file:
 
 //Carbines and rifles
 /obj/item/projectile/bullet/srifle
-	damage = 16
-	armor_penetration = 25
+	damage = 25
+	armor_penetration = 45
 	penetrating = 2
 	can_ricochet = TRUE
 
@@ -58,8 +58,8 @@ There are important things regarding this file:
 	can_ricochet = FALSE
 
 /obj/item/projectile/bullet/clrifle
-	damage = 18
-	armor_penetration = 25
+	damage = 27
+	armor_penetration = 45
 	penetrating = 1
 	sharp = FALSE
 	can_ricochet = TRUE
@@ -73,26 +73,26 @@ There are important things regarding this file:
 	sharp = FALSE
 
 /obj/item/projectile/bullet/lrifle
-	damage = 20
-	armor_penetration = 15
+	damage = 28
+	armor_penetration = 35
 	penetrating = 1
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/lrifle/hv
-	damage = 24
-	armor_penetration = 20
+	damage = 30
+	armor_penetration = 40
 	penetrating = 2
 	step_delay = 0.75
 
 //Revolvers and high-caliber pistols
 /obj/item/projectile/bullet/magnum
-	damage = 36
-	armor_penetration = 10
+	damage = 32
+	armor_penetration = 20
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/magnum/hv
-	damage = 38
-	armor_penetration = 15
+	damage = 35
+	armor_penetration = 25
 	penetrating = 1
 	step_delay = 0.75
 
@@ -118,9 +118,10 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/shotgun
 	name = "slug"
 	icon_state = "slug"
-	damage = 34
-	armor_penetration = 12
+	damage = 64
+	armor_penetration = 10
 	knockback = 1
+	step_delay = 1.5
 
 /obj/item/projectile/bullet/shotgun/beanbag		//because beanbags are not bullets
 	name = "beanbag"
@@ -145,7 +146,8 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/pellet/shotgun
 	name = "shrapnel"
 	icon_state = "birdshot-1"
-	damage = 12
+	damage = 9
+	armor_penetration = 8
 	pellets = 6
 	range_step = 1
 	spread_step = 10
