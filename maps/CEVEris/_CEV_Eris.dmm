@@ -108445,6 +108445,10 @@
 "nqq" = (
 /turf/simulated/wall/r_wall,
 /area/eris/security/bs_interference)
+"ooU" = (
+/obj/random/pack/machine,
+/turf/simulated/floor/tiled/techmaint_panels,
+/area/eris/maintenance/section1deck5central)
 "opC" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/maintenance_security{
@@ -108475,6 +108479,10 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/security/bs_interference)
+"wYP" = (
+/obj/random/closet_tech/low_chance,
+/turf/simulated/floor/tiled/techmaint_panels,
+/area/eris/maintenance/section1deck5central)
 
 (1,1,1) = {"
 aaa
@@ -130760,7 +130768,7 @@ ahf
 ahw
 ahS
 dAp
-dzn
+ooU
 dzn
 dzn
 dzn
@@ -130962,8 +130970,8 @@ dAp
 dAp
 dAp
 dAp
+wYP
 dzn
-dAp
 dAp
 dAp
 alP
@@ -131164,7 +131172,7 @@ dzp
 aex
 dzn
 dAp
-dzn
+ooU
 dzn
 dzn
 dzn
