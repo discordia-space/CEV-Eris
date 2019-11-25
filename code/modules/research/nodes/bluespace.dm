@@ -175,8 +175,7 @@
 
 	unlocks_designs = list(	/datum/design/research/item/beaker/bluespace,
 							/datum/design/research/item/beaker/noreact,
-							/datum/design/research/item/bag_holding,
-							/datum/design/research/item/weapon/bluespace_harpoon
+							/datum/design/research/item/bag_holding
 							)
 /*
 /datum/technology/bluespace_rped

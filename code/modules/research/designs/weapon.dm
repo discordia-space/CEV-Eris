@@ -58,10 +58,6 @@
 	build_path = /obj/item/weapon/gun/energy/floragun
 	sort_string = "TBAAA"
 
-/datum/design/research/item/weapon/bluespace_harpoon
-	build_path = /obj/item/weapon/bluespace_harpoon
-	sort_string = "TBAAB"
-
 /datum/design/research/item/weapon/hatton
 	name = "Moebius BT \"Q-del\""
 	desc = "This breaching tool was reverse engineered from the \"Hatton\" design.\

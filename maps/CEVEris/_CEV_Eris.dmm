@@ -88026,7 +88026,6 @@
 	pixel_y = 28
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/item/weapon/bluespace_harpoon,
 /turf/simulated/floor/wood,
 /area/eris/command/meo/quarters)
 "dOj" = (

@@ -78,7 +78,6 @@
 	/obj/item/rig_module/electrowarfare_suite = 1,
 	/obj/item/rig_module/power_sink = 3,
 
-
 	//Combat
 	/obj/item/rig_module/device/flash = 2,
 	/obj/item/rig_module/mounted/taser = 2,
@@ -89,10 +88,6 @@
 	/obj/item/rig_module/fabricator = 0.1,
 	/obj/item/rig_module/fabricator/energy_net = 0.2,
 	/obj/item/rig_module/self_destruct = 1,
-
-	//Stealth
-	/obj/item/rig_module/stealth_field = 0.5,
-	/obj/item/rig_module/teleporter = 0.5,
 
 	//Utility
 	/obj/item/rig_module/device/healthscanner = 4,
@@ -135,8 +130,8 @@
 	//Storage
 	/obj/item/rig_module/storage = 1,
 
+	//Computer
 	/obj/item/rig_module/electrowarfare_suite = 1,
-
 
 	//Combat
 	/obj/item/rig_module/grenade_launcher = 1, //Comes preloaded with smoke, flashbang and EMP
