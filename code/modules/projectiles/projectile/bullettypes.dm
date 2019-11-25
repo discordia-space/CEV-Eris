@@ -118,10 +118,10 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/shotgun
 	name = "slug"
 	icon_state = "slug"
-	damage = 64
+	damage = 54
 	armor_penetration = 10
 	knockback = 1
-	step_delay = 1.5
+	step_delay = 1.65
 
 /obj/item/projectile/bullet/shotgun/beanbag		//because beanbags are not bullets
 	name = "beanbag"
@@ -146,9 +146,9 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/pellet/shotgun
 	name = "shrapnel"
 	icon_state = "birdshot-1"
-	damage = 9
+	damage = 10
 	armor_penetration = 8
-	pellets = 6
+	pellets = 8
 	range_step = 1
 	spread_step = 10
 	knockback = 1
