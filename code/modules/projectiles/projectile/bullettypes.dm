@@ -41,7 +41,7 @@ There are important things regarding this file:
 //Carbines and rifles
 /obj/item/projectile/bullet/srifle
 	damage = 25
-	armor_penetration = 45
+	armor_penetration = 35
 	penetrating = 2
 	can_ricochet = TRUE
 
@@ -59,7 +59,7 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/clrifle
 	damage = 27
-	armor_penetration = 45
+	armor_penetration = 35
 	penetrating = 1
 	sharp = FALSE
 	can_ricochet = TRUE
@@ -74,13 +74,13 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/lrifle
 	damage = 28
-	armor_penetration = 35
+	armor_penetration = 30
 	penetrating = 1
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/lrifle/hv
 	damage = 30
-	armor_penetration = 40
+	armor_penetration = 35
 	penetrating = 2
 	step_delay = 0.75
 
