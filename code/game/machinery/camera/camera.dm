@@ -64,6 +64,7 @@
 
 /obj/machinery/camera/Destroy()
 	deactivate(null, 0) //kick anyone viewing out
+	taped = 0
 	if(assembly)
 		qdel(assembly)
 		assembly = null
@@ -121,9 +122,11 @@
 
 /obj/machinery/camera/attack_hand(mob/living/carbon/human/user as mob)
 	if (taped == 1)
+		icon_state = "camera"
 		taped = 0
 		set_status(1)
 		to_chat(user, "You take tape from camera")
+		desc ="It's used to monitor rooms."
 	if(!istype(user))
 		return
 
@@ -192,7 +195,9 @@
 		if(istype(I, /obj/item/weapon/ducttape )|| istype(I, /obj/item/weapon/tool/tape_roll))
 			set_status(0)
 			taped = 1
+			icon_state = "camera_taped"
 			to_chat(U, "You taped the camera")
+			desc = "It's used to monitor rooms. It's covered with something sticky."
 			return
 		if(last_shown_time < world.time)
 			to_chat(U, "You hold \a [I.name] up to the camera ...")
@@ -283,6 +288,7 @@
 /obj/machinery/camera/proc/destroy()
 	stat |= BROKEN
 	wires.RandomCutAll()
+	taped = 0
 
 	triggerCameraAlarm()
 	update_icon()
