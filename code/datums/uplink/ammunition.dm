@@ -6,12 +6,12 @@
 	category = /datum/uplink_category/ammunition
 
 /datum/uplink_item/item/ammo/pistol
-	name = ".35 Auto"
+	name = ".35 Auto HV"
 	item_cost = 1
 	path = /obj/item/ammo_magazine/pistol/highvelocity
 
 /datum/uplink_item/item/ammo/smg
-	name = "smg .35 Auto"
+	name = "smg .35 Auto HV"
 	item_cost = 2
 	path = /obj/item/ammo_magazine/smg/hv
 
@@ -21,16 +21,16 @@
 	path = /obj/item/ammo_magazine/chemdart
 
 /datum/uplink_item/item/ammo/magnum
-	name = ".40 magnum speed loader"
+	name = ".40 magnum HV speed loader"
 	item_cost = 1
-	path = /obj/item/ammo_magazine/magnum/hv
+	path = /obj/item/ammo_magazine/slmagnum/highvelocity
 
 /datum/uplink_item/item/ammo/lrifle
 	name = ".30 Rifle"
 	item_cost = 3
 	path = /obj/item/ammo_magazine/lrifle_long/highvelocity
 
-/datum/uplink_item/item/ammo/m12
+/datum/uplink_item/item/ammo/m12/empty
 	name = "empty M12 shotgun mag"
 	item_cost = 1
 	path = /obj/item/ammo_magazine/m12
@@ -48,7 +48,7 @@
 /datum/uplink_item/item/ammo/m12/slug
 	name = "M12 shotgun mag with slugs"
 	item_cost = 2
-	path = /obj/item/ammo_magazine/m12/slug
+	path = /obj/item/ammo_magazine/m12
 
 /datum/uplink_item/item/ammo/m12/stun
 	name = "M12 shotgun mag with tazershots"

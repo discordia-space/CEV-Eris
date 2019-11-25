@@ -406,15 +406,15 @@
 ////////////Shotguns!////////////
 
 /obj/item/ammo_magazine/m12
-	name = "ammo drum (12 gauge)"
-	icon_state = "m12"
+	name = "ammo drum (12 gauge slug)"
+	icon_state = "m12_slug"
 	mag_type = MAGAZINE
 	mag_well =  MAG_WELL_RIFLE
 	caliber = "shotgun"
 	ammo_type = /obj/item/ammo_casing/shotgun
 	multiple_sprites = 1
 	max_ammo = 8
-	initial_ammo = 0
+	ammo_color = "-slug"
 
 /obj/item/ammo_magazine/m12/pellet
 	name = "ammo drum (12 gauge pellet)"
@@ -438,17 +438,6 @@
 	max_ammo = 8
 	ammo_color = "-stun"
 
-/obj/item/ammo_magazine/m12/slug
-	name = "ammo drum (12 gauge slug)"
-	icon_state = "m12_slug"
-	mag_type = MAGAZINE
-	mag_well =  MAG_WELL_RIFLE
-	caliber = "shotgun"
-	ammo_type = /obj/item/ammo_casing/shotgun
-	multiple_sprites = 1
-	max_ammo = 8
-	ammo_color = "-slug"
-
 /obj/item/ammo_magazine/m12/beanbag
 	name = "ammo drum (12 gauge beanbag)"
 	icon_state = "m12_beanbag"
@@ -459,3 +448,14 @@
 	multiple_sprites = 1
 	max_ammo = 8
 	ammo_color = "-beanbag"
+
+/obj/item/ammo_magazine/m12/empty
+	name = "ammo drum (12 gauge)"
+	icon_state = "m12"
+	mag_type = MAGAZINE
+	mag_well =  MAG_WELL_RIFLE
+	caliber = "shotgun"
+	ammo_type = /obj/item/ammo_casing/shotgun
+	multiple_sprites = 1
+	max_ammo = 8
+	initial_ammo = 0

@@ -8,7 +8,7 @@
 	force = WEAPON_FORCE_PAINFUL
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2, TECH_ILLEGAL = 2)
-	caliber = "50am"
+	caliber = "antim"
 	recoil_buildup = 75
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING
@@ -93,26 +93,26 @@
 	icon_state = "sniperbarrel"
 
 /obj/item/weapon/weaponparts/heavysniper/disassembled/attackby(obj/item/W, mob/user)
-    if(istype(W,/obj/item/weapon/weaponparts/heavysniper/stock))
-        to_chat(user, "You attach the barrel to the sniper")
-        var/obj/item/weapon/weaponparts/heavysniper/stocked/HS = new (get_turf(src))
-        if(loc == user)
-            equip_slot = user.get_inventory_slot(src)
-            if(equip_slot in list(slot_r_hand, slot_l_hand))
-                user.drop_from_inventory(src)
-                user.equip_to_slot_if_possible(HS, equip_slot)
-            qdel(W)
-            qdel(src)
+	if(istype(W,/obj/item/weapon/weaponparts/heavysniper/stock))
+		to_chat(user, "You attach the barrel to the sniper")
+		var/obj/item/weapon/weaponparts/heavysniper/stocked/HS = new (get_turf(src))
+		if(loc == user)
+			equip_slot = user.get_inventory_slot(src)
+			if(equip_slot in list(slot_r_hand, slot_l_hand))
+				user.drop_from_inventory(src)
+				user.equip_to_slot_if_possible(HS, equip_slot)
+		qdel(W)
+		qdel(src)
 
 
 /obj/item/weapon/weaponparts/heavysniper/stocked/attackby(obj/item/W, mob/user)
-    if(istype(W,/obj/item/weapon/weaponparts/heavysniper/barrel))
-        to_chat(user, "You attach the barrel to the sniper")
-        var/obj/item/weapon/gun/projectile/heavysniper/HS = new (get_turf(src))
-        if(loc == user)
-            equip_slot = user.get_inventory_slot(src)
-            if(equip_slot in list(slot_r_hand, slot_l_hand))
-                user.drop_from_inventory(src)
-                user.equip_to_slot_if_possible(HS, equip_slot)
-            qdel(W)
-            qdel(src)
+	if(istype(W,/obj/item/weapon/weaponparts/heavysniper/barrel))
+		to_chat(user, "You attach the barrel to the sniper")
+		var/obj/item/weapon/gun/projectile/heavysniper/HS = new (get_turf(src))
+		if(loc == user)
+			equip_slot = user.get_inventory_slot(src)
+			if(equip_slot in list(slot_r_hand, slot_l_hand))
+				user.drop_from_inventory(src)
+				user.equip_to_slot_if_possible(HS, equip_slot)
+		qdel(W)
+		qdel(src)
