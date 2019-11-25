@@ -497,10 +497,12 @@ nanoui is used to open and update nano browser uis
   * @return is_open boolean - if the UI is actually open on client.
   */
 /datum/nanoui/proc/verify_open()
-	// Debug output
-	to_chat(user, "DEBUG: UI test [winexists(user, window_id)] [winget(user, window_id, "on-close;is-visible;is-disabled")]")
+	var/list/window_params = params2list(winget(user, window_id, "on-close;is-visible"))
 
-	if(winexists(user, window_id))
+	// Debug output
+	to_chat(user, "DEBUG: UI test [window_params["on-close"]] [window_params["is-visible"]] [!!window_params["on-close"]] [!!window_params["is-visible"]]")
+
+	if(window_params["on-close"] && window_params["is-visible"])
 		return TRUE
 
 	return FALSE
