@@ -32,7 +32,7 @@ nanoui is used to open and update nano browser uis
 	// the list of javascript scripts to use for this ui
 	var/list/scripts = list()
 	// a list of templates which can be used with this ui
-	var/templates[0]
+	var/list/templates = list()
 	// the layout key for this ui (this is used on the frontend, leave it as "default" unless you know what you're doing)
 	var/layout_key = "default"
 	// optional layout key for additional ui header content to include
@@ -97,13 +97,7 @@ nanoui is used to open and update nano browser uis
 		ref = nref
 
 	add_common_assets()
-	if(user.client)
-		var/datum/asset/assets = get_asset_datum(/datum/asset/directories/nanoui)
 
-		// Avoid opening the window if the resources are not loaded yet.
-		if(!assets.check_sent(user.client))
-			to_chat(user, "Resources are still loading. Please wait.")
-			close()
 
 //Do not qdel nanouis. Use close() instead.
 /datum/nanoui/Destroy()
@@ -440,12 +434,26 @@ nanoui is used to open and update nano browser uis
 
 	if(!src_object)
 		close()
+		return
 
 	var/window_size = ""
 	if (width && height)
 		window_size = "size=[width]x[height];"
 	if(update_status(0))
 		return // Will be closed by update_status().
+
+	// Check if all the assets are sent
+	var/datum/asset/core_assets = get_asset_datum(/datum/asset/directories/nanoui)
+	var/datum/asset/template_assets = get_asset_datum(/datum/asset/directories/nanoui_templates)
+	var/list/template_files = flatten_list(templates)
+
+	// Send the assets if they are not loaded yet.
+	if(!core_assets.check_sent_subset(user.client, (stylesheets | scripts)) || !template_assets.check_sent_subset(user.client, template_files))
+		to_chat(user, "Resources are still loading. Please wait.")
+		core_assets.send_subset(user.client, (stylesheets | scripts))
+		template_assets.send_subset(user.client, template_files)
+		close()
+		return
 
 	user << browse(get_html(), "window=[window_id];[window_size][window_options]")
 	winset(user, window_id, "on-close=\"nanoclose \ref[src]\"")
