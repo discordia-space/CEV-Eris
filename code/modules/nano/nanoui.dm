@@ -448,7 +448,7 @@ nanoui is used to open and update nano browser uis
 		return // Will be closed by update_status().
 
 	user << browse(get_html(), "window=[window_id];[window_size][window_options]")
-	winset(user, window_id, "on-close=\"nanoclose [params]\"")
+	winset(user, window_id, "on-close=\"nanoclose \ref[src]\"")
 
 	winset(user, "mapwindow.map", "focus=true") // return keyboard focus to map
 	SSnano.ui_opened(src)
