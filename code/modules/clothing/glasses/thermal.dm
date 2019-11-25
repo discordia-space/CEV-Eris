@@ -92,9 +92,10 @@
 		have_lenses = 1
 		qdel(Z)
 
-/obj/item/clothing/glasses/powered/thermal/attackby(var/obj/item/X, var/mob/user)
-	if(istype(X, /obj/item/clothing/glasses/powered/thermal/lens))
+/obj/item/clothing/glasses/powered/thermal/attackby(obj/item/C, mob/user)
+	if(istype(C, /obj/item/clothing/glasses/powered/thermal/lens))
 		to_chat(usr, "This glasses already have thermal implant")
+	..()
 
 /obj/item/clothing/glasses/verb/detach_lenses()
 	set name = "Detach lenses"
