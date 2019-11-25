@@ -125,13 +125,25 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 //This proc will download the files without clogging up the browse() queue, used for passively sending files on connection start.
 //The proc calls procs that sleep for long times.
 /proc/getFilesSlow(client/client, list/files, register_assets = TRUE)
+	var/last_batch_start = world.time
+	to_chat(client, "DEBUG: slow asset send initiated, [length(files)] assets")
+
 	for(var/file in files)
 		if (!client)
 			break
 		if (register_assets)
 			register_asset(file, files[file])
 		send_asset(client, file)
-		sleep(0) //queuing calls like this too quickly can cause issues in some client versions
+
+		if(world.time > (last_batch_start + 4 SECONDS))
+			to_chat(client, "DEBUG: slow asset send is sleeping")
+			sleep(0.5 SECONDS)
+			last_batch_start = world.time
+			// Every 4 seconds of transmission, sleep for half a second.
+			// Give other browse calls (newly opened UIs) a chance to slip in if we are sending hundreds of pics.
+		else
+			sleep(0)
+			// queuing calls like this too quickly can cause issues in some client versions
 
 //This proc "registers" an asset, it adds it to the cache for further use, you cannot touch it from this point on or you'll fuck things up.
 //if it's an icon or something be careful, you'll have to copy it before further use.
