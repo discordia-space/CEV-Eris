@@ -24,4 +24,4 @@
 	embed = 0
 	damage = 20
 	armor_penetration = 30
-	check_armor = ARMOR_BOMB
+	check_armour = ARMOR_BOMB

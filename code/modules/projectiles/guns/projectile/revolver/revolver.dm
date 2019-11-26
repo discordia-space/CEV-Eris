@@ -19,9 +19,8 @@
 	price_tag = 2000 //avasarala of revolver world
 	var/chamber_offset = 0 //how many empty chambers in the cylinder until you hit a round
 	fire_delay = 3 //all revolvers can fire faster, but have huge recoil
-	damage_multiplier = 1.2
-	penetration_multiplier = 1.3
-	recoil_buildup = 30
+	damage_multiplier = 1.7
+	recoil_buildup = 50
 
 /obj/item/weapon/gun/projectile/revolver/verb/spin_cylinder()
 	set name = "Spin cylinder"

@@ -15,7 +15,7 @@
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_H_PISTOL
 	silencer_type = /obj/item/weapon/silencer
-	damage_multiplier = 0.9
+	damage_multiplier = 0.7
 	recoil_buildup = 19
 
 

@@ -36,7 +36,7 @@
 	name = "heavy laser"
 	icon_state = "heavylaser"
 	damage = 50
-	armor_penetration = 40
+	armor_penetration = 30
 
 	muzzle_type = /obj/effect/projectile/laser_heavy/muzzle
 	tracer_type = /obj/effect/projectile/laser_heavy/tracer
