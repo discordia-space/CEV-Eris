@@ -70,49 +70,49 @@
 /obj/item/weapon/weaponparts
 	name = "weaponpart"
 	desc = "how did you get it?"
-	icon = 'icons/obj/buildingobject.dmi'
-
-/obj/item/weapon/weaponparts/heavysniper/disassembled
-	name = "disassembled sniper rifle"
-	desc = "This is a disassembled sniper rifle. You need to attach the stock."
-	icon_state = "sniperd"
-
-/obj/item/weapon/weaponparts/heavysniper/stocked
-	name = "disassembled sniper rifle with stock"
-	desc = "This is a disassembled sniper rifle with stock. Now attach the barrel."
-	icon_state = "snipersd"
+	icon = 'icons/obj/weaponparts.dmi'
 
 /obj/item/weapon/weaponparts/heavysniper/stock
-	name = "sniper rifle stock"
-	desc = "This is a stock from a sniper rifle."
-	icon_state = "sniperstock"
+	name = "sniper stock"
+	desc = "This is a sniper stock. You need to attach the reciever."
+	icon_state = "sniper_stock"
+
+/obj/item/weapon/weaponparts/heavysniper/reciever
+	name = "sniper reciever"
+	desc = "This is a sniper reciever. You need to attach it to the stock."
+	icon_state = "sniper_reciever"
+
+/obj/item/weapon/weaponparts/heavysniper/stockreciever
+	name = "sniper stock with reciever"
+	desc = "This is a sniper stock with reciever. Now attach the barrel."
+	icon_state = "sniper_stockreciever"
 
 /obj/item/weapon/weaponparts/heavysniper/barrel
 	name = "sniper rifle barrel"
 	desc = "This is a barrel from a sniper rifle."
-	icon_state = "sniperbarrel"
+	icon_state = "sniper_barrel"
 
-/obj/item/weapon/weaponparts/heavysniper/disassembled/attackby(obj/item/W, mob/user)
-    if(istype(W,/obj/item/weapon/weaponparts/heavysniper/stock))
-        to_chat(user, "You attach the barrel to the sniper")
-        var/obj/item/weapon/weaponparts/heavysniper/stocked/HS = new (get_turf(src))
-        if(loc == user)
-            equip_slot = user.get_inventory_slot(src)
-            if(equip_slot in list(slot_r_hand, slot_l_hand))
-                user.drop_from_inventory(src)
-                user.equip_to_slot_if_possible(HS, equip_slot)
-            qdel(W)
-            qdel(src)
+/obj/item/weapon/weaponparts/heavysniper/stock/attackby(obj/item/W, mob/user)
+	if(istype(W,/obj/item/weapon/weaponparts/heavysniper/reciever))
+		to_chat(user, "You attach the reciever to the stock")
+		var/obj/item/weapon/weaponparts/heavysniper/stockreciever/HS = new (get_turf(src))
+		if(loc == user)
+			equip_slot = user.get_inventory_slot(src)
+			if(equip_slot in list(slot_r_hand, slot_l_hand))
+				user.drop_from_inventory(src)
+				user.equip_to_slot_if_possible(HS, equip_slot)
+		qdel(W)
+		qdel(src)
 
 
-/obj/item/weapon/weaponparts/heavysniper/stocked/attackby(obj/item/W, mob/user)
-    if(istype(W,/obj/item/weapon/weaponparts/heavysniper/barrel))
-        to_chat(user, "You attach the barrel to the sniper")
-        var/obj/item/weapon/gun/projectile/heavysniper/HS = new (get_turf(src))
-        if(loc == user)
-            equip_slot = user.get_inventory_slot(src)
-            if(equip_slot in list(slot_r_hand, slot_l_hand))
-                user.drop_from_inventory(src)
-                user.equip_to_slot_if_possible(HS, equip_slot)
-            qdel(W)
-            qdel(src)
+/obj/item/weapon/weaponparts/heavysniper/stockreciever/attackby(obj/item/W, mob/user)
+	if(istype(W,/obj/item/weapon/weaponparts/heavysniper/barrel))
+		to_chat(user, "You attach the barrel to the stock")
+		var/obj/item/weapon/gun/projectile/heavysniper/HS = new (get_turf(src))
+		if(loc == user)
+			equip_slot = user.get_inventory_slot(src)
+			if(equip_slot in list(slot_r_hand, slot_l_hand))
+				user.drop_from_inventory(src)
+				user.equip_to_slot_if_possible(HS, equip_slot)
+		qdel(W)
+		qdel(src)
