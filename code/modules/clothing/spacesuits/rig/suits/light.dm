@@ -10,6 +10,7 @@
 	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL | DRAG_AND_DROP_UNEQUIP | EQUIP_SOUNDS
 	offline_slowdown = 0
 	offline_vision_restriction = 0
+	drain = 2
 
 	chest_type = /obj/item/clothing/suit/space/rig/light
 	helm_type =  /obj/item/clothing/head/helmet/space/rig/light
@@ -18,7 +19,6 @@
 
 /obj/item/clothing/suit/space/rig/light
 	name = "suit"
-	breach_threshold = 18 //comparable to voidsuits
 
 /obj/item/clothing/gloves/rig/light
 	name = "gloves"
