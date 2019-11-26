@@ -36,8 +36,10 @@
 	item_state = "utility"
 	can_hold = list(
 		/obj/item/weapon/tool,
+		/obj/item/device/lightreplacer,
+		/obj/item/weapon/rcd,
 		/obj/item/device/lighting/toggleable/flashlight,
-		/obj/item/device/radio/headset,
+		/obj/item/device/radio,
 		/obj/item/stack/cable_coil,
 		/obj/item/device/t_scanner,
 		/obj/item/device/scanner/gas,
