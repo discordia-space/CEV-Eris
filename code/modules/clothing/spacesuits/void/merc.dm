@@ -1,9 +1,9 @@
 /obj/item/clothing/head/helmet/space/void/SCAF
 	name = "SCAF helmet"
-	desc = "A thick airtight helmet designed for planetside warfare."
+	desc = "A thick airtight helmet designed for planetside warfare retrofitted with seals to act like normal space suit helmet."
 	icon_state = "scaf"
 	item_state = "scaf"
-	armor = list(melee = 65, bullet = 50, energy = 45, bomb = 55, bio = 100, rad = 80)
+	armor = list(melee = 60, bullet = 70, energy = 60, bomb = 70, bio = 100, rad = 30)
 	siemens_coefficient = 0.35
 	species_restricted = list("Human")
 	camera_networks = list(NETWORK_MERCENARY)
@@ -12,13 +12,12 @@
 /obj/item/clothing/suit/space/void/SCAF
 	icon_state = "scaf"
 	name = "SCAF suit"
-	desc = "A bulky antique suit of refurbished infantry armour, retrofitted with seals and coatings to make it EVA capable"
+	desc = "A bulky antique suit of refurbished infantry armour, retrofitted with seals and coatings to make it EVA capable but also reducing mobility."
 	item_state = "scaf"
-	slowdown = 1.35
+	slowdown = 1.3
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
-	w_class = ITEM_SIZE_NORMAL
-	armor = list(melee = 30, bullet = 40, energy = 45, bomb = 55, bio = 100, rad = 80)
+	armor = list(melee = 70, bullet = 60, energy = 60, bomb = 70, bio = 100, rad = 30)
 	siemens_coefficient = 0.35
 	species_restricted = list("Human")
 

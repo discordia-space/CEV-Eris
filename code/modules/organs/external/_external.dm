@@ -202,7 +202,7 @@
 
 /obj/item/organ/external/proc/activate_module()
 	set name = "Activate module"
-	set category = "Organs"
+	set category = "Cybernetics" //changed this to be in line with excelsior's cyber implants and such
 	set src in usr
 
 	if(module)

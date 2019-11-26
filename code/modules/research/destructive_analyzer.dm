@@ -11,11 +11,18 @@ Note: Must be placed within 3 tiles of the R&D Console
 	icon_state = "d_analyzer"
 	var/obj/item/loaded_item = null
 	var/decon_mod = 0
+	var/busy = FALSE
 	circuit = /obj/item/weapon/circuitboard/destructive_analyzer
 
-	use_power = TRUE
 	idle_power_usage = 30
 	active_power_usage = 2500
+
+/obj/machinery/r_n_d/destructive_analyzer/Destroy()
+	if(linked_console)
+		if(linked_console.linked_destroy == src)
+			linked_console.linked_destroy = null
+		linked_console = null
+	return ..()
 
 /obj/machinery/r_n_d/destructive_analyzer/RefreshParts()
 	var/T = 0

@@ -5,6 +5,7 @@
 	max_capacity = 1024	// Up to 255 designs, automatically reduced to the nearest power of 2
 	origin_tech = list(TECH_DATA = 3) // Most design disks end up being 64 to 128 GQ
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 2, MATERIAL_GOLD = 0.5)
+	license = -1
 	var/list/designs = list()
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/install_default_files()
@@ -13,7 +14,7 @@
 	for(var/design_typepath in designs)
 		var/datum/computer_file/binary/design/D = new
 		D.set_design_type(design_typepath)
-		if(license)
+		if(license > 0)
 			D.set_copy_protection(TRUE)
 
 		store_file(D)
@@ -33,7 +34,7 @@
 	disk_name = "Asters Basic Tool Pack"
 	icon_state = "guild"
 
-	license = 0
+	license = -1
 	designs = list(
 		/datum/design/autolathe/tool/hatchet,
 		/datum/design/autolathe/tool/minihoe,
@@ -61,7 +62,7 @@
 	disk_name = "Asters Miscellaneous Pack"
 	icon_state = "guild"
 
-	license = 0
+	license = -1
 	designs = list(
 		/datum/design/autolathe/misc/flashlight,
 		/datum/design/autolathe/tool/ducttape,
@@ -315,6 +316,7 @@
 		/datum/design/autolathe/gun/revolver_detective,
 		/datum/design/autolathe/gun/doublebarrel,
 		/datum/design/autolathe/gun/pump_shotgun,
+		/datum/design/autolathe/gun/boltgun_fs,
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/fs_kinetic_guns //please, maintain general order (pistol>revolver>SMG>Other>Shotgun>GLs)+(smaller/less damaging caliber>bigger/more damaging caliber)
@@ -358,18 +360,13 @@
 
 	license = 20
 	designs = list(
-		/datum/design/autolathe/ammo/mg_cl32_rubber, //pistol mags
-		/datum/design/autolathe/ammo/magazine_mc9mm_rubber,
-		/datum/design/autolathe/ammo/magazine_c45m_rubber,
-		/datum/design/autolathe/ammo/magazine_a10mm_rubber,
-		/datum/design/autolathe/ammo/mg_cl44_rubber,
-		/datum/design/autolathe/ammo/mg_a50_rubber,
-		/datum/design/autolathe/ammo/sl_c138_rubber, //speed loaders
-		/datum/design/autolathe/ammo/sl_cl44_rubber,
-		/datum/design/autolathe/ammo/smg9mm_rubber, //smg mags
-		/datum/design/autolathe/ammo/c45smg_rubber,
+		/datum/design/autolathe/ammo/magazine_pistol_rubber, //pistol mags
+		/datum/design/autolathe/ammo/mg_magnum_rubber,
+		/datum/design/autolathe/ammo/sl_pistol_rubber, //speed loaders
+		/datum/design/autolathe/ammo/sl_magnum_rubber,
+		/datum/design/autolathe/ammo/smg_rubber, //smg mags
 		/datum/design/autolathe/ammo/SMG_sol_rubber, //other mags
-		/datum/design/autolathe/ammo/a556_practice,
+		/datum/design/autolathe/ammo/srifle_practice,
 		/datum/design/autolathe/ammo/shotgun_blanks, //shells
 		/datum/design/autolathe/ammo/shotgun_flash,
 		/datum/design/autolathe/ammo/stunshell,
@@ -382,23 +379,17 @@
 
 	license = 20
 	designs = list(
-		/datum/design/autolathe/ammo/mg_cl32_brute, //pistol mags
-		/datum/design/autolathe/ammo/magazine_mc9mm,
-		/datum/design/autolathe/ammo/magazine_c45m,
-		/datum/design/autolathe/ammo/magazine_a10mm,
-		/datum/design/autolathe/ammo/mg_cl44_brute,
-		/datum/design/autolathe/ammo/mg_a50,
-		/datum/design/autolathe/ammo/sl_c138_brute, //speed loaders
-		/datum/design/autolathe/ammo/sl_cl44_brute,
-		/datum/design/autolathe/ammo/magazine_sl357,
-		/datum/design/autolathe/ammo/smg9mm_brute, //smg mags
-		/datum/design/autolathe/ammo/c45smg_brute,
-		/datum/design/autolathe/ammo/magazine_smg10mm,
+		/datum/design/autolathe/ammo/magazine_pistol, //pistol mags
+		/datum/design/autolathe/ammo/mg_magnum_brute,
+		/datum/design/autolathe/ammo/sl_pistol_brute, //speed loaders
+		/datum/design/autolathe/ammo/sl_magnum_brute,
+		/datum/design/autolathe/ammo/smg_brute, //smg mags
 		/datum/design/autolathe/ammo/SMG_sol_brute, //other mags
-		/datum/design/autolathe/ammo/a556,
-		/datum/design/autolathe/ammo/ih556,
-		/datum/design/autolathe/ammo/c762_short,
-		/datum/design/autolathe/ammo/c762_long,
+		/datum/design/autolathe/ammo/srifle,
+		/datum/design/autolathe/ammo/ihsrifle,
+		/datum/design/autolathe/ammo/sl_lrifle,
+		/datum/design/autolathe/ammo/lrifle_short,
+		/datum/design/autolathe/ammo/lrifle_long,
 		/datum/design/autolathe/ammo/shotgun_pellet, //shells
 		/datum/design/autolathe/ammo/shotgun
 	)
@@ -410,7 +401,7 @@
 	desc = "Seize it."
 	icon_state = "excelsior"
 
-	license = 0
+	license = -1
 	designs = list(
 		/datum/design/autolathe/circuit/autolathe_excelsior,
 		/datum/design/autolathe/circuit/shieldgen_excelsior,
@@ -422,10 +413,15 @@
 		/datum/design/autolathe/gun/makarov,
 		/datum/design/autolathe/gun/drozd,
 		/datum/design/autolathe/sec/silencer,
-		/datum/design/autolathe/ammo/magazine_mc9mm,
+		/datum/design/autolathe/ammo/magazine_pistol,
+		/datum/design/autolathe/ammo/smg_brute,
+ 		/datum/design/autolathe/gun/boltgun,
 		/datum/design/autolathe/gun/ak47,
-		/datum/design/autolathe/ammo/c762_long,
-		/datum/design/autolathe/ammo/box_a762,
+		/datum/design/autolathe/ammo/sl_lrifle,
+		/datum/design/autolathe/ammo/lrifle_long,
+		/datum/design/autolathe/ammo/box_lrifle,
+		/datum/design/autolathe/gun/vintorez,
+		/datum/design/autolathe/ammo/srifle,
 		/datum/design/autolathe/device/excelsiormine,
 		/datum/design/autolathe/sec/beartrap,
 		/datum/design/autolathe/clothing/excelsior_armor,
@@ -449,15 +445,20 @@
 	desc = "The back has a machine etching: \"We stand for organized terror - this should be frankly admitted. Terror is an absolute necessity during times of revolution.\""
 	icon_state = "excelsior"
 
-	license = 0
+	license = -1
 	designs = list(
 		/datum/design/autolathe/gun/makarov,
 		/datum/design/autolathe/gun/drozd,
 		/datum/design/autolathe/sec/silencer,
-		/datum/design/autolathe/ammo/magazine_mc9mm,
+		/datum/design/autolathe/ammo/magazine_pistol,
+		/datum/design/autolathe/ammo/smg_brute,
 		/datum/design/autolathe/gun/ak47,
-		/datum/design/autolathe/ammo/c762_long,
-		/datum/design/autolathe/ammo/box_a762,
+   		/datum/design/autolathe/gun/boltgun,
+		/datum/design/autolathe/ammo/sl_lrifle,
+		/datum/design/autolathe/ammo/lrifle_long,
+		/datum/design/autolathe/ammo/box_lrifle,
+  		/datum/design/autolathe/gun/vintorez,
+		/datum/design/autolathe/ammo/srifle,
 		/datum/design/autolathe/device/excelsiormine,
 		/datum/design/autolathe/sec/beartrap,
 		/datum/design/autolathe/clothing/excelsior_armor,
@@ -481,32 +482,59 @@
 
 
 
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/neotheology
-	disk_name = "NeoTeology Pack"
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_bioprinter
+	disk_name = "NeoTeology Bioprinter Production"
 	icon_state = "neotheology"
 
+	license = -1
 	designs = list(
-		/datum/design/autolathe/biomatter/meat,
-		/datum/design/autolathe/biomatter/milk,
+		/datum/design/bioprinter/meat,
+		/datum/design/bioprinter/milk,
 
-		/datum/design/autolathe/biomatter/ez,
-		/datum/design/autolathe/biomatter/l4z,
-		/datum/design/autolathe/biomatter/rh,
+		/datum/design/bioprinter/ez,
+		/datum/design/bioprinter/l4z,
+		/datum/design/bioprinter/rh,
 
-		/datum/design/autolathe/biomatter/wallet,
-		/datum/design/autolathe/biomatter/botanic_leather,
-		/datum/design/autolathe/biomatter/leather/satchel,
-		/datum/design/autolathe/biomatter/leather/leather_jacket,
-		/datum/design/autolathe/biomatter/leather/cash_bag,
-		/datum/design/autolathe/biomatter/belt/utility,
-		/datum/design/autolathe/biomatter/belt/medical,
-		/datum/design/autolathe/biomatter/belt/security,
-		/datum/design/autolathe/biomatter/belt/medical/emt,
-		/datum/design/autolathe/biomatter/belt/misc/champion,
+		/datum/design/bioprinter/wallet,
+		/datum/design/bioprinter/botanic_leather,
+		/datum/design/bioprinter/leather/satchel,
+		/datum/design/bioprinter/leather/leather_jacket,
+		/datum/design/bioprinter/leather/cash_bag,
+		/datum/design/bioprinter/belt/utility,
+		/datum/design/bioprinter/belt/medical,
+		/datum/design/bioprinter/belt/security,
+		/datum/design/bioprinter/belt/medical/emt,
+		/datum/design/bioprinter/belt/misc/champion,
 
-		/datum/design/autolathe/biomatter/medical/bruise,
-		/datum/design/autolathe/biomatter/medical/splints,
-		/datum/design/autolathe/biomatter/medical/ointment,
-		/datum/design/autolathe/biomatter/medical/advanced/bruise,
-		/datum/design/autolathe/biomatter/medical/advanced/ointment,
+		/datum/design/bioprinter/medical/bruise,
+		/datum/design/bioprinter/medical/splints,
+		/datum/design/bioprinter/medical/ointment,
+		/datum/design/bioprinter/medical/advanced/bruise,
+		/datum/design/bioprinter/medical/advanced/ointment,
+	)
+
+// Same as the other NT disk, minus the medical designs. Spawns in public access bioprinters.
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_bioprinter_public
+	disk_name = "NeoTeology Bioprinter Pack"
+	icon_state = "neotheology"
+
+	license = -1
+	designs = list(
+		/datum/design/bioprinter/meat,
+		/datum/design/bioprinter/milk,
+
+		/datum/design/bioprinter/ez,
+		/datum/design/bioprinter/l4z,
+		/datum/design/bioprinter/rh,
+
+		/datum/design/bioprinter/wallet,
+		/datum/design/bioprinter/botanic_leather,
+		/datum/design/bioprinter/leather/satchel,
+		/datum/design/bioprinter/leather/leather_jacket,
+		/datum/design/bioprinter/leather/cash_bag,
+		/datum/design/bioprinter/belt/utility,
+		/datum/design/bioprinter/belt/medical,
+		/datum/design/bioprinter/belt/security,
+		/datum/design/bioprinter/belt/medical/emt,
+		/datum/design/bioprinter/belt/misc/champion,
 	)

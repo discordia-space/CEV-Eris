@@ -38,11 +38,11 @@
 	desc = "It's a storage unit for nuclear-operative gear."
 
 /obj/structure/closet/syndicate/nuclear/populate_contents()
-	new /obj/item/ammo_magazine/smg10mm(src)
-	new /obj/item/ammo_magazine/smg10mm(src)
-	new /obj/item/ammo_magazine/smg10mm(src)
-	new /obj/item/ammo_magazine/smg10mm(src)
-	new /obj/item/ammo_magazine/smg10mm(src)
+	new /obj/item/ammo_magazine/smg(src)
+	new /obj/item/ammo_magazine/smg(src)
+	new /obj/item/ammo_magazine/smg(src)
+	new /obj/item/ammo_magazine/smg(src)
+	new /obj/item/ammo_magazine/smg(src)
 	new /obj/item/weapon/storage/box/handcuffs(src)
 	new /obj/item/weapon/storage/box/flashbangs(src)
 	new /obj/item/weapon/gun/energy/gun(src)

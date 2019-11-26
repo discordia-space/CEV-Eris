@@ -28,3 +28,9 @@
 	name = "Raw uncapped nanites vial"
 	item_cost = 8
 	path = /obj/item/weapon/reagent_containers/glass/beaker/vial/uncapnanites
+
+/datum/uplink_item/item/medical/gene_vial
+	name = "Genetic material vial"
+	item_cost = 5
+	path = /obj/item/gene_vial
+	antag_roles = list(ROLE_CHANGELING)

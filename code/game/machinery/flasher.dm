@@ -26,6 +26,7 @@
 	anchored = 0
 	base_state = "pflash"
 	density = 1
+	range = 3 //the eris' hallways are wider than other maps
 
 /obj/machinery/flasher/Initialize()
 	. = ..()
@@ -115,6 +116,8 @@
 	if(iscarbon(AM))
 		var/mob/living/carbon/M = AM
 		if ((MOVING_DELIBERATELY(M)) && (src.anchored))
+			return
+		else if (src.anchored)
 			src.flash()
 
 /obj/machinery/flasher/portable/attackby(obj/item/weapon/W as obj, mob/user as mob)

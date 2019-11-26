@@ -44,6 +44,8 @@
 	desc = "A layered, translucent visor system for a hardsuit."
 	icon_state = "optics"
 
+	active_power_cost = 0.05
+
 	interface_name = "optical scanners"
 	interface_desc = "An integrated multi-mode vision system."
 

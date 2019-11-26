@@ -20,7 +20,7 @@
 	name = "advanced scalpel"
 	desc = "Made of more expensive materials, sharper and generally more reliable."
 	icon_state = "scalpel_t4"
-	matter = list(MATERIAL_STEEL = 5)
+	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTEEL = 1)
 	tool_qualities = list(QUALITY_CUTTING = 40, QUALITY_WIRE_CUTTING = 10)
 	degradation = 0.12
 	max_upgrades = 4

@@ -35,6 +35,7 @@ obj/item/weapon/gun/energy/retro
 	fire_sound = 'sound/weapons/Laser.ogg'
 	slot_flags = SLOT_BELT
 	w_class = ITEM_SIZE_NORMAL
+	can_dual = 1
 	matter = list(MATERIAL_STEEL = 12)
 	projectile_type = /obj/item/projectile/beam
 	fire_delay = 10 //old technology
@@ -51,6 +52,7 @@ obj/item/weapon/gun/energy/retro
 	fire_sound = 'sound/weapons/Laser.ogg'
 	slot_flags = SLOT_BELT
 	w_class = ITEM_SIZE_NORMAL
+	can_dual = 1
 	projectile_type = /obj/item/projectile/beam
 	origin_tech = null
 	self_recharge = TRUE

@@ -8,16 +8,16 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 	var/saved_best_explosion = 0
 
 	var/static/list/tech_points = list(
-		"materials" = 200,
-		"engineering" = 250,
-		"phorontech" = 500,
-		"powerstorage" = 300,
-		"bluespace" = 1000,
-		"biotech" = 300,
-		"combat" = 500,
-		"magnets" = 350,
-		"programming" = 400,
-		"syndicate" = 5000,
+		TECH_MATERIAL = 200,
+		TECH_ENGINEERING = 250,
+		TECH_PLASMA = 500,
+		TECH_POWER = 300,
+		TECH_BLUESPACE = 1000,
+		TECH_BIO = 300,
+		TECH_COMBAT = 500,
+		TECH_MAGNET = 350,
+		TECH_DATA = 400,
+		TECH_ILLEGAL = 5000,
 	)
 
 	// So we don't give points for researching non-artifact item

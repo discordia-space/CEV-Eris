@@ -20,6 +20,7 @@
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
 	price_tag = 1500
+	var/bolt_open = 0
 
 	burst_delay = 0
 	firemodes = list(
@@ -35,10 +36,52 @@
 	desc = "A double-barreled shotgun meant to fire signal flash shells."
 	ammo_type = /obj/item/ammo_casing/shotgun/flash
 
-/obj/item/weapon/gun/projectile/shotgun/doublebarrel/unload_ammo(user, allow_dump)
-	..(user, allow_dump=1)
+/obj/item/weapon/gun/projectile/shotgun/doublebarrel/update_icon()
+	..()
 
-//this is largely hacky and bad :(	-Pete
+	var/iconstring = initial(icon_state)
+
+	if (bolt_open)
+		iconstring += "_open"
+
+	icon_state = iconstring
+
+/obj/item/weapon/gun/projectile/shotgun/doublebarrel/attack_self(mob/user) //Someone overrode attackself for this class, soooo.
+	if(zoom)
+		toggle_scope(user)
+		return
+	bolt_act(user)
+
+/obj/item/weapon/gun/projectile/shotgun/doublebarrel/proc/bolt_act(mob/living/user)
+	bolt_open = !bolt_open
+	if(bolt_open)
+		playsound(src.loc, 'sound/weapons/guns/interact/shotgun_break.ogg', 75, 1)
+		to_chat(user, SPAN_NOTICE("You snap the barrel open."))
+		unload_ammo(user, allow_dump=1)
+	else
+		playsound(src.loc, 'sound/weapons/guns/interact/shotgun_close.ogg', 75, 1)
+		to_chat(user, SPAN_NOTICE("You snap the barrel closed"))
+		bolt_open = 0
+	add_fingerprint(user)
+	update_icon()
+
+/obj/item/weapon/gun/projectile/shotgun/doublebarrel/special_check(mob/user)
+	if(bolt_open)
+		to_chat(user, SPAN_WARNING("You can't fire [src] while the barrel is open!"))
+		return 0
+	return ..()
+
+/obj/item/weapon/gun/projectile/shotgun/doublebarrel/load_ammo(var/obj/item/A, mob/user)
+	if(!bolt_open)
+		to_chat(user, SPAN_WARNING("You can't load [src] while the barrel is closed!"))
+		return
+	..()
+
+/obj/item/weapon/gun/projectile/shotgun/doublebarrel/unload_ammo(mob/user, var/allow_dump=1)
+	if(!bolt_open)
+		return
+	..()
+
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/attackby(var/obj/item/A as obj, mob/user as mob)
 	if(QUALITY_SAWING in A.tool_qualities)
 		to_chat(user, SPAN_NOTICE("You begin to shorten the barrel of \the [src]."))
@@ -49,14 +92,8 @@
 			user.visible_message(SPAN_DANGER("The shotgun goes off!"), SPAN_DANGER("The shotgun goes off in your face!"))
 			return
 		if(A.use_tool(user, src, WORKTIME_FAST, QUALITY_SAWING, FAILCHANCE_NORMAL, required_stat = STAT_COG))
-			icon_state = "sawnshotgun"
-			item_state = "sawnshotgun"
-			w_class = ITEM_SIZE_NORMAL
-			force = WEAPON_FORCE_PAINFUL
-			slot_flags &= ~SLOT_BACK	//you can't sling it on your back
-			slot_flags |= (SLOT_BELT|SLOT_HOLSTER) //but you can wear it on your belt (poorly concealed under a trenchcoat, ideally) - or in a holster, why not.
-			name = "sawn-off shotgun"
-			desc = "Omar's coming!"
+			qdel(src)
+			new /obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn(usr.loc)
 			to_chat(user, SPAN_WARNING("You shorten the barrel of \the [src]!"))
 	else
 		..()

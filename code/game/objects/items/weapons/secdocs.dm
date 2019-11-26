@@ -1,12 +1,19 @@
-/obj/item/weapon/secdocs
+/obj/item/weapon/oddity/secdocs
 	name = "science data"
 	desc = "Folder contains some papers with important science data."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "scifolder0"
 	price_tag = 5000
-	var/obj/landmark/storyevent/midgame_stash_spawn/landmark = null
 
-/obj/item/weapon/secdocs/New()
+	oddity_stats = list(
+		STAT_MEC = 8,
+		STAT_COG = 8,
+		STAT_BIO = 8,
+	)
+
+	var/static/inv_spawn_count = 3
+
+/obj/item/weapon/oddity/secdocs/Initialize()
 	icon_state = "scifolder[rand(0,3)]"
 	name = pick("Atractor fields theory",
 				"World lines theory",
@@ -24,20 +31,27 @@
 				"Real reason of One Star fall",
 				"Connection between One Star and dead alien civilizations, are we next?",
 				"Unknown device blueprints")
+	. = ..()
+	var/mob/living/carbon/human/owner = loc
+	if(istype(owner))
+		var/chosen_stat = pick(oddity_stats)
+		var/stat_change = rand(2, oddity_stats[chosen_stat])
+		owner.stats.changeStat(chosen_stat, stat_change)
+		claim(owner)
+		to_chat(owner, SPAN_NOTICE("You have valuable science data on your person. It is essential that you do not let it fall into the wrong hands."))
 
-/obj/item/weapon/secdocs/proc/place_docs()
+/hook/roundstart/proc/place_docs()
 	var/list/L = list()
 	for(var/obj/landmark/storyevent/midgame_stash_spawn/S in landmarks_list)
 		L.Add(S)
 
 	L = shuffle(L)
 
-	for(var/obj/landmark/storyevent/midgame_stash_spawn/S in L)
-		if(!S.is_visible())
-			landmark = S
-			break
+	if(L.len < 3)
+		warning("Failed to place secret documents: not enough landmarks.")
+		return FALSE
 
-	forceMove(landmark.get_loc())
+	for(var/i in 1 to 3)
+		new /obj/item/weapon/oddity/secdocs(L[i].get_loc())
 
-
-//Interaction benefits code might be here, but no
+	return TRUE

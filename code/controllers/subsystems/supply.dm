@@ -16,7 +16,7 @@ SUBSYSTEM_DEF(supply)
 	var/list/requestlist = list()
 	var/list/supply_packs = list()
 	//shuttle movement
-	var/movetime = 1200
+	var/movetime = 300
 	var/datum/shuttle/autodock/ferry/supply/shuttle
 
 /datum/controller/subsystem/supply/Initialize(start_timeofday)

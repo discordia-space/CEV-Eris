@@ -146,9 +146,9 @@
 
 		switch(method_for_this_load)
 			if(MAGAZINE)
-				if(AM.ammo_mag != ammo_mag && ammo_mag != "default")
-					to_chat(user, SPAN_WARNING("[src] requires another magazine.")) //wrong magazine
-					return
+//				if(AM.ammo_mag != ammo_mag && ammo_mag != "default")	Not needed with mag_wells
+//					to_chat(user, SPAN_WARNING("[src] requires another magazine.")) //wrong magazine
+//					return
 				if(tac_reloads && ammo_magazine)
 					unload_ammo(user)	// ejects the magazine before inserting the new one.
 					to_chat(user, SPAN_NOTICE("You tactically reload your [src] with [AM]!"))

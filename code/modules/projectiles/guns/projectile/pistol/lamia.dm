@@ -1,23 +1,26 @@
 /obj/item/weapon/gun/projectile/lamia
-	name = "FS HG .44 \"Lamia\""
-	desc = "FS HG .44 \"Lamia\", a heavy pistol of Ironhammer enforcers. Uses .44 rounds."
+	name = "FS HG .40 Magnum \"Lamia\""
+	desc = "FS HG .40 Magnum \"Lamia\", a heavy pistol of Ironhammer enforcers. Uses 40 Magnum rounds."
 	icon = 'icons/obj/guns/projectile/lamia.dmi'
 	icon_state = "lamia"
 	item_state = "lamia"
 	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'
-	caliber = ".44"
-	ammo_mag = "mag_cl44"
+	caliber = "magnum"
+	ammo_mag = "mag_magnum"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
+	can_dual = 1
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL
 	auto_eject = 1
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 8)
-	price_tag = 1800
+	price_tag = 2400
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	unload_sound 	= 'sound/weapons/guns/interact/hpistol_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/hpistol_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/hpistol_cock.ogg'
-	recoil = 0.8 //high caliber pistol recoil
+	damage_multiplier = 1.2
+	penetration_multiplier = 1.3
+	recoil_buildup = 21
 
 /obj/item/weapon/gun/projectile/lamia/update_icon()
 	..()

@@ -10,11 +10,11 @@
 
 	circuit = /obj/item/weapon/circuitboard/smelter
 
-	// based on levels of manipulators
-	var/speed = 5
+	// base smelting speed - based on levels of manipulators
+	var/speed = 10
 
 	// based on levels of matter bins
-	var/storage_capacity = 60
+	var/storage_capacity = 120
 
 	var/list/stored_material = list()
 
@@ -60,9 +60,10 @@
 	if(current_item)
 		use_power(2)
 		progress += speed
+		progress += item_speed_bonus(current_item)
 		if(progress >= 100)
 			smelt()
-			progress = 0
+			grab()
 			use_power(1)
 		update_icon()
 	else
@@ -85,6 +86,7 @@
 /obj/machinery/smelter/proc/smelt()
 	smelt_item(current_item)
 	current_item = null
+	progress = 0
 	eject_overflow()
 
 
@@ -125,12 +127,28 @@
 	if(istype(O, /obj/item/weapon/ore))
 		var/obj/item/weapon/ore/ore = O
 		var/ore/data = ore_data[ore.material]
-		. = list()
 		if(data.smelts_to)
-			.[data.smelts_to] = 1
-		return
+			return list(data.smelts_to = 1)
+		if(data.compresses_to)
+			return list(data.compresses_to = 1)
 	return O.get_matter()
 
+// Some items are significantly easier to smelt
+/obj/machinery/smelter/proc/item_speed_bonus(obj/smelting)
+	if(istype(smelting, /obj/item/stack))
+		return 30
+
+	if(istype(smelting, /obj/item/weapon/ore))
+		return 20
+
+	if(istype(smelting, /obj/item/weapon/material/shard))
+		return 20
+
+	// Just one material - makes smelting easier
+	if(length(result_materials(smelting)) == 1)
+		return 10
+
+	return 0
 
 /obj/machinery/smelter/proc/eject(obj/O, output_dir)
 	O.forceMove(get_step(src, output_dir))
@@ -166,6 +184,10 @@
 	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
 		manipulator_rating += M.rating
 		++manipulator_count
+	for(var/obj/item/weapon/stock_parts/micro_laser/M in component_parts)
+		manipulator_rating += M.rating
+		++manipulator_count
+
 	speed = initial(speed)*(manipulator_rating/manipulator_count)
 
 	var/mb_rating = 0

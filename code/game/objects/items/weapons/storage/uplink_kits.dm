@@ -27,7 +27,7 @@
 
 			if("guns")
 				new /obj/item/weapon/gun/projectile/revolver(src)
-				new /obj/item/ammo_magazine/sl357(src)
+				new /obj/item/ammo_magazine/slmagnum(src)
 				new /obj/item/weapon/card/emag(src)
 				new /obj/item/weapon/plastique(src)
 				new /obj/item/weapon/plastique(src)
@@ -64,7 +64,7 @@
 				return
 */
 			if("smoothoperator")
-				new /obj/item/weapon/storage/box/syndie_kit/g9mm(src)
+				new /obj/item/weapon/storage/box/syndie_kit/pistol(src)
 				new /obj/item/weapon/storage/bag/trash(src)
 				new /obj/item/weapon/soap/syndie(src)
 				new /obj/item/bodybag(src)
@@ -184,15 +184,15 @@
 	new /obj/item/ammo_magazine/chemdart(src)
 
 
-/obj/item/weapon/storage/box/syndie_kit/g9mm
+/obj/item/weapon/storage/box/syndie_kit/pistol
 	name = "\improper Smooth operator"
-	desc = "9mm with silencer kit."
+	desc = ".35 Auto with silencer kit."
 
-/obj/item/weapon/storage/box/syndie_kit/g9mm/New()
+/obj/item/weapon/storage/box/syndie_kit/pistol/New()
 	..()
 	new /obj/item/weapon/gun/projectile/clarissa(src)
 	new /obj/item/weapon/silencer(src)
-	new /obj/item/ammo_magazine/mc9mm(src)
+	new /obj/item/ammo_magazine/hpistol(src)
 
 /obj/item/weapon/storage/box/syndie_kit/c20r
 	name = "C-20r box"
@@ -201,7 +201,7 @@
 /obj/item/weapon/storage/box/syndie_kit/c20r/New()
 	..()
 	new /obj/item/weapon/gun/projectile/automatic/c20r(src)
-	new /obj/item/ammo_magazine/smg10mm(src)
+	new /obj/item/ammo_magazine/smg(src)
 
 /obj/item/weapon/storage/box/syndie_kit/revolver
 	name = "Revolver box"
@@ -210,7 +210,7 @@
 /obj/item/weapon/storage/box/syndie_kit/revolver/New()
 	..()
 	new /obj/item/weapon/gun/projectile/revolver(src)
-	new /obj/item/ammo_magazine/sl357(src)
+	new /obj/item/ammo_magazine/slmagnum(src)
 
 /obj/item/weapon/storage/box/syndie_kit/sts35
 	name = "Assault rifle box"
@@ -221,7 +221,18 @@
 /obj/item/weapon/storage/box/syndie_kit/sts35/New()
 	..()
 	new /obj/item/weapon/gun/projectile/automatic/sts35(src)
-	new /obj/item/ammo_magazine/c762_short(src)
+	new /obj/item/ammo_magazine/lrifle_short(src)
+
+/obj/item/weapon/storage/box/syndie_kit/pug
+	name = "Pug box"
+	desc = "Pug kit with one M12 buckshot mag"
+	icon_state = "box_of_doom_big"
+	w_class = ITEM_SIZE_HUGE
+
+/obj/item/weapon/storage/box/syndie_kit/pug/New()
+	..()
+	new /obj/item/weapon/gun/projectile/automatic/pug(src)
+	new /obj/item/ammo_magazine/m12/pellet(src)
 
 /obj/item/weapon/storage/box/syndie_kit/antimaterial_rifle
 	name = "Sniper rifle box"
@@ -231,7 +242,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/antimaterial_rifle/New()
 	..()
-	new /obj/item/ammo_casing/a145(src)
+	new /obj/item/ammo_casing/antim(src)
 	new /obj/item/weapon/weaponparts/heavysniper/disassembled(src)
 	new /obj/item/weapon/weaponparts/heavysniper/stock(src)
 	new /obj/item/weapon/weaponparts/heavysniper/barrel(src)
