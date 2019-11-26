@@ -231,7 +231,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/pug/New()
 	..()
-	new /obj/item/weapon/gun/projectile/automatic/pug(src)
+	new /obj/item/weapon/gun/projectile/shotgun/pug(src)
 	new /obj/item/ammo_magazine/m12/pellet(src)
 
 /obj/item/weapon/storage/box/syndie_kit/antimaterial_rifle
