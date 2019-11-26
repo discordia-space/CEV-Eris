@@ -13,6 +13,7 @@
 
 	var/canister_color = "yellow"
 	var/can_label = 1
+	var/sealed = FALSE
 	start_pressure = 45 * ONE_ATMOSPHERE
 	var/temperature_resistance = 1000 + T0C
 	volume = 1000
@@ -258,6 +259,22 @@ update_flag
 		..()
 		return
 
+	else if(QUALITY_PULSING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_PULSING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
+			if(valve_open == 1)
+				to_chat(user, "You can't seal the gasket while the valve is open!")
+				return
+			else if(sealed == FALSE)
+				to_chat(user, "You seal the gasket with a pulse of electricity.")
+				sealed = TRUE
+				SSnano.Destroy(src)
+				SSnano.update_uis(src) // exploit protection. no leaving the window open after sealing the can.
+				return
+			else if(sealed == TRUE)
+				to_chat(user, "You zap the gasket's seal, unlocking it with a voltaic crackle.")
+				sealed = FALSE
+				return
+
 	else
 		visible_message(SPAN_WARNING("\The [user] hits \the [src] with \a [I]!"))
 		src.health -= I.force
@@ -277,6 +294,10 @@ update_flag
 /obj/machinery/portable_atmospherics/canister/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	if (src.destroyed)
 		return
+	if (sealed == TRUE)
+		to_chat(user, SPAN_WARNING("You can't turn the valve while the gasket is sealed!"))
+		return
+
 
 	// this is the data which will be sent to the ui
 	var/data[0]
@@ -313,7 +334,7 @@ update_flag
 	if (!istype(src.loc, /turf))
 		return 0
 
-	if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr)) // exploit protection -walter0o
+	if(!usr.canmove || usr.stat || usr.restrained() || sealed == 1 || !in_range(loc, usr)) // exploit protection -walter0o
 		usr << browse(null, "window=canister")
 		onclose(usr, "canister")
 		return

@@ -4,7 +4,7 @@
 	program_icon_state = "hostile"
 	program_key_state = "security_key"
 	program_menu_icon = "arrow-4-diag"
-	extended_desc = "This advanced script can perform denial of service attacks against NTNet quantum relays. The system administrator will probably notice this. Multiple devices can run this program together against same relay for increased effect"
+	extended_desc = "This advanced script can perform denial of service attacks against NTNet quantum relays. The system administrator will probably notice this. Multiple devices can run this program together against the same relay for increased effect"
 	size = 20
 	requires_ntnet = 1
 	available_on_ntnet = 0
@@ -105,7 +105,7 @@
 		executed = 1
 		target.dos_sources.Add(src)
 		operator_skill = usr.stats.getStat(STAT_COG)
-	
+
 		var/list/sources_to_show = list(computer.network_card.get_network_tag())
 		var/extra_to_show = 2 * max(operator_skill - STAT_LEVEL_ADEPT, 0)
 		if(extra_to_show)
