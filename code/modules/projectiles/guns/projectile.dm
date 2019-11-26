@@ -125,6 +125,7 @@
 	if(istype(A, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/AM = A
 		if(!(load_method & AM.mag_type) || caliber != AM.caliber)
+			to_chat(user, SPAN_WARNING("[AM] won't fit into the magwell. This mag and ammunition inside it is incompatible with [src]."))
 			return //incompatible
 
 		//How are we trying to apply this magazine to this gun?
@@ -190,6 +191,7 @@
 	else if(istype(A, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = A
 		if(!(load_method & SINGLE_CASING) || caliber != C.caliber)
+			to_chat(user, SPAN_WARNING("[src] is incompatible with [C]."))
 			return //incompatible
 		if(loaded.len >= max_shells)
 			to_chat(user, SPAN_WARNING("[src] is full."))
