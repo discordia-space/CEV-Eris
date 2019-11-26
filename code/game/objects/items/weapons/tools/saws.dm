@@ -31,7 +31,7 @@
 	hitsound = WORKSOUND_CIRCULAR_SAW
 	worksound = WORKSOUND_CIRCULAR_SAW
 	force = WEAPON_FORCE_ROBUST
-	armor_penetration = 4
+	armor_penetration = ARMOR_PEN_GRAZING
 	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTIC = 2)
 	tool_qualities = list(QUALITY_SAWING = 40, QUALITY_CUTTING = 30, QUALITY_WIRE_CUTTING = 30)
 
@@ -54,7 +54,7 @@
 	icon_state = "chainsaw"
 	hitsound = WORKSOUND_CHAINSAW
 	worksound = WORKSOUND_CHAINSAW
-	force = 33 // Rip and tear!
+	force = WEAPON_FORCE_BRUTAL // Rip and tear!
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 3)
 	tool_qualities = list(QUALITY_SAWING = 60, QUALITY_CUTTING = 50, QUALITY_WIRE_CUTTING = 20)
 	max_upgrades = 4

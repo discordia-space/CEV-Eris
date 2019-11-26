@@ -19,7 +19,8 @@
 	price_tag = 2000 //avasarala of revolver world
 	var/chamber_offset = 0 //how many empty chambers in the cylinder until you hit a round
 	fire_delay = 3 //all revolvers can fire faster, but have huge recoil
-	damage_multiplier = 1.7
+	damage_multiplier = 1.75
+	armor_penetration = 0.65 // Insanely powerful handcannon, but worthless against heavy armor
 	recoil_buildup = 50
 
 /obj/item/weapon/gun/projectile/revolver/verb/spin_cylinder()
