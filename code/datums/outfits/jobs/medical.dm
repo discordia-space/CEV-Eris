@@ -36,8 +36,9 @@
 
 /decl/hierarchy/outfit/job/medical/chemist/New()
 	..()
-	//backpack_overrides[/decl/backpack_outfit/backpack]      = /obj/item/weapon/storage/backpack/chemistry;
-	//backpack_overrides[/decl/backpack_outfit/satchel]       = /obj/item/weapon/storage/backpack/satchel/chem;
+	backpack_overrides[/decl/backpack_outfit/backpack]      = /obj/item/weapon/storage/backpack/orange/chemist;
+	backpack_overrides[/decl/backpack_outfit/backsport]     = /obj/item/weapon/storage/backpack/sport/orange;
+	backpack_overrides[/decl/backpack_outfit/satchel]       = /obj/item/weapon/storage/backpack/satchel/orange/chemist;
 
 /decl/hierarchy/outfit/job/medical/psychiatrist
 	name = OUTFIT_JOB_NAME("Moebius Psychiatrist")

@@ -600,7 +600,7 @@
 "mr" = (/obj/machinery/librarycomp,/obj/structure/table/woodentable,/turf/unsimulated/floor{dir = 8; icon_state = "wood"},/area/wizard_station)
 "mt" = (/obj/structure/table/woodentable,/obj/item/weapon/book/manual/nuclear,/turf/unsimulated/floor{dir = 8; icon_state = "wood"},/area/wizard_station)
 "mu" = (/obj/structure/table/woodentable,/turf/simulated/floor/carpet,/area/wizard_station)
-"mv" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/backpack/satchel/withwallet,/turf/simulated/floor/carpet,/area/wizard_station)
+"mv" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/backpack/satchel/leather/withwallet,/turf/simulated/floor/carpet,/area/wizard_station)
 "mw" = (/obj/structure/toilet{pixel_y = 8},/turf/unsimulated/floor{icon_state = "freezerfloor"; dir = 2},/area/wizard_station)
 "mx" = (/turf/unsimulated/floor{icon_state = "freezerfloor"; dir = 2},/area/wizard_station)
 "my" = (/obj/structure/mirror{pixel_y = 28},/turf/unsimulated/floor{icon_state = "freezerfloor"; dir = 2},/area/wizard_station)
