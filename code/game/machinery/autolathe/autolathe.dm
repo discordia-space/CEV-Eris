@@ -228,7 +228,7 @@
 
 /obj/machinery/autolathe/attackby(obj/item/I, mob/user)
 	if(default_deconstruction(I, user))
-		wires.Interact(user)
+		wires?.Interact(user)
 		return
 
 	if(default_part_replacement(I, user))
